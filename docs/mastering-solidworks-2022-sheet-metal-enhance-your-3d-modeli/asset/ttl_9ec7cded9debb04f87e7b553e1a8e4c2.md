@@ -1,0 +1,1 @@
+精通 SOLIDWORKS 2022 钣金：通过学习 SOLIDWORKS 钣金模块的各个方面提升你的 3D 建模技能

@@ -1,0 +1,47 @@
+reviews:
+- 'no': 2975
+  overturn_probability: 0.35
+  alternative: 排版断行
+  counter_evidence:
+  - 行 2975 仅为孤立的编号 '### 10'，标题主体被拆分到 2976-2978 三行单独成行，真正的标题语义在后续多行才完整呈现，不符合标题单独成行且长度小于30字的格式特征
+  - '前文 2969 #### 总结 与 2971 本章中... 2973 在下一章中... 已构成章尾总结过渡，编号出现后立即换行导致标题被断行，属于排版噪声而非独立章标题'
+  keep_split: true
+- 'no': 3287
+  overturn_probability: 0.72
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题为 ''## Section 3:'' 且后续标题被拆分为 3288-3290 三行，语义为 ''将 3D 零件 转换为钣金并 创建钣金外壳''，更像是书内的大节/部分说明而非最高层级大章，且全书此前使用
+    ### 编号作为章号，## 在此上下文中承担节/部分作用'
+  - 后续 3294 本节包含以下章节： 3296 - Chapter 11... 3297 - Chapter 12... 3298 - Chapter 13...
+    表明 Section 3 下辖 Chapter 11/12/13，属于上层目录而非可直接划分的独立章节，符合正文小标题/目录层级特征
+  keep_split: false
+- 'no': 3300
+  overturn_probability: 0.12
+  alternative: 正文小标题
+  counter_evidence:
+  - '编号 ### 11 与标题 3301 使用插入折弯工具将零件转换为钣金 连续出现，标题单独成行、无句号、长度适中，且后 1~3 行 3303-3307 为概述段落，后续出现
+    #### 子节，符合章标题上下文特征'
+  - 前文 3287 Section 3 已作为上层部分，3300 为其下第一章，序号连贯且为最高层级大章
+  keep_split: true
+- 'no': 3447
+  overturn_probability: 0.18
+  alternative: 排版断行
+  counter_evidence:
+  - '编号 ### 12 后标题被拆分为 3448-3451 四行英文分行，标题语义完整且统领后续 Convert to Sheet Metal 内容，前文 3441
+    #### Summary 与 3445 也可以通过使用专用的... 构成章尾过渡，符合新章起始'
+  - 标题虽分行但为排版导致的换行，整体仍为最高层级大章
+  keep_split: true
+- 'no': 3730
+  overturn_probability: 0.15
+  alternative: 正文小标题
+  counter_evidence:
+  - '编号 ### 13 后标题 Practical Example: The Sheet Metal Enclosure 分行于 3731-3733，标题单独成行、无句号，统领
+    3735 起的外壳示例内容，前文 3724 #### Summary 与 3728 在下一章中... 构成章尾，符合章标题规则'
+  keep_split: true
+- 'no': 4148
+  overturn_probability: 0.08
+  alternative: 页眉页脚
+  counter_evidence:
+  - '## 索引 为文末索引，单独成行且为最高层级标题，按规则文末索引应划分为一章'
+  - '后续 4150 ## 符号 4152 2D 绘图 等为索引条目，上下文符合索引章节特征'
+  keep_split: true
