@@ -1,0 +1,16 @@
++   - Is there one key team member who you can’t afford to lose – the one person who knows how the system really works? If you answered *no* to this question, is it possible that you’ve overlooked a key team member and will only realize the gap when they leave?
++   - If you’re that key team member with the key knowledge in your head, it feels pretty good, right? Or it would feel good if you weren’t getting asked basic questions most of the day, getting in the way of you doing your *real* job…
++   - If your organization is project-based, do the project teams capture the knowledge coming out of each project so it can be used in their day-to-day work? Or does each effort tend to start with a *blank sheet* as the team finds it difficult to capture and reuse knowledge from previous projects?
++   - Do you have process and procedure documents that have been left sitting unused and not updated on a shelf? Is there a temptation to not use or update these documents as the team is *too busy* and you promise yourself you’ll get around to updating it sometime later?
++   - If you changed these process documents, would anybody notice? Your team members aren’t machines – they won’t just execute a new process if the document changes. But what if you could (gently) check that what is in the process was actually being implemented?
++   - Are edits tracked so that people can agree on what changes need to be made to the process? Just as important, if things go wrong, can you trace back to the change that broke it? When the fix is made, are you sure people will use the correct version of the process?
++   - Are the right people carrying out the right tasks? This used to be easier to manage when everybody worked in the same office. Now, with hybrid working, and teams being dispersed across different continents and different companies, do we know whether people are doing the right thing at the right time?
++   - In general, sharing information is much more powerful than keeping it a closely guarded secret. But sometimes, key information needs to be kept under wraps (for example, the percentage discount you give to key customers). The ability to edit this information (for example, changing the level at which this discount applies) needs to be more closely controlled. Is this the case in your company?
+
+It’s no surprise that in a book with *business rules* in the title, we’re advocating for a solution involving rules to capture, share, and manage your business knowledge effectively. But to explain how we can do this, let’s introduce one of the hottest topics nowadays – **Artificial Intelligence (AI)**.
+
+# Artificial intelligence and which type can help you best
+
+On a bad day at the office, you’ve probably had the great idea of either cloning yourself or one of your key team members. That way, you could leave your clone working away while you do more important things, or just take a break at the beach.
+
+Just to be clear, this book does not recommend cloning humans as a practical solution!

@@ -1,0 +1,37 @@
+reviews:
+- 'no': 6038
+  overturn_probability: 0.05
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 标题包含编号特征“12”，单独成行且语义统领后续多节内容
+  - 后文 6040 起为第12章正文引言，符合全书最高层级大章特征
+  keep_split: true
+- 'no': 6590
+  overturn_probability: 0.03
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 标题为“## 附录A”，为附录级大章，单独成行
+  - 规则明确前言/附录统一划分为一章，后续 6592 起为附录A内部内容
+  keep_split: true
+- 'no': 6592
+  overturn_probability: 0.88
+  alternative: 正文小标题
+  counter_evidence:
+  - '位于附录A内部，紧跟在 6590 ## 附录A 之后，属于附录内的二级小节而非全书最高层级大章'
+  - 标题“## Visual Basic for Applications简介”为附录A下的主题小标题，后续内容 6596 起为“### 宏和VBA简介”等更深层结构，语义上为附录A的组成部分
+  - 按判断规则应排除正文段落中的小标题、分点，不应为新章
+  keep_split: false
+- 'no': 6632
+  overturn_probability: 0.04
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 标题为“## 附录B”，为附录级大章，单独成行
+  - 符合附录统一划分为一章的规则，后续为附录B正文
+  keep_split: true
+- 'no': 6874
+  overturn_probability: 0.04
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 标题为“## 附录C”，为附录级大章，单独成行
+  - 符合附录统一划分为一章的规则
+  keep_split: true

@@ -1,0 +1,30 @@
+reviews:
+- 'no': 3334
+  overturn_probability: 0.05
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 行内容为 '# 第 3 部分：'，为全书最高层级部分标题，符合部分-章节模式的分章规则
+  - 前后上下文在第3部分起始处出现明显的结构断裂，后续出现第7章等章节标题
+  keep_split: true
+- 'no': 4914
+  overturn_probability: 0.03
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 行内容为 '# 第4部分：AI、机器学习和规则引擎的下一步'，为最高层级部分标题
+  - 前后上下文从第3部分内容切换至全新部分，符合部分起始特征
+  keep_split: true
+- 'no': 4924
+  overturn_probability: 0.1
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 行内容为 '## 第10章 使用Docker和云在Business Central中扩展规则'，编号特征为第10章，格式单独成行且无句号
+  - 位于第4部分之下，为全书最高层级大章标题，语义统领后续Docker相关内容
+  keep_split: true
+- 'no': 5454
+  overturn_probability: 0.85
+  alternative: 正文小标题/章节副标题
+  counter_evidence:
+  - 行号5452为 '## 11'，疑似为章节编号行，5454为其副标题而非独立章节标题，编号特征不完整缺少'第11章'字样
+  - 标题格式为 '## 基于规则的 AI 和机器学习 AI——结合两者之长'，长度较长且包含破折号，更符合小节/副标题特征而非最高层级章标题
+  - 上下文中第11章的正式编号应出现在5452，5454更像是该章的描述性副标题，单独分章会造成编号跳跃和重复分段
+  keep_split: false

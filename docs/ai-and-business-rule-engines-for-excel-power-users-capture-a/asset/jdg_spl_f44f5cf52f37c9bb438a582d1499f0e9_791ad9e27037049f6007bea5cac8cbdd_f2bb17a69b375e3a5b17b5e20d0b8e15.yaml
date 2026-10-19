@@ -1,0 +1,29 @@
+chapter_starts:
+- 'no': 3334
+  confidence: 0.9
+  final_reason: 双方一致采纳。行内容为 '# 第 3 部分：'，为全书最高层级部分标题，符合部分-章节模式的分章规则，且上下文出现结构断裂，后续进入第7章等内容。
+  accepted_evidence:
+  - 行内容为 '# 第 3 部分：'，为全书最高层级部分标题，符合部分-章节模式的分章规则
+  - 前后上下文在第3部分起始处出现明显的结构断裂，后续出现第7章等章节标题
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 4914
+  confidence: 0.95
+  final_reason: 双方一致采纳。行内容为 '# 第4部分：AI、机器学习和规则引擎的下一步'，为最高层级部分标题，上下文从第3部分切换至全新部分。
+  accepted_evidence:
+  - 行内容为 '# 第4部分：AI、机器学习和规则引擎的下一步'，为最高层级部分标题
+  - 前后上下文从第3部分内容切换至全新部分，符合部分起始特征
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 4924
+  confidence: 0.85
+  final_reason: 双方一致采纳。行内容为 '## 第10章 使用Docker和云在Business Central中扩展规则'，编号特征为第10章，格式单独成行且无句号，位于第4部分之下，为全书最高层级大章标题。
+  accepted_evidence:
+  - 行内容为 '## 第10章 使用Docker和云在Business Central中扩展规则'，编号特征为第10章，格式单独成行且无句号
+  - 位于第4部分之下，为全书最高层级大章标题，语义统领后续Docker相关内容
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 5454
+  reason: 复核方反方证据成立。行号5452为 '## 11' 疑似章节编号行，5454为其副标题而非独立章节标题，编号特征不完整缺少'第11章'字样，标题长度较长且含破折号，更符合小节/副标题特征，单独分章会造成编号跳跃。
+  need_human_review: false

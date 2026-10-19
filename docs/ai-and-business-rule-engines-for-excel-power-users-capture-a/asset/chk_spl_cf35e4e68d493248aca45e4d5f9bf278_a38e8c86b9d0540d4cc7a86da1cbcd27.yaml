@@ -1,0 +1,65 @@
+reviews:
+- 'no': 25
+  overturn_probability: 0.05
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '## 序言 为正文前的序言类前置内容，按规则前言/序言应统一划分为一章的起始，语义统领且单独成行'
+  keep_split: true
+- 'no': 67
+  overturn_probability: 0.35
+  alternative: 正文小标题
+  counter_evidence:
+  - '## 贡献者 后续紧跟 ### 关于作者、### 关于审阅者 等子项，属于前置信息块的内部小标题，规则要求前言/序言/致谢/关于作者等正文前内容统一划分为一章，内部不应再细分；单独成行但语义为前置信息集合的子目'
+  keep_split: false
+- 'no': 211
+  overturn_probability: 0.4
+  alternative: 正文小标题
+  counter_evidence:
+  - '## 前言 出现在序言之后且与后续正文衔接，书中已在 25 行有 ## 序言 作为前置章节起始，规则要求前言/序言等前置内容统一划分为一章，重复划分会导致前置信息被拆分；后
+    1~3 行为引文式概述而非章节概述段落'
+  keep_split: false
+- 'no': 417
+  overturn_probability: 0.02
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '# 第 1 部分： 为最高层级部分标题，单独成行且后续为部分介绍，符合部分-章节模式下的新章划分'
+  keep_split: true
+- 'no': 430
+  overturn_probability: 0.85
+  alternative: 正文小标题
+  counter_evidence:
+  - '## Wrestling with Excel? 您并不孤单 为第1章内部的二级小标题，后续行 433 起即为正文段落而非章节概述，且第1章的正式章名在
+    247 行出现为 第 1 章，Wrestling with Excel? You Are Not Alone；标题包含问号且长度较长，不符合章标题格式特征'
+  keep_split: false
+- 'no': 895
+  overturn_probability: 0.75
+  alternative: 正文小标题
+  counter_evidence:
+  - '## 选择 AI 和业务规则引擎——为什么选择 Drools 和 KIE？ 为第2章内部的二级小标题，正式章名在 895 之后上下文为第2章内容介绍，且标题语义为章节内的引导段落而非最高层级章名；单独成行但后接列表式目录说明'
+  keep_split: false
+- 'no': 1290
+  overturn_probability: 0.7
+  alternative: 正文小标题
+  counter_evidence:
+  - '## 编写我们的第一个业务规则 为第3章内部的二级小标题，正式章名在 1289 行附近为 编写我们的第一个业务规则 作为章节标题的中文译名，但其后直接进入操作步骤而非章节概述，且与后续
+    ## KIE Sandbox 扩展服务 等同级小标题并列'
+  keep_split: false
+- 'no': 1701
+  overturn_probability: 0.03
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '# 第 2 部分： 为最高层级部分标题，单独成行且统领后续多章内容，符合部分-章节模式'
+  keep_split: true
+- 'no': 1713
+  overturn_probability: 0.25
+  alternative: 正文小标题
+  counter_evidence:
+  - '# 更多决策模型、业务规则和决策表 为第4章的中文章名，单独成行且后续为章节概述，语义统领性强；与第4章英文原名对应，符合章标题特征'
+  keep_split: true
+- 'no': 2742
+  overturn_probability: 0.9
+  alternative: 正文小标题
+  counter_evidence:
+  - '### 使用 Power Query 从 Excel 调用业务规则 为三级标题，后续为第6章内部小节，标题层级为 ### 而非 # 或 ## 章级；后接先决条件说明而非章节概述，且第6章正式章名在
+    2742 之前已出现为 使用 Power Query 从 Excel 调用业务规则 的章节级标题'
+  keep_split: false

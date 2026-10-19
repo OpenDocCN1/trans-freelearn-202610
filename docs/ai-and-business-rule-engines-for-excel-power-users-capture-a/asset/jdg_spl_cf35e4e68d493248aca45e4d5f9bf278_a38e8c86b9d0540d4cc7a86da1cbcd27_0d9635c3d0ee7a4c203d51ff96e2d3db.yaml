@@ -1,0 +1,50 @@
+chapter_starts:
+- 'no': 25
+  confidence: 0.95
+  final_reason: '## 序言 为正文前的序言类前置内容，按规则前言/序言/致谢/关于作者等正文前内容统一划分为一章的起始，单独成行且语义统领，复核方支持保留'
+  accepted_evidence:
+  - '## 序言 为正文前的序言类前置内容，按规则前言/序言应统一划分为一章的起始，语义统领且单独成行'
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 417
+  confidence: 0.98
+  final_reason: '# 第 1 部分： 为最高层级部分标题，单独成行且后续为部分介绍，符合部分-章节模式下的新章划分，双方一致'
+  accepted_evidence:
+  - '# 第 1 部分： 为最高层级部分标题，单独成行且后续为部分介绍，符合部分-章节模式下的新章划分'
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 1701
+  confidence: 0.97
+  final_reason: '# 第 2 部分： 为最高层级部分标题，单独成行且统领后续多章内容，符合部分-章节模式，双方一致'
+  accepted_evidence:
+  - '# 第 2 部分： 为最高层级部分标题，单独成行且统领后续多章内容，符合部分-章节模式'
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 1713
+  confidence: 0.85
+  final_reason: '# 更多决策模型、业务规则和决策表 为第4章的中文章名，单独成行且后续为章节概述，语义统领性强，与第4章英文原名对应，符合章标题特征，复核方支持保留'
+  accepted_evidence:
+  - '# 更多决策模型、业务规则和决策表 为第4章的中文章名，单独成行且后续为章节概述，语义统领性强；与第4章英文原名对应，符合章标题特征'
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 67
+  reason: '## 贡献者 后续紧跟 ### 关于作者、### 关于审阅者 等子项，属于前置信息块的内部小标题，规则要求前言/序言/致谢/关于作者等正文前内容统一划分为一章，内部不应再细分；复核方指出应不分章'
+  need_human_review: false
+- 'no': 211
+  reason: '## 前言 出现在序言之后且与后续正文衔接，书中已在 25 行有 ## 序言 作为前置章节起始，规则要求前置内容统一划分为一章，重复划分会导致前置信息被拆分；复核方认为为正文小标题，不应再分章'
+  need_human_review: false
+- 'no': 430
+  reason: '## Wrestling with Excel? 您并不孤单 为第1章内部的二级小标题，后续即为正文段落而非章节概述，正式章名在 247 行出现；标题含问号且长度较长，不符合章标题格式特征，复核方反驳成立'
+  need_human_review: false
+- 'no': 895
+  reason: '## 选择 AI 和业务规则引擎——为什么选择 Drools 和 KIE？ 为第2章内部的二级小标题，正式章名上下文为第2章内容介绍，后接列表式目录说明，非最高层级章名，复核方反驳成立'
+  need_human_review: false
+- 'no': 1290
+  reason: '## 编写我们的第一个业务规则 为第3章内部的二级小标题，其后直接进入操作步骤而非章节概述，且与后续 ## KIE Sandbox 扩展服务
+    等同级小标题并列，复核方认为不应分章'
+  need_human_review: false
+- 'no': 2742
+  reason: '### 使用 Power Query 从 Excel 调用业务规则 为三级标题，后续为第6章内部小节，标题层级为 ### 而非 # 或 ##
+    章级，后接先决条件说明而非章节概述，复核方反驳成立'
+  need_human_review: false
