@@ -1,0 +1,746 @@
+- - '#'
+  - Apache Spark、Delta Lake 和 Lakehouse 数据工程：及时且安全地摄取、整理和聚合复杂数据的可扩展管道构建指南
+- - '##'
+  - 前言
+- - '##'
+  - 贡献者
+- - '##'
+  - 关于作者
+- - '##'
+  - 关于审阅者
+- - '##'
+  - 第 3 部分：数据工程挑战与有效部署策略
+- - '###'
+  - '8'
+- - '####'
+  - 数据聚合阶段 – Gold 层
+- - '###'
+  - '9'
+- - '####'
+  - 在生产环境中部署和监控管道
+- - '###'
+  - '10'
+- - '####'
+  - 解决数据工程挑战
+- - '###'
+  - '11'
+- - '####'
+  - 基础设施配置
+- - '###'
+  - '12'
+- - '####'
+  - 数据管道的持续集成和部署（CI/CD）
+- - '##'
+  - 你可能喜欢的其他书籍
+- - '##'
+  - 索引
+- - '##'
+  - 前言
+- - '##'
+  - 本书适合谁阅读
+- - '##'
+  - 本书涵盖内容
+- - '##'
+  - 下载示例代码文件
+- - '##'
+  - 下载彩色图片
+- - '##'
+  - 使用的约定
+- - '##'
+  - 联系我们
+- - '##'
+  - 分享您的想法
+- - '##'
+  - 第 1 部分：
+- - '###'
+  - '1'
+- - '####'
+  - 数据的旅程
+- - '#####'
+  - 探索数据分析的演变
+- - '##'
+  - 存储和计算资源的核心能力
+- - '##'
+  - 各类数据集的可用性
+- - '##'
+  - 向分布式计算的范式转变
+- - '##'
+  - 云计算的采用
+- - '##'
+  - 数据叙事
+- - '##'
+  - 数据的货币力量
+- - '##'
+  - 有机增长
+- - '##'
+  - 客户保留
+- - '##'
+  - 欺诈预防
+- - '##'
+  - 问题检测
+- - '##'
+  - 数据货币化
+- - '##'
+  - 总结
+- - '###'
+  - '2'
+- - '####'
+  - 介绍数据湖
+- - '#####'
+  - 探索数据湖的优势
+- - '######'
+  - 容纳不同的数据格式
+- - '######'
+  - 按区域存储数据
+- - '######'
+  - 容纳不同的数据特征
+- - '######'
+  - 遵守合规框架
+- - '##'
+  - Segregating storage and compute in a data lake
+- - '##'
+  - Storage
+- - '##'
+  - Block storage
+- - '##'
+  - Object storage
+- - '###'
+  - Block Storage
+- - '###'
+  - Object Storage
+- - '##'
+  - Compute
+- - '##'
+  - Containers
+- - '##'
+  - 存储便宜；计算昂贵
+- - '##'
+  - 发现数据湖架构
+- - '##'
+  - CAP 定理
+- - '##'
+  - The trade-offs
+- - '##'
+  - Traditional architecture
+- - '##'
+  - Lambda architecture
+- - '##'
+  - Batch layer
+- - '##'
+  - Serving layer
+- - '##'
+  - 2021-Q1 from batch view + Aggregate（February 3 SALES）
+- - '##'
+  - Speed layer
+- - '##'
+  - Kappa architecture
+- - '###'
+  - Streaming layer
+- - '###'
+  - Serving layer
+- - '##'
+  - 数据湖与数据仓库是解耦的
+- - '##'
+  - 数据湖与数据仓库是合并的
+- - '##'
+  - Lakehouse 架构
+- - '##'
+  - 权衡之争
+- - '##'
+  - 摘要
+- - '###'
+  - '3'
+- - '####'
+  - Microsoft Azure 上的数据工程
+- - '#####'
+  - 在 Azure 中介绍数据工程
+- - '##'
+  - 在 Microsoft Azure 中执行数据工程
+- - '##'
+  - 自托管数据工程服务（IaaS）
+- - '##'
+  - IaaS 用例
+- - '##'
+  - Hadoop/Spark/Kafka 分发版
+- - '##'
+  - 基础设施即代码
+- - '##'
+  - 容器化
+- - '##'
+  - Azure 管理的数据工程服务（PaaS）
+- - '###'
+  - PaaS 用例
+- - '###'
+  - Microsoft Azure 中的数据存储服务
+- - '####'
+  - Azure Blob 存储
+- - '####'
+  - Azure Data Lake Storage Gen2
+- - '####'
+  - Azure Event Hubs
+- - '####'
+  - Azure Cosmos DB
+- - '###'
+  - Microsoft Azure 中的数据处理服务
+- - '####'
+  - Azure HDInsight
+- - '####'
+  - Azure Databricks
+- - '####'
+  - Azure Databricks SQL Analytics
+- - '####'
+  - Azure Databricks 工作区
+- - '##'
+  - 数据工程即服务 (SaaS)
+- - '##'
+  - SaaS 用例
+- - '##'
+  - Azure Data Factory
+- - '##'
+  - Azure Data Lake Analytics
+- - '##'
+  - Azure Stream Analytics
+- - '##'
+  - Azure Synapse Analytics
+- - '##'
+  - Microsoft Azure 中的数据编目和数据共享服务
+- - '##'
+  - Azure Purview
+- - '##'
+  - Azure Data Share
+- - '##'
+  - 开通 Microsoft Azure 免费账户
+- - '##'
+  - 总结
+- - '##'
+  - 第 2 部分：
+- - '###'
+  - '4'
+- - '####'
+  - 探索数据管道
+- - '####'
+  - 数据管道的组件
+- - '#####'
+  - 源
+- - '#####'
+  - 摄取
+- - '#####'
+  - 转换
+- - '#####'
+  - 目的地
+- - '#####'
+  - 工作流
+- - '#####'
+  - 监控
+- - '####'
+  - 创建数据管道的过程
+- - '#####'
+  - 发现阶段
+- - '######'
+  - 识别产品负责人
+- - '######'
+  - 筛选用例
+- - '######'
+  - 进行发现会议
+- - '####'
+  - 设计阶段
+- - '####'
+  - 筛选常用数据集
+- - '####'
+  - 使用父子方法设计管道 – 常用数据集
+- - '####'
+  - 设计云架构
+- - '####'
+  - 设计自动化和监控
+- - '####'
+  - 成本估算
+- - '####'
+  - 开发阶段
+- - '##'
+  - 部署阶段
+- - '###'
+  - 重要说明
+- - '##'
+  - 运行数据管道
+- - '###'
+  - 重要说明
+- - '###'
+  - 重要说明
+- - '##'
+  - 示例湖仓项目
+- - '##'
+  - 总结
+- - '###'
+  - '5'
+- - '####'
+  - 数据收集阶段 – 青铜层
+- - '##'
+  - 设计 Electroniz 数据湖
+- - '###'
+  - 云架构
+- - '####'
+  - 原始数据 – 青铜层
+- - '####'
+  - 精炼数据 – 白银层
+- - '####'
+  - 聚合数据 – 黄金层
+- - '###'
+  - 管道设计
+- - '###'
+  - 部署策略
+- - '###'
+  - 了解青铜层
+- - '###'
+  - 配置数据源
+- - '###'
+  - 数据准备
+- - '###'
+  - 为商店数据库准备源数据
+- - '###'
+  - 为电子商务交易准备源数据
+- - '##'
+  - 配置数据目标
+- - '###'
+  - 构建摄取管道
+- - '###'
+  - 构建批处理摄取管道
+- - '##'
+  - New linked service (Azure Data Lake Storage Gen2)
+- - '##'
+  - Linked services
+- - '##'
+  - 图 5.35 – 用于地理位置数据的新的链接服务
+- - '##'
+  - Publish all
+- - '###'
+  - Figure 5.39 – The parameters for the stored procedure
+- - '###'
+  - Figure 5.40 – The pipeline for the sales database incremental ingestion
+- - '###'
+  - Figure 5.41 – The pipeline for the store sales ingestion
+- - '###'
+  - Testing the ingestion pipelines
+- - '###'
+  - Testing the batch ingestion pipeline for historical data
+- - '###'
+  - Activity runs
+- - '###'
+  - Important
+- - '###'
+  - Testing the batch ingestion pipeline for incremental data
+- - '###'
+  - The second run of the pipeline – inserts
+- - '###'
+  - 管道的第三次运行 – 更新
+- - '###'
+  - 管道的第四次运行 – 插入
+- - '###'
+  - 构建流式摄取管道
+- - '###'
+  - Summary
+- - '###'
+  - '6'
+- - '####'
+  - 理解 Delta Lake 如何实现湖屋
+- - '####'
+  - Understanding Delta Lake
+- - '####'
+  - Preparing Azure resources
+- - '####'
+  - Creating a Delta Lake table
+- - '####'
+  - 在现有 Delta Lake 表中更改数据
+- - '####'
+  - 执行时间旅行
+- - '####'
+  - 执行数据的 upsert
+- - '##'
+  - Understanding isolation levels
+- - '##'
+  - Understanding concurrency control
+- - '##'
+  - Cleaning up Azure resources
+- - '##'
+  - Summary
+- - '###'
+  - '7'
+- - '####'
+  - 数据治理阶段
+- - '#####'
+  - 治理原始数据的需求
+- - '######'
+  - 非标准化数据
+- - '######'
+  - 无效数据
+- - '######'
+  - 非统一数据
+- - '######'
+  - 不一致数据
+- - '######'
+  - 重复数据
+- - '##'
+  - Insecure data
+- - '##'
+  - The process of curating raw data
+- - '##'
+  - Inspecting data
+- - '##'
+  - Getting approval
+- - '##'
+  - Cleaning data
+- - '##'
+  - Verifying data
+- - '##'
+  - Developing a data curation pipeline
+- - '##'
+  - Preparing Azure resources
+- - '##'
+  - Workspace
+- - '###'
+  - electroniz_curation_notebook (Python)
+- - '###'
+  - 创建银层的管道
+- - '###'
+  - Running the pipeline for the silver layer
+- - '####'
+  - 'Table: products'
+- - '####'
+  - 'Schema:'
+- - '####'
+  - 'Sample Data:'
+- - '##'
+  - 验证银层中的 curated 数据
+- - '###'
+  - 验证未标准化数据
+- - '####'
+  - 验证 Store Orders 中的未标准化数据
+- - '####'
+  - 验证 ecommerce Orders 中的未标准化数据
+- - '##'
+  - 重要说明
+- - '###'
+  - 验证 Store Customers Email
+- - '##'
+  - 验证无效数据
+- - '##'
+  - 验证 store_orders 的模式
+- - '##'
+  - 验证 products 的模式
+- - '##'
+  - Find orphan store_orders
+- - '##'
+  - Verifying non-uniform data
+- - '##'
+  - Verify country in store_customers
+- - '##'
+  - Verify country in ecommerce transactions
+- - '##'
+  - Verify currency conversion
+- - '##'
+  - 验证重复数据
+- - '###'
+  - 验证客户姓名合并
+- - '###'
+  - 验证 store orders 价格调整
+- - '##'
+  - 重要说明
+- - '##'
+  - 验证不安全数据
+- - '##'
+  - 清理 Azure 资源
+- - '##'
+  - 总结
+- - '###'
+  - '8'
+- - '####'
+  - 数据聚合的需求
+- - '####'
+  - 销售表
+- - '####'
+  - 销售立方体
+- - '####'
+  - 二维 vs
+- - '####'
+  - 数据聚合的流程
+- - '####'
+  - 开发数据聚合管道
+- - '####'
+  - 准备 Azure 资源
+- - '####'
+  - 为 gold 层创建管道
+- - '#####'
+  - SAS 令牌的结构
+- - '##'
+  - Set properties
+- - '##'
+  - Stored procedure parameters
+- - '####'
+  - 运行聚合管道
+- - '####'
+  - 了解数据消费
+- - '####'
+  - 访问 silver 层数据
+- - '####'
+  - 访问金层数据
+- - '####'
+  - 验证金层中的聚合数据
+- - '####'
+  - 满足客户期望
+- - '##'
+  - Summary
+- - '##'
+  - 'Section 3:'
+- - '###'
+  - '9'
+- - '####'
+  - The deployment strategy
+- - '####'
+  - The time-based method
+- - '####'
+  - The event-based approach
+- - '#####'
+  - 开发主管道
+- - '##'
+  - Parameters
+- - '##'
+  - 测试主管道
+- - '###'
+  - 调度主管道
+- - '##'
+  - Edit trigger
+- - '###'
+  - 监控管道
+- - '###'
+  - 添加持久性功能
+- - '###'
+  - 处理故障条件
+- - '###'
+  - 绕过失败的活动
+- - '###'
+  - 重新运行失败的活动
+- - '###'
+  - 添加警报功能
+- - '##'
+  - Configure alert logic
+- - '##'
+  - Alert logic
+- - '##'
+  - Configure notification
+- - '##'
+  - 添加通知
+- - '##'
+  - 选择您想要接收的通知类型
+- - '##'
+  - 配置通知
+- - '##'
+  - 新警报规则
+- - '##'
+  - 您已被添加到 Azure Monitor 操作组
+- - '##'
+  - 账户信息
+- - '##'
+  - 摘要
+- - '###'
+  - '10'
+- - '####'
+  - 模式演进
+- - '#####'
+  - Sharing data
+- - '#####'
+  - In-place sharing
+- - '#####'
+  - Snapshot sharing
+- - '#####'
+  - Preparing the Azure resources
+- - '#####'
+  - Creating a data share
+- - '##'
+  - Add role assignment
+- - '#####'
+  - Data governance
+- - '#####'
+  - Preparing the Azure resources
+- - '#####'
+  - Creating a data catalog
+- - '##'
+  - Register sources (Azure Data Lake Storage Gen2)
+- - '##'
+  - Sources
+- - '##'
+  - Scan "AzureDataLakeStorage-UG8"
+- - '##'
+  - Scope your scan
+- - '##'
+  - Select a scan rule set
+- - '##'
+  - Set a scan trigger
+- - '##'
+  - Cleaning up Azure resources
+- - '##'
+  - Summary
+- - '###'
+  - '11'
+- - '####'
+  - Infrastructure as code
+- - '#####'
+  - 使用 Azure Resource Manager 部署基础设施
+- - '#####'
+  - 创建 ARM 模板
+- - '######'
+  - Parameters
+- - '######'
+  - Variables
+- - '######'
+  - Resources
+- - '#####'
+  - 使用 Azure 门户部署 ARM 模板
+- - '#####'
+  - 使用 Azure CLI 部署 ARM 模板
+- - '#####'
+  - 部署包含机密的 ARM 模板
+- - '######'
+  - 重要说明
+- - '#####'
+  - 使用 IaC 部署多个环境
+- - '##'
+  - 图 11.23 – IaC 环境参数
+- - '##'
+  - 图 11.24 – 部署后 Azure 资源列表
+- - '#####'
+  - 清理 Azure 资源
+- - '#####'
+  - 总结
+- - '###'
+  - '12'
+- - '####'
+  - 数据管道的持续集成和部署（CI/CD）
+- - '#####'
+  - 了解 CI/CD
+- - '#####'
+  - 传统软件交付周期
+- - '#####'
+  - 现代软件交付周期
+- - '#####'
+  - 设计 CI/CD 管道
+- - '#####'
+  - Electroniz 基础设施 CI/CD 管道
+- - '#####'
+  - Electroniz 代码 CI/CD 管道
+- - '#####'
+  - 开发 CI/CD 管道
+- - '#####'
+  - 创建 Azure DevOps 组织
+- - '##'
+  - 开始使用 Azure DevOps
+- - '##'
+  - Azure DevOps 并行请求
+- - '##'
+  - 创建 Electroniz 基础设施 CI/CD 管道
+- - '##'
+  - 属性
+- - '##'
+  - 变量
+- - '##'
+  - 创建你的第一个管道
+- - '##'
+  - 重命名/移动管道
+- - '##'
+  - 运行管道
+- - '##'
+  - 高级选项
+- - '##'
+  - 提交
+- - '##'
+  - 创建 Electroniz 代码 CI/CD 管道
+- - '##'
+  - Library > electroniz_code_variables
+- - '##'
+  - Properties
+- - '##'
+  - Variables
+- - '##'
+  - Where is your code?
+- - '##'
+  - Select a repository
+- - '##'
+  - Configure your pipeline
+- - '##'
+  - 重命名/移动管道
+- - '##'
+  - 运行管道
+- - '##'
+  - 图 12.60 – 触发代码 Azure 管道
+- - '##'
+  - 图 12.61 – 监控代码 Azure 管道
+- - '#####'
+  - 创建 CI/CD 生命周期
+- - '##'
+  - 图 12.63 – CI/CD 生命周期
+- - '#####'
+  - 构建 – 开发人员
+- - '#####'
+  - azure-code-pipeline.yml
+- - '#####'
+  - 审批 – 评审者
+- - '#####'
+  - 合并 – 团队负责人
+- - '#####'
+  - 部署 – 自动化
+- - '##'
+  - Summary
+- - '##'
+  - Packt>
+- - '##'
+  - Why subscribe?
+- - '##'
+  - Other Books You May Enjoy
+- - '##'
+  - Data Engineering with Python
+- - '##'
+  - Azure Data Engineering Cookbook
+- - '##'
+  - Packt is searching for authors like you
+- - '##'
+  - Share Your Thoughts
+- - '##'
+  - Index
+- - '###'
+  - A
+- - '##'
+  - D
+- - '##'
+  - H
+- - '##'
+  - F
+- - '##'
+  - G
+- - '##'
+  - I
+- - '###'
+  - J
+- - '###'
+  - K
+- - '###'
+  - L
+- - '###'
+  - M
+- - '###'
+  - O
+- - '###'
+  - N
+- - '###'
+  - P
+- - '###'
+  - R
+- - '###'
+  - S
+- - '###'
+  - T
+- - '###'
+  - U
+- - '###'
+  - V
+- - '###'
+  - W
+- - '###'
+  - Y

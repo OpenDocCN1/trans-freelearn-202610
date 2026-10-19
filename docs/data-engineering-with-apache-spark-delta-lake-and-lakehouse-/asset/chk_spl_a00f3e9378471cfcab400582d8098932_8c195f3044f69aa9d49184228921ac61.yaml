@@ -1,0 +1,109 @@
+reviews:
+- 'no': 12
+  overturn_probability: 0.05
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '## 前言 为正文前的序言类内容，按规则应统一划分为一章起始'
+  - 后接概述段落，符合前言章节特征
+  keep_split: true
+- 'no': 78
+  overturn_probability: 0.05
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '## 第 3 部分：数据工程挑战与有效部署策略 为部分级标题，书中存在部分-章节模式，部分需分章'
+  - '后接 ### 9 等子章节，上下文符合部分起始'
+  keep_split: true
+- 'no': 131
+  overturn_probability: 0.05
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '## 索引 位于文末，规则明确文末索引单独划分为一章'
+  - 前后为空行，无正文内容
+  keep_split: true
+- 'no': 249
+  overturn_probability: 0.1
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '## 第 1 部分： 现代数据工程与工具 为部分级标题，后续 250-251 行补全标题，符合部分起始规则'
+  - 后接本部分介绍段落
+  keep_split: true
+- 'no': 261
+  overturn_probability: 0.92
+  alternative: 章节编号孤立/排版断行
+  counter_evidence:
+  - 该行仅为 '### 1'，无标题语义，标题实际在下一行 no 262 '数据工程与分析的故事'
+  - 格式特征不符：真正的章标题通常单独成行且包含概括性语义，本行仅为编号
+  - 上下文显示编号与标题分行，属于排版断行
+  keep_split: false
+- 'no': 514
+  overturn_probability: 0.92
+  alternative: 章节编号孤立/排版断行
+  counter_evidence:
+  - 该行仅为 '### 2'，标题在下一行 no 515 '发现存储与计算数据湖'
+  - 编号单独成行，长度远小于30字且无统领语义
+  - 符合误报的编号孤立情况
+  keep_split: false
+- 'no': 1138
+  overturn_probability: 0.9
+  alternative: 章节编号孤立/排版断行
+  counter_evidence:
+  - 该行仅为 '### 3'，无标题内容，实际标题在 no 1140 '#### Microsoft Azure 上的数据工程' 或后续段落
+  - 编号与标题分离，属于排版断行噪声
+  keep_split: false
+- 'no': 1593
+  overturn_probability: 0.08
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '## 第 2 部分： 数据管道和数据工程的阶段 为部分级标题，需分章'
+  - 后接部分介绍段落
+  keep_split: true
+- 'no': 1607
+  overturn_probability: 0.9
+  alternative: 章节编号孤立/排版断行
+  counter_evidence:
+  - 该行仅为 '### 4'，标题在下一行 no 1608 '理解数据管道'
+  - 编号单独成行，无概括语义，符合误报的编号孤立
+  keep_split: false
+- 'no': 1928
+  overturn_probability: 0.9
+  alternative: 章节编号孤立/排版断行
+  counter_evidence:
+  - 该行仅为 '### 5'，标题在下一行 no 1929 '#### 数据收集阶段 – 青铜层'
+  - 编号与标题分行，标题语义不在本行
+  keep_split: false
+- 'no': 63
+  overturn_probability: 0.95
+  alternative: 章节编号孤立/排版断行
+  counter_evidence:
+  - 该行仅为 '### 8'，无标题语义，实际章节标题在下一行 no 64 '#### 数据聚合阶段 – Gold 层'
+  - 编号单独成行，长度极短，标题末尾无句号但无统领内容
+  - 属于编号与标题分离的排版噪声
+  keep_split: false
+- 'no': 80
+  overturn_probability: 0.95
+  alternative: 章节编号孤立/排版断行
+  counter_evidence:
+  - 该行仅为 '### 9'，标题在下一行 no 81 '#### 在生产环境中部署和监控管道'
+  - 编号孤立，无概括语义
+  keep_split: false
+- 'no': 92
+  overturn_probability: 0.95
+  alternative: 章节编号孤立/排版断行
+  counter_evidence:
+  - 该行仅为 '### 10'，标题在下一行 no 93 '#### 解决数据工程挑战'
+  - 编号单独成行，属于排版断行
+  keep_split: false
+- 'no': 104
+  overturn_probability: 0.95
+  alternative: 章节编号孤立/排版断行
+  counter_evidence:
+  - 该行仅为 '### 11'，标题在下一行 no 105 '#### 基础设施配置'
+  - 编号孤立，无章节统领语义
+  keep_split: false
+- 'no': 116
+  overturn_probability: 0.95
+  alternative: 章节编号孤立/排版断行
+  counter_evidence:
+  - 该行仅为 '### 12'，标题在下一行 no 117 '#### 数据管道的持续集成和部署（CI/CD）'
+  - 编号单独成行，符合误报的章节编号孤立
+  keep_split: false

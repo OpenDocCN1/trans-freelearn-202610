@@ -1,0 +1,72 @@
+chapter_starts:
+- 'no': 12
+  confidence: 0.95
+  final_reason: 双方一致，前言类正文前内容，按规则统一划分为一章起始，后接概述段落
+  accepted_evidence:
+  - '## 前言 为正文前的序言类内容，按规则应统一划分为一章起始'
+  - 后接概述段落，符合前言章节特征
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 78
+  confidence: 0.95
+  final_reason: 部分级标题，书中存在部分-章节模式，部分需分章，后接子章节
+  accepted_evidence:
+  - '## 第 3 部分：数据工程挑战与有效部署策略 为部分级标题，书中存在部分-章节模式，部分需分章'
+  - '后接 ### 9 等子章节，上下文符合部分起始'
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 131
+  confidence: 0.95
+  final_reason: 文末索引，按规则单独划分为一章
+  accepted_evidence:
+  - '## 索引 位于文末，规则明确文末索引单独划分为一章'
+  - 前后为空行，无正文内容
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 249
+  confidence: 0.9
+  final_reason: 部分级标题，后续行补全标题，符合部分起始规则，后接部分介绍段落
+  accepted_evidence:
+  - '## 第 1 部分： 现代数据工程与工具 为部分级标题，后续 250-251 行补全标题，符合部分起始规则'
+  - 后接本部分介绍段落
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 1593
+  confidence: 0.95
+  final_reason: 部分级标题，需分章，后接部分介绍段落
+  accepted_evidence:
+  - '## 第 2 部分： 数据管道和数据工程的阶段 为部分级标题，需分章'
+  - 后接部分介绍段落
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 261
+  reason: 复核方成立，行仅为 '### 1' 编号孤立，标题实际在下一行 no 262，属排版断行噪声，不应分章
+  need_human_review: false
+- 'no': 514
+  reason: 复核方成立，行仅为 '### 2' 编号孤立，标题在下一行 no 515，属编号与标题分离的误报
+  need_human_review: false
+- 'no': 1138
+  reason: 复核方成立，行仅为 '### 3' 无标题内容，实际标题在后续行，编号孤立不应分章
+  need_human_review: false
+- 'no': 1607
+  reason: 复核方成立，行仅为 '### 4' 编号孤立，标题在下一行 no 1608，无概括语义
+  need_human_review: false
+- 'no': 1928
+  reason: 复核方成立，行仅为 '### 5' 编号孤立，标题在下一行 no 1929，编号与标题分行
+  need_human_review: false
+- 'no': 63
+  reason: 复核方成立，行仅为 '### 8' 编号孤立，实际章节标题在下一行 no 64，属排版断行噪声
+  need_human_review: false
+- 'no': 80
+  reason: 复核方成立，行仅为 '### 9' 编号孤立，标题在下一行 no 81，无章节统领语义
+  need_human_review: false
+- 'no': 92
+  reason: 复核方成立，行仅为 '### 10' 编号孤立，标题在下一行 no 93，属排版断行
+  need_human_review: false
+- 'no': 104
+  reason: 复核方成立，行仅为 '### 11' 编号孤立，标题在下一行 no 105，无章节统领语义
+  need_human_review: false
+- 'no': 116
+  reason: 复核方成立，行仅为 '### 12' 编号孤立，标题在下一行 no 117，符合误报的章节编号孤立
+  need_human_review: false

@@ -1,0 +1,5 @@
+# Summary
+
+In this chapter, we learned how to kick-start data pipeline development by reflecting on the user requirements in the form of a cloud architecture diagram and pipeline design document. In the pipeline design document, we decided to create ingestion, curation, and aggregation pipelines that could build the bronze, silver, and gold layers of the lakehouse.
+
+We also learned about the bronze layer in greater detail and how it relates to the overall lakehouse architecture. We followed up on our understanding of the bronze layer with the actual development of the **Electroniz** batch and streaming ingestion pipelines. Now that we have the raw data from the various data sources available in the bronze layer, we will move on to *Chapter 6, Understanding Delta Lake*, and learn about **Delta Lake**. Understanding how Delta Lake works is essential for building the silver layer of the lakehouse.

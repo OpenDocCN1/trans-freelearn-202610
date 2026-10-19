@@ -1,0 +1,23 @@
+reviews:
+- 'no': 8973
+  overturn_probability: 0.08
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '行内容为 ### 12，符合最高层级编号特征，且下一行 8974 为 #### 数据管道的持续集成和部署（CI/CD）构成章节标题对，上下文为第12章正文开始'
+  - 标题单独成行、长度小于30字、末尾无句号，符合格式特征
+  keep_split: true
+- 'no': 10133
+  overturn_probability: 0.82
+  alternative: 正文小标题
+  counter_evidence:
+  - '## Summary 出现在第12章正文末尾的总结段落中，前后均为第12章内容 8971-8972 的延续，并非全书最高层级新章'
+  - Summary 为章节内部的总结小标题，语义上统领的是本章收尾而非新章节，且在 10133 之后仍继续本章的 Packt 推广内容 10143-10144，上下文不支持新章划分
+  - 规则中仅明确文末索引划分为一章，未将 Summary 归为必须分章的文末区块，误判为章节标题的可能性高
+  keep_split: false
+- 'no': 10207
+  overturn_probability: 0.03
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '## Index 单独成行、长度短、无句号，且位于全文最后的索引区块，符合规则‘文末索引也划分为一章’'
+  - 后续内容 10209 起为索引条目 A、B…，语义上为统领性索引标题，上下文特征支持独立成章
+  keep_split: true
