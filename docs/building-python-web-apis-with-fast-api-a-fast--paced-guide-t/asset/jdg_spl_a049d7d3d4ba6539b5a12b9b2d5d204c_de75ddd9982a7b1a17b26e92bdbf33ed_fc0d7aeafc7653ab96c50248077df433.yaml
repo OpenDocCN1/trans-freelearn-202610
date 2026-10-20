@@ -1,0 +1,50 @@
+chapter_starts:
+- 'no': 111
+  confidence: 0.95
+  final_reason: 双方一致，前言类前置内容按规则统一划分为一章起始，格式语义均符合
+  accepted_evidence:
+  - '## Preface 为前言类前文内容，按规则前言、序言等正文之前内容统一划分为一章'
+  - 前后上下文为致谢/关于作者等前置信息，符合前言章节的语义统领特征
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 233
+  confidence: 0.9
+  final_reason: 部分-章节模式下部分标题应划分新章，后续行构成完整部分语义
+  accepted_evidence:
+  - '## 第 1 部分： 为部分标题，书中已出现部分-章节模式，部分标题应划分新章'
+  - 后续行 234 FastAPI 简介 构成部分标题的完整语义，且后接部分概述段落
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 599
+  confidence: 0.95
+  final_reason: 编号特征明确且单独成行，后接概述段落与子节，符合章标题上下文特征
+  accepted_evidence:
+  - '### 2 FastAPI 中的路由 单独成行，编号特征明确且语义统领后续章节内容'
+  - 后 1~3 行为概述段落，后续出现子节，符合章标题上下文特征
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 2352
+  confidence: 0.9
+  final_reason: 部分标题，按部分-章节模式应划分新章，后续行构成部分副标题并统领后续章节
+  accepted_evidence:
+  - '## 第 2 部分： 为部分标题，书存在部分-章节模式，部分标题应划分新章'
+  - 后续行 2353 构建和、2354 保护 FastAPI 构成部分副标题，语义统领后续章节
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 245
+  reason: '复核方反证成立，标题被拆分到 245 ### 1、246 开始使用、247 FastAPI 多行呈现，单独编号行语义不完整且非单独成行完整章标题，疑似章节内部层级小标题'
+  need_human_review: false
+- 'no': 1415
+  reason: '复核方反证成立，本行仅为 ### 3，标题主体在 1416 #### Response Models 与 1417 and Error Handling
+    中延续，跨行不满足单独成行规则'
+  need_human_review: false
+- 'no': 1736
+  reason: '复核方反证成立，本行仅为 ### 4，完整标题在 1738 #### FastAPI 中的模板化 中出现，标题跨行，单独编号行语义不完整'
+  need_human_review: false
+- 'no': 2369
+  reason: '复核方反证成立，本行仅为 ### 5，标题主体在 2370 结构化 FastAPI 应用 中，标题跨两行呈现，不符合单独成行完整章标题特征'
+  need_human_review: false
+- 'no': 2957
+  reason: '复核方反证成立，本行仅为 ### 6，标题主体被拆分为 2958 连接到、2959 数据库，多行拼接才完整，标题未单独成行且语义不完整'
+  need_human_review: false

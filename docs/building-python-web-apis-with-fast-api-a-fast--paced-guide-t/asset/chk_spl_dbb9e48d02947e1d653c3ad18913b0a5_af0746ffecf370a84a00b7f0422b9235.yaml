@@ -1,0 +1,57 @@
+reviews:
+- 'no': 6042
+  overturn_probability: 0.75
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题层级为 ###，为三级小标题，非全书最高层级大章'
+  - 标题为“总结”，为本章内部的收尾小节，后续内容 6044-6048 仍是本章正文概述，未出现新章序号或明显断层
+  - '上下文前为 ### 部署数据库 等同级小节，符合章节内部子节结构'
+  keep_split: false
+- 'no': 6050
+  overturn_probability: 0.05
+  alternative: 其他
+  counter_evidence:
+  - '标题为 ## 索引，单独成行且为最高层级 ##，语义为文末索引'
+  - 规则明确文末索引应单独划分为一章
+  - '后接 6052 ## 符号 等索引附属内容，符合索引章节特征'
+  keep_split: true
+- 'no': 6052
+  overturn_probability: 0.8
+  alternative: 正文小标题
+  counter_evidence:
+  - '## 符号 出现在 ## 索引 之后，处于索引章节内部，语义上为索引的子表而非独立章节'
+  - '索引章节内部使用 ## 作为符号表标题属于排版噪声/子标题，标题后直接跟列表项 + - ...，无统领性概述段落'
+  - 与 6050 索引为同一后记区块，拆分为独立章会造成索引碎片化
+  keep_split: false
+- 'no': 6365
+  overturn_probability: 0.7
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题 ## 为什么订阅？ 位于出版后记推广区，前后为 Packt 宣传文案、图片链接，非正文章节'
+  - 标题后 6367-6372 为营销列表项，长度短且无统领性概述段落，符合排版小标题特征
+  - '与后续 6377 ## 其他您可能喜欢的书籍 等同属同一后记板块，频繁分章违背后记统一处理原则'
+  keep_split: false
+- 'no': 6377
+  overturn_probability: 0.65
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题 ## 其他您可能喜欢的书籍 为推荐书目板块，属于出版商附录推广内容'
+  - 标题后直接为介绍句和书籍卡片，无章节级概述段落，且与前后推广内容语义连续
+  - '在后记区域使用 ## 作为板块分隔，易被误判为章节，实为排版小标题'
+  keep_split: false
+- 'no': 6408
+  overturn_probability: 0.7
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题 ## Packt is searching for authors like you 为作者招募广告，位于书末推广区'
+  - 内容 6410 为单句招募说明，无章节统领性语义，且前后与 Share Your Thoughts 等后记内容连续
+  - '最高层级 ## 在后记中被用作板块标题，非全书最高层级大章'
+  keep_split: false
+- 'no': 6412
+  overturn_probability: 0.7
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题 ## Share Your Thoughts 为读者反馈征集板块，属于出版后记'
+  - 标题后 6414-6416 为一段宣传性说明，无独立章节内容结构
+  - 与 6365、6377、6408 同属后记推广区块，拆分为多章会造成过度分章
+  keep_split: false

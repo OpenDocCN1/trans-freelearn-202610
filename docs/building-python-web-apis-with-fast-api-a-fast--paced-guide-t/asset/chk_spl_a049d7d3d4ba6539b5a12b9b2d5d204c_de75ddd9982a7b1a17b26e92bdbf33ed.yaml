@@ -1,0 +1,65 @@
+reviews:
+- 'no': 111
+  overturn_probability: 0.05
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '## Preface 为前言类前文内容，按规则前言、序言等正文之前内容统一划分为一章'
+  - 前后上下文为目录/致谢/关于作者等前置信息，符合前言章节的语义统领特征
+  keep_split: true
+- 'no': 233
+  overturn_probability: 0.1
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '## 第 1 部分： 为部分标题，书中已出现部分-章节模式，部分标题应划分新章'
+  - 后续行 234 FastAPI 简介 构成部分标题的完整语义，且后接部分概述段落
+  keep_split: true
+- 'no': 245
+  overturn_probability: 0.75
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题被拆分到多行：245 ### 1，246 开始使用，247 FastAPI，真正的章标题应单独成行且长度<30字'
+  - 格式特征不符，章标题末尾无句号但本行仅为编号，语义不完整需结合后两行才能构成标题
+  - 上下文后紧跟正文说明而非概述段落+子节，疑似为章节内部的层级小标题
+  keep_split: false
+- 'no': 599
+  overturn_probability: 0.05
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '### 2 FastAPI 中的路由 单独成行，编号特征明确且语义统领后续章节内容'
+  - 后 1~3 行为概述段落，后续出现子节，符合章标题上下文特征
+  keep_split: true
+- 'no': 1415
+  overturn_probability: 0.7
+  alternative: 正文小标题
+  counter_evidence:
+  - '本行仅为 ### 3，标题主体在 1416 #### Response Models 和 1417 and Error Handling 中延续，标题跨行不满足单独成行规则'
+  - 格式特征不符，章标题通常在一行内完整呈现，跨行易被误判为排版断行
+  keep_split: false
+- 'no': 1736
+  overturn_probability: 0.7
+  alternative: 正文小标题
+  counter_evidence:
+  - '本行仅为 ### 4，完整标题在 1738 #### FastAPI 中的模板化 中出现，标题被拆分到多行'
+  - 单独编号行长度极短且语义不完整，符合排版断行/层级标记而非独立章标题
+  keep_split: false
+- 'no': 2352
+  overturn_probability: 0.1
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '## 第 2 部分： 为部分标题，书存在部分-章节模式，部分标题应划分新章'
+  - 后续行 2353 构建和、2354 保护 FastAPI 构成部分副标题，语义统领后续章节
+  keep_split: true
+- 'no': 2369
+  overturn_probability: 0.65
+  alternative: 正文小标题
+  counter_evidence:
+  - '本行仅为 ### 5，标题主体在 2370 结构化 FastAPI 应用 中，标题跨两行呈现'
+  - 格式特征不符，真正的章标题应单独成行且完整，跨行属于排版断行误报
+  keep_split: false
+- 'no': 2957
+  overturn_probability: 0.65
+  alternative: 正文小标题
+  counter_evidence:
+  - '本行仅为 ### 6，标题主体被拆分为 2958 连接到、2959 数据库，多行拼接才完整'
+  - 标题未单独成行且语义不完整，符合排版断行/层级小标题的误报特征
+  keep_split: false

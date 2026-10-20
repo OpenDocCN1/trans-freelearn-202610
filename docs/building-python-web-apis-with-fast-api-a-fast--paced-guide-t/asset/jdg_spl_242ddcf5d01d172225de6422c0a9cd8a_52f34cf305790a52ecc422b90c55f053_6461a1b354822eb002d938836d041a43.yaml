@@ -1,0 +1,33 @@
+chapter_starts:
+- 'no': 4933
+  confidence: 0.9
+  final_reason: '判断方与复核方一致，## Part 3: 为部分标题，按部分-章节模式应划分新章，后续 4934-4936 为部分副标题，上下文符合部分起始'
+  accepted_evidence:
+  - '部分标题 ## Part 3: 属于最高层级部分划分'
+  - 后续为 Testing And Deploying FastAPI Applications 部分介绍
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 4945
+  confidence: 0.95
+  final_reason: 双方一致采纳，### 8 后接 Testing FastAPI Applications，编号特征清晰为最高层级大章，标题单独成行且后接概述段落
+  accepted_evidence:
+  - '编号特征 ### 8 为最高层级大章'
+  - 标题单独成行长度合适，后续 4948 起为概述段落
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 5714
+  confidence: 0.85
+  final_reason: 复核方虽提出层级混排疑虑但仍建议保留，### 9 后接部署章节内容，上下文为上一章总结后开始新大章，采纳判断方
+  accepted_evidence:
+  - '编号特征 ### 9 为大章编号'
+  - 上下文 5710 总结结束后开始新章
+  rejected_evidence:
+  - '复核方指出 ### 9 与 #### 部署 连续可能为排版噪声'
+  need_human_review: false
+rejected_lines:
+- 'no': 2957
+  reason: 复核方反证成立，标题被拆分到多行 2957-2959，排版断行导致非单行章标题，格式特征不符且上下文缺少典型章起始结构，优先采纳复核
+  need_human_review: false
+- 'no': 4141
+  reason: 复核方反证成立，### 7 仅为编号标记，实际语义标题在 4142，双重标题结构为排版噪声，非独立最高层级大章起始
+  need_human_review: false
