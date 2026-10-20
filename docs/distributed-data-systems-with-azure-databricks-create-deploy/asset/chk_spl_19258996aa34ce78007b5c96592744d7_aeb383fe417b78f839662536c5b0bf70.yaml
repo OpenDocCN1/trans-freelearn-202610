@@ -1,0 +1,23 @@
+reviews:
+- 'no': 9139
+  overturn_probability: 0.15
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 行内容为 '### 11'，仅为编号标记，真正的标题在下一行 9140 'Managing and Serving Models with MLflow and
+    MLeap'，单独编号行可能被误判为章节标题
+  - 格式特征上编号行长度极短且无语义统领性，真正的统领标题在紧邻下一行
+  keep_split: true
+- 'no': 9820
+  overturn_probability: 0.08
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 标题末尾被截断为 'Azure Databrick...'，存在排版断行噪声，可能为误截断的正文小标题
+  - 上下文前行为 '## Summary' 结束上一章，后续内容为分布式深度学习概述，语义上仍符合新章，但截断可能导致误判
+  keep_split: true
+- 'no': 10576
+  overturn_probability: 0.12
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 索引标题 '## 索引' 前后出现大量字母分类小标题如 '### A'、'### B'，可能被误判为正文小标题而非文末索引整体
+  - 索引部分包含大量列表项和页码引用，格式上与正文小标题相似，易产生误报
+  keep_split: true

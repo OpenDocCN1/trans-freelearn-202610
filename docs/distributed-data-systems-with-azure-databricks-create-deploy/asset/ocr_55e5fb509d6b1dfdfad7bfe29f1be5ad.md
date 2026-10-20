@@ -1,0 +1,13 @@
+Delta Lake is a storage layer that sits on top of the data lake, such as Azure Data Lake Storage (ADLS) Gen2, and seeks to overcome the data lake's common limitations, such as being unable to execute SQL queries on the data or managing the ingestion of incoming files. It has several advantages, which includes automatically ingesting streams of data, data schema handling, data versioning thanks to time traveling, and faster processing than a conventional relational data warehouse, along with the benefit of being able to query the data. Delta Lake seeks to provide reliability for the big data lakes by ensuring data integrity with Atomicity, Consistency, Isolation, and Durability (ACID) transactions, allowing you to read and write the same file or table. The way in which Delta Lake works is very straightforward – you just need to change the way you store your files and specify Delta as the format of a table, which is a Spark proprietary file type that only works on the cloud.
+
+We will deep dive into the specifics of these methods in the upcoming sections.
+
+One thing to bear in mind is that Delta Lake can only be accessed from the Azure Databricks runtime, so we should not consider it as a replacement for a data warehouse.
+
+Delta Lake provides several advantages related to how we work with the data stored in the lake. The most prominent features that make Delta Lake a great choice are as follows:
+
++   - **ACID transactions**: As we mentioned previously, isolation levels derived from ACID transactions allow different users to work concurrently with the same data, without them seeing inconsistencies. This is thanks to the use of transaction logs, which are included in the checkpoint support.
++   - Delta Lake provides scalable processing for metadata thanks to Azure Databricks' distributed computing nature.
++   - **Streaming and batch unification**: A table in Delta Lake is a batch table, as well as a streaming source and sink, making it a solution for a Lambda architecture. However, it also goes one step further since both batch and real-time data land in the same sink. Streaming data ingest, batch historic backfill, and interactive queries all just work out of the box.
++   - **Automatically enforce schema**: Automatically handles schema variations to prevent bad records being inserted during ingestion.
++   - **Time travel**: One of the most important features of Delta Lake is being able to access snapshots of data either as versions of a table or a specific timestamp. This allows us to fix any errors derived from possible bad data manipulation, handle auditing more easily, and provide a clear view of the changes that have been made to the data.

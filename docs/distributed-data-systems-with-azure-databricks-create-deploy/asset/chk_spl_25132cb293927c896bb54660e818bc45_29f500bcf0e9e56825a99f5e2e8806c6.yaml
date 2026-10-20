@@ -1,0 +1,23 @@
+reviews:
+- 'no': 22
+  overturn_probability: 0.85
+  alternative: 正文前附属信息/页眉页脚
+  counter_evidence:
+  - Contributors、关于作者、关于审阅者、前言等均属于正文之前的前置附属内容，规则要求前言、序言、致谢、关于作者等正文之前的内容统一划分为一章，不应单独为
+    Contributors 开章
+  - 该行后紧跟空行及关于作者等前置信息，上下文为连续的前置信息块，无章节统领性概述段落
+  keep_split: false
+- 'no': 33
+  overturn_probability: 0.8
+  alternative: 正文前序言
+  counter_evidence:
+  - '## 前言 与前面的 Contributors、关于作者、关于审阅者同属正文前的前置信息块，规则要求统一划分为一章，已在 no 22 处被错误拆分'
+  - '前言后直接进入 ## 第 1 部分：，前言内容未单独成独立章节体量，更像是前置信息的一部分'
+  keep_split: false
+- 'no': 514
+  overturn_probability: 0.7
+  alternative: 排版断行/重复索引
+  counter_evidence:
+  - 索引 出现在正文后但随后文本又回到前言、目录等前置内容，上下文显示文档结构混乱且出现重复的前言块，索引位置并非真正的文末唯一索引
+  - 该行前后无索引条目内容，仅为孤立标题，疑似排版噪声或目录重复
+  keep_split: false

@@ -1,0 +1,37 @@
+chapter_starts:
+- 'no': 9140
+  confidence: 0.9
+  final_reason: 编号特征与语义特征均符合最高层级大章。行 9139 仅为编号标记 '### 11'，真正的统领标题在下一行 9140 'Managing
+    and Serving Models with MLflow and MLeap'，单独成行、长度小于30字、后接概述段落，前行为上一章 Summary 结束，符合新章起始。
+  accepted_evidence:
+  - 标题单独成行且语义统领后续 MLflow 与 MLeap 内容
+  - 前后上下文为上一章结束与新章开始的切换
+  - 复核方确认该处为第11章起始区域
+  rejected_evidence:
+  - 行 9139 仅为编号标记，无语义统领性
+  need_human_review: false
+- 'no': 9820
+  confidence: 0.88
+  final_reason: '编号特征 ## 12 且单独成行，语义统领后续分布式深度学习内容。前行为 ''## Summary'' 结束上一章，后续为分布式训练概述，虽标题末尾被截断为
+    ''Azure Databrick...''，但排版与上下文仍符合全书最高层级新章。'
+  accepted_evidence:
+  - 标题含章序号 12 且单独成行
+  - 前后为上一章总结与新章概述切换
+  - 复核方 overturn_probability 0.08，仍建议保留
+  rejected_evidence:
+  - 标题末尾截断存在排版噪声
+  need_human_review: false
+- 'no': 10576
+  confidence: 0.9
+  final_reason: 文末索引统一划分为一章。行 10576 '## 索引' 单独成行，位于全书末尾，后续为字母分类索引条目，符合文末索引分章规则。
+  accepted_evidence:
+  - 标题单独成行且为全书末尾
+  - 后续内容为索引条目列表
+  - 复核方确认索引整体应分章
+  rejected_evidence:
+  - 索引内部存在大量小标题易被误判为正文小标题
+  need_human_review: false
+rejected_lines:
+- 'no': 9139
+  reason: 行内容为 '### 11' 仅为编号标记，真正的章标题在下一行 9140。编号行长度极短且无语义统领性，不应单独作为章节起始。
+  need_human_review: false

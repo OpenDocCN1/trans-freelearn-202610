@@ -1,0 +1,13 @@
+Delta Lake will optimize the aforementioned tables, yielding better query speed, thanks to the fact that we will be scanning a smaller number of files to read our table. One thing to bear in mind is that the bin-packing optimization, triggered by the OPTIMIZE command, is an idempotent action, which is a fancy word for saying that the execution of this command will take effect only the first time that it is triggered on a dataset.
+
+When this action takes place on a table, readers of the table that is being optimized will not be affected, thanks to the Snapshot Isolation feature of Delta tables. The integrity of the table is ensured even when the underlying file structure is reordered by the algorithm and the transaction log is modified accordingly, so queries will yield the same result before and after the OPTIMIZE command has been run on a table. Any stream of data related to a table that is being optimized will not be affected by this command either.
+
+The goal of this algorithm is to produce a series of evenly sized files that provide a balance between the size and number of them in the storage.
+
+So, if this reorganization is so efficient and doesn't affect the data stored in a table, why isn't OPTIMIZE automatic? The answer to this question lies in the fact that to coalesce several files into a single larger one, you need to have upfront those small files in the directory, otherwise there won't be anything to coalesce; therefore, OPTIMIZE can't be run automatically. Another answer is that compression is also an expensive operation in terms of computational, storage, and time resources, so this might affect the ability of Azure Databricks to execute low-latency streams when a table that is being optimized is the source of a stream.
+
+A final point of discussion relates to how often Delta tables should be optimized. This, of course, is a trade-off between performance and the cost of the resource that is used to run the optimization. If your priority is performance, this operation should take place more often or at regular intervals such as daily intervals; otherwise, you can prioritize cost and run this less often.
+
+# Skipping data
+
+As new data arrives, Delta Lake will keep track of file-level statistics related to the input/output (I/O) granularity of the data. These statistics are obtained automatically, storing information on minimum and maximum values at query time. The point of this is to identify columns that have a certain level of correlation, plan queries accordingly, and avoid unnecessary I/O operations. During lookup queries, the Azure Databricks Data Skipping feature will leverage the obtained statistics to skip files that are not necessary to read in this operation.

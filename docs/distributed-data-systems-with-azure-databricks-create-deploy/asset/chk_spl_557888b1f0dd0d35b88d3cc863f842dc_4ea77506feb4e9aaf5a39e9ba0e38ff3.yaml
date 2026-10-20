@@ -1,0 +1,26 @@
+reviews:
+- 'no': 6304
+  overturn_probability: 0.92
+  alternative: 排版断行/其他
+  counter_evidence:
+  - 该行仅为章节编号标记 '### 8'，本身不构成语义完整的章节标题，真正的标题在下一行 6305 'Databricks Runtime for Machine
+    Learning'，标题与编号分离不符合真正的章标题单独成行且自足的特征
+  - 编号特征为孤立的数字标记，后续标题使用正常标题行，符合排版噪声/编号前缀而非最高层级大章标题的模式
+  - 若不分章，这行最可能为章节编号前缀或目录序号，与正文标题共同构成章节头
+  keep_split: false
+- 'no': 7609
+  overturn_probability: 0.9
+  alternative: 排版断行/其他
+  counter_evidence:
+  - 该行仅为 '### 9' 的编号标记，内容为空白的序号行，真正的章节标题在 7611 '## Databricks Runtime for Deep Learning'，编号与标题分离
+  - 标题后 1~3 行并非概述段落而是直接进入章节说明，且编号行长度极短、仅含数字，不符合章标题语义统领性要求
+  - 上下文显示 7611 为实际的二级标题，7609 只是前置编号，符合排版断行/编号噪声而非独立分章点
+  keep_split: false
+- 'no': 8400
+  overturn_probability: 0.88
+  alternative: 排版断行/其他
+  counter_evidence:
+  - 该行仅为 '### 10' 的编号标记，下一行 8401 才出现章节名称 'Azure Databricks 中的模型跟踪和调优'，编号与标题分离
+  - 编号行无统领性语义，长度小于 5 字且仅为数字标记，符合章节序号前缀而非真正的最高层级大章标题
+  - 若按原判断在编号行分章，会导致章节标题被拆分到下一行，破坏标题完整性，更合理的分章点应为标题行本身
+  keep_split: false

@@ -1,0 +1,30 @@
+reviews:
+- 'no': 1
+  overturn_probability: 0.65
+  alternative: 正文小标题/排版断行
+  counter_evidence:
+  - 编号仅为 '### 5' 单独成行，真正的标题内容 'Introducing' 'Delta Engine' 分布在后两行 3502-3503，不符合章标题通常单独成行且标题与编号同行的格式特征
+  - 前文 3499-3500 为上一章结尾的过渡句，后续内容直接进入子节说明，缺乏章标题后 1~3 行概述段落的上下文特征，更像排版上的章节序号占位
+  keep_split: false
+- 'no': 2
+  overturn_probability: 0.6
+  alternative: 正文小标题/排版断行
+  counter_evidence:
+  - 编号 '### 6' 与标题 'Introducing Structured Streaming' 分离在 4175-4178 三行呈现，标题被拆分，长度与格式不符合真正的最高层级大章标题的单一行特征
+  - 前后上下文为第 5 章内容的总结与过渡，4174 为 '在下一章中...' 的衔接句，4179 起即进入正文说明，缺少章标题后应有的概述段落，更接近内部编号的小节标记
+  keep_split: false
+- 'no': 3
+  overturn_probability: 0.35
+  alternative: 正文小标题
+  counter_evidence:
+  - '''## 第 3 部分：'' 虽为部分标题，但后接空行后直接为描述性段落 5142 起，标题末尾带全角冒号 ''：''，与规则中标题末尾绝无句号的偏好存在冲突，且部分标题在本书中已多次以
+    ''##'' 出现，易被误判为普通二级小标题'
+  - 上下文 5139-5141 为总结段落的延续，5140 起的标题后无独立的概述段落，而是直接进入目录式罗列，语义统领性不足
+  keep_split: true
+- 'no': 4
+  overturn_probability: 0.6
+  alternative: 正文小标题/排版断行
+  counter_evidence:
+  - 编号 '### 7' 与标题 '在 Azure Databricks 中使用 Python 库' 分离在 5153-5154 两行，标题长度超过 30 字且为具体技术主题，符合子节而非全书最高层级大章的语义特征
+  - 前文 5140-5149 为第 3 部分的章节目录，5153 起的内容紧接目录后，属于目录项的展开说明，后续 5156 起即为技术要求等正文，缺乏章标题应有的独立概述段落
+  keep_split: false
