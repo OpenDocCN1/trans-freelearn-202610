@@ -1,0 +1,1 @@
+called Yoast that uses a checkbox approach to each post.

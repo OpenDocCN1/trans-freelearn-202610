@@ -1,0 +1,428 @@
+chapter_starts:
+- 'no': 15
+  confidence: 0.95
+  final_reason: 双方一致 + 排版语义均符合，前言类正文前内容统一划分为一章
+  accepted_evidence:
+  - '## Preface 为前言，规则要求前言等正文前内容统一划分为一章'
+  - 书籍前置内容的标题（Preface），语义上正是前言章节的开始
+  rejected_evidence:
+  - 它后面紧跟的是目录列表，而非前言正文，可能让人误以为这只是目录的组成部分
+  need_human_review: false
+- 'no': 404
+  confidence: 0.9
+  final_reason: 部分标题，语义为全书最高层级部分，应划分新章
+  accepted_evidence:
+  - '### 第一部分 程序员技能 为部分标题，应划分新章'
+  - 内容明确标注'第一部分'，语义上是全书最高层级的部分标题
+  rejected_evidence:
+  - 该行以###三级标题标记，可能属于部分标题下的子标题
+  need_human_review: false
+- 'no': 406
+  confidence: 0.95
+  final_reason: '## 第1章 发现开发者的临界点 为最高层级大章标题，单独成行'
+  accepted_evidence:
+  - '## 第1章 发现开发者的临界点 为最高层级大章标题，单独成行'
+  - '''第1章''的编号和后续独立正文表明它是真正的章标题'
+  rejected_evidence:
+  - 它紧接在'第一部分 程序员技能'之后，可能被误读为部分下的首个子节
+  need_human_review: false
+- 'no': 484
+  confidence: 0.95
+  final_reason: '## 第 2 章 开发者是天生的还是后天培养的？——破除天才神话 为大章标题'
+  accepted_evidence:
+  - '## 第 2 章 开发者是天生的还是后天培养的？——破除天才神话 为大章标题'
+  - 标题以'第 2 章'开头，与前后章号连贯，且后文开始独立主题
+  rejected_evidence:
+  - 可能是第1章正文末尾的一个过渡句/小标题
+  need_human_review: false
+- 'no': 545
+  confidence: 0.95
+  final_reason: '## 第三章：成为开发者必须是天才吗？ 为大章标题'
+  accepted_evidence:
+  - '## 第三章：成为开发者必须是天才吗？ 为大章标题'
+  - 有'第三章：'编号且单独成行，后续内容也围绕该主题展开
+  rejected_evidence:
+  - 标题以问号结尾，不符合标题末尾绝无（？！）的格式特征，可能只是正文中的提问
+  need_human_review: false
+- 'no': 592
+  confidence: 0.95
+  final_reason: '## 第四章：如何学习和理解复杂主题？ 为大章标题'
+  accepted_evidence:
+  - '## 第四章：如何学习和理解复杂主题？ 为大章标题'
+  - '''第四章：''编号、独立成行以及后文系统讲解，均指向真正的章标题'
+  rejected_evidence:
+  - 末尾带问号，可能触发格式排除条件
+  need_human_review: false
+- 'no': 618
+  confidence: 0.95
+  final_reason: '## 第五章：开发者的高效学习实践 为大章标题'
+  accepted_evidence:
+  - '## 第五章：开发者的高效学习实践 为大章标题'
+  - 标题无末尾标点，格式上完全符合章标题
+  rejected_evidence:
+  - 与上一章之间可能缺少足够的分隔内容
+  need_human_review: false
+- 'no': 670
+  confidence: 0.95
+  final_reason: '## 第 6 章. 定义深度工作及其对开发者的意义 为大章标题'
+  accepted_evidence:
+  - '## 第 6 章. 定义深度工作及其对开发者的意义 为大章标题'
+  - 后文从该行起进入'深度工作'的正文讲解，独立性明显
+  rejected_evidence:
+  - 章号使用'第 6 章.'加点的写法，可能被视为目录中的编号形式
+  need_human_review: false
+- 'no': 734
+  confidence: 0.95
+  final_reason: '## 第7章 开发者的任务切换成本 为大章标题'
+  accepted_evidence:
+  - '## 第7章 开发者的任务切换成本 为大章标题'
+  - 单行独立且后文围绕'任务切换成本'展开
+  rejected_evidence:
+  - 可能是前章末尾的小结部分
+  need_human_review: false
+- 'no': 754
+  confidence: 0.95
+  final_reason: '## 第8章 如何利用意志力极限，而不是让极限利用你？ 为大章标题'
+  accepted_evidence:
+  - '## 第8章 如何利用意志力极限，而不是让极限利用你？ 为大章标题'
+  - '''第8章''编号及后续内容完整覆盖意志力主题'
+  rejected_evidence:
+  - 以问号结尾，形式上符合排除特征
+  need_human_review: false
+- 'no': 839
+  confidence: 0.95
+  final_reason: '## 第10章 阅读对开发者重要吗？ 为大章标题'
+  accepted_evidence:
+  - '## 第10章 阅读对开发者重要吗？ 为大章标题'
+  - '''第10章''编号清晰，且前文缺第9章属于明显的序号跳跃'
+  rejected_evidence:
+  - 行末问号与格式规则冲突
+  need_human_review: false
+- 'no': 905
+  confidence: 0.95
+  final_reason: '## 第 11 章　学习如何编程——跨越技能瓶颈期 为大章标题'
+  accepted_evidence:
+  - '## 第 11 章　学习如何编程——跨越技能瓶颈期 为大章标题'
+  - 其前空行、后接正文，没有目录条目的缩进或'-'前缀
+  rejected_evidence:
+  - 可能是目录中列出的章节编号条目
+  need_human_review: false
+- 'no': 946
+  confidence: 0.95
+  final_reason: '## 第 12 章　开发者学习曲线——为什么学习编程需要这么长时间 为大章标题'
+  accepted_evidence:
+  - '## 第 12 章　开发者学习曲线——为什么学习编程需要这么长时间 为大章标题'
+  - 该行明确写有'第 12 章'，且后文从'什么是学习曲线？'开始，是独立章节的典型开局
+  rejected_evidence:
+  - 可能是上一个主题的一部分小标题
+  need_human_review: false
+- 'no': 1027
+  confidence: 0.95
+  final_reason: '## 第 13 章 放慢脚步，才能更快学会编码 为大章标题'
+  accepted_evidence:
+  - '## 第 13 章 放慢脚步，才能更快学会编码 为大章标题'
+  - 标题无标点，单独成行，编号'第 13 章'与前文连续
+  rejected_evidence:
+  - 可能是正文中的一个格言式小标题
+  need_human_review: false
+- 'no': 1065
+  confidence: 0.95
+  final_reason: '## 第 14 章 学习编码和提升开发者水平的心智模型 为大章标题'
+  accepted_evidence:
+  - '## 第 14 章 学习编码和提升开发者水平的心智模型 为大章标题'
+  - 有明确的'第 14 章'编号，后文独立展开'心智模型'
+  rejected_evidence:
+  - 可能是前一章的延伸讨论或节标题
+  need_human_review: false
+- 'no': 1183
+  confidence: 0.95
+  final_reason: '## 第16章 开发者的拖延症问题 为大章标题'
+  accepted_evidence:
+  - '## 第16章 开发者的拖延症问题 为大章标题'
+  - '''第16章''编号明确，序号相对前章缺失第15章，但规则要求只划分现有章标题'
+  rejected_evidence:
+  - 可能是正文中的一个主题句被误作标题
+  need_human_review: false
+- 'no': 1225
+  confidence: 0.95
+  final_reason: '## 第 17 章。作为开发者的番茄工作法的实用用法 为大章标题'
+  accepted_evidence:
+  - '## 第 17 章。作为开发者的番茄工作法的实用用法 为大章标题'
+  - 后续正文从番茄工作法开始，章号独立
+  rejected_evidence:
+  - 行中'第 17 章。'的句号可能令人联想到书目编号
+  need_human_review: false
+- 'no': 1271
+  confidence: 0.95
+  final_reason: '## 第 18 章。犯错的力量 – 通过失败学习 为大章标题'
+  accepted_evidence:
+  - '## 第 18 章。犯错的力量 – 通过失败学习 为大章标题'
+  - 它是全书的正式章名，后文内容完全对应
+  rejected_evidence:
+  - 可能是正文中的引文标题
+  need_human_review: false
+- 'no': 1309
+  confidence: 0.9
+  final_reason: '## Chapter 19. Learn How to Code – The Guide to Me... 为大章标题'
+  accepted_evidence:
+  - '## Chapter 19. Learn How to Code – The Guide to Me... 为大章标题'
+  - 后文为对应正文，且语种变化不影响章标题地位
+  rejected_evidence:
+  - 可能是英文目录中的章节标题
+  need_human_review: false
+- 'no': 1436
+  confidence: 0.95
+  final_reason: '## 第20章 学习新编程语言的系统 为大章标题'
+  accepted_evidence:
+  - '## 第20章 学习新编程语言的系统 为大章标题'
+  - 后文第一句'在本章中'进一步印证
+  rejected_evidence:
+  - 可能是上一章末尾的关键词列表的标题
+  need_human_review: false
+- 'no': 1462
+  confidence: 0.95
+  final_reason: '## 第21章 开发学习技巧——反向记笔记 为大章标题'
+  accepted_evidence:
+  - '## 第21章 开发学习技巧——反向记笔记 为大章标题'
+  - 有'第21章'编号，后文讲述'反向记笔记'的系统方法
+  rejected_evidence:
+  - 可能是正文中的经验总结小标题
+  need_human_review: false
+- 'no': 1524
+  confidence: 0.9
+  final_reason: '## Chapter 22. Tips for Organically Growing a Free... 为大章标题'
+  accepted_evidence:
+  - '## Chapter 22. Tips for Organically Growing a Free... 为大章标题'
+  - 后文从'我强烈建议……'开始，是章节正文的典型开头
+  rejected_evidence:
+  - 可能是英文目录中的条目
+  need_human_review: false
+- 'no': 1591
+  confidence: 0.95
+  final_reason: '## 第23章 自由职业技巧——知道何时辞退客户 为大章标题'
+  accepted_evidence:
+  - '## 第23章 自由职业技巧——知道何时辞退客户 为大章标题'
+  - '''## 第23章''编号完整，且标题直接宣告独立主题'
+  rejected_evidence:
+  - 可能是自由职业部分的普通小节标题
+  need_human_review: false
+- 'no': 1647
+  confidence: 0.95
+  final_reason: '## 第24章 避开银弹，打造可扩展的自由职业项目 为大章标题'
+  accepted_evidence:
+  - '## 第24章 避开银弹，打造可扩展的自由职业项目 为大章标题'
+  - 行首有'第24章'编号，且后文围绕可扩展的自由职业项目展开完整论述
+  rejected_evidence:
+  - 可能是正文中的一个隐喻句而非章标题
+  need_human_review: false
+- 'no': 1701
+  confidence: 0.95
+  final_reason: '## 第 25 章. 自由职业者管理高级功能的指南 为大章标题'
+  accepted_evidence:
+  - '## 第 25 章. 自由职业者管理高级功能的指南 为大章标题'
+  - 该行虽使用'章.'加点，但后文出现'### 管理高级功能'等子节，是标准章结构
+  rejected_evidence:
+  - 可能是前缀'第 25 章.'的目录样式文本
+  need_human_review: false
+- 'no': 1734
+  confidence: 0.95
+  final_reason: '## 第 26 章. 自由职业者访谈 – 接手遗留应用程序的实用技巧 为大章标题'
+  accepted_evidence:
+  - '## 第 26 章. 自由职业者访谈 – 接手遗留应用程序的实用技巧 为大章标题'
+  - 行中有'第 26 章.'编号，且后续为访谈内容的结构
+  rejected_evidence:
+  - 可能是访谈专栏的引题，而非全书的正式章
+  need_human_review: false
+- 'no': 1844
+  confidence: 0.95
+  final_reason: '## 第29章。你应该在自由职业项目中使用 TDD 吗？——比较质量与速度 为大章标题'
+  accepted_evidence:
+  - '## 第29章。你应该在自由职业项目中使用 TDD 吗？——比较质量与速度 为大章标题'
+  - '''第29章。''编号清晰，且后续内容专门讨论TDD'
+  rejected_evidence:
+  - 标题以问号结尾，可能触发格式排除
+  need_human_review: false
+- 'no': 1911
+  confidence: 0.95
+  final_reason: '## 第31章。自由职业需求获取——功能开发指南 为大章标题'
+  accepted_evidence:
+  - '## 第31章。自由职业需求获取——功能开发指南 为大章标题'
+  - 有'第31章。'编号，且后文有'### 自由职业需求获取'等子节
+  rejected_evidence:
+  - 可能是章节主题的缩略标记
+  need_human_review: false
+- 'no': 1947
+  confidence: 0.95
+  final_reason: '## 第32章。如何远程向自由职业客户演示工作？ 为大章标题'
+  accepted_evidence:
+  - '## 第32章。如何远程向自由职业客户演示工作？ 为大章标题'
+  - '''第32章。''编号和后续分节证明它是章标题'
+  rejected_evidence:
+  - 可能是正文中的设问句
+  need_human_review: false
+- 'no': 2051
+  confidence: 0.95
+  final_reason: '## 第34章。自由职业者顶级项目管理工具 为大章标题'
+  accepted_evidence:
+  - '## 第34章。自由职业者顶级项目管理工具 为大章标题'
+  - 行首有'第34章。'编号，且后文列出Basecamp、Trello等作为本章子节
+  rejected_evidence:
+  - 可能是'顶级项目管理工具'一节的小标题
+  need_human_review: false
+- 'no': 2175
+  confidence: 0.95
+  final_reason: '## 第35章 开发者最佳自由职业记账选项 为大章标题'
+  accepted_evidence:
+  - '## 第35章 开发者最佳自由职业记账选项 为大章标题'
+  - 有'第35章'编号，后文'自由职业记账选项'等子节都从属于它
+  rejected_evidence:
+  - 可能是记账软件列表的前导标题
+  need_human_review: false
+- 'no': 2233
+  confidence: 0.95
+  final_reason: '## 第36章 掌握自由职业者获取新客户的秘诀 为大章标题'
+  accepted_evidence:
+  - '## 第36章 掌握自由职业者获取新客户的秘诀 为大章标题'
+  - 行首'第36章'编号明确，且后面连续多个子节
+  rejected_evidence:
+  - 可能是'获取新客户'专题的一节标题
+  need_human_review: false
+- 'no': 2287
+  confidence: 0.95
+  final_reason: '## 第 37 章 作为自由职业者管理客户冲突 为大章标题'
+  accepted_evidence:
+  - '## 第 37 章 作为自由职业者管理客户冲突 为大章标题'
+  - '''第 37 章''编号和后续策略分节均指向独立章节'
+  rejected_evidence:
+  - 可能是正文中的引语或小标题
+  need_human_review: false
+- 'no': 2334
+  confidence: 0.95
+  final_reason: '## 第 38 章 帮助获取新客户的自职业作品集示例 为大章标题'
+  accepted_evidence:
+  - '## 第 38 章 帮助获取新客户的自职业作品集示例 为大章标题'
+  - 有'第 38 章'编号，且后文包含多个分节
+  rejected_evidence:
+  - 可能是书末附加内容的小标题
+  need_human_review: false
+- 'no': 2377
+  confidence: 0.95
+  final_reason: '## 第 39 章 测试驱动开发对程序员的重要性 为大章标题'
+  accepted_evidence:
+  - '## 第 39 章 测试驱动开发对程序员的重要性 为大章标题'
+  - '''第 39 章''编号，后文从定义TDD展开'
+  rejected_evidence:
+  - 可能是技术主题的条目
+  need_human_review: false
+- 'no': 2434
+  confidence: 0.95
+  final_reason: '## 第 40 章 自由职业者的 SEO 最佳实践与策略 为大章标题'
+  accepted_evidence:
+  - '## 第 40 章 自由职业者的 SEO 最佳实践与策略 为大章标题'
+  - '''第 40 章''编号清晰，且后文''内容为王''等子节与之配套'
+  rejected_evidence:
+  - 可能是SEO实践部分的一节标题
+  need_human_review: false
+- 'no': 2470
+  confidence: 0.95
+  final_reason: '## 第 41 章 自由职业者的客户沟通技巧 为大章标题'
+  accepted_evidence:
+  - '## 第 41 章 自由职业者的客户沟通技巧 为大章标题'
+  - 有'第 41 章'编号，后文有'维持良好客户沟通的系统'等子标题
+  rejected_evidence:
+  - 可能是客户沟通技巧的讨论段落标题
+  need_human_review: false
+- 'no': 2530
+  confidence: 0.95
+  final_reason: '## 第42章 使用基于系统的流程正确外包Web开发人员 为大章标题'
+  accepted_evidence:
+  - '## 第42章 使用基于系统的流程正确外包Web开发人员 为大章标题'
+  - '''第42章''编号明确，且后文有''管理外包Web开发人员的系统''子节'
+  rejected_evidence:
+  - 可能是外包管理的小节标题
+  need_human_review: false
+- 'no': 2556
+  confidence: 0.95
+  final_reason: '## 第43章 如何创建准确的自由职业报价？ 为大章标题'
+  accepted_evidence:
+  - '## 第43章 如何创建准确的自由职业报价？ 为大章标题'
+  - 行首'第43章'编号，后文列出报价步骤
+  rejected_evidence:
+  - 可能是报价方法的段落标题
+  need_human_review: false
+- 'no': 2584
+  confidence: 0.9
+  final_reason: '## 第三部分 职业技能 为部分标题，应划分新章'
+  accepted_evidence:
+  - '## 第三部分 职业技能 为部分标题，应划分新章'
+  - 该行是'## 第三部分 职业技能'，属于部分标题，按部分-章节模式应分章
+  rejected_evidence:
+  - 可能是第三部分开头的章节引言
+  need_human_review: false
+- 'no': 2586
+  confidence: 0.95
+  final_reason: '## 第45章 我该学编程吗？——关于编程的平衡观点 为大章标题'
+  accepted_evidence:
+  - '## 第45章 我该学编程吗？——关于编程的平衡观点 为大章标题'
+  - '''第45章''编号，后文是章节正文'
+  rejected_evidence:
+  - 可能是第三部分下的引言小标题
+  need_human_review: false
+- 'no': 2630
+  confidence: 0.9
+  final_reason: '## Chapter 46. Following Your Passion – Good or Ba... 为大章标题'
+  accepted_evidence:
+  - '## Chapter 46. Following Your Passion – Good or Ba... 为大章标题'
+  - 后文为中文正文讨论'追随你的热情'，且'Chapter 46'编号与前后章节衔接
+  rejected_evidence:
+  - 可能是英文目录中的条目
+  need_human_review: false
+- 'no': 2658
+  confidence: 0.9
+  final_reason: '## Chapter 47. How to Learn to Code from Scratch? ... 为大章标题'
+  accepted_evidence:
+  - '## Chapter 47. How to Learn to Code from Scratch? ... 为大章标题'
+  - 该行虽然以英文形式出现，但后文中文正文'如何从零开始学习编程'正是该章内容
+  rejected_evidence:
+  - 可能是英文目录中的条目
+  need_human_review: false
+- 'no': 2734
+  confidence: 0.95
+  final_reason: '## 第 48 章。如何选择开发者专长？ 为大章标题'
+  accepted_evidence:
+  - '## 第 48 章。如何选择开发者专长？ 为大章标题'
+  - '''第 48 章。如何选择开发者专长？''带章号和完整标题，后续分节均在其下'
+  rejected_evidence:
+  - 可能是开发者专长列表的引导句
+  need_human_review: false
+- 'no': 2792
+  confidence: 0.95
+  final_reason: '## 第 49 章 如何选择你的下一门编程语言？ 为大章标题'
+  accepted_evidence:
+  - '## 第 49 章 如何选择你的下一门编程语言？ 为大章标题'
+  - '''第 49 章''编号，后文系统论述语言选择策略'
+  rejected_evidence:
+  - 可能是编程语言选择指南的小节标题
+  need_human_review: false
+- 'no': 2848
+  confidence: 0.95
+  final_reason: '## 第 50 章 开发者软技能——学会如何在市场中占据优势 为大章标题'
+  accepted_evidence:
+  - '## 第 50 章 开发者软技能——学会如何在市场中占据优势 为大章标题'
+  - 有'第 50 章'编号，且后文分别介绍写作、交谈、管理等软技能
+  rejected_evidence:
+  - 可能是'软技能'专题的导语
+  need_human_review: false
+- 'no': 2926
+  confidence: 0.95
+  final_reason: '## 第51章 开发者学习选项——实际分析 为大章标题'
+  accepted_evidence:
+  - '## 第51章 开发者学习选项——实际分析 为大章标题'
+  - '''第51章''编号，后文覆盖开发者训练营等主题'
+  rejected_evidence:
+  - 可能是学习选项分析的小节标题
+  need_human_review: false
+rejected_lines:
+- 'no': 136
+  reason: 复核方指出该行位于Preface章内的目录区，为英文目录中的部分标题条目，非正文部分标题；正文部分标题实际在2584行，目录中间不应插入新章
+  need_human_review: false

@@ -1,0 +1,291 @@
+reviews:
+- 'no': 15
+  overturn_probability: 0.2
+  alternative: 书籍前置内容的标题（Preface），若不分章则只是书页页眉或目录前的前言条目标题。
+  counter_evidence:
+  - 它后面紧跟的是目录列表（第17行起均为带'-'的条目），而非前言正文，可能让人误以为这只是目录的组成部分；但'## Preface'在语义上正是前言章节的开始。
+  keep_split: true
+- 'no': 136
+  overturn_probability: 0.75
+  alternative: 若不分章，这行是英文目录中的部分标题条目（Part III Career Skills），并非正文中的部分标题。
+  counter_evidence:
+  - 行136位于Preface章内的目录区，其后直到404行都是目录列表（如'- 45. Should I Learn to Code'），并非正文内容
+  - 同一部分标题在正文中于2584行才出现（'## 第三部分 职业技能'），行136只是目录中的对应项，若单独分章会造成目录与正文的重复切分
+  - 从结构看，整段0至404行均属于前言/目录区，按规则应统一作为一章，不应在目录中间插入新章
+  keep_split: false
+- 'no': 404
+  overturn_probability: 0.15
+  alternative: 若不分章，这行是正文中'第一部分 程序员技能'的小节标题（而非作为最高层级的部分标题）。
+  counter_evidence:
+  - 该行以###三级标题标记，与普通章标题的##级别不同，可能属于部分标题下的子标题；但其内容明确标注'第一部分'，语义上是全书最高层级的部分标题，不能按级别否定。
+  keep_split: true
+- 'no': 406
+  overturn_probability: 0.1
+  alternative: 若不分章，这行可能是'第一部分'内的一个小标题（正文小标题）。
+  counter_evidence:
+  - 它紧接在'第一部分 程序员技能'之后，可能被误读为部分下的首个子节；但'第1章'的编号和后续独立正文表明它是真正的章标题。
+  keep_split: true
+- 'no': 484
+  overturn_probability: 0.1
+  alternative: 若不分章，这行可能是第1章正文末尾的一个过渡句/小标题。
+  counter_evidence:
+  - 标题以'第 2 章'开头，与前后章号连贯，且后文开始独立主题，即便标题内包含问号也仍是章标题。
+  keep_split: true
+- 'no': 545
+  overturn_probability: 0.2
+  alternative: 若不分章，这行可能是正文中的一个设问句（'成为开发者必须是天才吗？'）被误认为标题。
+  counter_evidence:
+  - 标题以问号结尾，不符合'标题末尾绝无（？！）'的格式特征，可能只是正文中的提问；但它有'第三章：'编号且单独成行，后续内容也围绕该主题展开，章标题特征占主导。
+  keep_split: true
+- 'no': 592
+  overturn_probability: 0.2
+  alternative: 若不分章，这行可能是正文设问句（'如何学习和理解复杂主题？'），而非章标题。
+  counter_evidence:
+  - 末尾带问号，可能触发格式排除条件；但'第四章：'编号、独立成行以及后文系统讲解，均指向真正的章标题。
+  keep_split: true
+- 'no': 618
+  overturn_probability: 0.1
+  alternative: 若不分章，这行可能是前一章末尾的过渡性小标题。
+  counter_evidence:
+  - 该行没有末尾标点，格式上完全符合章标题；唯一可疑的是与上一章（第四章）之间可能缺少足够的分隔内容，但编号连续，无实质误判风险。
+  keep_split: true
+- 'no': 670
+  overturn_probability: 0.15
+  alternative: 若不分章，这行可能是正文中的一个条目标题（如'第 6 章. 定义深度工作……'的目录条目）。
+  counter_evidence:
+  - 章号使用'第 6 章.'加点的写法，与前后章标题的格式略有差异，可能被视为目录中的编号形式；但后文从该行起进入'深度工作'的正文讲解，独立性明显。
+  keep_split: true
+- 'no': 734
+  overturn_probability: 0.1
+  alternative: 若不分章，这行可能是前章末尾的小结部分。
+  counter_evidence:
+  - 该行是'## 第7章'，单行独立且后文围绕'任务切换成本'展开，没有任何证据表明它是前章的一部分。
+  keep_split: true
+- 'no': 754
+  overturn_probability: 0.2
+  alternative: 若不分章，这行可能是正文中一个设问句（'如何利用意志力极限……？'）误作标题。
+  counter_evidence:
+  - 以问号结尾，形式上符合排除特征；但'第8章'编号及后续内容完整覆盖意志力主题，编号已提供强证据。
+  keep_split: true
+- 'no': 839
+  overturn_probability: 0.2
+  alternative: 若不分章，这行可能是正文中的设问句（'阅读对开发者重要吗？'）。
+  counter_evidence:
+  - 行末问号与格式规则冲突；但'第10章'编号清晰，且前文缺第9章属于明显的序号跳跃，按规则应保留该章。
+  keep_split: true
+- 'no': 905
+  overturn_probability: 0.1
+  alternative: 若不分章，这行可能是目录中列出的章节编号条目。
+  counter_evidence:
+  - '''第 11 章　学习如何编程——跨越技能瓶颈期''为完整大章标题，且其前空行、后接正文，没有目录条目的缩进或''-''前缀。'
+  keep_split: true
+- 'no': 946
+  overturn_probability: 0.1
+  alternative: 若不分章，这行可能是上一个主题（学习曲线）的一部分小标题。
+  counter_evidence:
+  - 该行明确写有'第 12 章'，且后文从'什么是学习曲线？'开始，是独立章节的典型开局。
+  keep_split: true
+- 'no': 1027
+  overturn_probability: 0.1
+  alternative: 若不分章，这行可能是正文中的一个格言式小标题。
+  counter_evidence:
+  - 标题无标点，单独成行，编号'第 13 章'与前文连续，且后面段落直接解释该主题，分章合理。
+  keep_split: true
+- 'no': 1065
+  overturn_probability: 0.1
+  alternative: 若不分章，这行可能是前一章的延伸讨论或节标题。
+  counter_evidence:
+  - 有明确的'第 14 章'编号，后文独立展开'心智模型'，与上一章属于不同主题。
+  keep_split: true
+- 'no': 1183
+  overturn_probability: 0.15
+  alternative: 若不分章，这行可能是正文中的一个主题句（'开发者的拖延症问题'）被误作标题。
+  counter_evidence:
+  - '''第16章''编号明确，序号相对前章（第14章）缺失第15章，但规则要求只划分现有章标题，且后文详细讨论拖延症，分章成立。'
+  keep_split: true
+- 'no': 1225
+  overturn_probability: 0.15
+  alternative: 若不分章，这行可能是目录中的章节条目。
+  counter_evidence:
+  - 行中'第 17 章。'的句号可能令人联想到书目编号，但后续正文从番茄工作法开始，章号独立，分章无误。
+  keep_split: true
+- 'no': 1271
+  overturn_probability: 0.15
+  alternative: 若不分章，这行可能是正文中的引文标题。
+  counter_evidence:
+  - '''第 18 章。犯错的力量''虽然带句号分隔，但它是全书的正式章名，后文内容完全对应。'
+  keep_split: true
+- 'no': 1309
+  overturn_probability: 0.1
+  alternative: 若不分章，这行可能是英文目录中的章节标题（Chapter 19）。
+  counter_evidence:
+  - 该行以英文'Chapter 19.'形式出现，但后文为对应正文，且语种变化不影响章标题地位。
+  keep_split: true
+- 'no': 1436
+  overturn_probability: 0.1
+  alternative: 若不分章，这行可能是上一章末尾的关键词列表的标题。
+  counter_evidence:
+  - '''## 第20章 学习新编程语言的系统''是中文大章标题，后文第一句''在本章中''进一步印证。'
+  keep_split: true
+- 'no': 1462
+  overturn_probability: 0.1
+  alternative: 若不分章，这行可能是正文中的经验总结小标题。
+  counter_evidence:
+  - 有'第21章'编号，后文讲述'反向记笔记'的系统方法，属独立章节内容。
+  keep_split: true
+- 'no': 1524
+  overturn_probability: 0.1
+  alternative: 若不分章，这行可能是英文目录中的条目（Chapter 22）。
+  counter_evidence:
+  - 后文从'我强烈建议……'开始，是章节正文的典型开头，且'Chapter 22'编号与前后连续，不应按目录处理。
+  keep_split: true
+- 'no': 1591
+  overturn_probability: 0.1
+  alternative: 若不分章，这行可能是自由职业部分的普通小节标题。
+  counter_evidence:
+  - '''## 第23章''编号完整，且标题''自由职业技巧——知道何时辞退客户''直接宣告独立主题。'
+  keep_split: true
+- 'no': 1647
+  overturn_probability: 0.1
+  alternative: 若不分章，这行可能是正文中的一个隐喻句（'避开银弹'）而非章标题。
+  counter_evidence:
+  - 但行首有'第24章'编号，且后文围绕可扩展的自由职业项目展开完整论述。
+  keep_split: true
+- 'no': 1701
+  overturn_probability: 0.1
+  alternative: 若不分章，这行可能是前缀'第 25 章.'的目录样式文本。
+  counter_evidence:
+  - 该行虽使用'章.'加点，但后文出现'### 管理高级功能'等子节，是标准章结构。
+  keep_split: true
+- 'no': 1734
+  overturn_probability: 0.1
+  alternative: 若不分章，这行可能是访谈专栏的引题，而非全书的正式章。
+  counter_evidence:
+  - 行中有'第 26 章.'编号，且后续为访谈内容的结构，属于章节的一部分，分章合理。
+  keep_split: true
+- 'no': 1844
+  overturn_probability: 0.15
+  alternative: 若不分章，这行可能是正文中的问题句（'你应该在自由职业项目中使用 TDD 吗？'）。
+  counter_evidence:
+  - 标题以问号结尾，可能触发格式排除；但'第29章。'编号清晰，且后续内容专门讨论TDD，不能因问号否定。
+  keep_split: true
+- 'no': 1911
+  overturn_probability: 0.1
+  alternative: 若不分章，这行可能是章节主题的缩略标记（'自由职业需求获取'）。
+  counter_evidence:
+  - 有'第31章。'编号，且后文有'### 自由职业需求获取'等子节，是独立章节无疑。
+  keep_split: true
+- 'no': 1947
+  overturn_probability: 0.1
+  alternative: 若不分章，这行可能是正文中的设问句（'如何远程向自由职业客户演示工作？'）。
+  counter_evidence:
+  - 尽管以问号结尾，但'第32章。'编号和后续分节（录屏、远程桌面、PowerPoint）证明它是章标题。
+  keep_split: true
+- 'no': 2051
+  overturn_probability: 0.1
+  alternative: 若不分章，这行可能是'顶级项目管理工具'一节的小标题。
+  counter_evidence:
+  - 但行首有'第34章。'编号，且后文列出Basecamp、Trello等作为本章子节，说明这是章标题。
+  keep_split: true
+- 'no': 2175
+  overturn_probability: 0.1
+  alternative: 若不分章，这行可能是记账软件列表的前导标题。
+  counter_evidence:
+  - 有'第35章'编号，后文'自由职业记账选项'等子节都从属于它。
+  keep_split: true
+- 'no': 2233
+  overturn_probability: 0.1
+  alternative: 若不分章，这行可能是'获取新客户'专题的一节标题。
+  counter_evidence:
+  - 行首'第36章'编号明确，且后面连续多个子节，构成完整章节。
+  keep_split: true
+- 'no': 2287
+  overturn_probability: 0.1
+  alternative: 若不分章，这行可能是正文中的引语或小标题（'管理客户冲突'）。
+  counter_evidence:
+  - '''第 37 章''编号和后续策略分节均指向独立章节。'
+  keep_split: true
+- 'no': 2334
+  overturn_probability: 0.1
+  alternative: 若不分章，这行可能是书末附加内容的小标题（'作品集示例'）而非正式章。
+  counter_evidence:
+  - 有'第 38 章'编号，且后文包含多个分节，属于正经章节。
+  keep_split: true
+- 'no': 2377
+  overturn_probability: 0.1
+  alternative: 若不分章，这行可能是技术主题的条目（'测试驱动开发的重要性'）。
+  counter_evidence:
+  - '''第 39 章''编号，后文从定义TDD展开，可以确定是章标题。'
+  keep_split: true
+- 'no': 2434
+  overturn_probability: 0.1
+  alternative: 若不分章，这行可能是SEO实践部分的一节标题。
+  counter_evidence:
+  - '''第 40 章''编号清晰，且后文''内容为王''等子节与之配套，分章成立。'
+  keep_split: true
+- 'no': 2470
+  overturn_probability: 0.1
+  alternative: 若不分章，这行可能是客户沟通技巧的讨论段落标题。
+  counter_evidence:
+  - 有'第 41 章'编号，后文有'维持良好客户沟通的系统'等子标题，说明是章。
+  keep_split: true
+- 'no': 2530
+  overturn_probability: 0.1
+  alternative: 若不分章，这行可能是外包管理的小节标题。
+  counter_evidence:
+  - '''第42章''编号明确，且后文有''管理外包Web开发人员的系统''子节，是独立章节。'
+  keep_split: true
+- 'no': 2556
+  overturn_probability: 0.1
+  alternative: 若不分章，这行可能是报价方法的段落标题。
+  counter_evidence:
+  - 行首'第43章'编号，后文列出报价步骤，构成完整章节。
+  keep_split: true
+- 'no': 2584
+  overturn_probability: 0.1
+  alternative: 若不分章，这行可能是第三部分开头的章节引言。
+  counter_evidence:
+  - 该行是'## 第三部分 职业技能'，属于部分标题，按部分-章节模式应分章；虽有英文目录中已出现类似标题，但此处为正文位置。
+  keep_split: true
+- 'no': 2586
+  overturn_probability: 0.1
+  alternative: 若不分章，这行可能是第三部分下的引言小标题。
+  counter_evidence:
+  - '''第45章''编号，后文是章节正文，与前后形成连续章节。'
+  keep_split: true
+- 'no': 2630
+  overturn_probability: 0.1
+  alternative: 若不分章，这行可能是英文目录中的条目（Chapter 46）。
+  counter_evidence:
+  - 后文为中文正文讨论'追随你的热情'，且'Chapter 46'编号与前后章节衔接，应作为章标题。
+  keep_split: true
+- 'no': 2658
+  overturn_probability: 0.1
+  alternative: 若不分章，这行可能是英文目录中的条目（Chapter 47）。
+  counter_evidence:
+  - 该行虽然以英文形式出现，但后文中文正文'如何从零开始学习编程'正是该章内容，分章无误。
+  keep_split: true
+- 'no': 2734
+  overturn_probability: 0.1
+  alternative: 若不分章，这行可能是开发者专长列表的引导句。
+  counter_evidence:
+  - '''第 48 章。如何选择开发者专长？''带章号和完整标题，后续分节（全栈、前端等）均在其下。'
+  keep_split: true
+- 'no': 2792
+  overturn_probability: 0.1
+  alternative: 若不分章，这行可能是编程语言选择指南的小节标题。
+  counter_evidence:
+  - '''第 49 章''编号，后文系统论述语言选择策略，章标题无误。'
+  keep_split: true
+- 'no': 2848
+  overturn_probability: 0.1
+  alternative: 若不分章，这行可能是'软技能'专题的导语。
+  counter_evidence:
+  - 有'第 50 章'编号，且后文分别介绍写作、交谈、管理等软技能，属完整章。
+  keep_split: true
+- 'no': 2926
+  overturn_probability: 0.1
+  alternative: 若不分章，这行可能是学习选项分析的小节标题。
+  counter_evidence:
+  - '''第51章''编号，后文覆盖开发者训练营等主题，是独立章。'
+  keep_split: true

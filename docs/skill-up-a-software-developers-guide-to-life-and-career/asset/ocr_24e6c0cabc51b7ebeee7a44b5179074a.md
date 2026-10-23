@@ -1,0 +1,5 @@
+outsourced developers, it's vital that you use automated testing. This can include BDD or unit testing. However, this process will help to ensure that all the features of an application are working and also that new features do not break pre-existing functionality.
+
++   2. **Daily reports**: Depending on the situation that you have with your clients, it's important that you receive daily reports on the development work performed for that day. If you're not getting daily updates there is a good chance that no work was performed.
++   
++   3. **Access to applications**: If you happen to only be managing the application and not actually developing, make sure that you have proper access. This includes command-line database access, your public keys on the server that the application is being deployed on, and any error logging system, such as Honeybadger or AppSignal.

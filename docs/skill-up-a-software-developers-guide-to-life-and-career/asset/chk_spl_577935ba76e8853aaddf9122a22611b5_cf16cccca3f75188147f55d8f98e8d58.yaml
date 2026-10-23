@@ -1,0 +1,92 @@
+reviews:
+- 'no': 3000
+  overturn_probability: 0.05
+  alternative: 若不分章，这行最可能是正文中的提问句或目录条目
+  counter_evidence:
+  - 标题以问号结尾，可能被误认为正文中的提问而非章节标题
+  - 前文连续出现多个### 三级小标题，可能干扰对章节边界的判断
+  keep_split: true
+- 'no': 3042
+  overturn_probability: 0.03
+  alternative: 若不分章，这行最可能是英文原版章节标题被截断后的残留，或正文中的引用
+  counter_evidence:
+  - 行末出现‘Dev...’截断，可能是文本提取噪声而非完整标题
+  - 紧邻上一章的### Summary子节，可能被误认为仍属于上一章内容
+  keep_split: true
+- 'no': 3083
+  overturn_probability: 0.02
+  alternative: 若不分章，这行最可能是目录条目或正文中的小标题
+  counter_evidence:
+  - 章号后使用中文冒号‘：’，与常见章标题格式略有差异
+  - 上下文没有紧邻的章号序列，可能被误认为非章节标题
+  keep_split: true
+- 'no': 3102
+  overturn_probability: 0.02
+  alternative: 若不分章，这行最可能是目录条目或正文中的小标题
+  counter_evidence:
+  - 标题较长且包含‘作为开发者’等修饰语，类似正文段落中的小标题
+  - 前文刚结束一章，若无明确分章标记也可能被看作普通强调句
+  keep_split: true
+- 'no': 3155
+  overturn_probability: 0.02
+  alternative: 若不分章，这行最可能是正文中的小标题或编号列表项
+  counter_evidence:
+  - ‘第56章.’中出现了句点，可能被误认为编号列表项
+  - 但后续正文从‘作为一名教师……’开始，若不分章则结构混乱
+  keep_split: true
+- 'no': 3273
+  overturn_probability: 0.15
+  alternative: 若不分章，这行最可能是正文中的问题句或小标题
+  counter_evidence:
+  - 标题以‘？’结尾，按规则‘标题末尾绝无句号（。.？！）’可能被误判为正文提问
+  - 章号后使用了中文句号‘。’（第 57 章。），格式特殊，可能被误认为段落标点
+  keep_split: true
+- 'no': 3396
+  overturn_probability: 0.05
+  alternative: 若不分章，这行最可能是正文中的小标题或段落标题
+  counter_evidence:
+  - 缺少第58章，序号跳跃可能引发对章节完整性的质疑，但规则明确允许跳跃时仍分章
+  - 标题以问号结尾，可能被误认为正文提问
+  keep_split: true
+- 'no': 3469
+  overturn_probability: 0.02
+  alternative: 若不分章，这行最可能是目录条目或正文小标题
+  counter_evidence:
+  - 标题中使用‘–’分隔副标题，类似文章副标题而非章标题
+  - 但‘第 60 章’作为最高层级编号，语义统领后续若干子节
+  keep_split: true
+- 'no': 3509
+  overturn_probability: 0.01
+  alternative: 若不分章，这行最可能是正文小标题
+  counter_evidence:
+  - 标题简短且无标点，若无章号可能被误认为普通小标题
+  - 但‘第61章’编号明确，且后续有多个### 子节支撑
+  keep_split: true
+- 'no': 3541
+  overturn_probability: 0.01
+  alternative: 若不分章，这行最可能是正文小标题
+  counter_evidence:
+  - 紧随其后的正文以‘在本章中’开头，符合章标题上下文，但也可被误认为一般段落标题
+  - 标题没有句末标点，但编号‘第62章’是强特征
+  keep_split: true
+- 'no': 3611
+  overturn_probability: 0.05
+  alternative: 若不分章，这行最可能是英文原版章节标题被截断后的残留，或正文中的外文短语
+  counter_evidence:
+  - 行末‘Intervie...’截断，可能为排版断行残留
+  - 下一行直接是‘### Questions’子节，若不分章则结构混乱，反证其应为章标题
+  keep_split: true
+- 'no': 3651
+  overturn_probability: 0.03
+  alternative: 若不分章，这行最可能是英文章节标题被截断后的残留
+  counter_evidence:
+  - 行末‘an...’截断，可能被误认为不完整文本
+  - 但‘Chapter 65’编号明确，且后续有列表内容和### Summary
+  keep_split: true
+- 'no': 3678
+  overturn_probability: 0.1
+  alternative: 若不分章，这行最可能是目录中的‘Index’条目或页眉页脚残留
+  counter_evidence:
+  - ‘Index’单独成行，后面紧跟字母索引项，可能被误认为分类标签而非章节标题
+  - 但规则明确将文末索引统一划分为一章
+  keep_split: true

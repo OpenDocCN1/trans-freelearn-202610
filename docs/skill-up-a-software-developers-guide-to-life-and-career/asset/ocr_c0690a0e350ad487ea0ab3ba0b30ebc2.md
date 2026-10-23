@@ -1,0 +1,1 @@
+I hope that this chapter has been helpful and will help you develop your own system for studying so that you can retain when you learn and be able to use it when it matters most.

@@ -1,0 +1,1 @@
+Trello essentially gives you a virtual Kanban board and lets you move tasks through each stage of the product development life cycle. For example, here in the image I would move a task from being a **To-Do** to being **Assigned**, to **Working**, to **Under Review**, and finally to **Finished**:

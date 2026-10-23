@@ -1,0 +1,1 @@
+I'm not going to pretend that this was easy. This is pretty much the opposite of a get-rich-quick kind of scheme. However, by implementing this strategy, I could cost-efficiently outsource the marketing for my freelance business so that I could focus on actual development.

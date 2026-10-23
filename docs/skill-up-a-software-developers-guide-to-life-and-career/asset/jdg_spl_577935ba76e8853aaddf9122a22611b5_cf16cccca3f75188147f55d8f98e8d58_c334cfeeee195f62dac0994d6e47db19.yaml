@@ -1,0 +1,125 @@
+chapter_starts:
+- 'no': 3000
+  confidence: 0.99
+  final_reason: 双方一致 + 排版语义均符合，最高层级章序号‘第52章’单独成行，后续为新章正文
+  accepted_evidence:
+  - 行3000为‘## 第52章 你的编码技能有可能丧失吗？’，具最高层级章序号‘第52章’，单独成行，语义统领性强
+  - 复核方 overturn_probability 0.05，keep_split true，虽标题含问号但为章标题特征
+  rejected_evidence:
+  - 标题以问号结尾可能被误认为正文提问
+  - 前文连续### 三级小标题可能干扰边界
+  need_human_review: false
+- 'no': 3042
+  confidence: 0.99
+  final_reason: 双方一致，明确的英文章级标题‘Chapter 53’单独成行，应分章
+  accepted_evidence:
+  - 行3042为‘## Chapter 53. Is Writing Bad Code Immoral for Dev...’，属明确章级标题
+  - 复核方 keep_split true，截断为提取噪声不影响章级判定
+  rejected_evidence:
+  - 行末‘Dev...’截断可能为文本提取噪声
+  - 紧邻上一章### Summary可能被误认为仍属上一章
+  need_human_review: false
+- 'no': 3083
+  confidence: 0.99
+  final_reason: 双方一致，‘第 54 章’编号单独成行，统领后续内容
+  accepted_evidence:
+  - 行3083为‘## 第 54 章：来自霍华德·罗克的鼓舞人心的编程建议’，具‘第 54 章’编号
+  - 复核方 keep_split true
+  rejected_evidence:
+  - 章号后使用中文冒号与常见格式略有差异
+  - 上下文无紧邻章号序列
+  need_human_review: false
+- 'no': 3102
+  confidence: 0.99
+  final_reason: 双方一致，‘第 55 章’编号单独成行，为最高层级大章
+  accepted_evidence:
+  - 行3102为‘## 第 55 章：作为开发者，最佳实践与创造力之间的博弈’，具‘第 55 章’编号
+  - 复核方 keep_split true
+  rejected_evidence:
+  - 标题较长且含修饰语类似小标题
+  - 前文刚结束一章可能被看作普通强调句
+  need_human_review: false
+- 'no': 3155
+  confidence: 0.99
+  final_reason: 双方一致，‘第56章.’编号单独成行，后续正文从‘作为一名教师’开始，结构清晰
+  accepted_evidence:
+  - 行3155为‘## 第56章. 项目开发实践指南’，具‘第56章’编号
+  - 复核方 keep_split true
+  rejected_evidence:
+  - ‘第56章.’出现句点可能被误认为编号列表项
+  need_human_review: false
+- 'no': 3273
+  confidence: 0.98
+  final_reason: 双方一致，‘第 57 章’编号单独成行，虽标题以问号结尾但为章标题
+  accepted_evidence:
+  - 行3273为‘## 第 57 章。如何练习编程技巧并提升作为开发者的能力？’，具‘第 57 章’编号
+  - 复核方 keep_split true
+  rejected_evidence:
+  - 标题以‘？’结尾按规则可能被误判为正文提问
+  - 章号后使用中文句号‘。’格式特殊
+  need_human_review: false
+- 'no': 3396
+  confidence: 0.98
+  final_reason: 双方一致，‘第59章’编号单独成行，序号跳跃按规则仍分章
+  accepted_evidence:
+  - 行3396为‘## 第59章 作为开发者如何保持敏锐？’，具‘第59章’编号
+  - 复核方 keep_split true，规则允许序号跳跃
+  rejected_evidence:
+  - 缺少第58章序号跳跃可能引发质疑
+  - 标题以问号结尾可能被误认为正文提问
+  need_human_review: false
+- 'no': 3469
+  confidence: 0.99
+  final_reason: 双方一致，‘第 60 章’编号单独成行，统领后续子节
+  accepted_evidence:
+  - 行3469为‘## 第 60 章. 开发者简历技巧 – 如何创建有效的简历？’，具‘第 60 章’编号
+  - 复核方 keep_split true
+  rejected_evidence:
+  - 标题使用‘–’分隔副标题类似文章副标题
+  need_human_review: false
+- 'no': 3509
+  confidence: 0.99
+  final_reason: 双方一致，‘第61章’编号明确，后续有多### 子节支撑
+  accepted_evidence:
+  - 行3509为‘## 第61章 开发者薪资谈判策略’，具‘第61章’编号
+  - 复核方 keep_split true
+  rejected_evidence:
+  - 标题简短无标点若无章号可能被误认为普通小标题
+  need_human_review: false
+- 'no': 3541
+  confidence: 0.99
+  final_reason: 双方一致，‘第62章’编号单独成行，后文以‘在本章中’开头符合章上下文
+  accepted_evidence:
+  - 行3541为‘## 第62章 求职面试时应提出的最佳问题’，具‘第62章’编号
+  - 复核方 keep_split true
+  rejected_evidence:
+  - 可被误认为一般段落标题
+  need_human_review: false
+- 'no': 3611
+  confidence: 0.99
+  final_reason: 双方一致，‘Chapter 63’英文章级标题单独成行，后续### Questions子节
+  accepted_evidence:
+  - 行3611为‘## Chapter 63. Answering in an Impossible Intervie...’，属明确章级标题
+  - 复核方 keep_split true
+  rejected_evidence:
+  - 行末‘Intervie...’截断可能为排版残留
+  need_human_review: false
+- 'no': 3651
+  confidence: 0.99
+  final_reason: 双方一致，‘Chapter 65’编号明确，序号跳跃仍为新章
+  accepted_evidence:
+  - 行3651为‘## Chapter 65. Enterprise Software Job Strategy an...’，属明确章级标题
+  - 复核方 keep_split true
+  rejected_evidence:
+  - 行末‘an...’截断可能被误认为不完整文本
+  need_human_review: false
+- 'no': 3678
+  confidence: 0.99
+  final_reason: 双方一致，文末‘## Index’按规则统一划分为一章
+  accepted_evidence:
+  - 行3678为‘## Index’，处于文末索引位置
+  - 复核方 keep_split true，规则明确文末索引划分为一章
+  rejected_evidence:
+  - 可能被误认为目录条目或页眉页脚残留
+  need_human_review: false
+rejected_lines: []
