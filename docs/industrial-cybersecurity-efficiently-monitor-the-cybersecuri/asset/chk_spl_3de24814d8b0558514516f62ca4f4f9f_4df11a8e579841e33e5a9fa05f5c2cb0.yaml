@@ -1,0 +1,50 @@
+reviews:
+- 'no': 8858
+  overturn_probability: 0.2
+  alternative: 正文小标题
+  counter_evidence:
+  - 该行虽为一级标题但未包含章序号，且上下文有工具列表和简历等无关内容，可能是被误标记的正文小节。
+  - 文档中其他`#`行（如第11320行`# 图 17.6...`）是图标题而非章节标题，因此一级标题标记不足以证明分章。
+  keep_split: true
+- 'no': 9750
+  overturn_probability: 0.3
+  alternative: 排版断行/二级小标题
+  counter_evidence:
+  - 该行使用`##`而不是其他大章的`#`，章级不一致，可能是子节而非新章。
+  - “13”单独一行且标题文字被拆成多行，可能只是页码或断行残留，不是正式章标题。
+  keep_split: true
+- 'no': 10026
+  overturn_probability: 0.05
+  alternative: 部分标题（但按规则也应分章）
+  counter_evidence:
+  - 该行是“第4部分”而非“第X章”，若非部分-章节模式则无需分章，但上下文明确是部分开始。
+  - 标题后紧跟“本部分包含以下章节：”列表，可能只是章节索引而非正文标题。
+  keep_split: true
+- 'no': 10037
+  overturn_probability: 0.05
+  alternative: 目录列表项
+  counter_evidence:
+  - 数字“14”可能来自前文“本部分包含以下章节：”的列表项，`# 14`可能是误用的标题标记。
+  - 标题文字“不同类型的网络安全评估”在列表中已出现过，此处可能是重复引用。
+  keep_split: true
+- 'no': 10250
+  overturn_probability: 0.05
+  alternative: 目录列表项
+  counter_evidence:
+  - 与前文“第15章”列表项文字重复，可能只是目录或交叉引用，而非正文标题。
+  - 该行没有额外的概述性内容，直接以章节列表开头，有理由怀疑是索引。
+  keep_split: true
+- 'no': 10267
+  overturn_probability: 0.05
+  alternative: 目录列表项
+  counter_evidence:
+  - 该行内容与前文本部分章节列表中的“第16章”重复，可能是列表项误转为标题。
+  - 紧接其后又有正文“是时候通过黑客工具...”，但正文前没有空行分隔，可能只是列表项与正文粘连。
+  keep_split: true
+- 'no': 11140
+  overturn_probability: 0.35
+  alternative: 章标题的延续部分
+  counter_evidence:
+  - 上一行已有独立的`# 17`，该行很可能是同一章标题的后续文字，不应再被单独划为一个新章，否则会造成重复分章。
+  - 该行没有章序号，若之前已根据`# 17`分章，则此行只是标题内容的一部分，不应重复启动章节。
+  keep_split: true

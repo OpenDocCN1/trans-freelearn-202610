@@ -1,0 +1,32 @@
+chapter_starts:
+- 'no': 3260
+  confidence: 0.92
+  final_reason: 最高层级章标题，单独成行，格式为 '# 主动安全监控'，前行为 '## 7' 编号标记，后接章节概述，符合第7章起始特征。复核方反方证据不成立。
+  accepted_evidence:
+  - 标题单独成行且为一级 Markdown 标题
+  - 前一行 '## 7' 为章节编号，后文为本章主题介绍
+  - 复核方 keep_split=true，overturn_probability 0.05
+  rejected_evidence:
+  - 若不分章则为正文小标题的替代假设，因编号+概述语义被证伪
+  need_human_review: false
+- 'no': 5336
+  confidence: 0.93
+  final_reason: 最高层级章标题，单独成行，格式为 '# 工业威胁情报'，前行为 '## 8' 编号标记，后接本章主题说明，为第8章起始。复核方反方证据不成立。
+  accepted_evidence:
+  - 一级标题单独成行
+  - 前一行 '## 8' 明确章节编号，后文为章节导语
+  - 复核方 keep_split=true，overturn_probability 0.05
+  rejected_evidence:
+  - 仅因未显式写出'第8章'而被误认为普通标题的可能，因上下文层级明确被排除
+  need_human_review: false
+- 'no': 5621
+  confidence: 0.91
+  final_reason: 最高层级章标题，单独成行，格式为 '# 9 可视化、关联与告警'，前文为第8章结束语，后文为第9章介绍，确为第9章起始。复核方反方证据不成立。
+  accepted_evidence:
+  - 一级标题单独成行，数字编号与标题并列
+  - 前后文语义明确为新章开始
+  - 复核方 keep_split=true，overturn_probability 0.05
+  rejected_evidence:
+  - 数字后无'章'字可能被误判为列表的假设，因上下文强支持章标题身份
+  need_human_review: false
+rejected_lines: []

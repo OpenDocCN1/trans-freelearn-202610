@@ -1,0 +1,61 @@
+chapter_starts:
+- 'no': 9750
+  confidence: 0.78
+  final_reason: 第13章的章号单独成行，后续9751-9755为标题文字拆行，语义上开启新章，虽使用##标记但编号特征和上下文统领性成立，复核方反证不足
+  accepted_evidence:
+  - 章号“13”单独成行且后接“威胁搜寻”等标题文字
+  - 后续内容为全新场景3的威胁搜寻章节概述
+  rejected_evidence:
+  - 使用##而非#的格式不一致
+  need_human_review: false
+- 'no': 10026
+  confidence: 0.97
+  final_reason: 一级标题“# 第4部分：工业网络安全——安全评估与情报”，部分-章节模式下部分标题应划分新章，语义统领后续章节列表
+  accepted_evidence:
+  - '# 开头一级标题'
+  - 标题后紧跟本部分包含章节列表
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 10037
+  confidence: 0.99
+  final_reason: 一级标题“# 14 不同类型的网络安全评估”，带章序号，独立成行，符合最高层级大章特征
+  accepted_evidence:
+  - '# 开头'
+  - 章序号14
+  - 后续为章节概述
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 10250
+  confidence: 0.99
+  final_reason: 一级标题“# 15 工业控制系统风险评估”，带章序号，独立成行，符合最高层级大章特征
+  accepted_evidence:
+  - '# 开头'
+  - 章序号15
+  - 后续为章节主题句
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 10267
+  confidence: 0.99
+  final_reason: 一级标题“# 16 红队/蓝队演练”，带章序号，独立成行，符合最高层级大章特征
+  accepted_evidence:
+  - '# 开头'
+  - 章序号16
+  - 后续为章节引言
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 11138
+  confidence: 0.92
+  final_reason: 一级标题“# 17”，章号单独成行，11140为同一章标题的延续文字，不应重复分章
+  accepted_evidence:
+  - '# 17 独立成行'
+  - 11140为标题延续“渗透测试 ICS 环境”
+  rejected_evidence:
+  - 11140单独作为标题的重复分章风险
+  need_human_review: false
+rejected_lines:
+- 'no': 8858
+  reason: 一级标题但无章序号，上下文为工具列表与简历内容夹杂，正文小节而非最高层级大章，复核方指出为正文小标题成立
+  need_human_review: false
+- 'no': 11140
+  reason: 为11138“# 17”的标题延续部分“渗透测试 ICS 环境”，不应重复启动新章
+  need_human_review: false

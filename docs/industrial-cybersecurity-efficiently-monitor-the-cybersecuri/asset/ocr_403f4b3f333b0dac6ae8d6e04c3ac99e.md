@@ -1,0 +1,10 @@
++   - Correlating events and alerts for threat hunting purposes
++   - Threat hunting principles
+
+This chapter will be an introduction to the threat hunting concept. In the next three chapters, we will perform some specific threat hunting exercises around some common risk scenarios in the ICS space.
+
+# What is threat hunting?
+
+In *Chapter 6, Passive Security Monitoring*, we discussed ways to detect, record, and identify security-related risks and information in our ICS environment without interacting with systems on the network. Then, in *Chapter 7, Active Security Monitoring*, we looked at the opposite of that methodology, namely using active techniques to unearth security-related information and find risk in the industrial network. Finally, in *Chapter 9, Visualizing, Correlating, and Alerting*, we took the findings and information from all our active and passive tools and activities, and then combined them into a Security Incident and Event Management solution. This provided us with a way to correlate and search for risks. It also allows us to set alerts on detected security incidents and visualize the current risk posture of our environment. Now, it is time to use the information and data our security monitoring efforts are giving us in a more proactive and investigative way, which we will do by carrying out threat hunting exercises.
+
+Threat hunting, at its core, is all about hypothesizing a risk or threat scenario and proving of disproving the presence of that threat scenario within our environment with threat hunting exercises. A hypothetical threat scenario could be *a competitor has infiltrated our networks and is now stealing our proprietary information*. A fitting threat hunting exercise that proves or disproves this hypothesized threat scenario could include activities such as PLC/HMI/DCS and safety system log reviews, firewall log reviews, Windows Event log reviews, network packet captures, public record investigations, and even dark web scans – anything that could show proof of the hypothesized threat being actualized in the environment.

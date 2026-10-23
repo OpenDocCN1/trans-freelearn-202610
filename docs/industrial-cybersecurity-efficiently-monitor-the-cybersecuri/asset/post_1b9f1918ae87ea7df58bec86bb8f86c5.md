@@ -1,0 +1,167 @@
+
+The highlighted code is a common way of automatically starting applications on a Windows machine, through the HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run registry key. Here, you can see the name, start command, executable location, description, and install/configure date.
+
+## What applications have been installed?
+
+Along with identifying what applications are starting up automatically, having a general overview of all the applications that have been installed on a system can give us clues about any malicious activities.
+
+A tool such as psinfo.exe from Sysinternals (https://docs.microsoft.com/en-us/sysinternals/downloads/psinfo) can inventory the applications that have been installed (using the -s flag when running the tool) on an individual system:
+
+```
+PS C:\tools> .\PsInfo.exe -s
+PsInfo v1.78 - Local and remote system information viewer
+Copyright (C) 2001-2016 Mark Russinovich
+Sysinternals - www.sysinternals.com
+```
+
+The Psinfo tool will list information about the system it has been run on, as shown in the following output:
+
+```
+System information for \\WORKSTATION1:
+Uptime:                          0 days 0 hours 48 minutes 42 seconds
+Kernel version:                  Windows 10 Pro, Multiprocessor Free
+Product type:                    Professional
+Product version:                 6.3
+Service pack:                    0
+Kernel build number:             15063
+Registered organization:
+Registered owner:                Windows User
+IE version:                      9.0000
+System root:                     C:\Windows
+Processors:                      2
+Processor speed:                 2.3 GHz
+Processor type:                  Intel(R) Xeon(R) Gold 5115 CPU @
+Physical memory:                 2 MB
+Video driver:                    VMware SVGA 3D
+```
+
+Next, it shows the applications that have been installed:
+
+```
+Applications:
+Tools for .Net 3.5 3.11.50727
+1732 IO-Link Module Profile 1.39.0.0
+1734 IO-Link Module Profiles 1.41.80.0
+Adobe Reader XI 11.0.00
+Advanced Micro Controls 1734 Specialty Module Profiles 1.04.1.0
+Advanced Micro Controls 1756 Specialty Module Profiles 1.03.1.0
+Advanced Micro Controls 1769 Specialty Module Profiles 1.10.1.0
+Buerkert GmbH Co. 1734 Discrete Module Profiles 1.03.1.0
+Bus Module Profile 1.01.30.0
+ClearKeeper 1.0.0
+Cognex 1756 Comm Module Profiles 1.22.1.0
+ControlFLASH 15.01.00
+DeviceNet Node Commissioning Tool 1.0.0
+Endress+Hauser EtherNet/IP Analysis Module Profiles 1.21.1.0
+Endress+Hauser EtherNet/IP Analysis Module Profiles 1.05.01.0
+Endress+Hauser EtherNet/IP Comm Module Profiles 1.61.1.0
+Endress+Hauser EtherNet/IP Module Profiles 1.05.1.0
+FANUC CNC EtherNet/IP Specialty Module Profiles 1.09.1.0
+FANUC Robotics EtherNet/IP Specialty Module Profiles 1.36.1.0
+...
+```
+
+Additionally, deploying an asset management and inventory solution (such as SolarWinds IT Asset Management – https://www.solarwinds.com/solutions/it-asset-management) can show all the applications that have been installed on an entire network.
+
+## What users have been configured?
+
+As part of their infiltration, attackers will often create new users or manipulate the permissions of existing users. So, verifying that the users that have been set up on a system are legitimate and making sure their permissions have been defined properly can indicate if a system has been compromised.
+
+A tool that can help with collecting these configured users and user groups is a tool that's native to Windows called `net.exe`. In the following example, we are running the `net` tool to enumerate all the users on a Windows computer:
+
+```
+PS C:\tools> net user
+User accounts for \\WORKSTATION1
+
+
+
+Administrator      DefaultAccount     Guest
+pac                RsWebDav           theAttacker
+
+The command completed successfully.
+```
+
+We can also enumerate security groups, as shown in the following example:
+
+```
+PS C:\tools> net localgroup
+Aliases for \\WORKSTATION1
+
+
+
+
+------------------------------------------------
+----
+*Access Control Assistance Operators
+*Administrators
+*Backup Operators
+*Cryptographic Operators
+*Distributed COM Users
+*Event Log Readers
+*Guests
+*Hyper-V Administrators
+*IIS_IUSRS
+*Network Configuration Operators
+*Performance Log Users
+*Performance Monitor Users
+*Power Users
+*Remote Desktop Users
+*Remote Management Users
+*Replicator
+*SQLServer2005SQLBrowserUser$DESKTOP-JNASSB6
+*SQLServerMSSQLServerADHelperUser$DESKTOP-JNASSB6
+*SQLServerMSSQLUser$DESKTOP-JNASSB6$FTVIEWX64TAGDB
+```
+
+```
+*SQLServerSQLAgentUser$DESKTOP-JNASSB6$FTVIEWX64TAGDB
+*System Managed Accounts Group
+*Users
+The command completed successfully.
+```
+
+The net.exe command has many uses and functionalities. To find our more about this command, head on over to https://www.lifewire.com/net-command-2618094.
+
+## What is the resource utilization of the system?
+
+Various kinds of malware can have a negative impact on the performance of a system. Be it because of either bad coding practices or because the malware is using excessive system resources to commutate bitcoins to make some money for the attacker, identifying systems that are showing signs of prolonged elevated resource usage are often a good indication of foul play at hand.
+
+A tool such as Sysinternal's Process Explorer can visualize the system resource utilization on an individual system, but deploying an asset inventory and management solution can help you find the overachievers on an entire network. The following is a snapshot of the SolarWinds IT Asset Management resource utilization screen:
+
+![](img/c8ffa9959721097701584fcc95101362_426_0.png)
+
+Figure 10.5 – SolarWinds IT Asset Management – Resource Monitor
+
+The SolarWinds IT Asset Management solution will not only characterize any endpoint and inventory installed software and applications – it will also trend the resource utilization of a system over a long period of time, allowing for correlation and anomaly detection.
+
+## Any modifications to files, registry, settings, and so on?
+
+Being able to identify changes that have been made to files, settings, and a system's configuration, and then being able to narrow down those changes to data, users, or applications, can help narrow down the who, what, where, and when around a system compromise.
+
+A tool such as Sysinternal's Sysmon (https://docs.microsoft.com/en-us/sysinternals/downloads/sysmon) will record interesting changes that have been made to the system and can also send detection logs to an SIEM with the help of tools such as Wazuh (https://wazuh.com/). Sysmon and Wazuh were discussed in Chapter 9, Visualizing, Correlating, and Alerting.
+
+## Sysinternals
+
+If you haven't gotten the hint yet, Sysinternal's tools are tremendously helpful in getting all kinds of information about a Windows system. I only mentioned a few here, but there are many more that can aid you in a large variety of administrative, investigative/forensics, and maintenance activities. Head on over to https://docs.microsoft.com/en-us/sysinternals/ and become familiar with the many excellent (and free) tools the site has to offer.
+
+This concludes our discussion around the tools and methods that can help us investigate, interrogate, and inventory endpoints and the software and applications they run. Next, we will look at the network side of things.
+
+## Making modifications to PLC, HMI, and other control systems and equipment
+
+Regularly comparing the running software, applications, and settings of your ICS equipment can show unauthorized changes. You could, for example, routinely pull the PLC program from a Rockwell PLC and use the compare tool that ships with Studio 500/5000 to detect changes. More details on these compare tools can be found here: https://literature.rockwellautomation.com/idc/groups/literature/documents/um/1dct-um001_-en-e.pdf.
+
+The same can be done with HMI projects, configuration files, and settings backups. The trick is to create a known secure/valid initial backup to compare against.
+
+From an automated perspective, FactoryTalk AssetCentre can be configured to periodically pull HMI and PLC applications, and then automatically compare the pulled copy against a template/baseline and send email notifications on detected discrepancies. Details on how to configure FactoryTalk AssetCentre for this purpose can be found here: https://literature.rockwellautomation.com/idc/groups/literature/documents/um/secure-um001_-en-p.pdf.
+
+## Tracking new and changed devices on the (industrial) network
+
+Taking periodic snapshots of all the devices on your network and identifying them can help you detect rogue or changed devices. Slow and non-intrusive Nmap scans can be fired off, generating inventory and device/service details file that can be compared during subsequent scans. The following is an example Nmap scan definition that you can set up as a scheduled task to run on a daily/weekly/monthly interval:
+
+```
+nmap -sV -T3 172.25.100.0/24 -oX ProdScan-'date +%F'.nmap
+```
+
+The preceding command will instruct Nmap to run a slow (-T3) services scan (-sV) of the production network range (172.25.100.0/24) and store the results in an XML formatted file with today's date appended to it (-oX ProdScan-'date +%F'.nmap).
+
+You can also narrow down the port range, IP address range, and so on to minimize the impact on network equipment resource utilization.

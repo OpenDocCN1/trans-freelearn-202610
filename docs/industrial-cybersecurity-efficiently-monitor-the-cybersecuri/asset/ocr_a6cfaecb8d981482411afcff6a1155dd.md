@@ -1,0 +1,7 @@
+# Level 3 – Site Operations
+
+The first section of the Industrial Zone we are going to discuss is referred to by the Purdue model as Level 3 – Site Operations. The Purdue model was discussed in detail in Chapter 1, Introduction and Recap of First Edition. Level 3 – Site Operations is the subnet or enclave (see the next section) of the industrial network that is used as an intermediary for communications between the lower-level control and automation systems and the Enterprise network (via broker services in the IDMZ). In other words, access to and interaction with industrial systems from the Enterprise Zone shall be brokered by a dedicated IDMZ service (creates physical separation) and terminate in the Level 3 – Site Operations enclave (on a dedicated server at Level 3). On the other hand, data from Level 2 and below shall be stored on a Level 3 Site Operations system before it is sent to or accessed by an Enterprise system or user via a dedicated IDMZ broker service. To illustrate this, the following diagram shows how a user in the Enterprise zone would use Microsoft's RDP client to connect to a virtual desktop server, located in Level 3 – Site Operations via the RDP-GW broker service in the IDMZ. The virtual desktop server then allows the Enterprise user to perform maintenance, troubleshooting, or development tasks on the controls and automation equipment at levels 2 and below:
+
+![](bbox=[0.12, 0.48, 0.9, 0.9])
+
+Figure 2.4 – Enterprise client accessing industrial automation systems

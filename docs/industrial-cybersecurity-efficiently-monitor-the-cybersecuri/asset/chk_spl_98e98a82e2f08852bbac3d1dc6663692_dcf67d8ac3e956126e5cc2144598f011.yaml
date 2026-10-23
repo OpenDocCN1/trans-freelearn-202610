@@ -1,0 +1,94 @@
+reviews:
+- 'no': 0
+  overturn_probability: 0.0
+  alternative: 书名/封面标题
+  counter_evidence:
+  - 该行位于文件最顶端，且为一级标题 '#'
+  - 内容为整本书的名称，符合书籍起始章节的定义
+  keep_split: true
+- 'no': 22
+  overturn_probability: 0.1
+  alternative: 前言类独立小节标题
+  counter_evidence:
+  - 后续内容（行24-43）包含 '## 关于作者' 和 '## 关于审阅者'，说明 '贡献者' 是统领这些内容的章节标题
+  - 根据规则，前言、致谢等正文前内容需划分为一章
+  keep_split: true
+- 'no': 44
+  overturn_probability: 0.2
+  alternative: 前言标题
+  counter_evidence:
+  - 行44 '## 前言' 是二级标题，但它是 '贡献者' 章节后的新段落
+  - '然而，前文规则指出前言统一划分为一章。如果行22已经划为一章，行44作为 ''前言'' 是否应独立？通常 ''贡献者'' 和 ''前言'' 属于同一前置部分。若行22已分章，行44可能只是该章内的小节，或者新章。考虑到
+    ''前言'' 的统领性（行46-52），它具备分章特征。但需注意它与行22的关系。若行22是 ''贡献者''，行44是 ''前言''，它们都是前置内容。通常前置内容可能作为一个大章，或者
+    ''前言'' 单独成章。鉴于 ''## 前言'' 有明确语义统领，维持分章判断是合理的，尽管它不是最高层级。但规则说 ''前言...统一划分为一章''，这里
+    ''一章'' 可能指整个前置部分，也可能指每个主要前置部分。看后续行109, 119, 123, 162 都是 '' #'' 或 ''##'' 但被标记为分章吗？没有。只有行0,
+    22, 44, 180... 说明审查员认为前置部分中，''贡献者'' 和 ''前言'' 都是章标题。'
+  - 行44后紧跟正文段落 '通过应用各种工具...'，符合章节标题后接概述的上下文特征。
+  keep_split: true
+- 'no': 180
+  overturn_probability: 0.3
+  alternative: 部分标题（Part）
+  counter_evidence:
+  - 内容为 '第 1 节：'，通常 '节' 对应 Section，层级低于 '部分' (Part)
+  - 但后续行187-190列出了 '第 1 章' 到 '第 4 章'，说明这个 '第 1 节' 统领了前4章，实际上起到了 '部分' (Part) 的作用。在很多书籍中，Part
+    下包含 Chapter。
+  - 如果书中有 '部分-章节' 模式，部分标题需分章。这里 '第 1 节' 统领多章，语义上等同于部分标题。
+  keep_split: true
+- 'no': 192
+  overturn_probability: 0.0
+  alternative: 章标题
+  counter_evidence:
+  - 行192 '# 1' 和行193 '引言与第一版回顾' 组合构成第1章标题
+  - 序号 '1' 是最高层级章序号
+  - 前文 '第 1 节' 统领此章，符合部分-章节结构
+  keep_split: true
+- 'no': 700
+  overturn_probability: 0.0
+  alternative: 章标题
+  counter_evidence:
+  - 行700 '# 2 工业控制系统架构的现代视角' 包含章序号 '2'
+  - 前文行192是第1章，序号连贯
+  - 格式为一級标题，单独成行
+  keep_split: true
+- 'no': 979
+  overturn_probability: 0.0
+  alternative: 章标题
+  counter_evidence:
+  - 行979 '## 3' 是二级标题，但行980 '# 工业非军事区' 是一级标题。这里有点奇怪。通常 '# 3' 和标题在一行或 '## 3' 是章标题。
+  - 看行979是 '## 3'，行980是 '# 工业非军事区'。行978是 '## 摘要' (上一章结束)。
+  - 结合行700是 '# 2 ...'，行979应该是第3章的开始。虽然行979用了 '##'，行980用了 '#'，这可能是Markdown转换的噪声，但语义上
+    '3' 代表第3章。
+  - 序号连贯（2->3），且内容 '工业非军事区' 是本章主题。
+  keep_split: true
+- 'no': 1447
+  overturn_probability: 0.0
+  alternative: 章标题
+  counter_evidence:
+  - 行1447 '# 4 以安全为中心设计 ICS 架构' 包含章序号 '4'
+  - 前文第3章在行979开始
+  - 序号连贯，一级标题
+  keep_split: true
+- 'no': 1730
+  overturn_probability: 0.0
+  alternative: 部分标题
+  counter_evidence:
+  - 行1730 '# 第 2 部分：工业网络安全 – 安全监控' 明确标记为 '第 2 部分'
+  - 根据规则，如果存在部分标题，部分和章都要分章
+  - 后续行1742开始第5章，说明此部分统领第5章及以后
+  keep_split: true
+- 'no': 1742
+  overturn_probability: 0.0
+  alternative: 章标题
+  counter_evidence:
+  - 行1742 '# 5' 和行1744 '# 安全监控简介' 构成第5章标题
+  - 序号 '5' 紧接 '第 2 部分' 后的新章序列
+  - 前文第4章结束于1728
+  keep_split: true
+- 'no': 1917
+  overturn_probability: 0.0
+  alternative: 章标题
+  counter_evidence:
+  - 行1917 '## 6' 和行1918 '# Passive Security Monitoring' 构成第6章标题
+  - 序号 '6' 连贯
+  - 前文第5章结束于1916
+  keep_split: true

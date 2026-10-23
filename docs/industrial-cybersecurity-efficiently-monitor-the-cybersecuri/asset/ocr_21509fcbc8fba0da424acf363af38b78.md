@@ -1,0 +1,7 @@
+Now I have to admit I have seen some disastrous setups in my career, but in order for the preceding scenario to be feasible, the IT security administrator must have misconfigured the enterprise DMZ (IT-DMZ) to allow access through the enterprise DMZ firewall (or a broker service in the DMZ is compromised by the attacker). Additionally, the enterprise-to-industrial firewall (ENT-IND firewall) must be misconfigured to allow access from the internet to the industrial zone (which is as simple as an allow-all rule that was forgotten in the firewall). Although the presented scenario is possible, it is highly unlikely with the increased security awareness ICS owners have demonstrated in recent years.
+
+The reason I still encourage threat hunters to include a search for connections originating from the internet into the ICS environment is because of a recent trend to tie ICS systems to cloud services for phone-home functionality or data analytics in cloud offerings. If such technologies are not implemented correctly (which is often the case), you can end up with the ICS network connected directly to the internet. To illustrate this, consider the example setup shown in the following figure:
+
+![](bbox=[0.15, 0.4, 0.85, 0.88])
+
+Figure 13.4 – Shadow internet connection – a backdoor into the ICS network
