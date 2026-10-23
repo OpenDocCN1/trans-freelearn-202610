@@ -1,0 +1,78 @@
+reviews:
+- 'no': 102
+  overturn_probability: 0.05
+  alternative: 这可能是前言或目录中的部分标题，而非正文中的章节标题
+  counter_evidence:
+  - 该行使用一级标题`#`，与书籍前部的`# Contributors`等一级标题类似，可能属于前置内容而非正文部分
+  - 该行前后没有明显的上一章结尾过渡，直接从读者评论跳到部分标题，存在排版噪声的可能
+  keep_split: true
+- 'no': 111
+  overturn_probability: 0.1
+  alternative: 这可能是第1章下的一个子标题，而非章标题
+  counter_evidence:
+  - 标题缺少‘第1章’序号，格式上更像子标题
+  - 前面刚列完本部分包含的章节，紧接着出现该标题，容易被误认为是列表项的重述
+  keep_split: true
+- 'no': 261
+  overturn_probability: 0.1
+  alternative: 这可能是对第2章内容的介绍性小标题
+  counter_evidence:
+  - 标题未标注‘第2章’，可能只是二级小标题
+  - 前一段（第259行）已经预告了下一章，这里可能只是承接语而非新章起点
+  keep_split: true
+- 'no': 718
+  overturn_probability: 0.05
+  alternative: 这可能是目录中的部分标题或书眉残留
+  counter_evidence:
+  - '该行为英文`# Part 2: Modern Jakarta EE`，与前面中文部分标题格式不一致，可能是排版残留'
+  - 前文（第716行）是第2章总结，紧接着出现新部分标题，但缺少明显的分页或分隔标记
+  keep_split: true
+- 'no': 728
+  overturn_probability: 0.1
+  alternative: 这可能是第3章内的一个子标题
+  counter_evidence:
+  - 标题为英文且未标注‘第3章’，可能是迁移步骤中的一个小节
+  - 前一行（第726行）刚列出章节名，这里可能是重复的目录条目
+  keep_split: true
+- 'no': 1205
+  overturn_probability: 0.15
+  alternative: 这可能是被截断的章节标题，但后面紧接着一个空的`###`，可能只是排版噪声
+  counter_evidence:
+  - 标题被截断为‘## Modernizing Your Application with the Latest Fe...’，实际内容可能不止一行，不符合标题通常独立成行的要求
+  - 下一行（第1206行）是孤立的`### `，可能是OCR产生的假标题，削弱了该行作为独立章节标题的清晰性
+  keep_split: true
+- 'no': 1881
+  overturn_probability: 0.1
+  alternative: 这可能是第5章内的一个子标题
+  counter_evidence:
+  - 标题为中文且没有‘第5章’字样，可能是正文中小节标题
+  - 前文（第1879行）已经预告下一章，这里可能是重复提示或过渡段中的小标题
+  keep_split: true
+- 'no': 2341
+  overturn_probability: 0.05
+  alternative: 这可能是目录中的部分标题而非正文中的部分标题
+  counter_evidence:
+  - 该部分标题后紧接‘本部分包含以下章节’的列表，与目录格式相似
+  - 前文（第2339行）是上一章结尾，但过渡较突然，可能是目录与正文之间的边界
+  keep_split: true
+- 'no': 2355
+  overturn_probability: 0.1
+  alternative: 这可能是第6章下的一个子标题
+  counter_evidence:
+  - 标题没有‘第6章’序号，前面却列出了‘第6章：容器与 Docker 简介’，可能只是重复项
+  - 后文（第2357行）直接是正文，没有像其他章那样先列出‘本章涵盖’列表，格式略有差异
+  keep_split: true
+- 'no': 2676
+  overturn_probability: 0.1
+  alternative: 这可能是第7章下的一个子标题
+  counter_evidence:
+  - 标题未标注‘第7章’，可能只是介绍Kubernetes的一个小节
+  - 前文（第2674行）是第6章总结，这里可能是过渡段中的小标题
+  keep_split: true
+- 'no': 2930
+  overturn_probability: 0.25
+  alternative: 这可能是第8章内的一个子标题，真正的章标题‘什么是云原生’缺失或位于其他位置
+  counter_evidence:
+  - 标题为‘云原生原则’，与目录中第8章标题‘什么是云原生？’不一致，可能存在章节标题错位
+  - 前文（第2922行）明确说‘下一章将讨论什么是云原生’，但此处出现的却是‘云原生原则’，更像是该章下的第一个主要小节
+  keep_split: true

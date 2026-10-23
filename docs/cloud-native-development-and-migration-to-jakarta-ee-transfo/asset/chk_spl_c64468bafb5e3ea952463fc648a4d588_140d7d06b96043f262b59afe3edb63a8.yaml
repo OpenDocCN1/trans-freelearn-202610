@@ -1,0 +1,36 @@
+reviews:
+- 'no': 3122
+  overturn_probability: 0.18
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题为 ## 级，位于 12-Factor 应用的讨论之后，上下文仍在同一主题的转型指导流程中，后续 3134 才是更明确的新主题块，存在层级混淆可能'
+  - 标题长度适中且单独成行，但前后无明显的章节概述段落分隔，更多像本章内的二级小节
+  keep_split: true
+- 'no': 3134
+  overturn_probability: 0.12
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题为 ## 级且单独成行，但紧邻上一个 ## 如何开始转型，上下文仍在同一大章的云部署流程中，可能为同级小节而非最高层级大章'
+  - 标题后直接进入技术要求和部署步骤，缺少典型的章级概述段落，格式更接近节标题
+  keep_split: true
+- 'no': 3403
+  overturn_probability: 0.05
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题含序号‘10’且为 ## 级，单独成行，语义统领整章，符合最高层级章节特征'
+  - 前后有明显的章节边界，前为总结，后为新主题介绍，序号连贯性支持分章
+  keep_split: true
+- 'no': 3954
+  overturn_probability: 0.08
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题为 ## 附录 A，单独成行，规则明确前言、附录等正文前后内容统一划分为一章'
+  - 上下文为附录起始，后续为对照表，语义具有统领性，符合附录分章规则
+  keep_split: true
+- 'no': 3990
+  overturn_probability: 0.07
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题为 ## 索引，位于文末，规则要求文末索引单独划分为一章'
+  - 标题单独成行且后接索引条目，格式与排版噪声不同，语义明确为索引章节
+  keep_split: true

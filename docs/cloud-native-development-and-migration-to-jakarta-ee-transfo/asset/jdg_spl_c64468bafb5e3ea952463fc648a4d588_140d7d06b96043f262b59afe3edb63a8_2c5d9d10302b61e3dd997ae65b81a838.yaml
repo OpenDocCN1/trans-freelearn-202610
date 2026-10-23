@@ -1,0 +1,55 @@
+chapter_starts:
+- 'no': 3122
+  confidence: 0.92
+  final_reason: 双方一致认为应分章，## 级标题单独成行，语义统领后续转型内容，属于章节起始
+  accepted_evidence:
+  - '## 级标题，单独成行，长度适中'
+  - 上下文位于 12-Factor 应用讨论结束后，转入转型指导主题，具有章节边界
+  - 复核方 overturn_probability 仅 0.18，无有力反证
+  rejected_evidence:
+  - 前后无典型章节概述段落，可能被误解为二级小节
+  - 与后续 3134 同属云部署大主题下的连续小节
+  need_human_review: false
+- 'no': 3134
+  confidence: 0.95
+  final_reason: 双方一致，## 级标题单独成行，语义明确开启新主题'在云中部署 Jakarta EE 应用'，统领整个部署章节
+  accepted_evidence:
+  - '## 级标题，单独成行，无句号，长度小于 30 字'
+  - 标题概括后续部署流程全部内容，后接技术要求、部署步骤等子节
+  - 复核方 overturn_probability 仅 0.12，反证不成立
+  rejected_evidence:
+  - '与前一 ## 标题连续出现，可能被误认为同级小节'
+  - 标题后直接进入技术细节，缺少章级概述段
+  need_human_review: false
+- 'no': 3403
+  confidence: 0.97
+  final_reason: 双方高度一致，## 级标题含显式章序号'10'，单独成行，前后有清晰的章节边界（前为总结后为新主题），无任何实质性反证
+  accepted_evidence:
+  - 带序号'10'的最高层级章标题，格式特征典型
+  - 上一行 3401 为章末总结段，下一行 3405 为新章介绍，上下文边界清晰
+  - 复核方 overturn_probability 仅 0.05
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 3954
+  confidence: 0.9
+  final_reason: 双方一致，## 附录 A 为附录级最高层级标题，规则明确附录单独划分为一章
+  accepted_evidence:
+  - '## 级标题，单独成行，格式符合章标题'
+  - 规则规定附录等正文前后内容统一划分为一章
+  - 后续为 Java EE 与 Jakarta EE 名称对照表，语义统领附录内容
+  - 复核方 overturn_probability 仅 0.08
+  rejected_evidence:
+  - 无有效反证
+  need_human_review: false
+- 'no': 3990
+  confidence: 0.93
+  final_reason: 双方一致，## 索引位于文末，规则明确文末索引单独划分为一章，标题后接索引条目，语义明确
+  accepted_evidence:
+  - '## 索引 单独成行，无句号，格式符合章标题'
+  - 规则明确要求文末索引划分为一章
+  - 后续内容从符号、A、B 等字母分类展开，为典型索引结构
+  - 复核方 overturn_probability 仅 0.07
+  rejected_evidence:
+  - 无有效反证
+  need_human_review: false
+rejected_lines: []

@@ -1,0 +1,117 @@
+chapter_starts:
+- 'no': 0
+  confidence: 0.95
+  final_reason: 书籍封面/标题页，独立成行且为一级标题，属于全书起始部分，应划分为一章（前言/标题页部分）。
+  accepted_evidence:
+  - 行0为一级标题 `#`，包含书名
+  - 后续行包括 `# Contributors`, `# About the authors` 等前置内容
+  - 规则规定：前言、序言等正文之前的内容，统一划分为一章
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 102
+  confidence: 0.9
+  final_reason: “第1部分”标题，该书采用部分-章节模式，部分标题应划分新章。
+  accepted_evidence:
+  - 行102内容为 `# 第1部分：Java EE与Jakarta EE的历史`
+  - 一级标题 `#` 表示最高层级
+  - 后续内容列出本部分包含的章节，符合部分标题特征
+  rejected_evidence:
+  - 复核方认为可能是目录，但结合上下文（前置内容结束于101行，102行开始新部分），且104行有“在这一部分...”的正文描述，确认为正文部分标题
+  need_human_review: false
+- 'no': 111
+  confidence: 0.9
+  final_reason: 二级标题 `##` 对应第1章内容，在部分-章节模式下，章节标题应划分新章。
+  accepted_evidence:
+  - 行111内容为 `## 企业级Java的历史`
+  - 前文（106-109行）列出了第1章和第2章，111行紧随其后，是第1章的标题
+  - 后续内容包含 `###` 三级标题，表明这是一个主章节
+  rejected_evidence:
+  - 复核方认为是子标题，但鉴于其位于部分标题之后、三级标题之前，且语义统领第1章内容，故判定为章标题
+  need_human_review: false
+- 'no': 261
+  confidence: 0.9
+  final_reason: 二级标题 `##` 对应第2章内容，语义统领后续Cargo Tracker应用介绍。
+  accepted_evidence:
+  - 行261内容为 `## 介绍 Cargo Tracker 应用程序`
+  - 前文（16行）预览过第2章内容
+  - 后续内容包含多个 `###` 小节（如“安装并运行...”、“功能”等），结构完整
+  rejected_evidence:
+  - 复核方认为是小标题，但其层级（`##`）高于章内小节（`###`），且承接第1章总结，确认为章标题
+  need_human_review: false
+- 'no': 718
+  confidence: 0.9
+  final_reason: “Part 2”标题，部分-章节模式下的部分起始。
+  accepted_evidence:
+  - '行718内容为 `# Part 2: Modern Jakarta EE`'
+  - 一级标题 `#`
+  - 后续列出 Part 2 包含的章节（Chapter 3, 4, 5）
+  rejected_evidence:
+  - 复核方怀疑是目录，但104行已证明部分标题后跟的是正文引言而非纯目录列表，且720行有“在本部分...”正文，故为部分标题
+  need_human_review: false
+- 'no': 728
+  confidence: 0.9
+  final_reason: 二级标题 `##` 对应第3章内容。
+  accepted_evidence:
+  - 行728内容为 `## Moving from Java EE to Jakarta EE`
+  - 前文（722-726行）列出Part 2包含的章节，其中Chapter 3即为此题
+  - 后续内容包含 `### Technical requirements` 等小节
+  rejected_evidence:
+  - 复核方认为是子标题，但层级正确且语义完整，确认为章标题
+  need_human_review: false
+- 'no': 1205
+  confidence: 0.9
+  final_reason: 二级标题 `##` 对应第4章内容。
+  accepted_evidence:
+  - 行1205内容为 `## Modernizing Your Application with the Latest Fe...`（虽截断但可辨识为标题）
+  - 前文列出Chapter 4为此内容
+  - 后续内容包含 `### Technical requirements` 等小节
+  rejected_evidence:
+  - 复核方认为有OCR噪声，但结合前文目录指引及后续结构，判定为章标题
+  need_human_review: false
+- 'no': 1881
+  confidence: 0.9
+  final_reason: 二级标题 `##` 对应第5章内容。
+  accepted_evidence:
+  - 行1881内容为 `## 让应用程序更易测试`
+  - 前文（1879行）预告“下一章将介绍如何测试”，1881行即为该章标题
+  - 后续内容包含 `### 技术要求` 等小节
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 2341
+  confidence: 0.9
+  final_reason: “第三部分”标题，部分-章节模式下的部分起始。
+  accepted_evidence:
+  - 行2341内容为 `# 第三部分：拥抱云`
+  - 一级标题 `#`
+  - 后续列出 Part 3 包含的章节（第6-10章及附录）
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 2355
+  confidence: 0.9
+  final_reason: 二级标题 `##` 对应第6章内容。
+  accepted_evidence:
+  - 行2355内容为 `## 容器与 Docker 简介`
+  - 前文（2347行）列出“第6章：容器与 Docker 简介”
+  - 后续内容包含 `### 技术要求` 等小节
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 2676
+  confidence: 0.9
+  final_reason: 二级标题 `##` 对应第7章内容。
+  accepted_evidence:
+  - 行2676内容为 `## 认识 Kubernetes`
+  - 前文（2348行）列出“第7章：认识 Kubernetes”
+  - 后续内容包含 `### 技术要求` 等小节
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 2930
+  confidence: 0.85
+  final_reason: 二级标题 `##` 对应第8章内容。虽然目录写“什么是云原生”，但实际正文标题为“云原生原则”，语义涵盖该章核心内容。
+  accepted_evidence:
+  - 行2930内容为 `## 云原生原则`
+  - 位于第7章总结之后，第8章内容起始位置
+  - 后续内容详细讨论微服务、容器、DevOps等云原生核心概念，统领后续内容
+  rejected_evidence:
+  - 复核方指出标题与目录不一致，但鉴于其位置和层级（`##`），且无其他更合适的章标题候选，判定其为第8章标题
+  need_human_review: false
+rejected_lines: []
