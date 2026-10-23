@@ -1,0 +1,3 @@
+Figure 6.46 – Line 1 (L1) and a neutral line (N) drawn in the work area using the line tool
+
+13. Place the necessary symbols, such as emergency stop, OL contact (NC), stop push button (NC), start push button (NO), auxiliary contact of contactor, and contactor coil in the work area and arrange them as shown in the following screenshot. The symbols are all available in the Symbol Menu. You just need to locate them:

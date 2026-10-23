@@ -1,0 +1,104 @@
+
+The split-ring commutators ensure the direction of the current in the coil is reversed each half turn.
+
+When a current is passed to the coil through the brushes and split-ring commutators, a rotating magnetic field is created that interacts with the differing fields of the magnets in the stator to create a turning force (torque), which causes the armature (coil) to rotate.
+
+Figure 3.3 shows the internal structure of a simple DC motor.
+
+![](img/b10cb271ed113c7ba5bfded0a75d13e0_88_0.png)
+
+Figure 3.3 – Internal structure of a simple DC motor
+
+We will go into further details of a DC motor in Chapter 4, Overview of AC and DC Motors.
+
+## Alternating current motors
+
+**Alternating current** (AC) motors convert electrical energy (through AC) to mechanical energy (motion). Unlike a DC motor, which makes use of DC as its energy source, an AC motor uses AC as its energy source. AC motors generally consist of two main parts, which are the stator and rotor.
+
+The stator is a stationary part with coils supplied with AC. The flow of the AC in the stator coil creates a rotating magnetic field. The rotor is the rotating part and is attached to an output shaft. The rotor also produces its own rotating magnetic field through the induced current from the stator or other means. The interaction between the rotating magnetic field of the stator and the field of the rotor creates a turning force that causes rotation. An AC motor can be single-phase or three-phase. A single-phase AC motor uses a single-phase supply (live and neutral) while a three-phase AC motor uses a three-phase supply (L1, L2, and L3). *Chapter 4, Overview of AC and DC Motors*, contains more information on AC motors.
+
+The following figure shows an **AC induction motor**:
+
+![](img/b10cb271ed113c7ba5bfded0a75d13e0_90_0.png)
+
+Figure 3.4 – AC induction motor
+
+The credit for this image goes to *Wikimedia Commons* and can be found at the following link: https://creativecommons.org/licenses/by-sa/4.0/deed.en
+
+## Stepper motor
+
+A **stepper motor** is a type of DC motor that rotates in steps. It does not turn arbitrarily when its terminal is connected to a source, rather it turns in steps. It also consists of a stator and a rotor. The stator consists of windings (coils) while the rotor is usually made of a permanent magnet. Activating the windings of the stator step by step in a particular order will create a turning force as the electromagnetic poles of the stator winding react with the poles of the permanent magnet of the rotor.
+
+The following figure shows a stepper motor:
+
+![](img/b10cb271ed113c7ba5bfded0a75d13e0_91_0.png)
+
+Figure 3.5 – Stepper motor
+
+The credit for this image goes to *Wikimedia Commons* and can be found at the following link: https://creativecommons.org/licenses/by-sa/4.0/deed.en
+
+## Servo motor
+
+A **servo motor** is a rotary actuator that can rotate with high efficiency and great precision. It is good for rotating objects at some specific angle or distance. They are commonly used in robotics and automation technology. They consist of a control circuit that provides feedback on the current position of the shaft. The feedback signal from the control circuit enables the motor to control the rotational or linear speed and position. Servo motor types include DC servo motors and AC servo motors, amongst other types. A **DC servo motor** is powered by a DC supply. Common DC servo motors used in toys and other robotics-related products consist of a DC motor, gears, a potentiometer, and a control circuit that ensures it turns at a specific angle via a control signal.
+
+The following diagram shows the main parts of a common DC servo motor:
+
+![](img/b10cb271ed113c7ba5bfded0a75d13e0_92_0.png)
+
+Figure 3.6 – Internal parts of a DC servo motor
+
+An AC servo motor is powered by an AC supply. It has an encoder and is used with controllers to provide feedback and closed-loop control. The following diagram shows some of the parts of an AC servo motor:
+
+![](img/b10cb271ed113c7ba5bfded0a75d13e0_92_1.png)
+
+Figure 3.7 – AC servo motor parts
+
+Other forms of electrical actuators include solenoid, electro-mechanical relay, and contactor, among others. Let's have a look at what each of them is in the next sections.
+
+A **solenoid** can be referred to as a device that converts electrical energy into mechanical energy (motion). It consists of a coil of wire, plunger, and spring. The coil is formed in such a way that the plunger can move in and out of the coil's body. When a current passes through the coil, a magnetic field is created and is used to create a linear or angular motion depending on the type. The spring returns the plunger back to its original position when power is removed. In *Figure 3.8*, when current flows through the coil, an electromagnetic field is generated, which pulls the plunger inward. The spring pushes it to its original position when power is removed.
+
+![](img/b10cb271ed113c7ba5bfded0a75d13e0_93_0.png)
+
+Figure 3.8 – Parts of solenoid
+
+A solenoid is used in an automated system to create *motion*. The system can be applied to open or close a valve as shown in the solenoid valve in the following diagram:
+
+![](img/b10cb271ed113c7ba5bfded0a75d13e0_94_0.png)
+
+Figure 3.9 – Solenoid valve
+
+In *Figure 3.9*, when current flows through the coil, the magnetic field of the energized coil pulls the plunger to open the valve. When the power is removed, the coil becomes de-energized and the spring forces the plunger to close the valve. Solenoid valves are useful for controlling the flow of compressed air into a *pneumatic cylinder* or the flow of hydraulic fluid into a *hydraulic cylinder*. Other applications of solenoid valves include a door locking system that offers secure door closure and a pusher on a conveyor belt diverting an object or package to a specific location.
+
+## Electro-mechanical relay
+
+An **electro-mechanical relay** is an electrically operated switch that can open or close a circuit with the physical movement of a contact. It can be referred to as a switch that is operated electrically, unlike the manual or mechanically operated switch explained in *Chapter 2*, *Switches and Sensors – Working Principles, Applications, and Wiring*. The following diagram shows the internal structure of a relay:
+
+![](img/b10cb271ed113c7ba5bfded0a75d13e0_95_0.png)
+
+Figure 3.10 – Internal structure of a relay
+
+It consists of a **coil** (electromagnet), a **moveable contact**, **stationary contacts**, and a **spring**.
+
+When the relay coil is energized by allowing a current to flow through the terminal, the moveable **contact (C)** will be attracted towards the **normally open (NO)** of the stationary contact, making them contact each other. When the power is removed, the moveable contact returns to the **normally closed (NC)** position. The moveable contact and the fixed contact can act as a switch for equipment that needs power, as shown in the following diagram:
+
+![](img/b10cb271ed113c7ba5bfded0a75d13e0_96_0.png)
+
+Figure 3.11 – Relay acting as a switch
+
+In *Figure 3.11*, when there is a supply to the coil from a control circuit, the coil becomes energized, the moveable contact gets connected to the **NO** of the stationary contact, and the load turns on. When there is no more supply from the control circuit, the coil becomes de-energized, the moveable contact returns to the **NC** contact of the stationary contacts, and the load turns off.
+
+Relays are of various configurations, just like a switch. The various types include SPST, SPDT, DPST, and DPDT. The relay that I explained is a **single pole double throw** relay. Refer to *Chapter 2, Switches and Sensors – Working Principles, Applications, and Wiring*, to have a good understanding of *SPST, SPDT, DPST, and DPDT*.
+
+The following diagram shows the symbols of various relay configurations:
+
+![](img/b10cb271ed113c7ba5bfded0a75d13e0_97_0.png)
+
+![](img/b10cb271ed113c7ba5bfded0a75d13e0_97_1.png)
+
+![](img/b10cb271ed113c7ba5bfded0a75d13e0_97_2.png)
+
+![](img/b10cb271ed113c7ba5bfded0a75d13e0_97_3.png)
+
+Figure 3.12 – Relay configuration
+
+The following figure shows a single pole double throw relay with the cover removed:

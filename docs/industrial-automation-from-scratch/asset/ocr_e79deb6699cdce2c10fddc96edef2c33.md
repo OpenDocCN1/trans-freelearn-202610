@@ -1,0 +1,10 @@
+predictive maintenance, or perform remote troubleshooting and improve operation safety and security.
+
++   - **Robotics**: Robots are programmed machines that can carry out a series of tasks with little or no human intervention. They can make decisions based on input and carry out specific tasks on their own. Robots are important components in Industry 4.0.
++   - **Artificial intelligence (AI)**: This is a technology or computer program that enables a computer or robots to perform tasks that are usually carried out by humans. With AI, machines can now learn, think, and act like humans. Note that there is still no program that matches human flexibility and capacity to operate in various areas. However, some are available that make machines work and operate like human experts in some specific areas.
+
+Machines can now learn from past experiences, and reason and plan just like humans, which enables them to perform complex tasks. AI is concerned with the development of smart machines that would have ordinarily required human intelligence. AI requires machine learning, data analytics, and more to function. Machine learning is a method used to train a computer or machine to learn from its inputs without explicitly programming it for every situation.
+
+Data analytics is the science of analyzing raw data to obtain meaningful information or draw out a conclusion. Data analytics helps make sense of data. Information obtained from data analytics can be used to optimize processes and increase efficiency. In the manufacturing or production industries, the runtime, downtime, and job queues for various machines can be analyzed and used to plan the workload for the machines to operate effectively.
+
+When robotics is combined with AI, we have what’s called an intelligent robot – that is, a programmed machine that can behave like a human or mimic human behavior, such as learning, reasoning, planning, problem-solving, and more.

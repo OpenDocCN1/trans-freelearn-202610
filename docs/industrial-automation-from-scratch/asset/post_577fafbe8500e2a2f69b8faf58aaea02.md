@@ -1,0 +1,189 @@
+
+![](img/b10cb271ed113c7ba5bfded0a75d13e0_195_0.png)
+
+Figure 6.20 – Command bar showing lines related to tools
+
++   4. Click the start corner of the line.
+
+A dialogue box may appear depending on what you have selected on the command bar:
+
+![](img/b10cb271ed113c7ba5bfded0a75d13e0_195_1.png)
+
+Figure 6.21 – Signals dialogue box
+
++   5. Type a signal name, for example, L1. You can type a letter (for example, L) and click the question mark to add the next free number to the letter and click Ok.
+
++   6. Click other points on the line.
+
++   7. Type a signal name, for example, L1, and click Ok.
+
++   8. Press Esc to end the line command.
+
+You can start another line with the signal name L2, L3, and so on, as shown in the following screenshot:
+
+![](img/b10cb271ed113c7ba5bfded0a75d13e0_196_0.png)
+
+Figure 6.22 – Three lines with signal names L1, L2, and L3
+
++   9. You can also use the same line command to join a component’s contact to a line, as shown in the following screenshot, or join a component’s contact to another component’s contact:
+
+![](img/b10cb271ed113c7ba5bfded0a75d13e0_196_1.png)
+
+Figure 6.23 – Joining a component’s contact to a line
+
+The preceding figure shows how to join a component’s contact to a line. Let’s now learn how to use the texts tool in the next section.
+
+## Using texts
+
+The **texts** button is used to activate the **texts** command for typing text. There is always the need to have text on a schematic diagram to describe things. We are going to learn how to add text (**contactor**) beside the contactor symbol.
+
+Follow these steps to add text to your work area:
+
++   1. Click on the **texts** tool on the program bar.
++   2. On the command bar (*Figure 6.24*), click the **Text properties** button:
++   3. Make the necessary changes in the **Text properties** dialogue box and click **Ok**:
+
+![](img/b10cb271ed113c7ba5bfded0a75d13e0_197_0.png)
+
+Figure 6.24 – Command bar with text-related tools
+
+![](img/b10cb271ed113c7ba5bfded0a75d13e0_197_1.png)
+
+Figure 6.25 – Text properties dialogue box
+
++   4. Click inside the textbox on the command bar, type some text (for example, `Contactor`), and press *Enter*.
++   
++   5. The crosshair appears with the text attached to it, as shown in the following screenshot:
+
+![](img/b10cb271ed113c7ba5bfded0a75d13e0_198_0.png)
+
+Figure 6.26 – Crosshair with the text attached to it
+
++   6. Move to the point you want to place the text and click on that point.
++   
++   7. The text will appear in the position, as shown in the following screenshot. You can press *Esc* to end the command:
+
+3. Click on the arcs/circles button on the program bar.
+
+The crosshair will show a circle attached to it as, shown in the following screenshot:
+
+![](img/b10cb271ed113c7ba5bfded0a75d13e0_200_0.png)
+
+Figure 6.29 – Crosshair with a circle attached to it
+
+4. Move to the position you want to place the circle and click on that point.
+
+5. Press Esc to end the command.
+
+### Note
+
+You can make an arc by setting V1 (arc start angle) to 0 and V2 (arc end angle) to a value below 360. For example, when V1 is 0 and V2 is 180, you will have a semi-circle.
+
+In the next section, we will learn how to use the area tool.
+
+## Using area
+
+The area button can be used to select the same or different types of objects in a region.
+
+Follow these steps to select the same or different types of objects in an area or region:
+
++   1. Click on the area button on the program bar.
+
++   2. Drag a marquee rectangle around the objects to select the objects, as shown in Figure 6.30:
+
+![](img/b10cb271ed113c7ba5bfded0a75d13e0_201_0.png)
+
+Figure 6.30 – Different objects selected using the area tool
+
+The preceding figure shows that the objects are selected. You can click Delete, Copy, or any other button on the program toolbar depending on the action you want to carry out on the selected objects.
+
+You have now learned how to use the line, symbol, text, arc/circle, and area tools. They are useful when drawing schematics. The knowledge in this section will help in understanding a simple schematic drawing of a DOL starter power and control circuit, explained in the next section.
+
+## Drawing a power and control schematic of a DOL starter using PCSCHEMATIC Automation
+
+In this section, we will apply the knowledge we have so far gathered to draw a simple power and control schematic of a DOL starter using PCSCHEMATIC Automation. Let’s get started:
+
++   1. Create a new project and save it with the filename `DOL Starter` using the method explained in the previous section.
+
+You should have what is shown in the following screenshot:
+
+![](img/b10cb271ed113c7ba5bfded0a75d13e0_202_0.png)
+
+Figure 6.31 – New project page in PCSCHEMATIC Automation
+
+2. Draw three phase lines (L1, L2, and L3) and a neutral line (N) using the line tool explained in the previous section. You should have something like the following:
+
+![](img/b10cb271ed113c7ba5bfded0a75d13e0_203_0.png)
+
+Figure 6.32 – Three phase lines (L1, L2, and L3) and a neutral line (N) drawn in the work area using the line tool
+
+3. Insert the symbols for the breaker, contactor, overload relay, and three-phase motor using the steps in the previous section.
+
+Figure 6.33 shows the Symbol Menu dialogue box with a circuit breaker and contactor symbol.
+
+![](img/b10cb271ed113c7ba5bfded0a75d13e0_204_0.png)
+
+Figure 6.33 – Symbol Menu with circuit breaker and contactor symbol
+
+*Figure 6.34* shows the **Symbol Menu** dialogue box with the overload relay symbol.
+
+![](img/b10cb271ed113c7ba5bfded0a75d13e0_204_1.png)
+
+Figure 6.34 – Symbol Menu with the overload relay symbol
+
+Figure 6.35 shows the Symbol Menu dialogue box with a 3-phase AC induction motor symbol:
+
+![](img/b10cb271ed113c7ba5bfded0a75d13e0_205_0.png)
+
+Figure 6.35 – Symbol Menu with a 3-phase AC induction motor symbol
+
+4. After placing all the required components in the work area, you should have something like what’s shown in the following screenshot:
+
+![](img/b10cb271ed113c7ba5bfded0a75d13e0_207_0.png)
+
+Figure 6.37 – Contactor’s contacts joined to L1, L2, and L3
+
+6. Use the same line tool to join each component’s contact to the others. You should have something like what’s shown in the following screenshot if you get it right:
+
+![](img/b10cb271ed113c7ba5bfded0a75d13e0_208_0.png)
+
+Figure 6.38 – Component contacts joined to each other
+
+The preceding screenshot shows the power circuit of a DOL starter. Let’s try to draw the control circuit on page two.
+
++   7. Click on Insert and click Insert Page as shown in Figure 6.39:
+
+![](img/b10cb271ed113c7ba5bfded0a75d13e0_210_0.png)
+
+Figure 6.41 – New dialogue box
+
+You should have a new page (page 2) as shown in the following screenshot:
+
+![](img/b10cb271ed113c7ba5bfded0a75d13e0_210_1.png)
+
+Figure 6.42 – New page (page 2) inserted
+
+10. Right-click on the work area and click Page data:
+
+![](img/b10cb271ed113c7ba5bfded0a75d13e0_211_0.png)
+
+Figure 6.43 – Selecting the Page data option
+
+11. Check With drawing header which is under Primary header tab in the Settings dialogue box and click Ok:
+
+![](img/b10cb271ed113c7ba5bfded0a75d13e0_211_1.png)
+
+# Figure 6.44 – Settings dialogue box
+
+You should have something like what is shown in the following screenshot if everything is right:
+
+![](img/b10cb271ed113c7ba5bfded0a75d13e0_212_0.png)
+
+# Figure 6.45 – Primary header included on page 2
+
++   12. Start by drawing line 1 (L1) and a neutral line (N) using the line tool.
++   You should have what is shown in Figure 6.46 if you get it right:
+
+Figure 6.46 – Line 1 (L1) and a neutral line (N) drawn in the work area using the line tool
+
+13. Place the necessary symbols, such as emergency stop, OL contact (NC), stop push button (NC), start push button (NO), auxiliary contact of contactor, and contactor coil in the work area and arrange them as shown in the following screenshot. The symbols are all available in the Symbol Menu. You just need to locate them:

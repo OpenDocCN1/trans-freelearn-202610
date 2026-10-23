@@ -1,0 +1,99 @@
+reviews:
+- 'no': 6115
+  overturn_probability: 0.25
+  alternative: 正文小标题（可能是上一章（第12章）的子节标题，而非独立新章）
+  counter_evidence:
+  - 该行使用三级标题'###'，在Markdown层级中可能只是子节，而非全书最高层级的大章
+  - 前文是第12章的'问题'部分，后文紧跟多个'####'子节，该行可能是章节内部的一个过渡小标题，且没有显式的'第X章'编号
+  keep_split: true
+- 'no': 6539
+  overturn_probability: 0.25
+  alternative: 正文小标题（可能是第13章内的子节标题，而非独立新章）
+  counter_evidence:
+  - 同样使用三级标题'###'，缺少'第14章'字样，可能是章节内部的子标题而非新章
+  - 前一章总结中明确说'下一章'，但该行前后没有分页符或明显的章节起始标记，存在被误判的可能性
+  keep_split: true
+- 'no': 6685
+  overturn_probability: 0.35
+  alternative: 答案部分的条目标题（习题答案列表的分组标题，而非全书独立章节）
+  counter_evidence:
+  - 该行位于第14章问题之后，属于'习题答案'部分，所有答案可能应作为一个整体附录章节，逐个'第X章'标题只是答案列表的标记
+  - 标题后直接是答案编号列表，没有任何概述段落或子节，缺乏章节标题应有的统领性
+  keep_split: true
+- 'no': 6703
+  overturn_probability: 0.35
+  alternative: 答案部分的条目标题（答案列表中第3章的标记）
+  counter_evidence:
+  - 上下文是习题答案，跳过第2章，明显是答案列表的连续条目而非正文章节
+  - 标题后没有引言或主题列表，仅直接列出答案，更接近列表分组标题
+  keep_split: true
+- 'no': 6714
+  overturn_probability: 0.35
+  alternative: 答案部分的条目标题
+  counter_evidence:
+  - 与第1章答案类似，处于答案部分；可能只是答案列表的分组标题
+  - 格式为'## 第 4 章'，在答案部分中连续出现，没有独立章节的起始页码或分页特征
+  keep_split: true
+- 'no': 6727
+  overturn_probability: 0.35
+  alternative: 答案部分的条目标题
+  counter_evidence:
+  - 标题后直接跟答案编号，无任何过渡内容，是典型的答案分组标题
+  - 与前后答案章节标题完全同构，应视为同一列表的一部分而非独立章节
+  keep_split: true
+- 'no': 6737
+  overturn_probability: 0.35
+  alternative: 答案部分的条目标题
+  counter_evidence:
+  - 位于答案部分，标题与答案列表紧密相连，可能只是用于索引答案的标签
+  - 缺少章节应有的正文内容，仅为列表项前缀，容易被误判为章节标题
+  keep_split: true
+- 'no': 6745
+  overturn_probability: 0.35
+  alternative: 答案部分的条目标题
+  counter_evidence:
+  - 在答案部分中连续出现多个'第X章'，它们共同构成一个答案附录，而不是独立章节
+  - 该行单独成行但后面只有答案列表，不符合章节标题的语义特征（应统领后续正文）
+  keep_split: true
+- 'no': 6757
+  overturn_probability: 0.35
+  alternative: 答案部分的条目标题
+  counter_evidence:
+  - 注意前面第8章缺失，答案部分明显是选择性列出，说明这些标题是答案分组而非全书章节
+  - 标题后是简短答案短语，无段落或子节，更接近列表标题
+  keep_split: true
+- 'no': 6764
+  overturn_probability: 0.35
+  alternative: 答案部分的条目标题
+  counter_evidence:
+  - 与前后答案标题连续出现，构成答案列表的导航标记
+  - 无独立章节常见的开头段落，只是紧接着答案条目，应视为列表中的一个标题
+  keep_split: true
+- 'no': 6771
+  overturn_probability: 0.35
+  alternative: 答案部分的条目标题
+  counter_evidence:
+  - 处于答案部分，前面几个答案章节标题已表明这是答案列表
+  - 该行没有章序号跳跃问题，但内容极度简短，不具备章节的独立语义
+  keep_split: true
+- 'no': 6782
+  overturn_probability: 0.4
+  alternative: 答案部分的子标题（可能是答案部分内的一个小节，而非独立章节）
+  counter_evidence:
+  - 该行使用'###'三级标题，而前几个答案标题使用'##'，层级不一致，可能是被错误提升为章标题
+  - 它出现在答案部分的一个空白分隔后，可能只是用于区分不同答案部分的子标题
+  keep_split: true
+- 'no': 6798
+  overturn_probability: 0.4
+  alternative: 答案部分的子标题
+  counter_evidence:
+  - 与'### 第12章'相同，层级低于前几个答案章节，可能是同一答案列表中的子分组
+  - 后面是带连字符的答案列表，格式变化，暗示它是不同层级的标题
+  keep_split: true
+- 'no': 6814
+  overturn_probability: 0.4
+  alternative: 答案部分的子标题
+  counter_evidence:
+  - 延续使用'###'，在答案部分中显得像子节而不是章标题
+  - 上下文紧接第13章答案，无任何章节切换的正文过渡，可能只是答案列表的条目
+  keep_split: true

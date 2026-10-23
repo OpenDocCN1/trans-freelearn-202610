@@ -1,0 +1,3 @@
+Figure 13.10 – Fiber optic cable (Single Mode Fiber) (source: https://commons.wikimedia.org/wiki/File:Optical_fiber_connectors-optical_patch_cable-01ASD.jpg)
+
+Wireless network: A wireless network uses radio waves through Bluetooth, Wi-Fi, and cellular communication as a communication channel. A radio wave can be referred to as an electromagnetic wave. It can propagate through air, vacuums, liquids, or even solid objects. It can be used to establish communication between two or more devices without cables:

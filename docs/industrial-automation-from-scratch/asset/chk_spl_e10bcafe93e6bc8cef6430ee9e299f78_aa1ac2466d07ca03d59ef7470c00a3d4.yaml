@@ -1,0 +1,43 @@
+reviews:
+- 'no': 3020
+  overturn_probability: 0.1
+  alternative: 若不分章，这行最可能是正文中的一个三级小标题（subheading），分隔前章习题与本章内容。
+  counter_evidence:
+  - 标题为英文且无'第X章'字样，仅凭语义判断，存在将正文小标题误判为章标题的可能。
+  - 第7章末尾习题后直接空行接此标题，没有页码、分页符或章号等明确的分章标志。
+  keep_split: true
+- 'no': 3524
+  overturn_probability: 0.1
+  alternative: 若不分章，这行可能是前一章末尾的一个过渡小节标题。
+  counter_evidence:
+  - 标题为中文且无章号，而本书其他章节标题通常有'第X章'的引用（如第8章、第9章），此处缺失编号可能造成误判。
+  - 标题后紧跟'在上一章中…'的回顾段落，这种写法也常见于大节（section）的开头。
+  keep_split: true
+- 'no': 4051
+  overturn_probability: 0.08
+  alternative: 若不分章，这行可能是HMI主题部分的小标题，而非整章的起始。
+  counter_evidence:
+  - 标题'理解人机界面（HMIs）'与后续小节'#### 介绍 HMI'等标题在措辞上类似，可能是同一层的节标题。
+  - 该行前后存在大量空行及多种标题层级（####、#####），若仅凭'###'标记判断层级，可能将章标题与子节标题混淆。
+  keep_split: true
+- 'no': 4732
+  overturn_probability: 0.08
+  alternative: 若不分章，这行可能是SCADA主题的引导性小标题。
+  counter_evidence:
+  - 标题'探索监控与数据采集（SCADA）'与后续'#### 介绍 SCADA'等节标题结构一致，容易被误归为普通小标题。
+  - 前文第10章末尾的'#### 问题'之后没有明确的'第11章'字样，仅靠语义判断章边界存在不确定性。
+  keep_split: true
+- 'no': 5294
+  overturn_probability: 0.05
+  alternative: 若不分章，这行可能是全书的一个部分封面或分隔页标题。
+  counter_evidence:
+  - 该行使用'##'二级标题，而各章标题多为'###'，层级不同，可能被误认为非章节标题；但根据部分-章节模式规则，部分标题应分章。
+  - 标题后直接列出本部分包含的章节列表（第12、13、14章），形式上类似目录，可能被看作排版噪声。
+  keep_split: true
+- 'no': 5304
+  overturn_probability: 0.12
+  alternative: 若不分章，这行可能是第3部分引言中的一个小节标题。
+  counter_evidence:
+  - 标题'过程控制 – 基础知识'使用短横线连接，与正文中众多'####'小标题的命名风格相近，缺乏明显的章号。
+  - 它紧跟在部分标题之后，可能只是该部分的概述小节，而不一定是独立的一章。
+  keep_split: true

@@ -1,0 +1,11 @@
+efficiency, an increase in the productivity and quality of the factory, and an improvement in the working conditions of the staff in a smart factory.
+
+Let’s proceed to the next section, where we will briefly look at connecting PLCs to the cloud.
+
+# Connecting your PLC or machine data to the cloud
+
+It’s important to discuss how our PLC data can get to the cloud since it’s key in a smart factory. In this section, we will briefly talk about the IIoT gateway, which is a key component required to get PLC or machine data to the cloud.
+
+An IIoT gateway can be a piece of hardware or software that can integrate various devices such as sensors, actuators, PLC, and lots more, collect data from them, and transmit it to the cloud or local servers. It allows connected devices and the outside world (the cloud) to communicate. It can be referred to as a bridge that sits between connected devices in an industrial environment and the cloud. With the IIoT gateway, you can monitor and control machines or devices in the factory from anywhere in the world since the device’s data is available in the cloud. You can monitor the data via a dashboard on a PC, tablet, or smartphone connected to the internet; you can also send commands from your PC, tablet, or smartphone to control your equipment or machine. In each case, data passes through the IIoT gateway. It is one of the required pieces of equipment when setting up a smart factory. The IIoT gateway understands different protocols used by IoT devices, such as Bluetooth, Zigbee, MQTT, Wi-Fi, cellular, and others. The IIoT gateway processes critical data close to the source of data, which leads to quick decision-making and less load on the central platform. This is known as edge computing.
+
+There are various models of the IIoT gateway from different manufacturers. Examples of IIoT gateways from Siemens include SIMATIC IOT2020, SIMATIC IOT2040, and SIMATIC2050. The Siemens SIMATIC IOT2050 is an intelligent IoT gateway that connects internal IT, manufacturing, cloud

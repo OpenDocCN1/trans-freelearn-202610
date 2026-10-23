@@ -1,0 +1,40 @@
+chapter_starts:
+- 'no': 15
+  confidence: 0.85
+  final_reason: 前言、序言等正文之前内容统一划分为一章，## 前言 为该前言部分的起始标题，排版单独成行且统领后续介绍性段落
+  accepted_evidence:
+  - '## 前言 为正文之前的前言部分起始，符合前言统一分章规则'
+  - 后续 17-26 行均为前言介绍性内容
+  rejected_evidence:
+  - 复核方认为其为前言内部小标题
+  need_human_review: false
+- 'no': 136
+  confidence: 0.95
+  final_reason: 部分-章节模式下部分标题应划分新章，## 第 1 部分：学习入门所需的概念和技能 单独成行，语义统领第1部分全部内容，后接部分概述
+  accepted_evidence:
+  - 标题为第 1 部分，符合部分-章节模式的分章特征
+  - 138 行起为部分介绍性概述，符合部分标题上下文
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 149
+  reason: '复核方反证成立，## 工业自动化简介 位于第1部分内部，后接章节导语及 ### 级子节，属于章节内部节标题而非全书最高层级大章'
+  need_human_review: false
+- 'no': 350
+  reason: '### 开关与传感器 – 工作原理、应用与接线 为三级标题，上下文为章节内部节，后续为 #### 级小标题，不符合最高层级章标题特征'
+  need_human_review: false
+- 'no': 980
+  reason: '### 执行器及其在工业自动化中的应用 为三级标题，后接承上段落及本章主题列表，属第3章内部节标题'
+  need_human_review: false
+- 'no': 1363
+  reason: '### 交流和直流电机概述 为三级标题，后续为 #### 级结构，属章节内部节，非全书最高层级大章'
+  need_human_review: false
+- 'no': 1751
+  reason: '### 变频驱动器 (VFD) 简介 为三级标题，后接承上段落及主题列表，符合节标题特征而非新章'
+  need_human_review: false
+- 'no': 2085
+  reason: '### 使用 CAD 软件绘制原理图/接线图 为三级标题，后续为 #### 技术要求 等四级结构，属章节内部节'
+  need_human_review: false
+- 'no': 2655
+  reason: '### Understanding PLC Hardware and Wiring 为英文三级标题，后接承上段落，属第7章内部节，非全书最高层级大章'
+  need_human_review: false

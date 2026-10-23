@@ -1,0 +1,64 @@
+reviews:
+- 'no': 15
+  overturn_probability: 0.75
+  alternative: 正文小标题
+  counter_evidence:
+  - '## 前言 后续内容仍为前言整体的介绍性段落，15-26 行均属于前言正文，前言、序言等正文之前内容应统一划分为一章而非在前言内部再分章'
+  - 该行后 1~3 行为概述性说明而非章节概述段落，且前无上一章结束标志，符合前言内部小标题特征
+  keep_split: false
+- 'no': 136
+  overturn_probability: 0.2
+  alternative: 正文小标题
+  counter_evidence:
+  - 第 1 部分标题在目录中已作为部分标题出现，后续 138 行即为部分介绍性概述，符合部分-章节模式的分章特征
+  - 标题单独成行且语义统领后续第1章至第6章内容
+  keep_split: true
+- 'no': 149
+  overturn_probability: 0.65
+  alternative: 正文小标题
+  counter_evidence:
+  - '## 工业自动化简介 位于第1部分内部，且后接 151 行的章节导语和 155 行的本章主题列表，属于章节内部的节标题而非全书最高层级大章'
+  - '标题长度适中但后 1~3 行为本章学习目标说明，紧接着是 ### 介绍工业自动化 等三级小标题，符合子节结构'
+  keep_split: false
+- 'no': 350
+  overturn_probability: 0.6
+  alternative: 正文小标题
+  counter_evidence:
+  - '### 开关与传感器 – 工作原理、应用与接线 为三级标题，上下文 352 行起即为本章正文介绍，后续为 #### 介绍开关与传感器 等四级小标题，属章节内部节'
+  - 目录中第2章标题与此一致，但实际章节起始应为更高层级标题，此处更像是章节内部的节标题被误判
+  keep_split: false
+- 'no': 980
+  overturn_probability: 0.55
+  alternative: 正文小标题
+  counter_evidence:
+  - '### 执行器及其在工业自动化中的应用 为三级标题，后接 982 行的承上启下段落和 986 行的本章主题列表，属于第3章内部的节标题'
+  - 标题后无全书最高层级编号特征，且前后为同一章节的连续内容
+  keep_split: false
+- 'no': 1363
+  overturn_probability: 0.5
+  alternative: 正文小标题
+  counter_evidence:
+  - '### 交流和直流电机概述 为三级标题，后续为 #### 了解交流电机 等四级结构，属章节内部节'
+  - 标题语义概括后续内容但层级过低，易被误判为章标题
+  keep_split: false
+- 'no': 1751
+  overturn_probability: 0.5
+  alternative: 正文小标题
+  counter_evidence:
+  - '### 变频驱动器 (VFD) 简介 为三级标题，后接 1753 行的承上段落和 1759 行的本章主题列表，符合节标题特征'
+  - 标题后 1~3 行为概述而非新章的独立概述段落
+  keep_split: false
+- 'no': 2085
+  overturn_probability: 0.45
+  alternative: 正文小标题
+  counter_evidence:
+  - '### 使用 CAD 软件绘制原理图/接线图 为三级标题，后续为 #### 技术要求 等四级结构，属章节内部节'
+  - 标题包含斜杠等排版噪声，长度接近阈值，更符合节标题
+  keep_split: false
+- 'no': 2655
+  overturn_probability: 0.4
+  alternative: 正文小标题
+  counter_evidence:
+  - '### Understanding PLC Hardware and Wiring 为英文三级标题，后接 2657 行的承上段落，属第7章内部节'
+  - '标题层级为 ###，在已有部分-章节结构下更可能为节而非全书最高层级大章'
+  keep_split: false
