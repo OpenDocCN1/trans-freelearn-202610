@@ -1,0 +1,49 @@
+reviews:
+- 'no': 36
+  overturn_probability: 0.95
+  alternative: 目录/列表项
+  counter_evidence:
+  - 该行出现在目录页，后续多行为 '+   **...' 的目录条目列表，非正文开篇
+  - 真正的第4章正文在后文 no 1593 '# 4. 添加和管理图片内容' 才出现
+  - 标题后 1~3 行并非概述段落而是目录子项，符合排版噪声特征
+  keep_split: false
+- 'no': 60
+  overturn_probability: 0.95
+  alternative: 目录/列表项
+  counter_evidence:
+  - 位于同一目录区块，紧跟 no 36 的目录条目之后
+  - 后续行 62 起均为 '+   **...' 的目录子项，标题后无概述段落
+  - 真实的第5章正文在后文未出现对应英文标题，目录页误判为章节
+  keep_split: false
+- 'no': 109
+  overturn_probability: 0.95
+  alternative: 目录/列表项
+  counter_evidence:
+  - 仍在目录页范围内，标题后直接接目录子项 110 '  Video on the Internet 155' 等
+  - 格式为目录页的章节索引，非单独成行的正文章头
+  - 正文章节的视频内容实际在 no 2833 '# 在你的 Joomla! 网站中使用视频'
+  keep_split: false
+- 'no': 151
+  overturn_probability: 0.95
+  alternative: 目录/列表项
+  counter_evidence:
+  - 目录页连续条目之一，后续 152 行起为目录子项列表
+  - 标题后无概述段落，上下文为目录排版噪声
+  - 非最高层级正文章头
+  keep_split: false
+- 'no': 186
+  overturn_probability: 0.95
+  alternative: 目录/列表项
+  counter_evidence:
+  - 目录页条目，后续 187 行起为 '### What is a Joomla! Template? 228' 等目录子项
+  - 标题后 1~3 行为子目录而非概述段落
+  - 真实章节在正文后段才出现
+  keep_split: false
+- 'no': 216
+  overturn_probability: 0.95
+  alternative: 目录/列表项
+  counter_evidence:
+  - 目录页末尾条目，后续 217 行起为 '### Overview 259' 等目录子项
+  - 上下文为目录列表，非章节开篇的概述段落
+  - 正文对应章节在后文 no 216 之后仍为目录结构，误报为章节
+  keep_split: false

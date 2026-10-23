@@ -1,0 +1,6 @@
++   [Joomla! 1.5 多媒体 media-rich Joomla! 网站构建指南 通过学习嵌入和显示多媒体内容 - 含索引](README.md)
++   [Joomla! 1.5 多媒体 media-rich Joomla! 网站构建指南 通过学习嵌入和显示多媒体内容 - 含索引](joomla-15-multimedia-build-media-rich-joomla-websites-by-lea_0.md)
++   [7](joomla-15-multimedia-build-media-rich-joomla-websites-by-lea_1.md)
++   [8 Joomla! 模板和多媒体](joomla-15-multimedia-build-media-rich-joomla-websites-by-lea_2.md)
++   [9](joomla-15-multimedia-build-media-rich-joomla-websites-by-lea_3.md)
++   [索引](joomla-15-multimedia-build-media-rich-joomla-websites-by-lea_4.md)

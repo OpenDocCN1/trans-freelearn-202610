@@ -1,0 +1,9 @@
+# Collaborating with External Sources
+
+The phrase "What came first, the chicken or the egg?" springs to mind when trying to summarize recent evolutions of the Web and popular networking sites that are on it, for example, Facebook and Twitter. These two "social tools" required the Web to be where it was for their evolution, but yet they have dramatically helped to shape the way the "Web" now is, creating new paths into website development, third-party collaboration and interactions.
+
+"Where is it going?" and "Where will it go to?" are questions often asked. When I was five years old, I watched a Star Trek episode with the actors using handheld flip-type devices, and using the term "Beam me up Scotty", communicating with their Starship. Now every day I carry a handheld computer / phone that is trackable by satellites, and with a few clicks I can post and receive information to a global notice board, the World Wide Web. It scares me in one respect how quickly we are socially evolving around this increasingly corporate driven entity named the Web, but I get excited with the technology and opportunities it brings:
+
+![](bbox=[0.198, 0.381, 0.802, 0.719])
+
+So, it may be Google, Facebook, Twitter, MySpace, YouTube, and so on; Joomla! can collaborate with them all. At the end of the day, it is electronic information that is contained in one location, and then presented on another. Certain Joomla! Extensions have developed because there was a requirement to show this information and display it on the users' Joomla! based website. This chapter will highlight some of the most popular extensions and tools currently providing these solutions.

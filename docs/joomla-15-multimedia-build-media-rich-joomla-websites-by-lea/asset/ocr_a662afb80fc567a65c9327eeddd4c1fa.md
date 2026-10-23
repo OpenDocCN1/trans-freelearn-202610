@@ -1,0 +1,11 @@
+Some of the most common audio file formats for use in a web environment are:
+
+|  |  |
+|---|---|---|
+| **MIDI** (.midi) | MIDI is short for **Musical Instrument Digital Interface**. MIDI files are very small and are well supported by computer software and browsers. MIDI files, however, are usually data-based audio rather than a recorded waveform, therefore making them small and easy to distribute, but unsuitable for music files. |
+| **AIFF** (.aif/.aiff) | Developed by Apple, AIFF stands for **Audio Interchange File Format**. This file format is becoming increasingly popular for web audio. AIFF files are played using the QuickTime Player which is available on Mac and Windows. AIFF files can be compressed well, while retaining excellent quality. |
+| **MP3** (.mp3) | The **MPEG Layer-3** format is perhaps one of the most popular audio file formats in use on the Web. MP3 files are the audio part of a MPEG file and can compress audio to approximately one tenth of the original file size. This compression, while retaining good quality, has lead to their popular and widespread use. MP3 files can be played on many devices, making them an excellent choice for cross-platform capability. |
+| **AAC** (.aac/.mp4/.3gp/.m4a) | Designed by Apple to be the successor of MP3, **AAC** generally achieves better audio quality at similar sizes. AAC's best known use is on the Apple iPod and it is the format used in the iTunes store and on Playstation 3. |
+| **WAV** (.wav) | Developed by IBM and Microsoft, WAV stands for **Waveform** which is the standard audio format on Windows computers. WAV does not compress audio data, which makes it unsuitable for web use, but is commonly used for storing uncompressed audio. Although WAV does not compress the file, WAV files can be compressed using other codecs such as MP3. |
+| **WMA** (.wma) | WMA stands for **Windows Media Audio** owned by Microsoft. It compares in quality and compression to an MP3 file, but has limitations on being accessible on all devices. |
+| **RealAudio** (.rm/.ram) | **RealAudio** is a format owned by RealNetworks. It was in common use, and helped to shape the use of streaming audio on the Web. The RealPlayer is free, but this format seems to have taken a decline due to its proprietary format. |
