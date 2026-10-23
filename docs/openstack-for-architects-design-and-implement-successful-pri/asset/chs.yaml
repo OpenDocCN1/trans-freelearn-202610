@@ -1,0 +1,3171 @@
+- '# 架构师的 OpenStack：OpenStack 设计并实现成功的私有云
+
+
+
+
+
+
+
+
+
+
+
+
+
+  ![](img/2f752555f69992669defa8b25e6dcee9_1_0.png)
+
+
+
+
+
+
+
+
+
+
+  '
+- "# Credits\n\n**Authors**\nMichael Solberg\nBen Silverman\n\n**Copy Editor**\nTom\
+  \ Jacob\n\n**Reviewer**\nLauren Malhoit\n\n**Project Coordinator**\nJudie Jose\n\
+  \n**Commissioning Editor**\nVeena Pagare\n\n**Proofreader**\nSafis Editing\n\n**Acquisition\
+  \ Editor**\nMeeta Rajani\n\n**Indexer**\nFrancy Puthiry\n\n**Content Development\
+  \ Editors**\nRadhika Atitkar\nSanjeet Rao\n\n**Graphics**\nKirk D'Penha\n\n**Technical\
+  \ Editor**\nNidhisha Shetty\n\n**Production Coordinator**\nShantanu Zagade\n\n#\
+  \ About the Authors\n\n**Michael Solberg**, as a chief architect, is responsible\
+  \ for helping Red Hat customers achieve their key business transformation initiatives\
+  \ through open source architectures and technologies. He regularly advises a range\
+  \ of Fortune 100 companies in financial services, healthcare, retail, and transportation\
+  \ verticals on topics such as cloud computing, big data, high-performance computing,\
+  \ and enterprise middleware. At Red Hat since 2008, Michael has led a number of\
+  \ successful initiatives to assist strategic customers adopt new virtualization,\
+  \ systems management, and engineering practices. His previous experience includes\
+  \ building web hosting infrastructure. He is also an avid supporter of the OpenStack\
+  \ project. Michael holds a Bachelor's degree from the University of Georgia and\
+  \ is a regular speaker at industry events.\n\n> I would like to thank Kyle Gonzales\
+  \ and Brent Holden for their early work on the project.  \n> Huge thanks to Joseph\
+  \ Scalia for reviewing the book and continually encouraging me to work on the project.\n\
+  \n**Ben Silverman**, as the Principal Cloud Architect for OnX Enterprise Solutions,\
+  \ is responsible for providing strategic and tactical cloud leadership to OnX’s\
+  \ customers. Previously, Ben was a Senior Cloud Architect at Mirantis, where he\
+  \ developed cloud solutions for many Fortune 100 companies. Ben has been involved\
+  \ with OpenStack since the Havana release and is an active technical contributor.\
+  \ Prior to working for Mirantis, Ben was the Lead Technical Architect at American\
+  \ Express, where he built one of the largest financial services OpenStack clouds\
+  \ at that time. Ben is an exuberant OpenStack evangelist who is often seen speaking\
+  \ at industry events and conventions about OpenStack adoption, scale challenges,\
+  \ and cloud operations. In his limited spare time, Ben and a few others have taken\
+  \ on the task of re-writing all of the OpenStack architecture and operations guides\
+  \ that are currently available on the OpenStack Foundation website. Ben has a Master’s\
+  \ degree in Information Management from Arizona State University and lives in Phoenix,\
+  \ AZ.\n\n> I would like to thank my wife, Jennifer, and my two sons, Jason and Brayden,\
+  \ for all of the love and encouragement, as well as the necessary interruptions\
+  \ to make me smile with a hug, a kiss, a silly comment, or a new drawing for daddy’s\
+  \ desk.\n\n# www.PacktPub.com\n\nFor support files and downloads related to your\
+  \ book, please visit `www.PacktPub.com`.\n\nDid you know that Packt offers eBook\
+  \ versions of every book published, with PDF and ePub files available? You can upgrade\
+  \ to the eBook version at `www.PacktPub.com` and as a print book customer, you are\
+  \ entitled to a discount on the eBook copy. Get in touch with us at `service@packtpub.com`\
+  \ for more details.\n\nAt `www.PacktPub.com`, you can also read a collection of\
+  \ free technical articles, sign up for a range of free newsletters and receive exclusive\
+  \ discounts and offers on Packt books and eBooks.\n\n![](img/2f752555f69992669defa8b25e6dcee9_5_0.png)\n\
+  \n`https://www.packtpub.com/mapt`\n\nGet the most in-demand software skills with\
+  \ Mapt. Mapt gives you full access to all Packt books and video courses, as well\
+  \ as industry-leading tools to help you plan your personal development and advance\
+  \ your career.\n\n## Why subscribe?\n\n- Fully searchable across every book published\
+  \ by Packt\n- Copy and paste, print, and bookmark content\n- On demand and accessible\
+  \ via a web browser\n\n\n## Preface\n\nThis guide leads you through each of the\
+  \ major decision points that you'll face as you architect an OpenStack private cloud\
+  \ for your organization. At each point, we offer you advice based on years of experience\
+  \ designing and leading successful OpenStack projects in a wide range of industries.\
+  \ Each chapter also includes lab materials that give you a chance to install and\
+  \ configure the technologies used to build production-quality OpenStack clouds.\
+  \ Most importantly, we focus on ensuring that your OpenStack project meets the needs\
+  \ of your organization, which will guarantee a successful roll-out.\n\n## What this\
+  \ book covers\n\nChapter 1, *Introducing OpenStack*, helps you familiarize yourself\
+  \ with the components of OpenStack.\n\nChapter 2, *Architecting the Cloud*, explains\
+  \ the software, hardware, network, and storage selection options for OpenStack.\n\
+  \nChapter 3, *Planning for Failure (and Success)*, covers techniques of increasing\
+  \ the scalability and availability of the cloud.\n\nChapter 4, *Building the Deployment\
+  \ Pipeline*, shows how to use the concepts of DevOps to create a continuously integrated\
+  \ and delivered OpenStack deployment.\n\nChapter 5, *Building to Operate*, explains\
+  \ how to architect a private cloud that is optimized for operations.\n\nChapter\
+  \ 6, *Integrating the Platform*, reveals three different integration patterns for\
+  \ OpenStack clouds.\n\nChapter 7, *Securing the Cloud*, introduces how to design\
+  \ a private cloud that is secure from the beginning.\n\nChapter 8, *Conclusion*,\
+  \ covers creating a compelling road map for the future of Infrastructure as a Service\
+  \ in your organization.\n\n## What you need for this book\n\nAll of the software\
+  \ used in the examples in this book is available at no cost on the Internet. Links\
+  \ are provided for each of the projects used. Many of the lab exercises require\
+  \ access to physical hardware. We recommend having at least four and up to 12 physical\
+  \ servers available for deploying OpenStack.\n\n## Who this book is for\n\nThis\
+  \ book is written especially for those who will design OpenStack clouds and lead\
+  \ their implementation. These people are typically cloud architects, but may also\
+  \ be in product management, systems engineering, or enterprise architecture.\n\n\
+  ## Conventions\n\nIn this book, you will find a number of text styles that distinguish\
+  \ between different kinds of information. Here are some examples of these styles\
+  \ and an explanation of their meaning.\n\nCode words in text, database table names,\
+  \ folder names, filenames, file extensions, pathnames, dummy URLs, user input, and\
+  \ Twitter handles are shown as follows: \"The keystonerc_admin file can be used\
+  \ to authenticate an administrative user and the keystonerc_demo file can be used\
+  \ to authenticate a non-privileged user.\"\n\nA block of code is set as follows:\n\
+  \n```\nexport OS_USERNAME=demo\nexport OS_TENANT_NAME=demo\nexport OS_PASSWORD=<random\
+  \ string>\nexport OS_AUTH_URL=http://192.168.0.10:5000/v2.0/\nexport PS1='[\\u@\\\
+  h \\W(keystone_demo)]\\$ '\n```\n\nWhen we wish to draw your attention to a particular\
+  \ part of a code block, the relevant lines or items are set in bold:\n\n```\nexport\
+  \ OS_USERNAME=demo\nexport OS_TENANT_NAME=demo\nexport OS_PASSWORD=<random string>\n\
+  export OS_AUTH_URL=http://192.168.0.10:5000/v2.0/\nexport PS1='[\\u@\\h \\W(keystone_demo)]\\\
+  $ '\n```\n\nAny command-line input or output is written as follows:\n\n```\n# yum\
+  \ install -y openstack-packstack\n```\n\n**New terms** and **important words** are\
+  \ shown in bold. Words that you see on the screen, for example, in menus or dialog\
+  \ boxes, appear in the text like this: \"Click on the **Manage Jenkins** link in\
+  \ the left-hand navigation.\"\n\n![](img/2f752555f69992669defa8b25e6dcee9_14_0.png)\n\
+  \nWarnings or important notes appear in a box like this.\n\n![](img/2f752555f69992669defa8b25e6dcee9_14_1.png)\n\
+  \nTips and tricks appear like this.\n\n## Reader feedback\n\nFeedback from our readers\
+  \ is always welcome. Let us know what you think about this book-what you liked or\
+  \ disliked. Reader feedback is important for us as it helps us develop titles that\
+  \ you will really get the most out of. To send us general feedback, simply e-mail\
+  \ `feedback@packtpub.com`, and mention the book's title in the subject of your message.\
+  \ If there is a topic that you have expertise in and you are interested in either\
+  \ writing or contributing to a book, see our author guide at `www.packtpub.com/authors`.\n\
+  \n## Customer support\n\nNow that you are the proud owner of a Packt book, we have\
+  \ a number of things to help you to get the most from your purchase.\n\n## Downloading\
+  \ the example code\n\nYou can download the example code files for this book from\
+  \ your account at `http://www.packtpub.com`. If you purchased this book elsewhere,\
+  \ you can visit `http://www.packtpub.com/support` and register to have the files\
+  \ e-mailed directly to you.\n\nYou can download the code files by following these\
+  \ steps:\n\n- 1. Log in or register to our website using your e-mail address and\
+  \ password.\n- 2. Hover the mouse pointer on the **SUPPORT** tab at the top.\n-\
+  \ 3. Click on **Code Downloads & Errata**.\n- 4. Enter the name of the book in the\
+  \ **Search** box.\n- 5. Select the book for which you're looking to download the\
+  \ code files.\n- 6. Choose from the drop-down menu where you purchased this book\
+  \ from.\n- 7. Click on **Code Download**.\n\nOnce the file is downloaded, please\
+  \ make sure that you unzip or extract the folder using the latest version of:\n\n\
+  - WinRAR / 7-Zip for Windows\n- Zipeg / iZip / UnRarX for Mac\n- 7-Zip / PeaZip\
+  \ for Linux\n\nThe code bundle for the book is also hosted on GitHub at https://github.com/PacktPublishing/OpenStack-for-Architects.\
+  \ We also have other code bundles from our rich catalog of books and videos available\
+  \ at https://github.com/PacktPublishing/. Check them out!\n\n## Downloading the\
+  \ color images of this book\n\nWe also provide you with a PDF file that has color\
+  \ images of the screenshots/diagrams used in this book. The color images will help\
+  \ you better understand the changes in the output. You can download this file from\
+  \ https://www.packtpub.com/sites/default/files/downloads/OpenStackforArchitects_ColorImages.pdf.\n\
+  \n## Errata\n\nAlthough we have taken every care to ensure the accuracy of our content,\
+  \ mistakes do happen. If you find a mistake in one of our books-maybe a mistake\
+  \ in the text or the code-we would be grateful if you could report this to us. By\
+  \ doing so, you can save other readers from frustration and help us improve subsequent\
+  \ versions of this book. If you find any errata, please report them by visiting\
+  \ http://www.packtpub.com/submit-errata, selecting your book, clicking on the Errata\
+  \ Submission Form link, and entering the details of your errata. Once your errata\
+  \ are verified, your submission will be accepted and the errata will be uploaded\
+  \ to our website or added to any list of existing errata under the Errata section\
+  \ of that title.\n\nTo view the previously submitted errata, go to https://www.packtpub.com/books/content/support\
+  \ and enter the name of the book in the search field. The required information will\
+  \ appear under the Errata section.\n\n## Piracy\n\nPiracy of copyrighted material\
+  \ on the Internet is an ongoing problem across all media. At Packt, we take the\
+  \ protection of our copyright and licenses very seriously. If you come across any\
+  \ illegal copies of our works in any form on the Internet, please provide us with\
+  \ the location address or website name immediately so that we can pursue a remedy.\n\
+  \nPlease contact us at copyright@packtpub.com with a link to the suspected pirated\
+  \ material.\n\nWe appreciate your help in protecting our authors and our ability\
+  \ to bring you valuable content.\n\n## Questions\n\nIf you have a problem with any\
+  \ aspect of this book, you can contact us at questions@packtpub.com, and we will\
+  \ do our best to address the problem.\n\n\n\n\n\n# 1"
+- '## 介绍 OpenStack
+
+
+  在 2015 年 5 月的温哥华 OpenStack 大会上，美国零售巨头沃尔玛宣布，他们已部署了一个 OpenStack 云，拥有 140,000 个计算核心，在网络星期一支持了
+  15 亿次页面浏览。长期使用 OpenStack 的 CERN 宣布，他们的 OpenStack 私有云已扩展到 10 万个核心，在生产环境中运行了两拍字节磁盘上的计算工作负载。另有
+  250 家公司和组织在九个行业领域宣布已在其数据中心采用 OpenStack。
+
+
+  OpenStack 在其短短五年的存在中完全重绘了私有云格局。在本章中，我们将了解 OpenStack 是什么以及它为何如此有影响力。我们还将迈出设计云架构的第一步。
+
+
+  ## 什么是 OpenStack？
+
+
+  OpenStack 最好通过其用例来定义，因为用户和贡献者带着许多不同的目标来使用该软件。对于 Rackspace 等托管提供商而言，OpenStack 提供了多租户共享服务平台的基础设施。对于其他人来说，它可能为分布式商业智能应用程序提供数据和计算的配置机制。无论您组织的用例如何，以下几个答案都相关。
+
+
+  ## OpenStack 是一个 API
+
+
+  OpenStack 的最初目标之一是提供与 Amazon Web Service 的应用程序编程接口（API）兼容性。根据 2014 年 11 月的用户调查，44%
+  的生产部署仍在使用 EC2 兼容性 API 与系统交互。随着平台受欢迎程度的提高，OpenStack API 本身已成为事实上的标准。因此，我们与之合作创建 OpenStack
+  云的许多企业组织都将其用作一个或多个平台即服务或混合云部署的基础设施即服务层。
+
+
+  OpenStack 的每个功能或功能都通过其 REST API 之一公开。OpenStack 有命令行界面（旧版 nova 和更新的 openstack 常用客户端）以及标准
+  Web 界面（Horizon）。然而，组件与最终用户之间的大多数交互都是通过 API 进行的。这具有以下优势：
+
+
+  - 系统中的一切都可以自动化
+
+  - 与其他系统的集成定义明确
+
+  - 用例可以明确定义并自动测试
+
+
+  ![](img/2f752555f69992669defa8b25e6dcee9_18_0.png)
+
+
+  API 是定义明确且版本化的 REST API，并且有超过十几种编程语言的原生客户端和 SDK。有关当前 SDK 的完整列表，请参阅 http://api.openstack.org。
+
+
+  ## OpenStack – 一个开源软件项目
+
+
+  OpenStack 是一个开源软件项目，拥有来自各种组织的海量贡献者。OpenStack 最初由 NASA 和 Rackspace 创建。Rackspace 仍然是
+  OpenStack 的重要贡献者，但如今对该项目的贡献来自各种各样的公司，包括传统的开源贡献者（Red Hat、IBM 和 HP）以及完全致力于 OpenStack
+  的公司（Mirantis 和 CloudBase）。贡献的形式包括特定基础设施组件的驱动程序（即 Cinder 块存储驱动程序或 Neutron SDN 驱动程序）、错误修复或核心项目中的新功能。
+
+
+  OpenStack 由一个基金会管理。加入基金会的会员资格是免费的，任何希望加入的人都可以加入。目前基金会有数千名成员。技术问题的领导由十三名技术委员会成员提供，通常由个人成员选举产生。战略和财务问题由董事会决定，董事会包括由企业赞助商任命的成员和由个人成员选举产生的成员。
+
+
+  有关加入或为 OpenStack 基金会做出贡献的更多信息，请参阅 http://www.openstack.org/foundation。
+
+
+  OpenStack 用 Python 编程语言编写，通常部署在 Linux 操作系统上。源代码可随时在互联网上获取，社区的提交都是受欢迎的。在代码提交到项目之前，它必须通过一系列门控，包括单元测试和代码审查。
+
+
+  有关向 OpenStack 提交代码的更多信息，请参阅 https://wiki.openstack.org/wiki/How_To_Contribute。
+
+
+  ## OpenStack – 一个私有云平台
+
+
+  最后，OpenStack 提供了构建自动化私有云平台所需的软件模块。虽然 OpenStack 传统上专注于提供类似于 Amazon Web Services 的基础设施即服务功能，但最近引入了一些新项目，开始提供可能更与平台即服务相关联的功能。本书将重点介绍以下所述的核心
+  OpenStack 组件集的实现。
+
+
+  OpenStack 作为私有云平台使用的最重要方面是租户模型。提供此模型的身份验证和授权服务在身份服务 Keystone 中实现。OpenStack 系统管理的每个虚拟或物理对象都存在于称为租户或项目的私有空间中。Keystone
+  API 的最新版本已进一步区分，包含称为域的更高级别结构。无论术语如何，安全隔离计算、网络和存储资源的能力是该平台最基本的功能。这使其有别于传统的数据中心虚拟化，使其成为私有云平台。
+
+
+  使用术语实例的第二个原因是 OpenStack 中的虚拟机通常不具有与传统虚拟化相同的生命周期。虽然我们可能期望虚拟机像物理机一样具有数年的生命周期，但我们期望实例的生命周期以天或周为单位。虚拟机会被备份和恢复，而实例会被救援或疏散。对虚拟机的调整操作可能无需停机即可完成，而对实例的调整操作则是新的部署和迁移。这是由
+  OpenStack 与传统虚拟机及其 hypervisor 之间的架构差异造成的。传统虚拟化平台假设就地调整和修改行为，而 OpenStack 等云平台则期望重新部署虚拟机或通过添加额外的实例来增加容量，而不是向现有虚拟机添加额外资源。甚至术语
+  **迁移** 对于实例而言的含义也与我们对虚拟机的预期不同。
+
+
+  我们发现使用术语实例有用的第三个原因是，计算服务多年来已发展到启动多种类型的计算。一些 OpenStack 部署可能仅启动物理机，而其他部署可能启动物理、虚拟和基于容器的实例组合。无论计算提供商如何，相同的结构都适用。
+
+
+  随着更多企业功能被添加到 OpenStack 计算服务中，虚拟机和实例之间的界限变得越来越模糊。稍后，我们将讨论一些可以启动更像虚拟机的实例的方法，以用于更传统的计算工作负载。
+
+
+  ## 对象存储
+
+
+  计算实例的临时后端存储由 Nova 服务提供。这种存储被称为 **临时**，因为其生命周期与计算实例的生命周期同步。也就是说，当实例终止时，与该实例关联的临时存储会从其所在的计算主机中删除。OpenStack
+  系统中提供的第一种持久存储是对象存储，基于 Amazon Web Service 环境中可用的 S3 服务。
+
+
+  对象存储由 OpenStack 中的 Swift 服务提供。就像 Nova 提供 EC2 兼容的计算 API 一样，Swift 提供 S3 兼容的对象存储 API。编写为在
+  Amazon EC2 服务上运行并将持久数据读写的应用程序读写入 S3 对象存储服务的应用程序无需重写即可在 OpenStack 系统上运行。
+
+
+
+
+
+
+  许多第三方应用程序提供 S3 或 Swift 兼容的 API，可以在典型的 OpenStack 部署中替代 Swift。这些包括 Gluster 或 Ceph
+  等开源对象存储，或 Scality 或 Riak 等专有产品。Swift 服务被拆分为几个组件，第三方应用程序可能会使用 Swift 的“Proxy”组件作为
+  API 服务并仅实现后端，也可能完全替换 Swift 服务。所有 OpenStack 兼容的对象存储都将使用 OpenStack 的租户模型并接受 Keystone
+  令牌进行身份验证。
+
+
+  ## 块存储
+
+
+  传统的持久存储通过 Cinder 块存储组件提供给 OpenStack 工作负载。Cinder 卷的生命周期与计算实例独立维护，卷可以附加或从一个或多个计算实例分离，以提供基于文件系统的存储的后端。
+
+
+  OpenStack 附带了 Cinder 的参考实现，该实现利用主机上的本地存储并使用 LVM，以及使用 iSCSI 将块设备共享到 Cinder 存储节点的能力，该节点可将其存储用于实例。此实现缺乏高可用性，通常仅用于测试环境。生产部署倾向于利用
+  Ceph 或 NetApp 等基于软件或基于硬件的块存储解决方案，根据性能和可用性要求进行选择。
+
+
+  ## 网络
+
+
+  OpenStack 中最后一个基础服务是 Neutron，网络服务。Neutron 提供用于创建端口、子网、网络和路由器的 API。一些 OpenStack 部署中还提供防火墙和负载均衡器等附加网络服务。
+
+
+  与 Cinder 一样，基于 Open vSwitch 的参考实现通常用于测试环境或较小规模的部署。大型生产部署将利用众多可用的基于软件或基于硬件的 SDN 解决方案中的一种，这些解决方案具有
+  Neutron 驱动程序。这些解决方案范围从 Juniper 的 OpenContrail 和 Midokura 的 MidoNet 等开源实现到 VMware
+  的 NSX 平台等专有解决方案。
+
+
+  如前所述，仍有一些 OpenStack 架构师选择基于 Nova 包含的网络服务而不是 Neutron 组件来部署云。这种决定很大程度上是基于 Neutron
+  参考插件缺乏分布式路由能力。在当前的参考实现中，Neutron 只是使用一个集中节点进行路由，并使用被动节点作为其高可用故障转移。新版本的 OpenStack
+  现在支持 **分布式虚拟路由器 (DVR)** 参考实现，然而，还需要额外的性能测试来确定这种模型是否能提供显著的性能提升。然而，随着 Nova 网络实现的弃用以及
+  Neutron 参考实现中更多功能的成熟，越来越多的部署正在使用 Neutron。
+
+
+  ## 常见的 OpenStack 用例
+
+
+  尽管兴趣巨大、投资巨大且公开成功，我们还是看到了许多情况，其中出于好意的 OpenStack 项目失败或至少被资助者视为失败。当 OpenStack 项目失败时，技术本身很少是根本原因。Gartner
+  的 Thomas Bittman 注意到了这一趋势，并在 2014 年 9 月撰写了一篇有影响力的博文，题为 *Why are Private Clouds Failing?*。
+
+
+  Bittman 的发现呼应了我们从现场获得的许多经验。简而言之，大多数私有云项目失败的原因是，一开始设定了不切实际的期望，并且云的业务目标并未在最终结果中实现。
+
+
+  首先，OpenStack 部署应被视为一项有回报的投资，而不是降低运营成本的项目。虽然我们确实通过 OpenStack 提供的自动化看到了运营工作量的大幅减少，但很难准确量化这些减少，以便证明运行高效云平台所需的运营投资是合理的。完全专注于通过自动化削减成本的组织应首先考虑自动化现有虚拟环境，而不是部署新环境。
+
+
+  我们还看到了许多目标量化不佳的项目。OpenStack 是用例的推动者，而不是 IT 万灵药。如果在平台投资开始之前没有就用例达成一致，最终证明投资是很难的。这就是为什么架构师在
+  OpenStack 部署中的作用如此关键——他们的工作是确保在前期编写具体的需求，以便所有利益相关者都能在部署后量化平台的成功。
+
+
+  考虑到这一点，让我们来看看 OpenStack 部署的一些典型用例。
+
+
+  ### 公共托管
+
+
+  正如我们之前提到的，OpenStack 最初是由 NASA 和 Rackspace 的代码贡献创建的。NASA 对 OpenStack 的兴趣源于他们希望创建一个私有弹性计算云，而
+  Rackspace 的主要目标是创建一个可以取代其公共共享托管基础设施的开源平台。截至 2015 年 4 月，“Rackspace Public Cloud”产品已移植到
+  OpenStack 并通过了 **OpenStack Powered Platform** 认证。
+
+
+  Rackspace 的实现提供计算和对象存储服务，但一些实现可能选择仅提供计算或对象存储并对这些服务进行认证。例如，另一家基于 OpenStack 的公共云提供商
+  DreamHost，就选择将其托管服务拆分为 **DreamCompute** 和 **DreamObjects**，分别实现这些服务。DreamObjects
+  服务首先作为 DreamHost 现有共享网络托管的补充而实现并提供，DreamCompute 服务随后推出。
+
+
+  大多数公共托管提供商主要专注于计算服务，许多提供商尚未提供通过 Neutron 网络服务实现的软件定义网络（DreamCompute 是一个值得注意的例外）。托管平台的架构师将首先关注租户问题，其次是计费问题，最后是规模问题。我们还看到了围绕公共云的仪表和监控所做的一些令人惊叹的工作；有关更多信息，请参阅
+  Rackspace 围绕 StackTach 的工作，网址如下：
+
+
+  ```
+
+  https://media.readthedocs.org/pdf/stacktach/latest/stacktach.pdf
+
+  ```
+
+
+  ### 高性能计算
+
+
+  NASA 和 Rackspace 之外的第一个 OpenStack 生产部署是在一个名为 Cybera 的加拿大非营利组织。Cybera 于 2011 年为其
+  DAIR 项目部署了 OpenStack 作为技术平台，该项目为加拿大研究人员、企业家和小型企业提供免费的计算和存储。
+
+
+  Cybera、NASA 和 CERN 的架构师都评论说，他们的服务与公共托管空间中的许多关注点相同。他们向研究人员提供计算和存储资源，但对这些资源实际如何使用知之甚少。因此，关于安全多租户的关注同样适用于这些环境，就像在托管空间中一样。
+
+
+  HPC 云将额外关注性能。虽然托管提供商会寻求在商品硬件上节约成本，研究云会寻求通过配置其计算、存储和网络硬件来支持高容量和高吞吐量操作，从而最大化性能。大多数云通过商品硬件水平扩展低到中档硬件效果最佳，而高性能云往往对硬件选择的性能特征非常具体。Cybera
+  已发布了其 DAIR 平台与 EC2 的性能基准比较。研究云的架构师还可能希望使用硬件直通功能或其他低级 hypervisor 功能来启用特定工作负载。
+
+
+  ### 快速应用开发
+
+
+  在过去几年中，OpenStack 的第三个重要用例出现了——企业应用开发环境。虽然公共托管和高性能计算实现可能拥有数百个计算节点和数千个核心的大型区域，但企业实现往往拥有
+  20 到 50 个计算节点的区域。企业采用者对软件定义网络有浓厚兴趣。
+
+
+  企业采用 OpenStack 的主要驱动因素是应用开发工作流程中持续集成和持续交付的日益使用。典型的持续集成和持续交付（CI/CD）工作流程会在通过基本单元测试的每个开发人员提交时部署完整的应用，以便进行自动集成测试。这些应用部署的生命周期与运行单元测试所需的时间一样长，然后自动流程会在测试通过或失败后拆除部署。这种工作流程很容易通过
+  OpenStack 计算和网络服务的组合来实现。事实上，在 Kilo 用户调查中，92% 的 OpenStack 用户报告称他们使用私有云进行 CI/CD 工作流程。
+
+
+  虽然托管或高性能计算（HPC）云的架构师花费大量时间关注租户和规模问题，企业部署的架构师将花费大量时间关注如何将 OpenStack 计算集成到其现有基础设施中。企业部署经常会利用现有的服务目录实现和身份管理解决方案。许多企业部署还需要与现有的
+  IPAM 和资产跟踪系统集成。
+
+
+
+
+
+
+  ## 网络功能虚拟化
+
+
+  OpenStack 的一个新兴且令人兴奋的用例是 **网络功能虚拟化 (NFV)**。NFV 解决了电信行业特有的问题，该行业正在用运行在通用硬件上的虚拟化设备取代提供网络服务的专用硬件设备。其中一些服务包括路由、代理、内容过滤，以及分组核心服务和高容量交换。大多数这些设备对计算要求很高且大多无状态。这些工作负载非常适合
+  OpenStack 计算模型。
+
+
+  NFV 用例通常利用硬件功能，可将计算实例直接连接到计算节点上的物理网络接口。实例通常对 CPU 和内存拓扑（NUMA）也很敏感，虚拟核心往往直接映射到物理核心。这些部署主要集中在计算服务上，通常不会使用
+  OpenStack 的对象存储或编排等服务。
+
+
+  NFV 解决方案的架构师将主要关注虚拟实例的放置和性能问题，而较少关注租户和集成问题。
+
+
+  ## 起草初始部署计划
+
+
+  OpenStack 设计用于大规模使用。许多 IT 项目可能只包含在现有网络、存储和计算环境中部署的少量物理资产，但 OpenStack 部署本身就是全新的网络、存储和计算环境。任何如此规模和范围的项目都需要
+  IT 组织内部不同团队之间进行大量协调。这种协调需要仔细规划，并且根据我们的经验，需要大量的文档。
+
+
+  ## 架构师的角色
+
+
+  本书旨在为许多组织中相对较新的角色提供最佳实践——云架构师。云架构师的主要职能是根据基础设施即服务或平台即服务的业务需求，设计满足这些需求的基础设施即服务或平台即服务解决方案。这需要对基础设施软件能力的深入了解，并具备网络和存储架构方面的能力。
+
+
+  典型的云架构师具有计算背景，并且会大量依赖组织内的网络和存储架构师来完善其技术知识。由于 OpenStack 基于 Linux 操作系统，大多数 OpenStack
+  架构师将对该平台有深入的了解。但正如我们前面提到的，OpenStack 通常以 API 的形式交付，OpenStack 架构师也需要精通应用程序开发。
+
+
+  OpenStack 架构师的首要责任是编写和维护一套设计和部署文档。很难描述你从未见过的海洋，因此本书将引导你完成在创建文档时创建的文档实现。
+
+
+  ## 设计文档
+
+
+  我们将创建的第一个文档是设计文档。在你的组织中它可能有不同的名称，但设计文档的目标是解释平台实施中所有决策背后的原因。格式可能因团队而异，但我们希望涵盖以下几点：
+
+
+  - **背景**：这是启动项目的历史。如果文档仅供内部使用，这可以很简短。如果要供外部使用，这就是为供应商和合作伙伴提供组织背景的机会。
+
+  - **执行摘要**：这实际上只是整个文档的详细摘要。通常，交付物的这一部分将由经理、技术和业务领导者使用，以了解整体建议的业务影响。需求和由此产生的架构应进行总结。
+
+  - **需求**：这是文档的核心。需求可以用项目管理团队可接受的任何格式表示。我们更喜欢“用户故事”格式，并在本书的示例中使用该格式。
+
+  - **物理架构**：这是对角色及其承担这些角色的物理机器的解释。这应包括网络图。
+
+  - **服务架构**：这是可用服务及其关系的摘要。本节应包括服务图。
+
+  - **租户架构**：应包含一节描述云内部的预期环境。这包括诸如可用的计算规格、镜像、身份管理架构以及 IPAM 或 DDI 等内容。
+
+  - **路线图**：本节是可选的，通常位于另一份文档中。它提供了在平台未来版本中改进领域的机会。
+
+
+  设计文档在项目开发过程中通常会经过多次修订。在平台每次迭代结束时，将所做的任何平台更改与设计文档进行核对是一项重要步骤。
+
+
+  注意设计文档中的范围蔓延。这种工件很容易变成关于 OpenStack 如何工作的文档。记住要专注于解释你做出的决策，而不是当时所有可用的选项。
+
+
+  ## 部署计划
+
+
+  每个 OpenStack 实施都应从部署计划开始。设计文档描述了部署的内容和原因，而部署计划描述了如何部署。与设计文档一样，部署计划的内容因组织而异。它至少应包括以下内容：
+
+
+  - **硬件**：这是部署可用的计算、存储和网络硬件的清单。
+
+  - **网络寻址**：这是部署中网络资产的 IP 和 MAC 地址表。对于数百个计算节点的部署，这可能应限制为部署可用的 VLAN 和子网集。
+
+  - **部署特定配置**：我们假设 OpenStack 部署的配置是自动化的。这些是工程师在启动环境自动化部署之前需要调整的任何设置。
+
+  - **需求**：这些是在部署可以继续之前需要具备的条件。通常，这是硬件配置、交换机配置、LUN 屏蔽等。
+
+
+  ## 介绍 OpenStack
+
+
+  一个好的部署计划将记录工程团队需要了解的一切，以便将设计文档实例化到物理世界中。我们喜欢从部署计划中省略的一件事是如何部署 OpenStack 的逐步说明。这些信息通常记录在安装指南中，可能由供应商提供或由运营团队编写。
+
+
+  ## 你的第一次 OpenStack 部署
+
+
+  根据我们的经验，几乎所有组织都以以下三个步骤来使用 OpenStack：
+
+
+  - 1. 一个人，通常是 Linux 或云架构师，在单台机器上安装 OpenStack，以验证软件可以在不费太多力气的情况下部署。
+
+  - 2. 架构师征求其他团队成员的帮助，通常是网络和存储架构师或工程师，部署多节点安装。这将利用某种共享的临时或块存储。
+
+  - 3. 一组架构师或工程师为组织的用例或环境问题量身定制 OpenStack 的首次部署。Red Hat、Mirantis、HP、IBM、Canonical
+  或 Rackspace 等公司的专业服务通常会在此阶段参与。
+
+
+  从这里开始，一切就开始加速了。我们将在本书中遵循类似的模式。在本章中，我们将从第一步开始——“一体式”部署。
+
+
+  ## 编写初始部署计划
+
+
+  花时间记录第一次部署可能看起来有点偏执，但它为我们提供了开始迭代文档的机会，而文档是成功 OpenStack 部署的关键。我们将从以下模板开始。
+
+
+
+
+
+
+  ## 硬件
+
+
+  OpenStack 的初始部署将利用一台通用服务器，即 HP DL380。
+
+
+  | 主机名 | 型号 | CPU 核心数 | 内存 | 磁盘 | 网络 |
+
+  |---|---|---|---|---|---|
+
+  | openstack | DL380 | 16 | 256 GB | 500 GB | 2 x 10 GB |
+
+
+  此部署可为 60 个 m1.medium 实例或 30 个 m1.large 实例提供计算能力。
+
+
+  根据您的部署修改表格中的规格。在部署文档中指定预期容量非常重要。作为一个基本经验法则，只需将可用系统内存除以实例内存即可。我们将在后面的章节中更详细地讨论如何准确预测容量。
+
+
+  ## 网络寻址
+
+
+  此部署中有一个物理提供商网络。SDN 由 Neutron 在租户空间中提供，使用 OVS ML2 插件。
+
+
+  | 主机名 | MAC | IP |
+
+  |---|---|---|
+
+  | openstack | 3C:97:0E:BF:6C:78 | 192.168.0.10 |
+
+
+  根据您的部署修改本节中的网络地址。对于一体式安装，我们将只使用一个网络接口。
+
+
+  ## 配置说明
+
+
+  此部署将使用 RDO 一体式参考架构。此参考架构使用最少的硬件作为 OpenStack 单体安装的基础，通常仅用于测试或实验。有关一体式部署的更多信息，请参阅
+  https://www.rdoproject.org/install/quickstart/。
+
+
+  对于首次部署，我们将仅使用该盒子的 RDO 发行版。在后面的章节中，我们将开始自定义部署，并在此部分添加注释以描述我们与参考架构的偏离之处。
+
+
+  ## 要求
+
+
+  在部署之前，主机系统需要满足以下要求：
+
+
+  - Red Hat Enterprise Linux 7（或 CentOS 7）
+
+  - Network Manager 必须被禁用
+
+  - 网络接口必须按照网络寻址部分中的说明在 /etc/sysconfig/network-scripts 中进行配置
+
+  - 必须启用 RDO OpenStack 仓库（来自 https://rdoproject.org/）
+
+
+  要启用 RDO 仓库，请以 root 用户身份在系统上运行以下命令：
+
+
+  ```
+
+  yum install -y https://rdoproject.org/repos/rdo-release.rpm
+
+  ```
+
+
+  ## 安装 OpenStack
+
+
+  假设我们已根据部署计划正确配置了主机，那么 OpenStack 的实际部署相对直接。安装说明可以记录在部署计划的附加部分中，也可以记录在单独的文档中，即安装指南。无论哪种方式，安装说明后面都应紧跟一组可运行的测试，以验证部署是否正确完成。
+
+
+  ## 安装说明
+
+
+  要安装 OpenStack，请以部署计划中指定的系统上的 root 用户身份执行以下命令：
+
+
+  ```
+
+  # yum install -y openstack-packstack
+
+  ```
+
+
+  此命令将在机器上安装 packstack 安装实用程序。如果此命令失败，请使用以下命令确保 RDO 仓库已正确启用：
+
+
+  ```
+
+  # rpm -q rdo-release
+
+  ```
+
+
+  如果尚未启用 RDO 仓库，请使用以下命令启用它：
+
+
+  ```
+
+  # yum install -y https://rdoproject.org/repos/rdo-release.rpm
+
+  ```
+
+
+  接下来，运行 packstack 实用程序以安装 OpenStack：
+
+
+  ```
+
+  # packstack --allinone
+
+  ```
+
+
+  packstack 实用程序会配置并应用一组 puppet 清单到您的系统，以安装和配置 OpenStack 发行版。allinone 选项指示 packstack
+  配置 RDO 参考架构中定义的一组服务。
+
+
+  ## 验证安装
+
+
+  安装成功完成后，使用以下步骤验证安装。
+
+
+  首先，通过尝试获取授权令牌来验证 Keystone 标识服务。OpenStack 命令行客户端使用一组环境变量来验证您的会话。packstack 安装实用程序将创建两个设置这些变量的配置文件。
+
+
+  keystonerc_admin 文件可用于验证管理员用户，而 keystonerc_demo 文件可用于验证非特权用户。keystonerc 的示例如下所示：
+
+
+  ```
+
+  export OS_USERNAME=demo
+
+  export OS_TENANT_NAME=demo
+
+  export OS_PASSWORD=<random string>
+
+  export OS_AUTH_URL=http://192.168.0.10:5000/v2.0/
+
+  export PS1=''[\u@\h \W(keystone_demo)]\$ ''
+
+  ```
+
+
+  此文件将用于为您的命令行会话填充必要的环境变量和凭据，以便您能够与使用 Keystone 服务进行身份验证的 OpenStack API 进行通信。
+
+
+  为了使用 keystonerc 文件加载您的凭据，请从运行 packstack 命令的目录将内容导入到您的 shell 会话中。它不会输出任何内容，除了 shell
+  提示符的更改：
+
+
+  ```
+
+  # . ./keystonerc_demo
+
+  ```
+
+
+  您的命令提示符将更改以提醒您正在使用导入的 OpenStack 凭据。
+
+
+  为了加载这些凭据，前面的 source 命令必须在用户每次登录时运行。这些凭据不是持久的。如果您在运行 OpenStack 命令之前未导入凭据，您很可能会收到以下错误：
+
+
+  ```
+
+  You must provide a username via either --os-username or env[OS_USERNAME]
+
+  ```
+
+
+  要验证 Keystone 服务，请运行以下命令以获取 Keystone 令牌：
+
+
+  ```
+
+  # openstack token issue
+
+  ```
+
+
+  此命令的输出应类似于以下表格：
+
+
+  | 属性 | 值 |
+
+  |---|---|
+
+  | expires | 2015-07-14T05:01:41Z |
+
+  | id | a20264cd091847ac965cde8cbba7b0b9 |
+
+  | tenant_id | 202bd2fa2a3a40639bb0bccc9a57e37d |
+
+  | user_id | 68d90544e0064c4c838d47d80811b895 |
+
+
+  接下来，验证 Glance 镜像服务：
+
+
+  ```
+
+  # openstack image list
+
+  ```
+
+
+  这应输出一个表格，列出单个镜像，即随 packstack 命令安装的 CirrOS 镜像。我们将使用该 glance 镜像的 ID 来验证 Nova 计算服务。在此之前，我们将验证
+  Neutron 网络服务：
+
+
+  ```
+
+  # openstack network list
+
+  ```
+
+
+  这应输出一个表格，列出可用于测试的网络。我们将使用该网络的 ID 并使用以下命令验证 Nova 计算服务：
+
+
+  首先，将 root 的 SSH 密钥作为 demo.key 添加到 OpenStack：
+
+
+  ```
+
+  # openstack keypair create --public-key ~/.ssh/id_rsa.pub demo
+
+  ```
+
+
+  现在，创建一个名为 `instance01` 的实例：
+
+
+  ```
+
+  # openstack server create --flavor m1.tiny \
+
+  --image <image_id> \
+
+  --key-name demo
+
+  --nic net-id=<networkid> \
+
+  instance01
+
+  ```
+
+
+  此命令将创建实例并输出有关您刚刚创建的实例的信息表。要检查实例在配置过程中的状态，请使用以下命令：
+
+
+  ```
+
+  # openstack server show instance01
+
+  ```
+
+
+  当状态变为 `ACTIVE` 时，实例已成功启动。使用 `nova keypair-add` 命令创建的密钥（`demo.key`）可以在实例运行后用于登录实例。
+
+
+  ## 后续步骤
+
+
+  此时，您应该在一台机器上拥有一个可用的 OpenStack 安装。为了熟悉 OpenStack Horizon 用户界面，请参阅 RDO 项目网站上的文档 https://www.rdoproject.org/Running_an_instance。
+
+
+  ## 总结
+
+
+  本章提供了有关 OpenStack 的背景信息以及构成 OpenStack 部署的组件服务。我们查看了一些 OpenStack 的典型用例，并讨论了在启动 OpenStack
+  私有云部署的组织中云架构师的角色。
+
+
+  我们还开始了 OpenStack 部署的文档工作。创建了以下文档：
+
+
+  - 部署计划
+
+  - 安装指南
+
+
+  最后，我们在一台服务器上完成了“一体式”OpenStack 安装并验证了核心服务集。此安装可用于熟悉 OpenStack 系统。在下一章中，我们将分解 OpenStack
+  云的不同设计领域，并扩展我们的文档和部署。
+
+
+  ## 参考资料
+
+
+  - https://www.openstack.org/summit/vancouver-2015/summit-videos/presentation/walmart-and-039s-cloud-journey
+
+  - https://www.openstack.org/summit/vancouver-2015/summit-videos/presentation/ceph-at-cern-a-year-in-the-life-of-a-petabyte-scale-block-storage-service
+
+  - https://www.openstack.org/user-stories/
+
+  - http://superuser.openstack.org/articles/openstack-user-survey-insights-november-2014
+
+  - http://blogs.gartner.com/thomas_bittman/2014/09/12/why-are-private-clouds-failing
+
+  - https://www.openstack.org/marketplace/public-clouds/rackspace/rackspace-public-cloud
+
+  - http://www.cybera.ca
+
+  - http://superuser.openstack.org/articles/openstack-users-share-how-their-deployments-stack-up
+
+
+
+
+
+  '
+- '## 云架构设计
+
+
+  目前，可用于构建 OpenStack 云的硬件和软件组合相当令人惊叹。我们最近经常听到的一种说法是，对 OpenStack 的集成支持已成为硬件或软件产品进入市场的“入场券”。截至
+  OpenStack Liberty 版本（2015 年 11 月），已有超过 50 个 Cinder 存储驱动和 20 个 Neutron 网络驱动。它们覆盖了从传统
+  EMC 存储阵列、Cisco 交换机到各种软件定义存储和网络产品的广泛产品线。OpenStack 还支持众多 hypervisor 和计算平台，从普通 x86
+  硬件到 IBM Z 系列大型机不一而足。
+
+
+  作为架构师，我们所作的决策中，很少有像硬件和软件选型那样能对最终效益产生如此大的影响。虽然我们以迭代方式部署云或开发软件，以降低出错风险，但硬件采购通常很难迭代进行。
+
+
+  幸运的是，OpenStack 为每个子系统都附带了一组参考插件，我们可以在购买实际硬件之前用它们来模拟出整个云环境。就 Cinder 而言，其参考实现是在 Linux
+  系统上使用 LVM 和 iSCSI；就 Neutron 而言，参考实现使用 Linux 系统上的 Open vSwitch 和 iptables。甚至 Compute
+  也可以用 KVM 的嵌套虚拟化来进行模拟。我们推荐的方法是，在开始 OpenStack 项目时先使用参考插件，待你了解了软硬件将如何协同工作后，再进行大规模硬件或软件采购。
+
+
+  ## 选择 OpenStack 发行版
+
+
+  OpenStack 与大多数开源软件项目一样进行开发。代码可以从 `http://openstack.org` 获取，也可以从 `http://tarballs.openstack.org`
+  下载软件包格式的版本。截至 OpenStack Liberty 版本，已有超过 350 个独立项目可供下载。对于工程团队来说，要梳理和管理如此多的源代码仓库是相当庞大的工作量。于是，OpenStack
+  发行版便应运而生。大多数 OpenStack 发行版由构建 Linux 发行版的同一批团队组装而成。例如，目前可用的三个主要发行版分别是 Ubuntu、openSUSE
+  和 CentOS Linux 发行版的组成部分。这些发行版各自维护着安装指南，可在 `http://docs.openstack.org` 获取。此外，还有来自
+  HP、Mirantis 和 Red Hat 等公司的发行版，它们属于商业支持协议的一部分。除这些选择外，还有 Platform9 等公司提供托管式 OpenStack
+  部署。
+
+
+  ## 使用主干（trunk）
+
+
+  如前所述，OpenStack 的稳定版本以六个月为周期发布。活跃开发发生在每个软件项目的主干中（即 OpenStack 位于 `http://git.openstack.org`
+  的基于 Web 的仓库服务中的“master”分支）。这个 master 仓库控制着 OpenStack 项目的分布式版本控制，并辅助源代码管理。这与许多其他开源项目使用的著名
+  GitHub 服务非常相似。除了 Git 仓库之外，还有一些稳定分支与六个月发布版本相对应。新功能在 master 分支中实现，而错误修复则不定期地从主干向后移植到这些分支。
+
+
+  对大多数组织来说，获取某个稳定分支的打包版本并进行部署就已经足够了。不过，有几点原因可能让这种做法不那么有吸引力。其一，一些组织可能会发现，六个月发布之间积累的变更太多，而更频繁地从主干发布更小粒度的变更，风险反而更低。虽然这种思路对许多软件项目来说是有道理的，但
+  OpenStack 是由多个协调松散的团队开发的，管理各项目开发流之间的依赖关系是一项复杂的任务。主干上的自动化测试试图确保 Nova 中的改动不会破坏 Neutron
+  中的功能，但大部分手动集成测试都是针对协调一致的稳定版本进行的。
+
+
+  虽然某个组织有可能希望在主干变更进入稳定分支之前就把所有改动都拿过来，但更常见的是，它们只对尚未进入稳定分支的一两个重要功能感兴趣。例如，我们合作过的许多团队，早在
+  Neutron 实现外部 IPAM 系统功能（Liberty 版本）之前，就希望利用类似 Infoblox 提供的外部 IPAM 系统。我们还见过其他情况：某个组织希望在新
+  SAN 设备的 Cinder 驱动被上游接受之前就将其引入。对于这些用例，更合理的做法是先使用某个稳定分支的打包发行版，然后只为需要从主干向后移植所需功能的组件创建定制软件包。
+
+
+  ## 社区发行版
+
+
+  每次 OpenStack 发布稳定版本后，来自三个主要社区 Linux 发行版的维护者都会将相应稳定分支中的软件打包成其发行版的原生格式。这些 OpenStack
+  发行版允许这些发行版的用户使用该发行版惯用的机制安装软件（及其依赖项）。这些发行方还在 `http://openstack.org` 上提供了如何在其特定发行版上安装和配置该软件的文档。
+
+
+  大多数组织会根据自己最熟悉的 Linux 发行版来选择社区发行版。例如，通常使用 Ubuntu Linux 发行版的组织也会使用 Ubuntu OpenStack
+  发行版。值得一提的是，OpenStack 社区发行版可以与 openSUSE 和 CentOS 的商业支持变体配合使用；一个组织为 Red Hat Enterprise
+  Linux 付费购买支持，却使用社区支持的 CentOS OpenStack 发行版（RDO），这种情况并不少见。
+
+
+  社区发行版的选择也会影响安装机制的可用性。例如，我们在*第 1 章，OpenStack 入门*中使用的 Packstack 安装工具就是 CentOS 版 OpenStack（RDO）所特有的。Ubuntu
+  和 openSUSE 发行版则提供了安装 OpenStack 软件的其他工具。不过，使用 Puppet、Chef 和 Ansible 部署 OpenStack
+  的机制与发行版（以及操作系统）无关。例如，完全可以使用同一套 Puppet 模块在 Ubuntu 和 CentOS 发行版上部署 OpenStack。
+
+
+  ## 商业支持的发行版
+
+
+  虽然目前只有三个主要的社区支持 OpenStack 发行版，但可用的商业支持发行版却数不胜数。这些发行版的列表及其认证状态可在 http://openstack.org
+  上查看。通过了特定负载和基于性能的 Tempest 测试的发行版，会以与托管服务提供商相同的方式获得认证。商业支持的发行版通常基于社区支持的发行版。不过，组织选择它们而不是社区发行版，有几个原因。
+
+
+  第一个主要驱动因素是支持。大多数提供 OpenStack 支持的公司都要求客户使用其商业支持的发行版，以便确保客户使用的是已经通过认证和测试流程的软件。例如，Red
+  Hat 会从每个 RDO 版本中取出软件包，在将其作为 Red Hat Enterprise Linux OpenStack 平台发布之前，让它们通过详细的测试计划。当客户发现某个
+  OpenStack 组件存在问题时，Red Hat 可以将该问题添加到测试计划中，以防止未来版本中出现回归。此外，客户可能会出于易用性、支持质量或发行版附带的任何额外软件而选择不同的商业发行版；例如，Hewlett
+  Packard Enterprise 的 Helion OpenStack 捆绑了许多运维工具，可能会吸引一些客户。Mirantis OpenStack 虽然只是一个基础设施即服务（IaaS）平台，但其安装程序可能比其它发行版的安装程序更受一些客户青睐。
+
+
+  组织也可能选择商业支持的发行版而非社区支持的发行版，因为前者提供了发行商尚未以开源形式发布的附加功能。例如，IBM 在其 IBM Cloud Manager 产品中就提供了一个
+  OpenStack 发行版。这些增强功能往往旨在加速 OpenStack 云的部署，或通过额外的报告和仪表板来提高部署的可管理性。
+
+
+
+
+
+
+  ## 计算硬件考虑因素
+
+
+  在 IBM 的 Power 或 Z 系列系统或 Oracle 的 Solaris 系统上部署 OpenStack 完全可行，但绝大多数 OpenStack 部署都使用
+  64 位 Intel 系统上的 Linux。 在 OpenStack 中为计算基础设施选择硬件平台，与为数据中心中的任何其他工作负载选择硬件平台类似。 一些组织基于声誉、过去的性能或业务安排对特定供应商保持品牌忠诚度，而一些组织则要求硬件供应商在项目出现时投标。
+  少数组织选择从组件组装自己的系统，但大多数 OpenStack 部署使用与部署任何其他 Linux 工作负载相同的商品系统。
+
+
+  话虽如此，我们确实见过与 OpenStack 配合良好的硬件配置，以及事后需要重新配置的硬件配置。 我们将在本节中尝试帮助您避免第二次采购订单。
+
+
+  ## Hypervisor 选择
+
+
+  大多数安装使用 Xen 或 KVM hypervisor，但也有许多其他 hypervisor 可与 Nova 一起使用。 Hyper-V 和 VMware hypervisor
+  都作为计算平台得到支持。 裸机系统可通过 Nova（Ironic 项目）进行配置，并且在 OpenStack 的生命周期中出现了各种用于容器的驱动程序。 在 OpenStack
+  中运行容器最近是一个非常感兴趣的话题，OpenStack Magnum 项目已成为在 OpenStack 内部部署它们的当前首选模型。
+
+
+  是否选择 Xen 或 KVM hypervisor 对某些人来说几乎是宗教问题。 KVM hypervisor 是 Linux 上使用最广泛的 hypervisor，它支持
+  PCI 直通、NUMA 区域固定和实时迁移等一系列高级功能。 Xen 的支持者会指出，在旧硬件上的性能传统上在 Xen 上更好。 他们还会指出，像 Amazon
+  和 Rackspace 这样的大型云提供商在部署中选择了 Xen hypervisor 而非 KVM hypervisor。 然而，Xen hypervisor
+  的采用率仍在继续下降。 根据 2016 年 OpenStack 用户调查报告，95% 的 OpenStack 云使用 KVM，只有 4% 使用 Xen。 KVM
+  是默认且使用最广泛的 hypervisor，除非您的组织有强烈的动机选择 Xen hypervisor，否则我们强烈建议您使用它而不是任何其他 hypervisor。
+
+
+  使用 VMware ESX 作为 OpenStack 中的 hypervisor 而不是 KVM 有很多很好的理由。 几乎每个大型 IT 部门都拥有大量关于 ESX
+  和 vSphere 的经验，并且使用 ESX 作为 OpenStack 部署的 hypervisor 可以降低那些不想在新的虚拟化技术上认证或培训的团队进入 OpenStack
+  的门槛。 基于 ESX 的部署是规定性的——与 ESX 配合使用只有一个 Cinder 驱动程序和一个 Neutron 驱动程序得到支持。 从这个角度来看，选择
+  ESX 允许组织专注于 OpenStack 的集成和运营方面，而不必太担心架构。
+
+
+  然而，使 ESX 对某些组织来说是一个不错的选择的相同原因，使其对大多数组织来说是一个糟糕的选择。 规定性的方法限制了存储和网络空间中的可用选项。 OpenStack
+  最强大的方面之一是生态系统的异构性和在通用 API 下动态添加新类型基础设施的能力。 出于这个原因，我们将在本书中专注于使用 KVM hypervisor 的工作。
+  我们在本节中讨论的大多数考虑因素也适用于 Xen hypervisor。
+
+
+  ## 根据工作负载调整硬件规模
+
+
+  正如我们在本章开始时提到的，虽然迭代方法用于开发和部署软件是一种最佳实践，但迭代方法用于购买硬件可能会扼杀您的私有云计划。 第一次就把硬件搞对至关重要，这样您就可以从硬件供应商那里获得适当的折扣，并在项目开始时设定适当的预算。
+  然而，这些项目的规模通常很难确定，因为很难提前预测工作负载的要求。 这是让应用程序所有者在项目早期参与其中如此重要的原因之一——他们将能够预测应用程序的要求，这将为规模确定过程提供信息。
+
+
+  规模确定过程的第一步是定义标准实例大小。 在 Nova 用语中，这些被称为 flavors。 开箱即用，Nova 随附一组 m1 flavors，它们大致对应于
+  Amazon EC2 实例类型。 一个 flavor 有三个主要参数，虚拟 CPU 的数量、内存量和临时磁盘存储量。 组织通常根据预期工作负载定义两种或三种 flavors。
+  三种常见的 flavors 是 1×2、2×4 和 4×8 大小，它们指的是 vCPU 和内存千兆字节的数量。 临时磁盘大小通常与 CPU 和内存配置无关——它应等于组织标准
+  Glance 镜像的根磁盘的预期大小。 例如，使用 Red Hat Enterprise Linux 7 qcow2 镜像的 2×4 将具有两个虚拟 CPU、四千兆字节的内存和
+  20 千兆字节的临时磁盘。
+
+
+  一旦 flavors 被定义，下一步就是确定给定环境的 acceptable over-commit ratio。 每家主要硬件供应商都会发布可作为此比率起点的虚拟性能基准测试结果。
+  这些基准测试可在 http://spec.org/ 的 **Virtualization** 类别中找到。 通过这些基准测试，出现了两个简单的规则：永远不要超额分配内存，始终将
+  CPU 超额分配高达 10 倍。 遵循这些规则，您可以确定给定计算硬件中的最佳内存量。 例如，具有 36 个物理核心的计算节点可以支持多达 360 个虚拟核心的计算。
+  如果我们使用前面的 flavors，我们会看到每个虚拟核心 2 千兆字节的 RAM 的比率。 该计算节点中的最佳内存量大约在 720 GB（2 GB × 10
+  × 36 核心）左右。
+
+
+  内存层之间通常存在巨大的价格差异，通常有意义的是将系统配置为少于最佳内存量。 假设我们只能经济地将 36 核计算节点配置为 512 GB 内存。 接下来的两个需要考虑的项目是网络带宽和可用临时存储。
+  这就是了解目标工作负载有所帮助的地方。 512 GB 内存将支持 256 个 1×2 实例、128 个 2×4 实例或 64 个 4×8 实例。 这给我们一个最大临时磁盘需求在
+  1.2 到 5 TB 之间，假设 Glance 镜像为 20 GB。 这是一个相当大的差异。 如果我们确信我们的大多数实例将是 2×4，我们可以为大约 128
+  个实例定规模，这给我们 2.5 TB 的临时存储磁盘需求。 在那里也有一些余地——临时存储在 KVM hypervisor 中是精简配置的，我们不太可能消耗全部容量。
+  然而，如果我们使用 Ceph、SAN、iSCSI 或 NFS 等持久存储选项用于镜像、实例或对象存储，规划容量就会变得更加复杂。 在确定您的 flavor CPU、内存和临时磁盘规模时，您需要包括根卷的持久磁盘空间。
+  如果这些卷存储在与您的 glance 和对象存储相同的设备/集群上，必须非常小心地确保一致的弹性。
+
+
+  在选择计算硬件时需要考虑的最后一个主要项目是计算节点的可用带宽。 我们今天使用的系统大多数具有两个 10 千兆位绑定接口，专门用于实例流量。 将可用带宽除以预期实例数可以让我们确定是否需要额外的一组接口。
+  将 10 千兆位除以 128 个实例，给每个实例大约 75 兆位的可用平均带宽。 这对于大多数 Web 和数据库工作负载来说已经绰绰有余。
+
+
+
+
+
+
+  ## 性能密集型工作负载的注意事项
+
+
+  前面给出的指南对于开发、Web 或数据库工作负载来说效果良好。某些工作负载，特别是网络功能虚拟化（NFV）工作负载，具有非常特定的性能要求，需要在硬件选型过程中加以解决。为了支持这些工作负载，Nova
+  计算服务最近增加了一些实例调度的改进。
+
+
+  ![](img/2f752555f69992669defa8b25e6dcee9_43_0.png)
+
+
+  NFV 是 OpenStack 的一个新兴用例，用于成为替代专用网络设备的负载的基础设施。路由器、防火墙、代理服务器和分组核心设备是今天正在被替换的常见虚拟网络功能。NFV
+  不仅减少了运营电信业务所需的物理硬件，而且还将云原生应用编排的所有优势带入了一个对敏捷性需求日益增长的业务场景，以便比以往更快地为消费者提供服务。
+
+
+  第一个改进允许将 PCI 设备直接从硬件直通到实例。在标准的 OpenStack Neutron 网络中，分组在实例的虚拟接口和实际网络接口之间经过一系列网桥。虚拟网络中的开销很大，因为每个分组每次经过接口或交换机时都会消耗
+  CPU 资源。通过允许虚拟机通过一种称为 SR-IOV 的技术直接访问网络设备，可以消除这种性能开销。SR-IOV 允许单个网络适配器在操作系统中表现为多个网络适配器。这些虚拟网络适配器（称为虚拟功能，VF）中的每一个都可以直接与虚拟实例关联。
+
+
+  第二个改进允许 Nova 调度程序为在具有非统一内存访问（NUMA）的计算节点上运行的实例指定 CPU 和内存区域。在这些 NUMA 系统中，一定量的内存更接近于一组处理器核心。当进程访问非相邻区域的内存页时，会产生性能惩罚。当进程从一个内存区域移动到另一个内存区域时，还会产生另一个显著的性能惩罚。为了避免这些性能惩罚，Nova
+  调度程序可以将实例的虚拟 CPU 绑定到底层计算节点中的物理核心。它还可以将虚拟实例限制在与这些虚拟 CPU 关联的给定内存区域中，从而有效地将实例限制在指定的
+  NUMA 区域内。
+
+
+  在 OpenStack 部署中通常有四种类型的网络。第一种是用于从互联网访问 OpenStack API 的网络，在公有云的情况下，或在私有云的情况下从内联网访问。在大多数部署中，只有负载均衡器在这个网络上有地址。这允许对来自互联网的流量进行严格控制和审计。这个网络通常被称为
+  **External** 网络。第二种类型的网络是用于 OpenStack 控制平面与计算基础设施之间通信的私有网络。消息总线和数据库在此网络上公开，并且流量通常不会在此网络内外路由。这个网络被称为
+  **Management** 网络。
+
+
+  通常还会创建另外两个私有网络，用于在计算、网络和存储节点之间承载网络和存储流量。这些网络在质量服务和安全性方面都有所区分，并且是可选的，具体取决于部署是否使用
+  SDN 或网络附加存储。专用于租户网络的段通常被称为 **Tenant** 网络或 **Underlay** 网络。根据部署规模，可能有一个或多个这些 underlay
+  网络。存储网络不出所料地被称为 **Storage** 网络。
+
+
+  在大多数部署中，租户工作负载需要访问互联网或内联网，最后一种网络类是必需的。通常被称为 **Provider** 网络，这是一个物理网络，在 Neutron 中建模以在物理网络上提供网络端口。浮动
+  IP 可以从 Provider 网络中动态分配给实例。在某些部署中，实例将被允许直接使用 Provider 网络的端口，而无需经过租户网络和路由器。希望使用 Neutron
+  API 但不想实现 SDN 的组织经常使用这种在 Neutron 中使用 provider 网络对物理基础设施进行建模的模式。
+
+
+  这使他们能够使用传统的物理交换机和路由器，同时仍提供动态虚拟接口。
+
+
+  Reference Architectures, Fuel 7.0 Reference, Mirantis https://docs.mirantis.com/fuel/fuel-7.0/reference-architecture.html
+
+
+  ## SDN
+
+
+  SDN 是 OpenStack 与传统虚拟化部署不同的关键能力之一。SDN 使用隧道技术在物理网络拓扑之上创建虚拟网络拓扑。虚拟（overlay）网络可以是共享的或租户专用的。租户可以定义自己的第
+  2 层段和路由器，他们可以指定网络特定的 DNS 和 DHCP 服务，并且某些部署还允许定义第 4 层服务，如负载均衡和防火墙。Neutron 是以插件式架构创建的，并且存在针对基于软件和硬件的
+  SDN 产品的插件。还提供了一个围绕 Open vSwitch 构建的参考实现，用于测试和实验室工作。
+
+
+  选择 SDN 提供商是一项艰难的任务。根据我们的经验，SDN 厂商倾向于用营销术语混淆其技术，并且需要一段时间才能弄清楚每个厂商实际上是如何通过 hypervisor
+  将分组路由到物理网络的。许多早期的 Neutron SDN 插件，如 Nicira 的，都是基于 Nicira 编写的 Open vSwitch 软件。这些解决方案的性能较差，随后有多种不同的方法将分组的处理从
+  Linux 操作系统中的“用户空间”下移到“内核空间”。人们还致力于通过简化分组从实例向下经过交换机的路径来提高参考 Open vSwitch 实现的性能。该项目称为
+  Open Virtual Network，或 OVN。
+
+
+  SDN 厂商倾向于在三个方面进行区分。第一个是其解决方案的弹性。评估 SDN 技术时，组织应注意在给定拓扑中第 3 层路由器如何实现高可用性，以及组件故障如何影响分组流。第二个是给定解决方案的管理界面。大多数
+  SDN 厂商将拥有一个引人注目且有用的用户界面，用于调试租户网络中的分组流。第三个需要考虑的因素是性能。根据我们的经验，这是大多数组织决定的因素。这些解决方案的性能通常存在很大差异，并且在概念验证（POC）期间应重点关注这一点。
+
+
+  ## 物理网络设计
+
+
+  任何关于 OpenStack 网络的讨论都不应缺少对 **spine-leaf** 物理网络架构的提及。Spine-leaf 是传统 **multi-tier**
+  网络架构的替代方案，后者由核心、汇聚和接入层组成。Spine-leaf 对汇聚层的设计进行了修改，以减少连接到不同接入交换机的服务器之间的跳数。汇聚层成为 **spine**，其中每个接入交换机（**leaf**）都可以通过单个
+  spine 交换机到达每个其他接入交换机。这种架构被认为是水平可扩展云工作负载的先决条件，这些工作负载更关注实例之间的流量（东西向流量）而不是实例与互联网之间的流量（南北向流量）。
+
+
+  Spine-leaf 网络设计对 OpenStack 部署的主要影响是第 2 层网络通常在 spine 处终止——意味着子网不能从 leaf 延伸到 leaf。这有几个影响。首先，虚拟
+  IP 不能从 leaf 迁移到 leaf，因此 External 网络被限制在单个 leaf。如果 leaf 边界是机顶交换机，则这会将给定控制平面的所有负载均衡器置于单个故障域（机架）内。其次，如果实例要直接连接到它们，则
+  Provider 网络需要物理连接到 OpenStack 区域内的每个计算节点。这种限制可以将 OpenStack 区域限制为 leaf 的大小。同样，如果 leaf
+  边界是机顶交换机，这会产生非常小的区域，从而导致控制节点与计算节点比例异常高。
+
+
+  鉴于这些限制，我们在 OpenStack 安装中看到了几种不同的 spine-leaf 实现方法。第一种方法是在给定部署中的 leaf 之间简单地拉伸 L2 网络。需要拉伸的唯一网络是
+  External API 网络和 Provider 网络。如果实例不会直接连接到 Provider 网络（即，如果使用浮动 IP 进行外部连接），则这些网络只需在故障域之间拉伸，以确保单个机架的丢失不会导致控制平面崩溃。选择在机架之间拉伸
+  L2 的部署通常将机架分组为由三个或更多机架组成的 **pods**，然后这些机架成为 leaf 边界。我们看到的第二种方法是创建 spine 内的隧道，以模拟机顶交换机之间拉伸的
+  L2 子网。无论哪种方式，网络架构团队与云架构团队之间的协作都应导致组织可支持的解决方案。
+
+
+
+
+
+  浮动 IP 是 IP 地址池，通常面向外部，可以随意附加到运行中的实例或从中分离，以提供对实例的外部访问。这些浮动 IP 地址与租户路由器关联，并动态分配。
+
+
+  ## 存储设计
+
+
+  随着近年来计算硬件成本的下降，受处理器或内存性能不足制约的工作负载越来越少。相反，大多数工作负载经过调优后，瓶颈在于 I/O——尤其是存储 I/O。OpenStack
+  工作负载通常将操作系统存储与应用存储分离，而 Cinder 以及不同的对象存储项目提供了通过单一接口呈现多种存储的机制。这种能力使租户能够选择符合其应用需求的存储。除了
+  Cinder 为应用提供持久性外，块存储和对象存储还为实例提供存储持久性，并支持实例在线迁移、备份和恢复。
+
+
+  ## 临时存储
+
+
+  临时存储是指将 Glance 镜像本地复制到计算节点以实例化虚拟机时消耗的存储。Glance 镜像通常是稀疏的，大小往往不到 1 GB。实例化后，镜像为实例的操作系统提供根磁盘。这些根磁盘同样采用稀疏配置，但通常会长到
+  10、20 或 40 GB 大小。在传统的 OpenStack 部署中，临时存储由计算节点的内部磁盘提供，当计算节点发生故障或实例被终止时，这些存储会丢失或被回收。不过如今，许多组织会选择将临时存储放在共享存储上。
+
+
+  使用共享存储作为临时实例存储有两个主要原因。第一个原因是，通过为实例提供在线迁移能力，让这些临时实例不那么“临时”。如果只使用本地临时存储，计算节点一旦重启，就会终止它当前托管的所有实例。如果实例由共享存储（通常是
+  NFS 或基于软件的存储，如 Ceph）支持，则可以将其迁移到可访问同一存储的另一计算节点，而无需停机。这允许云运维人员将计算节点置于“维护模式”以便打补丁。当计算节点准备好再次托管工作负载时，实例可以跨节点重新平衡。在计算节点发生故障时，拥有实例的实时副本也很有用。由共享存储支持的实例可以疏散到健康计算节点，且不会丢失状态。
+
+
+  共享存储对临时存储具有吸引力的第二个原因是，某些存储后端支持在 Glance 镜像与运行中实例之间进行去重。在传统的实例生命周期中，镜像与实例之间并没有太大的去重需求。然而，如果具备去重能力，运维人员就可以将实例快照用作备份。实例可以定期备份，而不会消耗过多的共享存储。OpenStack
+  的 Kilo 和 Liberty 版本中的新功能允许在快照操作期间使客户机操作系统静默（quiescing），从而启用这种“在线备份”能力。
+
+
+  ## 块存储
+
+
+  使用共享存储作为临时存储是为虚拟机实现持久化能力的一种方式，但更传统的方式是在 Cinder 卷上实例化 Glance 镜像。由 Cinder 卷支持的实例可以进行在线迁移、在线快照，并在状态完整的情况下疏散。如今，几乎所有主流存储产品都有对应的
+  Cinder 驱动，并且在单个 OpenStack 部署中配置多个后端也很常见。这允许 OpenStack 租户为其工作负载选择适当的后端。例如，一个数据库实例的操作系统可以放在相对廉价的临时磁盘上，而数据则存放在通过光纤通道连接的高性能
+  SAN 存储上。如果实例发生故障，根磁盘会被丢弃，新实例会挂载到持久的 Cinder 卷上。对于从传统虚拟化平台迁移来的实例，Cinder 卷作为根磁盘也很有吸引力。由
+  Cinder 支持的实例在用户体验上与这些平台非常相似。
+
+
+  为 Cinder 实现选择存储后端是一个相对直接的过程。云架构师应充分利用组织内存储架构师已经拥有的关系和知识。存储设备相对昂贵，因此 POC（概念验证）应尽可能在现有硬件设备上进行。NetApp
+  文件服务器和 EMC SAN 等常见设备的 Cinder 驱动具有一些有趣的功能，可以在实验室中进行验证。更特殊硬件设备的供应商通常也愿意出借硬件用于 POC。
+
+
+  我们合作过的大多数组织都已在其 OpenStack 实现中测试了基于软件的存储，其中许多组织已在至少一个存储层中采用基于软件的存储。尤其是 Ceph，它与 OpenStack
+  在镜像、临时和块存储方面有着紧密的集成。在此配置下使用时，Ceph 具有提供去重的优势。这一点，加上它对商用硬件的使用，使其从成本角度来看极具吸引力。
+
+
+  ## 对象存储
+
+
+  Swift 是 OpenStack 最早的两个服务之一，而对象存储是 OpenStack（以及 Amazon）云中最初的持久性机制。随着 OpenStack 被越来越多地用于传统工作负载，对象存储已失去其很大一部分相关性。事实上，我们在企业领域参与的许多
+  OpenStack 部署在初始版本中并不包含对象存储。
+
+
+  对对象存储采取“如果你建好了，他们自然会来”策略的一个简单方法，就是利用对象存储来存放 Glance 镜像。虽然你的租户中可能很少有人会带着能够通过 S3 兼容接口持久化数据的应用来使用你的
+  OpenStack 部署，但几乎所有租户都可以使用 Nova 中的快照功能来改善他们在平台上的体验。将 Glance 镜像存储在 Swift 中可使其高度可用，并提供机会将其与计算基础设施共置，从而大幅提高网络性能。
+
+
+  对象存储后端的选择高度依赖于块存储和临时存储的选择。如果使用 Ceph 作为块存储，那么使用 Ceph 作为对象存储将大大简化平台的管理。NetApp 提供了与
+  Swift 的集成；如果使用 NetApp 作为块存储，那么选择 NetApp 作为对象存储后端可能更有利。Swift 也是 OpenStack 中的默认对象存储提供商，从这个角度来看，在异构环境中使用它是合理的。根据我们的经验，在存储选择过程中，对象存储后端不会受到像块存储后端那样的严格审查。这可能是因为许多对象存储系统较少关注性能，更多是提供低成本方案来存储频繁读取的数据，而不是应对大量繁重的
+  I/O。
+
+
+  ## 扩展初始部署
+
+
+  为了正确评估本章讨论的不同计算、网络和存储选项，需要一个扩展的 OpenStack 部署，为不同的物理系统分配专门角色。将计算功能与控制功能分离，使我们能够正确测试不同类型的计算硬件。将存储功能与计算和控制功能分离，使我们能够正确测试不同的磁盘、NAS
+  或 SAN 配置。在本节中，我们将把第 1 章《OpenStack 简介》中部署的角色拆分到三个物理系统上。每个系统都会被分配一个角色，称为主机组（host group）。
+
+
+
+
+
+  ## 更新设计文档
+
+
+  我们的首要任务是更新第 1 章 *Introducing OpenStack* 中的设计文档，并加入一组主机组的定义。这些定义应包含在文档的 *Physical
+  architecture* 部分的开头。我们将在本次扩展的 **proof of concept (POC)** 中使用以下主机组。
+
+
+  ### Cloud controller
+
+
+  云控制器系统为 OpenStack 部署提供 API 服务、调度服务和 Horizon 仪表板服务。
+
+
+  ### Compute node
+
+
+  计算节点系统充当 KVM 超级管理器，并运行 `nova-compute` 和 `openvswitch-agent` 服务。
+
+
+  设计文档的 *Physical architecture* 部分还应包含部署的物理网络架构部分。在此部分中，每个分段网络都应被定义。每个物理主机到每个网络的连通性也应被定义。
+
+
+  Packstack 安装工具不允许指定用于 API 流量的外部网络。因此，在本次部署中我们将使用三个物理网络，一个可路由到内网的管理网络、一个为实例提供浮动 IP
+  的提供者网络，以及一个用于实例流量的租户网络。以下网络定义应添加到 *Physical architecture* 部分。
+
+
+  ### Management network
+
+
+  管理网络用于 OpenStack 部署中所有节点之间的私有通信。在本次部署中，该网络还用于承载租户和存储流量。
+
+
+  ### Provider network
+
+
+  提供者网络用于为本次部署中的租户实例提供公共端口。云控制器节点在此网络段上有一个端口。
+
+
+  ### Tenant network
+
+
+  租户网络承载部署中的租户网络流量。它充当 SDN 隧道的下层网络。计算节点和控制器节点在此网络段上都有端口。
+
+
+  还应在 *Physical architecture* 部分添加一个网络图。以下图表描述了本章中的部署：
+
+
+  ![](img/2f752555f69992669defa8b25e6dcee9_52_0.png)
+
+
+  ## 更新部署计划
+
+
+  我们实验室环境的部署计划需要更新以反映额外的硬件和网络配置。硬件表应首先更新以包含每个硬件的角色分配。例如，考虑以下表格：
+
+
+  | Hostname | Model | CPU cores | Memory | Disk | Network | Host group |
+
+  |---|---|---:|---|---|---|---|
+
+  | controller1 | DL380 | 16 | 256 GB | 500 GB | 2×10 GB | Cloud controller |
+
+  | compute1 | DL380 | 32 | 512 GB | 2 TB | 2×10 GB | Compute node |
+
+  | compute2 | DL380 | 32 | 512 GB | 2 TB | 2×10 GB | Compute node |
+
+
+  接下来，更新网络表以反映新的节点和网络：
+
+
+  | Hostname | Interface | MAC | IP | Network |
+
+  |---|---|---|---|---|
+
+  | controller1 | eth0 | 3C:97:0E:BF:6C:78 | 192.168.0.10 | Management |
+
+  |  | eth0.100 | 3C:97:0E:BF:6C:78 | 10.0.0.10 | Provider |
+
+  |  | eth0.200 | 3C:97:0E:BF:6C:78 | 172.16.0.10 | Tenant |
+
+  | compute1 | eth0 | 3C:97:0E:BF:6C:80 | 192.168.0.100 | Management |
+
+  |  | eth0.200 | 3C:97:0E:BF:6C:80 | 172.16.0.100 | Tenant |
+
+  | compute2 | eth0 | 3C:97:0E:BF:6C:81 | 192.168.0.101 | Management |
+
+  |  | eth0.200 | 3C:97:0E:BF:6C:81 | 172.16.0.101 | Tenant |
+
+
+  包含以下类似表格也很有帮助，该表格描述了部署的每个网络：
+
+
+  | Network | VLAN ID | Subnet | Gateway |
+
+  |---|---|---|---|
+
+  | Management |  | 192.168.0.0/24 | 192.168.0.1 |
+
+  | Provider | 100 | 10.0.0.0/24 | 10.0.0.1 |
+
+  | Tenant | 200 | 172.16.0.0/24 | 172.16.0.1 |
+
+
+  ## 使用新配置安装 OpenStack
+
+
+  在第 1 章 Introducing OpenStack 中，我们使用 allinone 选项运行 packstack，采用默认设置进行测试安装。Packstack
+  能够将默认选项保存到配置文件中，然后可以用文本编辑器编辑。我们将在本章中使用此功能来创建可重用的配置。此外，packstack 能够通过 SSH 将生成的 puppet
+  清单应用到远程机器上。为此工作，你需要能够从控制器机器（我们将在此运行 packstack）通过 SSH 访问部署中的其他机器。在运行 packstack 之前，先测试一下是个好主意。
+
+
+  首先，开始在部署计划的硬件表中概述的四台服务器上安装全新的操作系统副本。每个系统在部署前都需要配置网络表中指定的网络接口，并且部署计划中指定的所有要求也需要满足（即
+  NetworkManager 需要被禁用，并且 RDO 仓库需要被启用）。
+
+
+  在云控制器（controller1）上执行以下命令以生成答案文件。我们将使用它作为部署配置的模板：
+
+
+  ```bash
+
+  # packstack --gen-answer-file=packstack-answers.txt
+
+  ```
+
+
+  接下来，编辑 packstack-answers.txt 文件，更新以下参数：
+
+
+  | Parameter | Example | Description |
+
+  |---|---|---|
+
+  | `CONFIG_CONTROLLER_HOST` | `192.168.0.10` | 管理网络上云控制器的 IP 地址 |
+
+  | `CONFIG_COMPUTE_HOSTS` | `192.168.0.100, 192.168.0.101` | 管理网络上计算节点的 IP 地址 |
+
+  | `CONFIG_NETWORK_HOSTS` | `192.168.0.10` | 管理网络上云控制器的 IP 地址 |
+
+  | `CONFIG_AMQP_HOST` | `192.168.0.10` | 管理网络上云控制器的 IP 地址 |
+
+  | `CONFIG_MARIADB_HOST` | `192.168.0.10` | 管理网络上云控制器的 IP 地址 |
+
+  | `CONFIG_NEUTRON_OVS_BRIDGE_MAPPINGS` | `vlan100:br-vlan100` | 提供者网络的 neutron 网络到
+  OVS 桥的映射 |
+
+  | `CONFIG_NEUTRON_OVS_BRIDGE_IFACES` | `br-vlan100:eth0.100` | 提供者网络的 OVS 桥到物理接口的映射
+  |
+
+  | `CONFIG_NEUTRON_OVS_TUNNEL_IF` | `eth0.200` | 用于租户网络的接口 |
+
+  | `CONFIG_PROVISION_DEMO_FLOATRANGE` | `10.0.0.128/25` | 提供者网络上使用的浮动 IP 范围 |
+
+
+  > 关于 Neutron 设置的快速说明，因为它们一直让我们感到困惑。隧道接口设置由 puppet 模块用来确定 Open vSwitch 插件配置文件中的 `local_ip`
+  设置。桥映射设置与 Open vSwitch 插件配置文件中的 `bridge_mappings` 相同。然而，桥接口设置并不影响插件配置。相反，它被 puppet
+  模块用来确定如何构造由 `bridge_mappings` 设置引用的 Open vSwitch 桥。如果你打算手动构造桥，可以安全地省略该设置。
+
+
+  现在，使用新配置运行 `packstack`：
+
+
+  ```bash
+
+  # packstack --answer-file=packstack-answers.txt
+
+  ```
+
+
+  安装完成后，应使用上一章相同的步骤验证 OpenStack 部署。可以通过查询 Nova 和 Neutron 服务来验证服务分布：
+
+
+  ```bash
+
+  # nova service-list
+
+  ```
+
+
+  ![](img/2f752555f69992669defa8b25e6dcee9_55_0.png)
+
+
+  此命令将输出所有正在运行的计算服务的表格、它们运行的主机以及其状态。输出应显示 `nova-cert`、`nova-consoleauth`、`nova-scheduler`
+  和 `nova-conductor` 服务在 `controller1` 上运行，以及 `nova-compute` 服务在 `compute1` 和 `compute2`
+  上运行。
+
+
+  ```bash
+
+  # neutron agent-list
+
+  ```
+
+
+  此命令将输出所有正在运行的网络服务的类似表格。输出应显示 Metadata、L3 和 DHCP 代理在 `controller1` 上运行，以及 Open vSwitch
+  代理在 `controller1`、`compute1` 和 `compute2` 上运行。
+
+
+  ## Summary
+
+
+  OpenStack 部署经常被比作雪花。有如此多不同的方式来组合各种受支持的计算、存储和网络配置，以至于没有任何一个部署与另一个部署相似。这一类比经常在为 OpenStack
+  提供商业支持的公司中因挫败感而被使用——部署的多样性使得支持客户变得极其困难。我们合作的许多客户也表达了对众多选项的沮丧感。另一方面，大多数运行 OpenStack
+  一段时间的人都认识到拥有如此多选项的价值。它允许他们在统一的接口下不断为客户提供新的服务和功能。
+
+
+  在本章中，我们逐步介绍了 OpenStack 中的三大技术领域——计算、网络和存储。在每个领域，我们广泛描述了可用的选择，并提供了一些关于如何进行决策过程的指导。我们还扩展了部署文档和部署本身，以纳入本章涵盖的一些信息。此基本部署可以扩展，并且应提供足够的差异性，以便在做出购买决定之前在实验室中测试不同的计算、网络和存储技术。
+
+
+  在下一章中，你将了解如何通过添加高可用性软件使此简单部署更加健壮。
+
+
+
+
+
+
+  ## 参考资料
+
+
+  - Neutron 插件列表：https://wiki.openstack.org/wiki/Neutron#Plugins
+
+  - Cinder 驱动列表：https://wiki.openstack.org/wiki/CinderSupportMatrix
+
+  - OpenStack 发行版列表：https://www.openstack.org/marketplace/distros/
+
+  - 虚拟化标准性能评估比较：http://spec.org/virt_sc2013/
+
+  '
+- "## 规划失败（和成功）\n\n在本章中，我们将逐步介绍如何设计云架构以避免硬件和软件故障。OpenStack 控制平面由 Web 服务、应用服务、数据库服务和消息总线组成。这些层都需要不同的方式来实现高可用性，并且一些组织可能已经为每个服务定义了架构。我们看到客户要么重用这些现有模式，要么采用特定于\
+  \ OpenStack 平台的新模式。这两种方法都合理，具体取决于部署规模。许多成功的部署实际上实现了这两种方法的混合。\n\n例如，如果你的组织已有一种受支持的高可用\
+  \ MySQL 数据库模式，你可能会选择该模式而不是本章中概述的模式。如果你的组织没有高可用 MongoDB 的模式，你可能需要设计一个新的模式。\n\n本章分为以下主题：\n\
+  \n- 高可用控制平面策略和模式\n- OpenStack 区域、单元和可用区\n- 更新设计文档并实施设计\n\n## 构建高可用控制平面\n\n在 Folsom\
+  \ 和 Grizzly 时代，为 OpenStack 控制平面设计高可用性（H/A）方案有点像黑魔法。OpenStack 高可用性指南最初迭代中推荐的许多技术都特定于\
+  \ Ubuntu Linux 发行版，在基于 Red Hat Enterprise Linux 的发行版上不可用。\n\n当时，标准的集群资源管理器 Pacemaker\
+  \ 未得到 Red Hat 支持。因此，使用 Ubuntu 的架构师可能会使用一套软件，使用 CentOS 或 RHEL 的可能会使用另一套软件，而使用 Rackspace\
+  \ 或 Mirantis 发行版的可能会使用又一套软件。然而，如今技术栈已经趋于一致，H/A 模式在很大程度上与所使用的发行版无关。\n\n### 关于失败和成功\n\
+  \n当我们设计高可用的 OpenStack 控制平面时，我们要缓解两种不同的场景：\n\n- 第一种是故障。当物理硬件损坏时，我们希望确保在无需人工干预的情况下恢复并继续为用户提供服务。\n\
+  - 第二种也许更重要的场景是成功。\n\n软件系统在人类开始使用之前总是按设计和测试的方式工作。虽然我们的自动化测试套件会尝试启动合理数量的虚拟对象，但人类保证会尝试启动不合理数量的对象。此外，我们处理过的许多\
+  \ OpenStack 项目都远远超出了预期规模，需要即时扩展。\n\n我们早期参与的一个基于 Havana 的云使用了基于内存的 Fibre Channel\
+  \ 存储阵列作为 Cinder 后端。我们对平台的所有自动化测试都成功了，但在移交后一周内，我们被告知操作员无法启动虚拟实例。我们的自动化单元测试继续成功，但操作员进行的手动测试持续失败。困惑之下，我们与操作员坐下来查看他们做了什么不同的事情。在\
+  \ Horizon UI 中，有一个选项可以同时通过单个 API 命令启动多个实例。操作员的租户配额为 100 个实例，他们在测试平台时指定了 100 个实例。前\
+  \ 8 个会成功，但最后 92 个会失败。事实证明，后端只能执行八个并发操作，超过这个数量就会出错。我们的单元测试会并发创建多个实例，但从不超过八个，因此我们从未发现该错误。\n\
+  \n在设计 OpenStack 云时，我们需要为几种不同的成功场景做计划。\n\n首先，我们需要为实例数量的增长做计划。这相对直接。每个额外实例都会增加数据库的大小，增加\
+  \ Ceilometer 中的计量数据，最重要的是，它会增加计算节点的数量。添加计算节点和报告会给消息总线带来压力，而消息总线通常是 OpenStack 区域或单元规模的限制因素。我们在讨论将\
+  \ OpenStack 云划分为区域、单元和可用区时将更详细地讨论这一点。\n\n我们需要计划的第二种增长类型是 API 调用的增加。支持持续集成（CI）开发环境的部署可能（相对）计算需求较小，但\
+  \ CI 通常会快速启动和拆除环境。这会产生大量 API 流量，进而产生大量数据库和消息流量。\n\n在托管环境中，最终用户也可能手动产生大量 API 流量，因为他们启动和停止实例，或手动检查已启动部署的状态。虽然服务目录可能会定期检查其已启动实例的状态，但人类倾向于以不规律的方式刷新浏览器。对平台的自动化测试往往严重低估了这种行为。\n\
+  \n考虑到这一点，我们采用的任何模式都需要满足以下要求：\n\n- API 服务必须在控制平面硬件故障期间保持可用\n- 提供 API 服务的系统必须能够水平扩展（理想情况下是弹性扩展）以应对不可预见的需求\n\
+  - 数据库服务必须能够垂直或水平扩展以应对平台不可预见的增长\n- 消息总线可以根据所选技术进行垂直或水平扩展\n\n最后，每个系统都有其限制。这些限制应在架构文档中定义，以便容量规划能够考虑它们。在某个时刻，控制平面已扩展到其极限，应部署第二个控制平面以提供额外容量。虽然\
+  \ OpenStack 设计为大规模可扩展，但它并非设计为无限可扩展。\n\n## 控制平面的高可用性模式\n\n目前在 OpenStack 部署中，常用的实现控制平面高可用的方法有三种。\n\
+  \n第一种是最简单的。采用我们在第 2 章《设计云》中部署的单节点云控制器，对其进行虚拟化，然后使用 VMware 集群或 Linux 集群使虚拟机高可用。虽然此选项简单且能提供故障场景，但它只能垂直扩展（不能水平扩展），并且不能提供成功场景。因此，它仅应在计算节点数量有限且\
+  \ API 调用数量有限的区域中使用。实际上，这种方法并不常用，我们在此不再赘述。\n\n第二种模式提供 H/A，但不提供水平可扩展性。这是 OpenStack\
+  \ 高可用性指南中描述的“主/备”场景。在 Red Hat，我们在 Folsom 和 Grizzly 部署中使用了这种方法很多，但从 Havana 开始就放弃了它。它与前面描述的虚拟化解决方案类似，但不是依赖\
+  \ VMware 集群或 Linux 集群来重启失败的虚拟机，而是依赖 Linux 集群在第二个云控制器节点上重启失败的服务，该节点也运行相同的服务子集。此模式不能为\
+  \ Web 层提供成功场景，但仍可用于数据库和消息层。一些网络服务可能仍需要作为主/备提供。\n\n\n\n\n\nOpenStack 架构可用的第三种 H/A\
+  \ 模式是 Active/Active 模式。在此模式中，服务在负载均衡服务或设备后面水平扩展，该负载均衡服务或设备为 Active/Passive。作为一般规则，只要可能，大多数\
+  \ OpenStack 服务都应启用为 Active/Active，以允许成功场景同时减轻故障场景。理想情况下，Active/Active 服务可以通过简单地添加额外的控制平面节点，在无需服务中断的情况下弹性扩展。\n\
+  \nActive/Passive 和 Active/Active 设计都需要集群软件来确定服务及其运行主机的健康状况。在本章中，我们将使用 Pacemaker\
+  \ 作为集群管理器。一些架构师可能会选择使用 Keepalived 而不是 Pacemaker。\n\n除了这三种场景之外，扩展 OpenStack 服务始终存在超出一定限制的限制。如前所述，消息总线通常是首先出现扩展问题的服务；然而，它并不是唯一的地方。在\
+  \ Canonical 和 Mirantis 的扩展测试中，测试人员发现 Nova 和 Cinder 项目以及数据库服务在扩展时也存在问题。始终最好实践是监控所有\
+  \ OpenStack 服务的响应能力，并在模拟环境中使用 Tempest 和/或 Rally 等工具进行扩展测试，以评估需求增长对 OpenStack 云的影响。\n\
+  \n## Active/Passive 服务配置\n\n在 Active/Passive 服务配置中，服务配置并部署到两个或多个物理系统。服务与 **虚拟 IP\
+  \ (VIP)** 地址相关联。集群资源管理器（通常是 Pacemaker）用于确保在任何时间点服务及其 VIP 仅在两个系统中的一个上启用。资源管理器可以配置为更偏好其中一台机器。\n\
+  \n当服务运行的机器发生故障时，资源管理器首先确保故障机器不再运行，然后在第二台机器上启动服务。确保故障机器不再运行的过程称为 **fencing**。Fencing\
+  \ 通常涉及使用 BIOS 上的管理接口关闭机器电源。fence 代理还可能与连接到故障服务器的电源供应器通信，以确保系统已关闭。\n\n某些服务（如 Glance\
+  \ 镜像注册表）需要共享存储才能运行。如果存储基于网络，例如 NFS，存储可以同时挂载在活动节点和被动节点上。如果存储基于块，例如 iSCSI，存储将仅挂载在活动节点上，并且资源管理器将确保存储随服务和\
+  \ VIP 一起迁移。\n\n## Active/Active 服务配置\n\n大多数 OpenStack API 服务设计为可同时在多个系统上运行。此配置即\
+  \ Active/Active 配置，需要负载均衡器在各个活动服务之间分配流量。负载均衡器管理服务的 VIP，并确保后端系统在转发流量之前正在监听。集群管理器确保\
+  \ VIP 在任何时候仅在单个节点上处于活动状态。后端服务在 Active/Active 配置中可能由集群管理器管理，也可能不由其管理。服务或系统故障由负载均衡器检测，故障服务将被移出轮换。\n\
+  \nActive/Active 服务配置有以下几个优势：\n\n- 第一个优势是它允许水平扩展。如果给定服务需要额外容量，可以启动运行该服务的新系统，并将其在负载均衡器后面加入轮换，而无需任何停机。控制平面在过度配置的情况下也可以在不中断的情况下缩减规模。\n\
+  - 第二个优势是 Active/Active 服务的平均恢复时间要短得多。Fencing 操作通常需要长达两分钟，并且在集群资源管理器将服务从故障系统移动到健康系统之前需要进行\
+  \ fencing。负载均衡器可以立即检测系统故障并停止向无响应的节点发送请求，同时集群管理器在后台进行 fencing。\n\n只要可能，架构师应为控制平面服务采用\
+  \ Active/Active 模式。\n\n## OpenStack 服务具体说明\n\n在本节中，我们将逐一介绍每个 OpenStack 服务并概述其 H/A\
+  \ 策略。虽然大多数服务可以在负载均衡器后面配置为 Active/Active，但其中一些必须配置为 Active/Passive，而其他一些可以配置为 Active/Active。一些配置还取决于\
+  \ OpenStack 的特定版本，尤其是 Ceilometer、Heat 和 Neutron。以下详细信息截至 OpenStack 的 Liberty 版本。\n\
+  \n### OpenStack Web 服务\n\n作为一般规则，所有 Web 服务和 Horizon 仪表板都可以运行 Active/Active。这些包括\
+  \ Keystone、Glance、Nova、Cinder、Neutron、Heat 和 Ceilometer 的 API 服务。Nova、Cinder、Neutron、Heat\
+  \ 和 Ceilometer 的调度服务也可以部署为 Active/Active。这些服务不需要负载均衡器，因为它们响应消息总线上的请求。\n\n唯一必须运行\
+  \ Active/Passive 的 Web 服务是 Ceilometer Central 代理。此服务可以配置为在多个实例之间拆分其工作负载，以支持水平扩展。\n\
+  \n### 数据库服务\n\n所有 OpenStack Web 服务的状态都存储在中央数据库中，通常是 MySQL 数据库。MySQL 通常以 Active/Passive\
+  \ 配置部署，但可以使用 Galera 复制扩展使其变为 Active/Active。Galera 是 MySQL（OpenStack 中的 MariaDB）的集群软件，它使用同步复制来实现\
+  \ H/A。然而，即使使用 Galera，我们仍然建议仅将写入定向到其中一个副本；OpenStack 服务使用的某些查询在写入多个主节点时可能会死锁。使用 Galera，通常会在集群前面部署负载均衡器，并配置为一次仅将流量传递到一个副本。此配置可减少服务的平均恢复时间，同时确保数据一致性。\n\
+  \n在实践中，许多组织会将高度可用的 MySQL 部署偏好交给数据库架构师。毕竟，通常是数据库管理团队负责响应该组件的故障。\n\n使用 Ceilometer\
+  \ 服务的部署还需要 MongoDB 数据库来存储遥测数据。MongoDB 按设计可水平扩展，通常以至少三个副本的 Active/Active 方式部署。\n\n\
+  ### 消息总线\n\n所有 OpenStack 服务都通过消息总线进行通信。如今大多数 OpenStack 部署使用 RabbitMQ 服务作为消息总线。RabbitMQ\
+  \ 可以通过称为“mirrored queues”的功能配置为 Active/Active。RabbitMQ 服务不进行负载均衡；每个服务都会获得潜在节点的列表，客户端负责确定哪些节点处于活动状态，哪些节点已失败。\n\
+  \n与 OpenStack 一起使用的其他消息服务，如 ZeroMQ、ActiveMQ 或 Qpid，可能有不同的策略和配置来实现 H/A 和水平扩展。对于这些服务，请参阅文档以确定最佳架构。\n\
+  \n### 计算、存储和网络代理\n\nOpenStack 中的计算、存储和网络组件有一组由 API 服务调度的执行工作的服务。这些服务在启动时通过消息总线向调度器注册自己。调度器负责确定服务的健康状况并将工作调度到活动服务。计算和存储服务都设计为可运行\
+  \ Active/Active，但网络服务需要额外考虑。\n\nOpenStack 部署中的每个超visor 都运行 nova-compute 服务。当此服务启动时，它会向\
+  \ nova-scheduler 服务注册自己。当前可用的 nova 服务列表可通过 nova service-list 命令获得。如果计算节点不可用，其状态列为\
+  \ down，调度器在执行实例操作时会跳过它。当节点变得可用时，调度器会将其包含在可用主机列表中。\n\n对于基于 KVM 或 Xen 的部署，nova-compute\
+  \ 服务每个超visor 运行一次且不做高可用。对于基于 VMware 的部署，则为每个 vSphere 集群运行单个 nova-compute 服务。因此，此服务应以\
+  \ Active/Passive 配置实现高可用。这通常通过在 vSphere 集群内虚拟化该服务并配置虚拟机为高可用来实现。\n\nCinder 包含一个称为卷服务或\
+  \ cinder-volume 的服务。卷服务在启动时向 Cinder 调度器注册自己，并负责在块存储设备上创建、修改或删除 LUN。对于支持多写入器的后端，可以以\
+  \ Active/Active 配置运行多个此服务的副本。LVM 后端（这是参考后端）不可高可用，每个块设备只能有一个 cinder-volume 服务。这是因为\
+  \ LVM 后端负责为本地连接的存储设备提供 iSCSI 访问。\n\n![](img/2f752555f69992669defa8b25e6dcee9_65_0.png)\n\
+  \n因此，OpenStack 的高可用部署应避免使用 LVM Cinder 后端，而应使用支持多个 cinder-volume 服务的后端。\n\n\n\n\n\
+  最后，OpenStack 的 Neutron 组件包含多个代理，它们在高可用部署中都需要特殊考虑。DHCP 代理可以配置为高可用，而每个子网响应 DHCP 请求的代理数量由\
+  \ neutron.conf 文件中的参数 `dhcp_agents_per_network` 控制。该参数通常设置为 2，无论控制平面中配置运行多少个 DHCP\
+  \ 代理。\n\n在 OpenStack 的大部分历史中，Neutron 中的 L3 路由代理一直是单点故障。它可以在主备（Active/Passive）配置下实现高可用，但其故障切换意味着租户空间中的网络连接会中断。许多第三方\
+  \ Neutron 插件已经以不同方式解决了这个问题，而参考 Open vSwitch 插件自 Juno 版本起提供了高可用的 L3 代理。关于使用 OpenStack\
+  \ 分布式虚拟路由器（DVR）解决单一路由点故障的方案细节，请参阅 OpenStack 基金会的 Neutron 文档：http://docs.openstack.org/liberty/networking-guide/scenario-dvr-ovs.html。\n\
+  \n## 区域、单元和可用区\n\n如前所述，OpenStack 设计为可扩展的，但不是无限可扩展的。架构师可以使用三种不同的技术来隔离 OpenStack 云：区域（region）、单元（cell）和可用区（availability\
+  \ zone）。在本节中，我们将逐一说明这些概念是如何映射到虚拟机监控程序拓扑的。\n\n## 区域\n\n从最终用户的角度来看，OpenStack 区域等同于\
+  \ Amazon Web Services 中的区域。区域位于不同的数据中心，通常以其地理位置命名。如果您的组织在菲尼克斯和罗利各有一个数据中心，那么您至少会有一个\
+  \ PHX 区域和一个 RDU 区域。希望在地理上分散工作负载的用户会将部分工作负载放在 PHX，部分放在 RDU。区域拥有独立的 API 端点，尽管 Horizon\
+  \ UI 对多区域有一定支持，但它们本质上完全是独立的部署。\n\n从架构的角度来看，实现区域有两个主要的设计选择，如下所示：\n\n- 第一个是关于授权。用户希望使用相同的凭据访问每个\
+  \ OpenStack 区域。有几种方法可以实现这一点。最简单的方法是在每个区域的 Keystone 服务中使用通用的后端存储（通常是 LDAP）。在这种情况下，用户必须分别向每个区域进行身份验证以获取令牌，但凭据是相同的。\n\
+  \n在 Juno 及更高版本中，Keystone 还支持跨区域联合。在这种场景下，一个区域授予的 Keystone 令牌可以提交给另一个区域来验证用户身份。虽然目前这种做法尚未广泛使用，但它是\
+  \ OpenStack 基金会的一个重点领域，并且将来可能会得到更广泛的采用。\n\n- 区域架构的第二个主要考虑因素是是否向每个区域提供一组相同的 Glance\
+  \ 镜像。虽然目前正在进行跨联邦云复制 Glance 镜像的工作，但大多数组织仍在手动确保共享镜像的一致性。这通常涉及围绕镜像发布和废弃构建工作流，并需要考虑区域布局。\n\
+  \n确保跨区域镜像一致的另一个选择是使用 Swift 实现中央镜像仓库。这也需要跨多个数据中心共享 Keystone 和 Glance 服务。关于如何设计具有共享服务的多区域的详细信息，请参阅\
+  \ OpenStack 架构设计指南。\n\n## 单元\n\nNova 计算服务具有单元（cell）的概念，可用于在单个区域内隔离大型虚拟机监控程序池。此技术主要用于缓解\
+  \ OpenStack 消息总线的可扩展性限制。CERN 的部署广泛使用单元来在单个区域内实现大规模可扩展性。\n\n不同服务对单元的支持各不相同，因此单元在少数超大型云部署之外并不常见。CERN\
+  \ 的部署有完善的文档记录，应作为此类部署的参考。\n\n根据我们的经验，在单个数据中心内部署多个区域比实现单元来实现大规模扩展要简单得多。向用户展示地理位置上多个\
+  \ API 端点所带来的额外不便，通常会被更健壮平台的好处所抵消。如果一个地理区域内有多个控制平面，单个控制平面的故障就不会那么严重。\n\n![](img/2f752555f69992669defa8b25e6dcee9_68_0.png)\n\
+  \n单元架构在网络和实例放置调度方面有其自身的挑战。一些支持 OpenStack 工作的大型公司多年来一直在努力克服这些障碍。然而，许多不同的 OpenStack\
+  \ 发行版目前正在设计新的控制平面方案。这些新设计将开始将 OpenStack 控制平面拆分为多个容器，以微服务架构类型运行 OpenStack 服务。这样，服务本身可以放置在任何位置，并根据负载进行水平扩展。最近引起广泛关注的一个架构是\
+  \ Kolla 项目，它推广 Docker 容器和 Ansible playbook，为运行 OpenStack 云提供生产级容器和部署工具。更多信息请访问 https://wiki.openstack.org/wiki/Kolla。\n\
+  \n## 可用区\n\n可用区用于在单个 OpenStack 区域内对虚拟机监控程序进行分组。可用区对最终用户可见，并应用于向用户提示云的底层拓扑。可用区最常见的用例是向用户暴露故障域。\n\
+  \n为了确保部署在 OpenStack 上的服务的高可用性，用户通常希望将其服务的各个组件部署到不同机架内的虚拟机监控程序上。这样，一个机架顶部交换机或 PDU\
+  \ 的故障只会导致提供服务的部分实例宕机。因此，机架自然地构成了可用区的边界。除了向最终用户暴露故障域之外，可用区还有一些其他有趣的用途。我们合作过的一个金融服务客户要求每个业务线的实例都运行在专用硬件上。我们结合使用可用区和\
+  \ AggregateMultiTenancyIsolation Nova 调度器过滤器，以确保每个租户都能访问专用的计算节点。\n\n可用区也可以用于向最终用户公开硬件类别。例如，具有更快处理器的宿主机可以放在一个可用区中，而具有较慢处理器的宿主机可以放在不同的可用区中。这允许最终用户根据计算需求决定将工作负载放在何处。\n\
+  \n## 更新设计文档\n\n在本章中，我们讨论了在 OpenStack 部署中实现高可用性和可扩展性的不同方法和注意事项。作为云架构师，我们需要为部署选择正确的方法，然后对其进行全面记录，以便组织内更大的团队进行评估。\n\
+  \n每个主要的 OpenStack 供应商都有一个高可用部署的参考架构，这些应作为设计的起点。然后，设计应与现有企业架构集成，并加以修改，以确保遵循组织内不同利益相关者确立的最佳实践。\n\
+  \n例如，Red Hat 的高可用控制平面使用 Galera 扩展来实现 Active/Active MariaDB 服务，但组织内的数据库架构师可能只支持 Active/Passive\
+  \ 配置中的 Oracle MySQL。如果云架构师打算向数据库管理团队寻求支持，则可能选择实现数据库架构师经过验证的模式。组织内的网络架构师可能更熟悉支持 F5\
+  \ 负载均衡器，而不是 HAProxy 负载均衡器。\n\n组织内的系统管理员可能更熟悉支持 Pacemaker，而不是 Keepalived。设计文档呈现了这些关键技术各自的选择，并在部署前为利益相关者提供评论的机会。\n\
+  \n## 规划物理架构\n\n在上一章中，我们更新了物理架构部分，以包含将要部署的各种主机组的定义。实现高可用性最简单的方法是向部署中添加额外的云控制器并对它们进行集群。其他部署可能选择将服务隔离到不同的主机类别中，然后对这些类别进行集群。这可能包括将数据库服务分离到数据库节点、将消息传递服务分离到消息传递节点，以及将\
+  \ memcached 服务分离到 memcache 节点。\n\n\n\n负载均衡服务也可能位于它们自己的节点上。将可扩展服务映射到物理（或虚拟）主机时，主要考虑以下因素：\n\
+  \n-   该服务是水平扩展还是垂直扩展？\n-   对该服务进行垂直扩展是否会妨碍其他共置服务的性能？\n-   该服务是否有其他服务不具备的特殊硬件或网络要求？\n\
+  \n例如，一些使用 HAProxy 负载均衡服务的 OpenStack 部署选择将负载均衡节点分离出来，放在单独的硬件上。负载均衡节点托管的 VIP 必须处于公开的可路由网络上，而它们所路由到的服务的内部\
+  \ IP 则没有此要求。将 HAProxy 服务放在独立主机上，可以让控制平面的其余部分仅使用私有地址。\n\n将所有 API 服务集中在专用主机上可能有助于水平扩展。这些服务不需要由集群资源管理器管理，可以通过向负载均衡器添加额外节点来进行扩展，而无需更新集群定义。数据库服务具有高\
+  \ I/O 需求。将这些服务隔离到可以访问高性能光纤通道的机器上可能是合理的。\n\n最后，你应该考虑是否虚拟化控制平面。如果控制平面将进行虚拟化，创建额外的主机组来托管专用服务就会变得非常有吸引力。将八九台虚拟机专用于控制平面与将八九台物理机专用于控制平面是完全不同的情况。\n\
+  \n大多数高可用控制平面至少需要三个节点，以确保集群资源管理器能够轻松确定法定人数。虽然为一百节点的 OpenStack 部署专门使用三个物理节点来承担控制功能非常合理，但专门使用九个物理节点可能就不一定了。我们合作过的许多组织已经拥有基于\
+  \ VMware 的集群可用于托管管理设备，控制平面可以部署在该现有环境内。部署纯 KVM 云的组织可能不想承担在 OpenStack 之外管理额外虚拟机所带来的额外运维复杂性。\n\
+  \n## 更新物理架构设计\n\n一旦确定服务到物理（或虚拟）主机的映射，就应该更新设计文档，加入主机组定义及其相关功能。下面给出一个简单示例：\n\n-  \
+  \ **负载均衡器：**这些系统以主动/被动配置提供负载均衡服务\n-   **云控制器：**这些系统以主动/主动配置提供 API 服务、调度服务和 Horizon\
+  \ 仪表板服务\n-   **数据库节点：**这些系统以主动/被动配置提供 MySQL 数据库服务\n-   **消息节点：**这些系统以主动/主动配置提供 RabbitMQ\
+  \ 消息服务\n-   **计算节点：**这些系统充当 KVM 虚拟化主机，并运行 `nova-compute` 和 `openvswitch-agent` 服务\n\
+  \n仅使用云控制器主机组的部署可以使用以下定义：\n\n-   **云控制器：**这些系统以主动/被动配置提供负载均衡服务，并以主动/主动配置提供 API 服务、MySQL\
+  \ 数据库服务和 RabbitMQ 消息服务\n-   **计算节点：**这些系统充当 KVM 虚拟化主机，并运行 nova-compute 和 openvswitch-agent\
+  \ 服务\n\n定义主机组后，应更新物理架构图，以反映主机组到部署中物理主机的映射。这还应包括网络连接方面的考虑。以下是可包含在设计文档中的架构图示例：\n\n\
+  ![](img/2f752555f69992669defa8b25e6dcee9_72_0.png)\n\n## 在实验室部署中实现高可用性（H/A）\n\n\
+  在最后这一节中，我们将通过添加第二个控制器节点并配置集群软件，使我们在第 2 章《构建云架构》中部署的当前实验室部署实现高可用。此示例应足够简单，以便在实验室中轻松实施，同时仍允许你评估相关技术。\n\
+  \n### 配置第二台控制器\n\n在后续章节中，我们将介绍更灵活的部署方法，这些方法允许细粒度的服务放置和自动化集群配置。在本章中，我们只扩展第 2 章《构建云架构》中的\
+  \ Packstack 部署。Packstack 并不用于部署多个控制器，因此需要手动配置一些服务。\n\n要配置第二台控制器，请以配置第一台控制器相同的方式，在新机器上安装操作系统，然后从第一台控制器复制\
+  \ Packstack 应答文件。编辑应答文件，将 CONFIG_CONTROLLER_HOST、CONFIG_NETWORK_HOSTS 和 CONFIG_STORAGE_HOST\
+  \ 替换为新控制器的 IP 地址。\n\n我们不会重新配置计算节点或现有控制器，因此请将你在第 2 章《构建云架构》中配置的计算节点和控制器添加到应答文件的 EXCLUDE_SERVERS\
+  \ 参数中。我们会将 MySQL、Redis、MongoDB 和 RabbitMQ 服务保留在第一台控制器上，因此不应修改这些值。\n\n使用我们在第 2 章《构建云架构》中使用的相同命令，在新控制器上运行\
+  \ Packstack：\n\n```\npackstack --answer-file <answer-file>\n```\n\nPackstack 完成后，你应该可以通过访问第二台主机的\
+  \ IP 地址，并使用第 2 章《构建云架构》中使用的相同凭据，登录仪表板。\n\n### 安装 Pacemaker 资源管理器\n\n接下来，我们将安装 Pacemaker\
+  \ 来管理之后要与 HAProxy 配合使用的 VIP，以使 Web 服务高可用。我们假设控制器节点已经可以通过 yum 获取集群软件。\n\n1.  首先，在两台节点上使用以下命令安装\
+  \ Pacemaker：\n\n    ```\n    # yum install -y pcs fence-agents-all\n    ```\n\n\
+  2.  运行以下命令验证软件是否安装正确：\n\n    ```\n    # rpm -q pcs\n    pcs-0.9.137-13.el7_1.3.x86_64\n\
+  \    ```\n\n3.  接下来，向防火墙添加规则以允许集群流量：\n\n    ```\n    # firewall-cmd --permanent\
+  \ --add-service=high-availability\n    ```\n\n4.  使用以下命令在每个节点上设置 Pacemaker 集群的密码：\n\
+  \n    ```\n    # passwd hacluster\n    ```\n\n5.  在每个节点上启动 Pacemaker 集群管理器：\n\n\
+  \    ```\n    # systemctl start pcsd.service\n    # systemctl enable pcsd.service\n\
+  \    ```\n\n6.  然后，在第一台节点上使用以下命令对节点进行身份验证：\n\n    ```\n    # pcs cluster auth controller1\
+  \ controller2\n    Username: hacluster\n    Password:\n    controller1: Authorized\n\
+  \    controller2: Authorized\n    ```\n\n7.  最后，在第一台节点上运行以下命令以创建集群并启动它：\n\n    ```\n\
+  \    # pcs cluster setup --start --name openstack \\\n    > controller1 controller2\n\
+  \    Shutting down pacemaker/corosync services...\n    Redirecting to /bin/systemctl\
+  \ stop pacemaker.service\n    Redirecting to /bin/systemctl stop corosync.service\n\
+  \    Killing any remaining services...\n    Removing all cluster configuration files...\n\
+  \    controller1: Succeeded\n    controller2: Succeeded\n    Starting cluster on\
+  \ nodes: controller1, controller2...\n    controller1: Starting Cluster...\n   \
+  \ controller2: Starting Cluster...\n    ```\n\n8.  对于我们的示例集群，我们将使用以下命令禁用 fencing：\n\
+  \n    ```\n    # pcs property set stonith-enabled=false\n    ```\n\n9.  使用以下命令验证集群是否成功启动：\n\
+  \n    ```\n    # pcs status\n    Cluster name: openstack\n    Last updated: Mon\
+  \ Aug 31 01:51:47 2015\n    Last change: Mon Aug 31 01:51:14 2015\n    Stack: corosync\n\
+  \    Current DC: controller1 (1) - partition with quorum\n    Version: 1.1.12-a14efad\n\
+  \    2 Nodes configured\n    0 Resources configured\n    Online: [ controller1 controller2\
+  \ ]\n    ```\n\n有关设置 Pacemaker 的更多信息，请参阅 http://clusterlabs.org/doc/en-US/Pacemaker/1.1-pcs/html/Clusters_from_Scratch/index.html\
+  \ 上出色的 Clusters from Scratch 文档。\n\n### 安装并配置 HAProxy\n\n在本实验室部署中，我们将使用 HAProxy\
+  \ 对控制平面服务进行负载均衡。一些部署可能还会使用 Keepalived，并以主动/主动配置运行 HAProxy。对于此部署，我们将以主动/被动配置运行 HAProxy，并将其与我们的\
+  \ VIP 一起作为 Pacemaker 中的资源进行管理。\n\n首先，在两台节点上使用以下命令安装 HAProxy：\n\n```\n# yum -y install\
+  \ haproxy\n```\n\n使用以下命令验证安装：\n\n```\n# rpm -q haproxy\nhaproxy-1.5.4-4.el7_1.x86_64\n\
+  ```\n\n接下来，我们将为 HAProxy 创建一个配置文件，用于对两个控制器上安装的 API 服务进行负载均衡。使用以下示例作为模板，将示例中的 IP 地址替换为两个控制器的\
+  \ IP 地址，以及你用于对 API 服务进行负载均衡的 VIP 地址。\n\n\n\n\n![](img/2f752555f69992669defa8b25e6dcee9_76_0.png)\n\
+  \n某些部署可能会为每个服务创建一个 VIP。这允许多个 HAProxy 节点为不同服务响应 HTTP 会话。在本示例中，我们将仅使用一个单一 VIP，因为 HAProxy\
+  \ 处于主/备配置。\n\n以下示例 `/etc/haproxy/haproxy.cfg` 将在我们的环境中对 Horizon 进行负载均衡：\n\n```\n\
+  global\n    daemon\n    group haproxy\n    maxconn 40000\n    pidfile /var/run/haproxy.pid\n\
+  \    user haproxy\n\ndefaults\n    log 127.0.0.1 local2 warning\n    mode tcp\n\
+  \    option tcplog\n    option redispatch\n    retries 3\n    timeout connect 10s\n\
+  \    timeout client 60s\n    timeout server 60s\n    timeout check 10s\n\nlisten\
+  \ horizon\n    bind 192.168.0.30:80\n    mode http\n    cookie SERVERID insert indirect\
+  \ nocache\n    option tcplog\n    timeout client 180s\n    server controller1 192.168.0.10:80\
+  \ cookie controller1 check inter 1s\n    server controller2 192.168.0.11:80 cookie\
+  \ controller2 check inter 1s\n```\n\n在本示例中，`controller1` 的 IP 地址为 `192.168.0.10`，`controller2`\
+  \ 的 IP 地址为 `192.168.0.11`。我们选择的 VIP 为 `192.168.0.30`。复制此文件，将 IP 地址替换为实验室中的地址，然后将其放到每个控制器的\
+  \ `/etc/haproxy/haproxy.cfg` 中。\n\n为了使 Horizon 能响应 VIP 上的请求，我们需要在 Apache 虚拟主机配置中将\
+  \ VIP 添加为 ServerAlias。这在我们的实验室安装中位于 `/etc/httpd/conf.d/15-horizon_vhost.conf`。查找以下行：\n\
+  \n```\nServerAlias 192.168.0.10\n```\n\n在两个控制器上添加一个包含 VIP 的额外 ServerAlias 行：\n\n\
+  ```\nServerAlias 192.168.0.30\n```\n\n您还需要告诉 Apache 不要监听 VIP，以便 HAProxy 可以绑定到该地址。为此，修改\
+  \ /etc/httpd/conf/ports.conf 并在端口号之外指定控制器的 IP 地址。以下是一个示例：\n\n```\nListen 192.168.0.10:35357\n\
+  Listen 192.168.0.10:5000\nListen 192.168.0.10:80\n```\n\n在本示例中，192.168.0.10 是第一个控制器的地址。为每台机器替换适当的\
+  \ IP 地址。\n\n重启 Apache 以应用新的别名：\n\n```\n# systemctl restart httpd.service\n```\n\n\
+  接下来，将 VIP 和 HAProxy 服务作为资源添加到 Pacemaker 集群中。这些命令应仅在第一个节点上运行：\n\n```\n# pcs resource\
+  \ create VirtualIP IPaddr2 ip=192.168.0.30 cidr_netmask=24\n# pcs resource create\
+  \ HAProxy systemd:haproxy\n```\n\n将 HAProxy 服务与 VirtualIP 协同放置，以确保两者一起运行：\n\n```\n\
+  # pcs constraint colocation add VirtualIP with HAProxy score=INFINITY\n```\n\n验证资源是否已启动：\n\
+  \n```\n# pcs status\n...\nFull list of resources:\nVirtualIP(ocf::heartbeat:IPaddr2):Started\
+  \ controller1\nHAProxy(systemd:haproxy):Started controller1\n...\n```\n\n此时，您应该能够使用指定的\
+  \ VIP 访问 Horizon。流量将从客户端流向 VIP 上的 HAProxy，再流向两个节点之一上的 Apache。\n\n## Additional API\
+  \ service configuration\n\n现在我们已经拥有一个可工作的集群和 HAProxy 配置，最后的配置步骤是将每个 OpenStack API\
+  \ 端点都置于负载均衡器之后。此过程包含三个步骤，分别是：\n\n- 1. 更新 HAProxy 配置以包含该服务。\n- 2. 将 Keystone 服务目录中的端点移动到\
+  \ VIP。\n- 3. 重新配置服务，使其指向 VIP 而不是第一个控制器的 IP。\n\n在以下示例中，我们将把 Keystone 服务置于负载均衡器之后。此过程可对每个\
+  \ API 服务重复。\n\n首先，在 HAProxy 配置文件中为 Keystone 的授权和管理员端点添加一个部分：\n\n```\nlisten keystone-admin\n\
+  \    bind 192.168.0.30:35357\n    mode tcp\n    option tcplog\n    server controller1\
+  \ 192.168.0.10:35357 check inter 1s\n    server controller2 192.168.0.11:35357 check\
+  \ inter 1s\n\nlisten keystone-public\n    bind 192.168.0.30:5000\n    mode tcp\n\
+  \    option tcplog\n    server controller1 192.168.0.10:5000 check inter 1s\n  \
+  \  server controller2 192.168.0.11:5000 check inter 1s\n```\n\n确保在两个控制器上更新配置。在活动节点上重启\
+  \ haproxy 服务：\n\n```\n# systemctl restart haproxy.service\n```\n\n您可以使用 pcs status\
+  \ 的输出确定活动节点。使用以下命令检查 HAProxy 是否已在 5000 和 35357 端口上监听：\n\n```\n# curl http://192.168.0.30:5000\n\
+  # curl http://192.168.0.30:35357\n```\n\n两者都应输出一些描述 Keystone 服务状态的 JSON。\n\n# 4\n"
+- "## Building the Deployment Pipeline\n\n我们经常告诉我们合作的客户，OpenStack 不是被 **installed**，而是被\
+  \ **deployed**。虽然词语上的差异可能看起来很细微，但它可能在组织内部带来革命性的变化。大多数企业基础设施团队习惯于在部署新基础设施平台时采用以下流程：\n\
+  \n- 1. 安装平台。\n- 2. 配置并集成平台。\n- 3. 运行平台。\n- 4. 升级平台。\n\n安装和配置平台可能需要数月或数年时间，一旦安装完成，平台预计将运行数年。对平台的升级每\
+  \ 3 到 5 年发生一次，是为期 6-12 个月的大型项目。Red Hat 已围绕这些周期构建了企业 Linux 操作系统的发布结构——RHEL 5 和 RHEL\
+  \ 6 之间相隔 3 年，RHEL 6 和 RHEL 7 之间相隔近 4 年。每个版本都支持 10 年，保守的基础设施团队在新版本发布后至少等待一年才会开始为期\
+  \ 6-12 个月的升级项目。\n\n这种对平台部署的保守方法在操作系统、虚拟化平台和应用平台领域工作得非常好。然而，如果您私有云项目的最重要业务驱动因素是提高敏捷性，那么以\
+  \ 12 个月的推出周期和 5 年的生命周期是不太可能实现目标的。\n\n在本章中，我们将研究 OpenStack 通常作为应用软件而非基础设施软件的部署方式。我们将构建一个简单的部署流水线，该流水线使用\
+  \ Puppet 描述 OpenStack 部署，使用 Jenkins 这款开源持续集成工具来实现该部署，然后运行单元测试以验证部署是否符合我们的规范。在整章中，我们将讨论迭代开发以及它如何适用于\
+  \ OpenStack 部署。\n\n## Dealing with Infrastructure as a Software\n\n一家大型公司的基础设施副总裁曾经这样告诉我们：“我喜欢硬件。我的硬件几乎从不坏。我部署的软件总是坏。当我的数据中心变成软件时，我怎么才能拥有一个稳定的平台？”。同样的担忧曾经也可能适用于虚拟化，但今天大多数组织对软件假装成硬件的想法都很舒适。软件定义的数据中心则有点更令人畏惧。虽然我们很早就有了软件假装成\
+  \ CPU，但软件假装成存储阵列相对较晚。而且，当存储阵列宕机时，一切往往都会随之宕机。\n\n然而，更大的问题可能在于软件在部署时不断出错。事实上，我们合作过的最成功的\
+  \ OpenStack 部署都采用了现代软件开发技术，以确保其软件在部署时不会出错。\n\n## Eating the elephant\n\n我们将应用于部署流程的第一个也是最重要的概念是迭代开发。不是试图在一轮部署中解决所有已识别的需求，我们将其分解为用户故事，分配给为期两到三周的冲刺，然后逐一实现。冲刺是源自\
+  \ Scrum 流程和框架的一种基本开发度量。冲刺是经过规划且限制在特定持续时间内的限时工作量（两周很常见）。这不仅允许我们限制每次发布的复杂性并专注于彻底测试每个组件，还允许我们在流程中更早地为业务带来价值。仅需要少量功能集的工作负载将能够在无需等待大型发布的情况下加入平台。\n\
+  \n\n\n\n## 先编写测试\n\n我们将从软件开发领域借鉴的第二个重要实践是测试驱动开发。我们先编写能够演示所要实现功能的测试，然后再进行部署工作，直到测试通过。一旦功能实现完成，该测试便成为平台日常监控系统的一部分。\n\
+  \n根据我们的经验，如果测试不是先于代码编写，那么它们往往根本不会被编写。每个项目都会在某个时刻面临时间耗尽的问题，如果测试被排在列表的最后，它们往往会被砍掉。\n\
+  \n## 始终持续部署\n\n持续部署的好处早已在软件开发领域得到充分阐述，但它们尤其适用于 OpenStack 的部署。相比少数几个大规模且经过良好测试的变更，大量小型且经过充分测试的变更对复杂环境（例如私有云部署）造成的干扰要小得多。\n\
+  \n不过，也有一些例外。例如，从 Nova Networking 迁移到 Neutron 是一个重大变更，很难将其拆分为更小的部分。添加一个新的 Cinder\
+  \ 驱动是一个小的迭代变更，但在需要迁移大量卷的环境中，从一个 Cinder 驱动切换到另一个可能是一个巨大的变更。在做出架构决策时，应当谨慎行事，尽量避免对平台进行无法迭代开发和部署的大型变更。\n\
+  \n## 使用配置管理进行部署\n\n要开始部署我们的平台类代码，首先需要引入一套配置管理系统。虽然使用 shell 脚本自动化部署 OpenStack 确实是可能的（我们见过有人这样做），但使用声明式配置管理工具能让你的团队更轻松地跟踪迭代之间的变更。此外，一个\
+  \ OpenStack 配置可能包含数百个变量，需要在数十台主机的多个配置文件中进行设置。例如，我们在实验室部署 Kilo 时，在组合层中设置了 137 个参数。用\
+  \ shell 脚本管理这种复杂程度，会引入另一种不必要的复杂性。\n\n过去几年的每项 OpenStack 用户调查都会询问社区通常如何部署 OpenStack。尽管调查结果中列出了各种各样的方法，但\
+  \ Puppet 在相当长一段时间内一直是明显的领导者。在过去一年里，社区中围绕 Ansible 兴起了一项新计划，其使用量急剧增加。一些知名的 OpenStack\
+  \ 用户也使用 Chef 进行部署。我们的建议是使用贵组织最有经验的那款工具。我们合作过的一些团队已经大规模使用了 Puppet，一些团队精通 Chef，还有一些团队更喜欢使用\
+  \ Ansible。我们也参与过使用 Salt 的项目。一个新的趋势是组合使用多种工具。例如，你可以让 Ansible 或 Salt 在主机上触发 Puppet\
+  \ 运行。Puppet 是最常用的，我们在本章的示例中也将使用它。\n\n## 使用社区模块\n\n前面提到的每个配置管理系统都有一套由 OpenStack 社区编写和维护的、用于部署\
+  \ OpenStack 的模块。例如，请参考下表：\n\n| 编排工具的 OpenStack 模块 | 位置 |\n|---|---|\n| Puppet 模块\
+  \ | https://wiki.openstack.org/wiki/Puppet |\n| Ansible 剧本 | https://wiki.openstack.org/wiki/OpenStackAnsible\
+  \ |\n| Chef 食谱 | https://wiki.openstack.org/wiki/Chef |\n\n无论使用哪种技术，总体方法都是一样的。\n\
+  \n部署首先需要创建我们所说的**组合层**。这是一个 Puppet 模块（或 Ansible 剧本、Chef 食谱），它根据社区模块来定义我们部署中的系统所要承担的角色。例如，我们可以将计算角色定义为一个类，其中包含\
+  \ `nova::compute` 类。控制节点角色将包含 `keystone, glance, nova::api` 以及其他类。我们还可以引入其他 Puppet\
+  \ 模块来配置系统服务（如 NTP）或安装监控代理。\n\n## 分配角色\n\n一旦我们在组合层中声明了角色，就需要一种机制将其应用到系统中。到目前为止我们一直在使用的工具（Packstack）通过\
+  \ SSH 完成这项工作——它生成一组包含社区模块的 Puppet 清单，然后逐个应用到我们实验室的系统中。它支持两种角色：控制节点角色和计算角色。我们当前的实验室部署包含控制节点和计算节点，但我们还将定义数据库节点，用于运行数据库和消息服务。\n\
+  \n我们合作过的许多组织都使用 Cobbler（http://cobbler.github.io）、Foreman（http://theforeman.org）、Puppet\
+  \ Enterprise（https://puppetlabs.com/puppet/puppet-enterprise）或其他工具来为系统分配角色。这些工具被称为\
+  \ Puppet 的外部节点分类器（ENC）。借助 ENC，可以轻松地将配置参数（如 IP 地址或密码）与系统中的配置本身分离开来。这些工具还可以提供有关 Puppet\
+  \ 运行的报告和管理功能。\n\n在本章中，我们将设置一个简单的 Puppet 主服务器来管理我们环境中各主机的配置。我们将配置数据存储在组合层中，同时承认这并不是最佳实践。\n\
+  \n![](img/2f752555f69992669defa8b25e6dcee9_85_0.png)\n\n我们有一个客户更喜欢将配置数据存储在组合层中。他们的理由是，输入配置数据是最容易出现拼写错误或其他错误的地方，而这些错误会破坏自动化部署。由于他们通过版本控制来跟踪这些数据，因此更容易追踪这些手动错误。他们提出的流程是：为每个部署环境分叉（fork）出一个分支，然后在需要更新时从主分支将配置更改拉取到这些分支。分叉操作通常发生在开发人员从项目（如\
+  \ OpenStack）中获取源代码副本并开始添加自己的更改时。由于项目的主源代码称为主干（trunk），当开发人员更改部分代码时，就说该开发人员创建了一个分支。\n\
+  \n我们将已定义的角色分配给 Puppet 主服务器上的各主机，当主机与主服务器签入（check in）时，它们将获得与其角色匹配的配置。主机在首次运行后会定期签入，并在我们在主服务器上提供配置更新时拉取这些更新。\n\
+  \n## 选择起点\n\n前面列出的每个官方 OpenStack Puppet、Chef 和 Ansible 项目都提供了示例组合层，可用于进行简单的 All-in-One\
+  \ 部署。Puppet 的 All-in-One 部署清单可在 `https://github.com/openstack/puppet-openstack-integration`\
+  \ 获取。它提供了三种方案，可以用作起点。不同的 OpenStack 厂商也可能提供适合作为起点的参考。我们合作过的一些组织聘请了咨询公司来编写最初的组合层，然后教他们如何迭代。\n\
+  \n由于我们已经使用 Packstack 完成了可用的部署，我们将以此作为组合层的基础。随着我们向部署中添加功能，我们会从 Packstack 生成的清单中复制部分内容作为起点。我们还会添加一些新的\
+  \ Puppet 代码，以将部署扩展到 Packstack 所能实现的范围之外。\n\n## 测试基础设施\n\n无论贵组织决定使用哪种配置管理系统来部署和配置\
+  \ OpenStack 软件，部署过程由测试基础设施驱动都是至关重要的。根据我们的经验，手动管理的环境总会导致不一致，无论执行部署的操作员技能如何。自动化部署不可能在真空中进行；然而，要想成功，它们需要向开发人员和操作员提供即时反馈，以便他们判断部署是否成功。我们经历过许多\
+  \ OpenStack 的手动部署和手动验收测试，这些周期可能需要数天或数周才能完成。\n\n## 测试类型\n\n在组合层的变更应用于环境之前，会经过多个测试阶段。在每个阶段，如果测试失败，部署就会停止。我们将这一系列阶段称为**部署流水线**。在流水线的一端，变更被提交到版本控制；在另一端，配置在基础设施中得以实现。\n\
+  \n\n\n## 构建部署流水线\n\n下表列出了在流水线每个阶段测试的项目：\n\n| 阶段 | 测试重点 |\n|---|---|\n| 预提交 | 在变更进入流水线之前，对其进行测试，以确保不存在语法错误或风格问题。\
+  \ |\n| 部署测试 | 在此阶段，测试集群中的每个系统都尝试应用配置更新。是否成功取决于变更能否无错误地应用。部分部署会触发第二次应用以测试幂等性。 |\n\
+  | 集成测试 | 测试集群成功应用配置后，针对 OpenStack API 运行单元测试套件，验证配置的功能。 |\n| 性能测试 | 对测试集群运行一系列测试，以确保变更不会对性能产生不良影响。\
+  \ |\n| 验收测试 | 在流水线的此阶段，执行任何手动测试。随后，变更被提升到下一个环境。 |\n| 金丝雀测试 | 生产环境的一个子集将应用变更，并重复自动化和验收测试，且使用生产数据库和\
+  \ hypervisor。 |\n| 发布 | 整个生产环境将应用变更。 |\n\n许多组织希望在部署过程中加入代码审查。这通常在所有自动化测试完成后进行，以便审查人员可以获得测试结果。诸如\
+  \ Gerrit (https://www.gerritcodereview.com/) 之类的工具可用于编排具有代码审查要求的构建流水线。许多组织更倾向于手动执行金丝雀测试和生产发布——这些仍应是由操作员决定启动（和回滚）的自动化流程。\n\
+  \n## 编写测试\n\nOpenStack 完全由 REST API 驱动，因此可以使用任何带有 HTTP 客户端实现的语言为平台编写测试。http://developer.openstack.org\
+  \ 上提供了大多数主流语言的软件开发工具包（SDK）。即便如此，大多数组织倾向于使用 Python（OpenStack 的编写语言）编写测试。对此有两种不同的观点。第一种观点认为，这样更容易吸引熟悉\
+  \ Python 的 OpenStack 人才，而且相关技能可以在测试与开发之间相互转换。此外，上游还有一个名为 Tempest 的 Python 项目，许多组织将其用作运行自身测试的框架。第二种观点则认为，组织应该使用平台终端用户所使用的同一接口来测试平台。例如，如果你打算通过云管理平台或使用\
+  \ Ruby Fog 库 (http://fog.io/) 的 PaaS 来配置基础设施，那么就应该使用 Fog 库编写测试。\n\n无论如何，Tempest\
+  \ 几乎总是会在 OpenStack 部署测试过程中的某个环节被用到。至少，所有自称是 OpenStack 云的公共云都必须通过一组最低限度的 Tempest\
+  \ 测试，才能获得基金会的认证。\n\n## 运行测试\n\n如前所述，测试基础设施应推动变更沿着流水线前进，捕获每次测试运行的结果，并在运行成功时提升变更。为此，可以使用软件开发中使用的众多\
+  \ CI 工具中的任何一种。我们通常建议利用组织已经在使用的 CI 工具和软件仓库。如果你的组织在软件开发团队中没有进行 CI，我们之前见到成功使用的优秀选择包括\
+  \ Jenkins (https://jenkins-ci.org/)、Atlassian 的 Bamboo (https://www.atlassian.com/software/bamboo/)\
+  \ 或 Buildbot (http://buildbot.net/)。OpenStack 基金会的 CI 是基于 Jenkins 构建的，在本章中，我们将使用该工具来构建我们的流水线。\n\
+  \n## 组装流水线\n\n现在我们已经介绍了部署流水线的各个组件，下面在我们的实验室环境中组装一个示例流水线。我们将从设置 CI 服务器开始，创建一个新的组合层，编写一个单元测试，然后部署\
+  \ OpenStack 基础设施以通过测试。\n\n## 设置 CI 服务器\n\n在前面的章节中，我们通过从云控制器运行 `packstack` 工具来部署\
+  \ OpenStack。在本节中，我们将设置一台专用机器来执行部署。对部署机器的要求并不苛刻——任何运行 CentOS 7 且内存为 2 GB 或以上的机器都应足够。唯一的网络要求是，该机器可以从内网和\
+  \ OpenStack 集群本身访问。\n\n### 安装 Git\n\n以下说明将在 CI 服务器上设置一个 Git 版本控制服务器。如果你已经可以访问 Git\
+  \ 仓库，或者更倾向于使用 GitHub，则可以跳过本节。有关设置 Git 服务器的更多信息，请参阅 *Scott Chacon* 和 *Ben Straub*\
+  \ 所著的 *Pro Git* 一书，该书可在 https://git-scm.com/book/en/v2/ 在线阅读。\n\n要安装 Apache HTTP\
+  \ 服务器和 Git 版本控制软件，请执行以下步骤：\n\n- 1. 以 root 身份在 CI 服务器上执行以下命令：\n```\n# yum install\
+  \ -y httpd git\n```\n- 2. 验证软件包是否已正确安装：\n```\n# rpm -q httpd git\n```\n- 3. 创建一个顶级目录来存放我们的仓库：\n\
+  ```\n# mkdir /var/www/html/git\n```\n- 4. 使用以下命令在该目录中创建 Git 仓库：\n```\n# mkdir /var/www/html/git/openstack/\n\
+  # cd /var/www/html/git/openstack\n# git --bare init\n# git update-server-info\n\
+  ```\n- 5. 在执行 `git --bare init` 命令后，你应该会看到以下响应：\n```\nInitialized empty Git repository\
+  \ in\n/var/www/git/openstack/\n```\n- 6. 重置新 Git 仓库对 Apache 的权限：\n```\n# chown -R\
+  \ apache:apache /var/www/html/git/\n```\n- 7. 最后，创建一个需要身份认证才能访问 Git 仓库的配置文件。以下示例可以复制到\
+  \ /etc/httpd/conf.d/git.conf：\n```\n<Directory /var/www/html/git/>\n    DAV on\n\
+  \n    AuthName \"Git login:\"\n    AuthType Basic\n    AuthUserFile /var/www/htpasswd\n\
+  \n    # Allow anonymous clone, but require auth for push.\n    <LimitExcept GET\
+  \ PROPFIND>\n        Require valid-user\n    </LimitExcept>\n</Directory>\n```\n\
+  - 8. 创建一个用于访问仓库的用户账户：\n```\n# htpasswd -c /var/www/htpasswd git\n```\n- 9. 最后，重启\
+  \ httpd 服务：\n```\n# systemctl restart httpd\n```\n- 10. 现在，你应该可以使用以下命令克隆 Git 仓库：\n\
+  ```\n# git clone http://git@localhost/git/openstack\n```\n- 11. 系统可能会提示你输入创建用户账户时设置的密码，然后你应该会收到以下消息：\n\
+  ```\nwarning: You appear to have cloned an empty repository.\n```\n\n### 安装 Puppet\
+  \ 主服务器\n\n以下说明将在 CI 服务器上设置一个 Puppet 主服务器。如果你已经有一个可以在实验室中使用的 Puppet 基础设施，可以跳过本节。有关设置\
+  \ Puppet 主服务器的更多信息，请参阅 Puppet 参考手册 (http://docs.puppetlabs.com/puppet/latest/reference/)。安装\
+  \ RDO 仓库，该仓库提供了对 Puppet 和 OpenStack Puppet 模块的访问，具体步骤如下：\n\n- 1. 以 root 身份在 CI 服务器上执行以下命令：\n\
+  ```bash\n# yum install -y https://rdoproject.org/repos/rdo-release.rpm\n```\n- 2.\
+  \ 运行以下命令，验证仓库已被启用：\n```bash\n# yum repolist\n```\n- 3. 你应该会在输出中看到 `openstack` 仓库。运行以下命令来安装\
+  \ Puppet 和 OpenStack Puppet 模块：\n```bash\n# yum install -y puppet puppet-server\
+  \ openstack-puppet-modules openstack-packstack\n```\n- 4. 使用以下命令验证它们的安装：\n```bash\n\
+  # rpm -q puppet puppet-server openstack-puppet-modules openstack-packstack\n```\n\
+  - 5. 编辑 Puppet 配置，以包含 OpenStack Puppet 模块：\n```bash\n# puppet config set basemodulepath\
+  \ \\\n'$confdir/modules:/usr/share/puppet/modules:/usr/share/openstack-puppet/modules'\
+  \ --section main\n```\n- 6. 通过列出可用的 Puppet 模块来验证配置：\n```bash\n# puppet module list\n\
+  ```\n\n你应该会看到大约 60 个 Puppet 模块，具体数量取决于 OpenStack 的版本。忽略任何有关依赖关系的错误。\n\n\n\n\n7.\
+  \ 使用以下命令启动 puppet master 服务：\n\n```\n# systemctl start puppetmaster.service\n# systemctl\
+  \ enable puppetmaster.service\n```\n\n8. 验证服务是否正确启动：\n\n```\n# systemctl status\
+  \ puppetmaster.service -l\n```\n\n你应该会看到服务已创建证书颁发机构。环境中的客户端访问 Puppet master 时必须使用与证书颁发机构相同的\
+  \ hostname。如果客户端将通过除 hostname 之外的其他方式访问 Puppet master，请查阅 puppet.conf 中的 dns_alt_names\
+  \ 设置。\n\n## 安装 Jenkins\n\n以下说明将在 CI 服务器上设置 Jenkins 服务器。如果你已有可在实验室中使用的 Jenkins 服务器，可以跳过本节。有关设置\
+  \ Jenkins 的更多信息，请参阅 Jenkins 网站 (https://wiki.jenkins-ci.org/display/JENKINS/Use+Jenkins)。\n\
+  \n- 1. 以 root 用户身份在 CI 服务器上执行以下命令以安装 Jenkins 仓库，该仓库提供对 Jenkins 的访问权限：\n\n```\n#\
+  \ curl http://pkg.jenkins-ci.org/redhat/jenkins.repo > /etc/yum.repos.d/jenkins.repo\n\
+  # rpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key\n# yum install -y\
+  \ java-1.7.0-openjdk jenkins\n```\n\n- 2. 要验证软件是否正确安装，运行以下命令：\n\n```\n# rpm -q java-1.7.0-openjdk\
+  \ jenkins\n```\n\n- 3. 要启动 jenkins 服务器，使用以下命令：\n\n```\n# systemctl start jenkins\n\
+  ```\n\n- 4. 使用以下命令验证 Jenkins 是否正确启动：\n\n```\n# systemctl status jenkins -l\n```\n\
+  \n你应该会看到服务正在运行，并且日志输出中没有错误。\n\n5. 现在你可以通过在 Web 浏览器中访问主机 8080 端口来登录 Jenkins Web UI；也就是说，如果你的\
+  \ CI 服务器的 hostname 为 `jenkins.example.com`，Jenkins 应可在 `http://jenkins.example.com:8080/`\
+  \ 上访问。登录后你应会看到以下页面：\n\n![](img/2f752555f69992669defa8b25e6dcee9_93_0.png)\n\n6.\
+  \ 我们需要做的最后一件事是安装 Git SCM 插件。点击左侧导航中的 Manage Jenkins 链接。从下一页选择 Manage Plugins。在 Plugins\
+  \ 页面，选择 Available 选项卡，并在 Filter 栏中搜索 git plugin。选择 Git 插件并点击 Install without restart：\n\
+  \n![](img/2f752555f69992669defa8b25e6dcee9_94_0.png)\n\n你将看到安装进度状态。完成后，你会看到类似以下页面：\n\
+  \n![](img/2f752555f69992669defa8b25e6dcee9_95_0.png)\n\nJenkins 现已安装并配置了 Git 插件。\n\
+  \n## 创建组合层\n\n现在我们的基础架构软件已就位，我们将开始创建我们的组合层。如前所述，我们将从在第 2 章 *Architecting the Cloud*\
+  \ 中运行 `packstack` 命令时获得的“已知良好”配置开始。\n\n## 启动我们的 Puppet 模块\n\n我们的组合层将存储在两个 Puppet\
+  \ 模块中，使用 Craig Dunn 开发的 **profiles and roles** 模式 (http://www.craigdunn.org/2012/05/239/)。我们将模块存储在新\
+  \ Git 仓库中名为 `puppet/modules` 的目录中。以下步骤将在我们的仓库中创建新模块：\n\n- 1. 克隆仓库。建议对此部分使用非特权用户帐户：\n\
+  ```\n$ git clone http://git@localhost/git/openstack/\n```\n- 2. 接下来，创建模块的目录：\n```\n\
+  $ mkdir -p openstack/puppet/modules\n```\n- 3. 使用 `puppet module` 命令在目录中创建新模块：\n\
+  ```\n$ cd openstack/puppet/modules\n$ puppet module generate openstack-profile\n\
+  $ puppet module generate openstack-role\n```\n对于每个命令，你将被提示输入有关模块的一组元数据。输入你想要的尽可能多的信息或采用默认值。\n\
+  - 4. 设置好模块后，返回到代码仓库的顶层，并使用以下命令将其检入版本控制：\n```\n$ cd ~/openstack\n$ git add puppet\n\
+  $ git commit -m 'Initial check-in of the profile and role modules'\n$ git push origin\
+  \ master\n```\n你应该会看到模块已提交并推送到仓库上的新 master 分支。\n- 5. 现在让我们将这些模块添加到我们的 Puppet master。为此，以\
+  \ root 用户身份在服务器上的位置克隆仓库的干净副本：\n```\n# cd /srv\n# git clone http://localhost/git/openstack\n\
+  ```\n\n你应该会收到类似 `Cloning into 'openstack'...` 的消息，这将表明命令成功。\n\n- 6. 我们将使用 Jenkins\
+  \ 作业更新此仓库，因此将目录的所有权更改为 Jenkins 用户：\n\n```\n# chown -R jenkins:jenkins /srv/openstack\n\
+  ```\n\n如果使用远程 Jenkins 服务器，你需要设置权限，以便可以远程登录此机器并在该目录中运行 `git pull` 命令。\n\n- 7. 接下来，将两个新的\
+  \ puppet 模块符号链接到 master 上的 `/etc/puppet/modules`：\n\n```\n# cd /etc/puppet/modules\n\
+  # ln -s /srv/openstack/puppet/modules/openstack-profile profile\n# ln -s /srv/openstack/puppet/modules/openstack-role\
+  \ role\n```\n\n现在你应该在 master 上 `puppet module list` 的输出中看到这两个模块：\n\n```\n/etc/puppet/modules\n\
+  ├── openstack-profile (v0.1.0)\n└── openstack-role (v0.1.0)\n```\n\n## 定义第一个角色和配置文件\n\
+  \n我们已在设计文档中定义了一组主机组。我们将直接将它们映射到我们 Puppet 组合层中的角色。每个角色将在 role Puppet 模块中拥有自己的类和文件。角色由配置文件组成，每个配置文件代表\
+  \ OpenStack 功能的一部分。例如，`mariadb` 配置文件将安装并配置我们部署的 MySQL 数据库服务器，`amqp` 配置文件将安装并配置 RabbitMQ\
+  \ 消息服务器，等等。让我们从创建 Database Node 角色和相关配置文件开始。\n\n## 构建部署管道\n\n如前所述，我们将使用在 *第 2 章，Architecting\
+  \ the Cloud* 中创建的 Packstack 配置作为我们组合层的起点。通常，当 Packstack 运行 时，它会删除用于在主机上安装 OpenStack\
+  \ 软件的 Puppet 清单。但是，如果你指定 `-y` 选项，它将退出而不执行任何操作并保留 Puppet 清单。在 *第 2 章，Architecting\
+  \ the Cloud* 中运行 Packstack 的原始主机上，使用相同的 answer 文件和 `-y` 选项重新运行 Packstack：\n\n```bash\n\
+  # packstack --answer-file=packstack.answers -y\n```\n\n命令执行完成后，它将打印写入 Puppet 清单的目录名称。它应类似于\
+  \ `/var/tmp/packstack/20151123-214424-gJbmJA`。进入该目录并将 Hiera 数据和清单复制到你的 CI 服务器。\n\
+  \nPackstack 的 Puppet 清单使用 Hiera，Puppet 的 **key/value lookup tool**，使存储配置信息（如密码和\
+  \ IP 地址）变得容易，以便它们不必存储在清单本身中。我们将继续采用这种做法。将 `hieradata` 目录复制到 CI 服务器上的 `/etc/puppet/hieradata`。要告诉\
+  \ Puppet 引用此数据，创建一个名为 `/etc/puppet/hiera.yaml` 的文件，内容如下：\n\n```yaml\n---\n:backends:\n\
+  \  - yaml\n:hierarchy:\n  - defaults\n  - \"%{clientcert}\"\n  - \"%{environment}\"\
+  \n  - global\n\n:yaml:\n  :datadir: /etc/puppet/hieradata\n```\n\n现在，让我们创建第一个配置文件。在我们检出的\
+  \ openstack 仓库副本中创建名为 `puppet/modules/openstack-profile/manifests/mariadb.pp` 的新文件。再次使用非特权帐户。\n\
+  \n从 RDO 的 Newton 版本开始，Packstack 工具创建的清单已采用我们在本章中实现的 roles and profiles 模型。Packstack\
+  \ 中存在两个角色——一个用于控制器，一个用于计算节点。我们将通过从控制器清单中复制相关配置文件来创建新角色。在 `mariadb.pp` 中，创建如下的类定义：\n\
+  \n```\nclass profile::mariadb {\n  include '::packstack::mariadb'\n  include '::packstack::mariadb::services'\n\
+  }\n```\n\n这使用我们在 Packstack 安装中用于安装数据库的相同 Puppet 代码定义了 `mariadb` 配置文件。现在创建名为 `puppet/modules/openstack-role/manifests/database.pp`\
+  \ 的文件。在该文件中创建名为 `role::database` 的类，该类引用我们之前创建的配置文件：\n\n```\nclass role::database\
+  \ {\n  include profile::mariadb\n}\n```\n\n将两个文件添加到提交，然后提交并推送到 Git 服务器。\n\n## 运行第一次构建\n\
+  \n访问 Jenkins http://jenkins:8080/，将 `jenkins` 替换为你的 CI 服务器的 hostname。Jenkins UI\
+  \ 应出现，提示你创建新作业。\n\n\n\n\n\n点击 **create new jobs**：\n\n![](img/2f752555f69992669defa8b25e6dcee9_100_0.png)\n\
+  \n创建一个名为 `openstack` 的 **Freestyle project**，如下所示：\n\n![](img/2f752555f69992669defa8b25e6dcee9_101_0.png)\n\
+  \n现在，我们将指定项目的选项。首先，在 **Source Code Management** 下，选择 **Git** 并为你的仓库指定 `http://localhost/git/openstack`。（这假定你使用的是我们在\
+  \ CI 服务器上设置的 Git 服务器。如果使用远程 Git 仓库，则输入该仓库的克隆 URL。）\n\n![](img/2f752555f69992669defa8b25e6dcee9_101_1.png)\n\
+  \n## Building the Deployment Pipeline\n\n接下来，我们将添加一个步骤来使用仓库中的最新代码更新 Puppet master。在\
+  \ Build 下，点击 **Add build step** 并选择 **Execute shell**。指定以下命令：\n\n```bash\ncd /srv/openstack\
+  \ && git checkout -f $GIT_COMMIT\n```\n\n这将把 Puppet master 拉取的仓库副本更新为我们正在测试的版本：\n\
+  \n![](img/2f752555f69992669defa8b25e6dcee9_102_0.png)\n\n让我们运行一次构建以确保权限设置正确。保存项目。这会带你返回项目页面。选择\
+  \ **Build Now**。你会在左下角的 **Build History** 选项卡中看到第一次构建：\n\n![](img/2f752555f69992669defa8b25e6dcee9_102_1.png)\n\
+  \n点击构建编号将显示构建是否成功或失败的信息，并允许你查看构建的控制台输出。\n\n要验证 Jenkins 是否将我们的新更改拉取到模块中，请在 /etc/puppet/modules\
+  \ 中查找新文件：\n\n```\n# ls /etc/puppet/modules/profile/manifests/\n# ls /etc/puppet/modules/role/manifests/\n\
+  ```\n\n你应该在这些目录中看到 mariadb profile 和 database role 文件。\n\n## Writing the tests\n\
+  \n对于我们的第一个测试，我们将使用 mysql 命令行客户端连接到我们配置的数据库，并验证我们是否可以使用之前指定的用户名和密码登录。由于我们没有将新的 roles\
+  \ 和 profiles 应用到任何机器上，因此运行此测试时会失败。首先，在 CI 服务器上安装 mysql 客户端。我们将使用以下命令来验证与数据库的连接：\n\
+  \n```\n# yum install -y mariadb\n```\n\n使用 which 命令验证命令是否已安装：\n\n```\n# which mysql\n\
+  ```\n\n你应该在输出中看到 /bin/mysql。\n\n虽然我们可以在 Jenkins 构建的配置中直接编写测试，但最佳实践是将测试与源代码一起包含。在\
+  \ Git 仓库的顶层创建一个名为 test 的目录来存放测试。使用与之前相同的已检出仓库版本和相同的非特权用户账户：\n\n```\n$ cd ~/openstack/\n\
+  $ mkdir test\n```\n\n进入 test 目录并创建一个名为 test.sh 的 shell 脚本，该脚本尝试连接到数据库节点上的 MySQL。以下脚本目前足够：\n\
+  \n```\n#!/bin/sh\n\n/bin/mysql -h db.example.com -uroot -psecret  -e \"show databases;\"\
+  \n```\n\n根据你的主机名和密码，分别替换 -h 和 -p 选项的适当值。运行脚本应导致失败：\n\n```\n$ sh test.sh\n```\n\n\
+  它应返回 Can't connect to MySQL server。\n\n将 test 目录添加到你的提交中，然后提交并推送更改：\n\n```\n$ cd\
+  \ ../\n$ git add test\n$ git commit -m \"adding first test case\"\n$ git push\n\
+  ```\n\n代码推送后，配置 Jenkins 运行测试。在 Jenkins UI 中，选择 openstack 项目并点击左侧导航中的 Configure。在\
+  \ Build 下，点击 Add a build step 并选择 Execute shell。输入如下截图所示的 shell 命令：\n\n![](img/2f752555f69992669defa8b25e6dcee9_104_0.png)\n\
+  \n保存配置，然后从左侧导航中选择 Build Now。此次构建应失败：\n\n![](img/2f752555f69992669defa8b25e6dcee9_104_1.png)\n\
+  \n选择 **Console Output** 应显示我们在命令行上运行命令时收到的相同错误。现在让我们着手配置数据库服务器以应用我们的 profile 和 class，以便测试通过。\n\
+  \n## Assigning the first role to a system\n\n为了整合所有内容，我们将从一台未配置的系统开始，安装并配置 Puppet\
+  \ agent，并使其拉取我们定义好的配置。让我们先在 Puppet master 上将角色分配给系统。\n\n以 CI 服务器上的 root 用户身份，在 `/etc/puppet/manifests`\
+  \ 中创建 `site.pp` 文件，将未配置的主机映射到角色。例如，如果我的数据库主机名为 `db.example.com`，以下片段即可工作：\n\n```\n\
+  node \"db.example.com\" {\n  include role::database\n}\n```\n\n在主机本身上，使用以下命令安装 RDO\
+  \ 仓库和 puppet agent：\n\n```\n# yum install -y https://rdoproject.org/repos/rdo-release.rpm\n\
+  # yum install -y puppet\n```\n\n配置系统使用我们的 CI 服务器作为其 Puppet master。例如，如果我们的 CI 服务器是\
+  \ `jenkins.example.com`，请输入：\n\n```\n# puppet config set server 'jenkins.example.com'\
+  \ --section agent\n```\n\n最后，执行一次初始 Puppet 运行以设置证书：\n\n```\n# puppet agent -t\n\
+  ```\n\n这应显示错误 `no certificate found and waitforcert is disabled`。\n\n以 root 身份登录\
+  \ CI 服务器并使用以下命令批准证书：\n\n```\n# puppet cert sign db.example.com\n```\n\n你将收到证书已被签名且请求已被移除的通知。\n\
+  \n回到数据库服务器，执行另一次 Puppet 运行以拉取配置：\n\n```\n# puppet agent -t\n```\n\n这将产生大量输出，因为系统会从\
+  \ master 下载所有 Puppet 模块。你应该看到系统下载、安装并为 OpenStack 配置 MySQL 数据库。最后，再次从 Jenkins 运行一次构建以使其成功。\n\
+  \n## Installing Keystone\n\n让我们在当前环境上迭代，添加另一个 profile 和 role。现在我们有了可用的数据库，安装第一个\
+  \ OpenStack 服务 Keystone。首先编写单元测试。我们的测试将确保我们可以使用 Packstack 答案文件中指定的 admin 用户名和密码从\
+  \ Keystone 获取令牌。这可以通过 curl 命令完成。在 Git 仓库的 test 目录下创建一个名为 test_keystone.sh 的文件：\n\
+  \n```\n$ cd ~/openstack/test/\n$ vi test_keystone.sh\n```\n\n使用以下内容作为示例，将密码替换为 demo\
+  \ 用户的密码（secret），将第一个控制器的主机名替换为 controller01：\n\n```\ncurl -i \\\n  -H \"Content-Type:\
+  \ application/json\" \\\n  -d '\n  { \"auth\": {\n    \"tenantId\": \"demo\",\n\
+  \    \"passwordCredentials\": {\n      \"userId\": \"demo\",\n      \"password\"\
+  : \"secret\"\n    }\n  }\n}' \\\n  http://controller01:5000/v2/auth/tokens ; echo\n\
+  ```\n\n现在运行脚本。它应以 Connection refused 错误失败。\n\n要使测试通过，请遵循与创建数据库 profile 时类似的过程。在\
+  \ openstack 仓库中创建文件 puppet/modules/openstack-profile/manifests/keystone.pp，内容如下：\n\
+  \n```\nclass profile::keystone {\n  include '::packstack::apache'\n  include '::packstack::keystone'\n\
+  }\n```\n\n如前所述，创建一个名为 controller 的 role 并将 keystone profile 分配给该 role。创建文件 puppet/modules/openstack-role/manifests/controller.pp，内容如下：\n\
+  \n```\nclass role::controller {\n  include profile::keystone\n}\n```\n\n将这些文件提交并推送到仓库：\n\
+  \n```\n$ git add puppet/modules/openstack-profile/manifests/keystone.pp\n$ git add\
+  \ puppet/modules/openstack-role/manifests/controller.pp\n$ git commit -m 'adding\
+  \ a controller role and keystone profile'\n$ git push\n```\n\n再次从 Jenkins 运行构建以将文件推送到\
+  \ Puppet master。我们尚未配置 Jenkins 运行新的测试，因此构建应成功，即使测试会失败。\n\n再次取一台未分配的机器并根据主机名分配 controller\
+  \ 角色。在此示例中，我们将角色分配给名为 controller01.example.com 的机器。编辑 CI 服务器上的 /etc/puppet/manifests/site.pp\
+  \ 并添加以下片段：\n\n```\nnode \"controller01.example.com\" {\n  include role::controller\n\
+  }\n```\n\n在名为 controller01.example.com 的未配置主机上，安装 Puppet agent 并设置 Puppet master：\n\
+  \n```\n# yum install -y https://rdoproject.org/repos/rdo-release.rpm\n# yum install\
+  \ -y puppet\n# puppet config set server 'jenkins.example.com' --section agent\n\
+  # puppet agent -t\n```\n\n再次，你需要在 Puppet master 上批准证书：\n\n```\n# puppet cert sign\
+  \ controller01.example.com\n```\n\n\n\n\n\n在第二次执行 Puppet 时，Keystone 将被安装并配置完成。通过在\
+  \ Jenkins 中添加一个类似如下的新构建步骤，启用我们在提交中编写的 Keystone 测试：\n\n![](img/2f752555f69992669defa8b25e6dcee9_108_0.png)\n\
+  \n运行构建，并确保测试通过——此时 Keystone 已在第一个控制器上运行。\n\n## 完全自动化流水线\n\n到目前为止，我们一直在手动运行 Jenkins\
+  \ 构建和 Puppet 执行。这样我们可以确保在 Puppet 执行完成后才运行测试。要消除流水线中的这两个手动步骤，有几种不同的方法。\n\n对于 Jenkins\
+  \ 构建，可以将 Jenkins 配置为定期轮询源代码仓库，也可以将 Git 配置为在新代码推送时主动通知 Jenkins 并触发构建。Jenkins 可以配置为仅在代码推送到任何分支时构建，也可以配置为仅在代码推送到特定分支时构建。这样你可以忽略特性分支上的工作，只在合并到主分支时执行构建；或者忽略合并操作，只在特性分支上执行构建。像\
+  \ Stash 和 Bamboo 这样的工具提供了更简单的集成方式。\n\n管理 Puppet 执行则稍显复杂。默认情况下，Puppet 大约每 30 分钟运行一次，从\
+  \ Puppet master 获取变更并应用它们。虽然这对于希望分散执行以提升性能的大型环境是合理的，但等待半小时让环境获取你刚刚推送到 Git 的变更可能会令人沮丧。这个问题有两种可行的解决方案。第一，你可以将\
+  \ Puppet 的执行作为测试过程的一部分在主机上运行。像 Ansible 这样的工具可以让这变得相对简单。第二，你可以缩短开发环境的执行间隔。这由 `/etc/puppet/puppet.conf`\
+  \ 主配置块中的 `runinterval` 设置控制。\n\n一旦你完全自动化了流水线，你需要在将变更推送到 Puppet master 与运行单元测试之间添加某种延迟。这将使主机有时间获取变更并实施它们。例如，如果你将\
+  \ `runinterval` 设置为 5 分钟，并期望变更在 5 分钟内应用，你可以在 Jenkins 作业中添加一个构建步骤，在执行单元测试前休眠 10 分钟。\n\
+  \n## 总结\n\n在本章中，我们讨论了组织如何使用现代软件开发技术来提高其 OpenStack 部署的质量。我们使用 Puppet、Git 和 Jenkins\
+  \ 构建了一个简单的部署流水线，并用它来部署和测试 OpenStack 基础设施的两个组件。在此基础上，可以以受控方式安装、配置和测试更多组件。\n\n对于习惯使用\
+  \ Packstack 并快速搭建环境的人来说，这似乎需要付出很多额外努力。但根据我们的经验，如果没有适当的基础设施来管理和测试变更，这些部署在规模化时会变得难以驾驭。提醒一下，我们遵循的三个基本原则是：\n\
+  \n- 小而可控的变更，而不是大规模升级周期\n- 测试驱动开发\n- 持续部署\n\n由于大多数组织在软件开发中已经具备围绕这些原则的一些经验和工具，部署流水线因组织而异。一个值得参考的优秀基础设施示例是\
+  \ OpenStack 基金会自身用于测试变更的设施。有关该流水线的更多信息，请访问：\n\n```\nhttp://docs.openstack.org/infra/\n\
+  ```\n\n## 参考资料\n\n- OpenStack Puppet 指南：http://docs.openstack.org/developer/puppet-openstack-guide/\n\
+  - OpenStack Ansible 项目：https://wiki.openstack.org/wiki/OpenStackAnsible\n- OpenStack\
+  \ Chef 项目：https://wiki.openstack.org/wiki/Chef\n- 设计 Puppet – 角色与配置文件，Craig Dunn：http://www.craigdunn.org/2012/05/239/\n\
+  - OpenStack 开发者与社区基础设施文档：http://docs.openstack.org/infra/\n\n# 5\n"
+- '## 构建以运营
+
+
+  许多 OpenStack 管理员熟悉较为成熟的虚拟化平台。他们熟悉预装的操作工具，可以让管理员在几分钟内通过点击和配置构建一个功能完备的基础设施监控解决方案。不幸的是，OpenStack
+  并不是那么简单。这并不意味着它不如其他平台；恰恰相反，它非常灵活，允许管理员选择自己的工具，并以最适合公司或组织需求的方式对其进行配置。
+
+
+  在本章中，我们将讨论第 2 天运维，换句话说，就是 OpenStack 云构建、测试并具备运营条件后发生的事情。在此时，云已准备好接纳用户和工作负载。
+
+
+  ### 本章预期成果
+
+
+  本章旨在达到以下目标：
+
+
+  - 对 OpenStack 云中真正需要监控的内容提供关键洞察。
+
+  - 提供一套在监控系统中实施的最佳实践。我们将提供一些示例规范，帮助你入门，并允许你根据企业运维需求进行调整。
+
+  - 基于实际案例，提供在 OpenStack 这类弹性云环境中进行有效容量规划的建议。
+
+  - 广泛了解 OpenStack 运维中使用的工具，包括开源和商业工具。
+
+
+  ## 日志、监控和告警
+
+
+  运维 OpenStack 云最重要的方面之一是日志、监控和告警（LMA）。由于 OpenStack 不是传统基于裸机的基础设施平台，因此需要采用不同的方法。考虑到
+  OpenStack 环境的规模和弹性，传统的 LMA 方法往往力不从心。此外，旧的二元告警方式——例如“此服务已关闭”“资源使用率已达 95%”甚至“文件系统已满”之类的消息——无法提供真正了解
+  OpenStack 云健康状况所需的运营信息深度。
+
+
+  虽然有许多不同的工具可以实际监控日志事件并从运行 OpenStack 基础设施的系统创建告警，但在本章中，我们将更侧重于架构原则，这些原则将帮助你选择日志、监控和告警工具。
+
+
+  无论使用什么工具进行日志、监控和告警，从架构角度来看，解决方案都应满足以下要求：
+
+
+  - 对 OpenStack 基础设施提供实时或近实时的内部检查和告警
+
+  - 支持某种形式的发现和配置管理
+
+  - 可扩展以支持企业云
+
+  - 具备自我监控能力，并能够配置为高可用
+
+
+  ### 日志
+
+
+  OpenStack 云运营数据的重要来源之一是日志。不仅主机操作系统的日志可用，而且作为 OpenStack 一部分运行的每个项目都有单独的日志。然而，尽管日志是分开的，建议将所有日志以相同的
+  syslog 日志级别发送到 syslog，作为起点，如有需要再进行修改。
+
+
+  以下是从 `nova-api.log` 中提取的 OpenStack 日志条目成功操作的示例：
+
+
+  ```
+
+  2016-07-08 07:36:45.613 3474 INFO nova.osapi_compute.wsgi.server [req-b5ff3321-19cc-4ce8-af9c-0ed59ae21ac7
+  f32900acc09d4898b091b2caa4900112 6f0117ddd81b4dc78a8f4ce4dd5b04f5 - -] 10.0.3.15
+  "GET /v2/6f0117ddd81b4dc78a8f4ce4dd5b04f5/flavors/1 HTTP/1.1" status: 200 len: 613
+  time: 0.1168451
+
+  ```
+
+
+  出于安全和分析的目的，日志应发送到远程集中式 syslog 服务器。理想情况下，该服务器将是进行日志检查、分析和编目的地方，并且应托管在具有适当 CPU 和内存以支持这些工作负载的服务器上。日志检查将针对日志条目的内容进行，因为这些日志可能包含以下部分或全部内容（基于上述日志的示例）：
+
+
+  - 严重性级别（`INFO`）
+
+  - 发送日志的服务器（`10.0.3.15`）
+
+  - 发送日志的服务（`nova.osapi_compute.wsgi.server`）
+
+  - 元数据，如 `tenant_id` 和 `request_id`（`6f0117ddd81b4dc78a8f4ce4dd5b04f5` 和 `req-b5ff3321-19cc-4ce8-af9c-0ed59ae21ac7`）
+
+  - 服务中的错误代码，甚至性能数据，如 HTTP 响应时间（由于创建请求和 API 交互的分段特性，对于异步连接，其可用性有限）
+
+
+  以下是错误示例：
+
+
+  ```
+
+  nova-scheduler.log:2016-07-08 07:26:48.687 1159 ERROR oslo.messaging._drivers.impl_rabbit
+  [req-c419cec6-9847-4692-8c61-733524097546 -- - --] AMQP server on 10.0.3.15:5672
+  is unreachable: [Errno 111] ECONNREFUSED. Trying again in 4 seconds
+
+  ```
+
+
+  如上所示，这是一个结构化的日志文件，可以通过许多不同的工具进行解析，以提取严重性、服务、时间戳和其他相关元数据。此外，这些数据可以使用开源分析工具（如 **ELK（ElasticSearch、Logstash
+  和 Kibana）**）进行搜索。有关这一行业标准数据挖掘平台的基本信息，请访问 `https://www.elastic.co/webinars/introduction-elk-stack`。该页面还包含一个帮助你入门的网络研讨会。
+
+
+
+
+
+  这种使用日志处理平台、搜索平台、图形仪表盘和告警平台的概念，同样也被许多大型商业和研究生产云用作OpenStack基础设施监控解决方案。例如，CERN和GoDaddy都在使用ELK来为其OpenStack云提供可视化。CERN的仪表盘（http://openstack-in-production.blogspot.com/2013/10/log-handling-and-dashboards-in-cern.html）看起来与此类似（它展示了Nova
+  API统计信息）：
+
+
+  ![](img/2f752555f69992669defa8b25e6dcee9_114_0.png)
+
+
+  CERN OpenStack云团队，2013
+
+
+  然而，并非所有解决方案都基于ELK；例如，Mirantis分发了一款名为StackLight的产品，它使用了不同的日志处理和格式化工具。除了Kibana之外，它还将Grafana添加到了可视化仪表盘套件中。Mirantis的解决方案还使用了不同的组件进行日志收集，并添加了InfluxDB作为时间序列数据的数据库。StackLight将Nagios
+  Core集成到监控平台中以提供告警功能。这一系列免费软件应用程序由一系列插件（https://www.mirantis.com/validated-solution-integrations/fuel-plugins）自动配置为监控平台，并安装到Fuel（Mirantis最近开源的安装程序）上：
+
+
+  ![](img/2f752555f69992669defa8b25e6dcee9_115_0.png)
+
+
+  类似地，还有其他发行版拥有各自定制的监控平台；然而，尽管它们在软件选择上有所不同，但它们的架构相似，并且提供了与前述示例类似的功能。它们都基于本章前面讨论的日志分析基本原理，并提供了可用于数据可视化的实用工具。
+
+
+  ## 监控
+
+
+  许多组织在应用程序部署到上线之间的阶段举步维艰。这主要是因为对OpenStack云运维与传统遗留平台之间的差异缺乏理解。很多时候，这是最难克服的障碍，因为它需要在工程、运维和开发人员与基础设施、应用程序和平台交互方式上实现一些根本性的文化转变。
+
+
+  虽然本节中我们将介绍的一些实践方法可能也适用于工作负载监控，但本章讨论的是OpenStack基础设施的运维监控，而不是运行在OpenStack上的工作负载。与OpenStack基础设施不同，运行在OpenStack云上的工作负载在许多情况下可以由传统平台进行监控。有许多专门为监控运行在OpenStack云上的工作负载而构建的工具，既有开源的也有商业的，但由于该领域的解决方案非常丰富，本章将不涉及该主题。我们将重点关注基础设施监控。
+
+
+  ## 监控什么
+
+
+  一般来说，支持OpenStack管理的进程有许多类别，如下所示：
+
+
+  - 无状态服务和OpenStack API端点，如`nova-api`、`glance-api`和`keystone-api`，它们接收用户输入。
+
+  - 连接到消息总线的OpenStack服务工作进程，如`nova-scheduler`，它接收并处理来自其他进程（如前面列出的那些）的用户请求。
+
+  - 属于OpenStack但并非实际代码库一部分的其他程序，它们更像是实际API层的使能器，提供数据库、复制、虚拟化等服务。其中一些组件包括MySQL、RabbitMQ、Memcached、HAProxy、Corosync和Pacemaker。由于我们的Packstack环境不是高可用环境，因此其中一些元素不在该环境中；然而，大多数其他发行版（Mirantis、Canonical、Red
+  Hat、IBM、HP等）的生产部署都拥有这些或其他类似工具来提供类似功能。我们将在本章后面简要提及这些与运维和监控相关的工具。
+
+  - 宿主机操作系统。在你的安装中，你可能安装了RHEL或CentOS。这两种选择都需要进行标准的操作系统、硬件和容量监控，以确保我们安装的基础——节点本身——正常运行。这种监控可以是代理、IPMI、SSH或其他接口，具体取决于监控平台。
+
+
+  ## 监控性能
+
+
+  监控性能通常衡量进程、连接或工作流的响应能力。在云计算中，它通常用于定义完成某些工作流所需的时间。其中一些工作流包括：创建实例、卷、网络或其他OpenStack资源。性能的关键指标通常可以从OpenStack服务日志及其包含的时间戳中提取。由于实例创建是一个跨项目的工作流，性能影响可以通过每个项目每个请求的开始和完成时间以及项目之间的交接来进行端到端跟踪。其他衡量性能的方法可能使用OpenStack命令的输出，利用原生时间测量工具，以及通过修改OpenStack代码来添加插桩。
+
+
+  ## 监控资源使用情况
+
+
+  在本节中，我们将仅部分涉及资源使用监控。在后面的章节中，我们将更深入地讨论它与容量规划的关系。然而，资源使用监控的目的是让操作员能够随时通过OpenStack
+  API检索不仅是一个用户，还包括一个租户或整个云所使用的资源量。这种监控不必实时执行。在大多数情况下，资源监控是利用特定时间段内收集的数据进行的活动。在本章后面，我们将介绍Ceilometer项目，它是OpenStack的计量项目。
+
+
+  ## 告警
+
+
+  告警过程是任何运维模型中最重要的一步之一。告警是监控平台就超出设定阈值的情况向操作员发出警报的过程。这些告警可以通过多种方式传递，例如Remedy等工单平台、电子邮件、短信、IRC，甚至与Slack（www.slack.com）等通信平台的集成。这些告警应包含有关触发它们的事件的基本信息。这可以是任何从良好状态变为非良好状态的关键值，或者是违反了SLA级别的关键值。在所有情况下，这些告警都是由状态变化驱动的，可能不是问题的直接指示，但可能是未来问题的征兆。
+
+
+  因此，告警应该：
+
+
+  - 显示受影响的OpenStack服务
+
+  - 包含导致告警的状态变化的一般描述
+
+  - 如果实现的话，具有由运维人员定义的严重级别
+
+  - 能够在维护等事件期间被标记为误报或被禁用
+
+  - 能够以逻辑方式将告警串联在一起，以触发额外操作并提供初步关联
+
+  - 能够引用时间序列统计数据，如中位数、百分位数和标准差
+
+  - 提供处于良好、警告或失败状态的服务的即时视图
+
+
+  信不信由你，在正确配置的OpenStack环境中看到的大多数错误并不严重，也不表示完全中断。OpenStack环境中的大多数错误通常是由于供应失败或其他类似的非中断性警告造成的。请记住，即使OpenStack控制平面完全故障，工作负载也（在大多数情况下）会继续运行。因此，拥有一个能够为错误确定适当告警级别的监控解决方案至关重要。这解决了过度告警运维人员并导致他们排查轻微警告的问题，而实际上这些警告可能只是次要问题的指示，应作为趋势指标来关注。一个简单的需求应包括类似以下要点的策略：
+
+
+  - 导致失败状态的严重错误应始终在告警中报告，并需要立即采取行动
+
+  - OpenStack HA环境中的其他问题，例如在三控制器环境中一个控制器上的一个服务故障，不应标记为严重，而应标记为警告或延迟状态，以表示高可用性降级
+
+
+
+
+
+  在 OpenStack 云投入生产之前，或在构建为镜像生产环境的 staging 云上，对其进行负载测试是一种测试其容量的绝佳方式。有一个名为 Rally（http://rally.readthedocs.io/en/latest/index.html）的开源项目，是识别环境中功能性故障和性能瓶颈的绝佳工具。以下图表描述了该工具的基本功能：
+
+
+  ![](img/2f752555f69992669defa8b25e6dcee9_120_0.png)
+
+
+  Rally Actions – Copyright 2016 OpenStack Foundation
+
+
+  ## 活动监控
+
+
+  OpenStack 中有相当多的活动需要监控。一般来说，有三个主要监控区域：
+
+
+  - OpenStack 服务（用于编排和配置的必需项）
+
+  - 进程（OpenStack 组件的实际运行进程）
+
+  - HA 控制集群（为云提供 HA 能力的组件）
+
+
+  ### 服务
+
+
+  检查服务主要是关于可用性。如果服务宕机，云用户将面临错误，阻止他们使用 API，进而与云交互。这些服务检查应使用来自监控平台生成的模拟事务定期执行。我们称之为模拟，因为它们不需要真实工作负载可能需要的镜像和部署后配置的所有特定自定义。虽然使用真实工作负载是可能的，但由于在常规部署负载之外定期运行实际事务所需的额外开销，它并不那么理想。合成事务应从专用用户在其自己的项目中启动，并设置严格的配额。这样，事务就可以使用与真实流量分开的租户和用户
+  ID 进行跟踪。
+
+
+  这些检查应针对端点（如果在 HA 配置中配置）的 VIP 地址启动，并且仅报告两种可能的结果：已完成或失败。这样，测试就可以限制为简单操作。复杂的模拟将涉及其他端点，并可能提供误报。例如，如果要测试
+  Nova API 端点，一个好的测试是检查与监控租户关联的 flavors。对 Nova 项目的 API 的示例调用如下：
+
+
+  ```
+
+  GET /v2.1/{tenant_id}/flavors
+
+  ```
+
+
+  更多 API 规范可在 http://developer.openstack.org/ 找到。
+
+
+  为了通过 Nagios 等监控平台进行此 API 调用，平台可以配置为使用插件脚本或一组插件脚本中的 nova CLI 客户端来调用 Nova 项目的 API，该脚本通过
+  Python 或其他脚本语言调用 API。这些插件脚本，其中许多可免费获得，位于 http://www.nagios.com，可以用于使用模拟操作检查 API
+  端点状态。例如，一些 OpenStack 基础设施插件已贡献给 Nagios 目录，例如 Rakesh Patnaik 的名为 check_nova_api 的插件，位于
+  https://github.com/rakesh-patnaik/nagios-openstack-monitoring，它使用 Python 和对 Nova
+  API 端点的直接调用来检查 Nova 的 API 服务。nagios-openstack-monitoring 插件不仅具有监控 API 端点的能力，插件还包含检查进程的脚本。
+
+
+  ### 进程
+
+
+  许多独立进程支持 OpenStack 的运行。其中许多进程在控制器节点上运行，需要运行以提供 API 可用性（nova-api 进程）以及协调控制堆栈其他部分功能的进程（MariaDB
+  和 RabbitMQ）。这些进程可以通过本地方式、通过 shell 脚本驱动的远程 SSH 代理，或通过 Ansible、Chef 和 Puppet 等软件实现的自动化进行检查。此外，如前所述，Nagios、Zenoss
+  和 Zabbix 等监控平台的插件也包含这些进程检查。
+
+
+  ### HA 控制集群
+
+
+  许多不同的发行版使用 HAProxy 在多个 OpenStack 控制服务器（最少三个）之间实现 active/active 可用性。此 HAProxy 服务充当反向代理和简单负载均衡器，配置为在
+  OpenStack 端点地址前侦听 VIP 地址。常见做法是在 HA 集群中的每个控制器节点上运行 HAProxy。由于 HAProxy 服务与为 OpenStack
+  API 服务配置的 VIP 地址绑定，如果 HAProxy 下的这些服务失败，则 HAProxy 本身将故障转移到另一个控制器节点以提供服务。然而，HAProxy
+  不监控或故障转移进程，也不将 VIP 地址移动到其他集群成员。因此，应使用 pacemaker 或 keepalived 等额外工具来满足此要求。
+
+
+  以下图表显示了一种配置 HA 控制器的逻辑图：
+
+
+  ![](img/2f752555f69992669defa8b25e6dcee9_123_0.png)
+
+
+  Mirantis OpenStack controller HA architecture – Mirantis
+
+
+  有关此主题的更多信息可在 http://docs.openstack.org/ha-guide/controller-ha-haproxy.html 找到。或者，也可以使用其他外部软件或硬件负载均衡器代替
+  HAProxy。
+
+
+  鉴于此 HA 架构，以及对每个 HA 控制节点上进程的监控，可能在三节点集群中，单个项目的三个控制器中的两个的进程完全宕机，OpenStack 仍然完全可用。这就是为什么，正如服务监控一样，进程状态和整体健康警报必须非常谨慎地自定义。仅仅因为一个控制器的单个进程（例如，nova-api）失败，而
+  HA 基础设施仍然运行，并不意味着监控解决方案应显示 OpenStack 云已失败的严重警报。
+
+
+  ## 容量规划
+
+
+  作为属于 IT 财务管理的四个主要 ITIL 流程之一，容量规划显然是任何云战略的重要组成部分。然而，并非所有云战略都相同。区分企业虚拟化和 OpenStack
+  弹性云中的工作负载非常重要。对于虚拟化，每个工作负载，在许多情况下每个服务器都很重要。如果单个虚拟化服务器过度使用或以某种方式降级，则会调查、扩展和/或修复该特定服务器。一个常见的类比是将虚拟化
+  VM 和服务器与“宠物”进行比较。在纯 OpenStack 云世界中，除了当虚拟化工作负载迁移到弹性云，从而将 IT 即服务工作负载带入真正的云之外，没有此类单个实例（宠物）的构造。OpenStack
+  是围绕工作负载是短暂的、故障是预期的、增长应水平扩展而非垂直扩展这一前提构建的。如果一个工作负载失败，另一个工作负载将简单地在其位置启动。“牲畜”一直是用来解释这种短暂实例和工作负载的想法的类比。在这个类比中，牲畜只是资源；如果它们死亡或无法修复地受伤，它们就被简单地销毁并替换。在
+  OpenStack 中，这一想法甚至扩展到底层硬件。在许多公司中，计算服务器只是要按需使用的白牌硬件计算服务器资源。如果它们失败，其他在线且同样无处不在的资源将取而代之（以脚本化灾难恢复的方式或通过有足够的过剩容量）。此外，如果计算服务器因高负载而变慢，则会添加更多无处不在的资源（计算服务器）以增加容量。这是谈论弹性容量时需要把握的一个重要概念。在此定义下，计算服务器是通用、统一、可丢弃且可扩展的资源，可用容量发生变化时，增长不是线性的，而是基于需求的。然而，需求会随着开发周期、开发方法、一年中的时间以及生产周期而变化。
+
+
+
+
+
+  这种需求变动性通常是线性的，甚至可能随着云采用而呈指数级增长。然而，在构建 OpenStack 环境时，需要采用适当的方法来帮助制定最准确的容量规划，并为日后制定战略性和战术性决策奠定基础。这与虚拟化容量规划有很大不同，虚拟化容量规划往往更线性，因为工作负载更持久，并且不会频繁回收。
+
+
+  ## 规划你的城市
+
+
+  与土木规划和建筑非常相似，OpenStack 云就像一个由租户组成的城市，需要资源才能存在。然而，在资源有限的情况下，不能让租户自行管理；资源耗尽的风险太大了。这类似于公寓楼的居民拥有无限的电、水、燃气、有线电视和空间，而无需计量或支付任何费用。许多居民可能会认为资源是无限的，他们可以无限扩大和超订一切而无需承担后果。因此，无论是在土木工程还是
+  OpenStack 云中，都需要运营方为最终用户进行容量管理和风险缓解。这意味着要找到一种方法来跟踪、分析并向最终用户或其租户成本中心收取费用（或至少展示成本）。这包括创建预定义的结构化资源包，用户可以从中选择，以及创建和维护配额系统。
+
+
+  容量风险缓解和规划通过执行三个不同的操作来完成：
+
+
+  - 跟踪使用情况
+
+  - 分析增长
+
+  - 计费/成本分摊（Chargeback/Showback）
+
+
+  ## 跟踪使用情况并分析增长
+
+
+  为了跟踪任何资源的使用情况，我们首先需要标准化我们要统计的单位。在云计算中，利用 OpenStack 数据库中已有的数据，以及使用计量项目 Ceilometer，可以实现极细粒度。虽然可以跟踪许多不同的计量器，但让我们从跟踪随时间使用的单个
+  vCPU 数量、随时间变化的内存量和精确到分钟的磁盘使用情况开始。然而，让用户自行组合这三个数据点可能会导致数万种组合。因此，在 OpenStack 云中，我们使用
+  flavor（实例规格）来限制用户的选择。Flavor 是虚拟硬件模板，是计算、存储甚至网络元素的逻辑分组。
+
+
+  通过将资源逻辑分组为可管理的产品，这简化了计费/成本分摊的等式。在我们的示例中，我们仅考虑 vCPU 和内存；然而，同样的原则也适用于持久性和临时存储以及网络资源分配。
+
+
+  继续我们土木工程的类比，我们可以将 flavor 视为一个大家庭，希望入住一栋有空间要求的公寓楼。在这个例子中，我们的一个约束是，65,536 平方英尺的建筑最多只能有
+  16 个房间，并且根据规定，只能容纳 64 人。然而，由于这是一栋新公寓楼，房间大小尚未确定，物业经理会根据家庭的需求来建造房间。物业经理决定让前三个申请人选择房间大小，并根据家庭所需的规格向他们收费。
+
+
+  让我们从每个家庭的请求开始，每个请求都有精确且独特的要求：
+
+
+  - 3 人家庭需要 1,024 平方英尺
+
+  - 7 人家庭需要 8,096 平方英尺
+
+  - 29 人家庭需要 30,720 平方英尺
+
+
+  下面我们可以看到，使用这些独特且任意的房间大小，一个 65,536 平方英尺的房屋会是什么样子：
+
+
+  ![](img/2f752555f69992669defa8b25e6dcee9_126_0.png)
+
+
+  我们现在共有 49 人和他们的物品占据着这座容量为 64 人的建筑。这留下了可容纳 15 人的空间，但分散在大量被浪费的不同类型和配置的空间（资源）中，因为上面列出的现有家庭分组都不再能完美地填满现有空间中的同等房间；物业经理只有两个选择。他可以为不同家庭创建额外的不规则大小的公寓，以容纳另外
+  15 人，并希望有该规模的家庭申请，或者购买新房子，继续使用现有的不规则尺寸，而放弃房产中浪费的空间。这就是 OpenStack 云中没有进行 flavor 标准化时发生的情况。
+
+
+  将计算节点视为货运货车，将 flavor 视为箱子。使用标准尺寸的箱子，打包轻松且效率高。将箱子视为 vCPU；现在，我们将所有箱子视为正方形，尺寸如下：
+
+
+  - 1 英尺宽的箱子
+
+  - 2 英尺宽的箱子
+
+  - 4 英尺宽的箱子
+
+
+  这条线路上人们运送的大多数箱子都是 2 英尺规格的，但还有另外两种类型的箱子（1 英尺和 4 英尺）。然而，交通运输部只允许每辆卡车装载 64 英尺的箱子。不过，这次我们创造了可堆叠的空间。现在，当我们拥有互为指数的结构化箱子分组时，看看会发生什么：
+
+
+  ![](img/2f752555f69992669defa8b25e6dcee9_127_0.png)
+
+
+  为了确定计算容量，我们使用期望的 VM 密度；在本次讨论中，我们将估计值设置为每台计算服务器 40 个 VM，并将密度乘以组织中最常见的 flavor：
+
+
+  40 x 2 vCPU = 80 vCPU（假设非超线程 CPU，如果是超线程，则将此数字乘以 1.3）
+
+
+  40 x 4096 = 160 GB RAM（假设 RAM 超订比为 1:1）
+
+
+  根据经验法则，计算节点在满载时需要约 20% 的总 vCPU 和 RAM 用于开销和操作系统进程。这些资源需要包含在所需总资源的计算中：
+
+
+  包含操作系统开销所需的 vCPU 数量：80 * 1.20（100% + 20%）= 96 vCPU
+
+
+  包含操作系统开销所需的内存：160 * 1.20 = 192 GB RAM
+
+
+  因此，为了拥有一个精确扩展的起点，我们需要一台硬件支持 96 个 vCPU 的计算服务器。我们将 vCPU 的超订比设置为 8:1，因此我们需要将所需的 vCPU
+  数量除以 8，以获得所需的 CPU 核心数。超订比可能不同，因此请根据实际情况调整计算，如下所示：
+
+
+  所需 vCPU 总数 / 超订比 = 核心数
+
+
+  96 / 8 = 12 个 CPU 核心
+
+
+  因此，基于此计算，我们需要 12 个 CPU 核心来支持该云的平均 flavor（命名为 medium）的大约 40 个实例。由于现在大多数服务器都是双核或四核型号，我们只需要一台配备
+  6 核处理器的双路 CPU 服务器。对于此示例，Intel E5-2620v3 或 E5-2643v3 之类的处理器足以满足一般工作负载。
+
+
+  对于内存，我们只需确保每台计算服务器具有 192 GB RAM，并且由于这是一台配备 12 个 DIMM 插槽的 6 核双路服务器，每个处理器内存组需要 32
+  GB。因此，作为可视化表示，下图大致展示了逻辑内存分配的样子。
+
+
+  ## 为运营而构建
+
+
+  在服务器达到其 40 实例加一的限制后，仍有一些剩余资源。这些内存可用于额外的实例，或留作计算服务器在负载时操作系统峰值备用。
+
+
+  | 计算服务器 - 192GB RAM - 2 x 2643 Intel CPU（96 个 vCPU @ 8:1 超订） |
+
+  |---|
+
+  | S | S | L | M | M | L |
+
+  | S | S | L | M | M | L |
+
+  | M | S | S | M | S | S | S | S |
+
+  | M | S | S | M | S | M |
+
+  | L | M | M | L | M | M |
+
+  | M | M | M | M |
+
+  | M | M | M | M |
+
+  | 为操作系统保留的 CPU |
+
+
+  在上图中，我们有一个明细，如下所示：
+
+
+  | Flavor 大小 | 实例数 | vCPU | 内存（GB） |
+
+  |---|---|---|---|
+
+  | 小型 | 13 | 13 | 26 |
+
+  | 中型 | 24 | 48 | 96 |
+
+  | 大型 | 4 | 16 | 32 |
+
+  | 总计 | 41 | 78 | 154 |
+
+  | 为操作系统保留 |  | 18（约20%） | 38 GB（约20%） |
+
+
+  这显示了我们之前 flavor 要求的近乎理想的配置，尽管我们并没有用*全部*中型镜像来填充它。然而，如果添加了更多 flavor，而不遵循前面推荐的模型，最终会出现间隙以及
+  CPU 和内存的浪费，具体取决于 flavor 的多样性和这些 flavor 的实例数量。
+
+
+  将这种 flavor 确定性作为最佳实践，将使运维人员能够更准确地测量/监控以下内容：
+
+
+  - 整体容量
+
+  - 随时间增长
+
+  - 利用率和过度利用
+
+  - Nova 对 VM 的正确放置
+
+
+  许多公司花费了大量时间制定内部策略，用于收集、管理和分析来自其云的数据，以回答所讨论的主题。然而，近年来，出现了许多不同的云管理平台（CMP）和专用货币化与管理软件，以简化计费和成本分摊（chargeback
+  and showback）。然而，OpenStack 的遥测项目 Ceilometer 一直面临规模挑战。虽然技术上已取得进展，但现在一些容量规划软件已配置为直接使用
+  OpenStack API，甚至不需要 OpenStack 遥测服务（Ceilometer）。
+
+
+
+
+  ## 为运营而构建
+
+
+  云容量必须成为更具确定性的容量规划方法论的一部分。始终保持适当的弹性并非易事，必须仔细监控，以在资源的可用性与折旧之间取得平衡。用户往往认为云资源是无限的；但遗憾的是，事实并非如此。所有资源请求，即便是半虚拟化请求，最终都会映射回容量有限的物理设备组。不幸的是，最终用户往往不知道或不知不觉地忘记这一模式。因此，当用户无需为资源消耗付费或资源消耗不被追踪时，他们有时会重新养成囤积资源的习惯。不幸的是，这种行为很可能是多年遗留基础设施流程的副产品——过去开发团队需要花费数月时间才能获得额外的基础设施。
+
+
+  考虑到这些限制和需求，云管理或运维团队负责 OpenStack 云各方面容量规划的工作变得越来越重要。控制这种囤积行为最简单的方法是通过计费（chargeback）或用量展示（showback）。这使
+  OpenStack 管理员能够定期向用户说明其资源消耗情况。此外，如果启用了计费功能，云部门或公有云提供商也能借此收回维护弹性环境的成本。
+
+
+  为了能够向用户展示资源消耗并向其收费，管理员需要遵循前述容量规划建议，同时为云用户提供定期账单、部署前资源成本、运行成本以及支付或计费选项等功能。虽然能够实现这些功能的大多数软件都属于商业领域，但也有少数开源工具可以用于提供部分功能。
+
+
+  以下是一些领先的容量规划和计费解决方案示例：
+
+
+  | 名称 | 公司 | 开源/闭源 | 支持 | 网站 |
+
+  |---|---|---|---|---|
+
+  | CloudKitty | Objectif Libre | 开源 | OpenStack | https://wiki.openstack.org/wiki/CloudKitty
+  |
+
+  | HP | Cloud Optimizer 3.0 | 闭源 | OpenStack AWS Xen VMware Hyper-V | http://www8.hp.com/us/en/software-solutions/capacity-planning-server-virtualization-management/
+  |
+
+  | Red Hat | Cloudforms ManageIQ | 闭源；开源 | OpenStack AWS Google | https://access.redhat.com/documentation/en-us/red_hat_cloudforms/4.1/html/manageiq.org/
+  |
+
+  | Talligent | OpenBook 3.0 | 闭源 | OpenStack AWS VMware | http://talligent.com/openbook-faqs/
+  |
+
+
+  ## 备份与恢复
+
+
+  通常，传统 OpenStack 运维人员首先想到的并不是备份与恢复。这通常是因为传统上在 OpenStack 云上运行的是临时性工作负载，它们存在时间并不长，不足以进行备份。然而，随着
+  OpenStack 的采用率呈指数级增长，我们看到越来越多的生产级 OpenStack 部署包含持久化工作负载，尤其是在 IT 即服务（IT-as-a-service）云中。因此，备份关键基础设施数据以及云上运行的持久化工作负载的需求应运而生。
+
+
+  ### 基础设施备份架构
+
+
+  虽然运行在 OpenStack 云上的工作负载是舞台上的明星，但基础设施才是真正的英雄。在可用性方面，让 API 保持可用并 100% 不间断运行应该是任何运维人员的最终目标。然而，这并非现实。即使有适当的生命周期管理和变更流程，数据损坏仍可能发生。由于
+  OpenStack 的核心是一个运行在 MariaDB 上的结构化数据库，因此理所当然应该以高可用配置运行它。但是，如果在运行过程中发生错误，并且这些错误被复制到所有
+  HA（高可用）节点，会发生什么？故障。此时，如果没有备份和恢复，不仅 API 会离线（尽管工作负载可能仍在线），而且关于每个实例的所有数据以及这些实例的网络配置都会丢失。这对任何
+  OpenStack 云来说都是一场真正的灾难。
+
+
+  ### 备份策略——需要备份什么
+
+
+  为了确保 OpenStack 云能够正确恢复，必须定期备份一些关键数据。这些备份的频率应与您的恢复时间目标（RTO）保持一致，即灾难发生后为避免对业务连续性造成不可接受后果而恢复云所需的时间。您的组织内部可能还有必须遵守的恢复点目标（RPO）和服务级别协议（SLA）。虽然这些指标更常用于持久化工作负载的灾难恢复，而非基础设施恢复，但总有例外情况。
+
+
+  要从全面或局部灾难中恢复，你需要备份的关键项目如下表所示：
+
+
+  | 数据项 | 项目 | 位置 | 说明 |
+
+  |---|---|---|---|
+
+  | MySQL 数据库 | OpenStack 数据库 | 控制节点 | 使用 `mysqldump` 导出数据库内容。将数据复制到备份服务器。 |
+
+  | Nova | 计算 | 计算控制节点 | 复制 `/etc/nova` 并将副本复制到备份服务器。在计算节点上复制 `/var/lib/nova`，但 `/var/lib/nova/instances`
+  除外。实例备份将在后文讨论。 |
+
+  | Glance | 镜像仓库 | 控制节点 | 复制 `/etc/glance` 和 `/var/lib/glance` 目录。或者使用 rsync 将 `/var/lib/glance/images`
+  同步到另一台备份服务器。 |
+
+  | Keystone | 身份 | 控制节点 | 备份 `/etc/keystone`。如果 `/var/lib/keystone` 中有任何数据，也进行备份。
+  |
+
+  | Cinder | 块存储 | 控制节点 | 备份 `/etc/cinder`。备份 `/var/lib/cinder`。 |
+
+  | Swift | 对象存储 | 控制节点 | 备份 `/etc/swift`；其中包含配置文件以及 ring 和 ring builder 文件。缺少这些文件，你的数据将完全无法访问。在备份之前，请先将这些文件复制到每个存储节点。
+  |
+
+
+  一旦所有这些文件都已备份并移动到安全的现场或异地灾难恢复服务器，要恢复 OpenStack 云，基本上需要停止现有云上的所有服务，将所有文件复制回原位，从导出文件中恢复数据库，然后重新启动云。
+
+
+  虽然这看起来简单，但很耗时。如果这个计划看起来无法满足您的 RTO 需求，还可以采用其他方法来让 OpenStack 实现高可用，并构建一个兼具多云和多区域特性的架构，在灾难期间具备故障转移并恢复到完全不同的站点的能力。这些解决方案包括跨
+  WAN 链路复制 Cinder 存储、自定义迁移中间件解决方案，以及一套网络方案，用于将灾难恢复云上线，并提供满足业务需求所需的所有访问和配置。该解决方案还可以通过复制数据库元数据以及为
+  Glance 镜像提供全局对象存储来扩展；不过，可以想象，这是一项相当复杂的架构和工程壮举，超出了本书的讨论范围。
+
+
+  ### 工作负载备份架构
+
+
+  如前所述，工作负载是云存在的根本原因。在一个理想的世界里，所有应用都应该是云原生的、完全分布式的 12 因素应用。它们不需要备份，因为它们会在多个云之间进行区域性或全球性分布，并水平扩展以在一个地点发生灾难时自动伸缩。然而，对许多组织来说，这绝非现实。许多组织需要在生产云中运行持久化工作负载和传统应用。然而，这些应用的传统备份方法（尤其是在裸机环境中）与云环境中的方法截然不同。由于大多数资源都已虚拟化，租户网络相互隔离，传统的备份与恢复架构在
+  OpenStack 中根本行不通。因此，组织不仅需要面向工作负载的灾难恢复备份解决方案，还需要有时称为备份即服务（BaaS）的运营备份解决方案。
+
+
+  ### 灾难恢复规划
+
+
+  由于 OpenStack 上需要备份的工作负载主要由持久化实例组成，我们必须备份实例的所有部分，不仅是保存所有运行时和持久化数据的磁盘镜像，还包括使该工作负载实例能够从备份中恢复所需的元数据。然而，OpenStack
+  缺乏提供基于策略的、自动化的、全面备份与恢复解决方案的能力。尽管 OpenStack 提供了一些零散的工具和 API 来提供某种备份能力，但即使是像 OpenStack
+  的 Cinder API 这样支持完整卷快照和增量卷快照的工具，仍然会造成中断：工作负载必须下线才能创建快照，否则就有数据损坏的风险。
+
+
+
+
+
+  ## 为运维而构建
+
+
+  为了说明这一点，我们可以看看对基本工作负载执行简单备份的典型步骤：
+
+
+  - 1. 暂停实例。
+
+  - 2. 分离 Cinder 卷（根卷和任何其他非根卷）。
+
+  - 3. 为每个实例创建实例快照，并将其存储在 Glance 中以便日后检索。
+
+  - 4. 使用 Cinder 备份上述所有卷，并将它们放入对象存储（Swift/Ceph）中。
+
+  - 5. 记录这些副本，因为 OpenStack 不会为你跟踪它们。
+
+  - 6. 恢复实例。
+
+
+  这些步骤命令密集、耗时、需要自定义脚本，而且由于包含手动文档记录步骤，因此容易出错。这些步骤也可能不符合组织现有的内部备份策略。
+
+
+  这种手动备份操作方式已经过时且功能有限。任何企业级备份解决方案都应做到无影响、能够进行增量备份、可针对每个工作负载进行定制，并且在工作负载分布在多个实例上时能够跨多个实例进行备份。此外，租户应能够轻松备份自己的工作负载，并在提交到存储之前进行测试，同时能够在需要时恢复和重放备份。工作负载备份软件还应提供灾难恢复组件，以便在发生灾难时，备份和复制的资源可在不同的地理位置使用，以防任何一个地点遭到破坏。
+
+
+  在考虑使用 OpenStack 原生快照的工作负载备份解决方案时，开源和商业选项都很少。一个开源选项是 Raksha (https://wiki.openstack.org/wiki/Raksha)，它是后来成为
+  TrilioVault (http://www.triliodata.com/about/) 的 OpenStack 项目版本，TrilioVault 是一个专为
+  OpenStack 设计的数据保护、备份和灾难恢复商业产品。Trilio Data 采用了前面提到的工作负载备份快照流程，并设计了一个灵活且可扩展的解决方案。使用
+  TrilioVault，快照的完整备份和增量备份都可以存储在各种存储上，包括 NFS、Swift 和其他第三方阵列。恢复也是 GUI 驱动的，简化了原本需要由一组自制脚本驱动的备份和恢复操作。TrilioVault
+  还提供了数据保留、保护和数据完整性等附加功能。
+
+
+  此外，传统的基于文件的备份解决方案可以在 OpenStack 内部运行，并可用作备份即服务（BaaS）产品。虽然我们无法涵盖所有备份即服务选项，但下表比较了当今企业客户使用的一些软件中的常见选项。这种
+  BaaS 模式通常由公有云和私有云提供商使用，为客户提供备份服务。这些服务的定价基于容量、带宽、客户端数量等成本模型。云备份服务与其他云服务一样，利用共享的私有云基础设施，并且对底层基础设施进行了抽象。BaaS
+  既可以供云内的租户使用，也可以供希望备份到云中的外部主机使用。
+
+
+  | 功能与常见要求 | Zmanda | Cloudberry | Commvault Simpana | Community Amanda（开源） |
+
+  |---|---|---|---|---|
+
+  | 基于文件的备份 | 是 | 是 | 是 | 是 |
+
+  | 客户端-服务器架构 | 是 | 两者均可 | 是 | 是 |
+
+  | 可用数据格式 | 原生转储和/或 GNU tar | Swift 对象存储 | 原生转储/SCSI | 原生转储和/或 GNU tar |
+
+  | 去重 | 否 | 是 | 是 | 否 |
+
+  | 远程站点容灾（DR） | 是 | 是 | 是 | 否 |
+
+  | 加密和压缩 | 是 | 是 | 是 | 是 |
+
+  | 增量备份 | 是 | 否 | 是 | 是 |
+
+  | LDAP 集成 | 是 | 变通方案 | 是 | 变通方案 |
+
+  | 许可 | 年度或多年度 | 年度、永久 | 年度 | 免费 |
+
+  | Linux 客户端 | 是 | 否 | 是 | 是 |
+
+  | MS Exchange | 是 | 是 | 是 | 变通方案 |
+
+  | MS SharePoint | 是 | 变通方案 | 是 | 变通方案 |
+
+  | MS SQL | 是 | 是 | 是 | 变通方案 |
+
+  | 操作 GUI | 是 | 是 | 是 | 否 |
+
+  | 报表 | 是 | 功能有限 | 是 | 否 |
+
+  | 恢复到不同位置 | 是 | 是 | 是 | 是 |
+
+  | 恢复到单个数据库 | 是 | 是 | 是 | 否 |
+
+  | 指定保留时间 | 是 | 是 | 是 | 是 |
+
+  | Windows 客户端 | 是 | 是 | 是 | 是 |
+
+
+  ## 总结
+
+
+  在本章中，我们讨论了对于 OpenStack 云运维至关重要的主题。我们介绍了监控、规划和备份云的技术性方法；这仅仅是开始。网上有很多优秀资源可以帮助你运维 OpenStack
+  云；不过，我建议读者从 OpenStack 运维和架构指南入手。它们分别位于 http://docs.openstack.org/ops/ 和 http://docs.openstack.org/arch/。这些指南将提供所有必要的基础信息，帮助你在任何云之旅中成功运维。
+
+
+  在下一章中，你将学习如何集成现有的业务和运维流程，例如使用 Jenkins 进行身份管理集成和单元测试。
+
+
+  ## 参考资料
+
+
+  - http://docs.openstack.org/arch/
+
+  - http://openstack-in-production.blogspot.com/2013/10/log-handling-and-dashboards-in-cern.html
+
+  - https://www.mirantis.com/validated-solution-integrations/fuel-plugins
+
+  - http://www.slack.com
+
+  - http://rally.readthedocs.io/en/latest/index.html
+
+  - http://developer.openstack.org/
+
+  - http://www.nagios.com
+
+  - https://github.com/rakesh-patnaik/nagios-openstack-monitoring
+
+
+  # 6
+
+  '
+- "## 集成平台\n\n我们合作过的一位 OpenStack 架构师喜欢说：“没有任何 OpenStack 实现是一座孤岛”。每个部署都会与其周围的传统 IT\
+  \ 基础设施集成，从身份管理系统到审计系统再到计费系统。OpenStack 标准化的 API 使这些集成相对简单。本章将介绍 OpenStack 实现中可用的集成点以及许多常见的集成模式。\n\
+  \n在本章中，我们将详细探讨以下几点：\n\n- **身份管理（IdM）** 集成\n- 置备工作流\n- 计量和计费\n\n这三种不同的平台集成展示了 OpenStack\
+  \ 的三种主要集成模式。将 Keystone 与 Active Directory 等 IdM 系统集成是相对规范化的——正如 Cinder 设计用于与存储阵列集成一样，Keystone\
+  \ 设计用于与 IdM 系统集成。Keystone 与 IdM 系统之间的契约主要隐藏在项目代码中。\n\n另外两种集成模式展示了与 OpenStack 系统进行外部交互的两种不同方式。外部置备工作流通过其\
+  \ REST API 驱动 OpenStack 系统。它们要么直接与 Neutron、Cinder、Nova 和 Glance API 交互，要么利用 Heat\
+  \ 编排 API 在 OpenStack 部署中创建、修改和删除对象。相比之下，计量、计费和审计系统通过与系统的输出交互来工作，它们要么监听 OpenStack\
+  \ 消息总线上发生的事件，要么从 Event API 消费事件。\n\n## IdM 集成\n\n在 2014 年的一篇博客文章中，OpenStack 开发者*内森·金德（Nathan\
+  \ Kinder）*著名地（且令人信服地）论证了 **Keystone 不是身份认证服务**。在这篇文章中，Kinder 描述了将 `Keystone` 服务部署在\
+  \ Apache HTTP 服务器之后、使用原生模块执行身份认证的部署模式。Kinder 在文中提出了两个论点：\n\n- 大多数人在使用 OpenStack\
+  \ 时会使用某种外部身份认证系统\n- 参考身份认证系统（SQL 插件）不具备我们从身份认证服务所期望的任何功能\n\n我们自身的经验证明了这两个论点；我们合作的大多数组织所着手处理的第一个集成就是\
+  \ IdM 服务的集成。\n\n## OpenStack 中的身份认证与授权\n\n了解 OpenStack 中的身份认证和授权机制是很有帮助的。每次对 OpenStack\
+  \ API 服务的调用都通过一个 bearer token 进行授权，该 token 由 `Keystone` 服务获取并验证。下图总结了这一交互过程：\n\n\
+  ![](img/2f752555f69992669defa8b25e6dcee9_141_0.png)\n\n\n\n\n当客户端向 Keystone 请求令牌时，会同时发送所请求的令牌范围：租户、项目或域。如果凭据能够授权客户端，Keystone\
+  \ 返回的令牌将特定于所请求的范围。一旦客户端获得令牌，向其他 OpenStack 服务发送的每个 API 请求都会在 HTTP 标头中包含该令牌。其他服务使用该令牌来授权客户端的请求。\n\
+  \n目前 OpenStack 中广泛使用的 Keystone API 有两个版本：版本 2 和版本 3。在 API 版本 2 中，用户被授权访问特定的项目或**租户**。一个用户可能拥有多个租户的权限，且权限因租户而异。例如，用户\
+  \ **msolberg** 在 **msolberg** 租户中可能拥有管理权限，但在 **architect** 租户中只有用户权限。API 版本 3 引入了授权域的概念，在基本租户之上提供了一层层级结构。Keystone\
+  \ API 版本 3 已经发布数个版本，但各个服务支持新的授权模型都需要一定时间。因此，大多数 OpenStack 部署仍使用 Keystone v2 API。\n\
+  \nKeystone 在根据一组凭据决定是否颁发令牌时，会结合使用多个后端驱动。第一个后端驱动是身份驱动。身份驱动可以是 SQL（参考实现）或**轻量目录访问协议（LDAP）**。如果驱动设置为\
+  \ LDAP，则可以使用外部目录服务对用户进行身份验证。第二个驱动是**分配（assignment）**驱动。该驱动允许用户使用 LDAP 进行身份验证，并使用\
+  \ SQL 数据库分配角色。这种配置是 Active Directory 最常用的集成模式。\n\n## 使用分离分配和身份配置 Keystone\n\n在配置\
+  \ Keystone 使用 Active Directory（或其他 LDAP 服务）进行身份验证之前，需要先在 Active Directory 端做一些更改。首先，决定如何将\
+  \ Active Directory 中的对象映射到 OpenStack 中的账户。例如，您可能希望目录中拥有账户的任何用户都能访问 OpenStack 中的租户，或者您可能希望将使用权限限制在特定的用户组。如果打算限制用户，您需要创建一个组或属性来筛选这些用户。其次，需要创建一个能够查找其他用户的用户。请使用\
+  \ `ldapsearch` 等工具执行测试，验证该用户是否有读取相应账户对象子树的能力。有关 Active Directory 端先决条件的更多信息，请参阅\
+  \ `https://wiki.openstack.org/wiki/HowtoIntegrateKeystonewithAD`。\n\n接下来，我们将配置 Keystone\
+  \ 使用 LDAP 身份后端和 SQL 分配后端。Packstack 开箱即用地支持此配置，我们只需更新 Puppet master 上的 Hiera 数据，即可让我们的安装反映新设置。下表列出了所需的设置：\n\
+  \n| Hiera 变量 | keystone.conf 设置 | 描述 |\n|---|---|---|\n| CONFIG_KEYSTONE_IDENTITY_BACKEND\
+  \ | identity.driver | 要使用的后端（ldap） |\n| CONFIG_KEYSTONE_LDAP_URL | ldap.url | AD\
+  \ LDAP 服务的 URI |\n| CONFIG_KEYSTONE_LDAP_USER_DN | ldap.user | 用于查找账户的服务用户 |\n|\
+  \ CONFIG_KEYSTONE_LDAP_USER_PASSWORD | ldap.password | 服务用户的密码 |\n| CONFIG_KEYSTONE_LDAP_SUFFIX\
+  \ | ldap.suffix | 服务账户的后缀 |\n| CONFIG_KEYSTONE_LDAP_USER_SUBTREE | ldap.user_tree_dn\
+  \ | AD 中用户账户所在的树 |\n| CONFIG_KEYSTONE_LDAP_USER_OBJECTCLASS | ldap.user_objectclass\
+  \ | 用户账户的对象类（person） |\n| CONFIG_KEYSTONE_LDAP_USER_FILTER | ldap.user_filter |\
+  \ 可选过滤器，用于仅选择树中的特定用户 |\n| CONFIG_KEYSTONE_LDAP_USER_ID_ATTRIBUTE | ldap.user_id_attribute\
+  \ | 用作 Keystone 用户 ID 的属性（cn） |\n| CONFIG_KEYSTONE_LDAP_USER_NAME_ATTRIBUTE | ldap.user_name_attribute\
+  \ | 用作 Keystone 用户名的属性（cn） |\n| CONFIG_KEYSTONE_LDAP_USER_MAIL_ATTRIBUTE | ldap.user_mail_attribute\
+  \ | 用作 Keystone 用户电子邮件的属性（mail） |\n| CONFIG_KEYSTONE_LDAP_USER_ENABLED_ATTRIBUTE\
+  \ | ldap.user_enabled_attribute | 确定用户是否启用的属性（userAccountControl） |\n| CONFIG_KEYSTONE_LDAP_USER_ENABLED_MASK\
+  \ | ldap.user_enabled_mask | 用于确定账户是否启用的位掩码（2） |\n| CONFIG_KEYSTONE_LDAP_USER_ENABLED_DEFAULT\
+  \ | ldap.user_enabled_default | 用于确定账户是否启用的默认值（512） |\n| CONFIG_KEYSTONE_LDAP_USER_ATTRIBUTE_IGNORE\
+  \ | ldap.user_attribute_ignore | 对象上要忽略的属性（password、tenant_id、tenants） |\n| CONFIG_KEYSTONE_LDAP_USER_ALLOW_CREATE\
+  \ | ldap.user_allow_create | 是否允许创建用户（False） |\n| CONFIG_KEYSTONE_LDAP_USER_ALLOW_UPDATE\
+  \ | ldap.user_allow_update | 是否允许更新用户（False） |\n| CONFIG_KEYSTONE_LDAP_USER_ALLOW_DELETE\
+  \ | ldap.user_allow_delete | 是否允许删除用户（False） |\n\n一旦确定了适用于您的环境的相应设置，请使用相应设置更新 `/etc/puppet/hieradata/defaults.yaml`。在下次运行\
+  \ Puppet 时，Keystone 将重新配置为使用 Active Directory 进行身份验证。\n\n如前所述，让 Keystone 针对 LDAP\
+  \ 对用户进行身份验证的方法正在逐步淘汰，取而代之的是让 Apache HTTP 服务器自行执行身份验证，然后通过 `REMOTE_USER` 环境变量传递。默认情况下，Packstack\
+  \ 会将 Keystone 部署为 Apache 中的 **Web 服务器网关接口（WSGI）** 服务。有关配置 Keystone 虚拟主机对用户进行身份验证的说明，请参见\
+  \ `http://docs.openstack.org/developer/keystone/external-auth.html`。\n\n## 调配工作流\n\
+  \n本书几乎整本都在讨论如何实施 OpenStack，而很少讨论大多数组织实际如何使用它。在本节中，我们将探讨 OpenStack 采用者通常如何调配虚拟基础设施的不同方式。首先，我们将介绍如何让用户访问\
+  \ Horizon 用户界面。然后，我们将介绍通过 Nova、Cinder 和 Neutron API 进行调配。最后，我们将介绍如何使用 Heat 通过模板编排\
+  \ OpenStack 基础设施。\n\n### Horizon 用户界面\n\nHorizon 仪表板 UI 为已经理解云计算概念并希望完全控制其已调配基础设施的用户提供了直观且标准化的界面。在期望最终用户提供一定程度支持的情况下（例如，由他们负责调度自己的备份），仪表板尤其适用。我们已在公共网站托管公司以及以向开发团队提供低成本计算环境为主要目标的私有云用例中看到过这种方式。\n\
+  \n### 集成平台\n\n向其最终用户提供仪表板访问权限的组织通常会在一定程度上对其进行定制。定制仪表板的外观相对简单。OpenStack 的 Liberty\
+  \ 版本引入了 Horizon **主题** 的概念，提供了一种更改颜色、图片和布局的标准化方式。此外，还有一种简单的机制可以启用或禁用仪表板上的各种面板。最后，还可以通过**自定义模块**覆盖与面板对应的\
+  \ Python 类。我们看到一些组织在调配基础设施时，希望从用户那里收集更多信息，就会采用这种做法。有关各种选项的信息，请参阅 `http://docs.openstack.org/developer/horizon/topics/customizing.html`。\n\
+  \n以下截图展示了 Horizon 仪表板 UI：\n\n![](img/2f752555f69992669defa8b25e6dcee9_145_0.png)\n\
+  \n欧洲核子研究组织（CERN）定制的 OpenStack 仪表板\n\n虽然为 Horizon 仪表板创建自定义主题相对简单，并且对于将向最终用户提供访问权限的组织来说可能是先决条件，但覆盖组成仪表板的类却是一项成本相对较高的选择。虽然初始开发可能并不困难，但长期来看会带来支持负担。它还会增加难以自动化的额外测试要求。因此，想要根据自己的特定目标定制资源调配流程的组织通常会使用外部服务目录，由该目录代表最终用户与\
+  \ API 交互。\n\n\n\n\n## 使用 REST API\n\nOpenStack REST API 的设计模式借鉴自 Amazon EC2 API，使用起来非常简单。根据编排系统所使用的语言，通常有两种交互方式。客户端可以直接使用该语言的\
+  \ HTTP 或 REST 库调用 API，也可以利用过去几年中涌现的众多 **云库**。这些库可以通过处理身份验证和序列化工作来大大简化开发，但也可能限制可用的\
+  \ API 操作。我们在日常中常见的使用云库包括 Java 的 Apache jclouds、Python 的 OpenStack Shade 以及 Ruby\
+  \ 的 Fog。\n\n在本章中，我们将直接与 REST API 交互。让我们分解一下使用 REST API 启动虚拟实例的过程：\n\n- 1. 客户端向 Keystone\
+  \ 请求令牌。\n- 2. 客户端从 Nova 中检索密钥对列表。\n- 3. 客户端从 Nova 中检索镜像列表。\n- 4. 客户端从 Nova 中检索规格列表。\n\
+  - 5. 客户端从 Neutron 中检索网络列表。\n- 6. 客户端可选择在 Cinder 中创建卷。\n- 7. 客户端要求 Nova 使用所选的镜像、规格、网络以及可选的卷创建实例。\n\
+  \n实例创建后，客户端可以对其执行各种操作，包括终止。让我们使用 Python requests 库来演示此工作流程：\n\n- 1. 首先，我们向 Keystone\
+  \ 请求令牌（实际的 Python 代码如下）：\n\n```\nimport requests #http://docs.python-requests.org/en/latest\n\
+  import json\n\nKEYSTONE_URL = 'http://controller:5000/v2.0/'\nTENANT       = 'demo'\n\
+  USERNAME     = 'demo'\nPASSWORD     = 'secret'\n\nr = requests.post(\"%s/tokens\"\
+  \ % (KEYSTONE_URL,), json={\n    \"auth\": {\n        \"tenantName\": TENANT,\n\
+  \        \"passwordCredentials\": {\n            \"username\": USERNAME,\n     \
+  \       \"password\": PASSWORD,\n        }\n    }\n})\n\nif r.ok:\n    token = r.json()['access']['token']['id']\n\
+  else:\n    raise Exception(r.text)\n```\n\n- 2. requests 库通过 `json()` 函数将 Keystone\
+  \ 返回的 JSON 反序列化为 Python 字典，从而简化了与 REST 接口的工作。Keystone 的响应包含令牌 ID，我们将把它作为头部包含在后续请求中：\n\
+  \n```\n# Place the token in the X-Auth-Token header\nheaders = {'X-Auth-Token':\
+  \ token}\n```\n\n- 3. Keystone 的响应还包含服务目录，即指向我们想要交互的其他服务的链接集。根据配置，Keystone 可能会为多个区域提供链接。在我们的实验环境中，我们只需使用每个服务的第一个链接。以下代码将搜索目录中的计算和网络服务：\n\
+  \n```\n# Find the link to the Nova API in the service catalog:\nfor service in r.json()['access']['serviceCatalog']:\n\
+  \    if service['type'] == 'compute':\n        nova_endpoint = service['endpoints'][0]['publicURL']\n\
+  \    if service['type'] == 'network':\n        neutron_endpoint = service['endpoints'][0]['publicURL']\n\
+  ```\n\n请注意，目录中的端点是针对我们进行身份验证的租户进行范围限定的。例如，如果我们的租户 ID 为 `8ce08c9fa6c54ba094be743a55dc5b9a`，我们的\
+  \ Nova 端点将为 `http://10.3.71.50:8774/v2/8ce08c9fa6c54ba094be743a55dc5b9a`。因此，唯一不应动态确定的端点是\
+  \ Keystone 端点。所有其他需要交互的端点都应从服务目录中获取。\n\n- 4. 接下来，我们将查找在启动镜像时要使用的密钥对、镜像、规格和网络：\n\n\
+  ```\nkeypair_ref = None\n# Get the list of available keypairs:\nkeypairs = requests.get(\"\
+  %s/os-keypairs\" % nova_endpoint,\nheaders=headers)\n# take the first one\n```\n\
+  \n![](img/2f752555f69992669defa8b25e6dcee9_147_0.png)\n\n```\nkeypair_ref = keypairs.json()['keypairs'][0]['keypair']['name']\n\
+  \nimage_ref = None\n# Get the list of available images:\nimages = requests.get(\"\
+  %s/images\" % nova_endpoint,\nheaders=headers)\n# Select the \"cirros\" image:\n\
+  for image in images.json()['images']:\n    if image['name'] == 'cirros':\n     \
+  \   image_ref = image['id']\n\nflavor_ref = None\n# Get the list of available flavors:\n\
+  flavors = requests.get(\"%s/flavors\" % nova_endpoint,\nheaders=headers)\n# Select\
+  \ the \"m1.small\" flavor\nfor flavor in flavors.json()['flavors']:\n    if flavor['name']\
+  \ == 'm1.small':\n        flavor_ref = flavor['id']\n\nnetwork_ref = None\n# Get\
+  \ the list of available networks:\nnetworks = requests.get(\"%s/v2.0/networks\"\
+  \ % neutron_endpoint,\nheaders=headers)\n# Select the \"private\" network\nfor network\
+  \ in networks.json()['networks']:\n    if network['name'] == 'private':\n      \
+  \  network_ref = network['id']\n```\n\n这些 GET 请求都包含从 Keystone 检索到的令牌作为头部。密钥对和规格从\
+  \ Nova API 检索，镜像也是如此，尽管它实际上存储在 Glance 中。此示例中网络引用也可在 Nova API 中获取，但我们从 Neutron API\
+  \ 中检索它。Neutron API 提供了有关网络对象的更多信息和控制。\n\n> 请注意，虽然 Nova 端点包含版本号（v2），但 Neutron 端点不包含。此外，请注意\
+  \ Neutron 端点不包含租户 ID。每个 OpenStack API 都是由不同的团队独立开发的，它们之间几乎没有一致性。\n\n- 5. 以下代码将使用我们在上一节中检索到的四个引用启动实例：\n\
+  \n```\n# Launch the instance:\nserver = requests.post(\"%s/servers\" % (nova_endpoint,),\
+  \ json={\n    \"server\": {\n        \"name\": \"new_server\",\n        \"imageRef\"\
+  : image_ref,\n        \"flavorRef\": flavor_ref,\n        \"key_name\": keypair_ref,\n\
+  \        \"networks\": [{\n            \"uuid\": network_ref\n        }]\n    }\n\
+  }, headers=headers)\nserver_ref = server.json()['server']['id']\n```\n\n上述行为对于 REST\
+  \ API 来说是正常的；这是一个带有 JSON 的 POST 请求。关于此调用有几点需要注意。首先，调用仅在 Nova 调度程序接受请求所需的时间内阻塞。成功的返回码并不意味着实例已成功启动。其次，API\
+  \ 返回的 JSON 并不是服务器对象的序列化表示。相反，它提供了一组指向对象表示的链接。指向对象的链接由 API 版本、租户 ID、字符串 servers 和实例\
+  \ ID 组成。例如，http://192.168.0.10:8774/v2/8ce08c9fa6c54ba094be743a55dc5b9a/servers/d87f6e9d-347e-48f3-acfb-6f2e85c43629。\n\
+  \n以下请求提供实例的状态：\n\n```\nrequests.get(server.json()['server']['links'][0]['href'],\n\
+  headers=headers)\n```\n\n- 6. 一旦实例创建完成，操作可以 POST 到实例的 URL 并附加字符串 action。例如，以下代码将停止一个实例：\n\
+  \n```\nserver_url = server.json()['server']['links'][0]['href']\nstop = requests.post(\"\
+  %s/action\"% (server_url,), json={\n  \"os-stop\": None\n}, headers=headers)\n```\n\
+  \n- 7. 最后，要删除实例，请向服务器的 URL 发出 HTTP DELETE 请求：\n\n```\ndelete = requests.delete(server_url,\
+  \ headers=headers)\n```\n\n与本示例中的任何请求响应一样，HTTP 状态码表示请求成功或失败。删除请求的成功状态码为 204，操作的成功状态码通常为\
+  \ 202。有关预期状态码、请求参数和响应参数的更多信息，请参阅 `http://developer.openstack.org/api-ref-compute-v2.1.html`\
+  \ 中的计算 API 文档。\n\n## 使用模板进行编排\n\n驱动软件定义基础设施编排工作流的服务目录的终端用户通常是应用程序开发人员。允许开发人员通过 API\
+  \ 部署网络、卷和实例，对于自动化的持续集成构建和部署非常有用。虽然这种方法有许多优点，但许多组织更愿意让其开发人员部署由这些元素组成的环境。首先，无论是在 API\
+  \ 还是 Horizon 仪表板中公开的选项数量都相当令人印象深刻。典型的部署至少会有两三个规格，四五个镜像、私有和公有网络、任意大小的卷等等。仅为启动一个实例而从所有这些选项中进行选择非常耗时。它也可能给需要支持它们的团队带来负担。一旦引入软件定义网络，终端用户可能需要了解网络、路由和负载均衡才能部署一个可用的系统。在大多数企业环境中，这是不现实的。\n\
+  \n管理软件定义基础设施复杂性的解决方案是组合一个由模板组成的服务目录。这些模板可以由单个实例或多个实例组成，具有丰富或简单的网络拓扑，以及高度定制或标准的镜像。\n\
+  \n编排 API 也更容易编程。让我们通过一个示例来说明：\n\n- 1. 我们与前一个示例相同的方式开始，通过向 Keystone 请求令牌：\n\n```\n\
+  import requests #http://docs.python-requests.org/en/latest\nimport json\n\nKEYSTONE_URL\
+  \ = 'http://controller01:5000/v2.0/'\nTENANT       = 'demo'\nUSERNAME     = 'demo'\n\
+  PASSWORD     = 'secret'\n\nr = requests.post(\"%s/tokens\" % (KEYSTONE_URL,), json={\n\
+  \    \"auth\": {\n        \"tenantName\": TENANT,\n```\n\n\n\n\n```\n\"passwordCredentials\"\
+  : {\n    \"username\": USERNAME,\n    \"password\": PASSWORD,\n}\n})\n\nif r.ok:\n\
+  \    token = r.json()['access']['token']['id']\nelse:\n    raise Exception(r.text)\n\
+  \n# Place the token in the X-Auth-Token header\nheaders = {'X-Auth-Token': token}\n\
+  ```\n\n2. 然后，我们不再搜索 Compute API，而是搜索编排服务的端点：\n\n```\n# Find the link to the Heat\
+  \ API in the service catalog:\nfor service in r.json()['access']['serviceCatalog']:\n\
+  \    if service['type'] == 'orchestration':\n        heat_endpoint = service['endpoints'][0]['publicURL']\n\
+  ```\n\nHeat URL 与 Nova URL 一样，包含租户的 UUID。\n\n3. 最后，我们将表示 Heat 模板的 JSON 字符串 POST\
+  \ 到该服务：\n\n```\nstack = requests.post(\"%s/stacks\"% (heat_endpoint,), json={\n\
+  \    \"stack_name\": \"new_server\",\n    \"template\": {\n        \"heat_template_version\"\
+  : \"2013-05-23\",\n        \"resources\": {\n            \"new_server_port\": {\n\
+  \                \"type\": \"OS::Neutron::Port\",\n                \"properties\"\
+  : {\n                    \"network\": \"private\"\n                }\n         \
+  \   },\n            \"new_server\": {\n                \"type\": \"OS::Nova::Server\"\
+  ,\n                \"properties\": {\n                    \"key_name\": \"demo\"\
+  ,\n                    \"flavor\": \"m1.small\",\n                    \"image\"\
+  : \"cirros\",\n                    \"networks\": [ {\n                        \"\
+  port\": {\n                            \"get_resource\": \"new_server_port\"\n \
+  \                       }\n} ]\n}\n}\n}\n}\n}, headers=headers)\n```\n\nHeat 为我们执行名称到\
+  \ ID 的转换，因此我们无需查找规格、镜像、密钥或网络的参考信息。调用的响应包含状态码（201 表示成功）以及指向 stack 对象的链接（stack.json()['stack']['links'][0]['href']）。Heat\
+  \ API 公开了一个与 Compute API 类似的 actions 链接。通过该机制，堆栈可以挂起和恢复。\n\n不过，Heat API 最重要的特性也许是能够引用外部模板。要使用此特性，请使用\
+  \ template_url 属性，而不是指定模板。请看以下示例：\n\n```\nstack = requests.post(\"%s/stacks\" %\
+  \ (heat_endpoint,), json={\n  \"stack_name\": \"new_server\",\n  \"template_url\"\
+  : \"http://www.example.com/heat-templates/new_server.yaml\"\n}, headers=headers)\n\
+  ```\n\n这样，模板就可以与供应代码分离。这允许模板存放在单独的版本控制仓库中，并允许不同团队分别处理目录和供应逻辑，而不必同步进行。\n\n几乎可以通过\
+  \ OpenStack API 创建的每个对象都可以使用 Heat 进行编排。有关 heat 模板的更多信息，请参阅 http://docs.openstack.org/developer/heat/template_guide/\
+  \ 上的 Heat 模板指南。\n\n## 计量和计费\n\n无论您是在构建公有云还是私有云，系统最关键的能力之一就是跟踪用户或租户供应的虚拟对象的使用情况。OpenStack\
+  \ 中的使用情况跟踪方式与 Amazon Web Services 基本一致。对于计算资源，系统会跟踪特定实例的启动和终止时间。计算资源的成本与实例关联的规格中的\
+  \ CPU 核心数或内存量有关。一些组织可能还会根据镜像来关联成本。\n\n例如，Red Hat Enterprise Linux 镜像的实例化可能每小时花费一定的美分数，而\
+  \ Microsoft Windows 镜像的实例化可能花费不同。其他资源可能根据供应时间计费，而不管是否使用。例如，租户可能需要为浮动 IP 分配给项目的时间长度付费，无论它是否绑定到实例。Cinder\
+  \ 卷通常也按这种方式处理。\n\n无论您的组织打算按消费量向客户收费，还是仅向客户展示其消费量，都有几种不同的策略来跟踪和报告使用数据。有些组织通过服务目录调用\
+  \ API 在 OpenStack 上供应资源，他们选择将服务目录实现作为记录系统。这有助于为用户保持一致性。例如，如果他们供应了一个三层应用，他们可能希望按三层应用计费，而不是按三台虚拟机、一个\
+  \ Cinder 卷和一个浮动 IP 计费。不过，对于 PaaS 或持续集成用例，在一段时间内使用的计算和存储总量可能更为重要。\n\n在 OpenStack\
+  \ 中跟踪使用情况有几种基本方法。系统可以监听消息总线上的事件，或通过查询 Ceilometer 获取这些事件，然后推断使用数据。系统还可以直接查询 Ceilometer\
+  \ 获取使用数据。除了计量和计费之外，这些方法也可用于其他用例，而且对于每种用例，有些方法比其他方法更合适。例如，监听事件并记录时间可以深入了解系统性能。此外，OpenStack\
+  \ 系统中的某些事件可能会驱动合规性工作流。\n\n## 监听 OpenStack\n\nOpenStack 系统中有两种内部通信模式。第一种是对 REST API\
+  \ 进行 GET 或 POST，第二种是向消息队列拉取和推送消息。每个服务都同时使用这两种模式；当 Nova API 通过 REST API 收到供应资源的请求时，它会通过消息总线将该请求传递给计算节点。它们通过总线发送回使用数据，但使用\
+  \ API 与其他服务通信。这两种通信模式也可用于集成。正如我们可以使用 REST API 供应资源一样，我们可以使用消息总线跟踪它们的进度。\n\n以下代码示例使用\
+  \ Python 中的 Kombu 库连接到消息总线上的 Nova 队列，以监听各种 Nova 服务之间的这些 RPC 调用。首先，我们定义一个回调方法来处理总线上的事件。这个简单的方法只是打印消息正文：\n\
+  \n```\nfrom kombu import Connection, Exchange, Queue\n\ndef process_message(body,\
+  \ message):\n    print body\n    message.ack()\n```\n\n然后我们创建一个名为 listener 的队列，并将其绑定到\
+  \ nova 交换机。在以下示例中，我们将订阅 nova 队列上的所有消息：\n\n```\nnova_exchange = Exchange('nova',\
+  \ 'topic', durable=False)\nnova_queue   = Queue('listener', exchange = nova_exchange,\n\
+  routing_key='#')\nconn = Connection('amqp://guest:guest@192.168.0.10//')\nconsumer\
+  \ = conn.Consumer(nova_queue, callbacks=[process_message])\nconsumer.consume()\n\
+  ```\n\n请注意，连接字符串特定于所讨论的部署。消息总线的用户名和密码应与 /etc/nova/nova.conf 中的设置保持一致。\n\n最后，我们将检查队列中的消息并处理它们：\n\
+  \n```\nwhile True:\n    conn.drain_events()\n```\n\n运行此示例将显示出 Nova 服务之间的通信有多么频繁。这些\
+  \ RPC 消息的消息格式定义良好，但消息内容与版本相关。出于这些原因，大多数开发者会选择改用通知子系统。\n\n## 使用通知子系统\n\n每个 OpenStack\
+  \ 服务都可以配置为在消息总线上发出通知。这些通知随后可以由消息客户端或 Ceilometer 服务接收。通知最初由每个服务分别实现，但该功能已合并到 Oslo\
+  \ Messaging 库中，作为公共接口。\n\n## 集成平台\n\n要在 Nova 中启用通知，需要在 `/etc/nova/nova.conf` 中更改以下设置：\n\
+  \n| nova.conf 设置 | 示例值 | 描述 |\n|---|---|---|\n| `instance_usage_audit` | `true`\
+  \ | 开启使用情况审计 |\n| `instance_usage_audit_period` | `hour` | 将使用情况审计设置为每小时 |\n| `notify_on_state_change`\
+  \ | `vm_and_task_state` | 告知 Nova 在虚拟机状态更改时发送通知 |\n| `notification_driver` | `messagingv2`\
+  \ | 告知 Nova 将通知发送到消息总线 |\n\n还有其他可用的通知驱动程序。例如，通知可以发送到 syslog。有关更多信息，请参阅 `http://docs.openstack.org/developer/oslo.messaging/FAQ.html`\
+  \ 上的 Oslo Messaging 常见问题解答。\n\n下面提供了一个可以监听这些通知事件的简单客户端：\n\n```\n```python\n#!/usr/bin/env\
+  \ python\n\nfrom kombu import Connection, Exchange, Queue\n\ndef process_message(body,\
+  \ message):\n    print body\n    message.ack()\n\nnova_exchange = Exchange('nova',\
+  \ 'topic', durable=False)\nnotifications_queue = Queue('notification-listener',\
+  \ exchange = nova_exchange, routing_key='notifications.info')\nconn = Connection('amqp://guest:guest@192.168.0.10/')\n\
+  consumer = conn.Consumer(notifications_queue, callbacks=[process_message])\nconsumer.consume()\n\
+  \nwhile True:\n    conn.drain_events()\n```\n```\n\n此示例创建了一个名为 `notification-listener`\
+  \ 的队列，该队列绑定到 `nova` 交换机。不过，我们不监听交换机上的所有事件，而是订阅 `notifications.info` 主题。这确保我们只接收\
+  \ Nova 服务指定为通知的消息。\n\n\n\n在oslo.messaging库中可以找到一种更高级的抽象，供与OpenStack交互的Python程序员使用。有关此方法的文档可在\
+  \ http://docs.openstack.org/developer/oslo.messaging/notification_listener.html\
+  \ 获取。另一个选择是使用Yagi库（https://github.com/rackerlabs/yagi），而Rackspace的StackTach（https://github.com/openstack/stacktach）又使用了该库。\n\
+  \n## 从Ceilometer消费事件\n\n从消息队列消费事件允许在OpenStack环境中实现推送式集成模型。然而，对于许多组织来说，编写和维护一个守护进程来从队列消费事件并对其执行操作可能非常繁重。一个更简单的选择是通过REST\
+  \ API轮询Ceilometer接口以获取事件。鉴于Nova（以及其他服务）被配置为通过消息总线发出通知，Ceilometer服务可以存储这些事件并使其可供轮询。要启用此功能，请在/etc/ceilometer/ceilometer.conf中将store_events设置为True。\n\
+  \n以下示例展示了如何使用Python requests库从Ceilometer检索事件：\n\n1. 首先，我们从Keystone获取一个令牌：\n\n```python\n\
+  import requests # http://docs.python-requests.org/en/latest\nimport json\n\nKEYSTONE_URL\
+  \ = 'http://controller01:5000/v2.0/'\nTENANT       = 'demo'\nUSERNAME     = 'demo'\n\
+  PASSWORD     = 'secret'\n\nr = requests.post(\"%s/tokens\" % (KEYSTONE_URL,), json={\n\
+  \    \"auth\": {\n        \"tenantName\": TENANT,\n        \"passwordCredentials\"\
+  : {\n            \"username\": USERNAME,\n            \"password\": PASSWORD,\n\
+  \        }\n    }\n})\nif r.ok:\n    token = r.json()['access']['token']['id']\n\
+  else:\n    raise Exception(r.text)\n\n# Place the token in the X-Auth-Token header\n\
+  headers = {'X-Auth-Token': token}\n```\n\n2. 然后，我们在Keystone的服务目录中找到计量服务：\n\n```python\n\
+  # Find the link to the Ceilometer API in the service catalog:\nfor service in r.json()['access']['serviceCatalog']:\n\
+  \    if service['type'] == 'metering':\n        metering_endpoint = service['endpoints'][0]['publicURL']\n\
+  ```\n\n3. 最后，我们使用GET请求获取所有可用事件，并打印出类型：\n\n```python\nevents = requests.get(\"%s/v2/events\"\
+  \ % (metering_endpoint,), headers=headers)\n\nfor e in events.json():\n    print\
+  \ e['event_type']\n```\n\nGET请求可以包含针对特定事件类型的过滤器，并且可以包含对检索事件数量的限制。有关使用Ceilometer事件API的更多信息，请参阅\
+  \ http://docs.openstack.org/developer/ceilometer/webapi/v2.html。\n\n## 在Ceilometer中读取计量数据\n\
+  \n在前面的章节中，我们介绍了从OpenStack云检索事件数据的不同方法。然后，这些事件数据可用于跟踪使用情况并为系统的最终用户生成计费信息。Ceilometer服务正是为此而设计的；基于事件数据跟踪使用情况并生成计费信息。Ceilometer通过REST\
+  \ API提供这些数据。\n\n以下示例使用Python requests库请求用户租户内运行的实例的时长：\n\n1. 首先，我们从Keystone请求一个令牌：\n\
+  \n```python\n#!/usr/bin/env python\n\nimport requests # http://docs.python-requests.org/en/latest\n\
+  import json\n\nKEYSTONE_URL = 'http://controller01:5000/v2.0/'\nTENANT       = 'demo'\n\
+  USERNAME     = 'demo'\nPASSWORD     = 'secret'\n\nr = requests.post(\"%s/tokens\"\
+  \ % (KEYSTONE_URL,), json={\n    \"auth\": {\n        \"tenantName\": TENANT,\n\
+  \        \"passwordCredentials\": {\n            \"username\": USERNAME,\n     \
+  \       \"password\": PASSWORD,\n        }\n    }\n})\n\nif r.ok:\n    token = r.json()['access']['token']['id']\n\
+  else:\n    raise Exception(r.text)\n\n# Place the token in the X-Auth-Token header\n\
+  headers = {'X-Auth-Token': token}\n```\n\n2. 然后，我们从服务目录中获取Ceilometer服务的链接：\n\n```python\n\
+  # Find the link to the Ceilometer API in the service catalog:\nfor service in r.json()['access']['serviceCatalog']:\n\
+  \    if service['type'] == 'metering':\n        metering_endpoint = service['endpoints'][0]['publicURL']\n\
+  ```\n\n3. 接下来，我们针对Meter实例发起一个GET请求以获取统计信息。Ceilometer附带一组预定义的计量器，用于实例运行时间、CPU使用率、磁盘使用率等：\n\
+  \n```python\ntenant_id = r.json()['access']['token']['tenant']['id']\nfilter = {'q.field':\
+  \ 'project', 'q.value': tenant_id}\nstatistics = requests.get(\"%s/v2/meters/instance/statistics\"\
+  \ % (metering_endpoint,), headers=headers)\n```\n\n有关可用计量器的完整列表，请参阅 http://docs.openstack.org/admin-guide-cloud/telemetry-measurements.html。\n\
+  \n![](img/2f752555f69992669defa8b25e6dcee9_158_0.png)\n\n请注意，我们使用搜索过滤器将统计请求的范围限定为租户自身。为每个租户生成账单的调用将遍历租户列表并收集每个租户的使用情况。还可以通过附加过滤器将时间范围限定在某个时间段内。有关过滤器的更多信息，请参阅\
+  \ http://docs.openstack.org/developer/ceilometer/webapi/v2.html。\n\n调用返回的JSON包含统计信息列表。我们关注duration值：\n\
+  \n```python\nprint statistics.json()[0]['duration']\n```\n\n其他统计信息也可用于计量器，例如总和、平均值、最小值和最大值。\n\
+  \n## 更新设计文档\n\n在本章中，我们确定了使用可用API与OpenStack交互的几种不同方式。现在是重新审视设计文档并填写需求部分的好时机。一个理想的OpenStack云需求集应具有以下特征：\n\
+  \n- 每个需求都应该是原子的，以限制需求的范围\n- 每个需求都应包含上下文；应包含有关谁将使用该功能以及在什么情况下使用的信息\n- 每个需求都应该是可测试的，理想情况下是自动化的\n\
+  \n如果满足这些条件，我们就可以生成策略文档，规定哪些角色应有权访问哪些功能，并且我们可以生成自动化测试套件来验证平台的需求是否得到满足。这些测试套件又可用于监控套件，以确保运行中的系统按照规范执行。\n\
+  \n## 编写需求\n\n在本节中，我们将看一些示例需求。正如我们本章前面看到的，与OpenStack REST API的每次交互都以向Keystone请求令牌开始。以下用户故事很好地代表了这种交互：\n\
+  \n> “作为系统的最终用户，我应该能够向Keystone服务提供我的Active Directory用户名和密码，并收到一个令牌，授权我使用其他OpenStack服务。该令牌将限定在我被OpenStack管理员授予访问权限的项目范围内。”\n\
+  \n可以将以下元数据与此需求关联起来：\n\n- **用户**：最终用户\n- **输入**：Active Directory认证凭据\n- **输出**：授权令牌和项目范围\n\
+  \n然后，我们还可以使用REST API描述该需求的实现：\n\n```\nPOST /v2.0/tokens\n{\n  \"auth\": {\n    \"\
+  tenantName\": \"demo\",\n    \"passwordCredentials\": {\n      \"username\": \"\
+  demo\",\n      \"password\": \"secret\"\n    }\n  }\n}\n\nRESPONSE 200\n{\n  \"\
+  access\": {\n    \"token\": {\n      \"issued_at\": \"2014-01-30T15:30:58.819584\"\
+  ,\n      \"expires\": \"2014-01-31T15:30:58Z\",\n      \"id\": \"aaaa-bbbbb-ccccc-dddd\"\
+  ,\n      \"tenant\": {\n        \"description\": null,\n        \"enabled\": true,\n\
+  \        \"id\": \"fc394f2ab2df4114bde39905f800dc57\",\n        \"name\": \"demo\"\
+  \n      }\n    }\n  }\n}\n```\n\n如果需要，我们还可以为此需求确定服务水平协议。例如，我们可以指定Keystone服务应在10秒内响应并返回有效的令牌。这可用于为系统建立可接受的性能阈值。\n\
+  \n\n\n\n让我们通过一个更复杂的示例来说明，即启动实例：\n\n> “作为系统的终端用户，我应该能够出示我的 Keystone 令牌，并通过 Nova API\
+  \ 将给定的镜像实例化为虚拟机。我应该能够指定镜像、规格、SSH 密钥、私有网络以及实例的元数据。”\n\n以下元数据可以与此需求关联：\n\n- **用户：**\
+  \ 终端用户\n- **输入：** Keystone 令牌、计算服务 API、租户 ID、镜像 ID、规格 ID、SSH 密钥名称、网络 ID 以及元数据键和值\n\
+  - **输出：** 实例描述\n\n此需求的一个示例如下：\n\n```\nPOST /v2.1/{tenant_id}/servers\n{\n  \"server\"\
+  : {\n    \"name\": \"example-server\",\n    \"imageRef\": \"{image_id}\",\n    \"\
+  flavorRef\": \"{flavor_id}\",\n    \"key_name\": \"{key_name}\"\n    \"networks\"\
+  : \"{\\\"uuid\\\": \\\"{network_id}\\\"}\"\n    \"metadata\": {\n      \"{metadata_key}\"\
+  : \"{metadata_value}\"\n    }\n  }\n}\nRESPONSE 202\n{\n  \"server\": {\n    \"\
+  id\": \"{server_id}\",\n    \"links\": [\n      {\n        \"href\": \"/v2.1/{tenant_id}/servers/{server_id}\"\
+  ,\n        \"rel\": \"self\"\n      },\n      {\n        \"href\": \"/servers/{server_id}\"\
+  ,\n        \"rel\": \"bookmark\"\n      }\n    ],\n  }\n}\n```\n\n请注意，我们保持需求相对简单。我们本可以逐步介绍整个调用和响应脚本直到最终调用，但这更适合在测试实现中进行。我们将在下一节介绍如何将需求转换为测试。\n\
+  \n## 测试需求\n\n在第 4 章《构建部署流水线》中，我们使用 shell 工具为 OpenStack 部署编写了一些基本测试。在本节中，我们将结合本章前面讨论的代码示例与\
+  \ Python unittest 库，生成一组可从 Jenkins 运行以验证部署的自动化测试。以下示例使用 Python unittest 和 requests\
+  \ 库，非常简单，但可作为起点：\n\n```\n#!/usr/bin/env python\n\nimport unittest\nimport requests\
+  \ #http://docs.python-requests.org/en/latest\nimport json\n\nKEYSTONE_URL = 'http://controller01:5000/v2.0/'\n\
+  TENANT       = 'demo'\nUSERNAME     = 'demo'\nPASSWORD     = 'secret'\n```\n\n导入必要的库并设置全局变量后，我们将为测试创建一个\
+  \ TestCase 对象：\n\n```\nclass TestKeystone(unittest.TestCase):\n    \"\"\"Set of\
+  \ Keystone-specific tests\"\"\"\n```\n\n任何以 test 开头的函数都将被 unittest 库视为要运行的测试。我们将定义一个函数来执行第一个用户故事中描述的\
+  \ REST 调用：\n\n```\ndef test_001_get_token(self):\n    \"\"\"Requirement 001: Authorization\
+  \ Token\"\"\"\n    r = requests.post(\"%s/tokens\"% (KEYSTONE_URL,), json={\n  \
+  \      \"auth\": {\n            \"tenantName\": TENANT,\n            \"passwordCredentials\"\
+  : {\n                \"username\": USERNAME,\n                \"password\": PASSWORD,\n\
+  \            }\n        }\n    }\n```\n\n```\n})\nif r.ok:\n    self.assertEqual(r.status_code,\
+  \ 200)\n    token = r.json()['access']['token']['id']\n    self.assertTrue(token)\n\
+  else:\n    raise Exception(r.text)\n```\n\n此测试基于本章前面用于从 Keystone 服务检索令牌的示例。我们添加了两个断言语句来验证服务是否按我们设计的方式响应。第一个断言响应代码为\
+  \ 200，第二个断言 JSON 响应中包含令牌的值。\n\n为了使测试能够从命令行运行，我们在脚本末尾添加了对 `unittest` 库的调用：\n\n```\n\
+  if __name__ == '__main__':\n    unittest.main()\n```\n\n如果我们将此脚本检入我们在 *第 4 章《构建部署流水线》*\
+  \ 中创建的代码仓库的测试目录，我们可以从 Jenkins 运行脚本来调用此自动化测试。设计文档中的每个需求都应以这种方式关联一个自动化测试。随着需求被添加到设计文档并在\
+  \ Puppet 中实现，表示它们的新的测试可以添加到套件中。\n\n## 总结\n\n在本章中，我们研究了 OpenStack 平台内的三种集成模式。第一种模式是使用\
+  \ Keystone 提供的内置集成功能与 Active Directory 集成。第二种是使用 REST API 将基础设施配置到 OpenStack 环境中。第三种是监听消息总线以获取通知。在探索了与系统交互的各种方式之后，我们在设计文档中考虑了它们并为部署的系统编写了需求。最后，这些需求被转换为可插入部署流水线的自动化测试。\n\
+  \n我们合作的一些组织对将 OpenStack 平台与环境中的其他服务集成所带来的复杂性表示沮丧。对于这些组织而言，Cloud Management Platform（CMP）是一种值得考虑的选择，它可以模糊集成的一些技术细节。诸如\
+  \ Red Hat 的 CloudForms 或 Dell 的 Cloud Manager 之类的 CMP 将接入 OpenStack 实现的 REST API\
+  \ 和消息总线，并允许对虚拟基础设施中的对象进行更高级别的访问。它们还提供与第三方身份验证、服务目录和计费系统的即用型集成。\n\n我们喜欢将整个 OpenStack\
+  \ 系统视为一个庞大的集成平台。在 OpenStack 之前，组织花费了大量资源将存储、网络和计算基础设施与其组织基础设施集成。系统的开放设计是其最伟大的优势之一。在下一章中，我们将讨论\
+  \ OpenStack 安全。我们将检查常见的安全实践，如日志记录、修补和加密，以及一些应用安全建议。\n\n## 参考文献\n\n- Keystone is\
+  \ not an authentication service, Nathan Kinder: https://blog-nkinder.rhcloud.com/?p=130\n\
+  - How to Integrate Keystone with Active Directory: https://wiki.openstack.org/wiki/HowtoIntegrateKeystonewithAD\n\
+  - Customizing Horizon: http://docs.openstack.org/developer/horizon/topics/customizing.html\n\
+  - OpenStack API Documentation: http://developer.openstack.org/api-guide/quick-start/index.html\n\
+  \n![](img/2f752555f69992669defa8b25e6dcee9_166_0.png)\n\n## OpenStack 中的安全区域\n\n\
+  在 OpenStack 部署中存在一系列逻辑安全区域。这些是 OpenStack 平台中可被应用程序、服务器、网络或用户利用的基本信任区域。这些区域的信任级别不断提高，可以分解为以下区域：\n\
+  \n1. 公共\n2. 访客\n3. 管理\n4. 数据\n\n- **公共区域：** OpenStack 中的这些区域是任何云基础设施中完全不受信任的区域。按惯例，它们是最开放的，因此被称为公共。它们不一定对互联网开放，但该区域对不受信任的资源开放，并且在网络上不受运营商直接控制。该区域需要加密和其他补偿控制措施才能满足大多数组织的安全要求。\n\
+  - **访客区域：** 这些区域用于在 OpenStack 云中配置的实例。它们包括跨租户网络实例流量（一个实例到另一个实例，跨隔离网络或同一租户网络）。此流量不是支持云基础设施的流量，也不是提供对\
+  \ OpenStack 原生 RESTful API 端点的 API 访问的流量。将不受监管的公共 IP 地址提供给驻留在该域中的实例将导致该域不受信任。只有在实施补偿控制措施以使用外部网络控制来监管对该区域的公共\
+  \ IP 访问时，该区域才可被视为受信任。\n\n\n\n\n\n- **管理区域**：这些是 OpenStack 服务所在并交互的区域。这些特定区域通常被隔离，仅用于\
+  \ OpenStack 控制平面流量。由于这种内部通信的敏感性，必须采取措施强化该特定网络，并且只有运行 OpenStack 控制平面的服务器才能访问该网络。一旦完成，该区域即被视为可信区域。如果该区域被路由或连接到可路由网络，实际上就相当于将其桥接到不可信区域，该网络会立即变成不可信网络，并且必须立即实施补偿性控制措施。\n\
+  - **数据区域**：这些安全区域主要包含与 OpenStack 内部存储服务相关的服务和网络流量。这些数据通常需要高安全性和高保密性。该网络区域的信任级别高度依赖于云中运行的工作负载以及所执行的部署类型。因此，该区域可以是可信的，也可以是不可信的；如果不了解部署类型的具体细节，我们无法指定默认信任级别。在考虑\
+  \ OpenStack 安全以及平台上运行的资源和服务时，理解这些区域非常重要。开发者有意将平台不同部分的访问权限分开，以区分特权区域和非特权区域，并减少跨区域攻击。\n\
+  \n## 软件漏洞\n\nOpenStack 是一个主要用 Python 编写的编排平台，运行在基于 Linux 的操作系统之上。该编排平台负责为租户配置实例或提供基础设施即服务（IaaS），以支持需要在云环境中运行的工作负载。因此，OpenStack\
+  \ 软件漏洞可分为两大类：第一类包括 OpenStack 配置和编排的实例或裸金属服务器；第二类包括 OpenStack 基础设施环境及其主机。\n\n###\
+  \ 实例软件安全与补丁\n\n在 OpenStack 中，虚拟机监视器（hypervisor）创建并运行独立的虚拟机或实例。这些实例需要与其所在的底层 OpenStack\
+  \ 基础设施分开进行软件更新和打补丁。对虚拟机监视器和底层服务器操作系统的更新不会传播到活动工作负载和实例；因此，必须存在两种策略——一种用于云上运行的实例，另一种用于云基础设施。\n\
+  \n实例策略应与当前生效的、用于控制现有遗留系统补丁管理的组织和治理策略保持一致。由于 OpenStack 基于镜像和规格（flavor）启动实例，这些镜像和规格可能在实例启动时将可执行元数据注入实例，因此根据工作负载类型，有多种方法可以确保在启动实例之前使用最新加固镜像。\n\
+  \n对于 OpenStack 云中常见的传统临时工作负载，应根据组织策略定期更新 Glance 镜像，并由公司内的可信组织进行控制。这些更新应向操作系统添加补丁和安全修复，并作为现有镜像导入\
+  \ Glance 镜像仓库。在部署到生产环境之前，这些更新后的镜像应在较低级别的开发环境或沙盒环境中进行测试。然后，这些更新后的镜像将作为任何使用该镜像的新实例以及一直在使用该镜像的临时工作负载的基础操作系统。但是，正在运行的镜像不会改变。安全补丁只有在实例重新启动后才会生效。通常，临时工作负载往往能够在影响应用程序可用性的情况下重新启动，但云上运行的持久工作负载则需要制定基于应用程序的策略，以便在打补丁的同时保持应用程序的正常运行时间。一些组织对运行旧镜像版本的实例重启有严格规定，具体取决于应用于镜像的补丁是用于安全修复还是仅仅是一次更新。\n\
+  \n应创建默认的 OpenStack 安全策略，以允许传统软件合规性工具扫描主机的软件更新合规性。对于持久工作负载以及不会频繁重启或需要保持一定可用性水平的实例，可以创建安全策略，允许这些实例使用基于传统软件仓库的补丁解决方案，并通过对正在运行的实例打补丁的传统方式实施补丁。然而，根据组织的\
+  \ OpenStack 网络部署情况，可能需要进行额外的网络配置，才能使软件仓库在租户网络内可用。对于临时和持久工作负载，都可以使用 cloud-init 和\
+  \ cloudbase-init，在启动时利用原生软件管理工具和本地软件仓库对镜像执行更新。但是，根据对镜像执行更新的数量，这些在启动时发生的更新可能会延迟实例配置。这就是为什么更新基础\
+  \ Glance 镜像是确保实例安全和软件更新合规性的最佳实践。\n\n### 基础设施主机安全与补丁\n\n安全是 OpenStack 架构的基本组成部分，需要持续维护，以保护该技术栈中的各个安全区域。OpenStack\
+  \ 是一个由许多不同部分组成的复杂平台，多个不同的开发方正在积极持续地开发它。表面上，这似乎从根本上缺乏安全性，但实际上，OpenStack 不仅由成千上万的个人开发，还受到成千上万的用户和开发者的测试和审查。这些用户和开发者向其他开发者和测试者形成了一个有用的反馈循环。这几乎提供了对草率和不安代码的持续警惕。然而，与商业软件一样，安全问题仍时有发现。这就是为什么\
+  \ OpenStack 基金会成立了 OpenStack 安全团队，发布有关已识别安全问题的公告、描述和补丁链接。\n\n#### 为 OpenStack 代码打补丁\n\
+  \n这些补丁针对 OpenStack 代码中的漏洞。当前的安全公告列表维护在 https://security.openstack.org/ossalist.html，其中也提供了补丁。这些补丁大多是升级后的\
+  \ Python 文件，可以直接替换 OpenStack 控制节点或计算节点上的现有文件。一个针对在 Neutron 中发现的 bug、包含替换文件的补丁示例可在\
+  \ https://review.openstack.org/#/c/299025/ 查看。OpenStack 漏洞管理团队负责安全和 OpenStack 的\
+  \ bug 及修复流程，相关信息参见 https://wiki.openstack.org/wiki/Vulnerability_Management。\n\n\
+  #### Red Hat Enterprise Linux 和 CentOS\n\n使用任何 Linux 发行版时，及时更新所有受影响的软件以限制安全风险至关重要。如果该软件是\
+  \ Red Hat 内某个包的一部分，则应在 Red Hat 发布修复后尽快修补该漏洞。Red Hat 通常会随其安全公告附带补丁，然后以安全勘误更新（security\
+  \ erratum update）的形式发布。同样，必须在补丁和更新发布后立即应用，以帮助消除攻击者利用该 bug 攻击您的 OpenStack 基础设施的风险。这可以通过\
+  \ Yum 包管理器实现，并且仅从可信来源下载。这些可信来源可以是 Red Hat 网络（RHN）或由您的组织控制的本地仓库。从组织外部下载的所有包都应使用 GNU\
+  \ Privacy Guard 或 GNUPG（一种用于确保包文件真实性的免费软件）进行真实性验证。如果验证失败，则说明包已损坏或被篡改。\n\n#### Canonical\
+  \ 基于 Ubuntu 的操作系统\n\nUbuntu 的安全和补丁生态系统与 Red Hat 非常相似。当 Canonical 的 Ubuntu 开发者发现并修补漏洞时，他们就会发布安全更新。安全通知可以通过电子邮件或\
+  \ RSS 订阅获取。Ubuntu 允许自动安装安全更新——一旦配置完成，您无需再手动运行安全更新。Ubuntu 允许用户通过 `cron-apt` 使用 `unattended-upgrades`\
+  \ 配置自动安全更新。类似的行为也可应用于 Red Hat 主机，方法是使用 `yum-cron` 并设置 `update_cmd = minimal-security-severity:Important`。\n\
+  \n#### 软件仓库管理\n\n软件仓库管理对于为 OpenStack 基础设施提供安全更新至关重要。Red Hat 开发了一个名为 **Satellite**\
+  \ 的管理应用程序，Ubuntu 则有 **Landscape**。这两者都是系统管理应用程序，允许管理员部署、修补、管理和监控各自的系统。这些应用程序是一种本地部署（on-premise）方式，用于从远程分配门户下载和管理内容。它们减少了系统更新期间公司广域网（WAN）上的流量，因为所有包只需传输到本地仓库一次。这些应用程序还可在本地管理更新文件，以限制外部恶意内容带来的安全风险。\n\
+  \n\n\n\nSatellite 甚至可以配置为单一系统，或配置为一系列远程系统，这些系统充当代理，并从中心服务器获取授权和订阅信息。这些商业应用还为用户提供包管理的单一管理界面，并允许为企业中不同类别的服务器创建更新配置文件。\n\
+  \n另一种选择是使用 Puppet、Chef 和 Ansible 等开源工具，通过创建脚本执行复制和验证，手动创建和维护包仓库。不过，更完整的方案是使用 Pulp（http://www.pulpproject.org/）等社区项目。Pulp\
+  \ 是一个用于管理软件仓库的免费开源平台。它可配置支持 RPM 包类型（rpm、srpm、errata 等）、Puppet 模块、Docker 镜像、Atomic\
+  \ Trees、Python 包等。还可以通过插件支持 Debian 包。使用 Pulp 可以完成以下操作：\n\n- 手动将发行版仓库中的内容拉取到 Pulp\
+  \ 服务器，可以是仅一次或定期进行\n- 将你自己的内容上传到 Pulp 服务器（OpenStack 安全补丁）\n- 将内容发布为基于 Web 的仓库、一系列\
+  \ ISO 或其他各种方式\n\n随着需要修补的主机数量增加，软件修补和仓库管理会变得越来越困难。在启动 OpenStack 部署时，制定正确的修补策略并借助工具来管理和启用修补，对于扩展\
+  \ OpenStack 云至关重要。通过先在较低环境、再在生产环境中对 OpenStack 基础设施应用和测试安全补丁，组织将确保开发和生产环境都是安全的，并已通过运维测试。\n\
+  \n## 加固 Hypervisor\n\nNova 服务是 OpenStack 最复杂的项目之一，在环境中提供计算功能。Nova 在 OpenStack 云中无处不在，并与大多数其他核心\
+  \ IaaS 服务交互。正确配置这一特定服务是保障 OpenStack 部署安全的重要因素。\n\n## 标准 Linux 加固实践与 Hypervisor\n\
+  \nOpenStack 环境安全的关键在于虚拟化技术（也称为 hypervisor）的配置和加固。虽然 OpenStack 可以配置使用多种不同的 hypervisor，但目前最常用的\
+  \ hypervisor 是 KVM。RHEL、Ubuntu 和 CentOS 等所有主流操作系统都支持 KVM hypervisor。Red Hat OpenStack\
+  \ Platform、Mirantis OpenStack 和 HP Helion 等所有主流 OpenStack 发行版都默认使用 KVM 作为 hypervisor。因此，我们将重点关注在\
+  \ Linux 上运行、实现生产级安全的 KVM hypervisor。\n\n此外，KVM hypervisor 已在商业发行版上通过美国政府的 Common\
+  \ Criteria 计划认证，并已验证可将各实例的运行时环境彼此隔离，从而提供充分的实例隔离。更多信息请参阅 https://www.niap-ccevs.org/NIAP_Evolution/faqs/nstissp-11/。\n\
+  \nRed Hat OpenStack Platform 是已通过 Common Criteria 认证的发行版之一，它必须满足以下最低身份验证要求列表：\n\n\
+  - 审计（能够详细审计大量事件）\n- 自主访问控制\n- 强制访问控制\n- 基于角色的访问控制\n- 对象重用（文件系统对象、内存和 IPC 对象）\n-\
+  \ 管理用户的安全管理\n- 安全通信（SSH）\n- 存储加密（支持加密块设备）\n- TSF 保护（通过硬件保护内核软件和数据）\n\n## 保护云安全\n\
+  \n虽然这些身份和认证功能是美国政府软件认证所必需的，但它们对于生产云环境同样至关重要，尤其是那些在公共区域运行并连接互联网的环境。这些工具的输出应输入到第 5\
+  \ 章 *构建可运维* 中讨论的更大日志、监控和告警框架中。在使用 ELK 等日志处理与审计工具时，一旦发生任何安全事件或超过阈值，即可生成安全告警。\n\n\
+  除了身份和认证之外，OpenStack 还可以使用多种不同的密码标准来实现身份识别、认证、数据传输加密以及静态数据保护。其中一些如下：\n\n- AES：传输中数据和静态数据\n\
+  - TDES：传输中数据\n- RSA：传输中数据以及身份识别/认证\n- DSA：传输中数据以及身份识别/认证\n- Serpent：静态数据\n- Twofish：静态数据\n\
+  - SHA-1：传输中数据和静态数据\n- SHA-2：静态数据以及身份识别/授权\n\n为了实现最佳安全性，不仅底层操作系统必须提供相应功能，运行计算主机的硬件（也因此运行\
+  \ hypervisor）也应支持以下特性：\n\n| 特性 | 硬件描述 | 安全增强 |\n|---|---|---|\n| VT-d / AMD-Vi |\
+  \ I/O MMU | PCI 直通保护 |\n| Intel TXT / SEM | 英特尔可信执行技术 | 动态证明服务 |\n| SR-IOV、MR-IOV、ATS\
+  \ | PCI-SIG I/O 虚拟化 | 多个实例安全共享 PCI Express 设备。 |\n| VT-C | 网络虚拟化 | 改进 hypervisor\
+  \ 上的网络 I/O |\n\n除了硬件和操作系统要求之外，KVM 还支持其他功能，如 sVirt（SELinux 和虚拟化）、Intel TXT 和 AppArmor。\n\
+  \n## SELinux 与 sVirt 实战\n\n以下步骤将帮助你检查 SELinux 是否处于 enforcing（强制启用并保护）状态。由于你的实验室运行的是\
+  \ CentOS 7，你应该已经安装了 SELinux 并处于 enforcing 状态，同时所有已安装软件也应支持 sVirt 正常工作。我们将向你展示如何设置镜像文件权限以保护你的实例：\n\
+  \n- 1. 在实验室服务器上以 root 身份执行以下命令：\n\n通常，在 HA 环境中，你会在计算节点上执行此命令。\n\n```\n# getenforce\n\
+  Enforcing\n```\n\n确认命令返回 Enforcing。\n\n- 2. 如果由于某种原因输出其他内容，请执行以下操作并重复上一条命令：\n\n\
+  ```\n# setenforce 1\n```\n\n- 3. 现在，检查你的 id 和上下文：\n\n```\n# id\nuid=0(root)  gid=0(root)\
+  \  groups=0(root)\ncontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023\n\
+  ```\n\n- 4. 现在，查找实验室服务器上运行实例的上下文：\n\n你应该至少有一个实例在运行。如果不止一个，请选择第一个。如果没有实例在运行，请创建一个实例并重复该命令。\n\
+  \n```\n# ps axZ | grep qemu-kvm\n\nsystem_u:system_r:svirt_tcg_t:s0:c55,c122 7480\
+  \  ?\nRl  0:10 /usr/libexec/qemu-kvm -name instance-\n00000001\n-S -machine pc-i440fx-rhel7.0.0,accel=t\
+  \ cg,usb=off\n-m 512 -realtime mlock=off -smp\n1,sockets=1,cores=1,threads=1 -uuid\
+  \ b803b3ce-1570-\n```\n\n```\n4092=8765=4a9f76793842 -smbios\\ntype=1,manufacturer=Fedora\\\
+  nProject,product=OpenStack Nova,version=13.1.0-\n1.el7,serial=8184f926-0263-4305-8d8d-\n\
+  d50c1472697e,uuid=b803b3ce-1570-4092-8765-\n4a9f76793842,family=Virtual Machine\
+  \ -no-user-\nconfig -nodefaults -chardev\\nsocket,id=charmonitor,path=/var/lib/libvirt/\\\
+  nqemu/domain-instance-00000001/monitor.sock,\\nserver,nowait -mon\\nchardev=charmonitor,id=monitor,mode=control\
+  \ -rtc\\nbase=utc -no-shutdown -boot strict=on -device\\npiix3-usb-uhci,id=usb,bus=pci.0,addr=0x1,0x2\
+  \ -\\ndrive file=/var/lib/nova/instances/b803b3ce-1570-\\n4092-8765-4a9f76793842/disk,if=none,id=drive-\\\
+  nvirtio-disk0,format=qcow2,cache=none -device\\nvirtio-blk-pci,scsi=off,bus=pci.0,addr=0x4,\\\
+  ndrive=drive-virtio-disk0,id=virtio-disk0,\\nbootindex=1 -netdev tap,fd=26,id=hostnet0\
+  \ -device\\nvirtio-net-pci,netdev=hostnet0,id=net0,\\nmac=fa:16:3e:43:48:ad,bus=pci.0,addr=0x3\
+  \ -chardev\\nfile,id=charserial0,path=/var/lib/\\nnova/instances/b803b3ce-1570-4092-8765-\\\
+  n4a9f76793842/console.log -device isa-\\nserial,chardev=charserial0,id=serial0 -chardev\\\
+  npty,id=charserial1 -device isa-\\nserial,chardev=charserial1,\\nid=serial1 -device\
+  \ usb-tablet,id=input0 -vnc\\n0.0.0.0:0 -k en-us -vga cirrus -device\\nvirtio-balloon-pci,id=balloon0,bus=pci.0,addr=0x5\\\
+  n-msg timestamp=on\n```\n\n如你所见，第一行给出了 qemu-kvm（实例进程）的上下文。`instance-00000001` 实例的\
+  \ MCS 上下文为 `system_u:system_r:svirt_tcg_t:s0:c55,c122`。\n\n- 5. 现在，查看 `/var/lib/nova/instances/b803b3ce-1570-4092-8765-4a9f76793842/`\
+  \ 中与该实例关联的文件，可以确认 sVirt 已正确地将它们标记为与实例进程相同的上下文（`s0:c55,c122`）：\n\n```\n# ls -alZ\
+  \ /var/lib/nova/instances/b803b3ce-1570-\\n4092-8765-4a9f76793842/\\n\\ndrwxr-xr-x.\
+  \ nova nova\\nsystem_u:object_r:nova_var_lib_t:s0 .\n```\n\n\n\n在本章开头，我们定义了安全区域。这些网络和资源区域，配合适当的物理或逻辑网络架构，为OpenStack云的不同区域提供了必要的网络和资源隔离。例如，可以通过物理LAN或VLAN分离来隔离区域。\n\
+  \n## 评估风险\n\n考虑到这一最佳实践，管理员首先需要确定其组织中的威胁向量在哪里，以及哪些地方最易受攻击。一个例子是那些将Horizon等公开安全区域服务暴露于互联网的云。由于这些端点暴露在组织无法控制的网络和用户面前，该端点显然是采取高安全性措施的优先选择。然而，保护公共端点可能并不是OpenStack端点所需的唯一加密。根据组织的网络架构，威胁可能来自内部网络，这些网络可能连接到更安全的OpenStack区域（管理区域或私有区域）。因此，在制定加密安全策略时，仅仅依赖OpenStack的默认安全区域隔离是不够的。虽然在所有位置添加加密无疑会为所有流量增加额外保护，但如果端点主机被攻破，仅添加SSL/TLS加密将无法提供保护。因此，端点加密应只是更大范围的网络和基于主机的安全策略的一部分。\n\
+  \n## 端点安全最佳实践\n\n在当今标准的OpenStack部署中，公共网络上的默认流量通过SSL进行保护。虽然这是一个良好的第一步，但最佳安全实践要求所有内部流量都应采用同样安全的实践。此外，由于最近的SSL漏洞，除非组织绝对需要遗留兼容性，否则SSL/TLS是唯一推荐的加密方法。\n\
+  \nTLS通过公钥基础设施（PKI）框架保护端点。该框架是一组流程，通过验证相关方的身份来确保消息安全发送。PKI涉及私钥和公钥，它们协同工作以创建安全连接。这些密钥由证书颁发机构（CA）认证，大多数公司为自己的内部证书签发CA。面向公众的端点必须使用知名的公共证书颁发机构，以便大多数浏览器将连接识别为安全。因此，由于这些证书存储在单个主机上，主机安全对于保护私钥文件至关重要。如果私钥被泄露，那么使用该密钥的任何流量的安全性也会受到损害。\n\
+  \n在OpenStack生态系统中，目前通过使用OpenSSL实现的库提供对TLS的支持。我们建议仅使用TLS 1.2，因为1.1和1.0容易受到攻击。由于许多不同的公开漏洞（Heartbleed、POODLE等），应完全避免使用SSL（v1-v3.0）。如今大多数实现实际上是TLS，因为TLS是SSL的演进版本。许多人将TLS\
+  \ 1.0称为SSL 3.1，但常见的做法是将最新的HTTPS实现称为SSL/TLS或TLS/SSL。在本文档中，我们将使用前一种说法（即SSL/TLS）。\n\
+  \n建议所有区域中的所有API端点都配置为使用SSL/TLS。但是，在某些情况下，由于加密所需的处理，性能可能会受到影响。在高流量的使用场景中，加密确实会消耗大量资源。在这些情况下，我们建议使用硬件加速器作为可能的选项，以便将加密工作从主机本身卸载。\n\
+  \n对于OpenStack端点使用SSL/TLS的最常见用例是使用可以建立和终止SSL/TLS会话的SSL/TLS代理。虽然有多种选择，例如Pound、Stud、nginx、HAproxy或Apache\
+  \ httpd，但将由管理员决定使用哪个工具。\n\n## 示例\n\n以下示例将展示如何通过Apache wsgi代理配置为Horizon的服务端点安装SSL/TLS，以及在Keystone中配置原生TLS支持。这些示例假设管理员已经从内部CA源获得了证书。如果您将公开发布Horizon或Keystone，则务必从全球CA获取证书。这些证书应能被所有浏览器识别，并且能够通过互联网进行验证。\n\
+  \n让我们从Keystone开始：\n\n既然我们已经有了证书，让我们将它们放在正确的位置并赋予适当的权限：\n\n```\n# chown keystone\
+  \ /etc/pki/tls/certs/keystone.crt\n# chown keystone /etc/pki/tls/private/keystone.key\n\
+  ```\n\n现在我们可以开始进行正式的安全工作了。我们首先为Keystone添加一个新的SSL端点，然后删除旧的端点。首先，找到当前的端点：\n\n```\n\
+  # keystone endpoint-list | grep 5000\n```\n\n现在创建新的端点：\n\n```\n# keystone endpoint-create\
+  \ --publicurl https://openstack.example.com:5000/v2.0 --internalurl https://openstack.example.com:5000/v2.0\
+  \ --adminurl https://openstack.example.com:5000/v2.0 --service keystone\n```\n\n\
+  然后删除旧的端点：\n\n```\n# keystone endpoint-delete <endpoint-id-from-above-endpoint>\n\
+  ```\n\n编辑您的 /etc/keystone/keystone.conf 文件，使其包含以下行：\n\n```\n[ssl]\nenable = True\n\
+  certfile = /etc/pki/tls/certs/keystone.crt\nkeyfile = /etc/pki/tls/private/keystone.key\n\
+  ```\n\n现在重启Keystone服务并确保没有错误：\n\n```\n# service openstack-keystone restart\n```\n\
+  \n更改您的 keystonerc_admin 或任何其他项目环境文件中的环境变量，通过将 OS_AUTH_URL 更改为以下内容来包含新端点：\n\n```\n\
+  OS_AUTH_URL=https://openstack.example.com:35357/v2.0/\n# source keystonerc_<user>\n\
+  export OS_CACERT=/path/to/certificates\n```\n\n快速测试一下：\n\n```\nkeystone endpoint-list\n\
+  ```\n\n## 保护云安全\n\n假设该命令没有显示任何错误，您现在可以配置其余的OpenStack服务，使其使用SSL/TLS连接到Keystone。这些配置都非常相似。以下以Nova为例。您需要编辑\
+  \ `/etc/nova/nova.conf` 文件，使其看起来像这样：\n\n```ini\n[keystone_authtoken]\nauth_protocol\
+  \ = https\nauth_port = 35357\nauth_host = openstack.example.com\nauth_uri = https://openstack.example.com:5000/v2.0\n\
+  cafile = /path/to/ca.crt\n```\n\nCinder、Glance、Neutron、Swift、Ceilometer等也都是如此。以下是需要编辑的配置文件列表：\n\
+  \n- `/etc/openstack-dashboard/local_settings` （Horizon 访问 Keystone）\n- `/etc/ceilometer/ceilometer.conf`\n\
+  - `/etc/glance/glance-api.conf`\n- `/etc/neutron/neutron.conf`\n- `/etc/neutron/api-paste.ini`\n\
+  - `/etc/neutron/metadata_agent.ini`\n- `/etc/glance/glance-registry.conf`\n- `/etc/cinder/cinder.conf`\n\
+  - `/etc/cinder/api-paste.ini`\n- `/etc/swift/proxy-server.conf`\n\n一旦这些或其他任何服务配置文件被修改，请重启所有服务并测试您的云环境：\n\
+  \n```bash\n# openstack-service restart\n# service httpd restart\n# openstack-status\n\
+  ```\n\n您应该看到所有服务都在运行并且在线。现在您已经加密了OpenStack服务与Keystone之间的流量，这是保持云安全的一个非常重要的步骤。如果没有，请检查服务的日志文件以查找错误。\n\
+  \n现在，我们配置Horizon，以使用SSL/TLS加密与客户端的连接。\n\n在控制器节点上，在Ubuntu的 `/etc/apache2/apache2.conf`\
+  \ 和RHEL的 `/etc/httpd/conf/httpd.conf` 中添加以下内容（或修改现有配置以匹配）：\n\n```\n<VirtualHost\
+  \ <ip address>:80>\n    ServerName <site FQDN>\n    RedirectPermanent / https://<site\
+  \ FQDN>/\n</VirtualHost>\n<VirtualHost <ip address>:443>\n    ServerName <site FQDN>\n\
+  \    SSLEngine On\n    SSLProtocol +TLSv1 +TLSv1.1 +TLSv1.2\n    SSLCipherSuite\
+  \ HIGH:!RC4:!MD5:!aNULL:!eNULL:!EXP:!LOW:!MEDIUM\n    SSLCertificateFile      /path/<site\
+  \ FQDN>.crt\n    SSLCACertificateFile    /path/<site FQDN>.crt\n    SSLCertificateKeyFile\
+  \ /path/<site FQDN>.key\n    WSGIScriptAlias / <WSGI script location>\n    WSGIDaemonProcess\
+  \ horizon user=<user> group=<group> processes=3 threads=10\n    Alias /static <static\
+  \ files location>\n    <Directory <WSGI dir>>\n        # For http server 2.2 and\
+  \ earlier:\n        Order allow,deny\n        Allow from all\n\n        # Or, in\
+  \ Apache http server 2.4 and later:\n        # Require all granted\n    </Directory>\n\
+  </VirtualHost>\n```\n\n在计算节点上，`libvirt` 守护进程的默认配置是不允许远程访问的。但是，在OpenStack计算节点之间进行实例的在线迁移需要计算节点之间的远程\
+  \ `libvirt` 守护进程访问。显然，在大多数情况下，未经身份验证的远程访问是不允许的；因此，我们可以设置带有SSL/TLS加密的 `libvirtd`\
+  \ TCP套接字，并使用X.509客户端证书进行身份验证。\n\n\n\n\n\n## 审计 OpenStack\n\n随着越来越多的企业将生产工作负载迁移到\
+  \ OpenStack，对审计合规的需求呈指数级增长。这些企业可能对 PCI、FedRAMP、SOX 和 HIPAA 合规有专门的审计要求，如果没有一种方式来审计其云中发生的情况，他们将不符合合规要求。这些企业习惯于在传统平台上拥有这种能力，因此，要求\
+  \ OpenStack 也提供这种能力是合乎逻辑的。\n\n这种审计需要以企业习惯的方式进行，不应期望他们必须以分散的方式从每个核心 OpenStack 项目中摄取不同的日志格式，正如他们今天有时必须做的那样。然而，好消息是，有一种格式可以提供规范化和联邦化的方式来收集和分析审计数据。这种格式是\
+  \ **Cloud Auditing Data Federation (CADF)** 标准。CADF 标准定义了一个完整的事件模型，任何人都可以用来填写在云环境中认证、自主管理和自主审计应用安全所需的必要数据。这种功能对于建立对云平台的信任并增加采用率是必要的。企业需要感到能够跟踪和检测其云平台上的未经授权访问。\n\
+  \n### CADF 详情\n\n根据 CADF 的管理机构 Distributed Management Task Force，CADF 标准执行以下功能：\n\
+  \n> “定义了一个规范的事件数据模型以及一组兼容的接口，用于在云提供商和客户之间联合事件、日志和报告。CADF 为云服务的客户提供了多项好处。审计事件数据可以用通用格式表示，以便在不同的云提供商之间一致地报告此数据。云客户还将能够从不同的云提供商聚合数据，以提供所有审计数据的更完整和一致的视图。此外，由于来自不同提供商的审计数据以相同格式提供，客户将能够对所有审计数据使用通用的审计工具和流程。能够从不同来源联合数据也将为\
+  \ OpenStack 用户带来好处，提供一种审计数据格式，该格式将在由一些通用组件（如 Keystone 和 Oslo 库）组成的分散云（IaaS）服务集合中保持一致。这些组件需要共享审计数据。”\n\
+  \nCADF 规范包含一个事件模型，该模型为任何可审计的事件指定了分类法，具体如下：\n\n- **Resource:** 通过与事件相关的逻辑资源对事件进行分类。基本上，这是谁是预期目标或什么观察到事件。\n\
+  - **Action:** 用于对导致事件的操作进行分类。\n- **Outcome:** 描述操作的结果。\n\n此外，前述分类法的强制属性进一步将事件分解为以下五个组件：\n\
+  \n| Model Component | CADF Definition |\n|---|---|\n| **OBSERVER** | 基于其对 Actual\
+  \ Event 的观察（直接或间接）生成 CADF 事件记录的 RESOURCE。 |\n| **INITIATOR** | 根据 OBSERVER，发起、起源或引发事件\
+  \ ACTION 的 RESOURCE。 |\n| **ACTION** | 根据 OBSERVER，INITIATOR 对事件的 TARGET 执行、尝试执行或待执行的运算或活动。\
+  \ |\n| **TARGET** | 根据 OBSERVER，CADF 事件记录的 ACTION 被执行、尝试执行或待执行的 RESOURCE。*注意：TARGET（在\
+  \ CADF 事件模型中）可以代表多个目标资源。* |\n| **OUTCOME** | 根据 OBSERVER，ACTION 对 TARGET 的结果或状态。\
+  \ |\n\n使用这些属性，CADF 数据模型旨在提供活动的“谁”、“什么”、“何时”、“何处”、“从何处”和“到何处”。安全领域的大多数人都听说过审计和合规的\
+  \ 5 个 W，然而，该模型是为云环境设计的，并额外增加了两个（从何处和到何处）。\n\n为了进一步解释 CADF 如何基于 7 个 W 用于审计，请参考以下图表：\n\
+  \n| \"W\" Component | CADF Mandatory Properties | CADF Optional Properties (where\
+  \ applicable) | Description |\n|---|---|---|---|\n| What | event.action<br>event.outcome<br>event.type\
+  \ | event.reason (e.g., severity, reason code, policy id) | 发生了“什么”活动；“什么”是结果 |\n\
+  | When | event.eventTime | reporter.timestamp (detailed), for each reporter<br>event.duration\
+  \ | “何时”发生<br>• 任何粒度均可通过 ISO 8601 格式 |\n| Who | initiator.id<br>initiator.type |\
+  \ initiator.id (id, name): (basic)<br>initiator.credential (token): (detailed)<br>initiator.credential.assertions\
+  \ (precise) | “谁”（人员或服务）发起操作 |\n| FromWhere |  | initiator.addresses (basic)<br>initiator.host\
+  \ (agents, platforms, ...) (detailed)<br>initiator.geolocation (precise) | FromWhere\
+  \ 提供描述操作发起地的信息。<br><br>可能包括<br>• 逻辑/物理地址<br>• ISO-6709-2008，精确地理位置 |\n| OnWhat |\
+  \ target.id<br>target.type |  | 活动针对的“onWhat”资源 |\n| Where | observer.id<br>observer.type\
+  \ | reporterstep.role (detailed)<br>reporterstep.reporterTime (detailed) | “在何处”活动被观察到（报告），或以某种方式被修改。\
+  \ |\n| ToWhere |  | target.addresses (basic)<br>target.host (agents, platforms,\
+  \ ...) (detailed)<br>target.geolocation (precise) | ToWhere 提供描述受操作影响的目标资源所在位置的信息。<br><br>例如，这可以简单到一个\
+  \ IP 地址或服务器名称。 |\n\nCADF – the 7 W's of audit – CADF OpenStack\n\n### 使用 CADF 与\
+  \ OpenStack\n\n除了少数特殊情况外，从 OpenStack 服务获取 CADF 信息相当直接。然而，根据发行版，这些说明可能会有所不同。\n以下说明展示了如何为\
+  \ Nova 启用 CADF 审计事件以发送到 Ceilometer（可选日志文件）。这是通过 Keystone 中间件完成的，该中间件提供了一个可选的 WSGI\
+  \ 中间件过滤器，允许对 OpenStack 的每个组件的 API 请求进行审计。\n\n首先，登录到您的 OpenStack 部署。编辑 `/etc/nova/api-paste.ini`\
+  \ 文件。在文件末尾添加以下内容：\n\n```\n[filter:audit]\npaste.filter_factory = pycadf.middleware.audit:AuditMiddleware.factory\n\
+  audit_map_file = /etc/nova/api_audit_map.conf\n```\n\n检查 `[composite:openstack_compute_api_v2]`\
+  \ 设置并验证值是否与以下示例匹配：\n\n```\n[composite:openstack_compute_api_v2]\nuse = call:nova.api.auth:pipeline_factory\n\
+  noauth = faultwrap sizelimit noauth ratelimit osapi_compute_app_v2\nkeystone = faultwrap\
+  \ sizelimit authtoken keystonecontext ratelimit audit osapi_compute_app_v2\nkeystone_nolimit\
+  \ = faultwrap sizelimit authtoken keystonecontext audit osapi_compute_app_v2\n```\n\
+  \n还提供其他选项，可将事件重定向到日志文件以及消息传递。只需添加以下内容：\n\n```\n[audit_middleware_notifications]\n\
+  driver = log\n```\n\n现在，将 `api_audit_map.conf` 文件复制到 `/etc/nova/` 目录并重启 API 服务。\n\
+  \n重启 API 服务的命令因操作系统而异。在 Red Hat Enterprise Linux 系统上，命令为 `service openstack-nova-api\
+  \ restart`。要了解更多信息，请参阅 https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux_OpenStack_Platform/2/html/Getting_Started_Guide/chap-Deploying_Compute_Services.html\n\
+  \n打开 OpenStack 安装目录的 `egg-info` 子目录中的 `entry_points.txt` 文件。\n\n![](img/2f752555f69992669defa8b25e6dcee9_190_0.png)\n\
+  \n对于 PackStack 安装，文件路径类似于 `/usr/lib/python2.7/site-packages/ceilometer-2014.2-py2.7.egg-info/entry_points.txt`。\n\
+  \n虽然此示例仅针对 Nova，但其他服务（如 Glance、Ceilometer、Cinder、Neutron 等）的预配置 `api_audit_map.conf`\
+  \ 文件可在 https://github.com/openstack/pycadf/tree/master/etc/pycadf 获取。通过遵循上述步骤并使用这些\
+  \ `api_audit_map.conf` 文件，您可以为所有核心 OpenStack 服务启用 CADF 事件。\n\n由于事件存储到消息传递中，并且默认情况下事件发送到\
+  \ Ceilometer，因此您将在此处找到事件存储的位置。为了查询 Ceilometer 中的 Keystone 事件，您应首先执行会导致事件的 Keystone\
+  \ 操作，例如：\n\n```\n$ openstack user create test_user --os-identity-api-version 3 --os-auth-url\
+  \ http://10.0.2.15:5000/v3 --os-default-domain default\n```\n\n为了从 Ceilometer 中获取此操作创建的事件，您应执行以下操作：\n\
+  \n```\n$ ceilometer event-list --query\nevent_type=identity.user.created\n```\n\n\
+  这将导致以下类型的输出：\n\n| Event Type | Trait Name | Trait Type | Trait Value |\n|---|---|---|---|\n\
+  | identity.user.created | initiator_id | string | asd123j123312yf34212339e6e424a7f\
+  \ |\n| identity.user.created | project_id | string | ae7e3k14k202042j22f19bc25c8c09f0\
+  \ |\n| identity.user.created | resource_id | string | 22a21766c478927349e3fda7ee0b712b\
+  \ |\n| identity.user.created | service | string | identity.openstack.example.com\
+  \ |\n\n\n\n\n\n正如我们在前面的输出中所看到的，我们拥有由前一个命令创建用户的审计轨迹，以及项目和资源 ID。 这些数据以及来自其他服务的所有数据组合起来，将为该用户在此云中的交易以及此云中的任何其他交易提供\
+  \ 7 W 审计轨迹。 可以使用 Ansible、Puppet 或 Chef 等开源工具为 Ceilometer、日志文件创建查询自动化，或者让 Ceilometer\
+  \ 将此事件数据发送到类似 IBM 的 QRadar http://www-03.ibm.com/software/products/en/qradar 的系统，该系统根据\
+  \ IBM 的说法：\n\n> “[A] 安全情报平台，它将传统的网络安全信息和事件管理（SIEM）和日志管理功能与网络行为异常检测（NBAD）、漏洞评估和管理、风险分析和模拟以及取证数据检查相结合。\
+  \ 它通过与其他产品/应用程序/服务/资产/端点集成来消耗事件、流、资产和漏洞信息以及网络拓扑（在客户端的环境中本地或在云中），使用户能够从许多不同的角度和视角查看、分析、理解和报告其环境中发生的一切。”\n\
+  \nQRadar 作为 Ceilometer 数据的消费者与 OpenStack 集成。 然后它将平台中的 CADF 格式数据用于分析。\n\n### 日志聚合和分析\n\
+  \n正如我们在上一节中所看到的，我们拥有由演示命令创建用户的审计轨迹，以及项目和资源 ID。 这些数据以及来自其他服务的所有数据组合起来，将为该用户在此云中的交易以及此云中的任何其他交易提供\
+  \ 7 W 审计轨迹。 然而，由于我们现在拥有审计数据，我们可以开始寻找安全攻击。 其中一些攻击可能如下：\n\n- 对 OpenStack 进行暴力攻击的实时安全警报\n\
+  - 检测对虚拟机、卷或镜像的恶意或未经授权的访问\n- 意外或故意的云服务中断\n- 对 OpenStack 中所有用户活动的合规性报告\n\n这些类型的攻击都可以通过日志内省来检测。\
+  \ 正如我们在 *第 5 章，构建以运营* 中讨论的那样，有一套 OpenStack 工具已成为日志传输、格式化和内省的事实标准。 构成这一强大组合的三个工具是\
+  \ Elasticsearch（搜索模块）、Logstash（日志传输工具）和 Kibana（可视化引擎和仪表板）。 虽然我们在 *第 5 章，构建以运营* 中主要从运营角度讨论了这些工具，但这些相同的工具可用于实时检测前面列出的所有攻击。\
+  \ 该堆栈的主要优势如下：\n\n- 用 Java 编写的开源搜索服务器\n- 用于索引多种异构数据\n- 通过索引进行实时搜索\n- 输出 JSON 的 REST\
+  \ API Web 界面\n\n在此领域的最佳架构实践是使用 Logstash 以分布式方式将所有包含 CADF 数据的日志文件集中到运行 Elasticsearch\
+  \ 和 Kibana 的安全主机上。 然后配置 Logstash 以索引高度规范化的 CADF 日志，并创建限制以在阈值被突破时发出警报。\n\n例如，如果 CADF\
+  \ 日志检测到在短时间内来自同一 IP 地址的数千次 Keystone 身份验证失败事件，那么很可能是暴力攻击，并且值得向安全和网络团队发出警报。\n\n使用\
+  \ Kibana，团队可以搜索审计日志并确定攻击发生的时间有多长，是否有任何有效用户通过同一子网登录，或进行任何数量的其他分析。\n\n还有相当多的其他 SIEM\
+  \ 平台可与 OpenStack 集成，并且可以摄取日志文件或 Ceilometer 馈送，其中一些列于此处：\n\n- Symantec Security Information\
+  \ Manager\n- Splunk\n- HP/Arcsight\n- Tripwire\n- NetIQ\n- Quest Software\n- Enterprise\
+  \ Security Manager\n\n虽然开源和商业解决方案都具有出色的功能集，但每个企业都需要自行评估 SIEM 解决方案。 然而，有了前面的信息，管理员可以感到有能力为\
+  \ OpenStack 启用 CADF 事件日志记录，并为任何平台提供其满足企业审计要求所需的数据。\n\n### 总结\n\n在本章中，您学习了一些关于 OpenStack\
+  \ 安全的整体方法。 这不仅包括运行在 OpenStack 之上的应用程序，还包括构成平台的项目以及基础操作系统环境。 您了解到企业 OpenStack 安全不仅仅是加密、日志记录或修补，而是一种更以企业为基础的方法，其中所有解决方案必须与其他解决方案和谐工作。\
+  \ 有时这种互操作性可以通过配置来实现，有时则需要根据安全要求添加额外的开源或商业级企业软件。 然而，一个非常重要的观点是认识到 OpenStack 并没有比其竞争平台更不安全，并且有策略和工具可用于使\
+  \ OpenStack 符合大多数企业安全策略。\n\n### 参考\n\n- https://security.openstack.org/ossalist.html\n\
+  - https://review.openstack.org/#/c/299025/\n- https://wiki.openstack.org/wiki/Vulnerability_Management\n\
+  - https://www.openstack.org/assets/survey/April-2016-User-Survey-Report.pdf\n- http://www.pulpproject.org/\n\
+  - http://libvirt.org/remote.html#Remote_certificates\n- http://www-03.ibm.com/software/products/en/qradar\n\
+  - https://github.com/openstack/pycadf/tree/master/etc/pycadf\n"
+- '# 8 结论
+
+
+  在我们开始撰写本书的一年半以来，OpenStack 已经发生了足够的改变，以至于我们不得不至少重写一次大部分代码示例。 我们希望我们在前几章中概述的方法将帮助云架构师在软件生态系统快速变化的情况下开发和部署使用
+  OpenStack 的私有云。 在本最后一章中，我们将讨论 OpenStack 中的一些新兴趋势以及如何为贵组织制定其采用基础设施即服务(Infrastructure
+  as a Service)的路线图。
+
+
+  ### OpenStack 中的新兴趋势
+
+
+  OpenStack 在其短暂的历史中演变的最有趣的事情之一是围绕核心计算、网络和存储服务出现的大量项目。 截至 OpenStack 的 Newton 版本，“大帐篷”中有近六十个项目。
+  这些项目可以大致分为两类——提供额外基础设施组件的项目，以及管理 OpenStack 本身的安装、配置和生命周期的项目。 这第一组项目通常模仿 Amazon Web
+  Services 中的类似物，并提供更完整的“堆栈”服务，可用于应用程序部署。 第二组项目包含配置管理代码，例如我们在前几章中用于部署 OpenStack 的
+  Puppet 模块，以及由其他服务使用的通用服务和库。
+
+
+  ### 向上迁移堆栈
+
+
+  一些自动化额外基础设施组件的项目已被广泛采用，以至于被纳入商业供应商的 OpenStack 发行版中。 这些包括诸如 Trove，它提供数据库即服务，以及 Sahara，它提供数据处理即服务。
+  这些项目利用 Nova 计算服务部署准备好的 Glance 镜像实例，为最终用户通过 OpenStack API 提供更高级别的资源，例如数据库。 然后这些资源可以像任何其他
+  OpenStack 资源一样通过 API 或通过 Heat 编排服务进行自动化。
+
+
+  Trove 是核心原始服务之外较为成熟的 OpenStack 服务之一。 Trove 允许开发人员为其应用程序配置给定数据库的实例，而无需设计或指定数据库实例的底层计算和存储。
+  Trove 大部分由公司 Tesora 开发，该公司为 OpenStack 的大多数主要社区和企业发行版提供经过认证和支持的 Trove 组件版本。 目前，Trove
+  支持配置一系列关系数据库，如 MySQL 和 Oracle，以及 NoSQL 数据库，如 MongoDB 和 Redis。
+
+
+  Sahara 在 OpenStack 中提供大数据即服务，主要通过自动部署 Hadoop 集群。 Sahara 允许用户创建数据处理集群，定义作业模板，然后在集群上执行这些作业。
+  Sahara 具有大量与外部服务的集成点，例如用于名称解析的 Designate 和用于证书管理的 Barbican。 作业可以从外部或内部 HDFS 卷或 OpenStack
+  中的 Swift 或 Manila 提取数据。 Sahara 目前支持 Apache Hadoop、Hortonworks 数据平台、Apache Spark、MapR
+  和 Cloudera Hadoop 作为集群类型。 服务支持传统的 Hadoop 和 Spark 作业。
+
+
+  Designate 和 Barbican 是提供扩展基础设施自动化能力以完善应用程序堆栈的服务的示例，但不提供实例。 此类别中另一个流行的项目是 Zaqar，它提供消息即服务。
+  这些服务对于私有云环境中的开发人员和运营人员都极具吸引力。 开发人员不再需要担心应用程序架构中基础设施组件背后的细节，而运营人员可以放心，开发人员以标准化方式使用这些组件，易于排除故障和扩展。
+
+
+
+
+
+
+  ## 容器的影响
+
+
+  在过去几年里，Linux 容器席卷了技术世界，并从两个不同的方面影响了 OpenStack。首先，OpenStack 现在被视为部署容器化平台即服务技术（如 Kubernetes
+  和 Cloud Foundry）最灵活的基础设施之一。其次，OpenStack 现在越来越多地作为一组容器化服务进行部署。围绕 OpenStack 中容器的这两种用例，又涌现出许多
+  Big Tent 项目。
+
+
+  Magnum 是一个流行的项目，可自动化容器编排环境的配置。Magnum 使用 Nova 计算服务在 OpenStack 租户内部配置这些环境，其方式与 Trove
+  和 Sahara 相同。自 OpenStack 的 Newton 版本起，Magnum 支持 Docker Swarm、Kubernetes 和 Apache
+  Mesos 集群，并将其抽象为容器的“bays”。另一个专注于容器的流行项目是 Kuryr，它允许用户将 Neutron 网络从基础设施层桥接到应用层。
+
+
+  也许在 OpenStack 的管理和部署方面最大的新兴变化是使用容器来部署 OpenStack 服务。这项工作由 Kolla 项目开创，该项目使用 Ansible
+  和 Docker 来部署和管理 OpenStack 服务。此后该做法已扩展到其他项目——Fuel 安装程序目前正转向基于 Docker 的部署策略，而 OpenStack-Ansible
+  项目（OSA）则使用 LXC 容器来部署 OpenStack 服务。随着这些努力获得共识，组织应评估容器化部署方法是否适合自己。
+
+
+  ## 制定路线图
+
+
+  参与这样一个快速变化的项目是令人兴奋的。这种兴奋应被希望获得应用开发团队采用的云架构师所利用。建立开发者社区兴趣的一种方式是不断扩展私有云中可供他们使用的服务数量。如前所述，将
+  Trove 或 Designate 等服务的 capabilities 添加到云中，可简化开发人员和运维人员的工作。将开发团队纳入新功能早期采用者也是建立信任和信心的好方法。
+
+
+  ## 引入新功能
+
+
+  能够逐步向 OpenStack 部署中添加新功能的前提是拥有可推进功能的一组测试环境。云工程团队应拥有一个可用于开发和测试新功能的私有环境，以及另一个可让最终用户在功能推广到生产云环境之前进行测试的环境。拥有多个环境还能让新功能充分“烘焙”，从而使云运维人员能够看到新功能对日志、性能和其他方面的影响。仪器化也可以在较低环境中开发和测试。
+
+
+  新功能或 capabilities 应逐步引入平台。在规划阶段，应定义 capabilities 的用例并编写测试用例。这些新功能和 capabilities
+  也应以与代码相同的方式进行测试和部署；首先在测试环境中，然后进入生产环境。随着功能部署到较低环境，文档应得到更新，并且 capabilities 的测试用例应添加到监控方案中。测试这些新
+  capabilities 的一种简单方法是编写一个练习它们的示例 Heat 编排模板。例如，将数据库的配置添加到已由 Heat 部署的现有应用栈中。然后该模板也可以作为服务的文档提供给应用团队。
+
+
+  ## 发布新版本
+
+
+  OpenStack 最受讨论和批评的方面之一一直是主要版本升级流程。好的一面是，它也是项目中最详尽记录和测试的方面之一。OpenStack 的每个主要组件都提供在版本之间的升级路径，并且大多数现在都支持滚动升级。已做了大量工作来解耦各种服务的
+  API 版本，以确保服务可以一次一个地更新而不会停机。事实是，升级一个运行中的私有云是困难的。私有云用户期望其工作负载持续可用。因此，我们合作过的许多 OpenStack
+  采用者都不愿意在生产环境中更新其云。
+
+
+  虽然部署一个 OpenStack 版本然后运行几年是完全可能的（例如 Red Hat 等商业厂商为给定版本的 OpenStack 提供长达三年的支持），但我们绝对不推荐这样做。部署了
+  Icehouse 版本的 OpenStack 并运行了几年的组织最终将为 Newton 版本重新设计大部分配置管理和部署流程。这项工作需要大量时间和精力。逐步进行版本升级或每年部署一个新版本的组织在新版本发布时需要管理的变更量会小得多。
+
+
+  增量变更对开发者社区的影响也更小。如前所述，不断改进和更新你的基础设施即服务将保持社区的参与度，并消除每次发布新平台时都需要重新培训他们的需求。
+
+
+  ## 总结
+
+
+  在本书中，我们介绍了作为云架构师在 OpenStack 方面的新兴实践中的主要关注领域。我们向你展示了一些技术和建议，使你能够与公司利益相关者合作并提供架构领导力，以便为企业中的
+  OpenStack 创建整体设计。成功设计、部署和运营 OpenStack 云需要对计算、网络、存储和软件设计领域有广泛的知识。它还需要对公司战略使命、流程以及实施私有云的成功标准有深入的理解。成功的云架构师在设计
+  OpenStack 云时，会结合自己知识与深层技术领域的主题专家知识和实践。本书旨在为架构师提供一个框架，以便他们能够与企业其他部门协作，使用现代软件开发方法论创建成功的
+  OpenStack 部署。虽然本书为 OpenStack 架构提供了坚实的基础，但我们希望它能为你提供工具和信心，开始你自己的 OpenStack 架构设计之旅。
+
+
+  ## 参考
+
+
+  OpenStack projects – http://governance.openstack.org/reference/projects/
+
+  '
+- "## 索引\n\n- **A**\n- \n- Active Directory\n- reference link 131\n- active monitoring\n\
+  - HA control cluster 111\n- processes 111\n- services 110\n- Active/Active service\
+  \ configuration\n- about 52\n- advantages 52\n- Active/Passive service configuration\
+  \ 51\n- alerting\n- about 107, 108\n- active monitoring 110\n- all-in-one deployment\n\
+  - reference link 19\n- Ansible playbooks\n- reference link 73\n- API service configuration\
+  \ 67, 68, 69\n- API specifications\n- reference link 110\n- AppArmor 164, 165\n\
+  - Application Program Interface (API) 7\n- architect tenant 131\n- assignment driver\
+  \ 131\n- Atlassian's Bamboo\n- URL 77\n- availability zones 55, 57\n\n- **B**\n\
+  - \n- backup architecture\n- disaster recovery, planning 124\n- infrastructure 122\n\
+  - strategies 122\n- workload 124\n- Backup-as-a-Service (BaaS) 124\n\n- billing\n\
+  - about 141\n- events, consuming from Ceilometer 145\n- meter, reading in Ceilometer\
+  \ 146\n- notification subsystem, used 143\n- OpenStack, perceiving to 142\n- block\
+  \ storage 11, 38\n- build\n- executing 88, 90, 91, 92\n- Buildbot\n- URL 77\n\n\
+  - **C**\n- \n- capacity planning 113\n- backups 122\n- compute server hardware,\
+  \ selection 117, 118, 119, 120\n- flavor, sizing 117, 118, 119, 120\n- OpenStack\
+  \ cloud, planning 114\n- recovery 122\n- Ceilometer\n- events, consuming from 145\n\
+  - meters, reading in 146\n- reference link 146\n- cells 55, 56\n- CentOS\n- URL\
+  \ 159\n- certificate management 168\n- Certification Authority (CA) 170\n- Chef\
+  \ cookbooks\n- reference link 73\n- CI server\n- setting up 78\n- Cloud Architect\n\
+  - functionalities 15\n- Cloud Auditing Data Federation (CADF) 175\n- cloud controller\
+  \ system 40, 60\n\n\n\n\n\nCloud Management Platforms(CMPs) 120\nCloudKitty\n  \
+  \  URL 121\nCobbler\n    URL 74\ncode committing, to OpenStack\n    reference link\
+  \ 8\ncommercially-supported distributions 28\ncommunity distributions 27\ncommunity\
+  \ modules\n    using 73\ncomponents, OpenStack\n    block storage 11\n    compute\
+  \ 9\n    network 11\n    object storage 10\ncomposition layer\n    about 73\n  \
+  \  creating 84\ncompute 9, 54\ncompute hardware\n    considerations 29\ncompute\
+  \ node system 40, 60\nconfiguration management\n    community modules, using 73\n\
+  \    role, assigning 74\n    starting point, selecting 75\n    test infrastructure\
+  \ 75\n    using, for deployment 72, 73\nconsiderations, compute hardware\nhypervisor,\
+  \ selection 29, 30\nperformance-intensive workloads 32, 33\n    sizing, to match\
+  \ workload 30, 31\ncontainers\n    impact 185\nContinuous Integration (CI) 49, 71\n\
+  Continuous Integration and Continuous Delivery (CI/CD) 14\nD\ndatabase node 60\n\
+  database services 53\ndeployment pipeline 75\ndeployment plan\n    network addressing\
+  \ 19\nupdating 41\ndeployment\n    configuration management, using 72, 73\ndesign\
+  \ document, initial deployment plan\n    about 16\n    background 16\n    executive\
+  \ summary 16\n    physical architecture 16\n    requirements 16\n    roadmap 17\n\
+  \    service architecture 16\n    tenant architecture 17\ndesign document\n    cloud\
+  \ controller system 40\n    compute node system 40\n    management network 40\n\
+  \    physical architecture design, updating 60\n    physical architecture, planning\
+  \ 58, 59\n    provider network 41\n    requisites, testing 151\n    requisites,\
+  \ writing 148\n    tenant network 41\n    updating 40, 58, 148\nDistributed Virtual\
+  \ Routers (DVR) 12\n    reference link 55\ndomain 8\nDreamCompute 13\nDreamObjects\
+  \ 13\nE\nELK (ElasticSearch, Logstash, and Kibana)\n    about 102\n    URL 102\n\
+  ephemera storage 10, 37, 38\nevents\n    consuming, from Ceilometer 145\nExternal\
+  \ network 34\nExternal Node Classifiers (ENC) 74\nF\nfencing 51\nfilter\n    reference\
+  \ link 147\nflavors\n    about 9, 30\n\n## K\n\nkey/value lookup tool 87\nKeystone\n\
+  \  configuring, with identity 131, 132\n  configuring, with split assignment 131,\
+  \ 132\n  installing 95, 96, 97\n  reference link 133\n\n## L\n\nLandscape 160\n\
+  libvirt documentation\n  reference link 174\nLightweight Directory Access Protocol\
+  \ (LDAP) 131\nLinux practices\n  hardening 162, 163\nload balancer 60\nlogging 101\n\
+  \n## M\n\nm1 flavors 30\nManageIQ\n  URL 121\nmanagement network 34, 40\nMandatory\
+  \ Access Control (MAC) 165\nmessage bus 53\nmessaging node 60\nmetering\n  about\
+  \ 141\n  events, consuming from Ceilometer 145\n  meter, reading in Ceilometer 146\n\
+  \  notification subsystem, used 143\nOpenStack, perceiving to 142\n  reference link\
+  \ 147\nMirantis\n  URL 34\nmonitoring\n  about 104\n  determining 105\n  practices\
+  \ 106\nmsolberg tenant 131\nmulti-tier network architecture 36\n\n## N\n\nNagios\n\
+  \  reference link 111\nnetwork 11\nnetwork agents 54\nnetwork behavior anomaly detection(NBAD)\
+  \ 180\nnetwork design 33\n  physical network design 36\n  segmentation, providing\
+  \ 34\n  software-defined networking (SDN) 35\nNetwork Function Virtualization (NFV)\
+  \ 15, 32\nnetwork segmentation\n  providing 33, 34\nNIAP\n  URL 162\nNon-Uniform\
+  \ Memory Access (NUMA) 32\nnotification subsystem\n  using 143\n\n## O\n\nobject\
+  \ storage 10, 39\nOpenStack cloud\n  growth, analyzing 114, 117\n  planning 114\n\
+  \  usage, tracking 114, 117\nOpenStack deployment 18\nOpenStack distribution\n \
+  \ commercially-supported distributions 28\n  community distributions 27\n  executing,\
+  \ from trunk 26, 27\n  selecting 26\nOpenStack Powered Platform certification 13\n\
+  OpenStack service\n  compute 54\n  database services 53\n  message bus 53\n  network\
+  \ agents 54\n  specifics 52\n  storage 54\n  web services 53\nOpenStack, auditing\n\
+  \  CADF details 175, 176\n  CADF, using 178\n  log aggregation 180, 181\n\nlog analysis\
+  \ 180, 181\nOpenStack\n  about 6\n  alerting 107\n  auditing 175\n  authentication\
+  \ 130, 131\n  authorization 130, 131\n  availability, monitoring 106\n  code, patching\
+  \ 158\n  components 9\n  containers, impact 185\n  database services 53\n  host\
+  \ security 158\n  initial deployment plan, writing 18\n  installation instructions\
+  \ 20\n  installation, verifying 21\n  installing 20\n  installing, with new configuration\
+  \ 42, 44\n  logging 101, 103\n  monitoring 104\n  open source software project 7,\
+  \ 8\n  operating system, patching 159\n  patching 158\n  perceiving to 142\n  performance,\
+  \ monitoring 107\n  private cloud platform 8\n  reference link 8, 26, 103, 158,\
+  \ 159\n  resource usage, monitoring 107\n  security zones 155\n  stack, moving up\
+  \ 184\n  trends, emerging 183\n  URL 26, 27, 28, 158\n  use cases 12\n  using, as\
+  \ API 7\n  working 100\noperating system\n  CentOS 160\n  patching 159\n  Red Hat\
+  \ Enterprise Linux (RHEL) 160\n  software repository management 160, 161\n  Ubuntu\
+  \ 160\nP\nPacemaker\n  reference link 64\nresource manager, installing 62, 63\n\
+  patching 158\nphysical architecture\n  design, updating 60\n  planning 58, 59\n\
+  physical network design 36\npipeline\n  assembling 77\n  automating 97, 98\n  build,\
+  \ executing 88, 90, 91, 92\n  CI server, setting up 78\n  composition layer, creating\
+  \ 84\n  Git, installing 78\n  Jenkins, installing 81, 84\n  profile, defining 86\n\
+  \  Puppet master, installing 80\n  Puppet modules, starting 85, 86\n  role, assigning\
+  \ to system 94, 95\n  role, defining 86\n  tests, writing 92, 93, 94\nplugins\n\
+  \  reference link 103\nprofile\n  defining 86\nprofiles and roles, Puppet modules\n\
+  \  reference link 85\nproject 8\nProof of Concept (POC) 35, 40\nprovider network\
+  \ 34, 41\nPublic Key Infrastructure (PKI) 170\nPulp\n  URL 161\nPuppet all-in-one\
+  \ deployment\n  reference link 75\nPuppet Enterprise\n  URL 74\nPuppet master\n\
+  \  installing 80\n  reference link 80\nPuppet modules\n  reference link 73\n  starting\
+  \ 85, 86\n\n## R\n\n- Raksha\n- reference link 125\n- RDO OpenStack repository\n\
+  - URL 20\n- RDO project\n- URL 23\n- Red Hat Enterprise Linux (RHEL)\n- about 160\n\
+  - reference link 178\n- Red Hat Network (RHN) 160\n- Red Hat\n- URL 121\n- regions\
+  \ 55\n- REST APIs\n- using 135\n- roadmap\n- building 185\n- new features, including\
+  \ 186\n- new versions, releasing 186\n- role\n- assigning 74\n- assigning, to system\
+  \ 94, 95\n- defining 86\n- Ruby Fog library\n- URL 77\n\n## S\n\n- second controller\n\
+  - provisioning 61\n- security information and event management\n- (SIEM) 180\n-\
+  \ security zones\n- data zones 156\n- guest zones 155\n- in OpenStack 155\n- management\
+  \ zones 156\n- public zones 155\n- SELinux 164, 165\n- Service-Level Agreements\
+  \ (SLAs) 106\n- Slack\n- URL 107\n- software development kit (SDK), OpenStack\n\
+  - reference link 7\n- software security\n- instance 157\n- software vulnerabilities\
+  \ 156\n- Software-Defined Networking (SDN) 33, 35\n- spine-leaf physical network\
+  \ architecture 36\n- sprint 71\n- SSL\n- endpoint security, best practices 169,\
+  \ 170\n- risk, assessing 169\n- SSH, installing examples 170, 171, 172, 173, 174\n\
+  - StackTach\n- reference link 13\n- storage 54\n- storage design\n- about 37\n-\
+  \ block storage 38\n- ephemeral storage 37, 38\n- object storage 39\n- Storage network\
+  \ 34\n- sVirt 165\n- SELinux, working 166\n- working 166\n\n## T\n\n- Talligent\n\
+  - URL 121\n- Tempest 77\n- Template Guide, OpenStack\n- reference link 141\n- templates\n\
+  - provisioning with 139\n- tenant 8\n- tenant network 34, 41\n- test infrastructure\n\
+  - about 75\n- testing, types 75, 76\n- tests, executing 77\n- tests, writing 77\n\
+  - TrilioVault\n- URL 125\n\n## U\n\n- Underlay network 34\n- use cases, OpenStack\n\
+  - about 12\n- high-performance compute 13\n- Network Function Virtualization (NFV)\
+  \ 15\n- public hosting 13\n- rapid application development 14\n\n## V\n\n- virtual\
+  \ machines 9\n- Vulnerability Management\n- reference link 158\n\n## W\n\n- Web\
+  \ Server Gateway Interface (WSGI) 133\n- web services 53\n- workflows\n- Horizon\
+  \ user interface 133\n- provisioning 133\n- REST APIs, using 135\n- templates, provisioning\
+  \ with 139\n\n"

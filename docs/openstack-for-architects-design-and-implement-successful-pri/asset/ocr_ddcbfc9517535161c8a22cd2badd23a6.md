@@ -1,0 +1,11 @@
+While deploying a release of OpenStack and then running it for a few years is certainly possible (commercial vendors such as Red Hat provide support for up to three years for a given release of OpenStack), we certainly don't recommend it. Organizations who deployed the Icehouse release of OpenStack and have run it for a couple of years will end up re-engineering much of their configuration management and deployment processes for the Newton release. This work takes a lot of time and effort. Organizations who have stepped through the releases or have deployed a new release every calendar year will have a much smaller amount of change to manage when the new version does come out.
+
+Incremental change has a smaller impact on the developer community as well. As we mentioned previously, continually improving and updating your Infrastructure as a Service will keep the community engaged and eliminate the need to retrain them every time a new platform is released.
+
+# Summary
+
+In this book, we've walked through the major areas of focus in the emerging practice of a Cloud Architect as it pertains to OpenStack. We've shown you some techniques and recommendations to enable you to work with company stakeholders and provide architectural leadership in order to create a holistic design for OpenStack in an enterprise. Successfully designing, deploying, and operating OpenStack clouds requires a wide breadth of knowledge in the fields of compute, network, storage, and software design. It also takes a deep understanding of a company's strategic mission, processes, and success criteria for implementing a private cloud. Successful Cloud Architects leverage the knowledge and practice of subject matter experts in deep technical areas in conjunction with their own knowledge when designing OpenStack clouds. This book was written to provide a framework that an Architect could use to create a successful OpenStack deployment in concert with the rest of an enterprise using modern software development methodologies. While this book provides a solid foundation for OpenStack architecture, we hope it has given you the tools and confidence to begin your own journey into OpenStack architectural design.
+
+# References
+
+OpenStack projects – http://governance.openstack.org/reference/projects/

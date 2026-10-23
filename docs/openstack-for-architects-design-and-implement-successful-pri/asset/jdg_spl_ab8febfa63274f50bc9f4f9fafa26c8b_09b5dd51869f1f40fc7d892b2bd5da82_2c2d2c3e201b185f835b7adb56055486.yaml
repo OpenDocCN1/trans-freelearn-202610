@@ -1,0 +1,77 @@
+chapter_starts:
+- 'no': 24
+  confidence: 0.9
+  final_reason: 正文之前的 Credits、About the Authors、PacktPub、Preface 等内容应统一划分为一章；该行是 h1
+    级前言块起点，后接作者与致谢信息。
+  accepted_evidence:
+  - 行 24 为 '# Credits'，是独立的 h1 级标题
+  - 其后为作者、编辑、评审等致谢内容，符合前言/致谢章节形态
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 225
+  confidence: 0.93
+  final_reason: 复核方指出行 224 的 '# 1' 只是编号/排版标记，真实章节标题是行 225 的 '## 介绍 OpenStack'；该行独立、无句号、语义统领后续全部小节。
+  accepted_evidence:
+  - 行 225 '## 介绍 OpenStack' 与目录 Chapter 1 对应
+  - 后接章节整体概述段落，且其后为多个平级小节
+  rejected_evidence:
+  - 行 224 仅为 '# 1'，无语义标题，不能单独作为章标题
+  need_human_review: false
+- 'no': 600
+  confidence: 0.9
+  final_reason: 未在双方候选内，但语义与位置对应目录 Chapter 2 Architecting the Cloud；该行独立成行、无句号、后接概述段落，是后续小节的统领标题。
+  accepted_evidence:
+  - 行 600 '## 云架构设计' 是后续 OpenStack 发行版、硬件、网络等内容的统摄标题
+  - 前有空行分隔上一章参考资料，后接章节引言
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 881
+  confidence: 0.9
+  final_reason: 未在双方候选内，但语义与位置对应目录 Chapter 3 Planning for Failure (and Success)；该行独立成行、无句号，后接本章主题列表与概述。
+  accepted_evidence:
+  - 行 881 '## 规划失败（和成功）' 是后文高可用控制平面、区域/单元/可用区等内容的上位标题
+  - 后文第 887 行开始列出本章主题
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 1360
+  confidence: 0.94
+  final_reason: 复核方识别出真实章节标题在行 1360；'## Building the Deployment Pipeline' 独立成行、无句号、具统领性，后接章节概述。
+  accepted_evidence:
+  - 行 1360 '## Building the Deployment Pipeline' 与目录 Chapter 4 对应
+  - 后文第 1362 行开始介绍 OpenStack 应被部署而非仅安装
+  rejected_evidence:
+  - 行 1358 仅为 '# 4'，无语义标题，不能单独作为章标题
+  need_human_review: false
+- 'no': 2039
+  confidence: 0.94
+  final_reason: 复核方识别出真实章节标题在行 2039；'## 构建以运营' 独立成行、无句号，后接第 2 天运维概述，对应目录 Chapter 5
+    Building to Operate。
+  accepted_evidence:
+  - 行 2039 '## 构建以运营' 语义覆盖日志、监控、容量规划等运营主题
+  - 后文第 2041 行开始讨论 OpenStack 构建完成后的运维问题
+  rejected_evidence:
+  - 行 2037 仅为 '# 5'，无语义标题，不能单独作为章标题
+  need_human_review: false
+- 'no': 2423
+  confidence: 0.94
+  final_reason: 复核方识别出真实章节标题在行 2423；'## 集成平台' 独立成行、无句号，后接身份管理、置备、计量计费概述，对应目录 Chapter
+    6 Integrating the Platform。
+  accepted_evidence:
+  - 行 2423 '## 集成平台' 语义统领 IdM、置备工作流、计量计费等内容
+  - 后文第 2427 行开始列出本章将讨论的集成主题
+  rejected_evidence:
+  - 行 2421 仅为 '# 6'，无语义标题，不能单独作为章标题
+  need_human_review: false
+rejected_lines:
+- 'no': 224
+  reason: 仅为 '# 1' 编号行/排版标记，无语义标题；真正章节标题在下一行 225，按上下文与语义应拒绝作为独立章起始。
+  need_human_review: false
+- 'no': 1358
+  reason: 仅为 '# 4' 编号行/排版标记，无语义标题；真正章节标题在行 1360，应拒绝作为独立章起始。
+  need_human_review: false
+- 'no': 2037
+  reason: 仅为 '# 5' 编号行/排版标记，无语义标题；真正章节标题在行 2039，应拒绝作为独立章起始。
+  need_human_review: false
+- 'no': 2421
+  reason: 仅为 '# 6' 编号行/排版标记，无语义标题；真正章节标题在行 2423，应拒绝作为独立章起始。
+  need_human_review: false
