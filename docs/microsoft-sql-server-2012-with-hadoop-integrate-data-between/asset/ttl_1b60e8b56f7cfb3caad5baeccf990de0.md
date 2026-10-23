@@ -1,0 +1,1 @@
+Hadoop Microsoft SQL Server 2012：在 Apache Hadoop 与 SQL Server 2012 之间集成数据并在异构数据上提供商业智能

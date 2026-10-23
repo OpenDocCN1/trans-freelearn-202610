@@ -1,0 +1,66 @@
+chapter_starts:
+- 'no': 0
+  confidence: 0.95
+  final_reason: 书籍总标题行，位于文档最开头，作为前置元数据/扉页部分的起始。复核方确认其为 Book Title 且符合前置内容统一分章的规则。
+  accepted_evidence:
+  - 该行格式为 `#` 开头的 Markdown H1 标题，且位于文档最开头（第0行）
+  - 根据规则“前言、序言、致谢、关于作者等正文之前的内容，统一划分为一章”，书籍总标题通常作为元数据章节的开头
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 96
+  confidence: 0.9
+  final_reason: 明确的 `## 前言` 前置部分标题，后续为本书内容、阅读条件等非正文信息，符合前言统一划分为一章的规则。复核方保持分章。
+  accepted_evidence:
+  - 该行内容为 `## 前言`，属于明确的前置部分标题
+  - 根据规则“前言、序言、致谢、关于作者等正文之前的内容，统一划分为一章”，此处必须分章
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 170
+  confidence: 0.95
+  final_reason: 最高层级编号章节 `# 1. 大数据和 Hadoop 简介`，为全书第一个正式章节，序号连贯，语义统领后续内容。
+  accepted_evidence:
+  - 该行内容为 `# 1. 大数据和 Hadoop 简介`，带有明确的最高层级编号 `1.` 和 `#` 标记
+  - 根据规则“只划分全书最高层级的大章（如‘第 X 章’...）”，这是标准的第1章标题
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 311
+  confidence: 0.95
+  final_reason: 最高层级编号章节 `# 2. 使用 Sqoop – SQL Server Hadoop 连接器`，承接第1章，语义符合。
+  accepted_evidence:
+  - 该行内容为 `# 2. 使用 Sqoop – SQL Server Hadoop 连接器`，带有明确的最高层级编号 `2.` 和 `#` 标记
+  - 序号承接第1章，连贯性良好
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 521
+  confidence: 0.95
+  final_reason: 最高层级编号章节 `# 3. 使用 Hive ODBC 驱动程序`，承接第2章，语义符合。
+  accepted_evidence:
+  - 该行内容为 `# 3. 使用 Hive ODBC 驱动程序`，带有明确的最高层级编号 `3.` 和 `#` 标记
+  - 序号承接第2章，连贯性良好
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 704
+  confidence: 0.9
+  final_reason: 最高层级编号章节 `# 4. 配置到 Hive 的 SQL 链接服务器`，承接第3章，语义符合。
+  accepted_evidence:
+  - 该行内容为 `# 4. 配置到 Hive 的 SQL 链接服务器`，带有明确的最高层级编号 `4.` 和 `#` 标记
+  - 序号承接第3章，连贯性良好
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 839
+  confidence: 0.95
+  final_reason: 最高层级编号章节 `# 5. 使用 Microsoft 的自助式商业智能工具`，承接第4章，语义符合。
+  accepted_evidence:
+  - 该行内容为 `# 5. 使用 Microsoft 的自助式商业智能工具`，带有明确的最高层级编号 `5.` 和 `#` 标记
+  - 序号承接第4章，连贯性良好
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 937
+  confidence: 0.9
+  final_reason: 文末 `## Index`，位于全书末尾，后续为字母序术语索引，符合“文末索引也划分为一章”的规则。
+  accepted_evidence:
+  - 该行内容为 `## Index`，位于全书末尾
+  - 根据规则“文末索引也划分为一章”，此处应分为新的一章
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines: []

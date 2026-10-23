@@ -1,0 +1,3 @@
+9. Once the data source is created, you would need to define the data source views. These views will actually serve as the models for further creation of relationships, cubes, and dimensions in your solution based on the requirements. To create a view, right-click on Data Source Views and choose New to launch the Data Source View Wizard as shown in the following screenshot:
+
+![](bbox=[0.18, 0.25, 0.81, 0.69])

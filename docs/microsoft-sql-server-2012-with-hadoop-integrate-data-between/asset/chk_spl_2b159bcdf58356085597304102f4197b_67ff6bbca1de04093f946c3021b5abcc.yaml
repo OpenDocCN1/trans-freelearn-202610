@@ -1,0 +1,65 @@
+reviews:
+- 'no': 0
+  overturn_probability: 0.15
+  alternative: 书籍总标题（Book Title）
+  counter_evidence:
+  - 该行格式为 `#` 开头的 Markdown H1 标题，且位于文档最开头（第0行），符合“前言/扉页部分起始”的特征。
+  - 根据规则“前言、序言、致谢、关于作者等正文之前的内容，统一划分为一章”，书籍总标题通常作为元数据章节的开头，或者被视为前置内容的起点。
+  - 尽管它只是书名，但在电子文档结构化中，将其独立为第一章节（或前置部分的第一章）是合理的处理方式，以便将前封与后续的前言、目录分开。
+  keep_split: true
+- 'no': 96
+  overturn_probability: 0.1
+  alternative: 前言（Preface）
+  counter_evidence:
+  - 该行内容为 `## 前言`，属于明确的前置部分标题。
+  - 根据规则“前言、序言、致谢、关于作者等正文之前的内容，统一划分为一章”，此处必须分章。
+  - 其后跟随的内容（如“本书内容”、“阅读本书所需条件”等）均为典型的非正文前置信息，进一步支持将其视为独立章节。
+  keep_split: true
+- 'no': 170
+  overturn_probability: 0.0
+  alternative: 正文第1章标题
+  counter_evidence:
+  - 该行内容为 `# 1. 大数据和 Hadoop 简介`，带有明确的最高层级编号 `1.` 和 `#` 标记。
+  - 根据规则“只划分全书最高层级的大章（如‘第 X 章’...）”，这是标准的第1章标题。
+  - 其后内容是对大数据概念的详细阐述，具有统领性，符合章节标题的语义特征。
+  keep_split: true
+- 'no': 311
+  overturn_probability: 0.0
+  alternative: 正文第2章标题
+  counter_evidence:
+  - 该行内容为 `# 2. 使用 Sqoop – SQL Server Hadoop 连接器`，带有明确的最高层级编号 `2.` 和 `#` 标记。
+  - 序号承接第1章，连贯性良好。
+  - 其后内容介绍了 Sqoop 的使用，符合章节语义。
+  keep_split: true
+- 'no': 521
+  overturn_probability: 0.0
+  alternative: 正文第3章标题
+  counter_evidence:
+  - 该行内容为 `# 3. 使用 Hive ODBC 驱动程序`，带有明确的最高层级编号 `3.` 和 `#` 标记。
+  - 序号承接第2章，连贯性良好。
+  - 其后内容介绍了 Hive ODBC 驱动，符合章节语义。
+  keep_split: true
+- 'no': 704
+  overturn_probability: 0.0
+  alternative: 正文第4章标题
+  counter_evidence:
+  - 该行内容为 `# 4. 配置到 Hive 的 SQL 链接服务器`，带有明确的最高层级编号 `4.` 和 `#` 标记。
+  - 序号承接第3章，连贯性良好。
+  - 其后内容涉及链接服务器配置，符合章节语义。
+  keep_split: true
+- 'no': 839
+  overturn_probability: 0.0
+  alternative: 正文第5章标题
+  counter_evidence:
+  - 该行内容为 `# 5. 使用 Microsoft 的自助式商业智能工具`，带有明确的最高层级编号 `5.` 和 `#` 标记。
+  - 序号承接第4章，连贯性良好。
+  - 其后内容涉及 PowerPivot 和 Power View，符合章节语义。
+  keep_split: true
+- 'no': 937
+  overturn_probability: 0.1
+  alternative: 索引（Index）
+  counter_evidence:
+  - 该行内容为 `## Index`，位于全书末尾。
+  - 根据规则“文末索引也划分为一章”，此处应分为新的一章。
+  - 其后内容为字母序排列的术语索引，无正文逻辑，符合索引特征。
+  keep_split: true

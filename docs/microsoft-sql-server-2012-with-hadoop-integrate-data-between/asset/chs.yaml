@@ -1,0 +1,1304 @@
+- ''
+- '# Hadoop Microsoft SQL Server 2012：在 Apache Hadoop 与 SQL Server 2012 之间集成数据并在异构数据上提供商业智能
+
+
+
+
+
+
+  ## Credits
+
+
+  **Authors**
+
+  Debarchan Sarkar
+
+
+  **Project Coordinator**
+
+  Akash Poojary
+
+
+  **Reviewer**
+
+  Atdhe Buja Msc
+
+
+  **Proofreader**
+
+  Mario Cecere
+
+
+  **Acquisition Editor**
+
+  James Jones
+
+
+  **Indexer**
+
+  Rekha Nair
+
+  Tejal Soni
+
+
+  **Commissioning Editor**
+
+  Shaon Basu
+
+
+  **Graphics**
+
+  Abhinash Sahu
+
+
+  **Technical Editor**
+
+  Chandni Maishery
+
+
+  **Production Coordinator**
+
+  Nilesh R. Mohite
+
+
+  **Cover Work**
+
+  Nilesh R. Mohite
+
+
+  ## About the Author
+
+
+  **Debarchan Sarkar** is a Microsoft Data Platform engineer who hails from Calcutta,
+  the "city of joy," India. He has been a seasoned SQL Server engineer with Microsoft,
+  India for the last six years and has now started venturing into the open source
+  world, specifically the Apache Hadoop framework. He is a SQL Server Business Intelligence
+  specialist with subject matter expertise in SQL Server Integration Services.
+
+
+  Debarchan is currently working on another book with Apress on Microsoft''s Hadoop
+  distribution, HDInsight.
+
+
+  > I would like to thank my parents, Devjani Sarkar and Asok Sarkar for their continuous
+  support and encouragement behind this book.
+
+
+  ## About the Reviewer
+
+
+  **Atdhe Buja Msc** is a Certified Ethical Hacker, Database Administrator (MCITP,
+  OCA11g) and a developer with good management skills. He is a DBA at Ministry of
+  Public Administration, Pristina, RKS, where he also manages some projects of E-Governance
+  and eight years'' experience in SQL Server.
+
+
+  Atdhe is a regular columnist for UBT News, currently he holds a MSc. in Computer
+  Science and Engineering, has a Bachelor in Management and Information and continues
+  studies for a Bachelor degree in Political Science in UP.
+
+
+  Specialized and Certified in many technologies such as SQL Server 2000, 2005, 2008,
+  2008 R2, Oracle 11g, CEH-Ethical Hacker, Windows Server, MS Project, System Center
+  Operation Manager, and Web Design.
+
+
+  His capabilities go beyond the above mentioned knowledge!
+
+
+  I thank my wife Donika Bajrami and my family Buja for all the encouragement and
+  support.
+
+
+  ## www.PacktPub.com
+
+
+  ### Support files, eBooks, discount offers and more
+
+
+  You might want to visit www.PacktPub.com for support files and downloads related
+  to your book.
+
+
+  Did you know that Packt offers eBook versions of every book published, with PDF
+  and ePub files available? You can upgrade to the eBook version at www.PacktPub.com
+  and as a print book customer, you are entitled to a discount on the eBook copy.
+  Get in touch with us at service@packtpub.com for more details.
+
+
+  At www.PacktPub.com, you can also read a collection of free technical articles,
+  sign up for a range of free newsletters and receive exclusive discounts and offers
+  on Packt books and eBooks.
+
+
+  ![](img/07b093d6ab71604f4a3d0eccb3053844_6_0.png)
+
+
+  http://PacktLib.PacktPub.com
+
+
+  Do you need instant solutions to your IT questions? PacktLib is Packt''s online
+  digital book library. Here, you can access, read and search across Packt''s entire
+  library of books.
+
+
+  ### Why Subscribe?
+
+
+  - Fully searchable across every book published by Packt
+
+  - Copy and paste, print and bookmark content
+
+  - On demand and accessible via web browser
+
+
+  ### Free Access for Packt account holders
+
+
+  If you have an account with Packt at www.PacktPub.com, you can use this to access
+  PacktLib today and view nine entirely free books. Simply use your login credentials
+  for immediate access.
+
+
+  ### Instant Updates on New Packt Books
+
+
+  Get notified! Find out when new books are published by following @PacktEnterprise
+  on Twitter, or the Packt Enterprise Facebook page.
+
+
+
+
+
+  '
+- '## 前言
+
+
+  数据管理需求已从传统的关系型存储演变为关系型与非关系型存储并存，而现代化的信息管理平台需要支持所有类型的数据。为了从任意数据中获取洞察，你需要一个平台，该平台能够跨关系型、非关系型和流数据提供完整的数据管理能力，同时能够无缝地在一种数据类型与另一种数据类型之间移动数据，并且能够监视和管理所有数据，无论其数据类型或数据结构如何。Apache
+  Hadoop 是广泛认可的大数据工具，类似地，当谈到 RDBMS 时，SQL Server 2012 可能是最强大的内存和动态数据存储与管理系统。本书帮助读者弥合
+  Hadoop 和 SQL Server 之间的差距，换句话说，就是弥合非关系型和关系型数据管理世界之间的差距。本书重点介绍了 SQL Server 丰富的商业智能（Business
+  Intelligence）套件中可用的数据集成和可视化解决方案，以及它们与 Apache Hadoop 和 Hive 之间的无缝通信。
+
+
+  ## 本书内容
+
+
+  - 第 1 章，大数据和 Hadoop 简介，向读者介绍大数据和 Hadoop 世界。本章解释了大数据解决方案的必要性、当前的市场趋势，并使用户能够在即将发生的数据爆炸中领先一步。
+
+  - 第 2 章，使用 Sqoop – SQL Server Hadoop 连接器，介绍了基于开源 Sqoop 的 Microsoft SQL Server Hadoop
+  连接器。本章解释了基本的 Sqoop 命令，用于在 SQL Server 和 Hadoop 之间导入/导出文件。
+
+  - 第 3 章，使用 Hive ODBC 驱动程序，解释了如何使用开放数据库连接（ODBC）接口从 Hadoop 和 Hive 消费数据。本章展示了如何创建一个
+  SQL Server 集成服务（Integration Services）包，使用 Hive ODBC 驱动程序将数据从 Hadoop 移动到 SQL Server。
+
+  - 第 4 章，使用 SQL Server Analysis Services 创建数据模型，展示了如何从 SQL Server Analysis Services
+  消费来自 Hadoop 和 Hive 的数据。读者将学习如何使用 Hive ODBC 驱动程序从 SQL 到 Hive 创建链接服务器，并构建 Analysis
+  Services 多维模型。
+
+  - 第 5 章，使用 Microsoft 自助式商业智能工具，向读者介绍 SQL Server 2012 商业智能套件中提供的丰富的自助式 BI 工具集。本章解释了如何通过几次鼠标点击快速轻松地构建针对
+  Hadoop 数据强大的可视化功能。
+
+
+  ## 阅读本书所需条件
+
+
+  以下是运行本书示例的软件先决条件：
+
+
+  - 配置了 Hive 0.9 的 Apache Hadoop 1.0 集群
+
+  - 安装了集成服务（Integration Services）和分析服务（Analysis Services）的 SQL Server 2012
+
+  - Microsoft Office 2013
+
+
+  ## 本书适合谁
+
+
+  本书适合熟悉 Hadoop 及其支持技术，并愿意将其技能与 Microsoft SQL Server 2012 商业智能套件进行交叉融合的读者。读者将学习如何在这两个生态系统之间集成数据，以便在可视化数据时提供更有意义的洞察。本书还让读者一窥
+  SQL Server 和 Excel 中可用的自助式 BI 工具，以及如何利用它们在几次点击内生成强大的数据可视化。
+
+
+  ## 约定
+
+
+  在本书中，你会发现多种文本样式，用于区分不同类型的信息。以下是这些样式的一些示例及其含义的解释。
+
+
+  文本中的代码词汇、数据库表名、文件夹名称、文件名、文件扩展名、路径名、虚拟 URL、用户输入以及 Twitter 账号显示如下："NoSQL 存储通常比关系型存储便宜得多，并且通常支持一次写入功能，该功能仅允许追加数据。"
+
+
+  任何命令行输入或输出书写如下：
+
+
+  ```shell
+
+  $ bin/sqoop import --connect "jdbc:sqlserver://<YourServerName>;username=<user>;password=<pwd>;database=AdventureWorks2012"
+  --table ErrorLog --target-dir /data/ErrorLogs --as-textfile
+
+  ```
+
+
+  **新术语和重要词汇** 以粗体显示。你在屏幕上看到的单词，例如菜单或对话框中的单词，在文本中显示如下："首先，创建一个 **系统 DSN**。在 **ODBC
+  数据源管理器** 中，转到 **系统 DSN** 选项卡，并点击 **添加按钮**，如以下截图所示"。
+
+
+  ![](img/07b093d6ab71604f4a3d0eccb3053844_11_0.png)
+
+
+  > 警告或重要说明显示在此类方框中。
+
+
+  ![](img/07b093d6ab71604f4a3d0eccb3053844_11_1.png)
+
+
+  > 提示和技巧显示如下。
+
+
+  ## 读者反馈
+
+
+  我们随时欢迎来自读者的反馈。请告诉我们你对本书的看法——你喜欢或可能不喜欢的地方。读者反馈对我们开发你真正能从中获益最多的书籍至关重要。
+
+
+  要向我们发送一般反馈，只需发送电子邮件至 feedback@packtpub.com，并在邮件主题中提及书名。
+
+
+  如果你精通某个主题，并且有兴趣撰写或参与编写一本书，请参阅我们位于 www.packtpub.com/authors 的作者指南。
+
+
+  ## 客户支持
+
+
+  既然你已成为一本 Packt 图书的自豪拥有者，我们有一些事项帮助你从购买中获得最大价值。
+
+
+  ### 勘误表
+
+
+  虽然我们已尽一切努力确保内容的准确性，但错误确实会发生。如果你在我们的书中发现错误——可能是文本或代码中的错误——我们将感激不尽，请你向我们报告。这样做可以避免其他读者产生挫败感，并帮助我们改进本书的后续版本。如果你发现任何勘误，请通过访问
+  http://www.packtpub.com/submit-errata，选择你的书籍，点击勘误提交表单链接，并输入你的勘误详情来报告。一旦你的勘误得到验证，你的提交将被接受，勘误将上传到我们的网站，或添加到该标题下的勘误部分中的现有勘误列表中。任何现有勘误都可以通过从
+  http://www.packtpub.com/support 选择你的标题来查看。
+
+
+  ### 盗版
+
+
+  互联网上版权材料的盗版是所有媒体中持续存在的问题。在 Packt，我们非常重视版权和保护许可。如果你在互联网上发现我们作品的任何非法副本，无论形式如何，请立即提供该位置地址或网站名称，以便我们寻求补救措施。
+
+
+  请通过联系 copyright@packtpub.com 并附带疑似盗版材料的链接与我们联系。
+
+
+  我们感谢你对保护我们的作者以及我们为你提供有价值内容能力的帮助。
+
+
+  ### 问题
+
+
+  如果你对本书的任何方面遇到问题，可以通过 questions@packtpub.com 联系我们，我们将尽最大努力解决。
+
+  '
+- '# 1. 大数据和 Hadoop 简介
+
+
+  突然之间，大数据成为了热门话题。从大型企业级到小型初创公司，每家公司都为大�据提供了资金。过去几年中，存储和硬件成本大幅降低，使企业能够存储和分析数据，而之前这些数据由于存储和处理挑战而被丢弃。就数据世界而言，从未有像现在这样令人兴奋的时代。我们看到显著趋势的融合正在从根本上改变行业，并在社交、移动、高级分析和机器学习等领域开启了技术创新的新纪元。我们正在目睹数据爆炸，其中我们试图从中获取洞察的数据种类具有全新的规模和范围。在本章中，我们将深入了解什么是大数据，以及在实施大数据解决方案时
+  Apache Hadoop 框架如何在其中发挥作用。阅读完本章后，你将能够理解：
+
+
+  - 什么是大数据，为什么是现在
+
+  - 对大数据的业务需求
+
+  - Apache Hadoop 框架
+
+
+  ### 大数据 – 有什么大不了的？
+
+
+  关于大数据有很多讨论——估计世界上数字信息的总量每五年增长十倍，其中 85% 的数据来自新的数据类型，例如传感器、RFID、Web 日志等。这为那些利用这些新数据来识别新机遇和创新领域的企业提供了巨大的机会。
+
+
+
+
+
+
+  然而，仅拥有一个支持数据趋势的平台只是当今挑战的一部分；你还需要使其更容易被人们访问，以便他们能够获得洞察并做出更好的决策。如果我们思考用户体验，凭借我们在网络上所能做的一切，通过社交媒体网站的体验，我们以新的方式发现、分享和协作，用户对他们的业务和生产力应用的期望也在发生变化。
+
+
+  我们首先要回答的第一个问题是一个简单的定义性问题：大数据与传统的庞大数据仓库有何不同？国际数据公司（International Data Corporation）提出了最广泛接受的大数据分类理论，即三个
+  V：
+
+
+  - **Volume**：数据量正在爆炸式增长。在过去几十年中，计算和存储容量呈指数级增长，推动硬件和存储成本降至接近零并使其成为商品。当前的数据处理需求正在演变，要求在数分钟甚至数秒内使用行业标准硬件分析
+  PB 级和 ZB 级的数据。
+
+  - **Variety**：数据的种类正在增加。所有数据都在被存储，并且近 85% 的新数据是非结构化数据。数据可以是推文的形式，也可以是具有可变属性和元素的
+  JSON，用户可能只想处理其中的部分内容。
+
+  - **Velocity**：数据的速度正在加快业务节奏。得益于新的客户交互点和技术，数据捕获已变得几乎即时。实时分析比以往任何时候都更重要。数据传输速率与数据消费速率的比例持续远高于后者；应对数据的速度仍然是一个挑战。想想一款软件，它能让你以思维的速度发送消息或打字。
+
+
+  如今，每个组织都很难在其内部管理和跟踪正确的数据集，当他们需要查找系统外部的数据时，挑战就更大了。典型的分析师花费太多时间从成千上万个来源中搜索正确的数据，这会严重影响生产力。我们将从搜索的世界转向发现的世界，在那里信息会根据你是谁以及你在做什么工作而带给用户。今天从未有过如此丰富且有用的外部可用信息。挑战在于你如何发现可用的内容以及如何连接到它？
+
+
+  要回答当今这类问题，你需要新的方式来发现和探索数据。我们的意思是，数据可能存在于多个不同的领域，例如：
+
+
+  - **Personal data:** 这是我创建的，或由我的同行创建的，但与当前任务相关的数据。
+
+  - **Organizational data:** 这是在整个组织中维护和管理的数据。
+
+  - **Community data:** 这是外部数据，例如整理好的第三方数据集，已共享到公共领域。示例包括 Data.gov、Twitter、Facebook
+  等。
+
+  - **World data:** 这是全球舞台上可用的所有其他数据，例如来自传感器或日志文件的数据，正是为此出现了 Hadoop 等大数据技术。
+
+
+  通过结合个人、企业、社区和世界数据所需的数据，你可以获得更深入的业务洞察和趋势。你可以连接并组合来自数百个可信数据提供商的数据——数据包括人口统计数据、环境数据、财务数据、零售和体育数据、社交数据如
+  Twitter 和 Facebook，以及数据清洗服务。你可以通过自助工具，例如 PowerPivot，将此数据与你的个人数据结合使用，你可以使用参考数据通过
+  SQL Server 2012 清洗你的企业数据，或在你的自定义应用程序中使用它。
+
+
+  现有的 RDBMS 解决方案如 SQL Server 在管理具有挑战性的数据量方面表现良好，但在数据是非结构化或半结构化且具有可变属性时，如前所述，它们就力不从心了。当前世界似乎几乎痴迷于社交媒体情绪、推文、设备等等；如果没有合适的工具，你的公司就会在数据的海洋中迷失。你需要能够释放大数据带来的新价值浪潮的能力。所有和每一位数据，无论类型或结构如何，你都应该能够轻松监控和管理。这就是为什么组织倾向于构建一个几乎涵盖所有数据的端到端数据平台以及易于使用的分析工具。无论数据类型、位置（本地或云端）或大小如何，你都拥有熟悉的工具与高性能技术的结合，从数据存储、处理一直到可视化来满足你的业务需求。大数据的益处不仅限于
+  **Business Intelligence (BI)** 专家或数据科学家。只要有合适的工具，你组织中的几乎每个人都可以进行分析和做出更明智的决策。
+
+
+  ## Introduction to Big Data and Hadoop
+
+
+  在传统的业务环境中，用于驱动你的报告机制的数据通常来自数据库中的表。然而，越来越有必要用来自组织外部的数据来补充这些数据。这可能是商业上可用的数据集，例如可在
+  Windows Data Market 及其他地方获得的数据集，也可能是来自不太结构化来源的数据，例如馈送、电子邮件、日志文件等。在大多数情况下，你需要在将其加载到现有数据库之前清洗、验证和转换这些数据。**Extract,
+  Transform, and Load (ETL)** 操作可以使用大数据解决方案对非结构化或半结构化数据执行模式匹配、数据分类、去重和汇总操作，以生成熟悉的行列格式的数据，可导入到数据库表中。以下图示将为你提供大数据的概念视图：
+
+
+  ![](img/07b093d6ab71604f4a3d0eccb3053844_16_0.png)
+
+
+  大数据需要一定程度的机器学习或复杂统计处理来产生洞察。如果你必须使用非标准技术来处理和托管它，那它很可能就是大数据。
+
+
+  大数据实现中的数据存储通常被称为 NoSQL 存储，尽管这在技术上并不准确，因为某些实现确实支持类似 SQL 的查询语言。NoSQL 存储通常比关系存储便宜得多，并且通常支持一次写入功能，只允许追加数据。要在这些存储中更新数据，你必须删除并重新创建相关文件。这种限制最大化了性能；大数据存储实现通常以吞吐量而非容量来衡量，因为这通常是存储和查询效率最显著的因素。这种方法还提供了更好的性能并保留了数据更改的历史记录。
+
+
+  > 然而，极其重要的是要指出，除了支持所有类型的数据之外，将数据在非关系存储（如 Hadoop）和关系数据仓库（如 SQL Server）之间移动，是大数据客户使用模式的关键之一。在整本书中，我们将探讨如何集成
+  Hadoop 和 SQL Server，并使用 SQL Server BI 套件对任何数据进行强大的可视化。
+
+
+  ### The Apache Hadoop framework
+
+
+  Hadoop 是一个开源软件框架，支持数据密集型分布式应用程序，可通过 Apache 开源社区获得。它由分布式文件系统 HDFS（Hadoop 分布式文件系统）和一种称为
+  MapReduce 的分布式分析处理方法组成。它用 Java 编写，基于 Linux/Unix 平台。
+
+
+  它现在被广泛用于处理数据流，这些数据流的规模甚至超过了最大的企业数据集。无论是传感器、点击流、社交媒体、基于位置的数据还是其他以大量形式生成和收集的数据，Hadoop
+  通常都会出现以处理和分析它。Hadoop 的真正魔力在于它能够将处理或计算逻辑移动到数据所在的位置，而与传统系统不同，传统系统侧重于扩展的单台服务器，将数据移动到该中央处理单元并在那里处理数据。这种模型在当今行业希望为商业智能挖掘的数据量、速度和种类面前是行不通的。因此，Hadoop
+  凭借其强大的容错可靠文件系统和高度优化的分布式计算模型，是大数据世界中的领导者之一。
+
+
+  Hadoop 的核心是其存储系统和分布式计算模型：
+
+
+
+
+
+
+  ## HDFS
+
+
+  Hadoop 分布式文件系统是对主机操作系统文件系统的程序级抽象。它负责在集群上存储数据。数据被拆分为块并分布在集群中的多个节点上。
+
+
+  ## MapReduce
+
+
+  MapReduce 是一种用于使用计算机集群上的分布式计算处理大型数据集的编程模型。MapReduce 包含两个阶段：将数据划分为大量独立的处理单元（称为 Map），然后将这些独立进程产生的结果合并为统一的结果集（称为
+  Reduce）。在 Map 和 Reduce 之间，会发生 shuffle 和 sort。Hadoop 集群在系统上成功配置后，具有以下基本组件：
+
+
+  ## NameNode
+
+
+  这也称为集群的 Head Node/主节点。主要来说，它在处理分布在各节点上的数据期间保存 HDFS 的元数据；它跟踪节点中每个 HDFS 数据块。
+
+
+  > NameNode 是 Hadoop 集群中的单点故障。
+
+
+  ## Secondary NameNode
+
+
+  这是一个可选的节点，你可以在集群中拥有它以在 NameNode 宕机时备份 NameNode。如果配置了 Secondary NameNode，它会定期保存 NameNode
+  配置的快照，以便在需要时作为备份使用。然而，切换到 Secondary NameNode 并没有自动方式；如果主 NameNode 宕机，需要人工干预。这本质上意味着如果
+  NameNode 宕机，你的集群会出现明显的停机时间。
+
+
+  ## DataNode
+
+
+  这些是集群中存储实际 HDFS 数据块的系统。数据块在多个节点上进行复制，以提供容错和高可用性解决方案。
+
+
+  ## JobTracker
+
+
+  这是在 NameNode 上运行的服务，用于管理 MapReduce 作业并分发各个任务。
+
+
+  ## TaskTracker
+
+
+  这是在 DataNodes 上运行的服务，用于实例化并监控提交的各个 Map 和 Reduce 任务。
+
+
+  下图向你展示了 Apache Hadoop 框架的核心组件：
+
+
+  ![](img/07b093d6ab71604f4a3d0eccb3053844_19_0.png)
+
+
+  此外，还有许多 Hadoop 的支持项目，每个项目都有其独特的目的，例如，向 Hadoop 系统提供输入数据、用于在 Hadoop 之上进行即席查询的数据仓库系统等等。以下是一些值得提及的项目：
+
+
+  ## Hive
+
+
+  Hive 是主 Apache Hadoop 项目的支持项目，是 MapReduce 之上的抽象，它允许用户在不开发 MapReduce 应用程序的情况下查询数据。它为用户提供了一种类
+  SQL 的查询语言，称为 Hive 查询语言（HQL），用于从 Hive 存储中获取数据。这使得具有 SQL 技能的人更容易快速适应 Hadoop 环境。
+
+
+  ## Pig
+
+
+  Pig 是 MapReduce 的另一种抽象，使用名为 PigLatin 的数据流脚本语言。这受到了已有脚本技能的程序员的青睐。你可以在名为 Grunt 的命令行
+  Pig shell 中交互式运行 PigLatin 语句。你也可以将一系列 PigLatin 语句组合成脚本，然后作为一个单元执行。这些 PigLatin 语句由
+  Pig 解释器用于生成 MapReduce 作业，并在 HDFS 数据上执行。
+
+
+  ## Flume
+
+
+  Flume 是 Hadoop 之上的另一个开源实现，它为数据在生成时进入 HDFS 提供数据摄取机制。
+
+
+  ## Sqoop
+
+
+  Sqoop 提供了将数据导入和导出到关系数据库表（例如 SQL Server）和 HDFS 的方法。
+
+
+  ## Oozie
+
+
+  Oozie 允许创建 MapReduce 作业的工作流。这对从事工作流和通信基础解决方案的开发人员来说很熟悉。
+
+
+  ## HBase
+
+
+  HBase 是 Hadoop 数据库，一种 NoSQL 数据库。它是 Hadoop 之上的另一种抽象，提供了对 HDFS 数据的近实时查询机制。
+
+
+  ## Mahout
+
+
+  Mahout 是一个机器学习库，包含聚类和分类算法。机器学习研究的一个主要重点是自动学习识别复杂模式并基于数据做出智能决策。
+
+
+  下图为你提供了 Apache Hadoop 及其构成这一令人惊叹的生态系统的各种支持项目的 1000 英尺视角：
+
+
+  ![](img/07b093d6ab71604f4a3d0eccb3053844_21_0.png)
+
+
+  我们将在本书的后续章节中探索这些组件中的一些，但要获得完整参考，请访问 Apache 网站 http://hadoop.apache.org/。
+
+
+  设置这个生态系统以及所需支持项目可能非常复杂。事实上，这种实现唯一的缺点就是设置和管理 Hadoop 集群所需的精力。这基本上是许多厂商推出自己的 Hadoop
+  分发版作为数据处理平台的原因。使用这些分发版，企业能够通过简化和用户友好的集群部署向导在几分钟内设置 Hadoop 集群，并使用各种仪表板进行监控和仪器化目的。一些当今的分发版有
+  Cloudera 的 CH4、Hortonworks 数据平台和 Microsoft HDInsight，它们正迅速获得流行。这些分发版超出了本书的范围，不会涵盖；请访问各自的网站以获取这些分发版的详细信息。
+
+
+  ## Summary
+
+
+  在本章中，我们了解了什么是大数据以及为什么它是行业迫切需求之一。需要处理的数据多样性已将信息技术推向了以前从未想象过的高度。能够利用大数据解析任何和所有数据的组织将能够更有效地区分并为业务创造新价值，无论是收入增长、成本节约还是创造全新的商业模式。例如，金融公司使用机器学习构建更好的欺诈检测算法，超越涉及费用频率和位置的简单业务规则，还包括个人的定制购买模式，最终带来更好的客户体验。
+
+
+  就大数据实现而言，这些新需求挑战了传统的数据管理技术，并要求采用新方法使组织能够有效地管理、丰富并从任何数据中获得洞察。Apache Hadoop 是大数据行业无可置疑的领导者之一。整个生态系统及其支持项目为用户提供了一个高度可靠、容错的框架，可用于对非结构化和半结构化数据进行大规模并行分布式处理。
+
+
+  在下一章中，你将看到如何使用 Sqoop 连接器将 Hadoop 数据移动到 SQL Server 2012 以及反之。Sqoop 是另一个开源项目，旨在从 Hadoop
+  到任何关系数据库管理系统进行双向导入/导出数据；我们将看到它作为 Hadoop 与 SQL Server 2012 之间数据集成第一步的使用。
+
+  '
+- '# 2. 使用 Sqoop – SQL Server Hadoop 连接器
+
+
+  # 使用 Sqoop – SQL Server Hadoop 连接器
+
+
+  **Sqoop** 是一个开源 Apache 项目，可促进 Hadoop 与任何传统 **关系数据库管理系统（RDBMS）** 之间的数据交换。它在内部使用 MapReduce
+  框架执行导入/导出操作，并且通常是集成关系和非关系数据存储的常见选择。
+
+
+  Microsoft SQL Server Connector for Apache Hadoop（SQL Server-Hadoop 连接器）是一个基于 Sqoop
+  的连接器，专门为 SQL Server 与 Hadoop 之间高效的数据传输而设计。该连接器针对双向批量数据传输进行了优化，不支持在导入或导出时对数据进行广泛的格式化或转换。阅读本章后，你将能够：
+
+
+  - 安装和配置 Sqoop 连接器
+
+  - 从 SQL Server 导入数据到 Hadoop
+
+  - 从 Hadoop 导出数据到 SQL Server
+
+
+
+
+
+
+  ## SQL Server-Hadoop 连接器
+
+
+  Sqoop 基于 JDBC 实现，因此也遵循标准 JDBC 特性。数据的模式（schema）或结构由数据源提供，Sqoop 使用 JDBC 生成并执行 SQL
+  语句。下表汇总了 SQL Server 连接器可用的几个重要命令及其功能：
+
+
+  | 命令 | 功能 |
+
+  |---|---|
+
+  | `sqoop import` | 导入命令可将 SQL Server 数据导入 HDFS。您可以选择使用 `--table` 开关导入整个表，或使用 `--query`
+  开关根据条件导入选定的记录。导入到 Hadoop 文件系统后，数据会以分隔文本文件或 SequenceFile 的形式存储，以供后续处理。您还可以使用 import
+  命令将 SQL Server 数据移动到 Hive 表中，Hive 表类似于 HDFS 之上的逻辑模式。 |
+
+  | `sqoop export` | 您可以使用 export 命令将数据从 HDFS 移动到 SQL Server 表中。与 import 命令类似，export
+  命令支持将分隔文本文件、SequenceFile 和 Hive 表中的数据导出到 SQL Server。export 命令支持向目标 SQL Server 表插入新行、根据更新键列更新现有行，以及调用存储过程执行。
+  |
+
+  | `sqoop job` | job 命令使您能够将导入/导出命令保存为作业，以便将来复用。保存的作业会记住执行期间指定的参数，特别适用于需要定期重复运行导入/导出命令的场景。
+  |
+
+  | `sqoop version` | 要快速检查您所使用的 Sqoop 版本，可以运行 sqoop version 命令，在控制台中打印已安装版本的详细信息。
+  |
+
+
+  Hadoop 中的 SequenceFile 是二进制内容，包含序列化数据，与分隔文本文件不同。有关 SequenceFile 结构的详细了解，请参阅 Hadoop
+  页面 http://hadoop.apache.org/docs/current/api/org/apache/hadoop/io/SequenceFile.html
+  。此外，我们将在本章后续部分介绍几个带有不同参数的示例导入/导出命令。有关 Sqoop 命令及其开关的完整参考，请参阅 Apache Sqoop 用户指南 http://sqoop.apache.org/docs/1.4.2/SqoopUserGuide.html
+  。
+
+
+  > Hive 是构建在 Hadoop 之上的数据仓库基础设施，将在下一章中讨论。
+
+
+  ## 安装前提条件
+
+
+  本章假定您拥有一个已配置 Hadoop 和 Hive 的 Linux 集群，以及一个运行 SQL Server 2012 的 Windows 系统。使用 SQL
+  Server-Hadoop 连接器并运行本章中的示例命令，需要这两种环境。
+
+
+  ### Linux 上的 Hadoop 集群
+
+
+  第一步是让 Hadoop 集群在 Linux 上运行起来。我们将使用该集群的 HDFS 从 SQL Server 导入数据以及向 SQL Server 导出数据。本章中的示例命令假定它们运行在
+  Hadoop 1.1.0 版本、Hive 0.9.0 版本、Red Hat Enterprise Linux 5.8 上。
+
+
+  > 确保 HADOOP_HOME 环境变量设置为 Hadoop 安装目录的父目录。
+
+
+  ### 安装和配置 Sqoop
+
+
+  下一步是在 Hadoop 集群的 NameNode 上安装和配置 Sqoop 连接器（如果尚未安装的话）。我推荐从 Apache 网站下载并安装 Sqoop 1.4.2，本章中的示例命令使用的就是该版本。
+
+
+  安装完成后，必须验证 Sqoop 环境变量是否已设置为正确的值。它们应设置为指向下表中描述的路径，以便 SQL Server-Hadoop 连接器正常工作。这也可以避免您每次执行各种
+  Sqoop 命令行工具时都需要输入完整路径。
+
+
+  下表描述了 Sqoop 环境变量：
+
+
+  | 环境变量 | 要赋的值 |
+
+  |---|---|
+
+  | SQOOP_HOME | 您安装 Sqoop 的绝对路径。 |
+
+  | SQOOP_CONF_DIR | $SQOOP_HOME/conf，前提是 SQOOP_HOME 已设置了正确的值。 |
+
+
+  ### 设置 Microsoft JDBC 驱动程序
+
+
+  Sqoop 和 SQL Server-Hadoop 连接器使用 Java 数据库连接（JDBC）技术来建立与远程 RDBMS 服务器的连接，因此需要 SQL Server
+  的 JDBC 驱动程序。本章假定您使用 SQL Server JDBC 驱动程序 3.0 版（sqljdbc_3.0）。要在您刚刚安装 Sqoop 的 Linux
+  NameNode 上安装此驱动程序，请执行以下步骤：
+
+
+  - 1. 访问 http://www.microsoft.com/en-us/download/details.aspx?displaylang=en&id=21599
+  并将 sqljdbc_3.0_enu.tar.gz 下载到集群的 NameNode。
+
+  - 2. 使用以下命令解压下载的文件：tar -zxvf sqljdbc_3.0_enu.tar.gz。这将在当前目录中创建一个 sqljdbc_3.0 目录。
+
+  - 3. 将驱动程序 jar（sqljdbc_3.0/enu/sqljdbc4.jar）文件复制到 NameNode 上的 $SQOOP_HOME/lib 目录中。
+
+
+  ### 下载 SQL Server-Hadoop 连接器
+
+
+  如果您已经到了这一步，那么终于可以准备在集群的 NameNode 上下载、安装和配置 SQL Server-Hadoop 连接器了。
+
+
+  用于 Hadoop 的 Microsoft SQL Server SQOOP 连接器现在已成为 Apache SQOOP 1.4.x 系列项目的一部分，Microsoft
+  不再从其网站提供单独的下载。该连接器现在可从 Apache 网站下载：http://sqoop.apache.org/
+
+
+  下表汇总了下载连接器后部署到 NameNode 的不同文件。该表包含 SQL Server-Hadoop 连接器安装程序归档：
+
+
+  | 文件/目录 | 说明 |
+
+  |---|---|
+
+  | install.sh | 这是一个 Shell 脚本，包含用于复制 SQL Server-Hadoop 连接器所需文件和目录结构的命令。 |
+
+  | Microsoft SQL Server-Hadoop Connector User Guide.pdf | 用于部署和执行 SQL Server-Hadoop
+  连接器命令的用户指南。 |
+
+  | lib/ | 该目录包含 `sqoop-sqlserver-1.0.jar` 文件。该归档包含大部分 Sqoop 命令定义。 |
+
+  | conf/ | 该目录包含 SQL Server-Hadoop 连接器的配置文件。 |
+
+  | THIRDPARTYNOTICES FOR HADOOP-BASED CONNECTORS.txt | 本文档包含第三方声明。 |
+
+  | SQL Server Connector for Apache Hadoop MSLT.pdf | 用于 Apache Hadoop 的 SQL Server
+  连接器的最终用户许可协议。 |
+
+
+  ### 安装 SQL Server-Hadoop 连接器
+
+
+  要安装 SQL Server-Hadoop 连接器，需要执行以下步骤：
+
+
+  - 1. 使用具有安装文件权限的用户凭据登录集群的 NameNode。
+
+  - 2. 使用命令 `tar -zxvf sqoop-sqlserver-1.0.tar.gz` 解压归档。这将在当前工作目录中创建 `sqoop-sqlserver-1.0`
+  目录。
+
+  - 3. 确保 `MSSQL_CONNECTOR_HOME` 环境变量设置为 `sqoop-sqlserver-1.0` 目录的绝对路径。
+
+  - 4. 将目录（cd）切换到 `sqoop-sqlserver-1.0`，并在不带任何附加参数的情况下运行 Shell 脚本 `install.sh`。
+
+  - 5. 安装程序会将连接器 jar 和配置文件复制到现有的 Sqoop 安装目录下。
+
+
+  ### Sqoop 导入工具
+
+
+  现在您已经可以使用 SQL Server-Hadoop 连接器，将数据从 SQL Server 2012 导入 HDFS。导入过程的输入是一个 SQL Server
+  表，Sqoop 会将其逐行读取到 HDFS 中。此导入过程的输出是一组包含所导入表副本的文件。由于导入过程是并行执行的，输出将分布在多个文件中。
+
+
+  使用 sqoop import 命令时，必须指定以下必需参数：
+
+
+  - `--connect` 参数，指定与 SQL Server 数据库的连接字符串
+
+  - `--username` 和 `--password` 参数，提供连接 SQL Server 数据库的有效凭据
+
+  - `--table` 或 `--query` 参数，用于导入整个表或自定义查询执行的结果
+
+
+  以下命令将数据从 SQL Server Adventureworks2012 数据库的 ErrorLog 表导入到 HDFS 上 /data/ErrorLogs
+  目录中的分隔文本文件。
+
+
+  > Sqoop 1.4.2 无法识别不属于默认 dbo 模式的 SQL Server 表。这一问题已通过添加 `--schema` 开关得到解决，您可以在 Sqoop
+  1.4.3 中指定非默认模式名称。
+
+
+  以下命令描述了如何从 SQL Server 表将数据导入 HDFS：
+
+
+  ```
+
+  $bin/ sqoop import --connect "jdbc:sqlserver://<YourServerName>;username=<user>;password=<pwd>;database=Adventureworks2012"
+  --table ErrorLog --target-dir /data/ErrorLogs --as-textfile
+
+  ```
+
+
+  > 您也可以使用 `--as-avrodatafile` 或 `--as-sequencefile` 分别将数据导入为 Avro 文件和 SequenceFile，而不是使用上一个示例命令中
+  `--as-textfile` 所对应的纯文本格式。
+
+
+
+
+
+
+  成功执行前面的代码将把 SQL 表的所有记录传输到一个以逗号分隔的 HDFS 文件中，输出应类似于以下截图：
+
+
+  ![](img/07b093d6ab71604f4a3d0eccb3053844_29_0.png)
+
+
+  你可以在 sqoop import 命令中指定一个 --split-by 参数，并指定一列来确定数据如何在 mappers 之间分割。如果未指定 split-by
+  列，则默认使用主键列。以下命令指定了一个 split-by 列来为 mappers 计算分割：
+
+
+  ```
+
+  $ bin/sqoop import --connect
+
+  "jdbc:sqlserver://<YourServerName>;username=<user>;password=<pwd>;database=AdventureWorks2012"
+  --table ErrorLog --target-dir /data/ErrorLogsSplitBy --split-by ErrorLogID -m 3
+
+  ```
+
+
+  ## 在 Hive 中导入表
+
+
+  Sqoop 提供了 -hive-import 参数，可将 SQL Server 表直接导入到 Hive 表中。以下命令展示了如何将 SQL Server 数据导入
+  Hive：
+
+
+  ```
+
+  $ bin/sqoop import --connect
+
+  "jdbc:sqlserver://<YourServerName>;username=<user>;password=<pwd>;database=AdventureWorks2012"
+  --table ErrorLog -hive-import
+
+  ```
+
+
+  请注意命令行输出最后一部分的差异，它确认了在 Hive 中的操作，如以下截图所示：
+
+
+  ![](img/07b093d6ab71604f4a3d0eccb3053844_30_0.png)
+
+
+  > 使用 Hive 导入命令时，请确保已安装 Hive 且 HIVE_HOME 设置为 Hive 安装的父目录。
+
+
+  运行导入命令后，你可以在 Hadoop NameNode 管理门户中验证创建的输出文件夹，如以下截图所示：
+
+
+  ![](img/07b093d6ab71604f4a3d0eccb3053844_31_0.png)
+
+
+  ## Sqoop export 工具
+
+
+  如前所述，Sqoop 是一个双向连接器。Sqoop 的导出过程将并行读取 HDFS 中的一组分隔文本文件，将其解析为记录，并将它们作为新行插入到目标数据库表中。以下示例将数据从
+  HDFS 和 Hive 导出到 SQL Server。假设你从 Hadoop 集群的主节点上的 $SQOOP_HOME 目录运行命令，该节点已安装 Sqoop。
+
+
+  使用 sqoop export 命令时，必须指定以下强制参数：
+
+
+  - `--connect` 参数指定到 SQL Server 数据库的连接字符串
+
+  - `--username` 和 `--password` 参数提供有效凭据以连接到 SQL Server 数据库
+
+  - `--table` 或 `--call` 参数将数据导出到 SQL 表或调用存储过程
+
+  - `--export-dir` 参数指定要导出的 HDFS 目录
+
+
+  以下命令将 /data/ErrorLogs 上的分隔文本文件中的数据从 HDFS 导出回 AdventureWorks2012 数据库中 SQL Server
+  的 ErrorLog 表：
+
+
+  ```
+
+  $ bin/sqoop export --connect "jdbc:sqlserver://<YourServerName>;username=<user>;password=<pwd>;database=AdventureWorks2012"
+  --table ErrorLog --export-dir /data/ErrorLogs
+
+  ```
+
+
+  你可以在执行导出命令时指定 mappers 的数量。
+
+
+  以下命令使用用户定义数量的 map 任务将数据从 HDFS 上的分隔文本文件导出：
+
+
+  ```
+
+  $ bin/sqoop export --connect
+
+  "jdbc:sqlserver://<YourServerName>;username=<user>;password=<pwd>;database=AdventureWorks2012"
+  --table ErrorLog --export-dir /data/ErrorLogs -m 3
+
+  ```
+
+
+  通常的做法是使用 Sqoop 将数据托管在中间暂存表中，以便在最终将数据加载到仓库之前应用一些转换和业务逻辑。以下命令使用暂存表并指定在开始导出前先清空暂存表：
+
+
+  ```
+
+  $ bin/sqoop export --connect
+
+  "jdbc:sqlserver://<YourServerName>;username=<user>;password=<pwd>;database=AdventureWorks2012"
+  --table ErrorLog
+
+  --export-dir /data/ErrorLogs --staging-table ErrorLog_stage --clear-staging-table
+
+  ```
+
+
+  > 对于当前版本，使用 --direct 选项与导入/导出流程的执行无关。
+
+
+  ## 数据类型
+
+
+  下表总结了此版本 SQL Server-Hadoop Connector 支持的数据类型。你应参考本指南以避免在数据迁移期间或之后出现任何类型的兼容性问题。表中未提及的所有其他原生
+  SQL Server 类型，例如 XML、geography、geometry、sql_variant 等，目前均不支持：
+
+
+  | 数据类型类别 | SQL Server 数据类型 | SQL Server 数据类型范围 | Sqoop 数据类型 | Sqoop 数据类型范围 |
+
+  |---|---|---|---|---|
+
+  | 精确数值 | bigint | -2^63 到 2^63-1 | Long | Max_value: 2^63-1 (9223372036854775807)
+  Min_value: -2^63 (9223372036854775808) |
+
+  |  | bit | 0 或 1 | Boolean | 1-bit |
+
+  |  | `int` | -2^31 到 2^31-1 | `Integer` | Max_value: 2^31-1 (2147483647)<br>Min_value:
+  -2^31 (-2147483648) |
+
+  | 近似数值 | `float` | -1.79E+308 到 -2.23E-308, 0 和 2.23E-308 到 1.79E+308 | `Double`
+  | Max_value: (2-2^52) 2^1023 或 (1.7976931348623157E308d)<br>Min_value: 2^-1074 或
+  (4.9E-324d) |
+
+  | 日期和时间 | `date` | 公元 1 年 1 月 1 日 至 公元 9999 年 12 月 31 日 | `java.sql.Date` | int
+  year, int month, int date:<br>year: 年份减去 1900。必须为 0 到 8099（注意 8099 为 9999 减去 1900）<br>month:
+  0 到 11<br>day: 1 到 31 |
+
+  |  | `datetime` | 日期范围：1753 年 1 月 1 日 至 9999 年 12 月 31 日<br>时间范围：00:00:00 至 23:59:59.997
+  | `java.sql.Timestamp` | int year, int month, int date, int hour, int minute, int
+  second, int nano:<br>year: 年份减去 1900<br>month: 0 到 11<br>date: 1 到 31<br>hour: 0
+  到 23<br>minute: 0 到 59<br>second: 0 到 59<br>nano: 0 到 999,999,999 |
+
+  | 字符字符串 | `char` | 固定长度、非 Unicode 字符数据<br>长度为 n 字节。n 必须为 1 到 8,000 之间的值。 | `String`
+  | 最多 8,000 个字符 |
+
+  |  | `varchar` | 变长、非 Unicode 字符数据。<br>n 可以为 1 到 8,000 之间的值。<br>varchar(max) 不支持。
+  | `String` | 最多 8,000 个字符 |
+
+  | Unicode 字符字符串 | `nchar` | 固定长度 Unicode 字符数据，共 n 个字符。n 必须为 1 到 4,000 之间的值。 | `String`
+  | 最多 4,000 个 Unicode 字符 |
+
+  |  | `nvarchar` | 变长 Unicode 字符数据，n 可以为 1 到 4,000 之间的值。<br>nvarchar(max) 不支持。 |
+  `String` | 最多 4,000 个 Unicode 字符 |
+
+  | 二进制字符串 | `binary` | 固定长度二进制数据，长度为 n 字节，其中 n 为 1 到 8,000 之间的值。 | `BytesWritable`
+  | 最多 8,000 字节 |
+
+  |  | `varbinary` | 变长二进制数据。n 可以为 1 到 8,000 之间的值。<br>varbinary(max) 不支持。 | `BytesWritable`
+  | 最多 8,000 字节 |
+
+
+  有关完整支持的数据类型列表，请参阅 SQL Server-Hadoop Connector 参考 `http://www.microsoft.com/en-us/download/confirmation.aspx?id=27584`。
+
+
+  ## 总结
+
+
+  Sqoop 是一种基于 JDBC 的技术，用于在 Hadoop 与任何 RDBMS 解决方案之间进行双向数据传输。这使得合并结构化和非结构化数据成为可能，并对整体数据提供强大的分析。SQL
+  Server-Hadoop Connector 是一个专门为 SQL Server 与 Hadoop 之间的数据传输而设计的 Sqoop 实现。本章介绍了如何在
+  Hadoop NameNode 上配置和安装 Sqoop，并执行示例 `import/export` 命令以在 SQL Server 与 Hadoop 之间移动数据。在下一章中，你将学习通过另一个
+  Apache 支持项目 Hive 来消费 Hadoop 数据。你还将学习如何使用客户端 Hive ODBC 驱动程序从商业智能工具，例如 SQL Server
+  Integration Services 消费 Hive 数据。
+
+
+
+
+
+  '
+- "# 3. 使用 Hive ODBC 驱动程序\n使用 Hive ODBC 驱动程序\n\nHive 是构建在核心 Hadoop 之上的框架。它作为 HDFS\
+  \ 之上的数据仓库系统，为底层 HDFS 数据提供简便的查询机制。编写 MapReduce 作业可能很繁琐，并且需要投入自己的开发、测试和维护成本。Hive 查询，即\
+  \ Hive 查询语言（HQL），在内部被分解为 MapReduce 作业，对用户而言是完全抽象的，并为 Hadoop 数据提供基于查询的访问机制。Hive 查询的简洁性和“SQL”特性使其成为流行且首选的方案，尤其对于熟悉传统\
+  \ SQL 技能的人来说，上手时间要短得多。以下图表给出了 Hive 架构的概览：\n\n![](img/07b093d6ab71604f4a3d0eccb3053844_37_0.png)\n\
+  \n驱动程序有两种版本，64 位和 32 位，因此请确保根据客户端应用程序的位数配置下载并安装合适的驱动程序。在我的例子中，由于我将从 32 位应用程序 Visual\
+  \ Studio 中使用驱动程序，所以我使用了 32 位版本的驱动程序。安装驱动程序完成后，您可以通过检查 ODBC 数据源管理员的驱动程序列表中是否存在 Hive\
+  \ ODBC 驱动程序来确认安装状态，如以下屏幕截图所示：\n\n![](img/07b093d6ab71604f4a3d0eccb3053844_39_0.png)\n\
+  \n如果您使用的是 64 位 Windows 且使用的是 32 位 ODBC 驱动程序，则必须从 C:\\Windows\\SysWow64\\odbcad32.exe\
+  \ 启动 ODBC 数据源管理员。\n\n# 使用 Hive ODBC 驱动程序\n\n驱动程序安装成功后，请执行以下步骤以确保您能够成功连接到 Hive：\n\
+  \n- 1. 首先，创建一个系统 DSN。在 ODBC 数据源管理员中，切换到系统 DSN 选项卡并点击添加按钮，如以下屏幕截图所示：\n\n![](img/07b093d6ab71604f4a3d0eccb3053844_40_0.png)\n\
+  \n- 2. 在创建新数据源向导的下一屏幕中，选择 HIVE 驱动程序，如以下屏幕截图所示：\n\n![](img/07b093d6ab71604f4a3d0eccb3053844_40_1.png)\n\
+  \n3. 点击 **Finish** 后，您会看到最终的 **ODBC Hive Setup** 屏幕。输入 Hadoop 集群的详细信息以及用于连接集群的凭据。在本示例中，我使用的是部署在\
+  \ Linux 上的 Hadoop 集群，RH2754741 是我的 NameNode：\n\n![](img/07b093d6ab71604f4a3d0eccb3053844_41_0.png)\n\
+  \n4. 创建完成后，列表中应出现一个新的系统 DSN，如以下屏幕截图所示。在本例中，我将我的 DSN 命名为 HadoopOnLinux。\n\n![](img/07b093d6ab71604f4a3d0eccb3053844_42_0.png)\n\
+  \n5. 现在，我们需要使用 DSN HadoopOnLinux 测试到 Hive 的连接。最快捷的测试方法是使用 .udl（通用数据链接）文件进行测试。为此，创建一个空的\
+  \ .txt 文件并将文件扩展名更改为 .udl。然后双击打开 .udl 文件，默认情况下它应使用 Microsoft OLE DB 核心组件打开，并应如下图所示：\n\
+  \n![](img/07b093d6ab71604f4a3d0eccb3053844_42_1.png)\n\n6. 选择 **Microsoft OLE DB\
+  \ Provider for ODBC Drivers** 并点击 **Next**。\n\n7. 选择在前几步中创建的 DSN **HadoopOnLinux**。提供您的\
+  \ Hadoop 集群的 **User name** 和 **Password**，然后点击 **Test Connection** 按钮。成功的测试连接将确认\
+  \ Hive ODBC 驱动程序已正确设置，如以下屏幕截图所示，我们就可以开始了！\n\n![](img/07b093d6ab71604f4a3d0eccb3053844_43_0.png)\n\
+  \n## SQL Server Integration Services (SSIS)\n\nMicrosoft SQL Server 是一套完整的工具，其中包括\
+  \ RDBMS 系统、多维 OLAP 和表格数据库引擎，以及其他服务，例如代理服务、调度服务（SQL Agent）等。如第 1 章《大数据和 Hadoop 简介》所述，如今在不同数据源之间集成数据变得极其重要。SQL\
+  \ Server 还提供强大的商业智能堆栈，为数据挖掘和交互式报表提供丰富功能。其中一个 BI 组件是名为 SQL Server Integration Services\
+  \ (SSIS) 的提取、转换和加载（ETL）工具。SSIS 能够通过将 Hive 数据导入 SQL Server 并对集成数据应用强大的分析，从而合并结构化和非结构化数据。在本章的其余部分，我们将对\
+  \ SSIS 的工作原理有一个基本了解，并创建一个简单的 SSIS 包以将数据从 Hive 导入 SQL Server。\n\n### SSIS 作为 ETL\
+  \ – 提取、转换和加载工具\n\nETL 工具的主要目标是能够从异构数据源导入和导出数据。这包括连接到外部系统的能力，以及在数据在外部系统和数据库之间移动时转换或清理数据的能力。SSIS\
+  \ 可用于向 SQL Server 导入和导出数据。甚至可以在不需要 SQL Server 作为源或目标的情况下在外部非 SQL 系统之间移动数据。例如，SSIS\
+  \ 可用于将数据从 FTP 服务器移动到本地平面文件。\n\nSSIS 还为 ETL 作业中执行的各种任务（例如数据流、任务执行等）的自动化提供了一个工作流引擎。SSIS\
+  \ 包的执行本身可以是 SQL Agent 作业的一部分，而 SQL Agent 可以独立运行多个作业。\n\nSSIS 解决方案由一个或多个包组成，每个包包含一个控制流以执行一系列任务。控制流中的任务可以包括调用\
+  \ Web 服务、FTP 操作、文件系统任务、命令行命令的自动化等。特别是，控制流通常包含一个或多个数据流任务，这些任务封装了从源到目标的基于内存的缓冲数据管道，并在数据流经管道时对其应用转换。SSIS\
+  \ 包有一个控制流，以及所需的任意多个数据流。数据流的执行由控制流的内容决定。\n\n对 SSIS 及其组件的详细讨论超出了本书的范围，并且假设您熟悉使用 Business\
+  \ Intelligence Development Studio（SQL Server 2005/2008/2008 R2）或 SQL Server Data\
+  \ Tools（SQL Server 2012）进行基本的 SSIS 包开发。如果您是 SSIS 初学者，强烈建议先阅读一些优秀的 SSIS 书籍作为先决条件。在本章的其余部分，我们将重点介绍如何使用\
+  \ Hive ODBC 驱动程序从 SSIS 消费 Hive 数据。\n\n开发本章中所示的包的先决条件是 SQL Server Data Tools（作为 SQL\
+  \ Server 2012 客户端工具和组件的一部分提供），以及已安装的 32 位 Hive ODBC 驱动程序。您还需要您的 Hadoop 集群处于运行状态，并且\
+  \ Hive 在其上运行。\n\n### 开发包\n\nSQL Server Data Tools (SSDT) 是 Microsoft 提供的集成开发环境，用于设计、部署和开发\
+  \ SSIS 包。SSDT 在您从 SQL Server 安装介质中选择安装 SQL Server 客户端工具和工作站组件时安装。SSDT 支持创建集成服务、分析服务和报表服务项目。在这里，我们将重点关注集成服务项目类型。\n\
+  \n### 创建项目\n\n执行以下步骤创建新项目。\n\n- 1. 从 SQL Server 2012 程序文件夹中启动 SQL Server Data Tools，如以下屏幕截图所示：\n\
+  \n![](img/07b093d6ab71604f4a3d0eccb3053844_45_0.png)\n\n## 使用 Hive ODBC 驱动程序\n\n\
+  2. 创建新项目并在 **New Project** 对话框中选择 **Integration Services Project**，如以下屏幕截图所示：\n\n\
+  ![](img/07b093d6ab71604f4a3d0eccb3053844_46_0.png)\n\n3. 这将在项目中创建 SSIS 项目，并在项目的\
+  \ **Solution Explorer** 窗口中可以看到其中的空白 `Package.dtsx`，如以下屏幕截图所示：\n\n![](img/07b093d6ab71604f4a3d0eccb3053844_46_1.png)\n\
+  \n\n\n\n\n## 创建数据流\n\n数据流是 SSIS 包组件，由提取和加载数据的源和目标、修改和扩展数据的转换，以及连接源、转换和目标的路径组成。在向包中添加数据流之前，包的控制流必须包含一个数据流任务。数据流任务是\
+  \ SSIS 包中的可执行项，用于创建、排序和运行数据流。每个数据流任务在包中都会打开一个单独的数据流引擎实例。要创建数据流任务，请执行以下步骤：\n\n- 1.\
+  \ 在左侧工具箱中双击（或拖放）数据流任务。这将在包的控制流画布中放置一个数据流任务，如以下屏幕截图所示：\n\n![](img/07b093d6ab71604f4a3d0eccb3053844_47_0.png)\n\
+  \n- 2. 双击数据流任务或在 SSDT 中单击数据流选项卡以编辑任务并设计源和目标组件，如以下屏幕截图所示：\n\n![](img/07b093d6ab71604f4a3d0eccb3053844_47_1.png)\n\
+  \n## 创建源 Hive 连接\n\n我们需要做的第一件事是创建一个连接管理器，该管理器将连接到托管在 Hadoop 集群中的 Hive 数据表。我们将使用\
+  \ ADO.NET 连接，它将使用我们之前创建的 DSN HadoopOnLinux 连接到 Hive。要创建连接，请执行以下步骤：\n\n## 使用 Hive\
+  \ ODBC 驱动程序\n\n- 1. 在项目中右键单击 **Connection Managers** 部分并单击 **New ADO.Net Connection...**，如以下屏幕截图所示：\n\
+  \n![](img/07b093d6ab71604f4a3d0eccb3053844_48_0.png)\n\n- 2. 从提供程序列表中，导航到 **.Net\
+  \ Providers | ODBC Data Provider** 并在 **Connection Manager** 窗口中单击 **OK**，如以下屏幕截图所示：\n\
+  \n![](img/07b093d6ab71604f4a3d0eccb3053844_48_1.png)\n\n- 3. 从数据源列表中选择 HadoopOnLinux\
+  \ DSN。提供 Hadoop 集群凭据，测试连接应成功，如以下屏幕截图所示：\n\n![](img/07b093d6ab71604f4a3d0eccb3053844_49_0.png)\n\
+  \n## 创建目标 SQL 连接\n\n我们需要配置一个连接以指向 SQL Server 实例和数据库表，我们将从 Hive 导入数据到该表。为此，我们需要为目标\
+  \ SQL 创建一个连接管理器，就像我们为源 Hive 所做的那样：\n\n- 1. 再次右键单击项目的 **Connection Manager** 部分，这次选择\
+  \ **New OLE DB Connection...**，如以下屏幕截图所示：\n\n![](img/07b093d6ab71604f4a3d0eccb3053844_50_0.png)\n\
+  \n- 2. 从提供程序列表中选择 **Native OLE DB | SQL Server Native Client 11.0**。输入目标 SQL Server\
+  \ 名称并选择目标表所在的数据库。测试连接应成功，确认目标连接管理器的有效性，如以下屏幕截图所示：\n\n![](img/07b093d6ab71604f4a3d0eccb3053844_51_0.png)\n\
+  \n在此示例中，我选择 OLE DB 连接到 SQL。您也可以选择使用 ADO.NET 或 ODBC 连接来实现相同的目的。\n\n## 创建 Hive 源组件\n\
+  \n接下来，我们需要配置一个源组件，该组件将连接到 Hive 并获取数据。连接成功创建后，双击在数据流画布上放置一个 ADO NET Source，如以下屏幕截图所示：\n\
+  \n![](img/07b093d6ab71604f4a3d0eccb3053844_52_0.png)\n\n> 使用 SSIS 2012，ODBC Source\
+  \ 和 ODBC Destination 是一对包含在产品中的数据流组件。尽管 ODBC Source 组件支持大量 ODBC 兼容的数据源，但截至本文撰写时，该组件不支持\
+  \ Hive ODBC 驱动程序。今天，从 SSIS 使用 Hive ODBC 驱动程序的唯一选项是通过 ADO.Net 组件。\n\n右键单击 ADO NET\
+  \ Source 并单击 Edit 以配置源以使用刚创建的连接连接到 Hive 表。选择连接管理器（我将其命名为 Hive Connection）和 Hive\
+  \ 表（在我的例子中是 facebookinsights 表）。您可以预览数据以确保源可以无问题地获取数据。此外，请确保导航到 Columns 选项卡并确认可以看到表中的所有列。单击\
+  \ OK 完成配置，如以下屏幕截图所示：\n\n![](img/07b093d6ab71604f4a3d0eccb3053844_53_0.png)\n\n您也可以在配置源组件时通过单击\
+  \ ADO.NET 连接管理器旁边的 New 按钮即时创建连接管理器。\n\n## 创建 SQL 目标组件\n\n源配置完成后，我们需要配置要导入 Hive 数据的目标。在此示例中，我将使用\
+  \ SQL Server 作为目标。为此，双击并在数据流画布中放置一个 **OLE DB Destination** 组件。确保通过在源和目标之间拖动箭头连接\
+  \ **ADO NET Source** 和 **OLE DB Destination** 组件。这是 SSIS 根据源架构结构自动生成元数据和列映射所必需的。包应如下面的屏幕截图所示：\n\
+  \n![](img/07b093d6ab71604f4a3d0eccb3053844_54_0.png)\n\n> 在此示例中，我使用了 OLE DB Destination\
+  \ 组件来绑定到目标 SQL Server 表。但是，您也可以为相同目的使用 ADO .NET Destination 或 SQL Server Destination\
+  \ 组件。\n> \n> SQL Server Destination 仅在包在 SQL Server 所在的同一系统上本地运行时才有效。\n\n现在是配置 **OLE\
+  \ DB Destination** 以指向正确的 SQL 连接和数据库表的时候了。为此，右键单击 **OLE DB Destination** 组件并单击 **Edit**。选择我们刚刚创建的指向\
+  \ SQL 的 **OLE DB connection manager** 和目标表。在本例中，我将连接命名为 **SQL Connection**，并且我在\
+  \ SQL 数据库中已预先创建了一个名为 `facebookinsights` 的表。如果您没有预先创建表，您可以选择通过单击 **Name of the table\
+  \ or the view** 下拉菜单旁边的 **New** 按钮即时创建目标表。这在以下屏幕截图中有所说明：\n\n![](img/07b093d6ab71604f4a3d0eccb3053844_55_0.png)\n\
+  \n> 您也可以在配置目标组件时通过单击上一个屏幕截图中所示的相应 **New** 按钮即时创建连接管理器和数据库表。\n\n## 映射列\n\n完成此操作后，请确保导航到\
+  \ Mappings 选项卡以确保源和目标之间的列映射正确，如以下屏幕截图所示。单击 OK 完成配置。\n\n![](img/07b093d6ab71604f4a3d0eccb3053844_56_0.png)\n\
+  \n> 如果您选择自己创建目标表并指定与源不同的列名，则必须手动映射这些源和目标列。SSIS 的内置列映射智能基于相同的列名，因此如果它们不同，请确保正确设置列映射。\n\
+  \n## 使用 Hive ODBC 驱动程序\n\n如果您在 64 位 Windows 操作系统上运行此包，您将需要将 Run64BitRuntime 属性从\
+  \ Project Properties | Configuration Properties | Debugging 选项卡更改为 False 以执行包，因为它使用\
+  \ 32 位 Hive ODBC 驱动程序，如以下屏幕截图所示：\n\n![](img/07b093d6ab71604f4a3d0eccb3053844_58_0.png)\n\
+  \n您现在可以按计划将此包作为 SQL Server 作业运行并定期运行数据加载。您可能还希望在数据加载到目标 SQL 数据仓库之前应用一些转换以清理数据或使用内置\
+  \ SSIS 数据流转换组件应用必要的业务逻辑。\n\n\n\n\n\n## Summary\n\n在本章中，我们深入探讨了 Hadoop 支持项目 Hive。Hive\
+  \ 作为 HDFS 之上的数据仓库，提供易于使用且熟悉的类 SQL 查询结构 HQL 来获取底层数据。HQL 在内部被分解为 MapReduce 代码，从而免除了终端用户编写复杂的\
+  \ MapReduce 代码。我们还了解了 Hive ODBC 驱动程序，它充当客户端消费者与 Hadoop 之间的接口；如何安装驱动程序以及如何测试驱动程序是否成功连接到\
+  \ Hive。本章中我们也简要介绍了 SQL Server 及其商业智能组件。我们开发了一个示例包，该包使用 Hive ODBC 驱动程序连接到 Hive，并将\
+  \ Hive 表 `facebookinsights` 中的数据导入到 SQL Server。一旦数据进入 SQL Server，我们就可以利用仓库解决方案例如\
+  \ **SQL Server Analysis Services (SSAS)** 对数据进行切片和切分，以及使用 **SQL Server Reporting\
+  \ Services (SSRS)** 对数据进行强大的报告。这也使我们能够将非关系型数据集成并与传统 RDBMS 数据合并，并作为一个整体从中提取信息。在下一章中，您将看到如何使用\
+  \ Hive ODBC 驱动程序在 SQL 中创建链接服务器。您还将学习如何使用链接服务器查询从 Hive 导入数据，并在 SSAS 中创建多维模型以进行进一步处理。\n"
+- "# 4. 配置到 Hive 的 SQL 链接服务器\n使用 SQL Server\nAnalysis Services\n创建数据模型\n\nApache Hadoop\
+  \ 带来的灵活性和扩展性是传统基于 RDBMS 的数据仓库系统例如 SQL Server 所无法实现的。在核心 Hadoop 之上，Hive 作为数据仓库提供对\
+  \ HDFS 数据的逻辑模式，这允许即席查询机制处理大型数据集。然而，查询执行、性能和周转时间通常是大多数常见 BI 实施场景的决定性因素。来自 Hadoop\
+  \ 和 Hive 的查询响应主要是批处理操作，其设计和预期是耗时且远非实时的。但也有业务需求的场景，他们需要对查询进行实时响应。\n\n您可以通过使用 Hive\
+  \ 查询语言 (HQL) 将数据从 Hadoop 导入到 SQL Server Analysis Services (SSAS)。Analysis Services\
+  \ 随后可以接手并提供实时洞察和对数据的强大报告。完成本章后，您应该能够：\n\n- 创建到 Hive 的 SQL 链接服务器\n- 查询 SQL 链接服务器以从\
+  \ Hive 获取数据\n- 从 Hive 创建 Analysis Services 多维数据模型\n\n## 配置到 Hive 的 SQL 链接服务器\n\n\
+  由于 Hive 表仅通过 ODBC 暴露，因此没有直接的方式将 Analysis Services 数据库连接到 Hadoop，因为 Analysis Services\
+  \ 只能连接到 OLE DB 兼容的数据源。为了解决这个问题，唯一的方法是在 SQL Server 实例中使用 Hive ODBC 驱动程序创建链接服务器，并通过\
+  \ OLE DB for ODBC 使用它。我们将重用我们在早期章节中创建的 DSN HadoopOnLinux 来连接到 Hive。\n\n要创建链接服务器，请执行以下步骤：\n\
+  \n- 1. 使用 SQL Server Management Studio 连接到 SQL Server 实例并展开 Server Objects，如以下屏幕截图所示：\n\
+  \n![](img/07b093d6ab71604f4a3d0eccb3053844_62_0.png)\n\n- 2. 右键单击 **Linked Servers**\
+  \ 并选择 **New Linked Server**。这应会弹出 **New Linked Server** 窗口，如以下屏幕截图所示：\n\n![](img/07b093d6ab71604f4a3d0eccb3053844_63_0.png)\n\
+  \n## 使用 SQL Server Analysis Services 创建数据模型\n\n- 3. 您必须填写要连接的 Hive 数据源的详细信息。在本例中，我将链接服务器命名为\
+  \ LINKTOHIVE。您必须从提供程序列表中选择 Microsoft OLE DB Provider for ODBC Drivers。您还必须使用名为 HadoopOnLinux\
+  \ 的 DSN 填写数据源属性，以便我们具有合适的提供程序字符串，如以下屏幕截图所示：\n\n![](img/07b093d6ab71604f4a3d0eccb3053844_64_0.png)\n\
+  \n- 5. 单击 OK，这将在 **SQL Server Linked Servers** 下创建一个名为 **LINKTOHIVE** 的新链接服务器，如以下屏幕截图所示。您可以右键单击\
+  \ **Linked Server** 并测试连接以确认一切设置正确。\n\n![](img/07b093d6ab71604f4a3d0eccb3053844_66_0.png)\n\
+  \n如果您喜欢基于脚本的数据库对象创建，您也可以使用以下脚本创建链接服务器：\n\n### 链接服务器脚本\n\n您可以通过从 SQL Server Management\
+  \ Studio 执行以下 Transact-SQL 脚本来设置到 Hive 的链接服务器：\n\n```\nEXEC master.dbo.sp_addlinkedserver\
+  \ @server=\n    N'LINKTOHIVE',@srvproduct=N'Hive',@provider=N'MSDASQL',\n    @datasrc=N'HadoopOnLinux',@provstr=N'Provider=MSDASQL.1;\n\
+  \    Persist Security Info=True'\n/* For security reasons the linked server remote\
+  \ logins password is\nchanged with ######## */\nEXEC master.dbo.sp_addlinkedsrvlogin\
+  \ @rmtsrvname=N'LINKTOHIVE',\n    @useself=N'False',@locallogin=NULL,@rmtuser=N'debarchans',\n\
+  \    @rmtpassword='########'\n```\n\n> \U0001F4A1 请确保将 rmtuser 和 rmtpassword 值替换为您自己的。\n\
+  \n您可以使用 OpenQuery Transact-SQL 命令连接到数据源，在 Hadoop 集群上运行查询并将结果返回到 SQL Server。\n\n\
+  ## 使用 OpenQuery\n\n以下 Transact-SQL 脚本说明了如何使用 SQL 链接服务器查询我们之前创建的 `facebooksights`\
+  \ Hive 表：\n\n```\nSELECT * FROM OpenQuery([LINKTOHIVE], 'SELECT * FROM facebooksights;')\n\
+  ```\n\n从查询分析器执行此查询应显示来自 Hive 表的记录，如以下屏幕截图所示：\n\n![](img/07b093d6ab71604f4a3d0eccb3053844_67_0.png)\n\
+  \n本章的下一节讨论如何从链接服务器查询导入的数据创建 **多维联机分析处理** 数据模型 (MOLAP)。然而，多维项目仅支持 SQL 表或视图作为其数据源。因此，在进入商业智能项目之前，我们将基于链接服务器查询在\
+  \ SQL 数据库中创建一个视图。\n\n### 创建视图\n\n以下 Transact-SQL 从我们之前使用的 `OpenQuery` 语句创建视图：\n\n\
+  ```\nCreate View KeyMetrics AS  SELECT * FROM OpenQuery([LINKTOHIVE], 'SELECT *\
+  \ FROM facebooksights;')\n```\n\nAnalysis Services Tabular Project 支持直接 SQL 查询来创建数据模型。\n\
+  \n## 创建 SSAS 数据模型\n\n一旦在运行 SQL Server 的计算机上创建了链接服务器，就可以在 SQL Server Data Tools 中非常简单地将\
+  \ Analysis Services 连接到 Hive。本章的其余部分将描述如何通过按照上一节中提到的步骤创建的视图，使用链接服务器将数据从 Hive 表导入到\
+  \ SSAS 多维和数据挖掘项目中的方法。\n\n执行以下步骤创建 SSAS 数据模型：\n\n- 1. 在 **SQL Server Data Tools**\
+  \ 中，在 File 菜单上单击 **New**，然后单击 **Project**。在 **New Project** 对话框中，在 **Installed Templates**\
+  \ 下，导航到 **Business Intelligence | Analysis Services**，然后选择 **Analysis Services Multidimensional\
+  \ and Data Mining Project**，如以下屏幕截图所示：\n\n![](img/07b093d6ab71604f4a3d0eccb3053844_68_0.png)\n\
+  \n- 2. 在这里，您需要指定项目的 **Name** 和 **Location**。默认情况下，**Solution name** 与项目名称相同；但是，如果您愿意，您可以输入不同的\
+  \ **Solution name**。我将我的项目命名为 **Demo**。单击 **OK** 继续并创建项目。\n\n- 5. 接下来，您必须定义到创建了链接服务器和视图的数据库的连接。您可以在数据来源向导中选择连接，如果它已预先填充，否则，您可以单击\
+  \ New 按钮来设置连接，如以下屏幕截图所示：\n\n![](img/07b093d6ab71604f4a3d0eccb3053844_70_0.png)\n\
+  \n\n\n\n\n6. 接下来，在 **Impersonation Information** 页面，确保选择了 **Use the credentials\
+  \ of the current user**，如下图所示：\n\n![](img/07b093d6ab71604f4a3d0eccb3053844_71_0.png)\n\
+  \n7. 点击 Next，你可以为你的连接选择一个数据源名称，如下图所示：\n\n![](img/07b093d6ab71604f4a3d0eccb3053844_72_0.png)\n\
+  \n8. 点击 Finish，数据源将被成功创建并在 Solution Explorer 窗口中显示，如下图所示：\n\n![](img/07b093d6ab71604f4a3d0eccb3053844_72_1.png)\n\
+  \n9. 数据源创建完成后，你需要定义数据源视图。这些视图将实际作为在解决方案中基于需求进一步创建关系、立方体和维度的模型。要创建视图，右键单击 Data Source\
+  \ Views 并选择 New 以启动 Data Source View Wizard，如下图所示：\n\n![](img/07b093d6ab71604f4a3d0eccb3053844_73_0.png)\n\
+  \n10. 点击 Next 并选择之前创建的数据源 Demo，如下图所示：\n\n![](img/07b093d6ab71604f4a3d0eccb3053844_74_0.png)\n\
+  \n11. 点击 **Next**，你应该能在 **Available objects** 列表下看到我们在上一节中创建的 **KeyMetrics** 视图。点击右箭头将其移至\
+  \ **Included objects** 列表下，如下图所示：\n\n![](img/07b093d6ab71604f4a3d0eccb3053844_75_0.png)\n\
+  \n12. 助手的最后一屏是你为数据源视图提供名称并通过点击 Finish 完成向导的位置，如下图所示：\n\n![](img/07b093d6ab71604f4a3d0eccb3053844_76_0.png)\n\
+  \n13. 点击 **Finish** 将创建视图并从 **Key metrics$** 视图中获取列，如下图所示：\n\n![](img/07b093d6ab71604f4a3d0eccb3053844_77_0.png)\n"
+- '# 5. 使用 Microsoft 的自助式商业智能工具
+
+
+  商业智能的重点是让业务用户能够获得比从运营系统获得的更准确、更可靠、更好的信息。传统的 BI 解决方案一直依赖于用户可以通过标准化报表和偶尔的临时查询工具访问的集中式、清洗和转换后的数据存储。报表由
+  BI 专家开发，最低要求是聘请一组专业人员来运行和维护基础设施和解决方案。
+
+
+  部署此类系统后，针对特定需求的定制数据源请求或新数据源请求可能需要数天才能得到满足，因为它必须经过定义的变更管理请求。由于只有少数资源接受过足够培训来处理这些请求，变更甚至可能需要数周才能实施。
+
+
+  ## 使用 Microsoft 的自助式商业智能工具
+
+
+  许多高管已经意识到，当前的 BI 方法无法跟上动态商业环境中数据的流入速度。现在数据无处不在，并且呈指数级增长。过分依赖大预算的 BI 团队处理一切已不再可接受。这导致了一种名为自助式
+  BI 的新技术诞生。自助式 BI 目前是热门话题。它允许你无需聘请昂贵的 BI 基础设施或一支熟练的团队即可快速高效地执行专业级别的数据分析。Microsoft
+  提供了一套丰富的自助式 BI 工具，可以连接各种数据源，包括 SQL Server 2012 和 Hadoop，并快速提供数据的洞察。它结合了强大的报表功能，并在底层数据上生成无缝的交互式可视化。这通常位于管理金字塔的顶端，业务高管在此审查这些报表并做出决策以改善业务并更有效地利用资源。本章你将学习以下内容：
+
+
+  - Microsoft 自助式 BI 工具
+
+  - 使用 PowerPivot 生成数据模型
+
+  - 使用 Power View 在数据模型上创建交互式报表
+
+
+  ### PowerPivot 增强功能
+
+
+  SQL Server 2012 为 PowerPivot 客户端即 Excel 加载项以及 SharePoint 中的 PowerPivot 服务器端组件带来了增强的数据分析功能。这使得
+  Microsoft Office 用户只需几次点击即可拥有自助式商业智能功能，这是以前从未有过的。用户现在能够更轻松地从异构源集成数据，并使用 Excel 和
+  SharePoint 等熟悉的工具对数据提供强大的可视化，从而使企业能够做出正确的决策。
+
+
+  PowerPivot 作为 Excel 2010 的加载项提供，允许从任何来源进行数据集成和分发，包括 **Open Data Protocol (ODATA)**
+  订阅源、RDBMS 源、Hadoop 等。使用 PowerPivot，你可以从前面提到的任何多样化数据源创建自己的数据模型，并直接将大量数据导入 Excel。如果需要将这些数据模型作为共享存储库，可以将其发布到
+  SharePoint 服务器并非常轻松地在整个企业中共享。PowerPivot 模型还可以作为市场上其他商业智能工具的数据源，包括本章后面讨论的 Power View，以生成用于趋势分析、预测分析等的直观且交互式报表。
+
+
+  以下部分解释了如何基于使用 Hive ODBC 驱动程序创建的 facebookinsights Hive 表生成 PowerPivot 数据模型。我们在演示中使用了
+  Excel 2013。请确保打开 Excel 所需的加载项，如下图所示，以构建本章中使用的示例：
+
+
+  1. 导航到 **File | Options | Add-ins**。在 **Manage** 下拉列表中，选择 **COM Add-ins** 并点击 **Go**，并启用以下加载项：
+
+
+  ![](img/07b093d6ab71604f4a3d0eccb3053844_81_0.png)
+
+
+  > PowerPivot 也支持 Excel 2010。Power View 和 Data Explorer 仅在 Excel 2013 中可用。
+
+
+  Using Microsoft''s Self-Service Business Intelligence Tools
+
+
+  2. 要创建 PowerPivot 模型，请打开 Excel，导航到 **PowerPivot** 功能区并点击 **Manage**，如下图所示：
+
+
+  ![](img/07b093d6ab71604f4a3d0eccb3053844_82_0.png)
+
+
+  这将打开 PowerPivot for Excel 窗口，我们需要在其中配置到 Hive 的连接。
+
+
+  3. 点击 **Get External Data** 并选择 **From other Sources**，如下图所示：
+
+
+  ![](img/07b093d6ab71604f4a3d0eccb3053844_82_1.png)
+
+
+  4. 由于我们将使用 Hive ODBC 提供程序，请选择 Others (OLEDB/ ODBC) 并在 Table Import Wizard 上点击 Next，如下图所示：
+
+
+  ![](img/07b093d6ab71604f4a3d0eccb3053844_83_0.png)
+
+
+  5. 向导中的下一屏接受我们数据源的连接字符串。手动编写连接字符串更容易通过构建它来完成。因此，点击 Build 按钮以调出 Data Link 窗口，在其中你可以选择我们之前创建的
+  HadoopOnLinux DSN，并提供访问 Hadoop 集群的正确凭据。请确保选中 Allow saving password，以便密码保留在底层的 PowerPivot
+  Table Import Wizard 中。同时验证测试连接成功，如下图所示：
+
+
+  ![](img/07b093d6ab71604f4a3d0eccb3053844_84_0.png)
+
+
+  6. Table Import Wizard 对话框现在应已填充适当的连接字符串，如下图所示：
+
+
+  ![](img/07b093d6ab71604f4a3d0eccb3053844_85_0.png)
+
+
+  7. 接下来，我们将直接选择 Hive 表，但我们也可以编写查询（HiveQL）来获取数据，如下图所示：
+
+
+  ![](img/07b093d6ab71604f4a3d0eccb3053844_85_1.png)
+
+
+
+
+
+
+  8. 选择 `facebookinsights` 表并点击 **Finish** 以完成配置，如以下屏幕截图所示：
+
+
+  ![](img/07b093d6ab71604f4a3d0eccb3053844_86_0.png)
+
+
+  9. 带有所有行的 Hive 表应已成功加载到 PowerPivot 模型中，如以下屏幕截图所示：
+
+
+  ![](img/07b093d6ab71604f4a3d0eccb3053844_86_1.png)
+
+
+  10. 关闭 Table Import Wizard。
+
+
+  数据已添加到模型中，因此我们也可以继续关闭 PowerPivot 窗口。这将带我们返回到 Excel 工作表，该工作表现在已在内存中包含数据模型。在下一节中，我们将看到如何使用
+  Power View 来使用 PowerPivot 数据模型并快速创建智能和交互式报表。
+
+
+  ## Power View for Excel
+
+
+  Microsoft Excel 2013 引入了一种全新的自助式 BI 工具，称为 Power View。这也是 Microsoft SharePoint 2013
+  的一部分，随 SQL Server 2012 Reporting Services Service Pack 1 Add-in for Microsoft SharePoint
+  Server 2013 Enterprise Edition 提供。Power View 的客户端（Excel）和服务器端（SharePoint）实现都提供了一种交互式方式来探索和可视化您的数据，以及在底层数据之上生成交互式报表。
+
+
+  本章的其余部分展示了一个基于 facebookinsights 表数据的示例 Power View 报表，以便让您从表面层面快速了解强大的报表功能。关于“如何设计
+  Power View 报表”以及 Power View 与 SharePoint 集成的细节超出了本书的范围，不会深入讨论。
+
+
+  > Power View 仅支持 Excel 2013。您需要为 Excel 安装 Power View 加载项。
+
+
+  要基于之前创建的 PowerPivot 数据模型创建 Power View 报表，请在 Excel 中点击 **Insert** 功能区并点击 **Power
+  View**，如以下屏幕截图所示：
+
+
+  ![](img/07b093d6ab71604f4a3d0eccb3053844_87_0.png)
+
+
+  这应启动一个新的 Power View 窗口，其中 PowerPivot 模型已可用，如以下屏幕截图所示：
+
+
+  ![](img/07b093d6ab71604f4a3d0eccb3053844_87_1.png)
+
+
+  我们可以选择所需的字段并在报表中显示。您可以选择不同类型的图表、表格和矩阵报表。作为示例，我创建了一个报表，显示了我 Facebook 页面在一段时间内点赞数和粉丝数的变化，如以下屏幕截图所示：
+
+
+  ![](img/07b093d6ab71604f4a3d0eccb3053844_88_0.png)
+
+
+  Power View 设计器为您提供不同类型的图表、轴和时间线布局，这使得生成简单的可视化变得非常容易。然而，这些自助式工具不应被视为我们现有 BI 解决方案的替代品。它不是标准参数化报表的替代品，而是一种增强功能，使关键职能和领导者能够利用自己的分析，而无需给稀缺的
+  IT 资源带来压力。
+
+
+  ## Summary
+
+
+  在本章中，我们学习了如何将 Microsoft 自助式 BI 工具与 Hadoop 和 Hive 集成，以使用数据并在数据上生成强大的可视化。随着技术范式的转变，行业正朝着信息技术成为消费品的时代发展。个人应该能够从像
+  Power View 这样的客户端加载项中按需可视化所需的见解。这些自助式 BI 工具提供了无缝连接和访问各种数据源的能力，并创建内存中数据模型，将来自这些不同来源的数据结合起来以实现强大的报表。
+
+  '
+- "## Index\n\n### Symbols\n\n- .udl (Universal Data Link) file 34\n\n### A\n\n- Apache\
+  \ Hadoop framework\n    - about 9\n    - Flume 12\n    - HBase 12\n    - HDFS 10\n\
+  \    - Hive 12\n    - Mahout 13\n    - MapReduce 10\n    - Oozie 12\n    - Pig 12\n\
+  \    - Sqoop 12\n\n### B\n\n- Big Data\n    - about 5-8\n    - community data 7\n\
+  \    - organizational data 7\n    - personal data 7\n    - variety 6\n    - velocity\
+  \ 6\n    - volume 6\n    - world data 7\n- Business Intelligence (BI) 7, 71\n\n\
+  ### C\n\n- community data 7\n\n### D\n\n- Data Flow\n    - about 39\n    - creating\
+  \ 39\n- DataNode 10\n- Data Source View Wizard 65\n- data type categories\n    -\
+  \ Approximate numeric 25\n    - Binary strings 26\n    - Character strings 26\n\
+  \    - Date and time 25\n    - Unicode character strings 26\n- destination SQL connection\n\
+  \    - creating 42, 43\n\n### E\n\n- ETL tool, SSIS 36\n- Excel 30\n- export command\
+  \ 16\n- Extract, Transform, and Load (ETL) tool 8\n\n### F\n\n- Flume 12\n\n###\
+  \ H\n\n- HBase 12\n- Hive 12\n    - about 29\n    - advantages 30\n    - architecture\
+  \ overview 29\n    - SQL Linked Server, configuring to 54-58\n    - tables, picking\
+  \ 22\n- Hive ODBC Driver\n    - about 30\n    - connection, to Hive 32-35\n    -\
+  \ downloading 30\n    - installing 31\n- **Hive Query Language (HQL) 29**\n- **Hive\
+  \ source component**\n    - creating 44, 45\n\n### I\n\n- **Impersonation Information\
+  \ page 63**\n- **installation prerequisites**\n    - Hadoop cluster, on Linux 17\n\
+  \    - Microsoft JDBC driver, setting up 18\n    - Sqoop, configuring 17\n    -\
+  \ Sqoop, installing 17\n\n### J\n\n- job command 16\n- **JobTracker 11**\n\n###\
+  \ K\n\n- **KeyMetrics view 69**\n\n### L\n\n- Linux\n    - Hadoop cluster 17\n\n\
+  ### M\n\n- **Mahout 13**\n- **MapReduce**\n    - about 10\n    - DataNode 10\n \
+  \   - JobTracker 11\n    - NameNode 10\n    - Secondary NameNode 10\n    - TaskTracker\
+  \ 11\n- **Microsoft JDBC driver**\n    - setting up 18\n\n### N\n\n- NameNode 10\n\
+  - **New Linked Server window 55**\n\n### O\n\n- ODBC Data Sources (DSN) 30\n- **Oozie\
+  \ 12**\n- Open Data Protocol (OData) 72\n- organizational data 7\n\n### P\n\n- personal\
+  \ data 7\n- **Pig 12**\n- **PowerPivot**\n    - enhancements 72-78\n\n### R\n\n\
+  - Relational Database Management System (RDBMS) 15\n\n### S\n\n- Secondary NameNode\
+  \ 10\n- **Solution Explorer window 64**\n- source Hive connection\n    - creating\
+  \ 39, 41\n- **SQL destination component**\n    - creating 46, 47\n- **SQL Linked\
+  \ Server configuration, to Hive**\n    - Linked Server script 58\n    - OpenQuery,\
+  \ using 59\n    - performing 54-58\n    - View, creating 59\n- **SQL Server Data\
+  \ Tools. See SSDT**\n- **SQL Server-Hadoop Connector**\n    - about 16\n    - downloading\
+  \ 18, 19\n    - installation prerequisites 17\n    - installing 19\n    - Sqoop\
+  \ import tool 19-22\n- **SQL Server Integration Services. See SSIS**\n- **SQL Server\
+  \ Reporting Services. See SSRS**\n- **Sqoop 12**\n    - configuring 17\n    - installing\
+  \ 17\n- **sqoop export command 16**\n- **sqoop import command 16**\n- Sqoop import\
+  \ tool\n    - about 19, 23, 24\n    - data types 24, 26\n    - tables, importing\
+  \ in Hive 22\n- sqoop job command 16\n- sqoop version command 16\n- SSAS data model\n\
+  \    - creating 60-70\n- SSDT 37\n- SSIS\n    - about 36\n    - as ETL tool 36\n\
+  - SSIS packages\n    - developing 37\n    - running 49, 50\n- SSIS packages development\n\
+  \    - columns, mapping 48, 49\n    - Data Flow, creating 39\n    - destination\
+  \ SQL connection, creating 42, 43\n    - Hive source component, creating 44, 45\n\
+  \    - project, creating 37, 38\n    - source Hive connection, creating 39, 41\n\
+  \    - SQL destination component, creating 46, 47\n- SSRS 30\n\n### T\n\n- Table\
+  \ Import Wizard 76\n- TaskTracker 11, 12\n\n### W\n\n- world data 7\n\n![](img/07b093d6ab71604f4a3d0eccb3053844_94_0.png)\n\
+  \n![](img/07b093d6ab71604f4a3d0eccb3053844_94_1.png)\n\n## Microsoft SQL Server\
+  \ 2012 Performance Tuning Cookbook\n\nISBN: 978-1-84968-574-0 Paperback: 478 pages\n\
+  \n80 recipes to help you tune SQL Server 2012 and achieve optimal performance\n\n\
+  - 1. Learn about the performance tuning needs for SQL Server 2012 with this book\
+  \ and ebook\n- 2. Diagnose problems when they arise and employ tricks to prevent\
+  \ them\n- 3. Explore various aspects that affect performance by following the clear\
+  \ recipes\n\n![](img/07b093d6ab71604f4a3d0eccb3053844_94_2.png)\n\n## Microsoft\
+  \ SQL Server 2012 Security Cookbook\n\nISBN: 978-1-84968-588-7 Paperback: 322 pages\n\
+  \nOver 70 practical, focused recipes to bullet-proof your SQL Server database and\
+  \ protect it from hackers and security threats\n\n- 1. Practical, focused recipes\
+  \ for securing your SQL Server database\n- 2. Master the latest techniques for data\
+  \ and code encryption, user authentication and authorization, protection against\
+  \ brute force attacks, denial-of-service attacks, and SQL Injection, and more\n\
+  - 3. A learn-by-example recipe-based approach that focuses on key concepts to provide\
+  \ the foundation to solve real world problems\n\nPlease check www.PacktPub.com for\
+  \ information on our titles\n\n\n\n\n\n![](img/07b093d6ab71604f4a3d0eccb3053844_95_0.png)\n\
+  \n## Hadoop MapReduce 实战手册\n\nISBN: 978-1-84951-728-7　　 平装：300页\n\n使用 Hadoop MapReduce\
+  \ 分析大型复杂数据集的实战技巧\n\n- 1. 学会处理大型复杂数据集，从简单开始，然后深入探究\n- 2. 解决复杂的大数据问题，如分类、关系发现、在线营销和推荐\n\
+  - 3. 超过50个Hadoop MapReduce实战技巧，以简单直接的方式呈现，包含分步说明和真实案例\n\n![](img/07b093d6ab71604f4a3d0eccb3053844_95_1.png)\n\
+  \n## Hadoop 初学者指南\n\nISBN: 978-1-84951-730-0　　 平装：398页\n\n学习如何分析大数据，从数据洪流中提取有价值的信息\n\
+  \n- 1. 学习让你欣然面对而非恐惧大数据的工具和技术\n- 2. 展示如何构建完整的基础设施，以满足数据增长带来的需求\n- 3. 每章中的动手示例既提供全局视野，又带来直接实践经验\n\
+  \n"
