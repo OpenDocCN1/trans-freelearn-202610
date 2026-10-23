@@ -1,0 +1,116 @@
+chapter_starts:
+- 'no': 6
+  confidence: 0.95
+  final_reason: '判断方指出'' # 序''为一级标题，且规则规定前言、序言等正文前内容统一划分为一章。复核方未对此行提出异议，证据充分。'
+  accepted_evidence:
+  - 一级标题格式
+  - 属于序言/前言范畴，根据规则独立成章
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 32
+  confidence: 0.95
+  final_reason: 判断方指出'# 致谢'为一级标题，属于致谢部分。规则规定致谢等正文前内容统一划分为一章。
+  accepted_evidence:
+  - 一级标题格式
+  - 属于致谢范畴，根据规则独立成章
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 86
+  confidence: 0.3
+  final_reason: '复核方指出''## 前言''为二级标题，且前文'' # 序''已覆盖前言类内容，该二级标题更像是前言内部的节标题或重复标记，不应划分为新章。'
+  accepted_evidence:
+  - 复核方：二级标题级别低于章标题
+  - '复核方：前言内容在'' # 序''章节中已包含，避免重复拆分'
+  rejected_evidence:
+  - 判断方：认为属于元信息独立部分，但标题级别不符
+  need_human_review: false
+- 'no': 232
+  confidence: 0.98
+  final_reason: 判断方指出'# 1'为章序号，配合后续'## Jamstack 的历史'构成第1章起始。序号连贯（接序言之后）。
+  accepted_evidence:
+  - 一级标题序号'# 1'
+  - 后续紧跟章节具体标题
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 509
+  confidence: 0.98
+  final_reason: 判断方指出'# 2 Sanity 简介'为一级标题，符合最高层级章节特征，序号连贯。
+  accepted_evidence:
+  - 一级标题格式
+  - 包含章序号和标题
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 841
+  confidence: 0.2
+  final_reason: 复核方强力反驳：该行'## 修改示例作者'为二级标题，且上下文显示第2章总结后直接进入第3章内容，但缺失'# 3'标志。然而，'修改示例作者'明显是第3章（探索Sanity
+    Studio）下的一个操作小节，不具备统领整章的语义特征。第3章真正的起始应追溯至第2章结束后的下一有效章节边界，但由于文本中缺失'# 3'行，且该行仅为小节，故不作为章起始。根据“宁可漏分”原则，此处不分章。
+  accepted_evidence:
+  - 复核方：二级标题级别
+  - 复核方：语义上为小节标题，非章标题
+  - 复核方：前言中第3章标题为“探索Sanity Studio”，与此处不符
+  rejected_evidence:
+  - 判断方：推测为第3章起始，但缺乏一级标题证据
+  need_human_review: true
+- 'no': 1058
+  confidence: 0.98
+  final_reason: 判断方指出'# 4 Sanity Configuration and Schemas'为一级标题，符合最高层级章节特征，序号连贯。
+  accepted_evidence:
+  - 一级标题格式
+  - 包含章序号和标题
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 1390
+  confidence: 0.98
+  final_reason: 判断方指出'# 5 Sanity 的 GROQ 语言'为一级标题，符合最高层级章节特征，序号连贯。
+  accepted_evidence:
+  - 一级标题格式
+  - 包含章序号和标题
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 1661
+  confidence: 0.98
+  final_reason: 判断方指出'# 6'为一级标题，后续行'No. 1662 Sanity 的 GraphQL Playground'为章名。符合Packt书籍常见排版：章号与章名分行。
+  accepted_evidence:
+  - 一级标题序号'# 6'
+  - 下一行紧跟章名
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 1982
+  confidence: 0.98
+  final_reason: 判断方指出'# 7 Gatsby – 简介'为一级标题，符合最高层级章节特征，序号连贯。
+  accepted_evidence:
+  - 一级标题格式
+  - 包含章序号和标题
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 2268
+  confidence: 0.98
+  final_reason: 判断方指出'# 8'为一级标题，后续行'No. 2269 Gatsby与GraphQL'为章名。符合章号与章名分行排版。
+  accepted_evidence:
+  - 一级标题序号'# 8'
+  - 下一行紧跟章名
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 2466
+  confidence: 0.98
+  final_reason: '判断方指出''# 9''为一级标题，后续行''No. 2468 ## Gatsby来源插件''为章名。虽然章名用了##，但# 9明确标识了章级编号，符合章节起始特征。'
+  accepted_evidence:
+  - 一级标题序号'# 9'
+  - 下一行紧跟章名（尽管格式异常，但语义明确）
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 2992
+  confidence: 0.98
+  final_reason: 判断方指出'# 10'为一级标题，后续行'No. 2993 构建 Gatsby 组件'为章名。符合章号与章名分行排版。
+  accepted_evidence:
+  - 一级标题序号'# 10'
+  - 下一行紧跟章名
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 86
+  reason: '复核方指出其为二级标题，且前言内容已由'' # 序''涵盖，避免重复拆分。'
+  need_human_review: false
+- 'no': 841
+  reason: 复核方指出其为二级标题'## 修改示例作者'，属于第3章下的小节，而非章起始。虽然第3章起始行在文本中可能缺失或标记异常，但该行本身不符合章标题特征。
+  need_human_review: true

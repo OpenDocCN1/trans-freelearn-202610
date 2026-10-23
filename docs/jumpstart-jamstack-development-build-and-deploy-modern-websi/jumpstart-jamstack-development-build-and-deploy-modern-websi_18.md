@@ -1,0 +1,176 @@
+# 15 结语
+
+本章将总结全书涉及的概念，并介绍 Jamstack 社区的发展情况。本章将讨论各种外部项目以及如何为其做贡献。我们将涉及的主要主题如下：
+
+- Jamstack 的未来
+- Jamstack 社区资源
+- 为 Jamstack 项目做贡献
+
+### 概念总结
+
+我们首先概述了 Web 开发的历史，展示了诸如 *Server Side Includes* 等动态技术如何最终融入静态页面，增加功能。这些技术在增加动态性的同时，最终也导致了服务端负担过重，加载时间变长。接下来，我们介绍了 Sanity，一个内容交付平台，以及 Sanity Studio，一种以解耦方式管理内容的工具，摒弃了多年来普遍存在的单体架构。然后，我们展示了其专有的查询语言 GROQ 如何以简洁而紧凑的方式与内容和 Sanity 模式进行交互。
+
+接下来，我们将 GROQ 与熟悉的 **结构化查询语言（SQL）** 进行了比较。我们介绍了 GraphQL，作为一种以规范方式查询内容的新途径，突破了 RESTful 的局限。我们介绍了 GraphQL Playground，作为一种轻松快捷地创建 GraphQL 查询并可视化结果的方式。
+
+接下来，我们介绍了 Gatsby，一个用于创建网站和应用框架，展示了如何通过其丰富的插件集合获取多种数据源，例如文件系统中的文件、Sanity，以及其他诸如 Drupal 等无头内容管理系统。我们展示了 Gatsby 如何利用 GraphQL 从内容源获取内容，例如与 Sanity 的集成。我们学习了如何使用底层 React 框架组件创建页面部分，以及它们如何协同工作生成页面。我们了解了 Gatsby 如何通过 Tailwind 等 CSS 框架集成层叠样式表。我们还展示了 Alexa 如何与 Sanity 集成，从而在亚马逊设备上实现语音转文本功能。
+
+最后，我们学习了如何使用强大的 Netlify 持续交付云托管平台。我们了解了它如何连接到 GitHub，并能在源代码更新时自动部署网站，以及如何使用其插件集合进行内容压缩、生成站点地图，甚至启动诸如 Lighthouse 等测试工具。
+
+现在，让我们快速浏览一下 Jamstack 生态系统，了解其各个平台上一系列令人兴奋的新兴事件与功能。
+
+### Jamstack 的未来
+
+在写这本书时，Jamstack 的发展势头已经非常明显。在下一节中，我们将了解社区中出现的一些新技术与趋势。
+
+### Jamstack、JAMstack 与 JAM Stack
+
+我们希望你喜欢阅读这本书。我们有太多主题想要涵盖，因为 Jamstack 是一个不断演进的概念。随着各种框架日趋成熟并发布新版本，许多代码示例都可能得到改进。我们是在两个时区之间撰写这本书的，一个在美国，一个在欧洲。我们写作这本书时，正值世界历史上的艰难时期，一场疫情导致了大规模的封锁。
+
+尽管困难重重，我们证明了在任何情况下技术协作都是可能的。事实上，基于云和网络的技术现状已经被推向了极限。从某种意义上说，它已被推到了前台，既出现在新闻中，也出现在许多行业中。Jamstack 的时代已经到来——数字消费者希望以最快的速度获取响应式和适应性的内容。
+
+### Sanity 的未来
+
+在本书写作期间，Sanity Studio 已经发生了巨大的演变，因此本书中的截图反映的是 Studio 用户体验的最新版本。Sanity 将继续专注于将内容视为一种像液体一样填充容器的物质，而不是容器本身——而容器正是传统网页多年来的形态。Sanity 开发者关系与支持负责人 Knut Melvaer 写道：
+
+> “我们的立场是，Jamstack 的未来应该拥抱结构化内容，并摆脱以页面为核心的内容建模方式。也就是说，工具应更好地允许基于规则的复用内容和设计，而不是人工编辑工作。”
+
+我们很高兴看到 Sanity 将继续高速发展。接下来，我们将看看 GraphQL 工具令人兴奋的演进。
+
+### GraphiQL 的未来
+
+**Graphiql 2** 将是 Graphiql（用于设计 GraphQL 查询的工具）的下一个版本。它最终将把 GraphiQL 体验的功能与 GraphQL Playground 的体验合并。开发 GraphQL Playground 的公司 Prisma 已将其捐赠给官方 GraphQL 基金会。目前，维护者 Rikki Schulte 正专注于通过改进其语言服务器及参考实现（即安装量很大的 vscode-graphql 扩展）来减少对 GraphiQL 或基于 Web 的 IDE 的依赖，同时正将其准备为 VSCode 编辑器的官方 GraphQL 扩展。
+
+该项目位于 `https://github.com/graphql/graphiql`。
+
+### Jamstack 社区资源
+
+遗憾的是，由于 Jamstack 是新兴技术，目前专门介绍它的书籍还不多，但很快会有几本问世。
+
+这里列出了一些了解 Jamstack 社区的途径：
+
+- **网站：** 越来越多的网站致力于比较*兼容 Jamstack* 的内容管理系统。这里有两个例子：
+  - **CMS 对比：** `https://cms-comparison.io`
+  - **无头 CMS：** `https://headlesscms.org`
+
+使用位于 https://www.sanity.io/docs/starter-templates 的基本说明，我们轻松创建了 https://github.com/chrispecoraro/sanity-template-jigsaw-blog，该项目使用了 Jigsaw——一个由 Tighten 创建的流行静态站点生成器（SSG），它基于 Laravel 现代 PHP 框架和 Blade 模板系统。
+
+可以通过以下格式调用 Sanity 的创建页面，其中的 template 是参数，而 chrispecoraro/sanity-template-jigsaw-blog 是 GitHub 仓库：https://www.sanity.io/create?template=chrispecoraro/sanity-template-jigsaw-blog。
+
+社区模板位于此页面靠近底部的位置：https://www.sanity.io/create：
+
+![](img/97ab031f38e2174e2f1b51da18dfa1d0_237_0.png)
+
+图 15.1 – Sanity 入门套件
+
+### 迁移与集成
+
+将 Sanity 与其他代码库集成很容易，这要归功于一组工具，它们可以以不同可用格式呈现可移植文本，例如 hyperscript、Markdown，以及用于 PHP 和 .NET 的库：https://www.sanity.io/docs/presenting-block-text。
+
+此外，还可以使用一组工具将来自其他内容管理系统的 HTML 内容导入 Sanity，并将其转换为 Sanity 可用作可移植文本的格式，相关工具位于 https://www.npmjs.com/package/@sanity/block-tools。
+
+### 插件
+
+Sanity 还拥有一系列插件，既有官方的，也有社区贡献的，位于 https://www.sanity.io/plugins：
+
+![](img/97ab031f38e2174e2f1b51da18dfa1d0_238_0.png)
+
+图 15.2 - Gatsby 插件
+
+插件应经过测试，打包上传到 https://www.npmjs.com，然后在 Sanity 的 Slack 中 #I-made-this 频道分享。
+
+### 未来
+
+Sanity Studio 新增了一项名为 presence（在场）的功能，它显示文档的修改历史，允许用户比较任何修订版本并还原任意字段。
+
+
+
+
+
+以下是此新功能的截图：
+
+![](img/97ab031f38e2174e2f1b51da18dfa1d0_239_0.png)
+
+图 15.3 – Sanity Studio 中的存在感
+
+## 为 Gatsby 做贡献
+
+接下来，我们将展示如何为 Gatsby 做贡献。Gatsby 是此版本 Jamstack 中最开源的产品。
+
+### Gatsby 社区
+
+Gatsby 社区使用多种沟通方式。
+
+DEV 是一个软件开发者社区，其 Gatsby 社区位于 https://dev.to/t/gatsby，同时还有一个 hashnode URL：https://hashnode.com/n/gatsby。此外，还有一个 Gatsby Discord，地址为 https://gatsby.dev/discord，该社区非常充实且活跃。
+
+### Gatsby 仓库
+
+Gatsby 的 GitHub URL 位于 https://github.com/gatsbyjs。
+
+为 Gatsby 社区做贡献还有一个额外激励：如果拉取请求被接受，Gatsby 社区目前会提供积分，这些积分可兑换 T 恤或水瓶等周边商品。
+
+这里有许多独立的仓库。例如，与本书示例所使用的主题类似的主题模板，其名称以 **gatsby-starter** 开头，位于 https://github.com/gatsbyjs/gatsby-starter-theme。
+
+这些是学习 Gatsby 如何与 Jamstack 生态系统的不同部分配合使用的良好起点。
+
+### Gatsby 插件
+
+本书前面已经讨论过 Gatsby 插件。社区可以为 Gatsby 创建插件。
+
+## 为 Netlify 做贡献
+
+最后，让我们看看如何为 Netlify 做贡献。
+
+### Netlify 社区
+
+Netlify 是 Jamstack 生态系统中最大的组成部分之一。Netlify 社区位于 https://community.netlify.com。Netlify 的 GitHub 位于 https://github.com/netlify。
+
+### Netlify 插件
+
+与我们在*第 14 章，使用 Netlify 和 Azure 进行部署*中测试的插件类似，Netlify 插件可以按照位于 https://github.com/netlify/plugins 的仓库提供的指南来创建和贡献。
+
+## 最后感想
+
+我们很自豪能将这本书加入 Jamstack 生态系统，并希望它能被铭记为该主题最早发布的书籍之一。我们鼓励您为这个不断成长的生态系统贡献力量，并期待您的加入。衷心感谢您参与我们的项目，祝您在学习和职业生涯中一帆风顺。
+
+## 您可能还喜欢其他书籍
+
+如果您喜欢这本书，您可能还会对 Packt 出版的以下书籍感兴趣：
+
+![](img/97ab031f38e2174e2f1b51da18dfa1d0_242_0.png)
+
+### Drupal 9 模块开发 – 第三版
+
+Daniel Sipos
+
+ISBN：978-1-80020-462-1
+
+- 为您的应用程序开发自定义 Drupal 9 模块
+- 掌握不同的 Drupal 9 子系统和 API
+- 建模、存储、操作和处理数据，以实现有效的数据管理
+- 使用主题系统以清晰、安全的方式显示数据和内容
+- 测试您的业务逻辑以防止回归
+- 通过实施最佳实践，保持领先地位并编写 PHP 代码
+
+![](img/97ab031f38e2174e2f1b51da18dfa1d0_243_0.png)
+
+### WordPress 5 菜谱
+
+Rakitha Nimesh Ratnayake
+
+ISBN：978-1-83898-650-6
+
+- 安装并自定义 WordPress 主题和插件以构建网站
+- 无需编写任何代码即可开发现代网页设计
+- 探索 WordPress 5 中引入的新 Gutenberg 内容编辑器
+- 使用现有的 WordPress 插件添加自定义功能并实现网站盈利
+- 通过简单技巧改善网站的用户交互和可访问性
+- 发现维护和保护网站的强有力技术
+- 扩展内置的 WordPress 功能以进行高级网站管理
+
+### Packt 正在寻找像您这样的作者
+
+如果您有兴趣成为 Packt 的作者，请访问 `authors.packtpub.com` 并立即申请。我们与成千上万的开发人员和技术专业人士（就像您一样）合作，帮助他们与全球技术社区分享见解。您可以进行一般申请，申请我们正在招募作者的具体热门主题，或提交您自己的想法。
+
+## 留下评论 – 让其他读者了解您的想法
+
+请通过您购买本书的网站留下评论，与他人分享您对本书的看法。如果您从亚马逊购买了本书，请在本书的亚马逊页面上留下真诚的评论。这一点至关重要，这样其他潜在读者就能看到并利用您的客观意见做出购买决定；我们也能了解客户对我们产品的看法；我们的作者也能看到您对他们与 Packt 合作创作的这本书的反馈。这只需要您几分钟时间，但对其他潜在客户、我们的作者和 Packt 来说都很有价值。谢谢！
