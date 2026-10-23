@@ -1,0 +1,13 @@
+# Preface
+
+Developing and deploying applications in the cloud has become an indispensable component of modern business technology plans. As organizations embark on their digital transformation journey and migrate their applications to the cloud, the demand for skilled and certified professionals who can develop, secure, deploy, and manage cloud-based applications has grown phenomenally.
+
+Developers are expected to possess knowledge and practice skills of various architecture design patterns—from virtual machine deployments to containers and from event-driven architectures to loosely coupled serverless solutions.
+
+This book aims to help you pass the AWS Certified Developer Associate (DVA-C02) certification and gain invaluable practical experience that employers and clients demand. To facilitate this, the book has been designed from the ground up to focus on developing and deploying an application for a fictitious company named Todo Plus Limited. In the given scenario, the company wants to build a productivity web application that is globally accessible, highly available, scalable, and secure. It must make strategic decisions on the most effective technologies and focus on incorporating rapid deployments, reducing management overhead, and improving security, all while being cost-effective.
+
+As you progress through this book, you will focus on developing skills that help you select the right technology for your application stack so that you can tackle a wide range of use cases. You will understand the core theoretical concepts of those technologies and, more importantly, how to configure those tools and services to host and support your application practically. Step-by-step guides are provided across project exercises in all the chapters. These will help you develop expertise in planning, configuring, and supporting the various services critical to successfully hosting and managing your application.
+
+This book covers topics relevant to the AWS Certified Developer Associate (DVA-C02) exam, including designing your application with an emphasis on security, adopting best practices to develop loosely coupled architectures, incorporating automation and **continuous integration/continuous delivery (CI/CD)** DevOps principles, and more.
+
+By the end of this study guide, you will have all the tools necessary to pass the AWS Certified Developer Associate (DVA-C02) exam and develop real-world skills in application development, security, deployment, and management.

@@ -1,0 +1,16 @@
++   - **Security**: Cloud providers offer a range of built-in security features, including data encryption, two-factor authentication, firewalls, and more. These features enable TodoPlus to protect its users’ sensitive data.
++   - **Scalability**: The cloud provides elasticity, allowing TodoPlus to adapt to demand. If the number of application users increases, TodoPlus can scale up server capacity to meet this demand. Conversely, during periods of low demand, they can scale down resources to minimize costs.
++   - **High Availability**: Cloud computing services offer high availability by replicating data and applications across multiple data centers in different regions. This means that even if one data center fails, the TodoPlus application will still be accessible to its users.
++   - **FinOps**: With the cloud’s pay-as-you-go pricing model, TodoPlus only pays for the resources it uses. This allows the company to control its costs effectively. Moreover, many cloud providers offer cost analysis tools to help TodoPlus monitor and optimize their cloud resource expenses.
+
+In summary, the cloud enables TodoPlus to create a task management application that meets its business needs regarding security, scalability, high availability, and effective financial management.
+
+As we move to the next section, you will delve deeper into the fundamentals of cloud computing and explore the extensive capabilities of the AWS Global Infrastructure, providing a solid foundation to understand how it can be harnessed for applications such as our TodoPlus use case.
+
+# Introduction to Cloud Computing and the AWS Global Infrastructure
+
+As discussed previously, computing refers to on-demand access and delivery of IT services, which customers can consume over the standard public internet or some form of wide-area network. These services will include compute, network, storage, databases, and **Software as a Service (SaaS)** products. Cloud computing has enabled businesses to design and deploy applications without requiring expensive hardware upfront. Instead, they lease/rent required IT infrastructure from such third-party providers.
+
+Of the various providers of cloud computing services, AWS is the largest provider, offering a variety of cloud IT services. These services fall into various categories: **Infrastructure as a Service (IaaS)**, **Platform as a Service (PaaS)**, and **Software as a Service (SaaS)** solutions. Businesses can consume those services rather than create their own dedicated environments to host applications. With established infrastructure across multiple countries and massive economies of scale, AWS can offer infrastructure and software service at a fraction of the cost, with redundancy, scalability, high availability, and security.
+
+In the following section, you will learn about the AWS Global Infrastructure, which enables customers across the globe to access AWS services. Furthermore, customers in one location can consume cloud services worldwide, enabling access to a global customer base, and fulfilling any compliance or regulatory needs.

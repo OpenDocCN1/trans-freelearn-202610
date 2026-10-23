@@ -1,0 +1,13 @@
++   - A snapshot that you possess that has not been encrypted can be copied and then encrypted at your discretion.
++   - You can use a different key to re-encrypt a snapshot that you have access to or control before making a copy of it.
++   - When creating an encrypted volume from a non-encrypted snapshot, the first snapshot is always a complete snapshot.
+
+For those seeking to connect a dedicated block storage disk to a particular EC2 instance, Amazon Elastic Block Storage (EBS) serves as an excellent choice. In the following section, you will explore Amazon Elastic File System (EFS), a suitable solution for establishing a file system accessible concurrently by several instances.
+
+# Introduction to Amazon EFS
+
+Amazon EFS is a fully managed file storage system that enables you to share data using the **Network File System (NFS)** version 4 protocol. Applications running on your EC2 instance and Lambda functions can all access the file system via mount points and access points. Utilizing Amazon EFS enables you to store and share files without worrying about infrastructure, capacity, or performance. The system can dynamically expand or contract as files are added or removed, supporting petabytes of growth without impacting applications. Amazon EFS is designed for easy setup and customization through its intuitive web services interface, handling the installation and patching of the intricate file system on your behalf.
+
+With Amazon EFS, there are no minimum fees or setup charges, and you only pay for the space occupied by your file system. Various storage tiers cater to different purposes, such as EFS Standard and EFS Standard-Infrequent Access (Standard-IA) storage classes, which offer multi-AZ resilience and the highest levels of durability and availability. In contrast, EFS One Zone and EFS One Zone-Infrequent Access (EFS One Zone-IA) storage classes allow data storage in a single Availability Zone, resulting in additional savings.
+
+The service is engineered for scalability, availability, and durability. Amazon EFS file systems with Standard storage classes distribute data and information across multiple Availability Zones in an AWS Region, can accommodate petabytes, deliver top performance, and facilitate massively parallel data access from numerous computer instances. It operates like a standard file system, featuring a conventional interface and comprehensive file-system access semantics. Using NFS version 4.1, Amazon EFS can be accessed via any Amazon EC2 Linux instance through the NFSv4.1 protocol, allowing you to access and modify files and folders as you would on a regular hard drive after mounting.

@@ -1,0 +1,12 @@
+# Building Private Networks in
+the Cloud with Amazon VPC
+
+Before deploying your application in the cloud, you must ensure you design your architecture with security in mind. Security needs to be incorporated in accordance with best practices across the various layers of your application stack – this comprises the underlying network and infrastructure layer, compute and storage layers, and databases, as well as the application itself.
+
+With regard to network-layer security, **Amazon Web Services (AWS)** offers the capability to create and build isolated virtual networks with a service called **Amazon Virtual Private Cloud (Amazon VPC)**. VPCs protect your workloads and applications from unauthorized network traffic that may harbor malicious content. They also allow you to separate your workloads and applications and isolate them from each other to fulfill any compliance or regulatory requirements, as well as reduce the overall burden of management tasks.
+
+Several key services on AWS require you to provision a VPC within which you can then deploy resources that form part of your underlying infrastructure to host your applications. These include EC2 instances that offer compute capacity for running your applications, ECS clusters for your containerized applications, and backend databases running on **Amazon Relational Database Services (Amazon RDS)**. Other services such as Amazon S3 do not require you to provision a VPC.
+
+With a specific focus on Amazon VPC, you will learn how to build private networks in the cloud to securely host resources that will be used to support your application. While it is not essential to be a networking expert for the AWS Certified Developer Associate exam, understanding networking fundamentals will help ensure your application is built and deployed securely and using best practices. For example, **Task Statement 2: Develop code for AWS Lambda** of Domain 1 requires you to understand how to access private resources in VPCs using AWS Lambda code. This is covered in *Chapter 8, Event-Driven Computing with AWS Lambda and Securing Access to Backend APIs with Amazon API Gateway.*
+
+This chapter will introduce you to the basics of network connectivity and security and explain how your application can connect to other public AWS services and even external networks, such as on-premises resources.

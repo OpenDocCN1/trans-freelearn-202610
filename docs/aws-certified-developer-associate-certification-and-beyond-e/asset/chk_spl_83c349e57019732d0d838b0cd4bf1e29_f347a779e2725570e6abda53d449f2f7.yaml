@@ -1,0 +1,29 @@
+reviews:
+- 'no': 3153
+  overturn_probability: 0.1
+  alternative: 正文小标题（章内二级标题）
+  counter_evidence:
+  - 该行以`##`开头，而同一章末尾的`## Summary`、`## Exam Readiness Drill`、`## Working On Timing`也都是`##`标题，单凭标题级别无法区分章与节。
+  - 该行标题无编号且为英文长句（“Managing Multiple Datasets with AWS Relational...”），若忽略后文“本章”等提示，可能被误判为某个大节的标题。
+  keep_split: true
+- 'no': 4119
+  overturn_probability: 0.1
+  alternative: 正文小标题（章内二级标题）
+  counter_evidence:
+  - 该行与前后文中多个`##`标题（如`## Exam Readiness Drill`、`## Working On Timing`）级别相同，不符合“只有最高层级大章才分章”的格式特征。
+  - 该行为英文标题且被截断，无显式章序号，存在被当作正文中过渡性大节标题的可能性。
+  keep_split: true
+- 'no': 5024
+  overturn_probability: 0.15
+  alternative: 正文小标题（章内二级标题）
+  counter_evidence:
+  - 该标题长度明显超过通常章标题的30字限制（“使用AWS Lambda实现事件驱动计算，并使用Amazon API Gateway保护对后端服务的访问”），格式上更接近复合型节标题。
+  - 前面章节末尾的`## Summary`和`## Exam Readiness Drill`均为`##`标题，若没有后文“本章涵盖以下主题”的提示，该行很容易被归入章内小节层级。
+  keep_split: true
+- 'no': 5640
+  overturn_probability: 0.1
+  alternative: 正文小标题（章内二级标题）
+  counter_evidence:
+  - 该行标题被截断（“Incorporating Edge Network Services to Connect ...”），无法从完整标题确认其是否为章，且以`##`开头与前后小节标题一致。
+  - 该行紧接在`## Exam Readiness Drill`等章末内容之后，在缺少“本章”类提示时，可能被解析为章内的下一个大节标题而非新章。
+  keep_split: true

@@ -1,0 +1,13 @@
+Congratulations, you have now successfully deployed your multi-tier application stack using Amazon Elastic Beanstalk. This PaaS can configure your required infrastructure, manage application deployments, version updates, and upgrades, and cater to a wide range of deployment strategies.
+
+# Summary
+
+AWS Elastic Beanstalk is a PaaS solution that is designed to help you quickly and easily deploy your application without focusing too much on the underlying infrastructure. AWS Elastic Beanstalk can set up and configure all the necessary infrastructure to support your application and its various environments (stages). You have complete control over how the underlying infrastructure is built, whether you are deploying as a single test server or within a multi-tier architecture that supports high availability and scaling capabilities.
+
+The service supports a wide range of development environments and programming languages, including Apache Tomcat for Java applications, Apache HTTPS Server for PHP and Python, and Microsoft IIS 7.5, 8.0, and 8.5 for .NET applications.
+
+AWS Elastic Beanstalk uses Amazon CloudFormation to build the underlying infrastructure required for your applications. While you can define standard configuration items as part of your architecture, you can also use Elastic Beanstalk configuration files stored in a folder called `.ebextensions` to further customize how your resources are provisioned within your environment. The configuration files should be written in either YAML or JSON with a `.config` extension, placed with your application source code bundle, and deployed into your Elastic Beanstalk environment. You can use this file to make various configuration changes and customizations – for example, you can install packages on your Linux instances that your application may be dependent on.
+
+An important feature of Elastic Beanstalk is managing the life cycle of your application through various deployment options. These include all-at-once deployment, rolling, rolling with additional batch, immutable deployment, traffic splitting, and blue/green deployment.
+
+Another important concept to be aware of is that while you can incorporate a backend database such as Amazon RDS as part of your overall Elastic Beanstalk configuration and environment setup, you may wish to deploy the database outside of the configuration to ensure it is kept separate from the application life cycle. This approach also facilitates blue/green deployment capabilities.

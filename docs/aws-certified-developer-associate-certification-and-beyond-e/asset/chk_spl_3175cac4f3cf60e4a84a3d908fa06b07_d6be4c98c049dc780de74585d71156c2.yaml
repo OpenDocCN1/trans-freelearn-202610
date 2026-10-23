@@ -1,0 +1,37 @@
+reviews:
+- 'no': 30
+  overturn_probability: 0.15
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '## 前言 为正文前的序言类内容，按规则前言/序言应统一划分为一章，标题单独成行且后接概述段落，符合分章特征'
+  keep_split: true
+- 'no': 163
+  overturn_probability: 0.25
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '标题单独成行一级 #，语义统领后续全球基础设施内容，与前文 ## AWS 账户和全球基础设施简介形成层级递进，符合第1章起始的上下文特征'
+  keep_split: true
+- 'no': 810
+  overturn_probability: 0.05
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '一级 # 标题单独成行，语义概括身份与访问管理全章，后续紧跟本章介绍段落，符合最高层级章节划分规则'
+  keep_split: true
+- 'no': 1525
+  overturn_probability: 0.1
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '一级 # 标题单独成行，统领 Amazon S3 对象存储全章内容，后续为存储选项简介等概述，符合第3章起始特征'
+  keep_split: true
+- 'no': 2181
+  overturn_probability: 0.1
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '一级 # 标题单独成行，语义覆盖 VPC 私有网络全章，后续为网络安全与连接概述，符合第4章起始特征'
+  keep_split: true
+- 'no': 2709
+  overturn_probability: 0.92
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题为 # EC2 的不同定价模型，属于 EC2 章节内部的子主题，非全书最高层级大章；上下文已在第5章 Amazon EC2 体系内，后续为按需实例、预留实例等子节，标题长度短且为分点式小标题，不应作为新章划分；原判断误将章节内二级主题误判为章标题'
+  keep_split: false
