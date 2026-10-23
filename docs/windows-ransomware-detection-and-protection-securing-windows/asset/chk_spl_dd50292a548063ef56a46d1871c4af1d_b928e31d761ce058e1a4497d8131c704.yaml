@@ -1,0 +1,60 @@
+reviews:
+- 'no': 4
+  overturn_probability: 0.2
+  alternative: 前言部分的子标题（贡献者）
+  counter_evidence:
+  - “贡献者”只是书前多个并列子标题之一，后面还有“关于作者”“关于审稿人”“前言”等，本身不具备大章统领性；
+  - 规则要求前言、序言、致谢等统一划分为一章，若把“贡献者”作为章起点，则同一前言部分被割裂成多个潜在章节，容易误报。
+  keep_split: true
+- 'no': 142
+  overturn_probability: 0.05
+  alternative: 若不分章，它可能被当作普通的一级标题而非部分标题
+  counter_evidence:
+  - 它确实是全书第 1 部分的标题，但“部分”在层级上高于章，规则要求部分标题也要划分新章；
+  - 虽然文本以“#”开头，但若只看格式可能误认为章标题，不过内容明确包含“第 1 部分”，分章无误。
+  keep_split: true
+- 'no': 153
+  overturn_probability: 0.1
+  alternative: 第1章下的二级子标题（若不分章）
+  counter_evidence:
+  - 标题没有“第1章”序号，且以“##”开头，在 Markdown 层级中容易被误认为部分下的子标题；
+  - 但后文紧接“在本章中，我们将首先介绍……”，且前面第 148 行明确列出“第 1 章”，符合章标题特征。
+  keep_split: true
+- 'no': 698
+  overturn_probability: 0.1
+  alternative: 正文中的普通一级标题（若不分章）
+  counter_evidence:
+  - 标题为“# 构建安全基础”，没有“第2章”字样，单看可能被当作某部分下的统括性标题；
+  - 其前文 693 行有“在下一章中，我们将开始研究对策……”的过渡，后文 700 行以“在上一章中”开头，上下文强烈表明这是新章标题，分章正确。
+  keep_split: true
+- 'no': 1237
+  overturn_probability: 0.05
+  alternative: 若不分章，它可能被当作英文书名的一部分或普通标注
+  counter_evidence:
+  - '“# Part 2: Protect and Detect”与第 1 部分“第 1 部分：勒索软件基础”对称，是明确的部分标题；'
+  - 规则要求部分-章节模式下部分标题必须分章，不存在合理推翻理由。
+  keep_split: true
+- 'no': 1249
+  overturn_probability: 0.1
+  alternative: 第3章正文中的英文子标题（若不分章）
+  counter_evidence:
+  - 该标题为英文“## Security Monitoring Using Microsoft Sentinel an...”，没有中文“第3章”字样，可能被误认为章节内的专题标题；
+  - 但前文 1243 行列有“Chapter 3, Security Monitoring Using Microsoft S...”，且后接本章主题列表，分章依据充分。
+  keep_split: true
+- 'no': 1951
+  overturn_probability: 0.15
+  alternative: 第4章正文中的英文专题标题（若不分章）
+  counter_evidence:
+  - 标题“## Ransomware Countermeasures – Windows Endpoints,...”与第5章标题“勒索软件对策 – Microsoft
+    Azure 工作负载”形成系列，但以“##”开头，可能被误认为章内小节；
+  - 前文 1886 行引用“Chapter 1”，后文 1953 行明确写“在上一章中……”，且 1957 行列出本章主题，符合章标题特征。
+  keep_split: true
+- 'no': 2707
+  overturn_probability: 0.3
+  alternative: 第5章标题的第一行（跨行标题）
+  counter_evidence:
+  - 该行“## 勒索软件对策”与下一行“– Microsoft Azure 工作负载”构成完整标题，但原判断只标记 2707 为章起点，可能导致解析时把 2708
+    当作正文；
+  - “勒索软件对策”本身较宽泛，若无“– Microsoft Azure 工作负载”限定，单看可能被误认为第4章内的小节标题；
+  - 不过前文 2701 行是“## 总结”（第4章总结），2707 起开启新主题，且后续 2710 行起围绕 Azure 工作负载展开，分章依然合理。
+  keep_split: true

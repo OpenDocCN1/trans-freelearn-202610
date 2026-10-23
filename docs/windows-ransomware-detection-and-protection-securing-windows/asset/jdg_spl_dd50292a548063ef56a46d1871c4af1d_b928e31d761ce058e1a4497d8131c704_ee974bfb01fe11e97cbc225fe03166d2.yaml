@@ -1,0 +1,78 @@
+chapter_starts:
+- 'no': 4
+  confidence: 0.85
+  final_reason: 前言类前置内容统一为一章，复核方认为‘贡献者’为书前并列子标题之一，虽非理想起点但仍在前言整体范围内，采纳现有划分以避免前言被割裂
+  accepted_evidence:
+  - 前言、序言、致谢、关于作者等正文之前的内容统一划分为一章
+  - 4号行处于书名后、第一部分前的贡献者/关于作者/前言区块
+  rejected_evidence:
+  - ‘贡献者’只是书前多个并列子标题之一，不具备大章统领性
+  need_human_review: false
+- 'no': 142
+  confidence: 1.0
+  final_reason: 双方一致为第1部分标题，部分-章节模式下部分标题必须分章
+  accepted_evidence:
+  - '# 第 1 部分：勒索软件基础'
+  - 后接本部分概述及章节列表
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 153
+  confidence: 0.95
+  final_reason: 第1章实质标题，后文明确‘在本章中’，且148行目录已列出第1章，上下文符合章标题特征
+  accepted_evidence:
+  - '## 勒索软件攻击向量与威胁态势'
+  - 155行‘在本章中，我们将首先介绍’
+  - 150行目录‘第 1 章，勒索软件攻击向量与威胁态势’
+  rejected_evidence:
+  - 标题无‘第1章’序号且以##开头易被误认为子标题
+  need_human_review: false
+- 'no': 698
+  confidence: 0.95
+  final_reason: 上下文明确为新章起点，前文693行‘在下一章中’过渡，后文700行‘在上一章中’回顾，标题‘# 构建安全基础’为第2章
+  accepted_evidence:
+  - '# 构建安全基础'
+  - 693行下一章过渡
+  - 700行上一章回顾
+  rejected_evidence:
+  - 标题无‘第2章’字样，单看可能被当作统括性标题
+  need_human_review: false
+- 'no': 1237
+  confidence: 1.0
+  final_reason: 第2部分标题，与第1部分对称，部分-章节模式下必须分章
+  accepted_evidence:
+  - '# Part 2: Protect and Detect'
+  - 后接本部分介绍及章节列表
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 1249
+  confidence: 0.95
+  final_reason: 第3章实质标题，前文1243行目录列出Chapter 3，后接本章主题列表，符合章标题
+  accepted_evidence:
+  - '## Security Monitoring Using Microsoft Sentinel an...'
+  - 1243行‘Chapter 3, Security Monitoring Using Microsoft S...’
+  - 1251行本章主题介绍
+  rejected_evidence:
+  - 英文标题无中文‘第3章’字样，可能被误认为专题标题
+  need_human_review: false
+- 'no': 1951
+  confidence: 0.9
+  final_reason: 第4章实质标题，前文1953行‘在上一章中’回顾，后文1957行列出本章主题，上下文为新章
+  accepted_evidence:
+  - '## Ransomware Countermeasures – Windows Endpoints,...'
+  - 1953行在上一章中...
+  - 1957行本章主题列表
+  rejected_evidence:
+  - 以##开头可能被误认为章内小节
+  need_human_review: false
+- 'no': 2707
+  confidence: 0.85
+  final_reason: 第5章标题起点，跨行标题‘## 勒索软件对策’+‘– Microsoft Azure 工作负载’，前文2701行为第4章总结，后文2710行起围绕Azure工作负载展开
+  accepted_evidence:
+  - '## 勒索软件对策'
+  - 2708行‘– Microsoft Azure 工作负载’
+  - 2701行总结结束
+  - 2710行起Azure工作负载正文
+  rejected_evidence:
+  - 标题跨行，单看‘勒索软件对策’较宽泛可能被误认为小节
+  need_human_review: false
+rejected_lines: []

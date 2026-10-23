@@ -1,0 +1,71 @@
+chapter_starts:
+- 'no': 3076
+  confidence: 0.95
+  final_reason: 双方一致 + 前文为上一章总结，标题后接“在本章中，我们将涵盖以下主题”等章首概述，语义统领后续内容。
+  accepted_evidence:
+  - 前文 3074 为上一章末尾内容（“最后，我们将研究有助于保护流量免受各种攻击的不同机制。”）
+  - 标题后 3090 有“在本章中，我们将涵盖以下主题：”及主题列表
+  - 复核方保持分章，overturn_probability 0.1
+  rejected_evidence:
+  - 标题没有“第X章”序号，但语义和上下文足以判断
+  need_human_review: false
+- 'no': 3436
+  confidence: 0.95
+  final_reason: 双方一致 + 前文为上一章总结（3434），标题后接章首介绍和主题列表，符合新章特征。
+  accepted_evidence:
+  - 3434 行“尽管在本章中我们重点讨论了安全发布服务...”为上一章收尾
+  - 3440 行“在本章中，我们将了解如何使用服务来加密数据...”
+  - 3442-3448 行章首主题列表
+  rejected_evidence:
+  - 标题无显式章号，但语义明确
+  need_human_review: false
+- 'no': 3780
+  confidence: 0.98
+  final_reason: 明确的“第 3 部分”标题，部分-章节模式下部分标题应划分新章，且后接部分介绍和包含章节列表。
+  accepted_evidence:
+  - 标题为“## 第 3 部分：假设已被入侵”
+  - 3782 行“本部分介绍在遭受攻击时我们可以采取的措施...”
+  - 3786-3790 行“本部分包含以下章节：”
+  rejected_evidence:
+  - 复核方指出此为部分标题而非章标题，但规则明确部分也分章
+  need_human_review: false
+- 'no': 3792
+  confidence: 0.9
+  final_reason: 位于第3部分后第一个章节，标题“勒索软件取证”与部分目录所列“第 8 章，勒索软件取证”对应，后接“在本章中，我们将涵盖以下主题：”章首句式。虽使用###层级，但语义上是章标题。
+  accepted_evidence:
+  - 3788 行部分目录列出“第 8 章，勒索软件取证”
+  - 3798 行“在本章中，我们将涵盖以下主题：”
+  - 3794 行起为章节概述
+  rejected_evidence:
+  - 复核方指出该行使用###三级标题，与章内小节层级相同，可能被误认为子节；但结合上下文可判定为章
+  need_human_review: false
+- 'no': 4097
+  confidence: 0.95
+  final_reason: 前文为上一章“## 摘要”，标题后接章首概述和“在本章中，我们将涵盖以下主题：”，符合新章特征。
+  accepted_evidence:
+  - 4091 行为上一章“## 摘要”
+  - 4101 行“在本章中，我想提供一些建议...”
+  - 4105-4109 行主题列表
+  rejected_evidence:
+  - 标题无章号，但语义清晰
+  need_human_review: false
+- 'no': 4421
+  confidence: 0.9
+  final_reason: 前文为“## Summary”上一章总结，标题为英文但对应第10章“保护Windows免受勒索软件攻击的最佳实践”，后接章首介绍。虽与前后中文不协调，但语义明确。
+  accepted_evidence:
+  - 4413 行为上一章“## Summary”
+  - 4423 行“在之前的章节中，我们重点关注了...”
+  - 标题内容与目录第10章对应
+  rejected_evidence:
+  - 复核方指出该行为英文，可能是页眉或原文残留；但后续有中文章首介绍，且前有Summary，可判定为新章
+  need_human_review: false
+- 'no': 4827
+  confidence: 0.95
+  final_reason: 文末“## 索引”标题，按规则索引统一划分为一章。
+  accepted_evidence:
+  - 标题“## 索引”
+  - 4829 行起为索引条目
+  rejected_evidence:
+  - 复核方提出索引不算正式章节，但规则要求索引划分为一章
+  need_human_review: false
+rejected_lines: []

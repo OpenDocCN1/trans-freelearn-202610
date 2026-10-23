@@ -1,0 +1,333 @@
+
+
+## 摘要
+
+在本章中，我们探讨了如何保护我们的 Windows 基础设施以降低其被勒索软件攻击入侵的风险。我们学习了操作系统中经常被忽视的各种安全机制，以及这些机制如何作为 Windows 中的额外安全屏障发挥作用。
+
+希望本书的内容能为您提供有关不同攻击向量以及您可以采取的防护措施的宝贵见解。我只希望尽可能少的读者遭遇勒索软件攻击，并且希望这些提示和服务能够作为您未来安全态势的基础解决方案。感谢阅读！
+
+## 索引
+
+### A
+
+- **Active Directory (AD)** 243
+- securing 130-132
+- **Active Directory and Azure AD**
+- **password policy** 52
+- **Active Directory Federation**
+- **Services (ADFS)** 258
+- **AD Application Proxy** 41
+- **additional countermeasures** 136, 137
+- **administrative shares**
+- using 243, 244
+- **Adversary-in-the-Middle**
+- **(AiTM) phishing** 132
+- **AIP future** 199
+- **Always Encrypted** 199
+- **Always On VPN** 34
+- **analytics rules** 67, 91-95
+- creating 88-91
+- types 88
+- **antimalware** 107-110
+- **Application Delivery Controllers**
+- **(ADCs)** 182
+- **application pillar** 38, 39
+- **ASR testing tool**
+- download link 105
+- **attackers** 166
+- **Attack Surface Reduction (ASR)**
+- **rules** 103-106, 241
+- features 103
+- in Endpoint Manager 104
+- **attack vector** 8
+- accessing, through brute-force attacks 11
+- accessing, through compromised
+  workstation 12
+- accessing, through credential stuffing 10
+- accessing, through end user machine 12
+- known vulnerabilities, exploiting 9
+- **Automanage** 254
+- **Azure Active Directory** 41, 42
+- **Azure Active Directory**
+- **Conditional Access** 142
+- **Azure Active Directory Privileged**
+- **Identity Management (PIM)** 143
+- **Azure AD Identity Protection (AADIP)** 51
+- **Azure AD joined** 43
+- **Azure AD Password Protection** 52
+- **Azure AD Registered** 43
+- **Azure Application Gateway** 58, 143
+- **Azure Backup** 160-162
+- **Azure-based workloads**
+- recommendations 162, 163
+- **Azure Bastion** 59, 131
+- **Azure DDoS Protection** 143
+- Azure Defender for Cloud 58
+- Azure Disk Encryption 143
+- Azure Firewall 58, 142
+- Azure Information Protection (AIP) 187, 190-198
+- Azure Log Analytics 59
+- Azure Policy 59, 143, 157-160
+- Azure resource group 58
+- Azure Resource Manager (ARM) 70, 158
+- Azure Sentinel 57
+- Azure Storage Service Encryption 144
+- Cloud Security Posture Management (CSPM) 66
+- command and control (C&C) domains 255
+- Common Vulnerabilities and Exposures (CVEs) 24
+- compromised workstation
+- attack vector, access via 12
+- Conditional Access policy 41
+- Conti ransomware 14-16
+- Credential Security Support Provider (CredSSP) 242
+- credential stuffing
+- attack vector, accessing via 10
+- Cybersecurity and Infrastructure Security Agency (CISA) 9, 226
+
+### B
+- Background Intelligent Transfer Services (BITS) 13
+- backups
+- best practices 201, 202
+- BeyondTrust
+- URL 180
+- bring your own device (BYOD) 43
+- brute-force attacks
+- attack vector, accessing via 11
+- Business Email Compromise (BEC) attacks 132
+
+### D
+- data classification 189
+- Data Collection Rules (DCRs) 69
+- Data Connectors 80
+- data exfiltration 188, 189
+- data logs
+- collecting, from VMs 74-82
+- data pillar 39, 40
+- data protection
+- best practices 201, 202
+- data sources
+- collecting, from VMs 74-82
+- DDoS attacks
+- amplification attacks 182
+- layer 4 DDoS attacks 182
+- layer 7 DDoS attacks 182
+- DDoS protection 181-185
+- Defeat Defender 251
+- device pillar 37
+- Diavol ransomware 12-14
+
+### C
+- Citrix
+- reference link 47
+- secure access services, providing 171, 172
+- Citrix ADC (CVE-2019-19781) 28, 29
+- Citrix Secure Private Access
+- overview 172
+- Client Access Service (CAS) 27
+- Cloud Access Security Broker (CASB) 174
+- Cloudflare
+- secure access services, providing 172-174
+
+### E
+- Digital Forensics and Incident Response (DFIR) 243
+- Distributed Denial of Service (DDoS) attack 7
+- DLP features 199
+- DNS filtering 118
+- Domain-Based Message Authentication, Reporting, and Conformance (DMARC) 135
+- Domain Controllers (DC) 244
+- DomainKeys Identified Mail (DKIM) 135
+- Egnyte 176
+- ELK 56
+- email services
+- content and URLs, protecting 135, 136
+- domains, protecting 134, 135
+- securing 132-134
+- Endpoint Detection and Response (EDR) 102, 169, 257
+- Endpoint Manager
+- ASR rule 104
+- endpoints
+- securing 102
+- end user machine
+- attack vector, accessing via 12
+- exabeam 57
+- Exploit Guard Demo Tool
+- configuration 106
+- External Attack Surface Management (EASM) 228
+
+### F
+- Fileflex 176
+- file groups 255
+- File Server Resource Manager (FSRM) role 255
+- foundation, within Microsoft Azure
+- securing 57-60
+- securing, concepts and features 58, 59
+
+### G
+- geo-blocking 184
+- golden ticket attacks 238
+- Graylog 56
+- GreyNoise
+- reference link 233
+
+### H
+- hub-and-spoke network
+- architecture 145, 146
+- humio 57
+- Hybrid Azure AD joined 43
+
+### I
+- identity and access control 47, 48
+- authentication methods, ensuring 49-53
+- least privilege, using 53, 54
+- role-based access control 53, 54
+- strong passwords, ensuring 49-53
+- user life cycle management 48, 49
+- identity and access management in Microsoft Azure 141-145
+- identity-based attacks 20-23
+- vulnerabilities 24
+- vulnerabilities, monitoring 30, 31
+- identity pillar 35, 36
+- ID Ransomware
+- reference link 4, 209
+
+### incidents
+- handling 88-91
+- infrastructure
+- automatic patching 251-255
+- Infrastructure as Code (IaC) 71, 151
+- Internet of Things (IoT) devices 37
+- intrusion detection and prevention systems (IDPS) 257
+- Intrusion Detection System (IDS) 255
+
+### J
+- JumpCloud
+- URL 180
+- just-in-time (JIT) access 96
+
+### K
+- Kerberos 43
+- Kerberos ticket manipulation 238
+- Knowledge Base (KB) 254
+- Kusto
+- performing 83-85
+- queries, used for initial compromise 95, 96
+
+### L
+- LAN manager (LanMan) 239
+- lateral movement 166
+- LDAP-based authentication protocols 49
+- Leo, AI engine 224
+- Living Off the Land Binaries (LOLBins) 122, 123
+- Local Administrator Password Solution (LAPS) 245
+- Local Code Execution (LCE) 45
+- Local Redundant Storage (LRS) 160
+- Local Security Authority (LSA) 108, 239
+- Local Security Authority Server Service (LSASS) 241
+- LockBit ransomware 16, 17
+- log queries
+- performing 83-85
+
+### M
+- Make Me Admin 53
+- master database files (MDFs) 200
+- Microsoft
+- secure access services, providing 170, 171
+- Microsoft 365 guidance for security & compliance
+- reference link 190
+- Microsoft Azure
+- identity and access management 141-145
+- Microsoft Defender 66-69, 107-110
+- features 96
+- features and platforms 68
+- vulnerability, detecting with 96-98
+- Microsoft Defender for Cloud 142
+- Microsoft Defender for Servers 142, 154-157
+- data sources, using 85-88
+- Microsoft Edge, policy settings
+- reference link 114
+- Microsoft Intune 35
+- Microsoft LAPS and Cloud LAPS 52
+- Microsoft Office Apps
+- securing 112-114
+- Microsoft Purview compliance portal
+- reference link 190
+- Microsoft Security Response Center (MSRC)
+- reference link 31
+- Microsoft Sentinel 66-69, 142
+- analytics rules, creating to trigger incident 88-91
+- data sources, enabling to be collected in 87
+- data sources, using 85-88
+- designing 69-73
+- implementing 69-73
+- reference link 66
+- settings 79, 80
+- Microsoft Sentinel, data
+- Kusto and log queries, performing 83-85
+- Mimikatz 25
+- download link 239
+- tools, for performing variety of attacks 238
+- miscellaneous endpoint
+- countermeasures 117
+- default applications 123, 124
+- DNS filtering 118
+- LOLBins 122, 123
+- PowerShell 118-120
+- SMB protocol 120-122
+- mobile device management
+- (MDM) solutions 249
+- Multi-Factor Authentication (MFA) 125, 242
+
+### N
+- National Institute of Standards and
+- Technology (NIST) 51
+- network access 40-43
+- Network Access Control (NAC) 167, 257
+- Network Flow Logs 143
+- Network Interface Card (NIC) 143
+- Network Level Authentication
+- (NLA) 177, 241
+- network pillar 38
+- Network Policy Server (NPS) 34, 50
+- network scanner 199
+- Network Security Group (NSG) 58, 143
+- Network Virtual Appliance (NVA) 60
+- New Domain Registrations (NDRs) 118
+- Newly Registered Domains (NRDs) 12
+- New Technology LAN Manager (NTLM) 239
+- Nmap
+- download link 221
+- NSG flow logs 58
+- NTLM 43
+
+### O
+- OAuth 43
+- Office365 43
+- OneDrive 43
+- One-Time Passcode (OTP) 129
+- operating system (OS) 239
+
+### P
+- Pacific Standard Time (PST) 252
+- pass-the-hash attacks 238
+- password cracking 238
+- patch management 43-45
+- Patch Tuesday 252
+- phishing emails
+- structure 132, 133
+- PickupSTIX 234
+- Platform as a Service (PaaS) 257
+- Platform-Managed Keys (PMKs) 160
+- Point of Presence (PoP) 175
+- Point-to-Site (P2S) configuration 171
+- potentially unwanted applications
+- (PUA) 107
+- PowerShell scripts 118-120
+- log mechanisms 119
+- PrintNightmare 24
+- vulnerability management, example 45-47
+- privileged access workstations (PAWs) 243
+- Privileged Identity Management
+- (PIM) features 256
+- Proof of Concept (PoC) 251
+- ProxyShell 27
+
