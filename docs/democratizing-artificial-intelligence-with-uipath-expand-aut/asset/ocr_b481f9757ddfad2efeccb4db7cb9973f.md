@@ -1,0 +1,5 @@
+# Summary
+
+In this chapter, we discussed the next phase of the automation journey; gathering requirements and designing the solution. We learned about how to gather requirements for an automation opportunity, how to set target goals for the automation, and how to design the automation with the end user experience in mind. By gathering the requirements of the business, reaffirming them by setting target goals, and incorporating this feedback into the future state design, we can ensure a successful automation deployment.
+
+In *Chapter 6, Understanding Your Tools*, we will take the next step with our automation opportunities with the development phase of the automation life cycle. In the next chapter, we will learn about the characteristics of UiPath's cognitive tools, **Document Understanding**, **AI Center**, and **Computer Vision**, by venturing into their features and learning how to build with each tool.

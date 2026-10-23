@@ -1,0 +1,13 @@
++   2. **Digitize**: The second step is to turn a file into machine-readable content. This step requires the selection of an **Optical Character Recognition (OCR)** engine to digitize the content. UiPath Document Understanding has built-in integration with the most popular OCR engines. The OCR engines are UiPath Document OCR, OmniPage OCR, Google Cloud Vision OCR, Microsoft Azure Computer Vision OCR, Microsoft OCR, Tesseract OCR, and ABBYY Document OCR.
+
++   3. **Classify and Validate**: The third step identifies what types of documents the robot is processing. This step leverages AI/ML. There are three sub-steps to this step:
++   
++   - **Document classification**: This sub-step automatically determines the relevant document types. There are four OOTB classifiers: Keyword-Based Classifier, Intelligent Keyword Classifier, FlexiCapture Classifier, and Machine Learning Classifier. You can also create your own classifier to implement a custom algorithm.
++   
++   - **Document classification validation**: This sub-step allows for human validation using the **Classification Station**. There are two options when it comes to using the Classification Station: as an attended activity or as an Action Center task. This sub-step is optional but highly recommended if you are dealing with multiple document types in a single file or if you need 100% accuracy.
++   
++   - **Document classification training**: This sub-step passes the human-validated information back to the classifiers to improve their future predictions. This sub-step closes the feedback loop for classifiers that are capable of learning from human feedback. The available classifier trainers are Keyword-Based Classifier Trainer, Intelligent Keyword Classifier Trainer, and Machine Learning Classifier Trainer.
+
++   4. **Extract and Validate**: This step identifies specific information for extraction from the documents. This step leverages AI/ML. There are three sub-steps to this step:
++   
++   - **Data extraction**: This sub-step automatically extracts the relevant information from each document type as defined in the taxonomy. This step ensures that the configured extractors are called in the correct order, for the relevant list of fields, and for the specified page range of the file being processed. There are five out-of-the-box extractors: Regex-Based Extractor, Form Extractor, Intelligent Form Extractor, FlexiCapture Extractor, and Machine Learning Extractor. You can also create your own extractor to implement a custom algorithm.

@@ -1,0 +1,61 @@
+reviews:
+- 'no': 2
+  overturn_probability: 0.1
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 前言、序言、致谢等正文前内容规则要求统一划分为一章，## 前言 位于正文前且后接前言正文，符合前言章节划分规则
+  keep_split: true
+- 'no': 96
+  overturn_probability: 0.2
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '## Section 1: The Basics 为最高层级部分标题，后接章节列表并进入第1章内容，符合部分-章节模式下的新章起始'
+  keep_split: true
+- 'no': 106
+  overturn_probability: 0.05
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '# 1 Understanding Essential Artificial Intelligenc... 为一级编号章标题，单独成行且后接章节概述，符合章标题特征'
+  keep_split: true
+- 'no': 337
+  overturn_probability: 0.85
+  alternative: 排版断行/页眉页脚
+  counter_evidence:
+  - '行内容仅为 ''# 2''，无标题语义，后续标题实际出现在 no 339 ''### 2 弥合 RPA 与认知自动化之间的鸿沟''，标题层级为 ### 与前文不一致；单独的编号行更像是排版噪声或断行标记，而非完整章标题'
+  keep_split: false
+- 'no': 571
+  overturn_probability: 0.15
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '# 3 后紧跟完整章名 ''理解认知自动化生命周期中的 UiPath 平台''，编号与标题对应，符合一级章标题格式'
+  keep_split: true
+- 'no': 978
+  overturn_probability: 0.2
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '# Section 2: 使用 AI Center 和 Document Understanding 的开发生命周期 为最高层级部分标题，开启新部分，符合部分划分规则'
+  keep_split: true
+- 'no': 990
+  overturn_probability: 0.1
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '# 4 后接 ''识别认知机会'' 为第4章标题，编号连贯且单独成行，符合章标题特征'
+  keep_split: true
+- 'no': 1395
+  overturn_probability: 0.1
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '# 5 Designing Automation with End User Considerati... 为一级章标题，单独成行且后接章节内容，符合章标题特征'
+  keep_split: true
+- 'no': 2507
+  overturn_probability: 0.8
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题层级为 ## 而非全书最高层级 #，与此前 # 1、# 2、# 3、# 4、# 5 的编号格式不一致；内容 ''7 测试和完善开发工作'' 更像是二级小标题或节标题，而非最高层级大章；标题末尾无句号但层级不符'
+  keep_split: false
+- 'no': 2774
+  overturn_probability: 0.1
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '# 8 后接 ''用例1 – 使用文档理解处理收据'' 为第8章标题，编号连贯且单独成行，符合章起始特征'
+  keep_split: true

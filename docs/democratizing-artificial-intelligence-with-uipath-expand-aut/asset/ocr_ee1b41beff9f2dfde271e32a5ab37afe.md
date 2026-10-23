@@ -1,0 +1,11 @@
+Once validated, you can click **Save** to continue, and UiPath will use that validation to retrain the **DocumentUnderstanding** classifier. Continue testing the automation with additional receipts from the testing folder. As you continue testing and retraining, performance should increase with the classifier and extractor.
+
+In summary, using the Validation Station to validate classification and extraction results is crucial during the testing phase. Any human validation is an opportunity to make our ML skills smarter and stronger. In this section, we learned how to enable the Validation Station within the *Document Understanding Process template* and then learned how to interact with the Validation Station. In the next section, we will prepare the use case for deployment by adding features to enhance the end user experience.
+
+# Deploying with the end user experience in mind
+
+With the initial development and testing of the use case complete, we can venture into deploying the automation into a production environment. However, before deploying into production, there are a few items we should add to the automation in order to improve the end user experience. In this section, we will create a **dispatcher**, an additional workflow to dispatch our `Main-Attended.xaml` file. After creating the dispatcher, we will add a couple of dialog boxes to keep the end user informed about the status of the automation. Once complete, we will be ready for the last section, deploying the automation into production.
+
+# Creating the dispatcher
+
+You may have noticed from testing the use case during the last section that we can only run the automation for one receipt at a time. Because the *Document Understanding Process template* is configured to handle one document at a time, we need to create a mechanism that dispatches the Document Understanding Process template. The dispatcher will ask the user for a folder path as input and, for each file within the folder, call the Document Understanding Process template we created, meeting the requirements set with the future state design.

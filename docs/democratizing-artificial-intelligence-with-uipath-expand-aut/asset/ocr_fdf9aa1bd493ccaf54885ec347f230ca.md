@@ -1,0 +1,11 @@
+In the contract processing example in the prior section, there are four sequential steps in the current state. In the future-state design, the process is regrouped into two. One is for the machines to complete, and one is for the humans to perform. We have applied each of the cognitive automation design principles to make the future-state design, as follows:
+
++   - **Problem solving**: This process stores contracts in the system and resolves non-compliance issues. Most activities are either rule-based or have a predictable outcome with sufficient training data. The current automation technology stack can automate most of the steps.
++   - **Memory and productivity**: Since humans and machines think and perform differently, the future-state design regroups activities into human activities and machine activities. The machine activities remain sequential and can be run at non-business hours to optimize the runtime schedule. Human activities are discrete and can be performed when it is the most convenient. Humans can decide to process a few activities at a time or all at once without dependencies on machines. The future state is designed with human-machine collaboration in mind.
++   - **Emotions**: In this process, the only step that involves delicate stakeholder interactions is the non-compliance resolution step. Therefore, in the future-state design, this step remains with humans. However, NLP is used as much as possible to identify non-compliance issues for humans to review. Humans handle all stakeholder interactions. This is another form of human-machine collaboration design.
+
+# Practical tips
+
+Cognitive automation is a powerful tool to extend automation potentials. When human-machine collaboration is done right, it improves the **user experience (UX)**. We have shown you the spectrum of office work and cognitive automation design principles.
+
+Pick a past RPA project you have completed. Review the process to see if it is a cognitive automation candidate. If it is, apply the cognitive automation design principles you've learned about. Design a future state and compare it against what you have done with RPA alone. You will find that it is easy to extend automation benefits with just some tweaks on how you view the business problem and how you solve it with automation technologies.
