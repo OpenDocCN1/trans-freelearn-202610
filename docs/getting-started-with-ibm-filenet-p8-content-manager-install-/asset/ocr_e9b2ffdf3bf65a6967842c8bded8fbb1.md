@@ -1,0 +1,11 @@
+From that same pop-up screen, you can directly examine the content or property sheet for any version still available in the repository. If you click the hyperlinked value in the Title column, that version should open in a web browser. For the Released version, you should be able to spot the change you made. Close the pop-up to return to the main XT screen.
+
+Suppose you've come to regret your decision to modify the document. (Who do you think you are, anyway? Shakespeare?) One option would be to do another checkout/checkin cycle and attempt to restore the file's original contents. Of course, you'd still be leaving around a record of your impudent editing, and you may or may not be able to get back to the original contents for a complex document (unless you realize that you can download the content from an earlier version in the repository). What we really want, in this case, is more of an "undo" for the checkout/checkin cycle that is already completed.
+
+Within the CE, each document version is a separate object that can be manipulated individually. The delete action in XT (and most other tools) acts behind the scenes to delete all of the versions of a document because that is the most common use case. XT also offers the option to delete individual versions. Right-click the document again, and from the context menu navigate to More Actions | Delete Versions. You'll see a pop-up listing all available document versions, similar to the previous pop-up. This time, the individual versions have checkboxes next to them, and you can decide which versions you want to delete. Beware that once you delete them, they really will be gone from the repository.
+
+![](bbox=[0.15, 0.53, 0.81, 0.66])
+
+Interestingly enough, it's not just the older versions that you can delete. Notice that you can delete any version, including the current version. Go ahead and do that: check the box for the Released version and click Accept (do not check the box for the older version). When you get back to the main XT window, you'll see that the major version is once again 1. If you look at that document's content, you'll see the original, unmodified text, as expected.
+
+Hey presto! It's content management.

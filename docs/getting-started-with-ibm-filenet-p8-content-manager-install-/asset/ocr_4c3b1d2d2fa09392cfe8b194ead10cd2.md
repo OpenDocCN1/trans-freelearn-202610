@@ -1,0 +1,9 @@
+The property PropertyDefinitionObject.TargetAccessRequired is an integer-valued property that defines, in the usual bitmask representation, the access rights to the pointed-to object that a user must have when setting the value of an OVP on the pointing object. In the usual case, there are no extra access rights required. As an example of using TAR, you may wish to require that the calling user has the right to delete the pointed-to object before setting up the pointer. You would add that right to the pointing object's target access required for that property. In other words, you would set it on the property definition of the pointing OVP.
+
+# Default instance security
+
+When an object is created, the creating application can explicitly set its access permissions. The Permissions property holds the ACL and can be set at creation time like many other properties. In that case, the ACL is applied as is, and each ACE becomes a direct ACE as we described above. It can be tedious and error-prone to have to correctly set the ACL explicitly for every new object, so there is a defaulting mechanism.
+
+A Class Description has a property called DefaultInstancePermissions. This is just a pre-defined ACL. It doesn't apply to the Class Description itself. Rather, it applies to new object instances of that class if the ACL is not set explicitly by the caller. In that case, the ACEs are default ACEs. For access checking purposes, direct ACEs and default ACEs have the same effect. You will recall that they were in the same tier when we described the access control calculation earlier in this chapter. Here, for example, is the FEM view of the default instance permissions for the Work of Literature class:
+
+![](bbox=[0.329, 0.556, 0.64, 0.826])

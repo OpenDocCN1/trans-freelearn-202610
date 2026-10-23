@@ -1,0 +1,7 @@
+In J2EE terms, we'll be using **container-managed authentication**, and we'll be using the a form-based login (in the previous screenshot) conforming to J2EE specifications. Unfortunately, the J2EE specifications don't provide a standard means for logging out, although most application servers provide proprietary mechanisms to achieve that. We wanted our sample application to be as platform-neutral as it could be, so we didn't use any of those proprietary mechanisms. Although every screen in DUCK application has a **Logout** button that takes the user back to the login screen, the user is not actually logged out at that point. The user could, for example, use the browser **Back** button to return to the previous screen and navigate from there because the session is still active.
+
+# Find documents
+
+The basic model will be to find documents by browsing the folder hierarchy, starting at the root folder, of a single configured Object Store. The browse process will honor the Folder.IsHiddenContainer property and will not show hidden folders. At each level, a list of subfolders and containees will be displayed in a predefined layout. Clicking on a subfolder name causes descent into that subfolder.
+
+![](bbox=[0.2, 0.47, 0.77, 0.82])

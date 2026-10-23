@@ -1,0 +1,11 @@
+> Providing a value for a property with a Security Proxy Type of INHERITED modifies the security of the receiving object. You probably want to control who can set values on those properties. A convenient way to do that is to use Modification Access Required (MAR) feature described earlier in this chapter. Assign a MAR value that includes at least the WRITE_ACL right.
+
+# System-defined inheritance
+
+There are several pre-defined security inheritance relationships in the CE system metadata. A few of those have special-purpose implementation code in the CE, but most of them use exactly the same mechanism that is used for custom properties:
+
++   - A folder inherits from its parent folder. Because a folder (other than the root folder) always has a value in its Parent property, there is another mechanism for preventing unintended security inheritance: the boolean property Folder.InheritParentPermissions.
++   - A ReferentialContainmentRelationship object does not have its own security. It always assumes the security of the Tail object, in other words, the folder that contains something.
++   - Documents and custom objects have a property SecurityFolder that can optionally point to a folder and thereby inherit security from that folder. There is no requirement that the object be filed in that pointed-to folder, although that is the usual use case. This replaces an earlier mechanism via a property called SecurityParent that pointed to a ReferentialContainmentRelationship object. The SecurityParent property still exists, but the CE emulates the old behavior via the SecurityFolder property.
++   - Documents, folders, and custom objects can have annotations. An annotation object inherits security from the annotated object. An annotation always has a value in its AnnotatedObject property.
++   - A Class Definition object can inherit security from its superclasses. The property creating the inheritance relationship is SuperclassDefinition. This is the security for the Class Definition object itself and does not affect Default Instance Security.

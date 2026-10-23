@@ -1,0 +1,62 @@
+chapter_starts:
+- 'no': 6
+  confidence: 0.8
+  final_reason: 双方一致 + 该行是书籍前置部分的第一个标题，按规则将前置内容整体划分为一章
+  accepted_evidence:
+  - 候选行“## 制作人员”是前置部分第一个标题，符合“前言、序言、致谢等正文之前内容统一划分为一章”的规则
+  - 判断方与复核方均维持分章
+  rejected_evidence:
+  - 标题后直接是制作人员表格、缺少章首概述段，但该特征不适用于前置内容整体分章
+  need_human_review: false
+- 'no': 565
+  confidence: 0.95
+  final_reason: 双方一致 + 明确的第一章标题，编号、语义、上下文均符合
+  accepted_evidence:
+  - “## 1 什么是 ECM？”含章号“1”和概括性标题，独立成行，末尾无句号
+  - 后接章首概述段及主题列表，前为前置内容结束，上下文符合章节开篇
+  - 判断方与复核方均维持分章
+  rejected_evidence:
+  - 标题以问号结尾，可能被误认为正文设问小标题；但结合编号、位置和上下文不构成推翻理由
+  need_human_review: false
+- 'no': 817
+  confidence: 0.9
+  final_reason: 双方一致 + “## 2”与下一行“安装环境组件”共同构成第二章标题，前接第一章摘要，后接章首概述
+  accepted_evidence:
+  - “## 2”为第二章编号行，下一行“安装环境组件”补全标题，二者构成完整章标题
+  - 前接第 1 章“## 摘要”，后接章首概述与主题列表，上下文符合章边界
+  - 判断方与复核方均维持分章
+  rejected_evidence:
+  - 该行本身只有编号、无标题文字，但可判定为排版断行导致的拆分，不影响分章
+  need_human_review: false
+- 'no': 1498
+  confidence: 0.95
+  final_reason: 双方一致 + 明确的第三章标题，格式与连续性均符合
+  accepted_evidence:
+  - “## 3 安装 Content Engine”符合章编号格式，独立成行无句号
+  - 后接概述段落和“本章包含以下主题”列表，前接第 2 章末尾
+  - 判断方与复核方均维持分章
+  rejected_evidence:
+  - 使用“##”标记与前置部分小标题样式相同，但编号连续性和上下文证明其是正文大章
+  need_human_review: false
+- 'no': 1740
+  confidence: 0.95
+  final_reason: 双方一致 + 明确的第四章标题，格式、语义、上下文均符合
+  accepted_evidence:
+  - “## 4 管理工具与任务”符合章编号格式，独立成行无句号
+  - 前接第 3 章末尾，后接章首概述和主题列表
+  - 判断方与复核方均维持分章
+  rejected_evidence:
+  - 使用“##”标记与前置部分小标题样式相同，但编号连续性和上下文证明其是正文大章
+  need_human_review: false
+- 'no': 2750
+  confidence: 0.9
+  final_reason: 双方一致 + 无编号但语义与上下文明确指向第六章“最终用户工具和任务”
+  accepted_evidence:
+  - 标题“最终用户工具和任务”与目录中的第六章标题语义对应，独立成行无句号
+  - 后接章首概述“在*第 4 章，管理工具和任务*中，我们看到了...”及主题列表
+  - 前接第 5 章末尾总结，上下文符合新章开始
+  - 判断方与复核方均维持分章
+  rejected_evidence:
+  - 标题缺少章序号，但语义、位置和上下文足以确认其为无编号章标题
+  need_human_review: false
+rejected_lines: []

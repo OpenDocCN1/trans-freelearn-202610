@@ -1,0 +1,14 @@
+A system property will have a true value for the IsSystemOwned property, whereas a custom property will have a false value.
+
+The Settab ility property controls when and if a property's value can be changed by any caller (this is not a security feature because it doesn't depend on the identity of the caller). The READ_ONLY and READ_WRITE values are easy to understand. There are two other values which are more specialized: SETTABLE_ONLY_ON_CREATE means that the property can be set only at creation time of the object. SETTABLE_ONLY_BEFORE_CHECKIN is similar, but applies only to reservation documents and allows property updates until the document is checked in.
+
+A property may have a default value that is used if the calling application does not explicitly provide one. The properties holding the default values vary by Property Definition subclass and have names like PropertyDefaultString, PropertyDefaultBoolean, and so on.
+
+The PersistenceType property has three possible values and is mainly used to control whether a multi-valued property of a primitive data type gets its own database table (sometimes an important performance trade-off). However, the most interesting value is NOT_PERSISTENT, meaning that the property value is not stored anywhere. These are also known as transient properties. You're probably wondering why anyone would create a property that doesn't get stored. There are two practical uses for it:
+
++   - Although any update to a transient property value eventually gets discarded, it survives long enough to be seen by event handlers. It can thus be used by applications as a signaling device to event handlers for whatever is privately arranged between the event handler and the applications. Typically, it is used to somehow identify the calling application. You should not think of this as some kind of security mechanism or a way of signaling that a trusted application of some kind is calling since an attacker could trivially exploit it.
++   - If a property is transient but has a default value, it acts as a class constant. Any fetch of that property will see the default value. This can be another way of distinguishing subclasses or efficiently providing information about the entire class to applications.
+
+There are a few interesting properties that apply only to PropertyDefinitionObject, and we'll consider those next.
+
+RequiredClassId imposes a restriction on the classes of the objects that may be pointed to by this property. As you would expect, if this property indicates the Work of Literature class, then the object property may only point to a Work of Literature object (or an object from a subclass of Work of Literature).

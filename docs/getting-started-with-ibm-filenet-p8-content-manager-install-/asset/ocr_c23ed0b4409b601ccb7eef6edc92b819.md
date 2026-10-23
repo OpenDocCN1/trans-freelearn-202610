@@ -1,0 +1,13 @@
+# AddOn components
+
+The CE has a feature specifically to deal with this need. An AddOn is a bundle of things that can define a custom feature from the CE's point of view. The AddOn bundle can contain any or all of the following items (all are optional):
+
++   - **Metadata definitions for custom classes and properties**: If a class or property already exists in the target Object Store, the data from the AddOn bundle is merged with it instead of replacing it. This is especially useful for the case of adding custom properties to an existing class.
++   - **Instance data**: You can include instances of Documents, Folders, Custom Object, or, in fact, almost any CE class, including things like subscriptions and event handlers. The classes and properties in the instance data must already be defined, but those definitions can be in the metadata part of the same AddOn. If the instance already exists in the target Object Store, an exception is thrown. Although there are no technical restrictions on instance data, it should be obvious that large document content can bulk up the AddOn bundle and be a bit cumbersome to manage.
++   - **Pre-installation and Post-installation Scripts**: There are occasional details of a custom feature that can be difficult to express purely with metadata and instances of CE objects. In case your AddOn falls under this fairly rare circumstance, you can include either of two optional scripts to do small amounts of CE API programming. One script, if provided, is run before any metadata and instance data is imported into the target Object Store. The other script, if provided, is run afterwards. The scripts must be written in JavaScript.
+
+# Creating and installing AddOns
+
+The management of AddOns can be slightly confusing on first encounter. An AddOn is *created* (in the sense of creating any other CE object) under the Domain object. After it is created, it is available to be *installed* into an Object Store.
+
+When you first create a Domain, you will see that a dozen or so AddOns are already created in the Domain as shown in the figure below. One of these, Base Content Engine Extensions, contains a few items that are not system properties and classes but are so popularly assumed by applications that they are considered to be essential. For example, the property DocumentTitle is not a system property but is instead created by this AddOn. Other AddOns provide custom data used by one or more IBM-provided applications.

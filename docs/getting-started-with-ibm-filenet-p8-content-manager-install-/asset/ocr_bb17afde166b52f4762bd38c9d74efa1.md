@@ -1,0 +1,5 @@
+![](bbox=[0.33, 0.15, 0.64, 0.46])
+
++   - An application makes standard JAAS call to perform authentication. It may either explicitly select a named JAAS stanza, or it may let JAAS pick a default stanza. There is a programmatic way for the login modules to ask for information from the calling application (which, if the application so desires, can translate into a user interaction to ask for the information).
++   - If the application-provided information rings true to the login modules, then the application is given a Subject. If not, an exception is thrown.
++   - Given an authenticated Subject, there is a way for applications to associate that Subject with any calls they make. We refer to this as having an ambient JAAS Subject because, once established, it tends to be automatically available for the kinds of situations where we need to find it. Application programmers typically do not pass a Subject as a parameter to many different method calls. The CE Java API does provide some convenience methods for explicitly manipulating Subjects, but their use is strictly optional.

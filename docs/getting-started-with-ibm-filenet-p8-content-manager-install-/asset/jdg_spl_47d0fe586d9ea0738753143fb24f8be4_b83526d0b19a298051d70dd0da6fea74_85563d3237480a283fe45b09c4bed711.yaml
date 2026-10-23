@@ -1,0 +1,67 @@
+chapter_starts:
+- 'no': 3014
+  confidence: 0.9
+  final_reason: 复核方反证成立：行 3015 只是标题副行，编号行 3014“## 7”才是第 7 章实际起始；上下文位于上一章总结之后，后接章名与本章概述。
+  accepted_evidence:
+  - 行 3014 为独立编号行，与后续标题行构成全书最高层章标题
+  - 上一章以总结收尾，3014 后接本章内容
+  rejected_evidence:
+  - 判断方将 3015 行作为章起始，但该行属于同一章节标题块的副行
+  need_human_review: false
+- 'no': 3626
+  confidence: 0.98
+  final_reason: 编号与标题同行，单独成行且末尾无句号，后接本章介绍段落；双方一致，无反证。
+  accepted_evidence:
+  - “## 8 安全功能与规划”为最高层级章标题，编号+标题同行
+  - 后接本章主题概述与主题列表
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 4254
+  confidence: 0.9
+  final_reason: 与第 7 章相同的拆分模式：行 4254“## 9”为编号行，行 4256 为标题副行；第 9 章起始应落在编号行。
+  accepted_evidence:
+  - 行 4254 为独立编号行，构成章起始标记
+  - 上一章以摘要结束，4254 后接本章概述
+  rejected_evidence:
+  - 判断方将 4256 识别为章起始，但该行是标题副行
+  need_human_review: false
+- 'no': 4619
+  confidence: 0.98
+  final_reason: 编号+标题同行“## 10 包含和附加组件”，符合最高层级章格式，后接本章介绍段落；双方一致。
+  accepted_evidence:
+  - 独立成行，编号与标题同行
+  - 后接本章包含内容列表
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 4891
+  confidence: 0.85
+  final_reason: 独立编号行“## 11”为最高层级章起始标记；后续标题行使用“###”层级，语义上属于本章标题，不应另分一章。
+  accepted_evidence:
+  - 行 4891 为章编号行，位于上一章结束后
+  - 后续段落明示“This chapter…”，章边界明确
+  rejected_evidence:
+  - 后续标题行使用了“###”层级，不能作为最高层级章标题单列
+  need_human_review: false
+- 'no': 5393
+  confidence: 0.98
+  final_reason: 编号+标题同行“## 12 DUCK 示例应用程序”，为最高层级章标题；双方一致。
+  accepted_evidence:
+  - 独立成行，末尾无句号
+  - 后接本章介绍与内容列表
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 5860
+  confidence: 0.98
+  final_reason: 编号+标题同行“## 13 Support, Fix Packs, and Troubleshooting”，为最高层级章标题；双方一致。
+  accepted_evidence:
+  - 独立成行，编号与标题同行
+  - 后接本章领域介绍
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 3015
+  reason: 复核方反证成立：行 3014“## 7”是本章编号行，本行只是章标题副行；若将本行单独分章会使章起始偏离编号行。
+  need_human_review: false
+- 'no': 4256
+  reason: 复核方反证成立：行 4254“## 9”是本章编号行，本行为标题副行；不应作为独立章起始。
+  need_human_review: false

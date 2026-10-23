@@ -1,0 +1,13 @@
+In addition to the system-defined events, it is also possible to define custom events. A custom event is created by making a subclass of the Custom Event base class. As usual, the subclass can have custom properties defined on it. A custom event is fired by an application calling the Subscribable.raiseEvent(CustomEvent) method. Once triggered, event handlers are called as for a system event. At first glance, it may seem pointless to have applications firing custom events just to call event handlers with custom logic. The advantages are the same as mentioned at the beginning of this section: moving business logic out of the application and into the server tier. We'll show an example of using custom events in this way in the sample application in Chapter 12, The DUCK Sample Application.
+
+# Subscriptions
+
+Tying events to handlers is done via a subscription mechanism. On the one hand, a subscription points to a class or an instance from which events can be triggered. On the other hand, the subscription points to an Event Action which identifies the event handler to be executed and other details. Finally, the subscription includes a list of event types of interest.
+
+A subscription may be applied to a specific object, in which case it's called an instance subscription. A subscription may be applied to an entire class of objects, in which case it's called a class subscription. A class subscription is used whenever any instance of that class (including subclass instances) has an event. For performance purposes, a filter expression— similar to a CE SQL WHERE clause— may be supplied. A subscription is only used if the filter expression evaluates to true for the triggering object.
+
+There can be any number of separate class or instance subscriptions for a particular object. Within the synchronous and asynchronous types, there is no defined order in which the event handlers are called. In fact, the order may change from one event firing to another.
+
+A subscription is classified as either synchronous or asynchronous, depending on when the associated event handler is executed. There is more difference between these than the timing, however, and the difference is commonly misunderstood.
+
+> As a terminology convenience, events or event handlers are sometimes referred to as being synchronous or asynchronous. This is not technically correct because the designation is always made on the subscription object. An event can have either kind of subscription, and an event handler can be invoked both ways.

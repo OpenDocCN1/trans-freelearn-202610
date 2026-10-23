@@ -1,0 +1,9 @@
+# # Acknowledgement
+
+I could not have written this book without the mountains of direct and indirect help I've received over the years in learning the lore of ECM. That help came from two primary places. First, my many colleagues at IBM (and at FileNet in the days before IBM) have taught me most of what I know about ECM (before, I couldn't even spell ECM, and now...). Thanks to those in product development, support, field engagements, and to others that I have known over the years; and, especially, I thank my fellow architects for our many patient, professional, and detailed discussions on countless topics. Second, I have learned a lot about ECM from our customers, partners, and the IBM colleagues who work most closely with them. Although P8 is a platform, most of our work is driven by use-cases. Hearing about new use-cases is always a delight and an education (even if the discussion is about features we don't have).
+
+My special thanks to the technical reviewers. They worked long hours reading and commenting on all of the chapters of the book, as evident by the many comments and suggestions they sent my way. The book is significantly better for it. Thanks also to the editors and staff at Packt Publishing for giving me the writing opportunity and guiding me along the path to publication. Ultimately, of course, any remaining errors in the text are fully my responsibility.
+
+Finally and most of all, I'd like to thank my wife, daughter, and son for patiently enduring my lack of attention over these past months. Despite my absence from many household activities, projects, and duties, they gave me constant encouragement for my work on this book. (I know what you are thinking, but I'm not going to be thanking the family cat. As it turns out, he was not that helpful for the writing part. Also, his technical ideas were just plain nonsense.)
+
+— WJC, Seattle, December 2010

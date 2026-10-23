@@ -1,0 +1,5 @@
+In addition to the items directly available in the tree view shown above, most of the remainder of the items contained directly within the Domain are available one way or another in the pop-up panel you get when you right-click on the Domain node in FEM and select **Properties**.
+
+![](bbox=[0.305, 0.223, 0.665, 0.56])
+
+The pop-up panel **General** tab contains FEM version information. The formatting may look a little strange because the CM release number, including any fix packs, and build number are mapped into the Microsoft scheme for putting version info into DLL properties. In the previous figures, **4.51.0.100** represents CM 4.5.1.0, build 100. That's reinforced by the internal designation of the build number, **dap451.100**, in parentheses. Luckily, you don't really have to understand this scheme. You may occasionally be asked to report the numbers to IBM support, but a faithful copying is all that is required.
