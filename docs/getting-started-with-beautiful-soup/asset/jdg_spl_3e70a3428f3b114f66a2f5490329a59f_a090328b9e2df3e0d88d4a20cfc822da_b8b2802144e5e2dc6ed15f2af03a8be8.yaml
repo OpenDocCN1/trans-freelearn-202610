@@ -1,0 +1,75 @@
+chapter_starts:
+- 'no': 121
+  confidence: 1.0
+  final_reason: 双方一致，最高层级大章标题，编号、格式、语义均符合
+  accepted_evidence:
+  - 单独成行，编号为第 1 章，长度小于30字，无句号
+  - '后接概述段落，后续出现 ### 子节，符合章节结构'
+  - 前文为前置内容末尾，后文开启正文第一章
+  rejected_evidence:
+  - 复核方替代意见“正文小标题”证据不足，已被驳回
+  need_human_review: false
+- 'no': 281
+  confidence: 1.0
+  final_reason: 双方一致，最高层级大章标题，编号、格式、语义均符合
+  accepted_evidence:
+  - 单独成行，编号为第 2 章，无句号
+  - '后接 283-285 行概述段落，后续有多个 ### 子节'
+  - 前文为第 1 章结尾，章节边界清晰
+  rejected_evidence:
+  - 复核方替代意见“正文小标题”证据不足，已被驳回
+  need_human_review: false
+- 'no': 634
+  confidence: 1.0
+  final_reason: 双方一致，最高层级大章标题，编号、格式、语义均符合
+  accepted_evidence:
+  - 单独成行，编号为第 3 章，无句号
+  - '后接 636-638 行概述，后续有 ### 子节'
+  - 前文为第 2 章小结，符合章节边界
+  rejected_evidence:
+  - 复核方替代意见“正文小标题”证据不足，已被驳回
+  need_human_review: false
+- 'no': 1425
+  confidence: 1.0
+  final_reason: 双方一致，最高层级大章标题，编号、格式、语义均符合；虽有标题重复噪声，不影响判定
+  accepted_evidence:
+  - 单独成行，编号为第 4 章，无句号
+  - '后接 1429 行概述段落，后续有多个 ### 子节'
+  - 前文为第 3 章总结，边界清晰
+  rejected_evidence:
+  - 1426-1427 行标题重复排版噪声，但不足以否定章标题身份
+  need_human_review: false
+- 'no': 1867
+  confidence: 1.0
+  final_reason: 双方一致，最高层级大章标题，编号、格式、语义均符合
+  accepted_evidence:
+  - 单独成行，编号为第 5 章，后接同名小节 1868 行
+  - 前文 1863-1865 行为上一章总结
+  - 后续内容围绕修改内容展开，统领性强
+  rejected_evidence:
+  - 复核方替代意见“正文小标题”证据不足，已被驳回
+  need_human_review: false
+- 'no': 2578
+  confidence: 1.0
+  final_reason: 双方一致，最高层级大章标题，编号、格式、语义均符合
+  accepted_evidence:
+  - 单独成行，编号为第 6 章，后接概述段落 2580 行
+  - 前文 2778-2780 行为上一章总结
+  - '后续有多个 ### 子节，结构完整'
+  rejected_evidence:
+  - 复核方替代意见“正文小标题”证据不足，已被驳回
+  need_human_review: false
+- 'no': 2782
+  confidence: 1.0
+  final_reason: 双方一致，最高层级大章标题，编号、格式、语义均符合
+  accepted_evidence:
+  - 单独成行，编号为第 7 章，后接同名小节 2783 行
+  - 前文 2778-2780 行为上一章总结
+  - 后续内容围绕输出方法展开，统领性强
+  rejected_evidence:
+  - 复核方替代意见“正文小标题”证据不足，已被驳回
+  need_human_review: false
+rejected_lines:
+- 'no': 2
+  reason: 复核方证据成立：该行是前置内容“关于作者”的内部小标题，属于 Markdown 二级标题，并非全书最高层级大章；按规则前言、致谢、关于作者等正文之前的内容应统一划为一章，不应在此处细分章节。
+  need_human_review: false

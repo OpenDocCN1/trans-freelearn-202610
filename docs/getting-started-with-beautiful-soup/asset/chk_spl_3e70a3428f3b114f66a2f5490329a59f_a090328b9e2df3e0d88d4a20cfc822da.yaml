@@ -1,0 +1,58 @@
+reviews:
+- 'no': 2
+  overturn_probability: 0.85
+  alternative: 正文小标题
+  counter_evidence:
+  - '该行是 Markdown 二级标题 ## 关于作者，属于前言/致谢/关于作者等正文之前的前置内容内部的小标题，而非全书最高层级大章；前置内容应统一划为一章，不应在此处再细分章节'
+  - '上下文 4-11 行均为作者介绍、致谢等前置段落，12 行后紧跟 ## 关于评审人员 等同级前置小标题，显示为同一前置区块的内部划分'
+  - '真正的书名/前置章起点应为 0 行 # Beautiful Soup 入门指南，2 行不应单独成章'
+  keep_split: false
+- 'no': 121
+  overturn_probability: 0.05
+  alternative: 正文小标题
+  counter_evidence:
+  - 该行符合最高层级大章特征：编号 第 1 章、单独成行、长度 <30 字、后 1~3 行为概述段落
+  - '后续 128 行起出现 ### 安装 Beautiful Soup 等子节，符合章节结构'
+  keep_split: true
+- 'no': 281
+  overturn_probability: 0.05
+  alternative: 正文小标题
+  counter_evidence:
+  - 编号 第 2 章、单独成行、后接概述段落 283-285 行，符合大章判定规则
+  - 上下文前为第 1 章结尾小结，后为新章节内容
+  keep_split: true
+- 'no': 634
+  overturn_probability: 0.05
+  alternative: 正文小标题
+  counter_evidence:
+  - 编号 第 3 章、单独成行、后接概述段落 636-638 行，符合大章判定规则
+  - 前文 632-633 行为上一章小结，符合章节边界
+  keep_split: true
+- 'no': 1425
+  overturn_probability: 0.1
+  alternative: 正文小标题
+  counter_evidence:
+  - 编号 第 4 章、单独成行，后接 1429 行概述，符合大章特征
+  - 1426-1427 行出现标题重复排版噪声，但不影响章节判定
+  keep_split: true
+- 'no': 1867
+  overturn_probability: 0.05
+  alternative: 正文小标题
+  counter_evidence:
+  - 编号 第 5 章、单独成行，后接同名小节 1868 行，符合大章判定规则
+  - 前文 1863-1865 行为上一章总结
+  keep_split: true
+- 'no': 2578
+  overturn_probability: 0.05
+  alternative: 正文小标题
+  counter_evidence:
+  - 编号 第 6 章、单独成行、后接概述段落 2580 行，符合大章特征
+  - 前文 2778-2780 行为上一章总结
+  keep_split: true
+- 'no': 2782
+  overturn_probability: 0.05
+  alternative: 正文小标题
+  counter_evidence:
+  - 编号 第 7 章、单独成行、后接同名小节 2783 行，符合大章判定规则
+  - 前文 2778-2780 行为上一章总结
+  keep_split: true
