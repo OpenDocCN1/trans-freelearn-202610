@@ -1,0 +1,149 @@
+reviews:
+- 'no': 0
+  overturn_probability: 0.15
+  alternative: 书籍封面/书名标题，可作为正文前统一章节的起点
+  counter_evidence:
+  - 该行是全书书名，不是带编号的正文章节标题，也没有后续概述段落；若只看格式更像封面标题。
+  - 真正正文中的第 1 章要到第 998 行才出现，在此之前均为书名、致谢、Contributors、About 等前置内容；因此将第 0 行作为“前置内容章节”的起点可以成立，但它本身并不是严格意义上的章标题。
+  keep_split: true
+- 'no': 66
+  overturn_probability: 0.96
+  alternative: 目录中的 Chapter 1 条目（带页码 1）
+  counter_evidence:
+  - 第 68-100 行紧接着是“Technical requirements ......”“PostgreSQL at a glance ......”“Summary
+    ......”“References .....”等带点线和页码的目录项，而不是章后概述段落。
+  - 该行末尾的“1”是目录页码残留；正文第 1 章实际从第 998 行“## PostgreSQL 简介”才开始，因此在此分章会把目录误当成章内容。
+  keep_split: false
+- 'no': 102
+  overturn_probability: 0.96
+  alternative: 目录中的 Chapter 2 条目（带页码 21）
+  counter_evidence:
+  - 后续行是“pg_ctl • 22”“PostgreSQL processes • 28”“Summary .....”等目录项，并非正文段落。
+  - 行末页码 21 及点线连接符表明这是目录页残留，不是正文中实际出现的章标题。
+  keep_split: false
+- 'no': 146
+  overturn_probability: 0.96
+  alternative: 目录中的 Chapter 3 条目（带页码 51）
+  counter_evidence:
+  - 后续 148-184 行都是“Technical requirements”“Managing roles”“Summary”等目录项，而非正文内容。
+  - 该行位于连续的目录清单中，行末页码 51 是典型的目录页码残留。
+  keep_split: false
+- 'no': 186
+  overturn_probability: 0.96
+  alternative: 目录中的 Chapter 4 条目（带页码 71）
+  counter_evidence:
+  - 后续 188-244 行是“Technical requirements”“Creating and managing databases”“Summary”等目录项。
+  - 该行与前后章标题构成连续目录，行末页码 71 说明它是目录条目而非正文中的实际章节标题。
+  keep_split: false
+- 'no': 246
+  overturn_probability: 0.96
+  alternative: 目录中的第5章条目（带页码 105）
+  counter_evidence:
+  - 后续 247-289 行是“### 技术要求 ... 105”“### 探索 SELECT 语句 ... 105”等目录项，不是正文段落。
+  - 行末“105”为目录页码残留，且其后并未立即出现第5章正文内容。
+  keep_split: false
+- 'no': 291
+  overturn_probability: 0.96
+  alternative: 目录中的第6章条目（带页码 155）
+  counter_evidence:
+  - 后续 292-313 行是“### 技术要求 ... 155”“### 使用基本语句的窗口函数 ... 156”等目录项。
+  - 该行后面没有概述段落，而是连续的目录点线和页码，属于目录列表项。
+  keep_split: false
+- 'no': 315
+  overturn_probability: 0.96
+  alternative: 目录中的第7章条目（带页码 181）
+  counter_evidence:
+  - 后续 316-360 行全部是“### 技术要求 ... 182”“### 探索数据类型 ... 182”“### 总结 ... 231”等目录项。
+  - 该行处于目录区段，行末页码 181 是目录页码，而不是正文中的独立章标题。
+  keep_split: false
+- 'no': 362
+  overturn_probability: 0.96
+  alternative: 目录中的第8章条目（带页码 233）
+  counter_evidence:
+  - 后续 363-388 行是“### 技术要求 ... 234”“### 探索 PostgreSQL 中的规则 ... 234”“### 总结 ... 267”等目录项。
+  - 行末页码 233 与点线格式表明这是目录条目，不是实际正文章标题。
+  keep_split: false
+- 'no': 390
+  overturn_probability: 0.96
+  alternative: 目录中的第9章条目（带页码 271）
+  counter_evidence:
+  - 后续 391-416 行是“### 技术要求 ... 271”“### 基本概念 ... 271”“### 总结 303”等目录项。
+  - 该行后没有正文概述，而是一系列带页码的目录列表项，说明它是目录中的章条目。
+  keep_split: false
+- 'no': 418
+  overturn_probability: 0.96
+  alternative: 目录中的第10章条目（带页码 307）
+  counter_evidence:
+  - 后续 419-459 行是“### 技术要求 308”“### 理解角色 308”“### 总结 355”等目录项。
+  - 行末页码 307 和上下文的目录格式均说明这不是正文中的实际章标题。
+  keep_split: false
+- 'no': 461
+  overturn_probability: 0.95
+  alternative: 目录中的第11章条目（带页码 359）
+  counter_evidence:
+  - 后续 462-494 行是“### 技术要求 360”“### 事务介绍 360”“### 总结 412”等目录项。
+  - 这不是正文第11章的起始位置，而是目录页中对应的章条目。
+  keep_split: false
+- 'no': 496
+  overturn_probability: 0.95
+  alternative: 目录中的第12章条目（带页码 415）
+  counter_evidence:
+  - 后续 497-535 行是“### 技术要求 415”“### 扩展介绍 416”“### 总结 446”等目录项。
+  - 行末页码 415 及点线式目录结构说明它是目录列表的一部分。
+  keep_split: false
+- 'no': 537
+  overturn_probability: 0.95
+  alternative: 目录中的第13章条目（带页码 449）
+  counter_evidence:
+  - 后续 538-567 行是“### 技术要求 450”“### 语句的执行 450”“### 总结 498”等目录项。
+  - 该行后面没有章概述，只有带页码的子目录项，属于目录中的章条目。
+  keep_split: false
+- 'no': 573
+  overturn_probability: 0.95
+  alternative: 目录中的第14章条目（带页码 503）
+  counter_evidence:
+  - 后续 575-602 行是“技术要求 .........”“日志介绍 .........”“总结 .....”等目录项。
+  - 行末页码 503 和点线连接符说明这是目录页残留，不是正文中的章标题。
+  keep_split: false
+- 'no': 604
+  overturn_probability: 0.95
+  alternative: 目录中的第15章条目（带页码 535）
+  counter_evidence:
+  - 后续 606-644 行是“技术要求 .........”“介绍备份和恢复的类型 .........”“总结 .........”等目录项。
+  - 该行是全书目录的一部分，其后并无正文内容，因此不应作为正文分章点。
+  keep_split: false
+- 'no': 646
+  overturn_probability: 0.95
+  alternative: 目录中的第16章条目（带页码 573）
+  counter_evidence:
+  - 后续 648-708 行是“### 技术要求 .........”“### 集群配置 .........”“### 总结 .........”等目录项。
+  - 该行行末页码 573 和点线格式表明它来自目录，而非正文中的实际章标题。
+  keep_split: false
+- 'no': 710
+  overturn_probability: 0.95
+  alternative: 目录中的第17章条目（带页码 607）
+  counter_evidence:
+  - 后续 712-752 行是“### 技术要求 .........”“### 探索基本复制概念 .........”“总结 .........”等目录项。
+  - 这是目录中的章条目，不是正文第17章的起始行。
+  keep_split: false
+- 'no': 754
+  overturn_probability: 0.95
+  alternative: 目录中的第18章条目（带页码 631）
+  counter_evidence:
+  - 后续 756-790 行是“技术要求 .........”“了解逻辑复制的基本概念 .........”“总结 .........”等目录项。
+  - 行末页码 631 及点线目录格式说明它不是正文中的实际章标题。
+  keep_split: false
+- 'no': 792
+  overturn_probability: 0.95
+  alternative: 目录中的第19章条目（带页码 661）
+  counter_evidence:
+  - 后续 794-838 行是“技术要求 .........”“探索 pg_trgm 扩展 .........”“总结 .........”等目录项。
+  - 该行处在连续的目录列表中，行末页码 661 是目录页码残留。
+  keep_split: false
+- 'no': 842
+  overturn_probability: 0.97
+  alternative: 目录中的“索引”条目（带页码 697），不是真正的文末索引正文
+  counter_evidence:
+  - 该行后面紧接着的是第 844 行“## 本书适合谁”等前置内容，而不是索引词条，说明它只是目录中的索引条目。
+  - 行末页码 697 以及前一行“### 你可能喜欢的其他书籍 691”都是目录列表格式，不能作为文末索引章节的起始。
+  keep_split: false

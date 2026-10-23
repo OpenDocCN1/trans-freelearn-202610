@@ -1,0 +1,5 @@
+# About the reviewers
+
+**Chris Mair** holds a master’s degree from the University of Trento, Italy, and has been freelance since 2003. His portfolio consists of contributions to over 25 companies, including consultancy work on database programming, performance optimization, and seamless migrations. Chris has expertise in system and network programming, data processing, ML, and more. He has a particular affinity for PostgreSQL. He has taught over 200 courses on various IT topics and is passionate about open-source software.
+
+**Silvio Trancanella** is a software engineer with around 12 years of experience in backend development, mainly using Java Enterprise and PostgreSQL. He has always been fascinated by database management and was immediately drawn to PostgreSQL from the very beginning of his career. He worked for about 10 years on tourism industry software, developing and maintaining critical services that relied on the PostgreSQL DBMS.

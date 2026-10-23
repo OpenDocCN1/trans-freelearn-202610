@@ -1,0 +1,22 @@
+reviews:
+- 'no': 12412
+  overturn_probability: 0.85
+  alternative: 正文小标题
+  counter_evidence:
+  - 前一行 12410 为 '## 11'，符合最高层级章节编号特征，12412 为该章下的二级标题 '## 事务、MVCC、WAL 和检查点'，应为节而非新章
+  - 标题格式为 '##' 且紧跟章节编号后出现，上下文为章节内部的主题划分，后续内容为该节的概述段落而非全新最高层级章节
+  keep_split: false
+- 'no': 13829
+  overturn_probability: 0.85
+  alternative: 正文小标题
+  counter_evidence:
+  - 前一行 13827 为 '## 12'，为最高层级章节编号，13829 为 '## 扩展数据库——扩展生态系统'，属于该章下的二级标题
+  - 标题单独成行但语义为章节内部的子主题，且后 1~3 行为概述段落，符合节标题上下文特征而非全书最高层级大章
+  keep_split: false
+- 'no': 14797
+  overturn_probability: 0.85
+  alternative: 正文小标题
+  counter_evidence:
+  - 前一行 14795 为 '## 13'，为最高层级章节编号，14797 为 '## 查询调优、索引与性能优化'，是该章的二级标题
+  - 标题长度适中且为统领性小标题，后续直接进入本节介绍，符合正文小标题而非全书最高层级章节的划分规则
+  keep_split: false

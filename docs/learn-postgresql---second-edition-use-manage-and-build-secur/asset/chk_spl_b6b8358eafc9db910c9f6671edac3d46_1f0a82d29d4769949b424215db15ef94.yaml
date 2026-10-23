@@ -1,0 +1,29 @@
+reviews:
+- 'no': 6722
+  overturn_probability: 0.85
+  alternative: 章节编号残留/排版断行，与下一行“## Server-Side Programming”共同构成完整的章标题
+  counter_evidence:
+  - “## 7”为纯数字，没有任何语义内容，不符合章标题应具备的概括性和统领性；紧随其后的“## Server-Side Programming”才是真正的章名。
+  - 若将“## 7”也独立划分为新章，则会造成连续两个标题行分别作为章节起始，使同一章被错误拆分为两章。
+  keep_split: false
+- 'no': 6724
+  overturn_probability: 0.2
+  alternative: 真正的章节标题，可能与前一行“## 7”构成完整标题但自身也具有完整语义
+  counter_evidence:
+  - 它与前一行的“## 7”相邻，可能只是章名部分而非独立完整标题；但该行本身长度短、无句号、语义明确，符合章标题格式。
+  - “Server-Side Programming”能够概括后续技术内容，具备统领性，因此更可能是章节起始的真正位置。
+  keep_split: true
+- 'no': 8476
+  overturn_probability: 0.85
+  alternative: 章节编号残留/排版断行，与下一行“## Triggers and Rules”共同构成完整的章标题
+  counter_evidence:
+  - “## 8”为纯数字，不具备语义特征，不能独立说明后续内容主题；真正的章名“Triggers and Rules”在下一行。
+  - 与6722行情况一致，若将“## 8”也分章，会导致连续两个标题行被当成两个章节起始，破坏章节结构。
+  keep_split: false
+- 'no': 8478
+  overturn_probability: 0.2
+  alternative: 真正的章节标题，可能与前一行“## 8”构成完整标题但自身也具有完整语义
+  counter_evidence:
+  - 该行与前一行“## 8”相邻，表面上可能只是章名，但“Triggers and Rules”独立成行且概括了本章主题，符合章标题的语义和格式要求。
+  - 后续正文立即围绕规则和触发器展开，说明该行是章节内容的真正起点，维持分章合理。
+  keep_split: true

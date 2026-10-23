@@ -1,0 +1,33 @@
+reviews:
+- 'no': 17867
+  overturn_probability: 0.08
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 行内容为 '# 16'，与前文 '## 总结'、'## 验证你的知识' 等小节后出现的大章编号模式一致
+  - 下一行 17869 为 '## Configuration and Monitoring'，语义统领后续配置内容，符合最高层级大章起始特征
+  - 格式上单独成行且无句号，长度小于30字
+  keep_split: true
+- 'no': 18629
+  overturn_probability: 0.82
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 编号标记使用 '## 17' 而非全书最高层级 '# 17'，与前一章 '# 16' 的层级不一致，属于排版层级噪声
+  - 紧邻下一行 18631 才是实际的章节标题 '## Physical Replication'，两行连续出现二级标题，'## 17' 更像是章节编号的误排而非独立标题
+  - 上下文中 18627 为 '## Learn more on Discord'，18629 直接接编号后接标题，缺少典型的章前总结段落过渡
+  keep_split: false
+- 'no': 19240
+  overturn_probability: 0.78
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 编号标记为 '## 18'，仍为二级标题层级，与前文 '# 16' 的一级标题层级不统一，疑似格式错误
+  - 下一行 19242 为 '## Logical Replication'，真正的统领性标题在后，'## 18' 更像编号占位或排版断行
+  - 前后均无前言/序言类过渡，章节起始应以一级标题或带序号的最高层级标题出现
+  keep_split: false
+- 'no': 19832
+  overturn_probability: 0.12
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 行内容 '## 19 个有用的工具和扩展' 单独成行，语义概括后续工具介绍内容，符合大章标题特征
+  - 前文 19831 为空行，19833 开始正文介绍，标题后 1~3 行为概述段落，上下文符合章节起始模式
+  - 虽为二级标题，但全书后期章节编号格式已混用，仍可视为最高层级大章的实际标题
+  keep_split: true
