@@ -1,0 +1,11 @@
++   6. **Low physical effort:** A content management system with bulk actions and keyboard shortcuts embodies this principle, making digital tasks simpler.
++   7. **Size and space for approach and use:** This translates to designs that play nicely with all screens and fingers. Let’s create touch targets that are easy to tap and layouts that work great whether you’re on a phone or a desktop.
+
+Embracing these principles goes beyond designing digital products; it allows us to create experiences that welcome everyone. That’s when it dawns on us that features born from accessibility often turn out to be universal favorites, thus making our digital world better for all.
+
+Bringing universal design principles to life in the digital world involves reframing our entire approach to digital experiences, ensuring that every interaction is intuitive, equitable, and empowering for people of all abilities. By prioritizing inclusivity from the start, we create digital environments that not only meet diverse needs but also foster innovation and connection for everyone.
+
+The following examples illustrate how inclusive design principles can be applied in practice, showcasing how prioritizing accessibility and adaptability from the start leads to innovative, user-friendly solutions that benefit everyone.
+
++   - **Inclusivity from the get-go:** Think of diverse user needs as your design muse, not an afterthought. Apple’s VoiceOver was built into iOS from its earliest versions, rather than being added later. Microsoft’s Xbox Adaptive Controller was designed through continuous collaboration with gamers with disabilities, shaping its core features from the beginning.
++   - **Flex those layouts:** Create adaptable interfaces that look great on any device, from smartphones to desktop monitors. The BBC News website automatically adjusts its layout and image sizes across devices while maintaining readability. The Guardian’s responsive design seamlessly shifts from a multi-column layout on desktop to a single column on mobile without losing content or functionality.

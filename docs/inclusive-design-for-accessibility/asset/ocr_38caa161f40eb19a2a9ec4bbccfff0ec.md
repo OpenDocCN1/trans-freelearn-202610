@@ -1,0 +1,13 @@
+# Using color within visual design
+
+Color is a powerful element of visual design. It can evoke emotions, guide user interactions, and create a memorable experience. However, with great power comes great responsibility. Designers must recognize that color perception can vary significantly across different people, cultures, and contexts. What might seem intuitive or universally understandable to one group of users can be confusing or exclusionary to another.
+
+This section will explore how to use color effectively in a way that ensures accessibility for all users. We’ll dive into color contrast, the use of patterns, shapes, and icons in place of color for information, and discuss how to design for cultural considerations in safety and warning systems. The goal is to create designs that cater to a broader, more diverse audience – one that includes the estimated 300 million people worldwide who live with color vision deficiencies (according to the World Health Organization).
+
+# Using color for time-sensitive decision-making and safety
+
+Traffic lights offer a familiar example of how color is used to convey information quickly and instinctively. But for individuals with red-green color blindness – a common form of color vision deficiency – the distinction between those lights may not be clear, creating potential safety risks. This challenge becomes even more pronounced in high-stakes environments such as manufacturing, where split-second decisions can affect not only productivity but also worker safety. In such settings, relying solely on color to communicate urgency, status, or system conditions introduces unnecessary risk.
+
+> The company RealPars wrote an article that showcases how color can make a huge impact within the manufacturing systems by using color indiscriminately throughout the system, where it not only becomes a cognitive overload but also a potential safety hazard: https://www.realpars.com/blog/high-performance-hmi.
+
+Another important consideration is that the meaning of color is not fixed; it varies across cultures and contexts. For example, red is widely used in North America and Europe to signal danger or “stop,” but in parts of East Asia, it can also signify celebration or prosperity. Similarly, white may represent cleanliness or safety in Western cultures, while in others, it is closely tied to mourning and death. These differences become critical in global products, where misinterpreting a signal could lead to confusion or delay.

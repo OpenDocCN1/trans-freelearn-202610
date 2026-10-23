@@ -1,0 +1,69 @@
+reviews:
+- 'no': 0
+  overturn_probability: 0.15
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 书名/封面标题属于前文统一章节的常规处理，规则允许前言序言等正文之前内容统一划分为一章
+  - 该行单独成行、长度短、无句号，符合标题特征
+  keep_split: true
+- 'no': 44
+  overturn_probability: 0.1
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '## Preface 为前言，规则明确前言序言致谢等正文之前内容统一划分为一章'
+  - 后接概述段落，上下文符合前言定位
+  keep_split: true
+- 'no': 149
+  overturn_probability: 0.05
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '# 第 1 部分 为最高层级部分标题，书为部分-章节模式，部分标题应划分新章'
+  - 后文 151-152 为该部分标题内容，上下文连贯
+  keep_split: true
+- 'no': 167
+  overturn_probability: 0.85
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 该行仅为 '### 1' 序号，单独成行不构成完整标题，真实章节标题在 169-170 行 '#### 数字时代的包容性设计 定义' 跨行出现
+  - 格式特征不符：真正的章标题通常单独成行且语义完整，序号单独出现属于排版断行/编号标记
+  - 上下文特征显示 172 行后才是作者署名和正文起始，167 行后无概述段落
+  keep_split: false
+- 'no': 1019
+  overturn_probability: 0.8
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 该行仅为 '### 4' 序号，标题实际在 1021-1022 行 '#### 用户研究与测试 面向包容性产品' 跨行
+  - 序号单独成行属于排版断行/编号标记，非完整统领性标题
+  - 规则要求编号特征应为全书最高层级大章，子层级编号不应单独划分
+  keep_split: false
+- 'no': 1487
+  overturn_probability: 0.05
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '# 第 2 部分 为最高层级部分标题，符合部分-章节模式划分新章规则'
+  - 后文 1489 起为部分介绍，上下文符合部分起始
+  keep_split: true
+- 'no': 1504
+  overturn_probability: 0.75
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 该行仅为 '### 5' 序号，真实章节标题在 1506 行 '#### 设计可访问用户界面：视觉与交互设计'，序号与标题分离
+  - 单独序号属于排版断行/编号标记，标题末尾无句号且长度<30字但语义不完整
+  - 上下文显示 1508 行作者署名后才进入正文，1504 行不具备统领性
+  keep_split: false
+- 'no': 1744
+  overturn_probability: 0.1
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '### 6. 创建无障碍内容：写作、图像和多媒体 为编号+标题同行，符合最高层级章节标题特征'
+  - 后接作者署名及概述段落，语义统领后续内容
+  keep_split: true
+- 'no': 2691
+  overturn_probability: 0.9
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '该行 ''#### Mobile Accessibility: Designing for Touch and...'' 为子层级标题，真实章节序号在 2690
+    行 ''### 8''，序号与标题分离'
+  - 格式特征：#### 为子节层级，按规则不应划分新章节
+  - 上下文显示 2693 行作者署名，2691 行为章节副标题而非最高层级章标题
+  keep_split: false

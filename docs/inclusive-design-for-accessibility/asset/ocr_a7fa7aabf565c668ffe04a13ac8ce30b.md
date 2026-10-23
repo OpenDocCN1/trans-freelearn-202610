@@ -1,0 +1,13 @@
+For example, motion design, such as animations and transitions that add polish to modern interfaces, can enhance visual appeal but may overwhelm users sensitive to motion, such as those with vestibular disorders. Thoughtful design anticipates this need by respecting user preferences. Companies like Apple and Microsoft enable users to set “reduce motion” preferences at the system level. It is important to respect these preferences, never override them, and ensure alternative experiences are thoughtfully created to preserve clarity and usability while maintaining the overall design integrity.
+
+Similarly, in the gaming industry, accessibility designed from the outset has demonstrated the power of inclusive approaches. Retrofitting a game to add basic keyboard controls might meet minimum compliance requirements, but often results in an inferior user experience. In contrast, games built with accessibility in mind have allowed blind players to navigate racetracks independently using aural feedback. This approach is about creating inclusive experiences, not merely meeting a requirement. It shows how designing inclusively can drive innovation, unlock creativity, and extend market reach.
+
+# Moving beyond a tick-box exercise
+
+Accessibility is not simply about avoiding lawsuits; it is about recognizing that the barriers individuals face are not inherent to them but are created by the systems, tools, and environments we design. Providing a separate, “accessible version” of content might technically meet legal standards, but it feels like an afterthought. It comes across as a hastily prepared option that says, “We forgot about you, but here’s something that’ll have to do.”
+
+To bridge the gap between compliance and usability, organizations must shift their focus from merely meeting requirements to creating accessible and inclusive products. This shift involves:
+
++   - **Investing in robust monitoring systems:** Accessibility is not a one-time fix. Ongoing monitoring tools keep accessibility visible and top of mind, supporting ongoing commitment even as teams change and digital products evolve.
++   - **Embedding accessibility into the product development lifecycle:** Accessibility must be embedded across design, development, and testing. When designers, developers, and testers approach it as part of their job, it stops being an extra task, reduces unnecessary rework, and simply becomes how things are done.
++   - **Shifting leadership attitudes:** Without leadership buy-in, accessibility remains underfunded, deprioritized, and reactive. Many organizations fall into a self-fulfilling cycle where accessibility always feels like an expensive, last-minute burden.

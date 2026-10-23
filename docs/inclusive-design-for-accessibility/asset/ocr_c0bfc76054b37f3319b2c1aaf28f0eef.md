@@ -1,0 +1,13 @@
+# Have we held the emotional, cultural, and systemic context, not just the quote?
+
+As a neurodivergent researcher, I’ve shown up to sessions while masking, flaring, looping, and doing what it takes to hold space even when my own system is overstretched. And I’ve interviewed people who’ve done the same. Who answered with precision, but whose voices carried fatigue. Whose hesitations held more than language. I’ve learned to pay attention to those layers: the cultural context that shapes how someone speaks, the systemic weight they’ve carried into the room, the way a single story often stands in for so many others. We don’t need more quotes that sound good. We need an interpretation that honors the conditions they emerged from and refuses to erase them in the process.
+
+In one session, a participant had been engaged and open until I asked a question about their past experiences with support services. They went quiet. Not abruptly, just... inward. Eyes down, the tone shifted, a short answer followed, then we moved on. I didn’t flag it as “participant disengaged” or drop the data point. I made a note: “Tone changed here, revisit.”
+
+Later, in synthesis, that moment helped shape a broader insight into emotional safety in research settings, especially when asking about institutions people may have been harmed by. It reminded me to build trauma-aware prompts, to wait before probing, and to read data not just by what was said, but when something stopped.
+
+That experience changed how I write protocols. In later studies, especially with disabled and neurodivergent participants, I began including explicit pauses between questions, and added optional “skip” buttons or prompts such as “Is this something you’re comfortable talking about today?”
+
+I also started debriefing how the research felt, not just what was shared. That surfaced patterns: which topics led to withdrawal, which formats felt safer, and when people opened up more in asynchronous follow-ups than in live sessions.
+
+These adjustments weren’t just for participant comfort; they led to richer, more honest data. The small design changes, offering choice, naming emotional labor, and holding back from immediate follow-ups, helped shift power back to the person sharing. What I learned is that silence is feedback. And when we listen to it, it teaches us how to design research that earns, rather than demands, people’s trust.

@@ -1,0 +1,13 @@
+Imagine a company struggling with accessibility inconsistencies across its products. Some teams prioritize it, and others treat it as an afterthought. To fix this, they decide to build an accessible design system. Instead of asking every team to reinvent the wheel, they create shared components: accessible widgets, usable color palettes, legible typography, and well-tested interactive elements. With accessibility baked into the system, teams no longer have to guess. The burden on individual designers and developers drops. Accessibility becomes the default.
+
+Another organization might take a different path. They build accessibility reviews into their sprint cycles, checking new features every two weeks instead of waiting until the end. Doing so helps the teams catch issues early while they’re still easy to fix. Over time, this reduces last-minute scrambles and leads to more consistently accessible products.
+
+Teams that adopt either approach are most successful when they also build in testing at every step. That means layering automated scans into each code commit to catch common issues such as missing alt text, unlabeled form fields, or contrast problems as soon as they appear. But they don’t stop there. Before major releases, they also run usability tests with real users of assistive technology, surfacing deeper issues that automated tools can’t detect, such as confusing keyboard focus order or broken screen reader interactions.
+
+By testing early and often, teams catch more barriers before they go live and save time and effort in the long run. This approach to testing is what helps them go beyond technical compliance, so they can successfully create inclusive experiences for people living with disabilities.
+
+Both strategies – the accessible design system and the sprint-based accessibility reviews – are valid ways to shift left. What really matters is that the accessibility practice is intentionally and consistently baked into the process. Whether you build it once at the foundation or revisit it regularly through agile cycles, the key is making it part of how you work, not something you scramble to fix later.
+
+# Reducing accessibility debt
+
+Ignoring how accessibility issues impact end users also creates inclusion debt for organizations. It keeps adding to a backlog of issues that only grows harder and more costly to fix over time. Just like technical debt, the longer these problems go unaddressed, the more expensive and time-consuming they become to resolve.

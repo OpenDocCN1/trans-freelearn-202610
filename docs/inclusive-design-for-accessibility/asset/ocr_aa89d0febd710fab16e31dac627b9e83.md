@@ -1,0 +1,13 @@
+# Centering disabled lives through reciprocal recruitment
+
+Recruiting disabled participants isn’t just about inclusion, it’s about shifting the terms of engagement. When we center disabled lives in recruitment, we begin to challenge the unspoken assumptions that exist in how, when, and where we bring people in. Recruitment is often transactional: time in exchange for a gift card or insights in exchange for a deliverable. But when research stops there, it risks becoming exploitative. That leaves people feeling used, not valued.
+
+Reciprocal recruitment asks something more of us. It asks us to slow down, to build trust before the ask, and to create spaces where people can show up fully, not just to answer questions, but to shape them. It means inviting people in not as subjects, but as collaborators. It also means recognizing that knowledge doesn’t only live in transcripts. It also lives in a stillness, a breath, a drawing, a moment of mutual understanding. For example, a team working with a Deaf community co-designed a research plan alongside a local Deaf advocacy group, hired interpreters chosen by participants, and allowed flexible participation over multiple sessions. The result wasn’t just better data, it was a model for respectful, sustainable engagement.
+
+While recruitment always involves some exchange, it doesn’t have to be extractive. When it’s grounded in trust and reciprocity, it shifts from a one-way transaction to a shared investment. It’s relational. And it shifts our goal from participation to partnership, and from gathering insights to building something that gives back.
+
+To support this shift, here are a few foundational principles that guide inclusive recruitment practices:
+
++   - Build relationships before recruiting. Start with trust, not outreach.
++   - Compensate fairly and flexibly. Honor time, energy, and emotional labor in ways that reflect people’s realities.
++   - Respect intersectionality. Understand how overlapping factors, such as disability, race, gender, class, and language, shape people’s experiences and influence what they need to feel safe and supported. For example, a white wheelchair user navigating an urban center will likely face very different barriers than a racialized autistic person living in a rural area. Intersectionality reminds us that access is never one-size-fits-all; it’s influenced by overlapping systems of power, discrimination, and privilege. Inclusive research must account for these layered realities or risk reinforcing the very gaps we seek to close.

@@ -1,0 +1,9 @@
+Personalization also extends to language and localization. When scaling globally, it’s essential to support language customization and localization, which can impact layout, content structure, and focus behavior. Some languages (e.g., Arabic) read right-to-left, so the layout must adapt accordingly. Others, such as German, may require more space due to longer word lengths. Additionally, it’s important to maintain clarity and consistency when localizing content, especially for users with cognitive disabilities.
+
+# Information architecture for accessibility
+
+While accounting for information architecture, account for multi-modal inputs, including keyboard-friendly navigation systems. For users with motor disabilities or those who prefer keyboard navigation, using the Tab and arrow keys, make sure that all interactive elements are accessible via the keyboard. This includes fixing tab orders and visual focus indicators to provide users using the keyboard and other input devices with a seamless experience.
+
+It is valuable to organize the tabbing order so that it flows logically, from top to bottom or left to right. All the active elements on the page should be clearly highlighted (e.g., buttons and form fields) so users can easily track their focus, and include keyboard shortcuts where appropriate, ensuring they are well documented and customizable.
+
+Looking at the following figure, although a visual reader might be able to discern the hierarchy of buttons and information, naturally moving their attention to the Apply Now! section, the tab focus order would create a chaotic experience for those just using a keyboard or relying on a screen reader:

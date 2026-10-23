@@ -1,0 +1,15 @@
+# Making accessibility training meaningful
+
+In my opinion, one of the biggest mistakes organizations make is delivering accessibility training in a way that feels disconnected from real, tangible work. Long presentations filled with lectures about regulations, technical rules, and best practices often fail to stick and do very little in terms of generating engagement and retention. Accessibility is most impactful when it’s anchored in concrete concepts that participants can relate to, and tailored to specific roles in the life cycle that give teams many opportunities to apply what they learn immediately.
+
+Examples of companies that struggle with accessibility issues despite hosting annual training sessions are a dime a dozen. Employees, especially the ones who have been around for a while, will understand the importance of accessibility, but when deadlines get tight, accessibility slips through the cracks.
+
+To fix this, organizations would be much better off replacing their mandatory annual training with monthly accessibility challenges. Instead of unengaging lecture-style sessions, teams could work on real accessibility barriers or issues in their projects, such as reviewing poor color contrast, improving keyboard navigation, or fixing screen reader problems.
+
+Using such a hands-on approach precipitates improvements and reduces accessibility bugs in new releases by a significant margin. It also leads stakeholders to think about accessibility proactively rather than waiting for issues to be flagged during audits. The shift from passive training to hands-on learning would make accessibility a natural part of their workflow rather than an occasional compliance task.
+
+# Encouraging peer learning and knowledge sharing
+
+While formal training is very valuable, some of the best learning opportunities take place through day-to-day conversations and shared experiences, not by passively listening to theoretical lectures in classrooms (virtual or otherwise). When accessibility knowledge is distributed evenly across team members, and every role in the life cycle has a clearly defined set of responsibilities assigned to it, everyone feels more confident in asking questions, sharing solutions, and applying what they learn. And all of that leads to success.
+
+One such example of a strategy could be to launch an internal accessibility mentorship program. Experienced accessibility advocates within the organization could be paired with team members who want to improve their skills in this area. The mentorship’s influence could extend beyond the typical design and development groups, creating a wider reach of expertise. Internal accessibility supporters could naturally evolve into brand ambassadors, promoting accessibility best practices and making sure discussions about accessibility become commonplace across all company divisions.
