@@ -1,0 +1,17 @@
+Goals exist to help you measure and prepare for important objectives that you want to reach with your product, for your customers, users, market, developers, and the rest of the employees in your organization. Consider these your strategic objectives and key results (OKRs) for your product. Without putting these big boulders in and building your product vision and goals from the place of what’s most important, you’ll drown in the weeds and you won’t build strategically. You’ll be left chasing opportunities unintentionally and it may tempt you to just follow what your competitors are doing or what your customers are asking for. Given the importance of the move to AI, take the time here to begin from a place of strength. If you find yourself weighing feedback from your competitive analysis, your customers, or your internal teams disproportionately when finding this vision and establishing your product goals, think critically about whether that’s actually appropriate.
+
+Feel free to also make this process collaborative and jot down all the goals that occur to all your various stakeholders so that you can prioritize them together. Again, you can always revisit these goals and scrutinize them later, but try and see what you can come up with together, refine that list, and try to stick to three or four higher-level product goals here so that you can begin to approach your product roadmap with confidence. All these goals will manifest in being broken down into smaller bits, and those bits may take weeks, months, or even years to fully realize. That’s OK. Your product goals shouldn’t be something that can happen in days and weeks. They should be encompassing and strategic enough that they are long-lasting because they’re there to inform your overall product roadmap and to ensure everyone is working in service to a unifying goal.
+
+When setting up goals, remember the following critical questions:
+
++   - Does the goal align with our product vision?
++   - Are there certain major milestones or benchmarks that we’re hoping to achieve with AI being incorporated into these goals?
++   - Is this goal addressing the most critical customer pain points?
++   - How does this goal help move us closer to our long-term vision?
++   - Which metrics will we use to measure success?
++   - How will achieving this goal improve the overall customer experience?
++   - Is the goal realistic and achievable given the resources and time?
+
+# The product roadmap
+
+Finally, we’ve made it to the product roadmap. This is the last step toward establishing our product strategy and it’s the most detailed part because it’s meant to capture initiatives that have come from all of the strategic goal-setting and vision exercises. This is where the magic of building and shipping products is. Taking strategic nebulous goals and turning them into a tangible reality, the roadmap is where we apply the conditions, limitations, and dependencies that we haven’t yet bothered with. Roadmaps will change and they’re not meant to be crystal balls, rendering your fate non-negotiable. They are meant to serve as guides for a product team’s strategic directives. They are meant to be a bird’s-eye, calendar-view translation of your product vision and goals.

@@ -1,0 +1,15 @@
++   9. Started a book club focused on AI and data science concepts for continuous learning
++   10. An 8+ year career in account management and sales helped me navigate customer empathy and problem-solving skills
+
+Let’s take a look at how I was able to demonstrate competency across the top technical and soft skills AI PMs need to be successful:
+
++   - **Tech skills:** I was able to demonstrate my technical proficiency by completing online coursework, finishing an apprenticeship, building a portfolio, and writing about my projects online. I was also able to apply my technical skills to Fight Pandemics and Gesture, the two organizations I supported in a data science capacity before my first AI PM role.
++   - **Business acumen:** For this, I leaned most on my prior 8+ year career in account management and sales for B2B SaaS companies. In those roles, I was client-facing and my primary areas of focus were customer experience and contract retention. In some cases, I had a hard target. This showed a proven client-focused track record of retaining SaaS customers over time. I also built and launched an app with a peer from my Thinkful program, an NLP-based mental health-focused app.
++   - **Communication and leadership:** I served as the NYC and Boston co-lead for Women in Data, organizing local events that supported the NYC and Boston communities of data and product professionals. I also hosted and moderated a monthly talk with Women in AI where I would find women doing incredible work in AI and talk to them about it, as well as a monthly book club for Women in Data where we would read and talk about a new book about data, AI, ethics, and management. I wrote about all these experiences on my personal blog on LinkedIn and Medium.
++   - **Problem-solving:** I demonstrated this largely through my portfolio and open source project work. Because each of my projects was devoted to an area of my life I wanted to problem solve, I was able to do this organically as I talked about my projects. Because Fight Pandemics and Gesture were the only relevant work experiences I had before my first product role, I was able to lean on those real-world examples during behavioral questions as well.
+
+Rather than give you archetypes to aspire to, I welcome everyone who’s interested in becoming an AI PM to find their own thought leaders and role models and to learn from those individuals directly or indirectly.
+
+# Summary
+
+We’ve covered a lot in this chapter. We started with a discussion of the requirements for AI PMs entering the space from a theoretical and practical perspective, as well as a look into where the AI PM space can be better served by newcomers. We also looked at strategies and tools you can put in place to help you stay supported and inspired. We briefly looked at the major areas of AI that you could get involved in once you are ready to dip your feet in and concluded with a real-life case study to ground these ideas further.

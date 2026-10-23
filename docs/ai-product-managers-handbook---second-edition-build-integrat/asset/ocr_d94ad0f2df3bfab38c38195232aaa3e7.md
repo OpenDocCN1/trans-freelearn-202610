@@ -1,0 +1,17 @@
++   - Make sure dashboards can handle your most relevant product KPIs and metrics and that custom reports can help you dive deep into certain aspects of user behavior and product performance.
+
+# A/B testing tools
+
+We’ve discussed the concept of optimization at length throughout these chapters, as well as the spirit of experimentation that’s optimal for a growing AI/ML-powered product organization. This is perhaps best captured with A/B testing, a concept we first introduced in Chapter 1. While there’s a fair amount of comparison when it comes to the types of models you might employ when building your product with AI/ML features, you will also need to test certain versions of your product with different groups. You’ll likely be A/B testing all sorts of things – how your product looks and feels, which features you put where, how you guide your users, how you track metrics, and which metrics you actually track – to inspire the kind of product adoption that will have your audience evangelizing about it on your behalf.
+
+It can be hard to make concrete decisions about what will appeal most to your user base when you design a product, particularly when it’s a novel AI/ML product that’s being released to the market. A/B testing allows you to collect data on which iterations are more successful than others. There are so many routes you can take to optimize the use of your product, how personalized it is, and eventually decide on which iterations best lead to conversions and further revenue. Investing in A/B testing tools not only reinforces a culture of experimentation but also helps you track countless tests and stores the insights from those tests for you.
+
+You can once again choose to send this data out to your warehouse and further mine it for insights and append it with other methods of experimentation from the other tools in your BI tool, or you can store it on the dashboard of your tool of choice. Either way, A/B tools allow you to organize and keep track of the results of your efforts, allowing you to do hundreds of A/B tests if you need to. You can use these tools to A/B-test anything, whether marketing campaigns, features, buttons, links, colors, fonts, or anything that you can derive quantitative and qualitative feedback from. Reputable A/B testing tools include VWO, Optimizely, AB Tasty, Google Optimize, and Five Second Test. Let’s take a look at a few considerations to keep in mind when choosing an A/B testing product:
+
++   - Ensure the tool can support various experimentation types to accommodate different testing needs.
++   - Consider options for segmenting users based on behavior, demographics, segments, and other criteria to understand the extent of tailoring capabilities.
++   - Check integrations with personalization activities you might be doing elsewhere to see if you can combine efforts within the platform.
++   - Gauge how much technical expertise is needed for implementation, onboarding, and setting up your first experiment and whether you have the in-house expertise required to handle it.
++   - Look at the statistical methods used to analyze the results of your experiments.
++   - Confirm the sample size minimums for your tests to make sure you can conduct experiments that will yield statistically significant results.
++   - Confirm the tool’s ability to allocate traffic for experiments according to your needs during tests.

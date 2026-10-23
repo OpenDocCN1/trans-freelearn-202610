@@ -1,0 +1,97 @@
+reviews:
+- 'no': 67
+  overturn_probability: 0.05
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 编号特征符合最高层级章标题，第10章，单独成行，语义统领后续内容
+  keep_split: true
+- 'no': 92
+  overturn_probability: 0.05
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 编号特征符合最高层级章标题，第11章，单独成行
+  keep_split: true
+- 'no': 108
+  overturn_probability: 0.15
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 部分标题在部分-章节模式下应分章，上下文后续为第12章，符合部分划分规则
+  keep_split: true
+- 'no': 109
+  overturn_probability: 0.05
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 最高层级章标题第12章，编号连贯，单独成行
+  keep_split: true
+- 'no': 131
+  overturn_probability: 0.05
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 最高层级章标题第13章，格式符合
+  keep_split: true
+- 'no': 143
+  overturn_probability: 0.05
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 最高层级章标题第14章，单独成行
+  keep_split: true
+- 'no': 178
+  overturn_probability: 0.15
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 部分标题在部分-章节模式下应分章，后续为第17章
+  keep_split: true
+- 'no': 179
+  overturn_probability: 0.05
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 最高层级章标题第17章，编号连贯
+  keep_split: true
+- 'no': 191
+  overturn_probability: 0.05
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 最高层级章标题第18章，单独成行
+  keep_split: true
+- 'no': 1270
+  overturn_probability: 0.2
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - Part 2 为最高层级部分标题，上下文后续为 Part 2 引子，符合部分划分
+  keep_split: true
+- 'no': 1272
+  overturn_probability: 0.85
+  alternative: 正文小标题/部分引子
+  counter_evidence:
+  - '无章节编号，仅为 Part 2 的概括性引子，语义上统领后续章节而非独立成章；前后为 # Part 2 与第6章内容，格式上为二级标题风格，易被误判为章节；标题长度适中但无编号特征'
+  keep_split: false
+- 'no': 1615
+  overturn_probability: 0.9
+  alternative: 正文小标题/章内副标题
+  counter_evidence:
+  - 前一行 no 1613 为 '# 7'，已为第7章起始，本行是该章的中文副标题，属章内标题而非新章；标题末尾无句号但为章节内小标题，上下文为第7章内容延续
+  keep_split: false
+- 'no': 1886
+  overturn_probability: 0.9
+  alternative: 正文小标题/章内副标题
+  counter_evidence:
+  - 前文已出现 '# 8' 于 no 1884，属第8章起始，本行为该章中文副标题，重复分章；无独立编号，语义为章节内部标题
+  keep_split: false
+- 'no': 2245
+  overturn_probability: 0.9
+  alternative: 正文小标题/章内副标题
+  counter_evidence:
+  - 前文 '# 9' 于 no 2243 为第9章起始，本行为其中文副标题，属同一章节的标题展开，非新章；格式与前述误判模式一致
+  keep_split: false
+- 'no': 2618
+  overturn_probability: 0.95
+  alternative: 正文小标题/章内副标题
+  counter_evidence:
+  - 第10章已于 no 67 以 '## 第10章：性能基准测试、增长黑客与成本' 划分，本行为同一章节的重复中文标题，出现于书末回顾部分；无编号且与已有章节重复，易为误报
+  keep_split: false
+- 'no': 2985
+  overturn_probability: 0.9
+  alternative: 正文小标题/章内副标题
+  counter_evidence:
+  - 第11章已于 no 92 以 '## 第11章：管理AI原生产品' 划分，本行为同一内容的重复标题，编号为 '11.' 而非标准 '第11章'，且出现在后续回顾段落，属排版噪声/重复标题
+  keep_split: false

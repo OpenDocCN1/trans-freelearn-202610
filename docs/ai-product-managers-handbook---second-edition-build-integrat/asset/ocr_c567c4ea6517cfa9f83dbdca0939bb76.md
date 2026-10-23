@@ -1,0 +1,17 @@
+# Case study
+
+Using our case study example of Waterbear, we see a number of these storytelling elements alive in much the same way as Duolingo. The Waterbear founding team wanted to offer an experience that was gamified for users, particularly because they felt this would help balance some of the heavier aspects of using a mental health app. Though gamification works and can promote engagement, as we’ve seen with Duolingo, it also has the capacity to detract from an app experience. The founding team found early on that their first iteration of the product actually wasn’t resonating well with end users because they felt the gamification was too lighthearted for what the app was intended to do. The feedback was overwhelmingly that although they appreciated that the app “encouraged” you as if you were playing a game, it felt tone deaf. Users were, after all, not playing a game but instead sharing deep, emotional, and sometimes overwhelming topics with a conversational AI that was trying to get to know them. This was one of many product design lessons learned for Waterbear.
+
+Let’s explore some of the lessons learned based on the product design elements from earlier in the chapter:
+
++   1. Start with understanding the end user—really!
++   
++   Initially, the Waterbear founding team had lofty dreams of completely outsourcing mental healthcare to AI. AI was the silver bullet and they overidentified with the hype! They thought their product could solve the issue of there not being enough therapists in the world and the high demand for support for mental health needs. But it turns out that replacing a human therapist isn’t really all that easy. There are a number of therapeutic disciplines a professional can build a career in and one model couldn’t possibly account for them all without contradicting itself. Eventually, they started talking to real potential end users of Akeira and found something quite surprising, which allowed them to define the problem more easily.
++   
++   2. Define the problem before it defines you.
++   
++   What they discovered was that none of the potential end users actually wanted to replace their therapists, or use Akeira in place of a therapist. All they wanted out of Akeira was a friendly ear and a place to centralize all their mental activities. They didn’t want to be diagnosed or psychologized. They just wanted a safe place to share. One of the resounding pain points was that it was hard to have a consistent place to just voice mental health concerns and try to make sense of them.
++   
++   3. Experimentation: Start with a few prototypes and then settle on one.
++   
++   Defining the problem through a more user-centric lens helped inform the Akeira product team on the kinds of solutions they could experiment with and validate before arriving at a final prototype. But they settled on an Akeira prototype too quickly, without bringing in enough diverse perspectives and considering at least two or three prototypes. The first prototype had a journaling function, a dashboard function, and a chat function. Given this level of complexity for the first prototype, it was hard for the product team to get consistent feedback from beta testers.

@@ -1,0 +1,15 @@
+Whatever the result is, let it bring you closer to your professional community in whatever form makes the most sense for you. It could come in the form of a blog post, a LinkedIn post, a case study or article, a speaking engagement, or a presentation at a tech conference. Sharing your struggles and lessons learned from navigating the intricate landscape of AI is a real and tangible way you can contribute to your professional community. Even if you think your struggles are common, or that other AI PMs have had the same challenges, remember that no one else is you. Your unique perspective adds value. You never know when the hurdles you encounter could help others who are less far along the mountain. Sharing about your real lived experiences can create powerful connections between people that can potentially lead to new collaborations, work projects, or partnerships in the future.
+
+The following are some strategies and recommendations you can keep in mind as you’re building your AI PM career feedback loops:
+
++   - Seek feedback from a broad range of stakeholders, mentors, and peers. Make sure to include data scientists, ML engineers, customers/end-users, team leads, and members of your leadership team who you respect and whose opinions you value.
++   - Keep a record of the feedback you receive and the actions you’ve taken in response to that feedback. Document the insights and patterns you observe and reflect on how you’ve applied them in your work or career over time. Let this inform the career narrative you share with others and, most of all, with yourself.
++   - Prioritize feedback that’s specific and actionable. Vague or subjective feedback can leave you with more questions than answers and can cloud your self-reflection as an AI PM.
++   - Find the balance between confidence in your abilities and humility in recognizing areas of growth. Striving to maintain that balance will enhance your credibility and inspire others to openly engage with you when they struggle with it.
++   - Treat feedback as a necessary part of your own AI PM career iteration and be genuinely grateful when others share their honesty with you.
++   - Become an active member of AI and PM communities both online and offline to expand your feedback loop sphere of influence and look for ways to meaningfully add to the discourse.
++   - Partner with peers or colleagues to co-author articles, white papers, or case studies that address challenges and innovations in the AI PM field.
+
+# What’s next? The world is our oyster
+
+The future holds a lot of promise for the AI PM career path. As we’ve gone through this chapter, we’ve discussed a lot of topics related to growing and maturing as an AI PM. While this is helpful to know, eventually it’s less about learning and more about choosing. Each of us is equipped with our own set of values, interests, and world views. As we get deeper into the AI integration of products, we’re going to start to see a lot of overlap in AI methodologies. Products will enter the market that employ a variety of AI models in a multidisciplinary way. We’ll experience more of a blur between analog reality and AI.

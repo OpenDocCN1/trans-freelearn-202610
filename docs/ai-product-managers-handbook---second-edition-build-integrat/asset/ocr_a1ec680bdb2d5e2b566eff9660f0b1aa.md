@@ -1,0 +1,15 @@
++   - **Creation of analysis and forecasting at a granular level:**
++     - Estonia's e-Residency program uses AI to help non-Estonians start and manage a business online in order to attract more e-residents and investors from out of the country (https://www.e-resident.gov.ee/).
++     - Australia's “National Map” analyzes geographic and socioeconomic data to help facilitate better urban planning, resource allocation, and disaster management by offering real-time insights for initiatives and responses (https://nationalmap.gov.au/).
++   - **Generation of data to support findings:**
++     - The U.S. Census Bureau uses AI to process and analyze large volumes of data from the census and surveys it administers in order to provide accurate population estimates and demographic data that supports policy decisions and resource allocation (https://www.census.gov/data/data-tools.html).
++     - Canada's “Open Government” data initiative helps process, generate, and make data available from various public sources to enhance transparency and encourage public participation in government (https://open.canada.ca/en).
++   - **Implementation and diagnostic feedback for how certain policies are performing:**
++     - The Netherlands “AI for Government” project uses AI to monitor and evaluate the implementation of policies and provide diagnostic feedback on their effectiveness, helping to improve the impact of initiatives and legislation (https://nlaic.com/en/about-nl-aic/).
++     - South Korea's “Digital Government” project uses AI to track and analyze the performance of various policies and programs and help increase public satisfaction with policy outcomes (https://www.dgovkorea.go.kr/).
++   - **Evaluation of the ultimate effectiveness of certain policies:**
++     - New Zealand's “Policy Project” uses AI to assess the impact of various policies by offering simulations and predictive modeling to help refine policies and enhance economic outcomes (https://www.dpmc.govt.nz/our-programmes/policy-project).
+
+If governments choose to partner with the private sector or invest in their own development of AI applications to address policy-making, we will likely see an expansion of the democratic process.
+
+On a broader societal level, we can see some novel applications of AI that will likely continue into the future. The alleviation of bias is something AI can help address at the governmental level, where policies are impacting varying demographic groups and the intersectionality of their experiences. Companies such as Algorithm Audit are doing just that with their bias detection tool. Their product works by first analyzing the data used to train and test a model. It also uses various statistical methods to assess and visualize different types of bias to examine whether certain groups are unfairly represented or treated by the model. Finally, it then offers recommendations and remediation efforts to mitigate the bias and monitor the models over time.

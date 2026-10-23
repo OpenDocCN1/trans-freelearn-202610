@@ -1,0 +1,17 @@
+The result and impact of this work led to improved customer engagement on their platform. Merchants reported higher conversion rates due to more effective product recommendations, and customer interactions improved through automated support. Beyond this, Shopify won leadership clout and branding support in the e-commerce space through their innovations with AI adoption, which sets them apart as a leader in their industry. Shopify’s ability to integrate AI features, many of which are free, while considering scope and reach using a strategic approach enhanced the company’s reputation as well as its product’s value.
+
+This case study is exemplary and aspirational for a lot of AI PMs out there thinking about how to have an impact. It’s possible that, with time, they’ll learn more about what makes their platform valuable to their merchants and they will start to monetize upsell and advanced features more heavily. But by coming to market with an AI-improved platform and offering these features generously, they’re helping all their merchants get more comfortable with AI adoption as a whole. It’s a reminder that you don’t always have to be so focused on the ROI of specific features. ROI can be secondary when it means broadening the horizon for the entire ecosystem with a launch.
+
+Now that we have our priority list of potential sources of AI adoption based on value, scope, and reach, we can move on to the next big consideration for evolving a traditional software product into an AI product: data readiness. Making sure our data is in a digestible format to be able to handle the new AI capabilities is going to be the next big focus area for PMs looking to make the jump into AI.
+
+# Data management — the bloodstream of the company
+
+Before PMs can begin the work needed to start building and developing their product, getting it ready for testing, and releasing it to their customers, they need to get really clear on the strategy of how they will position their product. This is the thought process behind the Venn diagram exercise we saw in the previous section. Now that we’ve gone over the process of how AI PMs can approach potential AI embellishments, we can add one more layer of scrutiny to this list. This additional layer focuses on the data, which is what will power every single item on these lists, and it represents stage 2 of the AI product development cycle.
+
+Once AI PMs begin the work of understanding what they can do with the data sources they have and which data sources they’ll need to make the items on their list a reality, we’re getting close to actually having a plan. This stage is about gathering the right data that will be used to train and test the AI/ML models from internal systems, third-party providers, customer interactions, or external IoT devices like sensors, processing and refining that data for AI/ML readiness, and securely storing and protecting that data.
+
+In the following subsections, we will be addressing the key areas of data readiness:
+
++   - Preparing and researching the data you have available
++   - Assessing the quality of the data you have and partnering with your data team
++   - Using the data for benchmarking the current and future adoption of your product and defining success

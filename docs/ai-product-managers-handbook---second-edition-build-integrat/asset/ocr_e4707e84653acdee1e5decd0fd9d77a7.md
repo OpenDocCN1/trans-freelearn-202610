@@ -1,0 +1,13 @@
+![](bbox=[0.38, 0.07, 0.68, 0.24])
+
+Figure 8.1: Adapted from the Gartner Magic Quadrant
+
+As an AI PM building a novel AI product in your space, you'll want to have an understanding of all four kinds of competitors in your chosen space or domain. The four quadrants themselves are built on an x axis based on the completeness of vision, and a y axis based on the ability to execute it. We encourage you to use Gartner's Magic Quadrant as a resource when evaluating your organization's placement in your own market, as well as the placement of your biggest competitors. Your ability to gauge where you fall along these fault lines will best prepare you for coming to market with a new AI product, particularly now that so many AI products are still in their early days.
+
+When building the AI-native product, a lot of initial work needs to go into ideating and positioning your product because it's so new and it's entering a new market. Given the cost and investment of getting an AI product up and running, you'll want to be deliberate when building that investment. In the following sections, we will be focusing on the work of positioning a product appropriately for your market, understanding how your product design will actually serve that market, and how to build an AI product strategy that will make the most sense for your market.
+
+# Understanding your market
+
+For any specific domain, Gartner's Magic Quadrant helps companies identify and orient themselves against their competitors in terms of execution and vision. Doing competitive analysis to understand where you are and where you perceive others to be in terms of your products and AI capabilities today will help you determine your future strategy for your product or suite of products. Let's look at what the different categories are:
+
++   - **Leaders:** The leaders demonstrate a proven history of executing the most complete vision. They can show you what's been working and what needs the main market players in the domain are predominately addressing. This will be valuable for you to get a sense of what the addressable market actually wants out of the companies that serve them. Leaders are also great for showing their domains what a sustainable execution of domain pain points looks like, as they've been around for a long time and fellow PMs can learn from the products they've released and how the greater market has received them over the years. Leaders offer a great foundation for research when you're in a new domain as a PM. In this section, you'll find companies like Microsoft (Azure AI), Google Cloud (AI and ML), and IBM Watson, which offer comprehensive AI tools, widespread adoption and market dominance, innovation, and scalable solutions that have stood the test of time.

@@ -1,0 +1,9 @@
+# About the reviewer
+
+**Josh Atlas** is an accomplished product management leader with over 15 years of experience, spanning fintech, e-commerce, AI/ML, and digital marketing. He has a proven track record of driving product innovation and operational efficiencies, delivering impactful solutions for global organizations like Meta, Google Nest, and Walmart, as well as startups such as Vivid Labs. His expertise includes leading cross-functional teams, navigating complex challenges, and building customer-centric products, including AI-driven tools and next-generation NFT applications.
+
+In addition to his work in traditional product management, Josh has designed and built advanced AI agents, including Josh-GPT, a digital twin that serves as an interactive extension of his professional knowledge and experience and reflects his deep commitment to innovation in generative AI and conversational technologies. His contributions extend to transformative projects, such as reducing loan manufacturing time at GoodLeap, launching a one-click badge creation system at Meta, and designing a customer-focused AI chatbot for solar energy adoption.
+
+Josh is passionate about leveraging data, collaboration, and design thinking to create products that solve real-world problems while fostering strategic alignment across teams and stakeholders.
+
+> I would like to express my heartfelt gratitude to my wife for her patience and unwavering support, which have been the foundation of my success. Your encouragement and belief in me have carried me through every challenge and achievement. To my family and friends, thank you for your constant inspiration and love – I could not have done this without you.

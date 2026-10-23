@@ -1,0 +1,17 @@
++   - Open source communities shine a light on innovation because there are simply many eyes on it and their work is published publicly. Because many open source projects adhere to and promote AI practices that are ethical, they’re able to influence the broader AI landscape for good.
+
+The important thing to remember is the availability of these tools won’t go away any time soon. Bringing more transparency and ethics to this space will allow for future use cases that are brought to market through community oversight and collaboration. If knowledgeable communities working on generative AI innovations can come together to help audit, identify, and address biases, we can explore future AI potential more safely. Investing in open source communities with your time, knowledge, energy, and ideas makes it so that the next generation of technologists will have a broader set of use cases and applications to work with as they dream up new possibilities with AI. We’re also likely to see new start-ups be nurtured through open source communities, competing with the larger monoliths that have a chokehold on AI innovation today. If the future of LLMs is open and diverse, this will yield great things for the market.
+
+# Case study
+
+In this case study, we will take a look at a fictional green tech company called GreenCo123, which specializes in optimizing energy consumption in commercial buildings. They’re working on developing the next generation of their energy management system, GridOS. This latest version will include AI features. The goal of this evolving product is to help businesses reduce energy costs, lower carbon emissions, and improve building sustainability by predicting energy demand and automating HVAC systems, lighting, and other energy-intensive operations.
+
+GreenCo123 looked into the following features for bolstering GridOS with AI capabilities:
+
++   - **Energy demand forecasting**: Time-series analysis and predictive modeling were done using LSTMs to handle time-dependent data used for predicting the energy demand of a building based on historical usage data, occupancy patterns, and operations schedules. This internal data was appended with external data like weather forecasts.
++   - **Automated energy control**: Reinforcement learning models were used to dynamically control HVAC systems, lighting, and other devices to optimize energy consumption across all occupancy levels.
++   - **Anomaly detection**: Unsupervised learning models were used to detect anomalies in energy usage to help find equipment malfunctions or trigger unusual consumption patterns, which enabled proactive maintenance.
+
+# Implementation
+
+Initially, GreenCo123 partnered with a green tech consultancy to help them understand their options for how they can make GridOS significantly more robust to be able to compete in their new AI-evolved marketplace. From there, they also worked with this green tech consultancy to define the system requirements they would need to enable the AI features they identified together. They also collaboratively developed the system architecture, the data pipelines, and the ML models that would initially be used to power the features above with their staff data scientist, along with other stakeholders at the company.

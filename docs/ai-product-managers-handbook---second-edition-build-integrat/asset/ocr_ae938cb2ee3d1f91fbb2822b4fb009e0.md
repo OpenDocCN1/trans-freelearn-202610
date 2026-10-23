@@ -1,0 +1,17 @@
+Because this isn't an overly technical book meant for DL engineers, we will refrain from going into the terms and mathematics associated with DL. A basic understanding of an ANN would be helpful, however. As we go through this section, keep in mind that a neural network is composed of artificial neurons or nodes and that these nodes are stacked next to one another in layers. Typically, there are three types of layers:
+
++   - The input layer
++   - The hidden layer(s)
++   - The output layer
+
+While we will go over the various types of ANNs, there are some basics to how these DL algorithms work. Think in terms of layers and nodes. Essentially, data is passed through each node of each layer and the basic idea is that there are weights and biases that are passed from each node and layer. The ANNs work through the data they're training on in order to best arrive at patterns that will help them solve the problem at hand. An ANN that has at least three layers (which means an input, an output, and a minimum of one hidden layer) is "deep" enough to be classed as a DL algorithm.
+
+That settles the layers, but what about the nodes? One of the simplest models (which we will discuss in detail later in this chapter) is the linear regression model. You can think of each node as its own mini-linear regression model because this is the calculation that's happening within each node of an ANN. Beyond that, each node does more than just a linear regression calculation as it also applies a non-linear activation function to the result. This activation function then introduces non-linearity into the model, allowing ANNs to capture complex patterns and relationships in the data that linear regression cannot. Each node has its data, a weight for that data, and a bias or parameter that it's measuring against to arrive at an output. The summation of all these nodes making these calculations at scale gives you a sense of how an ANN works. If you can imagine a large scale of hundreds of layers, each with many nodes within each layer, you can start to imagine why it can be hard to understand why an ANN arrives at certain conclusions.
+
+DL is often referred to as a black-box technology and this starts to get to the heart of why that is. Depending on our math skills, we humans can explain why a certain error rate or loss function is present in a simple linear regression model. We can conceptualize the ways a model, which is being fitted to a curve, can be wrong. We can also appreciate the challenge when presented with real-world data, which doesn't lay out a perfect curve, for a model. But if we increase that scale and try to conceptualize potentially billions of nodes, each representing a linear regression model, our brains will start to hurt.
+
+Though DL is often discussed as a bleeding-edge technological advancement, as we saw in the prior section, this journey also started long ago.
+
+# Invisible influences
+
+It's important to understand the underlying relationships that have influenced ML and DL as well as the history associated with both. This is a foundational part of the storytelling but it's also helpful to better understand how this technology relates to the world around us. For many, understanding AI/ML concepts can be mystifying, and unless you come from a tech, or computer science background, the topics themselves can seem intimidating. Many will, at best, only acquire a rudimentary understanding of what this tech is and how it's come about.

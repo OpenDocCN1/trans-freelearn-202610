@@ -1,0 +1,17 @@
+**Recommended steps:** Share continuous product improvement strategies and QA best practices with key stakeholders and leaders involved. Keeping stakeholders informed of testing results and QA can show how improvements contribute to the product’s value. Include edge case testing, bias analysis, and fairness monitoring in your QA best practices.
+
+# Analyst
+
+As an AI PM, you’re regularly using product analytics and profiles of user/customer behavior to make informed decisions about what’s truly resonating with them. You’re consistently monitoring and interpreting changes in usage patterns, engagement metrics, and feedback trends to provide actionable insights into the features or functionality of your product that makes the biggest impact on the users you’re serving. This helps you adapt your product to the evolving needs of your users and market.
+
+**Recommended steps:** Regularly update your organization on trends, KPIs, and metrics that are being used to gauge the success of your AI product. Share reports on these areas with cross-functional teams and leadership to showcase user engagement patterns and areas of improvement to ensure you have buy-in for course corrections later on. Use analytics to measure how well AI features are doing and how they’re impacting the product’s strategic goals and vision.
+
+# Business acumen
+
+This aspect of the AI PM role focuses on the functions that connect the product to the business landscape and market it’s serving. An AI PM is responsible for defining the product vision and aligning it with the company’s goals by emphasizing the product’s financial impact and market performance. A big part of guaranteeing that performance is building partnerships and collaborations around their product to ensure it has the proper distribution channels for success. The business side of the AI PM role also requires a deep understanding of the market conditions and readiness for the product they want to build or maintain. This means AI PMs need to be well versed in the competitive landscape they’re playing in to understand how to best position their products and inform future innovations.
+
+# Strategist
+
+In this role, an AI PM is defines the product vision and strategy and makes sure it’s aligned with the company’s overarching goals. This is a pivotal role because it shapes the direction the product is going in and articulates that direction for stakeholders to understand. Articulating a clear, compelling vision and creating actionable strategies that inform product development creates direction for the team and inspires stakeholders across the organization to believe in the product’s unique value proposition and how it addresses the needs of the market and its users and customers.
+
+**Recommended steps:** Set up quarterly or semi-annual town halls where you publicly deliver the company’s product vision and strategy and explicitly connect those to the company’s overarching goals. Maintain a regular biweekly or monthly product strategy meeting with leadership or your GTM team to review progress, discuss market trends, and adjust strategies when applicable. Build market analysis and feedback into your strategy discussions to analyze competitors, assess insights from users, and understand industry shifts.

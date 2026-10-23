@@ -1,0 +1,17 @@
+In this chapter, we will cover the following topics:
+
++   - Evolve or die – when change is the only constant
++   - Structural changes in the Fourth Industrial Revolution
++   - Fear is not the answer – there is more to gain than lose (or spend)
++   - Anticipating potential risks
++   - How LLMs are evolving
+
+We will contextualize this with the help of a case study at the end of the chapter.
+
+# Evolve or die — when change is the only constant
+
+I like referring to the evolution that AI will require of all industries as a competitive imperative because the language we use to describe this paradigm shift will need to be more urgent if it’s going to adequately prepare people for what’s to come. Each industry is a universe in and of itself, and once companies within industries start to see success with AI adoption, this adoption will accelerate. I’ve mentioned before that product management is an inherently commercial role because, as a PM or leader, you are tasked with the commercial success of your product. The competitive edge and marketing splash that can come from promoting an AI product are undeniable.
+
+But beyond marketing, AI allows all industries to advance in more tangible ways. All economic and social areas will change with AI, from healthcare to tech, to education and government. The way industries relate to raw materials and plan, predict, and build products will change with this transition to AI adoption. The World Economic Forum (WEF) defines the industrial revolution we’re currently in as “characterized by a fusion of technologies that is blurring the lines between the physical, digital, and biological spheres.” I love this description because it places AI and ML firmly in the middle of these spheres. In order to account for the physical, we need a way to translate the physical world into data. This data could be about anything in the world beyond us, or it could be about ourselves. The collection and processing of this data will inevitably interact with AI and ML to some degree in order to be actionable in some way, and once this ball gets rolling, we humans, in our infinite creativity and inspiration, will come up with new combinations and expressions beyond the use cases we see today.
+
+The way our lives are changing in seen and unseen ways affects many technological areas, not just AI. We’re currently seeing massive breakthroughs in these areas, and the WEF goes on to say, “the possibilities of billions of people connected by mobile devices, with unprecedented processing power, storage capacity, and access to knowledge, are unlimited. And these possibilities will be multiplied by emerging technology breakthroughs in fields such as artificial intelligence, robotics, the Internet of Things, autonomous vehicles, 3D printing, nanotechnology, biotechnology, materials science, energy storage, and quantum computing.” This is at the heart of what makes this such a privilege to witness in our time. There’s effectively a technological renaissance happening, and we’re slowly witnessing this renaissance unfold in real time every time we read the news, download a white paper, or find a study. I’m constantly reminding myself how exciting the current technological advancements are considering that 15 years ago, I didn’t have a smartphone.
