@@ -1,0 +1,84 @@
+chapter_starts:
+- 'no': 175
+  confidence: 0.95
+  final_reason: 双方一致。检测到 '# 第 1 部分：'，确认全书为'部分-章节'模式。部分标题虽跨行，但首行具备最高的语义统领性，且复核方确认需划分。
+  accepted_evidence:
+  - 部分-章节模式判定
+  - 标题层级最高 (# 级)
+  - 复核方确认 keep_split
+  rejected_evidence:
+  - 标题内容拆分为两行（175-176），但按规则第一部分起算，首行作为起始点
+  need_human_review: false
+- 'no': 186
+  confidence: 0.95
+  final_reason: 双方一致。'## 向量和嵌入简介' 为第 1 章标题，单独成行，语义明确，后续跟随章节概述及子节。
+  accepted_evidence:
+  - 独立成行
+  - 语义统领后续内容
+  - 符合章节起始上下文（前一部分结束）
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 599
+  confidence: 0.95
+  final_reason: 双方一致。'## 在 Elastic 中开始使用向量搜索' 为第 2 章标题，承接上一章总结，开启新内容。
+  accepted_evidence:
+  - 独立成行
+  - 与前文第1章内容有明显界限
+  - 复核方确认 keep_split
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 1395
+  confidence: 0.95
+  final_reason: 双方一致。'# Part 2:' 为第 2 部分标题，遵循部分-章节模式，部分标题应分章。
+  accepted_evidence:
+  - 部分标题
+  - 标题层级最高
+  - 后续包含第3、4章列表
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 1405
+  confidence: 0.95
+  final_reason: 双方一致。'## Elastic 中的模型管理与向量考量' 为第 3 章标题，位于 Part 2 之后。
+  accepted_evidence:
+  - 独立成行
+  - 语义概括性强
+  - 复核方确认 keep_split
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 2181
+  confidence: 0.95
+  final_reason: 双方一致。'## 性能调优 – 处理数据' 为第 4 章标题，承接上一章内容。
+  accepted_evidence:
+  - 独立成行
+  - 语义统领后续性能调优内容
+  - 复核方确认 keep_split
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 2550
+  confidence: 0.95
+  final_reason: 双方一致。'# Part 3:' 为第 3 部分标题，遵循部分-章节模式。
+  accepted_evidence:
+  - 部分标题
+  - 标题层级最高
+  - 后续包含第5-8章列表
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 2562
+  confidence: 0.95
+  final_reason: 双方一致。'## Image Search' 为第 5 章标题，位于 Part 3 之后。
+  accepted_evidence:
+  - 独立成行
+  - 语义对应目录第5章
+  - 复核方确认 keep_split
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 2821
+  confidence: 0.95
+  final_reason: 双方一致。'## 使用 Elasticsearch 脱敏个人身份信息' 为第 6 章标题。
+  accepted_evidence:
+  - 独立成行
+  - 语义概括性强
+  - 复核方确认 keep_split
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines: []

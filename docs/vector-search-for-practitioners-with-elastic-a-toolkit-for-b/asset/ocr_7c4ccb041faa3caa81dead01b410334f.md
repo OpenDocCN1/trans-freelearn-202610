@@ -1,0 +1,15 @@
+Keyword-based search relies on exact matches between the user query and the terms contained in documents, which could lead to missed relevant results if the search system is not refined enough with synonyms, abbreviations, alternative phrasings, and so on. Therefore, it is important for the search system to relate given words with other words that are part of the same semantic space.
+
+As keyword-based searches lack context understanding, they don’t consider the context or meaning of words. Therefore, clarifying the context of a word is important. For example, the word “bat” is a word with different meanings in different contexts – in a sports context, a “bat” can refer to the bat used in baseball or cricket to hit a ball. In a zoological context, a “bat” refers to a flying mammal.
+
+Individual words can already be challenging because of the preceding limitation, and you can add to this language dependence, typos, and spelling variations. Furthermore, keyword-based search does not capture the structure or semantics of sentences. For instance, how words are sequenced in a query can be important to understand its meaning. The order of words can be important to understand the meaning of a query. There is a semantic relationship between terms, which makes it difficult to retrieve documents that discuss the same topic using different vocabulary.
+
+A good example of the limitation of keyword-based search due to the lack of semantic understanding can be seen in a search query related to the topic of “global warming.”
+
+Suppose a user searches for documents using the term “global warming,” but some relevant documents use the term “climate change” instead of “global warming.” Since keyword-based search doesn’t capture the semantic relationship between “global warming” and “climate change,” it may not retrieve relevant documents that discuss the same topic using different vocabulary.
+
+To be clear, there are techniques out there to cope with the aforementioned limitations, but they hardly scale or are hard to maintain, and require a decent amount of expertise. Instead, models when used to generate embedding can help address many of the limitations of keyword-based search.
+
+# Vector representation
+
+As explained in *Chapter 1, Introduction to Vectors and Embeddings*, a vector representation is a way to convert complex data such as text into a fixed-size numerical format that can be easily processed by machine learning processes. In natural language processing, it helps to capture the semantic meaning of words, sentences, and documents, making it easier to perform tasks as described in *Chapter 1*. We will now look into the vectorization process of taking raw data, extracting the feature, and converting it into a number representation using a model. Furthermore, we will familiarize ourselves with HNSW and its role in the search process.

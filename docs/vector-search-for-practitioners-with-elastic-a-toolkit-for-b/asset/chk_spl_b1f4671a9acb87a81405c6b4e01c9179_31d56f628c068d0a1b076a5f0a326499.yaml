@@ -1,0 +1,97 @@
+reviews:
+- 'no': 5932
+  overturn_probability: 0.95
+  alternative: 索引中的字母分组标记
+  counter_evidence:
+  - 该文本位于文件的“索引”部分（前文可见大量带页码的索引词条，如“映射，为索引创建 175”），而非正文章节。
+  - 行内容仅为“## S”，是索引条目按字母顺序排列的分组标题（从R结尾的词条过渡到S开头的词条），属于索引内部的细分，不具备统领全书或正文大章的语义特征。
+  - '根据判断规则，“文末索引也划分为一章”，索引内部的字母分组（如## R, ## S, ## T等）不应视为新的章节起始点，它们只是同一索引章节内部的导航结构。'
+  keep_split: false
+- 'no': 5965
+  overturn_probability: 0.95
+  alternative: 索引中的字母分组标记
+  counter_evidence:
+  - 该文本位于索引部分，内容为“## T”，是索引条目按字母顺序排列的分组标题。
+  - 上下文中充满了如“t-分布随机邻域嵌入 (t-SNE) 70”等带页码的索引词条，证明这是索引内容而非正文。
+  - 索引整体应划分为一章，其内部的字母分隔符（## T）不构成新的章节边界。
+  keep_split: false
+- 'no': 5978
+  overturn_probability: 0.95
+  alternative: 索引中的字母分组标记
+  counter_evidence:
+  - 该文本位于索引部分，内容为“## U”，是索引条目按字母顺序排列的分组标题。
+  - 后续行“Ubiquity Networks...”, “乌克兰电网攻击...”均为索引词条，而非正文段落。
+  - 作为索引的一部分，不应单独分章。
+  keep_split: false
+- 'no': 5984
+  overturn_probability: 0.95
+  alternative: 索引中的字母分组标记
+  counter_evidence:
+  - 该文本位于索引部分，内容为“## V”，是索引条目按字母顺序排列的分组标题。
+  - 后续行包含“向量数据类型 36”、“向量搜索 5, 168”等典型索引格式（词条+页码），明确属于索引章节内部。
+  - 索引内部的分节标记不触发新的章节划分。
+  keep_split: false
+- 'no': 6013
+  overturn_probability: 0.95
+  alternative: 索引中的字母分组标记
+  counter_evidence:
+  - 该文本位于索引部分，内容为“## W”，是索引条目按字母顺序排列的分组标题。
+  - 后续行“Weaviate 11”、“whaling 143”等是索引词条，且索引部分即将结束，随后进入出版社的营销广告部分。
+  - 作为索引的最后一个字母分组，它仍属于索引章节的一部分，不应单独分章。
+  keep_split: false
+- 'no': 6026
+  overturn_probability: 0.95
+  alternative: 出版社营销广告的小标题
+  counter_evidence:
+  - 该行位于索引结束后的出版社推广区域（前文有Packt网站链接，后文有“为什么订阅？”、“其他图书推荐”等营销内容）。
+  - 这些内容属于书籍末尾的附录性质（广告、推荐、反馈），不属于书籍的正文知识体系。
+  - 根据规则，虽然“前言、序言...统一划分为一章”，但末尾的广告和营销信息通常也不作为独立的“章节”处理，尤其是当它们缺乏正文的编号（如第X章）和统领性语义时。即使需要划分，也应是作为“附录”或“其他”部分，而非由营销小标题触发分章。但鉴于`chapter_starts`为空集，且这些标题极小（二级标题`##`），它们显然不是最高层级的章标题。
+  keep_split: false
+- 'no': 6038
+  overturn_probability: 0.95
+  alternative: 出版社营销广告的小标题
+  counter_evidence:
+  - 内容为“## 其他您可能喜欢的图书”，是典型的出版社交叉销售（Cross-promotion）版块标题。
+  - 后续内容是具体的图书推荐（如“使用 PyTorch...”，“图机器学习”），这些是独立的书目介绍，不是当前书籍正文的结构部分。
+  - 二级标题（`##`）在正文中通常对应“节”而非“章”，在营销页面上更是非结构性元素，不满足“全书最高层级大章”的标准。
+  keep_split: false
+- 'no': 6044
+  overturn_probability: 0.95
+  alternative: 推荐图书的书名/小标题
+  counter_evidence:
+  - “## 使用 PyTorch 和 Scikit-Learn 进行机器学习”是推荐书籍的标题，而非当前书籍《Vector Search for Practitioners...》的章节。
+  - 它出现在“其他您可能喜欢的图书”板块下，属于营销内容的子项。
+  - 该标题下紧跟的是作者信息和ISBN，以及该推荐书的简介列表，这进一步证明它是外部图书的元数据，而非当前文档的正文结构。
+  keep_split: false
+- 'no': 6060
+  overturn_probability: 0.95
+  alternative: 推荐图书的书名/小标题
+  counter_evidence:
+  - “## 图机器学习”是另一本推荐书籍的标题，属于出版社营销版块。
+  - 其下包含作者、ISBN和该书的内容亮点列表，完全独立于当前书籍的正文逻辑。
+  - 不应将此营销列表中的条目视为当前文档的章节标题。
+  keep_split: false
+- 'no': 6073
+  overturn_probability: 0.95
+  alternative: 出版社营销广告的小标题
+  counter_evidence:
+  - 内容为“## Packt 正在寻找像您这样的作者”，是出版社招募作者的广告标题。
+  - 属于书籍末尾的非正文内容（Back matter/Marketing），不具备统领正文的语义特征。
+  - 不应分章。
+  keep_split: false
+- 'no': 6077
+  overturn_probability: 0.95
+  alternative: 出版社营销广告的小标题
+  counter_evidence:
+  - 内容为“## 分享您的想法”，是邀请读者评论的广告/互动版块标题。
+  - 属于书籍末尾的非正文内容，不具备章节标题的层级和语义特征。
+  - 不应分章。
+  keep_split: false
+- 'no': 6083
+  overturn_probability: 0.95
+  alternative: 出版社营销广告的小标题
+  counter_evidence:
+  - 内容为“## 下载本书的免费 PDF 副本”，是引导读者获取额外福利的广告标题。
+  - 属于书籍末尾的非正文内容，不具备章节标题的层级和语义特征。
+  - 不应分章。
+  keep_split: false

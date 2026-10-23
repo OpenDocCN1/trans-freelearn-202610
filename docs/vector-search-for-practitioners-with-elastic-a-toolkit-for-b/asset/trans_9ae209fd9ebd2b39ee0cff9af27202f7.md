@@ -1,0 +1,146 @@
+
+
+Figure 4.1: Model deployment settings
+
+Loading the model will allow us to begin using it in performance testing before we move to a production setting. Let’s look at the tool we have available to accomplish this.
+
+## Load testing
+
+Benchmarking ingest and queries in Elasticsearch plays a crucial role in optimizing the performance of search and analytics operations. With Elasticsearch being widely used for handling large volumes of data, it is essential to ensure that both ingestion and query performance are as efficient as possible. To achieve this, it is necessary to identify bottlenecks and areas for improvement within the system. This can be done through a thorough process of benchmarking and performance testing, allowing users to identify and resolve any performance issues before they become critical.
+
+## Rally
+
+Rally is a free benchmarking tool developed by Elastic that allows users to measure and optimize Elasticsearch performance. Rally can be used to benchmark various Elasticsearch operations, such as indexing, searching, and aggregating data. It is designed to support a wide range of scenarios and workloads, making it an ideal choice for users who want to ensure that their Elasticsearch clusters are running at peak performance. In this chapter, we will be focusing on using Rally to benchmark the performance of vector search in Elasticsearch, an essential aspect of many advanced search use cases.
+
+Rally provides a set of tracks and datasets that represent various types of data, such as logging, metrics, security, and vectors. Users can use these provided tracks to benchmark a cluster as they make changes to configurations and/or version upgrades.
+
+While there are many components to the Rally framework, the three main components we will be working with are as follows:
+
+- **Track:** A track in Rally represents a series of benchmarks and workloads that simulate different operations (such as indexing or querying) against Elasticsearch
+- **Race:** A race in Rally is an execution of a track, where the performance of Elasticsearch operations is measured under specific conditions
+- **Challenge:** A challenge within Rally is a specific set of operations or tasks within a track, designed to test different aspects of Elasticsearch's performance under varying configurations and loads.
+
+In Rally, a track defines the operations to be benchmarked, a challenge specifies the particular tasks and conditions under which the track is executed, and a race is the actual run of the challenge on the track to measure Elasticsearch's performance.
+
+Users will get the most benefits when they take the time to create custom tracks with their data and configure Rally to use queries that are of the same structure so that they can used in production. One of the largest benefits provided by Rally is the ability to run repeatable tests as the user changes their data. This is especially useful early in the data cluster architecting phase to test how settings such as the number of shards and replicas and the number of docs on a single node will affect indexing speed and query response times.
+
+Follow the download instructions for your environment, as outlined in the documentation at https://esrally.readthedocs.io/en/stable/install.html.
+
+We will be using a vector track from Rally that's been specifically designed to benchmark advanced searches on dense vector fields. This track, known as the StackOverflow vector track, is derived from a dataset of StackOverflow posts and contains a variety of fields, including dense vectors, to support advanced search features such as ANN with filtering and hybrid search. By using this vector track, we will be able to measure and optimize the performance of vector search in Elasticsearch and gain insights into the best practices for managing Elasticsearch clusters that handle high-dimensional vector data.
+
+> **Note**
+> By default, Rally will output a large set of metrics to a log file, but an Elasticsearch cluster can be configured to collect these results. The results can then be searched and visualized on a Kibana dashboard so that you can compare tests.
+
+Now that we know what Rally does, let's learn how to run it.
+
+## Setting up our Python environment to run Rally
+
+In this section, we will provide code snippets and descriptions that you can use as examples. You can copy and run these examples to follow along with the benchmarking process:
+
+- 1. Create a Python virtual environment:
+```
+sudo apt-get install python3-venv
+python3 -m venv rally_testing
+source rally_testing/bin/activate
+pip install --upgrade pip
+```
+- 2. Install the necessary dependencies and packages:
+```
+sudo apt-get install gcc libffi-dev python3-dev
+pip install elasticsearch
+```
+- 3. Install Rally and the StackOverflow track:
+```
+pip install esrally
+esrally --version
+esrally list tracks
+```
+
+Now that we’ve set up our Python environment to run Rally, let’s see how to configure Rally.
+
+## Configuring Rally
+
+Next up, we will configure Rally to send metrics to an Elasticsearch cluster. The best practice is to send metrics to a separate cluster from the one you are benchmarking.
+
+All the available options for reporting can be found in the documentation: https://esrally.readthedocs.io/en/stable/configuration.html?highlight=reporting#reporting.
+
+Open the rally.ini file in a text editor of choice and modify the [reporting] section. When you are done editing, the .ini file should look as follows. This example is connecting to a dedicated monitoring cluster in Elastic Cloud. A monitoring cluster allows you to collect reporting metrics over time:
+
+```
+vim ~/.rally/rally.ini
+[reporting]
+datastore.type = elasticsearch
+datastore.host = my_monitoring_cluster.es.us-central1.gcp.cloud.es.io
+datastore.port = 9243
+datastore.secure = true
+datastore.user = rally
+datastore.password = rally_password
+```
+
+With Rally configured, let’s move on to benchmarking our Elasticsearch cluster.
+
+## Running a race on an existing cluster
+
+We will be benchmarking an existing Elasticsearch test cluster to ensure our test Elasticsearch cluster is configured the way we need it for the test. We will pass the track information and test cluster information on the command line.
+
+> **Warning**
+> Do not benchmark a production cluster! Benchmarking is designed to find the limits of performance and can cause slowdowns in normal operations. This is expected when testing but it can affect the performance of a production environment where performance is critical to business operations.
+
+More information can be found in the Rally docs: https://esrally.readthedocs.io/en/stable/recipes.html#benchmarking-an-existing-cluster.
+
+Let’s break down the arguments for esrally:
+
+- `race`: This tells esrally we will run a race
+- `--track`: This defines the track we will use
+- `--target-hosts`: This specifies which hosts we will run against – in this case, a test cluster in Elastic Cloud
+- `--pipeline=benchmark-only`: This tells esrally not to create a new cluster and to use an existing one
+- `--client-options`: This specifies the required options when security is enabled
+
+Executing all these arguments with esrally looks like this:
+
+```
+esrally race --track=so_vector --target-hosts=deployment_name.es.us-central1.gcp.cloud.es.io:9243 --pipeline=benchmark-only --track-params ingest_percentage:100 --client-options="use_ssl:true,verify_certs:true,basic_auth_user:'elastic',basic_auth_password:'elastic_password'"
+```
+
+Please note that the so_vector track is over 32 GB in size.
+
+Rally will start to run. It will download the track data if it has not been downloaded already.
+
+Now that we understand how to run Rally, the next step is to get an Elasticsearch node ready for testing. To do that, we need to estimate how many vectors will “fit” on a single node.
+
+## RAM estimation
+
+For kNN search to be performant, vectors need to “fit” in off-heap RAM on the data nodes. See the kNN performance tuning documentation for more information: https://www.elastic.co/guide/en/elasticsearch/reference/current/tune-knn-search.html#ensure_data_nodes_have_enough_memory.
+
+As of Elasticsearch version 8.7+, the rough estimate required for vectors is as follows:
+
+```
+num_vectors * 4 * (num_dimensions + 12)
+```
+
+Let's take a closer look:
+
+- num_vectors: This is the count of individual vector fields. If you have 9 million documents and 1 vector per doc, the count would be 9 million. If you have 1 replica, then the count would be 18 million.
+- num_dimensions: This is the number of dimensions the embedding model generates.
+
+Note that this formula applies to float-type vectors only.
+
+As an example, with 9 million vector fields, one per document, we would have the following:
+
+```
+9000000*4*(768 +12) =~ 26.2GB of RAM
+```
+
+This gives us a starting estimate of 26 GB of RAM (off-heap from the Elasticsearch JVM) required across the data nodes for performant kNN search. Note that each replica that's added requires the same amount of additional RAM. A standard Elasticsearch node is set up with the JVM taking half the available RAM. So, we are estimating that a standard 64 GB Elastic Cloud data node should be able to handle keeping 9 million 768 dimension vectors in cache. But we need to test this to confirm that this is the case!
+
+With our estimate in place, we can begin the benchmarking process.
+
+## Benchmarking vector search
+
+As mentioned previously, Rally is a full-performance benchmarking tool with many uses and advanced configurations. Covering them all would take a book of its own, so we will just provide a high-level overview here. Rally has extensive documentation at https://esrally.readthedocs.io.
+
+When using Rally to benchmark vector search, especially kNN search, the approach is fairly straightforward but intentionally methodical:
+
+- 1. Start with a single full-sized node, such as a VM of 60 GB or 64 GB or RAM. By default, the Elasticsearch JVM will take half, but you can also experiment by configuring 16 GB JVM heaps.
+- 2. Configure a test index to have a single primary shard and zero replicas.
+

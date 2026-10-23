@@ -1,0 +1,850 @@
+- - '##'
+  - Elastic 实践者向量搜索：用于搜索、可观测性和安全性的 NLP 解决方案构建工具包，向量搜索使用指南
+- - '###'
+  - 前言
+- - '###'
+  - 本书适合谁
+- - '###'
+  - 本书涵盖内容
+- - '###'
+  - 如何充分利用本书
+- - '###'
+  - 下载示例代码文件
+- - '###'
+  - 使用的约定
+- - '###'
+  - 联系我们
+- - '###'
+  - 分享您的想法
+- - '###'
+  - 下载本书的免费 PDF 副本
+- - '###'
+  - Foreword
+- - '###'
+  - Contributors
+- - '####'
+  - About the authors
+- - '####'
+  - About the reviewers
+- - '#'
+  - 第 1 部分：
+- - '##'
+  - 向量和嵌入简介
+- - '##'
+  - 探索监督学习和无监督学习在向量搜索中的作用
+- - '##'
+  - 什么是嵌入/向量？
+- - '##'
+  - 向量解决了哪些挑战？
+- - '##'
+  - 开发人员体验
+- - '###'
+  - Hugging Face
+- - '##'
+  - 构建未来的 AI 社区。
+- - '##'
+  - 市场格局及其如何加速开发者体验
+- - '###'
+  - Pinecone
+- - '###'
+  - Vespa.ai
+- - '###'
+  - Milvus
+- - '###'
+  - Weaviate
+- - '###'
+  - Elasticsearch
+- - '#'
+  - 用例和应用领域
+- - '##'
+  - 基于 AI 的搜索
+- - '###'
+  - '*收集数据*'
+- - '###'
+  - '*表示数据*'
+- - '###'
+  - Applying ML
+- - '###'
+  - Integrating personalization
+- - '###'
+  - Getting into production
+- - '###'
+  - Named Entity Recognition (NER)
+- - '###'
+  - Sentiment analysis
+- - '###'
+  - Text classification
+- - '####'
+  - Load the dataset
+- - '####'
+  - Vectorize the text data
+- - '####'
+  - Train a Naive Bayes classifier
+- - '####'
+  - Predict on the test set
+- - '####'
+  - Print the accuracy and predicted classes
+- - '##'
+  - 问答 (QA)
+- - '####'
+  - Load the question answering model
+- - '####'
+  - Define a question and a context
+- - '####'
+  - Get the answer
+- - '####'
+  - Print the answer
+- - '##'
+  - 文本摘要
+- - '####'
+  - Define the text to be summarized
+- - '####'
+  - Instantiate the summarization pipeline
+- - '####'
+  - Generate a summary of the text
+- - '####'
+  - Print the summary
+- - '##'
+  - Elastic 在这个领域扮演什么角色？
+- - '##'
+  - 可观测性和网络安全入门
+- - '##'
+  - 总结
+- - '##'
+  - 在 Elastic 中开始使用向量搜索
+- - '##'
+  - 在向量之前 Elastic 中的搜索体验
+- - '##'
+  - 数据类型及其对相关性的影响
+- - '##'
+  - 相关性模型
+- - '###'
+  - '*TF-IDF*'
+- - '###'
+  - BM25
+- - '####'
+  - TF normalization
+- - '####'
+  - IDF
+- - '####'
+  - BM25 score
+- - '##'
+  - Evolution of search experience
+- - '###'
+  - The limits of keyword-based search
+- - '###'
+  - Vector representation
+- - '##'
+  - 向量化过程
+- - '##'
+  - HNSW
+- - '##'
+  - 距离度量
+- - '##'
+  - 方向和大小
+- - '####'
+  - Install spaCy and download the 'en_core_web_md' model
+- - '####'
+  - Load the pre-trained word embeddings model
+- - '####'
+  - Define the texts
+- - '####'
+  - Convert the texts to vector representations using the spaCy model
+- - '####'
+  - Calculate the cosine similarity between the vectors
+- - '####'
+  - Calculate the Euclidean distance between the vectors
+- - '####'
+  - Calculate the magnitudes of the vectors
+- - '##'
+  - 新的向量数据类型和向量搜索查询 API
+- - '##'
+  - 稀疏向量和稠密向量
+- - '####'
+  - Generate a corpus of 100 documents, each containing 1000 words
+- - '####'
+  - Create a vocabulary of 10000 words
+- - '####'
+  - Generate a random dense vector representing each document
+- - '####'
+  - Convert the dense vectors to sparse format
+- - '####'
+  - Use TruncatedSVD to reduce the dimensionality of the dense vectors
+- - '####'
+  - Apply TruncatedSVD to the sparse vectors
+- - '####'
+  - Plot the dense and sparse vectors on a scatter plot
+- - '##'
+  - An Elastic Cloud quick start
+- - '###'
+  - packt-vector-search-with-elastic
+- - '###'
+  - Dense vector mapping
+- - '####'
+  - Define Elasticsearch connection with credentials
+- - '####'
+  - Define the mapping for the dense vector field
+- - '####'
+  - Create an index with the defined mapping
+- - '####'
+  - Define a set of documents
+- - '####'
+  - Load the BERT tokenizer and model
+- - '####'
+  - Generate embeddings for the documents using BERT
+- - '####'
+  - Index the documents in Elasticsearch
+- - '###'
+  - Brute-force kNN search
+- - '###'
+  - kNN search
+- - '####'
+  - Mapping
+- - '####'
+  - An example illustrating the use of kNN search
+- - '#####'
+  - Load the BERT tokenizer and model
+- - '#####'
+  - Generate embeddings for the jokes using BERT
+- - '#####'
+  - Index the jokes in Elasticsearch
+- - '#####'
+  - Define the Elasticsearch kNN search
+- - '#####'
+  - Perform the kNN search and print the results
+- - '###'
+  - Summary
+- - '#'
+  - 'Part 2:'
+- - '##'
+  - Elastic 中的模型管理与向量考量
+- - '##'
+  - 技术要求
+- - '##'
+  - Hugging Face
+- - '##'
+  - Model Hub
+- - '##'
+  - Datasets
+- - '####'
+  - Load a small portion of the IMDB dataset (100 samples)
+- - '####'
+  - Initialize the tokenizer
+- - '####'
+  - Tokenize the IMDB dataset with truncation and padding
+- - '####'
+  - 'This prints out:'
+- - '####'
+  - Get the first row of tokens
+- - '####'
+  - Print the first 10 tokens and their corresponding words
+- - '##'
+  - Spaces
+- - '##'
+  - Eland
+- - '##'
+  - 从 Hugging Face 加载 Sentence Transformer 到 Elasticsearch
+- - '###'
+  - 配置 Elasticsearch 身份验证
+- - '####'
+  - Connect to Elastic Cloud
+- - '###'
+  - 从 Hugging Face Hub 加载模型
+- - '###'
+  - 下载模型
+- - '##'
+  - 将模型加载到 Elasticsearch
+- - '##'
+  - 启动模型
+- - '####'
+  - List the in Elasticsearch
+- - '##'
+  - 部署模型
+- - '##'
+  - 为查询生成向量
+- - '##'
+  - 在 Elasticsearch 中生成向量
+- - '##'
+  - 规划集群容量和资源
+- - '##'
+  - CPU 和内存需求
+- - '##'
+  - 磁盘需求
+- - '##'
+  - Analyze Index Disk Usage API
+- - '##'
+  - ML 节点容量
+- - '##'
+  - 存储效率策略
+- - '###'
+  - 降低维度
+- - '####'
+  - Load the Iris dataset
+- - '####'
+  - Apply PCA for dimensionality reduction
+- - '####'
+  - Visualize the original data
+- - '####'
+  - Visualize the reduced data
+- - '###'
+  - 量化
+- - '####'
+  - Load the digits dataset
+- - '####'
+  - Print the first example from the original dataset
+- - '####'
+  - Apply PCA for dimensionality reduction
+- - '####'
+  - Print the first example after PCA
+- - '####'
+  - Normalize the reduced vectors to the range [0, 255]
+- - '####'
+  - Print the first example after normalization
+- - '####'
+  - Quantize the scaled vectors to 8-bit integers
+- - '####'
+  - Print the first example after quantization
+- - '##'
+  - 从 _source 中排除 dense_vector
+- - '##'
+  - 摘要
+- - '##'
+  - 性能调优 – 处理数据
+- - '##'
+  - 部署 NLP 模型
+- - '##'
+  - 将模型加载到 Elasticsearch
+- - '##'
+  - 模型部署配置
+- - '##'
+  - Load testing
+- - '##'
+  - Rally
+- - '##'
+  - Setting up our Python environment to run Rally
+- - '##'
+  - Configuring Rally
+- - '##'
+  - Running a race on an existing cluster
+- - '##'
+  - RAM estimation
+- - '##'
+  - Benchmarking vector search
+- - '##'
+  - Evaluating results
+- - '##'
+  - Testing with 7.2 million vectors
+- - '##'
+  - Testing with 9 million vectors
+- - '##'
+  - Testing with 13.8 million vectors
+- - '##'
+  - Troubleshooting slowdown
+- - '##'
+  - Hot Threads API
+- - '##'
+  - Major page faults
+- - '##'
+  - Indexing considerations
+- - '##'
+  - Summary
+- - '#'
+  - 'Part 3:'
+- - '##'
+  - Image Search
+- - '###'
+  - Overview of image search
+- - '###'
+  - The evolution of image search
+- - '###'
+  - The mechanism behind image search
+- - '###'
+  - The role of vector similarity search
+- - '###'
+  - Image search in practice
+- - '##'
+  - 使用图像的向量搜索
+- - '##'
+  - 图像向量化
+- - '##'
+  - 在 Elasticsearch 中索引图像向量
+- - '###'
+  - Create document
+- - '##'
+  - k-最近邻 (kNN) 搜索
+- - '##'
+  - 图像搜索的挑战与局限性
+- - '##'
+  - 用于向量搜索的多模态模型
+- - '##'
+  - 引言与 rationale
+- - '##'
+  - 理解多模态模型中向量空间的概念
+- - '##'
+  - OpenAI clip-ViT-B-32-multilingual-v1 模型的介绍
+- - '##'
+  - 为多样化媒体类型实现向量搜索
+- - '##'
+  - 新闻机构
+- - '##'
+  - 电子商务平台
+- - '##'
+  - 社交媒体平台
+- - '##'
+  - 总结
+- - '##'
+  - 使用 Elasticsearch 脱敏个人身份信息
+- - '##'
+  - PII 与脱敏概述
+- - '##'
+  - 可能包含 PII 的数据类型
+- - '##'
+  - 在日志中存储 PII 的风险
+- - '##'
+  - PII 是如何泄露或丢失的
+- - '##'
+  - 使用 NER 模型和正则表达式模式涂抹 PII
+- - '##'
+  - NER 模型
+- - '##'
+  - 正则表达式模式
+- - '##'
+  - 结合 NER 模型和正则表达式（或 grok）模式进行 PII 涂抹
+- - '##'
+  - Elasticsearch 中的 PII 涂抹管道
+- - '##'
+  - 生成合成 PII
+- - '###'
+  - Create an instance of the Faker class
+- - '###'
+  - Define a function to generate fake personal identification information
+- - '###'
+  - Generate fake personal identification information
+- - '###'
+  - Generate fake personal identification information for N individuals
+- - '###'
+  - Import the required libraries
+- - '###'
+  - Create an instance of the Faker class
+- - '###'
+  - Define a function to generate fake personal identification information
+- - '###'
+  - Create an empty list to store the fake data
+- - '###'
+  - Generate the specified number of fake records
+- - '###'
+  - Generate fake personal identification information
+- - '###'
+  - Append the fake data to the list
+- - '###'
+  - Generate fake personal identification information for N individuals
+- - '##'
+  - Bulk Indexer
+- - '###'
+  - Define a function to generate an array of documents for Elasticsearch
+- - '###'
+  - Create an empty list to store the documents
+- - '###'
+  - Iterate over the fake data and format it as documents
+- - '###'
+  - Create a document with the _index and _source keys
+- - '###'
+  - Append the document to the list of documents
+- - '###'
+  - Generate the array of documents for Elasticsearch
+- - '###'
+  - Initialize the Elasticsearch client
+- - '###'
+  - Convert the bulk index body to a single string with newline separators
+- - '##'
+  - 安装默认管道
+- - '###'
+  - 'Install the necessary Python packages:'
+- - '###'
+  - 'Set up an Elasticsearch connection using your Elastic Cloud ID and cluster-level
+    API key:'
+- - '###'
+  - 'Download the model from Hugging Face and load it into Elasticsearch:'
+- - '###'
+  - Load the model into Elastic Cluster
+- - '###'
+  - <Load the model using the provided Python code from the GitHub repository>
+- - '##'
+  - 预期结果
+- - '##'
+  - 在 Elasticsearch 中扩展和自定义 PII 脱敏管道的选项
+- - '##'
+  - 自定义默认 PII 示例
+- - '##'
+  - 克隆管道以创建不同数据流的不同版本
+- - '##'
+  - 为特定数据集微调 NER 模型
+- - '##'
+  - 上下文感知的逻辑
+- - '##'
+  - 摘要
+- - '##'
+  - 由向量驱动的可观测性新一代
+- - '##'
+  - 可观测性及其在现代软件系统中的重要性简介
+- - '##'
+  - 可观测性——主要支柱
+- - '##'
+  - 日志分析及其在可观测性中的作用
+- - '##'
+  - 一种新方法——将向量和嵌入应用于日志分析
+- - '##'
+  - 方法 1——为日志训练或微调现有模型
+- - '###'
+  - 优点
+- - '###'
+  - 缺点
+- - '##'
+  - 方法 2——生成人类可理解的描述并对这些描述进行向量化
+- - '###'
+  - 优点
+- - '###'
+  - 缺点
+- - '##'
+  - 日志向量化
+- - '##'
+  - 合成日志
+- - '###'
+  - '*Apache HTTP server (common log format)*'
+- - '###'
+  - '*nginx (combined log format)*'
+- - '###'
+  - Syslog (RFC 5424)
+- - '###'
+  - AWS CloudTrail
+- - '###'
+  - Microsoft Windows event log
+- - '###'
+  - Linux audit log
+- - '###'
+  - Elasticsearch
+- - '###'
+  - MySQL (general query log)
+- - '###'
+  - MongoDB (log format)
+- - '###'
+  - Kafka (server log)
+- - '##'
+  - 使用 OpenAI 在写入时扩展日志
+- - '###'
+  - Example usage
+- - '###'
+  - Define the OpenAI API key and Elasticsearch connection details
+- - '###'
+  - Initialize the OpenAI API client
+- - '##'
+  - Semantic search on our logs
+- - '###'
+  - Building a query using log vectorization
+- - '####'
+  - Generate the sequence of JSON documents for a bulk index operation
+- - '###'
+  - Loading a model
+- - '####'
+  - Set the model name from Hugging Face and task type hf_model_id='sentence-transformers/all-distilroberta-v1'
+- - '####'
+  - Download the model from Hugging Face
+- - '####'
+  - Load the model into Elasticsearch ptm = PyTorchModel(es, es_model_id) ptm.import_model(model_path=model_path,
+    config_path=None, vocab_path=vocab_path, config=config)
+- - '###'
+  - Ingest pipeline
+- - '###'
+  - Semantic search
+- - '####'
+  - Elasticsearch query (BM25) and kNN configuration for hybrid search
+- - '##'
+  - Summary
+- - '##'
+  - 向量和嵌入在增强网络安全中的力量
+- - '##'
+  - 向量和嵌入在增强网络安全中的力量
+- - '##'
+  - 向量和嵌入在增强网络安全中的力量
+- - '##'
+  - 技术要求
+- - '##'
+  - 理解电子邮件钓鱼检测的重要性
+- - '###'
+  - 什么是网络钓鱼？
+- - '##'
+  - 不同类型的网络钓鱼攻击
+- - '##'
+  - 网络钓鱼攻击频率的统计数据
+- - '##'
+  - 检测钓鱼邮件的挑战
+- - '##'
+  - 自动化检测的作用
+- - '##'
+  - 用自然语言处理增强现有技术
+- - '##'
+  - 介绍 ELSER
+- - '##'
+  - ELSER 在 GenAI 中的作用
+- - '##'
+  - Enron 电子邮件数据集简介（ham 或 spam）
+- - '##'
+  - Data Visualizer
+- - '##'
+  - Data Visualizer
+- - '##'
+  - enron_spam_data.csv
+- - '##'
+  - File contents
+- - '##'
+  - Summary
+- - '###'
+  - 数据可视化器
+- - '###'
+  - enron_spam_data.csv
+- - '###'
+  - 导入数据
+- - '###'
+  - 数据可视化器
+- - '###'
+  - 亲眼见证 ELSER 的运行
+- - '###'
+  - 硬件考虑
+- - '###'
+  - 在 Elastic 中下载 ELSER 模型
+- - '###'
+  - 启动 .elser_model_1 部署
+- - '###'
+  - 图 8.6：启动 ELSER
+- - '###'
+  - 训练模型
+- - '###'
+  - 图 8.7：ELSER 已下载并部署
+- - '###'
+  - 设置索引和摄取管道
+- - '###'
+  - 索引映射
+- - '###'
+  - 摄取管道
+- - '###'
+  - 重新索引数据
+- - '##'
+  - 使用 ELSER 进行语义搜索
+- - '##'
+  - ELSER 的局限性
+- - '##'
+  - 总结
+- - '##'
+  - 第 4 部分：
+- - '##'
+  - 使用 Elastic 进行检索增强生成
+- - '##'
+  - 为 RAG 增强搜索做准备，使用 ELSER 和 RRF
+- - '##'
+  - 使用 ELSER 进行语义搜索
+- - '##'
+  - RAG 的关键注意事项回顾
+- - '##'
+  - 文档存储
+- - '##'
+  - 检索器
+- - '##'
+  - 生成器
+- - '##'
+  - 将 ELSER 与 RRF 集成
+- - '###'
+  - BM25 子搜索
+- - '###'
+  - ELSER 子搜索
+- - '###'
+  - RRF 融合
+- - '##'
+  - 语言模型和 RAG
+- - '##'
+  - 预训练 LLM
+- - '##'
+  - RAG 如何扩展 LLM
+- - '##'
+  - 向 LLM 提供语义索引数据
+- - '##'
+  - 深入案例研究——实现 RAG 增强的 CookBot
+- - '##'
+  - 数据集概览 – Allrecipes.com 数据集简介
+- - '##'
+  - 为 RAG 增强搜索准备数据
+- - '###'
+  - 连接到 Elasticsearch
+- - '###'
+  - 定义索引
+- - '###'
+  - 创建映射
+- - '###'
+  - 创建索引
+- - '###'
+  - 读取 CSV 文件
+- - '###'
+  - 转换为字典
+- - '##'
+  - 批量索引数据
+- - '###'
+  - 定义预处理管道
+- - '###'
+  - 创建批量索引序列
+- - '####'
+  - 执行批量索引操作
+- - '##'
+  - 构建检索器——带有 ELSER 的 RRF
+- - '##'
+  - 利用检索器并实现生成器
+- - '###'
+  - 构建生成器
+- - '##'
+  - 将生成器集成到 Streamlit 应用程序
+- - '##'
+  - 总结
+- - '##'
+  - '10'
+- - '##'
+  - 上下文基础
+- - '###'
+  - 动态上下文范式
+- - '###'
+  - 大语言模型中上下文重要性的演变
+- - '###'
+  - 为什么静态知识不够——动态上下文的优势
+- - '###'
+  - 动态上下文的力量
+- - '##'
+  - 上下文的重要性
+- - '##'
+  - sigmoid 函数中 k 的作用
+- - '##'
+  - 示例
+- - '###'
+  - Import necessary libraries
+- - '###'
+  - Define the SoC function using sigmoid
+- - '###'
+  - Sample R, C, T, A values
+- - '###'
+  - Compute SoC values for the sample R, C, T, A values
+- - '###'
+  - Plotting the function
+- - '##'
+  - 动态上下文层插件愿景——架构和流程
+- - '##'
+  - 构建 DCL
+- - '##'
+  - 从 Elastic 文档获取最新信息
+- - '##'
+  - Enterprise Search
+- - '##'
+  - Enterprise Search instances info
+- - '##'
+  - Elasticsearch indices
+- - '##'
+  - Welcome to Enterprise Search
+- - '##'
+  - Add data and start searching
+- - '##'
+  - Select an ingestion method
+- - '##'
+  - Web crawler search index
+- - '##'
+  - Create an Elasticsearch index
+- - '##'
+  - search-packt-cdl-source
+- - '##'
+  - Add a domain to your index
+- - '##'
+  - Manage https://www.elastic.co
+- - '##'
+  - Entry points
+- - '##'
+  - Elevating data with Embedchain
+- - '##'
+  - 集成 ChatGPT——创建实时对话者
+- - '##'
+  - 处理 Elasticsearch 与 ChatGPT 之间的实时数据流
+- - '##'
+  - 插件代码
+- - '##'
+  - 存储库结构
+- - '##'
+  - 服务代码
+- - '###'
+  - Assuming 'resp' is the response object you've mentioned
+- - '##'
+  - Manifest
+- - '##'
+  - OpenAPI definition
+- - '##'
+  - Deployment
+- - '###'
+  - Enter your website domain
+- - '###'
+  - Found plugin
+- - '##'
+  - Summary
+- - '##'
+  - Index
+- - '###'
+  - A
+- - '###'
+  - B
+- - '###'
+  - C
+- - '##'
+  - D
+- - '##'
+  - E
+- - '##'
+  - H
+- - '##'
+  - F
+- - '##'
+  - G
+- - '##'
+  - I
+- - '##'
+  - K
+- - '##'
+  - L
+- - '##'
+  - M
+- - '##'
+  - N
+- - '##'
+  - NLP 模型
+- - '##'
+  - O
+- - '##'
+  - P
+- - '##'
+  - Q
+- - '##'
+  - R
+- - '##'
+  - S
+- - '##'
+  - T
+- - '##'
+  - U
+- - '##'
+  - V
+- - '##'
+  - W
+- - '##'
+  - 为什么订阅？
+- - '##'
+  - 其他您可能喜欢的图书
+- - '##'
+  - 使用 PyTorch 和 Scikit-Learn 进行机器学习
+- - '##'
+  - 图机器学习
+- - '##'
+  - Packt 正在寻找像您这样的作者
+- - '##'
+  - 分享您的想法
+- - '##'
+  - 下载本书的免费 PDF 副本

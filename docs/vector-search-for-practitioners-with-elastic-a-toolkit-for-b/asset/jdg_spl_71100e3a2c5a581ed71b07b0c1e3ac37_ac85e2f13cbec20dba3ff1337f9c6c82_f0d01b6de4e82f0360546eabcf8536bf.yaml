@@ -1,0 +1,34 @@
+chapter_starts:
+- 'no': 4345
+  confidence: 0.9
+  final_reason: 复核方确认该行语义为‘第 4 部分：’，符合部分-章节模式下的最高层级划分规则，且判断方与复核方均认可其为部分起始
+  accepted_evidence:
+  - 标题包含‘第 4 部分’，为明确的部分层级标记
+  - 后续内容覆盖第9章、第10章等，具统领性
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 4356
+  confidence: 0.8
+  final_reason: 复核方虽提出##层级疑虑，但最终维持分章；该行对应第9章主题‘使用 Elastic 进行检索增强生成’，在第4部分下为最高层级章节起始
+  accepted_evidence:
+  - 标题语义统领后续第9章全部内容
+  - 位于‘第 4 部分’之后作为首个章节入口
+  rejected_evidence:
+  - '## 格式在标准 Markdown 中为二级标题'
+  need_human_review: false
+- 'no': 4845
+  confidence: 0.85
+  final_reason: 前行 4844 为‘## 10’章编号，4845 为章名‘为 ChatGPT 构建一个 Elastic 插件’，共同构成第10章起始，复核方维持分章
+  accepted_evidence:
+  - 与前行‘## 10’形成编号+标题的章起始组合
+  - 后续内容为第10章完整展开
+  rejected_evidence:
+  - '## 格式为二级标题'
+  need_human_review: false
+rejected_lines:
+- 'no': 3332
+  reason: 复核方反方证据成立：‘## 由向量驱动的可观测性新一代’为 Markdown 二级标题，上下文属于第7章内部主题描述，非全书最高层级章标题
+  need_human_review: false
+- 'no': 3868
+  reason: 复核方反方证据成立：‘## 向量和嵌入在增强网络安全中的力量’为二级标题格式，虽语义对应第8章主题，但层级上为章内小节/排版变体，不符合最高层级章划分规则
+  need_human_review: false

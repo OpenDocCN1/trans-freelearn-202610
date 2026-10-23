@@ -1,0 +1,11 @@
+# Part 3:
+Specialized Use Cases
+
+This section delves into the specialized applications of vector search across various domains. From image search to the intricacies of cybersecurity, it explores how vector search is uniquely adapted to different contexts. These chapters provide a detailed perspective on the versatility of vector search, demonstrating its wide-ranging impact and utility in addressing specific, industry-related challenges.
+
+This part has the following chapters:
+
+- Chapter 5, Image Search
+- Chapter 6, Redacting Personal Identifiable Information Using Elasticsearch
+- Chapter 7, Next Generation of Observability Powered by Vectors
+- Chapter 8, The Power of Vectors and Embedding in Bolstering Cybersecurity

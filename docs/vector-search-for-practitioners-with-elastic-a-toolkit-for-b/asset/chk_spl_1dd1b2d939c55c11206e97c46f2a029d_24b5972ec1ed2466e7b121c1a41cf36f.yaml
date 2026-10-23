@@ -1,0 +1,64 @@
+reviews:
+- 'no': 175
+  overturn_probability: 0.08
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 标题被拆分为两行，‘# 第 1 部分：’ 与下一行 ‘向量搜索的基础’ 共同构成完整部分标题，单独一行语义不完整
+  - 前后上下文为前言/目录区域，符合部分-章节模式下的部分划分规则
+  keep_split: true
+- 'no': 186
+  overturn_probability: 0.05
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 标题单独成行，长度 <30 字，末尾无句号，语义统领后续章节内容
+  - 后 1~3 行为章节概述段落，且后续出现子节标题，符合最高层级章节特征
+  keep_split: true
+- 'no': 599
+  overturn_probability: 0.04
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '标题单独成行且为 ## 级别，语义为‘在 Elastic 中开始使用向量搜索’，与目录中第 2 章描述一致'
+  - 前后为上一章总结与本章引言的明显分界，符合章节起始上下文特征
+  keep_split: true
+- 'no': 1395
+  overturn_probability: 0.07
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - ‘# Part 2:’ 为英文部分标题，下一行‘高级应用与性能优化’为副标题，共同构成部分标题
+  - 书为部分-章节模式，部分标题应划分新章，上下文为第 1 部分结束后的新部分起始
+  keep_split: true
+- 'no': 1405
+  overturn_probability: 0.06
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 标题单独成行，语义概括性强，后续紧跟章节概述与主题列表
+  - 与目录中‘第 3 章，Elastic 中的模型管理与向量考量’对应，为最高层级章节
+  keep_split: true
+- 'no': 2181
+  overturn_probability: 0.05
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 标题单独成行，长度适中，末尾无句号，语义统领后续性能调优内容
+  - 前后为上一章总结与本章引言，符合章节起始上下文特征
+  keep_split: true
+- 'no': 2550
+  overturn_probability: 0.08
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - ‘# Part 3:’ 为部分标题，下一行‘Specialized Use Cases’为副标题，构成完整部分标题
+  - 部分-章节模式下部分标题应划分新章，上下文为第 2 部分结束后的新部分起始
+  keep_split: true
+- 'no': 2562
+  overturn_probability: 0.06
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 标题单独成行，语义为‘Image Search’，与目录中第 5 章对应
+  - 后文为章节概述与子节，符合最高层级章节特征
+  keep_split: true
+- 'no': 2821
+  overturn_probability: 0.05
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 标题单独成行，语义概括性强，后续为章节引言与主题列表
+  - 与目录中第 6 章‘使用 Elasticsearch 脱敏个人身份信息’对应，为最高层级章节
+  keep_split: true
