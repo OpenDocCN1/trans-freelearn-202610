@@ -1,0 +1,5 @@
++   [Salesforce数据架构认证指南：全面覆盖Salesforce数据架构师考试内容，助你一次通过](README.md)
++   [Salesforce数据架构认证指南：全面覆盖Salesforce数据架构师考试内容，助你一次通过](salesforce-data-architecture-certification-guide-a-comprehen_0.md)
++   [11](salesforce-data-architecture-certification-guide-a-comprehen_1.md)
++   [第 3 部分：](salesforce-data-architecture-certification-guide-a-comprehen_2.md)
++   [Index](salesforce-data-architecture-certification-guide-a-comprehen_3.md)

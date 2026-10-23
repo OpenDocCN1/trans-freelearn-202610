@@ -1,0 +1,15 @@
+Testing for intent can be thought of as **User Acceptance Testing (UAT)** for data. Does the data loaded stand up to real-world use? Will our users be able to carry out their duties as desired with the data loaded? Do the data relationships correlate correctly?
+
+Something else to consider in the testing part of the process is the reconciliation strategy for data. How can we ensure that the sets of data from the various source systems and the target system are in agreement, accounting for the transformations we’ve applied? With specification, intent, and reconciliation covered, we should be in a position to say that we’ve loaded the correct amount of records that work as intended for the users and are correct in their desired end state, as dictated by the transform logic.
+
+# De-duplicate
+
+As mentioned previously, the de-duplication step of a data migration process may take place earlier in the process but can take place after migration if it is deemed more suitable. When de-duplicating data, a suitable tool can be used to facilitate the process. This is typically given a set of rules that determine what criteria are used to match data. This is, in turn, used to generate a score of the likelihood of data being a duplicate and therefore should be considered for removal. For example, it isn’t entirely unreasonable to build a rule that matches Contact records that have the same email address and postcode. It’s likely these are the same person, so they can be flagged for intervention (in this case, marked for deletion). If you’re migrating data to a new data master, it may be worth considering the intended behavior concerning propagating data changes and sending duplicate records to downstream systems.
+
+# Enrich
+
+Once the data has been loaded and is in a clean state, it may be desirable to enrich the data by incorporating a one-time or ongoing process. For example, Salesforce has a plethora of AppExchange packages available to it that can provide enriched company address and employee information, credit scoring information, and so on. If there is a desire to enrich data, it generally makes sense to do this on a cleansed, de-duplicated dataset.
+
+# Maintain
+
+So far, we’ve defined a process, carefully mapped our data, and built and executed that process by extracting, transforming, and loading data. We’ve cleansed, de-duplicated, and enriched the data along the way. But before we’re done with this process, we need to cover the last step (and some may argue the hardest one): we need to consider how we’re going to maintain the data we’ve spent so long and so much effort on getting into our target system in the right way. Maintenance naturally takes a different form, depending on the characteristics of the business that owns the target system. Salesforce provides tools (even down to basic reporting) that can help ensure the data stays in as good a shape as possible. This includes how data is added over time as users adopt and use the system.

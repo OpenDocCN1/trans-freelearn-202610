@@ -1,0 +1,65 @@
+reviews:
+- 'no': 44
+  overturn_probability: 0.92
+  alternative: 页码/排版噪声
+  counter_evidence:
+  - 行内容仅为 '# 12'，无章节语义，长度极短且为孤立数字
+  - 下一行 46 为 '## Territory Management 157'，才是实际标题+页码，44 行更像是目录页眉页脚或页码残留
+  - 前后上下文为目录式条目列表，非正文章节开始
+  keep_split: false
+- 'no': 74
+  overturn_probability: 0.9
+  alternative: 页码/排版噪声
+  counter_evidence:
+  - 行内容仅为 '# 13'，无标题语义，与 44 行模式一致
+  - 下一行 76 为 '## Practice Exam Questions 167'，才是带页码的实际条目
+  - 上下文为目录/索引式条目，非最高层级章节标题
+  keep_split: false
+- 'no': 90
+  overturn_probability: 0.9
+  alternative: 页码/排版噪声
+  counter_evidence:
+  - 行内容仅为 '# 14'，孤立编号无统领性语义
+  - 下一行 92 为 '## Cheat Sheets 193'，才是标题+页码
+  - 前后为目录条目序列，符合排版断行特征
+  keep_split: false
+- 'no': 110
+  overturn_probability: 0.85
+  alternative: 目录项/排版噪声
+  counter_evidence:
+  - 行内容为 '### 15'，仅为编号无标题文字，格式为子层级标记
+  - 下一行 112 为 '## Further Resources 203'，才是实际条目标题
+  - 上下文为目录列表，编号与标题分离，符合误判为章节标题的典型噪声
+  keep_split: false
+- 'no': 138
+  overturn_probability: 0.85
+  alternative: 目录项/排版噪声
+  counter_evidence:
+  - 行内容为 '### 16'，仅编号无语义标题
+  - 下一行 140 为 '## How to Take the Exam 211'，才是标题+页码
+  - 与 110 行相同模式，为目录编号残留
+  keep_split: false
+- 'no': 154
+  overturn_probability: 0.85
+  alternative: 目录项/排版噪声
+  counter_evidence:
+  - 行内容为 '### 17'，仅编号
+  - 下一行 156 为 '## Answers to Practice Questions 219'，才是实际条目
+  - 上下文为目录序列，非正文章节开始
+  keep_split: false
+- 'no': 168
+  overturn_probability: 0.6
+  alternative: 目录项/页码残留
+  counter_evidence:
+  - 行内容为 '## Index 223'，带页码 223，符合目录条目格式而非正文索引开始
+  - 在文本中索引条目出现在目录区段，后续 170 行为 '## Other Books You May Enjoy 232'，仍为目录式列表
+  - 若为文末索引，应出现在正文末尾而非目录区段中
+  keep_split: false
+- 'no': 172
+  overturn_probability: 0.75
+  alternative: 目录项/排版噪声
+  counter_evidence:
+  - 行内容为 '## Preface'，但出现在目录区段中且后接正文前言内容，位置异常
+  - 前后上下文为目录页码列表，Preface 作为目录条目出现而非正文前言起始
+  - 文本中前言实际内容在 174 行后开始，172 行更像是目录标题残留
+  keep_split: false

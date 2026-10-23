@@ -1,0 +1,35 @@
+chapter_starts:
+- 'no': 3027
+  confidence: 0.98
+  final_reason: '双方一致采纳。# 11 为最高层级章号，后接 ## 备份与恢复，上下文为上一章结束后的新章起始，编号、格式、语义均符合。'
+  accepted_evidence:
+  - '# 11 为最高层级标题，后接 ## 备份与恢复 构成完整章头'
+  - 上一章已结束，下一段为章节概述，符合新章起始
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 3409
+  confidence: 0.95
+  final_reason: 双方一致采纳。出现第 3 部分，部分-章节模式下部分标题应划分新章，后接本部分说明及章节列表。
+  accepted_evidence:
+  - 标题为 '第 3 部分：' 且后接本部分说明及章节列表
+  - 符合部分-章节模式下的新章划分规则
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 4607
+  confidence: 0.99
+  final_reason: '双方一致采纳。文末 ### Index 单独成行，语义统领性强，按规则索引应单独划分为一章。'
+  accepted_evidence:
+  - 文末出现 '### Index'，按规则索引应单独划分为一章
+  - 单独成行、语义统领性强
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 4151
+  reason: '复核方反方证据成立。标题仅为 ### 15 数字编号，无统领性章名，层级非全书最高层级 #，与 # 11 格式不一致，更像是节号标记而非独立章节；判断方证据不足。'
+  need_human_review: false
+- 'no': 4313
+  reason: '复核方反方证据成立。标题仅为 ### 16 数字编号，后接 #### 如何参加考试，层级为 ###，与全书最高层级章标题不一致，疑似同一部分内的节号标记而非新章。'
+  need_human_review: false
+- 'no': 4488
+  reason: '复核方反方证据成立。标题仅为 ### 17 数字编号，后接 #### Answers to Practice Questions，层级不符合全书最高层级章标题格式，前文为第16章总结，内容衔接紧密，数字标题更像是内部节号。'
+  need_human_review: false
