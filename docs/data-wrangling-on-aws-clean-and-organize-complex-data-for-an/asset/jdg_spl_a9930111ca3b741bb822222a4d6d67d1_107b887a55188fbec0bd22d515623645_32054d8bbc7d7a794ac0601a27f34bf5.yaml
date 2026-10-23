@@ -1,0 +1,57 @@
+chapter_starts:
+- 'no': 3274
+  confidence: 0.95
+  final_reason: 双方一致确认为“部分”标题，且全书采用部分-章节模式，故划分新章
+  accepted_evidence:
+  - 复核方确认标题为 '# 第 3 部分：AWS 数据管理与分析'
+  - 符合部分-章节模式下的最高层级划分规则
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 3285
+  confidence: 0.98
+  final_reason: 双方一致确认为章标题，包含明确章号及名称
+  accepted_evidence:
+  - 复核方确认标题为 '# 5 使用 Amazon S3'
+  - 位于第 3 部分之后，符合大章划分特征
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 3721
+  confidence: 0.9
+  final_reason: 该行 '## 6' 与下一行 '## 使用 AWS Glue' 构成章标题组合，位于上一章摘要后
+  accepted_evidence:
+  - 复核方指出 '## 6' 和 '## 使用 AWS Glue' 构成章标题
+  - 前文 3715 为 '## 摘要'，符合新章开启上下文
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 4334
+  confidence: 0.8
+  final_reason: 尽管复核方质疑其为节标题，但该行使用一级标题格式 '# 使用 Athena 进行处理'，且位于第6章摘要之后，语义上统领后续内容，符合新章特征
+  accepted_evidence:
+  - 该行使用 '# ' 一级标题前缀，高于正文中的 '## ' 二级标题
+  - 前文 4328 为 '# 摘要'，标志第6章结束，此处为第7章开始
+  rejected_evidence:
+  - 复核方认为其无明确章号且可能被误判为节标题，但一级标题格式在缺乏章号时通常视为章级
+  need_human_review: false
+- 'no': 5231
+  confidence: 0.95
+  final_reason: 双方一致确认为章标题，包含章号及名称
+  accepted_evidence:
+  - 复核方确认行 5231 为 '8'，下一行为 '# 使用 QuickSight 工作'
+  - 位于上一章总结 5225 之后，符合新章开启上下文
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 5501
+  confidence: 0.98
+  final_reason: 双方一致确认为“部分”标题，且全书采用部分-章节模式，故划分新章
+  accepted_evidence:
+  - 复核方确认标题为 '# 第4部分：'
+  - 符合部分-章节模式下的最高层级划分规则
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 3083
+  reason: 复核方指出其为二级标题 '## 介绍 SageMaker Data Wrangler'，属于第4章内部小节，非最高层级章标题
+  need_human_review: false
+- 'no': 5520
+  reason: 复核方指出其为二级标题 '## sportstickets.com解决方案演练'，属于第9章内部的案例演练小节，非最高层级章标题
+  need_human_review: false

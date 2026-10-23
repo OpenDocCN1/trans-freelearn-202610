@@ -1,0 +1,36 @@
+Suppose you want to focus on only certain columns for your analysis and the DataFrame has a lot of columns; you can select columns by name as shown here. Optionally, you can choose to get records from specific indexes using the loc function.
+
+```
+#Explore only first specific columns from specific records, if you iloc, need to p
+output_data.loc[1:5,["player_number","Name"]]
+```
+
+|  | player_number | Name |
+|---|---|---|
+| 1 | 32 | Green, T.J. |
+| 2 | 27 | Guy, Winston |
+| 3 | 73 | Haeg, Joe |
+| 4 | 72 | Harrison, Jonoththan |
+| 5 | 38 | Hightower, Lee |
+
+Figure 9.17: Pandas DataFrame info function to explore all columns
+
+If you want to focus on specific records that meet a selection condition, you can filter them as shown here. For the following screenshot, we will be filtering only records that have information about running backs (RB) from the Indianapolis (IND) team:
+
+```
+#filter records for certain values
+output_data[(output_data["team"]=="IND") & (output_data["Position"]=="RB")]
+```
+
+|  | Position | player_number | Name | status | stat1 | stat1_val | stat2 | stat2_val | stat3 | stat3_val | stat4 | stat4_val | team |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 38 | RB | 35 | Price, Chase | ACT | CAR | -- | YDS | -- | AVG | -- | TDS | -- | IND |
+| 57 | RB | 28 | Todman, Jordan | ACT | CAR | 4 | YDS | 22 | AVG | 5.5 | TDS | 0 | IND |
+| 59 | RB | 33 | Turbin, Robert | ACT | CAR | 50 | YDS | 199 | AVG | 4 | TDS | 1 | IND |
+| 67 | RB | 40 | Williams, Trey | ACT | CAR | 2 | YDS | 12 | AVG | 6 | TDS | 0 | IND |
+| 607 | RB | 34 | Ferguson, Josh | ACT | CAR | -- | YDS | -- | AVG | -- | TDS | -- | IND |
+| 611 | RB | 23 | Gore, Frank | ACT | CAR | 260 | YDS | 967 | AVG | 3.7 | TDS | 6 | IND |
+
+Figure 9.18: Filtering specific records from the Pandas DataFrame
+
+Also, before proceeding with further analysis, you should identify the number of NULL/missing values in the DataFrame. The following code snippet shows you how to identify columns that are empty in the DataFrame. To demonstrate this example, we manually added an empty column in our Pandas DataFrame:

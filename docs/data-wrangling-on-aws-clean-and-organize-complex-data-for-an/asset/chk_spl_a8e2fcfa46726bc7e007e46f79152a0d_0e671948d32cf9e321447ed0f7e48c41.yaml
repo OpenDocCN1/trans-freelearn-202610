@@ -1,0 +1,32 @@
+reviews:
+- 'no': 7229
+  overturn_probability: 0.85
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题层级为 ## 二级标题，非全书最高层级的大章；规则要求只划分“第 X 章”/“Y.”等最高层级大章'
+  - '标题后紧跟 ### 步骤 1、步骤 2 等子节，且前文 7223 已有 ## 摘要 结束，语义上是本章内的节而非新章'
+  - 标题长度超过 30 字且为描述性小标题，不符合真正的章标题简短概括特征
+  keep_split: false
+- 'no': 7590
+  overturn_probability: 0.72
+  alternative: 排版断行
+  counter_evidence:
+  - 章标题被拆分到三行：## 11 / 数据湖安全 / 与监控，标题未单独成行且跨行断裂，属于排版噪声
+  - '标题使用 ## 二级标记而非一级 #，且未出现“第 X 章”编号特征，格式上更像节标题的异常断行'
+  - 前后上下文仍在第 11 章的主题延续中，缺乏上一章末尾总结、习题等章节结束信号
+  keep_split: false
+- 'no': 7910
+  overturn_probability: 0.05
+  alternative: 章节标题
+  counter_evidence:
+  - '该行为 # 索引，位于文末且为一级标题，符合规则中文末索引应划分为一章的规定'
+  - 后续内容为符号、A、B 等索引条目，语义上与正文无关，具备独立章节特征
+  keep_split: true
+- 'no': 8586
+  overturn_probability: 0.9
+  alternative: 其他
+  counter_evidence:
+  - 内容为 Packtpub.com 及其订阅推广、其他书籍推荐、免费 PDF 下载等出版商附录信息，非正文章节标题
+  - 无编号、层级标题标记，语义上为书籍末尾的营销附录，不具备统领后续内容的章节概括性
+  - 前后为索引结束后的推广页，属于排版噪声/附录，不应作为新章划分
+  keep_split: false

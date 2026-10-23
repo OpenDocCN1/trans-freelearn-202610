@@ -1,0 +1,59 @@
+reviews:
+- 'no': 3083
+  overturn_probability: 0.85
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题使用 ## 二级标题格式，非全书最高层级 # 章标题'
+  - '前文 3077 为 ## 摘要，3083 之后直接接正文段落，无章号序号且长度超过常规章标题'
+  - 上下文为同一章 SageMaker Data Wrangler 的内部小节，非新章开启
+  keep_split: false
+- 'no': 3274
+  overturn_probability: 0.05
+  alternative: 部分标题
+  counter_evidence:
+  - '标题为 # 第 3 部分：AWS 数据管理与分析，符合部分-章节模式的最高层级划分规则'
+  - 前后为章节总结与新部分介绍，语义上统领后续多章内容
+  keep_split: true
+- 'no': 3285
+  overturn_probability: 0.03
+  alternative: 章标题
+  counter_evidence:
+  - '标题包含明确章号 # 5 使用 Amazon S3，格式为单独成行且无句号'
+  - 位于第 3 部分之后，符合全书最高层级大章划分特征
+  keep_split: true
+- 'no': 3721
+  overturn_probability: 0.2
+  alternative: 章号标记
+  counter_evidence:
+  - '行内容仅为 ## 6，下一行 3723 为 ## 使用 AWS Glue，整体构成章标题组合'
+  - '前文 3715 为 ## 摘要，符合章结束到新章开始的上下文特征'
+  keep_split: true
+- 'no': 4334
+  overturn_probability: 0.6
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题使用 # 使用 Athena 进行处理，但前文 4330 已为 ## 摘要，4334 后紧跟 ## 了解 Amazon Athena 等二级标题'
+  - 无明确章号序号，且在第 7 章内容内部更符合节标题而非全新章节开启
+  keep_split: false
+- 'no': 5231
+  overturn_probability: 0.05
+  alternative: 章标题
+  counter_evidence:
+  - '行号 5231 为 8，下一行 5233 为 # 使用 QuickSight 工作，构成标准章号+章名结构'
+  - 位于上一章总结 5225 之后，符合新章开启的上下文
+  keep_split: true
+- 'no': 5501
+  overturn_probability: 0.02
+  alternative: 部分标题
+  counter_evidence:
+  - '标题为 # 第4部分：，为明确的部分标题，按规则部分应划分新章'
+  - 前后为章节总结与部分介绍，语义统领性强
+  keep_split: true
+- 'no': 5520
+  overturn_probability: 0.8
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题使用 ## sportstickets.com解决方案演练，为二级标题，非最高层级章标题'
+  - 位于第 4 部分简介之后，为案例演练小节，后续内容仍属第 9 章范畴
+  - 标题长度较长且为具体案例名称，不具备统领整章的概括性
+  keep_split: false

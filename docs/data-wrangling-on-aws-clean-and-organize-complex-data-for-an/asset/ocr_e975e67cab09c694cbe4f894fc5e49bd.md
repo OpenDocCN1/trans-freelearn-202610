@@ -1,0 +1,13 @@
+![](bbox=[0.15, 0.11, 0.85, 0.31])
+
+Figure 4.2 – Data Wrangler data flow UI
+
+We will go through the details of a data flow in the next chapter, where we will cover a step-by-step example of creating a data flow. All the steps in your data flow can be saved and exported as a file with the .flow extension. This enables the process to be repeatable, version controlled, and integrated with the overall ML pipeline. Additionally, you can also use AWS services such as Amazon EventBridge and AWS Lambda to schedule automatic runs of these data flows. Finally, since this orchestration is logically separated from compute and storage, you can optimize resource utilization by turning off instances when not in use and still retain all the steps in the flow that can be executed as needed.
+
+# ## Data transformation
+
+Data processing for ML primarily includes data transformation. At its core, SageMaker Data Wrangler includes over 300 built-in transformations that are commonly used for cleaning, transforming, and featuring your data specifically for data science and ML. Using these built-in transformations, you can transform columns within your dataset without having to write any code. In addition to these built-in transformations, you can add custom transformations using PySpark, Python, pandas, and PySpark SQL. Some of these transformations operate in place, while others create a new output column in your dataset. Whenever you incorporate a transform into your data flow, it introduces a new step in the process. Each added transform modifies your dataset and generates a fresh data frame as a result. Subsequently, any subsequent transforms you apply will be performed on this updated data frame. In the real world, datasets are often imbalanced. This imbalance can be in the form of an underrepresented class or sometimes even a complete absence due to sampling errors. Needless to say, this is one of the starting issues that must be tackled in data processing and can also be time-consuming to detect and fix. SageMaker Data Wrangler includes a balance data operation that enables data practitioners to quickly balance imported datasets. The balance operation within Data Wrangler enables standard data balance operations. These include the following:
+
++   - **Random oversampling**: This operation randomly duplicates instances from the minority class
++   - **Random undersampling**: Similar to random oversampling, this operation randomly removes samples from the overrepresented class
++   - **Synthetic Minority Oversampling Technique (SMOTE)**: SMOTE utilizes samples from the underrepresented category to interpolate new synthetic minority samples

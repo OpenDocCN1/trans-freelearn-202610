@@ -1,0 +1,40 @@
+chapter_starts:
+- 'no': 114
+  confidence: 0.85
+  final_reason: 尽管是二级标题，但'前言'属于书前内容，按规则统一划分为一章。
+  accepted_evidence:
+  - 该行文本为 '## 前言'，语义上属于书前内容。
+  - 规则明确指出'前言、序言、致谢...统一划分为一章'。
+  rejected_evidence:
+  - 复核方认为它只是前置内容的二级标题，但规则优先，前置内容整体需作为独立章节处理。
+  need_human_review: false
+- 'no': 258
+  confidence: 0.95
+  final_reason: 一级标题且包含'第 X 部分'字样，符合部分-章节模式下的最高层级分章标准。
+  accepted_evidence:
+  - 该行文本为 '# 第 1 部分：利用 AWS 解放数据整理'，具备一级标题特征。
+  - 包含明确的'第 1 部分'编号，规则指出若存在部分标题，遇到部分和章标题时都要划分新章。
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 266
+  confidence: 0.9
+  final_reason: 一级标题且语义统领后续正文内容，确认为第1章的起始标题。
+  accepted_evidence:
+  - 该行文本为 '# 开始数据整理'，为一级标题。
+  - 后续内容（268行起）开始详细阐述数据整理概念，符合章节开头的语义特征，且位于部分引导语之后。
+  rejected_evidence:
+  - 复核方认为可能是重复渲染，但结合上下文（部分引导语结束，正文开始），此处为章节实际起始点，而非目录项。
+  need_human_review: false
+- 'no': 506
+  confidence: 0.9
+  final_reason: 最高层级部分标题，尽管排版被拆分，但其语义为第2部分起始，应划分为新章。
+  accepted_evidence:
+  - 该行文本为 '## 第 2 部分：'，虽然排版上标题被拆到下一行（507），但语义上它是第2部分的起始标记。
+  - 后续内容（509行起）开始介绍第2部分包含的工具，符合部分章节开头的特征。
+  rejected_evidence:
+  - 复核方指出标题被拆分，但作为分章点，以编号部分标题的起始行为准，误分代价低于漏分，故保留分章。
+  need_human_review: false
+rejected_lines:
+- 'no': 110
+  reason: 该行位于目录区域（TOC），且包含页码'385'，格式与前后目录条目一致，并非正文中的'索引'章节标题。真正的索引章在书末，此处仅为目录列表项。
+  need_human_review: false

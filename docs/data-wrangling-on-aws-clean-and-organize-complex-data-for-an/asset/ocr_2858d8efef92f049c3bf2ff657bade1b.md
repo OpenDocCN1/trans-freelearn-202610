@@ -1,0 +1,11 @@
+dataset. The **variance inflation factor (VIF)** is a measure of collinearity among variables. We calculate it by solving a regression problem to predict one variable when given the rest. A VIF score is a positive number that is greater than or equal to 1, and a score of 1 means the variable is completely independent of the others. The larger the score, the more dependent it is. As a rule of thumb, we can drop or feature-engineer features with a VIF score of greater than 1.
+
+To create multicollinearity analysis with VIF, choose **Add Analysis** and then **Multicollinearity**.
+
+![](bbox=[0.13, 0.25, 0.87, 0.4])
+
+# Figure 10.21: Multicollinearity using VIF
+
+Once you click on the preview, you will see a histogram that has the feature names on the *X* axis and the VIF score on the *Y* axis. In our example, we can see that we do not have any features that have multicollinearity based on VIF.
+
++   Besides VIF, there are a couple of other multicollinearity analyses that you can choose out of the box with Data Wrangler. Let's look at **Lasso feature selection analysis**. The Lasso method involves adding a penalty term to the regression model that shrinks the coefficients of the independent variables toward zero. This penalty term can help to identify which independent variables are most important to predict the dependent variable and can also help to address issues of multicollinearity. To use the Lasso feature selection method in Data Wrangler, choose the **Multicollinearity** analysis as discussed previously and then set **Analysis** as **Lasso feature selection**. You can optionally choose the L1 magnitude, which is the penalty term; the default value is **1**. Next, we set the problem type as **Classification** and the label column as **Survived**. This will create a baseline regression model, making all the independent variables in the dataset where the regularization parameter is set to be sufficiently large, causing some of the coefficients to be shrunk toward zero. This will create a histogram with the most important features – that is, features that have a non-zero coefficient.
