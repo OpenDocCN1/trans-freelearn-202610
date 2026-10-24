@@ -1,0 +1,67 @@
+chapter_starts:
+- 'no': 6
+  confidence: 0.85
+  final_reason: 前置致谢页为正文前整体信息，复核方反方证据不足，维持分章
+  accepted_evidence:
+  - '# 致谢 单独成行且为前置信息块起始'
+  - 复核方 overturn_probability 0.2 且 keep_split true
+  rejected_evidence:
+  - 仅为人员名单标题的质疑
+  need_human_review: false
+- 'no': 314
+  confidence: 0.9
+  final_reason: '英文版第1章标题 # 1 Introducing Good Eatin''，单独成行且为最高层级正文起始'
+  accepted_evidence:
+  - 标题单独成行，格式符合章标题
+  - 复核方 keep_split true
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 583
+  confidence: 0.85
+  final_reason: '英文版第2章编号 # 2，单独成行，后续即为第2章正文内容'
+  accepted_evidence:
+  - '编号单独成行，后接 ## Creating Good Eatin''s Online Presence'
+  - 复核方 keep_split true
+  rejected_evidence:
+  - 仅为数字的质疑
+  need_human_review: false
+- 'no': 1387
+  confidence: 0.85
+  final_reason: '英文版第3章编号 # 3，单独成行，为最高层级章节起始'
+  accepted_evidence:
+  - 单独成行，后续为第3章正文
+  - 复核方 keep_split true
+  rejected_evidence:
+  - 孤立编号的质疑
+  need_human_review: false
+- 'no': 2261
+  confidence: 0.8
+  final_reason: '英文版第4章编号 # 4，单独成行，后续为第4章正文，与下一行标题构成章节起始'
+  accepted_evidence:
+  - '单独成行，后接 # 与客户和访客互动'
+  - 复核方 keep_split true
+  rejected_evidence:
+  - 与下一行重复标题的质疑
+  need_human_review: false
+rejected_lines:
+- 'no': 49
+  reason: 位于目录区，行后为带页码的目录列表，非正文。第4章正文实际起始于2261，目录条目不应分章
+  need_human_review: false
+- 'no': 85
+  reason: 位于目录区，行后为带页码的目录列表，为目录条目非正文章节
+  need_human_review: false
+- 'no': 146
+  reason: 位于目录区，行后为目录式文本且带页码231，为目录条目非正文
+  need_human_review: false
+- 'no': 156
+  reason: 位于目录区，行后为目录列表且带页码251，为目录条目非正文
+  need_human_review: false
+- 'no': 167
+  reason: 位于目录区，行后为目录列表且带页码275，为目录条目非正文
+  need_human_review: false
+- 'no': 188
+  reason: '位于 ## 目录之后，行后为目录条目且带页码311，为目录条目非正文'
+  need_human_review: false
+- 'no': 217
+  reason: 位于目录区，为目录中索引条目带页码327，非文末索引正文
+  need_human_review: false

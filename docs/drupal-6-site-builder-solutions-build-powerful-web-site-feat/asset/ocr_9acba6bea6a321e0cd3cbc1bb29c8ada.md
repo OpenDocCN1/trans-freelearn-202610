@@ -1,0 +1,3 @@
+6. After you have selected the Send an order email action, click Add action and you will be prompted to configure the action. The action allows you to customize who the email should be sent to. In our case, we want the email to be sent to our kitchen staff. We will also customize the text of the email to give them additional information about the order. The information in brackets [ ] will be replaced with information from the actual order before the email is sent. You can view a full list of the possible replacement patterns by expanding the Replacement patterns section.
+
+![](bbox=[0.19, 0.23, 0.78, 0.9])

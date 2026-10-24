@@ -1,0 +1,51 @@
+chapter_starts:
+- 'no': 3031
+  confidence: 0.9
+  final_reason: 第5章编号行为章节起始，后续3033为同一章标题文字，不应重复分章。
+  accepted_evidence:
+  - 行文本“# 5”为最高层级标题且只含章序号，符合本书“编号行+标题行”的章节起始模式。
+  - 前一行3029预告“在下一章中，我们将创建一个公司博客…”，与后续3033标题吻合。
+  - 后续3035开始为博客概述段落，符合章首后跟概述的特征。
+  rejected_evidence:
+  - 复核方曾怀疑该行是页码/页眉残留；但第5、6、11章均出现此类编号行，属于全书一致的章节编号结构。
+  need_human_review: false
+- 'no': 3478
+  confidence: 0.9
+  final_reason: 第6章编号行为章节起始，后续3480为同一章标题文字，不应重复分章。
+  accepted_evidence:
+  - 行文本“# 6”为最高层级标题且只含章序号，延续第5章的编号行模式。
+  - 后续3480标题“# 新闻通讯与日历”为第6章实际章题。
+  - 3482起为章首概述“在本章中，我们将添加新功能…”。
+  rejected_evidence:
+  - 复核方质疑“6”可能为页面残留；但结合前文章节末尾与后文章题/概述，判定为章号行。
+  need_human_review: false
+- 'no': 5367
+  confidence: 0.95
+  final_reason: 该行包含章序号10和完整章名，前文明确预告下一章，后接章节概述，应作为第10章起点。
+  accepted_evidence:
+  - 行文本“## 10 Keeping a Clean Kitchen”单独成行，含章号“10”和章名。
+  - 前一行5365为“In the next chapter, we will discuss essential tasks…”，明确引出新章。
+  - 后续5369起为章节概述，内容与网站备份/维护/升级有关。
+  rejected_evidence:
+  - 复核方指出其以“##”开头，与子节格式相近；但章序号+下一章预告+概述段足以确定为章级标题。
+  need_human_review: false
+- 'no': 5901
+  confidence: 0.9
+  final_reason: 第11章编号行为章节起始，后续5903为同一章标题文字，不应重复分章。
+  accepted_evidence:
+  - 行文本“# 11”为最高层级标题且只含章序号，符合本书章号行模式。
+  - 后续5903标题“从餐厅到其他类型的企业”对应第11章主题。
+  - 5905起为章节概述“在本书中，我们探讨了…”。
+  rejected_evidence:
+  - 复核方曾认为数字11可能为页码残留；但前后文显示其为第11章编号行，后接标题与概述。
+  need_human_review: false
+rejected_lines:
+- 'no': 3033
+  reason: 该行是第5章标题文字，与上一行3031的章号“# 5”共同构成同一章标题；若单独分章会造成同一章有两个起点，故不视为新的章首。
+  need_human_review: false
+- 'no': 3480
+  reason: 该行是第6章标题文字，与上一行3478的章号“# 6”共同构成同一章标题；单独分章会使前一行成为无正文内容的空章起点。
+  need_human_review: false
+- 'no': 5903
+  reason: 该行是第11章标题文字，与上一行5901的章号“# 11”共同构成同一章标题；单独分章不符合章节编号+标题的完整结构。
+  need_human_review: false

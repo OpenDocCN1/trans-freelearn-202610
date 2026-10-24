@@ -1,0 +1,25 @@
+chapter_starts:
+- 'no': 5901
+  confidence: 0.88
+  final_reason: 判断方认定为全书最高层级编号标题，复核方虽提出仅为纯数字、缺乏完整标题词且上下文不足的疑虑，但 overturn_probability
+    仅 0.1 且 keep_split 为 true；行单独成行且后接第11章内容，采纳为新章起点
+  accepted_evidence:
+  - 行内容为 '# 11'，单独成行且为全书最高层级编号标题，符合第 X 章的编号特征，后续内容为第11章正文
+  - 复核方 keep_split=true，overturn_probability=0.1
+  rejected_evidence:
+  - 该行仅为纯数字“11”，缺少“第11章”或“11.”这类完整章节标题形态，也没带能概括后续内容的标题词，存在被误判为章标题的可能
+  - 紧随其后的“## 从餐厅到其他类型的企业”才是真正概括本节内容的标题，而“# 11”单独看上去更像从某处排版残留下来的编号
+  - 前面的内容未给出（5900之前无可用文本），没有上一章结尾的总结或习题等上下文特征来印证它是一个新章的起点
+  need_human_review: false
+- 'no': 6156
+  confidence: 0.93
+  final_reason: 文末索引按规则统一划分为一章；复核方提出与摘要同为 H2 且正文为列表的反方证据，但 overturn_probability 仅
+    0.05 且 keep_split 为 true，索引作为全书末尾独立部分应分章
+  accepted_evidence:
+  - 行内容为 '## 索引'，单独成行且为文末索引，按规则文末索引统一划分为一章
+  - 复核方 keep_split=true，overturn_probability=0.05
+  rejected_evidence:
+  - “## 索引”与前面的“## 摘要”同为H2级别，而“摘要”明显还属于第11章内部内容，因此“索引”可能是紧接摘要后的章内小节而非独立章
+  - 索引部分正文全部为列表项（如“- 7-Zip，下载 45”），没有独立的概述段落，不符合典型章节开头通常带有概述段的结构
+  need_human_review: false
+rejected_lines: []

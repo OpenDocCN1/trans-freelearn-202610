@@ -1,0 +1,50 @@
+reviews:
+- 'no': 3031
+  overturn_probability: 0.3
+  alternative: 页码/页眉残留或章节编号与标题分离时的编号行
+  counter_evidence:
+  - 该行仅包含数字“5”，没有任何可概括后续内容的标题文字，单独看更像排版残留而非完整章标题。
+  - 下一行3033“# 创建公司博客”才是完整的章节标题文字，若把3031当作独立新章，会与3033形成同一章的重复起点。
+  keep_split: true
+- 'no': 3033
+  overturn_probability: 0.92
+  alternative: 第5章标题文字，与上一行章号“# 5”共同构成完整章标题
+  counter_evidence:
+  - 上一行3031已标记为新章起点，本行紧随其后且中间只有空行，两行属于同一章标题的编号+标题结构。
+  - 如果本行也分章，会让“# 5”成为一个没有正文内容的空章，明显不符合章节划分逻辑。
+  keep_split: false
+- 'no': 3478
+  overturn_probability: 0.3
+  alternative: 页码/页眉残留或章节编号与标题分离时的编号行
+  counter_evidence:
+  - 该行只含数字“6”，没有独立标题的语义，形式上可能是页码或章号残留。
+  - 紧随其后的3480“# 新闻通讯与日历”才是完整章题，本行应视为该章标题的编号部分。
+  keep_split: true
+- 'no': 3480
+  overturn_probability: 0.92
+  alternative: 第6章标题文字，与上一行章号“# 6”共同构成完整章标题
+  counter_evidence:
+  - 上一行3478已作为第6章起点，本行是同一章标题的正文标题部分，不应再产生一个新的章节起点。
+  - 连续两个顶级标题中间只有空行，语义上是“编号+标题”的一体结构，拆成两章会使前一行无实际内容。
+  keep_split: false
+- 'no': 5367
+  overturn_probability: 0.15
+  alternative: 正文中的二级小标题（若忽略“10”这一章序号，形式上与“## 基本步骤”等子节同级）
+  counter_evidence:
+  - 该行以“##”而非“#”开头，与书中大量二级子节标题格式相同，仅凭markdown层级不足以断定是大章。
+  - 标题中的“10”也可以被误解为某个列表或章节内的编号，而不是全书的章号。
+  keep_split: true
+- 'no': 5901
+  overturn_probability: 0.35
+  alternative: 页码/页眉残留或章节编号与标题分离时的编号行
+  counter_evidence:
+  - 该行只有数字“11”，没有标题性文字，若脱离上下文可能被当作页码或目录编号。
+  - 真正的章题在下一行5903，本行作为独立“章标题”在语义上并不完整。
+  keep_split: true
+- 'no': 5903
+  overturn_probability: 0.9
+  alternative: 第11章标题文字，与上一行章号“# 11”共同构成完整章标题
+  counter_evidence:
+  - 上一行5901已标记为第11章起点，本行紧随其后，是同一章标题的标题部分而非新的章节起点。
+  - 该行使用“##”二级标题，而章号“# 11”才是最高层级；将本行单独分章会导致一个章节有两个起点且层级错乱。
+  keep_split: false

@@ -1,0 +1,86 @@
+reviews:
+- 'no': 6
+  overturn_probability: 0.2
+  alternative: 若不分章，这行最可能是版权页/致谢页的人员列表标题，而非独立章节标题
+  counter_evidence:
+  - 该行后紧跟作者、项目经理等人员名单，属于书籍版权页或致谢页的固定排版，不是具有正文内容的章节。
+  - 全书前置部分（封面、版权、致谢）通常应作为一个整体，单独把“致谢”分章会割裂前置信息的连续性。
+  keep_split: true
+- 'no': 49
+  overturn_probability: 0.95
+  alternative: 目录中“第4章：与客户和访客互动”的条目（带页码）
+  counter_evidence:
+  - 该行之后的内容是“- **处理用户** — 115”等带页码的目录列表，而非第4章正文段落，表明它位于目录区。
+  - 行186出现“## 目录”，之后还有“第11章”等目录条目，证明行49-215均为目录，目录中的章标题不应作为正文章节起点。
+  - 正文中对应第4章的实际起始位于行2261（“# 4”）和行2263（“# 与客户和访客互动”），若在行49分章会造成重复章节。
+  keep_split: false
+- 'no': 85
+  overturn_probability: 0.95
+  alternative: 目录中“第5章：创建公司博客”的条目
+  counter_evidence:
+  - 该行后为“- **创建博客** — 149”等带页码的目录列表，而非第5章正文。
+  - 行186“## 目录”表明该区域为目录，目录中的章节标题只是索引项，不应单独分章。
+  keep_split: false
+- 'no': 146
+  overturn_probability: 0.95
+  alternative: 目录中“第8章：免费赠品与下载”的条目
+  counter_evidence:
+  - 该行后为“向网站添加下载和PDF文件 231”等目录式文本，缺少正文内容。
+  - 结合行186“## 目录”，此处属于目录区，标题带页码（231），是典型的目录条目格式。
+  keep_split: false
+- 'no': 156
+  overturn_probability: 0.95
+  alternative: 目录中“第9章：在线订单与支付”的条目
+  counter_evidence:
+  - 该行后为“外卖订购 251”等目录列表，没有第9章正文。
+  - 行186“## 目录”后的区域为目录，且该行末尾带页码251，符合目录条目特征。
+  keep_split: false
+- 'no': 167
+  overturn_probability: 0.95
+  alternative: 目录中“第10章：保持整洁的厨房”的条目
+  counter_evidence:
+  - 该行后为“网站备份 275”等目录列表，无正文内容。
+  - 该行虽然位于“## 目录”标题之前，但结合上下文，行49-215整体是目录；该行末尾页码275明确为目录项。
+  keep_split: false
+- 'no': 188
+  overturn_probability: 0.95
+  alternative: 目录中“第11章：从餐厅到其他企业”的条目
+  counter_evidence:
+  - 该行位于“## 目录”（行186）之后，且后接“- **对Good Eatin'网站的可能增强** 311”等目录条目，明确是目录内容。
+  - 该行带页码311，是典型目录条目格式，并非正文章节标题。
+  keep_split: false
+- 'no': 217
+  overturn_probability: 0.9
+  alternative: 目录中的“索引”条目（带页码327）
+  counter_evidence:
+  - 该行后紧跟“## 本书涵盖内容”等前言，而不是索引正文，说明它只是目录中列出的索引项。
+  - 真正的文末索引应出现在全书最后，而不是在目录区和前言之间；行217带页码327，符合目录条目格式。
+  keep_split: false
+- 'no': 314
+  overturn_probability: 0.2
+  alternative: 若不分章，这行可能被当作书前引言或封面副标题，但实际是正文第1章标题
+  counter_evidence:
+  - 该行前后是“## Questions”等书前内容，“Introducing Good Eatin'”也可理解为全书介绍，存在被误判为前置内容的可能。
+  - 该标题为英文且无“第X章”编号，与中文目录中的章节格式不一致，可能被认为不是同一层级。
+  keep_split: true
+- 'no': 583
+  overturn_probability: 0.2
+  alternative: 若不分章，这行可能是一个孤立的章节编号或页码（如“2”），而非完整标题
+  counter_evidence:
+  - 该行只包含数字“2”，没有标题文字，容易被误认为列表项、页码或编号残留。
+  - 真正的章名在下一行“## Creating Good Eatin's Online Presence”，单独看此数字不具备章节标题的语义完整性。
+  keep_split: true
+- 'no': 1387
+  overturn_probability: 0.2
+  alternative: 若不分章，这行可能是孤立的章节编号“3”，而非完整标题
+  counter_evidence:
+  - 该行仅为数字“3”，没有章名，可能只是上一章末尾的页码或下一节编号。
+  - 章名实际在下一行“## 添加产品和服务”，若在此分章，后续二级标题会被误当作新的章节。
+  keep_split: true
+- 'no': 2261
+  overturn_probability: 0.25
+  alternative: 若不分章，这行可能是孤立的章节编号“4”，真正的章名在下一行“# 与客户和访客互动”
+  counter_evidence:
+  - 该行只有“# 4”，紧接着另一行“# 与客户和访客互动”也是“#”开头，存在两个一级标题连续出现的情况，可能被视为一个未完成标题的拆分。
+  - 如果以“# 4”分章，那么下一行“# 与客户和访客互动”会被误认为另一个新章节，导致结构重复。
+  keep_split: true
