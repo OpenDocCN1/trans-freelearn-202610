@@ -1,0 +1,15 @@
+# How to establish yourself as a professional
+
+What should you do before you start applying for composing jobs? You should do everything you can to establish a brand portraying you as a capable music-composing professional. There are lots of musicians out there—only a subset of them can make original music for other people in a professional setting. You want potential clients to know that you are part of that special group.
+
+Many good live musicians don't have the skills to be good composers, while many composers aren't great live musicians. There's overlap for sure, but there is also a separate composer skillset that is required to do composing that is much more than being good at playing music. Not to worry, though—this book will teach you everything you need to know to get your skills up to par.
+
+Here are a few quick steps to make you appear instantly more professional to potential clients:
+
++   - Have a professional-looking music website that displays your music and music-creating services. The website should at a minimum have samples of your music, a short biography about you, and your contact information.
++   - Have your past music easily accessible so you can provide it at a moment's notice. I personally use SoundCloud as my site of choice when I need to provide links to my portfolio. SoundCloud is a website where you can upload your music, and listeners can listen to it without having to log in.
++     To learn more about SoundCloud, visit https://soundcloud.com.
++   - Get business cards. Even though people don't need business cards anymore when contact information can be plugged into your phone, a business card makes people think you're serious about what you do. Business cards are also convenient to hand out at events. If you don't have business cards already, go make some.
++   - Create an email account dedicated to music business-related activities. Make sure your email address sounds professional.
++   - Create a Facebook page dedicated to your music-related business. When you share a post saying that you made music for a project, it acts as free advertisement for you.
++   - Even better than a Facebook page, create a local community group or Facebook group related to your music business. When I was in university, I wanted to create films, but there weren't any film-making groups on campus. So, I created my own. This helped to foster a community of filmmakers and gave me opportunities to get started creating my music portfolio. I was also lucky enough to enroll in classes about creating video games, which gave me my first shot at composing for games. If you're a student, you have a golden opportunity to organize student groups around music/films/video games. There are always lots of like-minded people eager to join as members. Make the most of these student opportunities while you can.

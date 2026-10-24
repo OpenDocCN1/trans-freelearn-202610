@@ -1,0 +1,38 @@
+chapter_starts:
+- 'no': 3003
+  confidence: 0.85
+  final_reason: 判断方与复核方均保留分章；## 级标题单独成行，后接多段概述性内容，主题从 Wwise 操作切换为 FL Studio 中准备垂直混音音乐，语义上开启新章。复核方提出的英文标题疑虑不足以否定分章。
+  accepted_evidence:
+  - '## 级标题单独成行，长度符合标题特征'
+  - 后接 3005-3013 概述段落，提出新主题“为垂直混音准备音乐”
+  - 前文 3001 为上一主题的收束和过渡，符合章节切换
+  - 复核方 overturn_probability 仅 0.2，且维持 keep_split
+  rejected_evidence:
+  - 标题为英文而周边中文标题较多，可能是原文小节标题
+  - 前文未明确出现“总结”等章末标志，不能排除为章内子标题
+  need_human_review: false
+- 'no': 3090
+  confidence: 0.95
+  final_reason: '判断方与复核方一致确认分章；前文 3088 明确预告“在下一章中，我们将学习……”，紧接着 3090 为独立成行的 ## 标题“克服创作障碍”，后接新主题概述，语义和上下文均支持新章。'
+  accepted_evidence:
+  - '## 级标题“克服创作障碍”单独成行、无句号、长度<30字'
+  - 前文 3088 出现“在下一章中”的明确预告
+  - 后文 3092-3094 为本章主题概述
+  - 复核方 overturn_probability 仅 0.1，且维持 keep_split
+  rejected_evidence:
+  - “克服创作障碍”也可作为章内小标题
+  - 前文预告可能仅是对后文的引导而非章切换标志
+  need_human_review: false
+- 'no': 3264
+  confidence: 0.9
+  final_reason: 判断方与复核方均保留分章；按规则文末索引统一划分为一章，“## 索引”是书末辅助内容的起始，后续“## 符号”“## A”等属于索引内部的分组标签，不构成并列新章。
+  accepted_evidence:
+  - '## 索引位于全书末尾，属于文末索引区起始'
+  - 按规则“文末索引也划分为一章”应被采纳
+  - 后续字母分组是对索引条目的组织方式，层级上归属于索引章
+  - 复核方 overturn_probability 为 0.3，但仍维持 keep_split
+  rejected_evidence:
+  - 索引后紧跟“## 符号”“## A”等同级标题，可能造成层级并列问题
+  - “## 索引”本身无正文，可能是分区标签而非正式章标题
+  need_human_review: false
+rejected_lines: []
