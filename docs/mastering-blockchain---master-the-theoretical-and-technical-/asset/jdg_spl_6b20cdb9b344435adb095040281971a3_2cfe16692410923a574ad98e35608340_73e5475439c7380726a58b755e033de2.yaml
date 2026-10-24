@@ -1,0 +1,146 @@
+chapter_starts:
+- 'no': 8852
+  confidence: 0.85
+  final_reason: '判断方认定为 ## 级标题单独成行统领改进提案；复核方 overturn_probability 0.2 且 keep_split
+    true，认为虽内容较短但仍为最高层主题起始。'
+  accepted_evidence:
+  - '## 级标题单独成行'
+  - 后接概述段落并统领 BIPs/EIPs 内容
+  - 复核方 keep_split true
+  rejected_evidence:
+  - 复核方指出后仅一段概述可能为章内引言
+  - 层级混淆疑点
+  need_human_review: false
+- 'no': 8908
+  confidence: 0.85
+  final_reason: '## 其他挑战单独成行，语义统领监管、隐私等后续议题；复核方 overturn_probability 0.2 keep_split
+    true，支持为新章起始。'
+  accepted_evidence:
+  - 标题单独成行且统领性强
+  - 前文 8906 为收尾，后文 8910 提及上一章
+  - 复核方 keep_split true
+  rejected_evidence:
+  - 复核方提示标题通用可能为小节
+  need_human_review: false
+- 'no': 8948
+  confidence: 0.85
+  final_reason: '## 值得注意的项目列表单独成行，后接多个 ### 项目子节，具有明显统领性；复核方 overturn_probability 0.2
+    keep_split true。'
+  accepted_evidence:
+  - '标题后接多个 ### 子节'
+  - 无更高层标题出现
+  - 复核方 keep_split true
+  rejected_evidence:
+  - 标题含列表可能为章内罗列
+  need_human_review: false
+- 'no': 9044
+  confidence: 0.75
+  final_reason: '## Convergence with other industries 单独成行，主题从项目列表转向行业融合，内容展开充分；复核方
+    overturn_probability 0.3 keep_split true。'
+  accepted_evidence:
+  - 主题转换明显
+  - 后有多段展开
+  - 复核方 keep_split true
+  rejected_evidence:
+  - 前文仍为项目条目，转换不够强烈
+  need_human_review: false
+- 'no': 9054
+  confidence: 0.8
+  final_reason: '## Future 单独成行，统领 9060-9089 预测列表，内容完整；复核方 overturn_probability 0.3
+    keep_split true。'
+  accepted_evidence:
+  - 后接较长预测列表
+  - Summary 在其后
+  - 复核方 keep_split true
+  rejected_evidence:
+  - Future 可能是小节名称
+  need_human_review: false
+- 'no': 9091
+  confidence: 0.8
+  final_reason: '## Summary 文末总结章节，单独成行；复核方 overturn_probability 0.3 keep_split true。'
+  accepted_evidence:
+  - 文末总结位置
+  - 9093 行回顾本章内容
+  - 复核方 keep_split true
+  rejected_evidence:
+  - Summary 常为章末小节
+  need_human_review: false
+- 'no': 9095
+  confidence: 0.95
+  final_reason: '## Index 文末索引，按规则统一划分为一章；复核方 overturn_probability 0.1 keep_split
+    true。'
+  accepted_evidence:
+  - 规则规定文末索引划分为一章
+  - 标题单独成行
+  - 复核方 keep_split true
+  rejected_evidence:
+  - 索引非叙述性正文
+  need_human_review: false
+rejected_lines:
+- 'no': 8856
+  reason: 复核方指出 8858 行明确‘在本节中，将讨论一些最新的 BIPs’，BIPs 从属于 8852 改进提案，为子节而非最高层章；overturn_probability
+    0.8 keep_split false。
+  need_human_review: false
+- 'no': 8882
+  reason: EIPs 与 BIPs 平行，均属 8852 改进提案下的分支；8884 行介绍为以太坊改进提案版本，属子节；overturn_probability
+    0.7 keep_split false。
+  need_human_review: false
+- 'no': 8926
+  reason: '黑暗面为 8908 其他挑战下的具体挑战之一，内容仅两段且紧接下一个 ## 标题，属子节；overturn_probability 0.7 keep_split
+    false。'
+  need_human_review: false
+- 'no': 8932
+  reason: 密码学功能的局限性属于其他挑战的子项，与 8936/8940/8944 并列为短节，无独立章完整性；overturn_probability 0.7
+    keep_split false。
+  need_human_review: false
+- 'no': 8936
+  reason: '共识算法研究从属于其他挑战，仅一段概述后即进入下一 ## 标题，属子节；overturn_probability 0.7 keep_split
+    false。'
+  need_human_review: false
+- 'no': 8940
+  reason: 8942 行原文‘在本节中足以说’直接证明为节；内容为可扩展性简略补充，属章内小结；overturn_probability 0.85 keep_split
+    false。
+  need_human_review: false
+- 'no': 8944
+  reason: 代码混淆为解决隐私问题的技术方案，与其他挑战语境连贯，属子节；overturn_probability 0.7 keep_split false。
+  need_human_review: false
+- 'no': 8988
+  reason: 'SETLCoin 位于 8948 项目列表之下，与 8952-8982 的 ### 项目条目语义相同，标记层级错用，属列表项非新章；overturn_probability
+    0.9 keep_split false。'
+  need_human_review: false
+- 'no': 8992
+  reason: TEEChan 为项目列表中的条目，与 SETLCoin 并列，属列表项；overturn_probability 0.9 keep_split
+    false。
+  need_human_review: false
+- 'no': 9004
+  reason: Falcon 为项目列表中具体项目介绍，无更高层主题变化，属列表项；overturn_probability 0.9 keep_split false。
+  need_human_review: false
+- 'no': 9008
+  reason: Bletchley 为项目列表条目，仅一段简介，无独立章节完整性；overturn_probability 0.9 keep_split false。
+  need_human_review: false
+- 'no': 9012
+  reason: Solidity extension for Microsoft Visual studio 为项目/工具条目，仅一段说明，属列表项；overturn_probability
+    0.9 keep_split false。
+  need_human_review: false
+- 'no': 9016
+  reason: MetaMask 为 DAPP 浏览器工具，属项目列表项，无新章起始标志；overturn_probability 0.9 keep_split
+    false。
+  need_human_review: false
+- 'no': 9020
+  reason: Stratis 为区块链开发平台，属项目列表条目，分章会破坏结构；overturn_probability 0.9 keep_split false。
+  need_human_review: false
+- 'no': 9024
+  reason: Embark 为以太坊开发框架，属项目介绍非章标题；overturn_probability 0.9 keep_split false。
+  need_human_review: false
+- 'no': 9028
+  reason: DAPPLE 为智能合约开发框架，属项目列表条目；overturn_probability 0.9 keep_split false。
+  need_human_review: false
+- 'no': 9032
+  reason: Meteor 为开发框架，属项目列表项，无子节；overturn_probability 0.9 keep_split false。
+  need_human_review: false
+- 'no': 9036
+  reason: uPort 为身份管理系统项目条目，位于项目列表连续叙述中；overturn_probability 0.9 keep_split false。
+  need_human_review: false
+- 'no': 9040
+  reason: INFURA 为企业级服务项目列表项，上下文无新章起始信号；overturn_probability 0.9 keep_split false。
+  need_human_review: false

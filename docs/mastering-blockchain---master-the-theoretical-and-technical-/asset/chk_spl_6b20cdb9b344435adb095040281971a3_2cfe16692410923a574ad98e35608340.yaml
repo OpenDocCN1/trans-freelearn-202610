@@ -1,0 +1,183 @@
+reviews:
+- 'no': 8852
+  overturn_probability: 0.2
+  alternative: 正文小标题（章内引言部分）
+  counter_evidence:
+  - 该标题后只有一段概述便转入 BIPs/EIPs，内容过短，可能只是某个更大章节的引言小标题
+  - 同级标题 BIPs/EIPs 在语义上从属于它，但标记层级相同，容易造成层级混淆，存在不是最高层章的可能
+  keep_split: true
+- 'no': 8856
+  overturn_probability: 0.8
+  alternative: “改进提案”章下的子节标题
+  counter_evidence:
+  - 紧随其后的 8858 行原文称“在本节中，将讨论一些最新的 BIPs”，直接表明它是节而非章
+  - BIPs 是“改进提案”的组成部分，语义上从属于 8852，属于子层级
+  keep_split: false
+- 'no': 8882
+  overturn_probability: 0.7
+  alternative: “改进提案”章下的子节标题
+  counter_evidence:
+  - EIPs 与 BIPs 平行并列，都是 8854 所述“两种主要区块链技术”的改进提案，属于同一上级主题的子节
+  - 8884 行介绍“以太坊有自己的改进提案版本，称为 EIPs”，直接承接 8852 的主题，说明它是该主题下的分支
+  keep_split: false
+- 'no': 8908
+  overturn_probability: 0.2
+  alternative: 某一章内的小节标题
+  counter_evidence:
+  - 标题“其他挑战”是通用分类名，可能是某个大章下的小标题；其后 8926-8944 的同级标题说明该位置标题密度高
+  - 但前面的 8906 是上一主题收尾，后面 8910 提到“上一章”，支持其为新章起始，所以仅存微弱疑点
+  keep_split: true
+- 'no': 8926
+  overturn_probability: 0.7
+  alternative: “其他挑战”章下的子节标题
+  counter_evidence:
+  - “黑暗面”是 8908 所述各种挑战中的一种，语义上从属于“其他挑战”，不构成独立最高层主题
+  - 该节只有两段内容（8928、8930），紧接着又是下一个“##”标题，明显是连续小节中的一项
+  keep_split: false
+- 'no': 8932
+  overturn_probability: 0.7
+  alternative: “其他挑战”章下的子节标题
+  counter_evidence:
+  - 其内容属于区块链技术的一个具体局限性，与“其他挑战”语境一致，是 8908 的子项
+  - 与 8936、8940、8944 等短节并列，均无子结构和足够篇幅，不应作为独立章
+  keep_split: false
+- 'no': 8936
+  overturn_probability: 0.7
+  alternative: “其他挑战”章下的子节标题
+  counter_evidence:
+  - 共识算法研究是区块链面临的挑战/研究方向之一，从属于 8908 的“其他挑战”
+  - 该标题下仅一段概述，之后直接进入下一个“##”标题，缺少独立章的完整性
+  keep_split: false
+- 'no': 8940
+  overturn_probability: 0.85
+  alternative: “其他挑战”章下的子节标题
+  counter_evidence:
+  - 紧随其后的 8942 行原文明确写“在本节中足以说”，直接证明这是一个节（section）而非章
+  - 内容表示可扩展性已在上一章讨论过，此处只是简略补充，显然属于章内的小结
+  keep_split: false
+- 'no': 8944
+  overturn_probability: 0.7
+  alternative: “其他挑战”章下的子节标题
+  counter_evidence:
+  - 代码混淆是作为解决区块链隐私问题的一种技术方案被讨论，与 8908 的挑战主题连贯，应属子节
+  - 与 8932、8936、8940 同为一段式短节，整体构成一组小节，不具备独立章特征
+  keep_split: false
+- 'no': 8948
+  overturn_probability: 0.2
+  alternative: 某个章节中的列表小节标题
+  counter_evidence:
+  - 标题含“列表”，可能只是某一章内的罗列部分，而非正式章名
+  - 但该标题后接多个“###”项目子节，具有明显的统领性，且没有更高层级标题出现，故更符合章的特征
+  keep_split: true
+- 'no': 8988
+  overturn_probability: 0.9
+  alternative: '“值得注意的项目列表”中的项目条目（应使用 ### 级别）'
+  counter_evidence:
+  - 它位于 8948 项目列表之下，与 8952-8982 的“###”项目条目语义相同，只是标记层级不一致
+  - 内容仅为一段项目简介（8990），与其它项目条目格式完全一致，属于列表项而非新章
+  keep_split: false
+- 'no': 8992
+  overturn_probability: 0.9
+  alternative: “值得注意的项目列表”中的项目条目
+  counter_evidence:
+  - '同样处于项目列表语境，与 SETLCoin 等条目并列，应使用 ### 却被写成 ##'
+  - 后续 8996 和 9000 又重复出现相似标题，表明该区域存在排版/重复噪声，不是新章起点
+  keep_split: false
+- 'no': 9004
+  overturn_probability: 0.9
+  alternative: “值得注意的项目列表”中的项目条目
+  counter_evidence:
+  - Falcon 是对项目列表中一个具体项目的介绍，前后没有更高层主题变化
+  - 与前面 8952 等“### 项目名”格式相同，层级错用导致其被误判为章
+  keep_split: false
+- 'no': 9008
+  overturn_probability: 0.9
+  alternative: 项目列表中的项目条目
+  counter_evidence:
+  - Bletchley 是 Microsoft 推出的区块链项目，内容仅一段简介，符合列表项特征
+  - 全段处于“值得注意的项目列表”的连续叙述中，没有独立章节的完整性
+  keep_split: false
+- 'no': 9012
+  overturn_probability: 0.9
+  alternative: 项目列表中的项目条目
+  counter_evidence:
+  - 标题是“Microsoft Visual Studio 的 Solidity 扩展”，明显是一个项目/工具的条目，而非章节
+  - 与相邻项目条目一样，只有一段说明，且没有子节，不应分章
+  keep_split: false
+- 'no': 9016
+  overturn_probability: 0.9
+  alternative: 项目列表中的项目条目
+  counter_evidence:
+  - MetaMask 是 DAPP 浏览器工具，属于项目列表中的一项
+  - 上下文无任何新章起始标志，只是连续介绍项目，应为列表项
+  keep_split: false
+- 'no': 9020
+  overturn_probability: 0.9
+  alternative: 项目列表中的项目条目
+  counter_evidence:
+  - Stratis 是区块链开发平台，同样是一个具体项目条目，而非章节主题
+  - 其位置处于项目列表中间，与前后条目平级，分章会破坏结构
+  keep_split: false
+- 'no': 9024
+  overturn_probability: 0.9
+  alternative: 项目列表中的项目条目
+  counter_evidence:
+  - Embark 是以太坊开发框架，属于项目介绍，不是章标题
+  - 该标题无统领性，仅介绍单个工具，应为列表项
+  keep_split: false
+- 'no': 9028
+  overturn_probability: 0.9
+  alternative: 项目列表中的项目条目
+  counter_evidence:
+  - DAPPLE 是智能合约开发框架，项目列表中的一个条目
+  - 与前后条目并列，无任何新章特征，是列表项
+  keep_split: false
+- 'no': 9032
+  overturn_probability: 0.9
+  alternative: 项目列表中的项目条目
+  counter_evidence:
+  - Meteor 是开发框架，属于项目列表中的一项
+  - 格式与其它项目条目相同，无子节，不应分章
+  keep_split: false
+- 'no': 9036
+  overturn_probability: 0.9
+  alternative: 项目列表中的项目条目
+  counter_evidence:
+  - uPort 是建立在以太坊上的身份管理系统，是具体项目条目
+  - 位于项目列表连续叙述中，不是最高层级章节
+  keep_split: false
+- 'no': 9040
+  overturn_probability: 0.9
+  alternative: 项目列表中的项目条目
+  counter_evidence:
+  - INFURA 是提供以太坊/IPFS 节点的企业级服务，是项目列表项
+  - 上下文没有新章起始信号，且与前后条目结构一致
+  keep_split: false
+- 'no': 9044
+  overturn_probability: 0.3
+  alternative: 上一章（项目列表）之后的章内小标题
+  counter_evidence:
+  - 该标题为英文且内容较短，可能是某个大主题下的分节；前文 9042 也是项目条目，主题转换不够强烈
+  - 但内容确实转向与其他行业融合的新话题，且有多个段落展开，更像新章，所以维持分章
+  keep_split: true
+- 'no': 9054
+  overturn_probability: 0.3
+  alternative: 总结章/最后一章中关于未来展望的小节
+  counter_evidence:
+  - “Future”是常见的小节名称，可能只是整本书结尾部分的一个主题，而非独立大章
+  - 但后续有一个较长的预测列表（9060-9089），内容完整，且 Summary 在其后，作为新章也合理
+  keep_split: true
+- 'no': 9091
+  overturn_probability: 0.3
+  alternative: 前一章（Future）的章末总结
+  counter_evidence:
+  - “Summary”常用来充当章节末尾的总结，而非独立新章；9093 行回顾“本章”内容，与该位置呼应
+  - 但作为全书文末总结，单列一章亦符含规约，故保留分章
+  keep_split: true
+- 'no': 9095
+  overturn_probability: 0.1
+  alternative: 书后索引，不是正文章节
+  counter_evidence:
+  - 索引不是叙述性正文，严格说不属于“章”
+  - 但规则规定文末索引统一划分为一章，所以该行应保留分章
+  keep_split: true

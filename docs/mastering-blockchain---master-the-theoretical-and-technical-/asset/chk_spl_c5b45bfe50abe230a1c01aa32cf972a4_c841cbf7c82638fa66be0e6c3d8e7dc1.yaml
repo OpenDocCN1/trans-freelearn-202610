@@ -1,0 +1,50 @@
+reviews:
+- 'no': 6465
+  overturn_probability: 0.72
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题为 # 使用 truffle 进行测试，位于第 8 章以太坊开发的教程流程中，前后均为 truffle 编译、迁移等连续操作步骤，属于同一技术章节内的功能小节而非全书最高层级大章'
+  - 上下文后 1~3 行直接进入命令示例 `~/testdapp$ truffle test`，无章节概述段落，且前后无总结/习题等章节边界特征
+  - '全书最高层级章节均带序号如 # 9 Hyperledger、# 11 区块链——货币之外，本处无序号且层级与前后 ##、### 标题混杂，符合正文小标题误判为章的典型模式'
+  keep_split: false
+- 'no': 6546
+  overturn_probability: 0.68
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题为 # 另一个示例，紧接在 truffle 测试、构建等内容之后，仍在同一开发实战章节内展开新示例，语义上是示例的延续而非统领性大章'
+  - 后续内容直接以 `这里展示了一个示例，其中使用 migrations 和 tests 创建了一个简单的 solidit...` 开头，属于示例说明段落，缺少章节级概述
+  - '全书章节标题多为带序号的 # 9、# 11、# 12 等，本处无序号且与前后 ## 示例、## 开发框架 等小标题风格不一致，易被误判为章节'
+  keep_split: false
+- 'no': 7008
+  overturn_probability: 0.81
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题为 # 摘要，出现在第 8 章末尾总结段落前，后续内容 `本章提供了关于如何设置以太坊开发环境并创建智能合约的详细且深入的实践示例...` 明显是对本章的总结而非开启新章'
+  - 规则中前言、序言、致谢等正文之前内容统一划分为一章，文末索引划分为一章，但本处为章节内部总结，不应单独成章
+  - '前后无章节序号跳跃，且紧邻 # 9 Hyperledger（超级账本） 的真正新章，摘要应归属前一章内部'
+  keep_split: false
+- 'no': 7012
+  overturn_probability: 0.05
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '标题带序号 # 9 Hyperledger（超级账本），单独成行，语义统领后续 Hyperledger 全部分内容，符合最高层级大章特征'
+  - '后续立即出现 ## Hyperledger（超级账本） 等子节，上下文符合章节起始模式'
+  keep_split: true
+- 'no': 8103
+  overturn_probability: 0.03
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '标题带序号 # 11 区块链——货币之外，单独成行，开启全新主题章节，后续内容从物联网、政府等应用展开，语义统领性强'
+  keep_split: true
+- 'no': 8564
+  overturn_probability: 0.02
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '标题带序号 # 12 可扩展性和其他挑战，单独成行，后续系统讨论可扩展性、隐私、安全等独立主题，符合最高层级章节特征'
+  keep_split: true
+- 'no': 8738
+  overturn_probability: 0.02
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '标题带序号 # 13 当前格局与未来展望，单独成行，开启全书最后一大章，后续内容为趋势展望，语义统领性明确'
+  keep_split: true

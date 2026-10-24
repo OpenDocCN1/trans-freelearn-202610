@@ -1,0 +1,3 @@
+# About the Reviewer
+
+**Daniel Kraft** studied mathematics and physics, and holds a PhD in applied mathematics from the University of Graz in Austria. He has been involved in development with cryptocurrencies since 2013, has been the lead developer and chief scientist for both Namecoin and Huntercoin since 2014, and has published two research papers about cryptocurrency in peer-reviewed journals. He works as a software engineer and is a co-founder of Crypto Realities Ltd, a start-up that works on building decentralised multi-player game worlds with blockchain technology.

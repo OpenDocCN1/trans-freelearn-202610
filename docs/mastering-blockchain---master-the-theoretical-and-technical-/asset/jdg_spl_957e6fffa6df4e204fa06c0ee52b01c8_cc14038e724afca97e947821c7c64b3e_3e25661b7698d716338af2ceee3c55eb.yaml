@@ -1,0 +1,46 @@
+chapter_starts:
+- 'no': 2
+  confidence: 0.95
+  final_reason: 正文之前的前置内容（作者简介），按规则统一划分为一章，双方均确认保留。
+  accepted_evidence:
+  - 属于正文前的作者简介部分，规则规定前言/序言/致谢等前置内容统一划分为一章
+  rejected_evidence:
+  - 复核方提出其可能只是封面/扉页的一部分，但不足以否定前置内容需作为一章处理
+  need_human_review: false
+- 'no': 170
+  confidence: 0.95
+  final_reason: 编号'1'为全书最高层级章标题，符合章标题单独成行、无句号等特征，后接章节引言；后续同名二级标题不构成否定。
+  accepted_evidence:
+  - 行首'# 1'表明为最高层级编号标题
+  - 标题'区块链入门'具有统领性，后文为章节概述
+  rejected_evidence:
+  - 复核方指出紧随其后有同名二级标题'## 区块链入门'，但该重复更可能是转换残留，不影响章判断
+  need_human_review: false
+- 'no': 621
+  confidence: 0.98
+  final_reason: 编号'2'为最高层级章标题，符合章标题格式，后接章节引言，双方一致确认。
+  accepted_evidence:
+  - '''# 2 去中心化''，编号连贯且为一级标题'
+  - 后文为去中心化章节概述段落
+  rejected_evidence:
+  - 复核方提出后文有多个同名二级标题可能引起层级混淆，但不足以否定其章地位
+  need_human_review: false
+- 'no': 782
+  confidence: 0.8
+  final_reason: 虽无编号且使用'##'，但语义上对应前言所述第3章'密码学与技术基础'，且紧跟Summary后开启新章节内容，整体证据充分。
+  accepted_evidence:
+  - 前言no 54明确列出第3章为'密码学和技术基础'，标题'Cryptography and Technical Foundations'与之对应
+  - 位于第2章Summary之后，后接章节引言和正文
+  rejected_evidence:
+  - 使用二级标题标记且无章序号，格式上与其它章不一致，但语义和上下文证据更强
+  need_human_review: false
+- 'no': 2045
+  confidence: 0.98
+  final_reason: 编号'4'为最高层级章标题，英文标题对应比特币章节，后接章节内容，双方一致确认。
+  accepted_evidence:
+  - '''# 4 Bitcoin''具有明确一级编号'
+  - 后跟'### Bitcoin'小节并进入正文，符合章起始特征
+  rejected_evidence:
+  - 复核方提出后跟同名三级标题可能为重复，但明确编号'# 4'仍指向章级
+  need_human_review: false
+rejected_lines: []
