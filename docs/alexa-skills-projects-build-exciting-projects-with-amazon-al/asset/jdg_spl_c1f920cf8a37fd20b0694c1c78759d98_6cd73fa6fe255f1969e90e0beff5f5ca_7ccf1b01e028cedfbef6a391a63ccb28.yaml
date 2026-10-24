@@ -1,0 +1,66 @@
+chapter_starts:
+- 'no': 0
+  confidence: 0.85
+  final_reason: 书名/封面及前置信息整体作为前置章，包含 Mapt、Preface、关于审阅者等正文之前内容，符合前言统一划分为一章的规则
+  accepted_evidence:
+  - 书名行后紧跟 Mapt 介绍、## 为什么订阅？、## Preface 等前置内容
+  - 复核方 keep_split=true，认为前置章合理
+  rejected_evidence:
+  - 复核方提出书名本身为元数据而非章节内容
+  need_human_review: false
+- 'no': 154
+  confidence: 0.9
+  final_reason: 正文第一章实质起始，## 什么是 Alexa？后接章节概述、子节列表及正文，前面为前置内容结束，语义统领后续内容
+  accepted_evidence:
+  - '标题后 1~3 行为概述段落，后续出现 ## 语音个人助理的需求 等子节'
+  - 复核方 keep_split=true
+  rejected_evidence:
+  - '标题以问号结尾且使用 ## 标记，与其他章标题格式不一致'
+  need_human_review: false
+- 'no': 399
+  confidence: 0.95
+  final_reason: 第 2 章编号行，下一行 400 为标题 Hello World, Alexa!，构成完整章标题，上下文为上一章总结后新章开始
+  accepted_evidence:
+  - 行399 '# 2' 与行400 标题跨行构成章标题
+  - 复核方 keep_split=true
+  rejected_evidence:
+  - 编号行单独不足以构成完整标题的疑虑
+  need_human_review: false
+- 'no': 811
+  confidence: 0.98
+  final_reason: 第 3 章一级标题 '# 3 与 Alexa 的免提体验'，单独成行，末尾无标点，上下文为上一章总结后新章引文
+  accepted_evidence:
+  - 标题格式符合一级章特征，上下文为新章开始
+  - 复核方 keep_split=true
+  rejected_evidence:
+  - 语义偏活动主题的质疑
+  need_human_review: false
+- 'no': 1296
+  confidence: 0.98
+  final_reason: 第 4 章一级标题 '# 4 与 Alexa 一起玩 Factly'，单独成行，上下文为上一章总结后新章开始
+  accepted_evidence:
+  - 标题为一级标题，符合编号特征
+  - 复核方 keep_split=true
+  rejected_evidence:
+  - 标题语气较随意可能为小标题的质疑
+  need_human_review: false
+- 'no': 2157
+  confidence: 0.8
+  final_reason: '第 5 章标题跨两行 ''## Making Alexa Talk About'' + ''CryptoCurrencies''，虽使用
+    ## 标记但语义为新章且接引言与目录列表，序号与前文连贯'
+  accepted_evidence:
+  - 标题后紧跟引文和章节目录，上下文为新章开始
+  - 复核方 keep_split=true
+  rejected_evidence:
+  - 使用二级标题标记且无编号，与前置小节同级
+  need_human_review: false
+- 'no': 2719
+  confidence: 0.98
+  final_reason: 第 6 章一级标题 '# 6 使用 Alexa 进行家庭自动化'，单独成行，上下文为上一章结束后的新章
+  accepted_evidence:
+  - 标题格式为一级章，序号连贯
+  - 复核方 keep_split=true
+  rejected_evidence:
+  - 序号不连贯的质疑
+  need_human_review: false
+rejected_lines: []

@@ -1,0 +1,1934 @@
+- ''
+- "# Alexa Skills Projects：Amazon Alexa 令人兴奋的项目构建指南与物联网集成\n\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_4_0.png)\n\
+  \nmapt.io\n\nMapt 是一个在线数字图书馆，可让您完全访问超过 5,000 本书籍和视频，以及领先的行业工具，帮助您规划个人发展并推进您的职业生涯。如需更多信息，请访问我们的网站。\n\
+  \n## 为什么订阅？\n\n- 使用来自 4,000 多名行业专业人士的实用电子书和视频，花更少的时间学习，花更多的时间编码\n- 使用专为你打造的技能计划改善学习\n\
+  - 每月免费获得一本电子书或视频\n- Mapt 完全可搜索\n- 复制、粘贴、打印和书签内容\n\n## PacktPub.com\n\n您是否知道 Packt\
+  \ 为每本出版的书籍提供电子书版本，提供 PDF 和 ePub 文件？您可以在 www.PactPub.com 升级到电子书版本，作为印刷书籍客户，您有权享受电子书副本的折扣。有关更多详细信息，请联系\
+  \ service@packtpub.com。\n\n在 www.PacktPub.com，您还可以阅读大量免费技术文章，注册多种免费通讯，并获得 Packt\
+  \ 书籍和电子书的独家折扣和优惠。\n\n## 关于审阅者\n\n**Srini Janarthanam** 是聊天机器人、NLP 和人工智能技术方面的专家，拥有超过\
+  \ 10 年的经验。他获得了爱丁堡大学的博士学位。他曾在爱丁堡和赫里奥特-瓦特大学担任研究员，在那里他参与了多个研究项目并撰写了 50 多篇会议/期刊论文。他经营一家聊天机器人和人工智能解决方案机构\
+  \ - Chatomate。他最近撰写了由 Packt 出版的书籍 *Hands On - Chatbots and Conversational UI Development*。\n\
+  \n## Packt 正在寻找像您这样的作者\n\n如果您有兴趣成为 Packt 的作者，请访问 `authors.packtpub.com` 并立即申请。我们已与数千名开发人员和技术专业人士合作，就像您一样，帮助他们与全球技术社区分享他们的见解。您可以提交通用申请，申请我们正在招聘作者的特定热门主题，或提交您自己的想法。\n\
+  \n## Preface\n\n近年来语音计算的兴起引发了地壳般的转变，其结果是交互式语音个人助理不再潜伏在阴影中，亚马逊 Alexa、Siri 和 Google\
+  \ Now 已成为家喻户晓的名字。除了传统的移动设备栖息地之外，这些助理也可以在客厅和餐厅的中心找到，形式为亚马逊 Echo、Google Home 和 Apple\
+  \ HomePod 设备。\n\n本书重点介绍通过研究 Alexa 来利用语音计算的力量，Alexa 是用于亚马逊 Echo 的交互式语音个人助理。在本书的整个过程中，我们将踏上了解\
+  \ Alexa 内部工作原理的旅程，同时创建五个独特的 Alexa Skills，每个技能都将设计用于解决特定目的和现实世界用例。\n\n希望你喜欢这段旅程！\n\
+  \n## Who this book is for\n\n本书面向所有对亚马逊 Echo 和 Alexa 所基于的底层语音计算技术感兴趣的人，以及学习如何利用该技术为\
+  \ Alexa 创建面向家庭自动化、物联网和各种其他领域的技能的人。\n\n## What this book covers\n\n第 1 章，What Is\
+  \ Alexa?，是一章入门章节，不需要任何编程技能。我们讨论智能语音激活个人助理如何从仅仅被动存在于手机中发展成为以专用硬件设备的形式永久存在于普通家庭中的固定装置。\n\
+  \n第 2 章，Hello World, Alexa!，将向读者介绍为 Alexa 创建技能的过程，并将解释如何创建基本的 Hello World Alexa\
+  \ 技能。\n\n第 3 章，Hands-Free Experience with Alexa，将介绍一种使用 Alexa 发送消息的新方式，即免提方式。\n\n\
+  第 4 章，*Let’s Play Factly with Alexa*，将创建一个名为 Factly 的 Alexa 技能游戏。我们还将使用 DynamoDB\
+  \ 为其添加持久性。\n\n第 5 章，*Making Alexa Talk about CryptoCurrencies*，将演示 Alexa 如何提供最新的加密货币更新。用户将创建一个\
+  \ Alexa 技能，该技能可以获取最新加密货币（如比特币和以太坊）的当前价格。\n\n第 6 章，*Home Automation with Alexa*，将演示\
+  \ Alexa 如何与其他物联网设备集成并创建智能家居的基础。用户将创建一个 Weather Monitor Alexa 技能，该技能可以告知用户家庭内的气候（温度/湿度/光照）。\n\
+  \n第 7 章，*Future of Voice-Based Personal Assistants*，将讨论智能语音个人助理的未来。\n\n## To get\
+  \ the most out of this book\n\n要充分利用本书，以下是先决条件：\n\n- 熟悉现代编程语言，例如 JavaScript。我们为\
+  \ Lambdas 编写的全部代码都基于 Node.js。\n- 免费套餐 Amazon AWS 开发人员账户。\n- 熟悉代码编辑器。\n- 不是强制性的，但建议使用亚马逊\
+  \ Alexa 启用的设备，例如亚马逊 Echo。\n- 在本书的整个过程中，我们将通过亚马逊开发者门户进行许多配置更改。我们建议您按照所述步骤进行操作，因此强烈建议您拥有良好的互联网连接。\n\
+  \n## Download the example code files\n\n您可以从 www.packtpub.com 的账户下载本书的示例代码文件。如果您在其他地方购买了本书，您可以访问\
+  \ www.packtpub.com/support 并注册以直接通过电子邮件接收文件。\n\n\n\n\n\n你可以按照以下步骤下载代码文件：\n\n- 1.\
+  \ 在 `www.packtpub.com` 登录或注册。\n- 2. 选择 **SUPPORT**（支持）选项卡。\n- 3. 点击 **Code Downloads\
+  \ & Errata**（代码下载与勘误）。\n- 4. 在 **Search**（搜索）框中输入书名，然后按照屏幕上的说明操作。\n\n文件下载后，请确保使用最新版本的解压软件解压或提取文件夹：\n\
+  \n- Windows 使用 WinRAR/7-Zip\n- Mac 使用 Zipeg/iZip/UnRarX\n- Linux 使用 7-Zip/PeaZip\n\
+  \n本书的代码包也托管在 GitHub 上，地址为 `https://github.com/PacktPublishing/Alexa-Skills-Projects`。如果代码有更新，将会在现有的\
+  \ GitHub 仓库中更新。\n\n我们还有来自丰富的图书和视频目录中的其他代码包，可在 `https://github.com/PacktPublishing/`\
+  \ 获取。快去看看吧！\n\n## 下载彩色图片\n\n我们还提供一份 PDF 文件，其中包含本书使用的截图/图表的彩色图片。你可以在这里下载：\n`http://www.packtpub.com/sites/default/files/downloads/AlexaSkillsProjects_ColorImages.pdf`\n\
+  \n## 本书使用的约定\n\n本书通篇使用了多种文本约定。\n\n`CodeInText`：表示文本中的代码词、数据库表名、文件夹名、文件名、文件扩展名、路径名、虚拟\
+  \ URL、用户输入和 Twitter 句柄。例如：“在控制台搜索栏中，搜索 Lambda，当它出现在自动建议列表中时点击它。”\n\n代码块如下所示：\n\n\
+  ```\nbuildSpeechletResponse = (outputText, shouldEndSession) => {\n    return {\n\
+  \        outputSpeech: {\n            type: \"PlainText\",\n            text: outputText\n\
+  \        },\n        shouldEndSession: shouldEndSession\n    }\n}\n```\n\n当我们希望您注意代码块的特定部分时，相关行或项目会以粗体显示：\n\
+  \n```\ngenerateResponse = (speechletResponse) => {\n    return {\n        version:\
+  \ \"1.0\",\n        response: speechletResponse\n    }\n}\n```\n\n**粗体**：表示新术语、重要词语或您在屏幕上看到的词语。例如，菜单或对话框中的词语会以这样的形式出现在文本中。例如：“从\
+  \ **Administration**（管理）面板中选择 **System info**（系统信息）。”\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_12_0.png)\n\
+  \n![](img/80ddccf2572659c5b147f23cc6356c5a_12_1.png)\n\n## 联系我们\n\n我们始终欢迎读者的反馈。\n\
+  \n**一般反馈**：发送邮件至 `feedback@packtpub.com`，并在邮件主题中注明书名。如果您对本书的任何方面有疑问，请发送邮件至 `questions@packtpub.com`。\n\
+  \n**勘误**：尽管我们已竭尽全力确保内容的准确性，但错误仍在所难免。如果您在本书中发现了错误，我们将不胜感激，请您向我们报告。请访问 `www.packtpub.com/submit-errata`，选择您的图书，点击“Errata\
+  \ Submission Form”链接，然后输入详细信息。\n\n**盗版**：如果您在互联网上以任何形式发现我们作品的非法副本，我们将不胜感激，请您提供位置地址或网站名称。请通过\
+  \ `copyright@packtpub.com` 联系我们，并提供相关材料的链接。\n\n**如果您有兴趣成为作者**：如果您有擅长的主题，并且对撰写或参与编写一本书感兴趣，请访问\
+  \ `authors.packtpub.com`。\n\n## 评论\n\n请留下评论。当您阅读并使用过本书后，为什么不在您购买本书的网站上留下评论呢？潜在的读者可以借此看到并参考您的客观意见来做购买决定，我们\
+  \ Packt 可以了解您对我们产品的看法，我们的作者也可以看到您对他们著作的反馈。谢谢！\n\n有关 Packt 的更多信息，请访问 `packtpub.com`。\n"
+- "## 什么是 Alexa？\n\n> *“我确实看到了语音的力量。它是一种非常强大的叙事形式。”*  \n> —— 阿基拉·博尔登-莫尼法\n\n对于我们的人类祖先来说，随着大脑的进化，语言也随之发展，从符号和声音到更复杂的有声语言形式，这使他们能够进行复杂的对话，从而形成生存所需的社会联系。与书面交流不同，有声语言不会留下自身的痕迹，因此历史学家很难计算出语言起源的确切日期。然而，历史学家通过多种方法推测，语言发展于30万年前，符号于3万年前，文字于7000年前。自那时起，人类一直将语言和声音用于各种创造性的用途。\n\
+  \n在本章中，我们将探讨语音的一种此类用途——能够随意命令基于语音的交互式个人助理执行特定任务的能力。在此之前，我们还将通过以下主题了解什么是基于语音的智能个人助理、它能满足哪些需求，以及当前市场上有哪些基于语音的个人助理（包括\
+  \ Alexa）：\n\n- 语音个人助理的需求\n- 语音个人助理的应用\n- 各种语音个人助理的比较\n\n那么，让我们进入第一个主题。\n\n## 语音个人助理的需求\n\
+  \n要理解语音个人助理的演变，我们必须回到过去，看看促成其出现的一些重要事件。这些事件之一是计算机的演变。尽管与语音革命没有直接关系，但计算机的演变在语音个人助理的发展中发挥了关键作用，因为它标志着互联网的发明，而互联网是大多数语音个人助理的支柱。计算机革命还带来了有关硬件和集成电路的重大变革，我们将在下面讨论这些变革。\n\
+  \n计算机革命始于19世纪，当时查尔斯·巴贝奇发明了第一台分析引擎，这为他赢得了“计算机之父”的称号。20世纪50年代和60年代是有趣的时代，集成电路这一开创性发明为计算机科学领域带来了巨大进步。集成电路取代了二极管和真空管，导致现有计算机的外观尺寸发生了巨大变化，进而使其变得更小、更紧凑。也是在那个时候，戈登·摩尔提出了他著名的观察：集成电路中的晶体管数量每两年翻一番；粗略地说，我们将能够在集成电路中封装越来越多的处理能力，而电路尺寸每两年就会缩小一次。摩尔的观察早已预见了我们技术和硬件的未来，遵循它，我们至少可以容易地预测一件事：我们会看到计算机变得越来越小，非常小，瞧，今天几乎每个人手中都有一台小型计算机——他们的智能手机。\n\
+  \n60年代末和70年代初，高级研究计划局网络（ARPANET）也出现了，它最终演变成了我们在80年代所熟知的互联网。这一切起初听起来微不足道，但当你意识到这些都是关键因素时，如果没有它们被发明出来，我们永远不会看到语音个人助理的实际应用。\n\
+  \n在语音个人助理出现之前，向计算机系统发送命令的传统方式要么是通过鼠标使用图形用户界面（GUI），要么是通过键盘使用终端。随着传统计算系统的外观尺寸缩小，输入方式也在演变，早期的手持设备/移动电话在传统键盘之外引入了手写笔，以利用设备的触摸屏功能：\n\
+  \n![](img/80ddccf2572659c5b147f23cc6356c5a_16_0.png)\n\n图 1.1：2010年拍摄的带手写笔的智能手机\n\
+  \n演变仍在继续，正如史蒂夫·乔布斯所指出的，手写笔的位置被“世界上最好的指点设备”——我们的手指所取代。\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_16_1.png)\n\
+  \n2007年，史蒂夫·乔布斯在旧金山举行的MacWorld大会上，用“世界上最好的指点设备”来形容用户的手指，从而在iPhone上引入了触摸功能。这次大会的亮点可以在YouTube上观看：`https://www.youtube.com/watch?v=P-a_R6ewrmM`。\n\
+  \n随着计算机与人类之间的界面变得越来越薄，语音自然地成为下一种能够作为计算设备输入工具的媒介，因此语音个人助理应运而生。\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_16_2.png)\n\
+  \n将语音作为计算设备输入媒介的想法并不新鲜；与计算机革命并行的是语音革命，其许多重要发现见链接：`https://voicebot.ai/2017/07/14/timeline-voice-assistants-short-history-voice-revolution/`\n\
+  \n\n在语音革命的众多里程碑中，几乎每位读者都至少熟悉其中几个最新的里程碑，即 Siri、Google Now、Cortana 和亚马逊的 Alexa。其中最流行的是苹果的\
+  \ Siri 和谷歌的 Google Now，它们最初分别与 iOS 和 Android 移动设备集成出现。\n\n苹果的 Siri 最初是作为 App Store\
+  \ 上的一个应用出现的，但后来被苹果收购，并与 iOS 设备更加紧密地集成。Siri 使用自然语言界面来聆听用户的命令并执行必要的操作。此外，随着 macOS\
+  \ Sierra 的到来，它的能力不再局限于 iOS 设备：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_17_0.png)\n\
+  \n图 1.3：Siri 的功能不仅限于 iPhone，还扩展到桌面\n\n谷歌紧随苹果之后，在 2011 年 Siri 推出后不久，于 2012 年推出了 Google\
+  \ Now。与 Siri 不同，Google Now 在 Android 上原生可用，同时也作为 iOS 设备的独立应用。Google Now 与 Gmail、Google\
+  \ 日历和强大的 Google 搜索本身等 Android/Google 功能无缝集成：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_18_0.png)\n\
+  \n图 1.4：Google Now 作为原生应用的一部分在 iOS 上可用（Google 和 Google 徽标是 Google Inc. 的注册商标，经许可使用。）\n\
+  \n紧随谷歌之后的是微软，它推出了自己的智能语音助手 Cortana，并于 2014 年面向桌面和移动设备推出：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_18_1.png)\n\
+  \n图 1.5：微软的 Cortana 最初是为微软的移动和桌面计算系统推出的\n\n随着时间的推移，很明显，基于语音的个人助理已经站稳脚跟，并且需要专属的硬件和空间。亚马逊在这方面率先采取了行动，推出了其品牌\
+  \ Amazon Echo，这是一个智能音箱设备系列，由亚马逊公司专门设计和开发，使用户能够使用名为 *Alexa* 的交互式语音个人助理服务（这也是本章标题的由来）：\n\
+  \n![](img/80ddccf2572659c5b147f23cc6356c5a_19_0.png)\n\n图 1.6：Amazon Echo 设备系列\n\
+  \n完整的 Echo 系列及其功能如下表所示：\n\n| 设备 | 用途 |\n|---|---|\n| Amazon Echo | 最初的旗舰智能音箱。 |\n\
+  | Echo Dot | Echo 的更小、更便宜版本，没有放大扬声器，因此音质也不如 Echo。 |\n| Echo Plus | 最新版 Echo，集成了\
+  \ Zigbee。 |\n| Echo Show | 支持 Alexa 的设备，配备大触摸屏，用户与 Alexa 的交互不仅是听觉的，还有视觉的。 |\n| Echo\
+  \ Spot | *Show + Dot = Spot*。具备 Show 和 Dot 设备的全部基本功能，外形尺寸小得多。 |\n| Amazon Tap |\
+  \ 支持 Alexa 的蓝牙音箱。 |\n\nEcho 系列标志着亚马逊第二次进军硬件领域，第一次是推出广受欢迎的电子书阅读器 Kindle。谷歌也认识到，交互式语音助手可以通过充分利用智能家居概念做更多事情，因此在亚马逊之后紧跟其后，推出了\
+  \ Google Home 智能音箱，其中内置了与 Alexa 对应的 Google Assistant：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_20_0.png)\n\
+  \n图 1.7：各种基于语音的个人助理的发布时间线（来源：www.citiusminds.com）\n\n请注意，上图不包括 2012 年推出的 Google\
+  \ Now。\n\n我们已经讨论了基于语音的交互式个人助理的演变，以及它们如何从用户智能手机上的另一个应用发展成为用户智能家居的一部分。\n\n在下一节中，我们将讨论基于语音的交互式个人助理的一些常见用途。\n\
+  \n## 基于语音的个人助理的应用\n\n我们在上一节讨论了基于语音的个人助理的演变。在本节中，我们将把讨论扩展到每个交互式语音个人助理的一些常见用途，无论该助理是基于桌面、智能手机还是智能家居。我们将从最早且最著名的助手之一——苹果的\
+  \ Siri 开始。\n\n### Siri\n\n如前所述，Siri 最初是 2011 年为 iOS 推出的一款独立智能手机应用，后来被苹果收购。最初，Siri\
+  \ 的能力仅限于智能手机和简单功能，例如：\n\n- 查找联系人\n- 消息（短信）\n- 按用户需求获取天气更新，以及上一节提到的其他简单查询\n\n然而，苹果的路线图还通过将\
+  \ Siri 与第三方应用紧密集成来扩展其功能，并且正如承诺的那样，随着 iOS 10 的到来，苹果还发布了 SiriKit。\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_21_0.png)\n\
+  \n想了解更多关于 SiriKit 的信息，请访问 https://developer.apple.com/sirikit/。\n\n如果用户安装了以下第三方应用，可以使用\
+  \ Siri 叫车：\n\n- Uber\n- Lyft\n\n如果用户安装了以下第三方应用，可以使用 Siri 设置这些应用发送消息（不仅仅是短信）：\n\n\
+  - WhatsApp\n- LinkedIn\n- WeChat\n- Slack\n\n用户还可以通过 Siri 使用以下应用拨打 VoIP 电话：\n\n\
+  - Skype\n- Viber\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_22_0.png)\n\n请注意，以上列表并非详尽无遗。然而，第三方集成并不是苹果扩展\
+  \ Siri 功能路线图中的唯一内容。macOS Sierra 的发布也将 Siri 的功能带到了桌面。要了解有关 Siri 桌面功能的更多信息，请访问 https://support.apple.com/en-us/HT206993。\n\
+  \nSiri 还可以帮助用户：\n\n- 在 Mac 上搜索文件\n- 通知用户其存储空间\n- 通过“通讯录”发起 FaceTime 请求，以及此处所示的许多其他功能：\n\
+  \n![](img/80ddccf2572659c5b147f23cc6356c5a_23_0.png)\n\n图 1.8：Siri 可以帮忙处理的事项列表（非详尽）（来源：www.osxdaily.com）\n\
+  \n在了解了 Siri 的桌面和智能手机功能后，现在让我们继续介绍另一款流行的语音助手。\n\n### Google Now\n\n接下来我们将讨论 Android\
+  \ 和 Google Now。在撰写本文时，Android 是智能手机市场上最大的参与者，也是 Google Now 的故乡——Google Now 是谷歌于\
+  \ 2012 年为 Android 智能手机推出的语音助手。\n\n2010 年初，智能手机市场由许多参与者主导。多年后，市场逐渐筛选，如今只剩下两个主要参与者，如下图所示：\n\
+  \n![](img/80ddccf2572659c5b147f23cc6356c5a_24_0.png)\n\n图 1.9：2010 年至 2016 年智能手机市场份额分布对比（数据来源：Gartner）\n\
+  \nGoogle Now 几乎可以完成 Siri 所能完成的一切；然而，它与网络和基于网络的查询有更好的集成，因为网络是谷歌的强项。用户可以问 Google Now\
+  \ 的一些事情包括：\n\n| 类别 | 命令 |\n|---|---|\n| 一般命令 | • “什么是[薛定谔的猫]？”<br>• “谁发明了[互联网]？”<br>•\
+  \ “发布到 Google+ [感觉很好]” |\n| 笔记和提醒 | • “设置[晚上8点]的闹钟”<br>• “自我提醒：[我把车停在D区]” |\n| 时间和日期\
+  \ | • “[柏林]的时区是什么？”<br>• “家里的时间”<br>• “创建日历事件：[在餐厅用餐] [周六晚上8点]” |\n| 通信 | • “打电话给[Daniel]”<br>•\
+  \ “[联系人姓名]”<br>• “给 Daniel 发[电子邮件]，[主题：会议]，[消息：5分钟内到]” |\n| 天气 | • “天气”<br>• “[明天/周五]会下雨吗？”<br>•\
+  \ “[波士顿] [周三]的天气怎么样？” |\n| 地图和导航 | • “[弗拉格斯塔夫]的地图”<br>• “开车导航到[柏林]”<br>• “在地图上显示附近的[餐厅]”\
+  \ |\n\n图 1.10：Google Now 可以做的部分事情（数据来源：www.cnet.com）\n\n除了 Google Now，谷歌还推出了 Google\
+  \ Assistant，它是 Google Now 的更进化版本，因为用户可以与 Google Assistant 进行完整对话，而 Google Now 则无法做到这一点。\n\
+  \n\n\n\n很可能 Google Now 将被逐步淘汰，取而代之的是 Google Assistant；然而，Google Assistant 目前仅可在\
+  \ Google Home 上使用，Google Home 是 Google 的智能家居音箱；Android Pixel 2 智能手机；以及 Android Wear：\n\
+  \n![](img/80ddccf2572659c5b147f23cc6356c5a_26_0.png)\n\n图 1.11：可使用 Google Assistant\
+  \ 的设备（Google 及 Google 标志是 Google Inc. 的注册商标，经许可使用。）\n\n现在，从智能手机市场转向桌面市场：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_27_0.png)\n\
+  \n图 1.12：截至 2017 年 1 月的桌面市场份额（数据来源：www.windowscentral.com）\n\n如前图所示，截至 2017 年 1\
+  \ 月，桌面市场的主要参与者有 Windows、Linux 和 Mac OS X，其中微软占据主导地位，这就引出了我们下一个个人助理。\n\n## Cortana\n\
+  \n由于微软在桌面市场的明显主导地位，我们不能忽视 Cortana，它是微软对 Siri 和 Google Assistant 的回应，但专注于桌面和 Windows\
+  \ Mobile：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_28_0.png)\n\n图 1.13：Cortana\
+  \ 可以提供帮助的一些事项列表\n\nCortana 不仅限于 Windows 10、Windows 10 Mobile 和 Windows Phone 8.1，还可用于：\n\
+  \n- iOS（作为独立应用）\n- Android（作为独立应用）\n- Xbox One\n- Harman Kardon 品牌的 Invoke 智能蓝牙音箱\n\
+  \nCortana 可以完成的一些众多事项包括：\n\n- 使用 Bing Search 进行基于网络的查询（例如，“美国总统是谁？”）\n- 启动应用并打开/关闭\
+  \ Wi-Fi/蓝牙\n- 询问天气\n- 管理约会、提醒和事件\n\n至此，我们来讨论本书的明星。\n\n## Alexa\n\nAlexa，本章和本书的核心，是亚马逊推出的基于交互式语音的个人助理，最初随其\
+  \ Echo 设备系列推出。Alexa 作为助理以智能家居概念为导向，因此其大部分使用来自 Amazon Echo，一款专为放置在用户家中客厅而设计和开发的智能音箱，使用户可以向其询问日常天气、食谱和笑话等查询，或玩互动问答游戏、设置闹钟、购买日常用品等等。以下图表显示了用户可以向\
+  \ Alexa 提出的一些事项：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_29_0.png)\n\n图 1.14：Alexa\
+  \ 可以提供帮助的一些事项列表\n\nAlexa 的功能还可以通过安装第三方技能来扩展（类似于 Google Home 的第三方应用）。每个第三方技能都旨在服务于特定目的。例如，Uber\
+  \ 技能允许您订车，Domino's 技能允许您订披萨——所有这些都可以在您舒适的家中通过您的声音与 Alexa 协同完成。\n\n截至撰写本文时，Alexa\
+  \ 可用的技能已超过 15,000 种，其中 Uber 和 Lyft 在出行类别中是最常用的，Pandora 和 Spotify 用于音乐流媒体，还有多个其他技能用于家庭自动化。\n\
+  \n## 各种基于语音的个人助理的比较\n\n由于之前的讨论，我们已经知道，无论是桌面、智能手机还是智能家居，每个市场都有稳定的交互式基于语音的个人助理供应。几乎每个助理都能完成其对应产品所能完成的功能，但这就引出了一个问题，实际差异在哪里？Alexa\
+  \ 能做得比 Google Assistant 更好，还是反之？\n\n本书基于 Alexa，这是一款基于智能家居的个人助理，因此在本节中，我们将比较 Alexa\
+  \ 和 Google Assistant，以了解两者之间的细微差异：\n\n| Alexa | Google Assistant |\n|---|---|\n\
+  | 使用唤醒词，“Alexa” | 使用唤醒词，“OK, Google” |\n| 旗舰硬件——Amazon Echo 设备系列 | 旗舰硬件——Google\
+  \ Home、Pixel 2、Android Wear |\n| 对电子商务/购物相关查询的响应略好，因为那是亚马逊的主要强项 | 对基于网络的查询响应略好，因为\
+  \ Google 的主要强项是网络搜索 |\n| 上下文感知能力略逊 | 上下文感知能力更好，因此对话显得更自然一些 |\n| Alexa 的功能可以通过安装第三方“技能”来扩展\
+  \ | Google Assistant 的功能可以通过安装第三方应用来扩展；然而，目前市场上为其提供的应用数量比 Alexa 的技能少 |\n| 与智能家居设备的集成范围更广，如智能灯、智能锁、智能开关和智能恒温器\
+  \ | 与智能家居设备的集成范围略窄 |\n\n简而言之，Google 和 Alexa 都是非常出色的基于语音的助理，为用户提供了很多功能；然而，由于 Google\
+  \ Assistant 在市场上相对较新，其与第三方应用和硬件的集成和兼容性仍在不断发展，尽管速度非常快。然而，即使是两者中更新的，Google Home 在网络集成和上下文感知方面仍然表现更好。\n\
+  \n在未来时代，人工智能和机器学习的演进将带来什么，以及这些助理如何利用它，将是非常有趣的。\n\n## 总结\n\n在本章中，我们介绍了交互式基于语音的个人助理的演进以及其从用户智能手机转移到智能家居所涉及的各种因素。我们还看到了智能手机、桌面和智能家居市场中的各种交互式基于语音的个人助理，以及各自的功能。\n\
+  \n我们的目标是让读者熟悉交互式基于语音的个人助理的历史，以便在本书的后续内容中，我们可以将重点放在 Alexa 上，即随 Amazon Echo 捆绑的交互式个人助理。下一章将使读者能够了解\
+  \ Alexa Skill 的结构，并动手编程 Amazon Echo，以便 Alexa 学会说出计算机编程中最古老的短语之一，“Hello, World。”\n"
+- "# 2\nHello World, Alexa!\n\n> “人声是灵魂的器官。”\n> \n> — Henry Wadsworth Longfellow\n\
+  \n在上一章中，我们讨论了各种基于语音的个人助理的演进，讨论了各自的功能，并最终比较了两个重要的基于智能家居的个人助理，即 Alexa 和 Google Home。\n\
+  \n在本章中，我们将专注于 Alexa。我们首先将了解 Amazon Echo，这款来自亚马逊的智能音箱，使用户能够与 Alexa 及其各种变体进行交互。随后，我们将学习\
+  \ Alexa 的结构以及使其如此交互性的要素。我们将通过涵盖以下主题来实现这一点：\n\n- Amazon Echo 简介\n- Alexa Skill 的结构\n\
+  - 构建 Hello World Alexa Skill\n\n我们将首先介绍 Amazon Echo，然后深入了解 Alexa 和 Alexa Skills\
+  \ 的细节。\n\n## Amazon Echo 简介\n\n通常，Amazon Echo 一词与 Alexa 同义使用。然而，虽然两者相互关联，但它们指向非常不同的事物——Amazon\
+  \ Echo 是实际的智能音箱（硬件），它是通往亚马逊 Alexa Skills 服务的网关，通过交互式基于语音的个人助理实现。\n\nAmazon Echo\
+  \ 拥有完整的设备系列，因此有多种版本，所有这些都将在以下章节中讨论。\n\n## Amazon Echo – 第一代\n\nAmazon Echo 是亚马逊推出的原始第一代旗舰智能音箱。它需要无线互联网连接才能工作，因为其语音功能（Alexa）基于亚马逊的云计算服务：\n\
+  \n![](img/80ddccf2572659c5b147f23cc6356c5a_33_0.png)\n\nAmazon Echo 的初始设置可通过 Alexa\
+  \ 移动应用完成，该应用适用于两个主要移动平台（iOS 和 Android），也可以通过 Alexa 网页门户完成。\n\n为了使其能够触及不同经济能力的用户，亚马逊推出了\
+  \ Amazon Echo Dot，它是 Amazon Echo 的更小、更便宜的版本：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_33_1.png)\n\
+  \n\n\n\nEcho Dot 旨在作为原始旗舰智能音箱 Echo 的一个更便宜、体积更小的替代品。与 Echo Dot 相比，原始 Echo 音箱之所以价格更高，是因为它确实拥有更清晰的声音和语音控制。\n\
+  \n现在，让我们继续了解 Amazon Echo 家族的第二代产品。\n\n## Amazon Echo —— 第二代\n\nAmazon Echo 家族的第二代推出了更新的\
+  \ Echo 设备，例如 Echo Plus、Echo Show 和 Echo Look。本章我们主要关注音箱产品：Amazon Echo 和 Amazon Echo\
+  \ Dot：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_34_0.png)\n\n图 2.3：Amazon Echo\
+  \ 2，第二代 Amazon Echo 音箱\n\n尽管第二代 Amazon Echo 的功能与第一代版本相同，但它拥有更清脆的音质、更小巧的尺寸（第二代 Echo\
+  \ 的尺寸几乎是第一代的三分之二），当然，还有织物外壳。\n\nEcho 设备家族的第二代也对 Echo Dot 进行了全面改造，如下图所示：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_35_0.png)\n\
+  \n图 2.4：第二代 Echo Dot\n\n正如你会注意到的，主要变化是增加了两个音量控制按钮，取代了旧型号上的环形控制。此外，麦克风阵列的孔位略微增大，以提供更好的音质，并配有电源指示灯。\n\
+  \n在本书中，我们将主要使用 Amazon Echo Dot 来测试我们创建的技能。\n\n如果您没有 Amazon Echo 设备，请不要担心。还有其他无需购买\
+  \ Echo 硬件设备即可测试技能的方法。我们将在本书中逐步介绍这些方法。\n\n如果你已经拥有 Amazon Echo，或者方便购买一台来测试我们将编写的示例技能（尽管如前所述，我们还有其他方法来测试技能），那么设置过程很简单，即将你的\
+  \ Amazon Echo 连接到互联网，并开始向 Alexa 发出命令，如下图所示：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_36_0.png)\n\
+  \n希望到现在，你已经清楚地了解了 Amazon Echo 到底是什么，以及 Amazon Echo 与 Alexa 之间的明显区别。在下一节中，我们将深入探究\
+  \ Amazon Echo 的内部，剖析一个 Alexa 技能。\n\n## 剖析 Alexa 技能\n\n在本节中，我们将努力理解是什么让 Alexa（Amazon\
+  \ Echo 内置的个人助理）如此聪明。Alexa 能够遵循并理解用户的语音命令，唯一的原因就是它拥有技能——这不仅是在字面意义上，更是在实际意义上。\n\n\
+  Alexa 技能是一段实际的软件代码，专为单一目的而设计；也就是说，让 Alexa 完成特定任务。以下是一些示例：\n\n- 有一个 Alexa 技能可以从 Domino's\
+  \ Pizza 订购比萨\n- 有一个 Alexa 技能可以召唤 Uber\n- 有一个 Alexa 技能可以订购鲜花\n- 有一个 Alexa 技能可以收听星座运势\n\
+  \n自 2016 年以来，可用于 Alexa 的技能数量一直在稳步增长。截至 2018 年初，仅在美国，就有超过 30,000 个第三方技能可用于 Alexa：\n\
+  \n![](img/80ddccf2572659c5b147f23cc6356c5a_37_0.png)\n\n图 2.6：Alexa 第三方技能的增长统计\n\
+  \n一旦用户按照上一节所示配置好 Amazon Echo 设备，安装/启用 Alexa 技能只需导航到 Alexa 应用或 Alexa 桌面门户，然后选择用户最喜欢的技能即可：\n\
+  \n![](img/80ddccf2572659c5b147f23cc6356c5a_38_0.png)\n\n类似地，用户可以通过应用中的**技能**侧边菜单导航到**你的技能**部分，然后选择**禁用**，来停用已激活的\
+  \ Alexa 技能。\n\n简单来说，Alexa 技能可以比作教育专业方向。当用户在 Echo 上安装某个 Alexa 技能时，他/她正在让 Alexa 专门执行特定任务。在本章余下部分，我们将了解\
+  \ Alexa 技能如何实现专业化。\n\n每个 Alexa 技能的核心包含以下组件：\n\n- 调用名称\n- 意图与槽位\n- Lambda\n\n我们将分别讨论它们。\n\
+  \n## 调用名称\n\n调用名称是技能用户将说出的名称，Alexa 会使用它从已启用/可用技能列表中调用或识别你的技能。下面的屏幕截图显示了一个示例技能调用：\n\
+  \n![](img/80ddccf2572659c5b147f23cc6356c5a_39_0.png)\n\n图 2.8：使用调用名称启动技能\n\n请注意，在前面的示例中，我们使用了一个单词的调用名称，Alexa\
+  \ 通常不允许这样做，除非该调用名称对你的品牌/IP 是唯一的。就 Spotify 而言，情况确实如此。亚马逊已经针对调用名称定义了各种规则，这些规则可以在亚马逊开发者门户上找到。\n\
+  \n请访问以下链接，了解亚马逊对 Alexa 调用名称的要求：https://developer.amazon.com/docs/custom-skills/choose-the-invocation-name-for-a-custom-skill.html\n\
+  \n按照上述关于话语中调用名称的规则，另一个示例技能调用话语如下面的屏幕截图所示：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_39_1.png)\n\
+  \n图 2.9：技能调用名称的剖析\n\n因此，每个 Alexa 技能都必须有一个调用名称，在接下来的部分中，我们的 Hello World Alexa 技能也将有一个。\n\
+  \n## 意图与槽位\n\n单词 *意图*（Intent）源自 intention（意图），名副其实，它可以映射到 Alexa 技能的一项或多项功能。为了更好地理解意图，让我们将其映射到我们已知的事物，即常见的操作按钮。例如，电商应用或网页可能有一个**购买**按钮，点击该按钮将触发**购买动作**。在设计语音界面时，这种**购买动作**将转化为**购买意图**。稍后我们将讨论**购买意图**的常见用法。\n\
+  \n有些意图/动作/功能几乎对每个技能都是通用的，因此它们已经为每个 Alexa 技能预先定义/预先配置好了。例如：\n\n- 帮助意图（Help Intent）\n\
+  - 取消意图（Cancel Intent）\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_40_0.png)\n\n\
+  要了解有关内置意图的更多信息，请访问 https://developer.amazon.com/docs/custom-skills/standard-built-in-intents.html。\n\
+  \n每个意图都有一个唯一名称和一组示例话语映射。作为开发者，你可能会问：*为什么需要示例话语？* 原因非常简单——语音设计有点棘手，因为用户可能会对同一个动作/意图说多种不同的话。例如，对于购买动作/意图，用户可能会说出以下话语：\n\
+  \n- 购买 [item-name]\n- 购入 [item-name]\n- 获取 [item-name]\n- 选择 [item-name]\n- 持有 [item-name]\n\
+  \n为了解决这个问题，我们为意图设置了话语。一个意图拥有的话语越多，就越容易被调用。\n\n希望到现在你对意图已经有了相当的了解，接下来我们介绍**槽位（Slots）**：如果意图是一个动作，那么槽位就是该动作的参数。在前面提到的“购买动作/意图”示例中，*item-name*\
+  \ 将是购买意图的参数，因此 *item-name* 是一个槽位。在接下来的章节中，我们将看到槽位如何与意图协同工作。\n\n## Lambda\n\nLambda\
+  \ 是**亚马逊云服务（AWS）**提供的无服务器计算服务。如果这听起来像是很多技术行话，请不要困惑，我们将在本节详细讨论 Lambda。\n\n在 Alexa\
+  \ 的语音设计语境中，我们将使用 AWS 以 Lambda 函数的形式托管我们的*核心编程逻辑*。现在，显而易见的问题是：*Lambda 如何与 Alexa 技能协同工作？*\
+  \ 答案是，Alexa 技能上的每个意图/动作都会触发 Lambda 函数，Lambda 函数将处理这些意图，并针对该动作/意图返回适当的响应，如下图所示：\n\
+  \n![](img/80ddccf2572659c5b147f23cc6356c5a_41_0.png)\n\n其工作原理如下：\n\n1. 用户说出语音命令/查询：“Alexa，问一下天气监测器今天的天气。”\n\
+  2. Alexa 从查询中识别要启动的技能，本例中是*天气监测器*。\n3. Alexa 根据话语识别相关意图：“*询问* [技能名称] *今天的天气*。”\n\
+  4. 该意图由技能工具包识别，并路由到 Lambda。\n5. Lambda 处理该意图并返回适当的响应。\n\n在基本层面上，几乎所有的 Alexa 技能都通过上述五个步骤来运作。在下一节中，我们将在编写第一个技能时实际看到这五个步骤的应用。\n\
+  \n\n\n\n## Hello Alexa – Building a Hello World Alexa Skill\n\n本节介绍本章的最终目标，即实际编写我们的第一个\
+  \ Alexa Skill。然而，请注意，在我们踏上本章旅程的最后阶段之前，我们仍有一些先决条件。为了本练习的成功，每个用户都需要拥有一个 Amazon Developer\
+  \ 账户。注册 Amazon Developer 账户是一个简单直接的过程。用户可以在 https://developer.amazon.com 上注册账户。\n\
+  \n注册是一个三步流程，包括提供个人信息、接受服务条款以及提供付款方式。\n\n请注意，虽然注册要求您向 Amazon 提供付款方式，但 Amazon 仅在您最终使用任何付费服务时才会向您收费。然而，在本书的整个过程中，我们将把使用限制在免费层级，并且不会使用任何付费服务。\n\
+  \n注册 Amazon Developer 账户不仅可以让您访问 Alexa Skills Kit，还可以访问 Amazon 的众多其他服务，例如 AWS 等。一旦成功登录，您就可以通过仪表板查看所有可用的服务：\n\
+  \n![](img/80ddccf2572659c5b147f23cc6356c5a_42_0.png)\n\n图 2.11：Amazon Developer\
+  \ 账户仪表板（来源：developer.amazon.com）\n\n在完成注册流程后，我们现在可以踏上创建第一个 Alexa Skill 的旅程：\n\n\
+  - 1. 请点击可用服务仪表板屏幕右上角的 Developer Console 选项按钮，如前所示。\n- 2. 在导航到 Developer Console\
+  \ 后，请从顶部栏中列出的选项中选择 Alexa Skills Kit 选项，如以下屏幕截图所示：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_43_0.png)\n\
+  \n图 2.12：Alexa Skills Kit 仪表板（来源：developer.amazon.com）\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_45_0.png)\n\
+  \n在我们的例子中，我们将使用名称 `Hello World Greeter`。这是用户在 Skills 商店浏览各种 Alexa Skills 时看到的名称。\n\
+  \n请使用 Next 按钮进入下一屏幕，即模型选择屏幕：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_45_1.png)\n\
+  \n请选择技能的 **Custom** 模型并点击屏幕右上角的 **Create skill** 按钮：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_46_0.png)\n\
+  \n这应该会将我们带到前面屏幕截图所示的技能仪表板。如前所示，技能仪表板将帮助我们通过完成 **Skill builder checklist** 中显示的四个步骤来配置我们的技能。\n\
+  \n6. 请点击 **Skill builder checklist** 下的 Invocation Name 部分以进入以下屏幕：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_48_0.png)\n\
+  \n图 2.17：设置调用名称（来源：developer.amazon.com）\n\n请按前所示添加调用名称为 hello world greeter，然后点击\
+  \ Save Model 按钮保存更改。完成后，请点击 Build 按钮再次返回 Skill builder checklist：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_49_0.png)\n\
+  \n图 2.18：第一步完成（来源：developer.amazon.com）\n\n第一步现在应该已完成并标记为绿色。现在我们将为我们的技能设置一个意图。\n\
+  \n7. 请点击 **Skill builder checklist** 下的 **Intents, Samples and Slots** 按钮：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_50_0.png)\n\
+  \n图 2.19：创建 GreetHelloWorld 意图（来源：developer.amazon.com）\n\n请将意图名称添加为 `GreetHelloWorld`\
+  \ 并点击 **Create custom intent** 按钮。\n\n虽然这并不明显，但意图是以 JSON 格式作为交互模型的一部分定义的。\n\n> 要了解有关\
+  \ JSON 格式的更多信息，请访问 `https://www.json.org/`。\n\n8. 接下来，我们定义 `GreetHelloWorld` 意图的\
+  \ **Sample Utterances**，如以下屏幕截图所示：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_52_0.png)\n\
+  \n图 2.20：GreetHelloWorld 意图的示例话语（来源：developer.amazon.com）\n\n请注意，我们没有定义任何槽位，因为此技能不需要。将在即将到来的章节中介绍槽位的使用。\n\
+  \n请点击屏幕底部的 **Save Model** 按钮保存这些更改。最后，请点击 **Build** 选项卡再次返回 **Skill builder checklist**。在\
+  \ **Skill builder checklist** 上，请点击 **Build Model** 按钮：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_53_0.png)\n\
+  \n图 2.21：构建交互模型（来源：developer.amazon.com）\n\n在更改保存并实际构建/创建交互模型之前需要几秒钟。我们还不会进入下一步，而是先配置我们的\
+  \ Lambda。原因将在接下来的步骤中变得明显。\n\n9. 一旦交互模型创建完成，我们将保持 **Skill builder checklist** 屏幕不变，并将重点放在创建\
+  \ Lambda 上。然而，在此之前，请点击 **Skill builder checklist** 屏幕上的 **Endpoint** 按钮：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_54_0.png)\n\
+  \n图 2.22：复制 AWS Lambda ARN（来源：developer.amazon.com）\n\n请选择 AWS Lambda ARN 并复制技能\
+  \ ID 并保存在某处。我们将在接下来的步骤中需要此技能 ID。\n\n10. 现在，请打开一个新的浏览器标签页并导航到 AWS 控制台。\n\nAWS 控制台可以在\
+  \ `https://console.aws.amazon.com` 找到。请注意，如果您还没有账户，您需要创建一个新账户。\n\n一旦您导航并成功登录 AWS\
+  \ 控制台，您应该会看到类似于以下屏幕截图的内容：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_55_0.png)\n\
+  \n图 2.23：在 AWS 服务控制台搜索 Lambda（来源：console.aws.amazon.com）\n\n在控制台搜索栏中，请搜索 `Lambda`，并在自动建议列表中出现时点击它。\n\
+  \n- 11. 在下一个屏幕上选择 **Create a function**：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_55_1.png)\n\
+  \n图 2.24：AWS Lambda 仪表板（来源：console.aws.amazon.com）\n\n12. 在下一个屏幕上，您可以选择从头开始编写 Lambda\
+  \ 或从现有模板中选择。我们将选择 **Author from scratch**，因为这是我们的第一个技能，而且相对简单。此外，从头开始编写可以让我们对技能代码有稍大的了解：\n\
+  \n![](img/80ddccf2572659c5b147f23cc6356c5a_56_0.png)\n\n图 2.25：从头开始编写 Lambda 函数（来源：console.aws.amazon.com）\n\
+  \n如前面的屏幕截图所示，我们的 Lambda 函数将命名为 `greeterHelloWorldSkill`，将使用 `Node.js (8.10)` 运行时，并具有现有的角色\
+  \ **lambda_basic_execution**。请在填写必要详细信息后点击屏幕底部的 Create function。\n\n13. 一旦函数创建完成，您将被带到下一个屏幕，您可以在其中添加触发器。触发器是会激活我们\
+  \ Lambda 的源：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_57_0.png)\n\n图 2.26：将 Alexa\
+  \ Skills Kit 触发器添加到 Lambda（来源：console.aws.amazon.com）\n\n在我们的例子中，触发器是 Alexa Skills\
+  \ Kit。请从左侧的触发器列表中选择它。\n\n请注意，如果您在左侧的触发器列表中找不到 Alexa Skills Kit，请确保您在屏幕左上角选择了区域为北弗吉尼亚\
+  \ “(N. Virginia)” 。这是因为在撰写本文时，只有北弗吉尼亚区域托管 Alexa Skills Kit。\n\n\n\n\n设置好触发器后，我们现在需要对其进行配置。请复制上一步保存的**技能\
+  \ ID**，并将其添加到技能验证部分，如下面的截图所示：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_58_0.png)\n\
+  \n技能 ID 验证可确保我们的 Lambda 只处理那些由我们实际想要交互的技能发送的查询。\n\n请点击屏幕右上角的**保存**按钮，并在设计器树中选择 **greeterHelloWorldSkill**：\n\
+  \n![](img/80ddccf2572659c5b147f23cc6356c5a_59_0.png)\n\n图 2.28：配置 Lambda（来源：console.aws.amazon.com）\n\
+  \n现在，我们可以配置并开始编写 Lambda 了。\n\n- 14. 由于我们的技能非常简单，我们的 Lambda 将处理两个基本请求：\n    - LaunchRequest：处理技能的启动\n\
+  \    - IntentRequest：处理各种意图（在本例中只有一个 GreetHelloWorldIntent，用于问候 Hello World）\n\n\
+  我们将直接在开发者门户上进行内联代码编辑。我们首先要对技能收到的每个请求进行区分：\n\n```javascript\nexports.handler = (event,\
+  \ context, callback) => {\n    switch (event.request.type) {\n        case \"LaunchRequest\"\
+  :\n            break;\n        case \"IntentRequest\":\n            break;\n   \
+  \ }\n}\n```\n\n如上面的代码所示，这就是我们对启动（launch）和意图（intent）事件请求进行区分的方法。\n\n- 15. 接下来，我们将定义一些辅助函数，来帮助我们创建语音响应：\n\
+  \n```javascript\nbuildSpeechletResponse = (outputText, shouldEndSession) => {\n\
+  \    return {\n        outputSpeech: {\n            type: \"PlainText\",\n     \
+  \       text: outputText\n        },\n        shouldEndSession: shouldEndSession\n\
+  \    }\n}\n\ngenerateResponse = (speechletResponse) => {\n    return {\n       \
+  \ version: \"1.0\",\n        response: speechletResponse\n    }\n}\n```\n\n`generateResponse`\
+  \ 函数将使用 `buildSpeechletResponse` 函数生成由 Lambda 函数返回的响应。`buildSpeechletResponse` 函数将以纯文本形式指定\
+  \ Alexa 最终会输出的内容。它还需要一个变量 `shouldEndSession`，该变量指定 Alexa 是否应在响应后结束会话。\n\n- 16. 配置好辅助函数后，我们就可以更新\
+  \ `LaunchRequest` 和 `IntentRequest` 分支，让 Alexa 说出相应的响应，如下面的代码所示：\n\n```javascript\n\
+  exports.handler = (event, context, callback) => {\n    switch (event.request.type)\
+  \ {\n        case \"LaunchRequest\":\n            context.succeed(generateResponse(buildSpeechletResponse(\"\
+  Welcome to Hello World Greeter.\", false)))\n            break;\n        case \"\
+  IntentRequest\":\n            switch (event.request.intent.name) {\n           \
+  \     case \"GreetHelloWorld\":\n                    context.succeed(generateResponse(buildSpeechletResponse(\"\
+  Hello World\", true)))\n                    break;\n            }\n            break;\n\
+  \    }\n}\n```\n\n现在，当我们的 Lambda 收到 `LaunchRequest` 时，它可以返回一条欢迎消息，如前面的代码所示。此外，如果它收到\
+  \ `IntentRequest`，它可以按意图名称进行筛选（虽然目前不需要筛选，因为我们只有一个自定义意图）。请点击屏幕右上角的**保存**按钮来保存进度。\n\
+  \n- 17. 我们需要将 Lambda 与我们的技能关联，为此，我们需要 Lambda 的 ARN。\n\nARN 代表 Amazon Resource Name（亚马逊资源名称）。\n\
+  \nARN 位于 Lambda 函数页面的右上角，如下面的截图所示（为保护隐私和安全，图中的 ARN 已做模糊处理）：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_62_0.png)\n\
+  \n图 2.29：复制 ARN（来源：console.aws.amazon.com）\n\n复制 ARN 后，请切换回之前的浏览器标签页，我们之前在那里配置技能的交互模型。请选择**端点**（Endpoints）选项卡，并在**默认区域**（Default\
+  \ Region）下输入 ARN，如下面的截图所示：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_63_0.png)\n\
+  \n图 2.30：将 Lambda 的 ARN 与技能关联（来源：developer.amazon.com）\n\n请点击**保存端点**（Save Endpoints），然后点击**构建**（Build）选项卡进入技能构建器检查清单。请重新构建模型。\n\
+  \n- 18. 我们的设置已基本完成，可以测试 Hello World Greeter 技能了。该技能可以通过真实的 Amazon Echo 设备或 Amazon\
+  \ Service Simulator（亚马逊服务模拟器）进行测试。我们首先将通过 Amazon Service Simulator 测试我们的技能。请点击“测试”选项卡启动模拟器，并通过拨动“测试开关”为技能启用测试：\n\
+  \n![](img/80ddccf2572659c5b147f23cc6356c5a_64_0.png)\n\n图 2.31：Alexa 测试模拟器（来源：developer.amazon.com）\n\
+  \n请输入如下面截图所示的请求。Lambda 应为每个请求被调用，并返回以下响应：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_65_0.png)\n\
+  \n图 2.32：服务模拟器中的 Lambda 响应（来源：developer.amazon.com）\n\n如果系统音量已打开，你甚至可以收听这些响应。\n\n\
+  或者，你也可以使用 Amazon Echo 测试该技能。如果 Echo 已连接并设置好，当你说出：“Alexa, Launch Hello World Greeter,”\
+  \ 时，它应该回答：“Welcome to Hello World Greeter.”。如果你接着让它“Say hi”或“Say something,”，它应该回答“Hello\
+  \ World.”。\n\n至此，本章已接近尾声。\n\n请通过以下链接查看本章的 Lambda 代码：https://github.com/madhurbhargava/AlexaSkillsProjects/blob/master/Chapter2_HelloWorldGreeter_index.js\n\
+  \n在下一节中，我们将总结已学内容，并展望后续章节。\n"
+- "# 3 与 Alexa 的免提体验\n\n> “舌头能描绘出眼睛看不见的东西。”\n> \n> ——中国谚语\n\n在学习完 Echo 和 Alexa 的细节之后，我们转而设计一个基本的\
+  \ Alexa 技能。我们还对基本 Alexa 技能的构成以及技能中各个活动部件如何交互有了一些了解。\n\n在本章中，我们将进一步提升设计技能，创建一个稍微高级一点的技能。这个技能名为\
+  \ Handsfree Messenger，它允许用户仅使用 Alexa 和 Echo，无需与手机进行任何交互，就能以免提方式发送短信。除了用于托管 Lambda\
+  \ 的 AWS 之外，我们还将使用一个名为 Twilio 的定制服务，该服务允许用户/开发者通过 Web 服务 API 以编程方式拨打/接听电话以及发送/接收文本消息。\n\
+  \n在本章中，我们将通过涵盖以下主题来实现这一目标：\n\n- Handsfree Messenger 技能概述\n- 配置 Twilio 消息后端\n- 配置\
+  \ Handsfree Messenger 技能\n\n闲话少说，让我们从该技能设计的概述开始。\n\n### Handsfree Messenger 技能概述\n\
+  \n在继续设计 Handsfree Messenger 技能之前，我们需要了解几件事：\n\n- 系统的核心功能是什么？\n- 它有哪些活动部件？\n- 这些部件如何交互？\n\
+  \nHandsfree Messenger 技能的工作方式如下：\n\n- 1. 用户将说出一个起始短语——“Alexa, Start Handsfree Messenger.”来启动\
+  \ Alexa 技能。\n- 2. Alexa 将启动该技能。\n- 3. 用户将说出需要发送的实际消息：“Send message – Get milk!”\n\
+  - 4. 现在，有趣的地方来了。当用户在前一步中说出实际消息时，将创建一个 `SendMessage` 意图，实际的消息文本将作为参数传递给该意图。\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_68_0.png)\n\
+  \n> 我们在前一章已经讨论过意图，因此我们假设读者已经熟悉意图及其功能。\n\n- 5. 该意图由 Lambda 处理，Lambda 从意图中提取消息，并将消息连同预期收件人的信息一起传递给\
+  \ Twilio 后端。\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_68_1.png)\n\n> 关于 Lambda\
+  \ 与 Twilio 后端之间的通信细节，我们不会深入讨论，因为将在后续章节中介绍。\n\n\n\n\n\n6. Twilio 后端将接收到的消息传递给其预期接收者，并向\
+  \ Lambda 传递确认响应。\n7. Lambda 接收到确认后，通过语音告知发送者短语 `Message sent.`。\n\n正如您从系统功能描述中已了解到的，这些是我们\
+  \ Handsfree Messenger 技能的主要组成部分：\n\n- 实际的 Alexa 技能：Handsfree Messenger\n- 位于 AWS\
+  \ 后端的技能 Lambda\n- Twilio 后端\n\n如果您将此技能与我们在上一章中创建的技能进行比较，那么由于它拥有更多组成部分，此技能会稍微复杂一些。\n\
+  \nHandsfree Messenger 的 VUI 流程如下：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_69_0.png)\n\
+  \nVUI 流程使用 Amazon 首选的模板来描述 Alexa 技能的 VUI 设计。然而，VUI 流程仅限于用户与 Alexa 的交互，因此，也许以图表形式概述功能步骤可以帮助您更好地理解\
+  \ Handsfree Messenger 技能的工作原理：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_70_0.png)\n\
+  \n上图概述了技能的基本使用方式；我们还可以将步骤压缩成流程图，以明确系统中信息的流向：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_71_0.png)\n\
+  \n我们希望读者现在已经清楚我们的 HandsFree Messenger 技能的工作原理以及其所有组成部分如何交互。\n\n在下一节中，我们将开始配置技能的组成部分之一，即我们的\
+  \ Twilio 后端。\n\n## 配置 Twilio 消息后端\n\nTwilio 是一个云通信平台，成立于 2007 年，总部位于旧金山。它允许用户/开发者以编程方式拨打/接听电话，并使用网络服务\
+  \ API 发送/接收短信。本章中，我们仅演示其消息功能；不过，我们要求并期望读者通过添加电话呼叫功能作为家庭作业练习来扩展此技能的功能。\n\n要将 Twilio\
+  \ 配置为我们的消息后端，我们将遵循以下步骤：\n\n- 1. 请在您的网络浏览器中导航到 `www.twilio.com`，如本截图所示：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_72_0.png)\n\
+  \n2. 请点击 **Get a free API key** 或 **Sign up**（两者都会启动新用户的注册流程）以进入此处所示的 **Sign up\
+  \ for free** 页面：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_73_0.png)\n\n图 3.5：Twilio\
+  \ 注册页面\n\n3. 请填写您的个人详细信息。如前一截图所示，页面底部有一个小问卷，围绕 Twilio 服务的使用构建。请为该问卷选择以下详细信息：\n\n\
+  ![](img/80ddccf2572659c5b147f23cc6356c5a_74_0.png)\n\n图 3.6：Twilio - 注册时填写个人详细信息\n\
+  \n4. 填写完详细信息后，请选择页面底部的 Get Started 按钮。这应将您带到此验证页面：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_75_0.png)\n\
+  \n图 3.7：Twilio - 验证流程\n\n请选择适当的国家/地区并在提供的空间中输入您的电话号码，然后点击 Verify via SMS，之后您应该会在您提供的电话号码上收到一条包含验证码的短信。\n\
+  \n5. 点击 **Verify via SMS** 应将您带到下一个屏幕，您可以在其中输入验证码：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_76_0.png)\n\
+  \n图 3.8：Twilio - 验证流程\n\n请在此屏幕上输入验证码并点击 **Submit**。\n\n6. 如果您成功验证了短信验证码，则应看到项目详细信息屏幕，我们将在此处为项目提供名称，如下所示：\n\
+  \n![](img/80ddccf2572659c5b147f23cc6356c5a_77_0.png)\n\n图 3.9：Twilio ~ 为您的项目命名\n\
+  \n请将技能命名为 `AlexaHandsFreeSkill` 并点击 **Create Project**。\n\n7. 点击 **Create Project**\
+  \ 按钮应将我们带到此仪表板：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_77_1.png)\n\n图 3.10：Twilio\
+  \ -- 仪表板\n\n仪表板上有一些需要注意的地方：\n\n- 我们正在使用试用账户，对于本技能而言这是可以的。\n- 我们需要获取一个 Twilio 号码。\n\
+  \n首先，让我们尝试理解为什么我们需要一个 Twilio 号码。\n\nTwilio 的工作方式如下——开发者最初请求一个 Twilio 号码，当他们使用 Twilio\
+  \ API 发送短信或拨打电话时，这些短信和电话都是从此预先请求的号码生成的。每个生成的 Twilio 号码都与您在第 2 步提供的详细信息中提供的国家/地区及其通信法规相关联。\n\
+  \n8. 请点击第 7 步所示的仪表板屏幕上的 Get a number 按钮。这应根据您在第 2 步提供的国家/地区详细信息生成一个电话号码：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_78_0.png)\n\
+  \n图 3.11：获取 Twilio 号码\n\n我们的技能将使用生成的号码通过 Twilio API 调用发送短信。\n\n9. 当您在上一步中向用户展示的\
+  \ Twilio 电话号码对话框中选择 Choose this Number 时，根据国家/地区，用户可能会被要求提供额外详细信息，如以下截图所示：\n\n###\
+  \ Address Required\n\n由于当地法规，您或您的客户必须拥有任何国家的商业或个人地址才能购买 +31 [redacted]\n\n### Enter\
+  \ an Address\n\nFRIENDLY NAME\n地址的名称\nCUSTOMER NAME\n企业或客户名称\nADDRESS 1\n街道地址、邮政信箱、套房、单元等。\n\
+  ADDRESS 2\n附加街道地址、邮政信箱、套房、单元等。\nCITY\nSTATE/PROVINCE/REGION\nPOSTAL CODE\nCOUNTRY\n\
+  Netherlands\n\nGo back to your preselected number\n\nCancel\n\nSave and continue\n\
+  \n图 3.12：Twilio：号码的地址要求\n\n请注意，此处显示的对话框取决于用户在入职流程中选择的国家/地区，具体取决于国家/地区，您可能看到也可能看不到此对话框。如果您看到此对话框，请提供必要详细信息并点击对话框底部的\
+  \ Save and continue 按钮。\n\n10. 点击 Save and continue 按钮后，我们应看到此对话框：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_80_0.png)\n\
+  \n图 3.13：最终获取 Twilio 号码\n\n号码选择过程已完成，我们现在已成功选择了一个用于通过 Twilio API 调用发送短信的电话号码。请点击此对话框中的\
+  \ Done 按钮，您应再次返回仪表板。\n\n11. 一旦您回到仪表板，底部应有 Get Started with SMS 部分，其中包含 Get Started\
+  \ 按钮：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_80_1.png)\n\n图 3.14：Twilio - 开始使用可编程短信\n\
+  \n在此部分下，请从下拉菜单中选择 Programmable SMS 并点击 Get Started 按钮。\n\n12. 点击 Get Started 按钮后，您应进入\
+  \ Send a Message 页面：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_81_0.png)\n\n图\
+  \ 3.15：Twilio - 发送消息功能的测试设置\n\n请注意，我们需要从此页面获取三项重要信息：\n\n- SID：标记在前一截图中\n- Auth Token：如果您勾选标记为\
+  \ Show your Auth Token 的复选框，Auth Token 将变得可见\n- Twilio API URL：这在 curl 命令之后提及\n\n\
+  请记下 SID 和 Auth Token，因为我们在 Lambda 代码中需要它们。记下这些详细信息后，请关闭此页面。\n\n我们已成功配置 Twilio 后端，这将帮助我们使用\
+  \ Alexa 技能发送短信。在下一节中，我们将通过 Amazon Developer 控制台配置我们的 Handsfree Messenger 技能。\n\n\
+  \n\n\n## 配置 Handsfree Messenger 技能\n\n在准备好 Twilio 后端之后，我们现在需要配置 Alexa 技能。为此，我们将通过\
+  \ Amazon 开发者门户进行配置。\n\n我们假设读者已经了解并注册了 Amazon 开发者门户，并且已经掌握了 Amazon Alexa 技能开发者门户的基本入门信息。我们在上一章中已经介绍了\
+  \ Amazon 开发者门户的账户创建和其他基本细节，因此这里不再重复。\n\n我们将从技能创建开始：\n\n+   1. 在**创建新技能**屏幕上，请为技能命名：\n\
+  \n![](img/80ddccf2572659c5b147f23cc6356c5a_82_0.png)\n\n请保存这些更改，并使用屏幕右上角的**下一步**按钮进入下一个屏幕。\n\
+  \n+   2. 在此步骤中，我们将为技能选择一个模型。\n\n我们已经在第 2 章 *Hello World, Alexa!* 中介绍了选择模型的细节，因此这里不再赘述。请为技能选择**自定义**模型，并在创建技能后进入下一个屏幕，即技能构建器检查清单。\n\
+  \n我们从第 2 章 *Hello World, Alexa!* 中已经知道，交互模型由意图、槽位和示例语句组成。Handsfree Messenger 技能的交互模型包含所有这些元素，我们将在接下来的步骤中通过完成**技能构建器检查清单**来定义它们。\n\
+  \n+   3. 作为**技能构建器检查清单**的第一步，我们将为技能提供一个**调用名称**。我们的技能的**调用名称**将是 `handsfree messenger`。这是用户用来调用我们技能的名称。提供调用名称后，请保存模型。\n\
+  \n+   4. 接下来，我们需要为技能配置一个意图。我们的技能只包含一个意图 `SendMessage`。我们定义该意图如下：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_83_0.png)\n\
+  \n请点击**创建自定义意图**按钮来创建意图。\n\n但这还不是全部；我们还需要在意图架构中包含一个槽位，以便将消息文本作为参数传递给 Lambda。\n\n\
+  ## 3.1 编写 Lambda 函数\n\n### 5.1 树的逻辑结构\n\n树是n（n≥0）个结点的有限集合，在任意一棵非空树中：\n\n+   1. 有且仅有一个特定的称为根的结点；\n\
+  \n+   2. 当n>1时，其余结点可分为m（m>0）个互不相交的有限集合，其中每一个集合本身又是一棵树，并且称为根结点的子树。\n\n树的逻辑结构具有以下特点：\n\
+  \n+   （1）树的根结点没有前驱结点，除根结点之外的所有结点有且只有一个前驱结点。\n\n+   （2）树中所有结点可以有零个或多个后继结点。\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_85_0.png)\n\
+  \n图5-1 树结构示意图\n\n## 编写 Lambda 函数\n\n一旦交互模型创建完成，我们将保持此屏幕不变，专注于创建 Lambda。\n\n+   1.\
+  \ 请打开一个新的浏览器标签页，并导航到 AWS 控制台，其网址如下：\n\nAWS 控制台位于 https://console.aws.amazon.com。请注意，如果尚未创建账户，您可能需要创建一个新账户。\n\
+  \n我们已经在第 2 章 *Hello World, Alexa!* 的“Hello Alexa – 构建 Hello World Alexa 技能”标题下的步骤\
+  \ 8-12 中介绍了基本 Lambda 函数的创建，因此这里不再重复这些步骤。请按照这些步骤操作，将 Lambda 函数命名为 `handsFreeMessengerSkill`，并将技能\
+  \ ID 与 Lambda 关联，如第 2 章 *Hello World, Alexa!* 的“Hello Alexa – 构建 Hello World Alexa\
+  \ 技能”标题下所述。\n\n由于我们的技能非常简单，我们的 Lambda 将处理两个基本请求：\n\n- **启动请求**：用于处理技能启动\n- **意图请求**：用于处理各种意图（在我们的例子中，只有一个\
+  \ `SendMessage`，用于发送实际的短信）\n\n我们将直接在开发者门户中的 `index.js` 文件中内联编辑代码。我们首先将技能接收到的每个请求进行分离。为此，请声明以下处理程序：\n\
+  \n```\nexports.handler = function (event, context) {\n    try {\n        if (event.request.type\
+  \ === \"LaunchRequest\") {\n        } else if (event.request.type === \"IntentRequest\"\
+  ) {\n        }\n    } catch (e) {\n        context.fail(\"Exception: \" + e);\n\
+  \    }\n};\n```\n\n这就是我们分离启动和意图事件请求的方式。\n\n2. 接下来，我们将定义一些辅助函数，帮助我们创建语音响应：\n\n```\n\
+  //------Helper Methods------//\n\nfunction buildSpeechletResponse(output, shouldEndSession)\
+  \ {\n    return {\n        outputSpeech: {\n            type: \"PlainText\",\n \
+  \           text: output\n        },\n        shouldEndSession: shouldEndSession\n\
+  \    };\n}\n\nfunction buildResponse(speechletResponse) {\n    return {\n      \
+  \  version: \"1.0\",\n        response: speechletResponse\n    };\n}\n```\n\n这些函数帮助\
+  \ Lambda 在收到特定意图/输入时返回 Alexa 要说的响应。\n\n`buildResponse` 函数将生成最终由 Alexa 说出的简明响应。\n\
+  \n`buildSpeechletResponse` 函数将以纯文本形式指定 Alexa 最终要说的输出。它还接受另一个变量 `shouldEndSession`，该变量指定\
+  \ Alexa 在响应后是否应结束会话。\n\n3. 配置好辅助函数后，我们可以更新 `LaunchRequest` 和 `IntentRequest` 情况的处理，让\
+  \ Alexa 说出相应的响应，如下所示：\n\n```\nexports.handler = function (event, context) {\n  \
+  \  try {\n        if (event.request.type === \"LaunchRequest\") {\n            onLaunch(function\
+  \ callback(speechletResponse) {\n                context.succeed(buildResponse(speechletResponse));\n\
+  \            });\n        } else if (event.request.type === \"IntentRequest\") {\n\
+  \            onIntent(event.request,\n                function callback(speechletResponse)\
+  \ {\n```\n\n```javascript\ncontext.succeed(buildResponse(speechletResponse));\n\
+  });\n}\n} catch (e) {\n    context.fail(\"Exception: \" + e);\n}\n};\n```\n\n现在，当我们的\
+  \ `Lambda` 收到 `LaunchRequest` 时，它将调用 `onLaunch` 方法发送欢迎消息，我们将在下一步中实现该方法。\n\n此外，如果收到\
+  \ `IntentRequest`，它可以调用 `onIntent` 方法，该方法会进一步根据意图名称进行筛选（尽管目前不需要筛选，因为我们只有一个自定义意图）。\n\
+  \n点击屏幕右上角的**保存**来保存进度。\n\n+   4. 我们现在将实现上一步讨论的 `onLaunch` 和 `onIntent` 方法：\n\n```\n\
+  ```javascript\nfunction onLaunch(callback) {\n    var output = \"Welcome to HandsFree\
+  \ Messenger.\";\n    var endSession = false;\n    callback(buildSpeechletResponse(output,\
+  \ endSession));\n}\n\nfunction onIntent(intentRequest, callback) {\n    var intent\
+  \ = intentRequest.intent,\n        intentName = intentRequest.intent.name;\n   \
+  \ if(\"SendMessage\" === intentName){\n        var text = intent.slots.Text.value;\n\
+  \        var recipient = '+31XXXXXXXXXX';\n        SendMessage(recipient, text,\
+  \ callback);\n    } else {\n        throw \"Intent not recognized\";\n    }\n}\n\
+  ```\n```\n\n`onLaunch` 方法很简单——它创建一条欢迎消息，并使用我们之前定义的辅助方法从该消息创建语音响应后将其发送回去。\n\n`onIntent`\
+  \ 方法相对复杂一些——它根据意图名称筛选意图，如果意图是 `SendMessage`，则从槽位值中提取短信文本，然后通过 `SendMessage` 函数将其转发到接收者的硬编码手机号码。\n\
+  \n我们将在接下来的步骤中定义 `SendMessage` 函数。\n\n+   5. `SendMessage` 函数是整个技能的核心。它负责将消息传递给 Twilio\
+  \ 后端。然而，在定义 `SendMessage` 函数之前，我们需要声明一些与 Twilio API 交互时所需的常量。\n\n如果您还记得，我们在上一节的最后一步记下了\
+  \ SID 和 Auth Token；现在是时候声明它们了。我们将在 `SendMessage` 函数中使用这些常量。请按如下所示声明这些变量：\n\n```\n\
+  var sid = 'ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX';\nvar token = '4bXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX';\n\
+  var sender = '+31XXXXXXXXXX';\n\nvar https = require('https');\nvar queryString\
+  \ = require('querystring');\n```\n\n请在 AWS 开发者门户的 `index.js` 文件最顶部定义这些常量。定义完成后，开发者门户上的\
+  \ `index.js` 文件应类似于下图所示：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_89_0.png)\n\
+  \n图 3.20：编写 Lambda 代码\n\n\n\n\n\n请注意，我们已将我们在上一节第 11 步中生成的同一个 Twilio 号码声明为发件人。\n\n\
+  - 6. 常量准备就绪后，我们现在终于可以定义 SendMessage 函数：\n\n```\nfunction SendMessage(to, body, callback)\
+  \ {\n    var message = {\n        To: to,\n        From: sender,\n        Body:\
+  \ body\n    };\n    var messageString = queryString.stringify(message);\n    var\
+  \ options = {\n        host: 'api.twilio.com',\n        port: 443,\n        path:\
+  \ '/2010-04-01/Accounts/' + sid + '/Messages.json',\n        method: 'POST',\n \
+  \       headers: {\n            'Content-Type': 'application/x-www-form-urlencoded',\n\
+  \            'Content-Length': Buffer.byteLength(messageString),\n            'Authorization':\
+  \ 'Basic ' + new Buffer(sid + ':' + token).toString('base64')\n        }\n    };\n\
+  \    var req = https.request(options, function (res) {\n        res.setEncoding('utf-8');\n\
+  \        var responseString = '';\n        res.on('data', function (data) {\n  \
+  \          responseString += data;\n        });\n        res.on('end', function\
+  \ () {\n            var speechOutput = \"Message sent.\";\n            var shouldEndSession\
+  \ = true;\n            callback(buildSpeechletResponse(speechOutput, shouldEndSession));\n\
+  \        });\n    });\n    req.write(messageString);\n    req.end();\n}\n```\n\n\
+  这个函数做了很多事情。SendMessage 函数构造了一个消息对象，其中包含有关发件人、收件人和要发送的文本的信息。\n\n然后它使用 SID、AuthToken\
+  \ 和消息字符串作为参数向 Twilio 后端发出请求。\n\n消息成功发送的标志是 Alexa 通过说出短语“Message sent.”来确认它。\n\n\
+  在添加此代码后，请通过单击屏幕右上角的 Save 来保存您的进度。\n\n- 7. 现在，我们需要将 Lambda 链接到我们的技能，为此我们需要 Lambda\
+  \ 的 Amazon 资源名称（ARN）。ARN 位于 Lambda 函数/代码编辑器页面的右上角。请复制 ARN，并在复制后，请导航到之前的浏览器标签页，在那里我们使用\
+  \ Skill builder checklist 配置了技能的交互模型。请从 Skill builder checklist 中选择 Endpoint 部分以进入\
+  \ Endpoint 屏幕：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_91_0.png)\n\n图 3.2.1：配置技能\n\
+  \n请选择 **AWS Lambda ARN** 作为 **Service Endpoint Type** 并输入我们之前复制的 ARN（出于隐私和安全原因，前面的屏幕截图中已对其进行模糊处理），将此屏幕上的其他选项保持原样，然后单击\
+  \ **Save Endpoints** 按钮。\n\n请返回到 **Skill builder checklist** 并构建交互模型。\n\n## 测试技能\n\
+  \n我们的设置几乎已完成，我们准备好测试我们的 Handsfree Messenger 技能。技能可以通过实际的 Amazon Echo 设备或通过 Alexa\
+  \ Simulator 进行测试。\n\n由于我们已在第 2 章《Hello World, Alexa!》中使用过 Alexa Simulator，这次您可以使用实际的\
+  \ Amazon Echo 来测试技能，前提是您拥有它并且 Echo 已连接并设置好。然后，如果您说“Alexa, launch Handsfree Messenger”，它应该回复“Welcome\
+  \ to Handsfree Messenger。”如果您随后说，“Send message – Pick up groceries”，它应该回复“Message\
+  \ sent”并且一条短信“Pick up groceries”将被发送到收件人。\n\n请注意，每个免费的 Twilio 账户都附带少量余额，因此发送几条消息（10-20\
+  \ 条）不会产生任何费用。\n\n我们的技能现已测试完成，可以随意使用。您可以在信息框中提到的链接处找到本章 Lambda 的代码。\n\n请在以下 URL 找到\
+  \ Lambda 的代码 https://github.com/madhurbhargava/AlexaSkillsProjects/blob/master/Chapter3_HandsFreeMessenger_index.js。\n\
+  \n至此，我们已到达本章的结尾。\n\n## 总结\n\n我们希望您喜欢创建 Handsfree Messenger 技能，它比我们之前的技能更进了一步，并且面向\
+  \ Alexa/Echo 设备的实际使用。我们在本节中创建的技能仍有很大的改进空间。例如，目前我们的技能向预定义/硬编码的收件人发送消息，这可以通过将收件人详细信息通过\
+  \ slot 传递给 Lambda 来改进，以便它不必在 Lambda 中预定义。我们故意没有涵盖这一点，并且希望将其作为扩展练习，我们强烈建议您如果真的想更早成为\
+  \ Alexa Skills Jedi，就去尝试一下。\n\n但是，我们又完成了一个有趣的 Alexa Skill。\n\n在下一章中，我们将通过创建一个更偏向娱乐的\
+  \ Alexa Skill、将使用稍微更复杂的语音界面并且会更有趣的 Alexa Skill，进一步扩展我们对 Alexa 知识的掌握。\n\n迫不及待想开始吗？让我们开始吧！\n"
+- "# 4 与 Alexa 一起玩 Factly\n\n> “人声是所有乐器中最完美的。”\n> \n> — Arvo Pärt\n\n我们在成为 Alexa Skills\
+  \ Jedi 的征程中取得了长足的进步。我们首先设计了一个 Hello World Alexa Skill，这让我们了解了基本 Alexa Skill 的细节。掌握了这些知识后，我们继续通过开发一个稍微更高级的\
+  \ Alexa Skill 扩展了我们的武器库，该技能还与第三方后端（Twilio）通信。\n\n在本章中，我们将稍作偏离，创建一个名为 Factly 的自包含技能。Factly\
+  \ 将是一个以 trivia/quiz 为导向的 Alexa Skill，可以就各种事实对用户进行测验。它将是一个自包含的技能，不会与任何第三方 API/后端通信。\n\
+  \n我们将通过在本章中涵盖以下主题来实现这一点：\n\n- 设计 Factly 的动机\n- 设计 Factly 技能\n- 构建 Factly 技能\n\n\
+  不用多说，让我们从技能设计的概述开始。\n\n### 设计 Factly 的动机\n\n在深入了解 Factly Alexa Skill 的细节之前，让我们先通过了解人们使用语音助手的原因来理解我们选择创建此技能的原因。\n\
+  \nStatista 对英国智能手机用户进行的一项研究显示，使用语音助手的人主要将其用于 **Amusement**，仅次于 **Search for general\
+  \ information**，如下图所示：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_95_0.png)\n\n\
+  图 4.1：语音助手最常见的用途\n\n有了这一见解，就不足为奇了，亚马逊 Alexa 应用商店中 Alexa Skills 的最大份额属于游戏和 trivia\
+  \ 应用：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_96_0.png)\n\n令人惊讶或不令人惊讶的是，这与智能手机市场的应用分布非常相似：\n\
+  \n![](img/80ddccf2572659c5b147f23cc6356c5a_96_1.png)\n\n发布的绝大多数应用都是游戏，适用于 Android\
+  \ 和 iOS 平台。\n\n用户在 **Gaming and Entertainment** 类别的应用上花费的时间最多，如下图所示：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_97_0.png)\n\
+  \n图 4.4：平均移动用户在各个应用上花费的时间（来源：Flurry）\n\n典型的消费者将 32% 的手机时间花费在 **Entertainment/Gaming**\
+  \ 应用上。\n\n由于 Skills 市场仍处于起步阶段，我们目前还没有 Skills 市场的类似深入统计数据。然而，我们可以根据智能手机市场应用的分布做出相当准确的决定，因为从\
+  \ 2015 年到 2017 年，Alexa Skills 的数量增长非常迅速，如下图所示：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_98_0.png)\n\
+  \n图 4.5：Alexa Skills 市场的增长（来源：voicebot.ai）\n\n如上所示，截至 2017 年 9 月，仅美国市场的 Alexa Skills\
+  \ 总数就约为 20,000，其中至少 25% 的技能是游戏、trivia 和娱乐导向的，即大约 6,000 个，与全球智能手机市场的应用数量相比微不足道：\n\
+  \n![](img/80ddccf2572659c5b147f23cc6356c5a_99_0.png)\n\nApple App Store 中的应用数量在\
+  \ 7 年内从 0 增长到 150 万，仍在增长。预计会有类似的轨迹并考虑即使是保守的增长率，我们可以清楚地期望语音技能市场会有类似的增长。\n\n前面的分析得出以下结论：\n\
+  \n- **Games/Entertainment** 技能无论为哪个平台开发，始终是最受欢迎和最常用的技能\n- 与智能手机应用市场相比，技能市场仍处于起步阶段，仍有很大的增长空间\n\
+  \n\n\n\n\nWith the current count of **Games/Trivia**-oriented skills in the Alexa\
+  \ Skills store being around 6,000, there is a lot more room to accommodate other\
+  \ **Games/Trivia** skills, which is one of the major reasons that we decided to\
+  \ introduce our readers to the Factly Skill in this chapter.\n\n## Designing the\
+  \ Factly Skill\n\nWe hope that the discussion in the last section should have given\
+  \ you a fair idea of the motivation behind the Factly Alexa Skill. Now, we shall\
+  \ level up and design the actual Factly Skill. It is always better to design before\
+  \ coding anything because it gives us a clarity about the end goals of the software\
+  \ and the finer details, which we may otherwise miss when we actually code the software.\n\
+  \nThe Factly Alexa Skill is a simple quiz skill. At the code level, the Factly Skill/Lambda\
+  \ will contain a bank of questions that will be presented to the user one by one.\
+  \ The skill will further perform depending on the user's reply.\n\nFactly will work\
+  \ via the following steps:\n\n- 1. The user will launch the Factly Skill via a standard\
+  \ Alexa Skill launch utterance.\n- 2. Alexa will confirm the launch and provide\
+  \ a brief introduction to the skill and play method:\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_100_0.png)\n\
+  \nFigure 4.7: Step 1 – Factly, launch\n\nThe skill that we will design will consist\
+  \ of three trivia questions and each question will have four answer choices, with\
+  \ only a single choice being the correct one.\n\n3. Alexa will begin the quiz by\
+  \ asking the first question:\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_101_0.png)\n\
+  \nFigure 4.8: Step 2 – Factly, questionnaire\n\n4. The user can provide the answer\
+  \ by just saying the number of the correct answer, for example: \"The answer is\
+  \ 3\" or just \"3\":\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_101_1.png)\n\n\
+  Figure 4.9: Step 3 – Factly, answer acknowledgment\n\nDepending on the user's answer,\
+  \ the skill will provide a response that the answer is correct or incorrect.\n\n\
+  5. The user can also end the session:\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_101_2.png)\n\
+  \nFigure 4.10: Step 4 – Factly, conclusion\n\n- 6. Steps 4, 5, and 6 will be repeated\
+  \ until all the quiz questions have been exhausted or the user decides to end the\
+  \ session.\n\nThe interaction flow can be expressed in terms of a VUI diagram:\n\
+  \n![](img/80ddccf2572659c5b147f23cc6356c5a_102_0.png)\n\nFigure 4.11: Factly, VUI\
+  \ flow\n\nAlso, the overall information flow of a typical quiz session can be mapped\
+  \ out as follows:\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_102_1.png)\n\nFigure\
+  \ 4.12: Factly, data flow\n\n## Building the Factly Skill\n\nNow, since we understand\
+  \ how data flows to and from our Factly Skill, it is time to actually build it.\
+  \ For this purpose, we will build the actual Lambda via the Amazon Developer portal.\n\
+  \nWe will assume that the reader knows about and has already signed up to the Amazon\
+  \ Developer portal, and is already aware of the basic starter information about\
+  \ the Amazon Alexa Skills Developer Portal, since this has also been already covered\
+  \ in detail in Chapter 2, *Hello World, Alexa!*. We already covered account creation\
+  \ and other basic details for the Amazon Developer Portal in Chapter 2, *Hello World,\
+  \ Alexa!*, so we will not be repeating those here.\n\nWe shall begin with the skill\
+  \ creation:\n\n- 1. On the **Skill builder checklist**, select **Invocation Name**\
+  \ to navigate to the **Invocation name** screen and provide the skill with an invocation\
+  \ name, as shown in the following screenshot:\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_104_0.png)\n\
+  \nSave these changes by clicking on the **Save Model** button. Once you have successfully\
+  \ saved the changes, navigate back to the **Skill builder checklist**.\n\n2. In\
+  \ this step, we shall define the **Intents, Samples, and Slots** for the **Interaction\
+  \ Model** for our skill. Our skill will be making use of two intents:\n\n- - **Answer\
+  \ Intent:** This intent will hold the user's answers to the quiz questions posed\
+  \ by the Factly Skill. This intent will also include a slot so that we can pass\
+  \ the answer as an argument to the Lambda.\n- - **AMAZON.StopIntent:** This is a\
+  \ standard intent pre-provided by ASK, through which the user can terminate the\
+  \ skill's execution at any point in time.\n\nTo know more about standard built-in\
+  \ intents, please visit https://developer.amazon.com/docs/custom-skills/standard-built-in-intents.html.\n\
+  \nFrom the **Skill builder checklist**, click on **Intents, Samples, and Slots**\
+  \ to land on the **Add Intent** screen. Rather than directly defining an Intent,\
+  \ we will first define a custom slot that we can later include in our **Answer Intent:**\n\
+  \n![](img/80ddccf2572659c5b147f23cc6356c5a_105_0.png)\n\nFigure 4.15: Adding a New\
+  \ Slot Type\n\nAs shown in the preceding screenshot, click on the **Add** button\
+  \ next to **Slot Types** to land on the **Add Slot Type** screen.\n\nTo know more\
+  \ about slots, types, and custom slot types, please visit https://developer.amazon.com/docs/custom-skills/custom-interaction-model-reference.html#custom-slot-syntax.\n\
+  \nOn the **Add Slot Type** screen, create a custom slot type by the name of `LIST_OF_CHOICES`,\
+  \ as shown in the following screenshot:\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_106_0.png)\n\
+  \nFigure 4.16: Naming the new custom Slot Type\n\nOn the next screen, provide it\
+  \ with a list of values, 1, 2, 3, 4, since each of the questions posed by the Factly\
+  \ Skill can have these four possible answers:\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_107_0.png)\n\
+  \nFigure 4.17: Adding Slot Values to the custom Slot Type\n\nWith our slot type\
+  \ set up, click on the **Add** button to add an intent, as shown in the following\
+  \ screenshot:\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_107_1.png)\n\nFigure 4.18:\
+  \ Adding an Intent\n\nThis should bring you to the **Add Intent** screen. Define\
+  \ an intent called `Answer` on this screen, which is going to contain the answer\
+  \ provided by the user for the questions posed by the Factly Skill, as shown in\
+  \ the following screenshot:\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_108_0.png)\n\
+  \nOnce you have defined the intent, click on the **Create custom intent** button\
+  \ to land on the **Sample Utterances** screen. Before defining any sample utterances,\
+  \ scroll down on this screen and create a new slot type called `Choice`. Give this\
+  \ slot the type of `LIST_OF_CHOICES`, which we defined earlier from the drop-down\
+  \ menu:\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_109_0.png)\n\nFigure 4.20: Adding\
+  \ slot to the Intent\n\nOnce we have defined the slot, we can now go ahead and define\
+  \ a couple of sample utterances for our intent.\n\n- 3. Add a couple of **Sample\
+  \ Utterances** for the *Answer* intent which will, of course, include the **Choice**\
+  \ slot, since that is what will contain the actual answer to the questions posed\
+  \ by Factly:\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_109_1.png)\n\nFigure 4.21:\
+  \ Adding Sample Utterances for the Intent\n\nOnce you have defined and saved the\
+  \ model, you can also click on the **JSON Editor** option in the left menu pane\
+  \ and verify that your JSON configuration matches this one:\n\n```\n```json\n{\n\
+  \    \"interactionModel\": {\n        \"languageModel\": {\n            \"invocationName\"\
+  : \"factly\",\n            \"intents\": [\n                {\n                 \
+  \   \"name\": \"Answer\",\n                    \"slots\": [\n                  \
+  \      {\n                            \"name\": \"Choice\",\n                  \
+  \          \"type\": \"LIST_OF_CHOICES\"\n                        }\n          \
+  \          ],\n                    \"samples\": [\n                        \"the\
+  \ answer is {Choice}\",\n                        \"{Choice}\"\n                \
+  \    ]\n                },\n                {\n                    \"name\": \"\
+  AMAZON.StopIntent\",\n                    \"samples\": []\n                }\n \
+  \           ],\n            \"types\": [\n                {\n                  \
+  \  \"name\": \"LIST_OF_CHOICES\",\n                    \"values\": [\n         \
+  \               {\n                            \"name\": {\n                   \
+  \             \"value\": \"1\"\n                            }\n                \
+  \        },\n                        {\n                            \"name\": {\n\
+  \                                \"value\": \"2\"\n                            }\n\
+  \                        },\n                        {\n                       \
+  \     \"name\": {\n                                \"value\": \"3\"\n          \
+  \                  }\n                        }\n                    ]\n       \
+  \         }\n            ]\n        }\n    }\n}\n```\n```\n\n\n```json\n\"name\"\
+  : {\n    \"value\": \"4\"\n}\n```\n\n确认 JSON 配置后，返回到 **技能构建者清单**。\n\n- 4. 从 **技能构建者清单**\
+  \ 中导航到 **Endpoint** 屏幕，从 Endpoint 屏幕复制技能 ID，并将其保存到某个地方。我们稍后会用到它。\n\n## 配置 Lambda\
+  \ 函数\n\n一旦 **交互模型** 创建完成，我们暂时保持配置屏幕不变，并将重点放在创建 Lambda 上：\n\n- 1. 打开一个新的浏览器标签页并导航到\
+  \ AWS 控制台，其网页 URL 在以下信息框中提及：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_111_0.png)\n\
+  \nAWS 控制台可在 https://console.aws.amazon.com 找到。请注意，如果尚未创建，您可能需要创建一个新账户。\n\n为 Lambda\
+  \ 函数命名为 `factlySkill` 并按以下截图所示填写详细信息：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_112_0.png)\n\
+  \n图 4.22：命名 Lambda\n\n填写完详细信息后点击 Create function 按钮。\n\n- 2. 在下一个屏幕中，在 **Designer**\
+  \ 部分下，您需要添加一个触发器来调用 Lambda 函数：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_112_1.png)\n\
+  \n图 4.23：配置 Lambda\n\n从左侧的触发器列表中，选择 **Alexa Skills Kit**，因为 Alexa 将调用我们的 Lambda\
+  \ 函数并向其提供输入：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_113_0.png)\n\n添加触发器后，下一步将是添加我们在上一节中复制的\
+  \ Skill ID。在以下截图所示的部分中添加 Skill ID：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_113_1.png)\n\
+  \n添加 **Skill ID** 可确保 Lambda 仅响应由已验证技能生成的请求。添加 **Skill ID** 后，点击屏幕底部的 **Add** 按钮，然后点击屏幕右上角的\
+  \ **Save** 按钮。\n\n- 3. 点击 **Save** 按钮后，选择 **Designer** 部分下的 `factlySkill` 框，如以下截图所示：\n\
+  \n![](img/80ddccf2572659c5b147f23cc6356c5a_114_0.png)\n\n图 4.26：完成 Lambda 配置\n\n\
+  这将在底部打开一个代码编辑器，我们将在其中添加 Lambda 的代码。\n\n## 编写 Lambda 函数\n\n我们将在开发者门户本身的 `index.js`\
+  \ 文件中内联编辑代码：\n\n- 1. 首先，我们将定义一个 JSON 数组，其中将包含测验技能提出的问题。此数组可以定义在 `index.js` 文件的顶部，甚至在\
+  \ `exports.handler` 之前：\n\n```javascript\n//questions is an array of json objects\n\
+  var questions = [\n    {\n        \"World War I began in which year?\": [\n    \
+  \        \"1923\",\n            \"1938\",\n            \"1917\",\n            \"\
+  1914\"\n        ]\n    },\n    {\n        \"Adolf Hitler was born in which country?\"\
+  : [\n            \"France\",\n            \"Austria\",\n            \"Hungary\"\
+  ,\n            \"Germany\"\n        ]\n    },\n    {\n        \"The battle of Hastings\
+  \ was fought in which country?\":\n        [\n            \"France\",\n        \
+  \    \"Russia\",\n            \"England\",\n            \"Norway\"\n        ]\n\
+  \    }\n];\n\nvar correctAnswerSlots = [3, 1, 2];\n```\n\n如前面的代码所示，除了 questions\
+  \ 数组之外，我们还定义了另一个名为 `correctAnswerSlots` 的数组，其中包含 `questions` 数组中每个问题的正确答案的索引。\n\n\
+  困惑吗？我们可以用一个例子来阐述。可以从 `correctAnswerSlots` 数组推断出第一个问题 World War I began in which\
+  \ year? 的答案是 1914，它位于索引 3（即第四个选项）。因此，我们在 `correctAnswerSlots` 数组的第一个位置放置了 3。\n\n\
+  - 2. 现在，我们可以继续在 `exports.handler` 中实现事件的处理。我们的 Lambda 将处理两种基本请求：\n    - `LaunchRequest`：处理技能的启动\n\
+  \    - `IntentRequest`：处理各种 Intent（在我们的例子中，我们只有两个 intent，第一个是 Answer intent，表示 Factly\
+  \ 提出的问题的答案，以及 `AMAZON.StopIntent`，表示退出技能）\n\n我们将首先对技能收到的每个请求进行区分。为此，声明以下处理器：\n\n\
+  ```javascript\nexports.handler = function (event, context) {\n    try {\n\n    \
+  \    if (event.request.type === \"LaunchRequest\") {\n        } else if (event.request.type\
+  \ === \"IntentRequest\") {\n\n        }\n    } catch (e) {\n        context.fail(\"\
+  Exception: \" + e);\n    }\n};\n```\n\n这就是我们区分 Launch 和 Intent 事件请求的方式。\n\n- 3.\
+  \ 接下来，我们将定义一些辅助函数，帮助我们创建语音响应：\n\n```javascript\n// ------ Helper functions ------\n\
+  \nfunction buildSpeechletResponse(output, repromptText, shouldEndSession) {\n  \
+  \  return {\n        outputSpeech: {\n            type: \"PlainText\",\n       \
+  \     text: output\n        },\n        reprompt: {\n            outputSpeech: {\n\
+  \                type: \"PlainText\",\n                text: repromptText\n    \
+  \        }\n        },\n        shouldEndSession: shouldEndSession\n    };\n}\n\n\
+  function buildResponse(sessionAttributes, speechletResponse) {\n    return {\n \
+  \       version: \"1.0\",\n        sessionAttributes: sessionAttributes,\n     \
+  \   response: speechletResponse\n    };\n}\n```\n\n这些函数帮助 Lambda 在接收到特定 intent/输入时返回供\
+  \ Alexa 朗读的响应。\n\n`buildResponse` 函数将生成供 Alexa 朗读的纯文本响应。\n\n`buildSpeechletResponse`\
+  \ 函数将指定 Alexa 最终会以纯文本形式朗读的输出。它还接受另一个变量 `shouldEndSession`，该变量指定 Alexa 在响应后是否应结束会话。\n\
+  \n- 4. 配置好辅助函数后，我们可以更新 `LaunchRequest` 和 `IntentRequest` 情况的处理，使 Alexa 朗读相关的响应，如以下代码所示：\n\
+  \n```javascript\nexports.handler = function (event, context) {\n    try {\n\n  \
+  \      if (event.request.type === \"LaunchRequest\") {\n            onLaunch(event.request,\n\
+  \                event.session,\n                function callback(sessionAttributes,\
+  \ speechletResponse) {\n                    context.succeed(buildResponse(sessionAttributes,\n\
+  \                        speechletResponse));\n                });\n        } else\
+  \ if (event.request.type === \"IntentRequest\") {\n            //TBD\n        }\n\
+  \    } catch (e) {\n        context.fail(\"Exception: \" + e);\n    }\n};\n```\n\
+  \n当 Lambda 接收到 `LaunchRequest` 时，它将调用 `onLaunch` 方法以返回欢迎消息：\n\n```javascript\nfunction\
+  \ onLaunch(launchRequest, session, callback) {\n    getWelcomeResponse(callback);\n\
+  }\n```\n\n我们将在下一步实现 `getWelcomeResponse` 方法。\n\n请通过点击屏幕右上角的 **Save** 按钮保存我们的进度。\n\
+  \n- 5. `getWelcomeResponse` 方法负责制定启动响应并向用户提出第一个问题：\n\n```javascript\nvar ANSWER_COUNT\
+  \ = 4;\nvar GAME_LENGTH = 3;\n\nfunction getWelcomeResponse(callback) {\n    var\
+  \ sessionAttributes = {},\n        speechOutput = \"Factly will ask you \" +\n \
+  \           GAME_LENGTH.toString()\n            + \" questions, try to get as many\
+  \ right as you can. Just say the number of the answer. Let's begin. \",\n      \
+  \  shouldEndSession = false,\n\n        gameQuestions = populateGameQuestions(),\n\
+  \        currentQuestionIndex = 0,\n        correctAnswerIndex =\n            correctAnswerSlots[currentQuestionIndex],\n\
+  \        answers = populateAnswers(gameQuestions, 0),\n\n        spokenQuestion\
+  \ =\n            Object.keys(questions[gameQuestions[currentQuestionIndex]])[0],\n\
+  \        repromptText = \"Question 1. \" + spokenQuestion + \" \",\n\n        i;\n\
+  \n    for (i = 0; i < ANSWER_COUNT; i++) {\n        repromptText += (i + 1).toString()\
+  \ + \". \" + answers[i] +\n            \". \"\n    }\n    speechOutput += repromptText;\n\
+  \    sessionAttributes = {\n        \"speechOutput\": repromptText,\n        \"\
+  repromptText\": repromptText,\n        \"currentQuestionIndex\": currentQuestionIndex,\n\
+  \        \"correctAnswerIndex\": correctAnswerIndex + 1,\n        \"questions\"\
+  : gameQuestions,\n        \"score\": 0\n    };\n    callback(sessionAttributes,\n\
+  \        buildSpeechletResponse(speechOutput, repromptText,\n            shouldEndSession));\n\
+  }\n```\n\n\n\n\n\n如前面的代码所示，在定义 getWelcomeResponse 函数之前，我们声明了两个变量，ANSWER_COUNT 和\
+  \ GAME_LENGTH，它们分别表示每个问题的答案数量和游戏中测验问题的总数。这些变量将被 getWelcomeResponse 函数使用。\n\n接下来，我们定义\
+  \ getWelcomeResponse 函数，该函数首先使用 GAME_LENGTH 变量创建一个启动响应。然后它使用 populateGameQuestions\
+  \ 方法加载 gameQuestions 的所有索引：\n\n```javascript\nfunction populateGameQuestions() {\n\
+  \    var gameQuestions = [];\n    var index = questions.length;\n\n    if (GAME_LENGTH\
+  \ > index){\n        throw \"Invalid Game Length.\";\n    }\n\n    for (var j =\
+  \ 0; j < GAME_LENGTH; j++){\n        gameQuestions.push(j);\n    }\n\n    return\
+  \ gameQuestions;\n}\n```\n\n它随后使用此方法通过 populateAnswers 方法为每个问题填充答案：\n\n```javascript\n\
+  function populateAnswers(gameQuestionIndexes,\ncorrectAnswerIndex) {\n    var answers\
+  \ =\n    questions[gameQuestionIndexes[correctAnswerIndex]][Object.keys(\n    questions[gameQuestionIndexes[correctAnswerIndex]])[0]];\n\
+  \n    var index = answers.length;\n\n    if (index < ANSWER_COUNT){\n        throw\
+  \ \"Not enough answers for question.\";\n    }\n\n    return answers;\n}\n```\n\n\
+  它还将 currentQuestionIndex 设置为 0（因为这是 Factly Skill 将提出的最早问题），然后在创建 sessionAttributes\
+  \ 之前，最后创建要传回 Alexa 的 speechletResponse。\n\n- 6. 在 onLaunch 方法的处理就绪后，我们现在将重点关注 onIntent\
+  \ 方法，该方法在 Lambda 接收到 IntentRequest 时被调用：\n\n```javascript\nexports.handler = function\
+  \ (event, context) {\n    try {\n        if (event.request.type === \"LaunchRequest\"\
+  ) {\n            onLaunch(event.request,\n                event.session,\n     \
+  \           function callback(sessionAttributes,\n                speechletResponse)\
+  \ {\n                context.succeed(buildResponse(sessionAttributes,\n        \
+  \        speechletResponse));\n            });\n        } else if (event.request.type\
+  \ === \"IntentRequest\") {\n            onIntent(event.request,\n              \
+  \  event.session,\n                function callback(sessionAttributes,\n      \
+  \          speechletResponse) {\n                context.succeed(buildResponse(sessionAttributes,\n\
+  \                speechletResponse));\n            });\n        }\n    } catch (e)\
+  \ {\n        context.fail(\"Exception: \" + e);\n    }\n};\n```\n\nonIntent 方法处理\
+  \ Factly Skill 引发的仅有的两个意图：\n\n```javascript\nfunction onIntent(intentRequest, session,\
+  \ callback) {\n    var intent = intentRequest.intent,\n        intentName = intentRequest.intent.name;\n\
+  \n    if (\"Answer\" === intentName) {\n        handleAnswerRequest(intent, session,\
+  \ callback);\n    } else if (\"AMAZON.StopIntent\" === intentName) {\n        handleFinishSessionRequest(intent,\
+  \ session, callback);\n    } else {\n        throw \"Invalid intent\";\n    }\n\
+  }\n```\n\n我们将首先查看其中更简单的一个，即 AMAZON.StopIntent，当用户决定通过说类似“Alexa, Stop Factly.”之类的短语提前结束技能执行时触发。这会导致调用\
+  \ handleFinishSessionRequest：\n\n```javascript\nfunction handleFinishSessionRequest(intent,\
+  \ session, callback)\n{\n    callback(session.attributes,\n        buildSpeechletResponse(\"\
+  Factly will Exit. Good bye!\",\n\"\", true));\n}\n```\n\n这在 Factly Skill 退出之前向用户说再见。\n\
+  \nAnswer 意图请求要复杂得多，因为它有多条信息流路径，并由 handleAnswerRequest 方法处理：\n\n```javascript\nfunction\
+  \ handleAnswerRequest(intent, session, callback) {\n    var speechOutput = \"\"\
+  ;\n    var sessionAttributes = {};\n    var gameInProgress = session.attributes\
+  \ && session.attributes.questions;\n    var answerSlotValid = isAnswerSlotValid(intent);\n\
+  \    var userGaveUp = intent.name === \"DontKnowIntent\";\n\n    {\n        var\
+  \ gameQuestions = session.attributes.questions,\n            correctAnswerIndex\
+  \ = parseInt(session.attributes.correctAnswerIndex),\n            currentScore =\
+  \ parseInt(session.attributes.score),\n            currentQuestionIndex = parseInt(session.attributes.currentQuestionIndex),\n\
+  \            correctAnswerText = session.attributes.correctAnswerText;\n\n     \
+  \   var speechOutputAnalysis = \"\";\n\n        if (answerSlotValid && parseInt(intent.slots.Choice.value)\
+  \ == correctAnswerIndex) {\n            currentScore++;\n            speechOutputAnalysis\
+  \ = \"correct. \";\n        } else {\n            if (!userGaveUp) {\n         \
+  \       speechOutputAnalysis = \"wrong. \";\n            }\n            speechOutputAnalysis\
+  \ += \"The correct answer is . .\n\nrepromptText, false));\n        }\n    }\n}\n\
+  ```\n\n前面方法首先使用 `isAnswerSlotValid` 方法检查用户提供的答案/选择是否确实有效：\n\n```javascript\nfunction\
+  \ isAnswerSlotValid(intent) {\n    var answerSlotFilled = intent.slots && intent.slots.Choice\n\
+  \        && intent.slots.Choice.value;\n    var answerSlotIsInt = answerSlotFilled\
+  \ &&\n        !isNaN(parseInt(intent.slots.Choice.value));\n    return answerSlotIsInt\
+  \ &&\n        parseInt(intent.slots.Choice.value) < (ANSWER_COUNT + 1) &&\n    \
+  \    parseInt(intent.slots.Choice.value) > 0;\n}\n```\n\n这基本上检查用户提供的答案是否为有效整数并且在有效答案范围内。\n\
+  \n然后，它继续使用我们在 *第 5 步* 中创建的与会话属性关联的 `correctAnswerIndex` 变量验证答案是否确实正确。它然后检查游戏是否已经结束或用户是否继续下一个问题，然后创建最终的\
+  \ `speechletResponse`。\n\n在我们向 `index.js` 文件中添加最终代码片段后，通过单击屏幕右上角的 **Save** 按钮保存进度。\n\
+  \n- 7. 现在，我们需要将 Lambda 链接到我们的技能，为此我们需要 Lambda 的 ARN。ARN 位于 Lambda 函数/代码编辑器页面的右上角。复制\
+  \ ARN，并在复制 ARN 后，导航到之前的浏览器标签页，在那里我们通过 **Skill builder checklist** 配置技能的交互模型。选择 **Endpoint**\
+  \ 部分以导航到 **Endpoint** 屏幕：\n\n  ![](img/80ddccf2572659c5b147f23cc6356c5a_124_0.png)\n\
+  \n  如前面的屏幕截图所示，选择 **AWS Lambda ARN** 作为 **Service Endpoint Type**，并输入我们之前复制的 ARN（由于隐私和安全原因，前面的屏幕截图中显示为模糊）。\n\
+  \n  选择 **Save Endpoints** 按钮，导航到 **Skill builder checklist** 并再次重建模型。\n\n## 为 Factly\
+  \ 添加持久性\n\n在游戏（以及生活中）中，持久性是关键。说真的，如果我们没有办法在不同关卡保存马里奥的进度，我们最终可能永远救不出公主。\n\n> 要了解更多关于马里奥的信息，请访问\
+  \ https://en.wikipedia.org/wiki/Mario。\n\n我们也可以为任何 Alexa Skill 添加持久性，以保存当前状态或用户的进度。保存状态可以用作惊喜，也可以是必需的，特别是在\
+  \ **Game/Entertainment** 导向的技能中，保存用户进度至关重要。\n\n在本节中，我们将演示为 Factly 添加持久性；我们将告知用户他们迄今为止玩过\
+  \ Factly 的次数，为此我们将使用 **DynamoDB** 存储启动次数，DynamoDB 是 AWS 提供的 NoSQL 数据库服务。\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_125_0.png)\n\
+  \n要了解有关 DynamoDB 的更多信息，请导航到 https://aws.amazon.com/dynamodb/。\n\n我们将通过 Lambda 代码访问\
+  \ DynamoDB 以持久化并检索启动计数器。然而，我们当前的 Lambda 无法连接到 DynamoDB。你可能会问：为什么？原因在于我们当前的 Lambda\
+  \ 以 **lambda_basic_execution** 模式执行，这是我们在创建它时选择的，该模式仅允许 Lambda 执行一些基本代码并记录一些数据。要连接到\
+  \ DynamoDB，我们需要提升 **lambda_basic_execution** 模式，使其能够访问 DynamoDB，我们将通过 **IAM** 实现这一点，IAM\
+  \ 是用于 **Identity and Access Management** 的 Amazon Web 服务。\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_125_1.png)\n\
+  \n要了解有关 IAM 的更多信息，请访问 https://aws.amazon.com/iam/。\n\n让我们开始：\n\n- 1. 导航到 https://console.aws.amazon.com。从提供的服务列表中选择\
+  \ **IAM**，如果找不到它，只需在提供的搜索框中搜索它，如以下屏幕截图所示：\n\n\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_126_0.png)\n\
+  \n图 4.28：在 AWS 控制台中导航到 IAM\n\n请选择 IAM 以导航到 IAM 仪表板。\n\n- 2. 进入 IAM 仪表板后，请从左侧菜单中选择\
+  \ Roles：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_126_1.png)\n\n图 4.29：IAM 角色\n\
+  \n在 **Roles** 屏幕上，你应该有一个预先存在的 **lambda_basic_execution** 角色，因为我们一直在使用它作为所有 Lambda\
+  \ 函数。点击它；我们将用一个策略对其进行增强，以便使用此角色访问 DynamoDB。这样，我们就不需要进行任何额外的配置更改（例如，从头创建新角色）。\n\n\
+  - 3. 在下一个屏幕中，点击 **Attach policy** 按钮：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_127_0.png)\n\
+  \n图 4.30：附加策略\n\n你将进入策略列表。使用 DynamoDB 搜索以查找访问 DynamoDB 的可用策略列表：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_128_0.png)\n\
+  \n图 4.31：为 DynamoDB 访问选择正确的策略\n\n选择 **AmazonDynamoDBFullAccess** 策略。最后，点击屏幕底部的 **Attach\
+  \ policy** 按钮。\n\n现在，我们的 Lambda 函数应该能够访问 DynamoDB。接下来，我们将在 DynamoDB 中创建一个表来存储启动计数器值。\n\
+  \n- 4. 现在，导航到 https://console.aws.amazon.com 再次，并从提供的服务列表中选择 DynamoDB。如果找不到它，只需在提供的搜索框中搜索即可：\n\
+  \n![](img/80ddccf2572659c5b147f23cc6356c5a_129_0.png)\n\n图 4.32：导航到 DynamoDB\n\n\
+  选择 DynamoDB 以导航到 DynamoDB 仪表板。\n\n- 5. 在 DynamoDB 仪表板上，点击 Create table 按钮以进入 Create\
+  \ DynamoDB table 屏幕：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_130_0.png)\n\n\
+  图 4.33：创建 DynamoDB 表\n\n如前面的屏幕截图所示，提供表名 `factlylaunchcount` 和主键 `count`。完成后点击 Create\
+  \ 按钮。\n\n- 6. 点击 Create 应该在短暂延迟后创建表，并应显示 `factlylaunchcount` 表的详细信息屏幕：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_130_1.png)\n\
+  \n图 4.34：DynamoDB 表配置\n\n表默认配置为每秒 5 次读写，这对于我们的开发目的来说是可以的，但在扩展技能时应进行更新。\n\n我们现在需要添加实际的启动计数器变量，它将存储我们的启动计数。点击前一个屏幕截图所示的\
+  \ Items 选项卡。\n\n- 7. 在 Items 选项卡下，点击 Create item 按钮以调出 Create item 窗口：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_131_0.png)\n\
+  \n图 4.35：向 DynamoDB 表添加项目/键\n\n在 Create item 窗口中，提供 `count` 主键，其值为 `counter`，如前一个屏幕截图所示。\n\
+  \n- 8. 接下来，在同一窗口中，选择 **+** 按钮以插入一个新列到表中，其类型为 Number，如以下屏幕截图所示：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_132_0.png)\n\
+  \n图 4.36：向 DynamoDB 表添加新列\n\n请将此新列命名为 `launchcounter` 并将其初始值设为 0：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_132_1.png)\n\
+  \n图 4.37：在 DynamoDB 表中命名新列\n\n完成后点击 **Create item** 窗口底部的 **Save** 按钮。`factlylaunchcount`\
+  \ 表模式现在应自动更新以反映我们刚刚所做的更改：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_133_0.png)\n\
+  \n图 4.38：DynamoDB 表中反映的更改\n\n我们现在可以开始更新我们的 Lambda 代码，以便它可以持久化启动计数器。导航回我们的 Lambda\
+  \ 代码，以便我们可以更新它以包含启动计数器的持久化。\n\n## 更新 Factly Lambda 代码以引入持久化\n\n我们将通过首先包含 AWS 依赖项来开始修改\
+  \ Lambda 代码：\n\n- 1. 在 Lambda 代码（`index.js` 文件）非常开头添加以下代码行：\n\n```\nvar AWS = require('aws-sdk');\n\
+  var docClient = new AWS.DynamoDB.DocumentClient();\n```\n\n这里，我们包含 AWS SDK，然后使用它来获取\
+  \ `DynamoDB.DocumentClient` 的实例，这将帮助我们在 DynamoDB 中读写数据。\n\n让我们分解前面的代码片段以了解我们在做什么。因此，更早的时候，当我们启动应用程序时，我们通过\
+  \ getWelcomeResponse 方法向用户提供了一个硬编码的响应。但是，随着持久化的引入，情况有点不同了。我们首先定义一些参数，即 `paramsGet`，以从表中获取数据。这些参数包括以下内容：\n\
+  \n- 从中获取数据的 `TableName`\n- 基于 `Key` 要获取的特定项目；我们本质上是在说“请从 `factlylaunchcount` 表中获取主键为\
+  \ `counter` 的项目”\n\n一旦项目被获取，我们就从该项目中提取 `launchcounter` 的值，这发生在以下这一行：\n\n```\nvar\
+  \ initialLaunchCount = data.Item.launchcounter;\n```\n\n接下来，我们将启动计数加 1 并通过以下代码中的调用将其更新到\
+  \ `factlylaunchcount` 表中：\n\n```\ndocClient.update(paramsUpdate, function(err, data)\n\
+  ```\n\n在更新调用之后，我们将 `initialLaunchCount` 传递给 `getWelcomeResponse` 函数。\n\n- 3. 接下来，剩下的就是将\
+  \ `getWelcomeResponse` 函数的签名从此：\n\n```\nfunction getWelcomeResponse(callback)\n\
+  ```\n\n更新为以下代码所示的内容：\n\n```\nfunction getWelcomeResponse(callback, count)\n```\n\
+  \n我们现在可以从以下代码所示的静态响应更新 `getWelcomeResponse` 函数中的静态响应：\n\n```\nspeechOutput = \"\
+  Factly will ask you \" + GAME_LENGTH.toString()\n            + \" questions, try\
+  \ to get as many right as you can. Just say the number of the answer. Let's begin.\
+  \ \"\n```\n\n我们将其更新为考虑 count 变量的动态响应：\n\n```\nspeechOutput = \"You have played Factly\
+  \ \" + count.toString() +\n    \" times. Factly will ask you \" + GAME_LENGTH.toString()\
+  \ +\n    \" questions, try to get as many right as you can. \" +\n    \"Just say\
+  \ the number of the answer. Let's begin. \";\n```\n\n现在，Factly Skill 将能够记住用户玩过多少次，并能够通知用户此信息。\n\
+  \n请在以下 URL 找到专门包含持久化的 Lambda 代码：https://github.com/madhurbhargava/AlexaSkillsProjects/blob/master/Chapter4_Factly_Persistence_index.js。\n\
+  \n我们的 Lambda 代码现在已完成，现在是测试它的时候了。\n\n## 测试技能\n\n我们的技能现在已完成，我们准备好测试它。技能可以通过实际的 Amazon\
+  \ Echo 设备或通过 Amazon Service Simulator 进行测试。我们将首先通过 Amazon Service Simulator 测试我们的技能，然后通过实际的\
+  \ Amazon Echo 设备进行测试。\n\n在 Test 页面上，向下滚动到 Service Simulator 并输入 \"Alexa, Launch\
+  \ Factly\" 文本，如以下屏幕截图所示：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_136_0.png)\n\
+  \n图 4.39：通过 Amazon Service Simulator 测试 Factly Skill，第 1 步\n\n如果你仔细观察 Alexa 的响应，你会发现它已经包含了启动计数，它已从\
+  \ DynamoDB 中获取，并附带了响应启动短语和第一个问题。\n\n然后，你只需输入一个答案编号（例如，4），测试模拟器就会告诉你答案是否正确，以及下一个问题，如以下屏幕截图所示：\n\
+  \n![](img/80ddccf2572659c5b147f23cc6356c5a_137_0.png)\n\n或者，你也可以使用 Amazon Echo 测试技能，前提是\
+  \ Echo 已连接并设置好：\n\n- 如果你说：“Alexa, launch Factly”，它应该回复：“You have played Factly *n*\
+  \ times. Factly will ask you three questions, try to get as many right as you can.\
+  \ Just say the number of the answer. Let's begin. Question 1. World War I began\
+  \ in which year? 1. 1923; 2. 1938; 3. 1917; 4. 1914.”\n\n\n\n\n\n- 然后它将根据你的回复继续。\n\
+  - 你可以在任何时候通过简单地说：“Alexa, stop Factly.” 来结束游戏。\n\n我们的技能现在已经测试完成，可以随意体验了。你可以在以下信息框中提到的链接找到本章\
+  \ Lambda 的代码。\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_138_0.png)\n\n> 请在以下 URL\
+  \ 找到 Lambda 的代码：`https://github.com/madhurbhargava/AlexaSkillsProjects/blob/master/Chapter4_Factly_index.js`\n\
+  \n## Summary\n\n我们希望你喜欢创建 Factly Skill。 与之前的技能一样，Factly Skill 仍有很大的改进空间。 例如，目前它只包含三个问题，可以扩展到\
+  \ 30 个甚至 300 个问题，仅此一项就能将此技能转变为一个严肃的问答游戏。\n\n此外，我们只处理了两种意图。 我们可以扩展技能以处理更多意图，这些意图可以处理问题的重复以及用户其他类型的回复（例如，“我不知道”、“跳过”或“下一个问题”）。\n\
+  \nDynamoDB 的持久性是我们在本章中引入并学习的全新内容，其本身的理念可以扩展为持久化多种内容，例如用户分数、用户进度和整体游戏状态。 我们将这些改进留给用户作为练习，以便进一步磨练他们的技能。\n\
+  \n在下一章中，我们将进一步扩展我们的 Alexa 知识，通过创建一个更面向目前席卷全球的事物的 Alexa Skill。\n\n你能猜出那是什么吗？ 翻到下一章去寻找答案。\n"
+- "## Making Alexa Talk About\nCryptoCurrencies\n\n> > “The future is here. It’s just\
+  \ not widely distributed yet.”\n> >\n> > — William Gibson\n\n我们在上一章使用 Alexa 设计了一个名为\
+  \ Factly 的问答游戏。 在本章中，正如我们所承诺的，我们将着手处理在本书撰写时席卷全球的事物，正如你可能从本章标题中猜到的那样，它就是加密货币。\n\n\
+  在本章中，我们将构建一个名为 `CryptoOracle` 的 Skill（是的，我们明白这在语法、语义和 Alexa Skill 命名规则方面都是一个糟糕的命名选择，但由于我们暂时不会发布它，我们将坚持使用这个名字），它可以让\
+  \ Alexa 谈论各种加密货币的最新价格。 本章将涵盖以下主题：\n\n- A Brief Introduction to Cryptocurrencies\n\
+  - Designing the CryptoOracle skill\n- Building the CryptoOracle skill\n\n让我们开始吧。\n\
+  \n## A Brief Introduction to Cryptocurrencies\n\n对于那些来晚了错过了比特币和其他类似加密货币在 2017 年及以后产生的巨大炒作的人来说：加密货币是数字/虚拟货币，也就是说，与美元、欧元或卢比等实体货币不同，加密货币通常只作为分布式数据库中的条目存在。\
+  \ 各种加密技术被部署来记录加密货币交易及其生成，因此这些数字货币通常被称为加密货币。\n\n由于加密技术超出了本书的范围，我们在此不予介绍。\n\n截至撰写本章时，已有超过\
+  \ 1,500 种加密货币可用，而这 1,500 种加密货币中更好的加密货币各有其独特用途。\n\n你可以通过导航到 CoinMarketCap https://coinmarketcap.com/\
+  \ 来查看已知/交易的加密货币数量。\n\n一些加密货币被用作价值交换媒介，例如比特币、莱特币、门罗币和达世币。 其他加密货币，例如以太坊，用于驱动分布式系统，例如以太坊虚拟机：\n\
+  \n| Currency | Purpose |\n|---|---|\n| Bitcoin | Medium of value exchange |\n| Monero\
+  \ | Medium of value exchange focused on privacy |\n| Ethereum | Used to power the\
+  \ Ethereum Virtual Machine |\n| Litecoin | Faster and improved version of Bitcoin\
+  \ |\n\n加密货币之所以引起如此多的关注，一个主要原因是其价格的投机性。 加密货币价格像股票价格一样涨跌，这吸引了公众和投资者的大量关注，他们对价格进行投机。\n\
+  \n请注意，本节中关于加密货币价格投机的信息仅用于向读者提供信息，并非投资建议。\n\n由于上述原因，加密货币已成为热门话题，因此我们决定将本章重点放在设计一个技能上，该技能可以帮助\
+  \ Alexa 用户即时查询加密货币价格。\n\n## Designing the CryptoOracle skill\n\n现在我们知道了加密货币是什么以及为什么它们最近备受关注，我们可以设计\
+  \ `CryptoOracle` 技能。\n\n`CryptoOracle` 将通过以下步骤工作：\n\n- 1. 用户启动技能：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_141_0.png)\n\
+  \nFigure 5.1: Launching the CryptoOracle skill\n\n启动响应从 Lambda 获取并播放给用户，如上图所示。\n\
+  \n- 2. 用户询问 Alexa 任何加密货币的价格：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_141_1.png)\n\
+  \nFigure 5.2: Querying the cryptocurrency price via the CryptoOracle skill\n\n此请求将执行以下操作：\n\
+  \n- 启动一个意图以获取价格，并将加密货币名称作为参数\n- Lambda 接收意图并提取加密货币名称\n- Lambda 使用货币名称通过 coinmarketcap\
+  \ API 获取加密货币价格\n\n要了解有关 coinmarketcap API 的更多信息，请导航至 https://coinmarketcap.com/。\n\
+  \n最后，包含加密货币价格的 Lambda 响应将播放给用户。\n\n3. 可选地，用户也可以在对话的任何时间点要求 CryptoOracle 停止/退出：\n\
+  \n![](img/80ddccf2572659c5b147f23cc6356c5a_142_0.png)\n\nFigure 5.3: User-initiated\
+  \ exit from the CryptoOracle skill\n\n在这种情况下，技能将中途停止响应并退出。\n\n完整的交互可以通过 VUI 流程图映射出来：\n\
+  \n![](img/80ddccf2572659c5b147f23cc6356c5a_143_0.png)\n\nFigure 5.4: VUI-flow diagram\
+  \ for the CryptoOracle skill\n\n典型会话的整体信息流可以按以下图所示映射出来：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_143_1.png)\n\
+  \nFigure 5.5: Information flow in the CryptoOracle skill\n\n在数据流就绪后，现在是时候编写实际的 CryptoOracle\
+  \ 技能了。\n\n## Building the CryptoOracle skill\n\n截至撰写本章时，亚马逊最近更新了其 Alexa Skills Kit（ASK）开发者控制台。\
+  \ 我们将使用更新后的开发者控制台来开发我们的 CryptoOracle 技能：\n\n- 1. 导航到 ASK 控制台 https://developer.amazon.com/alexa，登录门户，并进入技能创建页面（我们已在前几章中完成此练习，因此不会重复这些步骤）：\n\
+  \n![](img/80ddccf2572659c5b147f23cc6356c5a_144_0.png)\n\nFigure 5.6: Alexa Skills\
+  \ Portal – ASK Console\n\n点击屏幕底部的 Create Skill 按钮。\n\n- 2. Create a new skill 屏幕需要\
+  \ SkillName 才能继续，如以下屏幕截图所示：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_144_1.png)\n\
+  \nFigure 5.7: Naming the CryptoOracle skill\n\n将我们的技能命名为 CryptoOracle 并点击 Next 按钮。\n\
+  - 3. 下一页将显示可添加到技能的预构建交互模型类型。 点击 **Custom** 模型下的 **Select** 按钮进行选择，然后点击屏幕右上角的 **Create\
+  \ Skill** 按钮。\n- 4. 创建技能后，我们需要通过以下屏幕截图所示的仪表板配置其 **Interaction Model**：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_145_0.png)\n\
+  \nFigure 5.8: Interaction Model dashboard\n\n我们将通过完成 **Skill builder checklist**\
+  \ 来配置 **Interaction Model**。\n\n\n\n\n\n5. 选择技能构建器清单下的第一个选项，Invocation Name，以进入以下屏幕截图所示的屏幕：\n\
+  \n![](img/80ddccf2572659c5b147f23cc6356c5a_146_0.png)\n\nFigure 5.9: Adding the\
+  \ Invocation Name\n\n输入技能调用名称为 cryptooracle 并点击左上角的 Save Model 按钮。\n\n6. 点击 Build\
+  \ 选项卡项以返回到技能构建器清单，其中 Invocation Name 选项应已标记并被选中，因为我们刚刚完成了它的设置：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_147_0.png)\n\
+  \nFigure 5.10: Successful Setup of the Invocation Name\n\n现在，由于我们的 **Invocation\
+  \ Name** 已设置好，请从清单中选择 **Intents, Samples, and Slots** 项以进入以下屏幕截图：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_147_1.png)\n\
+  \nFigure 5.11: Setting up a custom intent\n\n命名意图为 `fetchPrice` 并点击 **Create custom\
+  \ intent** 按钮。\n\n+   7. 点击 **Create custom intent** 按钮应会带你进入 `fetchPrice` 意图的 **Sample\
+  \ Utterances** 页面，如以下屏幕截图所示：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_148_0.png)\n\
+  \n由于我们所有的 **Sample Utterances** 都需要一个槽，通过它我们可以将加密货币名称传递给 Lambda，因此在实现话语之前我们将添加一个槽。\n\
+  \n选择 **Intents** 菜单下 **Slot Types** 旁边的 **Add** 按钮：\n\nFigure 5.13: Adding a slot\
+  \ type to the custom intent\n\n这应会带你进入 Add Slot Type 页面，如以下屏幕截图所示：\n\nFigure 5.14:\
+  \ Naming the custom slot type for the intent\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_149_0.png)\n\
+  \n![](img/80ddccf2572659c5b147f23cc6356c5a_149_1.png)\n\n由于我们的 `CURRENCY_NAME` 槽将保存加密货币名称，用户需要检索其价格：\n\
+  \n![](img/80ddccf2572659c5b147f23cc6356c5a_151_0.png)\n\nFigure 5.16: Adding slot\
+  \ values – step 2\n\n如前述屏幕截图所示，在 **Slot Values** 选项下添加你所知道的所有加密货币名称。注意：添加槽值是可选的，因为我们的\
+  \ Lambda 将能够提取任何槽值并获取其价格。\n\n9. 在设置好我们的 Slot Types 后，我们现在可以使用槽类型来创建自定义槽。点击 Intents\
+  \ 下拉菜单下的 fetchPrice：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_152_0.png)\n\n\
+  Figure 5.17: Configuring the custom intent with the slot – step 1\n\n现在，向下滚动页面底部：\n\
+  \n![](img/80ddccf2572659c5b147f23cc6356c5a_152_1.png)\n\nFigure 5.18: Configuring\
+  \ the custom intent with the slot – step 2\n\n在 Intents Slots 选项下，创建一个名为 currencyName\
+  \ 的新槽，并为其指定我们之前创建的 CURRENCY_NAME 自定义类型：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_153_0.png)\n\
+  \nFigure 5.19: Configuring the custom intent with the slot – step 3\n\n我们现在可以在 fetchPrice\
+  \ 意图模式中使用此槽。\n\n+   10. 在设置好我们的 Intent Slots 后，我们现在可以为 fetchPrice 意图定义示例话语。向上滚动页面并在进行任何其他操作之前，通过点击\
+  \ Save Model 按钮保存交互模型：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_153_1.png)\n\n\
+  Figure 5.20: Configuring the sample utterances – step 1\n\n保存模型后，我们可以为我们的模型添加几个话语，如以下屏幕截图所示：\n\
+  \n![](img/80ddccf2572659c5b147f23cc6356c5a_154_0.png)\n\nFigure 5.21: Configuring\
+  \ the sample utterances – step 2\n\n所有这些话语都将使用我们之前定义的 currencyName 槽。\n\n11. 完成话语设置后，继续选择\
+  \ Build 选项卡以进入仪表板：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_155_0.png)\n\nFigure\
+  \ 5.22: Building the interaction model\n\n最后，选择 Build Model 选项以构建交互模型。该过程需要几分钟时间。构建成功完成后，仪表板上的\
+  \ Build Model 按钮应变为绿色。\n\n12. 在 **Interaction Model** 构建完成后，我们需要为其提供一个 Lambda Endpoint\
+  \ 以连接。 我们将在编码 Lambda 时推迟此步骤。但在开始配置 Lambda 之前，请点击前述屏幕截图中仪表板上的 **Endpoint** 按钮以导航到\
+  \ **Endpoint** 屏幕：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_156_0.png)\n\nFigure\
+  \ 5.23: Copying the skill ID\n\n从给定的选项中选择 **AWS Lambda ARN**，从此页面复制技能 ID 并保存到某处。我们稍后需要它。\n\
+  \n## Configuring the Lambda function\n\n一旦 **Interaction Model** 创建完成，我们将保持配置仪表板不变并专注于创建\
+  \ Lambda：\n\n+   1. 打开一个新的浏览器标签页并导航到 AWS 控制台。\n\nAWS 控制台可在 https://console.aws.amazon.com\
+  \ 找到。如果你还没有账户，可能需要创建一个新账户。\n\n在 Compute 选项下选择 Lambda。 在下一个屏幕上点击 Create function，命名该函数为\
+  \ cryptoOracleSkill，并填写详细信息：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_157_0.png)\n\
+  \nFigure 5.24: Naming the Lambda\n\n填写详细信息后点击 Create function 按钮。\n\n+   2. 在 Designer\
+  \ 部分下，你需要添加一个触发器来调用 Lambda 函数：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_157_1.png)\n\
+  \nFigure 5.25: Configuring the Lambda\n\n从左侧的触发器列表中选择 **Alexa Skills Kit**，因为 Alexa\
+  \ 将调用并向我们的 Lambda 函数提供输入：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_158_0.png)\n\
+  \nFigure 5.26: Adding a trigger for the Lambda\n\n添加触发器后，下一步是添加我们在上一节中复制的技能 ID。滚动到屏幕底部并在以下屏幕截图所示的部分中添加\
+  \ **Skill ID**：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_158_1.png)\n\nFig 5.27:\
+  \ Adding the Skill ID to the Lambda\n\n添加技能 ID 可确保 Lambda 仅响应由已验证技能生成的请求。添加 **Skill\
+  \ ID** 后，点击屏幕底部的 **Add** 按钮。我们的 Lambda 配置现在应有一些未保存的更改：\n\nFigure 5.28: Saving changes\
+  \ to the Lambda\n\n通过点击屏幕右上角的 Save 按钮保存最近的更改。\n\n+   3. 点击 Save 按钮后，选择 Designer\
+  \ 部分下的 `cryptoOracleSkill` 框：\n\nFigure 5.29: Concluding the Lambda configuration\n\
+  \n这应会打开一个代码编辑器，我们将在其中添加 Lambda 的代码。\n\n## Coding the Lambda function\n\n我们将在开发者门户本身的\
+  \ index.js 文件中内联编辑代码：\n\n+   1. 实现 exports.handler 中的事件处理。我们的 Lambda 将处理两个基本请求：\n\
+  \n- LaunchRequest：处理技能的启动\n- IntentRequest：处理各种意图（在我们的例子中我们只有两个意图，第一个是 fetchPrice\
+  \ 意图，要求 Lambda 获取特定加密货币的价格，以及 AMAZON.StopIntent，表示退出技能）\n\n我们将首先对技能收到的每个请求进行分离。为此，声明以下处理器：\n\
+  \n```\nexports.handler = function (event, context) {\n    try {\n        if (event.request.type\
+  \ === \"LaunchRequest\") {\n        } else if (event.request.type === \"IntentRequest\"\
+  ) {\n        }\n    } catch (e) {\n        context.fail(\"Exception: \" + e);\n\
+  \    }\n};\n```\n\n如前述代码所示，这是我们如何分离启动和意图事件请求的方式。\n\n+   2. 定义一些帮助函数，以便帮助我们创建语音响应，如以下代码所示：\n\
+  \n```\n// ------ Helper functions ------\n\nfunction buildSpeechletResponse(output,\
+  \ repromptText, shouldEndSession) {\n    return {\n        outputSpeech: {\n   \
+  \         type: \"PlainText\",\n            text: output\n        },\n        reprompt:\
+  \ {\n            outputSpeech: {\n```\n\n\n\n\n```\ntype: \"PlainText\",\ntext:\
+  \ repromptText\n},\n},\nshouldEndSession: shouldEndSession\n};\n}\n\nfunction buildResponse(sessionAttributes,\
+  \ speechletResponse) {\nreturn {\nversion: \"1.0\",\nsessionAttributes: sessionAttributes,\n\
+  response: speechletResponse\n};\n}\n```\n\n这些函数帮助 Lambda 在收到特定意图/输入时返回 Alexa 要说的响应。\n\
+  \n`buildResponse` 函数将生成 Alexa 要发出的语音响应。\n\n`buildSpeechletResponse` 函数将指定 Alexa\
+  \ 最终以纯文本形式说出的输出。它还需要一个 `shouldEndSession` 变量，该变量指定 Alexa 在响应后是否应该结束会话。\n\n3. 一旦我们配置了辅助函数，就可以更新\
+  \ `LaunchRequest` 和 `IntentRequest` 用例的处理，让 Alexa 说出相关的响应：\n\n```\nexports.handler\
+  \ = function (event, context) {\ntry {\nif (event.request.type === \"LaunchRequest\"\
+  ) {\nonLaunch(event.request,\nevent.session,\nfunction callback(sessionAttributes,\n\
+  speechletResponse) {\ncontext.succeed(buildResponse(sessionAttributes,\nspeechletResponse));\n\
+  });\n} else if (event.request.type === \"IntentRequest\") {\n//TBD\n}\n} catch (e)\
+  \ {\n```\n\n```\ncontext.fail(\"Exception: \" + e);\n}\n};\n```\n\n如前面的代码所示，当 Lambda\
+  \ 收到 `LaunchRequest` 时，它将调用 `onLaunch` 方法发送欢迎消息：\n\n```\nfunction onLaunch(launchRequest,\
+  \ session, callback) {\n    getWelcomeResponse(callback);\n}\n```\n\n我们将在下一步实现 `getWelcomeResponse`\
+  \ 方法。单击屏幕右上角的 **Save** 按钮保存进度。\n\n+   4. `getWelcomeResponse` 方法负责制定启动响应：\n\n```\n\
+  function getWelcomeResponse(callback) {\n    var sessionAttributes = {},\n     \
+  \   speechOutput = \" Crypto Oracle can tell you latest prices of the hottest cryptocurrencies\"\
+  ,\n        shouldEndSession = false,\n        repromptText = \"\";\n    callback(sessionAttributes,\n\
+  \        buildSpeechletResponse(speechOutput, repromptText, shouldEndSession));\n\
+  }\n```\n\n如前面的代码所示，该方法为启动消息制定了一个简单的纯文本响应。\n\n+   5. 在完成 `onLaunch` 方法的处理之后，我们现在将重点放在\
+  \ `onIntent` 方法上，一旦 Lambda 收到 `IntentRequest`，就会调用该方法：\n\n```\nexports.handler =\
+  \ function (event, context) {\n    try {\n        if (event.request.type === \"\
+  LaunchRequest\") {\n            onLaunch(event.request,\n                event.session,\n\
+  \                function callback(sessionAttributes, speechletResponse) {\n   \
+  \             context.succeed(buildResponse(sessionAttributes, speechletResponse));\n\
+  \            });\n```\n\n```\n} else if (event.request.type === \"IntentRequest\"\
+  ) {\n    onIntent(event.request,\n        event.session,\n        function callback(sessionAttributes,\n\
+  \        speechletResponse) {\n        context.succeed(buildResponse(sessionAttributes,\n\
+  \        speechletResponse));\n        });\n    }\n} catch (e) {\n    context.fail(\"\
+  Exception: \" + e);\n}\n};\n```\n\n`onIntent` 方法处理 CryptoOracle 技能引发的仅有的两个意图：\n\n\
+  ```\nfunction onIntent(intentRequest, session, callback) {\n    var intent = intentRequest.intent,\n\
+  \        intentName = intentRequest.intent.name;\n\n    if (\"fetchPrice\" === intentName)\
+  \ {\n        handleRequest(intent, session, callback);\n    } else if (\"AMAZON.StopIntent\"\
+  \ === intentName) {\n        handleFinishSessionRequest(intent, session, callback);\n\
+  \    } else {\n        throw \"Invalid intent\";\n    }\n}\n```\n\n我们首先看看两者中较简单的\
+  \ `AMAZON.StopIntent`，一旦用户决定提前结束技能执行，说出诸如“Alexa, stop CrypoOracle.”之类的短语时，就会引发该意图。这会导致调用\
+  \ `handleFinishSessionRequest`：\n\n```\nfunction handleFinishSessionRequest(intent,\
+  \ session, callback)\n{\n    callback(session.attributes,\n        buildSpeechletResponse(\"\
+  CryptoOracle will Exit. Good bye!\", \"\", true));\n}\n```\n\n这会在技能退出前向用户说出告别短语。\n\
+  \n6. `fetchPrice` 意图请求稍微复杂一些，因为它有多条信息流路径，由 `handleRequest` 方法处理：\n\n```\nfunction\
+  \ handleRequest(intent, session, callback) {\n    console.log(\"INSIDE Handle Request\"\
+  );\n    var options = {\n        host: 'api.coinmarketcap.com',\n        port: 443,\n\
+  \        path: '/v1/ticker/' + intent.slots.currencyName.value +\n        \"/\"\
+  ,\n        method: 'GET',\n        headers: {\n            'Content-Type': 'application/json'\n\
+  \        }\n    };\n\n    var req = https.request(options, function (res) {\n  \
+  \      res.setEncoding('utf-8');\n        var responseString = '';\n        res.on('data',\
+  \ function (data) {\n            responseString += data;\n        });\n\n      \
+  \  res.on('end', function () {\n            var resp = JSON.parse(responseString);\n\
+  \            console.log(resp);\n            var sessionAttributes = {},\n     \
+  \       speechOutput = \"The price of \" +\n            intent.slots.currencyName.value\
+  \ + \" is . . \" +\n            resp[0].price_usd + \" dollars\",\n            shouldEndSession\
+  \ = false,\n            repromptText = \"\";\n            callback(sessionAttributes,\n\
+  \                buildSpeechletResponse(speechOutput, repromptText,\n          \
+  \      shouldEndSession));\n        });\n    });\n\n    req.end();\n}\n```\n\n`handleRequest`\
+  \ 方法从意图中提取槽位，并向 CoinMarketCap API 发出请求，然后 API 返回所请求加密货币的信息。\n\n如果你需要有关 CoinMarketCap\
+  \ API 的更多信息，请访问 `https://coinmarketcap.com/`。\n\n最后，Lambda 将从 CoinMarketCap API\
+  \ 接收到的信息解析并整理为语音响应。\n\n如你所见，前面的方法使用了 `https` 变量，该变量有助于从 CoinMarketCap API 检索信息；我们将在\
+  \ `index.js` 文件的开头声明它，甚至在定义 `exports.handler` 之前：\n\n```javascript\nvar https =\
+  \ require('https');\n```\n\n在 `index.js` 文件中添加了最后一段代码后，请单击屏幕右上角的 **Save** 按钮保存进度。\n\
+  \n+   7. 我们需要将 Lambda 链接到我们的技能。为此，我们需要 Lambda 的 ARN。ARN 位于 Lambda 函数/代码编辑器页面的右上角：\n\
+  \n![](img/80ddccf2572659c5b147f23cc6356c5a_165_0.png)\n\n图 5.30：复制 ARN\n\n复制 ARN，然后导航到之前的浏览器标签页，我们在那里配置技能的交互模型：\n\
+  \n![](img/80ddccf2572659c5b147f23cc6356c5a_166_0.png)\n\n图 5.31：使用 ARN 更新端点 – 步骤\
+  \ 1\n\n单击 Skill builder 清单下的 Endpoint 按钮，该按钮应将你导航到 Endpoint，如以下屏幕截图所示：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_166_1.png)\n\
+  \n图 5.32：使用 ARN 更新端点 – 步骤 2\n\n选择 **AWS Lambda ARN**；在 **Default Region** 选项下，添加我们从前一个屏幕复制的\
+  \ ARN，并单击屏幕左上角的 **Save Endpoints** 按钮。\n\n单击 **Save Endpoints** 按钮后，单击 **Build**\
+  \ 选项卡以导航到仪表板。\n\n+   8. 在仪表板上，**Skill builder checklist** 中的所有项目现在都应该是绿色的：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_167_0.png)\n\
+  \n*图 5.33：所有步骤均为绿色 – 技能已就绪*\n\n这表示我们的技能现在已准备好进行测试。单击 **Test** 选项卡，如前面的屏幕截图所示。\n\n\
+  ## 测试技能\n\nTest 选项卡应弹出 Alexa 模拟器：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_168_0.png)\n\
+  \n图 5.34：ASK 模拟器\n\nAlexa 模拟器大大减少了对实际 Amazon Echo 的需求，因为你可以仅使用模拟器轻松测试 CryptoOracle\
+  \ 技能。\n\n在文本框中输入 `Alexa launch CryptoOracle`，如以下屏幕截图所示，然后按 *Enter*：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_169_0.png)\n\
+  \n图 5.35：通过技能模拟器启动技能\n\nAlexa 应该会回复正确的响应，并且如果计算机的音量已打开，你甚至可以听到 Alexa 说出该响应。\n\n\n\
+  \n\n你现在可以向 CryptoOracle 询问你喜欢的加密货币的价格，它应该能够成功获取并作出回应：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_170_0.png)\n\
+  \n图 5.36：通过技能模拟器查询技能\n\n我们的技能现已测试完成，可以随意尝试了。\n\n你可以在 `https://github.com/madhurbhargava/AlexaSkillsProjects/blob/master/Chapter5_index.js`\
+  \ 找到 Lambda 的代码。\n"
+- "# 6 使用 Alexa 进行家庭自动化\n\n> “沟通必须是 HOT。也就是 Honest，Open，and Two-Way。”\n\n– Dan Oswald\n\
+  \n随着我们逐步阅读本书，我们创建的技能也在不断演进。我们从一个简单的 Hello World 技能开始，接着创建了短信发送器、问答游戏、一个谈论加密货币的技能，而在本章中，我们将致力于\
+  \ **Ambience Manager**，它可以告诉我们家庭的氛围参数，例如温度和湿度。\n\n我们将通过以下主题来设计此技能：\n\n- 家庭自动化和环境传感器的介绍\n\
+  - 设计 Ambience Manager 技能\n- 开发移动应用\n- 开发 Ambience Manager 技能\n\n本章内容覆盖面很广，因为我们的\
+  \ **Ambience Manager** 技能将与环境传感器通信，因此还将涉及环境传感器以及移动应用的细节，该应用将帮助我们把温度数据上传到云端。\n\n\
+  ### 家庭自动化和环境传感器的介绍\n\n出于入门目的，家庭自动化是指用户可以通过一系列智能传感器而不是为每个单独设备翻动传统开关的方式来控制标准家庭设备，如灯光、音乐系统、电视，甚至气候。家庭自动化旨在尽可能减少用户与实际硬件的物理交互。在最近的现在和不那么遥远的过去，家庭自动化的概念建立在移动操作系统之上，主要是\
+  \ Android 或 iOS，用户只需使用一部移动设备或平板电脑即可控制整栋房屋，而无需与房屋中每个单独设备的开关进行交互。\n\n随着交互式语音助手的出现，家庭自动化的概念已经发展到用户只需用声音即可控制家庭的程度。家庭自动化的实际概念非常广泛，完整的解决方案将包括各种各样的传感器。在本章中，我们将演示家庭自动化与基于语音的个人助理相关的概念，使用几乎每个自动化家庭中都提供的关键功能，即收集有关气候/氛围的信息，例如温度、湿度等。我们将创建一个解决方案，其中包括环境传感器、移动应用和\
+  \ Alexa，用户只需询问 Alexa 即可获取房屋的氛围详情。\n\n氛围监测解决方案不仅用于家庭自动化，也用于各种仓库，因为产品必须保持在一定的温度/湿度下，它们可以通过\
+  \ Wi-Fi 和/或蓝牙 BLE 在长距离上传输氛围数据。然而，这些解决方案也更昂贵且难以采购。因此，对于我们的需求，我们将使用一种流行的传感器原型解决方案\
+  \ CC2650STK，俗称 SensorTag，由德州仪器制造，它体积小、易于获得、完全符合家庭自动化概念，并且可以从爱好/电子商店或德州仪器公司 TI 网站、亚马逊在线轻松购买，价格仅为\
+  \ 45-50 美元。\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_173_0.png)\n\n更多信息，请参考：http://www.ti.com/tool/CC2650STK\n\
+  \n我们最终开发的整体系统还将包括一个移动应用，该应用将通过 BLE 与 CC2650STK SensorTag 交互，并将温度读数上传到 Firebase 后端。\n\
+  \n在生产级别，我们根本不需要移动应用，因为大多数实用传感器完全有能力并配置为通过 Wi-Fi 将数据上传到后端。然而，由于我们正在进行原型设计，我们采用了这种解决方案。\n\
+  \n然后，Lambda 可以从 Firebase 后端获取这些读数，并在用户提示 Alexa 时将其呈现给用户。\n\n### 设计 Ambience Manager\
+  \ 技能\n\n我们的 Ambience Manager 技能将至少有五个活动部分，包括与 Amazon Echo 交互的用户，Echo 反过来与 AWS Lambda\
+  \ 通信，Lambda 反过来从 Firebase 云获取温度信息。温度信息将通过移动设备推送到 Firebase 云，移动设备从环境传感器读取。信息流如下图所示：\n\
+  \n![](img/80ddccf2572659c5b147f23cc6356c5a_175_0.png)\n\n环境传感器将通过 BLE 将环境参数，即温度和湿度，传达给移动应用。\n\
+  \n要了解有关 BLE 的更多信息，请访问 https://www.bluetooth.com/news/pressreleases/2009/12/17/sig-introduces-bluetooth-low-energy-wireless-technology-the-next-generation-of-bluetooth-wireless-technology。\n\
+  \n这最终会将环境参数上传到 Firebase 后端。\n\nFirebase 是 Google 的实时数据库。要了解有关 Firebase 的更多信息，请访问\
+  \ https://firebase.google.com/。\n\n一旦数据在 Firebase 后端可用，用户将按如下方式与技能进行通信：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_176_0.png)\n\
+  \n图 6.3：Ambience Manager 技能的一次性启动\n\n你注意到有什么不同了吗？\n\n如果你还没有注意到，我们并没有启动技能，正如我们为之前创建的所有\
+  \ Alexa 技能所做的那样，却直接询问了房间温度。这就是所谓的 One-Shot Launch，即用户启动技能并请求其提供某些信息时。我们将在设计/编码实际技能时详细讲解\
+  \ One-Shot Launch/Invocation。\n\n如果 One-Shot Launch 成功，Ambience Manager 应该会回复正确的温度：\n\
+  \n![](img/80ddccf2572659c5b147f23cc6356c5a_177_0.png)\n\n图 6.4：Ambience Manager\
+  \ 技能的对话流程\n\n就用户交互而言，典型会话的整体信息流可以映射如下图所示：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_177_1.png)\n\
+  \n图 6.5：Ambience Manager 技能的操作\n\n在数据流就绪后，我们进入下一步：创建一个 Android 应用，该应用将通过 BLE 从环境传感器读取数据，然后将数据推送到\
+  \ Firebase 后端。\n\n### 开发移动应用\n\n我们将创建一个 Android 应用，该应用将通过 BLE 与环境传感器通信。\n\n如果你对开发\
+  \ Android 应用和 BLE 不太了解，不用担心，你可以简单地从本节末尾提供的链接下载源代码。或者，你可以查看 Android 开发者网站，了解 Android\
+  \ 应用开发的相关信息。\n\n如果你有兴趣探索 Android，请导航到 https://developer.android.com/ 以获取有关 Android\
+  \ 应用开发的更多信息。\n\n本节的先决条件如下：\n\n- **Android:**\n  - 最新版 Android Studio\n  - 一台最新的\
+  \ Android 设备，最好是三星 Galaxy S8，因为它支持蓝牙 5，否则任何 API 级别为 23 的设备 Android M 即可\n  - 对 Java、Android、Android\
+  \ Studio 和 BLE 有基本熟悉程度\n- **硬件:**\n  - 德州仪器 CC2650 STK SensorTag\n\n我们将从创建一个空项目开始。请为其选择一个名称。\n\
+  \n为了保持一致性，并且由于该项目已在我的另一本书中介绍过，书名为 *IoT Projects with Bluetooth Low Energy* 由 Packt\
+  \ Publishing 出版，我将把它命名为 `AndroidWarehouseMonitor`。\n\n由于我们即将为 Android 应用实现大量代码，为方便起见，我们已在以下流程图中分解了\
+  \ Android 应用的功能：\n\n\n\nFigure 6.6: Android application flow\n\n请在实现/审查本节中实现的应用代码时，将前面的流程图作为指导工具。它将为您提供我们即将实现的代码的鸟瞰图。\n\
+  \n让我们开始：\n\n+   1. 定义用户界面以在屏幕上显示当前温度和湿度值。为此，我们通过更新 activity_main.xml 文件来定义我们的 UI。删除此文件中存在的任何代码，然后可以直接将以下代码添加到\
+  \ activity_main.xml 文件中，也可以通过 UI 编辑器添加 UI：\n\n```\n<?xml version=\"1.0\" encoding=\"\
+  utf-8\"?>\n<android.support.constraint.ConstraintLayout\n    xmlns:android=\"http://schemas.android.com/apk/res/android\"\
+  \n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n    xmlns:tools=\"\
+  http://schemas.android.com/tools\"\n    android:layout_width=\"match_parent\"\n\
+  \    android:layout_height=\"match_parent\"\n    tools:context=\"android.packt.com.androidwarehousemonitor.MainActivity\"\
+  >\n<TextView\n    android:id=\"@+id/textView\"\n    android:layout_width=\"0dp\"\
+  \n    android:layout_height=\"217dp\"\n    android:layout_marginEnd=\"8dp\"\n  \
+  \  android:layout_marginLeft=\"8dp\"\n    android:layout_marginRight=\"8dp\"\n \
+  \   android:layout_marginStart=\"8dp\"\n    android:layout_marginTop=\"8dp\"\n \
+  \   android:text=\"Temperature:\"\n    android:textAppearance=\"@style/TextAppearance.AppCompat.Large\"\
+  \n    app:layout_constraintHorizontal_bias=\"0.526\"\n    app:layout_constraintLeft_toLeftOf=\"\
+  parent\"\n    app:layout_constraintRight_toRightOf=\"parent\"\n    app:layout_constraintTop_toTopOf=\"\
+  parent\" />\n<TextView\n    android:id=\"@+id/textView2\"\n    android:layout_width=\"\
+  match_parent\"\n    android:layout_height=\"219dp\"\n    android:layout_marginBottom=\"\
+  8dp\"\n    android:layout_marginLeft=\"8dp\"\n    android:layout_marginRight=\"\
+  8dp\"\n    android:layout_marginTop=\"8dp\"\n    android:text=\"Humidity:\"\n  \
+  \  android:textAppearance=\"@style/TextAppearance.AppCompat.Large\"\n```\n\nFor\
+  \ this, add the `ensureLocationPermissionIsEnabled` method to the `MainActivity`\
+  \ class, as follows:\n\n```\nprivate void ensureLocationPermissionIsEnabled() {\n\
+  \    if (Build.VERSION.SDK_INT >= 23 &&\n    ContextCompat.checkSelfPermission(this,\n\
+  \    android.Manifest.permission.ACCESS_COARSE_LOCATION) !=\n    PackageManager.PERMISSION_GRANTED)\
+  \ {\n    ActivityCompat.requestPermissions(this, new String[]{\n    android.Manifest.permission.ACCESS_COARSE_LOCATION},\n\
+  \    REQUEST_LOCATION);\n    return;\n    }\n}\n```\n\nAfter adding the preceding\
+  \ code and compiling the project, you will get an error regarding `REQUEST_LOCATION`\
+  \ not being found. For that error to go away, add the following member variable\
+  \ to the `MainActivity` class:\n\n```\nprivate static final int REQUEST_LOCATION\
+  \ = 1;\n```\n\nThe `ensureLocationPermissionIsEnabled` method checks whether the\
+  \ location permission is granted, and if not, it requests the permission from the\
+  \ system.\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_182_0.png)\n\nNote that Android\
+  \ Marshmallow (API Level 23) introduced the runtime permission model, which allows\
+  \ the apps to request user permissions in Android at runtime, rather than at compile\
+  \ time, which is also the reason why we check for API Level in the preceding code\
+  \ before requesting runtime permissions. To read more about the runtime permission\
+  \ model, visit https://developer.android.com/training/permissions/requesting.html.\n\
+  \nThe preceding method uses the `ActivityCompat` class, which does all the hard\
+  \ work for us all in a single line of code.\n\n3. The ActivityCompat class also\
+  \ provides the callback method, which gets called with the user's selection result\
+  \ (whether or not the user granted the permission). Depending on the result, we\
+  \ can take appropriate action. We will also implement this callback method, which\
+  \ is called onRequestPermissionResult, to listen for results of the permission request\
+  \ presented to the user. Add the following method to your MainActivity class:\n\n\
+  ```\n@Override\npublic void onRequestPermissionsResult(int requestCode,\n    String\
+  \ permissions[],\n    int[] grantResults) {\n    switch (requestCode) {\n    case\
+  \ REQUEST_LOCATION: {\n        // If request is cancelled, the result arrays are\
+  \ empty.\n        if ((grantResults.length > 0\n            && grantResults[0] ==\n\
+  \            PackageManager.PERMISSION_GRANTED) {\n            Log.i(TAG, \"Permission\
+  \ Granted\");\n        } else {\n            Toast.makeText(getApplicationContext(),\n\
+  \                \"Location Permission Not granted\",\n                Toast.LENGTH_LONG).show();\n\
+  \            finish();\n        }\n        break;\n    }\n    default:\n    }\n\
+  }\n```\n\nThe preceding method simply logs it to the console if the permission has\
+  \ been granted; otherwise, it finishes the activity and exits the app. We have added\
+  \ the necessary methods, now we need to call them too.\n\n4. For calling the methods\
+  \ that we added in Step 2 regarding enabling of location permissions, add a checkPermissions\
+  \ method to the MainActivity class:\n\n```\nprivate void checkPermissions(BluetoothAdapter\
+  \ bluetoothAdapter) {\n    if (!bluetoothAdapter.isEnabled()) {\n        Intent\
+  \ enableBtIntent = new\n        Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);\n\
+  \        startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);\n        return;\n\
+  \    }\n}\n```\n\n```\nensureLocationPermissionIsEnabled();\n}\n```\n\nFor the code\
+  \ to compile successfully, define the following member variable in the `MainActivity`\
+  \ class:\n\n```\nprivate static final int REQUEST_ENABLE_BT = 0;\n```\n\nThe preceding\
+  \ `checkPermissions` method will be responsible for enabling Bluetooth and location\
+  \ permissions.\n\n+   5. In the previous step, we started the **System Default**\
+  \ setting activity for the user and let the user decide whether they wanted to switch\
+  \ the Bluetooth on. However, we are interested in knowing the user's decision, for\
+  \ which we override the `onActivityResult` method in the `MainActivity` class:\n\
+  \n```\n```java\n@Override\nprotected void onActivityResult(int requestCode, int\
+  \ resultCode, Intent data) {\n    if (requestCode == REQUEST_ENABLE_BT && resultCode\
+  \ == -1) {\n        ensureLocationPermissionIsEnabled();\n        return;\n    }\n\
+  \    Toast.makeText(this, \"Bluetooth not turned on\",\n        Toast.LENGTH_LONG).show();\n\
+  \    finish();\n}\n```\n```\n\nThe result of the user's choice (whether the user\
+  \ decided to turn on the Bluetooth or not) will be returned in this method. We finish\
+  \ the activity directly if the user does not turn on the Bluetooth since there isn't\
+  \ much left to do.\n\n+   6. Let's handle another case, where a device might not\
+  \ have Bluetooth support at all. For that, please update the `onResume` method to\
+  \ the one shown as follows:\n\n```\n```java\n@Override\nprotected void onResume()\
+  \ {\n    super.onResume();\n    BluetoothManager btManager = (BluetoothManager)\n\
+  \        getSystemService(BLUETOOTH_SERVICE);\n    BluetoothAdapter btAdapter =\
+  \ btManager != null ?\n        btManager.getAdapter() : null;\n    if (btAdapter\
+  \ == null) {\n        Toast.makeText(getApplicationContext(),\n            \"No\
+  \ Bluetooth Support found\",\n            Toast.LENGTH_LONG).show();\n```\n\n8.\
+  \ We are making an assumption here, that is, the App will be operated in a scenario\
+  \ where the SensorTag (attached to warehouse shelves) is turned on and is always\
+  \ sending out advertisements over Bluetooth Low Energy, so as soon as the app begins\
+  \ its operation, it tries to filter out the SensorTag from the list of broadcasting\
+  \ devices, connect to it, and read temperature and humidity data continuously. For\
+  \ this, add the startScanning method to the MainActivity class:\n\n```\nprotected\
+  \ void startScanning() {\n    bluetoothManager =\n    (BluetoothManager)getSystemService(Context.BLUETOOTH_SERVICE);\n\
+  \    bluetoothAdapter = bluetoothManager.getAdapter();\n    bluetoothLeScanner =\n\
+  \    bluetoothAdapter.getBluetoothLeScanner();\n    AsyncTask.execute(new Runnable()\
+  \ { @Override public\n    void run() { bluetoothLeScanner.startScan(leScanCallback);\
+  \ } \n    });\n}\n```\n\nThe startScanning method makes use of quite a few variables,\
+  \ so declare those in the MainActivity class:\n\n```\nBluetoothManager bluetoothManager;\n\
+  BluetoothAdapter bluetoothAdapter;\nBluetoothLeScanner bluetoothLeScanner;\n```\n\
+  \nWe now need to call the startScanning method from two places, first, immediately\
+  \ after the user grants the location permission. For this, add the method call to\
+  \ the startScanning method to the onRequestPermissionResult method (which we implemented\
+  \ in Step 3) as shown next:\n\n```\nif (grantResults.length > 0 && grantResults[0]\
+  \ ==\nPackageManager.PERMISSION_GRANTED) {\n    Log.i(TAG, \"Permission Granted\"\
+  );\n    startScanning();\n}\n```\n\nSecond, if you have already granted all the\
+  \ permissions during the initial run of the app, we also add the method call for\
+  \ the startScanning method to the ensureLocationPermissionIsEnabled method (which\
+  \ we implemented in Step 2):\n\n```\nprivate void ensureLocationPermissionIsEnabled()\
+  \ {\n    if (Build.VERSION.SDK_INT >= 23 &&\n```\n\n\n\n\n\nContextCompat.checkSelfPermission(this,\n\
+  \    android.Manifest.permission.ACCESS_COARSE_LOCATION)\n!= PackageManager.PERMISSION_GRANTED)\
+  \ {\n    ActivityCompat.requestPermissions(this, new String[]{\nandroid.Manifest.permission.ACCESS_COARSE_LOCATION},\n\
+  REQUEST_LOCATION);\n    return;\n}\nstartScanning();\n}\n\n我们已经实现了设备扫描代码。现在，我们需要定义一个回调来处理发现的设备。\n\
+  \n9. 如果你成功完成了上一步，你的 startScanning 方法实现将使用 ScanCallback，扫描结果会通过它进行传递。请在 MainActivity\
+  \ 类中定义 ScanCallback：\n\n```\n// Device scan callback.\nprivate ScanCallback leScanCallback\
+  \ = new ScanCallback() {\n    @Override\n    public void onScanResult(int callbackType,\
+  \ ScanResult\nresult) {\n    if (result.getDevice() != null) {\n        if (result.getDevice().getName()\
+  \ != null &&\nresult.getDevice().getName().contains(NAME_TAG)) {\n            Log.i(TAG,\
+  \ result.getDevice().getName());\n            if (connected == false) {\n      \
+  \          connected = true;\n                bluetoothLeScanner.stopScan(leScanCallback);\n\
+  \                result.getDevice().connectGatt(MainActivity.this, true,\n     \
+  \           gattCallback);\n            }\n        }\n    }\n};\n```\n\n请仔细检查上面的代码，它根据所发现设备的名称来过滤可用设备。上述代码使用了一些变量，这些变量需要在\
+  \ MainActivity 类中声明：\n\n```\nprivate static String NAME_TAG = \"SensorTag\";\nprivate\
+  \ boolean connected = false;\n```\n\n我们需要将每个发现的设备名称与 SensorTag 的名称进行匹配，NAME_TAG\
+  \ 变量正好可以帮助我们做到这一点。一旦找到正确的匹配，我们就通过调用 connectGatt 方法来发起连接，并通过更新 connected 变量的状态来表示已发出连接请求。\n\
+  \n10. 调用 connectGatt 方法需要三个参数。最后一个参数是一个回调方法，可用于：\n- 监控连接状态变化\n- 服务发现\n- 特征值变化\n\n\
+  我们将首先在 MainActivity 类中实现这个回调，用于监听连接状态变化：\n\n```\nprotected BluetoothGattCallback\
+  \ gattCallback = new\nBluetoothGattCallback() {\n    @Override\n    public void\
+  \ onConnectionStateChange(BluetoothGatt gatt, int status, int newState) {\n    \
+  \    super.onConnectionStateChange(gatt, status, newState);\n        if (newState\
+  \ == BluetoothGatt.STATE_CONNECTED) {\n            Log.i(TAG, \"onConnectionStateChange()\
+  \ - STATE_CONNECTED\");\n            gatt.discoverServices();\n        }\n    }\n\
+  };\n```\n\n根据上述实现，如果连接成功，我们就会发起服务发现。\n\n11. 我们关注两个服务：IR_TEMPERATURE_SERVICE 和 HUMIDITY_SERVICE。我们首先在\
+  \ MainActivity 类中定义它们的 UUID：\n\n```\nprivate static final String UUID_IR_TEMPERATURE_SERVICE\
+  \ =\n\"f000aa00-0451-4000-b000-000000000000\";\nprivate static final String UUID_HUMIDITY_SERVICE\
+  \ =\n\"f000aa20-0451-4000-b000-000000000000\";\n```\n\n请注意，虽然我们为 `TEMPERATURE_SERVICE`\
+  \ 和 `HUMIDITY_SERVICE` 都定义了 UUID，但在 Android 代码示例中，我们只演示了从 `TEMPERATURE_SERVICE`\
+  \ 读取数据。从 `HUMIDITY_SERVICE` 读取数据的方式与之类似，留作练习由你自己完成。接下来，我们将专门关注 `TEMPERATURE_SERVICE`\
+  \ 的细节。\n\nSensorTag 上的 `TEMPERATURE_SERVICE` 包含两个重要的特征值：*数据特征值*和*配置特征值*。\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_189_0.png)\n\
+  \n访问以下链接可以了解 SensorTag 温度服务所暴露的特征值的详细信息：`http://processors.wiki.ti.com/images/a/a8/BLE_SensorTag_GATT_Server.pdf`。\n\
+  \n顾名思义，数据特征值保存温度数据，并支持*读取*该数据，以及针对温度数据的*启用/禁用通知*。我们将与这两个特征值进行交互。在 `MainActivity`\
+  \ 类中定义它们：\n\n```java\n//Characteristic UUIDs\nprivate static final UUID UUID_CHARACTERISTIC_TEMPERATURE_DATA\n\
+  \    = UUID.fromString(\"f000aa01-0451-4000-b000-000000000000\");\nprivate static\
+  \ final UUID\nUUID_CHARACTERISTIC_TEMPERATURE_CONFIG =\n    UUID.fromString(\"f000aa02-0451-4000-b000-000000000000\"\
+  );\n```\n\n我们在上一步发起的服务发现结果，将通过 `onServicesDiscovered` 方法传递。请重写 `BluetoothGattCallback`\
+  \ 中的 `onServicesDiscovered` 方法：\n\n```java\n@Override\npublic void onServicesDiscovered(final\
+  \ BluetoothGatt gatt, int status) {\n  super.onServicesDiscovered(gatt, status);\n\
+  \  gatt.readCharacteristic(gatt.getService(UUID_IR_TEMPERATURE_SERVICE).getCharacteristic(UUID_CHARACTERISTIC_TEMPERATURE_DATA));\n\
+  }\n```\n\n一旦服务发现完成，我们就通过上述代码指示 `BluetoothGatt` 读取温度数据特征值。\n\n12. 如前所述，温度数据特征值支持通知，我们可以启用这些通知来定期更新温度数据。一旦我们成功读取了温度数据特征值，就可以在重写\
+  \ `BluetoothGattCallback` 实现中的 `onCharacteristicRead` 方法时，为该特征值启用通知：\n\n```java\n\
+  @Override\npublic void onCharacteristicRead(BluetoothGatt gatt,\nBluetoothGattCharacteristic\
+  \ characteristic, int status) {\n    super.onCharacteristicRead(gatt, characteristic,\
+  \ status);\n    if\n    (characteristic.getUuid().equals(UUID_CHARACTERISTIC_TEMPERATURE_DATA))\
+  \ {\n        //Enable local notifications\n        gatt.setCharacteristicNotification(characteristic,\
+  \ true);\n        //Enabled remote notifications\n        BluetoothGattDescriptor\
+  \ desc =\n        characteristic.getDescriptor(CONFIG_DESCRIPTOR);\n        desc.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE\n\
+  \        );\n        gatt.writeDescriptor(desc);\n    }\n}\n```\n\n一旦启用了**通知**，每当\
+  \ SensorTag 上的温度数据更新时，应用都会在 `onCharacteristicChanged` 方法中接收到更新后的值。\n\n13. 正如上一步所述，我们将重写\
+  \ `onCharacteristicChanged` 方法，以便接收更新后的温度值，并对其进行解析和打印到控制台：\n\n```java\n@Override\n\
+  public void onCharacteristicChanged(BluetoothGatt gatt,\nBluetoothGattCharacteristic\
+  \ characteristic) {\n    super.onCharacteristicChanged(gatt, characteristic);\n\
+  \    if\n    (characteristic.getUuid().equals(UUID_CHARACTERISTIC_TEMPERATURE_DATA))\
+  \ {\n        double ambient =\n        Utilities.extractAmbientTemperature(characteristic);\n\
+  \    }\n}\n```\n\n温度数据的格式如下：\nObjectLSB:ObjectMSB:AmbientLSB:AmbientMSB,。为了提取数据，我们创建了一个名为\
+  \ Utilities 的独立类。在项目中添加一个独立的 Utilities 类，并在其中引入以下 extractAmbientTemperature 方法：\n\
+  \n```\npublic static double\nextractAmbientTemperature(BluetoothGattCharacteristic\
+  \ c) {\n    int offset = 2;\n    return shortUnsignedAtOffset(c, offset) / 128.0;\n\
+  }\n```\n\nextractAmbientTemperature 方法使用了 shortSignedAtOffset 方法，因此我们也将该方法添加到 Utilities\
+  \ 类中：\n\n```\n/**\n * Gyroscope, Magnetometer, Barometer, IR temperature\n * all\
+  \ store 16 bit two's complement values in the awkward\nformat\n * LSB MSB, which\
+  \ cannot be directly parsed as\ngetIntValue(FORMAT_SINT16, offset)\n * because the\
+  \ bytes are stored in the \"wrong\" direction.\n *\n * This function extracts these\
+  \ 16 bit two's complement values.\n * */\nprivate static Integer\nshortSignedAtOffset(BluetoothGattCharacteristic\
+  \ c, int offset)\n{\n    Integer lowerByte = c.getIntValue(FORMAT_UINT8, offset);\n\
+  \    Integer upperByte =\n    c.getIntValue(BluetoothGattCharacteristic.FORMAT_SINT8,\
+  \ offset\n    + 1); // Note: interpret MSB as signed.\n    return (upperByte <<\
+  \ 8) + lowerByte;\n}\n```\n\n上述代码片段来源于 http://processors.wiki.ti.com/。\n\n\n\n\n\
+  我们已为数据特征启用了**通知**，理论上，我们现在可以高枕无忧，只需等待温度传感器通过 `onCharacteristicChanged` 方法读取、更新并通知我们最新的温度值。然而，事实并非如此，因为在成功获取温度更新之前，我们还缺少一个关键步骤。\n\
+  \n- 14. 如果你仔细阅读过我们在*步骤 11* 中指出的文档链接，你会发现该文档中提到一个关键细节：\n\n| 0x29 | 41 | 0xAA02 |\
+  \ IR 温度配置 | 00 | RW | 写入“01”启动传感器和测量，“00”进入睡眠 |\n\n图 6.8：温度配置特征的详细信息\n\n根据上述细节，请注意默认情况下温度传感器并未启用记录测量功能。因此，默认情况下我们的温度传感器处于睡眠模式；我们需要将其切换到活动模式，以便接收定期的通知。我们通过在\
+  \ `MainActivity` 类中重写 `BluetoothGattCallback` 实现中的 `onDescriptorWrite` 方法来实现这一点：\n\
+  \n```\n@Override\npublic void onDescriptorWrite(BluetoothGatt gatt,\nBluetoothGattDescriptor\
+  \ descriptor, int status) {\n    super.onDescriptorWrite(gatt, descriptor, status);\n\
+  \    enableConfigurationForCharacteristic(gatt,\n    descriptor.getCharacteristic());\n\
+  }\n```\n\n根据 `onDescriptorWrite` 的实现，我们还需要在 `MainActivity` 类中实现 `enableConfigurationForCharacteristic`\
+  \ 方法：\n\n```\nprivate void enableConfigurationForCharacteristic(BluetoothGatt gatt,\
+  \ BluetoothGattCharacteristic characteristic) {\n    if\n    (characteristic.getUuid().equals(UUID_CHARACTERISTIC_TEMPERATURE_DATA))\
+  \ {\n        gatt.readCharacteristic(gatt.getService(UUID_IR_TEMPERATURE_SERVICE).getCharacteristic(UUID_CHARACTERISTIC_TEMPERATURE_CONFIG));\n\
+  \    }\n}\n```\n\n这就是我们之前提到的第二个重要特征——配置特征——发挥作用的地方。\n\n15. 接着上一步，我们将读取配置特征（并在下一步中更新它），以便最终将温度传感器从睡眠模式配置为活动模式。为了更新配置特征，将预先实现的\
+  \ `onCharacteristicRead` 方法更新为以下内容：\n\n```\n@Override\npublic void onCharacteristicRead(BluetoothGatt\
+  \ gatt,\nBluetoothGattCharacteristic characteristic, int status) {\nsuper.onCharacteristicRead(gatt,\
+  \ characteristic, status);\nif\n(characteristic.getUuid().equals(UUID_CHARACTERISTIC_TEMPERATURE_DATA))\
+  \ {\n//Enable local notifications\ngatt.setCharacteristicNotification(characteristic,\
+  \ true);\n//Enabled remote notifications\nBluetoothGattDescriptor desc =\ncharacteristic.getDescriptor(CONFIG_DESCRIPTOR);\n\
+  desc.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);\n);\ngatt.writeDescriptor(desc);\n\
+  } else if\n(characteristic.getUuid().equals(UUID_CHARACTERISTIC_TEMPERATURE_CONFIG))\
+  \ {\ncharacteristic.setValue(new byte[] {0x01});\ngatt.writeCharacteristic(characteristic);\n\
+  }\n}\n```\n\n读取成功后，我们向配置特征写入 `0x01`，以便将温度传感器设置为活动模式。\n\n16. 我们已经完成了实现，现在 `onCharacteristicChanged`\
+  \ 方法应该在 SensorTag 每次更新温度值时被调用。作为最后一步，我们可以更新 `onCharacteristicChanged` 方法，向用户显示实时温度更新。同时，我们还可以设置并包含数据上传到\
+  \ Firebase 后端，以便我们的应用能持续将定期数据更新上传到远程服务器。我们用于 UI 更新和后端上传的最终代码如下：\n\n```\n```java\n\
+  @Override\npublic void onCharacteristicChanged(BluetoothGatt gatt,\nBluetoothGattCharacteristic\
+  \ characteristic) {\n    super.onCharacteristicChanged(gatt, characteristic);\n\
+  \    if\n    (characteristic.getUuid().equals(UUID_CHARACTERISTIC_TEMPERATURE_DATA))\
+  \ {\n        final double ambient =\n        Utilities.extractAmbientTemperature(characteristic);\n\
+  \        //Upload to Firebase Backend\n        FirebaseDatabase database = FirebaseDatabase.getInstance();\n\
+  \        DatabaseReference myRef =\n        database.getReference(\"Temperature\"\
+  );\n        myRef.setValue(ambient);\n        //Update the UI\n        runOnUiThread(new\
+  \ Runnable() {\n            @Override\n            public void run() {\n       \
+  \         ((TextView)\n                findViewById(R.id.textView).setText(\"Temperature:\
+  \ \" + ambient\n                + \"\\\\u00b0\" + \"C\");\n            }\n     \
+  \   });\n    }\n}\n```\n```\n\n请注意，我们仍需要在客户端和服务端两端设置 Firebase，因此上述代码可能无法编译，因为我们引用了\
+  \ Firebase 但尚未进行设置。我们将在下一步中进行设置。\n\n## 设置 Firebase\n\n现在我们已经有数据了，剩下的事情就是将其上传到服务器，这样\
+  \ Alexa 就可以远程读取/访问这些数据。为此，我们将 Firebase 集成到 Android 应用中，并将温度测量值上传到 Firebase 云。我们将按照以下步骤将\
+  \ Firebase 集成到移动应用中：\n\n- 1. 要集成 Firebase，请在 Android Studio 的顶部菜单栏中导航到 Tools | Firebase。这应该会打开\
+  \ Firebase Assistant 窗口：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_195_0.png)\n\
+  \n图 6.9：Firebase Assistant\n\n- 2. 在 Firebase Assistant 窗口中，导航到 Realtime Database\
+  \ | Save and retrieve data。这应该会打开 Save and retrieve data 窗口。\n\n- 3. 点击 Connect\
+  \ your app to Firebase。Firebase 连接应会要求你选择现有项目或创建新项目。\n\n4. 选择创建新项目，为其提供相关名称，然后点击\
+  \ Connect to Firebase：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_196_0.png)\n\n\
+  图 6.10：创建新的 Firebase 项目\n\n5. 该过程需要几分钟时间，成功完成后，Assistant 窗口中的 Connect your app to\
+  \ Firebase 指示器将变为绿色：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_196_1.png)\n\n\
+  图 6.11：Firebase 应用连接状态\n\n6. 点击 Assistant 窗口中的第二项，即 Add the Realtime Database to\
+  \ your app。此时会弹出一个提示，询问是否可以对项目进行与包含 Firebase 相关的必要更改。点击此提示中的 Accept Changes：\n\n\
+  ![](img/80ddccf2572659c5b147f23cc6356c5a_197_0.png)\n\n图 6.12：将 Firebase 添加到项目\n\
+  \n7. 接受更改后，将开始 Gradle Sync。\n\n8. Gradle Sync 之后，在 Assistant 窗口中的步骤 3 下点击 Configure\
+  \ your rules for public access。此步骤将在浏览器中打开一些 Firebase 文档。\n\n9. 点击此屏幕右上角的 Go to\
+  \ Console。这应该会打开现有应用的仪表板/图库。\n\n10. 选择相关的应用名称：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_198_0.png)\n\
+  \n11. 你将进入一个详细的控制台。在此处，点击左侧窗格中的 **Database**，然后在水平选项卡列表中选择 **Rules** 选项卡。\n\n- 12.\
+  \ 你面前看到的应该是一个 JSON 文件，表示规则为键值对：\n- 1. 将 `.read` 键从 `auth != null` 改为 `true`。\n-\
+  \ 2. 对 `.write` 键执行相同操作。\n- 3. 点击顶部的 **Publish** 按钮。\n\n> 此配置仅用于演示目的，这意味着任何人都可以读取或写入你的数据库。在真实场景中，你的规则将比这更高级、更复杂。\n\
+  \n完成上述更改后，安全规则 JSON 应如下图所示：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_199_0.png)\n\
+  \n图 6.14：Firebase 详细控制台和规则\n\n13. 完成这些更改后，我们的 Android 应用已经具备了将读数上传到 Firebase 后端的代码。如果你现在启动应用，打开\
+  \ SensorTag，并让它在应用附近保持广播，你应该会看到动态温度更新的到来以及 UI 的更新：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_199_1.png)\n\
+  \n图 6.15：动态温度更新\n\n\n\n\n呼，这可真不容易！我们的 Android 实现已经完成了。\n\n请注意，如果你运行应用后无法（在日志中或调试时）看到设备被发现，请确保手机已开启定位服务。\n\
+  \n你还应该能在 Firebase 后端看到实时更新，这些更新与应用上显示的数据一致：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_200_0.png)\n\
+  \n复制 Firebase 数据库 URL（根据你命名 Firebase 数据库的方式，此 URL 可能有所不同）并将其保存在某处。稍后我们将需要从 Lambda\
+  \ 代码中引用它。\n\n你可以在 https://github.com/madhurbhargava/AndroidWarehouseMonitor 找到 AndroidWarehouseMonitor\
+  \ 的代码。\n\n现在，我们继续实现实际的 Ambience Manager 技能。\n\n## 技术中心业务问答题库\n\n1. 如何查找电子发票？\n\n\
+  答：登录税务系统（网址），进入【发票管理】-【电子发票】查询。\n\n2. 如何申请增值税专用发票？\n\n答：提交开票申请单至财务部，审核通过后由财务开出专票。\n\
+  \n3. 如何打印报销单？\n\n答：在OA系统填写报销单，提交审批后打印带有水印的报销单。\n\n4. 如何查询报销进度？\n\n答：进入OA系统【报销管理】-【进度查询】，输入单号即可查看。\n\
+  \n## 报账须知\n\n- 所有报销单据需在业务发生后30天内提交\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_202_0.png)\n\
+  \n图 6.18：Alexa 技能门户 – 登录\n\n3. 在接下来出现的屏幕上，点击位于屏幕中央的“Start a Skill（开始技能）”按钮：\n\n\
+  ![](img/80ddccf2572659c5b147f23cc6356c5a_202_1.png)\n\n图 6.19：Alexa 技能门户 – 启动技能\n\
+  \n4. 这时你应该会进入 ASK 控制台：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_203_0.png)\n\n\
+  图 6.20：Alexa 技能门户 – ASK 控制台\n\n点击屏幕底部的“创建技能”按钮。\n\n5. 下一个屏幕是“创建新技能”屏幕，需要提供技能名称（SkillName）才能继续：\n\
+  \n![](img/80ddccf2572659c5b147f23cc6356c5a_203_1.png)\n\n图 6.21：为技能命名\n\n请将技能命名为\
+  \ Ambience Manager，然后点击“下一步”按钮。\n\n6. 下一页将显示可添加到该技能的预置交互模型类型：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_204_0.png)\n\
+  \n图 6.22：为技能选择自定义交互模型\n\n点击“自定义模型”下方的“选择”按钮以选中它，然后点击屏幕右上角的“创建技能”按钮。\n\n- 7. 创建技能后，我们需要通过仪表板配置其交互模型：\n\
+  \n![](img/80ddccf2572659c5b147f23cc6356c5a_204_1.png)\n\n图 6.23：Ambience Manager\
+  \ 技能仪表板\n\n我们将通过完成**技能构建器清单**来配置**交互模型**。\n\n- 8. 在**技能构建器清单**下选择第一个选项**调用名称**，进入以下屏幕：\n\
+  \n![](img/80ddccf2572659c5b147f23cc6356c5a_205_0.png)\n\n在**技能调用名称**中输入 `ambience\
+  \ manager`，然后点击左上角的**保存模型**按钮。\n\n- 9. 点击**构建**标签项，即可返回**技能构建器清单**，该清单中的**调用名称**选项应已被标记并选中，因为我们刚刚完成了它的设置：\n\
+  \n![](img/80ddccf2572659c5b147f23cc6356c5a_206_0.png)\n\n图 6.25：设置调用名称后，再设置意图、示例和槽位\n\
+  \n现在，既然我们的调用名称已设置好，请从清单中选择“意图、示例和槽位”项，进入添加意图屏幕：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_206_1.png)\n\
+  \n图 6.26：创建 One-Shot 意图\n\n最后，选择**构建模型**选项以构建**交互模型**。该过程需要几分钟。构建成功完成后，仪表板上的**构建模型**按钮会变为绿色。\n\
+  \n12. **交互模型**构建完成后，我们现在需要为其提供一个可连接的 Lambda 端点。我们会暂时推迟此步骤，先去编写 Lambda 代码。但在开始配置\
+  \ Lambda 之前，请点击上方截图所示仪表板上的**端点**按钮，导航到**端点**屏幕：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_209_0.png)\n\
+  \n从给定选项中选择**AWS Lambda ARN**，复制此页面上的“技能 ID”并保存在某处。我们很快就会用到它。\n\n## 配置 Lambda 函数\n\
+  \n创建好**交互模型**后，我们将保持配置仪表板不变，专心创建 Lambda：\n\n- 1. 打开一个新的浏览器标签页，并导航到 AWS 控制台。\n\n\
+  AWS 控制台位于 https://console.aws.amazon.com。请注意，如果你还没有账户，可能需要新建一个。\n\n在**服务 | 计算**选项下选择**Lambda**。在下一个屏幕上点击**创建函数**，将\
+  \ Lambda 函数命名为 `ambienceManagerSkill`，并按下图所示填写详细信息：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_210_0.png)\n\
+  \n填写详细信息后，点击**创建函数**按钮。\n\n2. 在下一个屏幕上，在“设计器”部分，你需要添加一个触发器来调用 Lambda 函数。从左侧的触发器列表中，请选择\
+  \ Alexa Skills Kit，因为 Alexa 将调用我们的 Lambda 函数并为其提供输入：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_211_0.png)\n\
+  \n图 6.32：为 Lambda 函数添加触发器\n\n添加触发器后，我们需要添加上一节中复制的“技能 ID”。滚动到屏幕底部，在如下截图所示的区域中添加“技能\
+  \ ID”：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_211_1.png)\n\n图 6.33：配置触发器\n\n\
+  添加**技能 ID**可确保 Lambda 只响应经过验证的技能所生成的请求。添加**技能 ID**后，请点击屏幕底部的**添加**按钮。此时我们的 Lambda\
+  \ 配置应有一些未保存的更改。请点击屏幕右上角的**保存**按钮保存最近的更改。\n\n- 3. 点击**保存**按钮后，在**设计器**部分选择 **ambienceManagerSkill**\
+  \ 框。这会在底部打开一个代码编辑器，我们将在其中添加 Lambda 的代码。\n\n## 编写 Lambda 函数\n\n完成 Lambda 设置后，接下来就该为实际的\
+  \ Lambda 函数编写代码了。我们将按照以下步骤，在开发者门户网站的 `index.js` 文件中直接编辑代码：\n\n- 1. 在 `exports.handler`\
+  \ 中实现事件处理。在本例中，我们的 Lambda 将只处理一个意图，即 `OneShotFetchTemperatureIntent`。由于我们实现的是 One-Shot\
+  \ 启动，这一个意图就能启动我们的技能并获取温度数据。\n\n在继续编写功能逻辑之前，先声明以下变量，这些变量将被我们的功能逻辑使用：\n\n```\nvar\
+  \ https = require('https');\nvar firebaseHost = \"androidwarehousemonitor.firebaseio.com\"\
+  ;\n```\n\n`firebaseHost` 就是我们之前在设置 Firebase 时复制的那个 URL（根据你为 Android 应用设置 Firebase\
+  \ 的方式，该 URL 可能有所不同）。由于我们将通过 REST 调用连接到 Firebase，因此需要它的 `firebaseHost` URL 和 `https`。\n\
+  \n然后，更新 `exports.handler` 的代码，如下所示：\n\n```\nexports.handler = (event, context, callback)\
+  \ => {\n    try {\n        if (event.request.type === \"IntentRequest\") {\n   \
+  \         if (\"OneShotFetchTemperatureIntent\" ===\n            event.request.intent.name)\
+  \ {\n            } else {\n                throw \"Invalid intent\";\n         \
+  \   }\n        }\n    }\n```\n\n```\n}\ncatch(e) {\n    context.fail(\"Exception:\
+  \ \" + e);\n}\n};\n```\n\n如前所示和所述，我们丢弃了所有其他意图（包括到目前为止我们一直严格处理的 Launch Intent），只处理\
+  \ `OneShotFetchTemperatureIntent`，以实现我们技能的 One-Shot 启动。\n\n- 2. 我们将定义一些辅助函数来帮助我们创建语音响应，如下所示：\n\
+  \n```\n// ------ Helper functions ------\n\nfunction buildSpeechletResponse(output,\
+  \ repromptText, shouldEndSession) {\n    return {\n        outputSpeech: {\n   \
+  \         type: \"PlainText\",\n            text: output\n        },\n        reprompt:\
+  \ {\n            outputSpeech: {\n                type: \"PlainText\",\n       \
+  \         text: repromptText\n            }\n        },\n        shouldEndSession:\
+  \ shouldEndSession\n    };\n}\n\nfunction buildResponse(sessionAttributes, speechletResponse)\
+  \ {\n    return {\n        version: \"1.0\",\n        sessionAttributes: sessionAttributes,\n\
+  \        response: speechletResponse\n    };\n}\n```\n\n这些函数帮助 Lambda 在收到特定意图/输入时返回\
+  \ Alexa 要朗读的响应。\n\n\n\n\nbuildResponse 函数将生成要由 Alexa 朗读的直白响应。\n\nbuildSpeechletResponse\
+  \ 函数将以纯文本形式指定 Alexa 最终要朗读的输出。它还接受另一个变量 shouldEndSession，该变量指定 Alexa 在响应结束后是否应结束会话。\n\
+  \n定义 fbGet 函数，它将接受一个 key 参数，并通过 REST 调用从给定的主机获取数据：\n\n```\nfunction fbGet(key){\n\
+  \    return new Promise((resolve, reject) => {\n        var options = {\n      \
+  \      hostname: firebaseHost,\n            port: 443,\n            path: key +\
+  \ \".json\",\n            method: 'GET'\n        };\n        var req = https.request(options,\
+  \ function (res) {\n            res.setEncoding('utf8');\n            var body =\
+  \ '';\n            res.on('data', function(chunk) {\n                body += chunk;\n\
+  \            });\n            res.on('end', function() {\n                resolve(JSON.parse(body))\n\
+  \            });\n        });\n        req.end();\n        req.on('error', reject);\n\
+  \    });\n}\n```\n\n前面的函数将接受保存温度数据的键参数（在我们的例子中，这个键是 Temperature），并从 Firebase 主机获取数据。接收到的数据是\
+  \ JSON 格式，因此需要解析。\n\n- 3. 添加此方法后，我们需要从 exports.handler 中调用它。请用对 fbGet 的调用更新 exports.handler，如下面的代码所示：\n\
+  \n```\nexports.handler = (event, context, callback) => {\n    try {\n        if\
+  \ (event.request.type === \"IntentRequest\") {\n            if (\"OneShotFetchTemperatureIntent\"\
+  \ ===\n                event.request.intent.name) {\n                fbGet(\"/Temperature\"\
+  ).then(res => {\n                    context.succeed(buildResponse(buildSpeechletResponse(\"\
+  The temperature is \" + res + \" degrees\", true)));\n                })\n     \
+  \       } else {\n                throw \"Invalid intent\";\n            }\n   \
+  \     }\n    }\n    catch(e) {\n        context.fail(\"Exception: \" + e);\n   \
+  \ }\n};\n```\n\n获取成功后，我们会创建一个语音响应并将其传回，供 Alexa 朗读。这样就完成了我们的 Lambda 实现。\n\n- 4. 我们需要将\
+  \ Lambda 链接到我们的技能，为此，我们需要 Lambda 的 Amazon 资源名称（ARN）。ARN 位于 Lambda 函数/代码编辑器页面的右上角：\n\
+  \n![](img/80ddccf2572659c5b147f23cc6356c5a_215_0.png)\n\n图 6.34：复制 ARN\n\n复制 ARN。复制完成后，请切换到之前配置技能交互模型的浏览器标签页：\n\
+  \n![](img/80ddccf2572659c5b147f23cc6356c5a_216_0.png)\n\n图 6.35：使用 ARN 更新端点 – 步骤\
+  \ 1\n\n如上图所示，单击“技能构建器清单”下的“端点”按钮，这将导航到端点屏幕，如下面的屏幕截图所示：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_216_1.png)\n\
+  \n图 6.36：使用 ARN 更新端点 – 步骤 2\n\n选择 **AWS Lambda ARN**，在 **默认区域** 选项下，添加我们从上一屏幕复制的\
+  \ ARN，然后点击屏幕左上角的 **保存端点** 按钮。\n\n点击 **保存端点** 按钮后，请再次点击 **构建** 标签页以返回到仪表板。\n\n- 5.\
+  \ 在仪表板上，**技能构建器清单** 中的所有项目现在都应显示为绿色，如下面的屏幕截图所示：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_217_0.png)\n\
+  \n这表示我们的技能现在已准备好进行测试。请点击上方屏幕截图中显示的 **测试** 标签页。\n\n## 测试与调试技能\n\n**测试** 标签页应会打开 Alexa\
+  \ 模拟器：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_218_0.png)\n\nAlexa 模拟器大大减少了对实体\
+  \ Amazon Echo 的需求，因为你只需使用模拟器就可以轻松测试 Ambience Manager 技能。\n\n请在文本框中输入 `Alexa ask\
+  \ ambience manager to get temperature`，如下面的屏幕截图所示，然后按 *Enter* 键：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_218_1.png)\n\
+  \nAlexa 应该会用正确的响应“The temperature is...”进行回复，如果你的电脑音量已打开，你甚至可以听到 Alexa 说出该响应。\n\n\
+  我们的技能现在已测试完毕，可以随意把玩了。你可以在信息框中提到的链接处找到本章 Lambda 的代码。\n\n请在此处找到 Lambda 的代码：https://github.com/madhurbhargava/AlexaSkillsProjects/blob/master/Chapter_6_Smart_Home_Index.js.\n\
+  \n但是，如果发生错误，技能的行为不符合我们的预期，该怎么办？\n\n对于 Alexa 技能而言，一个有效的调试工具是 Amazon CloudWatch。CloudWatch\
+  \ 可以显示启动技能时发生的完整日志详细信息，以及它如何处理各种意图。如果你的 Lambda 代码中包含日志语句（Log Statements），你还可以在 CloudWatch\
+  \ 中通过这些日志语句的输出来检查程序流程。\n\n可以从 AWS 控制台访问 CloudWatch。\n\n要访问 CloudWatch，可前往 https://console.aws.amazon.com.\n\
+  \n要检查技能的执行状态，请在 AWS 控制台的 AWS 服务列表中选择 CloudWatch，如下面的屏幕截图所示：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_220_0.png)\n\
+  \n图 6.40：启动 CloudWatch\n\n这应该会将你带到 CloudWatch 仪表板，如下面的屏幕截图所示，该仪表板除了日志之外还提供许多功能：\n\
+  \n![](img/80ddccf2572659c5b147f23cc6356c5a_220_1.png)\n\n图 6.41：CloudWatch 仪表板\n\
+  \n不过，我们感兴趣的是日志，因此请单击“日志”选项：\n\n![](img/80ddccf2572659c5b147f23cc6356c5a_221_0.png)\n\
+  \n图 6.42：从 CloudWatch 仪表板启动日志\n\n这里会显示你拥有的且有可用日志的技能列表。单击你选择的技能，会显示可用日志列表，并按时间顺序排序。你可以单击其中任意一个日志，查看详细的日志记录，其中包含你的技能已响应的完整事件列表：\n\
+  \n![](img/80ddccf2572659c5b147f23cc6356c5a_221_1.png)\n\n图 6.43：CloudWatch 中的日志列表\n\
+  \n## 总结\n\n我们希望你喜欢创建 Ambience Manager 技能的过程。这个技能包含许多并非 Alexa 专属的组成部分，例如 Firebase、环境传感器和移动应用。我们还介绍了\
+  \ One-Shot 启动以及通过 CloudWatch 进行技能调试。\n\n与之前的技能一样，Ambience Manager 技能仍有改进空间，例如处理湿度数据和引入额外的意图。\n\
+  \n我们把改进留作练习，让用户可以进一步磨练技能。\n\n我们也希望你现在对 Alexa 技能的知识更有信心，并且迫不及待地想看到你接下来会创建什么。\n\n\
+  在最后一章中，我们将探索基于语音的助手的未来。\n"
+- '# 7. 基于语音的个人助手的未来
+
+
+  > “要么做，要么不做。没有尝试。”
+
+
+  > ——尤达大师
+
+
+  我们已经完成了六章，在这六章中，我们只专注于 Alexa。在本章，也是最后一章中，我们仍将关注 Alexa 及其一些最受欢迎的技能，但会与它的各种竞争对手进行比较。我们还将讨论包括
+  Alexa 在内的各种语音计算技术的未来。在本章中，我们将介绍以下主题：
+
+
+  - 流行的 Alexa 技能
+
+  - 比较各种基于语音的助手
+
+  - 基于语音的助手的未来
+
+
+  我们讨论这些主题是为了巩固目前所学到的信息，并集思广益，探讨语音计算的未来将会是什么样子。
+
+
+  ### 流行的 Alexa 技能
+
+
+  在撰写本书时，美国市场上可用的 Alexa 技能总数已超过 30,000 个，而美国也是 Amazon Alexa 最大的市场，平均每天有 50 个新技能发布。每个技能都属于特定类别，Alexa
+  技能商店目前让开发者和用户可以从 23 个不同的大类中进行选择，如下面的屏幕截图所示：
+
+
+  ![](img/80ddccf2572659c5b147f23cc6356c5a_224_0.png)
+
+
+  图 7.1：Alexa 技能——类别分布
+
+
+  在撰写本书时（2018 年年中），开发者中最受欢迎的类别（拥有技能最多的类别）是：
+
+
+  - **游戏与问答：** 拥有超过 6,000 项技能
+
+  - **新闻：** 拥有超过 3,000 项技能
+
+  - **音乐与音频：** 拥有超过 3,000 项技能
+
+  - **教育与参考：** 拥有超过 3,000 项技能
+
+  - **生活方式：** 拥有超过 2,000 项技能
+
+
+
+
+
+
+  在前五名中，分布如下：
+
+
+  ![](img/80ddccf2572659c5b147f23cc6356c5a_225_0.png)
+
+
+  图 7.2：Alexa Skills – 最受欢迎的分类
+
+
+  令人惊讶的是，在撰写本文时，**Kids** 分类拥有最少的技能，这使得它成为开发者最不喜欢开发的分类，但好的一面是，它竞争最少，增长空间很大。
+
+
+  到目前为止，我们已经看到了 Alexa Skills Store 上的各个分类，并概述了所有可用分类中最受欢迎和最不受欢迎的分类。现在，深入研究这些分类，让我们找出其中的佼佼者，也就是在主要分类中下载/使用量最多的技能。
+
+
+  ## Games and Trivia
+
+
+  **Games and Trivia** 分类下下载量最大的技能之一是 Would You Rather For Family，它拥有超过 3,000 条评分和用户评论。
+
+
+  ![](img/80ddccf2572659c5b147f23cc6356c5a_227_0.png)
+
+
+  要了解更多关于 Would You Rather For Family Alexa Skill 的信息，请访问 `https://www.amazon.com/Would-You-Rather-For-Family/dp/B06WGV16HR`。
+
+
+  它是热门游戏 Would You Rather 的语音计算版本，Alexa 会向玩家提出棘手/琐碎的问题，玩家会做出回复。为了保持游戏的趣味性，开发者会不断添加新问题。
+
+
+  该分类中的其他热门技能包括 Question of the Day、Jeopardy 和 Twenty Questions。我们建议你在 Alexa Skills
+  Store 上查看它们。
+
+
+  ## News
+
+
+  不出所料，一些顶级的新闻提供技能来自我们已经熟悉的频道和媒体机构：
+
+
+  - BBC
+
+  - CNN
+
+  - ESPN
+
+  - Fox News
+
+
+  一些频道甚至为其技能提供了不同的选项，具体取决于用户的需求。例如，CNN 开发并提供了两种不同的技能，一种用于提供快讯简报，另一种用于常规新闻。我们建议你在 Alexa
+  Skills Store 上查看它们。
+
+
+  ## Music and Audio
+
+
+  该分类下的顶级 *official* 技能是 **Ambient Sounds**，它为 Alexa 提供播放雨声、雷雨声和海洋声的能力，这可以帮助用户放松并睡得更好。然而，如果你有
+  Spotify 账户，Alexa 也可以链接到你的 Spotify 账户，并可作为出色的音乐播放器使用。
+
+
+  ![](img/80ddccf2572659c5b147f23cc6356c5a_228_0.png)
+
+
+  要了解更多关于 Spotify 和 Alexa 集成的信息，请导航至 https://www.spotify.com/us/amazonalexa/。
+
+
+  因此，Spotify with Alexa 是该分类的顶级竞争者之一。
+
+
+  ## Education and Reference
+
+
+  该分类下下载量最大的技能之一是 Word of the Day，它拥有超过 900 条评分，并承诺每天教用户一个新词，以及如何在句子中使用它。
+
+
+  ![](img/80ddccf2572659c5b147f23cc6356c5a_228_1.png)
+
+
+  要了解更多关于 Word of the Day 技能的信息，请访问 https://www.amazon.com/Volley-Inc-Word-the-Day/dp/B06VTHH5MW/。
+
+
+  根据该技能的开发者说法，它每天都会更新新内容。
+
+
+  ## Lifestyle
+
+
+  该分类下最受欢迎的技能是 **Meditation/Zen Sounds**，它为 Alexa 提供播放舒缓声音的能力，这可以帮助用户冥想。
+
+
+  该分类中的另一个热门技能是 **Fitbit**；使用此技能，用户可以通过 Alexa 跟踪通过 Fitbit 健身追踪器记录的详细信息和健身目标。
+
+
+  我们已经看到了 Alexa Skills Store 提供的五大分类下的最佳技能。现在，有一个问题问你：你是否注意到顶级畅销技能之间有任何共同特征？在继续阅读答案之前，花几分钟时间思考一下。
+
+
+  好吧，我们希望你现在已经思考过这个问题。答案如下：这些分类中的所有顶级技能都有一个共同特征——**dynamism**。这意味着它们会非常频繁地更新新功能，有些甚至每天更新。无论是
+  **Games/Trivia** 技能还是教育技能，只要是顶级位置，就会始终领先于用户，不断为他们提供新的发现内容，从而让用户对该 Skill 产生粘性，并不断回来发现更多内容。内容动态性是你的技能成为其分类领导者的关键。
+
+
+  我们已经查看了各个分类和 Alexa Skills；现在让我们继续分析和比较各种基于语音的个人助理。
+
+
+  ## Comparing Various Voice-Based Assistants
+
+
+  虽然我们在 *Chapter 1, What is Alexa?* 中已经在一定程度上讨论并比较了各种基于语音的助理，但在本节中，我们将把讨论范围限制在托管这些助理的语音启用扬声器上。
+
+
+  截至 2018 年，语音启用扬声器市场只有少数几家主要参与者（来源：voicebot.ai），即 Amazon，持有 52% 的最大份额，其次是 Google
+  Home，占 32%，Apple 的 HomePod 占 12%，其余市场由多家其他参与者瓜分，如下图所示的饼图中所示：
+
+
+  ![](img/80ddccf2572659c5b147f23cc6356c5a_230_0.png)
+
+
+  图 7.4：Alexa Skills – 智能扬声器市场分布
+
+
+  在本节中，我们将介绍三家主要参与者；Amazon Echo、Google Home 和 Apple HomePod。
+
+
+  ### Amazon Echo
+
+
+  Echo 系列智能扬声器由 Amazon 于 2014 年 11 月推出，在语音计算市场拥有先发优势，这使其获得了 70% 的完整市场份额。但这并不是它唯一的优势；Amazon
+  提供了最广泛的语音启用扬声器系列，每个都有其独特的用途，其中一些如下所述：
+
+
+  - **Echo Dot**：最小且最实惠。
+
+  - **Echo**：中端产品，音质略优于 Echo Dot。
+
+  - **Echo Plus**：比 Echo 更大，音质最佳。内置 Zigbee 中枢，可实现更好的智能家居集成。
+
+  - **Echo Spot**：带屏幕的圆形 Echo。
+
+  - **Echo Show**：带更大屏幕的 Echo，非常适合视频聊天。
+
+
+  广泛的产品线确保了每种需求和口味都有对应的产品。此外，最便宜的 Echo 产品约为 50 美元，这使其成为三大品牌中最具性价比的选择之一。
+
+
+  基于屏幕的 Echo 已经为智能扬声器增加了视频播放功能，这是一个很大的补充。其他两大主要参与者（Google 和 Apple）都没有这样一种设备，它结合了智能扬声器和视频播放功能。
+
+
+  此外，Amazon 已经为 Echo 产品创建了一个基于技能的生态系统，这使得 Echo 能够与各种第三方服务（如 Uber 和 Domino''s）无缝集成。
+
+
+  ### Google Home
+
+
+  Google Home 于 2016 年底推出，直接与 Amazon Echo 竞争，Google Assistant 是 Alexa 的对应产品。Google
+  Home 设备与 Echo 系列相比范围稍窄：
+
+
+  - **Google Home Mini**：最小、最实惠，价格与 Echo Dot 相似。
+
+  - **Google Home**：原版 Google 旗舰智能扬声器。音质优于 Google Home Mini。
+
+  - **Google Home Max**：最大、音质最佳、价格最贵的三个产品之一。
+
+
+  所有三款均由 Google Assistant 提供支持，因此 Home Mini、Home 和 Home Max 之间的差异点主要在于外形、语音质量和价格：
+
+
+  ![](img/80ddccf2572659c5b147f23cc6356c5a_232_0.png)
+
+
+  图 7.5：Google Home、Mini 和 Max（来源：speakerfanatic.com）
+
+
+  与 Amazon Echo 相比，由于 Google 的专长是网络搜索，Google Home 在对话性和处理基于网络的查询方面稍好一些。然而，Amazon Echo
+  很快试图缩小这一差距，通过支持比 Google Home 更多的智能家居品牌，这归因于 Amazon 作为市场先行者，已经将其基于 Skill 的生态系统扩展以吸引更多第三方开发者。然而，我们相当确信
+  Google Home 很快会赶上，或至少提供一些强有力的竞争。
+
+
+  ### Apple HomePod
+
+
+  HomePod 由 Apple 于 2017 年底推出并于 2018 年初发布，是对 Amazon Echo 和 Google Home 的反击：
+
+
+
+
+  ![](img/80ddccf2572659c5b147f23cc6356c5a_233_0.png)
+
+
+  它是一款苹果出品的智能音箱，Siri 对应着 Google Assistant 和 Alexa。它的售价为 349 美元（撰写本文时），在价格上仅次于 Google
+  Home Max（售价 399 美元）。
+
+
+  HomePod 的设计使其具备 360 度音效，清晰度和音质都非常出色。然而，它与苹果的生态系统紧密耦合。例如，Amazon Echo 和 Google Home
+  可以轻松集成第三方服务（如 Spotify），而这在 Apple HomePod 上则有点困难。
+
+
+  我们希望你现在已经清楚了解每个智能音箱能提供什么，以及它们之间如何比较。有了这些信息，我们将进入最后一节，讨论智能音箱的未来。
+
+
+  ## 语音助手的未来
+
+
+  在 2016 年智能音箱市场起步阶段，智能音箱总销量不到 1000 万台。然而，到 2017 年下半年初，仅 Amazon Echo 就已售出超过 2000 万台设备（来源：voicebot.ai），并且预计（来源：voicebot.ai）在
+  2018 年将售出超过 5600 万台智能音箱设备：
+
+
+  ![](img/80ddccf2572659c5b147f23cc6356c5a_234_0.png)
+
+
+  图 7.7：智能音箱市场的增长
+
+
+  ## 总结
+
+
+  至此，我们到了本章的结尾，也到了本书的结尾。
+
+
+  我们希望你真的享受了我们共度的时光，并且现在对自己作为 Alexa 技能绝地武士的能力有了坚实的信心。
+
+
+  此外，我们希望你对 Alexa 技能商店中有哪些类别和技能、为什么有些技能比其他技能更出色，以及设计下一个技能时可以关注哪些小众类别有了清晰的想法。
+
+
+  掌握了所有这些信息后，我们迫不及待想看到你发布下一个技能。如果你做出了酷炫的东西，给我们留言吧。
+
+
+  ## 你可能还喜欢的其他书籍
+
+
+  如果你喜欢这本书，你可能也会对 Packt 的以下其他书籍感兴趣：
+
+
+  ![](img/80ddccf2572659c5b147f23cc6356c5a_237_0.png)
+
+
+  ## 《动手实践聊天机器人与对话式 UI 开发》
+
+
+  Srini Janarthanam
+
+
+  ISBN: 978-1-78829-466-9
+
+
+  -   设计用户与聊天机器人之间的对话流程
+
+  -   创建任务模型聊天机器人，用于实现订餐等任务
+
+  -   获取聊天机器人生态中的新工具包和服务
+
+  -   集成第三方信息 API，构建有趣的聊天机器人
+
+  -   了解如何在消息平台上部署聊天机器人
+
+  -   使用 MS Bot Framework 构建聊天机器人
+
+  -   了解如何使用聊天机器人在 Twitter 上发布推文、监听推文并回复
+
+  -   在 Google Assistant 和 Amazon Alexa 上发布聊天机器人
+
+
+  ## 发表评论——让其他读者知道你的想法
+
+
+  请在你购买本书的网站上留下评论，与其他人分享你对本书的看法。如果你从 Amazon 购买，请在本书的 Amazon 页面上给我们留下诚实的评论。这一点至关重要，因为其他潜在读者可以看到并利用你公正的意见做出购买决定，我们也能了解客户对我们产品的看法，我们的作者也能看到你对他们与
+  Packt 合作创作的这本书的反馈。这只需要你几分钟的时间，但对其他潜在客户、我们的作者和 Packt 来说都很有价值。谢谢！
+
+  '
+- '## 索引
+
+
+  A
+
+  高级研究计划局网络（ARPANET） 7
+
+  Alexa 技能
+
+  关于 216, 217
+
+  结构 28, 30
+
+  教育与参考 220
+
+  游戏与冷知识类别 219
+
+  意图 32
+
+  调用名称 31
+
+  Lambda 33
+
+  生活方式 221
+
+  音乐与音频类别 220
+
+  新闻类别 219
+
+  槽位 32
+
+  Alexa
+
+  关于 21
+
+  参考 31, 193
+
+  Amazon 开发者账户 34
+
+  Amazon Echo
+
+  关于 24, 223
+
+  Echo Dot 223
+
+  Echo Plus 223
+
+  Echo Spot 223
+
+  第一代 25
+
+  第二代 26, 28
+
+  Amazon 资源编号（ARN） 83, 207
+
+  Amazon Web 服务（AWS） 33
+
+  Ambience Manager 技能
+
+  调试 209, 211
+
+  设计 167, 169, 170
+
+  开发 193, 195, 197, 199, 201
+
+  Lambda 函数，编码 204, 206, 208
+
+  Lambda 函数，配置 202
+
+  测试 209, 213
+
+  环境传感器 165
+
+
+  Android 权限模型
+
+  参考 173
+
+  Apple HomePod 224
+
+  应用程序，语音个人助手
+
+  Alexa 21
+
+  Cortana 19
+
+  Google Now 16
+
+  Siri 13
+
+  ASK 控制台
+
+  参考 136
+
+  AWS 控制台
+
+  参考 46, 148
+
+  B
+
+  BLE
+
+  参考 168, 177
+
+  C
+
+  CC2650STK
+
+  关于 166
+
+  参考 165
+
+  CloudWatch
+
+  参考 211
+
+  coinmarketcap API
+
+  参考 134, 156
+
+  Cortana
+
+  关于 19
+
+  任务 20
+
+  加密货币
+
+  关于 132
+
+  参考 132
+
+  CryptoOracle 技能
+
+  关于 131
+
+  构建 136, 138, 141, 144, 148
+
+  设计 133, 135
+
+  Lambda 函数，编码 152, 154, 157, 159
+
+  Lambda 函数，配置 148, 150
+
+  测试 160, 162
+
+
+  D
+
+  DynamoDB
+
+  参考 117
+
+
+  F
+
+  Factly 技能
+
+  构建 96, 98, 100
+
+  设计 87, 90, 91, 92, 94
+
+  Factly Lambda 代码，更新 125
+
+  Lambda 代码，更新 128
+
+  Lambda 函数，编码 106, 109, 112, 115
+
+  Lambda 函数，配置 103, 106
+
+  持久化，添加 116, 121, 125
+
+  测试 128, 130
+
+  Firebase
+
+  参考 168
+
+
+  G
+
+  Google Home
+
+  关于 223
+
+  Max 223
+
+  Mini 223
+
+  Google Now 16, 19
+
+
+  H
+
+  Handsfree Messenger 技能
+
+  关于 59
+
+  配置 74, 76
+
+  Lambda 函数，编码 78, 81, 83
+
+  概述 60
+
+  参考 77
+
+  测试 84
+
+  工作原理 60, 63
+
+  Hello World Alexa 技能
+
+  构建 34, 37, 39, 44, 46, 51, 57
+
+  家庭自动化 165
+
+
+  I
+
+  IAM
+
+  参考 117
+
+  意图
+
+
+  J
+
+  JSON 格式
+
+  参考 43
+
+
+  L
+
+  Lambda
+
+  关于 33
+
+  代码，参考 162
+
+  参考 57, 84
+
+
+  M
+
+  Mario
+
+  参考 116
+
+  移动应用
+
+  开发 170, 172, 173, 177, 179, 182, 183, 186
+
+  开发前提 170
+
+  Firebase，设置 187, 189, 192
+
+
+  O
+
+  一次性启动 168
+
+
+  R
+
+  运行时权限模型
+
+  参考 174
+
+
+  S
+
+  SensorTag 温度服务
+
+  关于 165
+
+  参考 181
+
+  Siri
+
+  关于 13
+
+  参考 14
+
+  SiriKit
+
+  参考 13
+
+  Spotify
+
+  参考 220
+
+
+  T
+
+  Twilio 消息后端
+
+  配置 64, 66, 69, 72, 73
+
+
+  Twilio
+
+  关于 59
+
+  参考 64
+
+  V
+
+  语音个人助手
+
+  Amazon Echo 223
+
+  Apple HomePod 224
+
+  应用程序 13
+
+  比较 22,23,221
+
+  Echo 系列，功能 11
+
+  未来 226,227
+
+  Google Home 223
+
+  需求 7,8,9,11,13
+
+
+  '
