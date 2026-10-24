@@ -1,0 +1,4428 @@
+- pgno: 0
+  md: '![](img/86f349f6a758f2c3088dbeb4d35dcaca_0_0.png)
+
+
+    # Learning Karaf
+
+    Cellar
+
+
+    Build and implement a complete clustering solution for the Apache Karaf OSGi container
+
+
+    Jean-Baptiste Onofré'
+  merge: -1
+  img_proc: true
+- pgno: 1
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 2
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 3
+  md: '# # Credits
+
+
+    **Author**
+
+    Jean-Baptiste Onofré
+
+
+    **Project Coordinator**
+
+    Neha Thakur
+
+
+    **Reviewers**
+
+    Ladislav Gažo
+
+    Sachin Handiekar
+
+    Achim Nierbeck
+
+
+    **Proofreaders**
+
+    Simran Bhogal
+
+    Ameesha Green
+
+    Paul Hindle
+
+
+    **Commissioning Editor**
+
+    Usha Iyer
+
+
+    **Indexers**
+
+    Hemangini Bari
+
+    Tejal Soni
+
+
+    **Acquisition Editor**
+
+    Meeta Rajani
+
+
+    **Graphics**
+
+    Ronak Dhruv
+
+    Valentina D''silva
+
+
+    **Content Development Editor**
+
+    Susmita Panda Sabat
+
+
+    **Production Coordinator**
+
+    Nilesh R. Mohite
+
+
+    **Technical Editors**
+
+    Mrunal Chavan
+
+    Ankita Jha
+
+    Pankaj Kadam
+
+
+    **Cover Work**
+
+    Nilesh R. Mohite
+
+
+    **Copy Editors**
+
+    Alisha Aranha
+
+    Roshni Banerjee
+
+    Dipti Kapadia
+
+    Aditya Nair
+
+    Karuna Narayanan'
+  merge: -1
+  img_proc: true
+- pgno: 4
+  md: '# About the Author
+
+
+    **Jean-Baptiste Onofré** is a member of the Apache Software Foundation, and he
+    has been involved in Apache projects for the past 10 years. He is the PMC chair
+    of Apache Karaf and its subprojects, including Cellar, Cave, and EIK.
+
+
+    He is also a PMC member of Apache ACE, Apache ServiceMix, and Apache Syncope,
+    and he is a committer for Apache ActiveMQ, Apache Archiva, Apache Aries, Apache
+    Camel, and Apache jClouds.
+
+
+    He is currently working for Talend (http://www.talend.com) as a software architect
+    and is a member of the Talend Apache team.
+
+
+    He writes articles on Java technologies for *Linux Magazine France* and has worked
+    as a reviewer for *Apache ServiceMix How-To, Henryk Konsek, and Learning Apache
+    Karaf, Johan Edstrom, Jamie Goodyear, and Heath Kesler*. Both of these books are
+    published by Packt Publishing. He is currently reviewing *Apache Karaf Cookbook,
+    Johan Edstrom, Jamie Goodyear, Heath Kesler, and Achim Nierbeck, Packt Publishing.*
+
+
+    He has also given speeches about Apache projects (Karaf, Camel, and so on) at
+    different conferences, especially at ApacheCon NA, ApacheCon Europe, and CamelOne.
+
+
+    I would like to thank the whole Karaf team, especially Guillaume Nodet, Achim
+    Nierbeck, Jamie Goodyear, Ioannis Canellos, and all others. We are a great team,
+    and you all do a great job.
+
+
+    I would also like to thank my wife, Lucile, who accepted that I spent some nights
+    on this book.'
+  merge: -1
+  img_proc: true
+- pgno: 5
+  md: '# About the Reviewers
+
+
+    **Ladislav Gažo** is a computer enthusiast who has been digging into the software
+    world for a long time. He has professional experience of more than 12 years in
+    development and software engineering. While starting experiments with computer
+    graphics and network administration, he realized that the true path is towards
+    the combination of software engineering and business. He has been developing,
+    analyzing, and architecting Java-based, desktop-based, and finally modern web-based
+    solutions for several years. The application of the Agile approach and advanced
+    technology is both a hobby and a day-to-day job.
+
+
+    Rich experience with various technologies led him to co-found the company Seges
+    Ltd., which is a software development company in Slovakia. He actively participates
+    in start-up events and helps to build development communities such as Google Developer
+    Group and Java User Group in Slovakia. With his colleagues, he has designed and
+    released an interactive content management solution called Synapso, which utilizes
+    contemporary technologies with user experience in mind.
+
+
+    I would not be able to materialize my knowledge as part of the review process
+    of this book without the support of all my colleagues, friends, and family. Creating
+    a good long-term environment helped me to gain the experience that I can pass
+    on further.'
+  merge: -1
+  img_proc: true
+- pgno: 6
+  md: '**Sachin Handiekar** is a Senior Software Developer with over five years of
+    experience in Java EE development. He is a graduate in Computer Science from the
+    University of Greenwich, London, and he currently works for a global consulting
+    company that develops enterprise applications using various open source technologies
+    such as Apache Camel, ServiceMix, ActiveMQ, and ZooKeeper.
+
+
+    He has a lot of interest in open source projects and has contributed code to Apache
+    Camel as well as developed plugins for Spring Social, which can be found on GitHub
+    at https://github.com/sachin-handiekar.
+
+
+    He also actively writes about enterprise application development on his blog (http://sachinhandiekar.com).
+
+
+    **Achim Nierbeck** has more than 14 years of experience in designing and implementing
+    Java enterprise applications. He is a committer and PMC at Apache Karaf and is
+    the project lead of the OPS4J Pax Web projects. Since 2010, he has enjoyed working
+    on OSGi enterprise applications. He is one of the authors of *Apache Karaf Cookbook*
+    by Packt Publishing (yet to be published).
+
+
+    While not working on projects or open source development, he enjoys spending time
+    with his family and friends. He can be reached at notizblog.nierbeck.de.'
+  merge: -1
+  img_proc: true
+- pgno: 7
+  md: '# www.PacktPub.com
+
+
+    # Support files, eBooks, discount offers, and more
+
+
+    You might want to visit www.PacktPub.com for support files and downloads related
+    to your book.
+
+
+    Did you know that Packt offers eBook versions of every book published, with PDF
+    and ePub files available? You can upgrade to the eBook version at www.PacktPub.com
+    and as a print book customer, you are entitled to a discount on the eBook copy.
+    Get in touch with us at service@packtpub.com for more details.
+
+
+    At www.PacktPub.com, you can also read a collection of free technical articles,
+    sign up for a range of free newsletters and receive exclusive discounts and offers
+    on Packt books and eBooks.
+
+
+    ![](img/86f349f6a758f2c3088dbeb4d35dcaca_7_0.png)
+
+
+    http://PacktLib.PacktPub.com
+
+
+    Do you need instant solutions to your IT questions? PacktLib is Packt''s online
+    digital book library. Here, you can access, read and search across Packt''s entire
+    library of books.
+
+
+    # Why subscribe?
+
+
+    +   - Fully searchable across every book published by Packt
+
+    +   - Copy and paste, print and bookmark content
+
+    +   - On demand and accessible via web browser
+
+
+    # Free access for Packt account holders
+
+
+    If you have an account with Packt at www.PacktPub.com, you can use this to access
+    PacktLib today and view nine entirely free books. Simply use your login credentials
+    for immediate access.'
+  merge: -1
+  img_proc: true
+- pgno: 8
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 9
+  md: '# Table of Contents
+
+
+    +   Preface 1
+
+    +   Chapter 1: Apache Karaf – Provisioning and Clusters 7
+
+    +     What is OSGi? 8
+
+    +       The OSGi framework 8
+
+    +       The OSGi bundle 9
+
+    +       Dependency between bundles 9
+
+    +     The OSGi container 11
+
+    +       Provisioning in Apache Karaf 13
+
+    +       OBR 15
+
+    +       Apache Karaf Features 15
+
+    +     Multiple Apache Karaf containers 17
+
+    +       Provisioning clusters 19
+
+    +     Summary 20
+
+    +   Chapter 2: Apache Karaf Cellar 21
+
+    +     Cluster topologies 21
+
+    +     Apache Karaf Cellar architecture 24
+
+    +     Apache Karaf Cellar installation and first commands 26
+
+    +     Cluster resources 27
+
+    +       Bundles 27
+
+    +       Karaf features 30
+
+    +       Configuration 33
+
+    +       Optional resources 36
+
+    +       The Karaf WebConsole plugin 37
+
+    +     Summary 38
+
+    +   Chapter 3: Hazelcast 39
+
+    +     What is Hazelcast? 39
+
+    +     Distributed cluster resource states 40
+
+    +       Distributed queues and topics 41'
+  merge: -1
+  img_proc: true
+- pgno: 10
+  md: '# Table of Contents
+
+
+    The Cellar distributed map 42
+
+    **Replicas/Backup** 42
+
+    Persistence 43
+
+    **Networks** 44
+
+    Multiple clusters 44
+
+    TCP/IP 45
+
+    Interfaces 45
+
+    SSL 46
+
+    Encryption 47
+
+    IPv6 support 48
+
+    Restricting outbound ports 49
+
+    **Summary** 50
+
+    **Chapter 4: Cluster Groups** 51
+
+    **Managing cluster groups** 51
+
+    **Targeting provisioning** 53
+
+    Features 54
+
+    Bundles 55
+
+    Configurations 57
+
+    Optional resources 57
+
+    Overlapping 58
+
+    The summary of commands 59
+
+    **Summary** 60
+
+    **Chapter 5: Producers, Consumers, Handlers, Listeners, and Synchronizers** 61
+
+    **The event producer** 62
+
+    **The event consumer** 63
+
+    **Event handlers** 64
+
+    **Listeners and synchronizers** 67
+
+    **Summary** 68
+
+    **Chapter 6: The Filtering of Cluster Events** 69
+
+    **The configuration of the filters** 69
+
+    **Resources** 70
+
+    **Blacklist and whitelist** 71
+
+    **Inbound and outbound** 71
+
+    **Regex and event identification** 71
+
+    Bundle 72
+
+    Configuration 73
+
+    Features 74
+
+    **The default filter configuration** 75
+
+    **Summary** 76'
+  merge: -1
+  img_proc: true
+- pgno: 11
+  md: "# Table of Contents\n\n+   **Chapter 7: DOSGi** ........................................\
+    \ 77\n+     What is Cellar DOSGi? .................................... 77\n+ \
+    \    The API bundle ........................................... 79\n+     The\
+    \ service bundle ....................................... 81\n+     The client\
+    \ bundle ........................................ 84\n+     Summary ..................................................\
+    \ 86\n+   \n+   **Chapter 8: Cellar and Camel** ........................... 87\n\
+    +     The communication between remote routes .................. 87\n+     Caching\
+    \ with a distributed map ........................... 91\n+     Summary ..................................................\
+    \ 93\n+   \n+   **Chapter 9: Roadmap** .................................... 95\n\
+    +     **HTTP load balancing and session clustering** ........... 95\n+       Load\
+    \ balancing ......................................... 96\n+       Session clustering\
+    \ ..................................... 99\n+     Clustering a log service ................................\
+    \ 100\n+     Summary ................................................. 101\n+\
+    \   \n+   **Index** ................................................ 103"
+  merge: -1
+  img_proc: true
+- pgno: 12
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 13
+  md: '# Preface
+
+
+    Apache Karaf has been emerging as the main container for the Open Software Gateway
+    initiative (OSGi) applications. This is mainly because more and more people can
+    see the benefits of OSGi in terms of the reuse of components, versioning, and
+    reduced complexity with real modular applications.
+
+
+    People are also looking for a ready-to-use container that provides all the features
+    expected in a mission-critical and enterprise-ready environment: management, monitoring,
+    and provisioning. It''s what Karaf provides, simplifying the development, execution,
+    and production of OSGi applications. However, Karaf is more than a container focused
+    on OSGi; even though it''s powered by OSGi, it also supports non-OSGi applications
+    such as Spring or web applications.
+
+
+    In modern architecture, most of the time, we don''t have a single instance of
+    the container to be running. In order to provide scalability and high availability,
+    a classic architecture contains multiple container instances that form a farm
+    or cluster of Karaf containers. This architecture brings up new questions: how
+    do you deploy your application components on different instances? How can you
+    target this deployment only on a subset of nodes for staging purposes, for instance?
+    How can you deal with the configuration on different nodes?
+
+
+    Apache Karaf Cellar has been created to address these questions and many more
+    questions.
+
+
+    This book will begin by giving you the means to understand OSGi and Apache Karaf
+    as well as the concepts of a provisioning cluster. By doing so, it will provide
+    the baseline needed before you shift to the advanced usage of Cellar, such as
+    cluster groups or the filtering of cluster events.
+
+
+    This book details the Cellar architecture and the different commands provided
+    by Cellar, from the installation up to the management of clusters.'
+  merge: -1
+  img_proc: true
+- pgno: 14
+  md: 'More than a simple provisioning or synchronization cluster, this book will
+    show you the Cellar runtime features such as Distributed OSGi (DOSGi) and interaction
+    with Apache Camel to create a multinode integration platform.
+
+
+    Using this book, readers will get a detailed understanding, through how-to steps,
+    to set up a cluster of Karaf nodes.
+
+
+    # What this book covers
+
+
+    Chapter 1, Apache Karaf – Provisioning and Clusters, reviews what an OSGi is,
+    the purposes, architectures, and components. We will introduce details about the
+    Apache Karaf container, its architecture, and features. We will also introduce
+    the question of how to manage multiple Apache Karaf instances.
+
+
+    Chapter 2, Apache Karaf Cellar, introduces Apache Karaf Cellar and the different
+    cluster topologies that it can address. After the presentation of the Cellar architecture,
+    we will perform our first cluster installation and manage different resources
+    on the cluster using different techniques to monitor the current cluster state.
+
+
+    Chapter 3, Hazelcast, digs into the Cellar engine. After the introduction of Hazelcast,
+    we will see different configurations that are useful for Cellar, especially around
+    the network setup.
+
+
+    Chapter 4, Cluster Groups, shows you how to set up cluster groups in Cellar, allowing
+    you to create a subset of nodes and target provisioning.
+
+
+    Chapter 5, Producers, Consumers, Handlers, Listeners, and Synchronizers, introduces
+    you to the Cellar components used for the production, consumption, and transportation
+    of cluster events between different nodes in a cluster.
+
+
+    Chapter 6, The Filtering of Cluster Events, shows you how to filter cluster events,
+    allowing a fine-grained configuration of the resource synchronization in a cluster.
+
+
+    Chapter 7, DOSGi, shows that Cellar is not just a provisioning and synchronization
+    clustering solution by introducing the first runtime clustering feature provided
+    by Cellar: DOSGi. We will see how to use Cellar to implement remote communication
+    between bundles located on different nodes using an example.
+
+
+    Chapter 8, Cellar and Camel, shows the second runtime clustering feature provided
+    by Cellar by leveraging the camel-hazelcast component. Thanks to Cellar and Hazelcast,
+    we will see how to implement remote communication between the Camel routes located
+    on different nodes through an example.
+
+
+    Chapter 9, Roadmap, presents the new ideas and features that will come in the
+    future versions of Cellar. This chapter gives an overview of the Cellar roadmap.'
+  merge: -1
+  img_proc: true
+- pgno: 15
+  md: '# What you need for this book
+
+
+    In this book, the software required is as follows:
+
+
+    +   - Operating systems: Any system that supports Java:
+
+    +     - Windows XP or superior
+
+    +     - Unix (Linux, AIX, Solaris, and so on)
+
+    +   - Java JDK 1.7
+
+    +   - Apache Karaf Cellar 2.3.4
+
+
+    # Who this book is for
+
+
+    This book is for developers and system administrators who want to implement a
+    clustering solution for Apache Karaf. They will master and dominate Cellar from
+    installation to advanced usage. Thanks to the first chapter, even if you are not
+    familiar with Karaf, you will receive a comprehensive look at Apache Karaf before
+    you jump into the details of clustering.
+
+
+    # Conventions
+
+
+    In this book, you will find a number of styles of text that distinguish between
+    different kinds of information. Here are some examples of these styles and an
+    explanation of their meaning.
+
+
+    Code words in text, database table names, folder names, filenames, file extensions,
+    pathnames, dummy URLs, user input, and Twitter handles are shown as follows: "You
+    have to copy the JDBC driver JAR file into the lib/ext folder."
+
+
+    A block of code is set as follows:
+
+
+    ```
+
+    karaf.lock=true
+
+    karaf.lock.class=org.apache.karaf.main.SimpleFileLock
+
+    karaf.lock.dir=/path/to/lockfile
+
+    karaf.lock.delay=10
+
+    ```
+
+
+    Any command-line input or output is written as follows:
+
+
+    ```
+
+    karaf@node1> config:edit my
+
+    karaf@node1> config:propset key other
+
+    karaf@node1> config:update
+
+    ```'
+  merge: -1
+  img_proc: true
+- pgno: 16
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 17
+  md: '# Errata
+
+
+    Although we have taken every care to ensure the accuracy of our content, mistakes
+    do happen. If you find a mistake in one of our books—maybe a mistake in the text
+    or the code—we would be grateful if you would report this to us. By doing so,
+    you can save other readers from frustration and help us improve subsequent versions
+    of this book. If you find any errata, please report them by visiting http://www.packtpub.com/support,
+    selecting your book, clicking on the errata submission form link, and entering
+    the details of your errata. Once your errata are verified, your submission will
+    be accepted and the errata will be uploaded to our website, or added to any list
+    of existing errata, under the Errata section of that title.
+
+
+    # Piracy
+
+
+    Piracy of copyright material on the Internet is an ongoing problem across all
+    media. At Packt, we take the protection of our copyright and licenses very seriously.
+    If you come across any illegal copies of our works, in any form, on the Internet,
+    please provide us with the location address or website name immediately so that
+    we can pursue a remedy.
+
+
+    Please contact us at copyright@packtpub.com with a link to the suspected pirated
+    material.
+
+
+    We appreciate your help in protecting our authors, and our ability to bring you
+    valuable content.
+
+
+    # Questions
+
+
+    You can contact us at questions@packtpub.com if you are having a problem with
+    any aspect of the book, and we will do our best to address it.'
+  merge: -1
+  img_proc: true
+- pgno: 18
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 19
+  md: '# Apache Karaf – Provisioning
+
+    and Clusters
+
+
+    **Open Software Gateway initiative (OSGi)** has been "hidden" for a long time
+    and reserved to middleware such as IDE or application servers. However, OSGi can
+    be applied in a lot of different contexts and applications. An OSGi application
+    needs an environment to run. Apache Karaf is a lightweight, powerful, and enterprise-ready
+    OSGi container where you can deploy your applications. On a production system,
+    especially a mission-critical platform, it makes sense to be able to manage a
+    set of Apache Karaf containers and to spread the deployment (or provisioning)
+    of applications to these different instances.
+
+
+    In this chapter, we will cover the following topics:
+
+
+    +   - What is OSGi and what are its key features?
+
+    +   - The role of the OSGi framework
+
+    +   - The OSGi base artifact – the OSGi bundle and the concept of dependencies
+    between bundles
+
+    +   - The Apache Karaf OSGi container and the provisioning of applications in
+    the container
+
+    +   - How to manage the provisioning on multiple Karaf instances?'
+  merge: -1
+  img_proc: true
+- pgno: 20
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 21
+  md: '# The OSGi bundle
+
+
+    In OSGi, the components are packaged as OSGi bundles. An OSGi bundle is a simple
+    Java JAR (Java ARchive) file that contains additional metadata used by the OSGi
+    framework. These metadata are stored in the manifest file of the JAR file.
+
+
+    The following is the metadata:
+
+
+    ```
+
+    Manifest-Version: 1.0
+
+    Bundle-ManifestVersion: 2
+
+    Bundle-Version: 2.1.6
+
+    Bundle-Name: My Logger
+
+    Bundle-SymbolicName: my_logger
+
+    Export-Package: org.my.osgi.logger;version=2.1
+
+    Import-Package: org.apache.log4j;version="[1.2,2)"
+
+    Private-Package: org.my.osgi.logger.internal
+
+    ```
+
+
+    We can see that OSGi is very descriptive and verbose. We explicitly describe all
+    the OSGi metadata (headers), including the package that we export or import with
+    a specified version or version range.
+
+
+    As the OSGi headers are defined in the META-INF/MANIFEST file contained in the
+    JAR file, it means that an OSGi bundle is a regular JAR file that you can use
+    outside of OSGi.
+
+
+    The life cycle layer of the OSGi framework is an API to install, start, stop,
+    update, and uninstall OSGi bundles.
+
+
+    # Dependency between bundles
+
+
+    An OSGi bundle can use other bundles from the OSGi framework in two ways.
+
+
+    The first way is static code sharing. When we say that this bundle exports packages,
+    it means a bundle can expose some code for other bundles. On the other hand, when
+    we say that this bundle imports packages, it means a bundle can use code from
+    other bundles.
+
+
+    For instance, we have the bundle A (packaged as the bundleA.jar file) with the
+    following META-INF/MANIFEST file:
+
+
+    ```
+
+    Manifest-Version: 1.0
+
+    Bundle-ManifestVersion: 2
+
+    Bundle-Version: 1.0.0
+
+    Bundle-Name: Bundle A
+
+    Bundle-SymbolicName: bundle_a
+
+    Export-Package: com.bundle.a;version=1.0
+
+    ```'
+  merge: -1
+  img_proc: true
+- pgno: 22
+  md: 'We can see that the bundle A exposes (exports) the com.bundle.a package with
+    Version 1.0. On the other hand, we have the bundle B (packaged as the bundleB.jar
+    file) with the following META-INF/MANIFEST file:
+
+
+    ```
+
+    Manifest-Version: 1.0
+
+    Bundle-ManifestVersion: 2
+
+    Bundle-Version: 2.0.0
+
+    Bundle-Name: Bundle B
+
+    Bundle-SymbolicName: bundle_b
+
+    Import-Package: com.bundle.a;version="[1.0,2)"
+
+    ```
+
+
+    We can see that the bundle B imports (so, it will use) the com.bundle.a package
+    in any version between 1.0 and 2 (excluded). So, this means that the OSGi framework
+    will wire the bundles, as the bundle A provides the package used by the bundle
+    B (so, the constraint is resolved).
+
+
+    This mechanism is similar to regular Java applications, but instead of embedding
+    the required JAR files in your application, you can just declare the expected
+    code. The OSGi framework is responsible for the link between the different bundles;
+    it''s done by the modules layer of the OSGi framework. This approach is interesting
+    when you want to use code which is not natively designed for OSGi. It''s a step
+    forward for the reuse of components. However, it provides a limited answer to
+    the purposes seen earlier in the chapter, especially visibility and discovery.
+
+
+    The second way in which an OSGi bundle can use other bundles from the OSGi framework
+    is more interesting. It uses Service-Oriented Architecture (SOA) for low-level
+    components. Here, more than exposing the code, an OSGi bundle exposes a OSGi service.
+    On the other hand, another bundle can use an OSGi service. The services layer
+    of the OSGi framework provides a service registry and all the plumbing mechanisms
+    to wire the services.
+
+
+    The OSGi services provide a very dynamic system, offering a Publish-Find-Bind
+    model for the bundles.
+
+
+    ![](img/86f349f6a758f2c3088dbeb4d35dcaca_22_0.png)
+
+
+    # Downloading the example code
+
+
+    You can download the example code files for all Packt books you have purchased
+    from your account at http://www.packtpub.com. If you purchased this book elsewhere,
+    you can visit http://www.packtpub.com/support and register to have the files e-mailed
+    directly to you.'
+  merge: -1
+  img_proc: true
+- pgno: 23
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 24
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 25
+  md: '+   - Apache Karaf is an enterprise-ready container and provides features dedicated
+    to enterprise. The following enterprise features are not installed by default
+    (to minimize the size and footprint of the container by default), but a simple
+    command allows you to extend the container with enterprise functionalities:
+
+    +     - WebContainer allows you to deploy a **Web Application Bundle (WAB)** or
+    WAR file. Apache Karaf is a complete HTTP server with JSP/servlet support, thanks
+    to Pax Web.
+
+    +     - **Java Naming and Directory Interface (JNDI)** adds naming context support
+    in Apache Karaf. You can bind an OSGi service to a JNDI name and look up these
+    services using the name, thanks to Aries and Xbean naming.
+
+    +     - **Java Transaction API (JTA)** allows you to add a transaction engine
+    (exposed as an OSGi service) in Apache Karaf, thanks to Aries JTA.
+
+    +     - **Java Persistence API (JPA)** allows you to add a persistence adapter
+    (exposed as an OSGi service) in Apache Karaf, thanks to Aries JPA. Ready-to-use
+    persistence engines can also be installed very easily (especially Apache OpenJPA
+    and Hibernate).
+
+    +     - **Java Database Connectivity (JDBC)** or **Java Message Service (JMS)**
+    are convenient features, allowing you to easily create JDBC DataSources or JMS
+    ConnectionFactories and use them directly in the shell console.
+
+    +   - If you can completely administrate Apache Karaf using the shell commands
+    and the JMX MBeans, you can also install Web Console. This Web Console uses the
+    Felix Web Console and allows you to manage Karaf with a simple browser.
+
+
+    Thanks to these features, Apache Karaf is a complete, rich, and enterprise-ready
+    container. We can consider Apache Karaf as an OSGi application server.
+
+
+    # Provisioning in Apache Karaf
+
+
+    In addition, Apache Karaf provides three core functionalities that can be used
+    both internally in Apache Karaf or can be used by external applications deployed
+    in the container:
+
+
+    +   - OSGi bundle management
+
+    +   - Configuration management
+
+    +   - Provisioning using Karaf Features'
+  merge: -1
+  img_proc: true
+- pgno: 26
+  md: 'As we learned earlier, the default artifact in OSGi is the bundle. Again, it''s
+    a regular JAR file with additional OSGi metadata in the MANIFEST file. The bundles
+    are directly managed by the OSGi framework, but for convenience, Apache Karaf
+    wraps the usage of bundles in specific commands and MBeans.
+
+
+    A bundle has a specific life cycle. Especially when you install a bundle, the
+    OSGi framework tries to resolve all the dependencies required by your bundle to
+    promote it in a resolved state. The following is the life cycle of a bundle:
+
+
+    ![](img/86f349f6a758f2c3088dbeb4d35dcaca_26_0.png)
+
+
+    The OSGi framework checks whether other bundles provide the packages imported
+    by your bundle. The equivalent action for the OSGi services is performed when
+    you start your bundle. It means that a bundle may require a lot of other bundles
+    to start and so on for the transitive bundles.
+
+
+    Moreover, a bundle may require configuration to work. Apache Karaf proposes a
+    very convenient way to manage the configurations. The etc folder is periodically
+    monitored to discover new configuration files and load the corresponding configurations.
+    On the other hand, you have dedicated shell commands and MBeans to manage configurations
+    (and configuration files). If a bundle requires a configuration to work, you first
+    have to create a configuration file in the etc folder (with the expected filename)
+    or use the `config:*` shell command or ConfigMBean to create the configuration.
+
+
+    Considering that an OSGi application is a set of bundles, the installation of
+    an OSGi application can be long and painful by hand.'
+  merge: -1
+  img_proc: true
+- pgno: 27
+  md: "The deployment of an OSGi application is called provisioning as it gathers\
+    \ the following:\n\n+   - The installation of a set of bundles, including transitive\
+    \ bundles\n+   - The installation of a set of configurations required by these\
+    \ bundles\n\n# OBR\n\nOSGi Bundle Repository (OBR) can be the first option to\
+    \ be considered in order to solve this problem. Apache Karaf can connect to the\
+    \ OBR server. The OBR server stores all the metadata for all the bundles, which\
+    \ includes the capabilities, packages, and services provided by a bundle and the\
+    \ requirements, packages, and services needed by a bundle. When you install a\
+    \ bundle via OBR, the OBR server checks the requirement of the installed bundle\
+    \ and finds the bundles that provide the capabilities matching the requirements.\
+    \ The OBR server can automatically install the bundles required for the first\
+    \ one.\n\n# Apache Karaf Features\n\nAs a lightweight and standalone OSGi container,\
+    \ Apache Karaf proposes another way to provision applications. Apache Karaf Features\
+    \ is the default provisioning solution in Apache Karaf.\n\nKaraf Features describes\
+    \ an application, declaring the following aspects:\n\n+   - The bundles in the\
+    \ application\n+   - Other Karaf features required by the application\n+   - Configurations\
+    \ required by the application\n\nA Karaf Feature repository is a simple XML file\
+    \ describing a set of Karaf features.\nA Karaf Feature repository looks like the\
+    \ following:\n\n```\n<features name=\"my-features\">\n\n    <feature name=\"core-feature\"\
+    \ version=\"1.0\">\n        <bundle>mvn:bundleA_groupId/bundleA_artifactId/bundleA_version</bundle>\n\
+    \        <bundle>file://path/to/bundleB</bundle>\n        <bundle>http://path/to/bundleC</bundle>\n\
+    \    </feature>\n\n    <feature name=\"extend-feature\" version=\"1.0\">\n   \
+    \     <feature version=\"[1,2)\">core-feature</feature>\n\n```"
+  merge: -1
+  img_proc: true
+- pgno: 28
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 29
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 30
+  md: 'In order to enable the filesystem locking system, you have to update the etc/system.properties
+    configuration file as follows:
+
+
+    ```
+
+    karaf.lock=true
+
+    karaf.lock.class=org.apache.karaf.main.SimpleFileLock
+
+    karaf.lock.dir=/path/to/lockfile
+
+    karaf.lock.delay=10
+
+    ```
+
+
+    When a shared filesystem is not an option (for security or infrastructure reasons,
+    for instance), you can use a database to store the lock. With database locking,
+    Apache Karaf uses a lock on a table (the KARAF_LOCK table by default). Any database
+    that supports JDBC can be used.
+
+
+    The configuration is also defined in the etc/system.properties configuration file
+    as follows:
+
+
+    ```
+
+    karaf.lock=true
+
+    karaf.lock.class=org.apache.karaf.main.DefaultJDBCLock
+
+    karaf.lock.level=50
+
+    karaf.lock.delay=10
+
+    karaf.lock.jdbc.url=jdbc:derby://dbserver:1527/sample
+
+    karaf.lock.jdbc.driver=org.apache.derby.jdbc.ClientDriver
+
+    karaf.lock.jdbc.user=user
+
+    karaf.lock.jdbc.password=password
+
+    karaf.lock.jdbc.table=KARAF_LOCK
+
+    karaf.lock.jdbc.clustername=karaf
+
+    karaf.lock.jdbc.timeout=30
+
+    ```
+
+
+    You have to copy the JDBC driver JAR file into the lib/ext folder. Apache Karaf
+    provides the JDBC lock implementation dedicated to some specific databases (DefaultJDBCLock
+    is the generic one, OracleJDBCLock for Oracle databases, DerbyJDBCLock for Derby
+    databases, MySQLJDBCLock for MySQL databases, PostgreSQLJDBCLock for PostgreSQL
+    databases, and SQLServerJDBCLock for Microsoft SQLServer databases).
+
+
+    The Apache Karaf locking mechanism provides a good solution for high availability.
+    However, only one Apache Karaf instance is active (the master); all other instances
+    are inactive (standby/master).
+
+
+    In order to provide both high availability and performance scalability, having
+    multiple active Apache Karaf instances is a great advantage.'
+  merge: -1
+  img_proc: true
+- pgno: 31
+  md: '# Provisioning clusters
+
+
+    Imagine you have a farm of Apache Karaf containers, each on a different machine.
+    If you want to provision an OSGi application on the container instances, you have
+    to connect on each container and install the features.
+
+
+    This means that you have to perform the following tasks:
+
+
+    +   - Log on on each container in order to perform the same action again and again
+
+    +   - Eventually, adapt the configuration depending on each local instance (port
+    number, file path, and so on)
+
+    +   - Add new instances, which will require the same action again
+
+
+    Basically, this means a lot of human actions with a potential risk of error. This
+    is where a provisioning cluster helps.
+
+
+    The purpose of a provisioning cluster is to keep multiple container instances
+    synchronized. For Apache Karaf, it means that a change in the status of a resource
+    will be broadcasted to all the containers'' members of the same cluster.
+
+
+    A resource can be a bundle, feature, configuration, or any kind of resource local
+    to a node. This means that local actions will send an event to update the other
+    members of the cluster.
+
+
+    On the other hand, it''s also possible to create a cluster event that is sent
+    to all the members to update them.
+
+
+    Basically, this means that a provisioning cluster performs the following tasks:
+
+
+    +   - **Creates event**: This event can be created due to a local change or by
+    hand
+
+    +   - **Broadcasts event**: This event is sent to the members of the cluster
+
+
+    If provisioning is the first purpose of a provisioning cluster, it doesn''t mean
+    that it can''t provide additional features useful in a cluster topology. For instance,
+    centralized logs, load balancers, session replication, and so on are interesting
+    features that can be provided on top of a provisioning cluster. In the next chapters,
+    we will see Karaf Cellar as a provisioning cluster solution.'
+  merge: -1
+  img_proc: true
+- pgno: 32
+  md: '# Summary
+
+
+    In this chapter, we reviewed the goals of OSGi and some core components (bundles,
+    manifests, and so on). We also quickly introduced the Apache Karaf OSGi container,
+    describing the different provided features. Finally, we dealt with the different
+    ways to use multiple Apache Karaf instances altogether: an active/passive way
+    (failover) or active/active way (provisioning cluster).
+
+
+    The next chapter will introduce the Apache Karaf Cellar provisioning cluster.'
+  merge: -1
+  img_proc: true
+- pgno: 33
+  md: '# 2
+
+    Apache Karaf Cellar
+
+
+    Apache Karaf Cellar is a provisioning cluster solution for Apache Karaf.
+
+
+    It''s an Apache Karaf subproject released under the Apache 2 license. To know
+    more, please visit http://karaf.apache.org/index/subprojects/cellar.html.
+
+
+    Apache Karaf Cellar allows you to manage a farm of Apache Karaf instances spread
+    over different machines and networks.
+
+
+    As a provisioning cluster solution, Apache Karaf Cellar synchronizes the states
+    of the different instances. By synchronization, we mean that an action on a resource
+    from a node will result in a notification to change for the other nodes.
+
+
+    The following topics will be covered in this chapter:
+
+
+    +   - Cluster topologies
+
+    +   - Apache Karaf Cellar architecture
+
+    +   - Apache Karaf Cellar installation
+
+    +   - Cluster resources
+
+
+    # Cluster topologies
+
+
+    When we talk about provisioning clusters, it means that we have to store and share
+    the status of resources between different instances.
+
+
+    We name the node as an instance member of the provisioning cluster.
+
+
+    We can see two approaches to share the status of the resources.'
+  merge: -1
+  img_proc: true
+- pgno: 34
+  md: 'The first approach is to use a central component to store the status. This
+    central component is named `cluster manager`. It''s responsible for storing the
+    data shared between the nodes and the communication between the nodes. Have a
+    look at the following diagram:
+
+
+    ![](img/86f349f6a758f2c3088dbeb4d35dcaca_34_0.png)
+
+
+    All nodes are connected to a central component storing the status of the resources.
+    For instance, this component could be Apache ZooKeeper.
+
+
+    The advantage of this approach is that the provisioning cluster has no impact
+    on the nodes; a node just communicates with the central component.
+
+
+    The cluster manager is not just a simple shared storage, as it has to deal with
+    the communication and transport of information between the nodes.
+
+
+    A drawback of this approach is that the cluster manager is a single point of failure.
+
+
+    In order to guarantee a reliable cluster and high availability, the cluster manager
+    itself should be clustered: we have to provide and install a farm of cluster managers.
+
+
+    This means that you have two layers of clustering, as follows:
+
+
+    +   - The actual cluster between the nodes
+
+    +   - The **Cluster Manager** cluster just to guarantee high availability'
+  merge: -1
+  img_proc: true
+- pgno: 35
+  md: 'In Apache Karaf Cellar, a different approach has been chosen. The following
+    diagram will give you a brief idea of this approach:
+
+
+    ![](img/86f349f6a758f2c3088dbeb4d35dcaca_35_0.png)
+
+
+    Each node embeds its own cluster component, which communicates with the other
+    nodes.
+
+
+    The purposes of the cluster component are as follows:
+
+
+    +   - It is a local representation of the resource''s status of the cluster. The
+    resource''s status is replicated and distributed on every cluster component.
+
+    +   - It manages the discovery and visibility of the nodes and transports information
+    from one node to the others. It''s a **cluster event** model.
+
+
+    This means that changing the status of a resource will trigger two actions, and
+    they are:
+
+
+    +   - The `distributed` status is updated. This means that the cluster component
+    on each node is updated.
+
+    +   - The cluster component from the node sends an event to the other nodes, informing
+    them that a resource has changed and they need to update their local status.'
+  merge: -1
+  img_proc: true
+- pgno: 36
+  md: 'Thanks to this approach, Apache Karaf Cellar provides the following:
+
+
+    +   - It is a very reliable solution. We just need one node active to have a valid
+    cluster. The cluster is fault-tolerant by itself.
+
+    +   - A distributed status on the cluster with a cluster event synchronization
+    mechanism.
+
+
+    # Apache Karaf Cellar architecture
+
+
+    Apache Karaf Cellar provides an API to implement the cluster component. The default
+    cluster component implementation is powered by Hazelcast.
+
+
+    Hazelcast is a clustering and scalable data distribution solution. It provides
+    features that exactly match the needs for the cluster component, especially the
+    following:
+
+
+    +   - A distributed storage implementation. This is where Apache Karaf Cellar
+    will store the resources'' status.
+
+    +   - A distributed topic for publish/subscribe messaging. Apache Karaf Cellar
+    will use this distributed topic to implement cluster events.
+
+
+    These are the two functionalities we are looking for in our cluster component.
+
+
+    However, Hazelcast also provides additional features. Thanks to Hazelcast, Apache
+    Karaf Cellar supports different ways to discover the nodes of the cluster: static
+    IP address definition, multicast, and whiteboard registration. The following diagram
+    shows the modules provided by Karaf:
+
+
+    ![](img/86f349f6a758f2c3088dbeb4d35dcaca_36_0.png)'
+  merge: -1
+  img_proc: true
+- pgno: 37
+  md: 'The first thing to do is install Cellar in the different Karaf containers that
+    have been targeted to be members of the cluster (the nodes).
+
+
+    As Apache Karaf Cellar is packaged as a Karaf Feature, we have to install the
+    Cellar feature. This means that Cellar is a set of bundles and configuration files.
+
+
+    Installing the Apache Karaf Cellar feature provides the following modules:
+
+
+    +   - **Hazelcast**: Apache Karaf Cellar directly leverages Hazelcast, and just
+    wraps some features (such as node discovery).
+
+    +   - **Cellar core**: By default, Cellar works with Hazelcast. However, it''s
+    possible to change the implementation (for instance, it is possible to replace
+    Hazelcast with Apache ZooKeeper, Apache ActiveMQ, or a custom implementation).
+    The Cellar Core module provides the API used by the other modules. Cellar Core
+    delegates API usage to the actual implementation. Most importantly, the API provides
+    operations to manipulate the resource''s status storage on the cluster.
+
+    +   - **Cluster event producer**: This module is part of the messaging layer.
+    The producer is responsible for creating a cluster event and broadcasting this
+    event to the other nodes. The producer actually creates a message (the cluster
+    event) and sends it to a Hazelcast distributed topic.
+
+    +   - **Cluster event consumer and handlers**: On the other hand, the cluster
+    event is received by the cluster event consumer. The cluster event consumer is
+    actually a subscriber on the Hazelcast distributed topic. Thanks to the cluster
+    event producer and consumer, we have a very dynamic system: when a new node joins
+    the cluster, its cluster event consumer subscribes to the topic. We have a plug-and-play
+    solution. However, the cluster event consumer doesn''t handle the cluster event
+    itself. It delegates the event processing to a cluster event handler. We have
+    one cluster event handler per kind of resource. Thanks to this approach, it''s
+    possible to easily add new resources managed in the cluster. The cluster event
+    producer and consumer are generic; the cluster event handlers are dedicated to
+    the resource management.
+
+    +   - **Resources synchronizers**: This module is responsible for the synchronization
+    of a resource local to a node, with the status of this resource on the cluster.
+    The synchronizer is called when installing Apache Karaf Cellar and when the node
+    joins the cluster.
+
+    +   - **Resources listeners**: This module listens for local resource changes,
+    creates cluster events, and sends them to the other nodes in the cluster.
+
+    +   - **Commands, MBeans, WebConsole plugin**: These modules interact with the
+    cluster, check the status of the nodes, check the status of the resources, and
+    so on. Apache Karaf Cellar provides a set of shell commands and operations on
+    MBean. An optional feature also provides a WebConsole plugin, which extends the
+    Apache Karaf WebConsole with cluster views.'
+  merge: -1
+  img_proc: true
+- pgno: 38
+  md: "# Apache Karaf Cellar installation and first commands\n\nApache Karaf Cellar\
+    \ is provided as a Karaf feature.\n\nThroughout this book, we will use the following\
+    \ installation:\n\n+   - Node 1 is a server running with the 192.168.1.1 network\
+    \ address. It hosts an Apache Karaf 2.3.3 instance running in the /opt/apache-karaf\
+    \ folder.\n+   - Node 2 is another server running with the 192.168.1.2 network\
+    \ address. It hosts an Apache Karaf 2.3.3 instance running in the /opt/apache-karaf\
+    \ folder.\n+   - Both servers have Internet access.\n\nWe connect to the Apache\
+    \ Karaf instance on node 1 (using SSH or client) to install the Apache Karaf Cellar\
+    \ feature, as follows:\n\n```\nkaraf@node1> features:addurl mvn:org.apache.karaf.cellar/apache-karaf-cellar/2.3.1/xml/features\n\
+    karaf@node1> features:install cellar\n```\n\nIt's done! Apache Karaf Cellar is\
+    \ installed and operating on node1.\n\nWe can now install Apache Karaf Cellar\
+    \ on node 2. We connect on node 2 (using SSH or client) and install the Apache\
+    \ Karaf Cellar feature, as follows:\n\n```\nkaraf@node2> features:addurl mvn:org.apache.karaf.cellar/apache-karaf-cellar/2.3.1/xml/features\n\
+    karaf@node2> features:install cellar\n```\n\nWe now have new shell commands dedicated\
+    \ to the cluster. For instance, it's possible to see the nodes in the cluster\
+    \ using the cluster:node-list command, as follows:\n\n```\nkaraf@node1> cluster:node-list\n\
+    \  ID                 Host Name       Port\n  [192.168.1.2:5702 ] [192.168.1.2]\
+    \ [ 5702]\n* [192.168.1.1:5701 ] [192.168.1.1] [ 5701]\n```\n\nWe can now see\
+    \ our two servers. The * indicates the local node (where we are connected and\
+    \ will execute commands from)."
+  merge: -1
+  img_proc: true
+- pgno: 39
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 40
+  md: '[6  ] [Active] Apache Karaf :: Management :: MBeans :: System (2.3.3)
+
+
+    [7  ] [Active] Apache Aries Blueprint Core (1.1.0)
+
+
+    [8  ] [Active] Apache Karaf :: Shell :: Development Commands (2.3.3)
+
+
+    [9  ] [Active] Apache Karaf :: Features :: Command (2.3.3)
+
+
+    [10 ] [Active] Apache Karaf :: Diagnostic :: Common (2.3.3)
+
+
+    [11 ] [Active] Apache Karaf :: Admin :: Management (2.3.3)
+
+
+    The default argument is the Cellar cluster group. Cellar uses a default cluster
+    group named default. We will see more details about cluster groups in another
+    chapter of this book.
+
+
+    We can install a bundle on the cluster using the cluster:bundle-install command.
+
+
+    For instance, we install the commons-lang bundle on the cluster (from node 1)
+    as follows:
+
+
+    ```
+
+    karaf@node1> cluster:bundle-install default mvn:commons-lang/
+
+    commons-lang/2.6
+
+    ```
+
+
+    This command creates and sends a cluster event to all nodes (including the local
+    one) to install the commons-lang bundle. Now, if we check the commons-lang bundle
+    status on the cluster using the following code, we can see that it''s installed:
+
+
+    ```
+
+    karaf@node1> cluster:bundle-list -l default|grep -i commons-lang
+
+    [60  ] [Installed ] mvn:commons-lang/commons-lang/2.6
+
+    ```
+
+
+    ![](img/86f349f6a758f2c3088dbeb4d35dcaca_40_0.png)
+
+
+    > The -l option displays the location of the bundles instead of their name.
+
+
+    We can check on node 1 and node 2 that the commons-lang bundle is installed locally
+    to each node, as follows:
+
+
+    ```
+
+    karaf@node1> la -l|grep -i commons-lang
+
+    [ 63] [Installed ] [      ] [  80] mvn:commons-lang/
+
+    commons-lang/2.6
+
+    ```
+
+
+    ```
+
+    karaf@node2> la -l|grep -i commons-lang
+
+    [ 63] [Installed ] [      ] [  80] mvn:commons-lang/
+
+    commons-lang/2.6
+
+    ```'
+  merge: -1
+  img_proc: true
+- pgno: 41
+  md: 'Our two nodes are in sync. The commons-lang bundle has been installed on both.
+
+
+    Now, we are going to start the commons-lang bundle. But, this time, instead of
+    using the cluster:bundle-start command, we use the local osgi:start command on
+    node 1. As we just installed the bundle, the bundle is not yet started. That''s
+    why we have to start the bundle now. Run the following command:
+
+
+    ```
+
+    karaf@node1> osgi:start 63
+
+    ```
+
+
+    Now, running the following command, we can see the commons-lang bundle started
+    on node 1:
+
+
+    ```
+
+    karaf@node1> la -l|grep -i commons-lang
+
+    [ 63] [Active ] [       ] [  80] mvn:commons-lang/commons-lang/2.6
+
+    ```
+
+
+    Thanks to the Cellar bundle listener, this local change has been caught by Cellar
+    and broadcasted to the other nodes. So, this means that the commons-lang bundle
+    should now be started on node 2 as well. Run the following command:
+
+
+    ```
+
+    karaf@node2> la -l|grep -i commons-lang
+
+    [ 63] [Active ] [       ] [  80] mvn:commons-lang/
+
+    commons-lang/2.6
+
+    ```
+
+
+    Here we are again, and our two nodes are still in sync.
+
+
+    To summarize, Apache Karaf Cellar supports all actions that you may perform on
+    a bundle (install, start, stop, uninstall, refresh, and so on).
+
+
+    By default, all local actions are spread to the cluster thanks to the Cellar bundle
+    listeners.
+
+
+    You can also use dedicated cluster:bundle-* commands.'
+  merge: -1
+  img_proc: true
+- pgno: 42
+  md: '# Apache Karaf Cellar
+
+
+    In addition to the `cluster:bundle-*` commands, you can also use the Cellar BundleMBean
+    over JMX. This MBean allows you to manipulate the bundles on the cluster with
+    any kind of JMX client (such as JConsole), as shown in the following screenshot:
+
+
+    ![](img/86f349f6a758f2c3088dbeb4d35dcaca_42_0.png)
+
+
+    # Karaf features
+
+
+    Apache Karaf Cellar is also able to sync Karaf features.
+
+
+    The Cellar features listener spreads all local actions to a feature on the cluster,
+    just as for a bundle.
+
+
+    You also have the `cluster:feature-*` shell commands to manipulate the Karaf features
+    on the cluster.'
+  merge: -1
+  img_proc: true
+- pgno: 43
+  md: 'For instance, it''s possible to see the Karaf Features repository URLs on the
+    cluster with the help of the following commands:
+
+
+    ```
+
+    karaf@node1> cluster:feature-url-list default
+
+    mvn:org.apache.karaf.cellar/apache-karaf-cellar/2.3.1/xml/features
+
+    mvn:org.jclouds.karaf/jclouds-karaf/1.4.0/xml/features
+
+    mvn:org.apache.karaf.assemblies.features/enterprise/2.3.3/xml/features
+
+    mvn:org.apache.karaf.assemblies.features/standard/2.3.3/xml/features
+
+    ```
+
+
+    The status of the features can be checked using the following commands:
+
+
+    ```
+
+    karaf@node1> cluster:feature-list default|more
+
+    Features in cluster group default
+
+    Status      Version      Name
+
+    [uninstalled] [3.0.7.RELEASE ] spring
+
+    [uninstalled] [2.3.1       ] cellar-eventadmin
+
+    [uninstalled] [2.3.3       ] scr
+
+    [uninstalled] [1.4.0       ] jclouds-cloudfiles-uk
+
+    [uninstalled] [1.4.0       ] jclouds-services
+
+    [uninstalled] [1.4.0       ] jclouds-aws-s3
+
+    [uninstalled] [1.4.0       ] jclouds-cloudserver-us
+
+    ```
+
+
+    Note that we can see the local status and cluster status of the eventadmin feature
+    as follows:
+
+
+    ```
+
+    karaf@node1> features:list|grep -i eventadmin
+
+    [uninstalled] [2.3.3       ] eventadmin
+
+    karaf-2.3.3      OSGi Event Admin service specification for event-based communication
+
+    karaf@node1> cluster:feature-list default|grep -i eventadmin
+
+    [uninstalled] [2.3.3       ] eventadmin
+
+    ```
+
+
+    Now we want to install the eventadmin feature on the cluster using the cluster:feature-install
+    command. We shall do so with the following command:
+
+
+    ```
+
+    karaf@node1> cluster:feature-install default eventadmin
+
+    ```
+
+
+    We can check the status of the eventadmin feature on the cluster as follows:
+
+
+    ```
+
+    karaf@node1> cluster:feature-list default|grep -i eventadmin
+
+    [installed  ] [2.3.3       ] eventadmin
+
+    ```'
+  merge: -1
+  img_proc: true
+- pgno: 44
+  md: 'We can now see that the eventadmin feature is installed. Let''s check whether
+    this is the case locally on node 1 and node 2 with the following commands:
+
+
+    ```
+
+    karaf@node1> features:list|grep -i eventadmin
+
+    [installed  ] [2.3.3      ] eventadmin                 karaf-2.3.3
+
+    OSGi Event Admin service specification for event-based communication
+
+    ```
+
+
+    ```
+
+    karaf@node2> features:list|grep -i eventadmin
+
+    [installed  ] [2.3.3      ] eventadmin                 karaf-2.3.3
+
+    OSGi Event Admin service specification for event-based communication
+
+    ```
+
+
+    Our two nodes are in sync and the eventadmin feature is installed on both.
+
+
+    Now we want to uninstall the eventadmin feature, but instead of using the dedicated
+    cluster:feature-uninstall command, we use the local features:uninstall command
+    on node 1, as follows:
+
+
+    ```
+
+    karaf@node1> features:uninstall eventadmin
+
+    ```
+
+
+    Thanks to the Cellar features listener, this local change is spread across the
+    cluster. We can check the status of the eventadmin feature on the cluster, as
+    follows:
+
+
+    ```
+
+    karaf@node1> cluster:feature-list default|grep -i eventadmin
+
+    [uninstalled] [2.3.3      ] eventadmin
+
+    ```
+
+
+    And locally on node 2 as follows:
+
+
+    ```
+
+    karaf@node2> features:list|grep -i eventadmin
+
+    [uninstalled] [2.3.3      ] eventadmin
+
+    karaf-2.3.3        OSGi Event Admin service specification for event-based communication
+
+    ```
+
+
+    As we can see, node 1 and 2 are still in sync. Apache Karaf Cellar provides a
+    Cellar FeatureMBean, allowing you to perform cluster operations with any kind
+    of JMX client (such as JConsole), just as for a bundle, as shown in the following
+    screenshot:'
+  merge: -1
+  img_proc: true
+- pgno: 45
+  md: "![](img/86f349f6a758f2c3088dbeb4d35dcaca_45_0.png)\n\n# Configuration\n\nIn\
+    \ addition to bundles and features, Apache Karaf Cellar also supports the synchronization\
+    \ and distribution of configurations.\n\nYou can see the list of configurations\
+    \ on the cluster using the cluster:config-list command as follows:\n\n```\nkaraf@node1>\
+    \ cluster:config-list default\n------------------------------------------------------------\n\
+    Pid:          org.apache.karaf.features.repos\nProperties:\n    service.pid =\
+    \ org.apache.karaf.features.repos\n    openejb = org.apache.openejb:openejb-feature:xml:features:\
+    \ (0,]\n```"
+  merge: -1
+  img_proc: true
+- pgno: 46
+  md: "```\njclouds = org.jclouds.karaf:jclouds-karaf:xml:features:(0,]\ncamel = org.apache.camel.karaf:apache-camel:xml:features:(0,]\n\
+    cxf-dosgi = org.apache.cxf.dosgi:cxf-dosgi:xml:features:(0,]\nwicket = org.ops4j.pax.wicket:features:xml:features:(0,]\n\
+    ```\n\nWe create the my configuration containing the key property by using the\
+    \ following command line:\n\n```\nkaraf@node1> cluster:config-propset default\
+    \ my key value\n```\n\nAnd see the configuration on the cluster using the following\
+    \ command:\n\n```\nkaraf@node1> cluster:config-list default\n...\nPid:       \
+    \ my\nProperties:\n    key = value\n    service.pid = my\n```\n\nWe can check\
+    \ if this configuration has been created by Cellar locally to node 1 and 2 by\
+    \ using the following command:\n\n```\nkaraf@node1> config:list \"(service.pid=my)\"\
+    \n------------------------------------------------------------\nPid:        my\n\
+    BundleLocation: null\nProperties:\n    service.pid = my\n    key = value\n```\n\
+    \n```\nkaraf@node2> config:list \"(service.pid=my)\"\n------------------------------------------------------------\n\
+    Pid:        my\nBundleLocation: null\nProperties:\n    service.pid = my\n    key\
+    \ = value\n```"
+  merge: -1
+  img_proc: true
+- pgno: 47
+  md: "Again, both the nodes are in sync. The my configuration has been replicated\
+    \ on nodes 1 and 2.\n\nNow we want to change the value to other for the key property.\
+    \ But instead of using the cluster:config-propset command, we are directly using\
+    \ the local Karaf native config:* commands on node 1 as follows:\n\n```\nkaraf@node1>\
+    \ config:edit my\nkaraf@node1> config:propset key other\nkaraf@node1> config:update\n\
+    ```\n\nThanks to the Cellar Configuration listener, the status of the my configuration\
+    \ has been updated on the cluster:\n\n```\nkaraf@node1> cluster:config-list default\n\
+    ...\nPid:          my\nProperties:\n    key = other\n    service.pid = my\n```\n\
+    \nWe can check that \"my\"configuration has been updated on node2 as well:\n\n\
+    ```\nkaraf@node2> config:list \"(service.pid=my)\"\n-------------------------------------------------\n\
+    Pid:          my\nBundleLocation: null\nProperties:\n    service.pid = my\n  \
+    \  key = other\n```\n\nAgain, both the nodes are in sync."
+  merge: -1
+  img_proc: true
+- pgno: 48
+  md: '# Apache Karaf Cellar
+
+
+    Apache Karaf Cellar provides a Cellar ConfigMBean, allowing you to manipulate
+    the cluster with any kind of JMX clients (such as JConsole), just as for bundles
+    and features, as shown in the following screenshot:
+
+
+    ![](img/86f349f6a758f2c3088dbeb4d35dcaca_48_0.png)
+
+
+    # Optional resources
+
+
+    In addition to the default bundles, features, and configurations'' resources support,
+    Apache Karaf Cellar provides some optional resources support.
+
+
+    To enable the support of these resources, you have to install the following dedicated
+    Cellar features:
+
+
+    +   - The `cellar-eventadmin` feature that adds cluster support to the eventadmin
+    feature. This means that all local OSGi events on a node are broadcasted to the
+    other nodes.'
+  merge: -1
+  img_proc: true
+- pgno: 49
+  md: '+   - The `cellar-obr` feature that adds cluster support to the OBR service.
+    This means that the OBR repositories'' URLs are distributed to all nodes in the
+    cluster. You can also use dedicated shell commands (and MBean operations) to install
+    bundles using the OBR service.
+
+
+    # The Karaf WebConsole plugin
+
+
+    Optionally, you can install the `cellar-webconsole` feature. This feature installs
+    and registers a plugin to the Karaf WebConsole, displaying the available Cellar
+    cluster groups. When installing the WebConsole feature, Karaf provides a URL (by
+    default, the URL is `http://localhost:8181/system/console`) where you can manage
+    the container using a simple browser. The webconsole feature is secured using
+    a login and password (`karaf/karaf` by default). The `cellar-webconsole` feature
+    adds new pages in this webconsole. The following command will install the `cellar-webconsole`
+    feature:
+
+
+    ```
+
+    karaf@node1> features:install cellar-webconsole
+
+    ```
+
+
+    The following screenshot is how the Karaf WebConsole will look:
+
+
+    ![](img/86f349f6a758f2c3088dbeb4d35dcaca_49_0.png)
+
+
+    # Summary
+
+
+    In this chapter, we have introduced the Apache Karaf Cellar topology and architecture.
+
+
+    We also installed Apache Karaf Cellar and used some basic commands to sync two
+    nodes in a cluster. The next chapter will describe the configuration files used
+    by Apache Karaf Cellar and the usage of Hazelcast.'
+  merge: -1
+  img_proc: true
+- pgno: 50
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 51
+  md: '# 3
+
+
+    # Hazelcast
+
+
+    Hazelcast is the heart of Cellar and is used in the core module. The Cellar core
+    module specifies the cluster behavior but does not specify the implementation.
+    The default Cellar implementation is powered by Hazelcast. Cellar directly leverages
+    the Hazelcast features to provide the functionalities expected in the cluster,
+    such as discovering the cluster nodes, communication between the nodes, and distributing
+    the states of the resources in the cluster.
+
+
+    In this chapter, we will deal with the following topics:
+
+
+    +   - An introduction to Hazelcast and its features
+
+    +   - An understanding of how Cellar uses Hazelcast
+
+    +   - Creating a custom extension to Hazelcast
+
+
+    # What is Hazelcast?
+
+
+    Hazelcast is a cluster and distribution solution. In Cellar, each node embeds
+    a Hazelcast instance. The Hazelcast instances can identify each other using different
+    mechanisms. Once connected, these Hazelcast instances share a state and distribute
+    objects in the cluster, which are listed as follows:
+
+
+    +   - A distributed form of set and map, allowing Cellar to store the status of
+    the resources in the cluster.
+
+    +   - A distributed topic and queue used by Cellar to transport the cluster events
+    from a node to the other nodes. It''s similar to the topic and queue destinations
+    that we find in messaging systems such as JMS—a node can act as a producer/consumer
+    on a queue and/or as a publisher/subscriber on a topic.
+
+    +   - Multiple network configurations and discovery mechanisms, allowing Cellar
+    nodes to automatically discover and see the other nodes.'
+  merge: -1
+  img_proc: true
+- pgno: 52
+  md: 'Cellar wraps the Hazelcast instance in an OSGi way; this means that the Hazelcast
+    instance is exposed as an OSGi service and can be used by any client bundle. For
+    communication between the nodes, Cellar uses the Hazelcast TCP/IP layer with Java
+    NIO.
+
+
+    Cellar automatically installs a Hazelcast configuration file in `etc/hazelcast.xml`.
+    The Hazelcast configuration and tuning is stored in this file. This chapter covers
+    the contents of this configuration file.
+
+
+    # Distributed cluster resource states
+
+
+    Cellar uses Hazelcast to maintain and store the states of the different resources
+    in the cluster (bundles, features, configuration, OBR, eventadmin, DOSGi, and
+    so on). To do so, Cellar uses Hazelcast''s distributed data structures. Thanks
+    to this, the cluster data is distributed across all the nodes in the cluster.
+    Each Cellar node stores a portion of the data (and eventually the replicas/backups).
+
+
+    For instance, in Cellar, you have the following three features installed:
+
+
+    +   - Feature A
+
+    +   - Feature B
+
+    +   - Feature C
+
+
+    The statuses of the features are stored in a distributed map that looks similar
+    to the following statuses:
+
+
+    +   - Feature A: Installed
+
+    +   - Feature B: Uninstalled
+
+    +   - Feature C: Installed
+
+
+    The partition of the features'' distributed map (in the cluster) can be as follows:
+
+
+    +   - Feature A''s status on node1
+
+    +   - Feature B''s status on node2
+
+    +   - Feature C''s status on node1
+
+
+    If a node goes down or leaves the cluster, Hazelcast redistributes the data (including
+    the replica) on the remaining nodes. Similarly, when a new node joins the cluster,
+    Hazelcast redispatches the data on the different nodes.
+
+
+    Thus, there is no cluster manager or a single point of failure: each node in the
+    cluster acts the same as the next.'
+  merge: -1
+  img_proc: true
+- pgno: 53
+  md: "# Distributed queues and topics\n\nCellar uses distributed queues and topics\
+    \ for communication between nodes.\n\nWhen a resource changes on a node (for instance,\
+    \ you install a new feature on this node), Cellar creates a cluster event and\
+    \ sends it into a queue or a topic (depending on whether the cluster event is\
+    \ targeted towards one node or is global).\n\nOn the other hand, the other nodes\
+    \ can consume this cluster event and react accordingly (they will install the\
+    \ feature locally).\n\nA Hazelcast distributed queue is an implementation of java.util.concurrent.BlockingQueue.\
+    \ As a regular queue, the elements in the queue are ordered in the FIFO mode.\
+    \ Again, as this queue is distributed across the Cellar nodes, the elements in\
+    \ the queue are objects that implement java.io.Serializable. By default, there\
+    \ is no limit to the number of elements in the queue and the time to live (TTL)\
+    \ of these elements. Now, if you have a bad connection between the cluster nodes\
+    \ (network issues or different WAN/datacenters), you may have a very high number\
+    \ of elements in the queue (you enqueue faster than you dequeue). In that case,\
+    \ a good practice is to define a limit for the queues in etc/hazelcast.xml.\n\n\
+    The maximum capacity per Cellar instance and the TTL for a queue can be configured\
+    \ in the etc/hazelcast.xml file. For instance, we can limit the size of the queue\
+    \ using the max-size-per-jvm element to define a custom storage for the queue\
+    \ using the map-store element, as shown in the following code:\n\n```\n<hazelcast>\n\
+    \    ...\n    <queue name=\"*\">\n        <!-- Maximum size of the queue. When\
+    \ a JVM's local queue size reaches the maximum, all put/offer operations will\
+    \ get blocked until the queue size of the JVM goes down below the maximum. Any\
+    \ integer between 0 and Integer.MAX_VALUE. 0 means Integer.MAX_VALUE. Default\
+    \ is 0. -->\n        <max-size-per-jvm>10000</max-size-per-jvm>\n        <!--\
+    \ Name of the map configuration that will be used for the backing distributed\
+    \ map for this queue. -->\n        <backing-map-ref>queue-map</backing-map-ref>\n\
+    \    </queue>\n    <map name=\"queue-map\">\n        <backup-count>1</backup-count>\n\
+    \        <map-store enabled=\"true\">\n            <class-name>org.example.MyStore</class-name>\n\
+    \            <write-delay-seconds>0</write-delay-seconds>\n        </map-store>\n\
+    \        ...\n    </map>\n</hazelcast>\n```"
+  merge: -1
+  img_proc: true
+- pgno: 54
+  md: 'By default, Cellar stores the resource status in an in-memory distributed queue
+    (without the `map-store` configuration). You can provide a store implementation
+    to persist the queue in a backend such as a database for instance.
+
+
+    # The Cellar distributed map
+
+
+    Cellar uses a distributed map to store the statuses of the resources in the cluster.
+    For this, the following are the instances:
+
+
+    +   - The list and current statuses of the features in the cluster are stored
+    in a distributed map that looks as follows:
+
+    +     - Feature A: Installed
+
+    +     - Feature B: Uninstalled
+
+    +   - The list and current statuses of the bundles in the cluster are stored in
+    a distributed map that looks as follows:
+
+    +     - Bundle A: Installed
+
+    +     - Bundle B: Started
+
+    +     - Bundle C: Uninstalled
+
+    +   - The list of configurations and properties on the cluster are stored in a
+    distributed map that looks as follows:
+
+    +     - PID A: Properties
+
+    +     - PID B: Properties
+
+
+    These map entries are partitioned on the cluster nodes. This means that each node
+    has a piece of the map.
+
+
+    # Replicas/Backup
+
+
+    By default, distributed maps have one replica to insure failover; when an entry
+    is added or updated in the map, Hazelcast synchronously creates a replica on another
+    node.
+
+
+    Hazelcast manages the replicas with a backup operation; it provides the following
+    two kinds of operations:
+
+
+    +   - Sync backup operations
+
+    +   - Async backup operations'
+  merge: -1
+  img_proc: true
+- pgno: 55
+  md: "Cellar only uses a sync backup operation to ensure that the replica is complete\
+    \ before it moves forward. You can increase the number of replicas using the `backup-count`\
+    \ element in the `etc/hazelcast.xml` file.\n\nBy default, the replicas are used\
+    \ only when a node goes down; Hazelcast can reload the data located on the failed\
+    \ node using the replica present on another node.\n\nHowever, in a real runtime\
+    \ environment, a node has to call the node that stores the data, even if it holds\
+    \ a replica of this data locally.\n\nTo increase the read performance, you can\
+    \ allow the nodes to read their local replicas instead of actually calling the\
+    \ nodes that store the data. To do this, you just have to enable `read-backup-data`\
+    \ in the `etc/hazelcast.xml` file:\n\n```\n```xml\n<hazelcast>\n    ...\n    <map\
+    \ name=\"*\">\n        <!-- Number of sync-backups. If 1 is set as the backup-\n\
+    \             count for example, then all entries of the map will be\n       \
+    \      copied to another JVM for fail-safety.\n             Valid numbers are\
+    \ 0 (no backup), 1, 2, 3. -->\n        <backup-count>1</backup-count>\n      \
+    \  <!-- Can we read the local backup entries? Default value\n             is false\
+    \ for strong consistency. Being able to read\n             backup data will give\
+    \ you greater performance. -->\n        <read-backup-data>false</read-backup-data>\n\
+    \        ...\n    </map>\n</hazelcast>\n```\n```\n\n# Persistence\n\nAs we have\
+    \ seen in the previous section, Cellar uses an in-memory distributed map by default.\
+    \ It's not a big deal as each node reconstructs the data at startup. However,\
+    \ for performance reasons and for the security of the data, you can implement\
+    \ a persistent data store for the maps used by Cellar, describing the persistent\
+    \ data store in the `etc/hazelcast.xml` file with the following code:\n\n```\n\
+    ```xml\n<hazelcast>\n    ...\n    <map name=\"*\">\n        ...\n        <map-store\
+    \ enabled=\"true\">\n```\n```"
+  merge: -1
+  img_proc: true
+- pgno: 56
+  md: "```\n<!-- Name of the class implementing MapLoader and/or\n     MapStore. The\
+    \ class should implement at least of\n     these interfaces and contain no-argument\n\
+    \     constructor. Note that the inner classes are not\n     supported. -->\n\
+    <class-name>com.hazelcast.examples.DummyStore\n</class-name>\n<!-- Number of seconds\
+    \ to delay to call the\n     MapStore.store(key, value). If the value is zero\n\
+    \     then it is write-through so\n     MapStore.store(key, value) will be called\
+    \ as soon as\n     the entry is updated. Otherwise it is write-behind\n     so\
+    \ updates will be stored after write-delay-seconds\n     value by calling Hazelcast.storeAll(map).\n\
+    \     Default value is 0. -->\n<write-delay-seconds>0</write-delay-seconds>\n\
+    </map-store>\n</map>\n</hazelcast>\n```\n\n# # Networks\n\nIn the previous sections,\
+    \ we saw the Hazelcast resources used by Cellar to format and transport cluster\
+    \ events. The transport relays to the network (the wire). Hazelcast provides the\
+    \ configuration of the network that we can leverage in Cellar. In this section,\
+    \ we will see how to configure Cellar node discovery, how to secure the communication\
+    \ between the nodes, and how to support IPv6.\n\n# ## Multiple clusters\n\nOn\
+    \ the same network, you may want to define multiple Cellar clusters, especially\
+    \ when you use node discovery. A Cellar cluster is identified by a name and password\
+    \ in the `etc/hazelcast.xml` configuration file. You can separate your clusters\
+    \ in a simple way (for instance, per environment) using the following code:\n\n\
+    ```\n<hazelcast>\n    <group>\n        <name>dev</name>\n        <password>dev-pass</password>\n\
+    \    </group>\n    ...\n</hazelcast>\n```"
+  merge: -1
+  img_proc: true
+- pgno: 57
+  md: "# # TCP/IP\n\nIf multicasting (which is the default) is not the preferred way\
+    \ of discovering the nodes, then you can configure a full TCP/IP cluster (also\
+    \ known as a static definition of the Cellar nodes).\n\nIn the following `etc/hazelcast.xml`\
+    \ file, we will disable multicast and prefer the `tcp-ip` discovery.\n\nFor this,\
+    \ we need to provide the list of hostnames or IP addresses of the machines hosting\
+    \ the different nodes:\n\n```\n```xml\n<hazelcast>\n    ...\n    <network>\n \
+    \       <port auto-increment=\"true\">5701</port>\n        <join>\n          \
+    \  <multicast enabled=\"false\">\n                <multicast-group>224.2.2.3</multicast-group>\n\
+    \                <multicast-port>54327</multicast-port>\n            </multicast>\n\
+    \            <tcp-ip enabled=\"true\">\n                <hostname>machine1</hostname>\n\
+    \                <hostname>machine2</hostname>\n                <hostname>machine3:5799</hostname>\n\
+    \                <interface>192.168.1.0-7</interface>\n                <interface>192.168.1.21</interface>\n\
+    \            </tcp-ip>\n        </join>\n        ...\n    </network>\n    ...\n\
+    </hazelcast>\n```\n```\n\n# # Interfaces\n\nBy default, Cellar uses any network\
+    \ interface of the machine (`0.0.0.0`). However, on a server machine, it's classic\
+    \ to have multiple network interfaces. In that case, you can specify the interfaces\
+    \ that you want to use for Cellar; this can be done with the following code:\n\
+    \n```\n```xml\n<hazelcast>\n    ...\n    <network>\n        ....\n        <interfaces\
+    \ enabled=\"true\">\n```\n```"
+  merge: -1
+  img_proc: true
+- pgno: 58
+  md: '```
+
+    <interface>10.3.16.*</interface>
+
+    <interface>10.3.10.4-18</interface>
+
+    <interface>192.168.1.3</interface>
+
+    </interfaces>
+
+    </network>
+
+    ...
+
+    </hazelcast>
+
+    ```
+
+
+    The configuration allows the usage of the * and - characters.
+
+
+    The * character indicates all the IP addresses on the netmask; in our example,
+    10.3.16.* means 10.3.16.1, 10.3.16.2, 10.3.16.3, and so on.
+
+
+    The - character indicates an IP address range; in our example, 10.3.10.4-18 means
+    10.3.10.4, 10.3.10.5, 10.3.10.6, and so on up to 10.3.10.18.
+
+
+    # SSL
+
+
+    Cellar allows you to use SSL socket communication between all the Cellar members.
+
+
+    With SSL, the communication channels between the nodes are secure.
+
+
+    In etc/hazelcast.xml, you just have to enable ssl and provide the keystore that
+    contains the SSL certificate, as shown in the following code:
+
+
+    ```
+
+    <hazelcast>
+
+    ...
+
+    <network>
+
+    ...
+
+    <ssl enabled="true">
+
+    <factory-class-name>
+
+    com.hazelcast.nio.ssl.BasicSSLContextFactory
+
+    </factory-class-name>
+
+    <properties>
+
+    <property name="keyStore">keyStore</property>
+
+    <property name="keyStorePassword">
+
+    keyStorePassword</property>
+
+    </properties>
+
+    </ssl>
+
+    </network>
+
+    ...
+
+    </hazelcast>
+
+    ```
+
+
+    You have to provide an SSLFactory class. Hazelcast provides a BasicSSLContextFactory
+    class that you can use directly, or you can specify your own SSLFactory.'
+  merge: -1
+  img_proc: true
+- pgno: 59
+  md: "# # Encryption\n\nIn addition to SSL (encryption on the transport layer), you\
+    \ can enable encryption of the content of the cluster events. You can use asymmetric\
+    \ encryption (with a public/private key-pair) or symmetric encryption (with a\
+    \ single key). You can configure this at a network element level in the `etc/hazelcast.xml`\
+    \ file.\n\nThe following example shows how to use symmetric encryption with a\
+    \ key generated for you by Hazelcast:\n\n```\n```xml\n<hazelcast>\n    ...\n \
+    \   <network>\n        ...\n        <!-- Make sure to set enabled=true\n     \
+    \        Make sure this configuration is exactly the same on\n             all\
+    \ members -->\n        <symmetric-encryption enabled=\"true\">\n            <!--\n\
+    \                encryption algorithm such as\n                DES/ECB/PKCS5Padding,\n\
+    \                PBEWithMD5AndDES,\n                Blowfish,\n              \
+    \  DESEde\n            -->\n            <algorithm>PBEWithMD5AndDES</algorithm>\n\
+    \            <!-- salt value to use when generating the secret key\n         \
+    \   -->\n            <salt>thesalt</salt>\n            <!-- pass phrase to use\
+    \ when generating the secret key\n            -->\n            <password>thepass</password>\n\
+    \            <!-- iteration count to use when generating the secret\n        \
+    \    key -->\n            <iteration-count>19</iteration-count>\n        </symmetric-encryption>\n\
+    \    </network>\n    ...\n</hazelcast>\n```\n```\n\nFor asymmetric encryption,\
+    \ it's up to you to create the private/public key-pair using a keytool or openSSL."
+  merge: -1
+  img_proc: true
+- pgno: 60
+  md: "The keys have to be stored in a keystore used in the etc/hazelcast.xml file:\n\
+    \n```\n<hazelcast>\n    ...\n    <network>\n        ...\n        <!--\n      \
+    \      Make sure to set enabled=true\n        -->\n        <asymmetric-encryption\
+    \ enabled=\"true\">\n            <!-- encryption algorithm -->\n            <algorithm>RSA/NONE/PKCS1PADDING</algorithm>\n\
+    \            <!-- private key password -->\n            <keyPassword>thekeypass</keyPassword>\n\
+    \            <!-- private key alias -->\n            <keyAlias>member1</keyAlias>\n\
+    \            <!-- key store type -->\n            <storeType>JKS</storeType>\n\
+    \            <!-- key store password -->\n            <storePassword>thestorepass</storePassword>\n\
+    \            <!-- path to the key store -->\n            <storePath>keystore</storePath>\n\
+    \        </asymmetric-encryption>\n    </network>\n    ...\n</hazelcast>\n```\n\
+    \n# IPv6 support\n\nYou can directly use an IPv6 address format in the etc/hazelcast.xml\
+    \ file in the exact same location where you use the IPv4 format. This can be done\
+    \ with the following code:\n\n```\n<hazelcast>\n    ...\n    <network>\n     \
+    \   <port auto-increment=\"true\">5701</port>\n        <join>\n            <multicast\
+    \ enabled=\"false\">\n                <multicast-group>FF02:0:0:0:0:0:0:1\n  \
+    \              </multicast-group>\n                <multicast-port>54327</multicast-port>\n\
+    \            </multicast>\n            <tcp-ip enabled=\"true\">\n```"
+  merge: -1
+  img_proc: true
+- pgno: 61
+  md: "```\n```xml\n<member>[fe80::223:6cff:fe93:7c7e]:5701</member>\n<interface>192.168.1.0-7</interface>\n\
+    <interface>192.168.1.*</interface>\n<interface>fe80:0:0:0:45c5:47ee:fe15:493a\n\
+    </interface>\n</tcp-ip>\n</join>\n<interfaces enabled=\"true\">\n    <interface>10.3.16.*</interface>\n\
+    \    <interface>10.3.10.4-18</interface>\n    <interface>fe80::0:0:0:45c5:47ee:fe15:*</interface>\n\
+    \    <interface>fe80::223:6cff:fe93:0-5555</interface>\n</interfaces>\n...\n</network>\n\
+    ```\n```\n\nYou can force the format of the IP addresses using the JVM's system\
+    \ property (when your machine supports both):\n\n+   - `java.net.preferIPv4Stack=<true|false>`\n\
+    +   - `java.net.preferIPv6Addresses=<true|false>`\n\n# Restricting outbound ports\n\
+    \nBy default, the communication between nodes uses a random port number that is\
+    \ created when the connection is established. Sometimes, it may be an issue depending\
+    \ on the network security policy (firewalls, PAT, NAT, and so on). Instead of\
+    \ random ports, you can define a ports' range or a list of ports to be used for\
+    \ the communication between the nodes:\n\n```\n```xml\n<hazelcast>\n    ...\n\
+    \    <network>\n        <port auto-increment=\"true\">5701</port>\n        <outbound-ports>\n\
+    \            <ports>33000-35000</ports> <!-- ports between 33000 and 35000 -->\n\
+    \            <ports>37000,37001,37002,37003</ports> <!-- comma separated ports\
+    \ -->\n            <ports>38000,38500-38600</ports>\n        </outbound-ports>\n\
+    \        ...\n    </network>\n    ...\n</hazelcast>\n```\n```"
+  merge: -1
+  img_proc: true
+- pgno: 62
+  md: 'The ports can be specified as a range (33000–35000 means that the ports in
+    this range will be taken), as a list of ports separated by a comma and then delimited
+    (38000, and so on), or as a mix of both.
+
+
+    # Summary
+
+
+    In this chapter, we learned how Cellar and Hazelcast work together. We saw the
+    usage of queue/topic for the communication between the nodes and the usage of
+    map/set for the storage of the resources on the cluster. We saw how to tune the
+    Cellar components in order to add persistence, limit the size of the elements,
+    and perform other tasks.
+
+
+    We also learned how to extend the default Cellar Hazelcast configuration to match
+    some additional requirements such as security.
+
+
+    The next chapter will introduce you to the cluster groups that allow you to group
+    the nodes as per their names.'
+  merge: -1
+  img_proc: true
+- pgno: 63
+  md: '# 4
+
+    Cluster Groups
+
+
+    Until now, we have used Cellar as a global cluster. This means that all the nodes
+    will have the same functions and roles in the cluster. However, when using a pool
+    or farm of Karaf instances in a real live system, we may want to dedicate a subset
+    of the instances for the given functions/roles. This is the role of the Cellar
+    cluster groups.
+
+
+    For instance, we have a farm of 20 nodes in our Cellar cluster.
+
+
+    We may want to deploy the following:
+
+
+    +   - A camel route can be described and packaged as a Karaf Features XML file.
+    We want to deploy this route only on 10 nodes of the cluster (not on all the nodes).
+
+    +   - A CXF web service (described and deployed as another Karaf Features XML
+    file) on the other 10 nodes.
+
+
+    In Cellar, we can create different cluster groups and define a node as a member
+    of one or more cluster groups.
+
+
+    # Managing cluster groups
+
+
+    By default, all nodes are members of the default cluster group. This default cluster
+    group is used as a template for the creation of new cluster groups.
+
+
+    You can create a cluster group using the cluster:group-create <group-name> command:
+
+
+    ```
+
+    karaf@root> cluster:group-create book
+
+    ```'
+  merge: -1
+  img_proc: true
+- pgno: 64
+  md: "# Cluster Groups\n\nHere, we created a new cluster group called book. We can\
+    \ see this new cluster group in the cluster groups' list with the `cluster:group-list`\
+    \ command:\n\n```\nkaraf@root> cluster:group-list\n\n    Group               \
+    \  Members\n*   [default             ] [vostro.local:5701* ]\n    [book      \
+    \          ] []\n```\n\nFor now, our book cluster group doesn't have any members.\n\
+    \nA node can join a cluster group using the `cluster:group-join` command:\n\n\
+    ```\nkaraf@root>  cluster:group-join book\n    Group                 Members\n\
+    *   [default             ] [vostro.local:5701* ]\n*   [book                ] [vostro.local:5701*\
+    \ ]\n```\n\nThe `cluster:group-join` command takes the following two arguments:\n\
+    \n+   - The cluster group's name (in our example, the cluster group's name is\
+    \ book), as displayed by the `cluster:group-list` command.\n+   - The node ID.\
+    \ In our example, we don't provide the node ID, meaning that the local node (the\
+    \ node that we are currently connected to) is used. It's also possible to provide\
+    \ a given node ID (for instance, a remote node) to join the cluster group using\
+    \ the following command:\n+   \n+     `karaf@root> cluster:group-join book nodeB:5701`\n\
+    \nThanks to this, you can control all the nodes and cluster groups from any node.\n\
+    \nWhen a group is empty, you can delete it using the `cluster:group-delete <group_name>`\
+    \ command, as follows:\n\n```\nkaraf@root> cluster:group-create test\nkaraf@root>\
+    \ cluster:group-list\n    Group                 Members\n    [default        \
+    \     ] []\n    [test                ] []\n*   [book                ] [vostro.local:5701*\
+    \ ]\nkaraf@root> cluster:group-delete test\nkaraf@root> cluster:group-list\n \
+    \   Group                 Members\n    [default             ] []\n*   [book  \
+    \              ] [vostro.local:5701* ]\n```"
+  merge: -1
+  img_proc: true
+- pgno: 65
+  md: "Note that the default cluster group cannot be deleted as it's used as a template\
+    \ to create new cluster groups. This means that the default configuration of the\
+    \ newly created cluster group will be a copy of the default cluster group configuration.\n\
+    \nThe `cluster:group-join` command adds a node to a given cluster group without\
+    \ changing the current cluster group's membership.\n\nThanks to this, a node can\
+    \ be a member of multiple cluster groups.\n\nA node can quit a cluster group using\
+    \ the `cluster:group-quit` command:\n\n```\nkaraf@root> cluster:group-list\n\n\
+    \    Group                  Members\n  [default             ] []\n* [test    \
+    \            ] [vostro.local:5701* ]\n* [book                ] [vostro.local:5701*\
+    \ ]\n\nkaraf@root> cluster:group-quit test\n\n    Group                  Members\n\
+    \  [default             ] []\n  [test                ] []\n* [book           \
+    \     ] [vostro.local:5701* ]\n```\n\nThe `cluster:group-set` command moves a\
+    \ node from one cluster group to another. It's a combination of the `cluster:group-join`\
+    \ and `cluster:group-quit` commands:\n\n```\nkaraf@root> cluster:group-list\n\n\
+    \    Group                  Members\n  [default             ] []\n  [test    \
+    \            ] []\n* [book                ] [vostro.local:5701* ]\n\nkaraf@root>\
+    \ cluster:group-set test\n\n    Group                  Members\n  [default   \
+    \          ] []\n* [test                ] [vostro.local:5701* ]\n  [book     \
+    \           ] []\n```\n\n# Targeting provisioning\n\nOnce you have created your\
+    \ cluster groups and assigned nodes to the different cluster groups, you can target\
+    \ the deployment of the resources on a given cluster group. For this, Cellar provides\
+    \ the cluster-aware commands of the regular Karaf commands."
+  merge: -1
+  img_proc: true
+- pgno: 66
+  md: 'For instance, Karaf provides a `features:install <feature_name>` command to
+    install a Karaf feature in the container. Additionally, Cellar provides `cluster:feature-install
+    <group_name> <feature_name>`, which is similar to the `features:install` command.
+    The `features:install` command will install the feature locally to the Karaf container,
+    whereas the `cluster:feature-install` command will install the feature on the
+    cluster in the given cluster group.
+
+
+    At the end of this chapter, you will find a table that introduces Cellar''s `cluster:*`
+    commands which correspond to the regular Karaf commands.
+
+
+    # Features
+
+
+    In order to deploy a feature to a given cluster group, we can use the `cluster:feature-install`
+    command:
+
+
+    ```
+
+    karaf@root> cluster::feature-install book eventadmin
+
+    ```
+
+
+    The `cluster:feature-install` command accepts the following arguments:
+
+
+    +   - The cluster group''s name (here, `book`)
+
+    +   - The feature''s name (here, `eventadmin`)
+
+    +   - The feature''s version (optional)
+
+
+    For instance, we installed the `eventadmin` feature on the `book` cluster group.
+    As Cellar extends the regular Karaf commands, we will find the exact same functions
+    prefixed to the cluster.
+
+
+    You can control the Karaf feature repositories (URLs) per cluster group. For instance,
+    you can list the Karaf feature repositories that are registered and available
+    on a cluster group with the following command:
+
+
+    ```
+
+    karaf@root> cluster::feature-url-list book
+
+    mvn:org.apache.karaf.cellar/apache-karaf-cellar/2.3.1/xml/features
+
+    mvn:org.jclouds.karaf/jclouds-karaf/1.4.0/xml/features
+
+    mvn:org.apache.karaf.assemblies.features/standard/2.3.1/xml/features
+
+    mvn:org.apache.karaf.assemblies.features/enterprise/2.3.1/xml/features
+
+    ```
+
+
+    You can add a feature''s URL on a cluster group using `cluster:feature-url-add`.
+
+
+    For instance, you can add the Camel feature repository on the `book` cluster group
+    with the following commands:
+
+
+    ```
+
+    karaf@root> cluster::feature-url-add book mvn:org.apache.camel.karaf/
+
+    apache-camel/2.12.1/xml/features
+
+    karaf@root> cluster::feature-url-list book
+
+    ```'
+  merge: -1
+  img_proc: true
+- pgno: 67
+  md: "```\nmvn:org.apache.karaf.cellar/apache-karaf-cellar/2.3.1/xml/features\nmvn:org.jclouds.karaf/jclouds-karaf/1.4.0/xml/features\n\
+    mvn:org.apache.karaf.assemblies.features/standard/2.3.1/xml/features\nmvn:org.apache.karaf.assemblies.features/enterprise/2.3.1/xml/features\n\
+    mvn:org.apache.camel.karaf/apache-camel/2.12.1/xml/features\n```\n\nThis means\
+    \ that all the node members of the book cluster group will register the features\
+    \ repository locally. Using the regular Karaf commands (local), we can see the\
+    \ features repository, as follows:\n\n```\nkaraf@root> features:listurl\n    Loaded\
+    \   URI\n      true   mvn:org.apache.karaf.cellar/apache-karaf-cellar/2.3.1/xml/features\n\
+    \      true   mvn:org.jclouds.karaf/jclouds-karaf/1.4.0/xml/features\n      true\
+    \   mvn:org.apache.karaf.assemblies.features/standard/2.3.1/xml/features\n   \
+    \   true   mvn:org.apache.karaf.assemblies.features/enterprise/2.3.1/xml/features\n\
+    \      true   mvn:org.apache.camel.karaf/apache-camel/2.12.1/xml/features\n```\n\
+    \nNow, we can see that the Camel features are available on both the book cluster\
+    \ group (which we can list with the `cluster:feature-list` command) and locally\
+    \ on a node member of the book cluster group (which we can list with `features:listurl`).\
+    \ This can be done by issuing the following command:\n\n```\nkaraf@root> cluster:feature-list\
+    \ book\n...\n[uninstalled]  [2.12.1        ]  camel-cxf\n[uninstalled]  [3.0.7.RELEASE\
+    \ ]  spring-orm\n[uninstalled]  [2.12.1        ]  camel-apis\n[uninstalled]  [2.12.1\
+    \        ]  camel-guice\n```\n\n# Bundles\n\nCellar also provides cluster-aware\
+    \ bundle commands. You can see the bundles that are available on a cluster group\
+    \ using the `cluster:bundle-list` command (equivalent to the `osgi:list` Karaf\
+    \ command), as follows:\n\n```\nkaraf@root> cluster:bundle-list book\n...\n[59\
+    \ ]  [Active ]  Apache Karaf :: Features :: Management (2.3.1)\n[60 ]  [Active\
+    \ ]  Apache Karaf :: Features :: Core (2.3.1)\n```"
+  merge: -1
+  img_proc: true
+- pgno: 68
+  md: 'We can deploy a bundle on a cluster group using the `cluster:bundle-install`
+    command (equivalent to the `osgi:install` Karaf command):
+
+
+    ```
+
+    karaf@root> cluster:bundle-install book mvn:org.apache.servicemix.
+
+    bundles/org.apache.servicemix.bundles.commons-lang/2.4_6
+
+    karaf@root> cluster:bundle-list book|grep -i commons-lang
+
+    [64  ] [Installed  ] Apache ServiceMix :: Bundles :: commons-lang
+
+    (2.4.0.6)
+
+    ```
+
+
+    The applications of the cluster-aware bundle commands are listed as follows:
+
+
+    +   - To see the bundle that is installed locally on a node member of the book
+    cluster group, you can use the following command:
+
+    +     `karaf@root> osgi:list|grep -i commons-lang`
+
+    +     `[ 64] [Installed  ] [          ] [ 80] Apache ServiceMix :: Bundles ::
+    commons-lang (2.4.0.6)`
+
+
+    +   - To start a bundle on the cluster, you can use the `cluster:bundle-start`
+    command. If you want to start the bundle with the ID 64 on the cluster (found
+    using the `cluster:bundle-list` command), issue the following commands:
+
+    +     `karaf@root> cluster:bundle-start book 64`
+
+    +     `karaf@root> cluster:bundle-list book|grep -i commons-lang`
+
+    +     `[64  ] [Active   ] Apache ServiceMix :: Bundles :: commons-lang (2.4.0.6)`
+
+
+    +   - To stop a bundle on a given cluster group, you can use the `cluster:bundle-stop`
+    command. You can use the `osgi:list` command to see the local status of the bundles:
+
+    +     `karaf@root> cluster:bundle-stop book 64`
+
+    +     `karaf@root> osgi:list|grep -i commons-lang`
+
+    +     `[ 64] [Installed  ] [          ] [ 80] Apache ServiceMix :: Bundles ::
+    commons-lang (2.4.0.6)`
+
+
+    +   - To uninstall a bundle from a cluster group, you can use the `cluster:bundle-uninstall`
+    command:
+
+    +     `karaf@root> cluster:bundle-uninstall book 64`
+
+
+    ```
+
+    [61  ] [Active   ] Apache Karaf :: Cellar :: Bundle (2.3.1)
+
+    [62  ] [Active   ] Apache Karaf :: Shell :: PackageAdmin Commands (2.3.1)
+
+    [63  ] [Active   ] Apache Karaf :: Deployer :: Karaf Archive (.kar) (2.3.1)
+
+    ```'
+  merge: -1
+  img_proc: true
+- pgno: 69
+  md: "# # Configurations\n\nCellar allows clustering of configurations. You can use\
+    \ the `cluster:config-*` commands to manage the configurations on the cluster.\n\
+    \nYou can list the configurations available on a given cluster group using the\
+    \ `cluster:config-list` command:\n\n```\nkaraf@root> cluster:config-list book\n\
+    …\n--------------------------------------------------------------------\nPid:\
+    \              org.apache.karaf.features.obr\nProperties:\n    startLevel = 80\n\
+    \    startByDefault = true\n    service.pid = org.apache.karaf.features.obr\n\
+    \    resolveOptionalImports = false\n```\n\nYou can edit or change a property\
+    \ (using the `cluster:config-propset` command), add a property (using the `cluster:config-propappend`\
+    \ command), delete a property (using the `cluster:config-propdel` command), or\
+    \ list the properties of a configuration on a given cluster group, as follows:\n\
+    \n```\nkaraf@root> cluster:config-propappend book my.config key value\nkaraf@root>\
+    \ cluster:config-proplist book my.config\nProperty list for configuration PID\
+    \ my.config in cluster group book\nKey                                      Value\n\
+    key                                      value\nservice.pid                  \
+    \           my.config\nkaraf@root> cluster:config-propdel book my.config key\n\
+    karaf@root> cluster:config-proplist book my.config\nProperty list for configuration\
+    \ PID my.config in cluster group book\nKey                                   \
+    \   Value\nservice.pid                             my.config\n```\n\n# # Optional\
+    \ resources\n\nFeatures, bundles, and configurations are natively supported by\
+    \ Cellar. However, by installing optional features, Cellar can provide clustering\
+    \ support for other resources too."
+  merge: -1
+  img_proc: true
+- pgno: 70
+  md: '# Cluster Groups
+
+
+    The **OSGi Bundle Repository (OBR)** is an OSGi specification with the following
+    goals:
+
+
+    +   - To simplify the deployment of bundles
+
+    +   - To encourage independent and atomic bundle development
+
+
+    OBR uses a bundle repository where it can add some additional metadata as follows:
+
+
+    +   - The capabilities provided by a bundle
+
+    +   - The requirements of a bundle
+
+
+    Thanks to this metadata, when you install a bundle from an OBR server, OBR automatically
+    installs the other bundles providing the capabilities to match the requirements
+    of the first bundle that you have installed.
+
+
+    The `cellar-obr` feature provides support for cluster-aware OBR. This means that
+    Cellar synchronizes the OBR servers used between the different nodes and broadcasts
+    the OBR commands (install, start, uninstall, and so on) between the nodes in the
+    cluster.
+
+
+    We can find the `cluster:obr-*` commands dedicated to the clustered OBR.
+
+
+    The `cellar-eventadmin` feature doesn''t provide new commands. However, all OSGi
+    local events are broadcasted on the cluster to the other node members of the same
+    cluster group as the local node.
+
+
+    # Overlapping
+
+
+    A node can be a member of several cluster groups. This means that we may have
+    an overlap (on a single node) between multiple cluster groups, which can be seen
+    in the following diagram:
+
+
+    ![](img/86f349f6a758f2c3088dbeb4d35dcaca_70_0.png)'
+  merge: -1
+  img_proc: true
+- pgno: 71
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 72
+  md: '# Cluster Groups
+
+
+    All actions performed by the `cluster:*` commands can be performed via JMX using
+    MBeans, provided by Cellar. On the other hand, it''s also possible to manage a
+    cluster group using a WebConsole plugin provided by Cellar.
+
+
+    # Summary
+
+
+    In this chapter, we saw how to group nodes and target the provisioning on a specific
+    cluster group. Thanks to this, it''s easy to set up a multilayered cluster and
+    to group the nodes per function.
+
+
+    In the next chapter, we will see the different Cellar components that are used
+    to create and transport the cluster events between the members of the same cluster
+    groups; we will also see how a group is actually implemented.'
+  merge: -1
+  img_proc: true
+- pgno: 73
+  md: '# 5
+
+    Producers, Consumers, Handlers, Listeners, and Synchronizers
+
+
+    In the previous chapters, we saw that Cellar exchanges cluster events between
+    different nodes. This means that a node creates a cluster event and sends it to
+    the other nodes. On the other hand, the other nodes receive the cluster events
+    and update the local state with the statements contained in the cluster events.
+
+
+    Beneath the hood, a node acts as a cluster event producer. Cellar uses a Hazelcast
+    queue to store and dispatch the cluster event to the other nodes. A producer sends
+    a message that represents a cluster event to the queue.
+
+
+    The other nodes act as cluster event consumers. This means that they consume the
+    cluster event from the queue. As the queue contains different cluster event types
+    (a bundle event, a configuration event, a feature event, and an OBR event), the
+    consumer delegates the handling of the event to a handler dedicated for each kind
+    of cluster event. This process is shown in the following diagram:
+
+
+    ![](img/86f349f6a758f2c3088dbeb4d35dcaca_73_0.png)'
+  merge: -1
+  img_proc: true
+- pgno: 74
+  md: "# # The event producer\n\nEach Cellar node embeds a cluster event producer.\
+    \ The producer is used when the node has to send an event to the other nodes.\n\
+    \nThe producer is responsible for the following functions:\n\n+   - To create\
+    \ the cluster event message.\n+   - To send the cluster event message in a target\
+    \ distributed queue. The queue is unique and can be identified by the cluster\
+    \ group and the type of resource. For instance, a possible queue name is `book.bundles`,\
+    \ where book is the cluster group's name and bundles is the type of the resource.\
+    \ Thanks to this, Cellar is able to send a cluster event per resource and is able\
+    \ to target this cluster event only to a given cluster group.\n\nIt's possible\
+    \ to manage the producer of a node from any node.\n\nFor instance, we can see\
+    \ the current status of the producer using the following `cluster:producer-status`\
+    \ command:\n\n```\nkaraf@root> cluster:producer-status\n\n      Node         \
+    \                Status\n   [node2:5702             ] [ON   ]\n * [node1:5701\
+    \             ] [ON   ]\n```\n\nHere, we can see the status of the producer of\
+    \ all the nodes in the global cluster. We can specify a node with the following\
+    \ command:\n\n```\nkaraf@root> cluster:producer-status node2:5702\n\n      Node\
+    \                         Status\n   [node2:5702             ] [ON   ]\n```\n\n\
+    It's possible to stop the producer of a node using the `cluster:producer-stop`\
+    \ command (without argument, this command stops the producer of the local node),\
+    \ as follows:\n\n```\nkaraf@root> cluster:producer-stop node2:5702\n\n      Node\
+    \                         Status\n   [node2:5702             ] [OFF  ]\n```\n\n\
+    When a producer is stopped, the node doesn't send any cluster events to the other\
+    \ nodes. This means that local changes and the `cluster:*` commands don't change\
+    \ the other nodes in the cluster."
+  merge: -1
+  img_proc: true
+- pgno: 75
+  md: "The `cluster:producer-stop` command can stop a producer located on a remote\
+    \ node (distant from the node on which we actually execute the command).\n\nYou\
+    \ can start the stopped producer using the `cluster:producer-start` command, as\
+    \ follows:\n\n```\nkaraf@root> cluster:producer-start node2:5702\n  Node     \
+    \          Status\n[node2:5702         ] [ON      ]\n```\n\nA producer can send\
+    \ any kind of cluster events. Each clustered resource has its own kind of cluster\
+    \ event. The following are the types of cluster events:\n\n+   - `ClusterBundleEvent`:\
+    \ This is sent when the state of a bundle changes (install, start, stop, or uninstall)\n\
+    +   - `ClusterFeatureEvent`: This is sent when the state of a Karaf feature changes\
+    \ (add repository, remove repository, install, or uninstall)\n+   - `ClusterConfigEvent`:\
+    \ This is sent when the state of a configuration changes (delete, add, set property,\
+    \ delete property, or append property)\n+   - `ClusterObrEvent`: This is sent\
+    \ when the state of an OBR bundle changes (add repository, deploy OBR bundle,\
+    \ or start OBR bundle)\n\nThe `cluster:producer-start` and `cluster:producer-stop`\
+    \ commands update the `etc/org.apache.karaf.cellar.node.cfg` configuration file.\n\
+    \nThis configuration file contains the producer property that defines the state\
+    \ of the producer (used at startup for instance): if the producer's state is true,\
+    \ the node producer is started, else the producer is stopped.\n\n# The event consumer\n\
+    \nAs explained before, a producer sends a cluster event message in a queue.\n\n\
+    On the other hand, each node embeds a consumer. A consumer binds a set of handlers.\n\
+    \nThe consumer is responsible to get the cluster event messages from the different\
+    \ queues, and depending on the type of the cluster event, the consumer delegates\
+    \ the cluster event to a handler. This means that you have a handler for every\
+    \ type of resource."
+  merge: -1
+  img_proc: true
+- pgno: 76
+  md: "For a consumer, we can perform the following tasks:\n\n+   - Check the current\
+    \ status of the consumer (on each node) using the `cluster:consumer-status` command,\
+    \ as follows:\n+   \n+     ```text\n+     karaf@root> cluster:consumer-status\n\
+    +   \n+         Node                         Status\n+     [node2:5702       \
+    \      ] [ON   ]\n+     * [node1:5701             ] [ON   ]\n+     ```\n+   \n\
+    +     The `cluster:consumer-status` command accepts a node ID as the argument,\
+    \ as follows:\n+   \n+     ```text\n+     karaf@root> cluster:consumer-status\
+    \ node2:5702\n+   \n+         Node                         Status\n+     [node2:5702\
+    \             ] [ON   ]\n+     ```\n\n+   - Stop the consumer of any node using\
+    \ the `cluster:consumer-stop` command, as follows:\n+   \n+     ```text\n+   \
+    \  karaf@root> cluster:consumer-stop node2:5702\n+   \n+         Node        \
+    \                 Status\n+     [node2:5702             ] [OFF  ]\n+     ```\n\
+    \nWhen a consumer is stopped on a node, the node can't receive any cluster events\
+    \ coming from another node. This means that the node won't update its local state\
+    \ with the information contained in the cluster event's message.\n\n+   - Start\
+    \ the consumer of any node using the `cluster:consumer-start` command, as follows:\n\
+    +   \n+     ```text\n+     karaf@root> cluster:consumer-start node2:5702\n+  \
+    \ \n+         Node                         Status\n+     [node2:5702         \
+    \    ] [ON   ]\n+     ```\n\nSimilar to the status of the producer, the status\
+    \ of the consumer is stored in the consumer property of the `etc/org.apache.karaf.cellar.node.cfg`\
+    \ configuration file.\n\n# Event handlers\n\nWhen the consumer receives a cluster\
+    \ event's message, it delegates the message to a handler depending on the type\
+    \ of the cluster event."
+  merge: -1
+  img_proc: true
+- pgno: 77
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 78
+  md: "# Producers, Consumers, Handlers, Listeners, and Synchronizers\n\nThe result\
+    \ of using the `cluster:handler-stop` command is as follows:\n\n```\nkaraf@root>\
+    \ cluster:handler-stop org.apache.karaf.cellar.bundle.BundleEventHandler node2:5702\n\
+    \n      Node                         Status  Event Handler\n\n      [node2:5702\
+    \          ] [OFF  ] org.apache.karaf.cellar.bundle.\n      BundleEventHandler\n\
+    ```\n\nWhen a handler is stopped on a node, it means that the cluster events that\
+    \ are managed by the handler are not processed. For instance, if BundleEventHandler\
+    \ is stopped, the node will receive cluster events, but the cluster events that\
+    \ are related to the bundle will not be processed. This means that the node won't\
+    \ change the bundle's status.\n\nYou can start a handler on any node using the\
+    \ `cluster:handler-start` command as follows:\n\n```\nkaraf@root> cluster:handler-start\
+    \ org.apache.karaf.cellar.bundle.BundleEventHandler node2:5702\n\n      Node \
+    \                        Status  Event Handler\n\n      [node2:5702          ]\
+    \ [ON   ] org.apache.karaf.cellar.bundle.\n      BundleEventHandler\n```\n\nSimilar\
+    \ to the statuses of a producer and a consumer, the status of each handler is\
+    \ stored in the `etc/org.apache.karaf.cellar.node.cfg` configuration file, as\
+    \ follows:\n\n```\n#\n# Cluster event handlers\n#\n# bundle event handler\nhandler.org.apache.karaf.cellar.bundle.BundleEventHandler\
+    \ = true\n# config event handler\nhandler.org.apache.karaf.cellar.config.ConfigurationEventHandler\
+    \ = true\n# feature event handler\nhandler.org.apache.karaf.cellar.features.FeaturesEventHandler\
+    \ = true\n# DOSGi event handler\nhandler.org.apache.karaf.cellar.dosgi.RemoteServiceCallHandler\
+    \ = true\n# OSGi event handler\nhandler.org.apache.karaf.cellar.event.ClusterEventHandler\
+    \ = true\n# OBR event handler\nhandler.org.apache.karaf.cellar.obr.ObrBundleEventHandler\
+    \ = true\nhandler.org.apache.karaf.cellar.obr.ObrUrlEventHandler = true\n```"
+  merge: -1
+  img_proc: true
+- pgno: 79
+  md: '# # Listeners and synchronizers
+
+
+    If we use the `cluster:*` commands to manage the resources in the cluster (features,
+    bundles, configurations, OBR, and local events), Cellar also listens to the changes
+    in the local resources and broadcasts these changes in the cluster.
+
+
+    For instance, if you install a bundle locally (using the `osgi:install` command),
+    Cellar will catch this change and broadcast it in the cluster event, meaning that
+    all other nodes in the same cluster group as the local node will install the same
+    bundle.
+
+
+    Cellar provides the following listeners:
+
+
+    +   - A listener for the features repository and features (install and uninstall)
+
+    +   - A listener for bundles (install, uninstall, start, stop, and so on)
+
+    +   - A listener for configurations (propset, propdel, delete, and so on)
+
+
+    On the other hand, when a node starts or joins a cluster group, Cellar invokes
+    a set of synchronizers. The purpose of a synchronizer is to align the local state
+    of the node with the state of the resources in the cluster. A synchronizer is
+    responsible for applying local changes to have the node in the same state as in
+    the cluster. You have one synchronizer per resource type.
+
+
+    Cellar provides the following synchronizers:
+
+
+    +   - A synchronizer for the features repository and features. For instance, if
+    a feature has the status `installed` on the cluster, the synchronizer (at startup)
+    checks the state of the feature on the local node, and if the feature is not installed,
+    the synchronizer installs it.
+
+    +   - A synchronizer for bundles. For instance, if a bundle is installed on the
+    cluster, the synchronizer (at startup) checks the state of the bundle on the local
+    node, and if the bundle is not installed, the synchronizer installs it.
+
+    +   - A synchronizer for configurations.
+
+
+    Thanks to these synchronizers, Cellar updates a node when it starts or joins a
+    cluster group.'
+  merge: -1
+  img_proc: true
+- pgno: 80
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 81
+  md: '# The Filtering of
+
+    Cluster Events
+
+
+    In the previous chapter, we saw how cluster events are created and transported
+    using producers, consumers, and handlers. We saw that we have one internal queue
+    managed per resource (bundle, feature, and configuration) and per cluster group.
+    This allows us to group the nodes and target the provisioning of a resource on
+    a specific group. So, it''s the first kind of filtering at the node level.
+
+
+    In this chapter, we will cover the following topics:
+
+
+    +   - How to filter the cluster events in a given cluster group
+
+    +   - How to define the resources (bundles, features, configurations, and OBRs)
+    to be filtered
+
+    +   - How to define the direction of the filter (coming in or going out from the
+    nodes)
+
+
+    # The configuration of the filters
+
+
+    The filtering of cluster events is defined in the `etc/org.apache.karaf.cellar.groups.cfg`
+    configuration file. In this configuration file, you can find the filters with
+    the following format:
+
+
+    ```
+
+    cluster_group.[bundle|config|features].[whitelist|blacklist].[inbound|outbound]=regex
+
+    ```'
+  merge: -1
+  img_proc: true
+- pgno: 82
+  md: 'For instance, the following configuration blocks (blacklist) the incoming cluster
+    events (inbound) that contain features named my-feature or other-* in the default
+    cluster group:
+
+
+    ```
+
+    default.features.blacklist.inbound=my-feature,other-*
+
+    ```
+
+
+    Cellar provides a default filtering configuration for the default cluster group.
+    This configuration is used as a template when you create a new cluster group.
+    You can update the filters'' configuration live by directly modifying the configuration
+    on the node or using the config:* and cluster:config-* commands.
+
+
+    For instance, to add a new filter to a cluster group, you can run the following
+    commands:
+
+
+    ```
+
+    karaf@root> config:edit org.apache.karaf.cellar.groups
+
+    ```
+
+
+    ```
+
+    karaf@root> config:propset mygroup.bundle.blacklist.outbound none
+
+    ```
+
+
+    ```
+
+    karaf@root> config:update
+
+    ```
+
+
+    You can also use ConfigMBean to update the configuration remotely (using JConsole
+    for instance).
+
+
+    The name of the cluster group is cluster_group, which you provided in the cluster:group-create
+    command.
+
+
+    # Resources
+
+
+    In the previous chapter, we saw that we have an internal queue per resource and
+    per cluster group.
+
+
+    A resource is a type of a cluster event. Cellar defines the following cluster
+    events:
+
+
+    +   - bundle: This is a cluster event that corresponds to a bundle action (install,
+    uninstall, start, stop, and so on)
+
+    +   - config: This is a cluster event that corresponds to a configuration action
+    (create, delete, propset, propappend, propdel, and so on)
+
+    +   - features: This is a cluster event that corresponds to a feature action (addurl,
+    delurl, install, uninstall, and so on)'
+  merge: -1
+  img_proc: true
+- pgno: 83
+  md: 'Remember that each type of cluster event is managed by a specific handler.
+
+
+    In the filter definition, specify the resource just after `cluster_group`. This
+    will allow you to filter the events of a specific type (`bundle`, `config`, and
+    `features`).
+
+
+    # Blacklist and whitelist
+
+
+    In the filter definition, you can specify the `blacklist` or `whitelist` keyword
+    after the resource. A blacklisted filter will block the corresponding cluster
+    events. This means that the cluster events won''t be delivered on the cluster.
+    On the other hand, a whitelisted filter will allow the corresponding cluster events.
+    The filter is built by evaluating the whitelist first and by overriding the blacklist
+    later. With the combination of blacklist and whitelist filters, you can define
+    fine-grained filtering.
+
+
+    # Inbound and outbound
+
+
+    Another property used to configure filters is the direction of the cluster event.
+
+    The two directions can be distinguished as follows:
+
+
+    +   - `inbound`: The `inbound` cluster events are the events that come into a
+    node. These cluster events come from another node and enter other nodes.
+
+    +   - `outbound`: The `outbound` cluster events are the events that go out of
+    a node. These cluster events are produced and sent from a node to other nodes.
+
+
+    Thanks to inbound and outbound filters, you can filter the same cluster event
+    depending on its direction: incoming or outgoing.
+
+
+    # Regex and event identification
+
+
+    Finally, we have to specify the cluster event. The purpose is to allow (`whitelist`)
+    or block (`blacklist`) specific cluster events. For instance, we want to block
+    the following:
+
+
+    +   - The cluster event that contains a change in the feature named `my-feature`
+
+    +   - The cluster event that contains a change in the bundle named `my-bundle`'
+  merge: -1
+  img_proc: true
+- pgno: 84
+  md: '# The Filtering of Cluster Events
+
+
+    So, we have to identify and declare the cluster event. To identify a cluster event,
+    we can use the following:
+
+
+    +   - The event identifier can be used; for instance, `org.apache.karaf.cellar.groups`
+    identifies the configuration''s cluster event (PID).
+
+    +   - A **regular expression (regex)** or glob based on the event identifier can
+    be used. Declaring events using the full qualified name can be tedious. The usage
+    of a regex is much faster. For instance, `org.apache.karaf.cellar.*` identified
+    all the configuration cluster events containing PIDs.
+
+    +   - `*` selects all cluster events.
+
+    +   - The none keyword is a reserved keyword to not select any cluster event.
+
+
+    The identification depends on the resource of the cluster event filter.
+
+
+    # Bundle
+
+
+    For a bundle cluster event, the identifier is the bundle''s location. You can
+    get the bundle''s location using the `osgi:list -l` command, which will give you
+    the following output:
+
+
+    ```
+
+    ...
+
+
+    [ 61] [Active      ] [Created  ] [  40]
+
+    mvn:org.apache.karaf.cellar/org.apache.karaf.cellar.features/2.3.2
+
+
+    [ 62] [Active      ] [Created  ] [  40]
+
+    mvn:org.apache.karaf.cellar/org.apache.karaf.cellar.management/2.3.2
+
+
+    [ 70] [Active      ] [Created  ] [  30]
+
+    mvn:org.apache.felix/org.apache.felix.eventadmin/1.3.2
+
+    ```
+
+
+    For instance, if you want to block (filter) all the bundle cluster events, both
+    inbound and outbound, for the eventadmin bundle in the my cluster group, you can
+    specify the following filter in the `etc/org.apache.karaf.cellar.groups.cfg` configuration
+    file:
+
+
+    ```
+
+    my.bundle.blacklist.inbound=mvn:org.apache.felix/org.apache.felix.eventadmin/1.3.2
+
+
+    my.bundle.blacklist.outbound=mvn:org.apache.felix/org.apache.felix.eventadmin/1.3.2
+
+    ```
+
+
+    This is where regex is very useful. We can simplify the filter as follows:
+
+
+    ```
+
+    my.bundle.blacklist.inbound=*org.apache.felix.eventadmin*
+
+
+    my.bundle.blacklist.outbound=*org.apache.felix.eventadmin*
+
+    ```'
+  merge: -1
+  img_proc: true
+- pgno: 85
+  md: "# Configuration\n\nFor the configuration cluster event, the identifier is the\
+    \ configuration PID. You can get the configuration PID using the config:list command.\n\
+    \nBy default, Cellar blacklists its own configuration and avoids syncing the configurations\
+    \ that are only valid locally to a node. The following is how this configuration\
+    \ will look in the etc/org.apache.karaf.cellar.groups.cfg configuration file:\n\
+    \n```\ndefault.config.whitelist.inbound = *\ndefault.config.whitelist.outbound\
+    \ = *\ndefault.config.blacklist.inbound = org.apache.felix.fileinstall*,\n\\\n\
+    \                            org.apache.karaf.cellar*, \\\n                  \
+    \          org.apache.karaf.management, \\\n                            org.apache.karaf.shell,\
+    \ \\\n                            org.ops4j.pax.logging, \\\n                \
+    \            org.ops4j.pax.web\ndefault.config.blacklist.outbound = org.apache.felix.fileinstall*,\n\
+    \\\n                            org.apache.karaf.cellar*, \\\n               \
+    \             org.apache.karaf.management, \\\n                            org.apache.karaf.shell,\
+    \ \\\n                            org.ops4j.pax.logging, \\\n                \
+    \            org.ops4j.pax.web\n```\n\nThe following is an explanation of the\
+    \ configurations in the preceding code snippet:\n\n+   - The org.apache.felix.fileinstall*\
+    \ configurations are excluded (inbound and outbound) as the polled directories\
+    \ are local to the node (so, it doesn't make sense to spread this configuration\
+    \ to the default cluster group)\n+   - The org.apache.karaf.cellar* configurations\
+    \ are excluded as they are provided by Cellar itself\n+   - The org.apache.karaf.management\
+    \ configuration is excluded as it contains the port number of the Karaf JMX MBean\
+    \ server (so it is local to a node)\n+   - The org.apache.karaf.shell configuration\
+    \ is excluded as it contains the port number of the Karaf SSHd server (so it is\
+    \ local to a node)\n+   - The org.ops4j.pax.logging configuration is excluded\
+    \ to be able to change the log level of a node without changing the log levels\
+    \ on the other nodes\n+   - The org.ops4j.pax.web configuration is excluded as\
+    \ it contains the port number of the Karaf HTTP service (so it is local to a node)"
+  merge: -1
+  img_proc: true
+- pgno: 86
+  md: "# Features\n\nFor the features cluster event, the identifier is the name of\
+    \ the feature. You can get the feature names using the features:list command,\
+    \ which will give you the following output:\n\n```\n...\n[uninstalled] [2.3.2\
+    \          ] cellar-webconsole\n    karaf-cell ar-2.3.2  Cellar plugin for Karaf\
+    \ WebConsole\n[uninstalled] [1.0.1          ] transaction\n    karaf-enterprise-2.3.1\
+    \ OSGi Transaction Manager\n[uninstalled] [1.0.1          ] jpa\n    karaf-enterprise-2.3.1\
+    \ OSGi Persistence Container\n[uninstalled] [1.0.0          ] jndi\n    karaf-enterprise-2.3.1\
+    \ OSGi Service Registry JNDI access\n[uninstalled] [1.0.0          ] application-without-isolation\n\
+    \    karaf-enterprise-2.3.1 Provide EBA archive support\n```\n\nBy default, Cellar\
+    \ blacklists some features as follows:\n\n```\ndefault.features.whitelist.inbound\
+    \ = *\ndefault.features.whitelist.outbound = *\ndefault.features.blacklist.inbound\
+    \ =\nconfig,management,hazelcast,cellar*\ndefault.features.blacklist.outbound\
+    \ =\nconfig,management,hazelcast,cellar*\n```\n\nThe Hazelcast and Cellar features\
+    \ are installed by Cellar itself; so, there is no need to handle the cluster events\
+    \ for these features. That's why the default filter configuration allows all the\
+    \ cluster feature events except the config, management, hazelcast, and all the\
+    \ Cellar (cellar*) features.\n\nOn the other hand, the config and management features\
+    \ are provided by default by Karaf. As these are very low-level features, these\
+    \ are not required to handle the events for these features."
+  merge: -1
+  img_proc: true
+- pgno: 87
+  md: "# The default filter configuration\n\nCellar uses the following default filter\
+    \ configuration:\n\n```\ndefault.config.whitelist.inbound = *\ndefault.config.whitelist.outbound\
+    \ = *\ndefault.config.blacklist.inbound = org.apache.felix.fileinstall*, \\\n\
+    \    org.apache.karaf.cellar*, \\\n    org.apache.karaf.management, \\\n    org.apache.karaf.shell,\
+    \ \\\n    org.ops4j.pax.logging, \\\n    org.ops4j.pax.web\ndefault.config.blacklist.outbound\
+    \ = org.apache.felix.fileinstall*, \\\n    org.apache.karaf.cellar*, \\\n    org.apache.karaf.management,\
+    \ \\\n    org.apache.karaf.shell, \\\n    org.ops4j.pax.logging, \\\n    org.ops4j.pax.web\n\
+    \ndefault.features.whitelist.inbound = *\ndefault.features.whitelist.outbound\
+    \ = *\ndefault.features.blacklist.inbound = config,management,hazelcast,cellar*\n\
+    default.features.blacklist.outbound = config,management,hazelcast,cellar*\n\n\
+    default.bundle.whitelist.inbound = *\ndefault.bundle.whitelist.outbound = *\n\
+    default.bundle.blacklist.inbound = none\ndefault.bundle.blacklist.outbound = none\n\
+    ```\n\nThe following is the explanation of the preceding configuration:\n\n+ \
+    \  - All the cluster configuration events are allowed (whitelist) in the default\
+    \ cluster group (inbound and outbound) for the node, except (blacklist) the configurations\
+    \ with the org.apache.felix.fileinstall*, org.apache.karaf.cellar*, org.apache.karaf.management,\
+    \ org.apache.karaf.shell, org.ops4j.pax.logging, and org.ops4j.pax.web PIDs.\n\
+    +   - All the cluster feature events are allowed (whitelist) in the default cluster\
+    \ group, inbound and outbound to the node, except (blacklist) the features named\
+    \ config, management, hazelcast, and cellar*.\n+   - All the cluster bundle events\
+    \ are allowed (whitelist) in the default cluster group, which are inbound and\
+    \ outbound to the node. No bundles are blocked (blacklist is none)."
+  merge: -1
+  img_proc: true
+- pgno: 88
+  md: '# Summary
+
+
+    In this chapter, we learned how to configure the filtering of cluster events.
+    It provides fine-grained management of the cluster events: per cluster group,
+    per direction (inbound or outbound), per resource (feature, bundle, and config),
+    supporting regex to identify the cluster events and type of filtering (whitelist
+    or blacklist).
+
+
+    It also allows the cluster administrator to define which resources should be synchronized
+    on the cluster.
+
+
+    In the next chapter, we will see another application for resource synchronization:
+    remote communication between bundles using **Distributed OSGi (DOSGi)**.'
+  merge: -1
+  img_proc: true
+- pgno: 89
+  md: 'In the previous chapters, we saw Cellar as a provisioning clustering solution;
+    the actions performed on resources from one node create cluster events that are
+    sent to the other nodes; these nodes then react accordingly. Cellar also provides
+    some features in addition to the provisioning cluster. Cellar **Distributed OSGi
+    (DOSGi)** is one of these additional features.
+
+
+    In this chapter, we will cover the following topics:
+
+
+    +   - What DOSGi is and a use case
+
+    +   - The Cellar DOSGi implementation
+
+    +   - A complete example using Cellar DOSGi
+
+
+    # What is Cellar DOSGi?
+
+
+    Cellar DOSGi is an implementation of the Remote Service Admin specifications from
+    the OSGi specifications. Basically, it''s a remote communication between services
+    from bundles hosted in different containers.
+
+
+    With the OSGi service, a bundle exposes a service (actually, an interface) to
+    the service registry provided by the OSGi framework. Another bundle can look up
+    for services in the service registry, get a reference to this service, and use
+    it. Thanks to this, we have a real **Service-Oriented Architecture (SOA)** approach
+    on low-level components (bundles).
+
+
+    Cellar DOSGi brings a distributed service registry and remote usage of a service
+    using Hazelcast NIO.'
+  merge: -1
+  img_proc: true
+- pgno: 90
+  md: 'Hazelcast NIO is a data serialization and transport implementation of NIO.
+    For details, you can take a look at the Java NIO Javadocs (http://docs.oracle.com/javase/7/docs/api/java/nio/package-summary.html)
+    and Hazelcast NIO documentation (http://hazelcast.org/docs/2.6/javadoc/com/hazelcast/nio/DataSerializable.html).
+
+
+    The following diagram shows how two nodes communicate with each other via a distributed
+    service registry:
+
+
+    ![](img/86f349f6a758f2c3088dbeb4d35dcaca_90_0.png)
+
+
+    On a node, a bundle (named the Service Bundle) can expose a service in the distributed
+    service registry. To do this, it just registers the service with the service.exported.interfaces
+    service property. We will see how to create a service and define this service
+    property using an example later in this chapter. Cellar listens for all service
+    registrations, and if a service has the service.exported.interfaces property,
+    it automatically exposes it to the distributed service registry.
+
+
+    On the other hand, a bundle (named the Client Bundle) just does a regular service
+    lookup. Cellar intercepts this lookup under the following circumstances:
+
+
+    +   - If the service exists in the local service registry, Cellar uses it
+
+    +   - If the service doesn''t exist in the local service registry, Cellar forwards
+    the lookup to the distributed service registry
+
+
+    The client bundle gets a reference to the service. In the case of a local service,
+    this reference is directly to the object in the JVM. In the case of a remote service,
+    this reference is a proxy to the actual service located in a remote JVM.
+
+
+    We have to note that DOSGi doesn''t use cluster groups (cluster groups are used
+    in resources synchronization for now). This means that node members of different
+    cluster groups can communicate with each other using DOSGi.
+
+
+    To illustrate and understand (from a user''s standpoint) how Cellar DOSGi works,
+    we will create a Greeter application.'
+  merge: -1
+  img_proc: true
+- pgno: 91
+  md: "In this application, we will have a bundle that exposes a service by saying\
+    \ hello and a client bundle that uses this service.\n\nThe source code of the\
+    \ example is available in Cellar sources at the following link:\n\nhttps://github.com/apache/karaf-cellars/tree/cellar-2.3.x/samples/dosgi-greeter\n\
+    \n# The API bundle\n\nIn OSGi, a service is described with an interface. This\
+    \ means that both service and client bundles of the same service have to share\
+    \ the same interface.\n\nIn order to decouple interface and implementation and\
+    \ be able to update a client bundle without impacting a service bundle, a good\
+    \ practice is to create an API bundle that contains just the interface.\n\nWe\
+    \ create this API bundle by just exposing the API package in the OSGi export package\
+    \ header as follows:\n\n```\n<osgi.export>\n    org.apache.karaf.cellar.samples.dosgi.greeter.api*;version=\"\
+    ${project.version}\"\n</osgi.export>\n```\n\nThe API bundle contains the interface\
+    \ that describes the Greeter service as follows:\n\n```\npackage org.apache.karaf.cellar.samples.dosgi.greeter.api;\n\
+    \n/**\n * Interface describing the Greeter service.\n */\npublic interface Greeter\
+    \ {\n\n    /**\n     * Returns a greet message.\n     * @return\n     */\n   \
+    \ public GreetResponse greet(Greet greet);\n\n}\n```\n\nThe service provides an\
+    \ operation: greet corresponding to the greet() method of the Greeter interface.\
+    \ This greet() method takes an object as an argument (Greet) and returns an object\
+    \ (GreetResponse)."
+  merge: -1
+  img_proc: true
+- pgno: 92
+  md: "# DOSGi\n\nThese objects are also part of the API bundle, as they will be used\
+    \ by both service and client bundles. The Greet object just wraps a message (a\
+    \ string). Note that this object is serializable. This is required as it will\
+    \ be used remotely. The message can be wrapped with the following code:\n\n```\n\
+    package org.apache.karaf.cellar.samples.dosgi.greeter.api;\n\nimport java.io.Serializable;\n\
+    \n/**\n * Object used in the Greeter interface/service.\n */\npublic class Greet\
+    \ implements Serializable {\n    String message;\n\n    public Greet(String message)\
+    \ {\n        this.message = message;\n    }\n\n    public String getMessage()\
+    \ {\n        return message;\n    }\n\n    public void setMessage(String message)\
+    \ {\n        this.message = message;\n    }\n}\n```\n\nThe GreetResponse class\
+    \ represents the response returned by the greet() method. It's also a Serializable\
+    \ object, as it will be transported between the nodes (remotely). This is done\
+    \ with the following code:\n\n```\npackage org.apache.karaf.cellar.samples.dosgi.greeter.api;\n\
+    \nimport java.io.Serializable;\n\n/**\n * Response returned by the Greeter service.\n\
+    \ */\npublic class GreetResponse implements Serializable {\n\n    private Greet\
+    \ greet;\n    private String response;\n```"
+  merge: -1
+  img_proc: true
+- pgno: 93
+  md: "```\npublic GreetResponse(Greet greet, String response) {\n    this.greet =\
+    \ greet;\n    this.response = response;\n}\n\npublic Greet getGreet() {\n    return\
+    \ greet;\n}\n\npublic void setGreet(Greet greet) {\n    this.greet = greet;\n\
+    }\n\npublic String getResponse() {\n    return response;\n}\n\npublic void setResponse(String\
+    \ response) {\n    this.response = response;\n}\n}\n```\n\nThe API bundle doesn't\
+    \ provide the implementation of the Greet service. It's just the API.\n\nThe implementation\
+    \ and the registration of the service are done in the service bundle.\n\n# The\
+    \ service bundle\n\nThe service bundle exposes a service to the service registry.\n\
+    \nA service will be exposed to the distributed service registry just by adding\
+    \ the service.exported.interfaces property to the service.\n\nFirst, the service\
+    \ bundle implements the Greet interface; it's the implementation of the Greet\
+    \ service, which is as follows:\n\n```\npackage org.apache.karaf.cellar.samples.dosgi.greeter.service;\n\
+    \nimport org.apache.karaf.cellar.samples.dosgi.greeter.api.Greet;\nimport org.apache.karaf.cellar.samples.dosgi.greeter.api.GreetResponse;\n\
+    import org.apache.karaf.cellar.samples.dosgi.greeter.api.Greeter;\n```"
+  merge: -1
+  img_proc: true
+- pgno: 94
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 95
+  md: "```\n<argument ref=\"nodeId\"/>\n</bean>\n\n<!-- The current Node -->\n<bean\
+    \ id=\"node\" factory-ref=\"clusterManager\" factory-method=\"getNode\"/>\n<!--\
+    \ The id of the current node -->\n<bean id=\"nodeId\" factory-ref=\"node\" factory-method=\"\
+    getId\"/>\n\n<!-- OSGi Services & References -->\n<service ref=\"greeterImpl\"\
+    \ interface=\"org.apache.karaf.cellar.samples.dosgi.greeter.api.Greeter\">\n \
+    \   <service-properties>\n        <entry key=\"service.exported.interfaces\" value=\"\
+    *\"/>\n    </service-properties>\n</service>\n\n<reference id=\"clusterManager\"\
+    \ interface=\"org.apache.karaf.cellar.core.ClusterManager\"/>\n\n</blueprint>\n\
+    ```\n\nWe can see the service.exported.interfaces property defined for the greeterImpl\
+    \ service. As we saw earlier, this property is a flag to specify that this service\
+    \ is available in the cluster. It contains the interface (the service) that we\
+    \ want to expose to the cluster. In case a bean that provides a service implements\
+    \ multiple interfaces, we can specify the interface to a user for the cluster\
+    \ interface. The wildcard (*) means that any interface implemented by the bean\
+    \ will be available in the cluster.\n\nWe can now deploy the service bundle on\
+    \ node1.\n\nCellar DOSGi is not installed by default in the Cellar feature. To\
+    \ enable DOSGi support, you have to install the cellar-dosgi feature with the\
+    \ following command:\n\n```\nkaraf@root> features:install cellar-dosgi\nkaraf@root>\
+    \ la|grep -i dosgi\n[ 63] [Active ] [Created ] [ 40] Apache Karaf :: Cellar ::\
+    \ DOSGi (2.3.1)\n```\n\nThe first bundle to deploy is the API bundle; this can\
+    \ be done by running the following command:\n\n```\nkaraf@root> osgi:install -s\n\
+    mvn:org.apache.karaf.cellar.samples.dosgi.greeter/org.apache.karaf.cellar.samples.dosgi.greeter.api/2.3.1\n\
+    ```"
+  merge: -1
+  img_proc: true
+- pgno: 96
+  md: 'Now, we can deploy and start the service bundle with the following command:
+
+
+    ```
+
+    karaf@root> osgi:install -s
+
+    mvn:org.apache.karaf.cellar.samples.dosgi.greeter/org.apache.karaf.cellar.samples.dosgi.greeter.service/2.3.1
+
+    ```
+
+
+    We can see our Greeter service in the local service registry by running the following
+    command:
+
+
+    ```
+
+    karaf@root> ls 65
+
+
+    Apache Karaf :: Cellar :: Samples :: DOSGi Greeter ::
+
+    Service (65) provides:
+
+    ------------------------------------------------------------
+
+    ---
+
+    objectClass =
+
+    org.apache.karaf.cellar.samples.dosgi.greeter.api.Greeter
+
+    osgi.service.blueprint.compname = greeterImpl
+
+    service.exported.interfaces = *
+
+    service.id = 286
+
+    ```
+
+
+    We can now see the `service.exported.interface` property that Cellar DOSGi is
+    looking for.
+
+
+    Cellar DOSGi also provides the following `cluster:service-list` command to display
+    the services registered on the cluster (in the distributed service registry):
+
+
+    ```
+
+    karaf@root> cluster:service-list
+
+
+    Service Class                                      Provider
+
+    Node
+
+    org.apache.karaf.cellar.samples.dosgi.greeter.api.Greeter    node1:5701
+
+    ```
+
+
+    We can see our Greeter service available in the cluster and provided by node1
+    of the cluster.
+
+
+    # # The client bundle
+
+
+    The client bundle provides a `dosgi-greeter:greet` shell command. The shell command
+    is part of the client bundle, and you can find the command code on the GitHub
+    source repository. The command calls the following `GreeterClient`:
+
+
+    ```
+
+    package org.apache.karaf.cellar.samples.dosgi.greeter.client;
+
+
+    import org.apache.karaf.cellar.samples.dosgi.greeter.api.Greet;
+
+    ```'
+  merge: -1
+  img_proc: true
+- pgno: 97
+  md: "```\nimport\n    org.apache.karaf.cellar.samples.dosgi.greeter.api.GreetResponse;\n\
+    import org.apache.karaf.cellar.samples.dosgi.greeter.api.Greeter;\n\n/**\n * Client\
+    \ that uses a remote Greeter service.\n */\npublic class GreeterClient {\n\n \
+    \   private Greeter greeter;\n    private String greetMessage;\n    private int\
+    \ count;\n\n    public GreeterClient(Greeter greeter, String greetMessage, int\
+    \ count) {\n        this.greeter = greeter;\n        this.greetMessage = greetMessage;\n\
+    \        this.count = count;\n    }\n\n    public void start() {\n        Greet\
+    \ greet = new Greet(greetMessage);\n        for (int i = 0; i < count; i++) {\n\
+    \            GreetResponse greetResponse = greeter.greet(greet);\n           \
+    \ if(greetResponse != null) {\n                System.out.println(greetResponse.getResponse());\n\
+    \            } else System.out.println(\"Time out!\");\n        }\n    }\n}\n\
+    ```\n\nThe client is pretty basic, as the service is injected in the greeter attribute\
+    \ using a blueprint as follows:\n\n```\n<?xml version=\"1.0\" encoding=\"UTF-8\"\
+    ?>\n\n<blueprint xmlns=\"http://www.osgi.org/xmlns/blueprint/v1.0.0\">\n\n   \
+    \ <reference id=\"greeter\"\n        interface=\"org.apache.karaf.cellar.samples.dosgi.greeter.api.Greeter\"\
+    />\n\n</blueprint>\n```"
+  merge: -1
+  img_proc: true
+- pgno: 98
+  md: '# DOSGi
+
+
+    This blueprint descriptor is very simple. It just gets a reference to the Greater
+    service. This reference can be a reference to the local actual service or to a
+    proxy of a remote service.
+
+
+    We can now deploy the API and client bundles on node2 with the following commands:
+
+
+    ```
+
+    karaf@root> osgi:install -s
+
+    mvn:org.apache.karaf.cellar.samples.dosgi.greeter/org.apache.karaf.cellar.samples.dosgi.greeter.api/2.3.1
+
+
+    karaf@root> osgi:install -s
+
+    mvn:org.apache.karaf.cellar.samples.dosgi.greeter/org.apache.karaf.cellar.samples.dosgi.greeter.client/2.3.1
+
+    ```
+
+
+    > Node1 and node2 should be in two different groups; otherwise, the installation
+    of the different bundles (API, service, and client) will be spread from one node
+    to another. This is not what we want; we want the service bundle to be installed
+    only on node1 and the client bundle to be installed only on node2.
+
+
+    We can now call the `dosgi-greeter:greet` command as follows:
+
+
+    ```
+
+    karaf@root> dosgi-greeter:greet hello 5
+
+    hello.Hello from node node2 count 0.
+
+    hello.Hello from node node2 count 1.
+
+    hello.Hello from node node2 count 2.
+
+    hello.Hello from node node2 count 3.
+
+    hello.Hello from node node2 count 4.
+
+    ```
+
+
+    # Summary
+
+
+    DOSGi is a very simple way to implement remote service communication between nodes.
+    It brings a new dimension to OSGi, and allows you to create large and scalable
+    applications that you can deploy on a farm of a container.
+
+
+    Used in correlation with cluster groups (to target the deployment of the bundles
+    on certain nodes), DOSGi is the first step forward in runtime clustering. It means
+    that Cellar is more than a provisioning clustering solution; it also brings interesting
+    features for runtime clustering.
+
+
+    In the next chapter, we will see another usage of Cellar for runtime clustering
+    when used in combination with Apache Camel.'
+  merge: -1
+  img_proc: true
+- pgno: 99
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 100
+  md: '# Cellar and Camel
+
+
+    +   - The vm endpoint is exactly the same as seda but global to the JVM. It means
+    that routes from different CamelContext can communicate using vm.
+
+
+    These components are convenient to implement communication between Camel routes.
+    However, this communication is local to the same JVM.
+
+
+    When we implement a farm or cluster of Karaf instances, it makes sense to deploy
+    Camel routes that are able to communicate with routes from other instances. Thanks
+    to this, we can specialize an instance and delegate parts of the route execution
+    to other instances.
+
+
+    Moreover, as Cellar is a dynamic cluster (it''s easy to add a new node in the
+    cluster), it makes sense to leverage multiple nodes to execute routes. Like this,
+    we can implement a dynamic and scalable cluster of Camel routes.
+
+
+    One way to implement such a solution is to use a **Java Message Service (JMS)**.
+    Using a broker, such as Apache ActiveMQ (or any JMS broker), it''s possible for
+    a route to produce a message in a queue in the broker and other routes can consume
+    from the queue. This approach is interesting because we can leverage the features
+    provided by brokers (message persistence, HA, and so on), but this requires the
+    use of an additional middleware resource, the broker. This means that we have
+    to use Cellar to provision the cluster and maintain the broker.
+
+
+    Thanks to Cellar and the Camel Hazelcast component with SEDA, we can implement
+    something similar without the JMS broker. There is no requirement to add an additional
+    middleware (the JMS broker), which will require installation, administration,
+    maintenance, and tuning.
+
+
+    However, some features provided by the JMS broker, especially ActiveMQ, are very
+    interesting, such as master/slave, network of brokers, and persistent store.
+
+
+    In the following diagram, we can see that the Camel route A uses the Hazelcast
+    instance provided by Cellar on **NodeA** (thanks to the `camel-hazelcast` component).
+    This Camel route A produces a message in a Hazelcast queue. On the other hand,
+    the Camel route B consumes the message in the Hazelcast queue, again thanks to
+    the `camel-hazelcast` component:
+
+
+    ![](img/86f349f6a758f2c3088dbeb4d35dcaca_100_0.png)'
+  merge: -1
+  img_proc: true
+- pgno: 101
+  md: "On the first node (**NodeA**), we install Cellar, Camel (`camel-blueprint`),\
+    \ and the `camel-hazelcast` component as follows:\n\n```\nkaraf@nodeA> features:addurl\n\
+    mvn:org.apache.karaf.cellar/apache-karaf-cellar/2.3.0/xml/features\n\nkaraf@nodeA>\
+    \ features:install cellar\n\nkaraf@nodeA> features:addurl\nmvn:org.apache.camel.karaf/apache-camel/2.12.0/xml/features\n\
+    \nkaraf@nodeA> features:install camel-blueprint\n\nkaraf@nodeA> features:install\
+    \ camel-hazelcast\n```\n\nThe node is now ready to deploy Camel routes.\n\nWe\
+    \ create a first route using the Camel Blueprint DSL. For that, we create the\
+    \ `route.xml` file as follows:\n\n```\n<?xml version=\"1.0\" encoding=\"UTF-8\"\
+    ?>\n<blueprint xmlns=\"http://www.osgi.org/xmlns/blueprint/v1.0.0\"\n        \
+    \   xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n           xsi:schemaLocation=\"\
+    \n           http://www.osgi.org/xmlns/blueprint/v1.0.0 http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd\"\
+    >\n\n    <camelContext xmlns=\"http://camel.apache.org/schema/blueprint\">\n\n\
+    \        <route id=\"routeA\">\n            <from uri=\"timer:simple?period=5000\"\
+    />\n            <setBody>\n                <simple>Hello World</simple>\n    \
+    \        </setBody>\n            <to uri=\"hazelcast:seda:myqueue\"/>\n      \
+    \  </route>\n\n    </camelContext>\n\n</blueprint>\n```\n\nThis route is pretty\
+    \ simple. Every 5 seconds, it creates a exchange, sets the body of the message\
+    \ to `Hello World`, and sends to a Hazelcast SEDA queue named myqueue.\n\nThe\
+    \ messages will be stored in a Hazelcast queue waiting for consumers to get messages\
+    \ from this queue. It looks like JMS, but the queue is distributed among all Cellar\
+    \ nodes."
+  merge: -1
+  img_proc: true
+- pgno: 102
+  md: "To deploy this route, we just drop the `route.xml` file into the `deploy` folder\
+    \ of **NodeA**.\n\nSo, now we have a node that produces messages in a Cellar/Hazelcast\
+    \ queue.\n\nOn **NodeB**, we will also install Cellar, Camel (`camel-blueprint`),\
+    \ the `camel-stream` component (to display messages directly on `System.out`),\
+    \ and the `camel-hazelcast` component as follows:\n\n```\nkaraf@nodeB> features:addurl\n\
+    mvn:org.apache.karaf.cellar/apache-karaf-cellar/2.3.0/xml/features\n\nkaraf@nodeB>\
+    \ features:install cellar\n\nkaraf@nodeB> features:addurl\nmvn:org.apache.camel.karaf/apache-camel/2.12.0/xml/features\n\
+    \nkaraf@nodeB> features:install camel-blueprint\n\nkaraf@nodeB> features:install\
+    \ camel-hazelcast\n\nkaraf@nodeB> features:install camel-stream\n```\n\nOn **NodeB**,\
+    \ we create a Camel route that will consume the messages from the Cellar/Hazelcast\
+    \ queue.\n\nWe define this route using the Camel Blueprint DSL in a `route.xml`\
+    \ file that we drop into the `deploy` folder (of **NodeB**) as follows:\n\n```\n\
+    <?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<blueprint xmlns=\"http://www.osgi.org/xmlns/blueprint/v1.0.0\"\
+    \n    xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n    xsi:schemaLocation=\"\
+    \n    http://www.osgi.org/xmlns/blueprint/v1.0.0 http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd\"\
+    >\n\n    <camelContext xmlns=\"http://camel.apache.org/schema/blueprint\">\n\n\
+    \        <route id=\"routeB\">\n            <from uri=\"hazelcast:seda:myqueue\"\
+    />\n            <to uri=\"stream:out\"/>\n        </route>\n\n    </camelContext>\n\
+    \n</blueprint>\n```"
+  merge: -1
+  img_proc: true
+- pgno: 103
+  md: 'As soon as this route is initiated, we can see the following message in the
+    **NodeB** `System.out` (directly on the shell console as we use `stream:out` in
+    the route):
+
+
+    ```
+
+    Hello World
+
+    Hello World
+
+    Hello World
+
+    Hello World
+
+    ```
+
+
+    This means that `routeB`, deployed on **NodeB**, consumes the messages from the
+    `myqueue` distributed queue. As this queue is a Cellar/Hazelcast distributed queue,
+    the actual data is not local to one node but spread on all nodes of the cluster.
+
+
+    It''s also possible to deploy `routeB` on multiple nodes (for instance, using
+    a specific cluster group with the `cluster:feature-install` command). In that
+    case, we will have multiple consumers on the same queue, providing a very efficient
+    scalable solution.
+
+
+    Together with the Cellar node discovery mechanism (especially using multicast/unicast),
+    we can very easily add new nodes in the cluster that directly become a consumer
+    or producer (depending on the route that we deploy).
+
+
+    Thanks to the Hazelcast SEDA endpoints provided by the `camel-hazelcast` component
+    and Cellar, you can easily provide a remote communication solution for your Camel
+    routes.
+
+
+    If we compare Hazelcast SEDA with JMS endpoints, it''s very similar. JMS is probably
+    more robust as it leverages all the features provided by the broker (persistence
+    store, conduit subscription, exclusive consumers, and so on). However, for simple
+    remote route communication, without adding additional middleware such as the JMS
+    broker, Hazelcast SEDA is a good solution.
+
+
+    # Caching with a distributed map
+
+
+    Another use case for Cellar and `camel-hazelcast` together is the implementation
+    of a distributed cache solution.
+
+
+    The `camel-hazelcast` component allows you to use a distributed map and execute
+    different operations on this map.
+
+
+    As it''s distributed, it means that the data is spread between different nodes:
+    all nodes can see the same data (entries/values) from the distributed map. This
+    means that you can share data between nodes.'
+  merge: -1
+  img_proc: true
+- pgno: 104
+  md: "# Cellar and Camel\n\nIn a Camel route, you can perform the following operations\
+    \ on the distributed map:\n\n+   - `put`: To add new data in the map\n+   - `delete`:\
+    \ To remove data from the map\n+   - `get`: To retrieve all data from the map\n\
+    +   - `query`: To retrieve particular data from the map\n\nThe operation type\
+    \ is defined in the `CamelHazelcastOperationType` header.\n\nFor instance, we\
+    \ can implement a route that updates the cache with the following code:\n\n```\n\
+    ```xml\n<route>\n    <from uri=\"direct-vm:add-in-cache\"/>\n    <setHeader headerName=\"\
+    CamelHazelcastOperationType\">\n        <constant>put</constant>\n    </setHeader>\n\
+    \    <to uri=\"hazelcast:map:mycache\"/>\n</route>\n```\n```\n\nThis route will\
+    \ receive a message on the direct-vm endpoint that contains the `CamelHazelcastObjectId`\
+    \ header with an ID as the value and data to store as the message body.\n\nThe\
+    \ `hazelcast:map` endpoint will update the mycache map with a entry ID/body. On\
+    \ the other hand, a route can get the data from the cache (one dataset if the\
+    \ ID is provided or all data if no ID is provided) as follows:\n\n```\n```xml\n\
+    <route>\n    <from uri=\"direct-vm:retrieve-from-cache\"/>\n    <setHeader headerName=\"\
+    CamelHazelcastOperationType\">\n        <constant>get</constant>\n    </setHeader>\n\
+    \    <to uri=\"hazelcast:map:mycache\"/>\n</route>\n```\n```\n\nInstead of requesting\
+    \ the cache when we need it (with a get or query operation), it's also possible\
+    \ to trigger a route as soon as the cache content changes. Like this, we can react\
+    \ to a data change (it's a kind of change data capture). To do this, we can create\
+    \ a route that listens on a given distributed map as follows:\n\n```\n```xml\n\
+    <route>\n    <from uri=\"hazelcast:map:mycache\"/>\n    ...\n</route>\n```\n```"
+  merge: -1
+  img_proc: true
+- pgno: 105
+  md: 'This route will react as soon as the cache content changes. The `hazelcast:map`
+    endpoint sets some headers to get details about the change, especially the following
+    changes:
+
+
+    +   - `CamelHazelcastListenerAction`: This contains the action performed on the
+    cache, that is, add, remove, update, or evict
+
+    +   - `CamelHazelcastListenerTime`: This is when the change has been performed
+
+    +   - `CamelHazelcastObjectId`: This is the ID of the object that has changed
+
+    +   - `CamelHazelcastCacheName`: This is the name of the distributed map that
+    has changed
+
+
+    Thanks to the `hazelcast:map` endpoints, you can easily implement a distributed
+    cache mechanism.
+
+
+    # Summary
+
+
+    In this chapter, we saw that by leveraging Hazelcast, Cellar offers more than
+    a simple provisioning framework. Combined with Camel, it''s a good solution to
+    spread your execution logic over multiple nodes and to implement a fully-scalable
+    and distributed system. It brings more flexibility to Camel in terms of provisioning
+    and executing the routes in a clustered environment.
+
+
+    The `camel-hazelcast` component provides other data structures than the ones introduced
+    in this chapter. You can find details on the component documentation at http://camel.apache.org/hazelcast-component.html.
+
+
+    In the next chapter, we will see new directions and features for preparation in
+    Cellar, providing even more clustering solutions.'
+  merge: -1
+  img_proc: true
+- pgno: 106
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 107
+  md: '# 9
+
+    Roadmap
+
+
+    In the previous chapters, we saw that Cellar is more than just a simple provisioning
+    cluster that provides advanced features (such as DOSGi) or leverages other projects
+    (such as Camel).
+
+
+    Cellar''s aim is to provide more runtime features. These new features can be grouped
+    into the following three categories:
+
+
+    +   - **HTTP**: Cellar will be used by the Karaf HTTP layer to deal with the clustering
+    of the deployed web applications
+
+    +   - **Monitoring**: Cellar will be used by the Karaf log and JMX service to
+    provide a global monitoring solution for the cluster
+
+    +   - **Other projects**: Cellar can be used to run projects in Karaf, such as
+    ActiveMQ, Camel, and CXF, to provide clustering features on top of these projects
+
+
+    This chapter introduces the new forthcoming features in HTTP and monitoring categories.
+
+
+    # HTTP load balancing and session clustering
+
+
+    Karaf directly leverages Pax Web to provide a complete WebContainer service.
+
+
+    With the installation of the war feature using the following command, Karaf gets
+    full support from the web bundle thanks to the Jetty web container and Pax Web:
+
+
+    ```
+
+    karaf@root> features:install war
+
+    ```'
+  merge: -1
+  img_proc: true
+- pgno: 108
+  md: 'It''s now possible to deploy a web application containing servlet for instance.
+
+
+    Karaf WebConsole is a web application. You can install the `webconsole` feature
+    with the following command:
+
+
+    ```
+
+    karaf@root> features:install webconsole
+
+    ```
+
+
+    With `webconsole`, you have the Karaf WebConsole available on http://localhost:8181/system/console.
+
+
+    Cellar deals with the HTTP layer to provide load balancing and session clustering.
+
+
+    # Load balancing
+
+
+    Due to the Cellar cluster provisioning, a web bundle will be deployed on different
+    nodes.
+
+
+    For instance, a web bundle binds and exposes an HTTP servlet on `/service`, which
+    is related to the HTTP service local to each node.
+
+
+    This means we have:
+
+
+    +   - For node A, the servlet available at http://A:8181/service, where A is the
+    hostname or IP address of node A
+
+    +   - For node B, the servlet available at http://B:8181/service, where B is the
+    hostname or IP address of node B
+
+
+    Using a browser, a client can connect to node A using http://A:8181/service or
+    node B using http://B:8181/service. Now, imagine that we deploy only to B using
+    http://B:8181/service (for instance, using a dedicated cluster group). It will
+    be great for clients to use http://A:8181/service, even if the service is not
+    actually deployed on A. Cellar will act as a proxy from A to B (where the service
+    is available).
+
+
+    Now, imagine we have three nodes: A, B, and C. The service is deployed on node
+    A (using http://A:8181/service) and node B (using http://B:8181/service). Node
+    C doesn''t have the service deployed, but it can act as a load balancer to the
+    service on nodes A and B. This means that a client would be able to use http://C:8181/service
+    and Cellar will load balance and proxy the HTTP requests to http://A:8181/service
+    and http://B:8181/service (for instance, using round robin, random, or weight-based
+    algorithms defined in the Cellar configuration). This concept is explained in
+    the following diagram:'
+  merge: -1
+  img_proc: true
+- pgno: 109
+  md: '![](img/86f349f6a758f2c3088dbeb4d35dcaca_109_0.png)
+
+
+    The load balancer can be:
+
+
+    +   - A hardware load balancer (Cisco, Juniper, F5, and so on)
+
+    +   - A software load balancer (for instance, using the `mod_proxy_balancer` module
+    with Apache HTTPd)
+
+
+    The solution of using such an external load balancer is a classic one, but we
+    may face the following two issues with these load balancers:
+
+
+    +   - This requires an additional middleware: the load balancer.
+
+    +   - The configuration of the load balancer is static. If we add new nodes, we
+    have to manually update the load balancer configuration.
+
+
+    As Cellar is a very dynamic clustering solution, it''s very easy to add new nodes.
+    Thanks to the discovery service, Cellar knows when and where a servlet is registered.
+
+
+    Cellar will store the list of nodes providing a servlet URL. It''s stored in a
+    Hazelcast-distributed map.
+
+
+    The map will look as follows:
+
+
+    +   - `/service1: nodeA, nodeB, nodeC`
+
+    +   - `/service2: nodeB, nodeC`
+
+
+    The Cellar HTTP service will act as a proxy from the local node to other nodes.'
+  merge: -1
+  img_proc: true
+- pgno: 110
+  md: 'The Cellar HTTP service looks like the DOSGi service. On a local node, Cellar
+    creates a proxy servlet for each servlet that is registered (/service1 and /service2).
+    If a client sends an HTTP request to the node, the proxy servlet will proxy/forward
+    the request to the nodes, where the actual servlet has been deployed. This is
+    shown in the following diagram:
+
+
+    ![](img/86f349f6a758f2c3088dbeb4d35dcaca_110_0.png)
+
+
+    Pax Web registers an OSGi service when a servlet is deployed. Cellar will provide
+    a service listener on the servlet''s service. This listener will store the servlets
+    in a cluster map like the following:
+
+
+    +   - URI = node, node
+
+
+    This means we will have /service = nodeB for instance.
+
+
+    On all nodes, Cellar will create a proxy servlet for all URIs contained in the
+    cluster map if the actual URI is not already present. For instance, Cellar will
+    create a proxy servlet for /service on node A but not on node B (as the actual
+    /service is located).
+
+
+    If a client calls on http://A:8181/service, this will use the Cellar proxy servlet
+    that will proxy an HTTP request and respond to node B as described in the cluster
+    map.
+
+
+    The cluster map will be able to contain multiple nodes for one URI. For instance,
+    /service may be deployed and available on nodes B, C, and D. In that case, Cellar
+    will use a round robin, or random algorithm to choose the target node to proxy
+    to. The algorithm will be defined by a configuration.
+
+
+    This load balancing feature will be available as an optional feature cellar-http-loadbalancer
+    with its own configuration file.'
+  merge: -1
+  img_proc: true
+- pgno: 111
+  md: "# Session clustering\n\nA web application can use a client session to identify\
+    \ the requests coming from the same clients. Used in a cluster environment, in\
+    \ order to work, we have to use session affinity. Once the client has sent a request\
+    \ to a node, this client has to send the next request to the same node. The issue\
+    \ is that if the node fails, the client session is lost and so is all the work\
+    \ in progress.\n\nInstead of session affinity, Cellar will provide support for\
+    \ session clustering. This means that the HTTP sessions of each node are replicated\
+    \ to all the other nodes. Thanks to that, we can load balance each request from\
+    \ any client to any node, as all nodes store all HTTP sessions.\n\nTo provide\
+    \ this feature, Cellar directly leverages a feature provided by Hazelcast (http://www.hazelcast.com/use-cases/web-session-clustering/).\n\
+    \nHazelcast provides a servlet filter that intercepts the HTTP requests to update\
+    \ the session distributed map.\n\nNormally, the developer has to update the web\
+    \ application web.xml to explicitly add the Hazelcast filter with the following\
+    \ code:\n\n```\n<filter>\n  <filter-name>hazelcast-filter</filter-name>\n  <filter-class>com.hazelcast.web.WebFilter</filter-class>\n\
+    \  <!--\n    Name of the distributed map storing\n    your web session objects\n\
+    \  -->\n  <init-param>\n    <param-name>map-name</param-name>\n    <param-value>my-sessions</param-value>\n\
+    \  </init-param>\n  <init-param>\n    <param-name>sticky-session</param-name>\n\
+    \    <param-value>true</param-value>\n  </init-param>\n  <!--\n    Are you debugging?\
+    \ Default is false.\n  -->\n  <init-param>\n    <param-name>debug</param-name>\n\
+    \    <param-value>true</param-value>\n  </init-param>\n</filter>\n```"
+  merge: -1
+  img_proc: true
+- pgno: 112
+  md: "```\n<filter-mapping>\n    <filter-name>hazelcast-filter</filter-name>\n  \
+    \  <url-pattern>/*</url-pattern>\n    <dispatcher>FORWARD</dispatcher>\n    <dispatcher>INCLUDE</dispatcher>\n\
+    \    <dispatcher>REQUEST</dispatcher>\n</filter-mapping>\n<listener>\n    <listener-class>com.hazelcast.web.SessionListener</listener-class>\n\
+    </listener>\n```\n\nAs Pax Web registers each servlet as an OSGi service, Cellar\
+    \ will provide a servlet service listener to dynamically add a servlet filter\
+    \ on top of the actual filter.\n\nThe cluster session will be available as an\
+    \ optional feature `cellar-http-session` that the user will have to install.\n\
+    \n# Clustering a log service\n\nKaraf provides a very rich logging service by\
+    \ leveraging Pax logging.\n\nIt's possible to change the log level or display\
+    \ the log messages directly in the Karaf shell console using specific commands:\
+    \ `log:set`, `log:get`, and `log:display`.\n\nCellar will provide the `cellar-log`\
+    \ optional feature. The installation of this feature will add a new log appender.\
+    \ This appender will store the log messages in a cluster map node/message.\n\n\
+    Thanks to this cluster map, from any node we will be able to see log messages\
+    \ on other nodes by issuing the following command:\n\n```\nkaraf@root> cluster:log-display\n\
+    nodeA ...\nnodeA ...\nnodeB ...\nnodeA ...\n```\n\nFor a specific node, run the\
+    \ following command:\n\n```\nkaraf@root> cluster:log-display nodeA\nnodeA ...\n\
+    nodeA ...\n```"
+  merge: -1
+  img_proc: true
+- pgno: 113
+  md: 'The purpose is to provide a cluster form of the `log:*` commands.
+
+
+    For instance, it is possible to change the log levels of all nodes in the cluster
+    with the following command:
+
+
+    ```
+
+    karaf@root> cluster:log-set DEBUG
+
+    ```
+
+
+    For a specific node, run the following command:
+
+
+    ```
+
+    karaf@root> cluster:log-set DEBUG nodeA
+
+    ```
+
+
+    The future versions of Cellar will be more than version updates. They will provide
+    new cluster features, first on the HTTP service, and other convenient features.
+
+
+    Even the version updates will be very important, especially with the support of
+    new Hazelcast versions.
+
+
+    # Summary
+
+
+    This chapter showed the future of Cellar. One of the key directions for Cellar
+    is to provide more runtime features. If provisioning and synchronization were
+    the primary purposes, Cellar now provides more advanced features. If in this chapter
+    we saw the upcoming HTTP and log cluster features, the roadmap is still open.
+    The relationship between Cellar and other projects (such as CXF, ActiveMQ, or
+    Camel, as we saw with Pax Web) will certainly provide interesting runtime features.
+
+
+    Cellar will be the most complete open source cluster solution for Karaf platforms,
+    providing both cluster provisioning as it does now, as well as runtime clustering.'
+  merge: -1
+  img_proc: true
+- pgno: 114
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 115
+  md: "# Index\n\n**A**\n\n**Apache Karaf**\n  features 11-16\n  provisioning 13,\
+    \ 14\n**Apache Karaf Cellar**\n  about 21\n  architecture 24\n  commands 26\n\
+    \  features 24\n  installing 26\n  URL, for information 21\n**Apache Karaf locking\
+    \ mechanism** 18\n**Apache ZooKeeper** 22\n**API bundle** 79-81\n**architecture,\
+    \ Apache Karaf Cellar** 24\n**async backup operations** 43\n\n**B**\n\n**backup**\n\
+    \  about 42, 43\n  persistence 43\n**blacklisted filter** 71\n**blacklist keyword**\
+    \ 71\n**bundle cluster event** 70, 72\n**BundleEventHandler** 65\n**bundles, Cluster\
+    \ resources** 27-29\n**bundles, targeting provisioning** 55, 56\n\n**C**\n\n**caching**\n\
+    \  with distributed map 91-93\n**Camel** 87\n\n**camel-hazelcast component** 91\n\
+    **Cellar**\n  runtime features 95\n**Cellar core** 25\n**Cellar distributed map**\
+    \ 42\n**Cellar Distributed OSGi (Cellar DOSGi)** 77\n**cellar-eventadmin feature**\
+    \ 36, 58\n**cellar-obr feature** 37, 58\n**Cellar sources**\n  URL for source\
+    \ code 79\n**cellar-webconsole feature** 37\n**client bundle** 78, 84-86\n**ClusterBundleEvent**\
+    \ 63\n**cluster:bundle-install command** 28\n**cluster:bundle-list command** 27\n\
+    **cluster component**\n  purpose 23\n**ClusterConfigEvent** 63\n**cluster:config-list\
+    \ command** 33\n**cluster:config-propset command** 35\n**cluster:consumer-start\
+    \ command** 64\n**cluster:consumer-status command** 64\n**cluster:consumer-stop\
+    \ command** 64\n**cluster event consumer**\n  about 61-63\n  functionalities 64\n\
+    **Cluster event consumer and handlers**\n  module 25\n**ClusterEventHandler**\
+    \ 65\n**cluster event model** 23\n**cluster event producer**\n  about 61, 62\n\
+    \  functions 62\n**Cluster event producer module** 25"
+  merge: -1
+  img_proc: true
+- pgno: 116
+  md: 'cluster events
+
+    bundle 70, 72
+
+    config 70, 73
+
+    features 70-74
+
+    filtering 69, 70
+
+    inbound 71
+
+    outbound 71
+
+    specifying 71
+
+    cluster events, for producer
+
+    ClusterBundleEvent 63
+
+    ClusterConfigEvent 63
+
+    ClusterFeatureEvent 63
+
+    ClusterObrEvent 63
+
+    ClusterFeatureEvent 63
+
+    cluster:feature-install command 54
+
+    cluster:feature-install <group_name> <feature_name> command 54
+
+    cluster:group-create command 70
+
+    cluster:group-create <group-name> command 51
+
+    cluster:group-delete <group_name> command 52
+
+    cluster:group-join command
+
+    about 52, 53
+
+    arguments 52
+
+    cluster:group-list command 52
+
+    cluster:group-quit command 53
+
+    cluster groups
+
+    managing 51-53
+
+    cluster:group-set command 53
+
+    cluster:handler-start command 66
+
+    cluster:handler-status command 65
+
+    cluster:handler-stop command 65
+
+    clustering
+
+    layers 22
+
+    Cluster Manager cluster 22
+
+    cluster manager component 22
+
+    cluster:node-list command 26
+
+    ClusterObrEvent 63
+
+    cluster:producer-start command 63
+
+    cluster:producer-status command 62
+
+    cluster:producer-stop command 62, 63
+
+    Cluster resources
+
+    about 27
+
+    bundles 27-29
+
+    configuration 33-35
+
+    Karaf features 30-32
+
+    Karaf WebConsole plugin 37
+
+    optional resources 36, 37
+
+    Cluster topologies 21, 22
+
+    commands module 25
+
+    commands, Apache Karaf Cellar 26
+
+    commands, targeting provisioning 59, 60
+
+    commons-lang bundle 28, 29
+
+    communication
+
+    between remote routes 87-91
+
+    config:list command 73
+
+    configuration, Cluster resources 33-35
+
+    ConfigurationEventHandler 65
+
+    configuration, filters 69, 70
+
+    configurations, targeting provisioning 57
+
+    D
+
+    default filter configuration 75
+
+    distributed cluster resource states
+
+    about 40
+
+    Cellar distributed map 42
+
+    distributed queues 41
+
+    distributed topics 41
+
+    distributed map
+
+    caching with 91-93
+
+    distributed queues 41
+
+    distributed topics 41
+
+    dosgi-greeter:greet shell command 84
+
+    E
+
+    event handlers
+
+    BundleEventHandler 65
+
+    ClusterEventHandler 65
+
+    ConfigurationEventHandler 65
+
+    FeaturesEventHandler 65
+
+    ObrBundleEventHandler 65
+
+    ObrUrlEventHandler 65
+
+    overview 64-66
+
+    event identifier 72
+
+    F
+
+    features, Apache Karaf Cellar 24
+
+    features cluster event 70, 74
+
+    FeaturesEventHandler 65
+
+    features:install <feature_name> command 54'
+  merge: -1
+  img_proc: true
+- pgno: 117
+  md: "features:list command 74\nfeatures, targeting provisioning 54, 55\nfilters\n\
+    \  configuring 69, 70\nfunctionalities, cluster event consumer 64\nfunctions,\
+    \ cluster event producer 62\n\nG\ngreet() method 79\nGreetResponse class 80\n\n\
+    H\nHazelcast\n  about 24, 25, 39, 40\n  URL, for session clustering 99\nhazelcast:map\
+    \ endpoint, headers\n  about 93\n  CamelHazelcastCacheName 93\n  CamelHazelcastListenerAction\
+    \ 93\n  CamelHazelcastListenerTime 93\n  CamelHazelcastObjectId 93\nHazelcast\
+    \ NIO\n  about 78\n  URL 78\nHTTP\n  load balancing 95-98\n  session clustering\
+    \ 95, 99, 100\n\nI\ninbound cluster events 71\ninstallation, Apache Karaf Cellar\
+    \ 26\nIPv6 support 48\n\nJ\nJava Authentication and Authorization Service (JAAS)\
+    \ 12\nJava Database Connectivity (JDBC) 13\nJava JAR (Java ARchive) file 9\nJava\
+    \ Message Service (JMS) 13, 88\nJava Naming and Directory Interface (JNDI) 13\n\
+    Java NIO Javadocs\n  URL 78\n\nJava Persistence API (JPA) 13\nJava Transaction\
+    \ API (JTA) 13\nJava Virtual Machine (JVM) 8\n\nK\nKaraf features, Cluster resources\
+    \ 30-32\nKaraf WebConsole plugin, Cluster resources 37\n\nL\nlayers, clustering\
+    \ 22\nlisteners 67\nload balancing, HTTP 96-98\nlog service\n  clustering 100,\
+    \ 101\n\nM\nMBeans 25\nmodules, Karaf\n  Cellar core 25\n  Cluster event consumer\
+    \ and handlers 25\n  Cluster event producer 25\n  Commands 25\n  Hazelcast 25\n\
+    \  MBeans 25\n  Resources listeners 25\n  Resources synchronizers 25\n  WebConsole\
+    \ plugin 25\nmultiple Apache Karaf containers\n  about 17, 18\n  provisioning\
+    \ cluster 19\n\nN\nnetworks\n  about 44\n  encryption, enabling of content 47\n\
+    \  interfaces 45, 46\n  IPv6 support 48, 49\n  multiple clusters 44\n  outbound\
+    \ ports, restricting 49\n  SSL 46\n  TCP/IP 45"
+  merge: -1
+  img_proc: true
+- pgno: 118
+  md: "nodes\n  communicating, via distributed\n    service registry 78\n  NodeA 88,\
+    \ 89\n  NodeB 90, 91\nnone keyword 72\n\nO\nOBR 15, 58\nObrBundleEventHandler\
+    \ 65\nObrUrlEventHandler 65\nOpen Software Gateway initiative.\n  See OSGi\noptional\
+    \ resources, Cluster resources 36, 37\noptional resources, targeting\n  provisioning\
+    \ 57, 58\norg.apache.felix.fileinstall:\n  configurations 73\norg.apache.karaf.cellar:\
+    \ configurations 73\norg.apache.karaf.management\n  configuration 73\norg.apache.karaf.shell\
+    \ configuration 73\norg.ops4j.pax.logging configuration 73\norg.ops4j.pax.web\
+    \ configuration 73\nOSGi\n  about 8\n  agility 8\n  discovery 8\n  features 8\n\
+    \  framework 8\n  purposes 8\n  reuse 8\n  visibility 8\nOSGi bundle\n  about\
+    \ 9\n  dependency 9, 10\nOSGi Bundle Repository. See OBR\nOSGi container\n  about\
+    \ 11\n  Apache Karaf features 15\n  OBR 15\n  provisioning, in Apache Karaf 13\n\
+    outbound cluster events 71\noutbound ports\n  restricting 49\noverlap, targeting\
+    \ provisioning 58, 59\n\nP\nPluggable Authentication Modules\n  (PAM) 12\nprovisioning\
+    \ cluster, Apache Karaf\n  tasks 19\n\nR\nregular expression (regex) 72\nremote\
+    \ routes\n  communication 87-91\nreplicas\n  about 42, 43\n  persistence 43\n\
+    resources 70\nResources listeners module 25\nResources synchronizers module 25\n\
+    Role Based Access Control\n  (RBAC) system 12\nruntime features, Cellar\n  HTTP\
+    \ 95\n  monitoring 95\n  other projects 95\n\nS\nservice bundle 78, 81-84\nService-Oriented\
+    \ Architecture (SOA) 10, 77\nsession clustering, HTTP 99, 100\nSSL socket communication\
+    \ 46\nstaged event-driven architecture (SEDA) 87\nsync backup operations 43\n\
+    synchronizers 67\n\nT\ntargeting provisioning\n  about 53\n  bundles 55, 56\n\
+    \  commands, summary 59, 60\n  configurations 57\n  features 54, 55\n  optional\
+    \ resources 57, 58\n  overlapping 58, 59\nTCP/IP 45\ntime to live (TTL) 41"
+  merge: -1
+  img_proc: true
+- pgno: 119
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 120
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 121
+  md: '# Thank you for buying
+
+    Learning Karaf Cellar
+
+
+    # About Packt Publishing
+
+
+    Packt, pronounced ''packed'', published its first book "Mastering phpMyAdmin for
+    Effective MySQL Management" in April 2004 and subsequently continued to specialize
+    in publishing highly focused books on specific technologies and solutions.
+
+
+    Our books and publications share the experiences of your fellow IT professionals
+    in adapting and customizing today''s systems, applications, and frameworks. Our
+    solution based books give you the knowledge and power to customize the software
+    and technologies you''re using to get the job done. Packt books are more specific
+    and less general than the IT books you have seen in the past. Our unique business
+    model allows us to bring you more focused information, giving you more of what
+    you need to know, and less of what you don''t.
+
+
+    Packt is a modern, yet unique publishing company, which focuses on producing quality,
+    cutting-edge books for communities of developers, administrators, and newbies
+    alike.
+
+    For more information, please visit our website: www.packtpub.com.
+
+
+    # About Packt Open Source
+
+
+    In 2010, Packt launched two new brands, Packt Open Source and Packt Enterprise,
+    in order to continue its focus on specialization. This book is part of the Packt
+    Open Source brand, home to books published on software built around Open Source
+    licenses, and offering information to anybody from advanced developers to budding
+    web designers. The Open Source brand also runs Packt''s Open Source Royalty Scheme,
+    by which Packt gives a royalty to each Open Source project about whose software
+    a book is sold.
+
+
+    # Writing for Packt
+
+
+    We welcome all inquiries from people who are interested in authoring. Book proposals
+    should be sent to author@packtpub.com. If your book idea is still at an early
+    stage and you would like to discuss it first before writing a formal book proposal,
+    contact us; one of our commissioning editors will get in touch with you.
+
+
+    We''re not just looking for published authors; if you have strong technical skills
+    but no writing experience, our experienced editors can help you develop a writing
+    career, or simply get some additional reward for your expertise.'
+  merge: -1
+  img_proc: true
+- pgno: 122
+  md: '![](img/86f349f6a758f2c3088dbeb4d35dcaca_122_0.png)
+
+
+    ![](img/86f349f6a758f2c3088dbeb4d35dcaca_122_1.png)
+
+
+    # Learning Apache Karaf
+
+
+    ISBN: 978-1-78217-204-8　　　　　　　　 Paperback: 128 pages
+
+
+    Develop and deploy applications using the OSGi-based runtime container, Apache
+    Karaf
+
+
+    +   1. Understand Apache Karaf''s commands and control capabilities.
+
+    +   2. Gain familiarity with its provisioning features.
+
+    +   3. Explore various application deployments targets experientially.
+
+
+    ![](img/86f349f6a758f2c3088dbeb4d35dcaca_122_2.png)
+
+
+    # Instant OSGi Starter
+
+
+    ISBN: 978-1-84951-992-2　　　　　　　　 Paperback: 58 pages
+
+
+    The essential guide to modular development with OSGi
+
+
+    +   1. Learn something new in an Instant! A short, fast, focused guide delivering
+    immediate results.
+
+    +   2. Learn what can be done with OSGi and what it can bring to your development
+    structure.
+
+    +   3. Build your first application and deploy it to an OSGi runtime that simplifies
+    your experience.
+
+    +   4. Discover an uncomplicated, conversational approach to learning OSGi for
+    building and deploying modular applications.
+
+
+    Please check **www.PacktPub.com** for information on our titles'
+  merge: -1
+  img_proc: true
+- pgno: 123
+  md: '![](img/86f349f6a758f2c3088dbeb4d35dcaca_123_0.png)
+
+
+    ![](img/86f349f6a758f2c3088dbeb4d35dcaca_123_1.png)
+
+
+    # OSGi and Apache Felix 3.0 Beginner''s Guide
+
+
+    ISBN: 978-1-84951-138-4      Paperback: 336 pages
+
+
+    Build your very own OSGi applications using the flexible and powerful Felix Framework
+
+
+    +   1. Build a completely operational real-life application composed of multiple
+    bundles and a web frontend using Felix.
+
+    +   2. Get yourself acquainted with the OSGi concepts, in an easy-to-follow progressive
+    manner.
+
+    +   3. Learn everything needed about the Felix Framework and get familiar with
+    Gogo, its command-line shell to start developing your OSGi applications.
+
+
+    ![](img/86f349f6a758f2c3088dbeb4d35dcaca_123_2.png)
+
+
+    # Instant Apache ServiceMix How-to
+
+
+    ISBN: 978-1-84951-966-3      Paperback: 66 pages
+
+
+    Learn to create simple ServiceMix-based integration solutions using short, practical,
+    hands-on recipes
+
+
+    +   1. Learn something new in an Instant! A short, fast, focused guide delivering
+    immediate results.
+
+    +   2. Leverage OSGi to speed up the ESB deployment.
+
+    +   3. Define message flow with Camel DSL.
+
+    +   4. Expose your system via web services.
+
+
+    Please check www.PacktPub.com for information on our titles'
+  merge: -1
+  img_proc: true

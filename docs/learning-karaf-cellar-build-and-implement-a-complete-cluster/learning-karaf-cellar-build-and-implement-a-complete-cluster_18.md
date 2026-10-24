@@ -1,0 +1,197 @@
+# 9 Roadmap
+
+在前几章中，我们看到 Cellar 不仅仅是一个简单的配置集群，它提供了高级功能（如 DOSGi）或利用其他项目（如 Camel）。
+
+Cellar 的目标是提供更多运行时功能。这些新功能可以分为以下三个类别：
+
+- **HTTP**：Cellar 将被 Karaf HTTP 层使用，以处理已部署 Web 应用程序的集群
+- **Monitoring**：Cellar 将被 Karaf 日志和 JMX 服务使用，以为集群提供全局监控解决方案
+- **Other projects**：Cellar 可用于在 Karaf 中运行项目，如 ActiveMQ、Camel 和 CXF，以为这些项目提供集群功能
+
+本章介绍了 HTTP 和监控类别中的新即将推出的功能。
+
+### HTTP load balancing and session clustering
+
+Karaf 直接利用 Pax Web 提供完整的 WebContainer 服务。
+
+通过使用以下命令安装 war 功能，Karaf 得到了 Jetty Web 容器和 Pax Web 对 Web bundle 的完全支持：
+
+```
+karaf@root> features:install war
+```
+
+现在可以部署包含 servlet 的 Web 应用程序，例如。
+
+Karaf WebConsole 是一个 Web 应用程序。您可以使用以下命令安装 `webconsole` 功能：
+
+```
+karaf@root> features:install webconsole
+```
+
+使用 `webconsole` 功能，您可以在 http://localhost:8181/system/console 访问 Karaf WebConsole。
+
+Cellar 处理 HTTP 层以提供负载均衡和会话集群。
+
+#### Load balancing
+
+由于 Cellar 集群配置，一个 Web bundle 将部署在不同的节点上。
+
+例如，一个 Web bundle 在 `/service` 上绑定并公开一个 HTTP servlet，该 servlet 与每个节点的本地 HTTP 服务相关。
+
+这意味着我们有：
+
+- 对于节点 A，servlet 可在 http://A:8181/service 上使用，其中 A 是节点 A 的主机名或 IP 地址
+- 对于节点 B，servlet 可在 http://B:8181/service 上使用，其中 B 是节点 B 的主机名或 IP 地址
+
+使用浏览器，客户端可以使用 http://A:8181/service 连接到节点 A，或使用 http://B:8181/service 连接到节点 B。现在，想象我们仅在 B 上部署服务，因此它可在 http://B:8181/service 上使用（例如，使用专用的集群组）。客户端能够使用 http://A:8181/service 会很棒，即使服务实际上并未部署在 A 上。Cellar 将充当从 A 到 B 的代理（服务可用）。
+
+现在，想象我们有三个节点：A、B 和 C。服务部署在节点 A（使用 http://A:8181/service）和节点 B（使用 http://B:8181/service）上。节点 C 未部署服务，但可以充当对节点 A 和 B 上服务的负载均衡器。这意味着客户端将能够使用 http://C:8181/service，Cellar 将负载均衡并代理 HTTP 请求到 http://A:8181/service 和 http://B:8181/service（例如，使用 Cellar 配置中定义的轮询、随机或基于权重的算法）。该概念在以下图表中进行了说明：
+
+![](img/86f349f6a758f2c3088dbeb4d35dcaca_109_0.png)
+
+负载均衡器可以是：
+
+- 硬件负载均衡器（Cisco、Juniper、F5 等）
+- 软件负载均衡器（例如，使用 Apache HTTPd 的 `mod_proxy_balancer` 模块）
+
+使用此类外部负载均衡器的解决方案是经典的，但我们可能会遇到以下两个问题：
+
+- 这需要额外的中间件：负载均衡器。
+- 负载均衡器的配置是静态的。如果我们添加新节点，就必须手动更新负载均衡器配置。
+
+由于 Cellar 是一个非常动态的集群解决方案，添加新节点非常容易。得益于发现服务，Cellar 知道 servlet 何时以及在何处注册。
+
+Cellar 将存储提供 servlet URL 的节点列表。它存储在 Hazelcast 分布式映射中。
+
+映射如下所示：
+
+- `/service1`：nodeA、nodeB、nodeC
+- `/service2`：nodeB、nodeC
+
+Cellar HTTP 服务将充当从本地节点到其他节点的代理。
+
+Cellar HTTP 服务类似于 DOSGi 服务。在本地节点上，Cellar 为每个已注册的 servlet（`/service1` 和 `/service2`）创建一个代理 servlet。如果客户端向节点发送 HTTP 请求，代理 servlet 将请求代理/转发到实际部署了 servlet 的节点。这在以下图表中显示：
+
+![](img/86f349f6a758f2c3088dbeb4d35dcaca_110_0.png)
+
+Pax Web 在部署 servlet 时注册一个 OSGi 服务。Cellar 将在 servlet 的服务上提供一个服务监听器。此监听器将 servlet 存储在如下所示的集群映射中：
+
+- `URI = node, node`
+
+这意味着我们将有 `/service = nodeB`，例如。
+
+在所有节点上，Cellar 将为集群映射中包含的所有 URI 创建代理 servlet，如果实际 URI 尚未存在。例如，Cellar 将在节点 A 上为 `/service` 创建代理 servlet，但在节点 B 上不会创建（因为实际的 `/service` 位于节点 B 上）。
+
+如果客户端调用 http://A:8181/service，该请求将使用 Cellar 代理 servlet，该 servlet 将根据集群映射中描述的将 HTTP 请求代理到节点 B。
+
+集群映射可以为一个 URI 包含多个节点。例如，`/service` 可能部署并在节点 B、C 和 D 上可用。在这种情况下，Cellar 将使用轮询或随机算法选择要代理的目标节点。算法将由配置定义。
+
+此负载均衡功能将作为可选功能 `cellar-http-loadbalancer` 提供，并附带自己的配置文件。
+
+#### Session clustering
+
+Web 应用程序可以使用客户端会话来识别来自同一客户端的请求。在集群环境中，我们必须使用会话亲和性才能使会话正常工作。一旦客户端向节点发送请求，此客户端必须将下一个请求发送到同一节点。问题是如果节点失败，客户端会话就会丢失，所有正在进行的工作也会丢失。
+
+代替会话亲和性，Cellar 将提供会话集群支持。这意味着每个节点的 HTTP 会话都会复制到所有其他节点。借助此功能，我们可以将来自任何客户端的每个请求负载均衡到任何节点，因为所有节点都存储所有 HTTP 会话。
+
+为了提供此功能，Cellar 直接利用 Hazelcast 提供的一项功能（http://www.hazelcast.com/use-cases/web-session-clustering/）。
+
+Hazelcast 提供了一个 servlet 过滤器，拦截 HTTP 请求以更新分布式会话映射。
+
+通常，开发人员必须更新 Web 应用程序 `web.xml` 以显式添加 Hazelcast 过滤器，使用以下代码：
+
+```
+<filter>
+  <filter-name>hazelcast-filter</filter-name>
+  <filter-class>com.hazelcast.web.WebFilter</filter-class>
+  <!--
+    Name of the distributed map storing
+    your web session objects
+  -->
+  <init-param>
+    <param-name>map-name</param-name>
+    <param-value>my-sessions</param-value>
+  </init-param>
+  <init-param>
+    <param-name>sticky-session</param-name>
+    <param-value>true</param-value>
+  </init-param>
+  <!--
+    Are you debugging? Default is false.
+  -->
+  <init-param>
+    <param-name>debug</param-name>
+    <param-value>true</param-value>
+  </init-param>
+</filter>
+```
+
+
+
+
+```
+<filter-mapping>
+    <filter-name>hazelcast-filter</filter-name>
+    <url-pattern>/*</url-pattern>
+    <dispatcher>FORWARD</dispatcher>
+    <dispatcher>INCLUDE</dispatcher>
+    <dispatcher>REQUEST</dispatcher>
+</filter-mapping>
+<listener>
+    <listener-class>com.hazelcast.web.SessionListener</listener-class>
+</listener>
+```
+
+由于 Pax Web 将每个 servlet 注册为 OSGi 服务，Cellar 将提供一个 servlet 服务监听器，以便在实际过滤器之上动态添加 servlet 过滤器。
+
+集群会话将作为可选功能 `cellar-http-session` 提供，用户需要自行安装。
+
+## 聚类日志服务
+
+Karaf 通过利用 Pax logging 提供了非常丰富的日志服务。
+
+可以使用特定命令在 Karaf shell 控制台中更改日志级别或直接显示日志消息：`log:set`、`log:get` 和 `log:display`。
+
+Cellar 将提供 `cellar-log` 可选功能。此功能的安装将添加一个新的日志 appender。该 appender 将把日志消息存储在集群映射节点/消息中。
+
+借助此集群映射，我们可以从任何节点通过发出以下命令查看其他节点的日志消息：
+
+```
+karaf@root> cluster:log-display
+nodeA ...
+nodeA ...
+nodeB ...
+nodeA ...
+```
+
+对于特定节点，运行以下命令：
+
+```
+karaf@root> cluster:log-display nodeA
+nodeA ...
+nodeA ...
+```
+
+目的是提供 `log:*` 命令的集群形式。
+
+例如，可以使用以下命令更改集群中所有节点的日志级别：
+
+```
+karaf@root> cluster:log-set DEBUG
+```
+
+对于特定节点，运行以下命令：
+
+```
+karaf@root> cluster:log-set DEBUG nodeA
+```
+
+Cellar 的未来版本将不仅仅是版本更新。它们将提供新的集群功能，首先在 HTTP 服务上，以及其他便捷功能。
+
+即使是版本更新也很重要，特别是对新 Hazelcast 版本的支持。
+
+## 摘要
+
+本章展示了 Cellar 的未来。Cellar 的关键发展方向之一是提供更多运行时功能。如果配置和同步是主要目的，Cellar 现在提供了更高级的功能。如果在本章中我们看到了即将推出的 HTTP 和日志集群功能，路线图仍然开放。Cellar 与其他项目（例如 CXF、ActiveMQ 或 Camel，正如我们在 Pax Web 中看到的那样）之间的关系无疑将提供有趣的运行时功能。
+
+Cellar 将成为 Karaf 平台最完整的开源集群解决方案，提供现在所做的集群配置，以及运行时集群。
