@@ -1,0 +1,16 @@
+# Excel Quirks and Nuances
+
++   - Minor loss of functionality: This typically signifies that you have used a font or fill color that is incompatible with Excel 97-2003. Back in the day, Excel had a color palette of 256 colors, but starting with Excel 2007, you can access 4.3 billion colors, meaning almost any color you choose won’t be one of the original 256. In such cases, old versions of Excel simply choose a color that is as close to a match as possible. Most of us can safely remove Excel 97-2003 from the Select versions to show list so that we aren’t needlessly presented with this warning. Compatibility Checker does not offer a Find link for identifying affected cells because it’s a benign issue.
+
++   - No compatibility issues were found: Compatibility Checker determined that you didn’t use any features or worksheet functions that are incompatible with the previous versions of Excel that are enabled on the Select versions to show list.
+
+> Tip
+> The Standard Color options within the Fill Color and Font Color commands on Excel’s Home tab are a subset of the original 256 colors. Any other colors that you specify will trigger a Compatibility Checker warning when the feature is set to include Excel 97-2003.
+
+Although Compatibility Checker will help you ensure compatibility with older versions of Excel, it does leave a huge blind spot for Microsoft 365 users when Microsoft rolls out new features. Microsoft 365 users generally fall into one of three different update channels: Current, Monthly Enterprise, and Semi-Annual Enterprise. The Current and Monthly Enterprise channels usually receive program updates on a monthly basis, which can include new features. Semi-Annual Enterprise users only receive program updates in January and July, which means that there can be a lag of six months or more before new features that Microsoft 365 users in the Current and Monthly Enterprise channels are using become available. This means that if you share your workbooks with others outside of your organization, you should tread carefully when using new or fairly new features such as the LAMBDA function. Your best defense is to check the build number on your computer and on computers that you wish to share a spreadsheet with by choosing File | Account. If the Version and Build numbers next to the About Excel button are the same as yours or higher, it will be safe to jump in and implement those new capabilities in your spreadsheets. You can also identify which channel your computer has been assigned via this screen as well.
+
+Let’s now contrast Compatibility Checker with Compatibility Mode.
+
+# Compatibility Mode
+
+The tricky part of compatibility in modern versions of Excel is that you will not know whether you have used a feature that is not backward compatible unless you happen to know which features and functions work with which versions of Excel, or you run Compatibility Checker. The exception to this rule is when you open a workbook that uses the Excel 97-2003 Workbook (.XLS) format. In such cases, Excel launches Compatibility Mode, as shown in Figure 9-3:
