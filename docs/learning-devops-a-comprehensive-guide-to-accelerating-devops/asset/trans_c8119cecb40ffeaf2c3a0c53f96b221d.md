@@ -1,0 +1,147 @@
+
+
+现在，我们将创建功能标志并在应用程序中使用它们。在这个示例中，我们将创建一个名为 ShowBoxHome 的功能标志，它可能会或可能不会显示应用程序主页中间的图像。让我们看看如何在项目中创建和操作这些功能标志，如下所示：
+
++ 1. 首先，我们将通过创建一个包含以下代码的新类来创建功能标志：
+
+```csharp
+using RimDev.AspNetCore.FeatureFlags;
+
+namespace appFeatureFlags.Models{
+    public class ShowBoxHome : Feature {
+        public override string Description { get;
+        } = "Show the home center box.";
+    }
+}
+```
+
+这个类包含 ShowBoxHome 功能标志。为这个功能标志提供了一个覆盖的描述。
+
++ 2. 然后，在我们的控制器中，我们使用以下代码调用 ShowBoxHome 类：
+
+```csharp
+public class HomeController : Controller {
+    private readonly ShowBoxHome showboxHome;
+    public HomeController (ShowBoxHome showboxHome) {
+        this.showboxHome = showboxHome;
+    }
+    public IActionResult Index() {
+        return View(new HomeModel{ShowboxHome = this.showboxHome.Value});
+    }
+    ...
+}
+```
+
+控制器接收存储在数据库中的功能标志值，这些值在应用程序启动时加载。
+
+3. 我们还将创建一个 HomeModel 类，用于列出主页所需的所有功能标志，如下所示：
+
+```csharp
+public class HomeModel
+{
+    public bool ShowBoxHome { get; set; }
+}
+```
+
+4. 最后，在 Views/Home/index.cshtml 中，我们将使用这个模型来根据功能标志的值显示主页中间的图像，代码如下：
+
+```razor
+@if(Model.ShowBoxHome){
+<div><img src="img/test.png"></div>
+}
+```
+
+一旦开发过程结束，部署并运行我们的应用程序。默认情况下，主页中间没有图像，如下面的截图所示：
+
+![](img/d3344b39c888aab0b832625465f837c9_480_0.png)
+
+图 15-9 – 功能标志演示主页应用程序
+
+要显示图像，我们需要动态激活功能，如下所示：
+
++ 1. 访问 http://<yoursite>/_features 的后台。我们将看到一个名为 ShowHomeBow 的开关。
+
++ 2. 我们通过打开切换开关来激活标志，如下面的截图所示：
+
+图 15.10 – 功能标志演示功能切换
+
+重新加载我们应用程序的主页。在这里，我们可以看到图像显示在页面中间：
+
+![](img/d3344b39c888aab0b832625465f837c9_481_0.png)
+
+图 15.11 – 功能标志演示应用程序
+
+通过使用 RimDev.FeatureFlags 框架和功能标志，我们能够启用或禁用应用程序的功能，而无需重新部署它。
+
+> **Note**
+> 
+> 此应用程序的完整源代码可在 `https://github.com/PacktPublishing/Learning-DevOps-Second-Edition/tree/main/CHAP15/appFF` 找到。
+
+我们刚刚看到如何使用开源工具在 .NET Core 应用程序中实现基本的功能标志。我们注意到，使用开源工具，我们可以在基础设施中创建数据库。这种功能标志的使用相当基础，而且，管理功能标志的 UI 访问不安全。
+
+最后，与任何开源工具一样，检查它是否由其编辑器或社区定期维护和更新很重要。但是，使用开源工具进行功能标志对于小型商业项目来说仍然很有吸引力且成本低廉。
+
+## 使用 LaunchDarkly 解决方案
+
+在上一节中，我们讨论了使用开源工具进行功能标志，这可能是一个好的解决方案，但需要一些基础设施组件，并且依赖于开发语言（在我们的示例中，它是 .NET Core）。
+
+为了更好地使用和管理功能标志，我们可以使用一个云解决方案，它不需要实现架构，并提供许多围绕功能标志的功能。
+
+在这些云解决方案（**软件即服务**，或 **SaaS**）中，有 **LaunchDarkly** (`https://launchdarkly.com/`)，它是一个 SaaS 平台，由功能标志管理后台和允许我们在应用程序中操作功能标志的 SDK 组成。
+
+LaunchDarkly SDK 可用于许多开发语言，例如 .NET、JavaScript、Go 和 Java。完整的 SDK 列表可在此处找到：`https://docs.launchdarkly.com/sdk`。
+
+除了经典的 `RimDev.FeatureFlags` 功能标志管理版本之外，LaunchDarkly 还允许功能标志由用户管理，并提供与功能标志相关的 A/B 测试功能。A/B 测试可以通过功能标志来衡量应用程序功能的使用情况。
+
+但是，LaunchDarkly 是一个付费解决方案 (`https://launchdarkly.com/pricing/`) 。幸运的是，它提供 30 天试用，以便我们可以试用。请看看如何使用 LaunchDarkly，以便您可以在 .NET 应用程序中实现功能标志。
+
+为此，我们将首先创建一些功能标志，如下所示：
+
++ 1. 首先，通过单击 LaunchDarkly 网站顶部菜单中的 **Sign In** 按钮登录您的 LaunchDarkly 帐户。或者，您可以访问 `https://app.launchdarkly.com/`。
+
++ 2. 一旦我们连接到帐户，在 **Account settings** 部分，我们可以创建一个名为 `DemoBook` 的新项目，如下面的截图所示：
+
+图 15.12 – LaunchDarkly 项目创建
+
+默认情况下，项目中创建了两个环境。我们将能够创建自己的环境，然后在不同环境中测试功能标志。此外，每个环境都有一个唯一的 SDK 密钥，将作为 SDK 的身份验证。
+
++ 1. 然后，在名为 **Test** 的环境中，我们将导航到 **Feature flags** 菜单，单击 **Create flag** 按钮，然后创建一个名为 `ShowBoxHome` 的功能标志，如下面的截图所示：
+
+图 15.13 – LaunchDarkly 功能标志创建
+
+创建后，我们可以通过单击 **On/Off** 切换开关来激活它。现在我们已经在 LaunchDarkly 门户中配置和创建了功能标志，我们将看到如何在应用程序代码中使用 SDK。
+
+> Note
+> 在 LaunchDarkly 中，对功能标志所做的更改是由连接到应用程序的用户完成的。这意味着应用程序必须提供身份验证系统。
+
+要使用 SDK 并启动应用程序，请执行以下步骤：
+
++ 1. 第一步是选择与应用程序开发语言对应的 SDK。我们可以通过访问 https://docs.launchdarkly.com/docs/getting-started-with-launchdarkly-sdks#section-supported-sdks 来完成此操作。在我们的例子中，我们有一个 .NET 应用程序，因此我们将遵循此过程：https://docs.launchdarkly.com/docs/dotnet-sdk-reference。
+
++ 2. 现在，让我们将 NuGet LaunchDarkly.ServerSdk 包（https://www.nuget.org/packages/LaunchDarkly.ServerSdk/）的引用集成到我们应用程序的 .csproj 文件中，通过将其添加到引用包中，如下所示：
+
+```xml
+<ItemGroup>
+<PackageReference Include="LaunchDarkly.ServerSdk"
+Version="6.3.1" />
+...
+</ItemGroup>
+```
+
++ 3. 在 .NET 代码中，我们在控制器中执行此操作。为此，我们需要使用 using 命令导入 SDK，如下所示：
+
+```csharp
+using LaunchDarkly.Client;
+```
+
++ 4. 仍在控制器代码中，我们添加对 LaunchDarkly 的连接，由 FeatureFlag 调用。代码如下片段所示：
+
+```csharp
+public IActionResult Index() {
+LdClient ldClient = new LdClient("sdk-eb0443dc-xxxx-xxx-xx-xxx");
+User user = LaunchDarkly.Client.User.WithKey(User.Identity.Name);
+bool showBoxHome = ldClient.BoolVariation("show-box-home", user, false);
+return View(new HomeModel{ShowBoxHome = showBoxHome});
+}
+```
+

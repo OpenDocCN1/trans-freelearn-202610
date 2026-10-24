@@ -1,0 +1,55 @@
+### 索引
+
+### A
+
+- 敏捷方法
+- 参考链接 506
+- Amazon Elastic Container Registry (ECR)
+- 参考链接 280
+- Amazon Web Services (AWS) 263, 412
+- Ansible
+- 配置 73-75
+- 执行 85, 86
+- 安装 69
+- 安装，使用脚本 69-71
+- 集成，到 Azure
+- Cloud Shell 71, 72
+- 预览/干运行选项，使用 87, 88
+- 运行，在 Azure Pipelines 中 252-257
+- 使用，在 Packer 模板中 120
+- 变量，使用进行配置 89-92
+- Ansible 工件
+- hosts 73
+- inventory 73
+- playbook 73
+- ANSIBLE_CONFIG 环境变量
+- 参考链接 74
+- Ansible 配置键
+- 参考链接 75
+
+- Ansible 执行
+- 日志级别输出，增加 88
+- Ansible Galaxy
+- URL 84
+- Ansible，在本地安装
+- VirtualBox 环境
+- 参考链接 70
+- Ansible，在操作系统上安装
+- 参考链接 70
+- Ansible，集成到
+- Azure Cloud Shell
+- 参考链接 72
+- Ansible inventory
+- 创建 76
+- 动态 inventory 76
+- 参考链接 78
+- 静态 inventory 76
+- ansible-local provisioner
+- 参考链接 122
+- Ansible modules
+- 关于 82
+- 参考链接 82
+- Ansible playbook
+- 集成，在 Packer 模板中 121, 122
+- 参考链接 121
+- 编写 120, 121

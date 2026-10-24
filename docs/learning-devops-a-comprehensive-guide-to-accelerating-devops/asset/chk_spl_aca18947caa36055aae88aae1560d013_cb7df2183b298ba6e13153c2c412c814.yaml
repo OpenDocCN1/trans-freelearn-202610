@@ -1,0 +1,40 @@
+reviews:
+- 'no': 3512
+  overturn_probability: 0.9
+  alternative: 正文小标题/排版噪声（页码残留）
+  counter_evidence:
+  - 该行使用三级标题标记“###”，而非全书最高层级的章编号（如“第 X 章”或“X. ”），不符合分章编号特征。
+  - 行内容“126 使用 Packer 优化基础设施部署”中的“126”极可能为页码残留，而非章节序号；真正的章标题不应夹杂页码数字。
+  - 该行位于第 4 章 Packer 内容的中段，前后均为 Packer 模板、HCL 格式等第 4 章正文，缺乏章标题前后应出现的上一章总结/习题或新章概述段落。
+  - 后续内容（第 3513 行起）仍是对 Packer 执行输出的延续描述，并未出现新章的子节或统领性段落。
+  keep_split: false
+- 'no': 3743
+  overturn_probability: 0.05
+  alternative: 章标题（第 5 章）
+  counter_evidence:
+  - 该行使用二级标题“## 5 使用 Vagrant 构建开发环境”，编号连贯（承接第 4 章 Packer 内容），符合全书最高层级大章特征。
+  - 标题单独成行，无末尾标点，长度适中，语义统领后续 Vagrant 安装、配置、VM 创建等内容。
+  - 后文出现“图 5.1”“图 5.2”等图表编号，与第 5 章编号体系一致，进一步印证其为新章开始。
+  keep_split: true
+- 'no': 4176
+  overturn_probability: 0.0
+  alternative: 部分标题（第 2 部分）
+  counter_evidence:
+  - 规则明确规定：若存在“第 X 部分”标题，该书为部分-章节模式，遇到部分标题时应划分新章。
+  - 该行“# 第 2 部分：DevOps CI/CD 管道”使用一级标题，单独成行，语义统领后续第 6、7 章内容。
+  keep_split: true
+- 'no': 4186
+  overturn_probability: 0.05
+  alternative: 章标题（第 6 章）
+  counter_evidence:
+  - 该行“## 6 使用 Git 管理源代码”使用二级标题，编号为第 6 章，紧承“第 2 部分”标题，符合部分-章节模式下章标题特征。
+  - 标题单独成行，无末尾标点，后文出现“图 6.1”“图 6.2”等图表编号，与第 6 章体系一致。
+  keep_split: true
+- 'no': 5000
+  overturn_probability: 0.05
+  alternative: 章标题（第 7 章）
+  counter_evidence:
+  - 该行“## 7 持续集成和持续交付”使用二级标题，编号为第 7 章，编号连贯（承接第 6 章 Git 内容）。
+  - 标题单独成行，无末尾标点，语义统领后续 CI/CD 原则、Jenkins、Azure Pipelines 等内容。
+  - 后文出现“图 7.1”“图 7.2”等图表编号，与第 7 章体系一致。
+  keep_split: true

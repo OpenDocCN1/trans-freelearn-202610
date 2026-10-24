@@ -1,0 +1,83 @@
+### 索引
+
+- ansible-playbook 命令
+- 参考链接 88
+- Ansible provisioner
+- 参考链接 122
+- Ansible variables
+- 参考链接 92
+- Ansible Vault
+- 关于 92
+- 敏感数据，使用保护 93, 94
+- 使用，用于保护数据 89
+- 应用程序编程
+- 接口 (API) 295, 421
+- apply 命令行
+- 参考链接 53
+- App Service slots
+- 使用 446-448
+- Artifact Hub
+- 公共 Helm chart，使用 317-320
+- URL 317
+- Artifactory from JFrog
+- 参考链接 280
+- 自动 CI/CD 过程 58
+- 自动模式 94
+- 自动化最佳实践 498
+- AWS Secrets Manager
+- 参考链接 421
+- az cli 命令
+- 身份验证信息 415
+- 参数 414
+- az resource
+- 参考链接 96
+- Azure
+- 蓝绿部署，应用 446
+- 配置，用于 InSpec 414, 415
+- SonarQube，安装 380-384
+- Terraform，配置 36
+- Azure Active Directory (AD) 36
+- Azure AD Service Principal (SP) 116
+
+- Azure Artifacts
+- 关于 198
+- 优势 198
+- Azure CLI 命令
+- 参考链接 37
+- Azure CLI 工具 414
+- Azure Cloud Shell
+- Ansible，集成到 71, 72
+- Packer，集成与 108
+- 参考链接 34
+- 使用，用于集成 Terraform 34, 35
+- Azure Cloud Shell 工具套件 414
+- Azure Container Instances (ACI)
+- 容器，使用部署
+- CI/CD 流水线到 282
+- 容器 291
+- Docker Compose 容器，
+- 部署 299-301
+- 参考链接 282
+- Terraform 代码，编写 283-285
+- Azure Container Registry (ACR)
+- 关于 269
+- 参考链接 280
+- Azure DevOps
+- 关于 208
+- 功能 208
+- 参考链接 209
+- 注册与 209
+- Azure 环境变量用于 Ansible
+- 参考链接 95
+- Azure 镜像
+- 构建，使用 Packer 模板 116-119
+- Azure 基础设施
+- 部署，通过编写
+- Terraform 脚本 40-45
+- 动态 inventory，使用用于 95-99
+- Azure 基础设施合规性
+- 测试，使用 Chef InSpec 411
+
+
+
+

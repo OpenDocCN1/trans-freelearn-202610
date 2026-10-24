@@ -1,0 +1,66 @@
+reviews:
+- 'no': 0
+  overturn_probability: 0.05
+  alternative: 书籍主标题/封面页
+  counter_evidence:
+  - 该行以 '# ' 开头，且内容为完整书名，符合书籍主标题特征
+  - 后续多行空白，随后是献词、贡献者等前言类内容，属于正文之前的统一章节
+  keep_split: true
+- 'no': 7
+  overturn_probability: 0.05
+  alternative: 献词/致谢
+  counter_evidence:
+  - 内容为“我谨将此书献给我的妻子和孩子们...”，典型献词句式
+  - 位于书籍主标题之后，正文内容之前，属于前言类材料
+  keep_split: true
+- 'no': 9
+  overturn_probability: 0.05
+  alternative: 贡献者页面/致谢
+  counter_evidence:
+  - 标题为“# 贡献者”，后续内容为作者简介、感谢等，属于书籍前言部分
+  - 无章节编号，且内容不具备统领后续正文章节的语义
+  keep_split: true
+- 'no': 23
+  overturn_probability: 0.05
+  alternative: 关于审稿人/致谢
+  counter_evidence:
+  - 标题为“# 关于审稿人”，后续为审稿人个人简介和感谢引文
+  - 属于正文之前的前言材料，不具备章节标题的统领性
+  keep_split: true
+- 'no': 41
+  overturn_probability: 0.05
+  alternative: 前言
+  counter_evidence:
+  - 标题为“## 前言”，属于二级标题格式，非最高层级章节编号
+  - 内容为对全书的介绍和说明，属于正文之前的前言类材料
+  keep_split: true
+- 'no': 206
+  overturn_probability: 0.0
+  alternative: 第 1 部分标题
+  counter_evidence:
+  - 无反方证据，该行明确为“第 1 部分：DevOps 和基础设施即代码”，符合部分-章节模式
+  keep_split: true
+- 'no': 218
+  overturn_probability: 0.0
+  alternative: 第 1 章标题
+  counter_evidence:
+  - 无反方证据，该行明确为“## 1 DevOps 文化和基础设施即代码实践”，且后有概述段落和子节
+  keep_split: true
+- 'no': 767
+  overturn_probability: 0.0
+  alternative: 第 2 章标题
+  counter_evidence:
+  - 无反方证据，该行明确为“## 2 使用 Terraform 配置云基础设施”，编号连贯，格式规范
+  keep_split: true
+- 'no': 1862
+  overturn_probability: 0.0
+  alternative: 第 3 章标题
+  counter_evidence:
+  - 无反方证据，该行明确为“## 3 使用 Ansible 配置 IaaS 基础设施”，编号连贯，格式规范
+  keep_split: true
+- 'no': 2800
+  overturn_probability: 0.0
+  alternative: 第 4 章标题
+  counter_evidence:
+  - 无反方证据，该行明确为“## 4 使用 Packer 优化基础设施部署”，编号连贯，格式规范
+  keep_split: true
