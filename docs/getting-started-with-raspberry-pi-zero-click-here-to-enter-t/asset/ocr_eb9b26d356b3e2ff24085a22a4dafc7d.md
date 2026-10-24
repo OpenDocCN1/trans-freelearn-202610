@@ -1,0 +1,7 @@
+# Adding Voice Recognition and Speech – A Voice Activated Robot
+
+Type `sudo /sbin/ldconfig` and the system will be aware of your pocketsphinx libraries. Now that everything is installed, you can try out the speech recognition. Reboot the system and type `cd /home/pi/pocketsphinx-0.8/src/programs` to go to a directory to try a demo program. Then, type `./pocketsphinx_continuous`. For some reason, I had to type `sudo ./pocketsphinx_continuous`, allow it to fail, and then type `./pocketsphinx_continuous` to make it work. This program takes input from the microphone and turns it into speech. After running the command, you'll get a lot of irrelevant information and then you will see the following screenshot:
+
+![](bbox=[0.178, 0.287, 0.823, 0.576])
+
+The INFO and Warning statements come from the C or C++ code and are there for debugging purposes. Initially, they will warn you that they cannot find your Mic and Capture elements but, when your Raspberry Pi finds them, it will print out `READY.....`. If you have set things up as described previously, you are ready to give your Raspberry Pi a command. Say "hello" into the microphone. When it senses that you have stopped speaking, it will process your speech and, after giving lots of irrelevant information, it will eventually show the commands, as shown in the following screenshot:

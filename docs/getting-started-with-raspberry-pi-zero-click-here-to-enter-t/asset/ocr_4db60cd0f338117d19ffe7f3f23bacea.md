@@ -1,0 +1,11 @@
+Now that we have a computer-generated voice, you may want to customize it. eSpeak offers a complete set of customization features, including a large number of languages, voices, and other options. To access these, you can type in the options at the command-line prompt. For example, type in `espeak -v +f3 hello` and you should be able to hear a female voice. You can even add a Scottish accent by typing `espeak -v en-sc +f3 hello`.
+
+There are a lot of choices with respect to the voices that you can use with eSpeak. This depends on your own preferences but you might like a female voice with an English accent. Feel free to play around and choose your favorite voice. Then, edit the default file to set it to this voice. This default file is in the home directory of eSpeak. However, don't expect to get the kinds of voice that you hear from computers in the movies; those are actors and not computers. However, one day, we will hopefully reach a stage when computers will sound a lot more like real people.
+
+# ## Using pocketsphinx to accept your voice commands
+
+Now that your robot can talk, you'll also want it to obey voice commands. This section shows you how to add speech recognition to your robotic projects. This isn't nearly as simple as the speaking part but, thankfully, you have some significant help from the open source development community. You are going to download a set of capabilities named **pocketsphinx**, which will allow our project to listen to our commands.
+
+The first step is downloading the pocketsphinx software. Unfortunately, this is not quite as user-friendly as the eSpeak process, so follow these steps carefully. There are two ways to do this. If you have a keyboard, mouse, and display connected or want to connect through vncserver, you can do this graphically by performing the following steps:
+
++   1. Go to the Sphinx website hosted by **Carnegie Mellon University (CMU)** at `http://cmusphinx.sourceforge.net`. This is an open source project that provides you with speech recognition software. With our smaller embedded system, we will use the pocketsphinx version of this code.

@@ -1,0 +1,84 @@
+reviews:
+- 'no': 4
+  overturn_probability: 0.05
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 一级标题“致谢”单独成行，位于封面后前言前，符合正文之前内容划分为一章的规则。
+  keep_split: true
+- 'no': 46
+  overturn_probability: 0.08
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 一级标题“关于审阅者”单独成行，处于前言前的附属信息区，符合前言/致谢类前置内容分章规则。
+  keep_split: true
+- 'no': 58
+  overturn_probability: 0.05
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 一级标题“前言”单独成行，后接概述段落，前为审阅者信息，符合前言单独成章规则。
+  keep_split: true
+- 'no': 176
+  overturn_probability: 0.92
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题层级为 ##，非一级 # 章标题；标题后 1~3 行为普通说明段落，随后紧跟 ## 设置 Raspberry Pi Zero 等子节，符合二级小节特征而非最高层级大章。'
+  - 前后文仍在前言/本书结构部分，尚未进入编号章节体系，语义上为第1章内部的“快速开始”小节。
+  - 格式特征上标题长度适中且单独成行，但层级为二级，依据编号特征不应划分新章。
+  keep_split: false
+- 'no': 462
+  overturn_probability: 0.02
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 明确编号“第2章 编程 Raspberry Pi Zero”，一级标题，符合最高层级大章划分规则。
+  keep_split: true
+- 'no': 717
+  overturn_probability: 0.88
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题层级为 ##，非一级 #；前后为第1章内容的小结与GPIO相关子节，语义上是第1章内部的章节小标题而非新大章。'
+  - '后续仍出现 ### 简单的 GPIO 数字电压输出 等更深层级标题，表明其为子节结构。'
+  - '原判断依赖“无编号但语义上为第3章起始”，但书中第3章应为“访问 Raspberry Pi Zero 上的 GPIO 引脚”所在的大章，实际大章标题应为一级
+    # 且编号为第3章，当前仅为二级标题，误判为章节标题。'
+  keep_split: false
+- 'no': 1026
+  overturn_probability: 0.02
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 明确编号“第4章 构建和控制一个简单的轮式机器人”，一级标题，符合章划分规则。
+  keep_split: true
+- 'no': 1381
+  overturn_probability: 0.02
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 明确编号“第5章 构建一个会走路的机器人”，一级标题，符合章划分规则。
+  keep_split: true
+- 'no': 1639
+  overturn_probability: 0.02
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 明确编号“第6章 语音控制机器人”，一级标题，符合章划分规则。
+  keep_split: true
+- 'no': 1882
+  overturn_probability: 0.02
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 明确编号“第7章 为 RC 车辆添加 Raspberry Pi Zero”，一级标题，符合章划分规则。
+  keep_split: true
+- 'no': 2081
+  overturn_probability: 0.02
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 明确编号“第8章 机械手”，一级标题，符合章划分规则。
+  keep_split: true
+- 'no': 2349
+  overturn_probability: 0.02
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 明确编号“第9章 为四轴飞行器添加 Raspberry Pi Zero”，一级标题，符合章划分规则。
+  keep_split: true
+- 'no': 2474
+  overturn_probability: 0.05
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 文末“索引”单独成行，按规则文末索引应划分为一章。
+  keep_split: true

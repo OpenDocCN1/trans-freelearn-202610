@@ -1,0 +1,9 @@
+Here is an image of the **GY-271 HMC5883L**, a triple-axis compass magnetometer sensor module available with a number of online retailers:
+
+![](bbox=[0.321, 0.193, 0.679, 0.437])
+
+This type of digital compass uses magnetic sensors to measure the earth's magnetic field. The output of these sensors is then made accessible to the outside world through a set of registers that allow the user to set things, such as the sample rate and continuous or single sampling. The X, Y, and Z directions are the output using registers as well.
+
+This chip communicates with Raspberry Pi Zero using the **Inter IC (I2C)** bus. There are three serial busses available on Raspberry Pi's GPIO interfaces. The first is a standard **Universal Asynchronous Receiver/Transmitter (UART)** interface. The UART interface uses one pin for the RX, or receive signal, and one pin for the TX, or transmit signal. The UART takes bytes of data and transmits the individual bits in a sequential order. At the destination, a second UART reassembles the bits into bytes. This interface is limited to communicating with a single external device. For more information on the UART interface and how it works, go to `https://www.freebsd.org/doc/en/articles/serial-uart/`.
+
+The second interface that is available is the I2C interface. The I2C interface is similar to the UART interface; it also communicates using two lines, in this case a data-line and a clock-line. However, it is a bit more complex, as it allows communication between one master and many slave devices. It does this by addressing the device the master device wants to communicate with. For more information on the I2C interface, see `http://www.robot-electronics.co.uk/i2c-tutorial`.

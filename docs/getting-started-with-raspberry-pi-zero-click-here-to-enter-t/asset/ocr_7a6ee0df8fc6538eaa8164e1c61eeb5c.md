@@ -1,0 +1,7 @@
+![](bbox=[0.268, 0.147, 0.732, 0.395])
+
+There are three key points on this grid that you need to understand. Here is an explanation of them:
+
++   - The lower left point is a fixed reference position. The directions x and y are also fixed and all other positions are measured in relation to this position and these directions. Each unit is measured with regards to how far the unit travels in time in a single unit.
++   - Another important point is the starting location of your robot. Your robot will then keep track of its location using its x and y coordinates, the position with respect to some fixed reference position in the x direction, or the position with respect to some fixed reference position in the y direction to the goal. It uses the compass to keep track of these directions.
++   - The third important point is the position of the goal, also given in the x and y coordinates with respect to the fixed reference position. If you know the starting location and angle of your robot, you can plan an optimum (the shortest distance) path to this goal. To do this, you can use the goal location, the robot location and some fairly simple math to calculate the distance and angle from the robot to the goal.

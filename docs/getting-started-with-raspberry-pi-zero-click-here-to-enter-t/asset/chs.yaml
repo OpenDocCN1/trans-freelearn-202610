@@ -1,0 +1,2371 @@
+- '# Raspberry Pi Zero 入门指南：点击此处输入文本
+
+
+
+  '
+- '# 致谢
+
+
+  **作者**
+
+  Richard Grimmett
+
+
+  **项目协调员**
+
+  Francina Pinto
+
+
+  **审阅者**
+
+  David Whale
+
+
+  **校对**
+
+  Safis Editing
+
+
+  **策划编辑**
+
+  Kartikey Pandey
+
+
+  **索引**
+
+  Priya Sane
+
+
+  **收购编辑**
+
+  Tushar Gupta
+
+
+  **图形**
+
+  Disha Haria
+
+
+  **内容开发编辑**
+
+  Merint Thomas Mathew
+
+
+  **制作协调员**
+
+  Shantanu N. Zagade
+
+
+  **技术编辑**
+
+  Saurabh Malhotra
+
+
+  **封面设计**
+
+  Shantanu N. Zagade
+
+
+  **校对编辑**
+
+  Kevin McGowan
+
+  Sneha Singh
+
+  '
+- '# 关于审阅者
+
+
+  **David Whale** 是一位居住在英国埃塞克斯的软件开发人员。他 11 岁时在学校就开始编程，受学校科学技术员启发自己从套件组装电脑，很快就开始编写机器代码程序，因为它们“小而快”。这些早期实验使他在仅
+  13 岁时就有一部分代码被用于一款可销售的教育类文字游戏中。
+
+
+  此后他一直从事专业软件开发，主要编写小而快的代码，用于电子产品，包括自动化机械、电动汽车、手机、能源表和无线门铃。
+
+
+  如今，他经营着自己的软件咨询公司 Thinking Binaries，并将近一半的时间用于帮助设计下一代互联网，即物联网，将电子设备连接到互联网上。其余时间他为工程技术学会做志愿者，为教师开设培训课程，为学童设计和运营工作坊和俱乐部，并忙于他的
+  Raspberry Pi、BBC micro:bit 和 Arduino。
+
+
+  他曾担任书籍 *Adventures in Raspberry Pi* 的技术编辑，并合著了书籍 *Adventures in Minecraft*，也是多家图书出版商技术书籍的常客审阅者和编辑。
+
+
+  > 我很高兴被邀请审阅这本使用 Raspberry Pi Zero 的精彩新项目书。Pi Zero 的尺寸使其非常适合集成到其他产品中。在这本书中，Richard
+  Grimmett 带领我们踏上了一段令人惊叹的电路改造、编程和创新之旅，使用这台微型计算机！但不要止步于此；本书中的项目将为您提供所需技能，并激发您自己产生许多新想法！
+
+  '
+- '# 前言
+
+
+  多年来，机器人和其他先进的电子奇迹只能在电视、电影或大学或军事实验室中看到。然而，近年来，新颖且价格低廉的硬件以及免费和开源软件的可用性，为几乎任何具有一点技术知识和想象力的人提供了构建这些技术奇迹的机会。第一波项目由
+  Arduino 提供动力，Arduino 是一种价格低廉且易于编程的微控制器。下一波则由 Raspberry Pi 的引入而进一步推进，Raspberry Pi
+  是一种由 Linux 操作系统驱动的更强大的处理器。
+
+
+  现在有一种更便宜、更强大的微处理器：Raspberry Pi Zero。这款小处理器将足够运行 Linux 的处理器封装在更小、更便宜的封装中。这种能力，再加上一些额外的动力、低成本硬件和免费开源软件，为项目提供了平台，从简单的轮式机器人到先进的飞行机器。
+
+
+  ## 本书涵盖内容
+
+
+  *第 1 章，Setting Started with Raspberry Pi Zero*，旨在详细介绍在 Raspberry Pi Zero 上设置有用的开发环境的细节。本章从如何连接电源的讨论开始，一直延续到设置完整的系统，配置好并准备连接到任何令人惊叹的设备和
+  SW 能力，以开发先进的机器人应用。
+
+
+  *第 2 章，Programming Raspberry Pi Zero*，回顾了对于已熟悉的人来说，在本书其余部分有用的基本 Linux、编辑和编程技术。您将学习如何从命令行交互，如何使用编辑器创建和编辑文件，以及基本的
+  Python 编程。
+
+
+
+
+
+
+  ## 本书结构
+
+
+  *第3章，访问 Raspberry Pi Zero 上的 GPIO 引脚*，通过构建和控制一些简单的 LED 电路来讨论 Raspberry Pi Zero 的
+  GPIO 能力。
+
+
+  *第4章，构建和控制一个简单的轮式机器人*，讨论了使用 Raspberry Pi Zero 可以实现的一个令人惊叹的功能，即控制一个简单的轮式机器人。本章将向您展示如何添加电机控制，以便您可以构建自己的自主移动机器人。
+
+
+  *第5章，构建一个会走路的机器人*，介绍了另一个令人印象深刻的机器人项目，一个可以行走的自主机器人。这是通过使用伺服器实现的，其位置可由 Raspberry Pi
+  和一些额外的 USB 控制硬件控制。
+
+
+  *第6章，添加语音识别和语音 - 一个语音激活机器人*，介绍了语音激活机器人。今天的计算机系统的一个重要新功能是能够在没有屏幕或键盘的情况下输入命令并提供输出。几年前，概念上可以说话和倾听的计算机是科幻小说，但今天它已成为新手机的标准组成部分。本章介绍
+  Raspberry Pi Zero 如何既能收听语音又能做出相应回应。这并不像听起来那么容易（双关语意在其中），您将接触到一些基本功能，同时了解其中的一些关键限制。您将把一个标准玩具变成一个有反应的机器人。
+
+
+  *第7章，将 Raspberry Pi Zero 添加到遥控车辆*，介绍了 Raspberry Pi Zero 的另一个惊人功能，即为您的项目添加“视力”。Raspberry
+  Pi Zero 通过支持开源软件和 readily available USB 网络摄像头使这变得非常容易。通过添加此设备和一个遥控器，您可以构建一辆遥控车辆，可以绕过拐角，进入房间，您想去的任何地方。
+
+
+  *第8章，用 Raspberry Pi Zero 玩石头剪刀布*，介绍了我们如何使用工具包来构建和控制一只可以感知并对周围世界做出反应的机械手。在这种情况下，您将编程您的手来玩石头剪刀布。
+
+
+  *第9章，将 Raspberry Pi Zero 添加到四轴飞行器*，谈到了构建一个会走路、会说话或玩空气曲棍球的机器人很酷，但能够飞行的机器人才是终极目标。
+
+
+  ## 本书所需
+
+
+  您需要一台 Raspberry Pi Zero。您可以参考本书的软件列表以及代码包。
+
+
+  ## 本书适合谁
+
+
+  本书专为初学者设计。它只需要一点丰富的想象力和学习编程和硬件配置基础的愿望。
+
+
+  ## 约定
+
+
+  在本書中，您会找到一些区分不同类型信息的文本样式。以下是这些样式的示例及其含义的解释。
+
+
+  代码词、数据库表名、文件夹名、文件名、文件扩展名、路径名、虚拟 URL、用户输入和 Twitter 账号显示如下：“要安装 Nmap，输入 sudo apt-get
+  install nmap。要运行 Nmap，输入 sudo nmap -sp 10.25.155.1/154。”
+
+
+  代码块设置如下：
+
+
+  ```
+
+  a = input("Input value: ")
+
+  b = input("Input second value: ")
+
+  c = a + b
+
+  print c
+
+  ```
+
+
+  当我们希望引起您对代码块中特定部分的注意时，相关行或项目以粗体显示：
+
+
+  ```
+
+  a = input("Input value: ")
+
+  **b = input("Input second value: ")**
+
+  c = a + b
+
+  print c
+
+  ```
+
+
+  任何命令行输入或输出都写成如下形式：
+
+
+  ```
+
+  cd /home/pi/Desktop
+
+  ```
+
+
+  **新术语**和**重要词语**以粗体显示。您在屏幕上看到的词语，例如菜单或对话框中的词语，在文本中如下所示：“点击 **Scan** 选择器会扫描连接到网络的所有设备。”
+
+
+  警告或重要说明会以如下框形式出现。
+
+
+  提示和技巧如下所示。
+
+
+  ## 读者反馈
+
+
+  我们始终欢迎读者的反馈。请告诉我们您对本书的看法——您喜欢或不喜欢什么。读者反馈对我们非常重要，因为它有助于我们开发您能真正从中获益的书籍。
+
+
+  如需发送一般反馈，只需发送电子邮件至 feedback@packtpub.com，并在邮件主题中提及本书的标题。
+
+
+  如果您在某个主题方面有专业知识，并且有兴趣撰写或为书籍做出贡献，请参阅我们的作者指南 www.packtpub.com/authors。
+
+
+  ## 客户支持
+
+
+  现在您已成为 Packt 书籍的自豪拥有者，我们有一系列服务可以帮助您充分利用您的购买。
+
+
+  ## 下载示例代码
+
+
+  您可以从 http://www.packtpub.com 在您的账户中下载本书的示例代码文件。如果您在其他地方购买了本书，您可以访问 http://www.packtpub.com/support
+  并注册以便将文件直接发送到您的电子邮件。
+
+
+  您可以通过以下步骤下载代码文件：
+
+
+  - 1. 使用您的电子邮件地址和密码登录或注册我们的网站。
+
+  - 2. 将鼠标指针悬停在顶部的 **SUPPORT** 选项卡上。
+
+  - 3. 点击 **Code Downloads & Errata**。
+
+  - 4. 在 **Search** 框中输入本书的名称。
+
+  - 5. 选择您要下载代码文件的书籍。
+
+  - 6. 从下拉菜单中选择您购买本书的地点。
+
+  - 7. 点击 **Code Download**。
+
+
+  下载文件后，请确保使用最新版本解压缩或提取文件夹：
+
+
+  - WinRAR/7-Zip for Windows
+
+  - Zipeg/iZip/UnRarX for Mac
+
+  - 7-Zip/PeaZip for Linux
+
+
+  ## 下载本书的彩色图片
+
+
+  我们还为您提供了一份 PDF 文件，其中包含本书中使用的屏幕截图/图表的彩色图片。彩色图片将帮助您更好地理解输出的变化。您可以从 http://www.packtpub.com/sites/default/files/downloads/GettingStartedwithRaspberryPiZero_ColorImages.pdf
+  下载此文件。
+
+
+  ## 勘误
+
+
+  尽管我们已尽一切努力确保内容的准确性，但错误仍会发生。如果您在我们的书籍中发现错误——可能是文本或代码中的错误——我们将非常感激您向我们报告。通过这样做，您可以节省其他读者的挫败感，并帮助我们改进本书的后续版本。如果您发现任何勘误，请访问
+  http://www.packtpub.com/submit-errata，选择您的书籍，点击 **Errata Submission Form** 链接，并输入您的勘误详情。一旦您的勘误得到验证，您的提交将被接受，勘误将被上传到我们的网站或添加到该标题的勘误部分下的现有勘误列表中。
+
+
+  要查看之前提交的勘误，请访问 https://www.packtpub.com/books/content/support 并在搜索字段中输入书籍名称。所需信息将出现在
+  **Errata** 部分下。
+
+
+  ## 快速开始使用 Raspberry Pi Zero
+
+
+  电子产品和计算机可访问性的重大转变是由 Raspberry Pi 微型计算机及其变体的引入所推动的。凭借完全不同的价格点以及显著扩展的支持社区，Raspberry
+  Pi 在将廉价计算带给广大受众方面取得了前所未有的成功。Raspberry Pi Zero 延续了这一重要方法，以更低的价格点提供前所未有的计算机性能。
+
+
+  Raspberry Pi Zero 特别有用，因为它可以与廉价硬件和开源软件配对，以完成各种不同的 Do-It-Yourself 项目。您将在本书中了解其中的许多项目。您将学习如何控制直流电机，如何控制伺服器，如何连接麦克风进行语音识别，甚至如何连接网络摄像头来查看和解释外部世界。
+
+
+  Raspberry Pi Zero 可以做令人惊叹的事情，但首先您需要了解如何访问所有这些功能。在本章中，您将学习如何：
+
+
+  - 为板提供电源
+
+  - 连接显示器、键盘和鼠标
+
+  - 加载和配置操作系统
+
+  - 配置板以进行远程访问
+
+
+
+
+
+
+  ## 设置 Raspberry Pi Zero
+
+
+  虽然 Raspberry Pi Zero 是一款功能强大的电脑，但要访问其功能，你需要一些额外的硬件。以下是本章项目所需的物品：
+
+
+  - 一个 Raspberry Pi Zero
+
+  - 一根 micro USB 数据线和电源适配器为板供电
+
+  - 一个带 HDMI 视频输入的显示器
+
+  - 一个键盘、一个鼠标和一个带电的 USB 集线器
+
+  - 一张 microSD 卡 – 容量至少为 4 GB
+
+  - 一个 microSD 卡写入器
+
+  - 一台连接互联网的另一台电脑
+
+  - 一个 WLAN USB 适配器
+
+  - 一个 40x2 针连接器排针
+
+
+  开始之前，让我们先熟悉一下 Raspberry Pi Zero。以下是硬件的图像：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_18_0.png)
+
+
+  请注意 GPIO 针脚的公头针座尚未预先焊接到板上；你需要自己焊接。你可以在大多数在线电子零售商处购买这些针座。你还应该熟悉板上的各种连接。以下是焊接好连接器并为你标注连接的
+  Raspberry Pi Zero：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_19_0.png)
+
+
+  ### 为板供电
+
+
+  你需要考虑的第一个问题之一是如何为板供电。为此，你需要通过 USB 电源连接进行连接。为 Raspberry Pi Zero 供电有两种选择：
+
+
+  1. 将标有电源的 microUSB 连接器连接到由 USB 电源适配器供电的 5V DC 电源。这可以是可直接插入插座的电源适配器，也可以是由大多数电脑上提供的带电
+  USB 端口供电的电源。
+
+  2. 将 microUSB 连接器连接到电池。最简单的连接方式是使用带有 USB 连接器的电池，例如用于为手机充电的电池。以下是此类电池的图像：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_20_0.png)
+
+
+  在两种情况下，都要确保该设备能够提供足够的电流。你需要一个能够提供至少 1000 mA、5 伏特的电源。该电池上有两个 USB 充电连接，这使得 Raspberry
+  Pi Zero 可以插入其中一个，而带电的 USB 集线器可以插入另一个。不要现在就插入板子，你首先需要连接其余硬件并配置 microSD 卡。但是，你现在就可以连接其余硬件了。
+
+
+  ### 连接键盘、鼠标和显示器
+
+
+  下一步是将键盘、鼠标和显示器连接到 Raspberry Pi Zero。你可能已经有大部分这些设备了，但如果你没有，在购买额外设备之前，有一些事情需要考虑。让我们先从键盘和鼠标开始。
+
+
+  要将任何设备连接到 Raspberry Pi Zero，你需要某种适配器或集线器。你可以购买一个简单的集线器，它将 Raspberry Pi Zero 上的 microUSB
+  连接器连接到更常见的标准连接器。你可以在大多数电子在线零售商处找到这些集线器，外观如下：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_21_0.png)
+
+
+  然而，在某些项目中，你可能需要将多个设备连接到 Raspberry Pi Zero。对于这些情况，你可能需要考虑购买一个带电的 USB 集线器。在决定要连接到板子的集线器之前，你需要了解带电
+  USB 集线器与从 USB 端口本身获取电力的集线器之间的区别。
+
+
+  几乎所有 USB 集线器都不是带电的，也就是说，你不需要单独为 USB 集线器供电。原因在于几乎所有这些集线器都连接到具有非常大电源的电脑上，从电脑为 USB
+  设备供电并不是问题。对于你的板子来说并非如此。板子上的 USB 端口的供电能力非常有限，因此如果你要连接需要大量电力的设备 – 例如 WAN 适配器或网络摄像头
+  – 你就需要一个带电的 USB 集线器，它通过单独的电源为设备供电。以下是此类设备的图像，可在 http://www.amazon.com/ 及其他在线零售商处购买：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_22_0.png)
+
+
+  请注意该集线器上有两个连接。最右边的是电源连接，它将插入电池或带有 USB 端口的 USB 电源适配器。左侧的连接是 USB 连接，它将插入 Raspberry
+  Pi。为将电源 USB 板连接到 Raspberry Pi Zero，你需要一根连接到 microUSB 连接器的线缆。现在，你将有更多的连接来添加鼠标和键盘、网络摄像头以及
+  USB WLAN 设备。
+
+
+  现在，你还需要一个显示器。幸运的是，你的 Raspberry Pi Zero 提供了很多选择。有许多不同的视频标准；以下是一些最常见的视频标准的图像供参考：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_23_0.png)
+
+
+  Raspberry Pi Zero 上有一个迷你 HDMI 连接器。要将其连接到 HDMI 显示器，你需要一个迷你 HDMI 到标准 HDMI 适配器或线缆。你也可以购买一端为迷你
+  HDMI 连接器、另一端为普通 HDMI 连接器的线缆。以下是适配器的图像：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_23_1.png)
+
+
+  要使用此连接器，只需将适配器连接到你的 Raspberry Pi Zero，然后将带有普通 HDMI 连接的线缆连接到适配器和具有 HDMI 输入连接器的电视或显示器。HDMI
+  显示器相对较新，但如果你有一台具有 DVI 输入的显示器，你可以购买相对便宜的适配器来在 DVI 和 HDMI 之间提供接口。
+
+
+  > 不要被声称可从 HDMI 或 DVI 到 VGA，或从 HDMI 或 DVI 到 S-video 的适配器所迷惑。这些是两种不同的信号类型：HDMI 和 DVI
+  是数字标准，而 VGA 和 S-video 是模拟标准。确实有能够完成此转换的适配器，但它们必须包含电路并需要供电，而且价格比任何简单适配器都贵得多。
+
+
+  你几乎准备好插入 Raspberry Pi Zero 了。将 HDMI 线缆连接到显示器和 Raspberry Pi Zero。将 USB 集线器连接到 Raspberry
+  Pi Zero，并将键盘和鼠标连接到 USB 集线器。确保在开机前连接好所有设备。大多数操作系统支持热插拔，这意味着你可以在系统通电后连接设备，但这有点不稳定。你在连接新硬件时应始终循环电源。以下是所有连接好的图片：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_24_0.png)
+
+
+  USB 连接器已连接到 USB 电源适配器。即使你的硬件配置已完成，你仍需要完成下一部分才能为设备供电。因此，让我们弄清楚如何安装操作系统。
+
+
+  ### 安装操作系统
+
+
+  现在你的硬件已准备就绪，你需要下载并将操作系统镜像到 microSD 卡。Raspberry Pi Zero 提供了很多不同的选择。你将在 Raspberry
+  Pi Zero 上使用 Linux，一种 Unix 的开源版本。与 Windows、Android 或 iOS 不同，Linux 不受单一公司的严格控制。它是一个由广泛社区推动的草根努力，大多是开源的，虽然可以免费获得，但其发展和演进方式有点混乱。
+
+
+  出现了许多不同版本的 Linux，每个版本都建立在称为 Linux 内核的核心功能集之上。这些核心功能都基于 Linux 规范。然而，它们被打包的方式略有不同，并且由不同的组织开发、支持和打包。Raspberry
+  Pi 社区已标准化为 **Raspbian**，这是一个专为 Raspberry Pi 设计的 **Debian** Linux 发行版。因此，你将在 Raspberry
+  Pi Zero 上安装并运行 Raspbian。
+
+
+  Debian 的最新版本称为 **Jessie**，以《玩具总动员》中的牛仔女孩命名。这是 Debian 的命名惯例，你需要下载这个版本的 Raspbian。
+
+
+  你可以购买一张已安装 Raspbian 的卡，也可以将其下载到个人电脑然后安装到卡上。要下载发行版，你需要决定是使用 Windows 电脑下载并创建 SD 卡，还是使用
+  MAC OS X 或 Linux 机器。我将在此处为 Windows 和 Linux 机器提供简要说明。
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_25_0.png)
+
+
+  > 有关 MAC OS X 的说明，请访问：`http://www.raspberrypi.org/documentation/installation/installing-images/mac.md`。
+
+
+  首先，你需要下载一个镜像。对于 Windows 和 Linux 来说，这一过程是相似的。打开一个浏览器窗口。前往 Raspberry Pi 组织的网站，`https://www.raspberrypi.org/`
+  并选择页面顶部的 **Downloads** 选项。这将为你提供各种下载选择。前往 **Raspbian** 部分，并选择图像标识符右侧的 `.zip` 文件。你需要最新版本，但不是精简版。这将下载一个包含
+  Raspbian 操作系统镜像的归档文件。请注意默认的用户名和密码；稍后你需要它们。
+
+
+
+
+
+
+  ## 使用 Raspberry Pi Zero 入门
+
+
+  如果你使用的是 Windows，你需要使用像 7-Zip 这样的归档程序来解压文件，可在 http://www.7-zip.org/ 获取。这会得到一个带有 .img
+  扩展名的文件，可以将该文件写入你的卡。接下来，你需要一个可以将映像写入卡的程序。我使用 Image Writer for Windows。你可以在 https://www.raspberrypi.org/
+  网站下载部分的顶部找到此程序的链接。将你的卡插入 PC，运行此程序，你应该会看到以下内容：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_26_0.png)
+
+
+  选择设备卡并下载映像；它应该看起来像这样：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_26_1.png)
+
+
+  然后，点击 **Write** 按钮。这需要一些时间，可能长达 15 分钟，但完成后，退出程序，你就拥有了带有映像的 microSD 卡。
+
+
+  如果你使用的是 Linux，你需要解压文件然后将其写入卡。你可以用一条命令完成所有操作。但是，你需要找到卡的 /dev 设备标签。你可以用 `ls -la /dev/sd*`
+  命令来做。如果你在此之前插入卡，可能会看到如下截图：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_27_0.png)
+
+
+  插入卡后，你可能会看到如下截图：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_27_1.png)
+
+
+  注意你的卡在 sdb。现在进入你下载了归档映像文件的目录，并使用以下命令：
+
+
+  ```bash
+
+  sudo dd if=2015-11-21-raspbian-jessie.img of=/dev/sdX
+
+  ```
+
+
+  `2015-11-21-raspbian-jessie.img` 命令将替换为你下载的映像文件，而 `/dev/sdX` 将替换为你的卡 ID，在此示例中为 `/dev/sdb`。请务必指定正确的设备，因为这可能会覆盖你驱动器上的数据。此外，这可能需要几分钟时间。一旦文件写入完成，弹出卡，你就可以将其插入主板并通电了。
+
+
+  ## 快速上手指南
+
+
+  确保你的 Raspberry Pi Zero 未通电并将 SD 卡安装到插槽中。然后为设备供电。设备启动后，你应该会看到以下屏幕：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_28_0.png)
+
+
+  你已经可以正常运行了！
+
+
+  > 请注意，如果你使用带电的 USB 集线器，它可能为你的 Raspberry Pi 提供足够的电力，但在某些情况下可能无法提供你所需的所有电力。我强烈建议你使用不同的电源，一个用于你的
+  Raspberry Pi Zero，一个用于你的集线器。
+
+
+  你还需要做一件事情来完成配置。为此你需要进入 raspi-config 应用程序。所以，通过点击左上角看起来像一个小电脑屏幕的图标打开一个终端窗口。
+
+
+  现在，输入 sudo raspi-config。你应该会在屏幕上看到此应用程序：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_29_0.png)
+
+
+  你需要扩展文件系统以占用整张卡。选择 **1 Expand Filesystem**，按 *Enter* 键，你会看到以下屏幕：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_29_1.png)
+
+
+  你还需要为此过程连接一个带电的 USB 集线器，以便你可以同时访问键盘和鼠标以及 USB 无线 LAN 设备。现在，将设备连接到带电的集线器。
+
+
+  启动系统，然后通过输入 sudo nano /etc/wpa_supplicant/wpa_supplicant.conf 编辑 wpa_supplicant.conf
+  文件。你需要将其更改为如下所示：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_31_0.png)
+
+
+  这里的 wpa-ssid 和 wpa-psk 值当然必须与你的无线接入点要求相匹配。重新启动后，你的设备应该已连接到无线网络。你可以通过查看屏幕右上角来判断是否已连接，你应该会看到以下内容：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_32_0.png)
+
+
+  你现在可以从互联网下载你想要安装的任何附加功能。
+
+
+  如果你想连接到实际的 LAN 有线连接，你需要一个从 USB 到 LAN 的设备。此站点 http://elinux.org/RPi_USB_Ethernet_adapters
+  列出了许多不同的可能性。以下是此类设备之一的图像：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_32_1.png)
+
+
+  以这种方式连接 Raspberry Pi Zero 实际上非常简单。只需将 USB 到 LAN 适配器插入带电的 USB 集线器，连接一条活动 LAN 电缆，你就应该可以访问互联网。
+
+
+  ## 从主机 PC 访问你的 Raspberry Pi Zero
+
+
+  一旦你为设备建立了互联网网络连接，你就可以从主机计算机访问它。有三种方式可以从远程计算机访问你的系统：
+
+
+  - 第一种是通过名为 **SSH** 的终端界面。
+
+  - 第二种方式是使用名为 **VNC server** 的程序。这允许你远程打开一个图形用户界面，该界面镜像 Raspberry Pi 上的图形用户界面。
+
+  - 最后，你可以通过名为 **WinSCP** 的程序传输文件，该程序是专门为此目的而定制的。你也可以使用名为 **SCP** 的程序用于 Linux。
+
+
+  所以，首先，确保你的基本系统已启动并正常运行。打开一个终端窗口并检查你的单元的 IP 地址。无论你如何与系统通信，你都需要它。通过使用 `ifconfig` 命令来完成。它应该会产生以下截图：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_33_0.png)
+
+
+  你需要 inet addr，它显示在前一截图的第三行，以便通过以太网联系你的板。如果你使用无线设备来访问互联网，你的 ifconfig 将如下所示：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_34_0.png)
+
+
+  与 wlan0 连接关联的 inet addr，在本例中为 10.10.0.31，是你将用于访问 Raspberry Pi 的地址。
+
+
+  你还需要在远程计算机上运行 SSH 终端程序。SSH 终端是一个 Secure Shell（SSH）连接，这意味着你将能够通过在远程计算机上输入命令来访问你的板并向其发出命令。来自
+  Raspberry Pi Zero 的响应将出现在远程计算机终端窗口中。
+
+
+  > 如果你想了解有关 SSH 的更多信息，请访问：https://www.siteground.com/tutorials/ssh/。
+
+
+  如果你运行的是 Microsoft Windows，你可以下载一个替代应用程序。我个人最喜欢的是 PuTTY。它是免费的，并且在保存配置方面做得非常好，这样你就不必每次都输入它。在搜索引擎中输入
+  putty，你很快就会来到一个支持下载的页面，或者你可以前往 http://www.putty.org/。
+
+
+  将 PuTTY 下载到你的 Microsoft Windows 机器上。然后，运行 `putty.exe`。你应该会看到一个配置窗口，其外观类似于以下截图：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_35_0.png)
+
+
+  在 **Host Name** 空格中输入前一页的 `inet addr`，并确保 **SSH** 选择已选中。你可能希望将此配置保存为 Raspberry Pi，以便每次都可以重新加载。
+
+
+  ## 远程访问设置
+
+
+  当你点击 **Open** 时，系统将尝试通过 LAN 连接在你的 Raspberry Pi 上打开一个终端窗口。第一次这样做时，你会收到有关 RSA 密钥的警告，因为两台计算机彼此不认识。因此
+  Windows 会抱怨一台它不认识的计算机即将以相当亲密的方式连接。只需点击 **OK**，你应该会得到一个带有登录提示的终端，如以下截图：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_36_0.png)
+
+
+  现在你可以登录并向你的 Raspberry Pi Zero 发出命令。如果你想从 Linux 机器上执行此操作，过程甚至更简单。打开一个终端窗口，然后输入 `ssh
+  pi@xxx.xxx.xxx.xxx`，其中 `xxx.xxx.xxx.xxx` 是你的设备的 `inet addr`。这将带你进入 Raspberry Pi
+  Zero 的登录屏幕，其外观应与前一截图相似。
+
+
+  **SSH** 是与你的 Raspberry Pi Zero 通信的一个非常有用的工具。然而，有时你需要对系统进行图形化查看，而你不一定想连接到显示器。你可以在远程计算机上通过使用名为
+  **vncserver** 的应用程序获得此功能。你需要在 Raspberry Pi Zero 上安装此版本的应用程序，通过在 Raspberry Pi Zero
+  上的终端窗口中输入 `sudo apt-get install tightvncserver`。顺便说一下，这正是使用 SSH 的绝佳机会。
+
+
+
+
+
+
+  **Tightvncserver** 是一个允许你远程查看完整的 Raspberry Pi Zero 的应用程序。安装完成后，你需要在 Raspberry Pi
+  Zero 的终端窗口中输入 `vncserver` 来启动服务器。然后系统会提示你输入密码，再提示你验证密码，然后询问你是否想要一个只读密码。记住你输入的密码，你需要它通过
+  VNC Viewer 远程登录。
+
+
+  你需要为远程计算机提供一个 VNC Viewer 应用程序。在我的 Windows 系统上，我使用一个名为 **RealVNC** 的应用程序。启动该应用程序时，会出现以下截图：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_37_0.png)
+
+
+  输入 **VNC Server** 地址，即你的 Raspberry Pi Zero 的 IP 地址，然后点击 **Connect**。你会看到一个弹出窗口，如下图所示：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_37_1.png)
+
+
+  ## Getting Started with Raspberry Pi Zero - Overview
+
+
+  输入你在启动 vncserver 时刚刚输入的密码，然后你应该会看到一个类似以下截图的 Raspberry Pi 图形界面：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_38_0.png)
+
+
+  现在你可以访问系统的所有功能，尽管如果你进行图形密集型数据传输，速度可能会变慢。
+
+
+  > 有办法让 vncserver 在启动时自动启动。我没有使用过它们；我更喜欢在需要应用程序运行时从 SSH 应用程序输入 vncserver 命令。这样可以保持运行的应用程序最少，更重要的是，减少了安全风险。如果你想在每次启动时启动它，互联网上有多个地方展示如何配置。尝试以下网站：http://www.havetheknowhow.com/Configure-the-server/Run-VNC-on-boot.html。
+
+
+  要从运行例如 Ubuntu 的远程 Linux 计算机查看此 Raspberry Pi 桌面，你可以输入 `sudo apt-get install xtightvncviewer`，然后使用
+  `xtightvncviewer 10.25.155.110:1` 启动它并提供所选密码。
+
+
+  Linux 具有图形界面的查看器，例如 **Remmina Remote Desktop Client**（选择 **VNC-Virtual Network Computing
+  protocol**），它可以替代 `xtightvncviewer` 使用。以下是 **Remote Desktop Viewer** 的截图：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_39_0.png)
+
+
+  确保 vncserver 在 Raspberry Pi Zero 上运行。最简单的方法是通过 SSH 登录并在提示符下运行 vncserver。现在，在 **Remote
+  Desktop Viewer** 上点击 **Connect**。在 **Protocol** 选择下，填写屏幕如下，选择 **VNC**，你应该会看到以下截图：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_40_0.png)
+
+
+  现在，输入 **Host** 互联网地址，确保在末尾包含 :1，然后点击 **Connect**。你需要输入设置的 vncserver 密码，如下图所示：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_41_0.png)
+
+
+  现在你应该能够看到 Raspberry Pi 的图形屏幕。要从 Mac 或其他 Apple 设备图形化访问 Raspberry Pi Zero，你仍然可以使用
+  Real VNC Viewer，更多信息请参阅 https://www.realvnc.com/products/。
+
+
+  ## Getting Started with Raspberry Pi Zero - Setup
+
+
+  我喜欢与 Windows 一起使用的最后一款软件是名为 WinSCP 的免费应用程序。要下载和安装此软件，请访问 https://winscp.net/ 并按照说明下载和安装。安装后，运行程序。它将打开以下对话框：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_42_0.png)
+
+
+  点击 New，你将得到以下截图：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_42_1.png)
+
+
+  在这里，在主机名选项卡中填写 IP 地址，在用户名选项卡中填写 pi，并在密码栏中填写密码（不是 vncserver 密码）。点击 Login，你应该会看到警告显示，如下图所示：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_43_0.png)
+
+
+  主机计算机再次不认识远程计算机。点击 Yes，应用程序将显示以下截图：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_43_1.png)
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_45_0.png)
+
+
+  点击 Scan 选择器会扫描连接到网络的所有设备。你也可以在 Linux 中执行此操作；Linux 中用于 IP 扫描的一个应用程序称为 Nmap。要安装 Nmap，输入
+  sudo apt-get install nmap。要运行 Nmap，输入 sudo nmap -sp 10.25.155.1/154，扫描器将扫描从 10.25.155.1
+  到 10.25.155.154 的地址。
+
+
+  > 有关 Nmap 的更多信息，请参阅：http://www.linux.com/learn/tutorials/290879-beginners-guide-to-nmap。
+
+
+  这些扫描器会让你知道哪些地址正在使用，这应该能让你在不输入 ipconfig 的情况下看到你的 Raspberry Pi 地址。
+
+
+  ## Getting Started with Raspberry Pi Zero - Summary
+
+
+  你的系统具有许多功能。随意尝试系统——尝试了解其中已有的内容以及从软件角度需要添加的内容。请记住，你的 USB 端口功率有限，因此请确保你熟悉插入 Raspberry
+  Pi 的配件的功耗需求。对于许多项目，你可能需要使用带电的 USB 集线器。
+
+
+  ## Summary
+
+
+  恭喜！你已完成旅程的第一阶段。你的 Raspberry Pi Zero 已启动并运行。不会让这块硬件在垃圾箱里积灰。它现在已准备好以各种有趣的方式连接到各种有趣的设备。到现在为止，你已经安装了
+  Raspbian 操作系统，学会了如何连接所有适当的外部设备，甚至掌握了如何远程访问系统，这样你需要的唯一连接就是电源线和 LAN 线。
+
+
+  现在，你已准备好开始指挥你的 Raspberry Pi Zero 执行某些操作。下一章将介绍 Linux 操作系统和 Emacs 文本编辑器。它还将展示 Python
+  和 C/C++ 编程语言中的一些基本编程概念。然后，你就可以将开源软件添加到廉价硬件上并开始构建你的机器人项目。
+
+  '
+- "# 第2章 编程 Raspberry Pi Zero\n## Programming Raspberry Pi Zero\n\n现在你的系统已启动并运行，你的\
+  \ Raspberry Pi Zero 已准备好执行某些操作。这需要你创建自己的程序或编辑他人的程序。在本章中，你将学习如何编辑文件以创建可在 Raspberry\
+  \ Pi Zero 上运行的程序。\n\n在本章中，我们将涵盖以下主题：\n\n- Basic Linux commands and navigating the\
+  \ filesystem on Raspberry Pi Zero\n- Creating, editing, and saving files on Raspberry\
+  \ Pi Zero\n- Creating and running Python programs on Raspberry Pi Zero\n- Some of\
+  \ the basic programming constructs in Python on Raspberry Pi Zero\n\n你可以通过将键盘、鼠标和显示器连接到\
+  \ Raspberry Pi Zero，或通过 vncserver 或 SSH 远程登录来创建和运行本章中讨论的程序。\n\n## Powering up Raspberry\
+  \ Pi Zero with Linux\n\n完成第 1 章 Getting Started with Raspberry Pi Zero 中讨论的任务后，你将拥有一个运行名为\
+  \ Raspbian 的 Linux 版本的工作 Raspberry Pi Zero。因此，启动你的 Raspberry Pi Zero 并使用有效的用户名和密码登录。如果你打算通过\
+  \ SSH 或 vncserver 远程登录，现在就建立连接。首先，你将快速浏览 Linux。这不会很深入，但你将只是浏览一些基本命令。\n\n## Programming\
+  \ Raspberry Pi Zero\n\n登录后，打开一个终端窗口。如果你使用键盘、鼠标和显示器登录，或使用 vncserver，你会通过在屏幕顶部选择图标集选择中的\
+  \ Terminal 应用程序找到终端，如下图所示：\n\n![](img/324d126a7e2da696837a3e066326bd61_48_0.png)\n\
+  \n如果你使用 SSH，你已经在终端模拟器程序中了。无论哪种方式，终端应该看起来类似于以下截图：\n\n![](img/324d126a7e2da696837a3e066326bd61_48_1.png)\n\
+  \n\n\n\n\n你的光标位于命令提示符处。与 Microsoft Windows 或 macOS 不同，在 Linux 中，我们的大部分工作都是通过在命令行中实际输入命令来完成的。所以，让我们试试几个命令。当你输入\
+  \ `ls` 时，你应该能看到类似于以下截图的结果：\n\n![](img/324d126a7e2da696837a3e066326bd61_49_0.png)\n\
+  \n在 Linux 中，`ls` 命令列出当前目录中的所有文件和目录。你可以通过它们通常不同的颜色来区分不同的文件类型和目录。你也可以使用 `ls -l` 来查看有关文件的更多信息。\n\
+  \n你可以通过发出 `cd`（change directory，切换目录）命令在目录结构中移动。例如，如果你想查看 Desktop 目录中的内容，输入 `cd\
+  \ Desktop`。如果现在发出 `ls` 命令，你应该会看到类似于以下截图的内容：\n\n![](img/324d126a7e2da696837a3e066326bd61_50_0.png)\n\
+  \n这个目录是空的；它没有任何文件。`cd` 命令会更改目录。你本可以输入 `cd /home/pi/Desktop` 并得到完全相同的结果；这是因为你当时在\
+  \ `/home/pi` 目录中，这是在你首次登录系统时总是开始的目录。\n\n如果你想随时查看自己所在的目录，只需输入 `pwd`，它代表 print working\
+  \ directory（打印工作目录）。如果你这样做，你会得到结果，类似于以下截图：\n\n![](img/324d126a7e2da696837a3e066326bd61_51_0.png)\n\
+  \n运行 `pwd` 命令的结果是 `/home/pi/Desktop`。现在，你可以使用两种不同的快捷方式导航回默认目录。第一种是在终端上输入 `cd ..`；这会带你到层级结构中当前目录的上级目录。然后输入\
+  \ `pwd`；你应该会看到以下截图作为结果：\n\n![](img/324d126a7e2da696837a3e066326bd61_51_1.png)\n\n\
+  另一种返回主目录的方法是输入 `cd ~`；这总会将你返回到你的主目录。你也可以输入 `cd` 来返回到你的主目录。如果你从 Desktop 目录这样做，然后输入\
+  \ `pwd`，你会看到以下截图作为结果：\n\n![](img/324d126a7e2da696837a3e066326bd61_52_0.png)\n\n\
+  你可以使用其完整路径名进入特定目录。在这种情况下，如果你想从文件系统的任何位置进入 `/home/pi/Desktop` 目录，只需输入 `cd /home/pi/Desktop`。\n\
+  \n还有许多其他 Linux 命令在你编程时可能会有用。以下是一些最有用的命令的表格：\n\n| Linux commands | What it does |\n\
+  |---|---|\n| `ls` | This command lists all the files and directories in the current\
+  \ directory by just their names. |\n| `rm filename` | This command deletes the file\
+  \ specified by `filename`. |\n| `mv filename1 filename2` | This command renames\
+  \ `filename1` to `filename2`. |\n| `cp filename1 filename2` | This command copies\
+  \ `filename1` to `filename2`. |\n| `mkdir directoryname` | This command creates\
+  \ a directory with the name specified by `directoryname`; this will be made in the\
+  \ current directory unless specified otherwise. |\n| `clear` | This command clears\
+  \ the current terminal window. |\n| `sudo` | If you type the `sudo` command at the\
+  \ beginning of any command, it will execute that command as the super user. This\
+  \ may be required if the command or program you are trying to execute needs the\
+  \ permission of the super user. If, at any point, you type a command or the name\
+  \ of the program you want to run and the result seems to suggest that the command\
+  \ does not exist or that permission is denied, try doing it again with `sudo` at\
+  \ the beginning. |\n\n现在，你可以随意使用这些命令来查看你的系统和可用的文件。但要小心！Linux 不像 Windows；默认行为是如果你尝试删除或替换文件，它不会警告你。\n\
+  \n## Creating, editing, and saving files\n\n现在你已经可以登录并轻松在目录之间移动并查看你的文件，你将希望能够编辑这些文件。为此，你需要一个允许你编辑文件中字符的程序。如果你习惯于在\
+  \ Microsoft Windows 上工作，你可能使用过 Microsoft Notepad、WordPad 或 Word 等程序来完成此操作。这些程序在\
+  \ Linux 中不可用。还有其他几种编辑器的选择，所有这些都是免费的。在本章中，你将使用一个名为 Emacs 的编辑程序。其他可能性是 nano、vi、vim\
+  \ 和 gedit 等程序。程序员对使用哪种编辑器有强烈的偏好，所以如果你已经有最喜欢的编辑器，可以跳过本节。\n\n> 如果你想使用 nano 作为编辑器，它已经在\
+  \ Raspbian 发行版上可用。有关 nano 的更多信息，请参阅 http://www.nano-editor.org/。\n\n![](img/324d126a7e2da696837a3e066326bd61_53_0.png)\n\
+  \n如果你想使用 Emacs，通过输入 `sudo apt-get install emacs` 下载并安装它。安装后，你只需输入 `emacs filename`\
+  \ 即可运行 Emacs，其中 `filename` 是你想要编辑的文件的名称。如果文件不存在，Emacs 将创建它。以下截图显示了你在提示符下输入 `emacs\
+  \ example.py` 时会看到的内容：\n\n![](img/324d126a7e2da696837a3e066326bd61_54_0.png)\n\n\
+  请注意，与 Windows 不同，Linux 不会自动分配文件扩展名；由你来指定你想要创建的文件类型。Emacs 编辑器还在屏幕左下角指示你已打开一个新文件。现在，如果你在使用\
+  \ Raspbian GUI 界面中的 Emacs，无论是因为你连接了显示器、键盘和鼠标，还是因为你正在运行 vncserver，你都可以用鼠标以与在 Microsoft\
+  \ Word 中相同的方式使用它。\n\n然而，如果你通过 SSH 运行 Emacs，你将无法使用鼠标。因此你需要使用光标键导航文件。你还必须使用一些按键命令来保存文件，以及完成你通常会使用鼠标选择的许多其他任务。例如，当你准备好保存文件时，你必须按\
+  \ Ctrl + X 和 Ctrl + S，这将以当前文件名保存文件。当你想退出 Emacs 时，你必须按 Ctrl + X 和 Ctrl + C。这将停止 Emacs\
+  \ 并返回到命令提示符。\n\n以下是一些你可能会觉得有用的 Emacs 按键命令：\n\n| Emacs commands | What it does |\n\
+  |---|---|\n| `Ctrl + X` and `Ctrl + S` | Save: This command saves the current file.\
+  \ |\n| `Ctrl + X` and `Ctrl + C` | Quit: This command makes you exit Emacs and return\
+  \ to the command prompt. |\n| `Ctrl + K` | Kill: This command erases the current\
+  \ line. |\n| `Ctrl + _` | Undo: This command undoes the last action. |\n| Left-click\
+  \ on the text you wish to copy, then place the cursor at the place you want to paste,\
+  \ then right-click | Cut and paste: If you select the text you want to copy by clicking\
+  \ the mouse, move the cursor to where you want to paste the code and then right-click\
+  \ on it; the code will be pasted in that location. |\n\n现在你有了编辑文件的能力，你将在下一节中使用这种能力来创建程序。\n\
+  \n## Creating and running Python programs\n\n现在你准备开始编程，你需要选择一种语言。有很多可供选择，例如 C、C++、Java、Python、Perl\
+  \ 以及许多其他可能性。我将首先向你介绍 Python，原因有两个：它是一种简单、直观且非常易于使用的语言，并且它使用了机器人世界的大量开源功能。我们在本章中也会介绍一些\
+  \ C/C++，因为某些功能仅在 C/C++ 中可用。然而，从 Python 开始是有意义的。要完成本节中的示例，你需要安装一个 Python 版本。幸运的是，基本的\
+  \ Raspbian 系统已经自带一个，所以你已准备好开始。\n\n我们在这里只会介绍一些非常基础的概念。如果你是编程新手，有许多不同的网站提供交互式教程。如果你想通过这些教程练习\
+  \ Python 中的一些基本编程概念，请访问 https://www.codecademy.com 或 http://www.learnpython.org/\
+  \ 或 https://docs.python.org 并试试看。\n\n\n\n\n在本节中，我们将介绍如何创建并运行一个 Python 文件。实际上，Python\
+  \ 可以交互式地使用，因此你可以一次输入一条命令。在你熟悉语言特性和模块时，交互式使用会非常有帮助。但你想用 Python 来创建程序，因此你需要在 Emacs\
+  \ 中输入命令，然后在命令行中通过调用 Python 来运行它们。让我们开始吧。\n\n输入 `emacs example.py` 打开一个示例 Python\
+  \ 文件。现在，让我们在文件中写入一些代码。以下面截图所示的代码开始：\n\n![](img/324d126a7e2da696837a3e066326bd61_56_0.png)\n\
+  \n让我们逐行看一下代码，了解发生了什么。代码行如下：\n\n- `a = input(\"Input value: \")`：程序的基本用途之一是获取用户的输入；`input`\
+  \ 允许我们做到这一点。数据将由用户输入并存储在 `a` 中。提示符 `Input value:` 将显示给用户。\n- `b = input(\"Input\
+  \ second value: \")`：该数据也由用户输入并存储在 `b` 中。提示符 `Input second value:` 将显示给用户。\n- `c\
+  \ = a + b`：这是你可以对数据执行的操作的一个示例；在这个示例中，你可以将 `a` 和 `b` 相加。\n- `print c`：我们程序的另一个基本用途是打印结果。`print`\
+  \ 命令会打印出 `c` 的值。\n\n> 该代码是用 Python 2 编写的。如果你使用的是 Python 3，你需要将 `print` 改为 `print(c)`。有关可能需要进行的其他更改，请访问\
+  \ http://learntocodewith.me/programming/python/python-2-vs-python-3/。\n\n创建程序后，保存它（使用\
+  \ *Ctrl + X* 和 *Ctrl + S*）并退出 Emacs（使用 *Ctrl + X* 和 *Ctrl + C*）。现在，在命令行中，输入 `python\
+  \ example.py` 来运行你的程序。你看到的结果应类似于以下截图：\n\n![](img/324d126a7e2da696837a3e066326bd61_57_0.png)\n\
+  \n你也可以在命令行中不输入 `python example.py` 来运行程序，只需在程序中添加 `#!/usr/bin/python` 一行。之后程序看起来类似于以下截图：\n\
+  \n![](img/324d126a7e2da696837a3e066326bd61_57_1.png)\n\n将 `#!/usr/bin/python` 作为第一行，只是让这个文件可以在命令行中被直接执行。保存文件并退出\
+  \ Emacs 后，输入 `chmod +x example.py`。这将更改文件的执行权限，因此计算机现在会接受并执行它。\n\n你应该可以直接输入 `./example.py`\
+  \ 并看到程序运行，如下截图所示：\n\n![](img/324d126a7e2da696837a3e066326bd61_58_0.png)\n\n请注意，如果直接输入\
+  \ `example.py`，系统将找不到该可执行文件。在这里，文件没有被系统注册，因此你必须为系统提供它的路径。在这种情况下，`./` 表示当前目录。\n\n\
+  ## 下载示例代码\n\n你可以从你的账户中下载本书的示例代码文件，网址为 http://www.packtpub.com。如果你在其他地方购买了本书，可以访问\
+  \ http://www.packtpub.com/support 注册，文件将通过电子邮件直接发送给你。\n\n你可以按照以下步骤下载代码文件：\n\n- 使用你的电子邮件地址和密码登录或注册我们的网站。\n\
+  - 将鼠标指针悬停在顶部的 SUPPORT 选项卡上。\n- 点击 Code Downloads & Errata。\n- 在搜索框中输入书名。\n- 选择你要下载代码文件的书。\n\
+  - 在下拉菜单中选择你购买本书的地点。\n- 点击 Code Download。\n\n文件下载后，请确保使用最新版本的解压软件解压文件夹：\n\n- Windows\
+  \ 系统使用 WinRAR/7-Zip\n- Mac 系统使用 Zipeg/iZip/UnRarX\n- Linux 系统使用 7-Zip/PeaZip\n\n\
+  ![](img/324d126a7e2da696837a3e066326bd61_58_1.png)\n\n以下是上一张截图中代码的详细说明：\n\n- `#!/usr/bin/python`：包含这一行是为了使你的程序可执行。\n\
+  - `a = input(\"Input value: \")`：数据将由用户输入并存储在 `a` 中。`b = input(\"Input second value:\
+  \ \")`：该数据也由用户输入并存储在 `b` 中。\n- `if a > b:`：这是一个 `if` 语句。在此情况下被求值的表达式是 `a > b`。如果它为\
+  \ `True`，程序将执行下一句或多句缩进的语句；在此情况下，即 `c = a - b`。如果不是，它将跳过该语句。\n- `else:`：`else` 语句是该命令的一个可选部分。如果\
+  \ `if` 语句中的表达式被求值为 `False`，则执行 `else:` 之后的缩进语句；在此情况下，即 `c = b - a`。\n- `print c`：我们程序的另一个基本用途是打印结果。`print`\
+  \ 命令会打印出 `c` 的值。\n\n你可以多次运行前面的程序，检查 `if` 表达式的 `True` 和 `False` 两种情况，如下截图所示：\n\n\
+  ![](img/324d126a7e2da696837a3e066326bd61_60_0.png)\n\n## while 语句\n\n另一个有用的结构是 `while`\
+  \ 结构；它允许我们一遍又一遍地执行一组语句，直到满足特定条件。下面的截图显示了使用该结构的一组代码：\n\n![](img/324d126a7e2da696837a3e066326bd61_61_0.png)\n\
+  \n以下是上一张截图中代码的详细说明：\n\n- `#!/usr/bin/python`：包含这一行是为了使你的程序可执行。\n- `a = 0`：此行将变量\
+  \ `a` 的值设置为 0。我们只需要它来确保循环至少执行一次。\n- `b = 1`：此行将变量 `b` 的值设置为 1。我们只需要它来确保循环至少执行一次。\n\
+  - `while a != b:`：对表达式 `a != b`（此处 `!=` 表示“不等于”）进行验证。如果为 `True`，则执行缩进的语句。当语句被求值为\
+  \ `False` 时，程序跳转到缩进部分之后的语句（在此示例中没有）。\n- `a = input(\"Input value: \")`：数据将由用户输入并存储在\
+  \ `a` 中。\n- `b = input(\"Input second value: \")`：该数据也由用户输入并存储在 `b` 中。\n- `c = a\
+  \ + b`：变量 `c` 被赋值为 `a` 和 `b` 的和。\n- `print c`：`print` 命令会打印出 `c` 的值。\n\n现在你可以运行该程序。注意，当你为\
+  \ `a` 和 `b` 输入相同的值时，程序将停止，如下截图所示：\n\n![](img/324d126a7e2da696837a3e066326bd61_62_0.png)\n\
+  \n## 使用函数\n\n接下来需要介绍的概念是如何将一组语句放入一个函数中。我们使用函数来组织代码，并在有意义时将一组语句分组到同一个位置。例如，如果我们有一个可能需要执行多次的特定计算，与其每次执行时都复制这组语句，不如将它们组合成一个函数。这里我将使用一个相当简单的示例，但如果该计算需要大量编程语句，你可以看到函数会让我们的代码更易于维护，因为我们不需要一遍遍地重复代码。它还可以让我们的代码更易于阅读。下面的截图显示了代码：\n\
+  \n![](img/324d126a7e2da696837a3e066326bd61_63_0.png)\n\n以下是前一个示例代码的说明：\n\n- `#!/usr/bin/python`：包含这一行是为了使你的程序可执行。\n\
+  - `def sum(a, b):`：此行定义了一个名为 `sum` 的函数。`sum` 函数以 `a` 和 `b` 作为参数。\n- `c = a + b`：每当调用此函数时，它都会将变量\
+  \ `a` 中的值与变量 `b` 中的值相加。\n- `return c`：当函数执行时，它会将变量 `c` 返回给调用表达式。\n\n## 对 Raspberry\
+  \ Pi Zero 进行编程\n\n- `d = input(\"Input value: \")`：该数据也由用户输入并存储在 `d` 中。提示符 `Input\
+  \ second value:` 将显示给用户。\n- `e = input(\"Input second value: \")`：该数据也由用户输入并存储在\
+  \ `e` 中。提示符 `Input second value:` 将显示给用户。\n- `f = sum(d, e)`：调用了 `sum` 函数。程序随后进入\
+  \ `sum` 函数并执行它。变量 `d` 中的值被复制到变量 `a`，变量 `e` 中的值被复制到变量 `b`。该函数返回值，然后将其存储在变量 `f` 中。\n\
+  - `print f`：`print` 命令会打印出 `f` 的值。\n\n以下截图是运行代码后得到的结果：\n\n![](img/324d126a7e2da696837a3e066326bd61_64_0.png)\n\
+  \n## Python 中的库/模块\n\n接下来我们需要介绍的主题是如何使用库/模块为我们的程序添加功能。库或模块（在 Python 中有时这样称呼）包含某人已经创建好、并你想添加到代码中的功能。只要该功能存在且你的系统知道它，你就可以将库包含在代码中。\n\
+  \n\n\n\n\n那么，让我们再次修改代码，加入这个库，如下面的截图所示：\n\n![](img/324d126a7e2da696837a3e066326bd61_65_0.png)\n\
+  \n下面是对代码的逐行说明：\n\n- `#!/usr/bin/python`：包含这一行是为了让程序可以直接执行。\n- `import time`：包含 time\
+  \ 库。time 库中包含一个函数，可以让你暂停指定的秒数。\n- `d = input(\"Input value: \")`：这些数据将由用户输入并存储在\
+  \ d 中。提示语“Input value:”会显示给用户。\n- `time.sleep(2)`：这一行调用 time 库中的 sleep 函数，这将产生 2\
+  \ 秒的延迟。\n- `e = input(\"Input second value: \")`：这些数据也将由用户输入并存储在 e 中。提示语“Input second\
+  \ value:”会显示给用户。\n- `f = d + e`：变量 f 被赋值为 d + e。\n- `print f`：print 命令会打印出 f 的值。\n\
+  \n运行上面的示例代码后，结果如下面的截图所示：\n\n![](img/324d126a7e2da696837a3e066326bd61_66_0.png)\n\
+  \n当然，这看起来与其他结果非常相似。但你会注意到，在输入第一个值之后，到第二个值出现之前，会有一段暂停。\n\n## 小结\n\n在本章中，你学习了如何使用命令行与\
+  \ Raspbian 操作系统交互，以及如何使用 Emacs 创建和编辑文件。你还接触了 Python 和 C 两种编程语言。如果这是你第一次接触编程，那么如果你对于编程整体上仍然感到很不适应，尤其是对\
+  \ if 和 while 语句，不要感到惊讶。你在第一次接触英语时可能也同样感到不适，尽管你可能已经不记得了。\n\n尝试新事物总是有点困难。不过，我会尽量给出明确的输入指令，帮助你顺利完成操作。使用计算机有一个重大挑战：它们总是严格按你告诉它们的去做，而不一定是按你想要的去做。因此，如果遇到问题，请多次检查，确保你的代码与示例完全一致。现在，让我们开始真正的编码吧！\n\
+  \n在下一章中，你将开始编写代码，从而能够创造令人惊叹的项目。你将首先让你的系统具备说话和听懂命令的能力。\n\n## 访问 Raspberry Pi Zero\
+  \ 上的 GPIO 引脚\n\n以下是 40 个引脚的特写：\n\n![](img/324d126a7e2da696837a3e066326bd61_68_0.png)\n\
+  \n以下是引脚列表及其与 Raspberry Pi Zero 的连接：\n\n![](img/324d126a7e2da696837a3e066326bd61_68_1.png)\n\
+  \n其中一些引脚的用途非常明确。引脚 1 和 17 用于提供 3.3 伏电压，引脚 2 和 4 提供 5 伏电压，而引脚 9、25、39、6、14、20、30\
+  \ 和 34 在 Raspberry Pi Zero 上都连接到地。其余引脚具有各种功能，你将在本章中了解。让我们从可用于向外部世界提供简单直流信号的引脚开始。\n\
+  \n### 简单的 GPIO 数字电压输出\n\n也许你能与 Raspberry Pi 上的 GPIO 建立的最简单连接，就是连接到一个引脚，从而输出一个简单的数字电压。为此，你将使用\
+  \ GPIO I/O 引脚点亮一个 LED。要顺利完成，你需要四件硬件：一块无焊面包板、一些跳线、一个 LED 和一个电阻。以下是这些部件的更多细节：\n\n\
+  - 面包板是一种简单的设备，让你可以轻松连接各种电子元件。它们有各种尺寸、形状和颜色。下面是一张面包板的图片：\n  ![](img/324d126a7e2da696837a3e066326bd61_69_0.png)\n\
+  \n  许多在线商店和爱好商店都有出售。\n- 跳线用于连接各种电子元件。根据连接类型的不同，跳线的两端分为母头和公头。下面是一张公对母跳线的图片，并标明了接头：\n\
+  \  ![](img/324d126a7e2da696837a3e066326bd61_70_0.png)\n\n  对于这些项目，你需要一些母对公跳线和一些母对母跳线。\n\
+  - 发光二极管（LED）是一种带有两个引脚的小型元件，在施加电压时会发光。它们有各种各样的颜色。如果你想在线购买，可以搜索 3 mm LED。它们有各种颜色。你也可以在大多数电子商店买到。下面是一个\
+  \ LED：\n  ![](img/324d126a7e2da696837a3e066326bd61_70_1.png)\n- 你还需要一个电阻来限制提供给 LED\
+  \ 的电流。220 欧姆的电阻大小合适。同样，你可以在网上或大多数电子商店买到。下面是一组此类电阻的图片：\n  ![](img/324d126a7e2da696837a3e066326bd61_71_0.png)\n\
+  \n如果你各买两个 LED 和电阻，就可以使用多个 GPIO I/O 引脚。现在你已经备齐了所有零件，让我们开始构建你的第一个硬件项目。在插入任何东西之前，我们先花一点时间看看面包板，以便了解你将如何使用它进行连接。你会把导线插入面包板上的孔中。面包板上的孔以独特的方式连接，从而实现你想要的电路连接。\n\
+  \n在面包板的中间，孔是横向连接的。因此，如果你将一根导线插入某个孔中，再将另一根导线插入紧挨着它的孔中，这两根导线就会连通，就像这样：\n\n![](img/324d126a7e2da696837a3e066326bd61_71_1.png)\n\
+  \n面包板两侧的两排通常用于供电，因此它们是纵向连接的。将引脚 2（5 伏）连接到 + 接口，将引脚 6（GND）连接到面包板的 - 排，如图所示：\n\n![](img/324d126a7e2da696837a3e066326bd61_72_0.png)\n\
+  \n现在你可以将电子元件放到面包板上。放置 LED 时，让一根引脚位于面包板中间分隔槽的一侧。LED 的方向很重要；确保两根引脚中较长的那根位于孔的左侧。\n\n\
+  现在将电阻放在 LED 一侧的孔中，电阻的另一根引脚连接到面包板的 GND 排。电阻的方向没有影响。你的电路应该与下图类似：\n\n![](img/324d126a7e2da696837a3e066326bd61_73_0.png)\n\
+  \n现在，你将使用跳线连接到 Raspberry Pi Zero 的 GPIO 引脚。你将连接到引脚 13（GPIO 27）和引脚 15（GPIO 22），如图所示：\n\
+  \n![](img/324d126a7e2da696837a3e066326bd61_73_1.png)\n\n选择正确的引脚很重要，因为并非所有引脚都可以输出\
+  \ GPIO 电压。下面是 GPIO 引脚的另一种视图，标注了分配给它们的一些专用功能：\n\n![](img/324d126a7e2da696837a3e066326bd61_74_0.png)\n\
+  \n在本章以及本书后续内容中，你将进一步了解这些专用功能。现在硬件已经正确配置，你需要添加代码来驱动 LED。\n\n### Raspberry Pi Zero\
+  \ 与 LED 代码\n\n要编写代码，你现在需要在 Raspberry Pi Zero 上启动系统、登录并打开终端窗口。你将使用 Python 创建一个简单的程序来控制\
+  \ LED 的亮灭。代码如下：\n\n![](img/324d126a7e2da696837a3e066326bd61_75_0.png)\n\n现在输入该程序。让我们逐行分析这个程序：\n\
+  \n- `#!/usr/bin/python`：这一行让你无需在文件名前输入 python 即可运行该程序。你将在这些说明的末尾学习如何做到这一点。\n- `import\
+  \ RPi.GPIO as io`：这让你可以导入 RPi.GPIO 库，从而控制 GPIO 引脚。\n- `import time`：time 库提供了多个基于时间的函数。在这里，你将使用它让程序暂停几秒钟。\n\
+  - `io.setmode(io.BCM)`：这会将 GPIO 引脚的规格模式设置为 Broadcom SOC 通道编号（BCM）。这意味着你将指定要控制的引脚的\
+  \ GPIO 编号，而不是实际的物理引脚编号。\n\n\n\n\n\n## 添加超声波传感器\n\n你刚刚构建的基础电路是一个很好的开始。现在你将把一个更复杂的设备——超声波传感器——与\
+  \ Raspberry Pi Zero 接口。以下是你将添加的超声波传感器的图片：\n\n![](img/324d126a7e2da696837a3e066326bd61_77_0.png)\n\
+  \n该设备是 HC-SR04，可在大多数在线电子零售商处买到。现在让我们将设备连接到 Raspberry Pi Zero。为此，首先让我们看看 Raspberry\
+  \ Pi Zero 上 GPIO 引脚的布局：\n\n| Pin 1 3.3V |  | Pin 2 5V |\n| Pin 3 GPIO2 |  | Pin\
+  \ 4 5V |\n| Pin 5 GPIO3 |  | Pin 6 GND |\n| Pin 7 GPIO4 |  | Pin 8 GPIO14 |\n| Pin\
+  \ 9 GND |  | Pin 10 GPIO15 |\n| Pin 11 GPIO17 |  | Pin 12 GPIO18 |\n| Pin 13 GPIO27\
+  \ |  | Pin 14 GND |\n| Pin 15 GPIO22 |  | Pin 16 GPIO23 |\n| Pin 17 3.3V |  | Pin\
+  \ 18 GPIO24 |\n| Pin 19 GPIO10 |  | Pin 20 GND |\n| Pin 21 GPIO9 |  | Pin 22 GPIO25\
+  \ |\n| Pin 23 GPIO11 |  | Pin 24 GPIO8 |\n| Pin 25 GND |  | Pin 26 GPIO7 |\n| Pin\
+  \ 27 ID_SD |  | Pin 28 ID_SC |\n| Pin 29 GPIO5 |  | Pin 30 GND |\n| Pin 31 GPIO6\
+  \ |  | Pin 32 GPIO12 |\n| Pin 33 GPIO13 |  | Pin 34 GND |\n| Pin 35 GPIO19 |  |\
+  \ Pin 36 GPIO16 |\n| Pin 37 GPIO26 |  | Pin 38 GPIO20 |\n| Pin 39 GND |  | Pin 40\
+  \ GPIO21 |\n\n这两种电阻的组合将电压降低到所需水平。\n以下是面包板上的电路图：\n\n![](img/324d126a7e2da696837a3e066326bd61_79_0.png)\n\
+  \n最后，如图所示将传感器连接到 Raspberry Pi Zero：\n\n![](img/324d126a7e2da696837a3e066326bd61_79_1.png)\n\
+  \n现在设备已连接，你需要一些代码来读取值，确保其稳定（产生稳定的测量值），然后将其转换为距离。\n\n## Raspberry Pi Zero 和超声波传感器代码\n\
+  \n以下是与超声波传感器通信的 Python 代码：\n\n```\n#!/usr/bin/python\nimport RPi.GPIO as io\nimport\
+  \ time\n\nio.setmode(io.BCM)\n\ntrig = 23\necho = 24\n\nio.setup(trig,io.OUT)\n\
+  io.setup(echo,io.IN)\n\nio.setup(trig, False)\ntime.sleep(1)\nio.output(trig, True)\n\
+  time.sleep(.00001)\nio.output(trig, False)\n\nwhile io.input(echo) == 0:\n    start\
+  \ = time.time()\n\nwhile io.input(echo) == 1:\n    end = time.time()\n\nduration\
+  \ = end - start\ndistance = duration * 17150\ndistance = round(distance, 2)\nprint\
+  \ \"Distance: \", distance, \" cm\"\nio.cleanup()\n```\n\n以下是代码的解释：\n\n- #!/usr/bin/python:\
+  \ 这一行让你可以在不输入 python 的情况下运行此程序。你将在这些说明的末尾学习如何做到这一点。\n- `import RPi.GPIO as io`:\
+  \ 这让你可以导入 RPi 库，这将允许你控制 GPIO 引脚。\n- `import time`: time 库提供了多个基于时间的功能。在这种情况下，你将使用它来暂停程序一段时间并测量一定的时间延迟。\n\
+  - `io.setmode(io.BCM)`: 这将 GPIO 引脚的规范模式设置为 Broadcom SOC 通道号（BCM）。这意味着你将指定要控制的 GPIO\
+  \ 引脚号，而不是实际的物理引脚值。\n- `trig = 23`: 这将值 23 分配给 trig 变量。\n- `echo = 24`: 这将值 24 分配给\
+  \ echo 变量。\n- `io.setup(trig, io.OUT)`: 这将 GPIO 引脚 23 设置为输出。\n- `io.setup(echo,\
+  \ io.IN)`: 这将 GPIO 引脚 24 设置为输入。\n- `io.setup(trig, False)`: 这将向 trig 线、引脚 23 输出零。\n\
+  - `time.sleep(1)`: 此命令将使程序暂停一秒。\n- `io.output(trig, True)`: 这将向 trig 线、引脚 23 输出一个，5\
+  \ 伏。\n- `time.sleep(.00001)`: 这将使程序等待大约 10 微秒。\n- `io.output(trig, False)`: 这将向\
+  \ trig 线、引脚 23 输出零。\n- `while io.input(echo) == 0:`: 当引脚 24 的输入为零时。\n- `start =\
+  \ time.time()`: 持续重置开始时间。当引脚 24 变高时，start 将保存引脚 24 的值为低时的最新时间。\n- `while io.input(echo)\
+  \ == 1:`: 当输入引脚 24 为 1 时执行以下命令集。\n- `end = time.time()`: 持续重置结束时间。当引脚 24 变低时，end\
+  \ 将保存引脚 24 的值为高时的最新时间。\n- `duration = end - start`: duration 现在将保存结束时间和开始时间之间的时间距离。\n\
+  - `distance = duration * 17150`: distance 将持续时间转换为距离值。\n- `distance = round(distance,\
+  \ 2)`: 将距离四舍五入到小数点后两位。\n- `print \"Distance: \", distance, \" cm\"`: 打印出距离。\n- `io.cleanup()`:\
+  \ 重置接口。\n\n## 在 Raspberry Pi Zero 上访问 GPIO 引脚\n\n现在你应该保存并运行程序并获得结果，如以下屏幕截图所示：\n\n\
+  ![](img/324d126a7e2da696837a3e066326bd61_82_0.png)\n\n现在你可以用 Raspberry Pi Zero 感知距离！\n\
+  \n## 将数字罗盘连接到 Raspberry Pi Zero\n\n现在你已经为 Raspberry Pi Zero 创建了一些非常基础的连接，打开和关闭线路并感知高或低信号。现在让我们探索\
+  \ Raspberry Pi Zero 上可用的其他接口之一，I2C 接口。为此，你将连接一个使用这种接口的数字罗盘。\n\n> 有关 I2C 接口的更多信息，请参阅\
+  \ `http://www.robot-electronics.co.uk/i2c-tutorial`。\n\n有几种芯片提供数字罗盘功能；其中最常见的是 **HMC5883L**，一种\
+  \ *3 轴* 数字罗盘芯片。该芯片由多家公司封装在模块中，但几乎所有模块的结果都具有相似的接口。\n\n以下是 **GY-271 HMC5883L** 的图片，这是一款三轴罗盘磁力计传感器模块，可在多家在线零售商处买到：\n\
+  \n![](img/324d126a7e2da696837a3e066326bd61_83_0.png)\n\n这种类型的数字罗盘使用磁传感器来测量地球的磁场。这些传感器的输出随后通过一组寄存器使外部世界可以访问，允许用户设置诸如采样率和连续或单次采样之类的内容。X、Y\
+  \ 和 Z 方向的输出也使用寄存器。\n\n该芯片使用 **Inter IC (I2C)** 总线与 Raspberry Pi Zero 通信。Raspberry\
+  \ Pi 的 GPIO 接口上有三个串行总线可用。第一个是标准的 **Universal Asynchronous Receiver/Transmitter (UART)**\
+  \ 接口。UART 接口使用一个引脚用于 RX 或接收信号，一个引脚用于 TX 或发送信号。UART 接收字节数据并以顺序传输各个位。在目的地，第二个 UART\
+  \ 将位重新组装成字节。此接口仅限于与单个外部设备通信。有关 UART 接口及其工作原理的更多信息，请访问 `https://www.freebsd.org/doc/en/articles/serial-uart/`。\n\
+  \n第二个可用的接口是 I2C 接口。I2C 接口与 UART 接口类似；它也使用两条线进行通信，在本例中为数据线和时钟线。然而，它更复杂一些，因为它允许一个主设备与多个从设备之间进行通信。它通过寻址主设备想要通信的设备来实现这一点。有关\
+  \ I2C 接口的更多信息，请参阅 `http://www.robot-electronics.co.uk/i2c-tutorial`。\n\n最后一个可用的接口是\
+  \ **Serial Peripheral Interface (SPI)** 接口。与 I2C 接口一样，SPI 接口允许主设备与多个从设备之间进行通信。然而，每个从设备都使用不同的选择数据线进行选择。SPI\
+  \ 主设备使用 **serial clock (SCK)**、**Master Out Slave In (MOSI)**、**Master In Slave\
+  \ Out (MISO)** 和 **Slave Select (SS)** 线与从设备通信。SCK、MOSI 和 MISO 信号可以由从设备共享，而每个从设备都有唯一的\
+  \ SS 线。有关 SPI 接口的更多信息，请参阅 http://www.corelis.com/education/SPI_Tutorial.htm。\n\n\
+  由于你要使用的设备是 I2C 设备，罗盘模块背面将有三个连接，一个用于电源（VCC），一个用于地（GND），一个用于时钟（SCL），一个用于数据（SDA）。连接如以下图像所示：\n\
+  \n![](img/324d126a7e2da696837a3e066326bd61_84_0.png)\n\n\n\n\n\n要连接该设备，您需要连接 Raspberry\
+  \ Pi Zero 上的 I2C 接口引脚。以下是 GPIO 引脚的详细说明：\n\n![](img/324d126a7e2da696837a3e066326bd61_85_0.png)\n\
+  \n您将把设备连接到引脚 1、3、5、7 和 9。对于这些连接，您需要使用母对母跳线：\n\n- 1. 将模块上的 VCC 引脚连接到 Raspberry Pi\
+  \ Zero 上的引脚 1 3.3 V，并将 GND 连接到引脚 9 GND。\n- 2. 然后将模块上的 **SCL** 连接到 **引脚 5 GPIO3**，并将\
+  \ **SDA** 连接到 Raspberry Pi Zero 上的 **引脚 3 GPIO2**。请注意，您不会连接罗盘上的 **数据就绪 (DRDY)**\
+  \ 引脚；这是设备的可选连接。以下是连接：\n\n![](img/324d126a7e2da696837a3e066326bd61_86_0.png)\n\n\
+  现在，您已准备好与设备通信。\n\n## 以编程方式访问罗盘\n\n现在设备已连接，您需要通过软件配置访问权限。以下是步骤：\n\n- 1. 为了访问罗盘功能，您需要在\
+  \ Raspberry Pi Zero 上启用 I2C 库。要启用此总线，请运行 `sudo raspi-config` 并选择 **9 高级选项**，如下所示：\n\
+  \n![](img/324d126a7e2da696837a3e066326bd61_87_0.png)\n\n- 2. 然后转到 A7 I2C 选择并启用 I2C，如以下屏幕截图所示：\n\
+  \n![](img/324d126a7e2da696837a3e066326bd61_87_1.png)\n\n- 3. 选择 **是** 以启用 I2C 接口，如以下屏幕截图所示：\n\
+  \n![](img/324d126a7e2da696837a3e066326bd61_88_0.png)\n\n- 4. 在下一个屏幕上选择 **确定**，然后在询问是否要默认加载\
+  \ I2C 内核模块的屏幕上选择 **是**，如下所示：\n\n![](img/324d126a7e2da696837a3e066326bd61_88_1.png)\n\
+  \n- 5. 选择 **确定** 返回主选择，然后退出并重新启动您的 Raspberry Pi Zero。\n\n现在您可以检测设备是否已连接。通过输入 sudo\
+  \ apt-get install i2c-tools 安装 I2C 工具包。您可以通过输入 sudo i2cdetect -y 1 来查看 I2C 是否已启用，然后您应该会看到类似于以下屏幕截图的内容：\n\
+  \n![](img/324d126a7e2da696837a3e066326bd61_89_0.png)\n\n您可以在 1e 看到设备。现在您可以与您的数字罗盘通信。以下是步骤：\n\
+  \n- 1. 您需要创建一个 Python 程序。在创建 Python 代码之前，您需要安装 SMBus 功能以访问 I2C。这可以通过输入 sudo apt-get\
+  \ install python-smbus 来完成。\n\n## 访问 Raspberry Pi Zero 上的 GPIO 引脚\n\n- 2. 现在重新启动\
+  \ Raspberry Pi；您可以使用 smbus 库功能来读取和写入您的 I2C 设备。幸运的是，在这种情况下，设备附带了一些示例代码，说明如何配置设备然后读取值。以下是一个\
+  \ Python 代码示例：\n\n![](img/324d126a7e2da696837a3e066326bd61_90_0.png)\n\n```\n```python\n\
+  #!/usr/bin/python\nimport smbus\nimport time\nimport math\nbus = smbus.SMBus(1)\n\
+  address = 0x1e\n\ndef read_byte(adr):\n    return bus.read_byte_data(address, adr)\n\
+  def read_word(adr):\n    high = bus.read_byte_data(address, adr)\n    low = bus.read_byte_data(address,\
+  \ adr+1)\n    val = (high << 8) + low\n    return val\ndef read_word_2c(adr):\n\
+  \    val = read_word(adr)\n    if (val >= 0x8000):\n        return -((65535 - val)\
+  \ + 1)\n    else:\n        return val\ndef write_byte(adr, value):\n    bus.write_byte_data(address,\
+  \ adr, value)\n\nwrite_byte(0, 0b01110000) # Set to 8 samples @ 15Hz\nwrite_byte(1,\
+  \ 0b00100000) # 1.3 gain LSB / Gauss 1090 (default)\nwrite_byte(2, 0b00000000) #\
+  \ Continuous sampling\nscale = 0.92\nx_out = read_word_2c(3) * scale\ny_out = read_word_2c(7)\
+  \ * scale\nz_out = read_word_2c(5) * scale\nbearing = math.atan2(y_out, x_out)\n\
+  if (bearing < 0):\n    bearing += 2 * math.pi\nprint \"Bearing: \", math.degrees(bearing)\n\
+  ```\n```\n\n通过输入 `python compass.py` 运行代码，您应该会看到以下输出：\n\n![](img/324d126a7e2da696837a3e066326bd61_91_0.png)\n\
+  \n当您移动设备时，您应该会看到该值发生变化，以反映设备的罗盘方向。\n\n这只是一个如何连接 I2C 设备的示例。还有许多其他不同设备可以连接到 Raspberry\
+  \ Pi Zero 的 GPIO 总线。\n\n## 总结\n\n就这样！您已完成了第一个硬件项目。现在您应该对 Raspberry Pi Zero 的 GPIO\
+  \ 总线至少感到有点熟悉。在下一章中，您将学习如何创建一个由 Raspberry Pi Zero 控制的汽车。\n"
+- "# 第4章 构建和控制一个简单的轮式机器人\n\n## 构建和控制一个简单的轮式机器人\n\n您现在应该熟悉如何编程您的 Raspberry Pi Zero\
+  \ 以及如何使用 GPIO 与外部世界通信。现在，让我们实际构建一个移动项目。让您的项目移动的最简单方法之一是使用轮式平台。在本章中，您将了解有关操纵直流电机以及使用\
+  \ Raspberry Pi Zero 控制轮式平台的速度和方向的一些基础知识。\n\n在本章中，您将学习如何执行以下操作：\n\n- 使用 Raspberry\
+  \ Pi Zero GPIO 控制直流电机\n- 使用 Raspberry Pi Zero 以编程方式控制您的移动平台\n- 在 Raspberry Pi Zero\
+  \ 上实现一些简单的路径规划算法\n\n## 基本平台\n\n为了使您的项目移动，您需要添加一些硬件，特别是轮式或履带式平台。您将使用一个使用差速运动来推进和转向车辆的平台。这仅仅意味着，与其转动车轮，您将改变驱动车轮或履带的两个电机的速度和方向。有很多选择。有些是完全组装好的，而有些需要一些组装；或者您可以购买组件并自行构建定制的移动平台。\n\
+  \n让我们看一下几个更受欢迎的单元，它们是完全组装好的或可以用简单工具（螺丝刀或钳子）组装的。最简单的移动平台是具有两个直流电机的平台，每个电机控制一个车轮。在轮式平台上，前部或后部有一个小轮子或滚珠。以下是可在许多在线电子零售商处购买的一个轮式平台示例：\n\
+  \n![](img/324d126a7e2da696837a3e066326bd61_94_0.png)\n\n以下是另一个简单的轮式平台，也由许多在线电子零售商销售：\n\
+  \n![](img/324d126a7e2da696837a3e066326bd61_94_1.png)\n\n这个也需要组装，但相当简单。您也可以选择履带式平台而不是轮式平台。履带式平台具有更大的牵引力，但灵活性不如轮式平台，因为转弯需要更长的距离。同样，制造商生产预组装单元。以下图像是\
+  \ Dagu 生产的预组装履带式平台的示例。它被称为 Dagu Rover 5 履带底盘：\n\n![](img/324d126a7e2da696837a3e066326bd61_95_0.png)\n\
+  \n作为平台的一部分，您需要为 Raspberry Pi Zero 和您的车辆提供移动电源。我个人喜欢外部 5V 可充电手机电池，这些电池在几乎任何销售手机的地方都有售。这些电池可以使用\
+  \ USB 电缆通过 DC 电源或直接从计算机 USB 端口充电，如下图所示：\n\n![](img/324d126a7e2da696837a3e066326bd61_95_1.png)\n\
+  \n您还需要一根 USB 电缆将电池连接到 Raspberry Pi Zero。现在您拥有了基本平台，可以开始使用 Raspberry Pi Zero 控制它了。\n\
+  \n然而，您可以通过使用 H 桥直流电机控制器将 Raspberry Pi Zero 连接到直流电机。H 桥是一个相当简单的设备。它基本上由一组电子开关组成，并提供额外的功能，允许电流方向反转，以便电机可以在正向或反向运行。\n\
+  \n让我们通过构建 H 桥电路并控制单个电机来开始这个示例。为此，您需要获取一个 H 桥。最常见的选项之一是 L293 双 H 桥芯片。该芯片允许您控制直流电机的方向。这些在大多数电子商店和在线商店都有售。一旦您拥有\
+  \ H 桥，请使用以下图像中所示的 Raspberry Pi Zero、电机、跳线、4AA 电池盒和面包板构建电路：\n\n![](img/324d126a7e2da696837a3e066326bd61_97_0.png)\n\
+  \n\n\n\n\n此外，在你开始连接导线之前，这里有一张 Raspberry Pi Zero 板上 GPIO 引脚的图像：\n\n| Pin 1 3.3V |\
+  \  | Pin 2 5V |\n| Pin 3 GPIO2 |  | Pin 4 5V |\n| Pin 5 GPIO3 |  | Pin 6 GND |\n\
+  | Pin 7 GPIO4 |  | Pin 8 GPIO14 |\n| Pin 9 GND |  | Pin 10 GPIO15 |\n| Pin 11 GPIO17\
+  \ |  | Pin 12 GPIO18 |\n| Pin 13 GPIO27 |  | Pin 14 GND |\n| Pin 15 GPIO22 |  |\
+  \ Pin 16 GPIO23 |\n| Pin 17 3.3V |  | Pin 18 GPIO24 |\n| Pin 19 GPIO10 |  | Pin\
+  \ 20 GND |\n| Pin 21 GPIO9 |  | Pin 22 GPIO25 |\n| Pin 23 GPIO11 |  | Pin 24 GPIO8\
+  \ |\n| Pin 25 GND |  | Pin 26 GPIO7 |\n| Pin 27 ID_SD |  | Pin 28 ID_SC |\n| Pin\
+  \ 29 GPIO5 |  | Pin 30 GND |\n| Pin 31 GPIO6 |  | Pin 32 GPIO12 |\n| Pin 33 GPIO13\
+  \ |  | Pin 34 GND |\n| Pin 35 GPIO19 |  | Pin 36 GPIO16 |\n| Pin 37 GPIO26 |  |\
+  \ Pin 38 GPIO20 |\n| Pin 39 GND |  | Pin 40 GPIO21 |\n\n你需要将 Raspberry Pi Zero 上的这些\
+  \ GPIO 引脚连接到 H 桥上的引脚，如下表所示：\n\n| Raspberry Pi Zero GPIO pin | H-bridge pin |\n|\
+  \ 4 (5V) | 1 (Enable pin) |\n| 13 (GPIO 27) | 2 (Forward) |\n| 15 (GPIO 22) | 7\
+  \ (Backward) |\n| 4 (5V) | 11 (Enable 2) |\n| 38 (GPIO 6) | 10 (Forward) |\n| 40\
+  \ (GPIO 13) | 15 (Backward) |\n| 6 (GND) | 4, 5, 12, 13 (GND) |\n| 2 (5 Volts) |\
+  \ 16 (VCC) |\n| Battery positive terminal | 8 (Vc) |\n| Battery negative terminal\
+  \ | GND (connect to the same GND as previous GND pins) |\n\n连接完成后，你可以测试系统。要使这一切正常工作，你需要添加一些代码，我们将在下一节中看到。\n\
+  \n## 使用 Raspberry Pi Zero 以编程方式控制你的移动平台\n\n现在你的基本电机控制器功能已经运行，你需要将两个电机控制器都连接到 Raspberry\
+  \ Pi Zero。本节将介绍这一点，并向你展示如何以编程方式控制整个平台。\n\n你将在最初尝试控制电机时使用 Python。用 Python 编码、运行和调试代码非常简单。你要创建的第一个\
+  \ Python 程序显示在以下屏幕截图中：\n\n![](img/324d126a7e2da696837a3e066326bd61_99_0.png)\n\n\
+  按照以下步骤创建此程序：\n\n要创建此程序，在你的主目录中创建一个名为 dcmotor 的目录，输入 mkdir dcmotor，然后输入 cd dcmotor。现在，通过输入\
+  \ emacs dcmotor.py 打开文件（如果你使用不同的编辑器，请新建一个名为 dcmotor.py 的文件）。\n\n现在，输入程序。让我们逐步讲解程序：\n\
+  \n- #!/usr/bin/python: 这一行让你可以在不输入 python 的情况下运行程序，而是在文件名之前。你将在这些说明的最后学习如何做到这一点。\n\
+  - import RPi.GPIO as io: 这让你可以导入 RPi 库，该库允许你控制 GPIO 引脚。\n- io.setmode(io.BCM): 这将\
+  \ GPIO 引脚的规范模式设置为 Broadcom SOC 通道（BCM）编号。这意味着你将指定要控制的引脚的 GPIO 编号，而不是实际的物理引脚值。\n\
+  - in1_pin1 = 27: 这将值 27 分配给 in1_pin1 变量。\n- in2_pin1 = 22: 这将值 22 分配给 in1_pin1 变量。\n\
+  - in1_pin2 = 20: 这将值 20 分配给 in1_pin1 变量。\n- in2_pin2 = 21: 这将值 21 分配给 in1_pin1 变量。\n\
+  - io.setup(in1_pin1, io.OUT): 这将 GPIO 引脚 27 设置为输出控制。\n- io.setup(in2_pin1, io.OUT):\
+  \ 这将 GPIO 引脚 22 设置为输出控制。\n- io.setup(in1_pin2, io.OUT): 这将 GPIO 引脚 20 设置为输出控制。\n\
+  - io.setup(in2_pin2, io.OUT): 这将 GPIO 引脚 21 设置为输出控制。\n- def forward(): 这定义了 forward\
+  \ 函数。你需要打开 GPIO 27 和 GPIO 20，并关闭 GPIO 22 和 GPIO 21。\n- io.output(in1_pin1, True):\
+  \ 在 in1_pin1 上输出 3.3 伏信号（这是 GPIO 27）。\n- io.output(in2_pin1, False): 在 in2_pin1\
+  \ 上输出 0 伏（这是 GPIO 22）。\n- io.output(in1_pin2, True): 在 in1_pin2 上输出高电压（这是 GPIO 20）。\n\
+  - io.output(in2_pin2, False): 在 in2_pin2 上输出 0 伏（这是 GPIO 21）。\n- def reverse():\
+  \ 这定义了 reverse 函数。你将打开 GPIO 22 和 GPIO 21，并关闭 GPIO 27 和 GPIO 20。\n- io.output(in1_pin1,\
+  \ False): 在 in1_pin1 上输出 0 伏（这是 GPIO 27）。\n- io.output(in2_pin1, True): 在 in2_pin1\
+  \ 上输出高电压（这是 GPIO 22）。\n- io.output(in1_pin2, False): 在 in1_pin2 上输出 0 伏（这是 GPIO\
+  \ 20）。\n- io.output(in2_pin2, True): 在 in2_pin2 上输出高电压（这是 GPIO 21）。\n- def stop():\
+  \ 这定义了 stop 函数。你将 GPIO 22、GPIO 21、GPIO 27 和 GPIO 20 的电平设置为 0。\n- io.output(in1_pin1,\
+  \ False): 在 in1_pin1 上输出 0 伏（这是 GPIO 27）。\n- io.output(in2_pin1, False): 在 in2_pin1\
+  \ 上输出 0 伏（这是 GPIO 22）。\n- io.output(in1_pin2, False): 在 in1_pin2 上输出 0 伏（这是 GPIO\
+  \ 20）。\n- io.output(in2_pin2, False): 在 in2_pin2 上输出 0 伏（这是 GPIO 21）。\n- while True:\
+  \ 这会反复循环。你可以通过按 Ctrl + C 来停止程序。\n- cmd = raw_input(\"Enter f (forward) or r (reverse)\
+  \ or s (stop): \"): 输入一个字符，表示你希望机器人执行的操作。\n- direction = cmd[0]: 只取输入的第一个字符。\n-\
+  \ if direction == \"f\": 如果方向是 \"f\"，则执行下一条语句。\n- forward(): 执行 forward 函数。\n- if\
+  \ direction == \"r\": 如果方向是 \"f\"，则执行下一条语句。\n- reverse(): 执行 reverse 函数。\n- if direction\
+  \ == \"s\": 如果方向是 \"f\"，则执行下一条语句。\n- stop(): 执行 stop 函数。\n\n![](img/324d126a7e2da696837a3e066326bd61_103_0.png)\n\
+  \n以下是你刚刚添加的代码行的解释：\n\n- io.setup(in2_pin1, io.OUT): 这将 GPIO 27 设置为输出。\n- p1 = io.PWM(in1_pin1,\
+  \ 50): 而不是简单的开或关设置，此 PWM 设置允许程序员设置脉冲的相对宽度。这在 GPIO 27 上初始化此功能。\n- p1.start(0): 这以\
+  \ 0% 的脉冲宽度，即关闭，启动 p1、GPIO 27 上的脉冲。\n- io.setup(in2_pin1, io.OUT): 这将 GPIO 22 设置为输出。\n\
+  - p2 = io.PWM(in2_pin1, 50): 这在 GPIO 22 上初始化此功能。\n- p2.start(0): 这以 0% 的脉冲宽度，即关闭，启动\
+  \ p2、GPIO 22 上的脉冲。\n- io.setup(in1_pin2, io.OUT): 这将 GPIO 20 设置为输出。\n- p3 = io.PWM(in1_pin2,\
+  \ 50): 这在 GPIO 20 上初始化此功能。\n- p3.start(0): 这以 0% 的脉冲宽度，即关闭，启动 p3、GPIO 20 上的脉冲。\n\
+  - io.setup(in2_pin2, io.OUT): 这将 GPIO 21 设置为输出。\n- p4 = io.PWM(in2_pin2, 50): 这在\
+  \ GPIO 21 上初始化此功能。\n- p4.start(0): 这以 0% 的脉冲宽度，即关闭，启动 p3、GPIO 21 上的脉冲。\n- def forward(50):\
+  \ 此函数通过将脉冲宽度设置为 50% 的前进方向来使单元向前移动。\n- p1.start(50): 这将 p1（GPIO 27）的值设置为 50% 开和 50%\
+  \ 关。这应导致电机以半速向前运行。\n- p2.start(0): 这将 p2（GPIO 22）的值设置为 0%。这有效地关闭了该引脚。\n- p3.start(50):\
+  \ 这将 p3（GPIO 20）的值设置为 50% 开和 50% 关。这应导致电机以半速向前运行。\n- p4.start(0): 这将 p4（GPIO21）的值设置为\
+  \ 0%。这有效地关闭了该引脚。\n- def reverse(50): 此函数通过将脉冲宽度设置为 50% 的反向来使单元反向移动。\n- p1.start(0):\
+  \ 这将 p1（GPIO 27）的值设置为 0%。这有效地关闭了该引脚。\n- p2.start(50): 这将 p2（GPIO 22）的值设置为 50% 开和\
+  \ 50% 关。这应导致电机以半速反向运行。\n- p3.start(0): 这将 p3（GPIO 20）的值设置为 0%。这有效地关闭了该引脚。\n- p4.start(50):\
+  \ 这将 p4（GPIO21）的值设置为 50% 开和 50% 关。这应导致电机以半速反向运行。\n- def stop(): 此函数将所有 PWM 信号设置为\
+  \ 0%，有效地停止电机。\n- p1.start(0): 这将 p1（GPIO 27）的值设置为 0%。这有效地关闭了该引脚。\n\n\n\n\n\n- `p2.start(0)`:\
+  \ 这将把 p2（GPIO 22）的值设为 0%。这实际上关闭了该引脚。\n- `p3.start(0)`: 这将把 p3（GPIO 20）的值设为 0%。这实际上关闭了该引脚。\n\
+  - `p4.start(0)`: 这将把 p4（GPIO 21）的值设为 0%。这实际上关闭了该引脚。\n\n其余程序与第一个 dcmotor.py 文件相同。运行此程序应使单元以第一个程序一半的速度运行。你可以通过更改发送到各个\
+  \ start 函数的值轻松更改此速度。\n\n你也可以通过使用直流电机控制器将直流电机连接到 Raspberry Pi Zero 来控制直流电机。例如，Pololu，可在\
+  \ https://www.pololu.com/ 找到，生产了适用于 Raspberry Pi 的 DRV8835 双电机驱动器套件。另一个选择是可在 http://www.monkmakes.com/\
+  \ 获得的 RasPiRobot Board V2。对于本示例，我们将使用 RasPiRobot Board V2。\n\n## 使用电机控制器板控制直流电机\n\
+  \n要构建此项目，你首先将电机控制器板安装在 Raspberry Pi Zero 之上，如下所示：\n\n![](img/324d126a7e2da696837a3e066326bd61_105_0.png)\n\
+  \n该板为车辆上的直流电机提供驱动信号。你也可以通过分别驱动每个电机来转向车辆。你可以通过反转信号来改变车辆的方向并做出非常急转弯。以下步骤说明如何连接电机控制板：\n\
+  \n- 1. 将电池电源连接器连接到板上的电源连接器。使用 6 至 7.4 伏的电池；你可以使用 4 节 AA 电池盒或 2S LiPo RC 电池。将地线和电源线连接到电机控制板，如图所示：\n\
+  \n![](img/324d126a7e2da696837a3e066326bd61_106_0.png)\n\n2. 接下来，将其中一个驱动信号连接到板上的电机\
+  \ 1 连接器。将电机 1 连接到右侧电机，电机 2 连接到左侧，如图所示：\n\n![](img/324d126a7e2da696837a3e066326bd61_107_0.png)\n\
+  \n3. 然后，将第二个驱动连接器连接到板上的电机 2 连接器。整个连接集应如下所示：\n\n![](img/324d126a7e2da696837a3e066326bd61_108_0.png)\n\
+  \n现在你可以使用 Raspberry Pi Zero 驱动你的车辆了。\n\n## 使用 Raspberry Pi Zero 在 Python 中控制车辆\n\
+  \n要利用该功能，首先需要安装与控制板关联的库，可在 http://www.monkmakes.com/?page_id=698 找到。你需要使用有线或 WLAN\
+  \ 连接将 Raspberry Pi Zero 连接到互联网。在 Raspberry Pi Zero 上的终端窗口中输入以下命令：\n\n- 1. 输入 wget\
+  \ https://github.com/simonmonk/raspirobotboard2/raw/master/python/dist/rrb2-1.1.tar.gz：这将把库下载到你的\
+  \ Raspberry Pi。\n- 2. 输入 tar -xzf rrb2-1.1.tar.gz：这会解压库。\n- 3. 输入 cd rrb2-1.1：这会将目录更改为文件所在的位置。\n\
+  - 4. 输入 sudo python setup.py install：这会安装库。\n\n现在你已安装了库代码，你需要创建一些 Python 代码来允许你访问两个电机。代码的第一部分应如下所示：\n\
+  \n![](img/324d126a7e2da696837a3e066326bd61_109_0.png)\n\n驱动两个不同电机、基于你想要向前、向后、向右或向左转的代码第二部分如下所示：\n\
+  \n```\nwhile var != 'q':\n    var = getch()\n    if var == 'l':\n        speed1\
+  \ = 1\n        direction1 = 1\n        speed2 = 1\n        direction2 = 0\n    \
+  \    stop = 1\n    if var == 'r':\n        speed1 = 1\n        direction1 = 0\n\
+  \        speed2 = 1\n        direction2 = 1\n        stop = 1\n    if var == 'f':\n\
+  \        speed1 = 1\n        direction1 = 1\n        speed2 = 1\n        direction2\
+  \ = 1\n        stop = 0\n    if var == 'b':\n        speed1 = 1\n        direction1\
+  \ = 0\n        speed2 = 1\n        direction2 = 0\n        stop = 0\n    if var\
+  \ == 's':\n        speed1 = 0\n        direction1 = 0\n        speed2 = 0\n    \
+  \    direction2 = 0\n    rr.set_motors(speed1, direction1, speed2, direction2)\n\
+  \    if stop == 1:\n        time.sleep(1)\n        rr.set_motors(0, 0, 0, 0)\nGPIO.cleanup()\n\
+  ```\n\nrr.set_motors() 函数允许你独立指定每个电机的速度和方向。此程序接收单个字符然后向电机发送命令。f 使车辆向前移动，b 使其向后移动，l\
+  \ 使其向左转，r 使其向右转，s 停止车辆。\n\n现在你有了驱动履带式车辆的基本代码，你可以对其进行修改，使每个操作都包含在函数中。这样，你就可以从另一个\
+  \ Python 程序调用这些函数。你还需要添加校准移动，以便你的履带式车辆能够以特定角度转弯并向前移动设定距离。以下示例显示代码应如下所示：\n\n```\n\
+  import RPi.GPIO as GPIO\nimport time\nfrom rrb2 import *\n\nrr = RRB2()\n\ndef init_vehicle():\n\
+  \    rr.set_led1(1)\n\ndef turn_left(angle):\n    rr.set_motors(1, 1, 1, 0)\n  \
+  \  time.sleep(angle/20)\n    rr.set_motors(0, 0, 0, 0)\n\ndef turn_right(angle):\n\
+  \    rr.set_motors(1, 0, 1, 1)\n    time.sleep(angle/20)\n    rr.set_motors(0, 0,\
+  \ 0, 0)\n\ndef forward(value):\n    rr.set_motors(1, 1, 1, 1)\n    time.sleep(value)\n\
+  \    rr.set_motors(0, 0, 0, 0)\n\ndef backward(value):\n    rr.set_motors(1, 0,\
+  \ 1, 0)\n    time.sleep(value)\n    rr.set_motors(0, 0, 0, 0)\n\ndef stop():\n \
+  \   rr.set_motors(0, 0, 0, 0)\n\ndef cleanup():\n    GPIO.cleanup()\n```\n\nturn_right(angle)\
+  \ 和 turn_left(angle) 函数中的 time.sleep(angle/20) 命令允许履带式车辆移动适当的时间，以便车辆通过所需角度移动。你可能需要修改此数字以获得正确的移动角度。time.sleep(value)\
+  \ 命令使机器人移动特定时间，基于 value 中给出的数字。\n\n如果你选择使用 RasPiRobot Board V2，你也可以使用其特殊连接和库来连接\
+  \ HC-SR04 超声波传感器。以下是板上特殊连接器的图片：\n\n![](img/324d126a7e2da696837a3e066326bd61_112_0.png)\n\
+  \n要使用此连接器，只需将 VCC 连接到 5V，将 Trig 连接到 T 连接，将 Echo 连接到 E 连接器，将 GND 连接到 GND 连接。然后你可以使用电机控制器板的库并简单调用函数\
+  \ rr.get_distance()。同样，如果你想为移动项目添加指南针，还有用于 I2C 接口的特殊连接器和库。\n\n## 规划你的路径\n\n现在你有了轮式或履带式车辆，你可能想要做一些基本的路径规划。为此，你需要一个框架来了解你的机器人所在位置并确定目标位置。最常见的框架之一是\
+  \ x-y 网格。以下图表是这种网格类型的示例：\n\n![](img/324d126a7e2da696837a3e066326bd61_113_0.png)\n\
+  \n在此网格上有三个关键点你需要理解。以下是它们的解释：\n\n- 左下角点是一个固定的参考位置。方向 x 和 y 也是固定的，所有其他位置都是相对于此位置和这些方向测量的。每个单位都是根据单元在单个单位时间内行进的距离来测量的。\n\
+  - 另一个重要点是你的机器人的起始位置。你的机器人将使用其 x 和 y 坐标来跟踪其位置，相对于某个固定参考位置在 x 方向上的位置，或相对于某个固定参考位置在\
+  \ y 方向上到目标的位置。它使用指南针来跟踪这些方向。\n- 第三个重要点是目标的位置，也以相对于固定参考位置的 x 和 y 坐标给出。如果你知道机器人的起始位置和角度，你可以规划一条最优（最短距离）路径到此目标。为此，你可以使用目标位置、机器人位置和一些相当简单的数学来计算从机器人到目标的距离和角度。\n\
+  \n\n\n\n\n要计算距离，请使用以下公式：\n\nd = √((Xgoal − Xrobot)² + (Ygoal − Yrobot)²)\n\n你使用这个公式来告诉你的机器人需要行驶多远才能到达目标。第二个公式告诉你的机器人需要以什么角度行驶：\n\
+  \nθ = arctan((Ygoal − Yrobot) / (Xgoal − Xrobot))\n\n> 如果你想了解路径规划的基础数学教程，请参阅 https://www.khanacademy.org/math/trigonometry/trigonometry-right-triangles。\n\
+  \n以下是这两种信息的图形表示：\n\n![](img/324d126a7e2da696837a3e066326bd61_114_0.png)\n\n现在你有了目标角度和距离，你可以编程让你的机器人移动。为此，你需要编写一个程序来进行路径规划并调用本章前面创建的移动函数。你需要知道你的机器人在一定时间内会行驶的距离，这样你就可以用时间单位而不是距离单位来告诉机器人行驶多远。\n\
+  \n你还需要能够转换你的机器人在运行电机时每个时间单位可能行驶的距离。如果你知道角度和距离，你就可以通过转动机器人然后向前运行一段时间来使机器人朝向目标移动。\n\
+  \n以下是你需要遵循的步骤：\n\n- 1. 计算你的机器人到达目标所需行驶的距离单位。将此距离转换为实现该距离所需的时间单位数量。\n- 2. 计算你的机器人需要行驶以到达目标的角度。你需要使用指南针和机器人的转向功能来转向并实现该角度。\n\
+  - 3. 现在，调用步进函数指定的次数以使机器人在正确的距离上移动。\n\n就这样。现在你可以使用一些非常简单的 Python 代码来执行这些步骤，使用移动机器人向前和转动的函数。在这种情况下，有意义的是创建一个名为\
+  \ robotLib.py 的文件，其中包含所有执行实际舵机设置以使轮式机器人前进和转动机器人的函数。然后你使用 from robotLib import *\
+  \ 语句导入这些函数，以便你的 Python 程序可以调用这些函数。这使得路径规划 Python 程序更小、更易于管理。\n\n有关如何从一个 Python 文件导入函数到另一个\
+  \ Python 文件的更多信息，请参阅 http://www.tutorialspoint.com/python/python_modules.htm。\n\n\
+  以下是该程序的屏幕截图：\n\n![](img/324d126a7e2da696837a3e066326bd61_115_0.png)\n\n## Building\
+  \ and Controlling a Simple Wheeled Robot\n\n在这个程序中，用户确定目标位置，机器人通过读取角度来决定到所需位置的最短方向。为了简化，机器人位于网格中，朝向\
+  \ 0 度的方向。如果目标角度小于 180 度，机器人将向右转。如果大于 180 度，机器人将向左转。机器人转动直到期望角度和测量角度在几度之内。然后，机器人采取到达目标所需的步数。作为额外的挑战，你可以添加一个循环来测量实际角度，并在达到目标角度时停止它。\n\
+  \n## Summary\n\n本章为你提供了一个机会来为你的 Raspberry Pi Zero 创建一个移动平台。你可以添加超声波传感器或来自 *Chapter\
+  \ 3, Accessing the GPIO Pins on Raspberry Pi Zero* 的指南针，以赋予它更多功能。在下一章中，你将学习如何构建一个带有腿的\
+  \ Raspberry Pi Zero 平台机器人，这是一个更灵活的移动平台。\n"
+- "# 第5章 构建一个会走路的机器人\n\n## Building a Robot That Can Walk\n\n现在你已经熟悉了使用履带或轮子导航的机器人，让我们构建一个可以行走的机器人。行走机器人很有趣，因为它们可以在轮式或履带式车辆无法通行的地形上导航。它们还提供高级功能，机器人可以用腿来做行走以外的用途。\n\
+  \n在本章中，你将构建基础的四足平台。为此你将学习：\n\n- 伺服电机的工作原理\n- 如何使用 Raspberry Pi 通过伺服控制器控制大量伺服电机\n\
+  - 从简单的伺服命令创建复杂运动\n\n### Robots that can walk\n\n在本章中，你将构建四足机器人。你将使用 12 个伺服电机，以便每条腿有三个可以移动的点，或三个自由度（DOF）。在这个项目中，你将同时控制\
+  \ 12 个伺服电机；因此，使用一个可以为所有 12 个伺服电机提供控制信号和供电电压的外部伺服控制器是有意义的。由于伺服电机是本项目的主要部件，因此也许有用的是通过教程了解伺服电机并学习如何控制它们。\n\
+  \n## How servo motors work\n\n伺服电机与直流电机相似；然而，有一个重要的区别。虽然直流电机通常设计为以给定的速度连续旋转 360\
+  \ 度的方式移动，但伺服电机通常设计为在有限的一组角度内移动。换句话说，在直流电机世界中，你通常希望你的电机以你控制的连续旋转速度旋转。在伺服电机世界中，你希望你的电机移动到你控制的特定位置。这是通过在伺服电机的控制连接器上发送脉冲宽度调制（PWM）信号来完成的。PWM\
+  \ 只是意味着你将改变每个电脉冲的持续时间以控制某物。在这种情况下，该脉冲的长度将控制伺服电机的角度，如图所示：\n\n![](img/324d126a7e2da696837a3e066326bd61_118_0.png)\n\
+  \n这些脉冲以 60 Hz 的重复频率发送。你可以通过设置正确的控制脉冲将伺服电机定位在任何角度。\n\n## Building the quadruped platform\n\
+  \n你首先需要一些零件，才能构建你的四足机器人。有几个套件可能性，包括在 http://www.trossenrobotics.com/p/PhantomX-AX-12-Quadruped.aspx。然而，这样的套件可能很昂贵；因此，对于这个示例，你将使用一套\
+  \ Lynxmotion 零件创建自己的套件。这些零件可在多个在线零售商处获得，例如 http://www.robotshop.com/。要构建这个四足机器人，你需要两套两种腿部零件，然后每种身体一套。以下是零件及其\
+  \ Robotshop 零件编号：\n\n| Quantity | Description |\n|---|---|\n| 1 | Lynxmotion Symmetric\
+  \ Quadrapod Body Kit - Mini QBK-02 |\n| 2 | Lynxmotion 3\" Aluminum Femur Pair |\n\
+  | 2 | Lynxmotion Robot Leg \"A\" Pair (No Servo) RL-01 |\n| 4 | Lynxmotion Aluminum\
+  \ Multipurpose Servo Bracket Two Pack ASB-04 |\n| 2 | Ball Bearing with Flange -\
+  \ 3mm ID (pair) Product Code: RB-Lyn-317 |\n\n最后一个零件不是 Lynxmotion 零件，而是你需要将腿连接到身体的轴承。\n\
+  \n你还需要 12 个标准尺寸的伺服电机。有几个可能的选择，但我个人喜欢 Hitec 伺服电机。它们是非常便宜的伺服电机，你可以在大多数爱好商店和在线电子零售商处购买。现在是时候了解一些关于选择伺服电机型号的细节了。伺服电机有不同的型号编号，主要基于它们能产生的扭矩量。\n\
+  \n**扭矩** 是伺服电机可以施加以移动与其连接的部件的力。在这种情况下，你的伺服电机需要抬起和移动与四足机器人相关的重量，因此你需要一个扭矩足够的伺服电机。在这种情况下，我建议你使用八个型号\
+  \ HS-485HB 伺服电机。你将使用它们用于连接到腿末端的伺服电机和身体。然后你将使用四个型号 HS-645MG 伺服电机用于腿部中间；这是需要最高扭矩的伺服电机。你也可以只使用十二个\
+  \ HS-645MG 伺服电机，但它们比 HS-485 贵，所以使用两种不同的伺服电机会更便宜。\n\n以下是组装四足机器人的步骤：\n\n- 1. 将右腿的下部组装起来；它应该看起来像以下图像：\n\
+  \n![](img/324d126a7e2da696837a3e066326bd61_120_0.png)\n\n- 2. 现在将此组件连接到一个互连件，如图所示：\n\
+  \n![](img/324d126a7e2da696837a3e066326bd61_120_1.png)\n\n\n\n\n\n3. 通过将两个舵机支架以直角连接起来完成腿部，将\
+  \ HS-645MG 安装到其中一个支架上，然后将此舵机连接到连接件，如图所示：\n\n![](img/324d126a7e2da696837a3e066326bd61_121_0.png)\n\
+  \n4. 组装另一条右腿。\n\n5. 现在按照前面的步骤组装两条左腿，但采用左腿配置。它们看起来类似于以下图像：\n\n![](img/324d126a7e2da696837a3e066326bd61_121_1.png)\n\
+  \n- 6. 下一步是构建身体套件。你可以在 http://www.lynxmotion.com/images/html/sq3u-assembly.htm 上找到说明。\n\
+  - 7. 现在将每条腿连接到身体套件。以下是身体套件的图片：\n- 8. 现在，如图所示将舵机连接到空的舵机支架和机身上：\n\n![](img/324d126a7e2da696837a3e066326bd61_122_0.png)\n\
+  \n![](img/324d126a7e2da696837a3e066326bd61_122_1.png)\n\n你的四足机器人现在应该类似于以下图像：\n\n\
+  ![](img/324d126a7e2da696837a3e066326bd61_123_0.png)\n\n现在你已经组装了基本硬件，可以将注意力转向电子设备。\n\
+  \n## 使用舵机控制器控制舵机\n\n要让你的四足机器人行走，首先需要将舵机马达控制器连接到舵机。你将为此项目使用的舵机控制器是一款来自 Pololu 的简单\
+  \ USB 舵机马达控制器：Pololu 产品编号 1354，可在 https://www.pololu.com/ 购买，可控制 18 个舵机。以下是该单元的图像：\n\
+  \n![](img/324d126a7e2da696837a3e066326bd61_123_1.png)\n\n确保你订购的是组装版本。这块硬件会将来自 Raspberry\
+  \ Pi Zero 的 USB 命令转换为控制你的舵机马达的信号。Pololu 制造了多种不同版本的控制器；每个版本可控制一定数量的舵机。在这种情况下，你可能希望选择\
+  \ 18 舵机版本，这样你就可以用一个控制器控制全部 12 个舵机，还可以额外增加一个舵机来控制摄像机或传感器的方向；你也可以选择 12 舵机版本。18 舵机控制器的一个优点是通过螺丝型连接器轻松为单元供电。\n\
+  \n要开始使用，你需要对舵机控制器进行两个连接：第一个连接到舵机马达，第二个连接到电池。\n\n首先，将舵机连接到控制器。为了保持一致，让我们使用以下配置将你的\
+  \ 12 个舵机连接到控制器上标记为 0 到 11 的连接处：\n\n| 舵机连接器 | 舵机 |\n|---|---|\n| 0 | 右前下腿 |\n| 1\
+  \ | 右前中腿 |\n| 2 | 右前上腿 |\n| 3 | 右后下腿 |\n| 4 | 右后中腿 |\n| 5 | 右后上腿 |\n| 6 | 左前下腿 |\n\
+  | 7 | 左前中腿 |\n| 8 | 左前上腿 |\n| 9 | 左后下腿 |\n| 10 | 左后中腿 |\n| 11 | 左后上腿 |\n\n以下是控制器的背面图像；这将告诉我们舵机的连接位置：\n\
+  \n![](img/324d126a7e2da696837a3e066326bd61_125_0.png)\n\n现在你需要将舵机马达控制器连接到电池。对于此项目，你可以使用\
+  \ 2S RC LiPo 电池。2S 表示电池有两节电芯，输出电压为 7.2 伏。它将提供你的舵机所需的电压和电流，约为 2 安培，如下图所示：\n\n![](img/324d126a7e2da696837a3e066326bd61_125_1.png)\n\
+  \n此电池将附带两个连接器，一个带有较大线规的电线用于正常使用，以及一个较小的连接器用于连接到电池充电器。你需要制作可连接到舵机控制器螺丝型连接器的连接器。我购买了一些\
+  \ XT60 连接器对，并将一些电线焊接到电池的配套连接器上，然后将其拧入舵机控制器。\n\n你的系统现在可以使用了。现在你将把马达控制器连接到个人电脑以检查是否可以与其通信。为此，将迷你\
+  \ USB 电缆连接到舵机控制器和个人电脑。我将以 PC 为例进行说明，但你也可以使用 Mac 或 Linux 来完成此步骤。你可以在 https://www.pololu.com/docs/0J40\
+  \ 上找到详细信息。\n\n## 在舵机控制器和 PC 之间通信\n\n现在硬件已连接，你可以使用 Pololu 提供的一些软件来控制舵机。让我们使用个人电脑来完成。首先，从\
+  \ www.pololu.com/docs/0J40/3.a 下载 Pololu 软件并根据网站上的说明进行安装。安装完成后，运行软件，你应该能看到此屏幕：\n\
+  \n![](img/324d126a7e2da696837a3e066326bd61_126_0.png)\n\n你首先需要更改 **Serial Settings**\
+  \ 中的配置，因此选择 **Serial Settings** 选项卡，你应该会看到以下内容：\n\n![](img/324d126a7e2da696837a3e066326bd61_127_0.png)\n\
+  \n## 构建可行走的机器人\n\n确保已选择 **USB Chained**；这将允许你通过 USB 连接和控制马达控制器。现在通过选择 **Status**\
+  \ 选项卡返回主屏幕；现在你可以实际打开 12 个舵机。屏幕应如下所示：\n\n![](img/324d126a7e2da696837a3e066326bd61_128_0.png)\n\
+  \n## 将舵机控制器连接到 Raspberry Pi Zero\n\n你已检查了舵机马达控制器和舵机；现在你将把马达控制器连接到 Raspberry Pi Zero\
+  \ 并确保可以从其控制舵机。拔下 PC 上的 USB 电缆并将其连接到 Raspberry Pi Zero。整个系统应类似于以下图像：\n\n![](img/324d126a7e2da696837a3e066326bd61_130_0.png)\n\
+  \nRaspberry Pi Zero 在中间，马达控制器在右侧，带电的集线器在左侧。下面的鳄鱼夹连接到电源；最终你希望将它们连接到电池。\n\n让我们通过从\
+  \ Pololu 下载 Linux 代码 www.pololu.com/docs/0J40/3.b 来与马达控制器通信：\n\n- 1. 也许最好的方法是登录到你的\
+  \ Raspberry Pi Zero 通过 PuTTY，然后输入 wget http://www.pololu.com/file/download/maestro-linux-100507.tar.gz?file_id=0J315。\n\
+  - 2. 然后，使用 mv maestro-linux-100507.tar.gz?file_id=0J315 maestro-linux-100507.tar.gz\
+  \ 移动文件。\n- 3. 通过输入 tar -xzfv maestro-linux-100507.tar.gz 解压文件。\n- 4. 这将创建一个名为 maestro_linux\
+  \ 的目录。输入 cd maestro_linux 进入该目录，然后输入 ls -l；你应该会看到类似以下内容：\n\n![](img/324d126a7e2da696837a3e066326bd61_131_0.png)\n\
+  \n文档 README.txt 将为你提供有关如何安装软件的明确说明。这基本上分为两个步骤：\n\n- 1. 首先，通过输入 sudo apt-get install\
+  \ libusb-1.0-0-dev mono-runtime libmono-winforms2.0-cil 安装一组支持库。\n- 2. 然后，通过输入 sudo\
+  \ cp 99-pololu.rules /etc/udev/rules.d/ 复制配置文件。\n\n不幸的是，你无法在 Raspberry Pi Zero 上运行\
+  \ Maestro Control Center，因为你的 Windows 版本不支持图形，但你可以使用 UscCmd 命令行应用程序来控制舵机，以确保它们已连接并且工作正常。\n\
+  \n首先，输入 ./UscCmd --list 你应该会看到以下内容：\n\n![](img/324d126a7e2da696837a3e066326bd61_132_0.png)\n\
+  \n该单元检测到我们的舵机控制器。如果你只输入 ./UscCmd，你可以看到可以发送到控制器的所有命令：\n\n![](img/324d126a7e2da696837a3e066326bd61_133_0.png)\n\
+  \n请注意，你可以向舵机发送特定的目标角度，但目标不是角度值，因此很难知道你将舵机发送到何处。\n\n尝试输入 ./UscCmd --servo 0, 10。舵机将移动到其最大角度位置。\n\
+  \n输入 ./UscCmd - servo 0, 0 它将停止舵机尝试移动。\n\n在下一节中，你将编写一些 Python 代码，将你的角度转换为舵机控制器希望将其移动到特定角度位置的命令。\n\
+  \n> 如果你没有运行 Windows 版本的 Maestro Controller 并将 Serial Settings 设置为 USB Chained，你的马达控制器可能不会响应。重新运行\
+  \ Maestro Controller 代码并将 Serial Settings 设置为 USB Chained。\n\n\n\n\n\n## 在 Linux\
+  \ 中创建程序来控制你的四足机器人\n\n你现在知道如何与舵机控制器通信并移动舵机了。在本节中，你将创建一个 Python 程序，让你可以通过它来控制舵机移动到特定角度。\n\
+  \n让我们从一个简单的程序开始，让你的腿式移动机器人的舵机都移动到 90 度（这应该接近 0 到 180 度可设置范围的中间位置）。要访问串口，你需要确保已安装\
+  \ Python 串口库。如果没有，请输入 sudo apt-get install python-serial。安装串口库后，你可以通过输入 sudo python\
+  \ quad.py 来运行程序。\n\n这个特定的控制器使用两个字节的信息，因此 setAngle 函数中的代码会将通道和角度的输入转换为控制器可以理解的数字。有关更具体的信息，请参阅\
+  \ http://www.pololu.com/docs/0J40。以下是代码：\n\n![](img/324d126a7e2da696837a3e066326bd61_134_0.png)\n\
+  \n以下是代码的解释：\n\n- #!/usr/bin/python: 这一行允许你从命令行执行此 Python 文件。\n- `import serial`:\
+  \ 这一行导入了 `serial` 库。你需要 `serial` 库才能通过 USB 与你的设备通信。\n- `def setAngle(ser, channel,\
+  \ angle)`: 此函数将你对舵机和角度的期望设置转换为舵机电机控制器所需的串行命令。\n- `ser = serial.Serial(\"/dev/ttyACM0\"\
+  , 9600)`: 这会打开与舵机控制器的串口连接。\n- `for i in range(0, 12)`: 这个 `for` 循环将访问每个舵机。\n- `setAngle(ser,\
+  \ i, 90)`: 现在，你可以将每个舵机设置为中间（初始）位置。默认情况下，每个舵机都设置为 90 度。如果你的腿不在中间位置，你可以通过调整每个舵机上舵机臂的位置来调整它们。\n\
+  \n设置好基本的初始位置后，你现在可以让你的机器人执行操作了。让我们先让你的四足机器人挥手。以下是 Python 代码：\n\n![](img/324d126a7e2da696837a3e066326bd61_135_0.png)\n\
+  \n在这种情况下，你使用 setAngle 命令来设置舵机以操纵机器人前右臂。中间的舵机抬起手臂，然后下方的舵机在 100 度角和 130 度角之间来回移动。\n\
+  \n你希望机器人执行的最基本动作之一就是向前行走。以下是如何操纵腿部来实现这一点的示例：\n\n```\nser = serial.Serial(\"/dev/ttyACM0\"\
+  , 9600)\n# Home position\nfor i in range(0, 12):\n    setAngle(ser, i, 90)\n\nsetAngle(ser,\
+  \ 4, 110)\ntime.sleep(1)\nsetAngle(ser, 5, 100)\ntime.sleep(1)\nsetAngle(ser, 4,\
+  \ 90)\ntime.sleep(1)\n\nsetAngle(ser, 7, 70)\ntime.sleep(1)\nsetAngle(ser, 8, 80)\n\
+  time.sleep(1)\nsetAngle(ser, 7, 90)\ntime.sleep(1)\n\nsetAngle(ser, 1, 110)\ntime.sleep(1)\n\
+  setAngle(ser, 2, 100)\ntime.sleep(1)\nsetAngle(ser, 1, 90)\ntime.sleep(1)\n\nsetAngle(ser,\
+  \ 10, 70)\ntime.sleep(1)\nsetAngle(ser, 11, 80)\ntime.sleep(1)\nsetAngle(ser, 10,\
+  \ 90)\ntime.sleep(1)\n\nfor i in range(0, 12):\n    setAngle(ser, i, 90)\n\nser.close()\n\
+  ```\n\n该程序一次抬起并向前移动每条腿，然后将所有腿移动到初始位置，从而使机器人向前移动。不是最优雅的，但它确实有效。有更复杂的四足机器人行走算法；请参阅\
+  \ http://letsmakerobots.com/node/35354 和 https://www.youtube.com/watch?v=jWP3RnYa_tw。一旦程序运行正常，你需要将所有硬件打包到移动机器人上。\n\
+  \n你可以让你的机器人执行许多令人惊叹的事情，例如向前行走、向后行走、跳舞和转圈；各种动作都是可能的。最好的学习方法是尝试舵机的不同位置。\n\n## 总结\n\
+  \n你现在已经拥有了一台可以行走的机器人！你还可以添加其他传感器，例如你在轮式机器人上发现的传感器，可以监视障碍物的传感器，或其他了解你移动方向的传感器。\n\n\
+  在下一章中，你将开始一个新的机器人项目。你将把 Raspberry Pi Zero 与一个玩具机器人结合起来，并构建一个能够说话并响应语音命令的项目。\n"
+- '# 第6章 语音控制机器人
+
+  添加语音识别和语音 – 一个语音激活的机器人
+
+
+  你已经开始了一些相当基础的项目，但你可以通过修改带 Raspberry Pi Zero 的机器人玩具来进一步发挥所学概念。有一种玩具非常适合你的项目，那就是 WowWee
+  的一系列机器人玩具。你可以从公司网站 http://wowwee.com/ 购买这些玩具，但你也可以在 eBay 上以明显更低的价格找到这些玩具的二手版本。
+
+
+  在本章中，你将学习以下内容：
+
+
+  - 如何拆开玩具并为你的项目提供控制信号
+
+  - 如何发送和接收语音命令来控制机器人
+
+  - 如何解释命令并启动操作
+
+
+  有几种玩具具有很高的可能性。其中一个玩具是 **WowWee Roboraptor**。以下图片显示了这款机器人：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_140_0.png)
+
+
+  另一个选择是 **WowWee Robosapien**。以下是这款机器人的图片：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_140_1.png)
+
+
+  我们将使用这款机器人进行项目，因为它功能更多且更容易修改。
+
+
+  ## Raspberry Pi Zero 与机器人之间的通信
+
+
+  你将连接到内部串行总线，以便你而不是遥控器发送命令。你将添加一个 Arduino 来处理 Raspberry Pi Zero 与机器人之间的实时通信。以下是步骤：
+
+
+  - 1. 首先，你需要拆开机器人以获得主控制器板的访问权限。为此，将机器人面朝下放置，以便你能够接触到背面。拆下背面的板子，拧下固定它的四个螺丝。现在，在暴露的板子上方，你应该能看到主连接器。以下图像是连接器的特写照片：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_141_0.png)
+
+
+  你只对其中两根线感兴趣。第一根是黑色线，它是 Robosapien 系统的 GND。第二根是白色线。这是控制 Robosapien 命令的串行连接。
+
+
+  你可能希望添加一些热缩管来覆盖你的连接。
+
+
+  - 4. 最后，在机器人的后壳上钻一个孔，以便你可以将这两根电缆从单元中引出，如下图所示：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_143_0.png)
+
+
+  - 5. 这张图片还显示了外壳两侧的另外两个孔，你可以使用它们与扎带一起将 Raspberry Pi 固定到机器人上。现在你可以将外壳重新装回机器人上。
+
+
+  - 6. 现在，你需要将这两根线连接到 Arduino。有几种 Arduino 版本可以使用，但最常见的是 Arduino Uno。如果你使用具有不同定时器的不同
+  Arduino，Arduino 代码中的延迟常量可能需要调整。你需要使用 Arduino 的原因是发送给机器人的位模式以相当高的速率发送，需要由专门用于这种实时通信的处理器创建。这允许
+  Raspberry Pi Zero 执行其他处理器密集型活动，例如语音，同时保持通信以正确的速率进行。
+
+
+  有关如何使用 Arduino 系列处理器的开发环境的具体信息，请访问 https://www.arduino.cc。有关如何使用 Raspberry Pi 创建和上传程序到
+  Arduino 的信息，请参阅 http://www.instructables.com/id/Arduino-On-Pi/ 或 https://www.youtube.com/watch?v=wCxQrW96jTM。
+
+
+  - 7. 将 GND 线连接到 Arduino 上的其中一个 GND 引脚。然后，将另一根线连接到 Arduino 的第 9 引脚。这些连接应类似于以下图片：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_144_0.png)
+
+
+  - 8. 最后一步是获取代码以向 Arduino 板发送正确的命令。本书的代码可在 PacktPub 代码下载部分或 http://playground.arduino.cc/Main/RoboSapienIR
+  获取。此 Arduino 代码接收来自串行监视器的输入，在本例中是来自 Raspberry Pi Zero 的 USB 连接，并将其转换为 WowWee 机器人的适当命令。一旦你将代码上传到
+  Arduino，无论是通过外部 PC 还是 Raspberry Pi Zero，你都可以使用 Arduino IDE 的串行监视器功能发送单个字母命令，机器人应响应这些命令。
+
+
+
+
+
+
+  > 如果你不熟悉 Arduino IDE 应用程序，Arduino 在 https://www.arduino.cc/ 上有完善的文档，其中包括如何上传代码以及使用串行监视器与
+  Arduino 通信的说明。
+
+
+  现在机器人可以工作了，你可以添加以下 Python 程序来发送命令：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_145_0.png)
+
+
+  要运行此程序，输入 python argControl.py f，机器人将响应该命令。要在不使用 Python 命令的情况下使此程序可执行，输入 chmod +x
+  argControl.py，然后你就可以通过输入 ./argControl.py f 来运行程序。当你以后想从语音控制程序运行此程序时，你需要这样做。
+
+
+  ## 让你的机器人接受语音命令
+
+
+  现在你的机器人知道如何响应来自 Python 程序的命令，你可以让你的机器人能够响应语音命令。你还可以让你的机器人说话，这将使机器人更具交互性。
+
+
+  ## 添加语音识别和语音合成 – 一个语音激活的机器人
+
+
+  要为你的机器人添加这些功能，你需要添加一些新的硬件。本项目需要一个 USB 麦克风和扬声器适配器。你需要以下三件硬件：
+
+
+  - 一个 USB 设备以便插入麦克风和扬声器；一个效果很好的设备是 Sabrent USB 外置立体声音频适配器，适用于 Windows 和 Mac，如下所示：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_146_0.png)
+
+
+  - 一个可以插入 USB 设备的麦克风；任何此类设备都可能有效，如下图所示：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_146_1.png)
+
+
+  - 一个可以插入 USB 设备的带电扬声器；任何可以插入你的 USB 适配器的设备都可以使用，例如与下图所示类似的东西：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_147_0.png)
+
+
+  幸运的是，这些设备价格低廉且随处可买。确保扬声器是带电的，因为你的板通常无法为无源扬声器提供足够的应用功率。扬声器可以使用内置电池供电，也可以从 USB 连接获取电力。
+
+
+  现在，我们继续让 Raspberry Pi Zero 访问这些设备。你可以通过以下两种方式中的任一种来遵循这些说明：
+
+
+  - 如果你仍连接到显示器、键盘和鼠标，请登录系统并通过打开终端窗口使用 GUI
+
+  - 如果你仅通过 LAN 连接，你可以通过使用 SSH 终端窗口来完成所有操作；一旦你的板指示已通电，请使用 PuTTY 或任何类似的终端模拟器打开 SSH 终端窗口
+
+
+  将设备插入 USB 端口。一旦终端窗口出现，输入 `cat /proc/asound/cards`。你将得到以下响应：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_148_0.png)
+
+
+  你可以使用两种可能的音频设备。第一个是内部 Raspberry Pi 音频，它连接到音频端口，第二个是 USB 音频插件。你可以使用 USB 音频插件来录制声音并使用
+  Raspberry Pi 进行音频输出来播放声音，但使用 USB 音频插件来创建和录制声音会更容易。
+
+
+  首先，你需要播放一些音乐来测试 USB 音频设备是否正常工作。你需要配置系统以搜索你的 USB 音频插件并将其用作播放和录制声音的默认插件。为此，你需要向系统添加几个库。第一个库是
+  **Advanced Linux Sound Architecture (ALSA)** 库。如果执行以下步骤，这些库将启用 Raspberry Pi 上的声音：
+
+
+  - 1. 通过输入 `sudo apt-get install alsa-base alsa-utils` 安装与 ALSA 关联的两个库。
+
+  - 2. 然后，通过输入 `sudo apt-get install libasound2-dev` 安装有助于提供声音库的那些文件。
+
+
+  3. C-Media USB Audio Device 是我的 USB 音频设备。你现在应该可以看到一个与以下屏幕截图类似的屏幕：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_150_0.png)
+
+
+  4. 你可以使用箭头键为扬声器和麦克风设置音量。使用 M 键取消静音麦克风。在前面的屏幕截图中，MM 表示静音，oo 表示取消静音。
+
+
+  5. 让我们确保我们的系统知道我们的 USB 音频设备。在命令提示符下，输入 `aplay -l`。你现在应该可以看到以下屏幕截图：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_150_1.png)
+
+
+  如果这不起作用，请尝试 `sudo aplay -l`。你需要在主目录中添加一个名为 `.asoundrc` 的文件。系统会读取它并用于设置默认配置。为此，请执行以下步骤：
+
+
+  - 1. 使用你选择的编辑器打开名为 `.asoundrc` 的文件。
+
+  - 2. 输入 `pcm.!default sysdefault:Set`。`Set` 是 `aplay -l` 命令输出中 `card 1:` 后面出现的变量。
+
+  - 3. 保存文件。文件应如下所示：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_151_0.png)
+
+
+  这将告诉系统使用你的 USB 设备作为默认设备。重新启动系统。
+
+
+  ## 添加语音识别和语音合成 – 一个语音激活的机器人
+
+
+  现在，你可以播放一些音乐。为此，你需要一个音频文件和一个播放设备。你可以将一个简单的 .wav 文件复制到你的 Raspberry Pi Zero。如果你的主机是
+  Linux 机器，你也可以从命令行使用 scp 命令传输文件。你可以通过使用网络浏览器将音乐下载到 Raspberry Pi Zero，如果你已连接键盘、鼠标和显示器。你使用名为
+  **aplay** 的应用程序来播放声音。输入 `aplay Dance.wav` 来查看你是否可以使用 aplay 音乐播放器播放音乐。你将看到结果（并且希望能听到它），如下图所示：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_152_0.png)
+
+
+  如果你听不到任何音乐，请检查 alsamixer 上的音量级别和扬声器电源线；aplay 对于它接受的文件类型有点挑剔，因此你可能需要尝试不同的 .wav 文件直到
+  aplay 接受一个。还有一件事可以尝试，如果系统似乎不知道该程序，请输入 `sudo aplay Dance.wav`。
+
+
+  现在你能播放声音，你也可以录制声音。为此，你必须使用 **arecord** 程序。在提示符下，输入 `arecord -d 5 -r 48000 test.wav`。这以
+  48000 Hz 的采样率录制 5 秒的声音。一旦你输入了命令，请对着麦克风说话或发出其他可识别的声音。你将在终端中看到以下输出：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_153_0.png)
+
+
+  录制完一些音频后，按 *Ctrl + C* 停止录制。创建文件后，使用 aplay 播放它。输入 `aplay test.wav`，你应该能够听到录音。如果你听不到录音，请检查
+  alsamixer 以确保你的扬声器和麦克风都未静音。
+
+
+  现在你可以使用 Raspberry Pi 播放音乐或其他声音文件。你可以更改扬声器的音量并在系统上录制你的声音或其他声音。你现在已准备好进行下一步。
+
+
+  ## 使用 eSpeak 让你的机器人用可听见的声音做出响应
+
+
+  声音是我们机器人工具包中的重要工具，但你希望做的不只是播放音乐。让我们让我们的机器人说话。你将首先启用 **eSpeak**，这是一个开源应用程序，为我们提供计算机化语音。它是一个语音生成应用程序。要获得此免费功能，请在提示符下输入
+  `sudo apt-get install espeak` 下载 eSpeak 库。下载可能需要一段时间，但完成后提示符将重新出现。现在，让我们看看 Raspberry
+  Pi Zero 是否有声音。输入 `espeak hello` 命令。扬声器应该以计算机生成的声音发出“hello”。如果没有，请检查扬声器和音量级别。
+
+
+
+
+
+
+  现在我们已经有了计算机生成的语音，你可能想要对其进行自定义。eSpeak 提供了完整的自定义功能，包括大量语言、语音和其他选项。要访问这些功能，你可以在命令行提示符下输入选项。例如，输入
+  `espeak -v +f3 hello`，你应该能够听到女声。你甚至可以通过输入 `espeak -v en-sc +f3 hello` 来添加苏格兰口音。
+
+
+  使用 eSpeak 时可供选择的语音有很多。这取决于你自己的偏好，但你可能喜欢带有英式口音的女声。随意尝试并选择你最喜欢的语音。然后，编辑默认文件将其设置为该语音。此默认文件位于
+  eSpeak 的主目录中。但是，不要指望能得到电影中电脑那种声音；那些是演员而不是电脑。然而，有一天，我们希望能够达到电脑听起来更像真人的阶段。
+
+
+  ## 使用 pocketsphinx 来接受你的语音命令
+
+
+  现在你的机器人可以说话了，你也希望它能服从语音命令。本节将向你展示如何为你的机器人项目添加语音识别。这并不像说话部分那么简单，但幸运的是，你得到了开源开发社区的很大帮助。你将下载一套名为
+  **pocketsphinx** 的功能，它将允许我们的项目收听我们的命令。
+
+
+  第一步是下载 pocketsphinx 软件。不幸的是，这并没有 eSpeak 过程那么用户友好，所以请仔细按照以下步骤操作。有两种方法可以做到这一点。如果你连接了键盘、鼠标和显示器，或想通过
+  vncserver 连接，你可以通过图形方式执行以下步骤：
+
+
+  - 1. 前往由 **卡内基梅隆大学 (CMU)** 主办的 Sphinx 网站 `http://cmusphinx.sourceforge.net`。这是一个开源项目，可为你提供语音识别软件。在我们较小的嵌入式系统上，我们将使用此代码的
+  pocketsphinx 版本。
+
+
+  - 2. 你需要下载两个软件——**sphinxbase** 和 pocketsphinx。在页面顶部选择 **DOWNLOAD** 选项，然后找到这两个软件包的最新版本。下载软件包的
+  `.tar.gz` 版本并将它们移动到你的树莓派的 `/home/pi` 目录。
+
+
+  另一种方法是直接从树莓派的命令行提示符使用 **wget**。如果你想这样做，请执行以下步骤：
+
+
+  - 1. 要在你的主机上使用 wget，请找到你想要下载的文件的链接。在本例中，前往由 CMU 主办的 Sphinx 网站 `http://cmusphinx.sourceforge.net`。这是一个开源项目，可为你提供语音识别软件。在你的较小的嵌入式系统上，你将使用
+  pocketsphinx 版本的此代码。
+
+
+  - 2. 你需要下载两个软件，即 sphinxbase 和 pocketsphinx。在页面顶部选择 **DOWNLOAD** 选项，然后找到这两个软件包的最新版本。右键单击
+  `sphinxbase-0.8.tar.gz` 文件（只要 0.8 是最新版本）并选择 **Copy link location**。现在在你的树莓派中打开一个
+  PuTTY 窗口，登录后，输入 `wget` 并粘贴你刚刚复制的链接。这将下载 sphinxbase 的 `.tar.gz` 版本。现在，对 pocketsphinx
+  的最新版本重复相同的操作。
+
+
+  在构建这些软件之前，你需要另一个库。该库称为 **Bison**。这是一个通用开源解析器，被 pocketsphinx 使用。要获取此软件包，输入 `sudo
+  apt-get install bison`。
+
+
+  一旦所有内容都下载完毕并且库已安装，你就可以解压并构建 pocketsphinx。要解包并构建 sphinxbase 模块，输入 sudo tar -xzvf
+  sphinxbase-0.y.tar.gz，其中 y 是版本号，在本例中为 8。这应该会将归档中的所有文件解压到名为 sphinxbase-0.8 的目录中。现在，输入
+  cd sphinxbase-0.8。文件列表应如下所示：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_156_0.png)
+
+
+  要构建应用程序，首先发出 sudo ./configure --enable-fixed 命令。此命令检查系统是否一切正常，然后配置构建。
+
+
+  现在你准备好构建 sphinxbase 代码库了。这是一个两步过程，具体如下：
+
+
+  - 1. 输入 sudo make，系统将构建所有可执行文件。
+
+  - 2. 输入 sudo make install 将所有可执行文件安装到系统上。
+
+
+  现在，你需要制作系统的第二部分——pocketsphinx 代码。进入主目录并通过输入 `tar -xzvf pocketsphinx-0.8.tar.gz`
+  解压缩和解归档代码。现在，文件将被解归档，你可以构建代码。安装这些文件是一个三步过程，具体如下：
+
+
+  - 1. 输入 `cd pocketsphinx-0.8` 进入 pocketsphinx 目录，然后输入 `sudo ./configure` 检查你是否准备好构建文件。
+
+  - 2. 输入 `sudo make` 并等待所有内容构建完成。
+
+  - 3. 输入 `sudo make install`。
+
+
+  > 如果你打算使用 Python 作为编程语言使用 pocketsphinx 功能，我们库安装的其他添加项稍后会很有用。你可以使用 `sudo apt-get
+  install python-dev` 安装 **Python-Dev**。同样，你可以使用 `sudo apt-get install cython` 获取
+  **Cython**。你也可以选择安装 `pkg-config`，这是一个在处理复杂编译时有时有帮助的实用程序。使用 `sudo apt-get install
+  pkg-config` 安装它。
+
+
+  安装完成后，你需要让系统知道你的文件在哪里。为此，使用你喜欢的编辑器更改 `/etc/ld.so.conf` 文件，通过向文件中添加一行使其如下所示：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_157_0.png)
+
+
+  ## 添加语音识别和语音 – 一个语音激活的机器人
+
+
+  输入 `sudo /sbin/ldconfig`，系统将意识到你的 pocketsphinx 库。现在一切都已安装，你可以尝试语音识别。重新启动系统并输入 `cd
+  /home/pi/pocketsphinx-0.8/src/programs` 进入尝试演示程序的目录。然后，输入 `./pocketsphinx_continuous`。由于某种原因，我必须输入
+  `sudo ./pocketsphinx_continuous`，让它失败，然后再输入 `./pocketsphinx_continuous` 才能使其工作。此程序从麦克风获取输入并将其转换为语音。运行命令后，你会得到大量无关信息，然后你会看到以下截图：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_158_0.png)
+
+
+  INFO 和 Warning 语句来自 C 或 C++ 代码，用于调试目的。最初，它们会警告你找不到你的 Mic 和 Capture 元素，但当你的树莓派找到它们时，它会打印出
+  `READY.....`。如果你按照前面所述设置好一切，你就可以给你的树莓派一个命令了。对着麦克风说“hello”。当它检测到你停止说话时，它会处理你的语音，并在给出大量无关信息后，最终显示命令，如下图所示：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_159_0.png)
+
+
+  注意 `00000000: hello` 命令。它识别了你的语音！你也可以尝试其他单词和短语。系统非常敏感，因此可能会拾取背景噪音。你也会发现它并不十分准确。我们稍后会处理这个问题。要停止程序，请按
+  **Ctrl + C**。
+
+
+  使语音识别更准确有两种方法。一种是训练系统更准确地理解你的声音。这相当复杂，但如果你想了解更多，请访问本章前面提到的 CMU pocketsphinx 网站。
+
+
+  提高准确性的第二种方法是限制系统用于确定你在说什么的单词数量。默认情况下有数千个单词可能性，因此如果两个单词发音相似，pocketsphinx 可能会选择错误的单词。为了避免这种情况，你可以制作自己的词典来限制
+  pocketsphinx 可供选择的单词。要创建自己的词典，请按照 `http://cmusphinx.sourceforge.net/wiki/tutorialdict`
+  上的说明进行操作。
+
+
+  你的系统现在可以理解你的语音命令了！在本章下一节中，你将学习如何使用此输入来创建响应。
+
+
+
+
+
+
+  ## 解释命令并启动动作
+
+
+  现在系统既能听也能说，你需要为机器人提供响应你的语音并根据语音输入执行命令的能力。接下来，你将配置系统以响应简单命令。
+
+
+  为了做出响应，我们将编辑 /home/pi/src/programs 目录中的 continuous.c 代码。我们可以创建自己的 C 文件，但该文件已在 make
+  系统中设置好，是一个极佳的起点。你可以保存当前文件的副本为 continuous.c.old，这样如果需要时可以随时返回到起始程序。然后，你需要编辑 continuous.c
+  文件。它很长而且有点复杂。然而，你正在代码中寻找特定部分，如下图所示。查找 /* Exit if the first word spoken was GOODBYE
+  */ 注释行：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_160_0.png)
+
+
+  在此代码段中，单词已经解码并保存在 hyp 变量中。你可以在此处添加代码，以便根据我们解码的单词所关联的值让系统执行操作。首先，让我们尝试添加对 hello 和
+  goodbye 命令的响应能力，看看是否能让程序对这些命令做出响应。你需要按以下方式修改代码：
+
+
+  - 1. 找到 /* Exit if the first word spoken was GOODBYE */ 注释
+
+  - 2. 在语句 if (strcmp(word, "goodbye") == 0) 中，将 word 改为 hyp 并将 goodbye
+
+  - 3. 在 break; 语句周围插入括号，并在 break; 语句之前添加 system("espeak \"good bye\\\""); 语句
+
+  - 4. 通过键入 else if (strcmp(hyp, "hello") == 0) 在子句中添加其他 else if 语句。在 else if 语句后添加括号，并在括号内键入
+  system("espeak \"hello\\\"");
+
+
+  文件现在应如下所示：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_161_0.png)
+
+
+  ## 添加语音识别和语音 – 一个语音激活的机器人
+
+
+  现在你需要重新构建代码。由于 make 系统已经知道如何构建 pocketsphinx_continuous 程序，如果你在任何时候更改了 continuous.c
+  文件，它将重新构建应用程序。只需键入 sudo make，文件就会编译并创建 pocketsphinx_continuous 的新版本。要运行新版本，键入 ./pocketsphinx_continuous。请确保在开头键入
+  ./。同样，我不得不键入 sudo ./pocketsphinx_continuous，让它失败，然后键入 ./pocketsphinx_continuous
+  才能使其工作。
+
+
+  如果一切设置正确，说出“hello”应会得到树莓派的“hello”响应。说出“goodbye”应会引发“goodbye”的响应并关闭程序。请注意，system
+  命令可用于运行任何从命令行运行的程序。现在你可以使用此程序根据命令启动和运行其他程序。在这种情况下，你需要更改所示的代码以调用你的 Python 代码来向机器人发出命令，如下图所示：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_162_0.png)
+
+
+  在这种情况下，你只连接了机器人可以响应的众多命令中的两个；你可以通过使用相同的技术将剩余的命令添加到 continuous.c 文件中。现在，你可以给机器人下语音命令，它就会服从！使用本章前面部分的说明，你还可以使用单字符命令远程控制机器人并添加网络摄像头。你拥有自己的机器人仆人！
+
+
+  ## 摘要
+
+
+  在本章中，你学习了使用树莓派黑客入侵玩具机器人的基础知识。请随意尝试；你可以看到你能用新玩具玩各种游戏。在下一章中，你将学习如何构建一辆遥控车，可以进入房间并将所见内容显示回中央位置。
+
+  '
+- '# 第7章 为 RC 车辆添加 Raspberry Pi Zero
+
+  ### 为 RC 车辆添加 Raspberry Pi Zero
+
+
+  你现在已经构建了可以滚动、行走并响应语音命令的机器人。在本章中，你将修改一辆 RC 汽车以添加 Raspberry Pi Zero 来控制车辆。此外，你将添加一个网络摄像头，以便你能够远程看到汽车所看到的内容。
+
+
+  在本章中，你将学习以下主题：
+
+
+  - 如何使用 Raspberry Pi Zero 修改 Xmods RC 汽车
+
+  - 如何进入汽车的控制电路并使用 Raspberry Pi 控制它
+
+  - 如何使用无线通信为汽车添加遥控功能
+
+  - 如何添加网络摄像头以便你可以通过 **第一人称视角 (FPV)** 控制汽车
+
+
+  ## 使用 Raspberry Pi Zero 配置和控制 RC 汽车
+
+
+  在这个项目中，你将使用一辆简单的 RC 汽车，与此处所示的汽车类似：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_166_0.png)
+
+
+  这辆特定的汽车是 Xmods 汽车，最初由 Radio Shack 出售。然而，现在最好的购买地点是 eBay。这套特定的优势在于，驱动系统和转向的输入非常容易访问。
+
+
+  下图显示了汽车中心控制机构暴露的情况：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_167_0.png)
+
+
+  有两处连接你需要直接访问。第一个是驱动电机，第二个是转向机构。对于这种特定型号的 RC 汽车，驱动机构位于后部。你通常要寻找的是两根线，它们可以直接驱动汽车的直流电机。在此系统中，汽车后部有一个连接器；它看起来与以下图像相似：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_167_1.png)
+
+
+  在汽车的主控制部分，你可以看到有一个连接器插入这两根线，以便控制汽车的速度，如下所示：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_168_0.png)
+
+
+  拔下此插头和这些电线；你将使用 Raspberry Pi Zero 和电机控制器为汽车的驱动系统提供电压。电机将根据施加到这些电线的电压快慢运行，而电压的极性将决定方向。Raspberry
+  Pi Zero 需要提供正负 6 伏信号来控制汽车的速度和方向。
+
+
+  你还需要替换通往汽车前部用于转向的控制信号。这有点困难。以下是通往汽车前部的连接器：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_169_0.png)
+
+
+  来自控制模块的五针连接器如下图所示：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_169_1.png)
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_171_0.png)
+
+
+  你还需要访问汽车后轮舱以驱动两个后轮。以下是访问方式的外观：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_171_1.png)
+
+
+  ## 为 RC 车辆添加 Raspberry Pi Zero
+
+
+  你还需要将电池电源连接到 Raspberry Pi Zero。以下是从汽车获取电池电源的修改连接：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_172_0.png)
+
+
+  要控制汽车，你需要提供每个控制信号。+ 或 - 6 伏信号不能直接由 Raspberry Pi Zero 提供。你需要某种电机控制器来为汽车的后轮驱动和转向机构提供信号。提供这些信号的最简单方法是使用电机盾，这是一块额外的硬件，安装在
+  Raspberry Pi Zero 之上，可以提供电压和电流来为这两个机构供电。第 4 章《构建和控制简单轮式机器人》中使用的 RaspiRobot Board
+  V2 可以提供这些信号，如下图所示：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_172_1.png)
+
+
+
+
+
+
+  > 有关该板的详细信息可在以下网址找到：
+
+  > http://www.monkmakes.com/?page_id=698.
+
+
+  该板将为你提供遥控车的两个关键信号：驱动信号和转向信号。你还需要一个额外的信号，即启用转向控制的PWM信号。以下是将Raspberry Pi连接到该板的步骤：
+
+
+  - 1. 首先，将电池电源连接器连接到板上的电源连接器，如下图所示：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_173_0.png)
+
+
+  ## 将Raspberry Pi Zero添加到遥控车
+
+
+  - 2. 接下来，将后轮驱动信号连接到板上的电机1连接器，如下图所示：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_174_0.png)
+
+
+  - 3. 将前轮驱动连接器连接到板上的电机2连接器，如下图所示：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_174_1.png)
+
+
+  4. 将3.3伏和GND连接器连接到Raspberry Pi的通用输入/输出（GPIO）引脚。下面是这些引脚的布局：
+
+
+  | Pin 1 3.3V | Pin 2 5V |
+
+  |---|---|
+
+  | Pin 3 GPIO2 | Pin 4 5V |
+
+  | Pin 5 GPIO3 | Pin 6 GND |
+
+  | Pin 7 GPIO4 | Pin 8 GPIO14 |
+
+  | Pin 9 GND | Pin 10 GPIO15 |
+
+  | Pin 11 GPIO17 | Pin 12 GPIO18 |
+
+  | Pin 13 GPIO27 | Pin 14 GND |
+
+  | Pin 15 GPIO22 | Pin 16 GPIO23 |
+
+  | Pin 17 3.3V | Pin 18 GPIO24 |
+
+  | Pin 19 GPIO10 | Pin 20 GND |
+
+  | Pin 21 GPIO9 | Pin 22 GPIO25 |
+
+  | Pin 23 GPIO11 | Pin 24 GPIO8 |
+
+  | Pin 25 GND | Pin 26 GPIO7 |
+
+  | Pin 27 ID_SD | Pin 28 ID_SC |
+
+  | Pin 29 GPIO5 | Pin 30 GND |
+
+  | Pin 31 GPIO6 | Pin 32 GPIO12 |
+
+  | Pin 33 GPIO13 | Pin 34 GND |
+
+  | Pin 35 GPIO19 | Pin 36 GPIO16 |
+
+  | Pin 37 GPIO26 | Pin 38 GPIO20 |
+
+  | Pin 39 GND | Pin 40 GPIO21 |
+
+
+  5. 你将使用Pin1 3.3V作为3.3伏信号，使用Pin 9 GND作为接地信号。你将连接其中一个GPIO引脚，以便创建320Hz、10%占空比的信号来启用转向。连接GPIO引脚18，即物理引脚12，如下图所示：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_175_0.png)
+
+
+  现在硬件已经连接好了。
+
+
+  ## 用Python控制遥控车
+
+
+  硬件已准备好，现在你可以从Raspberry Pi Zero访问所有这些功能。首先，安装与控制板相关的库，该库位于 `http://www.monkmakes.com/?page_id=698`，然后执行以下步骤：
+
+
+  - 1. 运行命令 `wget https://github.com/simonmonk/raspirobotboard2/raw/master/python/dist/rrb2-1.1.tar.gz`。这将获取该库。
+
+  - 2. 然后，运行 `tar -xzf rrb2-1.1.tar.gz`。这将解压文件。
+
+  - 3. 输入 `cd rrb2-1.1`。这将把目录切换到文件所在位置。
+
+  - 4. 输入 `sudo python setup.py install`。这将安装文件。
+
+
+  现在你将创建一些Python代码，以便能够同时访问驱动电机和转向电机。代码将类似于以下截图：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_176_0.png)
+
+
+  代码的具体说明如下：
+
+
+  - - `import RPi.GPIO as GPIO`：这将导入RPi.GPIO库，允许你向前轮转向机构发送PWM信号。
+
+  - - `import time`：这将导入time库，允许你使用time.sleep(number_of_milliseconds)，它会产生一个固定的延迟。
+
+  - - `from rrb2 import *`：这将导入rrb2库，允许你控制两个直流电机。rrb2就是你刚从GitHub下载的库。
+
+  - - `pwmPin = 18`：这将把PWM引脚设置为GPIO引脚18，也就是Raspberry Pi上的物理引脚12。
+
+  - - `dc = 10`：这将把PWM信号的占空比设置为10%。
+
+  - - `GPIO.setmode(GPIO.BCM)`：这会将RPi.GPIO库中的定义模式设置为BCM模式，允许你指定PWM信号的GPIO编号。
+
+  - - `GPIO.setup(pwmPin, GPIO.OUT)`：这将把PWM引脚设置为输出，以便你可以驱动转向部分的控制电路。
+
+  - - `pwm = GPIO.PWM(pwmPin, 320)`：这将在正确的引脚上初始化PWM信号，并将PWM信号设置为320Hz。
+
+  - - `rr = RRB2()`：这将创建一个电机控制器实例。
+
+  - - `pwm.start(dc)`：这将启动PWM信号。
+
+  - - `rr.set_led1(1)`：这将点亮电机控制板上的LED 1。
+
+  - - `rr.set_motors(1, 1, 1, 1)`：这将使两个电机转动，从而让车辆向前行驶。此命令允许你将电机设置为正转或反转，并以特定速度运行。第一个数字是电机1的速度，范围从0到1。第二个数字是电机1的方向，1表示前进，0表示后退。第三个数字是电机2的速度，同样从0到1，第四个数字是电机2的后退和前进设置，值为1或0。
+
+  - - `print("Loop, press CTRL C to exit")`：这将提示用户如何停止程序。
+
+  - - `while 1:`：这将一直循环，直到按下Ctrl + C。
+
+  - - `time.sleep(0.075)`：使程序等待0.075秒。
+
+  - - `pwm.stop()`：这将停止PWM信号。
+
+  - - `GPIO.cleanup()`：这将清理GPIO驱动，并为关闭做准备。
+
+
+  ## 将Raspberry Pi Zero添加到遥控车
+
+
+  现在你可以输入 `sudo python xmod.py` 来运行程序。运行时，控制板上的LED 1应该点亮，后轮应该向前移动，转向也会转动。这确认你已正确连接所有部件。为了让这个更有趣，你可以通过添加一些控制代码来对电机进行更动态的控制。以下是Python代码的第一部分：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_178_0.png)
+
+
+  在开始之前，你可能希望将Python代码复制到一个新文件中；你可以把它命名为 `xmodControl.py`。在这段代码中，你会有一些额外的 `import`
+  语句；这些语句允许你在不按回车键的情况下感知键盘按键，这会让实时界面显得更具实时性。`getch()` 函数用于感知实际的按键。
+
+
+  这段代码的其余部分看起来与之前的程序类似。现在，这段代码的第二部分如下：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_179_0.png)
+
+
+  代码的第二部分是一个while循环，它接收输入并将其转换为遥控车的命令，包括前进、后退、左转和右转。这个程序非常简单；你几乎肯定想要添加更多命令，以提供更多控制速度和方向的方法。
+
+
+  ## 远程访问遥控车
+
+
+  你现在可以控制你的遥控车了，但你肯定希望在不连接任何线缆的情况下进行控制。本节将展示如何添加无线局域网设备，以便远程控制你的车。在*第1章，Raspberry
+  Pi Zero入门*中，你学习了如何从主机访问Raspberry Pi Zero。然而，要实现这一点，你需要将Raspberry Pi Zero连接到网络，无论是通过LAN线缆还是无线网络。如果你想在没有网络的地方驾驶你的车，但仍能连接它，该怎么办？你可以通过将Raspberry
+  Pi Zero设置为无线接入点来实现。
+
+
+  ## 将Raspberry Pi Zero添加到遥控车
+
+
+  将Raspberry Pi Zero设置为WLAN接入点取决于你选择的USB WLAN适配器；有关受支持的一些设备以及如何配置它们，请参阅 `http://elinux.org/RPI-Wireless-Hotspot`。我选择了Edimax
+  USB WLAN适配器，如下图所示：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_180_0.png)
+
+
+  这个设备可以使用位于 `http://blog.sip2serve.com/post/4889983167/rtl8188-access-point-install-script`
+  的脚本进行配置。步骤如下：
+
+
+  - 1. 输入 `wget https://dl.dropboxusercontent.com/u/1663660/scripts/install-rtl8188cus.sh`。这将获取脚本内容。
+
+  - 2. 输入 `sudo chown root:root install-rtl8188cus.sh`。这将更改所有者，以便你安装脚本。
+
+  - 3. 输入 `sudo chmod 755 install-rtl8188cus.sh`。这将更改脚本的可执行权限，以便你执行它。
+
+  - 4. 最后，输入 `sudo ./install-rtl8188cus.sh` 来运行脚本。这将运行脚本并配置设备。系统会要求你提供要用于接入点的名称和密码。
+
+
+
+
+
+
+  ## 连接网络摄像头
+
+
+  现在，你可以将计算机、平板电脑或手机连接到无线接入点。使用像 PuTTY 这样的终端仿真程序，你可以使用 SSH 协议按照第 1 章《入门 Raspberry
+  Pi Zero》中所述访问你的设备。然后你可以执行你的 vncserver 并在远程设备上运行 vncviewer 程序。
+
+
+  现在你准备好观察连接到汽车的 USB 网络摄像头的输出了。这非常简单；只需插入一个 USB 网络摄像头并下载一个视频查看器即可。其中一个效果很好的视频查看器是
+  guvcview。要安装它，输入
+
+
+  ```
+
+  sudo apt-get install guvcview.
+
+  ```
+
+
+  安装好所有这些工具后，你现在可以运行 vncview。当你在 Raspberry Pi Zero 的图形屏幕上查看时，输入 guvcview -r 2，你将能够看到网络摄像头的视频。你可以通过运行之前编写的
+  xmodControl.py 程序来远程控制你的 RC 汽车。屏幕看起来会与以下截图类似：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_182_0.png)
+
+
+  你会注意到，随着分辨率的降低，更新率会提高；这与图像的大小有关。你可以对你的 Raspberry Pi 控制的汽车进行很多改进，例如添加摇杆控制或更多自主性。但是，让我们继续下一个项目。
+
+
+  ## 总结
+
+
+  现在你知道如何使用 Raspberry Pi 为现有硬件添加其功能，在本例中是 RC 汽车。在下一章中，你将学习如何使用 Raspberry Pi Zero 构建一个可以玩石头、剪刀、布的机器人。
+
+  '
+- "# 第8章 机械手\n使用 Raspberry Pi Zero 玩石头、剪刀、布\n\n你现在已经使用 Raspberry Pi Zero 构建了多个项目。现在，你将把其中一些功能添加到一个新项目中，例如使用\
+  \ USB 网络摄像头和一个名为 OpenCV 的开源库来“看到”并判断你周围发生了什么。在本项目中，你将控制一个机械手来玩经典的决策游戏；石头、剪刀、布。\n\
+  \n在本章中，你将构建一个基本的机械手，然后用它来玩石头、剪刀、布。在本章中，你将学习：\n\n- 如何使用 Raspberry Pi Zero 控制将控制机械手的舵机\n\
+  - 如何向项目添加 USB 网络摄像头以“看到”你周围的世界\n- 如何使用 OpenCV，一个开源图像处理库，来判断人类对手是否出示石头、剪刀或布\n\n##\
+  \ 一个机械手\n\n在本章中，你将构建一个具有四根手指、一根拇指和一个可旋转手腕的人类手。实际上，有几种可能的机械手配置可供购买或自行制作。如果你想购买一个已经\
+  \ 3D 打印好的手，我个人最喜欢的是由 Christopher Chappelle 和 Easton LaChappelle 设计的手，已经在 http://www.shapeways.com/product/Z5CZ2RKLY/3d-printed-hand-right?li=search-results-1&optionId=42512474\
+  \ 上 3D 打印好了。以下是手的图像：\n\n![](img/324d126a7e2da696837a3e066326bd61_186_0.png)\n\n\
+  如果你有 3D 打印机，也可以下载并自行打印手。以下是链接：https://www.thingiverse.com/thing:288856。组装好手后，你需要添加舵机来控制手和手腕。要控制手，你需要拉动从手伸出的五根独立的钓鱼线。以下是这些钓鱼线的图像：\n\
+  \n![](img/324d126a7e2da696837a3e066326bd61_186_1.png)\n\n手通常是完全张开的。当你拉动线时，手的每个手指都会闭合。当你松开线时，每个关节背面的橡皮筋会迫使手指和拇指重新张开。你将使用舵机来控制手指和拇指。对于本项目，你只需要三种状态：完全闭合的手（石头）、手腕向侧面时完全张开的手（布），以及拇指、环指和小指闭合而食指和中指完全张开（剪刀）。\n\
+  \n以下是如何将钓鱼线连接到舵机的图像：\n\n![](img/324d126a7e2da696837a3e066326bd61_187_0.png)\n\n\
+  将每个手指连接到一个舵机，然后将整个手连接到一个支架；这将作为手腕。你还将把它连接到一个可以转动手腕的舵机。\n\n## 移动机械手\n\n为了移动舵机，你将使用一个类似于第\
+  \ 5 章《构建一个可以行走的机器人》中介绍的舵机控制器来控制六个舵机，这些舵机将控制手指、拇指和手腕。如第 5 章《构建一个可以行走的机器人》中所述，你将为本项目使用的舵机控制器是\
+  \ Pololu 使用 USB 的简单舵机电机控制器。但是，由于你只需要控制五个舵机，你可以订购可在 https://www.pololu.com 上获得的六舵机控制器版本。以下是该单元的图像：\n\
+  \n![](img/324d126a7e2da696837a3e066326bd61_188_0.png)\n\n确保你订购的是组装版本。这块硬件会将来自 Raspberry\
+  \ Pi Zero 的 USB 命令转换为控制舵机电机的信号。你需要对舵机控制器进行两个连接才能开始：第一个连接到舵机电机，第二个连接到电源。\n\n首先，将舵机连接到控制器。为了保持一致，让我们将六个舵机连接到控制器上标记为\
+  \ 0 到 5 的连接处，使用以下配置：\n\n| 舵机连接器 | 舵机 |\n|---|---|\n| 0 | 拇指 |\n| 1 | 食指 |\n| 2 |\
+  \ 中指 |\n| 3 | 环指 |\n| 4 | 小指 |\n| 5 | 手腕 |\n\n以下是控制器的背面图像；这将告诉我们在哪里连接我们的舵机：\n\n\
+  ![](img/324d126a7e2da696837a3e066326bd61_189_0.png)\n\n## 使用 Raspberry Pi Zero 玩石头、剪刀、布\n\
+  \n现在，你需要将舵机电机控制器连接到电源。对于本项目，你可以使用电池，也可以使用专用电源。以下是专用电源的图像，可在大多数在线电子商店购买，可提供大约 3 安培\
+  \ 6 伏的电量，这对项目是必需的：\n\n![](img/324d126a7e2da696837a3e066326bd61_190_0.png)\n\n电源上的连接已明确标记；你将把\
+  \ 6 伏电源和 GND 连接连接到舵机控制器上标记为 BAT 的连接上。\n\n> 对这种电源要非常小心，从未在电源插入时对连接到电源的线路进行操作，并且在完成所有连接后最好将电源放在保护外壳中。\n\
+  \n你的系统现在是功能性的。现在，你将把电机控制器连接到你的个人电脑，以检查是否可以像 *第 5 章《构建一个可以行走的机器人》* 中所示那样与之通信。为此，将迷你\
+  \ USB 电缆连接到舵机控制器和你的个人电脑之间。\n\n现在，你可以使用 Pololu Maestro Control Center 上的滑块实际控制舵机。确保舵机\
+  \ 0 移动拇指，1 移动食指前中舵机，2 移动右前上舵机，依此类推。你也可以用它来校准舵机。\n\n将所有舵机设置在滑块条的一侧，滑块位于一侧，你希望这成为打开设置。滑块条另一侧的设置会拉动钓鱼线，从而将相关手指或拇指移动到闭合设置。现在，拧下每个舵机上的舵机角，直到舵机定位到使手张开时处于舵机运动的一端。当舵机移动到范围的另一端时，手应该闭合。\n\
+  \n你的手现在准备好实际做点什么了。现在，你需要向舵机发送它们需要发出的电子信号以表示石头、剪刀或布。\n\n## 将舵机控制器连接到 Raspberry Pi\
+  \ Zero\n\n你已经检查了舵机电机控制器和舵机；现在你将把电机控制器连接到 Raspberry Pi Zero 并确保可以从它控制舵机。拔下 USB 电缆与\
+  \ PC 的连接并将其连接到 Raspberry Pi Zero。\n\n让我们现在专注于电机控制器，通过从 Pololu 下载 Linux 代码 `www.pololu.com/docs/0J40/3.b`。也许最好的方法是登录你的\
+  \ Raspberry Pi Zero 通过 PuTTY，然后输入 `wget http://www.pololu.com/file/download/maestro-linux-100507.tar.gz?file_id=0J315`。然后，使用\
+  \ `mv maestro-linux-100507.tar.gz\\?file_id\\=0J315 maestro-linux-100507.tar.gz`\
+  \ 移动文件。通过输入 `tar -xzfv maestro-linux-100507.tar.gz` 解压文件。这将创建一个名为 `maestro_linux`\
+  \ 的目录。通过输入 `cd maestro_linux` 进入该目录，然后输入 `ls -l`；你应该能看到类似以下的内容：\n\n![](img/324d126a7e2da696837a3e066326bd61_191_0.png)\n\
+  \n\n\n\n\n文档 README.txt 将会明确说明如何安装软件。这基本上分为两个步骤。首先，通过输入 sudo apt-get install libusb-1.0-0-dev\
+  \ mono-runtime libmono-winforms2.0-cil 安装一组支持库，然后通过输入 sudo cp 99-pololu.rules /etc/udev/rules.d/\
+  \ 复制配置文件。\n\n不幸的是，你无法在你的 Raspberry Pi Zero 上运行 Maestro Control Center，因为你的 Windows\
+  \ 版本不支持图形界面，但你可以使用 UscCmd 命令行应用程序来控制你的舵机，以确保它们已连接并且工作正常。首先，输入 ./UscCmd --list，你应该能够看到以下内容：\n\
+  \n![](img/324d126a7e2da696837a3e066326bd61_192_0.png)\n\n单元检测到你的舵机控制器。如果你只输入 ./UscCmd，你可以看到可以发送给控制器的所有命令：\n\
+  \n```\npi@raspberrypi:~/maestro_linux $ ./UscCmd\nUscCmd, Version=1.3.0.0, Culture=neutral,\
+  \ PublicKeyToken=null\nSelect one of the following actions:\n  --list          \
+  \        list available devices\n  --configure FILE        load configuration file\
+  \ into device\n  --getconf FILE          read device settings and write configuration\
+  \ file\n  --restoredefaults       restore factory settings\n  --program FILE   \
+  \       compile and load bytecode program\n  --status                display complete\
+  \ device status\n  --bootloader            put device into bootloader (firmware\
+  \ upgrade) mode\n  --stop                  stops the script running on the device\n\
+  \  --start                 starts the script running on the device\n  --restart\
+  \               restarts the script at the beginning\n  --step                 \
+  \ runs a single instruction of the script\n  --sub NUM               calls subroutine\
+  \ n (can be hex or decimal)\n  --sub NUM,PARAMETER     calls subroutine n with a\
+  \ parameter (hex or decimal) placed on the stack\n  --servo NUM,TARGET      sets\
+  \ the target of servo NUM in units of 1/4 microsecond\n  --speed NUM,SPEED     \
+  \  sets the speed limit of servo NUM\n  --accel NUM,ACCEL       sets the acceleration\
+  \ of servo NUM to a value 0-255\nSelect which device to perform the action on (optional):\n\
+  \  --device 00001430       (optional) select device #00001430\npi@raspberrypi:~/maestro_linux\
+  \ $\n```\n\n请注意，你可以发送舵机到特定的目标角度，尽管目标不是以度为单位，所以很难知道你将舵机发送到哪里。尝试输入 ./UscCmd --servo\
+  \ 0, 10。舵机将移动到其最大角度位置。输入 ./UscCmd - servo 0, 0 它将停止舵机试图移动。在下一节中，你将编写一些 Python 代码，将你的角度以度为单位转换为舵机控制器希望看到的命令，以便将其移动到特定角度位置。\n\
+  \n> 如果你没有运行 Windows 版本的 Maestro Controller 并将 Serial Settings 设置为 USB Chained，你的电机控制器可能不会响应。重新运行\
+  \ Maestro Controller 代码并将 Serial Settings 设置为 USB Chained。\n\n## Creating a program\
+  \ on Raspberry Pi Zero\n### so that you can control your hand\n\n你现在知道你可以与你的舵机电机控制器对话并移动你的舵机。在本节中，你将创建一个\
+  \ Python 程序，让你可以与你的舵机对话以将其移动到特定角度。\n\n让我们从一个简单的程序开始，该程序将定位你的手，使舵机设置为范围的一端（这应该打开手），然后移动到范围的另一端（这应该关闭你的手）。此程序以你在\
+  \ *Chapter 5, Building a Robot That Can Walk* 中编写的代码开始。以下是控制舵机的基本代码：\n\n```\n```python\n\
+  #!/usr/bin/python\nimport serial\nimport time\n\ndef setAngle(ser, channel, angle):\n\
+  \    minAngle = 0.0\n    maxAngle = 180.0\n    minTarget = 256.0\n    maxTarget\
+  \ = 13120.0\n    scaledValue = int(angle / ((maxAngle - minAngle) / (maxTarget -\
+  \ minTarget))) + minTarget\n    commandByte = chr(0x84)\n    channelByte = chr(channel)\n\
+  \    lowTargetByte = chr(scaledValue & 0x7F)\n    highTargetByte = chr((scaledValue\
+  \ >> 7) & 0x7F)\n    command = commandByte + channelByte + lowTargetByte + highTargetByte\n\
+  \    ser.write(command)\n    ser.flush()\n\nser = serial.Serial(\"/dev/ttyACM0\"\
+  , 9600)\n# Home position\nfor i in range(0, 12):\n    setAngle(ser, i, 90)\ntime.sleep(1)\n\
+  ```\n```\n\n以下是代码的解释：\n\n- `#!/usr/bin/python`: 这一行允许你从命令行执行此 Python 文件。\n- `import\
+  \ serial`: 这一行导入 serial 库。你需要 serial 库通过 USB 与你的单元对话。\n- `def setAngle(ser, channel,\
+  \ angle)`: 此函数将你期望的舵机和角度设置转换为舵机电机控制器需要的串行命令。\n- `ser = serial.Serial(\"/dev/ttyACM0\"\
+  , 9600)`: 这打开到你的舵机控制器的串行端口连接。\n- `for i in range(0, 12)`: 对于每个舵机\n- `setAngle(ser,\
+  \ i, 90)`: 现在你可以将每个舵机设置为中间位置。这应该使你的手指半开。如果你的手不在中间位置，你可以通过调整每个舵机上舵机角的位置来调整它。\n\n\
+  要访问串行端口，你需要确保你已安装 Python serial 库。如果没有，则输入 `sudo apt-get install python-serial`。安装\
+  \ serial 库后，你可以通过输入 `sudo python hand.py` 运行你的程序。\n\n一旦你知道将舵机设置为中间角度位置的角度，每个舵机打开或关闭手的角度设置大约在两侧各\
+  \ 20 度。最后，你现在可以要求你的手关闭拇指、环指和小指的舵机，这将是剪刀手。你需要为每三种不同位置各提供一个 Python 函数。在这种情况下，你可以使用你的\
+  \ `setAngle` 命令设置你的舵机来操纵你的手的六个舵机，以执行纸牌（全部打开）、石头（全部关闭）或剪刀（两个手指伸出，其余关闭）。\n\n由于每个都是一个函数，此代码也具有可被包含在库中以便在你的系统中使用网络摄像头的能力。\n\
+  \n![](img/324d126a7e2da696837a3e066326bd61_197_0.png)\n\nThe /dev/video0 is the\
+  \ webcam device. Now that your device is connected, let's actually see if you can\
+  \ capture the images and video.\n\n> 虽然许多 USB 网络摄像头都可以使用，为了确保这一点，你可能希望从 Logitech\
+  \ 等主要网络摄像头制造商处购买网络摄像头。\n\n# Playing Rock, Paper, or Scissors with Raspberry Pi Zero\n\
+  \n有几个工具可以让你访问网络摄像头，但一个带有视频控制的简单程序称为 guvcview。要安装它，输入 `sudo apt-get install guvcview`。安装应用程序后，你需要运行它。为此，你需要直接连接到显示器或使用\
+  \ vncviewer 连接到远程计算机。在 Raspberry Pi 上打开一个终端窗口并运行 guvcview。你应该会看到类似以下内容：\n\n![](img/324d126a7e2da696837a3e066326bd61_198_0.png)\n\
+  \n不用担心你将捕获的图像质量，你将在 OpenCV 中处理你的图像，OpenCV 是一个视觉框架。\n\n## Downloading and installing\
+  \ OpenCV – a fully featured vision library\n\n现在你已连接了摄像头，你可以访问开源社区提供的一些惊人功能。打开一个终端窗口并输入以下命令：\n\
+  \n- `sudo apt-get update`: 你将下载许多新的软件包，因此确保一切都是最新的很有好处。\n- `sudo apt-get install\
+  \ libavformat-dev`: 此库提供了一种编码和解码音频和视频流的方法。\n- `sudo apt-get install libcv2.4 libcvaux2.4\
+  \ libhighgui2.4`: 此命令显示基本的 OpenCV 库。请注意命令中的数字。随着新版本的 OpenCV 可用，这几乎肯定会发生变化。如果 2.4\
+  \ 不起作用，请尝试 3.0 或在 Google 上搜索 OpenCV 的最新版本。\n- `sudo apt-get install python-opencv`:\
+  \ 这是 OpenCV 所需的 Python 开发工具包，因为你将使用 Python。\n- `sudo apt-get install opencv-doc`:\
+  \ 此命令将下载 OpenCV 的文档，以防你需要它。\n- `sudo apt-get install libopencv-dev`: 此命令下载用于编译 OpenCV\
+  \ 的头文件和静态库。\n- `sudo apt-get install libopencv-dev`: 此命令下载用于编译 OpenCV 的更多开发工具。\n\
+  - `sudo apt-get install libhighgui-dev`: 这是另一个提供用于编译 OpenCV 的头文件和静态库的软件包。\n\n现在，输入\
+  \ `cp -r /usr/share/doc/opencv-doc/examples /home/pi/`。这将复制所有示例到你的主目录。\n\n\n\n\n\
+  \n你可能想要尝试调整分辨率，以找到适合你应用的最佳设置。较大的图像很棒——它们能让你更详细地查看世界——但它们也会占用显著更多的处理能力。随着你真正要求系统执行一些实际的图像处理任务，你会更频繁地调整此分辨率。注意，如果你打算使用\
+  \ vncserver 来了解系统性能，这会显著降低更新速率。宽度/高度是两倍大小的图像将涉及四倍的处理量。你现在可以使用此功能来执行许多令人印象深刻的任务。\n\
+  \n## 手势检测\n\nOpenCV 和你的网络摄像头也可以跟踪物体。当你希望项目能够区分你的手与背景时，这将很有用。OpenCV 通过提供一些高级库使这变得异常简单，这些库可以帮助我们完成此任务。为此，你将编辑一个文件，使其看起来与以下屏幕截图中所示相似：\n\
+  \n![](img/324d126a7e2da696837a3e066326bd61_201_0.png)\n\n## 使用 Raspberry Pi Zero\
+  \ 玩剪刀石头布\n\n以下屏幕是测量你手部纸张的画面：\n\n![](img/324d126a7e2da696837a3e066326bd61_204_0.png)\n\
+  \n你可以通过使用 *x* 和 *y* 的比率添加一些简单的代码来判断你的手是在出石头、剪刀还是布。在前面的图片中，你可以看到纸张的宽度与高度的比率大约为 140/80。对于石头，该比率大约为\
+  \ 85/55。对于剪刀，它将为 140/40。以下是确定石头/布/剪刀的库代码：\n\n```\nimport math\n\ncap = cv2.VideoCapture(0)\n\
+  cap.set(3, 320)\ncap.set(4, 240)\n\ndef getHand():\n    while(cap.isOpened()):\n\
+  \        ret, img = cap.read()\n        cv2.rectangle(img, (200,200), (50,50), (0,255,0),0)\n\
+  \        crop_img = img[50:200, 50:200]\n        grey = cv2.cvtColor(crop_img, cv2.COLOR_BGR2GRAY)\n\
+  \        value = (35, 35)\n        blurred = cv2.GaussianBlur(grey, value, 0)\n\
+  \        _, thresh1 = cv2.threshold(blurred, 127, 255, cv2.THRESH_BINARY_INV+cv2.THRESH_OTSU)\n\
+  \        cv2.imshow('Thresholded', thresh1)\n        contours, hierarchy = cv2.findContours(thresh1.copy(),cv2.RETR_TREE,\
+  \ cv2.CHAIN_APPROX_NONE)\n        max_area = -1\n        for i in range(len(contours)):\n\
+  \            cnt=contours[i]\n            area = cv2.contourArea(cnt)\n        \
+  \    if(area>max_area):\n                max_area=area\n                ci=i\n \
+  \       cnt=contours[ci]\n        x,y,w,h = cv2.boundingRect(cnt)\n        print\
+  \ x, y, w, h\n        if w != 148 and h !=148: # not starting rectangle\n      \
+  \      if w/h >= 3:\n                return 3  # scissors\n            elif w/h\
+  \ < 3 and w/h > 1:\n                return 2\n            else:\n              \
+  \  return 3\n        cv2.rectangle(crop_img, (x,y), (x+w,y+h), (0,0,255),0)\n  \
+  \      cv2.imshow('Gesture', img)\n        k = cv2.waitKey(10)\n        if k ==\
+  \ 27:\n            break\n\nprint getHand()\n```\n\n现在你知道了人类对手的手势状态。为了完成整个项目，你需要添加代码为计算机手的状态进行随机选择，调用本章前面各节中的函数使手移动到该状态，然后比较机器人手和用户手的随机选择以确定获胜者。玩剪刀石头布从未如此简单！\n\
+  \n## 总结\n\n你现在拥有了一只可以玩剪刀石头布的手！到目前为止，你应该已经拥有了许多可以添加到几乎任何项目中的不同功能。在最后一章中，你将把 Raspberry\
+  \ Pi Zero 添加到四轴飞行器上，构建一个可以飞行的项目。\n"
+- '# 第9章 为四轴飞行器添加 Raspberry Pi Zero
+
+  ### 为四轴飞行器添加 Raspberry Pi Zero
+
+
+  你已经有机会构建了许多不同类型的机器人，现在让我们以最令人惊叹的机器人作为结尾，一种可以飞行的机器人。
+
+
+  > 在开始之前，有一些安全警告需要考虑。当然，永远不要在人或建筑物附近飞行。此外，要非常小心不要飞出你的视距范围。在许多国家，对四轴飞行器的飞行地点和时间都有限制。一些国家，包括美国，要求你注册你的四轴飞行器。
+
+
+  还需要注意的是，本章并非旨在作为构建可飞行四轴飞行器的完整分步指南。那需要很多章节。本章旨在让你入门，如果你考虑构建一个可使用 Raspberry Pi Zero
+  控制的四轴飞行器。在本章中，你将学习以下主题：
+
+
+  - 构建基本四轴飞行器平台
+
+  - 将 Raspberry Pi Zero 与飞行控制器接口
+
+  - 讨论远程通信
+
+  - 使用 GPS 进行定位
+
+  - 添加自主飞行
+
+
+  ## 构建平台
+
+
+  构建四轴飞行器硬件可能令人望而生畏；然而，有几个优秀的网站可以引导你完成整个过程，从组件选择到构建细节以及使用无线电编程和控制你的四轴飞行器。http://www.arducopter.co.uk/
+  网站是那些对四轴飞行器飞行感兴趣的新手的好起点。前往 http://copter.ardupilot.com/，这也是另一个信息丰富的优秀网站。
+
+
+  对于本项目，你希望选择使用 **Pixhawk** 飞行控制器的项目。还有其他价格明显更低的飞行控制器，但这个特定的飞行控制器为 Raspberry Pi Zero
+  提供了便捷的访问。以下是一些可以指导你完成构建过程的网站：http://learnrobotix.com/uavs/quadcopter-build/pixhawk/connecting-the-q-brain-esc.html、http://learnrobotix.com/uavs/quadcopter-build/pixhawk/connecting-components-pixhawk-flight-controller.html
+  和 http://www.flying-drone.co.uk/how-to-build-a-quadcopter-with-a-pixhawk-flight-controller-step-11/。
+
+
+  在 http://copter.ardupilot.com/wiki/advanced-pixhawk-quadcopter-wiring-chart/，你会找到一个关于如何连接所有东西的优秀接线图。让我们逐步进行构建我们自己的四轴飞行器。
+
+
+  首先，你需要一个机架。你将构建一个尺寸为 450 mm 的四轴飞行器，这是最便宜的机架之一，可在大多数在线零售商处购买，具有玻璃纤维臂，如下图所示：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_208_0.png)
+
+
+  现在，执行以下步骤完成你的四轴飞行器组装：
+
+
+  - 1. 第一步是按照说明建议组装四轴飞行器。
+
+  - 2. 第二步是将四个 **电子调速器 (ESCs)** 焊接到每个电机上，并将电池连接焊到底板上。以下是底板的图像：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_209_0.png)
+
+
+  注意 + 和 - 连接；每个连接将焊接到所有 ESC 上。以下是电机控制器的图像：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_209_1.png)
+
+
+  ## 为四轴飞行器添加 Raspberry Pi Zero
+
+
+  红黑线连接器是焊接到底盘底板的连接器。其他三个连接器将连接到电机。
+
+
+  - 3. 第三步是在机架上安装电机。你需要 1000 KV 范围内的电机，以下是此类电机的图像：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_210_0.png)
+
+
+  再次，按照随附机架的说明将电机附上。然后将来自 ESC 的三个连接附到电机上。
+
+
+  - 4. 一个可选步骤是为单元添加一套起落架。有很多此类产品可供选择；以下是非常坚固的一个的图像：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_210_1.png)
+
+
+  - 5. 现在你将在机架上安装 Pixhawk 并连接其相关电子设备。细节在 http://copter.ardupilot.com/wiki/advanced-pixhawk-quadcopter-wiring-chart/
+  中显示并描述。这将把 Pixhawk 连接到 ESC、电池、RC 发射器、遥测无线电以及一个开关，该开关将防止四轴飞行器在你准备好之前飞行。
+
+  - 6. 最终，你将在四轴飞行器上安装四个螺旋桨；然而，你必须等到校准 ESC、电机和 RC 发射器后才能安装它们。你需要四个螺旋桨，其中两个设计为顺时针旋转，另外两个设计为逆时针旋转。对于这个四轴飞行器，你希望螺旋桨的螺距为
+  10x4.7。以下是其中一个螺旋桨的图像：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_211_0.png)
+
+
+
+
+
+
+  以下是使用 Pixhawk 飞行控制器的整个四旋翼飞行器的图像：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_212_0.png)
+
+
+  > 请注意四旋翼飞行器上排列的箭头和线缆。这并不是为了让它看起来凶猛，而是为了防止它撞到东西并损坏螺旋桨。市面上也有商业护罩可供购买；不过该系统也有效，而且成本更低。
+
+
+  你需要用 RC 发射器/接收器对组装并飞行你的四旋翼飞行器；这将使你熟悉四旋翼飞行器及其飞行方式，同时也能让你调整所有设置以使其稳定。一旦四旋翼飞行器稳定后，你就可以执行一些简单的自主飞行。让我们使用任务规划软件，该软件运行在远程计算机上。
+
+
+  ## 任务规划软件
+
+
+  任务规划软件可在 http://planner.ardupilot.com/ 获取。实际上有两种应用可执行类似操作，但 Mission Planner 是一个很好的地方，可以熟悉如何通过计算机程序与四旋翼飞行器通信。
+
+
+  为此，你需要确保遥测电台已连接到 Pixhawk 和计算机。这将避免需要使用长 USB 数据线直接连接到 Pixhawk。当你开始任务规划软件时，你会看到以下屏幕：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_213_0.png)
+
+
+  这是基本屏幕。然后你需要配置无线电的 COM 端口，然后按下屏幕右上角的 CONNECT 按钮。随着你移动四旋翼飞行器，你会看到测量值发生变化。如果你在连接 Pixhawk
+  时遇到问题，网站上有大量帮助。
+
+
+  现在你已连接，你实际上可以用此应用程序看到四旋翼飞行器的飞行情况。软件通过 MAVLink 与 Pixhawk 控制器通信，MAVLink 是一个串行控制链路，从软件应用程序发出，经由遥测电台发出，被遥测电台接收，然后路由到
+  Pixhawk。Pixhawk 不仅知道如何发送信息，还知道如何接收信息。
+
+
+  软件连接后，你需要校准 RC 无线电连接；这可以通过软件完成。你还需要校准 ESC；请参考 http://learnrobotix.com/uavs/quadocopter-build/pixhawk/calibrating-electronic-speed-controllers-with-pixhawk.html
+  获取具体说明。
+
+
+  现在连接后，你可以使用 MAVLink 从 Raspberry Pi Zero 访问 Pixhawk。你需要添加并配置 Raspberry Pi Zero 以完成连接。为此，运行
+  `raspi-config` 并选择 **8 Advanced Options, Configure advanced settings** 选项，如以下屏幕截图所示：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_215_0.png)
+
+
+  现在你准备好安装一些额外软件了。要安装此软件，请执行以下步骤：
+
+
+  - 1. 输入 `sudo apt-get update`：这会更新本地软件包列表，以便你的系统可以找到合适的软件。
+
+  - 2. 输入 `sudo apt-get install screen python-wxgtk2.8 python-matplotlib python-opencv`：这会安装一个图形包、一个绘图包和一个版本的
+  OpenCV。
+
+  - 3. 输入 `sudo apt-get install python-numpy`：这将安装 **NumPy**，一个用于 Python 的数值库，尽管你可能已从之前完成的项目中拥有它。
+
+  - 4. 输入 `sudo apt-get install python-dev`：这是一组文件，将允许你在 Python 环境中进行开发。
+
+  - 5. 输入 `sudo apt-get install python-pip`：这是一个帮助你安装 Python 包的工具。
+
+  - 6. 输入 `sudo pip install pymavlink`：这是一组实现 MAVLink 或 Pixhawk 的通信配置文件的代码，以 Python
+  编写。
+
+  - 7. 输入 `sudo pip install mavproxy`：这最后一步安装 **Unmanned Aerial Vehicle (UAV)** 地面站软件包，用于基于
+  MAVLink 的系统，该系统基于 Pixhawk。
+
+
+  现在你已安装了所有软件，可以测试链接。为此，输入 `sudo -s`；这会将你设为超级用户。然后输入 `mavproxy.py --master=/dev/ttyAMA0
+  --baudrate 57600 --aircraft MyCopter` 你将看到以下内容：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_217_0.png)
+
+
+  现在链接已建立，你可以发送命令来设置或显示参数。例如，输入 param show ARMING_CHECK；它应显示参数的值，如以下屏幕截图所示：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_218_0.png)
+
+
+  所有可用命令的详细信息可在 http://dronecode.github.io/MAVProxy/html/uav_configuration/index.html
+  找到。
+
+
+  你可以直接发出这些命令，但你也可以使用与 Mission Planner 界面类似的界面连接到 Pixhawk，而你之前已使用过该界面。为此，你需要安装 DroneKit
+  代码。DroneKit 的总体说明和文档可在 http://python.dronekit.io/1.5.0/guide/getting_started.html
+  找到，但让我们在这里看一个示例。
+
+
+  首先，输入 sudo pip install droneapi。你可以通过输入 git clone http://github.com/dronekit/dronekit-python.git
+  下载一些示例脚本。现在 cd 到 dronekit-python/examples/vehicle_state 目录。你会看到 vehicle_state.py
+  文件，它展示了如何使用 MAVLink 与 Pixhawk 通信以获取信息，以及设置值和发出命令的绝佳示例。
+
+
+  ## 向四旋翼飞行器添加 Raspberry Pi Zero
+
+
+  你还可以将 MAVProxy 系统与运行在远程计算机上的 Mission Planner 接口。使用一台无线电连接到 Pixhawk 的 TELEM 1 端口，以及你的
+  Raspberry Pi Zero 连接到 Pixhawk 的 TELEM 2 端口，通过添加 `--out <ipaddress>:14550` 修改 MAVProxy
+  启动命令，其中 ipaddress 为运行 Mission Planner 的远程计算机的地址。在 Windows 机器上，可以使用 `ipconfig` 命令确定此
+  IP 地址。
+
+
+  例如，你的 mavproxy 命令可能看起来像这样：`mavproxy.py --master=/dev/ttyAMA0 --baudrate 57600 --out
+  ipaddress:14550 --aircraft MyCopter`。一旦连接到 MAVProxy，你就可以使用 UDP 连接连接到 Mission Planner
+  软件，如以下屏幕截图所示：
+
+
+  ![](img/324d126a7e2da696837a3e066326bd61_220_0.png)
+
+
+  现在，你可以运行你的 MAVProxy 脚本并在 Mission Planner 软件上查看结果。
+
+
+  ## 摘要
+
+
+  就这样。你现在拥有了多种不同的机器人平台，它们以 Raspberry Pi Zero 作为中央控制器运行。这些章节只是向你介绍了你的平台的一些最基本功能；你现在可以探索每个平台并扩展其功能。唯一的限制是你的想象力和时间。
+
+  '
+- "## 索引\n\n### A\n\nactions\n  initiating 144-146\nAdvanced IP Scanner\n  about 28\n\
+  \  URL 28\nAdvanced Linux Sound Architecture (ALSA) 132\nalsamixer 133\naplay 136\n\
+  Arduino\n  URL 128\narecord program 136\n\n### B\n\nBison 139\nboard, Raspberry\
+  \ Pi Zero\n  powering 3, 4\nbody kit, quadruped\n  URL 106\n\n### C\n\nCarnegie\
+  \ Mellon University (CMU)\n  about 138\n  URL 138\ncommands\n  interpreting 144-146\n\
+  compass\n  accessing programmatically 70-75\nconfiguration, USB WLAN adapter\n \
+  \ URL 164\ncontrol board, Raspberry Pi Zero\n  URL 92\n\nCython\n  using 141\n\n\
+  ### D\n\nData Ready (DRDY) 70\nDC motors\n  controlling, motor controller board\
+  \ used 89-92\n  H-bridge interface, controlling to 80-82\nDebian 9\nDegrees of Freedom\
+  \ (DOF) 101\ndigital compass\n  connecting, to Raspberry Pi Zero 66-70\ndisplay,\
+  \ Raspberry Pi Zero\n  connecting 4-8\nDroneKit\n  about 202\n  references 203\n\
+  \  URL 202\n\n### E\n\nElectronic Speed Controllers (ESCs)\n  about 193\n  URL 197\n\
+  Emacs 37\nEmacs commands\n  defining 38\neSpeak\n  about 137\n  used, for allowing\
+  \ robot to respond with spoken voice 137, 138\n\n\nF\nlibrary, control board\nfiles\n\
+  \  creating 37-39\n  editing 37-39\n  saving 37-39\nFirst Person View (FPV) 149\n\
+  functions, importing\n  URL 99\n\nG\nGeneral Purpose Input/Output (GPIO) 159\ngesture\
+  \ detection\n  defining 185-189\nGPIO digital voltage output\n  defining 53-58\n\
+  guvcview 182\n\nH\nH-bridge interface\n  controlling, to DC motors 80-82\nHitec\
+  \ servos 103\nhost PC\n  Raspberry Pi Zero, accessing from 17-29\n\nI\nI2C interface\n\
+  \  URL 66\nInter IC (I2C) bus 67\nInternet access\n  adding 14-16\n\nJ\nJessie 9\n\
+  \nK\nkeyboard, Raspberry Pi Zero\n  connecting 4-8\n\nL\nLED code\n  and Raspberry\
+  \ Pi Zero 59, 60\nlibrary, control board\n  URL 160\nLight Emitting Diode (LED)\
+  \ 54\nLinux\n  Raspberry Pi Zero, powering up with 31-37\nLinux commands\n  defining\
+  \ 36, 37\nLynxmotion 103\n\nM\nMAC OS X\n  URL 9\nmake system 144\nMaster In Slave\
+  \ Out (MISO) 68\nMaster Out Slave In (MOSI) 68\nMAVLink 197\nMAVProxy\n  reference\
+  \ 202\nmission planning software\n  defining 196-204\n  URL 196\nmobile platform\n\
+  \  controlling programmatically, Raspberry Pi Zero used 83-86\nmotor controller\
+  \ board\n  used, for controlling DC motors 89-92\nmotor speed\n  controlling, with\
+  \ PWM 86-89\nmouse, Raspberry Pi Zero\n  connecting 4-8\n\nN\nnano\n  URL 37\nNmap\n\
+  \  about 29\n  URL 29\nNumPy\n  installing 201\n\nO\nOpenCV\n  about 169\n  downloading\
+  \ 183-185\ninstalling 183-185\noperating system\ninstalling 9-14\n\nP\n\npath planning\n\
+  \  URL 98\nPC\n  and servo controller, communicating\n    between 110-113\nPixhawk\
+  \ flight controller\n  about 192\n  references 192, 195\nplatform\n  constructing\
+  \ 192-196\npocketsphinx\n  about 138\n  URL 143\n  used, for accepting voice\n \
+  \   commands 138-143\nPololu\n  references 110, 115, 118\nprogram, in Linux\n  creating,\
+  \ for controlling robot 118-121\nprogram, on Raspberry Pi Zero\n  creating, for\
+  \ controlling hand 178, 179\nPuTTY\n  about 18\n  URL 18\nPWM\n  about 86, 102,\
+  \ 154\n  motor speed, controlling with 86-89\nPython\n  RC car, controlling 160-163\n\
+  \  references 40\nPython 2, versus Python 3\n  URL 40\nPython-Dev\n  using 141\n\
+  Python programs\n  creating 39-41\n  running 39-41\n\nQ\n\nquadcopter flight\n \
+  \ references 192\n\nquadruped\n  assembling 104\n  references 121\nquadruped platform\n\
+  \  building 103-107\nquadruped robot\n  URL 103\n\nR\n\nRaspberry Pi\n  references\
+  \ 128\n  URL 9, 10\nRaspberry Pi Zero\n  about 1\n  accessing, from host PC 17-29\n\
+  \  and LED, code 59, 60\n  and robot, communication\n    between 125-129\n  and\
+  \ sonar sensor code 64, 65\n  digital compass, connecting to 66-70\n  functions,\
+  \ defining 46-48\n  GPIO capability 51-53\n  if statement 43, 44\n  libraries, in\
+  \ Python 48-50\n  modules, in Python 48-50\n  powering up, with Linux 31-37\n  programming\
+  \ constructs, defining 43\n  RC car, configuring with 150-159\n  RC car, controlling\
+  \ with 150-159\n  servo controller,\n    connecting to 114-117, 175-177\n  setting\
+  \ up 2\n  USB camera, installing on 180-182\n  used, for controlling mobile platform\n\
+  \    programmatically 83-86\n  while statement 45, 46\nRaspberry Pi Zero, in Python\n\
+  \  used, for controlling vehicle 92-95\nRaspbian 9\nRasPiRobot Board V2\n  URL 89\n\
+  RC car\n  accessing remotely 163-165\n  configuring, with\n    Raspberry Pi Zero\
+  \ 150-159\n  controlling, in Python 160-163\n\n"
