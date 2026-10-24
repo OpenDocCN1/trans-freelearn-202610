@@ -1,0 +1,73 @@
+reviews:
+- 'no': 3036
+  overturn_probability: 0.1
+  alternative: 正文之前的致谢/前言类小标题
+  counter_evidence:
+  - 该行紧接大量索引式条目（资源名、参数名、页码），属于书末索引或附录尾部，而非正文章节开头
+  - 后续内容为出版社介绍、相关图书推荐等书末元数据，不构成新章正文
+  - 格式为 Markdown 二级标题（##），与正文章标题通常的一级标题或带编号格式不同
+  keep_split: true
+- 'no': 3037
+  overturn_probability: 0.1
+  alternative: 正文之前的前言/序言类小标题
+  counter_evidence:
+  - 位于书末索引与出版社介绍之间，属于元数据区域，非正文章节
+  - 后续为空行及出版社介绍正文，无章节概述段落或子节结构
+  - 与前后多个“##”标题同属书末附录/版权页性质内容
+  keep_split: true
+- 'no': 3039
+  overturn_probability: 0.1
+  alternative: 正文之前的出版社介绍小标题
+  counter_evidence:
+  - 内容为“关于 Packt 出版社”，明显是书末版权/出版社简介，不具备统领后续正文的章标题语义
+  - 后续正文为出版社介绍段落，而非新章内容
+  - 与前后多个“##”标题同属书末元数据区域
+  keep_split: true
+- 'no': 3048
+  overturn_probability: 0.1
+  alternative: 正文之前的补充说明小标题
+  counter_evidence:
+  - 内容为“关于 Packt 开源”，属于出版社品牌介绍，非书籍章节
+  - 后续为 Packt Open Source 品牌介绍段落，无章节结构特征
+  - 位于书末元数据区域，与正文章节无关
+  keep_split: true
+- 'no': 3052
+  overturn_probability: 0.1
+  alternative: 正文之前的作者指南小标题
+  counter_evidence:
+  - 内容为“为 Packt 撰写”，明显是投稿/作者指南，属于书末附录信息
+  - 后续为联系邮箱和编辑介绍段落，非新章正文
+  - 与前后多个“##”标题同属书末元数据区域
+  keep_split: true
+- 'no': 3058
+  overturn_probability: 0.1
+  alternative: 正文之前的相关图书推荐小标题
+  counter_evidence:
+  - 内容为“Chef 基础架构自动化食谱”，后续紧跟 ISBN、页数、简介和特性列表，明显是图书推荐/书目条目
+  - 不具备章标题的统领性，后续无本章正文内容
+  - 与前后多个图书推荐标题格式一致，属于书末书单区域
+  keep_split: true
+- 'no': 3069
+  overturn_probability: 0.1
+  alternative: 正文之前的相关图书推荐小标题
+  counter_evidence:
+  - 内容为“Chef 入门指南”，后续紧跟 ISBN、页数、简介和特性列表，明显是图书推荐条目
+  - 不具备章标题语义，后续无本章正文
+  - 与前后多个图书推荐标题格式一致，属于书末书单区域
+  keep_split: true
+- 'no': 3082
+  overturn_probability: 0.1
+  alternative: 正文之前的相关图书推荐小标题
+  counter_evidence:
+  - 内容为“学习 Windows Azure 移动服务用于 Windows 8 和 Windows Pho...”，后续紧跟 ISBN、页数、简介和特性列表，明显是图书推荐条目
+  - 不具备章标题语义，后续无本章正文
+  - 与前后多个图书推荐标题格式一致，属于书末书单区域
+  keep_split: true
+- 'no': 3092
+  overturn_probability: 0.1
+  alternative: 正文之前的相关图书推荐小标题
+  counter_evidence:
+  - 内容为“使用 Vagrant 创建开发环境”，后续紧跟 ISBN、页数、简介和特性列表，明显是图书推荐条目
+  - 不具备章标题语义，后续无本章正文
+  - 与前后多个图书推荐标题格式一致，属于书末书单区域
+  keep_split: true
