@@ -1,0 +1,70 @@
+reviews:
+- 'no': 0
+  overturn_probability: 0.05
+  alternative: 书名封面/书名页
+  counter_evidence:
+  - 行内容为完整书名，无章节编号，属于书籍封面或扉页信息，而非正文章节标题
+  - 后续行（6 行“## 前言”）才是正文前置内容的真正起始
+  keep_split: true
+- 'no': 6
+  overturn_probability: 0.0
+  alternative: 前言（正文前置内容）
+  counter_evidence:
+  - 规则明确说明：前言、序言、致谢等正文之前的内容，统一划分为一章
+  keep_split: true
+- 'no': 48
+  overturn_probability: 0.15
+  alternative: 重复的前言标题（可能为排版噪声或前言的第二部分）
+  counter_evidence:
+  - 行 6 已出现“## 前言”，行 48 再次出现相同标题，极可能是重复页眉、扫描重复或前言延续，而非独立章节
+  - 行 48 之后直接是正文段落（“数字孪生越来越多地被用于...”），缺乏新章节应有的独立起始特征
+  keep_split: false
+- 'no': 166
+  overturn_probability: 0.0
+  alternative: 第 1 部分标题（部分-章节模式）
+  counter_evidence:
+  - 规则说明：若存在“第 X 部分”，则属部分-章节模式，遇到部分标题时要划分新章
+  keep_split: true
+- 'no': 175
+  overturn_probability: 0.0
+  alternative: 第 1 章标题
+  counter_evidence:
+  - 编号为最高层级“第 1 章”，单独成行，后文跟有概述段落和子节，符合章标题所有特征
+  keep_split: true
+- 'no': 710
+  overturn_probability: 0.0
+  alternative: 第 2 章标题
+  counter_evidence:
+  - 编号为最高层级“第 2 章”，单独成行，后文跟有概述段落，符合章标题所有特征
+  keep_split: true
+- 'no': 1099
+  overturn_probability: 0.3
+  alternative: 第 2 节标题（子层级板块）
+  counter_evidence:
+  - 规则明确：只划分全书最高层级的大章，遇到“第 X 节”等子层级不划分新章节
+  - 行 1099 为“## 第 2 节：构建数字孪生”，属于第 2 章内部的节标题，而非最高层级章节
+  keep_split: false
+- 'no': 1111
+  overturn_probability: 0.0
+  alternative: 第 3 章标题
+  counter_evidence:
+  - 编号为最高层级“第 3 章”，单独成行，后文跟有概述段落，符合章标题所有特征
+  keep_split: true
+- 'no': 1502
+  overturn_probability: 0.0
+  alternative: 第 4 章标题
+  counter_evidence:
+  - 编号为最高层级“第 4 章”，单独成行，后文跟有概述段落，符合章标题所有特征
+  keep_split: true
+- 'no': 2026
+  overturn_probability: 0.0
+  alternative: 第 5 章标题
+  counter_evidence:
+  - 编号为最高层级“第 5 章”，单独成行，后文跟有概述段落，符合章标题所有特征
+  keep_split: true
+- 'no': 2497
+  overturn_probability: 0.0
+  alternative: 第 6 章标题
+  counter_evidence:
+  - 编号为最高层级“第 6 章”，单独成行，后文跟有概述段落，符合章标题所有特征
+  keep_split: true

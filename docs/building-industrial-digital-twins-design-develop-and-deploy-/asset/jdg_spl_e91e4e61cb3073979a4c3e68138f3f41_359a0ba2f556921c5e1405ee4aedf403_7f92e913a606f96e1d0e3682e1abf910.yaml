@@ -1,0 +1,87 @@
+chapter_starts:
+- 'no': 0
+  confidence: 0.95
+  final_reason: 双方一致：书名封面/扉页，作为全书起始章
+  accepted_evidence:
+  - 行 0 为完整书名，无章节编号，位于正文之前
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 6
+  confidence: 0.9
+  final_reason: 双方一致：前言，正文之前的前置内容，统一划分为一章
+  accepted_evidence:
+  - 规则明确：前言、序言、致谢等正文之前的内容，统一划分为一章
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 48
+  confidence: 0.85
+  final_reason: 复核方反对成立：行 6 已为“## 前言”，行 48 重复出现相同标题，极可能为排版噪声或前言延续，不应作为独立章节
+  accepted_evidence:
+  - 行 6 已出现“## 前言”，行 48 之后直接是正文段落，缺乏新章节独立起始特征
+  rejected_evidence:
+  - 判断方将其视为前言章节
+  need_human_review: false
+- 'no': 166
+  confidence: 0.95
+  final_reason: 双方一致：第 1 部分标题，部分-章节模式下需划分新章
+  accepted_evidence:
+  - 存在“第 1 部分”，属部分-章节模式，遇到部分标题时要划分新章
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 175
+  confidence: 0.95
+  final_reason: 双方一致：第 1 章标题，最高层级章节编号，单独成行且后有概述段落
+  accepted_evidence:
+  - 编号为最高层级“第 1 章”，单独成行，后文跟有概述段落和子节，符合章标题所有特征
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 710
+  confidence: 0.95
+  final_reason: 双方一致：第 2 章标题，最高层级章节编号，单独成行且后有概述段落
+  accepted_evidence:
+  - 编号为最高层级“第 2 章”，单独成行，后文跟有概述段落，符合章标题所有特征
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 1099
+  confidence: 0.9
+  final_reason: 复核方反对成立：行 1099 为“## 第 2 节：构建数字孪生”，属于第 2 章内部的节标题，非最高层级章节，不应划分新章
+  accepted_evidence:
+  - 规则明确：只划分全书最高层级的大章，遇到“第 X 节”等子层级不划分新章节
+  rejected_evidence:
+  - 判断方将其视为新内容板块起始
+  need_human_review: false
+- 'no': 1111
+  confidence: 0.95
+  final_reason: 双方一致：第 3 章标题，最高层级章节编号，单独成行且后有概述段落
+  accepted_evidence:
+  - 编号为最高层级“第 3 章”，单独成行，后文跟有概述段落，符合章标题所有特征
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 1502
+  confidence: 0.95
+  final_reason: 双方一致：第 4 章标题，最高层级章节编号，单独成行且后有概述段落
+  accepted_evidence:
+  - 编号为最高层级“第 4 章”，单独成行，后文跟有概述段落，符合章标题所有特征
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 2026
+  confidence: 0.95
+  final_reason: 双方一致：第 5 章标题，最高层级章节编号，单独成行且后有概述段落
+  accepted_evidence:
+  - 编号为最高层级“第 5 章”，单独成行，后文跟有概述段落，符合章标题所有特征
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 2497
+  confidence: 0.95
+  final_reason: 双方一致：第 6 章标题，最高层级章节编号，单独成行且后有概述段落
+  accepted_evidence:
+  - 编号为最高层级“第 6 章”，单独成行，后文跟有概述段落，符合章标题所有特征
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 48
+  reason: 复核方指出其为重复的前言标题，判断方无有力反驳，且行 48 之后直接是正文段落，缺乏新章节独立起始特征
+  need_human_review: false
+- 'no': 1099
+  reason: 复核方指出其为第 2 节标题（子层级板块），规则明确不划分子层级新章节，判断方证据不足
+  need_human_review: false
