@@ -1,0 +1,52 @@
+chapter_starts:
+- 'no': 2
+  confidence: 0.95
+  final_reason: 致谢/前言类前置内容，按规则统一划分为一章起始，复核方支持保留
+  accepted_evidence:
+  - 正文之前的致谢/前言部分，按规则统一划分为一章起始
+  - 致谢属于前言类前置内容，按规则可统一划为一章起始，置信度较高
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 134
+  confidence: 0.85
+  final_reason: 部分标题“模块 1”，部分-章节模式下部分标题应划分新章，复核方支持保留
+  accepted_evidence:
+  - 部分标题“模块 1”，部分-章节模式下部分标题应划分新章
+  - 模块标题在部分-章节模式下应作为新章，上下文随后进入模块1正文
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 1480
+  confidence: 0.95
+  final_reason: 行1480为‘## 5 创建出色的地图’，单独成行且后接概述，符合章标题特征，复核方支持保留
+  accepted_evidence:
+  - 第 5 章标题，编号和标题同行，单独成行，后续为概述
+  - 行1480为‘## 5 创建出色的地图’，单独成行且后接概述，符合章标题特征
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 2577
+  confidence: 0.85
+  final_reason: Module 2 为部分标题，在部分-章节模式下应划分新章，复核方支持保留
+  accepted_evidence:
+  - 部分标题“Module 2”，部分-章节模式下部分标题应划分新章
+  - Module 2 为部分标题，在部分-章节模式下应划分新章
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 142
+  reason: 行142内容为‘### 开始使用 QGIS’，为三级小标题而非章标题；真正的章号在行140，复核方反证成立，优先采纳复核
+  need_human_review: false
+- 'no': 385
+  reason: 行385内容为‘查看空间数据’，为章节内的节标题；章号‘## 2’在行384，复核方指出为正文小标题，判断方无有力反驳
+  need_human_review: false
+- 'no': 739
+  reason: 行739内容为‘## 数据创建与编辑’，为二级小标题；章号‘# 3’在行737，复核方指出为节标题而非章标题
+  need_human_review: false
+- 'no': 1084
+  reason: 行1084为‘## 空间分析’，上下文中更可能为第4章内的节标题，章级入口证据不足，双方证据均不足，倾向不分章并需人工复核
+  need_human_review: true
+- 'no': 1955
+  reason: 行1955内容为‘## 使用 Python 扩展 QGIS’，为节标题；章号‘## 6’在行1953，复核方反证成立
+  need_human_review: false
+- 'no': 2584
+  reason: 行2584内容为‘探索地点 — 从概念到界面’，为节标题；章号‘## 1’在行2583，复核方指出为节级概述
+  need_human_review: false

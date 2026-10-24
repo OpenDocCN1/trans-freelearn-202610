@@ -1,0 +1,11 @@
+# Selecting features with the mouse
+
+The first group of tools in the **Attributes** toolbar allows us to select features on the map using the mouse. The following screenshot shows the **Select Feature(s)** tool. We can select a single feature by clicking on it, or select multiple features by drawing a rectangle. The other tools can be used to select features by drawing different shapes (polygons, freehand areas, or circles) around the features. All features that intersect with the drawn shape are selected.
+
+![](bbox=[0.388, 0.282, 0.612, 0.396])
+
+# Selecting features with expressions
+
+The second type of select tool is called **Select by Expression**, and it is also available in the **Attribute** toolbar. It selects features based on expressions that can contain references and functions that use feature attributes and/or geometry. The list of available functions in the center of the dialog is pretty long, but we can use the search box at the top of the list to filter it by name and find the function we are looking for faster. On the right-hand side of the window, we find the function help, which explains the functionality and how to use the function in an expression. The function list also shows the layer attribute fields, and by clicking on **all unique** or **10 samples**, we can easily access their content. We can choose between creating a new selection or adding to or deleting from an existing selection. Additionally, we can choose to only select features from within an existing selection. Let's take a look at some example expressions that you can build on and use in your own work:
+
++   - Using the `lakes.shp` file in our sample data, we can, for example, select lakes with an area greater than 1,000 square miles by using a simple `"AREA_MI" > 1000.0` attribute query, as shown in the following screenshot. Alternatively, we can use geometry functions such as `$area > (1000.0 * 27878400)`. Note that the `lakes.shp` CRS uses feet, and therefore we have to multiply by 27,878,400 to convert square feet to square miles.

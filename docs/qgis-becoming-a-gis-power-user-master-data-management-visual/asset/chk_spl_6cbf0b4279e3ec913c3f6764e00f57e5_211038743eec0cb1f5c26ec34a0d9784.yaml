@@ -1,0 +1,64 @@
+reviews:
+- 'no': 3112
+  overturn_probability: 0.85
+  alternative: 正文小标题
+  counter_evidence:
+  - '行号 3110-3111 为上一节 ## 总结 的结束语，3112 后紧跟 ## 识别最佳地点 的正文介绍，上下文为第2章内部的二级小节而非全书最高层级大章'
+  - '标题格式为 ## 且长度较短，符合正文小标题特征，且后续 3114-3126 为本节主题列举，3112 后无章序号且前后无前言/序言类分隔'
+  keep_split: false
+- 'no': 3430
+  overturn_probability: 0.7
+  alternative: 排版断行/其他
+  counter_evidence:
+  - '行内容为孤立的 ''# 3''，前后 3429 为 ## 总结，3431 为 ## 发现物理，3432 为 ## 关系，疑似章节编号与标题拆分导致的排版噪声'
+  - 真正的章标题在本书中为 '## 4 寻找最佳路径' 等带编号+标题的完整行，单独 '# 3' 不符合格式特征且长度远小于30字但无统领语义
+  keep_split: false
+- 'no': 3431
+  overturn_probability: 0.75
+  alternative: 正文小标题
+  counter_evidence:
+  - 3430 '# 3' 与 3431 '## 发现物理'、3432 '## 关系' 构成标题块，实际为第3章内部的二级标题而非最高层级大章
+  - 后续 3434 起为本节概述段落，且 3436 起为主题列表，符合小节而非新章的上下文特征
+  keep_split: false
+- 'no': 3844
+  overturn_probability: 0.15
+  alternative: 章节标题
+  counter_evidence:
+  - 行号 3844 为 '## 4 寻找最佳路径'，格式为编号+标题，单独成行，后续 3846 起为本章概述，符合最高层级大章特征
+  - '前一章在 3840 ## 摘要 结束，存在明显章节边界'
+  keep_split: true
+- 'no': 4260
+  overturn_probability: 0.1
+  alternative: 章节标题
+  counter_evidence:
+  - 行号 4260 为 '## 5 展示变化'，编号+标题，单独成行，后续 4262 起为本章介绍，符合大章特征
+  keep_split: true
+- 'no': 4817
+  overturn_probability: 0.8
+  alternative: 排版断行/其他
+  counter_evidence:
+  - 行内容仅为 '## 6'，无标题语义，后续 4819 为 '## 估计未知值'，疑似编号与标题被拆分为两行导致的排版噪声
+  - 单独编号行不符合标题末尾无句号且长度<30字的统领性要求，且前后无总结段落分隔
+  keep_split: false
+- 'no': 4819
+  overturn_probability: 0.6
+  alternative: 正文小标题
+  counter_evidence:
+  - 4819 '## 估计未知值' 紧跟在孤立的 '## 6' 之后，实际构成第6章的完整标题 '6 估计未知值'，但在本书体系中第6章标题应为 '## 6'
+    + 主题，单独判定为新章会重复切分
+  - 上下文 4821 起为本章概述，虽具统领性但与 4817 构成同一章标题块，不应再单独分章
+  keep_split: false
+- 'no': 5510
+  overturn_probability: 0.75
+  alternative: 排版断行/其他
+  counter_evidence:
+  - 行内容仅为 '## 7'，无标题语义，后续 5511 为 '## 面向企业和社区的制图'，为典型的编号与标题拆分排版噪声
+  - 单独编号行不应作为章节起点
+  keep_split: false
+- 'no': 5511
+  overturn_probability: 0.2
+  alternative: 章节标题
+  counter_evidence:
+  - 行号 5511 为 '## 面向企业和社区的制图'，与前一行的 '## 7' 共同构成第7章完整标题，后续 5513 起为本章介绍，符合大章特征
+  - '前一章在 5507 ## 总结 结束，存在章节边界'
+  keep_split: true

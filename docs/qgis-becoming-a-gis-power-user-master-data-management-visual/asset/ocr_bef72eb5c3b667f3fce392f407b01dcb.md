@@ -1,0 +1,5 @@
+Toolbars and panels can be activated and deactivated via the **View** menu's **Panels** and **Toolbars** entries, as well as by right-clicking on a menu or toolbar, which will open a context menu with all the available toolbars and panels. All the tools on the toolbars can also be accessed via the menu. If you deactivate the **Manage Layers Toolbar**, for example, you will still be able to add layers using the **Layer** menu.
+
+As you might have guessed by now, QGIS is highly customizable. You can increase your productivity by assigning shortcuts to the tools you use regularly, which you can do by going to **Settings | Configure Shortcuts**. Similarly, if you realize that you never use a certain toolbar button or menu entry, you can hide it by going to **Settings | Customization**. For example, if you don't have access to an Oracle Spatial database, you might want to hide the associated buttons to remove clutter and save screen estate, as shown in the following screenshot:
+
+![](bbox=[0.179, 0.362, 0.821, 0.7])
