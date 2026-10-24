@@ -1,0 +1,82 @@
+chapter_starts:
+- 'no': 3642
+  confidence: 0.9
+  final_reason: 判断方与复核方均认定其为部分级标题，符合部分-章节模式，应划分新章；复核方提出的格式层级疑点不影响其作为 Part 3 总括其后多章的结构地位
+  accepted_evidence:
+  - '标题明确为“Part 3: Advanced Scraping Concepts”，为全书最高层级的部分标题'
+  - 后文紧跟本部分包含章节的概述与列表，具有统领性
+  - 复核方 keep_split=true，未提出推翻证据
+  rejected_evidence:
+  - '复核方指出其与前后 ## 节级标题同级，格式上无法直接证明为部分标题'
+  - 复核方认为中英文部分编号混用，可能是目录式过渡文本
+  need_human_review: false
+- 'no': 3653
+  confidence: 0.85
+  final_reason: 虽无显式章号，但前文 3648 已预告 Chapter 6，且标题单独成行、后接章节主题列表，符合新章语义；复核方反证不足以推翻
+  accepted_evidence:
+  - 前文 3648 行列出“Chapter 6, Working with the Secure Web”，本行即为该章起始
+  - 标题“## Working with the Secure Web”单独成行，长度符合章标题特征
+  - 后文提到“在本章中，我们将学习以下主题”，是典型的章首概述
+  rejected_evidence:
+  - '复核方指出标题没有显式“Chapter 6”，且与二级标题共用 ## 层级'
+  - 复核方认为可能是前文列表项的重复回显
+  need_human_review: false
+- 'no': 4069
+  confidence: 0.9
+  final_reason: 位于第 6 章 Further reading 之后，标题“Data Extraction Using Web APIs”与后续章节主题一致，且后接完整章首介绍；#
+    层级混用在本书中不影响其作为新章起始
+  accepted_evidence:
+  - 上一章（第 6 章）结束于 4047 行 Further reading，4069 为全新主题
+  - 标题后紧跟“到目前为止，我们已在本書的各章中学习了……”，为章首概述
+  - 后文列出本章主题列表，覆盖后续小节
+  rejected_evidence:
+  - '复核方指出后续行 4083、4096 同样以 # 开头，不能唯一标识章起始'
+  - '复核方认为前文章末也有 # Summary、# Further reading，可能被误认'
+  need_human_review: false
+- 'no': 4477
+  confidence: 0.9
+  final_reason: 前接第 7 章 Further reading，标题“使用 Selenium 进行网络爬取”为新章节主题，后文明确回顾第 1 至 7
+    章并引出第 8 章内容，语义与结构均支持分章
+  accepted_evidence:
+  - 标题“## 使用 Selenium 进行网络爬取”单独成行，无句末标点
+  - 后文“到目前为止，我们在第 1 章到第 7 章中学习了一些 Python 库……”明确为章首回顾
+  - 随后列出本章主题列表，结构完整
+  rejected_evidence:
+  - '复核方指出没有章节编号，且与章内 ## 节标题同层级'
+  - 复核方认为若只看局部可被当作普通二级标题
+  need_human_review: false
+- 'no': 5032
+  confidence: 0.9
+  final_reason: 位于第 8 章 Further reading 之后，标题“使用正则表达式和 PDF”为第 9 章主题，后接章首概述与主题列表，判断方与复核方均维持分章
+  accepted_evidence:
+  - 上一章结束于 5010 行“## 进一步阅读”，5032 为全新主题
+  - 标题后文“到目前为止，我们已经学习并探索了一些核心 Python 库……”为章首引言
+  - 后文列出本章主题列表，覆盖全章内容
+  rejected_evidence:
+  - '复核方指出章内有很多 # 级别的子标题，如 # 技术要求、# regex 概述'
+  - 复核方认为其前一行是列表项，可能被误读为普通标题
+  need_human_review: false
+- 'no': 5719
+  confidence: 0.9
+  final_reason: “第 4 部分：高级数据相关概念”为部分级标题，符合部分-章节模式，应作为新章起始；复核方提出的编号体系混用不影响其结构作用
+  accepted_evidence:
+  - 标题明确为“第 4 部分”，是全书最高层级的部分标题
+  - 后文列出本部分包含的章节（第 10、11 章），统领后续内容
+  - 复核方 keep_split=true，未提出推翻证据
+  rejected_evidence:
+  - '复核方指出其与紧随其后的章标题同为 ##，格式上无法单独区分'
+  - 复核方认为中英文编号体系不一致，可能是 OCR 误合
+  need_human_review: false
+- 'no': 5728
+  confidence: 0.85
+  final_reason: 虽然行首“10”缺少“第/章”字样，但前文本部分章节列表已预告“第 10 章，数据挖掘、分析和可视化”，且标题单独成行、后接章首概述，可确认为第
+    10 章起始；复核方反证为列表残留的可能性较低
+  accepted_evidence:
+  - 前文 5725 行列表明确列出“第 10 章，数据挖掘、分析和可视化”，本行与之对应
+  - 标题“## 10 数据挖掘、分析和可视化”单独成行，后接“到目前为止”等章首引言
+  - 后文列出本章主题列表，符合章标题语义
+  rejected_evidence:
+  - 复核方指出行首“10”可能是有序列表项残留
+  - '复核方认为与部分标题同为 ##，格式层级混乱'
+  need_human_review: false
+rejected_lines: []

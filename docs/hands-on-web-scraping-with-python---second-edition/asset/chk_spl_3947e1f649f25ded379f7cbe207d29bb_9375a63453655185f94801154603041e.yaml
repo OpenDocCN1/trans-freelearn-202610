@@ -1,0 +1,30 @@
+reviews:
+- 'no': 6504
+  overturn_probability: 0.05
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 行内容为 '## 11 机器学习与网页抓取'，带有明确的最高层级章序号 11，独立成行且语义统领后续机器学习与网页抓取内容
+  - 前后文 6506 起即为本章引言，符合章标题上下文特征
+  keep_split: true
+- 'no': 7151
+  overturn_probability: 0.08
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 行内容为 '## 第5部分：结论'，为部分级标题，书中已出现部分-章节模式，部分标题应作为新章划分
+  - 后续 7155 起列出本部分包含章节，符合部分标题的统领性语义
+  keep_split: true
+- 'no': 7161
+  overturn_probability: 0.88
+  alternative: 正文小标题/章节副标题
+  counter_evidence:
+  - 前一行 7159 已为 '## 12'，为第12章的编号行，7159 与 7161 构成同一章节的编号+标题组合，7161 实为该章的完整标题而非新章起点
+  - 行 7161 后 7163 起直接进入本章正文概述，未出现新的编号跳跃，符合同一章节内部的标题延续而非新章划分
+  - 原判断将 7159 视为编号残留并把 7161 作为新章起点，割裂了编号与标题的配对关系，属于误报
+  keep_split: false
+- 'no': 7481
+  overturn_probability: 0.03
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 行内容为 '# 索引'，位于文末，符合文末索引统一划分为一章的规则
+  - 后续 7483 起为索引条目列表，语义与索引章节一致
+  keep_split: true

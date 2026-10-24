@@ -1,0 +1,52 @@
+reviews:
+- 'no': 3642
+  overturn_probability: 0.1
+  alternative: 其他：图书部分扉页（Part opener）上的过渡标题，而不是正文中的常规章节标题。
+  counter_evidence:
+  - 该行在 Markdown 中仅以 `##` 标记，与前后出现的 `## Summary`、`## Further reading` 等节级标题同级，格式层级上不能直接证明它是部分标题。
+  - 前后文的中英文部分编号混用（Part 3 与第 4 部分），若原文档转换过程丢失部分标记，可能只是位于章末的目录式过渡文本。
+  keep_split: true
+- 'no': 3653
+  overturn_probability: 0.2
+  alternative: 正文小标题：Part 3 之下的第一个二级节标题，而不是新章。
+  counter_evidence:
+  - 标题没有显式的 'Chapter 6' 或 '第 6 章' 编号，且与章内二级标题共用 `##` 层级，容易被误读为普通节标题。
+  - 前文 3648-3651 刚刚以列表形式预告了 'Chapter 6, Working with the Secure Web'，3653 看起来像是列表项的重复回显，而非新一章的开头。
+  keep_split: true
+- 'no': 4069
+  overturn_probability: 0.15
+  alternative: 正文小标题：章内以 `#` 标记的一级主题标题，而不是新章。
+  counter_evidence:
+  - 后续行 4083、4096 同样以 `#` 开头，如 `# Technical requirements`、`# Introduction to web APIs`，说明
+    `#` 不能唯一标识章起始，可能是转换时把多种标题层级都映射为 `#`。
+  - 前文同一章末尾也有 `# Summary`、`# Further reading` 等 `#` 标题，4069 可能被误认为这些主题块的延续，而非新章。
+  keep_split: true
+- 'no': 4477
+  overturn_probability: 0.2
+  alternative: 正文小标题：前文技术主题（BeautifulSoup/Scrapy）之后的另一个二级标题，而不是新章。
+  counter_evidence:
+  - 没有章节编号，且前文第 7 章内部的节标题也都是 `##` 级别，例如 `## 使用 API 进行 Web 抓取`，仅凭 `##` 无法与节标题区分。
+  - 它位于大段空行和上一章 `## Further reading` 之后，若只看局部，可被当作另一个普通二级标题，需要后文 '在本章中' 才能确认。
+  keep_split: true
+- 'no': 5032
+  overturn_probability: 0.15
+  alternative: 正文小标题：章内以 `#` 标记的一级节标题，而不是新章。
+  counter_evidence:
+  - 该章内有很多 `#` 级别的子标题，如 `# 技术要求`、`# regex 概述`、`# 使用 Python 的 Regex`，所以 `#` 层级不足以证明它是最高级的章标题。
+  - 前行 5031 为空行，且 5030 是列表项，5032 看起来像从 'Further reading' 列表中突然转入的普通标题，而非明确的 '第 9 章'。
+  keep_split: true
+- 'no': 5719
+  overturn_probability: 0.08
+  alternative: 其他：书籍部分扉页上的过渡标题，若按普通文本流可能被当作上一章结尾的附属信息，而不是新分章。
+  counter_evidence:
+  - 它与紧随其后的章标题 `## 10 数据挖掘、分析和可视化` 同为 `##`，同时前文 `## 进一步阅读` 也是 `##`，格式上无法单独区分出部分级。
+  - 该行中文编号体系与前文 'Part 3' 的英文体系不一致，可能是 OCR/翻译阶段将原书部分扉页文字误合入正文，而非真正的结构标题。
+  keep_split: true
+- 'no': 5728
+  overturn_probability: 0.2
+  alternative: 列表项/编号与标题粘连的残留：行首的 '10' 可能是书稿中的章节编号残片，被误读为章标题。
+  counter_evidence:
+  - 行首 '10' 后直接接标题，没有 '第' 或 'Chapter' 字样，容易被解析为有序列表项 '10' 与后续文字的粘连（类似前一行 5726 中的 '-
+    第 11 章，...'）。
+  - 它与部分标题 `## 第 4 部分` 同为 `##`，且后文节标题也大量使用 `##`，格式层级混乱，存在将列表项残留误认为章标题的风险。
+  keep_split: true

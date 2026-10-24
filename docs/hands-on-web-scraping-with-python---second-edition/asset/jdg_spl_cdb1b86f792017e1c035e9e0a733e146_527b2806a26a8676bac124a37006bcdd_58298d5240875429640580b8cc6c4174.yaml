@@ -1,0 +1,45 @@
+chapter_starts:
+- 'no': 15
+  confidence: 0.9
+  final_reason: 前置信息块起始，位于献辞致谢之后目录之前，统一划分为一章
+  accepted_evidence:
+  - 位于献辞、致谢之后、目录之前，属于前置信息块的二级标题
+  - 前后均为前言类内容
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 1430
+  confidence: 0.8
+  final_reason: 部分标题，第 2 部分，标题跨行构成完整部分名，后接部分概述，符合部分-章节模式分章
+  accepted_evidence:
+  - 标题跨行‘# 第 2 部分：’后行‘开始 Web 爬取’构成完整部分名，符合部分-章节模式的分章规则
+  - 后接‘本部分包含以下章节’的概述，语义具有统领性
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 1441
+  confidence: 0.95
+  final_reason: 章标题，单独成行，语义概括第3章内容，后接概述和子节
+  accepted_evidence:
+  - 单独成行、长度<30字、无句号，后1~3行为章节概述且随后出现‘技术要求’子节
+  - 与前后‘第2部分’的层级关系一致，为一级章标题
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 2238
+  confidence: 0.98
+  final_reason: 章标题，第4章，一级标题单独成行，后接技术要求和章节内容
+  accepted_evidence:
+  - 英文一级标题单独成行，后接‘In the previous chapters…’概述及‘Technical requirements’
+  - 前后章节编号连续，符合全书最高层级大章特征
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 2866
+  confidence: 0.95
+  final_reason: 章标题，第5章，单独成行，后接概述和章节内容
+  accepted_evidence:
+  - 单独成行、语义概括第5章内容，后接概述和‘Technical requirements’
+  - 与前一章标题层级、格式一致，为正常章节起始
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 268
+  reason: 复核方指出为前言附录区的重复/排版噪声，非正文章节起始；同名标题在第650行才是章节开篇，268前后为下载示例代码文件、使用约定等前言内容，上下文不支持分章
+  need_human_review: false

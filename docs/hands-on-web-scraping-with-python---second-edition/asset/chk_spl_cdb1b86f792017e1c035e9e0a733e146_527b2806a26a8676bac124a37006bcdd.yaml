@@ -1,0 +1,43 @@
+reviews:
+- 'no': 15
+  overturn_probability: 0.15
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 位于献辞、致谢之后、目录之前，属于前置信息块的二级标题
+  - 前后均为前言类内容，无后续章节概述段落
+  keep_split: true
+- 'no': 268
+  overturn_probability: 0.78
+  alternative: 正文小标题
+  counter_evidence:
+  - 同名标题在第650行再次出现且后接‘在本章中，我们将了解…’的章节开篇语义，268处为前置说明的重复/排版噪声
+  - 268前后为‘下载示例代码文件’‘使用约定’等前言附录内容，非正文章节起始上下文
+  keep_split: false
+- 'no': 1430
+  overturn_probability: 0.22
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 标题跨行‘# 第 2 部分：’后行‘开始 Web 爬取’构成完整部分名，符合部分-章节模式的分章规则
+  - 后接‘本部分包含以下章节’的概述，语义具有统领性
+  keep_split: true
+- 'no': 1441
+  overturn_probability: 0.12
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 单独成行、长度<30字、无句号，后1~3行为章节概述且随后出现‘技术要求’子节
+  - 与前后‘第2部分’的层级关系一致，为一级章标题
+  keep_split: true
+- 'no': 2238
+  overturn_probability: 0.08
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 英文一级标题单独成行，后接‘In the previous chapters…’概述及‘Technical requirements’
+  - 前后章节编号连续，符合全书最高层级大章特征
+  keep_split: true
+- 'no': 2866
+  overturn_probability: 0.1
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 单独成行、语义概括第5章内容，后接概述和‘Technical requirements’
+  - 与前一章标题层级、格式一致，为正常章节起始
+  keep_split: true

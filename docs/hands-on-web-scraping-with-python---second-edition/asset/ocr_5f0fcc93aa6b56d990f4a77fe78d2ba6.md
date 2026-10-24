@@ -1,0 +1,15 @@
+**Important note**
+It's also an important factor to consider that, in the current case, only the `Cookie` header value was sufficient for successful form submission. There are plenty of other keys inside HTTP headers (such as `Accept`, `Origin`, `Host`, and `User-Agent`) that are also important and must be passed along with HTTP GET or POST parameters for successful form submission.
+
+Apart from the form elements, HTTP headers and cookie values do play a significant role in form submission, and even in receiving the expected response from the processed link. In the next section, we will introduce and learn how to use the HTTP proxy.
+
+# Using proxies
+
+A proxy (HTTP proxy or web proxy) is considered middleware for the web. A proxy is a gateway that is used to communicate between a client and a server. Put simply, a proxy is an **Internet Protocol (IP)** address with some random ports assigned to it. On the web, an HTTP request starts from the client end with its own IP, which, when routed through the proxy, gets updated as a new IP and is then forwarded to the actual destination looking for a response. So, a proxy here works as a transport layer that resides between the client and the server or destination.
+
+On the internet, there are plenty of services (paid and free) offered by various organizations providing proxies that work as a filter layer for their customers and deal with different kinds of security-related threats, malware, content filtering, spy protection, and many other activities. There are plenty of benefits to using proxies; a few of them are listed here:
+
++   - **Privacy**: The destination server does not identify the actual client. Privacy issues are mitigated as the client has initiated a request using the web proxy.
++   - **Security**: With privacy in mind, client information is not shared with the end location, which is the server. Security features are implemented, such as blocking the scope of multiple related requests and blocking and blacklisting the IP for a certain duration.
++   - **Content filter**: Along with security and privacy, the proxy server or middle parties act as middleware between the client and server. In this process, middle parties can act as a secure layer that filters out content to the client based on some preconfigured settings. For example, parents can use settings regarding the content that's being delivered to their child (based on age, movie certificates, and many more factors). In addition, such a facility provides security to the end user against malware, spyware, geo-location-related spam, and anything that is detected as harmful or could be harmful to the client machine.
++   - **Speed**: Most proxy providers use their servers to accept client requests and perform a task on their behalf. These servers also possess in-built cache management systems that transfer the content immediately back to the client if it already exists in the cache. This speeds up the time taken for requests and the response cycle.
