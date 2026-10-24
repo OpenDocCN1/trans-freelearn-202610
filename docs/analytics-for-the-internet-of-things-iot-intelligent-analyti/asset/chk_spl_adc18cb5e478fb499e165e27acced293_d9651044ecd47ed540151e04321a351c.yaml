@@ -1,0 +1,43 @@
+reviews:
+- 'no': 3002
+  overturn_probability: 0.3
+  alternative: 正文小标题（章节内的大节标题）
+  counter_evidence:
+  - 该行使用'##'级别，而全书明确的章标题（如行5266'# 13 融会贯通'）使用'#'，这表明'##'更可能是节而不是章。
+  - 该行与其后的'## 问题层级法'、'## 构建问题树'等节标题级别相同，如果将其视为章，会导致章节级别混乱。
+  keep_split: true
+- 'no': 3424
+  overturn_probability: 0.25
+  alternative: 正文小标题
+  counter_evidence:
+  - 该行为'##'标题，与前后出现的'## Summary'等节标题同级，从Markdown层级看不是最高层级。
+  - 它虽然统领地理空间分析内容，但可能只是某一章内的部分标题，而非独立章。
+  keep_split: true
+- 'no': 3941
+  overturn_probability: 0.2
+  alternative: 正文小标题
+  counter_evidence:
+  - 该行以'##'开头，但后续章内出现了更高级别的'# 机器学习（ML）'等标题，表明该行可能只是部分或节标题。
+  - 如果将其视为章，那么其后的'# 机器学习'等更高级别标题无法解释，层级矛盾。
+  keep_split: true
+- 'no': 4699
+  overturn_probability: 0.3
+  alternative: 正文小标题
+  counter_evidence:
+  - 该行是'##'级别，而全书最高层级的章标题（如'# 13 融会贯通'）是'#'，因此它更可能是节。
+  - 内容上，它可能是上一章'深度学习'之后的一个新的节，而不是独立章。
+  keep_split: true
+- 'no': 4920
+  overturn_probability: 0.25
+  alternative: 正文小标题
+  counter_evidence:
+  - 该行是'##'级别，且前面紧接'## 总结'，与常见的节标题模式一致。
+  - 与其它'##'节标题（如'## 减少记录数量'）同级，无法仅凭级别判定为章。
+  keep_split: true
+- 'no': 5266
+  overturn_probability: 0.1
+  alternative: 正文小标题（若不分章，这可能是某部分的小标题，但实际是章）
+  counter_evidence:
+  - 它使用'#'级别，但全书其他章标题多使用'##'，格式不一致，可能只是转换差异。
+  - 标题为'13 融会贯通'，虽然带数字，但也可被误解为部分标题，而非章标题。
+  keep_split: true

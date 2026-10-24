@@ -1,0 +1,58 @@
+reviews:
+- 'no': 0
+  overturn_probability: 0.2
+  alternative: 书籍封面/书名页的标题，而不是真正的章节标题
+  counter_evidence:
+  - 该行只是全书书名，缺少“第X章”或“Y.”等章节编号特征，后面紧接的是“制作人员”等版权页信息，并非概述段落。
+  - 如果严格按格式特征，章标题应单独成行且后跟内容概述，而这里更像是封面/扉页残留，容易被误当作章节起点。
+  keep_split: true
+- 'no': 228
+  overturn_probability: 0.08
+  alternative: 页码或列表编号残留（数字“1”），真正的章标题在下一行
+  counter_evidence:
+  - “# 1”单独成行且不包含任何标题文字，格式上更像页码、列表编号或分节符，而非语义完整的章标题。
+  - 真正的标题“## Defining IoT Analytics and Challenges”在下一行且级别为二级，若以“# 1”为分章点，会出现同一章内标题层级不一致的现象。
+  keep_split: true
+- 'no': 418
+  overturn_probability: 0.05
+  alternative: 正文小标题或章节内的节标题（若强行不分章）
+  counter_evidence:
+  - 该行与前一行“## 小结”之间仅隔一空行，可能被误认为小结后的补充小节，而非新的一章。
+  - 标题中的中文“第2章”与第1章的英文风格不一致，存在转换误差或排版来源不同的可能。
+  keep_split: true
+- 'no': 948
+  overturn_probability: 0.35
+  alternative: 无编号的章内节标题，或上一章末尾的延伸小标题
+  counter_evidence:
+  - 该行没有“# 3”或“第3章”编号，与全书从“# 1”到“# 7”的章节编号序列不连续，这是最大的疑点。
+  - 它使用“##”二级标题，与其后各节（如“## 构建弹性分析”）同级，单看Markdown层级更像节而非章。
+  - 标题文字“云上的物联网分析”与目录中的“面向云的物联网分析”不完全一致，文本来源可能存在差异。
+  keep_split: true
+- 'no': 1504
+  overturn_probability: 0.08
+  alternative: 页码或列表编号残留（数字“4”），真正的章标题在下一行
+  counter_evidence:
+  - “# 4”只含编号不含标题，若脱离下一行“## 创建 AWS 云分析环境”，极易被误认为是页码或普通列表序号。
+  - 在它之前没有“## 总结”之类的明确章末标记，过渡略突兀，给误判留下空间。
+  keep_split: true
+- 'no': 1746
+  overturn_probability: 0.05
+  alternative: 页眉/页脚残留，或目录条目中的章节引用
+  counter_evidence:
+  - 该行与相邻章节标题的格式不统一：前面章节多用“# 数字”或“# 数字 标题”，这里突然变成“# 第 5 章 标题”，可能是不同来源的排版差异。
+  - 标题中的“-”可能被误认为正文断行或列表符号，而不是标题分隔符。
+  keep_split: true
+- 'no': 2306
+  overturn_probability: 0.05
+  alternative: 正文小标题，或书眉中重复出现的章节名
+  counter_evidence:
+  - 该行后面紧接的是故事性对话段落，而不是典型的概述段，若只看局部可能被误当成章节内的叙事小标题。
+  - 标题内包含破折号“-”，可能被误认为列表项或正文断行，而非完整的章标题。
+  keep_split: true
+- 'no': 2698
+  overturn_probability: 0.08
+  alternative: 页码或列表编号残留（数字“7”），真正的章标题在下一行
+  counter_evidence:
+  - “# 7”单独成行且没有标题文字，格式上很像页码或章节序号列表，而不是自然语言章标题。
+  - 与第1、4章的模式相同，但若转换过程丢失了标题行，就很难从“# 7”本身判断它一定是章起始。
+  keep_split: true

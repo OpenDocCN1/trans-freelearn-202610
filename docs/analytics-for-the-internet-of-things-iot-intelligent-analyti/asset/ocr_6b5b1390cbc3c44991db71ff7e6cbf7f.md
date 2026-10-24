@@ -1,0 +1,11 @@
+# What is machine learning?
+
+Ask a hundred experts for the definition of ML, and you are likely to get a hundred slightly different answers. Some will take a broad view and fully include deep learning, artificial intelligence, and some traditional statistical techniques, such as the sum of least squares linear regression. Others will be narrow and restrict their definition to a few modeling techniques, considering it separate from a related field called statistical learning.
+
+Some will say it does not even exist in the real world, only in over-hyped media stories. They feel it is all the same traditional statistical analysis that has been done for decades. Some will consider the term ML as completely interchangeable with the term artificial intelligence, while others will consider them very separate things.
+
+ML is an application of statistical techniques in an ordered set of steps (otherwise known as an algorithm). The statistical techniques are rarely new, many have been around for decades and some over a century. Many of the ML methods have also been around for several decades as well. What has changed is the dramatic decline in the cost of compute power along with a dramatic increase of computing capability. What would have taken months to calculate in 1980 now takes seconds or less.
+
+With the availability of some strong open source statistical software libraries, such as R and Python, combined with the low cost and available speed of modern computing hardware, ML has become practical to implement in a large variety of applications. With an increased use of ML came refinements to the existing methods and developments of new algorithms. This has led to a significant increase in predictive capability and a golden age for ML.
+
+We will use a (hopefully not overblown) analogy to help you think about this. With traditional statistical techniques, you are like a mechanical engineer, applying your expertise and knowledge of how things work to define a set of components that fit together. You use these methods to explicitly build your statistical model. You define the detail of each component based on testing and analysis of the data.
