@@ -1,0 +1,44 @@
+reviews:
+- 'no': 15
+  overturn_probability: 0.75
+  alternative: 正文前附属信息/前言类小标题
+  counter_evidence:
+  - 该行位于献辞、作者致谢之后的前言附属区，上下文为审稿人简介正文而非独立章节概述
+  - 前言、序言、致谢、关于作者等正文之前的内容规则要求统一划分为一章，不应在此处再细分出‘关于审稿人’为单独章起始
+  - '标题格式为 ## 二级标题，长度较短且后接审稿人姓名正文，符合前言附属小节特征而非全书最高层级大章'
+  keep_split: false
+- 'no': 342
+  overturn_probability: 0.15
+  alternative: 正文小标题
+  counter_evidence:
+  - 标题后 1~3 行为感谢购买的引言段落，随后出现本章将作为基础回顾的概述，具备统领性
+  - 前接前言下载彩色图片等附属内容，后接本章主题列表，上下文符合大章起始特征
+  keep_split: true
+- 'no': 626
+  overturn_probability: 0.1
+  alternative: 正文小标题
+  counter_evidence:
+  - 标题前为上一章总结与下一章预告，标题后紧跟本章将教你如何设置开发环境的导读及主题列表
+  - '格式为 ## 单独成行，语义为全书第 2 章‘设置开发环境’，符合最高层级大章特征'
+  keep_split: true
+- 'no': 1037
+  overturn_probability: 0.2
+  alternative: 部分标题
+  counter_evidence:
+  - 标题为‘第 2 部分：后端开发’，后附本部分包含章节列表，符合部分-章节模式下的部分起始规则
+  - 前接第 2 章摘要，后接部分说明，上下文支持作为新部分开始
+  keep_split: true
+- 'no': 1049
+  overturn_probability: 0.2
+  alternative: 正文小标题
+  counter_evidence:
+  - 标题后为本章现在将教你 Spring Boot 概念的导读及主题列表，前接部分说明，符合第 3 章起始特征
+  - 标题单独成行且语义统领后续内容
+  keep_split: true
+- 'no': 2171
+  overturn_probability: 0.25
+  alternative: 正文小标题
+  counter_evidence:
+  - 标题‘Building APIs with Spring’后接本章将创建 Spring Boot 应用程序的导读及主题列表，前接上一章总结
+  - 虽为英文标题，但位于第 5 章位置，具备大章统领性
+  keep_split: true

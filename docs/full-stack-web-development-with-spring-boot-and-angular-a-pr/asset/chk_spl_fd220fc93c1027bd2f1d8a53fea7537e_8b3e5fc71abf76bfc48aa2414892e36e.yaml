@@ -1,0 +1,43 @@
+reviews:
+- 'no': 8994
+  overturn_probability: 0.08
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '行内容为单独的章节编号 ## 13，下一行 8996 为实际章节标题 ## 使用 NgRx 保存、删除和更新，符合最高层级大章编号特征'
+  - 标题后紧跟章节概述段落 8998-9000，上下文为上一章结尾的总结，符合章节起始上下文特征
+  keep_split: true
+- 'no': 10597
+  overturn_probability: 0.05
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '行内容为最高层级章节编号 ## 15，后续 10599 为章节标题 ## 在 Angular 中编写测试，编号与标题连续'
+  - 标题后 10601 起为章节引言概述，符合章标题后 1~3 行概述段落的特征
+  keep_split: true
+- 'no': 11192
+  overturn_probability: 0.12
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '行内容为 ## Part 4: 部署，为最高层级部分标题，后续 11200 为 ## 16 章节，符合部分-章节模式下部分标题应分章的规则'
+  - 部分标题单独成行，长度小于30字，末尾无句号，具有统领后续多章的概括性
+  keep_split: true
+- 'no': 11200
+  overturn_probability: 0.07
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '行内容为最高层级章节编号 ## 16，后续 11201 为章节标题 Packaging Backend and Frontend with Maven，符合大章起始特征'
+  - 上下文前为 Part 4 部分结束，后为新章节概述，符合章节边界
+  keep_split: true
+- 'no': 11433
+  overturn_probability: 0.06
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '行内容为最高层级章节编号 ## 17，后续 11435 为章节标题 ## 部署 Spring Boot 和 Angular 应用，编号连贯'
+  - 标题后 11437 起为章节引言，符合章标题语义统领后续内容的特征
+  keep_split: true
+- 'no': 11749
+  overturn_probability: 0.04
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '行内容为 ## 索引，位于文末，按规则文末索引统一划分为一章'
+  - 标题单独成行，长度小于30字，末尾无句号，符合格式特征
+  keep_split: true

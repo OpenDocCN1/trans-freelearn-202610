@@ -1,0 +1,26 @@
+chapter_starts:
+- 'no': 6138
+  confidence: 0.9
+  final_reason: '双方一致采纳为部分级标题。行内容为 ## Part 3: 前端开发，符合部分-章节模式下的部分标题特征，后续为英文对照及章节列表，语义统领性强。'
+  accepted_evidence:
+  - '行内容为 ## Part 3: 前端开发，符合部分级标题特征，后续 6139 行为英文对照，6141 行起为本部分章节列表，语义具有统领性'
+  - 规则明确部分-章节模式下部分标题应划分新章，置信度高
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 8244
+  confidence: 0.95
+  final_reason: 复核方反驳成立，8243 为孤立编号行，8244 为实际章节标题。行单独成行、长度<30、无句号，语义概括后续 NgRx 内容，后
+    1~3 行 8246-8249 为概述段落。
+  accepted_evidence:
+  - '行内容为 ## 使用 NgRx 管理状态，单独成行，长度 <30，无句号，语义概括后续 NgRx 内容'
+  - 后 1~3 行 8246-8249 为概述段落，前文 8243 为编号行，形成编号+标题的常规排版，8244 为实际标题行
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 6150
+  reason: 复核方指出其为孤立章节编号行，无统领性语义，真正的章节标题在下一行 6151 Setting Up Our Angular Project and
+    Architecture。格式特征不符，编号行不应单独分章。
+  need_human_review: false
+- 'no': 8243
+  reason: '复核方指出其仅为 ## 12 编号行，无语义内容，实际标题为下一行 8244。单独分章会导致同一章节被拆分为两章，上下文概述从 8246 起。'
+  need_human_review: false

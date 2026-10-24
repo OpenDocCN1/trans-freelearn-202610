@@ -1,0 +1,33 @@
+reviews:
+- 'no': 6138
+  overturn_probability: 0.15
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '行内容为 ## Part 3: 前端开发，符合部分级标题特征，后续 6139 行为英文对照，6141 行起为本部分章节列表，语义具有统领性'
+  - 规则明确部分-章节模式下部分标题应划分新章，置信度高
+  keep_split: true
+- 'no': 6150
+  overturn_probability: 0.9
+  alternative: 排版断行/章节编号行
+  counter_evidence:
+  - '标题未单独成行且内容仅为 ## 10，长度极短且无语义，真正的章节标题在下一行 6151 Setting Up Our Angular Project and
+    Architecture'
+  - 格式特征不符：真正的章标题通常单独成行且包含概括性语义，## 10 仅为编号，标题末尾无句号但缺少统领内容，后 1~3 行概述段落实际从 6154 开始
+  - 与 8243 情况一致，编号行与标题行拆分导致重复分章
+  keep_split: false
+- 'no': 8243
+  overturn_probability: 0.88
+  alternative: 排版断行/章节编号行
+  counter_evidence:
+  - '行内容仅为 ## 12，为孤立的章节编号，无统领性语义，真正的章节标题在下一行 8244 ## 使用 NgRx 管理状态'
+  - 格式特征不符：章标题应为单行概括性标题，编号行单独成章会导致同一章节被拆分为两章
+  - 上下文显示 8244 后紧跟概述段落 8246 起，符合标题后概述特征，8243 不应单独分章
+  keep_split: false
+- 'no': 8244
+  overturn_probability: 0.1
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '行内容为 ## 使用 NgRx 管理状态，单独成行，长度 <30，无句号，语义概括后续 NgRx 内容'
+  - 后 1~3 行 8246-8249 为概述段落，前文 8243 为编号行，形成编号+标题的常规排版，8244 为实际标题行
+  - 即使 8243 被推翻，8244 仍应作为第 12 章的标题保持分章
+  keep_split: true

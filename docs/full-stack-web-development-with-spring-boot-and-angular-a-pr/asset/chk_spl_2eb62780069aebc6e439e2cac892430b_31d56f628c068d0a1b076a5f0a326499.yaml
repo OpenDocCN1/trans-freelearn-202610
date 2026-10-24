@@ -1,0 +1,23 @@
+reviews:
+- 'no': 11804
+  overturn_probability: 0.95
+  alternative: 索引条目（主词条）
+  counter_evidence:
+  - 该行后跟缩进的页码条目（core module 222、creating 220 等），这是典型的索引词条格式，而非章节标题
+  - 文本整体是文末索引，规则要求索引只整体划分为一章，不应将每个索引项分章
+  - 语义上只是指向特定页码的主题词，没有统领后续正文的作用
+  keep_split: false
+- 'no': 11903
+  overturn_probability: 0.98
+  alternative: 索引字母分区标题
+  counter_evidence:
+  - 单个字母 B 独立成行，前后均按字母顺序排列的索引项，是对索引内容进行字母分组，而非全书章节
+  - 后面直接缩进列出 B 开头的索引词条，没有概述段落或子节结构，不符合章标题特征
+  keep_split: false
+- 'no': 12691
+  overturn_probability: 0.85
+  alternative: 书末广告/推广板块标题
+  counter_evidence:
+  - 该行后是 Packt 图书的推广内容和封面图片，属于出版社广告页，不是正文或正式章节
+  - 同类书末内容还有“Packt 正在寻找像你这样的作者”、“分享你的想法”等，均为附加推广，不应作为章节划分
+  keep_split: false
