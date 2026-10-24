@@ -1,0 +1,11 @@
+Desired Actions of building up an even greater fanbase and sharing with others.
+
+Twitter is a great example of utilizing the Rockstar Effect. Most people remember Twitter’s innovation being the limitation of only 140 characters within a message (which is an interesting balance between Core Drive 6: Scarcity & Impatience combined with Core Drive 3: Empowerment of Creativity & Feedback), but few people remember that another one of Twitter’s key innovations was the one-way follow.
+
+Back in the day, social connections were mutual – either both sides agree to be friends, or no relationship existed. When Twitter was launched in 2006, it came with this new one-way follow system, allowing users to follow the message updates of people who are interesting, without these people following the users back. Because of the one-way nature of the relationship, many people saw getting many followers as a true achievement – meaning that everyone wanted to listen to your valuable opinions, even though you didn’t give a rat’s pancreas about their opinions.
+
+People tried as hard as they could to “earn” followers – tweeting out witty comments, sharing valuable links, and retweeting others to gain attention. Some even pressured their non-tech friends to follow them just so they could look better on Twitter. This became a game for many, where the goal was to reach the highest amount of followers and retweets.
+
+Then, at one point, influential people started to compete with each other to see who had more followers. At the beginning, the implicit comparing came between influencers in the tech world, such as Guy Kawasaki or Robert Scoble. This is a typical condition that many new tech companies go through - where bloggers and people in Silicon Valley love the platforms, but the mainstream population isn’t yet aware of their existence.
+
+However, because of the “Accomplishment” nature that is baked into Twitter’s DNA, Twitter finally caught massive mainstream attention when celebrities like Ashton Kutcher joined the mix of “follower competitions” against other celebrities, and most notably, the official CNN Breaking News Twitter Channel.

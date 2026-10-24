@@ -1,0 +1,3 @@
+[YukaiChou.com](YukaiChou.com) and experience the motivation design from the Captain Up widget on the right hand side. After playing with it, read up on the full blog about my design decisions at http://bit.ly/YukaiCup, or simply go on Google and search, “how yu-kai chou designed his blog.”
+
+There are still many things I would like to change and add into the gamified experience if I only had more time. Please feel empowered to come up with ways it can be improved and share your findings with me.

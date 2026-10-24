@@ -1,0 +1,13 @@
+system has been fully customized to fit their needs, even if another service out there offered better technologies, functions, or prices, the user has a strong tendency to stay with this system because it now uniquely understands them.
+
+These days, some of the biggest sites are implementing the Alfred Effect into their experiences, though most are still not ideal. Sites like Amazon are known to understand your preferences based on all your activities and recommend different products to you[^131], while Google Search now shows personalized search results based on your search and browsing history[^132]. Facebook also shows content that you or your friends would most likely care about[^133], while Netflix can predict which movies you will enjoy better than your friends can[^134].
+
+Beyond automatic system customization, some people have spent time adjusting their Operating Systems or Browsers manually to suit their needs and preferences. Others have their own systems of customized Dropbox Folders in place that perfectly fits their workflow needs - picture switching to an entirely different file management platform from the one you currently have; a difficult prospect I’m sure. Even a person’s workstation is often customized to meet their needs and habits, creating more engagement and attachment.
+
+One great example is seen in the navigation app *Waze*. Beyond all the saved addresses and historical destination data (which strongly contributes to the Alfred Effect), with sufficient usage, it will remember your favorite spots based on context. If you open Waze at 6PM, it would immediately know that 6PM is return home time and ask you if you want to go home; if you open it at 8PM, it may remember that 8PM on Wednesday nights is gym time, and ask you if you would like to go to the gym. Personalized and customized experiences like these create strong attachment towards an experience.
+
+# Core Drive 4: The Bigger Picture
+
+Core Drive 4: Ownership & Possession is a powerful motivator that can attract us to do many irrational things but could also give us great emotional comfort and a sense of well-being. Often it is a central focus that works closely with many of the other Core Drives.
+
+When working with Core Drive 6: Scarcity & Impatience, people continually become drawn in by a carrot. When paired with Core Drive 8: Loss & Avoidance, people do everything they can to secure what they have obtained. When matched with Core Drive 7: Unpredictability & Curiosity, people become obsessed with the outcome and whether they would gain the precious good. Of course, the successful accumulation of goods leads to Core Drive 2: Development & Accomplishment, and

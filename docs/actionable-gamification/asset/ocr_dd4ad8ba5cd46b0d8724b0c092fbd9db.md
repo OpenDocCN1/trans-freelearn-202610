@@ -1,0 +1,11 @@
+These days, many games and websites encourage users to share more with their friends on every single interface. Most of these Brag Buttons are ignored though, because they’re not fueled by strong Core Drive 2 motivation (the dynamics and relationships between each Core Drive and how they power each other will be studied in higher level Octalysis). You want to implement the Brag Buttons at the Major Win-States when users actually feel awesome about what they have just completed.
+
+A Trophy Shelf, on the other hand, is an obvious display that exhibits the achievements of the user. In other words, the user simply has to put up the Shelf, and further promotion, everyone who comes by will see and acknowledge these great achievements.
+
+Trophy Shelves are seen when you walk into someone’s office, and on their walls you see all types of awards, certificates, and credentials. These professionals don’t necessarily want to brag about how they graduated cum laude from Stanford University and have a Level 4 Octalysis Certificate to everyone all the time, but by having it on their walls, they implicitly show it.
+
+In that sense, adding the Ph.D title after one’s own name in their bio is usually considered a Trophy Shelf. However, once they verbally introduce themselves as “John Doe, Ph.D,” they’ve pressed that Brag Button.
+
+In gaming, Trophy Shelves can often be seen as crowns, badges, or avatars. In many games, some avatar gear or items can only be obtained after reaching difficult or exclusive milestones, such as beating a certain boss, inviting 100 friends to the game, or simply having been with the game since it launched. This allows everyone to clearly see that this user has achieved a lot without the person annoyingly bringing it up all the time.
+
+Keep in mind that there needs to be some level of Relatedness when someone brags about or shows off something. When there is a mutual understanding of the difficult work required to reach a certain level, people are more likely to brag about or show off their scores because they know others recognize how hard it was to obtain the scores.

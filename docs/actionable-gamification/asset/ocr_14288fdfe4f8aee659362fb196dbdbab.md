@@ -1,0 +1,11 @@
+# Core Drive 7: Unpredictability & Curiosity
+
+Unpredictability is the Core Drive of constantly being engaged because you don’t know what is going to happen next. When something does not fall into your regular pattern recognition cycles, your brain kicks into high gear and pays attention to the unexpected. This is obviously the primary Core Drive behind gambling addictions, but it is also present in every sweepstake or lottery program that companies run. On a lighter level, many people watch movies or read novels because of this Core Drive. The very controversial Skinner Box experiments, where an animal irrationally presses a lever frequently because of unpredictable results, are exclusively referring to the core drive of Unpredictability & Curiosity - although many have misunderstood it as the driver behind points, badges, and leaderboard mechanics in general.[^7]
+
+# Core Drive 8: Loss & Avoidance
+
+This Core Drive should come as no surprise – it’s the motivation to avoid something negative from happening. On a small scale, it could be to avoid losing previous work or changing one’s behavior. On a larger scale, it could be to avoid admitting that everything you did up to this point was useless because you are now quitting. Also, opportunities that are fading away have a strong utilization of this Core Drive, because people feel if they didn’t act immediately, they would lose the opportunity to act forever (e.g. “Special offer for a limited time only!”)
+
+# Left Brain (Extrinsic Tendency) vs. Right Brain (Intrinsic Tendency) Drives
+
+I will repeat multiple times in this book that, because everything you do is based on one or more of these 8 Core Drives, when there are none of these 8 Core Drives behind a Desired Action, there is *zero* motivation and no action takes place. In addition, each of these 8 Core Drives have different *natures* within them. Some make the user feel powerful, but do not create urgency, while others create urgency, obsession, and even addiction, but make the user feel bad. Some are more short-term extrinsically focused, while some are more long-term intrinsically focused. As a result, these 8

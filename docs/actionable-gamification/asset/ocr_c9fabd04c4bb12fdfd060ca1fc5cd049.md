@@ -1,0 +1,3 @@
+This book is dedicated to those who passionately believe in something and have the courage to pursue it in the face of circumstantial obstacles. We are surrounded by social and economical systems that are designed by others long ago to fulfill their own dreams, but some individuals manage to take a leap of faith, risk social rejection and even persecution in order to create more meaning in their own lives and the lives of those around them.
+
+You inspire the world and move humanity forward. I salute you for doing what I continuously strive for but may never fully reach. I hope this book will help you on your journey towards making a difference.

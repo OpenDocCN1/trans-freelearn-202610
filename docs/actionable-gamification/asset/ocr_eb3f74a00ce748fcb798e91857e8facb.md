@@ -1,0 +1,11 @@
+massages, or have sex (hopefully along with many other Core Drives) because of the *sensation* Core Drive. If you choose one food over another, it is often merely because one tastes better than the other, which is primarily *sensation*. They key differentiation here compared to other Core Drives is that *sensation* deals with physical feelings that bring pleasure to our touch, hearing, sight, smell, and even taste. The other Core Drives bring pleasure to us through psychological means - the meaning and context behind what we see, hear, or taste.
+
+The reason why I don’t have it included in the main set of the framework is that the Octalysis Framework primarily focuses on psychological motivators instead of physical ones. For instance, in *most* cases I cannot design an interactive experience where the user gets the feeling of physical acceleration while being on a roller coaster. Massages can be designed as rewards or *feedback mechanics* within the Octalysis Strategy Dashboard (covered in Chapter 16), but the behaviors will usually be motivated through Core Drives such as Scarcity, Accomplishment, and Ownership.
+
+Even though we don’t include sensation as part of the 8 Core Drives of Octalysis, we recognize its presence and understand how certain behaviors are driven by it. However, *sensation* by itself also has limitations without the 8 Core Drives accompanying it. Even pleasurable activities such as sex, when lacking *curiosity, relatedness, creativity,* and *scarcity*, can potentially become rather unappealing.
+
+# How to Apply Level 1 Octalysis to Actual Systems
+
+Now that we have the Octalysis Framework laid out, the next step is to determine how to utilize it. Since everything a person does is based on one or more of the Core Drives, generally any engaging product or system will have at least one of the Core Drives listed above. If none of the Core Drives are present within a system, there is no motivation, and users will drop out.
+
+The first application of Octalysis is to use it in analyzing the strengths and weaknesses of various products and experiences with respect to motivation. The key here is to start thinking about how that product or experience utilizes each of the 8 Core Drives, and identify all the game mechanics and techniques that are used to activate them.

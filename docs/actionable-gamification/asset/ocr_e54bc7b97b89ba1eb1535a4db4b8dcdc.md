@@ -1,0 +1,11 @@
+win during each period. Therefore, as long as the user “stays in the game,” the chances of you winning increase linearly.
+
+In smaller group settings, Rolling Reward designs are seen in forms such as “Employee of the Week” where employees work hard, hoping that one day they will be the one that earns that status and recognition. (Note: Mario Herger in his book, Enterprise Gamification, suggests that Employee-of-the-Week programs won’t work in countries and cultures that frown upon individual recognition[^200].)
+
+Another form of Rolling Rewards is when an employer or big client states, “After this project, one of you will receive a free two week vacation to Maui!” In fact, at most workplaces, the thought of being promoted one day is in itself a Rolling Reward — someone has to become the new Vice President: I hope it will be me.
+
+On a larger scale where there are a great number of participants, Rolling Reward programs have low barriers to entry and the rewards are substantial (think state or national lotteries), but there’s a very slim chance to win, regardless of how long you spend playing the “game”. Yes, individuals can increase their odds of winning by performing more of the Desired Action, such as purchasing additional tickets, or collecting additional entries. But again, the larger the program, the more daunting the odds.
+
+The reason why lotteries work so well is because our brains are incredibly bad at distinguishing small percentages. We can’t conceptually understand the difference between “one in ten million” and “one in a hundred million.” We just register both odds as “a very small chance” without really comprehending that you could be winning the “one in ten million” prize ten times before you can win the “one in a hundred million” prize once!
+
+Robert Williams, a professor who studies lotteries at the University of Lethbridge states, “we have nothing in our evolutionary history that prepares us or primes us, no intellectual architecture, to try and grasp the remoteness of those odds.[^201]” As a result, as long as there is some chance, people are willing to invest small amounts of money to obtain a gigantic reward.

@@ -1,0 +1,5 @@
+users to *feel*? Do I want them to feel inspired? Do I want them to feel proud? Should they be scared? Anxious? What’s my goal for their intended experience?
+
+Once the designer understands how she wants her users to feel, then she begins to think, “Okay, what kind of game elements and mechanics can help me accomplish my goals of ensuring players feel this way?” The solution may lie in swords, plants, or perhaps word puzzles, but the whole point here is that game elements are just a means to an end, instead of an end in itself. Game elements are simply there to push and pull on their users’ behavioral core drives.
+
+As a result, in order to further explore, systemize, and scale methods of combining game mechanics with our motivational core drives, in 2012 I decided to share my original gamification design framework called Octalysis to the world. The Octalysis Framework embodies my life’s work, and the majority of this book will be about how to use Octalysis to design experiences that are fun, engaging, and rewarding.

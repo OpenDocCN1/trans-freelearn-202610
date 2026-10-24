@@ -1,0 +1,11 @@
+percentages and greater success on the floor. In fact, it has been shown that NBA teams with higher assist numbers win about 72% of their games[^147]. Under the premise that whatever is measured will be improved, emphasizing on *assists* will lead to more collaborate play and teamwork, even if the player is still driven by a self-interest to succeed.
+
+When we implement competition in the workplace, we need to thoughtfully analyze the risks as well as the benefits, in determining whether there might be any significant and long-term harm to the employees and ultimately the enterprise.
+
+Adding competition-driven stress to the daily challenges that employees face can often increase the probability of burnout and skewed performance. Employees may become more motivated to make each other fail and even look for new opportunities elsewhere. In my own experiences, when people around me constantly talk about quitting their jobs, more often than not it is because of dysfunctional people dynamics between their bosses and/or coworkers, and not because the tasks themselves are too difficult.
+
+One well-known example of a dysfunctional workplace competition was GE’s “Rank-and-Yank” system, where the bottom 10% of the organization’s employees were fired on a regular basis. Another was Microsoft’s “Stack Ranking” system, where an employee’s expectations for promotion were based on how they were ranked among their peers.
+
+> > A personal friend of mine who worked at GE many years ago stated, “The Rank-and-Yank system there made sure that everyone hired people weaker than themselves so they were never in danger of being yanked. When we interviewed a brilliant candidate, we made sure they never got the job because it would put ourselves in jeopardy or potentially result in a smaller bonus.”
+
+> > A Vanity Fair article by Kurt Eichenwald cites that “Every current and former Microsoft employee I interviewed — every one — cited stack ranking as the most destructive process inside of Microsoft.[^148]” Peter Cohan from Forbes stated that, “[Stack Ranking] directed [Microsoft employees] to prevent their peers from getting outstanding performance

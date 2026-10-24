@@ -1,0 +1,11 @@
+What’s worse, if you still paid an acceptable amount for my drawings, say $20, more often than not, I would become incentivized to render the quickest, unrefined drawings possible in order to maximize the amount of money I would make. In essence, as long as I still get paid, I would have less focus on the *quality* of the work compared to the *completion* of the work. In fact, many studies have shown that Extrinsic Motivation, such as paying people money to perform a task, actually lowers the creative capability to perform the task.
+
+Dan Ariely, author of *Predictably Irrational*, demonstrated in his experiments that people who were paid the most (5 months pay) for performing some relatively quick tasks performed far worse than people who were paid much less (only one day or two weeks pay for doing the same tasks)²²⁹.
+
+When people are thinking about the money, it distracts their focus from performance. Even the London School of Economics, after many experiments, concluded that, “We find that financial incentives may indeed reduce intrinsic motivation and diminish ethical or other reasons for complying with workplace social norms such as fairness. As a consequence, the provision of incentives can result in a negative impact on overall performance.”²³⁰
+
+This is because when we are doing something for Extrinsic Motivators, our eyes are set on the goal, and we try to use the quickest and most effortless path possible to reach it. As a consequence, we often give up our abilities to be creative, think expansively, and refine our work.
+
+Daniel Pink states that, “Rewards, by their very nature, narrow our focus. That’s helpful when there’s a clear path to a solution. They help us stare ahead and race faster. But ‘if-then’ motivators are terrible for challenges like the [creative] candle problem.”
+
+Of course, in routine and mundane tasks that don’t require any creativity and hold little Intrinsic Motivation to begin with, Extrinsic Motivation does often increase performance and results because of the goal-driven focus it generates. Dan Ariely points out in his New York Times article, “What’s the

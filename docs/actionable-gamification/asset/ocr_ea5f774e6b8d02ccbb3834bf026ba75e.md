@@ -1,0 +1,11 @@
+becomes a phenomenal deal. Can you see how game design can influence people’s sense of value by alternating between time and money?
+
+The humorous part about this phenomenon is that most of these games can be played for free, and yet people are spending money, just so they could play *less* of the game. In this sense, it is hard to determine if the game itself is truly considered “enjoyable” or “fun.” As opposed to Core Drive 3: Empowerment of Creativity & Feedback, this Black Hat Left Brain Core Drive is more about being persuasive and obsessive, but users don’t necessarily enjoy the process.
+
+An important factor to consider when using the Dangling technique is the pathway to obtaining the reward. You have to allow the user to know that it’s very challenging to get the reward, but not impossible. If it is perceived as impossible, then people turn on their Core Drive 8: Loss & Avoidance modes and go into self-denial. “It’s probably for losers anyway.”
+
+For example, if the banner of an exclusive club is dangled in front of you, but you find out that the prerequisite to join is that you must be a Prince or Princess through royal blood, you might not even look at what the organization does. Instead, you may think, “Who cares about a bunch of stuck up, spoiled brats.” Because there is no chance of qualifying, it activates Core Drive 8 as an Anti Core Drive – the drive to not execute the Desired Action.
+
+However, if the banner said, “Joining Prerequisite: Prince/Princess by royal blood, OR individuals who have previously ran a marathon.” Now you are motivated, and might even ponder the effort required to run a marathon. As long as there is a realistic *chance* to get in, the Scarcity through exclusivity is enough to engage you. Interestingly, at this point you still haven’t even determined what the organization actually does! Without any information on its actual function, the human-focused motivation of scarcity is compelling enough for you to consider running a marathon.
+
+This leads to a game technique I call *Anchored Juxtaposition*. With this technique, you place two options side by side: one that costs money, the other requiring a great amount of effort in accomplishing the Desired Actions which will benefit the system.

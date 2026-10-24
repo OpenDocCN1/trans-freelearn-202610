@@ -1,0 +1,11 @@
+Prison covered in Core Drive 8, players feel demoralized, but are unable to quit.
+
+Eventually, some people do find the strength to finally quit and move on with their lives. This is perhaps due to important responsibilities, or shift to newer games that hit them hard with epic Discovery Phase marketing. Once that happens, Social Influence & Relatedness dictates a big exodus of people finally leaving the game, in hopes of finding that joy and passion again.
+
+But for the games that are quite timeless (until their own sequels come out), when players are in the Endgame phase, there seems to be a continuous sense of wellbeing and satisfaction, just like the joy one has when playing an instrument or being called to a purpose. Based on this research, I started labeling a few Core Drives “White Hat” and a few others “Black Hat,” which borrows from my background knowledge in SEO (Search Engine Optimization²⁴⁶).
+
+In Search Engine Optimization, “White Hat SEO” refers to designing and promoting your site the way search engines like Google intend you to do. As a result, they rank your site highly when users search for related terms. “Black Hat SEO” on the other hand refers to methodologies that dishonestly exploit the rules, rigidness, and weaknesses of the search engines to get your site highly ranked.
+
+Needless to say, search engines hate Black Hat SEO, and have massive teams of engineers that continuously make the engines smarter and harder to exploit, while severely penalizing any website that is caught utilizing Black Hat SEO techniques. Sometimes the search engine companies even ban websites completely off their search results, defeating the purpose of the Black Hat SEO in the first place. In the realm of SEO, just don’t do Black Hat – it’s not worth it.
+
+Unfortunately, our brains cannot continuously update themselves to become harder to exploit like Google can. Nor can we as efficiently blacklist people who constantly apply black hat motivation techniques on us (nor do we want to, since some of them have good intentions that ultimately benefit us). The end result is that we become subconsciously motivated by things

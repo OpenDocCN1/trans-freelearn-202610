@@ -1,0 +1,13 @@
+Similarly, Pelham found that names starting with “Geo” such as “George” or “Geoffrey” are disproportionately more likely to become researchers in the geosciences. Hardware store owners are eighty percent more likely to have names that start with the letter “H” than the letter “R,” while roofers are seventy percent more likely to have names with the letter “R” than the letter H.¹¹⁴
+
+Moreover, people tend to move to places that are similar to their own names too. People who move to Florida are disproportionately more likely to be named Florence, while people who move to Louisiana are skewed towards being named Louise. Mr. Washington is also much more likely to live on Washington Street than Mr. Jefferson. On that note, I’m glad that I have never considered a career in the medical profession, or else I might have ended up becoming a Urologist!
+
+Though no one would recognize or admit that their names play any role in determining these important life choices, our attachment to our own identities become so strong that anything connected to that identity becomes desirable to us. Studies have even shown that we prefer brands and even spouses that remind us of our own names¹¹⁵¹¹⁶. It has to be good because, well, it reminds me of me!
+
+# Consistency: Valuing Who We Were
+
+Stemming from the attachment to our own identities is the need to behave consistently with our past actions. Dan Ariely describes this as self-herding, where we believe something is good (or bad) on the basis of our previous behavior.¹¹⁷. Often we buy certain items and brands just because we bought them in the past and we would like to stay consistent with our own choices, even though the particular product or brand may no longer be the best for our current needs.
+
+In fact, studies have shown that people instantly become much more confident in certain racehorses the moment they place a bet on the horse.¹¹⁸ This is like a person estimating that a horse has a 30% chance of winning (which is pretty good given how many horses there are on a track) prior to making a bet, and then suddenly believing that the horse has a 60% chance of winning after placing the bet. This is because the horse suddenly transformed from “a good bet” to “my bet,” and we learned from the Endowment Effect that once something becomes our own, we immediate place a much higher value on it.
+
+Our need to be consistent with our past can also cause us to do unreasonable things for others. In 1966, psychologists Jonathan Freedman and Scott Fraser did an experiment where they went door-to-door to ask California residents whether they would agree to have a big public-service billboard erected on their front lawns.

@@ -1,0 +1,13 @@
+The researchers showed a picture of a beautiful house almost completely obscured by a six-by-three feet, and poorly lettered billboard that read “DRIVE CAREFULLY,” and asked if residents would agree to have it installed. Understandably, only 17 percent of the residents complied.
+
+However, there was one particular group of residents that reacted to the offer positively, with 76 percent of them agreeing to the installation¹¹⁹. Why did this particular group respond so favorably? It turns out that two weeks prior to this intrusive offer, another “volunteer worker” went to those residents and asked if they would display a harmless three-inch-square sign that read “BE A SAFE DRIVER” in their windows. Since the request was fairly trivial, nearly everyone agreed to it.
+
+What the residents didn’t expect, was that this small act of public service would cause them to start believing they were publicly conscious people who cared about drivers in the neighborhood. As a result, when the imposing request came two weeks later, in order to be consistent with their publicly conscious self-images, they were inclined to accept such offers with less hesitation. Of course, there were elements of Core Drive 1: Epic Meaning & Calling involved too, but as you can see in the control group experiments, the Epic Meaning & Calling alone was not enough to motivate people to give up their beautiful home views.
+
+What’s astonishing is that even with a third group of residents, whom two weeks prior were only asked to sign a petition that favored “keeping California beautiful,” compliance rate of the “DRIVE CAREFULLY” billboard still increased to 50% - despite the petition had nothing to do with safe driving. This suggests that the compliance has less to do with the effects of repetition priming¹²⁰, but more to do with that sense of ownership towards being a publicly responsible person.
+
+A reader of Robert Cialdini’s book Influence once wrote that when his insurance sales staff started to ask, “I was wondering if you would tell me exactly why you’ve chosen to purchase your insurance with [our company.]” as opposed to simply setting up a physical appointment to sign the paperwork, sales immediately rose from 9% to 19%¹²¹. This worked because as people recited their reasoning for taking an appointment, they were convincing themselves of certain values that they should stay consistent with and follow through on.
+
+# Commitments: The Power of Writing Something Down
+
+Our need for consistency becomes even stronger when we create a commitment, especially when we write it down. Social Psychologists Morton Deutsch and Harold Gerard once did an experiment where they asked groups of students to estimate the length of lines that were shown.

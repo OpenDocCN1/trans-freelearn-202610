@@ -1,0 +1,11 @@
+*Undiscovered Territory*²², a game created for selling their very expensive 3D imaging software. There are also explicit gamification examples such as Repair the Rockaways²³, which is a game similar to Farmville, but the number of bricks that are available is determined by how much is donated to support Hurricane Sandy repairs.
+
+Again, these examples are all *games* where people play and opt into, hence “explicit” gamification. The advantage of designing for explicit gamification is that the product is generally more playful and it allows the designer to have more freedom of creativity. The disadvantage is that it could be seen as childish, non-serious, or distracting to some target users such as enterprise firms, banks, or manufacturers. Some corporate managers, upon seeing graphical game-play, immediately feel an aversion to it, though if designed well, the interactive “game” can keep the target user engaged for longer and lead to better business results. Also, more often than not, implementing great explicit gamification usually requires more resources in order to create a high quality game.
+
+# Implicit Gamification: Human-Focused Design that Utilizes Game Elements
+
+*Implicit Gamification* is a form of design that subtly employs gamification techniques and the 8 Core Drives of Octalysis into the user experience. Implicit Gamification techniques are filled with game design elements that are sometimes even invisible to the user. This is like a doorknob, where the best designs are the ones that you aren’t even aware of but simply use to open the door.
+
+Implicit Gamification examples are often discussed in gamification literature, such as the LinkedIn Progress Bar²⁴, the intrinsic motivation that drives Wikipedia²⁵, competitive bidding and feedback system via eBay²⁶, social comparison and motivation in OPow er²⁷, and Unpredictability and Scarcity within Woot!²⁸.
+
+Upon seeing the progress bar on LinkedIn, most people won’t say, “Ah, they’re making me play a game! I don’t want to play games.” The Progress Bar just gently builds a Win-State for the user to see and motivates them to
