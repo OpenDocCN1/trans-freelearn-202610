@@ -1,0 +1,338 @@
+
+# Index
+
+- A
+- anonymous posts list
+  - adding 246
+- appsettings.json
+  - setting 47
+- AsNoTracking() method
+  - about 294
+  - projections 298
+  - tracking, disabling 295
+  - working 294
+- asynchronous operation
+  - about 300
+  - transaction, leveraging 302
+- authentication
+  - reference link 334
+- B
+- block predicate 342
+- blog entity script
+  - about 36
+  - reference link 36
+- blog entity
+  - about 19
+  - post entity 19
+  - working with 44
+- blogging system models
+  - Compare field validation, incorporating 126
+  - EmailAddress field validation, incorporating 124
+  - Required field validation, incorporating 118
+  - Url field validation, incorporating 130
+- blogging system
+  - authentication 332, 334
+  - date picker support, adding 243
+  - file upload functionality 231
+  - recent posts feature, adding 245
+  - tags support, adding 220
+- built-in validations 111
+- C
+- cascade delete 105
+- changes
+  - detecting 299
+- client wins 283
+- client-side logic
+  - creating, for custom validation 153, 154, 155, 156, 158
+- client-side validation 139
+- Code-First approach 19
+- Command Line Interface (CLI) 107
+- command
+  - queries assignment, solution 214
+  - used, for composing queries 206, 211, 214
+- comments list feature 248
+- compare field validation
+  - about 124, 126
+  - incorporating, in blogging system models 126
+- concurrency conflict
+  - about 257, 260
+  - handling 281
+  - optimistic concurrency 260
+  - optimistic concurrency, applying 281
+  - pessimistic concurrency 261
+  - pessimistic concurrency, applying 287, 291
+- concurrency tokens 262, 264
+- concurrency
+  - handling, in EF 256
+- ConfigureServices method
+  - refactoring 46
+- contravariant generic interface 207
+- controller action
+  - creating 51, 53
+  - editing 53, 55
+- conventions, relationship
+  - about 69
+  - foreign key 78
+  - fully-defined relationship 69, 70
+  - inverse property 79, 80
+  - no foreign key property 75
+  - single navigation property 77, 78
+- covariant generic interface 207
+- cross tenant write operation
+  - blocking 351, 352
+- cross-context transaction
+  - blogging system, file upload functionality 231
+  - creating 231
+  - custom transaction scope support 239
+  - date picker support, adding to blogging system 243
+  - transaction scope, limitation 237
+- CRUD (Create/Read/Update/Delete) operations
+  - about 26, 29, 32, 33
+  - controller action, creating 51, 53
+  - controller action, editing 53, 55
+  - creating 26
+  - Delete view 55, 57
+  - performing 48, 51
+- custom transaction scope support 239
+- custom validation
+  - about 147, 149, 151, 152
+  - client-side logic, creating for 153, 154, 155, 156, 158
+
+## D
+
+- data annotation
+  - non-timestamp concurrency tokens, configuring through 265, 271
+  - timestamp-based concurrency tokens, configuring through 273, 277, 280
+- data context
+  - configuring 43
+- data migration issue
+  - with EF Core 2.0 107
+- data model
+  - about 19, 59
+  - blog entity 19
+  - Blog entity 59
+  - Post entity 59
+- data
+  - validating, without client-side scripting 140, 142, 143, 144
+- database context 20
+- database wins 282
+- database-per-tenant model 345
+- databases
+  - blog entity script 36
+  - blog entity, working with 44
+  - creating 22, 24, 26
+  - data context, configuring 43
+  - post entity script 36, 39
+  - post entity, working with 45
+  - preparing 36
+  - reverse engineering 42
+  - seeding 22, 24, 26
+- date picker support
+  - adding, to blogging system 243
+- DBSet
+  - avoiding, for SQL query execution 184
+  - default transaction behavior
+    - about 220
+    - leveraging 222, 225
+  - tags support, adding in blogging system 220
+- Delete view 56, 57
+- dependent entity 63, 64
+
+## E
+
+- EF Core 2.0
+  - used, for data migration issue 107
+- EF Core community
+  - reference link 186
+- EmailAddress field validation
+  - about 118, 120, 122
+  - incorporating, in blogging system models 124
+- Entity Framework (EF)
+  - about 16, 35, 81, 112, 165, 190, 293
+  - concurrency, handling 256
+  - installing 17, 18, 40
+  - reference link 307
+- Entity Framework Core
+  - prerequisites 8
+- expression trees
+  - assignment, solution 216, 218
+  - used, for enhancing queries 214
+- external databaseTransactions
+  - used, for adding comments list feature 250
+
+## F
+
+- FIFO (First in First out) 284
+- filter predicate 341
+- Fluent API
+  - about 99
+  - Data migration issue, with EF Core 2.0 107
+  - inverse navigation, identifying 99
+  - navigation property, identifying 99
+  - non-timestamp concurrency tokens, configuring through 272
+  - relationship, building techniques 102
+  - single navigation property, identifying 100
+  - timestamp-based concurrency tokens, configuring through 280
+  - used, for implementing many-to-many relationship 97
+- foreign key 64, 65, 78
+- fully-defined relationship 69, 70
+
+## G
+
+- Git commit
+  - reference link 295
+- Git repository commit
+  - reference link 118, 242, 245, 247, 249, 253
+- Git repository
+  - reference link 197, 205, 214, 216, 217, 226, 234, 236, 237
+- GitHub repository
+  - reference link 184
+
+## I
+
+- indexes
+  - missing 320, 327
+- individual blog post
+  - adding 246
+- inverse navigation
+  - identifying 99
+- inverse property 79, 80
+
+## L
+
+- lazy loading 306
+- Leverage Query Object Pattern
+  - reference link 297
+- LIFO (Last in First out) 284
+- LINQ
+  - composing with 177, 178, 182, 183
+- LocalDB 22
+
+## M
+
+- manual validation 146
+- many-to-many relationship
+  - about 94, 96
+  - building, with Fluent API 97
+- MaxLength field validation 133, 135
+- MinLength field validation 131, 133
+- mismatched data type 316, 319
+- multi-tenancy
+  - about 344
+  - cross tenant write operation, blocking 351, 353
+  - database-per-tenant model 345
+  - implementation 348
+  - shared multi-tenant model 347
+  - standalone model 344
+
+## N
+
+- N+1 Select problem 306, 312
+- navigation property
+  - about 65
+  - collection navigation property 66
+  - identifying 99
+  - inverse navigation property 68, 69
+  - reference navigation property 67
+- no foreign key 75
+- non-timestamp based concurrency tokens
+  - about 265
+  - configuring through data annotation 265, 271
+  - configuring, through Fluent API 272
+
+## O
+
+- Object Relational Mapping (ORM) 190
+- OnConfiguring() method
+  - refactoring 46
+- one-to-many relationship 88, 92
+- one-to-one relationship
+  - about 83
+  - building, with Fluent API 85, 88
+- optimistic concurrency
+  - about 260
+  - applying 281
+  - client wins 283
+  - database wins 282
+  - user-specific custom resolution 284
+
+## P
+
+- parameterized queries
+  - building 171, 173, 174, 176
+- pessimistic concurrency
+  - about 261
+  - applying 287, 291
+  - reference link 262
+- POrtable COmponents (POCO)
+  - about 165
+  - avoiding, for SQL query execution 184
+- post entity script
+  - about 36, 39
+  - reference link 36
+- post entity
+  - working with 45
+- principal entity 60
+- principal key 61
+- project
+  - creating 11, 40
+    - Entity Framework, installing 40
+    - File menu 12
+    - Start page 11
+    - Web App structure 15, 16
+
+## Q
+
+- queries
+  - composing, with commands 206, 211, 213
+  - enhancing, with expression trees 214
+- query object pattern
+  - about 191, 192, 194
+  - incorporating, into repositories 198
+  - used, for improving repositories 194
+
+## R
+
+- raw SQL queries
+  - about 166
+  - reference link 169
+- recent posts feature
+  - adding, to blogging system 245
+- RegularExpression field validation 135, 137
+- relational database facade extension
+  - reference link 184
+- relationship terms
+  - about 59
+  - alternate key 62
+  - Association 60
+  - Containment 61
+  - data models 59
+  - dependent entity 63, 64
+  - foreign key 64, 65
+  - navigation property 65
+  - principal entity 60
+  - principal key 61
+- relationships
+  - about 82
+  - building techniques 102
+  - building, with foreign key 102
+  - building, with principal key 103
+  - building, with required method 104
+  - many-to-many relationship 94, 96
+  - one-to-many relationship 88, 93
+  - one-to-one relationship 83
+- remote validation 158, 160, 163, 164
+- repositories
+  - about 194, 196
+  - assignment, solution 196, 197
+  - improving, with query object pattern 194
+  - list query object support 198, 201
+  - query object pattern, incorporating into 198
+  - single query object support 201, 205
+  - solution, with queries assignment 205
+- Required field validation
+  - about 112
+  - incorporating, in blogging system models 118
+- reverse engineering
+  - on database 42
+- Row-Level Security (RLS)

@@ -1,0 +1,43 @@
+reviews:
+- 'no': 112
+  overturn_probability: 0.92
+  alternative: 目录/书目列表项
+  counter_evidence:
+  - 行内容为 '**第9章：容错机制 – 事务** 219'，末尾带有页码 219，与前后 107-111 行的 '**使用命令组合查询** 206' 等条目构成目录列表
+  - 该行并非正文章节起始，后续 113 行起为 '**事务的默认行为** 220' 等子条目，上下文为目录页而非章节正文
+  keep_split: false
+- 'no': 128
+  overturn_probability: 0.92
+  alternative: 目录/书目列表项
+  counter_evidence:
+  - 行内容为 '**第10章：使其真实 – 处理并发** 255'，同样带有页码且与 112 行同属同一目录块
+  - 前后均为带页码的标题列表，格式为 '**标题** 页码'，不符合正文章标题单独成行且无页码的特征
+  keep_split: false
+- 'no': 1159
+  overturn_probability: 0.15
+  alternative: 章节标题
+  counter_evidence:
+  - 行以 '# 3 理解关系术语' 开头，符合最高层级编号特征，且单独成行
+  - 后接 1160 行副标题 '关系——术语与约定'，随后 1162 行起为正文概述，符合章节起始上下文
+  keep_split: true
+- 'no': 1621
+  overturn_probability: 0.1
+  alternative: 章节标题
+  counter_evidence:
+  - 行以 '# 4 构建关系 — 理解映射' 开头，编号特征明确且单独成行
+  - 后续 1623 行起为章节引言，符合章标题语义与上下文特征
+  keep_split: true
+- 'no': 2284
+  overturn_probability: 0.1
+  alternative: 章节标题
+  counter_evidence:
+  - 行以 '# 5 了解验证 – 探索内置验证' 开头，编号特征明确
+  - 后续 2286 行起为章节副标题及正文，符合章标题格式与语义
+  keep_split: true
+- 'no': 2831
+  overturn_probability: 0.12
+  alternative: 章节标题
+  counter_evidence:
+  - 行以 '# 6 客户端验证' 开头，编号特征明确且单独成行
+  - 后接 2832 行英文副标题及 2834 行起正文引言，符合章节起始模式
+  keep_split: true
