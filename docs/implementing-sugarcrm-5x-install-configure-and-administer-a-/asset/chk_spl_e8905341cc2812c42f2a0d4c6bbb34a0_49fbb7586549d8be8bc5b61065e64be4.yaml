@@ -1,0 +1,58 @@
+reviews:
+- 'no': 6025
+  overturn_probability: 0.95
+  alternative: 书末广告/索引中的图书标题
+  counter_evidence:
+  - 行内容为“Implementing SugarCRM 5.x”，与后续行 6076“实施 SugarCRM 5.x”重复，明显为书末广告页中对同一书名的再次出现，而非正文章节标题。
+  - 该行位于文档末尾（行号 6025，总行数约 6112），前后均为书末广告、出版社介绍、ISBN、价格等出版元数据，不属于正文章节。
+  - 标题后紧跟空行，随后是“关于 Packt Publishing”等出版社介绍内容，缺乏章标题应有的后续概述段落和子节结构。
+  - 该行属于书末其他图书广告列表的一部分，与后续“Liferay Portal 5.2 系统开发”“TrixBox 使用指南”等并列，均为图书封面简介标题。
+  keep_split: false
+- 'no': 6027
+  overturn_probability: 0.9
+  alternative: 书末出版社介绍小标题
+  counter_evidence:
+  - 行内容“关于 Packt Publishing”属于书末版权页/广告页中的固定板块标题，而非正文章节。
+  - 该标题后直接跟出版社简介正文，不存在章节应有的子节编号或统领后续大段内容的语义结构。
+  - 与前后“关于 Packt Open Source”“为 Packt 撰写”等并列，均为书末元数据中的小标题。
+  keep_split: false
+- 'no': 6035
+  overturn_probability: 0.9
+  alternative: 书末出版社介绍小标题
+  counter_evidence:
+  - 行内容“关于 Packt Open Source”同样属于书末广告页中的固定板块标题。
+  - 其后为出版社品牌介绍正文，缺乏章节统领性和后续子节结构。
+  - 与“关于 Packt Publishing”“为 Packt 撰写”同属书末元数据板块，不应独立成章。
+  keep_split: false
+- 'no': 6039
+  overturn_probability: 0.9
+  alternative: 书末出版社介绍小标题
+  counter_evidence:
+  - 行内容“为 Packt 撰写”属于书末广告页中的作者招募板块标题，非正文章节。
+  - 其后为联系邮箱和编辑服务介绍，属于出版元数据，不具备章标题语义。
+  - 与前后板块并列，均为书末固定板块小标题。
+  keep_split: false
+- 'no': 6049
+  overturn_probability: 0.95
+  alternative: 书末其他图书广告标题
+  counter_evidence:
+  - 行内容“Liferay Portal 5.2 系统开发”为另一本书的书名，出现在书末广告列表中。
+  - 其后为 ISBN、页数、图书卖点列表等广告要素，非正文章节内容。
+  - 与前后“TrixBox 使用指南”等图书广告标题并列，均为书末其他图书推广内容。
+  keep_split: false
+- 'no': 6060
+  overturn_probability: 0.95
+  alternative: 书末其他图书广告标题
+  counter_evidence:
+  - 行内容“TrixBox 使用指南”为另一本书的书名，出现在书末广告列表中。
+  - 其后为 ISBN、页数、图书卖点列表等广告要素，非正文章节内容。
+  - 与前后图书广告标题并列，均为书末其他图书推广内容。
+  keep_split: false
+- 'no': 6076
+  overturn_probability: 0.95
+  alternative: 书末广告/索引中的图书标题（重复出现）
+  counter_evidence:
+  - 行内容“实施 SugarCRM 5.x”与行 6025“Implementing SugarCRM 5.x”为同一书的中英文标题，在书末广告页中重复出现，非正文章节。
+  - 其后为图书简介、适用人群、学习内容列表、价格、ISBN 等典型书末广告要素。
+  - 位于文档末尾，前后均为广告和出版元数据，不具备正文章节的上下文特征。
+  keep_split: false

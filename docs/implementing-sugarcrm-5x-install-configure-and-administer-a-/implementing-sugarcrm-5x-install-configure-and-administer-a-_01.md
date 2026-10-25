@@ -1,0 +1,4 @@
+# SugarCRM 5.x 实施指南：安装、配置和管理强大的客户关系管理系统
+
+
+Cover Image by Vinayak Chittar (vinayak.chittar@gmail.com)

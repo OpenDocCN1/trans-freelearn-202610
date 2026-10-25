@@ -1,0 +1,6 @@
++   - How Dashboard helps you visually interpret your sales pipeline, breaks it down by month and by sales person, and provides a distant early warning system for business upturns and downturns.
++   - How to use the SugarCRM calendar to plan your business days, check for schedule conflicts and discuss your colleague's calendars.
++   - How to enter business activities within SugarCRM and the value of accumulating activity history for all your accounts and contacts.
++   - How a number of special user-interface features increase the speed of the data entry process and ease the execution of several common tasks.
+
+In the next chapter, we will complete the exploration of how SugarCRM delivers on comprehensive CRM functionalities by dealing with the more advanced CRM topics, such as Interface Consolidation, Project Management, Document Management, Customer Service Management, and other topics. We will also erase the sample data from the CRM, import your own data, and then explore more advanced ways in which CRM systems can assume a broader role within your business.

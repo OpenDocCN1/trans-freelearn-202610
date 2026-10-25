@@ -1,0 +1,224 @@
+
+## Table of Contents
+
+- Marketing automation 41
+- Employee directory 42
+- Interface consolidation 42
+- Document management 43
+- Reporting and analytics 43
+- **Business models and their specific requirements 44**
+  - B2B or B2C? 44
+  - Products or Services? 45
+  - Average transaction value, sales cycle, and the recurring business model 46
+  - Business location 46
+  - Size does matter: Two or two hundred? 48
+  - International needs 49
+- **How do I make shrink-wrapped software suit my business? 51**
+- **Customer-centric business management 53**
+  - Planning your installation 53
+  - Your CRM data hub 54
+- **Requirement analysis 56**
+  - RayDoc CRM requirements 56
+  - Your CRM requirements worksheet 58
+- **Summary 60**
+- **Chapter 3: CRM Deployment Options 61**
+  - Deployment alternatives 62
+  - **Choosing a server operating system 66**
+    - Specifying your server hardware 68
+  - **Web-based application platforms 72**
+  - **Backup and security considerations 74**
+    - Server security 75
+    - Emergencies and natural disasters 76
+    - Bandwidth capacity and reliability considerations 76
+  - **Performing the installation 79**
+  - **Summary 79**
+- **Chapter 4: SugarCRM Basics 81**
+  - **CRM processes and terminology 81**
+    - Accessing the SugarCRM system 82
+    - A quick tour of SugarCRM 84
+    - Themes 85
+    - SugarCRM basics: Data relationships 86
+    - SugarCRM navigation: Accounts and contacts
+    - List and detail view screens
+    - Main panel and subpanels
+    - Edit view screens
+    - Data relationships and searching
+    - SugarCRM basics: Security
+  - **The sales pipeline: Leads and opportunities**
+    - Aggregating opportunities: The sales pipeline
+    - The dashboard
+    - Calendaring
+  - **Sales activities**
+    - Creating a note
+    - Creating a task
+    - Scheduling a call or meeting
+    - Managing e-mails
+    - E-mail templates
+  - **Advanced user-interface features**
+    - Printing information
+    - Getting help
+    - Exporting information
+    - Mass operations
+    - Input business card
+    - Create from vCard
+    - Quick new item
+  - **Summary**
+- **Chapter 5: Extending The Business Role of Your SugarCRM System**
+  - **Resetting the database**
+  - **Marketing campaigns**
+    - Targets, leads and contacts
+    - Creating an e-mail template
+    - Adding targets to the campaign
+    - The mass e-mailing queue
+  - **Campaign metrics**
+  - **Summary**
+- **Chapter 6: The SugarCRM Ecosystem**
+  - **SugarCRM Community Edition**
+    - SugarForge.org and SugarExchange.com
+    - Module loader
+    - Enhanced search 147
+    - Google connectors 149
+    - Microsoft Outlook connector 151
+    - Microsoft Office integration 157
+    - ZuckerReports 159
+    - Development toolkit and enhanced studio 163
+    - Open Quotes and contracts 164
+    - VeryThinClient 164
+    - Security suite 165
+  - **SugarCRM Professional/Enterprise Editions 165**
+    - Product catalog and products module 166
+    - Product catalog 167
+    - Products module 168
+    - Quotes module 168
+    - Forecasting 170
+    - Standard and custom reporting 172
+    - User teams 175
+    - Enhanced role management: Field level access 175
+  - **Participating in the SugarCRM online community 176**
+    - SugarCRM user forums 176
+    - Summary 177
+- **Chapter 7: Managing Your CRM Implementation 179**
+  - Key steps to a successful CRM implementation 180
+  - Planning the implementation 181
+  - Some common pitfalls 183
+  - It takes a team to win 184
+  - Setting project goals and specifications 186
+  - Selecting a CRM development partner 186
+  - System development 188
+  - Data import 189
+  - Pilot testing 190
+  - **The CRM training process 190**
+    - Session 1: Initial management training and product exposure 191
+      - Goals: 191
+      - Attendees: 191
+      - Next steps: 191
+    - Session 2: Management training completion and issue management 192
+      - Goals: 192
+      - Attendees: 192
+      - Next steps: 192
+    - Session 3: Present final system adjustments (optional)
+      - Goals:
+      - Attendees:
+      - Next steps:
+    - Session 4: General user training session
+      - Goals:
+      - Attendees:
+      - Next steps:
+    - Session 5: Training completion (optional)
+      - Goals:
+      - Attendees:
+      - Next steps:
+  - **CRM training materials**
+    - Slide 1: What is a CRM system?
+    - Slide 2: What are our business goals?
+    - Slide 3: What functional areas of CRM will we use the most?
+    - Slide 4: What is SugarCRM?
+    - Slide 5: CRM basics 1—system access, screen layout, navigation
+    - Slide 6: CRM basics 2—accounts and contacts
+    - Slide 7: CRM basics 3—opportunities and the sales pipeline, home tab
+    - Slide 8: CRM basics 4—calendaring
+    - Slide 9: CRM basics 5—activities (calls, meetings, tasks, notes)
+    - Slide 10: CRM basics 6—e-mail
+    - Slide 11: CRM basics 7—advanced interface features
+    - Slide 12: Extending CRM 1—RSS news and external sites
+    - Slide 13: Extending CRM 2—marketing campaigns
+    - Slide 14: Extending CRM 3—document management
+    - Slide 15: Extending CRM 4—project management
+    - Slide 16: Extending CRM 5—customer service management
+    - Slide 17: Extending CRM 6—always in touch
+    - Slide 18: Extending CRM 7—reaching out
+  - **Going live: Stepwise introduction**
+  - **Continuous feedback and enhancement**
+  - **Summary**
+- **Chapter 8: Linking Your Customers to Your SugarCRM**
+  - **Capturing leads from your website**
+  - **Customer self-service portals**
+    - Self-service portal configuration
+    - Installing Joomla!
+    - Installing the SugarCRM portal component for Joomla!
+    - Creating a new Joomla! user 218
+    - Using your new self-service portal 219
+    - Summary 223
+- **## Appendix A: Installing SugarCRM on Linux 225**
+  - Basic CentOS Linux installation 228
+  - Configure the CentOS Linux installation 232
+  - Configuring PHP 235
+  - Installing SugarCRM Community Edition 236
+- **## Appendix B: Installing SugarCRM on Windows Server 247**
+  - A word about our installation 248
+  - Selecting a version of Windows 248
+  - Installing SugarCRM using MySQL and Apache 249
+  - Installing Apache web server 250
+  - Installing PHP 251
+  - Installing MySQL 254
+  - Installing SugarCRM Community Edition 256
+  - Installing SugarCRM with Microsoft SQL server 265
+  - Installing SugarCRM on Internet Information Services (IIS) 266
+  - Permissions 267
+- **## Appendix C: Data Import and Export 269**
+  - Importing accounts and contacts 270
+  - Pre-import analysis 271
+  - Import accounts 272
+  - Import contacts 275
+  - Importing leads and opportunities 276
+  - Updating records 276
+  - Exporting information 279
+  - Export contacts from your current contact manager 280
+  - Other options 281
+- **## Appendix D: The System Administrator Role 283**
+  - System administration duties 284
+  - Who should be the system administrator? 285
+  - Should more than one user be given system admin capability? 286
+  - Administration duties at system installation time 286
+  - Configuring system settings 287
+  - Defining currencies and rates 289
+  - Defining security roles 289
+  - Configuring system tabs 291
+  - Configuring tab groups 291
+  - Adding system users 291
+  - Password management 292
+  - Using Studio 293
+  - Defining system e-mail 294
+  - Recurring administration duties 295
+  - User management 296
+  - Resetting passwords 296
+  - General maintenance 296
+  - Checking for updates to SugarCRM 297
+  - System backups 297
+  - Data backups 298
+  - Checking available storage 299
+  - Using the Upgrade Wizard 300
+  - Using the module loader 301
+- **Appendix E: Customizing SugarCRM 305**
+  - Making changes to SugarCRM modules 306
+  - Non-upgrade safe and upgrade safe 306
+  - Customization Studio 307
+  - Dropdown Editor 311
+  - Logic hooks 314
+  - Model-View-Controller (MVC) 316
+  - Module Builder 318
+  - Integration using SOAP and REST API 319
+- **Appendix F: A Word About SugarCRM 6.0 321**
+  - What does SugarCRM 6.0 include? 321
+  - Should I use SugarCRM 6.0? 322
+- **Index 325**

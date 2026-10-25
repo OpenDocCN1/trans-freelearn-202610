@@ -1,0 +1,99 @@
+reviews:
+- 'no': 0
+  overturn_probability: 0.1
+  alternative: 书籍主标题/封面页
+  counter_evidence:
+  - 行内容为完整书名，包含副标题，长度超过30字，不符合章标题简洁特征
+  - 后续紧跟空行和封面图片说明，属于前置元数据而非正文章节起始
+  keep_split: true
+- 'no': 5
+  overturn_probability: 0.05
+  alternative: 致谢/版权页（Credits）
+  counter_evidence:
+  - 属于正文之前的前言性内容，规则明确规定前言、致谢等统一划分为一章
+  - 后续为作者、编辑等人员名单，非正文概述段落
+  keep_split: true
+- 'no': 50
+  overturn_probability: 0.05
+  alternative: 作者简介（About the Authors）
+  counter_evidence:
+  - 属于正文之前的前言性内容，规则明确规定关于作者统一划分为一章
+  - 内容为作者个人简介，不具备统领后续正文的章节语义
+  keep_split: true
+- 'no': 72
+  overturn_probability: 0.05
+  alternative: 审稿人简介（About the Reviewer）
+  counter_evidence:
+  - 属于正文之前的前言性内容，规则明确规定致谢等统一划分为一章
+  - 内容为单人简介，非章节标题
+  keep_split: true
+- 'no': 88
+  overturn_probability: 0.05
+  alternative: 前言（Preface）
+  counter_evidence:
+  - 规则明确规定前言、序言等正文之前的内容统一划分为一章
+  - 后续为书籍介绍性段落，非正式章节正文
+  keep_split: true
+- 'no': 195
+  overturn_probability: 0.05
+  alternative: 第 1 章标题（Doing Business—Better）
+  counter_evidence:
+  - 后续第 205 行出现“本章将讨论以下重要要点”，明确表明其为章节开头
+  - 后续第 216 行出现子标题“Small and medium-size businesses...”，符合章标题后跟子节的上下文特征
+  keep_split: true
+- 'no': 532
+  overturn_probability: 0.05
+  alternative: 第 2 章标题（一劳永逸？CRM 随您定制）
+  counter_evidence:
+  - 第 534 行明确承接“在第一章中...”，表明其为新章节起始
+  - 后续第 552 行出现子标题“识别您业务的 CRM 需求”，符合章标题后跟子节特征
+  keep_split: true
+- 'no': 921
+  overturn_probability: 0.05
+  alternative: 第 3 章标题（以客户为中心的业务管理）
+  counter_evidence:
+  - 后续第 923 行开始概述段落，说明本书大部分内容涉及如何识别并实施 SugarCRM
+  - 后续第 931 行出现子标题“规划你的安装”，符合章标题后跟子节特征
+  keep_split: true
+- 'no': 1049
+  overturn_probability: 0.05
+  alternative: 第 4 章标题（CRM 部署选项）
+  counter_evidence:
+  - 后续第 1051 行开始概述段落，说明前几章介绍了理论元素，本章采取系统方法
+  - 后续第 1067 行出现子标题“部署替代方案”，符合章标题后跟子节特征
+  keep_split: true
+- 'no': 1352
+  overturn_probability: 0.05
+  alternative: 第 5 章标题（执行安装）
+  counter_evidence:
+  - 后续第 1354 行说明安装细节可在附录中，本章聚焦业务分析上下文
+  - 后续第 1356 行出现“摘要”小标题，属于章节末尾总结结构
+  keep_split: true
+- 'no': 1371
+  overturn_probability: 0.05
+  alternative: 第 6 章标题（SugarCRM 基础）
+  counter_evidence:
+  - 后续第 1373 行开始概述段落，说明本章将带读者了解 SugarCRM
+  - 后续第 1386 行出现子标题“CRM 流程和术语”，符合章标题后跟子节特征
+  keep_split: true
+- 'no': 2045
+  overturn_probability: 0.05
+  alternative: 第 7 章标题（扩展 SugarCRM 系统的业务角色）
+  counter_evidence:
+  - 后续第 2049 行开始概述段落，说明本章将处理 CRM 系统在业务中角色的扩展
+  - 后续第 2056 行出现子标题“重置数据库”，符合章标题后跟子节特征
+  keep_split: true
+- 'no': 2262
+  overturn_probability: 0.05
+  alternative: 第 8 章标题（SugarCRM 生态系统）
+  counter_evidence:
+  - 后续第 2264 行开始概述段落，说明前两章介绍了基本 CRM 功能，本章探讨免费附加组件
+  - 后续第 2312 行出现子标题“SugarCRM Community Edition”，符合章标题后跟子节特征
+  keep_split: true
+- 'no': 2870
+  overturn_probability: 0.05
+  alternative: 第 9 章标题（管理您的 CRM 实施）
+  counter_evidence:
+  - 后续第 2872 行开始概述段落，说明本书已介绍 CRM 概念、需求差异及安装使用，本章研究引入新 CRM 解决方案的现实问题
+  - 后续第 2883 行出现子标题“成功 CRM 实施的关键步骤”，符合章标题后跟子节特征
+  keep_split: true

@@ -1,0 +1,9 @@
+# # About the Authors
+
+**Angel Magaña** based in Los Angeles, California, currently works as a CRM consultant helping businesses of all sizes realize the benefits of SugarCRM. He is a seasoned veteran of the technology world, initially getting his start in the CRM industry back in 1996 with GoldMine Software (now FrontRange Solutions). During his years at GoldMine, he authored numerous technical documents and contributed heavily to development and product management efforts that helped make GoldMine a leading and award winning solution.
+
+His affection for open source software began in 1998 when he started exploring Red Hat Linux, Apache, MySQL, and PHP; now widely known as the LAMP stack. As an advocate of open source technologies, Angel has continually focused on emphasizing their feasibility and viability in relation to CRM and small business needs.
+
+SugarCRM first caught his attention in 2005. Impressed by what he saw, Angel quickly moved to familiarize himself with its capabilities, and shortly thereafter deployed his first instance. Since then, Angel has continuously refined his SugarCRM skills while also sharing his knowledge with others as an active member of the SugarCRM user community. In addition to his numerous contributions on the SugarCRM Forums, his projects on SugarForge.org have earned him two "Project of the Month" recognitions. Angel also maintains a blog at http://cheleguanaco.blogspot.com, where he shares additional insights on customizing and troubleshooting SugarCRM.
+
+Away from the computer he is an avid soccer fan and regularly writes about the local soccer scene for LAist.com. When he is not playing, watching or writing about soccer, he is out running, riding his bike or enjoying the outdoors. He is fluent in English and Spanish, with a little French in between. His two dogs are a constant source of amusement.

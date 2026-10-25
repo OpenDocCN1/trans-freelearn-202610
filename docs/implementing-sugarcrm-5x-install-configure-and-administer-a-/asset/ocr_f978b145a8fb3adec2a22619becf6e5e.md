@@ -1,0 +1,13 @@
+# # One Size Does Not Fit All – CRM Your Way
+
+You will need to determine the language to be used for data entry into your CRM, making sure that you select one that you feel most users can understand, even if it is not their first language.
+
+Many languages use characters and accents that do not exist in the English language. If this is a common need for your business, your CRM tool will need to accommodate such input by allowing users to enter, display, and print this data without hassles.
+
+You CRM vendor should be able to inform you about the supported languages for the user interface, as well as the application's inline help system and printable documentation. An interface and help system that matches the user's predominant language will help user adoption, even if the data being input is not itself in the same language.
+
+SugarCRM has support for numerous languages at the user interface, but printable documentation and the inline help system currently exists only in English. Another aspect of international support is the format in which dates are displayed. The manner in which such values are stored in the database by your CRM system is far less important than the system providing a mechanism that allows its users to select their preferred display format. Common formats include, 12/23/2006, 23/12/2006, and 2006/12/23. SugarCRM handles all of these formats without difficulty.
+
+In addition to dates, different countries have different formats in which numbers and currency are presented. The decimal separator in North America is a period (.), while the thousands separator is a comma (,). In much of Europe, for example, the decimal separator is a comma (,) and the thousands separator is a period (.). Thus, a value represented as 12,234,678.90 in North America, would instead be represented as 12.345.678,90 in Europe, or even Latin America. If your staff will need to be able to present numbers and currency values in varying formats, you will want to check that your CRM is capable of supporting this feature. SugarCRM allows individual users to define these parameters as a part of their individual preferences.
+
+A related topic concerns numeric values representing monetary entries, for example, the expected revenue of an opportunity. Businesses with staff in various countries and using differing currencies face a unique challenge with regards to the handling of these monetary values. Assuming the values all represent a specific currency has the potential to cause a number of problems. If a salesperson in Brazil enters a value in Reais, but the sales manager in Canada reads it as Canadian Dollars, the value would be incorrect.
