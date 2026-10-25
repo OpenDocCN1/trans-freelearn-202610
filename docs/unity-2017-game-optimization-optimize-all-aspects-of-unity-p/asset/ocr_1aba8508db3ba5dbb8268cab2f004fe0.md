@@ -1,0 +1,7 @@
+Depending on how deep you already are into your current project, such changes can be incredibly daunting, time-consuming, and likely to introduce a lot of bugs as subsystems are updated to make use of a completely different set of dependencies. However, the benefits can outweigh the risks if time is on your side. It would be wise to do some testing on a group of objects in a Scene that is similarly designed to your current Scene files to verify that the benefits outweigh the costs.
+
+# # Summary
+
+This chapter introduced you to many methods that improve your scripting practices in the Unity Engine, with the aim of improving performance if (and only if) you have already proven them to be the cause of a performance problem. Some of these techniques demand some forethought and profiling investigation before being implemented, since they often come with introducing additional risks or obfuscating our codebase for new developers. Workflow is often just as important as performance and design, so before you make any performance changes to the code, you should consider whether or not you’re sacrificing too much on the altar of performance optimization.
+
+We will investigate more advanced scripting improvement techniques later, in Chapter 8, Masterful Memory Management, but let’s take a break from staring at code and explore some ways to improve graphics performance using a pair of built-in Unity features known as Dynamic Batching and Static Batching.

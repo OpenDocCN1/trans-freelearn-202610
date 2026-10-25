@@ -1,0 +1,177 @@
+reviews:
+- 'no': 0
+  overturn_probability: 0.95
+  alternative: 书籍封面标题/书名页
+  counter_evidence:
+  - 该行内容为完整书名及副标题，属于书籍封面或书名页信息，而非正文章节标题
+  - 其后紧跟大量营销图片、折扣代码等前置材料，不符合章标题后应接概述段落的上下文特征
+  - 不具备“第 X 章”或“X. ”等最高层级章节编号特征
+  keep_split: false
+- 'no': 14
+  overturn_probability: 0.85
+  alternative: 致谢页标题（前置材料）
+  counter_evidence:
+  - 该行位于书籍前置材料区域，紧接在大量出版社营销内容之后，属于正文开始前的致谢部分
+  - 其下列出的是作者、审稿人、编辑等人员名单列表，而非章节正文或子节
+  - 规则明确说明前言、序言、致谢等正文之前的内容应统一划分为一章，不应单独分章
+  keep_split: false
+- 'no': 53
+  overturn_probability: 0.85
+  alternative: 关于作者页标题（前置材料）
+  counter_evidence:
+  - 该行位于致谢人员名单之后，属于图书前言部分的“关于作者”介绍
+  - 其后是作者个人简介段落，而非章节概述或子节结构
+  - 规则要求前言、致谢、关于作者等正文之前的内容统一划分为一章，不应单独分章
+  keep_split: false
+- 'no': 65
+  overturn_probability: 0.85
+  alternative: 关于审稿人页标题（前置材料）
+  counter_evidence:
+  - 该行位于“关于作者”之后，属于图书前置材料中的审稿人介绍部分
+  - 其后是审稿人个人简介段落，不具备章标题统领后续正文的语义特征
+  - 根据规则，前言、序言、致谢、关于作者等正文之前的内容应统一划分为一章
+  keep_split: false
+- 'no': 88
+  overturn_probability: 0.9
+  alternative: 出版社网址/前言介绍标题（前置材料）
+  counter_evidence:
+  - 该行内容为网址 www.PacktPub.com，明显属于出版社宣传或前置说明，而非章节标题
+  - 其后是关于支持文件下载、免费文章等出版社服务介绍，不构成章节正文
+  - 不符合章标题格式特征（无章序号、非统领性语义）
+  keep_split: false
+- 'no': 100
+  overturn_probability: 0.9
+  alternative: 订阅服务介绍标题（前置材料）
+  counter_evidence:
+  - 该行内容为“为什么订阅？”，属于Packt订阅服务的营销介绍，而非图书章节
+  - 其下是列表项（可全面搜索、复制粘贴等），属于产品功能列举，非章节内容
+  - 位于图书前置材料区域，不应作为独立章节划分
+  keep_split: false
+- 'no': 106
+  overturn_probability: 0.9
+  alternative: 客户反馈说明标题（前置材料）
+  counter_evidence:
+  - 该行内容为“客户反馈”，属于出版社收集读者意见的前置说明页面
+  - 其后是发送邮件地址等联系信息，而非章节正文
+  - 不具备章节统领性语义，不应单独分章
+  keep_split: false
+- 'no': 112
+  overturn_probability: 0.85
+  alternative: 前言标题（前置材料，重复出现）
+  counter_evidence:
+  - 该行位于客户反馈之后，属于图书前言部分，正文尚未开始
+  - 其后是关于用户体验和性能优化的概述性段落，属于前言正文而非新章节
+  - 规则明确：前言等正文之前的内容统一划分为一章，不应重复分章
+  keep_split: false
+- 'no': 122
+  overturn_probability: 0.85
+  alternative: 前言标题（前置材料，重复出现）
+  counter_evidence:
+  - 该行再次出现“# 前言”，属于前置材料中的重复章节标记，而非新的最高层级章节
+  - 其后是引用和关于本书目的段落，仍属于前言内容
+  - 根据规则，前言应统一划分为一章，不应因重复出现而多次分章
+  keep_split: false
+- 'no': 136
+  overturn_probability: 0.85
+  alternative: 本书内容说明标题（前置材料）
+  counter_evidence:
+  - 该行内容为“本书内容”，属于图书前言部分的章节介绍，而非正文章节
+  - 其后是对第1-9章的简要列举，属于前置材料中的内容导读
+  - 不具备正文章节的统领性语义，不应单独分章
+  keep_split: false
+- 'no': 148
+  overturn_probability: 0.85
+  alternative: 前言标题（前置材料，重复出现）
+  counter_evidence:
+  - 该行第三次出现“# 前言”，明显属于前置材料的重复标记，非新章节
+  - 其后是第4-9章的内容简介，仍属于本书内容导读部分
+  - 规则要求前言等正文之前内容统一划分为一章，不应多次分章
+  keep_split: false
+- 'no': 162
+  overturn_probability: 0.85
+  alternative: 本书所需内容说明标题（前置材料）
+  counter_evidence:
+  - 该行内容为“本书所需内容”，属于图书前言部分的环境要求说明
+  - 其后是关于Unity 2017功能的适用性说明，非章节正文
+  - 不具备章节编号和统领性语义，不应单独分章
+  keep_split: false
+- 'no': 166
+  overturn_probability: 0.85
+  alternative: 本书适用人群说明标题（前置材料）
+  counter_evidence:
+  - 该行内容为“本书适用人群”，属于图书前言部分的读者定位说明
+  - 其后是关于中级高级开发者及C#、Cg语言要求的描述，非章节内容
+  - 不符合章标题格式和语义特征，不应单独分章
+  keep_split: false
+- 'no': 172
+  overturn_probability: 0.85
+  alternative: 约定说明标题（前置材料）
+  counter_evidence:
+  - 该行内容为“约定”，属于图书前言部分的文本样式说明
+  - 其后是代码词、代码块、新术语等排版约定说明，属于前置材料
+  - 不具备章节统领性语义，不应单独分章
+  keep_split: false
+- 'no': 200
+  overturn_probability: 0.85
+  alternative: 读者反馈说明标题（前置材料）
+  counter_evidence:
+  - 该行内容为“读者反馈”，属于出版社收集读者意见的前置说明页面
+  - 其后是反馈邮箱和作者指南链接，非章节正文
+  - 不具备章节编号和统领性语义，不应单独分章
+  keep_split: false
+- 'no': 208
+  overturn_probability: 0.85
+  alternative: 客户支持说明标题（前置材料）
+  counter_evidence:
+  - 该行内容为“客户支持”，属于图书前言部分的支持服务介绍
+  - 其后是关于充分利用购买的说明，非章节内容
+  - 不符合章标题格式和语义特征，不应单独分章
+  keep_split: false
+- 'no': 212
+  overturn_probability: 0.85
+  alternative: 下载示例代码说明标题（前置材料）
+  counter_evidence:
+  - 该行内容为“下载示例代码”，属于图书前言部分的代码下载说明
+  - 其后是具体的下载步骤列表，属于操作指南而非章节正文
+  - 不具备章节统领性语义，不应单独分章
+  keep_split: false
+- 'no': 232
+  overturn_probability: 0.85
+  alternative: 前言标题（前置材料，重复出现）
+  counter_evidence:
+  - 该行第四次出现“# 前言”，属于前置材料中的重复标记，非新章节
+  - 其后是代码包GitHub托管说明，仍属于前置材料
+  - 规则要求前言等正文之前内容统一划分为一章，不应多次分章
+  keep_split: false
+- 'no': 236
+  overturn_probability: 0.85
+  alternative: 下载彩色图片说明标题（前置材料）
+  counter_evidence:
+  - 该行内容为“下载本书的彩色图片”，属于图书前言部分的资源下载说明
+  - 其后是关于PDF文件和截图的说明，非章节内容
+  - 不符合章标题格式和语义特征，不应单独分章
+  keep_split: false
+- 'no': 240
+  overturn_probability: 0.85
+  alternative: 勘误说明标题（前置材料）
+  counter_evidence:
+  - 该行内容为“勘误”，属于图书前言部分的错误更正说明
+  - 其后是勘误查看链接，非章节正文
+  - 不具备章节编号和统领性语义，不应单独分章
+  keep_split: false
+- 'no': 246
+  overturn_probability: 0.85
+  alternative: 盗版说明标题（前置材料）
+  counter_evidence:
+  - 该行内容为“盗版”，属于图书前言部分的版权保护声明
+  - 其后是关于版权保护和盗版问题的说明，非章节内容
+  - 不符合章标题格式和语义特征，不应单独分章
+  keep_split: false
+- 'no': 250
+  overturn_probability: 0.85
+  alternative: 问题说明标题（前置材料）
+  counter_evidence:
+  - 该行内容为“问题”，属于图书前言部分的读者咨询说明
+  - 其后是联系邮箱和版权保护说明，非章节正文
+  - 不具备章节编号和统领性语义，不应单独分章
+  keep_split: false

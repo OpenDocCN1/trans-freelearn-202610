@@ -1,0 +1,7 @@
+# # Single-Pass versus Multi-Pass Stereo Rendering
+
+For VR apps, Unity provides two rendering modes; Multi-Pass and Single-Pass. This can be configured under Edit | Project Settings | Player | XR Settings | Stereo Rendering Method. Multi-Pass rendering will render the Scene to two different images, which are displayed separately for each eye. Single-Pass Stereo Rendering combines both images into a single double-width Render Texture, where only the relevant half is displayed to each eye.
+
+Multi-Pass Stereo Rendering is the default case. The advantage of Single-Pass rendering is that it provides significant savings in the CPU work in the main thread by reducing Draw Call setup and in the GPU since less texture swapping needs to occur. Of course, the GPU will need to work just as hard to render the objects since each object is still rendered twice from two different perspectives (there are no freebies here). The disadvantage is that this effect is currently only usable when using OpenGL ES3.0 or higher and hence is not available on all platforms. In addition, its effects on the Rendering Pipeline require extra care and effort, particularly surrounding any Shaders making use of screen-space effects (effects which only use data already drawn to the Frame Buffer). With Single-Pass Stereo Rendering enabled, Shader code can no longer make the same assumptions about the incoming screen space information. The following image shows how screen space coordinates vary between Multi-Pass and Single-Pass Stereo Rendering
+
+![](bbox=[0.107, 0.491, 0.894, 0.761])

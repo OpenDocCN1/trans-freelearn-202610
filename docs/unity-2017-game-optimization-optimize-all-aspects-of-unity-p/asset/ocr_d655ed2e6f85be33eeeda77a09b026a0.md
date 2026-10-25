@@ -1,0 +1,11 @@
+However, there are caveats to this approach. If the instance ID value is not cached (we keep calling `Object.GetInstanceID()` each time we need to index into our dictionary) and we are compiling with Mono (and not IL2CPP), then element acquisition could end up being slow. This is because it will call some thread-unsafe code in order to acquire the instance ID, in which case, the Mono compiler cannot optimize the loop, and, therefore, causes some additional overhead by comparison to caching the instance ID value. If we are compiling with IL2CPP, which doesn't have this problem, then the benefits are still not as great (only around 50 percent faster) than if we had simply cached the value beforehand. Therefore, we should aim to cache the integer value in some way so that we avoid having to call `Object.GetInstanceID()` too often.
+
+# # foreach loops
+
+The `foreach` loop keyword is a bit of a controversial issue in Unity development circles. It turns out that a lot of `foreach` loops implemented in Unity C# code will incur unnecessary heap memory allocations during these calls, as they allocate an `Enumerator` object as a `class` on the heap, instead of a `struct` on the stack. It all depends on the given collection's implementation of the `GetEnumerator()` method.
+
+It turns out that every single collection that has been implemented in the version of Mono that comes with Unity (Mono version 2.6.5) will create classes instead of structs, which results in heap allocations. This includes, but is not limited to, `List<T>`, `LinkedList<T>`, `Dictionary<K, V>`, and `ArrayList`.
+
+> Note that it is safe to use `foreach` loops on typical arrays. The Mono compiler secretly converts `foreach` over arrays into simple for loops.
+
+The cost is fairly negligible, as the heap allocation cost does not scale with the number of iterations. Only one `Enumerator` object is allocated, and reused over and over again, which only costs a handful of bytes of memory overall. So, unless our `foreach` loops are being invoked for every update (which is typically dangerous in, and of, itself), the costs will be mostly negligible on small projects. The time taken to convert everything to a `for` loop may not be worth the time. However, it's definitely something to keep in mind for the next project we begin to write.

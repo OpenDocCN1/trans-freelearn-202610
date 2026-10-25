@@ -1,0 +1,11 @@
+The Shader is always informed of the screen space coordinates relative to the entire output Render Texture rather than just the portion it is interested in. For example, we would normally expect an x value of 0.5 to correspond to the horizontal half-way point of the screen, which would be the case when we use Multi-Pass Stereo Rendering, however, if we use Single-Pass Stereo Rendering, then an x value of 0.5 would correspond to the half-way point between the rendering of both eyes (the right-edge of the left eye, or the left-edge of the right eye).
+
+Unity provides some useful helper methods for screen space conversion for Shaders, which can be found at `https://docs.unity3d.com/Manual/ SinglePassStereoRendering.html`.
+
+Another problem to worry about is Post-Processing effects. We essentially always pay double the cost for any Post-Processing effect applied to the Scene in VR since it needs to be evaluated once for each eye. Single-Pass Stereo Rendering can reduce the Draw Calls needed to set up our effect, but we can’t blindly apply a Post-Processing effect to both images simultaneously. Consequently, Post-Processing effect Shaders must also be adjusted to ensure that they render to the correct half of the output Render Texture. Without doing this, a Post-Processing effect will be stretched over both eyes, twice, which might look incredibly bizarre for effects such as lens flares.
+
+The Single-Pass Stereo Rendering feature has been around since Unity 5.4, but is still currently labeled **Preview** in the Editor due to the current lack of support for all platforms. We can expect it to be rolled out to more platforms eventually, but for platforms supporting it we will need to perform some profiling and sensible sanity checks on our screen space Shaders to ensure that we are making positive gains from enabling this option.
+
+# # Apply anti-aliasing
+
+This tip is less of a performance enhancement and more of a requirement. Anti-aliasing significantly improves the fidelity of XR projects since objects will blend together better and appear less pixelated, improving immersion, which can cost a lot of Fill Rate. We should enable this feature early and try to reach our performance goals with the assumption that it is simply always there, only disabling it as an absolute last resort.

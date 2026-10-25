@@ -1,0 +1,13 @@
+We can tweak the world's implied scale by modifying the strength of gravity under **Edit | Project Settings | Physics / Physics 2D | Gravity**. However, note that any floating-point arithmetic will be more accurate with values closer to 0, so if we have some objects that have scale values far above `(1, 1, 1)`, even if they match the implied world-scale, then we could still observe erratic physics behavior. So, early in the project, we should import and scale our most common physics objects around a scale value of `(1, 1, 1)` and then adjust the value of gravity to match. This will give us a reference point to work with as we introduce new objects.
+
+# # Positioning
+
+Similarly, keeping all objects close to `(0, 0, 0)` in the world-space position will result in better floating-point accuracy, improving the consistency of the simulation. Space simulator and free-running games try to simulate incredibly large spaces and typically use a trick of either secretly teleporting the player back toward the center of the world or fixing their position there, in which case, either volumes of space are compartmentalized so that physics calculations are always calculated with values close to 0, or everything else is moved to simulate travel, and the player's motion is only an illusion.
+
+Most games are not at risk of introducing floating-point inaccuracy, since most game levels tend to last around 10 to 30 minutes, which doesn't give the player much time to travel absurdly long distances, but if we're working with exceptionally large Scenes or asynchronously loading Scenes throughout the course of the entire game to the point that the player travels tens of thousands of meters, then we may start to notice some strange physics behavior the further they travel.
+
+So, unless we're already far too deep into our project such that changing and retesting everything at a late stage would be too much hassle, we should try to keep all of our physics objects close to `(0, 0, 0)`. Plus, this is good practice for our project workflow, as it makes it much quicker to find objects and tweak things in our game world.
+
+# # Mass
+
+Mass is stored as a floating-point value under a `Rigidbody` Component's `mass` property, and documentation on its usage has changed a fair amount over the years due to updates in its Physics Engine. In the recent versions of Unity (late Unity 5 and early Unity 2017), we are essentially free to choose whatever we want the value `1.0` to represent and then scale other values appropriately.

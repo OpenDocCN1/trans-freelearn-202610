@@ -1,0 +1,31 @@
+
+## W
+
+- WebGL optimizations 316
+
+## X
+
+- XR development
+  - about 243, 244
+  - emulation 244
+  - user comfort 245, 246, 247
+- XR projects
+  - performance enhancements 248
+- XR Software Development Kits (SDKs) 243
+
+## Z
+
+- Z-testing 195
+- structs 278, 279, 280
+- variable attributes 333, 334
+- varieties, Mesh Colliders
+  - Concave 163
+  - Convex 163
+- vertex attributes 114
+- Vertex Lit Shading 201
+- Virtual Machine (VM) 267
+- Virtual Reality (VR) 241
+- VRAM limits
+  - about 234
+  - texture thrashing, avoiding 235
+  - textures, preloading with hidden GameObjects 234

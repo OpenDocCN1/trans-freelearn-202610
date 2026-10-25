@@ -1,0 +1,15 @@
+# Dynamic Graphics
+
+# Chapter 6
+
+One such example of a test that might cull a fragment is Z-testing, which checks whether the fragment from a closer object has already been drawn to the same fragment location (the Z refers to the depth dimension from the point of view of the Camera). If so, the current fragment is discarded. If not, then the fragment is pushed through the Fragment Shader and drawn over the target pixel, which consumes exactly one fill from our Fill Rate. Now, imagine multiplying this process by thousands of overlapping objects, each of which generates hundreds or thousands of possible fragments (higher screen resolutions require more fragments to be processed). This could easily lead to millions of fragments to process each and every frame due to all of the possible overlap from the perspective of the Main Camera. On top of this, we're trying to repeat this process dozens of times every second. This is why performing so much initial setup in the Rendering Pipeline is important, and it should be fairly obvious that skipping as many of these draws as we can will result in big rendering cost savings.
+
+Graphics card manufacturers typically advertise a particular Fill Rate as a feature of the card, usually in the form of Gigapixels per-second, but this is a bit of a misnomer, as it would be more accurate to call it Gigafragments per-second; however, this argument is mostly academic. Either way, larger values tell us that the device can potentially push more fragments through the Rendering Pipeline. So, with a budget of 30 Gigapixels per-second and a target frame rate of 60 Hz, we can afford to process 30,000,000,000/60 = 500 million fragments per-frame before being bottlenecked on Fill Rate. With a resolution of 2560 x 1440, and a best-case scenario where each pixel is drawn over only once, we could theoretically draw the entire Scene about 125 times without any noticeable problems.
+
+Sadly, this is not a perfect world. Fill Rate is also consumed by other advanced rendering techniques, such as Shadows and Post-Processing effects that needs to take the same fragment data and perform their own passes on the Frame Buffer. Even so, we will always end up with some amount of redraw over the same pixels due to the order in which objects are rendered. This is known as Overdraw, and it is a useful metric to measure how efficiently we are making use of our Fill Rate.
+
+# Overdraw
+
+How much Overdraw we have can be represented visually by rendering all objects with additive alpha blending and a flat coloration. Areas of high Overdraw will show up more brightly, as the same pixel is drawn over with additive blending multiple times. This is precisely how the Scene window's Overdraw Shading mode reveals how much Overdraw our Scene is undergoing.
+
+# [ 195 ]

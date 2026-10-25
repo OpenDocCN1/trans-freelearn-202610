@@ -1,0 +1,13 @@
+![](bbox=[0.135, 0.125, 0.195, 0.186])
+
+Note that the Boo language has already been deprecated in previous versions of Unity, and the UnityScript language will start becoming phased out in future versions. The blog post at https://blogs.unity3d.com/2017/08/11/unityscripts-long-ride-off-into-the-sunset/ explains the reasoning behind these changes.
+
+A common misconception about the Unity Engine is that it is built on top of the Mono platform. This is untrue, as its Mono-based layer does not handle many important game tasks such as audio, rendering, physics and keeping track of time. Unity Technologies built a Native C++ backend for the sake of speed and allows its users control of this Game Engine through Mono as a scripting interface. As such, Mono is merely an ingredient of the underlying Unity Engine. This is equivalent to many other Game Engines, which run C++ under the hood, handling important tasks such as rendering, animation, and resource management, while providing a higher-level scripting language for Gameplay logic to be implemented. As such, the Mono platform was chosen by Unity Technologies to provide this feature.
+
+![](bbox=[0.135, 0.434, 0.195, 0.495])
+
+Native Code is common vernacular for code that is written specifically for the given platform. For instance, writing code to create a window object or interface with networking subsystems in Windows would be completely different to code performing the tasks for a Mac, Unix, Playstation 4, XBox One, and so on.
+
+Scripting languages typically abstract away complex memory management through automatic garbage collection and provide various safety features, which simplify the act of programming at the expense of runtime overhead. Some scripting languages can also be interpreted at runtime, meaning that they don't need to be compiled before execution. The raw instructions are converted dynamically into Machine Code and executed the moment they are read during runtime; of course, this often makes the code relatively slow. The last feature, and probably the most important one, is that they allow simpler syntax of programming commands. This usually improves development workflow immensely, as team members without much experience using languages such as C++ can still contribute to the code base. This enables them to implement things such as Gameplay logic in a simpler format at the expense of a certain amount of control and runtime execution speed.
+
+Note that such languages are often called Managed Languages, which feature Managed Code. Technically, this was a term coined by Microsoft to refer to any source code that must run inside their Common Language Runtime (CLR) environment, as opposed to code that is compiled and run Natively through the target OS.

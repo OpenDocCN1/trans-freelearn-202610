@@ -1,0 +1,13 @@
+# # Optimizing Particle Systems
+
+Particle Systems are useful for a huge number of different visual effects, and usually the more particles they generate, the better the effect looks. However, we will need to be responsible about the number of particles generated and the complexity of Shaders used since they can touch on all parts of the Rendering Pipeline; they generate a lot of vertices for the Front End (each particle is a quad) and could use multiple textures, which consume Fill Rate and Memory Bandwidth in the Back End, so they can potentially cause an application to be bound anywhere if used irresponsibly.
+
+Reducing Particle System density and complexity are fairly straightforward--use fewer Particle Systems, generate fewer particles, and/or use fewer special effects. Atlasing is also another common technique to reduce Particle System performance costs. However, there is an important performance consideration behind Particle Systems that is not too well known and happens behind the Scenes, and that is the process of automatic Particle System culling.
+
+# # Make use of Particle System Culling
+
+Unity Technologies have released an excellent blog post covering this topic, which can be found at `https://blogs.unity3d.com/2016/12/20/unitytips-particlesystem-performance-culling/`.
+
+The basic idea is that all Particle Systems are either predictable or not (deterministic versus nondeterministic), depending on various settings. When a Particle System is predictable and not visible to the main view, then the entire Particle System can be automatically culled away to save performance. As soon as a predictable Particle System comes back into view, Unity can figure out exactly how the Particle System is meant to look at that moment as if it had been generating particles the entire time it wasn't visible. So long as the Particle System generates particles in a very procedural way, then the state is immediately solvable mathematically.
+
+However, if any setting forces the Particle System to become unpredictable or `nonprocedural`, then it would have no idea what the current state of the Particle System needs to be, had it been hidden previously, and will hence need to render it fully every frame regardless of whether or not it is visible. Settings that break a Particle System's predictability include, but are not limited to making the Particle System render in world-space, applying external forces, collisions, and Trails, or using complex Animation Curves. Check out the blog post mentioned previously for a rigorous list of nonprocedural conditions.

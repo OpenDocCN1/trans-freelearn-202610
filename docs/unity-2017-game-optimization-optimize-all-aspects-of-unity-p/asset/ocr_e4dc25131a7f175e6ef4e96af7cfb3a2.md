@@ -1,0 +1,9 @@
+# # The Project window
+
+The **Project** window's search bar allows us to filter for objects of a particular type by clicking on the small icon to the right of the search bar. This provides a list of different types we can filter by revealing all objects of that type within the entire project. However, selecting these options simply fills the search bar with a string of the `t:<type>` format, which applies the appropriate filter.
+
+Thus, we can simply type the equivalent strings into the search bar for the sake of speed. For instance, typing `t:prefab` will filter for all Prefabs, no matter where they are found in the **Hierarchy** window. Similarly, `t:texture` will reveal textures, `t:scene` will reveal Scene files, and so on. Adding multiple search filters in the search bar will include objects of all types (it does not reveal objects that only satisfy both filters). These filters are modifiers in addition to name-based filtering, so adding a plain text string will cause a name-based search through the filtered objects. For example, `t:texture normalmap` will find all texture files that include the word _normalmap_ in their name.
+
+If we're making use of Asset Bundles and the built-in labeling system, the **Project** window's search bar also allows us to hunt down bundled objects by their label using `l:<label type>`.
+
+When a mesh object is selected, the **Preview** subsection at the bottom of the **Inspector** window is often fairly small, making it hard to take a look at details in the mesh and how it will look when it appears in our Scene. However, if we right-click on the top bar of the **Preview** subsection, it will be detached and enlarged into a separate **Preview** window, making it much easier to see our mesh. We don't have to worry about setting the detached window back to its original home, as if the detached window is closed, then the **Preview** subsection will return to the bottom of the **Inspector** window.

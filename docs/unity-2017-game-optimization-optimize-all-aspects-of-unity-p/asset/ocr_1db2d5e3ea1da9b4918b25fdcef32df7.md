@@ -1,0 +1,13 @@
+Meanwhile, Regular Expressions through the `Regex` class allow us to perform complex string parsing to find substrings that match a particular format, replace pieces of a string, or construct strings from various inputs. Regular Expression is another very useful tool, but tends to be overused in places where it is largely unnecessary or in so-called `clever` ways to implement a feature such as text localization, when straightforward string replacement would be far more efficient.
+
+Specific optimizations for both of these features go far beyond the scope of this book, as they could fill an entire book by themselves. We should either try to minimize their usage as much as possible, replace their usage with something less costly, bring in a LINQ or Regex expert to solve the problem for us, or do some Googling on the subject to optimize how we’re using them.
+
+> One of the best ways to find the correct answer online is to simply post the wrong answer. People will either help us out of kindness or will take such a great offense to our implementation that they will consider it their civic duty to correct us. Just be sure to do some kind of research on the subject first. Even the busiest of people are generally happy to help if they can see that we’ve put in our fair share of effort beforehand.
+
+# # Temporary work buffers
+
+If we get into the habit of using large, temporary work buffers for one task or another, then it just makes sense that we should look for opportunities to reuse them, instead of reallocating them over and over again, as this lowers the overhead involved in allocation and garbage collection (often called _memory pressure_). It might be worthwhile to extract such functionality from case-specific classes into a generic God Class that contains a big work area for multiple classes to reuse.
+
+# # Object Pooling
+
+Speaking of temporary work buffers, Object Pooling is an excellent way of both minimizing and establishing control over our memory usage by avoiding deallocation and reallocation. The idea is to formulate our own system for object creation, which hides away whether the object we’re getting has been freshly allocated or has been recycled from an earlier allocation. The typical terms to describe this process are to _spawn_ and _despawn_ the object rather than creating and deleting them in memory. When an object is despawned, we’re simply hiding it, making it lay dormant until we need it again, at which point it is _respawned_ from one of the previously despawned objects and used in place of an object we might have otherwise newly allocated.
