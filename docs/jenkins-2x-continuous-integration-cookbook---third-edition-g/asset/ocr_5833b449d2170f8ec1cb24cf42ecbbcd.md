@@ -1,0 +1,3 @@
+# How it works...
+
+Your subversion repo contains an `index.html` file that is pulled into the workspace of the job. The plugin works as advertised and adds a link pointing to the HTML report. This allows your audience to efficiently find your custom-generated information.

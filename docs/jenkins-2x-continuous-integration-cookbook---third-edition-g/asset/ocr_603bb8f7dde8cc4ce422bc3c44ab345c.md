@@ -1,0 +1,3 @@
+# Remotely generating jobs
+
+There is also a project that allows you to create Jenkins jobs through Maven remotely ([https://github.com/evgeny-goldin/maven-plugins/tree/master/jenkins-maven-plugin](https://github.com/evgeny-goldin/maven-plugins/tree/master/jenkins-maven-plugin)). The advantage of this approach is its ability to enforce consistency and reuse between jobs. You can use one parameter to choose a Jenkins server and populate it. This is useful for generating a large set of consistently structured jobs.

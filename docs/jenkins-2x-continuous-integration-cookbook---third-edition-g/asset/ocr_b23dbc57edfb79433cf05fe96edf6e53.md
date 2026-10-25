@@ -1,0 +1,9 @@
+# # Troubleshooting with JavaMelody - memory
+
+Your Jenkins server can at times have memory issues due to greedy builds, leaky plugins, or some hidden complexity in the infrastructure. JavaMelody has a comprehensive range of memory measurements, including a heap dump and a memory histogram.
+
+The Java virtual machine divides memory into various areas and, to clean up, it removes objects that have no references to other objects. Garbage collection can be CPU-intensive when it is busy, and the nearer to consumption of full memory, the busier garbage collection becomes. To an external monitoring agent, this looks like a CPU spike that is often difficult to track down. Just because the garbage collector manages memory, it is also a fallacy to believe that there is no potential for memory leakage in Java. Memory can be held for too long by many common practices such as custom caches or calls to native libraries.
+
+Slow burning memory leaks will show up as gentle slopes on memory-related evolution graphs. If you suspect that you have a memory leak, then you can get the plugin to force a full garbage collection through the Execute the garbage collector link. If it is not a memory leak, the gentle slope will abruptly fall.
+
+Memory issues can also express themselves as large CPU spikes as the garbage collector frantically tries to clean up, but can barely clean enough space. The garbage collector can also pause the application while comprehensively looking for no-longer referenced objects ("stop the world garbage collection"), thus causing long response times for web browser requests. This can be seen through the mean and max times in Statistics http - 1 day.

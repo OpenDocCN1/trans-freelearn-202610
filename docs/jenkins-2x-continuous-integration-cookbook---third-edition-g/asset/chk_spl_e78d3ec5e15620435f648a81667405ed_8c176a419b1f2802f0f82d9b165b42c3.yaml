@@ -1,0 +1,37 @@
+reviews:
+- 'no': 3361
+  overturn_probability: 0.08
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 标题后紧跟‘在本章中，我们将涵盖以下内容：’的统领性概述，符合章标题上下文特征
+  - 后续内容为配方列表，语义上统领整块内容，格式单独成行且无句号
+  keep_split: true
+- 'no': 3988
+  overturn_probability: 0.05
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 标题后紧跟‘在本章中，我们将介绍以下教程：’的章级概述，符合章标题上下文特征
+  - 标题单独成行，长度<30字，末尾无标点，语义统领后续持续交付配方
+  keep_split: true
+- 'no': 4528
+  overturn_probability: 0.07
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 标题后紧跟‘在本章中，我们将介绍以下配方：’的章级引言，格式与语义均符合章标题
+  - 前后上下文从持续交付切换到持续测试，主题断裂明显
+  keep_split: true
+- 'no': 4736
+  overturn_probability: 0.78
+  alternative: 正文小标题
+  counter_evidence:
+  - 该标题出现在‘持续测试’章节内部的 Selenium/TestNG 流程之后，上下文仍为测试相关内容，主题突变缺乏章级过渡
+  - 前后无‘在本章中…’类章级概述，后续内容为深度学习概念介绍、代码片段，形态更接近插入性小专题或排版噪声，而非全书最高层级大章
+  - 原判断置信度仅0.65，且与前后‘持续测试’的配方列表结构不连续
+  keep_split: false
+- 'no': 5367
+  overturn_probability: 0.06
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 标题后紧跟‘在本章中，我们将介绍以下内容：’的章级概述，符合章标题判断规则
+  - 标题单独成行，语义统领后续编排/流水线内容，与前文持续测试主题明显断裂
+  keep_split: true

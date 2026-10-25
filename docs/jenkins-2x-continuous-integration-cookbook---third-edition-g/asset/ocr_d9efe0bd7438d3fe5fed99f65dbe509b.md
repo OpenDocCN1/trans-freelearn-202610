@@ -1,0 +1,5 @@
+# Conventions are good
+
+By following conventions, you decrease the amount of maintenance and lower the number of defects hidden in your code. Coding conventions are particularly important when more than one developer is involved in writing the code. Conventions aid readability. Consistently indented code focuses the eye on poorly-written sections. Well-structured variable names help avoid naming collisions between code written in different parts of the organization. Structure in naming highlights the data that you can later move to configuration files and it also increases the opportunity for semi-automatic refactoring using regular expressions, for example, you can write a short piece of R code to visualize the number of global variables you have per module. The more global variables you have, the greater the risk of using the same variable for multiple purposes. Hence, the plot is a rough indicator of smelly code.
+
+Properly followed conventions help to minimize the issues and also help in troubleshooting. It creates a unique culture in the organization.

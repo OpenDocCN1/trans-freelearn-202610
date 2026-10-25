@@ -1,0 +1,3 @@
+# There's more...
+
+There are some important configurations that you need to do here in the Configure System section, such as SCM Polling, E-mail Notification, Extended E-mail Notification, Git plugin, Disk usage, Quality Gates - SonarQube, Build Pipeline Plugin, Copyartifact: Upstream build that triggered this job, Audit Trail, SonarQube servers, and so on.

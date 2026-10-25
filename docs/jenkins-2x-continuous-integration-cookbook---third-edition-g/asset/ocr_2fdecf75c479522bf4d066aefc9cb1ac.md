@@ -1,0 +1,3 @@
+# How to do it...
+
++   1. Go to Jenkins dashboard | Jenkins project or build job | Post-build Actions | Add post-build action | Archive the artifacts:

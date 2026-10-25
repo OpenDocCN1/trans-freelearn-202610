@@ -1,0 +1,3 @@
+# There's more...
+
+Jenkins uses a standard library, Stapler ([http://stapler.kohsuke.org/what-is.html](http://stapler.kohsuke.org/what-is.html)), to bind services to URLs. Plugins also use Stapler. When you install plugins, the number of potential actions also increases. This means that you can activate a lot of actions through HTML forms similar to this recipe. You will learn in [Chapter 7](#), *Exploring Plugins*, that writing binding code to Stapler requires minimal effort.

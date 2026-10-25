@@ -1,0 +1,3 @@
+# # How it works...
+
+Installing the plugin adds the CAPTCHA image to the signup process. The image needs pattern recognition to decipher it. Humans are very good at this; automated processes are a lot worse, but improving.

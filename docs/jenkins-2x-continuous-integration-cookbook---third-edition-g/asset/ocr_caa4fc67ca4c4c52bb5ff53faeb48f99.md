@@ -1,0 +1,3 @@
+# There's more...
+
+Jenkins defines interfaces or abstract classes that model a facet of a build system. Interfaces or abstract classes define agreement on what needs to be implemented; and Jenkins uses plugins to extend those implementations.
