@@ -1,0 +1,13 @@
+# # What this book covers
+
+_Chapter 1, Introducing the AWS Analytics Ecosystem_, starts by introducing the AWS analytics ecosystem. Then we will discuss how Amazon QuickSight fits within the wider ecosystem. We will look closer at the modern data architecture and its benefits and different components. Finally, we will provide a step-by-step guide for the reader to set up this architecture in their development environment and add demo data that we will use with Amazon QuickSight to create visualizations later in the book.
+
+_Chapter 2, Introduction to Amazon QuickSight_, introduces Amazon QuickSight and its main benefits as a cloud-native BI tool. We will explain the various options at the account creation stage, including the user authorization options. Finally, we will provide a step-by-step guide for the reader to set up a QuickSight account and configure the required permissions to connect to Amazon Redshift.
+
+_Chapter 3, Preparing Data with Amazon QuickSight_, focuses on how to create data sources with Amazon QuickSight and use the dataset editor. We will provide a step-by-step guide to help readers set up data sources on their environment. Finally, we will look at more advanced operations such as joins, row-level security controls, and calculated fields.
+
+_Chapter 4, Developing Visuals and Dashboards_, introduces the main analysis-building functionality of Amazon QuickSight. We will start by exploring the author UI and explain the different visual types. After adding certain visual types and explaining their functionality we will introduce the concepts of dashboards and stories and explain how we can share these dashboards with other users. Finally, we will look how to style a dashboard and create custom themes.
+
+_Chapter 5, Building Interactive Dashboards_, explores how to develop interactive dashboards with Amazon QuickSight. The reader will learn to add custom controls on their dashboards and add interactivity to their BI application using parameters. We will also look at advanced filtering options with point-and-click actions with URL actions. Finally, we will explore the reader user experience via the web and mobile QuickSight app and we will explain how to set up alerts and scheduled reports.
+
+_Chapter 6, Working with ML Capabilities and Insights_, explores the insight visual type in Amazon QuickSight. We will use both the QuickSight-suggested insights and build our own custom insights. We will add forecasting capabilities by analyzing time-series data, and we will add narratives and outlier detection. Finally, we will look more closely at how to integrate Amazon QuickSight with models deployed with Amazon SageMaker.

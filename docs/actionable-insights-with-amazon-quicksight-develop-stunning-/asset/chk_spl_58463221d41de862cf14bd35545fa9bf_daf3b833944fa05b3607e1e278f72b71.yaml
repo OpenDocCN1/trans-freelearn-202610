@@ -1,0 +1,41 @@
+reviews:
+- 'no': 3079
+  overturn_probability: 0.0
+  alternative: 第 3 部分标题（部分-章节模式下的部分标题）
+  counter_evidence:
+  - 该行使用一级标题标记（#）且单独成行，符合最高层级标题格式
+  - 后文紧跟第 8 章、第 9 章、第 10 章，说明该行是部分标题而非子章节
+  - 规则明确规定：存在“第 X 部分”时，遇到部分标题要划分新章
+  keep_split: true
+- 'no': 3089
+  overturn_probability: 0.0
+  alternative: 第 8 章标题
+  counter_evidence:
+  - 使用一级标题标记（#）且单独成行，无末尾标点
+  - 编号为“第 8 章”，属全书最高层级大章
+  - 后文出现“### 技术要求”等子节，符合章标题后跟子节的上下文特征
+  keep_split: true
+- 'no': 3772
+  overturn_probability: 0.0
+  alternative: 第 9 章标题
+  counter_evidence:
+  - 使用一级标题标记（#）且单独成行，无末尾标点
+  - 编号为“9”，与前文第 8 章序号连贯
+  - 后文出现“## 技术要求”等子节，符合章标题语义与格式特征
+  keep_split: true
+- 'no': 4388
+  overturn_probability: 0.0
+  alternative: 第 10 章标题
+  counter_evidence:
+  - 使用一级标题标记（#）且单独成行，无末尾标点
+  - 编号为“10”，与前文第 9 章序号连贯
+  - 后文出现“## 技术要求”等子节，且该章后即为索引，符合末章特征
+  keep_split: true
+- 'no': 4734
+  overturn_probability: 0.0
+  alternative: 文末索引标题
+  counter_evidence:
+  - 规则明确规定：文末索引统一划分为一章
+  - 位于全书最后，后文为索引条目列表
+  - 虽使用二级标题（##），但属例外情况，应单独成章
+  keep_split: true

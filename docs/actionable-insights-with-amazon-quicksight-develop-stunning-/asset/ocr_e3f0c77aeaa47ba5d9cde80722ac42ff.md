@@ -1,0 +1,13 @@
+# # Exploring the modern data architecture on AWS
+
+The modern data architecture is a modern data analytics architecture: as the name suggests, it combines the **data lake** and the **data warehouse** into a seamless system. This approach extends the traditional data warehouse approach and opens up new possibilities for data analytics. For this reason, it is important to understand this architecture, which can be used as a data backend for Amazon QuickSight or other BI applications. To understand the architecture better, let’s first start by understanding the differences between a data lake and data warehouse.
+
+# ## Data lakes versus data warehouses
+
+Data lakes and data warehouses are designed to consume large amounts of data for analytics purposes. Data warehouses are traditional database systems, used by organizations and enterprises for years. Data lakes, on the other side, are relatively young implementations that emerged from the big data and Hadoop ecosystems. Tables stored in data warehouses need to have clearly defined schemas. The schema needs to be defined upfront, before any data is added. This approach is called **schema on write**, and it ensures that data conforms to a specific structure before being ingested into the data warehouse. However, it can be less flexible, and it may introduce complexity when dealing with evolving schemas. Evolving schemas are an increasingly common scenario because organizations need to capture more and more data points from their customer interactions to drive data-driven decisions.
+
+On the other side, data lakes don’t enforce a schema upfront. Instead, applications that have the required permissions can write data to a data lake. Structure and data formats aren’t enforced by the data lake: it is a responsibility of the writing application.
+
+Data stored in a data lake has few to no limitations regarding its format: it can be **structured**, **semi-structured**, or completely **unstructured**. For many datasets, a schema can be inferred, either because the data is semi-structured (CSV, JSON, and others), or they follow patterns that can be identified after applying regular expressions and extracting specific columns. In data lakes, the schema is inferred when the data is read by the querying application. This approach is called **schema on read**, and it gives an organization flexibility regarding the data type stored. However, it also introduces challenges with data complexity and enforcing data quality.
+
+For that reason, it is common that data that lands into the data lake goes through a series of transformations to get to a stage where it is useable. The first stage, often referred to as the **raw** layer, is where the data first lands, and it is stored as is.
