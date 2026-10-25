@@ -1,0 +1,2222 @@
+- ''
+- '# Kendo UI 秘籍：Web 和移动平台快速构建丰富动态用户界面的 50 多个实用指南
+
+
+
+
+
+
+  ## 快速解决常见问题
+
+
+  ## Kendo UI 食谱
+
+
+  Kendo UI 是一个一站式库，允许您使用 HTML5 和 JavaScript 为 Web 和移动平台构建应用程序。该库包含多个小部件，可让您快速构建引人注目的
+  Web 应用程序。使用 Kendo UI 库，利用现代 Web 技术为 Web 和移动平台构建 Web 应用程序现在变得轻而易举。本食谱包含可应用于日常项目的实用配方，并能轻松构建引人注目的应用程序。它将带您了解应用程序框架，然后引导您了解各种小部件，您可以在项目中以最小配置即用这些小部件。它还提供可用于为各种移动平台构建
+  Web 应用程序的配方，同时保持单一代码库。
+
+
+  ## 本书将为您做什么...
+
+
+  - 掌握 Kendo UI 应用程序框架的基础知识
+
+  - 使用 Grid、TreeView、Editor、PanelBar、Modal Window 和 File uploader 等各种小部件，并根据业务要求自定义您的应用程序
+
+  - 为移动平台构建 Web 应用程序，并在 iOS、Android、BlackBerry 和 Windows Phone 8 上提供原生外观和感觉
+
+  - 利用图表和仪表板小部件等数据可视化组件，构建视觉效果引人注目且交互性强的应用程序
+
+
+  ![](img/2a66507445090790d34dc5588b56b24c_1_0.png)
+
+
+  ## 食谱内容...
+
+
+  - 简单易懂的格式
+
+  - 精选的最重要任务和问题
+
+  - 为高效解决问题而精心组织的说明
+
+  - 对您所做之事的清晰解释
+
+  - 将解决方案应用于其他情况
+
+
+  ## 致谢
+
+
+  ### 作者
+
+  Sagar Ganatra
+
+
+  ### 审稿人
+
+  Sergey N. Bolshchikov
+
+  Austin Christenberry
+
+  David J. McClelland
+
+  Omkar Patil
+
+  Radu Poenaru
+
+
+  ### 获稿编辑
+
+  Kevin Colaco
+
+
+  ### 内容开发编辑
+
+  Vaibhav Pawar
+
+
+  ### 技术编辑
+
+  Taabish Khan
+
+  Pooja Nair
+
+  Nikhil Potdukhe
+
+
+  ### 文字编辑
+
+  Stuti Srivastava
+
+
+  ### 项目协调员
+
+  Sanchita Mandal
+
+
+  ### 校对员
+
+  Simran Bhogal
+
+  Ameesha Green
+
+  Lawrence Herman
+
+  Joanna McMahon
+
+
+  ### 索引编制人
+
+  Mariammal Chettiyar
+
+
+  ### 制作协调员
+
+  Komal Ramchandani
+
+
+  ### 封面设计
+
+  Komal Ramchandani
+
+
+  ## 关于作者
+
+
+  **Sagar Ganatra** 是来自印度班加罗尔的前端架构师。他是使用 HTML5、CSS3、面向对象 JavaScript、Kendo UI、jQuery
+  以及 BackboneJS、RequireJS 和 AngularJS 等 JavaScript 框架等现代 Web 技术构建 Web 应用程序的专家。他还在自己的博客
+  `http://www.sagar ganatra.com/` 上撰写关于这些技术的文章。这是他的第二本书；他的上一本书是 _Instant Kendo UI
+  Mobile_，_Packt Publishing_ 出版，于 2013 年出版。当他不编码时，他喜欢写短篇小说、游泳和阅读书籍。
+
+
+  > 我将此书献给我非凡的父母，Tara Ganatra 和 Harshad Rai Ganatra，他们是我生命中最伟大、最睿智的两位老师。
+
+  >
+
+  > 我也将此书献给我的兄弟 Santosh Ganatra 和嫂子 Nisha Ganatra，感谢他们始终支持我，鼓励我写这本书。
+
+
+  ## 关于审稿人
+
+
+  **Sergey N. Bolshchikov** 是 New Prolmage (Agfa) 的高级前端工程师，致力于为出版商开发大规模客户端工作流系统软件应用程序。他还担任以色列特拉维夫
+  Ember-IL 聚会小组的联合组织者。他持有以色列理工学院（Technion – Israel Institute of Technology）的信息系统硕士学位。
+
+
+  **Austin Christenberry** 有使用 ASP.NET、T-SQL、Knockout.js 和 Kendo UI 等技术的经验。他目前在德克萨斯州达拉斯的管理和技术解决方案公司
+  Credera 工作。他于 2012 年毕业于德克萨斯州瓦科的贝勒大学，获得应用数学学士学位。在空闲时间，他喜欢打网球和在 Netflix 上发现新节目。
+
+
+  > 我想感谢我美丽的妻子 Len，感谢她在审阅本书以及我所做的其他一切方面给予我的支持。
+
+
+  **David J. McClelland** 超过 20 年来一直在创建连接设计、开发和信息的尖端软件和内容。他目前是一名首席用户界面工程师，开发用于通过云管理分布式设备的软件。他曾担任
+  _Instant Kendo UI Mobile_、_Sagar Ganatra_、_Packt Publishing_ 的技术审稿人。
+
+
+  > 我想感谢我的家人鼓励我众多的技术和艺术兴趣。
+
+
+  Omkar Patil 目前在 SunGard 的全球技术和架构集团担任高级架构师。他在 Web 应用程序的架构、设计和开发方面拥有 14 年的经验。他最初从服务器端企业
+  Java 开始，在过去几年中将重点转移到 Web 和移动应用程序的前端开发。他目前的技能包括 JavaScript、jQuery、Kendo UI、AngularJS
+  和 Node.js。在业余时间，他喜欢阅读、尝试新技术以及为开源软件做贡献。他是 Angular-Kendo 项目的提交者，该项目将 Kendo UI 与 AngularJS
+  集成（https://github.com/kendo-labs/angular-kendo）。
+
+
+  > 我想感谢我的妻子 Anu，在过去 12 年里给予我的支持和鼓励。我也想提及我的女儿 Rewa，她七岁，已经开始编程，并用她的编程问题让我忙碌不停。
+
+
+  Radu Poenaru 在软件工程领域拥有超过 12 年的经验，涵盖桌面、Web 和移动应用程序。作为一名位于德国法兰克福的自由职业者，他将技能集中于提供网站完整生命周期的解决方案，包括架构和用户体验——在前端使用
+  HTML5 和 CSS3，并由 jQuery、Knockout.js、Kendo UI、AngularJS、RequireJS、Modernizr 和 Bootstrap
+  等 JavaScript 库增强；在后端使用 ASP.NET、MVC 模式（包括单页应用程序）、Entity Framework 和 Microsoft SQL。他在自己的博客
+  http://www.radu poenaru.com 或其公司网站 http://www.itbrainiacs.com 上讨论这些和其他软件主题。
+
+
+
+
+
+
+  ## www.PacktPub.com
+
+
+  ## 支持文件、电子书、折扣优惠等
+
+
+  你可能需要访问 www.PacktPub.com 以获取与本书相关的支持文件和下载资源。
+
+
+  你知道吗？Packt 提供每本出版图书的电子书版本，提供 PDF 和 ePub 文件。你可以在 www.PacktPub.com 升级到电子书版本，作为印刷书籍客户，你有权享受电子书副本的折扣。如需更多详情，请联系
+  <service@packtpub.com>。
+
+
+  在 www.PacktPub.com，你还可以阅读一系列免费技术文章，订阅多种免费通讯，并获取 Packt 图书和电子书的独家折扣和优惠。
+
+
+  ![](img/2a66507445090790d34dc5588b56b24c_8_0.png)
+
+
+  需要立即解决 IT 问题吗？PacktLib 是 Packt 的在线数字图书馆。在这里，你可以访问、阅读和搜索 Packt 的整个图书库。
+
+
+  ## 为什么要订阅？
+
+
+  - 可在 Packt 出版的每本书中全文搜索
+
+  - 复制粘贴、打印和加书签内容
+
+  - 按需获取，可通过 Web 浏览器访问
+
+
+  ## Packt 账户持有者免费访问
+
+
+  如果你在 www.PacktPub.com 拥有 Packt 账户，可以使用该账户立即访问 PacktLib 并查看九本完全免费的图书。只需使用你的登录凭据即可立即访问。
+
+  '
+- '## 前言
+
+
+  Kendo UI 是一个基于 HTML 和 jQuery 的客户端框架，可让你为 Web 和移动平台构建 Web 应用程序。该库包含大量小部件，可轻松配置以快速构建应用程序。除了
+  Web 和移动平台的小部件之外，该库还提供众多数据可视化组件，可让你构建复杂的图表、图表、交互式地图以及条形码和二维码生成器。
+
+
+  ## 本书涵盖的内容
+
+
+  _第 1 章，Kendo UI 应用程序框架_，向你介绍框架中的核心组件，例如客户端模板、使用模型 - 视图 - 视图模型 (MVVM) 模式以及使用内置验证器验证表单字段。
+
+
+  _第 2 章，Kendo UI Grid_，向你介绍用于以表格格式显示数据的 Grid 组件，并包含各种功能，例如基于选定列的排序、筛选符合特定条件的数据以及更新数据。
+
+
+  _第 3 章，Kendo UI TreeView_，向你介绍用于显示层次结构数据（例如目录结构）的 TreeView 小部件。该小部件可以通过在 TreeView
+  中的组件前加上复选框或使用带前缀的图像来表示它们来自定义。
+
+
+  _第 4 章，Kendo UI Editor_，向你介绍允许你创建所见即所得 (WYSIWYG) 界面的 Editor 小部件。此界面包含可添加到工具栏的多个工具。
+
+
+  _第 5 章，Kendo UI PanelBar_，向你介绍用于构建类似手风琴布局的 PanelBar 组件。此布局允许你对数据进行分组并将其垂直堆叠。
+
+
+  _第 6 章，Kendo UI 文件上传器_，向你介绍允许你将多个文件上传到服务器并跟踪其进度的 Upload 小部件。它为所有浏览器提供一致的界面。
+
+
+  _第 7 章，Kendo UI 窗口_，向你介绍用于创建弹出窗口或模态窗口以显示警报消息的 Window 小部件。
+
+
+  第 8 章，Kendo UI 移动框架，向你介绍移动框架，其中包括用于构建移动应用程序的核心移动组件。这还包括创建布局和视图、在视图之间导航以及添加触摸事件。
+
+
+  第 9 章，Kendo UI 移动小部件，向你介绍 Kendo UI 移动库中的移动小部件。这些小部件可让你快速构建移动应用程序。这包括使用 ListView、ActionSheet、TabStrip
+  和 SplitView 等小部件用于平板电脑应用程序。
+
+
+  第 10 章，Kendo UI DataViz，向你介绍允许你轻松创建交互式图表的基本数据可视化组件。这些组件还可以自定义以匹配所需的外观和感觉。
+
+
+  第 11 章，Kendo UI DataViz – 高级图表，向你介绍允许你轻松构建类似仪表板的应用程序的高级数据可视化组件。这包括创建股票图表、创建径向和线性仪表、生成条形码和二维码、创建类似流程图的图表、创建表示层次结构的图表以及创建显示地理空间数据的地图。
+
+
+  ## 本书所需内容
+
+
+  本书包含大量使用 Web、移动和数据可视化组件构建应用程序的配方。你需要从 www.kendoui.com 下载 Kendo UI 框架。该库依赖于 jQuery
+  框架，因此应在包含 Kendo UI 库之前加载它。
+
+
+  需要具备使用 HTML、CSS 和 JavaScript 构建 Web 应用程序的基本知识。如果你在项目中使用过 jQuery，将会有所帮助。
+
+
+  ## 本书适用人群
+
+
+  本书将对了解 HTML 和 JavaScript 并希望提升使用 Kendo UI 库构建应用程序技能的 Web 开发者大有裨益。
+
+
+  该库提供 Web、移动和数据可视化小部件，可轻松配置以匹配应用程序的需求。
+
+
+  ## 约定
+
+
+  在本书中，你会发现许多文本样式，用于区分不同类型的信息。以下是这些样式的一些示例及其含义说明。
+
+
+  文本中的代码词、数据库表名、文件夹名、文件名、文件扩展名、路径名、虚拟 URL、用户输入和 Twitter 账号显示如下："The Kendo UI library
+  exports an object, kendo, which is a namespace for various other objects and functions."
+
+
+
+
+
+
+  一段代码设置如下：
+
+
+  var template = kendo.template("Full Name: " +
+
+  "<span> #= lastName # </span>," +
+
+  "<span> #= firstName # </span>");
+
+
+  当我们希望将您的注意力引向代码块中的特定部分时，相关的行或项目会以粗体显示：
+
+
+  <div
+
+  data-role="view"
+
+  data-layout="defaultLayout">
+
+  <div
+
+  id="touchSurface"
+
+  data-role="touch"
+
+  data-enable-swipe="1"
+
+  data-touchstart="touchstart"
+
+  **data-swipe="swipe"**
+
+  data-tap="tap"
+
+  data-doubletap="doubletap"
+
+  data-hold="hold"
+
+  style="height: 200px;">
+
+  Touch Surface
+
+  </div>
+
+  </div>
+
+
+  任何命令行输入或输出均按如下形式编写：
+
+
+  Directory1 is checked: no
+
+
+  **新术语**和**重要词汇**以粗体显示。您在屏幕、菜单或对话框中看到的词语，例如，会在文本中以如下形式出现：“例如，如果未指定名字，则消息将显示为 **First
+  Name is required.**”
+
+
+  ![](img/2a66507445090790d34dc5588b56b24c_14_0.png)
+
+
+  ![](img/2a66507445090790d34dc5588b56b24c_14_1.png)
+
+
+  ## 读者反馈
+
+
+  我们始终欢迎读者的反馈。请告诉我们您对本书的看法——您喜欢或不喜欢的地方。读者反馈对我们开发您能从中获得最大收益的书籍至关重要。
+
+
+  如需向我们发送一般性反馈，只需发送电子邮件至 <feedback@packtpub.com>，并在邮件主题中注明书名。
+
+
+  如果您在某个主题方面有专长，并有兴趣撰写或参与编写书籍，请参阅我们在 www.packtpub.com/authors 上的作者指南。
+
+
+  ## 客户支持
+
+
+  既然您是 Packt 图书的自豪拥有者，我们有许多资源可以帮助您充分利用您的购买。
+
+
+  ## 下载示例代码
+
+
+  您可以从 http://www.packtpub.com 的帐户中下载已购买的所有 Packt 图书的示例代码文件。如果您在其他地方购买了本书，可以访问 http://www.packtpub.com/support
+  并注册，以便文件直接发送到您的电子邮件。
+
+
+  ## 勘误
+
+
+  尽管我们已尽一切努力确保内容的准确性，但错误难免会发生。如果您在我们的某本书中发现错误——也许是文本或代码中的错误——我们将不胜感激如果您能将其报告给我们。这样做，您可以帮助其他读者避免沮丧，并帮助我们改进本书的后续版本。如果您发现任何勘误，请访问
+  http://www.packtpub.com/submit-errata，选择您的书籍，单击 **errata submission form** 链接，并输入您的勘误详细信息。一旦您的勘误得到验证，您的提交将被接受，勘误将上传到我们的网站，或添加到该书名下勘误部分的任何现有勘误列表中。任何现有勘误都可以通过从
+  http://www.packtpub.com/support 选择您的书名来查看。
+
+
+  ### 盗版
+
+
+  互联网上受版权保护材料的盗版是跨所有媒体的持续问题。在 Packt，我们非常重视对我们的版权和许可的保护。如果您在互联网上以任何形式发现我们作品的非法副本，请立即向我们提供位置地址或网站名称，以便我们可以采取补救措施。
+
+
+  请通过 <copyright@packtpub.com> 联系我们，并提供涉嫌盗版材料的链接。
+
+
+  我们感谢您帮助保护我们的作者，以及我们为您提供有价值内容的能力。
+
+
+  ### 问题
+
+
+  如果您在本书的任何方面遇到问题，可以通过 <questions@packtpub.com> 联系我们，我们将竭尽全力予以解决。
+
+  '
+- "## 1 Kendo UI 应用程序框架\n\n在本章中，我们将介绍以下配方：\n\n- 使用客户端模板从 JSON 数据生成 HTML 标记\n- 使用 **模型-视图-视图模型\
+  \ (MVVM)** 模式在 `View` 元素和 JavaScript 对象之间创建双向绑定\n- 使用 `ViewModel` 与 `source` 和 `template`\
+  \ 绑定生成 HTML 内容\n- 使用内置验证器验证用户输入\n\n### 简介\n\nKendo UI 库由各种小部件组成，这些小部件专为 Web 和移动平台构建。它还提供数据可视化组件，可用于构建丰富且交互式的图表。本章重点介绍\
+  \ Kendo UI 应用程序框架。该框架包括客户端模板引擎、数据绑定和路由等工具，还可帮助用户验证表单字段。\n\n## 使用客户端模板从 JSON 数据生成\
+  \ HTML 标记\n\n使用模板系统与某个数据源来生成动态 Web 内容的概念在 Web 开发中已经存在很长时间了。Java Server Pages (Java)、Smarty\
+  \ (PHP) 和 Django (Python) 是一些服务器端模板引擎的示例。生成运行时内容过去仅是服务器端的事。近年来，在客户端（浏览器）上生成内容已被广泛采用。\n\
+  \n当今构建的动态应用程序要求用户界面频繁更新。这可以通过从服务器获取 HTML 片段并将其插入文档来实现。然而，这要求服务器生成此类片段，而不是提供完整的 Web\
+  \ 页面。在客户端模板引擎中，服务器只负责以 JSON 格式发送动态数据，然后在浏览器中使用静态客户端模板组装页面。此模板可以从 **内容分发网络 (CDN)**\
+  \ 提供，而不是从发送动态数据的同一服务器提供。以 JSON 数据形式发送记录而不在服务器端生成标记所花费的时间节省了更多 CPU 周期，从而极大地提高了应用程序的性能。考虑一个购物车应用程序，它列出购物车中的产品。购物车数据可以以\
+  \ JSON 格式发送到客户端。然后，使用模板在客户端生成 HTML 标记。\n\n有多种客户端模板引擎可供选择；其中一些是无逻辑的，例如 Mustache 和\
+  \ Handlebars，一些基于 HAML 语法，例如 Jade，还有一些基于 John Resig 的微型模板，例如 `underscore.js`。\n\n\
+  在 Kendo UI 中，使用一种称为哈希模板的微型模板库。在这些模板中，哈希符号用于标记模板中将在用于生成动态内容时执行的区域。\n\n### 操作方法...\n\
+  \nKendo UI 库导出一个对象 `kendo`，它是各种其他对象和函数的命名空间。模板函数是其中之一。模板函数将基于哈希的模板编译为可用于渲染的函数。它对于从\
+  \ JSON 数据源渲染复杂的 HTML 片段很有用。以下是三种基于哈希的语法：\n\n- 渲染文本值的语法是 #= #\n- 渲染 HTML 编码值的语法是\
+  \ #: #\n- 执行任意 JavaScript 代码的语法是 # `for (...)` #\n\n让我们来看一个非常简单的示例，使用以下基于哈希的模板渲染某人的\
+  \ firstName 和 lastName：\n\n```\n<script>\n\nvar template = kendo.template(\"Full\
+  \ Name: \" +\n\"<span> #= lastName # </span>,\" +\n\"<span> #= firstName # </span>\"\
+  );\nvar data = {};\n\ndata.lastName = \"Smith\";\ndata.firstName = \"Todd\";\n\n\
+  var result = template(data);\n\n$(' .addressContainer').append(result);\n\n</script>\n\
+  ```\n\n## 下载示例代码\n\n您可以从 http://www.packtpub.com 的帐户中下载已购买的所有 Packt 图书的示例代码文件。如果您在其他地方购买了本书，可以访问\
+  \ http://www.packtpub.com/support 并注册，以便文件直接发送到您的电子邮件。\n\n在这里，使用了 #= <literal> #\
+  \ 表达式。同样，我们也可以使用基于哈希的表达式来渲染 HTML 编码值：\n\n```\n<script>\n\nvar template = kendo.template(\"\
+  Full Name: <span> #= lastName ## </span>, <span> #= firstName # </span>\");\nvar\
+  \ data = {};\n\ndata.lastName = \"<b>Smith</b>\";\ndata.firstName = \"<i>Todd</i>\"\
+  ;\n\nvar result = template(data);\n\n$(' .addressContainer').append(result);\n\n\
+  </script>\n```\n\n\n\n\n\n这里，`#: <literal> #` 表达式被使用。呈现 HTML 编码的值尤其有用，当你正在接受作为表单输入字符串一部分的\
+  \ HTML 字符串时，它们在结果中显示相同。数据中存在的 HTML 字符/标签将被转义并呈现为字符串。\n\n### 工作原理...\n\n现在，让我们了解前面代码示例中正在发生什么。在第一个示例中，第一行如下：\n\
+  \n```\nvar template = kendo.template(\"Full Name: \" + \"<span> #= lastName # </span>,\"\
+  \ + \"<span> #= firstName # </span>\");\n```\n\n这里，模板函数用于编译输入字符串。请注意，输入字符串包含带有基于哈希表达式的\
+  \ HTML 标签。这将返回一个函数，然后可以使用数据来生成输出。在代码片段的以下四行中，创建了一个带有两个变量 lastName 和 firstName 的\
+  \ JavaScript 数据对象：\n\n```\nvar data = {};\ndata.lastName = \"Smith\";\ndata.firstName\
+  \ = \"Todd\";\nvar result = template(data);\n```\n\n前面代码片段中的最后一行调用编译的函数（分配给 template\
+  \ 变量），然后将 JavaScript 对象作为参数传递。这将替换基于哈希表达式内的文本值并生成以下输出字符串：\n\nFull Name: <span> Smith\
+  \ </span>, <span> Todd </span>\n\n在第二个示例中，代码非常相似，只是使用了 `#: <literal> #` 基于哈希的表达式。此表达式将转义\
+  \ HTML 标签并生成包含 HTML 标签的输出，保持原样。\n\n### 更多...\n\n如前面示例所示，HTML 作为字符串传递给 kendo.template\
+  \ 函数。替代方案是在 script 标签中定义模板：\n\n```\n<script type=\"text/x-kendo-template\" id=\"\
+  testTemplate\">\n    # for (var i=0; i < functions.length; i++) { #\n        <li>#=\
+  \ functions[i] # </li>\n    # } #\n</script>\n```\n\n请注意前面代码中使用的基于哈希的语法；它包含一个 JavaScript\
+  \ for 语句，用于遍历数组并生成列表标签（<li> 标签）。现在，要编译此模板，我们将使用 id 属性引用 script 标签：\n\n```\n<script>\n\
+  \    var templateContent = $('#testTemplate').html();\n    var template = kendo.template(templateContent);\n\
+  \    var functions = [\"concat\", \"indexOf\", \"join\", \"lastIndexOf\",\n    \
+  \    \"pop\", \"push\", \"reverse\", \"shift\", \"slice\", \"sort\", \"splice\"\
+  ,\n        \"toString\", \"unshift\", \"valueOf\"];\n    var result = template(functions);\n\
+  \    $('ul.listContainer').append(result);\n</script>\n```\n\n这里，模板通过 id 属性引用，#testTemplate。模板内容使用\
+  \ $('#testTemplate').html() 检索。然后将内容与 kendo.template 函数一起用于生成标记。然后通过将内容附加到无序列表中，使用\
+  \ $('ul.listContainer').append(result) 将其插入页面。\n\n> 此处用于编写模板的 script 标签的 type 为\
+  \ text/x-kendo-template。这是在客户端实现模板的常见方式。浏览器会简单地忽略其不认识 type 的 script 标签。\n\n## 使用模型\
+  \ - 视图 - 视图模型 (MVVM) 模式在视图元素和 JavaScript 对象之间创建双向绑定\n\n大多数应用程序中使用了各种架构模式。三个非常重要的架构模式如下：\n\
+  \n- 模型 - 视图 - 控制器 (MVC)\n- 模型 - 视图 - 演示器 (MVP)\n- 模型 - 视图 - 视图模型 (MVVM)\n\n这些模式广泛用于构建桌面和服务器端应用程序。近年来，这些模式也已应用于客户端应用程序。AngularJS、BackboneJS\
+  \ 和 EmberJS 等框架提供了可随时用于构建遵循这些模式之一的应用程序的组件。前面提到的所有三种模式都试图将用户界面的开发与业务逻辑的开发分开。\n\n\
+  **模型 - 视图 - 视图模型 (MVVM)** 模式是一种架构模式，基于 MVC 和 MVP。在这里，模型层表示特定于领域的数据。示例应用程序将包括银行账号、持卡人姓名、余额等。模型层表示需要格式化以供\
+  \ `View` 使用的原始数据。`View` 层使用模型提供的数据并按要求格式化。另一方面，应用程序的行为或业务逻辑被封装在名为 `ViewModel` 的层中。\n\
+  \n有几种框架，例如 KnockoutJS、KnockbackJS 和 Kendo UI，实现了 MVVM 模式。在 Kendo UI 中，MVVM 模式是应用程序框架的核心。该框架提供\
+  \ API，使用这些 API 可以完成各种组件，例如模型、`ViewModel` 和数据绑定（将标记绑定到 `ViewModel` 对象）。\n\n### 操作方法...\n\
+  \n为了说明 Kendo UI 中如何实现 MVVM 模式，让我们看一个非常简单的示例，其中表单元素绑定到 `ViewModel` 对象。在此示例中，`ViewModel`\
+  \ 对象将定义模型数据以及元素之一的行为：\n\n```\n<form id=\"testView\">\n  Firstname: <input id=\"\
+  firstName\" type=\"text\"\ndata-bind=\"value: firstName\">\n<br/>\nLastname: <input\
+  \ id=\"lastName\"\ntype=\"text\"\ndata-bind=\"value: lastName\">\n<br/>\nFullname:\
+  \ <input id=\"fullName\"\ntype=\"text\"\ndata-bind=\"value: fullName\"\nreadonly>\n\
+  <br/>\n<input type=\"submit\">\n</form>\n```\n\n在前面的代码片段中，创建了一个带有 id 属性 testview\
+  \ 的表单，包含三个输入元素（文本框）。请注意这些输入元素中的 data-bind 属性。data-bind 属性用于指定视图元素和 ViewModel 对象之间的绑定。\n\
+  \n这里，第一个输入元素将 data-bind 属性的值指定为 value: firstName。这表明输入元素的值绑定到 firstName 模型属性。现在让我们定义\
+  \ ViewModel，它封装了模型数据和行为：\n\n```\nvar viewModel = kendo.observable({\nfirstName:\
+  \ \"Sagar\",\nlastName: \"Ganatra\",\nfullName: function() {\nreturn this.get(\"\
+  firstName\") +\n' ' + this.get(\"lastName\");\n}\n});\n```\n\n使用 kendo 对象上的 Observable\
+  \ 接口创建 ViewModel 对象。在此示例中，ViewModel 对象包含 firstName、lastName 和 fullName 属性。请注意，虽然\
+  \ firstName 和 lastName 是字符串类型，但 fullName 属性是一个函数，它通过连接 firstName 和 lastName 返回一个字符串。\n\
+  \n现在我们有了标记和 ViewModel，它们应该相互绑定。bind 方法用于将视图组件绑定到 ViewModel：\n\n```\nkendo.bind($('form#testView'),\
+  \ viewModel);\n```\n\nbind 函数的第一个参数是通过 $('form#testView') 引用的视图组件，第二个参数是 ViewModel\
+  \ 对象 viewModel。一旦视图和 ViewModel 绑定，对模型所做的任何更改都将更新视图，用户所做的任何更改都将反映在模型中。\n\n### 工作原理...\n\
+  \n当你执行前面提到的代码片段时，带有模型中提到的值的表单元素将被填充，如下面的屏幕截图所示：\n\n![](img/2a66507445090790d34dc5588b56b24c_25_0.png)\n\
+  \n请注意，在标记中，FullName 的最后一个输入元素是只读的。它绑定到 fullName 模型属性，该属性是一个函数，返回由 firstName 和 lastName\
+  \ 连接的字符串。当你更改 firstName 或 lastName 的值时，fullName 模型也会更新，并且相同内容会反映在 View 类中。\n\n![](img/2a66507445090790d34dc5588b56b24c_25_1.png)\n\
+  \n在前面的屏幕截图中，当 Firstname 输入元素的值更改时，Fullname 属性的值也会更新。请注意，模型属性在视图组件上的 blur 事件时更新。\n\
+  \n### 更多...\n\n在前面的屏幕截图中，我们看到了如何使用数据绑定来设置表单中输入元素的值。除了设置页面中某些元素的值之外，数据绑定还可以用于设置属性值\
+  \ (attr)、设置 HTML 内容 (html)、隐藏或显示页面中的元素 (visible 和 invisible) 等等。\n\n\n\n\n\n让我们来看看每个场景。attr\
+  \ 绑定用于在以下代码片段中将标签属性与模型属性绑定：\n\n```\n<a data-bind=\"attr: {href: websiteLink}\"\n\
+  target=\"_blank\">\nClick Here\n</a>\n```\n\n在前面的代码片段中，data-bind 属性的值为 attr: {href:\
+  \ websiteLink}。这里，attr 表示标签属性绑定到 ViewModel。在此示例中，锚元素的 href 属性绑定到模型属性 websiteLink。相同的\
+  \ ViewModel 对象如下面的代码片段所示：\n\n```\n<script>\nvar viewModel = kendo.observable({\n\
+  websiteLink: 'http://www.packtpub.com',\n});\nkendo.bind($('a'),viewModel);\n</script>\n\
+  ```\n\n在代码片段中，ViewModel 对象仅包含一个属性 websiteLink。该模型属性的值是一个外部链接，即 http://www.packtpub.com。当\
+  \ View 组件绑定到 ViewModel 对象时，锚元素会被更新，从而拥有一个指向 ViewModel 中提到的外部链接的 href 属性。\n\n同样，可以通过使用绑定属性\
+  \ visible 在页面上隐藏或显示 View 中的组件：\n\n```\n<div id=\"view\">\n<span id=\"container\"\
+  \ndata-bind=\"visible: isVisible\">\nSome content here....\n</span>\n<br/>\n<button\
+  \ id=\"toggleVisible\"\ndata-bind=\"click: updateVisible\">\nToggle Visible\n</button>\n\
+  </div>\n```\n\n在前面的代码片段中，span 元素的 data-bind 属性设置为 visible: isVisible。这里，isVisible\
+  \ 模型属性的值应为布尔类型。如果为 false，则 span 元素的 style 属性将设置为 display: none。此外，按钮的 data-bind\
+  \ 属性设置为 click: updateVisible。这里，按钮的 click 事件绑定到模型属性 updateVisible。前面标记的 ViewModel\
+  \ 对象如下面的代码片段所示：\n\n```\nvar viewModel = kendo.observable({\nisVisible: true,\nupdateVisible:\
+  \ function() {\nthis.set('isVisible', !this.get('isVisible'));\n}\n});\nkendo.bind($('div#view'),\
+  \ viewModel);\n```\n\nViewModel 中 isVisible 的初始值设置为 true，因此 span 内的文本 Some Content\
+  \ here... 将可见。当你点击 toggleVisible 按钮时，它会切换 isVisible 模型属性。这将显示或隐藏 span 元素。\n\n##\
+  \ 使用 Source 和 Template 绑定与 ViewModels 生成 HTML 内容\n\n在前面的示例中，探讨了 View 组件与 ViewModel\
+  \ 属性之间的数据绑定。绑定不仅可以在表单元素的值上执行，也可以在属性上执行，还可以用于隐藏或显示页面上的元素。在此示例中，我们将探讨 source 和 HTML\
+  \ 绑定的组合使用。\n考虑一个下拉列表（用于选择元素），你希望用数据（option 标签）填充它。这些数据可以由 ViewModel 对象提供；使用模板生成这些\
+  \ option 标签。\n\n### 操作方法...\n\n首先构建一个 ViewModel 对象：\n\n```\nvar viewModel = kendo.observable({\n\
+  \ optionsData: [\n {optionValue:1, optionName: \"Test1\"},\n {optionValue:2, optionName:\
+  \ \"Test2\"},\n {optionValue:3, optionName: \"Test3\"}\n ]\n});\n```\n\n此处的 ViewModel\
+  \ 对象包含一个 optionsData 属性，它是对象的集合（数组）。optionsData 中的每个对象包含两个属性，即 optionValue 和 optionName。optionValue\
+  \ 属性将用于 option 标签的 value 属性，而 optionName 将用于在下拉列表中显示的 HTML 内容。包含 option 标签绑定的模板如下面的代码片段所示：\n\
+  \n```\n<script id=\"select-template\" type=\"text/x-kendo-template\">\n <option\
+  \ data-bind=\n \"attr: {value: optionValue}, html: optionName\">\n </option>\n</script>\n\
+  ```\n\n这里，id 属性设置为 select-template 的模板包含一个 option 标签。option 标签包含 data-bind 属性，其值为\
+  \ attr: {value: optionValue}, html: optionName。我们在前面的示例中已经看到属性绑定的实际效果。此处指定的另一个绑定是\
+  \ html。此绑定用于为标签生成 HTML 内容。这些 option 标签应绑定到 ViewModel 对象，并封装在 select 标签内。\n\nselect\
+  \ 标签可以引用前面提到的模板，并使用 source 属性绑定到 ViewModel 对象：\n\n```\n<select data-template=\"\
+  select-template\"\n data-bind=\"source: optionsData\">\n</select>\n```\n\n这里，select\
+  \ 标签指定了两个属性，即 data-template 和 data-bind。data-template 属性的值是我们先前定义的模板（script 标签）的\
+  \ id 属性，即 select-template。这指示 kendo 将模板绑定到 select 标签，生成的内容将成为此 select 标签的 HTML 内容。\n\
+  \n### Kendo UI 应用程序框架\n\ndata-bind 属性指定一个绑定源，该源引用 ViewModel 中的 optionData 模型属性。现在，唯一剩下的步骤是将\
+  \ View 元素绑定到 ViewModel，这通过执行以下代码行来实现：\n\n```\nkendo.bind($('select'), viewModel);\n\
+  ```\n\n#### 工作原理...\n\nselect 标签指定了引用 optionsData 模型属性的 source 绑定。这将使对象集合可供其内部的所有标签使用。\n\
+  \n引用页面中模板的 data-template 属性会提供对象集合（optionsData），并且模板会针对数组中的条目数进行迭代。在此示例中，optionsData\
+  \ 集合包含三个对象，因此模板生成三次，并作为 select 标签的 HTML 内容插入。生成的内容将如下面的代码片段所示：\n\n```\n<select data-template=\"\
+  select-template\" data-bind=\"source: optionsData\"> <option data-bind=\" attr:\
+  \ {value: optionValue}, html: optionName\" value=\"1\"> Test1 </option> <option\
+  \ data-bind=\" attr: {value: optionValue}, html: optionName\" value=\"2\"> Test2\
+  \ </option> <option data-bind=\" attr: {value: optionValue}, html: optionName\"\
+  \ value=\"3\"> Test3 </option> </select>\n```\n\ndata- 属性将保持不变，生成的内容现在具有 value 属性和\
+  \ HTML 内容。请注意，前面的代码可以通过在基于哈希的模板中使用 for 语句，然后将生成的输出追加到 select 标签来完成。但是，使用 data-template\
+  \ 属性和 source 绑定可以让你无缝地完成此操作，并编写更直观的代码。\n\n此模式可应用于各种情况。另一个示例包括生成列表标签（li 元素）并将其插入无序列表或有序列表中。\n\
+  \n## 使用内置验证器验证用户输入\n\n验证用户输入数据是任何项目中的常见任务。客户端验证包括检查表单输入数据的类型或缺失数据。这并不是说服务器端验证不重要。但是，客户端验证负责执行基本验证，并在将表单数据提交到服务器进行处理之前显示错误或验证消息。因此，它为用户提供即时反馈并改善整体用户体验。\n\
+  \n随着 HTML5 的出现，表单中的输入字段可以为其定义类型。例如，只应接受电子邮件地址的输入字段可以指定为 type=email。同样，输入字段可以具有 URL、NUMBER、RANGE、DATE、SEARCH\
+  \ 和 COLOR 等类型。当用户为这些字段中的任何一个指定错误数据时，浏览器将显示适当的验证消息。除了类型之外，表单元素还可以通过向输入元素添加 required\
+  \ 等附加属性来标记为必填。但是，一些旧浏览器不支持 HTML5 功能，包括前面提到的表单验证。Kendo UI 库带有一个内置验证器，可用于执行客户端验证。\n\
+  \nKendo UI 验证器鼓励用户使用类似 HTML5 的语法，并提供开箱即用的支持，以使表单验证在旧浏览器上正常工作。\n\n### 操作方法...\n\n\
+  让我们来看一个示例，其中一个输入文本字段标记为必填，另一个电子邮件类型的输入字段也标记为必填。请注意，这非常是 HTML5 语法，用户不必更改标记来将字段标记为必填或不同类型：\n\
+  \n```\n<form id=\"testView\">\n<label for=\"firstName\">First Name</label>\n<input\
+  \ id=\"firstName\"\nname=\"First Name\"\ntype=\"text\"\nrequired\nvalidationMessage=\"\
+  Please specify First Name\">\n<br>\n```\n\n\n\n\n"
+- "## 2 Kendo UI Grid\n\n在本章中，我们将介绍以下配方：\n\n- 创建 Grid 视图并显示表格数据\n- 在 Grid 视图中显示来自本地或远程\
+  \ `DataSource` 组件的数据\n- 使用选定列对 Grid 中的数据进行排序\n- 使用过滤器显示 Grid 中符合特定条件的数据\n- 在 Grid\
+  \ 中创建、更新和删除内容\n- 使用可视化机制提高 Grid 的性能\n- 自定义 Grid 的外观和感觉\n\n### 简介\n\nKendo UI 库附带了一个强大的\
+  \ Grid 组件。当您想要显示表格数据并提供各种功能（例如基于选定列的排序、数据过滤、分页以及编辑表格数据）时，Grid 组件非常有用。Kendo UI Grid\
+  \ 组件提供了各种配置选项来自定义 Grid 的显示方式，并提供了各种 API 来操作 Grid 的内容。\n\n### 创建 Grid 视图并显示表格数据\n\
+  \n在 Kendo UI 中，可以通过以下两种方式创建 Grid：\n\n- 从现有的 HTML 表格元素\n- 从现有的 DIV 元素\n\n### Kendo\
+  \ UI Grid\n\n在此配方中，我们将介绍第一种方法，即使用现有的 HTML 表格元素创建 Grid。\n\n### 如何操作...\n\n使用现有表格元素创建\
+  \ Grid 非常简单。让我们使用以下代码片段创建一个包含五行的表格：\n\n```html\n<table id=\"grid\">\n<thead>\n<tr>\n\
+  <th>Employee ID</th>\n<th>Full Name</th>\n<th>Year of Joining</th>\n<th>Designation</th>\n\
+  <th>Extension No.</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>10001</td>\n<td>Sagar\
+  \ H Ganatra</td>\n<td>2008</td>\n<td>Software Architect</td>\n<td>49523</td>\n</tr>\n\
+  <tr>\n<td>7008</td>\n<td>Adam Wayne</td>\n<td>2000</td>\n<td>Engineering Manager</td>\n\
+  <td>34890</td>\n</tr>\n<tr>\n<td>10298</td>\n<td>Nick Taylor</td>\n<td>2012</td>\n\
+  <td>Software Engineer</td>\n<td>56823</td>\n</tr>\n<tr>\n<td>10677</td>\n<td>James\
+  \ Thompson</td>\n<td>2010</td>\n<td>Senior Software Engineer</td>\n<td>48999</td>\n\
+  </tr>\n<tr>\n<td>6745</td>\n<td>Andrew Jones</td>\n<td>2003</td>\n<td>Senior Engineering\
+  \ Manager</td>\n<td>48999</td>\n</tr>\n</tbody>\n</table>\n```\n\n在前面的标记中，定义了一个包含五行的表格元素。请注意，所有数据都定义在表格本身中。下一步是在页面中包含样式表，可以使用以下代码片段实现：\n\
+  \n```html\n<link rel=\"stylesheet\"\n type=\"text/css\"\n href=\"../../styles/kendo.common.min.css\"\
+  >\n<link rel=\"stylesheet\"\n type=\"text/css\"\n href=\"../../styles/kendo.default.min.css\"\
+  >\n```\n\n下载的 Kendo UI 库包含一个 styles 目录。该目录包含各种样式表。对于此示例，请包含 kendo.common.min.css\
+  \ 和 kendo.default.min.css。最后一步是初始化 Grid：\n\n```javascript\n<script>\n    $('document').ready(function()\
+  \ {\n        $(\"#grid\").kendoGrid();\n    });\n</script>\n```\n\n在这里，通过对具有 grid\
+  \ ID 的表格元素调用 kendoGrid 函数来对其进行初始化。该函数接受其他参数，这些参数用于配置 Grid。我们将在即将到来的配方中介绍这些参数。\n\n\
+  \n\n\n\n### How it works...\n\n当你渲染页面时，你将看到先前提到的表格数据显示在 Grid 中，如下面的截图所示：\n\n| Employee\
+  \ ID | Full Name | Year of Joining | Designation | Extension No. |\n|-------------|-----------|-----------------|-------------|---------------|\n\
+  | 10001       | Sagar H Ganatra | 2008 | Software Architect | 49523 |\n| 7008  \
+  \      | Adam Wayne | 2000 | Engineering Manager | 34890 |\n| 10298       | Nick\
+  \ Taylor | 2012 | Software Engineer | 56823 |\n| 10677       | James Thompson |\
+  \ 2010 | Senior Software Engineer | 48999 |\n| 6745        | Andrew Jones | 2003\
+  \ | Senior Engineering Manager | 48999 |\n\n如先前的截图所示，列会自动调整，且每个列的宽度相同。先前提到的 Grid\
+  \ 占据整个视口宽度，除非它被包裹在具有固定宽度的容器中。列的大小可以通过使用 colgroup 标签来更改：\n\n```html\n<table id=\"\
+  grid\">\n<colgroup>\n<col style=\"width:130px\" />\n<col />\n<col style=\"width:130px\"\
+  \ />\n<col />\n<col style=\"width:130px\" />\n</colgroup>\n<thead>\n</table>\n```\n\
+  \n在这里，Employee ID、Year of Joining 和 Extension No 列的宽度被指定为 130px。现在，当 Grid 初始化时，这些列将具有指定的宽度，而另外两个列，即\
+  \ Full Name 和 Designation，将共享剩余空间。更新后的 Grid 显示如下：\n\n| Employee ID | Full Name |\
+  \ Year of Joining | Designation | Extension No. |\n|---|---|---|---|---|\n| 10001\
+  \ | Sagar H Ganatra | 2008 | Software Architect | 49523 |\n| 7008 | Adam Wayne |\
+  \ 2000 | Engineering Manager | 34890 |\n| 10298 | Nick Taylor | 2012 | Software\
+  \ Engineer | 56823 |\n| 10677 | James Thompson | 2010 | Senior Software Engineer\
+  \ | 48999 |\n| 6745 | Andrew Jones | 2003 | Senior Engineering Manager | 48999 |\n\
+  \n如前所述，Grid 中的第二列和第四列具有相同的宽度。\n\n### There's more...\n\n注意应用于 Grid 的外观和感觉。Grid 中的交替行具有不同的颜色；即使\
+  \ Grid 标题也应用了颜色。这是因为包含了 kendo.default.min.css 样式表。该库带有多个主题，你可以通过移除对默认样式表的引用，然后添加对其中一个主题的引用来应用它们。例如，该库带有\
+  \ moonlight 主题。通过添加对 kendo.moonlight.min.css 的引用，Grid 的外观和感觉将会改变。\n\n| Employee\
+  \ ID | Full Name | Year of Joining | Designation | Extension No. |\n|---|---|---|---|---|\n\
+  | 10001 | Sagar H Ganatra | 2008 | Software Architect | 49523 |\n| 7008 | Adam Wayne\
+  \ | 2000 | Engineering Manager | 34890 |\n| 10298 | Nick Taylor | 2012 | Software\
+  \ Engineer | 56823 |\n| 10677 | James Thompson | 2010 | Senior Software Engineer\
+  \ | 48999 |\n| 6745 | Andrew Jones | 2003 | Senior Engineering Manager | 48999 |\n\
+  \n该库还带有几个其他主题。也可以创建自己的主题；请参阅以下链接：\nhttp://demos.kendoui.com/themebuilder/web.html\n\
+  \n### 在 Grid 视图中显示来自本地或远程 DataSource 组件的数据\n\nGrid 组件可以使用页面中存在的数据或引用模型数据（即 JSON\
+  \ 格式的数据）来创建。Kendo UI 库提供了一个 DataSource 组件，可用于存储模型数据。DataSource 组件可以绑定到本地数据源或返回 XML\
+  \ 或 JSON 格式数据的远程服务。\n\n#### How to do it...\n\n如前一配方中所述，我们可以使用 table 元素或 div 元素来构建\
+  \ Grid：\n\n```html\n<div id=\"grid\">\n</div>\n```\n\n现在，当我们使用 kendoGrid 函数初始化 Grid\
+  \ 时，我们需要指定表格的配置和数据：\n\n```javascript\n$(\"#grid\").kendoGrid({\n    columns: [\n\
+  \        {\n            field : 'movieName',\n            title : 'Movie'\n    \
+  \    },\n        {\n            field : 'year',\n            title : 'Year'\n  \
+  \      },\n        {\n            field : 'rating',\n            title : 'Rating'\n\
+  \        }\n    ],\n    dataSource: [\n        {\n            movieName : 'The Shawshank\
+  \ Redemption',\n            year      : 1994,\n            rating    : 9.2\n   \
+  \     },\n        {\n            movieName : 'The Godfather',\n            year\
+  \    : 1972,\n            rating  : 9.2\n        },\n        {\n            movieName\
+  \ : 'The Godfather - Part 2',\n            year    : 1974,\n            rating \
+  \ : 9.0\n        },\n        {\n            movieName : 'Pulp Fiction',\n      \
+  \      year    : 1994,\n            rating  : 8.9\n        },\n        {\n     \
+  \       movieName : 'The Good, the Bad and the Ugly',\n            year    : 1966,\n\
+  \            rating  : 8.9\n        }\n    ]\n});\n```\n\n在前面的代码片段中，Grid 正在使用两个对象进行初始化，即\
+  \ `columns` 和 `dataSource`。`columns` 对象是一组 JavaScript 对象，用于指定列配置。配置包含两个属性，`field`\
+  \ 和 `title`。`field` 属性指列绑定到的 `dataSource` 中的字段，而 `title` 指定在 Grid 中显示为标题的文本。\n\n\
+  `dataSource` 对象也是一组 JavaScript 对象，包含将在 Grid 中显示的数据。在此示例中，有五个对象，因此 Grid 将包含五行。\n\n\
+  > 请注意，`columns` 对象也可以是字符串数组：\n> `columns: ['movieName', 'year', 'rating']`\n> 在这种情况下，columns\
+  \ 数组中的条目应与 `dataSource` 对象中的字段名匹配。列的标题将与字段名相同。\n\n### How it works...\n\n如前所述，我们选择了一个\
+  \ div 元素来创建 Grid。该元素将作为 Grid 的容器。在初始化 Grid 时，框架将查看提供的配置并生成标记，然后将其插入到 div 元素中。它创建两个\
+  \ div 元素——一个用于标题，另一个用于内容。标题显示如下：\n\n```html\n<div class=\"k-grid-header\" style=\"\
+  padding-right: 16px;\">\n<div class=\"k-grid-header-wrap\">\n<table role=\"grid\"\
+  >\n<colgroup>\n<col>\n<col>\n<col>\n</colgroup>\n<thead>\n<tr>\n<th role=\"columnheader\"\
+  \ndata-field=\"movieName\"\ndata-title=\"Movie\"\nclass=\"k-header\">\nMovie\n</th>\n\
+  <th role=\"columnheader\"\ndata-field=\"year\"\ndata-title=\"Year\"\nclass=\"k-header\"\
+  >\nYear\n</th>\n<th role=\"columnheader\"\ndata-field=\"rating\"\ndata-title=\"\
+  Rating\"\nclass=\"k-header\">\nRating\n</th>\n</tr>\n</thead>\n</table>\n</div>\n\
+  </div>\n```\n\n基于 columns 对象中提供的配置，生成一个包含标题列的表格（thead 和 th 标签）。为了显示 Grid 数据，库会插入另一个\
+  \ div 元素：\n\n```html\n<div class=\"k-grid-content\">\n<table role=\"grid\">\n<colgroup>\n\
+  <col>\n<col>\n<col>\n</colgroup>\n<tbody>\n<tr data-uid=\"d71ac3fd-9769-4161-9277-432f151490c3\"\
+  \nrole=\"row\">\n<td role=\"gridcell\">\nThe Shawshank Redemption</td>\n<td role=\"\
+  gridcell\">1994</td>\n<td role=\"gridcell\">9.2</td>\n</tr>\n<tr class=\"k-alt\"\
+  \ndata-uid=\"3240f52d-f4bb-4a2c-9985-b6ce44d75be6\"\nrole=\"row\">\n<td role=\"\
+  gridcell\">The Godfather</td>\n<td role=\"gridcell\">1972</td>\n<td role=\"gridcell\"\
+  >9.2</td>\n</tr>\n...\n</tbody>\n</table>\n</div>\n```\n\n前面的代码包含一个带有显示 dataSource\
+  \ 对象中数据的行的表格。现在，当你在页面上查看 Grid 时，它将与先前配方中解释的 Grid 相同。如下面的截图所示：\n\n| Movie | Year\
+  \ | Rating |\n|---|---|---|\n| The Shawshank Redemption | 1994 | 9.2 |\n| The Godfather\
+  \ | 1972 | 9.2 |\n| The Godfather - Part 2 | 1974 | 9 |\n| Pulp Fiction | 1994 |\
+  \ 8.9 |\n| The Good, the Bad and the Ugly | 1966 | 8.9 |\n\n### There's more...\n\
+  \n此示例中的 `dataSource` 对象包含了本地数据，即 Grid 的数据直接写在 JavaScript 对象中。然而，在大多数场景中，数据将从远程服务获取。`dataSource`\
+  \ 对象可以通过指定其 URL 来从远程服务获取数据：\n\n```javascript\n$(\"#grid\").kendoGrid({\n    columns:\
+  \ [\n    {\n    field : 'movieName',\n    title : 'Movie'\n    },\n    {\n    field\
+  \ : 'year',\n    title : 'Year'\n    },\n    {\n    field : 'rating',\n    title\
+  \ : 'Rating'\n    }\n    ],\n    dataSource: {\n    transport: {\n    read: 'http://localhost/kendo/code/chapter2/remote.json'\n\
+  \    }\n    }\n    });\n```\n\n在前面的代码片段中，`DataSource` 对象已更改。它现在包含对远程服务 URL 的引用（在\
+  \ `transport` 选项下）。当 Grid 初始化时，会向指定的 URL 发送一个 `GET` 请求，并将收到的响应数据用于填充 Grid 的内容。\n\
+  \n### 使用选定列对 Grid 中的数据进行排序\n\nKendo UI Grid 带有多个功能，例如按选定列排序、分页、分组和滚动。这些配置选项可以在 Grid\
+  \ 配置级别和列级别指定。\n\n\n\n\n\n### 如何操作...\n\n要启用按列排序功能，请将 sortable 配置选项设置为 true。这样将使\
+  \ Grid 中的所有列都可用于排序。如果你希望 Grid 中的某些列不可用于排序，则可以在列级别添加相同的 sortable 属性，并将其值设置为 false：\n\
+  \n```\n$(\"#grid\").kendoGrid({\n    columns: [\n    {\n    field : 'movieName',\n\
+  \    title : 'Movie',\n    sortable: false,\n    },\n    {\n    field : 'year',\n\
+  \    title : 'Year'\n    },\n    {\n    field : 'rating',\n    title : 'Rating'\n\
+  \    }\n    ],\n    dataSource: {\n    transport: {\n    read: 'http://localhost/kendo/code/chapter2/remote.json'\n\
+  \    }\n    },\n    sortable: true\n    });\n```\n\n在此，通过将 sortable 设置为 true，Grid\
+  \ 中的所有列都将可用于排序。在列级别，对于 movieName 字段，sortable 选项设置为 false。这将禁用第一列的排序功能。另外，请注意，为每个列添加\
+  \ sortable 选项并非必需，因为这是在 Grid 级别指定的。\n\n在许多场景中，你希望 Grid 列按多个列排序。在我们的示例中，Grid 可以先按\
+  \ year 排序，然后再按 rating 排序。要使此选项可用，请将 mode 选项设置为 multiple：\n\n```\nsortable: {\n \
+  \   mode: 'multiple'\n    }\n```\n\n默认情况下，mode 的值为 single，即列将基于选定的列进行排序。\n\n###\
+  \ 工作原理...\n\n当你将 Grid 的 sortable 模式设置为 single 或 multiple 时，Grid 将按原样显示。但是，当你将鼠标悬停在可排序列上时，光标将变为指针，当你单击它时，Grid\
+  \ 将按选定的列进行排序。在 single 模式下，Grid 将基于选定的列进行排序，如下图所示：\n\n| Movie | Year | Rating * |\n\
+  |---|---|---|\n| Pulp Fiction | 1994 | 8.9 |\n| The Good, the Bad and the Ugly |\
+  \ 1966 | 8.9 |\n| The Godfather - Part 2 | 1974 | 9 |\n| The Shawshank Redemption\
+  \ | 1994 | 9.2 |\n| The Godfather | 1972 | 9.2 |\n\n在此，Grid 按第三列 Rating 排序；向上箭头表示\
+  \ Grid 按升序排序。基于此列，Grid 中的数据将进行排序。\n\n现在，让我们看一个 sortable 模式设置为 multiple 的示例。如前所述，此模式允许用户按多个列排序。此示例允许\
+  \ Grid 中的列按第一个选定的列，然后按第二个选定的列进行排序。\n\n| Movie | Year * | Rating * |\n|---|---|---|\n\
+  | The Shawshank Redemption | 1994 | 9.2 |\n| Pulp Fiction | 1994 | 8.9 |\n| The\
+  \ Godfather - Part 2 | 1974 | 9 |\n| The Godfather | 1972 | 9.2 |\n| The Good, the\
+  \ Bad and the Ugly | 1966 | 8.9 |\n\n在此，Grid 先按第二列 Year 排序，然后再按第三列 Rating 排序。向下箭头表示列按降序排序。在此，Grid\
+  \ 通过列出评分较高的近期电影进行排序。\n\n### 在 Grid 中使用筛选器显示符合特定条件的数据\n\n与在 Grid 中排序列类似，你可以通过应用筛选器来更新\
+  \ Grid 内容。通过在列上应用筛选器，用户将能够在 Grid 中搜索符合某些条件的相关数据。\n\n#### 如何操作...\n\n要使 Grid 中的列可筛选，请将配置选项\
+  \ `filterable` 设置为 `true`，如下面的代码行所示。与 `sortable` 选项类似，默认情况下 Grid 中的所有列都可用于筛选。如果你希望某些列不可用于筛选，则在\
+  \ columns 下将 `filterable` 设置为 `false`。\n\n```\nfilterable: true\n```\n\n#### 工作原理...\n\
+  \n当你将列标记为可筛选时，你将看到 Grid 中每个列都有一个 **filter** 图标。\n\n| Movie                 |   Year\
+  \ |   Rating |\n|-----------------------|-------:|---------:|\n| The Shawshank Redemption\
+  \ |   1994 |      9.2 |\n| The Godfather         |   1972 |      9.2 |\n| The Godfather\
+  \ - Part 2 |   1974 |      9   |\n| Pulp Fiction          |   1994 |      8.9 |\n\
+  | The Good, the Bad and the Ugly |   1966 |      8.9 |\n\n### Kendo UI Grid\n\n\
+  当你单击它时，将显示一组选项，这些选项将允许你获取筛选后的数据。\n\n| Movie | Year | Rating |\n|---|---|---|\n|\
+  \ The Shawshank Redemption | Show items with value that | 9.2 |\n| The Godfather\
+  \ | Is equal to | 9.2 |\n| The Godfather - Part 2 | Godfather | 9 |\n| Pulp Fiction\
+  \ | And | 8.9 |\n| The Good, the Bad and the Ugly | Is equal to | 8.9 |\n| | Filter\
+  \ | Clear |\n\n默认情况下，用户将看到两个条件来输入搜索条件。在此示例中，用户从下拉菜单中选择了 **contain**，并指定了 **Godfather**\
+  \ 文本。单击 **Filter** 按钮后，Grid 将更新以显示包含名称 **Godfather** 的电影。在此示例中，将显示两行，如下图所示：\n\n\
+  | Movie | Year | Rating |\n|---|---|---|\n| The Godfather | 1972 | 9.2 |\n| The\
+  \ Godfather - Part 2 | 1974 | 9 |\n\n应用筛选器后，你将看到 Grid 已更新且仅列出两行。列的 **filter** 图标现在具有白色背景，这表示已对该列应用筛选器。要清除筛选器，请单击相同的\
+  \ **filter** 图标并选择 **Clear** 选项。这将清除筛选器并显示整个 Grid。在应用筛选器时，除了指定 **contains** 条件外，用户还可以选择将其指定为\
+  \ **Is equal to**、**Is not equal to**、**Starts with**、**Does not contain** 和 **Ends\
+  \ with**。\n\n现在，当你尝试在第二列（即 `Year`）上应用筛选器时，你将看到 Grid 不会更新，并且控制台会抛出 **Uncaught TypeError:\
+  \ Object 1994 has no method 'toLowerCase'** 错误。该库假设 Grid 中的所有列都是 `string` 类型，因此会出现此错误。\n\
+  \n要解决此问题，请在 DataSource 对象中定义架构，如下面的代码片段所示：\n\n```\ndataSource: {\n    transport:\
+  \ {\n        read: 'http://localhost/kendo/code/chapter2/remote.json'\n    },\n\n\
+  \    schema: {\n        model: {\n            fields: {\n                movieName:\
+  \ { type: \"string\" },\n                year: { type: \"number\" },\n         \
+  \       rating: { type: \"number\" }\n            }\n        }\n    }\n}\n```\n\n\
+  这将指示框架在对列应用筛选器时使用正确的数据类型。\n\n| Movie | Year | Rating |\n|---|---|---|\n| The Shawshank\
+  \ Redemption | 1994 | Show items with value that: |\n| The Godfather | 1972 | Is\
+  \ equal to ▼ |\n| The Godfather - Part 2 | 1974 | 1,994.00 ▲ ▼ |\n| Pulp Fiction\
+  \ | 1994 | And ▼ |\n| The Good, the Bad and the Ugly | 1966 | Is equal to ▼ ▲ ▼\
+  \ |\n| | | Filter Clear |\n\n在此，框架发现 Year 字段为数字类型，并在下拉菜单中显示带有不同条件的筛选条件。列表包含 Is equal\
+  \ to、Is not equal to、Is greater than、Is greater than or equal to、Is less than 和\
+  \ Is less than or equal to 条件。\n\n### 更多内容...\n\n在前面的示例中，当你单击列上的 **filter** 图标时，你将看到显示两个条件。除此之外，你可以指定要执行的逻辑操作（AND\
+  \ 或 OR）。大多数情况下，你可能只希望指定一个条件。筛选条件可以配置为仅显示一个条件，方法是将 **extra** 配置选项设置为 **false**：\n\
+  \n```\nfilterable: {\n    extra: false\n}\n```\n\n现在，将仅显示一个列出条件的下拉菜单，如下图所示：\n\n\
+  | Movie | Year | Rating |\n| --- | --- | --- |\n| The Shawshank Redemption | 1994\
+  \ | Show items with value that |\n| The Godfather | 1972 | Is equal to ▼ |\n| The\
+  \ Godfather - Part 2 | 1974 | ▲ ▼ |\n| Pulp Fiction | 1994 | Filter Clear |\n| The\
+  \ Good, the Bad and the Ugly | 1966 | 8.9 |\n\n另外，请注意搜索条件有各种运算符，如前所述。可以通过在 filterable\
+  \ 配置中指定来配置运算符集，如下面的代码片段所示：\n\n```\nfilterable: {\n    extra: false,\n    operators:\
+  \ {\n        number: {\n            eq : 'Is equal to',\n            neq: 'Is not\
+  \ equal to'\n        }\n    }\n}\n```\n\n在此，**operators** 对象指定要为每种数据类型显示的运算符集。在此示例中，对于\
+  \ **number** 数据类型，运算符集包括 **Is equal to** 和 **Is not equal to**，如下图所示：\n\n\n\n\n\n\
+  ### 在 Grid 中创建、更新和删除\n\n直接在 Grid 中编辑记录是另一项常见任务。Kendo UI Grid 允许用户编辑 Grid 中的内容，这类似于编辑\
+  \ Excel 表格中的单元格。有两种模式，即内联和弹出，可用于编辑 Grid 中的单行。内联编辑将单元格转换为文本输入字段，并提供更新记录的选项。在弹出编辑中，会显示一个包含相同字段的弹出窗口，并允许用户保存所选记录。\n\
+  \n除了在 Grid 中编辑行之外，该库还允许你向 Grid 添加和删除记录。这些操作——创建、读取、更新和删除——映射到可处理这些请求的远程服务。Web 开发中常用的一种范式是提供\
+  \ RESTful Web 服务。RESTful 服务提供单个端点 URL，并根据请求中提到的 HTTP 方法提供可调用的资源。\n\n### 如何操作...\n\
+  \n要启用 Grid 行的编辑，请将 editable 属性设置为 inline 或 popup：\neditable: 'inline'\n\n这将启用内联编辑。下一步是为每一行添加编辑和删除操作按钮。在列配置中，你可以定义可应用于\
+  \ Grid 中每一行的命令。有两个内置命令，即 edit 和 delete。\n\nedit 命令通过将行中的字段转换为输入字段来启用行的编辑。另一方面，delete\
+  \ 命令使用以下代码片段删除所选行：\n\n```\ncolumns: [{\nfield : 'movieName',\ntitle : 'Movie',\n\
+  }, {\nfield : 'year',\ntitle : 'Year'\n}, {\nfield : 'rating',\ntitle : 'Rating'\n\
+  }, {\ncommand: ['edit', 'destroy']\n}]\n```\n\n在这里，`columns` 配置列出了各个字段并提及了 `edit`\
+  \ 和 `destroy` 命令。这将为 Grid 中的每一行添加 **编辑** 和 **删除** 按钮。这些按钮应绑定到远程服务，以便当用户更新或删除记录时，服务会在数据库中更新相同内容。在早期的示例中，我们研究了使用带有\
+  \ `transport` 属性的 `DataSource` 对象。在这里，你可以使用相同的属性来指定每个操作的端点，如以下代码片段所示：\n\n```\ndataSource:\
+  \ {\ntransport: {\nread: '/test',\ncreate: {\nurl: '/test',\ntype: 'POST'\n},\n\
+  update: {\nurl: '/test',\ntype: 'PUT'\n},\ndestroy: {\nurl: '/test',\ntype: 'DELETE'\n\
+  }\n},\nschema: {\nmodel: {\nid: \"movieName\",\nfields: {\nmovieName: { type: \"\
+  string\" },\nyear: { type: \"number\" },\nrating: { type: \"number\" }\n}\n}\n}\n\
+  }\n```\n\n在上述代码片段中，transport 对象为各种操作（如 read、create、update 和 delete）定义了端点 URL。create、update\
+  \ 和 delete 操作指定了端点 URL 以及发送请求时要使用的 HTTP 方法。如果你有一个接受请求并通过检查请求中的 HTTP 方法来调用正确资源的 RESTful\
+  \ 服务，则需要指定 HTTP 方法。如果未指定，则默认发送 GET 请求。\n\n### 工作原理...\n\n将 editable 属性设置为 inline\
+  \ 并在 columns 中添加其命令配置后，Grid 中的每一行都有两个按钮，即编辑和删除，如以下屏幕截图所示：\n\n| Movie | Year | Rating\
+  \ | |\n| --- | --- | --- | --- |\n| The Shawshank Redemption | 1994 | 9.2 | Edit\
+  \ Delete |\n| The Godfather | 1972 | 9.2 | Edit Delete |\n| The Godfather - Part\
+  \ 2 | 1974 | 9 | Edit Delete |\n| Pulp Fiction | 1994 | 8.9 | Edit Delete |\n| The\
+  \ Good, the Bad and the Ugly | 1966 | 8.9 | Edit Delete |\n\n当你点击 Edit 时，所选行将切换到编辑模式并显示文本输入字段。\n\
+  \n| Movie | Year | Rating | |\n| --- | --- | --- | --- |\n| The Shawshank Redemption\
+  \ | 1994 | 9.2 | Edit Delete |\n| The Godfather | 1972 | 9.2 | Edit Delete |\n|\
+  \ The Godfather - Part 2 | 1974 | 9.00 | Update Cancel |\n| Pulp Fiction | 1994\
+  \ | 8.9 | Edit Delete |\n| The Good, the Bad and the Ugly | 1966 | 8.9 | Edit Delete\
+  \ |\n\n### Kendo UI Grid\n\n更改值并点击 **Update** 后，将向提到的 URL 发送带有请求体中模型数据的 PUT 请求。在这里，用户也有取消操作的选项。同样，当你点击\
+  \ **Delete** 按钮时，会显示一个询问用户确认删除操作的警告框。如果用户点击 **OK**，则会向提到的服务发送 `DELETE` 请求，并删除 Grid\
+  \ 中相应的行。当你将 editable 属性更改为 popup 时，点击 **Edit** 按钮后会显示一个弹出窗口。\n\n![](img/2a66507445090790d34dc5588b56b24c_53_0.png)\n\
+  \n#### 更多内容...\n\nKendo UI Grid 还允许用户向 Grid 添加记录。Grid 组件可以定义一个 `toolbar` 属性，其值是一个包含要显示的一组操作按钮的数组。在这种情况下，要向\
+  \ Grid 添加新记录，请将值指定为 `create`：\n\n```javascript\ntoolbar: ['create']\n```\n\n这将在\
+  \ Grid 顶部添加一个 **添加新记录** 按钮，如以下屏幕截图所示：\n\n![](img/2a66507445090790d34dc5588b56b24c_53_1.png)\n\
+  \n点击 **添加新记录** 按钮后，将向 Grid 添加一行。\n\n| Movie | Year | Rating | | |\n|---|---|---|---|---|\n\
+  | | 0.00 | 0.00 | ✓ Update | ⊗ Cancel |\n| The Shawshank Redemption | 1994 | 9.2\
+  \ | ✎ Edit | × Delete |\n| The Godfather | 1972 | 9.2 | ✎ Edit | × Delete |\n| The\
+  \ Godfather - Part 2 | 1974 | 9 | ✎ Edit | × Delete |\n| Pulp Fiction | 1994 | 8.9\
+  \ | ✎ Edit | × Delete |\n| The Good, the Bad and the Ugly | 1966 | 8.9 | ✎ Edit\
+  \ | × Delete |\n\n这是当 `editable` 属性设置为 `inline` 时的情况。如果将其设置为 `popup`，则会显示一个弹出窗口。点击\
+  \ **Update** 后，将向服务发送一个 `POST` 请求（参考 `transport` 中的 `create`，如 _如何操作..._ 部分中最后一个示例所示），并在请求体中提及模型数据。\n\
+  \n### 使用可视化机制提高 Grid 的性能\n\n考虑这样一个场景：服务返回一个需要在 Grid 中显示的大型数据集。例如，假设数据集包含约 10,000\
+  \ 条记录。如前所述，`DataSource` 对象中的每条记录都会创建一个表格行。在这种情况下，有 10,000 条记录，为每条记录创建一个表格行（`tr`）会导致浏览器内存不足。创建\
+  \ 10,000 个 DOM 节点并将其追加到文档树中会消耗大量内存。解决此问题的一种方法是使用虚拟化。在虚拟化中，只创建一组固定的节点，当用户在 Grid 上滚动时，现有节点会更新以显示\
+  \ `DataSource` 中的下一组记录。这样，我们不仅通过重用 DOM 节点优化了浏览器内存的使用，还在用户滚动浏览大型列表时提供了流畅的体验。\n\n\
+  ### 如何操作...\n\n可视化的第一步是设置要显示的表格行数。这些表格行将被重用以显示 DataSource 对象中的大量记录。让我们先使用以下代码片段将\
+  \ DataSource 对象中的 pageSize 属性设置为要显示的行数：\n\n```\ndataSource: {\ntransport: {\nread:\
+  \ 'http://localhost/kendo/code/chapter2/remote.json',\n},\n\npageSize: 4,\n}\n```\n\
+  \n下一步是指定 scrollable 对象，并将 virtual 属性设置为 true：\n\n```\nscrollable: {\nvirtual: true\n\
+  }\n```\n\n通过将 virtual 属性设置为 true，将启用数据的可视化。\n\n> 为 pageSize 属性设置的值 4 仅用于演示目的。你应该根据记录数量以及最能匹配用户体验的值将其设置为较大的值。\n\
+  \n### 工作原理...\n\n当你将 pageSize 属性设置为 4 并将 virtual 设置为 true 时，将仅显示四行且仅创建四个节点，如以下屏幕截图所示：\n\
+  \n| Movie | Year | Rating |\n|---|---|---|\n| The Shawshank Redemption | 1994 |\
+  \ 9.2 |\n| The Godfather | 1972 | 9.2 |\n| The Godfather - Part 2 | 1974 | 9 |\n\
+  | Pulp Fiction | 1994 | 8.9 |\n\n\n\n\n\n之前的截图向你展示了带有四行和滚动条的 Grid。当你滚动时，相同的 DOM\
+  \ 节点会被重复使用，也就是说，DOM 节点的内容和属性会使用 DataSource 对象中的新数据进行更新。让我们来查看 Grid 渲染时的 DOM 树，如下面的截图所示：\n\
+  \n```\n<tbody>\n    <tr data-uid=\"bbcea6f3-5e2a-4879-9a72-65a6a716a40a\" role=\"\
+  row\">...</tr>\n    <tr class=\"k-alt\" data-uid=\"f3b539d9-431a-4808-92a7-029858b6ca5a\"\
+  \ role=\"row\">...</tr>\n    <tr data-uid=\"1e87edde-e2af-4407-adba-0aa9fdb3d485\"\
+  \ role=\"row\">...</tr>\n    <tr class=\"k-alt\" data-uid=\"296d489d-8018-4155-85ef-eb0c1c19b4f9\"\
+  \ role=\"row\">...</tr>\n</tbody>\n```\n\n现在，当你滚动时，相同的 DOM 节点会被重复使用。\n\n```\n<tbody>\n\
+  \    <tr data-uid=\"f3b539d9-431a-4808-92a7-029858b6ca5a\" role=\"row\">...</tr>\n\
+  \    <tr class=\"k-alt\" data-uid=\"1e87edde-e2af-4407-adba-0aa9fdb3d485\" role=\"\
+  row\">...</tr>\n    <tr data-uid=\"296d489d-8018-4155-85ef-eb0c1c19b4f9\" role=\"\
+  row\">...</tr>\n    <tr class=\"k-alt\" data-uid=\"ccea6e15-8af8-47dd-a106-4ce4f7060656\"\
+  \ role=\"row\">...</tr>\n</tbody>\n```\n\n请注意前面两个截图中 DOM 节点的 data-uid 属性。当你滚动时，DOM\
+  \ 节点会向上移动一级，包含 DataSource 中第五个元素的最后一个节点被称为表格中的第四行（因为 pageSize 是四）。\n\n### 更多内容...\n\
+  \n使用远程数据源时，只会获取一组记录。当用户向下滚动时，下一组记录会从远程服务中获取。在这种情况下，无法在客户端执行排序或过滤等操作。这是因为浏览器只能对从服务接收到的数据进行操作。这些操作必须在服务器端执行。要启用它们，请在\
+  \ DataSource 对象中将 serverSorting 和 serverFiltering 属性设置为 true，如下面的代码片段所示：\n\n```\n\
+  dataSource: {\n    transport: {\n        read: 'http://yourdomain.com/serviceName',\n\
+  \    },\n\n    pageSize: 4,\n\n    serverSorting: true,\n    serverFiltering: true\n\
+  }\n```\n\n现在，当你点击列标题时，记录会在服务器端排序，Grid 会更新以显示按所选列排序的记录列表。\n\n## 自定义 Grid 的外观和感觉\n\
+  \n在本示例中，我们将了解如何通过使用模板来自定义行的外观和感觉。我们还将了解 Grid 中列的重新排序和大小调整。\n\n### 操作方法...\n\nDataSource\
+  \ 对象中的每条记录都将由 Grid 中的表格行（tr 元素）表示。这些行可以通过向 rowTemplate 和 altRowTemplate 属性提供模板来自定义。rowTemplate\
+  \ 和 altRowTemplate 属性用于设置 Grid 中行的样式。让我们先定义这些模板。下面的代码片段是 rowTemplate 的模板：\n\n```\n\
+  <script id=\"gridRowTemplate\" type=\"text/x-kendo-tmpl\">\n<tr>\n<td class=\"details\"\
+  >\n<span class=\"movieName\"><h3>#: movieName #</h3></span>\n<span class=\"rating\"\
+  >Rating : #: rating#</span>\n</td>\n<td class=\"year\">\n<h3>#: year #</h3>\n</td>\n\
+  </tr>\n</script>\n```\n\n下面的代码片段是 altRowTemplate 的模板：\n\n```\n<script id=\"gridAltRowTemplate\"\
+  \ type=\"text/x-kendo-tmpl\">\n<tr class=\"k-alt\">\n<td class=\"details\">\n<span\
+  \ class=\"movieName\"><h3>#: movieName #</h3></span>\n<span class=\"rating\">Rating\
+  \ : #: rating#</span>\n</td>\n<td class=\"year\">\n<h3>#: year #</h3>\n</td>\n</tr>\n\
+  </script>\n```\n\n两个模板之间的唯一区别是 altRowTemplate 中使用了 k-alt 类。请注意，第一列（td class='details'）包含\
+  \ movieName 字段以及 rating。下一步是在初始化 Grid 时指定这些模板：\n\n```\nrowTemplate:kendo.template($('\\\
+  '#gridRowTemplate\\').html()),\n\naltRowTemplate:kendo.template($('\\'#gridAltRowTemplate\\\
+  ').html())\n```\n\n编译后的模板被分配给 rowTemplate 和 altRowTemplate 属性。\n\n### 工作原理...\n\n\
+  当你渲染 Grid 时，你会看到第一列包含 movieName 和 rating 字段，如下面的截图所示：\n\n| Movie    | Year   |\n\
+  |----------|--------|\n| The Shawshank Redemption    | 1994   |\n| Rating 9.2  \
+  \  |        |\n| The Godfather    | 1972   |\n| Rating 9.2    |        |\n| The\
+  \ Godfather - Part 2    | 1974   |\n| Rating 9    |        |\n| Pulp Fiction   \
+  \ | 1994   |\n| Rating 8.9    |        |\n| The Good, the Bad and the Ugly    |\
+  \ 1966   |\n| Rating 8.9    |        |\n\n另外，请注意电影名称和年份的格式。在这里，不是使用标准模板生成表格行，而是使用用户指定的模板来创建这些行。文档中提到的基于哈希的模板将用于生成表格行。\n\
+  \n### 更多内容...\n\nGrid 中的列可以通过在初始化 Grid 时指定这些列的配置详细信息来调整大小和重新排序：\n\n```\nresizable:\
+  \ true,\n\nreorderable: true\n```\n\n通过将 resizable 设置为 true，可以更改列的宽度，如下面的截图所示：\n\
+  \n| Movie | Year | Rating |\n|---|---|---|\n| The Shawshank Redemption | 1994 |\
+  \ 9.2 |\n| The Godfather | 1972 | 9.2 |\n| The Godfather - Part 2 | 1974 | 9 |\n\
+  | Pulp Fiction | 1994 | 8.9 |\n\n可以在初始化 Grid 时提及此属性，使 Grid 中的列可重新排序。\n\n| Movie\
+  \ | Year | Rating |\n|---|---|---|\n| The Shawshank Redemption | 1994 | 9.2 |\n\
+  | The Godfather | 1972 | 9.2 |\n| The Godfather - Part 2 | 1974 | 9 |\n| Pulp Fiction\
+  \ | 1994 | 8.9 |\n\n在这里，用户正在尝试通过将最后一列移动到第二列来重新排序它。\n"
+- "# Kendo UI TreeView\n\n在本章中，我们将介绍以下示例：\n\n- 使用 TreeView 小部件显示目录结构\n- 使用拖放功能在 TreeView\
+  \ 中移动元素\n- 使用复选框在 TreeView 中选择节点\n- 在 TreeView 中将图标与标签关联\n\n### 简介\n\nKendo UI TreeView\
+  \ 小部件允许你以树状结构显示层次数据。此小部件允许用户展开或折叠层次数据。它还允许他们执行拖放操作，允许列表项从一个节点移动到另一个节点。\n\n### 使用\
+  \ TreeView 小部件显示目录结构\n\n可以通过在 HTML 标记中指定层次数据，或将其绑定到 `DataSource` 对象来创建 TreeView\
+  \ 小部件。\n\n#### 操作方法...\n\n要创建 TreeView，让我们在标记中指定数据，如下面的代码片段所示：\n\n```html\n<ul id=\"\
+  treeView\">\n  <li>\n    Directory1\n  </li>\n</ul>\n```\n\n```html\n<ul>\n    <li>File1.txt</li>\n\
+  \    <li>File2.txt</li>\n</ul>\n</li>\n<li>\n    Directory2\n    <ul>\n        <li>File3.txt</li>\n\
+  \        <li>File4.txt</li>\n    </ul>\n</li>\n<li>\n    Directory3\n    <ul>\n\
+  \        <li>File5.txt</li>\n        <li>File6.txt</li>\n    </ul>\n</li>\n</ul>\n\
+  ```\n\n下一步是通过在 DOM 节点上调用 `kendoTreeView` 函数来初始化 TreeView 小部件，使用以下代码行：\n\n`$('#treeView').kendoTreeView();`\n\
+  \n#### 工作原理...\n\nTreeView 小部件以树状结构显示层次数据，如下面的截图所示：\n\n![](img/2a66507445090790d34dc5588b56b24c_61_0.png)\n\
+  \n请注意，TreeView 仅显示顶级元素。它在元素前显示一个右箭头图标。点击该图标时，顶级元素会展开以显示层次结构中的下一级。\n\n![](img/2a66507445090790d34dc5588b56b24c_62_0.png)\n\
+  \n默认情况下，层次结构中的元素在初始时都不会展开。要在渲染时展开元素，请将 expanded 数据属性指定为 true：\n\n```\n.\n.\n<li\
+  \ data-expanded=\"true\">\nDirectory2\n<ul>\n<li>File3.txt</li>\n<li>File4.txt</li>\n\
+  </ul>\n</li>\n.\n.\n```\n\n通过将 data-expanded 属性指定为 true，该元素将展开以显示层次结构中的下一级元素。\n\n\
+  ### 更多内容...\n\nTreeView 小部件可以通过在 DataSource 对象中指定层次结构来创建。然后将此 DataSource 对象绑定到视图元素。让我们使用一个\
+  \ div 元素，它将绑定到 DataSource 对象：\n\n```\n<div id=\"treeView\">\n</div>\n```\n\n现在，让我们在初始化\
+  \ TreeView 小部件时将此视图元素绑定到 DataSource 对象：\n\n```\n$('#treeView').kendoTreeView({\n\
+  dataSource: [{\ntext: \"Directory1\",\nitems: [\n```\n\n\n\n\n\n{ text: \"File1.txt\"\
+  \ },\n{ text: \"File2.txt\" }\n],\nexpanded: true\n}, {\ntext: \"目录2\",\nitems:\
+  \ [\n{ text: \"File1.txt\" },\n{ text: \"File2.txt\" }\n]},\n{\ntext: \"目录3\",\n\
+  items: [\n{ text: \"File1.txt\" },\n{ text: \"File2.txt\" }\n]\n}\n]\n});\n```\n\
+  \n这里，DataSource 对象是一个对象数组，每个对象指定 TreeView 小部件中节点的属性。每个对象都有一个 text 属性，用于指定 TreeView\
+  \ 小部件中节点的标签。它还有一个 items 集合，用于指定 TreeView 中节点的子项。\n\nDataSource 集合中的第一个对象将 expanded\
+  \ 属性设置为 true，以指示该节点将展开以显示子项。\n\n### 从远程 DataSource 对象构建 TreeView 小部件\n\n也可以通过从远程服务获取数据来构建\
+  \ TreeView 小部件。DataSource 对象可以指定远程服务的 URL，用于获取层次结构数据：\n\n```javascript\n$('#treeView').kendoTreeView({\n\
+  dataSource: {\ntransport: {\nread: '/services/music'\n}\n}\n});\n```\n\n这里，远程服务\
+  \ URL /services/music 应返回包含 TreeView 小部件中第一级元素的数据。假设该服务返回以下数据：\n\n```json\n[\n \
+  \   {\n        \"categoryId\": 1,\n        \"categoryName\": \"Genre\",\n      \
+  \  \"hasSubCategories\": true\n    },\n    {\n        \"categoryId\": 2,\n     \
+  \   \"categoryName\": \"Artists\",\n        \"hasSubCategories\": true\n    },\n\
+  \    {\n        \"categoryId\": 3,\n        \"categoryName\": \"Songs\",\n     \
+  \   \"hasSubCategories\": true\n    },\n    {\n        \"categoryId\": 4,\n    \
+  \    \"categoryName\": \"Playlists\",\n        \"hasSubCategories\": true\n    }\n\
+  ]\n```\n\n服务返回的前面 JSON 响应包含四条记录，这些记录是 TreeView 小部件中的顶级节点。响应中的每个对象包含三个字段；在初始化 TreeView\
+  \ 小部件时，应指定用于显示文本的字段：\n\n```javascript\n$('#treeView').kendoTreeView({\n    dataSource:\
+  \ {\n        transport: {\n            read: '/services/music'\n        }\n    },\n\
+  \    dataTextField: 'categoryName'\n});\n```\n\n### Kendo UI TreeView\n\n现在，当你执行前面的代码时，你会看到类别名称在\
+  \ TreeView 小部件中显示。这里，`dataTextField` 属性用于指定在 TreeView 小部件中显示标签时应使用的字段名。\n\n要填充 TreeView\
+  \ 中的下一级节点，应指示小部件当前节点是否包含子项。请注意，响应包含 `categoryId` 和 `hasSubCategories` 字段；`categoryId`\
+  \ 字段用作响应中每个对象的唯一 ID，而 `hasSubCategories` 字段指示该对象是否包含子项。这应在 `DataSource` 对象中标识，因此应为其指定一个架构：\n\
+  \n```javascript\n$('#treeView').kendoTreeView({\n    dataSource: {\n        transport:\
+  \ {\n            read: 'TreeView.json'\n        },\n        schema: {\n        \
+  \    model: {\n                id: 'categoryId',\n                hasChildren: 'hasSubCategories'\n\
+  \            }\n        }\n    },\n    dataTextField: \"categoryName\",\n});\n```\n\
+  \n这里，架构模型中的属性 `id` 和 `hasChildren` 映射到前面提到的响应中的属性。现在，TreeView 显示顶级节点列表，并指示树中每个节点都有子项。当你单击\
+  \ TreeView 中的任何节点时，会向远程服务发送一个 `GET` 请求，并将 `categoryId` 作为查询参数指定。例如，当你单击树中的第一个节点时，会发送一个\
+  \ `GET` 请求，并将 `categoryId` 查询参数设置为 1：\n\n```\n/services/music?categoryId=1\n```\n\
+  \n预期该服务将返回类似的 JSON 响应，即一组对象，每个对象包含 `categoryId` 和 `hasSubCategories` 属性。\n\n###\
+  \ 使用拖放功能在 TreeView 中移动元素\n\n在 TreeView 小部件中，树中的元素可以拖放到各个级别。这不仅适用于子元素，也适用于树中的顶级节点。\n\
+  \n#### 操作方法...\n\n要启用拖放功能，请在初始化 TreeView 小部件时将 dragAndDrop 属性指定为 true，如以下代码片段所示：\n\
+  \n```javascript\n$('#treeView').kendoTreeView({\ndragAndDrop: true,\n\ndataSource:\
+  \ [{\ntext: \"目录1\",\nitems: [\n{ text: \"File1.txt\" },\n{ text: \"File2.txt\"\
+  \ }\n],\nexpanded: true\n}, {\ntext: \"目录2\",\nitems: [\n{ text: \"File3.txt\" },\n\
+  { text: \"File4.txt\" }\n] }, {\ntext: \"目录3\",\nitems: [\n{ text: \"File5.txt\"\
+  \ },\n{ text: \"File6.txt\" }\n]\n}\n]\n});\n```\n\n这里，当 dragAndDrop 属性设置为 true\
+  \ 时，TreeView 中的元素可以在树的各个级别之间移动。\n\n### Kendo UI TreeView\n\n当用户拖动节点时，会生成各种事件。应用程序可以监听这些事件并自定义其行为。drag、dragstart、dragend\
+  \ 和 drop 事件是用户可以为其指定事件监听器的一组事件。\n\n让我们考虑 drag 事件。生成的事件包含元信息，并包含一个设置工具提示的函数，即当用户执行拖动操作时会显示一个工具提示。该事件包含\
+  \ sourceNode 等属性，指代正在拖动的元素；dropTarget，指代 sourceNode 放置其上的元素；pageX 和 pageY，指代鼠标指针在屏幕上的\
+  \ x 和 y 坐标；以及 statusClass，指示拖动操作的状态，即节点被添加、插入，或者如果操作不可接受则被拒绝。\n\n要设置工具提示，请在事件对象上调用\
+  \ setStatusClass 函数。该函数接受一个字符串作为参数，该字符串应为 k-insert-top、k-insert-middle、k-insert-bottom、k-add\
+  \ 或 k-denied 之一。\n\n可以在元素拖动过程中使用 statusClass 属性在 setStatusClass 函数中设置适当的工具提示：\n\n\
+  ```javascript\n$('#treeView').kendoTreeView({\n    dragAndDrop: true,\n    drag:\
+  \ function (e) {\n        e.setStatusClass('k-' + e.statusClass);\n    }\n});\n\
+  ```\n\n现在，当元素被拖动时，工具提示是通过调用 setStatusClass 函数来设置的。拖动操作的状态可在事件对象的 statusClass 属性中获取。\n\
+  \n#### 工作原理...\n\n将 dragAndDrop 属性设置为 true 后，TreeView 中的元素可以拖放到树中的任何级别。\n\n![](img/2a66507445090790d34dc5588b56b24c_67_0.png)\n\
+  \n前面的屏幕截图显示 File1.txt 元素正在被拖动，工具提示指示该元素将插入到底部，即它将是父节点 Directory1 下的最后一个元素。当元素被拖动时，statusClass\
+  \ 属性设置为 insert-bottom，工具提示设置为 k-insert-bottom。\n\n同样，当元素移动到不同节点时，你会注意到工具提示会发生变化，指示拖动的元素（sourceNode）将被添加到\
+  \ TreeView 中的一个节点。\n\n![](img/2a66507445090790d34dc5588b56b24c_68_0.png)\n\n请注意前面屏幕截图中的工具提示；它指示该元素正在被添加到\
+  \ Directory3。放下元素后，父节点将展开以显示其内容。\n\n![](img/2a66507445090790d34dc5588b56b24c_68_1.png)\n\
+  \n#### 更多...\n\n在许多场景中，你可能希望树中的某个节点不接受来自任何其他元素的放置。在这种情况下，可以使用 drop 事件监听器来防止来自树中任何节点的放置：\n\
+  \n```javascript\n$('#treeView').kendoTreeView({\n dragAndDrop: true,\n drop: function(e)\
+  \ {\n if ($(e.dropTarget)[0].innerText == 'Directory3') {\n e.setValid(false);\n\
+  \ }\n }\n});\n```\n\n这里，检查 dropTarget 节点以查看其是否包含 Directory3 文本。\n\n如果此条件为真，则在事件对象上调用\
+  \ setValid 函数，并将 false 作为参数传递。这将禁用将任何 sourceNode 放置在包含 Directory3 文本的节点上的操作。\n\n\
+  在另一个场景中，如果你想禁用拖动树中的顶级节点，即树的根节点，则可以为 dragstart 事件添加一个事件监听器：\n\n```javascript\n$('#treeView').kendoTreeView({\n\
+  dragAndDrop: true,\n\ndragstart: function (e) {\nif($(e.sourceNode).parentsUntil('.k-treeview',\
+  \ '.k-item').length == 0) {\ne.preventDefault();\n}\n}\n});\n```\n\n这里，检查 sourceNode\
+  \ 是否有父级节点。如果未找到，即 sourceNode 本身就是父节点，那么通过在事件对象上调用 preventDefault 函数，禁用拖动元素的操作。\n\
+  \n### 使用复选框在 TreeView 中选择节点\n\n在 TreeView 中，每个节点可以关联一个复选框。通过使用复选框，你可以选择树中的多个节点并执行操作。\n\
+  \n#### 操作方法...\n\n要在 TreeView 中节点旁添加复选框，请在初始化 TreeView 小部件时将 checkboxes 属性指定为 true：\n\
+  \n```javascript\n$('#treeView').kendoTreeView({\ncheckboxes: true\n});\n```\n\n\
+  如果你希望在选择父节点时也选择子节点，请指定 checkChildren 为 true：\n\n```javascript\n$('#treeView').kendoTreeView({\n\
+  checkboxes: {\n\n\n\n\n### Kendo UI TreeView\n\ncheckChildren: true\n}\n});\n```\n\
+  \nNow, when you select the parent node, all child nodes within the parent node would\
+  \ be selected. It is also possible to specify nodes as checked when they are rendered.\
+  \ In the DataSource configuration, specify checked as true:\n\n```\n$('#treeView').kendoTreeView({\n\
+  \ checkboxes: {\n checkChildren: true\n },\n dataSource: [{\n text: \"Directory1\"\
+  ,\n items: [\n {text: \"File1.txt\"},\n {text: \"File2.txt\"}\n ],\n checked: true\n\
+  \ }\n .\n .\n ]\n});\n```\n\n### 工作原理...\n\n当你将 checkboxes 属性设置为 true 时，你会在 TreeView\
+  \ 中每个节点前面看到一个复选框。\n\n![](img/2a66507445090790d34dc5588b56b24c_70_0.png)\n\n当你检查任何父节点（例如，`Directory1`）时，子节点不会被选中。当你将配置选项\
+  \ `checkChildren` 设置为 `true` 时，子级节点将被选中。\n\n![](img/2a66507445090790d34dc5588b56b24c_71_0.png)\n\
+  \n另外，请注意，当你选择任何子节点时，父节点将被部分选中。\n\n![](img/2a66507445090790d34dc5588b56b24c_71_1.png)\n\
+  \n在这里，`File1.txt` 子节点被选中，根节点 `Directory1` 被部分选中。当你选择所有子节点时，父节点将被标记为选中。\n\n### 更多...\n\
+  \n当你在树中选择任何节点时，相应元素的 checked 属性将被设置为 true。这将触发与 TreeView 关联的 DataSource 对象上的 change\
+  \ 事件。可以使用 change 事件监听器来检查树中哪些节点被选中：\n\n```\nvar treeViewWidget = $(\"#treeView\"\
+  ).data(\"kendoTreeView\");\ntreeViewWidget.dataSource.bind(\"change\", function()\
+  \ {\n var treeView = $(\"#treeView\").data(\"kendoTreeView\"),\n nodes = treeView.dataSource.view();\n\
+  \ (function(nodes) {\n for (var i = 0; i < nodes.length; i++) {\n console.log(nodes[i].text\
+  \ + ' is checked: ' +\n (nodes[i].checked ? 'yes': 'no'));\n if(nodes[i].hasChildren)\
+  \ {\n arguments.callee.call(this, nodes[i].children.view());\n }\n }\n })(nodes);\n\
+  });\n```\n\n在这里，代码检查树中的节点是否被选中；然后递归遍历其子节点并检查子节点是否被选中。当你检查树中的第一个节点时，你会在控制台中看到以下消息：\n\
+  \n```\nDirectory1 is checked: no\nFile1.txt is checked: no\nFile2.txt is checked:\
+  \ no\nDirectory2 is checked: yes\nFile3.txt is checked: yes\nFile4.txt is checked:\
+  \ yes\nDirectory3 is checked: no\nFile5.txt is checked: no\nFile6.txt is checked:\
+  \ no\n```\n\n### 在 TreeView 中将图标与标签关联\n\n类似于将复选框与 TreeView 小部件中的每个节点关联，图像或图标可以与树中的节点关联。此图标将显示在节点名称之前。\n\
+  \n### 如何操作...\n\n让我们首先引用精灵图表并向页面添加 CSS 类：\n\n```\n<style type=\"text/css\">\n#treeView\
+  \ .k-sprite {\n    background-image:\n        url('../../examples/content/web/treeview/coloricons-\n\
+  sprite.png');\n}\n.folder {\n    background-position: 0 0\n}\n.pdf {\n    background-position:\
+  \ 0 -32px;\n}\n.image {\n    background-position: 0 -64px;\n}\n.html {\n    background-position:\
+  \ 0 -48px;\n}\n</style>\n```\n\n下一步是将树中的节点与前面提到的 CSS 类关联。这可以通过在 DataSource 集合中的每个对象上添加\
+  \ spriteCssClass 属性来完成：\n\n```\n$('#treeView').kendoTreeView({\n    dataSource:\
+  \ [{\n        text: \"Directory1\",\n        spriteCssClass: \"folder\",\n     \
+  \   items: [\n            { text: \"File1.png\", spriteCssClass: \"image\" },\n\
+  \            { text: \"File2.html\", spriteCssClass: \"html\" }\n        ],\n  \
+  \  }, {\n    text: \"Directory2\",\n    spriteCssClass: \"folder\",\n    items:\
+  \ [\n        { text: \"File3.pdf\", spriteCssClass: \"pdf\" },\n        { text:\
+  \ \"File4.html\", spriteCssClass: \"html\" }\n    ]\n    }]\n});\n```\n\n在这里，根级节点的\
+  \ spriteCssClass 属性设置为 folder，items 数组中的节点设置为相应的文件类型。\n\n### 工作原理...\n\n当你关联 spriteCssClass\
+  \ 属性时，文本节点的容器（span 元素）的 class 将设置为 k-sprite，你指定的类名将是 spriteCssClass 的值。例如，根节点 Directory1\
+  \ 的容器元素的 class 将设置为 k-sprite folder。\n\n当你执行页面时，你会看到图标显示在树中的节点之前。\n\n![](img/2a66507445090790d34dc5588b56b24c_74_0.png)\n"
+- "### 4 Kendo UI Editor\n\n在本章中，我们将介绍以下配方：\n\n- 使用 `kendoEditor` 函数创建所见即所得编辑器\n-\
+  \ 在编辑器工具集中添加和删除工具\n- 使用图片浏览器工具将图片插入编辑器\n\n#### 简介\n\nKendo UI Editor 小部件允许你使用 **WYSIWYG（所见即所得）**\
+  \ 界面创建丰富内容。该界面允许你格式化文本、创建项目符号或编号列表，并插入表格、超链接和图像。在初始化编辑器小部件时，还可以自定义工具集。还可以创建可在编辑器中使用的自定义工具。除了各种编辑器控件外，你还可以使用图片浏览器将图片插入编辑器。\n\
+  \n#### 使用 kendoEditor 函数创建所见即所得编辑器\n\n编辑器可以通过使用 `textarea` 或 `div` 元素来创建。在此配方中，我们将使用\
+  \ `textarea` 元素创建编辑器，并向你展示可用于格式化数据的默认工具。\n\n#### 如何操作...\n\n让我们首先创建一个 textarea 元素，指定行数、列数和宽度：\n\
+  \n```\n<textarea id=\"editor\"\n    row=\"20\"\n    cols=\"80\"\n    style=\"width:\
+  \ 700px;\">\n</textarea>\n```\n\n下一步是使用此 textarea 元素并通过调用 kendoEditor 函数创建编辑器：\n\
+  \n```\n$(\"#editor\").kendoEditor();\n```\n\nkendoEditor 函数用于将 textarea 初始化为编辑器小部件。编辑器现在将具有所见即所得界面，允许用户格式化文本。\n\
+  \n#### 工作原理...\n\n当你通过调用 kendoEditor 函数将 textarea 元素初始化为编辑器时，工具集中将提供各种工具，如下面的屏幕截图所示：\n\
+  \n![](img/2a66507445090790d34dc5588b56b24c_77_0.png)\n\n工具栏显示在编辑器顶部，允许用户格式化输入的数据。这包括对输入的文本应用不同的格式、将文本标记为粗体或斜体、下划线选定的文本、对齐文本、创建项目符号或编号列表，以及添加图像和表格。\n\
+  \n### 在编辑器工具集中添加和删除工具\n\n工具栏可以自定义为仅包含所需的那组工具。例如，你可能希望从工具栏中排除插入表格的选项，或者你可能希望包含其他选项来格式化文本，例如更改字体颜色、高亮选定的文本，等等。\n\
+  \n#### 如何操作...\n\n在初始化编辑器小部件时，指定 tools 选项，仅包含需要在工具栏中显示的工具：\n\n```\n$(\"#editor\"\
+  ).kendoEditor({\n    tools: [\n        \"bold\",\n        \"italic\",\n        \"\
+  strikethrough\",\n        \"subscript\",\n        \"superscript\",\n        \"foreColor\"\
+  ,\n        \"backColor\"\n    ]\n});\n```\n\n在前面的代码片段中，提到了应该在工具栏中显示的工具。这些工具将替换默认工具。\n\
+  \n> tools 配置选项可以包含编辑器命令，例如 bold、italic、underline、strikethrough、subscript、superscript、fontName、fontSize、foreColor、backColor、justifyLeft、justifyCenter、justifyRight、justifyFull、insertUnorderedList、insertOrderedList、indent、outdent、createLink、unlink、insertImage、createTable、addColumnLeft、addColumnRight、addRowAbove、addRowBelow、deleteRow、deleteColumn、formatting、insertHtml\
+  \ 和 viewHtml。\n\n\n\n\n\n#### How it works...\n\n如前所述，在初始化 Editor 小部件时指定工具配置，默认工具将被配置中指定的工具替换，如下图所示：\n\
+  \n![](img/2a66507445090790d34dc5588b56b24c_79_0.png)\n\n#### There's more...\n\n\
+  某些工具，例如 fontName 和 fontSize，会在下拉列表中列出可能的值。默认情况下，这些下拉列表中会列出一系列字体和字体大小。此列表可以在工具配置中自定义：\n\
+  \n```\n$(\"#editor\").kendoEditor({\n tools: [\n {\n name: \"fontName\",\n items:\
+  \ [{\n text: \"Default\",\n value: \"Arial, Verdana, sans-serif\"\n }, {\n text:\
+  \ \"Monospace\",\n value: \"monospace\"\n }]\n }, {\n name: \"fontSize\",\n items:\
+  \ [{\n text: \"Small\",\n value: \"12px\"\n }, {\n text: \"Medium\",\n value: \"\
+  16px\"\n }, {\n text: \"Large\",\n value: \"20px\"\n }\n ]\n }\n ]\n});\n```\n\n\
+  在前面的代码片段中，tools 配置包含一个对象数组。每个对象都有一个 name 属性，用于指定要使用的工具的名称，以及一个 items 数组，用于列出要在下拉列表中显示的值。考虑\
+  \ fontName 工具使用的 items 数组。它包含一组对象，每个对象都有两个属性，即 text 和 value。text 属性指定要显示的文本，value\
+  \ 属性指定当用户从列表中选择相同值时要应用的值。在这种情况下，如果用户从列表中选择 Default，则将应用 Arial, Verdana, sans-serif\
+  \ 字体。\n\n![](img/2a66507445090790d34dc5588b56b24c_80_0.png)\n\n在许多情况下，您可能希望创建自己的自定义命令，以与\
+  \ Editor 界面进行交互。例如，一个向 Editor 插入文本的自定义命令。除了用户可以添加到工具集中的各种工具之外，该库还允许您定义与 Editor 交互的自定义命令：\n\
+  \n```\n$(\"#editor\").kendoEditor({\n    tools: [{\n        name: \"custom\",\n\
+  \        exec: function(e) {\n            var editor = $(this).data('kendoEditor');\n\
+  \            editor.exec(\"inserthtml\",\n                {value: \"Thanks,<br>Sagar\
+  \ Ganatra.\"});\n        }\n    }]\n});\n```\n\n### Kendo UI Editor\n\n在这里，工具的名称是\
+  \ `custom`，它包含一个名为 `exec` 的函数。当用户单击自定义工具时，将执行 `exec` 函数，如下图所示。该函数首先获取 Editor 小部件的引用，然后在\
+  \ Editor 实例上调用 `exec` 函数。该函数接受两个参数，即命令名称和一个包含要执行命令的一组参数的对象。在前面的示例中，使用 `inserthtml`\
+  \ 命令向 Editor 小部件插入文本。要插入的文本作为第二个参数指定。\n\n![](img/2a66507445090790d34dc5588b56b24c_81_0.png)\n\
+  \n要使用的命令名称应为 Editor 命令之一。\n\n### Using the image browser tool to insert images into\
+  \ the Editor\n\nEditor 工具集中可用的工具之一是图片浏览器。图片浏览器工具允许您将图片插入到 Editor 中。它通过显示对话框来询问用户图片\
+  \ URL 和可选的替代文本，如下图所示：\n\n![](img/2a66507445090790d34dc5588b56b24c_81_1.png)\n\n\
+  然而，当今构建的许多丰富应用程序允许用户在存储库中浏览图片、上传图片，以及从同一存储库中删除图片。Editor 中使用的图片浏览器工具可以自定义以允许这些操作。在本示例中，我们将了解如何使用图片浏览器工具来处理此类场景。\n\
+  \n### Getting ready\n\n在本示例中，我们将首先了解如何从存储库读取图片并在图片浏览器中显示缩略图。这需要一个服务器端应用程序来响应请求，该请求返回一个\
+  \ JSON 结构，其中提供元数据，例如图片名称和文件大小。\n\n此外，要显示一组缩略图，还需要一个返回请求的缩略图的服务。请求的格式和回退选项在本示例中进行了说明。\n\
+  \n### How to do it...\n\n如前所述，我们需要一个返回包含图片元数据的 JSON 结构的服务。此数据应以以下代码片段所示的格式发送：\n\n\
+  ```\n[\n    {\n        \"name\": \"OperaHouse1.jpg\",\n        \"type\": \"f\",\n\
+  \        \"size\": 73289\n    },\n    {\n        \"name\": \"OperaHouse2.jpg\",\n\
+  \        \"type\": \"f\",\n        \"size\": 15289\n    },\n    {\n        \"name\"\
+  : \"HarborBridge.jpg\",\n        \"type\": \"f\",\n        \"size\": 6286\n    }\n\
+  ]\n```\n\n在这里，结构是一组对象，每个对象指定图片名称（`name` 属性）和图片大小（`size` 属性）。`type` 属性包含值 `f`，表示它代表文件类型。在服务器上创建目录的场景中，`type`\
+  \ 属性应具有值 `d`。文件大小应以字节为单位。但是，在显示图片元数据时，它将转换为千字节。\n\n### Kendo UI Editor\n\n下一步是指定传输\
+  \ URL 以读取前面提到的结构，并从存储库获取缩略图：\n\n```\n$(\"#editor\").kendoEditor({\n    tools: [\
+  \ 'insertImage' ],\n    imageBrowser: {\n        transport: {\n            read:\
+  \ \"/app/ImageService/Read\",\n            thumbnailUrl: \"/app/ImageService/ThumbNailService\"\
+  ,\n            imageUrl: \"/app/ImageService/Image?path={0}\"\n        }\n    }\n\
+  });\n```\n\n在这里，imageBrowser 配置选项指定传输 URL，用于读取包含元数据的 JSON 结构（read 属性）、返回缩略图的服务 URL（thumbnailUrl\
+  \ 属性）以及返回要插入到 Editor 中的图片的服务（imageUrl 属性）。\n\n### How it works...\n\n当您指定 imageBrowser\
+  \ 配置时，默认对话框将被覆盖，并显示如下图所示的图片浏览器模态窗口：\n\n![](img/2a66507445090790d34dc5588b56b24c_83_0.png)\n\
+  \n当您单击图片浏览器工具时，首先会从 read 属性的值中提到的 URL 获取图片元数据。对于 JSON 结构中的每个对象，都会引用缩略图服务来获取图片的缩略图。在我们的示例中，图片名称为\
+  \ HarborBridge.jpg，发送到缩略图服务的请求将是 http://<domain_name>/app/ImageService/ThumbNailService?path=HarborBridge.jpg。\n\
+  \n在这里，查询参数 path 包含要检索其缩略图的图片名称。由于 JSON 结构中有三个对象，因此将向缩略图服务发送三个请求。\n\n前面的截图中显示的缩略图尺寸为\
+  \ 80px X 60px，并显示图片名称及其大小。图片浏览器工具还有一个搜索输入字段，用于过滤浏览器中显示的缩略图列表。如果您有大量缩略图列表并正在按名称查找图片，这将特别有用。\n\
+  \n从列表中选择缩略图并单击 Insert 按钮后，将从 imageUrl 中提到的服务获取相应的图片。请注意 imageUrl 中 {0} 的用法：\n\n\
+  /app/ImageService/Image?path={0}\n\n在这里，{0} 将被替换为所选文件名。获取的图片随后将插入到 Editor 中。\n\n\
+  ### There's more...\n\n图片浏览器工具还允许您上传图片，然后将其插入到 Editor 中。要将图片上传到服务器，请指定上传服务 URL：\n\
+  \n```\nimageBrowser: {\ntransport: {\nread: \"/app/ImageService/Read\",\nthumbnailUrl:\
+  \ \"/app/ImageService/ThumbNailService\",\nimageUrl: \"/app/ImageService/Image?path={0}\"\
+  ,\nuploadUrl: \"/app/ImageService/Upload\"\n}\n}\n```\n\n在这里，uploadUrl 属性指定将图片上传到服务器的服务。当指定\
+  \ uploadUrl 属性时，图片浏览器中将出现一个 **Upload** 按钮。\n\n![](img/2a66507445090790d34dc5588b56b24c_85_0.png)\n\
+  \n单击 **Upload** 按钮（前面的截图中已突出显示）后，系统会提示用户指定文件位置。将向上传指定图片的服务发送一个 POST 请求。\n\n图片上传到服务器后，将查询缩略图服务以获取同一图片的缩略图。上传服务应确保上传的图片已调整大小，并在缩略图所在的目录中可用。\n\
+  \n在某些场景中，您可能希望在服务器上创建目录并上传图片到该目录。要创建目录，请指定 create 属性，其值为可创建目录的服务 URL：\n\n```\nimageBrowser:\
+  \ {\n    transport: {\n        read: \"/app/ImageService/Read\",\n```\n\n\n\n\n\n\
+  当你指定 create 属性时，图像浏览器屏幕上会添加一个按钮，如下面的屏幕截图所示：\n\n![](img/2a66507445090790d34dc5588b56b24c_86_0.png)\n\
+  \n现在，当你单击 **Create** 按钮时，图像浏览器模态窗口会显示一个已创建的目录，并允许用户指定目录名称。\n\n![](img/2a66507445090790d34dc5588b56b24c_86_1.png)\n\
+  \n现在，用户可以指定目录名称并按 *Enter* 键。这将向 `create` 服务发送一个 `POST` 请求，并在请求正文（表单数据）中提及目录名称：\n\
+  \n```\n{\n    name: 'test',\n    size: '',\n    type: 'd',\n    path: ''\n}\n```\n\
+  \n这里，type 属性是 `'d'`，因为我们正在服务器上创建一个目录。现在，用户可以选择该目录并上传文件到其中。这里还需要注意的是，当你浏览目录时，会向作为\
+  \ `read` 属性值指定的服务发送一个 `POST` 请求。表单数据包含路径详细信息，也就是说，它将目录名称指定为 `{ 'path': 'test' }`，其中\
+  \ `test` 是要读取的目录。\n"
+- "### Kendo UI PanelBar\n\n在本章中，我们将介绍以下配方：\n\n- 创建 PanelBar\n- 使用 Ajax 加载 PanelBar\
+  \ 的内容\n- 将 PanelBar 绑定到 DataSource 对象\n- 自定义 PanelBar\n\n#### 简介\n\nKendo UI PanelBar\
+  \ 小部件类似于包含分组在不同选项卡或窗格下的项目列表的选项卡式面板。在 PanelBar 中，这些项目列表是垂直堆叠的，每个列表项都可以展开以显示内容。当数据可以分组为多个部分且可用于显示这些数据的空间受到限制时，此小部件特别有用。例如，你的所有联系人都可以按某个类别（如\
+  \ **Favourites**、**Family**、**Friends** 和 **Office Contacts**）分组；当你点击其中一个类别时，面板将展开以显示属于该类别的联系人列表。\n\
+  \n#### 创建 PanelBar\n\nPanelBar 可以通过在 HTML 标记中指定其结构，或通过使用 API 进行配置来创建。在本配方中，我们将介绍前一种方法。\n\
+  \n#### 如何操作...\n\nPanelBar 小部件包含垂直堆叠的项目列表。要创建 PanelBar，我们需要一个项目列表，因此使用 HTML 的有序列表或无序列表。在此示例中，我们将列出旅游目的地、航空公司和要参观的重要景点作为三个面板：\n\
+  \n```\n`<ul id=\"panelBar\" style=\"width: 400px\">\n\t<li>\n\tDestinations\n\t\
+  </li>\n\t<li>\n\tFlights\n\t</li>\n\t<li>\n\tImportant Sights\n\t</li>\n</ul>`\n\
+  ```\n\n这里，列表包含三个项目，这些是我们希望每个面板的标题。此外，width 属性设置为 400px，这将设置 PanelBar 组件的宽度。如果未指定\
+  \ width 属性，则 PanelBar 将占据整个屏幕宽度，这并不理想。\n\n前面的面板尚未列出任何内容。让我们在 HTML 标记中为每个面板指定内容：\n\
+  \n```\n`<ul id=\"panelBar\" style=\"width: 400px\">\n\t<li>\n\tDestinations\n\t\
+  <div class=\"destinationData\">\n\t<h2>India</h2>\n\t<img src=\"./images/India-Flag-icon.png\"\
+  \ />\n\t</div>\n\t<div class=\"destinationData\">\n\t<h2>Australia</h2>\n\t<img\
+  \ src=\"./images/Australia-Flag-icon.png\" />\n\t</div>\n\t<div class=\"destinationData\"\
+  >\n\t<h2>Indonesia</h2>\n\t<img src=\"./images/Indonesia-Flag-icon.png\" />\n\t\
+  </div>\n\t</li>\n\t<li>\n\tFlights\n\t<div class=\"destinationData\">\n\tBritish\
+  \ Airways\n\t</div>\n\t<div class=\"destinationData\">\n\tAir France\n\t</div>\n\
+  \t<div class=\"destinationData\">\n\tLufthansa Airlines\n\t</div>\n\t<div class=\"\
+  destinationData\">\n\tSingapore Airlines\n\t</div>\n\t<div class=\"destinationData\"\
+  >\n\tQatar Airways\n\t</div>\n\t</li>\n\t<li>\n\tImportant Sights\n\t<div class=\"\
+  destinationData\">\n\t<h2>Taj Mahal</h2>\n\t<img src=\"./images/TajMahal.jpg\" />\n\
+  \t</div>\n\t<div class=\"destinationData\">\n\t<h2>Sydney Opera House</h2>\n\t<img\
+  \ src=\"./images/OperaHouse.jpg\" />\n\t</div>\n\t<div class=\"destinationData\"\
+  >\n\t<h2>Tanah Lot Temple</h2>\n\t<img src=\"./images/TanahLot.jpg\" />\n\t</div>\n\
+  \t</li>\n</ul>`\n```\n\n#### Kendo UI PanelBar\n\n在前面的 HTML 标记中，每个列表项包含标题和内容，当用户单击\
+  \ PanelBar 中的某个项目时，需要显示这些内容。\n\n> 前面代码片段中使用的 destinationData 类仅用于样式设置。\n\n最后一步是初始化\
+  \ PanelBar 小部件。要初始化，请在列表上调用 kendoPanelBar 函数，如下所示：\n\n```\n$(\"#panelBar\").kendoPanelBar();\n\
+  ```\n\n#### 工作原理...\n\n最初，当列表仅包含标题时，你将看到三个垂直堆叠的窗格，如下面的屏幕截图所示：\n\n![](img/2a66507445090790d34dc5588b56b24c_91_0.png)\n\
+  \n当你向列表中的每个项目添加内容时，你将看到列表中每个标题旁有一个向下箭头，如下面的屏幕截图所示：\n\n![](img/2a66507445090790d34dc5588b56b24c_91_1.png)\n\
+  \n现在，当你单击其中一个标题时，列表项将展开以显示其内容，如下面的屏幕截图所示：\n\n![](img/2a66507445090790d34dc5588b56b24c_92_0.png)\n\
+  \n#### 更多...\n\n在前面的示例中，列表元素遵循单层级层次结构。PanelBar 可以自定义以处理多层级层次结构数据。前面的示例现在可以包含每个旅游目的地的重要城市。在这种情况下，国家名称将作为嵌套面板元素：\n\
+  \n```\n`<ul id=\"panelBar\" style=\"width: 400px\">\n<li>\nDestinations\n<ul>\n\
+  <li>\n<span>India</span>\n<div class=\"destinationData\">\n<span>Bangalore</span>\n\
+  </div>\n<div class=\"destinationData\">\n<span>New Delhi</span>\n</div>\n<div class=\"\
+  destinationData\">\n<span>Mumbai</span>\n</div>\n</li>\n</ul>\n</li>\n</ul>\n<ul>\n\
+  <li>\n<span>Australia</span>\n<div class=\"destinationData\">\n<span>Sydney</span>\n\
+  </div>\n<div class=\"destinationData\">\n<span>Melbourne</span>\n</div>\n<div class=\"\
+  destinationData\">\n<span>Cairns</span>\n</div>\n</li>\n</ul>\n</li>\n<li>\nFlights\n\
+  </li>\n<li>\nImportant Sights\n</li>\n</ul>`\n```\n\n在前面的代码片段中，第一个列表项包含嵌套列表元素，每个嵌套列表元素包含一些内容，如下面的屏幕截图所示：\n\
+  \n![](img/2a66507445090790d34dc5588b56b24c_93_0.png)\n\n与它们的父列表元素一样，每个子列表元素都有一个标题，用户可以单击该标题以展开内容。\n\
+  \n#### 使用 Ajax 加载 PanelBar 的内容\n\n在前面的配方中，我们了解了如何使用页面中存在的标记创建 PanelBar 小部件。在本配方中，我们将了解如何通过从服务器使用\
+  \ Ajax 获取内容来加载 PanelBar 中每个列表项的内容。\n\n如前面的配方中所观察到的，每个列表项的内容都包裹在 div 元素内。这样做会增加页面大小，从而可能影响应用程序的性能。解决此问题的方法是在使用\
+  \ Ajax 请求时加载每个列表项的内容。\n\n##### 如何操作...\n\n让我们考虑相同的示例；在这里，列表标题在标记中指定，div 元素用作占位符。这些占位符将在运行时包含从服务器获取的数据：\n\
+  \n```\n<ul id=\"panelBar\" style=\"width: 400px\">\n  <li>\n    Destinations\n \
+  \   <div></div>\n  </li>\n  <li>\n    Flights\n    <div></div>\n  </li>\n  <li>\n\
+  \    Important Sights\n    <div></div>\n  </li>\n</ul>\n```\n\n这里，使用占位符 div 元素，以便在初始化\
+  \ PanelBar 时，列表标题将显示向下箭头，指示它是可展开的。\n\n下一步是创建包含列表中每个标题内容的 HTML 文件。例如，要填充前面列表中的 Destinations\
+  \ 列表，请创建 PanelBar_Destinations.html 文件：\n\n```\n<div class=\"destinationData\">\n\
+  \  <h2>India</h2>\n  <img src=\"./images/India-Flag-icon.png\" />\n```\n\n\n\n\n\
+  \n### 工作原理...\n\n当页面执行时，只有带有标题的列表项会显示如下：\n\n![](img/2a66507445090790d34dc5588b56b24c_95_0.png)\n\
+  \n你可以检查 DOM，会发现这些列表项没有内容。但是，有一个向下的箭头，指示该列表项包含一些内容。\n\n现在，当你点击其中任何一个列表项时，会向相应的 contentUrl\
+  \ 发送一个 Ajax 请求。该请求应返回应在列表项下显示的标记，如下面的屏幕截图所示：\n\n![](img/2a66507445090790d34dc5588b56b24c_96_0.png)\n\
+  \n在运行时加载内容（而非预先加载）的优势在于，服务器返回的响应大小减小，因此显示页面所需的时间也随之减少。在许多场景中，PanelBar 包含多个部分，用户可能不会点击所有部分。在这些情况下，在运行时加载内容是理想的。\n\
+  \n### 更多内容...\n\n在处理远程请求时，服务器可能需要更长时间来响应，或者服务可能不可用。在这些场景中，应向用户显示错误消息，或将其重定向到错误页面。\n\
+  \n从用户点击列表标题到内容在相应面板中加载，会生成一系列事件。应用程序可以在初始化 PanelBar 小部件时为这些事件指定回调处理程序。\n\n让我们为 PanelBar\
+  \ 添加事件处理程序，并在 div 元素（以下代码中的 logContainer）中记录事件：\n\n```javascript\nvar $logContainer\
+  \ = $('#log');\n$(\"#panelBar\").kendoPanelBar({\n    contentUrls: [\n        \"\
+  PanelBar_Destinations.html\",\n        \"PanelBar_Flights.html\",\n        \"PanelBar_Sights.html\"\
+  \n    ],\n    select: function(event) {\n        $logContainer.append($(event.item).find('>\
+  \ .k-link').text() + ' selected. <br>');\n    },\n    expand: function(event) {\n\
+  \        $logContainer.append($(event.item).find('> .k-link').text() + ' expanded.\
+  \ <br>');\n    },\n    activate: function(event) {\n        $logContainer.append($(event.item).find('>\
+  \ .k-link').text() + ' activated. <br>');\n    },\n    contentLoad: function(event)\
+  \ {\n        $logContainer.append($(event.item).find('> .k-link').text() + ' content\
+  \ loaded. <br>');\n    },\n    error: function(event) {\n        $logContainer.append('Error\
+  \ occurred while loading, Status: ' + event.xhr.status);\n    }\n});\n```\n\n事件顺序如下：\n\
+  \n- 1. 当用户点击列表项时：select。\n- 2. 选中的列表项被展开：expand。\n- 3. 发送 Ajax 请求并加载 Ajax 响应中的内容时：contentLoad。\n\
+  - 4. 选中的列表项被激活：activate。\n- 5. 如果从服务器加载内容时出错，则执行错误回调处理程序。\n\n### 将 PanelBar 绑定到\
+  \ DataSource 对象\n\nPanelBar 还可以通过在 DataSource 对象中指定内容来构建。DataSource 可以是本地的，也可以指向返回\
+  \ JSON 结构的远程服务。除了指定 PanelBar 中需要显示的数据外，DataSource 对象还可用于指定一些配置选项。在本示例中，我们将了解如何使用\
+  \ DataSource 对象构建 PanelBar。\n\n### 如何操作...\n\n使用 kendoPanelBar 函数初始化 PanelBar 时，请指定\
+  \ dataSource 选项：\n\n```javascript\n$(\"#panelBar\").kendoPanelBar({\n    dataSource:\
+  \ [\n        {\n            text: \"Destinations\",\n            expanded: true,\n\
+  \            items: [\n                {\n                    text: \"India\",\n\
+  \                    imageUrl: \"./images/India-Flag-icon.png\",\n             \
+  \       cssClass: \"destinationData\"\n                }, {\n                  \
+  \  text: \"Australia\",\n                    imageUrl: \"./images/Australia-Flag-icon.png\"\
+  ,\n                    cssClass: \"destinationData\"\n                }, {\n   \
+  \                 text: \"Indonesia\",\n                    imageUrl: \"./images/Indonesia-Flag-icon.png\"\
+  ,\n                    cssClass: \"destinationData\"\n                }\n      \
+  \      ]\n        }\n    ]\n});\n```\n\n在上述代码片段中，dataSource 配置选项指定了 PanelBar 中需要显示的数据。text\
+  \ 属性指定 PanelBar 标题中显示的文本；配置选项 expanded 设置为 true 时，将展开面板以显示项目列表。items 配置选项包含在面板展开时将显示的项目列表。items\
+  \ 配置中的每个对象除了应显示的文本外，还提及了 imageUrl 和 cssClass 属性。\n\n在 DataSource 配置中，你还可以指定返回面板\
+  \ HTML 内容的页面 URL：\n\n```javascript\ndataSource: [\n    .\n    .\n    .\n    {\n\
+  \        text: \"Flights\",\n        contentUrl: \"PanelBar_Flights.html\"\n   \
+  \ }\n]\n```\n\n在这里，contentUrl 选项指定应从中获取面板内容的 URL。当用户点击面板时，会向指定的 URL 发送请求，并将响应中接收到的\
+  \ HTML 内容插入到面板中。\n\n### 工作原理...\n\n当你渲染页面时，PanelBar 将使用你在 DataSource 中指定的数据填充。当你检查插入到\
+  \ DOM 中的 HTML 标记时，你会看到 cssClass 属性中指定的类已添加到每个列表元素。此外，图像将插入到每个列表元素中，如下所示：\n\n```html\n\
+  <li role=\"menuitem\" class=\"k-item k-state-default k-first destinationData\">\n\
+  \    <span class=\"k-link\">\n        <img class=\"k-image\" alt=\"\" src=\"./images/India-Flag-icon.png\"\
+  >\n        India\n    </span>\n</li>\n```\n\n### 自定义 PanelBar\n\n有几个选项可用于自定义 PanelBar\
+  \ 小部件的行为。在本示例中，我们将了解如何设置 PanelBar 小部件的展开模式以及可以应用的动画效果。\n\n### 如何操作...\n\nPanelBar\
+  \ 小部件的设计旨在占用页面更少的空间，同时向你显示所需内容。当你点击 PanelBar 小部件中的任何列表项时，它会展开以显示内容。现在，当你点击另一个列表项时，它也会展开以显示其内容。此时，PanelBar\
+  \ 中有两个项目的内容正在显示。通过将 expandMode 属性设置为 single，列表中任何给定时间只能有一个项目保持展开状态：\n\n```javascript\n\
+  $(\"#panelBar\").kendoPanelBar({\n    expandMode: 'single'\n});\n```\n\n默认情况下，expandMode\
+  \ 属性的值为 multiple，因此会发生上述行为。\n\n> 如果展开的面板包含嵌套的元素列表，则展开模式不会应用于嵌套元素。\n\n当 PanelBar\
+  \ 渲染时，所有面板都处于折叠状态。通过向列表项中的一个添加 k-state-active 类，可以将其中一个面板设置为展开状态：\n\n```html\n<ul\
+  \ id=\"panelBar\">\n  <li class=\"k-state-active\">\n    Destinations\n    <li>\n\
+  \      .\n      .\n      .\n    </li>\n    .\n    .\n    .\n  </li>\n</ul>\n```\n\
+  \n下一个可以应用的配置选项是动画效果。在展开或折叠面板时可以应用动画效果。此外，你可以按如下方式指定动画效果的持续时间：\n\n```javascript\n\
+  $(\"#panelBar\").kendoPanelBar({\n    expandMode: 'single',\n    animation: {\n\
+  \        collapse: {\n            duration: 1000,\n            effects: \"fadeOut\"\
+  \n        },\n        expand: {\n            duration: 1000,\n            effects:\
+  \ \"fadeIn\"\n        }\n    }\n});\n```\n\n在上述代码片段中，指定了 animation 配置，详细说明了折叠和展开面板时应应用的动画效果。collapse\
+  \ 和 expand 均指定了 duration 属性，该属性以毫秒为单位指定动画效果的持续时间。它还包括 effects 属性，该属性指定需要应用的动画效果类型。对于折叠，只能应用\
+  \ fadeOut 效果，而对于展开，可能的值为 fadeIn 和 expandVertical。\n\n\n\n\n\n### 工作原理...\n\n当 expandMode\
+  \ 属性设置为 single 时，PanelBar 小部件中只有一个面板可以处于展开状态，如下所示：\n\n![](img/2a66507445090790d34dc5588b56b24c_101_0.png)\n\
+  \n现在，当你点击其他面板，例如 **Flights** 时，第一个面板将折叠，所选面板将展开，如下图所示：\n\n![](img/2a66507445090790d34dc5588b56b24c_101_1.png)\n"
+- "## Kendo UI 文件上传器\n\n在本章中，我们将介绍以下配方：\n\n- 使用文件上传器将文件上传到服务器\n- 异步将文件上传到服务器\n- 监听文件上传事件\n\
+  \n### 简介\n\nKendo UI 库提供了一个文件上传器小部件，可用于将多个文件上传到服务器。在 Chrome、Safari、Firefox 和 Opera\
+  \ 等现代浏览器上，可以使用 HTML5 File API 异步上传文件。HTML5 对 XmlHttpRequest 对象的增强功能（例如进度跟踪）也可用。在旧版浏览器上，它会回退并同步上传文件。在本章中，我们将了解文件上传器小部件可用于将文件上传到服务器的各种方式，展示文件上传过程的进度以及可用于自定义小部件的选项。\n\
+  \n### 使用文件上传器将文件上传到服务器\n\n在本配方中，我们将了解如何使用文件上传器小部件将多个文件同步上传到服务器。\n\n#### 如何操作...\n\
+  \n让我们创建一个用于上传文件的表单，如下所示：\n\n```html\n<form method=\"post\"\n action=\"/fileUploadService\"\
+  \n style=\"width:500px\">\n\n<input name=\"files\" id=\"fileUpload\" type=\"file\"\
+  \ />\n<input type=\"submit\" value=\"Submit\" class=\"k-button\" />\n</form>\n```\n\
+  \n下一步是通过在文件输入类型上调用 kendoUpload 函数来初始化文件上传器小部件：\n\n```javascript\n$('#fileUpload').kendoUpload();\n\
+  ```\n\n这将初始化文件输入类型为上传器小部件。然后可以使用此上传器小部件选择文件并将其上传到服务器。你可以选择多个文件，列表中也会显示相同内容。\n\n\
+  当你点击 **Submit** 按钮时，表单将提交以上传列表中的文件。这是一个 `multipart/form-data` 提交，文件数据位于请求负载中。服务器将能够接受表单提交并将用户路由到下一页。\n\
+  \n#### 工作原理...\n\n当你初始化文件上传器小部件时，你会看到两个按钮，**Select files...** 和 **Submit**，如下图所示：\n\
+  \n![](img/2a66507445090790d34dc5588b56b24c_103_0.png)\n\n请注意文件输入类型的外观和感觉——有一个按钮，并且这在所有浏览器中都是一致的。该按钮允许你选择多个文件。\n\
+  \n为了本示例的目的，让我们选择文件两次，即点击 **Select files...** 按钮两次并选择一个文件：\n\n![](img/2a66507445090790d34dc5588b56b24c_104_0.png)\n\
+  \n在这里，你会注意到列表中显示了两个文件。当你点击 **Submit** 按钮时，带有请求负载中文件的 POST 请求将发送到文件上传服务。请注意，列表中还有一个叉号\
+  \ (x) 按钮，可用于从列表中删除文件。\n\n#### 更多...\n\n有几个配置选项可用于自定义文件上传器小部件。\n\n#### 禁用多文件上传\n\n\
+  默认情况下，文件上传器允许用户将多个文件上传到服务器。但是，在许多场景中，只允许上传一个文件是可取的。要实现此功能，请在初始化小部件时将 multiple 属性设置为\
+  \ false：\n\n```javascript\n$('#fileUpload').kendoUpload({\n    multiple: false\n\
+  });\n```\n\n这将只允许选择一个文件。当你再次点击 **Select files...** 按钮并选择另一个文件时，列表将反映最近选择的文件。\n\n\
+  #### 使用模板自定义列表项的显示\n\n用于显示所选文件的列表可以通过为列表中的项提供模板来自定义。模板中有三个可用变量：name、size 和 extension。\n\
+  \n```html\n<script id=\"fileListTemplate\" type=\"text/x-kendo-template\">\n<div>\n\
+  \    <span>Name: #=name#</span>\n    <span>Size: #=size# bytes</span>\n    <span>Extension:\
+  \ #=files[0].extension#</span>\n</div>\n</script>\n```\n\n现在，在初始化文件上传器时，请包含 `template`\
+  \ 属性：\n\n```javascript\n$('#fileUpload').kendoUpload({\n    template: kendo.template($('#fileListTemplate').html())\n\
+  });\n```\n\n现在，当你选择文件时，你会看到列表中包含名称、大小和扩展名等元数据。\n\n![](img/2a66507445090790d34dc5588b56b24c_105_0.png)\n\
+  \n### 异步将文件上传到服务器\n\n在本配方中，我们将了解如何异步将文件上传到服务器。此方法使用 HTML5 File API 将文件上传到服务器。在上传文件时，上传器小部件中会显示文件上传进度。\n\
+  \n#### 开始使用\n\n本配方将需要服务器端处理程序来存储或删除文件。\n\n#### 如何操作...\n\n让我们使用相同的表单将文件上传到服务器。要异步上传文件，请指定\
+  \ `async` 配置：\n\n```javascript\n$('#fileUpload').kendoUpload({\n    async: {\n \
+  \       'saveUrl': '/fileUploadService/save',\n        'removeUrl': '/fileUploadService/remove',\n\
+  \        'autoUpload': true\n    }\n});\n```\n\n这里，async 配置指定了三个属性：saveUrl、removeUrl\
+  \ 和 autoUpload。saveUrl 属性指定将上传文件的服务 URL。removeUrl 属性指定将处理上传文件删除的服务 URL。布尔型 autoUpload\
+  \ 属性指定文件是在用户选择文件时上传，还是在用户点击 Submit 按钮时上传。在本示例中，此设置为 true，这意味着当用户选择文件时，文件将上传到服务器。\n\
+  \n当你使用文件上传器小部件选择多个文件时，每个文件都会异步上传。客户端发送带有请求负载中文件数据的 POST 请求。它使用 XmlHttpRequest 对象向\
+  \ saveUrl 发送异步 POST 请求。\n\n#### 工作原理...\n\n当你使用文件上传器小部件选择多个文件时，会为每个选定的文件向 saveUrl\
+  \ 属性中提到的服务发送 POST 请求，如下图所示：\n\n![](img/2a66507445090790d34dc5588b56b24c_106_0.png)\n\
+  \n这里，已选择三个文件，每个文件都在异步上传。在上传文件时，小部件会显示上传过程的进度。文件上传器小部件使用 XmlHttpRequest 对象将文件上传到服务器。随着\
+  \ HTML5 中 XmlHttpRequest 对象的增强，文件上传器小部件使用进度回调处理程序来跟踪正在上传的文件的进度。\n\n另外，请注意，在上传所选文件时，右上角会显示状态“Uploading”。当列表中的所有文件都上传完毕后，状态将更改为\
+  \ Done。\n\n![](img/2a66507445090790d34dc5588b56b24c_106_1.png)\n\n上传这些文件后，用户可以通过点击叉号\
+  \ (x) 按钮来删除它们。这将向 `removeUrl` 属性中提到的服务发送 POST 请求。\n\n如果文件上传出错，上传器小部件会通过将背景颜色标记为红色来指示这一点。它还为你提供了一个重试文件上传的选项。\n\
+  \n![](img/2a66507445090790d34dc5588b56b24c_107_0.png)\n\n点击 **retry** 时，会向 `saveUrl`\
+  \ 属性中指定的 URL 发送 POST 请求。\n\n当你尝试在文件上传后从列表中删除文件时，会向 `removeUrl` 中提到的服务 URL 发送 POST\
+  \ 请求。如果你想使用不同的 HTTP 方法来删除上传的文件，请在 `async` 配置中设置 `removeVerb` 属性：\n\n```javascript\n\
+  $('#fileUpload').kendoUpload({\nasync: {\n'saveUrl': '/fileUploadService/save',\n\
+  'removeUrl': '/fileUploadService/remove',\n'autoUpload': true,\n'removeVerb': 'DELETE'\n\
+  }\n});\n```\n\n这里，`removeVerb` 属性设置为 `DELETE`，当用户尝试删除文件时，会发送 `DELETE` 请求而不是 POST\
+  \ 请求。\n\n#### 更多...\n\n文件上传器小部件可以本地化，以在小部件的各个位置显示不同的字符串。此外，在现代浏览器中，用户可以将文件拖放到文件上传器小部件上。\n\
+  \n\n\n\n\n### 本地化文件上传器小部件\n\n要本地化文件上传器小部件，请按如下方式指定本地化选项：\n\n```javascript\n$('#fileUpload').kendoUpload({\n\
+  async: {\n'saveUrl': '/fileUploadService/save',\n'removeUrl': '/fileUploadService/remove',\n\
+  'autoUpload': true\n},\nlocalization: {\nselect: 'Choose files...',\nremove: 'Remove\
+  \ file',\nretry: 'Retry upload',\nheaderStatusUploading: 'Uploading files...',\n\
+  headerStatusUploaded: 'Complete'\n}\n});\n```\n\n在此，\"Select Files...\" 标签将被替换为\
+  \ \"Choose files...\"；remove 和 retry 的提示将分别为 \"Remove file\" 和 \"Retry upload\"\
+  。在文件上传期间，将显示 \"Uploading files...\" 消息，一旦上传完成，将显示 \"Complete\" 消息。\n\n### 使用拖放上传文件\n\
+  \n文件上传器小部件支持将文件拖放到文件上传器小部件上。此功能在所有支持 HTML5 File API 的现代浏览器中均受支持。只有当小部件配置为异步上传文件时，此方法才可用。\n\
+  \n当您尝试将文件拖放到上传器小部件上时，它会显示 **drop files here to upload** 消息。\n\n![](img/2a66507445090790d34dc5588b56b24c_108_0.png)\n\
+  \n放置文件后，文件将被添加到列表中，并异步上传到服务器。\n\n### 监听文件上传事件\n\n在 HTML5 出现之前，XmlHttpRequest 可用的唯一事件监听器是\
+  \ `readystatechange` 事件监听器。在 HTML5 中，已向 `XmlHttpRequest` 接口添加了多个事件监听器：loadstart、progress、load、abort、error、timeout\
+  \ 和 loadend。在本示例中，我们将了解可以附加到文件上传器小部件的各种事件监听器以及这些事件执行的顺序。\n\n### 操作方法\n\n文件上传器小部件会显示正在上传的文件的进度，并在所有文件上传完成时显示状态为已完成。但是，在许多情况下，您可能希望附加监听器并监听各种事件：\n\
+  \n```javascript\n$('#fileUpload').kendoUpload({\n    async: {\n        'saveUrl':\
+  \ '/fileUploadService/save',\n        'removeUrl': '/fileUploadService/remove',\n\
+  \        'autoUpload': true\n    },\n    cancel: function () {\n        console.log('Cancel\
+  \ Event.');\n    },\n    complete: function () {\n        console.log('Complete\
+  \ Event.');\n    },\n    error: function () {\n        console.log('Error uploading\
+  \ file.');\n    },\n    progress: function (e) {\n        console.log('Uploading\
+  \ file ' + e.percentComplete);\n    },\n    remove: function () {\n        console.log('File\
+  \ removed.');\n    },\n    select: function () {\n        console.log('File selected.');\n\
+  \    },\n    success: function () {\n        console.log('Upload successful.');\n\
+  \    },\n    upload: function () {\n        console.log('Upload started.');\n  \
+  \  }\n});\n```\n\n在前面的代码片段中，指定了各种事件处理程序：cancel、complete、error、success、progress、remove、select\
+  \ 和 upload。\n\n### 工作原理\n\n当您尝试使用文件上传器小部件上传文件时，各种回调处理程序将按以下顺序执行：\n\n- 1. 当您选择一个文件或多个文件时，将执行\
+  \ `select` 事件处理程序。\n- 2. 当上传器小部件开始上传文件时，将执行 `upload` 事件处理程序。\n- 3. 在文件上传期间，`progress`\
+  \ 事件将被连续调用。请注意，事件对象具有一个 `percentComplete` 属性，用于指示上传到服务器的文件大小。\n- 4. 文件上传完成后，将执行\
+  \ `success` 处理程序。\n- 5. 如果正在上传多个文件，并且所有选定的文件都已上传，则将执行 `complete` 处理程序。\n- 6. 如果用户在文件上传进行期间尝试取消上传，则将执行\
+  \ `cancel` 事件。\n- 7. 文件上传完成后，如果用户尝试通过单击叉号 (x) 图标从上传器小部件中删除已上传的文件，则将执行 `remove` 处理程序。\n\
+  - 8. 当 `remove` 和 `cancel` 事件执行完成后，也会执行 `complete` 处理程序。\n"
+- "### Kendo UI Window\n\n在本章中，我们将介绍以下示例：\n\n- 通过将其配置为模态窗口来显示弹出窗口并阻止用户交互\n- 自定义窗口的外观并包含操作按钮\n\
+  - 使用 Window API 对窗口对象执行操作\n\n#### 简介\n\nKendo UI Window 小部件用于在弹出窗口或模态窗口中显示任何 HTML\
+  \ 内容。窗口内容显示在页面上的其他内容之上，并带有带关闭按钮的标题栏。内容可以是静态 HTML，也可以使用 Ajax 动态加载。页面中的任何 DOM 节点都可以初始化为窗口，也就是说，DOM\
+  \ 中任何元素的内容都可以包装在窗口内。此外，窗口可以调整大小、移动和关闭。\n\nKendo UI Window 小部件提供了多个配置选项，可用于自定义可以应用的操作以及小部件的外观。在本示例中，我们将首先了解如何创建弹出窗口并将其配置为模态。然后，我们将自定义窗口的外观并使用\
+  \ API 对窗口对象调用操作。\n\n### 通过将其配置为模态窗口来显示弹出窗口并阻止用户交互\n\n在本示例中，我们将了解如何为页面中的 DOM 节点创建\
+  \ Kendo UI 窗口。随后，我们还将了解如何通过指定页面的 URL 来异步加载窗口的内容。\n\n#### 操作方法\n\n让我们创建一个包含一些文本的\
+  \ div 元素，这些文本将显示在窗口中：\n\n```html\n<div id=\"window\">\n Window content goes here...\n\
+  </div>\n```\n\n下一步是在前面的 DOM 节点上调用 kendoWindow 函数：\n\n```javascript\n$(\"#window\"\
+  ).kendoWindow();\n```\n\n使用 kendoWindow 函数初始化 DOM 节点后，您会注意到窗口中包含 div 元素中提到的文本并正在显示。请注意，这不会添加背景遮罩层。要添加背景遮罩层，应将窗口配置为模态。\n\
+  \n窗口和模态之间的区别在于，在模态的情况下，会显示隐藏正文内容的背景遮罩层。要创建模态窗口，请将 modal 属性指定为 true：\n\n```javascript\n\
+  $(\"#window\").kendoWindow({\n modal: true\n});\n```\n\n默认情况下，modal 属性的值为 false，因此不会显示背景遮罩层。\n\
+  \n#### 工作原理\n\n当您初始化任何 DOM 节点时，其内容将被包装在窗口中，如下面的屏幕截图所示：\n\n![](img/2a66507445090790d34dc5588b56b24c_113_0.png)\n\
+  \n窗口包含 **Window content goes here...** 文本，标题栏上有一个叉号 (x) 图标。如果将其初始化为模态窗口，则会向页面添加背景遮罩层，如下面的屏幕截图所示：\n\
+  \n![](img/2a66507445090790d34dc5588b56b24c_114_0.png)\n\n请注意，背景遮罩层是半透明的；它会显示页面中存在的文本，并突出显示窗口。这将阻止您与页面的其余部分进行交互。通常，只有在用户需要在继续下一步之前完成某个操作时，才会使用模态窗口。例如，在同一用户查看页面内容之前，可能会显示包含登录表单的模态窗口。\n\
+  \n#### 更多内容\n\n模态窗口可以配置为在用户触发操作时打开。例如，单击按钮时可以显示模态窗口。此外，由于模态的内容是在用户在页面上触发操作时加载的，因此模态的内容可以在运行时使用\
+  \ Ajax 加载。\n\n#### 在单击按钮时显示模态窗口\n\n在前面提到的场景中，窗口或模态窗口在页面加载时显示。在大多数场景中，您可能希望仅在用户发起操作时才显示模态窗口。让我们假设当用户单击按钮时应显示模态窗口。\n\
+  \n让我们按如下方式在页面上放置一个按钮：\n\n```html\n<button id=\"btn1\">Click</button>\n```\n\n要隐藏模态窗口，请将\
+  \ `visible` 属性设置为 `false`，如下所示：\n\n```javascript\n$('#window').kendoWindow({\n \
+  \   visible: false,\n    modal: true\n});\n```\n\n\n\n\n\n### Kendo UI Window\n\n\
+  现在，当页面加载时，模态窗口将被隐藏。为按钮添加一个 `click` 事件处理程序以打开模态窗口：\n\n```javascript\n$('#btn1').on('click',\
+  \ function() {\n    var modalObject = $('#window').data('kendoWindow');\n    modalObject.open();\n\
+  });\n```\n\n第一行获取模态窗口的实例。然后，在下一行中，对窗口实例调用 open 方法以打开模态窗口。\n\n`open` 方法是可用于对窗口对象执行操作的多种方法之一。我们将在下一个示例中查看其他方法。\n\
+  \n### 使用 Ajax 加载模态窗口的内容\n\n在此示例中，模态窗口的内容是在 HTML 标记中指定的。模态窗口的内容可以通过指定返回 HTML 标记的\
+  \ URL 来加载。当页面加载时，此内容将异步获取。\n\n要加载窗口的内容，请在使用 `kendoWindow` 初始化窗口时指定 content 属性：\n\
+  \n```javascript\n$('#window').kendoWindow({\n    visible: false,\n    modal: true,\n\
+  \    content: './jsbooks.html'\n});\n```\n\n在此，`./jsbooks.html` URL 在 content 属性中指定。这可以是任何返回\
+  \ HTML 标记的 URL。例如，它可以是生成 HTML 标记的 PHP 页面。当你加载页面时，会向 `./jsbooks.html` 发送异步请求，生成的标记将插入到窗口中。\n\
+  \n### 自定义窗口的外观并包含操作按钮\n\n用户可以使用各种选项来自定义窗口对象。在此示例中，我们将查看这些选项。\n\n#### 操作步骤...\n\n\
+  窗口的一些自定义选项具有默认值。例如，弹出窗口可以调整大小并且可以拖动。另外，由于 visible 属性设置为 true，窗口会显示。让我们来看看其他一些属性：\n\
+  \n```javascript\n$('#window').kendoWindow({\n    visible: false,\n    modal: true,\n\
+  \    title: \"Example Modal Window\",\n    width: '400px',\n    height: '400px',\n\
+  \    maxWidth: '600px',\n    maxHeight: '600px',\n    minWidth: '200px',\n    minHeight:\
+  \ '200px',\n    position: {\n        top: '100px',\n        left: '100px'\n    }\n\
+  });\n```\n\n在此，title 属性指定窗口的标题。当模态窗口呈现时，其宽度和高度将为 400px。此模态窗口可以调整大小；但是，它可以调整到最大宽度（maxWidth）和高度（maxHeight）为\
+  \ 600px，以及最小宽度（minWidth）和高度（minHeight）为 200px。position 属性指定 top 和 left 位置为 100px，窗口将相应定位。如果未指定相同内容，则窗口默认相对于文档定位。\n\
+  \n窗口的标题栏可以自定义以添加更多操作按钮。默认情况下，仅显示关闭（x）按钮。可以添加到标题栏的操作按钮包括关闭（默认添加）、最小化、最大化、刷新和固定。这些选项可以作为\
+  \ actions 属性的值指定：\n\n```javascript\n$('#window').kendoWindow({\n    visible: false,\n\
+  \    modal: true,\n    title: \"Example Modal Window\",\n    actions: ['Pin', 'Refresh',\
+  \ 'Minimize', 'Maximize', 'Close'],\n    width: '400px',\n    height: '300px',\n\
+  \    content: './jsbooks.html'\n});\n```\n\n#### 工作原理...\n\n当你执行前面的代码片段时，你将看到窗口具有标题栏和各种操作按钮，如下面的屏幕截图所示：\n\
+  \n![](img/2a66507445090790d34dc5588b56b24c_117_0.png)\n\n操作按钮按指定的相同顺序添加。当你单击刷新按钮时，将向\
+  \ content 属性中指定的 URL 发送请求。如果窗口的内容是内联指定的，即在同一页面中，则不需要刷新按钮。\n\n当你单击最小化或最大化按钮时，窗口将被调整，使其仅显示标题或分别扩展以占据整个屏幕。在这两种情况下，这些按钮将被还原按钮替换。单击此按钮时，窗口将恢复到其原始状态。\n\
+  \n固定按钮允许你固定窗口的位置，即当用户滚动时，窗口将继续保持在相同的固定位置。另外，如果窗口被固定，标题栏中的图标将被取消固定按钮替换，以便用户可以将窗口恢复到其原始状态。\n\
+  \n#### 更多内容...\n\n也可以在窗口实例的标题栏中添加自定义操作按钮。另外，单击自定义按钮时要执行的操作也可以通过添加 click 事件处理程序来定义。\n\
+  \n要向标题栏添加自定义操作按钮，首先在 actions 数组中指定 Custom：\n\n```javascript\n$('#window').kendoWindow({\n\
+  \    title: \"Example Modal Window\",\n    actions: ['Custom', 'Pin', 'Refresh',\n\
+  \        'Minimize', 'Maximize', 'Close'],\n    width: '400px',\n    height: '300px',\n\
+  \    content: './jsbooks.html'\n});\n```\n\n下一步是为添加到标题栏的自定义按钮定义事件处理程序：\n\n```javascript\n\
+  var modalObject = $('#window').data('kendoWindow');\nmodalObject.wrapper.find('.k-i-custom').on('click',\
+  \ function() {\n    alert(modalObject.options.title);\n});\n```\n\n前面的代码首先获取窗口的实例，然后为自定义按钮添加\
+  \ click 处理程序。此处，使用对自定义图标的引用，即 k-i-custom 类来添加 click 处理程序。\n\n当你执行页面时，你将看到自定义图标显示在标题栏中。\n\
+  \n![](img/2a66507445090790d34dc5588b56b24c_118_0.png)\n\n在前面的屏幕截图中，最左侧的第一个图标是自定义图标。当你单击自定义图标时，将显示一条显示窗口标题的警报消息。对于给定的窗口，你只能添加一个自定义图标。\n\
+  \n### 使用 Window API 对窗口对象执行操作\n\n在此示例中，我们将查看可用于对窗口对象执行操作的多种方法。\n\n#### 操作步骤...\n\
+  \n有各种可用的方法可帮助你对现有窗口对象执行操作。这些方法包括以下方法：\n\n- **center**：这将使窗口居中。\n- **open**：这将打开窗口。\n\
+  - **close**：这将关闭窗口。\n- **refresh**：这将刷新窗口的内容。可选地，可以向此函数传递一些参数，这些参数将覆盖默认选项。\n- **maximize**：这将使窗口最大化到整个视图区域。\n\
+  - **minimize**：这将使窗口最小化到其标题栏。\n- **restore**：这将从最小化或最大化状态恢复窗口。\n- **pin**：这将固定窗口。它将固定窗口的位置，因此，当你滚动时，窗口将出现在相同的位置。\n\
+  - **unpin**：这将取消固定窗口并删除固定位置。\n- **toggleMaximization**：这在最大化和还原状态之间切换窗口。\n\n让我们通过创建一个窗口并添加按钮来测试这些函数，当单击这些按钮时将执行相应的操作：\n\
+  \n以下是包含按钮的 HTML 标记：\n\n```html\n<button id=\"btnOpen\">Open</button><br>\n<button\
+  \ id=\"btnClose\">Close</button><br>\n<button id=\"btnRefresh\">Refresh</button><br>\n\
+  <button id=\"btnMaximize\">Maximize</button><br>\n<button id=\"btnToggleMaximization\"\
+  >Toggle Maximization</button><br>\n<button id=\"btnMinimize\">Minimize</button><br>\n\
+  <button id=\"btnRestore\">Restore</button><br>\n<button id=\"btnPin\">Pin</button><br>\n\
+  <button id=\"btnUnpin\">Unpin</button><br>\n```\n\n现在，按如下方式初始化窗口对象：\n\n```javascript\n\
+  $('#window').kendoWindow({\n    visible: true,\n    title: 'Example Modal Window',\n\
+  \    width: '400px',\n    height: '300px',\n    content: './jsbooks.html',\n   \
+  \ position: {\n        top: '200px',\n        left: '500px'\n    }\n});\n```\n\n\
+  初始化窗口后，按如下方式添加 onclick 事件监听器：\n\n```javascript\nvar modalObject = $('#window').data('kendoWindow');\n\
+  \n$('#btnOpen').on('click', function() {\n    modalObject.open();\n});\n\n$('#btnClose').on('click',\
+  \ function() {\n    modalObject.close();\n});\n\n$('#btnRefresh').on('click', function()\
+  \ {\n    modalObject.refresh();\n});\n\n$('#btnMaximize').on('click', function()\
+  \ {\n    modalObject.maximize();\n});\n\n$('#btnToggleMaximization').on('click',\
+  \ function() {\n    modalObject.toggleMaximization();\n\n    //restore to original\
+  \ state after 2 seconds\n    setTimeout(function () {\n        modalObject.toggleMaximization()\n\
+  \    }, 2000);\n});\n\n$('#btnMinimize').on('click', function() {\n    modalObject.minimize();\n\
+  });\n\n$('#btnRestore').on('click', function() {\n\n\n\n\n\n### Kendo UI Window\n\
+  \n```javascript\nmodalObject.restore();\n});\n\n$('#btnPin').on('click', function()\
+  \ {\n    modalObject.pin();\n});\n\n$('#btnUnpin').on('click', function() {\n  \
+  \  modalObject.unpin();\n});\n```\n\n#### 工作原理...\n\n初始化窗口时，您会发现它位于视口顶部 200 像素和左侧\
+  \ 500 像素处。窗口的内容是异步加载的，因为在初始化小部件时指定了引用 URL 的 `content` 属性。\n\n初始化小部件后，对窗口对象的引用存储在\
+  \ `modalObject` 中。`modalObject` 随后在所有事件监听器中被引用。\n\n![](img/2a66507445090790d34dc5588b56b24c_121_0.png)\n\
+  \n单击 **刷新** 按钮时，您会注意到向 `content` 属性中指定的同一 URL 发送了异步请求。请注意，窗口本身在标题栏中没有操作按钮。单击任何按钮时，都会调用相应的操作。\n"
+- "# 8 Kendo UI Mobile 框架\n\n在本章中，我们将介绍以下配方：\n\n- 创建布局并将视图添加到布局中\n- 初始化应用程序时设置初始布局和视图\n\
+  - 使用 Application 对象导航到各种视图\n- 为移动应用程序添加触摸事件\n\n## 简介\n\n在早期的配方中，我们研究了 Kendo UI 库中可用于快速构建\
+  \ Web 应用程序的各种组件。在即将介绍的配方中，我们将了解 Kendo UI Mobile 库，它提供了一个应用程序框架和一组小部件，使您能够快速构建移动应用程序。Kendo\
+  \ UI Mobile 框架通过在各种移动平台（包括 iOS、Android、Blackberry 和 Windows Phone 8）上提供原生外观和感觉来渲染应用程序。开发人员可以专注于提供功能，并依赖\
+  \ Mobile 框架来提供各种平台的原生外观和感觉，从而减少开发工作量，并为所有平台维护相同的代码库。\n\n## 创建布局并将视图添加到布局中\n\n每个\
+  \ Kendo Mobile 应用程序都有一个或多个布局以及添加到其中的多个视图。布局和视图都是小部件，即可用于构建移动应用程序的可视组件。有几个这样的小部件，我们将在下一章中探讨。在本配方中，我们将了解如何通过创建布局并添加多个视图来构建一个简单的应用程序。\n\
+  \n## 入门\n\n使用移动应用程序时，需要包含单独的 CSS 和 JS 文件。CSS 文件应引用位于 `styles` 目录中的 `kendo.mobile.all.min.css`\
+  \ 文件，JS 文件应引用位于 `js` 目录中的 `kendo.mobile.min.js` 文件。\n\n此外，对 jQuery 库的引用应保持不变，即 Kendo\
+  \ UI Mobile 库（`kendo.mobile.min.js`）依赖于 jQuery。\n\n## 操作方法...\n\n如前一节所述，让我们首先在 HTML\
+  \ 页面中包含 CSS 和 JS 文件引用，如以下代码片段所示：\n\n```html\n<link rel=\"stylesheet\" type=\"text/css\"\
+  \ href=\"../styles/kendo.mobile.all.min.css\">\n<script src=\"../js/jquery.min.js\"\
+  ></script>\n<script src=\"../js/kendo.mobile.min.js\"></script>\n```\n\n> 您可能需要根据开发环境的目录结构调整文件路径。\n\
+  \n下一步是创建布局。布局是应用程序中各种视图的容器。布局定义了应用程序的结构；它包含在用户与应用程序交互时保持不变的小部件。例如，大多数应用程序都有一个标题和一个页脚，在应用程序中导航时保持不变。标题和页脚小部件可以是布局的一部分，而动态部分（即根据应用程序状态变化的视图）将与布局关联。视图可以被视为应用程序中的单个页面，根据应用程序状态显示。例如，您可以有两个视图，即登录和注册。根据应用程序状态，将呈现其中一个视图。使用\
+  \ `div` 元素并添加数据属性来创建布局小部件：\n\n```html\n<div\ndata-role=\"layout\"\ndata-id=\"defaultLayout\"\
+  >\n</div>\n```\n\n这里，`data-role` 属性设置为布局，将元素标识为布局小部件。Mobile 框架中的每个小部件都会将 `data-role`\
+  \ 属性设置为相应的小部件名称。`data-id` 属性用于在页面上标识小部件。页面上可以有多个布局小部件，每个小部件都需要有一个唯一的 ID 来在应用程序中标识该小部件。\n\
+  \n现在让我们向布局添加几个小部件，例如包含 `navbar` 的 `header` 小部件，以及包含 `tabstrip` 的 `footer` 小部件：\n\
+  \n```html\n<div\ndata-role=\"layout\"\ndata-id=\"defaultLayout\">\n<header data-role=\"\
+  header\">\n<div data-role=\"navbar\">\nApplication Header\n</div>\n</header>\n<footer\
+  \ data-role=\"footer\">\n  <div data-role=\"tabstrip\">\n    <a data-icon=\"about\"\
+  >About</a>\n    <a data-icon=\"settings\">Settings</a>\n  </div>\n</footer>\n</div>\n\
+  ```\n\n如前所述，小部件是通过为 `data-role` 属性分配适当值来创建的。在这种情况下，`header`、`navbar`、`footer` 和\
+  \ `tabstrip` 值被分配给各种元素的 `data-role` 属性。\n\n将布局添加到页面后，下一步是添加视图。视图小部件表示在呈现应用程序时需要显示的单个视图。页面上可以有多个视图，但任何给定时间点只能呈现一个视图，具体取决于应用程序的状态：\n\
+  \n```html\n<div data-role=\"view\" data-layout=\"defaultLayout\">\n  Hello Kendo!!\n\
+  </div>\n```\n\n这里，除了 `data-role` 属性外，`div` 元素还有一个 `data-layout` 属性。`data-layout`\
+  \ 属性用于将页面上的视图小部件与布局小部件关联。在这种情况下，`data-layout` 属性的值为 `defaultLayout`，即 `layout` 小部件的\
+  \ `data-id` 属性的值。`layout` 中定义的 `header` 和 `footer` 小部件相应地定位，视图小部件在布局的可用空间内呈现。最后一步是初始化应用程序。要初始化它，请包含以下代码片段：\n\
+  \n```html\n<script>\nvar app = new kendo.mobile.Application();\n</script>\n```\n\
+  \n前面的代码片段将初始化页面中的所有小部件，并在布局和视图之间建立关联。然后可以使用 Application 对象在页面中的多个视图之间进行路由，我们将在即将介绍的配方中讨论此场景。\n\
+  \n## 工作原理...\n\n执行页面时，您会看到页面标题和页脚中的导航栏和选项卡条。此外，**Hello Kendo!!** 消息将显示在页面的正文中。\n\
+  \n以下屏幕截图显示了在运行 iOS7 的 iPhone 上查看页面时应用程序的外观：\n\n![](img/2a66507445090790d34dc5588b56b24c_126_0.png)\n\
+  \n请注意，没有编写额外代码来设置应用程序的外观和感觉。Mobile 框架开箱即用提供此功能，即它确定用户代理并将 CSS 类添加到页面中的元素。\n\n检查页面时，您会看到添加到\
+  \ body 标签的类，如以下代码行所示：\n\n```\n<body class=\"km-on-ios km-ios7 km-7 km-m0 km-web\
+  \ km-black-status-bar km-vertical km-widget km-pane\" data-role=\"pane\" style=\"\
+  \">\n```\n\n请注意添加到 body 标签的 km-on-ios 和 km-ios7 类。如果在 Android 设备上查看同一页面，它将呈现不同的效果。\n\
+  \n![](img/2a66507445090790d34dc5588b56b24c_127_0.png)\n\n同样，框架确定用户代理并将 CSS 类添加到\
+  \ body 标签。在这种情况下，它将如以下代码片段所示：\n\n```html\n<body class=\"km-on-android km-android\
+  \ km-4 km-m0 km-web km-black-status-bar km-vertical km-widget km-pane\" data-role=\"\
+  pane\" style=\"\">\n```\n\n这里，添加了 km-on-android 和 km-android 类。\n\n## 更多...\n\n\
+  Mobile 框架根据访问它的设备呈现应用程序。但是，在您想要为给定平台自定义布局的场景中，可以指定 data-platform 属性。例如，您可以为前一个布局指定\
+  \ data-platform 为 iOS，并将另一个布局添加到页面，其 data-platform 属性设置为 android：\n\n\n\n\n\n###\
+  \ 设置应用程序初始化时的布局和视图\n\n在处理复杂的移动应用程序时，页面中会有多个布局和视图。在这种情况下，无法确定在所选布局中渲染的初始视图。但是，可以将选项传递给\
+  \ kendo.mobile.application 函数，以设置应用程序初始化时使用的布局和初始视图。\n\n### 操作方法...\n\n假设页面中有两个布局和两个视图。布局之间的区别在于\
+  \ tabstrip 中的元素数量。在 layout1 中，让我们考虑标题文本，它读取为 Layout1 header，并且其 tabstrip 中有两个元素：\n\
+  \n```\n<div\ndata-role=\"layout\"\ndata-id=\"layout1\">\n<!- - header here - ->\n\
+  <footer data-role=\"footer\">\n<div data-role=\"tabstrip\">\n<a data-icon=\"about\"\
+  >About</a>\n<a data-icon=\"settings\">Settings</a>\n</div>\n</footer>\n</div>\n\
+  ```\n\n在同一页面中，还会有另一个布局，其 `data-id` 属性设置为 `layout2`。该布局的标题文本将读取为 `Layout2 header`，页脚将包含\
+  \ tabstrip 中的四个元素：\n\n```\n<div\ndata-role=\"layout\"\ndata-id=\"layout2\">\n<!-\
+  \ - header here - ->\n<footer data-role=\"footer\">\n<div data-role=\"tabstrip\"\
+  >\n<a data-icon=\"about\">About</a>\n<a data-icon=\"settings\">Settings</a>\n<a\
+  \ data-icon=\"share\">Share</a>\n<a data-icon=\"refresh\">Refresh</a>\n</div>\n\
+  </footer>\n</div>\n```\n\n下一步是向页面添加视图。让我们添加两个视图并为它们指定 id 属性：\n\n```\n<div\n data-role=\"\
+  view\"\n id=\"view1\">\n From View1\n</div>\n\n<div\n data-role=\"view\"\n id=\"\
+  view2\">\n From View2\n</div>\n```\n\n请注意，此页面中的视图没有 data-layout 属性。当页面渲染时，您会看到页面中的第一个视图（id='view1'）在没有任何布局的情况下渲染。要更改此行为，您可以在初始化应用程序时指定要使用的布局和初始视图：\n\
+  \n```\n<script>\n var app = new kendo.mobile.Application(document.body, {\n layout:\
+  \ 'layout2',\n initial: 'view2'\n });\n</script>\n```\n\n在这里，kendo.mobile.Application\
+  \ 函数的第一个参数是 document.body。此函数的第一个参数是目标元素。它通常是各种小部件的容器（带有 data-role 属性的元素）。第二个参数是一个对象，包含一组用于初始化应用程序的选项。在这里，我们将指定在渲染页面时要使用的布局和初始视图。\n\
+  \n### 工作原理...\n\n当您渲染页面时，您会看到在渲染 `view2` 时使用了 `layout2`。\n\n![](img/2a66507445090790d34dc5588b56b24c_131_0.png)\n\
+  \n如果您为视图元素指定了 `data-layout` 属性，则该视图将使用该布局进行渲染，而不是在初始化应用程序时提到的布局。\n\n### 更多内容...\n\
+  \n在之前的配方中，提到 `data-platform` 属性用于指定构建布局的平台。在许多场景中，您可能希望在所有平台上都出现相同的外观和感觉。例如，如果您使用\
+  \ iOS 设备并希望强制使用 Android 的外观和感觉，那么您可以在初始化应用程序时指定 platform 属性：\n\n```html\n<script>\n\
+  var app = new kendo.mobile.Application(document.body, {\n    layout: 'layout2',\n\
+  \    initial: 'view2',\n    platform: 'android'\n});\n</script>\n```\n\n现在，当您在任何设备上渲染页面时，您应该能够在所有平台上看到相同的外观和感觉。\n\
+  \n### 使用 Application 对象导航到各种视图\n\n在构建移动应用程序时，您将拥有代表应用程序中各种状态的多个视图，也就是说，每个状态都由应用程序中的\
+  \ View 组件表示。例如，当您单击按钮时，当前视图将被销毁，新视图应显示。Application 对象用于在应用程序中导航到各种视图。这些视图可以定义在同一\
+  \ HTML 文档中，也可以作为单独的文档（部分）存在。\n\n### 操作方法...\n\n构建代码的一个好方法是创建多个页面并分离视图。在同一页面中指定所有视图将增加响应的大小，从而影响性能。让我们创建一个包含两个按钮（即\
+  \ Login 和 Register）的页面：\n\n```\n<div\ndata-role=\"layout\"\ndata-id=\"layout1\"\
+  >\n<header data-role=\"header\">\n<div data-role=\"navbar\">\n<span data-role=\"\
+  view-title\"></span>\n</div>\n</header>\n</div>\n<div\ndata-role=\"view\"\ndata-layout=\"\
+  layout1\"\ndata-title=\"Home\">\n\n<a\ndata-role=\"button\"\nid=\"loginBtn\"\nclass=\"\
+  button\">\nLogin\n</a>\n<a\ndata-role=\"button\"\nid=\"registerBtn\"\nclass=\"button\"\
+  >\nRegister\n</a>\n</div>\n```\n\n让我们称这个页面为 **Home** 页面。它包含一个布局小部件和一个视图小部件。视图包含两个按钮。请注意，布局的\
+  \ navbar 小部件包含一个 data-role 属性设置为 view-title 的 span 元素。这允许各种视图提供将在 navbar 小部件中显示的标题。视图小部件指定了\
+  \ data-title 属性，其值为 Home。这将把布局的 navbar 文本设置为相同的值。\n\n视图包含两个按钮：**Login** 和 **Register**。下一步是定义单击其中一个按钮时将显示的视图；以下代码片段向您展示了\
+  \ Login View 的描述：\n\n```\n<div\ndata-role=\"layout\"\ndata-id=\"login-layout\">\n\
+  <header data-role=\"header\">\n\n<div data-role=\"navbar\">\n<a\nclass=\"nav-button\"\
+  \ndata-role=\"backbutton\"\ndata-align=\"left\">\nBack\n</a>\n<span data-role=\"\
+  view-title\"></span>\n</div>\n</header>\n</div>\n<div\ndata-role=\"view\"\ndata-layout=\"\
+  login-layout\"\ndata-title=\"Login\">\nLogin Page\n</div>\n```\n\n前面的代码片段放在 login.html\
+  \ 文件中。在这里，布局与在 Home 页面中创建的布局类似，只是它现在包含一个返回按钮（data-role=backbutton）。backbutton 小部件用作导航小部件，用于导航回上一页。创建了一个类似的页面\
+  \ register.html，包含相同的布局和视图。\n\n下一步是将 Home 页面中的按钮绑定到这些页面。Application 对象用于在各种页面之间导航。让我们为页面上的\
+  \ login 和 register 按钮添加事件处理程序：\n\n```\n<script>\nvar app = new kendo.mobile.Application();\n\
+  $('#loginBtn').on('click', function () {\napp.navigate('login.html');\n});\n$('#registerBtn').on('click',\
+  \ function () {\napp.navigate('register.html');\n});\n</script>\n```\n\nnavigate\
+  \ 方法用于导航到不同的页面。当用户单击其中任何按钮时，Application 对象上的 navigate 方法将被调用以导航到相应的页面。\n\n### 工作原理...\n\
+  \n当您渲染页面（**Home 页面**）时，有两个按钮，**Login** 和 **Register**。\n\n![](img/2a66507445090790d34dc5588b56b24c_135_0.png)\n\
+  \n单击 **Login** 按钮时，用户将被导航到 `login.html` 页面，当您单击 **Register** 按钮时，您将被导航到 `register.html`\
+  \ 页面。**Login** 页面的屏幕截图如下所示：\n\n![](img/2a66507445090790d34dc5588b56b24c_135_1.png)\n\
+  \nnavbar 标题已更新，并且它有一个 **Back** 按钮。单击 **Back** 按钮时，用户将被导航到 **Home** 页面。在 **Home**\
+  \ 页面上，当您单击 **Register** 按钮时，将显示注册页面，即 `register.html` 页面，如下所示：\n\n![](img/2a66507445090790d34dc5588b56b24c_136_0.png)\n\
+  \n**Register** 视图也包含 **Back** 按钮，允许用户导航到 **Home** 页面。\n\n在从一个视图导航到另一个视图时，您可以指定可以应用的过渡效果。\n\
+  \n### 指定视图过渡\n\n在从一个视图过渡到另一个视图时，您可以使用 `data-transition` 属性指定需要应用的过渡效果。以下值可以设置为 `data-transition`\
+  \ 属性的值：\n\n- `slide`: 此过渡效果将旧视图内容向左滑动，并将新视图内容滑动到其位置。您可以使用 slide (direction) 指定方向。默认情况下，方向为左；另一个选项是右。\n\
+  - `zoom`: 在这里，新视图内容从旧视图的中心缩放。旧视图内容将淡出，新视图内容将显示。\n\n\n\n\n\n### Kendo UI Mobile 框架\n\
+  \n- fade: 使用此效果时，新内容会淡入并覆盖在旧视图之上。旧视图内容会淡出，从而显示新视图的内容。\n\n- overlay: 叠加效果与滑动效果类似，区别在于前一个视图仍保留在新视图下方。可以使用\
+  \ overlay (direction) 指定过渡方向。默认方向为 left；其他支持的方向包括 right、up 和 down。\n\n在上述所有过渡效果中，内容连同其标题和页脚均会显示。还可以为整个应用程序指定过渡效果，而无需为文档中的每个视图小部件指定\
+  \ data-transition 属性。使用 Application 对象初始化应用程序时，请将 transition 属性指定为所需效果作为其值：\n\n\
+  ```javascript\nvar app = new kendo.mobile.Application(document.body, {\n    transition:\
+  \ \"zoom\"\n});\n```\n\n这使得过渡效果可以应用于整个应用程序。\n\n### 为移动应用程序添加触摸事件\n\nKendo UI Mobile\
+  \ 框架提供了各种 API 来处理基于触摸的事件。你构建的应用程序不仅应允许用户在触摸界面上执行常规选择事件，还应处理各种触摸手势，例如双击、滑动和拖放。在本示例中，我们将查看可以添加的各种触摸事件。\n\
+  \n### 操作方法...\n\n为了本示例的目的，让我们考虑上一示例中使用的相同布局，并向页面添加一个视图。此视图的内容将是一个触摸小部件，用于指定视图中启用触摸事件的区域：\n\
+  \n```html\n<div\ndata-role=\"view\"\ndata-layout=\"defaultLayout\">\n<div\nid=\"\
+  touchSurface\"\ndata-role=\"touch\"\ndata-enable-swipe=\"1\"\ndata-touchstart=\"\
+  touchstart\"\ndata-swipe=\"swipe\"\ndata-tap=\"tap\"\ndata-doubletap=\"doubletap\"\
+  \ndata-hold=\"hold\"\nstyle=\"height: 200px;\">\n\nTouch Surface\n\n</div>\n</div>\n\
+  ```\n\n除了将 data-role 属性设置为 touch 之外，该小部件还包含各种 data 属性，用于指定触摸事件处理程序。这包括 touchstart、swipe、tap、双击和\
+  \ hold。分配给这些 data 属性的值是事件处理程序的名称。这些事件处理程序将在 script 标记中定义。请注意，有一个属性 data-enable-swipe\
+  \ 设置为 1，表示启用了滑动功能：\n\n```javascript\nvar app = new kendo.mobile.Application();\n\
+  \nfunction touchstart(event) {\nconsole.log('Event - Touch Start' + \" X=\" + event.touch.x.location\
+  \ + \" Y=\" + event.touch.y.location);\n}\nfunction tap(event) {\nconsole.log('Event\
+  \ - Tap');\n}\nfunction doubletap(event) {\nconsole.log('Event - Double tap');\n\
+  }\nfunction hold(event) {\nconsole.log('Event - Hold');\n}\nfunction swipe(event)\
+  \ {\nconsole.log('Swipe direction ' + event.direction);\n}\n```\n\n### 工作原理...\n\
+  \n当用户触摸表面时，会调用 `touchstart` 事件。`touchstart` 事件处理程序中可用的事件对象可用于确定触摸触发的 x 和 y 坐标。当用户在屏幕上轻点（即从触摸屏上抬起手指）时，会调用\
+  \ `tap` 事件。同样，当用户快速连续在屏幕上轻点两次时，会调用 `doubletap` 事件。如果用户触摸屏幕并在几秒钟内不抬起手指，则会触发 `hold`\
+  \ 事件。当用户将手指从左向右或从右向左滑动时，会触发 `swipe` 事件。事件对象上可用的 `direction` 属性可用于确定用户发起滑动的方向。事件顺序如下：\n\
+  \n- 当用户触摸屏幕时，将触发 `touchstart` 事件\n- 当用户在屏幕上轻点时，将触发 `tap` 事件\n- 当应用程序识别到第二次轻点时，将在\
+  \ `tap` 之后调用 `doubletap` 事件\n\n在 `hold` 的情况下，将执行以下顺序：\n\n- 将触发 `touchstart` 事件\n\
+  - 当用户长时间将焦点保持在同一点上时，将触发 `hold` 事件\n"
+- "# 9 Kendo UI Mobile 小部件\n\n在本章中，我们将介绍以下示例：\n\n- 使用 ListView 小部件创建列表\n- 将 ListView\
+  \ 小部件绑定到 DataSource 对象\n- 当用户滚动列表时固定标题\n- 筛选 ListView 小部件中的元素\n- 使用 ListView 小部件构建分层列表\n\
+  - 构建无限滚动列表\n- 显示可使用 ActionSheet 小部件执行的操作列表\n- 使用 ScrollView 小部件浏览图片集合\n- 创建 SplitView\
+  \ 小部件以在平板电脑上显示多个窗格，并在窗格之间构建交互\n- 使用 TabStrip 小部件显示不同的视图\n\n## 简介\n\nKendo UI Mobile\
+  \ 库包含大量可直接在移动应用程序中使用的小部件。这些小部件允许您通过配置以匹配您的需求来构建一些常见的移动相关工作流。一些常用的小部件包括 ListView、ScrollView、ActionSheet、TabStrip\
+  \ 和 Navbar。该库还提供了一个 SplitView 小部件，可用于平板电脑应用程序。\n\n### Kendo UI Mobile 小部件\n\n在本章中，我们将了解如何创建显示扁平或分层数据集合的\
+  \ ListView；然后，讨论可用于实现某些工作流的配置选项，例如构建无限滚动列表。然后将使用 ActionSheet 小部件对选定的列表元素执行操作。我们还将了解如何使用\
+  \ ScrollView 小部件创建类似画廊的应用程序。SplitView 小部件用于平板电脑，在单个页面上显示两个不同的视图并绑定它们之间的交互。\n\n###\
+  \ 使用 ListView 小部件创建列表\n\nListView 小部件允许您在页面上显示项目列表。此列表可以是扁平的或分组的。列表值可以在 HTML 标记中指定，或者\
+  \ ListView 小部件可以绑定到 DataSource 对象。在本示例中，我们将了解如何创建一个 ListView 小部件，其中列表值在标记中指定。\n\n\
+  ### 操作方法...\n\n可以使用无序列表或有序列表创建 ListView 小部件。要创建 ListView 小部件，请将 listview 值分配给 data-role\
+  \ 属性：\n\n```html\n<ul data-role=\"listview\">\n<li>\n <a href=\"her.html\">\n  <img\
+  \ src=\"./images/her.jpg\" />\n  Her\n </a>\n</li>\n<li>\n <a href=\"gravity.html\"\
+  >\n  <img src=\"./images/gravity.jpg\" />\n </a>\n</li>\n<li>\n <a href=\"12_years_a_slave.html\"\
+  >\n  <img src=\"./images/12_years_a_slave.jpg\" />\n  12 Years A Slave\n </a>\n\
+  </li>\n</ul>\n```\n\n前面的标记包含一个无序列表，其中每个列表元素包含一张图片和一段文本。当应用程序初始化时，页面中存在的小部件将根据分配给\
+  \ `data-role` 属性的值进行初始化。\n\n### 工作原理...\n\n当您渲染页面时，ListView 小部件将在移动设备上构建和渲染，如下面的屏幕截图所示：\n\
+  \n![](img/2a66507445090790d34dc5588b56b24c_142_0.png)\n\n在这里，每个列表项包含一个 `anchor`（指向页面的超链接）元素，其\
+  \ `href` 属性引用 `html` 页面。此外，它还包含一个右箭头，与列表中每个项目的右侧对齐。这表明用户可以单击以查看列表中特定项目的详细信息。\n\n\
+  当您单击列表元素时，将导航到相应的页面。\n\n![](img/2a66507445090790d34dc5588b56b24c_143_0.png)\n\n\
+  ListView 小部件与 DetailsButton 小部件集成，后者可用于在列表中每个元素的右侧添加图标。此图标用于说明可以在列表项上执行的操作。\n\n\
+  要为列表元素添加 detailbutton，请插入一个 data-role 属性设置为 detailbutton 的锚元素。此外，您需要指定 data-style\
+  \ 属性，该属性指定正在添加的详细按钮类型。详细按钮支持四种样式：contactadd、detaildisclose、rowinsert 和 rowdelete。\n\
+  \n您还可以通过指定 data-icon 属性而不是 data-style 来添加自定义图标：\n\n```html\n<ul data-role=\"listview\"\
+  >\n<li>\nContact Add\n</li>\n</ul>\n```\n\n\n\n\n\nDetail Disclose\n<a data-role=\"\
+  detailbutton\"\ndata-style=\"detaildisclose\">\n</a>\n</li>\n<li>\nRow Insert\n\
+  <a data-role=\"detailbutton\"\ndata-style=\"rowinsert\">\n</a>\n</li>\n<li>\nRow\
+  \ Delete\n<a data-role=\"detailbutton\"\ndata-style=\"rowdelete\">\n</a>\n</li>\n\
+  <li>\nBattery (Custom Icon)\n<a data-role=\"detailbutton\"\ndata-icon=\"battery\"\
+  >\n</a>\n</li>\n</ul>\n\n这里，ListView 小部件中的最后一个元素包含一个锚点，其 data-icon 属性设置为 battery。你可以为\
+  \ data-icon 属性指定以下值：about、action、add、bookmarks、camera、cart、compose、contacts、details、downloads、fastforward、favorites、featured、toprated、globe、history、home、info、more、mostrecent、mostviewed、organize、pause、play、recents、refresh、reply、rewind、search、settings、share、stop\
+  \ 和 trash。\n\n当你渲染页面时，你会看到每个列表元素右侧都添加了详情按钮。\n\n![](img/2a66507445090790d34dc5588b56b24c_145_0.png)\n\
+  \n你还可以通过将 `data-icon` 属性的值指定为 `custom` 并将 `km-custom` 类添加到 CSS 样式表来添加自定义图标。\n\n\
+  ### 将 ListView 小部件绑定到 DataSource 对象\n\n如前一节所述，ListView 小部件可以通过在标记中指定列表元素或将其绑定到 `DataSource`\
+  \ 对象来创建。在本节中，我们将了解如何使用 `DataSource` 对象填充 ListView。\n\n#### 操作方法...\n\n让我们创建一个空列表，然后使用来自\
+  \ `DataSource` 对象的数据对其进行填充：\n\n```html\n<ul id=\"listViewContainer\"> </ul>\n```\n\
+  \n请注意，无序列表未指定 `data-role` 属性。可以通过在 DOM 元素上调用 `kendoMobileListView` 函数来初始化 ListView\
+  \ 小部件：\n\n```javascript\nvar listElements = ['Her', 'Gravity', '12 Years A Slave',\n\
+  'Captain Phillips', 'American Hustle',\n'The Wolf Of Wall Street', 'Nebraska',\n\
+  'Dallas Buyers Club', 'Philomena'];\n$('#listViewContainer').kendoMobileListView({\n\
+  dataSource: listElements\n});\n```\n\n**listElements** 数组包含一组字符串，这些字符串将用作 dataSource\
+  \ 来填充 ListView 小部件。`kendoMobileListView` 函数用于初始化列表元素。`dataSource` 选项在初始化小部件时指定。\n\
+  \n或者，`dataSource` 也可以指向返回字符串数组的远程服务：\n\n```javascript\n$('#listViewContainer').kendoMobileListView({\n\
+  dataSource: {\ntransport: {\nread: '/services/listViewService'\n}\n}\n});\n```\n\
+  \n#### 工作原理...\n\n当你渲染页面时，ListView 小部件会被初始化，并使用数组中存在的数据进行填充。如果 `DataSource` 指向服务\
+  \ URL，则会向服务发送 `GET` 请求，并使用服务返回的数据来填充 ListView 小部件。\n\n| 2014 年奥斯卡最佳影片提名 |\n|-------------------------------------|\n\
+  | Her                                 |\n| Gravity                             |\n\
+  | 12 Years A Slave                    |\n| Captain Phillips                    |\n\
+  | American Hustle                     |\n| The Wolf Of Wall Street             |\n\
+  | Nebraska                            |\n| Dallas Buyers Club                  |\n\
+  | Philomena                           |\n\n#### 更多...\n\n在前一节中，我们使用数组中的值填充了 ListView\
+  \ 小部件。你还可以提供一个模板，在使用 DataSource 对象填充列表时使用该模板。\n\n让我们创建一个对象数组，其中每个对象包含两个属性，name 和\
+  \ image，如下所示：\n\n```javascript\nvar listElements = [\n{name: 'Her', image: 'her.jpg'},\n\
+  {name: 'Gravity', image: 'gravity.jpg'},\n{name: '12 Years A Slave', image: '12_years_a_slave.jpg'},\n\
+  {name: 'Captain Phillips', image: 'captain_phillips.jpg'},\n{name: 'American Hustle',\
+  \ image: 'american_hustle.jpg'},\n{name: 'The Wolf Of Wall Street',\nimage: 'wolf_of_wall_street.jpg'},\n\
+  {name: 'Nebraska', image: 'nebraska.jpg'},\n{name: 'Dallas Buyers Club',\nimage:\
+  \ 'dallas_buyers_club.jpg'},\n{name: 'Philomena', image: 'philomena.jpg'}\n];\n\
+  ```\n\n下一步是创建一个模板，在填充列表时将使用该模板：\n\n```html\n<script type=\"text/x-kendo-template\"\
+  \ id=\"list-template\">\n<a>\n<img src=\"./images/#= image #\" />\n#= name #\n</a>\n\
+  </script>\n```\n\n该模板为 image 和 name 属性指定了占位符。现在，当你初始化小部件时，除了指定 dataSource 属性外，还要指定\
+  \ template 属性：\n\n```javascript\n$('#listViewContainer').kendoMobileListView({\n\
+  \ dataSource: listElements,\n template: $('#list-template').html()\n});\n```\n\n\
+  这里的 template 属性包含对先前指定的模板（id=#list-template）的引用；该模板针对 dataSource 对象中存在的数据进行编译。对于\
+  \ dataSource 对象中的每个对象，都会生成一个列表元素并将其追加到 ListView 小部件中。\n\n### 当用户滚动列表时修复标题\n\nListView\
+  \ 小部件中的项目可以按属性分组。例如，假设列表包含你目录中的一组姓名或联系人。这些联系人可以按联系人名称开头的字母进行分组。当你渲染列表时，你会看到这些联系人已分组，并且在滚动时，标题是固定的。\n\
+  \n#### 操作方法...\n\n要创建固定标题，即按特定属性分组的数据，集合或数组中的每个对象都应包含该属性。让我们创建一个示例数组，其中每个对象包含两个属性，`name`\
+  \ 和 `startsWith`；`startsWith` 属性将用于对列表中的姓名进行分组：\n\n```javascript\nvar actors = [\n\
+  \    { \"name\": \"Leonardo DiCaprio\", \"startsWith\": \"L\" },\n    { \"name\"\
+  : \"Johnny Depp\", \"startsWith\": \"J\" },\n    { \"name\": \"Al Pacino\", \"startsWith\"\
+  : \"A\" },\n    { \"name\": \"Bradley Cooper\", \"startsWith\": \"B\" },\n    {\
+  \ \"name\": \"Tom Cruise\", \"startsWith\": \"T\" },\n    { \"name\": \"Jude Law\"\
+  , \"startsWith\": \"J\" },\n    { \"name\": \"Robert Downey Jr.\", \"startsWith\"\
+  : \"R\" },\n    { \"name\": \"Will Smith\", \"startsWith\": \"W\" },\n    { \"name\"\
+  : \"Robert De Niro\", \"startsWith\": \"R\" },\n    { \"name\": \"Antonio Banderas\"\
+  , \"startsWith\": \"A\" },\n    { \"name\": \"Christian Bale\", \"startsWith\":\
+  \ \"C\" },\n    { \"name\": \"Brad Pitt\", \"startsWith\": \"B\" },\n    { \"name\"\
+  : \"Tom Hanks\", \"startsWith\": \"T\" },\n    { \"name\": \"Robert Pattinson\"\
+  , \"startsWith\": \"R\" },\n    { \"name\": \"Ben Stiller\", \"startsWith\": \"\
+  B\" }\n];\n```\n\n请注意，列表不是按排序顺序排列的；我们将使用此列表作为 ListView 小部件的 `DataSource`：\n\n```javascript\n\
+  function mobileListViewInit() {\n    $('#listViewContainer').kendoMobileListView({\n\
+  \        dataSource: kendo.data.DataSource.create({\n            data: actors,\n\
+  \            group: 'startsWith'\n        }),\n        template: '#= name #',\n\
+  \        fixedHeaders: true\n    });\n}\n```\n\n在前面的代码片段中，mobileListViewInit 函数用于初始化\
+  \ ListView 小部件。当包含 ListView 小部件的视图被初始化时，将调用此函数。视图应指定 data-init 属性，该属性引用 mobileListViewInit\
+  \ 函数作为其值。dataSource 属性用于提供输入数据（引用 actors 数组），并且还指定 group 属性，其值为 startsWith。除了 dataSource\
+  \ 属性外，列表视图的初始化还包含 template 和 fixedHeaders 属性。fixedHeaders 属性用于在用户滚动列表时修复每个列表组的标题。\n\
+  \n#### 工作原理...\n\n当 ListView 小部件被初始化时，数组中的姓名将按 startsWith 属性分组，你将看到姓名按升序排列，即按字母顺序列出，如下面的屏幕截图所示：\n\
+  \n![](img/2a66507445090790d34dc5588b56b24c_149_0.png)\n\n现在，当用户向下滚动时，你会看到相应的标题固定在顶部，指示列表顶部的当前列表是特定组的列表。\n\
+  \n![](img/2a66507445090790d34dc5588b56b24c_150_0.png)\n\n在前面的屏幕截图中，用户已向下滚动，但标题位于页面顶部，指示当前列表以字母\
+  \ A 开头。fixedHeaders 属性将在用户向下滚动列表时修复标题。\n\n### 筛选 ListView 中的元素\n\nListView 小部件可以包含多个列表元素，滚动整个列表以找到所需的列表元素会很耗时。例如，考虑你的联系人列表；要找到特定联系人，需要多次滚动。为了消除这一问题，你可以添加一个筛选器，并使用它来检索与输入文本匹配的所需列表元素。\n\
+  \n#### 操作方法...\n\n让我们考虑一个扁平数据源，即包含字符串列表的数组：\n\n```javascript\nvar listElements =\
+  \ ['Leonardo DiCaprio', 'Johnny Depp',\n'Bradley Cooper', 'Al Pacino',\n'Tom Cruise','Jude\
+  \ Law',\n```\n\n\n\n\n\n'Robert Downey Jr.', 'Will Smith',\n'Robert De Niro', 'Christian\
+  \ Bale',\n'Brad Pitt','Tom Hanks',\n'Robert Pattinson', 'Ben Stiller'];\n\n现在初始化\
+  \ ListView 小部件时，将前面的元素作为 dataSource 提供，并包含 filterable 属性并将其值设置为 true：\n\n$('#listViewContainer').kendoMobileListView({\n\
+  dataSource: listElements,\nfilterable: true\n});\n\n当将 filterable 属性设置为 true 时，列表顶部会添加一个搜索输入字段。当用户开始在搜索输入字段中键入时，列表会被过滤以显示与用户输入匹配的选项。在这里，用户输入字符串与列表中的元素进行比较，只有那些以输入字符串开头的元素才会显示在列表中。如果您想更改此逻辑，使其返回包含输入字符串的元素，而不是以它开头的元素，那么请按如下方式提及\
+  \ operator 字段：\n\n$('#listViewContainer').kendoMobileListView({\ndataSource: listElements,\n\
+  filterable: {\n\"operator\": \"contains\"\n}\n});\n\noperator 字段可以包含以下值之一：startsWith,\
+  \ endswith, contains, eq (等于), neq (不等于), lt (小于), lte (小于或等于), gt (大于), 和 gte (大于或等于)。\n\
+  \n当使用包含对象的 dataSource 时，小部件将无法过滤列表，因为它不知道应将用户输入与哪个字段进行匹配。要修复此问题，您可以指定 field 选项：\n\
+  \n$('#listViewContainer').kendoMobileListView({\ndataSource: actors,\ntemplate:\
+  \ '#= name #',\nfilterable: {\n\"field\": \"name\",\n\"operator\": \"contains\"\n\
+  }\n});\n\n前面的代码片段查找 name 字段并过滤列表中的元素。在所有先前的情况中，当用户开始在搜索输入字段中键入时，列表会被过滤。如果您希望用户单击搜索按钮，那么请指定\
+  \ autoFilter 选项并将其设置为 false：\n\n$('#listViewContainer').kendoMobileListView({\n\
+  dataSource: actors,\ntemplate: '#= name #',\nfilterable: {\n\"field\": \"name\"\
+  ,\n\"autoFilter\": false,\n\"operator\": \"contains\"\n}\n});\n\n通过将 autoFilter\
+  \ 属性设置为 false，用户将不得不单击搜索按钮才能获取过滤后的列表。当您处理长列表且不希望列表在每次按键输入时刷新时，这很有用。\n\n#### 工作原理...\n\
+  \n当您渲染页面时，您将在列表顶部看到搜索输入字段。\n\n![](img/2a66507445090790d34dc5588b56b24c_152_0.png)\n\
+  \n当您开始在搜索字段中键入时，列表会被过滤，并且仅包含那些以输入文本开头的选项。\n\n![](img/2a66507445090790d34dc5588b56b24c_153_0.png)\n\
+  \n当您将 operator 更改为 `contains` 时，列表会被过滤，并且现在包含那些包含输入文本的选项。\n\n![](img/2a66507445090790d34dc5588b56b24c_153_1.png)\n\
+  \n#### 更多...\n\n搜索输入字段具有占位符文本 **Search**。您可以通过指定 `placeholder` 选项来自定义此文本：\n\n$('#listViewContainer').kendoMobileListView({\n\
+  dataSource: actors,\ntemplate: '#= name #',\nfilterable: {\n\"field\": \"name\"\
+  ,\n\"autoFilter\": false,\n\"placeholder\": \"Find...\",\n\"operator\": \"contains\"\
+  \n}\n});\n\n当您渲染页面时，您将看到 `placeholder` 文本已更改为 **Find...**：\n\n![](img/2a66507445090790d34dc5588b56b24c_154_0.png)\n\
+  \n### 使用 ListView 小部件构建分层列表\n\n在所有先前的示例中，服务返回的数据包含所有记录，并且相同的记录显示在列表中。当处理分层数据结构而不是扁平结构时，可以自定义\
+  \ ListView 小部件，以便以分层方式显示数据，即显示层次结构第一级中的元素，然后遍历各个层级，直到到达层次结构中的叶子节点。\n\n### 入门\n\n\
+  要构建分层列表，服务应返回列出需要显示的第一组记录的数据。每条记录都应有一个字段，指示是否存在子记录，或者它是层次结构中的叶子节点。此信息将随后在 ListView\
+  \ 小部件中使用，从而使用户能够在层次结构中导航。\n\n### 操作方法...\n\nListView 小部件应首先显示层次结构顶层中存在的记录。假设服务配置为在从客户端浏览器查询时返回相同数据：\n\
+  \n[\n{ \"id\": 1, \"name\": \"Lamborghini\", \"hasModels\": true },\n{ \"id\": 2,\
+  \ \"name\": \"Ferrari\", \"hasModels\": true },\n{ \"id\": 3, \"name\": \"Aston\
+  \ Martin\", \"hasModels\": true }\n]\n\nid 属性用于唯一标识分层结构中的每条记录。它还有一个 hasModels 属性，指示记录是否具有关联的子节点。下一步是创建\
+  \ DataSource 对象并指定服务 URL 以及架构详细信息：\n\nvar cars = new kendo.data.HierarchicalDataSource({\n\
+  transport: {\nread: '/carService'\n},\nschema: {\nmodel: {\nid: 'id',\nhasChildren:\
+  \ 'hasModels'\n}\n}\n});\n\n在前面的代码片段中，我们使用 kendo.data.HierarchicalDataSource 创建分层数据源的实例。定义包含架构对象，该对象指定\
+  \ id 和 hasChildren 属性的映射。每当用户导航到层次结构中的各个层级时，都应使用渲染分层结构的视图：\n\n```html\n<div\nid=\"\
+  hierarchicalView\"\ndata-role=\"view\"\ndata-title=\"Cars\"\ndata-show=\"attachDataSource\"\
+  \ndata-layout=\"defaultLayout\">\n<ul\nid=\"listViewContainer\"\ndata-role=\"listview\"\
+  \ndata-template=\"hierachicalTemplate\">\n</ul>\n</div>\n```\n\n前面的视图（id=hierarchicalView）包含一个\
+  \ ListView 小部件。该视图指定了 data 属性 – show，其值引用每次渲染视图时将被调用的函数，即每次视图被重用以显示下一级元素时。ListView\
+  \ 小部件指定了 data-template 属性为 hierarchicalTemplate。模板可以在初始化小部件时指定，也可以作为 data- 属性指定：\n\
+  \n```html\n<script id=\"hierachicalTemplate\" type=\"text/x-kendo-template\">\n\
+  \ # if(data.hasModels) { #\n <a href=\"#hierarchicalView?parent=#: data.id #\">\n\
+  \ #= name #\n </a>\n # } else { #\n #= name #\n # } #\n</script>\n```\n\n模板首先检查当前模型对象（在\
+  \ data 中引用）是否将 hasModels 属性设置为 true，然后添加一个指向同一视图（id=hierarchicalView）的超链接，并带有查询参数\
+  \ parent，设置为模型对象的 id。如果当前模型对象是叶子节点，则将其添加到列表中，不带任何超链接。\n\n当用户单击超链接时，视图应被重用以显示层次结构中的下一组元素。如前所述，data-show\
+  \ 属性指定每次使用视图显示内容时应调用的函数。attachDataSource 函数在每次显示视图时被调用：\n\nfunction attachDataSource(e)\
+  \ {\nvar parentID = e.view.params.parent,\nlistView = $(\"#listViewContainer\")\n\
+  .data('kendoMobileListView');\n\nif (!parentID) {\nlistView.setDataSource(cars);\n\
+  } else {\ncars.fetch(function () {\nvar item = cars.get(parentID);\nlistView.setDataSource(item.children);\n\
+  });\n}\n}\n\n每当用户单击链接时，视图被重用，前面的函数被调用。然后使用事件对象获取 parentID。最初，当视图用于渲染元素（即层次结构顶层中的元素）时，parentID\
+  \ 为 null。在这种情况下，ListView 被设置为我们先前定义的分层数据源。当用户导航视图时，parentID 将存在，并且 ListView 的 dataSource\
+  \ 被设置为相应父节点的子节点。\n\n### 工作原理...\n\n当您渲染页面时，层次结构顶层中的元素将如下面的屏幕截图所示显示：\n\n![](img/2a66507445090790d34dc5588b56b24c_157_0.png)\n\
+  \n\n\n\n\n\n这里，由于 hasModels 属性设置为 true，列表中的所有元素都会显示一个右箭头（▶）。这表明用户可以点击它来导航到下一组节点。\n\
+  \n当用户点击 ListView 中的任何元素时，将调用 attachDataSource 函数。点击元素的 id 将用于获取层次结构中的下一组元素。请注意，当你为\
+  \ ListView 设置 DataSource 时，查询参数 parentID 会存在；会向服务发送一个 GET 请求，将 parentID 值指定给查询参数\
+  \ id。远程服务会查找记录并将其返回。请求 URL 的形式如下：\n\n```\n/service?id=<parentID>\n```\n\n当你点击第一个元素（id\
+  \ = 1）时，服务将查找 parentID 为 1 的记录。假设服务返回以下记录：\n\n```\n[\n  {\"id\": 11, \"name\": \"\
+  Gallardo\", \"hasModels\": false},\n  {\"id\": 12, \"name\": \"Aventador\", \"hasModels\"\
+  : false},\n  {\"id\": 13, \"name\": \"Huracan\", \"hasModels\": false}\n]\n```\n\
+  \n请注意，这三个对象中 hasModels 的值均为 false。现在，视图会更新以在 ListView 中显示上述记录，并且不包含右箭头。\n\n![](img/2a66507445090790d34dc5588b56b24c_158_0.png)\n\
+  \n用于渲染列表元素的模板会检查 hasModels 属性的值，并且仅在该值设置为 true 时才添加锚元素。在此情况下，该值为 false，因此不显示右箭头。\n\
+  \n### 构建无限滚动列表\n\nListView 小部件可以自定义以显示详尽的项目列表。实现此功能有多种方式，例如，在列表底部添加一个按钮，点击后将下一组元素添加到列表中。另一种方式是随着用户向下滚动而添加更多元素。这称为无限滚动，当用户浏览详尽列表时，它能提供无缝体验。在本示例中，我们将看到这两种方法，即添加按钮以加载更多元素，以及创建在用户向下滚动时加载的无限滚动列表。\n\
+  \n#### 操作步骤...\n\n在两种情况下，都必须配置 DataSource 对象，使其返回有限数量的记录。在为 ListView 小部件配置 DataSource\
+  \ 时，请指定 pageSize 属性：\n\n```\ndataSource: {\n transport: {\n read: '/movies/listService'\n\
+  \ },\n pageSize: 10\n}\n```\n\n要在列表底部添加按钮，请指定 loadMore 选项并将其值设置为 true：\n\n```\n\
+  function initListView (e) {\n $('#listViewContainer').kendoMobileListView({\n dataSource:\
+  \ {\n transport: {\n read: '/movies/listService'\n },\n pageSize: 10\n },\n loadMore:\
+  \ true\n });\n}\n```\n\n要启用无限滚动而不是添加加载更多按钮，请将 endlessScroll 属性设置为 true：\n\n```\n\
+  function initListView (e) {\n    $('#listViewContainer').kendoMobileListView({\n\
+  \        dataSource: {\n            transport: {\n                read: '/movies/listService'\n\
+  \            },\n            pageSize: 10\n        },\n        endlessScroll: true\n\
+  \    });\n}\n```\n\n#### 工作原理...\n\n渲染页面时，带有 **Press to load more** 文本的按钮会显示在列表底部，如下图所示：\n\
+  \n![](img/2a66507445090790d34dc5588b56b24c_160_0.png)\n\n在无限滚动列表的情况下，当用户向下滚动时，会向服务发送请求。在加载列表期间，您将看到加载器显示，如下图所示：\n\
+  \n![](img/2a66507445090790d34dc5588b56b24c_161_0.png)\n\n### 显示可使用 ActionSheet 小部件执行的操作列表\n\
+  \nKendo Mobile ActionSheet 小部件用于显示当用户点击屏幕上的元素时可以执行的操作列表。ActionSheet 小部件从底部滑出，并显示可针对屏幕上点击的元素执行的操作列表。\n\
+  \n#### 操作步骤...\n\n让我们创建一个包含 ListView 小部件和 ActionSheet 小部件的视图：\n\n```html\n<div\n\
+  data-role=\"view\"\ndata-title=\"Movies to watch\"\ndata-layout=\"defaultLayout\"\
+  >\n<ul>\n```\n\n```\nid=\"listViewContainer\">\n</ul>\n<ul\ndata-role=\"actionsheet\"\
+  \nid=\"optionActionSheet\">\n<li>\n<a data-action=\"option1\">Favourite</a>\n</li>\n\
+  <li>\n<a data-action=\"option2\">Watch</a>\n</li>\n<li>\n<a data-action=\"option3\"\
+  >Remove</a>\n</li>\n</ul>\n</div>\n```\n\nListView 小部件的内容通过 DataSource 对象填充。ActionSheet\
+  \ 小部件（带有 data-role=actionsheet 的 ul）包含当用户点击 ListView 小部件中的任何元素时需要显示的操作列表。请注意，每个列表元素都包含带有\
+  \ data-action 属性的锚元素。该属性用于指定当用户点击操作按钮时要调用的 JavaScript 函数。\n\n下一步是将列表中的元素与 ActionSheet\
+  \ 小部件关联。要填充列表中的元素，可以使用模板，并且该模板可以指定对 ActionSheet 小部件的引用：\n\n```\n<script id=\"listViewTemplate\"\
+  \ type=\"text/x-kendo-template\">\n<a\ndata-rel=\"actionsheet\"\nhref=\"\\\\#optionActionSheet\"\
+  >\n#= data #\n</a>\n</script>\n```\n\n这里，锚的 data-rel 属性设置为 actionsheet，href 属性引用\
+  \ ActionSheet 小部件（id=optionActionSheet）。\n\n#### 工作原理...\n\nListView 小部件中的每个元素都有一个右箭头（>），这表示可以在列表元素上调用操作：\n\
+  \n![](img/2a66507445090790d34dc5588b56b24c_163_0.png)\n\n当您点击列表中的任何元素时，将显示 ActionSheet\
+  \ 小部件。小部件从屏幕底部滑出，并列出用户可以执行的选项或操作，如下图所示：\n\n![](img/2a66507445090790d34dc5588b56b24c_163_1.png)\n\
+  \n# 第 9 章\n\nActionSheet 小部件的覆盖层覆盖整个屏幕，并显示包含操作的列表。请注意，ActionSheet 小部件除了列出上述选项外，还包含\
+  \ **Cancel** 按钮。\n\n当用户点击之前的任何选项时，将调用关联的 JavaScript 函数。点击 **Cancel** 时，ActionSheet\
+  \ 小部件将隐藏并移除覆盖层。\n\n## 更多内容...\n\n在 Android 设备上，ActionSheet 小部件显示为 **Modal window**。如前所述，移动小部件已自定义以提供各种设备的原生外观和感觉。\n\
+  \n![](img/2a66507445090790d34dc5588b56b24c_164_0.png)\n\n此处选项也列出了 **Cancel** 选项。\n\
+  \n## 使用 ScrollView 小部件浏览图片集合\n\nScrollView 小部件用于图片画廊或类似轮播的应用程序，您希望滚动到下一页以查看画廊中的下一张图片。该小部件允许您通过从右向左或从左向右滑动来移动到下一页或上一页。\n\
+  \n## 操作步骤...\n\n让我们创建一个包含 ScrollView 小部件的 `view`：\n\n```html\n<div\ndata-role=\"\
+  view\"\ndata-title=\"Gallery\"\ndata-layout=\"defaultLayout\">\n<div\ndata-role=\"\
+  scrollview\">\n</div>\n</div>\n```\n\n这里，通过将 data-role 属性设置为 scrollview，在视图内创建了一个\
+  \ ScrollView 小部件。ScrollView 小部件现在需要包含可以通过从右向左或从左向右滑动来浏览的页面。要创建页面，请在 ScrollView 容器内添加\
+  \ div 元素，并将 data-role 属性设置为 page。每个页面小部件随后可以包含需要显示的图片：\n\n```\n<div\ndata-role=\"\
+  scrollview\">\n<div\ndata-role=\"page\">\n<img src=\"./images/large/her.jpg\" />\n\
+  </div><div\ndata-role=\"page\">\n<img src=\"./images/large/gravity.jpg\" />\n</div><div\n\
+  data-role=\"page\">\n<img src=\"./images/large/12_years_a_slave.jpg\" />\n</div><div\n\
+  data-role=\"page\">\n<img src=\"./images/large/american_hustle.jpg\" />\n</div><div\n\
+  data-role=\"page\">\n<img src=\"./images/large/wolf_of_wall_street.jpg\" />\n</div>\n\
+  .\n.\n.\n</div>\n```\n\n## 工作原理...\n\n渲染页面时，ScrollView 小部件会显示包含图片的第一页。\n\n\n\n\n\
+  \n### Gallery\n\n在这里，ScrollView 小部件还在屏幕底部包含一个分页器，用于高亮显示用户当前所在的页面。当你从右向左滑动时，下一页显示如下：\n\
+  \n![](img/2a66507445090790d34dc5588b56b24c_166_1.png)\n\n### 更多内容\n\n当你渲染页面时，ScrollView\
+  \ 小部件默认显示页面集中的第一页。如果你想显示不同的页面，则为 ScrollView 小部件元素设置 `data-page` 属性：\n\n```html\n\
+  <div\n    data-role=\"scrollview\"\n    data-page=\"4\" >\n</div>\n```\n\n页码从零开始索引，也就是说，当你将\
+  \ `data-page` 属性指定为 4 时，列表中的第五页会被显示。\n\n如果你想隐藏 ScrollView 小部件底部显示的分页器，则可以将 `data-enable-pager`\
+  \ 属性设置为 `false`：\n\n![](img/2a66507445090790d34dc5588b56b24c_167_0.png)\n\n在前面的截图中，`pager`\
+  \ 已被移除；但是，用户仍然可以通过滑动来浏览页面集。当你有一个需要浏览的详尽页面列表，并且在屏幕底部显示分页器不是你想要提供的体验时，此选项很有用。\n\n\
+  ### 创建 SplitView 小部件以在平板电脑中显示多个窗格，并在窗格之间构建交互\n\nKendo UI 库提供了一个 SplitView 小部件，这是一个专用于平板电脑的小部件。SplitView\
+  \ 小部件由两个或多个窗格组成，每个窗格由一个或多个视图小部件组成。通常，SplitView 小部件用于在一个窗格的列表中选择一个项目，并更新显示所选项目更多数据的另一个窗格。\n\
+  \n### 操作方法\n\n让我们创建两个窗格，左窗格和右窗格，然后将这些窗格包含在 SplitView 小部件中。以下是左窗格的标记：\n\n```html\n\
+  <div data-role=\"pane\" id=\"nav-pane\" data-layout=\"left-navbar-layout\">\n  <div\
+  \ data-role=\"view\" id=\"test\">\n    <ul id=\"moviesList\" data-role=\"listview\"\
+  \ data-template=\"navbar-template\"></ul>\n  </div>\n  <script type=\"text/x-kendo-template\"\
+  \ id=\"navbar-template\">\n    <a href=\"#movieDescription?movieID=#= data.id #\"\
+  \ data-target=\"content-pane\">#= data.name #</a>\n  </script>\n  <div data-role=\"\
+  layout\" data-id=\"left-navbar-layout\">\n    <header data-role=\"header\">\n  \
+  \    <div data-role=\"navbar\">Left Pane</div>\n    </header>\n  </div>\n</div>\n\
+  ```\n\n通过将 data-role 属性设置为 pane 来创建窗格小部件。窗格包含一个视图小部件，该视图列出使用 ListView 小部件的项目。视图与布局相关联，ListView\
+  \ 小部件使用以下 DataSource 对象填充：\n\n```javascript\nvar listElements = [\n  {id: 1, name:\
+  \ 'Her', image: 'her.jpg'},\n  {id: 2, name: 'Gravity', image: 'gravity.jpg'},\n\
+  \  {id: 3, name: '12 Years A Slave', image: '12_years_a_slave.jpg'},\n  {id: 4,\
+  \ name: 'Captain Phillips', image: 'captain_phillips.jpg'},\n  {id: 5, name: 'American\
+  \ Hustle', image: 'american_hustle.jpg'},\n  {id: 6, name: 'The Wolf Of Wall Street',\
+  \ image: 'wolf_of_wall_street.jpg'},\n  {id: 7, name: 'Nebraska', image: 'nebraska.jpg'},\n\
+  \  {id: 8, name: 'Dallas Buyers Club', image: 'dallas_buyers_club.jpg'},\n  {id:\
+  \ 9, name: 'Philomena', image: 'philomena.jpg'}\n];\n```\n\n现在让我们考虑 **右窗格** 小部件，它将用于显示\
+  \ **左窗格** 中所选项目的详细信息：\n\n```html\n<div data-role=\"pane\" id=\"content-pane\" data-layout=\"\
+  right-content-layout\">\n  <div data-role=\"view\" data-show=\"displayOrders\" id=\"\
+  movieDescription\">\n    <div id=\"movieDetails\"></div>\n  </div>\n  <div data-role=\"\
+  layout\" data-id=\"right-content-layout\">\n    <header data-role=\"header\">\n\
+  \      <div data-role=\"navbar\">Right Pane</div>\n    </header>\n  </div>\n</div>\n\
+  ```\n\n**右窗格** 小部件也包含视图；当用户在 **左窗格** 中选择一个项目时，会生成该视图的内容。请注意，左窗格模板中指定的锚元素将 href 属性指定为\
+  \ `#movieDescription?movieID=#= data.id #`，它引用 **右窗格** 中的视图。此外，它将 data-target 属性指定为\
+  \ content-pane，它引用 **右窗格** 本身。\n\n下一步是将两个窗格包含在 SplitView 小部件中：\n\n```html\n<div\
+  \ data-role=\"splitview\">\n  <div data-role=\"pane\" id=\"nav-pane\" data-layout=\"\
+  left-navbar-layout\">\n    .\n  </div>\n  <div data-role=\"pane\" id=\"content-pane\"\
+  \ data-layout=\"right-content-layout\">\n    .\n    .\n  </div>\n</div>\n```\n\n\
+  **右窗格** 中的视图小部件将 data-show 属性设置为 displayOrders；data-show 属性用于指定在视图用于显示内容时应调用的 JavaScript\
+  \ 函数。当用户单击 **左窗格** 中的任何项目时，**右窗格** 中的视图用于显示详细信息。让我们使用 **右窗格** 小部件显示 **左窗格** 中所选元素的图像。displayOrder\
+  \ 函数实现如下：\n\n```javascript\nfunction displayOrders(e) {\n  var movieID = parseInt(e.view.params.movieID,\
+  \ 10);\n  for (var i = 0; i < listElements.length; i++) {\n    if (listElements[i].id\
+  \ == movieID) {\n      $('#movieDetails').html('<img src=\"images/large/' + listElements[i].image\
+  \ + '\"/>');\n      break;\n    }\n  }\n}\n```\n\n在这里，函数首先获取所选元素的 id，然后获取相应元素的图像。然后，此图像在\
+  \ **右窗格** 中包含的视图中显示。\n\n同样，每当用户选择 **左窗格** 中 ListView 的某个项目时，相应的图像就会在 **右窗格** 中显示。\n\
+  \n### 工作原理\n\n当你首次渲染页面时，**左窗格** 小部件会使用 DataSource 中的元素进行填充。\n\n| 左窗格 | 右窗格 |\n|-----------|------------|\n\
+  | Her       |            |\n| Gravity   |            |\n| 12 Years A Slave |   \
+  \ |\n| Captain Phillips |    |\n| American Hustle |    |\n| The Wolf Of Wall Street\
+  \ | |\n| Nebraska   |            |\n| Dallas Buyers Club |    |\n| Philomena  |\
+  \            |\n\n最初，**右窗格** 不显示任何内容，因为 **左窗格** 中没有选择任何项目。当你从 **左窗格** 的 ListView\
+  \ 小部件中选择任何项目时，**右窗格** 小部件会更新以显示图像：\n\n| 左窗格 | 右窗格 |\n|-----------|------------|\n\
+  | Her       | ![American Hustle](image) |\n| Gravity   |            |\n| 12 Years\
+  \ A Slave |    |\n| Captain Phillips |    |\n| American Hustle |    |\n| The Wolf\
+  \ Of Wall Street | |\n| Nebraska   |            |\n| Dallas Buyers Club |    |\n\
+  | Philomena  |            |\n\n### 更多内容\n\nSplitView 小部件已将窗格水平堆叠；也可以通过将 `data-style`\
+  \ 属性指定为 `vertical` 来垂直堆叠这些窗格：\n\n```html\n<div data-role=\"splitview\" data-style=\"\
+  vertical\">\n  .\n  .\n</div>\n```\n\n以下截图显示了窗格垂直堆叠时的外观：\n\n![](img/2a66507445090790d34dc5588b56b24c_173_0.png)\n\
+  \n### 使用 TabStrip 小部件在应用程序视图之间选项卡切换\n\nTabStrip 小部件用于在应用程序的各种视图之间导航。TabStrip 通常放置在布局的页脚中，单击\
+  \ TabStrip 中的按钮时，会显示相应的视图。\n\n#### 操作方法\n\n让我们创建一个在页脚中包含 TabStrip 小部件的布局：\n\n```html\n\
+  <div data-role=\"layout\" data-id=\"defaultLayout\">\n  <footer data-role=\"footer\"\
+  >\n    <div data-role=\"tabstrip\">\n      <a href=\"#contactsView\" data-icon=\"\
+  about\">Contacts</a>\n      <a href=\"#favoritesView\" data-icon=\"favorites\">Favorites</a>\n\
+  \      <a href=\"#settingsView\" data-icon=\"settings\">Settings</a>\n    </div>\n\
+  \  </footer>\n</div>\n```\n\n在前面的代码片段中，TabStrip 小部件 (data-role='tabstrip') 包含三个按钮：**Contacts**、**Favorites**\
+  \ 和 **Settings**。每个按钮都指定了 href 属性，其值与页面中定义的视图的 id 属性所赋的值相同。\n\n\n\n\n\n下一步是定义视图，当你在\
+  \ TabStrip 中选择任何按钮时，这些视图将被显示：\n\n```html\n<div\nid=\"contactsView\"\ndata-role=\"\
+  view\"\ndata-layout=\"defaultLayout\">\n\n<ul\nid=\"contactsViewContainer\"\ndata-role=\"\
+  listview\">\n</ul>\n</div>\n\n<div\nid=\"favoritesView\"\ndata-role=\"view\"\ndata-layout=\"\
+  defaultLayout\">\n\n<ul\nid=\"favoritesViewContainer\"\ndata-role=\"listview\">\n\
+  </ul>\n</div>\n\n<div\nid=\"settingsView\"\ndata-role=\"view\"\ndata-layout=\"defaultLayout\"\
+  >\n\n<ul\ndata-role=\"listview\">\n<li>Sorted\n<input type=\"check\" data-role=\"\
+  switch\" checked>\n</li>\n<li>Show Images\n<input type=\"check\" data-role=\"switch\"\
+  >\n</li>\n</ul>\n</div>\n```\n\n请注意，前面视图小部件定义的 id 属性在 TabStrip 小部件的锚元素的 href 属性中被引用。\n\
+  \n### 工作原理...\n\n当你渲染页面时，**Contacts** 视图会被显示，并且在 TabStrip 小部件中被高亮显示：\n\n![](img/2a66507445090790d34dc5588b56b24c_176_0.png)\n\
+  \n请注意，TabStrip 中的 **Contacts** 图标被高亮显示，表明当前视图显示的是 **Contacts** 列表。当你点击 **Favorites**\
+  \ 或 **Settings** 图标时，TabStrip 中对应的图标会被高亮显示，视图也会随之更新：\n\n![](img/2a66507445090790d34dc5588b56b24c_176_1.png)\n"
+- "# 10 Kendo UI DataViz\n\n在本章中，我们将介绍以下配方：\n\n- 使用 `kendoChart` 创建图表\n- 将图表绑定到 `DataSource`\
+  \ 对象\n- 创建多轴图表\n- 显示一段时间内的数据并使用聚合函数\n- 通过添加事件使图表具有交互性\n- 动态更改图表类型\n\n## 简介\n\nKendo\
+  \ UI 库提供了一组强大的可视化组件，可用于让数据生动起来。它使用现代浏览器技术（如 SVG 和 Canvas）来渲染这些图表。在旧版浏览器上，它会回退到 VML。浏览器支持范围从\
+  \ IE7+ 到 Chrome、Firefox、Opera（15+）和 Safari。在本章中，我们将学习构建一些基本图表，例如面积图、饼图和柱状图，以及如何对其进行自定义。在下一章中，我们将学习一些用于构建仪表板类应用程序的高级数据可视化图表。\n\
+  \n### 使用 kendoChart 创建图表\n\nKendo 数据可视化库提供了多个图表小部件，可以轻松构建。在本配方中，我们将首先构建一个柱状图，然后自定义其外观和感觉。柱状图显示垂直条形，直观地表示提供的数据。\n\
+  \n#### 入门\n\nkendo.all.min.js 文件包含所有组件，即 Web、Mobile 和 DataViz 小部件。但是，如果你只构建数据可视化组件，则应包含\
+  \ kendo.dataviz.min.js 文件。\n\n#### 操作步骤...\n\n要创建图表，让我们向页面添加一个容器，指定图表区域的尺寸，如下面的代码行所示：\n\
+  \n```html\n<div id=\"chart\" style=\"width:500px; height: 400px\">\n```\n\n请注意，图表的宽度为\
+  \ 500 像素，高度为 400 像素。此区域将用于渲染图表。下一步是使用 kendoChart 函数初始化图表，如下面的代码行所示：\n\n```javascript\n\
+  $(\"#chart\").kendoChart()\n```\n\n在前面的代码行中，通过在选中的 div 元素上调用 kendoChart 函数来初始化图表。当你渲染页面时，将显示仅包含坐标轴的图表。下一步是提供一些数据和一组选项，这些选项将用于显示图表。这些包括图表标题和你想要显示的图表类型，如下面的代码片段所示：\n\
+  \n```javascript\n$(\"#chart\").kendoChart({\n    title: {\n        text: 'Browser\
+  \ Adoption'\n    },\n    categoryAxis: {\n        categories: [2010, 2011, 2012,\
+  \ 2013, 2014]\n    },\n    series: [{\n        name: 'Internet Explorer',\n    \
+  \    data: ['32', '23', '17', '12', '9'],\n        type: 'column'\n    }],\n   \
+  \ valueAxis: {\n        labels: {\n            format: '{0}%',\n        }\n    }\n\
+  });\n```\n\n在前面的代码片段中，提供了多个选项来初始化图表小部件。让我们逐一查看：\n\n- title：此选项用于指定应显示在图表顶部的标题文本。title\
+  \ 中指定的 text 选项将被显示。\n- categoryAxis：此选项用于指定应显示在图表 x 轴上的类别。\n- series：此选项用于指定需要在图表中显示的数据。name\
+  \ 选项用于显示图例信息。data 选项包括需要在图表上绘制的所有数据，type 指定需要显示的图表类型。\n- valueAxis：此选项指 y 轴，在前面的示例中，它指定了\
+  \ y 轴上的值应以何种格式显示。{0}% 值作为模板，其中 {0} 将被替换为基于提供的数据的值。\n\n#### 工作原理...\n\n在 kendoChart\
+  \ 函数中提供所有选项后，你会看到一个柱状图已添加到页面中，它还包含标题和图例信息，如下面的屏幕截图所示：\n\n![](img/2a66507445090790d34dc5588b56b24c_180_0.png)\n\
+  \n请注意，前面的柱状图在顶部显示标题，在右侧显示图例信息。应用的颜色主题是默认主题。\n\n#### 在图表中显示多个类别\n\n我们创建的图表只添加了一个系列；当你想要比较多个产品或类别时，系列数组可以包含它们：\n\
+  \n```javascript\nseries: [{\n name: 'Internet Explorer',\n data: ['32', '23', '17',\
+  \ '12', '9']\n}, {\n name: 'Firefox',\n data: ['45', '39', '34', '28', '26']\n},\
+  \ {\n name: 'Chrome',\n data: ['15', '26', '40', '52', '56']\n}, {\n name: 'Safari',\n\
+  \ data: ['6', '5', '4', '4', '4']\n}]\n```\n\n请注意，系列中删除了类型信息。构建图表时，你可以在 seriesDefault\
+  \ 下为系列指定通用选项：\n\n```javascript\nseriesDefaults: {\n type: 'column'\n}\n```\n\n现在当你渲染页面时，将包含其他系列。\n\
+  \n![](img/2a66507445090790d34dc5588b56b24c_181_0.png)\n\n### 更改标题和图例信息的位置\n\n可以自定义图表以更改标题和图例信息的位置：\n\
+  \n```javascript\ntitle: {\n    text: 'Browser adoption',\n    position: 'bottom'\n\
+  },\nlegend: {\n    position: 'bottom'\n}\n```\n\n当你渲染页面时，图表将占据整个宽度，图例和标题信息将显示在图表下方。\n\
+  \n![](img/2a66507445090790d34dc5588b56b24c_182_0.png)\n\n图表的高度受到影响，现在显示为图表中给定的 400\
+  \ 像素高度，以及图例和标题信息。你可以将位置指定为 top、bottom、right、left 或 custom。当位置为 custom 时，你还需要指定 `offsetX`\
+  \ 和 `offsetY` 选项：\n\n```javascript\nlegend: {\n    position: 'custom',\n    offsetX:\
+  \ 50,\n    offsetY: 20\n}\n```\n\n### 更改默认主题\n\n前面图表中应用的主题是默认主题。你可以通过指定 theme 选项来更改默认主题，如下面的代码行所示：\n\
+  \n```javascript\ntheme: 'black'\n```\n\n将主题更改为 black 后，页面将如下面的屏幕截图所示进行渲染：\n\n![](img/2a66507445090790d34dc5588b56b24c_183_0.png)\n\
+  \n![](img/2a66507445090790d34dc5588b56b24c_183_1.png)\n\n现在当你渲染页面时，你会注意到图例信息位于图表区域左侧\
+  \ 50 像素和顶部 20 像素处，如下面的屏幕截图所示：\n\n可以分配给 theme 属性的其他值包括 blueopal、bootstrap、highcontrast、metro、metroblack、moonlight、silver\
+  \ 和 uniform。\n\n### 将图表绑定到 DataSource 对象\n\nKendo 图表小部件可以绑定到 DataSource 对象。此 DataSource\
+  \ 对象可以是本地或远程 DataSource。使用 DataSource 对象时，series 和 configurationAxis 字段必须配置为引用 DataSource\
+  \ 对象中的字段。\n\n#### 操作步骤...\n\n让我们先创建一个本地 DataSource 对象，然后将其用于构建图表：\n\n```javascript\n\
+  var chromeBrowser = [{\n'year': 2008,\n'percentage': 0\n}, {\n'year': 2009,\n'percentage':\
+  \ 4\n}, {\n'year': 2010,\n'percentage': 15\n}, {\n'year': 2011,\n'percentage': 26\n\
+  }, {\n'year': 2012,\n'percentage': 40\n}, {\n'year': 2013,\n'percentage': 52\n},\
+  \ {\n'year': 2014,\n'percentage': 56\n}];\n```\n\n下一步是在构建图表时将前面的代码指定为 DataSource\
+  \ 引用：\n\n```javascript\n$(\"#chart\").kendoChart({\n dataSource: {\n  data: chromeBrowser\n\
+  \ },\n title: {\n```\n\n\n\n\n\n### 工作原理...\n\n在本示例图表中，图表类型指定为 area，现在当你渲染页面时，将显示一个显示多年采用百分比的区域图，如下面的屏幕截图所示：\n\
+  \n![](img/2a66507445090790d34dc5588b56b24c_185_0.png)\n\n### 更多...\n\n在前面的示例中，图表中只显示了一个系列。使用多个系列时，需要将远程服务配置为以特定格式返回数据。\n\
+  \n### 使用 DataSource 对象显示多个系列\n\n当你有多个系列要添加到图表时，`DataSource` 对象应包含按类别分组的数据。在本示例中，数据按年份分组，如下面的代码片段所示：\n\
+  \n```\nvar browserAdoption = [{\n    'year': 2011,\n    'chrome': 40,\n    'firefox':\
+  \ 30,\n    'ie': 15,\n    'safari': 15\n}, {\n    'year': 2012,\n    'chrome': 45,\n\
+  \    'firefox': 25,\n    'ie': 12,\n    'safari': 18\n}, {\n    'year': 2013,\n\
+  \    'chrome': 50,\n    'firefox': 22,\n    'ie': 8,\n    'safari': 20\n}];\n```\n\
+  \n在我们的示例中，`categoryAxis` 选项将字段指定为 `year`；这将按此字段对数据进行分组。下一步是在构建图表时在 `series` 选项中指定前面提到的配置：\n\
+  \n```\nseries: [{\n    field: 'chrome',\n    name: 'Chrome'\n}, {\n    field: 'firefox',\n\
+  \    name: 'Firefox'\n}, {\n    field: 'safari',\n    name: 'Safari'\n}, {\n   \
+  \ field: 'ie',\n    name: 'IE'\n}],\n```\n\n现在当你渲染页面时，各种浏览器的系列将绘制在图表上，如下面的屏幕截图所示：\n\
+  \n![](img/2a66507445090790d34dc5588b56b24c_187_0.png)\n\n### 在图表上以标签形式显示值\n\n图表可以自定义为在特定点上显示图表上的值。labels\
+  \ 选项用于在绘制的图表上显示值：\n\n```\nseriesDefaults: {\ntype: 'area',\nlabels: {\nvisible:\
+  \ true,\nformat: '{0}%'\n}\n}\n```\n\n在这里，`labels` 选项指定两个字段，即 `visible` 和 `format`。系列的\
+  \ `labels` 选项将在 x 轴和 y 轴交叉处的值投影位置添加标签，如下面的屏幕截图所示：\n\n![](img/2a66507445090790d34dc5588b56b24c_188_0.png)\n\
+  \n前面的屏幕截图显示了两个轴交叉处标签的精确值。\n\n### 创建多轴图表\n\n在许多场景中，你希望按多个字段对数据进行分组。在前面的示例中，浏览器采用数据按年份分组。现在，这些数据还可以按平台分组。例如，可以通过向图表添加多个轴来完成\
+  \ 2012 年 Windows 平台上 Chrome 浏览器的采用。\n\n#### 操作方法...\n\n第一步是定义系列数据，其中包含按平台分组的信息：\n\
+  \n```\nseries: [{\n name: 'On Windows',\n data: ['15', '26', '40', '52', '56'],\n\
+  \ type: 'column',\n}, {\n  name: 'On Linux',\n  data: ['8', '15', '28', '32', '38'],\n\
+  \  type: 'column',\n}, {\n  name: 'On Mac',\n  data: ['12', '20', '33', '40', '45'],\n\
+  \  type: 'area'\n}, {\n  name: 'On Others',\n  data: ['2', '8', '15', '18', '22'],\n\
+  \  type: 'area'\n}]\n```\n\n在这里，name 属性指定平台，data 属性指定多年的采用百分比。请注意，系列中的前两个的 type\
+  \ 属性为 column，另外两个为 area。下一步是更新 valueAxis 选项并指定需要绘制的轴的详细信息：\n\n```\nvalueAxis: [{\n\
+  \  title: {\n    text: 'Windows'\n  },\n  min: 0,\n  max: 60\n}, {\n  title: {\n\
+  \    text: 'Linux'\n  },\n  min: 0,\n  max: 60\n}, {\n  title: {\n    text: 'Mac'\n\
+  \  },\n  min: 0,\n  max: 45\n}, {\n  title: {\n    text: 'Others'\n  },\n  min:\
+  \ 0,\n  max: 45\n}]\n```\n\nvalueAxis 字段指定需要在图表上绘制的轴。这些轴的定义顺序与 series 字段中的顺序相同。min\
+  \ 和 max 属性用于调整 valueAxes 选项。在前面的代码片段中，Windows 和 Linux 平台的 min 和 max 属性分别为 0 和 60，这表示用于投影值的\
+  \ y 轴将从 0 开始并延伸至 60。同样，对于其他两个平台，y 轴将从 0 到 45。\n\n当你执行页面时，你会注意到有一个水平轴（x 轴），它指的是类别（年份数据），以及四个垂直轴（y\
+  \ 轴），它们指的是平台。所有四个指向平台的垂直轴都绘制在左侧。如果你想将其中一些垂直轴移动到右侧，则需要在 categoryAxis 选项中指定 axisCrossingValues\
+  \ 数组：\n\n```\ncategoryAxis: {\n    categories: [2010, 2011, 2012, 2013, 2014],\n\
+  \    axisCrossingValues: [0, 0, 5, 5]\n}\n```\n\n在这里，axisCrossingValues 字段用于指定每个轴的交叉值。数组中的值用于指示每个系列的索引。零值表示轴对齐在左侧（无更改）；任何其他值都表示其从左侧开始的位置。在前面的示例中，值五用于将轴移动到右侧，因为索引零到四由类别\
+  \ 2010 到 2014 使用。\n\n#### 工作原理...\n\n当你执行页面而不指定 axisCrossingValues 字段时，各种轴将绘制在左侧，如下所示：\n\
+  \n![](img/2a66507445090790d34dc5588b56b24c_190_0.png)\n\n### Kendo UI DataViz\n\n\
+  在这里，库开始按系列字段中定义的顺序绘制垂直轴，向左移动。在指定 axisCrossingValues 字段后，Mac 和 Others 系列的轴将移动到右侧，如下面的屏幕截图所示：\n\
+  \n![](img/2a66507445090790d34dc5588b56b24c_191_0.png)\n\n#### 更多...\n\n使用多轴图表时，可以通过单击其图例来关闭系列。例如，当你单击\
+  \ On Windows 图例时，相应的系列将被隐藏。\n\n![](img/2a66507445090790d34dc5588b56b24c_191_1.png)\n\
+  \n请注意，在前面的屏幕截图中，**On Windows** 图例变为灰色，相应的系列从图表中隐藏。这使用户或应用程序的使用者能够根据需要浏览各种系列并进行比较。\n\
+  \n### 显示一段时间内的数据并使用聚合函数\n\n当你从事数据分析项目时，通常会遇到绘制图表的用例，该图表显示一段时间内的某些数据。例如，在订单管理系统中，你希望显示订单数据并按一段时间进行绘制。这段时间可以是一天、一周、一个月或一年。此外，你希望以平均账单金额、订单数量或指定时间段内的总业务量等形式显示数据。\n\
+  \nKendo 图表库允许你根据给定的时间段投影数据，并在显示这些数据时应用一些聚合函数。\n\n#### 操作方法...\n\n让我们先考虑一个包含订单数据的示例数据集：\n\
+  \n```\nvar orderStats = [{\n    billAmount: 80,\n    date: new Date('2014/01/01')\n\
+  }, {\n    billAmount: 95,\n    date: new Date('2014/01/01')\n}, {\n    billAmount:\
+  \ 100,\n    date: new Date('2014/01/01')\n}, {\n    billAmount: 85,\n    date: new\
+  \ Date('2014/01/01')\n}, {\n    billAmount: 120,\n    date: new Date('2014/01/02')\n\
+  }, {\n    billAmount: 130,\n    date: new Date('2014/01/02')\n}, {\n    billAmount:\
+  \ 100,\n\n\n\n\n\n\ndate: new Date('2014/01/02')\n},\n.\n.\n. {\n billAmount: 80,\n\
+  \ date: new Date('2014/01/07')\n}, {\n billAmount: 70,\n date: new Date('2014/01/07')\n\
+  }\n]\n\n在前面的代码片段中提到的 DataSource 对象中，每个订单包含两个字段，即 billAmount 和 date。订单数据跨越 2014 年\
+  \ 1 月 1 日至 2014 年 1 月 7 日。这只是示例数据，您可以考虑跨越一个月或一年的数据。\n\n我们希望在两个级别上显示分析：\n\n- 一段时间内的数据\n\
+  - 按日期分组并应用某些聚合函数（例如平均值、总计和计数）的数据\n\n要显示一段时间内的数据，可以在 categoryAxis 字段中设置 baseUnit\
+  \ 值：\n\n```\ncategoryAxis: {\n baseUnit: 'days'\n}\n```\n\n这将按天对 DataSource 对象中的对象进行分组。其他可能的选项包括\
+  \ weeks、months 和 years。aggregate 字段用于指定系列中要使用的聚合函数，如下面的代码片段所示：\n\n```\nseries: [{\n\
+  \ type: 'area',\n aggregate: 'sum',\n field: 'billAmount',\n categoryField: 'date',\n\
+  \ labels: {\n visible: true,\n background: 'transparent'\n },\n color: '#0F0'\n\
+  }]\n```\n\n在此处，在系列定义中，aggregate 字段指定 sum 作为要使用的聚合函数；这意味着图表将绘制餐厅在一段时间内的总营业额。可以分配给\
+  \ aggregate 的其他可能值包括 avg、count、first、min 和 max。还有一个选项可以提供自定义聚合器函数，该函数将返回应用于投影数据的值。\n\
+  \nseries 选项指定系列的颜色，labels 选项用于在图表上显示数据值。当显示单个系列时，所有选项都可以在 series 选项中指定，而不是使用 seriesDefaults\
+  \ 选项。\n\n### 工作原理...\n\n执行页面时，订单数据将绘制在图表上，显示一段时间内的总营业额，如下面的屏幕截图所示：\n\n![](img/2a66507445090790d34dc5588b56b24c_194_0.png)\n\
+  \n同样，您可以创建多个图表，使用其他聚合函数（例如 avg 和 count），分别显示一段时间内的平均账单金额和订单总数。\n\n### Kendo UI DataViz\n\
+  \n您可以通过在页面上创建多个 `div` 元素（每个图表一个）、绘制按日期分组的数据以及使用聚合函数来构建显示这些统计信息的仪表板。\n\n![](img/2a66507445090790d34dc5588b56b24c_195_0.png)\n\
+  \n### 更多...\n\n前面示例中构建的面积图通过直线连接数值。您可以通过指定要使用的线条样式来自定义此行为。可能的值为 step 和 smooth：\n\
+  \n```\nline: {\n    style: 'smooth'\n}\n```\n\n当您指定 `smooth` 时，图表中的数值将通过平滑线连接，即一条曲线，它连接两个点，使图表看起来像是一条连接所有点的曲线，如下所示：\n\
+  \n![](img/2a66507445090790d34dc5588b56b24c_195_1.png)\n\n当您将线条样式指定为 `step` 时，图表上的数值将通过直角线连接。\n\
+  \n![](img/2a66507445090790d34dc5588b56b24c_196_0.png)\n\n### 通过添加事件使图表具有交互性\n\n\
+  Kendo UI Chart 库可以定义各种事件处理程序，当用户将鼠标悬停在系列中的数据项上或单击该数据项时，这些处理程序将被触发。在此示例中，当用户将鼠标悬停在图表中的数据项上时，我们将显示一个工具提示；在另一个示例中，当用户单击某个列时，我们将更改所选列的颜色。\n\
+  \n### 操作步骤...\n\n让我们考虑与我们用于展示 Chrome 浏览器多年来采用率的相同 `DataSource` 对象。在此示例中，让我们添加另一个字段\
+  \ `feature`，我们将使用它来显示 `tooltip`：\n\n```\nvar chromeBrowser = [{\n'year'   : 2008,\n\
+  'percentage': 0,\n'feature'   : 'First stable release'\n}, {\n'year'   : 2009,\n\
+  'percentage': 4,\n'feature'   : 'HTML5 Video and Audio tag support'\n}, {\n'year'\
+  \   : 2010,\n'percentage': 15,\n'feature'   : 'Support for WebM videos'\n}, {\n\
+  'year'   : 2011,\n'percentage': 26,\n'feature'   : 'Hardware accelerated 3D CSS'\n\
+  }, {\n'year'\n: 2012,\n'percentage' : 40,\n'feature' : 'New Extensions API'\n},\
+  \ {\n'year'\n: 2013,\n'percentage' : 52,\n'feature' : 'Web Speech API'\n}, {\n'year'\n\
+  : 2014,\n'percentage' : 56,\n'feature' : 'Different look for Win8 metro mode'\n\
+  }];\n```\n\n下一步是指定 tooltip 选项，该选项包含将在用户将鼠标悬停在系列中的数据项上时用于显示工具提示的字段，使用以下代码片段：\n\n\
+  ```\ntooltip: {\nvisible: true,\ntemplate: '#= dataItem.feature #',\nbackground:\
+  \ '#0F0'\n}\n```\n\n在此处，template 字段包含 dataItem.feature 值。dataItem 字段指用于在图表中绘制列的对象。其他可能的值包括\
+  \ category，它指 categoryAxis 中的类别，在此情况下将是 year 字段；value，它指用于绘制列的 percentage 值；以及 series，它指整个系列对象。\n\
+  \n要处理单击事件，请指定 seriesClick 选项：\n\n```\nseriesClick: function (e) {\n//iterate over\
+  \ series data and set the color for each series\nfor (var i = 0, j = e.series.data.length;\
+  \ i < j; i++) {\ne.series.data[i].color = '#00F';\n}\n//change the color of the\
+  \ selected series\ne.dataItem.color = '#F00';\n//redraw the graph - required for\
+  \ the changes to get reflected\nthis.redraw();\n}\n```\n\n前面函数中的第一条语句遍历系列中的所有对象并重置颜色；然后，系列中的选定项被分配不同的颜色。图表需要刷新或重新绘制才能使这些更改生效；因此，最后一行在此对象上调用\
+  \ redraw 函数。this 对象指上下文；在此情况下，this 是系列对象。\n\n订阅事件的另一种方法是在图表对象上使用 bind 方法添加监听器：\n\
+  \n```\nvar chart = $('#chart').data('kendoChart');\nchart.bind('seriesClick', function\
+  \ (e) {\n    for (var i = 0, j = e.series.data.length; i < j; i++) {\n        e.series.data[i].color\
+  \ = '#00F';\n    }\n    e.dataItem.color = '#F00';\n    this.redraw();\n});\n```\n\
+  \n前面代码片段中的第一行获取对图表对象的引用。然后使用图表对象订阅 seriesClick 事件。现在，当用户单击系列中的特定列时，将调用回调函数。\n\n\
+  > 刷新或重新绘制图表时，在绘制图表时会显示动画。要禁用动画，请将 transitions 属性指定为 false。\n\n### 工作原理...\n\n当您将鼠标悬停在绘制区域上时，您将看到数据项中的\
+  \ feature 值显示为工具提示，如下面的屏幕截图所示：\n\n![](img/2a66507445090790d34dc5588b56b24c_198_0.png)\n\
+  \n### Kendo UI DataViz\n\n现在将系列类型更改为 `column` 并刷新页面；您将看到图表中所有列的颜色相同。当您单击图表中的任何列时，所选列的颜色将更改并重新绘制。\n\
+  \n![](img/2a66507445090790d34dc5588b56b24c_199_0.png)\n\n在前面的屏幕截图中，所选列的颜色已更改并在图表中突出显示。\n\
+  \n### 动态更改图表类型\n\n在此示例中，我们将了解如何在运行时更改图表的类型和皮肤。例如，如果您已投影一个列图表并希望将其更改为，例如，折线图，则可以对系列进行更改，图表将更新。当您希望以多种形式直观地表示数据但由于空间限制无法做到时，这很有用。在此示例中，我们将使用\
+  \ `data` 属性而不是使用 `kendoChart` 函数来构建图表。这是构建图表的另一种方式。此外，我们将使用模型-视图-视图模型模式，当用户更改图表类型或皮肤时，对图表进行更改。此模式消除了添加事件处理程序的需求，而是依赖于监听模型更改以动态更新图表。\n\
+  \n### 操作步骤...\n\n让我们通过指定各种选项作为 data 属性来创建图表：\n\n```\n<div id=\"chartArea\" data-role=\"\
+  chart\" data-title=\"{text: 'Browser adoption', position: 'bottom'}\" data-category-axis=\"\
+  {field: 'year'}\" data-series-defaults=\"{type: 'area'}\" data-theme=\"blueopal\"\
+  \ data-legend=\"{position: 'bottom'}\" data-series=\"[\n\n\n\n\n\n\n在前面的代码片段中，所有选项均作为数据属性指定。数据属性\
+  \ role，其值设置为 chart，将 div 元素初始化为图表小部件。它还具有 data-bind 属性，该属性指定其源为 dataset。data-bind\
+  \ 属性用于指定模型绑定值。在此示例中，指定了源绑定，即此图表绑定到的 DataSource 对象。我们即将构建的 ViewModel 对象将指定 dataset\
+  \ 属性。\n\n下一步是创建两个下拉列表，一个列出图表类型，另一个列出应应用的各种主题或皮肤。我们还添加一个复选框，表示图表是否应堆叠，如下面的代码片段所示：\n\
+  \n```html\n<select id=\"chartTypeDropdown\" data-bind=\"value: chartType,\nevents:\
+  \ {change: onChangeHandler}\">\n<option value=\"area\">Area</option>\n<option value=\"\
+  line\">Line</option>\n<option value=\"column\">Column</option>\n</select>\n<select\
+  \ id=\"chartSkin\" data-bind=\"value: chartSkin,\nevents: {change: onChangeHandler}\"\
+  >\n<option value=\"default\">Default</option>\n<option value=\"blueopal\">BlueOpal</option>\n\
+  <option value=\"bootstrap\">Bootstrap</option>\n<option value=\"highcontrast\">HighContrast</option>\n\
+  <option value=\"metro\">Metro</option>\n<option value=\"metroblack\">MetroBlack</option>\n\
+  <option value=\"silver\">Silver</option>\n<option value=\"uniform\">Uniform</option>\n\
+  </select>\n<input type=\"checkbox\" data-bind=\"checked: isStacked,\nevents: {change:\
+  \ onChangeHandler}\" />Stacked\n```\n\n在此，select 元素和 input 元素均指定了 data-bind 属性。该属性分别指定\
+  \ value 和 checked 的模型绑定，并指定 change 事件的事件绑定。所有这些都应在 ViewModel 中指定。\n\n下一步是指定将用于绘制图表的数据源。让我们使用之前示例中使用的同一数据源：\n\
+  \n```javascript\nvar browserAdoption = [{\n'year': 2011,\n'chrome': 40,\n'firefox':\
+  \ 30,\n'ie': 15,\n'safari': 15\n}, {\n'year': 2012,\n'chrome': 45,\n'firefox': 25,\n\
+  'ie': 12,\n'safari': 18\n}, {\n'year': 2013,\n'chrome': 50,\n'firefox': 22,\n'ie':\
+  \ 8,\n'safari': 20\n}];\n```\n\n最后一步是创建一个 ViewModel 对象，该对象包含先前提到的元素将使用的所有模型属性。它还应指定\
+  \ onChangeHandler 函数，当用户更改下拉列表中的值或选择堆叠复选框时将调用该函数，如下面的代码片段所示：\n\n```javascript\n\
+  var viewModel = kendo.observable({\nchartType: 'area',\nchartSkin: 'blueopal',\n\
+  isStacked: false,\nonChangeHandler: function (e) {\nvar chart = $('#chartArea').data('kendoChart');\n\
+  chart.setOptions({\nseriesDefaults: {\ntype: this.chartType,\nstack: this.isStacked\n\
+  },\ntheme: this.chartSkin\n});\nchart.refresh();\n},\ndataSet: new kendo.data.DataSource({\n\
+  data: browserAdoption\n})\n});\n```\n\n在此，指定了 chartType、chartSkin、isStacked、dataset\
+  \ 和 onChangeHandler 等各种模型属性的绑定。onChangeHandler 函数是一个事件处理程序，用于处理来自下拉列表和输入复选框的 change\
+  \ 事件。当其中任何值更改时，图表将被更新。setOptions 函数用于在 seriesDefaults 字段中指定类型和 stack 值，以及要用于图表的主题。然后调用\
+  \ refresh 函数来更新图表。dataSet 属性指定绘制图表时要使用的 DataSource 对象。\n\n### 工作原理...\n\n当您呈现页面时，您将看到应用了\
+  \ **BlueOpal** 皮肤的 **area** 图表，如下面的屏幕截图所示：\n\n![](img/2a66507445090790d34dc5588b56b24c_202_0.png)\n\
+  \n现在，让我们将图表类型更改为 **Line**，主题更改为 **Silver**；这将触发 ViewModel 对象中的 onChangeHandler 函数，图表将使用所选选项进行更新。\n\
+  \n![](img/2a66507445090790d34dc5588b56b24c_203_0.png)\n\n现在，让我们更改所有三个选项，即类型更改为 **Column**，主题更改为\
+  \ **Bootstrap**，并选择 **Stacked** 选项。当您选择复选框时，stack 选项设置为 true，系列数据现在将堆叠，而不是为每个浏览器显示四个不同的列。\n\
+  \n![](img/2a66507445090790d34dc5588b56b24c_203_1.png)\n\n在前面的屏幕截图中，各系列的值相互堆叠。\n"
+- "## 11 Kendo UI DataViz – 高级图表\n\n在本章中，我们将介绍以下示例：\n\n- 创建显示股票历史的图表\n- 使用径向仪表小部件\n\
+  - 使用线性仪表小部件\n- 使用各种编码方法生成条形码图像\n- 生成表示 URL、电子邮件、电话和地理位置的二维码图像\n- 使用 Kendo Diagram\
+  \ 创建流程图\n- 使用 `layouts` 创建层次结构图\n- 使用 OpenStreet 地图创建显示地理空间信息的地图\n- 通过将其绑定到 GeoJSON\
+  \ 数据创建地图\n\n### 简介\n\nKendo UI 库提供了多种高级图表小部件，可用于可视化数据。这些包括显示特定股票股票价格历史的 Stock Chart\
+  \ 小部件、在地图上可视化数据的 Map 小部件、创建包含仪表图表的仪表板的 Gauge 小部件、允许您创建可用于识别产品的代码的 Barcode 和 QRCode\
+  \ 小部件，以及创建显示各种实体之间嵌套关系的图表的 Diagram 小部件。这些是除了前一章中提到的基本图表之外的一些高级图表。\n\n### 创建显示股票历史的图表\n\
+  \nKendo UI 库提供了一个专用的图表小部件，可用于显示特定股票在一段时间内的股票价格数据。在此示例中，我们将了解如何创建 Stock 图表并对其进行自定义。\n\
+  \n### 开始使用\n\n在 head 部分中包含 CSS 文件 kendo.dataviz.min.css 和 kendo.dataviz.default.min.css。这些文件用于样式化股票历史图表的某些部分。\n\
+  \n### 操作方法...\n\nStock 图表由两个图表组成：一个显示股票历史的窗格，以及一个用于通过更改日期范围来浏览图表的另一个窗格。\n\n特定股票在某一天的股票价格可由以下五个属性表示：\n\
+  \n- Open：显示交易开始当天的股票价值\n- Close：显示交易结束当天的股票价值\n- High：显示股票当天能够达到的最高值\n- Low：显示股票当天达到的最低值\n\
+  - Volume：显示当天交易的该股票的总股数\n\n假设服务以以下格式返回此数据：\n\n```json\n[\n    {\n        \"Date\"\
+  \ : \"2013/01/01\",\n        \"Open\" : 40.11,\n        \"Close\" : 42.34,\n   \
+  \     \"High\" : 42.5,\n        \"Low\" : 39.5,\n        \"Volume\": 10000\n   \
+  \ }\n    .\n    .\n    .\n]\n```\n\n我们将使用前面的数据创建 Stock 图表。kendoStockChart 函数用于创建\
+  \ Stock 图表，并使用与区域图或柱形图类似的一组选项进行配置，如前一章中所述。除了系列数据外，您还可以指定 navigator 选项，以在图表下方显示包含完整股票历史的导航窗格：\n\
+  \n```javascript\n$(\"#chart\").kendoStockChart({\n    title: {\n        text: 'Stock\
+  \ history'\n    },\n\n    dataSource: {\n        transport: {\n            read:\
+  \ '/services/stock?q=ADBE'\n        }\n    },\n\n    dateField: \"Date\",\n\n  \
+  \  series: [{\n        type: \"candlestick\",\n        openField: \"Open\",\n  \
+  \      closeField: \"Close\",\n        highField: \"High\",\n        lowField: \"\
+  Low\"\n    }],\n\n    navigator: {\n        series: {\n            type: 'area',\n\
+  \            field: 'Volume'\n        }\n    }\n});\n```\n\n在前面的代码片段中，DataSource\
+  \ 对象指的是将返回一组天数股票数据的远程服务。series 选项指定系列类型为 candlestick；此处使用烛台图来指示特定日期的股票价格。指定了 openField、closeField、highField\
+  \ 和 lowField 的映射；它们将用于绘制图表，并在用户将鼠标悬停在其上时显示提示。navigator 选项指定用于创建区域图，该区域图使用 volume\
+  \ 数据来绘制图表。dateField 选项用于指定图表中的日期字段与响应中的日期字段之间的映射。\n\n\n\n\n\n### 工作原理...\n\n加载页面时，您将看到显示两个窗格；导航器位于主图表下方。默认情况下，图表显示\
+  \ `DataSource` 对象中所有日期的数据，如下面的屏幕截图所示：\n\n![](img/2a66507445090790d34dc5588b56b24c_207_0.png)\n\
+  \n在前面的屏幕截图中，创建了一个蜡烛图，它显示了一段时间内的股票价格。另外，请注意，在导航器窗格中，默认情况下会选择所有日期范围，因此，它们也会反映在图表（蜡烛图）中。当您将鼠标悬停在系列上时，您会注意到所选日期的股票报价会显示出来。这包括日期以及\
+  \ **Open**、**High**、**Low** 和 **Close** 等其他字段。\n\n图表区域会调整以显示各种日期的股票价格，使日期均匀分布。在前面的情况中，日期范围从\
+  \ 2013 年 1 月 1 日到 2013 年 1 月 31 日。但是，当您将鼠标悬停在系列上时，您会注意到某些日期被省略了。为了解决这个问题，您可以增加图表区域的宽度，或者使用导航器来减小日期范围。如果日期范围跨越数月和数年，则不建议采用前一种选项。\n\
+  \n要减小导航器中的日期范围，请将两个日期范围选择器相互移动以缩小日期范围，如下面的屏幕截图所示：\n\n![](img/2a66507445090790d34dc5588b56b24c_208_0.png)\n\
+  \n当您尝试缩小日期范围时，您会在图表中看到一个工具提示，指示您正在尝试选择的日期范围。蜡烛图会调整以显示所选日期范围的股票价格。另外，请注意，导航器中所选日期范围的不透明度保持不变，而其余区域的不透明度会降低。选择日期范围后，所选窗格可以在导航器中移动。\n\
+  \n### 更多内容...\n\n有几个选项可用于自定义 Stock Chart 小部件的行为和外观。\n\n### 在初始化图表时指定导航器中的日期范围\n\n\
+  默认情况下，图表中会选择所有日期范围，用户将不得不在导航器窗格中将其缩小。当您处理大型数据集时，您希望在渲染图表时显示特定日期范围的股票数据。为此，请在导航器中指定\
+  \ select 选项：\n\n```\nnavigator: {\n    series: {\n        type: 'area',\n      \
+  \  field: 'Volume'\n    },\n    select: {\n        from: '2013/01/07',\n       \
+  \ to: '2013/01/14'\n    }\n}\n```\n\n在前面的代码片段中，指定了 from 和 to 日期范围。现在，当您渲染页面时，您将看到导航器窗格中选择了相同的日期。\n\
+  \n![](img/2a66507445090790d34dc5588b56b24c_209_0.png)\n\n### 自定义 Stock Chart 小部件的外观\n\
+  \n有多个选项可用于自定义 Stock Chart 小部件中的导航器窗格。让我们增加窗格的高度，并为其添加标题文本：\n\n```\nnavigator: {\n\
+  \    pane: {\n        height: '50px',\n        title: {\n            text: 'Stock\
+  \ Volume'\n        }\n    }\n}\n```\n\n现在，当您渲染页面时，您将看到导航器窗格的标题和高度已增加。\n\n![](img/2a66507445090790d34dc5588b56b24c_210_0.png)\n\
+  \n### 使用 Radial Gauge 小部件\n\nRadial Gauge 小部件允许您构建类似仪表板的应用程序，其中您希望指示一个位于特定范围内的值。例如，汽车仪表板可以包含几个\
+  \ Radial Gauge 小部件，用于指示当前速度和转速。\n\n### 操作方法...\n\n要创建 Radial Gauge 小部件，请在所选 DOM\
+  \ 元素上调用 kendoRadialGauge 函数。Radial Gauge 小部件包含一些组件，可以通过提供选项进行配置，如下面的代码片段所示：\n\n\
+  ```\n$(\"#chart\").kendoRadialGauge({\n    scale: {\n        startAngle: 0,\n  \
+  \      endAngle: 180,\n        min: 0,\n        max: 180\n    },\n    pointer: {\n\
+  \        value: 20\n    }\n});\n```\n\n### Kendo UI DataViz - 高级图表\n\n此处使用 scale\
+  \ 选项来配置 Radial Gauge 小部件的范围。`startAngle` 和 `endAngle` 选项用于指示 Radial Gauge 小部件范围应开始和结束的角度。默认情况下，它们的值分别为\
+  \ 30 和 210。另外两个选项，即 `min` 和 `max`，用于指示可以绘制值的范围值。`pointer` 选项用于指示 Radial Gauge 小部件中的当前值。\n\
+  \n有多个选项可用于配置 Radial Gauge 小部件；这些选项包括标签的定位和配置小部件的外观。\n\n### 工作原理...\n\n当您渲染页面时，您将看到一个\
+  \ Radial Gauge 小部件，它显示从 **0** 到 **180** 的刻度，指针指向值 **20**。\n\n![](img/2a66507445090790d34dc5588b56b24c_211_0.png)\n\
+  \n此处，**0** 到 **180** 的值均匀分布，即主刻度以 **20** 为单位。有 10 个次要刻度，即两个主刻度之间的刻度。小部件以顺时针方向显示值。另外，指针值\
+  \ **20** 在刻度中被选中。\n\n### 更多内容...\n\nRadial Gauge 小部件可以在初始化小部件时包含各种选项，从而进行很大程度的自定义。\n\
+  \n### 更改主刻度和次要刻度值\n\n在 scale 中指定 `majorUnit` 和 `minorUnit` 选项：\n\n```\nscale: {\n\
+  \    startAngle: 0,\n    endAngle: 180,\n    min: 0,\n    max: 180,\n    majorUnit:\
+  \ 30,\n    minorUnit: 10\n}\n```\n\nscale 选项将 majorUnit 值指定为 30（而不是默认的 20），minorUnit\
+  \ 为 10。这将在每 30 个单位处添加标签，并在两个主刻度之间显示两个次要刻度，每个刻度间距为 10 个单位，如下面的屏幕截图所示：\n\n![](img/2a66507445090790d34dc5588b56b24c_212_0.png)\n\
+  \n前面的屏幕截图中显示的刻度也可以自定义：\n\n```\nscale: {\n    minorTicks: {\n        size: 30,\n\
+  \        width: 1,\n        color: 'green'\n    },\n    majorTicks: {\n        size:\
+  \ 100,\n        width: 2,\n        color: 'red'\n    }\n}\n```\n\n此处，size 选项用于指定刻度标记的长度，width\
+  \ 用于指定刻度的厚度，color 选项用于更改刻度的颜色。\n\n现在，当您渲染页面时，您将看到主刻度和次要刻度的更改。\n\n![](img/2a66507445090790d34dc5588b56b24c_213_0.png)\n\
+  \n### 使用 ranges 选项更改径向颜色\n\n`scale` 属性可以包含 `ranges` 选项，以指定 Radial Gauge 小部件上各个范围的径向颜色：\n\
+  \n```\nscale: {\n    ranges: [\n        {\n            from: 0,\n            to:\
+  \ 60,\n            color: '#00F'\n        }, {\n            from: 60,\n        \
+  \    to: 130,\n            color: '#0F0'\n        }, {\n            from: 130,\n\
+  \            to: 200,\n            color: '#F00'\n        }\n    ]\n}\n```\n\n在前面的代码片段中，`ranges`\
+  \ 数组包含三个对象，用于指定应用于小部件圆周上的颜色。`from` 和 `to` 值用于指定应用颜色的刻度值范围。\n\n现在，当您渲染页面时，您将看到 Radial\
+  \ Gauge 小部件沿着小部件圆周显示各个范围的颜色，如下面的屏幕截图所示：\n\n![](img/2a66507445090790d34dc5588b56b24c_214_0.png)\n\
+  \n在前面的屏幕截图中，`startAngle` 和 `endAngle` 字段分别更改为 10 和 250。可以通过将标签移到外部来进一步自定义小部件。这可以通过指定\
+  \ `labels` 属性并将 `position` 设置为 `outside` 来完成。\n\n![](img/2a66507445090790d34dc5588b56b24c_214_1.png)\n\
+  \n在前面的屏幕截图中，标签位于外部，因此，径向位于内部。\n\n### 使用 Slider 小部件更新指针值\n\n`pointer` 值在初始化 Radial\
+  \ Gauge 小部件时设置。可以在运行时使用 Slider 小部件更改小部件的 `pointer` 值。可以观察到 Slider 小部件的变化，并相应地更新\
+  \ Radial Gauge 的 `pointer` 值。\n\n让我们使用前面配方中提到的同一个 Radial Gauge 小部件。使用输入元素创建一个 Slider\
+  \ 小部件：\n\n```\n<input id=\"slider\" value=\"0\" />\n```\n\n下一步是将前面提到的输入元素初始化为 Slider\
+  \ 小部件：\n\n```\n$('#slider').kendoSlider({\n    min: 0,\n    max: 200,\n    showButtons:\
+  \ false,\n    smallStep: 10,\n    tickPlacement: 'none',\n    change: updateRadialGuage\n\
+  });\n```\n\n`min` 和 `max` 值指定可以为滑块设置的值范围。`smallStep` 属性指定滑块的最小增量值。`change` 属性指定当\
+  \ `slider` 值变化时应调用的函数。\n\n然后，`updateRadialGuage` 函数应更新 Radial Gauge 小部件中指针的值：\n\n\
+  ```\nfunction updateRadialGuage() {\n    $('#chart').data('kendoRadialGauge')\n\
+  \        .value($('#slider').val());\n}\n```\n\n该函数获取小部件的实例，然后将其值设置为从 Slider 小部件获得的值。\n\
+  \n\n\n\n\n### 使用线性度量器小部件\n\n线性度量器小部件也用于指示某个值在给定范围内的位置。它与径向度量器小部件类似，并采用相同的选项集。它用于在线性刻度上显示值。\n\
+  \n#### 操作方法...\n\n线性度量器是通过在 DOM 元素上调用 kendoLinearGauge 函数创建的。它使用与径向度量器小部件相同的选项：\n\
+  \n```javascript\n$(\"#chart\").kendoLinearGauge({\n    pointer: {\n        value:\
+  \ 20,\n    },\n    scale: {\n        min: 0,\n        max: 200,\n        majorUnit:\
+  \ 20,\n        minorUnit: 10\n    }\n});\n```\n\n这将显示指针位于 **20** 的线性度量器小部件。默认情况下，小部件垂直显示，即值投影在\
+  \ y 轴上。要水平显示小部件，请在 `scale` 选项下将 `vertical` 指定为 `false`。这将水平显示小部件。\n\n#### 工作原理...\n\
+  \n渲染页面时，线性度量器垂直显示，如下图所示：\n\n![](img/2a66507445090790d34dc5588b56b24c_217_0.png)\n\
+  \n将 `vertical` 设置为 `false` 后，小部件水平显示。\n\n![](img/2a66507445090790d34dc5588b56b24c_217_1.png)\n\
+  \n与径向度量器一样，线性度量器也可以包含 ranges 选项。包含 ranges 选项后，您将看到小部件沿其刻度显示此选项。\n\n![](img/2a66507445090790d34dc5588b56b24c_218_0.png)\n\
+  \n#### 更多内容...\n\n线性度量器上显示的指针默认是 barIndicator。另一个可用选项是 arrow。要更改指针，请在 pointer 选项下将\
+  \ shape 设置为 arrow：\n\n```javascript\npointer: {\n    value: 20,\n    shape: 'arrow'\n\
+  }\n```\n\n现在渲染页面时，您将看到一个箭头。\n\n![](img/2a66507445090790d34dc5588b56b24c_218_1.png)\n\
+  \n### 使用各种编码方法生成条形码图像\n\nKendo UI 库提供可用于为给定值生成条形码图形图像的 API。例如，超市中的每个产品都可以关联一个条形码。当客户购买产品时，条形码将用于获取产品价格和其他详细信息。该库可以通过引用唯一标识符来生成条形码。\n\
+  \n#### 操作方法...\n\n可以通过在 DOM 元素上调用 kendoBarcode 函数来生成条形码图像：\n\n```javascript\n$(\"\
+  #chart\").kendoBarcode({\n    value: '1234567'\n});\n```\n\n这里，1234567 值将使用默认编码（即\
+  \ code39）进行编码。您也可以通过指定 type 字段来指定要使用的编码方法：\n\n```javascript\n$(\"#chart\").kendoBarcode({\n\
+  \    value: '1234567',\n    type: 'ean8'\n});\n```\n\n在前面的代码片段中，编码类型设置为 ean8。其他可能的值包括\
+  \ EAN13、UPCE、UPCA、Code11、Code39、Code39Extended、Code93、Code93Extended、Code128、Code128A、Code128B、Code128C、GS1-128、MSIMod10、MSIMod11、MSIMod1010、MSIMod1100\
+  \ 和 POSTNET。value 属性是必需的，条形码将使用该值和指定的编码类型生成。\n\n#### 工作原理...\n\n当您不指定编码类型时，将使用 code39\
+  \ 编码来生成条形码，如下图所示：\n\n![](img/2a66507445090790d34dc5588b56b24c_219_0.png)\n\n值显示在前面的条形码中。要隐藏值，请指定\
+  \ text 属性并将 visible 选项设置为 false：\n\n```javascript\n$(\"#chart\").kendoBarcode({\n\
+  \    value: '1234567',\n    text: {\n        visible: false\n    }\n});\n```\n\n\
+  当您使用其他编码类型时，例如 ean8，条形码将相应生成。\n\n![](img/2a66507445090790d34dc5588b56b24c_219_1.png)\n\
+  \n### 生成 QR 码图像以表示 URL、电子邮件、电话和地理位置\n\n**快速响应码（QR 码）**通常用于通过编码数据来高效存储数据。它默认使用 ISO_8859_1\
+  \ 作为编码方法来存储数据。生成的代码由排列在白色背景上的方形网格中的黑色模块（方形点）组成。然后可以通过摄像头读取该代码，并由应用程序处理。\n\n在此示例中，我们将看到如何将各种形式的数据（如\
+  \ URL、电子邮件地址、电话号码和地理位置）存储在 QR 码中。\n\n#### 操作方法...\n\n要生成 QR 码，请在 DOM 元素上调用 `kendoQRCode`\
+  \ 函数：\n\n```javascript\n$(\"#chart\").kendoQRCode({\n    value: 'http://www.kendoui.com'\n\
+  });\n```\n\n在前面的示例中，指定了 `http://www.kendoui.com` URL。该值将使用 ISO_8859_1 进行编码，并在方形网格中表示。扫描\
+  \ QR 码时，将识别其中存储的值。由于该值带有协议名称前缀 `http://`，因此该值被识别为 URL。同样，电子邮件地址应带有 `mailto:` 前缀，电话号码应带有\
+  \ `tel` 前缀，地理位置应带有 `geo` 并随后跟随纬度和经度信息。地理位置可以按以下方式编码：\n\n```javascript\n$(\"#chart\"\
+  ).kendoQRCode({\n    value: 'geo: 12.9667, 77.5667, 100'\n});\n```\n\n默认情况下，QR 码的颜色为黑色，并在白色背景上绘制。可以通过指定\
+  \ `color` 和 `background` 属性来更改此设置：\n\n```javascript\n$(\"#chart\").kendoQRCode({\n\
+  \    value: 'geo: 12.9667, 77.5667, 100',\n    color: 'red',\n    background: 'yellow'\n\
+  });\n```\n\n#### 工作原理...\n\n渲染页面时，您将看到一个方形网格，显示代表 URL 的 QR 码的点和线。\n\n![](img/2a66507445090790d34dc5588b56b24c_221_0.png)\n\
+  \n当您将值更改为地理位置并指定 color 和 background 属性时，生成的 QR 码将如下所示：\n\n![](img/2a66507445090790d34dc5588b56b24c_221_1.png)\n\
+  \n#### 更多内容...\n\nQR 码具有错误纠正功能，允许您在代码损坏或脏污时恢复数据。有四种可应用于 QR 码的错误纠正级别，即 L、M、Q 和 H。每个级别指示可以恢复的数据百分比，即\
+  \ L 恢复 7% 的数据，M 恢复 15%，Q 恢复 25% 的数据，H 恢复 30%。初始化 QR 码时，可以通过设置 errorCorrection 属性来更改错误纠正级别：\n\
+  \n```javascript\n$(\"#chart\").kendoQRCode({\n    value: 'geo: 12.9667, 77.5667,\
+  \ 100',\n    errorCorrection: 'Q'\n});\n```\n\n在前面的示例中，errorCorrection 属性设置为 Q，并用于编码该值。\n\
+  \n### 使用 Kendo Diagram 创建流程图\n\n随着 Kendo UI 库中引入图表，现在可以轻松地将工作流程图或层次结构添加到网页中。在此示例中，我们将通过创建形状来构建流程图，然后使用连接器将它们连接起来。该库还提供一组布局，可用于表示层次结构或树状结构。\n\
+  \n#### 操作方法...\n\n流程图用于表示算法中的步骤；这些步骤显示为形状（矩形和圆形）。然后使用连接器连接形状并描述流程。Kendo UI 中的图表是通过在选定的\
+  \ DOM 节点上调用 kendoDiagram 函数创建的：\n\n```javascript\nvar diagram = $(\"#chart\").kendoDiagram({\n\
+  \    connectionDefaults: {\n        stroke: {\n            color: '#F00'\n     \
+  \   },\n        startCap: 'FilledCircle',\n        endCap: 'ArrowEnd',\n    }\n\
+  }).getKendoDiagram();\n```\n\n在前面的代码片段中，创建了一个空图表，并为连接指定了一些默认属性。连接用于连接图表中的两个或多个形状。connectionDefaults\
+  \ 选项指定要应用的描边颜色；startCap 和 endCap 选项用于指定要应用的装饰。在此示例中，startCap 选项的值为 FilledCircle，这将在连接的起始处显示一个圆形。可以分配给\
+  \ startCap 的另一个值是 ArrowStart。这将添加一个指向形状的箭头。endCap 选项的值设置为 ArrowEnd。在此示例中，发起连接的形状将附带一个填充圆形，并显示一个指向第二个形状的箭头。\n\
+  \ngetKendoDiagram 函数将在初始化后返回图表的实例。图表就像一个画布，您可以在其中添加多个形状并将它们连接起来。\n\n\n\n\n\n现在让我们创建一个函数，该函数将接受形状详细信息，包括需要显示的文本、形状类型以及形状在图表上的位置：\n\
+  \n```javascript\nfunction createShape(textData, type, positionX, positionY) {\n\
+  \    return new kendo.dataviz.diagram.Shape({\n        x: positionX,\n        y:\
+  \ positionY,\n        width: 100,\n        height: 50,\n        type: type,\n  \
+  \      content: {\n            text: textData,\n            color: '#FFF'\n    \
+  \    },\n        background: '#00B'\n    });\n}\n```\n\n在前面的代码片段中，createShape 函数接受上述参数并返回一个形状实例，即\
+  \ kendo.dataviz.diagram.Shape。现在让我们创建几个形状并将它们添加到图表中：\n\n```javascript\nvar shape1\
+  \ = diagram.addShape(\n    createShape('Start', 'circle', 400, 20));\nvar shape2\
+  \ = diagram.addShape(\n    createShape('counter = 0', 'rectangle', 400,\n    100));\n\
+  var shape3 = diagram.addShape(\n    createShape('counter < 5', 'rectangle', 400,\n\
+  \    190));\nvar shape4 = diagram.addShape(\n    createShape('Stop', 'circle', 600,\
+  \ 290));\nvar shape5 = diagram.addShape(\n    createShape('Print (counter)', 'rectangle',\n\
+  \    200, 290));\nvar shape6 = diagram.addShape(\n    createShape('counter++', 'rectangle',\
+  \ 200,\n    390));\n```\n\n在前面的代码片段中，通过指定内容文本和位置数据创建了六个形状对象。你可以创建两种类型的形状：矩形和圆形。一旦形状被创建，它们就通过在图表对象上调用\
+  \ addShape 函数被添加到图表中。\n\n一旦形状被添加，就可以在它们之间建立连接：\n\n```javascript\ndiagram.connect(shape1,\
+  \ shape2);\ndiagram.connect(shape2, shape3);\ndiagram.connect(shape3.getConnector('Right'),\n\
+  \ shape4.getConnector('Top'), {\n points: [\n new kendo.dataviz.diagram.Point(650,\
+  \ 215)\n ]\n });\ndiagram.connect(shape3.getConnector('Left'),\n shape5.getConnector('Top'),\
+  \ {\n points: [\n new kendo.dataviz.diagram.Point(250, 215)\n ]\n });\ndiagram.connect(shape5,\
+  \ shape6);\ndiagram.connect(shape6.getConnector('Bottom'),\n shape3.getConnector('Bottom'),\
+  \ {\n points: [\n new kendo.dataviz.diagram.Point(250, 470),\n new kendo.dataviz.diagram.Point(450,\
+  \ 470)\n ]\n });\n```\n\nconnect 函数接受两个形状对象和一个可选的配置对象。在两个形状之间添加一个连接；形状实例上有四个可用的连接点，即\
+  \ Top、Bottom、Right 和 Left。框架识别形状在图表上的位置，并从 Shape 实例中选择正确的连接点。在前面的示例中，shape2 位于 shape1\
+  \ 正下方，因此两者之间的连接将从 shape1 的底部连接点到 shape2 的顶部连接点。\n\n在第三个示例中，要使用的连接点是通过调用 shape3.getConnector('Right')\
+  \ 和 shape4.getConnector('Top') 明确提及的。另外，第三个参数是用于配置连接器的配置对象。前面代码片段中的第三个参数指定了 points\
+  \ 配置。这用于设置连接的中间点。这将在初始化小部件时指定的 connectionDefaults 的基础上应用。\n\n### How it works...\n\
+  \n当你不指定连接器时，即当你使用 `diagram.connect(shape1, shape2)`，框架将确定要使用的连接器并添加连接，如下面的截图所示：\n\
+  \n![](img/2a66507445090790d34dc5588b56b24c_225_0.png)\n\n在前面的情况下，`shape2` 位于 `shape1`\
+  \ 下方，并从形状中选择了适当的连接器。当第二个形状位于右侧时，将使用第一个形状的右连接器和第二个形状的左连接器来连接这两个形状。\n\n![](img/2a66507445090790d34dc5588b56b24c_225_1.png)\n\
+  \n在前面的截图中，连接两个形状的线是倾斜的。这可以通过在每个形状上选择连接器并在两个形状之间添加中间点来纠正，即第三个参数，指定点对象的数组。\n\n![](img/2a66507445090790d34dc5588b56b24c_225_2.png)\n\
+  \n一旦所有连接都添加完毕，一个连接各种形状的流程图就创建了。\n\n![](img/2a66507445090790d34dc5588b56b24c_226_0.png)\n\
+  \n注意，带有 **counter++** 和 **counter<5** 文本的形状之间的连接有两个中间点。`points` 数组用于指定在添加连接时应使用的各种中间点对象。\n\
+  \n### Creating hierarchical structural diagrams using layouts\n\n在这个配方中，我们将探讨使用\
+  \ `kendoDiagram` 中的 `layout` 选项构建层次结构图或树状图。层次结构可以用 JSON 格式表示，并可以在构建图表时用作 `DataSource`\
+  \ 对象。\n\n#### How to do it...\n\n让我们创建一个 JSON 格式的层次结构，然后可以将其用作构建树形图的 `DataSource`\
+  \ 对象：\n\n```javascript\nvar data = [\n {\n \"designation\": \"CEO\",\n \"name\"\
+  : \"Mitchell Johnson\",\n \"manages\": [\n {\n \"designation\": \"Vice President\"\
+  ,\n \"name\": \"Smith Cooper\",\n \"manages\": [\n {\n \"designation\": \"Director\"\
+  ,\n \"name\": \"Andrew Walker\"\n },\n {\n \"designation\": \"Director\",\n \"name\"\
+  : \"Robert Thompson\"\n }\n ],\n },\n {\n \"designation\": \"Vice President\",\n\
+  \ \"name\": \"Harris Jones\",\n \"manages\": [\n {\n \"designation\": \"Director\"\
+  ,\n \"name\": \"Edward Collins\"\n },\n {\n \"designation\": \"Director\",\n \"\
+  name\": \"Thomas Wang\"\n }\n ]\n }\n ]\n }\n];\n```\n\n在前面的代码片段中，我们正在创建一个层次结构，其中每个对象包含三个字段：designation、name\
+  \ 和 manages。manages 字段表示特定节点的子节点。每个节点将显示名称和职位字段，然后将添加连接器来表示 manages 集合中提到的节点。\n\n\
+  下一步是在创建图表时指定 DataSource 对象的详细信息。在 DataSource 选项中，你还应该指定架构详细信息，以让框架知道哪个属性应被视为添加子节点，如下面的代码片段所示：\n\
+  \n```javascript\n$(\"#chart\").kendoDiagram({\ndataSource: {\ndata: data,\nschema:\
+  \ {\nmodel: {\nchildren: \"manages\"\n}\n},\n.\n.\n});\n```\n\n在指定 `DataSource`\
+  \ 选项后，下一步是指定 `layout` 详细信息。`layout` 选项用于指定图表中形状和连接的排列。它将解析数据，然后根据指定的布局类型和子类型排列这些形状：\n\
+  \n```javascript\n$(\"#chart\").kendoDiagram({\n.\n.\nlayout: {\ntype: \"tree\",\n\
+  subtype: \"down\",\nhorizontalSeparation: 50,\nverticalSeparation: 50\n},\n.\n});\n\
+  ```\n\n在 `layout` 选项中，type 指定为 `tree`，subtype 为 `down`。这将创建一个树状结构，根节点位于图表顶部，后面跟着各种子节点。subtype\
+  \ 的其他可能值包括以下内容：\n\n+   - up：在此值中，根节点位于底部，其子节点向上添加，即树将被反转\n+   - left：在此值中，根节点放置在左侧，其子节点添加到右侧\n\
+  +   - right：在此值中，根节点放置在右侧，其子节点添加到左侧\n+   - mindmapVertical：在此值中，根节点位于中心，其子节点在根节点上下均匀分布\n\
+  +   - mindmapHorizontal：在此值中，根节点位于中心，其子节点在根节点左右两侧均匀分布\n+   - radial：在此值中，根节点位于中心，所有子节点以径向形式围绕它展开\n\
+  +   - tipOver：此值类似于 tree-down 子类型，其中直接子节点水平排列，孙子节点垂直排列\n\n\n\n\n\n其他两个属性 horizontalSeparation\
+  \ 和 verticalSeparation 用于指定水平和垂直排列的两个节点之间的距离。\n\n下一步是在 DataSource 对象中为节点创建形状。在本示例中，我们将使用\
+  \ shapeDefaults 选项向图表添加形状，如以下代码片段所示：\n\n```\n$(\"#chart\").kendoDiagram({\n.\n.\n\
+  shapeDefaults: {\nvisual: function (data) {\nvar group = new kendo.dataviz.diagram.Group();\n\
+  \n//create a rectangle shape\ngroup.append(new kendo.dataviz.diagram.Rectangle({\n\
+  width: 130,\nheight: 75,\nbackground: '#1696d3',\nstroke: {\nwidth: 0\n}\n})); //add\
+  \ text 'name' inside the rectangle\ngroup.append(new kendo.dataviz.diagram.TextBlock({\n\
+  text: data.dataItem.name,\nx: 10,\ny: 10,\ncolor: '#fff'\n})); //add text 'designation'\
+  \ inside the rectangle\ngroup.append(new kendo.dataviz.diagram.TextBlock({\ntext:\
+  \ data.dataItem.designation,\nx: 10,\ny: 30,\ncolor: '#fff'\n}));\nreturn group;\n\
+  }\n},\n.\n});\n```\n\n这里，visual 属性的值是一个函数，该函数返回需要在图表上呈现的可视元素。在我们的示例中，我们将创建一个包含模型中\
+  \ name 和 designation 属性的可视元素。该函数首先通过创建 kendo.dataviz.diagram.Group 的实例来创建一个组元素。Group\
+  \ 属性是一个不可见的可视元素，用于包含和分组其他可视元素。然后，我们创建 kendo.dataviz.diagram.Rectangle 和 kendo.dataviz.diagram.TextBlock\
+  \ 的实例并将其追加到组中。该函数随后返回组对象。该函数被递归调用，节点被添加到图表中。\n\n### 工作原理...\n\n当布局子类型为 down 时，根节点位于顶部，子节点被添加，树向下生长，如以下屏幕截图所示：\n\
+  \n![](img/2a66507445090790d34dc5588b56b24c_230_0.png)\n\n当将子类型更改为 left 时，根节点位于右侧，节点被添加，使树从右向左生长。\n\
+  \n![](img/2a66507445090790d34dc5588b56b24c_230_1.png)\n\n将子类型更改为 mindmapHorizontal\
+  \ 后，根节点位于中心，子节点被添加到两侧。\n\n![](img/2a66507445090790d34dc5588b56b24c_231_0.png)\n\n\
+  您可以尝试将子类型更改为 radial 和 tipOver，以查看图表中节点的位置。\n\n### 使用 OpenStreet 地图创建显示地理空间信息的地图\n\
+  \n该库提供了 API，您可以使用它在页面上显示特定位置的地图。在本示例中，我们将使用 kendoMap 函数创建地图，并提供一些配置详细信息。我们将使用 OpenStreet\
+  \ 地图来获取地图图像。\n\n### 操作方法...\n\n要创建地图，请在选定的 DOM 节点上调用 kendoMap 函数，并提供以下代码片段中提到的配置选项：\n\
+  \n```\n$('#chart').kendoMap({\n    center: [30.2681, -97.7448],\n    zoom: 4,\n\
+  \    layers: [{\n        type: 'tile',\n        urlTemplate: \"http://#= subdomain\
+  \ #.tile2.opencyclemap.org/transport/#= zoom #/#= x #/#= y #.png\",\n        subdomains:\
+  \ ['a', 'b', 'c'],\n        attribution: '&copy; <a href=\"http://osm.org/copyright\"\
+  >OpenStreetMap contributors</a>.' +\n            'Tiles courtesy of <a href=\"http://www.opencyclemap.org/\"\
+  >Andy Allan</a>'\n    }],\n    ...\n});\n```\n\n在前面的代码片段中，center 选项用于指定地图中心位置的坐标。纬度和经度信息，连同提供的地图宽度和高度，用于在地图容器中居中地图。zoom\
+  \ 选项用于设置地图的缩放级别。layers 属性用于指定将在地图上显示的各种图层；在前面的示例中，图层类型指定为 tile，用于显示来自 OpenStreet\
+  \ 地图的数据。type 的其他可能值包括 bing，用于从 Bing 地图检索地图；marker，用于向地图添加标记；以及 shape，用于显示矢量形状图层。当数据绑定到\
+  \ geoJSON 数据时，会使用这些值。urlTemplate 属性指定从中检索地图数据的 URL。它会考虑地图设置的缩放级别以及 x 和 y 坐标，即 center\
+  \ 属性和 subdomains 属性中指定的纬度和经度信息。请注意，在 urlTemplate 选项之后，指定了 subdomains 属性。它是一个数组，提及应用于获取地图图像的子域。浏览器对每个域可并行检索的图像数量有限制。使用子域时，图像会并行获取；因此，缩短了呈现整个地图所需的时间。attribution\
+  \ 字段用于指定图层的归属信息。\n\n现在让我们向地图添加一些标记。标记是另一种可以添加的图层类型：\n\n```\n$('#chart').kendoMap({\n\
+  .\n.\nlayers: [{\ntype: 'tile',\n.\n.\n}, {\ntype: 'marker',\nlocationField: 'latlng\
+  \ ',\ntooltip: {\ncontent: function (e) {\nreturn e.sender.marker.dataItem.tooltip;\n\
+  }\n},\ndataSource: {\ndata: [{\nlatlng: [40.6700, -73.9400],\ntooltip: 'New York'\n\
+  }, {\nlatlng: [34.0500, -118.2500],\ntooltip: 'Los Angeles'\n}]]\n}});\n```\n\n\
+  ### Kendo UI DataViz - 高级图表\n\n在前面的代码片段中，图层类型指定为 `marker`，`locationField` 属性指定的值为\
+  \ `latlng`。这引用了 `dataSource` 选项中的属性。`dataSource` 属性指定标记详细信息，即必须添加标记的纬度和经度信息，以及用户将鼠标悬停在标记上时显示的提示信息。`tooltip`\
+  \ 选项包含一个 `content` 属性，其值是一个函数，用于从 `dataSource` 属性返回提示信息。\n\n### 工作原理...\n\n当您呈现页面时，会显示地图。地图数据从指定的\
+  \ URL 获取，即从 OpenStreet 地图使用各种子域获取。\n\n![](img/2a66507445090790d34dc5588b56b24c_233_0.png)\n\
+  \n请注意，地图在左上角显示了导航器和缩放控件。此外，归属文本显示在地图的右下角。添加图层标记后，地图现在将在指定的纬度和经度坐标处包含图钉，如以下屏幕截图所示：\n\
+  \n![](img/2a66507445090790d34dc5588b56b24c_234_0.png)\n\n在前面的屏幕截图中，当用户将鼠标悬停在标记上时，会显示提示信息。\n\
+  \n### 更多...\n\n在前面的示例中，导航器、缩放和归属控件位于屏幕的左上角和右下角。可以通过包含 controls 选项并指定这些控件的位置来更改这些控件的位置：\n\
+  \n```\n$('#chart').kendoMap({\n.controls: {\nnavigator: {\nposition: \"bottomRight\"\
+  \n},\nzoom: {\nposition: \"bottomLeft\"\n},\n},\n```\n\n```\nattribution: {\n  \
+  \  position: \"topRight\"\n},\n.\n});\n```\n\n现在当您呈现页面时，控件将相应地定位。\n\n![](img/2a66507445090790d34dc5588b56b24c_235_0.png)\n\
+  \nposition 属性可以具有以下值之一：topLeft、topRight、bottomLeft 和 bottomRight。也可以通过将其值设置为 false\
+  \ 来隐藏控件：\n\n```\ncontrols: {\n    navigator: false\n},\n```\n\n通过将指定的控件设置为 false，该控件将不会在页面上显示。\n\
+  \n### 通过绑定 GeoJSON 数据创建地图\n\nGeoJSON 是一种对多种地理数据结构进行编码的格式。它是一种开放标准格式，用于使用 JSON 对一组简单地理特征及其非空间属性进行编码。在本示例中，我们将创建一个绑定到\
+  \ geoJSON 数据的地图，该数据不仅包含坐标，还包含该区域的其他非空间信息。\n\n### 操作方法...\n\n要创建与点或坐标对应的形状，请将图层类型设置为\
+  \ shape。让我们先参考包含坐标和其他非空间数据的 geoJSON 数据：\n\n```\n{\n\"type\": \"FeatureCollection\"\
+  ,\n\"features\": [\n{\n\"type\": \"Feature\",\n\"properties\": {\n\"GEO_ID\": \"\
+  0400000US23\",\n\"STATE\": \"23\",\n\"NAME\": \"Maine\",\n\"LSAD\": \"\",\n\"CENSUSAREA\"\
+  : 30842.923\n},\n\"geometry\": {\n\"type\": \"MultiPolygon\",\n\"coordinates\":\
+  \ [\n[\n[-67.619761, 44.519754],\n[-67.61541, 44.521973],\n[-67.587738, 44.516196],\n\
+  .\n.\n.\n],\n.\n.\n.\n]\n}\n}\n]\n}\n```\n\n\n\n\n\n提到的 geoJSON 数据包含与地图上的点对应的坐标。这些点将用于构建矢量形状。geoJSON\
+  \ 数据还列出了 NAME 和 CENSUSAREA 等其他属性。让我们使用之前的 JSON 数据作为 DataSource 对象，通过 kendoMap 函数构建地图：\n\
+  \n```javascript\n$('#chart').kendoMap({\ncenter: [30.2681, -97.7448],\nzoom: 4,\n\
+  layers: [{\ntype: 'shape',\ndataSource: {\ntype: 'geojson',\ntransport: {\nread:\
+  \ './geojson-us.json'\n}\n}\n}]\n});\n```\n\n在这里，type 属性设置为 shape，并指定了 dataSource，它指向包含\
+  \ geoJSON 数据的文件。框架将解析 geoJSON 数据，并引用坐标来构建地图。\n\n我们可以使用 geoJSON 数据中存在的其他属性，并为地图添加一些功能。例如，我们可以将\
+  \ CENSUSAREA 字段转换为十六进制数，并使用它来填充形状：\n\n```javascript\n$('#chart').kendoMap({\ncenter:\
+  \ [30.2681, -97.7448],\nzoom: 4,\nlayers: [{\ntype: 'shape',\ndataSource: {\ntype:\
+  \ 'geojson',\ntransport: {\nread: './geojson-us.json'\n}\n}\n}]),\nshapeCreated:\
+  \ function (e) {\nvar shapeColor = parseInt(e.shape.dataItem.properties.\nCENSUSAREA,\
+  \ 16).toString();\nshapeColor = '#' + ('FFFFFF' + shapeColor).slice(-6);\ne.shape.fill(shapeColor);\n\
+  }\n});\n```\n\n在前面的代码片段中，添加了 shapeCreated 函数，每当向地图添加形状时都会调用该函数。\n\n### 工作原理...\n\
+  \n当你渲染页面时，你将看到一个包含形状的地图，如下面的屏幕截图所示：\n\n![](img/2a66507445090790d34dc5588b56b24c_238_0.png)\n\
+  \n在使用 shapeCreated 函数为形状添加颜色后，你将看到一张彩色地图。\n\n![](img/2a66507445090790d34dc5588b56b24c_238_1.png)\n\
+  \n形状是通过将 CENSUSAREA 字段值转换为十六进制数，然后添加前缀使其成为固定长度来计算的。\n"
+- "# 索引\n\n## A\n\n- **ActionSheet widget**\n  - 关于 130\n  - 用于显示操作列表 150-153\n- **activate\
+  \ event 86**\n- **advance charting widgets**\n  - 用于数据可视化 193\n- **aggregate functions**\n\
+  \  - avg function 183\n  - count function 183\n  - first function 183\n  - max function\
+  \ 183\n  - min function 183\n  - 用于在图表上显示数据 181-184\n- **Ajax**\n  - 用于加载模态窗口内容\
+  \ 104\n  - 用于加载 PanelBar 内容 83-86\n- **Application object**\n  - 用于在多个视图之间导航 121-125\n\
+  - **autoUpload property 95**\n- **avg function 183**\n\n## B\n\n- **barcode image**\n\
+  \  - 生成，使用各种编码方法 207, 208\n- **built-in Validator**\n  - 用于验证用户输入 19-22\n\n## C\n\
+  \n- **cancel event handler 99**\n- **center method 108**\n- **charts**\n  - 绑定到\
+  \ DataSource 对象 173-175\n  - 使用 kendoChart 函数创建 168, 169\n  - 创建以显示数据，使用聚合函数 181-184\n\
+  \  - 默认主题，修改 172, 173\n  - 图例信息位置，修改 171\n  - 使交互式，使用事件处理程序 185-188\n  - 多轴图表，创建\
+  \ 177-181\n  - 多个类别，显示 170\n  - 多个系列，显示 175\n  - 标题位置，修改 171\n  - 值，显示 176, 177\n\
+  - **charts, options**\n  - categoryAxis option 169\n  - series option 169\n  - title\
+  \ option 169\n  - valueAxis option 169\n- **chart type**\n  - 动态更改 188-192\n- **checkbox**\n\
+  \  - 用于在 TreeView 中选择节点 58-61\n- **click event handler 107**\n- **client-side templates**\n\
+  \  - 用于生成 HTML 标记 8-11\n- **close method 108**\n- **complete event handler 99**\n\
+  - **connect function 213**\n\nContent Delivery Network (CDN) 8\ncontentLoad event\
+  \ 86\ncontent, PanelBar\n加载，使用 Ajax 83-86\ncontentUrls property 84\ncount function\
+  \ 183\ncustom aggregator function 183\ncustomization, PanelBar 88, 89\ncustomization,\
+  \ Window 105-108\n\n## D\n\ndata\n在 Grid 中显示 28-32\n在 Grid 中显示，使用过滤器 35-38\n在 Grid\
+  \ 中排序 32-35\ndata-bind attribute 18, 189\ndata binding\n创建，使用 MVVM 12-16\n用于生成 HTML\
+  \ 内容 16-19\ndata-icon attribute 133\ndata-id attribute 113\ndata-layout attribute\
+  \ 114\ndata-role attribute 113, 131\nDataSource component 28\nDataSource object\n\
+  关于 29, 52\ncharts，绑定到 173-175\nListView widget，绑定到 134-136\nPanelBar，绑定到 86, 88\n\
+  dataSource property 138\ndata-style attribute 132\ndataTextField attribute 54\n\
+  dataTransition attribute\n关于 125\nfade 126\noverlay 126\nslide 125\nzoom 125\nDataViz\
+  \ (data visualization)\n关于 167\n与 advance charting widgets 193\ndelete command 39\n\
+  display of list items\n自定义，使用模板 93, 94\nDjango 8\ndoubletap event 128\n\ndrag-and-drop\n\
+  用于在 TreeView 中移动元素 55-58\n用于上传文件 97\n\nedit command 39\nediting\n在 Grid 中 39\ninline\
+  \ 39\npopup 39\nEditor\n关于 65\nimage browser tool 用于插入图像 70-76\nEditor toolset\n\
+  tools，添加在 67-70\ntools，移除在 67-70\nendless scrolling list\n构建，使用 ListView widget\
+  \ 148-150\nerror event handler 86, 99\nevent handlers\n用于使图表交互式 185-188\nexec function\
+  \ 70\nexpand event 86\n\n## F\n\nfield property 29\nfiles\n异步上传，使用 file uploader\
+  \ 94-96\n上传，使用 drag-and-drop 97\n同步上传，使用 file uploader 91-93\nfile uploader\n关于\
+  \ 91\nfile upload events，监听 98, 99\nlocalizing 97\n用于上传文件\n异步 94-96\n用于同步上传文件 91-93\n\
+  file upload events\ncancel event handler 99\ncomplete event handler 99\nerror event\
+  \ handler 99\nlistening 98, 99\n\nprogress event handler 99\nremove event handler\
+  \ 99\nselect event handler 99\nsuccess event handler 99\nupload event handler 99\n\
+  filters\n用于在 Grid 中显示数据 35-38\nfirst function 183\nfixed headers\n创建，使用 ListView\
+  \ widget 137-139\nfixedHeaders property 138\nflow diagrams\n创建，使用 Kendo Diagram\
+  \ 211-215\n\n## G\nGeoJSON 225\ngetKendoDiagram function 211\nGrid\n关于 23\n创建，用于显示表格数据\
+  \ 23-27\n自定义 46-48\ndata displaying，使用过滤器 35-38\ndata，在 Grid 中显示 28-32\ndata，在 Grid\
+  \ 中排序 32-35\nrecords，创建 39-43\nrecords，删除 39-43\nrecords，更新 39-43\nvirtualization，使用\
+  \ 43-45\ngroup property 138\n\n## H\nHandlebars 8\nhash templates 8\nhasModels property\
+  \ 144\nhierarchical list\n构建，使用 ListView widget 143-147\nhierarchical structural\
+  \ diagrams\n创建，使用 layout option 215-220\nhold event 128\nhref attribute 131\nHTML\
+  \ content\n生成，使用 data binding 16-19\nHTML markup\n生成，使用 client-side templates 8-11\n\
+  http method 41\n\n## I\nicons\n在 TreeView 中与节点一起使用 62, 63\nid property 144\nimage\
+  \ browser tool\n用于将图像插入 Editor 70-76\nimages\n插入 Editor，使用 image browser tool 70-76\n\
+  initial layout\n在应用程序初始化期间设置 117-121\ninitial view\n在应用程序初始化期间设置 117-121\ninline\
+  \ editing 39\ninserthtml command 70\nitems array 69\n\n## J\nJade 8\nJava Server\
+  \ Pages 8\n\n## K\nkendoChart function\n用于创建图表 168, 169\nKendo Diagram\n用于创建流程图\
+  \ 211-215\nkendoDiagram function\nconnectionDefaults option 211\nendCap option 211\n\
+  startCap option 211\nkendoEditor function\n关于 66\n用于创建 WYSIWYG Editor 65, 66\nkendoMap\
+  \ function 220\nkendoMobileListView function 135\nkendoRadialGauge function\nendAngle\
+  \ option 200\npointer option 200\nstartAngle option 200\nkendoStockChart function\
+  \ 195\nKendo UI\napplication framework 7\ndata visualization 167\n\nEditor 65\n\
+  file uploader 91\nGrid 23\nMobile framework: 111\nMobile widgets: 129\nPanelBar\
+  \ 77\nTreeView 49\nWindow 101\n\n## Kendo UI application framework\n\nclient-side\
+  \ templates used, for generating\nHTML markup 8-11\ndata binding, creating with\
+  \ MVVM 12-16\ndata binding used, for generating HTML\ncontent 16-19\nuser input\
+  \ validating, built-in Validator\nused 19-22\nkendoValidator method 22\n\n## L\n\
+  \nlabels option 176\nlayout\ncreating, for mobile application 112-116\nlayout option,\
+  \ kendoDiagram function\nleft subtype 217\nmindmapHorizontal subtype 217\nmindmapVertical\
+  \ subtype 217\nradial subtype 217\nright subtype 217\ntipOver subtype 217\nup subtype\
+  \ 217\nused, for creating hierarchical structural\ndiagrams 215-220\nLinear Gauge\
+  \ widget\ncreating 205-207\nlist\ncreating, ListView widget used 130-134\nlist elements\n\
+  filtering, ListView widget used 139-143\nListView widget\nabout 130-134\nbinding,\
+  \ to DataSource object 134-136\nlist elements, filtering 139-143\nused, for building\
+  \ endless scrolling\nlist 148-150\nused, for building hierarchical list 143-147\n\
+  \nused, for creating fixed headers 137-139\nused, for creating list 130-134\n\n\
+  ## M\n\nmap\ncreating, OpenStreet map used 220-224\ncreating, that is bound to GeoJSON\n\
+  data 225-227\nmaximize method 108\nmin function 183\nminimize method 108\nMobile\
+  \ framework\nabout 111\ninitial layout, setting 117-121\ninitial view, setting 117-121\n\
+  layout, creating for mobile\napplication 112-116\nmultiple views, navigating between\
+  \ 121-125\ntouch events, adding to mobile\napplication 126-128\nviews, adding to\
+  \ layout 112-116\nMobile library. See Mobile widgets\nmobileListViewInit function\
+  \ 138\nMobile widgets\nabout 129\nActionSheet widget 129\nListView widget 129\n\
+  Navbar widget 129\nScrollView widget 129\nSplitView widget 130\nTabStrip widget\
+  \ 129\nmodal window\nconfiguring, to display pop up 102, 103\ncontent loading, Ajax\
+  \ used 104\ndifferentiating, with Window 102\ndisplaying, on click of button 103,\
+  \ 104\nModel View Controller. See MVC\nModel View Presenter. See MVP\nModel View\
+  \ ViewModel. See MVVM\nmultiaxis chart\ncreating 177-181\nmultiple file uploads\n\
+  disabling 93\nmultiple views\nnavigating between, Application object\nused 121-125\n\
+  \n\n\n\n\n### N\n\nname 属性 69  \nnavigate 方法 123\n\n### O\n\nonChangeHandler 函数\
+  \ 191  \nopen 方法 104, 108  \nOpenStreet map  \n用于创建地图 220-224  \noperators 对象 38\n\
+  \n### P\n\nPanelBar  \n关于 77  \n绑定到 DataSource 对象 86, 88  \n内容加载，使用 Ajax 83-86 \
+  \ \n创建 77-82  \n自定义 88, 89  \npath 参数 73  \npin 方法 108  \npopup 编辑 39  \nposition\
+  \ 属性 105  \nprogress 事件处理程序 99\n\n### Q\n\nQuick Response code (QR code)  \n关于 209\
+  \  \n生成 209, 210\n\n### R\n\nRadial Gauge 小部件  \n创建 199, 200  \nmajorUnit 值，指定 200,\
+  \ 201  \nminorUnit 值，指定 200, 201  \npointer 值，使用 Slider 小部件更新 204, 205\n\n### S\n\
+  \nsaveUrl 属性 95  \nscale 属性  \nranges 选项 202  \nScrollView 小部件  \n关于 130  \n用于浏览图片集合\
+  \ 153-156  \nselect 事件处理程序 86, 99  \nselect 标签 17, 18  \nsetOptions 函数 191  \nsetStatusClass\
+  \ 函数 56  \nSmarty 8  \nSplitView 小部件  \n关于 130  \n创建，用于在多个窗格之间构建交互 157-162  \n创建，用于显示多个窗格\
+  \ 157-162  \nspriteCssClass 属性 62  \nstatusClass 属性 56  \nStock chart  \n关于 194\
+  \  \n创建，用于显示股票历史 194-197  \n日期范围，指定 197, 198  \nnavigator 窗格，自定义 198, 199  \nstyles\
+  \ 目录 25  \nsuccess 事件处理程序 99  \nswipe 事件 128\n\n### T\n\nTabStrip 小部件  \n用于在视图之间导航\
+  \ 163-165  \ntap 事件 128  \ntemplate  \n用于自定义列表项的显示 93, 94  \ntemplate 属性 136, 138\
+  \  \ntext 属性 69\n\nMustache 8  \nMVC 12  \nMVP 12  \nMVVM  \n关于 12  \n用于创建数据绑定 12-16\n\
+  \nradial color，使用 ranges 选项指定 202, 203  \nrefresh 方法 108  \nremove 事件处理程序 99  \n\
+  removeUrl 属性 95  \nrestore 方法 108\n\ntitle 属性 29, 105  \ntoggleMaximization 方法 108\
+  \  \ntools  \n在 Editor 工具集中添加 67-70  \n在 Editor 工具集中移除 67-70  \ntouch 事件  \n添加到移动应用程序\
+  \ 126-128  \ntouchstart 事件 128  \nTreeView  \n关于 49  \n从远程 DataSource 对象构建 52-54\
+  \  \n创建，用于显示目录结构 49-52  \nelements  \n移动，使用拖放 55-58  \n图标，与节点一起使用 62, 63  \nnodes\
+  \  \n选择，使用复选框 58-61  \ntype 属性 71\n\n### U\n\nunderscore.js 8  \nunpin 方法 108  \n\
+  upload 事件处理程序 99  \nuploadUrl 属性 74  \nuser input  \n验证，使用内置 Validator 19-22\n\n\
+  ### V\n\nvalue 属性 69  \nViewModel 对象 13, 17  \nviews  \n添加到布局 112-116  \n在视图之间导航，使用\
+  \ TabStrip 小部件 163-165  \n过渡效果，指定 125, 126  \nvirtualization  \n在 Grid 中使用 43-45\n\
+  \n### W\n\nWhat-You-See-Is-What-You-Get 接口。参见 WYSIWYG 接口  \nWindow  \n关于 101  \n\
+  自定义 105-108  \n与模态窗口区分 102  \nmodal window  \n配置，以显示弹出窗口 102, 103  \nWindow API\
+  \  \n使用，以对 window 对象执行操作 108-110  \nWYSIWYG Editor  \n创建，使用 kendoEditor 函数 65, 66\
+  \  \nWYSIWYG 接口 65\n"
+- "## 感谢购买 Kendo UI Cookbook\n\n## 关于 Packt Publishing\n\nPackt，发音为 'packed'，于 2004\
+  \ 年 4 月出版了其第一本书《Mastering phpMyAdmin for Effective MySQL Management》，随后继续专注于出版关于特定技术和解决方案的高度聚焦书籍。\n\
+  \n我们的书籍和出版物分享了您的 IT 专业同行在适应和定制当今系统、应用程序和框架方面的经验。我们的解决方案导向书籍为您提供知识和能力，以定制您正在使用的软件和技术来完成工作。Packt\
+  \ 书籍比您过去见过的 IT 书籍更具体、更不笼统。我们独特的商业模式使我们能够为您带来更聚焦的信息，让您获得更多需要知道的内容，而减少不需要知道的内容。\n\n\
+  Packt 是一家现代且独特的出版公司，专注于为开发者、管理员和新手社区制作高质量、前沿的书籍。如需更多信息，请访问我们的网站：www.packtpub.com。\n\
+  \n## 关于 Packt Open Source\n\n2010 年，Packt 推出了两个新品牌，Packt Open Source 和 Packt Enterprise，以继续其专业化的专注。本书是\
+  \ Packt Open Source 品牌的一部分，该品牌专门出版围绕开源许可构建的软件的书籍，并为从高级开发人员到初学者的任何人提供信息。Open Source\
+  \ 品牌还运行 Packt 的开源版税计划，通过该计划，Packt 为每本关于开源软件的书籍销售向相关开源项目支付版税。\n\n## 为 Packt 撰写\n\n\
+  我们欢迎所有有兴趣撰写书籍的人士的咨询。书籍提案应发送至 author@packtpub.com。如果您的书籍构想仍处于早期阶段，并且希望在撰写正式书籍提案之前先讨论，请联系我们；我们的一位委托编辑将与您联系。\n\
+  \n我们不仅寻找已出版的作者；如果您拥有强大的技术技能但没有写作经验，我们经验丰富的编辑可以帮助您发展写作生涯，或者仅仅为您的专业知识获得一些额外回报。\n\n\
+  ## Learning Kendo UI Web Development\n\nISBN: 978-1-84969-434-6          平装：288\
+  \ 页\n\n一个易于遵循的实用教程，无需成为 JavaScript 专家即可为您的网页添加令人兴奋的功能。\n\n+   1. 从清晰具体的示例中学习如何利用\
+  \ Kendo UI 工具集的全部功能用于 Web。\n+   2. 为您的网站添加由创新技术领域熟悉且值得信赖的名称支持的强大工具。\n+   3. 学习如何通过清晰的示例添加令人惊叹的功能，使您的网站更具交互性，而无需成为\
+  \ JavaScript 专家。\n\n## Instant Kendo UI Mobile\n\nISBN: 978-1-84969-911-2      \
+  \    平装：60 页\n\n实用配方，学习 Kendo UI Mobile 库及其各种组件，以有效构建移动应用程序。\n\n+   1. 立即学习新知识！一本简短、快速、专注的指南，提供即时结果。\n\
+  +   2. 了解 Kendo UI Mobile 应用程序框架上的各种组件。\n+   3. 学习使用 Kendo UI Mobile 库中的各种小部件，这些小部件将帮助您快速构建移动应用程序。\n\
+  +   4. 构建提供原生外观和感觉的应用程序，而无需维护单独的代码库。\n\n请查看 www.PacktPub.com 以了解我们书籍的信息。\n\n## Building\
+  \ Mobile Applications Using Kendo UI Mobile and ASP.NET Web API\n\nISBN: 978-1-78216-092-2\
+  \ 平装：256 页\n\n开始使用 Kendo UI Mobile，并学习如何将其与使用 ASP.NET Web API 构建的基于 HTTP 的服务集成。\n\
+  \n+   1. 学习使用 HTML5 开发移动应用程序的基础知识，并从头开始创建一个端到端的移动应用程序。\n+   2. 了解有关 Kendo UI Mobile、ASP.NET\
+  \ Web API 以及如何将它们集成的所有信息。\n+   3. 了解如何组织 JavaScript 代码以实现可扩展性和可维护性。\n\n## Instant\
+  \ Kendo UI Grid\n\nISBN: 978-1-84969-913-6 平装：56 页\n\n学习一个令人惊叹的 JavaScript 框架，它将提升您表格数据的外观和功能。\n\
+  \n+   1. 立即学习新知识！一本简短、快速、专注的指南，提供即时结果。\n+   2. 了解如何允许用户操作数据。\n+   3. 学习如何使大型数据集易于管理和筛选。\n\
+  +   4. 了解如何装饰表格以使其看起来更具吸引力。\n\nDocument generated by Anna’s Archive around 2023-2024\
+  \ as part of the DuXiu collection  \n(https://annas-blog.org/duxiu-exclusive.html).\n\
+  \nImages have been losslessly embedded. Information about the original file can\
+  \ be found in PDF attachments. Some stats (more in the  \nPDF attachments):  \n\
+  {\n\"filename\": \"5OVORE8gVUkgQ09PS0JPT0tfdN4A0TgyMjMJuwmlw\",\n\"filename_decoded\"\
+  : \"KENDO UI COOKBOOK_40898223.zip\",\n\"filesize\": 17262672,\n\"md5\": \"1f8923edc049d71d5018f20c999065fd\"\
+  ,\n\"header_md5\": \"99672577a3a4fbc375c7ed47ca53d122\",\n\"sha1\": \"1f95ca3b6d4df8c9c4a87d6e8d5f81113d3813492\"\
+  ,\n\"sha256\": \"797124d67559bdf32e68b92124319b42203002be1611334f1da594549591998a\"\
+  ,\n\"crc32\": 2007832043,\n\"zip_password\": \"\",\n\"uncompressed_size\": 26704197,\n\
+  \"pdg_dir_name\": \"KENDO UI COOKBOOK_40898223\",\n\"pdg_main_pages_found\": 237,\n\
+  \"pdg_main_pages_max\": 237,\n\"total_pages\": 249,\n\"total_pixels\": 1434228760\n\
+  }\n\n"
