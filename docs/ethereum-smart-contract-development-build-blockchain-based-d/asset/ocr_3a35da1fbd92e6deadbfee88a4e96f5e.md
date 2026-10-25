@@ -1,0 +1,7 @@
+# About the author
+
+**Mayukh Mukhopadhyay** started his career as a BI developer. After the 2008-09 financial crisis, he was at Tata Consultancy Services for one of their Fortune 500 clients in the telecom sector. Holding a master's in software engineering from Jadavpur University, he is presently working as a data insight developer, where he focuses on applying data science and machine learning to raw telecom equipment logs to generate business insights. He has a varied list of academic interests, ranging from audio signal processing, structural bioinformatics, and bio-inspired algorithms to consciousness engineering. Apart from being an Oracle Certified Specialist, he is a Certified Bitcoin Professional, recognized by C4 (Crypto Currency Certification Consortium). He tries to apply blockchain as a technology to different business domains.
+
+*To my guide @JU Dr Parama Bhaumik—your lectures on distributed systems were my main inspiration while writing this book.*
+
+*To my professional network connections Ivan Liljeqvist, Dug Campbell, Mahesh Murthy, Kaushik Sathupadi, Ravinder Deol, Narayan Prusty, and Thomas Wiesner—thanks for your blogs and vlogs. This book is as much your creation as it is mine.*

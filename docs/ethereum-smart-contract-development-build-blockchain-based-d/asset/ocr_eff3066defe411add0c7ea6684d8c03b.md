@@ -1,0 +1,1 @@
+we will require subject matter experts, or else we might face such perils quite frequently. Until now, we have mostly concentrated on the backend of smart contract development. In the next chapter, we will look into the wonderful world of frontend web development using web3.js and how it helps in capturing a large user base for blockchain-related products and services.

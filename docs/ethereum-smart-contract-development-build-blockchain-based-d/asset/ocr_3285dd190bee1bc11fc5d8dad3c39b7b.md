@@ -1,0 +1,4 @@
+enough to be aware of two facts on consensus:
+
++   - Raft and Paxos algorithms were some early attempts to solve the consensus problem. Both Paxos and Raft managed to solve the consensus problem using majority votes in a cluster. They differed mostly by their focus. Raft aimed to provide a complete practical algorithm, whereas Paxos provided the building blocks of a consensus algorithm.
++   - There are two main ways of finding consensus in a distributed ledger system: the **practical byzantine fault tolerance** algorithm (**PBFT**) and algorithms for blockchains. Blockchain algorithms can be further classified into the **proof-of-stake** algorithm (**PoS**) and the **proof-of-work** algorithm (**PoW**). The PoS also has a special form called the **delegated proof-of-stake** algorithm (**DPoS**).
