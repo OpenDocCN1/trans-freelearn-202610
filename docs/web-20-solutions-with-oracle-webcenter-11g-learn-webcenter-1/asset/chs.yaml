@@ -1,0 +1,2987 @@
+- ''
+- '# Oracle WebCenter 11g Web 2.0 解决方案：学习 WebCenter 11g 基础知识并在在线工作环境中开发真实世界企业应用程序
+
+
+
+
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_1_0.png)
+
+
+  Cover Image by Sandeep Babu (sandyjb@gmail.com)
+
+  '
+- '## Credits
+
+
+  **Authors**
+
+  Plinio Arbizu
+
+  Ashok Aggarwal
+
+
+  **Co-Authors**
+
+  Amit Gupta
+
+  Sukanta K. Hazra
+
+
+  **Reviewers**
+
+  Vince Casarez
+
+  Hector R. Madrid
+
+
+  **Acquisition Editor**
+
+  James Lumsden
+
+
+  **Development Editor**
+
+  Rakesh Shejwal
+
+  Dilip Venkatesh
+
+
+  **Technical Editors**
+
+  Neha Damle
+
+  Vinodhan Nair
+
+
+  **Editorial Team Leader**
+
+  Gagandeep Singh
+
+
+  **Project Team Leader**
+
+  Priya Mukherji
+
+
+  **Project Coordinator**
+
+  Leena Purkait
+
+
+  **Indexer**
+
+  Monica Ajmera Mehta
+
+
+  **Proofreader**
+
+  Chris Smith
+
+
+  **Graphics**
+
+  Nilesh R. Mohite
+
+
+  **Production Coordinator**
+
+  Alwin Roy
+
+
+  **Cover Work**
+
+  Alwin Roy
+
+  '
+- '## About the Authors
+
+
+  **Plinio Arbizu** 是 Oracle ACE Director 计划成员，该计划由 otn.oracle.com 赞助，旨在选拔在全球范围内具备高水平技术并致力于推广
+  Oracle 技术的专业人士。他在 Bristol Myers Squibb Peru 和 Consite 等公司拥有超过十年的 Oracle 技术项目经验，涉及商业、制药和金融领域。
+
+
+  目前，他居住在墨西哥，担任德勤咨询（Deloitte Consulting）的高级顾问。此外，他还是 Oracle University 的官方讲师，教授 JEE
+  和 Oracle WebCenter 等课程。此外，他还曾作为演讲者和组织者参与哥伦比亚、智利、阿根廷和秘鲁的 Oracle 技术活动。
+
+
+  Plinio 毕业于秘鲁天主教大学（Pontificia Universidad Catolica del Peru）计算机工程专业。您可以通过他的博客关注他：http://plinioa.blogspot.com。
+
+
+  我首先要感谢 James Lumsden，感谢他提供编写本书的机会。他的鼓励、支持和承诺对完成本项目至关重要。
+
+
+  如果没有我们的编辑 Rakesh Shejwal 的指导，本书不可能出版，他一直关注我们的交付成果。感谢他在每章技术审阅中的协调与合作。
+
+
+  我还要感谢 Oracle WebCenter 团队；Vince Casarez 和 George Maggesy。他们提供了宝贵的知识和工具支持。
+
+
+  特别感谢 Leena Purkait，她从一开始就一直跟进每章的开发。她的坚持和奉献对完成本书起到了关键作用。
+
+
+  最后，感谢 Packt Publishing 的整个团队。感谢你们在本书出版过程中的努力和支持。
+
+
+  **Ashok Aggarwal** 自 Oracle 产品被命名为 Enterprise 2.0 之前，就一直在使用 Oracle 产品提供基于 Web 的协作、文档管理、内容管理和工作流解决方案。随着
+  Oracle 产品的成熟和市场的增长，Ashok 在 Oracle Fusion Middleware 技术栈中的参与度也随之提高，从而率先采用了 Oracle
+  WebCenter Suite 10g 和 11g。自 2002 年以来，Ashok 通过领导一支高素质的实施团队 M&S Consulting，交付了众多强大的解决方案。在创办
+  M&S 之前，Ashok 在 Accenture 专注于交付企业应用程序和集成解决方案，涉及多个行业垂直领域。Ashok 利用 SOA、BPM、BI、身份管理和
+  Enterprise 2.0 技术领导了创新的业务转型计划，致力于解决当今最具挑战性的业务问题。他是私人和公共活动的常驻讲师和演讲者。除了关于 Fusion Middleware
+  的白皮书和行业期刊出版物外，Ashok 还在合著一本 Oracle SOA 书籍，并为 M&S Consulting 团队中的其他人赞助技术和流程出版物。Ashok
+  拥有约翰斯霍普金斯大学（The Johns Hopkins University）生物医学工程学士学位和计算机科学辅修学位。
+
+
+  > 致才华横溢且不知疲倦的 M&S 团队、我们出色的客户、Oracle E2.0 团队、Packt Publishing，以及最重要的是，我的家人和朋友。他们都在这个过程中给予了我巨大的支持。
+
+
+  ## About the Co-Authors
+
+
+  **Amit Gupta** 将大部分职业生涯都在高科技、媒体和基础设施领域度过。他目前领导 M&S Consulting 的 Enterprise 2.0 基础设施和开发团队。
+
+
+  Amit 共同创立了 Affle Limited，这是一家在亚太地区拥有广泛业务的移动媒体公司。在那里，他推动了新产品计划，并协助完成了微软对 Affle 的战略投资。在
+  Affle 之前，Amit 在 Bloomberg New York 工作，随后在 Bloomberg London 工作，帮助规划和实施了“Bloomberg
+  Anywhere”等重大新项目，这些项目每年带来超过 5 亿美元的新收入。在那里，他还设计和实施了高度可扩展的系统架构，用于支持数百万用户。系统集成是他的专长。
+
+
+  他是一名技术爱好者，喜欢在新项目中动手实践。他还在各种高科技公司工作过，开发和应用虚拟现实应用程序、医学影像算法、神经网络和金融交易系统。Amit 拥有约翰斯霍普金斯大学（美国）计算机科学（荣誉）学士学位。
+
+
+  > > 致我支持我的家人、Oracle 团队和 Packt Publishing。没有你们，这一切都不可能实现。
+
+
+  Sukanta K. Hazra 对技术充满热情，并不断渴望尝试新领域。这使他经历了无线网络和网络协议的学术研究、移动软件开发、移动广告平台以及企业软件和架构。他在各个领域的经验使他对软件开发以及不断发展的技术环境中软件和系统的演变有了独特的视角。
+
+
+  Sukanta 是 Affle Limited 的创始成员之一，该公司是一家在亚太地区拥有广泛业务的移动媒体公司。在 Affle，Sukanta 领导了其移动软件产品的开发，涉及多个移动平台。他还设计并领导了
+  Affle 移动广告平台的实施。在 Affle 之前，他曾在新加坡 Infocomm Research 研究所担任无线网络领域的研究员。
+
+
+  他为多个 IEEE 会议和期刊撰写了论文。Sukanta 认为自己是一个“极客”，既喜欢钻研系统内部，也同样擅长处理系统的高层架构视图。他目前的热情是面向服务架构（Service-Oriented
+  Architecture）以及使用开放标准及其对企业的后续影响。
+
+
+  Sukanta 拥有新加坡国立大学的工程硕士学位和工程学士学位（荣誉）。
+
+
+  > 致成千上万的软件工程师，你们正在为我们所有人创造一个更美好的世界。致 M&S Consulting 的同事们，感谢你们的鼓励和有益建议，以及 Packt Publishing
+  的建议和耐心。感谢你们使这一切成为可能。
+
+
+
+
+
+  '
+- '## 关于审稿人
+
+
+  **Vince Casarez**，甲骨文公司副总裁，专注于 Web 2.0 技术开发、Enterprise 2.0 和门户产品。过去 14 年中，Vince
+  在甲骨文担任过多个关键职位。目前，他是甲骨文公司 Enterprise 2.0 和门户产品的产品管理副总裁。他最近合著了一本名为 _Reshaping Your
+  Business with Web 2.0_ 的书，该书一直位列 Amazon 技术畅销榜。他还负责管理 WebCenter 开发团队，处理 Web 2.0 和社交计算服务。在此之前，他专注于托管门户开发和运营，包括面向外部客户的
+  Oracle Portal Online、用于构建门户社区的 Portal Center 以及面向员工内网的 My Oracle。此前，他曾担任工具营销副总裁，负责所有工具产品，包括开发工具和商业智能工具。在负责工具营销之前，他曾担任
+  Oracle JDeveloper 的产品管理总监。加入甲骨文之前，Vince 在 Borland International 工作了七年，担任 Paradox
+  for Windows 和 dBASE for Windows 的产品组经理。他拥有加州大学洛杉矶分校的生物化学学士学位。
+
+
+  Oracle 是全球最大的商业软件公司，拥有 345,000 名客户——包括 100 家《财富》全球 100 强企业——并在 145 多个国家为这些客户提供支持。
+
+
+  **Hector R. Madrid** 是 _Oracle 10g/11g Data and Database Management Utilities_ 书籍的作者。他目前担任自由职业顾问；他与
+  Oracle University 合作，担任 DBA、Java 和应用服务器课程的认证讲师。他是一位备受尊敬的 Oracle 专业人士，拥有 20 年全职 DBA
+  经验。他处理广泛的 DBA 需求，从日常 DBA 职责到与关键任务和高可用性系统相关的任务。他是拉丁美洲第一位 Oracle Certified Master。他获得了大都会自治大学（UAM）的计算机科学硕士学位，并在多次
+  Oracle 会议上发表过不同的技术论文。
+
+
+  > 我想感谢我的家人，感谢他们的耐心以及我在本项目期间从他们那里借用的时间。
+
+
+  本书献给：
+
+
+  我的父母，Eusebia 和 Plinio，感谢他们帮助我实现梦想
+
+
+  我的学生们，感谢你们在秘鲁技术发展中的奉献和贡献
+
+
+  我的妻子，Maricarmen，因为这是真的，你是我的幸福，我美丽的小公主
+
+
+  -Plinio Arbizu
+
+  '
+- '## 前言
+
+
+  Oracle WebCenter Suite 是业内最全面的企业门户平台，专为业务用户设计，统一了业务应用程序、Enterprise 2.0 服务和社交社区。它包含
+  Web 2.0 内容、协作和通信服务。但是，如果没有关于开发性能关键型企业应用程序的适当指导，很容易做出错误的设计和技术决策。
+
+
+  本书包含大量截图，为您提供开发自定义 WebCenter 应用程序以满足各种企业需求的深入知识。集成各种 Web 服务，使开发更简单、更快速。通过本实践教程，构建快速、可靠且强大的
+  Web 2.0 应用程序。
+
+
+  Oracle WebCenter Suite 是一组产品，可帮助组织实施 Web 2.0 解决方案。本书使开发人员能够学习重要概念。它展示了几个场景，其中 Oracle
+  WebCenter 11g 技术可用于提高组织的生产力。每一章都提供了技术的实际应用。它将指导您了解许多网页构建功能，例如页面和 portlet。
+
+
+  最后，本书描述了完整的解决方案，例如 Oracle WebCenter Spaces，以及可直接使用的协作环境。
+
+  '
+- '## 本书涵盖内容
+
+
+  _第 1 章，什么是 Oracle WebCenter？_，总结了 Oracle WebCenter 的功能，并展示了该技术解决的业务需求。
+
+
+  _第 2 章，WebCenter 安装和配置_，提供了在标准开发环境中成功安装 WEB Center Suite 所需的说明。
+
+  '
+- '## 前言
+
+
+  第 3 章，设置开发环境，帮助我们准备开发环境和应用程序服务器，以支持我们的 WebCenter 应用程序。
+
+
+  第 4 章，WebCenter 开发入门：Hello World(s)，帮助我们创建 HelloWorld Web 服务。我们还完成了开发环境的验证，并增强了构建
+  WebCenter 开发所需的基础组件和技能的信心。
+
+
+  第 5 章，设计和个性化，解释了如何开发模板并向我们的 WebCenter 应用程序添加数据访问功能。
+
+
+  第 6 章，Portlets，解释了如何在我们的应用程序中使用 portlet 实现功能，因为组件重用是我们应用程序的主要目标之一。
+
+
+  第 7 章，讨论、Wiki 和博客服务，演示了将 Wiki 和博客服务纳入自定义 WebCenter 应用程序的简单方法。
+
+
+  第 8 章，搜索服务，探索了 WebCenter 搜索服务、标签、链接和 RSS。通过创建示例应用程序，它解释了如何将 WebCenter 搜索服务集成到自定义
+  WebCenter 应用程序中。
+
+
+  第 9 章，使用 Oracle Composer 进行个性化，分两部分使用 Oracle WebCenter。在第一部分中，作为开发人员，我们为最终用户准备环境。然后，我们承担最终用户的角色，对前一步中定义的页面进行个性化设置。
+
+
+  第 10 章，Oracle WebCenter Spaces 概述，展示了如何配置和自定义 Oracle WebCenter Spaces。
+
+  '
+- '## 本书所需内容
+
+
+  要开发和测试本书中的示例，您的系统上需要安装 Oracle SOA Suite 11g Patch Set 2 (11.1.1.3)。对于第 9 章，您还需要
+  Oracle Service Bus 11g (11.1.1.3) 和 Oracle Service Registry 11g (11.1.1.2)，对于第 10
+  章，您需要 Oracle BPA Suite 11g (11.1.1.2)。
+
+
+  - Oracle WebCenter Suite 11g
+
+  - Oracle JDeveloper 11g
+
+  '
+- '## 本书适用人群
+
+
+  本书适用于需要使用 Web 2.0 功能改进其网站或业务应用程序的 Web 开发人员。
+
+
+  如果您是以下人员，则推荐您阅读本书：
+
+
+  - 使用传统门户并希望转向新技术的门户开发人员
+
+  - 希望为业务应用程序添加生产力功能的 Java 开发人员
+
+  - 希望创建协作环境并提高员工和组织群体生产力的知识管理人员
+
+  '
+- '## 约定
+
+
+  在本书中，您会发现多种文本样式，用于区分不同类型的信息。以下是这些样式的一些示例及其含义说明。
+
+
+  文本中的代码词显示如下："我们可以通过使用 `include` 指令来包含其他上下文。"
+
+
+  代码块设置如下：
+
+
+  ```
+
+  <Location /svn>
+
+  DAV svn
+
+  SVNParentPath C:\svn_repository
+
+  </Location>
+
+  ```
+
+
+  当我们希望引起您对代码块中特定部分的注意时，相关行或项目将以粗体显示：
+
+
+  ```
+
+  <Location /svn>
+
+  DAV svn
+
+  **SVNParentPath C:\svn_repository**
+
+  </Location>
+
+  ```
+
+
+  任何命令行输入或输出均写作如下：
+
+  `SQL> create user paracas identified by paracas`
+
+
+  **新术语**和**重要词汇**以粗体显示。您在屏幕、菜单或对话框中看到的单词，例如，在文本中显示如下："选择 Default Role 并按 OK"。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_21_0.png)
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_21_1.png)
+
+  '
+- '## 读者反馈
+
+
+  我们始终欢迎读者的反馈。请告诉我们您对本书的看法——您喜欢或不喜欢的地方。读者反馈对我们开发您能真正从中获益的书籍非常重要。
+
+
+  要向我们发送一般反馈，只需发送电子邮件至 <feedback@packtpub.com>，并在邮件主题中注明书名。
+
+
+  如果您需要某本书并希望我们出版，请通过 `www.packtpub.com` 上的 **SUGGEST A TITLE** 表单或发送电子邮件至 `suggest@packtpub.com`
+  与我们联系。
+
+
+  如果您在某个领域有专长，并有兴趣编写或参与编写书籍，请参阅 `www.packtpub.com/authors` 上的作者指南。
+
+  '
+- '## 客户支持
+
+
+  既然您是 Packt 图书的骄傲拥有者，我们有许多资源可以帮助您充分利用您的购买。
+
+
+  **下载本书的示例代码** 您可以从 `http://www.PacktPub.com` 上的帐户下载购买的所有 Packt 图书的示例代码文件。如果您在其他地方购买了本书，可以访问
+  `http://www.PacktPub.com/support` 并注册，以便文件直接发送到您的电子邮箱。
+
+  '
+- '## 勘误
+
+
+  尽管我们已尽一切努力确保内容的准确性，但错误难免会发生。如果您在我们的某本书中发现错误——也许是文本或代码中的错误——我们将不胜感激如果您能将其报告给我们。这样做，您可以帮助其他读者避免沮丧，并帮助我们改进本书的后续版本。如果您发现任何勘误，请访问
+  `http://www.packtpub.com/support`，选择您的书，单击 **errata submission form** 链接，并输入您的勘误详细信息。一旦您的勘误得到验证，您的提交将被接受，勘误将上传到我们的网站，或添加到该书名下的现有勘误列表中，位于该书名的
+  Errata 部分。任何现有勘误都可以通过从 `http://www.packtpub.com/support` 选择您的书名来查看。
+
+  '
+- '## 盗版
+
+
+  互联网上的版权材料盗版是所有媒体中持续存在的问题。在 Packt，我们非常重视对我们的版权和许可的保护。如果您在互联网上以任何形式发现我们作品的非法副本，请立即向我们提供位置地址或网站名称，以便我们可以采取补救措施。
+
+
+  请通过 <copyright@packtpub.com> 与我们联系，并提供涉嫌盗版材料的链接。
+
+
+  我们感谢您在保护我们的作者以及我们为您提供有价值内容的能力方面提供的帮助。
+
+  '
+- '## 问题
+
+
+  如果您在本书的任何方面遇到问题，可以联系 <questions@packtpub.com>，我们将尽力予以解决。
+
+
+
+
+
+  '
+- '## 1 什么是 Oracle WebCenter？
+
+
+  人类刚刚登陆火星！你会去哪里寻找关于此事件的信息？虽然人类尚未真正到达火星，但你很可能会在 Google、Yahoo 或 MSN 等网站上寻找答案，从而展示了
+  Web 作为一种工作、沟通和快速验证人类尚未到达火星的工具的能力。
+
+
+  本书将为我们提供所需的专业知识，以利用 Web 平台构建提供通信、协作、知识共享、社交网络以及所有成为我们 WEB 2.0 解决方案的功能的应用程序。
+
+
+  本章描述了 Web 技术如何演变为一个提供全面服务以共享知识、沟通和促进协作工作的平台。这种平台演变被称为 Web 2.0。Web 2.0 的到来在商业环境中并未被忽视；事实上，公司已经收集了它所能提供的好处，并将其应用于工作环境中，以实现运营效率。这种在商业环境中使用
+  Web 2.0 的新方式被称为 Enterprise 2.0。
+
+
+  显然，我们的书不仅仅是为了描述概念，还要使用 Oracle 提供的工具和技术来实现这些概念。出于这个原因，我们将展示 WebCenter Suite 和 JDeveloper
+  的主要功能，以及如何使用它们来开发 Web 2.0 解决方案。
+
+
+  在本章中，我们将描述以下主题：
+
+
+  - Web 2.0 概念
+
+  - 平台应用程序的演变
+
+  - Enterprise 2.0 概念
+
+  - Oracle WebCenter
+
+  - Oracle JDeveloper
+
+
+  ## WEB 2.0 概念
+
+
+  Web 2.0 这一术语是在 2004 年 O''Reilly 与 MediaLive International 之间的一次头脑风暴中创造的。该术语用于描述一种新版本的
+  Web 平台，为其用户提供巨大的社交能力。
+
+
+  为了更好地了解平台的演变及其社会影响，我们需要详细回顾这些概念。
+
+
+  ## 平台应用程序的演变
+
+
+  用于执行应用程序的第一个平台是 PC，它提供了运行我们应用程序的便利。不幸的是，构建应用程序通常需要技术知识（内存、I/O、中断、总线等）。
+
+
+  目前，操作系统已成为支持我们应用程序的标准平台。这一点的证明是，各种办公、数据库管理、多媒体和其他应用程序都在使用这些操作系统运行。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_26_0.png)
+
+
+  万维网及其导航工具（Internet Explorer 和 Netscape）的出现，帮助催生了一个名为 Web（目前称为 Web 1.0）的新平台。
+
+
+  起初，该平台的 GUI 有限（仅使用 HTML 和 JavaScript），并不提供在操作系统支持下构建的解决方案所具有的丰富性。
+
+
+  新技术的出现丰富了用户界面，例如 AJAX，巩固了 Web 作为新一代应用程序平台的地位，这些应用程序能够利用这些技术。Google、Google Maps、Wikipedia、博客和
+  Flickr 就是证据。这种新版本的 Web 平台被称为 Web 2.0。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_27_0.png)
+
+
+  作为平台的 Web 2.0 提供了以下技术优势：
+
+
+  - 我们只需要浏览器的支持来运行我们的应用程序。
+
+  - 我们可以使用 Internet 为应用程序提供远程访问。
+
+  - 我们可以在线更新应用程序，无需在客户端安装任何额外软件。
+
+  - 应用程序已准备好在其他便携设备上实现，例如 Palm、BlackBerry 和 Pocket PC。
+
+  - 将内容发布到 Web 上不需要技术专长。
+
+
+  然而，所有这些技术优势都无法与 Web 2.0 平台产生的社会影响相比。
+
+
+  ## Web 的社会影响
+
+
+  Web 2.0 平台的使用使得在用户之间促进社交的新方式成为可能。它们如下：
+
+
+  - **通信**：该平台除了邮件和即时消息解决方案外，还通过博客、视频等开辟了新的沟通方式。
+
+  - **知识交流**：讨论区、共享图片和文件等空间，允许用户相互交换信息。
+
+  - **协作与参与**：Web 技术允许用户在想要发布信息时，使用简单工具（博客、播客）进行参与。
+
+
+  ## Enterprise 2.0 概念
+
+
+  公司也可以利用新的 Web 技术。在建立“Enterprise 2.0”概念并审视公司适应使用新技术的演变时，重要的是要记住，Enterprise 2.0 的范围不仅限于组织本身，还包括其合作伙伴和客户。
+
+
+  Enterprise 2.0 提供的技术优势如下：
+
+
+  - 在线工作环境
+
+  - 使用社交网络
+
+  - 创建和自定义协作工作环境
+
+  - 组织知识的管理与传播
+
+  - 与内部和外部业务应用程序集成
+
+  - 轻松联系组织资源
+
+  - 促进组织成员之间的沟通
+
+
+  我们可以得出结论，Enterprise 2.0 通过使用 Web 2.0 提供的新技术平台来促进组织的生产力。此时，你可能会问自己：我们如何实施一个支持 Enterprise
+  2.0 和 Web 2.0 所建议准则的解决方案？Oracle 的答案被称为 Oracle WebCenter Suite。
+
+
+  ## Oracle WebCenter Suite 概念
+
+
+  Oracle WebCenter Suite 是一个用于构建企业门户或集成 Enterprise 2.0 功能的自定义应用程序的平台，旨在通过集成业务应用程序和用户社区来改进业务流程。
+
+
+  此套件允许公司构建企业门户、社交网络、协作社区、内容管理器、复合应用程序以及内联网和互联网站点。
+
+
+  什么是 Oracle WebCenter？
+
+
+  - **内容管理**：Web 现在允许我们访问文件存储库，例如图像、音频、视频和其他电子文档。
+
+  - **创建社交环境**：Web 支持创建面向成员拥有相似兴趣的群体的空间。
+
+
+  我们可以得出结论，Web 2.0 的到来不仅影响技术，而且最重要的是，它代表了一种社会影响。这种社会影响在商业环境中具有重要意义，并导致了新的 Enterprise
+  2.0 概念的产生。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_29_0.png)
+
+
+  Oracle WebCenter suite 具有以下关键组件：
+
+
+  - **Oracle WebCenter Framework**：用于在我们的解决方案中构建用户界面和 portlet。使用此 Framework 构建的组件使用
+  JSF 和 AJAX 来提供丰富的界面。
+
+  - **Oracle WebCenter Services**：此组件提供功能，可将我们的解决方案与内容管理器、搜索、wiki、讨论、博客、消息服务（邮件、即时消息、电话）以及
+  Web 2.0 的所有功能集成。
+
+  - **Oracle WebCenter Composer**：允许用户通过友好的界面个性化其内容。
+
+  - **Oracle WebCenter Spaces**：一个开箱即用的应用程序，它使用之前详细介绍的组件来提供协作工作环境、创建社交网络的能力以及共享资源的便利性。
+
+  - **Oracle WebCenter Anywhere**：引入以使应用程序能够与移动设备（如 PDA 和智能手机）进行交互。
+
+
+  ## 什么是 Oracle WebCenter？
+
+
+  这些组件与应用程序服务器之间的关系在以下图片中显示：
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_30_0.png)
+
+
+  为了构建 Oracle WebCenter 解决方案，我们需要工具的支持，那就是 Oracle JDeveloper。
+
+
+  ## Oracle JDeveloper
+
+
+  Oracle JDeveloper 于 1997 年创建，作为构建 Java 解决方案的工具。虽然最初它基于一个名为 JBuilder 的工具，但 Oracle
+  开始添加与数据库交互的功能。在此演变过程中，JDeveloper 添加了许多框架，如 Business Components（以前称为 BC4J）、UIX 等。
+
+
+  一个重大变化伴随着 10g 版本的出现，它引入了名为 **Application Development Framework** (**ADF**) 的生产力框架，并通过
+  Oracle 库加速 JEE 解决方案的开发。
+
+
+  该工具的新版本包含了其他技术，例如 ADF Faces，它有助于以声明方式创建用户界面。最近，ADF Faces 的一个新版本，称为 ADF Faces Rich
+  Client，通过使用 AJAX 等技术丰富了用户界面。
+
+
+  在创建 JEE 解决方案方面得到巩固后，Oracle JDeveloper 被选为在 Fusion Middleware Platform 上构建解决方案的标准工具。该平台支持基于
+  JEE、SOA 和使用 Oracle WebCenter 的 Enterprise 2.0 的解决方案。JDeveloper 使用扩展来利用 WebCenter
+  中的关键组件，例如 Framework、Services 和 Composer。
+
+
+
+
+
+
+  因此，在本书的过程中，我们将使用此工具来构建我们的自定义解决方案。
+
+
+  ## ##摘要
+
+
+  技术平台的演变及其在新形式社交中的应用导致了 Web 2.0 的创建，而在商业环境中使用这些概念被称为 Enterprise 2.0。出于这一动机，Oracle
+  推出了 WebCenter 作为构建 Enterprise 2.0 解决方案的平台，它有助于在组织中开发协作环境。
+
+
+  最后，Oracle JDeveloper 被选中用于构建这些解决方案，使用 Oracle WebCenter 提供的平台。
+
+
+  现在我们已经了解了技术概念，将开始开发我们的自定义应用程序。但在此之前，我们需要安装和配置 WebCenter。我们将在下一章中完成此操作。
+
+  '
+- "## #2 WebCenter 安装和配置\n\nOracle WebCenter 11g 配备了 Oracle Fusion Middleware 架构的最新组件。WebLogic\
+  \ 应用程序服务器（Oracle 从 BEA 收购）、JDeveloper 11g、对 Oracle 11g 数据库的支持以及完全集成 Web 2.0 服务和\
+  \ Spaces。\n\n以下图示概述了安装过程中应了解的构建块。我们将在本章中使用此构建块图来向您展示正在安装的组件。有关安装所有 WebCenter 组件的全面指南，请参阅“Oracle\
+  \ Fusion Middleware Enterprise Deployment Guide for WebCenter 11g Release 1”。\n\n\
+  > 外围组件（即 SOA、身份管理）和 WebCenter 开发 IDE（JDeveloper）的安装不在本章范围内。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_33_0.png)\n\
+  \n## #硬件和软件要求\n\nOracle WebCenter 11g 的硬件和软件要求大致遵循 Oracle Fusion Middleware 11g\
+  \ 的最低要求。各种要求矩阵可在 http://www.oracle.com/technology/software/products/ias/files/fusion_requirements.htm\
+  \ 下的“Oracle Fusion Middleware 11g System Requirements”中找到。\n\n## #高级安装步骤\n\n以下是\
+  \ WebCenter 11g 的高级安装步骤，您可以在进行我们的逐步安装时参考这些步骤。\n\n- 1. 安装受支持的操作系统 (OS)。\n- 2. 安装受支持的\
+  \ Oracle 数据库以存放元数据存储库。WebCenter 11g 目前支持 Oracle 数据库版本 10.2.0.4 到 11.0.7。\n- 3. 运行存储库创建实用程序\
+  \ (RCU) 以创建元数据存储库。\n- 4. 安装中间件主目录 (Oracle WebLogic 应用程序服务器) 11gR1 (10.3.1)。\n- 5.\
+  \ 安装 WebCenter 框架和服务。\n- 6. 配置 WebLogic、WebCenter 和 Web 2.0 服务。\n\n## #逐步安装\n\n\
+  在本节中，我们将详细阐述先前概述的高级步骤，并带您逐步详细地了解 WebCenter 11g 的安装过程。\n\n- 1. 安装受支持的 OS\n  在撰写本文时，WebCenter\
+  \ 11g 尚无官方认证矩阵可用，但我们在环境中使用的是 Oracle Enterprise Linux 5.3 32 位版本，配备 Intel Core 2\
+  \ Duo 2.13 GHz CPU 和 3GB 内存。我们认为这是服务器环境的最低硬件配置，且 WebCenter 运行时没有任何性能问题。据我们了解，以下操作系统将受到支持：\n\
+  \  - AIX\n  - HPUX\n  - Red Hat Enterprise Linux\n  - Oracle Enterprise Linux\n\
+  \  - Solaris\n  - Windows\n\n> 本书不涉及操作系统的逐步安装过程。\n\n## ##2. 安装前步骤\n\n- 创建一个名为 `oracle`\
+  \ 的组，该组属于名为 `dba` 的组，用于安装。\n- 确保 `/etc/hosts` 文件配置了完全限定域名 (FQDN) 作为第一个条目。我们使用了以下内容：`192.168.1.74\
+  \ wc11g.mandsconsulting.com`。\n- 确保已在操作系统上设置打开文件数。通过添加以下行在 `/etc/security/limits.conf`\
+  \ 中设置适当的限制：\n  ```\n  oracle soft nproc 2047\n  oracle hard nproc 16384\n  oracle\
+  \ soft nofile 1024\n  oracle hard nofile 65536\n  ```\n- 确保 Linux 系统设置正确。编辑 `/etc/sysctl.conf`\
+  \ 文件并添加以下行：\n  ```\n  kernel.shmall = 2097152\n  kernel.shmmax = 2147483648\n  kernel.shmmni\
+  \ = 4096\n  kernel.sem = 250 32000 100 128\n  fs.file-max = 6553600\n  net.ipv4.ip_local_port_range\
+  \ = 1024 65000\n  net.core.rmem_default = 4194304\n  net.core.rmem_max = 4194304\n\
+  \  net.core.wmem_default = 262144\n  net.core.wmem_max = 262144\n  ```\n\n## ##3.\
+  \ 安装受支持的 Oracle 数据库（我们安装了 Oracle Express Edition – XE – 10.2.0.1 Universal）\n\n\
+  - 从 Oracle.com 下载文件：`oracle-xe-univ-10.2.0.1-1.0.i386.rpm`\n\n![](img/fccf6c511126cf79e98510edd3b343ac_36_0.png)\n\
+  \n- 使用以下命令运行 `.rpm` 文件：\n  ```\n  rpm -ivvh oracle-xe-univ-10.2.0.1-1.0.i386.rpm\n\
+  \  ```\n\n- `rpm` 成功完成后配置 Oracle XE（此处我们选择了默认设置）。\n\n默认设置将 Oracle Application Express\
+  \ 设置为监听端口 8080，Oracle 数据库监听器监听端口 1521。为 DB SYS 和 SYSTEM 账户选择一个密码。记住所选密码。\n\n验证 XE\
+  \ 数据库是否已正确安装。一种方法是导航到 XE 管理控制台。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_37_0.png)\n\
+  \n![](img/fccf6c511126cf79e98510edd3b343ac_37_1.png)\n\n确保数据库运行正常后，需要增加进程数量。默认进程数设置为\
+  \ 40。但是，对于 WebCenter，进程数应至少设置为 300。可以使用以下命令完成：\n\nalter system set processes=300\
+  \ scope=spfile;\n\n更改进程数量后重启数据库。\n/etc/init.d/oracle-xe restart\n\n- 4. 运行存储库创建实用程序\
+  \ (RCU) 以创建元数据存储库：\n  - 导航到 RCU_MEDIA /bin。\n  - 使用 ./rcu 运行 RCU。\n  - 按照图形安装向导操作。\n\
+  \n欢迎屏幕提供有关该工具的一些常规信息。在左侧导航中，您可以看到正常配置期间将遵循的步骤列表。当前步骤被强调显示。单击“下一步”进入下一步。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_38_0.png)\n\
+  \n创建存储库屏幕提供两个选项：创建和删除。在此安装中，我们将创建一个新存储库。选择“创建”并单击“下一步”进入下一步。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_39_0.png)\n\
+  \n在数据库连接详细信息屏幕中，我们提供将用于连接已安装的 Oracle XE 数据库的详细信息。如果您迄今遵循了 XE 数据库安装所示的步骤，此处显示的值应适用。数据库配置（oracle-xe\
+  \ configure）期间选择的密码应在此处输入。单击 **下一步** 进入下一步。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_39_1.png)\n\
+  \n## #RCU 检查是否满足所有全局先决条件。单击“确定”继续\n\n![](img/fccf6c511126cf79e98510edd3b343ac_40_0.png)\n\
+  \n选择架构前缀。默认前缀为 DEV。如果您愿意，可以选择将前缀更改为其他合适的前缀。我们使用了默认的 DEV 前缀。接下来，我们选择打算安装的各种组件。此处我们选择了\
+  \ WebCenter Spaces、Portlet Producers、Content Server、Discussions 和 Wiki and Blogs。显示的其他选定组件会自动作为先决条件添加。单击“下一步”继续。\n\
+  \n![](img/fccf6c511126cf79e98510edd3b343ac_41_0.png)\n\n在 **架构密码** 屏幕中，我们可以选择为所有架构使用相同的密码，或为每个架构指定单独的密码。我们选择为所有架构使用相同的密码。单击“下一步”进入下一步。\n\
+  \n![](img/fccf6c511126cf79e98510edd3b343ac_41_1.png)\n\n\n\n\n\n\n此屏幕显示对需求进行的各种检查的进度。所有需求检查完成后，单击\
+  \ OK 以继续。\n\n摘要屏幕显示将要创建的各种表空间。单击 Create 以开始创建表。\n\n**完成摘要**屏幕显示存储库创建的最终状态。将显示各种日志文件的位置。有兴趣的用户可以查看日志文件，以获取存储库创建过程的详细报告。\n\
+  \n![](img/fccf6c511126cf79e98510edd3b343ac_43_0.png)\n\n恭喜！您现在已完成底层元数据存储库的安装。我们现在准备进入\
+  \ WebLogic 应用程序服务器（中间件主目录）。\n\n## 安装中间件主目录\n\n在本节中，我们将安装中间件主目录（WebLogic 应用程序服务器）11gR1（10.3.1）。对于那些使用过之前的\
+  \ Fusion Middleware 产品，甚至 WebCenter 10g 的用户，您会注意到 WebLogic Server 的默认支持是新的，因为 Oracle\
+  \ 在 BEA 收购后转变了方向，远离了 Oracle 之前的应用程序服务器产品。\n\n导航到 WebLogic 应用程序服务器介质并运行安装程序，按照图形向导操作。\n\
+  \n## WebCenter 安装和配置\n\n向导启动后，将显示欢迎屏幕。单击 **Next** 以继续安装。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_44_0.png)\n\
+  \n安装 WebLogic 服务器将创建一个中间件目录，中间件将安装在其中。我们已选择向导建议的默认目录。单击 **Next** 以继续。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_44_1.png)\n\
+  \n如果您希望接收有关 WebLogic 产品的 Oracle 安全更新，请输入您的电子邮件地址。强烈建议您这样做。对于此测试安装，我们已跳过此步骤。单击 Next\
+  \ 以继续。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_45_0.png)\n\n此处向导提供执行典型安装或自定义将要安装的组件的选项。我们已选择典型安装选项，这将安装\
+  \ WebLogic Server。单击 Next 以继续。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_45_1.png)\n\
+  \n## WebCenter 安装和配置\n\n向导提供了选择安装 WebLogic 服务器的目录的选项。我们已选择向导建议的默认目录。这将在中间件主目录下的\
+  \ `wlserver_10.3` 目录中安装 WebLogic 服务器。单击 **Next** 以继续。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_46_0.png)\n\
+  \n**安装摘要**屏幕显示将要安装的 WebLogic 服务器的各种组件。请注意，作为 WebLogic Server 安装的一部分，还安装了两个 JDK。单击\
+  \ **Next** 以继续安装。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_47_0.png)\n\n向导显示安装进度。由于要安装所有组件，此步骤可能需要几分钟。\n\
+  \n![](img/fccf6c511126cf79e98510edd3b343ac_47_1.png)\n\n**安装完成**屏幕提供运行 **Run Quickstart**\
+  \ 的选项。目前不需要，因为我们将接下来配置 WebCenter。取消选中 **Run Quickstart** 选项并单击 **Done**。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_48_0.png)\n\
+  \n恭喜！您现在已完成 WebLogic 应用程序服务器（中间件主目录）的安装。我们已在构建块图中突出显示了该部分，并准备进入 WebCenter 框架。\n\n\
+  ![](img/fccf6c511126cf79e98510edd3b343ac_48_1.png)\n\n## 安装 WebCenter 框架和服务\n\n\
+  现在 WebLogic 应用程序服务器已安装，我们需要继续进行 WebCenter 框架和服务的安装。\n\n运行 WebCenter 安装，指定与 WebLogic\
+  \ 一起安装的 JRE 的位置。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_49_0.png)\n\n按照图形安装向导操作。向导将提示输入一个目录（清单目录），用于存储有关已安装组件的信息。我们已选择向导建议的默认目录。单击\
+  \ OK 以继续。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_49_1.png)\n\n## WebCenter\
+  \ 安装和配置\n\n此时，向导将提示以 root 用户身份运行特定脚本。启动新终端并切换用户到 root。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_50_0.png)\n\
+  \n以 root 用户身份执行 createCentralInventory.sh 脚本，然后切换回图形向导。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_50_1.png)\n\
+  \n向导告知用户 WebCenter 安装的先决条件。我们已在之前的步骤中运行了 RCU 并安装了 WebLogic Server，因此单击 Next 以继续。\n\
+  \n![](img/fccf6c511126cf79e98510edd3b343ac_51_0.png)\n\n安装程序检查以确保各种系统参数和库已就绪。单击\
+  \ Next 以继续。如果在检查中遇到任何错误，请查看错误日志并安装适当的库。在采取适当措施修复错误后，您可以单击 Retry 以检查是否满足要求。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_51_1.png)\n\
+  \n## WebCenter 安装和配置\n\n向导提示输入 Oracle 主目录。这是将安装 WebCenter 组件的位置。默认值是中间件主目录下的子目录\
+  \ `Oracle_WC1`。我们选择默认值并单击 **Next** 以继续。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_52_0.png)\n\
+  \n接下来，向导提供配置 Oracle 通用内容管理的选项。如果您尚未安装 UCM，则可以跳过此步骤。取消选择该选项并单击 **Next** 以继续。\n\n\
+  ![](img/fccf6c511126cf79e98510edd3b343ac_52_1.png)\n\n向导显示 **安装摘要** 屏幕，列出将要安装的各种组件和安装位置。单击\
+  \ **Install** 以继续。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_53_0.png)\n\n## WebCenter\
+  \ 安装和配置\n\n向导显示安装进度。所有组件安装可能需要几分钟。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_54_0.png)\n\
+  \n**安装完成**屏幕告知用户安装已成功完成。如果您希望稍后查看，可以选择保存详细信息。单击 **Finish** 以继续。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_55_0.png)\n\
+  \n恭喜！您现在已完成 WebCenter 框架和服务的安装。\n\n## 摘要\n\n在本章中，我们在 Linux 环境中安装了 WebCenter 11g\
+  \ 的核心构建块。这些构建块为创建 WebCenter 复合应用程序奠定了基础，这些应用程序通过 Web 服务、SOA 等中间件组件以及通过 WebCenter\
+  \ 热插拔架构集成的其他业务应用程序等“触手”真正得以实现。\n\n重要说明：\n\n- 这是一个单服务器、独立环境，可以快速搭建以满足测试和培训的基本需求。它不考虑高可用性、企业安全性或生产解决方案通常需要的其他考虑因素。\n\
+  \n- 此环境将用作开发我们示例应用程序的基线，因此确保您已成功完成上述步骤非常重要。\n\n要开始 WebCenter 开发，我们将使用 JDeveloper\
+  \ IDE，我们将在下一章中对其进行回顾，并附带一个简单的示例——WebCenter 版本的“Hello World”。\n"
+- '## 3 设置开发环境
+
+
+  在服务器端安装 Oracle WebCenter 组件后，有必要准备开发环境。
+
+
+  如前所述，构建 Oracle WebCenter 解决方案的工具是 JDeveloper 11g。该工具通常用于开发 Java EE 解决方案；然而，在本书中，我们将其用于构建复合解决方案。这意味着我们将把不同种类的组件（如
+  portlets、数据访问组件（表、值列表）和促进参与的组件（讨论、wiki））组合到单个用户界面中，以门户的概念为基础。
+
+
+  那么，在本章中，我们将专注于准备开发环境，我们将使用该环境来创建我们的 WebCenter 应用程序。
+
+
+  因此，在本章中，我们将涵盖以下主题：
+
+
+  - JDeveloper 11g 安装
+
+  - 为 JDeveloper 添加 WebCenter 扩展
+
+  - 安装控制版本系统（Subversion）
+
+  - 将 JDeveloper 与 Subversion 集成
+
+  - 测试 WebCenter 服务器的集成
+
+
+  那么，让我们开始工作吧。
+
+
+
+
+
+
+  ## Oracle JDeveloper 11g 安装
+
+
+  在编写本书期间，我们将使用 Oracle JDeveloper 11g Release 1 (11.1.1.1.0) 版本。
+
+
+  ### 系统要求
+
+
+  在使用 Windows 操作系统时，推荐的系统要求如下：
+
+
+  - 操作系统：Windows Vista
+
+  - Windows Server 2003 R2
+
+  - Windows XP-Service Pack 2
+
+  - CPU 类型和速度：Pentium IV 2 GHz 或更高
+
+  - 内存：2 GB RAM
+
+  - 显示：65536 色，分辨率至少设置为 1024 X 768
+
+  - 硬盘空间：2.5 GB
+
+  - JDK：Windows 版 JDK 6.0 Update 11
+
+
+  如果需要在其他操作系统上安装该工具，请参阅以下链接中的《Oracle JDeveloper 安装指南》：
+
+
+  `http://www.oracle.com/technology/documentation/jdev.html`
+
+
+  ### 下载工具
+
+
+  要开始使用，我们必须先从以下页面下载：
+
+
+  `http://www.oracle.com/technology/software/products/jdev/index.html`
+
+
+  从可用文件中，下载 jdevstudio11111install.exe。
+
+
+  ## JDeveloper 安装
+
+
+  执行以下步骤安装该工具：
+
+
+  1. 双击下载的文件。
+
+
+  2. 默认情况下，JDeveloper 11g 将安装在 c:\Oracle\Middleware。
+
+
+  3. 接受向导建议的所有选项，以进行 JDeveloper 的典型安装。
+
+
+  4. 接下来，从安装创建的菜单中运行 JDeveloper。
+
+
+  5. 第一个窗口允许您定义开发人员的角色。选择 **Default Role** 并按 OK。
+
+
+  6. 接下来，您将看到一个名为“Tip of the Day”的窗口。单击取消按钮以打开开发环境。
+
+
+  ## Oracle WebCenter 扩展 for JDeveloper
+
+
+  该工具已准备好用于开发 Java EE 解决方案。但是，我们希望将其用于创建 WebCenter 解决方案。这就是为什么我们需要安装 JDeveloper 的扩展，以支持
+  WebCenter 应用程序的开发。
+
+
+  要安装扩展，请执行以下步骤：
+
+
+  1. 选择选项 **Help | Check for Updates**。在欢迎窗口中单击 **Next** 按钮。
+
+
+  2. 在下一个窗口中，选择 **Oracle Fusion Middleware Products**，如下图所示，然后单击 Next。
+
+
+  3. 然后，选择 Oracle WebCenter Framework and Services Design Time 并按 OK。
+
+
+  4. 要继续安装，您需要输入 oracle.com 用户名和密码，然后单击 OK。
+
+
+  5. 接下来，您将看到类似于下一个屏幕的屏幕，指示安装结束。单击 Finish 完成此过程。
+
+
+  6. 最后，JDeveloper 将要求重新启动以实施更改。单击 Yes 完成安装。
+
+
+  ## 版本控制系统安装
+
+
+  在开发团队中工作时，建议使用版本管理软件。出于这个原因，我们将使用一个名为 CollabNet Subversion 的产品，它是一个开源的 Subversion
+  项目。我们将按以下方式安装此软件：
+
+
+  1. 从以下地址下载 CollabNet Subversion：http://www.open.collab.net/downloads/subversion/。
+
+
+  选择版本：CollabNet Subversion Server and Client v1.6.3（适用于 Windows）。
+
+
+  2. 运行下载的安装程序，接受向导建议的所有默认选项。此设置将创建基目录 `c:\svn_repository`。
+
+
+  3. 单击 **Install** 开始安装。
+
+
+  4. 此最终屏幕指示安装成功。单击 **Finish** 关闭窗口。
+
+
+  Subversion 服务器使用 Apache Web 服务器，允许我们使用 HTTP 协议访问 Subversion 存储库。Apache 服务器使用端口 80，并且每次打开计算机时自动启动。
+
+
+  5. 安装存储库后，有必要创建一个项目来保存 WebCenter 应用程序代码。为此，通过 **Start | Run** 打开 Windows 命令行选项，键入命令
+  `cmd`，然后按 **Enter**。
+
+
+  6. 转到存储库目录，在我们的情况中为 `c:\svn_repository`：
+
+  > cd c:\svn_repository
+
+
+  7. 接下来，创建项目 `webcenter_repository`，我们将使用它来存储代码的版本。命令是：
+
+  > svnadmin create webcenter_repository
+
+
+  8. 现在编辑以下 Apache 配置文件以允许在存储库中注册用户。
+
+  C:\Program Files\CollabNet SubVersion Server\httpd\conf\ httpd.conf
+
+
+  9. 转到以下部分：
+
+  <Location /svn>
+
+  DAV svn
+
+  SVNParentPath C:\svn_repository
+
+  </Location>
+
+  并将其修改为：
+
+  <Location /svn>
+
+  DAV svn
+
+  SVNParentPath C:\svn_repository
+
+  SVNListParentPath On
+
+  Require valid-user
+
+  AuthType Basic
+
+  AuthName "SubVersion Repository"
+
+  AuthUserFile C:\svn_repository\password-file
+
+  </Location>
+
+  通过此更改，我们指示用户和密码将从文件 password-file 中提取。
+
+
+  10. 转到 Subversion 软件的安装目录：
+
+  > cd c:\Program Files\CollabNet Subversion Server\httpd\bin
+
+
+  11. 在下一步中，我们将创建访问存储库的用户。要创建 admin 用户，请按以下方式使用 htpasswd 命令：
+
+  > htpasswd -cm c:\svn_repository\password-file admin
+
+  然后系统将提示您输入用户将使用的密码。
+
+
+  -cm 选项用于创建密码文件并加密密码。要注册更多用户，只需使用 -m 选项，因为我们在创建第一个用户时已创建密码文件。请记住，您必须为团队中的每个开发人员创建一个用户。请参见下一个示例：
+
+  > htpasswd -m c:\svn_repository\password-file joe
+
+
+  12. 最后，要验证服务器版本安装，请转到以下链接：
+
+  http://localhost/svn/。
+
+
+  13. 输入在上一步中定义的用户和密码信息。
+
+
+  14. 最后，我们将看到以下页面：
+
+
+  ## JDeveloper 与 Subversion 集成
+
+
+  要集成这些技术，请执行以下操作：
+
+
+  1. 打开 JDeveloper。
+
+
+  2. 转到选项 **View | Versioning Navigator**。
+
+
+  3. 在左下角窗口中，您将看到版本导航器。右键单击 Subversion 节点并选择 **New Repository Connection**。
+
+
+  4. 在下一个窗口中，您将定义数据连接，单击 **Test Connection** 进行检查，最后单击 **OK**。
+
+
+  - **Repository URL**: `http://localhost/svn/webcenter_repository/`
+
+  - **Connection Name**: `webcenter_repository`
+
+  - **User Name**: `<User Registered>`
+
+  - **Password**: `<Password Registered>`
+
+
+  ## 测试 WebCenter 预配置服务器
+
+
+  JDeveloper 还包含一个 BEA WebLogic 服务器，我们将使用它来部署和测试我们的应用程序。此外，此服务器提供一个 Portlet 容器，提供一组预构建的
+  Portlet，我们可以在项目中利用它们。例如，您可以使用 Web Clipping 功能从现有网站捕获内容和功能。要确认此服务器的可用性，我们将执行以下步骤：
+
+
+  1. 转到 JDeveloper 的选项 File | New。
+
+
+  2. 在下一个窗口中，选择 Applications 类别，然后选择 WebCenter Application 项目并单击 OK。
+
+
+
+
+
+
+  ## 设置开发环境
+
+
+  3. 在下一个窗口中，将应用程序名称更改为 Test 并单击 Finish。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_70_0.png)
+
+
+  4. 使用选项 **运行 | 启动服务器实例** 启动 WebLogic Server。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_70_1.png)
+
+
+  5. 日志控制台中的消息 **DefaultServer 已启动** 表示服务器已启动。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_71_0.png)
+
+
+  6. 最后，要检查我们的 portlet 容器是否处于活动状态，请选择选项 **帮助 | WebCenter 预配置服务器自述文件**。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_71_1.png)
+
+
+  ## 设置开发环境
+
+
+  7. 然后，您将看到一个带有 WebCenter 服务器提供的各种服务链接的页面。要检查 portlet 容器的可用性，请单击链接 **PortalTools
+  欢迎页面**。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_72_0.png)
+
+
+  8. 互联网浏览器必须显示创建 portlet 的页面，这确认 portlet 容器已成功安装。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_72_1.png)
+
+
+  ## 摘要
+
+
+  本章帮助我们准备了开发环境和应用程序服务器，以支持我们的 WebCenter 应用程序。
+
+
+  我们将使用 JDeveloper 开发 WebCenter 解决方案，并将其容器 WebLogic 用作 portlet 的存储库。
+
+
+  此外，我们还安装了服务器版本管理软件，这将帮助我们保持对项目更改的控制，并且还将允许多名开发人员参与解决方案的构建。
+
+
+  一旦我们的开发环境准备就绪，在下一章中，我们就可以开始使用 JDeveloper 构建我们的第一个 WebCenter 应用程序了。
+
+
+  > 请注意，WebLogic Server（已包含 WebCenter Services）运行在端口 7101 上。您可以从选项 **视图 | 运行管理器**
+  中更改端口。
+
+  '
+- "## 开始 WebCenter 开发：Hello World(s)\n\n在我们开始开发 Enterprise 2.0 内联网之前，我们将创建一个简单的 WebCenter\
+  \ 应用程序来演示工具、开发方法论和自定义 WebCenter 应用程序的部署。\n\n本章将详细介绍逐步说明，为您提供在实现本书余下部分的示例以及您自己的项目时所需的知识。\n\
+  \n我相信您注意到了本章标题中包含短语 \"Hello World(s)\"，其中的 \"(s)\" 非常突兀。这是有意为之，但并非表示我们要构建多个 WebCenter\
+  \ 示例，也不是为了潜意识地宣告和承认外星种族的存在。事实是，当单个 WebCenter Hello World 应用程序由几个 Hello World 组件构建时，其完整性最能体现。我们将向您展示一个\
+  \ Web 服务，由 portlet 消费，再由 WebCenter 应用程序消费。\n\n- **HelloWorldWS**：一个简单的 Web 服务，公开一个单一方法，用于向输入的名称打招呼\n\
+  - **HelloWorldPortlet**：一个基于标准的 Java Portlet，使用 HelloWorldWS Web 服务\n- **HelloWorldApp**：一个消费\
+  \ HelloWorldPortlet 的 WebCenter 应用程序\n\n![](img/fccf6c511126cf79e98510edd3b343ac_76_0.png)\n\
+  \n为了明确，最简单的 WebCenter Hello World 应用程序不需要所有这些组件，但我们选择这条路，以便您拥有更广泛的基础知识。\n\n## 先决条件\n\
+  \n本教程使用在 Windows 平台上运行的 JDeveloper 11g。我们将使用 JDeveloper 中集成的 WebLogic Server 来测试本教程过程中开发的应用程序。本章不会介绍操作系统或\
+  \ JDeveloper 11g 的安装过程。\n\n## 创建 Hello World Web 服务\n\n我们将从基于 Java 类创建一个 `HelloWorld`\
+  \ Web 服务开始。该类公开一个方法 `sayHello`，该方法将字符串 `name` 作为输入参数，并输出 `Hello name`。\n\n## 步骤\
+  \ 0：启动 Oracle JDeveloper 11g\n\nJDeveloper 的欢迎屏幕显示 **每日提示**。这是学习 JDeveloper 各种功能的好方法。关闭\
+  \ **每日提示** 窗口。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_77_0.png)\n\n## 步骤 1：创建新应用程序\n\
+  \n在应用程序导航器中，单击 **新建应用程序** 以开始创建应用程序。您也可以通过从主菜单单击 **应用程序 | 新建** 来执行相同操作。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_77_1.png)\n\
+  \n## 步骤 2：配置应用程序设置\n\n从应用程序模板列表中，选择 **通用应用程序**。当您打算手动选择项目的技术范围时，通用应用程序模板非常合适。为应用程序选择一个名称，本例中为\
+  \ `HelloWorldWSApp`。单击下一步。\n\n> 请注意列表末尾存在各种模板，包括 `Portlet Producer Application`\
+  \ 和 `WebCenter Application`。如果您找不到上述模板，那么最可能的原因是未安装 JDeveloper 的 WebCenter 扩展。\n\
+  \n![](img/fccf6c511126cf79e98510edd3b343ac_78_0.png)\n\n## 步骤 3：配置项目设置\n\n在项目名称对话框中，为项目选择一个名称，本例中为\
+  \ HelloWorldWS。请注意可包含在项目中的各种可用技术。对于开发 Web 服务，我们必须将 Web Services 包含在项目范围内。选择 Web\
+  \ Services 后，Java 会自动作为先决条件包含。单击完成。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_79_0.png)\n\
+  \n## 步骤 4：创建 Java 类\n\n接下来，我们将创建一个供 Web 服务使用的 Java 类。在应用程序导航器中，右键单击 HelloWorldWS\
+  \ 项目，并从上下文菜单中选择新建。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_80_0.png)\n\n在新建画廊中，选择常规节点。右侧显示可用项目列表。从列表中选择\
+  \ Java 类，然后单击确定。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_80_1.png)\n\n为类选择一个名称，本例中为\
+  \ HelloWorld，然后单击确定。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_81_0.png)\n\n编辑\
+  \ HelloWorld.java 文件，添加一个 sayHello 方法，该方法将字符串作为输入，并返回带有 Hello 前缀的输入。单击生成以编译该类。消息\
+  \ - 日志窗口应显示编译成功。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_81_1.png)\n\n## 步骤\
+  \ 5：从 Java 类创建 Web 服务\n\n在应用程序导航器中，选择 `HelloWorld.java` 文件并右键单击它。从上下文菜单中，选择 **创建\
+  \ Web 服务**。这将启动 Web 服务创建向导。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_82_0.png)\n\
+  \n我们将为 Weblogic 10.3 创建一个 Java EE 1.5 Web 服务。从 **平台** 列表中选择适当的平台。\n\n## 选择部署平台\n\
+  \n选择与您的要求匹配的部署平台。\n\n## 平台\n\n- J2EE 1.4 JAX-RPC，支持 10.3 WLS  \n  支持将 JAX-RPC Web\
+  \ 服务部署到 WLS 10.3 版。\n\n- Java EE 1.5，支持 JAX-WS 注释  \n  支持使用 JAX-WS 注释规范的 Java 注释部署到\
+  \ 10.3 WLS。\n\n- Java EE 1.5，支持 JAX-WS RI  \n  支持部署到任何支持 Sun JAX-WS 参考实现的容器。\n\n\
+  在 **常规选项** 对话框中，可以配置 Web 服务名称和端口。我们选择了 `HelloWorldService` 作为 Web 服务名称，`HelloWorldPort`\
+  \ 作为端口名称。本教程其余步骤的默认值均可接受。单击 **完成** 以完成此步骤。\n\n## 生成选项\n\n选择要发布的 Java 类或无状态会话 EJB，以及\
+  \ Web 服务的 J2EE 和注释选项。\n\n要发布的组件：  \nhelloworlds.HelloWorld\n\nWeb 服务名称：  \nHelloWorldService\n\
+  \n端口名称  \nHelloWorldPort\n\n添加 SEI\n\n\n\n\n\n你可以通过右键单击 HelloWorld.java 文件，并从上下文菜单中选择\
+  \ **Show WSDL for Web Service Annotations** 来查看生成的 WSDL。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_84_0.png)\n\
+  \n## Step 6: 创建部署配置文件\n\n在此步骤中，我们将编辑默认部署配置文件以更改 Context Root。从 Application Navigator\
+  \ 中选中 **HelloWorldWS** 项目，右键单击它，并从上下文菜单中选择 **Project Properties**。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_85_0.png)\n\
+  \n从 Project Properties 中，选择 Deployment，选中默认的 WebServices (WAR File)，然后单击 Edit。\n\
+  \n![](img/fccf6c511126cf79e98510edd3b343ac_85_1.png)\n\n从 Edit WAR Deployment Profile\
+  \ Properties 对话框中，在左侧窗格中选择 General。在右侧窗格中，选择 Specify Java EE Web Context-Root 并将值更改为\
+  \ HelloWorldWS。\n\n> 注意，虽然此步骤并非严格要求，但它能提高服务 URL 的可读性。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_86_0.png)\n\
+  \n## Step 7: 将 Web 服务部署到集成 Weblogic Server\n\n通过单击主菜单中的 Run | Start Server Instance\
+  \ 启动集成 Weblogic Server 实例。这将启动一个本地 Weblogic 服务器实例，我们可以使用它来测试 Web 服务。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_87_0.png)\n\
+  \n如果没有错误，则日志中将显示 **DefaultServer started** 消息。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_87_1.png)\n\
+  \n## Getting Started with WebCenter Development: Hello World(s)\n\n从 Application\
+  \ Navigator 中右键单击 HelloWorldWS 项目，并在上下文菜单中导航至 Deploy | Webservices | to | IntegratedWLSCConnection。\n\
+  \n![](img/fccf6c511126cf79e98510edd3b343ac_88_0.png)\n\n部署完成后，部署日志中将显示 Deployment\
+  \ finished 消息。此时，HelloWorldWs 已部署，我们可以对其进行测试。\n\n## Step 8: 测试 Web 服务\n\n使用 Web\
+  \ 浏览器导航至 HelloWorld Web 服务端口。此安装的默认值为 http://localhost:7101/HelloWorldWS/HelloWorldPort。\n\
+  \n![](img/fccf6c511126cf79e98510edd3b343ac_88_1.png)\n\n[ 70 ]\n\n要查看已部署 HelloWorld\
+  \ 服务的 WSDL，请单击 WSDL URL。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_89_0.png)\n\
+  \n记下 WSDL URL（默认：http://localhost:7101/HelloWorldWS/HelloWorldPort?wsdl）。创建 portlet\
+  \ 时将需要此 URL。\n\n至此，我们已成功创建并部署了 HelloWorld Web 服务。在后续章节中，我们将使用此 Web 服务创建一个 HelloWorld\
+  \ portlet。\n\n## Hello World Portlet\n\n在接下来的步骤中，我们将创建 Hello World Portlet。\n\n\
+  ## Step 1: 创建新的 Portlet Producer 应用程序\n\n从主菜单中选择 **Application | New** 以创建新应用程序。选择应用程序名称，本例中为\
+  \ **HelloWorldPortletApp**，并从 Application Templates 列表中选择 **Portlet Producer Application**。单击\
+  \ **Next**。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_90_0.png)\n\n在 Project Name\
+  \ 对话框中选择 **Project Name**，本例中为 **HelloWorldPortlet**。从 **Project Technologies**\
+  \ 列表中选择 **Web Services** 并将其添加到选定列表中。单击 **Finish**。向导将创建应用程序并显示应用程序概览屏幕。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_91_0.png)\n\
+  \n## Step 2: 创建新的 Portlet\n\n在 Application Navigator 中，右键单击 HelloWorldPortlet，并从上下文菜单中选择\
+  \ New。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_91_1.png)\n\n在 New Gallery 中，展开\
+  \ Web Tier 节点并选择 Portlets。从右侧窗格的 Items 列表中，选择 Standards-based Java Portlet。单击 OK。\n\
+  \n![](img/fccf6c511126cf79e98510edd3b343ac_92_0.png)\n\n在 General Portlet Information\
+  \ 对话框中，保留默认值并单击 Next。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_92_1.png)\n\n\
+  在 Additional Portlet Information 对话框中，输入 Display Name、Portlet Title 和 Short Title，然后单击\
+  \ Next。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_93_0.png)\n\n在 Content Types\
+  \ and Portlet Modes 对话框中，单击 view 并将实现方法更改为 Generate ADF-Faces JSPX。单击 Finish。向导将创建若干文件和配置，如\
+  \ Application Navigator 中所示。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_93_1.png)\n\
+  \n## Step 3: 为 Hello World Web 服务创建 Web Service Data Control\n\n在此步骤中，我们将创建 Web\
+  \ Service Data Control 以使用之前创建的 `HelloWorld` Web 服务。\n\n在 Application Navigator\
+  \ 中，选择 **HelloWorldPortlet** 项目，右键单击它，并从上下文菜单中选择 **New**。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_94_0.png)\n\
+  \n从 **New Gallery** 中展开 **Business Tier** 节点并选择 **Web Services**。在右侧页面中，从 **Items**\
+  \ 列表中选择 **Web Services Data Control**。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_95_0.png)\n\
+  \n为数据控件选择一个名称，本例中为 HelloWorldWs，并粘贴 HelloWorld Web 服务的 URL（来自创建 Hello World Web\
+  \ 服务的 Step 8）。单击 Next 继续。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_95_1.png)\n\
+  \n从 **Data Control Operations** 中，选择 `sayHello` 方法并将其添加到 **Selected** 方法中。单击 **Finish**。\n\
+  \n![](img/fccf6c511126cf79e98510edd3b343ac_96_0.png)\n\n展开 **Data Controls** 面板以查看新创建的数据控件。你应该能看到\
+  \ **HelloWorldWS** 数据控件。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_96_1.png)\n\
+  \n接下来，我们将使用 HTML 表为 portlet 创建一个简单布局。从 Application Navigator 中双击 view.jsp。从 Component\
+  \ Palette 下拉列表中选择 HTML 并展开 Common 组件。\n\n## Step 4: 创建使用数据控件的基本视图\n\n![](img/fccf6c511126cf79e98510edd3b343ac_97_0.png)\n\
+  \n从 HTML 组件面板中选择一个表并将其拖放到 view.jsp 页面上。将表配置为一行两列。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_97_1.png)\n\
+  \n## Step 5: 使用创建的 Web Service Data Control\n\n从 Data Control 中选择 sayHelloWorld(String)\
+  \ 并将其拖放到创建的表格左侧列中。选择 Create | Parameters | ADF Parameter Form。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_98_0.png)\n\
+  \n## Chapter 4\n\n在 Edit Form Fields 对话框中，编辑 Display Label。此处我们使用了 Input name。单击\
+  \ OK。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_99_0.png)\n\n输入参数表单放置在左侧窗格中。\n\
+  \n![](img/fccf6c511126cf79e98510edd3b343ac_99_1.png)\n\n[ 81 ]\n\n接下来，将 sayHello\
+  \ 方法的输出参数拖动到右侧列。选择 Create | Texts | ADF Output Text。sayHello 方法的返回值将显示在右侧列中。\n\n\
+  ![](img/fccf6c511126cf79e98510edd3b343ac_100_0.png)\n\n![](img/fccf6c511126cf79e98510edd3b343ac_100_1.png)\n\
+  \n## Step 6: 创建部署配置文件\n\n接下来，我们为 portlet 创建部署配置文件。从 Application Navigator 中选择 HelloWorldPortlet\
+  \ 项目并右键单击它。从上下文菜单中选择 Project Properties。在 Project Properties 中，选择 Deployment 并创建新部署。\n\
+  \n![](img/fccf6c511126cf79e98510edd3b343ac_101_0.png)\n\n在 Create Deployment Profile\
+  \ 中，从下拉列表中选择 Archive Type 为 WAR File。为配置文件选择一个名称；此处我们使用 HelloWorldPortlet。单击 OK。\n\
+  \n![](img/fccf6c511126cf79e98510edd3b343ac_101_1.png)\n\n接下来，我们设置 Context Root。我们使用\
+  \ **HelloWorldPortlet** 作为 Context Root。单击 OK。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_102_0.png)\n\
+  \n你可以在 **Project Properties** 中看到创建的配置文件 `HelloWorldProtlet`。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_102_1.png)\n\
+  \n\n\n\n\n## 步骤 7：将 portlet 部署到集成 WebLogic 服务器\n\n从 Application Navigator 中，选中 **HelloWorldPortlet**\
+  \ 并右键单击。从上下文菜单中选择 Deploy | **HelloWorldPortlet** | to | **IntegratedWLSConnection**。这将把\
+  \ WAR 文件部署到集成 WebLogic 服务器。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_103_0.png)\n\
+  \n在 **Select deployment type** 对话框中，选择 **Yes** 以允许 JDeveloper 将 portlet 公开为 WSRP\
+  \ 服务。单击 **OK**。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_103_1.png)\n\n在 **Deployment\
+  \ Configuration** 对话框中单击 **Deploy** 以完成部署。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_104_0.png)\n\
+  \n## 步骤 7：测试 portlet\n\n使用浏览器导航到部署 URL，`http://localhost:7101/HelloWorldPortlet/`。将显示\
+  \ WSRP producer 测试页面。页面底部显示 WSDL 链接。单击 **WSRP v2 WSDL** 链接以查看 portlet producer 的\
+  \ WSDL。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_104_1.png)\n\n记下 WSDL 链接。在 WebCenter\
+  \ 应用程序中使用该 portlet 时会用到它。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_105_0.png)\n\
+  \n至此，我们已开发、部署并测试了 portlet producer 应用程序。接下来，我们将创建一个 WebCenter 应用程序来使用该 portlet。\n\
+  \n## Hello World WebCenter 应用程序\n\n我们将创建一个 WebCenter 应用程序来使用创建的 portlet。该应用程序基于\
+  \ WebCenter Application 模板，并将使用 ADF Faces 创建 Web 应用程序。\n\n## 步骤 1：创建 WebCenter 应用程序\n\
+  \n使用 Application | New 创建新应用程序。从应用程序模板中选择 WebCenter Application。这将确保设置所有适当的技术范围。为应用程序命名；我们使用了\
+  \ HelloWorldWCApp。单击 Next。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_106_0.png)\n\
+  \n使用 WebCenter Application 模板时会创建两个项目：Model 和 ViewController。将 Web Services 技术添加到选定的技术范围中。单击\
+  \ Next。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_107_0.png)\n\n![](img/fccf6c511126cf79e98510edd3b343ac_107_1.png)\n\
+  \n## WebCenter 开发入门：Hello World(s)\n\n接下来，将创建 **ViewController** 项目。默认值即可。\n单击 **Finish**。\n\
+  \n![](img/fccf6c511126cf79e98510edd3b343ac_108_0.png)\n\n## 步骤 2：使用 portlet producer\n\
+  \n从 Application Resources 中，选择 **Connections** 并右键单击。从上下文菜单中选择 **WSRP Producer**。我们将使用它来使用创建的\
+  \ portlet。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_109_0.png)\n\n![](img/fccf6c511126cf79e98510edd3b343ac_109_1.png)\n\
+  \n接下来，配置 portlet producer。为此，我们需要 portlet 的 WSDL。\n单击 Next。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_110_0.png)\n\
+  \n选择超时的默认值并单击 Finish。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_110_1.png)\n\n\
+  ## 步骤 3：创建用于托管 portlet 的 JSF 页面\n\n从 Application Navigator 中，选中 Web Content 并右键单击，然后从上下文菜单中选择\
+  \ New。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_111_0.png)\n\n从 New Gallery 中，在\
+  \ Web Tier 节点下选择 JSF。在右侧窗格中，从 Items 列表中选择 JSF Page。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_111_1.png)\n\
+  \n在 Create JSF Page 对话框中，选择文件名；我们使用了 helloworld.jspx。选择 Create as XML Document 选项并选择\
+  \ Quick Start Layout。单击 OK 继续。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_112_0.png)\n\
+  \n## 步骤 4：创建页面布局\n\n从 Application Navigator 中，选择 HelloWorld.jsp 并为其创建页面布局。\n我们创建了一个标题表格、一个用于\
+  \ portlet 的中间区域和一个页脚表格。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_113_0.png)\n\
+  \n![](img/fccf6c511126cf79e98510edd3b343ac_113_1.png)\n\n## 步骤 5：为 WebCenter 应用程序创建部署配置文件\n\
+  \n在 Application Navigator 中，选择 ViewController 项目并右键单击。从上下文菜单中选择 Project Properties。创建新的部署配置文件。从\
+  \ Archive Type 下拉菜单中选择 WAR File。对于 Name 字段，我们选择了 HelloWorldApp。单击 OK 继续。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_114_0.png)\n\
+  \n接下来，将 Context Root 更改为 HelloWorldApp。单击 OK 继续。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_114_1.png)\n\
+  \n## 步骤 6：将 WebCenter 应用程序部署到集成 WebLogic 服务器\n\n在 Application Navigator 中，选择 ViewController\
+  \ 项目并右键单击。\n选择 Deploy | HelloWorldApp | to | IntegratedWLSConnection 将其部署到集成 WebLogic\
+  \ 服务器。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_115_0.png)\n\n在 Deploy Configuration\
+  \ 对话框中，单击 Deploy 完成部署。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_115_1.png)\n\n\
+  部署完成后，可以在 Deployment log 中看到 **Deployment Finished** 消息。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_116_0.png)\n\
+  \n## 步骤 7：测试 WebCenter 应用程序\n\n使用浏览器，导航到应用程序 URL（默认：http://localhost:7101/HelloWorldApp/faces/helloworld.jspx）。\n\
+  \n![](img/fccf6c511126cf79e98510edd3b343ac_117_0.png)\n\n恭喜！您已完成本教程并构建了一个完整的 Hello\
+  \ World WebCenter 应用程序。\n\n## 摘要\n\n在本教程中，您创建了一个 HelloWorld Web 服务，该服务由 HelloWorld\
+  \ portlet producer 使用。该 portlet producer 被 HelloWorld WebCenter 应用程序使用。\n\n您已验证开发环境，并增强了构建\
+  \ WebCenter 开发所需基础组件和技能的信心。\n\n在下一章中，我们将从 ABC 的内联网开始构建基础页面。\n"
+- "## 5 设计与个性化\n\n使用 Oracle WebCenter 开发的应用程序将传统信息系统的数据与 Wiki、讨论和博客等协作资源相结合。\n\n因此，在本章中，我们将教您如何开发传统应用程序。在后续章节中，您将学习如何将协作资源添加到传统应用程序中，以将其转换为\
+  \ Enterprise 2.0 解决方案。\n\n在本章中，我们将涉及以下项目：\n\n- 入门 ADF Faces Rich Client 框架\n- 创建\
+  \ WebCenter 应用程序\n- 使用模板\n- 构建数据组件\n- 开发示例页面\n\n好了，让我们开始构建传统应用程序。\n\n## ADF Faces\
+  \ Rich Client 组件\n\nADF Faces Rich Client 是一组用于构建丰富用户界面的组件。这些组件的关键在于使用 AJAX 技术，这使用户能够享受与桌面应用程序（例如\
+  \ EJM Swing 应用程序）类似的体验和视觉效果。这类应用程序称为富互联网应用程序（RIA）。\n\n## ADF Faces 组件类型\n\nADF Faces\
+  \ Rich Client 组件可按功能分为以下类型。\n\n| 组件 | 描述 |\n|---|---|\n| 布局组件 | 这些组件用于定义页面上的区域，这些区域将作为其他组件的容器。\
+  \ |\n| 输入组件 | 用于允许输入任何类型的信息。 |\n| 表格和树组件 | 用于使用有组织的结构显示信息。 |\n| LOV 组件 | 我们将使用这些组件来显示列表。\
+  \ |\n| 弹出组件 | 用于在页面中生成弹出窗口。 |\n| 菜单和工具栏组件 | 用于在应用程序中创建选项菜单的组件类型。 |\n| 输出组件 | 用于以不同格式显示信息。\
+  \ |\n| 标签和消息组件 | 此类组件将帮助我们在组件上放置描述性标签。 |\n| 导航组件 | 用于促进页面之间的流动。 |\n\n## 创建新应用程序\n\
+  \n要使用 Oracle WebCenter 开发应用程序，请执行以下步骤：\n\n1. 执行 JDeveloper，使用 Windows 开始菜单中的选项 **Oracle\
+  \ Fusion Middleware | JDeveloper Studio**。\n2. 进入工具后，选择选项 **File | New** 以启动向导。接下来，选择\
+  \ **WebCenter Application** 选项并按 **OK** 按钮，如下图所示：\n\n\n\n\n\n3. 在下一页中，我们定义以下信息：\n\
+  \n- **Name**：标识应用程序的名称。在本例中，我们的应用程序将被称为 Paracas。\n- **Directory**：这定义了我们将存储应用程序代码的目录。对于该项目，目录将是\
+  \ `c:\\Paracas`，因此你需要事先创建它。此后，我们将使用 `<app_directory>` 来引用该目录。\n- **Application Package\
+  \ Prefix**：我们将使用此属性来标识构建应用程序的根包。当前应用程序的根包为 `com.paracas`。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_121_1.png)\n\
+  \n## 为我们的应用程序包含模板\n\n在开始开发任何页面之前，有必要创建一个具有标识我们公司的颜色和徽标的模板。我们应用程序的所有页面都将使用此模板，以减少每个页面的设计时间。此活动的步骤如下：\n\
+  \n1. 转到应用程序调色板，右键单击项目 ViewController，并选择 New。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_122_0.png)\n\
+  \n2. 在 New Gallery 窗口中，选择 JSF 类别，并选择 JSF Page Template 选项，如下图所示，然后单击 OK 按钮。\n\n\
+  ![](img/fccf6c511126cf79e98510edd3b343ac_122_1.png)\n\n3. 在下一个窗口中，我们需要输入以下数据：\n\
+  \   - **File Name**：templateParacas.jspx\n   - **Directory**：C:\\Paracas\\ViewController\\\
+  public_html\\templates\n   - **Page Template Name**：templateParacas\n\n暂时不要按 OK\
+  \ 按钮。\n\n4. 我们的模板将有三个区域，一个位于顶部，两个位于左侧和右侧。上部区域将是固定的，并将包含我们公司的徽标。接下来的两个区域将是可变的，也就是说，这些区域的内容将在基于此模板可变区域开发的页面中发生变化。下图显示了模板中区域的布局：\n\
+  \n![](img/fccf6c511126cf79e98510edd3b343ac_123_0.png)\n\n5. 在创建模板期间，我们需要识别可变区域。为此，在\
+  \ **Facet Definitions** 选项卡中，单击 **New** 按钮以输入一个新的 Facet 来标识可变区域。输入 Facets **customLeft**\
+  \ 和 **customRight**，如下图所示：\n\n![](img/fccf6c511126cf79e98510edd3b343ac_124_0.png)\n\
+  \n6. 按 **OK** 按钮生成模板，该模板将在工具的主窗口中显示。\n\n7. 选择并拖动 **Panel Group Layout** 组件到模板中，该组件位于组件调色板的\
+  \ **Layout** 类别中。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_125_0.png)\n\n8. 在属性检查器中，将\
+  \ Layout 属性更改为 scroll。通过此更改，将出现滚动条以显示页面的完整内容。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_125_1.png)\n\
+  \n## 设计和个性化\n\n9. 转到组件调色板，将 **Panel Splitter** 组件拖动到页面中心。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_126_0.png)\n\
+  \n10. 转到 **Property Inspector** 并选择 **Common** 类别，将 **Orientation** 字段的值更改为 **vertical**。\n\
+  \n![](img/fccf6c511126cf79e98510edd3b343ac_126_1.png)\n\n11. 接下来，选择 **Style** 类别，按\
+  \ **Box** 选项卡，并将 **Width** 和 **Height** 属性更改为 100 百分比的值。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_126_2.png)\n\
+  \n12. 模板到目前为止已生成两个区域，分别称为 first 和 second。first 将显示标题的数据，而 second 将具有与可变区域相关的组件，这些组件将由基于模板的页面使用。\n\
+  \n![](img/fccf6c511126cf79e98510edd3b343ac_127_0.png)\n\n13. 将光标放在 first 和 second\
+  \ 区域之间，并更改它们的比例，如下图所示：\n\n![](img/fccf6c511126cf79e98510edd3b343ac_127_1.png)\n\n\
+  14. 现在，我们将把 second 区域分为两部分。为此，再次将 Panel Splitter 组件拖动到 second 区域中。\n\n## 15. 在属性检查器中，选择\
+  \ Style 类别，选择 Box 选项卡，并将 Width 和 Height 更改为 100 百分比，如下所示：\n\n![](img/fccf6c511126cf79e98510edd3b343ac_128_0.png)\n\
+  \n## 16. 经过上述更改，我们看到模板被分为三个区域。有必要根据第 5 节中定义的 Facets 来标识可变区域。为此，转到组件调色板的 Common 类别，并将\
+  \ Facet Ref 组件拖动到模板左侧区域；它将启动一个窗口，我们必须在其中选择之前定义的自定义 Facet。选择 customLeft，如下图所示，并单击\
+  \ OK 按钮。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_128_1.png)\n\n17. 在右侧区域重复相同的过程，使用\
+  \ **customRight** Facet。我们最终得到以下模板：\n\n![](img/fccf6c511126cf79e98510edd3b343ac_129_0.png)\n\
+  \n18. 在模板顶部，我们将放置公司的徽标。为此，从组件调色板拖动一个 **Image** 组件。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_129_1.png)\n\
+  \n19. 然后会出现一个浮动窗口；单击 **Source** 字段的 **edit** 选项，并选择带有公司徽标的文件（你可以使用文件 `logo.gif`，它是本书文件的一部分）。选择文件后，单击\
+  \ **Finish**。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_130_0.png)\n\n20. 我们将通过设置背景颜色来完成模板的开发。为此，选择结构调色板（位于\
+  \ JDeveloper 左下角），并选择引用 **af: panelGroupLayout - Scroll**，如下图所示：\n\n![](img/fccf6c511126cf79e98510edd3b343ac_130_1.png)\n\
+  \n21. 转到 **Property Inspector**，选择 **Style and Theme** 类别，单击 **StyleClass** 字段的箭头按钮，并选择\
+  \ **Edit** 选项。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_131_0.png)\n\n22. 在 **Edit\
+  \ Property** 窗口中，选择 **OraBGColorVeryDark** 样式并单击 **OK**。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_131_1.png)\n\
+  \n23. 最后，我们的模板应具有以下外观：\n\n![](img/fccf6c511126cf79e98510edd3b343ac_131_2.png)\n\n\
+  ## 构建具有数据库交互的页面\n\n此时，我们有了一个适用于所有页面的自定义模板。现在，让我们使用它来构建一个具有数据库访问功能的页面。与往常一样，我们先简要介绍一下要使用的技术。\n\
+  \n## ADF Business Components\n\nADF Business Components 是一个用于在 JEE 应用程序中实现持久层和业务层的框架。它易于使用并提高了生产力。此外，我们可以在组件之上添加业务逻辑。\n\
+  \nADF Business Components 的架构包括以下组件：\n\n- **Entity**：这是一个 Java 组件，代表特定的信息源（即数据库表）。\n\
+  - **View Object**：此组件将用于实现查询以访问数据。\n- **Application Module**：我们应用程序的主要业务规则将在此组件中定义。通常，我们为每个用例拥有一个应用程序模块。\n\
+  \n> 有关 ADF Business Components 的更多详细信息，请参阅 _Fusion Developer's Guide, Part II Building\
+  \ Your Business Services_ http://download.oracle.com/docs/cd/E12839_01/ web.1111/b31974.pdf。\n\
+  \n## 创建持久层\n\n首先，我们将创建一个架构并执行相关脚本。确保你已从本书网站下载脚本到你的目录中。此脚本将创建我们应用程序中将使用的数据和结构。\n\n\
+  ## 为我们的应用程序创建架构\n\n对于此练习，需要有一个 Oracle 数据库。以下练习是使用 Oracle 10g Express Edition 数据库进行的。\n\
+  \n使用数据库的命令行，运行以下指令：\n\n1. 作为 dba 用户（如 `sys` 或 `system`）连接到数据库。\n\n\n\n\n\n## 在 JDeveloper\
+  \ 中创建数据库连接\n\n1. 在 JDeveloper 中，转到 Application Resource Palette，在 Connection 选项上右键单击，并选择\
+  \ New Connection | Database。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_133_0.png)\n\
+  \n2. 在当前窗口中，配置以下参数：\n\n- Connection Name: db_paracas\n- Connection Type: Oracle(JDBC);\
+  \ we use Oracle Database\n- Username: paracas; identifies the user previously created\n\
+  - Password: paracas; define the password user\n\n2. 执行以下命令：\nSQL> create user paracas\
+  \ identified by paracas\n\n3. 为 paracas 用户授予权限：\nSQL> grant connect, resource to\
+  \ paracas;\n\n4. 作为 paracas 用户连接：\nSQL> conn paracas/paracas;\n\n5. 从以下位置执行脚本：\n\
+  SQL> start c:\\paracas\\script\\paracas.sql\n\n## 设计和个性化\n\n- Host Name: **localhost**;\
+  \ we assume a local database\n- SID: **XE**; we use Oracle Express Edition version\n\
+  \n![](img/fccf6c511126cf79e98510edd3b343ac_134_0.png)\n\n按 OK 完成。\n\n> 关于 Oracle\
+  \ Database Express Edition 的更多信息，请参阅以下链接：\n> http://www.oracle.com/technology/products/database/\n\
+  > xe/index.html\n\n## 创建业务组件\n\n1. 在 Project Palette 中，右键单击 Project Model 并选择 New。\n\
+  \n![](img/fccf6c511126cf79e98510edd3b343ac_135_0.png)\n\n2. 在下一页中，选择类别 **Business\
+  \ Tier | ADF Business Components** 并选择 **Business Components from Tables**。接下来，按\
+  \ OK 按钮。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_135_1.png)\n\n3. 在下一页中，您配置到数据库的连接。此时，您只需确保\
+  \ **db_paracas** 是所选的连接。按 OK 按钮。\n\n## 4. 现在，选择作为创建实体基础的表。检查 **Auto-Query** 选项并使用箭头键移动和选择所有内容，如下面的屏幕截图所示，然后单击\
+  \ **Next** 按钮。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_136_0.png)\n\n## 5. 下一页允许您创建\
+  \ **View Objects** 组件，这些组件对于查询定义是必要的。与上一步类似，选择并移动所有组件，然后单击 **Next** 按钮。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_136_1.png)\n\
+  \n6. 在下一屏幕上，**Read-Only View Objects**，不做任何更改并单击 **Next** 按钮。\n\n7. 最后，在下一屏幕上，保留建议的选项，并按\
+  \ **Finish** 按钮。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_137_0.png)\n\n最后几步允许我们基于表创建组件。RequestView\
+  \ 组件包括，在其属性中，所请求材料的代码。但是，RequestView 将需要材料的描述。要添加此描述，我们将进行以下自定义：\n\n1. 在 Project\
+  \ Palette 中，双击 **RequestView**。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_137_1.png)\n\
+  \n## 2. 在工具右侧，您应该看到组件的配置。选择类别 **Entity Objects** 并在 **Selected** 区域中添加 material，如下面的屏幕截图所示。通过此步骤，**RequestView**\
+  \ 将从 Request 和 Material 实体获取此信息。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_138_0.png)\n\
+  \n## 3. 然后选择类别 **Attributes** 并单击页面右上角的 **Add from Entity** 按钮。\n\n## 4. 在显示的窗口中，选择\
+  \ **Description** 字段并将其移动到右侧，如下面的屏幕截图所示：\n\n![](img/fccf6c511126cf79e98510edd3b343ac_138_1.png)\n\
+  \n5. 按 OK 按钮应用更改。\n6. ProposalView 视图对象也需要供应商的描述。因此，对 RequestView 执行相同的步骤，并添加实体\
+  \ Supplier 的 Description 属性。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_139_0.png)\n\
+  \n7. 使用 JDeveloper 菜单中的 Save All 按钮保存所有更改。\n\n## 创建页面\n\n1. 在 Project Palette 中，右键单击项目\
+  \ ViewController，然后选择 New。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_139_1.png)\n\
+  \n## 设计和个性化\n\n2. 在下一个窗口中，选择类别 **Web Tier JSF**，选择选项 **JSF Page**，并单击 OK 按钮。\n\n\
+  ![](img/fccf6c511126cf79e98510edd3b343ac_140_0.png)\n\n3. 对于下一步，检查 **Create as XML\
+  \ Document option**，为页面定义名称 `requestMaterial.jspx`，选择 **Page template** 选项，选择 `templateParacas`，并单击\
+  \ OK 按钮。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_140_1.png)\n\n4. 创建页面后，将 Panel\
+  \ Splitter 拖入 customLeft 区域：\n\n![](img/fccf6c511126cf79e98510edd3b343ac_141_0.png)\n\
+  \n5. 转到属性检查器并更改以下属性：\n\n- Common | Orientation : vertical\n- Style | Box | Width\
+  \ : 100\n- Style | Box | Height : 100\n\n![](img/fccf6c511126cf79e98510edd3b343ac_141_1.png)\n\
+  \n## 设计和个性化\n\n6. 通过上述更改，我们将左侧区域分成了两部分。我们将利用第一部分显示带有请求信息的表。为此，转到 Data Control Palette\
+  \ 并将 **AppModuleDataControl | RequestView1** 引用拖入顶部（第一个）面板。接下来，从上下文菜单中选择 **Tables\
+  \ | ADF Read Only Table**。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_142_0.png)\n\
+  \n7. 在下一个窗口中，我们必须选择要在页面上显示的字段。检查 **Row Selection** 并使用滚动按钮删除一些字段以定义类似于下面所示的屏幕。接下来，单击\
+  \ **OK** 按钮。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_142_1.png)\n\n8. 最后，为了测试页面，右键单击页面并选择\
+  \ **Run**。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_143_0.png)\n\n9. 结果应显示材料请求。\n\
+  \n![](img/fccf6c511126cf79e98510edd3b343ac_143_1.png)\n\n请注意，页面仅显示第一个区域的内容，因为其他区域为空。在接下来的章节中，我们将继续处理此页面，通过向可用区域添加其他功能。\n\
+  \n## 摘要\n\n在本章中，我们了解了如何开发模板并将数据访问功能添加到我们的 WebCenter 应用程序中。\n\n如果您需要有关应用程序中数据访问的更多详细信息，我们建议您查阅以下地址的\
+  \ _Fusion Developer's Guide for Oracle Application Development Framework_：\n\n`http://download.oracle.com/docs/cd/E12839_01/web.1111/b31974.pdf`\n"
+- "## #6 Portlets\n\n在上一章中，我们了解了如何构建包含我们示例公司要求及其供应商报价信息的页面。现在，我们有兴趣向该页面添加一个图表，以图形方式显示待处理和已关闭要求的状态百分比。但是，此图表不仅在此页面需要，而且在许多其他页面也需要。因此，有必要将此图表构建为可重用组件。在这种情况下，portlet\
+  \ 技术可以帮助我们。\n\nPortlet 是软件组件，可以是页面的一部分。因此，页面可以由许多 portlet 丰富，使我们能够获取各种数据源的内容。本章将帮助我们理解与该技术相关的概念以及如何将其应用于我们的\
+  \ Oracle WebCenter 项目中。\n\n在本章中，您将学习以下内容：\n\n- JSF 规范概念\n- 可以使用 WebCenter 构建的 portlet\
+  \ 类型\n- 使用 ADF 开发 portlet\n- 将 portlet 与自定义应用程序集成\n\n## #Portlets, JSR-168 specification\n\
+  \n规范 JSR-168 定义了 Java 技术，为 Java portlet 提供了精确的定义：\n\n_Portlets are web components\
+  \ – like Servlets – specifically designed to be aggregated in the context of a composite\
+  \ page. Usually, many Portlets are invoked to in the single request of a Portal\
+  \ page. Each Portlet produces a fragment of markup that is combined with the markup\
+  \ of other Portlets, all within the Portal page markup._\n\n您可以在以下页面查看此规范的更多详细信息：\n\
+  http://jcp.org/en/jsr/detail?id=168\n\n虽然定义与 servlet 进行了比较，但重要的是要注意，portlet 不能直接通过\
+  \ URL 访问；相反，有必要使用 portlet 的页面类似容器。\n\n因此，我们可以将 portlet 视为返回动态内容（HTML、WML）到 Portal\
+  \ 页面区域的小型 Web 应用程序。\n\n从图形上看，我们可以将带有 portlet 的页面视为如下所示：\n\n![](img/fccf6c511126cf79e98510edd3b343ac_146_0.png)\n\
+  \n此外，我们必须强调，portlet 并非与页面中的其他组件隔离，还可以共享信息并响应在其他组件或 portlet 中发生的事件。\n\n\n\n\n\n##\
+  \ WSRP 规范\n\nWSRP 规范允许将 portlet 公开为 Web 服务。为此，客户端通过接口 (*.wsdl) 访问 portlet 并获取关联的图形内容。可选地，portlet\
+  \ 可能能够通过在其上发生的事件直接与用户交互。\n\n这种调用方式提供以下优势：\n\n- 共享 portlet 的门户将支持集中在单一点。\n- portlet\
+  \ 与门户的集成简单，无需编程。\n- 使用托管在不同站点上的 portlet 有助于减轻服务器负载。\n\n## WebCenter portlets\n\n\
+  Portlet 可以以不同方式构建，使用 Oracle WebCenter 开发的应用程序可以使用这些类型的任何 portlet。\n\n- JSF Portlets：这种类型的\
+  \ portlet 基于 JSF 应用程序，用于使用 JSF Portlet Bridge 创建 portlet。\n- Web Clipping：使用此工具，我们可以仅使用浏览器以声明方式构建\
+  \ portlet。这些 portlet 显示来自其他站点的内容。\n- OmniPortlet：这些 portlet 可以从不同类型的数据源（XML、CSV、数据库等）检索信息，以不同方式呈现内容，例如表格、表单、图表等。\n\
+  - Content Presenter：这允许将 UCM 中的内容放置到页面上，并以任何喜欢的方式或使用模板显示此内容。\n- Ensemble：这是一种“混搭”或生成可在页面上显示的\
+  \ portlet 或“pagelet”信息的方式。\n- Programmatic Portlets：显然，除了之前便于构建 portlet 的技术之外，还可以以编程方式构建。以这种方式构建时，我们可以达到高度的个性化和控制。然而，我们需要专业的\
+  \ Java 知识才能以这种方式编程。\n\n如我们所见，构建 portlet 有多种方式；但是，为了使用 ADF Faces 框架提供的丰富组件，我们将专注于\
+  \ JSF Portlets。\n\n## 使用 ADF 开发 portlet\n\n我们将构建的 portlet 将包含一个图表，用于显示公司请求的状态。为此，我们必须创建一个表示业务逻辑并在页面上公开此信息的模型层。\n\
+  \n因此，我们将执行以下步骤：\n\n1. 创建 ADF 应用程序。\n2. 开发业务组件。\n3. 创建图表页面。\n4. 使用页面生成 portlet。\n\
+  5. 部署 portlet。\n\n> 在此示例中，我们使用页面来构建 portlet；但是，ADF 还提供通过使用 ADF TaskFlows 基于页面流创建\
+  \ portlet 的功能。您可以在以下链接中找到更多信息：\n> http://download.oracle.com/docs/cd/E15523_01/web.1111/b31974/taskflows.htm#BABDJEDD\n\
+  \n## 创建 ADF 应用程序\n\n要创建应用程序，请执行以下步骤：\n\n1. 打开 JDeveloper。\n2. 在菜单中，选择 File | New\
+  \ 选项以启动创建应用程序的向导。在显示的窗口中，选择 Application 类别并选择 Fusion Web Application ADF 选项，然后按\
+  \ OK 按钮。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_149_0.png)\n\n3. 接下来，输入创建应用程序的以下属性：\n\
+  \n- Name: ParacasPortlet\n- Directory: c:\\\\ParacasPortlet\n- Application Package\
+  \ Prefix : com.paracasportlet\n\n![](img/fccf6c511126cf79e98510edd3b343ac_149_1.png)\n\
+  \n4. 单击 **Finish** 创建应用程序。\n\n## 开发业务组件\n\n在开始此活动之前，请确保已创建到数据库的连接。要回顾此过程，请参阅 _Chapter\
+  \ 3, Setting up the Development Environment_。\n\n1. 在项目 Palette 中，右键单击 **Project\
+  \ Model**，并选择 **New**。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_150_0.png)\n\n\
+  2. 在下一页，选择类别 **Business Tier | ADF Business Components** 并选择 **Business Components\
+  \ from Tables**。接下来，按 OK 按钮。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_150_1.png)\n\
+  \n3. 在以下页面，您配置到数据库的连接。此时，选择连接 **db_paracas** 并按 **OK** 按钮。\n\n4. 为了构建带有图表的页面，我们需要创建一个只读视图。因此，不要更改任何内容，只需按\
+  \ **Next** 按钮。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_151_0.png)\n\n5. 在此下一步中，我们可以创建可更新的视图。但是，我们不需要这种类型的组件。因此，不要更改任何内容。单击\
+  \ **Next** 按钮。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_151_1.png)\n\n6. 现在，我们需要允许创建只读视图。我们将在页面中使用这种类型的组件；因此选择表\
+  \ REQUEST，如下所示并按 Next。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_152_0.png)\n\n\
+  7. 我们的下一步将允许创建应用程序模块。此组件对于在整个应用程序中显示只读视图是必要的。保持此屏幕的建议值并单击 Finish 按钮。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_152_1.png)\n\
+  \n8. 检查 Application Navigator。您必须以如下截图所示的方式排列组件：\n\n![](img/fccf6c511126cf79e98510edd3b343ac_153_0.png)\n\
+  \n9. 我们的查询必须确定按状态划分的请求数量。因此，将需要对创建的组件进行一些更改。首先，双击视图 **RequestView**，选择 **Query**\
+  \ 类别，并单击 **Edit SQL Query** 选项，如下截图所示：\n\n![](img/fccf6c511126cf79e98510edd3b343ac_153_1.png)\n\
+  \n## 10. 在显示的窗口中，如下所示修改 SQL 并单击 OK 按钮。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_154_0.png)\n\
+  \n```sql\nSELECT Request.STATUS,\n       COUNT(*) COUNT_STATUS\nFROM REQUEST Request\n\
+  GROUP BY Request.STATUS\n```\n\n## 11. 我们只使用属性 Status 和 CountStatus。因此，选择 Attributes\
+  \ 类别，选择未使用的属性，并按 Delete selected attribute(s)，如下截图所示：\n\n![](img/fccf6c511126cf79e98510edd3b343ac_154_1.png)\n\
+  \n## 12. 保存所有更改并验证视图类似于如下所示：\n\n![](img/fccf6c511126cf79e98510edd3b343ac_155_0.png)\n\
+  \n## 创建图表页面\n\n完成构建模型阶段后，我们将创建托管图表的页面。\n\n1. 在 Application Navigator 中，右键单击项目 **ViewController**，然后选择\
+  \ **New**。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_155_1.png)\n\n2. 在下一窗口中，选择类别\
+  \ **Web Tier | JSF**，选择选项 **JSF Page**，并单击 **OK** 按钮。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_156_0.png)\n\
+  \n3. 然后，我们定义页面名称：`requestGraph.jspx` 并按 **OK** 按钮。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_156_1.png)\n\
+  \n4. 现在，找到 Data Controls 调色板并将视图 **RequestView1** 拖动到页面。然后，从上下文菜单中选择 **Graphs**\
+  \ 选项，如下截图所示：\n\n![](img/fccf6c511126cf79e98510edd3b343ac_157_0.png)\n\n5. 接下来，选择\
+  \ **Pie** 类别和 Pie 类型项，如下所示：\n\n![](img/fccf6c511126cf79e98510edd3b343ac_157_1.png)\n\
+  \n## 6. 完成上一步后，将出现一个屏幕，指示用于填充图表的属性。在 Pie 项中选择 CountStatus，在 Slice 中选择 Status。按 OK。\n\
+  \n![](img/fccf6c511126cf79e98510edd3b343ac_158_0.png)\n\n## 7. 最后，更改图形外观。为此，创建组件后，转到\
+  \ Property Inspector，选择 Appearance 区域，并将属性 Style 的值更改为 Comet，将 3D Effect 更改为 true，如下截图所示：\n\
+  \n![](img/fccf6c511126cf79e98510edd3b343ac_158_1.png)\n\n## 8. 保存所有更改。\n\n\n\n\n\
+  \n## 使用页面创建 Portlet\n\n现在我们有了页面，将使用它。\n\n1. 转到 Application Navigator，右键单击页面 `requestGraph.jspx`\
+  \ 并选择 **Create Portlet Entry**，如下图所示：\n\n![](img/fccf6c511126cf79e98510edd3b343ac_159_0.png)\n\
+  \n2. 在下一个窗口中，更改 Portlet 的名称和描述，如下所示，然后单击 OK 按钮。\n\n- Portlet Name: **ParacasPortlet**\n\
+  - Display Name: **ParacasPortlet**\n- Portlet Title: **Requests by Status**\n- Short\
+  \ Title: **Requests by Status**\n- Description: **Requests by Status**\n\n![](img/fccf6c511126cf79e98510edd3b343ac_159_1.png)\n\
+  \n## Portlet 部署\n\n1. 构建 Portlet 后，需要将其包含在我们的 Portal 中。为此，我们必须从存储库中获取此 Portlet。首先，必须确保服务器处于活动状态。要启动此服务器，请选择菜单选项\
+  \ **Run | Start Server Instance**。\n\n2. 最后一步将足以基于数据页面创建 Portlet。单击 **OK**，然后检查文件\
+  \ _portlet.xml_ 和 _oracle-portlet.xml_ 是否已创建，如下图所示：\n\n![](img/fccf6c511126cf79e98510edd3b343ac_160_0.png)\n\
+  \n![](img/fccf6c511126cf79e98510edd3b343ac_160_1.png)\n\n## 第 6 章\n\n3. 控制台中的以下消息确认服务器已初始化：\n\
+  DefaultServer started.\n\n4. 右键单击 **ParacasPortlet** 应用程序，选择 **Deploy | ParacasPortlet_application1\
+  \ | to | IntegratedWLSConnection**，方式与下图所示相同：\n\n![](img/fccf6c511126cf79e98510edd3b343ac_161_0.png)\n\
+  \n5. 在下一个窗口中，单击按钮 **OK** 以完成该过程。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_161_1.png)\n\
+  \n[ 143 ]\n\n## 5. 最后，为了检查 Portlet 的部署，请转到以下页面：\n\nhttp://localhost:7101/ParacasPortlet-ViewController-context-root/\n\
+  \n![](img/fccf6c511126cf79e98510edd3b343ac_162_0.png)\n\n此页面显示服务器上已部署 Portlet 的信息，并且，其中之一，提供了接口的\
+  \ WSRP 链接。这些接口是 Portlet 之间面向规范的通信的一部分。我们将使用此接口从其他站点使用 Portlet。因此，单击链接 WSRP v2 WSDL\
+  \ 并查看此 URL：\n\nhttp://localhost:7101/ParacasPortlet-ViewController-context-root/portlets/wsrp2?WSDL\n\
+  \n![](img/fccf6c511126cf79e98510edd3b343ac_162_1.png)\n\n## 使用 Portlet\n\n在构建和部署\
+  \ Portlet 之后，现在是让其他应用程序重用它的时候了。为此，需要在需要使用它的应用程序中创建对该 Portlet 的引用。让我们看看此集成的步骤：\n\n\
+  1. 在 **Application Navigator** 中，将当前应用程序 ParacasPortlet 更改为我们在 _Chapter 5, Design\
+  \ and Personalization_ 中构建的 Paracas Application。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_163_0.png)\n\
+  \n> 或者，您可以使用包含在书籍代码包中的 ParacasEndOfChapter5.zip 文件。\n\n2. 在 Application Navigator\
+  \ 中，找到 Application Resources 部分。然后，右键单击 **Connections** 并选择 **New Connection | WSRP\
+  \ Producer**。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_163_1.png)\n\n## 3. 在下一个窗口中，将\
+  \ Portlet 的注册重命名为 WsrpPortletParacas 并单击 Next。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_164_0.png)\n\
+  \n## 4. 在端点的 URL 中，键入先前部署的 Portlet 关联的 URL 并按 Next。\n\nhttp://localhost:7101/ParacasPortlet-ViewController-context-root/portlets/wsrp2?WSDL\n\
+  \n![](img/fccf6c511126cf79e98510edd3b343ac_164_1.png)\n\n## 5. 现在，单击 Finish 按钮以完成与\
+  \ Portlet 的连接建立。\n\n6. 让我们返回 Application Navigator 并双击页面 requestMaterial 以在编辑器中显示它。\n\
+  \n![](img/fccf6c511126cf79e98510edd3b343ac_165_0.png)\n\n7. 随后，将 Portlet 引用 Requests\
+  \ by Status 拖动到页面的 customRight 区域，如下所示：\n\n![](img/fccf6c511126cf79e98510edd3b343ac_165_1.png)\n\
+  \n## 8. 右键单击页面并在 Application Navigator 中选择 Run。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_166_0.png)\n\
+  \n## 9. 最后，页面将显示以下结果：\n\n![](img/fccf6c511126cf79e98510edd3b343ac_166_1.png)\n\n\
+  ## 摘要\n\n本章向我们展示了 Portlet 的强大功能，这是一种可以在页面之间重用的机制。在此示例中，我们利用了 JDeveloper 提供的 JSF\
+  \ 和向导，快速构建了图形组件。\n\n在本章中，我们发现了 Portlet 作为组件重用技术所提供的功能。此外，我们应用此技术使用 JDeveloper 构建了一个\
+  \ Portlet。接下来，我们将该组件托管在 Oracle WebCenter 提供的存储库中。最后，我们通过我们之前在本书中构建的 Paracas 门户使用了此\
+  \ Portlet。\n"
+- "## Discussions, Wiki, and Blog Services\n\nOracle WebCenter Discussions Service\
+  \ 提供了一个论坛工具，可在组织内部用于共享信息和促进协作。论坛是互联网上最流行的信息交换机制之一。我们都熟悉论坛创建用户社区和传播信息的强大功能。\n\n如果您使用过\
+  \ Oracle Technology Network Forums，WebCenter Discussions Service 会让您感到非常熟悉——两者都使用相同的强大论坛软件。\n\
+  \n![](img/fccf6c511126cf79e98510edd3b343ac_169_0.png)\n\n我们在为企业实现论坛时遇到的一些常见挑战与以下内容有关：\n\
+  \n1. 集成到现有的技术栈\n2. 使用现有 LDAP 进行用户和组管理\n3. 支持\n4. 文化采纳\n\n最流行的许多论坛软件解决方案都基于 PHP 和\
+  \ MySQL。不久前，我们为一个 Oracle Fusion Middleware 客户实现了开源 phpBB 解决方案。大部分实现时间和成本都花在与现有门户基础设施和身份管理组件集成上。\n\
+  \n通过 Discussions，Oracle 在实现过程中成功地最大限度地减少了所需的技术工作量，解决了主要技术挑战（上述第 1 和第 2 项）。并且，由于提供了正式支持，以及普遍认为使用\
+  \ Discussions 进行论坛集成在每次实现中都不会独特，组织可以对可行的长期支持感到更加放松。鉴于 Discussions 很好地解决了前三个挑战，我们现在将文化采纳视为最大的挑战，可以通过有效的培训和战略管理决策来克服。论坛在组织内部变得越来越流行，Oracle\
+  \ 已实现了直观的最终用户方法。\n\nDiscussions Server 作为 Oracle WebCenter 安装的一部分进行安装。可以在默认位置 `http://hostname:8890/owc_discussions`\
+  \ 直接访问它。虽然 Discussions 本身是一个有用的论坛工具，但真正的强大功能来自 Discussions Service，它使我们能够将论坛嵌入、查看和与之交互，作为自定义\
+  \ WebCenter 应用程序的一部分，其中论坛可以作为企业在当前使用的应用程序内部获取和共享信息的一种手段。\n\n**Wiki** 是一个允许一组编辑人员使用简单的标记语言以协作方式轻松创建网页的网站。标记语言有助于组织和格式化网页。许多公司使用\
+  \ Wiki 来内部创建文档。公司的每位员工都可以轻松访问编辑 Wiki 中的信息，因此可以为整个社区纳入新信息。\n\n\n\n\n\nA **Blog**\
+  \ 是允许个人作者发布内容流供社区查看的网站。“Blog”一词源自“Web Log”的缩写。Blog 流中的每个项目都可以视为一篇文章。文章可以简单到视频或图片发布，也可以正式到报纸文章。作者决定发布什么内容。通常，作者允许社区成员通过在文章上发布评论来参与与博客文章相关的对话。\n\
+  \nWiki 服务和 Blog 服务都依赖于 WebCenter Wiki 和 Blog 服务器。两项服务都使用单个连接连接到单个后端服务器。\n\n在本章中，我们将执行以下操作：\n\
+  \n- 介绍如何创建利用 Discussions 服务的自定义 WebCenter 应用程序\n- 介绍一些任务流\n- 介绍在自定义应用程序中配置 Discussions\
+  \ 服务连接所需的关键信息的位置\n- 了解如何将自定义 WebCenter 应用程序与 Wiki 和 Blog 服务集成，具体来说，是使用 IFrame 和使用\
+  \ Web Clipping Portlet\n\n## Discussions 配置\n\n我们的应用程序使用 JDeveloper 11g 构建，并连接到\
+  \ Oracle WebCenter Discussions 服务器。通过连接到 Discussions 服务器 URL（http://hostname:8890/owc_discussions）确保\
+  \ Discussions 服务器正在运行。最好在 Discussions 服务器中填充一些示例用户、类别和论坛。Forums Admin Console 用于创建新用户和论坛。管理控制台可以通过\
+  \ http://hostname:8890/owc_discussions/admin 访问。\n\n默认管理员用户名是 weblogic，密码是 weblogic。这与安装时指定的任何用户名/密码无关。\n\
+  \n您可以在管理控制台中配置各种设置，包括但不限于以下内容：\n\n- 内容结构：类别、子类别、论坛\n- 用户和组\n- 权限\n- 过滤器和拦截器\n- 审核\n\
+  - 用户界面（颜色和主题）\n- 报告和指标\n- 系统设置（缓存、电子邮件、区域设置等）\n- 插件\n\n以下是管理控制台主页的截图：\n\n![](img/fccf6c511126cf79e98510edd3b343ac_172_0.png)\n\
+  \n我们不会关注配置论坛的所有方面，而是关注开始并集成到 WebCenter 所需的主要部分。具体来说，我们将关注用户/组和整体论坛内容结构。Jive 文档详尽，详细解释了各个设置。\n\
+  \n## 内容结构\n\nDiscussions 的一般结构如下：\n\n- 类别：讨论内容的逻辑分组\n  - 子类别：可选的子分组\n    - 论坛：最终用户可以创建讨论线程的最低级别分组\n\
+  \      - 线程：最终用户创建的条目，包含原始条目以及回复\n\n在 Forums Admin Console 中，您可以定义适合您组织的结构。适用于其他论坛软件的相同原则也适用于\
+  \ Discussions 内容结构。\n\n为了本演示的目的，我们创建了一个 **Marketing** 类别和一个 **Marketing Ideas**\
+  \ 论坛。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_173_0.png)\n\n## Discussions、Wiki\
+  \ 和 Blog 服务\n\n以下是反映刚刚创建的 **Marketing Ideas** 论坛的 **Category Summary** 图像：\n\n![](img/fccf6c511126cf79e98510edd3b343ac_174_0.png)\n\
+  \n## 用户和组结构\n\n我们将此 Discussions 服务作为独立服务进行处理，因此手动创建了用户和组。在企业解决方案中，您可能会使用 Enterprise\
+  \ Manager 将其与 LDAP（如 Oracle Internet Directory）集成。以下是我们在 Discussions 管理中配置的用户截图：\n\
+  \n![](img/fccf6c511126cf79e98510edd3b343ac_174_1.png)\n\n如前所示，我们添加了两个用户——amit 和\
+  \ jimmy——并授予他们适当的权限以在 Marketing Ideas 论坛上发布内容。\n\n## 将 Discussions 与 WebCenter 集成\n\
+  \n在本章的其余部分，我们将创建一个自定义 WebCenter 应用程序，该应用程序将与 Discussions 服务器集成，并公开一个论坛视图，允许您使用任务流与论坛进行交互。\n\
+  \nOracle 为 Discussions 服务公开了多个任务流。我们在以下表格中列出了所有开箱即用的任务流，并加粗了我们将放入 WebCenter 应用程序的任务流：\n\
+  \n| Task Flow | Description |\n|---|---|\n| **Discussions Forums** | 此任务流显示与指定论坛关联的所有主题。用户可以根据其权限创建、读取、更新和删除主题。\
+  \ |\n| Discussions – Popular Topics | 显示给定类别 ID 或论坛 ID 下的热门主题。 |\n| Discussions\
+  \ – Recent Topics | 显示给定类别 ID 或论坛 ID 下的所有最近主题。 |\n| Discussions – Watched Forums\
+  \ | 允许用户查看给定类别 ID 下的所有关注的论坛。 |\n| Discussions – Watched Topics | 允许用户查看给定类别 ID 或论坛\
+  \ ID 下的所有关注的主题。 |\n| **Discussions – Sidebar View** | 这显示了 Popular Topics、Recent\
+  \ Topics、Watched Topics 和 Watched Forums 任务流的组合视图。 |\n\n我们将完成的主要步骤如下：\n\n1. 确保 Discussions\
+  \ 服务器正在运行\n2. 创建 WebCenter 应用程序\n3. 创建到 Discussions 服务器的连接\n4. 创建 JSF 页面\n5. 选择适当的\
+  \ Discussions Service Task Flow 并将其嵌入页面\n6. 部署、运行和测试应用程序\n\n## 确保 Discussions 服务器正在运行\n\
+  \n在开始开发应用程序之前，请确保 WebCenter Discussions 服务器正在运行。如果 Discussions 服务器未运行，请按照 WebCenter\
+  \ 安装和配置章节中所述启动 WLS_Services 托管服务器。使用浏览器打开 Discussions 的 URL（例如，http://hostname:8890/owc_discussions）。\n\
+  \n使用新创建的用户登录并发布一些示例文章。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_176_0.png)\n\n\
+  ## 创建新的 WebCenter 应用程序\n\n使用 JDeveloper 创建新应用程序，选择 WebCenter 应用程序模板。要遵循的步骤与 HelloWorldApp\
+  \ 中使用的步骤类似，因此我们不会在此重复。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_177_0.png)\n\n\
+  ## 创建 JSF 页面\n\n接下来，我们将创建一个 JSF 页面来托管 Discussions Forum 的视图。在应用程序导航器中，突出显示 ViewController\
+  \ 项目，右键单击它，并从上下文菜单中选择 New。在新建库中，选择 JSF Page 以创建新的 JSF 页面。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_177_1.png)\n\
+  \n在创建 JSF 页面对话框中，为页面选择名称并创建页面。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_178_0.png)\n\
+  \n## 创建到讨论论坛的连接\n\n为了在我们的应用程序中使用 Discussions 服务，我们需要创建到 Discussions 服务器的 Discussions\
+  \ Forum 连接。应用程序将使用此连接连接到后端 Discussions 服务器。请注意，可以通过使用 Enterprise Manager Fusion\
+  \ Middleware Control 在应用程序部署到 WebLogic 服务器后修改连接。\n\n要设置讨论连接，请在 **Application Resources**\
+  \ 窗格中右键单击 **Connections** 节点，并选择 **New Connection | Discussions Forum**。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_179_0.png)\n\
+  \n为连接选择唯一名称，例如 **MyDiscussions**。确保 **Make this the connection default** 复选框已选中。接下来，我们需要设置\
+  \ `forum.url` 和 `admin.user` 的属性值。`forum.url` 的值应为 Discussions 服务器的 URL。默认管理员用户是\
+  \ `weblogic`。单击 **Test Connection** 以确保连接设置正确。单击 **Finish** 完成此步骤。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_179_1.png)\n\
+  \n\n\n\n\n## 讨论、Wiki 和博客服务\n\n单击 **资源调色板** 并打开 **我的目录**。现在，您应该能看到 **WebCenter 服务目录**。展开目录以查看可用的各种任务流。\n\
+  \n![](img/fccf6c511126cf79e98510edd3b343ac_180_0.png)\n\n在显示的任务流中，您可以看到各种与讨论相关的任务流，例如\
+  \ **讨论论坛**、**讨论 - 热门主题**、**讨论 - 最近主题** 等等。我们将在应用程序中使用这些任务流来创建讨论论坛的视图。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_180_1.png)\n\
+  \n## 在 JSF 页面中嵌入讨论任务流\n\n从资源调色板中，将讨论论坛任务流拖动到 JSF 页面上。出现提示时，选择 Region 作为创建任务流的方式。\n\
+  \n![](img/fccf6c511126cf79e98510edd3b343ac_181_0.png)\n\n在任务流绑定对话框中，输入 categoryId\
+  \ 和 forumId 的值。您可以使用 Jive Forums 管理控制台查找这些 ID。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_181_1.png)\n\
+  \n| 参数   | 说明    |\n|--------------|----------------|\n| categoryId   | 现有 WebCenter\
+  \ 讨论实例中现有类别的类别 ID，视图应将其范围限定为此类别。    |\n| forumId      | 指定类别中现有论坛的标识符。您应确保特定论坛存在。\
+  \ |\n| showRecursiveForums | 确定是仅显示指定类别中的论坛，还是同时显示所有子类别。如果设置为 false（默认值），则仅显示给定类别下的论坛，否则将显示该类别及其子类别下的所有论坛。\
+  \    |\n| isCategoryView | 如果设置为 true，则任务流将列出分组在类别下的论坛。当设置为 false（默认值）时，将显示与论坛关联的主题。\
+  \ |\n\n请参阅以下屏幕截图以查找 CATEGORYID：\n\n![](img/fccf6c511126cf79e98510edd3b343ac_182_0.png)\n\
+  \n请参阅以下图像以查找 FORUMID：\n\n![](img/fccf6c511126cf79e98510edd3b343ac_182_1.png)\n\n\
+  如果提示添加库，请单击 **添加库**。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_182_2.png)\n\n\
+  接下来，我们将使用与 **讨论论坛** 相同的过程，将 **讨论 - 侧边栏视图** 任务流嵌入到页面中。\n\n## 部署、运行和测试\n\n现在，您可以在应用程序导航器中右键单击\
+  \ main.jspx 文件，并从上下文菜单中选择 **运行** 来运行该页面。该应用程序将部署到集成 WebLogic 服务器，并且默认浏览器将使用相应的 URL\
+  \ 启动。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_183_0.png)\n\n## 将 Wiki 和博客与 WebCenter\
+  \ 集成\n\n将 Oracle WebCenter Wiki 和博客服务器集成到自定义 WebCenter 应用程序中有三种主要方法。它们如下：\n\n1.\
+  \ 使用 IFrame，将其包含在自定义 WebCenter 应用程序的页面中。\n2. 使用任何能够消耗 URL 的端口，例如 Web 剪辑端口。\n3. 使用提供的\
+  \ Web 服务，这需要自定义构建的用户界面。我们不会详细介绍此方法。\n\n在本章中，我们将演示前两种方法的使用。有关如何使用 Wiki 和博客服务器的 Web\
+  \ 服务接口的详细信息，请参阅 Oracle WebCenter 开发者指南。\n\n## 先决条件\n\n在开始开发自定义 WebCenter 应用程序以与\
+  \ Wiki 和博客服务器集成之前，我们应确保 WebCenter Wiki 和博客服务器正在运行。如果 Wiki 和博客服务器未运行，请按照 WebCenter\
+  \ 安装和配置章节中所述启动 WLS_Services 托管服务器。使用浏览器打开 Wiki 主页的 URL（例如，http://hostname:8890/owc_wiki）。\n\
+  \n![](img/fccf6c511126cf79e98510edd3b343ac_184_0.png)\n\n## 使用 IFrame 集成 Wiki 和博客\n\
+  \n我们将按照以下方式查看如何集成它。\n\n## 创建新的 WebCenter 应用程序\n\n使用 JDeveloper，创建新应用程序并选择 WebCenter\
+  \ 应用程序模板。要遵循的步骤与第 4 章 WebCenter 开发入门中 HelloWorldApp 的步骤类似。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_185_0.png)\n\
+  \n此应用程序的默认设置应该没问题，因此单击 **完成** 以继续。\n\n## 创建 JSF 页面\n\n接下来，我们将创建一个 JSF 页面来托管 Wiki\
+  \ 和博客服务器的视图。在应用程序导航器中，选择 ViewController 项目，右键单击它，并从上下文菜单中选择 **新建** 以启动新建库。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_185_1.png)\n\
+  \n## 讨论、Wiki 和博客服务\n\n在新建库中，选择 JSF 页面以创建新的 JSF 页面。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_186_0.png)\n\
+  \n在创建 JSF 页面对话框中，为页面选择名称并创建页面。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_186_1.png)\n\
+  \n## 创建 IFrame 以包含 Wiki 和博客服务器页面\n\n为了将 Wiki 和博客服务器页面集成到自定义 WebCenter 应用程序中，请从 **组件调色板**\
+  \ 将 **内联框架** 组件拖动到创建的 JSF 页面上。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_187_0.png)\n\
+  \n接下来，修改 IFrame 的 **源** 属性，使其指向要在应用程序中嵌入的 Wiki 和博客服务器页面。URL 的格式为 http://hostname:port/owc_wiki/page/show.jz?page=domain:wikiPageName。此处我们使用了域\
+  \ webcentech 的 StartPage。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_188_0.png)\n\
+  \n我们现在准备查看页面。在应用程序导航器中右键单击 main.jspx 文件，并从上下文菜单中单击 **运行**。Web 浏览器将启动并显示 Wiki 和博客服务器的登录页面。使用任何有效的用户名和密码登录到\
+  \ Wiki 和博客服务器。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_188_1.png)\n\n## 使用 Web\
+  \ 剪辑端口集成 Wiki 和博客\n\n在以下部分中，我们将演示如何使用 Web 剪辑端口将 Wiki 和博客服务器添加到自定义 WebCenter 应用程序中。Oracle\
+  \ WebCenter 框架包含一个 Web 剪辑端口，我们可以将其注册到自定义 WebCenter 应用程序中。在浏览器中运行应用程序时，我们可以使用 Web\
+  \ 剪辑工作室消耗 Wiki 和博客服务器 URL。\n\n## 向应用程序添加新的 JSF 页面\n\n使用前面描述的过程向应用程序添加新的 JSF 页面。\n\
+  \n![](img/fccf6c511126cf79e98510edd3b343ac_189_0.png)\n\n## 注册 Web 剪辑端口\n\n从应用程序资源中，选择\
+  \ 连接 | 新建连接 | Oracle PDK-Java 生产者。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_189_1.png)\n\
+  \n接下来，指定连接详细信息。Web 剪辑端口的默认 URL 为 http://hostname:port/portalTools/webClipping/providers/webClipping。其他配置参数的默认值可接受，因此单击\
+  \ **完成** 以完成注册。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_190_0.png)\n\n注册 Web\
+  \ 剪辑端口后，您可以在连接下看到其条目。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_190_1.png)\n\n\
+  ### 将 Web 剪辑端口添加到 JSF 页面\n\n将 Web 剪辑端口从连接拖动到 portlet.jspx 页面。这将把端口添加到页面中。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_191_0.png)\n\
+  \n## 运行端口页面\n\n在应用程序导航器中右键单击 portlet.jspx 页面，并从上下文菜单中选择 运行 以运行页面。浏览器将启动并显示 Web 剪辑工作室。接下来，我们需要自定义\
+  \ Web 剪辑工作室并输入 Wiki 和博客服务器 URL。单击页面右上角的下拉列表以打开 Web 剪辑端口菜单。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_191_1.png)\n\
+  \n从菜单中，选择 自定义。这将打开用于输入 URL 位置的表单。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_191_2.png)\n\
+  \n\n\n\n\n## Discussions, Wiki, and Blog Services\n\n在 **URL Location** 字段中输入 Wiki\
+  \ 的 URL。输入 URL 后，单击 **Start** 即可查看 Wiki 和 Blog 页面，如下图所示：\n\n![](img/fccf6c511126cf79e98510edd3b343ac_192_0.png)\n\
+  \n输入有效的用户凭据以登录 Wiki Server。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_192_1.png)\n\
+  \nWiki 页面显示在 **Web Clipping Studio** 中。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_192_2.png)\n\
+  \n最后，您必须选择希望 Web Clipping Portlet 剪辑的区域，然后保存设置。\n至此，我们完成了如何使用 iFrame 和 Web Clipping\
+  \ Portlet 将 Oracle WebCenter Wiki and Blog Server 与自定义 WebCenter 应用程序集成的演示。\n\n\
+  ## Summary\n\n在本章中，我们开始将 WebCenter 服务集成到自定义 WebCenter 应用程序的路径上。我们演示了有用的 Discussion\
+  \ Forums Service 如何用于在应用程序中创建论坛视图。\n我们演示了将 Wiki 和 Blog Services 集成到自定义 WebCenter\
+  \ 应用程序的简单方法。在组织内利用这些服务可以显著改善沟通和生产力。个人也可以从利用这些服务中受益。例如，用户可以将 Wiki 用作个人记事本，将 Blog\
+  \ 用作个人日记。\n"
+- '# 8 Search Service
+
+
+  在上一章中，我们了解了如何集成各种 WebCenter 协作工具，例如 Wiki、Blogs 和 Discussions。这些协作工具允许在企业中共享信息，从而构建和存储集体知识。访问信息的主要方式之一是使用搜索工具。WebCenter
+  通过提供内置的 Search Service 来满足这一需求。
+
+
+  在本章中，我们将探索 WebCenter Search Service、Tags 和 Links。Search Service 允许 WebCenter 应用程序搜索其他服务拥有的资源。搜索是从各种
+  WebCenter 应用程序中发现信息并链接它们的强大工具。
+
+
+  通过创建示例应用程序，我们将演示如何在自定义 WebCenter 应用程序中集成 WebCenter Search Service。
+
+
+  Tags 和 Links 是组织信息以便于搜索以及在不同信息片段之间创建上下文的有用工具。通过创建指向不同资源的链接，我们可以促进重用，避免在多个位置重复相同的信息。例如，在讨论线程中，可以创建指向正在讨论或包含更多主题信息的另一文档的链接，从而轻松访问存储在企业其他位置的其他信息。另一方面，Tags
+  允许为资源添加标签，以便在 Search 中轻松发现，并提供信息的松散组织。当用户为资源添加标签时，他们可以根据自己的临时标签快速搜索该资源。
+
+
+  **Really Simple Syndication (RSS)** 是一种重要工具，允许我们从多个来源收集信息并在单个位置呈现。RSS 的典型用途是在单个
+  RSS Reader 中阅读（更新的）来自多个网站的信息。自定义 WebCenter 应用程序可以使用 RSS Service 在单个位置呈现从多个外部 RSS
+  源（feeds）收集的信息。
+
+
+  具体来说，我们将涵盖以下主题：
+
+
+  - Role of search in WebCenter applications
+
+  - Methods of integrating the Search Service in WebCenter applications
+
+  - An example showing how to integrate Search task flows in a custom WebCenter application
+
+  - Integrating with WebCenter Tags Service
+
+  - Integrating with the WebCenter Links Service
+
+  - Integrating with the WebCenter RSS Service in a custom WebCenter application
+
+
+  ## Search in enterprise applications
+
+
+  随着企业中收集和存储的信息量不断增加，拥有能够轻松发现文档、Blogs、论坛等中信息的工具非常重要。搜索是定位信息最流行的机制。WebCenter 提供了一项方便的服务，允许与
+  WebCenter 应用程序轻松集成，将搜索的优势带给任何自定义 WebCenter 应用程序。使用 WebCenter Search task flows，我们可以搜索应用程序拥有的资源。大多数
+  WebCenter 服务（如 Wiki、Blogs、Discussions 和 Documents）都支持 Search。
+
+
+  ## Integrating the WebCenter Search Service
+
+
+  在自定义 WebCenter 应用程序中，我们可以使用 Search Service 提供一个方便的搜索设施，以搜索应用程序中使用的其他 WebCenter 服务。通常，任何拥有资源的
+  WebCenter Web 2.0 服务都支持 Search，包括公告、讨论、文档、Tags 和 Page service。
+
+
+  Search Service 可以使用多种 task flows 与自定义 WebCenter 应用程序集成。它们列表如下：
+
+
+  | Task Flow | Description |
+
+  |---|---|
+
+  | Search | 这是最全面的 task flow，提供搜索、细化和保存搜索结果的选项。 |
+
+  | Search Preferences | 此 task flow 允许您选择要搜索的 WebCenter 服务。您还可以设置首选项，例如搜索结果中可用列的顺序。
+  |
+
+  | Search – Saved Searches | 此 task flow 允许用户从应用程序中运行其保存的搜索。 |
+
+  | Search Toolbar | 此 task flow 允许用户快速输入简单的搜索条件并从应用程序中搜索。 |
+
+
+  为了演示在自定义 WebCenter 应用程序中使用 Search，我们将创建一个连接到 Discussions Server 的应用程序。然后，我们将使用 Search
+  task flow 在自定义开发的应用程序中为 Discussions Server 提供搜索设施。
+
+
+  ## Ensuring that the WebCenter Wiki and Blog Server are running
+
+
+  在开始开发应用程序之前，请确保 WebCenter Discussions Server 正在运行。如果 Discussions Server 未运行，则按照第
+  2 章中所述启动 WLS_Services 托管服务器。
+
+
+  ## Creating a new WebCenter Application
+
+
+  使用 JDeveloper，创建一个新的 Application 并选择 WebCenter Application 模板。要遵循的步骤与 HelloWorldApp
+  中使用的步骤类似，因此我们在此不再重复。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_197_0.png)
+
+
+  ## Creating a JSF page
+
+
+  接下来，我们将创建一个 JSF 页面来托管 Discussions Service 和 Search task flow 的视图。在 Application Navigator
+  中，突出显示 ViewController 项目，右键单击它，并从上下文菜单中选择 New。在 New Gallery 中，选择 JSF Page 以创建新的
+  JSF 页面。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_198_0.png)
+
+
+  在 Create JSF Page 对话框中，为页面选择一个名称并创建页面。确保选中 Create as XML Document (.jspx) 复选框。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_199_0.png)
+
+
+  ## Creating a connection to the Discussions Service
+
+
+  在第 7 章中，我们列出了与 Discussions Service 集成的步骤。我们在此简要重复这些步骤。
+
+
+  在 **Application Resources** 中，创建一个新的连接到 **Discussions Forum**。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_199_1.png)
+
+
+  输入连接名称，并确保将连接设置为默认连接。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_200_0.png)
+
+
+  在下一页中，输入论坛 URL 和管理员用户名。测试连接以确保连接设置正确。单击 **Finish** 继续。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_200_1.png)
+
+
+  ## Adding the Discussions Forum task flow to the JSF page
+
+
+  从 **Resource Palette** | **Task Flows** 选择 **Discussion Forums** 并将其拖动到页面上。出现提示时，选择
+  **Region** 作为布置 task flow 的方法。
+
+
+
+
+
+
+  ## 将搜索任务流添加到 JSF 页面
+
+
+  我们现在可以将搜索任务流添加到页面中。从 **资源调色板** 中选择 **搜索** 任务流，并将其拖动到页面上。出现提示时，选择 **区域** 作为布局模式。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_202_0.png)
+
+
+  我们现在可以预览页面了。在 **应用程序导航器** 中右键单击 `search.jspx` 文件，并从上下文菜单中单击 **运行**。Web 浏览器将启动并显示搜索页面。页面上半部分显示讨论论坛，下方显示搜索表单。输入搜索词以在讨论论坛中进行搜索。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_202_1.png)
+
+
+  ## 集成 WebCenter 标记服务
+
+
+  标记是 Web 2.0 世界中的热门功能。标记允许信息的消费者对信息进行分类，而不是由发布者来分类。在标记的各种用途中，分类、书签和增强搜索是最受欢迎的。WebCenter
+  标记服务允许最终用户为各种资源（包括页面和文档）添加标记。标记通过启用标记共享，促进资源用户之间的协作。这样，其他用户就可以在搜索中发现已标记的项目。
+
+
+  ## 标记服务的要求
+
+
+  要在自定义 WebCenter 应用程序中集成标记服务，需要连接到已安装 WebCenter 架构的数据库。使用标记服务没有其他要求。在本章中，我们将使用 WebCenter
+  安装期间安装的 WebCenter 架构。
+
+
+  ## 与 WebCenter 标记服务集成
+
+
+  我们将在以下部分中了解如何与 WebCenter 标记服务集成。
+
+
+  ## 创建新的自定义 WebCenter 应用程序
+
+
+  首先创建一个新的自定义 WebCenter 应用程序。我们将应用程序命名为 TagsApp。单击 **完成** 以创建应用程序。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_203_0.png)
+
+
+  ## 添加所需的库
+
+
+  为了允许用户在此应用程序中为页面添加标记，我们需要添加 WebCenter 页面服务和 WebCenter 页面服务视图库。在应用程序导航器中，右键单击 **ViewController**，并从上下文菜单中选择
+  **项目属性**。将这两个库添加到项目中。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_204_0.png)
+
+
+  ## 创建到 WebCenter 架构的连接
+
+
+  标记服务需要连接到 WebCenter 架构。我们使用了 WebCenter 安装期间安装的架构。从 **应用程序资源** 中，选择 **连接** 并右键单击它。从上下文菜单中，选择
+  **新建连接 | 数据库**。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_204_1.png)
+
+
+  填写连接详细信息。**连接名称** 必须为 **WebCenter**。单击 **测试连接** 以验证连接是否设置正确。单击 **确定** 以继续。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_205_0.png)
+
+
+  ## 创建带有标记按钮的 JSF 页面
+
+
+  接下来，我们将创建一个 JSF 页面，在该页面中放置标记按钮以启用页面标记功能。右键单击 **ViewController**，并从上下文菜单中选择 **新建**。创建新的
+  JSF 页面。
+
+
+  为 JSF 页面选择一个名称；我们使用了 `test_page.jspx`。单击 **确定** 以完成页面的创建。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_206_0.png)
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_206_1.png)
+
+
+  从 **组件调色板** 中，选择 **面板组布局** 并将其拖动到页面上。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_207_0.png)
+
+
+  接下来，从 **组件调色板** 中选择 **标记按钮**，并将其放置在页面上的 **面板组布局** 内。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_207_1.png)
+
+
+  在 **插入标记按钮** 对话框中填写三个参数的值。
+
+
+  | 字段    | 描述    |
+
+  |---|---|
+
+  | ResourceId    | 唯一标识要绑定标记按钮的对象的 ID。例如：要标记页面，请输入 #{ facesContext.viewRoot.viewId
+  }。要标记自定义组件，请输入 customComponentABC。    |
+
+  | ResourceName    | 要绑定标记按钮的对象的名称。例如：要标记页面，请输入 #{ facesContext.viewRoot.viewId }。要标记自定义组件，请输入
+  Custom Component ABC。    |
+
+  | ServiceId    | 应用程序范围的 ID：要标记页面，请输入 oracle.webcenter.page。要标记自定义组件，请输入 mycompany.myproduct.myapp.mycomponent。    |
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_208_0.png)
+
+
+  从资源调色板 | WebCenter 服务目录中选择标记对话框，并将其放置在标记按钮旁边，使标记按钮和标记对话框成为同级。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_208_1.png)
+
+
+  至此完成了 test_page 的创建。接下来，我们将创建一个托管搜索工具栏的页面，用于搜索标记。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_208_2.png)
+
+
+  ## 创建托管搜索工具栏的 JSF 页面
+
+
+  接下来，我们创建一个带有搜索工具栏的 JSF 页面，以便搜索已标记的项目。创建一个名为 `tag_view.jspx` 的新 JSF 页面。从 **资源调色板
+  | WebCenter 服务目录 | 任务流** 中选择 **搜索工具栏** 并将其拖放到页面上。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_209_0.png)
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_209_1.png)
+
+
+  至此完成了 `tag_view` 页面的创建。
+
+
+  ## 配置 ADF 安全性
+
+
+  ADF 安全性是一个保护框架，用于授权用户对迭代器、操作和属性绑定的访问。虽然任何用户都可以标记页面（匿名角色），但为了使已标记的资源出现在搜索结果中，应用程序必须受到保护。在此步骤中，我们将配置
+  ADF 安全性以保护我们的应用程序。
+
+
+  从应用程序菜单中选择 安全 | 配置 ADF 安全性。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_210_0.png)
+
+
+  在配置 ADF 安全性对话框中，选择 ADF 身份验证和授权，然后单击完成。其余步骤的默认设置对我们的应用程序是可接受的。ADF 身份验证和授权是标准 Web
+  容器安全性的替代方案。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_210_1.png)
+
+
+  接下来，我们将在创建的两个页面上设置 ADF 策略。从应用程序菜单中选择 安全 | ADF 策略。ADF 策略允许您对任务流和 JSP/JSPX 页面定义精细的访问控制。
+
+
+  我们将向经过身份验证的角色授予页面 test_page.jspx 和 tag_view.jspx 的查看权限。这将确保只有经过身份验证的用户才能查看页面。打开页面时，用户将被提示输入身份验证凭据。
+
+
+  ## 创建部署配置文件
+
+
+  为了将应用程序及其安全策略部署到 WebLogic 服务器，我们将创建部署配置文件。右键单击 **ViewController**，并从上下文菜单中选择 **项目属性**。在
+  **项目属性** 对话框中，选择 **部署** 并创建新的部署配置文件。部署应用程序及其安全策略时，Web 容器将代表应用程序应用安全策略。
+
+
+  选择存档类型为 **WAR 文件** 并选择一个名称。我们使用 **TagsApp** 作为存档的名称。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_212_0.png)
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_212_1.png)
+
+
+  ## 将应用程序部署到集成 WebLogic 服务器
+
+
+  右键单击 **ViewController**，并从上下文菜单中选择 **部署 | TagsApp | 到 | IntegratedWLSConnection**。这完成了应用程序的部署。我们现在可以使用浏览器查看页面。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_213_0.png)
+
+
+  ## 查看应用程序
+
+
+  使用浏览器打开 test_page.jspx 的 URL。在我们的示例中，URL 为 http://127.0.0.1:7101/TagsApp-ViewController-context-root/faces/test_page.jspx。将显示身份验证提示。输入集成
+  WebLogic 服务器上配置的任何有效用户。您可以使用默认管理员帐户 (weblogic/weblogic1)。
+
+
+  单击 **标记** 链接为此页面创建新标记。输入空格分隔的标记并单击 **保存**。这会将输入的标记与该页面关联。接下来，我们将了解如何使用标记搜索此页面。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_213_1.png)
+
+
+
+
+
+
+  使用浏览器打开 tag_view.jspx 的 URL。在我们的示例中，URL 为 http://127.0.0.1:7101/TagsApp-ViewController-context-root/faces/tag_view.jspx。在搜索框中输入用于标记
+  test_page.jspx 的标签。在搜索结果中，我们可以看到已标记的页面 test_page.jspx。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_214_0.png)
+
+
+  ## 与 WebCenter 链接服务集成
+
+
+  我们将在以下步骤中看到这一点。
+
+
+  ## 修改 test_page 以包含链接详情按钮
+
+
+  打开 test_page.jspx，并从组件调色板中将链接详情按钮拖放到页面上。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_214_1.png)
+
+
+  在插入链接详情按钮中，填写参数的详细信息。ServiceID 和 ObjectName 在整个应用程序中应是唯一的。应当注意，链接可以在内部对象和外部对象之间建立。它们不仅限于链接到
+  URL。您可以链接到 WebCenter 中的各种对象类型，也可以从这些对象类型链接出来。
+
+
+  您可以从以下对象进行链接：公告、讨论、文档、事件、列表、页面，或者您将自定义 JSF 组件绑定到的任何对象，例如链接详情按钮。
+
+
+  您可以链接到以下现有对象：公告、讨论、文档、事件。
+
+
+  您可以链接到以下新对象：讨论、文档、事件、笔记、URL。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_215_0.png)
+
+
+  接下来，从 **资源调色板 | WebCenter 服务目录** 中选择 **链接对话框**，并将其放置在链接详情按钮旁边。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_215_1.png)
+
+
+  ## 将应用程序部署到集成 WebLogic 服务器
+
+
+  使用前面描述的步骤将应用程序部署到集成 WebLogic 服务器。部署完成后，我们可以使用浏览器查看新的 test_page.jspx 页面。在我们的示例中，URL
+  为 http://127.0.0.1:7101/TagsApp-ViewController-context-root/faces/test_page.jspx。
+
+
+  我们将创建一个指向 URL 的新链接，在此示例中，链接到一个提供货币转换功能的网站。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_216_0.png)
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_216_1.png)
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_217_0.png)
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_217_1.png)
+
+
+  创建链接后，我们可以刷新页面以查看链接。刷新页面后，单击 **链接** 链接。我们附加到页面上的 **货币转换器** 链接如下所示：
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_217_2.png)
+
+
+  至此，我们完成了集成标记和链接服务的示例应用程序。
+
+
+  ## 为何使用 WebCenter RSS 服务
+
+
+  RSS 服务允许您将通过 RSS 源提供的内容集成到自定义 WebCenter 应用程序中。RSS 是传播网页更改的一种非常流行的方式。这在页面更新频繁的网站（例如新闻网站）中尤其流行。WebCenter
+  RSS 查看器任务流使在 WebCenter 应用程序中包含 RSS 内容变得非常简单。
+
+
+  ## WebCenter RSS 服务的要求
+
+
+  RSS 服务不需要任何其他资源。您只需在自定义 WebCenter 应用程序中包含 RSS 查看器任务流即可。如果环境中存在 HTTP 代理，则需要使用 **工具
+  | 首选项 | Web 浏览器和代理** 配置代理。
+
+
+  ## 集成 WebCenter RSS 服务
+
+
+  步骤说明如下：
+
+
+  ## 创建新的自定义 WebCenter 应用程序
+
+
+  首先创建一个新的自定义 WebCenter 应用程序。我们将应用程序命名为 RSSApp。单击 **完成** 以创建应用程序。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_218_0.png)
+
+
+  ## 创建用于托管 RSS 查看器任务流的 JSF 页面
+
+
+  右键单击 ViewController 项目，并从上下文菜单中选择 **新建** 以创建新的 JSF 页面。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_219_0.png)
+
+
+  为页面选择一个名称。我们使用了 `rss_news.jspx`。单击确定以完成页面创建。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_219_1.png)
+
+
+  ## 添加 RSS 查看器任务流
+
+
+  在新创建的页面上，我们将添加 RSS 查看器任务流。从资源调色板 | WebCenter 服务目录 | 任务流中选择 RSS 查看器，并将其拖放到页面上。如果系统提示将
+  `rss-service-view.jar` 库添加到 ViewController 项目，请选择 **添加库**。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_220_0.png)
+
+
+  在 **编辑任务流绑定** 中，输入要查看的 RSS 源的 URL。保持 **extAppId** 字段为空。仅当 RSS 源需要身份验证时才需要填写。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_220_1.png)
+
+
+  ## 运行应用程序
+
+
+  现在我们已准备好运行应用程序。右键单击 `rss_news.jspx`，并从上下文菜单中单击 **运行**。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_221_0.png)
+
+
+  ## 查看应用程序
+
+
+  应用程序将在浏览器中打开，并显示 RSS 新闻条目。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_221_1.png)
+
+
+  ## 摘要
+
+
+  在本章中，我们演示了 WebCenter 提供的搜索服务的使用。通过使用 JDeveloper 中可用的搜索任务流，我们可以快速将搜索服务集成到任何自定义 WebCenter
+  应用程序中。
+
+
+  我们学习了如何与两个关键 WebCenter 服务集成，即标记服务和链接服务。通过与上述服务集成，自定义 WebCenter 应用程序可以受益于 WebCenter
+  提供的信息组织和发现功能。能够为便于发现的信息打上标签，并链接到其他资源，使企业能够受益于更好地组织的知识。
+
+
+  我们演示了如何使用 RSS 查看器任务流来显示从 RSS 源获取的信息。WebCenter RSS 服务使与提供 RSS 接口的信息源集成变得非常容易。这使得在您的应用程序中轻松收集和显示
+  RSS 源中的信息成为可能。
+
+  '
+- "# 使用 Oracle Composer 进行个性化\n\n传统上，只有技术专业人员负责设计和维护公司网站的信息。这是因为构建网页需要高水平的技术专业知识。\n\
+  \n企业门户的出现促进了用户在信息设计和内容方面的参与。然而，当时可用的技术（HTML 和 JavaScript）无法在内容和表现方面开发丰富的用户界面。\n\n\
+  新技术（AJAX、XML、Web 2.0、RSS 等）的到来有助于改进门户的维护和创建。\n\nOracle Composer 是 WebCenter 的关键组件之一，它利用这些新技术，使用户能够以友好且直观的方式改进其界面的设计和内容。在本章中，我们将分两部分使用\
+  \ Oracle WebCenter：\n\n- 在第一部分中，作为开发人员，我们将为最终用户准备环境。\n- 然后，我们将扮演最终用户的角色，对前一步中定义的页面进行个性化设置。\n\
+  \n### 面向开发人员的 Oracle Composer\n\nOracle Composer 为最终用户提供了高度功能化的设计环境。为了实现这一点，开发人员需要准备一个环境，最终用户将使用该环境来设计其内容。\n\
+  \n接下来我们将展示的只是开发人员用于准备此类环境的 Oracle Composer 组件。\n\n我们将用于准备此环境的工具是 Oracle JDeveloper，它帮助我们定义区域，最终用户将随后使用这些区域来个性化其内容。\n\
+  \n## Oracle 组件类型\n\nOracle 组件可按功能分为以下类型：\n\n- 常见组件\n  - 更改模式按钮：这是一个按钮，允许用户从运行时模式切换到设计模式。\n\
+  \  - 更改模式链接：此链接与前一个组件具有相同的用途。\n  - 图像链接：此组件提供带有关联图像的链接。\n  - 页面可自定义：使用此组件，我们可以创建一个区域，其内容可以由用户动态更改。\n\
+  - 布局组件\n  - 面板可自定义：此面板充当用户在运行时模式下选择的组件的容器。\n  - 布局可自定义：这是另一种容器，其特点是允许用户以多种方式对其进行划分。\n\
+  \  - 显示详细信息框架：此容器的特点是提供类似于端口的区域。它可以用于包含一个项目。\n- 操作组件。\n  - 自定义操作：此组件可以调用任务流。\n\n\
+  ## 使用 Oracle Composer 构建环境\n\n在最终用户可以自定义其内容之前，开发人员需要准备动态环境。为了实现这一目标，开发人员需要执行以下步骤：\n\
+  \n\n\n\n\n## 1. 执行 JDeveloper，并在 Application Navigator 中选择 Paracas。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_225_0.png)\n\
+  \n## 2. 右键单击 ViewController 项目并选择 New。接下来，在 New Gallery 窗口中，选择类别 Web Tier | JSF，选择选项\
+  \ JSF Page，然后单击 OK 按钮。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_225_1.png)\n\n\
+  3. 对于下一步，检查 **Create as XML Document** 选项，为页面定义名称 customInformation.jspx，选择 **Page\
+  \ template** 选项，选择 templateParacas，然后单击 OK 按钮。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_226_0.png)\n\
+  \n对于使用 Oracle Composer 的页面，组件必须使用 .jspx 扩展名创建。\n\n4. 页面创建完成后，我们将只使用区域 customRight。因此，在组件调色板中选择类别\
+  \ ADF Faces，并将 **Panel Box** 控件拖动到区域 customRight 上，以定义一个容器。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_226_1.png)\n\
+  \n## 5. 转到 Property Inspector 并更改 Custom Information 的 Text 属性。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_227_0.png)\n\
+  \n## 6. 接下来，我们将在 panel box 中包含一个链接，允许用户在页面上激活设计模式。因此，在 Component Palette 中，选择 Oracle\
+  \ Composer 类别并拖动 Change Mode Link。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_227_1.png)\n\
+  \n## 使用 Oracle Composer 进行个性化设置\n\n7. 现在是时候定义用户可以自定义的区域了。这可以通过将 **Page Customizable**\
+  \ 组件拖动到上一张截图中定义的区域来实现。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_228_0.png)\n\n\
+  8. 转到调色板结构，注意已生成 Page Customizable 组件。此外，在此组件下生成了一个 **panelCustomizable** 容器。\n\n\
+  ![](img/fccf6c511126cf79e98510edd3b343ac_228_1.png)\n\n9. Panel Customizable 容器不允许用户以其他方式划分区域。出于这个原因，我们正在删除该容器，并将其替换为具有该功能的\
+  \ Layout Customizable 容器。因此，首先通过右键单击容器并选择 **Delete** 选项来删除容器 **Customizable Panel**。\n\
+  \n10. 现在，将 **Layout Customizable** 组件拖动到控件 Page Customizable 内，如下一张截图所示：\n\n![](img/fccf6c511126cf79e98510edd3b343ac_229_1.png)\n\
+  \n## 11. 通过右键单击页面并选择 **Run** 按钮来测试页面。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_230_0.png)\n\
+  \n最后，它将显示下一页。如您所见，我们现在在运行时模式下有一个基本页面。当用户单击编辑链接时，页面将更改为编辑模式，因此用户可以自定义其内容。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_230_1.png)\n\
+  \n## 面向最终用户的 Oracle Composer\n\n一旦环境准备就绪，就是最终用户自定义其内容的时候了。\n\n在执行自定义之前，了解 Oracle\
+  \ Composer 背后的以下技术很重要。\n\nOracle Metadata Service 和 Oracle Composer 允许每个用户自定义页面的内容。这样，每个用户都将拥有基础页面的不同版本。\n\
+  您可能会问：这如何作用于 Oracle Composer？答案是归功于 Oracle Metadata Service。\n这项技术允许我们将任何用户自定义存储在基于\
+  \ XML 的存储库中。也就是说，在运行时，用户所做的任何自定义都不会更改应用程序代码，而是存储在与应用程序每个用户关联的 XML 文件中。\n\n## 资源目录\n\
+  \n资源目录包含最终用户可以在设计模式下用于自定义其内容的组件。\n通常，工具提供一组默认组件，但可以对其进行配置以公开 portlets、task flow、JSF\
+  \ 组件和其他类型的组件。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_231_0.png)\n\n## 使用 Oracle\
+  \ Composer 自定义内容\n\n使用先前开发的示例，我们将自定义页面内容。\n请注意，页面必须处于运行时模式。\n\n1. 首先，让我们将页面更改为设计模式。为此，请单击\
+  \ **Edit** 链接。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_232_0.png)\n\n2. 现在显示的是页面的设计环境。在此模式下，用户可以自定义我们在本章第一部分中准备的区域的内容。\n\
+  \n![](img/fccf6c511126cf79e98510edd3b343ac_232_1.png)\n\n3. 在我们的情况中，我们将自定义页面内容以报告在服装制作中使用天然纤维的影响。因此，最初我们将更改工作区的标题。为此，请单击\
+  \ **Page Properties** 按钮。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_233_0.png)\n\
+  \n4. 您将看到一个屏幕，您可以在其中更改工作区的标题。将标题更改为 Natural Fibers - Cotton, Wool 并按 OK 按钮。\n\n\
+  ![](img/fccf6c511126cf79e98510edd3b343ac_233_1.png)\n\n5. 现在让我们通过单击 Change Layout\
+  \ 按钮并选择 Two columns, narrow right 来划分工作区，如下一张截图所示：\n\n![](img/fccf6c511126cf79e98510edd3b343ac_233_2.png)\n\
+  \n## 使用 Oracle Composer 进行个性化设置\n\n6. 经过上述更改，已创建两个区域。现在，我们将通过单击该区域的 **Add Content**\
+  \ 按钮来填充左区域的内容。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_234_0.png)\n\n7. 以下窗口将显示组件目录。单击类别\
+  \ **ADF Faces Components** 以显示可用组件。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_234_1.png)\n\
+  \n8. 从可用组件列表中，HTML Markup 组件允许我们直接在页面上包含 HTML 和 JavaScript 内容。为此，请单击 **Add** 按钮。\n\
+  \n![](img/fccf6c511126cf79e98510edd3b343ac_234_2.png)\n\n9. 最后单击 **Close** 按钮。\n\
+  \n10. 请注意，页面中已包含一个 HTML Markup 控件。现在我们将更改其属性；为此，请单击 **Edit** 按钮。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_234_3.png)\n\
+  \n11. 现在，我们将在此处包含一个与我们页面内容相关的 YouTube 视频引用。为此，请打开另一个浏览器窗口并找到以下视频：http://www.youtube.com/watch?v=KuwBcycCM0w\n\
+  \n12. 单击 **Embed** 按钮以查看允许我们在网站上包含此视频的代码。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_235_0.png)\n\
+  \n13. 复制视频的代码。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_235_1.png)\n\n14. 返回设计的页面，并将复制的代码粘贴到值字段中。更改值属性后，单击\
+  \ **OK** 按钮。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_235_2.png)\n\n15. 设计的页面将如下所示：\n\
+  \n![](img/fccf6c511126cf79e98510edd3b343ac_236_0.png)\n\n16. 我们现在要填充右区域。为此，请单击该区域的\
+  \ **Add Content** 按钮。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_236_1.png)\n\n\
+  17. 选择 Image 组件，它允许我们在页面上显示一张图片。为此，请单击 **Add** 按钮并关闭 Catalog 窗口。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_236_2.png)\n\
+  \n18. 经过上述更改，我们的网站上添加了一张图片。现在，让我们设置该图片。为此，请单击 **Edit** 按钮。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_237_0.png)\n\
+  \n19. 将 **Image Source** 属性更改为与显示天然纤维产量增长的图片相关的以下 URL。\n`http://www.fao.org/fi/figis/graphs/species/Aquaculture/2965.gif`\n\
+  \n![](img/fccf6c511126cf79e98510edd3b343ac_237_1.png)\n\n20. 按 **OK** 按钮完成更改。\n\
+  21. 为了撰写关于视频和图片含义的信息，请在右区域单击 **Add Content** 按钮。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_237_2.png)\n\
+  \n\n\n\n\n# 使用 Oracle Composer 进行个性化设置\n\n22. 在目录窗口中，单击 **Add** 按钮选择 **Text** 控件。\n\
+  \n![](img/fccf6c511126cf79e98510edd3b343ac_238_0.png)\n\n23. 单击 **Close** 按钮关闭 **Component**\
+  \ 目录。\n\n24. 请注意，页面上已添加一个文本组件；单击链接 **Edit Text** 对其进行自定义。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_238_1.png)\n\
+  \n25. 接下来，将出现一个编辑区域。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_238_2.png)\n\n\
+  26. 编写自定义注释，然后单击链接 **Done Editing**。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_239_0.png)\n\
+  \n27. 最后，要在执行模式下查看所有自定义内容，请单击页面右上角的 **Close** 按钮。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_239_1.png)\n\
+  \n28. 我们的页面应如下所示：\n\n![](img/fccf6c511126cf79e98510edd3b343ac_239_2.png)\n\n## 摘要\n\
+  \nOracle Composer 为内容个性化开辟了许多可能性。这项技术帮助最终用户创建自己的内容，并将其与外部信息相结合。这样一来，他们可以将知识共享和转移给公司所有成员，从而提高组织的生产力。\n\
+  \n在接下来的章节中，我们将在名为 Oracle Spaces 的产品中使用这项技术，并学习最终用户如何继续生成自己的内容。\n\n29. 从现在起，每次重新运行页面时，您都会发现更改已保留。您可能会想，这些更改在哪里？答案很简单，在项目的元数据中。也就是说，在应用程序中生成的一个\
+  \ XML 文件中。您可以在以下路径中找到此文件：\nC:\\Paracas\\mds\\mdssys\\cust\\site\\site\\customInformation.jspx.xml\n\
+  \n30. 您可以使用记事本打开该文件，找到用户所做的所有更改。\n\n31. 让我们使用 Windows 资源管理器删除元数据文件，以删除用户自定义内容。\n\
+  \n32. 再次执行页面，您应该看到没有任何自定义内容的相同页面。\n\n![](img/fccf6c511126cf79e98510edd3b343ac_240_0.png)\n"
+- '# 10 Oracle WebCenter Spaces 概述
+
+
+  通信技术的最新改进有助于促进人与人之间的互动和协作。电子邮件和聊天等工具就是这一事实的有力证明。
+
+
+  想象一下，将这些 Web 2.0 工具整合到一个专注于促进我们公司工作组协作和知识共享的解决方案中，可以实现多大的生产力！
+
+
+  正是，这是 Oracle WebCenter Spaces 提供的好处之一。除了提高工作组的生产力之外，这个解决方案还有助于改善公司每位员工的工作环境。与 WebCenter
+  套件中的其他技术（WebCenter Framework、WebCenter Composer）不同，Oracle WebCenter Spaces 是一个预构建的应用程序。但是，IT
+  团队可以帮助配置和个性化这个解决方案。
+
+
+  需要注意的是，Oracle WebCenter Spaces 是一个使用了本书中所学习的所有技术的解决方案。
+
+
+  本章展示了如何配置和自定义 Oracle WebCenter Spaces。此外，我们将使用这项技术创建个人和工作组环境。
+
+
+  ## Oracle WebCenter Spaces
+
+
+  正如我们在介绍中所指出的，WebCenter Spaces 提升了用户和群组的性能。为此，它提供了两个环境：
+
+
+  - **Oracle WebCenter Personal Spaces**：旨在为用户提供个性化环境，且生产力很高。使用此功能，用户可以自定义其环境，以添加对常用应用程序的访问、指标可视化（销售百分比、会议目标）以及关键文档等
+  Web 2.0 环境提供的其他功能。
+
+
+  - **Oracle WebCenter Group Spaces**：工作组使用它来提高生产力，得益于提供的众多通信工具和协作环境。工作组可以与公司的领域（采购、人力资源）、项目（新产品发布、新系统实施）或组织所需的任何分组相关联。
+
+
+  ## Oracle WebCenter Personal Spaces
+
+
+  WebCenter 的这一功能使最终用户能够个性化其工作环境，以提高生产力。
+
+
+  为了实现这一点，WebCenter Personal Spaces 允许用户构建一个环境，以便访问其个人电子邮件、最近的文档、他们喜欢的论坛、来自任何 BPEL
+  服务器的工作列表项目，以及一组用于快速访问的应用程序。
+
+
+  此外，它还为他们提供了访问其个人用户和专家社交网络的权限。
+
+
+  将这些工具整合在一个上下文中，就是 Oracle WebCenter Personal Spaces 所提供的。
+
+
+  ## Oracle WebCenter Group Spaces
+
+
+  Group Spaces 旨在为组织的工作组提供协作环境。例如，项目成员或公司业务领域的员工。
+
+
+  Group Spaces 允许自定义内容、共享资源，并为工作组提供工作环境。
+
+
+  ## Oracle WebCenter Spaces 安装
+
+
+  Oracle WebCenter 安装在 Oracle 官方网站上有详细说明：
+
+  http://www.oracle.com/technology/products/webcenter/index.html
+
+  安装时请考虑以下几点：
+
+
+  - 必须拥有 Oracle 数据库版本 10.2.0.4 及更高版本或 11.1.0.7 及更高版本。但是，使用 Patchset 1 可以使用 MS SQL
+  Server 和 IBM DB2。
+
+  - 必须运行 **Repository Creation Utility (RCU)** 来创建 WebCenter Spaces 正常工作所需的架构。
+
+  - 两款产品都可以从以下网址下载：http://www.oracle.com/technology/software/products/middleware/htdocs/fmw_11_download.html。
+
+
+  > > 我们建议遵循指南中的步骤：Oracle Fusion Middleware Quick Installation Guide for Oracle WebCenter。
+
+
+  ## Oracle Spaces 配置
+
+
+  在开始创建个人空间和群组空间之前，管理员需要配置 Repository Services Content、Discussions、Wikis 等。
+
+  在此示例中，作为管理员，我们将设置从 WebCenter Spaces 访问包含每个用户文件的文件夹的访问权限。该文件夹将具有用户名，并位于服务器的文件系统中。
+
+
+  1. 转到 Enterprise Manager 控制台：http://localhost:7001/em。
+
+  2. 单击 WebCenter Spaces 服务。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_243_0.png)
+
+
+  3. 选择以下选项：Setting | Service Configuration。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_244_0.png)
+
+
+  4. 选择 Content Repository 类别，然后单击 Add 按钮。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_244_1.png)
+
+
+  5. 输入以下值：
+
+
+  - **Connection Name**: `paracas_fs`
+
+  - **Repository Type**: File System
+
+  - **Active Connection**: Yes (Define as a default connection)
+
+  - **Base Path**: `/ParacasRepository/` (我们需要在服务器上创建此目录。)
+
+
+  6. 按 OK。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_245_0.png)
+
+
+  将需要重新启动 Oracle Spaces 服务以应用更改。
+
+
+  > > 您可以遵循相同的过程来启用与 Oracle Spaces 一起使用的讨论、维基和门户。
+
+
+  ## 开发员工工作环境
+
+
+  开发个人工作环境可以通过以下方式完成：
+
+
+  1. 转到浏览器并输入 Oracle Spaces URL。在我们的情况中：http://localhost:8888/webcenter。
+
+  2. 要创建个人环境，请按 **Register** 按钮。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_245_1.png)
+
+
+  ## Oracle WebCenter Spaces 概述
+
+
+  3. 在下一页中，输入以下值。然后单击 **Register**。
+
+
+  - User Name: eduardo.pulido
+
+  - Password: oracle
+
+  - First Name: Eduardo
+
+  - Last Name: Pulido
+
+  - Email: eduardo.pulido@paracascorp.com
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_246_0.png)
+
+
+  4. 单击左上角的 **Login** 链接以重新进入应用程序。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_246_1.png)
+
+
+
+
+
+
+  5. 在登录页面，输入用户名：eduardo.pulido 和密码：oracle。单击 Login。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_247_0.png)
+
+
+  6. 接下来，您可以看到 Oracle Personal Spaces 环境。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_247_1.png)
+
+
+  7. 在左侧，Oracle Personal Spaces 显示名为 Sidebar 的工具栏。此工具可快速访问 Oracle WebCenter Spaces
+  提供的资源。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_248_0.png)
+
+
+  8. Sidebar 的元素如下：
+
+
+  - **Application**：提供对用户使用的业务应用程序的访问。它包括用于保存密码的 Single Sign-On。
+
+  - **Worklist**：用户通常参与工作流，例如审批和评审。此任务流或端口将提供对待用户审批的流程的访问。
+
+  - **Mail**：链接到用户电子邮件或第三方电子邮件（如 Yahoo 和 Google）以及其企业电子邮件。
+
+  - **Buddies**：访问其即时消息联系人列表。
+
+  - **Notes**：允许用户创建简短笔记。
+
+  - **Recent Documents**：用户最近访问的文档将在此区域显示。
+
+  - **Discussions**：访问相关的热门和收藏话题。
+
+  - **Tags**：通过标签提供对页面的访问，并提供直接访问 Tag Center 的途径。
+
+
+  9. 在右侧，Oracle Personal Spaces 显示连接用户所属的页面。请注意，默认情况下有两个页面，**Welcome** 和 **Documents**，它们通过选项卡显示。
+
+
+  10. 第一个页面是信息页面，第二个页面允许我们访问在上一步中配置的文档存储库。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_248_1.png)
+
+
+  ## 11. 要配置其页面，用户可以使用选项 Page Actions | Manage Pages…。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_249_0.png)
+
+
+  请注意，此窗口允许您管理所有用户页面。此外，用户还可以访问 WebCenter Spaces 中的 Role Based Pages。这些是分配给公司中角色的页面。因此，如果用户属于销售角色，则他或她将自动拥有仅限于该角色的页面的访问权限。
+
+
+  ## 12. 让我们使用此功能创建一个新页面。单击 Create Page 按钮。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_249_1.png)
+
+
+  ## 13. 输入页面名称为 Custom Information，方案为 Dunes。单击 Create 按钮。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_249_2.png)
+
+
+  ## Oracle WebCenter Spaces Overview
+
+
+  14. 通过单击此链接更改页面布局：**Change Layout | Two columns above…**。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_250_0.png)
+
+
+  15. 请注意，我们现在有三个区域可供用户使用，以放置与购买天然纤维相关的数据。首先，在左上角，单击按钮 **Add Content**。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_250_1.png)
+
+
+  16. 在窗口组件目录中，单击 **Layout** 选项。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_250_2.png)
+
+
+  17. 在下一个窗口中，单击与 Text 控件关联的 **Add** 按钮，然后按 **Close** 按钮关闭组件目录。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_251_0.png)
+
+
+  18. 请注意，您已在此新页面上创建了一个文本组件。接下来，单击 **Edit Text** 链接并添加有关市场上天然纤维类型的信息。您可以选择并格式化任何文本段落。通过单击
+  **Done Editing** 链接完成此更改。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_251_1.png)
+
+
+  19. 现在，在右上部分，我们将放置有关世界天然纤维可用性的新闻。为此，我们将使用 RSS 服务。接下来，单击右上区域中的 **Add Content** 按钮。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_251_2.png)
+
+
+  20. 单击 RSS 控件的 **Add** 链接。然后，按 **Close** 按钮关闭目录。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_251_3.png)
+
+
+  ## Oracle WebCenter Spaces Overview
+
+
+  21. 创建 RSS 控件后，您必须对其进行配置。为此，单击 **Edit** 链接（铅笔图标）。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_252_0.png)
+
+
+  22. 完成 **RSS Feed URL** 字段，填入包含所需信息的地址。在我们的情况中，我们使用以下 URL：
+
+  `http://rss.globalsources.com/I/Cotton-fiber-manufacturers/r/2000000003844/3000000179301/21806/RSS.xml.`
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_252_1.png)
+
+
+  23. 按 **OK** 应用更改。
+
+  24. 最后，在页面的下部区域，用户将放置用户在采购过程中使用的文件。为此，单击底部的 **Add Content** 按钮。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_252_2.png)
+
+
+  25. 选择类别 **Documents**。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_252_3.png)
+
+
+  26. 单击 **Documents** 的 **Add** 链接并按 **Close** 按钮。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_252_4.png)
+
+  '
+- '## Chapter 10
+
+
+  27. 现在自定义此控件以仅显示用户的目录。为此，单击与 Document 控件关联的 **Edit** 按钮。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_253_0.png)
+
+
+  28. 在 **Start Folder Path** 字段中，单击 **Edit** 按钮。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_253_1.png)
+
+
+  29. 在下一个屏幕中选择值，以定义带有用户名的目录作为存储库的根。在打开的窗口中按 **OK**。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_253_2.png)
+
+
+  30. 最后，单击页面右上角的 **Close** 按钮。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_253_3.png)
+
+
+  31. 通过单击 **Save** 按钮接受对页面所做的更改。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_253_4.png)
+
+
+  ## 32. 最后，您将在用户页面上欣赏以下更改。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_254_0.png)
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_254_1.png)
+
+  '
+- '## Building a business role page
+
+
+  如我们在介绍中提到的，业务角色页面是一种可以包含在所有具有特定角色的用户工作环境中的页面。这样，我们可以将信息定向到预定义的用户组，避免逐一分配的需要。
+
+
+  在此示例中，我们将定义角色 Purchaser 并将用户分配给该角色。然后，我们将创建一个列出公司最佳供应商的业务角色页面，该页面将对 Purchaser 角色的所有用户可用。
+
+  '
+- '## Hands on
+
+
+  - 1. 转到 Oracle Spaces 登录页面：`http://localhost:8888/webcenter`。
+
+  - 2. 与创建 `eduardo.pulido` 用户的方式相同，单击 Register 按钮并继续创建用户 `martin.alban` 和 `diego.munoz`，两者的密码均为
+  `oracle`。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_255_0.png)
+
+
+  - 3. 注册后，返回初始页面并以管理员用户身份登录，在我们的情况中，用户为 **weblogic**。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_255_1.png)
+
+  '
+- '## Oracle WebCenter Spaces Overview
+
+
+  4. 进入主环境后，单击 **Administration** 链接。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_256_0.png)
+
+
+  5. 在显示的窗口中，选择选项 **Manage WebCenter Users and Roles**。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_256_1.png)
+
+
+  6. 然后，将显示用于定义 Oracle Spaces 使用的角色和用户的安全选项卡。单击 **Create Role** 链接。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_256_2.png)
+
+  '
+- '## Chapter 10
+
+
+  7. 接下来，输入 **Purchaser** 并选择模板 **Spaces-User**。按 **OK**。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_257_0.png)
+
+
+  8. 创建角色后，我们将注册属于该角色的用户。为此，单击 **Users** 选项卡。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_257_1.png)
+
+
+  9. 此页面定义属于角色的用户。输入 **eduardo.pulido**，选择角色 **Purchaser**，并单击 **Grant Access**。这样，用户即与角色关联。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_257_2.png)
+
+
+  10. 对用户 **martin.alban** 和 **diego.munoz** 重复此操作。
+
+
+  11. 注册用户后，页面底部应显示以下信息。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_257_3.png)
+
+
+
+
+
+
+  ## 12. 单击选项卡 WebCenter Administration 中的链接 Welcome。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_258_0.png)
+
+
+  ## 13. 现在创建一个可被该角色所有成员访问的页面。只需选择选项：Create Business Role Pages。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_258_1.png)
+
+
+  ## 14. 按 Create New Business Role Page 链接。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_258_2.png)
+
+
+  ## 15. 输入以下信息：
+
+
+  - Page Name: Certified Providers
+
+  - Scheme: Dunes
+
+  - Style: Text Page
+
+
+  ## 16. 按 **Create** 按钮。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_259_0.png)
+
+
+  ## 17. 创建页面后，使用编辑器编写认证提供商列表，然后按 **Done Editing** 链接完成注册。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_259_1.png)
+
+
+  ## 18. 然后，要将页面与角色关联，单击 **Page Properties** 选项。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_259_2.png)
+
+
+  ## 19. 在弹出窗口中，选择 **Security** 选项卡并单击 **Add Access** 按钮。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_260_0.png)
+
+
+  ## 20. 找到 **Purchaser** 角色并通过按 **Select** 按钮选择它。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_260_1.png)
+
+
+  ## 21. 确保所有用户都可以编辑页面的信息。为此，选择编辑复选框（铅笔图片）。然后单击 OK。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_260_2.png)
+
+
+  ## 22. 单击 **Save** 和 **Close** 按钮以保存更改。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_260_3.png)
+
+
+  ## 23. 单击 **Logout** 链接并使用用户 **martin.alban** 登录。请注意，该用户现在可以看到指向 Certified Providers
+  页面的链接。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_261_0.png)
+
+
+  ## 24. 单击此选项，您可以查看有关认证供应商的信息。此外，如果单击 **Page Actions | Edit Page** 选项，您可以修改此列表。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_261_1.png)
+
+  '
+- '## 开发群组空间
+
+
+  Oracle Space 提供的另一项功能是使用 Oracle Group Spaces 工具开发工作群组空间。此选项允许创建可用于促进项目、区域或工作组成员之间协作的工作环境。
+
+
+  在此练习中，我们将使用它为参与新采购系统的团队创建工作环境。
+
+
+  1. 以管理员身份登录 Oracle Spaces。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_261_2.png)
+
+
+  2. 在菜单栏中，选择 **Group Spaces** | **Create Group Space...**
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_262_0.png)
+
+
+  3. 输入项目数据以管理此群组并选择 **Group Project**。单击 **Create** 按钮。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_262_1.png)
+
+
+  4. 接下来，您可以添加群组成员。为此，输入成员姓名，选择 Participant 角色，并单击 Add Members 按钮将成员添加到群组中。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_262_2.png)
+
+
+  5. 重复该过程以添加所有先前注册的用户。
+
+  6. 再次使用 **martin.alban** 作为用户名登录 Oracle Spaces。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_263_0.png)
+
+
+  7. 从主菜单中，选择 **Group Spaces | Procurement System Implementation**。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_263_1.png)
+
+
+  8. 请注意，已自动创建用于管理群组项目的环境。上半部分定义群组将要执行的活动。单击 **Create** 按钮以添加新活动。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_263_2.png)
+
+
+  9. 输入活动信息并将其分配给 diego.munoz。单击 Save 按钮。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_264_0.png)
+
+
+  10. 在群组环境底部，您有一个日程表来定义团队的议程。单击 **Create** 按钮。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_264_1.png)
+
+
+  11. 输入会议数据并按 **Create** 按钮。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_264_2.png)
+
+
+  12. 请注意，您已创建新的日历事件。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_265_0.png)
+
+
+  13. 现在以用户 **diego.munoz** 身份登录。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_265_1.png)
+
+
+  14. 转到 Oracle Spaces 环境和采购群组。
+
+  15. 单击选项 **Group Spaces | Procurement System Implementation**。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_265_2.png)
+
+
+  16. 最后，您会发现先前输入的活动和事件已定义在 **diego.munoz** 的群组环境中。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_266_0.png)
+
+  '
+- '## 摘要
+
+
+  Oracle Space 允许组织成员以简便方式开发自己的环境，以提高效率。
+
+
+  对于群组，Oracle Spaces 提供了一个允许其管理活动和会议的环境。
+
+
+  此外，如本章所讨论，您可以创建 Business Roles Pages，这些页面允许将信息定向到组织中的特定群组。
+
+
+  最后，正如我们所见，无需进行任何开发，因为该解决方案即开即用。
+
+  '
+- "# 索引\n\n### A\n\n**ADF**  \n用于创建 portlet 130  \n\n**ADF application, portlet**\
+  \  \n创建 131  \n\n**ADF business components**  \n应用程序模块组件 114  \n架构 114  \n实体组件 114\
+  \  \nFusion Developer's Guide, URL 114  \n视图对象组件 114  \n\n**ADF Faces Rich Client\
+  \ components**  \n关于 101  \n类型 102  \n\n**ADF Faces Rich Client components, types**\
+  \  \n输入组件 102  \n标签和消息组件 102  \n布局组件 102  \nLOV 组件 102  \n菜单和工具栏组件 102  \n导航组件 102\
+  \  \n输出组件 102  \n弹出窗口组件 102  \n表格和树组件 102  \n\n**ADF Security, WebCenter Tags service**\
+  \  \n配置 191-193  \n\n**Application Development Framework**  \n**(ADF)** 12  \n应用程序模块组件,\
+  \ ADF Business Components 114  \n应用程序设置, Hello World web service  \n配置 60  \n应用程序,\
+  \ WebCenter Links Service  \n\n部署, 到集成 WebLogic 服务器 198, 199  \n\n**application,\
+  \ WebCenter RSS Service**  \n运行 202  \n查看 203  \n\n**application, WebCenter Tags\
+  \ service**  \n部署, 到集成 WebLogic 服务器 195  \n查看 195, 196  \n\n### B\n\n**BEA WebLogic\
+  \ server, Oracle JDeveloper**  \n11g 安装 51-55  \n\n**Blog** 153  \n\n**business\
+  \ components, portlet**  \n开发 132-137  \n\n**business role page**  \n构建 236-243\
+  \  \n\n### C\n\n**categoryId parameter** 163  \n**chart page, portlet**  \n创建 137-140\
+  \  \n\n**common components, Oracle Components**  \nChange Mode Button 206  \nChange\
+  \ Mode Link 206  \nImage Link 206  \nPage Customizable 206  \n\n**connection, WebCenter\
+  \ Tags service**  \n创建, 到 WebCenter schema 186, 187  \n\n**Content Presenter** 130\
+  \  \n**Create as XML Document option, Oracle Composer** 208  \n\n### custom WebCenter\
+  \ application\n\nWebCenter Links Service, 集成 196  \nWebCenter RSS Service, 集成 200\
+  \  \nWebCenter Search Service, 集成 178, 179  \nWebCenter Tags service, 集成 185  \n\
+  \n### deployment profile, Hello World Portlet\n\n创建 83, 84  \n\n### deployment profile,\
+  \ Hello World WebCenter application\n\n创建 96  \n\n### deployment profile, Hello\
+  \ World web service\n\n创建 66-68  \n\n### deployment profile, WebCenter Tags service\n\
+  \n创建 194  \n\n### developers\n\nOracle Composer for 205, 206  \n\n### Discussions\n\
+  \n群组结构 156  \n集成, 与 WebCenter 157  \n结构 155, 156  \n用户结构 156  \n\n### Discussions\
+  \ Forums 157\n\n### Discussions Forum task flow, WebCenter Search Service\n\n添加,\
+  \ 到 JSF 页面 182-184  \n\n### Discussions, integration with WebCenter\n\n连接, 创建到 Discussions\
+  \ Forum 160-162  \n\n部署 165  \n\nDiscussions Forums 157  \n\nDiscussions - Popular\
+  \ Topics 157  \n\nDiscussions - Recent Topics 157  \n\nDiscussions Server status,\
+  \ 确保 158  \n\nDiscussions - Sidebar View 157  \n\nDiscussions task flow, 嵌入到 JSF\
+  \ 页面 163, 164  \n\nDiscussions - Watched Forums 157  \n\nDiscussions - Watched Topics\
+  \ 157  \n\nJSF 页面, 创建 159, 160  \n\n新 WebCenter 应用程序, 创建 158  \n\n运行 165  \n\n测试\
+  \ 165  \n\n### Discussions - Popular Topics 157\n\n### Discussions - Recent Topics\
+  \ 157\n\n### Discussions Server\n\n关于 152, 153  \nURL, 连接到 153  \n\n### Discussions\
+  \ Service, WebCenter Search Service\n\n连接, 创建到 181, 182  \n\n### Discussions - Sidebar\
+  \ View 157\n\n### Discussions task flow\n\n嵌入, 在 JSF 页面中 163  \n\n### Discussions\
+  \ - Watched Forums 157\n\n### Discussions - Watched Topics 157\n\n### E\n\n### end\
+  \ users\n\nOracle Composer for 212  \n\n### Ensemble 130\n\n### Enterprise 2.0\n\
+  \n优势 10  \n概念 10  \n\n### entity component, ADF Business Components 114\n\n### F\n\
+  \n### forumId parameter 163\n\n### Forums Admin Console\n\n主页 154  \n\n### G\n\n\
+  ### Group Space\n\n开发 243-247  \n\n### H\n\n### Hello World Portlet\n\n基本视图, 创建以使用数据控件\
+  \ 79, 80  \n\n创建 72  \n\n部署配置文件, 创建 83, 84  \n\n新 Portlet, 创建 73-75  \n\n新 Portlet\
+  \ Producer Application, 创建 72  \n\nportlet, 部署到集成 weblogic 服务器 85, 86  \n\n\n\n\n\
+  \n## I\n\n**iFrame**\ncreating, to include Wiki-Blog server page 169, 170\nnew WebCenter\
+  \ Application, creating 166\nused, for integrating Wiki-Blog 166, 167\n\n**input\
+  \ components, ADF Faces Rich Client components 102**\n\n**installing**\nMiddleware\
+  \ Home 25-30\nWebCenter Framework and Services 31-37\nisCategoryView parameter 163\n\
+  \n## J\n\n**Java class, Hello World web service**\nconfiguring 62, 63\nJDeveloper.\
+  \ _See_ Oracle JDeveloper 11g\ninstallation\n\n**JSF page, Hello World WebCenter\
+  \ application**\ncreating, to host portlet 92-94\n\n**JSF page, WebCenter RSS Service**\n\
+  creating, to host RSS Viewer task flow 200, 201\n\n**JSF page, WebCenter Search\
+  \ Service**\ncreating 180\nDiscussions Forum task flow, adding 182, 183\nSearch\
+  \ task flow, adding 184\n\n**JSF page, WebCenter Tags service**\ncreating, to host\
+  \ search toolbar 191\ncreating, with tag button 188-190\n\n**JSF portlets 129**\n\
+  \n**JSR-168 specification**\nfor portlet 128\n\n## K\n\nknowledge exchange, Web\
+  \ 2.0 platform 9\n\n## L\n\n**label and messages components, ADF Faces Rich Client\
+  \ components 102**\n\n**layout components, ADF Faces Rich Client components 102**\n\
+  \n**layout components, Oracle Components**\nLayout Customizable 206\nPanel Customizable\
+  \ 206\nShow Detail Frame 206\n\nlibraries, WebCenter Tags service\nadding 186\n\n\
+  **LOV components, ADF Faces Rich Client components 102**\n\n## M\n\n**menu and toolbar\
+  \ components, ADF Faces Rich Client components 102**\n\n## Middleware Home\n\ninstalling\
+  \ 25-30\n\n## N\n\n## navigations components, ADF Faces Rich Client components 102\n\
+  \n## O\n\n## OmniPortlet 130\n\n## operation components, Oracle Components\n\nCustom\
+  \ Action 206\n\n## Oracle Components, types\n\ncommon components 206\n\nlayout components\
+  \ 206\n\n## Oracle Composer\n\nabout 205\n\nAdd Content button 218, 219\n\nand Oracle\
+  \ Metadata Service 213\n\nChange Mode Link, dragging 209\n\nClose button 216\n\n\
+  components, catalog displaying 216\n\ncontent, customizing 214-218\n\nCreate as\
+  \ XML Document option 208\n\nDelete option 210\n\nDone Editing link 220\n\nediting\
+  \ region 220\n\nEmbed button 217\n\nenvironment, building with 206-208\n\nfor developers\
+  \ 205, 206\n\nfor end users 212\n\nImage Source property, changing 219\n\nLayout\
+  \ Customizable component 211\n\nmetadata file, deleting 222\n\npage, changing to\
+  \ design mode 214\n\npage content, customizing 214\n\npage, content customizing\
+  \ 214\n\nPage Customizable component, dragging 210\n\npage, design environment 214\n\
+  \nPage Properties button 214\n\nPage template option 208\n\npage, testing 212\n\n\
+  panelCustomizable container 210\n\npicture, adding to website 219\n\nProperty Inspector\
+  \ 209\n\nresource catalog 213\n\ntext component, customizing 220\n\nText control,\
+  \ selecting 220\n\nwork region, dividing 215\n\n## Oracle JDeveloper 12\n\n## Oracle\
+  \ JDeveloper 11g, Hello World web service\n\nstarting 58\n\n## Oracle JDeveloper\
+  \ 11g installation\n\nabout 40\n\nBEA WebLogic server 51-55\n\nextensions, installing\
+  \ 42-44\n\nintegration, with Subversion 50\n\nOracle WebCenter extension 42\n\n\
+  system requirements 40\n\ntool, downloading 40\n\ntool, installing 41, 42\n\nversion\
+  \ control system, installation 45-49\n\nWebCenter preconfigured server, testing\
+  \ 51-55\n\n## Oracle Metadata Service\n\nand Oracle Composer 213\n\n## Oracle WebCenter\n\
+  \napplication, creating 102, 103\n\nbusiness components, creating 117-121\n\ndatabase\
+  \ connection, creating in JDeveloper 115, 116\n\nnew application, creating 102,\
+  \ 103\n\npage, creating 121-126\n\npersistence layer, creating 114\n\nSchema, creating\
+  \ for application 114\n\ntemplate, including 104-113\n\n## Oracle WebCenter 11g\n\
+  \nabout 15\n\nhardware requisites 16\n\nhigh-level installation, steps 16-22\n\n\
+  Installation Complete screen 30\n\nInstallation Summary screen 28\n\nMiddleware\
+  \ Home, installing 25-30\n\nRun Quickstart option 30\n\nsoftware requisites 16\n\
+  \nTypical install option 27\n\nWebCenter Framework and Services, installing 31-37\n\
+  \n## Oracle WebCenter Anywhere 11\n\n## Oracle WebCenter Composer 11\n\n## Oracle\
+  \ WebCenter Discussions Service 151\n\nOracle WebCenter extension, Oracle JDeveloper\
+  \ 11g installation installing 42, 44\n\nOracle WebCenter Framework 11\n\nOracle\
+  \ WebCenter Group Spaces\nabout 224\ndeveloping 243-247\n\nOracle WebCenter Personal\
+  \ Spaces 224\n\nOracle WebCenter Services about 11\n\nOracle WebCenter Spaces\n\
+  about 11, 224\nbusiness role page, building 236-243\nconfiguration 225-227\nGroup\
+  \ Space, developing 243-247\ninstallation 225\nOracle WebCenter Group Spaces 224\n\
+  Oracle WebCenter Personal Spaces 224\nstaff working environment, developing 228\n\
+  staff working environment, development 227-235\n\nOracle WebCenter Suite\nabout\
+  \ 10\ncomponents 11\nOracle WebCenter Anywhere 11\nOracle WebCenter Composer 11\n\
+  Oracle WebCenter Framework 11\nOracle WebCenter Services 11\nOracle WebCenter Spaces\
+  \ 11\n\noutput components, ADF Faces Rich Client components 102\n\nP page building,\
+  \ with database interaction 114\nused, for creating portlet 141\n\npage content,\
+  \ Oracle Composer\nAdd button 216\nAdd Content button 216, 218, 219\nChange Layout\
+  \ button 215\nchanging, to design mode 214\ncustomizing 214\ndesign environment\
+  \ 214\nDone Editing link 220\nEdit button 216\nediting region 220\nImage Source\
+  \ property, changing 219\nmetadata file, deleting 222\nOption Two columns 215\n\
+  Page Properties button 214\ntext component, customizing 220\nText control, selecting\
+  \ 220\n\npage layout, Hello World WebCenter application\ncreating 94, 95\n\npages,\
+  \ building with database interaction\nADF Business Components 114\nbusiness components,\
+  \ creating 117-121\ndatabase connection, creating in JDeveloper 115, 116\npage,\
+  \ creating 121-126\npersistence layer, creating 114\nSchema, creating 114\n\nPage\
+  \ template option, Oracle Composer 208\n\npersistence layer, creating\nbusiness\
+  \ components, creating 117-121\ndatabase connection, creating in JDeveloper 115,\
+  \ 116\npage, creating 121-126\nSchema, creating for application 114\n\npop-up components,\
+  \ ADF Faces Rich Client components 102\n\nportlet\nabout 128\nADF application, creating\
+  \ 131, 132\nbusiness components, developing 132-137\nchart page, creating 137-140\n\
+  consuming 145-148\nContent Presenter 130\nCreating, page used 141, 142\ndeploying\
+  \ 142-144\ndeveloping, ADF used 130\nEnsemble 130\nJSF portlets 129\nJSR-168 specification\
+  \ 128\nOmniPortlet 130\nprogrammatic portlets 130\nWeb Clipping 130\nWSRP specification\
+  \ 129\n\nPortlet Producer Application, Hello World Portlet\ncreating 72\n\n## portlet\
+  \ producer, Hello World WebCenter application\n\n- configuring 92\n- using 90, 91\n\
+  \n- programmatic portlets 130\n- project settings, Hello World web service\n  -\
+  \ configuring 61\n\n## R\n\n- Really Simple Syndication (RSS) 177\n- Repository\
+  \ Creation Utility (RCU) 225\n- resource catalog, Oracle Composer 213\n- RSS Viewer\
+  \ task flow, WebCenter RSS Service\n  - adding 202\n- hosting, JSF page created\
+  \ 200, 201\n\n## S\n\n- search preferences task flow 178\n- search - saved searches\
+  \ task flow 179\n- search task flow 178\n- Search task flow, WebCenter Search Service\n\
+  \  - adding, to JSF page 184\n- search toolbar task flow 179\n- search toolbar,\
+  \ WebCenter Tags service\n  - hosting, JSF page created 191\n- showRecursiveForums\
+  \ parameter 163\n- staff working environment\n  - Close button 235\n  - Create Page\
+  \ button 231\n  - development 227\n  - Done Editing link 233\n  - Login link 228\n\
+  \  - Oracle Personal Spaces environment 229\n  - personal environment, creating\
+  \ 227\n  - RSS Feed URL field 234\n  - Sidebar, elements 230\n- Subversion, Oracle\
+  \ JDeveloper 11g installation\n  - integration 50\n\n## T\n\n- table and tree components,\
+  \ ADF Faces Rich Client components 102\n- test_page, WebCenter Links Service\n \
+  \ - modifying, to include Links Detail Button 196-198\n- tools, Oracle JDeveloper\
+  \ 11g installation\n  - downloading 40, 41\n  - installing 41, 42\n\n## V\n\n- version\
+  \ control system, Oracle JDeveloper 11g installation\n  - installing 45-49\n- view\
+  \ object component, ADF Business Components 114\n\n## W\n\n- WEB 2.0\n  - about\
+  \ 7, 8\n  - advantages 9\n  - platform application, evolution 8\n  - social impact\
+  \ 9\n- Web 2.0 platform\n  - collaboration and participation 9\n  - communication\
+  \ 9\n  - content management 10\n  - knowledge exchange 9\n  - social environments,\
+  \ creation 10\n- WebCenter\n  - Discussions, integrating 157\n  - used, for integrating\
+  \ Wiki-Blog 165, 166\n  - Wiki-Blog, integrating 165, 166\n- WebCenter Hello World\
+  \ application\n  - building 58\n  - Hello World Portlet 72\n  - Hello World web\
+  \ service 58\n  - requisites 58\n- WebCenter Links Service, integrating with custom\
+  \ WebCenter application\n  - application, deploying to integrated WebLogic server\
+  \ 198, 199\n  - test_page, modifying 196-198\n- WebCenter preconfigured server,\
+  \ Oracle JDeveloper 11g installation\n  - testing 51-55\n- WebCenter RSS Service\n\
+  \  - integrating 200\n  - need for 199\n  - requisites 200\n\n\n\n\n\n\n## WebCenter\
+  \ RSS 服务，与自定义 WebCenter 应用程序集成\n\napplication, running 202  \napplication, viewing\
+  \ 203  \nJSF page, creating to host RSS Viewer task flow 200, 201  \nnew custom\
+  \ WebCenter application, creating 200  \nRSS Viewer task flow, adding 202\n\n##\
+  \ WebCenter Search 服务，与自定义 WebCenter 应用程序集成\n\nconnection, creating to discussions\
+  \ service 181, 182  \nDiscussions Forum task flow, adding to JSF page 182-184  \n\
+  JSF page, creating 180  \nnew WebCenter Application, creating 179, 180  \nsearch\
+  \ preferences task flow 178  \nsearch - saved searches task flow 179  \nsearch task\
+  \ flow 178  \nSearch task flow, adding to JSF page 184  \nsearch toolbar task flow\
+  \ 179  \nWebCenter Wiki and Blog Server 179\n\n## WebCenter Tags 服务与自定义 WebCenter\
+  \ 应用程序集成 185\n\nrequisites 185\n\n## WebCenter Tags 服务，与自定义 WebCenter 应用程序集成\n\n\
+  ADF Security, configuring 191-193  \napplication, deploying to integrated WebLogic\
+  \ server 195  \napplication, viewing 195, 196  \nconnection, creating to WebCenter\
+  \ schema 186, 187  \ndeployment profile, creating 194  \nJSF page, creating to host\
+  \ search toolbar 191  \nJSF page, creating with tag button 188-190  \nnew custom\
+  \ WebCenter application, creating 185  \nrequired libraries, adding 186\n\n## Web\
+  \ Clipping 130\n\n## Web Clipping Portlet\n\npage, running 173-175  \nregistering\
+  \ 171, 172\n\nused, for integrating Wiki-Blog 170\n\nweblog. See blog\n\n## web\
+  \ service Data Control, Hello World Portlet\n\ncreating, for Hello World web service\
+  \ 76-79  \nusing 80-82\n\n## Wiki 152\n\n## Wiki-Blog 集成，使用 iFrame\n\niFrame, creating\
+  \ to include Wiki and Blog Server page 169, 170  \nJSF page, creating 167, 168 \
+  \ \nnew WebCenter Application, creating 166, 167\n\n## Wiki-Blog 集成，使用 Web Clipping\
+  \ Portlet\n\nabout 170  \nnew JSF page, adding to application 171  \nportlet page,\
+  \ running 173-175  \nWeb Clipping Portlet, adding to JSF page 172  \nWeb Clipping\
+  \ Portlet, registering 171, 172\n\n## Wiki-Blog 集成，与 WebCenter 集成\n\nabout 165,\
+  \ 166  \nprerequisites 166\n\n## WSRP 规范\n\nabout 129  \nADF application, creating\
+  \ 131, 132  \nadvantages 129  \nbusiness components, developing 132-136  \nchart\
+  \ page, creating 137-140  \nportlet, consuming 145-148  \nportlet creating, page\
+  \ used 141, 142  \nportlet, deploying 142-144  \nportlet developing, ADF used 130\
+  \  \nWebCenter portlets 129\n\n## Web 2.0 解决方案与 Oracle WebCenter 11g\n\n## 关于 Packt\
+  \ Publishing\n\nPackt，发音为 'packed'，于 2004 年 4 月出版了其第一本书《Mastering phpMyAdmin for\
+  \ Effective MySQL Management》，随后继续专注于出版关于特定技术和解决方案的高度聚焦图书。\n\n我们的图书和出版物分享了您的 IT\
+  \ 专业同行在调整和定制当今系统、应用程序和框架方面的经验。我们的基于解决方案的图书为您提供知识和能力，以定制您正在使用的软件和技术来完成工作。Packt 图书比您过去看到的\
+  \ IT 图书更具体、更不笼统。我们独特的商业模式使我们能够为您带来更聚焦的信息，让您了解更多需要知道的内容，而减少不需要知道的内容。\n\nPackt 是一家现代且独特的出版公司，专注于为开发人员、管理员和新手社区制作高质量、前沿的图书。有关更多信息，请访问我们的网站：www.packtpub.com。\n\
+  \n## 关于 Packt Enterprise\n\n2010 年，Packt 推出了两个新品牌，Packt Enterprise 和 Packt Open\
+  \ Source，以继续其专业化的重点。本书是 Packt Enterprise 品牌的一部分，该品牌专注于企业软件图书的出版——即由主要供应商（包括但不限于\
+  \ IBM、Microsoft 和 Oracle）创建的软件，通常用于其他公司。其书名将为该软件的一系列用户提供相关信息，包括管理员、开发人员、架构师和最终用户。\n\
+  \n## 为 Packt 撰写\n\n我们欢迎所有有兴趣撰写的人士的咨询。书籍提案应发送至 author@packtpub.com。如果您的书籍创意仍处于早期阶段，并且希望在撰写正式书籍提案之前先讨论，请联系我们；我们的一位委托编辑将与您联系。\n\
+  \n我们不仅在寻找已出版的作者；如果您拥有强大的技术技能但没有写作经验，我们经验丰富的编辑可以帮助您发展写作生涯，或者仅仅为您的专业知识获得一些额外回报。\n\n\
+  ![](img/fccf6c511126cf79e98510edd3b343ac_275_0.png)\n"
+- '## Oracle SOA Suite 开发者指南
+
+
+  ISBN: 978-1-847193-55-1    平装本: 652 页
+
+
+  使用 Oracle SOA Suite 10gR3 设计和构建面向服务的架构解决方案
+
+
+  +   1. 一本关于使用和应用 Oracle SOA Suite 交付实际 SOA 应用程序的实践指南。
+
+
+  +   2. 详细介绍 Oracle Service Bus、BPEL 流程管理器、Web Service Manager、规则、人工工作流和业务活动监控。
+
+
+  +   3. 掌握在 SOA 解决方案实现中组合/使用每个不同组件的最佳方式。
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_275_1.png)
+
+  '
+- '## Oracle Application Express 3.2 - 基础与进阶
+
+
+  ISBN: 978-1-847194-52-7    平装本: 644 页
+
+
+  快速轻松地使用 Oracle APEX 开发原生 Oracle 数据库中心 Web 应用程序
+
+
+  +   1. 掌握 APEX 背后的原理，为 Oracle 环境开发高效且优化的数据中心原生 Web 应用程序
+
+
+  +   2. 更好地理解 APEX 的主要原理和构建块，如 IDE 及其模块
+
+
+  +   3. 回顾与 APEX 相关的技术，如 HTML 和 DOM、CSS 和 JavaScript，这些将帮助您开发更好、更丰富且更高效的 APEX 应用程序
+
+
+  ![](img/fccf6c511126cf79e98510edd3b343ac_275_2.png)
+
+
+  请查看 www.PacktPub.com 以获取我们书籍的信息
+
+
+  '

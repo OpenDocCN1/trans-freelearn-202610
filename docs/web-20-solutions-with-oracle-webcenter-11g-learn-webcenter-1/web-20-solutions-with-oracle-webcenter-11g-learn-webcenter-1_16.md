@@ -1,0 +1,128 @@
+## 1 什么是 Oracle WebCenter？
+
+人类刚刚登陆火星！你会去哪里寻找关于此事件的信息？虽然人类尚未真正到达火星，但你很可能会在 Google、Yahoo 或 MSN 等网站上寻找答案，从而展示了 Web 作为一种工作、沟通和快速验证人类尚未到达火星的工具的能力。
+
+本书将为我们提供所需的专业知识，以利用 Web 平台构建提供通信、协作、知识共享、社交网络以及所有成为我们 WEB 2.0 解决方案的功能的应用程序。
+
+本章描述了 Web 技术如何演变为一个提供全面服务以共享知识、沟通和促进协作工作的平台。这种平台演变被称为 Web 2.0。Web 2.0 的到来在商业环境中并未被忽视；事实上，公司已经收集了它所能提供的好处，并将其应用于工作环境中，以实现运营效率。这种在商业环境中使用 Web 2.0 的新方式被称为 Enterprise 2.0。
+
+显然，我们的书不仅仅是为了描述概念，还要使用 Oracle 提供的工具和技术来实现这些概念。出于这个原因，我们将展示 WebCenter Suite 和 JDeveloper 的主要功能，以及如何使用它们来开发 Web 2.0 解决方案。
+
+在本章中，我们将描述以下主题：
+
+- Web 2.0 概念
+- 平台应用程序的演变
+- Enterprise 2.0 概念
+- Oracle WebCenter
+- Oracle JDeveloper
+
+## WEB 2.0 概念
+
+Web 2.0 这一术语是在 2004 年 O'Reilly 与 MediaLive International 之间的一次头脑风暴中创造的。该术语用于描述一种新版本的 Web 平台，为其用户提供巨大的社交能力。
+
+为了更好地了解平台的演变及其社会影响，我们需要详细回顾这些概念。
+
+## 平台应用程序的演变
+
+用于执行应用程序的第一个平台是 PC，它提供了运行我们应用程序的便利。不幸的是，构建应用程序通常需要技术知识（内存、I/O、中断、总线等）。
+
+目前，操作系统已成为支持我们应用程序的标准平台。这一点的证明是，各种办公、数据库管理、多媒体和其他应用程序都在使用这些操作系统运行。
+
+![](img/fccf6c511126cf79e98510edd3b343ac_26_0.png)
+
+万维网及其导航工具（Internet Explorer 和 Netscape）的出现，帮助催生了一个名为 Web（目前称为 Web 1.0）的新平台。
+
+起初，该平台的 GUI 有限（仅使用 HTML 和 JavaScript），并不提供在操作系统支持下构建的解决方案所具有的丰富性。
+
+新技术的出现丰富了用户界面，例如 AJAX，巩固了 Web 作为新一代应用程序平台的地位，这些应用程序能够利用这些技术。Google、Google Maps、Wikipedia、博客和 Flickr 就是证据。这种新版本的 Web 平台被称为 Web 2.0。
+
+![](img/fccf6c511126cf79e98510edd3b343ac_27_0.png)
+
+作为平台的 Web 2.0 提供了以下技术优势：
+
+- 我们只需要浏览器的支持来运行我们的应用程序。
+- 我们可以使用 Internet 为应用程序提供远程访问。
+- 我们可以在线更新应用程序，无需在客户端安装任何额外软件。
+- 应用程序已准备好在其他便携设备上实现，例如 Palm、BlackBerry 和 Pocket PC。
+- 将内容发布到 Web 上不需要技术专长。
+
+然而，所有这些技术优势都无法与 Web 2.0 平台产生的社会影响相比。
+
+## Web 的社会影响
+
+Web 2.0 平台的使用使得在用户之间促进社交的新方式成为可能。它们如下：
+
+- **通信**：该平台除了邮件和即时消息解决方案外，还通过博客、视频等开辟了新的沟通方式。
+- **知识交流**：讨论区、共享图片和文件等空间，允许用户相互交换信息。
+- **协作与参与**：Web 技术允许用户在想要发布信息时，使用简单工具（博客、播客）进行参与。
+
+## Enterprise 2.0 概念
+
+公司也可以利用新的 Web 技术。在建立“Enterprise 2.0”概念并审视公司适应使用新技术的演变时，重要的是要记住，Enterprise 2.0 的范围不仅限于组织本身，还包括其合作伙伴和客户。
+
+Enterprise 2.0 提供的技术优势如下：
+
+- 在线工作环境
+- 使用社交网络
+- 创建和自定义协作工作环境
+- 组织知识的管理与传播
+- 与内部和外部业务应用程序集成
+- 轻松联系组织资源
+- 促进组织成员之间的沟通
+
+我们可以得出结论，Enterprise 2.0 通过使用 Web 2.0 提供的新技术平台来促进组织的生产力。此时，你可能会问自己：我们如何实施一个支持 Enterprise 2.0 和 Web 2.0 所建议准则的解决方案？Oracle 的答案被称为 Oracle WebCenter Suite。
+
+## Oracle WebCenter Suite 概念
+
+Oracle WebCenter Suite 是一个用于构建企业门户或集成 Enterprise 2.0 功能的自定义应用程序的平台，旨在通过集成业务应用程序和用户社区来改进业务流程。
+
+此套件允许公司构建企业门户、社交网络、协作社区、内容管理器、复合应用程序以及内联网和互联网站点。
+
+什么是 Oracle WebCenter？
+
+- **内容管理**：Web 现在允许我们访问文件存储库，例如图像、音频、视频和其他电子文档。
+- **创建社交环境**：Web 支持创建面向成员拥有相似兴趣的群体的空间。
+
+我们可以得出结论，Web 2.0 的到来不仅影响技术，而且最重要的是，它代表了一种社会影响。这种社会影响在商业环境中具有重要意义，并导致了新的 Enterprise 2.0 概念的产生。
+
+![](img/fccf6c511126cf79e98510edd3b343ac_29_0.png)
+
+Oracle WebCenter suite 具有以下关键组件：
+
+- **Oracle WebCenter Framework**：用于在我们的解决方案中构建用户界面和 portlet。使用此 Framework 构建的组件使用 JSF 和 AJAX 来提供丰富的界面。
+- **Oracle WebCenter Services**：此组件提供功能，可将我们的解决方案与内容管理器、搜索、wiki、讨论、博客、消息服务（邮件、即时消息、电话）以及 Web 2.0 的所有功能集成。
+- **Oracle WebCenter Composer**：允许用户通过友好的界面个性化其内容。
+- **Oracle WebCenter Spaces**：一个开箱即用的应用程序，它使用之前详细介绍的组件来提供协作工作环境、创建社交网络的能力以及共享资源的便利性。
+- **Oracle WebCenter Anywhere**：引入以使应用程序能够与移动设备（如 PDA 和智能手机）进行交互。
+
+## 什么是 Oracle WebCenter？
+
+这些组件与应用程序服务器之间的关系在以下图片中显示：
+
+![](img/fccf6c511126cf79e98510edd3b343ac_30_0.png)
+
+为了构建 Oracle WebCenter 解决方案，我们需要工具的支持，那就是 Oracle JDeveloper。
+
+## Oracle JDeveloper
+
+Oracle JDeveloper 于 1997 年创建，作为构建 Java 解决方案的工具。虽然最初它基于一个名为 JBuilder 的工具，但 Oracle 开始添加与数据库交互的功能。在此演变过程中，JDeveloper 添加了许多框架，如 Business Components（以前称为 BC4J）、UIX 等。
+
+一个重大变化伴随着 10g 版本的出现，它引入了名为 **Application Development Framework** (**ADF**) 的生产力框架，并通过 Oracle 库加速 JEE 解决方案的开发。
+
+该工具的新版本包含了其他技术，例如 ADF Faces，它有助于以声明方式创建用户界面。最近，ADF Faces 的一个新版本，称为 ADF Faces Rich Client，通过使用 AJAX 等技术丰富了用户界面。
+
+在创建 JEE 解决方案方面得到巩固后，Oracle JDeveloper 被选为在 Fusion Middleware Platform 上构建解决方案的标准工具。该平台支持基于 JEE、SOA 和使用 Oracle WebCenter 的 Enterprise 2.0 的解决方案。JDeveloper 使用扩展来利用 WebCenter 中的关键组件，例如 Framework、Services 和 Composer。
+
+
+
+
+
+因此，在本书的过程中，我们将使用此工具来构建我们的自定义解决方案。
+
+## ##摘要
+
+技术平台的演变及其在新形式社交中的应用导致了 Web 2.0 的创建，而在商业环境中使用这些概念被称为 Enterprise 2.0。出于这一动机，Oracle 推出了 WebCenter 作为构建 Enterprise 2.0 解决方案的平台，它有助于在组织中开发协作环境。
+
+最后，Oracle JDeveloper 被选中用于构建这些解决方案，使用 Oracle WebCenter 提供的平台。
+
+现在我们已经了解了技术概念，将开始开发我们的自定义应用程序。但在此之前，我们需要安装和配置 WebCenter。我们将在下一章中完成此操作。

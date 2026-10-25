@@ -1,0 +1,9 @@
+Sukanta K. Hazra has a passion for technology and constant desire to try out new areas. This has taken him through academic research on wireless networks and networking protocols, mobile software development, mobile advertisement platforms, and enterprise software and architecture. His experience in various fields has given him a unique perspective on software development and the evolution of software and systems in the evolving technology landscape.
+
+Sukanta was one of the founding members of Affle Limited, which is a mobile media company with extensive operations in the Asia-Pacific region. At Affle, Sukanta led the development of their mobile software products, working on several mobile platforms. He also designed and led the implementation of Affle's mobile advertisement platform. Prior to Affle, he worked as a researcher in the field of wireless networks at the Institute for Infocomm Research, Singapore.
+
+He has contributed several papers to IEEE conferences and journals. Sukanta considers himself to be a 'geek' and both enjoys tinkering with the guts of the system and is equally comfortable dealing with the high-level architectural view of the system. His current passion is Service-Oriented Architecture and the use of use of open standards and their consequent impact on the enterprise.
+
+Sukanta holds both a Masters degree in Engineering and a Bachelors degree (Honors) in Engineering from National University of Singapore.
+
+> To the thousands of software engineers out there who are making it a better world for all of us. To my colleagues at M&S Consulting for their encouragement and helpful advice, and to Packt Publishing for their suggestions and patience. Thank you for making this possible.
