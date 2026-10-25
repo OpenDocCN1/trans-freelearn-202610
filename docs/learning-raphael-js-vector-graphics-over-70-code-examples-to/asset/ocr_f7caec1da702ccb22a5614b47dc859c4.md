@@ -1,0 +1,9 @@
+# # 1 The Graphical Web
+
+The ability to draw graphics in the web browser is important in today's online landscape. While the need to effectively represent information has long existed in the empirical sciences, mathematics, and print media, it has taken on a new lease of life since the advent of the Web. With the colossal volumes of data that we now generate and the existence of a plethora of devices by which we can communicate with users, there has been a raise in both the desire and ability to visualize data online. In addition, the browser has grown from being a convenient entry point into a world of information to a truly interactive media outlet.
+
+There are a number of technologies that have emerged to enable the process of browser-based drawing including, but not limited to VML and SVG, HTML5 Canvas, and WebGL. Each is generally suited to a particular purpose – 2D vector drawing in the case of VML and SVG, bitmap drawing in the case of HTML5 Canvas, and 3D graphics rendering in the case of WebGL.
+
+This book covers 2D vector drawing using **Raphaël**, a lightweight, open source, JavaScript library that uses SVG and VML to draw vector graphics in the browser. It provides a number of convenient methods for path drawing, vector transformations, interactivity via the DOM and path animation, and supports bitmap image embedding and text drawing. The library greatly simplifies drawing through these methods, acting as an _adapter_ to the underlying (SVG and VML) specifications.
+
+While an appreciation of the SVG specification will be sought throughout this book insofar as it will help us harness the full power of the library, an intimate understanding of the workings of SVG is not required and VML is not covered at all. Raphaël takes care of outputting graphics at the SVG/VML specification level, which means that we only need to concern ourselves with utilizing the library itself.
