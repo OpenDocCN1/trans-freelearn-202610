@@ -1,0 +1,3 @@
+# # Modules
+
+The module pattern has become increasingly popular in JavaScript development. It provides an easy way to encapsulate private members, something that isn’t inherently available in JavaScript, and keep objects off the global namespace. In TypeScript there are two types of modules: **internal modules** and **external modules**. We will discuss them both in detail, but for now let’s just talk about internal modules.

@@ -1,0 +1,56 @@
+chapter_starts:
+- 'no': 2
+  confidence: 0.85
+  final_reason: 正文之前的内容（制作人员、作者简介、审稿人简介、前言等）统一划分为一章，行 2 是第一个前置标题，因此作为前置章节起始
+  accepted_evidence:
+  - 判断规则：前言、序言、致谢、关于作者等正文之前的内容统一划分为一章
+  - 复核方证据：制作人员、作者简介、审稿人简介等前置内容从行 2 开始已构成同一前置章节
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 116
+  confidence: 0.98
+  final_reason: '最高层级章标题 # 第 1 章. 使用 TypeScript 入门，单独成行且语义统领后续内容'
+  accepted_evidence:
+  - 判断方：最高层级章标题，格式与语义符合
+  - 上下文：后接概述段落，前面为前置内容末尾
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 308
+  confidence: 0.98
+  final_reason: '最高层级章标题 # 第 2 章 TypeScript 基础，单独成行且语义统领后续内容'
+  accepted_evidence:
+  - 判断方：最高层级章标题，格式与语义符合
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 1078
+  confidence: 0.98
+  final_reason: '最高层级章标题 # 第 3 章 TypeScript 编译器，单独成行且后接概述'
+  accepted_evidence:
+  - 判断方：最高层级章标题，前后文符合章起始
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 1781
+  confidence: 0.97
+  final_reason: '最高层级章标题 # 第5章 创建简单的绘图应用程序，虽然缺少第 4 章标题但不影响，单独成行且为新章'
+  accepted_evidence:
+  - 判断方：编号连贯（缺 4 章但规则允许），格式与语义符合
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 2512
+  confidence: 0.98
+  final_reason: '最高层级章标题 # 第 6 章 声明文件与库集成，单独成行且语义统领后续内容'
+  accepted_evidence:
+  - 判断方：符合章标题格式与上下文特征
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 2719
+  confidence: 0.98
+  final_reason: '最高层级章标题 # 第 7 章. 增强绘图应用程序，单独成行且统领后续内容'
+  accepted_evidence:
+  - 判断方：最高层级章标题，语义符合
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 62
+  reason: '复核方反方证据成立：行 62 为 ## 前言，属于前置章节内部的二级子标题，而非全书最高层级的大章；前置内容应从行 2 起统一为一章，因此此处不应再单独起章'
+  need_human_review: false
