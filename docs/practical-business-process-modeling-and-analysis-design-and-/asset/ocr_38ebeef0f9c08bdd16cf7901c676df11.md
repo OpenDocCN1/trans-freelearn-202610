@@ -1,0 +1,17 @@
+# Pillars of a Successful Digital Transformation
+
+According to **Forrester**: “Digital Transformation is the process of using digital assets to improve customer outcomes and operational agility. It is not just about applying technology to existing processes or experiences but reimagining a different business model that places technology at its core. Digital transformation is essential for businesses to survive and thrive in a changing industry landscape, and it requires digital maturity, agility, lean and fast execution.”
+
+Per **Gartner**, “digital transformation is a term used to describe the use of digital technologies to fundamentally change an organization’s business model. It involves the integration of digital technology into all areas of a business resulting in fundamental changes to how businesses operate and the delivery of value to customers.”
+
+**IDC** considers DTX as “the application of 3rd Platform technologies such as cloud, mobile, big data, and social, coupled with organizational, operational, and business model innovation to create new ways of operating and growing businesses.”
+
+**For MIT**, “digital transformation is the use of technology to radically improve performance or reach of enterprises. It involves integrating digital technologies and solutions into all areas of a company and is not only technological but also cultural in nature. DTX changes the conditions under which business is done, the ways that change the expectations of customers, partners and employees. Digital capability empowers organizations to enhance existing processes and products and improve or even create new business models.”
+
+**Harvard Business Review** sees DTX as “a process that involves the use of digital technologies to create new or modify existing business processes, culture and customer experiences. It can involve IT modernization, digital optimization, or the invention of new digital business models.”
+
+**BPMInstitute.org** defines DTX “as the process of integrating technology throughout and across an organization to fundamentally change the way it operates internally and presents its products or services externally.”
+
+**Microsoft** defines DTX as “bringing together people, data and processes to transform your company and create value for your business needs. It’s a business innovation fueled by the explosion of the cloud, AI, and the Internet of Things (IoT), providing organizations with new ways to understand, manage, and transform their business. It’s also the process of using new technologies and business workflows to optimize, automate, and otherwise modernize an organization’s business operations. Updating technological tools and approaches in this way helps organizations to improve internal processes, increase efficiency, and function with a greater level of flexibility and agility.”
+
+If you’ve been curious enough to read through the multiple preceding definitions, it’s hard not to notice that the rubber band applied to DTX is vast. The term’s meaning also varies based on the type of organization defining it. Consulting and analyst companies try to stay generic; with their global reach offering services and frameworks, some software vendors bring all technological pieces into the mix pretty quickly.

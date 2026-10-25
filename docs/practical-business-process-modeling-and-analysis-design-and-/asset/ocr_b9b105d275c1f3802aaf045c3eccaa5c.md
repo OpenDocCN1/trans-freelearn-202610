@@ -1,0 +1,11 @@
+Then, at some point, the work on task A begins and, after some time, when it is still in execution, it is completed. When modeling, it’s important to be clear where the scope of one process step ends and the next begins. When task A ends, the token flows along the sequence flow arrow to task B, and so on until the last task. When the last activity in the process is executed, the token reaches the end event and is consumed by it. Within a process instance for a sequence, we have only one token, so the moment this only token is “consumed,” the life of the instance ends, and we can consider that we have nothing more to do.
+
+If our process wrote a log or a diary (or if we had a system that documented what tasks were performed), we would always have the following entries in such a **process log**: ABCDE. There could be differences in who performed the tasks, when they were performed, and how long they lasted, but for such a process, it isn’t possible for steps to be skipped (ACDE), duplicated (ABBCDE), or to occur in a different order (AEDCB).
+
+Now, let’s turn to complaint handling and look at a slightly different example of a sequence – a simplified version of the diagram we’ve been working with so far, in which only one of the paths is included (we assume that the complaint is always valid and that we always make a refund):
+
+![](bbox=[0.133, 0.415, 0.868, 0.594])
+
+Figure 8.5 – Example of a sequential process with process steps in different lanes
+
+As shown in Figure 8.5, the elements of the sequence may be within a single lane, but the work may also flow between different units of the organization. In this case, process steps may be placed in different lanes. From the point of view of the sequence, this placement isn’t important – what’s important is that the moment one element of the process ends, we move on to the next – that is, only after analyzing the validity of the complaint can we inform the customer that their complaint has been accepted as valid, and only after that can we set up a refund order, without which payments can’t be processed.

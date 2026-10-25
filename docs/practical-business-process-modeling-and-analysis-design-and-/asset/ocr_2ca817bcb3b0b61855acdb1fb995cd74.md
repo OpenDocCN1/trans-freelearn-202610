@@ -1,0 +1,15 @@
+Unsurprisingly, I’m often confronted with the question of whether manual tasks are those in which we don’t use a computer at all. In my opinion, this isn’t necessarily the case. Since the key issue is whether the task is coordinated by some kind of process engine, I use manual tasks where there’s no coordination from the IT tool.
+
+For me, an example of a manual task could be preparing an offer for a customer – that is, unless it’s done in a CRM system, where you can see that someone is doing it and, if necessary, can forward the offer to the right person in the organization for approval before sending it to the customer. Similarly, if I’m working on a computer preparing a report in Excel, which I will then send via email to a colleague, the right kind of task here would be a manual task, not a user task.
+
+If our process isn’t automated, we can either not use task types at all or use manual tasks. If the process has been partially automated but contains steps that happen outside the system, then it may make sense to add user task steps where an employee can mark that they’ve performed some manual tasks. In the case of an automated process with manual tasks, the assumption is that the performers know what they’re supposed to do and when, and the system automating the process will simply skip the manual tasks because it will treat them as invisible.
+
+These three basic types of tasks allow us to analyze our processes very easily. For example, if we can see that all process steps are manual, then we can expect human error and delays. Most likely, adding support for employees through a process engine, using software robots, or more advanced process automation could greatly improve efficiency. However, even if our process can’t be automated, we can expect that documenting it will help reduce the number of errors, while increased visibility of the process steps and the logic of a process may bring valuable ideas for improvement.
+
+If we’re dealing with a process, where most of the steps are user tasks and service tasks, we can expect better process performance. Of course, even in such a process, there may be situations where the user manually transfers data between two systems that coordinate two separate steps of the process. In such a case, the use of either the RPA tool or some other method of system integration will enable further improvement of the overall process.
+
+# Send and Receive tasks
+
+The next two types of tasks we’ll discuss are useful for more advanced modeling because they’re used to describe the automated exchange of messages – one is used to send messages and the other to receive them. I’m introducing them at this point as a “foretaste” of what we’ll be exploring in Chapter 9, which is devoted to more advanced elements of BPMN. However, it will also help me explain one of the most important concepts in BPMN – sending and receiving messages.
+
+At this point, it’s worth mentioning a few principles of BPMN regarding messages and icons. First, as we already know, by definition, messages are sent and received between different process participants (pools) and can be associated with a message flow arrow.

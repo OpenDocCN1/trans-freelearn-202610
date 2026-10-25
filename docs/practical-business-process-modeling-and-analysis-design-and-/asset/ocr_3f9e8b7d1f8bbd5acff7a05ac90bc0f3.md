@@ -1,0 +1,24 @@
+![](bbox=[0.1777, 0.0967, 0.8232, 0.3208])
+
+Figure 8.52 – A pool with two lanes
+
+Interestingly, in BPMN, a pool can represent both the organization that performs the process and a
+department of that organization or another business role. The key issue is perspective as we assume
+that within the pool, the process is controlled in some way. This could be control resulting from the
+fact that the process has been automated and its steps are governed by a workflow application. Of
+course control can also be exercised by the owner of the process, who makes sure that the process is
+done properly, and no problems arise in it.
+
+While both approaches are possible, I recommend modeling processes according to the assumption
+that the pool represents the entire organization, and the lanes represent individual departments and
+organizational units. This way of modeling supports the thinking of process management as a team sport.
+
+Let’s go back to the lanes – they always represent some kind of sub-partition of the pool, but we have
+a lot of freedom here. In theory, lanes could order tasks as, for example, value-adding or value-
+enabling, but in practice, lanes are often used to show responsibility for individual process steps. In
+this case, lanes correspond to organizational units or roles
+
+The alternative approach, in which each unit has its own process and messages are exchanged with
+other pools, may seem tempting if the scope of our optimization project is about a single department
+or team because we can ignore what others need to do in a process. However, it tends to reinforce silo
+thinking, so it isn’t a recommended modeling method.

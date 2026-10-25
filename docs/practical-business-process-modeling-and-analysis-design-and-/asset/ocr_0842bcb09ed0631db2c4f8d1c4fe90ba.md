@@ -1,0 +1,1 @@
+Figure 8.56 – Example process shown as collaboration
