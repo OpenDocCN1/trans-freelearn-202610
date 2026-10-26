@@ -1,0 +1,1 @@
+<strong> <access origin="*" /> // Allow are URLs</strong>

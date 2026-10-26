@@ -1,0 +1,65 @@
+chapter_starts:
+- 'no': 0
+  confidence: 0.9
+  final_reason: 双方一致 + 书名标题位于文件最开头，属于正文之前的前置内容，按规则统一划分为一章
+  accepted_evidence:
+  - 书名标题 '# Ionic 2 精通指南' 单独成行，位于文件第 1 行
+  - 后续紧跟 '## 关于作者'、'## www.PacktPub.com'、'## 客户反馈'、'## 本书涵盖内容' 等未编号的前置章节，语义上构成完整的前言部分
+  - 判断方与复核方一致认可（复核方 overturn_probability 仅 0.15）
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 163
+  confidence: 0.95
+  final_reason: 双方一致 + 一级标题单独成行、语义统领本章，后接 '在本章中' 概述，章特征明显
+  accepted_evidence:
+  - 一级标题 '# Ionic 3 入门' 单独成行，无句号，长度 < 30 字
+  - 后接 '在本章中，我们将了解 Ionic 的所有基础内容……' 的章级概述段落和本章主题列表
+  - 前文为前言部分（'## 问题' 等客户支持内容），后文展开第 1 章全部内容直至行 560 '## 总结'
+  - 与前言目录中 '第 1 章，*使用 Ionic 3 快速开始*' 语义对应
+  - 判断方与复核方一致认可（复核方 overturn_probability 仅 0.05）
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 564
+  confidence: 0.95
+  final_reason: 双方一致 + 前有第 1 章 '## 总结' 收尾，后接章级概述和主题列表，边界清晰
+  accepted_evidence:
+  - 一级标题 '# Ionic 组件' 单独成行，无句号
+  - 前文第 1 章以 '## 总结'（行 560）收尾，后文接 '在本章中，我们将介绍构建大型应用所需的各种 Ionic 组件和 API……' 的章级概述及主题列表
+  - 该章内部小节（如 '## 构建 vPlanet Commerce'、'## Ionic 组件' 等）均为 '##' 二级标题，形成一级/二级层级对比
+  - 与前言目录 '第 2 章，*Ionic 组件*' 一致
+  - 判断方与复核方一致认可（复核方 overturn_probability 仅 0.08）
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 1872
+  confidence: 0.95
+  final_reason: 双方一致 + 前有 '## 小结' 收尾，后接要点列表，且与目录第 3 章对应
+  accepted_evidence:
+  - 一级标题 '# Ionic Native 和插件' 单独成行，无句号
+  - 前文第 2 章以 '## 小结'（行 1868）收尾，后文接 '现在我们已经了解了 Ionic 中的一些高级组件和 API……' 及本章要点列表（Cordova、Ionic
+    Native、常用插件、音乐播放器等）
+  - 后续小节均为 '##' 二级标题，符合章标题层级特征
+  - 与前言目录 '第 3 章，*Ionic Native 和插件*' 一致
+  - 判断方与复核方一致认可（复核方 overturn_probability 仅 0.07）
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 2845
+  confidence: 0.95
+  final_reason: 双方一致 + 前章总结已明确预告 '第 4 章 Ionic 平台和服务'，后接章级概述与服务列表
+  accepted_evidence:
+  - 一级标题 '# Ionic 平台和服务' 单独成行，无句号
+  - 前文第 3 章 '## 总结'（行 2840）明确预告 '在第 4 章，*Ionic 平台与服务*中，我们将介绍……'，形成自然衔接
+  - 后文为章级概述 '到目前为止，我们已经查看了构建企业级应用几乎所有的关键组件……' 及 Ionic 服务列表
+  - 与前言目录 '第 4 章，*Ionic 平台和服务*' 一致
+  - 判断方与复核方一致认可（复核方 overturn_probability 仅 0.06）
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 178
+  reason: 复核方反方证据成立：该标题与第 1 章 '# Ionic 3 入门' 开头的本章主题列表项 'Angular 4、Ionic 3 和 TypeScript'（行
+    169）完全一致，属于第 1 章内部的细分主题；同一章内其他并列主题（安装与设置、目录结构与模块化、自定义等）在正文中均使用 '##' 二级标题，证明该书真实层级中此类标题为节级而非章级；且前言
+    '本书涵盖内容' 列出的 8 个章级标题中并无此项。判断方仅凭 '#' 排版符号误判为最高层级大章。
+  need_human_review: false
+- 'no': 194
+  reason: 复核方反方证据成立：'# 将 Ionic 1 映射到 Ionic 3' 位于第 1 章内部，承接 'Angular 4、Ionic 3 和 TypeScript'
+    主题下关于升级重写的讨论，是该主题的映射专题；其下还出现 '## 控制器对应组件'、'## 服务对应提供者'、'## TypeScript 来救援' 等子节标题，说明该行在真实层级中为章内大节；无独立章级概述、无章序号，且不存在于前言目录中，不应分章。
+  need_human_review: false

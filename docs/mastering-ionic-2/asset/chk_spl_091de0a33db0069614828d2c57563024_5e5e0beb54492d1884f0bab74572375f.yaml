@@ -1,0 +1,52 @@
+reviews:
+- 'no': 0
+  overturn_probability: 0.15
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 书名标题位于文件最开头，前置内容起始，符合前言/封面一章的划分规则
+  - 后续紧跟关于作者等前置信息，语义上构成独立的前置章节
+  keep_split: true
+- 'no': 163
+  overturn_probability: 0.05
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '一级标题 # Ionic 3 入门 单独成行，无句号，长度<30字'
+  - 后1~3行为概述段落，后续内容为本章目录式要点，符合章标题上下文特征
+  keep_split: true
+- 'no': 178
+  overturn_probability: 0.78
+  alternative: 正文小标题
+  counter_evidence:
+  - '该标题出现在 # Ionic 3 入门 章节内部，后续内容仍为第1章的入门讲解，未出现新的第X章编号或独立的章级概述'
+  - 前后上下文为同一章的细分主题，且标题后直接接代码说明而非章级概述段落，更符合二级小标题特征
+  - 原判断误将章节内部的大标题当作最高层级大章
+  keep_split: false
+- 'no': 194
+  overturn_probability: 0.82
+  alternative: 正文小标题
+  counter_evidence:
+  - '# 将 Ionic 1 映射到 Ionic 3 位于 # Ionic 3 入门 章节范围内，后续仍为映射对照内容，未开启新章编号'
+  - '标题后紧跟说明段落并进入 ## 控制器对应组件 等子节，层级上为本章内的二级/三级小标题'
+  - 语义上是第1章内部的一个专题，而非全书最高层级大章
+  keep_split: false
+- 'no': 564
+  overturn_probability: 0.08
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '一级标题 # Ionic 组件 单独成行，后接本章介绍段落和主题列表'
+  - '与前一章 # Ionic 3 入门 之间有明显的总结段落分隔，符合新章起始的上下文特征'
+  keep_split: true
+- 'no': 1872
+  overturn_probability: 0.07
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '一级标题 # Ionic Native 和插件 单独成行，语义统领 Cordova/插件内容'
+  - '前文以 # Ionic 组件 章节结束并有小结，后文以本章要点列表开启，符合章标题特征'
+  keep_split: true
+- 'no': 2845
+  overturn_probability: 0.06
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '一级标题 # Ionic 平台和服务 单独成行，后接服务列表介绍'
+  - '前文为 # Ionic Native 和插件 章节的总结，后文为新章的服务概览，符合最高层级大章划分规则'
+  keep_split: true

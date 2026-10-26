@@ -1,0 +1,1918 @@
+- ''
+- "# Ionic 2 精通指南\n\n## 关于作者\n\n开源爱好者，使用 Node.js、AngularJS、electron 和 Ionic 的 JavaScript\
+  \ 全栈开发者。目前正在使用 BLE 信标进行物联网项目。Gaurav 在业余时间研究 VOIP 技术、物联网和 Material Design。他还与 Apache\
+  \ 软件基金会有关联，在 Apache Roller、Apache Fineract 和 Apache OFBiz 项目中担任贡献者和提交者。他曾被选为并受邀在多个会议上担任演讲者，包括\
+  \ Mifos Techdays、ApacheCON、Mifos Summit 以及许多当地学院/机构。他曾于 2014 年担任 Google 夏季代码学生实习生，并在\
+  \ 2016 年与 Mifos Initiative 合作指导，使用基于 AngularJS 的社区应用。他于 2014 年和 2016 年在旧金山被选为 GSOC\
+  \ 峰会代表。他过去曾在 Google Adwords 和 Analytics 工作，并于 2012 年成为 Google 在线营销挑战赛的半决赛选手。\n\n\
+  *我谨向我的父母和已故的叔叔 Raj 表示感谢，没有他们，我很难走到今天并写下这本书。此外，在困难时期，我最好的朋友 Seema 全力支持我继续努力工作。*\n\
+  \n*特别感谢我的实习生和内容编辑，他们在本书创作过程中提供了大量帮助。与你周围的优秀人才一起工作是一种乐趣。*\n\n*最后，我想感谢大家对本书的关注，我希望我能传递我加入\
+  \ Ionic 社区的热情，并将你们的精彩旅程推向新的高度。*\n\n## www.PacktPub.com\n\n有关本书的支持文件和下载，请访问 [www.PacktPub.com](www.PacktPub.com)。\n\
+  \n您知道 Packt 提供每本出版书籍的电子书版本，文件格式为 PDF 和 ePub 吗？您可以在 [www.PacktPub.com](www.PacktPub.com)\
+  \ 升级到电子书版本，作为印刷书籍客户，您有权享受电子书的折扣。请通过 service@packtpub.com 与我们联系了解更多详情。\n\n在 [www.PacktPub.com](www.PacktPub.com)，您还可以阅读大量免费技术文章，订阅多种免费通讯，并获得\
+  \ Packt 书籍和电子书的独家折扣和优惠。\n\n![](img/c54e3488d7687ea0d26e8c2ce3cdfae3_13_0.png)\n\n\
+  [https://www.packtpub.com/mapt](https://www.packtpub.com/mapt)\n\n使用 Mapt 获得最受欢迎的软件技能。Mapt\
+  \ 让您完全访问 Packt 的所有书籍和视频课程，以及帮助您规划个人发展和推进职业生涯的行业领先工具。\n\n## 为什么订阅？\n\n- 在 Packt 发表的每本书中完全可搜索\n\
+  - 复制、粘贴、打印和书签内容\n- 按需访问，可通过网络浏览器访问\n\n## 客户反馈\n\n感谢您购买 Packt 书籍。在 Packt，质量是我们编辑流程的核心。为了帮助我们改进，请在本书的\
+  \ Amazon 页面 https://www.amazon.com/dp/1785286056 上留下诚实的评价。\n\n如果您想加入我们的常驻审阅者团队，您可以发送电子邮件至\
+  \ customerreviews@packtpub.com。我们会用免费的电子书和视频作为对您宝贵反馈的回报。帮助我们无情地改进我们的产品！\n\n## 本书涵盖内容\n\
+  \n第 1 章，*使用 Ionic 3 快速开始*，我们将介绍 Ionic 的所有基础知识，这将有助于构建大规模和企业级应用程序。\n\n第 2 章，*Ionic\
+  \ 组件*，将指导您了解 Ionic 组件以及如何根据我们的应用程序对其进行自定义。\n\n第 3 章，*Ionic Native 和插件*，涵盖了几乎所有关于\
+  \ Cordova 插件、Ionic Native 以及一些常见和高级插件的内容。\n\n第 4 章，*Ionic 平台和服务*，涵盖了所有 Ionic 平台服务以及如何在您的应用程序中以最佳方式使用它们。\n\
+  \n第 5 章，*身份验证、授权和安全*，将处理身份验证、保护 Ionic 应用程序和演示授权。\n\n第 6 章，*使用 Firebase 的 TasteBite\
+  \ 应用*，重点是从头到尾使用后端即服务平台 Firebase 构建整个应用程序。\n\n第 7 章，*Ionic、物联网和信标*，我们将讨论物联网、BLE 和物理网络。此外，还将演示基于\
+  \ iBeacon 的邻近应用程序，当您远离笔记本电脑时，您的笔记本电脑将自动屏幕锁定。\n\n第 8 章，*Ionic + PWA = 魔法*，我们将研究渐进式\
+  \ Web 应用及其与 Ionic 的支持，并演示离线优先的货币转换器应用程序。\n\n\n\n\n\n## 本书所需的准备\n\n你需要使用 Sublime\
+  \ 或 Visual Studio Code 进行代码编辑。这两款软件均可免费下载。对于 BLE 演示，你需要一台支持蓝牙 4 的笔记本电脑或蓝牙 BLE 信标。\n\
+  \n## 本书的读者对象\n\n本书面向具备一定 Ionic 基础知识的中级应用程序开发者。对于那些希望将应用从 Ionic 1 迁移到 Ionic 3 的开发者，本书将非常有帮助；同时，想要获取最新技术更新（例如\
+  \ Ionic 对 PWA 的支持）的开发者也能从中获益。\n\n## 排版约定\n\n在本书中，你会看到多种文本样式，用以区分不同类型的信息。以下是一些样式示例及其含义说明。\n\
+  \n文中的代码词、数据库表名、文件夹名、文件名、文件扩展名、路径名、虚拟 URL、用户输入以及 Twitter 用户名将以如下格式显示：“为了设置 API 端点，我们创建了常量文件，并在其中声明了常量\
+  \ `API_URL`”\n\n代码块如下所示：\n\n```json\n{\n  \"name\": \"ionic2-auth\",\n  \"app_id\"\
+  : \"\",\n  \"v2\": true,\n  \"proxies\": [\n    {\n      \"path\": \"/api\",\n \
+  \     \"proxyUrl\": \"http://yourwebsite.com/api\"\n    }\n  ]\n}\n```\n\n当我们希望引起你对代码块中某一部分的注意时，相关行或项目会以**粗体**显示：\n\
+  \n```typescript\n// src/providers/constants.ts\n// 部署应用时，我们切换到真实 URL\n\nexport const\
+  \ API_URL: string = 'http://localhost:8100/api';\n```\n\n任何命令行输入或输出将按如下方式书写：\n\n\
+  ```shell\n$ chromium-browser --disable-web-security\n```\n\n**新术语和重要词汇**以粗体显示。你在屏幕上看到的文字，例如菜单或对话框中的文字，在文中会以如下形式呈现：“Cancel\
+  \ 和 OK 按钮。我们在这里使用它们来根据相关性、价格或其他排序值对产品进行排序。”\n\n![](img/c54e3488d7687ea0d26e8c2ce3cdfae3_32_0.png)\n\
+  \n*警告或重要说明会出现在这样的框中。*\n\n![](img/c54e3488d7687ea0d26e8c2ce3cdfae3_32_1.png)\n\n\
+  *提示与技巧以这样的形式呈现。*\n\n## 客户支持\n\n既然你已经是 Packt 图书的拥有者，我们提供了多项服务，帮助你充分利用所购内容。\n\n###\
+  \ 下载示例代码\n\n你可以从你的账户中下载本书的示例代码文件，网址为 http://www.packtpub.com。如果你在其他渠道购买了本书，可以访问\
+  \ http://www.packtpub.com/support 并注册，我们会将文件直接通过电子邮件发送给你。\n\n你可以按照以下步骤下载代码文件：\n\n\
+  1. 使用你的电子邮件地址和密码登录或注册我们的网站。\n2. 将鼠标指针悬停在顶部的 SUPPORT 选项卡上。\n3. 点击 Code Downloads\
+  \ & Errata。\n4. 在搜索框中输入书名。\n5. 选择你要下载代码文件的那本书。\n6. 在下拉菜单中选择你购买本书的渠道。\n7. 点击 Code\
+  \ Download。\n\n文件下载完成后，请确保你使用最新版本的解压软件解压或提取文件夹：\n\n- Windows 使用 WinRAR / 7-Zip\n\
+  - Mac 使用 Zipeg / iZip / UnRarX\n- Linux 使用 7-Zip / PeaZip\n\n本书的代码包也托管在 GitHub 上，地址为\
+  \ https://github.com/PacktPublishing/Hybrid-Mobile-Development-with-Ionic。我们还有其他来自丰富图书和视频目录的代码包，可在\
+  \ https://github.com/PacktPublishing/ 获取。欢迎查看！\n\n### 下载本书的彩色图片\n\n我们还为你提供了一份 PDF\
+  \ 文件，其中包含本书所使用的截图/图表的彩色图片。这些彩色图片将帮助你更好地理解输出结果的变化。你可以从 https://www.packtpub.com/sites/default/files/downloads/HybridMobileDevelopmentwithIonic_ColorImages.pdf\
+  \ 下载该文件。\n\n### 勘误\n\n尽管我们已尽最大努力确保内容的准确性，但错误仍在所难免。如果你在我们的某本书中发现了错误——可能是文字或代码中的错误——我们将非常感激你能向我们报告。这样做可以帮助其他读者免于受挫，也有助于我们改进本书的后续版本。如果你发现任何勘误，请访问\
+  \ http://www.packtpub.com/submit-errata，选择你的图书，点击 Errata Submission Form 链接，并填写勘误详情。一旦你的勘误得到验证，我们会接受你的提交，并将勘误上传到我们的网站，或添加到该图书现有勘误列表的\
+  \ Errata 部分。\n\n要查看之前提交的勘误，请访问 https://www.packtpub.com/books/content/support，在搜索字段中输入书名，所需信息将出现在\
+  \ Errata 部分。\n\n### 盗版\n\n互联网上对受版权保护内容的盗版是所有媒体面临的一个持续问题。在 Packt，我们非常重视版权和许可的保护。如果你在互联网上发现任何形式的、我们作品的非法副本，请立即向我们提供地址或网站名称，以便我们采取补救措施。\n\
+  \n请通过 `copyright@packtpub.com` 联系我们，并附上疑似盗版材料的链接。\n\n我们感谢你帮助保护我们的作者以及我们为您带来优质内容的能力。\n\
+  \n### 问题\n\n如果你对本书的任何方面有问题，可以通过 `questions@packtpub.com` 联系我们，我们将尽最大努力解决问题。\n"
+- "# Ionic 3 入门\n\n多年来，Ionic 一直在不断演进；自从 Ionic v1 发布以来，这个框架一直处于持续开发和改进之中。最明智的举措之一是\
+  \ Ionic 团队推出了基于 Angular 2 的 Ionic v2。最近，Ionic 3 也发布了，它基于 Angular 4 和 TypeScript\
+  \ 2.2。在本书中，我们将主要深入探讨 Ionic 2 和 Ionic 3 及其高级概念。我们将涵盖构建支持蓝牙信标的商场电商应用、与 Firebase 的集成，以及\
+  \ Ionic 应用对 PWA 的支持等主题。我们将从对 iOS、Android 和 Windows 这三个平台的支持开始，并将演示基于物联网的应用程序，这会非常令人兴奋。\n\
+  \n在本章中，我们将了解 Ionic 的所有基础内容，这些内容将有助于构建大规模、企业级的应用程序。过去 2-3 年我们一直在使用 Ionic 1.x，在这一过程中，我们看到了框架的巨大改进和多项功能的开发。Angular\
+  \ 2 发布后，框架又得到了更多改进，随后 Ionic 团队计划开发基于 Angular 2 的 Ionic 2。Ionic 3 和 Angular 4 在相似的路线上发展，并没有像我们从\
+  \ Ionic v1 迁移到 v2 时那样的重大框架变更。借助 Ionic 3，你将看到性能的提升、代码复杂度的降低，以及构建可扩展应用能力的增强。Ionic\
+  \ 现在面向移动 Web 和桌面应用程序，这帮助开发者在任何地方运行相同的代码库。Ionic Native 是另一个例子，展示了 Ionic 团队如何日复一日地改进产品，让开发者的生活更加轻松。我们首先会了解\
+  \ Angular 和 Ionic 的一些基础知识，以及 TypeScript 如何成为构建企业级应用的重要资产。Ionic CLI 和 Ionic Cloud\
+  \ 产品也在定期改进，我们可以利用它们加快开发速度，并高效地测试或分享我们的应用。在本章中，我们将涵盖：\n\n- Angular 4、Ionic 3 和 TypeScript\n\
+  - 安装与设置\n- 目录结构和模块化\n- 使用 SASS 进行主题定制\n- Ionic CLI\n\n\n\n\n# Angular 4、Ionic 3\
+  \ 和 TypeScript\n\n我们中的许多人从 Angular 1 来到 Angular 2 或 4，肯定都会发现这是对应用程序的彻底重写，并且学习曲线陡峭。当我最初开始使用\
+  \ Ionic 和 Angular 时也有同样的感受，但随着我逐步阅读 Angular 的概念，过去在 Angular 1 中面临的许多问题都自动解决了，无需任何额外努力。最初，你会怀念\
+  \ Angular 1 中的旧控制器、服务、过滤器等概念，最重要的是导航和路由。但当你深入研究这些主题时，你会发现有相应的模块，如**组件**、**提供者**和**管道**，并且它们可以以类似的方式使用。导航和路由现在也用作在不同页面之间导航的推入（push）和弹出（pop）机制。在\
+  \ Ionic 2 的初始测试版中，我们没有适当的基于 URL 的路由，因为用户无法直接进入应用中的特定页面。但在稳定的 Angular 路由器发布后，它被添加到了\
+  \ Ionic 2 中，这为更好地支持渐进式 Web 应用（PWA）开辟了道路，使得相同的 Ionic 应用可以以移动 Web 应用的形式发布。Ionic 3\
+  \ 还增加了对响应式网格的支持，这将有助于我们构建桌面应用。懒加载（Lazy Loading）是另一个新增的重要功能，它减少了应用的初始加载时间。尽管如此，由于\
+  \ Ionic 3 仍处于初期阶段，我们可以期待这些功能变得更加稳定。正如我们所知，Ionic 2 和 3 没有重大的框架变化，因此在本章中，我们首先会比较 Angular\
+  \ 1 和 2，以帮助用户理解差异以及如何迁移到最新的 Ionic 版本。\n\n```\n<strong>[(property-name)]=\"expression\"\
+  </strong><br/><br/><strong> <input type=\"text\" <br/> [(ngModel)]=\"model.name\"\
+  \ /></strong>\n```\n\n我们仍然有双向数据绑定。不过，为了改善 Angular 的摘要循环和性能，默认情况下我们并不使用双向数据绑定。它使用单向绑定，当我们需要时，可以扩展为双向绑定。你可以参考\
+  \ Angular 模板语法，以弄清 Angular 4 中所有其他语法及其用途。\n\n**Ionic 缺乏 URL 导航**是 Ionic 论坛上正在进行的另一个讨论。这种说法在一定程度上也是正确的；因为\
+  \ Angular 路由器当时不够稳定，Ionic 团队决定在初始测试版中移除它。目前，Angular 路由器已经稳定，并且将会保留在 Ionic 中。Ionic\
+  \ 团队深知，拥有合适的路由机制以及让开发者在转向 Ionic 3 时感到熟悉是多么重要。\n\n**升级完全重写：** Angular 2 本身是被重写了，但你不必也重写自己的应用。最初开始时，我也有同样的感觉，以为我们必须重新开发现有应用。但有很多工具和文档（http://ionicframework.com/files/Ionic2Migration.pdf）可用于从\
+  \ Ionic 1 平滑升级到 Ionic 2 或 3。你只需要小心，因为如果应用很复杂，你可能需要手动完成很多事情。但有一点是肯定的：如果你具有相应的专业知识和\
+  \ Angular 2 的概念，升级应用肯定比从头构建同样的应用花费的时间少得多。这背后的原因之一是，你已经有了一个正在运行的应用，只需要以不同的方式重组各个部分，因为大多数应用逻辑是相同的。\n\
+  \n就我个人而言，我在学习 Ionic 的过程中并没有过多考虑升级到新版本。相反，我将其视为新 Angular 版本中带来的改进概念，旨在简化学习和理解。\n\n\
+  # 将 Ionic 1 映射到 Ionic 3\n\n对于任何能够轻松理解 Angular 1 中各种概念与 Angular 4 中对应实现的开发者来说，生活将变得非常轻松。而且，我相信大多数问题都会自动得到解答。\n\
+  \n## 控制器对应组件\n\n组件是 Angular 和 Ionic 应用的支柱；你会发现几乎一切都是组件。你可以将 Angular 1 中的控制器与 Angular\
+  \ 4 中的组件进行对比。在控制器中，我们过去定义了大部分代码的逻辑部分，并将控制器注册到主模块。现在，以类似的方式，我们在 Angular 4 的组件中定义代码，如果需要，我们可以将其导出。\n\
+  \n```\nComponent Class: // Angular & Ionic 1\n\nangular.module('wedding.controllers',\
+  \ [])\n.controller('LoginCtrl',\nfunction($scope, CategoryService) {\n// controller\
+  \ function and DI of CategoryService\n}\n);\n```\n\n```\n// Angular 4 & Ionic 3\n\
+  \nimport {Component} from '@angular/core';\nimport {NavController} from 'ionic-angular';\n\
+  \n@Component({\ntemplateUrl: 'build/pages/catalog/categories.html'\n})\nexport class\
+  \ CategoryPage {\n// DI of NavController for navigation\nconstructor(private navCtrl:\
+  \ NavController) {\nthis.nav = navCtrl;\n}\n}\n```\n\n在 Angular 1 中，依赖注入是通过控制器函数参数实现的，而在\
+  \ Angular 4 中，我们在构造函数内部传递它。许多其他东西，例如 IIFE 语法，在 Angular 1 中我们需要定义它以使控制器代码不污染全局命名空间，但在\
+  \ Angular 4 中不再需要，因为 ES 2015 模块为我们处理了命名空间。此外，如你所见，我们导出了 CategoryPage 类，现在可以在任何需要该模块的地方导入它。另一个重大变化是\
+  \ `$scope` 被 `this` 关键字取代。`$scope` 存在许多性能问题，而且在 Angular 1 中开发者已经减少了 `$scope` 的使用。\n\
+  \n```\n// Filter - Angular 1 <br/><td>{{movie.price | currency}}</td> <br/><br/>//\
+  \ Pipes in Angular 4 <br/><td>{{movie.price | currency:'USD':true}} <br/></td>\n\
+  ```\n\n出于性能原因，过滤器（filter）和 orderBy 过滤器已从管道（Pipes）中移除，不过如果类似代码在多个模板中重复使用，你随时可以构建自定义管道。\n\
+  \n## 服务对应提供者\n\n服务和工厂（Factory）是 Angular 1x 的重要组成部分，我们通过它们与远程服务器通信以获取数据。我们过去在工厂函数中定义\
+  \ API 调用，控制器调用这些函数来从服务器获取数据：\n\n```\n// Factory method in Angular 1x\nangular.module('wedding.services',\
+  \ [])\n\n// DI of $http for HTTP calls to servers\n// $q for promises\n.factory('CategoryService',\
+  \ function ($http, $q) {\nvar catalog  = {};\n\ncatalog.getCategories = function\
+  \ () {\n    // here we will call APIs\n}\n})\n```\n\n现在你将看到我们如何将代码迁移到 Angular 4\
+  \ 的提供者。Angular 1 中工厂里的同一个 getCategories() 方法，将移到 Angular 4 的 categoryData() 类中：\n\
+  \n```\n// Provider in Angular 4\nimport { Injectable } from '@angular/core';\nimport\
+  \ { Http } from '@angular/http';\n\n@Injectable()\nexport class CategoryData {\n\
+  \nconstructor(private http: Http) {}\n\ngetCategories() {\n\nreturn new Promise(resolve\
+  \ => {\n    // We're using Angular Http provider\n    // to request the data,\n\
+  \    // then on the response it'll map the\n    // JSON data to a parsed JS object.\n\
+  \    // Next we process the data and\n    // resolve the promise with the new\n\
+  \    // data.\n\nthis.http.get('www.veloice.com/data.json').subscribe(res => {\n\
+  \    // we've got back the raw data, now\n    // generate the core schedule data\n\
+  \    // and save the data for later\n    // reference\n    this.data = this.processData(res.json());\n\
+  \    resolve(this.data);\n});\n});\n}\n}\n```\n\n你会注意到 Provider 类有一个 @Injectable\
+  \ 装饰器。该装饰器让 Angular 4 知道这个特定的类可以被依赖注入器使用。\n\n## TypeScript 来救援\n\nTypeScript 基本上是\
+  \ Javascript 的一个超集，是一种静态类型语言。TypeScript 所做的类似于 LESS 或 SASS 对 CSS 所做的工作。TypeScript\
+  \ 编译为 Javascript，并且语法几乎相同。任何来自面向对象世界的人都会对它非常熟悉，比如类、构造函数、继承和接口等概念。\n\n许多开发者会对 ES5、ES6、TypeScript、AtScript\
+  \ 等这些关键字感到困惑。JavaScript 是一种社区驱动的语言，因此浏览器厂商会实现那些使用最广泛的功能。目前，ES5，即 ECMAScript 5，是\
+  \ ECMA International 制定的一个标准。ES6 和 ES7 是 JavaScript 的未来标准，具有大量新特性。我们可以直接使用 Babel（一种转译器）来开发\
+  \ ES6 和 ES7 应用。转译器是源到源编译器，以一种编程语言作为输入，并输出另一种语言中的等效代码。不过，推荐使用 TypeScript，因为 Ionic\
+  \ 社区中的大部分工作都基于 TypeScript。而且，你很容易获得资源和社区帮助。\n\n当我们启动一个新的 Ionic 3 项目时，它会使用 TypeScript\
+  \ 创建项目，尽管在 Ionic 2 和 CLI v2 中，我们也有选项可以用 TypeScript 创建项目。如前所述，我们应该使用 TypeScript，因为随着项目规模变大，维护和理解会更容易。我想在这里澄清关于\
+  \ Angular 4 的一个重要点：无论是 TypeScript 还是 ES6，只要你运行 Ionic 服务器，我们的应用文件夹就会被转译成 ES5，因为这是目前所有主流浏览器都支持的目标。\n\
+  \nTypeScript 提供了许多新特性，我们主要会在 Ionic 或 Angular 应用中使用它们。其中一些如下所示：\n\n- 类和模块支持\n- 静态类型检查\n\
+  - 与其他面向对象语言相似的语法\n- ES6 特性，例如模板字符串支持\n- 装饰器、注解支持和依赖注入\n- 箭头函数\n\n\n\n\n\n## 安装与设置\n\
+  \n在学习 Ionic 3 的过程中，大多数开发者之前已经有了 Ionic 的安装经验。我们可以通过 NPM 包安装 `ionic`；目前 Ionic CLI\
+  \ v3 仍处于 beta 阶段，它彻底改变了 CLI 的工作方式，现在 Ionic 创建的默认项目基于 Ionic 3：\n\n```bash\n$ npm\
+  \ install -g ionic\n```\n\n建议使用 Node 6.x 版本和 npm 3.x 版本。这个 beta 版本同时支持 Ionic 1 和\
+  \ Ionic 2 项目。现在让我们开始创建一个项目：\n\n```bash\n// will create Ionic 3x project\n$ ionic\
+  \ start wedding-planner sidemenu\n// will create Ionic 1x project\n$ ionic start\
+  \ wedding-planner sidemenu --type ionic1\n// move to project directory\n$ cd wedding-planner\n\
+  \n// run project with ionic serve\n$ ionic serve\n```\n\n**接下来的步骤将是为应用添加所需的特定平台和插件：**\n\
+  \n```bash\n// For adding specific platforms\n$ ionic cordova:platform add android\n\
+  \n// running application on real device\n$ ionic cordova:run android\n\n// running\
+  \ inside an emulator\n$ ionic cordova:emulate android\n```\n\n**接下来，我们将了解如何开始使用\
+  \ Ionic 2 应用的代码库。你需要理解每个文件和文件夹的结构及其工作方式。**\n\n## 目录结构与模块化\n\n在 Ionic 1x 中，我们并没有最佳的目录或项目结构。随着\
+  \ Ionic 和 Angular 的逐步演进，开发者倾向于采用模块化方式来组织文件和文件夹。在 Ionic 1x 中，管理文件和文件夹有许多不同方式。通常，你在\
+  \ Ionic 1x 构建中看到的默认结构可以用于许多小型项目（我们不需要处理大量文件）；对于基于 Ionic 1x 的项目，主要遵循两种结构：**byFolderType**\
+  \ 和 **byFeatureType**。Ionic 3 的最大优点之一是项目结构以模块化方式设置，其中包含 pages、providers、pipes、theme\
+  \ 文件夹，以及它们各自的下级文件夹。下面我们来了解 Ionic 3 项目中的一些重要文件：\n\n- `./src`\n\n  这里存放着我们整个应用的代码库，它是最重要的部分：\n\
+  \n- `./node_modules`\n\n  这里存放着运行应用所需的全部依赖和 NPM 包：\n\n- `./platforms`\n\n  这里包含应用所使用的特定平台文件夹条目。当我们运行\
+  \ `ionic platform add` 命令时，你会看到在 `platform` 文件夹内创建了相应的文件夹：\n\n- `./plugins`\n\n\
+  \  应用中使用到的所有插件都存放在这里：\n\n- `./resources`\n\n  整套图标和启动屏（splash screens）都在这个文件夹中，并按不同平台和设备进行了组织：\n\
+  \n- `./www`\n\n  这里存放着我们的 `index.html` 文件；`src` 文件夹中的代码库编译后，bundle、文件、图片以及 SASS\
+  \ 编译生成的 CSS 文件都会被放入 `www` 中：\n\n- `./www/index.html`\n\n  这是我们的应用（也可以说是每个混合应用）的入口点。我们主要在此文件中声明运行应用所需的脚本和样式表。与\
+  \ Ionic 1 中使用 ng-app 类似，在 Ionic 3 中我们要检查 `index.html` 文件中的 `<ion-app></ion-app>`：\n\
+  \n- `./package.json`\n\n  该文件定义了项目元数据以及将添加到 `node_modules` 文件夹中的依赖。它还包含应用所使用的 Cordova\
+  \ 平台和插件信息：\n\n- `./ionic.config.json`\n\n  该文件包含项目专属设置，如名称、ID、代理（proxies）以及其他信息：\n\
+  \n- `./src/app/main.ts`\n\n  这是我们进入代码库的起点，同时我们也会在这个文件中引导启动（bootstrap）应用：\n\n- `./src/app/app.module.ts`\n\
+  \n  在这个文件中，我们声明应用中使用的页面、指令和 providers：\n\n- `./src/app/app.component.ts`\n\n  我们在这里设置根页面，并且根组件会首先被调用，它控制着整个应用，类似于\
+  \ Ionic 1 中 `app.js` 文件的作用。不过，这个 `component` 与应用中其他组件并无不同；它只是在 `app` 文件夹中声明。在后续章节中开始构建应用时，我们将更深入地了解如何处理所有这些文件和代码库。\n\
+  \n## 自定义\n\n现在 SASS 的基础设置已经准备好了；同时，在运行 `ionic serve` 时，你可以为每个组件或页面在不同文件中添加所有自定义样式和\
+  \ SASS 相关的修改。让我们先从修改 `variable.scss` 文件中默认存在的一个颜色变量开始：\n\n```scss\n/*\nTo customize\
+  \ the look and feel of\n    Ionic, you can override the variables\nFor example,\
+  \ you might change some of\n    the default colors:\n\n$colors: (\n    primary:\
+  \    #387ef5,\n    secondary:  #32db64,\n    danger:     #f53d3d,\n    light:  \
+  \    #f4f4f4,\n    dark:       #222,\n    favorite:   #69BB7B,\n    twitter:   \
+  \ #53ACEB,\n    github:     #000000,\n    instagram:  #235D8D\n);\n\n// Fastest\
+  \ way to change the theme of\n    your Ionic app is to set new value\n    for primary\
+  \ color\n```\n\n你可以看到，我们添加了 Twitter 和 GitHub 等自定义颜色。我们还可以通过提供 base 和 contrast 属性来进一步自定义：\n\
+  \n```scss\n$colors: (\n    facebook:(\n        base: #3b5998,\n        contrast:\
+  \ #ffffff\n    )\n)\n```\n\n现在你可以将此颜色键用作许多组件的属性，例如 `buttons`：\n\n```html\n<button\
+  \ facebook>Share on Facebook</button>\n```\n\nSASS 非常强大，它能加快 CSS 开发流程。它就像 CSS 的瑞士军刀，可以用最少的代码完成很多事情，并且只需做一些改动就能轻松改变应用的整个外观和体验。关于如何使用\
+  \ SASS 有非常多的示例，但由于我们更专注于 Ionic 开发，我建议你抽时间阅读一些优秀的 SASS 文档和 Ionic 3 主题文档，这样可以获得更详细的信息。\n\
+  \n**$ ionic resources**\n\nIonic 会自动裁剪、调整大小，并从源图片中为每个平台创建图标和启动屏，同时会针对手机、平板等不同设备生成不同尺寸。所有这些都是在\
+  \ Ionic 的调整大小和裁剪服务器上生成的，无需在本地机器上安装库或插件，因此不会带来任何额外负担。\n\n**$ ionic resources --icon**\n\
+  \n**$ ionic resources --splash**\n\n如果没有为源文件提供合适的尺寸，那么它只会创建小于源图片尺寸的资源。例如，平板或高分辨率屏幕所需的资源可能不会生成。\n\
+  \n## 平台特定资源\n\nIonic 支持为各种平台和设备构建图标和启动屏资源。要构建资源，我们只需将源图片放到 resources 文件夹中，并命名为 `icon.png`\
+  \ 和 `splash.png`。这样，你就能获得每个平台所需的图标和启动屏，例如 iOS 使用原生圆角图标，Android 图标则使用透明背景。\n\n总结步骤如下：\n\
+  \n- 将文件添加到 resources 文件夹，并命名为 `icon.png` 和 `splash.png`。（也可以使用 `.psd` 和 `.ai` 格式）。\n\
+  - 确保图标的最小尺寸要求为 192x192 px，启动屏为 2208x2208 px。\n- 从 CLI 运行 `ionic resources` 命令。\n\
+  \n![](img/c54e3488d7687ea0d26e8c2ce3cdfae3_72_0.png)\n\n> 不同平台对图标样式有不同的处理方式，例如 iOS\
+  \ 会自动添加圆角，因此我们建议 `Ionic` 源文件不要带圆角。此外，使用 `ionic resources` 命令至少需要 Cordova 3.6 或更高版本。\n\
+  \n\n\n\n\n```\n$ ionic serve [options]\n$ ionic serve --lab\n```\n\n## 添加平台\n\n\
+  `ionic platform` 命令用于添加和移除平台：\n\n```\n$ ionic cordova:platform <action> <PLATFORM>\n\
+  [options]\n$ ionic cordova:platform add android\n$ ionic cordova:platform remove\
+  \ ios\nRunning applications on devices\n```\n\n## 在设备上运行应用\n\n`ionic run` 命令有助于在已连接的设备上运行应用：\n\
+  \n```bash\n$ ionic cordova:run [options] <PLATFORM>\n$ ionic cordova:run android\n\
+  \    There is also an option of Emulate. Emulate an\n    Ionic\n    project on a\
+  \ simulator or emulator.\n$ ionic cordova:emulate [options] <PLATFORM>\n```\n\n\
+  Ionic CLI 中可用任务的数量一直在增加。要了解所有最新任务及其详细信息，最好的方法是使用 `ionic --help`：\n\n```bash\n$ ionic\
+  \ --help\n```\n\n这会列出所有任务及其对应的选项和标志。你可以轻松地在测试项目上尝试所有这些任务，这将有助于你更深入地理解它们。\n\n## 上传与分享\
+  \ Ionic 应用\n\n在开发应用时，你现在可以将应用分享给测试团队或朋友进行审查。Ionic 平台提供了这个功能，最棒的是你甚至不需要在本地构建，然后给大家发送\
+  \ APK 文件。上传和分享应用并不只是几个简单步骤。Ionic for organization（Ionic 企业版）是另一项服务，可用于组织员工之间的协作。\n\
+  \n```\n`$ ionic upload`\n```\n\n上传命令的参数或标志：\n\n-   - `[--deploy]`：将快照部署到特定通道\n-\
+  \   - `[--note]`：用于说明上传描述的注释\n\n## 生成组件\n\n`ionic generate` 命令可以创建新的管道（pipe）、组件（component）、页面（page）、指令（directive）和提供者（provider）。同时，它还会在\
+  \ `app.module.ts` 中创建条目；例如，如果你创建了一个提供者，它会被导入到 `app.module.ts` 并注入到 providers 中。一旦你创建了页面、组件、指令或管道，你会看到一个包含对应\
+  \ TypeScript 文件的文件夹生成，你可以从中开始编写逻辑：\n\n```\nionic generate [type] [name]\n```\n\n\
+  -   - `[--type]`：生成器的类型，如页面、指令和管道\n-   - `[--name]`：生成的组件名称\n\n```bash\n// Some\
+  \ example commands\n$ ionic generate pipe NumberPipe\n$ ionic generate page About\n\
+  ```\n\n## Ionic 分享\n\n在构建应用时，你可以直接在 Ionic View 应用中测试它，只要输入应用 ID，它就会自动从 `ionic.io`\
+  \ 服务器（你上传应用的地方）下载你的应用：\n\n```bash\n$ ionic share <email>\n```\n\n![](img/c54e3488d7687ea0d26e8c2ce3cdfae3_88_0.png)\n\
+  \n完成上传并将应用分享给具有特定电子邮件地址的用户后，你发出邀请的人将收到一封包含应用查看链接的电子邮件。你也可以直接在 Ionic View 应用中测试你的应用，该应用可在\
+  \ Google Play 商店和 Apple Store 中获取。你还可以直接分享你的应用 ID 来开始构建应用，从而在 Ionic View 应用中直接进行测试。上面的截图展示了如何添加应用\
+  \ ID 并测试应用。\n\n## 总结\n\n我们已经介绍了 Ionic 的入门部分，并讨论了在构建大型应用时需要注意的各个方面。现在我们知道了在项目中组织文件和文件夹是多么重要。我们还讨论了各种设置，例如通过\
+  \ SASS 定制应用、为不同平台自动创建图标和启动屏幕，以及上传/分享应用。在本章后面，我们继续介绍了许多 Ionic CLI 命令，这些命令有助于我们快速开发和调试应用。Ionic\
+  \ CLI 正在日益发展，许多新功能和任务不断涌现。我们都应该定期更新 Ionic CLI 并查看新功能，以便在下一个应用中使用它们。我们现在已经准备好更深入地探索\
+  \ Ionic 及其组件。在[第 2 章](#) *Ionic 组件*中，我们将熟悉各种 Ionic 组件，并进入真正的应用构建阶段，届时会使用列表、虚拟滚动、本地化、导航和许多其他组件。这将帮助我们构建需要处理多项任务的复杂应用。UI\
+  \ 定制是我们将关注的另一个方面，因为几乎每个应用都有不同的设计，我们可以通过对现有 Ionic 组件稍加调整来轻松实现。另一个我们将关注的重要方面是 Ionic\
+  \ 社区构建的自定义模块，我们可以直接在应用中使用它们。\n"
+- "# Ionic 组件\n\n在本章中，我们将介绍构建大型应用所需的各种 Ionic 组件和 API。Ionic 提供了各种内置的 JavaScript 组件，我们可以巧妙地加以利用。Ionic\
+  \ 还提供了许多我们不太了解的 API，在这里我们将学习如何在应用中高效使用这些 API，以提高应用性能并使其达到生产就绪状态。\n\n我们还将从名为 vPlanet\
+  \ Commerce 的电子商务应用开始；这是我其中一个产品创意，旨在将电子商务商店带向移动端。我们将在本书后面为该应用添加渐进式 Web 应用支持，从而形成一个完整的方案。为了让本章更有趣，我会根据电子商务应用在构建过程中的需求，集成不同的\
+  \ Ionic 组件和 API。这样你就能获得一个完整的电子商务应用。\n\n本章将涵盖以下主题：\n\n-   - 构建 vPlanet Commerce\n\
+  -   - Ionic 3 组件\n-   - Ionic API 和自定义模块\n-   - 使用 Ionic 3 实现懒加载\n\n## 构建 vPlanet\
+  \ Commerce\n\n我们一直在讨论构建电子商务应用，现在就开始吧。如前所述，它名为 vPlanet Commerce。vPlanet Commerce\
+  \ 是一个电子商务应用，将展示集成在应用中的各种 Ionic 组件，以及社区构建的一些第三方组件。进入第 3 章 *Ionic Native 和插件*后，我们将集成\
+  \ Ionic Cloud 服务，如身份验证（auth）、Ionic DB、部署（deploy）等。这将帮助我们完善应用，并使其看起来像专业应用。让我们使用 `sidemenu`\
+  \ 模板从零开始创建应用：\n\n![](img/c54e3488d7687ea0d26e8c2ce3cdfae3_94_0.png)\n\n现在你已经有了基于侧边菜单模板的基础应用。我采取的下一步是参考\
+  \ ionic-conference-app 来构建应用的初始组件，这与 walkthrough 相同。\n\n让我们通过 CLI 创建一个 `walkthrough`\
+  \ 组件来生成命令：\n\n```bash\n$ ionic g page walkthrough\n```\n\n当我们开始使用 `walkthrough`\
+  \ 组件时，需要添加逻辑，使其仅在用户首次安装应用时显示：\n\n```typescript\n// src/app/app.component.ts\n//\
+  \ Check if the user has already seen the walkthrough\n    this.storage.get('has\
+  \ Seen Walk Through').then((has\n    Seen Walk Through) => {\n        if (has Seen\
+  \ Walk Through) {\n            this.rootPage = HomePage;\n        } else {\n   \
+  \         this.rootPage = WalkThroughPage;\n        }\n        this.platformReady();\n\
+  \    })\n```\n\n\n\n![](img/c54e3488d7687ea0d26e8c2ce3cdfae3_95_0.png)\n\n因此，我们在检查用户是否首次看到引导流程时存储一个布尔值。我们做的另一件重要事情是为登录和注销创建事件，这样当用户登录到应用程序时，我们可以相应地更新菜单项或执行任何其他数据操作：\n\
+  \n// src/app/app.component.ts\n\nexport interface PageInterface {\n  title: string;\n\
+  \  component: any;\n  icon: string;\n  logsout?: boolean;\n  index?: number;\n \
+  \ tabComponent?: any;\n}\nexport class vPlanetApp {\n  loggedInPages: PageInterface[]\
+  \ = [\n    { title: 'account', component: AccountPage, icon: 'person' },\n    {\
+  \ title: 'logout', component: HomePage, icon: 'log-out', logsOut: true }\n  ];\n\
+  \  loggedOutPages: PageInterface[] = [\n    { title: 'login', component: LoginPage,\
+  \ icon: 'log-in' },\n    { title: 'signup', component: SignupPage, icon: 'person-add'\
+  \ }\n  ];\n\n  listenToLoginEvents() {\n    this.events.subscribe('user:login',\
+  \ () => {\n      this.enableMenu(true);\n    });\n\n    this.events.subscribe('user:logout',\
+  \ () => {\n      this.enableMenu(false);\n    });\n  }\n\n  enableMenu(loggedIn:\
+  \ boolean) {\n    this.menu.enable(loggedIn, 'loggedInMenu');\n    this.menu.enable(!loggedIn,\
+  \ 'loggedOutMenu');\n  }\n\n  // For changing color of Active Menu\n  isActive(page:\
+  \ PageInterface) {\n    if (this.nav.getActive() &&\nthis.nav.getActive().component\
+  \ === page.component) {\n    return 'primary';\n}\n  return;\n}\n}\n\n接下来我们有多个 app.template.html，并且我们根据用户是否已登录或已注销拥有多个\
+  \ <ion-menu> 项：\n\n// src/app/app.template.html\n<ion-split-pane>\n<!-- logged out\
+  \ menu -->\n<ion-menu id=\"loggedOutMenu\" [content]=\"content\">\n\n<ion-header>\n\
+  <ion-toolbar>\n<ion-title>{{'menu' | translate}}</ion-title>\n</ion-toolbar>\n</ion-header>\n\
+  \n<ion-content class=\"outer-content\">\n\n<ion-list>\n<ion-list-header>\n{{'navigate'\
+  \ | translate}}\n</ion-list-header>\n<button ion-item menuClose *ngFor=\"let p of\
+  \ appPages\" (click)=\"openPage(p)\">\n<ion-icon item-left [name]=\"p.icon\" [color]=\"\
+  isActive(p)\"></ion-icon>\n{{ p.title | translate }}\n</button>\n</ion-list>\n\n\
+  <ion-list>\n<ion-list-header>\n{{'account' | translate}}\n</ion-list-header>\n<button\
+  \ ion-item menuClose *ngFor=\"let p of loggedOutPages\" (click)=\"openPage(p)\"\
+  >\n<ion-icon item-left [name]=\"p.icon\" [color]=\"isActive(p)\"></ion-icon>\n{{\
+  \ p.title | translate }}\n</button>\n<button ion-item menuClose *ngFor=\"let p of\
+  \ otherPages\" (click)=\"openPage(p)\">\n<ion-icon item-left [name]=\"p.icon\" [color]=\"\
+  isActive(p)\"></ion-icon>\n{{ p.title | translate }}\n</button>\n</ion-list>\n</ion-content>\n\
+  \n</ion-menu>\n\n<!-- logged in menu -->\n<ion-menu id=\"loggedInMenu\" [content]=\"\
+  content\">\n\n<ion-header>\n<ion-toolbar>\n<ion-title>Menu</ion-title>\n</ion-toolbar>\n\
+  </ion-header>\n\n<ion-content class=\"outer-content\">\n\n<ion-list>\n<ion-list-header>\n\
+  {{'navigate' | translate}}\n</ion-list-header>\n<button ion-item menuClose *ngFor=\"\
+  let p of appPages\" (click)=\"openPage(p)\">\n<ion-icon item-left [name]=\"p.icon\"\
+  \ [color]=\"isActive(p)\"></ion-icon>\n{{ p.title | translate }}\n</button>\n</ion-list>\n\
+  \n<ion-list>\n<ion-list-header>\n{{'account' | translate}}\n</ion-list-header>\n\
+  <button ion-item menuClose *ngFor=\"let p of loggedInPages\" (click)=\"openPage(p)\"\
+  >\n<ion-icon item-left [name]=\"p.icon\" [color]=\"isActive(p)\"></ion-icon>\n{{\
+  \ p.title | translate }}\n</button>\n<button ion-item menuClose *ngFor=\"let p of\
+  \ otherPages\" (click)=\"openPage(p)\">\n<ion-icon item-left [name]=\"p.icon\" [color]=\"\
+  isActive(p)\"></ion-icon>\n{{ p.title | translate }}\n</button>\n</ion-list>\n\n\
+  </ion-content>\n\n</ion-menu>\n```\n\n由于我们的应用主要从 `app.template.html` 开始，因此我们在此处声明\
+  \ rootPage。最近发布了 `SplitPane` 组件，它有助于创建多视图布局，这对于在不同设备和屏幕尺寸上运行同一应用程序非常有帮助：\n\n```\n\
+  <!-- main navigation -->\n<ion-nav [root]=\"rootPage\" #content swipeBackEnabled=\"\
+  false\" main></ion-nav>\n</ion-split-pane>\n```\n\n让我们现在看看我们的应用中将有哪些页面、服务和过滤器。与其将其列为项目符号列表，了解它的最佳方式是通过\
+  \ `app.module.ts` 文件，该文件包含所有声明、导入、`entrycomponents` 和提供者：\n\n// src/app/app.module.ts\n\
+  \nimport { BrowserModule } from '@angular/platform-browser';\nimport { NgModule,\
+  \ ErrorHandler } from '@angular/core';\nimport { IonicApp, IonicModule, IonicErrorHandler,\
+  \ DeepLinkConfig } from 'ionic-angular';\nimport { TranslateModule, TranslateLoader,\
+  \ TranslateStaticLoader } from 'ng2-translate/ng2-translate';\nimport { HttpModule,\
+  \ Http } from '@angular/http';\nimport { CloudSettings, CloudModule } from '@ionic/cloud-angular';\n\
+  import { Storage } from '@ionic/storage';\nimport { vPlanetApp } from './app.component';\n\
+  \nimport { AboutPage } from '../pages/about/about';\nimport { PopoverPage } from\
+  \ '../pages/popover/popover';\nimport { AccountPage } from '../pages/account/account';\n\
+  import { LoginPage } from '../pages/login/login';\nimport { SignupPage } from '../pages/signup/signup';\n\
+  import { WalkthroughPage } from '../pages/walkthrough/walkthrough';\nimport { HomePage\
+  \ } from '../pages/home/home';\nimport { CategoriesPage } from '../pages/categories/categories';\n\
+  import { ProductsPage } from '../pages/products/products';\nimport { ProductDetailPage\
+  \ } from '../pages/product-detail/product-detail';\nimport { WishlistPage } from\
+  \ '../pages/wishlist/wishlist';\nimport { ShowcartPage } from '../pages/showcart/showcart';\n\
+  import { CheckoutPage } from '../pages/checkout/checkout';\nimport { ProductsFilterPage\
+  \ } from '../pages/products-filter/products-filter';\nimport { SupportPage } from\
+  \ '../pages/support/support';\nimport { SettingsPage } from '../pages/settings/settings';\n\
+  import { SearchPage } from '../pages/search/search';\nimport { UserService } from\
+  \ '../providers/user-service';\nimport { DataService } from '../providers/data-service';\n\
+  import { OrdinalPipe } from '../filters/ordinal';\n\n// 3rd party modules\nimport\
+  \ { Ionic2RatingModule } from 'ionic2-rating';\n\n// import ionic native packages\n\
+  import { SplashScreen } from '@ionic-native/splash-screen';\nimport { Deeplinks\
+  \ } from '@ionic-native/deeplinks';\nimport { TextToSpeech } from '@ionic-native/text-to-speech';\n\
+  import { AppRate } from '@ionic-native/app-rate';\nimport { GoogleAnalytics } from\
+  \ '@ionic-native/google-analytics';\nimport { Camera } from '@ionic-native/camera';\n\
+  import { CallNumber } from '@ionic-native/call-number';\nimport { SocialSharing\
+  \ } from '@ionic-native/social-sharing';\nimport { Push } from '@ionic-native/push';\n\
+  \nexport function createTranslateLoader(http: Http) {\n  return new TranslateStaticLoader(http,\
+  \ './assets/i18n', '.json');\n}\n\n// Configure database priority\nexport function\
+  \ provideStorage() {\n  return new Storage(['sqlite', 'indexeddb', 'localstorage'],\
+  \ { name: 'vplanet' })\n}\n\nconst cloudSettings: CloudSettings = {\n  'core': {\n\
+  \    'app_id': 'f8fec798'\n  }\n};\n\n// Deeplink Configuration\nexport const deepLinkConfig:\
+  \ DeepLinkConfig = {\n  links: [\n    { component: HomePage, name: 'Home Page',\
+  \ segment: '' },\n    { component: CategoriesPage, name: 'Categories Page', segment:\
+  \ 'categories' },\n    { component: ProductsPage, name: 'Categories Product Page',\
+  \ segment: 'categories/:categoryId' },\n    { component: ProductDetailPage, name:\
+  \ 'Product Details Page', segment: 'products/:productId' },\n    { component: WishlistPage,\
+  \ name: 'Wishlist Page', segment: 'wishlist' },\n    { component: ShowcartPage,\
+  \ name: 'Showcart Page', segment: 'cart' },\n    { component: SupportPage, name:\
+  \ 'Support Page', segment: 'feedback' },\n    { component: SettingsPage, name: 'About\
+  \ Page', segment: 'settings' },\n    { component: AboutPage, name: 'About Page',\
+  \ segment: 'about' },\n    { component: LoginPage, name: 'Login Page', segment:\
+  \ 'login' },\n    { component: SignupPage, name: 'Signup Page', segment: 'signup'\
+  \ },\n    { component: AccountPage, name: 'Account Page', segment: 'account' }\n\
+  \  ]\n};\n\n@NgModule({\n\n\n```ts\ndeclarations: [\n  vPlanetApp,\n  AboutPage,\n\
+  \  AccountPage,\n  LoginPage,\n  PopoverPage,\n  SignupPage,\n  WalkThroughPage,\n\
+  \  HomePage,\n  CategoriesPage,\n  ProductsPage,\n  ProductsFilterPage,\n  ProductDetailPage,\n\
+  \  SearchPage,\n  WishlistPage,\n  ShowcartPage,\n  CheckoutPage,\n  SettingsPage,\n\
+  \  SupportPage,\n  OrdinalPipe,\n],\nimports: [\n  BrowserModule,\n  HttpModule,\n\
+  \  IonicModule.forRoot(vPlanetApp, {locationStrategy: 'hash'}, deepLinkConfig),\n\
+  \  Ionic2RatingModule,\n  TranslateModule.forRoot({\n    provide: TranslateLoader,\n\
+  \    useFactory: createTranslateLoader,\n    deps: [Http]\n  }),\n  IonicStorageModule.forRoot({\n\
+  \    useFactory: provideStorage\n  }),\n  CloudModule.forRoot(cloudSettings)\n],\n\
+  bootstrap: [IonicApp],\nentryComponents: [\n  vPlanetApp,\n  AboutPage,\n  AccountPage,\n\
+  \  LoginPage,\n  PopoverPage,\n  SignupPage,\n  WalkThroughPage,\n  HomePage,\n\
+  \  CategoriesPage,\n  ProductsPage,\n  ProductsFilterPage,\n  ProductDetailPage,\n\
+  \  SearchPage,\n  WishlistPage,\n  ShowcartPage,\n  CheckoutPage,\n  SettingsPage,\n\
+  \  SupportPage\n],\nproviders: [\n  SplashScreen,\n  Deeplinks,\n  TextToSpeech,\n\
+  \  AppRate,\n  GoogleAnalytics,\n  Camera,\n  CallNumber,\n  SocialSharing,\n  Push,\n\
+  \  {provide: ErrorHandler, useClass: IonicErrorHandler},\n  { provide: Storage,\
+  \ useFactory: provideStorage },\n  UserService,\n  DataService\n]\n})\nexport class\
+  \ AppModule {}\n```\n\n此外，我建议你查看本章中 vPlanet Commerce 应用的代码，这将有助于你很好地了解我们在应用程序中将使用哪些页面和组件。由于本章主要针对各种\
+  \ Ionic 组件，我们将在应用程序中使用大量这些组件。\n\n## Ionic 组件\n\n在构建应用程序时，我们可以有效地使用许多 Ionic JavaScript\
+  \ 组件。最好的做法是寻找应用程序中需要的功能。让我们从我们的电子商务应用程序的首页开始，首页上将有一个带有横幅的图片滑块。\n\n### Slides\n\n\
+  Slides 组件是一个多节容器，可用于多种场景，例如教程视图或横幅滑块。`<ion-slides>` 组件包含多个 `<ion-slide>` 元素，可以左右拖动或滑动。Slides\
+  \ 提供了多种配置选项，可传递给 ion-slides，例如 autoplay、pager、direction: vertical/horizontal、initial\
+  \ slide 和 speed。\n\n使用 slides 非常简单，我们只需将它们包含在我们的 home.html 中；home.ts 文件中不需要任何依赖即可包含它：\n\
+  \n```html\n// Banner Slider in src/pages/home/home.html\n\n<ion-slides pager #adSlider\
+  \ (ionSlideDidChange)=\"logLengthTrackEvent()\" style=\"height: 250px\">\n  <ion-slide\
+  \ *ngFor=\"let banner of banners\">\n    <img [src]=\"banner\">\n  </ion-slide>\n\
+  </ion-slides>\n\n// Defining banners image path\n\nexport class HomePage {\n\n \
+  \ products: any;\n  banners: String[];\n\n  constructor() {\n    this.banners =\
+  \ [\n      'assets/img/banner-1.webp',\n      'assets/img/banner-2.webp',\n    \
+  \  'assets/img/banner-3.webp'\n    ]\n  }\n}\n```\n\n正如前面的代码所示，ion-slides 可用的属性有很多，例如\
+  \ pager、autoplay、direction 等：\n\n![](img/c54e3488d7687ea0d26e8c2ce3cdfae3_104_0.png)\n\
+  \n如果查看前面的截图，你可以看到我们使用了白色背景的横幅。实际上，作为一个建议，尝试在应用程序内部使用与横幅相同的背景颜色。这样横幅在低分辨率或高分辨率的手机和平板上都会显示得很好。\n\
+  \n### Lists\n\n列表是许多应用程序中最常用的组件之一。在列表中我们可以显示信息行。我们将在应用程序内部多次使用列表，例如在 `categories`\
+  \ 页面上，我们显示多个子类别：\n\n```html\n// src/pages/categories/categories.html\n<ion-content\
+  \ class=\"categories\">\n  <ion-list-header *ngIf=\"!categoryList\">Fetching Categories\
+  \ ....</ion-list-header>\n  <ion-list *ngFor=\"let cat of categoryList\">\n    <ion-list-header>{{cat.name}}</ion-list-header>\n\
+  \    <ion-item *ngFor=\"let subCat of cat.child\">\n      <ion-avatar item-left>\n\
+  \        <img [src]=\"subCat.image\">\n      </ion-avatar>\n      <h2>{{subCat.name}}</h2>\n\
+  \      <p>{{subCat.description}}</p>\n      <button ion-button clear item-right\
+  \ (click)=\"goToProducts(subCat.id)\">View</button>\n    </ion-item>\n  </ion-list>\n\
+  </ion-content>\n```\n\n我们在这里使用了一个带有所属类别顶部标题的头像列表。可用的列表类型有很多，例如多行、缩略图和滑动列表。我们将在本章后面在\
+  \ showcart 页面上集成滑动列表：\n\n![](img/c54e3488d7687ea0d26e8c2ce3cdfae3_107_0.png)\n\n\
+  正如你所见，前面的截图显示了类别页面上头像列表的外观。我们应该确保在计划在应用程序中使用列表之前查看文档，因为这有助于我们可视化哪种类型的列表可以在各种不同的应用程序中得到最佳利用。\n\
+  \n### Loading and Toast\n\nLoading 组件可用于指示某些活动，同时阻止任何用户交互。使用 Loading 组件最常见的情况之一是向服务器的\
+  \ HTTP 调用，因为我们知道从服务器获取数据需要时间，在此期间为了良好的用户体验我们可以显示一些内容显示 Loading ...，或 Login wait\
+  \ ...，用于登录页面。\n\nToast 是一个提供反馈的小弹出窗口，通常在用户执行某些操作时使用。Ionic 3 现在将其 toast 组件作为其库的一部分提供；之前我们必须使用原生的\
+  \ Cordova 插件来实现 toasts，现在也可以使用。\n\nLoading 和 toast 组件都具有 `create` 方法。我们在创建这些组件时必须提供选项：\n\
+  \n```ts\n// src/pages/login/login.ts\nimport { Component } from '@angular/core';\n\
+  import { NgForm } from '@angular/forms';\nimport { NavController, LoadingController,\
+  \ ToastController, Events } from 'ionic-angular';\nimport { SignupPage } from '../signup/signup';\n\
+  import { HomePage } from '../home/home';\n\nimport { Auth, IDetailedError } from\
+  \ '@ionic/cloud-angular';\n\nimport { UserService } from '../../providers/user-service';\n\
+  \n@Component({\n  selector: 'page-user',\n  templateUrl: 'login.html'\n})\nexport\
+  \ class LoginPage {\n  login: { email?: string, password?: string } = {};\n\n  submitted\
+  \ = false;\n\n  constructor(public navCtrl: NavController,\n    public loadingCtrl:\
+  \ LoadingController,\n    public auth: Auth,\n    public userService: UserService,\n\
+  \    public toastCtrl: ToastController,\n    public events: Events) { }\n\n  onLogin(form:\
+  \ NgForm) {\n    this.submitted = true;\n\n    if (form.valid) {\n      // start\
+  \ Loader\n      let loading = this.loadingCtrl.create({\n        content: \"Login\
+  \ wait...\",\n        duration: 20\n      });\n      loading.present();\n\n    \
+  \  this.auth.login('basic', this.login).then((result) => {\n          // user is\
+  \ now registered\n          this.navCtrl.setRoot(HomePage);\n          this.events.publish('user:login');\n\
+  \          loading.dismiss();\n          this.showToast(undefined);\n        },\
+  \ (err: IDetailedError<string[]>) => {\n          console.log(err);\n          loading.dismiss();\n\
+  \          this.showToast(err)\n        });\n    }\n  }\n\n  showToast(response_message:\
+  \ any) {\n    let toast = this.toastCtrl.create({\n      message: (response_message\
+  \ ? response_message : \"Log In Successfully\"),\n      duration: 1500\n    });\n\
+  \    toast.present();\n  }\n\n  onSignup() {\n    this.navCtrl.push(SignupPage);\n\
+  \  }\n}\n```\n\n正如前面的代码所示，在代码层面创建 loader 和 toast 几乎相似。创建时提供的选项也相似；我们在这里在登录时使用了 loader，之后使用\
+  \ toast 来显示所需消息。\n\n![](img/c54e3488d7687ea0d26e8c2ce3cdfae3_111_0.png)\n\n*设置 duration\
+  \ 选项是好的，因为如果 loader 被 dismiss 或在代码中未正确处理，那么我们将阻止用户对应用进行任何进一步交互。在向服务器的 HTTP 调用中，我们可能会遇到连接问题或失败情况；在这种情况下可能会导致用户被阻塞。*\n\
+  \n\n\n\n## 标签页与分段控件\n\n标签页是在不同视图之间切换并在较高层级组织内容的最简单方式。另一方面，分段控件是一组按钮，可以将其视为特定组件内部的局部切换标签，主要用于筛选。借助标签页，我们可以在页脚构建一个快速访问栏，在其中放置菜单选项，例如首页、收藏和购物车。这样，我们就能一键访问这些页面或组件。另一方面，我们可以在账户组件中使用分段控件，将显示的数据划分为三个分段：个人资料、订单和钱包。\n\
+  \n```html\n// src/pages/account/account.html\n<ion-header>\n  <ion-navbar>\n   \
+  \ <button menuToggle>\n      <ion-icon name=\"menu\"></ion-icon>\n    </button>\n\
+  \    <ion-title>Account</ion-title>\n  </ion-navbar>\n  <ion-toolbar [color]=\"\
+  isAndroid ? 'primary' : 'light'\" no-border-top>\n    <ion-segment [(ngModel)]=\"\
+  account\" [color]=\"isAndroid ? 'light' : 'primary'\">\n      <ion-segment-button\
+  \ value=\"profile\">\n        Profile\n      </ion-segment-button>\n      <ion-segment-button\
+  \ value=\"orders\">\n        Orders\n      </ion-segment-button>\n      <ion-segment-button\
+  \ value=\"wallet\">\n        Wallet\n      </ion-segment-button>\n    </ion-segment>\n\
+  \  </ion-toolbar>\n</ion-header>\n\n<ion-content class=\"outer-content\">\n  <div\
+  \ [ngSwitch]=\"account\">\n\n    <div padding-top text-center *ngSwitchCase=\"'profile'\"\
+  >\n      <img src=\"http://www.gravatar.com/avatar?d=mm&s=140\">\n      <h2>{{username}}</h2>\n\
+  \n      <ion-list inset>\n        <button ion-item (click)=\"updatePicture()\">Update\
+  \ Picture</button>\n        <button ion-item (click)=\"changePassword()\">Change\
+  \ Password</button>\n        <button ion-item (click)=\"logout()\">Logout</button>\n\
+  \      </ion-list>\n\n    </div>\n\n    <div padding-top text-center *ngSwitchCase=\"\
+  'orders'\">\n      // Order List data to be shown here\n    </div>\n\n    <div padding-top\
+  \ text-center *ngSwitchCase=\"'wallet'\">\n      // Wallet statement and transaction\
+  \ here.\n    </div>\n\n  </div>\n</ion-content>\n```\n\n标签页有许多可用属性，例如 `mode`、`color`、`tabsPlacement`\
+  \ 和 `tabsLayout`。同样，我们也可以在配置层级配置一些标签页属性；你可以在 https://ionicframework.com/docs/v2/api/config/Config/\
+  \ 找到哪些属性可以全局配置或针对特定平台配置。\n\n## 警报\n\n警报是 Ionic 提供的组件，用于显示触发警报、确认、提示或某些特定操作。可以从 `ionic-angular`\
+  \ 导入 `AlertController`，它允许我们以编程方式在应用内创建并显示警报。这里需要注意的一点是，这些是 JavaScript 弹出窗口，而不是原生平台弹出窗口。有一个名为\
+  \ `cordova-plugin-dialogs` 的 Cordova 插件（https://ionicframework.com/docs/v2/native/dialogs/），如果你需要原生对话框\
+  \ UI 元素，可以使用它。\n\n目前，在 Ionic 应用中可以显示五种类型的警报：基本警报、提示警报、确认警报、单选警报和复选警报。\n\n在 `src/pages/products/products.html`\
+  \ 中，单选警报用于对产品进行排序：\n\n```html\n<ion-buttons>\n  <button ion-button full clear (click)=\"\
+  sortBy()\">\n    <ion-icon name=\"menu\"></ion-icon>Sort\n  </button>\n</ion-buttons>\n\
+  \n// onClick we call sortBy method\n// src/pages/products/products.ts\nimport {\
+  \ NavController, PopoverController, ModalController, AlertController } from 'ionic-angular';\n\
+  \nexport class ProductsPage {\n\n  constructor(\n    public alertCtrl: AlertController\n\
+  \  ) {}\n\n  sortBy() {\n    let alert = this.alertCtrl.create();\n    alert.setTitle('Sort\
+  \ Options');\n\n    alert.addInput({\n      type: 'radio',\n      label: 'Relevance',\n\
+  \      value: 'relevance',\n      checked: true\n    });\n    alert.addInput({\n\
+  \      type: 'radio',\n      label: 'Popularity',\n      value: 'popular'\n    });\n\
+  \    alert.addInput({\n      type: 'radio',\n      label: 'Low to High',\n     \
+  \ value: 'lth'\n    });\n    alert.addInput({\n      type: 'radio',\n      label:\
+  \ 'High to Low',\n      value: 'htl'\n    });\n    alert.addInput({\n      type:\
+  \ 'radio',\n      label: 'Newest First',\n      value: 'newest'\n    });\n\n   \
+  \ alert.addButton('Cancel');\n    alert.addButton({\n      text: 'OK',\n      handler:\
+  \ data => {\n        console.log(data);\n        // Here we can call server APIs\
+  \ with sorted data\n        // using the data which user applied.\n      }\n   \
+  \ });\n\n    alert.present().then(() => {\n      // Here we place any function that\n\
+  \      // needs to be called as the alert is opened.\n    });\n  }\n}\n```\n\n![](img/c54e3488d7687ea0d26e8c2ce3cdfae3_118_0.png)\n\
+  \n这里是“取消”和“确定”按钮。我们在此处使用它来根据相关性、价格或其他排序值对产品进行排序。\n\n我们还可以准备自定义警报，在其中指定多个选项。如前一个示例所示，我们有五个单选选项；同样，我们甚至可以添加一个文本输入框来接收一些输入并提交。除此之外，在创建警报时，请记住\
+  \ `AlertController` 组件（https://ionicframework.com/docs/v2/api/components/alert/AlertController/）中所有警报都存在警报、输入和按钮选项属性。\n\
+  \n以下是一些警报选项：\n\n- `title: // string`：警报的标题\n- `subTitle: // string (可选)`：弹出窗口的副标题\n\
+  - `Message: // string`：警报的消息\n- `cssClass: // string`：自定义 CSS 类名\n- `inputs: //\
+  \ array`：警报的输入集合\n- `buttons // array (可选)`：按钮数组\n\n```html\n// src/pages/home/home.html\n\
+  <br/><br/>\n<ion-card>\n  <br/>\n  <img [src]=\"prdt.imageUrl\"/>\n  <br/>\n  <ion-card-content>\n\
+  \    <br/>\n    <ion-card-title no-padding>\n      <br/>\n      {{prdt.productName}}\n\
+  \      <br/>\n    </ion-card-title>\n    <br/>\n    <ion-row no-padding class=\"\
+  center\">\n      <br/>\n      <ion-col>\n        <br/>\n        <b>{{prdt.price\
+  \ | currency }} &nbsp; </b>\n        <span class=\"discount\">{{prdt.listPrice |\
+  \ currency}}</span>\n        <br/>\n      </ion-col>\n      <br/>\n    </ion-row>\n\
+  \    <br/>\n  </ion-card-content>\n  <br/>\n</ion-card>\n\n<ion-badge width=\"25\"\
+  >4.1</ion-badge>\n```\n\n## Ionic API 与自定义模块\n\n到目前为止，我们已经使用了多个 Ionic 组件。为了支持这些组件，我们为\
+  \ checkbox、toggle、item 等类提供了组件 API，这些 API 展示了如何使用它们。在使用组件时，我们已经使用了许多 API。现在，我们将进一步研究所有可用于我们电子商务应用的有用\
+  \ API。此外，另一个重要方面是使用自定义模块，通过添加本地化、创建自定义管道等进一步增强应用。\n\n## 复杂网格\n\n我们将从许多开发者在 Ionic\
+  \ 网格系统中构建应用时常见的难题之一开始。Ionic 网格系统基于 flexbox（http://www.w3.org/TR/css3-flexbox/），这是一个所有设备都支持的\
+  \ CSS3 特性。网格包含三个组件：网格（grid）、行（row）和列（col）。关于网格系统，有几点需要特别注意：\n\n- `ion-grid` 和 `ion-col`\
+  \ 默认有 5px 的内边距，但 `ion-row` 没有内边距和外边距。\n- 可以添加 `no-padding` 属性来移除该内边距。\n- 使用十二列布局，类似于\
+  \ Bootstrap 网格系统中的布局。\n- 在 `ion-col` 中使用 `column` 属性来设置宽度，例如 `<ion-col col-3>`，默认为\
+  \ `col-12`。此外，默认情况下，列在所有设备和屏幕上都占据行内相同的宽度。\n- 有五个网格层级：`col-xs`、`col-sm`、`col-md`、`col-lg`\
+  \ 和 `col-xl`，它们对应不同的屏幕尺寸。\n- `offset` 是一个用于设置偏移的属性，该属性会增加 * 列的左边距，例如 `<ion-col offset-1>`\n\
+  - 我们可以在行中对齐列，例如 `align-self-center` 可使列居中。更多属性详情请查看 https://ionicframework.com/docs/api/components/grid/Col/。\n\
+  - 类似地，我们还有行属性，默认情况下列会拉伸以填满行的整个高度。更多属性详情请查看 https://ionicframework.com/docs/api/components/grid/Row/。\n\
+  \n在应用设计中，我们必须使用网格来设计不同的布局。最简单的布局可以使用 `width` 和 `offset` 属性构建。我们已经为电子商务应用的主页构建了一个布局，其中一行有两张卡片：\n\
+  \n```html\n<ion-grid no-padding>\n  <ion-row>\n    <ion-col no-padding col-6 col-md-3\
+  \ *ngFor=\"let product\n    of products;\">\n      <ion-card>\n        <img [src]=\"\
+  product.imageUrl\"/>\n        <ion-card-content>\n          <ion-card-title no-padding>\n\
+  \            {{product.productName}}\n          </ion-card-title>\n          <ion-row\
+  \ no-padding class=\"center\">\n            <ion-col>\n              <b>{{product.price\
+  \ | currency }} &nbsp; </b><span\n                class=\"discount\">{{product.listPrice\
+  \ |\n                currency}}</span>\n            </ion-col>\n          </ion-row>\n\
+  \        </ion-card-content>\n      </ion-card>\n    </ion-col>\n  </ion-row></ion-grid>\n\
+  ```\n\n借助新的网格系统，开发者的生活变得非常轻松。以前，仅仅为了在一行中排列两张卡片并进行迭代，我们不得不在行和列上使用多个 `*ngFor` 进行迭代。现在，这个网格系统的灵感高度源于我们都非常熟悉的\
+  \ Bootstrap 网格系统。因此，在小型屏幕上我们一行有两张卡片，而在中号及以上屏幕上，我们一行将有四张卡片：\n\n\n\n| 商品 | 价格1 | 价格2\
+  \ |\n| --- | --- | --- |\n| 纯银 ... | USD5.28 | USD6.28 |\n| 纯银 ... | USD6.63 | USD7.95\
+  \ |\n| 9K金CZ Cr... | USD15.20 | USD22.25 |\n| 9K金CZ Cr... | USD7.60 | USD11.25 |\n\
+  \n```\n// src/filters/ordinal.ts\n\nimport { Pipe, PipeTransform } from '@angular/core';\n\
+  \n@Pipe({name: 'ordinal'})\n\nexport class OrdinalPipe implements PipeTransform\
+  \ { \n transform(value: number, args: string[]): any { \n\n if (!value) return value;\n\
+  \n if(isNaN(value) || value < 1) { \n return value;\n } else { \n var lastDigit\
+  \ = value % 10;\n\n if(lastDigit === 1) { \n return value + 'st' \n } else if(lastDigit\
+  \ === 2) { \n return value + 'nd' \n } else if (lastDigit === 3) { \n return value\
+  \ + 'rd' \n } else if (lastDigit > 3) { \n return value + 'th' \n } \n } \n } \n\
+  }\n\n// using pipe in template\n\n<p> {{ data.value | ordinal }} </p>\n\nimport\
+  \ { OrdinalPipe } from './filters/ordinal';\n\n@NgModule({ \n\n declarations: [\
+  \ \n . \n . \n . \n OrdinalPipe, \n Settings \n ] \n\n})\n\n<p>{{ data.created_at\
+  \ | date | uppercase }}</p>\n```\n\n```typescript\n// src/pages/login/login.ts\n\
+  import { NavController, LoadingController, ToastController, Events } from 'ionic-angular';\n\
+  \nconstructor(public navCtrl: NavController, public loadingCtrl: LoadingController,\
+  \ public auth: Auth, public userService: UserService, public toastCtrl: ToastController,\
+  \ public events: Events) { }\n\nthis.auth.login('basic', this.login).then((result)\
+  \ => {\n  // user is now registered\n  this.navCtrl.setRoot(HomePage);\n  this.events.publish('user:login');\n\
+  \  loading.dismiss();\n  this.showToast(undefined);\n}, (err: IDetailedError<string[]>)\
+  \ => {\n  console.log(err);\n  loading.dismiss();\n  this.showToast(err)\n});\n\n\
+  <ion-buttons end>\n  <button ion-button (click)=\"goToCart()\">\n    <ion-icon ios=\"\
+  ios-cart\" md=\"md-cart\"></ion-icon>\n  </button>\n</ion-buttons>\n\n// src/pages/categories/categories.ts\n\
+  import { NavController, PopoverController } from 'ionic-angular';\nimport { ShowcartPage\
+  \ } from '../showcart/showcart';\n\nexport class CategoriesPage {\n  constructor(public\
+  \ navCtrl: NavController) { }\n\n  goToCart() {\n    this.navCtrl.push(ShowcartPage);\n\
+  \  }\n}\n```\n\n这里你可以看到我们已经推送了 ShowcartPage 组件。我们还可以将数据作为 push 函数的下一个参数传递到下一页，并在下一页使用\
+  \ navParams 类及其 get 方法来获取数据。\n\n## 从覆盖组件进行导航\n\n最近，在从弹出框导航到页面时，我遇到了一个问题。每次我点击弹出框内的链接并直接推送下一个组件，应用就会冻结。我们将实现弹出框组件，并在其中导航到\
+  \ SettingsPage 和 SupportPage：\n\n```\n// src/pages/popover/popover.ts\nimport {\
+  \ Component } from '@angular/core';\nimport { ViewController, NavController, App,\
+  \ ModalController } from 'ionic-angular';\n\nimport { SupportPage } from '../support/support';\n\
+  import { SettingsPage } from '../settings/settings';\n\n@Component({\n  template:\
+  \ ` \n    <ion-list>\n      <button ion-item\n      (click)=\"goToPage('SettingsPage')\"\
+  >Settings</button>\n      <button ion-item\n      (click)=\"goToPage('SupportPage')\"\
+  >Support</button>\n      <button ion-item\n      (click)=\"close('http://ionicframework.com/docs/v2/getting-started')\"\
+  >Learn Ionic</button>\n    </ion-list>\n  `;\n})\nexport class PopoverPage {\n\n\
+  \  classes: any;\n\n  constructor(\n    public viewCtrl: ViewController,\n    public\
+  \ navCtrl: NavController,\n    public app: App,\n    public modalCtrl: ModalController\n\
+  \  ) {\n\n    this.classes = {\n      'SettingsPage': SettingsPage,\n      'SupportPage':\
+  \ SupportPage\n    }\n\n  }\n\n  goToPage(page:any) {\n    // Navigating from Overlay\
+  \ Components\n    // https://ionicframework.com/docs/v2/api/navigation/NavController/\n\
+  \    // If you simply push it will freeze the UI\n    this.viewCtrl.dismiss();\n\
+  \    this.app.getRootNav().push(this.classes[page]);\n  }\n\n  close(url: string)\
+  \ {\n    window.open(url, '_blank');\n    this.viewCtrl.dismiss();\n  }\n}\n```\n\
+  \n![](img/c54e3488d7687ea0d26e8c2ce3cdfae3_128_0.png)\n\n如你所见，我们没有直接推送 Page 组件，而是先通过\
+  \ getRootNav() 方法获取应用中 rootNav 的引用。\n\n## 生命周期事件与导航守卫\n\n生命周期事件在 Ionic 1 中就已经存在，原生平台也有结构完善的生命周期，这让我们能够在导航的各阶段执行操作。目前有六个页面事件和两个导航守卫可用：\n\
+  \n- ionViewDidLoad: 页面加载完成时\n- ionViewWillEnter: 页面即将进入时\n- ionViewDidEnter: 页面完全进入时\n\
+  - ionViewWillLeave: 页面即将离开时\n- ionViewDidLeave: 页面结束离开时\n- ionViewWillUnload: 页面即将被销毁时\n\
+  - ionViewCanEnter: 视图进入前运行\n- ionViewCanLeave: 视图退出前运行\n\n![](img/c54e3488d7687ea0d26e8c2ce3cdfae3_131_0.png)\n\
+  \nionViewCanEnter 和 ionViewCanLeave 是两个导航守卫，用于控制视图的进入和离开。例如，如果我们正在填写表单，不小心点击了某个按钮或菜单项，用户已填写的数据会立即被清除。为了保护数据，我们可以像在\
+  \ support 页面上那样应用 ionViewCanLeave：\n\n```typescript\n// src/pages/support/support.ts\n\
+  \n// If the user enters text in the support question and\n// then navigates\n//\
+  \ without submitting first, ask if they meant to leave\n// the page\nionViewCanLeave():\
+  \ boolean | Promise<boolean> {\n// If the support message is empty we should just\n\
+  // navigate\nif (!this.supportMessage ||\nthis.supportMessage.trim().length ===\
+  \ 0) {\nreturn true;\n}\n\nreturn new Promise((resolve: any, reject: any) => {\n\
+  let alert = this.alertCtrl.create({\n    title: 'Leave this page?',\n    message:\
+  \ 'Are you sure you want to leave this page? Your support message will not be submitted.'\n\
+  });\nalert.addButton({ text: 'Stay', handler: reject });\nalert.addButton({ text:\
+  \ 'Leave', role: 'cancel',\nhandler: resolve });\n\nalert.present();\n});\n}\n```\n\
+  \n![](img/c54e3488d7687ea0d26e8c2ce3cdfae3_132_0.png)\n\n导航对于我们构建的任何应用来说都是重要组成部分，因此我个人的建议是，认真阅读并理解导航组件的所有重要主题，无论大小。我最初犯的一个错误是没有通读全部文档，由于之前提到的冻结问题，这几乎浪费了我一整天。你可以通过\
+  \ [https://ionicframework.com/docs/v2/api/navigation/NavController/](https://ionicframework.com/docs/v2/api/navigation/NavController/)\
+  \ 查看导航 API。\n\n## 国际化与本地化\n\n当我们需要构建一款影响世界各地用户生活的全球化应用时，我们必须考虑国际化与本地化等多个方面。我们将把它集成到我们的电商应用中，以便添加多语言支持。\n\
+  \n我们首先安装 `ng2-translate` npm 模块：\n\n```\nnpm install ng2-translate --save\n```\n\
+  \n接下来，我们将在 `app.module.ts` 中引入所需模块和方法：\n\n```\n// /src/app/app.module.ts\nimport\
+  \ { TranslateModule, TranslateLoader, TranslateStaticLoader } from 'ng2-translate/ng2-translate';\n\
+  \nexport function createTranslateLoader(http: Http) {\n  return new TranslateStaticLoader(http,\
+  \ './assets/i18n', '.json');\n}\n\n@NgModule({\n  imports: [\n    IonicModule.forRoot(vPlanetApp),\n\
+  \    TranslateModule.forRoot({\n      provide: TranslateLoader,\n      useFactory:\
+  \ createTranslateLoader,\n      deps: [Http]\n    }),\n    CloudModule.forRoot(cloudSettings)\n\
+  \  ]\n})\n\nexport class AppModule {}\n```\n\n我们创建了一个独立函数 `createTranslateLoader`，在其中定义了\
+  \ `i18n/` 文件夹，该文件夹包含每种语言的 JSON 文件。现在我们可以使用该模块了，并在 `app.component.ts` 中初始化 `TranslateService`，以确定使用哪种语言：\n\
+  \n```\nimport {TranslateService} from 'ng2-translate/ng2-translate';\n\n@Component({\n\
+  \  templateUrl: 'app.template.html',\n  providers: [TranslateService]\n})\n\nexport\
+  \ class vPlanetApp {\n\n  constructor(\n    public translate: TranslateService\n\
+  \  ) {\n\n    this.initializeTranslateServiceConfig();\n\n  }\n\n  // We are using\
+  \ the user default language\n  // and set that default locale\n\n  initializeTranslateServiceConfig()\
+  \ {\n    var userLang = navigator.language.split('-')[0];\n    userLang = /(en|es)/gi.test(userLang)\
+  \ ? userLang :\n    'en';\n    this.translate.setDefaultLang('en');\n    this.translate.use(userLang);\n\
+  \  }\n}\n```\n\n\n\n\n现在我们可以像使用管道一样在模板中使用它。因为我们在电商应用中有循环渲染的侧边菜单列表项，所以我们首先会在侧边菜单上实现翻译：\n\
+  \n```\n<ion-list>\n    <ion-list-header>\n        {{'navigate' | translate}}\n \
+  \   </ion-list-header>\n    <button ion-item menuClose *ngFor=\"let p of appPages\"\
+  \ (click)=\"openPage(p)\">\n        <ion-icon item-left [name]=\"p.icon\" [color]=\"\
+  isActive(p)\"></ion-icon>\n        {{ p.title | translate }}\n    </button>\n</ion-list>\n\
+  ```\n\n一旦设置了区域设置，它就会从 `/assets/i18n` 文件夹中的 JSON 文件提取对应的标签。目前我们在该应用中只实现了 `en` 和 `es`\
+  \ 两种区域设置，但我们可以通过为电商应用想要支持的每种语言添加更多 `locale.json` 文件来轻松扩展：\n\n```\n// es.json\n{\n\
+  \    \"menu\": \"Menú\",\n    \"home\": \"Casa\",\n    \"navigate\":\"Navegar\"\
+  ,\n    \"categories\":\"Categorías\",\n    \"cart\":\"Carrito de compras\",\n  \
+  \  \"wishlist\":\"Lista de deseos\",\n    \"about\": \"Acerca de\",\n    \"categories\"\
+  :\"Categorías\",\n    \"login\": \"Iniciar sesión\",\n    \"logout\":\"Cerrar sesión\"\
+  ,\n    \"account\":\"Cuenta\",\n    \"signup\":\"Regístrate\",\n    \"popular\"\
+  :\"Productos Populares\",\n    \"settings\":\"Ajustes\",\n    \"feedback\":\"Realimentación\"\
+  \n}\n```\n\n![](img/c54e3488d7687ea0d26e8c2ce3cdfae3_136_0.png)\n\n上面是一个 `es.json`\
+  \ 示例，其中我们放置了不同的标签，用于进行内容翻译。接下来，如果你想翻译 TypeScript 文件中的任何 JavaScript 值，可以使用 `translateService`\
+  \ 及其 `get` 方法，它会订阅 observable 并返回翻译后的字符串：\n\n```\ntranslateService.get('HELLO').subscribe(\n\
+  \  value => {\n    // value returned is translated\n    console.log(value);\n  }\n\
+  )\n```\n\n最初设置和翻译该模块可能会花费一些时间，因为涉及多个部分，开发人员在设置时可能会忽略一些要点。为应用添加国际化功能将产生巨大的影响，并拓宽你能够吸引的用户群；这有助于你在\
+  \ Play Store 上获得更好的评分。\n\n## ItemSliding 和下拉刷新\n\n在现代应用中，动画和手势是必不可少的，它们能够在用户使用应用功能时提升用户体验。你会在大多数\
+  \ iOS 应用中找到 `ItemSliding` 功能，而下拉刷新通常用于获取最新数据，就像 Facebook 应用一样，你会用它来获取最新的信息流。\n\n\
+  `ItemSliding` 是一个可滑动的列表，可以向左或向右滑动以显示操作按钮。我们将在收藏夹页面使用可滑动列表，在该页面中，我们可以对产品执行从列表中删除或添加到购物车的操作：\n\
+  \n```\n// src/pages/wishlist/wishlist.ts\n<ion-content>\n  <ion-list>\n    <ion-list-header>\n\
+  \      4 Items in your Wishlist (Swipe for options).\n    </ion-list-header>\n\n\
+  \    <ion-item-sliding *ngFor=\"let product of products\">\n      <ion-item>\n \
+  \       <ion-avatar item-left>\n          <img [src]=\"product.image\">\n      \
+  \  </ion-avatar>\n        <h2>{{product.name}}</h2>\n        <h3>{{product.price\
+  \ | currency}}</h3>\n        <p>{{product.rating}} stars and 420 reviews</p>\n \
+  \     </ion-item>\n      <ion-item-options side=\"right\">\n        <button danger>\n\
+  \          <ion-icon name=\"trash\"></ion-icon>\n          Remove\n        </button>\n\
+  \        <button secondary>\n          <ion-icon name=\"cart\"></ion-icon>\n   \
+  \       Add Cart\n        </button>\n      </ion-item-options>\n    </ion-item-sliding>\n\
+  \  </ion-list>\n</ion-content>\n```\n\n让我们来看看 `itemSliding` 上可用的一些属性：\n\n- 滑动方向可以是向右或向左；两者都会显示操作按钮。我们可以使用\
+  \ `<ion-item-options side=\"right\">` 来设置右滑选项\n- 在滑动列表项时，可以使用 `IonDrag` 和 `ionSwap`\
+  \ 事件来监听或调用某些函数\n- 图标可以放在按钮文本的上方或左侧，例如 `<ion-item-options icon-left>`\n- 也可以导入 `ItemSliding`\
+  \ 类来访问 `close()` 方法\n\n![](img/c54e3488d7687ea0d26e8c2ce3cdfae3_139_0.png)\n\n如你所见，上面的截图展示了\
+  \ `itemSliding` 列表的外观。下拉刷新是另一个组件，主要用于我们需要刷新现有内容并从后端服务器获取新数据时。`refresher` 模块会检测垂直滑动，并在调用\
+  \ `refresh` 函数时显示加载图标。虽然我们在应用中没有确切的用例需要使用它，但实现 `refresher` 非常简单：\n\n```html\n<ion-content>\n\
+  \    <ion-refresher (ionRefresh)=\"updateFeed($event)\">\n        <ion-refresher-content\n\
+  \            pullingText=\"Updating Feed\"\n            refreshingSpinner=\"circles\"\
+  \n            refreshingText=\"Updating...\">\n        </ion-refresher-content>\n\
+  \    </ion-refresher>\n    <h4>User Feed</h4>\n</ion-content>\n```\n\n![](img/c54e3488d7687ea0d26e8c2ce3cdfae3_139_1.png)\n\
+  \n`ion-refresher` 组件具有 `ionRefresh` 属性，当刷新器被垂直拉动到一定程度时会调用该属性。之后，正如你在 `ion-refresher-content`\
+  \ 中看到的，有多组属性实际上充当着刷新器的配置设置，具有多种选项：\n\n```typescript\nimport { Http } from '@angular/http';\n\
+  \nexport class FeedPage {\n    constructor(public http: Http) {}\n\n    updateFeed(refresher)\
+  \ {\n\n        // Calling a web service to fetch new feeds\n            result\n\
+  \            this.http.get('path/to/data.json')\n                .map(res => res.json())\n\
+  \                .subscribe(data => {\n                    // After the callback\
+  \ we will\n                        complete the refresher\n                    \
+  \    // and update the data inside the view.\n                        refresher.complete();\n\
+  \                });\n        }\n}\n```\n\n在我们调用 `ionRefresh` 函数后，一旦从服务器获取到数据，就需要关闭刷新过程。当来自服务器的异步请求完成时，会调用\
+  \ `complete()` 方法。我们必须确保调用此方法，否则加载图标将不会消失。\n\n## 虚拟滚动和无限滚动\n\n虚拟滚动和无限滚动是两个重要的组件，它们同样广泛应用于不同的应用中，以处理列表中大量的项目。虚拟滚动用于实现一次渲染可能会过长而无法完成的列表，例如包含数千个联系人的联系人列表。如果我们尝试加载整个列表并进行渲染，将会阻碍我们应用的性能，并且在向下滚动列表时会感到卡顿。让我们来看看如何在我们的产品页面中实现虚拟滚动：\n\
+  \n```\n// src/pages/products/products.html\n<ion-content class=\"products\">\n<ion-list>\n\
+  <ion-item>\n<ion-note item-left>\nDuplicate products for VirtualScroll demo\n</ion-note>\n\
+  </ion-item>\n</ion-list>\n<ion-grid [virtualScroll]=\"products\" approxItemHeight=\"\
+  40px\">\n<ion-row *virtualItem=\"let product\" (click)=\"goToProductDetail(product)\"\
+  >\n<ion-col width-33>\n// Important to use ion-img rather than img tag\n// this\
+  \ will lazy load the images as we scroll downwards\n// Also, image sizes should\
+  \ not vary after its loaded\n<ion-img class=\"v-img\" [src]=\"product.image\">\n\
+  </ion-img>\n</ion-col>\n<ion-col width-67>\n<p>{{ product.name }}</p>\n<ion-badge\
+  \ item-right>4.1</ion-badge> 340 ratings\n<p class=\"price\"> {{ product.price |\
+  \ currency: 'INR' }} </p>\n</ion-col>\n</ion-row>\n</ion-grid>\n</ion-content>\n\
+  ```\n\n在使用虚拟滚动组件时，需要注意的一些重要点是：在列表加载后，我们不应进行任何 DOM 操作或更改数据集，因为这需要重置或刷新整个列表，这是一项对内存消耗很大的操作。为了虚拟滚动能够流畅工作，需要指定列表内项目的近似宽度和高度。默认值为\
+  \ 40px。\n\n\n\n\n高度，虽然不一定要给出确切数字，但接近确切高度会更好。\n\n无限滚动是指在用户滚动到指定距离后，页面内容会被动态追加。在无限滚动中，会调用一个函数来异步获取新数据并追加到列表中：\n\
+  \n```html\n<ion-content>\n  <ion-list>\n    <ion-item *ngFor=\"let product of products\"\
+  >\n      {{product.name}}</ion-item>\n  </ion-list>\n\n  <ion-infinite-scroll\n\
+  \    (ionInfinite)=\"getNewProducts($event)\">\n    <ion-infinite-scroll-content></ion-infinite-scroll-content>\n\
+  \  </ion-infinite-scroll>\n</ion-content>\n```\n\n`ionInfinite` 属性用于调用 `getNewProducts()`\
+  \ 函数，该函数最终会获取新数据：\n\n```typescript\nexport class ProductsPage {\n\n  constructor()\
+  \ {}\n\n  getNewProducts(infiniteScroll) {\n    // Call an HTTP function or service\n\
+  \    // fetches new data and append to the products array list.\n    // Make sure\
+  \ to call complete method to close the loader icon.\n    infiniteScroll.complete();\n\
+  \  }\n}\n```\n\n正如你所看到的，虚拟滚动和无限滚动在模板及其方法方面几乎是相同的。你可以在两个组件中找到相似的属性，在其中可以声明 `loadingText`\
+  \ 和 `loadingSpinner`。如果需要，我们可以进一步使用自定义的 SVG 和 CSS 动画来定制虚拟滚动和无限滚动的设计。\n\n## Ionic\
+  \ 评分\n\nIonic 评分是一个用于可视化评分条的第三方模块。我们将在应用的商品详情页中使用这个模块。该模块以 NPM 模块的形式提供，因此集成起来非常快速简单：\n\
+  \n```bash\n$ npm install --save ionic2-rating\n```\n\n```typescript\n// src/app/app.module.ts\n\
+  \nimport { Ionic2RatingModule } from 'ionic2-rating';\n\nimports: [\n    IonicModule.forRoot(vPlanetApp),\n\
+  \    Ionic2RatingModule,\n    TranslateModule.forRoot({\n        provide: TranslateLoader,\n\
+  \        useFactory: createTranslateLoader,\n        deps: [Http]\n    }),\n   \
+  \ CloudModule.forRoot(cloudSettings)\n],\n\n// src/pages/product-detail/product-detail.html\n\
+  <rating [(ngModel)]=\"rate\" readOnly=\"false\" max=\"5\"></rating>\n```\n\n![](img/c54e3488d7687ea0d26e8c2ce3cdfae3_145_0.png)\n\
+  \nIonic 社区在过去三年中发展迅速；GitHub 上有多个第三方组件可用，你可以在应用中间巧妙地使用它们，就像我们在电商应用中使用 ionic-rating\
+  \ 插件一样。其中一些组件包括：\n\n-   [Ionic 评分](https://github.com/andrucz/ionic2-rating)\n-\
+  \   [图片缓存和加载器](https://github.com/zyra/ionic-image-loader)\n-   [强制安装](https://github.com/NextFaze/ionic-manup)\n\
+  -   [地理围栏](https://github.com/tsubik/ionic2-geofence)\n-   [手风琴组件](https://github.com/mahmoudissmail/ionic2Accordion)\n\
+  -   [日历组件](https://github.com/twinssbc/Ionic2-Calendar)\n\n寻找这些优秀代码的最佳方式是在 GitHub\
+  \ 上搜索并查看星标数最高的 Ionic 项目。我一直在使用这种技巧来了解开发者们在 Ionic 上默默做着什么或正在研究什么。大多数情况下，这些项目都采用 MIT\
+  \ 许可证，因此你可以在应用中自由使用它们。\n\n## 使用 Ionic 3 实现懒加载\n\n懒加载是 Ionic 3 最近发布的一个备受期待的功能。懒加载将改善应用的启动时间，减少打包体积，并消除在每个类中包含相同组件路径的麻烦，从而简化设置\
+  \ Ionic 路由的过程。让我们看看需要做哪些更改，以及你的应用将如何改进。另外，在第 5 章“身份验证、授权与安全”中，应用演示将实现懒加载。\n\n目前，懒加载组件存在一些已知的缺陷，Ionic\
+  \ 团队正在积极解决。此外，设置懒加载会覆盖 `IonicModule.forRoot` 中定义的 `DeepLinkConfig`。我们将为每个组件引入 `IonicPageModule`，并在每个页面组件中添加一个新的\
+  \ `module.ts` 文件。请务必持续关注 Ionic 博客以及任何可能带来更多缺陷修复和新功能的新版本。\n\n以前，我们在 `app.module.ts`\
+  \ 中一次性导入所有页面，而现在我们只初始化加载 `app.component.ts`。因此，像 `HomePage` 这样的所有组件都从 declarations\
+  \ 和 entryComponents 中移除。接下来，在我们的 `src/pages/home` 目录中，我们引入了另一个文件 `home.module.ts`，类似于我们在\
+  \ `app.module.ts` 中的文件。现在，如果你使用 Ionic CLI 生成一个页面，你会发现创建了四个文件：\n\n```text\nhome.html\n\
+  \nhome.module.ts\n\nhome.scss\n\nhome.ts\n\n// src/pages/home/home.ts\n\nimport\
+  \ { Component } from '@angular/core';\n\nimport { IonicPage, NavController } from\
+  \ 'ionic-angular';\n\n@IonicPage()\n\n@Component({\n    selector: 'page-home',\n\
+  \    templateUrl: 'home.html',\n})\n\nexport class HomePage {\n    constructor(public\
+  \ navCtrl: NavController) {}\n\n    moveTo(data: any) {\n        this.navCtrl.push(\"\
+  ContactPage\", data);\n    }\n}\n```\n\n此外，现在如果我们想导航到（push）或返回（pop）任何其他组件，不再需要导入它。我们可以直接将其作为字符串处理；在构建过程中，会生成知道如何处理该字符串的深层链接。该字符串实际上是对\
+  \ `@IonicPage` 装饰器的 `name` 属性的引用，该属性默认为类名字符串。如果我们将该 `name` 属性改为其他值，还需要更新在其他地方使用的引用。你可以在这里（http://ionicframework.com/docs/v2/nightly/api/navigation/IonicPage/）找到关于\
+  \ `IonicPage` 及其支持字段的更多信息。\n\n## 小结\n\nIonic 组件和相关资源是任何 Ionic 应用的基础。通过智能使用组件和可用的第三方组件，我们可以获得更好的性能，并使我们的应用对用户更友好。在正确的位置选择正确的组件是很讲究的，最有趣的部分是我们必须从最终用户的角度以及最终用户对应用体验的角度去思考。我们必须确保用户不会感觉自己处于一个不同的世界，不会脱离原生体验，这种情况经常发生。我们可以在本章中涵盖尽可能多的重要组件和重点，但更建议的是持续关注社区动态，并寻找可以轻松用于应用的可用资源。接下来，我们将转向应用内插件的集成。由于几乎每个应用都使用某种插件，因此正确集成插件对于生产级应用至关重要。相机、GPS、文件系统和网络插件是常用的插件。我们将集成这些常用插件，以及一些许多开发者在集成时遇到问题的复杂插件。Ionic\
+  \ 团队已经发布了一个很棒的项目——Ionic Native，它简化了 Cordova 插件的使用流程。Ionic Native 是一个基于许多插件的包装库，因此我们可以轻松地将其集成到基于\
+  \ Angular 的 Ionic 应用中。\n"
+- "# Ionic Native 和插件\n\n现在我们已经了解了 Ionic 中的一些高级组件和 API。构建混合移动应用的另一个重要部分是 Cordova 插件。插件在原生\
+  \ API 和 JavaScript 之间建立了桥梁，帮助我们使用相机、GPS、文件等原生 API。插件由特定平台的原生库代码和用于调用相应原生平台方法的 JavaScript\
+  \ 接口组成。Ionic 依赖 Cordova 来构建、调试和发布应用。在本章中，我们将涵盖有关 Cordova 插件、Ionic Native 以及一些常见和高级插件的几乎所有内容。起初，Ionic\
+  \ 团队推出了基于 Angular 1.x 的 ngCordova，但后来我们有了支持 Ionic 1、2 和 3 应用的 Ionic Native。ngCordova\
+  \ 绑定于 Ionic 1，而 Ionic Native 与框架无关：\n\n-   Cordova 以及插件的工作原理\n-   Ionic Native\n\
+  -   常用 Cordova 插件（相机、GPS、通讯录）\n-   构建音乐播放器\n-   Cordova 与 PhoneGap 的对比\n\n\n\n\n\
+  ## Cordova 与插件的工作原理\n\nCordova 是一个使用 HTML、CSS 和 JavaScript 在单一代码库中构建原生移动应用的平台。Cordova\
+  \ 提供对多个平台和插件的支持。Cordova 插件允许 Cordova 的 Web 视图与原生平台通信，而我们的 Ionic 应用运行在 Web 视图中，因此我们可以访问平台\
+  \ API，如相机、地理位置等。\n\n### 什么是 Cordova？\n\n关于 Cordova，官方描述如下：\n\n> *Apache Cordova\
+  \ 是由 Apache 组织维护的一个项目。Cordova 是一组设备 API，允许移动应用开发者通过 JavaScript 访问相机或加速度计等原生设备功能。结合\
+  \ Ionic 等框架，只需使用 HTML、CSS 和 JavaScript 即可开发智能手机应用。*\n\n我们都可能在自己的应用中使用过 Cordova，也了解一些\
+  \ Cordova 官方支持的常见插件。下面我将列出一些有助于理解 Cordova 的常见要点：\n\n- Cordova 是一个应用容器\n- Cordova\
+  \ 帮助为每个平台构建原生应用\n- Cordova 提供对原生设备 API 的访问，例如相机、通讯录、GPS 等\n- 还可以编写和支持自定义插件\n- Cordova\
+  \ 是 Adobe PhoneGap 背后的引擎\n- Cordova 开源且免费使用\n\n如前所述，Cordova 官方支持多个平台和插件。我们可以看到许多新插件正在涌现，例如用于指纹、热点等功能的插件，我们可以利用它们来构建高级混合应用。大多数第三方插件都支持\
+  \ iOS 和 Android 平台，因为这两个平台在设备市场中占据主要份额。最近，一些第三方 Cordova 插件也开始支持诸如蓝牙信标等新兴技术。在本书的后续内容中，我们将构建一个应用程序并使用这项技术。\n\
+  \n### 构建和使用 Cordova 插件\n\n开发者使用 CLI 命令在项目中构建或添加 Cordova 插件。你也可以通过 plugman 发布自己的插件并与社区共享。我们还将快速了解如何构建和发布插件。\n\
+  \n```\n<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<plugin xmlns=\"http://www.phonegap.com/ns/plugins/1.0\"\
+  \ id=\"cordova-eddyblue\" version=\"1.0.0\">\n\n<name>Custom Plugin</name>\n<description>\
+  \ Cordova custom bluetooth plugin \n</description>\n<author>Gaurav Saini</author>\n\
+  <license>Apache 2.0</license>\n\n<keywords>Eddystone, Beacons</keywords>\n\n\n<engines>\n\
+  <engine name=\"cordova\" version=\">=3.4.0\" /> <!-- Needs cordova version greater\
+  \ than 3.4.0 -->\n</engines>\n\n<!-- Javascript module and file path -->\n<js-module\
+  \ src=\"www/eddyblue.js\" name=\"eddyblue\">\n<clobbers target=\"eddyblue\" />\n\
+  </js-module>\n\n<!-- android platform -->\n<platform name=\"android\">\n\n<config-file\
+  \ target=\"res/xml/config.xml\" parent=\"/*\">\n<feature name=\"Scan\">\n<param\
+  \ name=\"android-package\" \nvalue=\"com.eddyblue.plugin.scan\"/>\n</feature>\n\
+  </config-file>\n\n<source-file src=\"src/android/Eddyblue.java\" target-dir=\"src/com/eddyblue/plugin/\"\
+  />\n</platform>\n\n<!-- ios platform -->\n<platform name=\"ios\">\n\n<config-file\
+  \ target=\"config.xml\" parent=\"/widget\">\n<feature name=\"Scan\">\n<param name=\"\
+  ios-package\" value=\"HWPEddyblue\" \n/>\n</feature>\n</config-file>\n\n<header-file\
+  \ src=\"src/ios/HWPEddyblue.h\" target-dir=\"Eddyblue\"/>\n<source-file src=\"src/ios/HWPEddyblue.m\"\
+  \ target-dir=\"Eddyblue\"/>\n</platform>\n\n</plugin>\n```\n\n```\nmodule.exports\
+  \ = {\n  scan: function (name, successCallback, errorCallback) {\n    cordova.exec(successCallback,\
+  \ errorCallback, \"Scan\", \"start\", [name]);\n  }\n};\n```\n\n```\npackage com.eddyblue.plugin;\n\
+  \nimport org.apache.cordova.*;\nimport org.json.JSONArray;\nimport org.json.JSONException;\n\
+  \npublic class Scan extends CordovaPlugin {\n\n @Override\n public boolean execute(String\
+  \ action, JSONArray data, CallbackContext callbackContext) throws JSONException\
+  \ {\n\n if (action.equals(\"start\")) {\n String message = \"data to be sent\";\n\
+  \ callbackContext.success(message);\n return true;\n } else {\n return false;\n\
+  \ }\n }\n}\n```\n\n我们现在已经简要介绍了插件的工作原理。你现在可以轻松地与社区共享你的插件，并使用 plugman 将其添加到注册表中。有关插件开发的更多细节，你可以参阅\
+  \ Cordova 官方文档，它会提供进一步的指导。\n\n## Ionic Native\n\n开发混合应用的开发者已经在 Ionic 1 中使用 ngCordova\
+  \ 一段时间了。现在，随着使用 ES6 和 TypeScript 构建的 Ionic 3 的出现，我们需要一个面向 ES6 或 TypeScript 的包装库，这正是\
+  \ Ionic Native 的作用。它是基于 Cordova API 构建的 ES5/ES6/TypeScript 包装器集合，便于集成到 Ionic 应用中。Ionic\
+  \ 团队最初是应社区成员的功能请求而启动这个项目的。它最初只是一个实验，但由于插件集成时常常面临文档缺失和 API 混乱的问题，它获得了大量支持。这些 AngularJS\
+  \ 包装器简化了集成过程，并且也符合 Angular 的语法。目前，Ionic Native 支持大约 120+ 个 Cordova 插件，而且数量还在不断增加。\n\
+  \n### 安装 Ionic Native\n\n我们可以将 Ionic Native 添加到任何现有的 Ionic 项目中。在任何使用 Ionic 3 创建的入门项目中，你都会默认找到\
+  \ `ionic-native`。如果由于某种原因需要安装它，推荐的方式是通过 NPM 包：**$ npm install @ionic-native/core\
+  \ --save**\n\n如果你使用 ES6/TypeScript 构建 Ionic 3 应用，则无需在 `index.html` 文件中包含任何脚本标签。只需在文件中导入特定的\
+  \ `ionic-native` 包即可：\n\n```typescript\nimport { SplashScreen } from '@ionic-native/splash-screen'\n\
+  import { StatusBar } from '@ionic-native/status-bar';\n```\n\n如果你使用的是 Ionic 1，则需要在\
+  \ `index.html` 文件中添加 `ionic.native.js` 文件：\n\n```html\n<script src=\"ionic.native.js\"\
+  ></script>\n```\n\n我们必须将大多数插件调用包装在设备就绪事件中。因此，要检查设备是否已完全加载应用且插件可用，请使用 `Splashscreen`\
+  \ 插件的以下代码：\n\n```typescript\nconstructor(platform: Platform, private\n  splashScreen:\
+  \ SplashScreen, statusBar: StatusBar)\n  {\n    this.platform.ready().then(() =>\
+  \ {\n      // platform is ready to use available plugins.\n      this.statusBar.styleDefault();\n\
+  \      this.splashScreen.hide();\n    });\n  }\n```\n\n### 在浏览器中测试插件\n\n目前 Cordova\
+  \ 插件最大的问题之一是我们无法在浏览器中测试应用。Ionic 团队一直专注于改进 Ionic 工具，以便我们可以直接在浏览器中模拟应用的大部分功能。不过，对于当前的开发，有一个非常好的\
+  \ Chrome 插件——Cordova mocks，它由 Paolo Bernasconi 创建，他是之前 ngCordova 项目的核心贡献者之一。安装该插件后，你就可以像在手机上测试一样开始测试应用。目前，此扩展支持大约十二个插件。这个\
+  \ Chrome 插件在某些情况下可能很有效，可以帮助你在浏览器中测试受支持的插件。\n\n### 常用的 Cordova 插件\n\n每当你启动一个新的 Ionic\
+  \ 项目并添加平台时，你会看到有一些默认安装的插件。当你添加 Android 或 iOS 平台时，Ionic 会安装以下提到的插件：\n\n- ionic-plugin-keyboard\n\
+  - cordova-plugin-console\n- cordova-plugin-device\n- cordova-plugin-splashscreen\n\
+  - cordova-plugin-whitelist\n- cordova-plugin-statusbar\n\n让我们开始了解上述插件及其用途吧。\n\n\n\
+  \n\n\n## 设备插件\n\n设备插件在获取所有设备相关的硬件和软件信息方面非常有帮助。设备对象在全局作用域中可用，但仅在设备就绪后可用。\n\nIonic\
+  \ Native 通过 devices 支持此插件，它有六个静态成员来访问数据：\n\n- `Device`: 返回包含 Cordova、model、platform、UUID\
+  \ 和 version 的对象，例如，`Device.uuid`\n- `cordova`: 返回包含特定 Cordova 版本的字符串\n- `Model`:\
+  \ 返回包含设备型号名称的字符串\n- `platform`: 返回包含操作系统名称的字符串\n- `uuid`: 返回包含设备的 **通用唯一标识符** (**UUID**)\
+  \ 的字符串\n- `version`: 返回包含操作系统版本的字符串\n- `isVirtual`: 检查设备是否在模拟器上运行\n- `serial`: 获取硬件序列号\n\
+  - `manufacturer`: 获取设备的制造商\n\n```typescript\nimport { Device } from '@ionic-native/device';\n\
+  \nconstructor(platform: Platform, private device: Device)\n{\n  this.platform.ready().then(()\
+  \ => {\n    console.log(this.device.version);\n  });\n}\n```\n\n## 启动画面插件\n\n启动画面插件用于在应用程序启动时显示和隐藏启动画面。使用\
+  \ Ionic 应用程序时，您将获得默认的 Ionic 启动画面。您可以使用 Ionic CLI 命令 Ionic resources 在向相应资源文件夹添加新屏幕后轻松更改它。\n\
+  \n启动画面由 Ionic Native 支持，它有两个方法：\n\n- `this.splashScreen.show()`: 显示启动画面\n- `this.splashScreen.hide()`:\
+  \ 隐藏启动画面\n\nURL blocked by whitelist: http://maps.google.com\n\n```xml\n<access\
+  \ origin=\"*\" /> // Allow all URLs\n```\n\n```xml\n<!-- Allow links to google.com\
+  \ -->\n<allow-navigation href=\"http://google.com/*\" />\n\n<!-- Wildcards are allowed\
+  \ for the protocol, as a\n     prefix to the host, or as a suffix to the path\n\
+  \     example maps.google.com, mail.inbox.com -->\n<allow-navigation href=\"*://*.google.com/*\"\
+  \ />\n```\n\n```xml\n<allow-intent href=\"http://*/*\" />\n<allow-intent href=\"\
+  https://*/*\" />\n<allow-intent href=\"sms:*\" />\n<allow-intent href=\"tel:*\"\
+  \ />\n\n<!-- Allow all unrecognized URLs to open installed apps\n     *NOT RECOMMENDED*\
+  \ -->\n<allow-intent href=\"*\" />\n```\n\n\"No Content-Security-Policy meta tag\
+  \ found. Please add one when using the cordova-plugin-whitelist plugin.\"\n\n```xml\n\
+  <!-- Allow requests to gauravsaini.me -->\n<meta http-equiv=\"Content-Security-Policy\"\
+  \ content=\"default-src 'self' gauravsaini.me\">\n\n<!-- Enable all requests, inline\
+  \ styles, and eval() -->\n<meta http-equiv=\"Content-Security-Policy\" content=\"\
+  default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'\
+  \ 'unsafe-eval'\">\n\n<!-- Allow XHRs via https only -->\n<meta http-equiv=\"Content-Security-Policy\"\
+  \ content=\"default-src 'self' https:\">\n\n<!-- Allow iframe to https://cordova.apache.org/\
+  \ -->\n<meta http-equiv=\"Content-Security-Policy\" content=\"default-src 'self';\
+  \ frame-src 'self' https://maps.google.com\">\n```\n\n```\n}});\n    console.log('Clicked\
+  \ to update picture');\n  }\n}\n// src/pages/account/account.html\n\n<img alt=\"\
+  profileImage\" [src]=\"base64Image\">\n```\n\n对于从图库获取图像，您可以将 sourceType 更改为 photolibrary。传递给\
+  \ getPicture 方法的选项有多种。让我们检查一下我们可以使用的所有选项：\n\n- quality: 保存图像的质量，可以在 0-100 范围内或默认为\
+  \ 50。\n- destinationType: DATA_URL(base64 编码)、FILE_URL(file URI) 和 NATIVE_URL。\n\
+  - sourceType: photolibrary、camera 和 savephotoalbum。\n- allowEdit: 允许在选择图像前进行简单编辑。\n\
+  - encodingType: JPEG 或 PNG。\n- targetWidth: 缩放图像的宽度（像素）。宽高比保持不变。（数字）\n- targetHeight:\
+  \ 缩放图像的高度（像素）。宽高比保持不变。（数字）\n- mediaType: 要选择的媒体类型为 picture、video 或 all media，它仅在\
+  \ PictureSourceType 为 photolibrary 或 savephotoalbum 时有效。\n- correctOrientation:\
+  \ 在捕获期间旋转图像以校正设备的方向。（布尔值）\n- saveToPhotoAlbum: 在捕获后将图像保存到设备的照片库中。（布尔值）\n- popoverOptions:\
+  \ iOS 专用选项，指定 iPad 上的弹出框位置。\n- cameraDirection: 选择使用的摄像头为前置或后置，默认为后置。\n\n在 destinationType\
+  \ 为 FILE_URL 的情况下，要从临时存储中删除相机拍摄的照片，请使用以下代码：\n\n```\nthis.camera.cleanup().then(...);\
+  \ // only for FILE_URI\n```\n\n通过更改 sourceType 从图库中选择的照片不会被降质，即使指定了 quality 参数也是如此。为了避免常见的内存问题，请将\
+  \ camera.destinationType 设置为 FILE_URI 而不是 DATA_URL。\n\n## 地理位置插件\n\n地理位置插件利用设备的\
+  \ **全球定位系统 (GPS)** 并获取位置信息，例如经度和纬度。它还尝试从其他来源获取设备位置，包括 Wi-Fi 网络和移动网络 IP 地址，尽管准确性不会很高。此插件由\
+  \ Apache Cordova 官方支持，它有一个全局可访问的对象 `navigator.geolocation`，该对象同样需要在使用其功能时有 `deviceready`\
+  \ 事件可用。\n\n让我们通过以下方式开始安装插件：\n\n```bash\n$ ionic cordova:plugin add cordova-plugin-geolocation\n\
+  $ npm install @ionic-native/geolocation --save\n```\n\n此插件中主要有三个方法可用：\n\n- `getCurrentPosition`\n\
+  - `watchPosition`\n- `clearWatch`\n\n`getCurrentPosition` 返回当前位置的位置：\n\n```javascript\n\
+  let options = {\n  timeout :3000,\n  enableHighAccuracy: true,\n  maximumAge : 1000\n\
+  };\n\nthis.geolocation.getCurrentPosition(options).then(( position) => {\n  // on\
+  \ success\n  let coordinates = position.coords.latitude\n  +\",\"+position.coords.longitude\n\
+  }).catch((err) => {\n  // on error\n  console.log(err.message);\n});\n```\n\n正如您从前面的示例中看到的，我们向\
+  \ `getCurrentPosition()` 函数传递了选项。类似的选项也提供给 `watchPosition()` 函数。`watchPosition()`\
+  \ 监视位置变化，当设备检索到新位置时，回调会使用包含最新位置数据的 position 对象执行：\n\n```javascript\nlet watchOptions\
+  \ = {\n  timeout : 3000,\n  enableHighAccuracy: false // may cause errors if true\n\
+  };\nlet watch = this.geolocation.watchPosition(watchOptions);\n\nwatch.subscribe((position)\
+  \ => {\n  let lat = position.coords.latitude\n  let long = position.coords.longitude\n\
+  });\n\n// Clearing the watch\nwatch.clearWatch()\n```\n\n**此外，我们可以轻松清除 watch 方法；这将停止监视设备位置的变化**\n\
+  \n## 社交分享插件\n\n与社交媒体分享内容是推广应用程序及其内容的绝佳营销工具，有助于您获得新用户。因此，拥有一个分享插件将是我们应用程序的非常有益的功能。您可以使用此插件通过\
+  \ Facebook、Twitter、电子邮件、SMS、WhatsApp 等分享图像、文本、消息。它使用 Native share 插件来分享内容，并会自动显示您设备上所有可用的分享选项：\n\
+  \n```bash\n$ ionic cordova:plugin add cordova-plugin-x-socialsharing\n$ npm install\
+  \ @ionic-native/social-sharing --save\n```\n\nSocialSharing 有多个方法可在我们的应用程序中使用。最常用的方法是\
+  \ SocialSharing.share，它会打开默认的平台对话框，其中包含所有可用的分享应用程序：\n\n```typescript\n// src/pages/about/about.ts\n\
+  \nimport { SocialSharing } from '@ionic-native/social-sharing';\n\nexport class\
+  \ AboutPage {\n\n  constructor(public popoverCtrl: PopoverController, private socialSharing:\
+  \ SocialSharing) { }\n\n  shareViaFacebook() {\n    // recommended to use canShareVia\
+  \ before using shareVia\n    this.socialSharing.canShareVia(\"facebook\", \"Veloice:Intelligent\
+  \ Business Telephony\", \"Real time Voice\", \"http://veloice.com/images/banner.png\"\
+  ).then(() => {\n      this.socialSharing.shareViaFacebook(\"Veloice:Intelligent\
+  \ Business Telephony\", \"http://veloice.com/images/banner.png\");\n    }).catch(()\
+  \ => {\n      alert(\"Cannot share on Facebook\");\n    });\n  }\n\n  shareViaWhatsApp()\
+  \ {\n    // recommended to use canShareVia before using shareVia\n    this.socialSharing.canShareVia(\"\
+  whatsapp\", \"Veloice:Intelligent Business Telephony\", \"Real time Voice\", \"\
+  http://veloice.com/images/banner.png\").then(() => {\n      this.socialSharing.shareViaWhatsApp(\"\
+  Veloice:Intelligent Business Telephony\", \"http://veloice.com/images/banner.png\"\
+  );\n    }).catch(() => {\n      alert(\"Cannot share on Whatsapp\");\n    });\n\
+  \  }\n\n  shareViaEmail() {\n    // recommended to use canShareVia before using\
+  \ shareVia\n    this.socialSharing.canShareViaEmail().then(() => {\n      this.socialSharing.shareViaEmail(\n\
+  \        'Veloice:Intelligent Business Telephony', // Message\n        'Veloice',\
+  \ // Email Subject\n        ['toperson@xyz.com', 'tosecond@xyz.com'], // TO: must\
+  \ be null or an array\n        ['cc@xyz.com'], // CC: must be null or an array\n\
+  \        null, // BCC: must be null or an array\n        ['http://veloice.com/images/banner.png']\
+  \ // FILES: can be null, a string, or an array\n      );\n    }).catch(() => {\n\
+  \      alert(\"Cannot share on Email\");\n    });\n  }\n\n  share() {\n    this.socialSharing.share(\"\
+  Veloice:Intelligent Business Telephony\", \"Real time Voice\", \"http://veloice.com/images/banner.png\"\
+  , \"http://veloice.com\");\n  }\n\n}\n```\n\n\n```html\n// src/pages/about/about.html\n\
+  \n<ion-fab right bottom>\n  <button ion-fab><ion-icon name=\"help\"></ion-icon></button>\n\
+  \  <ion-fab-list side=\"top\">\n    <button (click)=\"callNow()\" ion-fab><ion-icon\
+  \ name=\"call\"></ion-icon></button>\n    <button (click)=\"shareViaEmail()\" ion-fab><ion-icon\
+  \ name=\"mail\"></ion-icon></button>\n    <button (click)=\"shareViaFacebook()\"\
+  \ ion-fab><ion-icon name=\"logo-facebook\"></ion-icon></button>\n    <button (click)=\"\
+  shareViaWhatsApp()\" ion-fab><ion-icon name=\"logo-whatsapp\"></ion-icon></button>\n\
+  \    <button (click)=\"share()\" ion-fab><ion-icon name=\"share\"></ion-icon></button>\n\
+  \  </ion-fab-list>\n</ion-fab>\n```\n\n![](img/c54e3488d7687ea0d26e8c2ce3cdfae3_189_0.png)\n\
+  \n之前列出的是分享插件提供的所有方法。你可以在代码中看到，我们在使用的 `shareViaFacebook` 方法时，将其包裹在 `canShareVia`\
+  \ 方法周围，以预先检查 Facebook 应用是否已安装。同样，我们也可以将其用于 Twitter、Instagram 和 WhatsApp。分享通过 SMS\
+  \ 和电子邮件的示例也存在，因此我们也可以直接使用这些方法进行分享。分享插件还支持通过数组进行多张图片分享。`SaveToPhotoAlbum` 方法也在插件核心代码中可用，但到目前为止\
+  \ Ionic Native 尚未为其提供任何包装器。因此你需要这样使用它：\n\n```javascript\nwindow.plugins.socialsharing.saveToPhotoAlbum(\n\
+  \  ['http://veloice.com/icon.png', 'www/veloice.jpg'],\n  onSuccess, // optional\
+  \ success function\n  onError // optional error function\n);\n```\n\n我们现在已经涵盖了一些最常用的插件。我们将继续查看需要详细示例的更复杂的插件，例如\
+  \ Facebook 和 SQLite。我们的主要重点是继续紧密地坚持 Ionic Native 并充分利用它。\n\n```typescript\n// src/pages/about/about.ts\n\
+  \nimport { CallNumber } from '@ionic-native/call-number';\n\nconstructor(private\
+  \ call: CallNumber) { }\n\ncallNow() {\n  this.call.callNumber(\"+919989887765\"\
+  , true)\n    .then(() => console.log('Launched dialer!'))\n    .catch(() => console.log('Error\
+  \ launching dialer'));\n}\n```\n\n## Text to speech\n\n`text-to-speech` 插件的功能如其名，它将文本合成为语音。该插件在\
+  \ iOS 上使用 `AVSpeechSynthesizer`，在 Android 上使用 `android.speech.tts.TextToSpeech`\
+  \ 包。让我们开始安装 `cordova` 插件和相应的 `npm` 包：\n\n```bash\n$ ionic cordova:plugin add cordova-plugin-tts\n\
+  $ npm install @ionic-native/text-to-speech --save\n```\n\n我们在应用程序中使用它来朗读 `push notification`\
+  \ 消息，每当服务器发送 `push` 消息时：\n\n```typescript\n// src/app/app.component.ts\n\nimport\
+  \ { TextToSpeech } from '@ionic-native/text-to-speech';\nconstructor(private tts:\
+  \ TextToSpeech) { }\npush.on('notification', function(data) {\n  this.tts.speak({text:\
+  \ data.message,\n    locale: 'en-GB', rate: 0.75})\n    .then(() => console.log('Success'))\n\
+  \    .catch((reason: any) => console.log(reason));\n});\n```\n\n## AppRate\n\nAppRate\
+  \ 插件用于提示用户现在、稍后或永不为应用评分。每个应用程序都需要此插件来获取客户的评论和评分：\n\n```bash\n$ ionic cordova:plugin\
+  \ add cordova-plugin-apprate\n$ npm install @ionic-native/app-rate --save\n```\n\
+  \nAppRate 集成起来非常容易，因为显示提示和其他设置的逻辑都由插件管理。我们只需要相应地设置首选项即可：\n\n```typescript\n// src/app/app.component.ts\n\
+  \nimport { AppRate } from '@ionic-native/app-rate';\n\nplatformReady() {\n  // Call\
+  \ any initial plugins when ready\n  this.platform.ready().then(() => {\n    Splashscreen.hide();\n\
+  \n    if (this.platform.is('cordova')) {\n      // App rate plugin\n      AppRate.preferences.customLocale\
+  \ = {\n        title: \"Rate vPlanet Commerce\",\n        message: \"Would you mind\
+  \ taking a moment to rate it? It won't take more than a minute. Thanks for your\
+  \ support!\",\n        cancelButtonLabel: \"No, Thanks\",\n        laterButtonLabel:\
+  \ \"Remind Me Later\",\n        rateButtonLabel: \"Rate It Now\"\n      };\n   \
+  \   AppRate.preferences.storeAppURL = {\n        android: 'market://details?id=com.vPlanetcommerce.demoionicpwa'\n\
+  \      };\n      AppRate.promptForRating(false);\n\n      // Initiate Push\n   \
+  \   this.initPushNotification();\n    }\n  });\n}\n```\n\n![](img/c54e3488d7687ea0d26e8c2ce3cdfae3_194_0.png)\n\
+  \n如果我们将 `promptForRating()` 设置为 false，则它不会立即提示。它将使用 `usesUntilPrompt` 首选项，该首选项在显示对话框之前计算应用程序的运行次数。你可以参考官方文档了解更多选项：https://ionicframework.com/docs/v2/native/app-rate/。\n\
+  \n## Google Analytics\n\n分析是任何成功应用程序的关键；它有助于了解哪些屏幕访问量最大，哪些产品最受用户关注。我们可以跟踪用户在使用应用程序时所做的许多不同事件：\n\
+  \n```bash\n$ ionic cordova:plugin add cordova-plugin-google-analytics\n$ npm install\
+  \ @ionic-native/google-analytics --save\n```\n\n让我们首先在 `app.component.ts` 中初始化插件，在这里我们将设置\
+  \ GoogleAnalytics 跟踪 ID，这将使我们开始：\n\n```typescript\n// src/app/app.component.ts\n\
+  import { GoogleAnalytics } from '@ionic-native/google-analytics';\nconstructor(private\
+  \ ga: GoogleAnalytics) { }\nplatformReady() {\n  // Call any initial plugins when\
+  \ ready\n  this.platform.ready().then(() => {\n    Splashscreen.hide();\n\n    //\
+  \ Google Analytics\n    return this.ga.startTrackerWithId(\"UA-92660667-1\")\n \
+  \     .then(() => {\n        console.log('Google analytics is ready now');\n   \
+  \     return this.ga.enableUncaughtExceptionReporting(true)\n      }).then((_success)\
+  \ => {\n        console.log(\"startTrackerWithId success\")\n      }).catch((_error)\
+  \ => {\n        console.log(\"enableUncaughtExceptionReporting\", _error)\n    \
+  \  });\n  });\n}\n```\n\n下一步是将 Analytics 插件集成到页面中，以便我们可以跟踪活动：\n\n```typescript\n\
+  // src/pages/home/home.ts\n\nimport { GoogleAnalytics } from '@ionic-native/google-analytics';\n\
+  \nconstructor(public platform: Platform, private ga: GoogleAnalytics) {\n  this.platform.ready().then(()\
+  \ => {\n    this.ga.trackView(\"Home Page\");\n  });\n}\n\ntrackEvent() {\n  let\
+  \ active = this.slider.getActiveIndex();\n  this.platform.ready().then(() => {\n\
+  \    this.ga.trackEvent(\"Slider\", \"Slider-Changed\", \"Label\", active);\n  });\n\
+  }\n```\n\n![](img/c54e3488d7687ea0d26e8c2ce3cdfae3_198_0.png)\n\n我们已初始化 `trackView()`\
+  \ 方法并传入我们所在的特定页面名称。此外，如果有人手动更改滑块的幻灯片，我们也会跟踪事件。同样，我们可以在应用程序内跟踪购买的交易。还有多种方法可供根据需求使用。有关最新更新的方法，请查看插件的官方文档：[https://ionicframework.com/docs/v2/native/google-analytics/](https://ionicframework.com/docs/v2/native/google-analytics/)。\n\
+  \n## Ionic deeplinks\n\nIonic deeplinks 插件处理 Android 和 iOS 的自定义 URL 方案和通用应用链接。我们需要确保不要将其与处理基于\
+  \ URL 注册和显示视图的 deeplinker API 混淆。我们需要认为导航不是由 URL 控制的；它们主要用作面包屑。这在我们将 Ionic 应用转换为\
+  \ PWA 时主要很有用，因为 Web 应用需要 URL 用于 SEO 和直接导航目的。\n\n我们将同时使用 deeplink 插件和 DeepLinker\
+  \ API，分别用于在原生应用程序和 Web 应用程序中直接打开自定义 URL。让我们先看看如何安装 deeplink 插件：\n\n```bash\n$ ionic\
+  \ cordova plugin add ionic-plugin-deeplinks --variable URL_SCHEME=vplanet --variable\
+  \ DEEPLINK_SCHEME=https --variable DEEPLINK_HOST=vplanetcommerce.com --variable\
+  \ ANDROID_PATH_PREFIX=/\n\n$ npm install @ionic-native/deeplinks --save\n```\n\n\
+  我们使用 deeplink 插件和 DeepLinker API 在应用程序中分别用于在原生应用程序和 Web 应用程序中直接打开自定义 URL。让我们先看看如何安装\
+  \ Deeplink 插件：\n\n```typescript\n// src/app/app.component.ts\nimport { Deeplinks\
+  \ } from '@ionic-native/deeplinks';\nconstructor(private deeplinks: Deeplinks) {\
+  \ }\nthis.platform.ready().then(() => {\n  Splashscreen.hide();\n\n  // Convenience\
+  \ to route with a given nav\n  this.deeplinks.routeWithNavController(this.nav, {\n\
+  \    '/about-us': AboutPage,\n    '/categories': CategoriesPage,\n    '/wishlist':\
+  \ WishlistPage,\n    '/cart': ShowcartPage,\n    '/login': LoginPage,\n    '/settings':\
+  \ SettingsPage,\n    '/categories/:categoryId': ProductsPage,\n    '/products/:productId':\
+  \ ProductDetailPage\n  }).subscribe((match) => {\n    // match.$route - the route\
+  \ we matched\n    // match.$args - the args passed in the link\n    // match.$link\
+  \ - the full link data\n    console.log('Successfully routed', match);\n  }, (nomatch)\
+  \ => {\n    console.warn('Unmatched Route', nomatch);\n  });\n})\n```\n\n让我们看看如何为\
+  \ Web 应用程序配置 `DeepLinkConfig`。如前所述，这些只是用作面包屑，尽管使用相同的 `NavController` 实例 `push` 和\
+  \ `pop` 操作在应用程序内部进行导航：\n\n```typescript\n// src/app/app.module.ts\n\nimport { IonicApp,\
+  \ IonicModule, IonicErrorHandler, DeepLinkConfig } from 'ionic-angular';\nimport\
+  \ { APP_BASE_HREF } from '@angular/common';\n\nimports: [\n  IonicModule.forRoot(vPlanetApp,\
+  \ {locationStrategy: 'hash'}, deepLinkConfig),\n  Ionic2RatingModule,\n  TranslateModule.forRoot({\n\
+  ```\n\n\n\n\n\n```\nprovide: TranslateLoader,\nuseFactory: createTranslateLoader,\n\
+  deps: [Http]\n})\n],\nproviders: [\n{ provide: ErrorHandler, useClass: IonicErrorHandler},\n\
+  { provide: Storage, useFactory: provideStorage },\n{ provide: APP_BASE_HREF, useValue:\
+  \ '/'},\nUserService,\nDataService\n]\n\n// Deeplink Configuration\nexport const\
+  \ deepLinkConfig: DeepLinkConfig = {\nlinks: [\n{ component: HomePage, name: 'Home\
+  \ Page', segment: '' },\n{ component: CategoriesPage, name: 'Categories Page', segment:\
+  \ 'categories' },\n{ component: ProductsPage, name: 'Categories Product Page', segment:\
+  \ 'categories/:categoryId' },\n{ component: ProductDetailPage, name: 'Product Details\
+  \ Page', segment: 'products/:productId' },\n{ component: WishlistPage, name: 'Wishlist\
+  \ Page', segment: 'wishlist' },\n{ component: ShowcartPage, name: 'Showcart Page',\
+  \ segment: 'cart' },\n{ component: SupportPage, name: 'Support Page', segment: 'feedback'\
+  \ },\n{ component: SettingsPage, name: 'About Page', segment: 'settings' },\n{ component:\
+  \ AboutPage, name: 'About Page', segment: 'about' },\n{ component: LoginPage, name:\
+  \ 'Login Page', segment: 'login' },\n{ component: SignupPage, name: 'Signup Page',\
+  \ segment: 'signup' },\n{ component: AccountPage, name: 'Account Page', segment:\
+  \ 'account' }\n]\n};\n```\n\n现在，类似于你用唯一 URL 打开特定链接的方式，你也可以通过自定义 URL 方案访问特定视图。这样我们的应用程序就可以通过\
+  \ vplanet://wishlist 访问，它将直接打开应用程序的 wishlistPage。\n\n## Facebook 连接\n\nFacebook\
+  \ 插件是社交集成中最受欢迎且使用最广泛的插件之一。借助 Ionic Native 和改进的文档，现在在你的应用程序中集成 Facebook Connect 插件变得非常容易。Facebook\
+  \ 插件允许你在 Cordova 应用程序中使用与在 Web 应用程序中相同的 JavaScript 代码。该插件最好的地方在于它使用原生的 Facebook\
+  \ 应用为用户执行单点登录。如果未安装 Facebook 原生应用，则登录会优雅地降级为使用标准对话框式身份验证。目前该插件仅支持 iOS 和 Android。在安装此插件之前，你需要通过\
+  \ developers.facebook.com 创建一个 Facebook 应用，然后复制 appId 和 appName，在添加插件时需要用到：\n\n\
+  ![](img/c54e3488d7687ea0d26e8c2ce3cdfae3_203_0.png)\n\n我们现在准备为 Facebook 安装插件，该插件需要\
+  \ APP_ID 和 APP_NAME：\n\n```\n$ ionic cordova:plugin add cordova-plugin-facebook4\
+  \ --variable APP_ID=\"419376571536241\" --variable APP_NAME=\"chatApp\"\n```\n\n\
+  除此之外，还需要对特定平台进行一系列需求检查。对于 Android，你需要在 res/values/facebookconnect.xml 文件中用你的 fb_app_id\
+  \ 配置项目：\n\n```\n<resources>\n    <string name=\"fb_app_id\">419376571536241</string>\n\
+  \    <string name=\"fb_app_name\">chatApp</string>\n</resources>\n```\n\n对于 iOS，你需要更改以下内容：\n\
+  \n- 将 FacebookAppID 更改为项目 Info.plist\n- 将 URL 方案更改为 fb<YOUR APPID>：例如，fb 419376571536241\n\
+  \n你现在就可以使用 $cordovaFacebook 模块提供的 Facebook 插件方法了。以下是我们使用 Ionic Native 提供的一些方法：\n\
+  \n- login(permissions): 一个字符串数组，例如 ['public_profile', 'email']\n- showDialog(options):\
+  \ 一个包含三个键的 JSON 对象；method、link 和 caption\n- api(path, permissions): 一个 Facebook\
+  \ API 路径查询，例如 api(\"me\", [\"public_profile\"])\n- getLoginStatus(): 检查用户是否已登录\n\
+  - getAccessToken(): 获取当前登录会话的访问令牌\n- logout(): 从 Facebook 注销\n\n要在浏览器中进行测试，你仍需要在应用程序配置中做一些更改：\n\
+  \n```\nlet appID = 419376571536241;\nlet version = \"v2.0\"; // 或留空，默认是 v2.0\n\n\
+  constructor() {\n  Facebook.browserInit(appID, version);\n}\n```\n\n![](img/c54e3488d7687ea0d26e8c2ce3cdfae3_204_0.png)\n\
+  \n此外，你还必须设置重定向 URL，其外观如下。由于 Ionic 服务器运行在 8100 端口，你可以给出 http://localhost:8100 作为重定向\
+  \ URL：\n\n![](img/c54e3488d7687ea0d26e8c2ce3cdfae3_204_1.png)\n\n## 构建音乐播放器\n\n\
+  我们现在将构建一个媒体播放器应用程序，其中你将拥有音频和视频流以及下载选项，将文件保存到你的手机。我们将主要集成用于通过 `ionic-audio` 包进行音频流的媒体插件，使用\
+  \ `StreamingMedia` 插件播放视频，并使用 `FileTransfer` 插件将文件下载到本地系统目录。让我们先创建一个应用程序\n\n```\n\
+  gaurav@gaurav-thinkpad:~/projects$ ionic start jingle-app tabs --v2\nCreating an\
+  \ Ionic 2.x app in /home/gaurav/projects/jingle-app based on the tabs template.\n\
+  \nDownloading: https://github.com/driftyco/ionic2-app-base/archive/master.zip\n\
+  Downloading: https://github.com/driftyco/ionic2-starter-tabs/archive/master.zip\n\
+  Installing npm packages (may take a minute or two)...\n\n♫♫♫♫ Your Ionic app is\
+  \ ready to go! ♫♫♫♫♫\n\nSome helpful tips:\n\nRun your app in the browser (great\
+  \ for initial development):\n  ionic serve\n\nRun on a device or simulator:\n  ionic\
+  \ run [android,browser]\n\nShare your app with testers, and test on device easily\
+  \ with the Ionic View companion app:\n  http://view.ionic.io\ngaurav@gaurav-thinkpad:~/projects$\n\
+  ```\n\n我们将使用 tabs 模板：\n\n我们只需要添加 **ionic platform add android** 平台，我们就可以准备好集成插件并构建我们的\
+  \ jingle 应用程序。\n\n## 媒体、流媒体和传输插件\n\n我们将从一个简单的音乐播放器应用程序开始，它将演示不同插件的使用，但这里的可能性是无穷无尽的。你可能会考虑构建一个音乐推荐应用程序，根据你的输入、情绪或其他因素播放音乐，尽管为此你需要准备一个良好的后端应用程序来支持推荐。正如我们已经决定了应用程序的主要功能，我们现在需要主要安装三个\
+  \ Cordova 插件，我们现在就安装它们：\n\n```\n$ ionic cordova:plugin add cordova-plugin-media\n\
+  $ ionic cordova:plugin add cordova-plugin-file-transfer\n$ ionic cordova:plugin\
+  \ add cordova-plugin-streaming-media\n```\n\n下一步将是安装它们各自的 NPM 包和 ionic-audio 模块，我们将用于音频播放器：\n\
+  \n```\n$ npm install @ionic-native/media @ionic-native/filetransfer @ionic-native/streaming-media\
+  \ ionic-audio --save\n```\n\n让我们集成 ionic-audio 模块，该模块会根据环境自动在 WebAudioProvider 和\
+  \ CordovaMediaProvider 之间切换，这在测试应用程序时非常有帮助，因为我们可以轻松地在浏览器本身中验证应用程序：\n\n```\n// src/app/app.module.ts\n\
+  import { IonicAudioModule, AudioProvider, WebAudioProvider, audioProviderFactory\
+  \ } from 'ionic-audio';\nimport { NgModule, ErrorHandler, CUSTOM_ELEMENTS_SCHEMA\
+  \ } from '@angular/core';\nimport { IonicApp, IonicErrorHandler, IonicModule } from\
+  \ 'ionic-angular';\n\n@NgModule({\n  imports: [\n    IonicModule.forRoot(MyApp),\n\
+  \    IonicAudioModule.forRoot({ provide: AudioProvider,\n      useFactory: audioProviderFactory\
+  \ })\n  ],\n  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]\n})\n```\n\n我们有三个标签视图，HomePage、MusicPage\
+  \ 和 VideoPage。音频播放器集成在 MusicPlayerPage 上。我们将注入 AudioProvider 来控制音频播放器及其功能：\n\n```\n\
+  // app/pages/music-player/music-player\n\nimport { AudioProvider } from 'ionic-audio';\n\
+  \nexport class MusicPlayerPage {\n\n  source: string;\n  img: string;\n  singleTrack:\
+  \ any;\n  allTracks: any[];\n  selectedTrack: number;\n\n  constructor(\n    public\
+  \ platform: Platform,\n    public navParams: NavParams,\n    public viewCtrl: ViewController,\n\
+  \    private _audioProvider: AudioProvider) {\n```\n\n\n\n```\nthis.source = this.navParams.get('url');\n\
+  this.img = this.navParams.get('img');\n\nthis.singleTrack = {\n  src: this.source,\n\
+  \  artist: this.source.slice(25,-4),\n  title: this.source.slice(25,-4),\n  art:\
+  \ this.img,\n  preload: 'metadata' // tell the plugin to preload metadata such as\
+  \ duration for this track, set to 'none' to turn off\n};\n\nngAfterContentInit()\
+  \ {\n  // get all tracks managed by AudioProvider so we can\n  // control playback\
+  \ via the API\n  this.allTracks = this._audioProvider.tracks;\n}\n\nplaySelectedTrack()\
+  \ {\n  // use AudioProvider to control selected track\n  this._audioProvider.play(this.selectedTrack);\n\
+  }\n\npauseSelectedTrack() {\n  // use AudioProvider to control selected track\n\
+  \  this._audioProvider.pause(this.selectedTrack);\n}\n\nonTrackFinished(track: any)\
+  \ {\n  console.log('Track finished', track)\n}\n}\n\n// src/pages/music-player/music-player.html\n\
+  \n<ion-content padding>\n  <ion-card>\n    <img [src]=\"img\"/>\n    <ion-card-content>\n\
+  \      <ion-card-title>\n        {{ source | trimurl }}\n      </ion-card-title>\n\
+  \n      <audio-track #track [track]=\"singleTrack\">\n        <ion-item [audioTrack]=\"\
+  track\">\n          <ion-thumbnail item-left>\n            <img src=\"{{track.art}}\"\
+  >\n            <audio-track-play light [audioTrack]=\"track\">\n              <ion-spinner></ion-spinner>\n\
+  \            </audio-track-play>\n          </ion-thumbnail>\n\n          <div item-content\
+  \ style=\"width:100%\">\n            <p><strong>{{track.title}}</strong> ◦ <em>{{track.artist}}</em></p>\n\
+  \            <audio-track-progress-bar duration progress [audioTrack]=\"track\"\
+  ></audio-track-progress-bar>\n            <em style=\"font-size:.5em\">Track ID:\
+  \ {{track.id}}</em>\n          </div>\n        </ion-item>\n      </audio-track>\n\
+  \    </ion-card-content>\n  </ion-card>\n</ion-content>\n```\n\n![](img/c54e3488d7687ea0d26e8c2ce3cdfae3_210_0.png)\n\
+  \n我们为 `ionic-audio` 插件添加了一个相应的组件。接下来，我们将能够通过 `FileTransfer` 插件下载歌曲：\n\n```\n// src/pages/music/music.ts\n\
+  import { Transfer, TransferObject } from '@ionic-native/filetransfer';\n\ndeclare\
+  \ var cordova: any;\n\n@Component({\n  selector: 'page-music',\n  templateUrl: 'music.html'\n\
+  })\nexport class MusicPage {\n\n  constructor(private transfer: Transfer);\n\n \
+  \ download(song) {\n    const fileTransfer: TransferObject = this.transfer.create();\n\
+  \    let url = song.url;\n\n    fileTransfer.download(url,\n      cordova.file.externalRootDirectory\
+  \ +\n      song.name).then((entry) => {\n      alert('download complete: ' + entry.toURL());\n\
+  \    }, (error) => {\n      // handle error\n    });\n  }\n}\n```\n\n请确保在 `@Component`\
+  \ 装饰器之前声明 `cordova` 变量。此外，我们需要创建一个 `Transfer()` 方法的实例，然后将 URL 和路径传递给它，它将在此路径下保存文件。目前我们设置了\
+  \ `rootDirectory` 作为文件保存的位置。\n\n接下来，我们将使用 Streaming 插件在应用程序内播放视频。Streaming 插件使用原生媒体播放器，它非常流畅，而不是在\
+  \ `HTMLAudioElement` 内播放：\n\n```\n// src/pages/video-player/video-player\nimport\
+  \ { Component } from '@angular/core';\nimport { NavController, NavParams } from\
+  \ 'ionic-angular';\nimport { StreamingMedia, StreamingVideoOptions } from '@ionic-native/streaming-media';\n\
+  \n@Component({\n  selector: 'page-video-player',\n  templateUrl: 'video-player.html'\n\
+  })\n\nexport class VideoPlayerPage {\n\n  source: string;\n\n  constructor(public\
+  \ navCtrl: NavController, public navParams: NavParams) {\n\n    this.source = this.navParams.get('url');\n\
+  \n    // Playing a video.\n    let options: StreamingVideoOptions = {\n      successCallback:\
+  \ () => { console.log('Video played') },\n      errorCallback: (e) => { console.log('Error\
+  \ streaming') },\n      orientation: 'landscape'\n    };\n\n    StreamingMedia.playVideo(this.source,\
+  \ options);\n  }\n\n  ionViewDidLoad() {\n    console.log('ionViewDidLoad VideoPlayerPage');\n\
+  \  }\n\n}\n```\n\n我们可以进一步扩展音乐播放器，增加更多功能，例如将歌曲添加为收藏、创建播放列表，甚至添加音乐控制插件，该插件将显示带有播放/暂停、上一首和下一首操作的媒体通知。随着\
+  \ Cordova 插件的快速发展，可用的可能性是无限的。\n\n到目前为止，我们主要关注的是 Ionic Native 封装器提供的功能，而不是官方插件。这样做是为了利用开发以及与现有\
+  \ Ionic 应用程序集成的便利性。我建议大家都查阅官方插件文档，以查看任何新的改进和变化。此外，有时官方仓库的位置可能会发生变化，所以这样我们总能保持更新。Ionic\
+  \ 框架发布后，混合开发一直在稳步发展，Cordova 插件的开发也是如此，因此最好始终查看官方插件文档以了解新功能。\n\n## Cordova 与 phonegap\n\
+  \n关于 Cordova 和 phonegap，一直存在很多困惑和疑问。此外，许多人询问在 Ionic 中应该使用哪一个。虽然 Ionic 使用 Cordova，但我们肯定也可以使用\
+  \ phonegap。许多人仍然不了解 Cordova，因为 phonegap 早于 Cordova 出现。让我们快速回顾一下它的历史：phonegap 是由\
+  \ Nitobi 于 2009 年创建的。后来在 2011 年，Adobe 收购了 Nitobi 以及 phonegap 平台的权利。该平台的开源核心代码被捐赠给\
+  \ Apache 组织以进行进一步开发。phonegap 也是免费且开源的。起初，Cordova 和 phonegap 之间几乎没有区别，但慢慢地 Adobe\
+  \ 开始在 phonegap 周围构建一套专有服务。PhoneGap Build 就是这些服务之一。Cordova 是驱动 phonegap 的引擎，类似于 webkit\
+  \ 是 Chrome 浏览器的引擎。关于使用哪个平台一直存在长期争论，开发者之间也存在利益冲突。许多人批评 phonegap 是 Cordova 的修补版本，只是利用\
+  \ phonegap 的远程构建等功能。最终，这与 Ionic 无关，并且独立于这场争论。作为开发者，你可以自由使用其中任何一个。\n\n如果你仍然想使用 phonegap\
+  \ 并利用其内置服务，那么在使用 phonegap 构建项目时可以轻松选择它。Ionic CLI 命令使用 Cordova，因此你需要安装和使用 Cordova。\n\
+  \n## 总结\n\nCordova 插件将不断演进，我们需要确保跟上所引入的最新功能。随着 Ionic 进入市场，过去几年混合应用程序和插件的开发显著增加。这是因为更多人对其感兴趣，并且为了跟上最新技术，开发者开发了许多自定义插件。一个类似例子是蓝牙信标，以及开发者为了支持其不同格式而开发的多个插件。我们现在已经涵盖了插件开发，这是开发复杂混合应用程序的另一个重要方面。我们现在可以利用插件的力量来构建需要访问原生\
+  \ API 的高级混合应用程序。在本章稍后部分，我们继续介绍了许多 Ionic CLI 命令，这些命令帮助我们快速开发和调试应用程序。Ionic CLI 日新月异，许多新功能和任务即将推出。我们都应该定期更新\
+  \ Ionic CLI 并查看新功能，以便在下一个应用程序中加以利用。\n\n在第4章，*Ionic 平台与服务*中，我们将介绍 Ionic 服务和工具。在过去两年中，Ionic\
+  \ 发展了很多，Ionic 团队构建了非常实用的工具，加速了开发时间。Ionic CLI 是最常用和最重要的工具之一。Ionic 作为一个平台提供 Ionic\
+  \ Push、Ionic Deploy、Ionic Analytics 和 Ionic Lab，以及 Creator 和 Playground 帮助快速构建原型。Ionic\
+  \ 团队正在非常努力地为我们带来所有这些很棒的东西，帮助我们为用户创新应用程序。\n\n\n\n"
+- "# Ionic 平台和服务\n\n到目前为止，我们已经查看了构建企业级应用几乎所有的关键组件。Ionic 平台是一套精美的工具和服务，能加快开发流程并将构建、测试、调试和部署应用等一切工作流线化到单一平台上。随着\
+  \ Ionic 团队持续改进 Ionic 平台和工具，你在不久的将来会看到更多内容。我们将涵盖 Ionic 提供的几乎所有服务和工具，以便你能利用你的项目：\n\
+  \n- Ionic Cloud\n- Ionic Auth\n- Ionic DB\n- Ionic push\n- Ionic deploy\n- Ionic\
+  \ package\n- Ionic View, Creator, and Playground\n\n## Ionic Cloud\n\nIonic 最初是一个名为\
+  \ Ionic framework 的框架，现在随着 Ionic.io 和相关工具与服务的推出，它已成为一个完整的平台。Ionic.io 或 Ionic Cloud\
+  \ Platform 提供了丰富且专注于混合应用的后端服务和工具，使开发过程更轻松，并帮助以快速的速度构建企业级应用。目前 Ionic 平台已脱离 beta 阶段，他们已在一些付费订阅模式下推出服务，这是维持和为\
+  \ Ionic 团队产生收入所必需的。但 Ionic framework 将始终保持开源；只是后端服务会有一些定价计划。开始使用 Ionic 平台非常简单，只需注册一个账户即可。之后，你将能够共享、上传并使用平台提供的所有其他服务。\n\
+  \n### 安装 Ionic Cloud\n\n设置 Ionic Cloud 非常简单；我们需要安装 Ionic Cloud npm 包并关联 Ionic 账户，这只是使用\
+  \ Ionic 服务所必需的。我们将把云服务集成到我们现有的 vPlanet-commerce 应用中。最近，Ionic CLI v3 已推出，目前处于 beta\
+  \ 阶段，它改变了很多东西并更改了命令：\n\n```bash\n$ npm install @ionic/cloud-angular --save\n$ ionic\
+  \ login\n$ ionic link\n```\n\n> 请务必不要混淆 Ionic CLI v3 和 Ionic v3，它们完全不同。Ionic CLI\
+  \ 包含用于开发 Ionic 应用的主要工具。\n\n**要将基于 Ionic 2 或 3 的项目更新为与 Ionic CLI v3 兼容，我们必须运行以下命令。**\n\
+  \n```bash\n$ npm install --save-dev @ionic/cli-build-ionic-angular@beta @ionic/cli-plugin-cordova@beta\n\
+  ```\n\n现在，当你将项目链接到现有项目或创建新项目时，请确保你已登录到 Ionic Cloud，它会要求输入 Ionic 账户的用户名和密码，你可能已在\
+  \ `ionic.io` 创建。之后你可以将你的快照上传到 Ionic Cloud。\n\n![](img/c54e3488d7687ea0d26e8c2ce3cdfae3_221_0.png)\n\
+  \n下一步是在我们的 `app.module.ts` 中导入 `cloudSettings`：\n\n```typescript\n// src/app/app.module.ts\n\
+  \nimport { CloudSettings, CloudModule } from '@ionic/cloud-angular';\n\nconst cloudSettings:\
+  \ CloudSettings = {\n  'core': {\n    'app_id': 'f8fec798'\n  }\n};\n\n@NgModule({\n\
+  \  declarations: [ ... ],\n  imports: [\n    IonicModule.forRoot(vPlanetApp),\n\
+  \    Ionic2RatingModule,\n    TranslateModule.forRoot({\n      provide: TranslateLoader,\n\
+  \      useFactory: createTranslateLoader,\n      deps: [Http]\n    }),\n    CloudModule.forRoot(cloudSettings)\n\
+  \  ],\n  bootstrap: [IonicApp],\n  entryComponents: [ ... ],\n  providers: [ ...\
+  \ ]\n})\n```\n\n我们现在已成功将 vPlanet-Commerce 应用上传到 ionic.io。我们现在准备开始使用 Ionic 服务，例如\
+  \ Push、Deploy、DB 等。你可以在 Dashboard (https://apps.ionic.io/apps) 上找到所有你的应用：\n\n![](img/c54e3488d7687ea0d26e8c2ce3cdfae3_222_0.png)\n\
+  \n你可以在 Settings 选项卡内找到有关应用的所有信息。点击你的特定项目后，你将能够看到有关特定项目的详细信息。目前，我们的 vPlanet-Commerce\
+  \ 应用使用的是免费计划，提供约 5000 次部署、10,000 条推送通知和 100 次包构建。你可以随时升级计划，当你看到应用用户增加且流量增长时。最好的地方在于，我们将从用于用户登录和注册流程的\
+  \ Auth 开始，集成每一个 Ionic Cloud 服务。Ionic DB 作为我们的应用数据库、推送通知、Package 和 Deploy：\n\n![](img/c54e3488d7687ea0d26e8c2ce3cdfae3_222_1.png)\n\
+  \n另外，还有一个重要点需要注意，当你完成 Ionic Cloud 的设置后，你会在 .io-config.json 中找到 app_id 和 api_key，而一些其他应用详情则在\
+  \ ionic.config.json 中：\n\n```json\n// .io-config.json\n{\"app_id\":\"f8fec798\"\
+  , \"api_key\":\"5b22exxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx68e\"}\n\n// ionic.config.json\n\
+  {\n  \"name\": \"vplanet-commerce\",\n  \"app_id\": \"f8fec798\",\n  \"v2\": true,\n\
+  \  \"typescript\": true\n}\n```\n\n完成本章后，你将几乎处于书籍的中段，在 halfway 你现在就能使用 Ionic 构建应用、集成各种\
+  \ Ionic 组件、Cordova 插件并能够集成 Ionic Cloud 服务，最后将应用部署到 Play Store。\n\n```typescript\n\
+  }\n}\n\nshowToast(response_message:any) {\n    let toast = this.toastCtrl.create({\n\
+  \        message: (response_message ? response_message : \"Log In Successfully\"\
+  ),\n        duration: 1500\n    });\n    toast.present();\n}\n\nonSignup() {\n \
+  \   this.navCtrl.push(SignupPage);\n}\n}\n```\n\n我们已将其与一个登录表单集成，该表单以对象形式获取数据，我们将其传递给\
+  \ this.auth.login() 方法，如前面的代码所示。这将返回 token 和各种其他数据，默认情况下存储在本地存储中。在下面的截图中，你可以看到主要保存了三个键/值对，ionic_auth、ionic_insights_session\
+  \ 和 ionic_user：\n\n![](img/c54e3488d7687ea0d26e8c2ce3cdfae3_226_0.png)\n\n接下来，我们将其与一个登录表单集成，该表单以对象形式获取数据，我们将其传递给\
+  \ this.auth.login() 方法，如前面的代码所示。这将返回 token 和各种其他数据，默认情况下存储在 Local Storage 中。在前面的截图中，你可以看到主要三个键/值对。用户数据主要存储在\
+  \ ionic_user 中，你会在其中找到用户名、电子邮件和其他详细信息。现在让我们看看如何在我们的应用中注册新用户。我们将在 SignupPage 中集成它：\n\
+  \n```typescript\n// src/pages/signup/signup.ts\n\nimport { Component } from '@angular/core';\n\
+  import { NgForm } from '@angular/forms';\nimport { NavController } from 'ionic-angular';\n\
+  import { LoginPage } from '../login/login';\nimport { Auth, UserDetails, IDetailedError\
+  \ } from '@ionic/cloud-angular';\n\n@Component({\n    selector: 'page-user',\n \
+  \   templateUrl: 'signup.html'\n})\nexport class SignupPage {\n\n    signup: {name?:\
+  \ string, email?: string, password?: string} = {};\n\n    details: UserDetails =\
+  \ {\n        \"name\": this.signup.name,\n        \"email\": this.signup.email,\n\
+  \        \"password\": this.signup.password\n    };\n\n    submitted = false;\n\n\
+  \    constructor(\n        public navCtrl: NavController,\n        public userService:\
+  \ UserService,\n        public auth: Auth) {}\n\n    onSignup(form: NgForm) {\n\
+  \        this.submitted = true;\n\n        if (form.valid) {\n            // registering\
+  \ new user\n            this.auth.signup(this.signup).then(() => {\n           \
+  \     // user is now registered\n                this.navCtrl.push(LoginPage);\n\
+  \            }, (err: DetailedError<string[]>) => {\n                for (let e\
+  \ of err.details) {\n                    if (e === 'conflict_email') {\n       \
+  \                 alert('Email already exists.');\n                    } else {\n\
+  \                        // handle other errors\n                    }\n       \
+  \         }\n            });\n        }\n    }\n}\n```\n\n\n\n\n## Ionic DB\n\n\
+  Ionic DB 是 Ionic Cloud 服务中最新增加的功能。IonicDB 用于安全地将应用程序数据远程存储。它与 Auth 集成得很好，因此用户可以安全地存储数据并实时检索。我们将在应用程序中从\
+  \ IonicDB 获取数据，因为我们已经安装并配置了云客户端，所以可以直接集成。IonicDB 的一些重要特性如下：\n\n- JSON 风格文档存储\n-\
+  \ 实时数据更新\n- 身份验证和权限管理读写权限。\n\n我们将从在仪表板中为应用程序创建数据库并添加特定集合开始。集合是一组文档，通过存储在 id 字段中的唯一键来标识。你也可以将集合类比为关系数据库中的表。我们将创建一些初始集合：categories、parent_categories、popular_products\
+  \ 和 products，这些将在应用程序的不同视图中使用。你还会发现 user 集合，这是在我们集成 Auth 时自动创建的：\n\n![](img/c54e3488d7687ea0d26e8c2ce3cdfae3_230_0.png)\n\
+  \n我们将在应用程序的多个视图中使用 Ionic DB，因此我们创建了一个 DataService 提供者，它将直接与 Ionic DB 通信，并将数据返回给调用该服务的视图。这将帮助我们避免大量代码重复。在开始之前，让我们先了解一下\
+  \ Ionic DB 的工作原理以及它是如何获取数据的：\n\n```\n// src/providers/data-service.ts\n\nimport\
+  \ { Injectable } from '@angular/core';\nimport { Storage } from '@ionic/storage';\n\
+  import { Database } from '@ionic/cloud-angular';\nimport { Observable } from 'rxjs/Observable';\n\
+  \nimport 'rxjs/add/operator/map';\nimport 'rxjs/add/operator/catch'\n\n@Injectable()\n\
+  export class DataService {\n\n  cartItems: any[];\n\n```\n\n```\nloading: any;\n\
+  \nconstructor(public db: Database) {\n    // Establish Initial connection\n    this.db.connect();\n\
+  }\n\npublic getCategories(): Observable<any> {\n    const categories:any = this.db.aggregate({\n\
+  \        name: \"testing\",\n        categories: this.db.collection('categories'),\n\
+  \        parent_categories:\n            this.db.collection('parent_categories')\n\
+  \    })\n    return categories.fetch();\n}\n\npublic getPopularProducts(): Observable<any>\
+  \ {\n    const popular_products:any =\n        this.db.collection('popular_products');\n\
+  \    return popular_products.order(\"price\",\n    \"ascending\").fetch();\n}\n\
+  }\n```\n\n在从 IonicDB 集合获取数据之前，我们需要与数据库建立初始连接，之后我们才能创建集合。你可以从前面的代码中看到，我们在构造函数中建立了连接，之后我们声明了多个从数据库获取数据的函数。\n\
+  \n集合支持多种读写操作。在我们的 getPopularProducts() 函数中，我们使用了 order() 方法，它按价格从低到高检索产品。在某些场景下，我们需要查询多个集合并将结果合并为单个\
+  \ JSON 响应。在 categoriesPage 上，我们同时获取 categories 和 parent_categories。因此，我们可以准备一棵树在\
+  \ UI 端相应地显示。aggregate() 方法将多个数据库查询的结果合并为一个结果。你可能已经注意到，这里我们使用了 fetch() 方法，而不是我们在\
+  \ getPopularProducts() 函数中使用的 watch() 方法。watch() 和 fetch() 的区别在于，watch() 会实时更新数据：\n\
+  \n```\n// src/pages/home/home.ts\n\nimport { DataService } from '../../providers/data-service';\n\
+  \nexport class HomePage {\n    constructor(public data: DataService) {\n       \
+  \ this.data.getPopularProducts().subscribe((popular) => {\n            this.products\
+  \ = this.arrayToMatrix(popular, 2);\n            console.log(this.products)\n  \
+  \      }, (error) => {\n            console.error(error);\n        });\n    }\n\
+  }\n\n// src/pages/categories/categories.ts\n\nthis.data.getCategories().subscribe((data)\
+  \ => {\n    for (var i = 0; i < data.categories.length; ++i) {\n        let p_id\
+  \ = data.categories[i].parent_id;\n        for (var j = 0; j < data.parent_categories.length;\n\
+  \            ++j) {\n            if(data.parent_categories[j].id == p_id)\n    \
+  \        {\n                data.parent_categories[j].child.push(data.categories[i])\n\
+  \            }\n        }\n    }\n    this.categoryList = data.parent_categories;\n\
+  \n```\n\n```\n}, (error) => {\n    console.error(error);\n});\n```\n\n所有读写操作都返回\
+  \ RxJS observable。subscribe 是 observable 上的一个方法，它接收三个函数作为参数：\n\n- next(result)：接收集合数据的回调方法\n\
+  - error(error)：接收错误数据的回调方法\n- complete()：当结果集迭代完成时执行的回调\n\n如果你想停止接收数据流，可以调用 unsubscribe()\
+  \ 方法。我们在移动应用程序中主要使用读取方法从数据库检索数据。不过，我们也有多种写操作，也可以用于以用户为中心的应用，比如待办事项应用。\n\n让我们也看看一些写操作以及如何使用它们。虽然在我们的\
+  \ vPlanet 应用程序中没有使用写操作，但让我们演示如何为待办事项应用使用一些写操作：\n\n```\nconst todoItems = this.db.collection(\"\
+  items\");\n\n// Insert a todo item document\n\nlet dateTime = new Date().toLocaleString();\n\
+  \ntodoItems.insert({\n  id: \"1\",\n  user: this.user.id,\n  text: \"Prepare project\
+  \ presentation\",\n  status: \"pending\"\n  timestamp: dateTime\n});\n\n// Update\
+  \ todo item\n\nlet dateTime = new Date().toLocaleString();\n\ntodoItems.update({\n\
+  \  id: \"1\",\n  user: this.user.id,\n  text: \"Prepare project presentation\",\n\
+  \  status: \"completed\"\n  timestamp: dateTime\n});\n```\n\n现在我们对 IonicDB 的读写操作有了很好的了解。IonicDB\
+  \ 仍在积极开发中，因此你可能会遇到一些问题，但到目前为止，我在开发 vPlanet 应用程序的过程中一直很顺利。\n\n## 身份验证与权限\n\nIonic\
+  \ DB 集成了现有的认证服务，默认情况下该服务是禁用的，因为在我们的 vPlanet 应用程序中，我们不需要启用认证，因为大多数数据应该是公开可访问的。对于待办事项应用，我们需要在\
+  \ IonicDB 中启用认证，这将要求用户在使用 Ionic Auth 登录后才能连接到数据库。这样，用户只有通过认证后才能访问数据。要启用认证，我们需要更新\
+  \ `app.module.ts` 中的一些设置：\n\n```\n```typescript\n// src/app/app.component.ts\n\n\
+  const cloudSettings: CloudSettings = {\n  'core': {\n    'app_id': 'APP_ID'\n  },\n\
+  \  'database': {\n    'authType': 'authenticated'\n  }\n};\n```\n```\n\n另外，重要的一点是，确保仅在调用登录方法之后或用户已经过认证之后才建立数据库连接：\n\
+  \n```\n```typescript\nif(this.auth.isAuthenticated()){\n  // Connect DB after checking\
+  \ user authentication\n  this.db.connect();\n} else {\n  // Need to login\n  this.auth.login('basic',\
+  \ details).then( () => {\n    // Now it is safe to connect\n    this.db.connect();\n\
+  \  });\n}\n```\n```\n\n![](img/c54e3488d7687ea0d26e8c2ce3cdfae3_234_0.png)\n\n权限允许你限制对数据库集合的访问。我们可以控制用户能读取和写入哪些数据。权限基于白名单机制，当从仪表板启用权限后，默认情况下我们将无法访问数据。我们需要为每个集合创建权限，并将其定义为默认组或认证组。默认组权限适用于所有用户，无论他们是否经过认证。认证组权限仅适用于经过认证的用户。让我们回到待办事项应用演示，现在我们还有另一个关注点，即只有数据是\n\
+  \n\n\n与用户相关的数据应由该用户访问。由一个用户登录创建的待办事项不应对其他用户有权限。因此基本上应根据当前用户进行过滤。为此我们使用自定义权限，例如，在插入项目时我们指定了与该项目关联的\
+  \ `userId`：\n\n![](img/c54e3488d7687ea0d26e8c2ce3cdfae3_235_0.png)\n\n因此现在在获取项目时我们将传递当前的\
+  \ `userId`，这将在当前用户上下文中检索数据：\n\n![](img/c54e3488d7687ea0d26e8c2ce3cdfae3_235_1.png)\n\
+  \n```javascript\ntodoItems.findAll({user:this.user.id}).watch().subscribe( (items)\
+  \ => {\n  // this will only fetch items that\n  // login user have created\n  console.log(items);\n\
+  })\n```\n\n我们在这里尝试触及 IonicDB 可用的每个可能部分并附带一些示例代码。这将真正简化初始学习曲线，并让你直接开始使用 IonicDB 构建应用程序。使用\
+  \ IonicDB 我们也可以将其集成到我们的后端 NodeJS 应用程序中。\n\n## Ionic push\n\nIonic push 允许你向用户的设备发送消息和警报。即使应用程序关闭也可以触发推送通知。推送通知现在已经存在很长时间，并且在每个应用程序中都很常见。你们中的许多人可能已经在过去整合\
+  \ GCM 和 APNS 时拥有良好的经验。所以这里我们的主要兴趣是如何从 Ionic push 服务使用这些服务。Ionic push 允许你从单个界面或 API\
+  \ 向两个平台发送通知。使用 Ionic push 服务我们可以发送通知到：\n\n- 目标用户\n- 安排通知\n- 发送上下文内容\n- 将媒体附加到通知\n\
+  - 在自定义逻辑上自动发送通知\n- 使用后台通知触发应用事件\n\n在我们能够从 Ionic push 服务发送通知之前，我们需要设置 FCM 项目和 API\
+  \ 密钥。我们可以在 firebase 控制台设置和云消息传递选项卡中找到 FCM 服务器密钥和发送者 ID：\n\n![](img/c54e3488d7687ea0d26e8c2ce3cdfae3_237_0.png)\n\
+  \n- 下一步是生成 keystore 文件，我们将在为应用程序创建安全配置文件时与其他详细信息一起上传。在创建 keystore 时它会先要求 Keystore\
+  \ 密码，并在输入其他详细信息后要求别名的 Key 密码。只要确保你记住这一点，因为在创建安全配置文件时需要它：\n\n```\nkeytool -genkey\
+  \ -v -keystore vplanet.keystore -alias vplanet-alias -keyalg RSA -keysize 2048 -validity\
+  \ 10000\n```\n\n- 现在我们已准备好创建安全配置文件。来自 Firebase 控制台的 FCM 服务器密钥，附加生成的 vplanet.keystore\
+  \ 文件，别名及其各自的密码：\n\n![](img/c54e3488d7687ea0d26e8c2ce3cdfae3_238_0.png)\n\n- 我们将使用\
+  \ phonegap 的 push 插件接收推送通知。在安装插件时你需要传递 `SENDER_ID`，你可以在 Firebase 控制台设置中的同一位置获取它：\n\
+  \n```bash\n// Install Cordova Push Plugin\n$ionic cordova:plugin add phonegap-plugin-push@1.9.4\
+  \ --variable\n    SENDER_ID=76xxxxxxxxx --save\n\n// NPM package\n$ npm install\
+  \ @ionic-native/push --save\n```\n\n我们现在需要在代码中的 `app.module.ts` 中更新我们的云配置：\n\n```typescript\n\
+  // src/app/app.module.ts\n\nconst cloudSettings: CloudSettings = {\n  'core': {\n\
+  \    'app_id': 'f8fec798'\n  },\n  'push': {\n    'sender_id': '76xxxxxxxxx',\n\
+  \    'pluginConfig': {\n      'ios': {\n        'badge': true,\n        'sound':\
+  \ true\n      },\n      'android': {\n        'iconColor': '#343434'\n      }\n\
+  \    }\n  }\n};\n```\n\n我们现在必须注入 push 并将其集成到我们的应用程序中。我们将调用 `Push.init()`，它将创建 Push\
+  \ 类的实例。我们将使用此 push 实例来监听注册和通知事件：\n\n```typescript\n// src/app/app.component.ts\n\
+  \nimport { Push } from '@ionic-native/push';\n\nplatformReady() {\n  // Call any\
+  \ initial plugins when ready\n  this.platform.ready().then(() => {\n    this.initPushNotification();\n\
+  ```\n\n```javascript\n}\n\ninitPushNotification() {\n  console.log(\"calling push\"\
+  );\n  let push = Push.init({\n    android: {\n      senderID: \"762350093850\"\n\
+  \    },\n    ios: {\n      alert: \"true\",\n      badge: false,\n      sound: \"\
+  true\"\n    },\n    windows: {}\n  });\n\n  push.on('registration', (data) => {\n\
+  \    console.log(\"device token ->\", data.registrationId);\n    //TODO - send device\
+  \ token to server\n  });\n\n  let self = this;\n\n  push.on('notification', function(data)\
+  \ {\n    TextToSpeech.speak({text: data.message, locale: 'en-IN', rate: 0.75})\n\
+  \      .then(() => console.log('Success'))\n      .catch((reason: any) => console.log(reason));\n\
+  \n    if (data.additionalData.foreground) {\n      // if application open, show\
+  \ alert\n      alert(data.message);\n    }\n    //if user NOT using app and push\
+  \ notification comes\n    // for demo purpose for every push message we push\n \
+  \   // to AboutPage\n    // Although you can apply logic and according to API\n\
+  \    // data\n    // you can push to specific page\n    self.nav.push(AboutPage,\
+  \ {message: data.message});\n\n    push.finish(function() {\n      console.log(\"\
+  processing of push data is finished\");\n    }, function() {\n      console.log(\"\
+  something went wrong with push.finish for ID = \" + data.additionalData.notId)\n\
+  \    }, data.additionalData.notId);\n  });\n}\n```\n\n现在我们需要在发送推送通知之前注册设备。由于我们使用\
+  \ Ionic auth，建议在登录后调用 `register()` 方法，以便将 Push 令牌保存到已认证用户：\n\n```typescript\n//\
+  \ src/pages/login/login.ts\n\nthis.auth.login('basic', this.login).then((result)\
+  \ => {\n  // user is now registered\n  // Push Notification register\n  this.push.register().then((data:\
+  \ PushToken) => {\n    return this.push.saveToken(data);\n  }).then((data: PushToken)\
+  \ => {\n    console.log('Token saved:', data.token);\n  });\n}, (err: IDetailedError<string[]>)\
+  \ => {\n  console.log(err);\n  loading.dismiss();\n  this.showToast(err)\n});\n\
+  ```\n\n同样，我们将在用户注销时注销设备：\n\n```javascript\nlogout() {\n    this.auth.logout();\n\
+  \    this.push.unregister();\n    this.events.publish('user:logout');\n    return\
+  \ true;\n}\n```\n\n让我们从仪表板发送推送通知；发送消息时有多个选项可用。发送通知时有三个步骤和多个选项可用：\n\n- 活动名称、通知主题、消息、负载（键/值对）和设备选项\n\
+  - 针对特定用户细分或所有用户\n- 安排推送立即发送、稍后发送或基于某些触发器发送。还有要发送通知的哪个配置文件\n\n![](img/c54e3488d7687ea0d26e8c2ce3cdfae3_240_0.png)\n\
+  \n下一步可以是将 Push API 集成到我们的后端代码库中，如果需要的话。这样就可以有多种可能性和条件来发送通知。只要确保你不要向用户的设备发送太多通知，因为很多时候这就是用户卸载应用程序的原因。\n\
+  \n## Ionic deploy\n\nIonic deploy 服务为你提供实时部署的访问权限，这有助于你将 HTML、CSS 和 JS 等网络资源直接发布给用户，而无需每次都上传到\
+  \ Play Store。使用这种实时部署方法你将有许多优势：\n\n- 按需实时更新\n- 节省应用商店审批时间\n- 通过将不同快照上传到不同渠道进行 A/B\
+  \ 测试\n\n在开始之前，让我们安装 deploy 插件，它将在 Android 和 iOS 设备上更新你的应用程序：\n\n```\n$ ionic cordova:plugin\
+  \ add ionic-plugin-deploy -save\n```\n\n我们将在 `app.component.ts` 中注入 `Deploy` 方法，因此每次打开应用程序时都会检查新更新：//\
+  \ src/app/app.component.ts\n\n```typescript\nimport { AlertController } from 'ionic-angular';\n\
+  import { Deploy } from '@ionic/cloud-angular';\n\nconstructor(\npublic deploy: Deploy,\n\
+  public alertCtrl: AlertController\n) {\n\n// checks if new snapshot available\n\
+  this.deploy.check().then((snapshotAvailable: boolean) => {\nif (snapshotAvailable)\
+  \ {\nlet alert = this.alertCtrl.create({\ntitle: 'Update Available !',\nmessage:\
+  \ 'Do you want to update the application now ?',\nbuttons: [\n{\ntext: 'Later',\n\
+  role: 'cancel',\nhandler: () => {\nconsole.log('Cancel clicked');\n}\n},\n{\ntext:\
+  \ 'Update',\nhandler: () => {\nthis.deploy.download().then(() => {\n```\n\n\n\n\n\
+  ```\nthis.deploy.extract()\n}).then(() => {\nthis.deploy.load()\n});\n}\n}\n]\n\
+  });\nalert.present();\n});\n}\n}\n```\n\ncheck() 方法用于检查是否有可用更新。如果有可用更新，我们会显示一个提示对话框，询问用户是现在还是稍后更新应用程序。\n\
+  \n下一步是使用 NOTE 和 CHANNEL_TAG 部署快照。可用于部署的渠道主要有三个：production、staging 和 dev。如果需要，我们可以创建更多渠道，默认情况下部署服务会检查\
+  \ production 快照。如果需要更改，我们需要按如下方式设置 channel 属性：`this.deploy.channel = 'staging';`\n\
+  \n如果发现无效渠道，则会回退到 production 渠道。另外，请确保在调用 check() 方法之前更新 channel 属性：\n\n![](img/c54e3488d7687ea0d26e8c2ce3cdfae3_243_0.png)\n\
+  \n值得一提的是，每当我们打包代码时，代码也会上传到服务器。但要让部署生效，我们需要传递渠道标签：\n\n![](img/c54e3488d7687ea0d26e8c2ce3cdfae3_243_1.png)\n\
+  \n我们可以通过做一些小的 HTML 更改，然后将其上传到服务器来测试部署。只需确保运行 Ionic server，以便 `src` 文件夹被转译并复制到 `www`\
+  \ 文件夹。\n\n## Ionic package\n\nIonic package 是另一种云服务，可简化不同平台的原生构建流程。基本上，`ionic package`\
+  \ 在云端构建 Cordova 应用。对于需要在 Windows 或 Linux 上构建 iOS 应用的人来说，这是一个绝佳的选择。使用 `ionic package`\
+  \ 服务的一些优点如下：\n\n- 将构建版本发送给他人\n- 为不支持的平台构建应用\n- 生成 `.apk` 和 `.ipa` 文件，可直接上传到应用商店\n\
+  \n由于我们已经设置了安全配置文件和凭据，我们现在就可以直接开始。这里我们为 `PLATFORM_TAG` Android 和 `PROFILE_TAG` prod\
+  \ 构建应用：\n\n```\ngaurav@gaurav-thinkpad:~/projects/ionic/vplanet-commerce$ ionic\
+  \ package build android --profile prod --release\nThe resources folder already exists.\
+  \ We will not overwrite your files unless you pass the --force argument.\nRunning\
+  \ with the force flag will overwrite your resources directory and modify your config.xml\
+  \ file\nPreparing your resources...\nsplash ios Default-Portrait@ipadpro.png (2048x2732)\
+  \ skipped, source image splash.png (2208x2208) too small\nsplash ios Default-Landscape@ipadpro.png\
+  \ (2732x2048) skipped, source image splash.png (2208x2208) too small\nUploading\
+  \ your project to Ionic...\nSubmitting your app to Ionic Package...\nYour app has\
+  \ been successfully submitted to Ionic Package!\nBuild ID: 5\nWe are now packaging\
+  \ your app.\n```\n\n现在，你可以从可用的包构建列表中查看构建状态，并通过 ID 下载它们：\n\n```\n$ ionic package\
+  \ list\n```\n\n| id | 状态 | 平台 | 模式 | 开始时间 | 完成时间 |\n|----|--------|----------|------|---------|----------|\n\
+  | 5 | 成功 | android | 发布 | Mar 9th, 2017 3:52:54 | Mar 9th, 2017 3:53:46 |\n| 4 |\
+  \ 成功 | android | 调试 | Mar 9th, 2017 3:35:00 | Mar 9th, 2017 3:35:48 |\n| 3 | 失败\
+  \ | android | 调试 | Mar 9th, 2017 3:21:46 | |\n| 2 | 失败 | android | 调试 | Mar 9th,\
+  \ 2017 3:14:12 | |\n| 1 | 失败 | android | 调试 | Mar 9th, 2017 2:59:09 | |\n\n显示你最新的\
+  \ 5 个构建。\n\n要下载，你只需指定 `BUILD_ID`：\n\n```\n$ ionic package download 4\n```\n\n很多时候，我们在添加\
+  \ cordova 插件时没有使用 `--save` 标志，因此没有在 `config.xml` 中生成条目。为了确保 Ionic package 服务知道你需要的插件，请执行\
+  \ `ionic plugin save`，这样所有插件条目都会写入 `config.xml` 中。\n\n> 注意：Ionic CLI 3 beta 发布后，package、upload、setup、share\
+  \ 等许多命令已被移除。这些命令在 Ionic CLI v2 中可以正常工作，但如果你计划升级，请在 v3 中寻找替代命令。另外，由于 v3 仍处于测试阶段，我们并不完全清楚这些命令的替代方案。\n\
+  \n![](img/c54e3488d7687ea0d26e8c2ce3cdfae3_246_0.png)\n\n## Ionic View、Creator 和\
+  \ Playground\n\n到目前为止，我们已经介绍了几乎所有重要的 Ionic 服务，但仍有一些对 Ionic 应用非常有用的 Ionic 工具。其中一些工具包括\
+  \ Ionic View、Creator 和 Playground。让我们看看这些工具如何帮助我们。\n\n### Ionic View\n\nIonic View\
+  \ 可以让你轻松地与应用团队成员或客户分享应用，而无需在 iOS 上使用 TestFlight 或在 Android 上进行 beta 测试。我们可以轻松地与任何人分享应用，无需复杂的\
+  \ beta 配置。第一步是上传我们的应用，系统会要求输入你的 Ionic 账户登录凭据：\n\n![](img/c54e3488d7687ea0d26e8c2ce3cdfae3_250_0.png)\n\
+  \n现在你可以在门户中看到 ID 为 f8fec798 的应用。你可以使用 Ionic share 命令分享你的应用；一旦你将应用分享给某个账户，他们就可以下载和预览你的应用。目前，大约支持\
+  \ 27 个插件，你可以在 https://docs.ionic.io/tools/view/ 查看。\n\n> 有可能你的应用在 Ionic View 中无法完全正常工作，因为许多原生插件不受支持。\n\
+  \n![](img/c54e3488d7687ea0d26e8c2ce3cdfae3_251_0.png)\n\n与我共享应用的合作者或账户将能够在其应用列表中看到该应用，并可以直接点击预览应用。这里还有多个选项可用，如清除数据、同步最新版本或删除应用：\n\
+  \n![](img/c54e3488d7687ea0d26e8c2ce3cdfae3_251_1.png)\n\n### Ionic Creator 和 Playground\n\
+  \n还有另外两个 Ionic 平台提供的工具：Ionic Creator 和 Playground。Ionic Creator 是用于原型设计和制作 UI 线框图的好工具，可以让我们快速可视化应用的外观。目前，在免费计划下，我们只能拖放组件、创建页面/视图、预览、分享和下载代码。不过，Ionic\
+  \ 团队已经推出了许多专业功能，可在付费计划中使用，例如代码编辑、主题化和打包 Creator 应用。\n\n这里，我们尝试使用 Ionic Creator 为货币转换器应用制作一个线框原型：\n\
+  \n![](img/c54e3488d7687ea0d26e8c2ce3cdfae3_254_0.png)\n\n我们从组件部分添加了三个选项卡。通过简单的拖放\
+  \ UI，我们可以轻松添加项目。在右侧，你会看到特定页面或组件的属性，这些属性是从左侧选择的。例如，如果我们点击左侧的 List Page，它将显示页面的属性，如标题、路由\
+  \ URL、背景颜色以及左/右页眉按钮。同样，每个组件都有不同的属性。有些组件和属性仅在专业版中可用：\n\n![](img/c54e3488d7687ea0d26e8c2ce3cdfae3_254_1.png)\n\
+  \n让我们看看预览应用时的效果。有四种设备选项可用于预览：iPhone、iPad、Android 手机和 Android 平板：\n\n![](img/c54e3488d7687ea0d26e8c2ce3cdfae3_255_0.png)\n\
+  \nIonic Playground 是一个简单的 HTML、CSS 和 JavaScript 编辑器，它使得与全世界任何人分享 Ionic 演示变得非常容易。你可以将\
+  \ Playground 视为 Ionic 的 jsfiddle 或 plnkr。我们可以分叉并预览正在开发的应用。Playground 对 Ionic 开发者的教育和培训可以产生很大影响。出于调试目的，我们也可以使用\
+  \ Playground；另一个用例是快速原型和演示。目前，Ionic Creator 和 Playground 都基于 Ionic 1，而我们的主要关注点是\
+  \ Ionic 3，因此我们不会过于详细地讨论这些主题。你可以在 http://docs.usecreator.com/ 了解更多关于 Ionic Creator\
+  \ 的信息，并在 http://play.ionic.io/ 开始使用你的第一个 playground 应用。\n\nIonic 生态系统包括 Ionic Market、Ionic\
+  \ Jobs、Ionic Forum、Ionic Shop 和 Ionic Showcase。让我们简要了解一下这一切是如何运作的：\n\n- **Ionic\
+  \ Market：** 在这里你可以找到许多免费和付费的 Ionic 主题和插件。如果你构建了一些对其他开发者有用的有趣主题或插件，你也可以在 Ionic Market\
+  \ 上提交你的作品。\n- **Ionic Jobs：** 查找 Ionic 职位列表的最佳场所。\n- **Ionic Forum：** 在这里你可以与其他开发者互动、提问，并分享你的演示和想法。这是消除疑惑和查看你是否遇到类似问题的最佳场所。\n\
+  - **Ionic Showcase：** 你可以在这里提交已投入生产的工作，并分享应用商店链接和截图。\n\n\n\n\n\n## 摘要\n\n随着 Ionic\
+  \ 团队正在开发的服务和工具数量不断增加，你可以看到 Ionic 作为一个社区和产品都在以良好的速度发展。我们已经讨论了 Ionic 生态系统的所有服务，从 Ionic\
+  \ Cloud 服务开始，再到可用于快速原型制作的工具。将这些服务结合起来会非常有帮助；认证和 Ionic DB 一起可以为你的应用提供更多定制化的选择。\n\n\
+  IonicDB 等 Ionic 服务是一个很有意思的补充。有计划称 Ionic 未来会随时推出新的测试工具。下一件大事将是使用 Electron 将同一代码库部署为桌面应用，从而实现平台连续性。\n\
+  \n在第5章 *认证、授权与安全* 中，我们将探讨 Ionic 应用的一些安全方面。从一些常见的安全实践，到在我们的应用中集成认证和授权，以及如何保护我们的私有视图免遭未经认证用户的访问。我们将探讨安全地存储敏感数据以及通过网络读写数据，以免被他人截获。此外，我们还会看到在将应用发布到应用商店之前应考虑的一些基本安全要点。\n"
+- "# 认证、授权与安全\n\n现在我们将探讨构建企业应用的另一个重要方面：安全性。许多应用包含用户敏感内容，我们不希望将所有内容暴露给所有人。这正是认证和授权发挥作用的地方。不过，在本章中，我们将更侧重于\
+  \ Ionic 的 Angular 部分，因为大部分工作将是用 Angular 编写代码。\n\n此外，Ionic 社区提供了大量关于此主题及其用法的信息，因此我们将探讨所有这些内容。本章另一个重要部分是保护应用程序的安全，因为在将应用部署到生产环境之前，我们必须考虑许多事项，确保没有人能轻易进入你的代码。\n\
+  \n在对混合应用的安全性及其与原生应用的区别进行研究时，我发现了这样一句话：“无论你使用原生代码还是混合代码，如果一个人足够执着，他们仍然可以绕过并看到你的源代码。”最终，我们能在多大程度上增加其被攻击的难度，取决于我们自己，同时还要注意不要在代码库中分享或放置敏感信息。我们将在本章中探讨所有这些内容：\n\
+  \n- 认证\n- 保护 Ionic 应用\n- 在 Ionic 中演示授权\n\n## 认证\n\nAngular 是 Ionic 的核心，与认证和授权相关的大部分工作将在代码中处理。对于前端应用，实现服务器端认证主要有两种方式。你可以将\
+  \ Ionic 应用视为 Angular 前端应用。我们将介绍的所有内容都可以视为通用内容，既可用于 Web，也可用于基于 Ionic 的混合应用。通常我们处理认证主要有两种方式：\n\
+  \n- 基于令牌（Token）\n- 基于 Cookie\n\n### 基于令牌的认证\n\n基于令牌的认证是许多 Web 应用中较新的认证方式。在这种方式下，当用户通过传递其用户令牌向服务器证明其有效性时，认证即成功，服务器会验证该令牌。在开始基于令牌的方式之前，让我们快速了解使用这种方式的一些好处：\n\
+  \n- 无状态\n- 移动端友好\n- 性能\n- 更安全\n- 基于标准的 JWT\n- 使用基于令牌的方式还有其他许多好处，例如你可以通过 CDN 提供所有静态资源（HTML、CSS\
+  \ 和 JS），而服务器端只是一个 API，这将提高性能\n\n![](img/c54e3488d7687ea0d26e8c2ce3cdfae3_263_0.png)\n\
+  \n在基于令牌的方式中，你首先需要获取一个有效令牌，在许多应用中，通常可以通过登录请求的响应获得。以 Facebook Connect API 为例，每次通过\
+  \ Facebook 登录时，响应中都会返回一个令牌。该令牌将来会被用来从 Facebook 获取一组用户信息；Facebook 使用该令牌验证用户身份，验证通过后提供相关信息。\n\
+  \n对于 Ionic 应用，我们可以将该令牌存储在本地存储或会话存储中供以后使用。我们需要扩展默认的 HTTP 类，以便为 Ionic 应用发出的每个传出的请求设置授权头。你可以看到基于令牌的认证使用起来非常简单；你不需要担心如\
+  \ CSRF 等安全问题，因为你没有依赖 Cookie。\n\n以前几乎所有 Web 应用都基于 Cookie，并通过 Cookie 处理用户会话。它们要求服务器在每个请求上验证用户的\
+  \ Cookie。随着我们转向现代的基于令牌的认证方式，仍有一些应用使用基于 Cookie 的认证方式。虽然我们可以在 Ionic 应用中实现同样的基于 Cookie\
+  \ 的认证，但不建议这样做。这里我们将主要介绍基于令牌的方式，并在应用中演示它。\n\n## CORS\n\n**跨域资源共享（CORS）** 的设计初衷是跨域访问资源。跨域策略不适用于\
+  \ Cordova，因此在设备上测试时我们无需过多考虑。但在浏览器中运行同一个应用时，如果从跨域访问资源，可能会出现 CORS 错误。当你运行 `ionic serve`\
+  \ 命令时，就会看到这个问题。有四种方法可以绕过它：\n\n- 禁用 Chrome 安全策略\n- 浏览器扩展\n- 代理服务器\n- 最简单且方便的方法是在\
+  \ Google Chrome 中使用以下标志运行应用：`--disable-web-security`：\n\n```\n$ google-chrome --disable-web-security\n\
+  $ chromium-browser --disable-web-security\n```\n\n对于 chromium 浏览器，你也可以运行同样的命令。请确保在运行此命令前已关闭正在运行的\
+  \ google-chrome 或 chromium。当你启用禁用 Web 安全策略打开浏览器时，会在浏览器中看到一条警告消息：“您正在使用一个不受支持的命令行标志：--disable-web-security。稳定性和安全性将受到影响。”\n\
+  \n另一种方法是安装允许/禁用 CORS 的浏览器扩展。通常，这些插件在开启时会内部更改任何 XHR 请求的响应头。有许多可用的扩展，例如 **CORS toggle**\
+  \ 和 **Force CORS**。\n\n## 为 Ionic 应用设置代理服务器\n\n搭建代理服务器会花费一些时间，并且仅在你想要运行 `ionic serve`\
+  \ 和 `ionic run -l` 时才需要。我们将看到 Ionic CLI 如何提供一个易于配置的代理服务器。\n\n这里的代理服务器将充当中介，处理从客户端到服务器的所有请求。它会接收客户端请求，向服务器发出新请求，然后在收到服务器响应后，将响应转发回客户端。由于服务器是向你的目标地址发送新请求，因此不存在来源（origin），也就不需要\
+  \ CORS。需要特别注意，浏览器会添加 Origin 头。\n\n要设置代理服务器，我们需要进行以下更改：\n\n- 在 `ionic.config.json`\
+  \ 中设置代理\n- 设置 Angular 常量\n- 在 Angular 服务中使用常量\n\n让我们从在 `ionic.config.json` 文件中设置代理配置开始。代理配置在\
+  \ proxies 数组中包含两个重要属性：`path` 和 `proxyUrl`。你可以在该数组中配置多个代理：\n\n```\n{\n  \"name\"\
+  : \"ionic2-auth\",\n  \"app_id\": \"\",\n  \"v2\": true,\n  \"proxies\": [\n   \
+  \ {\n      \"path\": \"/api\",\n      \"proxyUrl\": \"http://api.yourwebsite.com/api\"\
+  \n    }\n  ]\n}\n```\n\n现在，你在 `ionic.config.json` 中指定了：每当访问 `http://localhost:8100/api`\
+  \ 时，它将代表你代理到 `http://api.yourwebsite.com/api` 的请求。这将解决 CORS 问题。为了设置 API 端点，我们创建了\
+  \ `constants` 文件，并在其中声明了一个常量 `API_URL`：\n\n```\n// src/providers/constants.ts\n\
+  // While deploying application we switch to real URL\nexport const API_URL: string\
+  \ =\n  'http://localhost:8100/api';\n```\n\n构建应用时，我们可以将其替换为真实的 `API_URL`，也就是我们提到的\
+  \ `proxyUrl`：\n\n```\n// src/providers/data-service.ts\n\nimport { Injectable }\
+  \ from '@angular/core';\nimport { HttpClient } from './http-client';\nimport { Observable\
+  \ } from 'rxjs/Observable';\nimport 'rxjs/add/operator/map';\nimport { API_URL }\
+  \ from './constants';\n\nexport class DataService {\n  constructor(public http:\
+  \ HttpClient, public storage: Storage) {}\n\n  login(data): Observable<any> {\n\
+  \    return this.http.post(API_URL + '/login', data).map(res => res.json());\n \
+  \ }\n}\n```\n\n\n\n\n\n## CSRF\n\n**跨站请求伪造 (CSRF)** 许多服务器都具有此安全功能。我们也可以在基于 Ionic\
+  \ 的应用程序中保留此功能。CSRF 是一种攻击，当恶意代码在用户已通过身份验证时，主要使用用户自己的 cookie 在受信任的网站上执行不需要的操作时就会发生。为了防止\
+  \ Angular 和 Ionic 中的 CSRF，你需要使用特定的 cookie 名称设置正确的 CSRF 头。这将阻止黑客嗅探你的 cookie 会话数据并冒充已认证用户发起请求。\n\
+  \n这将为不在 `allowedMethods` 中的任何请求类型设置 CSRF 请求头，使其等于 CSRF cookie 的当前值。\n\n因此，要在 Angular\
+  \ 中启用基于 cookie 的身份验证，你必须处理另一件重要的事情，将 AJAX 的 `withCredentials` 标志设置为 true。该标志设置在低级的\
+  \ AJAX 对象上，但在 Angular 中我们必须使用我们的 `Http` 方法进行配置。\n\n**示例代码片段**\n\n```typescript\n\
+  import { Http, Headers, RequestOptions } from '@angular/http';\n\nsendData() {\n\
+  \  let headers = new Headers();\n  headers.append('X-CSRF-Token', token.token);\n\
+  \  let options = new RequestOptions({ headers: headers,\n    withCredentials: true\
+  \ });\n  this.http.post(\"URL\", <stringified_data>, options)\n}\n```\n\n虽然许多开发者在重新启动应用程序时遇到\
+  \ cookie 过期的情况，如果你遇到类似问题，请确保你的 cookie 已设置过期时间。实际上，浏览器会在关闭时清除没有过期时间的 cookie。\n\n\
+  ## 保护 Ionic 应用程序\n\n通过身份验证和授权，你已经保护了所有数据，但在构建企业级 Ionic 应用程序时，仍有一些安全事项需要确保。这里我们将围绕\
+  \ Cordova 来保护我们的应用程序。由于安全是一个深奥且复杂的话题，最重要的是保持更新并尝试使用最新版本的 Cordova 和 Ionic。通常，如果在\
+  \ Cordova 中发现某些安全漏洞，你很快就会看到补丁并得到修复。\n\n## 白名单\n\n域名白名单是一种安全模型，用于控制对外部域的访问。Cordova\
+  \ 提供可配置的安全策略来定义要访问哪些站点。对于 Cordova 4.0 及更高版本，我们应使用 `cordova-plugin-whitelist`，因为它提供更好的安全性和配置设置。目前\
+  \ `cordova-plugin-whitelist` 支持 Android 4 以上。对于我们的平台，我们必须在 `config.xml` 文件中配置安全：`<access\
+  \ origin=\"*\" />`\n\n在创建项目时，默认情况下所有域名都被列入白名单，这意味着你将可以访问所有域名。此外，域名白名单在 Android API\
+  \ 10 及以下不可用。因此，这也是需要注意的重要事项，即将你的 `min-target-sdk` 设置在 10 以上。此外，Ionic 本身支持 Android\
+  \ 4.4 以上版本。它可以在旧设备和 SDK 上运行，但可能会有性能和其他问题。此外，我们在 Android 4.4 以下设备的市场份额并不大。因此，为了构建面向未来的应用程序，我们可以忽略一部分市场份额，以使你的应用程序更安全、性能更好。随着新技术的出现，例如\
+  \ BLE 支持的应用程序，甚至许多原生应用程序也只支持最新版本。\n\n我们已经在 [第 3 章，*Ionic Native 和插件*] 中介绍过白名单插件，因此你已经了解如何轻松配置各种设置并列入白名单资源。插件中的新内容安全策略使你能够控制哪些网络请求（图像、XHR\
+  \ 等）允许通过 webview 直接发出：\n\n```\n<!-- Allow everything but only from the same origin\
+  \ and foo.com -->\n<meta http-equiv=\"Content-Security-Policy\" content=\"default-src\
+  \ 'self' foo.com\">\n```\n\n```\n<!-- Allows XHRs only over HTTPS on the same domain.\
+  \ -->\n<meta http-equiv=\"Content-Security-Policy\" content=\"default-src 'self'\
+  \ https:\">\n```\n\n```\n<!-- Allow iframe to https://cordova.apache.org/ -->\n\
+  <meta http-equiv=\"Content-Security-Policy\" content=\"default-src 'self'; frame-src\
+  \ 'self' https://cordova.apache.org\">\n```\n\n你可以在白名单插件的官方文档中找到各种其他配置示例，如上所述：https://cordova.apache.org/docs/en/latest/reference/cordova-plugin-whitelist/。\n\
+  \n## 启用 SSL\n\n如果你通过网络向服务器传输安全数据，这是最重要的要点之一，在将应用程序上传到各种商店之前，你应该使其生产就绪并为所有安全请求启用\
+  \ SSL。由于大多数 Ionic 应用程序使用 REST API 向服务器获取或发布数据，我们应该确保所有安全请求都是 HTTPS。同时，如果你的应用程序没有任何关键数据，那么对于这种情况也可以使用\
+  \ HTTP。\n\n对于生产应用程序，不建议使用自签名证书。如果你想引入 SSL，请确保你的服务器具有由知名证书颁发机构正确签名的证书。原因在于接受自签名证书会绕过证书链验证，这会使任何服务器证书都被设备视为有效。这会使通信暴露于中间人攻击。数据将被加密，但中间人可以用中间人的密钥解密它。你可以将其视为一个普通的\
+  \ Web 应用程序，在其中你始终确保所有安全信息以加密形式发送到服务器，以便没有人能在中间窃取它。为了确保这一点，购买由知名证书颁发机构颁发的 SSL 证书非常重要。\n\
+  \n## 应用程序外的敏感数据\n\n在我们的应用程序中，可能有一些外部 API 用于获取第三方内容到我们的应用程序中。对于此，你将获得一些特定于你账户的 `secret_keys`，当你访问他们的服务器时会使用它们。在这里，我们必须确保不要将这些密钥放在你的\
+  \ Ionic 应用程序中，因为有人可以很容易地从你的代码库中提取出来。\n\n这里最好的方法是，在你的服务器上进行代理请求或在你的服务器端代码中进行自定义请求，该请求会将密钥添加到\
+  \ API 调用中。因此，你将调用你的服务器，然后你的服务器会将请求连同 `secret_key` 一起传递给第三方服务。在响应中，相同的响应可以从第三方服务通过服务器传递回客户端：\n\
+  \n![](img/c54e3488d7687ea0d26e8c2ce3cdfae3_279_0.png)\n\n如果例如你有用户特定的密钥，那么你必须要求用户首先在你的应用程序中登录，这将验证用户，然后来自你的服务器的下一个\
+  \ API 调用可以获取相应的 `user_keys`，然后可用于与他们的第三方服务器进一步通信。此外，请确保你的应用程序中没有任何业务逻辑，你可以在服务器端轻松处理。不要假设你的源代码是安全的，因为基于\
+  \ Cordova 的 Ionic 应用程序是由打包在原生容器中的 HTML 和 JavaScript 资源构建的。任何人都可以逆向工程进入你的代码，因此我们永远不会在你的代码中放置任何敏感信息。\n\
+  \n同样，对于 BaaS 服务，如 Ionic Cloud 和 Firebase，你必须将密钥放在客户端以直接调用这些平台 API。尽管如此，如果我们有适当的访问控制并通过身份验证和登录保护保护了应用程序，那么只有经过身份验证的用户才能向\
+  \ API 发出请求。这将防止黑客试图耗尽你账户的 API 调用次数。\n\n\n\n\n\n## 安全存储\n\n在 Ionic 应用中，许多开发者严重依赖通过\
+  \ Cordova 插件使用 localStorage 或 SQLite。很多时候，我们必须存储机密信息，如用户名、密码、令牌、证书或任何其他敏感信息。在这种情况下，我们可以使用\
+  \ secure storage 原生插件，它在 iOS 上使用钥匙串（keychain）加密数据，而在 Android 上，该插件会加密数据并将其存储在 SharedPreference\
+  \ 中。在 Ionic 应用内部，localStorage 会将数据沙箱化，仅对你的应用可见。其他任何应用都无法从外部访问这些数据。如果你将 SQLite 用作应用数据库，可以利用\
+  \ SQLcipher 插件来加密 SQLite 中的数据：\n\n```bash\n$ ionic cordova:plugin add cordova-plugin-secure-storage\n\
+  $ npm install --save @ionic-native/secure-storage\n```\n\n下面看一个示例，即存储用户的手机号码：\n\n\
+  ```typescript\nimport { SecureStorage, SecureStorageObject } from '@ionic-native/secure-storage';\n\
+  \nconstructor(private secureStorage: SecureStorage) { }\n\nthis.secureStorage.create('user_data')\n\
+  .then((storage: SecureStorageObject) => {\n\nstorage.get('mobile_number')\n.then(\n\
+  data => console.log(data),\nerror => console.log(error)\n);\n\nstorage.set('mobile_number',\
+  \ '+917813123123')\n.then(\ndata => console.log(data),\nerror => console.log(error)\n\
+  );\n\nstorage.remove('mobile_number')\n.then(\ndata => console.log(data),\nerror\
+  \ => console.log(error)\n);\n});\n```\n\n同样，尽管你在加密数据方面做了这么多工作，我们仍必须注意：绝不应在应用存储中保存密码和其他关键信息。即使在原生应用中也不推荐这样做，因为如果攻击者足够执着，他们仍然可以解密你的数据。\n\
+  \n## 通用安全要点\n\n大多数移动操作系统都提供硬件级加密。这为设备在锁定时提供了额外的保护。因此，我们必须确保始终使用最新的 SDK，而 Ionic 2\
+  \ 仅支持 Android 4.4 及更高版本。除此之外，还有一些适用于 iOS 和 Android 的安全存储插件，它们分别使用 keychain（iOS）和\
+  \ AES 加密（Android）。另一个插件是 PrivacyScreenPlugin，可用于在 Android 和 iOS 的应用切换器中隐藏敏感信息。用户将在任务切换器中看到启动屏幕，如果没有检测到该插件，则会显示黑屏。\n\
+  \n逆向工程是许多开发者的另一个担忧，他们认为自己的应用代码很容易被提取出来，与某些恶意代码重新打包进应用中，然后再次上传到 Play Store。虽然这种做法在原生应用中同样可行，但在\
+  \ Ionic 应用中，我们可以通过在运行时下载 JavaScript，并在应用关闭时将其删除来绕过这一安全问题。不过，我们需要思考是否真的需要这样做，因为这也会带来性能问题。另一方面，用\
+  \ Java 或 Objective-C 实现这一点并动态存储代码库非常困难。\n\n混淆、精简和压缩是在 Ionic 应用中保护代码的几种方法。我们可以使用许多开源工具在将源代码打包到各个应用商店之前对其压缩和混淆。一些流行的工具包括\
+  \ YUI compressor 和 UglifyJS，它们可用于混淆你的 JavaScript 资源。此外，你应该始终压缩所有 JavaScript 和 CSS\
+  \ 资源，这将提高 Ionic 应用的性能，并减小 APK 文件的大小。还有一些企业级工具可用，例如 Jscrambler，它使用专有解决方案进行各种压缩和混淆。\n\
+  \n以下是在发布应用之前，你可以针对安全方面关注的几个要点：\n\n- 任何敏感的业务逻辑都应在服务器端执行\n- 使用 uglify 混淆和压缩你的 JavaScript\
+  \ 资源，或使用 Jscrambler\n- 不要使用低于 4.0 的 Android 操作系统\n- 对外部链接使用 InAppBrowser\n- 验证 HTML\
+  \ 表单的用户输入\n- 不要缓存敏感数据\n- 不要使用 eval()，除非你清楚自己在做什么\n- 不要认为你的源代码始终是安全的\n- 尽量在 iOS 上使用\
+  \ keychain 插件\n\n需要指出的是，安全是一个关键主题，开发者应始终关注 Cordova 的最新改进，以便在下次向应用商店发布应用时改进我们的应用。同时，确保不要牺牲性能。\n\
+  \n### 在 Ionic 中演示授权\n\n现在，让我们构建一个同时处理身份验证和授权的 Ionic 应用。授权是指决定谁被允许做什么的规则。身份验证和授权是保护应用安全的核心部分：\n\
+  \n*身份验证* = *登录* + *密码*（你是谁）\n\n*授权* = *权限*（允许你做什么）\n\n在本节中，我们将了解如何保护 Ionic 应用中需要登录才能访问的视图。我们将处理以下要点：\n\
+  \n- `HomePage` 将是公开的\n- `ArticlesPage` 受保护，只有登录后才能访问\n- 菜单也会根据认证状态动态更新\n- 一旦用户登录，`LoginPage`\
+  \ 将不可访问\n- 登录后，每次请求都会传递 Authorization 头\n\n让我们从创建应用开始，我将其命名为 `ionic2-auth`：\n\n\
+  ```bash\n$ ionic start ionic2-auth sidemenu -v2\n$ ionic platform add android\n\
+  $ npm install @ionic/storage --save\n$ ionic generate page articles\n$ ionic generate\
+  \ page home\n$ ionic generate page login\n```\n\n我们将使用所有最新的库和当前的 Ionic 版本。此外，我们现在有了分屏（split\
+  \ pane）和响应式网格，这使得 Ionic 应用更接近支持桌面应用。我们主要使用三个视图：可公开访问的 `HomePage`、受保护的 `ArticlesPage`\
+  \ 以及 `LoginPage`。我们已将 `HomePage` 设置为 rootPage，因为它是公共视图。接下来，让我们看看动态菜单和登录/登出事件，这些将在\
+  \ `app.component.ts` 中处理：\n\n```typescript\n// src/app/app.component.ts\n\nimport\
+  \ { Component, ViewChild } from '@angular/core';\nimport { Nav, Platform, MenuController,\
+  \ Events } from 'ionic-angular';\nimport { StatusBar, Splashscreen } from 'ionic-native';\n\
+  import { ArticlesPage } from '../pages/articles/articles';\nimport { LoginPage }\
+  \ from '../pages/login/login';\nimport { HomePage } from '../pages/home/home';\n\
+  import { DataService } from '../providers/data-service';\nimport { Storage } from\
+  \ '@ionic/storage';\n\n@Component({\n  templateUrl: 'app.html'\n})\nexport class\
+  \ MyApp {\n  @ViewChild(Nav) nav: Nav;\n\n  rootPage: any = HomePage;\n\n  pages:\
+  \ Array<{title: string, component: any}>;\n\n  constructor(public platform: Platform,\n\
+  \    public storage: Storage,\n    public data: DataService,\n    public menu: MenuController,\n\
+  \    public events: Events\n) {\n\n  this.initializeApp();\n  // used for an example\
+  \ of ngFor and navigation\n  this.pages = [\n    { title: 'Home', component: HomePage\
+  \ },\n    { title: 'Articles', component: ArticlesPage }\n  ];\n\n  this.listenToLoginEvents();\n\
+  \n  // decide which menu items should be hidden\n  // by current login status stored\
+  \ in indexedDB\n  this.data.isAuthorised().then((status) => {\n    this.enableMenu(status\
+  \ === true);\n  });\n}\n}\n\ninitializeApp() {\n  this.platform.ready().then(()\
+  \ => {\n    // Okay, so the platform is ready and our plugins\n    // are available.\n\
+  \    // Here you can do any higher level native things\n    //     you might need.\n\
+  \    StatusBar.styleDefault();\n    Splashscreen.hide();\n  });\n}\n\nlogin() {\n\
+  \  this.nav.push(LoginPage);\n}\n\nlogout() {\n  this.events.publish('user:logout');\n\
+  }\n\nopenPage(page) {\n  // Reset the content nav to have just this page\n  // We\
+  \ wouldn't want the back button to show in this\n  // scenario\n  // Make sure to\
+  \ catch the error here else\n  // you will get error\n  this.nav.setRoot(page.component).catch(()\
+  \ => {\n    console.log(\"Page didnt load\")\n  })\n}\n\nlistenToLoginEvents() {\n\
+  \  this.events.subscribe('user:login', (result) => {\n    this.enableMenu(true);\n\
+  \    this.storage.set('user', result);\n  });\n\n  this.events.subscribe('user:logout',\
+  \ () => {\n    this.enableMenu(false);\n    this.storage.remove('user');\n    this.nav.setRoot(HomePage).catch(()\
+  \ => {\n      console.log(\"Page didnt load\")\n    })\n  });\n}\n\nenableMenu(loggedIn:\
+  \ boolean) {\n  this.menu.enable(loggedIn, 'loggedInMenu');\n  this.menu.enable(!loggedIn,\
+  \ 'loggedOutMenu');\n}\n}\n```\n\n\n\n\n\n我们在这里使用了 Events 类来处理我们的登录和登出事件，这是一个发布-订阅事件系统。一旦用户在\
+  \ `LoginPage` 上登录成功，它就会调用登录事件。我们已将用户对象存储在 Ionic storage 中，因此之后进行 HTTP 请求时，我们可以使用它在请求中发送授权头。此外，我们还使用\
+  \ `enableMenu()` 函数在这里启用特定的菜单：\n\n```html\n// src/app/app.html\n\n<ion-split-pane>\n\
+  \  <ion-menu id=\"loggedOutMenu\" [content]=\"content\">\n    <ion-header>\n   \
+  \   <ion-toolbar>\n        <ion-title>Menu</ion-title>\n      </ion-toolbar>\n \
+  \   </ion-header>\n\n    <ion-content>\n      <ion-list>\n        <button menuClose\
+  \ ion-item *ngFor=\"let p of pages\"\n          (click)=\"openPage(p)\">\n     \
+  \     {{p.title}}\n        </button>\n        <button menuClose ion-item (click)=\"\
+  login()\">\n          Login\n        </button>\n      </ion-list>\n    </ion-content>\n\
+  \  </ion-menu>\n\n  <ion-menu id=\"loggedInMenu\" [content]=\"content\">\n    <ion-header>\n\
+  \      <ion-toolbar>\n        <ion-title>Menu</ion-title>\n      </ion-toolbar>\n\
+  \    </ion-header>\n\n    <ion-content>\n      <ion-list>\n        <button menuClose\
+  \ ion-item *ngFor=\"let p of pages\"\n          (click)=\"openPage(p)\">\n     \
+  \     {{p.title}}\n        </button>\n        <button menuClose ion-item (click)=\"\
+  logout()\">\n          Logout\n        </button>\n      </ion-list>\n    </ion-content>\n\
+  \  </ion-menu>\n\n  <!-- Disable swipe-to-go-back because it's poor UX to\n    \
+  \   combine STGB with side menus -->\n  <ion-nav [root]=\"rootPage\" main #content\n\
+  \    swipeBackEnabled=\"false\"></ion-nav>\n</ion-split-pane>\n```\n\n在前面的代码中是我们的\
+  \ `app.html` 页面，我们在这里有 `rootPage`，并且也使用了 split pane 功能。你可以看到我们在同一侧有多个 ion-menus，我们可以根据传入的\
+  \ id 来启用和禁用它们。让我们查看我们的 `LoginPage` 和 `ArticlesPage`，在那里我们调用了 API 请求并保护了路由：\n\n```typescript\n\
+  // src/pages/login/login.ts\n\nonLogin(form: NgForm) {\n  this.submitted = true;\n\
+  \n  if (form.valid) {\n    // start loader\n    let loading = this.loadingCtrl.create({\n\
+  \      content: \"Login wait...\",\n      duration: 20\n    });\n    loading.present();\n\
+  \    this.data.login(this.login).subscribe((result) => {\n        this.events.publish('user:login',\
+  \ result);\n        this.navCtrl.setRoot(HomePage);\n        loading.dismiss();\n\
+  \        this.showToast(undefined);\n    })\n  }\n}\n\nionViewWillEnter() {\n  \
+  \  //Check if already authenticated\n    this.data.isAuthorised().then(res => {\n\
+  \    if(res)\n        this.navCtrl.setRoot(HomePage);\n    else\n        console.log(\"\
+  Please Login\");\n    })\n}\n```\n\n在这里你可以看到我们调用了服务方法进行登录，之后我们发布了 user: Login 事件，以便根据认证状态更新我们的应用程序。生命周期事件方法\
+  \ ionViewWillEnter() 也被使用，在其中我们检查用户是否已授权，如果已授权则我们不会路由到 HomePage。Nav Guards 用于控制进入和离开视图，我们将在\
+  \ ArticlesPage 上使用它：\n\n```\n// src/pages/articles/articles.ts\nexport class ArticlesPage\
+  \ {\n    articles: Array<any>;\n    constructor(\n        public navCtrl: NavController,\n\
+  \        public navParams: NavParams,\n        public toastCtrl: ToastController,\n\
+  \        public data: DataService) {\n    }\n\n    ionViewDidLoad() {\n        console.log('ionViewDidLoad\
+  \ ArticlesPage');\n        /*\n        Fetching Data after View Loaded\n       \
+  \ Don't put this request in constructor\n        As, it will call the API irrespective\
+  \ of\n        what ionViewCanEnter will return\n        */\n        this.fetchArticles();\n\
+  \    }\n\n    fetchArticles() {\n        this.data.getArticles().subscribe(articles\
+  \ => {\n            this.articles = articles;\n        })\n    }\n\n    ionViewCanEnter()\
+  \ {\n        console.log(\"in ionViewCanEnter\")\n        var self = this;\n   \
+  \     return new Promise((resolve, reject) => {\n            self.data.isAuthorised().then(res\
+  \ => {\n                if(!res) {\n                    let toast = self.toastCtrl.create({\n\
+  \                        message: \"Please Login to access this view\",\n      \
+  \                  duration: 1500\n                    });\n                   \
+  \ toast.present();\n                    reject(true);\n                } else {\n\
+  \                    resolve(true);\n                }\n            })\n       \
+  \ });\n    }\n}\n```\n\n在这里在 `ionViewCanEnter()` 方法内部我们检查用户是否已授权，并据此拒绝或解析 promise。你会看到当用户未\
+  \ `loggedIn` 时我们将无法访问 `ArticlePage`。在这种情况下，我们的 API 甚至不会被调用，因为我们已在 `ionViewDidLoad()`\
+  \ 方法内部调用了 `fetchArticles()` 方法，而该方法只有在 `ionViewCanEnter` 被解析时才会被调用：\n\n```\n// src/providers/data-service.ts\n\
+  import { Injectable } from '@angular/core';\nimport { HttpClient } from './http-client';\n\
+  import { Observable } from 'rxjs/Observable';\nimport 'rxjs/add/operator/map';\n\
+  \nimport { Storage } from '@ionic/storage';\nimport { API_URL } from './constants';\n\
+  \n@Injectable()\nexport class DataService {\n\n  constructor(public http: HttpClient,\
+  \ public storage: Storage) {}\n\n  login(data): Observable<any> {\n    return this.http.post(API_URL\
+  \ + '/users/login', data).map(res => res.json());\n  }\n\n  getArticles(): Observable<any>\
+  \ {\n    return this.http.get(API_URL + '/articles?filter[limit]=10').map(res =>\
+  \ res.json());\n  }\n\n  isAuthorised(): Promise<any> {\n    return this.storage.get(\"\
+  user\").then((val) => {\n      console.log(val)\n      if(val) {\n        return\
+  \ true;\n      }\n    })\n  }\n}\n```\n\n在 `data-service.ts` 内部我们放置了各种 API 和 `isAuthorised()`\
+  \ 方法，该方法检查 Ionic storage 中的用户数据并据此返回。此外，我们还将在这里使用 `http-client` provider 来封装我们的\
+  \ HTTP API 调用。我们使用它在成功登录后为每个请求设置授权头：\n\n```\n// src/providers/http-client.ts\nimport\
+  \ { Injectable } from '@angular/core';\nimport { Http, Headers } from '@angular/http';\n\
+  import { Storage } from '@ionic/storage';\nimport { Observable } from 'rxjs/Rx';\n\
+  \n@Injectable()\nexport class HttpClient {\n\n  constructor(public http: Http, public\
+  \ storage: Storage) {}\n\n  buildHeaders(){\n    let headers = new Headers({\n \
+  \     'Accept': 'application/json',\n      'Content-Type': 'application/json; charset=utf-8'\n\
+  \    })\n\n    return this.storage.get(\"user\").then(\n      (u) => {\nif(u){\n\
+  \    headers.append('Authorization', u.id);\n    return headers;\n}\n}\n)\n}\n\n\
+  get(url) {\n    return Observable\n        .fromPromise(this.buildHeaders())\n \
+  \       .switchMap((headers) => this.http.get(url, {\n            headers: headers\
+  \ }));\n}\n\npost(url, data) {\n    return Observable\n        .fromPromise(this.buildHeaders())\n\
+  \        .switchMap((headers) => this.http.post(url, data,\n        { headers: headers\
+  \ }));\n}\n}\n```\n\n![](img/c54e3488d7687ea0d26e8c2ce3cdfae3_290_0.png)\n\n在这里我们有\
+  \ get() 和 post() 方法，它们返回 observable，后者进一步使用 fromPromise() 方法，该方法将另一个现有 promise 包装为\
+  \ observable 序列。在此之后我们使用了 switchMap() 方法，它确保 response/json 以我们想要的正确顺序返回，因为我们希望基于\
+  \ headers 设置它并据此将其设置为 Http 方法。\n\nObservable 在这里是从 rxjs/Rx 引入的，而不是从 rxjs/Observable\
+  \ 引入的。这样我们就可以自动获得对 fromPromise 方法的访问权限，否则它会报错。\n\n对于构建 headers，我们的 buildHeaders()\
+  \ 方法检查 Ionic storage，如果 token 存在则将其附加到 authorization headers。我们已经涵盖了保护应用程序的所有重要方面。我们可以随时根据后端返回的角色进一步扩展它。这里的另一个不错的补充可以是扩展\
+  \ `HTTP` 类以添加对 `401` 请求的拦截器，以便在用户 token 过期时将其从应用程序中注销。\n\n\n\n\n\n## 摘要\n\n在保护应用程序安全时，最重要的是正确保护你的服务器端\
+  \ API。这样我们不会丢失任何关键数据，他人的数据也不会被公开分享。然而，当我们考虑保护代码库时，在原生的以及混合移动开发中，没有任何东西是100%安全的。不过，我们的目标应该是尽可能接近这个数字。首先限制你的暴露面，并确保不要把敏感数据和逻辑放在客户端。你应该确保尽力保护你的混合移动应用。但是，如果有人执意要破解，他们仍然可以绕过这些保护。\n\
+  \n我们已经介绍了 Ionic 应用程序内部和外部的一些重要安全概念。现在我们将进一步把 Ionic 应用与 BaaS 服务（如 Firebase 和 Ionic\
+  \ Cloud）集成。如果你的 Ionic 应用需求非常简单，并且没有太多服务器逻辑，你可以使用这些服务快速构建一个 Ionic 应用，而无需搭建任何服务器端代码库。我们将构建一个\
+  \ **TasteBite** 应用，对菜品和餐厅进行综合评分，以便用户了解所在城市的名菜是什么，以及在哪里能品尝到做得最好的菜品。\n"
+- "# Firebase 和 TasteBite 应用简介\n\n开始使用 Firebase 非常简单；这也是许多初创公司和成长型产品使用像 Firebase 这样的后端即服务平台的主要原因。我们将快速使用\
+  \ Firebase 和 Ionic 创建一个 TasteBite 应用。在这个应用中，我们为使用 Firebase 的 Angular 应用集成了 AngularFire2\
+  \ 包装器，不过我们也可以在应用内直接使用 JavaScript SDK。你需要在 Firebase 创建一个账户（最初可以使用免费账户；随着使用量增加，你可以轻松升级账户）。\n\
+  \nFirebase 让开发者的生活更轻松，因为他们不必花时间构建后端服务器来提供简单的 API。我们可以用最少的精力轻松完成所有 CRUD 操作，并且借助 WebSocket\
+  \ 支持，数据同步速度极快。此外，Firebase 还提供离线同步、用户身份验证、以及通过规则集保护数据的功能：\n\n![](img/c54e3488d7687ea0d26e8c2ce3cdfae3_297_0.png)\n\
+  \n创建账户后，你就可以在 Firebase 中创建应用；你会看到添加项目的选项。添加/创建项目后，你可以管理并进入你的应用。你会看到诸如分析、身份验证、数据库、存储、托管、通知以及许多其他选项。随着我们继续为应用创建数据，我们将使用其中的许多功能。你可以在下面的截图中看到，我们的应用中已经存储了一些数据。所有\
+  \ Firebase 数据库数据都存储为 JSON 对象，不存在关系表。\n\n## 构建 TasteBite 并安装 Firebase\n\n我们首先从零开始创建一个应用，并安装此应用所需的所有插件和包。在此应用中，我们将使用\
+  \ Tabs 模板并集成懒加载。我们将在应用中使用地理位置、相机和应用内浏览器插件：\n\n![](img/c54e3488d7687ea0d26e8c2ce3cdfae3_299_0.png)\n\
+  \n```\n$ ionic start tastebite tabs\n$ ionic cordova platform add android\n$ ionic\
+  \ cordova plugin add cordova-plugin-inappbrowser\n$ ionic cordova plugin add cordova-plugin-geolocation\n\
+  $ ionic cordova plugin add cordova-plugin-camera\n$ npm install --save @ionic-native/in-app-browser\n\
+  $ npm install --save @ionic-native/geolocation\n$ npm install --save @ionic-native/camera\n\
+  ```\n\n现在，我们准备在 Ionic 应用中设置 Firebase：\n\n```\n$ npm install angularfire2 firebase\
+  \ --save\n```\n\n接下来，我们将在 app.module.ts 中导入 angularfire2 库：\n\n```\n// src/app/app.module.ts\n\
+  \nimport { AngularFireModule } from 'angularfire2';\n\nexport const firebaseConfig\
+  \ = {\n  apiKey: \"AIzaSyDnd6hMcfJDWGdGr6EOSS05NoMM2CeY2bw\",\n  authDomain: \"\
+  tastebite-ec5c4.firebaseapp.com\",\n  databaseURL: \"https://tastebite-ec5c4.firebaseio.com\"\
+  ,\n  storageBucket: \"tastebite-ec5c4.appspot.com\",\n  messagingSenderId: \"762350093850\"\
+  \n};\n\n@NgModule({\n  declarations: [\n    Tastebite\n  ],\n  imports: [\n    BrowserModule,\n\
+  \    HttpModule,\n    IonicModule.forRoot(Tastebite, {\n      preloadModules: true\n\
+  \    }),\n    AngularFireModule.initializeApp(firebaseConfig)\n  ],\n```\n\n确保你如上例所示包含\
+  \ `firebaseConfig`，它会有多个配置参数。此外，下一步是在初始化 Firebase 模块时注入 `firebaseConfig`。我们现在可以开始读取和写入应用中的数据了。\n\
+  \n## 使用 Firebase 进行身份验证和安全\n\n我们现在来看看 Firebase 用户身份验证，以及我们如何保护数据。Firebase 在内部支持登录和身份验证，并且还提供与社交登录提供商集成的支持。大多数应用需要某种内部登录机制；使用\
+  \ Firebase 设置起来非常容易。每当我们使用 Firebase 登录时，就会创建一个会话，并返回一个唯一 ID `uid`，该 ID 在所有提供者中都是唯一的，并且对于特定的已认证用户永远不会改变。这也将在以后帮助我们保护数据。\n\
+  \n用户完成身份验证后，即使应用重启，其会话也会被管理和记住。Firebase 为多个平台提供用户身份验证：\n\n- **自定义** - 用于与现有身份验证系统集成\n\
+  - **电子邮件** - 通过电子邮件和密码注册并验证用户。\n- **匿名** - 用于无需任何个人信息的访客账户\n- Facebook\n- Google\n\
+  - Twitter\n- GitHub\n\n## 启用提供程序\n\n我们需要从应用程序的“身份验证-登录方式”选项卡中启用身份验证提供程序。我们已经为 TasteBite\
+  \ 应用启用了基于电子邮件的登录和 Facebook 登录。使用基于电子邮件的登录来注册、登录和注销用户非常容易。如果我们已经有一些身份验证系统，则可以使用自定义身份验证；如果我们想允许访客登录，可以使用匿名用户身份验证。我们也将演示如何轻松集成社交登录。\n\
+  \n所有社交登录都需要在社交渠道上创建的应用的客户端 ID 和客户端密钥。所有社交提供者都有不同的创建应用的方式，创建应用后，我们可以将客户端 ID 和客户端密钥放到\
+  \ Firebase 应用中。我们需要确保已将 OAuth 重定向 URL 放置在 Facebook 登录产品中：https://tastebite-ec5c4.firebaseapp.com/__/auth/handler。在此之前，你必须在\
+  \ Facebook 上创建一个应用程序，我们将把它的 app_id 和 app_secret 添加回 Firebase Facebook 提供者设置中。在此之后，你的后端工作就完成了，你只需从\
+  \ Ionic 应用调用一个函数即可。\n\n我们现在将生成 AuthServiceProvider，它将用于 AngularFire2 身份验证：\n\n```\n\
+  $ ionic g provider AuthService\n```\n\n在我们开始处理此提供程序之前，需要在 app.module.ts 文件中设置 FirebaseAuthConfig：\n\
+  \n```\nimport { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';\n\
+  \nconst myFirebaseAuthConfig = {\n  provider: AuthProviders.Facebook,\n  method:\
+  \ AuthMethods.Redirect\n};\n\nimports: [\n  AngularFireModule.initializeApp(firebaseConfig,\n\
+  \    myFirebaseAuthConfig)\n]\n```\n\n这样我们就不必将此配置传递给基于 AngularFireAuth 的登录函数。不过，我们可以通过内部传递登录方法来覆盖此配置并使用任何其他提供程序。在上面的代码中，你可以看到\
+  \ AuthMethods 选择的是 Redirect，但为了在浏览器上测试，你可以将其改为 Popup。\n\n现在让我们看看我们的 AuthService：\n\
+  \n```\nimport { Injectable } from '@angular/core';\nimport { AngularFireAuth, FirebaseAuthState\
+  \ } from 'angularfire2';\nimport * as firebase from 'firebase';\n\nimport { Platform\
+  \ } from 'ionic-angular';\nimport { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';\n\
+  \n@Injectable()\nexport class AuthServiceProvider {\n\n  private authState: FirebaseAuthState;\n\
+  \n  constructor(public auth$: AngularFireAuth, private fb: Facebook,\n    public\
+  \ platform: Platform) {\n    this.authState = auth$.getAuth();\n```\n\n\n\n```typescript\n\
+  auth$.subscribe((state: FirebaseAuthState) => {\n    console.log(state);\n    this.authState\
+  \ = state;\n});\n}\n\nget authenticated(): boolean {\n    return this.authState\
+  \ !== null;\n}\n\nsignInWithFacebook(): firebase.Promise<FirebaseAuthState | FacebookLoginResponse>\
+  \ {\n    if (this.platform.is('cordova')) {\n        return this.fb.login(['email',\
+  \ 'public_profile']).then(res => {\n            const facebookCredential = firebase.auth.FacebookAuthProvider.credential(res.authResponse.accessToken);\n\
+  \            return firebase.auth().signInWithCredential(facebookCredential);\n\
+  \        });\n    } else {\n        return this.auth$.login();\n    }\n}\n\nsignOut():\
+  \ void {\n    this.auth$.logout();\n}\n\nauthData(): any {\n    if (this.authState\
+  \ != null) {\n        return this.authState.auth;\n    } else {\n        return\
+  \ '';\n    }\n}\n}\n```\n\n我们最初安装了 InAppBrowser Cordova 插件来处理此身份验证和重定向。\n\n我们还确认过，当我们在真实设备上运行时，会使用\
+  \ Ionic Native 的 Facebook 插件。在这里，我们先调用 Facebook 插件，成功登录并从 Facebook 获取令牌后，再将其传递给\
+  \ Firebase 的 `firebase.auth.FacebookAuthProvider` 函数进行身份验证。我们在 TasteBite 应用中使用了\
+  \ Facebook 登录，不过如果需要，我们也可以实现其他提供商。\n\n## 用户认证状态\n\nFirebase 提供了一些与认证相关的 API，帮助我们获取认证状态并持久化它。为了侦测与密码更改或会话过期相关的任何认证变化，我们需要在初始化应用时监听\
+  \ AngularFireAuth 类的 subscribe 函数：\n\n```typescript\nconstructor(public auth$: AngularFireAuth)\
+  \ {\n  this.authState = auth$.getAuth();\n  auth$.subscribe((state: FirebaseAuthState)\
+  \ => {\n    console.log(state);\n    this.authState = state;\n  });\n}\n```\n\n\
+  我们将这段代码放在了 AuthServiceProvider 中；同样，如果你想停止监听这些变化，可以调用 offAuth() 函数，这样就不会再收到任何更新。在用户会话有效期间，Firebase\
+  \ 会把会话保存到本地存储中；不过，如果你需要获取认证信息，可以调用 getAuth() 函数获取所有会话详情。为了减少服务器请求，我们可以使用 localStorage\
+  \ 方法从存储中获取所有细节：\n\n```typescript\nsignOut(): void {\n  this.auth$.logout();\n}\n\
+  ```\n\n用户会话目前会一直保持有效，直到调用 logout()（或用户清除本地存储）才会终止。最后，我们需要一个从 Firebase 注销会话的函数，可以使用\
+  \ unauth()。\n\n## 使用 AngularFire2 进行 CRUD 操作与数据安全\n\n现在我们已经涵盖了与认证相关的代码，并为我们的 TasteBite\
+  \ 应用搭建好了基础模块。接下来，我们将了解 Firebase Realtime Database，这是一个 NoSQL 云数据库。数据以 JSON 格式存储，并通过\
+  \ WebSocket 实时同步。Firebase 数据库会将数据持久化到磁盘，这也为我们的应用提供了离线支持。我们将在这里使用两个对象：foodItems 和\
+  \ rateItems，其中 foodItems 包含菜品的详细信息，而 rateItems 是一个嵌套对象，包含每个“菜品 + 城市”组合的评分和评论：\n\n\
+  ![](img/c54e3488d7687ea0d26e8c2ce3cdfae3_309_0.png)\n\n正如你所看到的，我们根据 userid 组织了 foodItem\
+  \ 数据，以便区分与用户相关的数据。我们可以在仪表盘中遍历到 personalFavourite，然后访问用户数据节点。我们可以访问数据中的任何子节点。我们可以在仪表盘中将数据可视化；此外，Firebase\
+  \ 团队还创建了一个名为 Vulcan 的 Chrome 插件，我们可以用它来查看数据树。\n\n由于 Firebase 中存储的数据都是对象，并且不原生支持数组。不过，为了简化开发，Firebase\
+  \ 在其 SDK 中提供了将数据推送到数组的方法。Firebase 使用顺序键来存储数据：\n\n```js\n// push send this ['a',\
+  \ 'b', 'c', 'd', 'e']\n// Firebase databases store this\n{0: 'a', 1: 'b', 2: 'c',\
+  \ 3: 'd', 4: 'e'}\n```\n\n在 Firebase 上使用数组类型存储存在一些限制。此外，使用 Firebase 时，子节点的深度最多可达\
+  \ 32 层，键长度可以为 768 字节。我们不会深入探讨 Firebase 的基础知识，因为我们可以轻松地在其官方文档中找到这些内容。\n\n## CRUD\
+  \ 操作\n\n要从数据库读取或写入数据，我们需要一个数据库引用实例。虽然我们使用的是 AngularFire，这些函数已经被封装，我们直接使用 AngularFire\
+  \ 库提供的函数；但有时我们也必须使用底层方法，就像稍后在该项目中要做的那样。现在，我们首先开始查询 foodItems，以便将它们显示在我们的 HomePage\
+  \ 上：\n\n```typescript\n// src/pages/home/home.ts\nimport { Component } from '@angular/core';\n\
+  import { IonicPage, NavController, NavParams } from 'ionic-angular';\nimport { AngularFire,\
+  \ FirebaseListObservable } from 'angularfire2';\nimport { CityProvider } from '../../providers/city/city'\n\
+  \n@IonicPage()\n@Component({\n  selector: 'page-home',\n  templateUrl: 'home.html',\n\
+  })\nexport class HomePage {\n\n  foodItems: FirebaseListObservable<any[]>;\n  item;\n\
+  \  constructor(\n    public navCtrl: NavController,\n    public navParams: NavParams,\n\
+  \    public cityService: CityProvider,\n    public af: AngularFire) {\n```\n\n由于我们将按城市查询数据，因此我们使用了\
+  \ cityService，它会根据我们的地理位置返回我们当前所在的城市。这样我们将只获取来自我们城市的数据：\n\n```typescript\nthis.cityService.getCityName().then(result\
+  \ => {\n    let cityName = result[0]['address_components'][3].long_name;\n    this.foodItems\
+  \ = af.database.list('/foodItems', {\n      query: {\n        orderByChild: 'city',\n\
+  \        equalTo: cityName\n      }\n    });\n  })\n}\n\nratingPage(data:any) {\n\
+  \  console.log(data);\n  // In FoodRatingPage we will be showing\n  // all the reviews\
+  \ and rating for each item\n  this.navCtrl.push(\"FoodRatingPage\", data);\n}\n\
+  }\n```\n\n接下来，如果用户点击任何一个菜品，它将显示与该菜品关联的所有评论和评分。\n\n如前所述，我们使用了一个城市提供者，它首先使用 Ionic\
+  \ Native 地理定位插件，然后将纬度和经度传递给 Google API，Google API 会返回该地点的完整详细信息，包括街道名称、城市、州和国家。然后我们从中解析出城市名称，并在应用中使用它：\n\
+  \n```typescript\n// src/providers/city/city.ts\nimport { Injectable } from '@angular/core';\n\
+  import { Http } from '@angular/http';\nimport 'rxjs/add/operator/map';\n\nimport\
+  \ { Geolocation } from '@ionic-native/geolocation';\n\n@Injectable()\nexport class\
+  \ CityProvider {\n\n  constructor(public http: Http, private geolocation: Geolocation)\
+  \ {\n    console.log('Hello CityProvider Provider');\n  }\n\n  getCityName() {\n\
+  \    return new Promise(resolve => {\n      this.geolocation.getCurrentPosition().then((resp)\
+  \ => {\n        let url =\n        \"http://maps.googleapis.com/maps/api/geocode/json?latlng=\"\
+  \n        +resp.coords.latitude+\",\"+resp.coords.longitude\n        this.http.get(url).map(res\
+  \ =>\n        res.json()).subscribe(data => {\n          resolve(data.results);\n\
+  \        });\n      }).catch((error) => {\n        console.log('Error getting location',\
+  \ error);\n      });\n    })\n  }\n}\n```\n\n当用户导航到下一页时，我们会传递特定的 foodItem 数据，这些数据稍后会在该页面中用于获取\
+  \ foodRatings。我们将 foodRatings 和 foodItems 使用相同的 `$key` 进行存储，这样在这种情况下更容易获取数据：\n\n\
+  ```typescript\n// src/pages/food-rating/food-rating\n\nimport { Component } from\
+  \ '@angular/core';\nimport { IonicPage, NavController, NavParams } from 'ionic-angular';\n\
+  \nimport { AngularFire, FirebaseListObservable } from 'angularfire2';\n\n@IonicPage()\n\
+  @Component({\n  selector: 'page-food-rating',\n  templateUrl: 'food-rating.html',\n\
+  })\nexport class FoodRatingPage {\n  item:any;\n  ratings:any;\n  foodRatings: FirebaseListObservable<any[]>;\n\
+  \n  constructor(\n    public navCtrl: NavController,\n    public navParams: NavParams,\n\
+  \    public af: AngularFire) {\n\n    this.item = this.navParams.data;\n    this.foodRatings\
+  \ =\n      af.database.list('/rateItems/'+this.navParams.data.$key);\n  }\n\n  ionViewDidLoad()\
+  \ {\n    console.log('ionViewDidLoad FoodRatingPage');\n  }\n\n  ratingPage() {\n\
+  \    // Will push to RateFoodPage where we will rate this\n    // specific foodItem+city\
+  \ combo\n    this.navCtrl.push(\"RateFoodPage\",\n    this.navParams.data);\n  }\n\
+  }\n```\n\n\n\n\n\n现在，让我们看看如何在 Firebase 中创建一条条目。假设我们要对 `foodItem` 给出**评论**和**评级**，我们会在\
+  \ `rateFoodPage` 页面上完成。这里我们再次使用同一个 `$key` 在数据库中存储新的评论。\n\n![](img/c54e3488d7687ea0d26e8c2ce3cdfae3_313_0.png)\n\
+  \n```typescript\n// src/pages/rate-food/rate-food\n\nimport { Component } from '@angular/core';\n\
+  import { IonicPage, NavController, NavParams } from 'ionic-angular';\n\nimport {\
+  \ AngularFire, FirebaseListObservable } from 'angularfire2';\nimport * as firebase\
+  \ from 'firebase';\n\n@IonicPage()\n@Component({\n  selector: 'page-rate-food',\n\
+  \  templateUrl: 'rate-food.html',\n})\nexport class RateFoodPage {\n\n  rateItems:\
+  \ FirebaseListObservable<any[]>;\n  data: {name?: string, review?: string, rating?:\
+  \ any} = {};\n  constructor(\n    public navCtrl: NavController,\n    public navParams:\
+  \ NavParams,\n    public af: AngularFire) {\n\n    this.rateItems = af.database.list('/rateItems');\n\
+  \    console.log(this.navParams.data);\n    this.data.name = this.navParams.data.name;\n\
+  \  }\n\n  rate() {\n    let data = {\n      \"rating\": this.data.rating,\n    \
+  \  \"review\": this.data.review\n    }\n    let url = \"rateItems/\" + this.navParams.data.$key\
+  \ +\n      \"/\" +\n      this.makeid();\n    firebase.database().ref().child(url).set(data);\n\
+  \    this.navCtrl.pop();\n  }\n\n  makeid() {\n    var text = \"\";\n    var possible\
+  \ =\n      \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789\";\n\
+  \n    for( var i=0; i < 8; i++ )\n      text += possible.charAt(Math.floor(Math.random()\
+  \ *\n        possible.length));\n\n    return text;\n  }\n}\n```\n\n我们使用了 `makeid()`\
+  \ 函数为多个用户对同一 `foodItems` 的评论/评级生成随机的 `$keys`。在这里你可以看到，我们没有使用 `AngularFire` 方法，而是直接使用了\
+  \ Firebase 方法，因为我们无法使用 `AngularFire` 标准函数以这种方式插入数据。\n\n除了创建和查询数据之外，我们还可以使用 `AngularFire`\
+  \ 更新和删除对象。我们还没有在应用中使用这些功能，但它们实际上很容易执行：\n\n```javascript\n// Deleted the object and\
+  \ handles error via promise\nconst promise = af.database.object('/item').remove();\n\
+  promise\n  .then(_ => console.log('success'))\n  .catch(err => console.log(err,\
+  \ 'You don\\'t have access!'));\n\n// updates data of an object\nconst itemObservable\
+  \ = af.database.object('/item');\nitemObservable.update({ age: newAge });\n```\n\
+  \n> 每一项技术和框架都在定期更新，因此我必须确保每个章节所关联的代码库尽可能频繁地更新。此外，很多时候章节中无法写尽所有功能，所以我已经尽最大努力在每个章节的演示项目中覆盖尽可能多的主题。因此，请务必仔细阅读代码库，只要有不一致的地方，我都会在代码中添加注释。\n\
+  \n![](img/c54e3488d7687ea0d26e8c2ce3cdfae3_314_0.png)\n\n## 数据的结构与安全\n\n在 Firebase\
+  \ 中存储和构建数据时，我们必须再三考虑如何为应用获取数据。这与使用任何其他 NoSQL 数据库（例如 MongoDB）时遇到的问题相同。我们应该倾向于将数据扁平化，而不是把所有内容都嵌套起来，并且在获取数据时必须将扁平化的数据重新联结在一起。\n\
+  \n让我们以博客网站为例：用户创建博客文章，且所有博客文章都有评论。因此，我们更倾向于将数据拆分，而不是在 Firebase 中嵌套数据：\n\n```json\n\
+  {\n  \"users\": {\n    \"user1\": {\n      \"name\": \"John Smith\",\n      \"type\"\
+  : \"editor\",\n      \"blogs\": {\n        \"post1\": {\n          \"id\": 123456,\n\
+  \          \"title\": \"Welcome to Ionic\",\n          \"post\": \"Ionic is an open\
+  \ source SDK for hybrid apps\"\n        },\n        \"post2\": {\n          \"id\"\
+  : 123457,\n          \"title\": \"Welcome to Ionic\",\n          \"post\": \"Ionic\
+  \ is an open source SDK for hybrid apps\"\n        }\n      }\n    },\n    \"user2\"\
+  : {\n      \"name\": \"Adam\",\n      \"type\": \"admin\",\n      \"blogs\": {\n\
+  \        \"post1\": {\n          \"id\": 234567,\n          \"title\": \"Welcome\
+  \ to Ionic\",\n          \"post\": \"Ionic is an open source SDK for hybrid apps\"\
+  \n        }\n      }\n    }\n  }\n}\n```\n\n这种存储数据的方式在初期很容易处理，但随着数据量的增加，查询数据集会变慢，性能也会受损。因此，最佳的存储数据方式是：\n\
+  \n```json\n{\n  \"users\": {\n    \"user1\": {\n      \"name\": \"John Smith\",\n\
+  \      \"type\": \"editor\",\n      \"blogs\": {\n        \"123456\": true,\n  \
+  \      \"123457\": true\n      }\n    },\n    \"user2\": {\n      \"name\": \"Adam\"\
+  ,\n      \"type\": \"editor\",\n      \"blogs\": {\n        \"234567\": true\n \
+  \     }\n    }\n  },\n  \"blogs\": {\n    \"123456\": {\n      \"title\": \"Welcome\
+  \ to Ionic\",\n      \"post\": \"Ionic is an open source SDK for hybrid apps\"\n\
+  \    },\n    \"123457\": {\n      \"title\": \"Welcome to Ionic 2\",\n      \"post\"\
+  : \"Ionic is an open source SDK for hybrid apps\"\n    }\n  }\n}\n```\n\n现在我们已经将数据存储在\
+  \ Firebase 中，下一步是获取数据并将其重新联结起来。联结扁平化数据有点困难，但这种方法带来了很多性能和模块化方面的好处。让我们看看如何获取上述数据并加以联结。\n\
+  \n由于 Firebase 使用 WebSocket，通过这种方式获取数据时性能会很高，而且 Firebase 会在内部对传入和传出请求进行优化。\n\nFirebase\
+  \ 还提供了一组安全规则来保护我们的数据，并帮助确定谁对数据集拥有读取和写入权限。所有安全规则都位于仪表板的**安全与规则（Security & Rules）**选项卡中。在我们的应用内部，应用数据是由用户定义并与用户关联的，因此我们相应地设置了规则：\n\
+  \n![](img/c54e3488d7687ea0d26e8c2ce3cdfae3_317_0.png)\n\n共有三种类型的规则：\n\n- `.read`\
+  \ - 当允许用户读取数据时\n- `.write` - 当允许写入数据时\n- `.validate` - 定义格式正确的数据，并在推送到数据库之前进行验证\n\
+  \n安全规则采用 JSON 结构，正如你在前面的截图中所看到的，这使得理解和设置规则更加容易。该数据会与用户关联，因此我们相应地设置了规则。在我们的应用中，我们首先需要在注册过程中存储与用户相关的数据，例如姓名、电子邮件和其他详细信息：\n\
+  \n```json\n{\n  \"rules\": {\n    \"users\": {\n      \"$user_id\": {\n        \"\
+  .read\": \"$user_id === auth.uid\",\n        \".write\": \"$user_id === auth.uid\"\
+  \n      }\n    }\n  }\n}\n```\n\n我们创建了一个 users 模型来存储这些详细信息。我们将数据嵌套在 `$user_id` 键中，以便创建访问控制，并且只有创建该数据集的用户才能编辑和访问它。类似地，对于\
+  \ `feeds`，用户只能读取订阅源，而不能向其写入内容：\n\n```json\n{\n  \"feeds\": {\n    \".read\": true,\n\
+  \    \".write\": false\n  }\n}\n```\n\nFirebase 内部提供了一些有助于提高查询数据性能的方法。例如，如果我们在一个模型中存储了学生的分数，并且需要按分数查询这些数据，那么我们可以在规则中使用\
+  \ `.indexOn`，这样获取记录时的性能就会提高。你可以在此处了解更多关于保护 Firebase 中数据的信息：https://firebase.google.com/docs/database/security/。\n\
+  \n## 总结\n\n将 Ionic 与 BaaS 平台结合使用，确实为初创公司减轻了很多压力，因为你可以在更短的时间内构建适用于多个平台的应用，而无需任何资源或时间来搭建后端服务器。如今，许多正在成长的公司正转向\
+  \ Ionic，因为它开发速度快、成本更低。拥有良好 JavaScript 技能的小型开发团队可以构建一切，即使他们想为自定义任务建立后端，也可以使用 Node.js\
+  \ 并在 JavaScript 之上构建整个技术栈。像 Firebase 这样的平台对移动应用来说非常强大，因为它使用 WebSocket，速度非常快，并提供实时数据同步。\n\
+  \n接下来，我们将研究一些有趣的最新科技：物联网（IoT）。Ionic 在开发者中一直很出名，因为它可以快速构建应用，通过蓝牙或 HTTP API 控制各种物联网设备。我们将重点介绍使用\
+  \ BLE 和 iBeacons 协议构建应用。我们还将了解 Google 的 Physical Web 计划，该计划使用 Eddystone 协议，实现与物理物体的物理交互。此外，市场上已有多种物联网设备，我们可以轻松地将它们与\
+  \ Ionic 应用对接，解决许多问题。\n\n\n\n\n"
+- "# Ionic 与物联网\n\n开发者已经开始认识到物联网（IoT）的巨大潜力。市场上物联网设备种类繁多，同时也需要相应的应用程序来远程控制这些设备。此时，Ionic\
+  \ 便应运而生，帮助开发者快速且低成本地创建应用。Ionic 在构建这类应用时非常高效，同时还提供对设备功能的完整原生支持，例如通过蓝牙向物联网设备发送信号。目前已有多种设备通过蓝牙或\
+  \ HTTP API 进行数据同步和执行各种操作。当前有许多令人兴奋的项目正在进行中，我们将尝试深入了解它们。下面来看看使用 Ionic 2 构建你的下一个物联网应用的一些理由：\n\
+  \n- 使用 Ionic 2，我们可以通过单一代码库构建 Web 应用、Android、iOS 以及不久的将来的桌面应用。尤其对于原型开发而言，这非常有用。\n\
+  - Ionic 应用使用 Web 技术构建，因此上手非常快。\n- Ionic 自带多套工具，因此你可以高效地引导应用启动并轻松部署。\n\n## Ionic\
+  \ + Node = 强力组合\n\nNode.js 正在解决许多硬件和物联网设备的问题。我们可以用很多方式使用 Node.js 构建后端部分，并通过 HTTP\
+  \ API 与 Ionic 应用通信。其中一个例子是使用 Ionic、Node.js、MQTT 和 Wi-Fi 模块，通过移动应用在互联网上通过 Wi-Fi 模块控制继电器。我们使用免费的在线代理\
+  \ MQTT 将消息从 Node.js 服务器发送到 Wi-Fi 模块，该模块在 Arduino IDE 中设置。另一方面，我们使用 HTTP REST API\
+  \ 从 Ionic 应用调用 Node.js 服务器。这样，我们就能够向 Wi-Fi 路由器发送信号并执行特定操作。\n\n用户需要某种界面来与这些物联网设备交互，这为基于\
+  \ Ionic 的移动应用开辟了道路。我们将在本章后面实现一个名为 bleno 的节点模块，用于实现 BLE 外设。Noble 和 bleno 是用于 BLE\
+  \ 实现的两个常用模块。Noble 扫描其附近的周边外设，bleno 作为外设进行传输。此外，还有其他多个物联网模块可作为 NPM 包使用，能让你快速上手：\n\
+  \n- **Cylon.js**：主要用于机器人和物联网\n- **Node-RED**：用于将多个物联网硬件设备连接在一起的工具\n- **DeviceJS**：面向物联网的\
+  \ JavaScript 引擎，物联网领域的 jQuery\n- **noduino**：用于控制 Arduino 的 Node.js 框架\n\nWebSocket\
+  \ 可以像 MQTT 一样成为另一种消息传递协议。我们将在本章的演示中使用 WebSocket。我们可以做的事情是无穷无尽的。Arduino 和 Raspberry\
+  \ Pi 是用于构建可与其他硬件设备交互的应用的两个著名开发板。你可以在网上找到许多在黑客马拉松或学习期间构建的示例，其中开发者使用 Ionic 应用实时点亮\
+  \ LED。其中一个示例使用 Raspberry Pi GPIO 引脚和连接到它上面的面包板。Node.js 代码驻留在 Raspberry Pi 上，LED\
+  \ 灯泡连接到面包板。我们可以想到的另一个示例是连接温度、GPS 等传感器。你可以在 https://github.com/arjunsk/Ionic-IoT-Monitor\
+  \ 找到一个有趣的 Ionic 应用示例，它使用 MQTT 实时从传感器获取数据并在应用中可视化。\n\n可能性是无限的，随着物联网行业的发展，你会发现更多传感器和硬件设备不断涌现，以解决许多现实问题。你甚至可以考虑控制所有家庭设备并构建一个家庭自动化项目，类似于马克·扎克伯格几个月前用他的\
+  \ Jarvis AI 所做的。尽管他在项目中使用 AI，但我们完全可以简单地根据我们的需求开始控制所有智能设备。作为开发者，最好的部分是，即使你只写一小段让你的生活更轻松的代码，你也会非常喜欢它。\n\
+  \n## BLE、信标和物理 Web\n\nBLE 代表低功耗蓝牙（Bluetooth Low Energy）。蓝牙 4.0 为物联网行业带来了创新性的变革。曾几何时，蓝牙被视为交换文件的一种媒介，但随着技术的发展，我们已经看到健身手环和智能手表市场的增长。蓝牙智能设备功耗低，有助于延长智能手机电池寿命，并被证明对物联网行业非常有效。随着蓝牙再次渗透到市场，我们看到物联网行业中对蓝牙设备的使用率很高。\n\
+  \n![](img/c54e3488d7687ea0d26e8c2ce3cdfae3_331_0.png)\n\n这是我在一次黑客马拉松期间构建的应用截图，它使用\
+  \ Kontakt 信标广播 iBeacon，而我们基于 Ionic 的移动应用检测到该信标并触发本地通知。\n\n我们一直在谈论很多关于信标的内容。让我们来看看\
+  \ iBeacon 是什么。iBeacon 是由 Apple 开发的一种协议，它设定了如何传输数据信号的布局。通常，BLE 广播有两种协议：iBeacon 和\
+  \ Eddystone。标准的 iBeacon 广播包含 UUID、major 和 minor：\n\n```\nUUID: f7826da6-4fa2-4e98-8024-bc5b71e0893e\n\
+  \nMajor ID: 65279\n\nMinor ID: 63150\n```\n\n## Eddystone 与物理 Web\n\nEddystone 是由\
+  \ Google 发布的 BLE 信标协议，它是开源的且跨平台。Eddystone 包含三种数据类型帧：Eddystone-UID、Eddystone-URL\
+  \ 和 Eddystone-TLM：\n\n- **Eddystone-UID**：一个唯一的 16 字节静态 ID，通常被原生应用使用\n- **Eddystone-URL**：一个物理\
+  \ Web 项目，传输可直接供客户端使用的压缩 URL\n- **Eddystone-TLM**：广播信标信息，如电池电量、传感器数据和其他信息\n\n现在几乎所有主要的信标制造商都支持\
+  \ iBeacon 和 Eddystone 数据格式。Google 目前正在推广信标技术，以提供更好的定位和邻近体验。目前，Eddystone-URL 帧被广泛用于物理\
+  \ Web 计划中。\n\n*物理 Web 是一种开放方法，旨在实现对物理对象和位置的快速无缝交互。*\n\n物理 Web 将 URL 的力量扩展到日常物理对象上。这使你无需下载特定于设备的应用即可与任何物理设备（例如自动售货机租赁）进行交互。使用起来非常顺畅：你只需点击设备上附带的\
+  \ URL，并在网络浏览器中使用它。物理 Web 是一个很小的发现服务，它提供附近的移动设备可以接收的特定 URL。这将带你进入一个完全交互式的网页，或深层链接到原生应用。\n\
+  \n我们已经面临着安装多个应用会占用设备内存和存储空间的挑战。此外，管理多个应用也很头疼，这也是开发者开始考虑将移动 Web 与 PWA 结合起来的另一个原因。同样，随着物联网设备不断增加，为每台设备安装应用并不具备可扩展性。因此，物理\
+  \ Web 在这里提供了帮助，你可以打开 URL 在 Web 上操作设备，而后端可以通过多种协议与设备通信。让我们想一个现实生活中的例子。如果你正在做演讲，你可以使用信标广播幻灯片\
+  \ URL，并让听众打开蓝牙和定位服务来接收该 URL。\n\n我们也不需要真正的硬件信标设备来演示这一点或在会议中广播。有一个 NPM 包，名为 Eddystone-beacon，我们可以用它来广播\
+  \ Eddystone URL：\n\n```\n$ npm install eddystone-beacon --save\n$ sudo node -e \"\
+  require('eddystone-beacon').advertiseUrl('https://www.facebook.com/veloice');\"\n\
+  ```\n\n只需确保你所使用的 Linux 笔记本电脑已启用蓝牙即可。现在启用 Android 手机上的蓝牙和定位服务，你会看到一个带有 Web URL 标题和描述的通知。\n\
+  \n\n\n\n\n![](img/c54e3488d7687ea0d26e8c2ce3cdfae3_334_0.png)\n\n这里我广播了三个不同的 URL，你可以在通知菜单中看到全部三个\
+  \ URL 的详细信息。这是一个关于如何在公开场合分享 URL 的小例子。你可以在 Physical Web 网站上找到很多这样的例子（https://google.github.io/physical-web/）并看看如何从这一倡议中构建出东西。\n\
+  \n我们可以用 iBeacons 和 Eddystone 执行各种功能，例如测距、区域监控和其他设置。基于 tx 和 RSSI 值，我们可以获取设备与信标之间的近似距离。借助信标，我们甚至可以进行室内地图绘制和地理围栏。\n\
+  \n## 基于接近度的屏幕锁定，使用 BLE\n\n这是一直以来我想实现的东西，也是我现实生活中的一个问题。是时候研究一下使用 BLE 栈与 Ionic 应用结合是否切实可行了。在办公室工作时，我经常需要离开座位去接一些紧急电话或参加会议。大多数时候我忘记给笔记本电脑屏幕锁定。所以，我想用\
+  \ BLE 和 WebSockets 构建这个基于接近度的屏幕锁定应用。\n\n让我们先看看应用程序的工作原理。基于 Ionic 的应用程序会监听笔记本电脑持续广播的\
+  \ iBeacon 数据包。当我带着手机离开座位时，在某个点上它会退出笔记本电脑的广播区域。立即，它会通过网络向运行在我 Ubuntu 笔记本上的 Node.js\
+  \ 应用发送一个 socket 请求，并在我的笔记本上调用屏幕锁定命令。同样地，当我重新进入广播范围时，它会发送另一个 socket 请求来解锁笔记本。\n\n\
+  我们在这里使用的技术栈是：\n\n- Node.js\n- Web Sockets\n- BLE\n- Ionic\n- Bash script\n\n我们必须先准备好\
+  \ Node.js 后端和 bash 脚本，才能开始我们的应用程序。在此之前，请确保已安装用于 BLE 和 Node.js 的所有 Debian 包。\n\n\
+  ```\n$ sudo apt-get install bluetooth bluez libbluetooth-dev libudev-dev\n```\n\n\
+  现在我们可以使用 `npm init` 命令初始化项目：\n\n![](img/c54e3488d7687ea0d26e8c2ce3cdfae3_337_0.png)\n\
+  \n我们为应用程序使用以下 NPM 包：\n\n- `app` 和 `http` - 用于创建 Web 服务器并在 5000 端口监听\n- `io` - 用于\
+  \ websocket 实现\n- `bleno` - 用于实现 BLE 外设\n- `child_process` - 用于执行 bash 文件\n\n```javascript\n\
+  $ npm install express http bleno socket.io   // index.js\n\nvar app = require('express')(),\n\
+  \    http = require('http').Server(app),\n    io = require('socket.io')(http),\n\
+  \    bleno = require('bleno');\n    exec = require('child_process').exec;\n\n//\
+  \ Start advertising iBeacon\nvar uuid = '38a48d7e-05ab-11e7-93ae-92361f002671';\n\
+  var major = 10; // 0x0000 - 0xffff\nvar minor = 5; // 0x0000 - 0xffff\nvar measuredPower\
+  \ = -59 // -128 - 127\n\nbleno.on('stateChange', function(state) {\n    console.log('on\
+  \ -> statechange: ' + state);\n    if (state === 'poweredOn') {\n        bleno.startAdvertisingIBeacon(uuid,\
+  \ major, minor,\n            measuredPower);\n    } else {\n        bleno.stopAdvertising();\n\
+  \    }\n});\n```\n\n最初，我们声明了用于广播 iBeacon 的属性。我们在这里监听 `stateChange` **listener**，这样在\
+  \ **Bluetooth** 开启/关闭时，我们就可以分别使用 `startAdvertisingIBeacon()` 和 `stopAdvertising()`\
+  \ 方法启动或停止 **iBeacon** 广播。\n\n现在我们准备好开始我们的 Ionic 应用以与后端交互。让我们使用 tabs starter 模板启动应用：\n\
+  \n```\ngaurav@gaurav-thinkpad:~/projects/ionic$ ionic start lock-app tabs --v2\n\
+  Creating an Ionic 2.x app in /home/gaurav/projects/ionic/lock-app based on the tabs\
+  \ template.\nDownloading: https://github.com/driftyco/ionic2-app-base/archive/master.zip\n\
+  Downloading: https://github.com/driftyco/ionic2-starter-tabs/archive/master.zip\n\
+  Installing npm packages (may take a minute or two)...\n/ ♪ ♪ ♪ ♪  Your Ionic app\
+  \ is ready to go! ♪ ♪ ♪ ♪\nSome helpful tips:\nRun your app in the browser (great\
+  \ for initial development):\n  ionic serve\nRun on a device or simulator:\n  ionic\
+  \ run ios[android,browser]\nShare your app with testers, and test on device easily\
+  \ with the Ionic View companion app:\n  http://view.ionic.io\ngaurav@gaurav-thinkpad:~/projects/ionic$\n\
+  ```\n\n由于我们已经清楚应用中将使用哪些内容，让我们安装平台、Cordova 插件和 NPM 包：\n\n```\n// add android platform\n\
+  $ ionic platform add android\n\n// add ibeacon and diagnostic plugins\n$ ionic plugin\
+  \ add cordova-plugin-ibeacon --save\n$ ionic plugin add cordova.plugins.diagnostic\
+  \ --save\n\n// install NPM package for socket.io-client\n$ npm install socket.io-client\
+  \ --save\n```\n\n我们首先通过检查蓝牙是否已启用并要求用户授予位置权限来开始，这在使用 diagnostic 插件时自 Android 6 起成为强制要求：\n\
+  \n```typescript\n// src/app/app.component.ts\n\nimport { Component } from '@angular/core';\n\
+  import { Platform } from 'ionic-angular';\nimport { IBeacon, Diagnostic, StatusBar,\
+  \ Splashscreen } from 'ionic-native';\n\nimport { TabsPage } from '../pages/tabs/tabs';\n\
+  \ndeclare var cordova: any;\n\n@Component({\n  templateUrl: 'app.html'\n})\nexport\
+  \ class MyApp {\n  rootPage = TabsPage;\n\n  constructor(platform: Platform) {\n\
+  \    platform.ready().then(() => {\n      // Okay, so the platform is ready and\
+  \ our plugins are available.\n      // Here you can do any higher level native things\
+  \ you might need.\n\n      StatusBar.styleDefault();\n      Splashscreen.hide();\n\
+  \n      if (platform.is('cordova')) {\n\n        // Checks if bluetooth is enabled\n\
+  \        IBeacon.isBluetoothEnabled().then((isEnabled) => {\n          console.log(\"\
+  isEnabled: \" + isEnabled);\n          if (!isEnabled) {\n            // If not,\
+  \ enableBluetooth() enables it\n            IBeacon.enableBluetooth();\n       \
+  \   }\n        });\n\n        // Check if location is enabled\n        Diagnostic.isLocationEnabled().then((result)\
+  \ => {\n          // If not, open location settings\n          if (!result) {\n\
+  \            Diagnostic.switchToLocationSettings();\n          }\n        });\n\n\
+  \        // Diagnostic plugin\n        // After Android 6, we need to explicitly\n\
+  \        // ask for permission from the user\n        Diagnostic.requestRuntimePermissions([\n\
+  \          cordova.plugins.diagnostic.permission.ACCESS_FINE_LOCATION,\n       \
+  \   cordova.plugins.diagnostic.permission.ACCESS_COARSE_LOCATION\n        ]);\n\
+  \      });\n  }\n}\n```\n\n最初，我们检查 isBluetoothEnabled()，它会根据状态返回一个布尔值。之后，如果返回 false，则我们调用\
+  \ enableBluetooth() 方法来启用蓝牙。同样，isLocationEnabled() 用于检查位置是否已启用，如果未启用，则调用 switchToLocationSettings()\
+  \ 方法，该方法会打开位置设置。\n\nDiagnostic.requestRuntimePermissions() 需要获取运行时权限，这对于运行 Android\
+  \ 6 及以上版本的所有设备都是必需的。对于 BLE 的监控和测距，我们需要 ACCESS_FINE_LOCATION 和 ACCESS_COARSE_LOCATION\
+  \ 权限：\n\n![](img/c54e3488d7687ea0d26e8c2ce3cdfae3_340_0.png)\n\n```typescript\n\
+  IBeacon.enableDebugNotifications();\n}\n}\nmanageLaptop(data, status) {\n    this.socket.emit('status',\
+  \ status);\n}\n```\n\n`startMonitoringForRegion()` 方法开始对指定区域进行监控，该区域的 `uuid`、major\
+  \ 和 minor 与我们的 Node.js 代码广播的一致。现在，当你离开座位并移出蓝牙范围时，`didExitRegion()` 方法将被调用，它会订阅并进一步调用我们的\
+  \ `manageLaptop()` 方法，传入数据和锁定状态。同样，当我们返回时，`didEnterRegion()` 将被调用：\n\n```typescript\n\
+  initialize() {\n    this.socket = io.connect(this.socketHost);\n\n    this.socket.on(\"\
+  connect\", (msg) => {\n        console.log('on connect');\n    });\n\n    this.socket.on(\"\
+  reconnecting\", (msg) => {\n        console.log('on reconnecting');\n    });\n\n\
+  \    this.socket.on('disconnect', function() {\n        console.log('user disconnected');\n\
+  \    });\n\n    this.socket.on(\"result\", (msg) => {\n        this.laptop_status\
+  \ = msg;\n        console.log(msg, \"==received=msg===\")\n    });\n}\n```\n\n在我们的\
+  \ `manageLaptop()` 方法内部，我们向服务器发出自定义事件。在此之前，我们还初始化了 `initialize()` 函数，以在后端 Node.js\
+  \ 应用运行的主机上与服务器建立初始连接。\n\n这样我们的整个演示就完成了。对我个人而言，它运行得非常好，并且提供了手动锁定和解锁按钮，我也可以远程锁定我的笔记本电脑。你可以用\
+  \ Ionic 和 IoT 快速构建许多小技巧和原型。\n\n\n\n\n\n## Summary\n\n信标及其应用即将在多个领域出现，尤其是在零售领域。然而，就广泛实施而言，它仍然是一种非常新的技术。零售商应尝试思考新的创新，利用新技术来提升用户体验。我们已经讨论并快速实现了许多关于如何将物联网与\
+  \ Ionic 应用结合使用的用例。我一直定期关注 Ionic 博客，看到许多团队使用 Ionic 来与他们的硬件设备进行交互，其中之一就是 jewelbots，它可以在朋友靠近时启用或向你发送消息。机会是巨大的，只需要一个想法来实现它并将其带到世界。\n\
+  \n我们几乎接近旅程的尾声，但仍有一个有趣的话题等待在下一节中介绍。我们在本章中讨论了为访问设备而安装多个原生应用程序的问题，而这个问题正是通过为 Ionic\
+  \ 引入 PWA 支持而得到解决的。PWA 即使在低网速下也让用户体验变得沉浸式。印度许多电子商务和大型科技公司在 Flipkart 最初与 Chrome 团队合作推出其渐进式网络应用后，也推出了自己的渐进式网络应用。突然之间，我们可以看到市场正在增长，开发者正在构建平台以使当前网络应用能够启用\
+  \ PWA 功能。尽管如此，它并不会终结原生应用市场，因为我们没有所有插件的能力。使用 Ionic 的最好之处在于，完全相同的代码可以同时转换为 PWA 和原生应用。\n"
+- "# Ionic + PWA = Magic\n\n在移动应用之后出现的下一个大事物是面向移动网络的渐进式网络应用。**渐进式网络应用 (PWA)** 最初由\
+  \ Google 于 2015 年启动，我们已经可以看到许多大型公司推出了面向移动网络的 PWA 版本。在 PWA 之前，许多开发者和公司对移动网络失去了兴趣，只专注于原生应用，但\
+  \ Google 变得严格，开始惩罚那些带有下载原生应用横幅或不具备移动友好性的网站的站点。在此之后，开发者也开始着手移动网络，同时 Google Chrome\
+  \ 推出了对 PWA 的支持，而 Flipkart 最初与 Chrome 团队密切合作推出了其渐进式网络应用。\n\n一切都关乎提供出色的用户体验，无论是原生应用还是\
+  \ PWA，最终用户并不关心，只要他们拥有流畅的体验即可。我们将在本章中探讨以下主题：\n\n- What and why PWAs?\n- Ionic supports\
+  \ PWA\n- Offline currency converter PWA\n- Future of PWAs\n\n## What and why PWA?\n\
+  \nPWAs 是一种新型的网络应用。它们结合了原生应用的优势与网络的低摩擦特性。渐进式网络应用起初是简单的网站，但随着用户与其交互，它们会逐步获得超能力。它们从网站转变为更强大的东西，例如传统的原生应用。\n\
+  \nPWAs 具有以下特点：\n\n- **Reliable**: PWAs 即时加载，即使在糟糕的网络条件下也不会显示恐龙。当应用从用户主屏幕启动时，服务工作者（稍后会讨论）使渐进式网络应用能够即时加载，而不管网络状态如何。\n\
+  - **Portable**: 原生应用的可移植性有许多策略（包括混合应用），但与这些策略不同，PWAs 不会改变你的部署和打包模型。\n- **Engaging**:\
+  \ PWAs 在设备上感觉像是一个自然的应用，具有出色的用户体验。它们可安装，可以添加到用户主屏幕，而无需任何应用商店。它们提供与原生应用相同的全屏体验，甚至可以通过网络推送通知重新吸引用户。\n\
+  - **Fast**: PWAs 速度快，对交互做出快速响应并具有流畅的动画。用户总是期望网站快速流畅。根据一项调查，如果网站加载时间超过三秒，53% 的用户会放弃该网站。\n\
+  \n## Advantages of PWA\n\nPWAs 相对于原生应用具有某些优势，它是未来数年内将上网的数十亿用户的未来。现在我们将谈论其优势以及它们对移动用户为何至关重要：\n\
+  \n- **Install prompt**: 安装横幅非常关键，它们会增加与应用的互动。目前，开发者无法控制这一点，而是由 Chrome 决定何时提示用户显示添加到主屏幕的选项。\n\
+  - **Works offline**: 许多地区的互联网连接可能非常糟糕，这就是为什么我们需要为应用提供离线支持。PWAs 有助于我们获得更好的用户体验和参与度。Cache\
+  \ APIs 和 IndexedDB 是实现 PWA 离线访问的两种推荐方法。\n- **Lightweight**: 渐进式网络应用只是网页，非常轻量且安装快速。PWAs\
+  \ 不会占用大量安装空间，并且会实时更新，因为它们无需通过 Play Store 审核。\n- **Linkable and discoverable**: 我们可以轻松分享\
+  \ URL，并且由于 manifest 和服务工作者注册范围而被识别为应用。此外，还允许搜索引擎找到它。\n- **Web push notifications**:\
+  \ 服务工作者也有助于处理网络推送通知，这有助于重新吸引用户。PWA 仅通过 HTTPS 提供服务，因此确保了安全性。\n- **Update on use**:\
+  \ 与通常的原生应用更新策略不同，PWAs 的更新方式与网页相同：使用它们即可获得最新版本。\n- **Analyze before installation**:\
+  \ 你无需安装即可开始使用它们。它们只是简单的网页。用户在想要时选择安装。\n\n## Disadvantages of PWA\n\nPWA 的缺点如下：\n\
+  \n- **Traffic through store**: PWA 缺少通过 Play Store 或应用商店进行主要搜索的重要流量。用户可以通过移动网络被重定向到\
+  \ Play Store 下载原生应用，但对于 PWA 来说则不适用。\n- **Plugin integration**: 诸如 Facebook 和 Google\
+  \ 登录之类的插件无法从其应用中获取数据，我们需要在网络上单独获取。\n- **Promotion**: 随着公司制作自己的应用内浏览器，在社交媒体上推广 PWA\
+  \ 体验变得越来越困难。\n- **Browser support**: 在某些设备上的某些浏览器中，PWAs 的完整支持不可用。\n\n## Ionic supports\
+  \ PWA\n\nIonic 团队是渐进式网络应用的忠实粉丝，它利用现代网络 API 提供类似应用的体验。由于 Ionic 3 是用在网络浏览器中完美运行的网络技术构建的，这在你使用\
+  \ Ionic 构建 PWA 时为你提供了巨大的优势，因为如果你知道如何构建 Ionic 3 应用，那么你就可以在短时间内轻松构建 PWA，你只需要添加服务工作者和一个网络清单文件。我们将构建一个具有\
+  \ PWA 支持的离线货币转换器，并最终将其托管在 Firebase Hosting 上。\n\n## What makes a web application\
+  \ a PWA?\n\n简单来说，PWA 意味着最终会被安装到用户的主屏幕，这意味着他们会像使用原生应用一样访问它。因此用户期望与使用原生应用时相同的体验。由于\
+  \ Ionic 3 旨在使用标准网络技术创建原生应用体验，因此这已经得到处理。\n\nPWA 应该非常高效，因为 PWA 将与原生应用一起安装到主屏幕。Ionic\
+  \ 3 是从一开始就以性能为目标构建的，这意味着你几乎不必为此担心。由于 PWA 将安装在用户的主屏幕上，此过程需要你的应用的网络清单。值得庆幸的是，Ionic\
+  \ 3 CLI 附带了内置的清单文件。\n\n大多数原生应用在启动时可离线工作并为用户提供有限的离线体验，因此 PWA 也可以为用户做到这一点。在服务工作者的帮助下，我们现在可以让我们的网络应用在离线时工作。\n\
+  \n\n\n\n```html\n<link rel=\"manifest\" href=\"manifest.json\">\n```\n\n```json\n\
+  // src/manifest.json\n{\n  \"name\": \"Currency Converter PWA\",\n  \"short_name\"\
+  : \"Currency\",\n  \"start_url\": \"index.html\",\n  \"display\": \"standalone\"\
+  ,\n  \"icons\": [{\n    \"src\": \"assets/logo.png\",\n    \"sizes\": \"512x512\"\
+  ,\n    \"type\": \"image/png\"\n  }],\n  \"background_color\": \"#db0000\",\n  \"\
+  theme_color\": \"#000000\",\n  \"gcm_sender_id\": \"124917710568\"\n}\n```\n\n-\
+  \   fullscreen：使用所有可用的用户区域，且不显示用户代理Chrome。\n-   display：定义开发者偏好的Web应用显示模式。\n-  \
+  \ start_url：指定用户从设备启动应用时加载的URL。在我们的Ionic应用中，它始终是index.html。\n-   short_name：用于没有足够空间显示Web应用完整名称的地方。\n\
+  -   name：这是用户打开应用时在启动页（splashscreen）上看到的名称。\n-   Standalone：应用在视觉和体验上都将像一个独立应用。这可以包括应用拥有不同的窗口、在应用启动器中拥有自己的图标等。\n\
+  -   minimal-ui：应用在视觉和体验上像一个独立应用，但会有一组用于控制导航的最小UI元素。这些元素因浏览器而异。\n-   Browser：应用在常规浏览器标签页或新窗口中打开，具体取决于浏览器和平台。这是默认情况。\n\
+  -   Icons：用于应用各种不同位置的图标数组，例如，当我们将其添加到主屏幕时，该图标会与应用短名称一起放置。\n-   background_color：Web应用的预期背景颜色。\n\
+  -   theme_color：应用的默认主题颜色。\n-   gcm_sender_id：用于发送Web推送通知，代表Firebase Cloud中的sender_id：\n\
+  \n![](img/c54e3488d7687ea0d26e8c2ce3cdfae3_360_0.png)\n\n你可以看到，在实现了上述部分属性后，安装应用时启动画面的外观。\n\
+  \n## 服务工作线程\n\n在Ionic 3中使用服务工作线程非常简单，Ionic自带`service-worker.js`文件，该文件最初在`index.html`文件中被注释掉。我们只需取消注释该部分，你就会看到服务工作线程在浏览器中注册。\n\
+  \n服务工作线程本质上充当代理服务器，位于Web应用与浏览器之间，以及浏览器与网络之间（当可用时）。它们旨在（除其他功能外）实现有效的离线体验、拦截网络请求，并根据网络是否可用以及服务器上是否有更新的资源来采取适当的行动。它们还允许访问推送通知和后台同步API。\n\
+  \n服务工作线程具有生命周期和各种操作的事件。我们首先在页面上注册服务工作线程，成功的注册生命周期从install和activate事件开始。Ionic 3在`src`文件夹内的`index.html`文件中带有内置注册代码，只需取消注释即可。现在，你可以访问[chrome://serviceworker-internals/](chrome://serviceworker-internals/)并查看你的站点，来检查服务工作线程是否已启用：\n\
+  \n![](img/c54e3488d7687ea0d26e8c2ce3cdfae3_362_0.png)\n\n正如你所看到的，我们在`localhost:8100`本地提供的应用已注册服务工作线程。不过，当我们部署PWA时，它必须通过安全方式提供服务（HTTPS且无证书错误）。Firebase托管和GitHub\
+  \ Pages通过HTTPS托管，因此它们可以作为托管PWA应用的最佳场所。\n\n注册完成后，接下来就是安装事件以开始其工作。在install事件中，我们缓存所有静态文件。`event.waitUntil()`方法确保服务工作线程在其中的代码执行完成之前不会被安装。现在，`cache.addAll()`将静态资源缓存到缓存存储中：\n\
+  \n```javascript\nvar cacheName = 'cache-v1';\n// pre-cache our key assets\nvar files\
+  \ = [\n  './build/main.js',\n```\n\n```javascript\ncaches.match(request).then((response)\
+  \ => {\n    if (response) {\n        return response;\n    }\n\n    //if request\
+  \ is not cached, add it to cache\n    return fetch(request).then((response) => {\n\
+  \        var responseToCache = response.clone();\n        caches.open(cacheName).then((cache)\
+  \ => {\n            cache.put(request, responseToCache).catch((err) => {\n     \
+  \           console.warn(request.url + ': ' + err.message);\n            });\n \
+  \       });\n\n        return response;\n    })\n});\n```\n\n> *在sw-toolbox支持之后，我们使用sw-toolbox路由方法来获取资源，并根据可用的不同策略对其进行缓存，我们将在演示中进一步看到。*\n\
+  \n服务工作线程可以执行推送事件、创建用户通知、打开特定页面或运行一些后台脚本：\n\n```javascript\nself.addEventListener('push',\
+  \ (event) => {\nconsole.log('Received a push message', event);\n\nconst title =\
+  \ 'Yay a message.';\nconst body = 'We have received a push notification.';\nconst\
+  \ icon = 'assets/icon.png';\nconst tag = 'simple-push-demo-notification-tag';\n\n\
+  event.waitUntil(\n    self.registration.showNotification(title, {\n        body:\
+  \ body,\n        icon: icon,\n        tag: tag\n    })\n);\n});\n```\n\n最近，Ionic增加了对sw-toolbox的支持，这是一个`service-worker`库，它减少了很多工作量。\n\
+  \n### 服务工作线程工具箱（sw-toolbox）\n\n它现在已内置到starter和conference应用中。这允许你使用高级API而不是原始Service\
+  \ Worker API来定制你的服务工作线程。我们的开箱即用配置将为你的应用提供良好的、不依赖网络的体验，但你可以轻松定制以适应应用独特的用例。\n\n我们已经介绍了服务工作线程的各种事件及其工作原理。这里最重要的是使用Chrome开发者工具来调试服务工作线程，并查看服务工作线程的状态和可用缓存。如需进一步研究服务工作线程以及可以使用它们做什么，你可以查看Google和Mozilla提供的以下文档链接：\n\
+  \nhttps://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API/Using_Service_Workers\n\
+  https://developers.google.com/web/fundamentals/getting-started/primers/service-workers.\n\
+  \n```javascript\nlocalStorage.setItem('anonKey', subKey);\n});\n})\n.catch(err =>\
+  \ console.log('Error', err));\n}\n</script>\n```\n\n你可以在这里看到，成功注册后，我们从pushManager订阅推送通知。这将生成订阅端点，用于向所有用户发送通知。下一步是设置我们的`manifest.json`文件：\n\
+  \n```json\n{\n  \"name\": \"Currency Converter PWA\",\n  \"short_name\": \"Currency\"\
+  ,\n  \"start_url\": \"index.html\",\n  \"display\": \"standalone\",\n  \"icons\"\
+  : [{\n    \"src\": \"assets/logo.png\",\n    \"sizes\": \"512x512\",\n    \"type\"\
+  : \"image/png\"\n  }],\n  \"background_color\": \"#db0000\",\n  \"theme_color\"\
+  : \"#000000\",\n  \"gcm_sender_id\": \"124917710568\"\n}\n```\n\n我们在上一节中讨论了所有属性，这里我们将为用户通知添加`gcm_sender_id`。你可以从云消息中的**Firebase设置**获取`gcm_sender_id`。从那里复制服务器密钥，因为稍后发送Web推送通知时会需要它。\n\
+  \n服务工作线程对于渐进式Web应用至关重要。以下是我们默认的`service-worker.js`，我们根据需求进行了一些进一步修改。Ionic默认不使用`sw-toolbox`库，但该库大大减少了代码和工作量：\n\
+  \n```javascript\n// src/service-worker.js\n\n'use strict';\nimportScripts('./build/sw-toolbox.js');\n\
+  \nvar version = 1;\n\nself.toolbox.options.debug = true;\n\nself.toolbox.options.cache\
+  \ = {\n  name: 'ionic-cache' + version\n};\n\n// pre-cache our key assets\nself.toolbox.precache(\n\
+  \  [\n  './build/main.js',\n  './build/main.css',\n  './build/polyfills.js',\n \
+  \ 'index.html',\n  'manifest.json',\n  '/'\n  ]\n);\n```\n\n我们从设置缓存名称开始，使用指定的版本号命名。因此，只要有新更改，我们就会更改版本，并生成新的`cacheStorage`。接下来，我们使用`precache()`方法缓存所有静态资源，并传入所有静态文件路径。你会看到，我们添加了另一个默认文件中没有的资源，因为我们的应用在浏览器`localhost:8100`上运行，如果首次加载后离线，该资源将不会被缓存，你会看到错误。如果你不想添加这个，只需刷新页面两次，因为这样可以将它缓存。\n\
+  \n\n\n请求也是如此。\n\n现在我们已经缓存了静态资源，接下来看看我们如何对动态内容（如 API 调用）使用缓存策略。在 `HomePage` 和 `ListPage`\
+  \ 中，我们使用了两种类型的 API，因此我们希望采用不同的缓存策略。每次获取完整列表时，我们使用 `networkFirst` 策略，而对于单一货币汇率则使用\
+  \ `cacheFirst` 策略。由于这两个请求具有不同的 API 路径，我们根据这些路径应用了条件判断。此外，我们为这些请求设置了不同的 `cacheStorage`，命名为\
+  \ `fixerio`，它将来自 fixer.io 的所有请求作为其源：\n\n```\nself.toolbox.router.get('/(.*)', function(request,\
+  \ values, options) {\n  if (!request.url.match(\"symbols\")) {\n    console.log(\"\
+  ===entire currency list API===\");\n    return self.toolbox.networkFirst(request,\
+  \ values, options);\n  } else {\n    console.log(\"===specific conversion between\
+  \ two currencies===\");\n    return self.toolbox.cacheFirst(request, values, options);\n\
+  \  }\n}, {\n  cache: {\n    name: 'fixerio',\n    maxEntries: 10,\n    maxAgeSeconds:\
+  \ 3600\n  },\n  origin: /.fixer.io$/\n});\n\n// dynamically cache any other local\
+  \ assets\nself.toolbox.router.any('/*', self.toolbox.cacheFirst, {\n  cache: {\n\
+  \    maxAgeSeconds: 3600\n  }\n});\n\n// for any other requests go to the network,\
+  \ cache,\n// and then only use that cached resource if your user goes offline\n\
+  self.toolbox.router.default = self.toolbox.networkFirst;\n```\n\n另外，我们将其他任何本地资源缓存为\
+  \ `cacheFirst`，而其他任何请求则使用 `networkFirst`，它会先访问网络，如果离线则从缓存获取：\n\n![](img/c54e3488d7687ea0d26e8c2ce3cdfae3_369_0.png)\n\
+  \n您可以轻松地在 Chrome 开发者工具中调试 `cacheStorage` 和 `indexedDB` 数据。\n\n接下来我们要做的重要事情是清除旧缓存，以防新版本的\
+  \ Service Worker 创建新的 `cacheStorage`。因此我们在 Service Worker 激活期间执行此操作：\n\n```javascript\n\
+  // Deleting old caches\nself.addEventListener('activate', function(event) {\n  var\
+  \ expectedCacheNames = Object.keys(self.toolbox.options.cache.name).map(function(key)\
+  \ {\n    return self.toolbox.options.cache.name[key];\n  });\n  event.waitUntil(\n\
+  \    caches.keys().then(function(cacheNames) {\n      return Promise.all(\n    \
+  \    cacheNames.map(function(cacheName) {\n          if (expectedCacheNames.indexOf(cacheName)\
+  \ === -1) {\n            console.log('Deleting out of date cache:', cacheName);\n\
+  \            return caches.delete(cacheName);\n          }\n        })\n      );\n\
+  \    })\n  );\n});\n```\n\n我们已经完成了一些订阅推送通知的工作，现在需要添加一个 EventListener，以便在发送时立即显示通知。我们有以下代码：\n\
+  \n```javascript\nself.addEventListener('push', (event) => {\n  console.log('Received\
+  \ a push message', event);\n\n  const title = 'Yay a message.';\n  const body =\
+  \ 'We have received a push notification.';\n  const icon = 'assets/logo.png';\n\
+  \  const tag = 'simple-push-demo-notification-tag';\nevent.waitUntil(\n  self.registration.showNotification(title,\
+  \ {\n    body: body,\n    icon: icon,\n    tag: tag\n  })\n);\n```\n\n![](img/c54e3488d7687ea0d26e8c2ce3cdfae3_370_0.png)\n\
+  \n我们还需要请求权限，这将在 `application.component.ts` 中最初请求。这会弹出一个询问是否发送通知的弹出框，一旦您允许，就可以接收推送通知了：\n\
+  \n```typescript\n// src/application/application.component.ts\n\nNotification.requestPermission().then(function(result)\
+  \ {\n  if (result === 'denied') {\n    console.log('Permission wasn\\'t granted.\
+  \ Allow a retry.');\n    return;\n  }\n  if (result === 'default') {\n    console.log('The\
+  \ permission request was dismissed.');\n    return;\n  }\n});\n```\n\n为了演示 Web 推送通知，我们将使用\
+  \ curl 请求，这需要端点（我们可以从 `localstorage` 中获取，因为我们已经保存了它）以及我们从面板复制的 Firebase 密钥：\n\n\
+  ```bash\n$ curl https://android.googleapis.com/gcm/send --header \"Authorization:\
+  \ key=AABBHRWs_ug:APA91bEiHIEczZzLiMJAB_-icXkT7\n```\n\n![](img/c54e3488d7687ea0d26e8c2ce3cdfae3_371_0.png)\n\
+  \n我们现在已成功发送了 Web 推送通知，下一步是将此推送 API 集成到您的后端。我们还可以在通知中发送自定义负载，但这需要添加加密，并在客户端和服务器端进行更改。由于这不在当前主题范围内，我们跳过这一点，但您可以参阅\
+  \ Google 文档了解更多信息（[https://developers.google.com/web/updates/2016/03/web-push-encryption](https://developers.google.com/web/updates/2016/03/web-push-encryption)）。\n\
+  \n我们已经完成了 PWA 应用所需的主要更改，现在只需开始编写代码并集成汇率 API。让我们看看 `currencyService`：\n\n```typescript\n\
+  // src/providers/currency-service.ts\n\nimport { Injectable } from '@angular/core';\n\
+  import { Http } from '@angular/http';\nimport 'rxjs/add/operator/map';\nimport {\
+  \ StorageService } from './storage-service';\n\n@Injectable()\nexport class CurrencyService\
+  \ {\n\n  constructor(public http: Http, public cache: StorageService) {\n  }\n\n\
+  \  loadCurrencyList(base:String) {\n    return new Promise (resolve => {\n     \
+  \ let url = \"https://api.fixer.io/latest?base=\" + base;\n      this.http.get(url).map(res\
+  \ => res.json()).subscribe(data => {\n        this.cache.setObject('base_'+ base,\
+  \ data);\n        resolve(data);\n      }, error => {\n        resolve(\"Data not\
+  \ found\");\n      })\n    })\n  }\n}\n```\n\n为了根据基础货币获取货币列表，我们使用了 `loadCurrencyList()`\
+  \ 方法，它会调用 `fixer.io` API 返回结果，并通过 Service Worker 进行缓存。我们将此类型的请求过滤为 `networkFirst`，因此每次都会从服务器获取最新数据。如果设备离线，它将返回上次缓存的结果；如果请求未被缓存，则会进入错误块，我们将其解析为\
+  \ `Data not found`。同时，我们也将数据存储在 `IndexedDB` 中：\n\n```typescript\nconvert(from, to)\
+  \ {\n  return new Promise(resolve => {\n    this.http.get(\"https://api.fixer.io/latest?base=\"\
+  \ + from +\n      \"&symbols=\" + to).map(res => res.json()).subscribe(data => {\n\
+  \        resolve(data);\n      }, error => {\n        this.cache.getObject('base_'\
+  \ + from).then((value) => {\n          if(value) {\n            resolve(value);\n\
+  \          } else {\n            resolve(\"Data not found in offline State\");\n\
+  \          }\n        })\n      })\n  })\n}\n```\n\n在我们的 `HomePage` 上，我们获取一对一的货币转换率，为此我们使用\
+  \ `convert()` 方法。这里我们采用 `cacheFirst` 策略，首先返回 `cacheStorage` 中的数据，如果没有找到，则调用 `fixer.io`\
+  \ API。如果我们没有缓存特定请求且处于离线状态，则会回退到错误块，在那里我们首先检查在获取完整列表时是否已将基础货币列表存储在 `IndexedDB` 中。如果存储中有该列表，那么我们可以轻松地在列表中找到第二种货币。\n\
+  \n让我们看看 `ListPage` 类，我们将从那里调用 `CurrencyService`：\n\n```typescript\n// src/pages/list/list.ts\n\
+  \nimport { Component } from '@angular/core';\nimport { NavController, NavParams\
+  \ } from 'ionic-angular';\nimport { CurrencyService } from '../../providers/currency-service';\n\
+  \n@Component({\n  selector: 'page-list',\n  templateUrl: 'list.html'\n})\nexport\
+  \ class ListPage {\n\n  baseCurrency:any = \"USD\";\n  currencyList:any;\n  queryText:'';\n\
+  \n  constructor(\n    public navCtrl: NavController,\n    public navParams: NavParams,\n\
+  \    public currency: CurrencyService) {\n\n    currency.loadCurrencyList(this.baseCurrency).then(val\
+  \ => {\n      this.processData(val)\n    });\n\n  }\n\n  processData(data:any) {\n\
+  \    console.log(data);\n    let rates = data.rates;\n    let arr = [];\n    for\
+  \ (var key in rates) {\n      if (rates.hasOwnProperty(key)) {\n        arr.push({'name':key,'price':rates[key]});\n\
+  \      }\n    }\n}\n```\n\n\n\n\n```javascript\nthis.currencyList = arr;\n}\n\n\
+  setBaseCurrency() {\n  this.currency.loadCurrencyList(this.baseCurrency).then(val\
+  \ => {\n    if(typeof val === \"object\") {\n      this.processData(val)\n    }\
+  \ else {\n      alert(val);\n    }\n  });\n}\n}\n```\n\n我们将 `baseCurrency` 初始设置为\
+  \ **USD**，并根据用户选择的基础货币，调用 `CurrencyService` 的 `loadCurrencyList()` 方法获取数据。我们已经讨论了渐进式\
+  \ Web 应用的大部分要点和代码片段。你可以找到包含章节的完整代码库并随意修改。我们知道，只有将应用托管在 HTTPS 上，它才能完全正常运作，因此我已使用\
+  \ Firebase 托管部署了 `www` 文件夹：\n\n![](img/c54e3488d7687ea0d26e8c2ce3cdfae3_373_0.png)\n\
+  \n你可以访问 [https://coastal-mender-573.firebaseapp.com/](https://coastal-mender-573.firebaseapp.com/)\
+  \ 查看已托管的应用程序。当你开始频繁使用该应用时，会发现一个提示，询问你是否将其添加到手机主屏幕。添加到主屏幕后，你会看到一个图标出现在主屏幕上，点击它会打开一个独立的全屏窗口，看起来就像原生应用一样。我必须说，你们看到这个时都应该感到兴奋，现在应该尝试自己构建一个\
+  \ PWA 应用。实际开发应用会比仅仅阅读概念更能提升你的技能，让你占据优势。\n\n## PWA 的未来\n\n渐进式 Web 应用为我们提供了许多可能性，如安装、发送推送通知和离线支持等能力，这些弥补了移动\
+  \ Web 与原生应用之间的差距。目前的问题是，iOS 和 Safari 尚不支持 Service Worker，该问题仍在考虑之中。有人推测在 2017 年下半年，它们可能会提供\
+  \ Service Worker 支持，从而帮助启用 PWA 功能。\n\n渐进式 Web 应用是改进移动 Web 的下一步。随着移动流量日益增长，这意义重大。此外，在过去一段时间里，我们看到许多网站强迫用户通过移动\
+  \ Web 安装原生应用，这确实令人反感。印度著名的电商巨头之一 Flipkart 甚至曾一度通过横幅提示用户安装其原生应用，从而停用了其移动 Web 版本。后来，当他们意识到这个错误后，成为业界首批支持\
+  \ PWA 的公司之一，在移动 Web 上发布了 Flipkart Lite 版本。\n\n统计数据显示，过去一年美国智能手机应用下载量下降了 20%，这表明市场已经饱和，消费者需求正在发生变化。你可以在（https://developers.google.com/web/showcase/2016/flipkart）找到大量案例研究，其中包含\
+  \ PWA 如何积极影响产品增长和用户参与度的关键见解。还有许多其他 PWA，如 MakeMyTrip、Housing 等。你会发现，它们帮助我卸载了原生应用，释放了设备空间，转而使用\
+  \ PWA 版本。\n\n## 总结\n\n我个人认为，在 Ionic 中支持 PWA，并在最后一章讨论这个主题，是结束我们激动人心的旅程的最佳方式。你现在已经了解了\
+  \ PWA 的强大功能，也可以将其扩展到普通 Web 应用中。此外，我们不能说 PWA 会取代原生应用，因为有些底层 API 只有在使用 Cordova 构建应用并使用\
+  \ Cordova 插件时才能使用。\n\n从 Ionic 团队最近的博客文章来看，似乎很快就会有对 Electron 的桌面支持。我建议每位用户或开发者订阅\
+  \ Ionic 博客，这是了解 Ionic 最新动态的最佳方式。我已经竭尽全力确保每一章的内容都是最新的，但你可以看到这个项目发展得如此活跃，所以确保你也付出努力跟上最新进展。Ionic\
+  \ 论坛是另一个有用的资源，在过去三年学习 Ionic 的旅程中，它一直帮助着我。大多数时候，你会发现自己遇到的问题已经在论坛中被问过，很快就能得到答案。此外，你可以随时提问，但在此之前一定要做好功课；否则你的问题可能会得不到回答。我说的功课是指，搜索论坛中的现有讨论，查看\
+  \ GitHub 上的问题，因为很多时候问题可能已经被标记，你不想浪费时间。大多数时候，我们遇到的问题可能与 Angular 相关，而不是专门针对 Ionic\
+  \ 组件或 API。因此，对于这类问题，请尝试在 Google 上使用关键字 Angular 而不是 Ionic 进行搜索，因为这样会得到更合适的结果。\n\n"
