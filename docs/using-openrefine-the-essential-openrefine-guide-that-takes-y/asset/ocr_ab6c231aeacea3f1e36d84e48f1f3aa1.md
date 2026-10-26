@@ -1,0 +1,7 @@
+# Analyzing and Fixing Data
+
+The next family of transforms is **case transformations**; we can convert text strings to lowercase, UPPERCASE, or Titlecase. For instance, we could check that no lowercase letters are present in the registration numbers by navigating to **Registration Number | Edit cells | Common transforms | To uppercase**. 2,349 cells are transformed, which could mean huge quality issues, but it is in fact much ado about nothing. The values transformed were simply integers that were converted to strings in the process (since numbers do not have a case). You can check that for yourself by adding a numeric facet on the **Registration Number** column first, then launch the case transform and watch the numeric values vanish, replaced by a message informing you that no numeric values are present.
+
+![](bbox=[0.305, 0.319, 0.694, 0.619])
+
+Similarly, we can use **To lowercase** to verify that no capital letters are present in the persistent link URL or **To titlecase** to standardize the spelling of categories, smoothing the difference between Didactic Displays and Didactic displays for instance. However, **To titlecase** only keeps capital letters after whitespace, so **Spacecraft | Models | Space Technology** would be transformed into **Spacecraft | models | space Technology**, which is far from ideal. Do not bother too much about that now, though, as *Chapter 3, Advanced Data Operations*, will introduce a better and more powerful way of dealing with such cases: clustering.

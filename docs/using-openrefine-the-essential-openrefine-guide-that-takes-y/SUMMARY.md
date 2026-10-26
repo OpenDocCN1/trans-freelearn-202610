@@ -1,0 +1,8 @@
++   [OpenRefine 使用指南：从数据分析、错误修复到将数据集链接到 Web 的必备指南](README.md)
++   [OpenRefine 使用指南：从数据分析、错误修复到将数据集链接到 Web 的必备指南](using-openrefine-the-essential-openrefine-guide-that-takes-y_1.md)
++   [深入 OpenRefine](using-openrefine-the-essential-openrefine-guide-that-takes-y_2.md)
++   [2](using-openrefine-the-essential-openrefine-guide-that-takes-y_3.md)
++   [高级数据操作](using-openrefine-the-essential-openrefine-guide-that-takes-y_4.md)
++   [4 链接数据集](using-openrefine-the-essential-openrefine-guide-that-takes-y_5.md)
++   [正则表达式](using-openrefine-the-essential-openrefine-guide-that-takes-y_6.md)
++   [索引](using-openrefine-the-essential-openrefine-guide-that-takes-y_7.md)

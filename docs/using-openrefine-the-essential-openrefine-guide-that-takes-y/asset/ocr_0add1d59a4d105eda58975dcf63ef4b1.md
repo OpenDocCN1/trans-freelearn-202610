@@ -1,0 +1,27 @@
+# # Conventions
+
+In this book, you will find a number of styles of text that distinguish between different kinds of information. Here are some examples of these styles, and an explanation of their meaning.
+
+Program code inside text is shown as follows: "The expression that transforms the reconciled cell to its URL is `cell.recon.match.id`."
+
+**New terms** are shown in bold. Words that you see on the screen, in menus or dialog boxes for example, appear in the text like this: "After clicking on **OK**, you will see a new column with the corresponding URLs".
+
+> > Warnings or important notes appear in a box like this.
+
+![](bbox=[0.278, 0.347, 0.329, 0.384])
+
+> > Tips and tricks appear like this.
+
+![](bbox=[0.284, 0.413, 0.323, 0.452])
+
+# # Reader feedback
+
+Feedback from our readers is always welcome. Let us know what you think about this book—what you liked or may have disliked. Reader feedback is important for us to develop titles that you really get the most out of.
+
+To send us general feedback, simply send an e-mail to `feedback@packtpub.com`, and mention the book title via the subject of your message.
+
+If there is a topic that you have expertise in and you are interested in either writing or contributing to a book, see our author guide on `www.packtpub.com/authors`.
+
+# # Customer support
+
+Now that you are the proud owner of a Packt book, we have a number of things to help you to get the most from your purchase.

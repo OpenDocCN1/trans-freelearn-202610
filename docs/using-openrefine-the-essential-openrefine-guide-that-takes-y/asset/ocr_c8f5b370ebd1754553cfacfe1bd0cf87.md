@@ -1,0 +1,11 @@
+On the right, we can now see the three matching rows. Not only do they lack a record ID, but all other columns are blank too, except for a persistent link to the object and the license information that were generated automatically. These rows do not represent actual objects, they are simply void rows that can be safely removed (we will see how in the last recipe of this chapter).
+
+However, something is amiss here; if these rows are truly blank, why were they categorized as non-numeric instead of being counted up under the **Blank** checkbox? Whitespace is the culprit here, as we can verify by editing one of the three cells. To do that, just hover with the mouse over one of them under the **Record ID** column and a small edit button will appear. Now click on it and observe for yourself that they contain a single space, as pictured in the following screenshot:
+
+![](bbox=[0.176, 0.346, 0.824, 0.526])
+
+To correct this, remove the problematic whitespace by hitting the *Backspace* or *Delete* key then click on the **Apply to All Identical Cells** button below or press *Ctrl + Enter*. OpenRefine informs you on top of the screen in a yellow box that three cells have been mass-edited in the column **Record ID**. As a result, the facet on the left refreshes and the three cells in question switched to the Blank box.
+
+Before moving to customized facets, let's quickly mention two other ways for faceting that are related to the numeric facet: the timeline facet and scatterplot facet.
+
+A timeline facet requires dates, so text strings such as 17/10/1890 need to be converted to the date format first. You can try that on the **Production Date** column, but notice that real dates are a minority, since it also contains years such as 1984 and ranges such as 2006 to 2007. We can nonetheless navigate to **Edit cells | Common transforms | To date** in that column menu, transforming 79 cells into date format; for instance, 17/10/1890 will be converted to 1890-10-17T00:00:00Z, with the zeros indicating the time of day in hours, minutes, and seconds.

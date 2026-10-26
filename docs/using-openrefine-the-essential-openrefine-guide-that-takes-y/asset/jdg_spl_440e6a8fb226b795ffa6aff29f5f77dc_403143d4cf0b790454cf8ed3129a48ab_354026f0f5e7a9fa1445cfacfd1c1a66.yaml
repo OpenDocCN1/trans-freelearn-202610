@@ -1,0 +1,75 @@
+chapter_starts:
+- 'no': 0
+  confidence: 0.9
+  final_reason: 书名/整书起始，一级标题且为文档首行；依据规则，其后的致谢、序言、前言等前置材料统一归入该前置章，不单独分章。
+  accepted_evidence:
+  - '行0为 `# OpenRefine 使用指南...`，是最高层级标题并以 # 开头'
+  - 判断方一致认可，复核方无异议
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 195
+  confidence: 0.95
+  final_reason: 双方无争议；一级标题 `# 深入 OpenRefine`，正文第 1 章，后接概述段落与操作指南列表。
+  accepted_evidence:
+  - 195 为一级标题，位于所有前置材料之后，后跟本章介绍段落
+  - 后续章序号（411）与本章形成连续编号结构
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 411
+  confidence: 0.9
+  final_reason: 行411 `# 2` 为第2章的章节编号，紧接其后的413“分析和修复数据”是同一标题的文本部分；按编号特征应以411作为新章起点。
+  accepted_evidence:
+  - 行411为一级标题 `# 2`，与第1章（195）构成连续章序号
+  - 复核方指出真正的章标题编号在411，而非413
+  rejected_evidence:
+  - 判断方原先以413为章起点，但遗漏了编号411
+  need_human_review: false
+- 'no': 707
+  confidence: 0.95
+  final_reason: 双方无争议；一级标题 `# 高级数据操作`，正文第3章，后接“## 技巧 1”等子节。
+  accepted_evidence:
+  - 707 为一级标题，且后跟多个以“##”开头的子节
+  - 位于第2章总结之后，与下一章（897）形成完整章节序列
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 897
+  confidence: 0.95
+  final_reason: 双方无争议；一级标题 `# 4 链接数据集`，带章序号“4”，为正文第4章。
+  accepted_evidence:
+  - 897 为一级标题，并包含编号“4”
+  - 后接本章概述及配方列表，符合大章特征
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 1099
+  confidence: 0.9
+  final_reason: 标题跨行（1099“# 正则表达式”与1100“与 GREL”组成完整附录标题），1099为附录《正则表达式与GREL》的起始行；以第一行作为章起点符合分章惯例。
+  accepted_evidence:
+  - 1099 为一级标题，后接1100“与 GREL”构成完整附录标题
+  - 前文“本书涵盖的内容”提到附录《正则表达式与GREL》为单独附录
+  rejected_evidence:
+  - 复核方指出标题跨行，但这不影响以1099作为该附录章的起点
+  need_human_review: false
+- 'no': 1276
+  confidence: 0.95
+  final_reason: 双方无争议；`# 索引` 为文末索引标题，按规则明确应单独划分为一章。
+  accepted_evidence:
+  - 1276 为一级标题 `# 索引`，位于附录之后
+  - 规则要求文末索引也划分为一章
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 6
+  reason: 致谢属于正文之前的前置材料，规则要求前言、序言、致谢等统一划分为一章；行0已作为整书起始章，6不应再单独成章。
+  need_human_review: false
+- 'no': 41
+  reason: 序言属于正文之前的前置材料，应与致谢、前言等统一纳入前置章节，不应单独分章。
+  need_human_review: false
+- 'no': 104
+  reason: 前言属于正文之前的前置材料，应与序言、致谢等统一为一章，不应单独分章。
+  need_human_review: false
+- 'no': 413
+  reason: 413“分析和修复数据”紧跟411的‘# 2’，是同一章标题的文本部分；章起点应为411，413不应重复分章。
+  need_human_review: false
+- 'no': 1229
+  reason: 1229虽为一级标题，但语义上属于附录《正则表达式与GREL》中关于GREL的部分；全书只有一个附录，不应拆分为第二个附录章。
+  need_human_review: false
