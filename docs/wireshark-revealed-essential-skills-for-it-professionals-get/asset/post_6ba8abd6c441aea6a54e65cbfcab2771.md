@@ -1,0 +1,148 @@
+
+## A
+
+- Autonomous System (AS) / [Getting ready](Getting ready)
+- AVG (*) / [Getting ready](Getting ready)
+
+## B
+
+- % Bytes field / [How to do it...](How to do it...)
+- 32-bit source and destination IP addresses / [How it works...](How it works...)
+- bad_certificate / [How to do it...](How to do it...)
+- bad_record_mac / [How to do it...](How to do it...)
+- bandwidth
+  - about / [How it works...](How it works...)
+  - measuring, per user over network connection / [Measuring bandwidth and throughput per user and per application over a network connection](Measuring bandwidth and throughput per user and per application over a network connection), [How to do it...](How to do it...), [See also](See also)
+  - measuring, per application over network connection / [Measuring bandwidth and throughput per user and per application over a network connection](Measuring bandwidth and throughput per user and per application over a network connection), [How to do it...](How to do it...), [See also](See also)
+- baselining
+  - about / [The importance of baselining](The importance of baselining)
+  - importance / [The importance of baselining](The importance of baselining)
+  - traffic aspects / [The importance of baselining](The importance of baselining)
+- Base Service Set Identifier (BSSID) / [Various modes in wireless communications](Various modes in wireless communications)
+- basic network connectivity
+  - testing / [Basic network connectivity](Basic network connectivity)
+  - application services, connecting to / [Connecting to the application services](Connecting to the application services)
+- Berkeley packet filter (BPF) / [Installing Wireshark on Mac OS X](Installing Wireshark on Mac OS X)
+- Berkeley Packet Filter (BPF) / [How it works...](How it works...)
+- bits-per-second (bps) / [Bandwidth congestion](Bandwidth congestion)
+- bits per second (bps) / [Filtering out the noise](Filtering out the noise)
+- Bladeserver
+  - about / [Finding out what is running over your network](Finding out what is running over your network)
+- Bladesystem / [Finding out what is running over your network](Finding out what is running over your network)
+- Border Gateway Protocol version 4 (BGPv4) / [Getting ready](Getting ready)
+- bottleneck issues
+  - troubleshooting / [Troubleshooting bottleneck issues](Troubleshooting bottleneck issues)
+- BPF syntax
+  - identifiers / [How to use capture filters](How to use capture filters)
+  - qualifiers / [How to use capture filters](How to use capture filters)
+- Bridge Protocol Data Units (BPDUs) / [Which STP version is running on the network?](Which STP version is running on the network?)
+- broadcast / [Getting ready](Getting ready)
+
+## C
+
+- !, C-like Syntax / Getting ready
+- !=, C-like Syntax / Getting ready
+- &&, C-like Syntax / Getting ready
+- <, C-like Syntax / Getting ready
+- <=, C-like Syntax / Getting ready
+- ==, C-like Syntax / Getting ready
+- >, C-like Syntax / Getting ready
+- >=, C-like Syntax / Getting ready
+- C-like Syntax / Getting ready
+- C-Tag (802.1Q) / There's more...
+- calculating conversations timestamps / How it works...
+- Capinfos.exe
+  - about / Wireshark command-line utilities
+- capture
+  - data capturing, starting / The layers in the TCP/IP model, ARP poisoning
+  - interface, selecting / How to choose the interface to start the capture
+  - interface, configuring / How to configure the interface you capture data from
+  - configuration, changing / Changing the capture configuration
+- Capture Filter field
+  - about / Selecting the correct network interface
+- capture filters
+  - about / Capturing interfaces, filters, and options, Display filters
+  - using / Using capture filters, Why use capture filters
+  - configuring / Configuring capture filters, Searching for packets using the Find dialog, How to do it..., How it works..., There's more...
+  - reference link / Configuring capture filters
+  - using, techniques / How to use capture filters
+  - example / An example capture filter
+  - with protocol header values / Capture filters that use protocol header values
+- Capture Interfaces window
+  - about / Selecting the correct network interface
+  - options / Selecting the correct network interface
+- capture options
+  - about / Capturing interfaces, filters, and options
+- Capture Options window
+  - about / Selecting the correct network interface, Capture options
+  - filename, configuring / Capturing filenames and locations
+  - location, configuring / Capturing filenames and locations
+  - multiple file options / Multiple file options
+  - Ring buffer option / Ring buffer
+  - stop capture options / Stop capture options
+  - display options / Display options
+  - name resolution options / Name resolution options
+- capturing methodologies
+  - hub-based networks / Hub-based networks
+  - switched environment / The switched environment
+  - ARP poisoning / ARP poisoning
+  - passing, through routers / Passing through routers
+  - first capture, starting / Starting our first capture
+  - about / Capturing methodologies
+- C Arrays to Packet Bytes (*.c) / Saving data in various formats
+- Carrier Sense Multiple Access and Collision Avoidance protocol (CSMA/CA) / Various modes in wireless communications
+- Cascade Pilot package
+  - URL / There's more...
+- Castlerock Computing SNMPc
+  - URL / SNMP platforms
+- CA Unicenter
+  - URL / SNMP platforms
+- certificate_expired / How to do it...
+- certificate_revoked / How to do it...
+- certificate_unknown / How to do it...
+- chats tab / How to do it...
+- Checkpoint
+  - URL / See also
+- checksum errors / How to do it...
+- checksum field / How it works...
+- Cisco
+  - URL / The NetFlow, JFlow, and SFlow analyzers
+- Cisco Netflow
+  - URL / See also
+- Cisco press
+  - URL / Books
+- Citrix communications
+  - issues, analyzing / Analyzing MS-TS and Citrix communications problems, How to do it..., There's more...
+- Citrix Metaframe Independent Computing Architecture (ICA) / Analyzing MS-TS and Citrix communications problems
+- Classless Inter-Domain Routing (CIDR) notation / IPv6 addressing
+- Classless Inter-Domain Routing (CIDR) designator / IP networks and subnets
+- Class of Service (CoS) tagging / Layer 2 – the data-link layer
+- client-side latency issues / Client- and server-side latencies
+- client codes / Client errors
+- client error codes / 4xx codes – client error
+- close_modify / How to do it...
+- coloring rules
+  - about / Summary, Getting ready, How to do it..., See also
+- command-line tools
+  - Capinfos.exe / Wireshark command-line utilities
+  - Dumpcap.exe / Wireshark command-line utilities
+  - Editcap.exe / Wireshark command-line utilities
+  - Mergecap.exe / Wireshark command-line utilities
+  - Rawshark.exe / Wireshark command-line utilities
+  - Text2pcap.exe / Wireshark command-line utilities
+  - Tshark.exe / Wireshark command-line utilities
+- Command and Control (C&C) servers / Phone home traffic
+- Command Line-fu
+  - about / Command Line-fu
+- Command Line Interface (CLI) / How to do it...
+- Command Prompt (CMD) / Basic network connectivity
+- Comma Separated Values / Saving data in various formats
+- communication link
+  - total bandwidth, measuring on / Measuring total bandwidth on a communication link, Getting ready, How to do it..., How it works..., There's more...
+- comparison operators
+  - < / lt / Display filters
+  - == / eq / Display filters
+  - <= / le / Display filters
+  - != / ne / Display filters
+  - > / gt / Display filters
+  - >= / ge / Display filters

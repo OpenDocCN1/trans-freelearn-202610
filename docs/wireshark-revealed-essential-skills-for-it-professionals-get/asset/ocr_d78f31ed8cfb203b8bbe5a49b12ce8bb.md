@@ -1,0 +1,3 @@
+# There's more...
+
+ARP requests can also come from the SNMP software that discovers the network (auto-discovery feature), the DHCP server that sends gratuitous ARP, and so on. Whenever you see ARP scanning something, it is not necessarily a problem; the question is who sends them. You can find more information on the ARP process in Chapter 8, ARP and IP Analysis.

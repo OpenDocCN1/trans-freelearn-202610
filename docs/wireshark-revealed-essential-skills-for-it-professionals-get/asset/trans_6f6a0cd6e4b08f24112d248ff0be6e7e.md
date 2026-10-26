@@ -1,0 +1,147 @@
+
+
+## P
+
+- % Packets 字段 / [如何操作...](How to do it...)
+- 数据包分析
+  - 使用 Wireshark / [使用 Wireshark 进行数据包分析简介](An introduction to packet analysis with Wireshark)
+- 数据包分析，Wireshark 使用
+  - 执行 / [如何进行数据包分析](How to do packet analysis)
+  - 关于 / [使用 Wireshark 进行数据包分析简介](An introduction to packet analysis with Wireshark)
+  - 方面 / [使用 Wireshark 进行数据包分析简介](An introduction to packet analysis with Wireshark)
+- 数据包捕获
+  - 执行 / [执行你的首次数据包捕获](Performing your first packet capture), [执行数据包捕获](Performing a packet capture), [执行、验证并保存良好的数据包捕获](Performing, verifying, and saving a good packet capture)
+  - 噪声，过滤 / [过滤噪声](Filtering out the noise)
+  - 显示过滤器，应用 / [应用显示过滤器](Applying a display filter)
+  - 数据包跟踪，保存 / [保存数据包跟踪](Saving the packet trace)
+  - 捕获点，选择 / [选择最佳捕获点](Picking the best capture point)
+  - 验证 / [验证良好的捕获](Verifying a good capture), [执行、验证并保存良好的数据包捕获](Performing, verifying, and saving a good packet capture)
+  - 批量捕获文件，保存 / [保存批量捕获文件](Saving the bulk capture file)
+  - 感兴趣的会话，隔离 / [隔离感兴趣的会话](Isolating conversations of interest)
+  - 位置，确定 / [准备工具和方案](Preparing the tools and approach)
+  - 保存 / [执行、验证并保存良好的数据包捕获](Performing, verifying, and saving a good packet capture)
+- 数据包捕获点
+  - 选择 / [选择最佳捕获点](Picking the best capture point)
+  - 用户位置 / [用户位置](User location)
+  - 服务器位置 / [服务器位置](Server location)
+  - 其他位置 / [其他捕获位置](Other capture locations)
+  - 中间网络捕获 / [中间网络捕获](Mid-network captures)
+- 数据包着色
+  - 关于 / [着色和着色规则](Colorization and coloring rules), [数据包着色](Packet colorization)
+  - 着色规则 / [着色和着色规则](Colorization and coloring rules)
+- 数据包注释选项卡 / [如何操作...](How to do it...)
+- Packet Counter 统计 / [如何操作...](How to do it...)
+- Packet Details 面板
+  - 数据速率 / [无线网络](Wireless networking)
+  - 信道频率 / [无线网络](Wireless networking)
+  - 信道类型 / [无线网络](Wireless networking)
+  - RF 信号和噪声水平 / [无线网络](Wireless networking)
+- 配置 / [配置字节偏移和有效载荷匹配过滤器]( ), [如何操作...]( ), [其工作原理...]( ), [更多内容...]( )
+- 有效载荷类型 / [RTP 运行原理]( )
+- Pcap 驱动程序
+  - URL / [Wireshark GUI]( )
+- PDML (*.pdml) / [以各种格式保存数据]( )
+- 性能分析方法
+  - 关于 / [性能分析方法]( )
+  - 应用程序性能差的原因 / [应用程序性能差的五大原因]( )
+- 回家流量
+  - 关于 / [回家流量]( )
+- 物理连接
+  - 确认 / [确认物理连接]( )
+- 物理层，OSI
+  - 关于 / [第 1 层 – 物理层]( )
+  - 以太网标准 / [第 1 层 – 物理层]( )
+  - RJ-45 标准 / [第 1 层 – 物理层]( )
+  - Cat 5（Cat 5e 或 Cat 6）电缆标准 / [第 1 层 – 物理层]( )
+  - 100Base-T、1000Base-T 和 100Base-FX / [第 1 层 – 物理层]( )
+  - 单模和多模光纤电缆 / [第 1 层 – 物理层]( )
+- ping 扫描攻击
+  - 执行 / [PING 扫描]( )
+- 纯文本 (*.txt) / [以各种格式保存数据]( )
+- Plixer
+  - URL / [SNMP 平台]( )
+- 点对点 (PPP) / [TCP/IP 模型中的各层]( )
+- 应用程序性能差原因
+  - 关于 / [应用程序性能差的五大原因]( )
+  - 工具，准备 / [准备工具和方案]( )
+  - 数据包捕获 / [执行、验证并保存良好的数据包捕获]( )
+  - 初始错误分析 / [初始错误分析]( )
+  - 延迟，检测 / [检测和优先处理延迟]( )
+  - 延迟，优先处理 / [检测和优先处理延迟]( )
+  - 服务器处理时间事件 / [服务器处理时间事件]( )
+  - 应用程序轮转延迟 / [应用程序轮转延迟]( )
+  - 网络路径延迟 / [网络路径延迟]( )
+  - 带宽拥塞 / [带宽拥塞]( )
+- 数据传输 / Data transport
+- POP3
+  - 关于 / 分析电子邮件流量和故障排除电子邮件问题 – POP、IMAP 和 SMTP, POP3 通信, POP3
+- 端口范围匹配过滤器
+  - tcp portrange <p1>--<p2> 或 udp portrange <p1>--<p2> / Getting ready
+  - tcp src portrange <p1>--<p2> 或 udp src portrange <p1>--<p2> / Getting ready
+  - tcp dst portrange <p1>--<p2> 或 udp dst portrange <p1>--<p2> / Getting ready
+- port <port> 过滤器 / Getting ready
+- 端口镜像 / Hub-based networks
+- 端口镜像 / The switched environment
+- 端口监控 / Hub-based networks
+- 端口状态
+  - 禁用 / Port states
+  - 阻塞 / Port states
+  - 监听 / Port states
+  - 学习 / Port states
+  - 转发 / Port states
+- POST / HTTP methods
+- PostScript (*.ps) / Saving data in various formats
+- 预定义值窗格 / Choosing from the filters menu
+- 首选项，Wireshark
+  - 关于 / Wireshark preferences
+  - 布局 / Wireshark preferences
+  - 列 / Wireshark preferences
+  - 捕获 / Wireshark preferences
+  - 过滤器表达式 / Wireshark preferences
+  - 名称解析 / Wireshark preferences
+  - 协议 / Wireshark preferences
+  - 选项 / Wireshark preferences
+- 首选项菜单
+  - 用户界面，配置 / Configuring the user interface in the Preferences menu, How to do it...
+  - 列，添加 / Changing and adding columns
+  - 列，修改 / Changing and adding columns
+  - 捕获配置，修改 / Changing the capture configuration
+  - 名称解析，配置 / Configuring the name resolution, How it works...
+- 表示层，OSI
+  - 关于 / [第 6 层 – 表示层](Layer 6 – the presentation layer)
+- 预共享密钥 (PSK) / [WPA-Personal](WPA-Personal)
+- 先前段丢失
+  - 关于 / [TCP 乱序数据包事件](TCP out-of-order packet events)
+- 先前段丢失
+  - 关于 / [Getting ready](Getting ready)
+- 先前段未捕获
+  - 关于 / [Getting ready](Getting ready)
+- 私有 IP 地址范围 / [IP 网络和子网](IP networks and subnets)
+- 流程，协议分析器
+  - 收集 / [How it works](How it works)
+  - 转换 / [How it works](How it works)
+  - 分析 / [How it works](How it works)
+- 配置文件，Wireshark
+  - 关于 / [Wireshark 配置文件](Wireshark profiles)
+  - 创建 / [创建 Wireshark 配置文件](Creating a Wireshark profile)
+  - 选择 / [选择 Wireshark 配置文件](Selecting a Wireshark profile)
+- Proto（协议）限定符 / [How it works...](How it works...)
+- 协议特定捕获过滤器语法
+  - 参考链接 / [配置捕获过滤器](Configuring capture filters)
+- 协议特定显示过滤器语法
+  - 参考链接 / [显示过滤器语法](The display filter syntax)
+- 协议数据单元 (PDU) / [TCP/IP 模型中的各层](The layers in the TCP/IP model)
+- 协议字段 / [How to do it...](How to do it...)
+- 协议过滤器
+  - 配置 / [配置特定协议过滤器](Configuring specific protocol filters), [How to do it...](How to do it...)
+  - HTTP 显示过滤器 / [HTTP 显示过滤器](HTTP display filters)
+  - DNS 显示过滤器 / [DNS 显示过滤器](DNS display filters)
+  - FTP 显示过滤器 / [FTP 显示过滤器](FTP display filters)
+- 协议层次结构
+  - 关于 / [协议层次结构](Protocol Hierarchy)
+- 协议层次结构工具
+  - 使用，从统计菜单 / [从统计菜单使用协议层次结构工具](Using the Protocol Hierarchy tool from the Statistics menu), [How to do it...](How to do it...), [There's more...](There's more...)
+- 协议层次结构窗口
+  - 协议字段 / [How to do it...](How to do it...)
+  - % Packets 字段 / [How to do it...](How to do it...)
+

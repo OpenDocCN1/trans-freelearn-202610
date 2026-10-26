@@ -1,0 +1,3 @@
+# # Notes events and understanding them
+
+As described earlier, when Wireshark indicates that an event may cause a problem but is still inside the normal behavior of the protocol, it will be under the **Notes** bar. TCP retransmission, for example, will be displayed under the **Notes** bar because even though it is a critical problem that slows down the network, it is still under the normal behavior of TCP.

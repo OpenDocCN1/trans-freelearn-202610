@@ -1,0 +1,3 @@
+# There's more...
+
+The mechanism that is used in duplicate ACKs is called fast recovery. In recent years some advanced versions of TCP were introduced, especially for cellular networks, in order to improve the behavior of TCP under high and changing delay conditions. In these examples, you might see some differences in the behavior of the sender and receiver, for example, lighter degradation in performance, faster recovery, and so on. Still, the characteristic behavior of TCP is maintained.

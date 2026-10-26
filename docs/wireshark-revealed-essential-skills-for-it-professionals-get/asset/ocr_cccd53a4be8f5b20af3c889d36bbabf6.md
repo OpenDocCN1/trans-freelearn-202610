@@ -1,0 +1,1 @@
+You can get a list of NTP servers on various web sites, among them http://support.ntp.org/bin/view/Servers/StratumOneTimeServers and http://wpollock.com/AUnix2/NTPstratum1PublicServers.htm.

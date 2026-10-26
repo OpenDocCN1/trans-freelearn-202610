@@ -1,0 +1,115 @@
+
+![](img/da40f92928403866599198344271d63e_660_0.png)
+
+In this case due to gratuitous ARP ...
+
+Duplicate IP address detected for 149.49.32.134 (00:40:0d:8a:74:bd) - also in use by 00:40:0d:8a:74:d7 (frame 1)
+
+Frame showing earlier use of IP address: 1
+
+Duplicate IP discovered
+
+Which is also used in another MAC address
+
+## How it works...
+
+When you ping an IP address that appears twice on your local network, the two devices (or more) that have the same IP address will answer to the ARP request that you sent, and your ARP cache will have two entries for the same IP address.
+
+In many cases, your device will indicate it by closing its IP driver and notify you by a pop-up window or any other type of notification that you will be aware of.
+
+In other cases, the colliding devices will not notify the conflict, and then you will find a problem only with Pinging and ARP, as described before.
+
+In any case, when you connect Wireshark to the network and see duplicate IP messages, don't ignore it.
+
+## There's more...
+
+Duplicate IP usually happens when there are two identical addresses in the network, but it becomes even more interesting when you have three identical addresses.
+
+You can see a funny example for this in the upcoming screenshot:
+
+![](img/da40f92928403866599198344271d63e_662_0.png)
+
+In this customer network, they've internal network of around 150 devices with connectivity to the Internet through a firewall. The problem was a very slow connection to the Internet.
+
+When they did a ping to a server on the Internet (any server), they got the following responses:
+
+```
+Reply from 173.194.35.148: bytes=32 time=98ms TTL=51
+Request timed out.
+Reply from 173.194.35.148: bytes=32 time=124ms TTL=51
+Request timed out.
+Reply from 173.194.35.148: bytes=32 time=134ms TTL=51
+Request timed out.
+Reply from 173.194.35.148: bytes=32 time=582ms TTL=51
+Request timed out.
+```
+
+The customer made some changes to the network, the network became even slower, and pinging the same server on the Internet got them the following response:
+
+```
+Reply from 173.194.35.148: bytes=32 time=98ms TTL=51
+Request timed out.
+Request timed out.
+Reply from 173.194.35.148: bytes=32 time=124ms TTL=51
+Request timed out.
+Request timed out.
+Reply from 173.194.35.148: bytes=32 time=134ms TTL=51
+Request timed out
+Request timed out...
+```
+
+When I came into the picture, the first thing I did was to ping the server on the Internet and type ARP -a to see what I got. And what I saw was the IP address 10.10.10.200 with three different MAC addresses. Of course, it was a three-time duplicate address, and digging into the problem showed me what actually happened there, as illustrated in the following figure:
+
+![](img/da40f92928403866599198344271d63e_663_0.png)
+
+What happened was that the network default gateway to the Internet was not actually the firewall, but a web-filtering device that was located between the network and the firewall with the address 10.10.10.200, while the network between it and the firewall was 172.16.1.2/30.
+
+What actually happened is explained as follows:
+
++   1. In the first place, they configured the DHCP server on the network to exclude addresses 10.10.10.201-254, so the FW address was not excluded.
+
+## Getting ready
+
+When you have a DHCP server on your network, and PCs are not able to receive IP addresses automatically, just connect Wireshark with port mirror to the device that doesn't receive the address, connect and disconnect the device from the network, or simply use the `ipconfig /release` and `ipconfig /renew` commands. Now, we will have a look at what can go wrong.
+
+## How to do it...
+
+Have a look at the DHCP procedure described in the How it works ... section. Anything that is not going according to this procedure is wrong, so check for the following:
+
++   1. Did the client send the `DHCP Discover` packet?
++   2. If it did, the client works fine.
++   3. If it didn't:
++      - Something is wrong with the client. Check if the client is configured with DHCP (obtain an IP address automatically as marked in the TCP/IP configuration window).
++      - It can be that the client is physically not connected to the network. It happens a lot with wireless communications (WiFi), where the client does not have connectivity to the network and therefore, does not send the `DHCP Discover` packet since it doesn't have a network to send it over.
++   4. The client sends `DHCP Discover` and receives `DHCP Offer` from a single server. This is ok; continue watching the wire.
++   5. The client sends `DHCP Discover` and receives `DHCP Offer` from two or more servers. This is a problem. You have more than one DHCP server on your LAN, and you might get different address allocations to clients on the LAN. Turn off one of the servers (at least the DHCP service on it).
++   6. You receive DHCP Discover and send DHCP Request; this is fine.
++      - If you immediately receive `DHCP Ack` with the IP parameters, everything is fine.
++      - If you don't receive anything, and you send another `DHCP Request`, it can be a slow or non-responsive server. Check it.
++   7. If you receive a DHCP Decline message, it is the server that has refused your request.
++      1. It can be that the server does not have available addresses. In this case, extend your address range.
++      2. It can be also that the server has allocated your previous IP address to someone else. This is a server configuration issue; so if you need this feature, configure the server to save IP addresses per clients.
+
+## How it works...
+
+DHCP is considered to be a simple protocol, but actually it is very complex. When you connect a client to the network, it will go through the following steps:
+
++   1. `DHCP Discover`: The client initializes a limited version of TCP/IP and broadcasts a request looking for a DHCP server. The request is sent from UDP port 68 to UDP port 67.
++   2. `DHCP Offer`: DHCP servers listen on UDP port 67, and if a server receives the request, it answers with a DHCP offer, that is offering to provide the service of address assignment.
++   3. `DHCP Request`: The client receives the DHCP offer and sends back a request to receive information. The request will be, for example, the IP address that we requested before (because we had it before), for our MAC address so that the server will recognize us as a prior client with a saved IP address and other parameters.
++   4. `DHCP Ack`: Here the server sends the requested information, including the IP address, subnet mask, default gateway, DNS servers, and other parameters that are configured on the server.
+
+In the next screenshot, we see a standard procedure of DHCP that works properly:
+
+![](img/da40f92928403866599198344271d63e_668_0.png)
+
+## There's more...
+
+A very common problem is when you connect a device to your network, you receive an IP address and you don't have any idea where it came from. Usually, this is because someone has connected a DHCP server to your LAN without telling you. In most of the cases, it will be a small Internet router. This is very simple to find out:
+
++   1. If you type `ipconfig` and get an address that you don't know, it might be a problem.
++   2. Since the router we suspect is connected to the network, assign your IP address, subnet mask, and a default gateway. When you ping your default gateway, you actually ping the router, which is likely to be the troublemaker.
++   3. Type `ARP -a` to give you the troublemaker's MAC address. This will tell you two things:
++      - Who is the vendor? When you know who is the vendor is (D-Link, Edimax, Netgear, and many others), you can simply go and look for it.
++      - By logging into the LAN switch, the MAC address will also tell you which port it is connected to. Go to your communications room and disconnect it.
++   4. Of course, while listening to the port with Wireshark, you will see the vendor MAC address easily.

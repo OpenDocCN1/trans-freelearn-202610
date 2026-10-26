@@ -1,0 +1,3 @@
+# # Getting ready
+
+Open an existing capture or start a new capture. Click on a specific packet in the capture file. Even though you can use this feature on a running capture, it is not meant for online statistics; so it is recommended that you start a capture, stop it, and then use this tool.

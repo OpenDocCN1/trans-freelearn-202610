@@ -1,0 +1,3 @@
+# There's more...
+
+TCP is tolerant of high delays, as long as they are reasonably stable. The algorithm that defines the TCP behavior under delay variations (among other things) is called the Van Jacobson algorithm (after the name of its inventor). The Van Jacobson algorithm enables tolerance of up to 3-4 times the average delay, so if for example, you have a delay of 100 ms, TCP will be tolerant to delays of up to 300-400 ms as long as they are not frequently changed.

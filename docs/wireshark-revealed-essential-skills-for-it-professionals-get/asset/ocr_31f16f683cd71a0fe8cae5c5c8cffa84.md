@@ -1,0 +1,1 @@
+corresponding active number of packets/s (which will vary over time). Another possible indicator is if an interface has an IP address assigned and others do not. If you're still unsure, open a browser window and navigate to one of your favorite websites and watch the packets and packets/s counters to identify the interface that shows the greatest increase in activity.

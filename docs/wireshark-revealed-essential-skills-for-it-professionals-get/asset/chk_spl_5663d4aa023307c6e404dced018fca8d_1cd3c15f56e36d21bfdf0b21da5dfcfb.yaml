@@ -1,0 +1,64 @@
+reviews:
+- 'no': 9045
+  overturn_probability: 0.01
+  alternative: 若不分章，这行最可能是正文中的一个小节标题，因为格式上与其他'##'小节标题一致。
+  counter_evidence:
+  - 该行使用'##'标记，与文中大量子节标题（如'## 简介'、'## 准备工作'）同级，仅凭格式易与子节混淆。
+  - 但'第13章'的明确序号和后续的'本章包含以下方案'导语使其无可争议地成为章标题。
+  keep_split: true
+- 'no': 9314
+  overturn_probability: 0.01
+  alternative: 若不分章，这行最可能是一个英文原版中的章节标题，但不排除误作子节的可能。
+  counter_evidence:
+  - 标题为英文'Chapter 14.'，在中文上下文中可能被当作翻译残留而非实际章节，但编号规则明确支持分章。
+  - 格式上'##'与前后大量'##'子节相同，需要依赖编号而非格式判断。
+  keep_split: true
+- 'no': 9757
+  overturn_probability: 0.3
+  alternative: 若不分章，这行最可能是附录中的一个子标题，因为其使用'###'三级标题，与后续'### 有用的 Wireshark 链接'同级。
+  counter_evidence:
+  - 该行是'###'级别，而后面多个附录小节也是'###'，存在同级混乱，可能只是附件中的分节标题而非独立章。
+  - 但'附录 A'的语义和统领后续所有附录内容的结构表明它应被当作独立的章级部分。
+  keep_split: true
+- 'no': 9906
+  overturn_probability: 0.05
+  alternative: 若不分章，这行最可能是模块或系列的名称，而非全书的部分标题。
+  counter_evidence:
+  - '''第3部分 模块3''后紧跟''### 精通 Wireshark''，可能只是一段封面语或模块介绍，未必是严格的部分标题。'
+  - 但规则明确要求'第X部分'作为分章点，且后续确实开启了新的章节编号。
+  keep_split: true
+- 'no': 9912
+  overturn_probability: 0.05
+  alternative: 若不分章，这行最可能是一个部分内的第一个大节标题，而非独立章。
+  counter_evidence:
+  - 该行使用'###'三级标题，且紧接在'第3部分'之后，可能只是部分下的一个分节而非全书级章节。
+  - 但'第1章'的编号和随后的导语、列表符合章标题的全部特征。
+  keep_split: true
+- 'no': 10272
+  overturn_probability: 0.01
+  alternative: 若不分章，这行最可能是一个子节标题，但编号'第2章'使其不可能。
+  counter_evidence:
+  - 标题中的'第 2 章'后紧跟'.'，格式与常见子节标题不完全一致，但编号是决定性的。
+  - 可能存在OCR或转换时章号与标题内容合并，但语义明确指向新章。
+  keep_split: true
+- 'no': 10737
+  overturn_probability: 0.2
+  alternative: 若不分章，这行最可能是前章内部的一个功能小节标题，因为'统计菜单'听起来像菜单名而非章名。
+  counter_evidence:
+  - 该行缺少'第X章'编号，且与前后出现的'## 摘要'、'## 练习题'等二级标题格式相同，可能是章内小节。
+  - 但它位于上一章练习题之后，后接大量子节和独立主题，且其后直到第4章之前都是其内容，语义上必须是新章。
+  keep_split: true
+- 'no': 11215
+  overturn_probability: 0.01
+  alternative: 若不分章，这行最可能是正文中一个带编号的标题，但'第4章'明确。
+  counter_evidence:
+  - 该行使用'##'，与文中其他多个'##'小节标题同级，若无编号可能被误认。
+  - 前文'第3章'的缺失（实际以'统计菜单'代替）可能造成编号连续性困惑，但'第4章'本身仍成立。
+  keep_split: true
+- 'no': 11806
+  overturn_probability: 0.01
+  alternative: 若不分章，这行最可能是一个子节标题，但'第5章'编号使其必须分章。
+  counter_evidence:
+  - 格式上'##'与章内的小节标题相同，但编号和后续的导语、列表使其成为明确的章标题。
+  - 前文已出现第4章，此处第5章编号连贯，不存在误判空间。
+  keep_split: true

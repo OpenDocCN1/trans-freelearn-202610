@@ -1,0 +1,3 @@
+# There's more...
+
+In order to ensure that Wireshark will also count the data packets, for example, the data packets of HTTP within the TCP packet, disable the **Allow sub-dissector** option to reassemble the TCP streams. You can do this from the **Preferences** menu or by right-clicking on the TCP in the **Packet Details** pane.

@@ -1,0 +1,1 @@
+is the same as in packet 443, more fragments flag is not set (4) meaning that this is the last fragment from the original packet, and the fragment offset is 1480 (5), meaning that this is the second fragment from the original packet.

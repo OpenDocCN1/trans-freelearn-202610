@@ -1,0 +1,3 @@
+# How it works...
+
+Well, how databases work was always a miracle to me. Our task is to find how they influence the network, and this is what we've learned in this section.

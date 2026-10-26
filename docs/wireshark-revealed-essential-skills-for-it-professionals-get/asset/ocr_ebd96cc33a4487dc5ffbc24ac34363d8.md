@@ -1,0 +1,3 @@
+# How it works...
+
+This menu simply collects all the captured data, and when a filter is defined, it presents the filtered data. When the question is, "how do I use Wireshark simply to know what is the average packets or bytes per second?", this is your answer.

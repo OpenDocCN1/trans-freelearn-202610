@@ -1,0 +1,3 @@
+# There's more...
+
+The quality of video transmission depends on the codec that you are using, number of frames per second that are transmitted, time interval between frames, and more parameters that can be configured in the camera or on the camera server. Make sure you've set all parameters correctly to get a good picture.

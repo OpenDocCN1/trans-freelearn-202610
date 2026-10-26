@@ -1,0 +1,3 @@
+# How it works...
+
+Wireshark enables you to look into protocols and search for specific bytes in it. This is specifically practical for well-known strings in protocols, such as Ethernet in the given example.

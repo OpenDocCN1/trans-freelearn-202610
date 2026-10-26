@@ -1,0 +1,1 @@
+practical to capture at or near the interfaces to the devices described earlier, it is usually easier and just as effective to perform the captures at user and/or server locations. Unless you're part of a network support team, you won't have to conduct an analysis in such an advanced and complicated environment.

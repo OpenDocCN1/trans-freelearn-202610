@@ -1,0 +1,9 @@
+# There's more...
+
+When a process on the end device is looking for the IP address of a specific name, it interacts with the local resolver that goes out to the DNS servers. When the DNS server does not find the entry you are looking for in its database, it can respond in two ways—**recursive** or **iterative**:
+
++   - **Recursive mode**: In this mode, when the application (for example, a web browser) wants to resolve the name of the website [www.packtpub.com](http://www.packtpub.com), it sends a DNS request to the local DNS server (marked as **1** in the following diagram). The local DNS server sends the request to a root server (marked as **2** and **3** in the following diagram), then to the TLD (marked as **3** and **4** in the following diagram), and finally to the authoritative server of [www.packtpub.com](http://www.packtpub.com), which gives us the required address (marked as **6** and **7** in the following diagram). Then, the local DNS server sends us the required address (marked as **8** in the following diagram). In each one of the responses, the resolver gets the DNS to query in the next step.
+
+![](bbox=[0.122, 0.423, 0.738, 0.727])
+
++   - **Iterative mode**: In this mode, a DNS client can receive a response from the DNS server that will tell the client where to look for the requested name. When the application (for example, a web browser) wants to browse the website [www.packtpub.com](http://www.packtpub.com), it sends a DNS request to the local DNS server (marked as **1** in the following diagram). The local server forwards the request to a root DNS server (marked as **2** in the following diagram). If it doesn’t know the answer, it forwards the request to the TLD (marked as **3** in the following diagram) and the

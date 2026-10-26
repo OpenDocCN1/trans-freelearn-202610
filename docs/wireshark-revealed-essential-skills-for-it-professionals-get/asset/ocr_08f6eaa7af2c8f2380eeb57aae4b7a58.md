@@ -1,0 +1,5 @@
+# # Understanding network protocols
+
+Network protocols, like the OSI layers, are a set of industry standard rules and designs used to exchange messages and data between computers and applications. In any discussion about OSI layers, you are directly or indirectly referring to the protocols associated with a given layer—the most commonly known protocols are IP, UDP, TCP, HTTP, and so on—and the significant functions they perform.
+
+For example, you'll often hear the terms network layer and IP layer used interchangeably, and it is assumed and understood that you are talking about the layer and the associated protocol that contains and uses IP addresses to route packets from point A to point B across the network. The discussions that follow will tie the OSI and DARPA layers to their associated protocols.

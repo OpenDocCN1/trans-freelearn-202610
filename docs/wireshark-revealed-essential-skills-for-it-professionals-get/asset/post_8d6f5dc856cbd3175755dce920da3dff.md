@@ -1,0 +1,278 @@
+
+James H Baxter, Yoram Orzach, Charit Mishra
+
+## Wireshark Revealed: Essential Skills for IT Professionals
+
+### Learning Path
+
+![](img/da40f92928403866599198344271d63e_0_0.png)
+
+![](img/da40f92928403866599198344271d63e_0_1.png)
+
+## Wireshark Revealed: Essential Skills for IT Professionals
+
+## Table of Contents
+
+- Wireshark Revealed: Essential Skills for IT Professionals
+- Credits
+- Preface
+  - What this learning path covers
+  - What you need for this learning path
+  - Who this learning path is for
+    - Reader feedback
+  - Customer support
+    - Downloading the example code
+  - Errata
+  - Piracy
+  - Questions
+- 1. Module 1
+  - 1. Getting Acquainted with Wireshark
+    - Installing Wireshark
+      - Installing Wireshark on Windows
+      - Installing Wireshark on Mac OS X
+      - Installing Wireshark on Linux/Unix
+    - Performing your first packet capture
+      - Selecting a network interface
+      - Performing a packet capture
+    - Wireshark user interface essentials
+    - Filtering out the noise
+      - Applying a display filter
+    - Saving the packet trace
+    - Summary
+  - 2. Networking for Packet Analysts
+    - The OSI model – why it matters
+      - Understanding network protocols
+      - The seven OSI layers
+        - Layer 1 – the physical layer
+        - Layer 2 – the data-link layer
+        - Layer 3 – the network layer
+          - Internet Protocol
+          - Address Resolution Protocol
+        - Layer 4 – the transport layer
+          - User Datagram Protocol
+          - Transmission Control Protocol
+        - Layer 5 – the session layer
+        - Layer 6 – the presentation layer
+        - Layer 7 – the application layer
+          - Encapsulation
+    - IP networks and subnets
+    - Switching and routing packets
+    - Ethernet frames and switches
+    - IP addresses and routers
+    - WAN links
+    - Wireless networking
+    - Summary
+  - 3. Capturing All the Right Packets
+    - Picking the best capture point
+      - User location
+      - Server location
+      - Other capture locations
+        - Mid-network captures
+        - Both sides of specialized network devices
+    - Test Access Ports and switch port mirroring
+      - Test Access Port
+      - Switch port mirroring
+        - Capturing packets on high traffic rate links
+    - Capturing interfaces, filters, and options
+      - Selecting the correct network interface
+      - Using capture filters
+      - Configuring capture filters
+      - Capture options
+        - Capturing filenames and locations
+        - Multiple file options
+        - Ring buffer
+        - Stop capture options
+        - Display options
+        - Name resolution options
+    - Verifying a good capture
+    - Saving the bulk capture file
+    - Isolating conversations of interest
+    - Using the Conversations window
+      - The Ethernet tab
+      - The TCP and UDP tabs
+      - The WLAN tab
+    - Wireshark display filters
+      - The Display Filter window
+      - The display filter syntax
+      - Typing in a display filter
+      - Display filters from a Conversations or Endpoints window
+    - Filter Expression Buttons
+      - Using the Expressions window button
+      - Right-click menus on specific packet fields
+    - Following TCP/UDP/SSL streams
+    - Marking and ignoring packets
+    - Saving the filtered traffic
+    - Summary
+  - 4. Configuring Wireshark
+    - Working with packet timestamps
+      - How Wireshark saves timestamps
+      - Wireshark time display options
+      - Adding a time column
+        - Conversation versus displayed packet time options
+      - Choosing the best Wireshark time display option
+      - Using the Time Reference option
+    - Colorization and coloring rules
+      - Packet colorization
+    - Wireshark preferences
+    - Wireshark profiles
+      - Creating a Wireshark profile
+      - Selecting a Wireshark profile
+    - Summary
+  - 5. Network Protocols
+    - The OSI and DARPA reference models
+      - Network layer protocols
+        - Wireshark IPv4 filters
+        - Wireshark ARP filters
+        - Internet Group Management Protocol
+        - Wireshark IGMP filters
+        - Internet Control Message Protocol
+          - ICMP pings
+          - ICMP traceroutes
+          - ICMP control message types
+          - ICMP redirects
+          - Wireshark ICMP filters
+        - Internet Protocol Version 6
+          - IPv6 addressing
+          - IPv6 address types
+          - IPv6 header fields
+          - IPv6 transition methods
+          - Wireshark IPv6 filters
+        - Internet Control Message Protocol Version 6
+          - Multicast Listener Discovery
+          - Wireshark ICMPv6 filters
+    - Transport layer protocols
+      - User Datagram Protocol
+        - Wireshark UDP filters
+      - Transmission Control Protocol
+        - TCP flags
+        - TCP options
+        - Wireshark TCP filters
+    - Application layer protocols
+      - Dynamic Host Configuration Protocol
+        - Wireshark DHCP filters
+      - Dynamic Host Configuration Protocol Version 6
+        - Wireshark DHCPv6 filters
+      - Domain Name Service
+        - Wireshark DNS filters
+      - Hypertext Transfer Protocol
+        - HTTP Methods
+        - Host
+        - Request Modifiers
+        - Wireshark HTTP filters
+    - Additional information
+      - Wireshark wiki
+      - Protocols on Wikipedia
+      - Requests for Comments
+    - Summary
+  - 6. Troubleshooting and Performance Analysis
+    - Troubleshooting methodology
+    - Gathering the right information
+    - Establishing the general nature of the problem
+    - Half-split troubleshooting and other logic
+    - Troubleshooting connectivity issues
+      - Enabling network interfaces
+      - Confirming physical connectivity
+      - Obtaining the workstation IP configuration
+      - Obtaining MAC addresses
+      - Obtaining network service IP addresses
+      - Basic network connectivity
+      - Connecting to the application services
+    - Troubleshooting functional issues
+    - Performance analysis methodology
+    - Top five reasons for poor application performance
+    - Preparing the tools and approach
+    - Performing, verifying, and saving a good packet capture
+    - Initial error analysis
+    - Detecting and prioritizing delays
+      - Server processing time events
+      - Application turn's delay
+      - Network path latency
+      - Bandwidth congestion
+      - Data transport
+      - TCP StreamGraph
+      - IO Graph
+      - IO Graph – Wireshark 2.0
+    - Summary
+  - 7. Packet Analysis for Security Tasks
+    - Security analysis methodology
+    - The importance of baselining
+    - Security assessment tools
+    - Identifying unacceptable or suspicious traffic
+      - Scans and sweeps
+        - ARP scans
+        - ICMP ping sweeps
+        - TCP port scans
+        - UDP port scans
+      - OS fingerprinting
+      - Malformed packets
+      - Phone home traffic
+      - Password-cracking traffic
+      - Unusual traffic
+    - Summary
+  - 8. Command-line and Other Utilities
+    - Wireshark command-line utilities
+    - Capturing traffic with Dumpcap
+    - Capturing traffic with Tshark
+    - Editing trace files with Editcap
+    - Merging trace files with mergecap
+    - mergecap batch file
+    - Other helpful tools
+      - HttpWatch
+      - SteelCentral Packet Analyzer Personal Edition
+      - AirPcap adapters
+    - Summary
+- 2. Module 2
+  - 1. Introducing Wireshark
+    - Introduction
+    - Locating Wireshark
+      - Getting ready
+      - How to do it...
+        - Monitoring a server
+        - Monitoring a router
+        - Monitoring a firewall
+      - How it works...
+      - There's more...
+      - See also
+    - Starting the capture of data
+      - Getting ready
+      - How to do it...
+      - How to choose the interface to start the capture
+      - How to configure the interface you capture data from
+      - How it works...
+      - There's more...
+      - See also
+    - Configuring the start window
+      - Getting ready
+        - Main Toolbar
+        - Display Filter Toolbar
+        - Status Bar
+      - How to do it...
+        - Configuring toolbars
+        - Configuring the main window
+        - Name Resolution
+        - Colorizing the packet list
+        - Auto scrolling in live capture
+    - Using time values and summaries
+      - Getting ready
+      - How to do it...
+      - How it works...
+    - Configuring coloring rules and navigation techniques
+      - Getting ready
+      - How to do it...
+      - How it works...
+      - See also
+    - Saving, printing, and exporting data
+      - Getting ready
+      - How to do it...
+        - Saving data in various formats
+        - How to print data
+      - How it works...
+    - Configuring the user interface in the Preferences menu
+      - Getting ready
+      - How to do it...
+        - Changing and adding columns
+        - Changing the capture configuration
+        - Configuring the name resolution
+      - How it works...
+    - Configuring protocol preferences
+      - Getting ready

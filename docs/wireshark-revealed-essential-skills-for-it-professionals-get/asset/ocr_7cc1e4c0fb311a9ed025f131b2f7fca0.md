@@ -1,0 +1,3 @@
+# How it works...
+
+This is quite simple. Wireshark works on the system clock and presents the time as it is in the system. By default you see the time since the beginning of capture.

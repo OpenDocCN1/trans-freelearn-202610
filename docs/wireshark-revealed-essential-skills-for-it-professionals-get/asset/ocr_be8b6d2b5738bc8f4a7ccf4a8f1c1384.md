@@ -1,0 +1,1 @@
+Once you add a static entry in every possible host in your network, it won't be possible then to modify the local cache using the `arp` spoof tool. Similarly, for HTTPS traffic, you can use the SSL strip tool available online in order to sniff secure traffic.

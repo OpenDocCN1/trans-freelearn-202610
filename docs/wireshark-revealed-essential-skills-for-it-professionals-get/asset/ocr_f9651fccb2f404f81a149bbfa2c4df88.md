@@ -1,0 +1,1 @@
+Now, from the **Graph Analysis** window, we can see at what time a certain request was made and what response did we receive, which TCP port was used, along with some plain English comments, and the flow of traffic is also marked. This makes it simple for us to understand how TCP packets flow around.

@@ -1,0 +1,3 @@
+live, meaning you will see the fluctuations, that is, the lines going up and down. The miniature graph followed by the interface name represents the amount of traffic moving back and forth from the interfaces you have. The proper terminology for these miniature graphs is sparklines. In the older legacy version, we had the live statistics in numerical form.
+
+Now, if you decide to capture traffic from a particular interface, just double-click on the graph area, and Wireshark will do the rest for you.

@@ -1,0 +1,3 @@
+# There's more...
+
+There are many problems that can be found and allocated using the Follow TCP Stream feature, and it will be discussed further in the next chapters. Use this feature to isolate a TCP stream.
