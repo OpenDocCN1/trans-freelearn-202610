@@ -1,0 +1,31 @@
+chapter_starts:
+- 'no': 8885
+  confidence: 0.95
+  final_reason: 判断方与复核方一致，且上下文、编号、格式均符合顶层章标题特征
+  accepted_evidence:
+  - 8885 行以“# 12”开头，是带编号的顶层 H1 标题
+  - 前文（8850-8883）为上一章末尾的步骤、摘要、Discord 社区等收尾内容
+  - 后文紧跟重复的 H1 标题（8887）及本章概述、配方列表，符合章首结构
+  rejected_evidence:
+  - 8887 行存在同级 H1 重复标题，存在排版噪声，但 8885 带编号且位置符合章边界，不足以推翻
+  need_human_review: false
+- 'no': 9520
+  confidence: 0.95
+  final_reason: 判断方与复核方一致，且上下文、编号、格式均符合顶层章标题特征
+  accepted_evidence:
+  - 9520 行以“# 13”开头，是带编号的顶层 H1 标题
+  - 前文（9506-9518）为上一章末尾的摘要、Discord 社区等收尾内容
+  - 后文紧跟重复的 H1 标题（9522）及本章概述、配方列表，符合章首结构
+  rejected_evidence:
+  - 9522 行存在同级 H1 重复标题，存在排版噪声，但 9520 带编号且位置符合章边界，不足以推翻
+  need_human_review: false
+- 'no': 10016
+  confidence: 0.8
+  final_reason: 文末索引按规则划分为一章；但复核方指出上下文断裂，需人工复核
+  accepted_evidence:
+  - “## Index”为书末索引的特征标题，后文从“### A”开始且包含索引条目（如 additive measures 137）
+  - 判断规则明确“文末索引也划分为一章”
+  rejected_evidence:
+  - Index 前方出现“## 市场趋势分析报告”等与本书背景无关的内容，上下文存在断裂，不能完全排除该 Index 属于误插入的附加文档片段
+  need_human_review: true
+rejected_lines: []

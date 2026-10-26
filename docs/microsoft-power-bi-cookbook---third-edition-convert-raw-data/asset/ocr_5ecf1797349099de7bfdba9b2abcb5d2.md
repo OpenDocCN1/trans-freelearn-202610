@@ -1,0 +1,40 @@
+6. Create three new columns in the Dates table with the following code:
+
+```
+Sequential =
+    VAR __Date = 'Dates'[FullDateAlternateKey]
+    VAR __Year = YEAR(__Date)
+    VAR __Calendar = ADDCOLUMNS(ALL('Dates'),
+        "__Year", YEAR('Dates'[FullDateAlternateKey]),
+        "__WeekNum", WEEKNUM('Dates'[FullDateAlternateKey]))
+    VAR __FirstYear = MINX(__Calendar,[__Year])
+    VAR __WeekNum = MAXX(FILTER(__Calendar,
+        [FullDateAlternateKey] = __Date), [__WeekNum])
+    VAR __MaxWeeks = GROUPBY(__Calendar, [__Year],
+        "__MaxWeek", MAXX(CURRENTGROUP(), [__WeekNum]))
+    VAR __Start = SUMX(FILTER(__MaxWeeks, [__Year]<__Year), [__MaxWeek])
+    VAR __Calendar1 = ADDCOLUMNS(__Calendar,
+        "__MaxWeek",
+        MAXX(FILTER(__Calendar, [__Year] =
+            EARLIER([__Year])),[__WeekNum]))
+    VAR __SubtractTable = GROUPBY(FILTER(__Calendar1,
+        [__Year] < __Year && [__WeekNum] = [__MaxWeek]), [__Year],
+        "__NumWeekDays", COUNTX(CURRENTGROUP(),[FullDateAlternateKey]))
+    VAR __Subtract = COUNTROWS(FILTER(__SubtractTable, [__NumWeekDays]<7))
+    VAR __Sequential = IF(__Year=__FirstYear,
+        __WeekNum,
+        __Start + __WeekNum - __Subtract)
+    RETURN __Sequential
+Week Ending Date =
+    VAR __CurrentWeek = [Sequential]
+    RETURN
+        MAXX(FILTER(ALL('Dates'),[Sequential] = __CurrentWeek),
+            [FullDateAlternateKey])
+IsCurrentWeek =
+    VAR __CurrentWeek =
+        LOOKUPVALUE('Dates'[Sequential],'Dates'[FullDateAlternateKey],[Today])
+    RETURN
+        IF([Sequential] = __CurrentWeek,1,0)
+```
+
+7. In the Report view, create another Line chart visualization, using the Week Ending Date column (not the hierarchy) from the Dates table as the X-axis and the Internet Net Sales measure as the Y-axis.

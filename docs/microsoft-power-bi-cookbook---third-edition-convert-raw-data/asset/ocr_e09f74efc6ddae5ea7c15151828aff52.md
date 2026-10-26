@@ -1,0 +1,11 @@
+![](bbox=[0.22, 0.06, 0.83, 0.29])
+
+*Figure 13.39: Superstore.xlsx file in the lakehouse associated with the notebook*
+
+The next step for the notebook is to create an **experiment**. An experiment is a container in which data is cleaned, prepped, and analyzed, a machine learning algorithm is chosen, and that algorithm is then trained on the data in order to create a machine learning model. In the notebook, **Step 2: Exploratory Data Analysis** includes the cleaning, prepping and analysis of the raw data.
+
+Within the notebook, **Step 3: Model Training and Tracking** is where the algorithm is chosen and trained, which creates the **ML Model**. In the case of the sales forecasting example, the chosen algorithm is the **Seasonal AutoRegressive Integrated Moving Average with eXogenous regressors (SARIMAX)** algorithm. **AutoRegressive Integrated Moving Average (ARIMA)** is a common method of forecasting data. **Seasonal AutoRegressive Integrated Moving Average (SARIMA)** accounts for seasonality within the time series data (think holiday sales for Thanksgiving and Christmas in the United States) where sales numbers are influenced by the calendar date of holidays. SARIMAX then takes this one step further and also accounts for external factors (X) as well.
+
+In general, algorithms are typically trained on a subset of the data. The data in the non-training set is then used as a scoring set. Essentially, the trained algorithm is used to predict values within the scoring set and that prediction is then compared to the actual values in order to determine the accuracy and precision of the predicted values. **Step 4: Score the model and save predictions** of the notebook is where the model is scored and the predictions are saved back to the lakehouse.
+
+With the actual and predicted values loaded into the lakehouse, we can then create a Direct Lake storage mode semantic model from the data in the lakehouse. In addition, we created a simple report to view the actual and predicted sales.

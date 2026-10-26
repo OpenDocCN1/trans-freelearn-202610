@@ -1,0 +1,13 @@
++   - Files for this chapter can be downloaded from the following GitHub repository: https://github.com/PacktPublishing/Power-BI-Cookbook-Third-Edition.
+
+# # Building a Dashboard
+
+With a robust semantic model and multiple reports created in Power BI Desktop, dashboards can be developed in the Power BI service to consolidate the most valuable KPIs, measures, and visualizations onto a single pane of glass. Additionally, dashboards provide an access point to the detailed reports supporting the tiles and are optimized for mobile access through the Power BI mobile application.
+
+Power BI dashboards are collections of tiles created in the Power BI service, representing the visuals from one or many Power BI reports and, optionally, other sources, such as Excel and SQL Server Reporting Services (SSRS). Dashboards are best utilized to centralize essential key performance indicators (KPIs), measures, and trends in a visual- and mobile-optimized layout. Additionally, dashboards can provide an entryway to other dashboards or reports and are further enhanced with URL links, streaming data, images, web content, and interactivity.
+
+Power BI dashboards are commonly used by executives and senior managers who desire an intuitive, consolidated view of relevant KPIs and visualizations. In many cases, these stakeholders will almost exclusively rely on dashboards rather than the more detailed and interactive reports underlying the dashboards. Such dashboards are often sourced from reports built against multiple semantic models reflecting different business processes and functional areas such as accounting and the supply chain. Enterprise dashboards typically utilize card and KPI visuals to focus on strategic objectives and maximize canvas space. Given the scale and breadth of data sources for a modern enterprise, a significant level of coordination is required to ensure that all semantic models supporting the dashboard represent an appropriate level of data quality and governance.
+
+The report design planning process described in *Chapter 4, Authoring Power BI Reports*, is directly applicable to dashboards as well. It is important to confirm that the existing semantic models support the required business questions and metrics exposed in a dashboard.
+
+In this recipe, a sales dashboard is created for the North American sales management team. Four reports have been built against the same Power BI semantic model and the visuals from these reports are pinned as tiles to the sales dashboard.
