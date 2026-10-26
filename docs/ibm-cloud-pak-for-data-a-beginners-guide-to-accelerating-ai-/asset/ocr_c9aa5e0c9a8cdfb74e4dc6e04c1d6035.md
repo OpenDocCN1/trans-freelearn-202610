@@ -1,0 +1,4 @@
+# 9
+Technical Overview, Management, and Administration
+
+Cloud Pak for Data is a data and AI platform that enables enterprises to tap into their data and accelerate the adoption of AI to drive better business outcomes. This platform helps them modernize their data access mechanisms, organize data for trusted analytics, develop machine learning models, and operationalize AI into their day-to-day business processes. This chapter provides an insight into the foundational aspects of Cloud Pak for Data, the technology stack that powers it, and how services integrate to deliver the key capabilities needed to be successful with AI in the enterprise.

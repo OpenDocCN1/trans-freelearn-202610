@@ -1,0 +1,13 @@
+a) The **Speech to Text** service converts human voice input into text. The service uses deep learning AI to apply knowledge of grammar, language structure, and the composition of audio and voice signals to accurately transcribe human speech. It can be used in applications such as voice-automated chatbots, analytic tools for customer-service call centers, and multi-media transcription, among many others.
+
+b) The **Text to Speech** service converts written text into natural-sounding speech. The service streams the synthesized audio back with minimal delay. The audio uses the appropriate cadence and intonation for its language and dialect to provide voices that are smooth and natural. The service can be used in applications such as voice-automated chatbots, as well as a variety of voice-driven and screenless applications, such as tools for the disabled or visually impaired, video narration and voice-over, and educational and home-automation solutions.
+
+c) **Natural Language Understanding** helps analyze text and extract metadata from content such as concepts, entities, keywords, categories, sentiment, emotion, relations, and semantic roles. Apply custom annotation models developed using Watson Knowledge Studio to identify industry-/domain-specific entities and relations in unstructured text with Watson NLU.
+
++   10. **Watson Discovery** adds a cognitive search and content analytics engine to applications to identify patterns, trends, and actionable insights that drive better decision making. It securely unifies structured and unstructured data with pre-enriched content and uses a simplified query language to eliminate the need for the manual filtering of results. The automated ingestion and integrated natural language processing in the fully managed cloud service remove the complexity of dealing with natural language content. Uncover deep connections in your data by using advanced out-of-the-box AI functions, such as natural language queries, passage retrieval, relevancy training, relationship graphs, and anomaly detection.
+
++   11. **Open source databases:**
++   
++      a) **Cloudant** is a fully managed JSON document database that offers independent serverless scaling of provisioned throughput capacity and storage. Cloudant is compatible with Apache CouchDB and accessible through a simple to use HTTPS API for web, mobile, and IoT applications.
++   
++      b) **Elasticsearch** combines the power of a full text search engine with the indexing strengths of a JSON document database to create a powerful tool for the rich data analysis of large volumes of data. IBM Cloud Databases for Elasticsearch makes Elasticsearch even better by managing everything for you.

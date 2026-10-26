@@ -1,0 +1,14 @@
+While audit logging generally only covers specific privileged actions, there are typically additional regulatory requirements with regards to tracking access of data by users and applications. In the following section, we will see how that too can be implemented.
+
+# Integration with IBM Security Guardium
+
+Guardium provides the ability to monitor data access and to ensure data security. IBM Security Guardium's **Database Activity Monitoring (DAM)** capability offers an advanced centralized audit repository, reporting mechanisms, as well as tools to support forensics and compliance audits. These capabilities are complementary to the system-level auditing and privileged action audit recording described in previous sections as they can expand to data protection as well.
+
+Cloud Pak for Data enables integration with Guardium in two ways:
+
++   - **Auditing sensitive data access**: Cloud Pak for Data users with the Manage Catalog permissions have the authority to identify sensitive data, such as **Personally identifiable information (PII)**, and configure it to be monitored by Guardium [39]. Since Cloud Pak for Data's Watson Knowledge Catalog service can also scan and tag sensitive data, it makes it easier for authorized users to enable those data assets to be monitored by Guardium.
++   - Cloud Pak for Data facilitates the provisioning of databases as well. It is critical for regulatory compliance that access to such data also be monitored. This is facilitated by a service called the Guardium *E-STAP* [40] service that is provisioned on top of Cloud Pak for Data and configured to intercept traffic to DB2 databases. All access to the DB2 database is then only conducted through the E-STAP interface. This service is configured to work with the Guardium appliance, which enables access logging and reporting, and access policy enforcement.
+
+Guardium is an established and mature offering in the data protection and compliance segment. Many enterprises already leverage Guardium to automate compliance controls in a centralized fashion and the ability to integrate with Guardium enables Cloud Pak for Data customers to accelerate compliance readiness efforts with regard to their own data, complementing what is offered by the Cloud Pak for Data platform and operating environment.
+
+In this section, we explored what techniques are available for the enterprise to get ready for regulatory compliance. In general, Cloud Pak for Data provides elegant mechanisms for RBAC and for the enterprise to be able to configure or change out-of-the-box roles to support any regulatory compliance, such as separation of duties.

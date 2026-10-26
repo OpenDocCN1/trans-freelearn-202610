@@ -1,0 +1,22 @@
+reviews:
+- 'no': 3044
+  overturn_probability: 0.1
+  alternative: 若不分章，这行最可能是页眉/页脚残留或目录条目
+  counter_evidence:
+  - 该行使用二级标题（##），而全书最高层级可能是一级标题（#），因此可能被误判为子节而非章；
+  - 标题很短且无'第'字，可能被误认为目录或页眉中的编号，而非正文中的章标题。
+  keep_split: true
+- 'no': 3240
+  overturn_probability: 0.1
+  alternative: 若不分章，这行最可能是正文中的二级小标题或英文原章标题的残留
+  counter_evidence:
+  - 该行以英文书写，可能被误认为书中的引用或术语表条目，而非中文正文的章节标题；
+  - 前面第11章末尾有'#### Summary'等子标题，可能使章节边界不够明显，但仍存在明确编号'12'。
+  keep_split: true
+- 'no': 3555
+  overturn_probability: 0.2
+  alternative: 若不分章，这行最可能是文末附录或索引的目录标题
+  counter_evidence:
+  - 索引通常不是叙述性内容，可能被视为附加材料而非正式章节，但规则明确要求将文末索引划分为一章；
+  - 该行后紧跟'## A'等字母子标题，可能让人误以为它是索引内部的子结构标题而非独立章标题。
+  keep_split: true

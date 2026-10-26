@@ -1,0 +1,106 @@
+chapter_starts:
+- 'no': 18
+  confidence: 0.9
+  final_reason: 前言属于正文之前的主要区块，按规则统一作为前置内容的一个分章起点；复核方虽有同类前置标题干扰的质疑，但最终建议保留分章。
+  accepted_evidence:
+  - '# 前言 单独成行，标题无句号且长度符合章标题'
+  - 后接前言正文及多个子节（本书读者对象、本书涵盖内容等）
+  - 规则要求前言等正文之前内容统一划分为一章
+  rejected_evidence:
+  - '无章序号；同类 # 贡献者、# 关于作者 等也属前置内容'
+  need_human_review: false
+- 'no': 112
+  confidence: 0.98
+  final_reason: 第1部分标题，部分-章节模式中部分级标题需单独分章；双方一致。
+  accepted_evidence:
+  - '# 第 1 部分：基础知识 单独成行'
+  - 后接本部分概述与章节列表
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 327
+  confidence: 0.65
+  final_reason: '该行位于第1部分内部，后接 Cloud Pak for Data 的概述段落及多个 ### 子节，语义上承担第2章起点；复核方虽有“概述为章内小节”的异议，但最终建议保留分章。'
+  accepted_evidence:
+  - 标题单独成行、无句号、长度<30
+  - 后续段落引用第1章并切入 Cloud Pak for Data 介绍，后文均为该平台的展开子节
+  rejected_evidence:
+  - 标题“Cloud Pak for Data 概述”与目录第2章“Cloud Pak for Data——简要介绍”不完全一致
+  - 前面315行已出现“在上一章中……”的过渡语，真正章起点可能更早
+  need_human_review: true
+- 'no': 570
+  confidence: 0.98
+  final_reason: 第2部分标题，部分-章节模式中部分级标题需单独分章；双方一致。
+  accepted_evidence:
+  - '# 第 2 部分：产品能力 单独成行'
+  - 后接本部分章节列表
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 583
+  confidence: 0.98
+  final_reason: 带编号“3”的章标题，后续有本章主要内容列表和完整正文，格式与语义均符合最高层级大章；双方一致。
+  accepted_evidence:
+  - '## 3 收集 – 让数据简单且可访问 单独成行'
+  - 后接本章主题列表及各节内容
+  rejected_evidence:
+  - 写作“3”而非“第3章”可能造成轻微歧义
+  need_human_review: false
+- 'no': 786
+  confidence: 0.98
+  final_reason: 带编号“4”的章标题，标题单独成行且后接 DataOps 正文与众多子节，格式语义符合章起点；双方一致。
+  accepted_evidence:
+  - '## 4 介绍 Data Operations (DataOps) 单独成行'
+  - 后续涵盖 DataOps 概念、元数据、数据质量、MDM 等章节级主题
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 1108
+  confidence: 0.75
+  final_reason: 虽无 Markdown 标题标记，但该行与目录第5章标题完全一致；1107 行“## 5 BI 与报表”更像是错位/噪声标题，因此按语义将
+    1108 行作为第5章起点。
+  accepted_evidence:
+  - 文本“分析：以信任和透明度构建、部署和扩展模型”与正文前目录第5章标题完全一致
+  - '后续段落为该章总述并在之后出现多个 ### 子节'
+  rejected_evidence:
+  - 该行没有标题标记，且与1107行相邻造成同一标题被拆断的歧义
+  need_human_review: true
+- 'no': 1387
+  confidence: 0.85
+  final_reason: 位于第2部分、紧接第5章内容之后，无编号但语义上为第6章“多云战略与 Cloud Satellite”的章首；后接本章主题列表和各子节。
+  accepted_evidence:
+  - 标题单独成行、无句号、长度短
+  - '后接“我们将讨论以下主要主题”及多个 ### 子节'
+  rejected_evidence:
+  - 无章序号，单看可能被当成 H2 级正文小标题
+  need_human_review: false
+- 'no': 1644
+  confidence: 0.96
+  final_reason: 带编号“7”的章标题，标题单独成行且后接本章主题列表与多个子节，格式语义清晰；双方一致。
+  accepted_evidence:
+  - '## 7 IBM 与合作伙伴扩展服务 单独成行'
+  - '后接“在本章中，我们将涵盖以下主要主题”及大量 ### 子节'
+  rejected_evidence:
+  - 后一行有空的“## ”可能造成提取坏块，但不影响本行
+  need_human_review: false
+- 'no': 2153
+  confidence: 0.98
+  final_reason: 第3部分标题，部分-章节模式中部分级标题需单独分章；双方一致。
+  accepted_evidence:
+  - '# 第3部分：技术细节 单独成行'
+  - 后接本部分说明与章节列表
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 2166
+  confidence: 0.85
+  final_reason: 带编号“10”的章标题，虽然编号与目录第9章不一致，但按规则应忽略序号跳跃/错误；标题所对应的内容正是技术概述、管理与运维，格式语义符合章起点。
+  accepted_evidence:
+  - '## 10 技术概述、管理与运维 单独成行'
+  - 后续段落介绍架构、基础设施、控制平面等章节级主题
+  rejected_evidence:
+  - 部分目录写“第9章，技术概述、管理与运维”，行首“10”可能是页码或 OCR 噪声
+  need_human_review: false
+rejected_lines:
+- 'no': 123
+  reason: '复核方指出该行实为第1章内的“AI 阶梯简介”小节，与目录第1章标题不符；其前方121行已是第1章引言段，后方多个 ### 子节均属同一章，不应作为章起点。'
+  need_human_review: false
+- 'no': 1107
+  reason: 该行“BI 与报表”不是目录第5章标题，且紧跟其后的1108行才是第5章标题；结合1118行空的“## ”标题，更可能是页眉/噪声或错位的小节标题，不能作为章起点。
+  need_human_review: false

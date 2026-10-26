@@ -1,0 +1,38 @@
+chapter_starts:
+- 'no': 3044
+  confidence: 0.95
+  final_reason: 判断方与复核方均支持分章。行内容为 '## 11 存储'，独立成行、带编号、后接本章主题概述，符合最高层级章标题特征。复核方提出的二级标题/页眉疑虑不足以推翻。
+  accepted_evidence:
+  - 标题独立成行且带编号 11
+  - 后接 '**Cloud Pak for Data** 利用 Kubernetes...' 等本章概述段落
+  - 后续出现 '### 理解持久卷的概念' 等子节结构
+  - 复核方 keep_split=true，overturn_probability 0.1
+  rejected_evidence:
+  - '二级标题 ## 可能为子节的疑虑'
+  - 标题无'第'字可能被误认为目录条目
+  need_human_review: false
+- 'no': 3240
+  confidence: 0.95
+  final_reason: 判断方与复核方均支持分章。行内容为 '## 12 Multi-Tenancy'，独立成行、带编号 12，后接主题概述，构成新章。英文标题不影响章层级判定。
+  accepted_evidence:
+  - 标题独立成行且带编号 12
+  - 后接 '多租户是一种软件架构设计...' 的概述段落
+  - 后续出现 '### Tenancy considerations' 等子节
+  - 复核方 keep_split=true，overturn_probability 0.1
+  rejected_evidence:
+  - 英文书写可能被误认为引用或术语条目
+  - '前章末尾有 #### Summary 可能使边界不明显'
+  need_human_review: false
+- 'no': 3555
+  confidence: 0.9
+  final_reason: 判断方与复核方均支持分章。行内容为 '# 索引'，为文末索引的一级标题，按规则文末索引应划分为独立一章。
+  accepted_evidence:
+  - 标题为 '# 索引'，一级标题且独立成行
+  - 位于文末，后续为 '## A' 等索引条目
+  - 规则明确要求文末索引划分为一章
+  - 复核方 keep_split=true，overturn_probability 0.2
+  rejected_evidence:
+  - 索引为附加材料而非叙述性内容的疑虑
+  - '后接 ## A 等子标题可能被误认为内部结构'
+  need_human_review: false
+rejected_lines: []

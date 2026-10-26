@@ -1,0 +1,85 @@
+reviews:
+- 'no': 18
+  overturn_probability: 0.15
+  alternative: 正文之前的前言区块标题（front matter），与“贡献者”“关于作者”等并列
+  counter_evidence:
+  - 该行没有“第X章”编号，且同类前置标题（# 贡献者、# 关于作者、# 关于审阅者）都不是正文章节，单看文本可能只是前置区块标题。
+  - 如果按“前言等前置内容统一划为一章”的规则，起点也可能应在更早的前置标题处，而不是单独把18行作为章起点。
+  keep_split: true
+- 'no': 112
+  overturn_probability: 0.05
+  alternative: 第一部分的分隔页标题（part opener）
+  counter_evidence:
+  - 它不是“第X章”，且仅包含部分编号和标题，缺少具体正文；若只看局部可能被当作装帧用分隔页。
+  - 部分标题本身只是划分全书的大区块，可能被误当作某一章标题。
+  keep_split: true
+- 'no': 123
+  overturn_probability: 0.65
+  alternative: 第1章正文中的第一个小节标题（“Introduction to the AI ladder”），不是章标题
+  counter_evidence:
+  - 正文目录中的第1章标题是“AI 阶梯：IBM 的规范性方法”，而本行是“AI 阶梯简介”，与目录不符；更像章内引言小节。
+  - 本行前面的121行已是第1章的引言段，本行后面还有多个“###”同级小节（如“AI 阶梯的各级阶梯”“收集”等），如果将其作为章起点，等于把一个引言小节提升为章。
+  keep_split: false
+- 'no': 327
+  overturn_probability: 0.3
+  alternative: 第2章内的“Cloud Pak for Data 概述”部分标题（正式章名可能为“Cloud Pak for Data——简要介绍”）
+  counter_evidence:
+  - 它没有章序号，且文本“概述”与目录第2章标题“Cloud Pak for Data——简要介绍”不一致，存在正文小标题的可能。
+  - 前面315行“数据与 AI 平台的案例 – 回顾”已经出现“在上一章中……”的过渡语，说明真正的第2章开头可能在该行之前。
+  keep_split: true
+- 'no': 570
+  overturn_probability: 0.05
+  alternative: 第二部分的分隔页标题（part opener）
+  counter_evidence:
+  - 它是“部分”而不是“章”，若只按章级标题切分，可能不会选择该行作为起点。
+  - 标题后接“本部分包含以下章节”，更像是后续各章的导引页而非独立章节。
+  keep_split: true
+- 'no': 583
+  overturn_probability: 0.05
+  alternative: 带编号的正文小标题（如第3节）
+  counter_evidence:
+  - 写作“3”而非“第3章”，且“收集——让数据简单且可访问”也是AI阶梯中的一个梯级名，可能在正文中作为小标题出现。
+  - 如果只看孤行，“3 收集……”也可能是书眉或列表残留。但它是章节列表之后的首个H2且后接本章主题列表，仍应分章。
+  keep_split: true
+- 'no': 786
+  overturn_probability: 0.05
+  alternative: 第4章内的小节标题（DataOps 介绍）
+  counter_evidence:
+  - 标题以“介绍……”开头，具有教程小节的语气，而不像正式章名。
+  - 编号“4”可能是章号也可能是章节序号，单看此行有歧义；但后续结构显示它是第4章起点。
+  keep_split: true
+- 'no': 1107
+  overturn_probability: 0.7
+  alternative: 页眉残留/错位的正文小标题；真正的第5章标题是下一行“分析：以信任和透明度构建、部署和扩展模型”
+  counter_evidence:
+  - 本行的“BI 与报表”不是目录中第5章标题；目录和1108行都指向“分析：以信任和透明度构建、部署和扩展模型”。
+  - 随后1118行还有一个空的“## ”标题，且1120行才开始解释BI，说明“BI 与报表”更像是排版/页眉噪声或错位的小节标题。
+  keep_split: false
+- 'no': 1387
+  overturn_probability: 0.15
+  alternative: 第6章的章题（未带编号），但也可能是H2级正文小标题
+  counter_evidence:
+  - 没有“第6章”或“6”编号，只有“多云战略与 Cloud Satellite”，孤立看可能被误认为一般H2节标题。
+  - 它前面没有明显的分页符或章节间隔，单靠格式不能完全排除是前一主题的延续标题。
+  keep_split: true
+- 'no': 1644
+  overturn_probability: 0.05
+  alternative: 第7章标题（格式正确）
+  counter_evidence:
+  - 该行后紧跟另一个空的“## ”，说明提取结果可能有重复或坏块，不能仅凭相邻的“## ”确认标题范围。
+  - 编号“7”对应目录第7章，误报风险极低，但严格审查仍可怀疑是页眉。
+  keep_split: true
+- 'no': 2153
+  overturn_probability: 0.05
+  alternative: 第三部分的分隔页标题（part opener）
+  counter_evidence:
+  - 它不是章标题，而是部分级标题；若分割粒度只到章，它不应成为起点；但规则要求部分级也分割。
+  - 行内“第3部分”与前后部分标题并列，更像结构分隔而不承载正文内容。
+  keep_split: true
+- 'no': 2166
+  overturn_probability: 0.3
+  alternative: 带页码/页眉噪声的章标题；行首“10”可能是页码或OCR误读，正式章号应为9
+  counter_evidence:
+  - 上一行的部分目录明确写“第9章，技术概述、管理与运维”，而本行是“10 技术概述、管理与运维”，编号不一致说明10可能来自页眉/页码。
+  - 标题没有“章”字，只有“10 技术概述……”，在排版噪声中容易由页眉内容误生成标题。
+  keep_split: true

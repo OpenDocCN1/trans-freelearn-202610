@@ -1,0 +1,7 @@
+Most enterprises would have their data spread across multiple data sources, some on-premises and some in the public cloud and typically in different formats. How would the enterprise make all their valuable data available for their data scientists and analysts in a secure manner? If data science tooling and frameworks cannot work with data in place, at scale, they may even need to build additional expensive data integration and transformation pipelines, as well as storing data in new data warehouses or lakes. If a steward is unable to easily define data access policies across all data in use, ensuring that sensitive data is masked or obfuscated, from a security and compliance perspective, it will become unsafe (or even illegal) to make data available for advanced analytics and AI.
+
+The following diagram expands on the need for different systems to integrate, and users to collaborate closely. It starts with leaders setting expectations on the business problems to address using AI techniques. Note that these systems and tasks span both the development and operational production aspects of the enterprise:
+
+![](bbox=[0.1, 0.41, 0.88, 0.73])
+
+Figure 1.8 – Typical cross-system tasks and cross-persona interactions
