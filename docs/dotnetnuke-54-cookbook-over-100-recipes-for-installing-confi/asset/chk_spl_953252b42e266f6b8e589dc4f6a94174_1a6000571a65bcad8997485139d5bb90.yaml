@@ -1,0 +1,37 @@
+reviews:
+- 'no': 9067
+  overturn_probability: 0.9
+  alternative: 章标题的编号部分（与下一行'## Advanced Modules and Security'共同构成完整章标题），不应单独分章
+  counter_evidence:
+  - '''## 12''后直接跟着''## Advanced Modules and Security''，二者是同一章标题的编号和名称，若同时分章会产生两个连续的空章；'
+  - 该行只有数字，没有语义概括力，不能独立覆盖后续内容，不符合章标题的语义特征。
+  keep_split: false
+- 'no': 9069
+  overturn_probability: 0.1
+  alternative: 若不分章，它可能是章标题的标题名称行，与'## 12'配合成为完整标题；但单独看它仍是章标题
+  counter_evidence:
+  - 它紧跟在'## 12'之后，可能是同一章标题的第二行，而不是一个独立的新章起点；
+  - 但由于它语义上统领后续多个小节，仍符合章标题的格式与上下文特征。
+  keep_split: true
+- 'no': 9715
+  overturn_probability: 0.15
+  alternative: 若不分章，它可能是前一章末尾的页眉或重复出现的章名标题
+  counter_evidence:
+  - 它与后文10481'## 高级换肤'语义相近，存在同一章节标题被重复插入的可能；
+  - 但9715位于上一章最后一个菜谱结束后，后跟章内容列表和'### 简介'，位置和上下文支持它是新章标题。
+  keep_split: true
+- 'no': 10481
+  overturn_probability: 0.95
+  alternative: 章页眉/运行标题或重复的章标题，属于排版噪声
+  counter_evidence:
+  - 它插在'使用圆角超级样式表'菜谱的步骤14和15之间，打断了连续的编号步骤，不可能是新章起点；
+  - 其后面没有章节概述或内容列表，而是继续上一菜谱的步骤15-17，不符合章标题的上下文特征；
+  - '''高级换肤''与9715''高级皮肤设计''含义重复，更像页眉或重复标题。'
+  keep_split: false
+- 'no': 10667
+  overturn_probability: 0.05
+  alternative: 若不分章，它可能是索引部分的标题；但按规则文末索引应单独划分为一章
+  counter_evidence:
+  - 它后面还有'# 符号'、'# A'等索引分节标题，可能被视为索引内部结构；
+  - 不过规则明确要求文末索引整体划为一章，且'# 索引'是这一部分的总标题。
+  keep_split: true

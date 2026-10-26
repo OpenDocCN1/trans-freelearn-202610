@@ -1,0 +1,255 @@
+
+
+25. 根据表中的记录，你应该看到类似以下内容：
+
+| EmpFirstName | EmpLastName | ManagerNo | LocaleCode |
+| John | Smith | 0 | en-US |
+| Jane | Doe | 0 | en-US |
+| Richard | Roe | 0 | en-US |
+| Kevin | Jones | 1 | en-US |
+| Amy | Roe | 1 | en-US |
+| Marianne | Brown | 8 | en-US |
+| Debbie | Smith | 9 | en-US |
+| René | Malebranche | 0 | fr-CA |
+
+26. 现在我们有了一些不错的示例数据，可以准备查看本地化效果了。前往 Employee 模块。
+
+27. 使用 Language Selector 控件在语言之间切换。下拉列表现在应该随着区域设置的更改而变化，提示和值列表都从英语变为法语：
+
+![](img/65b6b07ef38faa4ed1c549e9eb9aa24b_298_0.png)
+
+## See also
+
+See the next recipe Localizing a drop-down list with a DNN list to localize a drop-down list that is built from a DNN list instead of an SQL query.
+
+## Localizing a drop-down list with a DNN list
+
+As we saw in Chapter 6, you can populate a drop-down list control from a DNN list. Although the current version of DNN does not directly support localization with lists, we can create our own localization of a drop-down list control by dynamically switching the DNN list before binding it to the control.
+
+In this recipe we will create a new DNN list in French then show how to use the current locale to pick the DNN list that populates the control.
+
+## Getting ready
+
+To follow along you must have completed the following recipes:
+
+- Populating a drop-down list from a DNN list
+- Creating your own module translations
+
+## How to do it...
+
+1. Log in as SuperUser (`syshost` in our examples).
+2. Look under the **Host** menu and select **Lists**.
+3. Make a new list by clicking on **Add List**.
+
+![](img/65b6b07ef38faa4ed1c549e9eb9aa24b_299_0.png)
+
+4. Type the details of our first entry:
+
+- **List Name**: `Échelle salariale`
+- **Parent List**: None Specified
+- **Parent Entry**: Blank
+- **Entry Text**: `0 ou plus`
+- **Entry Value**: `0`
+- **Enable Sort Order**: Checked
+
+5. Click on **Save**.
+
+> It is up to us to format the currency we're using in the list—DNN will not format it for us as real list localization is not supported.
+
+6. Click on **Add Entry** and create the second list entry:
+
+- **Entry Text**: `30.000 ou plus`
+- **Entry Value**: `30000`
+
+7. Click on **Save**.
+
+8. Click on **Add Entry** and create the third list entry:
+
+- **Entry Text**: `60.000 ou plus`
+- **Entry Value**: `60000`
+
+9. Click on **Add Entry** and create the fourth list entry:
+
+- **Entry Text:** `100.000 ou plus`
+- **Entry Value:** `100000`
+
+10. Click on **Save.**
+
+![](img/65b6b07ef38faa4ed1c549e9eb9aa24b_300_0.png)
+
+11. Now that we have a foreign language DNN list, we can use it inside our custom module. Launch the Development Tool and load the **Employee** project.
+
+12. Next, open the `ViewEmployee.ascx.vb` file.
+
+13. Scroll down until you find the `BindSalaryDropDown` procedure. If you don't see the procedure make sure you have completed the recipe *Populating a drop-down list from a DNN list* from *Chapter 6*.
+
+14. Change the code of the procedure as follows:
+
+```
+Private Sub BindSalaryDropDown()
+
+    Dim strListName As String
+    Dim strPrompt As String
+    strListName = Localization.GetString("SalaryListName",
+                        LocalResourceFile)
+    strPrompt = Localization.GetString("SalaryPrompt",
+                        LocalResourceFile)
+
+    Dim objList As New ListController()
+    Dim lstSalary As ListEntryInfoCollection =
+        objList.GetListEntryInfoCollection(strListName)
+
+    ddlSalaryRange.DataSource = lstSalary
+    ddlSalaryRange.DataTextField = "Text"
+    ddlSalaryRange.DataValueField = "Value"
+```
+
+```
+Try
+ddlSalaryRange.DataBind()
+
+' add an extra value to always show a prompt in the drop down
+ddlSalaryRange.Items.Insert(0, New ListItem(strPrompt, "-1"))
+Catch ex As Exception
+End Try
+
+End Sub
+```
+
+15. As we are now pulling our prompts from the resource files, we need to first add the English text by opening the ViewEmployee.ascx.resx file (under /App_LocalResources) and setting the text:
+
+- SalaryListName.Text: Salary Range
+- SalaryPrompt.Text: Pick the salary range you want to select
+
+![](img/65b6b07ef38faa4ed1c549e9eb9aa24b_301_0.png)
+
+16. Select Save All from the File menu.
+
+17. Build and deploy the module to your DNN site.
+
+18. The last thing we need to do before we can test the results is create the French translations for our new salary prompts. Following the steps in the recipe Localizing labels, titles, panels, and links make sure the following French translations appear in the language editor:
+
+![](img/65b6b07ef38faa4ed1c549e9eb9aa24b_301_1.png)
+
+19. Click on Save Resource File (at the very bottom).
+
+20. Go to the Employee module.
+
+21. Use the Language Selector control to switch between languages. The drop-down list should now change as the locale changes with both the prompt and the list of values changing from English to French:
+
+![](img/65b6b07ef38faa4ed1c549e9eb9aa24b_302_0.png)
+
+## See also
+
+See the recipe *Localizing a drop-down list with a stored procedure* to localize a drop-down list that is built from a stored procedure instead of a DNN list.
+
+## Localizing a stored procedure
+
+In this chapter, we have seen several ways to localize the different kinds of module content. Although you can localize much in the module code, you may need to consider localizing in the backend stored procedures.
+
+In this recipe we will see a simple example of passing the current locale to a stored procedure and using that information to change the results returned by the procedure.
+
+## Getting ready
+
+To follow along with this recipe you must have completed the following recipes:
+
+- *Creating stored procedures*
+- *Localizing a DataGrid control*
+
+In this example, we will demonstrate localization by applying a fixed exchange rate to the Salary values pulled from the database based on the locale. (Canadian dollars = `Salary * 1.02642`). This is not the most elegant way to perform currency conversion but it will suffice for this example.
+
+## How to do it...
+
+1. Launch the Development Tool and load the **Employee** project.
+2. Next, open the `01.00.00.SqlDataProvider` file.
+3. Scroll down until you find the `ACME_GetEmployeesByFilter` procedure.
+
+4. We'll start by changing the procedure to add the desired locale as a parameter:
+
+```
+```sql
+CREATE procedure {databaseOwner}{objectQualifier}ACME_GetEmployeesByFilter
+    @ModuleID int,
+    @MgrFilter int,
+    @SalaryFilter int,
+    @CurrentLocale nvarchar(30),
+    @PageIndex int,
+    @PageSize int
+AS
+```
+```
+
+5. Next, we will change the SQL query to apply a fixed exchange rate to the employee salaries when the locale is French Canadian:
+
+```
+```sql
+/** join the filtered Ids to the employee table to get our fields
+**/
+
+select {objectQualifier}ACME_Employee.ModuleId,
+       {objectQualifier}ACME_Employee.ItemId,
+       EmpFirstName,
+       EmpLastName,
+       ManagerNo,
+       HireDate,
+       CASE @CurrentLocale WHEN 'fr-CA' THEN Salary * 1.02642 ELSE
+                            Salary END As Salary,
+       {objectQualifier}ACME_Employee.CreatedByUser,
+       {objectQualifier}ACME_Employee.CreatedDate,
+       'CreatedByUserName' = {objectQualifier}Users.FirstName + '
+             ' + {objectQualifier}Users.LastName
+FROM {objectQualifier}ACME_Employee
+INNER JOIN {objectQualifier}Users on {objectQualifier}ACME_Employee.CreatedByUser =
+     objectQualifier}Users.UserId
+     INNER JOIN #PageIndex PageIndex
+          ON {objectQualifier}ACME_Employee.ItemId = PageIndex.ItemId
+     WHERE (PageIndex.IndexID > @PageLowerBound) OR
+           @PageLowerBound is null )
+       AND ( (PageIndex.IndexID < @PageUpperBound) OR
+             @PageUpperBound is null )
+     ORDER BY
+          PageIndex.IndexID
+
+GO
+```
+```
+
+## Working with Foreign Languages
+
+6. Next, open the `DataProvider.vb` file and replace the `GetEmployeesByFilter` abstract method with this new version that has the `CurrentLocale` as a parameter:
+
+```
+Public MustOverride Function GetEmployeesByFilter(ByVal ModuleId As Integer, ByVal MgrFilter As Integer, ByVal SalaryFilter As Integer, ByVal CurrentLocale As String, ByVal PageIndex As Integer, ByVal PageSize As Integer) As IDataReader
+```
+
+7. Repeat the process in the `SqlDataProvider.vb` file. Replace the entire `GetEmployeesByFilter` function with this new version:
+
+```
+Public Overrides Function GetEmployeesByFilter(ByVal ModuleId As Integer, ByVal MgrFilter As Integer, ByVal SalaryFilter As Integer, ByVal CurrentLocale As String, ByVal PageIndex As Integer, ByVal PageSize As Integer) As IDataReader
+    Return CType(SqlHelper.ExecuteReader(ConnectionString, GetFullyQualifiedName("GetEmployeesByFilter"), ModuleId, MgrFilter, SalaryFilter, CurrentLocale, PageIndex, PageSize), IDataReader)
+End Function
+```
+
+8. Next, open the `EmployeeController.vb` file and replace the first part of the `GetEmployeesByFilter` function with this new code:
+
+```
+Public Function GetEmployeesByFilter(ByVal ModuleId As Integer, ByVal MgrFilter As Integer, ByVal SalaryFilter As Integer, ByVal CurrentLocale As String, ByVal PageIndex As Integer, ByVal PageSize As Integer, ByRef TotalRecords As Integer) As ArrayList
+    Dim dr As IDataReader = DataProvider.Instance.GetEmployeesByFilter(ModuleId, MgrFilter, SalaryFilter, CurrentLocale, PageIndex, PageSize)
+    Dim retValue As ArrayList = Nothing
+    Try
+        While dr.Read
+            TotalRecords = Convert.ToInt32(dr("TotalRecords"))
+        End While
+        dr.NextResult()
+        retValue = CBO.FillCollection(dr, GetType(EmployeeInfo))
+    Finally
+        If Not dr Is Nothing Then
+            dr.Close()
+        End If
+    End Try
+    Return retValue
+End Function
+```
+
+9. Lastly, open the `ViewEmployee.ascx.vb` file.
+

@@ -1,0 +1,19 @@
+reviews:
+- 'no': 3269
+  overturn_probability: 0.75
+  alternative: 章节编号
+  counter_evidence:
+  - 该行内容仅为 '## 6'，为纯编号而非统领性标题，真正的章节名在下一行 3270 '数据输入技巧'；编号行单独成行不符合标题语义特征，标题长度为0且无概括内容
+  keep_split: false
+- 'no': 4467
+  overturn_probability: 0.15
+  alternative: 正文小标题
+  counter_evidence:
+  - 该行 '## 酷炫的 Web 控件' 独立成行，后 1~3 行 4469-4479 为本章主题枚举，语义统领后续配方，符合最高层级章节特征；虽为二级标题格式，但上下文为新主题块，与前文数据输入技巧章节明显断开
+  keep_split: true
+- 'no': 5524
+  overturn_probability: 0.7
+  alternative: 章节编号
+  counter_evidence:
+  - 该行仅为 '## 8' 纯数字编号，真正的章节标题在下一行 5525 '## Basic Skinning'；编号行无统领语义，且后接标题行形成编号+标题的组合模式，不应以编号行作为分章点
+  keep_split: false

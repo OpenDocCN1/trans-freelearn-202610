@@ -1,0 +1,39 @@
+chapter_starts:
+- 'no': 9069
+  confidence: 0.9
+  final_reason: 判断方与复核方均认可。标题 '## Advanced Modules and Security' 单独成行、无句号、语义统领后续多节内容，符合最高层级章特征。复核方虽提示与
+    9067 可能构成完整标题，但单独看仍具备章标题格式与上下文。
+  accepted_evidence:
+  - 标题单独成行、无句号、长度合适
+  - 后接章节内容列表及多个小节，语义统领性强
+  - 复核方 keep_split=true，overturn_probability 0.1
+  rejected_evidence:
+  - 与 9067 可能构成编号+名称的完整标题
+  need_human_review: false
+- 'no': 9715
+  confidence: 0.9
+  final_reason: '双方一致采纳。标题 ''## 高级皮肤设计'' 单独成行，后接皮肤相关多节内容及 ### 简介，位置在上一菜谱结束后，符合新章起点。'
+  accepted_evidence:
+  - 单独成行、语义统领后续皮肤相关内容
+  - 位于上一菜谱结束后，后接内容列表和简介
+  - 复核方 keep_split=true，overturn_probability 0.15
+  rejected_evidence:
+  - 与 10481 语义相近存在重复标题可能
+  need_human_review: false
+- 'no': 10667
+  confidence: 0.95
+  final_reason: 文末索引章。规则要求文末索引单独划分为一章，'# 索引' 为索引部分总标题，后续为索引分节，符合要求。
+  accepted_evidence:
+  - 文末位置，标题为 '# 索引'
+  - 后续为 '# 符号' '# A' 等索引结构
+  - 复核方 keep_split=true，overturn_probability 0.05
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 9067
+  reason: 复核方反证成立。'## 12' 仅为编号，无语义概括力，且紧跟 '## Advanced Modules and Security' 构成同一章的编号+名称，若单独分章会产生连续空章，不符合章标题语义特征。
+  need_human_review: false
+- 'no': 10481
+  reason: 复核方反证成立。'## 高级换肤' 插在 '使用圆角超级样式表' 菜谱步骤 14-15 之间，打断编号步骤，后续仍为同一菜谱步骤，不符合章标题上下文特征，且与
+    9715 '高级皮肤设计' 含义重复，更像页眉/排版噪声。
+  need_human_review: false
