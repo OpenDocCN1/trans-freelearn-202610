@@ -1,0 +1,3 @@
+# # About the Author
+
+**Aravind Shenoy** is an in-house author at Packt Publishing. An engineering graduate from the Manipal Institute of Technology, his core interests are technical writing, web designing, and software testing. He was born and raised in Mumbai, India, and resides there. He is a music buff and loves listening to Oasis, R.E.M, The Doors, Dire Straits, and Eminem. Rock ’n’ Roll and Rap rule his playlists. He is a simple person by nature and believes that we are all here to have a good time, not a long time. After all, the most important thing is to be happy.

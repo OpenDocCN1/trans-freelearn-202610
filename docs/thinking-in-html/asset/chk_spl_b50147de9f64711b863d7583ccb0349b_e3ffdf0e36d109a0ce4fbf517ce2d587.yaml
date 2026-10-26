@@ -1,0 +1,48 @@
+reviews:
+- 'no': 2
+  overturn_probability: 0.15
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 关于作者属于前言类内容，按规则正文之前统一划分为一章，语义上为前言块
+  - '标题单独成行且位于 # HTML 思考 下，为文档的二级小标题'
+  keep_split: true
+- 'no': 8
+  overturn_probability: 0.85
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题为 ## 标题，属于二级 Markdown 小标题，非全书最高层级大章编号，如第 X 章'
+  - 后续内容为对标题标签的说明及代码示例，属于同一主题下的子节，标题后 1~3 行为概述段落且紧跟子内容，不具备统领整书大章的语义
+  - '全书最高层级为 # HTML 思考，## 级标题应视为章节内的正文小标题而非新章'
+  keep_split: false
+- 'no': 47
+  overturn_probability: 0.9
+  alternative: 正文小标题
+  counter_evidence:
+  - '## 属性 为二级标题，格式上为正文小标题，长度短且无章序号'
+  - '上下文中前后均为 ## 级标题构成的连续小节序列，属于同一大章内的分点，标题后直接接属性说明段落，不符合最高层级大章的统领性'
+  - 存在误报倾向：把正文小标题误判为章节标题
+  keep_split: false
+- 'no': 64
+  overturn_probability: 0.9
+  alternative: 正文小标题
+  counter_evidence:
+  - '## 链接 为二级标题，无第 X 章 / Y. 等最高层级编号特征'
+  - '前后均被 ## 属性、## 表单 等同级小标题包围，形成连续的小节链，不应每次都划分新大章'
+  - 标题后接概述与代码示例，是典型的正文小标题模式
+  keep_split: false
+- 'no': 106
+  overturn_probability: 0.88
+  alternative: 正文小标题
+  counter_evidence:
+  - '## 表单 为二级标题，语义为本章内的一个主题分点'
+  - 全书未出现 第 X 章 等最高层级编号，## 级标题应视为子层级，不应划分新章
+  - '后续内容为表单说明及示例，仍在 # HTML 思考 大章范围内'
+  keep_split: false
+- 'no': 139
+  overturn_probability: 0.8
+  alternative: 正文小标题
+  counter_evidence:
+  - '## HTML5 – 未来已来 虽然主题提升，但仍为二级 Markdown 标题，无最高层级章序号'
+  - '其下直接包含 ### 更简单快捷的语法 等三级子节，说明其本身是章节内的二级小标题而非全书大章'
+  - 按规则应只划分全书最高层级大章，二级标题不应触发分章
+  keep_split: false

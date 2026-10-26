@@ -1,0 +1,520 @@
+- '# HTML 思考
+
+  '
+- '## 关于作者
+
+
+  **Aravind Shenoy** 是 Packt Publishing 的内部作者。毕业于 Manipal Institute of Technology
+  的工程专业，他的核心兴趣是技术写作、网页设计和软件测试。他出生并成长于印度孟买，现仍居住于此。他是音乐发烧友，喜欢听 Oasis、R.E.M、The Doors、Dire
+  Straits 和 Eminem。摇滚和说唱主导着他的播放列表。他天性简单，相信我们来到这里是为了好好享受，而不是长久停留。毕竟，最重要的是要快乐。
+
+
+  虽然我们已将 <style> 元素定义为 aravind.css，但我们未使用样式以避免信息过载。此外，<script> 元素也未包含以降低复杂度。我们将在本书的一些代码示例中看到一些样式，但我们需要坚持本书的目的，即帮助你更好地理解
+  HTML。
+
+  '
+- '## 标题
+
+
+  标题标签用于区分网页的标题与其他内容。存在层级关系，这意味着 <h1> 中的内容是最重要的，而 <h6> 中的内容是最不重要的。
+
+
+  让我们现在看一个代码示例以便更好地理解：
+
+
+  ```
+
+  <!DOCTYPE html>
+
+  <html>
+
+  <head>
+
+  <title> HTML Headings </title>
+
+  </head>
+
+  <body>
+
+  <h1>Welcome to Packt</h1>
+
+  <h2>Welcome to Packt</h2>
+
+  <h3>Welcome to Packt</h3>
+
+  <h4>Welcome to Packt</h4>
+
+  <h5>Welcome to Packt</h5>
+
+  <h6> Welcome to Packt </h6>
+
+  </body>
+
+  </html>
+
+  ```
+
+
+  代码执行后的输出如下：
+
+
+  ![](img/b5ca7252918ddb25344f928f46a6669d_14_0.png)
+
+
+  代码执行后的输出如下：
+
+
+  ![](img/b5ca7252918ddb25344f928f46a6669d_16_0.png)
+
+
+  从输出中，你可以看到 `<strong>` 用于表示重要内容，而 `<i>` 用于斜体字体。`<code>` 标签定义计算机代码文本，而 `<em>` 用于描述重要内容。`<b>`
+  标签用于粗体文本。`<sup>` 和 `<sub>` 标签用于定义上标和下标。上标和下标基本上是那些比正常行型小且略高于或低于它的数字或单词。包含注释是一个良好的实践，可确保代码易于阅读。在
+  HTML 中，注释位于尖括号之间并带有感叹号，如以下代码所示：
+
+
+  ```
+
+  <!-- Comments help aspiring newbies -->
+
+  ```
+
+
+  注释不会在浏览器中显示。
+
+  '
+- '## 属性
+
+
+  HTML 元素可以具有属性，提供有关元素的额外信息。它们以 `<name: value>` 对的形式出现，并且始终是开始标签的一部分。出于清晰的目的，属性的值必须用引号括起来（尽管并非总是必要）。
+
+
+  让我们看以下代码以便更好地理解：
+
+
+  ```
+
+  ```html
+
+  <!DOCTYPE html>
+
+  <html>
+
+  <head>
+
+  <title> The Packt Initiative </title>
+
+  <style>
+
+  #packtpub {
+
+  ```
+
+  ```
+
+  '
+- '## 链接
+
+
+  HTML 中的锚标签 (`<a>`) 用于定义超链接。**超链接** 可以是一个元素，它会带你到特定位置，无论是网站还是同一文档中的其他位置或其他文档中的位置。我们使用
+  `href` 属性与 `<a>` 标签一起指定链接目标。
+
+
+  让我们看以下代码以便更好地理解：
+
+
+  ```
+
+  ```html
+
+  <!DOCTYPE html>
+
+  <html>
+
+  <head>
+
+  <title> Links </title>
+
+  </head>
+
+  <body>
+
+  <h1 id="packt"> Links in HTML </h1>
+
+  <p> A normal link </p>
+
+  <a href="http://packtlib.packtpub.com">Packt Library</a>
+
+  <br><hr>
+
+  <p> Image acts like a hyperlink </p>
+
+  <a href="http://www.packtpub.com/">
+
+  <img src="Packt-image2.png" alt="Packt" />
+
+  </a>
+
+  <br><hr>
+
+  <p> An email link </p>
+
+  <a href="mailto:xyz@packt.com">Send Email</a>
+
+  <hr>
+
+  <a href="#packt"> Go to the Heading tag </a>
+
+  </body>
+
+  </html>
+
+  ```
+
+  ```
+
+
+  代码执行后的输出如下：
+
+
+  ![](img/b5ca7252918ddb25344f928f46a6669d_19_0.png)
+
+
+  代码执行后的输出如下：
+
+
+  ![](img/b5ca7252918ddb25344f928f46a6669d_23_0.png)
+
+
+  如果你观察代码和输出，与 Client-Side 标题相关的 <ol> 下列出的项目具有编号的项目符号，而与 Server-Side 标题相关的 <ul> 下列出的项目则为普通项目符号。每个项目都列在
+  <li> 和 </li> 标签之间。
+
+  '
+- '## 表单
+
+
+  表单用于收集用户输入，例如姓名、年龄、性别和电子邮件地址，通过文本、单选按钮和复选框等方式。输入随后会被发送到服务器端进行处理。最常用的表单属性是 name、action、target
+  和 enctype（读作 encryption）。
+
+
+  表单输入类型有多种，例如文本字段、密码、单选按钮、复选框和提交按钮。在 <form> 标签之间，你可以指定 action 属性，告诉表单其内容将被发送到何处（主要是用于处理的服务器端脚本）。我们使用
+  method 属性告知表单数据将如何发送；通常默认为 GET，但你也可以使用 POST 和其他方法。
+
+
+  GET 方法的一个例子是搜索引擎结果，你可以在网页地址栏中看到你在搜索框中输入的信息。POST 方法用于敏感数据，其中表单数据对用户不可见，从而确保高度安全性。
+
+
+  让我们看以下代码以便更好地理解：
+
+
+  ```
+
+  <!DOCTYPE html>
+
+  <html>
+
+  <body>
+
+  <h1> Motorbike Customer requirement </h1>
+
+  ```
+
+
+  在同一网页上，我们定义了另一个表单。让我们看一下代码示例中的以下行：
+
+
+  ```
+
+  <form action="MAILTO:abcxyz@demo.com" method="post" enctype="text/plain">
+
+  ```
+
+
+  我们定义了 action，反馈将通过电子邮件发送给电子邮件地址为 abcxyz@demo.com 的相关人员。我们使用了 POST 方法和纯文本作为加密类型。随后，我们将输入类型定义为文本，并分配了一个值，该值将显示在文本框中以帮助用户了解需要输入哪些信息。
+
+
+  之后，我们为反馈字段定义了一个文本区域，因为我们有多行输入。在此示例中，我们为文本区域分配了 5 行和 40 列。之后，我们创建了 **Send** 和 **Reset**
+  按钮。**Reset** 按钮将清除你在字段中输入的信息。假设我们输入 Edward 作为姓名，Edward@packt.com 作为电子邮件地址，并在评论字段中输入
+  Miscellaneous。
+
+
+  > 请记住，你需要拥有 Microsoft Outlook 或 Mozilla Thunderbird 等电子邮件客户端才能使用此功能。在此示例中，我们使用了
+  Mozilla Thunderbird 作为电子邮件客户端。
+
+
+  当你点击 **Send** 时，你可以看到以下输出：
+
+
+  ![](img/b5ca7252918ddb25344f928f46a6669d_26_0.png)
+
+  '
+- '## HTML5 – 未来已来
+
+
+  HTML5 仍处于开发阶段，预计标准版本将在 2014 年晚些时候发布。HTML5 将很快被接受为基准。它在多个方面与之前的 HTML 版本不同。HTML5 可与现代浏览器配合使用，同时提供向后兼容性。它具有许多新功能，这些功能最终将改变网站设计的思路。HTML5
+  中的文档类型声明非常简单。我们只需输入 `<!DOCTYPE html>`，浏览器即可识别我们将使用 HTML5。
+
+
+
+
+
+
+  ![](img/b5ca7252918ddb25344f928f46a6669d_27_0.png)
+
+
+  如果在代码中添加 `<!DOCTYPE html>`，你会认为它就变成HTML5代码了吗？我们的回答会是坚决的“不”。HTML5不仅仅是某种文档类型，它包含了许多新的元素、属性和输入类型等。它是一整套规则，使开发者能够以令人印象深刻的方式定义网页。
+
+
+  在本书中，即使在之前的示例中，我们也使用了 `<!DOCTYPE html>`，因为这是一个良好的实践，并且在未来的网页设计中将被采纳为标准。
+
+
+  ### 更简单快捷的语法
+
+
+  HTML5的主要好处是使用更简洁的代码来构建网页。**分区**是HTML5的重要组成部分。在HTML5中，分区元素用于快速构建语义化网页。语义化的一个重要方面是提高可访问性。
+
+
+  HTML5中用于分区的元素如下：
+
+
+  - `<header>`
+
+  - `<footer>`
+
+  - `<nav>`
+
+  - `<article>`
+
+  - `<aside>`
+
+
+  ### header 和 footer
+
+
+  在HTML5之前，没有特定的方式根据内容的定义来标记内容。早期，`<div>`标签与标题一起被广泛使用，以创建网页的头部。然而，现在我们有了`header`标签。`header`标签内部可以嵌套标题，但这并非必需。我们能够在互联网上搜索信息，要归功于Google
+  Search和Bing等搜索引擎。这些搜索引擎借助爬虫，可以根据包含内容的元素来访问网页内容。`header`元素非常重要，因为它比其他元素（如`footer`标签）提供了更高的可访问性。搜索引擎很容易在`header`标签中找到内容。
+
+
+  `footer`元素用于表示诸如作者姓名、联系信息和版权专利等内容，仅举几例。`footer`元素允许程序员大致传达网站的信息。然而，在一个文档中可以使用多个`footer`。一篇文章可以有其独立的页脚，此外，特定网页的源代码中还可以有另一个`footer`元素。它完善了文档中的信息，使其更有意义。
+
+
+  ```html
+
+  <h2> 干果 </h2>
+
+  干果非常有营养。
+
+  <br>
+
+  建议食用杏仁以保持身体健康。
+
+  <br>
+
+  干果有助于增强免疫系统。
+
+  </section>
+
+  </article>
+
+  </body>
+
+  </html>
+
+  ```
+
+
+  执行代码后的输出如下：
+
+
+  ![](img/b5ca7252918ddb25344f928f46a6669d_31_0.png)
+
+
+  在这段代码中，我们在`article`元素中包含了`section`元素。`article`元素可以是独立的内容，而`section`标签通常用于`article`标签之间，因为它是一般性内容。因此，`article`元素用于独立内容，如RSS订阅源和新闻文章，而`section`元素用于表示一般性质的数据。
+
+
+  ### aside
+
+
+  `aside`元素中的内容与它外部的内容略有相关。当内容与`article`元素中的内容相关时，可以在`article`元素中使用`aside`。尽管`aside`元素中的内容本质上是独立的，但它可以提供有关周围内容的附加信息：
+
+
+  ```html
+
+  <!DOCTYPE html>
+
+  <html>
+
+  <body>
+
+  ```
+
+
+  ```html
+
+  <article>
+
+  <h1> 水果知识 </h1>
+
+  <section>
+
+  <h2> 柑橘类水果 </h2>
+
+  柑橘类水果对健康有益。
+
+  <br>
+
+  它们含有维生素C，对感冒和咳嗽有好处。
+
+  </section>
+
+  <section>
+
+  <h2> 干果 </h2>
+
+  干果非常有营养。
+
+  <br>
+
+  建议食用杏仁以保持身体健康。
+
+  </section>
+
+  <br>
+
+  <aside>
+
+  <p> <em> 有机种植的水果目前很流行 </em> <p>
+
+  </aside>
+
+  </article>
+
+  </body>
+
+  </html>
+
+  ```
+
+
+  执行代码后的输出如下：
+
+
+  ![](img/b5ca7252918ddb25344f928f46a6669d_32_0.png)
+
+
+  如果你查看代码的输出，你会看到`<aside>`标签中有关有机水果的内容与关于“水果知识”的主内容略有相关，尽管它是独立的且并非主流。
+
+
+  ### email 和 url
+
+
+  `email`和`url`输入类型是最新添加的，分别专门用于电子邮件地址和网址。电子邮件地址必须在@符号和点(.)之间输入域名，例如`xyz@abc.com`。它接受当前电子邮件地址书写的标准格式。如果你没有以正确的格式书写电子邮件地址，它会提示你输入有效的电子邮件地址。
+
+
+  大多数URL的格式都是`http://www.xyzzzz.com`。URL必须按照标准格式输入，并包含`http`或`https`协议。如果你没有遵循标准格式，它会提示你输入有效的URL。
+
+
+  让我们看看以下代码来更好地理解：
+
+
+  ```html
+
+  <!DOCTYPE html>
+
+  <html>
+
+  <head>
+
+  <title>输入类型：Email 和 URL </title>
+
+  </head>
+
+  <body>
+
+  <form>
+
+  <p> 在下面的文本框中输入你的电子邮件地址，然后点击
+
+  <strong>Go</strong> </p>
+
+  <input type="email" placeholder="abcxyzpqr@email.com">
+
+  <input type="submit" value="Go">
+
+  <br>
+
+  <hr>
+
+  <p> 在下面的文本框中输入网站的网址（URL），
+
+  然后点击<strong>Go </strong> </p>
+
+  <input id="website" type="url">
+
+  <input type="submit" value="Go">
+
+  </form>
+
+  </body>
+
+  </html>
+
+  ```
+
+
+  如果你没有以标准格式输入URL，你会看到以下输出：
+
+
+  ![](img/b5ca7252918ddb25344f928f46a6669d_38_0.png)
+
+
+  同样，如果你没有输入电子邮件地址，它会提示你以标准格式输入。
+
+
+  ### 日期和月份
+
+
+  在以前的HTML版本中，我们必须使用JavaScript来开发日期选择器。然而，在HTML5中，我们只需几行代码就能创建一个日期选择器。除了日期之外，还有几个相关的选项，如时间、星期和月份，你可以根据自己的偏好进行选择。
+
+
+  让我们看看以下代码来更好地理解：
+
+
+  ```html
+
+  <!DOCTYPE html>
+
+  <html>
+
+  <head>
+
+  <title> 日期输入类型 </title>
+
+  </head>
+
+  <body>
+
+  <h1> 输入类型：日期 </h1>
+
+  <p> 从下面的日期选择器中选择一个合适的日期 </p>
+
+  <label for="packt"> 选择日期 </label>
+
+  <input id="packt" type="date" value="2014-07-03">
+
+  </body>
+
+  </html>
+
+  ```
+
+
+  执行代码后的输出如下：
+
+
+  ![](img/b5ca7252918ddb25344f928f46a6669d_39_0.png)
+
+
+  你可以使用这个日期选择器选择你喜欢的日期。正如你所看到的，无需使用复杂的JavaScript代码或jQuery工具来开发日期选择器。
+
+
+  '

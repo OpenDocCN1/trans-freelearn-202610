@@ -1,0 +1,65 @@
+chapter_starts:
+- 'no': 2
+  confidence: 0.95
+  final_reason: “关于作者”属于正文之前的前言类内容，按规则应统一划分为一章；判断方与复核方均未提出可采纳的反证。
+  accepted_evidence:
+  - “关于作者”属于前言、序言、致谢等正文之前内容，规则明确要求划分为一章
+  - 标题单独成行，且位于全书书名之后、正文内容之前
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 8
+  confidence: 0.8
+  final_reason: '`# HTML 思考` 是书名而不是内容章，`##` 级标题是正文可用的最高层级；该行单独成行、无句末标点，后接概述与代码示例，语义上统领“HTML
+    标题”主题。复核方仅以“二级 Markdown 标题”和“无章序号”否定，不足以推翻。'
+  accepted_evidence:
+  - '`## 标题` 单独成行，末尾无句号，长度小于30字'
+  - 后接“标题标签用于区分网页的标题与其他内容……”概述段落及完整代码示例
+  - 与“关于作者”前文分离，开启新的正文主题
+  rejected_evidence:
+  - 复核方认为 `##` 为二级 Markdown 小标题，但 `#` 仅是书名，不构成更高层级内容章
+  - 复核方以无“第X章”编号否定，但规则允许无序号标题按语义判断
+  need_human_review: false
+- 'no': 47
+  confidence: 0.8
+  final_reason: 该行与“标题”“链接”“表单”等 `##` 标题处于同一层级，属于无编号结构中的最高内容章；行文有概述段落和示例支撑，语义独立。复核方所称“连续同级标题链”恰恰是并列章节的常见形态。
+  accepted_evidence:
+  - '`## 属性` 单独成行、无句末标点'
+  - 后接“HTML 元素可以具有属性……”概述及代码示例
+  - 与上一节“标题”形成明确主题切换
+  rejected_evidence:
+  - 复核方认为它是正文小标题，但未提供更高一级内容章实据
+  - 复核方以无编号和同级连续为由质疑，不足以证明误分
+  need_human_review: false
+- 'no': 64
+  confidence: 0.8
+  final_reason: “链接”是新的独立 HTML 主题，后接锚标签/超链接说明、示例和输出图；前文内容已结束。结构与前后 `##` 标题一致，按无编号章节语义应划分为新章。
+  accepted_evidence:
+  - '`## 链接` 单独成行、无句末标点'
+  - 后续围绕 `<a>` 超链接展开说明并给出完整代码示例
+  - 与前面的“属性”和后面的“表单”同为并列内容块
+  rejected_evidence:
+  - 复核方仅以 Markdown 层级和无“第X章”编号否定，未提供更强的语义反证
+  need_human_review: false
+- 'no': 106
+  confidence: 0.8
+  final_reason: “表单”在语义上是一个完整独立的主题，行前为链接示例的结尾，行后为表单概念、GET/POST 说明及多个示例，具备章标题的统领性与上下文边界。
+  accepted_evidence:
+  - '`## 表单` 单独成行、无句末标点'
+  - 后接表单用途、输入类型、GET/POST 等概述段落
+  - 与上一节“链接”明显分界
+  rejected_evidence:
+  - '复核方认为全书无“第X章”编号，## 应视为子层；但无编号结构下 ## 即为正文最高层级'
+  need_human_review: false
+- 'no': 139
+  confidence: 0.88
+  final_reason: 该行不仅单独成行、无句末标点，且后续有多个 `###` 子节（更简单快捷的语法、header 和 footer、aside、email
+    和 url、日期和月份），正是“章下有节”的典型结构；主题也提升至 HTML5，应划分为新章。
+  accepted_evidence:
+  - '`## HTML5 – 未来已来` 单独成行，长度短、末尾无标点'
+  - 后接 HTML5 概述，并包含多个 `###` 子节
+  - 前后主题从表单切换到 HTML5 综述，语义层级明显提升
+  rejected_evidence:
+  - '复核方认为“其下含 ### 子节”说明它是二级小标题，但章下带节恰是大章特征，该反证不成立'
+  - 无章序号不构成排除理由
+  need_human_review: false
+rejected_lines: []
