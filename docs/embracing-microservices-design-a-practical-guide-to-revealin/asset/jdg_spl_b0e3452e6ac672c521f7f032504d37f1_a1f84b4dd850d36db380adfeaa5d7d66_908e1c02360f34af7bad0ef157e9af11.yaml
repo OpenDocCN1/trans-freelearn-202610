@@ -1,0 +1,51 @@
+chapter_starts:
+- 'no': 55
+  confidence: 0.92
+  final_reason: '判断方与复核方一致。以 # 开头的最高层级标题，编号为 2，标题为“未能理解领域驱动设计的作用”，单独成行，后续为 ### 子节，符合章标题格式、语义和上下文特征。'
+  accepted_evidence:
+  - '以 # 开头的最高层级标题，编号为 2，单独成行，后续为 ### 子节，符合章标题特征'
+  - '以 # 开头的最高层级标题，编号为 2，标题为“未能理解领域驱动设计的作用”，符合章标题格式特征且单独成行，后续为子节内容'
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 148
+  confidence: 0.93
+  final_reason: '双方一致。以 # 开头的最高层级标题，编号为 3，标题为“微服务架构陷阱”，单独成行，后续为 ### 子节，符合章标题特征。'
+  accepted_evidence:
+  - '以 # 开头的最高层级标题，编号为 3，单独成行，后续为 ### 子节，符合章标题特征'
+  - '以 # 开头的最高层级标题，编号为 3，标题为“微服务架构陷阱”，单独成行，后续为 ### 子节'
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 182
+  confidence: 0.92
+  final_reason: '双方一致。以 # 开头的最高层级标题，编号为 4，标题为“保持重平台化棕地应用的简易性”，单独成行，后续为子节，符合章标题特征。'
+  accepted_evidence:
+  - '以 # 开头的最高层级标题，编号为 4，单独成行，后续为 ### 子节，符合章标题特征'
+  - '以 # 开头的最高层级标题，编号为 4，标题为“保持重平台化棕地应用的简易性”，单独成行，后续为子节'
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 368
+  confidence: 0.88
+  final_reason: 双方一致。## 第 1 部分：微服务、设计和架构陷阱概述 为部分标题，书中存在部分-章节模式，部分标题应划分新章。
+  accepted_evidence:
+  - '## 第 1 部分 为部分标题，书中存在部分-章节模式，部分标题应划分新章'
+  - '## 第 1 部分：微服务、设计和架构陷阱概述，书中存在部分-章节模式，部分标题应划分新章'
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 190
+  confidence: 0.87
+  final_reason: 双方一致。## 第三部分：测试陷阱与评估微服务架构 为部分标题，在部分-章节模式下应划分新章。
+  accepted_evidence:
+  - '## 第三部分 为部分标题，书中存在部分-章节模式，部分标题应划分新章'
+  - '## 第三部分：测试陷阱与评估微服务架构，部分标题，书中为部分-章节模式，应划分新章'
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 685
+  reason: 复核方反证成立。# 2 Failing to Understand the Role of DDD 与 no 55 中文第 2 章重复，疑似双语对照或提取重复，标题后紧跟正文段落而非子节列表，不构成新的最高层级章节起始。
+  need_human_review: false
+- 'no': 2114
+  reason: '复核方反证成立。标题被拆分为多行，no 2114 仅为 ## 6，真实标题被拆分至 2115-2117，单独一行 ## 6 无完整语义，符合排版断行噪声，不应分章。'
+  need_human_review: false
+- 'no': 2546
+  reason: '复核方反证成立。标题仅为 ## 7，下一行 no 2548 为 ## 横切关注点，真实章节标题不完整，单独 ## 7 长度过短无语义概括，符合排版断行/编号残留噪声，不应分章。'
+  need_human_review: false

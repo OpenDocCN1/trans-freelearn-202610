@@ -1,0 +1,54 @@
+# 拥抱微服务设计：揭示反模式与架构陷阱以避免微服务谬误的实用指南
+
+
+
+
+
+![](img/e6276d4d880001c04e81cb4db4898f1c_0_0.png)
+
+
+I would like to thank my family for supporting and encouraging me in every goal of my life.
+
+- Ovais Mehboob Ahmed Khan
+
+I dedicate this book to my parents, wife, and children for their unwavering support and encouragement.
+
+- Nabil Siddiqui
+
+I would like to dedicate this book to my father, John T. Oleson. Also, I would like to thank Ovais and Nabil for inviting me to be a part of this book, and my family for their loving support.
+
+- Timothy Oleson
+
+## Foreword
+
+In the last 5 years, the microservice architecture design approach has established itself in the software engineering industry as the primary way to build modern, scalable, resilient services. This has been driven by the wave of cloud adoption and a major shift toward “cloud-native” service development, often built with microservice architectures (both stateless and stateful) that run on the cloud and the edge and embracing the diversity of programming languages and frameworks.
+
+It’s not that other architectures’ design approaches, such as client/server, are bad; they just address a different need focusing on medium- to large-scale organizations for their scale and resilience. In the far more competitive services world that has emerged, where delivering new features on a regular basis is expected, and a continuous integration and delivery approach is required, the microservices architecture has become the de facto standard for building them. However, a microservice architecture alone was not enough to drive this adoption without suitable distributed systems hosting platforms to run these services on that provided the horizontal scaling, automated rollouts, load balancing, and self-healing, such as Kubernetes, Docker Swarm, and Azure Service Fabric. These infrastructure platforms and the newer serverless container platforms have been instrumental in the rise of the microservice architecture approach.
+
+This book takes you along the journey of understanding, using, and applying microservice design principles and patterns, consolidated into a comprehensive set of guidance and supported by the authors’ real-world experiences. Chapters such as *Chapter 10, Evaluating a Microservice Architecture*, enable you to see the bigger picture of your goals, with the other chapters diving into the best approach and pitfalls to watch out for. Although microservices may seem daunting at first, with the need for service discovery, observability, security, and separated state deployed across machines in a distributed manner, there are tools, frameworks, and runtimes that have emerged to greatly simplify the burden on developers. These include many of the Cloud Native Computing Foundation (cncf.io) technologies, and the Distributed Application Runtime (dapr.io), covered in *Chapter 3, Microservices Architecture Pitfalls*, which greatly ease the burden for developers, by codifying best practices into APIs for use from any language.
+
+I am confident that you will find this book invaluable in your microservices design journey and use it frequently to design applications for the modern services era of computing.
+
+Mark Fussell  
+Microsoft Partner Program Manager  
+Founder of the **Distributed Application Runtime (Dapr)** and Azure Service Fabric
+
+## Contributors
+
+### About the authors
+
+**Ovais Mehboob Ahmed Khan** is a seasoned programmer and solution architect with nearly 20 years of experience in software development, consultancy, and solution architecture. He has worked with various clients across the world and is currently working as a senior customer engineer at Microsoft. He specializes mainly in application development using .NET and OSS technologies, Microsoft Azure, and DevOps. He is a prolific writer who has written several books and articles on various technologies. He really enjoys talking about technology and has given a number of technical sessions around the world.
+
+**Nabil Siddiqui** is an open source contributor and technology speaker who is currently working as a cloud solution architect at Microsoft, focusing on application innovation. He is well versed as a software engineer, consultant, trainer, and architect. He has around 20 years of experience, ranging from desktop applications to highly distributed applications on different platforms using various programming languages. During his career, he’s accomplished various technical challenges and worked on a broad range of projects that have given him rich experience in designing innovative solutions to solve difficult problems.
+
+**Tim Oleson**, a customer engineer at Microsoft, focuses on domain-driven design, Cosmos DB, Microsoft Azure PaaS, and Azure Kubernetes Service. He is a seasoned software engineer, consultant, trainer, and architect. He has 20+ years of experience, ranging from web applications to highly distributed service-oriented applications.
+
+### About the reviewers
+
+**Ovais Khan** is a seasoned software engineer and technical leader who has architected, built, and operated a number of microservices. Ovais has extensive experience of building and operating large-scale distributed systems, cloud-scale database systems, and multi-cloud systems. He is currently working as a software engineer at Snap Inc., where he has worked on NoSQL storage solutions and live data migrations and transitioned a number of features from a monolith to microservices. Prior to that, Ovais worked at Microsoft, where he was part of the Azure Storage, Office 365, and SharePoint teams.
+
+**David McGhee** is a technical program manager at Microsoft in the Commercial Software Engineering team focusing on intelligence within government in Australia. He has a sustained performance over 28 years in many distributed applications, from broadcast television to real-time financial services. David has led many teams and embraced technology firsts, including Azure in its infancy. This background has inevitably led to many failures and learnings, even successes, in cloud solution architecture. He enjoys the charm of conversation this discourse creates and opportunities for teams to get better.
+
+
+
+

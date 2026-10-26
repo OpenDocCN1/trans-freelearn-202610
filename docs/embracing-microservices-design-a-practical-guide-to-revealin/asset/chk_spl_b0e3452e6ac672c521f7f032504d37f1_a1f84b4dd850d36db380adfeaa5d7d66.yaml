@@ -1,0 +1,54 @@
+reviews:
+- 'no': 55
+  overturn_probability: 0.05
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '以 # 开头的最高层级标题，编号为 2，单独成行，后续为 ### 子节，符合章标题特征'
+  keep_split: true
+- 'no': 148
+  overturn_probability: 0.04
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '以 # 开头的最高层级标题，编号为 3，单独成行，后续为 ### 子节，符合章标题特征'
+  keep_split: true
+- 'no': 182
+  overturn_probability: 0.06
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '以 # 开头的最高层级标题，编号为 4，单独成行，后续为 ### 子节，符合章标题特征'
+  keep_split: true
+- 'no': 368
+  overturn_probability: 0.12
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '## 第 1 部分 为部分标题，书中存在部分-章节模式，部分标题应划分新章'
+  keep_split: true
+- 'no': 685
+  overturn_probability: 0.78
+  alternative: 正文重复/译文对照的章节标题残留
+  counter_evidence:
+  - '该行 # 2 Failing to Understand the Role of DDD 与前文 no 55 的中文第 2 章内容重复，疑似双语对照或提取重复；标题后紧跟正文段落而非子节列表，且在中文章节体系已完成第
+    2 章后再次出现，语义上不构成新的最高层级章节起始'
+  - 上下文为同一主题的英文版延续，缺乏新的章节概述段落和子节结构，符合排版噪声/重复标题特征
+  keep_split: false
+- 'no': 190
+  overturn_probability: 0.1
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '## 第三部分 为部分标题，书中存在部分-章节模式，部分标题应划分新章'
+  keep_split: true
+- 'no': 2114
+  overturn_probability: 0.82
+  alternative: 排版断行/标题拆分噪声
+  counter_evidence:
+  - '标题被拆分为多行：no 2114 为 ## 6，no 2115 为 ### 通信，no 2116 为 ### 陷阱和，no 2117 为 ### 预防，真实标题应为“通信
+    陷阱和 预防”被错误拆分；单独一行 ## 6 不符合格式特征，标题末尾无完整语义且长度异常'
+  - 上下文显示后续内容直接为章节正文介绍，缺少独立成行的完整章标题，符合排版断行误判
+  keep_split: false
+- 'no': 2546
+  overturn_probability: 0.8
+  alternative: 排版断行/标题拆分噪声
+  counter_evidence:
+  - '标题仅为 ## 7，下一行 no 2548 为 ## 横切关注点，真实章节标题被拆分，单独 ## 7 长度过短且无语义概括，符合排版噪声'
+  - 上下文为章节内容起始但标题不完整，疑似 Markdown 提取错误导致的编号残留
+  keep_split: false

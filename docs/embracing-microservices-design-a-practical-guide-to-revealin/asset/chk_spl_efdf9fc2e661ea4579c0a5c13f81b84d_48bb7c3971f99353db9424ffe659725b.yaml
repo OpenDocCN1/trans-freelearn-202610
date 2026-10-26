@@ -1,0 +1,23 @@
+reviews:
+- 'no': 3130
+  overturn_probability: 0.25
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 行3129为“## 9”已承担章节编号作用，3130“跳过测试”在原书排版中更像是该编号下的正文小标题而非独立最高层级章名
+  - 后续内容直接进入解释性段落，未出现典型的章级概述段落与子节编号结构
+  keep_split: true
+- 'no': 3407
+  overturn_probability: 0.78
+  alternative: 正文小标题
+  counter_evidence:
+  - 该行本身带有 Markdown 标题标记“##”，属于排版噪声而非真正的章标题文本
+  - 章节编号已在前两行出现“## 10”，紧接着又出现“## 评估微服务架构”，符合子节/小标题的层级写法，不符合“单独成行、无标记”的章标题格式特征
+  - 后续内容仍为第10章的引言性段落，未出现全书最高层级的新编号或语义断层
+  keep_split: false
+- 'no': 3776
+  overturn_probability: 0.15
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 行本身带有“##”标记，属于排版标题而非纯文本章名
+  - 索引部分在本书中以“## 索引”作为目录式小标题出现，后续为符号/字母列表，符合文末索引作为独立章节的规则
+  keep_split: true

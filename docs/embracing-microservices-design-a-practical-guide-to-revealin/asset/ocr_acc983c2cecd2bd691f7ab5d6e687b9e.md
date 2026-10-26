@@ -1,0 +1,7 @@
+The following diagram demonstrates the interaction between the cart microservice and the inventory microservice when using the materialized view pattern:
+
+![](bbox=[0.132, 0.151, 0.868, 0.506])
+
+Figure 3.7 – Materialized view pattern
+
+In the preceding diagram, the cart microservice keeps a read model of the inventory microservice, where it uses the pub/sub model to receive updates from the inventory microservice. Once the items have been added to the shopping cart, the cart microservice notifies the inventory microservice to reduce its count, which informs all its subscribers. You can see that other microservices are still accessed via the same communication pattern, which is due to the dynamic nature of these microservices (sub-domains). For example, pricing and promotions are more dynamic, and changes to pricing or promotions may have business implications. In such cases, it's a good idea to prefer fresh data over materialized views. You should implement eventual consistency to sync the read model, and also consider implementing a compensating transaction pattern to address any data consistency failures. Let's have a look at another use case, where materialized views are more useful:
