@@ -1,0 +1,59 @@
+chapter_starts:
+- 'no': 12029
+  confidence: 0.95
+  final_reason: '判断方与复核方均认可。编号为“提示 #7”，单独成行，后续为概述段落，语义具有统领性，符合最高层级技巧章特征。'
+  accepted_evidence:
+  - '编号特征：提示 #7 单独成行且为最高层级技巧编号'
+  - 格式特征：## 标题单独成行，长度<30字，无句号
+  - 语义特征：后1~3行为概述段落，统领后续内容
+  rejected_evidence:
+  - 复核方提出为正文小标题的替代意见，但 overturn_probability 0.15 且无有力反驳
+  need_human_review: false
+- 'no': 12207
+  confidence: 0.95
+  final_reason: 双方一致认可。明确编号“技巧 9”，单独成行，后接概述段落，符合最高层级章标题特征。
+  accepted_evidence:
+  - 编号特征：技巧 9 为最高层级技巧编号
+  - 格式特征：单独成行，## 标记
+  - 上下文特征：后接概述段落
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 12228
+  confidence: 0.95
+  final_reason: 双方一致认可。明确编号“技巧 10”，单独成行，后接概述段落，符合最高层级章标题特征。
+  accepted_evidence:
+  - 编号特征：技巧 10 为最高层级技巧编号
+  - 格式特征：单独成行，## 标记
+  - 语义特征：统领后续框架/IFrame 内容
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 12262
+  confidence: 0.7
+  final_reason: 复核方 overturn_probability 0.35，未达到推翻阈值。标题开启附录新主题“创建新的 MCMS Web 入口点”，语义独立，保留分章。
+  accepted_evidence:
+  - 语义特征：主题从技巧序列切换至附录配置流程
+  - 上下文特征：后接步骤列表，构成独立段落块
+  rejected_evidence:
+  - 复核方指出为附录内部小节且无编号特征
+  need_human_review: false
+- 'no': 12421
+  confidence: 0.95
+  final_reason: 双方一致认可。从行号12421起出现索引条目“work area, creating, 7”等，符合文末索引特征，按规则统一划分为一章。
+  accepted_evidence:
+  - 上下文特征：后续为连续索引条目
+  - 规则特征：文末索引统一划分为一章
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 11958
+  reason: '复核方反方证据成立。标题“多个Python框架”使用 ## 标记，位于“生成报告”大块内容之后，属于正文内部小节切换，后续紧跟列表项而非章级概述，应为正文小标题，不分章。'
+  need_human_review: false
+- 'no': 12070
+  reason: '复核方反方证据成立。标题“SDAPIResourceExport 项目”出现在“提示 #7”大节内部，为该提示的实现子主题，后1~3行为操作说明而非独立章概述，属正文小标题，不分章。'
+  need_human_review: false
+- 'no': 12299
+  reason: 复核方反方证据成立。标题位于附录“创建新的 MCMS Web 入口点”之后，为同一附录下的子主题，后文直接进入控件说明列表，无章级概述，属正文小标题，不分章。
+  need_human_review: false
+- 'no': 12396
+  reason: 复核方反方证据成立。标题“Checking the Server Configuration”出现在附录末尾配置步骤序列中，前后为表格和操作清单，无编号且为正文内部小节，不应作为独立章节划分。
+  need_human_review: false

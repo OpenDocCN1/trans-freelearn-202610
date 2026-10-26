@@ -1,0 +1,246 @@
+
+
+The Pages in Production Web Part, Pages Waiting for Approval Web Part, and Page Listing Web Part are included in the CmsWebParts.CAB web part deployment file, which can be found in the following directory: C:\Program Files\MCMS Connector for SharePoint Technologies\WSS\Bin
+
+Previously we mentioned the two command-line utilities:
+
+- SearchPropertiesSetup.exe: This utility is used to add the advanced HTML META tags to the SPS Search Service.
+- SetupSearch.exe: This is used to automatically create SharePoint content sources and search groups for all top-level channels within an MCMS site.
+
+A third command-line utility, excludeCMS.exe, will add SharePoint managed path exclusion rules for all MCMS URL paths in a virtual server. It is necessary for all MCMS paths to be excluded from SharePoint's ISAPI filters when SharePoint and MCMS are configured on the same virtual server within Internet Information Services (IIS) or MCMS will not operate correctly.
+
+All command-line utilities included in the MCMS Connector can be found in the following directory: C:\Program Files\MCMS Connector for SharePoint Technologies\WSS\Bin.
+
+## MCMS Connector Sample Data, Project, and Documentation
+
+If you choose to install the sample data when you install the Connector, the installation procedure will automatically import all data from an SDO file into your MCMS site.
+
+In addition, the CmsSharePointConnector sample project will be installed, which contains the MCMS templates and other controls necessary for the templates and postings in the sample data imported from the SDO.
+
+If you need to import the sample MCMS data later, you can find the SDO file in the same directory as the sample project: C:\Program Files\Microsoft Content Management Server\Sample Data\CmsSharePointConnector.
+
+Finally, a compiled help file containing technical details and documentation on the MCMS Connector will be installed in the following directory: C:\Program Files\MCMS Connector for SharePoint Technologies\Docs.
+
+## Summary
+
+This short appendix has covered the installation and use of Connector for SharePoint Technologies. We've looked at the tools and settings relevant to websites that wish to combine content from SharePoint and MCMS.
+
+Now the guest account has been created, let's assign it to an appropriate MCMS subscriber rights group.
+
+- 1. Open Site Manager and log in using an MCMS administrator account.
+- 2. Click the User Roles icon on the left panel.
+- 3. In the User Roles panel, click Subscribers.
+- 4. A subscriber rights group named Guests was imported as part of the import process earlier. Right-click on the Guests rights group and select Properties.
+- 5. Click on the Group Members tab and choose Modify....
+- 6. Add the new MCMSGuest account to the Guests rights group.
+- 7. Close all open dialogs, and close Site Manager.
+
+## Checking the Server Configuration
+
+Ensure that the SCA (Server Configuration Application) is configured as follows:
+
+| General |  |
+|---|---|
+| URL Format | Hierarchical |
+| Map Channel Names to Host Header Names | Yes |
+| Security |  |
+| Allow Guests on Site | Yes |
+| Guest Login Account | ComputerName\MCMSGuest |
+
+## Setting www.tropicalgreen.net to Execute Locally
+
+The URL of Tropical Green's website is www.tropicalgreen.net. We need this address to work when running the MCMS web application from the local computer. To do so, we need to add the address to the computer's hosts file.
+
+- 1. Use Notepad to open the hosts file in C:\Windows\system32\drivers\etc\.
+- 2. In the hosts file, enter www.tropicalgreen.net below localhost. Give it an IP address of 127.0.0.1. Doing so automatically loops www.tropicalgreen.net back to your computer.
+- 3. Save and close the hosts file.
+
+```
+127.0.0.1    localhost
+127.0.0.1    www.tropicalgreen.net
+```
+
+work area, creating, 7
+CMS virtual directory, 508
+CmsApplicationContext, 11
+CmsHttpContext
+CmsHttpContext.CommitAll() method, PAPI, 64, 68
+CmsHttpContext.PropagateParameter(), 13
+CmsSharePointConnector sample project, MCMS connector, 505
+columns, adding to DataGrid, 19, 22
+connected postings, 50
+connected templates, 73
+content source, 122
+content validation, ASP.NET validation controls, 285
+Copy Posting dialog
+creating, 54
+testing, 57
+crawlers
+navigational elements, hiding, 110
+search engines, 108
+site-traversing mechanism, 110
+user agent interrogation, 109
+Create Channel dialog, CMS Explorer
+building, 40
+testing, 45
+validating names, 44
+Create Connected Posting dialog, 50
+Create Resource dialog, 87
+Create Template Gallery dialog, 61
+custom property definitions, 70
+custom validation control, HtmlPlaceholderControl
+actions, 298
+BaseValidator class, methods to be overriden, 292-297
+checking for content, 289
+empty placeholder controls, check, 294
+RequiredHtmlPHValidator, 292
+RequiredHtmlPHValidator, with server-side validation, 305
+tags, matching, 291
+validator, adding to template file, 297
+validator, building, 292
+value, retrieving, 287
+with validation, 303
+custom validation control, SingleImagePlaceholderControl
+checking for content, 310
+empty placeholder controls, check, 310
+RequiredImagePHValidator, 310
+value, retrieving, 309
+customs Site Stager, 325
+D
+DataGrid for CMS Explorer. See CMS Explorer
+DataGrid placeholder control
+about, 269
+authoring view, 270
+content, retrieving, 273
+creating, 270
+DataGrid, authoring, 271-273
+DataGrid, loading, 271
+functions, 269
+postback, 282
+presentation mode, 279
+publishing view, 270
+row, adding, 277
+row, deleting, 278
+row, editing, 278
+row, updating, 278, 279
+using, 281
+XML content, converting to a DataSet, 275
+XML content, presentation mode, 279
+XML content, retrieving, 273-275
+XML content, saving, 276, 277
+date-time picker control
+about, 226
+authoring mode, 228
+content, retrieving, 230
+content, saving, 230
+creating, 227
+dialog, creating, 232-235
+presenting, 231
+querystring parameters, 229
+validating, 231
+dead links, 454
+Delete dialog, 94
+deleted resources, handling, 454, See resources
+description meta tag, 112
+destination user, Site Stager, 319
+DotNetSiteStager.
+about, 330
+attachments, staging, 336
+channels, staging, 331
+file types, 328
+functions, 325
+hidden postings, 331
+HTTP requests, staged URLs, 333, 334
+improvements, 345
+
+Pages in Production Web part, 166
+Pages Waiting for Approval Web part, 167
+See also SharePoint Web Parts
+MCMS content maintenance.
+about, 347
+ASP.NET Web service, creating, 369
+ASP.NET Web services, 349
+ASP.NET Web services application, 349
+business layer creation, custom properties, 351
+business layer creation, maintaining placeholder collections, 359
+business layer creation, maintaining placeholder values, 355
+business layer creation, maintaining postings, 362
+custom properties, 351
+displaying with SharePoint, 155
+InfoPath environment, 374
+MCMS authoring web service, 349
+using InfoPath, 347
+See also ASP.NET web services
+InfoPath
+MCMS Page Listing Web part, 158
+MCMS Pages in Production Web Part, 166
+MCMS Pages Waiting for Approval Web part, 167
+MCMS placeholder controls.
+See placeholder controls
+MCMS Publishing API. See PAPI
+MCMS publishing mode
+about, 8
+changing, 9
+determining, 8
+specifying, 11
+toggling with CmsApplicationContext, 11
+toggling with CmsHttpContext, 10
+MCMS search. See also MCMS site, indexing
+MCMS connector, 130-134
+search and results page, advanced, 137, 139, 140, 141
+search implementation, custom, 135
+search input control, 135-137
+search page, adding, 129
+MCMS site. See also Tropical Green website, See Tropical Green website
+indexing, 115
+search options, 113
+MCMS Site Stager. See Site Stager
+MCMS site, indexing. See also MCMS search
+channel names, disabling, 115
+guest access, 117
+output caching, 118
+preparing, 115
+search account, assigning, 116, 117
+SearchMetaTagGenerator control, 119
+MCMS Web Entry Point, 496
+meta tags
+description meta tag, 112
+keywords, 112
+literal controls, 104
+location, 99
+meta tag content, retrieving, 104-106
+outputting, 103
+Render() method, 105
+RobotMetaTag control, 101
+ROBOTS meta tag, 100
+role in searches, 99
+search engine optimization, 112
+search engine spider, 99, 100
+web user control, 105
+Move Posting dialog, 57
+Move Template dialog, 82
+MSQuery XML string, SPS Query Service, 144
+multiple attachments placeholder control
+attachment list, saving, 251
+attachments, deleting, 243
+attachments, displaying, 255
+attachments, extracting information, 253
+attachments, specifying, 244
+attachments, storing information, 252
+authoring view, 239
+coding, 239
+creating, 238
+Insert Attachments dialog, 244-247
+passing attachment information, 248
+properties, 238
+table of attachments, 240
+using, 256
+N
+.NET Reflection, 31
+O
+output caching, 108, 118
+P
+Page Listing Web part, MCMS, 158
+Pages in Production Web part, MCMS, 166
+Pages Waiting for Approval Web part, MCMS, 167
+

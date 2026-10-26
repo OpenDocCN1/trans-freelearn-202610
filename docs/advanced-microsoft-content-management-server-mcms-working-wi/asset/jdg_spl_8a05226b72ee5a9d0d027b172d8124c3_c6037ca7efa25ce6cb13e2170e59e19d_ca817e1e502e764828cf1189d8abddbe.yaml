@@ -1,0 +1,45 @@
+chapter_starts:
+- 'no': 7745
+  confidence: 0.92
+  final_reason: '编号特征 # 10 暂存静态页面，符合最高层级大章命名，单独成行且无句号；标题后接概述段落，前为上一章总结，上下文符合章标题特征。复核方
+    overturn_probability 0.1，维持分章。'
+  accepted_evidence:
+  - '单 # 标题单独成行，语义概括性强，可作为章节起始'
+  - '编号特征 # 10 暂存静态页面，符合最高层级大章命名，单独成行且无句号'
+  - 标题后接概述段落，且前面是上一章总结，符合章标题的上下文特征
+  rejected_evidence:
+  - 后续出现'## 暂存静态页面'等重复标题，可能被误认为页眉残留，但该行是单#带编号，格式更正式
+  need_human_review: false
+rejected_lines:
+- 'no': 6446
+  reason: 复核方指出该标题在文档中多次重复出现且位于代码块之间，更像页眉/排版噪声或重复出现的章名残留；标题后无概述段落直接进入代码块，不符合章标题上下文特征。overturn_probability
+    0.85，采纳复核。
+  need_human_review: false
+- 'no': 7043
+  reason: 复核方指出双#级别属于章内小节，非最高层级大章；标题重复出现疑为页眉或重复排版，且紧跟内容为 DataGrid 实现的延续。overturn_probability
+    0.9，不分章。
+  need_human_review: false
+- 'no': 7890
+  reason: 该行实为 Markdown 代码围栏 ```csharp，非文本标题。复核方 overturn_probability 1.0，真正的标题应在上一行
+    7889。
+  need_human_review: false
+- 'no': 8469
+  reason: '双#级别问句形式小标题，在同一章节中与多个同级 ## 标题构成节序列，非章。复核方 overturn_probability 0.95，不分章。'
+  need_human_review: false
+- 'no': 8477
+  reason: 与 8469 同属创建 Web 服务项目下的操作步骤小节，后接编号步骤列表，为具体实现指南，非新章。overturn_probability 0.95，不分章。
+  need_human_review: false
+- 'no': 8496
+  reason: 是创建 MCMS Web 服务项目之后的连续小节，前后均为同级双#标题，内容围绕业务层类实现，属于章节内部细节。overturn_probability
+    0.95，不分章。
+  need_human_review: false
+- 'no': 8636
+  reason: 继续 Web 服务开发步骤，属于同一章节后续小节，双#级别无章编号，不符合大章特征。overturn_probability 0.95，不分章。
+  need_human_review: false
+- 'no': 8693
+  reason: '在 Web 服务开发章节中与前后 ## 标题并列，语义为具体功能实现‘维护占位符值’，并非全章总领。overturn_probability
+    0.95，不分章。'
+  need_human_review: false
+- 'no': 8892
+  reason: 双#级别英文标题，与前后中文标题不一致，疑为节标题；后接代码和具体实现，无新章概述特征。overturn_probability 0.9，不分章。
+  need_human_review: false

@@ -1,0 +1,71 @@
+reviews:
+- 'no': 6446
+  overturn_probability: 0.85
+  alternative: 页眉/排版噪声或重复出现的章名残留
+  counter_evidence:
+  - 该标题在文档中多次重复出现（如6014、6407、7043行），且位于代码块之间，更像页眉或转换噪声
+  - 标题后无概述段落，直接进入代码块，不符合章标题的上下文特征
+  keep_split: false
+- 'no': 7043
+  overturn_probability: 0.9
+  alternative: 正文小标题/节标题
+  counter_evidence:
+  - 双#级别属于章内小节，不是最高层级大章（已有单#编号章如'# 10 暂存静态页面'）
+  - 该标题重复出现，疑为页眉或重复排版；且紧跟内容继续讨论DataGrid，是具体实现的延续
+  keep_split: false
+- 'no': 7745
+  overturn_probability: 0.1
+  alternative: 章标题（后续存在重复标题干扰，但该行格式语义均支持分章）
+  counter_evidence:
+  - 后续出现'## 暂存静态页面'等重复标题，可能被误认为页眉残留，但该行是单#带编号，格式更正式
+  - 标题后接概述段落，且前面是上一章总结，符合章标题的上下文特征
+  keep_split: true
+- 'no': 7890
+  overturn_probability: 1.0
+  alternative: 代码块开始标记
+  counter_evidence:
+  - 该行是Markdown代码围栏（```csharp），用于标记代码块开始，不是文本标题
+  - 它没有语义内容，且真正的标题应在上一行（7889）
+  keep_split: false
+- 'no': 8469
+  overturn_probability: 0.95
+  alternative: 正文小标题/节标题
+  counter_evidence:
+  - 双#级别，且在同一章节中后续还有多个同级'##'标题（如8477、8496等），它们构成节序列而非章
+  - 无编号特征，标题为问句形式，常见于小节标题
+  keep_split: false
+- 'no': 8477
+  overturn_probability: 0.95
+  alternative: 正文小标题/节标题
+  counter_evidence:
+  - 与8469同属一个主题下的操作步骤，是章内小节
+  - 后接编号步骤列表，是具体实现指南，不是新章概述
+  keep_split: false
+- 'no': 8496
+  overturn_probability: 0.95
+  alternative: 正文小标题/节标题
+  counter_evidence:
+  - 是'创建 MCMS Web 服务项目'之后的连续小节，前后都是同级双#标题
+  - 内容围绕业务层类实现，属于章节内部细节
+  keep_split: false
+- 'no': 8636
+  overturn_probability: 0.95
+  alternative: 正文小标题/节标题
+  counter_evidence:
+  - 继续Web服务开发的步骤，属于同一章节的后续小节
+  - 双#级别且无章编号，不符合大章特征
+  keep_split: false
+- 'no': 8693
+  overturn_probability: 0.95
+  alternative: 正文小标题/节标题
+  counter_evidence:
+  - 该标题在Web服务开发章节中，与其前后'##'标题并列
+  - 语义上'维护占位符值'是具体功能实现，并非全章总领
+  keep_split: false
+- 'no': 8892
+  overturn_probability: 0.9
+  alternative: 正文小标题/节标题
+  counter_evidence:
+  - 双#级别，且英文标题与前后中文标题不一致，疑为从英文版保留的节标题
+  - 后接代码和具体实现，无新章概述特征
+  keep_split: false

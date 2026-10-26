@@ -1,0 +1,9 @@
+Examine the code and you will find that it is very similar to the previous two custom validation controls.
+
++   - The JavaScript that checks to see if a file has been uploaded to the SingleAttachmentPlaceholderControl is injected into the template file within the OnPreRender() method.
++   - The ControlPropertiesValid() method verifies that a control to be validated is indeed a SingleAttachmentPlaceholderControl.
++   - Finally, the EvaluateIsValid() method performs a server-side check to see if the SingleAttachmentPlaceholderControl.AttachmentUrl property contains a path to a file. If it doesn’t, the method returns false. As in the previous examples, this method would probably not be triggered as we are relying on client-side checks for validation. If you need to perform server-side validation, you will have to create a custom placeholder control as described in the section Implementing Server-Side Validation.
+
+# Summary
+
+In this chapter, we explored how MCMS placeholder controls can be validated. We started by showing that the validation web controls shipped with ASP.NET can’t be used with MCMS placeholder controls. To get around this limitation, we built three validation controls, one for the HTMLPlaceholderControl, a second for the SingleImagePlaceholderControl, and a third for the SingleAttachmentPlaceholderControl. We demonstrated how simple checks for empty placeholders can be performed using client-side scripting techniques. We also illustrated that server-side validation is possible by building custom placeholder controls. The methods discussed in this chapter can be extended to cover more complex and rigorous validation requirements from checking to see if telephone numbers, zip codes or email addresses are in a valid format to validating against content stored in an external database.

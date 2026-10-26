@@ -1,0 +1,22 @@
+chapter_starts:
+- 'no': 7
+  confidence: 0.75
+  final_reason: 前置致谢区块起始，规则要求前言、序言、致谢等正文之前内容统一划分为一章；复核方维持分章，证据成立
+  accepted_evidence:
+  - '## Credits 为前置致谢区块起始，后续为 Authors / Technical Reviewers 等致谢信息'
+  - 规则要求前言、序言、致谢等正文之前内容统一划分为一章
+  rejected_evidence:
+  - '## Credits 为二级标题非最高层级 #'
+  need_human_review: false
+- 'no': 1810
+  confidence: 0.95
+  final_reason: '最高层级 # 标题且带编号 3，单独成行、长度符合、无句号，后接本章概述，符合大章特征；双方一致'
+  accepted_evidence:
+  - '标题为 # 3 Managing Templates, Template Galleries, and Re... 为最高层级 # 且带编号'
+  - '标题单独成行，长度小于30字，末尾无句号，后续为 ### Managing Template Galleries and Templates 等概述'
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 254
+  reason: '标题层级为 ## 非最高层级 #，无第 X 章编号特征；上下文为正文教程流程，后接 ### 子节，属于章节内部小标题，复核方反证成立'
+  need_human_review: false

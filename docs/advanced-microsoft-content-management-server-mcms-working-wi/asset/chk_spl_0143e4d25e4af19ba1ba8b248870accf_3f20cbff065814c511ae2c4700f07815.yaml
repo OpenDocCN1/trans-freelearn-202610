@@ -1,0 +1,23 @@
+reviews:
+- 'no': 7
+  overturn_probability: 0.25
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '## Credits 为二级标题，格式上非最高层级 # 章标题'
+  - 其后紧跟 Authors / Technical Reviewers 等致谢信息，属于前置致谢区块，规则要求前言、致谢等正文之前内容统一划分为一章，维持分章与规则一致
+  keep_split: true
+- 'no': 254
+  overturn_probability: 0.92
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题层级为 ##，非最高层级 #，且无“第 X 章”编号特征'
+  - '前后文为正文教程流程，后接 ### 一个中央管理工具：CMS Explorer 等子节，符合子节而非新章的上下文特征'
+  - '真正的章标题在文本中为 # 第 9 章、# 第 10 章、# 3 Managing Templates 等 # 级编号标题，本行属于章节内部的小标题'
+  keep_split: false
+- 'no': 1810
+  overturn_probability: 0.08
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '标题为 # 3 Managing Templates, Template Galleries, and Re...，为最高层级 # 且带编号 3，符合最高层级大章特征'
+  - '标题单独成行，长度小于30字，末尾无句号，后续为本章概述 ### Managing Template Galleries and Templates，符合章标题上下文特征'
+  keep_split: true
