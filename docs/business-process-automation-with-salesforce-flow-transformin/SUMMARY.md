@@ -1,0 +1,7 @@
++   [Salesforce Flow 业务流程自动化：Salesforce Flows 业务流程转型](README.md)
++   [Salesforce Flow 业务流程自动化：Salesforce Flows 业务流程转型](business-process-automation-with-salesforce-flow-transformin_0.md)
++   [Part 1: Understanding Business Requirements and Automation Needs](business-process-automation-with-salesforce-flow-transformin_2.md)
++   [触发业务流程的 Flow](business-process-automation-with-salesforce-flow-transformin_3.md)
++   [Salesforce Flow 类型](business-process-automation-with-salesforce-flow-transformin_4.md)
++   [使用 Apex 共享的 Flow](business-process-automation-with-salesforce-flow-transformin_5.md)
++   [了解流程调试窗口](business-process-automation-with-salesforce-flow-transformin_6.md)

@@ -1,0 +1,59 @@
+chapter_starts:
+- 'no': 6
+  confidence: 0.65
+  final_reason: 前置内容（献词/致谢等）应统一划分为一章；行6为前置内容首个非空内容，虽非标准章标题，但作为该章起点可接受。
+  accepted_evidence:
+  - 判断方：正文之前的前置内容开始，应统一划分为一章
+  - 复核方：前置内容应成章，行6作为起点可接受
+  rejected_evidence:
+  - 复核方：行6仅为宗教献词，无标题格式，起点也可选行8或更前，存在任意性
+  need_human_review: false
+- 'no': 12
+  confidence: 0.95
+  final_reason: Part 1 顶级部分标题，部分-章节模式下应划分新章；后接概述段落，语义结构清晰。
+  accepted_evidence:
+  - 判断方：Part 1 部分标题，部分-章节模式
+  - 复核方：部分标题应分割新章
+  rejected_evidence:
+  - 复核方：英文'Part'而非中文'第X部分'，但语义仍为部分分隔
+  need_human_review: false
+- 'no': 207
+  confidence: 0.82
+  final_reason: 一级标题，概括后续触发方式及交互式/后台流程内容，后接'## 交互式体验流'等子节，符合章标题特征；'下一节'可指下一章，反证不足。
+  accepted_evidence:
+  - 判断方：一级标题，后接概述和子节
+  - 复核方：语义上覆盖触发流程主题，同意分章
+  rejected_evidence:
+  - 复核方：前文行205'下一节'可能指章内节；标题无编号
+  need_human_review: false
+- 'no': 255
+  confidence: 0.95
+  final_reason: 明确使用'本章将探讨'，后接内容大纲和子节，是标准章标题。
+  accepted_evidence:
+  - 判断方：内容明确为本章将探讨
+  - 复核方：'本章'一词表明真实章标题
+  rejected_evidence:
+  - 复核方：无编号，可能为章内导语，但可能性低
+  need_human_review: false
+- 'no': 487
+  confidence: 0.95
+  final_reason: 明确使用'在本章中'，讨论新主题（Apex共享），后接多个#级子标题，应分章。
+  accepted_evidence:
+  - 判断方：章标题，内容明确为在本章中
+  - 复核方：新主题且后接多个#子标题，符合章标题
+  rejected_evidence:
+  - 复核方：可能是上一章下的延伸小节
+  need_human_review: false
+- 'no': 656
+  confidence: 0.8
+  final_reason: 新主题'了解流程调试窗口'，前面是上一章末尾（问题/延伸阅读），后面有完整内容，应作为新章。
+  accepted_evidence:
+  - 判断方：新主题开始，前面为上一章末尾
+  - 复核方：主题独立，同意作为新章
+  rejected_evidence:
+  - 复核方：前面'# 延伸阅读'使用同级别，可能引起级别混乱；标题无'本章'字样
+  need_human_review: false
+rejected_lines:
+- 'no': 916
+  reason: 该行是索引词条列表项，不是标题；文末索引虽应成一章，但应从一个明确的索引标题开始，而不能从中间词条强行分章。索引起点待人工确认。
+  need_human_review: true
