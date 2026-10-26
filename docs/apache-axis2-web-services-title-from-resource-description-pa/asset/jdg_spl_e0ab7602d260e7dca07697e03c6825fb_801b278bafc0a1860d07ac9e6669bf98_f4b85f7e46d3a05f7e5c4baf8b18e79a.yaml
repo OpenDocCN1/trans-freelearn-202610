@@ -1,0 +1,66 @@
+chapter_starts:
+- 'no': 2
+  confidence: 0.9
+  final_reason: 复核方支持保留，前言类正文前内容按规则统一划分为一章，标题单独成行且语义为序言
+  accepted_evidence:
+  - '# 前言 为正文前的序言类内容'
+  - 复核方 overturn_probability 0.1 keep_split true
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 303
+  confidence: 0.95
+  final_reason: '一级标题 # 3 Axis2 XML 模型（AXIOM），编号特征+单独成行，最高层级大章，复核方支持保留'
+  accepted_evidence:
+  - '一级标题 # 3 ... 编号特征+单独成行'
+  - 复核方 overturn_probability 0.05 keep_split true
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 429
+  confidence: 0.95
+  final_reason: '一级标题 # 4 执行链，编号特征+单独成行，最高层级大章，复核方支持保留'
+  accepted_evidence:
+  - '一级标题 # 4 执行链'
+  - 复核方 overturn_probability 0.05 keep_split true
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 598
+  confidence: 0.95
+  final_reason: '一级标题 # 5 部署 Axis2，编号特征+单独成行，最高层级大章，复核方支持保留'
+  accepted_evidence:
+  - '一级标题 # 5 部署 Axis2'
+  - 复核方 overturn_probability 0.1 keep_split true
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 934
+  confidence: 0.95
+  final_reason: '一级标题 # 7 编写 Axis2 服务，编号特征+单独成行，序号跳跃仍应分章，复核方支持保留'
+  accepted_evidence:
+  - '一级标题 # 7 编写 Axis2 服务'
+  - 复核方 overturn_probability 0.1 keep_split true
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 1093
+  confidence: 0.95
+  final_reason: '一级标题 # 8 编写 Axis2 模块，编号特征+单独成行，最高层级大章，复核方支持保留'
+  accepted_evidence:
+  - '一级标题 # 8 编写 Axis2 模块'
+  - 复核方 overturn_probability 0.05 keep_split true
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 2014
+  confidence: 0.95
+  final_reason: '一级标题 # 11 Developing JAX-WS Web Services，编号特征+单独成行，最高层级大章，复核方支持保留'
+  accepted_evidence:
+  - '一级标题 # 11 ...'
+  - 复核方 overturn_probability 0.1 keep_split true
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 0
+  reason: 复核方指出第0行为全书书名/封面，不具备章节统领性，且第2行已有'# 前言'，若同时分章会违反正文前内容统一为一章规则，overturn_probability
+    0.9
+  need_human_review: false
+- 'no': 1644
+  reason: 复核方指出第1328行已有'## 客户端 API'开启章节，第1644行为重复出现且后接列表步骤'+ 4. 创建SOAPEnvelope...'，不符合章标题上下文特征，更像是排版噪声/页眉残留，overturn_probability
+    0.85
+  need_human_review: false

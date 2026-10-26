@@ -1,0 +1,1 @@
+In the next chapter, we will be discussing some advanced features of Apache Axis2, including REST (Representational State Transfer) support in Axis2, MTOM (Message Transfer Optimization Mechanism), understanding the Axis2 classloader hierarchy, and deploying Axis2 on various other application servers.

@@ -1,0 +1,1750 @@
+- '# Apache Axis2 Web 服务
+
+  '
+- "# 前言\n\n第一条 为进一步提高我市城乡居民基本医疗保险待遇水平，减轻参保居民门诊慢特病医疗费用负担，规范门诊慢特病管理，根据《商洛市城乡居民基本医疗保险市级统筹实施办法（试行）》（商政发〔2020〕17号）等文件精神，结合我市实际，制定本办法。\n\
+  \n\n第8章，编写Axis2模块——了解如何通过一个自包含的包扩展Axis2核心功能。\n\n第9章，客户端API——了解如何使用Axis2调用其他服务、可用的API以及如何使用它们。\n\
+  \n第10章，会话管理——超越单次调用，学习如何使用Axis2特性提供更好、更高效的有状态服务。\n\n第11章，开发JAX-WS Web服务——学习开发基于JAX-WS的Web服务的基础知识，这是Java开发人员最常用的Web服务开发技术。\n\
+  \n第12章，Axis2集群——了解Apache Axis2的集群，这将允许你在大规模生产环境中部署Axis2。\n\n第13章，企业集成模式——了解一些利用底层Axis2集群基础设施的企业SOA部署模式。\n\
+  \n第14章，Axis2高级特性与用法——超越简单特性，了解REST、MTOM以及其他几个高级特性。\n\n第15章，构建安全可靠的Web服务——学习如何使用Axis2及相关组件使你的服务更加安全可靠。\n\
+  \n## 本书所需准备\n\n- Java 5或更高版本（Axis2仅支持JDK 1.5及以上版本）\n- 最新版本的Axis2（Axis2 1.5.4）\n\n\
+  ## 本书读者对象\n\n本书面向有兴趣使用Apache Axis2构建Web服务的Java开发人员。假定读者熟悉SOAP、WSDL和XML解析等Web标准。\n\
+  \n## 惯例\n\n在本书中，你会发现多种不同的文本样式，用以区分不同类型的信息。以下是这些样式的一些示例，以及对其含义的说明。\n\n## 问题\n\n如果你在本书的任何方面遇到问题，可以通过questions@packtpub.com联系我们，我们将尽力解决。\n\
+  \n## 面向服务的架构（SOA）\n\n孤立计算机的时代已经结束。如今，“连接则立，孤立则亡”正成为计算领域的格言。网络和通信设施以前所未有的方式连接了世界。世界上已有能够支持连接数千台计算机系统的硬件，这些系统有能力发挥曾经只能梦想的力量。\n\
+  \n然而，计算机科学缺乏利用已建立的通信网络的技术和抽象。分布式计算的目标就是提供这样的抽象。RPC、RMI、IIOP和CORBA是一些为开发人员提供网络抽象的方案，可供其在此基础上构建。\n\
+  \n这些方案未能考虑问题的关键本质。系统是由众多异构子系统组成的，但这些方案要求所有参与者共享一种或少数几种编程语言。**面向服务的架构（SOA）** 通过定义一组概念和模式来集成同质和异构组件，从而给出了答案。SOA提供了一种更好的方式来实现松散耦合的系统，因此具有更强的可扩展性和灵活性。此外，与面向对象编程（OOP）类似，SOA实现了高度的可重用性。人们可以通过三种主要方式在其系统和应用中启用SOA能力：\n\
+  \n- 现有消息系统：例如IBM MQSeries、Tibco、JMS等\n- 普通XML（POX）：例如XML/HTTP、REST等\n- Web服务：例如SOAP、WSDL、WS-*\n\
+  \n在常用的消息系统中，**Java消息服务（JMS）** 在行业中扮演着重要角色，并已成为消息系统的通用API。我们可以找到多种JMS消息类型，例如文本、字节、名值对、流和对象。这类消息系统的主要缺点之一是它们没有统一的线路格式（序列化格式）。因此，互操作性是一个大问题：如果两个应用程序使用JMS进行通信，那么它们必须使用相同的实现。Sonic、Tibco和IBM是商业市场的领导者，JBoss、Manta和ActiveMQ是常用的开源实现。\n\
+  \n普通XML（POX）是在系统中暴露功能并启用SOA的另一种方式。随着Web的广泛使用，POX方法变得更加流行。大多数Web应用暴露XML API，我们可以开发组件并与它们通信。Google\
+  \ Maps、自动完成和Amazon服务是大量使用XML API暴露功能的几个应用示例。在大多数情况下，POX与REST（表述性状态转移）结合使用。**REST**\
+  \ 是Web底层架构的一种模型，它基于每个URL标识资源的理念。GET、PUT、POST和DELETE是REST架构中使用的动词。REST常常与理论观点相关联，因此，REST通常不用于复杂的交互。\n\
+  \n在三种常用的SOA实现方法中，Web服务可以被认为是最标准和最灵活的方式。Web服务扩展了POX的思想，并增加了额外的标准，使通信更加有条理和标准化。Web服务成为最流行的支持SOA的机制，其原因如下：\n\
+  \n- Web服务使用WSDL描述，WSDL可以捕获任何复杂的应用以及所需的服务质量。\n- Web服务使用SOAP作为消息传输机制，因为SOAP是一种特殊的XML。它从XML获得了所有可扩展性特性。\n\
+  - 有许多标准机构负责创建和执行Web服务标准。\n- 有多种开源和商业Web服务实现。通过使用标准和流程，Web服务提供了与应用程序和编程语言无关的集成和通信机制。不同的编程语言可能为Web服务定义不同的实现，但它们可以互操作，因为它们对共享信息的格式达成一致。\n\
+  \nWS-I的主要功能是提供标准和规范，以确保互操作性、可组合性和概要描述。换句话说，即创建标准和流程，以在各类Web服务框架之间强制执行所需的互操作性水平。OASIS的主要目标是提高Web服务的服务质量，包括安全性、可靠性、事务和资源管理。W3C是Web服务标准机构之一，它将Web服务定义为一种软件系统，旨在通过网络支持可互操作的机器对机器交互。它的接口以一种既可由机器处理又可由人阅读的格式描述。这种格式被称为**Web服务描述语言（WSDL）**。其他应用程序按照其描述所规定的方式，使用**简单对象访问协议（SOAP）**\
+  \ 消息与Web服务通信，通常通过HTTP结合XML序列化以及其他Web相关标准来传输。\n\nWeb服务是众所周知的开源技术标准，它提供了以下许多好处：\n\n\
+  - 提高互操作性，从而降低维护成本\n- 提高可重用性和可组合性（例如，使用公开可用的服务并重用或集成它们以提供新服务）\n- 增加供应商之间的竞争，从而降低产品价格\n\
+  - 易于从一个产品切换到另一个产品，从而降低培训成本\n- 更高的采用率和标准寿命，供应商和用户的大量使用导致更高的接受度\n\n可以说，Web服务概念是从面向对象系统到服务系统的逻辑演变。与面向对象系统一样，Web服务中的一些基本概念是封装、消息传递和动态绑定。然而，基于服务的概念已扩展到方法签名之外，因为与服务功能、位置、调用方式、服务质量以及安全策略相关的信息也可以发布在服务接口（WSDL）中。\n\
+  \n### 组织如何转向Web服务？\n\n组织可能用来转向Web服务的方式主要有三种，如下所示：\n\n- 从零开始创建新的Web服务。开发人员创建服务的功能以及描述。\n\
+  \n\n\n\n\n消息传递标准旨在为分布式环境中的信息交换提供框架。这些标准必须可靠，以确保消息只发送一次，并且只有预期的接收者才能收到。这是当前研究的主要领域之一，因为一切都依赖于消息传递能力。\n\
+  \n接下来，我们将详细讨论其中一些标准。首先，我们从 XML-RPC 开始，它后来发展为 SOAP。\n\n## XML-RPC\n\n**XML-RPC**\
+  \ 标准由 Dave Winer 于 1998 年与微软共同创建。现有的 RPC 系统非常庞大。因此，为了创建一个轻量级系统，开发者通过仅规定必要的部分并只定义少量的数据类型和命令来简化它。该协议使用\
+  \ XML 对调用进行编码，并以 HTTP 作为传输机制。消息以 POST 请求发送，其中请求正文为 XML 格式。服务器上执行一个过程，其返回值也被格式化为\
+  \ XML。参数可以是标量、数字、字符串、日期，以及复杂的记录和列表结构。\n\n随着新功能的引入，XML-RPC 演变为现在所称的 SOAP，接下来将对此进行讨论。不过，仍有一些人更喜欢使用\
+  \ XML-RPC，因为它简单、极简且易于使用。\n\n## SOAP\n\n最初，SOAP 被定义为简单对象访问协议（Simple Object Access\
+  \ Protocol）。然而，最新版本（SOAP 1.2）已经超越了其最初的定义。SOAP 标准最初由四位开发者在微软的支持下设计，作为一种对象访问协议。该协议规定了基于\
+  \ XML 的消息在计算机网络中的传输方式，且与传输机制无关。开发者选择 XML 作为标准消息格式，是因为主要组织和开源计划广泛使用它。此外，还有各种各样免费可用的工具，可以轻松过渡到基于\
+  \ SOAP 的实现。\n\n**SOAP** 的概念是一种无状态、单向的消息交换。然而，应用程序可以通过将这种单向交换与底层协议提供的功能以及特定于应用程序的信息相结合，创建更复杂的交互模式——例如请求-响应、请求-多响应等。SOAP\
+  \ 对其所传递的任何特定于应用程序的数据的语义保持沉默，就如同对 SOAP 消息的路由、可靠数据传输、防火墙穿越等问题一样。但是，SOAP 提供了一种框架，通过该框架，特定于应用程序的信息可以以可扩展的方式进行传递。\n\
+  \n## Web 服务寻址（WS-Addressing）\n\n如果在 Web 服务网络中，有一种标准方式来表达消息应被传递到何处，那将会非常有用。这可以减轻开发者的工作量，因为他们能够简化\
+  \ Web 服务的通信和开发，并避免需要临时开发成本高昂且通常难以跨平台互操作的解决方案。在与人类应用程序交互时，我们在浏览器中输入地址（或 URL），然后导航到该页面。我们点击内部链接，它就会带我们到一个新页面。当涉及到应用程序到应用程序的通信（如\
+  \ Web 服务）时，应该有一种指定这些地址的标准方式。因此，WS-Addressing 通过定义一种标准机制来识别和交换多个端点之间的 Web 服务消息，使组织能够构建可靠且可互操作的\
+  \ Web 服务应用程序。\n\n该标准提供了与传输无关的机制来寻址消息和识别 Web 服务，对应于 Web 服务架构中描述的*地址*和*消息关联*概念。该标准定义了\
+  \ XML 元素，用于识别 Web 服务端点并确保消息中端到端的端点标识安全。这使得消息传递系统能够通过包含处理节点（如端点管理器、防火墙和网关）的网络以传输中立的方式支持消息传输。\n\
+  \n## 服务描述\n\n当我们购买产品时，我们可以找到它的操作手册；当我们购买软件应用程序时，我们应该有使用它的手册或文档。对于面向对象编程，我们有描述公共操作的接口，同样，Java\
+  \ 文档提供有关可用方法及其使用方式的信息。因此，重要的是要注意，Web 服务的描述对于分类、发现和使用服务至关重要。描述应该既能被人类理解，也能被应用程序理解。他们还提到，Web\
+  \ 服务描述需要在语义和语法两个层面上提供。语义信息必须包含关于服务提供者、服务功能以及可靠性、安全性和消息排序等特征的详细信息。语义信息使服务请求者能够决定服务是否满足其需求。此外，代理可以使用语义信息对服务进行分类。语法信息描述如何使用服务，也可能涉及非功能性需求，如可靠性、安全性和事务。最重要的是，服务描述成为外部文档，用于阅读和更多地了解服务。\n\
+  \n## Axis2 的特性\n\n- 传输框架：Axis2 有一个简洁明了的抽象，用于集成和使用传输（即，通过 SMTP、FTP、面向消息的中间件等各种协议进行\
+  \ SOAP 的发送方和监听方），并且引擎核心完全与传输无关。\n- WSDL 支持：Axis2 支持 Web 服务描述语言（1.1 和 2.0 版本），这使您可以轻松构建存根以访问远程服务，还可以自动从\
+  \ Axis2 导出所部署服务的机器可读描述。\n- 附加组件：已经整合了多个 Web 服务规范，包括用于安全的 WSS4J（Apache Rampart）、用于可靠消息传递的\
+  \ Sandesha。Kandula 是 WS-Coordination、WS-AtomicTransaction 和 WS-BusinessActivity\
+  \ 的封装。\n- 组合和可扩展性：模块和阶段提高了对可组合性和可扩展性的支持。模块支持可组合性，也可以以简单明了的方式支持新的 WS-* 规范。但是，它们不能热部署，因为它们会改变系统的整体行为。\n\
+  \n## 下载并安装 Apache Axis2\n\nApache Axis2 1.0 版本于 2006 年发布，之后有许多版本发布。当前的稳定版本是 1.5。本书的上一版本《Quickstart\
+  \ Apache Axis》（Deepal Jayasinghe 著，Packt Publishing 出版）基于 Axis2 1.2 版本。本书基于 1.5\
+  \ 版本。从 1.2 到 1.5，Axis2 引入了一系列新特性以及 API 更改。其中一个关键变化是从 JDK 1.4 迁移到 1.5。当前版本的 Axis2\
+  \ 仅支持 JDK 1.5 及更高版本。尽管如此，大多数常用的 API 仍然保持不变。\n\n有三种类型的软件：自由软件、开源软件和商业软件。自由软件的主要理念是您可以免费下载该软件；但是，您无法访问源代码或开发工作。另一方面，开源软件由开放社区设计和开发；任何人都可以参与讨论并为项目做出贡献，最后，一旦产品发布，用户既可以访问产品也可以访问源代码。用户可以修改源代码、修复问题、重新分发等等。由于\
+  \ Axis2 也是一个开源项目，您可以下载 Axis2 并访问二进制代码和源代码。然而，在专有软件中，许可协议非常严格，通常用户看不到源代码；用户只能获得二进制代码。\n\
+  \n\n\n\n\n你可以从 Axis2 官方网站或任何镜像站点下载最新版本（或 1.5）。下载链接如下所示：\n\n```\nhttp://ws.apache.org/axis2/download/1_5_1/download.cgi\n\
+  ```\n\n进入下载页面后，你可以找到四种不同的发行版本（构件）：\n\n- 二进制发行版\n- WAR 发行版\n- 源码发行版\n- 文档发行版\n\n\
+  此外，你还可以从 Axis2 官方网站下载 IDE 插件（IDE 工具包括 Eclipse 和 IntelliJ IDEA）。\n\n## 二进制发行版\n\n\
+  Axis2 二进制发行版包含所有相关的第三方库、一组示例以及 Axis2 运行时。安装二进制发行版只需将 ZIP 归档文件解压到你想放置的位置即可。下载并解压二进制发行版后，你将看到其中包含一组子目录（bin、lib、samples、repository、webapp\
+  \ 和 conf）。解压后的二进制发行版典型结构如下所示：\n\n![](img/e2fb05de168053e6227dab034eff9353_38_0.png)\n\
+  \nAxis2 二进制发行版是一个完整的软件包，你可以在其中部署服务，并使用 SimpleAxisServer 将其公开。SimpleAxisServer 是一个功能完备的服务器，可以用作公开\
+  \ Web 服务的后端服务器。它支持 servlet 版本所支持的所有特性，包括会话管理、线程管理、自动 WSDL 生成等。\n\n我们还可以使用 Axis2\
+  \ 二进制发行版来调用远程服务。为此，你需要将 Axis2 及其他相关库添加到类路径中，并使用 Axis2 客户端 API 来调用服务。一种常用的做法是将这些库添加到你的\
+  \ IDE 以及基于该 IDE 开发的客户端应用程序中。\n\n之后，它应该会显示你所下载的 Axis2 的版本字符串。一旦看到版本号，就说明我们已经成功地将\
+  \ Axis2 部署到了 Tomcat 中。接下来，你可以向 Axis2 上传或部署新的服务。\n\n```\n<ns:getVersionResponse>\n\
+  \  <ns:return>Hi - the Axis2 version is SNAPSHOT</ns:return>\n</ns:getVersionResponse>\n\
+  ```\n\n在 Axis2 中，要添加新的 Web 服务，我们需要将相应的资源（服务归档文件）添加到 WAR 文件的解压位置。然而，大多数应用服务器不会解压\
+  \ WAR 文件。在这种情况下，你需要遵循额外的步骤来配置你的 WAR 文件。为此，你需要解压 WAR 文件，对 web.xml 文件进行必要的修改，然后重新创建\
+  \ WAR 文件并进行部署。如果你的应用服务器会解压 WAR 文件，我们可以将新的 Web 服务直接放入解压位置。这种方法仅用于快速测试——真正的开发和生产使用中，建议使用\
+  \ Ant（或 Maven）来为特定部署生成 WAR 文件，也就是说，不要手动调整 WAR 文件的内容。我们将在本书后面详细学习 Axis2 Web 服务。届时，我们将能够理解添加新\
+  \ Web 服务的含义。\n\n安装 WAR 发行版包括以下几个步骤：\n\n- 1. 安装应用服务器：如果你的机器上没有应用服务器，那么你需要下载并安装应用服务器。在可用的应用服务器中，Apache\
+  \ Tomcat 可以被认为是最好的应用服务器之一（它不支持 J2EE 的所有特性）。因此，让我们下载 Tomcat（5.x 或更高版本）并安装。\n- 2.\
+  \ 根据应用服务器的不同，你可以找到需要部署 WAR 文件的位置。以 Tomcat 为例，你需要将 WAR 文件放入 webapps 目录。因此，让我们将 Axis2\
+  \ WAR 发行版放入应用服务器的 webapps 目录中。\n- 3. 最后一步，打开浏览器并输入 http://localhost:8080/axis2。我们可以看到\
+  \ Axis2 Web 应用程序（如前面图示所示）的主页（此处的 URL 可能因应用服务器而异）。\n\n## 源码发行版\n\n顾名思义，源码发行版包含用于构建二进制发行版的源代码。由于\
+  \ Apache Axis2 是在 Apache 许可证下发布的，我们可以对源代码做任何操作。其理念是用户可以使用 Axis2 并根据自己的需求进行修改。此外，如果他们认为某项修改对其他人也有用，可以提交补丁，并请求项目社区将这些更改合并到主源代码库中。\n\
+  \n当我们开发真实应用程序时，除了文档之外，手边有源代码也总是有助于调试应用程序。同时，源码发行版包含 Maven 脚本（http://maven.apache.org），我们可以使用它们来创建二进制发行版、WAR\
+  \ 发行版，甚至 JAR 发行版。\n\n## 文档发行版\n\n文档发行版提供了理解项目中不同特性和功能所需的所有必要资源。它提供了 Java 文档和教程，解释如何使用不同的特性，\n\
+  \n## JAR 发行版\n\nWeb 服务的关键步骤之一是开发服务和客户端。在该阶段，我们需要访问 Web 服务框架及其库。为了访问 API 和其他相关资源，常见的做法是将所需的库添加到集成开发环境（IDE）中。Axis2\
+  \ JAR 发行版提供了一种便捷的方式来下载并将 Axis2 运行时嵌入到 IDE 中。你可以从以下链接单独下载 Axis2 库文件，或者从 Axis2 二进制发行版或\
+  \ WAR 发行版中获取这些文件：\n\n```\nhttp://people.apache.org/repo/m2-ibiblio-archived/org/apache/axis2/\n\
+  ```\n\n## XML 处理模型\n\n正如*第 1 章“Apache Web 服务与 Axis2”*中所提到的，与 Axis 1.x 相比，Axis2 构建在全新的架构之上。引入\
+  \ Axis2 的关键原因之一是拥有更好、更高效的 XML 处理模型。Axis 1.x 使用 DOM 作为其 XML 表示机制，这要求将完整的对象层次结构（对应于传入消息）保存在内存中。对于小规模消息来说，这不是问题。但当涉及大规模消息时，这就成了一个难题。为了克服这一问题，Axis2\
+  \ 引入了一种新的 XML 表示方式。\n\nAXIOM（AXIS2 对象模型）构成了 Axis2 中每个基于 SOAP 的消息的 XML 表示基础。AXIOM\
+  \ 相对于其他 XML InfoSet 表示的优势在于它基于 pull 解析器技术，而大多数其他技术基于 PUSH 解析器技术。\n\npull 与 push\
+  \ 的主要区别在于，在 pull 技术中，调用方对解析器拥有完全的控制权，它可以请求下一个事件并对其做出响应；而在 PUSH 的情况下，解析器的控制能力有限，它将大部分功能委托给处理程序，这些处理程序响应文档处理过程中触发的事件。\n\
+  \n由于 AXIOM 基于 pull 解析器技术，它具有“按需构建”的能力，即只有在需要时才构建对象模型。如果需要，可以直接从 AXIOM 访问底层的 pull\
+  \ 解析器，并使用它，而不是构建一个**对象模型（OM）**。\n\n## SOAP 处理模型\n\n发送、接收和处理 SOAP 消息是 SOAP 处理引擎的关键工作之一。Axis2\
+  \ 的架构提供了两个管道（或流）来执行两个基本操作。RPC 等旧式消息系统是围绕请求和响应构建的。而 Axis 则超越了这一点，引入了单向消息处理。这样，就可以有请求而不需要任何响应。\n\
+  \nAxis2 的 AxisEngine（引擎或驱动程序）定义了 `send()` 和 `receive()` 两个方法来实现这两个管道。这两个管道分别命名为\
+  \ **InFlow** 和 **OutFlow**。复杂的消息交换模式（MEPs）通过组合这两种类型的管道来构建。需要注意的是，除了这两个管道之外，还有另外两个管道，它们用于帮助处理传入和发送*故障*消息。\n\
+  \n\n\n\n如前所述，SOAP 处理框架的关键任务就是处理 SOAP 消息。然而，仅仅处理消息还不够，还需要提供额外的功能，例如服务质量。因此，系统必须具有可扩展性。SOAP\
+  \ 处理模型的可扩展性是通过处理器来提供的。当 SOAP 消息被处理时，已注册的处理器将被执行。处理器可以在全局、服务或操作范围内注册，最终的处理链由所有范围内的处理器组合而成。\n\
+  \n处理器充当拦截器，处理 SOAP 消息的各个部分，并提供*服务质量*特性（服务质量的一个典型例子是安全性或可靠性）。通常处理器处理 SOAP 标头，但也可能访问或修改\
+  \ SOAP 正文。\n\n流的概念很简单，它由一系列阶段组成，其中阶段指处理器的集合。对于给定的方法调用，相关的流数量可能根据 MEP（消息交换模式）的不同而变化。\n\
+  \n### In-Only MEP（仅入站）\n\n对于 In-Only MEP，相应的方法调用只有一个管道，即消息只会经过入站管道（inflow）。\n\n\
+  ### In-Out MEP（入站/出站）\n\n另一方面，对于 In-Out MEP，消息将经过两个管道，即入站管道（inflow）和出站管道（outflow）。当\
+  \ SOAP 消息被发送时，`OutFlow` 将启动。\n\n### 故障流（Fault-Flow）\n\n`OutFlow` 调用处理器，并以**传输发送器**结束，该发送器将\
+  \ SOAP 消息发送到目标端点。在目标端点，SOAP 消息由该处的**传输接收器**接收，接收器读取 SOAP 消息并启动 `InFlow`。`InFlow`\
+  \ 由处理器组成，并以**消息接收器**结束，该接收器处理实际的业务逻辑调用。\n\n阶段是一个或多个处理器的逻辑集合，有时阶段本身充当处理器。Axis2 引入阶段概念，作为扩展核心功能的简便方式。在\
+  \ Axis 1.x 中，如果要将处理器添加到处理链中，我们需要更改全局配置文件。而 Axis2 通过阶段和阶段规则的概念简化了这一过程。阶段规则规定了特定阶段内给定处理器集合的排序方式。下图展示了一个流及其阶段：\n\
+  \n![](img/e2fb05de168053e6227dab034eff9353_47_0.png)\n\n![](img/e2fb05de168053e6227dab034eff9353_49_0.png)\n\
+  \n我们将在*第 6 章“信息模型”*中更详细地讨论此图，届时将逐一讨论每个项目，并详细描述它们如何相互连接。\n\n## 部署模型\n\nAxis 的早期版本（Axis\
+  \ 1.x）满足了产品开发阶段所提出的需求。然而，随着 SOA 和 Web 服务变得流行，许多新需求应运而生。其中，易用性是最需要考虑的重要因素之一。\n\n\
+  在 Axis 1.x 中，用户必须手动调用管理客户端并更新服务器 `classpath`。之后，用户需要重启服务器才能应用更改。这种繁琐的部署模型对初学者来说无疑是一道障碍。Axis2\
+  \ 的设计旨在克服这一缺点，并提供了灵活、用户友好且易于配置的部署模型。\n\n- 传输级非阻塞调用，其中调用发生在两个传输中（可以是两个单通道传输，如 SMTP，也可以是两个双通道传输，如\
+  \ HTTP）\n\nAxis2 客户端 API 支持这两种非阻塞调用场景。\n\nAxis2 引入了一个非常方便的客户端 API 来调用服务，该 API 包含两个类：`ServiceClient`\
+  \ 和 `OperationClient`。`ServiceClient` API 用于常规使用，即只需发送和接收 XML 时。另一方面，OperationClient\
+  \ 面向高级用法，当需要处理 SOAP 标头或执行其他高级任务时使用。使用 `ServiceClient`，你只能访问 SOAP 正文或有效负载。虽然我们可以添加\
+  \ SOAP 标头，但无法通过 `ServiceClient` 检索 SOAP 标头。要实现此功能，我们需要使用 OperationClient。\n\n`ServiceClient`\
+  \ 提供了以下用于调用服务的 API：\n\n- **sendRobust**：此 API 的核心思想是向 Web 服务发送 XML 请求，而不关心其响应。但是，如果出现问题，你也会需要知道。因此，此\
+  \ API 调用没有返回值但会抛出异常的服务。\n- **fireAndForget**：此 API 仅用于发送 XML 请求，既不关心响应，也不关心异常。因此，它适用于调用\
+  \ In-Only MEP。\n- **sendReceive**：此 API 调用具有返回值的服务。这是最常用的 API 之一。因此，它用于调用 In-Out\
+  \ MEP。\n- **sendReceiveNonBlocking**：此方法以非阻塞方式调用服务。当服务有返回值时可以使用此方法。要使用此方法，我们必须传递一个回调对象，该对象在调用完成后被调用。\n\
+  \n如前所述，`OperationClient` 面向高级用户，使用 `OperationClient` 需要深入了解 Axis2。在使用 `ServiceClient`\
+  \ 时，你无需了解 SOAP 信封、消息上下文等任何内容。但使用 `OperationClient` 时，用户必须在调用服务之前自行创建这些内容。使用 `OperationClient`\
+  \ 创建和调用服务涉及以下步骤：\n\n1. 创建一个 `ServiceClient`。\n2. 然后，使用你创建的 `ServiceClient` 创建 `OperationClient`。\n\
+  3. 创建一个 SOAP 信封。\n4. 创建消息上下文。\n5. 将 SOAP 信封添加到消息上下文。\n6. 将 `MessageContext` 添加到\
+  \ `OperationClient`。\n7. 调用 `OperationClient`。\n8. 如果有响应，从 `OperationClient` 获取响应消息上下文。\n\
+  \n## 传输\n\n在 Axis2 中，每个传输都由两部分组成，即传输发送器和传输接收器。你可以在 Axis2 全局配置中定义传输以及发送器和接收器。传输接收器是\
+  \ `AxisEngine` 接收消息的途径，而传输发送器是发送消息的途径。Axis2 的一个重要方面是，其核心完全独立于传输发送器和接收器。\n\nAxis2\
+  \ 旨在支持以下传输协议：\n\n- HTTP/HTTPS：在 HTTP 传输中，传输监听器是一个 servlet 或 Axis2 提供的 `org.apache.axis2.transport.http.SimpleHTTPServer`。传输发送器使用公共\
+  \ HTTP 客户端进行连接并发送 SOAP 消息。\n- TCP：这是最简单的传输，需要 WS-Addressing 支持才能正常工作。\n- SMTP：这需要一个电子邮件帐户。传输接收器是一个线程，按固定时间间隔检查电子邮件。\n\
+  - JMS：这提供了一种使用 JMS 方式调用 Web 服务的方法。\n- XMPP：这提供了一种与 Jabber 服务器通信并使用 XMPP 协议调用 Web\
+  \ 服务的标准方式。\n\n## 其他模块\n\n其他模块指的是可选模块，它们提供附加功能或实用工具：例如，需要生成 Axis2 服务和服务代理的模块。Axis2\
+  \ 在运行时不会使用这些模块，如前所述，它们仅用于提供附加功能。Axis2 将它们作为工具模块，用于生成服务端代码和客户端代码。\n\n- 代码生成：Axis2\
+  \ 提供了一个代码生成工具，可生成服务端（骨架）和客户端（存根或代理）代码，以及描述符和测试用例。生成的代码将简化服务的部署和调用。这将提高 Axis2 的易用性。\n\
+  \n\n\n\n## Axis2 的可扩展性\n\n在 Axis2 中，有许多扩展功能的方式。在本书中，我们将讨论其中几种，列在这里：\n\n- 模块的服务扩展\n\
+  - 自定义部署器\n- 消息接收器\n\n### 服务扩展或模块\n\nAxis1 和 Axis2 都有处理程序的概念。但与 Axis 1.x 相比，Axis2\
+  \ 指定和部署处理程序的方式有几处变化。在 Axis 1.x 中，如果你想添加一个处理程序，则需要更改全局配置文件然后重启系统。同时，它没有动态添加或更改处理程序的方式。\n\
+  \n为了解决这个问题以及添加新功能，Axis2 引入了 Web 服务扩展或模块的概念，其中模块的主要目的是扩展核心功能。它类似于在 Axis1.x 中添加处理程序链。Axis2\
+  \ 模块相对于 Axis 1.x 处理程序链的优势在于，你可以在不更改任何全局配置文件的情况下添加新模块。\n\n模块是一个自包含的包，其中包括处理程序、第三方库、模块相关资源和模块配置文件。\n\
+  \n模块可以作为归档文件部署。Axis2 为模块设计了一种新的文件扩展名，称为 .mar。模块归档文件中最重要的文件是模块配置文件或 module.xml。如果没有\
+  \ module.xml 文件，模块将无法运行。模块配置文件主要指定处理程序及其阶段规则。因此，一旦我们根据阶段规则启用模块，处理程序将被放置在不同的流中（inflow、outflow\
+  \ 等）。\n\n模块的想法非常简单。为了在我们的服务中实现对 WS-Addressing 或 WS-Security 的支持，我们需要下载相应的模块并将其放入\
+  \ Axis2 仓库的 modules 目录。我们可以在部署时通过向 axis2.xml（全局配置文件）中添加 `<module ref=\"module name\"\
+  />` 来启用模块。除此之外，如果我们想在运行时启用模块，我们可以通过多种方式做到，例如使用 Axis2 web 管理、处理程序等。\n"
+- "# 3 Axis2 XML 模型（AXIOM）\n\nAXIOM 代表 Axis2 Object Model，指的是一种 XML InfoSet 模型，最初作为\
+  \ Apache Axis2 的一部分开发，后来作为 WS commons 项目迁移，以便除 Axis2 之外的项目也能受益。XML InfoSet 指的是 XML\
+  \ 内部包含的信息，对于程序化操作，将此 XML InfoSet 以语言特定的方式表示是很方便的。对于面向对象的语言，显而易见的选择是由对象组成的模型。DOM\
+  \ 和 JDOM 就是两种这样的 XML 模型。AXIOM 在外部行为上概念上类似于此类 XML 模型，但其内部却大不相同。在本章结束时，你将了解 AXIOM\
+  \ 的基础知识以及使用 AXIOM 时应遵循的最佳实践。\n\n本章将涵盖：\n\n- AXIOM 架构\n- Pull 解析\n- 使用 AXIOM\n- AXIOM\
+  \ 的高级操作\n\n### AXIOM 及其特性的概述\n\nApache Axiom 的设计目的是提供快速且更好的 XML，这已成为任何给定 XML 处理系统的核心。Axiom\
+  \ 是一个轻量级实现，建立在延迟解析技术之上。更具体地说，它是 StAX（JSR 173）的实现，即标准流式 pull 解析器 API。其主要意图之一是提供标准操作\
+  \ API。因此 AXIOM 对象模型可以像任何其他对象模型（例如 JDOM）一样灵活操作，但在底层，对象仅在绝对需要时才会被创建（即按需构建）。这导致编程更省内存。\n\
+  \n使用 pull 解析，用户对解析器有完全控制权。用户可以要求处理下一个事件和下一个事件。换句话说，在 pull 解析中，解析器仅在用户命令下才继续。用户可以决定存储或丢弃从解析器生成的事件。这类似于水龙头，你打开水龙头，取水，然后关闭水龙头。当你再次需要水时，再次打开水龙头并继续过程。因此，用户对水流和过程有完全控制权。pull\
+  \ 解析也是如此，用户创建解析器并请求事件，然后它给出事件。用户处理事件并请求下一个事件，直到文件结束。\n\n### 架构\n\n当我们考虑 AXIOM 架构时，它并不像你想象的那么复杂。如前所述，许多\
+  \ API 都非常类似于 JDOM API。值得注意的是，AXIOM 对二进制数据和 MTOM 有原生支持，这对于 Axis2 这样的 SOAP 处理框架很重要。AXIOM\
+  \ 还对 XML 处理提供完全支持，并对 SOAP 处理提供增强支持。\n\nAXIOM 也被称为对象模型（OM），OM Builder 通过 StAX reader\
+  \ API 将原始 XML 字符流包装起来。因此，pull 事件流的复杂性对用户是透明的。\n\n如前所述，延迟构建是 AXIOM 的主要特性之一。此外，缓存和非缓存也可以被视为另一个有用的特性。缓存的想法取决于对象模型是否存储在内存中。如果对象模型存储在内存中，则为缓存，否则为非缓存。之所以如此重要，是因为在某些情况下可以关闭缓存。如果发生这种情况，解析器将继续进行而不构建对象结构。用户可以从\
+  \ AXIOM 中提取原始 pull 流并使用它代替 AXIOM。在这种情况下，有时关闭缓存是有益的。\n\n### 使用 AXIOM\n\n你可以下载 AXIOM\
+  \ 二进制文件，也可以从源分发版（或源仓库）构建二进制文件。如你所知，虽然 AXIOM 最初是作为 Axis2 的一部分启动的，但现在它有自己的发布周期。因此，你可以从\
+  \ AXIOM 发布版下载 AXIOM 二进制文件，也可以在 Axis2 发布版中找到 AXIOM 二进制文件。\n\n一旦你拥有 AXIOM 二进制文件，下一步是将二进制文件添加到你的类路径中（以及依赖的二进制文件）；只有这样你才能开始使用\
+  \ AXIOM。如果你的应用程序有构建系统，例如 Maven，你可以添加依赖项，让它自动下载 AXIOM JAR。\n\n### 创建 Axiom\n\n你可以以三种方式创建\
+  \ AXIOM（对象模型实例），如以下图所示。首先，你可以使用 pull 事件流创建 Axiom。其次，你可以使用 push 事件流创建 Axiom，或者你可以以编程方式创建\
+  \ AXIOM。在本章中，你将学习如何使用 pull 事件流创建 Axiom，以及如何以编程方式创建，因为这两种是最常用的创建 Axiom 的方法。\n\n![](img/e2fb05de168053e6227dab034eff9353_60_0.png)\n\
+  \n首先，让我们看看如何使用 pull 事件流创建 Axiom（我们将交替使用 AXIOM 和 Axiom）。Axiom 提供了工厂和构建器的概念来创建对象。工厂有助于将代码保持在接口级别并将实现分开。Axiom\
+  \ 紧密绑定到 StAX API（pull 解析器 API），因此应首先使用所需输入流创建符合 StAX 的 reader。然后可以选择 AXIOM 中提供的众多构建器之一。在\
+  \ Axiom 中，你可以找到不同类型的构建器，主要为用户方便。Axiom 有 OM 构建器（纯 XML 处理）以及 SOAP 构建器（针对 SOAP 优化的\
+  \ SOAP 处理），因此你可以根据需要使用合适的构建器。StAXOMBuilder 将构建符合纯 XML InfoSet 的对象模型，而 SOAPModelBuilder\
+  \ 通过其构建器方法返回 SOAP 特定对象（例如 SOAPEnvelope，它是 OMElement 的子类）。\n\n#### 从输入流创建 Axiom\n\
+  \n以下代码片段显示了从文件输入流（输入流可以是文件流、套接字流或任何其他流）创建 Axiom 文档的正确方法：\n\n```\n//First, create\
+  \ the parser\nXMLStreamReader parser = XMLInputFactory.newInstance().\ncreateXMLStreamReader(new\
+  \ FileInputStream(file));\n//create an OM builder, the most recommended approach\
+  \ is to use the\n//factory, but here we simply create it\n```\n\n\n\n\n\n当遍历一个 Axiom\
+  \ 对象时，你可以使用常规的树遍历方式：获取一个节点，查找其子节点，然后对每个子节点重复相同操作。值得注意的是，在 Axiom 中你得到的不是列表，而是迭代器：其思想是通过迭代器来封装延迟构建。以下代码示例演示了如何访问子节点。子节点的类型为\
+  \ `OMNode`，可以是 `OMText` 或 `OMElement` 类型。\n\n```\nIterator childNodes = root.getChildren();\n\
+  while(childNodes.hasNext()){\n    OMNode node = (OMNode) childNodes.next();\n}\n\
+  ```\n\n此方法展示了如何使用迭代器访问子节点列表；除此之外，一旦处理了某个特定元素，你还可以获取它的兄弟节点。此外，你可以分别使用 `nextSibling()`\
+  \ 和 `previousSibling()` 方法访问下一个兄弟节点和上一个兄弟节点。\n\n你还可以使用 `getChildrenWithName(QName)`\
+  \ 方法只过滤一组节点（例如，具有特定名称的元素），`getChildrenWithName(QName)` 方法返回一个迭代器，其中包含所有具有给定 QName\
+  \ 的子节点。\n\n## 序列化\n\n现在你已经对创建和遍历 Axiom 树有了很好的理解。因此，下一个最重要的部分是学习如何将 Axiom 对象模型序列化或写入到输出流中。\n\
+  \nAxiom 既可以作为纯对象模型（例如一组 Java 对象）进行序列化，也可以作为拉式事件流（例如写入文件或任何其他输出流）进行序列化。序列化使用 `XMLStreamWriter`\
+  \ 对象来写出输出，因此可以使用相同的序列化机制来写入不同类型的输出（例如文本、二进制等）。虽然本书未讨论，当前版本的 Axis2 使用了这一机制，并提供了多种不同的消息格式（例如\
+  \ REST、JSON 等）。\n\n## 创建 SOAP 1.1 文档\n\n如下面的代码所示，首先创建一个 `book` 元素作为 SOAP 消息的正文，然后创建一个默认的\
+  \ SOAP 1.1 信封，并将创建的 `book` 元素添加为正文：\n\n```\nOMFactory factory = OMAbstractFactory.getOMFactory();\n\
+  \    OMNamespace axis2 = factory.createOMNamespace(\"axis2\", \"ns\");\n    OMElement\
+  \ root = factory.createOMElement(\"book\", axis2);\n    OMAttribute type = factory.createOMAttribute(\"\
+  type\",null,\"web-services\");\n    root.addAttribute(type);\n    OMElement name\
+  \ = factory.createOMElement(\"name\", axis2);\n    OMElement isbn = factory.createOMElement(\"\
+  isbn\", axis2);\n    root.addChild(name);\n    root.addChild(isbn);\n    SOAPFactory\
+  \ soapFactory = OMAbstractFactory.getSOAP11Factory();\n    //get the default envelope\n\
+  \    SOAPEnvelope env = soapFactory.getDefaultEnvelope();\n    //add the created\
+  \ child\n    env.getBody().addChild(root);\n    System.out.println( env);\n```\n\
+  \n如你所见，首先创建 `book` 元素作为 SOAP 消息的正文，然后创建默认的 SOAP 1.1 信封，并将创建的 `book` 元素添加为正文。\n\n\
+  ## 创建 SOAP 1.2 文档\n\n创建 SOAP 1.2 文档与前面的示例几乎相同，只是工厂不同；这里需要使用 1.2 工厂而不是 1.1 工厂：\n\n\
+  ```\nOMFactory factory = OMAbstractFactory.getOMFactory();\n    OMNamespace axis2\
+  \ = factory.createOMNamespace(\"axis2\", \"ns\");\n    OMElement root = factory.createOMElement(\"\
+  book\", axis2);\n    OMAttribute type = factory.createOMAttribute(\"type\",null,\"\
+  web-services\");\n    root.addAttribute(type);\n    OMElement name = factory.createOMElement(\"\
+  name\", axis2);\n    OMElement isbn = factory.createOMElement(\"isbn\", axis2);\n\
+  \    root.addChild(name);\n    root.addChild(isbn);\n    SOAPFactory soapFactory\
+  \ = OMAbstractFactory.getSOAP12Factory();\n    //get the default envelope\n    SOAPEnvelope\
+  \ env = soapFactory.getDefaultEnvelope();\n    //add the created child\n    env.getBody().addChild(root);\n\
+  \    System.out.println( env);\n```\n\n## 小结\n\n在本章中，我们讨论了 Axiom 的一点历史、为什么引入它，以及它所基于的标准规范。随后，我们讨论了它提供的一些功能，并通过代码示例进行了演示。虽然我们没有明确提及，但\
+  \ Axiom 最初仅被设计用于处理 SOAP，后来经过改进以处理任何类型的 XML 消息。因此，目前 Axiom 是一个完整的 XML 处理框架，你可以在 Axis2\
+  \ 之外使用它。\n\n在下一章中，我们将讨论 Axis2 的基本特性之一——执行框架。在那里，我们将讨论处理器链、处理器、阶段、阶段规则，以及这一切如何为 Axis2\
+  \ 提供可扩展的特性。\n"
+- "# 4 执行链\n\n任何 Web 服务框架的关键功能都是处理传入消息并将其传递给目标应用程序（服务），一旦产生结果，再将其传递给客户端。如今，对于业务关键型应用程序，我们需要的远不止处理消息。因此，需要支持可靠性、安全性、事务和节流等功能。此外，框架还应该易于扩展，以支持新的客户需求和其他质量服务。为了提供这些特性，大多数\
+  \ SOAP 处理框架都利用了管道（pipe）的概念，任何传入或传出的消息都会经过管道，而可扩展的管道被划分为多个小块。这样的一块被称为拦截器（interceptor）。可以添加新的拦截器、修改或删除它们，以满足需求。\n\
+  \n在本章中，我们将更详细地讨论以下主题：\n\n- 处理器\n- 阶段\n- 阶段规则\n- 流的概念\n- Axis2 发行版附带的一些默认处理器\n\n\
+  ## 处理器\n\n处理器是 Axis1 项目引入的最重要、最有用的特性之一。事实上，处理器的思想在业界已经使用很久了。有些人将处理器称为消息拦截器。在任何消息传递系统中，拦截器在消息传递的语境中也有其实际含义，它会拦截消息流并执行分配给它的任何任务。实际上，拦截器是消息传递系统中最小的执行单元，因此，作为\
+  \ Axis 中的拦截器，处理器也做同样的事情。\n\n在 Axis 中，处理器是无状态的，这意味着它们不会在内存中保留过去的执行状态。处理器可以看作一个逻辑调用器，其逻辑评估的输入仅从\
+  \ `MessageContext` 获取。处理器对 `MessageContext`（MC）和传入的 SOAP 消息具有读写访问权限。因此，处理器可以读取 SOAP\
+  \ 消息，从消息中删除元素（主要是消息头），添加新元素（消息头），或修改元素，以及添加、删除或修改 `MessageContext` 中的内容。\n\n为了便于后续讨论，我们可以将\
+  \ `MessageContext` 视为一个属性包，它保存传入或传出的消息，以及（可能两者都有）在消息通过执行链时所需的其他参数和属性。另一方面，通过 MC，我们可以访问整个系统，例如系统运行时、全局参数、属性服务以及操作。我们将在第\
+  \ 6 章“信息模型”中讨论更多与 MC 相关的操作。\n\n在大多数情况下，处理器只处理 SOAP 消息的头块，即读取一个或多个消息头、添加消息头或移除消息头。然而，这并不意味着处理器不能处理\
+  \ SOAP 正文。有时处理器也会处理正文；一个很好的例子是加密。在读取过程中，如果某个消息头面向某个处理器，而该处理器无法正确执行（消息可能有错误），则应抛出异常，下一个链驱动程序（在\
+  \ Axis2 中是引擎）将采取必要的操作。带有一些消息头的典型 SOAP 消息如下图所示：\n\n![](img/e2fb05de168053e6227dab034eff9353_72_0.png)\n\
+  \n\n\n\n\n![](img/e2fb05de168053e6227dab034eff9353_75_0.png)\n\n阶段（phase）旨在支持阶段规则。阶段规则告诉\
+  \ Axis2 在执行链中应将处理器放在何处。稍后我们会看到，有诸如 phaseFirst 和 phaseLast 这样的规则。因此，在一个阶段中，有保留的插槽用于放置阶段第一个和阶段最后一个处理器。其余的处理器将保存在另一个列表中。一个阶段可以图形化表示如下：\n\
+  \n![](img/e2fb05de168053e6227dab034eff9353_75_1.png)\n\n一旦引擎调用阶段的 invoke 方法，它将按照以下顺序执行：\n\
+  \n1. 首先检查前置条件是否满足。\n   - 如果不满足，则抛出异常并停止处理消息。\n2. 然后检查阶段第一个处理器是否存在。如果存在，则调用它。\n3.\
+  \ 接下来，调用除阶段最后一个处理器之外的其余处理器。\n4. 如果阶段最后一个处理器存在，则调用它。\n5. 最后，检查后置条件是否满足以转发消息。\n  \
+  \ - 如果不满足，则停止执行并抛出异常。\n\n## 执行链\n\n所有全局阶段从其名称中也具有语义含义：\n\n- 传输阶段（Transport phase）：包含一个执行依赖于传输类型任务的处理器。\n\
+  - 安全阶段（Security phase）：WS-security 实现会添加它们的处理器，但不限于此，任何其他模块或用户也可以添加处理器。\n- 预分发（PreDispatch）：顾名思义，它包含一组执行分发所需任务的处理器。像\
+  \ WS-addressing 这样的处理器将始终位于此阶段。\n- 分发阶段（Dispatch phase）：该阶段通过为传入消息查找相应的服务和操作来执行分发。因此，分发阶段由分发处理器组成。我们也可以添加新的全局阶段，然后向其添加处理器，这需要修改\
+  \ `axis2.xml` 文件。\n\n请注意，如有必要，用户可以通过编辑 `axis2.xml` 轻松添加新阶段。\n\n### 操作阶段\n\n例如，假设我们有一个处理器，不需要为到达系统的每条消息运行它，但需要为选定的操作运行它。这就是操作阶段发挥作用的地方。操作阶段是位于分发阶段之后的阶段，用户可以添加任意数量的阶段。添加操作阶段不会改变其他操作在其链中的结构。\n\
+  \n### 阶段规则\n\n阶段规则的主要思想是正确定位处理器相对于阶段内另一个处理器的位置，可能是在部署时或运行时。Axis1 没有阶段或阶段规则的概念。它只有一个全局配置文件，在其中定义处理器。但这有很多局限性；尤其是，你会失去处理器链的动态特性。因此，阶段规则的一个方面是解决动态执行链构建能力的问题。\n\
+  \n### 描述阶段规则的特征\n\n阶段规则的特征可以基于以下一个或多个属性：\n\n- 阶段名称（Phase name）：处理器必须被放置到的阶段的名称\n\
+  - 第一阶段（`phaseFirst`）：阶段中的第一个处理器\n- 最后阶段（`phaseLast`）：阶段中的最后一个处理器\n- 之前（`before`）：将处理器定位在另一个处理器之前\n\
+  - 之后（`after`）：将处理器定位在另一个处理器之后\n- 之前和之后：将处理器放置在两个处理器之间\n\n### 阶段名称\n\n阶段是任何阶段规则的一个强制属性，该规则给出了处理器必须适配的阶段名称。为了使规则成为有效的阶段名称，该名称必须为系统所知，并且必须是全局阶段名称或操作特定的阶段。\n\
+  \n### phaseFirst\n\n顾名思义，如果你希望某个处理器在给定阶段中作为第一个处理器被调用，而不考虑该阶段中的其他处理器，则必须将 phaseFirst\
+  \ 属性设置为 true。一个其阶段规则仅包含 phaseFirst 和阶段名的处理器如下所示：\n\n```\n<handler name=\"simple_Handler\"\
+  \ class=\"org.apache.axis.handlers.SimpleHandler\">\n    <order phase=\"userphase1\"\
+  \ phaseFirst=\"true\"/>\n</handler>\n```\n\n### phaseLast\n\n与 phaseFirst 类似，如果希望处理器在给定阶段中最后运行，而不考虑其他处理器，则必须将\
+  \ phaseLast 设置为 true。因此，带有 phaseLast 的处理器如下所示：\n\n```\n<handler name=\"simple_Handler\"\
+  \ class=\"org.apache.axis.handlers.SimpleHandler\">\n    <order phase=\"userphase1\"\
+  \ phaseLast=\"true\"/>\n</handler>\n```\n\n如果某个阶段规则同时将 phaseFirst 和 phaseLast 设置为\
+  \ true，那么该阶段不能再有任何其他处理器。换句话说，该阶段只有一个处理器。\n\n### before\n\n可能会存在这样的情况：一个处理器应该总是在某个其他处理器之前运行，无论其确切位置如何。一个实际用例可以是安全处理器需要在\
+  \ RM 处理器之前运行。逻辑必须按如下方式编写，并且 before 属性的值是被引用的处理器名称：\n\n- 如果某个处理器的阶段规则同时将 `phaseFirst`\
+  \ 和 `phaseLast` 设置为 `true`，那么该特定阶段不能有多个处理器。如果有人试图编写一个将其他处理器插入到同一阶段的阶段规则，则该第二个阶段规则无效。\n\
+  - 一个阶段中不能有两个处理器的 `phaseFirst` 属性设置为 `true`。\n- 一个阶段中不能有两个处理器的 `phaseLast` 属性设置为\
+  \ `true`。\n- 如果规则中的 `before` 属性被引用为 `phaseFirst` 处理器，则该规则无效。\n- 如果规则中的 `after` 属性被引用为\
+  \ `phaseLast` 处理器，则该规则无效。\n\n```\n<handler name=\"simple_HandlerError\" class=\"\
+  org.apache.axis.handlers.SimpleHandlerError\">\n    <order phase=\"userphase1\"\
+  \ before=\"simple_Handler\" phaseFirst=\"true\"/>\n</handler>\n```\n\n阶段规则是为每个基本处理器定义的，系统中的任何处理器都必须归入系统中的某个阶段。\n\
+  \n### 流程\n\n流程只是阶段的一个集合，流程内阶段的顺序在 `axis2.xml` 中定义。由于阶段是一个逻辑集合，实际上是一个虚拟概念，流程可以被视为执行链（处理器的集合）。Axis2\
+  \ 中有四种类型的流程：\n\n- `InFlow`：当消息进入时（请求消息），消息必须经过 `InFlow`。然后 `InFlow` 中的所有处理器都将被调用。`InFlow`\
+  \ 与 `OutFlow` 有些不同。一个流程由两部分组成。第一部分是从开始到分发器（直到并包括分发阶段）。第二部分仅在分发阶段结束时找到相应服务时才存在。因此，流程的第二部分是传入消息对应操作的\
+  \ `InFlow`。所以 `InFlow` 由一个全局部分和一个操作部分组成。\n- `InFaultFlow`：如果传入请求是错误请求（HTTP 状态码为\
+  \ 500 的请求），将调用此流程。\n- `OutFlow`：当消息从服务器传出（比如响应）时，将调用此流程。因此，传出消息始终绑定到一个操作，并且在传出路径中没有类似分发的东西。\n\
+  \n改变流程的唯一方法是将一个或多个处理器添加到流程中的某个阶段。因此，模块参与将动态地改变处理器链。模块可以动态（运行时）或静态（部署时）参与。如果你想静态地参与一个模块，你需要在描述文件中指定它。如果它是针对服务或操作的，则在\
+  \ `services.xml` 中指定；如果是全局参与，则在 `axis2.xml` 中指定。\n\n### 链中的特殊处理器\n\n当你考虑执行链时，可以在执行链中发现四种类型的特殊处理器：\n\
+  \n- 传输接收器\n- 分发器\n- 消息接收器\n- 传输发送器\n\n### 传输接收器\n\n每当消息首先进入系统时，它会到达传输接收器。传输接收器可以被视为等待接受传入消息的东西（在应用服务器的情况下，传输接收器可以是\
+  \ `Servlet`）。因此，执行链的 `InFlow` 总是从传输接收器开始。\n\n### 分发器\n\n正如我们之前讨论的，SOAP 处理框架的基本目标之一是将传入消息传递到目标应用程序。找到正确的目标应用程序的过程称为**分发**。在\
+  \ Axis2 中，分发将在传入执行链的中间进行。因此，分发器是链中的处理器。在 Axis2 中，有几种方式可以执行分发：\n\n- 使用传输头和传输层数据\n\
+  - 使用 WS-Addressing 信息\n- 使用传入的 SOAP 消息\n\n\n\n\n\n为了满足提到的调度类型，Axis2 拥有一组默认调度器，你可以使用\
+  \ `axis2.xml` 来更改它们的执行顺序。如果你查看 `InFlow` 元素，我们在 *Global phases* 部分讨论过，你可以在调度阶段找到可用调度器的集合。\n\
+  \n- `RequestURIBasedDispatcher`: 尝试使用传输 URI 查找服务和操作\n- `SOAPActionBasedDispatcher`:\
+  \ 尝试使用 SOAP 操作查找操作\n- `AddressingBasedDispatcher`: 使用 WS-A 头中的寻址信息查找服务和操作\n- `SOAPMessageBodyBasedDispatcher`:\
+  \ 使用并导航 SOAP 消息，特别是主体以查找操作。\n- `HTTPLocationBasedDispatcher`: 这将用于调度 WSDL 2.0 相关\
+  \ SOAP 消息\n\n## Message receiver\n\n消息接收器本身就是一个处理器，但唯一的区别是 Axis2 对此处理器的处理方式与其他处理器不同。如果消息在执行链中顺利通过（链中间没有发生异常），引擎将把消息交给消息接收器进行业务逻辑调用。下图显示了\
+  \ `MessageReceiver` 在执行链中的位置：\n\n![](img/e2fb05de168053e6227dab034eff9353_84_0.png)\n\
+  \n另一方面，消息接收器是直接与实际服务实现类和 Axis Engine 交互的组件（服务本身也可能是消息接收器的情况）。Axis 1.x 具有 **pivot\
+  \ point** 的概念，即请求路径和响应路径汇合的地方，也是实际服务调用发生的地方。如前所述，消息接收器是 `InFlow` 的末端，与服务 `impl`\
+  \ 类交互。因此，Axis2 在将消息交给消息接收器后不再关心该消息。值得注意的是，是否发送响应消息以及如何处理消息完全由消息接收器决定。\n"
+- "# 5 部署 Axis2\nDeployment Model\n\n现在趋势不仅仅是拥有功能，而是以非常用户友好的方式拥有它们。时间是他们唯一关心的东西，没有人喜欢花几天时间做一件小事。在\
+  \ Apache Axis 的早期版本中，用户友好性并不是首要考虑因素，因为它们主要用于验证 Web 服务概念。因此，在 Axis 1.x 中，用户必须手动调用管理客户端，更新服务器\
+  \ `classpath`，然后重启服务器以应用更改。这种繁琐的部署模型对初学者来说无疑是障碍。因此，Axis2 被设计用来克服这一缺点，并提供灵活、用户友好且易于配置的部署模型。\n\
+  \n在本章中，我们将讨论：\n\n- Axis2 部署模型，特别是基于归档的部署模型\n- 热部署和热更新\n- 仓库的概念\n- 不同的部署描述符\n- 几个动手示例\n\
+  \n## What is new in Axis2 deployment?\n\n如第一章 Apache Web Services and Axis2 中所述，Axis2\
+  \ 设计的主要目标之一是提供更强的用户友好性；同时为系统提供更好的可扩展性和灵活性。谈到用户友好性，服务部署是用户需要更少工作的领域之一。因此，与 Apache\
+  \ Axis1 相比，Axis2 支持一种非常方便的部署模型，并具有许多新功能。其中一些常用且有用的功能集如下所示：\n\n- J2EE-like 部署机制（基于归档）\n\
+  - 热部署和热更新\n- 仓库的概念\n- 部署处理器（模块）方式的改变\n- 部署描述符\n- 部署选项\n\n下图显示了 J2EE-like 部署机制：\n\
+  \n![](img/e2fb05de168053e6227dab034eff9353_88_0.png)\n\n在任何 J2EE 应用服务器中，你都可以将应用程序作为自包含包部署，其中你可以将所有资源、配置文件和二进制文件捆绑到一个文件中并部署它。\n\
+  \n这不是很容易而且有用吗？嗯，显而易见的答案是肯定的，它是有用的。\n\n这就是为什么 Axis2 也引入了相同的机制以非常方便的方式部署服务（和模块）。\n\
+  \n让我们考虑一个场景：你有一个服务，包含多个第三方依赖项和多个属性文件。进一步假设你没有 J2EE-like 部署机制。那么你需要做的就是将所有依赖的 JAR\
+  \ 文件和属性文件放入应用程序类路径中。如果有一台或两台服务器，这项工作就会翻倍，但如果你处于拥有数百个副本的集群环境中会怎样？在这种情况下，不可能去为每个副本都添加依赖的\
+  \ JAR 文件和其他资源到类路径中。因此，当你拥有 J2EE-like 部署机制时，你无需担心此类问题。你只需将自包含包——在这种情况下是服务归档文件——放入副本中即可。这肯定减少了你的工作量，也避免了常见的人为错误。\n\
+  \nAxis2 自包含包（或归档文件）的内部结构如图所示。Axis2 服务归档和模块归档具有非常相似的结构，只有细微差异。\n\n对于 Axis 服务归档，`descriptor.xml`\
+  \ 文件变为 `services.xml`，而在另一种情况下，它变为 `module.xml`。\n\nAxis2 服务归档的文件扩展名为 .aar，模块为 .mar（服务归档或模块归档只是文件扩展名更改为\
+  \ .aar 或 .mar 的 ZIP 文件）。\n\n![](img/e2fb05de168053e6227dab034eff9353_89_0.png)\n\
+  \n如前所述，对于服务，`descriptor.xml` 文件将是 `services.xml`。因此，在服务归档文件中，你可以在 `META-INF` 目录下找到一个名为\
+  \ `services.xml` 的文件。另一方面，对于模块归档，`META-INF` 将包含一个名为 `module.xml` 的文件。\n\n- 对于服务归档：`descriptor.xml\
+  \ ---> services.xml`\n- 对于模块归档：`descriptor.xml ---> module.xml`\n\n## Hot deployment\
+  \ and hot update\n\n可用性是企业级应用程序的一个大问题，在这种情况下，即使是一小段时间也非常宝贵。因此，重启服务器不是现实的选择，需要的是在不关闭系统的情况下更新和更改系统。这就是热部署和热更新发挥作用的地方。当你的应用程序具有这些功能时，你无需关闭系统即可更新系统。\n\
+  \n尽管热部署和热更新的概念对技术范式来说并不是新术语，但它们是 Apache Web 服务栈 Axis 中的新功能。\n\n在 Axis2 中，热部署和热更新通过定时器不断监控仓库中的更改来工作。更具体地说，当用户更改给定文件的最后修改日期时，它会将其视为热更新。相比之下，当它发现新文件时则视为热部署。热部署的架构如下一节图所示。\n\
+  \n## Hot deployment\n\n**Hot deployment** 是在系统运行时部署新服务的能力。例如，假设你有 *service1* 和 *service2*\
+  \ 正在运行，并且你在不关闭系统的情况下部署了一个名为 *service3* 的新服务。系统随后也会使 *service3* 成为运行中的服务。这种特定场景称为热部署。\n\
+  \n![](img/e2fb05de168053e6227dab034eff9353_91_0.png)\n\n作为系统管理员，如果你不喜欢服务的热部署，可以通过更改\
+  \ Axis2 全局配置文件 `axis2.xml` 轻松关闭它。更改全局配置只是更改一个参数，如下所示：\n\n```\n<parameter name=\"\
+  hotdeployment\">false</parameter>\n```\n\n## Hot update\n\n热更新是在不关闭系统的情况下对现有 Web\
+  \ 服务进行更改的能力。这是一个重要功能，在测试环境中是必需的。然而，不建议在实时系统中<|message|>使用热更新，因为热更新可能导致系统进入未知状态。此外，存在丢失该服务现有服务数据的可能性。为了防止这种情况，Axis2\
+  \ 默认将热更新参数设置为 FALSE，如果你想要此功能，可以通过更改配置参数来实现，如下所示：\n\n```\n<parameter name=\"hotupdate\"\
+  >true</parameter>\n```\n\n## Repository\n\nAxis2 仓库只是在文件系统中的一个具有特定结构的目录。另一方面，仓库可以位于本地或远程机器上。仓库的想法是为了以非常方便的方式支持基于归档的部署和热部署功能而引入的。\n\
+  \n\n\n\n\n仓库目录由两个主要子目录组成，名为 `services` 和 `modules`。此外，你可能还有一个可选的子目录名为 `lib`。如果你想部署一个服务，你需要将服务归档文件放入\
+  \ `services` 目录。类似地，如果你想部署一个模块，那么你需要将模块归档文件放入 `modules` 目录。`lib` 目录的想法是存储将要在服务和模块之间共享的第三方库。参考下一张截图以查看目录结构：\n\
+  \n![](img/e2fb05de168053e6227dab034eff9353_92_0.png)\n\n如果 `modules` 目录中的一个或多个模块需要共享某些资源，那么它们可以将这些资源添加到\
+  \ `modules` 目录内的 `lib` 目录中。类似地，如果 `services` 目录中的服务想要共享一些通用资源，适当的位置是 `services`\
+  \ 目录内的 `lib` 目录。\n\n## 处理程序（模块）部署方式的变更\n\n**服务扩展**的概念是 Apache Axis 范式中的一个新功能，但开发者在\
+  \ Axis 1.x 中通过艰难的工作实现了相同的目标。因此，想法是扩展系统的核心功能或提供服务质量。在 Axis 1.x 的情况下，如果你需要扩展其核心功能，你需要编写一个处理程序（执行链中的最小单元），更改全局配置文件以添加处理程序，最后重启系统。\n\
+  \n## 全局描述符或 axis2.xml\n\n如前所述，Axis2 中的配置可以使用 XML 描述符指定。这为扩展和更改 Axis2 提供了更大的灵活性。无需去更改代码以获得不同的配置。即使对于核心功能也是如此。如果你考虑\
+  \ Axis2 的全局配置文件——axis2.xml——它包含了运行 Axis2 所需的所有最小配置。Axis2 的最小配置包括：\n\n- 配置参数\n- 传输发送器\n\
+  - 传输监听器\n- 执行链和阶段\n- 默认调度器\n- 默认消息接收器\n- 默认客户端侧配置\n- 全局模块\n- WS-Policy（全局级别策略）\n\
+  \n其中一些给定的术语对你来说可能不熟悉，但你现在无需担心。我们将在后续章节中讨论这些术语。Axis2 附带默认的 axis2.xml，它具有启动 Axis2\
+  \ 所需的最小配置。然而，你可以根据自己的意愿更改它，并使用自己的 axis2.xml 启动 Axis2。这里需要记住的关键点是，如果你对 axis2.xml\
+  \ 做了任何更改，你必须重启系统才能使这些更改生效。\n\n## 服务描述符（services.xml）\n\n正如我们在上一节讨论的，axis2.xml 指定了影响整个系统的配置。然而，services.xml\
+  \ 用于配置特定服务或服务组。在下一节中，我们将查看在 Axis2 中部署服务的可用方式。基于归档的部署和基于目录的部署可以被认为是两种最常用的技术。在这两种情况下，对于一个服务要成为有效服务，需要有一个\
+  \ services.xml 文件。服务描述符用于指定以下类型的配置（其中一些是可选的）：\n\n- 服务名称\n- 服务的目标名称空间\n- 会话作用域\n\
+  - 暴露传输\n- 服务级别和操作级别参数\n- 消息接收器\n- 服务级别模块\n- 操作 – 暴露操作以及非暴露操作\n- Bean 映射\n- 对象提供者\n\
+  - 服务和操作级别策略\n\n我们将在第 7 章《编写 Axis2 服务》中更深入地学习 services.xml 以及如何编写和创建服务。\n\n## 模块描述符或\
+  \ module.xml\n\n现在显而易见，module.xml 用于配置 Axis2 模块；因此它也有不同类型的配置：\n\n- 处理程序及其阶段规则\n\
+  - 模块参数\n- 端点\n- WS-Policy\n\n在第 8 章《编写 Axis2 模块》中，我们将更深入地学习 Axis2 模块以及如何编写它们。\n\n\
+  ## 可用的部署选项\n\n在 Axis2 的初始阶段，它仅具有基于归档的部署。然而，后来它引入了许多便捷的部署选项。这使得服务作者的工作变得更容易。全部加起来，Axis2\
+  \ 具有以下服务部署选项：\n\n- 基于归档的部署\n- 基于目录的部署\n- 使用归档文件以编程方式部署\n- 以编程方式将 Java 类制作成 Web 服务\n\
+  - 纯 Java 对象（POJO）部署支持以及注解\n- 一行代码部署并启动 Axis2\n\n## 基于归档的部署\n\n在 Axis2 中部署服务的**基于归档的部署**是最常见且推荐的方法。在这里，你可以获得许多配置选项，与其他类型相比更灵活。在本章中，我们将通过示例讨论更多关于基于归档的部署。\n\
+  \n## 基于目录的部署\n\n**基于目录的部署**几乎与基于归档的部署相同；唯一的区别是，与创建归档文件相比，你可以作为目录部署服务。目录的结构与归档文件相同。\n\
+  \n## 以编程方式部署服务\n\n以归档文件以编程方式部署服务并不是真正用户的需求；而是模块作者的需求，其中某些模块需要在运行时部署 Web 服务以提供该特定模块的完整功能。\n\
+  \n要以编程方式创建服务（`ServiceGroup`），你需要有表示服务归档文件的 file 对象以及指向 Axis2 运行时或 `ConfigurationContext`\
+  \ 的指针。一旦你拥有这两个，我们就可以创建 Web 服务，如以下代码片段所示。这种方法的优点是你不需要将服务归档文件复制到仓库中，它仅在你的服务运行时可见。\n\
+  \n```\n//Need to have a reference to ConfigurationContext\nConfigurationContext\
+  \ configContext = getConfigurationContext();\nFile serviceArchiveFile = new File(\"\
+  Location of the file\");\n//Now let's create AxisServiceGroup which contains the\
+  \ service we want to have\nAxisServiceGroup serviceGroup = DeploymentEngine.loadServiceGroup(\n\
+  \    serviceArchiveFile,\n    configContext);\n```\n\n一旦你创建了服务，下一步就是将服务添加到系统中。你可以按如下方式操作：\n\
+  \n```\n//Getting a pointer to AxisConfiguration\nAxisConfiguration axiConfiguration\
+  \ = configContext.\ngetAxisConfiguration();\n//Adding the created service\naxiConfiguration.addServiceGroup(serviceGroup);\n\
+  ```\n\n现在，如果你尝试使用以下 URL 访问 add 方法，你应该得到与之前相同的结果：\n\n```\nhttp://localhost:6060/axis2/services/MyService/add?a=10&b=15\n\
+  <ns:addResponse>\n    <return>25</return>\n</ns:addResponse>\n```\n\n## 总结\n\n在本章中，我们讨论了\
+  \ Axis2 部署的工作方式、可用部署描述符的类型及其结构。此外，我们还讨论了 Axis2 中可用的不同类型的配置文件。在本章末尾，我们学习了最重要的内容，即\
+  \ Axis2 中可用的部署选项。我们也通过示例测试了这些选项。下一步将是创建更多服务并看看会发生什么。\n\n在下一章中，我们将讨论更多关于 Axis2 信息模型的内容。在那里，我们将讨论静态和动态数据层次结构、层次结构中的不同实体、它们是如何创建的，以及哪些描述符负责不同的实体。\n\
+  \n\n\n\n\n以下图表展示了 Axis2 中各种类型描述或元数据之间的关系：\n\n![](img/e2fb05de168053e6227dab034eff9353_104_0.png)\n\
+  \n如我们所见，层级结构中最顶层的组件是 AxisConfiguration，它负责跟踪所有配置数据，无论是直接还是间接的。图中显示了三种主要类型的对象。首先，AxisModule\
+  \ 源自名为 module.xml 的描述文件，因此当我们在 Axis2 中部署一个模块时，将会有一个新的 AxisModule 对象来跟踪该特定模块的配置数据。其次，中间的对象层级是在我们在\
+  \ Axis2 中部署服务时创建的。最后，还有从 axis2.xml 直接读取的传输和其他数据。\n\n## AxisConfiguration\n\nAxisConfiguration\
+  \ 是静态数据层级中最顶层的组件。尽管如此，需要注意的是，虽然我们称 AxisConfiguration 为静态层级，但这并不意味着它是不可变的。在某些情况下其内容会发生变化，但这些变化非常少见。整个\
+  \ AxisConfiguration 对象实际上是从 axis2.xml、一组 module.xml 文件和一组 services.xml 文件中收集的数据。创建\
+  \ AxisConfiguration 的方式也有很多种。可以利用本地文件系统、远程仓库，甚至数据库来创建 AxisConfiguration。我们将在第 15\
+  \ 章《构建安全可靠的 Web 服务》中讨论这些选项。在本章中，重点将放在使用本地文件系统的默认 axis2.xml 文件创建 AxisConfiguration。以下图表展示了一个典型的\
+  \ axis2.xml，其中包含启动 Axis2 服务器所需的最小配置数据（图表后会给出元素结构的详细解释）：\n\n```\nclass=\"o.a.a.t.h.SimpleHTTPServer\"\
+  \n<parameter name=\"port\">6060</parameter>\n</transportReceiver>\n</axisconfig>\n\
+  ```\n\n参数有一个作用域。与 axis2.xml 中的直接子元素一起定义的参数可以被系统中的任何描述符访问。如果参数是在 axis2.xml 的第一级子元素内部定义（例如\
+  \ transportSender），那么该参数只能在该特定子元素内部访问，在本例中即该特定的 transportSender。\n\n在访问参数时，Axis2\
+  \ 首先检查参数是否在当前描述中定义。如果没有，它会检查直接父级中是否存在该参数。如果找到，则返回该参数；否则，将检查父级的父级，以此类推。以这种方式，当请求参数时，它会在层级中进行搜索。\n\
+  \n## MessageReceiver\n\n在第 4 章《执行链》中，我们更详细地讨论了 MessageReceiver 及其用法。我们将为服务使用的所有消息接收器都应指定在\
+  \ axis2.xml 中。你可以根据需要在 services.xml 中使用任意数量的消息接收器并使用合适的接收器。在 axis2.xml 中指定消息接收器的方式如下所示：\n\
+  \n```\n<messageReceivers>\n<messageReceiver mep=\"MEP\"\nclass=\"o.a.a.r.RawXMLINOnlyMessageReceiver\"\
+  />\n</messageReceivers>\n```\n\n注意：在前面的 XML 元素中，MEP 代表 MessageReceiver 可以处理的 Message\
+  \ Exchange Patterns。Class 属性用于指定 MR 的实际实现类。你可以注册任意数量的消息接收器并附带唯一的 MEP。例如，WSDL 2.0\
+  \ 允许 8 种类型的 MEP。\n\n### MessageFormatters and MessageBuilders\n\n在 HTTP 中，我们使用 content-type\
+  \ 头来指定消息体中的数据类型。此外，根据内容类型，消息的线格式也会有所不同，例如 XML、JSON、base64 等。Axis2 也支持多种不同的消息类型，因此需要将消息序列化并反序列化为正确的格式。为此，Axis2\
+  \ 引入了 `MessageFormatters` 和 `MessageBuilders`；前者用于将消息序列化为线格式，后者用于从传入的消息流构建 SOAP\
+  \ 消息。我们已经知道，Axis2 中任何类型的消息都使用 Axiom 表示，而在序列化消息时，需要根据内容类型进行格式化。`MessageFormatters`\
+  \ 就是为我们完成这项工作。我们可以在 axis2.xml 中与内容类型一起指定 `MessageFormatters`。另一方面，进入 Axis2 的消息可能是也可能不是\
+  \ XML。然而，为了让它通过 Axis2，需要创建 Axiom 元素。因此，`MessageBuilders` 被用来根据内容类型构建消息。\n\n这两种类型的描述可以被视为复杂类型，并且用户不太可能更改它们，因此用户可以很满意地使用默认的\
+  \ axis2.xml，因为它已经配置了所有常用的内容类型以及对应的构建器和格式化器。axis2.xml 中 XML 元素的结构如下所示：\n\n```xml\n\
+  <messageFormatters>\n    <messageFormatter contentType=\"application/x-www-form-urlencoded\"\
+  \n    class=\"o.a.a.t.h.XFormURLEncodedFormatter\"/>\n</messageFormatters>\n\n<messageBuilders>\n\
+  \    <messageBuilder contentType=\"application/xml\"\n    class=\"o.a.a.b.ApplicationXMLBuilder\"\
+  />\n</messageBuilders>\n```\n\n如图所示，你可以使用内容类型和实现类来指定消息构建器和格式化器。在运行时，Axis2 会选择合适的组件来序列化和反序列化消息。\n\
+  \n### TransportReceiver and TransportSender\n\nAxis2 与传输无关，因此可以使用多种传输与 Axis2 通信。例如，Axis2\
+  \ 内置支持 HTTP、TCP、SMTP 和 JMS。所有这些都可以通过 axis2.xml 进行配置。\n\n```\n</phaseOrder>\n<phaseOrder\
+  \ type=\"OutFlow\">\n    <phase name=\"OperationOutPhase\"/>\n    ........................................................\n\
+  </phaseOrder>\n<phaseOrder type=\"InFaultFlow\">\n    <phase name=\"PreDispatch\"\
+  />\n    ........................................................\n</phaseOrder>\n\
+  <phaseOrder type=\"OutFaultFlow\">\n    <phase name=\"OperationOutFaultPhase\"/>\n\
+  \    ........................................................\n</phaseOrder>\n```\n\
+  \n到目前为止，我们已经讨论了来自 axis2.xml 的不同类型的配置数据。现在让我们来看其他类型的描述。\n\n## AxisModule\n\n简单来说，AxisModule\
+  \ 是 module.xml 的运行时表示。因此，module.xml 中找到的所有配置数据都存在于 AxisModule 中。一个典型的模块配置文件或 module.xml\
+  \ 包含以下数据：\n\n- 模块名称\n- 模块描述\n- 处理器和阶段规则\n- 端点和操作\n- WS-Policy\n- 参数\n\n在部署时，AxisModule\
+  \ 使用 module.xml 中的数据进行填充。在运行时，可以通过同一个 AxisModule 检索此数据的任何部分。一旦数据填充完成且模块完成，AxisModule\
+  \ 的父描述符就成为 AxisConfiguration。\n\n## AxisMessage\n\nAxisMessage 是服务层级的叶子元素，且 AxisMessage\
+  \ 的直接父级是 AxisOperation。如我们所讨论的，AxisService 可以有任意数量的 AxisOperation。然而，AxisOperation\
+  \ 不能有任意数量的 AxisMessage 元素。操作中 AxisMessages 的数量由消息交换模式决定。例如，如果操作是 in-out，则其中将只有两个\
+  \ AxisMessage 元素，一个表示入消息配置，另一个表示出消息配置。AxisMessage 具有以下数据集合：\n\n- 参数\n- WS-Policy\n\
+  - 消息标签\n- 对应模式元素的 Element QName（可选）\n\n> 注意：消息元素是可选元素，因此我们可以有零个消息元素的操作元素。只有在要覆盖消息时，例如添加新策略，才需要添加消息元素。\n\
+  \n现在，我们对 Axis2 静态数据及其更改方式有了良好的理解，因此下一步是学习动态数据层级以及静态数据与运行时数据之间的关系。以下图表展示了描述层级与上下文或运行时数据层级之间的关系。\n\
+  \n## Axis2 contexts\n\nAxis2 上下文层级是 Axis2 的运行时数据表示。运行时数据只有在 Axis2 接收到消息时才会出现（与描述不同）。运行时数据用于在多次调用之间或一次调用中的多个处理器之间共享数据。当我们讨论描述层级时，我们谈到参数如何作为主要配置机制。在上下文中，主要的配置或数据共享机制是使用\
+  \ Properties。与参数不同，我们不需要在任何地方定义属性，因为我们可以即时创建并使用它们。属性以名称-值对的形式存储在上下文层级中。因此，如果我们向上下文添加一个属性，则该属性可以被其任何子上下文访问和覆盖。\n\
+  \n以下图表展示了 Axis2 中静态数据与运行时数据之间的关系：\n\n\n\n![](img/e2fb05de168053e6227dab034eff9353_113_0.png)\n\
+  \n如你在左侧所见，层级结构中最顶层的组件是 ConfigurationContext。ConfigurationContext 与其他上下文相比，唯一的区别在于，它是系统中在接收消息之前就已存在的唯一上下文。ConfigurationContext\
+  \ 持有对 AxisConfiguration 的引用，要创建 ConfigurationContext，必须有一个可用的 AxisConfiguration。\n\
+  \n### ConfigurationContext\n\nConfigurationContext 是整个系统的运行时表示。要启动 Axis2，你需要有一个配置上下文。配置上下文的生命周期就是系统的生命周期，因此如果我们存储一个状态（一个属性），它将永远保留在那里（也就是说，直到系统关闭）。ConfigurationContext\
+  \ 不仅是所有其他上下文的父级，还可以被视为整个 Axis2 系统的发起者元素。\n\n### ServiceGroupContext\n\n当 Axis2 收到消息时，会创建一个\
+  \ ServiceGroupContext 来存储和共享数据。要创建 ServiceGroupContext，需要有一个可用的 AxisServiceGroup\
+  \ 对象。一个 AxisServiceGroup 可能有一个或多个 ServiceGroupContext。不过，与该上下文关联的 AxisServiceGroup\
+  \ 只有一个。ServiceGroupContext 的生命周期取决于服务作用域（例如，应用、传输、SOAP 会话和请求）。如果服务作用域是应用，那么其生命周期将与系统生命周期相同。然而，如果服务作用域是“请求”，那么每次调用都会创建一个\
+  \ ServiceGroupContext。如果我们希望在运行时在同一个服务组中的多个服务之间共享数据，那么 ServiceGroupContext 提供了实现这一目标的手段。\n\
+  \n### ServiceContext\n\nServiceContext 表示给定服务的运行时数据。要创建 ServiceContext，我们需要有可用的\
+  \ ServiceGroupContext 对象和 AxisService 对象。ServiceContext 的生命周期取决于服务作用域。如果我们希望在同一个服务的多次调用之间共享数据，那么可以使用\
+  \ ServiceContext 作为存储这些数据的占位符。\n\n例如，假设我们有一个包含三个操作的服务——login、doSomething 和 logout。同时，假设我们需要在这三个操作之间共享数据。这里，可以使用\
+  \ ServiceContext 来实现这些目标。一个 ServiceGroupContext 中 ServiceContext 的数量取决于对应 AxisServiceGroup\
+  \ 中 AxisService 的数量。\n\n### OperationContext\n\nOperationContext 表示一个消息交换模式（MEP）的生命周期。通常情况下，操作上下文的生命周期比服务上下文的生命周期短。我们可以使用\
+  \ OperationContext 在 MEP 的消息之间共享数据。例如，如果我们希望在请求和响应之间共享数据，那么可以使用 OperationContext\
+  \ 来实现。ServiceContext 中 OperationContext 上下文的数目与 AxisService 中 AxisOperation 操作的数目无关；它只取决于调用次数，例如，每次调用对应一个\
+  \ OperationContext。\n"
+- "# 7 编写 Axis2 服务\n\n在前几章中，我们介绍并讨论了各种 Axis2 概念，并强调了它们的重要性。从本章开始，我们将讨论如何在现实世界中使用这些概念。每一章都为你提供了一套全面的示例，帮助你清楚地理解这些概念。在你自己的环境中重复这些示例，将有助于你从每一章中获得最大收获。Axis2\
+  \ 为其 Web 服务引入了若干新特性。例如，注解支持、会话支持，以及在信息层次结构、POJO 和基于 Spring 的 Web 服务中存储会话感知数据的方法。\n\
+  \n正如我们在前面章节中已经讨论过的，任何 Web 服务框架都有两个主要方面：首先，为 Web 服务提供托管环境；其次，为访问远程服务提供调用框架。托管服务包括实现服务、部署服务和管理服务生命周期。在第\
+  \ 5 章中，我们简要介绍了若干不同的服务部署方式。在本章中，我们将讨论如何实现服务并将其部署到 Axis2 Web 服务托管环境中。此外，本章将涵盖业界创建\
+  \ Web 服务常用的两种基本方法。学完本章后，你将深入理解如何创建 Web 服务并在 Axis2 中部署它。在第 9 章“客户端 API”中，我们将讨论如何调用部署在\
+  \ Axis2 或其他地方的 Web 服务。\n\n- 现在打开浏览器，输入以下 URL，查看结果。这里需要注意的是，根据你在 Tomcat 中指定的端口，你可能需要修改\
+  \ 8080。\n\n```\nhttp://localhost:8080/axis2/services/HelloWorld/sayHello?name=Axis2\n\
+  ```\n\n现在，你应该能在浏览器中看到 Hello Axis2。你可以通过更改 name 参数来进行测试，你会发现该服务会对输入的任何名称回复 Hello。\n\
+  \n![](img/e2fb05de168053e6227dab034eff9353_121_0.png)\n\n这一切意味着你已成功部署了服务；更具体地说，你已经以\
+  \ REST（表述性状态转移）方式调用了该服务。\n\n如前所述，前面的方法可以被视为在 Axis2 中编写和部署服务最简单的方法之一。虽然我们选择的示例非常简单，但这并不是说你就不能以这种方式编写非常复杂的服务。然而，唯一的限制是，你的服务类不能放在默认包之外的任何包中。如果你希望服务类位于自己的包结构中，则必须遵循一条略有不同的路径，我们将在本章稍后部分讨论。\n\
+  \n考虑到 Axis2 提供的 POJO 支持，你应该知道，你可以部署带注解的 Java 类和不带注解（普通）的 Java 类。这里需要提及的是，Axis2 支持\
+  \ JSR 181 注解规范。如果你不熟悉 Java 注解，那么可以这样说：注解是在使用 POJO 时提供元数据的一种机制。一个带有基本 JSR 181 注解的简单\
+  \ Java 类可以写成如下形式。需要注意的是，使用这一特性可以提供大量数据并创建复杂的应用程序。\n\n```\nimport javax.jws.WebService;\n\
+  import javax.jws.WebMethod;\nimport javax.jws.WebParam;\n\n@WebService (targetNamespace\
+  \ = \"http://sample.org/helloWorld\", name = \"HelloWorld\")\npublic class HelloWorld\
+  \ {\n@WebMethod (action = \"urn:sayHello\" ,operationName = \"sayHello\")\npublic\
+  \ String sayHello(@WebParam (partName = \"name\") String name)\n{\n    return \"\
+  Hello \" + name;\n}\n}\n```\n\n注解仅在 JDK 1.5 或更高版本中受支持。此外，此时你无需担心缺乏注解使用经验。你这里的主要目标应该是学习\
+  \ Axis2 概念，之后，使用注解就会非常简单。\n\n### 带包的 POJO\n\n正如我们在上一节中讨论的，当以单个 .class 文件部署 POJO\
+  \ 时，你不能将 Java 类声明在自定义包中。但如果你确实需要这样做，或者如果你的 POJO 的运行需要多个类，而你又不能再使用单个类的 POJO 方法，那么你需要采用我们接下来要讨论的方法。\n\
+  \n现在让我们考虑如下类：\n\n```\npackage book.sample;\nimport javax.jws.WebService;\n@WebService\n\
+  public class AddressService {\n    public Address getAddress(String name) {\n  \
+  \      Address address = new Address();\n        address.setStreet(\"Street\");\n\
+  \        address.setNumber(\"Number 15\");\n        return address;\n    }\n}\n\
+  ```\n\n你可以看到，我们为 AddressService 类添加了注解。对应的 Address 类如下所示：\n\n```\npackage book.sample;\n\
+  public class Address {\n    private String street;\n    private String number;\n\
+  \    public String getStreet() {\n        return street;\n    }\n}\n```\n\n\n\n\n\
+  ## 在服务级别为整个服务指定消息接收器\n\n想象这样一个场景：你需要在 services.xml 文件中发布大量操作。在这种情况下，为每个操作都添加消息接收器似乎很令人头疼。然而，如果你可以为整个服务指定一个消息接收器，那么服务编写者的工作就会更轻松，同时也会简化\
+  \ services.xml。\n\nAxis2 内置支持 W.S.D.L. 2.0 定义的全部八种消息交换模式（MEP）。在 services.xml 中，你可以指定一种\
+  \ MEP 及其对应的消息接收器，然后根据操作所属的 MEP，Axis2 会自动选取消息接收器并将其设置到该操作上。\n\n在 operation 标签内，你可以添加一个属性来指定操作的\
+  \ MEP，如下所示：\n\n```\n<operation name=\"sayHello\" mep=\"http://www.w3.org/2004/08/wsdl/in-out\"\
+  \ />\n```\n\n以下示例展示了为给定服务定义服务级消息接收器的方法：\n\n```\n<service>\n    <Description>\n \
+  \       This is my first service, which will say Hello.\n    </Description>\n  \
+  \  <messageReceivers>\n        <messageReceiver mep=\"http://www.w3.org/2006/01/wsdl/in-only\"\
+  \ class=\"org.apache.axis2.rpc.receivers.RPCInOnlyMessageReceiver\"/>\n        <messageReceiver\
+  \ mep=\"http://www.w3.org/2006/01/wsdl/in-out\" class=\"org.apache.axis2.rpc.receivers.RPCMessageReceiver\"\
+  />\n    </messageReceivers>\n    <parameter name=\"ServiceClass\" locked=\"false\"\
+  >HelloWorld</parameter>\n    <operation name=\"sayHello\" mep=\"http://www.w3.org/2004/08/wsdl/in-out\"\
+  \ />\n</service>\n```\n\n根据 `services.xml`，`org.apache.axis2.rpc.RPCMessageReceiver`\
+  \ 是服务中所有 in-out 操作（任何属于 in-out MEP 的操作都会将该消息接收器分配为其消息接收器）的消息接收器。而对于 in-only MEP，服务级消息接收器是\
+  \ `RPCInOnlyMessageReceiver`。如果你使用新的 `services.xml` 重新部署 `HelloWorld` 服务，当你再次调用该服务时，肯定会得到相同的结果。\n\
+  \n## 指定服务级消息接收器并通过操作覆盖它们\n\n有时，服务作者可能希望为某些操作使用不同的消息接收器，即使他已经定义了服务级消息接收器。要让某个操作覆盖服务级消息接收器，只需向要分配不同消息接收器的操作添加一个消息接收器元素即可。下面展示了一个采用这种技术的\
+  \ `services.xml` 示例：\n\n```\n<service>\n    <Description>\n        This is my first\
+  \ service, which will say Hello.\n    </Description>\n    <messageReceivers>\n \
+  \       <messageReceiver mep=\"http://www.w3.org/2006/01/wsdl/in-only\" class=\"\
+  org.apache.axis2.rpc.receivers.RPCInOnlyMessageReceiver\"/>\n        <messageReceiver\
+  \ mep=\"http://www.w3.org/2006/01/wsdl/in-out\" class=\"org.apache.axis2.rpc.receivers.RPCMessageReceiver\"\
+  />\n    </messageReceivers>\n    <parameter name=\"ServiceClass\" locked=\"false\"\
+  >HelloWorld</parameter>\n    <operation name=\"sayHello\">\n        <messageReceiver\
+  \ class=\"org.apache.axis2.receivers.RawXMLINOutMessageReceiver\"/>\n    </operation>\n\
+  </service>\n```\n\n操作 `sayHello` 使用了与其服务级消息接收器不同的消息接收器。\n\n无论你是否在 `services.xml`\
+  \ 中指定它们，服务实现类中的所有公共方法都会暴露。Axis2 通过检查操作对应的 Java 方法来计算其 MEP。如果方法的返回类型是 void，那么 MEP\
+  \ 将为 in-only，否则将为 in-out。根据 MEP，将设置正确的消息接收器。\n\n## 添加第三方资源\n\n在很多情况下，你希望在 Web 服务中使用第三方库。此外，到目前为止，你应该知道\
+  \ Axis2 中的每个服务和模块都是隔离的。因此，每个服务都有自己独立的类加载器。当你需要将第三方库包含到 Web 服务中时，Axis2 提供了一种机制来实现这一点。只需在服务归档文件中创建一个名为\
+  \ lib 的文件夹，并将库或资源放入其中即可。\n\n想象你有一个服务，需要使用名为 foo.jar 和 bar.jar 的库，以及名为 xyz.properties\
+  \ 的资源。那么你的服务归档文件应类似于以下截图：\n\n![](img/e2fb05de168053e6227dab034eff9353_130_0.png)\n\
+  \n## 服务 WSDL 和 Schema\n\n当你开始编写相对更复杂的应用程序时，你会觉得需要在服务归档文件中包含 WSDL 文档和 Schema 文件。对于企业级应用程序，你不能让客户端依赖自动生成的\
+  \ WSDL 文档。为了拥有一个可靠且定义明确的 WSDL 文档，有必要将服务与 WSDL 文档文件以及相应的 XML Schema 文件一起部署。因此，当你想要添加\
+  \ WSDL 文档文件时，应该将其放在服务归档的 META-INF 目录中。这样做时你唯一需要记住的是，services.xml 中给出的服务名称与 WSDL\
+  \ 文档中定义的服务名称应该相同。包含 WSDL 文件的服务归档文件将具有以下结构：\n\n## 填充服务骨架\n\nAxis2 会生成一个服务骨架类，其中的方法可以抛出\
+  \ UnsupportedOperation。我们所需要做的就是根据你想要提供的业务逻辑来实现这个服务骨架类。\n\n## 运行 Ant 构建文件\n\n完成服务骨架后，下一步是使用修改后的生成代码创建服务归档文件。为了让这项任务更简单，Axis2\
+  \ 会为你生成一个 Ant 构建文件来创建服务归档文件。你只需打开命令行控制台，进入你输出生成代码的文件夹，然后在控制台中输入 ant build 来运行 Ant\
+  \ 构建文件。服务归档文件将随即为你创建。\n\n在本章中，我们只是粗略地了解了契约优先方法。在本书后面的内容中，你将更详细地学习代码生成和数据绑定。我们还将介绍一些示例以及可用的工具。\n\
+  \n## 小结\n\n在 Axis2 中，将 Java 类转换为 Web 服务非常简单。一旦你知道如何正确编写 `services.xml` 文件，你就可以创建更复杂的应用程序，而不仅仅是\
+  \ POJO。部署服务只需创建服务归档文件并将其放入 Axis2 仓库中的 services 目录即可。WSDL 优先方法是创建服务最简单的方法，因为 Axis2\
+  \ 内置了对代码生成的支持，并且它提供了一套工具来让这项工作更加轻松。\n\n在本章中，我们讨论了如何将简单的类文件转换为 Web 服务，以及如何以 REST\
+  \ 方式访问该服务。我们讨论了当服务因添加包名而变得稍复杂时会发生什么。我们还讨论了如何使用基于归档的部署机制。最后，我们简要讨论了契约优先方法。\n\n在下一章中，我们将讨论如何扩展\
+  \ Axis2 的核心功能，并使用 Axis2 模块提供额外的服务质量。\n"
+- "# 8 编写 Axis2 模块\n\n## 编写 Axis2 模块\n\nWeb 服务在行业中越来越受欢迎，并已成为应用程序集成的主要推动力之一。此外，由于使用\
+  \ Web 服务的灵活性和优势，每个人都在尝试为其应用程序提供 Web 服务支持。因此，Web 服务框架需要支持新的、更加定制化的需求。正如我们在前面章节中已经讨论过的，Web\
+  \ 服务框架的主要目标之一是将传入的消息交付给目标服务。然而，仅仅将消息传递给服务是不够的；当今的应用程序还需要可靠性、安全性、事务性以及其他服务质量。\n\n\
+  由于 Web 服务的普及，标准机构正在制定新的 Web 服务标准，而如果 Web 服务框架不够灵活，就很难支持这些新标准。从 Axis2 诞生之初，灵活性和可扩展性就是两个主要的设计考虑因素。Axis2\
+  \ 模块的理念是在不修改核心系统的情况下扩展系统的核心功能。例如，Axis2 将可靠性和安全性作为两个独立的模块来支持，而核心引擎完全独立于这两个服务质量模块。\n\
+  \n在本章中，我们将讨论 Axis2 模块的强大功能，以及如何使用它们扩展 Axis2 以支持你自己的需求。具体来说，我们将讨论以下内容：\n\n- Axis2\
+  \ 模块的简要历史\n- 介绍模块概念\n- 模块的结构\n- 模块配置文件（`module.xml`）\n- 可选的模块实现类\n- 编写 `module.xml`\
+  \ 文件的步骤\n- 部署和启用模块\n- WS-Policy 及其在模块中使用的简要概述\n\n\n\n\n## 处理器与阶段规则\n\n正如我们讨论过的，模块是处理器的集合，因此一个模块可以包含一个或多个处理器。无论模块中有多少个处理器，`module.xml`\
+  \ 都提供了一种便捷的方式来指定它们。最重要的是，`module.xml` 可用于提供足够的配置选项，将处理器添加到系统中，并指定模块作者希望处理器在何处运行。在第4章“执行链”中，我们了解了阶段规则（phase\
+  \ rules）作为一种机制，可以让 Axis2 将处理器放入执行链中的特定位置，因此现在是时候通过一个示例来深入了解它们了。\n\n在编写阶段规则以及在 `module.xml`\
+  \ 中指定处理器之前，让我们先看看如何编写处理器。在 Axis2 中有两种编写处理器的方式：\n\n- 实现 `org.apache.axis2.engine.Handler`\
+  \ 接口\n- 继承 `org.apache.axis2.handlers.AbstractHandler` 抽象类\n\n在本章中，我们将编写一个简单的应用程序，以便更好地理解模块。此外，为了让示例应用程序更简单，我们将忽略\
+  \ Handler API 的一些复杂性。我们将采用继承 `AbstractHandler` 的方式。当我们继承这个抽象类时，只需要实现一个名为 `invoke`\
+  \ 的方法即可。下面的示例代码将演示如何实现 `invoke` 方法：\n\n```\npublic class IncomingCounterHandler\
+  \ extends AbstractHandler implements CounterConstants {\npublic InvocationResponse\
+  \ invoke(MessageContext messageContext) throws AxisFault {\n    //get the counter\
+  \ property from the configuration context\n    ConfigurationContext configurationContext\
+  \ = messageContext.getConfigurationContext();\n    Integer count = (Integer) configurationContext.getProperty(INCOMING_MESSAGE_COUNT_KEY);\n\
+  \    //increment the counter\n    count = Integer.valueOf(count.intValue() + 1);\n\
+  \    //set the new count back to the configuration context\n    configurationContext.setProperty(INCOMING_MESSAGE_COUNT_KEY,\
+  \ count);\n    //print it out\n    System.out.println(\"The incoming message count\
+  \ is now \" + count);\n    return InvocationResponse.CONTINUE;\n}\n}\n```\n\n```\n\
+  AxisModule axisModule) throws AxisFault {\n    //initialize our counters\n    System.out.println(\"\
+  inside the init : module\");\n    initCounter(configurationContext, INCOMING_MESSAGE_COUNT_KEY);\n\
+  \    initCounter(configurationContext, OUTGOING_MESSAGE_COUNT_KEY);\n}\n\nprivate\
+  \ void initCounter(ConfigurationContext configurationContext,\n                \
+  \         String key) {\n    Integer count = (Integer) configurationContext.getProperty(key);\n\
+  \    if (count == null) {\n        configurationContext.setProperty(key, Integer.valueOf(\"\
+  0\"));\n    }\n}\n\npublic void engageNotify(AxisDescription axisDescription) throws\
+  \ AxisFault {\n    System.out.println(\"inside the engageNotify \" + axisDescription);\n\
+  }\n\npublic boolean canSupportAssertion(Assertion assertion) {\n    //returns whether\
+  \ policy assertions can be supported\n    return false;\n}\n\npublic void applyPolicy(Policy\
+  \ policy,\n                         AxisDescription axisDescription) throws AxisFault\
+  \ {\n    // Configuure using the passed in policy!\n}\n\npublic void shutdown(ConfigurationContext\
+  \ configurationContext) throws AxisFault {\n    //do cleanup - in this case we'll\
+  \ write the values of the counters to a file\n    try {\n        SimpleDateFormat\
+  \ format = new SimpleDateFormat(TIMESTAMP_FORMAT);\n        File countFile = new\
+  \ File(COUNT_FILE_NAME_PREFIX + format.format(new Date()) + FILE_SUFFIX);\n    \
+  \    if (!countFile.exists()) {\n            countFile.createNewFile();\n      \
+  \  }\n```\n\n```java\nProperties props = new Properties();\nprops.setProperty(INCOMING_MESSAGE_COUNT_KEY,\n\
+  \                  configurationContext.getProperty(INCOMING_MESSAGE_COUNT_KEY).toString());\n\
+  props.setProperty(OUTGOING_MESSAGE_COUNT_KEY,\n                  configurationContext.getProperty(OUTGOING_MESSAGE_COUNT_KEY).toString());\n\
+  //write to a file\nprops.store(new FileOutputStream(countFile), COUNTS_COMMENT);\n\
+  } catch (IOException e) {\n    //if we have exceptions we'll just print a message\
+  \ and let\nit go\n    System.out.println(\"Saving counts failed! Error is \" +\n\
+  e.getMessage());\n}\n}\n}\n}\n```\n\n如我们所见，前面的模块实现类中有许多方法。但值得注意的是，并非所有方法都在模块接口中。模块接口只有以下方法，而这里我们还有一些其他方法用于支持与计数器模块相关的内容：\n\
+  \n- `init`\n- `engageNotify`\n- `applyPolicy`\n- `shutdown`\n\n在系统启动时，`init` 方法会被调用，此时模块可以执行各种初始化任务。在我们的示例模块中，我们初始化了入向计数器和出向计数器。\n\
+  \n当我们将这个特定模块应用到整个系统、某个服务或某个操作时，`engageNotify` 方法会被调用。此时，模块可以决定是否允许这种应用。举例来说，如果我们尝试将安全模块应用到某个服务，而此时模块发现加密算法存在冲突，那么在这种情况下，模块将无法接入，模块会抛出异常，Axis2\
+  \ 也不会接入该模块。在我们的示例中，`engageNotify` 方法内部不做任何操作。\n\n你可能已经知道，WS-Policy 是关键标准之一，在 Web\
+  \ 服务配置中扮演着重要角色。当你将某个模块应用到某个服务时，模块策略应当应用于该服务，并且在查看该服务的 WSDL 时应可见。因此，`applyPolicy`\
+  \ 方法会在我们应用模块时，将模块策略设置到相应的服务或操作上。在这个特定示例中，我们没有任何与模块关联的策略，因此同样无需担心这个方法。\n\n正如我们在 `init`\
+  \ 方法中讨论的，当系统需要关闭时，`shutdown` 方法会被调用。因此，如果我们希望在该时刻执行任何类型的处理，可以将相关逻辑添加到那个特定方法中。在我们的示例中，为了演示目的，我们添加了将计数器值存储到文件中的代码。\n\
+  \n## 编写 module.xml 文件\n\n到目前为止，我们已经编写了两个处理器和模块实现类。现在，唯一剩下的事情就是编写模块描述文件。在编写 `module.xml`\
+  \ 时，我们必须使用阶段规则来指定处理器的位置，之前我们已经讨论过阶段规则（是时候复习一下阶段规则了）。我们模块的最简单的 `module.xml` 文件如下所示：\n\
+  \n```\n<module name=\"counterModule\" class=\"org.apache.axis2.sample.module.request.CounterModule\"\
+  >\n    <Description>\n        Counts the incoming and outgoing messages\n    </Description>\n\
+  \    <InFlow>\n        <handler name=\"IncomingMessageCountHandler\" class=\"org.apache.axis2.sample.module.request.IncomingCounterHandler\"\
+  >\n            <order phase=\"Transport\" after=\"RequestURIBasedDispatcher\" before=\"\
+  SOAPActionBasedDispatcher\"/>\n        </handler>\n    </InFlow>\n    <OutFlow>\n\
+  \        <handler name=\"OutgoingMessageCountHandler\" class=\"org.apache.axis2.sample.module.request.OutgoingCounterHandler\"\
+  >\n            <order phase=\"MessageOut\"/>\n        </handler>\n    </OutFlow>\n\
+  </module>\n```\n\n在 `module.xml` 文件中，我们将模块的描述指定为“Counts the incoming and outgoing\
+  \ messages”（统计流入和流出的消息）；同时，它还通过阶段规则指定了我们之前实现的两个处理器。\n\n如你所见，我们尝试将入站消息计数器放入传输阶段，具体位置是在\
+  \ `RequestURIBasedDispatcher` 之后、`SOAPActionBasedDispatcher` 之前。如果你查看默认的 `axis2.xml`\
+  \ 文件，就会在 `inFlow` 中看到这两个处理器。同时，在出站消息中，计数器被添加到消息输出阶段，这里没有指定确切位置。\n\n如果你仔细查看根元素，会发现一个名为“class”的属性，它指定了模块接口类。我们需要记住，这个属性是可选的，某些模块可能有也可能没有这个属性。\n\
+  \n> 在某些情况下，模块作者需要为模块使用新的阶段。在这种情况下，可以编辑 `axis2.xml` 并指定所需的新阶段。一旦指定，就可以在 `module.xml`\
+  \ 中使用这些阶段。\n\n在 `module.xml` 文件中，我们还没有讨论如何添加错误处理器。众所周知，错误处理有两个流：`InFaultFlow` 和\
+  \ `OutFaultFlow`。当收到入站错误时，执行 `InFaultFlow`；同样，当有出站消息时，执行 `OutFaultFlow`。如果你想向这些阶段中的任何一个添加处理器，可以像操作另外两个流一样进行。\n\
+  \n## 部署并应用模块\n\n现在我们已经编写了有效模块所需的一切，剩下的唯一事情就是创建模块归档文件并将其部署到存储库中。首先编译源代码，然后，如我们所知，会生成\
+  \ `.class` 文件。\n\n假设 `org.apache.axis2.sample.module.request` 是我们源文件的包名，我们可以在 `classes/org/apache/axis2/sample/module/request`\
+  \ 下找到所有 `.class` 文件。\n\n\n\n\n现在，在 `classes` 目录下创建一个名为 `META-INF` 的目录，并将 `module.xml`\
+  \ 文件复制到其中。然后，我们的 `classes` 目录应该如下面的截图所示：\n\n![](img/e2fb05de168053e6227dab034eff9353_146_0.png)\n\
+  \n现在，从 `classes` 目录创建一个 ZIP 文件，并将该 ZIP 文件重命名为 `counter-module.mar`。\n\n部署模块非常简单，只需将文件放入\
+  \ `TOMCAT_HOME/webapps/axis2/WEB-INF/modules` 或 `repository/modules` 目录即可。在这里，我们将重点讨论在\
+  \ Tomcat 或你喜欢的 Web 应用服务器中部署模块。众所周知，Axis2 不支持模块的热部署，因此仅仅放入模块不会对运行时系统产生任何更改。要部署我们的模块并将必要的更改应用到运行时，我们需要重启\
+  \ Axis2；换句话说，我们需要重启应用服务器。\n\n需要注意的是，仅仅部署模块并不会将其处理器（handler）添加到处理器链中；要将处理器添加到系统中，必须启用（engage）该模块。现在，让我们看看如何在\
+  \ Axis2 中启用模块。为此，我们可以使用 Axis2 Web 管理控制台。此外，为了简单起见，让我们尝试使用 Web 管理控制台将该模块启用到系统中的所有服务（我们也可以使用管理控制台仅启用单个服务）。我们可以通过以下步骤将模块启用到系统中：\n\
+  \n- 1. 访问 http://localhost:8080/axis2/。\n- 2. 点击“Administration”选项卡。这将打开一个新页面，并要求输入用户名和密码。\n\
+  \n> 还有其他启用模块的方式，例如，要全局启用模块，用户可以编辑 axis2.xml 并添加 `<module ref=\"modulename\" />`\
+  \ 元素。此外，如果用户想要将其启用到特定服务，可以通过编辑 services.xml 并添加上面提到的相同标签来实现。\n\n## 高级 module.xml\n\
+  \n这里，我们看到了一个非常简单的 module.xml，但对于非常复杂的应用程序，我们需要在 module.xml 文件中进行更多配置。我们可能需要参数、WS-Policy\
+  \ 和端点。现在让我们逐一简要了解它们。\n\n### 参数\n\n在此处添加参数与在 services.xml 或 axis2.xml 中添加参数相同。我们只需要将以下标签添加到\
+  \ module.xml 中，Axis2 就会为我们处理正确的事情：\n\n```\n<parameter name=\"foo\">bar</parameter>\n\
+  ```\n\n我们可以在 module.xml 中拥有任意数量的参数，当我们需要访问该参数时，可以按照以下步骤操作：\n\n- - 首先，我们需要获取 AxisModule。我们可以通过使用\
+  \ init 方法（Axis2 传递 AxisModule）来做到这一点，或者我们需要从 ConfigurationContext（在 Module 实现类中）或从\
+  \ messageContext（在处理器中）获取相应的 AxisModule。\n- - 之后，我们可以从 AxisModule 中请求参数。\n\n###\
+  \ WS-Policy\n\n在 module.xml 中指定 WS-Policy 元素是配置模块的一种方式。我们可以在 module.xml 中添加 WS-Policy\
+  \ 元素。如果我们考虑 Sandesha2（可靠消息实现）模块，我们可以找到以下策略元素：\n\n```\n<wsp:Policy xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\"\
+  \ xmlns:wsu=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd\"\
+  \ xmlns:sandesha2=\"http://ws.apache.org/sandesha2/policy\" wsu:Id=\"RMPolicy\"\
+  >\n    <sandesha2:RMAssertion>\n        [REST OF THE FILE]\n    </sandesha2:RMAssertion>\n\
+  </wsp:Policy>\n```\n\n### 端点\n\n在 Axis2 中，端点是 Web 服务的一个操作。因此，添加端点与添加操作相同。关键问题是——为什么我们需要向模块添加端点？为了理解这一点，假设我们有一个模块，并且该模块具有一组控制操作。最合适的例子是可靠消息传递，因为它有许多控制消息（例如，创建序列、最后消息、终止序列）。假设我们需要以可靠的方式调用一个服务。它首先需要与该服务建立序列。为此，它将向我们需要访问的服务发送名为\
+  \ `createSequence` 的控制消息。但该服务没有该方法，因此如果我们尝试在不添加该方法的情况下发送 `createSequence` 消息，Axis2\
+  \ 将抛出一个异常，提示**无法分发**。因此，添加端点将解决该问题。因此，当我们启用 Sandesha 时，它会在我们启用模块时（或者如果我们将其启用到整个系统，则为所有服务）向服务添加一个名为\
+  \ `createSequence` 的方法。当请求到来时，Axis2 将毫无问题地进行分发。此操作或端点具有自己的消息接收器来处理相应的事情。\n\n因此，很明显，当模块需要交换控制操作时，需要添加端点来表示这些操作。添加端点非常简单。我们需要做的是添加一个或多个操作元素，以及一个消息接收器和一组操作映射。为了对此有所了解，让我们以\
+  \ Sandesha 模块作为参考。它的 `module.xml` 具有以下操作标签来添加控制操作。请记住，当我们在 `module.xml` 中有操作标签时，Axis2\
+  \ 将完成所有处理，包括创建 `AxisOperation` 并添加它。作为模块作者，我们只需要在 `module.xml` 文件中指定它们：\n\n```\n\
+  <operation name=\"Sandesha2OperationInOut\" mep=\"http://www.w3.org/2006/01/wsdl/in-out\"\
+  >\n    <messageReceiver class=\"org.apache.sandesha2.msgreceivers.RMMessageReceiver\"\
+  />\n    <!-- namespaces for the 2005-02 spec -->\n    <actionMapping>http://schemas.xmlsoap.org/ws/2005/02/rm/CreateSequence</actionMapping>\n\
+  \    <actionMapping>http://schemas.xmlsoap.org/ws/2005/02/rm/AckRequested</actionMapping>\n\
+  \    ..................\n</operation>\n```\n\n### 编写 Axis2 模块\n\n如果我们查看 Sandesha\
+  \ 的 module.xml，我们将能够学习和了解更多关于编写 module.xml 文件的内容。\n\n### 总结\n\n在本章中，你了解了 Axis2 模块的重要性。我们还了解到，Axis2\
+  \ 模块提供了扩展 Axis2 核心功能的一种非常灵活的方式，并提供了高质量的服务。此外，我们通过编写一个示例模块并演示大多数常用配置设置来讨论模块及相关概念。在我们的示例应用程序中，我们讨论了如何编写处理器、如何编写模块实现类，以及最后如何将所有内容组合在一起并部署模块。在本章末尾，我们学习了如何将模块启用到\
+  \ Axis2。\n\n在本章中，我们讨论了如何编写和部署服务，以及如何编写和部署模块。在下一章中，我们将讨论如何调用远程服务。在那里，我们将讨论如何将 Axis2\
+  \ 用作客户端并以多种方式调用服务。\n\n## 客户端 API\n\nWeb 服务是应用程序集成（组合）中常用的方法之一；在集成应用程序时，一个应用程序既可以充当消费者（客户端），也可以充当生产者（服务器）。一个\
+  \ Web 服务框架应该能够部署服务，也能够访问服务。到目前为止，我们已经讨论了它的部署方面。因此，在本章中，我们将重点关注客户端，以及如何使用 Axis2 访问远程服务。在高层次上，Axis2\
+  \ 运行时并不区分客户端和服务器端。此外，它在服务器端和客户端使用相同的执行框架。正如我们已经讨论过的，在服务器端，我们有服务。因此，为了在客户端也保持对称性，Axis2\
+  \ 在我们使用客户端 API 时会创建一个虚拟服务。在本章中，我们将通过示例用例来探讨客户端 API 的各个方面。\n\n在本章中，我们将讨论 Axis2 客户端最常用的\
+  \ API，并解释如何通过示例代码使用它们。首先，我们将讨论创建 Axis2 客户端实例的各种方法。然后，我们将讨论可用的 API，最后，我们将讨论 Axis2\
+  \ 客户端 API 的更高级用法。具体来说，我们将详细涵盖以下内容：\n\n- - Web 服务客户端的概念\n- - 同步和异步服务调用\n- - Axis2\
+  \ 客户端 API，即 `ServiceClient` 和 `OperationClient`\n- - 通过示例演示 `ServiceClient` API\n\
+  - - 通过示例演示 `OperationClient` API\n\n\n\n\n在异步类型调用的情况下，用户应用程序（例如 GUI）不会被阻塞，因此用户可以继续工作。Axis2\
+  \ 在异步中使用服务的方式如下图所示：\n\n![](img/e2fb05de168053e6227dab034eff9353_153_0.png)\n\n上图展示了典型的异步消息的工作方式，其中应用程序使用\
+  \ Axis2 客户端并请求发送消息。调用 Axis2 客户端时，应用程序会创建一个回调对象并将其传递给调用。Axis2 使用该回调并将控制权返回给客户端。因此，客户端不会被阻塞。当回复到来时，Axis2\
+  \ 客户端使用回调进行通知，通过这种方式，应用程序也会得知消息到达并据此采取行动。\n\n## 深入了解 Axis2 客户端 API\n\n在当今世界，人们不喜欢也不愿意浪费时间去完成一件简单的事情。因此，用户友好性是任何产品的关键考虑因素之一。在\
+  \ Axis2 中，Axis2 客户端 API 的关键设计之一是提供异步 Web 服务调用支持。同时，Axis2 也非常注重用户友好性，将两者结合起来后，新的客户端\
+  \ API 非常方便使用。为了让 Web 消费者或最终用户的工作更轻松，Axis2 客户端 API 由两个子 API 组成，分别称为 ServiceClient\
+  \ 和 OperationClient，一个面向普通用户，另一个面向高级用户。\n\n## ServiceClient API\n\n如前所述，ServiceClient\
+  \ 主要面向普通用户或刚进入 Web 服务领域的用户。尽管如此，它具有与服务交互的概念，并提供调用任何复杂类型 Web 服务所需的所有支持。让我们假设计算器是一个\
+  \ Web 服务的示例，并进一步假设该服务具有诸如“add”、“deduct”、“multiply”和“divide”等操作。因此，服务客户端的想法是提供一个\
+  \ API，以非常方便的方式调用这些操作中的任何一个。\n\n## 创建 ServiceClient 的可用选项\n\n创建 ServiceClient 实例有多种方式，当然我们可以选择最适合我们的构造函数。不管我们如何创建\
+  \ ServiceClient，都需要有一个 Axis2 运行时（ConfigurationContext）来调用服务。配置上下文的实例要么由用户显式提供，要么由\
+  \ Axis2 内部创建。\n\n前面我们讨论了 ConfigurationContext 以及如何创建它。因此，我们可以在创建 ServiceClient 时使用这些技术来创建\
+  \ ConfigurationContext，或者正如我们将看到的，我们可以创建 ServiceClient 时将 ConfigurationContext 设为\
+  \ null，让 Axis2 为我们创建 ConfigurationContext。\n\n### 类型 1：使用默认构造函数创建 ServiceClient\n\
+  \n创建 ServiceClient 的最简单方法是使用其默认构造函数，如下所示。在这种情况下，它会使用 Axis2 默认配置文件创建一个 ConfigurationContext，该文件位于\
+  \ Axis2 JAR 文件中。同时，它会创建一个匿名（虚拟服务）服务，其中包含三个操作（三个操作用于支持 WSDL 2.0 MEP）。即使我们以这种方式创建服务客户端，我们也可以使用创建的客户端来访问任何\
+  \ Web 服务。\n\n```\nServiceClient serviceClient = new ServiceClient();\n```\n\n当我们在\
+  \ Axis2 系统内部尝试创建 serviceClient 时（例如，处理程序尝试创建 ServiceClient 来调用服务，或服务尝试调用其他服务），则它会使用服务器的\
+  \ ConfigurationContext 创建。在这种情况下，服务器中的所有属性、传输和模块都可供 ServiceClient 使用，这种场景称为在服务器内部运行的客户端。\n\
+  \n### 类型 2：使用自己的 ConfigurationContext 创建 ServiceClient\n\n当我们想要使用自己的配置数据创建 ServiceClient\
+  \ 时，可以使用以下构造函数。如今我们已知，创建 ConfigurationContext 有多种方式。同时，在许多情况下，我们希望使用自己的 AxisService\
+  \ 创建 ServiceClient，该服务可能已配置了自定义 QoS（服务质量）、参数、WS-Policy 等。\n\n```\nServiceClient\
+  \ serviceClient =\n    new ServiceClient (configContext, axisService);\n```\n\n\
+  在这种情况下，任一（或两者）参数都可以为 null。如果两者都为 null，则显然等同于 ServiceClient 的默认构造函数情况。如果 ConfigurationContext\
+  \ 为 null，则根据您尝试创建 ServiceClient 的位置，将使用 Axis2 默认配置创建一个新的，或使用服务器的 ConfigurationContext。类似地，如果\
+  \ AxisService 为 null，则会创建一个匿名服务。\n\n### 类型 3：创建动态客户端（即时客户端）\n\n动态客户端背后的想法是在运行时即时创建\
+  \ ServiceClient，或为给定的 WSDL 创建客户端并使用创建的 ServiceClient 调用相应的服务。当我们以这种方式创建 ServiceClient\
+  \ 时，对应的 AxisService 对象会根据 WSDL 文档进行配置。我们将在本章中段看到动态客户端的优势。创建动态客户端的构造函数如下所示：\n\n```\n\
+  ServiceClient dynamicClient =new ServiceClient(\nconfigContext,wsdlURL, wsdlServiceName,\
+  \ portName);\n```\n\n- configContext：configurationContext 可以为 null；如果为 null，则将应用选项\
+  \ 2 中提到的逻辑。\n- wsdlURL：此参数不应为 null，因为它指定了 WSDL 文件的 URL。\n- wsdlServiceName：如你所知，WSDL\
+  \ 文档可能包含多个 service 元素。因此，如果你想选择特定的 service 元素，可以传递该 service 元素的 QName。此参数的值可以为 null。如果为\
+  \ null，则服务元素列表中的第一个将被视为服务元素。\n- portName ：如你所知，WSDL 文件中的 service 元素也可能包含多个端口。因此，如果你想选择特定的端口，可以将端口名称作为此参数的值传递。然后，如果该值为\
+  \ null，则端口列表中的第一个将被选为端口。\n\n下面是一个示例 WSDL，用于理解提到的 service 元素是什么（端口也显示在这里）：\n\n```\n\
+  <wsdl:service name=\"MyService\">\n    <wsdl:port name=\"ServicePort1\" binding=\"\
+  axis2:ServiceBinding1\">\n    <soap:address location=\"http://127.0.0.1:8080/axis2/services/\n\
+  \                MyService\"/>\n    </wsdl:port>\n    <wsdl:port name=\"ServicePort2\"\
+  \ binding=\"axis2: ServiceBinding2 \">\n```\n\n```\n<soap12:address location=\"\
+  http://127.0.0.1:8080/axis2/services/MyService\"/>\n</wsdl:port>\n</wsdl:service>\n\
+  ```\n\n## 带有工作示例的 ServiceClient\n\n现在我们知道了创建服务客户端的可用方法，但没有代码来解释这些就毫无意义。因此，理解 ServiceClient\
+  \ API 的最佳方式是编写几个实际示例。但首先，我们需要启动 Axis2 服务器并在服务器中部署以下示例服务。只有在那之后，我们才能编写有用的客户端来调用该服务。我们可以通过以下步骤创建和部署服务：\n\
+  \n- 1. 打开你喜欢的 IDE 并编写以下 Java 类或服务实现类。\n\n```\npublic class MyService {\n    //method\
+  \ which has a return value\n    public String echo(String value) {\n        return\
+  \ value;\n    }\n    // does not have a return value\n    public void update(int\
+  \ value) {\n        System.out.println(\"value is :\" + value);\n    }\n}\n```\n\
+  \n示例服务实现类有两个方法——一个有返回值，另一个没有。\n\n- 2. 为服务编写 services.xml 文件，你的 services.xml 将如下所示。参见参考部分了解\
+  \ Axis2 部署。\n\n```\n<serviceGroup>\n    <service name=\"MyService\">\n        <messageReceivers>\n\
+  \            <messageReceiver mep=\"http://www.w3.org/2004/08/wsdl/in-only\" class=\"\
+  org.apache.axis2.rpc.receivers.RPCInOnlyMessageReceiver\"/>\n            <messageReceiver\
+  \ mep=\"http://www.w3.org/2004/08/wsdl/in-out\" class=\"org.apache.axis2.rpc.receivers.RPCMessageReceiver\"\
+  />\n        </messageReceivers>\n        <parameter name=\"ServiceClass\" locked=\"\
+  false\">\n            MyService\n        </parameter>\n    </service>\n</serviceGroup>\n\
+  ```\n\n\n- 3. 创建服务归档文件，并将服务部署到 Axis2 服务器中。\n\n创建服务归档文件的第一步是编译源代码。接下来，进入编译目录并创建一个名为\
+  \ META-INF 的目录，将生成的 services.xml 文件复制到其中。然后，使用任意归档工具创建一个 ZIP 归档文件（也可以使用 JAR 文件创建方式），并将其命名为\
+  \ myservice.aar。\n\n> Axis2 自带 IDE 工具和 Maven 插件，可帮助你创建服务归档文件。\n\n一旦拥有了服务归档文件，你就可以使用我们在“部署”一节中讨论过的任一机制来部署它。\n\
+  \n现在我们已经将服务部署到了服务器中，剩下的工作就是调用该服务。下面我们将通过几个场景来清晰地理解这一概念。\n\n## 场景 1：以阻塞方式调用服务（sendReceive()）\n\
+  \n最常用的服务调用模式是请求-响应调用模式（即 WSDL 2.0 术语中的 in-out MEP）。大多数服务的编写方式都是有一个或多个输入和一个输出。因此，我们需要使用请求-响应调用模式。在\
+  \ Axis2 中，可以通过两种方式实现——阻塞方式或非阻塞方式。第一个示例演示了以阻塞方式调用服务：\n\n- 1. 使用我们之前提到的任一构造函数创建 ServiceClient。\n\
+  \n- 2. 为有效负载创建 OMElement（SOAP 正文的第一个子元素）。在 Axis2 中，XML 表示基于 AXIOM 构建，因此你需要创建 OMElement（请参阅参考资料部分以了解\
+  \ AXIOM）。\n\n我们可以使用以下代码片段来创建调用服务所需的有效负载。如果查看服务的 WSDL，就能理解如何创建请求元素。\n\n```java\n\
+  public OMElement createPayLoad() {\n    OMFactory fac = OMAbstractFactory.getOMFactory();\n\
+  \    OMNamespace omNs = fac.createOMNamespace(\n        \"http://ws.apache.org/axis2\"\
+  , \"ns1\");\n    OMElement method = fac.createOMElement(\"echo\", omNs);\n    OMElement\
+  \ value = fac.createOMElement(\"value\", omNs);\n    value.setText(\"Hello, my first\
+  \ service utilization\");\n    method.addChild(value);\n```\n\n```java\npublic void\
+  \ onError(Exception e) {\n    e.printStackTrace();\n}\n\npublic void onComplete()\
+  \ {\n    complete = true;\n}\n};\n//invoking the service\nsc.sendReceiveNonBlocking(createPayLoad(),\
+  \ callback);\nSystem.out.println(\"------Invoke the service-------\");\nint index\
+  \ = 0;\n//wait till you get the response, in real applications you do not need\n\
+  //to do this, since once the response arrive axis2 will notify\n//callback,\n//\
+  \ then you can implement callback to do whatever you want, may be to\n//update GUI\n\
+  while (!complete) {\n    Thread.sleep(1000);\n    index++;\n    if (index > 10)\
+  \ {\n        throw new AxisFault(\"Time out\");\n    }\n}\n```\n\n场景 1 和场景 2 的主要区别如下：\n\
+  \n- 必须创建 AxisCallback 对象\n- sendReceiveNonBlocking 是一个 void 操作\n\n运行上述代码示例后，你将获得以下输出：\n\
+  \n```xml\n------Invoke the service-------\n<ns:echoResponse\n    xmlns:ns=\"http://ws.apache.org/axis2/xsd\"\
+  >\n<return>\n    Hello, my first service utilization\n</return>\n</ns:echoResponse>\n\
+  ```\n\n与场景 1 类似，如果我们使用自己的 AxisService 或作为动态客户端创建 ServiceClient，那么需要使用带有限定操作名称的以下方法。`sendReceiveNonBlocking`：\n\
+  \n```java\n(QName operation, OMElement elem, AxisCallback callback);\n```\n\n##\
+  \ 场景 3：通过两种传输方式使用服务\n\n![](img/e2fb05de168053e6227dab034eff9353_161_0.png)\n\n在这种情况下，请求通过一种传输发送，通过另一种传输接收。例如，请求可以通过\
+  \ HTTP 发送，通过 TCP 接收；或者请求可以通过一个 HTTP 连接发送，并通过另一个 HTTP 连接接收。要以这种方式调用服务，我们需要 WS-Addressing\
+  \ 支持。因此，我们需要在客户端和服务器端都启用寻址模块。在场景 2 中，我们仅拥有应用级异步支持，而这里我们拥有传输级异步支持。\n\n通过以下方式修改场景\
+  \ 2 中的步骤 3，我们可以通过两种传输方式调用服务。让我们通过 HTTP 发送请求，并尝试通过 TCP 获取响应：\n\n```java\nServiceClient\
+  \ sc = new ServiceClient();\nOptions opts = new Options();\nopts.setTo(new EndpointReference(\n\
+  \    \"http://127.0.0.1:8080/axis2/services/MyService\"));\n//engaging addressing\
+  \ module\nsc.engageModule(new QName(\"addressing\"));\n//I need to use separate\
+  \ listener for my response\nopts.setUseSeparateListener(true);\n// Need to receive\
+  \ via TCP\nopts.setTransportInProtocol(Constants.TRANSPORT_TCP);\nopts.setAction(\"\
+  urn:echo\");\nsc.setOptions(opts);\n```\n\n这里需要注意的是，我们也可以使用 HTTP 发送消息并通过 HTTP 接收消息。在这种情况下，Axis2\
+  \ 将启动一个新的 HTTP 监听器来接收传入的消息。\n\n## 场景 4：使用 in-only MEP（fireAndForget）\n\n如果我们想向服务器发送数据，但既不关心响应也不关心异常，那么可以使用这个\
+  \ API。用 WSDL 2.0 的术语来说，这个 API 用于调用仅入 MEP（in-only MEP）。让我们尝试调用 MyService 中的 update\
+  \ 操作。\n\n- 1. 创建 ServiceClient。\n- 2. 创建有效负载 OMElement，由于此情况下方法名不同，你需要创建一个新的有效负载。\n\
+  - 3. 当我们运行以下代码时，你会在服务器控制台中看到值为 10，即使服务器出现错误，我们也不会收到任何响应或异常：\n\n```java\npublic OMElement\
+  \ createPayLoad() {\n    OMFactory fac = OMAbstractFactory.getOMFactory();\n   \
+  \ OMNamespace omNs = fac.createOMNamespace(\n                    \"http://ws.apache.org/axis2\"\
+  , \"ns1\");\n    OMElement method = fac.createOMElement(\"update\", omNs);\n   \
+  \ OMElement value = fac.createOMElement(\"value\", omNs);\n    value.setText(\"\
+  10\");\n    method.addChild(value);\n    return method;\n}\n```\n\n```java\nServiceClient\
+  \ sc = new ServiceClient();\nOptions opts = new Options();\nopts.setTo(new EndpointReference(\n\
+  \        \"http://127.0.0.1:8080/axis2/services/MyService\"));\nopts.setAction(\"\
+  urn:update\");\nsc.setOptions(opts);\nsc.fireAndForget(createPayLoad());\n```\n\n\
+  将 setTo 替换为无效地址，看看是否会收到异常；显然，你什么也不会收到。\n\n## 场景 5：使用 in-only MEP（sendRobust）\n\n\
+  这个 API 也用于调用单向操作，但与场景 4 的唯一区别是，如果服务器出现问题，客户端会被告知该问题。我们可以使用场景 4 的代码稍作修改来以健壮的方式调用服务，步骤\
+  \ 1 和步骤 2 保持不变；但步骤 3 需要按以下方式修改：\n\n```java\nServiceClient sc = new ServiceClient();\n\
+  Options opts = new Options();\nopts.setTo(new EndpointReference(\n    \"http://127.0.0.1:8080/axis2/services/MyService\"\
+  ));\nopts.setAction(\"urn:update\");\nsc.setOptions(opts);\nsc.sendRobust(createPayLoad());\n\
+  ```\n\n将 setTo 替换为无效地址，看看是否会收到异常。\n\n## 使用 OperationClient\n\n正如我们已知的，使用 ServiceClient\
+  \ 时，我们在发送端和接收端都只能访问有效负载。但如果我们尝试实现企业级 Web 应用程序，这还不够。在这种情况下，我们需要更多的控制。在这些情况下，我们可能希望向传出\
+  \ SOAP 消息添加自定义标头，同时需要直接访问传入 SOAP 流程，或者需要访问传入和传出的消息上下文。使用 ServiceClient，我们无法做到其中任何一点（不过，一旦我们调用服务，就可以获取当前的\
+  \ OperationContext，并从中访问请求和响应的 MessageContext）。解决办法是使用操作客户端来处理这些场景。让我们使用操作客户端调用\
+  \ echo 操作来理解这个 API：\n\n- 1. 创建一个 ServiceClient 实例。\n\n```java\nServiceClient sc\
+  \ = new ServiceClient();\n```\n\n- 2. 创建一个 OperationClient（要创建操作客户端，我们需要传递完整限定的操作名称，就像动态客户端情况一样）\n\
+  \n```java\nOperationClient opClient = sc.createClient(\n    ServiceClient.ANON_OUT_IN_OP);\n\
+  ```\n\n当我们使用默认构造函数创建服务客户端时，它会创建包含三个操作的匿名服务，而常量 ServiceClient.ANON_OUT_IN_OP 就是其中之一。\n\
+  \n- 3. 创建一个消息上下文，并将属性设置到其 Option 对象中：\n\n```java\n//creating message context\nMessageContext\
+  \ outMsgCtx = new MessageContext();\n//assigning message context's option object\
+  \ into instance variable\nOptions opts = outMsgCtx.getOptions();\n//setting properties\
+  \ into option\nopts.setTo(new EndpointReference(\n    \"http://127.0.0.1:8000/axis2/services/MyService\"\
+  ));\nopts.setAction(\"urn:echo\");\n```\n\n\n\n\n\n# 9 客户端 API\n\n+   4. 创建 SOAPEnvelope，并将其添加到消息上下文中（不是我们在前面案例中添加的方式）。这里，你需要创建一个完整的\
+  \ SOAP 信封。\n+   \n+   `outMsgCtx.setEnvelope(createSOAPEnvelop());`\n\ncreateSOAPEnvelop\
+  \ 方法的代码片段如下：\n\n```\npublic SOAPEnvelope createSOAPEnvelop() {\n    SOAPFactory\
+  \ fac = OMAbstractFactory.getSOAP11Factory();\n    SOAPEnvelope envelope = fac.getDefaultEnvelope();\n\
+  \    OMNamespace omNs = fac.createOMNamespace(\n            \"http://ws.apache.org/axis2\"\
+  , \"ns1\");\n    OMElement method = fac.createOMElement(\"echo\", omNs);\n    OMElement\
+  \ value = fac.createOMElement(\"echo\", omNs);\n    value.setText(\"Hello\");\n\
+  \    method.addChild(value);\n    envelope.getBody().addChild(method);\n\n    return\
+  \ envelope;\n}\n```\n\n在这个示例中，我们使用的是带有示例负载的默认 SOAPEnvelope，但我们可以根据需求创建复杂的 SOAPEnvelope。\n\
+  \n+   5. 将一个消息上下文添加到操作客户端：\n+   \n+   `opClient.addMessageContext(outMsgCtx);`\n\
+  \n+   6. 要发送消息，我们需要调用操作客户端中的 execute 方法：\n+   \n+   `opClient.execute(true);`\n\n\
+  该布尔方法参数用于指明我们是希望以阻塞方式还是非阻塞方式调用它。如果值为 true，则调用将是阻塞式的。\n\n+   7. 要访问响应消息上下文和响应 SOAPEnvelope：\n\
+  +   \n   ```java\n   //pass message label as method argument\n   MessageContext\
+  \ inMsgCtx = opClient.getMessageContext(\"In\");\n   \n   SOAPEnvelope response\
+  \ = inMsgCtx.getEnvelope();\n   System.out.println(response);\n   ```\n\n在本示例中，当我们调用\
+  \ in-out MEP（消息交换模式）时，请求的消息标签是 Out，响应的值是 In；这就是为什么我们必须传入 In 作为消息标签值，以获取响应消息上下文。\n\
+  \n一旦我们有了消息上下文，就可以使用它来访问 SOAPEnvelope、属性、传输头等。当我们运行这个代码示例时，应该在控制台输出中得到以下内容：\n\n```\n\
+  <?xml version='1.0' encoding='utf-8'?>\n<soapenv:Envelope\n    xmlns:soapenv=\"\
+  http://schemas.xmlsoap.org/soap/envelope/\">\n    <soapenv:Header />\n    <soapenv:Body>\n\
+  \        <ns:echoResponse\n            xmlns:ns=\"http://ws.apache.org/axis2/xsd\"\
+  >\n            <return>\n                Hello\n            </return>\n        </ns:echoResponse>\n\
+  \    </soapenv:Body>\n</soapenv:Envelope>\n```\n\n这里，我们讨论了 OperationClient 作为访问传入和传出\
+  \ MessageContext 的手段。访问传出 MessageContext 或 SOAPEnvelope 的最有用的用例之一是添加消息头。然而，ServiceClient\
+  \ API 也可以用来添加 SOAP 头，如下所示：\n\n```\nsc.addHeader(SOAPHeaderBlock);\n```\n\n或者我们也可以添加消息头，如下所示：\n\
+  \n```\nsc.addStringHeader(new QName(\"http://sample.org/header\",\"MyHeader\"),\
+  \ \"headervalue\");\n```\n\n如果我们使用 TCP 监视器或类似的机制拦截消息，就可以在 SOAP 消息中看到 SOAP 头：\n\n\
+  ```\n<soapenv:Header>\n    <axis2ns1:MyHeader xmlns:axis2ns1=\n        \"http://sample.org/header\"\
+  >headervalue</axis2ns1:MyHeader>\n</soapenv:Header>\n```\n\n同时，我们可以使用 ServiceClient\
+  \ 访问最后一个 OperationContext，如下所示：\n\n```\nOperationContext operationContext = sc.getLastOperationContext();\n\
+  ```\n\n从 operationContext 中，我们可以获得 In 或 Out 的 MessageContext。\n\n## 总结\n\n在本章中，我们讨论了\
+  \ Axis2 的关键组件之一，即 Axis2 客户端 API。我们讨论了如何以多种方式创建 Axis2 客户端实例，以及配置它们的各种方式。\n\n接下来，我们讨论了最常用的\
+  \ API，并使用代码示例更好地解释了这些场景。Axis2 客户端 API 非常方便，它有许多很棒的特性，比如异步 Web 服务调用、多传输选择等等。运行示例后，我们可以很容易地理解\
+  \ Axis2 客户端 API 的基础；要理解其余 API，则需要我们编写更复杂的示例。\n\n如前所述，按照设计，Web 服务被认为是无状态的。然而，如果没有会话管理支持，很难实现复杂的应用程序。为了理解会话支持的必要性，让我们考虑一个典型的银行应用程序。如果考虑与典型银行应用程序相关的事件序列，我们就会明白为什么需要会话：\n\
+  \n- 首先，用户登录其账户（调用 `login` 方法）\n- 取款（对其账户调用某个操作）\n- 退出登录（完成交易）\n\n我们很容易理解，前面提到的三个操作是相互关联的，并且同一个用户完成了所有这些调用。这意味着，在调用这些方法的过程中，需要有某种机制来跟踪用户和用户数据。这明确表明了以\
+  \ Web 服务方式实现银行应用程序需要会话管理。当然，实现同一应用程序还有其他替代方法；但这样就需要有某种其他机制来识别和认证用户。\n\n## Axis2\
+  \ 的无状态特性\n\n到目前为止，我们知道 Axis2 架构将逻辑和数据分开。同时，Axis2 有两种类型的数据模型——**静态数据**和**运行时数据**。我们已经详细讨论过这些。在本章中，我们将进一步讨论\
+  \ Axis2 动态数据层次结构，因为会话管理完全依赖于运行时数据。本章中的示例将帮助您更多地了解运行时数据和静态数据，最重要的是，在什么地方使用什么。\n\n\
+  在 Axis2 框架中，每个单独的组件都被认为是**无状态**的。换句话说，服务实现类或处理器不应尝试存储任何局部变量。无状态实例能更好地支持减少并发控制问题，这主要是由竞态条件导致的。在\
+  \ Axis2 处理器中，`MessageReceivers`、`TransportSenders`、`TransportReceivers`，甚至 `AxisEngine`\
+  \ 都被认为是无状态的，因此它们不会在这些类中保留任何状态。正因为如此，我们不必担心同一个处理器是只有一个实例还是多个实例。由于 Axis2 要求处理器保持无状态，在编写处理器时，你需要确保它内部不保留任何状态。例如，我们不能认为下面的处理器实现是一个好方法。如我们所见，它有一个类变量来存储\
+  \ `messageContext`。因此，当我们把 Axis2 部署到并发环境中时，肯定会出现问题。所以，作为最佳实践，我们需要记住不要在代码中使用任何类变量。\n\
+  \n```\npublic class InvalidHandler extends AbstractHandler {\n    //Class variable\
+  \ to keep current MC\n    private MessageContext currentMessageContext;\n    public\
+  \ InvocationResponse invoke(MessageContext msgContext) throws AxisFault {\n    \
+  \    currentMessageContext = msgContext;\n        //We need to write whatever the\
+  \ log we need to have here\n        return InvocationResponse.CONTINUE;\n    }\n\
+  }\n```\n\n上述代码示例展示了一个保留类变量 currentMessageContext 的处理器。在处理多个并发请求时，这会产生严重问题。因此，正确的方法是不使用类变量。你可以通过使用方法变量，或者将其存储在其他上下文中来解决这个问题；我们将在本章后面讨论这一点。下面的代码示例演示了处理变量的正确方式：\n\
+  \n```\npublic InvocationResponse invoke(MessageContext msgContext) throws AxisFault\
+  \ {\n    MessageContext currentMessageContext = msgContext;\n    //We need to write\
+  \ whatever the log we need to have here\n    return InvocationResponse.CONTINUE;\n\
+  }\n```\n\n这并不意味着我们不能在 Axis2 中维护状态；它只是告诉我们，在实现类中保存状态不是正确的方法。最推荐的方式是使用上下文层次结构来存储必要的数据并管理会话。\n\
+  \n## Axis2 中可用的会话类型\n\n如前所述，如果没有适当的会话管理支持，使用 Web 服务实现企业级应用程序是非常困难的。另一方面，在 Web 服务框架中提供会话管理支持并不是强制要求。我们可能会有根本不需要会话管理的服务。\n\
+  \n\n\n\n\n- `ServiceContext`：此上下文表示一个服务的运行时，其生命周期与会话的生命周期一致。系统中可以有一个或多个服务上下文，具体取决于相应服务的会话范围。\n\
+  - `OperationContext`：此上下文用于表示 MEP（消息交换模式）的生命周期。操作上下文的生命周期通常短于`ServiceContext`的生命周期。\n\
+  - `MessageContext`：传入消息的生命周期由消息上下文表示。如果给定执行链中的两个处理器想要共享数据，最好的方法是将数据存储在消息上下文中。一个`OperationContext`可能有一个或多个`MessageContext`。\n\
+  \n## 会话初始化和会话失效\n\n谈到会话管理，首先想到的就是会话的生命周期。大多数Web应用（如电子商务、银行、酒店预订等）都有预定义的生命周期。如果你在该时间内没有活动，系统会自动终止你的会话并提示你重新登录。因此，会话有特定的开始时间和结束时间。所以，任何编写会话感知服务的人可能都需要知道会话何时开始、何时结束。为了便于实现这一点，Axis2使用Java反射和可选接口来通知服务实现类。实际上，无论会话范围如何，服务作者在会话开始和结束时都会通过两种方式收到通知。\n\
+  \n## Java反射\n\n在这种情况下，如果服务作者希望收到会话开始和结束的通知，他/她必须在服务实现类中实现以下两个方法。在运行时，当会话开始时，Axis2会检查服务实现类中是否存在以下方法；如果存在，则调用相应的方法：\n\
+  \n```\n//此方法将在会话开始时被调用\npublic void init(ServiceContext serviceContext) {\n    //\
+  \ 我们的代码写在这里\n}\n//此方法将在会话结束时被调用\npublic void destroy(ServiceContext serviceContext)\
+  \ {\n    // 我们的代码写在这里\n}\n```\n\n## 使用可选接口\n\n当我们使用Java反射时，方法名称和参数出现错误的可能性非常小，因此最好使用接口。这样可以引导你以正确的方式使用方法并避免错误。Axis2提供的对应接口称为org.apache.axis2.service.Lifecycle，其中包含我们之前讨论的同样两个方法。如果你想在会话开始时收到通知，应该编写服务实现类来实现该特定接口；然后Axis2会自动调用正确的方法。因此，我们可以如下编写服务实现类：\n\
+  \n```\npublic class MyService implements Lifecycle {\n    public void init(ServiceContext\
+  \ context) throws AxisFault {\n    }\n    public void destroy(ServiceContext context)\
+  \ {\n    }\n}\n```\n\n## 访问MessageContext\n\n在本章的第一部分，我们讨论了在Axis2中将类变量保留在任何位置都不是好习惯（例如，服务实现类、处理器类）。在那里，我们还提到保留局部变量也会导致并发环境中的问题。因此，将变量保留在服务实现类内部并不是一个好主意。在管理会话时，正确的方法是将数据存储在某个上下文中，并在需要时访问它们。尽管Axis2在会话开始时传递ServiceContext，但将其存储在服务实现中（作为类变量存储）并不是正确的方法。因此，我们需要一种机制来访问这些上下文。如前所述，如果你可以访问MessageContext，那么就可以通过它访问整个上下文层次结构。因此，如果我们能够访问当前的MessageContext，就可以考虑访问整个上下文层次结构。那么下一个问题是，如何在服务类内部获取当前的MessageContext？这非常简单；Axis2将MessageContext设置到ThreadLocal中，因此我们可以从中访问MessageContext。假设我们想在名为foo的方法内访问MessageContext，可以按如下方式操作：\n\
+  \n```\npublic void foo(){\n    MessageContext messageContext = MessageContext.getCurrentMessageContext();\n\
+  }\n```\n\n这可以用来访问当前的MessageContext，无论我们使用什么会话范围。\n\n在讨论了会话管理的所有必要部分之后，现在该讨论Axis2中可用的不同类型的会话了。如上所述，有四种不同类型的会话。我们将在这里详细讨论它们全部。\n\
+  \n## 请求会话范围\n\n请求会话范围是Axis2中的默认会话范围。当我们在不了解任何会话管理的情况下部署服务时，我们的服务将在请求会话范围内部署。此会话的生命周期仅限于方法调用生命周期或请求处理时间。当我们在请求范围内部署服务时，这仅仅意味着我们完全不担心会话管理。因此，这就像没有会话管理一样。\n\
+  \n一旦我们在请求会话范围内部署服务，每次调用都会创建一个新的服务实现类。假设我们必须在请求范围内部署一个名为Foo的服务；如果客户端调用该服务十次，则会创建十个服务类实例。\n\
+  \n如果我们想显式指定范围，仍然可以通过在services.xml的服务元素中添加scope属性来实现，如下所示。然而，如前所述，在请求范围内部署服务不需要任何修改（以下内容是可选的）：\n\
+  \n```\n<service name=\"Foo\" scope=\" request\">\n</service>\n```\n\n为了理解请求范围，请使用以下服务类创建一个服务，部署它并调用它：\n\
+  \n```\npublic class MyService implements Lifecycle {\n    public void init(ServiceContext\
+  \ context) throws AxisFault {\n        System.out.println(\"I'm inside init method\
+  \ \");\n    }\n    public void destroy(ServiceContext context) {\n        System.out.println(\"\
+  I'm inside destroy method\");\n    }\n    public String foo(String foo) {\n    \
+  \    return foo;\n    }\n}\n```\n\n要调用服务，我们只需在浏览器中键入以下内容：\n\n```\nhttp://localhost:8080/axis2/services/MyService/foo?foo=foo\n\
+  ```\n\n我们将在服务器控制台中看到以下内容：\n\n![](img/e2fb05de168053e6227dab034eff9353_174_0.png)\n\
+  \n如果我们继续这样做，我们会看到它每次调用服务时都会打印。\n\n这里应该注意，即使我们在请求范围内部署服务，也有很多方法可以使我们的服务成为有状态服务。一种方法是将状态存储在Axis2全局运行时（ConfigurationContext）中，并在必要时检索。值得注意的是，这会给系统增加更多开销，因为只有一个ConfigurationContext，如果所有内容都试图访问它，它将成为瓶颈。\n\
+  \n## SOAP会话范围\n\nSOAP会话的思想是拥有一种与传输无关的方式，在两个SOAP节点之间（显然是在客户端和服务器之间）管理会话。这里，Axis2使用SOAP头来管理会话。在SOAP会话范围中，其生命周期比请求会话范围稍长，并且在SOAP会话中部署服务也需要修改services.xml。管理SOAP会话要求客户端和服务都感知会话，也就是说，如果客户端想要访问同一会话，必须发送与会话相关的数据，而服务必须使用与会话相关的数据来验证用户。\n\
+  \n> 基于SOAP的会话管理不具备互操作性；部分原因是没有就管理会话的标准规范达成一致。有一个名为WS-Context的标准规范，但常用的Web服务框架中没有一个实现它。\n\
+  \n\n\n\n\n为了管理一个 SOAP 会话，客户端需要在 SOAP 头部发送一个额外的引用参数，命名为 serviceGroupId（当客户端第一次调用部署在\
+  \ SOAP 会话中的服务时，该参数会发送给客户端）。与此同时，SOAP 会话必须提供一种方式来跨不仅单个服务调用，而且服务组中的多个服务来管理会话。只要我们处于同一个\
+  \ SOAP 会话中，我们就可以在 ServiceContext 中管理与服务相关的数据，如果我们想在组中的其他服务之间共享数据，那么我们就可以使用 ServiceGroupContext\
+  \ 来存储会话相关的数据。\n\n当我们在 SOAP 会话中部署一个服务并且客户端第一次尝试访问该服务时，Axis2 会生成 serviceGroupId 并将其作为引用参数发送给客户端，位于\
+  \ wsa:ReplyTo 中，如下所示。然而，我们在这里应该提到的是，要使 SOAP 会话得到支持，客户端和服务器都必须具有 WS-addressing 支持。\n\
+  \n```xml\n<wsa:ReplyTo>\n    <wsa:Address>http://www.w3.org/2005/08/addressing/anonymous</wsa:Address>\n\
+  \    <wsa:ReferenceParameters>\n<axis2:ServiceGroupId xmlns:axis2=\"http://ws.apache.org/namespaces/axis2\"\
+  >urn:uuid:65E9C56F702A398A8B11513011677354</axis2:ServiceGroupId>\n    </wsa:ReferenceParameters>\n\
+  </wsa:ReplyTo>\n```\n\n因此，如果客户端想保持在同一个会话中，那么他/她必须复制该引用参数，并在第二次调用服务时将其发送回服务器。只要客户端发送有效的\
+  \ ServiceGroupId，他/她就可以使用同一个会话，并且服务可以维护会话相关的数据。与请求会话作用域不同，SOAP 会话有一个默认的超时时间，如果客户端在\
+  \ 30 秒的时间段内未访问服务，则会话将过期，如果客户端发送旧的 serviceGroupId，他/她将收到一个 AxisFault。我们可以通过按如下方式更改服务器的\
+  \ axis2.xml 文件来更改默认超时时间：\n\n```xml\n<parameter name=\"ConfigContextTimeoutInterval\"\
+  >30000</parameter>\n```\n\n通过更改参数值，我们可以获得我们想要的超时间隔。\n\n如前所述，将服务部署在 SOAP 会话中需要我们按如下方式更改\
+  \ services.xml：\n\n```xml\n<service name=\"MyService\" scope=\"soapsession\">\n\
+  </service>\n```\n\ncreatePayLoad 方法如下所示：\n\n```java\npublic static OMElement createPayLoad(int\
+  \ intValue) {\n    OMFactory fac = OMAbstractFactory.getOMFactory();\n    OMNamespace\
+  \ omNs = fac.createOMNamespace(\n        \"http://ws.apache.org/axis2\"\n```\n\n\
+  一旦我们运行代码，我们将在客户端看到以下输出：\n\n```text\n10\n10\n```\n\n这意味着尽管我们调用了服务两次，但我们得到了相同的输出。这仅仅意味着没有会话发生，所以现在让我们稍微更改一下客户端代码，看看我们得到什么。只需添加以下代码行并再次运行客户端：\n\
+  \n```java\nopts.setManageSession(true);\nsc.setOptions(opts);\n```\n\n现在你应该在客户端看到以下输出：\n\
+  \n```text\n10\n20\n```\n\n这就简单地告诉我们，我们已以会话感知的方式调用了服务。\n\n### Option 2: Using the\
+  \ service client\n\n当我们使用服务客户端时，一旦我们将会话管理标志设置为 true，它也会发送回传输 cookie。因此，如果我们运行以下代码，我们将看到以下结果：\n\
+  \n```java\nServiceClient sc = new ServiceClient();\nOptions opts = new Options();\n\
+  opts.setTo(new EndpointReference(\n\"http://127.0.0.1:8000/axis2/services/MyService\"\
+  ));\nopts.setAction(\"urn:add\");\nopts.setManageSession(true);\nsc.setOptions(opts);\n\
+  OMElement ele = sc.sendReceive(createPayLoad(10));\nSystem.out.println(ele.getFirstElement().getText());\n\
+  ele = sc.sendReceive(createPayLoad(10));\nSystem.out.println(ele.getFirstElement().getText());\n\
+  ```\n\n![](img/e2fb05de168053e6227dab034eff9353_179_0.png)\n\n它简单地告诉我们，我们必须以会话感知的方式调用部署在传输会话中的服务。在这种情况下，我们不需要地址模块。\n\
+  \n### Application scope\n\n与所有其他作用域相比，Application 作用域具有最长的使用寿命，并且应用程序会话的生命周期等于系统的生命周期。如果我们在应用程序作用域中部署一个服务，那么该服务只有一个实例，显然该服务也只有一个\
+  \ ServiceContext。在 Axis2 的世界中，如果我们考虑内存占用并且不想管理会话，那么一个好主意是将服务部署在应用程序作用域中。\n\n当我们在应用程序作用域中部署服务时，客户端不需要发送任何额外数据来使用同一个会话。\n\
+  \n要将服务部署在应用程序作用域中，我们需要更改 axis2.xml，如下所示：\n\n```xml\n<service name=\"foo\" scope=\"\
+  application\">\n</service>\n```\n\n> 部署在应用程序会话作用域中的服务不能保证是线程安全的。\n\n### Managing\
+  \ sessions using ServiceClient\n\n正如我们现在所知，在客户端管理会话涉及一些工作。如前所述，在 SOAP 会话和传输会话中，客户端必须发送会话相关数据，如果他/她想保持在同一个会话中。也许他可以为\
+  \ SOAP 会话通过复制所需的引用参数来做到这一点。然而，对于传输会话，用户如何访问传输以复制和发送 cookie？\n\n为了让生活更轻松，Axis2 具有内置的能力，通过设置一个标志来在客户端会话中管理会话，我们已经使用了它。然后，根据服务端的会话，只要我们使用同一个服务客户端，它就会发送相应的数据。因此，主要要求是如果你想保持在同一个会话中，使用同一个服务客户端来调用服务。\n\
+  \n如果我们想保持在同一个会话中，我们可以创建如下所示的服务客户端，并重用创建的服务客户端对象来调用服务：\n\n```java\nOptions options\
+  \ = new Options();\noptions.setManageSession(true);\nServiceClient sender = new\
+  \ ServiceClient();\nsender.setOptions(options);\n```\n\n一旦我们创建了 ServiceClient，如上所示，如果服务部署在\
+  \ SOAP 会话中，它将复制 serviceGroupId 并从第二次调用开始发送该 ID。如果服务器发送会话 ID，例如 HTTP cookie，它将将其复制到\
+  \ ServiceContext（在客户端）并在客户端第二次调用服务时将其发送回服务器。\n\n### Summary\n\n无状态特性是 Web 服务的主要特征之一。然而，这对于高级\
+  \ Web 服务开发人员来说是一个限制。开发企业级应用程序使用 Web 服务并不容易，除非我们有一个会话管理层。Axis2 具有四级会话来解决企业级 Web 服务开发问题。在本章中，我们讨论了\
+  \ Axis2 中可用的不同类型的会话。之后，我们使用示例服务和示例客户端来演示不同的会话以及它们的工作方式。\n\n在下一章中，我们将重点关注另一个非常好的\
+  \ Web 服务规范，称为 JAXWS。在那里，我们将介绍 JAXWS 注释、部署以及一些示例来说明如何使用它。\n"
+- "# 11 Developing JAX-WS Web Services\n\nJava API for XML-based web services 是一个流行的标准，面向编写\
+  \ Web 服务和 Web 服务客户端的 Java 开发人员。传统的 **contract first** 方法，即在 WSDL 中定义 Web 服务契约，然后从这些\
+  \ WSDL 生成适当代码，并不是 Java 开发人员最自然的编程方式。JAX-WS 规范允许你编写常规的 Java 代码并适当地注释代码，以便将其制作成 Web\
+  \ 服务。因此，JAX-WS 是在 Java 中开发 Web 服务和客户端的 **code first** 方法。开发的简便性是通过将所有内容作为 Java 类编写来实现的，而无需编写任何特定的部署描述符文件，例如\
+  \ Axis2 AAR 服务使用的 `services.xml` 文件。旧的 Java Web 服务规范如 JAX-RPC 要求 Web 服务类实现特定的接口。使用\
+  \ JAX-WS，没有此类限制，常规 POJOs 可以通过最少的更改制作成 Web 服务。JAX-WS 也允许 contract first 开发。你将在本章后面看到如何使用\
+  \ wsimport 工具从 WSDL 开始生成 JAX-WS 注释的 Web 服务。截至撰写本文时，Axis2 仅支持 JAX-WS 2.0 规范。\n\n\
+  在本章中，我们将介绍：\n\n- JAX-WS Annotations\n- Server-side JAX-WS\n- Client-side JAX-WS\n\
+  \n到本章结束时，你将对 JAX-WS 注释有很好的理解，并且了解如何在 Apache Axis2 中开发 JAX-WS 服务和客户端。\n\n\n\n\n\n\
+  ## javax.jws.WebService\n\n### targetNamespace\n\n此属性定义 WSDL 的 XML 命名空间，以及带有 WebService\
+  \ 注解的 Java 类或接口所生成的部分 XML 元素的命名空间。默认值是从此 Web 服务的包名派生的命名空间。例如，如果该 Web 服务属于 org.apache.axis2.sample\
+  \ 包，则默认命名空间将为 http://sample.axis2.apache.org。\n\n### serviceName\n\n此属性定义 WSDL 1.1\
+  \ 文档中 wsdl:service 的名称。默认值是所注解 Java 类或接口的非限定名称，并追加字符串 \"service\" 作为后缀。\n\n### endpointInterface\n\
+  \n此属性定义服务端点接口（SEI）的限定名称。该注解允许将接口契约与实现分离。端点实现类不要求实现 endpointInterface。\n\n> 如果指定了\
+  \ endpointInterface 属性，则所有其他 WebService 属性以及所有其他 JSR 181 注解都将被忽略。只有服务端点接口上的注解才会被考虑。\n\
+  \n### portName\n\n此属性定义 WSDL 1.1 文档中的 wsdl:portName。此属性的默认值是 WebService.name 后追加字符串\
+  \ \"port\"。\n\n### wsdlLocation\n\n此属性是一个指向现有 WSDL 1.1 文档的 WSDL URL。此属性仅在使用现有 WSDL\
+  \ 时才会用到。在纯代码优先的方法中，不会使用此属性。\n\n让我们看一个简单示例，该示例将 WebService 注解与其部分属性结合使用。以下代码将声明 CalculatorImpl\
+  \ 为一个名为 Calculator 的 Web 服务，且该 Web 服务的 targetNamespace 将为 http://axis.apache.org：\n\
+  \n```\n@WebService(name = \"Calculator\", targetNamespace = \"http://axis.apache.org\"\
+  )\n\npublic class CalculatorImpl {\n    public int add(int a, int b) {\n       \
+  \ return a + b;\n    }\n}\n```\n\n如果你希望将接口与实现类分离，可以像下面这样使用 endpointInterface 属性。在这里，endpointInterface\
+  \ 被声明为 org.apache.axis2.jaxws.sample.ICalculator。\n\n```\n@WebService(endpointInterface\
+  \ = \"org.apache.axis2.jaxws.sample.ICalculator\")\npublic class CalculatorImpl\
+  \ {\n    public int add(int a, int b) {\n        return a + b;\n    }\n}\n```\n\n\
+  ICalculator 接口被声明为一个名为 Calculator 的 Web 服务，其 targetNamespace 为 http://axis.apache.org：\n\
+  \n```\n@WebService(name=\"Calculator\", targetNamespace = \"http://axis.apache.org\"\
+  )\npublic interface ICalculator{\n    int add(int a, int b);\n}\n```\n\n## javax.jws.WebMethod\n\
+  \n此注解可用于自定义作为 Web 服务操作暴露的方法。该注解定义如下：\n\n```\n@Retention(value=RetentionPolicy.RUNTIME)\n\
+  @Target({METHOD})\npublic @interface WebMethod {\n    String operationName() default\
+  \ \"\";\n    String action() default \"\";\n    boolean exclude() default false;\n\
+  }\n```\n\n让我们看一下 WebMethod 注解的属性。\n\n### operationName\n\n此属性定义与此方法对应的 WSDL 1.1\
+  \ 中 wsdl:operation 的名称。该名称的命名空间取自 WebService.targetNamespace 的值或其默认值。此属性的默认值是所注解\
+  \ Java 方法的名称。\n\n### action\n\n此属性定义此方法的 Web 服务操作的 action。其默认值为 \"\"（空字符串）。\n\n\
+  ### exclude\n\n此属性用于从 Web 服务中排除某些方法。此类方法将不会作为 Web 服务操作出现。默认值为 false。\n\n让我们看一个将\
+  \ WebMethod 注解与其部分属性结合使用的示例。在此示例中，add 方法将作为名为 addInt 的 Web 服务操作暴露，action 将设置为 urn:addInt。print\
+  \ 方法将不会作为 Web 服务暴露，因为 WebMethod 注解的 exclude 属性已设置为 true。\n\n```\n@WebService\npublic\
+  \ class CalculatorImpl {\n    @WebMethod(operationName=\"addInt\", action=\"urn:addInt\"\
+  )\n    public int add(int a, int b) {\n        print(a, b);\n        return a +\
+  \ b;\n    }\n\n    @WebMethod(exclude=true)\n    public void print(int a, int b)\
+  \ {\n        System.out.println(\"a=\" + a + \", b=\" + b);\n    }\n}\n```\n\n##\
+  \ javax.jws.OneWay\n\n此注解用于将方法标记为单向方法。相应的 Web 服务操作将是仅入站操作。此注解没有属性，定义如下：\n\n```\n\
+  @Retention(value=RetentionPolicy.RUNTIME)\n@Target({METHOD})\npublic @interface\
+  \ OneWay {\n}\n```\n\n让我们看一个演示 OneWay 注解用法的简单示例。在这里，process 操作已通过 OneWay 属性被声明为仅入站操作。\n\
+  \n```\n@WebService\npublic class Processor {\n    @WebMethod(operationName=\"process\"\
+  , action=\"urn:process\")\n    @OneWay\n    public void process(String id) {\n \
+  \       System.out.println(\"Processing \" + id);\n    }\n}\n```\n\n## javax.jws.WebParam\n\
+  \n你可以使用此注解来自定义单个参数到 WSDL 消息部件或 XML 元素的映射。该注解定义如下：\n\n```\n@Retention(value=RetentionPolicy.RUNTIME)\n\
+  @Target({PARAMETER})\npublic @interface WebParam {\n    public enum Mode {\n   \
+  \     IN,\n        OUT,\n        INOUT\n    };\n    String name() default \"\";\n\
+  \    String targetNamespace() default \"\";\n    Mode mode() default Mode.IN;\n\
+  \    boolean header() default false;\n    String partName() default \"\";\n}\n```\n\
+  \n让我们看一下 WebParam 注解的属性。\n\n### name\n\n对于 RPC 绑定，这是表示该参数的 wsdl:part 的名称。对于 document/literal\
+  \ wrapped 绑定，这是表示该参数的 XML 元素的本地名称。此属性不用于 document/literal bare 绑定。\n\n### targetNamespace\n\
+  \n这是此操作参数的命名空间。它仅用于 document/literal wrapped 绑定。此属性的默认值是 Web 服务的 targetNamespace。\n\
+  \n### mode\n\n此属性表示此方法的参数流向。可能的值有 IN、INOUT 和 OUT。\n\n### header\n\n此属性定义所注解的参数是否应放在\
+  \ SOAP 头中。默认值为 false。\n\n### partName\n\n此属性为带有 RPC 或 document/bare 操作的所注解参数定义 wsdl:part。默认值为\
+  \ WebParam.name。\n\n以下示例演示了 WebParam 注解的实际用法。add 操作被声明为具有两个名为 intA 和 intB 的 Web\
+  \ 服务参数：\n\n```\n@WebService(name = \"Calculator\", targetNamespace = \"http://axis.apache.org\"\
+  )\npublic class CalculatorImpl {\n    @WebMethod(operationName=\"addInt\", action=\"\
+  urn:addInt\")\n    public int add(@WebParam(name=\"intA\") int a,\n        @WebParam(name=\"\
+  intB\") int b) {\n        return a + b;\n    }\n}\n```\n\n## javax.jws.WebResult\n\
+  \n如果你希望自定义 Web 服务方法的返回值到 wsdl:part 或 XML 元素的映射，则应使用 WebResult 注解。该注解定义如下：\n\n```\n\
+  @Retention(value=RetentionPolicy.RUNTIME)\n@Target({METHOD})\npublic @interface\
+  \ WebResult {\n    String name() default \"return\";\n    String targetNamespace()\
+  \ default \"\";\n    boolean header() default false;\n    String partName() default\
+  \ \"\";\n}\n```\n\n让我们看一下 WebResult 注解的属性。\n\n### name\n\n此属性定义返回值在 WSDL 中的名称。对于\
+  \ RPC 绑定，这是响应消息中返回值的部件名称。对于 document 绑定，这是表示返回值的 XML 元素的本地名称。\n\n### targetNamespace\n\
+  \n这是返回值的 XML 命名空间，默认与 Web 服务的 targetNamespace 相同。\n\n### header\n\n此属性指定返回值是否需要放在\
+  \ SOAP 头中，默认值为 false。\n\n### partName\n\n此属性指定返回值的 wsdl:part。其默认为 WebResult.name。\n\
+  \n以下示例演示了此注解的用法。WebResult 注解声明返回类型的名称应为 return：\n\n```\n@WebService(name = \"Calculator\"\
+  , targetNamespace = \"http://axis.apache.org\")\npublic class CalculatorImpl {\n\
+  \    @WebMethod(operationName=\"addInt\", action=\"urn:addInt\")\n    @WebResult(name=\"\
+  return\")\n    public int add(@WebParam(name=\"intA\") int a,\n                \
+  \   @WebParam(name=\"intB\") int b) {\n        return a + b;\n    }\n}\n```\n\n\n\
+  \n\n\n```\n@SOAPBinding(style=SOAPBinding.Style.RPC, use=SOAPBinding.Use.LITERAL)\n\
+  public class CalculatorImpl {\n    public int add(int a, int b) {\n        return\
+  \ a + b;\n    }\n}\n```\n\n## JSR 224（JAX-WS）注解\n\n本节将介绍 JSR 224（JAX-WS）规范中引入的一些有用注解。这些注解用于补充\
+  \ JSR-181 注解。我们将介绍以下注解：\n\n- javax.xml.ws.BindingType\n- javax.xml.ws.RequestWrapper\n\
+  - javax.xml.ws.ResponseWrapper\n- javax.xml.ws.ServiceMode\n- javax.xml.ws.WebEndpoint\n\
+  - javax.xml.ws.WebFault\n- javax.xml.ws.WebServiceClient\n- javax.xml.ws.WebServiceProvider\n\
+  - javax.xml.ws.WebServiceRef\n\n### javax.xml.ws.BindingType\n\nBindingType 注解用于指定\
+  \ Web 服务端点实现类所使用的绑定。它只有一个属性 `value`，该属性是绑定 URI，默认值为 SOAP 1.1 / HTTP。下面来看一个简单示例：\n\
+  \n```\n@WebService\n@BindingType(value=\"http://www.w3.org/2003/05/soap/bindings/HTTP/\"\
+  )\npublic class AddNumbers {\n    public int add(int a, int b) {\n        ...\n\
+  \    }\n}\n```\n\n如 BindingType 注解的 `value` 属性所示，部署后的端点将使用基于 HTTP 的 SOAP1.2 绑定。\n\
+  \n### javax.xml.ws.RequestWrapper 和 javax.xml.ws.ResponseWrapper\n\njavax.xml.ws.RequestWrapper\
+  \ 注解用于为 SEI 中的方法指定运行时使用的请求包装器 Bean。javax.xml.ws.ResponseWrapper 注解用于为 SEI 中的方法指定运行时使用的响应包装器\
+  \ Bean。这些注解包含三个属性，即 `localName`、`targetNamespace` 和 `className`。\n\n#### localName\n\
+  \n此属性定义表示请求/响应包装器的 XML Schema 元素的本地名称，默认值为由 javax.jws.WebMethod 定义的 `operationName`。\n\
+  \n#### targetNamespace\n\n此属性定义请求/响应包装器元素的命名空间，默认值为 SEI 的 `targetNamespace`。\n\n\
+  #### className\n\n此属性定义表示请求/响应包装器的类名称。\n\n请看以下示例：\n\n```\npublic interface AddNumbersImpl\
+  \ {\n    @WebMethod\n    @WebResult(targetNamespace = \"\")\n    @RequestWrapper(localName\
+  \ = \"addNumbers\",\n        targetNamespace = \"http://axis.apache.org/axis2/jaxws\"\
+  ,\n        className = \"org.apache.axis2.jaxws.sample.AddNumbers\")\n    @ResponseWrapper(localName\
+  \ = \"addNumbersResponse\",\n        targetNamespace = \"http://server.fromjava/\"\
+  ,\n        className = \"org.apache.axis2.jaxws.sample.AddNumbersResponse\")\n \
+  \   public int addNumbers(\n        @WebParam(name = \"arg0\", targetNamespace =\
+  \ \"\")\n        int arg0,\n        @WebParam(name = \"arg1\", targetNamespace =\
+  \ \"\")\n        int arg1);\n}\n```\n\n### javax.xml.ws.ServiceMode\n\nWeb 服务端点可以通过实现\
+  \ Provider 接口，在 XML 消息级别进行工作。具体来说，可以实现 `Provider<Source>`、`Provider<SOAPMessage>`\
+  \ 或 `Provider<DataSource>`。端点通过这种低级别的通用 API 访问消息或消息负载。所有 Provider 端点都必须具有 `@WebServiceProvider`\
+  \ 注解。\n\n`@ServiceMode` 注解用于说明端点希望访问消息（Service.Mode.MESSAGE）还是消息负载（Service.Mode.PAYLOAD）。如果端点上没有\
+  \ `@ServiceMode` 注解，则默认值为消息负载。此注解包含一个 `value` 属性，用于指示 Provider 端点是要访问完整消息（MESSAGE）还是仅访问消息负载（PAYLOAD），默认值为\
+  \ PAYLOAD。下面的示例演示了此注解的使用方式：\n\n```\n@ServiceMode(value=Service.Mode.PAYLOAD)\npublic\
+  \ class AddNumbersImpl implements Provider<Source> {\n    public Source invoke(Source\
+  \ source) throws RemoteException {\n    }\n}\n```\n\n### javax.xml.ws.WebEndpoint\n\
+  \n此注解用于标注生成的服务接口中的 `getPortName()` 方法。此注解中指定的信息足以唯一标识 WSDL 中 `wsdl:service` 内的 `wsdl:port`\
+  \ 元素。它只有一个 `name` 属性，用于定义 WSDL 中表示相应端口的 XML 元素的本地名称，默认值为 `\"\"`（空字符串）。下面的示例演示了此注解：\n\
+  \n```\n@WebServiceClient(name = \"AddNumbersImplService\",\ntargetNamespace = \"\
+  http://axis.apache.org/axis2/jaxws\", wsdlLocation = \"http://localhost:8080/services/addnumbers?wsdl\"\
+  )\npublic class NumberAdder {\n    ...\n    @WebEndpoint(name = \"AddNumbersImplPort\"\
+  )\n    public AddNumbersImpl getAddNumbersImplPort() {\n        ...\n    }\n}\n\
+  ```\n\n### javax.xml.ws.WebFault\n\nJAX-WS 工具会在根据 WSDL 生成的、特定于服务的异常类中生成此注解，用于自定义故障元素的本地名称和命名空间名称，以及故障\
+  \ Bean 的名称，并将特定于服务的异常标记为由 WSDL 生成。它包含三个属性：`name`、`targetNamespace` 和 `faultBean`。\n\
+  \n#### name\n\n此属性定义 WSDL 中表示相应故障的 XML 元素的本地名称，默认值为 `\"\"`（空字符串）。\n\n#### targetNamespace\n\
+  \n此属性定义 WSDL 中表示相应故障的 XML 元素的命名空间，默认值为 `\"\"`（空字符串）。\n\n#### faultBean\n\n此属性定义表示故障消息详细信息的\
+  \ Java 类的限定名称，默认值为空字符串 `\"\"`。\n\n下面的示例展示了此注解的使用方式：\n\n```\n@javax.xml.ws.WebFault(name=\"\
+  AddNumbersException\",\n                targetNamespace=\"http://axis.apache.org/axis2/jaxws\"\
+  )\npublic class AddNumbersException_Exception extends Exception {\n    private org.apache.axis2.jaxws.AddNumbersException\
+  \ fault;\n}\n```\n\n### javax.xml.ws.WebServiceClient\n\n此注解中指定的信息足以唯一标识 WSDL 文档中的\
+  \ `wsdl:service` 元素。此 `wsdl:service` 元素表示由生成的服务接口提供客户端视图的 Web 服务。此注解可以包含三个属性：`name`、`targetNamespace`\
+  \ 和 `wsdlLocation`。\n\n#### name\n\n此属性定义 WSDL 中 `wsdl:serviceName` 的本地名称，默认值为 `\"\
+  \"`。\n\n#### name\n\n这是表示带注解 JavaBean 属性的 XML 元素的本地名称，默认值为带注解 Java 属性的名称。\n\n####\
+  \ namespace\n\n这是表示带注解 JavaBean 属性的 XML 元素的命名空间，默认值为包含该 Java 属性的类的命名空间。\n\n## JSR\
+  \ 250（通用注解）\n\n本节将介绍 JSR 250（通用注解）规范中引入的一些有用注解。我们将介绍以下注解：\n\n- `javax.annotation.Resource`\n\
+  - `javax.annotation.PostConstruct`\n- `javax.annotation.PreDestroy`\n\n### javax.annotation.Resource\n\
+  \n此注解用于标记 Web 服务所需的 WebServiceContext 资源。对于 JAX-WS 端点，它可以应用于字段或方法。容器在端点实现初始化时，会将\
+  \ WebServiceContext 资源的实例注入端点。下面的示例展示了此注解：\n\n```\n@WebService\npublic class HelloImpl\
+  \ {\n    @Resource\n    private WebServiceContext context;\n\n    public String\
+  \ echo(String name) {\n        ...\n    }\n}\n```\n\n```\ntemp = student.getMarks()[i];\n\
+  \    if (temp > highest) {\n        highest = temp;\n    }\n}\n    return highest;\n\
+  }\n```\n\nStudent 类是一个简单的 JavaBean，包含相应学生的姓名、年龄和成绩。其声明如下：\n\n```\n// Student.java\n\
+  package org.apache.jaxws.sample;\n\npublic class Student {\n    private String name;\n\
+  \    private int age;\n    private int[] marks;\n\n    public String getName() {\n\
+  \        return name;\n    }\n\n    public void setName(String name) {\n       \
+  \ this.name = name;\n    }\n\n    public int getAge() {\n        return age;\n \
+  \   }\n\n    public void setAge(int age) {\n        this.age = age;\n    }\n\n \
+  \   public int[] getMarks() {\n        return marks;\n    }\n\n    public void setMarks(int[]\
+  \ marks) {\n        this.marks = marks;\n    }\n}\n```\n\n编译给定的类，根据编译后的代码创建 JAR\
+  \ 文件，然后将其部署到 Axis2 的 `repository/servicejars` 目录中。启动 Axis2，并访问 URL http://localhost:8080/axis2/services/StudentMarksService?wsdl\
+  \ 查看 WSDL。\n\n\n\n\n``` \nwsimport -d generated http://example.org/stock?wsdl\n\
+  ```\n\n如第二个示例所示，如果你想基于此创建一个服务，`wsimport` 也会生成 .java 文件。其中包含你 Web 服务的已生成接口。只需实现该接口，它就将成为你的\
+  \ Web 服务类。然后在顶部添加 @WebService 注解，如下所示。\n\n我们将为以下 WSDL 1.1 文档生成服务：StudentsMarksService.wsdl：\n\
+  \n```xml\n<definitions xmlns=\"http://schemas.xmlsoap.org/wsdl/\"\n    xmlns:xs=\"\
+  http://www.w3.org/2001/XMLSchema\"\n    xmlns:soap=\"http://schemas.xmlsoap.org/wsdl/soap/\"\
+  \n    xmlns:tns=\"http://apache.org/jaxws/sample1\"\n    name=\"StudentMarksService\"\
+  \n    targetNamespace=\"http://apache.org/jaxws/sample1\">\n\n<types>...</types>\n\
+  <message>...</message>\n<portType>...</portType>\n<binding>\n\n    <service name=\"\
+  StudentMarksService\">\n        <port name=\"StudentMarksPort\" binding=\"tns:StudentMarksPortBinding\"\
+  >\n            <soap:address location=\"https://localhost/services/StudentMarksService.StudentMarksPort/\"\
+  />\n        </port>\n    </service>\n</definitions>\n```\n\n该 WSDL 的 XML Schema\
+  \ 类型定义如下所示：\n\n```xml\n<types>\n    <xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"\
+  \n        xmlns:tns=\"http://apache.org/jaxws/sample1\"\n        attributeFormDefault=\"\
+  unqualified\"\n        elementFormDefault=\"unqualified\"\n        targetNamespace=\"\
+  http://apache.org/jaxws/sample1\">\n\n        <xs:element name=\"computeAverage\"\
+  \ type=\"tns:computeAverage\"/>\n        <xs:element name=\"computeAverageResponse\"\
+  \ type=\"tns:computeAverageResponse\"/>\n        <xs:element name=\"computeHighestMarks\"\
+  \n            type=\"tns:computeHighestMarks\"/>\n        <xs:element name=\"computeHighestMarksResponse\"\
+  \n            type=\"tns:computeHighestMarksResponse\"/>\n        <xs:complexType\
+  \ name=\"computeAverage\">\n            <xs:sequence>\n                <xs:element\
+  \ form=\"qualified\" minOccurs=\"0\"\n                    name=\"student\"\n   \
+  \                 type=\"tns:student\"/>\n            </xs:sequence>\n        </xs:complexType>\n\
+  \        <xs:complexType name=\"student\">\n            <xs:sequence>\n        \
+  \        <xs:element name=\"age\" type=\"xs:int\"/>\n                <xs:element\
+  \ maxOccurs=\"unbounded\" minOccurs=\"0\"\n                    name=\"marks\"\n\
+  \                    nillable=\"true\"\n                    type=\"xs:int\"/>\n\
+  \                <xs:element minOccurs=\"0\" name=\"name\"\n                   \
+  \ type=\"xs:string\"/>\n            </xs:sequence>\n        </xs:complexType>\n\
+  \        <xs:complexType name=\"computeAverageResponse\">\n            <xs:sequence>\n\
+  \                <xs:element form=\"qualified\" name=\"average\"\n             \
+  \       type=\"xs:double\"/>\n            </xs:sequence>\n        </xs:complexType>\n\
+  \        <xs:complexType name=\"computeHighestMarks\">\n            <xs:sequence>\n\
+  \                <xs:element form=\"qualified\" minOccurs=\"0\"\n              \
+  \      name=\"student\"\n                    type=\"tns:student\"/>\n          \
+  \  </xs:sequence>\n        </xs:complexType>\n        <xs:complexType name=\"computeHighestMarksResponse\"\
+  >\n            <xs:sequence>\n                <xs:element form=\"qualified\" name=\"\
+  highest\"\n                    type=\"xs:int\"/>\n            </xs:sequence>\n \
+  \       </xs:complexType>\n    </xs:schema>\n</types>\n```\n\n该 WSDL 的消息定义如下所示：\n\
+  \n```xml\n<message name=\"computeHighestMarks\">\n    <part name=\"parameters\"\
+  \ element=\"tns:computeHighestMarks\">\n    </part>\n</message>\n<message name=\"\
+  computeAverage\">\n    <part name=\"parameters\" element=\"tns:computeAverage\"\
+  >\n    </part>\n</message>\n<message name=\"computeHighestMarksResponse\">\n   \
+  \ <part name=\"parameters\" element=\"tns:computeHighestMarksResponse\">\n    </part>\n\
+  </message>\n<message name=\"computeAverageResponse\">\n    <part name=\"parameters\"\
+  \ element=\"tns:computeAverageResponse\">\n    </part>\n</message>\n```\n\n该服务在\
+  \ WSDL 中的 portType 定义如下所示：\n\n```xml\n<portType name=\"StudentMarks\">\n    <operation\
+  \ name=\"computeAverage\">\n        <input message=\"tns:computeAverage\">\n   \
+  \     </input>\n        <output message=\"tns:computeAverageResponse\">\n      \
+  \  </output>\n    </operation>\n    <operation name=\"computeHighestMarks\">\n \
+  \       <input message=\"tns:computeHighestMarks\">\n        </input>\n        <output\
+  \ message=\"tns:computeHighestMarksResponse\">\n        </output>\n    </operation>\n\
+  </portType>\n```\n\n该 WSDL 中的绑定定义如下：\n\n```xml\n<binding name=\"StudentMarksPortBinding\"\
+  \ type=\"tns:StudentMarks\">\n    <soap:binding style=\"document\"\n        transport=\"\
+  http://schemas.xmlsoap.org/soap/http\"/>\n    <operation name=\"computeAverage\"\
+  >\n        <soap:operation soapAction=\"urn:getAverage\"/>\n        <input>\n  \
+  \          <soap:body use=\"literal\"/>\n        </input>\n        <output>\n  \
+  \          <soap:body use=\"literal\"/>\n        </output>\n    </operation>\n \
+  \   <operation name=\"computeHighestMarks\">\n        <soap:operation soapAction=\"\
+  urn:getHighestMarks\"/>\n        <input>\n            <soap:body use=\"literal\"\
+  />\n        </input>\n        <output>\n            <soap:body use=\"literal\"/>\n\
+  \        </output>\n    </operation>\n</binding>\n```\n\n让我们使用 wsimport 工具为此 WSDL\
+  \ 生成代码，如下所示：\n\n```\nwsimport -s wsdl2java StudentsMarksService.wsdl\n```\n\n这将生成\
+  \ org.apache.jaxws.sample1.StudentMarksPort 和 org.apache.jaxws.sample1.Student 类。现在我们将使用这些已生成的类编写一个示例\
+  \ Web 服务：\n\n```java\npackage org.apache.jaxws.sample1.service;\n\nimport org.apache.jaxws.sample1.StudentMarksPort;\n\
+  import org.apache.jaxws.sample1.Student;\n\nimport javax.jws.WebService;\n\n@WebService(\n\
+  \    serviceName = \"StudentMarksService\",\n    portName = \"StudentMarksPort\"\
+  ,\n    targetNamespace = \"http://apache.org/jaxws/sample1\",\n    endpointInterface\
+  \ = \"org.apache.jaxws.sample1.StudentMarksPort\",\n    wsdlLocation = \"StudentMarksService.wsdl\"\
+  \n)\npublic class StudentMarksImpl implements StudentMarksPort {\n\n    public double\
+  \ computeAverage(Student student) {\n        double totalMarks = 0;\n```\n\n## Dispatch\
+  \ 客户端\n\n当你想在 XML 消息级别工作或在 JAX-WS 级别工作而无需任何已生成的工件时，你将使用此客户端。Dispatch 客户端 API 要求应用程序客户端以\
+  \ XML 的形式构造消息或有效负载，这需要对消息或消息有效负载有详细的了解。Dispatch 客户端支持以下类型的对象：\n\n- `javax.xml.transform.Source`：你将使用\
+  \ Source 对象使客户端能够直接使用 XML API。你可以在 SOAP 或 HTTP 绑定中使用 Source 对象。\n- **JAXB 对象**：你将使用\
+  \ JAXB 对象，以便客户端可以使用从 XML 模式生成的 JAXB 对象来创建和操作 JAX-WS 应用程序中的 XML。JAXB 对象只能与 SOAP 或\
+  \ HTTP 绑定一起使用。\n- `javax.xml.soap.SOAPMessage`：你将使用 SOAPMessage 对象，以便客户端可以处理 SOAP\
+  \ 消息。你只能将 SOAPMessage 对象与 SOAP 绑定一起使用。\n- `javax.activation.DataSource`：你将使用 DataSource\
+  \ 对象，以便客户端可以处理多用途互联网邮件扩展 MIME 消息。DataSource 只能与 HTTP 绑定一起使用。\n\n以下示例演示了如何使用 JAX-WS\
+  \ Dispatch 客户端 API。此客户端与 HelloService 通信，其中包含单个操作，即 greet。该选项接收单个字符串参数。请特别注意突出显示的代码。正如你所见，由于使用了\
+  \ Message 服务模式，客户端必须构造 SOAP 信封、头、主体和主体内容：\n\n```java\npackage org.apache.jaxwsclient;\n\
+  \nimport javax.xml.namespace.QName;\nimport javax.xml.soap.*;\nimport javax.xml.ws.Dispatch;\n\
+  import javax.xml.ws.Service;\nimport javax.xml.ws.soap.SOAPBinding;\npublic class\
+  \ DispatchClient {\n    public static void main(String[] args) {\n        try {\n\
+  \            String endpointUrl = \"http://localhost:8080/axis2/services/HelloService\"\
+  ;\n            QName serviceName = new QName(\"http://apache.org/types\", \"HelloService\"\
+  );\n            QName portName = new QName(\"http://apache.org/types\", \"HelloServiceHttpSoap11Endpoint\"\
+  );\n\n            /** Create a service and add at least one port to it. **/\n  \
+  \          Service service = Service.create(serviceName);\n            service.addPort(portName,\
+  \ SOAPBinding.SOAP11HTTP_BINDING, endpointUrl);\n\n            /** Create a Dispatch\
+  \ instance from a service.**/\n            Dispatch<SOAPMessage> dispatch = service.createDispatch(portName,\
+  \ SOAPMessage.class, Service.Mode.MESSAGE);\n\n            /** Create SOAPMessage\
+  \ request. **/\n            // compose a request message\n            MessageFactory\
+  \ mf = MessageFactory.newInstance(SOAPConstants.SOAP_1_1_PROTOCOL);\n\n        \
+  \    // Create a message. This example works with the SOAPPART.\n            SOAPMessage\
+  \ request = mf.createMessage();\n            SOAPPart part = request.getSOAPPart();\n\
+  \n            // Obtain the SOAPEnvelope and header and body elements.\n       \
+  \     SOAPEnvelope env = part.getEnvelope();\n            SOAPHeader header = env.getHeader();\n\
+  \            SOAPBody body = env.getBody();\n\n            // Construct the message\
+  \ payload.\n            SOAPElement operation = body.addChildElement(\"greet\",\
+  \ \"ns2\", \"http://apache.org/types\");\n            SOAPElement age = operation.addChildElement(\"\
+  name\");\n            age.addTextNode(\"Packt\");\n            request.saveChanges();\n\
+  \n            /** Invoke the service endpoint. **/\n            SOAPMessage response\
+  \ = dispatch.invoke(request);\n            System.out.println(response.getSOAPBody().getFirstChild().toString());\n\
+  \        } catch (Exception e) {\n            e.printStackTrace();\n        }\n\
+  \    }\n}\n```\n\n你需要 JDK 1.5 或更高版本来编译上述类。\n\n\n\n\n\n## 动态代理客户端\n\nJAX-WS 的静态客户端编程模型称为动态代理客户端。动态代理客户端基于提供的服务端点接口调用\
+  \ Web 服务。在创建代理后，客户端应用程序可以像标准实现一样在代理上调用方法。对于使用动态代理编程模型的 JAX-WS Web 服务客户端，请使用 JAX-WS\
+  \ 工具 wsimport 处理 WSDL 文件并生成用于创建 Web 服务客户端的可移植 Java 工件。\n\n在下面的示例中，org.apache.types.HelloService\
+  \ 和 org.apache.types.HelloServicePortType 类是由随 JDK 一起提供的 wsimport 工具生成的。该示例展示了如何在\
+  \ ProxyClient 类中使用生成的类。正如你所见，与 DispatchClient 不同，代码行数要少得多，但你对底层操作的控制也更少：\n\n```\n\
+  package org.apache.jaxwsclient;\n\nimport org.apache.types.HelloService;\nimport\
+  \ org.apache.types.HelloServicePortType;\n\npublic class ProxyClient {\n    public\
+  \ static void main(String[] args) {\n        HelloService service = new HelloService();\n\
+  \        HelloServicePortType portType = service.getHelloServiceHttpSoap11Endpoint();\n\
+  \        System.out.println(portType.greet(\"Packt\"));\n    }\n}\n```\n\n## 使用\
+  \ JAX-WS 服务的 MTOM\n\n消息传输优化机制（MTOM）是一种高效地向 Web 服务发送和接收二进制数据的方法。要在 JAX-WS 服务中使用 MTOM，首先必须使用\
+  \ BindingType 注解将绑定类型设置为 SOAP11 MTOM。你将使用 javax.activation.DataHandler 在参数或返回类型中表示二进制数据。让我们看一个启用了\
+  \ MTOM 的 JAX-WS 服务示例。uploadFile Web 服务操作展示了如何将二进制数据用作操作的输入参数。下面的 getBinaryTestData\
+  \ 操作说明了如何将二进制数据用作操作的输出：\n\n高亮字段显示 BindingType 被设置为 SOAP11HTTP_MTOM_BINDING 和 DataHandler。Java\
+  \ bean 类型类也可以包含 DataHandler。你需要 JDK 1.5 或更高版本来编译上述类。\n\n## JAX-WS 服务的异步调用\n\nJAX-WS\
+  \ 支持从客户端异步调用服务。JAX-WS 在异步调用 Web 服务时为回调模型和轮询模型提供支持。回调模型和轮询模型均由 Dispatch 客户端和代理客户端支持。\n\
+  \nWeb 服务的异步调用会向服务端点发送请求，然后立即将控制权返回给客户端，而无需等待响应从服务返回。JAX-WS 异步 Web 服务客户端使用回调方法或轮询方法使用\
+  \ Web 服务。\n\n### 轮询模型\n\n在轮询模型中，客户端可以发出请求并接收响应对象，通过轮询来确定服务器是否已响应。当服务器响应时，会检索实际响应。响应对象在调用\
+  \ get 方法时会返回响应内容。客户端从 invokeAsync 方法接收到 javax.xml.ws.Response 类型的对象。该 Response 对象用于监控向服务器的请求状态，确定操作是否已完成，并检索响应结果。\n\
+  \n### 回调模型\n\n在回调模型中，客户端提供回调处理程序来接收和处理入站响应对象。当结果可用时，处理程序的 handleResponse 方法会被调用。为了实现使用回调模型的异步调用，客户端提供\
+  \ AsyncHandler 实例来接收和处理入站响应对象。客户端回调处理程序实现 javax.xml.ws.AsyncHandler 接口，该接口包含在从服务器接收到异步响应时执行的应用程序代码。javax.xml.ws.AsyncHandler\
+  \ 接口包含 handleResponse(javax.xml.ws.Response) 方法，该方法在运行时接收并处理来自服务器的异步响应后被调用。响应以 javax.xml.ws.Response\
+  \ 对象的形式传递给回调处理程序。响应对象在调用 get() 方法时会返回响应内容。\n\n## 编写高可用可集群的 Web 服务\n\n通常，你无需做任何额外工作即可使\
+  \ Web 服务可集群。一般来说，任何常规 Web 服务都是可集群的。对于有状态的 Web 服务，你需要将 Java 可序列化可复制属性存储在 Axis2 ConfigurationContext、ServiceGroupContext\
+  \ 或 ServiceContext 中。请注意，你在其他地方维护的有状态变量将不会被复制。如果正确配置了 Axis2 集群以进行状态复制，则 Axis2 基础设施将为你复制这些属性。在下一节中，你将能够查看为状态复制配置集群的详细信息。让我们看一个部署在\
+  \ soapsession 范围内的简单有状态 Axis2 Web 服务：\n\n```\npublic class ClusterableService {\n\
+  \    private static final String VALUE = \"value\";\n\n    public void setValue(String\
+  \ value) {\n        ServiceContext serviceContext = MessageContext.getCurrentMessageContext().getServiceContext();\n\
+  \        serviceContext.setProperty(VALUE, value);\n    }\n\n    public String getValue()\
+  \ {\n        ServiceContext serviceContext = MessageContext.getCurrentMessageContext().getServiceContext();\n\
+  \        return (String) serviceContext.getProperty(VALUE);\n    }\n}\n```\n\n你可以在集群中的两个\
+  \ Axis2 节点上部署此服务。你可以编写一个客户端，在第一个节点上调用 setValue 操作，然后在第二个节点上调用 getValue 操作。你将能够看到你在第一个节点上设置的值可以从第二个节点检索到。发生的情况是，当你在第一个节点上调用\
+  \ setValue 操作时，值会被设置在相应的 ServiceContext 中，并复制到第二个节点。因此，当你在第二个节点上调用 getValue 时，复制的值已正确设置在相应的\
+  \ ServiceContext 中。正如你可能已经注意到的那样，你无需做任何额外工作即可使 Web 服务可集群。Axis2 会透明地进行状态复制。然而，如果你需要控制状态复制，Axis2\
+  \ 也提供了该选项。让我们重写同一个 Web 服务，同时控制状态复制：\n\n```\npublic class ClusterableService {\n\
+  \    private static final String VALUE = \"value\";\n    public void setValue(String\
+  \ value) {\n```\n\n![](img/e2fb05de168053e6227dab034eff9353_221_0.png)\n\n## 增加水平可扩展性\n\
+  \n如图所示，为了实现水平可扩展性，Axis2 集群将由负载均衡器前端（下图中用 LB 表示）。负载均衡器将根据某种负载均衡算法在 Axis2 集群中分配负载。轮询负载均衡算法就是这样一种流行且简单的算法，当所有节点上的硬件和软件都相同的情况下效果很好。通常，水平可扩展的集群将保持其响应时间，并在负载增加时不会降低性能。在这种设置下吞吐量也会随着负载的增加而增加。通常，集群中的节点数量是预期最大峰值负载的函数。在这种集群中，所有节点都是活动的。\n\
+  \n![](img/e2fb05de168053e6227dab034eff9353_221_1.png)\n\n### AvoidInitiation\n\n\
+  此参数指示在构建 `AxisConfiguration` 时集群是否需要自动初始化。如果设置为 true，则不会在该阶段进行初始化，而必须由其他方显式初始化集群。在\
+  \ Axis2 被第三方嵌入的情况下，他们可能需要控制集群初始化过程。因此提供了此参数。例如，我们可以将此参数设置为 true，以便在服务器完全启动并且相关传输已初始化后初始化集群。\n\
+  \n### membershipScheme\n\n在此设置中使用成员关系方案。目前支持的唯一值是 multicast 和 WKA。\n\n- **multicast:**\
+  \ 基于多播的成员管理。成员关系使用多播自动发现。为了使其工作，多播必须在网络中允许，并且集群中的所有成员必须使用相同的多播地址（由 `mcastAddress`\
+  \ 参数定义）和确切的多播端口（由 `mcastPort` 参数定义）。\n- **众所周知地址 (WKA)：** 基于众所周知地址的成员管理。成员关系在运行在众所周知地址的一个或多个节点的帮助下发现。加入集群的新成员将首先连接到众所周知节点，向众所周知节点注册，并从其获取成员列表。当新成员加入时，众所周知节点中的一个将通知组中的其他节点。当成员离开集群或被认为已离开集群时，它将通过\
+  \ **Group Membership Service (GMS)** 使用 TCP ping 机制检测到。当多播成员发现不可行时，需要基于 WKA 的成员关系。例如，在\
+  \ Amazon EC2 上，不允许多播，并且无法控制分配给 EC2 实例的 IP 地址。因此，在这种情况下，往往会使用基于 WKA 的成员发现。\n\n###\
+  \ domain\n\n集群域/组：请注意，“domain”和“group”一词可互换使用。不同组中的节点之间不会有任何干扰。从组外成员接收的消息通常会被忽略。然而，特殊消息，例如来自组外成员的集群管理消息或成员关系消息将被允许。\n\
+  \n\n\n\n## synchronizeAll\n\n当收到并处理一个Web服务请求时，是否应该在响应发送给客户端之前，更新集群中所有成员的状态？如果此参数的值设置为true，则只有在所有成员都更新完毕之后，才会向客户端发送响应。显然，这可能会很耗时。在某些情况下，如果这种开销不可接受，则应将此参数的值设置为false。这种做法的风险在于，当响应发送给客户端时，所有成员不会处于相同的状态。这种情况必须由用户处理。总而言之，此参数定义了我们是否应该在向客户端发送响应之前同步组内所有成员的状态。\n\
+  \n## maxRetries\n\n此参数定义在放弃并向特定成员发送消息并认为该节点故障之前，我们需要重试的最大次数。达到maxRetries次重试后，我们便放弃。\n\
+  \n## mcastAddress\n\n这是要使用的多播地址。仅当membershipScheme设置为multicast时，才会考虑此参数。\n\n## mcastPort\n\
+  \n这是要使用的多播端口。仅当membershipScheme设置为multicast时，才会考虑此参数。\n\n## mcastFrequency\n\n此参数定义发送成员关系多播消息的频率。该值应以毫秒为单位指定。仅当membershipScheme设置为multicast时，才会考虑此参数。\n\
+  \n## memberDropTime\n\n此参数定义了一个时间间隔，如果某个成员在此时间间隔内没有响应，则视为该成员已离开组。该值应以毫秒为单位指定。\n\n\
+  ## mcastBindAddress\n\n此参数定义了多播必须绑定到的网络接口的IP地址。多播将使用此接口进行。仅当`membershipScheme`设置为`multicast`时，才会考虑此参数。请注意，此地址可以与`localMemberHost`参数不同。因此，我们可以在`localMemberHost`网络接口上监听点对点消息，同时在绑定到`mcastBindAddress`的网络接口上监听多播消息。\n\
+  \n## localMemberHost\n\n此参数定义该成员的主机名或IP地址。这是该成员在加入组并发送消息时宣告的IP地址。应将其设置为除localhost或127.0.0.1以外的有效值。在大多数情况下，将其设置为用于与组内成员通信的网络接口所绑定的IP地址即可。\n\
+  \n## localMemberPort\n\n此参数定义该成员使用的TCP端口。其他成员将通过此端口与该成员联系。此端口的默认值为4000。\n\n## preserveMessageOrder\n\
+  \n此参数指示应保持消息顺序。这将按照发送方的顺序进行。此参数的默认值为true。\n\n## atmostOnceMessageSemantics\n\n此参数指示需要保持“至多一次”的消息处理语义。它保证给定的集群消息将至多传递一次到目标进程或节点。此参数的默认值为true。\n\
+  \n## properties\n\n有一些特定于该成员的属性。这些属性就是简单的名-值对。当成员加入组时，这些属性会绑定到该成员上，以便组内的其他成员能够检测到这些属性。在需要进行集中式集群管理的情况下，可以使用这些属性。\n\
+  \n例如：假设有一个可由独立服务器管理的Axis2集群。每个Axis2成员将提供两个成员属性，即backendServerURL和mgtConsoleURL。backendServerURL属性用于连接成员的后端管理Web服务。类似地，如果该成员希望公开自己的管理控制台，则可以通过提供“mgtConsoleURL”属性来实现。backendServerURL属性使用<property\
+  \ name=\"backendServerURL\" value=\"https://${hostName}:${httpsPort}/services/\"\
+  />条目来指定。这里，${hostName}表示hostName成员属性，${httpsPort}表示httpsPort成员属性。hostName和httpsPort是两个隐式成员属性。httpPort是另一个隐式成员属性。先前已声明的属性可以在后续的属性定义中使用。例如，我们可以按如下方式定义一个新属性：<property\
+  \ name=\"foo\" value=\"${backendServerURL}/foo\"/>。\n\n## 状态管理\n\n如果需要在集群组的成员之间同步状态，则需要启用stateManager元素。需要提供org.apache.axis2.clustering.state.StateManager的实现作为class属性的值。在默认的基于Apache\
+  \ Tribes的实现中，我们提供了org.apache.axis2.clustering.state.DefaultStateManager类。用户可以选择不复制某些属性。这可以通过提供属性名模式来实现。让我们看下面的例子：\n\
+  \n```\n<stateManager class=\"org.apache.axis2.clustering.state.DefaultStateManager\"\
+  \ enable=\"true\">\n  <replication>\n    <defaults>\n      <exclude name=\"local_*\"\
+  />\n      <exclude name=\"LOCAL_*\"/>\n    </defaults>\n    <context class=\"org.apache.axis2.context.ConfigurationContext\"\
+  >\n      <exclude name=\"UseAsyncOperations\"/>\n      <exclude name=\"SequencePropertyBeanMap\"\
+  />\n    </context>\n    <context class=\"org.apache.axis2.context.ServiceGroupContext\"\
+  >\n      <exclude name=\"my.sandesha.*\"/>\n    </context>\n  </replication>\n</stateManager>\n\
+  ```\n\n![](img/e2fb05de168053e6227dab034eff9353_233_0.png)\n\n静态成员在每个成员的axis2.xml文件中指定如下：\n\
+  \n```\n<members>\n    <member>\n        <hostName>S1</hostName>\n        <port>4000</port>\n\
+  \    </member>\n    <member>\n        <hostName>S2</hostName>\n        <port>4000</port>\n\
+  \    </member>\n</members>\n```\n\n如上图所示，属于域Group H并且至少知道组内一个静态成员的新成员N，可以加入该组。这个新成员将首先联系其中一个静态成员，并了解组成员信息。静态成员将告知N组成员信息{S1,\
+  \ S2, D1, D2, D3}，然后通知组内每个成员N已加入组，如下面的时序图所示：\n\n![](img/e2fb05de168053e6227dab034eff9353_233_1.png)\n\
+  \n![](img/e2fb05de168053e6227dab034eff9353_235_0.png)\n\n为了管理如上图所示的两个组Group H和Group\
+  \ D，集群管理器需要有以下配置：\n\n```\n<groupManagement enable=\"true\">\n    <applicationDomain\
+  \ name=\"GroupH\"\n        description=\"This is the first group\" agent=\"org.apache.\n\
+  axis2.clustering.management.DefaultGroupManagementAgent\"/>\n\n    <applicationDomain\
+  \ name=\"GroupD\"\n        description=\"This is the second group\" agent=\"org.apache.\n\
+  axis2.clustering.management.DefaultGroupManagementAgent\"/>\n</groupManagement>\n\
+  ```\n\n## 高可用负载均衡\n\n为了避免单点故障，工作Axis2集群——**Group H**和**Group D**——可以由负载均衡器集群**Group\
+  \ LB**作为前端，如下图所示。**Group LB**中的一个负载均衡器将作为主负载均衡器。Apache Synapse负载均衡器可以以这种方式部署，并使用底层的Axis2集群机制。Web服务客户端将与主负载均衡器中的端点通信，而不会感知到后端工作节点Axis2集群。\n\
+  \n![](img/e2fb05de168053e6227dab034eff9353_236_0.png)\n\n## Axis2集群管理API\n\nAxis2集群的设计方式是，所有功能都通过一组接口进行抽象。通过实现这些接口并在集群配置部分提供实现类，可以插入任何不同的集群实现。Axis2中的默认集群实现基于Apache\
+  \ Tribes（Apache Tribes n.d.），这是Apache Tomcat（Apache Tomcat n.d.）使用的流行的组管理框架。有时可能需要使用自己选择的组管理框架，在这种情况下，可以实现这些接口，然后通过`axis2.xml`文件中的集群配置部分将它们插入。我们将在本章后面讨论这些接口的用法。\n\
+  \n\n\n\n\nThere can also be several `parameter` elements, which are children of\
+  \ the `clustering` element in the `axis2.xml` file. Generally, these parameters\
+  \ will be specific to the `ClusteringAgent` implementation. In the default Apache\
+  \ Tribes-based implementation, there are several parameters that are required to\
+  \ initialize the Tribes Channel properly.\n\n## org.apache.axis2.clustering.state.StateManager\n\
+  \nThis interface is responsible for handling state replication. This is an optional\
+  \ interface and if state replication is not required, then this interface can be\
+  \ omitted. The word 'state' here means the serializable values stored in the Axis2\
+  \ context hierarchy which need to be kept in sync across all the members of a cluster\
+  \ group. Property changes (state changes) in the Axis2 context hierarchy in the\
+  \ node that runs this `StateManager` will be propagated to all other nodes in its\
+  \ group. In the default Axis2 clustering implementation, we have only enabled replication\
+  \ of serializable objects stored in the Apache Axis2 `ConfigurationContext`, `ServiceGroupContext`,\
+  \ and `ServiceContext`. Hence, if a user requires state replication, it is this\
+  \ user's responsibility to store these values in the proper Axis2 contexts. Generally,\
+  \ web services authors do not have to handle state replication, as it is handled\
+  \ by the clustering implementation just before request completion. This is done\
+  \ at the Axis2 `MessageReceivers`. However, if the developer writes his own `MessageReceiver`,\
+  \ he will need to call the `org.apache.axis2.clustering.state.Replicator#replicate()`\
+  \ method. Also, note that at any point, `org.apache.axis2.clustering.state.Replicator#replicate()`\
+  \ can be called, if the developer wishes to force state replication.\n\nIt is not\
+  \ mandatory to have a `StateManager` in a node. If we are not interested in high\
+  \ availability, we may disable state replication. In such a scenario, in general,\
+  \ the purpose of a clustered deployment is to achieve scalability. In addition,\
+  \ one may also enable clustering without state replication simply to utilize the\
+  \ group communication capabilities of the underlying **Group Communication Framework\
+  \ (GCF)**. In such a case, the purpose of a clustered deployment may also be management\
+  \ of the cluster using the underlying GCF. The implementation of this interface\
+  \ is set by reading the `stateManager` element in the `axis2.xml` clustering section.\n\
+  \n## WSO2 ESB\n\n**WSO2 ESB** is an open source Enterprise Service Bus (ESB) released\
+  \ by the open source middleware company, WSO2 Inc. It is shipped under the Apache\
+  \ Software License v2.0. The runtime of WSO2 ESB has been designed to be completely\
+  \ asynchronous, non-blocking, and streaming, based on the Apache Synapse mediation\
+  \ engine. This also means that WSO2 ESB has been built on top of Apache Axis2, as\
+  \ Apache Synapse is based on Apache Axis2. This ESB allows system administrators\
+  \ and SOA architects to simply and easily configure message routing, virtualization,\
+  \ intermediation, transformation, logging, task scheduling, load balancing, failover\
+  \ routing, event brokering, and many enterprise integration patterns.\n\nWSO2 ESB\
+  \ supports many application layer protocols and messaging standards, collectively\
+  \ known as **transports**, including HTTP, HTTPS, e-mail, **Java Message Service\
+  \ (JMS)**, and **Virtual File System (VFS)**. It also supports a range of domain-specific\
+  \ protocols such as **Financial Information eXchange (FIX)**, **Advanced Message\
+  \ Queuing Protocol (AMQP)**, and **Health Level 7 (HL7)**. New transports can be\
+  \ easily plugged into the server due to the extensibility offered by the Axis2 transports\
+  \ framework. The following figure illustrates how the different transports can be\
+  \ plugged into the ESB and how the Apache Synapse runtime fits into the WSO2 ESB:\n\
+  \n![](img/e2fb05de168053e6227dab034eff9353_243_0.png)\n\n## OpenESB\n\n**OpenESB**\
+  \ is an open source **Java Business Integration (JBI)** standard-centric Enterprise\
+  \ Service Bus, originally from Sun Microsystems, now Oracle Inc. JBI is built on\
+  \ a web services model and provides a pluggable architecture for a container that\
+  \ hosts service producer and consumer components. Services connect to the container\
+  \ via binding components or can be hosted inside the container as part of a service\
+  \ engine. The services model used is Web Services Description Language (WSDL) 2.0.\
+  \ OpenESB consists of a runtime, a design time, and a management console. The runtime\
+  \ consists of a lightweight JBI core and several components. OpenESB comes with\
+  \ several components for data transformation, orchestration, and connectivity. There\
+  \ is support for HTTP and web services, JMS, databases, MQ Series, SAP, IMS, HL7,\
+  \ and others. Logic can be expressed in BPEL, EJBs, or POJOs.\n\nIn the rest of\
+  \ this chapter, we will be looking at the following SOA integration patterns. Please\
+  \ note that Apache Synapse has been shown as the ESB in the diagrams, but it can\
+  \ be replaced by any of the ESBs we have discussed in this chapter:\n\n- Protocol\
+  \ bridging\n- External authentication and authorization\n- Dynamic routing combined\
+  \ with auditing\n- **Event Driven Architecture (EDA)** with **Master Data Management\
+  \ (MDM)**\n- Push and pull\n- Fault tolerant autoscaling with dynamic load balancing\n\
+  \n## Protocol bridging\n\n**Protocol bridging** refers to the request coming on\
+  \ one transport protocol, and being sent in for processing on a different protocol.\
+  \ For example, the corporate policy may dictate that all incoming traffic should\
+  \ be on HTTPS. Some web services may exist that are exposed only via a transport\
+  \ such as JMX. In such a case, there should be a way of bridging from HTTPS to JMX.\
+  \ Furthermore, the backend web services, which may be deployed on Axis2, may be\
+  \ highly secured within a **High Security Zone (HSZ)**, and the policies may dictate\
+  \ that only certain calls from the **Demilitarized Zone (DMZ)** can be made to those\
+  \ web services. We may also implement message validation and request throttling\
+  \ outside the highly secured LAN. This scenario is shown in the following figure.\
+  \ External web service clients talk to the endpoints on the ESB in the DMZ. This\
+  \ ESB will run validations and other Quality of Service (QoS) functionality on these\
+  \ incoming messages, and if those messages meet the requirements, it will switch\
+  \ to a protocol that is compatible with the backend service deployment, and send\
+  \ the message into the LAN.\n\nIn the following figure, we have shown another optional\
+  \ ESB deployment, which can further deal with things such as transformations. However,\
+  \ that ESB can be omitted, if required, and the request can be directly routed to\
+  \ Axis2. Once Axis2 receives the request, it will dispatch it to the relevant web\
+  \ service and send the response back. The ESB in the DMZ will again perform a protocol\
+  \ transformation, and send the response back to the client that originated the request.\n\
+  \n![](img/e2fb05de168053e6227dab034eff9353_247_0.png)\n\n## External authentication\
+  \ and authorization\n\nIn medium to large scale enterprise deployments, authentication\
+  \ and authorization are handled by an external identity management server such as\
+  \ WSO2 Identity Server. The web service client or the server can participate in\
+  \ authentication and authorization.\n\nIn these two scenarios, authentication and\
+  \ authorization handling can be done within a pure Axis2 instance as well, but the\
+  \ reason for bringing in an ESB into the picture is to handle all authentication\
+  \ and authorization functionality in one central place. Otherwise, if there are\
+  \ multiple Axis2 instances in an enterprise deployment, each of those Axis2 instances\
+  \ would have to separately talk to the identity management server. In addition,\
+  \ additional mediation steps can be introduced in the ESB, when the system evolves\
+  \ over time.\n\n## Dynamic routing combined with auditing\n\nIn some enterprise\
+  \ deployments, there is a requirement to route the request to different Axis2 service\
+  \ implementations or different Axis2 servers, depending on certain criteria or other\
+  \ parameters such as the time of the day. For example, during the peak hours, requests\
+  \ may be routed to a server having more resources in terms of memory and processing\
+  \ power. In some cases, the requests may need more processing power, depending on\
+  \ the input parameter values. Requests are dynamically routed in order to optimize\
+  \ resource usage and maintain throughput. Note that the service contracts will not\
+  \ change and only the service implementation or deployment location will change.\
+  \ Hence this is transparent to the client.\n\nDynamic routing may be combined with\
+  \ auditing. In this case, each of the requests, along with other relevant metadata,\
+  \ will be asynchronously logged into a file or database for future auditing purposes.\n\
+  \nAs shown in the following figure, the Synapse ESB is used as a dynamic router\
+  \ and the central point for auditing. The Synapse configuration is loaded from a\
+  \ configuration repository and this configuration can change over the course of\
+  \ the day so that requests are dynamically routed to different Axis2 service implementations\
+  \ or Axis2 servers. A log mediator is used for logging the incoming requests and\
+  \ outgoing responses to a database. In the case where the Synapse configuration\
+  \ is changed at preconfigured times of the day, the server is put into maintenance\
+  \ mode using the JMX management API.\n\n\n\n\n\n在维护模式下，服务器将暂时停止接受新请求，但会继续处理已收到的请求。一旦所有现有请求处理完毕，将加载新配置，并使用新配置初始化\
+  \ Synapse 服务器。配置的重新加载可以手动完成，也可以通过运行脚本的 Cron 作业或任务自动完成。\n\n![](img/e2fb05de168053e6227dab034eff9353_250_0.png)\n\
+  \n## 用于集成遗留系统的事件驱动架构（EDA）与主数据管理（MDM）\n\n这种模式是事件驱动架构（EDA）和主数据管理（MDM）的结合。你将看到如何使用此模式使遗留系统启用\
+  \ SOA 并实现集成。\n\n### 事件驱动架构（EDA）\n\n事件驱动架构（EDA）是一种软件架构模式，系统基于事件的创建、消费和反应来运行。事件化是解耦\
+  \ SOA 系统的常用方式之一。实际上，事件驱动架构非常松耦合且分布良好。事件可以是任何事物；任何消息都可以被视为事件。\n\n### 主数据管理（MDM）\n\
+  \n**主数据** 指对业务运营至关重要的信息。这些信息可能包括客户、产品、员工、供应商等数据。主数据本质上是非事务性的，但可以支持事务流程和操作。主数据通常被多个职能组使用，并存储在整个组织的不同数据系统中，可能被集中引用，也可能不被集中引用。因此，存在重复和/或不准确主数据的可能性。MDM\
+  \ 包含一组一致地定义和管理主数据的流程和工具。MDM 的目标是提供在整个组织中收集、聚合、匹配、合并、质量保证、持久化和分发主数据的流程，以确保这些信息在持续维护和应用使用中的一致性和控制。\n\
+  \n组织中的大多数遗留系统对相同主数据有不同的表示。这是集成这些遗留系统的主要挑战之一。我们将探讨如何使用 EDA 与 MDM 来集成此类遗留系统。\n\n![](img/e2fb05de168053e6227dab034eff9353_251_0.png)\n\
+  \n我们将使用前图所示的示例场景来演示 EDA 与 MDM。系统 1-3 是遗留系统，它们对组织的主数据有不同的表示。例如，Person 实体在系统 1 中以某种格式表示，而在系统\
+  \ 2 和 3 中以另一种格式表示。这些系统拥有各自的数据库来存储主数据。当某个系统中添加新主数据或更改现有主数据时，必须通知所有其他系统，以便它们相应地更新数据库。让我们详细了解每个子系统。\n\
+  \n### 适配器层\n\n我们使用基于 Axis2 Web 服务的适配器来集成这些系统。适配器扮演双重角色；它们与各自的后端遗留系统原生通信，并在相应遗留系统的主数据发生变化时发布事件。这些适配器也可以视为转换器，将**通用业务对象（GBO）**转换为**应用特定业务对象（ASBO）**。每个适配器只关心特定主数据类型的更改。因此，每个适配器都会订阅由不同主题空间表示的特定事件类型。这里使用基于\
+  \ Axis2 Savan 模块的 WS-Eventing。当事件服务器发布针对这些特定主题的事件时，相关适配器会接收它们。类似地，当主数据变化时，每个适配器会向相关主题发布事件。适配器\
+  \ Web 服务部署在同一个逻辑 Axis2 服务器上，物理上可以部署为集群。\n\n### 集成服务器\n\n**集成服务器** 是一个充当事件代理的 Synapse\
+  \ 服务器。该服务器负责管理 WS-Eventing 订阅。部署在适配器服务器上的适配器将是订阅者。当收到特定事件时，该服务器将咨询逻辑服务器，如果这是一个新事件，它会将其转换为\
+  \ GBO 并发布到相关主题。\n\n## 具有动态负载均衡的容错自动伸缩\n\n容错性、高可用性和可伸缩性是任何企业应用部署的基本前提。企业应用架构师的主要关注点之一是避免单点故障。**自动伸缩**\
+  \ 是指系统在负载增加时扩展、负载减少时收缩的行为。这种方法对于按实际消耗计算能力收费的云部署（如 Amazon EC2）至关重要。理想情况下，从客户的角度来看，在自动伸缩系统中，响应时间应保持恒定，系统的整体吞吐量应增加。动态负载均衡是指负载均衡器本身使用组通信和组成员机制来发现负载分布域的一种机制。在传统设置中，单个负载均衡器位于一组应用节点之前。在这种情况下，负载均衡器可能成为单点故障。传统上，使用\
+  \ Linux HA 等技术来克服这一问题。然而，这种传统方案有相当大的开销，并且要求备份系统与主系统非常接近。\n\n如下图所示，客户端直接与主 Synapse\
+  \ ESB 通信。Synapse 可以配置为作为负载均衡器运行。该负载均衡器将根据预配置的负载均衡算法将请求路由到 Axis2 工作节点。负载均衡器本身部署在它自己的集群中。主负载均衡器和备份负载均衡器属于同一个\
+  \ Axis2 集群域。请记住，Synapse 构建在 Axis2 之上，因此使用 Axis2 的内置集群机制。如果主负载均衡器发生故障，备份负载均衡器将接管，并成为主负载均衡器。它还会启动另一个备份负载均衡器。在云上，由于无法进行多播，因此使用基于知名地址的成员管理。主负载均衡器将是知名成员。主负载均衡器和备份负载均衡器也启用了组管理，因此它们可以检测\
+  \ Axis2 工作节点集群中的成员变化。\n\n在下一章中，我们将讨论 Apache Axis2 的一些高级特性，包括 Axis2 中的 REST（表述性状态转移）支持、MTOM（消息传输优化机制）、理解\
+  \ Axis2 类加载器层次结构，以及在其他各种应用服务器上部署 Axis2。\n"
+- "# 14 Axis2 高级特性和用法\n\n在前面的章节中，我们讨论了如何安装 Axis2、编写简单的 Web 服务、编写简单的模块、调用 Web 服务以及许多其他内容。如果你认真跟随并完成了所有示例，现在你应该已经扎实掌握了\
+  \ Axis2 的基础知识。因此，在本章中，可以这么说，我们将深入探讨 Axis2 的更高级特性。但不必恐慌！在前面的章节中，你已经在不知不觉中使用 Axis2\
+  \ 的大多数高级特性。现在是时候正确地学习它们，并将它们应用到你的应用程序中。当你想要开发复杂的 Web 服务应用程序时，Axis2 提供了许多你需要了解的有趣特性。\n\
+  \n在本章中，我们将讨论 Axis2 的几个高级特性，当你需要超越基本的 Web 服务调用时，你就会用到它们。具体来说，我们将讨论以下内容：\n\n- 表述性状态转移（REST）及其特性\n\
+  - REST 在 Axis2 中的使用\n- 消息传输优化机制（MTOM）\n- 客户端对 MTOM 的支持\n- 服务端对 MTOM 的支持\n- 用于创建更定制化\
+  \ Axis2 的 AxisConfigurators\n- 以异步方式调用和处理 Web 服务\n\n在本章中，我们将讨论几个不同的特性及其用法。但是，应该注意，每个单独的章节都有其自身的含义和应用。此外，当你想要进行复杂或更定制化的工作时，你将需要这些特性。\n\
+  \n\n\n\n\n## Representational State Transfer (REST)\n\n我们从本章开始介绍 Representational\
+  \ State Transfer（REST）及其特性。REST 是 Roy Fielding 在其博士论文中提出的一个术语，用来描述网络系统的架构风格。REST\
+  \ 的动机是为了捕捉使 Web 取得成功的特性。随后，这些特性被用来指导 Web 的演进。REST 并不是一个标准，而是一种架构风格，这就解释了为什么你在 W3C\
+  \ 中找不到任何规范。\n\n### Features of REST\n\nWeb 由资源组成。简单来说，资源是任何具有某种兴趣的项目。例如，亚马逊在线商店可能会为其新款佳能相机（DSLR）定义一个资源，客户端可以使用以下\
+  \ URL 访问该资源页面：http://www.amazon.com/canon/dslr。\n\n点击链接后，会返回资源的表示（例如，canon_dslr.html）。该表示将客户端应用程序置于一种状态。客户端在\
+  \ canon_dslr.html 中遍历超链接的结果是它访问另一个资源。新的表示将客户端应用程序置于另一种状态。因此，客户端应用程序随着每次访问的资源表示而改变（转移）状态，因此我们称之为\
+  \ Representational State Transfer！\n\n以下是 Roy Fielding 对 Representational State\
+  \ Transfer 含义的解释：\n\n> \"Representational State Transfer 旨在唤起这样一种图像：一个设计良好的 Web\
+  \ 应用程序的行为：一个 Web 页面网络（一个虚拟状态机），用户通过选择链接（状态转换）在应用程序中进展，从而将下一个页面（代表应用程序的下一个状态）传输给用户并为其使用进行渲染。\"\
+  \n\nWeb 是一个 REST 系统！你多年来一直在使用的许多 Web 服务——图书订购服务、搜索服务、在线词典服务等等——都是基于 REST 的 Web 服务，这表明你一直在不知不觉中使用\
+  \ REST 并构建 REST 服务。\n\n### REST services in Axis2\n\nWeb Service Description Language（WSDL），尤其是\
+  \ WSDL 2.0 HTTP Binding 定义了一种在 Web 服务中支持 REST API 的方法。Axis2 实现了 HTTP 绑定规范中定义的大部分内容。Axis2\
+  \ 的 REST 实现假设以下属性：\n\n- REST Web 服务是同步的，并且具有请求-响应特性。\n- 当通过 GET 访问 REST Web 服务时，服务和操作是基于\
+  \ URL 识别的。参数被假定为 Web 服务的参数（HTTP GET 请求中的名称-值对 `name=Axis2&value=1.5`）。在这种情况下，基于\
+  \ GET 的 REST Web 服务仅支持简单类型作为参数，并且应遵循 IRI 风格。\n- 基于 POST 的 Web 服务不需要 SOAP 信封或 SOAP\
+  \ 主体。它只发送 XML 有效负载或 URL 参数，如 GET。\n\n在 Axis2 中，默认情况下，任何给定的 Web 服务都同时作为 SOAP 和 REST\
+  \ 暴露。结果是，作为服务作者，你无需做额外的工作。然而，需要注意的是，对于一些使用 REST API 暴露的服务将无法工作。例如，如果应用程序接收一个复杂对象，很难使用\
+  \ REST GET API 暴露它。因此，存在需要用户更改自动生成的 WSDL 文件以提供正确信息的情况。Axis2 为 WSDL 1.1 和 WSDL 2.0\
+  \ 生成 REST 绑定，更重要的是，使用 WSDL 2.0，用户可以获得更多自定义 REST 绑定的功能，因为 WSDL 2.0 比 WSDL 1.1 更专注于\
+  \ REST。\n\n### REST web service with GET and POST\n\n部署在 Axis2 中的服务可以通过 HTTP POST\
+  \ 或 GET 请求访问。然而，在 GET 的情况下，你必须将请求作为 URL 参数发送（记住 IRI 风格）。IRI 风格在编码或序列化复杂对象时存在一些限制，因此，实际上你只能使用\
+  \ REST GET 方法调用一组服务，但你几乎可以使用 REST POST 方法调用所有服务。例如，如果 Web 服务方法以复杂类型作为其方法参数，则你不能使用\
+  \ HTTP GET 方法。因此，像以下这样的服务无法使用 HTTP GET 访问：\n\n```java\npublic class Man {\n    String\
+  \ name;\n    int age;\n    Address address;\n}\n\npublic String getName(Man man)\
+  \ {\n    //processing logic\n}\n```\n\n> 如前面的代码段所示，Man 对象包含两个简单类型属性（name 和 age）和一个复杂类型属性（address）。因此\
+  \ Man 类可以被视为一个复杂对象。\n\n然而，像以下这样的服务可以很容易地使用 HTTP GET 方法访问：\n\n```java\npublic String\
+  \ getName(String id, int age) {\n}\n```\n\n要调用这样的服务，你可以按如下方式发送请求：\n\n```\nhttp://localhost:8080/axis2/services/ServiceName/getName?id=ID&age=10\n\
+  ```\n\n使用 HTTP POST 方法，没有像 HTTP GET 那样的限制。你可以将其作为编码的 URL 或作为请求体发送（在 POX 消息中）。当使用\
+  \ HTTP POST 将消息作为请求体发送时，你只发送 SOAP 主体。\n\n你可以使用任何给定的 HTTP 客户端以 REST 方式调用托管在 Axis2\
+  \ 中的 Web 服务，使用 GET 或 POST 方法。然而，正如我们之前讨论的，你将不得不根据 Web 服务操作的方法签名来判断是否使用 GET 或 POST。你甚至可以使用\
+  \ ServiceClient 以 REST 方式（使用 GET 或 POST）调用远程服务。以下代码演示了使用 POST 以 REST 方式调用服务：\n\n\
+  ```java\nServiceClient client = new ServiceClient();\nOptions opts = new Options();\n\
+  opts.setTo(new EndpointReference(\"address of the service \"));\nopts.setAction(\"\
+  soap action \");\nopts.setProperty(Constants.Configuration.ENABLE_REST, Boolean.TRUE);\n\
+  client.setOptions(opts);\nOMElement res = client.sendReceive(createPayLoad());\n\
+  ```\n\n当你调用此代码时，如果你通过 TCP 监视器发送请求，你会看到它只发送请求有效负载（仅 SOAP 主体），并且你也只会得到响应的有效负载。\n\n\
+  要将请求作为 GET 请求发送，你需要设置以下标志：\n\n```java\nopts.setProperty(Constants.Configuration.HTTP_METHOD_GET,\
+  \ Boolean.TRUE);\n```\n\n这将以 URL 编码格式发送请求（如果可以 URL 编码）。\n\n### Message Transmission\
+  \ Optimization Mechanism (MTOM)\n\n无论 XML 的灵活性、互操作性和全球接受度如何，都有时将数据序列化为 XML 毫无意义的时候。Web\
+  \ 服务用户可能希望将各种二进制附件，如图像、绘图、XML 文档等，与 SOAP 消息一起传输。这种数据通常最初以某种二进制格式可用。\n\n处理在 XML 中发送二进制数据的两种传统方法如下。\n\
+  \n#### By value\n\n通过值发送二进制数据是通过将不透明数据（当然在进行某种形式的编码之后）嵌入为 XML 组件数据的元素或属性内容来实现的。这种技术的最大优点是它使应用程序能够仅基于数据的\
+  \ XML 组件来处理和描述数据。XML 通过使用 base64 或十六进制文本编码来支持内容中的不透明数据。不幸的是，这两种技术都会使数据的大小膨胀。对于底层文本编码\
+  \ UTF-8，base64 编码会使二进制数据的大小增加到原始大小的近 1.33 倍，而十六进制编码会使数据扩大约 2 倍。如果使用 UTF-16 文本编码，上述因子将被翻倍。另一个令人担忧的问题是这些格式的处理成本开销（实际和感知），尤其是在解码回原始二进制数据时。\n\
+  \n#### By reference\n\n通过引用发送二进制数据是通过将纯二进制数据作为 XML 文档外部未解析的通用实体附加，然后将引用这些实体的 URI\
+  \ 嵌入为 XML 中的元素或属性值来实现的。这可以防止数据不必要的膨胀和处理能力的浪费。使用这些未解析实体的主要障碍是它们对 DTD 的高度依赖，这阻碍了模块化以及\
+  \ XML 命名空间的使用。在 Web 服务世界中引入了几种规范来处理使用“通过引用”技术解决此二进制附件问题；SOAP with Attachments（SWA）就是一个这样的例子。由于\
+  \ SOAP 禁止消息中的文档类型声明（DTD），这导致了数据无法作为消息 infoset 的一部分表示的问题，从而创建了两个数据模型。这种情况类似于发送电子邮件附件。即使这些附件与消息内容相关，它们也不包含在消息中。这导致了\n\
+  \n\n\n基于数据的 XML 组件来处理和描述数据的技术会发生故障。WS-Security 就是这样一个例子。\n\nMTOM 是另一种专注于解决“附件”问题的规范。MTOM\
+  \ 试图通过尝试将上述两种技术合并来利用它们的优势。MTOM 显然是一种“按引用”方法。MTOM 优化消息的线格式与 SOAP with Attachments\
+  \ 消息相同，这使其与 SwA 端点向后兼容。MTOM 最显著的特征是使用 XOP: Include 元素，该元素在 XML Binary Optimized\
+  \ Packaging (XOP) 规范中定义，用于引用消息的二进制附件（外部未解析的通用实体）。使用此专用元素，附加的二进制内容在逻辑上会与 SOAP 文档内联（按值），即使它实际上是单独附加的。这通过使仅使用一个数据模型工作成为可能，从而将这两个领域合并。这允许应用程序仅通过查看\
+  \ XML 部分来处理和描述数据，使对 DTD 的依赖变得过时。另请注意，MTOM 已标准化了 SwA 的引用机制。\n\nAXIOM（参见第 3 章 Axis2\
+  \ XML 模型（AXIOM）），用于 Axis2，是一种具有保存二进制数据能力的对象模型。它具有这种能力，因为 OMText 可以以 javax.activation.DataHandler\
+  \ 类的形式保存原始二进制内容。选择 OMText 用于此目的有两个原因。一个原因是 XOP（MTOM）只能优化以 XML Schema base64Binary\
+  \ 数据类型的规范词法形式存在的 base64 编码 Infoset 数据。另一个原因是保留发送方和接收方的 infoset（无论是否优化，都将二进制内容存储在同一种对象中）。MTOM\
+  \ 允许您选择性地编码消息的部分内容，这有助于将 base64 编码的数据以及由 'XOP' 元素引用的外部附加的原始二进制数据（优化内容）作为 SOAP 消息发送。您可以在构造该节点时或之后指定包含原始二进制数据或\
+  \ base64 编码二进制数据的 OMText 节点是否符合优化条件。为了实现 MTOM 的最佳效率，建议用户使用 base64 编码（非优化）发送较小的二进制附件，并将较大的附件作为优化内容发送。\n\
+  \n```java\nOMElement imageElement = fac.createOMElement(\"image\", omNs);\n\n//\
+  \ Creating the Data Handler for the file. Any implementation of\n// javax.activation.DataSource\
+  \ interface can fit here.\njavax.activation.DataHandler dataHandler = new javax.activation.\n\
+  DataHandler(new FileDataSource(\"SomeFile\"));\n\n//create an OMText node with the\
+  \ above DataHandler and set optimized to true\nOMText textData = fac.createOMText(dataHandler,\
+  \ true);\nimageElement.addChild(textData);\n```\n\n```java\n//User can set optimized\
+  \ to false by using the following\n//textData.doOptimize(false);\n```\n\n此外，用户可以使用\
+  \ base64 编码的字符串创建可优化的二进制内容节点，该字符串包含编码的二进制内容，并附带实际二进制表示的 MIME 类型。\n\n```java\nString\
+  \ base64String = \"some_base64_encoded_string\";\nOMText binaryNode = fac.createOMText(base64String,\"\
+  image/jpg\",true);\n```\n\n> Axis2 使用 javax.activation.DataHandler 来处理二进制数据。如果未启用\
+  \ MTOM，所有优化的二进制内容节点都将序列化为 Base64 字符串。您还可以创建在任何情况下都不会被优化的二进制内容节点。它们将被序列化并作为 Base64\
+  \ 字符串发送。\n\n```java\n//create an OMText node with the above DataHandler and set\
+  \ \"optimized\" to false\n//This data will be sent as Base64 encoded strings regardless\
+  \ of whether MTOM is enabled or not\n\njavax.activation.DataHandler dataHandler\
+  \ = new javax.activation.DataHandler(new FileDataSource(\"SomeFile\"));\nOMText\
+  \ textData = fac.createOMText(dataHandler, false);\nimage.addChild(textData);\n\
+  ```\n\n## MTOM on the client side\n\n要在客户端启用 MTOM，您需要在发送消息时将 options 对象中的 enableMTOM\
+  \ 属性设置为 True。\n\n```java\nServiceClient serviceClient = new ServiceClient();\nOptions\
+  \ options = new Options();\noptions.setTo(targetEPR);\noptions.setProperty(Constants.Configuration.ENABLE_MTOM,\
+  \ Boolean.TRUE);\nserviceClient.setOptions(options);\n```\n\n当此属性设置为 True 时，任何 SOAP\
+  \ 信封，无论是否包含可优化内容，都将被序列化为 MTOM 优化的 MIME 消息。Axis2 将所有二进制内容节点序列化为 Base64 编码的字符串，无论它们是否符合优化条件。\n\
+  \n以下代码演示了作为 Web 服务响应的获取二进制数据：\n\n```java\nServiceClient sender = new ServiceClient();\n\
+  Options options = new Options();\noptions.setTo(targetEPR);\n// enabling MTOM\n\
+  options.set(Constants.Configuration.ENABLE_MTOM, Boolean.TRUE);\nOMElement result\
+  \ = sender.sendReceive(payload);\nOMElement ele = result.getFirstElement();\nOMText\
+  \ binaryNode = (OMText) ele.getFirstOMChild();\n\n//Retrieving the DataHandler &\
+  \ then do whatever processing required to the data\nDataHandler actualDH;\nactualDH\
+  \ = binaryNode.getDataHandler();\n```\n\n> DataHandler 是在 Java 中访问和表示二进制数据的标准方法。用户可以通过提供文件位置来创建\
+  \ DataHandler，然后 API 让我们可以读取和写入指定的文件。\n\n## MTOM on the service side\n\nAxis2 服务器根据\
+  \ content-type 自动识别传入的 MTOM 优化消息并相应地反序列化它们。用户可以为传出消息在服务器端启用 MTOM。\n\n要为所有服务全局启用\
+  \ MTOM，用户可以在 axis2.xml 中将 enableMTOM 参数设置为 True。设置后，所有传出消息都将被序列化并作为 MTOM 优化的 MIME\
+  \ 消息发送。如果未设置，所有二进制内容节点中的二进制数据都将被序列化为 Base64 编码的字符串。此配置可以在 services.xml 中按服务和按操作覆盖。\n\
+  \n```xml\n<parameter name=\"enableMTOM\">true</parameter>\n```\n\n请注意，设置此参数后必须重新启动服务器（如果您在\
+  \ axis2.xml 中设置了该参数）。\n\n您可以编写如下服务来执行二进制数据处理：\n\n```java\npublic class MTOMService\
+  \ {\n    public void uploadFileUsingMTOM(OMElement element) throws Exception\n \
+  \   {\n        OMText binaryNode = (OMText) (element.getFirstElement()).\n     \
+  \   getFirstOMChild();\n```\n\n```java\nSimpleHTTPServer simpleServer = new SimpleHTTPServer(configCtx,\
+  \ 8070);\nsimpleServer.start();\n```\n\n使用 URL 仓库时需要记住的一件事是，services 目录必须有一个名为 services.list\
+  \ 的文件，列出所有服务归档文件。例如，如果您有名为 foo.aar 和 bar.aar 的服务，则 services.list 将如下所示：\n\n```text\n\
+  foo.aar\nbar.aar\n```\n\n同样，modules 目录应包含一个名为 modules.list 的文件，列出所有模块。\n\n## Deploying\
+  \ Axis2 in various application servers\n\n正如我们在第 1 章 Apache Web Services and Axis2\
+  \ 中讨论的那样，Axis2 以多种发行版的形式提供。应用程序服务器发行版是其中之一。您可以从 Axis2 网站下载 Axis2 应用程序服务器发行版或 WAR\
+  \ 发行版，或从二进制发行版构建它们。一旦获得 WAR 发行版，部署它只是将 WAR 文件复制到应用程序服务器的 webapps 目录的问题。在 Apache\
+  \ Tomcat 的情况下，它是 webapps 文件夹，而在 Sun Glassfish 的情况下，它是 autodeploy 文件夹，等等。因此，根据应用程序服务器，您必须确定将\
+  \ WAR 文件放置的正确位置。\n\n有些应用程序服务器会在永久或临时位置帮助解包 WAR 发行版。例如，Apache Tomcat 会将 WAR 文件解包到永久位置。您可以在那里进行更改，并且当应用程序服务器重新启动时，所有这些更改都将可用。然而，有些应用程序服务器不会这样做。也有一些应用程序服务器根本不会解包\
+  \ WAR 文件。即使在 Apache Tomcat 中，您也可以配置是否要解包。取决于应用程序服务器配置，热部署和热更新也会有所不同。例如，如果应用程序服务器不打算解包\
+  \ WAR 文件，则根本没有热部署可用。\n\n\n\n\n\n## 使用 Axis2 的异步 Web 服务\n\n无论使用哪种应用服务器，都可以通过编辑 Axis2.war\
+  \ 分发版的 web.xml 文件，让 Axis2 从自定义仓库工作。完成此操作后，就无需担心应用服务器是否会解压 WAR，以及解压到何处等问题。甚至可以将基于应用服务器的\
+  \ Axis2 配置为使用远程仓库启动。首先，让我们看看如何配置 Axis2.war 以使用本地文件系统。在此，你需要在 web.xml 文件的 servlet\
+  \ 部分添加以下初始化参数：\n\n```\n<servlet>\n    <servlet-name>AxisServlet</servlet-name>\n\
+  \    <display-name>Apache-Axis Servlet</display-name>\n    <servlet-class>org.apache.axis2.transport.http.AxisServlet</servlet-class>\n\
+  \    <init-param>\n        <param-name>axis2.xml.path</param-name>\n        <param-value>path\
+  \ to custom axis2.xml (you need this only if you want to override the default axis2.xml)</param-value>\n\
+  \    </init-param>\n    <init-param>\n        <param-name>axis2.repository.path</param-name>\n\
+  \        <param-value>full path to the custom repository</param-value>\n    </init-param>\n\
+  \    <load-on-startup>1</load-on-startup>\n</servlet>\n```\n\n如前所述，你可以将 web.xml\
+  \ 文件配置为从 URL 仓库启动 Axis2。在这种情况下，你需要添加以下两个参数：\n\n```\n<servlet>\n    <servlet-name>AxisServlet</servlet-name>\n\
+  \    <display-name>Apache-Axis Servlet</display-name>\n    <servlet-class>org.apache.axis2.transport.http.AxisServlet</servlet-class>\n\
+  \    <init-param>\n        <param-name>axis2.xml.url</param-name>\n        <param-value>http://localhost/myrepo/axis2.xml</param-value>\n\
+  \    </init-param>\n    <init-param>\n        <param-name>axis2.repository.url</param-name>\n\
+  \        <param-value>http://localhost/myrepo</param-value>\n    </init-param>\n\
+  \    <load-on-startup>1</load-on-startup>\n</servlet>\n```\n\n如图所示，我们添加了两个名为 axis2.xml.url\
+  \ 和 axis2.repository.url 的参数。你可以根据环境设置修改这些值。\n\n异步 Web 服务的概念是一个非常重要的特性，用户可以调用一个\
+  \ Web 服务并继续其工作，直到收到回复。在传统的同步模型中，客户端必须等待（或阻塞）直到收到响应。更重要的是，在 Axis2 中，你在客户端和服务器端都获得了异步支持。在客户端，我们可以以阻塞或非阻塞方式调用服务。选择调用方式非常简单。在服务器端，我们可以拥有处理时间很长的服务。在这种情况下，服务可以以非阻塞方式处理，一旦收到消息，就会发送确认，并在稍后发送响应。Axis2\
+  \ 在客户端支持两种不同的异步 Web 服务调用方式；其中一种需要 WS 地址支持，另一种不需要。我们将分别用代码示例讨论它们。\n\n### 什么是同步 Web\
+  \ 服务？\n\n如前所述，同步 Web 服务是阻塞式服务调用，应用程序在收到响应之前会被阻塞。通过这种类型的调用，用户必须等待直到收到想要的响应。如果这是一个\
+  \ GUI 应用程序，那么在收到回复之前应用程序将变得无响应。\n\n### 什么是异步 Web 服务？\n\n在上一节中，我们讨论了同步 Web 服务。异步\
+  \ Web 服务与之相反。异步 Web 服务是非阻塞调用，用户可以在不阻塞用户应用程序的情况下调用服务。\n\n### 客户端异步\n\nAxis2 的主要设计目标之一是提供非常好的异步\
+  \ Web 服务支持，而异步支持对客户端更有用。因此，Axis2 对客户端的异步服务调用提供了非常好的支持。Axis2 在客户端支持两种类型的异步调用：\n\n\
+  - **应用级异步支持**：在这种情况下，我们只有应用级异步支持。然而，在传输层（传输发送器），我们有阻塞行为。换句话说，当我们调用服务时，我们提供一个回调对象，然后\
+  \ Axis2 将其注册到传输层。一旦传输层收到响应，它就会调用回调。为了实现这种类型的异步支持，它不需要 WS-Addressing 支持，因为我们在传输层没有异步行为。\n\
+  \n```\npublic class MyCallBack implements AxisCallback {\n    public void onMessage(MessageContext\
+  \ messageContext) {\n        SOAPBody msg = messageContext.getEnvelope().getBody();\n\
+  \        System.out.println(msg);\n    }\n\n    public void onFault(MessageContext\
+  \ messageContext) {\n        messageContext.getFailureReason().printStackTrace();\n\
+  \    }\n\n    public void onError(Exception e) {\n        System.err.println(e.getMessage());\n\
+  \    }\n\n    public void onComplete() {\n        System.out.println(\"Invocation\
+  \ is complete\");\n        //In real application you do not need to terminate the\
+  \ program\n        System.exit(0);\n    }\n}\n```\n\n如我们所见，接口中有四个方法。现在让我们逐一查看：\n\
+  \n- **onMessage**：如前所述，WSDL 2.0 定义了 MEP 或消息交换模式。其背后的思想是客户端和服务器之间的消息调用模式。客户端可以发送两条消息并得到一个响应（in-in-out），或客户端发送请求并得到响应（in-out），等等。onMessage\
+  \ 背后的思想是在收到消息时调用用户操作。在我们的实现中，我们需要打印消息，但根据需求，我们可以在方法内部实现我们的代码。\n- **onFault**：有时我们可能会在服务调用中收到故障，用户可能对此感兴趣。因此此方法有助于实现它。\n\
+  - **onError**：在调用服务时，如果客户端出现问题，它将使用此方法通知用户。\n- **onComplete**：当 MEP 完成时，用户将通过此方法收到通知。在此示例中，当\
+  \ Axis2 调用 onComplete 方法时，我们终止应用程序。然而，在实际应用程序中，我们可以在那里实现我们的用户操作。\n\n```\n(\"http://localhost:8080/axis2/services/EchoService\"\
+  );\nopts.setAction(\"urn:echo\");\nclient.engageModule(\"addressing\");\nopts.setUseSeparateListener(true);\n\
+  client.setOptions(opts);\nclient.sendReceiveNonBlocking(createPayLoad(), new MyCallBack());\n\
+  System.out.println(\"send the message\");\nwhile (true) {\n    Thread.sleep(100);\n\
+  }\n}\n```\n\n第一个高亮行显示了我们如何启用 addressing 模块，第二个高亮行显示了如何通过在 Option 对象中设置 Option 值在客户端启用单独的监听器。\n\
+  \n### 总结\n\n在本章中，我们讨论了 Axis2 的许多高级特性，并附带示例。特别是 REST 和 MTOM 在 Web 服务的上下文中非常有用。你可以使用\
+  \ REST 作为优化消息线格式的一种方式，你可以使用 MTOM 以高效的方式发送二进制数据。然后我们讨论了使用自定义仓库创建 Axis2，该仓库可能位于本地或远程。接下来，我们研究了在各种应用服务器中部署\
+  \ Axis2。最后，我们讨论了如何使用 Axis2 以异步方式调用服务。\n\n现在我们已经涵盖了 Axis2 的大部分必要概念和特性。我们讨论了如何将 Axis2\
+  \ 用作服务器和客户端。\n\n在下一章（本书的最后一章）中，我们将讨论如何为你的 Web 服务添加服务质量。特别是，我们将讨论安全性和可靠性以及如何通过代码示例使用它们。\n\
+  \n\n\n\n```\n}\n    public void ping{String in}{\n        System.out.println(\"\
+  Received text:\" + in);\n    }\n}\n```\n\n接下来，创建一个 `services.xml` 文件，使用 RPC 消息接收器，如下面的代码片段所示：\n\
+  \n```\n<service name=\"RMSampleService\">\n    <parameter name=\"ServiceClass\"\
+  >RMSampleService</parameter>\n    <description>\n        My Sample service for RM.\n\
+  \    </description>\n    <module ref=\"sandesha2\" />\n    <module ref=\"addressing\"\
+  \ />\n    <messageReceivers>\n        <messageReceiver mep=\"http://www.w3.org/2004/08/wsdl/in-out\"\
+  \ class=\"org.apache.axis2.rpc.receivers.RPCMessageReceiver\"/>\n        <messageReceiver\
+  \ mep=\"http://www.w3.org/2004/08/wsdl/in-only\" class=\"org.apache.axis2.rpc.receivers.RPCInOnlyMessageReceiver\"\
+  />\n    </messageReceivers>\n</service>\n```\n\n现在，创建服务归档文件并部署服务。正如你在 `services.xml`\
+  \ 文件中所看到的，我们已为这个服务启用了 Sandesha2 模块。打开 Web 控制台，尝试访问服务的 WSDL。如果你能访问到它，说明你已经成功部署了服务及\
+  \ Sandesha2 模块。\n\n> 在进入下一步之前，你还需要将 Sandesha2 和 addressing 模块部署到客户端类路径中。如果你有客户端的\
+  \ Axis2 仓库，请将下载的 Sandesha2 模块复制到 `modules` 目录中。同时，记得将 RM 阶段添加到客户端侧的 `axis2.xml`\
+  \ 中。此外，还要将 Sandesha2 的 JAR 文件复制到客户端类路径中。\n\n## 单向调用\n\n单向调用的思想是：将消息可靠地发送到接收方，发送方不需要应用程序应答，但需要消息的可靠投递。这里我们使用以下客户端发送三条消息。\n\
+  \n### 全局配置：\n\n```\npublic class PingClient {\n    private static final String tns\
+  \ = \"http://ws.axis2.apache.org\";\n    private static String toEPR = \"http://127.0.0.1:8070/axis2/services/RMSampleService\"\
+  ;\n    private static String CLIENT_REPO = \"location to client repository\";\n\
+  \    public static void main(String[] args) throws AxisFault {\n    String axis2_xml\
+  \ = CLIENT_REPO + File.separator + \"client_axis2.xml\";\n    ConfigurationContext\
+  \ configContext = ConfigurationContextFactory.createConfigurationContextFromFileSystem(CLIENT_REPO,axis2_xml);\n\
+  ```\n\n### 创建并配置客户端：\n\n```\nOptions clientOptions = new Options ();\nclientOptions.setTo(new\
+  \ EndpointReference (toEPR));\nServiceClient serviceClient = new ServiceClient (configContext,null);\n\
+  clientOptions.setAction(\"urn:wsm:Ping\");\nserviceClient.setOptions(clientOptions);\n\
+  serviceClient.engageModule(new QName (\"sandesha2\"));\nserviceClient.engageModule(new\
+  \ QName (\"addressing\"));\nserviceClient.fireAndForget(createElement(\"ping1\"\
+  ));\nserviceClient.fireAndForget(createElement(\"ping2\"));\nclientOptions.setProperty(SandeshaClientConstants.LAST_MESSAGE,\n\
+  \    \"true\");\nserviceClient.fireAndForget(createElement(\"ping3\"));\nserviceClient.cleanup();\n\
+  }\n```\n\n### 创建负载：\n\n```\nprivate static OMElement createElement(String text)\
+  \ {\n    OMFactory fac = OMAbstractFactory.getOMFactory();\n    OMNamespace namespace\
+  \ = fac.createOMNamespace(tns,\"ns1\");\n    OMElement pingElem = fac.createOMElement(\"\
+  ping\", namespace);\n    OMElement textElem = fac.createOMElement(\"in\", namespace);\n\
+  \    textElem.setText(text);\n    pingElem.addChild(textElem);\n    return pingElem;\n\
+  }\n}\n```\n\n当你使用 Sandesha2 时，它首先会创建一个序列（特定于可靠消息传递的会话）并发送消息；当客户端标记最后一条消息时，它会终止该序列。在上述代码示例中，`ping1`\
+  \ 和 `ping2` 消息位于 Sandesha2 会话中，而 `ping3` 不在会话中。Sandesha2 为 `ping1` 和 `ping2` 提供可靠投递，但不为\
+  \ `ping3` 提供。\n\n## 请求-应答调用\n\n在这里，我们介绍如何使用 Sandesha2 进行请求-应答消息调用。与前面的示例一样，`echo1`\
+  \ 和 `echo2` 位于 Sandesha2 会话中，并获得可靠性支持。`echo3` 无法获得可靠性支持，因为在发送 `echo3` 之前，已经发送了最后一条消息。\n\
+  \n```\npublic class EchoClient {\n    private static final String tns = \"http://ws.axis2.apache.org\"\
+  ;\n    private final static String echoString = \"echoString\";\n    private static\
+  \ String toEPR = \"http://127.0.0.1:8070/axis2/services/RMSampleService\";\n   \
+  \ private static String CLIENT_REPO = \"Location of Client repository\";\n    public\
+  \ static void main(String[] args) throws Exception {\n        String axis2_xml =\
+  \ CLIENT_REPO + File.separator +\"client_axis2.xml\";\n        ConfigurationContext\
+  \ configContext = ConfigurationContextFactory.createConfigurationContextFromFileSystem(CLIENT_REPO,axis2_xml);\n\
+  ```\n\n创建客户端：\n\n```\nServiceClient serviceClient = new ServiceClient (configContext,null);\n\
+  Options clientOptions = new Options ();\nclientOptions.setTo(new EndpointReference\
+  \ (toEPR));\nclientOptions.setUseSeparateListener(true);\nserviceClient.setOptions(clientOptions);\n\
+  serviceClient.engageModule(new QName (\"sandesha2\"));\nserviceClient.engageModule(new\
+  \ QName (\"addressing\"));\nCallback callback1 = new TestCallback (\"Callback1\"\
+  );\n```\n\n调用服务（第一次）：\n\n```\nserviceClient.sendReceiveNonBlocking (createElement(\"\
+  echo1\"),callback1);\nCallback callback2 = new TestCallback (\"Callback2\");\n```\n\
+  \n### 调用服务（第二次）：\n\n```\nserviceClient.sendReceiveNonBlocking(createElement(\"echo2\"\
+  ),callback2);\n```\n\n### 发送最后一条消息：\n\n```\nclientOptions.setProperty(SandeshaClientConstants.LAST_MESSAGE,\n\
+  \"true\");\nCallback callback3 = new TestCallback (\"Callback3\");\n```\n\n### 调用服务（第三次）：\n\
+  \n```\nserviceClient.sendReceiveNonBlocking(createElement(\"echo3\"),callback3);\n\
+  while (!callback3.isComplete()) {\n    Thread.sleep(1000);\n}\nThread.sleep(2000);\n\
+  }\n```\n\n### 创建负载：\n\n```\nprivate static OMElement createElement(String text)\
+  \ {\nOMFactory fac = OMAbstractFactory.getOMFactory();\nOMNamespace applicationNamespace\
+  \ = fac.createOMNamespace(tns,\"ns1\");\nOMElement echoStringElement = fac.createOMElement(echoString,\n\
+  applicationNamespace);\nOMElement textElem = fac.createOMElement(\"in\",applicationNamespace);\n\
+  \ntextElem.setText(text);\nechoStringElement.addChild(textElem);\n\nreturn echoStringElement;\n\
+  }\n```\n\n### 实现 Callback 类：\n\n```\nstatic class TestCallback extends Callback\
+  \ {\nString name = null;\npublic TestCallback (String name) {\nthis.name = name;\n\
+  }\n\npublic void onComplete(AsyncResult result) {\nSOAPBody body = result.getResponseEnvelope().getBody();\n\
+  ```\n\n```\nSystem.out.println(\"Callback '' + name + ''\ngot result:\" + body);\n\
+  }\npublic void onError (Exception e) {\nSystem.out.println(\"Error reported for\
+  \ test call back\");\n    e.printStackTrace();\n}\n}\n}\n```\n\n如果你运行上述代码并通过 TCP\
+  \ 监视器观察，你会看到只有前两条消息处于 RM 会话中，最后一条消息不是在 RM 会话内调用的。\n\n## 管理序列\n\n在上一节中，我们讨论了 Sandesha2\
+  \ 序列，并提到它会在内部创建序列并发送消息，直到用户指定最后一条消息。在这里，我们将讨论如何使用 Sandesha2 API 管理序列。Sandesha2 提供了一个名为\
+  \ `SandeshaClient` 的工具类，它在内部使用 `ServiceClient` 实例。因此，创建 `SandeshaClient` 的实例需要 `ServiceClient`\
+  \ 的实例。\n\n> 默认情况下，Sandesha2 会假定发往同一端点的消息应当属于同一个 RM 序列。只有当消息的 WS-Addressing To 地址不同时，消息才会被放入不同的\
+  \ RM 序列。但如果需要，你也可以指示 Sandesha2 将具有相同 WS-Addressing To 地址的消息放入两个或多个序列中。为此，你需要设置一个名为\
+  \ Sequence Key 的属性。\n\n下面一行代码展示了如何使用序列 ID 来区分不同的序列：\n\n```\nclientOptions.setProperty(SandeshaClientConstants.SEQUENCE_KEY,<sequence\
+  \ id>);\n```\n\n\n\n\n\n## 创建序列而不发送消息\n\n在某些应用程序中，您需要在不向服务器发送任何应用程序消息的情况下启动序列。在这种情况下，可以使用以下\
+  \ API。当您提出此要求时，Sandesha2 将执行一次 Create Sequence 消息交换，并从服务器获取新的序列 ID。此方法将返回新建序列的 `sequenceKey`\
+  \ 值，可用于执行消息调用。此方法还有一个布尔参数，用于指示是否为响应端提供序列。\n\n```\nString sequenceKey = SandeshaClient.createSequence\
+  \ (serviceClient, booleanOffer);\n```\n\n## 终止序列\n\n您可以使用以下代码终止序列；Sandesha2 将发送所需控制消息，并同时移除客户端和服务器端的会话：\n\
+  \n```\nSandeshaClient.terminateSequence (serviceClient);\n```\n\n> Sandesha2 还提供了许多其他功能，可用于配置并实现更好的定制；不过我们不在这里讨论。建议您参阅在线文档以更好地理解这些功能。\n\
+  \n## 保护 Web 服务安全\n\n在上一节中，我们讨论了如何为服务添加可靠性。在本节中，我们将讨论如何为服务提供安全性。在 Axis2 中，我们使用 Apache\
+  \ Rampart 来提供安全支持。\n\n下载最新版本的 Apache Rampart 并解压。将 `rampart-version.mar` 文件复制到 `AXIS2_HOME`\
+  \ 目录的模块目录中。接下来，将解压后的其他 JAR 文件复制到 `lib` 目录（例如 `TOMCAT_HOME/axis2/WEB-INF/lib`）。然后，重启\
+  \ Axis2，登录管理控制台并启用 Rampart 模块。几秒钟后，如果在已启用模块下看到 Rampart 模块，说明您已成功为 Web 服务框架添加了安全支持。\n\
+  \n前面的代码片段包含我们将用于此示例的密码回调类。如您所见，我们已硬编码了密码；但在编写复杂的回调类时，您可以检索逻辑并设置正确的密码。\n\n## 创建策略元素\n\
+  \nRampart 在服务器端和客户端均使用基于策略的配置。因此，要配置服务，我们需要提供所需的 WS-Policy 配置。这里我们不详细讨论 WS-Policy，只提供服务所需的策略配置，如下代码片段所示：\n\
+  \n```\n<wsp:Policy wsu:Id=\"UsernameTokenOverHTTPS\"\n    xmlns:wsu=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wsssecurity-utility-1.0.xsd\"\
+  \n    xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\">\n    <wsp:ExactlyOne>\n\
+  \        <wsp:All>\n            <sp:TransportBinding\n            xmlns:sp=\"http://schemas.xmlsoap.org/ws/2005/07/securitypolicy\"\
+  >\n                <wsp:Policy>\n                    <sp:TransportToken>\n     \
+  \                   <wsp:Policy>\n                            <sp:HttpsToken\n \
+  \                           </wsp:Policy>\n                        </sp:TransportToken>\n\
+  \                        <sp:AlgorithmSuite>\n                            <wsp:Policy>\n\
+  \                                <sp:Basic256/>\n                            </wsp:Policy>\n\
+  \                        </sp:AlgorithmSuite>\n                        <sp:Layout>\n\
+  \                            <wsp:Policy>\n                                <sp:Lax/>\n\
+  \                            </wsp:Policy>\n                        </sp:Layout>\n\
+  \                        <sp:IncludeTimestamp/>\n                    </wsp:Policy>\n\
+  \                </sp:TransportBinding>\n                <sp:SignedSupportingTokens\
+  \ xmlns:sp=\"http://schemas.xmlsoap.org/ws/2005/07/securitypolicy\">\n         \
+  \           <wsp:Policy>\n                        <sp:UsernameToken sp:IncludeToken=\"\
+  http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/AlwaysToRecipient\"\
+  \ />\n                    </wsp:Policy>\n                </sp:SignedSupportingTokens>\n\
+  ```\n\n```\n<ramp:RampartConfig xmlns:ramp=\"http://ws.apache.org/rampart/policy\"\
+  >\n    <ramp:passwordCallbackClass>PWCallbackHandler</ramp:passwordCallbackClass>\n\
+  </ramp:RampartConfig>\n</wsp:All>\n</wsp:ExactlyOne>\n</wsp:Policy>\n```\n\n如果您熟悉\
+  \ WS-Security 和 WS-Policy，可以看出它包含两个主要安全断言：传输绑定断言和签名支持令牌断言。传输绑定断言定义了使用基于 HTTPS 传输令牌断言的\
+  \ SSL 传输要求。签名支持令牌定义了对用户名令牌的要求，该令牌应在传输层受到完整性保护。\n\n现在万事俱备。接下来，我们需要使用以下代码为示例服务创建 `services.xml`\
+  \ 文件：\n\n```\n<service>\n    <module ref=\"rampart\"/>\n    <parameter name=\"ServiceClass\"\
+  >SecureService</parameter>\n    <messageReceivers>\n        <messageReceiver mep=\"\
+  http://www.w3.org/2004/08/wsdl/in-out\" class=\"org.apache.axis2.rpc.receivers.RPCMessageReceiver\"\
+  />\n        <messageReceiver mep=\"http://www.w3.org/2004/08/wsdl/in-only\" class=\"\
+  org.apache.axis2.rpc.receivers.RPCInOnlyMessageReceiver\"/>\n    </messageReceivers>\n\
+  \    <wsp:Policy wsu:Id=\"UsernameTokenOverHTTPS\" xmlns:wsu=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd\"\
+  \ xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\">\n    </wsp:Policy>\n\
+  </service>\n```\n\n现在，编译服务类和回调对象，并使用上述 `services.xml` 文件创建服务归档文件。您可以登录 Web 管理控制台验证服务部署。如果正确遵循上述步骤，应该一切正常。\n\
+  \n应用程序作用域 163\n应用程序特定业务对象（ASBO） 236\napplyPolicy 方法 128\n基于归档的部署 80, 108\n异步调用 137\n\
+  异步调用，JAX-WS 服务\n  简介 198\n  回调模型 198-200\n  轮询模型 198\n客户端异步服务调用\n  简介 254\n  应用程序级异步支持\
+  \ 254, 257\n  传输级异步支持 255, 258\n异步 Web 服务\n  简介 254\n  客户端异步 254, 255\n  onComplete\
+  \ 方法 256\n  onError 方法 256\n  onFault 方法 256\n  onMessage 方法 256\natmostOnceMessageSemantics\
+  \ 参数 209\n属性\n  添加到 AXIOM 47, 48\n身份验证与授权 231-233\n自动伸缩 239\nAvoidInitiation 参数\
+  \ 207\nAXIOM\n  简介 29, 30, 41, 141, 248, 249\n  优势 30\n  架构 43\n  属性添加 47, 48\n\
+  \  遍历 Axiom 树 48, 49\n  添加子节点 47\n  创建 44\n  特性 41-43\n  必要性 41\n  OM 命名空间 48\n\
+  \  序列化 49, 50\n  使用 43\nAXIOM 架构 43\nAXIOM 的创建\n  简介 44\n  使用输入流 44\n  以编程方式 46\n\
+  \  使用字符串 45\nAXIOM 的特性\n  缓存 43\n  延迟构建 42\n  轻量级 42\n  基于拉取的操作 42\nAxiom 树\n  遍历\
+  \ 48, 49\nAxis1 18\nAxis2\n  简介 7, 21\n  高级特性 243\n  架构 27\n  异步 Web 服务 254\n  集群管理\
+  \ 218\n  配置文件 87\n  上下文 96-99\n  自定义部署器 39\n  在各种应用服务器中的部署 252, 253\n  部署描述符 77,\
+  \ 78\n  部署模型 72\n  部署选项 79\n  下载 22\n  动态数据 86\n  端点 133\n  增强功能 20, 21\n  特性 20,\
+  \ 21\n  历史 120\n  行业规范 20, 21\n  访问 MessageContext（MC） 156\n  消息接收器 39\n  模块 38,\
+  \ 120\n  模块结构 121, 122\n  必要性 19\n  添加新 Web 服务 24\n  org.apache.axis2.service.Lifecycle\
+  \ 接口 156\n  插件模块 20\n  存储库 75\n  REST 服务 244, 245\n  服务描述层次结构 94, 96\n  服务扩展 38\n\
+  \  会话作用域 153, 154\n  无状态特性 152, 153\n  静态数据 86\nAxis2 架构\n  简介 27\n  核心模块 28-34\n\
+  \  工作原理 27, 28\nAxis2 客户端 API\n  简介 137\n  OperationClient 137, 147\n  ServiceClient\
+  \ 137\nAxis2 集群\n  启用 202\nAxis2 集群能力 202\nAxis2 集群实现\n  接口 221\nAxis2 集群管理 API\n\
+  \  简介 220\n  管理 221\n  状态复制 221\n生产系统中的 Axis2 集群\n  配置 206\n  设置 206\nAxis2 配置器\
+  \ 251, 252\nAxis2 数据绑定。参见 ADB\nAxis2 的特性\n  附加组件 21\n  异步 Web 服务 20\n  AXIOM 20\n\
+  \  面向组件的部署 20\n  组合 21\n  可扩展性 21\n  灵活性 20\n  热部署 20\n  MEP 支持 20\n  速度 20\n  稳定性\
+  \ 20\n  传输框架 21\n  WSDL 支持 21\nAxis2 的安装\n  二进制发行版 22\n  文档发行版 25\n  JAR 发行版 25\n\
+  \  源码发行版 25\n  WAR 发行版 23, 24\nAXIs2 对象模型。参见 AXIOM\n基于 Axis2 Savan 模块的 WS-Eventing\n\
+  \  简介 236\nAxis2 工作节点集群 239\naxis2.xml 60, 65, 67, 78\naxis2.xml 文件 87\nAxis 集群配置\n\
+  \  简介 212, 214\n  集群代理 206\n  集群代理参数 206\n  组管理 211\n  状态管理 210, 211\n  静态成员 212\n\
+  AxisConfiguration\n  简介 88\n  创建方式 88\nAxisEngine\n  简介 30, 39, 152\n  方法 30\nAxisEngine\
+  \ 的方法\n  receive 30\n  send 30\nAxisMessage 96\nAxisModule 93\nAXIs 对象模型。参见 AXIOM\n\
+  AxisOperation 95\nAxisService 95\nAxisServiceGroup 94\nB\nAxis2 二进制发行版 22\n绑定定义\n\
+  \  用于 WSDL 191\n阻塞调用。参见同步调用\nC\nCallback 类\n  实现 267\n回调机制 143\n回调模型 198-200\n子节点\n\
+  \  添加到 AXIOM 47\n客户端 API 29, 34, 35\n客户端 JAX-WS\n  简介 193\n  分发客户端 194, 195\n  动态代理客户端\
+  \ 196\n客户端存根\n  生成 273\n\n\n\n\n\n## C\n\n- cloud computing 19\n- ClusteringAgent\
+  \ 221\n- clustering agent parameters\n    - about 206\n    - atMostOnceMessageSemantics\
+  \ 209\n    - AvoidInitiation 207\n    - domain 207\n    - localMemberHost 209\n\
+  \    - localMemberPort 209\n    - maxRetries 208\n    - mcastAddress 208\n    -\
+  \ mcastBindAddress 209\n    - mcastFrequency 208\n    - mcastPort 208\n    - memberDropTime\
+  \ 208\n    - membershipScheme 207\n    - preserveMessageOrder 209\n    - properties\
+  \ 210\n    - synchronizeAll 208\n- cluster management 218\n- code first approach\n\
+  \    - about 102, 104, 165\n    - message receivers, specifying ways 110\n    -\
+  \ POJOs, with packages 106, 107\n    - schemas 114, 115\n    - service archive file,\
+  \ creating 110\n    - service group 113\n    - services, deploying 108\n    - service\
+  \ WSDL 114, 115\n    - single class POJO approach 104, 105\n    - single service\
+  \ 113\n    - third-party resources, adding 114\n- code first service development\n\
+  \    - with JAX-WS 185-187\n- codegen engine 37\n- code generation 103\n- code generation\
+  \ module 37\n- commercial software 21\n- configContext argument 139\n- ConfigurationContext\
+  \ 97, 98\n    - about 154, 203\n    - ServiceClient, creating 139\n- configuration\
+  \ files, Axis2\n    - about 87\n    - axis2.xml 87\n    - module.xml 87\n    - services.xml\
+  \ 87\n- context hierarchy 32\n- contexts, Axis2\n    - about 96, 97\n    - ConfigurationContext\
+  \ 97, 98\n    - MessageContext 99\n    - OperationContext 98\n- contract first approach\n\
+  \    - about 102, 103, 116, 165\n    - ant build file, running 117\n    - code,\
+  \ generating 116\n    - service skeleton class 117\n- contract first development\n\
+  \    - client side JAX-WS 193\n    - with JAX-WS 188-192\n- CORBA 8\n- core modules,\
+  \ Axis2 architecture\n    - about 28\n    - Client API 29, 34, 35\n    - deployment\
+  \ model 29, 33, 34\n    - information model 29, 32\n    - SOAP processing model\
+  \ 29-32\n    - transports 29, 36\n    - XML processing model 29, 30\n- createPayload\
+  \ method 161\n- createSequence message 133\n- Cron job 234\n- custom deployers 39\n\
+  \n## D\n\n- data binding frameworks, Axis2\n    - about 37\n    - ADB 37\n    -\
+  \ JAXB RI 37\n    - JaxMe 37\n    - JiBX 37\n    - XMLBeans 37\n- data bound classes\
+  \ 103\n- default constructor\n    - ServiceClient, creating 138\n- Demilitarized\
+  \ Zone (DMZ) 230\n- deployment descriptors, Axis2\n    - about 77\n    - axis2.xml\
+  \ 78\n    - module.xml 79\n    - services.xml 78\n\n## J\n\n- `javax.xml.ws.WebServiceClient\
+  \ annotation`\n    - properties 178, 179\n- `javax.xml.ws.WebServiceClient annotation,\
+  \ properties`\n    - name 178\n    - targetNamespace 179\n    - wsdlLocation 179\n\
+  - `javax.xml.ws.WebServiceProvider annotation`\n    - about 179\n    - properties\
+  \ 179\n- `javax.xml.ws.WebServiceProvider annotation, properties`\n    - portName\
+  \ 179\n    - serviceName 179\n    - targetNamespace 179\n- `javax.xml.ws.WebServiceRef\
+  \ annotation`\n    - about 180\n    - properties 180\n- `javax.xml.ws.WebServiceRef\
+  \ annotation, properties`\n    - mappedName 180\n    - name 180\n    - type 180\n\
+  \    - value 180\n    - wsdlLocation 180\n- JAXB RI 37\n- JaxMe 37\n- JAX-WS services\n\
+  \    - asynchronous invocation 198\n    - with MTOM 196, 198\n- JAX-WS specifications\n\
+  \    - about 165\n    - code first service development 185-187\n    - contract first\
+  \ development 188-192\n- JAX-WS specifications, annotations\n    - about 166\n \
+  \   - JSR 181 (Web Service Metadata) 166, 167\n    - JSR 222 (JAXB) 166\n    - JSR\
+  \ 224 (JAX-WS) 166\n    - JSR 250 (Common Annotations) 166\n- JDOM 41\n- JiBX 37\n\
+  - JMS 8, 36\n- JMX management API 233\n- JSR 181 (Web Service Metadata), annotations\n\
+  \    - javax.jws.OneWay 170, 171\n    - javax.jws.soap.SOAPBinding 174\n    - javax.jws.WebMethod\
+  \ 169\n    - javax.jws.WebParam 171\n    - javax.jws.WebResult 172\n    - javax.jws.WebService\
+  \ 167\n- JSR 222 (JAXB) specifications, annotations\n    - about 180\n    - javax.xml.bind.annotation.XmlAccessorType\
+  \ 182\n    - javax.xml.bind.annotation.XmlElement 182\n    - javax.xml.bind.annotation.XmlRootElement\
+  \ 181\n- JSR 224 (JAX-WS) specifications, annotations\n    - about 175\n    - javax.xml.ws.BindingType\
+  \ 175, 176\n    - javax.xml.ws.RequestWrapper 176\n    - javax.xml.ws.ResponseWrapper\
+  \ 176\n    - javax.xml.ws.ServiceMode 177\n    - javax.xml.ws.WebEndpoint 177\n\
+  \    - javax.xml.ws.WebFault 178\n    - javax.xml.ws.WebServiceClient 178\n    -\
+  \ javax.xml.ws.WebServiceProvider 179\n    - javax.xml.ws.WebServiceRef 180\n- JSR\
+  \ 250 (Common Annotations) annotations\n    - about 183\n    - javax.annotation.PostConstruct\
+  \ 184\n    - javax.annotation.PreDestroy 184\n    - javax.annotation.Resource 183\n\
+  \n## L\n\n- lib directory 76\n- localMemberHost parameter 209\n- localMemberPort\
+  \ parameter 209\n- locked attribute 89\n- logic server, EDA with MDM 237\n- loose\
+  \ coupling 10\n\n## M\n\n- Master Data Management. See MDM\n- maven scripts 25\n\
+  - maxRetries parameter 208\n- mcastAddress parameter 208\n- mcastBindAddress parameter\
+  \ 209\n- mcastFrequency parameter 208\n- mcastPort parameter 208\n- MDM 234, 235\n\
+  - memberDropTime parameter 208\n- members element 212\n- membership scheme\n   \
+  \ - about 214\n    - dynamic membership 216\n    - hybrid membership 216-218\n \
+  \   - static membership 214, 215\n- membershipScheme parameter\n    - about 207\n\
+  \    - multicast 207\n    - Well-known address (WKA) 207\n- memory-intensive programming\
+  \ 41\n- MEP 29\n- MessageBuilders 91\n- MessageContext (MC) 56, 99\n    - about\
+  \ 155\n    - accessing 156\n- message definitions\n    - for WSDL 191\n- Message\
+  \ Exchange Patterns. See MEP\n- MessageFormatters 91\n- message receiver\n    -\
+  \ about 31, 39, 68, 90\n    - RawXMLINOnlyMessageReceiver 69\n    - RawXMLINOutMessageReceiver\
+  \ 69\n    - RPCInOnlyMessageReceiver 69\n    - RPCMessageReceiver 69\n    - specifying\
+  \ 109\n    - specifying, ways 110-112\n    - working 68\n- MessageReceivers 152\n\
+  - Message Transmission Optimization Mechanism. See MTOM\n- messaging system\n  \
+  \  - disadvantages 8\n    - examples 8\n    - issues 8\n    - JMS 8\n- META-INF\
+  \ directory 122\n- module\n    - about 38, 77, 120\n    - deploying 129-132\n  \
+  \  - engaging 129-132\n    - structure 121, 122\n    - working 38\n- module descriptor.\
+  \ See module.xml\n- module engagement 67\n- module implementation class\n    - about\
+  \ 125\n    - methods 127\n- modules, Axis2 architecture\n    - code generation 37\n\
+  \    - data binding frameworks 37\n- modules directory 76\n- module structure 121,\
+  \ 122\n- module.xml 77, 79\n- module.xml file 38\n    - about 122\n    - fault processing\
+  \ 129\n    - handlers 123, 124\n    - parameters, adding 132\n    - phase rules\
+  \ 123, 124\n    - writing 128, 129\n- MTOM\n    - about 247, 248\n    - enabling,\
+  \ on client side 249, 250\n    - enabling, on service side 250\n    - features 248\n\
+  \    - SwA 248\n    - with JAX-WS services 196, 198\n    - XML Binary Optimized\
+  \ Packaging (XOP) specification 248\n\n## N\n\n- nextSibling() method 49\n- node\
+  \ management 221\n- nodeManager element 211\n- non-blocking invocation. See asynchronous\
+  \ invocation\n\n## O\n\n- OASIS\n    - functionality 11\n- Object Model (OM) 30,\
+  \ 43\n- OMAbstractFactory.getOMFactory() method 45\n- one way invocation 264, 265\n\
+  - OpenESB 230\n- open source software 21\n- OperationClient\n    - about 137\n \
+  \   - working with 147-149\n- OperationClient class 35\n- OperationContext 98, 155\n\
+  - OperationInPhases 61\n- operation phase 62\n- organizations\n    - moving, into\
+  \ web services 11\n- org.apache.axis2.clustering.ClusteringAgent 221\n- org.apache.axis2.clustering.management.GroupManagementAgent\
+  \ 223\n- org.apache.axis2.clustering.management.NodeManager 223\n- org.apache.axis2.clustering.state.State\
+  \ Manager 222\n- org.apache.axis2.service.Lifecycle interface\n    - using 156\n\
+  - OSGi bundles 228\n- OutFlow pipe 30\n\n## P\n\n- parameters\n    - about 89\n\
+  \    - adding, in module.xml file 132\n    - benefits 89\n    - locked attribute\
+  \ 89\n- password callback\n    - writing 270, 271\n- pattern 225\n- phase\n    -\
+  \ about 31, 32, 58\n    - rules 59\n    - types 60\n- phase rules\n    - about 59,\
+  \ 62\n    - characterizing 62, 64\n    - invalidity 64, 65\n- phase rules, characterizing\n\
+  \    - about 62\n    - before 63, 64\n    - phaseFirst 63\n    - phaseLast 63\n\
+  \    - phase name 63\n- phase, types\n    - about 60\n    - global 60\n    - operation\
+  \ 62\n- pivot point 68\n- Plain Old Java Object. See POJO\n- Plain Old Java Object\
+  \ deployment. See POJO deployment\n- Plain Old XML. See POX\n- plugin modules, Axis2\
+  \ 20\n- POJO\n    - about 102\n    - with packages 106, 107\n- POJO approach 103\n\
+  - POJO deployment 81, 83\n- policy element\n    - creating 271, 272\n- policy element,\
+  \ creating\n    - about 271, 272\n    - client stubs, generating 273\n    - service,\
+  \ invoking without security 273\n    - service, invoking with security 273\n- polling\
+  \ mechanism 143\n- polling model 198\n- portName argument 139\n- portType definition\n\
+  \    - for WSDL 191\n- POX\n    - about 9\n    - examples 8\n- PreDispatch 62\n\
+  - preserveMessageOrder parameter 209\n- previousSibling() method 49\n- properties,\
+  \ clustering agent\n    - about 210\n    - backendServerURL 210\n    - mgtConsoleURL\
+  \ 210\n- protocol bridging 230\n- pull parser\n    - accessing 52\n- PULL parser\
+  \ technique\n    - versus PUSH parser technique 30\n- pull parsing\n    - about\
+  \ 19, 42\n    - working 43\n- push and pull integration pattern\n    - about 238\n\
+  \    - demonstrating 238\n- PUSH parser technique\n    - versus PULL parser technique\
+  \ 30\n\n## Q\n\n- Qualities of Service (QoS) functionality 230\n\n## R\n\n- Rampart\
+  \ 271\n- RawXMLINOnlyMessageReceiver 69\n- RawXMLINOutMessageReceiver 69\n- RawXML\
+  \ message receivers 108\n- receive() method 30\n- references, Enterprise Integration\
+  \ patterns 240\n- registry 237\n- registry, EDA with MDM 237\n- Reliable Messaging\
+  \ (RM) 57\n- reliable web services\n    - about 262, 263\n    - one way invocation\
+  \ 264, 265\n    - request-reply invocation 266-268\n    - sample service 263, 264\n\
+  - Replicator.replicate() 204\n- repository, Axis2\n    - about 75\n    - modules\
+  \ 76\n    - services 76\n- Representational State Transfer. See REST\n- request-reply\
+  \ invocation 266-268\n- Request Security Token (RST) message 232\n- request session\
+  \ scope 157, 158\n- RequestURIBasedDispatcher 68\n- REST\n    - about 9, 105, 244\n\
+  \    - features 244\n- REST services, in Axis2 244, 245\n- REST web service, with\
+  \ GET and POST 245, 246\n- RMI 8\n- RMPhase 262\n- round-robin load balancing algorithm\
+  \ 205\n- RPC 8\n- RPCInOnlyMessageReceiver 69\n- RPCMessageReceiver 69\n- RPC message\
+  \ receivers 108\n- runtime data 152\n\n## S\n\n- sample service\n    - creating\
+  \ 263, 264\n- Sandesha 77\n- Sandesha2 262, 268\n- SandeshaClient utility class\
+  \ 268\n- scalability 201\n- secure web services\n    - about 269\n    - password\
+  \ callback, writing 270, 271\n    - sample service 270\n- security phase 62\n- send()\
+  \ method 30\n- sendReceive API 35\n- sendReceiveNonBlocking API 35\n- sendRobust\
+  \ API 35\n- Sequence Key property 268\n- sequences\n    - creating, without sending\
+  \ message 269\n    - managing 268\n    - terminating 269\n- serialization\n    -\
+  \ about 49\n    - serializeAndConsume method 50\n    - XMLStreamWriter object 49\n\
+  - server-side code\n    - generating 116\n- service\n    - deploying 83\n    - deploying,\
+  \ programmatically 80\n    - invoking, without security 273\n    - invoking, with\
+  \ security 273\n    - running 83\n- service archive\n    - message receiver, specifying\
+  \ 109\n    - service implementation class 109\n    - services, deploying 108\n-\
+  \ service archive file\n    - creating 110\n- service broker 13\n- service client\n\
+  \    - using 163\n\n\nServiceClient\n约 137\n创建，使用 ConfigurationContext 139\n创建，使用默认构造函数\
+  \ 138\n创建，方式 138, 139\n会话，管理 164\n带工作示例 140, 141\nServiceClient 类\n关于 35\nAPI 35\n\
+  ServiceClient 类，API\nfireAndForget 35\nsendReceive 35\nsendReceiveNonBlocking 35\n\
+  sendRobust 35\nServiceContext 155, 203\n服务描述层次结构，Axis2\n关于 94\nAxisMessage 96\n\
+  AxisOperation 95\nAxisService 95\nAxisServiceGroup 94\n服务描述符。参见 services.xml\n服务端点接口（SEI）168\n\
+  服务扩展 76\nServiceGroupContext 154, 203\n面向服务架构（SOA）\n关于 8, 85\n应用程序 8\n能力 8\n启用，方法\
+  \ 9\n服务提供者 12\n服务请求者 13\n服务目录 76\n服务骨架类 117\nservices.xml 67, 78\nservices.xml 文件\n\
+  关于 122, 165\n编写 108\n会话\n初始化 155\n使失效 155\n管理，使用 ServiceClient 164\n会话作用域，Axis2\n\
+  关于 153, 154\n应用程序 163\n请求 157, 158\nSOAP 158-161\n传输 162, 163\nsetValue 操作 203\n\
+  shutdown 方法 128\n签名支持令牌 272\n简单 Axis2 集群\n设置 202\nSimpleAxisServer 22\n简单 JAX-WS\
+  \ Web 服务\n编写 166\n简单对象访问协议。参见 SOAP\n单类 POJO 方法\n关于 104\n示例 105\nSMTP 36\nSOA 集成模式\n\
+  关于 225\n结合审计的动态路由 233\nEDA 与 MDM 234\n外部认证与授权 231, 233\n带动态负载均衡的容错自动缩放 239, 240\n\
+  协议桥接 230\n推与拉 238\nSOAP\n关于 14\n工作原理 14\nSOAP 1.1 文档\n创建 53\nSOAP 1.2 文档\n创建 53\n\
+  SOAPActionBasedDispatcher 68\nSOAPMessageBodyBasedDispatcher 68\nSOAP 消息 56\nSOAPModelBuilder\
+  \ 44\nsoapmonitorPhase 61\nSOAP 处理框架 55\nSOAP 处理模型 29-32\nsoap 会话作用域 203\nSOAP 会话作用域\
+  \ 158-161\n软件类型\n商业软件 21\n自由软件 21\n开源软件 21\n源码分发，Axis2 25\n\n- **WS-Addressing**\n\
+  \  - 关于 15\n  - 工作原理 15\n- **WSDL**\n  - 关于 16, 102, 165\n  - 绑定定义 191\n  - 消息定义\
+  \ 191\n  - portType 定义 191\n  - 标准 16\n  - 工作原理 16\n- **wsdlServiceName 参数 139**\n\
+  - **WS-I**\n  - 功能 11\n- **wsimport 工具**\n  - Java 构件，创建 188\n- **wsldURL 参数 139**\n\
+  - **WSO2 ESB**\n  - 关于 227\n  - 部署 228\n  - 特性 227, 228\n  - 任务 228\n- **WS-Policy**\n\
+  \  - 指定 132\n- **WS 可靠消息传递 120**\n- **WS-Reliable 消息传递 263**\n- **WS-Trust 232**\n\
+  \n# X\n\n- **XML**\n  - 二进制数据，按引用发送 247\n  - 二进制数据，按值发送 247\n- **XMLBeans 37**\n\
+  - **XML 二进制优化打包（XOP）**\n  - 规范 248\n- **XML InfoSet 模型 41**\n- **XML 处理模型 29, 30**\n\
+  - **XML-RPC 标准**\n  - 关于 14\n  - 工作原理 14\n- **XMLStreamWriter 对象 49**\n- **XMPP\
+  \ 36**\n- **AXIOM 中的 Xpath 导航 51**\n- **XSLT 中介者 226**\n\n![](img/e2fb05de168053e6227dab034eff9353_305_0.png)\n\
+  \n# 感谢购买\nApache Axis2 Web Services\n第2版\n\n# 关于 Packt Publishing\n\nPackt，发音为 'packed'，于\
+  \ 2004 年 4 月出版了第一本书《Mastering phpMyAdmin for Effective MySQL Management》，此后继续专注于出版针对特定技术和解决方案的高度聚焦书籍。\n\
+  \n我们的书籍和出版物分享了您的 IT 同行在适应当今系统、应用程序和框架方面的经验。我们基于解决方案的书籍为您提供知识和能力，以定制您正在使用的软件和技术来完成工作。Packt\
+  \ 的书籍比您过去看到的 IT 书籍更具体、更少泛泛而谈。我们独特的商业模式使我们能够为您带来更聚焦的信息，让您获得更多需要知道的内容，减少不需要的部分。\n\n\
+  Packt 是一家现代而独特的出版公司，专注于为开发者、管理员和新手社区制作高质量的尖端书籍。欲了解更多信息，请访问我们的网站：www.packtpub.com。\n\
+  \n# 关于 Packt Open Source\n\n2010 年，Packt 推出了两个新品牌：Packt Open Source 和 Packt Enterprise，以继续其专注于专业化的方针。本书是\
+  \ Packt Open Source 品牌的一部分，该品牌出版围绕开源许可证构建的软件相关书籍，并为从高级开发者到初出茅庐的网页设计师的任何人提供信息。Open\
+  \ Source 品牌还运营 Packt 的开源版税计划，Packt 向每个其软件被用于书籍销售的开源项目支付版税。\n\n# 为 Packt 撰稿\n\n我们欢迎所有对写作感兴趣的人士前来咨询。书籍提案应发送至\
+  \ author@packtpub.com。如果您的书稿想法尚处于早期阶段，希望先进行讨论再撰写正式提案，请联系我们；我们的编辑主任将与您联系。\n\n我们不仅仅寻找已出版过的作者；如果您有很强的技术技能但没有写作经验，我们经验丰富的编辑可以帮助您发展写作生涯，或简单地让您的专业知识获得额外回报。\n\
+  \n[PACKT] PUBLISHING open source community experience distilled\n\n![](img/e2fb05de168053e6227dab034eff9353_306_0.png)\n\
+  \n# Apache Axis2 快速入门\n\nISBN：978-1-847192-86-8      平装本：180 页\n\n创建高质量 Web 服务的实用指南\n\
+  \n- 1. Apache Axis 2 完整实用指南\n- 2. 使用 Apache Axis2 快速创建安全、可靠的 Web 服务\n- 3. 编写 Axis2\
+  \ 模块以增强 Web 服务的安全性、可靠性、健壮性和事务支持\n\n![](img/e2fb05de168053e6227dab034eff9353_306_1.png)\n\
+  \n# Apache CXF Web 服务开发\n\nISBN：978-1-847195-40-1      平装本：336 页\n\n开发和部署 SOAP 和\
+  \ RESTful Web 服务\n\n- 1. 使用契约优先和代码优先方法设计和开发 Web 服务\n- 2. 使用各种 CXF 前端（如 JAX-WS 和\
+  \ Simple 前端）发布 Web 服务\n- 3. 通过配置 CXF 传输调用服务\n- 4. 通过实现高级功能（如 CXF 拦截器、CXF 调用器和 CXF\
+  \ 特性）创建自定义拦截器\n\n[PACKT] PUBLISHING open source community experience distilled\n\
+  \n![](img/e2fb05de168053e6227dab034eff9353_307_0.png)\n\n# Alfresco 3 Web 服务\n\n\
+  ISBN：978-1-849511-52-0      平装本：436 页\n\n使用 Web 服务、WebScripts 和 CMIS 构建 Alfresco\
+  \ 应用程序\n\n- 1. 全面了解 Web 服务规范\n- 2. 实现 Alfresco 特定的 Web 服务\n- 3. 掌握 Alfresco WebScripts\
+  \ 和可扩展的 Alfresco RESTful API\n- 4. 使用不同操作和 API 操作 Alfresco 中的内容\n\n![](img/e2fb05de168053e6227dab034eff9353_307_1.png)\n\
+  \n# RESTful Java Web 服务\n\nISBN：978-1-847196-46-0      平装本：256 页\n\n掌握核心 REST 概念并用\
+  \ Java 创建 RESTful Web 服务\n\n- 1. 使用迄今为止最流行的 Java RESTful 框架（Restlet、基于 JAX-RS 的框架\
+  \ Jersey 和 RESTEasy，以及 Struts 2）在 Java 中构建强大且灵活的 RESTful Web 服务\n- 2. 掌握帮助您设计和实现\
+  \ RESTful Web 服务的概念\n- 3. 大量截图和清晰解释，便于学习\n\n请查看 www.PacktPub.com 了解我们图书的信息\n\n"

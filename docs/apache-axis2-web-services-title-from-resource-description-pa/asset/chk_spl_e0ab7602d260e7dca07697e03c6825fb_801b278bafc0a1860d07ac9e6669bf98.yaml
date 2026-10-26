@@ -1,0 +1,60 @@
+reviews:
+- 'no': 0
+  overturn_probability: 0.9
+  alternative: 文档标题/封面
+  counter_evidence:
+  - 第2行已有'# 前言'，若第0行也分章，则标题页与前言被拆成两章，违反'正文之前内容统一为一章'的规则。
+  - 该行为全书书名，不具备章节的统领性，只是整体标题。
+  keep_split: false
+- 'no': 2
+  overturn_probability: 0.1
+  alternative: 若不分章，它可能只是文档中的'前言'字样，但通常作为独立章节。
+  counter_evidence:
+  - 后续内容（第4行）出现与前言无关的医保条文，可能是OCR串行，导致前言内容不完整，但标题本身明确。
+  - 在分章模型里，之前第0行若作为书名标题，这里再分章会造成重复，但若书名不单独分章，这里分章合理。
+  keep_split: true
+- 'no': 303
+  overturn_probability: 0.05
+  alternative: 若不分章，它可能是一个章节编号段落，但明显是最高层级标题。
+  counter_evidence:
+  - 前面没有第2章标题，序号不完整；但根据规则，序号跳跃时仍应分章。
+  - 该行与后文之间有空行，但前文缺乏第2章收尾，可能是漏标题，不影响其作为新章。
+  keep_split: true
+- 'no': 429
+  overturn_probability: 0.05
+  alternative: 若不分章，可能是正文中的带编号小标题，但它是#级别。
+  counter_evidence:
+  - 虽然编号为4，但前面可能缺少第3章结尾，不过有明确'# 4'格式。
+  keep_split: true
+- 'no': 598
+  overturn_probability: 0.1
+  alternative: 若不分章，可能是章节标题的一部分（如'5 部署 Axis2'的延续），但本身完整。
+  counter_evidence:
+  - 下一行'Deployment Model'未加#，可能是副标题，但主标题已足够独立。
+  keep_split: true
+- 'no': 934
+  overturn_probability: 0.1
+  alternative: 若不分章，可能是章标题，但序号跳跃（无6），仍应分章。
+  counter_evidence:
+  - 缺少第6章，可能漏掉，但不影响该行为新章起点。
+  keep_split: true
+- 'no': 1093
+  overturn_probability: 0.05
+  alternative: 若不分章，可能是章标题，但该行之后没有空行？实际上有。
+  counter_evidence:
+  - 标题后的内容（第1095行）还有'## 编写 Axis2 模块'的重复小节，但这是书内常见的章内小标题，不影响。
+  keep_split: true
+- 'no': 1644
+  overturn_probability: 0.85
+  alternative: 重复的章标题/页眉残留/排版噪声
+  counter_evidence:
+  - 第1328行已有'## 客户端 API'并开始章首介绍，第1644行是重复出现。
+  - 其后紧跟列表步骤'+ 4. 创建SOAPEnvelope...'，不是概述段落，不符合章标题的上下文特征。
+  - 作为一级标题，但与前文内容割裂，更像是OCR混入的目录或页眉。
+  keep_split: false
+- 'no': 2014
+  overturn_probability: 0.1
+  alternative: 若不分章，可能是章节标题，但它是英文且编号11，符合。
+  counter_evidence:
+  - 前文第2008行'### Summary'是上一章总结，第2014行标题后是概述，但标题语言与前文不一致，可能是翻译遗漏，不构成推翻理由。
+  keep_split: true
