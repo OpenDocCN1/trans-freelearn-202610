@@ -1,0 +1,7 @@
++   [tmux 入门指南：通过单个窗口访问多个终端会话以提高工作效率](README.md)
++   [tmux 入门指南：通过单个窗口访问多个终端会话以提高工作效率](getting-started-with-tmux-maximize-your-productivity-by-acce_0.md)
++   [致谢](getting-started-with-tmux-maximize-your-productivity-by-acce_1.md)
++   [文本处理](getting-started-with-tmux-maximize-your-productivity-by-acce_2.md)
++   [深入探讨](getting-started-with-tmux-maximize-your-productivity-by-acce_3.md)
++   [附录](getting-started-with-tmux-maximize-your-productivity-by-acce_4.md)
++   [索引](getting-started-with-tmux-maximize-your-productivity-by-acce_5.md)

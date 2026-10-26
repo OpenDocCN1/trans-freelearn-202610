@@ -1,0 +1,9 @@
+# Preface
+
+tmux is rapidly becoming the de facto standard with regards to terminal multiplexers with its breadth of features and ease of configuration. It is one of the fastest growing tools in the developer's toolkit due to its power in maximizing the productivity of a terminal window. Developers spending a large amount of time in the terminal will benefit greatly from learning how to utilize tmux and its powerful features. By taking a single terminal window and turning it into multiple windows, each with their own state, tmux is like a supercharger for your console.
+
+We will begin with a simple introduction to tmux and learn some ways in which it can help increase productivity in your daily terminal usage. From there, we'll move on to configuring and customizing tmux to make it work, look, and feel the way that best suits your needs. Along the way, we have tutorials and screenshots aplenty so that you can follow along and avoid feeling lost. We'll also explain some of the core concepts of tmux, including the way it uses sessions, windows, and panes in order to divide content and running programs.
+
+After learning some of these beginner topics, we will dive into some advanced tmux concepts. We'll touch on how to perform text manipulation to copy and paste text from one window to another or even to and from a file. We'll learn how to use tmux for fault-tolerant SSH sessions or pair programming, and we will finish by discussing some other open source tools that can be used alongside tmux in order to help make it even more powerful.
+
+tmux is an incredibly capable tool, which has some concepts that can be tricky to grasp. This book will help demystify some of these tricky bits with many explanations and rich examples in a manner that cannot be found in the tmux man page.

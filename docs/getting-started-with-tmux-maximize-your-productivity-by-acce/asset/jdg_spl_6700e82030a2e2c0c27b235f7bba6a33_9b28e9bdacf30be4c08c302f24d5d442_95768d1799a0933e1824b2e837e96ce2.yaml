@@ -1,0 +1,45 @@
+chapter_starts:
+- 'no': 2
+  confidence: 0.9
+  final_reason: '致谢属于正文之前的前置内容，与前言、关于作者等统一划为一章，前置章节从首个前置标题起算；标题单独成行、格式为 ##，语义统领性强'
+  accepted_evidence:
+  - 致谢属于正文之前的前置内容，按规则应与前言、关于作者等统一划为一章，前置章节的起始可从首个前置标题算起
+  - '该行单独成行、格式为 ##，语义为统领性前置部分，符合前置章节划分规则'
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 865
+  confidence: 0.98
+  final_reason: 新章标题“文本处理”，对应前言所述第4章主题；前文 no 863 为上一章末尾的下章预告，后接概述段落并进入子节结构
+  accepted_evidence:
+  - 前文 no 863 为上一章末尾的下章预告，no 865 后接概述段落并进入子节结构
+  - '标题为 ## 文本处理，单独成行、无句号、长度<30字，语义统领后续复制模式与粘贴缓冲区内容'
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 1103
+  confidence: 0.98
+  final_reason: 新章标题“深入探讨”，对应第5章主题；前文 no 1097 为上一章末尾的预告，后面跟随主题列表及多个子节
+  accepted_evidence:
+  - 前文 no 1097 为上一章末尾的下一章预告，no 1103 后接主题列表并进入多个子节
+  - '标题为 ## 深入探讨，单独成行、语义概括性强，对应第5章主题'
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 1736
+  confidence: 0.95
+  final_reason: “附录”为独立顶层部分，按规则文末附录应划分为一章；标题单独成行、无句号，后接附录主题列表
+  accepted_evidence:
+  - 附录为独立顶层部分，按规则文末附录应划分为一章
+  - '标题 ## 附录单独成行、无句号，后接附录主题列表，语义统领性强'
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 1909
+  confidence: 0.95
+  final_reason: 文末“索引”按规则应单独划分为一章；标题单独成行，后接索引条目
+  accepted_evidence:
+  - 文末索引按规则应单独划分为一章
+  - '标题 ## 索引单独成行，后接索引条目，符合文末索引划分规则'
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 1314
+  reason: '复核方指出章节标题被拆分到两行，no 1312 为 ## 6，no 1314 为 ## tmux 用于 SSH、结对编程等，为编号与标题的排版续行噪声；真正的章号行在前一行，误将续行判为章起，优先采纳复核反方证据'
+  need_human_review: false

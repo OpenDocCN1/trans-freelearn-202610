@@ -1,0 +1,4707 @@
+- pgno: 0
+  md: '![](img/5969098f450265ac0c7947efcdbe7889_0_0.png)
+
+
+    Community Experience Distilled
+
+
+    # Getting Started
+
+    with tmux
+
+
+    Maximize your productivity by accessing several terminal
+
+    sessions from a single window using tmux
+
+
+    Victor Quinn, J.D.
+
+
+    [PACKT] open source
+
+    publishing
+
+    community experience distilled'
+  merge: -1
+  img_proc: true
+- pgno: 1
+  md: '# Getting Started with tmux
+
+
+    Maximize your productivity by accessing several terminal sessions from a single
+    window using tmux
+
+
+    Victor Quinn, J.D.
+
+
+    ![](img/5969098f450265ac0c7947efcdbe7889_1_0.png)
+
+
+    BIRMINGHAM - MUMBAI'
+  merge: -1
+  img_proc: true
+- pgno: 2
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 3
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 4
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 5
+  md: '# Acknowledgments
+
+
+    Thank you my amazing wife, Susan, for your infinite patience and support through
+    four-and-a-half years of working full-time while attending law school and then
+    more years of working startup hours while undertaking innumerable side projects,
+    including this book. Your unending support propels me and allows me to continually
+    work toward building an awesome life for our future.
+
+
+    Thank you my parents, without whose support early on, I would not have become
+    the man I am today — ever inquisitive, constantly pushing the boundaries of technology,
+    and doing things most others do not, such as writing books like this one. I am
+    forever grateful to you both for my excellent start in life and your loving support
+    always!'
+  merge: -1
+  img_proc: true
+- pgno: 6
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 7
+  md: '**Thomas Ferris Nicolaisen** is a software developer who blogs, speaks, and
+    podcasts about tooling and techniques for programmers. He continuously keeps a
+    check on what the great command-line utilities on all platforms are, and in doing
+    so, he picked up tmux some years ago. Since then, he has been using and enjoying
+    working with it for both server work and terminal windows on the desktop.
+
+
+    You can find his blog at www.tfnico.com and his recent podcast project on www.gitminutes.com.
+
+
+    **Gustavo Sampaio** is a software developer with different kinds of specializations.
+    He has experience with a lot of programming languages and various platforms (Android,
+    iOS, Windows, Linux, Web, and the microcontroller Arduino).
+
+
+    He has also worked with digital image processing and computer graphics, including
+    advanced rendering techniques (global illumination, shaders, raytracing, and so
+    on), natural language processing (the Naive Bayes classifier and POS Tagger),
+    and parallel computing using the OpenMPI library.
+
+
+    He is currently studying Computer Science and has publications in his fields.
+
+
+    **Ian Yang** has several years of software development experience. Playing with
+    various productivity tools is one of the things he loves. He is also a keyboard
+    enthusiast who prefers to finish the job, mostly using keyboard. tmux is one of
+    his favorite tools.
+
+
+    He has worked remotely for several years as a web developer. He is currently running
+    a mobile game start-up as the co-founder and CTO.'
+  merge: -1
+  img_proc: true
+- pgno: 8
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 9
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 10
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 11
+  md: '# Table of Contents
+
+
+    +   Preface 1
+
+    +   Chapter 1: Jump Right In 7
+
+    +     Running tmux 7
+
+    +     Sessions 8
+
+    +     Naming the session 9
+
+    +       The window string 10
+
+    +       Creating another window 11
+
+    +       The prefix key 13
+
+    +       Help on key bindings 15
+
+    +       Searching for text 18
+
+    +       Detaching and attaching 19
+
+    +     Explaining tmux commands 20
+
+    +       Tab completion 21
+
+    +       Aliases 21
+
+    +       Renaming windows 21
+
+    +       Killing windows 22
+
+    +     Summary 23
+
+    +   Chapter 2: Configuring tmux 25
+
+    +     Using the set-option command 26
+
+    +     Creating a tmux configuration file 27
+
+    +     Emacs or vi mode 27
+
+    +     Enabling mouse modes 28
+
+    +     Changing the status bar 28
+
+    +       Modifying the background color of the status bar 29
+
+    +       Reloading the configuration 31
+
+    +       Changing the foreground color of the status bar 32
+
+    +         Highlighting the active window 33'
+  merge: -1
+  img_proc: true
+- pgno: 12
+  md: "Table of Contents\n\nBinding keys 34\n  Viewing current bindings 34\n  Chaining\
+    \ multiple commands to a single key 37\n  Comments in the configuration file 37\n\
+    \  Binding a new prefix key 38\n  Binding keys without the prefix key 39\nUnbinding\
+    \ keys 40\nStatus bar revisited 40\nOption types 42\nHandy configuration tips\
+    \ 43\n  Binding the double tapping of the prefix key to last-window 43\n  Changing\
+    \ the escape time 44\n  Lengthening the history limit 44\n  Lengthening the display\
+    \ time 45\n  Starting the base index at 1 46\nAccessing the man page 47\nShow\
+    \ options 47\nSummary 48\nChapter 3: Sessions, Windows, and Panes 49\n  Overviews\
+    \ 49\n    Sessions 49\n    Windows 51\n    Panes 51\n  Playing around with sessions,\
+    \ windows, and panes 52\n    Multiple sessions 53\n    Multiple panes 54\nWorking\
+    \ with more panes 55\nZooming panes 56\nResizing panes 56\nSwitching between panes\
+    \ by number 58\nCycling through pane layouts 58\nOther pane operations 59\nSummary\
+    \ 60\nChapter 4: Manipulating Text 61\n  Explaining the Window history 62\n  Explaining\
+    \ the different tmux modes 63\n    A sample workflow with Copy mode workflow 64\n\
+    \    Entering Copy mode 64\n    Moving the cursor around 66\n    Scrolling through\
+    \ the Window history 66"
+  merge: -1
+  img_proc: true
+- pgno: 13
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 14
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 15
+  md: '# Preface
+
+
+    tmux is rapidly becoming the de facto standard with regards to terminal multiplexers
+    with its breadth of features and ease of configuration. It is one of the fastest
+    growing tools in the developer''s toolkit due to its power in maximizing the productivity
+    of a terminal window. Developers spending a large amount of time in the terminal
+    will benefit greatly from learning how to utilize tmux and its powerful features.
+    By taking a single terminal window and turning it into multiple windows, each
+    with their own state, tmux is like a supercharger for your console.
+
+
+    We will begin with a simple introduction to tmux and learn some ways in which
+    it can help increase productivity in your daily terminal usage. From there, we''ll
+    move on to configuring and customizing tmux to make it work, look, and feel the
+    way that best suits your needs. Along the way, we have tutorials and screenshots
+    aplenty so that you can follow along and avoid feeling lost. We''ll also explain
+    some of the core concepts of tmux, including the way it uses sessions, windows,
+    and panes in order to divide content and running programs.
+
+
+    After learning some of these beginner topics, we will dive into some advanced
+    tmux concepts. We''ll touch on how to perform text manipulation to copy and paste
+    text from one window to another or even to and from a file. We''ll learn how to
+    use tmux for fault-tolerant SSH sessions or pair programming, and we will finish
+    by discussing some other open source tools that can be used alongside tmux in
+    order to help make it even more powerful.
+
+
+    tmux is an incredibly capable tool, which has some concepts that can be tricky
+    to grasp. This book will help demystify some of these tricky bits with many explanations
+    and rich examples in a manner that cannot be found in the tmux man page.'
+  merge: -1
+  img_proc: true
+- pgno: 16
+  md: 'By the end of book, you will have a much richer understanding of tmux and its
+    capabilities and all the tools necessary to turbocharge your terminal experience.
+    This book covers the following topics:
+
+
+    Chapter 1, Jump Right In, will have us really hit the ground running, taking us
+    through a typical tmux workflow, explaining everything along the way. This allows
+    us to experience how tmux can be useful and illustrating how it can be integrated
+    into your daily workflow.
+
+
+    Chapter 2, Configuring tmux, will teach us how to change and configure almost
+    anything about tmux''s behavior, from the way it looks and feels to the commands
+    it executes on the load. You can even configure every key combination to which
+    tmux responds. In this chapter, we will cover the various ways to configure tmux
+    and customize it for your workflow.
+
+
+    Chapter 3, Sessions, Windows, and Panes, will help us learn all about sessions,
+    windows, and panes. These are the fundamental components that make up the window
+    management feature of tmux and this chapter will help us understand what they
+    are and how they relate. We will learn, through example, many ways we can work
+    with them in order to turbocharge our terminal with tmux.
+
+
+    Chapter 4, Manipulating Text, helps us learn about the powerful tools of tmux
+    for text manipulation. These tools take the form of Copy mode and paste buffers,
+    and we will learn more about them and how to use them for very powerful text manipulation
+    with features such as scrolling through text that has scrolled off screen and
+    copying text from anywhere in the window history and pasting it, often without
+    ever needing to reach for your mouse.
+
+
+    Chapter 5, Diving Deeper, touches on some more nuanced aspects of topics we have
+    covered already. These topics include tmux commands and its Command mode, advanced
+    paste buffer usage, and some advanced usage of windows and panes. We''ll finish
+    it off with learning how to launch a tmux session with some default windows.
+
+
+    Chapter 6, tmux for SSH, Pair Programming, and More, will walk us through a couple
+    of usage patterns that can prove to be powerful. It will help us learn about using
+    tmux over SSH for long-lived sessions for pair programming, and along the way,
+    we will use Vagrant for some predictability and security.
+
+
+    Chapter 7, Using Other Tools with tmux, will allow us to discuss some third-party
+    tools that can run along with tmux and add more powerful features. We''ll learn
+    about tmuxinator, which simplifies the tmux launch configuration and wemux, which
+    brings the tmux multiuser experience to a whole new level. We''ll learn about
+    these along with a few other tricks and utilities.
+
+
+    Appendix contains three sections, namely Why tmux?, The configuration reference,
+    and Key binding and command reference.'
+  merge: -1
+  img_proc: true
+- pgno: 17
+  md: '# What you need for this book
+
+
+    A computer running tmux 1.8+ (Unix, Linux, or OS X) which can be downloaded from
+    the following link:
+
+
+    ```
+
+    http://tmux.sourceforge.net
+
+    ```
+
+
+    # Who this book is for
+
+
+    The book is intended for software developers, DevOps engineers, and other professionals
+    who make heavy use of the terminal in their daily workflow. Some familiarity with
+    the terminal is useful but no prior experience with tmux or other terminal multiplexers
+    (such as GNU Screen) is required.
+
+
+    # Conventions
+
+
+    In this book, you will find a number of styles of text that distinguish between
+    different kinds of information. Here are some examples of these styles, and an
+    explanation of their meaning.
+
+
+    When we are describing a key to press, it will appear in italics, like this: "Please
+    press the letter b now" Often we will describe a key combination, which means
+    pressing multiple keys at the same time, it will appear like this: Ctrl + b. That
+    means hold down the Control key and press the letter b. We will also see multiple
+    key combinations, to be pressed in series. They will appear separated by a comma
+    and will appear like this: Ctrl + b, c. That means hold down the Ctrl key and
+    press the letter b, then release both keys and press the letter c.
+
+
+    Code words in text, database table names, folder names, filenames, file extensions,
+    pathnames, dummy URLs, user input, and Twitter handles are shown as follows: "Simply
+    run the tmux command show-options with a flag for which set of options you want
+    to view."
+
+
+    A block of configuration code is set as follows:
+
+
+    ```
+
+    # Set the status bar background to blue
+
+    set-option -g status-bg blue
+
+    # Set the status bar text to white
+
+    set-option -g status-fg white
+
+
+    # Set the active window background in the status bar
+
+    set-window-option -g window-status-current-bg magenta
+
+    ```'
+  merge: -1
+  img_proc: true
+- pgno: 18
+  md: 'When we wish to draw your attention to a particular part of a code block, the
+    relevant lines or items are set in bold:
+
+
+    ```
+
+    # Set the active window background in the status bar
+
+    set-window-option -g window-status-current-bg magenta
+
+    ```
+
+
+    ```
+
+    # Rebind the prefix key
+
+    **set-option -g prefix C-t**
+
+    ```
+
+
+    ```
+
+    # Add a key binding for reloading our configuration
+
+    bind-key C-r source-file ~/.tmux.conf
+
+    ```
+
+
+    Any command-line input or output is written as follows:
+
+
+    ```
+
+    $ tmux attach-session -t tutorial
+
+    ```
+
+
+    **New terms** and **important words** are shown in bold. Words that you see on
+    the screen, in menus or dialog boxes for example, appear in the text like this:
+    "You will see **Search Up:** appear in the lower left-hand corner."
+
+
+    Warnings or important notes appear in a box like this.
+
+
+    ![](img/5969098f450265ac0c7947efcdbe7889_18_0.png)
+
+
+    Tips and tricks appear like this.
+
+
+    ![](img/5969098f450265ac0c7947efcdbe7889_18_1.png)
+
+
+    # Reader feedback
+
+
+    Feedback from our readers is always welcome. Let us know what you think about
+    this book — what you liked or may have disliked. Reader feedback is important
+    for us to develop titles that you really get the most out of.
+
+
+    To send us general feedback, simply send an e-mail to feedback@packtpub.com, and
+    mention the book title through the subject of your message.
+
+
+    You can also follow or tweet the author directly on Twitter as @victorquinn.
+
+
+    If there is a topic that you have expertise in and you are interested in either
+    writing or contributing to a book, see our author guide on www.packtpub.com/authors.'
+  merge: -1
+  img_proc: true
+- pgno: 19
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 20
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 21
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 22
+  md: 'However, you should notice that now there is a bar along the bottom of your
+    terminal window. This can be seen in the following screenshot of the terminal
+    window:
+
+
+    ![](img/5969098f450265ac0c7947efcdbe7889_22_0.png)
+
+
+    Congratulations! You''re now running tmux.
+
+
+    That bar along the bottom is provided by tmux. We call this bar the status line.
+    The status line gives you information about the session and window you are currently
+    viewing, which other windows are available in this session, and more.
+
+
+    Some of what''s on that line may look like gibberish now, but we''ll learn more
+    about what things mean as we progress through this book. We''ll also learn how
+    to customize the status bar to ensure it always shows the most useful items for
+    your workflow. These customizations include things that are a part of tmux (such
+    as the time, date, server you are connected to, and so on) or things that are
+    in third-party libraries (such as the battery level of your laptop, current weather,
+    or number of unread mail messages).
+
+
+    # Sessions
+
+
+    By running tmux with no arguments, you create a brand new session. In tmux, the
+    base unit is called a session. A session can have one or more windows. A window
+    can be broken into one or more panes. We''ll revisit this topic in its own whole
+    chapter (for more information, refer to Chapter 3, Sessions, Windows, and Panes);
+    however, as a sneak preview, what we have here on the current screen is a single
+    pane taking up the whole window in a single session. Imagine that it could be
+    split into two or more different terminals, all running different programs, and
+    each visible split of the terminal is a pane. More on this will be covered in
+    the later chapters.'
+  merge: -1
+  img_proc: true
+- pgno: 23
+  md: '# What is a session in tmux?
+
+
+    It may be useful to think of a tmux session as a login on your computer.
+
+
+    You can log on to your computer, which initiates a new session. After you log
+    on by entering your username and password, you arrive at an empty desktop. This
+    is similar to a fresh tmux session. You can run one or more programs in this session,
+    where each program has its own window or windows and each window has its own state.
+
+
+    In most operating systems, there is a way for you to log out, log back in, and
+    arrive back at the same session, with the windows just as you left them. Often,
+    some of the programs that you had opened will continue to run in the background
+    when you log out, even though their windows are no longer visible.
+
+
+    A session in tmux works in much the same way. So, it may be useful to think of
+    tmux as a mini operating system that manages running programs, windows, and more,
+    all within a session.
+
+
+    ![](img/5969098f450265ac0c7947efcdbe7889_23_0.png)
+
+
+    You can have multiple sessions running at the same time. This is convenient if
+    you want to have a session for each task you might be working on. You might have
+    one for an application you are developing by yourself and another that you could
+    use for pair programming. Alternatively, you might have one to develop an application
+    and one to develop another. This way everything can be neat and clean and separate.
+
+
+    # Naming the session
+
+
+    Each session has a name that you can set or change.
+
+
+    Notice the [0] at the very left of the status bar? This is the name of the session
+    in brackets. Here, since you just started tmux without any arguments, it was given
+    the name 0. However, this is not a very useful name, so let''s change it.
+
+
+    In the prompt, just run the following command:
+
+
+    ```
+
+    $ tmux rename-session tutorial
+
+    ```'
+  merge: -1
+  img_proc: true
+- pgno: 24
+  md: "# Jump Right In\n\nThis tells tmux that you want to rename the current session\
+    \ and tutorial is the name you'd like it to have. Of course, you can name it anything\
+    \ you'd like. You should see that your status bar has now been updated, so now\
+    \ instead of [0] on the left-hand side, it should now say [tutorial]. Here's a\
+    \ screenshot of my screen:\n\n![](img/5969098f450265ac0c7947efcdbe7889_24_0.png)\n\
+    \nOf course, it's nice that the status bar now has a pretty name we defined rather\
+    \ than 0, but it provides many more utilities than this, as we'll see in a bit!\n\
+    \nIt's worth noting that here we were giving a session a name, but this same command\
+    \ can also be used to rename an existing session.\n\n# The window string\n\nThe\
+    \ status bar has a string that represents each window to inform us about the things\
+    \ that are currently running. The following steps will help us to explore this\
+    \ a bit more:\n\n+   1. Let's fire up a text editor to pretend we're doing some\
+    \ coding:\n+   \n+      ```bash\n+      $ nano test\n+      ```\n+   \n+   2.\
+    \ Now type some stuff in there to simulate working very hard on some code:\n\n\
+    ![](img/5969098f450265ac0c7947efcdbe7889_24_1.png)"
+  merge: -1
+  img_proc: true
+- pgno: 25
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 26
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 27
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 28
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 29
+  md: "Sure enough, now window 1 is active and everything is present, just as we left\
+    \ it. Now we typed some silly commands here, but it could just as well have been\
+    \ an active running process here, such as unit tests, code linting, or top. Any\
+    \ such process would run in the background in tmux without an issue.\n\n![](img/5969098f450265ac0c7947efcdbe7889_29_0.png)\n\
+    \n> This is one of the most powerful features of tmux.\n> \n> In the traditional\
+    \ world, to have a long-running process in a terminal window and get some stuff\
+    \ done in a terminal, you would need two different terminal windows open; if you\
+    \ accidentally close one, the work done in that window will be gone.\n> \n> tmux\
+    \ allows you to keep just one terminal window open, and this window can have a\
+    \ multitude of different windows within it, closing all the different running\
+    \ processes. Closing this terminal window won't terminate the running processes;\
+    \ tmux will continue humming along in the background with all of the programs\
+    \ running behind the scenes.\n\n# Help on key bindings\n\nNow a keen observer\
+    \ may notice that the trick of entering the window number will only work for the\
+    \ first 10 windows. This is because once you get into double digits, tmux won't\
+    \ be able to tell when you're done entering the number. If this trick of using\
+    \ the prefix key plus the number only works for the first 10 windows (windows\
+    \ 0 to 9), how will we select a window beyond 10?\n\nThankfully, tmux gives us\
+    \ many powerful ways to move between windows. One of my favorites is the choose\
+    \ window interface.\n\nHowever, oh gee! This is embarrassing. Your author seems\
+    \ to have entirely forgotten the key combination to access the choose window interface.\
+    \ Don't fear though; tmux has a nice built-in way to access all of the key bindings.\
+    \ So let's use it!\n\nPress <Prefix>, ? to see your screen change to show a list\
+    \ with bind-key to the left, the key binding in the middle, and the command it\
+    \ runs to the right. You can use your arrow keys to scroll up and down, but there\
+    \ are a lot of entries there!\n\nThankfully, there is a quicker way to get to\
+    \ the item you want without scrolling forever."
+  merge: -1
+  img_proc: true
+- pgno: 30
+  md: 'Press Ctrl + s and you''ll see a prompt appear that says Search Down:, where
+    you can type a string and it will search the help document for that string.
+
+
+    # Emacs or vi mode
+
+
+    tmux tries hard to play nicely with developer defaults, so it actually includes
+    two different modes for many key combinations tailored for the two most popular
+    terminal editors: Emacs and vi. These are referred to in tmux parlance as status-keys
+    and mode-keys that can be either Emacs or vi.
+
+
+    The tmux default mode is Emacs for all the key combinations, but it can be changed
+    to vi via configuration, something we''ll cover in Chapter 2, Configuring tmux.
+    It may also be set to vi automatically based on the global $EDITOR setting in
+    your shell.
+
+
+    If you are used to Emacs, Ctrl + s should feel very natural since it''s the command
+    Emacs uses to search.
+
+
+    So, if you try Ctrl + s and it has no effect, your keys are probably in the vi
+    mode. We''ll try to provide guidance when there is a mode-specific key like this
+    by including the vi mode''s counterpart in parentheses after the default key.
+
+
+    For example, in this case, the command would look like Ctrl + s (/) since the
+    default is Ctrl + s and / is the command in the vi mode.
+
+
+    Type in choose-window and hit Enter to search down and find the choose-window
+    key binding. Oh look! There it is; it''s w:
+
+
+    ![](img/5969098f450265ac0c7947efcdbe7889_30_0.png)
+
+
+    However, what exactly does that mean?
+
+
+    Well, all that means is that we can type our prefix key (<Prefix>), followed by
+    the key in that help document to run the mentioned command. First, let''s get
+    out of these help docs. To get out of these or any screens like them, generated
+    by tmux, simply press q for quit and you should be back in the shell prompt for
+    window 2.'
+  merge: -1
+  img_proc: true
+- pgno: 31
+  md: "If you ever forget any key bindings, this should be your first step.\n\n> A\
+    \ nice feature of this key binding help page is that it is dynamically updated\
+    \ as you change your key bindings.\n> \n> Later, when we get to **Configuration**,\
+    \ you may want to change bindings or bind new shortcuts. They'll all show up in\
+    \ this interface with the configuration you provide them with.\n> \n> Can't do\
+    \ that with manpages!\n\nNow, to open the choose window interface, simply type\
+    \ <Prefix>, w since w was the key shown in the help bound to **choose-window**\
+    \ and voilà:\n\n![](img/5969098f450265ac0c7947efcdbe7889_31_0.png)\n\nNotice how\
+    \ it nicely lays out all of the currently open windows in a task-manager-like\
+    \ interface.\n\nIt's interactive too. You can use the arrow keys to move up and\
+    \ down to highlight whichever window you like and then just hit Enter to open\
+    \ it. Let's open the window with nano running. Move up to highlight window 0 and\
+    \ hit Enter.\n\nYou may notice a few more convenient and intuitive ways to switch\
+    \ between the currently active windows when browsing through the key bindings\
+    \ help. For example, <Prefix>, p will switch to the previous window and <Prefix>,\
+    \ n will switch to the next window. Whether refreshing your recollection on a\
+    \ key binding you've already learnt or seeking to discover a new one, the key\
+    \ bindings help is an excellent resource."
+  merge: -1
+  img_proc: true
+- pgno: 32
+  md: '# Searching for text
+
+
+    Now we only have three windows so it''s pretty easy to remember what''s where,
+    but what if we had 30 or 300? With tmux, that''s totally possible. (Though, this
+    is not terribly likely or useful! What would you do with 300 active windows?)
+
+
+    One other convenient way to switch between windows is to use the **find-window**
+    feature. This will prompt us for some text, and it will search all the active
+    windows and open the window that has the text in it.
+
+
+    If you''ve been following along, you should have the window with nano currently
+    open (window 0). Remember we had a shell in window 1 where we had typed some silly
+    commands? Let''s try to switch to that one using the **find-window** feature.
+
+
+    Type `<Prefix>, f` and you''ll see a **find-window** prompt as shown in the following
+    screenshot:
+
+
+    ![](img/5969098f450265ac0c7947efcdbe7889_32_0.png)
+
+
+    Here, type in `cat test` and hit *Enter*.
+
+
+    You''ll see you''ve switched to window 1 because it had the `cat test` command
+    in it.
+
+
+    However, what if you search for some text that is ambiguous? For example, if you''ve
+    followed along, you will see the word **test** appear multiple times on both windows
+    0 and 1. So, if you try **find-window** with just the word **test**, it couldn''t
+    magically switch right away because it wouldn''t know which window you mean.
+
+
+    Thankfully, tmux is smart enough to handle this. It will give you a prompt, similar
+    to the *choose-window* interface shown earlier, but with only the windows that
+    match the query (in our case, windows 0 and 1; window 2 did not have the word
+    test in it). It also includes the first line in each window (for context) that
+    had the text.'
+  merge: -1
+  img_proc: true
+- pgno: 33
+  md: '![](img/5969098f450265ac0c7947efcdbe7889_33_0.png)
+
+
+    Pick window 0 to open it.
+
+
+    # Detaching and attaching
+
+
+    Now press <Prefix>, d.
+
+
+    Uh oh! Looks like tmux is gone! The familiar status bar is no more available.
+    The <Prefix> key set does nothing anymore.
+
+
+    ![](img/5969098f450265ac0c7947efcdbe7889_33_1.png)
+
+
+    You may think we the authors have led you astray, causing you to lose your work.
+    What will you do without that detailed document you were writing in nano?
+
+
+    Fear not explorer, we are simply demonstrating another very powerful feature of
+    tmux. <Prefix>, d will simply detach the currently active session, but it will
+    keep running happily in the background!
+
+
+    Yes, although it looks like it''s gone, our session is alive and well.
+
+
+    How can we get back to it? First, let''s view the active sessions. In your terminal,
+    run the following command:
+
+
+    ```
+
+    $ tmux list-sessions
+
+    ```'
+  merge: -1
+  img_proc: true
+- pgno: 34
+  md: 'You should see a nice list that has your session name, number of windows, and
+    date of creation and dimensions. If you had more than one session, you''d see
+    them here too.
+
+
+    ![](img/5969098f450265ac0c7947efcdbe7889_34_0.png)
+
+
+    To re attach the detached session to your session, simply run the following command:
+
+
+    ```
+
+    $ tmux attach-session -t tutorial
+
+    ```
+
+
+    This tells tmux to attach a session and the session to attach it to as the target
+    (hence -t). In this case, we want to attach the session named tutorial. Sure enough,
+    you should be back in your tmux session, with the now familiar status bar along
+    the bottom and your nano masterpiece back in view.
+
+
+    Note that this is the most verbose version of this command. You can actually omit
+    the target if there is only one running session, as is in our scenario. This shortens
+    the command to tmux attach-session. It can be further shortened because attach-session
+    has a shorter alias, attach. So, we could accomplish the same thing with just
+    tmux attach.
+
+
+    Throughout this text, we will generally use the more verbose version, as they
+    tend to be more descriptive, and leave shorter analogues as exercises for the
+    reader.
+
+
+    # Explaining tmux commands
+
+
+    Now you may notice that attach-session sounds like a pretty long command. It''s
+    the same as list-sessions, and there are many others in the lexicon of tmux commands
+    that seem rather verbose.'
+  merge: -1
+  img_proc: true
+- pgno: 35
+  md: '# Tab completion
+
+
+    There is less complexity to the long commands than it may seem because most of
+    them can be tab-completed. Try going to your command prompt and typing the following:
+
+
+    ```
+
+    $ tmux list-se
+
+    ```
+
+
+    Next, hit the Tab key. You should see it fill out to this:
+
+
+    ```
+
+    $ tmux list-sessions
+
+    ```
+
+
+    So thankfully, due to tab completion, there is little need to remember these long
+    commands.
+
+
+    Note that tab completion will only work in certain shells with certain configurations,
+    so if the tab completion trick doesn''t work, you may want to search the Web and
+    find a way to enable tab completion for tmux.
+
+
+    # Aliases
+
+
+    Most of the commands have an alias, which is a shorter form of each command that
+    can be used. For example, the alias of list-sessions is ls. The alias of new-session
+    is new.
+
+
+    You can see them all readily by running the tmux command list-commands (alias
+    lscm), as used in the following code snippet:
+
+
+    ```
+
+    $ tmux list-commands
+
+    ```
+
+
+    This will show you a list of all the tmux commands along with their aliases in
+    parenthesis after the full name.
+
+
+    Throughout this text, we will always use the full form for clarity, but you could
+    just as easily use the alias (or just tab complete of course).
+
+
+    One thing you''ll most likely notice is that only the last few lines are visible
+    in your terminal. If you go for your mouse and try to scroll up, that won''t work
+    either! How can you view the text that is placed above? We will need to move into
+    something called the Copy mode that has its own chapter later in this text (See
+    Chapter 4, Manipulating Text).
+
+
+    # Renaming windows
+
+
+    Let''s say you want to give a more descriptive name to a window. If you had three
+    different windows, each with the nano editor open, seeing nano for each window
+    wouldn''t be all that helpful.'
+  merge: -1
+  img_proc: true
+- pgno: 36
+  md: '# Jump Right In
+
+
+    Thankfully, it''s very easy to rename a window. Just switch to the window you''d
+    like to rename. Then <Prefix>, will prompt you for a new name. Let''s rename the
+    nano window to masterpiece.
+
+
+    See how the status line has been updated and now shows window 0 with the masterpiece
+    title as shown in the following screenshot. Thankfully, tmux is not smart enough
+    to check the contents of your window; otherwise, we''re not sure whether the masterpiece
+    title would make it through.
+
+
+    ![](img/5969098f450265ac0c7947efcdbe7889_36_0.png)
+
+
+    # Killing windows
+
+
+    As the last stop on our virtual tour, let''s kill a window we no longer need.
+    Switch to window 1 with our find-window trick by entering <Prefix>, f, cat test,
+    Enter or of course we could use the less exciting <Prefix>, l command to move
+    to the last opened window.
+
+
+    Now let''s say goodbye to this window. Press <Prefix>, & to kill it. You will
+    receive a prompt to which you have to confirm that you want to kill it.
+
+
+    This is a destructive process, unlike detaching, so be sure anything you care
+    about has been saved.
+
+
+    Once you confirm it, window 1 will be gone. Poor window 1! You will see that now
+    there are only window 0 and window 2 left:
+
+
+    ![](img/5969098f450265ac0c7947efcdbe7889_36_1.png)'
+  merge: -1
+  img_proc: true
+- pgno: 37
+  md: 'You will also see that now <Prefix>,f, cat test, Enter no longer loads window
+    1 but rather says **No windows matching: cat test**. So, window 1 is really no
+    longer with us.
+
+
+    Whenever we create a new window, it will take the lowest available index, which
+    in this case will be 1. So window 1 can rise again, but this time as a new and
+    different window with little memory of its past. We can also renumber windows
+    as we''ll see later, so if window 1 being missing is offensive to your sense of
+    aesthetics, fear not, it can be remedied!
+
+
+    # Summary
+
+
+    In this chapter, we got to jump right in and get a whirlwind tour of some of the
+    coolest features in tmux.
+
+
+    Here is a quick summary of the features we covered in this chapter:
+
+
+    +   - Starting tmux
+
+    +   - Naming and renaming sessions
+
+    +   - The window string and what each chunk means
+
+    +   - Creating new windows
+
+    +   - The prefix key
+
+    +   - Multiple ways to switch back and forth between windows
+
+    +   - Accessing the help documents for available key bindings
+
+    +   - Detaching and attaching sessions
+
+    +   - Renaming and killing windows
+
+
+    In the next chapter, we will look into configuration and many of the ways tmux
+    can be customized to fit your tastes and workflow.
+
+
+    For a reference of all the commands learned in this chapter and every following
+    chapter, you can refer to the *Key binding and command reference* section in *Appendix.*'
+  merge: -1
+  img_proc: true
+- pgno: 38
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 39
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 40
+  md: '+   - Binding a new prefix key
+
+    +   - Binding keys without the prefix key
+
+    +   - Unbinding keys
+
+    +   - Revising the status bar
+
+    +   - Option types
+
+    +   - Handy configuration tips
+
+
+    By the end of this chapter, we will also have built up a sample configuration
+    file that you can use as a starting point for your own personalized configuration.
+
+
+    # Using the set-option command
+
+
+    The main way in which options are set and configured within tmux is through the
+    appropriately named `set-option` command.
+
+
+    This command can be called on its own to set an option temporarily. However, most
+    of the time, we will use it to set options within a tmux configuration file so
+    each time we launch tmux, the options are set the way we would like.
+
+
+    For a taste of using the `set-option` command to set an option temporarily, open
+    a terminal window and launch tmux; alternatively, if you''ve been following along
+    through Chapter 1, Jump Right In, just type the following command in the window:
+
+
+    ```
+
+    $ tmux set-option status off
+
+    ```
+
+
+    Once you do this, the status bar will disappear! This setting is only temporary,
+    so if you leave it as is, end the session, and restart tmux or create a new session,
+    it will not load this setting. In other words, a status bar will appear.
+
+
+    What you have done is that you''ve told tmux to set the option `status` to a value
+    of `off`. You can use this command to set any tmux option on the fly in this manner.
+    Having no status bar can be a bit unsettling, so let''s turn it back on:
+
+
+    ```
+
+    $ tmux set-option status on
+
+    ```
+
+
+    If we want these configuration options to persist through tmux restarts and sessions,
+    we need some way to tell tmux what their values should be. We will do that by
+    creating a tmux configuration file.'
+  merge: -1
+  img_proc: true
+- pgno: 41
+  md: '# Creating a tmux configuration file
+
+
+    In order to keep the settings around after restarting tmux, we will create a configuration
+    file that will include all the information about what options we want to set and
+    to what values.
+
+
+    Like many other Unix-based utilities, configuring tmux is as simple as creating
+    a file with the name .tmux.conf in your home directory.
+
+
+    However, unlike many other configuration files, a tmux configuration file does
+    not contain some kind of specific configuration language for the program, rather
+    it consists of a series of tmux commands that are run, in order, when tmux starts
+    up. Most of the commands we''ll see are simple set-option commands similar to
+    the commands we played with in the previous examples. Let''s create and start
+    building our configuration file:
+
+
+    ```
+
+    $ cd ~
+
+    $ touch .tmux.conf
+
+    ```
+
+
+    Open this newly created file in your favorite text editor and we''re ready to
+    rock!
+
+
+    > Like with most Unix-based utilities, this file in your personal directory contains
+    the configuration for your user only.
+
+    > It is also possible to set the global tmux configuration that will apply to
+    all the users in the system. It follows the same format as that of a personal
+    configuration file but generally lives in /etc/tmux.conf.
+
+    > However, since it is likely that not all the users of a system want the same
+    global configuration, it''s probably best to just modify your own personal configuration.
+
+
+    # Emacs or vi mode
+
+
+    As we discovered in Chapter 1, Jump Right In, tmux tries to help developers by
+    providing two sets of key bindings, one each for the two most widespread text
+    editors. If you swing one way or the other, this is likely to be one of the first
+    things you''ll want to change to make tmux feel right for you.
+
+
+    The default for tmux is to use the Emacs mode keys, so if you are an Emacs user,
+    you may be all set. tmux also tries to help out and might, based on environment
+    variables, switch to one group or the other by default. To check which mode tmux
+    is currently in, run the following command:
+
+
+    ```
+
+    $ tmux show-options -g | grep key
+
+    ```'
+  merge: -1
+  img_proc: true
+- pgno: 42
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 43
+  md: '# Modifying the background color of the status bar
+
+
+    Let''s add an item to our configuration to change the color of the status bar.
+    As we saw by jumping in, the default color of the status bar is a shade of green.
+    Note that there happens to be a shade of green in our configuration as well, but
+    it is likely a different color on your terminal unless you are using the same
+    color scheme as we are.
+
+
+    > The authors are using a color scheme called Solarized. It is a color scheme
+    that includes both dark and light variants and is optimized for the terminal and
+    readability. It was developed by Ethan Schoonover and has gained quite a following
+    in the tech community for its precision, symmetry, and because it makes just about
+    any code look downright pretty. For more information, visit http://ethanschoonover.com/solarized.
+
+
+    The color scheme of our current terminal is as shown in the following screenshot:
+
+
+    ![](img/5969098f450265ac0c7947efcdbe7889_43_0.png)
+
+
+    Eeek! That''s pretty ugly with our current color scheme.
+
+
+    Say, we want it to be a nicer blue color. Jump into your favorite text editor
+    and edit ~/.tmux.conf to have the following line:
+
+
+    ```
+
+    set-option -g status-bg blue
+
+    ```
+
+
+    This line specifies that we want the status bar to be blue rather than its default,
+    which on our system happened to be green.'
+  merge: -1
+  img_proc: true
+- pgno: 44
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 45
+  md: 'You should see your status bar change to red immediately (again, depending
+    on the color capabilities of your shell and terminal program).
+
+
+    Notice that all we did was take the same text we put in our configuration file,
+    type it after tmux, and we were good to go.
+
+
+    Recall that any command run in the shell like this is only temporary, so we still
+    want our configuration file; however, this is a nice way to quickly test that
+    a given command is going to work as we''d like.
+
+
+    # Reloading the configuration
+
+
+    Now we have a shiny new configuration file with our new command to change the
+    color of the status bar, but this configuration is useless until we reload the
+    configuration to tell tmux to load with the commands from our new file.
+
+
+    After you save your configuration file, it''s ready for action, but look, your
+    status bar is still green! How do we tell tmux that it should go fetch the latest
+    configuration and reload the windows to use that configuration? There are two
+    ways to tell tmux to reload the configuration.
+
+
+    The first is to kill all the sessions entirely and start tmux fresh. This is not
+    a very appealing option because it entails closing all of our tmux sessions, which
+    in turn means closing all the currently open and running programs. We will then
+    have to reinitiate all of our tmux sessions and windows and restart all of our
+    programs to get back to where we were before just to reload the configuration.
+    It works but is a rather messy solution overall. Generally, it is rather nice
+    that tmux loads the new configuration file when it is restarted because this means
+    any subsequent tmux initiation will use our latest configuration, which makes
+    sense. However, it forces us to close all the running applications to load it,
+    which is not ideal.
+
+
+    The second, more common and useful option is to use the tmux source-file command.
+    This command will tell tmux to go fetch the latest configuration and load it immediately.
+    In this case, there is no need to leave tmux!
+
+
+    Get to a command-line prompt within tmux (if you followed along Chapter 1, Jump
+    Right In, you will know that you can just hit <Prefix>, 2 to bring up the command
+    prompt we left there). If you have no window currently open, just open a new window
+    within tmux (<Prefix>, c) and it''ll start with a command prompt by default. Now
+    type the following command in the prompt and hit Enter:
+
+
+    ```
+
+    $ tmux source-file ~/.tmux.conf
+
+    ```'
+  merge: -1
+  img_proc: true
+- pgno: 46
+  md: 'Similar to the following screenshot, you should see the status bar is now blue!
+
+
+    ![](img/5969098f450265ac0c7947efcdbe7889_46_0.png)
+
+
+    # Changing the foreground color of the status bar
+
+
+    Now the blue status bar looks nice! However, the text is a bit difficult to read;
+    there''s not much of a contrast between the background and the text. Let''s fix
+    that!
+
+
+    Open the .tmux.conf file again, this time adding the second line:
+
+
+    ```
+
+    set-option -g status-bg blue
+
+    set-option -g status-fg white
+
+    ```
+
+
+    Reload the configuration with the source-file command using the method we discussed
+    previously. Now, as can be seen in the following screenshot, the text on the status
+    bar should be much more readable!
+
+
+    ![](img/5969098f450265ac0c7947efcdbe7889_46_1.png)'
+  merge: -1
+  img_proc: true
+- pgno: 47
+  md: '# Highlighting the active window
+
+
+    Let''s make it a bit easier to see which is our currently active window. The asterisk
+    works, but it could be a bit easier since we have these colors.
+
+
+    Open up the .tmux.conf file again, and this time add the third line:
+
+
+    ```
+
+    set-option -g status-bg blue
+
+    set-option -g status-fg white
+
+    set-window-option -g window-status-current-bg magenta
+
+    ```
+
+
+    Here we see our first window option. The first two options were global. This means
+    that in all windows the status bar will always have a blue background.
+
+
+    This new line is saying that, for each window, if it is the current window, set
+    its background to magenta. Reload the configuration again with tmux source-file
+    ~/.tmux.conf to see that in action, as shown in the following screenshot:
+
+
+    ![](img/5969098f450265ac0c7947efcdbe7889_47_0.png)
+
+
+    Change to the other window and watch the magenta highlight follow.
+
+
+    You may be noticing that each time, we''re typing a lot to reload this configuration,
+    going through the whole tmux source-file ~/.tmux.conf command. Surely, there must
+    be a better way!
+
+
+    The bad news is that there is not a key combination out of the box in tmux to
+    reload the configuration. The good news is that we can bind our own key to make
+    this task easier!'
+  merge: -1
+  img_proc: true
+- pgno: 48
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 49
+  md: 'Thankfully, by looking through the list of key bindings, it appears that Ctrl
+    + r is not currently bound to any tmux command. So it''s fair game. All the keys
+    that start with C- in the key binding screen mean that you need to press the Ctrl
+    key. So, C-r is used in the same way as Ctrl + r.
+
+
+    ![](img/5969098f450265ac0c7947efcdbe7889_49_0.png)
+
+
+    This will be rather convenient as the default prefix key also uses the Ctrl key.
+    So assuming the current default prefix key of Ctrl + b, we will be able to hold
+    down Ctrl and tap B then R to reload the configuration.
+
+
+    # Rebinding Ctrl to Caps Lock
+
+
+    ![](img/5969098f450265ac0c7947efcdbe7889_49_1.png)
+
+
+    One of my favorite programming productivity tips of all time is to rebind Caps
+    Lock to Ctrl on a system-wide scale. This is easily done on most computers at
+    the operating system level and even on some more capable keyboards.
+
+
+    The majority of computer users seldom use Caps Lock, yet its place on the home
+    row makes it a convenient key to press. Since Ctrl is used often by command-line
+    programmers and its place on the keyboard is rather difficult to press, swapping
+    the two can be very helpful. By swapping them, in the unlikely event that you
+    ever do need to use Caps Lock, it is still accessible by the old Ctrl key on your
+    keyboard.
+
+
+    The author is a huge fan of Emacs that makes heavy use of the Ctrl key, and tmux
+    is another program that does as well.
+
+
+    This is by no means a requirement, but if you find yourself using the Ctrl key
+    regularly, consider making use of this trick!
+
+
+    On a Mac, it is very easy and requires no additional software. It''s a bit trickier
+    on some other systems, but possible everywhere.
+
+
+    For detailed tutorials visit http://vq.io/rebindcaps.'
+  merge: -1
+  img_proc: true
+- pgno: 50
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 51
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 52
+  md: '> Notice how we also added some spaces between some logical groupings here
+    as well. Thankfully, the tmux configuration ignores whitespace so we can space
+    them apart however we’d like.
+
+
+    # Binding a new prefix key
+
+
+    We can also rebind the prefix key to make it something more convenient or set
+    it up in a way that it doesn’t get into a conflict with other programs.
+
+
+    Some of you might be from a background where you use GNU screen, another terminal
+    multiplexer that uses Ctrl + a as its prefix key. So instead of learning the tmux
+    key, you might want to simply rebind Ctrl + a as your tmux prefix key.
+
+
+    Alternatively, you might be a frequent user of Emacs, nano, or another program
+    that makes extensive use of Ctrl + b to move the point back one character. In
+    that case, Ctrl + b is not a convenient key to have rebound globally.
+
+
+    Users in this category may choose to rebind the prefix to something less used
+    or less important in Emacs or other programs, such as Ctrl + t. This also conveniently
+    helps to provide guidance on the key (t for tmux!).
+
+
+    Whatever your motives, it is possible to rebind the prefix key. So, as an exercise,
+    let’s rebind it to Ctrl + t. If this makes you uncomfortable, feel free to ignore
+    it in your own configuration. However, rebinding the prefix key is a bit different
+    than rebinding any other key. You might think that the following in your .tmux.conf
+    file would work, but that is not the case:
+
+
+    ```
+
+    bind-key C-t prefix
+
+    ```
+
+
+    Recall that all of the key bindings within tmux first require the prefix key to
+    work. So this code snippet, in plain English, is essentially saying, "After you
+    have pressed the prefix key, press Ctrl and t as the prefix key." It is not saying,
+    "Here is the new prefix key, please use it."
+
+
+    So in order to set the prefix key, add the following lines to our ever-growing
+    .tmux.conf:
+
+
+    ```
+
+    # Set the status bar background to blue
+
+    set-option -g status-bg blue
+
+    # Set the status bar text to white
+
+    set-option -g status-fg white
+
+    ```'
+  merge: -1
+  img_proc: true
+- pgno: 53
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 54
+  md: 'Notice the -n option? This allows you to press the bound key without first
+    pressing the prefix key. So you could simply press F1 with no prefix and immediately
+    switch to window 1!
+
+
+    This sounds like a really cool trick (and it generally is!), until you find even
+    a single program that you want to run within tmux that expects the key F1. Then,
+    since you''ve captured F1 globally for tmux, it''s not possible to use that keystroke
+    within that or any other program because tmux captures it, uses it for the purpose
+    you''ve specified, and never passes it along to the program. Again, you can use
+    a trick such as binding <Prefix>, F1 to send F1 through to the underlying windows;
+    however, for most users, it''s probably not a great practice to get in the habit
+    of globally overriding keys.
+
+
+    So, the most likely outcome here is that you can create some cool global shortcuts
+    for something like that so they work for a while until you find an exception.
+    You will then unbind them and end up having to convince your muscle memory to
+    forget what it learned.
+
+
+    # Unbinding keys
+
+
+    Now let''s say there is a key binding that you want to remove for some reason.
+    This is very easy; just add an unbind directive to your .tmux.conf file.
+
+
+    Say we wanted to unbind 0 from its default action of selecting window 0 for some
+    reason. To do this, simply add the following code snippet to your configuration:
+
+
+    ```
+
+    unbind 0
+
+    ```
+
+
+    Note that there is no need to explicitly unbind a key before binding it to something
+    else; every key can only have one binding. So, we find it rather rare to use this
+    bit of utility, but it''s nice to know it''s there when you need it.
+
+
+    # Status bar revisited
+
+
+    Last time we touched the status bar, we altered its colors, but we did not do
+    anything to change its content. tmux allows us to change a lot of different aspects
+    of the content of the status bar. We won''t have an in-depth look at every possible
+    configuration, but will explain the concept and show one example.
+
+
+    So, the status bar has three chunks basically:
+
+
+    +   - **status-left**: This represents the stuff on the status bar on the left-hand
+    side, including the current session'
+  merge: -1
+  img_proc: true
+- pgno: 55
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 56
+  md: 'So let''s say we wanted to change the value of status-left so it looks similar
+    to {username@host} where the username and host are filled in automatically; we
+    can easily do that. Simply add the following lines to .tmux.conf and reload the
+    configuration (note that we also widened the status because the default is 10
+    and it was getting cut off):
+
+
+    ```
+
+    set-option -g status-left-length 25
+
+    set-option -g status-left "#{ (whoami) @#H}"
+
+    ```
+
+
+    This will fill in the status bar with {victor@minerva.local} for me because it
+    executes the whoami command, puts the output of that command into the string before
+    @, and fills in the hostname after it.
+
+
+    # Option types
+
+
+    Thus far, all of the options we have set had the -g flag. This means that the
+    option applies globally. However, there are three types of options: server options,
+    session options, and window options.
+
+
+    There are also multiple flags that indicate how a given option should affect or
+    be affected. This sounds complex, but it''s rather simple.
+
+
+    A server option will apply to any client that connects to tmux. Under the hood,
+    when you type and run the tmux command the first time, tmux creates a server;
+    then, it creates your client and connects to the server it started. This is the
+    magic that allows you to detach your session, reattach it later, and have everything
+    running as you left it because the tmux server keeps chugging in the background.
+    So an option specified with the -s flag will apply to the server, meaning it will
+    affect any clients that attach to it.
+
+
+    A session option will apply to the current session. This means that two clients
+    could connect to the same server and each could have slightly different session
+    options. This is in contrast with the server option, where every client has that
+    same option whether they want it or not. Session options do not have a flag; they
+    are set by leaving off the flag, as they are the default.
+
+
+    Then, there are window options, which apply only to one window. To set a window
+    option, specify it with the -w flag.
+
+
+    When it comes to configuring options, they cascade down. So there are global options
+    specified with -g that will serve as the master set. Then, any option further
+    down the chain will inherit from the global settings or may override the global
+    setting with its own.'
+  merge: -1
+  img_proc: true
+- pgno: 57
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 58
+  md: 'To do this, simply add a bind-key entry to your .tmux.conf file and bind the
+    same key combination as your prefix key to the last-window command. For example,
+    if you followed the preceding steps and set the prefix key to Ctrl + t, the following
+    line in your .tmux.conf file is appropriate:
+
+
+    ```
+
+    # Double tapping the prefix jumps to last window
+
+    bind-key C-t last-window
+
+    ```
+
+
+    Now moving on to the last window is as easy as holding down Ctrl and tapping t
+    twice.
+
+
+    # Changing the escape time
+
+
+    I have heard from some vim users that tmux adds a short, almost imperceptible
+    delay between the commands that can cause funny behavior when running vim inside
+    tmux.
+
+
+    In tmux terms, this delay is called escape-time. By default, it''s set to 500
+    ms. To fix things with vim, set the escape-time to 0 by adding the following line
+    to your configuration file:
+
+
+    ```
+
+    set-option -s escape-time 0
+
+    ```
+
+
+    Note that this option obviously exists for a reason, so tread carefully when doing
+    this as you may come across unexpected behavior. However, we''ve heard from a
+    lot of vi users that make this change and they never look back. Also note, as
+    discussed previously, this has the -s flag so it is a session-specific option,
+    which means that if someone else connects to the same server, they could have
+    a different value for escape-time.
+
+
+    # Lengthening the history limit
+
+
+    tmux only has a limited amount of scrollback history. The scrollback history is
+    the number of lines it retains in memory that have scrolled off the screen and
+    which are accessible in Copy mode (see Chapter 4, Manipulating Text).
+
+
+    However, the default history-limit for tmux is 2,000, which can be pretty low
+    for many use cases. In order to crank it up, add the following line to your configuration
+    file:
+
+
+    ```
+
+    set-option -g history-limit 10000
+
+    ```
+
+
+    Note that by increasing this history limit, you are also increasing the memory
+    footprint of tmux. So some tweaking may be necessary if it''s set too high, particularly
+    if you tend to have a lot of open windows and panes.'
+  merge: -1
+  img_proc: true
+- pgno: 59
+  md: '# Lengthening the display time
+
+
+    Some commands will cause tmux to display a message to you, replacing the status
+    bar with the text it displays for you. The time a message is displayed is called
+    display-time.
+
+
+    Out of the box, the value of display-time for tmux is rather low. Try doing a
+    search for text in another window with some text that you know doesn''t exist.
+    For example, try <Prefix>, f, then type any search string that you know doesn''t
+    exist in any other window, for example, potato.
+
+
+    You will see the text No windows matching: potato appear in place of the status
+    bar and then disappear in the blink of an eye:
+
+
+    ![](img/5969098f450265ac0c7947efcdbe7889_59_0.png)
+
+
+    It will go in a flash because it only stays on the screen for the duration of
+    the current display-time, which is only 750 ms by default. It''s probably a good
+    idea to crank the value of display-time up a bit so messages stay visible a bit
+    longer, at least until you are more comfortable with tmux. To do so, add the following
+    line to your configuration file, changing the duration to 2 seconds:
+
+
+    ```
+
+    set-option -g display-time 2000
+
+    ```
+
+
+    For a 2-second duration, we set display-time to 2000 because the display time
+    is set in milliseconds.'
+  merge: -1
+  img_proc: true
+- pgno: 60
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 61
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 62
+  md: '# Summary
+
+
+    So let''s put it all together. Refer to the *Appendix* to see the final product,
+    the `.tmux.conf` file we have built throughout this chapter.
+
+
+    Throughout this chapter, we learned a lot about configuring tmux. Starting with
+    a blank `.tmux.conf` configuration file, we built up a much larger configuration
+    changing many aspects of our tmux experience.
+
+
+    We altered the look and feel by modifying the status bar, and we learned how to
+    bind keys, including the prefix key. We showed you how to bind multiple commands
+    to a single key binding and how to unbind keys. We learned how to keep the file
+    manageable and well documented by adding comments, and how to bind keys without
+    needing the prefix key. We learned about the different types of options that can
+    be set in the configuration file and some handy configuration tips that probably
+    wouldn''t be readily obvious to most readers.
+
+
+    By the end of the chapter, we have built up a very rich sample configuration file,
+    which can be a great starting point for your own personal customization. We learned
+    a bit about how to browse the man page for an extensive list of the available
+    options.
+
+
+    We hope you treat this `.tmux.conf` file as a living document and update it with
+    other neat things you may find and remove or change any bits that exist in it
+    now. Personalize it to suit your needs; after all that''s what it''s for!
+
+
+    Now that we''ve learned all about configuration, in the next chapter, we will
+    move on to discuss one of the major fundamentals of tmux: the concept of sessions,
+    windows, and panes.'
+  merge: -1
+  img_proc: true
+- pgno: 63
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 64
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 65
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 66
+  md: 'A window and a pane are perfect analogies to their real-world counterparts.
+    Check out the different physical, real-world windows, and you will find that many
+    of them are nicely divided into multiple panes.
+
+
+    > One nice benefit of panes in tmux over panes in the real world is that they
+    are easy to create, destroy, and resize based on your needs. You cannot do that
+    with panes on most physical windows.
+
+
+    # Playing around with sessions, windows, and panes
+
+
+    So now that we have a high-level understanding, let''s take a little tour of sessions,
+    windows, and panes. Let''s start totally fresh with a new terminal window and
+    no existing tmux sessions. Start by creating a session named work:
+
+
+    ```
+
+    $ tmux new-session -s work
+
+    ```
+
+
+    You''ll see a new session started with the name work. This session, currently,
+    has a single window with a single pane.
+
+
+    Let''s create another window. Recall that this is done by pressing <Prefix>, c
+    (c for create). Now you have one session, two windows, and two panes. Each window
+    has a single pane, as shown in the following screenshot:
+
+
+    ![](img/5969098f450265ac0c7947efcdbe7889_66_0.png)'
+  merge: -1
+  img_proc: true
+- pgno: 67
+  md: '# Multiple sessions
+
+
+    Now let''s see what it''s like working with more than one session. Let''s first
+    detach the current session. Recall that in order to do so, we''ll press <Prefix>,
+    d (d for detach).
+
+
+    Now that the work session is detached, we are back at a command line, and your
+    screen should be similar to the next screenshot. Instead of reattaching the work
+    session, let''s create a new session and call this session play:
+
+
+    ```
+
+    $ tmux new-session -s play
+
+    ```
+
+
+    ![](img/5969098f450265ac0c7947efcdbe7889_67_0.png)
+
+
+    Now it looks like we have an entirely different session. We have a different status
+    bar with the session name [play] in the bottom-left corner rather than [work].
+
+
+    Now to switch back to the work session, we could detach the play session, arrive
+    back at a tmux-less terminal and then reattach the session, this time with the
+    work session as the target; however, there is actually an easier way.
+
+
+    Simply press <Prefix>, s (select the session interactively); this will bring up
+    a dialog where we can take our pick about which session to attach. So, we didn''t
+    even need to leave the session we were in to switch to the other one. Use the
+    arrow keys to highlight the session you want, or just tap the number associated
+    with that session to switch.
+
+
+    Try switching to the other session, then back again, but wait, there is an even
+    easier way. Simply use <Prefix>, ) (next session) and <Prefix>, ( (previous session)
+    to cycle around between the sessions. You''ll see it''s very easy to switch between
+    sessions. We''ll skip switching between multiple windows since you already know
+    how to do that from the first chapter; let''s move right on to multiple panes.'
+  merge: -1
+  img_proc: true
+- pgno: 68
+  md: '# Multiple panes
+
+
+    Now let''s break this window into two panes. Type <Prefix>, % (split the window
+    vertically) and see how the window is now divided down the middle by vertical
+    bars; we now have another command prompt. This is the second pane, as can be seen
+    in the following screenshot:
+
+
+    ![](img/5969098f450265ac0c7947efcdbe7889_68_0.png)
+
+
+    Now we have two sessions, three windows, and four panes. One session, one window,
+    and one pane make up the play session (which is no longer visible but humming
+    along in the background), while one session, two windows, and three panes make
+    up the work session we saw in the previous screenshot.
+
+
+    Let''s play around with panes a bit. First, try typing in some text. You''ll see
+    the cursor is in the right pane. To get it to the left pane, simply press <Prefix>,
+    o (o for other). Now your cursor is in the other pane. Type some stuff to verify
+    which pane the cursor is in.
+
+
+    There is actually a better way to tell which pane has the cursor than typing in
+    random stuff. It may be tough to tell from the previous screenshot; however, when
+    a window is split into two vertically, the top half of the vertical bars that
+    split the two windows will be colored when the cursor is in the left pane, and
+    the bottom half will be colored when the cursor is in the right pane. In the previous
+    screenshot, the bottom half is colored in green to indicate that the cursor is
+    in the right pane. When there are more than two panes, tmux tries different schemes
+    to let us know which pane is active, as we soon shall see.
+
+
+    You can also use <Prefix> and the right arrow key, <Prefix> and the left arrow
+    key, <Prefix> and the down arrow key, or <Prefix> and the up arrow key to move
+    the cursor to the pane to the right, left, down, or up, which is a bit easier
+    to remember and also more useful when we have a more complex pane structure.'
+  merge: -1
+  img_proc: true
+- pgno: 69
+  md: '# Working with more panes
+
+
+    Now <Prefix>, % (split the pane vertically) is not the only way to create panes.
+    This simply splits the current pane into two smaller ones by splitting it vertically.
+    If you actually do it again, it''ll split the current pane in half again with
+    another vertical line, as shown in the following screenshot:
+
+
+    ![](img/5969098f450265ac0c7947efcdbe7889_69_0.png)
+
+
+    This is rather silly and scrunched though. First, let''s kill that pane and then
+    try to split it vertically. To kill the new pane we created, we can either terminate
+    the running program in that pane, in this case, typing exit and pressing Enter
+    as this will end the shell process. Alternatively, we can press <Prefix>, x (kill
+    pane) to be prompted whether to kill that pane or not.
+
+
+    > Note that killing a pane with a running process will terminate that process
+    immediately without gracefully ending it, so you will lose any existing data in
+    that pane. Be careful!
+
+
+    Confirm with y, and you''re back to two panes. Note that when a pane is removed,
+    things are automatically resized appropriately. Let''s try to split the left pane
+    horizontally. In order to do this, type <Prefix>, " (split the pane horizontally),
+    as shown in the following screenshot:
+
+
+    ![](img/5969098f450265ac0c7947efcdbe7889_69_1.png)'
+  merge: -1
+  img_proc: true
+- pgno: 70
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 71
+  md: "![](img/5969098f450265ac0c7947efcdbe7889_71_0.png)\n\nLet's try resizing the\
+    \ panes by some decent increments. Get the cursor over to the Date window, either\
+    \ using <Prefix>, arrow keys or <Prefix>, o.\n\nNow to resize it, let's try <Prefix>,\
+    \ Meta and the right arrow key. You should see the rightmost pane get a bit smaller.\
+    \ Try it again and it gets even smaller. Try <Prefix>, Meta and the left arrow\
+    \ key, and you should see the rightmost pane get a bit larger.\n\n> If you look\
+    \ at your keyboard and see no Meta key, you are not missing anything; it does\
+    \ not exist on most keyboards.\n> \n> Meta is a key often used in terminal programs\
+    \ that historically had a place on the keyboard, but no longer.\n> \n> Both iTerm\
+    \ and the stock terminal program on Mac have the choice to use the Option key\
+    \ as Meta. Other operating systems often have some way of using the Alt key as\
+    \ Meta.\n> \n> Though this may seem confusing, we use Meta in this book because\
+    \ that is the way it is referred to historically, and more importantly, because\
+    \ this is the key referred to in the tmux documentation.\n\nThankfully, you don't\
+    \ actually have to type the prefix key every time you want to resize it a little\
+    \ bit; as soon as you start resizing, you can just type the command to increase\
+    \ or decrease over and over without the prefix key. So start by using <Prefix>,\
+    \ Meta and the right arrow key, then you should be able to change the panes by\
+    \ holding down the Meta key and by pressing the left arrow key, the right arrow\
+    \ key, or the left arrow key. You will see the panes expand and contract without\
+    \ having to stop and type the prefix key each time.\n\nThis is one way to change\
+    \ the size of a pane. This is actually changing it in steps of five cells at a\
+    \ time (each cell being basically the space of one mono-spaced character)."
+  merge: -1
+  img_proc: true
+- pgno: 72
+  md: '# Sessions, Windows, and Panes
+
+
+    It''s also possible to be a bit fine-grained with it, changing the size in steps
+    of one cell at a time. Simply press <Prefix>, Ctrl and the arrow key. However,
+    this will move in much smaller increments and will also conflict with the command
+    to switch between spaces on OS X.
+
+
+    If you have followed along with *Chapter 2, Configuring tmux*, and turned on the
+    mode-mouse option along with the mouse-select-pane and mouse-resize-pane options,
+    you can also use your mouse to select the active pane. You can do this by just
+    clicking on the active pane and resizing the panes by clicking and dragging them
+    on to the active pane. While this has the downside of reaching for your mouse,
+    it can be the easiest way to rapidly arrive at a desired pane configuration.
+
+
+    # Switching between panes by number
+
+
+    Now that we have so many panes, switching between them can get a bit unwieldy.
+    The arrow keys are pretty nice but can still be a tad annoying. Thankfully, there
+    is an easier way. Press <Prefix>, q and you will see a number appear in each pane
+    and then disappear shortly thereafter.
+
+
+    The currently active pane will be of a different color than the other panes. This
+    will also show the dimensions of each pane.
+
+
+    Just as each window was assigned a unique number, so also each pane is assigned
+    with a unique number in every window. If you press <Prefix>, q again and, before
+    the numbers disappear, type the number that appears in that pane, you''ll automatically
+    switch to it.
+
+
+    By default, the duration for these numbers to remain on the screen is 1 second,
+    but you can change that by adding the following option to your .tmux.conf file:
+
+
+    ```
+
+    set-option -g display-panes-time 3000
+
+    ```
+
+
+    This will extend the time that the pane numbers are displayed on screen to 3000
+    ms or 3 seconds, allowing you more time to select a pane by its index.
+
+
+    So, to jump to the pane with the word Apple typed in it, simply press <Prefix>,
+    q, and 1. It does not matter which pane you were in previously since this pane
+    is given an index of 1; using that key combo will jump to that pane.
+
+
+    # Cycling through pane layouts
+
+
+    tmux provides us with a few different ways to change the pane layout automatically
+    so you don''t have to meticulously split and resize in odd ways to get to your
+    desired result.'
+  merge: -1
+  img_proc: true
+- pgno: 73
+  md: 'The most versatile of the bunch is a key binding that will essentially cycle
+    through to a different preset pane layout each time you press a key combination.
+    This key combination is <Prefix>, Space bar (cycle through pane layouts).
+
+
+    Try it out; press <Prefix>, Space bar, and you will see your panes move around.
+    The content stays in them, so any programs in them would keep running fine, but
+    they get rearranged and resized in different ways each time you use that key combination.
+
+
+    If you look at the status bar, you will see the name of the layout. There are
+    five different preset layouts that you can cycle through; these are even-horizontal,
+    even-vertical, main-horizontal, main-vertical, and tiled.
+
+
+    Until you know what you like for a given use case, cycling through them is a pretty
+    good way to see what the possibilities are.
+
+
+    Once you are comfortable enough with these layouts, you can switch to them directly,
+    without cycling through all of them, by pressing <Prefix>, then Meta and the index
+    of the preset layout in the previous list. So, for example, you can use <Prefix>,
+    Meta + 1 to switch to the even-horizontal view, <Prefix>, Meta + 2 to switch to
+    the even-vertical view, and so on.
+
+
+    # Other pane operations
+
+
+    There are far too many pane operations, so we''ll not be able to cover all of
+    them exhaustively in this book; for most that we''ll not discuss, we implore you
+    to dig into the tmux man page:
+
+
+    ```
+
+    $ man tmux
+
+    ```
+
+
+    Alternatively, you can refer to them on the Web at http://man.cx/tmux.
+
+
+    Now that you understand panes, the man page should be very manageable and understandable
+    on the topic of panes.
+
+
+    You can do things like breaking one pane out into its own window; rotating the
+    panes; swapping one pane with another; moving a pane to another window; and arranging
+    all the panes horizontally, vertically, tiled, and much more.
+
+
+    There are many more commands to resize panes, many of which don''t even have keyboard
+    shortcuts because they''re not used all that much. Of course, you could add your
+    own, and if you read Chapter 2, Configuring tmux, you should have all the tools
+    in your toolbox to do so.'
+  merge: -1
+  img_proc: true
+- pgno: 74
+  md: '# Summary
+
+
+    In this chapter, we learned a lot about sessions, windows, and panes in tmux.
+    We learned how each of these fit into the tmux hierarchy, and we played around
+    with them to solidify some of the concepts. We created multiple sessions, split
+    windows into multiple panes, moved them around, and learned different ways to
+    switch the cursor from one pane to another.
+
+
+    In the next chapter, we will move on to text manipulation and learn about how
+    we can scroll back through the window history, how we can copy text from the window
+    history into a paste buffer, and how we can paste that content.'
+  merge: -1
+  img_proc: true
+- pgno: 75
+  md: '# # Manipulating Text
+
+
+    There are two important components of tmux that we are yet to discuss in more
+    detail, namely, **Copy mode** and **paste buffers**.
+
+
+    Copy mode is a mode in tmux that we can switch to; it allows us to select the
+    text that already appears on the screen and copy it. Also, it allows us to move
+    our cursor anywhere on the screen, even to places that have moved off the screen.
+
+
+    When an item is copied from Copy mode, it ends up in the paste buffer. As its
+    name implies, this is a buffer that exists to hold anything that is copied so
+    it can be pasted later.
+
+
+    Here is a quick summary of the features we will cover in this chapter:
+
+
+    +   - Window history and how tmux handles text that has moved off screen
+
+    +   - Explaining the two tmux modes
+
+    +     - Scrolling up through the Window history
+
+    +     - Jumping by search or line
+
+    +     - Copying text into the paste buffer
+
+    +   - Interacting with the paste buffer
+
+    +     - Pasting the last copied item
+
+    +     - Viewing the whole paste buffer stack
+
+    +     - Choosing an item to paste interactively
+
+
+    By the end of this chapter, we will know all about working with text from within
+    tmux.'
+  merge: -1
+  img_proc: true
+- pgno: 76
+  md: '# Explaining the Window history
+
+
+    One thing you may have noticed in the previous chapters is that commands with
+    too much text output appear to get cut off. You can see the tail end, but the
+    rest seems to go above the window. If you try scrolling up, it will not work.
+    What is going on here?
+
+
+    The start of a command is not lost forever. It still exists; it has simply scrolled
+    off the screen.
+
+
+    In order to work its magic and keep everything in a single terminal window, tmux
+    has to hide all of the text that won''t fit in the currently viewed pane. It keeps
+    all of this text stored in something called **Window history**.
+
+
+    Think of it like pages in a physical book. A book contains far more text than
+    you can see at any given point in time, but to make it manageable, all of that
+    text is on pages that aren''t visible at the same time. The one page that is visible
+    is the one you have opened.
+
+
+    Similarly, tmux maintains all of the text that didn''t fit on the pane you are
+    currently viewing and tucks it away in the Window history.
+
+
+    Now, of course, tmux doesn''t need to stack its pages in a way that one is on
+    top of the other, like with a traditional book. So, they''re more laid out, one
+    above the next, for as long as the history is configured.
+
+
+    The following illustration helps visualize it:
+
+
+    ![](img/5969098f450265ac0c7947efcdbe7889_76_0.png)'
+  merge: -1
+  img_proc: true
+- pgno: 77
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 78
+  md: '# Manipulating Text
+
+
+    +   - **Clock mode:** This mode shows the current time and is more of a novelty
+    / utility than an actual mode, like the rest. It can be accessed by `<Prefix>,
+    t`.
+
+    +   - **Control mode:** This mode allows third-party applications to interact
+    with tmux through a text-only protocol.
+
+
+    In addition, this is where we start to get to the text manipulation goodies within
+    tmux. When we drop into Copy mode, we can scroll back to look back through the
+    Window history, and we can also access some cool text manipulation tools.
+
+
+    Let''s walk through a sample workflow with Copy mode.
+
+
+    # A sample workflow with Copy mode workflow
+
+
+    If you have followed us from the beginning of the chapter, you should have a tmux
+    session started. Let''s first rerun the long-running command we used previously
+    to list the available key bindings:
+
+
+    ```
+
+    ```bash
+
+    $ tmux list-keys
+
+    ```
+
+    ```
+
+
+    Just as we saw the last time we ran this command, only the last few lines are
+    made visible in our current pane. However, now we are armed with a bit of knowledge
+    about the Window history and can likely surmise that the remaining lines are there
+    but have scrolled off the screen. How can we scroll up and see what that text
+    was? Copy mode!
+
+
+    # Entering Copy mode
+
+
+    Let''s enter Copy mode so we can scroll back and see the rest of it, which is
+    stored in our Window history. Press `<Prefix>, [` to switch back to Copy mode.
+
+
+    The first thing you''ll notice is a new interface element added to our screen.
+    There will be a new box in the upper-right corner of the terminal screen that
+    shows **[0/76]**, as shown in the following screenshot:
+
+
+    ![](img/5969098f450265ac0c7947efcdbe7889_78_0.png)'
+  merge: -1
+  img_proc: true
+- pgno: 79
+  md: 'This shows us both the number of lines in the history (76) and the current
+    line our cursor is currently on (0).
+
+
+    Note that these lines are in reverse chronological order, so 0 stands for our
+    currently viewed pane, 1 is a line above it, 2 is a line above line 1, and 76
+    is way up at the top of our Window history. This helps give context as to where
+    in the history we are as we scroll up through it.
+
+
+    Going back to our Window history diagram, the lines can be thought of as shown
+    in the following diagram:
+
+
+    ![](img/5969098f450265ac0c7947efcdbe7889_79_0.png)
+
+
+    The first number in the [0/76] bit will show you the index of the lowest visible
+    line on the current viewpoint. This can be a bit confusing at times as it seems,
+    when you scroll up, that the first number doesn''t start going up until you scroll
+    your cursor past the current pane; however, it makes a bit more sense when you
+    scroll down and bring the lines into the current view one by one.'
+  merge: -1
+  img_proc: true
+- pgno: 80
+  md: '# Moving the cursor around
+
+
+    Now that you''re in Copy mode, you can move the cursor up, down, left, or right,
+    one character at a time. This is, rather intuitively, the up arrow, down arrow,
+    left arrow, or right arrow keys or Ctrl + p, Ctrl + n, Ctrl + b, Ctrl + f (k,
+    j, h, l). Try moving the cursor around a bit in Copy mode.
+
+
+    # Emacs or vi style key bindings for Copy mode
+
+
+    Actually, there are two main ways to bind keys in tmux for Copy mode: Emacs-style
+    key bindings or vi-style key bindings.
+
+
+    This is configurable using the mode-keys option. We will be primarily covering
+    the default (Emacs-style) key bindings and will include the vi key binding in
+    parenthesis following it. However, note that as we saw in Chapter 1, Jump Right
+    In, tmux is smart and may alter the defaults based on your environment variables.
+    So, while Emacs is the usual default, you may, without any configuration, be set
+    to the vi mode with tmux out of the box, based on another configuration.
+
+
+    If you are a vi user, know that you can set up vi-style mode keys, and if you
+    do, then the keys to browse Copy mode are very much like browsing vi''s normal
+    mode.
+
+
+    The Emacs key bindings for Copy mode can be viewed with the following command:
+
+
+    ```
+
+    tmux list-keys -t emacs-copy
+
+    ```
+
+
+    The vi key bindings for Copy mode can be viewed with the following command:
+
+
+    ```
+
+    tmux list-keys -t vi-copy
+
+    ```
+
+
+    Alternatively, you can look at the man pages under mode-keys for more details
+    on configuring and which key does what (http://man.cx/tmux or man tmux from a
+    terminal).
+
+
+    ![](img/5969098f450265ac0c7947efcdbe7889_80_0.png)
+
+
+    Now let''s scroll up and see what''s left behind.
+
+
+    # Scrolling through the Window history
+
+
+    To scroll up a page, you can use Page Up or Meta + v (Ctrl + b) and you''ll see
+    that each time you press it, the number in the upper-right corner changes from
+    [0/76] to match wherever you currently are.'
+  merge: -1
+  img_proc: true
+- pgno: 81
+  md: 'You''ll also notice that you will soon see the text that wasn''t previously
+    visible. That''s right, now you''re scrolling up into the Window history! Of course,
+    you can also use Page Down or Ctrl + v (Ctrl + f) to navigate to a page back down.
+
+
+    You may find that Meta + v won''t work to scroll up in tmux. If you encounter
+    this, it is likely due to a configuration setting on your terminal.
+
+
+    If you are using iTerm2 on a Mac, you have the ability to specify how the terminal
+    sends the Option key. To access this, visit Preferences | Profiles | Keys and
+    you should see Left option (^) key acts as. Set this to +Esc to have the Option
+    key work like Meta, as shown in the following screenshot:
+
+
+    ![](img/5969098f450265ac0c7947efcdbe7889_81_0.png)
+
+
+    If you are using Terminal on a Mac, you have the ability to specify how the terminal
+    sends the Option key. To access this, visit Preferences | Profiles, pick your
+    active profile, select the Keyboard tab, and check the box that says Use Option
+    as Meta key.
+
+
+    For other operating systems, Alt will often work as Meta out of the box.
+
+
+    You can also jump directly to the top of the Window history with Meta + > (g)
+    and go back to the bottom with Meta + < (G).'
+  merge: -1
+  img_proc: true
+- pgno: 82
+  md: '# Jump by search or line
+
+
+    Often, you know exactly what you''re searching for when you go back through the
+    history. When this is true, you can jump by a search term to get to a specific
+    line.
+
+
+    For example, in Copy mode, press Ctrl + r (?). You will see Search Up: appear
+    in the lower-left corner, as shown in the following screenshot:
+
+
+    ![](img/5969098f450265ac0c7947efcdbe7889_82_0.png)
+
+
+    Type list-keys and then press Enter. You''ll see you jumped directly to the last
+    use of the term, list-keys, within the Window history. Try it again and you''ll
+    jump back to the time we first entered it.
+
+
+    If you don''t have an exact search term, you can still jump directly to a line
+    number. Simply press g (:) and you''ll be prompted for the line to jump to. This
+    is helpful when you don''t know exactly what you may be searching for but would
+    like to jump back several pages.
+
+
+    # Leaving Copy mode
+
+
+    To drop out of Copy mode and go back to Default mode, simply tap Esc or q and
+    you''ll leave Copy mode.
+
+
+    There are many more keys to navigate to Copy mode, but it would be onerous to
+    describe each one of them. However, we''ve seen most, and the rest is available
+    on the tmux man page:
+
+
+    ```
+
+    $ man tmux
+
+    ```
+
+
+    Alternatively, you can find it with the tmux command list-keys -t emacs-copy or
+    list-keys -t vi-copy, based on your chosen key bindings.
+
+
+    You can view more keys to navigate to Copy mode online at http://man.cx/tmux.'
+  merge: -1
+  img_proc: true
+- pgno: 83
+  md: '# # Copying text into the paste buffer
+
+
+    Now that we''ve gotten a taste of navigating around in Copy mode, let''s put it
+    to use.
+
+
+    Copy mode doesn''t exist just to have a Window history that you can scroll through,
+    but also to have a way to copy text from the past and reuse it.
+
+
+    Enter Copy mode by pressing `<Prefix>, [` and scroll around until you find some
+    text that is of interest. Once you find something you''d like to copy, make sure
+    the cursor is at the start of where you''d like to copy and press `Ctrl + Space
+    bar` (Space bar). This sets the start point of the selection.
+
+
+    Now move the cursor around using the same keys as provided earlier, and you''ll
+    see the selection is highlighted and grows as you move away from the start of
+    the selection. The area you select will have a different background color as the
+    area is highlighted. See the following screenshot, which is an example of this:
+
+
+    ![](img/5969098f450265ac0c7947efcdbe7889_83_0.png)
+
+
+    When you are satisfied with your selection, simply press `Meta + w (Enter)` to
+    copy the text and you will leave Copy mode immediately and will be scrolled back
+    to where you were. The text you selected will be copied and added to your paste
+    buffer (more on this soon).
+
+
+    A few things to note are as follows:
+
+
+    +   - This is set up to model Emacs (or vi) almost identically in terms of key
+    commands to navigate, copy, and so on. Things should feel rather familiar to you
+    if you use Emacs or vi. If you aren''t familiar with either, things may seem a
+    bit foreign and will take some time getting used to.
+
+    +   - Note the copy operation is always nondestructive in tmux. You have copied
+    the text out of the Window history but have not altered the Window history at
+    all. So, you can go back and copy the same text again and again without disturbing
+    the history.'
+  merge: -1
+  img_proc: true
+- pgno: 84
+  md: '+   - If you have tried copying text from multiple lines, you might have noticed
+    the selection-wrapped lines. You can toggle it as a rectangle by pressing R (v)
+    at any time in Copy mode before or after you start the selection. This is shown
+    in the following screenshot:
+
+
+    ![](img/5969098f450265ac0c7947efcdbe7889_84_0.png)
+
+
+    +   - You can also grab all of the text to the right of your cursor or to the
+    end of a single line of text, much like the kill line in Emacs, with the Ctrl
+    + k keyboard command. Again, tmux''s Copy mode is nondestructive, so this won''t
+    actually kill the line as it would in Emacs but will copy it to the paste buffer.
+
+
+    # Interacting with the paste buffer
+
+
+    The paste buffer is a holding bucket for all of the text you will copy, which
+    you will then be able to access later to paste onto any pane.
+
+
+    It is actually a stack, so each item copied from Copy mode is added at the top
+    of the stack, and every new item is added at the top with every other item moved
+    down by one. Each item in the paste buffer is assigned a number based on the order
+    in which it went into the stack.
+
+
+    # Pasting text from the paste buffer
+
+
+    Now that you''ve grabbed some text, you want to pull it from the paste buffer
+    to get it back.
+
+
+    In any program that runs within tmux, move your cursor to the point where you
+    want the text to be pasted and press <Prefix>, ].
+
+
+    For example, let''s fire up nano:
+
+
+    ```
+
+    $ nano
+
+    ```
+
+
+    Once we do this, paste what we last copied with <Prefix>, ].'
+  merge: -1
+  img_proc: true
+- pgno: 85
+  md: 'Sure enough, our text appears! Notice the nice symmetry, where you use <Prefix>,
+    [ to enter Copy mode, and <Prefix>, ] to paste the text.
+
+
+    Now <Prefix>, ] is nice to paste the most recently copied bit of text, but what
+    about more complex situations such as copying two items and then pasting two items?
+    Don''t worry, tmux has it covered!
+
+
+    # Choosing items from the paste buffer
+
+
+    The paste buffer is not just a single blob of text holding the last thing you
+    copied; it is actually a stack of all the previously copied items. You can access
+    this and paste from it in any order.
+
+
+    To access this list, simply press <Prefix>, =. This will bring up an interactive
+    list of the last things you previously copied, as shown in the following screenshot,
+    and you can simply highlight one and hit Enter to paste it:
+
+
+    ![](img/5969098f450265ac0c7947efcdbe7889_85_0.png)
+
+
+    By default, each time you copy it, it will be added to the paste buffer stack.
+    Interestingly though, by default, when you pull an item out of the paste buffer,
+    it will not pop the latest copied item out of the cache.
+
+
+    The command <Prefix>, ] just quickly grabs and pastes from the top of the stack
+    in (0).
+
+
+    # Working with the paste buffer
+
+
+    There are also a handful of other useful things we can do when working with the
+    paste buffer.
+
+
+    You can optionally set a limit for the number of items to store in this stack
+    by setting the buffer-limit option to a number in your tmux configuration. This
+    can be useful if you only want, say, the last five items you copied in a paste
+    buffer for security reasons.'
+  merge: -1
+  img_proc: true
+- pgno: 86
+  md: 'You can also list paste buffers non-interactively by pressing <Prefix>, : (list-buffers)
+    and Enter, which will display all the buffers in a list that you can scroll through.
+    Notice how each buffer has an index, which is a number, followed by the size of
+    that buffer. Press q (Esc) to dismiss this list.
+
+
+    This buffer index can be used in a few different operations. It can be used to
+    delete a buffer, to copy a buffer to another session, to load a buffer at a particular
+    index, to set the contents in a particular buffer, to write a buffer to a file,
+    and much more. It is a bit outside the scope of this book to cover all the things
+    that can be done with buffers, but we will revisit a few very useful tasks in
+    Chapter 5, Diving Deeper.
+
+
+    As in prior chapters, there is a full key binding and command reference in the
+    appendix with all of the keys and commands we learned in this chapter handy, all
+    in one place.
+
+
+    # Summary
+
+
+    In this chapter, we learned a lot about manipulating text, starting from understanding
+    the Window history to learning about the two different modes in tmux to scroll
+    up through the Window history. We then moved on to jumping by search or line,
+    copying text into a paste buffer, using Copy mode to copy text. We finished by
+    discussing how to paste items from the paste buffer to the underlying window,
+    how to view the whole paste buffer stack, and how to limit the number of items
+    stored in the paste buffer.
+
+
+    In the next chapter, we will get to some more advanced usage topics, including
+    a deeper understanding of the paste buffer, a bit more on sessions and windows,
+    and an opportunity to get a taste of launching tmux with defaults.'
+  merge: -1
+  img_proc: true
+- pgno: 87
+  md: '# # Diving Deeper
+
+
+    Now that we have learned about text manipulation with Copy mode and paste buffers,
+    we have discussed most of the basics of working with tmux. Let''s dive deeper
+    into some more advanced usage topics that could be helpful in your daily workflow.
+
+
+    We have gotten a taste of these items already, but this time around, we will explore
+    them in more depth. In this chapter, we will cover the following topics:
+
+
+    +   - Understanding tmux commands and Command mode
+
+    +   - Advanced paste buffer usage
+
+    +   - Jumping from one window in a session to a window in another session
+
+    +   - Moving windows
+
+    +   - Linking a window between sessions
+
+    +   - Breaking panes
+
+    +   - Joining panes
+
+    +   - Launching a session with default windows
+
+
+    # ## Understanding tmux commands and Command mode
+
+
+    You may have noticed that in prior chapters, we accessed some of our commands
+    using different methods. For example, we showed you how to list the current key
+    bindings. This can be done:
+
+
+    +   - By using the key combination `<Prefix>, ?`.
+
+    +   - By typing the command directly into a shell, prefacing the command with
+    the tmux keyword, for example, `tmux list-keys`.'
+  merge: -1
+  img_proc: true
+- pgno: 88
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 89
+  md: '# # Saving a paste buffer to a file
+
+
+    Assume you''ve just copied a lot of excellent text to the paste buffer and now
+    you want to save it to a file.
+
+
+    Of course, you could open a text editor, paste the contents of the buffer, and
+    save a new file; however, tmux provides us with a handy way to save a paste buffer
+    directly to a file without all that fuss.
+
+
+    So jump back into your tmux session or start a new one and let''s go!
+
+
+    +   1. First, find some text to copy. It could be any file with some text in it.
+    For example, we have a sample file with some text that we print out via `cat filename`.
+    You can use any file on your computer.
+
+    +   2. Recall that we can enter Copy mode by pressing `<Prefix>, [`.
+
+    +   3. Then, we can press `Ctrl + Spacebar` to start copying the text.
+
+    +   4. Move on to highlight the text.
+
+    +   5. Then, press `Ctrl + w` to copy it.
+
+
+    ![](img/5969098f450265ac0c7947efcdbe7889_89_0.png)'
+  merge: -1
+  img_proc: true
+- pgno: 90
+  md: 'Alright, so now we have some text in the paste buffer at index 0. We can check
+    this out with <Prefix>, =.
+
+
+    ![](img/5969098f450265ac0c7947efcdbe7889_90_0.png)
+
+
+    We have 628 bytes there in that paste buffer. Hit q to dismiss that dialog. Now
+    we can run the tmux command save-buffer -b 0 [path]; here, [path] is the location
+    where we will save it and -b 0 indicates that we want to save the text from the
+    paste buffer with index 0, in this case, the text we just copied. After you run
+    this command, we''ll have a new file with the contents of that buffer.
+
+
+    So, for instance, <Prefix>; save-buffer -b 0 ~/sonnet16.poem will save the contents
+    of our paste buffer to a file. This can be extremely useful in many contexts.
+    For instance, let''s say you are using the tail utility to follow a log file in
+    real time. If a useful snippet appears on the screen, jumping into Copy mode,
+    copying it to a paste buffer, and then saving it to a file is a convenient way
+    to copy the relevant text to a file. Alternatively, imagine you are reading a
+    man file and want to snag a useful snippet to a file for later use. In this case,
+    copying the snippet first and then writing that paste buffer directly to a file
+    will store it for later use with expedience.
+
+
+    # Loading a paste buffer from a file
+
+
+    We can also achieve the reverse, that is, loading the contents of a file into
+    a paste buffer. To do this, simply run the tmux command load-buffer [path], and
+    the contents of that file will be loaded into a paste buffer.
+
+
+    This is very useful if you have text in a file that you want to paste into any
+    program running within tmux; you can do this without having to navigate to and
+    open that file in an editor, select all of the text in the file with the cursor,
+    and then copy it in order to be able to paste it.
+
+
+    This can be incredibly useful, for example, as a way to utilize the core functionality
+    of tmux to have a very powerful code snippet manager.'
+  merge: -1
+  img_proc: true
+- pgno: 91
+  md: 'Say there are a bunch of different common boilerplate things you write in your
+    code, such as a for loop, a function definition, or a class declaration. You could
+    create a simple file for each snippet of boilerplate, load it directly into a
+    paste buffer, and then paste it from within tmux. If you had a folder in your
+    home directory called ~/snippets and had boilerplate for a for loop with the name
+    ~/snippets/forloop, you could load it with the tmux command load-buffer ~/snippets/forloop
+    and then simply paste it into the current buffer with <Prefix>, ]. Over time,
+    as you build up snippets for a lot of boilerplate code, you can save a lot of
+    keystrokes.
+
+
+    By default, if no index is specified, the file''s contents will be loaded into
+    index 0, just as if you had copied it normally via <Prefix>, [ (with each other
+    paste buffer moving up one index); however, it''s also possible to specify a buffer
+    index to load it into.
+
+
+    Note that if a buffer index is specified, it must be an already existing buffer
+    index, and it will overwrite the contents of that paste buffer with the index
+    you will provide. So, for example, specifying buffer 0 with the tmux command load-buffer
+    -b 0 ~/snippets/forloop will not end up in index 0, pushing all the buffers up
+    by one; rather, it will entirely displace whatever was previously available in
+    index 0.
+
+
+    # Setting a paste buffer directly
+
+
+    It is also possible to set a buffer directly with tmux. This may be useful if
+    you would like to paste the same text multiple times. There is no need to type
+    the whole text out first and then copy it before being able to paste it; you can
+    set the contents of a buffer directly.
+
+
+    For example, say we would like to put a sentence into a buffer directly. We can
+    do this by issuing the tmux command set-buffer, optionally giving it an index
+    and providing text to put into that buffer. The following steps will guide you
+    in setting a paste buffer directly:
+
+
+    +   1. Try <Prefix>, ; set-buffer "The quick brown fox jumped over the lazy dog".
+
+    +   2. Since we did not specify a buffer index, it will be pushed to the top of
+    the stack, in buffer index 0, with the rest of the buffers moving down one index.
+    We can view the contents of this buffer with the tmux command show-buffer. Sure
+    enough, you''ll see that the content is the sentence we just set.
+
+    +   3. Now paste it onto the screen using <Prefix>, ].'
+  merge: -1
+  img_proc: true
+- pgno: 92
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 93
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 94
+  md: "Surely, there must be some way to purge that Window history to help prevent\
+    \ this. There sure is; it is the tmux command clear-history. Optionally, you can\
+    \ provide a target pane, and it will clear the history for that pane. For instance,\
+    \ clear-history -t 1 will clear the history for pane 1 even if that is not your\
+    \ currently active pane.\n\n> While clearing the history, it will clear everything\
+    \ that was in the Window history that scrolled out of that pane, but it will retain\
+    \ everything that is currently visible in that pane. To clear the history and\
+    \ everything in that pane, it is best to run the Unix command clear first to push\
+    \ it off the screen, then the tmux command clear-history to flush everything.\n\
+    > \n> Note that if there is extremely sensitive information that needs to be cleared,\
+    \ it may be best to restart tmux after you clear the Window history. This sensitive\
+    \ information, while expunged from the Window history and therefore not available\
+    \ in Copy mode, could still potentially be sniffed by a very capable hacker. Its\
+    \ bits may linger and be salvageable from a tmux memory dump, so restarting tmux\
+    \ is the only way to be entirely sure that it is gone from the memory as well.\
+    \ While this is a case that is quite on the fringe, it bears mentioning.\n\n![](img/5969098f450265ac0c7947efcdbe7889_94_0.png)\n\
+    \n# An advanced session and window usage\n\nBack when we discussed sessions, we\
+    \ walked through how to switch from one session to another. What we didn't cover\
+    \ were some more advanced things such as switching from one window in one session\
+    \ directly to another specific window in another session, moving windows between\
+    \ sessions and sharing windows between sessions.\n\n# Jumping from one window\
+    \ in a session to another window in another session\n\nA couple of chapters back,\
+    \ we discussed switching between multiple sessions using <Prefix>, s to bring\
+    \ up the list of sessions and select any of them.\n\nOK! So let's get set up a\
+    \ bit. We'll need two active sessions with a couple of windows each. If you followed\
+    \ along the previous section, we should already have one active session; let's\
+    \ create another session using the tmux command, new-session -s \"Another\".\n\
+    \nNow let's create another window using <Prefix>, c and run some command in it,\
+    \ for instance, top:\n\n```\n$ top\n```"
+  merge: -1
+  img_proc: true
+- pgno: 95
+  md: 'The output of this command is shown in the following screenshot:
+
+
+    ![](img/5969098f450265ac0c7947efcdbe7889_95_0.png)
+
+
+    Let''s switch back to our other session with <Prefix>, s and then highlight and
+    select the other session we want, as shown here:
+
+
+    ![](img/5969098f450265ac0c7947efcdbe7889_95_1.png)
+
+
+    Jump onto the other session (Advanced, as shown in the preceding screenshot).
+    Now if we do the same thing again, using <Prefix>, s and switch back to the Another
+    session, we will arrive back in Another, in window 2 that is running top. This
+    is because tmux will take us back to the last window we were viewing in an active
+    session.
+
+
+    However, what if we wanted to move directly from one session to a specific window
+    in another? Surely, we should not have to switch to the session and then select
+    the window. Well, we can directly choose a window within a session, and tmux actually
+    makes this a breeze.'
+  merge: -1
+  img_proc: true
+- pgno: 96
+  md: 'Bring up the choose-tree interface again with <Prefix>, s. Notice the plus
+    symbols to the left of the session names? They''re there because that session
+    can be expanded to show the windows running in those sessions. Simply highlight
+    the session you want to drill into and tap the Space bar or right arrow key to
+    unfold that session and see a list of the windows in that session. Notice how
+    it resembles a file tree, as shown in the following screenshot. This is why this
+    command has the name that it does.
+
+
+    ![](img/5969098f450265ac0c7947efcdbe7889_96_0.png)
+
+
+    Recall from our first chapter what some of the magic characters on the window
+    mean? The characters are as follows:
+
+
+    +   - The character * indicates the currently active window
+
+    +   - The character - indicates the previously active window
+
+
+    In the preceding screenshot, you can see that window 2 running top was our currently
+    active window. If we just selected the session by choosing (1), we would be plopped
+    back into that session with the window running top. However, if we want to go
+    directly to the other window, we can do this by highlighting it, refer to the
+    previous screenshot, and hitting Enter.
+
+
+    # Moving windows
+
+
+    So we''ve got top running in the session named Another. Imagine that we want to
+    move that window to our session named Advanced. First, switch to the window with
+    top running. Now run the tmux command move-window. It is conveniently bound to
+    the keyboard shortcut <Prefix>, . so you can type that and then provide the name
+    of the destination session which, in our case, is Advanced.
+
+
+    Note how that window is gone; now our Another session has only one window. The
+    window with top was moved to the Advanced session, but we are still in the Another
+    session. tmux opened the other window to keep us in the current session.'
+  merge: -1
+  img_proc: true
+- pgno: 97
+  md: 'Now pull up the session list again using <Prefix>, s and then expand Advanced.
+    In the following screenshot, we can see how it now has three windows, the last
+    of which is the window that we just moved by running top:
+
+
+    ![](img/5969098f450265ac0c7947efcdbe7889_97_0.png)
+
+
+    Note that this same command can also be used to move a window to a different index
+    within the same session. We can specify the numerical index we''d like the window
+    moved to within this session rather than providing a session name. For instance,
+    to move a window to index 5, we could run the same move-window command via <Prefix>,
+    . and then enter 5; by doing this, the status bar will be updated to reflect this
+    window''s new index.
+
+
+    When being moved from one session to another, the window will, by default, be
+    placed at the lowest available base index. So, if you have set the base index
+    to 1 and have windows in index 1 and 3, the moved window will land in this session
+    with index 2.
+
+
+    To specify both the session and window index as the home for the window, specify
+    both, separating them with a colon. For example, to move this window to the Another
+    session in window index 7, you could use the move-window command with the argument
+    Another:7 where the session comes before the colon and the window index after.
+
+
+    This is also useful to move a window to a session with a numeric name, such as
+    the default session name 0. By default, if you specify a number alone to the move-window
+    command, tmux will assume you meant the window index 0 and not the session named
+    0. To specify this, you will use the command move-window 0: to explicitly specify
+    the session named 0.
+
+
+    # Linking a window between sessions
+
+
+    Now moving the window between sessions is quite useful, but what if we want to
+    use the same program in multiple sessions and not have multiple instances of it
+    running?'
+  merge: -1
+  img_proc: true
+- pgno: 98
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 99
+  md: 'Note that if you do this, killing a pane or window in one place will kill it
+    at both the places.
+
+
+    To later remove a window from one session but not the other, you will need to
+    unlink the window rather than kill it by using the tmux command, unlink-window.
+
+
+    # Breaking panes
+
+
+    The act of taking a pane within a window and moving it to its own window is called
+    breaking that pane. It can be accomplished with the tmux command break-pane or
+    the keys <Prefix>, !.
+
+
+    By default, the break-pane command will operate on the currently selected pane;
+    however, any arbitrary pane can be specified using the same syntax we saw in the
+    previous example to select a window within a session, specifically separating
+    the session and window name by a colon. However, of course, a pane also has an
+    index, which can be added after the window separated by a period. This all sounds
+    complex, but it is actually rather intuitive.
+
+
+    For example, to select pane 2 in window 1 in the session Advanced and break it
+    into its own window, we could use the command break-pane -s Advanced:1.2.
+
+
+    Remember that you can see the current pane indexes flash on the screen briefly
+    with the key binding <Prefix>, q.
+
+
+    When you break a pane, tmux automatically switches the window to select the window
+    that now contains that pane.
+
+
+    # Joining panes
+
+
+    In addition to linking windows between one session and another, you can also do
+    something called joining panes. The name can seem a bit misleading at first, but
+    essentially, this is used to take a pane in one window and move it to another
+    window.
+
+
+    It can be used to move one pane in a multipaned window to another window, but
+    it can also be used to take a window, which has only one pane, and join it with
+    another (now its name is probably a bit less misleading). This is very useful
+    if you have two windows running different things but decide you''d prefer them
+    as two panes of the same window.'
+  merge: -1
+  img_proc: true
+- pgno: 100
+  md: 'For example, let''s say we have a pane running in one window and we want to
+    join it with another window. In the simplest case, we could switch to the pane
+    we want to join and run the command `join-pane -t :1` where `:1` indicates that
+    we want the window in index 1 in the current session. After running this command,
+    the window index 1 in the current session will have the contents of any panes
+    it had before in addition to the new pane we just joined to it.
+
+
+    Using the same elaborate `session:window.pane` syntax we saw previously, we can
+    specify a source pane and target destination to get really slick about it. Say
+    we want to take the pane in the session **Advanced**, window 2, pane 1, and move
+    it to the session **Another**, window 1, and not specify a pane number so it defaults
+    to the lowest available index. We can do this with the command `join-pane -s Advanced:2.1
+    Another:1`
+
+
+    As you can now see, joining panes is an incredibly powerful tool in your tmux
+    arsenal that will allow you to combine multiple panes into one. Now you have learned
+    how to break a pane off into its own window, how to combine it with other panes,
+    how to move windows and link them between sessions, and more.
+
+
+    # Launching with defaults
+
+
+    Imagine you integrate tmux into your workflow such that you get very used to certain
+    things being in certain places, perhaps a shell at the root of your code repository
+    in window 1, Emacs in window 2, top in window 3, and so on. Now every time you
+    reboot your machine, you spend some time to set up everything again, start a new
+    session, create three windows, launch the programs in each window, and so on;
+    there must be a better way. Of course there is!
+
+
+    tmux gives us some ways to configure things with nice defaults out of the box.
+    We''ll also see another way to do this later in *Chapter 7, Using Other Tools
+    with tmux*, with a third-party utility.
+
+
+    So let''s take the previous example and run through it. There are ways to make
+    some of this happen within your `.tmux.conf` file but it''s generally more powerful
+    to do it externally via a separate bash script. So hop into your favorite editor
+    and start editing a new file named `.tmux.defaults`. You can name this file anything,
+    so if you have multiple sessions you may want to name it based on the session
+    name.
+
+
+    Now let''s specify our configuration. In this file, copy the following code:
+
+
+    ```
+
+    new -n term zsh
+
+    neww -n emacs emacs
+
+    neww -n htop htop
+
+    ```'
+  merge: -1
+  img_proc: true
+- pgno: 101
+  md: 'Of course, your commands may be slightly different based on your system configuration
+    and what you would like to run by default.
+
+
+    Now, to run with this configuration file, start tmux as follows:
+
+
+    ```
+
+    $ tmux source-file ~/.tmux.defaults
+
+    ```
+
+
+    That''s it! You''ll see yourself get started in a new session with three windows:
+    the first running a terminal, the second in Emacs, and the third in top.
+
+
+    Again, you can create multiple configurations like this by simply creating multiple
+    files, one for each session you''d like to automate.
+
+
+    > For more details on launching tmux with defaults, check out the tmux manual
+    section on session initialization: https://wiki.archlinux.org/index.php/Tmux#Session_initialization
+
+
+    It is possible to create more complex session initializations than our previous
+    example, but complex configurations are often tasks better suited to third-party
+    tools, as we will see in Chapter 7, Using Other Tools with tmux.
+
+
+    # Summary
+
+
+    In this chapter, we revisited a handful of tmux topics, going into far more depth
+    than we were able to in earlier chapters. At this point, you should have a great
+    grasp and depth of information on paste buffers, sessions, windows, panes, and
+    all of the other topics we covered in great depth here.
+
+
+    In the next chapter, we will not learn more about the mechanics of tmux itself,
+    but rather a bunch of tricks and tips for its use that can help maximize your
+    productivity.'
+  merge: -1
+  img_proc: true
+- pgno: 102
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 103
+  md: '# 6
+
+
+    # tmux for SSH, Pair Programming, and More
+
+
+    By now, we have gone over nearly everything about the mechanics of tmux. Putting
+    together everything from the previous chapters, we now know about configuration,
+    sessions, windows and panes, text manipulation, and a smorgasbord of advanced
+    usage in topics such as the paste buffer, moving windows, panes, and even launching
+    sessions with some defaults. So at this point, we can use, configure, and customize
+    tmux in many awesome ways.
+
+
+    Now, we will not explore new concepts in the mechanics of using tmux, but new
+    ways to utilize the things we have already learned in order to simplify everyday
+    workflows. In this chapter, we will cover the following topics:
+
+
+    +   - Using tmux over SSH for long lived sessions
+
+    +     - Setting up a virtual machine with Vagrant
+
+    +     - Workflow with tmux over SSH
+
+    +     - Launching tmux over SSH on connect
+
+    +   - Using tmux for pair programming
+
+    +     - Connection to the same session
+
+    +     - Using Vagrant Cloud for pair programming
+
+    +     - Using grouped sessions for pairing'
+  merge: -1
+  img_proc: true
+- pgno: 104
+  md: '# # Using tmux over SSH for long lived sessions
+
+
+    How many times have you been connected to a remote server over SSH just to have
+    some network blip terminate your session, putting you back at square one when
+    you reconnect?
+
+
+    With tmux, you can connect to a remote server, start a tmux session, and set up
+    windows and panes the way you''d like them. Then, if you get disconnected from
+    the remote server for any reason—be it a network blip, the SSH session timing
+    out, disconnecting from a VPN, or simply closing your laptop to go home for the
+    day—you can SSH into that machine later and reconnect to your tmux session which
+    has continued running, preserving your state as you left it.
+
+
+    This is my favorite use of tmux and one that saves the most time in my daily workflow.
+    Not only because it is useful to deal with network connectivity issues gracefully,
+    but also since most remote servers running Linux are rarely terminated; this means
+    that once you start a tmux session, it can persist for weeks or months.
+
+
+    Practically speaking, this means that every day when you connect to some remote
+    server, you could be saving time setting everything up by using tmux. You won''t
+    have to change to the directory you usually want open in one window, you won''t
+    have to connect tail to a logfile in another window, and you won''t have to open
+    a file for editing in your favorite text editor in another. They''ll already be
+    there, just the way you left them before—thanks to tmux.
+
+
+    Let''s walk through a hands-on example of this in action. For this, either connect
+    to a remote server over SSH, or we have short instructions on using Vagrant to
+    create a virtual machine locally to which you can connect.
+
+
+    # ## Benefits of using Vagrant
+
+
+    Vagrant is an incredibly easy way to use virtualization to get a machine up and
+    running locally. We suggest using it here for consistency.
+
+
+    The instructions we give *should* work when connected to just about any Linux
+    server, but since there are so many different Linux distributions, versions, and
+    more, there are bound to be slight inconsistencies.
+
+
+    By using Vagrant, we can ensure that the environment we authors have locally matches
+    the instructions we provide which will match the environment you readers have
+    locally if you also use Vagrant to set up your environment.'
+  merge: -1
+  img_proc: true
+- pgno: 105
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 106
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 107
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 108
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 109
+  md: "Now close your terminal window. Yes, I'm serious, trust me—everything will\
+    \ keep running! Imagine this is the same as dropping your network connection,\
+    \ having an SSH timeout, or going home for the day. Open a brand new terminal\
+    \ window. Run the following SSH command we ran before:\n\n```\n$ ssh -i ~/.vagrant.d/insecure_private_key\
+    \ vagrant@tmux.dev\n```\n\nOnce you're connected via SSH, run the following command:\n\
+    \n```\n$ tmux attach-session -t MyServer\n```\n\nYou can even run the following\
+    \ abbreviated version of the command to attach the session that you had running:\n\
+    \n```\n$ tmux attach\n```\n\nLo and behold, there is everything just as you had\
+    \ left it! It will persist through all your disconnections for as long as that\
+    \ server stays up. Imagine the daily time saving in not having to open all these\
+    \ windows every morning when you connect to the server or any time you get disconnected!\n\
+    \n# Launching tmux on SSH connect automatically\n\nYou can also trigger tmux to\
+    \ be run on SSH connect automatically so you don't have to connect then start\
+    \ tmux. Close your terminal window again and open a new one. In this new window,\
+    \ run the following command:\n\n```\n$ ssh -i ~/.vagrant.d/insecure_private_key\
+    \ vagrant@tmux.dev -t -- 'tmux attach-session -t \"MyServer\"'\n```\n\nThis tells\
+    \ SSH that after you connect, you want to immediately run the tmux attach-session\
+    \ command and reattach the session you had before. Now this is handy, but your\
+    \ command to connect to your server is getting rather long! We could place this\
+    \ long command in an executable shell script and run that script to connect to\
+    \ your remote server. Alternatively, we can also make things a bit easier by tucking\
+    \ most of it away in our SSH configuration. Jump into your favorite editor and\
+    \ edit the ~/.ssh/config file. This file probably already exists; it is used whenever\
+    \ you connect to a server using SSH. Add the following lines to the file:\n\n\
+    ```\nHost tmux\n  HostName tmux.dev\n  User vagrant\n  IdentityFile ~/.vagrant.d/insecure_private_key\n\
+    ```"
+  merge: -1
+  img_proc: true
+- pgno: 110
+  md: "Now you can connect more easily with the following simplified command:\n\n\
+    ```\n```bash\n$ ssh tmux -t -- 'tmux attach-session -t MyServer'\n```\n```\n\n\
+    > Unfortunately, there is not a great way to tuck away the tmux command into the\
+    \ ~/.ssh/config file. There is, however, a way to do it on the server by tweaking\
+    \ the ~/.ssh/authorized_keys file.\n> \n> We leave this as an exercise for the\
+    \ user as this is going in-depth into the concept and because it's not always\
+    \ desirable to initiate tmux every single time you connect to a remote host.\n\
+    > \n> It could also create issues connecting to the remote host. For example,\
+    \ imagine you specify that on connecting the remote session should always run\
+    \ tmux attach-session -t MyServer. However, what happens when the session MyServer\
+    \ doesn't already exist? You could be locked out of the server! So tread carefully\
+    \ here dear reader.\n\n# Using tmux for pair programming\n\nSo we saw how to create\
+    \ sessions and how you can attach an existing session, but did you wonder what\
+    \ would happen if more than one terminal attached to the same session?\n\nThe\
+    \ ability to connect multiple terminals to the same session ends up being one\
+    \ of the biggest advantages tmux offers. By allowing two or more terminal windows\
+    \ to connect to the same tmux session, tmux becomes an extremely powerful collaboration\
+    \ tool. With tmux, two or more people can see and even interact with the same\
+    \ content at the same time!\n\n# Connecting to the same session locally\n\nBefore\
+    \ we get to full pair programming, let's try just connecting to the same session\
+    \ locally in two different terminal windows and see what happens.\n\nIf you followed\
+    \ the previous instructions, you should be able to pull up your tmux session by\
+    \ opening a new terminal window and running:\n\n```\n```bash\n$ ssh tmux -t --\
+    \ 'tmux attach-session -t MyServer'\n```\n```"
+  merge: -1
+  img_proc: true
+- pgno: 111
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 112
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 113
+  md: 'So let''s get started. The following steps will guide you in using Vagrant:
+
+
+    +   1. Go to https://vagrantcloud.com/ and sign up. It''s free to create an account.
+
+    +   2. Next, go back to a terminal, one not in the SSH session already (you can
+    open a new one or detach one of the existing tmux sessions with the keyboard command
+    <Prefix>, d), and enter the following command:
+
+    +      $ vagrant login
+
+    +   3. Provide your username and password and you''ll be logged in.
+
+    +   4. Navigate back to the directory where you created your Vagrantfile and run
+    the command:
+
+    +      $ vagrant share --ssh
+
+    +   5. You will be prompted to provide a password to encrypt the SSH key. Give
+    it something that is a decent password but which you can share with the person
+    you''re pairing with.
+
+    +   6. On the screen, Vagrant will give instructions for the other user to connect
+    and issue your machine a random name. Your current screen will look similar to
+    the following screenshot:
+
+
+    ![](img/5969098f450265ac0c7947efcdbe7889_113_0.png)'
+  merge: -1
+  img_proc: true
+- pgno: 114
+  md: '+   7. Now open another terminal window (simulating another user on a remote
+    machine) and run the command it suggested. In my case, the command used was:
+
+    +   ```
+
+    +   $ vagrant connect --ssh greedy-lamb-6478
+
+    +   ```
+
+    +   However, the machine name will be different for you since it''s randomized.
+    After entering the SSH key password, you''ll be connected via SSH to the server!
+    This could be a person on the other side of the world.
+
+
+    +   8. Now run tmux and attach the session of interest:
+
+    +   ```
+
+    +   $ tmux attach-session -t MyServer
+
+    +   ```
+
+    +   And you''re ready to rock.
+
+
+    Of course, the other person connecting will also have to sign up for Vagrant Cloud
+    in order to connect. This is an incredibly easy way to come up with a relatively
+    safe pair programming environment so two (or more) people can collaborate in real
+    time over the Web without fear of compromising one of the collaborator''s environments.
+
+
+    If the worst happens and one of the pair is nefarious, the worst they can do is
+    make a mess of this virtual machine, which was created with only a handful of
+    commands.
+
+
+    # Using grouped sessions for pairing
+
+
+    You may have seen the previous pairing and thought, "Well that''s great and seeing
+    what the other person sees in real time is cool, but what if you want each person
+    to be able to have different windows?"
+
+
+    This is where grouped sessions come in. You can have one person create a session
+    and the next to join create a new session, but specify the grouped session as
+    well. This way, each person has their own control over the windows in a session,
+    but anything they do in each session is shared. This allows one person to be in
+    one window and the other in another.
+
+
+    They can switch to each other''s sessions at will, but otherwise don''t need every
+    command and keystroke to enact on both windows. To create a grouped session, one
+    person must initiate the session as we discussed previously. If you still have
+    the MyServer session running, you can use that.'
+  merge: -1
+  img_proc: true
+- pgno: 115
+  md: 'In a new terminal window, connect to the same server but instead of attaching
+    that same session with tmux, run the following command:
+
+
+    ```
+
+    $ tmux new-session -t MyServer -s MySession
+
+    ```
+
+
+    This instructs tmux to create a new session, but with the same target. This initializes
+    a grouped session. The MyServer session is the grouped session, so the new connector
+    can view it, but new connector can also switch to another window without stealing
+    the initial user''s view.
+
+
+    While this new session shares the same target, it essentially clones the original
+    session and creates another for the second viewer. They are linked; so as one
+    user opens new windows or changes anything in one session, the same will happen
+    in the other session, but both sessions can have different names and both sessions
+    will appear in the list of sessions as two different sessions. This way, if the
+    second viewer kills their session (with the tmux command kill-session -t {session
+    name}), the first session will continue running.
+
+
+    This allows the second user that connected to go off and do their own thing, creating
+    more windows, using a different program, and so on, but without stealing the spotlight
+    and forcing the host to watch their every move.
+
+
+    Now in each of our examples, we only showed two clients connecting to the same
+    session. However, that could just as easily be 3, 13, 37, 359, or more. While
+    there is no stated limit to the number of clients that can connect to a session
+    simultaneously, there will be a practical limit on throughput and bandwidth and
+    memory at some point. However, tmux does not enforce a set limit.
+
+
+    # Summary
+
+
+    We learned some tricks of using tmux in a daily workflow. We learned how it can
+    be used to help created long-lived SSH sessions and how it can be used for pair
+    programming with a stop along the way to learn about using Vagrant to set up a
+    shareable virtual machine.
+
+
+    In the next chapter, our last, we will discuss how we can use some other third-party
+    tools with tmux to make it even more powerful.'
+  merge: -1
+  img_proc: true
+- pgno: 116
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 117
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 118
+  md: 'A sample usage would be to run a command like the following:
+
+
+    ```
+
+    $ cat Sonnet16.text | pbcopy
+
+    ```
+
+
+    This command will print out the contents of the Sonnet16.text file and pipe them
+    into the pbcopy program, which will then make the contents of that file easy to
+    be pasted in OS X in any program with simply ⌘ + v.
+
+
+    The problem is that if you try this trick within a tmux session, it won''t work!
+    This is because the OS X Pasteboard doesn''t play nicely. A short way to explain
+    it is that because tmux runs its server as a daemon (which is what allows you
+    to detach then reattach with it still running), OS X denies permission for it
+    to access the Pasteboard. This is done for security purposes, so other programs
+    running in the background are unable to access the Pasteboard. However, programs
+    we''d like to have access to the Pasteboard, such as tmux, cannot access it without
+    some tricks.
+
+
+    > For the more information, see this lengthy description in README for a utility
+    that fixes the issue: https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard#mac-os-x-pasteboard-access-under-tmux-and-screen.
+
+
+    However, since we do want tmux to have access to the OS X Pasteboard, surely there
+    must be some way around this security restriction! Thankfully, some smart minds
+    have come before us and solved the problem.
+
+
+    It''ll take two steps. First, we''ll install the small utility program. Second,
+    we''ll update our .tmux.conf file to launch every new window using this utility.
+
+
+    Let''s first install the program. If you are a developer, you may already have
+    Homebrew or MacPorts installed. (If not, we recommend that you install Homebrew:
+    http://brew.sh)
+
+
+    Now, use the following command to install this utility using Homebrew:
+
+
+    ```
+
+    $ brew install reattach-to-user-namespace
+
+    ```
+
+
+    You can even use the following command if you prefer MacPorts:
+
+
+    ```
+
+    $ port install tmux-pasteboard
+
+    ```
+
+
+    Now, add the following lines to your .tmux.conf file:
+
+
+    ```
+
+    # Make tmux and OS X Pasteboard play nicely
+
+    set-option -g default-command "reattach-to-user-namespace -l zsh"
+
+    ```'
+  merge: -1
+  img_proc: true
+- pgno: 119
+  md: 'Here, `zsh` can be replaced by your shell of choice, so it could be `bash`,
+    or `fish`, or any other shell of your choice. By adding these lines to your configuration,
+    you are basically telling tmux that any new window it launches should launch with
+    that command rather than just a normal new shell. This new command is a shell
+    that has been patched to play nicely with the OS X Pasteboard so `pbcopy` and
+    `pbpaste` work as intended.
+
+
+    You may notice that this will only work on a system with the `reattach-to-user-namespace`
+    utility installed and will cause issues on Linux or another Mac that did not have
+    that installed. This can be remedied by using the following formulation instead:
+
+
+    ```
+
+    if-shell ''test -x /usr/local/bin/reattach-to-user-namespace'' ''set-option -g
+    default-command "reattach-to-user-namespace -l zsh"''
+
+    ```
+
+
+    This will run only on systems that have this `reattach-to-user-namespace` command.
+    The `if-shell` bit is a very useful little tmux command that will run the second
+    command that follows it, provided the first command that follows it returns success.
+    In our case, using the `test -x` command allows us to check and see whether the
+    `reattach-to-user-namespace` file exists. If it does, it runs the tmux `set-option`
+    to use the fixed item. If not, it runs nothing, so it will not break on systems
+    that do not have this script.
+
+
+    # tmux configuration from the maximum-awesome project, by Square
+
+
+    While we''re on the topic of configuration, we should discuss the maximum-awesome
+    project, and the configuration files for Vim and tmux from the folks at Square.
+    Square specializes in payments and is very active in the open source community.
+
+
+    They have put a ton of thought and effort over the years into curating what they
+    consider to be the ideal configuration for Vim and tmux and they have it freely
+    available on GitHub: https://github.com/square/maximum-awesome.
+
+
+    Be forewarned, their configuration is rather Vim opinionated, but that caveat
+    aside, they have baked up a truly awesome set of configurations.
+
+
+    Our favorite thing about these configuration files is that they provide a good
+    set of defaults and recently added support for a `.tmux.conf.local` file intended
+    for user overrides and custom commands. They are both great drop-in configuration
+    files and great sources of inspiration for creating your own configuration.'
+  merge: -1
+  img_proc: true
+- pgno: 120
+  md: 'So let''s give maximum-awesome a go. Navigate to a directory where you can
+    clone this repository. For example, we''ll do it in our home directory. Enter
+    the following command to get started:
+
+
+    ```
+
+    $ cd
+
+    ```
+
+
+    Then, clone the repository with the following command:
+
+
+    ```
+
+    $ git clone https://github.com/square/maximum-awesome.git
+
+    ```
+
+
+    Next, change into that directory:
+
+
+    ```
+
+    $ cd maximum-awesome
+
+    ```
+
+
+    Run the rake command to install the project:
+
+
+    ```
+
+    $ rake
+
+    ```
+
+
+    > Here, rake is short for the Ruby command make and it is the ruby analogue to
+    make. If you do not have it installed, it can be installed with the command gem
+    install rake. If you do not have gem installed, look to the RubyGems website for
+    instructions: https://rubygems.org/pages/download.
+
+
+    Now, the gems should be installed! Now if you launch tmux, you''ll be in maximum-awesome''s
+    configuration.
+
+
+    > Also, be forewarned that loading maximum-awesome can wipe out your locally configured
+    .tmux.conf file (since the whole point, in essence, is that it is an awesome .tmux.conf
+    file). So be sure to back up your .tmux.conf file before running this command.
+
+
+    # Using tmuxinator to make session management easier
+
+
+    In Chapter 5, Diving Deeper, we touched a bit on starting tmux with some default
+    session configuration in the Launch with defaults section.
+
+
+    You may have noticed that even a rather simple configuration turned out to be
+    a bit complex and tricky. This is one of those areas of core tmux that leaves
+    a little to be desired.'
+  merge: -1
+  img_proc: true
+- pgno: 121
+  md: 'Thankfully, the open source world has stepped up to the plate and created an
+    excellent utility called *tmuxinator* to make this kind of configuration far simpler.
+
+
+    Built in ruby, tmuxinator is easy to install and provides a ton of useful capability.
+    It does so by allowing you to specify in a simple and intuitive YAML syntax how
+    you''d like your window laid out, any programs that should be run on launch, and
+    more. tmuxinator allows you to create hooks that run before any window configuration
+    is run and makes it much, much easier to specify a set of default windows and
+    panes than in core tmux.
+
+
+    Let''s run through the workflow of installing and creating a sample tmuxinator
+    configuration file.
+
+
+    # Installing tmuxinator
+
+
+    Since it is built in ruby, it''s available as a ruby gem so installation is a
+    breeze. In a command line, simply run:
+
+
+    ```
+
+    ```sh
+
+    $ gem install tmuxinator
+
+    ```
+
+    ```
+
+
+    > Depending on your system setup, you may have to use sudo to install gems. We''d
+    suggest trying without sudo first, then falling back to it if the installation
+    fails.
+
+
+    tmuxinator helpfully tells us during install that it includes a tmuxinator doctor
+    command that can be used to check your local system configuration and ensure all
+    is well. We recommend running that now and fixing any issues it finds:
+
+
+    ```
+
+    ```sh
+
+    $ tmuxinator doctor
+
+    ```
+
+    ```
+
+
+    When you see all items confirmed as **Yes**, you can move on.
+
+
+    # Understanding the tmuxinator configuration
+
+
+    First, open a terminal and run the following command to create the initial tmuxinator
+    configuration file:
+
+
+    ```
+
+    ```sh
+
+    $ tmuxinator new tutorial
+
+    ```
+
+    ```
+
+
+    The tmuxinator new command will start a new tmuxinator configuration file and
+    we gave it the name `tutorial`. Feel free to name your file whatever you''d like
+    of course.'
+  merge: -1
+  img_proc: true
+- pgno: 122
+  md: "You'll be dropped right into your editor of choice with the default contents\
+    \ of a tmuxinator configuration file already in your editor. A few things to note\
+    \ about this file:\n\n+   - It is located in ~/.tmuxinator/<name>.yml (in our\
+    \ case ~/tmuxinator/tutorial.yml). This is where tmuxinator will store all of\
+    \ its configuration files. This is nice because you can have multiple configuration\
+    \ files and they will all live in one place and be accessible by tmuxinator.\n\
+    +   - After a couple lines, there are a bunch of comments. These comments indicate\
+    \ options that could be used but aren't by default. We will dig into these in\
+    \ a bit.\n+   - At the bottom of the file is the YAML that actually lays out the\
+    \ windows, panes, and so on. tmuxinator includes a default set of layouts.\n\n\
+    tmuxinator includes its own kind of domain-specific language to build a rich configuration\
+    \ of windows, panes, and the default programs to run in them.\n\nFor example,\
+    \ what follows is a sample configuration file. We have added useful comments starting\
+    \ with # before each line to describe what the following line is doing:\n\n```\n\
+    # sets the name for this tmuxinator config\nname: tutorial\n# sets the root directory,\
+    \ all new panes will start with a\n# terminal opened to this directory\nroot:\
+    \ ~/\n\n# this is the start of the specification for which windows\nwindows:\n\
+    \  # this specifies the first window named \"editor\"\n  - editor:\n    # the\
+    \ \"editor\" window should have a vertical layout\n    layout: main-vertical\n\
+    \    # this specifies that the \"editor\" window should have two\n    # panes\n\
+    \    panes:\n      # emacs should be running in one pane\n      - emacs\n    \
+    \  # top should be running in the other pane\n      - top\n  # now we have a second\
+    \ window called \"server\" that should start\n  # running the command \"node ~/myapp.js\"\
+    \ on opening\n  - server: node ~/myapp.js\n  # there should be a third window\
+    \ called \"logs\" which should\n  # start with the tail command to view the logs\n\
+    \  - logs: tail -f log/development.log\n```"
+  merge: -1
+  img_proc: true
+- pgno: 123
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 124
+  md: '# Using Other Tools with tmux
+
+
+    We have not yet discussed sockets much as we get into rather esoteric territory,
+    but the first line allows you to specify a socket name.
+
+
+    By default, when tmux is first launched, a server is launched on the machine and
+    that server creates a socket on which it begins listening. Then the client is
+    launched and connects to that socket. This is all rather seamless under normal
+    usage.
+
+
+    This socket persisting is what allows you to detach the tmux session and reattach
+    it. In reality, when you detach you are terminating the client; however, the tmux
+    server continues humming along, listening on that socket for incoming connections.
+    When you decide to reattach to a session, you are launching a client and connecting
+    to that socket.
+
+
+    This socket is also what allows multiple people to connect to a single tmux session
+    as we saw in *Chapter 6, tmux for SSH, Pair Programming, and More*, when we discussed
+    using tmux for pair programming.
+
+
+    So far, whenever we ran a tmux command to connect, we seamlessly connected to
+    that default socket, but you can launch tmux and specify your own socket path
+    or name. This will allow us to run more than one independent instance of tmux
+    on the same machine.
+
+
+    So, this configuration option allows us to specify the socket name when we launch
+    with `tmuxinator start <name>`.
+
+
+    The next section starting with the pre command is copied in the following code
+    snippet:
+
+
+    ```
+
+    ```text
+
+    # Runs before everything. Use it to start daemons etc.
+
+    # pre: sudo /etc/rc.d/mysqld start
+
+    ```
+
+    ```
+
+
+    This section allows you to specify any commands to run when the tmuxinator session
+    is started as its name implies. This is great to start any background tasks that
+    do not have a UI but which we would like to be running and available for the session.
+    This is convenient because it prevents us from having to open a new pane (or panes),
+    launch a program, then leave it around forever but just ignore it. The following
+    code snippet allows us to specify tmux options specific to this tmuxinator instance
+    that may not appear in the standard `.tmux.conf` file:
+
+
+    ```
+
+    ```text
+
+    # Runs in each window and pane before window/pane specific commands.
+
+    Useful for setting up interpreter versions.
+
+    # pre_window: rbenv shell 2.0.0-p247
+
+    ```
+
+    ```'
+  merge: -1
+  img_proc: true
+- pgno: 125
+  md: 'This command allows us to run a command with every window or pane that we create
+    rather than just on tmux launch. In the following commands we''re passing the
+    configuration file:
+
+
+    ```
+
+    ```text
+
+    # Pass command line options to tmux. Useful for specifying a different
+
+    # tmux.conf.
+
+    # tmux_options: -f ~/.tmux.mac.conf
+
+    ```
+
+    ```
+
+
+    There could be simpler commands such as changing the prefix key or anything else
+    we saw back in *Chapter 2, Configuring tmux* or more powerful as in the example
+    where they are loading another configuration file and sucking in all of its commands.
+    The following code allows us to change the command used to call tmux:
+
+
+    ```
+
+    ```text
+
+    # Change the command to call tmux. This can be used by derivatives/
+
+    # wrappers like byobu.
+
+    # tmux_command: byobu
+
+    ```
+
+    ```
+
+
+    This code snippet mentions byobu, which is a program that basically sits atop
+    tmux (or GNU Screen) and adds additional functionality to them. The idea behind
+    this is that if you prefer to use tmuxinator to call some command other than tmux
+    that wraps tmux, you can do so using this line.
+
+
+    # Summarizing tmuxinator
+
+
+    In summary, tmuxinator is an extremely powerful program that adds a lot of useful
+    features to tmux and will save any tmux user a lot of time, every time they have
+    to relaunch tmux and get all set up with their environment.
+
+
+    Not only can it be a huge timesaver, but can also be incredibly helpful for beginners
+    as it can act as training wheels until a tmux user has grown accustomed to all
+    the nuances of creating windows and panes. As we saw in *Chapter 3, Sessions,
+    Windows, and Panes*, creating and manipulating panes can be fairly difficult.
+    Having a simple tmuxinator configuration file that can jumpstart that process
+    without much effort can be incredibly helpful.
+
+
+    ![](img/5969098f450265ac0c7947efcdbe7889_125_0.png)'
+  merge: -1
+  img_proc: true
+- pgno: 126
+  md: '# Using wemux to ease multiuser experience
+
+
+    Another fantastic utility built by the community is **wemux**. It seeks to simplify
+    the multiuser experience in tmux. As we saw in the last chapter, setting tmux
+    up for pair programming is an awesome feature of tmux. It builds upon that experience,
+    making it easier to configure and adds some very useful functionality.
+
+
+    Jump on over to the wemux GitHub page to get started and install wemux:
+
+
+    ```
+
+    https://github.com/zolrath/wemux
+
+    ```
+
+
+    If you are in an active tmux session, detach it before proceeding with `<Prefix>,
+    d`.
+
+
+    Now let''s jump into wemux. From your terminal, run the following command:
+
+
+    ```
+
+    $ wemux start
+
+    ```
+
+
+    Boom! But wait, you may say that this looks exactly like tmux. You would be right,
+    wemux is a wrapper around tmux so it is the tmux you know and love with some special
+    sauce added to facilitate some of the multi-user concepts.
+
+
+    From your command line, run the following command:
+
+
+    ```
+
+    $ wemux users
+
+    ```
+
+
+    The output of this command can be seen in the following screenshot:
+
+
+    ![](img/5969098f450265ac0c7947efcdbe7889_126_0.png)
+
+
+    You should see a list containing one user. As you can imagine, if you had other
+    users connected, they would appear in this list. Moreover, if there were another
+    user in that list and we wanted to boot them out of our current wemux session,
+    you could run the following command:
+
+
+    ```
+
+    $ wemux kick username
+
+    ```'
+  merge: -1
+  img_proc: true
+- pgno: 127
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 128
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 129
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 130
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 131
+  md: '# Appendix
+
+
+    The appendix will cover the following three topics:
+
+
+    +   - Why tmux?
+
+    +   - The configuration reference
+
+    +   - Key binding and command reference
+
+
+    # Why tmux?
+
+
+    Many developers spend much of their day in a terminal. Whether using it for coding;
+    SSH sessions to remote servers; browsing the filesystem; local tasks such as checking,
+    compiling, or linting code, running unit tests; or even for mail or Internet Relay
+    Chat (IRC), the terminal is one of the most widely used weapons in the developer''s
+    arsenal.
+
+
+    tmux is a command-line application that runs within your terminal and turbocharges
+    it. Its powerful features allow for the simplification of many everyday tasks,
+    as illustrated throughout this book. However, the main reason most people use
+    a program like tmux is that it allows you to take a single terminal window and
+    turn it into many virtual windows, each having their own state. It is one in a
+    class of applications called terminal multiplexers (tmux is just a shortening
+    of this term). It has some brethren, but the most prominent is GNU Screen.
+
+
+    Remember browsing in web browsers without tabs? If you answered no, you weren''t
+    missing much, and enjoy your youth! However, if you answered yes, it might take
+    you a second to remember how much less convenient it was. Sure, there was nothing
+    you can do with multiple tabs that you couldn''t with no tabs and many browser
+    windows, but it was still a very helpful boost to productivity to be able to group
+    them together. Having many browser windows got very confusing. The advent of tabs
+    allowed you to separate your browsing experience logically. Before tabs you would
+    have had one browser window for reference documents, another for shopping, and
+    so on.'
+  merge: -1
+  img_proc: true
+- pgno: 132
+  md: 'Likewise, a terminal multiplexer such as tmux allows you to do the same, logically
+    grouping multiple windows into a single terminal window, like tabs in a browser.
+    Just as each browser tab contains its own state, so does each tmux window.
+
+
+    However, unlike browser tabs, which mostly just add organization, tmux actually
+    adds a rich set of additional functionality to the terminal. Not only does tmux
+    allow for dividing a window into panes so that multiple different bits of content
+    can be on the screen at the same time, but tmux also adds Copy mode and other
+    constructs that allow heavy terminal users to do more without leaving tmux or
+    even having to reach for their mouse as often. We touch on many of these benefits
+    throughout this book, so it''s unnecessary to repeat them here.
+
+
+    Why use a terminal multiplexer over a standard terminal app with native tabs (for
+    example, OS X Terminal, iTerm, Gnome Terminal, and so on)? There are many reasons,
+    but the following are a few:
+
+
+    +   - The addition of Copy mode allows for copying and pasting between terminal
+    windows without reaching for your mouse. This is not something that can be easily
+    achieved with a standard tabbed terminal application.
+
+    +   - The addition of the saved state means that you can close a terminal window
+    that is running tmux, and your entire session state will be saved and can be reattached
+    later (assuming your terminal program allows the tmux server to continue running
+    in the background; not all do). Any programs that were running continue running
+    in the background. This is not the case with tabs in iTerm, OS X Terminal, or
+    any Linux terminal. Closing one of these will drop your state for that window.
+
+    +   - There is much more power and flexibility to using tmux to split a window
+    into panes and rearranging those panes than in using any tabbed terminal interface.
+    Most modern terminal applications will now support simply a vertical or horizontal
+    split, and that''s about it. With tmux, the possibilities are (nearly) endless
+    in terms of the number of splits, layouts, and so on.
+
+    +   - All of the tmux keyboard shortcuts for changing the size and layout of these
+    splits translate into less dependence on your mouse, which is something most normal
+    tabbed terminal applications cannot offer.
+
+    +   - Not only are there more shortcuts with tmux for tweaking the size of this
+    or that, but tmux also offers a much broader range of customizability in terms
+    of keyboard shortcuts for every operation it can handle. Literally, every single
+    tmux shortcut can be changed or rewired with a simple configuration file, as shown
+    in Chapter 2, Configuring tmux. Some terminal applications might offer some customization,
+    but none are quite as powerful as tmux in this regard.'
+  merge: -1
+  img_proc: true
+- pgno: 133
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 134
+  md: '+   - The pane and window management in tmux is much simpler and more powerful.
+    With tmux, it is easy to split a window into many different panes, move them around,
+    attach them to different windows, move windows, attach windows to different sessions,
+    and so on. Many of these tasks are not possible in Screen, and they end up being
+    far more complex than they are with tmux.
+
+    +   - The tmux status bar configuration, out of the box, is quite simple and defaults
+    to what most people would like. Screen, on the other hand, does not include a
+    status bar by default, and the way to specify it is very complex. For example,
+    this is an actual line from my Screen configuration to enable a tmux-style status
+    bar:
+
+
+    ```
+
+    hardstatus string ''{%=kG} [ %{G}%H %{g} [%{=kw}%?%-Lw%?%{r}(%{W}%n*%f%t%? (%u)%?%{r})%{w}%?%+Lw%?%=
+    %{g}] [%{B}%Y-%m-%d %{W}%c %{g}]''
+
+    ```
+
+
+    No; this is not a joke. This is the actual line and all it does is display the
+    same things that the tmux status bar supports out of the box.
+
+
+    There are more benefits of tmux over Screen, but this should give any reader a
+    good indication of the rationale here.
+
+
+    > As it was the first terminal multiplexer we ever used, Screen still has a special
+    place in the author''s heart. The intent here is certainly not to bash Screen,
+    which, impressively, is celebrating its 27th year at the time of writing this.
+    Screen is still quite a great program and very much paved the way for tmux. However,
+    you purchased this book because you wanted to learn about tmux and our intent
+    was to enumerate some reasons why tmux is the most awesome program of its type.
+
+
+    ![](img/5969098f450265ac0c7947efcdbe7889_134_0.png)
+
+
+    # The configuration reference
+
+
+    What follows is the configuration file that we built over the course of Chapter
+    2, Configuring tmux:
+
+
+    ```
+
+    # Enable mouse mode for mouse scrolling (tmux 1.9a+)
+
+    set-window-option -g mouse-mode on
+
+    # Enable mouse for selecting the window by clicking on the title
+
+    # in the status bar
+
+    set-option -g mouse-select-window on
+
+    # Enable mouse for selecting the pane by clicking on it
+
+    set-option -g mouse-select-pane on
+
+    # Enable the mouse for clicking and dragging to resize panes
+
+    set-option -g mouse-resize-pane on
+
+    ```'
+  merge: -1
+  img_proc: true
+- pgno: 135
+  md: '```
+
+    # Set the status bar background to blue
+
+    set-option -g status-bg blue
+
+    # Set the status bar text to white
+
+    set-option -g status-fg white
+
+
+    # Widen the status-left a bit to fit more
+
+    set-option -g status-left-length 25
+
+    # Change status-left to be {username@host}
+
+    set-option -g status-left "#{whoami}@#H"
+
+
+    # Set the active window background in the status bar
+
+    set-window-option -g window-status-current-bg magenta
+
+
+    # Rebind the prefix key
+
+    set-option -g prefix C-t
+
+
+    # Add a key binding for reloading our configuration
+
+    bind-key C-r source-file ~/.tmux.conf
+
+    # Double tapping the prefix jumps to last window
+
+    bind-key C-t last-window
+
+
+    # Set escape time to not break vim
+
+    set-option -s escape-time 0
+
+
+    # Set the base-index to 1 rather than 0
+
+    set-option -g base-index 1
+
+    set-window-option -g pane-base-index 1
+
+
+    # Extend the display time to 2 seconds
+
+    set-option -g display-time 2000
+
+
+    # Store more history in the buffer than default
+
+    set-option -g history-limit 10000
+
+    ```
+
+
+    # Key binding and command reference
+
+
+    This is not intended as an exhaustive reference on tmux key bindings and commands.
+    For that, view the tmux manual page by typing the following in your terminal:
+
+
+    ```
+
+    $ man tmux
+
+    ```
+
+
+    You can also view more information on tmux by visiting http://man.cx/tmux.'
+  merge: -1
+  img_proc: true
+- pgno: 136
+  md: 'This is, instead, a chapter-by-chapter reference for the tmux keys and commands
+    mentioned in each chapter along with a small description of what they do in the
+    order in which they are mentioned.
+
+
+    This makes it easy to review and recall these key bindings and commands in the
+    same order that they were covered in the chapter without having to wade through
+    all of the text of that chapter.
+
+
+    # Chapter 1 – Jump Right In
+
+
+    In this chapter, we jumped right in and went on a tour of many of the features
+    of tmux. As a result, the following list of commands is widely varied:
+
+
+    +   - Launch tmux: $ tmux
+
+    +   - Rename a session: $ tmux rename-session {session name}
+
+    +   - Create a new window: <Prefix>, c
+
+    +   - Switch to the last window: <Prefix>, l
+
+    +   - Switch to a window by its index: <Prefix>, {index of window}
+
+    +   - List all key bindings: <Prefix>, ?
+
+    +   - Initiate a search within the key bindings list: Ctrl + s (or / for vi users)
+
+    +   - Close any dialog opened by tmux, such as the key bindings list: q
+
+    +   - Open the choose window interface: <Prefix>, w
+
+    +   - Switch to the next window (by the window index): <Prefix>, n
+
+    +   - Switch to the previous window (by the window index): <Prefix>, p
+
+    +   - Find an open window with the specified search text: <Prefix>, f
+
+    +   - Detach the current tmux session: <Prefix>, d
+
+    +   - List all active sessions: $ tmux list-sessions
+
+    +   - Start tmux and attach a session by name: $ tmux attach-session -t {session-name}
+
+    +   - A shorter way to start tmux and attach a session: $ tmux attach -t {session-name}
+
+    +   - An even shorter way to start tmux and attach a session (only works when
+    there is a single active session): $ tmux attach
+
+    +   - List all active sessions'' aliases: $ tmux ls
+
+    +   - List all tmux commands: $ tmux list-commands
+
+    +   - List all tmux commands'' aliases: $ tmux lscm'
+  merge: -1
+  img_proc: true
+- pgno: 137
+  md: '# ## Chapter 2 – Configuring tmux
+
+
+    In this chapter, we dealt a lot with configuration. Listed here are the key bindings
+    and commands introduced in *Chapter 2, Configuring tmux*, but see the *Configuration
+    reference* section for information on the new configuration items we discussed:
+
+
+    +   - Set a tmux option: `$ tmux set-option {option to set} {value}`
+
+    +   - Disable the status bar: `$ tmux set-option status off`
+
+    +   - Enable the status bar: `$ tmux set-option status on`
+
+    +   - See whether you are in the Emacs or vi mode: `$ tmux show-options -g | grep
+    key`
+
+    +   - Reload the tmux configuration: `$ tmux source-file ~/.tmux.conf`
+
+    +   - Show all previously displayed messages: `<Prefix>, ~`
+
+
+    # ## Chapter 3 – Sessions, Windows, and Panes
+
+
+    In *Chapter 3, Sessions, Windows, and Panes*, we learned all about how to move
+    and organize your content within a terminal window using the three core building
+    blocks of tmux: sessions, windows, and panes. As a result, the key commands we
+    learned throughout this chapter relate to manipulating one of those three items.
+    The key commands covered in this chapter are as follows:
+
+
+    +   - Launch tmux with a named session: `$ tmux new-session -s {session name}`
+
+    +   - Access the switch session interactive dialog: `<Prefix>, s`
+
+    +   - Switch to the next session: `<Prefix>, )`
+
+    +   - Switch to the previous session: `<Prefix>, (`
+
+    +   - Split a pane into two panes (horizontally): `<Prefix>, %`
+
+    +   - Switch the cursor to the other pane: `<Prefix>, o`
+
+    +   - Move the cursor to the pane to the right, left, down, or up: `<Prefix>,
+    right arrow; <Prefix>, left arrow; <Prefix>, down arrow; <Prefix>, up arrow`
+
+    +   - Kill the current pane: `<Prefix>, x`
+
+    +   - Split a pane into two panes (vertically): `<Prefix>, "`
+
+    +   - Resize the current pane: `<Prefix>, Alt + {arrow key}`'
+  merge: -1
+  img_proc: true
+- pgno: 138
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 139
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 140
+  md: '+   - View the contents of a paste buffer by index: `show-buffer -b {index}`
+
+    +   - Delete the last copied item from the paste buffer: `<Prefix>,-`
+
+    +   - Delete items from the paste buffer by index: `delete-buffer -b {index}`
+
+    +   - Clear the tmux history for the current pane: `clear-history`
+
+    +   - Clear the tmux history for a pane by index: `clear-history -t {index}`
+
+    +   - Move the window from one session to another: `move-window` or `<Prefix>,.`
+
+    +   - Link a window between two sessions: `link-window -t {target session}`
+
+    +   - Unlink the window from the current session: `unlink-window`
+
+    +   - Break the current pane from the current window: `<Prefix>,!`
+
+    +   - Break a pane into its own window: `break-pane -s {session}:{window}.{pane}`
+
+    +   - Join the current pane to a target window: `join-pane -t {session}:{window}`
+
+    +   - Join a pane to a target window: `join-pane -s {session}:{window}.{pane}
+    -t {session}:{window}`'
+  merge: -1
+  img_proc: true
+- pgno: 141
+  md: "# Index\n\n# A\n\nactive window\n  highlighting 33\nadvanced paste buffer usage\n\
+    \  about 74\n  copied text, deleting from paste buffer 79\n  pane contents, capturing\
+    \ in paste buffer 78\n  paste buffer history, clearing 79, 80\n  paste buffer,\
+    \ loading from file 76, 77\n  paste buffer, saving to file 75, 76\n  paste buffer,\
+    \ setting directly 77\nadvanced session, and window usage\n  window, linking between\
+    \ sessions 83, 84\n  window, jumping in sessions 80-82\n  window, moving 82, 83\n\
+    aggressive-resize setting 98\naliases 21\n\n# B\n\nbackground color\n  modifying,\
+    \ of status bar 29, 30\nbinding keys\n  about 34\n  comments, in configuration\
+    \ file 37\n  current bindings, viewing 34-36\n  multiple commands, chaining to\n\
+    \    single keys 37\n  prefix key, binding 38, 39\n  URL, for tutorials 35\n \
+    \ without prefix keys 39\nbreak-pane command 85\n\n# C\n\ncapture-pane command\
+    \ 78\nchoose window interface 15\nclear-history command 80\nClock mode 64\nCommand\
+    \ mode 63, 74\ncommand reference 121\ncommented lines, tmuxinator 109-111\nconfiguration\
+    \ reference 120\nControl mode 64\ncopied text\n  deleting, from paste buffer 79\n\
+    Copy mode\n  about 61-63\n  cursor, moving 66\n  Emacs-style key bindings 66\n\
+    \  entering 64, 65\n  jump by search or line 68\n  leaving 68\n  reference 68\n\
+    \  vi-style key bindings 66\n  workflow 64\nCtrl to Caps Lock\n  rebinding 35\n\
+    \n# D\n\nDefault mode 63\ndefault windows\n  sessions, launching with 86, 87\n\
+    delete-buffer command 79"
+  merge: -1
+  img_proc: true
+- pgno: 142
+  md: "# E\n\n**Emacs mode** 16, 27, 28  \n**Emacs-style key bindings, Copy mode**\
+    \ 66\n\n# F\n\n**file**  \n  paste buffer, loading from 76, 77  \n  paste buffer,\
+    \ saving to 75, 76  \n**foreground color**  \n  modifying, of status bar 32\n\n\
+    # G\n\n**grouped sessions**  \n  used, for pairing 100, 101\n\n# H\n\n**handy\
+    \ configuration tips**  \n  about 43  \n  base index, starting at 1 46  \n  display\
+    \ time, lengthening 45, 46  \n  double tapping of prefix key, binding to  \n \
+    \   last-window 43  \n  escape time, modifying 44  \n  history limit, lengthening\
+    \ 44  \n**Homebrew**  \n  URL 104\n\n# I\n\n**installation, tmuxinator** 107 \
+    \ \n**items**  \n  selecting, from paste buffer 71\n\n# K\n\n**key binding** \
+    \ \n  about 121  \n  help page 15–17  \n**keys**  \n  unbinding 40\n\n# L\n\n\
+    **link-window command** 84  \n**load-buffer [path] command** 76\n\n# M\n\n**man\
+    \ page**  \n  accessing 47  \n  reference, for example 47, 66  \n**Mirror mode,\
+    \ wemux** 113  \n**modes, tmux**  \n  Clock mode 64  \n  Command mode 63  \n \
+    \ Control mode 64  \n  Copy mode 63  \n  Default mode 63  \n**modes, wemux** \
+    \ \n  Mirror 113  \n  Pair 113  \n  Rogue 113  \n**mouse modes**  \n  enabling\
+    \ 28  \n**multiple panes**  \n  working with 54–56  \n**multiple sessions**  \n\
+    \  working with 53\n\n# O\n\n**option types** 42, 43  \n**OS X Pasteboard**  \n\
+    \  tmux, using with 103–105\n\n# P\n\n**Pair mode, wemux** 113  \n**pair programming,\
+    \ tmux**  \n  about 96  \n  connecting to same session, locally 96, 97  \n  grouped\
+    \ sessions, using 100, 101  \n  Vagrant Cloud, for better security pair  \n  \
+    \  programming 98–100  \n**pane contents**  \n  capturing, in paste buffer 78\
+    \  \n**pane layouts**  \n  cycling through 58, 59  \n**panes**  \n  benefits 52\
+    \  \n  breaking 85  \n  joining 85, 86  \n  operations 59  \n  overview 51"
+  merge: -1
+  img_proc: true
+- pgno: 143
+  md: 'reference 59
+
+    resizing 56-58
+
+    switching between 58
+
+    working with 52
+
+    zooming 56
+
+    **password storage mechanism**
+
+    URL 79
+
+    **paste buffer**
+
+    about 61
+
+    copied text, deleting from 79
+
+    history, clearing 79, 80
+
+    interacting with 70
+
+    items, selecting from 71
+
+    loading, from file 76, 77
+
+    pane contents, capturing in 78
+
+    saving, to file 75, 76
+
+    setting, directly 77
+
+    text, copying into 69
+
+    text, pasting from 70
+
+    working with 71, 72
+
+    **pbcopy tool 103**
+
+    **pbpaste tool 103**
+
+    **prefix key**
+
+    about 13-15
+
+    binding 38, 39
+
+
+    **R**
+
+
+    **Rogue mode, wemux 113**
+
+    **RubyGems**
+
+    URL 106
+
+
+    **S**
+
+
+    **sessions**
+
+    about 8, 9
+
+    attaching 19
+
+    detaching 19
+
+    launching, with default windows 86, 87
+
+    naming 9, 10
+
+    overview 49, 50
+
+    windows, linking between 83, 84
+
+    working with 52
+
+    **set-option command**
+
+    using 26
+
+    **show-buffer command 78**
+
+    **show options 47**
+
+
+    **Solarized**
+
+    about 29
+
+    URL 29
+
+    **source-file command 34**
+
+    **SSH connect**
+
+    tmux, launching on 95, 96
+
+    **status bar**
+
+    about 40, 41
+
+    background color, modifying of 29, 30
+
+    configuration, reloading 31
+
+    foreground color, modifying of 32
+
+    list of open windows 41
+
+    modifying 28
+
+    status-left 40
+
+    status-right 41
+
+    **status line 8**
+
+
+    **T**
+
+
+    **tab completion 21**
+
+    **Teamocil**
+
+    about 114
+
+    URL 114
+
+    **Terminal Multiplexer. See tmux**
+
+    **text**
+
+    copying, into paste buffer 69
+
+    pasting, from paste buffer 70
+
+    searching for 18
+
+    **tmux**
+
+    about 7, 117
+
+    features 15
+
+    launching, on SSH connect 95, 96
+
+    need for 117-120
+
+    reference 121
+
+    running 7, 8
+
+    using, with OS X Pasteboard 103-105
+
+    **tmux commands**
+
+    about 20, 73, 74
+
+    aliases 21
+
+    tab completion 21
+
+    **tmux configuration**
+
+    about 105, 106
+
+    file, creating 27
+
+    reference 105
+
+    **tmuxinator**
+
+    about 107
+
+    commented lines 109-111'
+  merge: -1
+  img_proc: true
+- pgno: 144
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 145
+  md: '![](img/5969098f450265ac0c7947efcdbe7889_145_0.png)
+
+
+    # Thank you for buying
+
+    Getting Started with tmux
+
+
+    # About Packt Publishing
+
+
+    Packt, pronounced ''packed'', published its first book "Mastering phpMyAdmin for
+    Effective MySQL Management" in April 2004 and subsequently continued to specialize
+    in publishing highly focused books on specific technologies and solutions.
+
+
+    Our books and publications share the experiences of your fellow IT professionals
+    in adapting and customizing today''s systems, applications, and frameworks. Our
+    solution based books give you the knowledge and power to customize the software
+    and technologies you''re using to get the job done. Packt books are more specific
+    and less general than the IT books you have seen in the past. Our unique business
+    model allows us to bring you more focused information, giving you more of what
+    you need to know, and less of what you don''t.
+
+
+    Packt is a modern, yet unique publishing company, which focuses on producing quality,
+    cutting-edge books for communities of developers, administrators, and newbies
+    alike. For more information, please visit our website: www.packtpub.com.
+
+
+    # About Packt Open Source
+
+
+    In 2010, Packt launched two new brands, Packt Open Source and Packt Enterprise,
+    in order to continue its focus on specialization. This book is part of the Packt
+    Open Source brand, home to books published on software built around Open Source
+    licenses, and offering information to anybody from advanced developers to budding
+    web designers. The Open Source brand also runs Packt''s Open Source Royalty Scheme,
+    by which Packt gives a royalty to each Open Source project about whose software
+    a book is sold.
+
+
+    # Writing for Packt
+
+
+    We welcome all inquiries from people who are interested in authoring. Book proposals
+    should be sent to author@packtpub.com. If your book idea is still at an early
+    stage and you would like to discuss it first before writing a formal book proposal,
+    contact us; one of our commissioning editors will get in touch with you.
+
+
+    We''re not just looking for published authors; if you have strong technical skills
+    but no writing experience, our experienced editors can help you develop a writing
+    career, or simply get some additional reward for your expertise.'
+  merge: -1
+  img_proc: true
+- pgno: 146
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 147
+  md: '# [PACKT] open source
+
+    PUBLISHING
+
+    community experience distilled
+
+
+    ![](img/5969098f450265ac0c7947efcdbe7889_147_0.png)
+
+
+    # Apache Solr PHP Integration
+
+
+    ISBN: 978-1-78216-492-0      Paperback: 118 pages
+
+
+    Build a fully-featured and scalable search application using PHP to unlock the
+    search functions provided by Solr
+
+
+    +   1. Understand the tools that can be used to communicate between PHP and Solr,
+    and how they work internally.
+
+    +   2. Explore the essential search functions of Solr such as sorting, boosting,
+    faceting, and highlighting using your PHP code.
+
+    +   3. Take a look at some advanced features of Solr such as spell checking, grouping,
+    and auto complete with implementations using PHP code.
+
+
+    ![](img/5969098f450265ac0c7947efcdbe7889_147_1.png)
+
+
+    # Learning Shell Scripting with Zsh
+
+
+    ISBN: 978-1-78328-293-7      Paperback: 132 pages
+
+
+    Your one-stop guide to reading, writing, and debugging simple and complex Z shell
+    scripts
+
+
+    +   1. A step-by-step guide that will show you how to use zsh and its repertoire
+    of powerful features to improve the efficiency of your daily tasks.
+
+    +   2. Learn how to configure and use zsh.
+
+    +   3. Discover some advanced features of zsh such as process and parameter substitution,
+    running on restricted functionality mode, and emulating other shells.'
+  merge: -1
+  img_proc: true
