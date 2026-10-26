@@ -1,0 +1,12 @@
+Let’s look at these techniques in more detail:
+
++   - **Cutout**: This technique removes part of an input image (replacing it with other values such as black or the average color of the images in the dataset) and creates a new version. This technique helps make the training model more robust to the cases where some other objects may cover part of the object. This technique forces the model to learn features from an object as a whole and does not just focus on a particular part of it. This technique may or may not change the annotations of the input image, depending on the cutout regions.
++   - **MixUp**: This technique blends two input images and their related annotations into one with different ratios and creates a new training data item. It allows us to train models on convex combinations of pairs of input images and their labels. These convex combinations regularize the training model to favor simple linear behavior across training examples.
++   - **CutMix**: This technique replaces one region of an input image with a part of another image based on a defined ratio and produces new versions. This technique may remove annotations from the input image and include annotations from the other image. This technique works well by leveraging the advantages of both the cutout and the mixup approaches.
++   - **Mosaic**: This technique combines four images (versus two in CutMix) based on some defined ratios and produces new versions. This technique leverages the advantages of the other image occlusion techniques listed previously. Additionally, it is useful if the mini-batch size is small due to having limited computation resources because one image is similar to four in this case.
+
+Congratulations! By now, you should understand what image augmentation techniques are, why they are important, and how to perform them. The next section covers how to apply image augmentation techniques using Detectron2.
+
+# Detectron2’s image augmentation system
+
+Detectron2’s image augmentation system has three main groups of classes: `Transformation`, `Augmentation`, and `AugInput`. These components help augment images and their related annotations (for example, bounding boxes, segment masks, and key points). Additionally, this system allows you to apply a sequence of declarative augmentation statements and enables augmenting custom data types and custom operations. Figure 8.4 shows a simplified class diagram of Detectron2’s augmentation system:

@@ -1,0 +1,1998 @@
+- '# Detectron2 计算机视觉实用指南
+
+  '
+- '# 前言
+
+
+  我与 Van Vung Pham 相识并共事超过 10 年，同时也是他博士学位的学术顾问。Vung 在攻读博士学位期间赢得了多项数据可视化、计算机视觉和机器学习挑战，包括使用
+  Detectron2 检测和分类道路损坏。在本书《使用 Detectron2 实战计算机视觉》中，Vung 将带你踏上一段从常见计算机视觉任务开始的学习之旅。然后，他通过利用
+  Detectron2 Model Zoo 中的预训练模型，使用简单的代码和惊艳的深度学习模型，逐步指导你开发计算机视觉应用的步骤。
+
+
+  针对海量数据集上训练的、面向最常见对象类型的现有模型，可以满足常见的计算机视觉任务。然而，本书还专注于针对特定业务需求在自定义领域上开发计算机视觉应用。为此，Vung
+  提供了在脑肿瘤数据集上收集和准备数据、训练模型以及微调模型以完成目标检测和实例分割任务的步骤，以说明如何在自定义业务领域上开发计算机视觉应用。
+
+
+  在他的演示和示例中，Vung 提供了可以方便地在 Google Colab 上执行的代码以及可视化内容，以帮助说明理论概念。在 Google Colab 上执行代码的能力消除了硬件和软件设置的负担，因此你可以快速、方便地开始。可视化让你能够轻松掌握复杂的计算机视觉概念，更好地理解用于计算机视觉任务的深度学习架构，并成为该领域的专家。
+
+
+  除了为计算机视觉任务开发深度学习模型之外，你还将学习如何将训练好的模型部署到各种环境中。Vung 解释了不同的模型格式，如 TorchScript 和 ONNX
+  格式，以及它们各自的执行平台和环境，如 C++ 服务器、Web 浏览器或移动和边缘设备。
+
+
+  使用 Detectron2 成为开发、部署计算机视觉应用的开发者和专家。
+
+
+  — *Tommy Dang*
+
+
+  *德克萨斯理工大学 iDVL 主任、助理教授*
+
+  '
+- "# 关于审阅者\n\n**Yiqiao Yin** 是标普 500 公司 LabCorp 的高级数据科学家，为药物诊断和开发提供 AI 驱动的解决方案。他拥有罗切斯特大学的数学文学学士学位和金融理学学士学位。他曾是哥伦比亚大学的统计学博士生，研究兴趣广泛，涵盖表示学习：特征学习、深度学习、计算机视觉和自然语言处理。他曾担任\
+  \ EURO STOXX 50 公司拜耳的企业级数据科学家、AQR 的量化研究员（致力于投资组合管理和因子交易的替代量化策略），以及华尔街 T3 Trading\
+  \ 的股票交易员。\n\n**Nikita Dalvi** 是一位技术娴熟且经验丰富的专业人士，目前正在萨姆休斯顿州立大学攻读计算与数据科学硕士学位。凭借信息技术背景，她在过去五年中磨练了\
+  \ Java 和 Python 等编程语言的技能，并曾在 Deloitte 和 Tech Mahindra 等知名组织任职。出于对编程的热情，她多年来自学了新的语言和技术，并始终紧跟最新的行业趋势和最佳实践。\n\
+  \n\n# 其他你可能喜欢的书籍 294\n\n本书还涵盖将 Detectron2 模型部署到生产环境以及为移动设备开发 Detectron2 应用的步骤。具体来说，它介绍了\
+  \ Detectron2 支持的模型格式和平台，如 TorchScript 和 ONNX 格式。本书提供了使用跟踪（tracing）和脚本化（scripting）方法将\
+  \ Detectron2 转换为这些格式模型的代码。此外，代码片段还演示了如何将 Detectron2 模型部署到 C++ 和浏览器环境中。最后，本书还讨论了\
+  \ D2Go——一个用于训练、微调和量化计算机视觉模型的平台，使它们可以部署到计算资源需求较低的移动和边缘设备上。\n\n通读本书，你会发现 Detectron2\
+  \ 对于任何想要构建强大计算机视觉应用的人来说都是一个有价值的框架。\n\n## 本书读者对象\n\n如果你是一名深度学习应用开发者、研究人员或软件开发者，且具备一些深度学习的基础知识，那么本书适合你入门并开发面向计算机视觉应用的深度学习模型。即使你已经是计算机视觉专家，对\
+  \ Detectron2 的功能感到好奇，或者想学习一些前沿的深度学习设计模式，你也会发现本书很有帮助。如果你想使用 HTML、Android 和 C++ 等平台部署计算机视觉应用，具备一些相关的编程技能将会很有优势。\n\
+  \n## 本书内容\n\n第1章“Detectron2 与计算机视觉任务简介”介绍了 Detectron2、其架构以及 Detectron2 可以执行的计算机视觉任务。此外，本章还提供了使用\
+  \ Detectron2 开发计算机视觉应用的环境搭建步骤。\n\n第2章“使用现有 Detectron2 模型开发计算机视觉应用”指导你使用 Detectron2\
+  \ Model Zoo 中的最先进模型为计算机视觉任务开发应用的步骤。因此，你无需训练自定义模型，即可快速开发实用的计算机视觉应用。\n\n第3章“目标检测应用的数据准备”讨论了使用\
+  \ Detectron2 训练模型的数据准备步骤。此外，当现有数据集采用不同格式时，本章还介绍了将标准标注格式转换为 Detectron2 所需数据格式的技术。\n\
+  \n第4章“Detectron2 中目标检测模型的架构”深入探讨了 Detectron2 在目标检测任务中的架构。对于理解设计视觉系统深度神经网络时的常用术语，本章至关重要。\n\
+  \n第5章“训练自定义目标检测模型”提供了准备数据、训练目标检测模型、选择最佳模型以及执行目标检测推理任务的步骤。此外，本章还详细介绍了通过扩展默认训练器并在训练过程中加入\
+  \ hook 来开发自定义训练器的过程。\n\n第6章“检查训练结果并微调 Detectron2 的 Solver”介绍了使用 TensorBoard 检查训练历史的步骤。它采用代码与可视化结合的方式，解释\
+  \ Detectron2 求解器及其超参数背后的概念。相关概念包括梯度下降、随机梯度下降、动量以及可变学习率优化器。\n\n第7章“微调目标检测模型”解释了 Detectron2\
+  \ 如何处理其输入，并提供了相关代码，用于分析训练数据集中的真实标注框，并找到合适的锚框尺寸和宽高比配置参数值。此外，本章还提供了以滚动方式从训练数据集中计算输入图像像素均值和标准差的代码。如果训练数据集很大且无法装入内存，这些超参数的滚动计算至关重要。\n\
+  \n第8章“图像数据增强技术”介绍了 Detectron2 的图像增强系统，该系统包含三个主要组件：Transformation、Augmentation 和\
+  \ AugInput。本章描述了这些组件中的类，以及它们在训练 Detectron2 模型时如何协同完成图像增强。\n\n第9章“应用训练时和测试时图像增强”介绍了将这些现有类应用于训练的步骤。本章还解释了如何修改现有代码，以实现需要从不同输入加载数据的自定义技术。此外，本章还详细说明了在测试时应用图像增强以提高准确率的步骤。\n\
+  \n第10章“训练实例分割模型”涵盖了以 Detectron2 支持的格式构建数据集并训练分割任务模型的步骤。本章还采用代码与可视化相结合的方式，解释使用 Detectron2\
+  \ 开发的实例分割应用的架构。\n\n第11章“微调实例分割模型”介绍了 PointRend——Detectron2 内部的一个项目，有助于提高目标边界的清晰度。本章还介绍了使用现有\
+  \ PointRend 模型以及使用 PointRend 训练自定义模型的步骤。\n\n第12章“将 Detectron2 模型部署到服务器环境”引导你完成导出过程，将\
+  \ Detectron2 模型转换为可部署的产物。然后，本章提供了将导出模型部署到服务器环境的步骤。\n\n第13章“将 Detectron2 模型部署到浏览器和移动环境”介绍了\
+  \ ONNX 框架。当需要将 Detectron2 模型部署到浏览器或移动环境时，它非常有帮助。本章还介绍了 D2Go，用于训练和量化轻量级模型，这些模型对于部署到移动设备或边缘设备极为有用。\n\
+  \n## 如何充分利用本书\n\nDetectron2、D2Go 和 PyTorch 都在积极开发中，因此 Detectron2 或 D2Go 可能与你所用的\
+  \ PyTorch 版本或 Google Colab 默认提供的 PyTorch 版本不兼容。以下源代码已在 Google Colab 上使用下列版本进行了完整测试：\n\
+  \n| 本书涵盖的软件/硬件 | 操作系统要求 |\n|---|---|\n| Python 3.8 和 3.9 | Google Colab |\n| PyTorch\
+  \ 1.13 | |\n| CUDA: cu116 | |\n| Detectron2 (commit 3ed6698) | |\n| D2Go (commit\
+  \ 1506551) | |\n\n本书第1章还提供了安装说明和入门所需的信息。此外，本书还提供了 Code in Action 视频，你可以在其中查看所用全部包的\
+  \ Python 版本和提交（commit）版本。\n\n如果你使用的是本书的数字版本，建议你自己输入代码，或者从本书的 GitHub 仓库获取代码（链接见下一节）。这样做将帮助你避免因复制粘贴代码而可能产生的任何错误。\n\
+  \n请注意，为了节省空间并保持版面清晰，书中省略了部分不太重要的代码。因此，直接从书中复制粘贴代码可能导致执行错误。建议使用本书 GitHub 仓库中的完整代码，详见下一节。\n\
+  \n## 下载示例代码文件\n\n你可以从 GitHub 下载本书的示例代码文件：https://github.com/PacktPublishing/Hands-On-Computer-Vision-with-Detectron2。如果代码有更新，会在\
+  \ GitHub 仓库中更新。\n\n我们还有来自丰富的图书和视频目录的其他代码包，可在 https://github.com/PacktPublishing/\
+  \ 获取。欢迎查看！\n\n## Code in Action\n\n本书的 Code in Action 视频可在 http://bit.ly/40DJdpd\
+  \ 观看。\n\n\n\n\n\n## 使用的约定\n\n本书通篇使用了若干文本约定。\n\n**正文中的代码：** 表示正文中出现的代码词、数据库表名、文件夹名、文件名、文件扩展名、路径名、示例\
+  \ URL、用户输入和 Twitter 账号。示例为：“Mount the downloaded WebStorm-10*.dmg disk image file\
+  \ as another disk in your system.”\n\n代码块的格式如下：\n\n```css\nhtml, body, #map {\n\
+  \  height: 100%;\n  margin: 0;\n  padding: 0\n}\n```\n\n当我们希望引起您对代码块中某一部分的注意时，相关行或项目以粗体显示：\n\
+  \n```text\n[default]\nexten => s,1,Dial(Zap/1|30)\nexten => s,2,Voicemail(u100)\n\
+  **exten => s,102,Voicemail(b100)**\nexten => i,1,Voicemail(s0)\n```\n\n任何命令行输入或输出均按如下格式书写：\n\
+  \n```shell\n$ mkdir css\n$ cd css\n```\n\n**粗体：** 表示新术语、重要词语或您在屏幕上看到的词语。例如，菜单或对话框中的词语以**粗体**显示。示例为：“Select\
+  \ **System info** from the **Administration** panel.”\n\n> **提示或重要说明**\n> \n> 显示如下。\n\
+  \n## 联系我们\n\n我们非常欢迎读者的反馈。\n\n**一般反馈：** 如果您对本书的任何方面有疑问，请发送电子邮件至 `customercare@packtpub.com`，并在邮件主题中提及书名。\n\
+  \n**勘误：** 尽管我们已尽力确保内容的准确性，但难免出现错误。如果您在本書中发现错误，我们将不胜感激您向我们报告。请访问 `www.packtpub.com/support/errata`\
+  \ 并填写表格。\n\n**盗版：** 如果您在互联网上发现任何形式的非法复制品，我们将不胜感激您提供位置地址或网站名称。请发送链接至 `copyright@packt.com`。\n\
+  \n**如果您有意成为作者：** 如果您在某个领域具有专业知识并有兴趣撰写或为书籍做出贡献，请访问 `authors.packtpub.com`。\n\n##\
+  \ 分享您的想法\n\n在您阅读完 *Hands-On Computer Vision with Detectron2* 后，我们很想听听您的想法！请点击此处直接前往本书在亚马逊的评论页面并分享您的反馈。\n\
+  \n您的评论对我们和技术社区都非常重要，有助于确保我们提供优质内容。\n\n## 下载本书的免费 PDF 副本\n\n感谢您购买本书！\n\n您喜欢随时阅读但又无法随身携带印刷书籍吗？\n\
+  \n您的电子书购买不兼容您选择的设备吗？\n\n不用担心，每本 Packt 书籍都附带一本免费的无 DRM PDF 版本。\n\n随时随地在任何设备上阅读。直接从您喜爱的图书中搜索、复制和粘贴代码到您的应用程序中。\n\
+  \n福利还不止于此，您还可以每天通过电子邮件获得独家折扣、新闻通讯和免费内容。\n\n按照以下简单步骤获取福利：\n\n- 1. 扫描二维码或访问下方链接\n\n\
+  ![](img/0e7994c850a84b7a53d34c7f943c7edd_18_0.png)\n\n```\nhttps://packt.link/free-ebook/9781800561625\n\
+  ```\n\n- 2. 提交您的购买证明\n\n- 3. 就这样！我们会直接将免费 PDF 和其他福利发送到您的电子邮件\n"
+- '# 第 1 部分：
+
+
+  ## Detectron2 简介
+
+
+  本第一部分介绍了 Detectron2、其架构以及 Detectron2 可执行的计算机视觉任务。换句话说，它讨论了我们为什么需要计算机视觉应用以及 Detectron2
+  能执行哪些计算机视觉任务。此外，本部分还提供了在本地或使用 Google Colab 在云端使用 Detectron2 开发计算机视觉应用的环境设置步骤。并且，它指导您使用
+  Detectron2 中最先进的模型构建计算机视觉任务的应用。具体而言，它讨论了 Detectron2 Model Zoo 中现有的预训练模型，以及使用这些模型开发用于目标检测、实例分割、关键点检测、语义分割和全景分割的应用的步骤。
+
+
+  第一部分涵盖以下章节：
+
+
+  - *第 1 章，Detectron2 和计算机视觉任务简介*
+
+  - *第 2 章，使用现有的 Detectron2 模型开发计算机视觉应用*
+
+  '
+- "## Detectron2 和计算机视觉任务简介\n\n本章介绍了 Detectron2、其架构以及 Detectron2 可执行的计算机视觉 (CV) 任务。换句话说，本章讨论了\
+  \ Detectron2 可执行的 CV 任务以及我们为什么需要它们。此外，本章还提供了在本地或使用 Google Colab 在云端使用 Detectron2\
+  \ 开发 CV 应用的环境设置步骤。\n\n到本章结束时，您将了解主要的 CV 任务（例如，目标检测、实例分割、关键点检测、语义分割和全景分割）；了解 Detectron2\
+  \ 的工作原理以及它如何帮助您使用深度学习解决 CV 任务；并能够为 Detectron2 应用设置本地和云环境。\n\n具体而言，本章涵盖以下主题：\n\n\
+  - 计算机视觉任务\n- Detectron2 及其实架构简介\n- Detectron2 开发环境\n\n### 技术要求\n\nDetectron2 CV\
+  \ 应用建立在 PyTorch 之上。因此，需要兼容版本的 PyTorch 才能运行本章中的代码示例。本章后面的部分将提供专门针对 Detectron2 的设置说明。所有代码、数据集和相应结果均可在本书的\
+  \ GitHub 页面 https://github.com/PacktPublishing/Hands-On-Computer-Vision-with-Detectron2\
+  \ 上获取。强烈建议下载代码并跟随学习。\n\n## 计算机视觉任务\n\n深度学习在许多 CV 任务中取得了最先进的结果。最常见的 CV 任务是图像分类，其中深度学习模型为给定图像提供类别标签。然而，深度学习在最近的进步使计算机能够执行更高级的视觉任务。这些高级视觉任务有很多。\n\
+  \n然而，本书专注于更常见和重要的任务，包括目标检测、实例分割、关键点检测、语义分割和全景分割。读者可能难以区分这些任务。图 1.1 描绘了它们之间的差异。本节概述了它们是什么以及何时使用它们，而本书的其余部分则侧重于如何使用\
+  \ Detectron2 实现这些任务。让我们开始吧！\n\n![](img/0e7994c850a84b7a53d34c7f943c7edd_23_0.png)\n\
+  \n### 目标检测\n\n目标检测通常包括目标定位和分类。具体而言，此任务的深度学习模型通过在图像中对感兴趣的目标应用边界框来预测目标所在的位置（定位）。此外，这些模型还会将检测到的目标分类为感兴趣的类型（分类）。\n\
+  \n此任务的一个示例是在图片中指定人物并对检测到的人类应用边界框（仅定位），如图 1.1 (b) 所示。另一个示例是从记录的道路图像中检测道路损坏，通过为损坏提供边界框（定位）并进一步将损坏分类为纵向裂缝、横向裂缝、龟裂和坑洞等类型（分类）。\n\
+  \n### 实例分割\n\n实例分割与目标检测类似，也涉及目标定位和分类。然而，实例分割在定位检测到的感兴趣目标时更进一步。\n\n具体而言，除了分类之外，此任务的模型还在像素级别上定位检测到的目标。换句话说，它识别每个检测到的目标的所有像素。实例分割在需要图像中检测到的目标的形状并需要跟踪每个单独目标的应用中是必需的。图\
+  \ 1.1 (c) 显示了对图 1.1 (a) 中输入图像的实例分割结果。具体而言，除了边界框之外，每个人的每个像素也被突出显示。\n\n### 关键点检测\n\
+  \n除了检测目标之外，关键点检测还指示检测到的目标的重要部位，称为关键点。这些关键点描述了检测到的目标的基本特征。该特征通常对图像旋转、缩小、平移或失真不变。例如，人类的关键点包括眼睛、鼻子、肩膀、手肘、手、膝盖和脚。关键点检测对于动作估计、姿态检测或人脸检测等应用很重要。图\
+  \ 1.1 (d) 显示了对图 1.1 (a) 中输入图像的关键点检测结果。具体而言，除了边界框之外，它还突出显示每个检测到的个体的所有关键点。\n\n###\
+  \ 语义分割\n\n语义分割任务并不检测对象的特定实例，而是将图像中的每个像素分类为感兴趣的某些类别。例如，在自动驾驶汽车应用中，此任务的模型将图像区域分类为行人、道路、汽车、树木、建筑物和天空。此任务在提供不同类别的对象组的更广阔视图时很重要（即对图像有更高层次的理解）。具体而言，如果一个区域中存在单个类别实例，它们会被归为一个掩码，而不是为每个单独实例提供不同的掩码。\n\
+  \n语义分割应用的一个示例是将图像分割为前景对象和背景对象（例如，模糊背景并为肖像图像提供更艺术的外观）。图 1.1 (e) 显示了对图 1.1 (a) 中输入图像的语义分割结果。具体而言，输入图片被划分为被分类为事物（人或前景对象）和背景对象（如天空、山、泥土、草和树）的区域。\n\
+  \n\n\n\n\n具体来说，它*更快*且更准确，因为在重新实现前沿算法时，Detectron2 有机会发现这些算法旧版本中的次优实现部分或过时特性并重新实现。它是*模块化*的，即将其实现划分为子部分。这些部分包括输入数据、主干网络、区域提议头和预测头（下一节将介绍更多关于这些组件的信息）。它是*可定制*的，意味着其组件具有内置实现，但可以通过调用新实现进行定制。最后，它构建在\
+  \ PyTorch 之上，这意味着有大量开发者资源在线可供帮助使用 Detectron2 开发应用。\n\n此外，Detectron2 提供了具有最先进检测结果的*预训练模型*用于\
+  \ CV 任务。这些模型是在 Facebook 研究实验室使用大量图像和在其他机构可能无法获得的高计算资源训练的。\n\n这些预训练模型发布在其 Model Zoo\
+  \ 中，可免费使用：https://github.com/facebookresearch/detectron2/blob/main/MODEL_ZOO.md。\n\
+  \n这些预训练模型帮助开发者快速开发典型的 CV 应用，而无需收集、准备大量图像，或需要高计算资源来训练新模型。然而，假设需要针对特定领域和自定义数据集开发 CV\
+  \ 任务。在这种情况下，这些现有模型可以作为起始权重，并且整个 Detectron2 模型可以在自定义数据集上重新训练。\n\n最后，我们可以将 Detectron2\
+  \ 模型转换为*可部署的产物*。具体来说，我们可以将 Detectron2 模型转换为标准深度学习框架的标准文件格式，如 `TorchScript`、`Caffe2\
+  \ protobuf` 和 `ONNX`。这些文件随后可以部署到其对应的运行时，如 PyTorch、Caffe2 和 ONNX Runtime。此外，Facebook\
+  \ AI Research 还发布了 **Detectron2Go (D2Go)**，这是一个平台，开发者可以在此将 Detectron2 开发更进一步，创建针对移动设备优化的模型。\n\
+  \n总之，Detectron2 实现了前沿检测算法，具有快速、准确、模块化以及构建在 PyTorch 之上的优势。Detectron2 还提供预训练模型，使用户可以快速入门并使用最先进的结果构建\
+  \ CV 应用。它也是可定制的，因此用户可以更改其组件或在自定义业务领域上训练 CV 应用。此外，我们可以将 Detectron2 导出为标准深度学习框架运行时支持的脚本。此外，名为\
+  \ Detectron2Go 的初始研究支持为边缘设备开发 Detectron2 应用。\n\n在下一节中，我们将研究 Detectron2 架构，以了解其工作原理以及定制其各个组件的可能性。\n\
+  \n## Detectron2 架构\n\n![](img/0e7994c850a84b7a53d34c7f943c7edd_27_0.png)\n\n图 1.2：Detectron2\
+  \ 的主要组件\n\nDetectron2 具有模块化架构。图 1.2 描绘了标准 Detectron2 应用中的四个主要模块。第一个模块用于注册输入数据（Input\
+  \ Data）。\n\n第二个模块是用于提取图像特征的主干（Backbone），随后是第三个模块，用于提出有无物体的区域以供下一个训练阶段使用（Region Proposal）。最后，最后一个模块使用适当的头（例如检测头、实例分割头、关键点头、语义分割头或全景分割头）来预测包含物体的区域并将检测到的物体分类为类别。第\
+  \ 3 章至第 5 章讨论了这些组件用于构建物体检测任务的 CV 应用，第 10 章和第 11 章详细介绍了这些组件用于分割任务。以下各节简要讨论这些组件的一般情况。\n\
+  \n### 输入数据模块\n\n输入数据模块旨在使用缓存和多 worker 等优化技术从硬盘以大批量加载数据。此外，相对容易将数据增强技术插入到此模块的数据加载器中。此外，它被设计为可定制，以便用户可以注册其自定义数据集。以下是使用此模块将自定义数据集分配给训练\
+  \ Detectron2 模型的典型语法：\n\n```\nDatasetRegistry.register(\n    'my_dataset',\n   \
+  \ load_my_dataset\n)\n```\n\n### 主干模块\n\n主干模块从输入图像中提取特征。因此，此模块通常使用 ResNet 或 ResNeXt\
+  \ 等最先进的卷积神经网络。此模块可以定制以调用在感兴趣的图像分类任务中表现良好的任何标准卷积神经网络。值得注意的是，此模块对迁移学习有大量了解。具体来说，如果我们想使用在\
+  \ ImageNet 等大型图像数据集上表现良好的最先进卷积神经网络，我们可以在此处使用这些预训练模型。否则，我们可以选择此模块的简单网络以提高性能（训练和预测时间），以准确性为代价。第\
+  \ 2 章将讨论为常见 CV 任务在 Detectron2 Model Zoo 上选择合适的预训练模型。\n\n以下代码片段显示了使用此模块注册自定义主干网络以训练\
+  \ Detectron2 模型的典型语法：\n\n```\n@BACKBONE_REGISTRY.register()\nclass CustomBackbone(Backbone):\n\
+  \    pass\n```\n\n### 区域提议模块\n\n下一个模块是区域提议模块（Region Proposal）。此模块接受来自主干提取的特征并预测或提出图像区域（带位置规范）以及分数以指示区域是否包含物体（带物体性分数）。所提议区域的物体性分数可能为\
+  \ 0（表示没有物体或为背景）或 1（表示确信预测区域中存在感兴趣的物体）。值得注意的是，此物体分数不是属于感兴趣类别的概率，而是简单地表示区域是否包含物体（任何类别）或不（背景）。\n\
+  \n此模块默认设置了区域提议网络（RPN）。然而，用自定义网络替换此网络相对容易。以下是使用此模块注册自定义 RPN 以训练 Detectron2 模型的典型语法：\n\
+  \n```\n@ROI_BOX_HEAD_REGISTRY.register()\nclass CustomBoxHead(nn.Module):\n    pass\n\
+  ```\n\n### 感兴趣区域模块\n\n最后一个模块是感兴趣区域（RoI）头的位置。根据 CV 任务，我们可以为此模块选择适当的头，例如检测头、分割头、关键点头或语义分割头。例如，检测头接受区域提议和所提议区域的输入特征，并将它们通过全连接网络传递，具有用于预测和分类的两个独立头。具体来说，一个头用于预测物体的边界框，另一个用于将检测到的边界框分类为相应类别。\n\
+  \n另一方面，语义分割头也使用卷积神经网络头将每个像素分类为感兴趣的类别之一。以下是使用此模块注册自定义感兴趣区域头以训练 Detectron2 模型的典型语法：\n\
+  \n```\n@ROI_HEAD_REGISTRY.register()\nclass CustomHeads(StandardROIHeads):\n   \
+  \ pass\n```\n\n现在你已经了解了 Detectron2 及其架构，让我们为开发 Detectron2 应用准备开发环境。\n\n## Detectron2\
+  \ 开发环境\n\n现在，我们了解了高级 CV 任务以及 Detectron2 如何帮助为这些任务开发应用。是时候开始开发 Detectron2 应用了。本节提供在云端使用\
+  \ Google Colab、本地环境或连接 Google Colab 到本地托管运行时的混合方法设置 Detectron2 开发环境的步骤。\n\n### Detectron2\
+  \ 应用的云开发环境\n\nGoogle Colab 或 Colaboratory（https://colab.research.google.com）是一个云平台，允许你从网络浏览器编写和执行\
+  \ Python 代码。它使用户能够以零配置开始开发深度学习应用，因为大多数常见的机器学习和深度学习包，如 PyTorch 和 TensorFlow，已预先安装。此外，用户可免费使用\
+  \ GPU。即使使用免费计划，用户也能获得相对优于标准个人电脑的计算资源。如果需要，用户可以支付少量费用升级为 Pro 或 Pro+ 以获得更高的计算资源。此外，正如其名称所示，Google\
+  \ Colab 相对容易协作，并且易于共享 Google Colab 文件和项目。\n\nCV 任务的深度学习模型使用大量图像；因此，GPU 可显著加快训练和推理时间。然而，默认情况下，Google\
+  \ Colab 未启用 GPU 运行时。因此，用户应在安装 Detectron2 或训练 Detectron2 应用之前启用 GPU 硬件加速。此步骤是选择 GPU，如图\
+  \ 1.3 所示，从 Runtime | Change runtime type 下的 Hardware accelerator 下拉菜单中选择：\n\n\n\n\
+  ### 笔记本设置\n\n硬件加速器\nGPU\n\n要充分利用 Colab，除非需要，否则避免使用 GPU。了解更多\n\n后台执行\n\n即使关闭浏览器，也想让笔记本继续运行？升级到\
+  \ Colab Pro+\n\n保存此笔记本时省略代码单元格输出\n\n取消 保存\n\n图 1.3：为硬件加速器选择 GPU\n\nDetectron2 有一个关于如何在\
+  \ Google Colab 上安装 Detectron2 的专门教程。不过，本节将讨论每个步骤并提供更多细节。首先，Detectron2 基于 PyTorch\
+  \ 构建，因此我们需要安装 PyTorch。默认情况下，Google Colab 运行时已经安装了 PyTorch。因此，你可以使用以下代码片段在 Google\
+  \ Colab 上安装 Detectron2：\n\n```\n!python -m pip install \\\n'git+https://github.com/facebookresearch/detectron2.git'\n\
+  ```\n\n如果你收到如下错误信息，可以安全地忽略它并继续：\n\n```\nERROR: pip's dependency resolver does not\
+  \ currently take into account all the packages that are installed. This behaviour\
+  \ is the source of the following dependency conflicts.\nflask 1.1.4 requires click<8.0,>=5.1,\
+  \ but you have click 8.1.3 which is incompatible.\n```\n\n但是，如果你遇到诸如 Google Colab\
+  \ 上的 PyTorch 版本与 Detectron2 不兼容的问题，那么你可以针对特定版本的 PyTorch 和 CUDA 安装 Detectron2。你可以使用以下代码片段获取\
+  \ PyTorch 和 CUDA 版本：\n\n```\nimport torch\nTORCH_VERSION = \".\".join(torch.__version__.split(\"\
+  .\")[:2])\nCUDA_VERSION = torch.__version__.split(\"+\")[-1]\nprint(\"torch: \"\
+  , TORCH_VERSION, \"; cuda: \", CUDA_VERSION)\n```\n\n在了解 PyTorch 和 CUDA 版本后，你可以使用以下代码片段安装\
+  \ Detectron2。请记得将 TORCH_VERSION 和 CUDA_VERSION 替换为前一个代码片段中找到的值：\n\n```\n!python\
+  \ -m pip install detectron2 -f \\\nhttps://dl.fbaipublicfiles.com/detectron2/wheels/{TORCH_VERSION}/{CUDA_VERSION}/index.html\n\
+  ```\n\n以下是针对 CUDA 11.3 和 PyTorch 1.10 版本的安装命令示例：\n\n```\n!python -m pip install\
+  \ detectron2 -f \\\nhttps://dl.fbaipublicfiles.com/detectron2/wheels/cu113/torch1.10/index.html\n\
+  ```\n\n如果你遇到如下错误，这意味着没有与当前 PyTorch 和 CUDA 版本匹配的 Detectron2 发行版：\n\n```\nERROR: Could\
+  \ not find a version that satisfies the requirement detectron2 (from versions: none)\n\
+  ERROR: No matching distribution found for detectron2\n```\n\n在这种情况下，你可以访问 Detectron2\
+  \ 安装页面，查找与当前 PyTorch 和 CUDA 版本兼容的发行版。该页面位于 https://detectron2.readthedocs.io/en/latest/tutorials/install.html。\n\
+  \n图 1.4 展示了当前 Detectron2 发行版及对应的 CUDA/CPU 和 PyTorch 版本：\n\n### 安装预构建的 Detectron2（仅限\
+  \ Linux）\n\n从下表中选择以安装 v0.6（2021 年 10 月）：\n\n| CUDA | torch 1.10 | torch 1.9 | torch\
+  \ 1.8 |\n|------|------------|-----------|-----------|\n| 11.3 | ▶ 安装 |  |  |\n\
+  | 11.1 | ▶ 安装 | ▶ 安装 | ▶ 安装 |\n| 10.2 | ▶ 安装 | ▶ 安装 | ▶ 安装 |\n| 10.1 |  |  | ▶ 安装\
+  \ |\n| cpu | ▶ 安装 | ▶ 安装 | ▶ 安装 |\n\n图 1.4：当前 Detectron2 发行版对应的 CUDA/CPU 和 PyTorch\
+  \ 版本\n\n我们首先需要在本地计算机上安装 Jupyter。下一步是使用以下代码片段启用 `jupyter_http_over_ws` Jupyter 扩展：\n\
+  \n```bash\n$ pip install jupyter_http_over_ws\n$ jupyter serverextension enable\
+  \ --py jupyter_http_over_ws\n```\n\n下一步是在本地机器上启动 Jupyter 服务器，并设置选项以信任 WebSocket\
+  \ 连接，从而使 Google Colab 笔记本能够连接到本地运行时。使用以下代码片段：\n\n```bash\n$ jupyter notebook \\\n\
+  --NotebookApp.allow_origin=\\\n'https://colab.research.google.com' \\\n--port=8888\
+  \ \\\n--NotebookApp.port_retries=0\n```\n\n一旦本地 Jupyter 服务器运行，在终端中会有一个带有身份验证令牌的后端\
+  \ URL，可用于从 Google Colab 访问此本地运行时。*图 1.6* 展示了将 Google Colab 笔记本连接到本地运行时的步骤：**连接 |\
+  \ 连接到本地运行时：**\n\n![](img/0e7994c850a84b7a53d34c7f943c7edd_34_0.png)\n\n图 1.6：将 Google\
+  \ Colab 笔记本连接到本地运行时\n\n在下一个对话框中，输入本地 Jupyter 服务器生成的后端 URL，并点击**连接**按钮。恭喜！你现在可以使用\
+  \ Google Colab 笔记本，通过本地内核编写 Python 应用程序。\n\n## 总结\n\n本章讨论了高级计算机视觉任务，包括目标检测、实例分割、关键点检测、语义分割和全景分割，以及何时使用它们。Detectron2\
+  \ 是一个框架，有助于为这些 CV 任务实现前沿算法，其优势在于速度更快、精度更高、模块化、可定制，并且基于 PyTorch 构建。其架构包含四个主要部分：输入数据、主干网络、区域提议和感兴趣区域头部。每个组件都可以替换为自定义实现。本章还提供了使用\
+  \ Google Colab 设置云开发环境、本地开发环境，或在需要时将 Google Colab 连接到本地运行时的步骤。\n\n你现在已经了解了 Detectron2\
+  \ 能够帮助开发的主要 CV 任务，并已设置好开发环境。下一章（*第 2 章*）将指导你使用 Detectron2 Model Zoo 中提供的前沿模型，为上述所有\
+  \ CV 任务构建 CV 应用程序。\n\n## 技术要求\n\n你应该已经按照第 1 章中的说明设置好开发环境。如果你尚未完成，请在继续之前完成开发环境的设置。所有代码、数据集和相应结果均可在本书的\
+  \ GitHub 页面（位于 Chapter02 文件夹下）获取：https://github.com/PacktPublishing/Hands-On-Computer-Vision-with-Detectron2。强烈建议你下载代码并跟着操作。\n\
+  \n## Detectron2 Model Zoo 简介\n\n在深度学习中，当开发大型模型并在大规模数据集上训练模型时，深度学习方法的开发者通常会提供预训练模型。其主要原因是这些模型的开发者通常是该领域的重要参与者（例如\
+  \ Facebook、Google、Microsoft 或大学），他们拥有计算资源（例如 CPU 和 GPU），可以在大型数据集上训练此类模型。而普通开发者通常无法获得这些计算资源。\n\
+  \n这些预训练模型通常在数据集上训练，用于模型预期使用的常见任务。因此，这类模型的另一个好处是，如果用户手头的任务与模型训练的目标相匹配，他们可以采用这些模型并将其用于具体场景。此外，这些模型还可以作为基线，最终用户可以在其特定场景下使用更小的数据集进行进一步的微调，而训练这些模型所需的计算资源也更少。\n\
+  \nDetectron2 还提供了大量模型，这些模型在其 Model Zoo 中使用高计算资源的 Big Basin 服务器（8 块 NVIDIA V100 GPU\
+  \ 和 NVLink）训练而成。你可以从以下链接阅读更多信息并下载所有模型：https://github.com/facebookresearch/detectron2/blob/main/MODEL_ZOO.md。\n\
+  \n对于新用户来说，要掌握具有不同规格的可用模型的信息可能会有些令人不知所措。因此，本节详细说明了用户应查找哪些信息，以使用 Detectron2 Model\
+  \ Zoo 中的这些前沿模型完成手头的特定计算机视觉任务。这些信息包括查找以下内容：\n\n- 模型训练所用的数据集\n- 该模型的架构\n- 训练和推理时间\n\
+  - 训练内存需求\n- 模型准确率\n- 训练模型（权重）的链接\n- 其配置文件（.yaml）的链接\n\n\n\n\n\n与任何预训练模型相关的下一个重要信息是预训练模型的架构。这通常通过模型在模型库（Model\
+  \ Zoo）中的名称来体现。例如，R50 和 R101 分别表示**微软亚洲研究院（MSRA）ResNet-50** 和 **ResNet-101**。类似地，X101\
+  \ 和 X152 分别表示 ResNeXt-101-32x8d 和 ResNeXt-152-32x8d。有些模型名称包含 FPN。这部分名称表示该模型使用了**特征金字塔网络（FPN）**技术。该技术意味着特征是在模型架构的不同层中提取的（而不是从最后一层获取输出特征并将其送入预测过程）。使用\
+  \ FPN 主干网络有助于在时间权衡下提高准确率。此外，名称中包含 C4 表示该模型使用 conv4 主干网络。类似地，名称中包含 DC5 表示该模型使用在 conv5\
+  \ 中带有膨胀（dilation）的 conv5。\n\n> **重要提示**\n> 感兴趣的读者可以参阅 https://github.com/KaimingHe/deep-residual-networks\
+  \ 上关于 ResNet 架构的网页，以及 https://github.com/facebookresearch/ResNeXt 上关于 ResNeXt 架构的网页，以获取更多信息。\n\
+  \n在了解了训练数据集和模型架构之后，下一步是检查训练和推理时间、训练内存以及模型准确率。这些信息有助于决定硬件需求以及速度与准确率之间的权衡。这些信息同样列在\
+  \ Detectron2 模型库中的每个预训练模型下。\n\n在根据速度与硬件需求之间的权衡决定要使用哪个模型之后，下一步是下载模型的配置文件。在模型库中，模型名称会链接到一个\
+  \ .yaml 配置文件。**YAML**（**Yet Another Markup Language** 的缩写，或 **YAML ain't markup\
+  \ language**）是一种用于数据序列化的人类可读编程语言。它通常用于编写配置文件和支持自动化流程。最后，还有一个用于下载预训练模型权重的链接。\n\n\
+  到目前为止，你应该已经能够阅读并理解 Detectron2 模型库中可用预训练模型的重要信息。下一步是使用一些预训练模型来执行重要的计算机视觉任务。使用 Detectron2\
+  \ 开发计算机视觉应用通常包括以下步骤：\n\n- 选择配置文件\n- 获取预测器\n- 执行推理\n- 可视化结果\n\n以下各节将详细介绍开发目标检测应用的这些步骤。\n\
+  \n## 选择模型\n```\nconfig_file = \"COCO-Detection/faster_rcnn_X_101_32x8d_FPN_3x.yaml\"\
+  \ncheckpoint_url = \"COCO-Detection/faster_rcnn_X_101_32x8d_FPN_3x.yaml\"\n# Create\
+  \ a configuration file\ncfg = get_cfg()\nconfig_file = model_zoo.get_config_file(config_file)\n\
+  cfg.merge_from_file(config_file)\n# Download weights\ncfg.MODEL.WEIGHTS = model_zoo.get_checkpoint_url(checkpoint_url)\n\
+  score_thresh_test = 0.95\ncfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = score_thresh_test\n\
+  predictor = DefaultPredictor(cfg)\n```\n\n具体来说，get_cfg 方法有助于获取该模型的默认配置对象。类似地，model_zoo\
+  \ 有助于获取配置文件（.yaml 文件）并下载预训练权重。同时，需要 DefaultPredictor 来根据下载的配置文件和权重创建预测器。除了必需的导入之外，这段代码还抑制了几条可以安全忽略的用户警告。\n\
+  \n值得注意的是，cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST 参数当前设置为 0.95。该参数在测试时用于过滤掉所有检测置信度低于此值的检测对象。将此参数设置为较高值（接近\
+  \ 1.0）意味着我们希望获得高精确率和低召回率。同样，将其设置为较低值（接近 0.0）意味着我们更倾向于低精确率和高召回率。一旦我们有了模型（或者可以互换地称之为预测器），就可以开始执行推理了。\n\
+  \n## 执行推理\n\n以下代码片段对输入图像执行目标检测。具体来说，我们首先导入 cv2 以从 input_url 读取图像。接下来，使用之前创建的预测器，即可相对轻松地对加载的图像执行目标检测（请将图像上传到\
+  \ Google Colab 以执行推理）：\n\n```\nimport cv2\ninput_url = \"input.jpeg\"\nimg = cv2.imread(input_url)\n\
+  output = predictor(img)\n```\n\n下一个重要任务是理解 Detectron2 给出的输出格式以及每个输出组件的含义。此处的 print\
+  \ (output) 显示了输出变量及其提供的字段：\n\n```\n{'instances': Instances(num_instances = 4, image_height\
+  \ = 720, image_width = 960, fields = [pred_boxes: Boxes(tensor([[492.1558, 331.5353,\
+  \ 687.8397, 637.9542], [294.6652, 192.1288, 445.8517, 655.3390], [419.8898, 253.9013,\
+  \ 507.7427, 619.1491], [451.8833, 395.1392, 558.5139, 671.0604]], device = 'cuda:0')),\
+  \ scores: tensor([0.9991, 0.9986, 0.9945, 0.9889], device = 'cuda:0'), pred_classes:\
+  \ tensor([0, 0, 0, 0], device = 'cuda:0')]) }\n```\n\n可以观察到，除了图像信息之外，目标检测结果还包括检测到的实例（instances），以及相应的预测边界框（pred_boxes）、预测置信度分数（scores）和预测类别标签（pred_classes）。有了这些信息，我们就可以将检测到的对象及其对应的边界框可视化。\n\
+  \n## 可视化结果\n\nDetectron2 提供了一个 Visualizer 类，它可以帮助你轻松地将检测结果标注到输入图像上。因此，以下代码片段导入该类并使用其可视化方法将检测结果标注到输入图像上：\n\
+  \n```\nfrom google.colab.patches import cv2_imshow\nfrom detectron2.utils.visualizer\
+  \ import Visualizer\nfrom detectron2.data import MetadataCatalog\nmetadata = MetadataCatalog.get(cfg.DATASETS.TRAIN[0])\n\
+  v = Visualizer(img[:, :, ::-1], metadata, scale=0.5)\ninstances = output[\"instances\"\
+  ].to(\"cpu\")\nannotated_img = v.draw_instance_predictions(instances)\ncv2_imshow(annotated_img.get_image()[:,\
+  \ :, ::-1])\n```\n\n具体来说，第一条语句导入 cv2_imshow 方法（一个 Google Colab 补丁），用于在 Google Colab\
+  \ 输出中显示图像。下一条导入语句是 Visualizer 本身。第三条导入语句帮助获取有关训练数据集的信息。具体来说，这个 MetadataCatalog 对象为预测对象提供标签名称。在本例中，类别标签\
+  \ 0 对应的是 person（人），如输出中所示。\n\n## 选择配置文件\n\n与目标检测类似，Detectron2 也提供了一系列针对对象实例分割任务预训练的前沿模型。例如，图\
+  \ 2.5 展示了在 COCO 实例分割数据集上预训练的 Mask R-CNN 模型列表。\n\n| 名称 | 学习率调度 | 训练时间（秒/迭代） | 推理时间（秒/图像）\
+  \ | 训练内存（GB） | 边界框 AP | 掩码 AP | 模型 ID | 下载 |\n|---|---|---|---|---|---|---|---|---|\n\
+  | R50-C4 | 1x | 0.584 | 0.110 | 5.2 | 36.8 | 32.2 | 137259246 | model | metrics\
+  \ |\n| R50-DC5 | 1x | 0.471 | 0.076 | 6.5 | 38.3 | 34.2 | 137260150 | model | metrics\
+  \ |\n| R50-FPN | 1x | 0.261 | 0.043 | 3.4 | 38.6 | 35.2 | 137260431 | model | metrics\
+  \ |\n| R50-C4 | 3x | 0.575 | 0.111 | 5.2 | 39.8 | 34.4 | 137849525 | model | metrics\
+  \ |\n| R50-DC5 | 3x | 0.470 | 0.076 | 6.5 | 40.0 | 35.9 | 137849551 | model | metrics\
+  \ |\n| R50-FPN | 3x | 0.261 | 0.043 | 3.4 | 41.0 | 37.2 | 137849600 | model | metrics\
+  \ |\n| R101-C4 | 3x | 0.652 | 0.145 | 6.3 | 42.6 | 36.7 | 138363239 | model | metrics\
+  \ |\n| R101-DC5 | 3x | 0.545 | 0.092 | 7.6 | 41.9 | 37.3 | 138363294 | model | metrics\
+  \ |\n| R101-FPN | 3x | 0.340 | 0.056 | 4.6 | 42.9 | 38.6 | 138205316 | model | metrics\
+  \ |\n| X101-FPN | 3x | 0.690 | 0.103 | 7.2 | 44.3 | 39.5 | 139653917 | model | metrics\
+  \ |\n\n图 2.5：基于 Mask R-CNN 的 COCO 实例分割基线\n\n在检查了这些模型的规格后，本特定应用选择了 X101-FPN 模型。以下是该配置文件的相对路径（从模型名称链接的地址中提取并截取）：\n\
+  \n```\nCOCO-InstanceSegmentation/mask_rcnn_X_101_32x8d_FPN_3x.yaml\n```\n\n## 获取预测器\n\
+  \n用于获取此对象实例分割预测器的代码片段与之前开发的目标检测应用相同，除了以下两行。这两行指定了该特定预训练模型的不同配置文件：\n\n```\n# Select\
+  \ a model\nconfig_file = \"COCO-InstanceSegmentation/mask_rcnn_X_101_32x8d_FPN_3x.yaml\"\
+  \ncheckpoint_url = \"COCO-InstanceSegmentation/mask_rcnn_X_101_32x8d_FPN_3x.yaml\"\
+  \n```\n\n\n\n\n这一简单的修改是 Detectron2 优秀设计的一个范例。只需简单地修改配置文件的链接，就可以相对容易地从一种应用类型切换到另一种应用类型。\n\
+  \n## 执行推理\n\n推理代码片段与上一节中开发的目标检测应用相同。然而，目标实例分割的输出有一些差异。具体来说，除了 `pred_boxes`、`scores`\
+  \ 和 `pred_classes`（分别对应边界框、预测置信度分数和相应的预测类别标签）之外，还有一个张量（`pred_masks`）用于指示输入图片中的每个像素是否属于某个检测到的实例（`True`/`False`）。以下是这个张量的示例（为了节省空间，输出的一部分被截断了），共有四个检测到的实例：\n\
+  \n```\npred_masks: tensor([\n  [[False, False, False, ..., False, False, False],\n\
+  \   ...,\n   [False, False, False, ..., False, False, False]],\n\n  [[False, False,\
+  \ False, ..., False, False, False],\n   ...,\n   [False, False, False, ..., False,\
+  \ False, False]],\n\n  [[False, False, False, ..., False, False, False],\n   ...,\n\
+  \   [False, False, False, ..., False, False, False]],\n\n  [[False, False, False,\
+  \ ..., False, False, False],\n   ...,\n   [False, False, False, ..., False, False,\
+  \ False]],\n  device='cuda:0')\n```\n\n## 可视化结果\n\n得益于 Detectron2 的出色设计，可视化实例分割结果与可视化目标检测结果的方式相同。也就是说，代码片段保持一致。图\
+  \ 2.6 显示了带有实例分割结果注释的输入图像。具体来说，除了边界框和相应的预测置信度外，属于每个检测到的个体的像素也被高亮显示。\n\n![](img/0e7994c850a84b7a53d34c7f943c7edd_48_0.png)\n\
+  \n图 2.6：带有目标实例分割结果的推理输出\n\n恭喜！你现在已经完成了一个使用 Detectron2 前沿模型的目标实例分割应用，与之前开发的目标检测应用相比，仅需少量修改。在下一节中，你将学习如何使用\
+  \ Detectron2 开发关键点检测应用。\n\n## 开发关键点检测应用\n\n除了检测目标之外，关键点检测还会标出检测目标的重要部分，这些部分被称为**关键点**。这些关键点描述了被检测目标的基本特征。该特征通常对图像旋转、缩放、平移或变形保持不变。以下各节将详细介绍使用\
+  \ Detectron2 预训练模型开发关键点检测应用的步骤。\n\n```\n[9, 9, 9, ..., 9, 9, 9],\n[9, 9, 9, ...,\
+  \ 9, 9, 9],\n[9, 9, 9, ..., 9, 9, 9]], device = 'cuda:0', dtype = torch.int32),\n\
+  [{'id': 1, 'isthing': True, 'score': 0.9987247586250305, 'category_id': 0, 'instance_id':\
+  \ 0 },\n{'id': 2, 'isthing': True, 'score': 0.997495174407959, 'category_id': 0,\
+  \ 'instance_id': 1 },\n{'id': 3, 'isthing': True, 'score': 0.9887707233428955, 'category_id':\
+  \ 0, 'instance_id': 2 },\n{'id': 4, 'isthing': True, 'score': 0.9777324199676514,\
+  \ 'category_id': 0, 'instance_id': 3 },\n{'id': 5, 'isthing': False, 'category_id':\
+  \ 37, 'area': 15173 },\n{'id': 6, 'isthing': False, 'category_id': 40, 'area': 163644\
+  \ },\n{'id': 7, 'isthing': False, 'category_id': 45, 'area': 192040 },\n{'id': 8,\
+  \ 'isthing': False, 'category_id': 46, 'area': 62182 },\n{'id': 9, 'isthing': False,\
+  \ 'category_id': 47, 'area': 164592 }])\n```\n\n具体来说，该字段是一个包含两个元素的元组。第一个元素是一个与输入图像尺寸相同的张量。该张量有助于为输入图像中的每个像素指示检测到的类别标签编号。该元组的第二个元素是一个项目列表，将相应的标签编号映射到已知类别。\n\
+  \n## 可视化结果\n\n全景分割的可视化代码片段与我们学过的其他视觉任务非常相似，不同之处在于我们需要从输出中提取 `panoptic_seg` 字段（前面已描述）的两个元素。接下来，这两个元素将被传递给\
+  \ `Visualizer` 对象的 `draw_panoptic_seg_predictions` 方法以执行注释：\n\n```\nfrom google.colab.patches\
+  \ import cv2_imshow\nfrom detectron2.utils.visualizer import Visualizer\nfrom detectron2.data\
+  \ import MetadataCatalog\nmetadata = MetadataCatalog.get(cfg.DATASETS.TRAIN[0])\n\
+  v = Visualizer(img[:, :, ::-1], metadata, scale=0.5)\n```\n\n## 选择配置文件和获取预测器\n\n\
+  语义分割是全景分割的一个副产品。例如，如果检测到的目标位于同一区域，它会将属于相同类别的目标合并为一个，而不是为每个检测到的目标提供分割数据。因此，用于语义分割的模型与用于全景分割的模型相同。因此，配置文件、权重以及获取预测器的代码片段与之前全景分割应用中的相同。\n\
+  \n## 执行推理\n\n语义分割的推理代码片段也与全景分割相同。推理结果（与全景分割相同）也具有一个名为 `sem_seg` 的字段。该字段的形状为 类别数\
+  \ × 图像高度 × 图像宽度。具体而言，在这种特定情况下为 54 × 720 × 960。尺寸 720 × 960 对应输入图像的所有像素。对于每个像素，有\
+  \ 54 个值，分别对应于该像素被分类为训练数据集中 54 个类别的概率。\n\n## 可视化结果\n\n语义分割结果的可视化略有不同。首先，提取 `sem_seg`\
+  \ 字段。接着，在 54 个概率中，使用 `argmax` 方法为每个像素选择预测概率最高的类别标签作为其标签。然后，将提取的数据传递给 `Visualizer`\
+  \ 对象的 `draw_sem_seg` 方法以进行可视化。以下是用于可视化语义分割结果的代码片段：\n\n```\nfrom google.colab.patches\
+  \ import cv2_imshow\nfrom detectron2.utils.visualizer import Visualizer\nfrom detectron2.data\
+  \ import MetadataCatalog\nmetadata = MetadataCatalog.get(cfg.DATASETS.TRAIN[0])\n\
+  v = Visualizer(img[:, :, ::-1], metadata, scale=0.5)\nsem_seg = output[\"sem_seg\"\
+  ].argmax(dim=0)\nannotated_img = v.draw_sem_seg(sem_seg.to(\"cpu\"))\ncv2_imshow(annotated_img.get_image()[:,\
+  \ :, ::-1])\n```\n\n图 2.11 显示了在相应输入图像上可视化的语义分割结果。值得注意的是，与全景分割结果相比，检测到的人被分组为一个区域，并被归类为“物体”（things）。\n\
+  \n```\nfrom detectron2 import model_zoo\nfrom detectron2.engine import DefaultPredictor\n\
+  # We suppress some user warnings\nimport warnings\nwarnings.simplefilter(action='ignore',category=UserWarning)\n\
+  # Create a configuration and a predictor\ndef get_predictor(config_file, checkpoint_url,\
+  \ score_thresh_test=1.0):\n    # create a configuration object\n    cfg = get_cfg()\n\
+  \    # get the configurations from the config_file\n    config_file = model_zoo.get_config_file(config_file)\n\
+  \    cfg.merge_from_file(config_file)\n    # get the pre-built weights of a trained\
+  \ model from the checkpoint\n    cfg.MODEL.WEIGHTS = model_zoo.get_checkpoint_url(checkpoint_url)\n\
+  \    # set the threshold for recall vs. precision at test time\n    cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST\
+  \ = score_thresh_test\n    # create a predictor\n    predictor = DefaultPredictor(cfg)\n\
+  \    return cfg, predictor\n```\n\n要获取模型，你只需选择配置文件和预训练权重的路径，并将它们传递给该方法。然后，该方法会返回一个预测器（`predictor`）以及该模型的配置（`cfg`）。获得预测器后，下一步是执行推理。\n\
+  \n## 执行推理\n\n所有计算机视觉任务的代码片段完全相同。因此，我们应该为此提供一个方法（`perform_inference`）。以下是给定任意预测器（`predictor`）和输入图像路径（`input_url`）时执行推理的代码片段：\n\
+  \n```\nimport cv2\nfrom google.colab.patches import cv2_imshow\ndef perform_inference(predictor,\
+  \ input_url):\n    img = cv2.imread(input_url)\n    output = predictor(img)\n  \
+  \  return img, output\n```\n\n\n\n\n\n该方法（`perform_inference`）返回输入图像以及预测器对输入图像的预测输出。下一步是需要一种方法将此输出标注到输入图像上。\n\
+  \n## 可视化结果\n\n用于可视化目标检测、目标实例分割和关键点检测的代码片段是相同的。然而，如果任务是全景分割或语义分割，则会略有不同。因此，有常量来指示要执行的任务，可视化方法（称为\
+  \ `visualize_output`）可以根据输入任务执行适当的视觉化。以下是结果可视化的代码片段：\n\n```python\nfrom detectron2.utils.visualizer\
+  \ import Visualizer\nfrom detectron2.data import MetadataCatalog\n\n# computer vision\
+  \ tasks\nOBJECT_DETECTION = 0\nINSTANCE_SEGMENTATION = 1\nKEYPOINT_DETECTION = 2\n\
+  SEMANTIC_SEGMENTATION = 3\nPANOPTIC_SEGMENTATION = 4\n\ndef visualize_output(img,\
+  \ output, cfg, task=OBJECT_DETECTION, scale=1.0):\n    v = Visualizer(img[:, :,\
+  \ ::-1], MetadataCatalog.get(cfg.DATASETS.TRAIN[0]), scale=scale)\n    if task ==\
+  \ PANOPTIC_SEGMENTATION:\n        panoptic_seg, segments_info = output[\"panoptic_seg\"\
+  ]\n        annotated_img = v.draw_panoptic_seg_predictions(panoptic_seg.to(\"cpu\"\
+  ), segments_info)\n    elif task == SEMANTIC_SEGMENTATION:\n        sem_seg = output[\"\
+  sem_seg\"].argmax(dim=0)\n        annotated_img = v.draw_sem_seg(sem_seg.to(\"cpu\"\
+  ))\n    else:\n        annotated_img = v.draw_instance_predictions(output[\"instances\"\
+  ].to(\"cpu\"))\n    cv2_imshow(annotated_img.get_image()[:, :, ::-1])\n```\n\n##\
+  \ 执行计算机视觉任务\n\n在拥有获取预测器（`get_predictor`）、执行推理（`perform_inference`）和可视化输出（`visualize_output`）的相应方法后，我们就可以准备执行检测了。以下是使用这些方法执行目标检测任务的代码片段：\n\
+  \n```python\nconfig_file = \"COCO-Detection/faster_rcnn_X_101_32x8d_FPN_3x.yaml\"\
+  \ncheckpoint_url = \"COCO-Detection/faster_rcnn_X_101_32x8d_FPN_3x.yaml\"\nscore_thresh_test\
+  \ = 0.95\ninput_url = \"input.jpeg\"\ntask = OBJECT_DETECTION\nscale = 0.5\n\n#\
+  \ get a predictor\ncfg, predictor = get_predictor(config_file, checkpoint_url, score_thresh_test)\n\
+  \n# perform inference\nimg, output = perform_inference(predictor, input_url)\n\n\
+  # visualization\nvisualize_output(img, output, cfg, task, scale)\n```\n\n其他计算机视觉任务也可以以相同的方式执行。此外，这些方法可以放入一个库（一个\
+  \ `*.py` 文件）中，因此如果合适，你可以在任何计算机视觉应用中包含并使用它们。\n\n## 总结\n\n本章讨论了 Detectron2 Model Zoo\
+  \ 上可用的预训练模型。具体来说，它指出了在为计算机视觉任务选择预训练模型时需要关注的重要信息。然后它提供了开发目标检测应用、目标实例分割应用、关键点检测应用、全景分割应用和语义分割应用的代码片段。这些应用的代码片段是相似的。因此，代码片段被抽象为获取模型、执行推理和可视化输出的典型方法。然后这些方法可以被重用，以便快速使用\
+  \ Detectron2 开发不同的计算机视觉应用。\n\nDetectron2 上的前沿模型是使用大量图像和庞大的计算资源训练的。因此，这些模型具有很高的准确性。此外，它们也是在用于日常计算机视觉任务的数据集上训练的，具有类别标签。因此，它们有很大机会满足你的个人需求。然而，如果\
+  \ Detectron2 没有满足你需求的模型，你可以使用 Detectron2 在自定义数据集上训练模型。本书的第 2 部分涵盖了为对象检测任务在自定义数据集上准备数据、训练和微调\
+  \ Detectron2 模型的步骤。\n"
+- "# 第 2 部分：开发自定义目标检测模型\n\n第二部分是关于动手开发和微调自定义检测模型，涉及数据准备、训练和微调步骤。数据准备步骤介绍了常见的计算机视觉数据集以及下载可自由获取图像的代码。此外，它还讨论了用于标注数据的工具、常见的标注格式，以及将不同格式转换为\
+  \ Detectron2 支持的格式的代码。然后它进一步详细介绍了使用可视化和代码的 Detectron2 应用的架构。训练模型后，本部分说明了在微调训练模型之前利用\
+  \ TensorBoard 查找训练见解的步骤。对于微调，本节提供了深度学习优化器的入门介绍以及微调 Detectron2 求解器的步骤。对于专门优化检测模型，本部分包括计算为\
+  \ Detectron2 模型生成锚框的合适尺寸和比例参数的代码。最后，本部分提供了增强技术以及 Detectron2 在训练和测试时执行增强的系统的概览。\n\
+  \n第二部分涵盖以下章节：\n\n- 第 3 章，目标检测应用的数据准备\n- 第 4 章，Detectron2 中目标检测模型的架构\n- 第 5 章，训练自定义目标检测模型\n\
+  - 第 6 章，检查训练结果和微调 Detectron2 的求解器\n- 第 7 章，微调目标检测模型\n- 第 8 章，图像数据增强技术\n- 第 9 章，应用训练时和测试时的图像增强\n\
+  \n## 常见数据源\n\n*第 2 章介绍了计算机视觉社区最常见的两个数据集。它们是 **ImageNet** 和微软 **COCO（Common Objects\
+  \ in Context）**。这些数据集还包含许多预训练模型，可以预测各种类别标签，可能满足你的日常需求。*\n\n如果你的任务是检测不太常见的类别标签，探索\
+  \ **Large Vocabulary Instance Segmentation（LVIS）** 数据集可能值得。它有超过 1,200 个类别和 164,000\
+  \ 张图像，包含许多罕见类别和约 200 万个高质量实例分割掩码。Detectron2 还提供了用于预测这 1,200 多个标签的预训练模型。因此，你可以按照\
+  \ *第 2 章* 中描述的步骤创建一个满足你需求的计算机视觉应用。有关 LVIS 数据集的更多信息可在其网站 https://www.lvisdataset.org\
+  \ 上获得。\n\n如果你有一个任务，没有现有的/预训练模型可以满足你的需求，那么是时候寻找现有的数据集并训练你的模型了。寻找数据集的常见位置之一是 **Kaggle**（https://www.kaggle.com）。Kaggle\
+  \ 是 Google 的子公司。它为数据科学家和机器学习从业者提供了一个在线平台，用于共享数据集、训练机器学习模型，并通过讨论分享训练好的模型及其想法。它还经常举办并允许用户主办数据科学和机器学习竞赛（当然也包括计算机视觉竞赛）。在撰写本文时，在\
+  \ Kaggle 上搜索短语“object detection”会带来 555 个数据集，如 *图 3.1* 所示。\n\n![](img/0e7994c850a84b7a53d34c7f943c7edd_63_0.png)\n\
+  \n图 3.1：Kaggle 上用于目标检测任务的数据集\n\nKaggle 包含数据科学和机器学习一般的数据集，包括计算机视觉数据集。然而，如果你仍然找不到满足你自定义需求的数据集，你可能有兴趣探索位于\
+  \ https://universe.roboflow.com 的 **Roboflow Universe**。它声称是世界上最广泛的开源计算机视觉数据集和 API\
+  \ 集合。在撰写本文时，Roboflow Universe 上有超过 1 亿张图像、110,000 个数据集和 10,000 个预训练模型，如 *图 3.2*\
+  \ 所示。常见的计算机视觉任务的数据集是可用的，例如目标检测、实例分割和语义分割。\n\n\n\n\n\n![](img/0e7994c850a84b7a53d34c7f943c7edd_64_0.png)\n\
+  \n图 3.2：Roboflow Universe 上的数据集\n\n计算机视觉正在快速发展，该领域有着数量庞大的从业者。如果你在前两个资源中找不到满足需求的数据集，可以使用互联网（例如\
+  \ Google）搜索你想要的数据集。然而，如果仍然找不到这样的数据集，那么就该自行收集并标注数据集了。接下来的章节将介绍为计算机视觉应用收集和标注数据集的标准工具与步骤。\n\
+  \n## 获取图像\n\n当你开始一个新项目时，你可能会有一批通过相机、智能手机、无人机或其他专用设备等图形设备收集的图像。如果你已经有一些照片，可以跳过此步骤，直接进入下一步——选择标注工具并开始标注。然而，如果你正要开始一个全新项目，甚至没有任何图像，你可以从本节关于从互联网收集图片的内容中获得一些思路。从互联网收集的图像可能涉及版权问题。因此，你应当检查版权，确认下载的图像是否可用于你的目的。\n\
+  \nGoogle Images 包含海量照片，并且每天都在增长。因此，它是抓取图像以训练自定义模型的绝佳资源。Python 有一个 `simple_image_download`\
+  \ 包，提供了使用关键词或标签搜索并下载图像的脚本。首先，我们使用以下命令安装这个包：\n\n```\n!pip install simple_image_download\n\
+  ```\n\n你可以在 Google Colab 的代码单元格中运行此命令来安装它，并将图像下载到正在运行的 Google Colab 实例中。然而，一旦实例停止，下载的照片就会丢失。因此，你应该将图像下载到映射的\
+  \ Google Drive 文件夹或本地计算机上。你可以在本地托管的 Jupyter notebook 中运行相同的命令，或者移除开头的感叹号（!）并在终端中执行它以在本地安装该包。如果你在\
+  \ Google Colab 上运行，以下代码片段有助于映射 Google Drive 并在 Google Drive 中创建一个文件夹：\n\n```\nimport\
+  \ os\nfrom google.colab import drive\ndrive.mount('/gdrive')\nproject_folder = \"\
+  /gdrive/My Drive/Detectron2/Chapter3\"\nos.makedirs(project_folder, exist_ok=True)\n\
+  ```\n\n下一个代码片段（在单独的 Google Colab 代码单元格中执行）将工作目录设置为之前创建的文件夹，这样即使 Google Colab 实例停止，下载结果也会保留在该文件夹中：\n\
+  \n```\ncd \"/gdrive/My Drive/Detectron2/Chapter3\"\n```\n\n始终建议在另一个代码单元格中运行 `pwd()`\
+  \ 命令并检查输出，以确保 Google Colab 当前正在该目录下工作。\n\n进入指定文件夹后，以下代码片段有助于使用 `simple_image_download`\
+  \ 包从 Google Images 下载图像：\n\n```\nfrom tqdm import tqdm\nfrom simple_image_download.simple_image_download\
+  \ import simple_image_download as Downloader\ndef _download(keyword, limit):\n \
+  \   downloader = Downloader()\n    downloader.download(keywords=keyword, limit=limit)\n\
+  \    urls = downloader.urls(keywords=keyword, limit=limit)\n    return urls\n\n\
+  def download(keywords, limit):\n    for keyword in tqdm(keywords):\n        urls\
+  \ = _download(keyword=keyword, limit=limit)\n        with open(f\"simple_images/{keyword}.txt\"\
+  , \"w\") as f:\n            f.writelines('\\n'.join(urls))\n```\n\n具体来说，第一条 import\
+  \ 语句用于导入 `tqdm` 包，它可用来显示下载进度。这很重要，因为从互联网下载大量图像需要时间。因此，有一个进度条帮助我们了解当前正在工作以及完成任务大约需要多长时间会非常有用。下一条\
+  \ import 语句导入 `simple_image_download` 对象，它有助于执行下载任务。接下来是 `_download` 辅助方法，用于使用关键词（由\
+  \ `keyword` 参数指定）从 Google 下载指定数量（由 `limit` 参数指定）的图像。此外，对于对应的图片，该辅助方法还会返回一个 URL 数组，可将其存储起来，用于验证下载的图像并在需要时检查版权。\n\
+  \n下一个方法名为 `download`。它使用前面的辅助函数下载图像，并将结果存储在名为 `simple_images` 的文件夹下。每个关键词的图像存储在以其关键词命名的子文件夹中。此外，该方法还会为每个关键词写入一个文本文件，其中包含所有对应下载图像的\
+  \ URL，文件名与关键词相同，扩展名为 `.txt`。例如，以下代码片段为 `brain tumors x-ray` 和 `heart tumors x-ray`\
+  \ 关键词各下载 10 张图像：\n\n```\ndownload(keywords=[\"brain tumors x-ray\", \"heart tumors\
+  \ x-ray\"], limit=10)\n```\n\n图 3.3 显示了 Google Drive 中生成的结果文件夹，其中包含下载的图像以及用于存储图像\
+  \ URL 的文本文件。\n\n![](img/0e7994c850a84b7a53d34c7f943c7edd_66_0.png)\n\n图 3.3：生成的图像文件夹及其对应\
+  \ URL 的文本文件\n\n下载的图像可能并不完全符合你的需求。因此，你应该检查下载的图像，并删除那些不符合特定要求的图像。一旦你拥有了想要的图像，下一步就是选择一种工具，开始为训练和验证标注图像。\n\
+  \n## 选择图像标注工具\n\n计算机视觉应用正在快速发展。因此，有许多用于计算机视觉应用图像标注的工具。这些工具从免费开源到完全商业化，或提供免费试用的商业化（这意味着在可用功能方面存在一些限制）不等。标注工具可以是桌面应用程序（需要安装）、在线\
+  \ Web 应用程序或本地托管的 Web 应用程序。在线应用程序甚至可能提供云存储、支持团队协作标注的工具，以及有助于加快标注速度的预训练模型（通常需要一定费用）。\n\
+  \n其中一个流行的图像标注工具是 `labelImg`。它可在 `https://github.com/heartexlabs/labelImg/blob/master/README.rst`\
+  \ 获取。它是一个开源、轻量、快速、易于使用的基于 Python 的应用程序，学习曲线短。\n\n它的局限性在于只支持创建矩形边界框。它目前是 **Label\
+  \ Studio**（一个功能多得多的更复杂工具）的一部分。然而，如果手头的任务只是进行目标检测和定位，它仍然是最佳选择。\n\n另一个流行的工具是 `labelme`（`https://github.com/wkentaro/labelme`）。它在基于\
+  \ Python 的应用程序、开源、快速且易于使用方面与 labelImg 类似。然而，除了矩形边界框之外，它还支持其他标注类型。具体来说，它可以标注多边形、矩形、圆形、线条和点。因此，它可用于为目标检测以及语义或实例分割任务标注训练图像。\n\
+  \nlabelImg 和 labelme 都是本地安装的应用程序。然而，如果你想使用本地托管的 Web 应用程序，可以参考 **VGG（Visual Geometry\
+  \ Group）图像标注器（VIA）**。VIA 是一个轻量、独立的基于浏览器的 Web 应用程序。它也支持标注多边形、圆形、线条和矩形边界框。\n\n如果你想使用基于云的\
+  \ Web 应用程序（支持云存储和 Web 上的标注），你可能会喜欢 `roboflow`，可在 `https://app.roboflow.com` 获取。这个在线\
+  \ Web 应用程序支持多种标注模式。它提供了让团队协作标注图像的工具。它还支持使用预训练模型帮助加快图像标注。然而，它的若干高级功能仅在付费计划中可用。另一个用于此任务的流行\
+  \ Web 平台是 `https://www.makesense.ai`。它是开源的，并在 GPLv3 许可下免费使用。它支持多种流行的标注格式，并使用 AI\
+  \ 来提高标注效率。\n\n本章选择 `labelImg` 来为目标检测任务准备数据。*第 10 章* 使用 `labelme` 来为目标实例分割任务准备数据。选择标注工具后，下一步是了解该工具支持哪些标注格式、应选择哪一种，以及如何将其转换为\
+  \ Detectron2 支持的格式。\n\n## 标注格式\n\n与标注工具类似，为计算机视觉应用标注图像时也有许多不同的标注格式可用。常见的标准包括 COCO\
+  \ JSON、Pascal VOC XML 和 YOLO PyTorch TXT。还有更多格式（例如 TensorFlow TFRecord、CreateML\
+  \ JSON 等）。然而，由于篇幅限制，本节仅涵盖前面列出的三种最常见的标注标准。此外，本节使用来自 Kaggle（`https://www.kaggle.com/datasets/davidroberts/brain-tumor-object-detection-datasets`）可获取的脑肿瘤目标检测数据集测试集中的两张图像和标签来说明这些数据格式并展示它们之间的差异，如图\
+  \ *3.4* 所示。本节简要讨论每种标注格式的要点，感兴趣的读者可以参考本章的 GitHub 页面，以更详细地查看同一数据集的不同格式。\n\n\n\n\n\
+  这里是信息部分：\n\n```\n\"info\": {\n    \"year\": \"2022\",\n    \"version\": \"1\",\n\
+  \    \"description\": \"Brain tumor object detection\",\n    \"contributor\": \"\
+  \",\n    \"url\": \"<the URL to Kaggle dataset>\",\n    \"date_created\": \"2022-10-07T13:54:09+00:00\"\
+  \n},\n```\n\n这是许可证部分：\n\n```\n\"licenses\": [\n    {\n        \"id\": 1,\n     \
+  \   \"url\": \"https://creativecommons.org/publicdomain/zero/1.0/\",\n        \"\
+  name\": \"CC0 1.0\"\n    }\n],\n```\n\n这是类别部分：\n\n```\n\"categories\": [\n    {\n\
+  \        \"id\": 0,\n        \"name\": \"tumors\",\n        \"supercategory\": \"\
+  none\"\n    },\n    {\n        \"id\": 1,\n        \"name\": \"negative\",\n   \
+  \     \"supercategory\": \"tumors\"\n    },\n    {\n        \"id\": 2,\n       \
+  \ \"name\": \"positive\",\n        \"supercategory\": \"tumors\"\n    }\n],\n```\n\
+  \n这里是图像部分：\n\n```\n\"images\": [\n    {\n        \"id\": 0,\n        \"license\"\
+  : 1,\n        \"file_name\": \"00000_102.jpg\",\n        \"height\": 512,\n    \
+  \    \"width\": 512,\n        \"date_captured\": \"2022-10-07T13:54:09+00:00\"\n\
+  \    },\n    {\n        \"id\": 1,\n        \"license\": 1,\n        \"file_name\"\
+  : \"00003_154.jpg\",\n        \"height\": 512,\n        \"width\": 512,\n      \
+  \  \"date_captured\": \"2022-10-07T13:54:09+00:00\"\n    }\n],\n```\n\n这里是标注部分：\n\
+  \n```\n\"annotations\": [\n    {\n        \"id\": 0,\n        \"image_id\": 0,\n\
+  \        \"category_id\": 2,\n        \"bbox\": [170,226,49,51],\n        \"area\"\
+  : 2499,\n        \"segmentation\": [],\n        \"iscrowd\": 0\n    },\n    {\n\
+  \        \"id\": 1,\n        \"image_id\": 1,\n        \"category_id\": 1,\n   \
+  \     \"bbox\": [197,143,80,62],\n        \"area\": 4960,\n        \"segmentation\"\
+  : [],\n        \"iscrowd\": 0\n    }\n]\n```\n\n值得注意的是，边界框以绝对像素位置指定。坐标系以高度为 y 轴，宽度为\
+  \ x 轴，原点位于图片左上角。例如，对于第一张图片（00003_154.jpg 且 image_id = 1），边界框为 [197,143,80,62]，分别对应\
+  \ [x_min, y_min, width, height] 的值，如图 3.5 所示。\n\n![](img/0e7994c850a84b7a53d34c7f943c7edd_71_0.png)\n\
+  \n图 3.5：COCO 风格边界框的坐标系和标注格式（[x_min, y_min, width, height]）\n\n另一种流行的图像标注格式是 Pascal\
+  \ VOC（Pattern Analysis, Statistical Modeling, and Computational Learning, Visual\
+  \ Object Classes）格式。这种标注格式采用 XML（eXtensible Markup Language）文件格式，每张图像对应一个 XML 文件。\n\
+  \n标注文件名与图像文件名相同，只是扩展名改为 .xml。每张图像单独存储一个 XML 文件，可以避免为大型图像数据集的所有标注维持一个巨大文件。以下是演示数据集中一张图像（00003_154.jpg）的标注文件（00003_154.xml）：\n\
+  \n```\n<annotation>\n    <folder></folder>\n    <filename>00003_154.jpg</filename>\n\
+  \    <path>00003_154.jpg</path>\n    <source>\n        <database>annotationdemo</database>\n\
+  \    </source>\n    <size>\n        <width>512</width>\n        <height>512</height>\n\
+  \        <depth>3</depth>\n    </size>\n    <segmented>0</segmented>\n    <object>\n\
+  \        <name>negative</name>\n        <pose>Unspecified</pose>\n        <truncated>0</truncated>\n\
+  \        <difficult>0</difficult>\n        <occluded>0</occluded>\n        <bndbox>\n\
+  \            <xmin>197</xmin>\n            <xmax>277</xmax>\n            <ymin>143</ymin>\n\
+  \            <ymax>205</ymax>\n        </bndbox>\n    </object>\n</annotation>\n\
+  ```\n\n显然，该标注文件包含图像信息和标注对象。如图 3.6 所示，图像坐标系与之前描述的 COCO 标注格式相同。它同样有四个边界框数值：xmin、xmax、ymin\
+  \ 和 ymax。换句话说，边界框使用左上角和右下角坐标的绝对像素值存储（而不是左上角坐标加宽高值）。\n\n![](img/0e7994c850a84b7a53d34c7f943c7edd_73_0.png)\n\
+  \n图 3.6：Pascal VOC 风格边界框的坐标系和标注格式（[xmin, xmax, ymin, ymax]）\n\n由于 YOLO（You Only\
+  \ Look Once）近年来的发展，YOLO 数据标注成为另一种流行的数据格式。与 PASCAL VOC 标注风格类似，该数据集每张图像对应一个标注文件。不过，标注文件的扩展名是\
+  \ .txt。\n\n数据集组织为两个子文件夹，一个用于图像（images），一个用于标注（labels）。这些子文件夹可能进一步划分为 train（训练）、test（测试）和\
+  \ val（验证）子文件夹。还有一个名为 classes.txt 的文本文件（也可能是 *.yaml 文件），用于声明该数据集的类别或标签，每行一个。以下是我们简单演示数据集的\
+  \ classes.txt 文件内容，包含两个类别：\n\n```\nnegative\npositive\n```\n\n类似地，使用 YOLO 格式标注图像的步骤如下：\n\
+  \n1. 创建一个名为 `classes.txt` 的文件，其中包含标签列表（每行一个标签）。\n2. 按照之前的说明启动 `labelImg`。\n3. 点击\
+  \ **Open Dir** 菜单打开图像目录（如果在启动时没有指定图像目录）。\n4. 如果当前格式不是 YOLO（当前可能是 CreateML 或 Pascal\
+  \ VOC），点击 **CreateML** 或 **Pascal VOC** 菜单，直到其切换为 **YOLO**。\n5. 点击 **Change Save\
+  \ Dir** 菜单更改标注目录。\n\n每张图像对应一个带有 YOLO 格式标注的 `.txt` 文件，保存到所选目录中，文件名与图像同名。名为 `classes.txt`\
+  \ 的文件也会保存在该文件夹中。\n\n此外，以下快捷键有助于快速标注：\n\n- *W 键*：创建边界框\n- *D 键*：切换到下一张图像\n- *A 键*：切换到上一张图像\n\
+  - *Delete 键*：删除选中的边界框\n- *方向键*：移动选中的边界框\n- *Ctrl + Shift + D*：删除当前图像\n\n从不同来源或数据标注工具获取的数据集，其标注格式可能与\
+  \ Detectron2 支持的格式（COCO 数据格式）不同。因此，了解如何将不同格式的数据集转换为 COCO 格式至关重要。下一节将引导你完成这一数据集转换过程。\n\
+  \n## 标注格式转换\n\nDetectron2 的数据描述基于 COCO 标注格式构建。换句话说，它支持使用 COCO 数据标注格式注册数据集。然而，其他数据标注格式大量存在，你可能下载的数据集或使用的标注工具支持与\
+  \ COCO 不同的数据格式。因此，本节将介绍用于将流行的 Pascal VOC 和 YOLO 格式转换为 COCO 风格的代码片段。\n\n> **重要提示**\n\
+  > 以感叹号（!）开头的语句表示需要在 Jupyter notebook（Google Colab）代码单元中执行的 Bash 命令。如果你想在终端中运行，可以安全地移除这个感叹号并执行该语句。\n\
+  \n### 将 Pascal VOC 数据集转换为 COCO 数据集\n\nPascal VOC 标注格式是另一种流行的格式。因此，本节提供代码片段，用于在注册到\
+  \ Detectron2 之前将数据转换为 COCO 标注格式。本节使用前面描述的简单数据集（annotationdemo）作为演示。首先，我们下载 Pascal\
+  \ VOC 格式的脑肿瘤数据集（voc.zip）并在 Google Colab 上解压：\n\n```\n# 下载数据集并解压\n!wget url_to_voc.zip\n\
+  !unzip voc.zip\n```\n\n数据集解压后，以下代码片段安装 tree 包并查看该数据集的结构：\n\n```\n!sudo apt-get install\
+  \ tree\n!tree voc\n```\n\n以下是该数据集在 COCO 标注格式下的结构：\n\n```\nvoc\n└ test\n    ├── 00000_102.jpg\n\
+  \    ├── 00000_102.xml\n    ├── 00003_154.jpg\n    └── 00003_154.xml\n```\n\n值得注意的是，Pascal\
+  \ VOC 数据格式为每个图像文件存放一个同名、扩展名为 .xml 的标注文件。\n\n该数据集可以直接原地修改为 COCO 格式。不过，以下代码片段会将这些图像和标注复制到一个新目录（coco_dir）中用于\
+  \ COCO 数据集，从而避免修改原始数据：\n\n```\nimport os\nimport shutil\nfrom glob import glob\n\
+  from tqdm import tqdm\n\nvoc_dir = \"voc/test\"\ncoco_dir = 'coco/test'\nos.makedirs(coco_dir,\
+  \ exist_ok=True)\n```\n\n\n\n\n\n```\nxml_files = glob(os.path.join(voc_dir, \"\
+  *.xml\"))\nimg_files = glob(os.path.join(voc_dir, \"*.jpg\"))\n# copy annotations\n\
+  for f in tqdm(xml_files):\n    shutil.copy(f, coco_dir)\n# copy images\nfor f in\
+  \ tqdm(img_files):\n    shutil.copy(f, coco_dir)\n```\n\n复制完成后，使用以下代码片段即可相对容易地将该数据集作为\
+  \ pylabel 数据集加载：\n\n```\nfrom pylabel import importer\n# load dataset\ndataset =\
+  \ importer.ImportVOC(coco_dir, name=\"brain tumors\")\n```\n\n同样地，也相对容易地将加载的数据集导出为\
+  \ COCO 风格并将其存储在 _annotations.coco.json 文件中，使用以下代码片段：\n\n```\n# export\ncoco_file\
+  \ = os.path.join(coco_dir, \"_annotations.coco.json\")\n# Detectron2 requires starting\
+  \ index from 1\ndataset.export.ExportToCoco(coco_file, cat_id_index=1)\n```\n\n\
+  值得注意的是，Detectron2 要求标签索引（cat_id_index）从 1 开始。因此，ExportToCoco 方法将此值设置为 1。\n\n转换完成后，可以安全地使用以下代码片段删除\
+  \ COCO 数据集（coco_dir）中 Pascal VOC 标注文件（.xml 文件）：\n\n```\n# now delete voc annotations\
+  \ in the coco set\nfor f in xml_files:\n    os.remove(f.replace(voc_dir, coco_dir))\n\
+  ```\n\n可选地，你可以使用以下语句查看 resulting 数据集的结构：\n\n```\n!tree coco\n```\n"
+- "## Detectron2 中目标检测模型的架构\n\n本章深入探讨 Detectron2 在目标检测任务中的架构。Detectron2 中的目标检测模型是\
+  \ Faster R-CNN 的实现。具体而言，该架构包括主干网络、区域提议网络和感兴趣区域头部。本章对于理解为视觉系统设计深度神经网络时的通用术语至关重要。深入理解有助于在用自定义数据集训练时微调和定制模型以获得更好的准确率。\n\
+  \n到本章结束时，你将详细了解 Detectron2 的典型架构。你也将知道在哪里定制你的 Detectron2 模型（设置哪些配置参数、如何设置它们，以及在哪里添加/移除层）以提高性能。具体而言，本章涵盖以下主题：\n\
+  \n- 应用架构简介\n- 主干网络\n- 区域提议网络\n- 感兴趣区域头部\n\n### 技术要求\n\n你应该已按照第 1 章提供的说明设置开发环境。因此，如果你尚未完成，请在继续之前完成开发环境的设置。此外，你应该阅读第\
+  \ 2 章以了解 Detectron2 的 Model Zoo 以及可用的主干网络。所有代码、数据集和结果都可在本书的 GitHub 页面上获得（在名为 Chapter04\
+  \ 的文件夹中），网址为 https://github.com/PacktPublishing/Hands-On-Computer-Vision-with-Detectron2。强烈建议你下载代码并跟随操作。\n\
+  \nDetectron2 用于目标检测任务的架构是 Faster Region-based Convolutional Neural Network（Faster\
+  \ R-CNN）的实现。Faster R-CNN 的架构在图 4.2 中详细展示。框的样式表示其含义。具体而言，阴影框为数据（输入、中间结果和输出），虚线框为仅在训练期间执行的任务，双线框为神经网络。\n\
+  \n以下各节讨论这些单独的项目，它们如何协同工作，以及如何使用 Detectron2 配置它们。这些部分使用第 2 章中用于目标检测任务的示例模型。所有以下任务都可以通过调用默认预测器的\
+  \ predict 方法来执行。然而，本章通过输入、代码和中间结果逐步介绍每个步骤，以检查该模型的步骤和组件。通过代码检查各个组件有助于解释为什么每一步都很重要，每个步骤要更改哪些参数，以及在哪里定制模型。\n\
+  \n首先，我们需要导入 torch 包并安装 Detectron2：\n\n```\nimport torch\nprint(torch.__version__)\n\
+  !python -m pip install \\\n'git+https://github.com/facebookresearch/detectron2.git'\n\
+  ```\n\n接下来，我们将导入 Detectron2，获取配置和模型检查点文件，并创建预测器。具体而言，我们在此示例中使用 ResNet50（R50-C4），因为它简单易于说明，其配置文件为\
+  \ COCO-Detection/faster_rcnn_R_50_C4_1x.yaml。然而，对于其他主干网络，思路是相同的：\n\n```\nimport\
+  \ detectron2\nfrom detectron2.config import get_cfg\nfrom detectron2 import model_zoo\n\
+  from detectron2.engine import DefaultPredictor\n# Suppress some user warnings\n\
+  import warnings\nwarnings.simplefilter(action='ignore', category=UserWarning)\n\
+  # Select a model\nconfig_file = \"COCO-Detection/faster_rcnn_R_50_C4_1x.yaml\"\n\
+  checkpoint_url = \"COCO-Detection/faster_rcnn_R_50_C4_1x.yaml\"\n# Create a configuration\
+  \ file\ncfg = get_cfg()\nconfig_file = model_zoo.get_config_file(config_file)\n\
+  cfg.merge_from_file(config_file)\n# Download weights\ncfg.MODEL.WEIGHTS = model_zoo.get_checkpoint_url(checkpoint_url)\n\
+  score_thresh_test = 0.95\ncfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = score_thresh_test\n\
+  predictor = DefaultPredictor(cfg)\n```\n\n一个大小为 800×800 的输入图像（这是默认输入大小，因此我们不需要对输出进行后处理重采样步骤）会经过该架构的不同部分，以检查每个组件的作用。以下片段有助于准备输入：\n\
+  \n```\n!wget https://raw.githubusercontent.com/phamvanvung/hcvd2/main/800x800/input.jpeg\n\
+  import cv2\ninput_url = \"input.jpeg\"\nimg = cv2.imread(input_url)\nheight, width\
+  \ = img.shape[:2]\nimage = torch.as_tensor(img.astype(\"float32\").transpose(2,\
+  \ 0, 1))\n```\n\n具体而言，此片段首先使用 cv2 加载输入图像并获取其大小（高度和宽度）。此外，它将加载的图像转换为 PyTorch 张量，采用通道优先格式。具体而言，cv2\
+  \ 以（高度，宽度，通道）形式或（H, W, C）格式加载图像，而 Detectron2 使用（通道，高度，宽度）或（C, H, W）。\n\n一旦默认模型和输入准备就绪，就可以通过模型的不同组件传递准备好的输入并检查每个部分的作用。\n\
+  \n### 主干网络\n\n第 2 章讨论了 Detectron2 的典型主干网络。它们包括 ResNet50、ResNet101、ResNeXt101 及其变体。本节以\
+  \ ResNet50 架构为例进行检查。然而，对于其他基础模型（主干网络），思路保持不变。图 4.3 总结了检查主干网络的步骤。具体而言，我们将单个图像的数据张量传递给主干网络，主干网络（本例中为\
+  \ ResNet50）输出一个张量。该输出张量是输入图像提取的显著特征。\n\n```\nprint(stem.shape)\nprint(res2.shape)\n\
+  print(res3.shape)\nprint(res4.shape)\n```\n\n具体而言，此片段将输入张量转换为“cuda”以将该图像加载到 GPU，因为我们的模型当前在\
+  \ GPU 上运行。unsqueeze 方法将图像输入转换为（N x C x H x W）格式，其中 N 为图像数量，本例中我们传递一张图像。换句话说，此步骤将大小为\
+  \ 1x3x800x800 的张量作为该主干的输入。该输入随后馈送到 ResNet50 的主要模块（stem、res2、res3 和 res4），整个代码块应具有以下输出：\n\
+  \n```\ntorch.Size([1, 3, 800, 800])\ntorch.Size([1, 64, 200, 200])\ntorch.Size([1,\
+  \ 256, 200, 200])\ntorch.Size([1, 512, 100, 100])\ntorch.Size([1, 1024, 50, 50])\n\
+  ```\n\n图 4.4 可视化了 ResNet50 主干中这些主要模块及其对应的输出大小。值得注意的是，随着模块的推进，深度增加，尺寸减小，以从图像中提取更抽象或更显著的特征。\n\
+  \n![](img/0e7994c850a84b7a53d34c7f943c7edd_89_0.png)\n\n图 4.4：ResNet50 主干中主要模块及其对应的输出特征大小\n\
+  \n\n\n\n该主干网络的输出（提取的特征或特征图）是最后一个名为'res4'的块，大小为1x1024x50x50。从概念上讲，该特征图中的每个点都对应并负责预测和分类与原始图像中某个区域相关的边界框。换句话说，这些提取的特征对应于原始图像中的50x50（2,500）个区域。以下代码片段说明了这一思想。首先，我们准备一个方法，以原始尺寸显示图像：\n\
+  \n```\n```python\nimport numpy as np\nimport matplotlib.pyplot as plt\n\n\ndef imshow(image):\n\
+  \    dpi = plt.rcParams[\"figure.dpi\"]\n    height, width = image.shape[:2]\n \
+  \   figsize = width / float(dpi), height / float(dpi)\n    fig = plt.figure(figsize=figsize)\n\
+  \    plt.imshow(image)\n    plt.imshow(image)\n    plt.axis(\"off\")\n    plt.show()\n\
+  ```\n```\n\n现在我们可以为与50x50提取特征对应的2,500个区域的中心绘制中心点：\n\n```\n```python\nfeature_h,\
+  \ feature_w = res4.shape[2:]\nsub_sample = height/feature_h\nnew_img = img.copy()\n\
+  # the feature map points and corresponding regions\nrect_w = 4\nrect_h = 4\nfor\
+  \ i in range(feature_h):\n    for j in range(feature_w):\n        center_x = sub_sample\
+  \ * j + sub_sample/2\n        center_y = sub_sample * i + sub_sample/2\n       \
+  \ start_x = int(center_x - rect_w/2)\n        start_y = int(center_y - rect_h/2)\n\
+  \        end_x = int(center_x + rect_w/2)\n        end_y = int(center_y + rect_h/2)\n\
+  ```\n```\n\n```\n)\n(anchor_generator): DefaultAnchorGenerator(\n    (cell_anchors):\
+  \ BufferList()\n)\n)\n```\n\n可以看到，这个RPN有两个主要部分：标准的RPN头（rpn_head）和锚点生成器（anchor_generator）。此外，在训练期间，还有一个组件用于RPN计算该RPN网络的损失。最后，RPN头进行预测，为下一阶段提出区域。以下部分将深入探讨这些组件。\n\
+  \n## 锚点生成器\n\n锚点生成器在训练时用于生成所有原始锚点，每个特征像素对应一组锚点（例如15个锚点，或者根据配置不同数量的锚点，稍后详述）（本例中为50×50×15=37,500个锚点）。使用锚点是Faster\
+  \ R-CNN的一项重要技术，其他技术（如YOLO和SSD）也采用锚点来提高预测精度。具体来说，我们不必从“无”中预测边界框，而是给模型一组初始边界框（具有特定的大小和宽高比），并让模型预测相对于这些初始框的边界框（位置/边界框增量）。不同的大小和比例有助于处理不同尺度和形状的物体。\n\
+  \n该锚点生成器以锚点的比例和大小作为输入。这两个参数可以使用配置变量为Detectron2设置。以下代码片段显示了当前设置的值：\n\n```\nprint(cfg.MODEL.ANCHOR_GENERATOR.SIZES)\n\
+  print(cfg.MODEL.ANCHOR_GENERATOR.ASPECT_RATIOS)\n```\n\n该代码片段应产生以下输出：\n\n```\n[[32,\
+  \ 64, 128, 256, 512]]\n[[0.5, 1.0, 2.0]]\n```\n\n准确地说，这些大小对应于原始图像中初始锚点面积的平方根。此外，这些比例指定了这些初始锚点的高宽比。在这个具体案例中，这两组值的组合产生了15个锚点（5种大小乘以3种比例）。不同的大小和比例应对不同尺寸和宽高比的物体。与其他方法（如特征金字塔（在不同卷积层提取特征以应对不同尺寸）或使用不同的滤波器大小和比例（滑动窗口的大小））相比，这种方法（锚点金字塔）被认为更具成本效益。\n\
+  \n这些锚点以一个像素为中心，因此有点难以区分。为了便于说明，图4.8将它们分成三组相同比例、五种不同大小的锚点。\n\n![](img/0e7994c850a84b7a53d34c7f943c7edd_95_0.png)\n\
+  \n图4.8：以1个特征像素为中心的15个锚点（3种比例和5种大小）\n\n回到Detectron2的实现，以下代码片段有助于检查Detectron2如何生成这些锚点：\n\
+  \n```\n# generate anchors\nanchors = rpn.anchor_generator([res4])\nprint(anchors[0].tensor.shape)\n\
+  ```\n\n锚点生成器将提取的特征作为输入，计算sub_sample值（输入大小与特征大小之间的比率）并生成锚点。在本例中，有50×50×15=37,500个锚框。因此，该代码片段的输出如下：\n\
+  \n```\ntorch.Size([37500, 4])\n```\n\n值得注意的是，这里有37,500个锚点，每个锚点有4个位置规格（x₀， y₀， x₁，\
+  \ y₁）。为确认这一点，以下代码片段获取图像中点的15个锚点，并将其显示到原始输入上（如前所述）：\n\n```\nnew_img = img.copy()\n\
+  # the feature\ncol_idx = 24\nrow_idx = 24\nstartBox = (row_idx*50 + col_idx)*15\n\
+  for i in range(startBox, startBox + 15):\n    anchors_np = anchors[0].tensor[i].to(\"\
+  cpu\").numpy()\n    x0, y0, x1, y1 = [int(v) for v in anchors_np]\n```\n\n此代码片段有以下输出：\n\
+  \n```\ntorch.Size([1, 15, 50, 50])\ntorch.Size([1, 60, 50, 50])\n```\n\n具体来说，有1x15x50x50个锚点。因此，pred_objectness_logits中有1x15x50x50个值，用于指示每个锚点中是否有物体。类似地，每个特征点的15个锚点中每个都有4个坐标值（x0、y0、x1、y1），这就解释了pred_anchor_deltas输出的60（15x4）个值。在获得锚点和相关预测之后，训练阶段的下一步是计算RPN损失。\n\
+  \n## RPN损失计算\n\n该损失包括来自分类头的分类损失（预测锚点的objectness分数）和回归损失（预测锚点增量）。因此，每个生成的锚点都必须有一个标签。锚点要么是正样本（有物体，标签值为1），要么是负样本（没有物体，标签值为0），要么是其他情况（被忽略，标签值为-1）。标签分配任务利用锚点与真实边界框的重叠程度度量。为此常用的度量是交并比（IoU）。图4.9说明了IoU的计算。\n\
+  \n![](img/0e7994c850a84b7a53d34c7f943c7edd_97_0.png)\n\n图4.9：交并比（IoU）的计算\n\n具体来说，两个框之间的IoU是通过它们之间的交集与并集之比来计算的。\n\
+  \n如果锚点（i）与某个真实边界框具有最高的IoU，或（ii）与任何真实边界框的IoU值高于指定阈值（例如0.7），则该锚点具有正标签。第二个条件应该已经足够，但第一个条件有助于处理稀有边界框的情况。如果锚点与所有真实边界框的IoU值都小于某个阈值（例如0.3），则该锚点具有负标签。所有其他标签都被忽略（标签值为-1）。这两个IoU阈值可以使用Detectron2配置参数自定义。以下代码片段显示当前模型中的这两个值：\n\
+  \n```\nprint(cfg.MODEL.RPN.IOU_THRESHOLDS)\n```\n\n```\ngt_instance = detectron2.structures.instances.Instances(image_\n\
+  size=(800, 800))\ngt_instance.set('gt_boxes', boxes)\ngt_instance.set('gt_classes',\
+  \ classes)\ngt_instances = [gt_instance]\n```\n\n具体来说，此输入图像中有四个物体，且都是人（类别值为0）。在获得真实边界框之后，以下代码片段执行前面描述的采样策略：\n\
+  \n```\ngt_labels, gt_boxes = rpn.label_and_sample_anchors(anchors,\ngt_instances)\n\
+  print(gt_labels[0].shape)\nprint(gt_boxes[0].shape)\n```\n\n此代码片段应产生以下输出：\n\n```\n\
+  torch.Size([37500])\ntorch.Size([37500, 4])\n```\n\n变量gt_labels包含所有37,500个锚点的标签（正样本=1，负样本=0，忽略=-1）。变量gt_boxes包含锚点对应的真实框坐标。所有这些锚点都被映射到输入中的四个真实框之一。以下代码片段证明了这一点：\n\
+  \n```\nnp_gt_boxes = gt_boxes[0].to(\"cpu\").numpy()\nprint(np.unique(np_gt_boxes,\
+  \ axis=0))\n```\n\n具体来说，该代码片段将gt_boxes转换为NumPy，并获取该列表中的唯一边界框。此代码片段应产生以下输出：\n\n```\n\
+  [[190. 206. 352. 744.]\n[330. 285. 423. 690.]\n[375. 444. 479. 747.]\n[419. 375.\
+  \ 633. 711.]]\n```\n\n这些正是之前指定的真实边界框的边界框。类似地，以下代码片段显示采样锚点的标签：\n\n```\nna = gt_labels[0].to(\"\
+  cpu\").numpy()\nprint('positive', sum([x == 1 for x in na]))\n```\n\n\n\n\n\n```\n\
+  print('negative', sum([x == 0 for x in na]))\nprint('ignore', sum([x == -1 for x\
+  \ in na]))\n```\n\n具体来说，这段代码片段获取标签并统计基于标签的正样本、负样本和被忽略的锚点数量。这段代码片段应显示以下输出：\n\n```\n\
+  positive 42\nnegative 214\nignore 37244\n```\n\n因此，在 37,500 个锚点中，有 42 个为正样本，214\
+  \ 个为负样本。这 256 个锚点会参与损失计算（训练），其余的则被忽略。接下来，RPN 损失计算是分类损失（基于采样锚点的负样本和正样本标签及其各自的预测）与回归损失（基于真实边界框位置及其各自预测的锚点偏移量）之间的加权贡献。在完成所有之前步骤后，RPN\
+  \ 的下一个任务是生成 proposals。以下章节将检查 RPN 提出区域的方式。\n\n## Proposal predictions\n\n提案预测步骤引入了一个新的概念，称为非极大值抑制（NMS）。具体来说，对于一个真实框可能会产生多个提案。这些提案可能在很大区域上重叠，并且具有不同的\
+  \ objectness 分数。图 4.10 显示了为什么需要 NMS 的示例。具体来说，针对一个真实框（实线框）提出了两个提案（虚线框）。可以观察到，这两个提案有很大的重叠区域，删除其中一个并保留\
+  \ objectness 分数更高（置信度更高）的另一个提案是明智的。\n\n![](img/0e7994c850a84b7a53d34c7f943c7edd_100_0.png)\n\
+  \n图 4.10：一个真实标签（实线框）和多个提案（虚线框）\n\n具体来说，该阶段从主干网络提取特征并使用真实边界框（如果在训练）执行以下步骤：\n\n- 1.\
+  \ 为提案标注并采样（如果在训练）。\n- 2. 提取框特征。\n- 3. 执行预测。\n- 4. 计算损失（如果在训练）。\n- 5. 执行推理（如果在推理）。\n\
+  \n如果是在训练阶段，在 2,000 个提案（POST_NMS_TOPK_TRAIN）中，与正样本提案相比可能存在大量负样本提案（尤其是在训练早期阶段，RPN\
+  \ 尚未准确时）。与 RPN 阶段类似，此步骤也会基于真实标签进行标注并采样另一个包含一定比例正样本提案的 mini-batch 用于训练。只有这些采样的提案会参与损失计算。以下代码片段显示了\
+  \ Detectron2 当前设置的这些配置参数，你也可以根据需要更改这些参数：\n\n```\n```python\nprint(cfg.MODEL.ROI_HEADS.IOU_THRESHOLDS)\n\
+  print(cfg.MODEL.ROI_HEADS.BATCH_SIZE_PER_IMAGE)\nprint(cfg.MODEL.ROI_HEADS.POSITIVE_FRACTION)\n\
+  ```\n```\n\n这段代码片段应显示三个值 0.5、512 和 0.25。这些值意味着与所有真实框的 IoU 都小于 0.5 的提案被视为背景。每张图像采样\
+  \ 512 个提案用于训练，其中 25% 应为正样本提案。如果正样本提案不足，则添加其他负样本提案以使总数达到 512 个。\n\n以下代码片段显示了感兴趣区域头（roi_head）的主要组件：\n\
+  \n```\n```python\nroi_heads = predictor.model.roi_heads\nprint(roi_heads)\n```\n\
+  ```\n\n此代码片段的输出很长。因此，这里未显示。一般来说，该阶段有三个主要组件：pooler、res5 和 box_predictor。pooler 和\
+  \ res5 组件有助于在 box_predictor 完成预测之前提取框特征；以下章节将研究这些组件。\n\n## The pooler\n\n提案具有不同的尺寸，而后续步骤中的神经网络需要相同尺寸的输入特征。因此，必须在输入预测步骤之前将提取的特征裁剪为相同尺寸。pooler\
+  \ 组件有助于执行此任务。以下代码片段显示了有关 pooler 的更多信息：\n\n```\n```python\nprint(roi_head.pooler)\n\
+  ```\n```\n\n此代码片段应显示以下输出：\n\n```\n```text\nROIPooler(\n    (level_poolers): ModuleList(\n\
+  \        (0): ROIAlign(output_size=(14, 14), spatial_scale=0.0625,\n        sampling_ratio=0,\
+  \ aligned=True)\n    )\n)\n```\n```\n\n此 pooler 是 ROIPooler 类的一个实例，该类实现了 ROIAlign（Region\
+  \ of Interest Version 2）。通常，提案是在原始输入图像坐标中指定的（本例中为 800×800）。这些坐标首先被转换到提取特征的大小（宽度×高度\
+  \ = 50×50）。因此，spatial scale 为 0.0625（spatial_scale = 50/800）。\n\n此外，所有提案的输出尺寸均指定为\
+  \ 14×14。在 ROIAlignV2 中，将提案区域转换到特征图中的对应区域后，该映射区域被划分为 14×14 的网格。然后对每个网格单元进行插值（例如使用双线性插值方法）并使用四个点进行采样。aligned=True\
+  \ 选项意味着像素坐标会偏移 0.5 个像素。在原始图像中半个像素并不重要，但在小特征图分辨率下却很显著，有助于提高精度（尤其是在实例分割中，我们稍后会学习）。以下代码片段生成\
+  \ pooler 数据：\n\n```\n```python\nx = roi_heads.pooler([res4], [proposals[0].proposal_boxes])\n\
+  print(x.shape)\n```\n```\n\n此代码片段应显示一个大小为 (1000, 1024, 14, 14) 的张量，对应 1,000 个提案；每个提案有\
+  \ 1,024 个通道，分辨率为 14×14。\n\n在为所有提案获得相同尺寸的特征后，这些提案会经过另一组卷积层（称为 res5）以提取更深层次的特征。以下代码片段执行此显著特征提取：\n\
+  \n```\n```python\nbox_features = roi_heads.res5(x)\nprint(box_features.shape)\n\
+  ```\n```\n\n此可视化代码片段与 *Chapter 2* 中介绍的内容类似。图 4.11 显示了此代码片段的输出。\n\n![](img/0e7994c850a84b7a53d34c7f943c7edd_107_0.png)\n\
+  \n图 4.12：目标检测过程的可视化\n\n恭喜！到目前为止，你应该已经掌握了 Detectron2 实现的 Faster R-CNN 模型在目标检测任务中的典型架构。本章内容较为深入。然而，其设计和理念有助于你理解其他计算机视觉任务，甚至其他流行的计算机视觉技术，如\
+  \ YOLO。\n\n## Summary\n\n本章深入探讨了 Detectron2 实现的 Faster R-CNN 在目标检测任务中的组件。该模型是一种两阶段技术：区域提议阶段和感兴趣区域提取阶段。这两个阶段都使用从主干网络提取的特征。该主干网络可以是任何最先进的卷积神经网络，用于从输入图像中提取显著特征。提取的特征和用于生成一组初始锚点的信息（尺寸和比例；*Chapter\
+  \ 7* 解释了如何自定义这些尺寸和比例）随后被传递给区域提议神经网络，以预测固定数量的提案及其 objectness 分数（如果提案中存在物体）和位置偏移量（预测提案与原始锚点之间的位置差异）。选定的提案随后被传递给第二阶段的感兴趣区域头，以预测最终的物体分类和定位。深入理解这些组件为你在下一章中对自定义数据集构建更好的模型进行模型定制和优化做好了充分准备。\n\
+  \n恭喜！到目前为止，你应该对 Detectron2 的整体架构及其对 Faster R-CNN 目标检测模型的实现有了深刻的了解。在下一章中，你将使用 Detectron2\
+  \ 训练自定义目标检测模型。\n\n\n\n\n\n**重要提示**\n\n本章会在 Google Colab 实例上执行代码。你应该将 Google Drive\
+  \ 文件夹映射到实例中并把输出存储到映射的文件夹中，或者下载输出并保存以备将来使用。或者，如果你有本地实例，可以将这些 Google Colab 笔记本连接到本地实例，以便将结果保存在永久存储中并利用更好的计算资源。\n\
+  \n## 数据处理\n\n以下各节描述本章使用的数据集，并讨论在自定义数据集上训练 Detectron2 模型的典型步骤。这些步骤包括探索数据集、将数据集转换为\
+  \ COCO 格式、向 Detectron2 注册数据集，最后展示一些示例图像及对应的脑肿瘤标签。\n\n### 数据集\n\n使用的数据集是 Kaggle（https://www.kaggle.com/datasets/davidroberts/brain-tumor-object-detection-datasets）上提供的脑肿瘤目标检测数据集，该数据集已下载到本书的\
+  \ GitHub 仓库中以确保其可访问性。选择该数据集是因为医学图像处理是计算机视觉中的一个重要子领域。同时，该任务具有挑战性，且图像数量适合用于演示。\n\n\
+  ### 下载并执行初步探索\n\n数据处理的第一步是下载并执行初步数据探索。以下代码片段下载该数据集并将其解压到当前工作目录中：\n\n```\n!wget https://github.com/PacktPublishing/Hands-On-Computer-Vision-with-Detectron2/blob/main/datasets/braintumors.zip?raw=true\
+  \ -O braintumors.zip\n!unzip braintumors.zip -d braintumors\n```\n\n以下代码片段随后向我们展示该数据集中的文件夹：\n\
+  \n```\nimport os\ndata_folder = \"braintumors\"\ndata_folder_yolo = data_folder\
+  \ + \"_yolo\"\ndata_folder_coco = data_folder + \"_coco\"\nfolders = os.listdir(\"\
+  braintumors\")\nprint(folders)\n```\n\n具体来说，该数据集包含三个子文件夹：['coronal_t1wce_2_class',\
+  \ 'sagittal_t1wce_2_class', 'axial_t1wce_2_class']。下一步合理操作是使用 tree 命令打印数据集结构。因此，以下代码片段安装\
+  \ tree 并显示该数据集的文件夹结构：\n\n```\n!sudo apt-get install tree\n!tree braintumors/ -d\n\
+  ```\n\n请注意，-d 选项仅显示目录，以避免因这些文件夹中文件数量众多而导致显示过长。具体来说，上述代码片段应显示以下文件夹结构：\n\n```\nbraintumors/\n\
+  ├── axial_t1wce_2_class\n│   ├── images\n│   │   ├── test\n│   │   └── train\n│\
+  \   └── labels\n│       ├── test\n│       └── train\n├── coronal_t1wce_2_class\n\
+  │   ├── images\n│   │   ├── test\n│   │   └── train\n│   └── labels\n│       ├──\
+  \ test\n│       └── train\n└── sagittal_t1wce_2_class\n    ├── images\n    │   ├──\
+  \ test\n    │   └── train\n    └── labels\n        ├── test\n        └── train\n\
+  ```\n\n可以观察到，三个文件夹中的每一个都包含两个子文件夹，分别用于存放图像和标签。这些子文件夹中的每一个又有两个文件夹，分别用于训练数据和测试数据。需要注意的是，该数据集采用\
+  \ YOLO 标注格式。\n\n以下代码片段准备了一个辅助函数，用于统计采用 YOLO 标注格式的数据集中的图像和标签数量：\n\n```\nfrom glob\
+  \ import glob\ndef count_yolo_data(folder):\n    for images_labels in [\"images\"\
+  , \"labels\"]:\n        for train_test in [\"train\", \"test\"]:\n            file_ext\
+  \ = \"*.jpg\" if images_labels == \"images\" else \"*.txt\"\n            p = os.path.join(folder,\
+  \ images_labels, train_test, file_ext)\n            files = glob(p)\n          \
+  \  print(train_test, images_labels, len(files))\n```\n\n然后，以下代码片段统计下载的脑肿瘤数据集中三个文件夹各自包含的图像和标签数量：\n\
+  \n```\nfor folder in folders:\n    print(\" -\"*8 + folder + \"-\"*8)\n    folder\
+  \ = os.path.join(data_folder, folder)\n    count_yolo_data(folder)\n```\n\n该代码片段应显示以下输出：\n\
+  \n```\n--------coronal_t1wce_2_class--------\ntrain images 319\ntest images 78\n\
+  train labels 318\ntest labels 78\n--------sagittal_t1wce_2_class--------\ntrain\
+  \ images 264\ntest images 70\ntrain labels 264\ntest labels 70\n--------axial_t1wce_2_class--------\n\
+  train images 310\ntest images 75\ntrain labels 296\ntest labels 75\n```\n\n值得注意的是，该数据集的图像数量相对较少，且有一些图像没有标签（图片中不存在脑肿瘤）。\n\
+  \n一种方法是为每种图像类型（冠状面、矢状面或轴状面）分别训练一个模型。然而，由于图像数量较少，将这些文件夹中的图像合并到一个文件夹中可能更为合理。因此，以下代码片段准备了一个辅助方法，用于将\
+  \ YOLO 文件从一个文件夹复制到另一个文件夹：\n\n```python\nimport os\nimport shutil\nfrom tqdm import\
+  \ tqdm\n\n# move all into one folder\ndef copy_yolo_files(from_folder, to_folder,\
+  \ images_labels, train_test):\n    from_path = os.path.join(from_folder, images_labels,\
+  \ train_test)\n    to_path = os.path.join(to_folder, images_labels, train_test)\n\
+  \    os.makedirs(to_path, exist_ok=True)\n    # get files\n    file_ext = \"*.jpg\"\
+  \ if images_labels == \"images\" else \"*.txt\"\n    files = glob(os.path.join(from_path,\
+  \ file_ext))\n    # move files\n    for file in tqdm(files):\n        shutil.copy(file,\
+  \ to_path)\n```\n\n然后，以下代码片段将来自三个文件夹的图像合并到一个文件夹中：\n\n```python\n# copy\nfor from_folder\
+  \ in folders:\n    from_folder = os.path.join(data_folder, from_folder)\n    to_folder\
+  \ = data_folder_yolo\n    for images_labels in [\"images\", \"labels\"]:\n     \
+  \   for train_test in [\"train\", \"test\"]:\n            copy_yolo_files(from_folder,\
+  \ to_folder, images_labels, train_test)\n```\n\n以下代码片段显示新合并数据集的结构：\n\n```bash\n\
+  # Now the folder should look like\n!tree -d {data_folder_yolo}\n```\n\n现在，我们准备好使用第\
+  \ 3 章中介绍的代码片段将这些数据集转换为 COCO 格式。\n\n### 数据格式转换\n\nDetectron2 支持 COCO 数据格式，而当前数据集为\
+  \ YOLO 格式。因此，以下代码片段执行数据格式转换。首先，运行以下代码片段安装 pylabel 包：\n\n```\n!pip install -q pylabel\n\
+  ```\n\n接下来，以下片段创建一个辅助方法来执行数据转换（如第 3 章所述）：\n\n```\nfrom pylabel import importer\n\
+  \ndef yolo_to_coco(input_folder, output_folder, train_test):\n    # Some codes are\
+  \ removed here (please refer to GitHub)\n    # copy annotations\n    for f in tqdm(txt_files):\n\
+  \        shutil.copy(f, coco_dir)\n    # copy images\n    for f in tqdm(img_files):\n\
+  \        shutil.copy(f, coco_dir)\n    # get the classes\n    with open(os.path.join(input_folder,\
+  \ \"classes.txt\"), \"r\") as f:\n        classes = f.read().split(\"\\n\")\n  \
+  \  # import\n    dataset = importer.ImportYoloV5(path=coco_dir, cat_names=classes,\
+  \ name=\"brain tumors\")\n    # export\n    coco_file = os.path.join(coco_dir, \"\
+  _annotations.coco.json\")\n    # Detectron requires starting index from 1\n    dataset.export.ExportToCoco(coco_file,\
+  \ cat_id_index=1)\n    # now delete yolo annotations in coco set\n    for f in txt_files:\n\
+  \        os.remove(f.replace(labels_path, coco_dir))\n```\n\n此时，如果所有这些数据处理步骤都是在\
+  \ Google Colab 上执行的，那么最好将生成的 COCO 数据集下载到本地计算机，或者映射 Google Drive 文件夹并将生成的数据集保存到 Google\
+  \ Drive 文件夹中，以免在 Google Colab 实例关闭后丢失数据集。在本例中，转换后的 COCO 数据集已存储在本书的 GitHub 文件夹中，供后续章节使用。\n\
+  \n现在数据集已准备好并正确注册，是时候训练模型并查看它们在使用 Detectron2 时的表现了。在自定义数据集上执行模型训练的最简单方法是使用 Detectron2\
+  \ 提供的默认训练器类。\n\n### 使用默认训练器\n\nDetectron2 提供了一个默认训练器类，可方便地在自定义数据集上训练 Detectron2\
+  \ 模型。首先，我们下载上一节中转换的数据集并解压：\n\n```\n!wget -q https://github.com/PacktPublishing/Hands-On-Computer-Vision-with-Detectron2/raw/main/datasets/braintumors_coco.zip\n\
+  !unzip -q braintumors_coco.zip\n```\n\n接下来，安装 Detectron2，并使用上一节中给出的确切代码片段注册训练/测试数据集。此外，在训练之前，运行以下代码片段来准备一个记录器，Detectron2\
+  \ 将使用它来记录训练/推理信息：\n\n```\nfrom detectron2.utils.logger import setup_logger\nlogger\
+  \ = setup_logger()\n```\n\n注册好数据集并设置好记录器之后，下一步是获取训练配置。具体来说，我们设置输出目录（用于存储日志事件和训练后的模型）、用于保存配置文件的路径（该文件将用于未来的推理）、类别数为正负两类（nc\
+  \ = 2），以及将设备选项设置为 cuda（用于在 GPU 上训练）。最后，为了加快训练速度，我们还选择 ResNet50 FPN 作为要训练模型的骨干网络：\n\
+  \n```\nimport os\nfrom detectron2.config import get_cfg\nfrom detectron2 import\
+  \ model_zoo\nimport pickle\n\noutput_dir = \"output/object_detector\"\nos.makedirs(output_dir,\
+  \ exist_ok=True)\noutput_cfg_path = os.path.join(output_dir, \"cfg.pickle\")\nnc\
+  \ = 2\n```\n\n\n```python\ndevice = \"cuda\"\n\nconfig_file_url = \"COCO-Detection/faster_rcnn_R_50_FPN_3x.yaml\"\
+  \ncheckpoint_url = \"COCO-Detection/faster_rcnn_R_50_FPN_3x.yaml\"\n```\n\n此外，下面的代码片段创建了一个训练配置：\n\
+  \n```python\n# Create a configuration file\ncfg = get_cfg()\nconfig_file = model_zoo.get_config_file(config_file_url)\n\
+  cfg.merge_from_file(config_file)\ncfg.MODEL.WEIGHTS = model_zoo.get_checkpoint_url(checkpoint_url)\n\
+  \n# Download weights\ncfg.MODEL.WEIGHTS = model_zoo.get_checkpoint_url(checkpoint_url)\n\
+  \n# Set datasets\ncfg.DATASETS.TRAIN = (name_ds_train,)\ncfg.DATASETS.TEST = (name_ds_test,)\n\
+  # Workers\ncfg.DATALOADER.NUM_WORKERS = 2\n# Images per batch\ncfg.SOLVER.IMS_PER_BATCH\
+  \ = 8\n# Learning rate\ncfg.SOLVER.BASE_LR = 0.00025\n# Iterations\ncfg.SOLVER.MAX_ITER\
+  \ = 5000\ncfg.SOLVER.CHECKPOINT_PERIOD = 500\n# Classes\ncfg.MODEL.ROI_HEADS.NUM_CLASSES\
+  \ = nc\ncfg.MODEL.DEVICE = device\ncfg.OUTPUT_DIR = output_dir\n```\n\n我们使用在 Detectron2\
+  \ 中注册的相应名称来设置训练和测试数据集。接下来，我们将数据加载器的工作进程数设置为 2，并将每批图像数设置为 8（你可以更改此数字以适应可用的 GPU）。此外，由于我们使用迁移学习（通过重用从\
+  \ Detectron2 Model Zoo 训练得到的权重），我们设置了一个相对较小的学习率——在本例中为 0.00025。此外，我们将训练 5,000 次迭代，并且每\
+  \ 500 次迭代保存一次模型。\n\n```\nmodel_0004999.pth\nmodel_final.pth\n```\n\n输出包括配置文件（cfg.pickle）、一个用于记录日志事件的文件、最后一个检查点（last_checkpoint）（以便模型可以在需要时恢复训练）、一个包含所有训练评估指标的文件（metrics.json），以及每\
+  \ 500（cfg.SOLVER.CHECKPOINT_PERIOD）次迭代保存的所有模型。值得注意的是，最后一次迭代（cfg.SOLVER.MAX_ITERATIONS）的模型被保存为\
+  \ model_final.pth。\n\n得到训练结果后，下一步是进行一些模型评估，并选择表现最佳的模型。\n\n## 选择最佳模型\n\n选择最佳模型需要评估指标。因此，在选择最佳模型之前，我们需要了解用于目标检测任务的常见评估术语和评估指标。此外，在获得最佳模型后，本节还提供了相关代码，用于采样并可视化一些预测结果，以定性评估所选模型。\n\
+  \n## 目标检测模型的评估指标\n\n目标检测任务使用两个主要的评估指标：mAP@0.5（或 AP50）和 F1-score（或 F1）。前者是交并比（IoU）阈值为\
+  \ 0.5 时平均精度（mAP）的均值，用于选择最佳模型。后者表示精确率和召回率的调和平均值，用于报告所选模型在特定数据集上的表现。这两个指标的定义都基于精确率（Precision）和召回率（Recall）的计算：\n\
+  \nPrecision = TP / (TP + FP)\n\nRecall = TP / (TP + FN)\n\n这里，TP（真正例，True Positive）表示被正确分类和定位（基于\
+  \ IoU 阈值）的预测对象数量；FP（假正例，False Positive）表示被错误分类或定位的预测对象数量；FN（假负例，False Negative）表示未被正确预测的真实对象数量。然后可以使用以下公式计算\
+  \ F1-score：\n\nF1 = 2 × Precision × Recall / (Precision + Recall)\n\n```\n'model_0002999.pth',\n\
+  'model_0003499.pth',\n'model_0003999.pth',\n'model_0004499.pth',\n'model_final.pth']\n\
+  ```\n\n这段代码列出了训练过程中每个检查点周期（cfg.SOLVER.CHECKPOINT_PERIOD）保存的所有模型。值得注意的是，训练完成后（在 cfg.SOLVER.MAX_ITER\
+  \ 迭代处）的模型被命名为 model_final.pth。此外，模型名称中的数字总是用零填充，以使其长度为 7。\n\n下面的代码片段准备了一个评估器，用于评估这些模型中的每一个在测试集上的表现：\n\
+  \n```\nfrom detectron2.engine import DefaultPredictor\nfrom detectron2.evaluation\
+  \ import COCOEvaluator\nevaluator = COCOEvaluator(\n    dataset_name = name_ds_test,\n\
+  \    tasks=(\"bbox\",),\n    distributed=False,\n    output_dir = os.path.join(output_dir,\
+  \ 'test_results')\n)\n```\n\n值得注意的是，选择 COCOEvaluator 是因为数据集采用 COCO 格式。此外，tasks 选项中的\
+  \ \"bbox\" 输入告诉评估器执行目标检测任务的评估。测试结果存储在输出目录下的 'test_results' 文件夹中。获得评估器后，下面的代码片段对生成的每个模型执行评估：\n\
+  \n```\n# evaluate all folders\nimport logging\nlogger.setLevel(logging.CRITICAL)\n\
+  model_eval_results = []\nfor model_name in model_names:\n    # load weights\n  \
+  \  cfg.MODEL.WEIGHTS = os.path.join(cfg.OUTPUT_DIR, model_name)\n    cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST\
+  \ = 0.5\n    # predictor\n    predictor = DefaultPredictor(cfg)\n    # evaluate\n\
+  \    x = trainer.test(cfg, predictor.model,\n```\n\n```python\nbest_model_name =\
+  \ model_names[best_model_idx]\nbest_ap = aps[best_model_idx]\nanno_text = f'The\
+  \ best model {best_model_name} has\\nmAP@0.5={round(best_ap, 2)}'\n\nplt.figure(figsize=(12,\
+  \ 6))\nx = [i for i in range(len(aps))]\nY = aps\nplt.xticks(ticks=x, labels=model_names,\
+  \ rotation=45)\nplt.plot(x, Y)\nplt.scatter(x, Y)\nplt.plot([best_model_idx, best_model_idx],\
+  \ [0, best_ap], '--')\nplt.ylabel(\"mAP@0.5\")\nplt.text(best_model_idx+0.1, best_ap,\
+  \ anno_text, ha=\"left\",\\nva=\"center\")\nplt.show()\n```\n\n*图 5.4* 显示了这段代码的输出：\n\
+  \n![](img/0e7994c850a84b7a53d34c7f943c7edd_126_0.png)\n\n图 5.4：所有模型的平均精度均值（mAP@50）\n\
+  \n```\nplt.show()\n# Similar code for predicted results (removed here)\n```\n\n\
+  值得注意的是，该方法的第一部分会采样少量输入，并可视化输入图像及其标注。第二部分（已移除）对采样输入执行预测，并可视化相应的预测标注。接下来，我们使用下面的代码片段为最佳模型创建预测器：\n\
+  \n```\ncfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = 0.5\ncfg.MODEL.WEIGHTS = os.path.join(cfg.OUTPUT_DIR,\
+  \ best_model_name)\npredictor = DefaultPredictor(cfg)\n```\n\n值得注意的是，这段代码将 SCORE_THRES_TEST\
+  \ 值设为 0.5（应使用前面提供的类似代码片段进行优化）以获得更好的结果。最后，我们可以运行下面的代码片段来随机采样图像，并可视化真实标签和预测结果：\n\n\
+  ```\nplot_random_samples(name_ds_test, predictor = predictor)\n```\n\n这段代码应显示输出，如图\
+  \ 5.6 所示。值得注意的是，边界框的颜色由 Detectron2 可视化器生成，在这种情况下没有含义。\n\n![](img/0e7994c850a84b7a53d34c7f943c7edd_129_0.png)\n\
+  \n![](img/0e7994c850a84b7a53d34c7f943c7edd_129_1.png)\n\n图 5.6：采样图像及其对应的真实标签和预测标签\n\
+  \n总的来说，定位（边界框）相当不错，但仍然存在错误分类。这个结果是合理的，因为在图像中观察是否存在肿瘤相对容易，但要确认一个肿瘤是阳性还是阴性则更难。此外，该模型可能会将同一个肿瘤同时预测为阳性和阴性，因为目前\
+  \ NMS 过程是按类别进行的（如前一章所述）。然而，在这种情况下，一个肿瘤要么是阳性，要么是阴性（不可能两者都是）。因此，有机会通过忽略类别标签来执行 NMS\
+  \ 过程以优化模型，我们将在下一章进行这项工作。\n\n使用 Detectron2 默认训练器（`DefaultTrainer`）训练模型非常方便，可以满足大多数常见需求。然而，在某些情况下，我们可能需要开发自定义训练器，以方便训练并分析训练指标和结果。下一节将介绍训练器类的基本组件以及如何自定义它们。\n\
+  \n## 开发自定义训练器\n\n开发 Detectron2 自定义训练器有几个原因。例如，我们可能希望自定义数据集加载器以引入更多图像增强技术，或者添加评估器来评估训练后的模型在训练过程中的表现。下面的代码片段提供了为后者构建自定义训练器的源代码，而*第\
+  \ 8 章*则涵盖前者的代码：\n\n```python\nfrom detectron2.engine import DefaultTrainer\nfrom\
+  \ detectron2.evaluation import COCOEvaluator\nclass BrainTumorTrainer(DefaultTrainer):\n\
+  \    @classmethod\n    def build_evaluator(cls, cfg, dataset_name, output_\nfolder=None):\n\
+  \        if output_folder == None:\n            output_folder = cfg.OUTPUT_DIR\n\
+  \        else:\n            output_folder = os.path.join(cfg.OUTPUT_DIR,\n     \
+  \                                    output_folder)\n        os.makedirs(output_folder)\n\
+  \        return COCOEvaluator(dataset_name,\n                             distributed\
+  \ = False,\n                             output_dir = output_folder)\n```\n\n\n\
+  具体来说，这个自定义训练器重写了 `build_evaluator` 方法，返回一个 COCOEvaluator 对象，用于评估测试集。之所以选择 COCOEvaluator\
+  \ 类，是因为测试数据集采用 COCO 格式。在指定评估器后，以下代码片段指定了该评估器的执行频率：\n\n```\ncfg.TEST.EVAL_PERIOD\
+  \ = cfg.SOLVER.CHECKPOINT_PERIOD\n```\n\n这段代码将评估周期设置为与检查点周期相同，因此每次保存检查点时都会进行评估。接下来的代码片段创建了一个自定义训练器，并像默认训练器一样执行训练：\n\
+  \n```\ntrainer = BrainTumorTrainer(cfg)\ntrainer.train()\n```\n\n你可能会好奇，为什么在训练过程中执行评估器比在训练完成后评估训练好的模型更有价值。这种用法有几个原因。其一，这种方法可以在训练期间监控\
+  \ COCO 评估指标的结果，这些指标可用于选择最佳模型并执行早停（当连续多次迭代后不再看到改进时，提前停止训练）。\n\n另一个例子是，评估指标与训练指标（如分类损失和边界框损失）一起存储，并提供了使用\
+  \ TensorBoard 等工具在训练期间评估偏差与方差权衡的机会。下一节将介绍一个名为**钩子系统**的新概念，并结合本节提出的思路来演示第一种场景。*第\
+  \ 6 章*将利用 TensorBoard 来演示第二种场景。\n\n## 利用钩子系统\n\n钩子系统允许将类合并到训练事件中执行若干任务。自定义钩子基于继承\
+  \ Detectron2 中名为 `detectron2.engine.HookBase` 的基类构建。钩子允许开发人员通过重写以下方法在四个事件上执行任务：\n\
+  \n- `before_training()` 用于在第一次训练迭代之前执行任务\n- `after_training()` 用于在训练完成后执行任务\n- `before_step()`\
+  \ 用于在每次训练迭代之前执行任务\n- `after_step()` 用于在每次训练迭代之后执行任务\n\n以下代码片段创建了一个钩子，用于从先前构建的自定义训练器中读取\
+  \ COCOEvaluator 生成的评估指标，跟踪具有最高 mAP@0.5 值的最佳模型，并将模型保存为 model_best.pth：\n\n```\n#\
+  \ 为节省篇幅，省略了一些导入语句\nclass BestModelHook(HookBase):\n    def __init__(self, cfg,\n\
+  \                metric = \"bbox/AP50\",\n                min_max = \"max\"):\n\
+  \        # 后续说明\n    def _take_latest_metrics(self):\n        # 后续说明\n    def after_step(self):\n\
+  \        # 后续说明\n```\n\n该类重写了 __init__ 方法，以传入 metric 和另一个参数（min_max），用于指示如何监控指标值（最小或最大）：\n\
+  \n```\nself._period = cfg.TEST.EVAL_PERIOD\nself.metric = metric\nself.min_max =\
+  \ min_max\nself.best_value = float(\"-inf\") if min_max == \"max\" else float(\"\
+  inf\")\nlogger = logging.getLogger(\"detectron2\")\nlogger.setLevel(logging.DEBUG)\n\
+  logger.propagate = False\nself._logger = logger\n```\n\n这个 BestModelHook 类还创建了一个方法（_take_latest_metrics），用于获取训练过程中存储的所有评估指标：\n\
+  \n```\nwith torch.no_grad():\n    latest_metrics = self.trainer.storage.latest()\n\
+  \    return latest_metrics\n```\n\n然后，after_step 方法遍历所有评估指标，获取监控值，并在评估结果优于当前最佳值时保存训练模型：\n\
+  \n```\nnext_iter = self.trainer.iter + 1\nis_final = next_iter == self.trainer.max_iter\n\
+  if is_final or (self._period > 0 and next_iter % self._period == 0):\n    latest_metrics\
+  \ = self._take_latest_metrics()\n    for (key, (value, iter)) in latest_metrics.items():\n\
+  \        if key == self.metric:\n            if (self.min_max == \"min\" and value\
+  \ < self.best_value) or (self.min_max == \"max\" and value > self.best_value):\n\
+  \                self._logger.info(\"Updating best model at iteration {} with {}\
+  \ = {}\".format(iter, self.metric, value))\n                self.best_value = value\n\
+  \                self.trainer.checkpointer.save(\"model_best\")\n```\n\n值得注意的是，该钩子是通过重写\
+  \ after_step() 方法来构建的。然而，它只在每个 `cfg.TEST.EVAL_PERIOD` 迭代且 COCOEvaluator 产生结果时执行其任务。\n\
+  \n以下代码片段利用自定义训练器和钩子在训练期间执行模型评估和选择：\n\n```\ntrainer = BrainTumorTrainer(cfg)\nbm_hook\
+  \ = BestModelHook(cfg, metric=\"bbox/AP50\", min_max=\"max\")\ntrainer.register_hooks(hooks=[bm_hook])\n\
+  trainer.train()\n```\n\n显然，将钩子注册到训练器中相对简单。此外，latest_metrics 变量包含许多训练和评估指标，我们只提取测试集上的\
+  \ mAP@0.5（bbox/AP50）。最后，训练过程与默认训练器保持一致。最终，除了默认训练器生成的模型之外，还会有一个名为 model_best.pth\
+  \ 的模型，它保存了在测试数据集上评估具有最高 mAP@0.5 的模型权重。\n\n恭喜！到此为止，你应该已经掌握了在自定义数据集上执行数据处理和训练自定义模型的步骤。此外，你还应该了解如何在训练中融入更多自定义处理。\n\
+  \n## 小结\n\n本章讨论了使用 Detectron2 训练目标检测模型时，探索、处理和准备自定义数据集的步骤。处理数据集后，将训练、测试和评估数据（如果有）注册到\
+  \ Detectron2 并开始使用默认训练器训练目标检测模型是相对容易的。训练过程可能会产生许多模型。因此，本章提供了标准的评估指标和选择最佳模型的方法。默认训练器可能满足最常见的训练需求。然而，在某些情况下，可能需要自定义训练器来在训练过程中加入更多自定义功能。本章提供了构建自定义训练器的代码片段，使训练过程中能够包含对测试集的评估。同时，还提供了一个自定义钩子的代码片段，用于提取评估指标并在训练期间保存最佳模型。\n\
+  \n下一章，即第 6 章，将使用 TensorBoard 分析默认训练器和本章构建的自定义训练器生成的训练与评估指标。分析这些指标应能提供调整目标检测模型以实现更高性能的方法。\n"
+- "## 检查训练结果并微调 Detectron2 的求解器\n\n本章介绍如何使用 TensorBoard 检查训练历史。它利用代码和可视化方法解释 Detectron2\
+  \ 求解器背后的概念及其超参数。相关概念包括梯度下降、随机梯度下降、动量和可变学习率优化器。本章还提供代码，帮助你找到 Detectron2 求解器的标准超参数。\n\
+  \n学完本章后，你将能够使用 TensorBoard 分析训练结果并获得洞见。你还会深入理解 Detectron2 求解器的关键超参数。此外，你将能够使用代码为自定义数据集生成这些超参数的合适值。具体而言，本章涵盖以下主题：\n\
+  \n- 使用 TensorBoard 检查训练历史\n- 理解 Detectron2 的求解器\n- 微调学习率和批大小\n\n### 技术要求\n\n你必须已完成*第\
+  \ 1 章*，才能拥有适合 Detectron2 的开发环境。所有代码、数据集和结果均可在本书的 GitHub 仓库中获取：`https://github.com/PacktPublishing/Hands-On-Computer-Vision-with-Detectron2`。强烈建议你下载代码并跟随操作。\n\
+  \n\n\n\n## 使用 TensorBoard 检查训练历史\n\n在微调模型之前，了解训练期间测量的评估指标至关重要，例如训练损失（例如，分类损失和定位损失）、学习率变化，以及在测试集上的验证测量（例如，mAP@0.5），这些指标会随时间变化。这些指标使我们能够理解训练过程，以便调试和微调模型。Detectron2\
+  \ 的记录器会自动以 TensorBoard 可用的格式记录训练和测试数据的评估指标。\n\nTensorBoard（https://www.tensorflow.org/tensorboard）提供工具和可视化，以便我们探索机器学习实验中的训练和评估过程。以下代码片段下载我们在第\
+  \ 5 章中进行的两个实验的训练日志并解压它们：\n\n```\n# download and extract\n!wget {url_to_object_detector.zip}\n\
+  !wget {url_to_object_detector_hook.zip}\n!unzip object_detector.zip\n!unzip object_detector_hook.zip\n\
+  ```\n\n获取训练和评估日志后，以下代码片段加载 TensorBoard，以便您可以查看训练结果：\n\n```\noutput_dir = \"output/\"\
+  \n%load_ext tensorboard\n%tensorboard --logdir {output_dir} --host localhost\n```\n\
+  \n正如我们所见，此代码片段将输出目录设置为存储训练日志的 output 文件夹。然后它将 TensorBoard 加载为内部 Web 服务器并将其嵌入到 Google\
+  \ Colab 的输出单元格中。\n\n> 重要提示\n> 如果已加载 TensorBoard，请运行 %reload_ext tensorboard 而不是\
+  \ %load_ext tensorboard，或在使用其进程 ID 终止当前服务器后再加载新实例。\n\n图 6.1 显示了 Detectron2 目标检测模型的训练和评估日志在\
+  \ SCALARS 选项卡中的日志：\n\n![](img/0e7994c850a84b7a53d34c7f943c7edd_138_0.png)\n\n图 6.1：TensorBoard\
+  \ 及训练和评估日志的 SCALARS 选项卡\n\n日志记录步骤在训练期间每 20 次迭代执行一次（此数字可配置），默认情况下有 12 类标量：\n\n- `data_time`\
+  \ 类别存储准备训练数据所需的时间。\n- `eta_seconds` 类别存储训练完成前的估计秒数。\n- `fast_rcnn` 类别存储 Fast R-CNN\
+  \ 评估指标。这些是分类准确率（`cls_accuracy`）、假阴性（`false_negative`）和前景（对象）分类准确率（`fg_cls_accuracy`）。\n\
+  - `loss_box_reg` 类别存储边界框回归（或定位损失）的损失。\n- `loss_cls` 类别存储分类损失。\n- `loss_rpn_cls`\
+  \ 类别存储区域建议网络物体性分类损失。\n- `loss_rpn_loc` 类别存储区域建议网络定位（边界框）损失。\n- `lr` 类别存储学习率。学习率可能因具有预热期、在某些步骤降低的步骤，或使用其他参数而变化。\n\
+  \n## 理解 Detectron2 的求解器\n\n我们应该尝试两种明显的微调技术：更改骨干网络和增加批大小。如 Detectron2 Model Zoo（第\
+  \ 3 章介绍）所示，我们在第 5 章中选择的骨干是最简单的（ResNet50），在预训练数据集上的 mAP@0.5 较低。它轻量且训练和推理速度快，因此我们一直在使用免费的\
+  \ Google Colab 计划进行实验。如果计算资源可用，选择 Detectron2 Model Zoo 中更强大的骨干，例如 X101FPN，将是有益的。然而，在本节中，我们将保留这个简单的骨干模型并尝试设置和优化器类型。这些是标准超参数，因为它们适用于深度学习总体。\n\
+  \n了解可用的优化器及其相关超参数对于理解 Detectron2 为微调模型提供的配置参数至关重要。本节简要介绍深度学习中常见的优化器类型。\n\n### 梯度下降\n\
+  \n梯度下降是训练深度神经网络时最基本的概念之一。通常，在训练神经网络时，有一个成本（损失）函数（$L$），我们需要对其关于模型参数（$W$）进行优化（最小化）。我们使用微积分来执行此优化，通过获取损失函数对参数的导数，将其设为零并获得最优结果。然而，在复杂的深度神经网络中（通常如此），很难（甚至不可能）求解此方程。因此，使用数值近似更为合适。*图\
+  \ 6.4* 使用一个参数的简单损失函数说明了这一思想：\n\n![](img/0e7994c850a84b7a53d34c7f943c7edd_141_0.png)\n\
+  \n图 6.4：梯度下降步骤示例\n\n具体来说，损失函数为 $L(w) = w^2 - 4w + 5$，其导数为 $\\nabla L(w) = 2w - 4$。此情况下的梯度下降算法很简单：\n\
+  \n```\nInitialize w with a random value\nfor e in range(num_epochs):\n    update\
+  \  w = w - η ∇L(w)\n```\n\n这里，num_epochs 是执行训练的步数，学习率（$η$）决定了参数 $w$ 在每次训练步骤中根据损失函数的导数更新其值的幅度。这些是梯度下降算法的两个基本超参数。\n\
+  \n例如，当前参数 $w$ 为 4，选择的学习率为 $η = 0.1$。该损失函数的切线（虚线）的斜率是导数 $∇L(4) = 4$。在这一点，$w$ 应该向左移动，即\
+  \ $w = 3.6$。类似地，后续步骤应对应 $w = 3.28, 3.024$，等等。如果我们继续这样做，损失函数最终会收敛到最优点，前提是步长足够小。值得注意的是，当损失函数的导数幅度变小时，步长也会变小。\n\
+  \n此时，问题是如何选择训练的 epoch 数和学习率。一般来说，选择较小的学习率会使学习过程变慢，模型收敛需要很长时间。另一方面，较大的学习率可能导致 $w$\
+  \ 参数左右波动且不收敛等问题。\n\n让我们采用一个简单的代码方法来演示这些思想。以下代码片段定义了损失函数（在训练数据上计算）及其对应的导数：\n\n```\n\
+  def L(w):\n    return w**2 - 4*w + 5\ndef dL(w):\n    return 2*w - 4\n```\n\n以下代码片段准备一个简单的函数来模拟训练过程，初始训练权重值（w0）、学习率（lr）和\
+  \ epoch 数（num_epochs）：\n\n```\ndef train(w0, lr, num_epochs):\n    ws, Ls = [],\
+  \ [], w0\n    for e in range(num_epochs):\n        Ls.append(L(w))  # loss\n   \
+  \     ws.append(w)  # weight\n        dLw = dL(w)  # gradient\n        w = w - lr*dLw\
+  \  # update\n    return ws, Ls\n```\n\n此函数返回随时间变化的权重列表及其对应的损失。以下代码片段然后接收这两个列表并可视化训练过程中的变化：\n\
+  \n```\n```python\n# import statements for matplotlib and numpy\ndef visualize(ws,\
+  \ Ls):\n    w_range = np.linspace(-0.5, 4.5, 100)\n    L_range = [L(w) for w in\
+  \ w_range]\n    plt.plot(w_range, L_range)\n    plt.scatter(ws, Ls)\n    plt.plot(ws,\
+  \ Ls)\n    plt.scatter(ws,[0]*len(ws))\n    ax = plt.gca()\n    msg = f'lr={lr}\\\
+  nnum_epochs={num_epochs}'\n    plt.text(0.6, 0.95, msg,\n        horizontalalignment='left',\n\
+  \        verticalalignment='top',\n        transform = ax.transAxes)\n    plt.show()\n\
+  ```\n```\n\n最后，以下代码片段为特定超参数集生成实验（假设 w0=4.0）：\n\n```\n```python\nnum_epochs = 20\n\
+  lr = 0.1\nws, Ls = train(w0, lr, num_epochs)\nvisualize(ws, Ls)\n```\n```\n\n*图\
+  \ 6.5* 显示了不同超参数集下训练时间中权重（X 轴）及其对应损失（Y 轴）的变化：\n\n\n值得注意的是，我们选择的损失函数是均方误差（MSE）。下面的代码片段创建了一个名为GD（梯度下降）的优化器，用于在给定学习率和梯度的情况下执行参数更新：\n\
+  \n```\nclass GD():\n    def __init__(self, lr):\n        self.lr = lr\n\n    def\
+  \ backward(self, theta, gradients):\n        theta = theta - self.lr*(gradients)\n\
+  \        return theta\n```\n\n接下来，我们必须创建一个函数，在给定X和Y数据（无论是批次还是整个轮次）的情况下执行一次训练步骤：\n\
+  \n```\ndef train_step(X, Y, theta, optimizer):\n    # forward\n    Y_hat = forward(theta,\
+  \ X)\n    loss = mse(Y_hat, Y)\n    dLdTheta = gradient(X, Y, Y_hat)\n    theta\
+  \ = optimizer.backward(theta, dLdTheta)\n    return theta, loss, dLdTheta\n```\n\
+  \n现在我们已经知道了如何在每次迭代（批次或轮次）中执行训练，下面的代码片段可以帮助我们执行训练循环：\n\n```\ndef train(X, Y, theta0,\
+  \ optimizer, num_epochs):\n    losses = []\n    thetas = []\n    dLdThetas = []\n\
+  \    theta = theta0\n    for epoch in range(num_epochs):\n        theta, loss, dLdTheta=train_step(X,\
+  \ Y, theta,optimizer)\n        thetas.append(theta)\n        losses.append(loss)\n\
+  \        dLdThetas.append(dLdTheta)\n    return losses, thetas, dLdThetas\n```\n\
+  \n此外，下面的代码片段创建了一个函数，帮助我们可视化损失在训练迭代中的变化情况：\n\n```\n```python\ndef plot_losses(losses):\n\
+  \    plt.plot(losses)\n    plt.ylim([-1, 20])\n    ax = plt.gca()\n    msg = f'Final\
+  \ loss: {round(losses[-1], 3)}'\n    plt.text(0.99, 0.1, msg,\n        horizontalalignment='right',\n\
+  \        verticalalignment='top',\n        transform = ax.transAxes)\n    plt.xlabel(\"\
+  iteration\")\n    plt.ylabel(\"loss\")\n    plt.show()\n```\n```\n\n进一步地，下面的代码片段还可视化了训练参数（theta）在训练迭代中的变化情况：\n\
+  \n```\n```python\ndef plot_thetas(thetas, losses):\n    grid_size = 100\n    thetas\
+  \ = np.array(thetas)\n    theta1s = np.linspace(0, 4, grid_size)\n    theta2s =\
+  \ np.linspace(1, -7, grid_size)\n    Z = np.zeros((grid_size, grid_size))\n    for\
+  \ i in range(grid_size):\n        for j in range(grid_size):\n            theta\
+  \ = np.array([[theta1s[i]], [theta2s[j]]])\n            Y_hat = forward(theta, X)\n\
+  \            loss = mse(Y_hat, Y)\n            Z[i,j] = loss\n    # some simple\
+  \ plotting code lines are removed for space eff.\n```\n```\n\n接下来，我们必须随机初始化训练参数的值，并设置一些训练超参数：\n\
+  \n```\n```python\ntheta0 = np.random.rand(2, 1)\nnum_epochs = 500\nlr = 0.001\n\
+  ```\n```\n\n下面的代码片段使用梯度下降方法执行训练并可视化结果：\n\n```\n```python\noptimizer = GD(lr = lr)\n\
+  losses, thetas, dLdthetas = train(X, Y, theta0,\noptimizer=optimizer, num_epochs=num_epochs)\n\
+  plot_losses(losses)\nplot_thetas(thetas, losses)\n```\n```\n\n*图6.8* 显示了使用梯度下降方法时，训练迭代中的损失和theta值变化：\n\
+  \n![](img/0e7994c850a84b7a53d34c7f943c7edd_149_0.png)\n\n可以观察到，损失和theta值变化得逐渐且平滑，因为训练步骤是在整个数据集上执行的。然而，训练过程在500次迭代后没有收敛（X标记表示收敛点）。\n\
+  \n另一方面，下面的代码片段准备了一种使用随机梯度下降方法执行训练过程的方法：\n\n```\n```python\ndef train_mini_batch(X,\
+  \ Y, theta0, optimizer, num_epochs,\nbatch_size):\n    # some simple initialization\
+  \ code lines are removed here\n    for e in range(num_epochs):\n        # shuffle\n\
+  \        np.random.shuffle(indices)\n        for i in range(batches):\n        \
+  \    start = i*batch_size\n            stop = start + batch_size\n            indices_b\
+  \ = indices[start:stop]\n```\n```\n\n## 动量\n\n梯度下降仅基于损失函数当前导数的值来更新权重。另一方面，动量方法除了考虑当前梯度的影响外，还考虑过去梯度的累积。打个比方，我们可以将随机/梯度下降方法视为在路上推一个箱子。如果我们推它，它会移动；如果我们停止推，它由于高摩擦而不会移动。另一方面，我们可以将动量方法视为踩自行车。如果我们踩踏板，自行车就会移动。然而，当我们停止踩踏板时，由于之前踩踏板产生的动量，它还会继续移动一段距离。\n\
+  \n让我们重写随机/梯度下降方法的权重更新公式，使其看起来像这样：\n\n$$\\theta_t = \\theta_{t-1} - \\eta g_t$$\n\
+  \n这里，$\\theta_t$ 和 $g_t$ 分别是时间 $t$ 时的训练参数和梯度，$\\eta$ 是学习率。因此，如果没有梯度（$g_t = 0$），那么参数就不会更新。另一方面，动量方法分为两步。在每次迭代中，它记录一个变量\
+  \ $v_t$（速度），然后使用它通过以下两个方程更新训练参数：\n\n$$v_t = \\mu v_{t-1} + \\eta g_t$$\n\n$$\\theta_t\
+  \ = \\theta_{t-1} - v_t$$\n\n这里，$\\mu$ 通常是一个小于且接近1.0的值，例如0.9、0.95或0.99。为 $\\mu$\
+  \ 选择这些值之一，使得当 $g_t = 0$ 时，经过几次迭代后，$v_t$ 也会变为零，并且不会更新权重。正如这些公式所示，通常，使用动量方法的主要优点是可以加快训练时间（收敛时间）。\n\
+  \n动量有几种变体，前面列出的是Sutskever的实现。还有另一个来自Nesterov的流行实现，略有不同：\n\n$$v_t = \\mu v_{t-1}\
+  \ + g_t$$\n\n$$\\theta_t = \\theta_{t-1} - \\eta v_t$$\n\n让我们继续使用前面章节中介绍的代码和可视化方法来阐述这些概念。下面的代码片段准备了一个动量优化器：\n\
+  \n```\nclass Momentum():\n    def __init__(self, lr, moment, nesterov=False):\n\
+  \        self.lr = lr\n        self.moment = moment\n        self.first_step = True\n\
+  ```\n\n```\n```python\nself.nesterov = nesterov\n\ndef backward(self, theta, gradients):\n\
+  \    if self.first_step:\n        self.v = np.zeros_like(theta)\n        self.first_step\
+  \ = False\n\n    if not self.nesterov:\n        self.v = self.moment*self.v + self.lr\
+  \ * gradients\n        theta = theta - self.v\n    else:\n        self.v = self.moment*self.v\
+  \ + gradients\n        theta = theta - self.lr * self.v\n\n    return theta\n```\n\
+  ```\n\n下面的代码片段随后使用动量执行训练并可视化结果：\n\n```\n```python\noptimizer = Momentum(lr = lr,\
+  \ moment=0.9)\nlosses, thetas, dLdThetas = train_mini_batch(X, Y, theta0,\noptimizer=optimizer,\
+  \ num_epochs=num_epochs-300, batch_size = 5)\nplot_losses(losses)\nplot_thetas(thetas,\
+  \ losses)\n```\n```\n\n*图6.10* 显示了这段代码的输出。正如我们所见，由于动量的作用，损失和训练参数的变化更加平滑。此外，最终的损失和theta值表明，这种方法的表现甚至优于没有动量的随机梯度下降方法。Nesterov实现动量的方法也有类似的结果。因此，为了节省篇幅，我们在此没有包含代码和结果（你可以参考本书GitHub仓库中的代码文件）：\n\
+  \n![](img/0e7994c850a84b7a53d34c7f943c7edd_153_0.png)\n\n图6.10：使用动量时训练迭代中的损失和theta值变化\n\
+  \n在许多情况下，当神经网络尚未训练好时，使用较高的学习率可能会导致梯度爆炸问题。同样，当接近最优点时，最好使用较小的学习率，这样变化不会在最优点左右来回波动。然而，这并不意味着我们应该始终选择较小的学习率，因为这样会让训练过程更长。因此，可变学习率方法可能会产生更好的结果。\n\
+  \n## 可变学习率\n\n可变学习率有多种实现方式。由于篇幅限制，本节只介绍Detectron2在其随机梯度下降实现中所使用的方法。具体来说，在训练开始时，可以选择执行预热步骤。该步骤使用一个名为\
+  \ `warmup_iters` 的超参数。从训练开始，学习率逐渐线性增加（也可以使用正弦波方法），使其在该阶段结束时达到基础学习率。\n\n此外，还有另一组超参数，称为\
+  \ steps 和 gamma。这些是学习率按 gamma 因子变化的步骤。这些超参数有助于在训练过程接近结束时逐步降低学习率。下面的代码片段实现了具有可变学习率的随机梯度下降方法：\n\
+  \n```\n```python\nclass VariableLR():\n    def __init__(self, lr, moment,\n    \
+  \    nesterov =False,\n        warmup_iters = 0,\n        steps      = None,\n \
+  \       gamma      = 0.5):\n        # codes removed: self.<inputs> = <inputs>\n\
+  \        self.iter = 0\n```\n```\n\n\n\n\n\n```\n```python\nself.lrs = []\nself.first_step\
+  \ = True\ndef backward(self, theta, gradients):\n    # Explained next\n```\n```\n\
+  \n该类有两个方法：`__init__` 和 `backward`。第一个方法只是接收输入并将它们赋值给类的对应成员。第二个方法使用输入的梯度（`gradients`）对现有参数（`theta`）执行实际的更新：\n\
+  \n```\n```python\nif self.iter in self.steps:\n    self.lr = self.lr*self.gamma\n\
+  self.iter += 1\nif self.warmup_iters!=0 and self.iter < self.warmup_iters:\n   \
+  \ lr = (self.iter/self.warmup_iters)*self.lr\nelse:\n    lr = self.lr\nself.lrs.append(lr)\n\
+  if self.first_step:\n    self.v = np.zeros_like(theta)\n    self.first_step = False\n\
+  if not self.nesterov:\n    self.v = self.moment*self.v + lr * gradients\n    theta\
+  \ = theta - self.v\nelse:\n    self.v = self.moment*self.v + gradients\n    theta\
+  \ = theta - lr * self.v\nreturn theta\n```\n```\n\n下面的代码片段使用这种方法执行训练并可视化结果：\n\n\
+  ```\n```python\noptimizer = VariableLR(lr = lr, moment=0.9, nesterov=False,\nwarmup_iters=50,\
+  \ steps=(300, 500))\nlosses, thetas, dLdThetas = train_mini_batch(X, Y, theta0,\n\
+  optimizer=optimizer, num_epochs=num_epochs-300, batch_size = 5)\nplot_losses(losses)\n\
+  plot_thetas(thetas, losses)\n```\n```\n\n## 微调学习率和批大小\n\nDetectron2 为其默认的随机梯度下降优化器（solver/optimizer）提供了多种配置。不过，主要的参数如下：\n\
+  \n- `cfg.SOLVER.IMS_PER_BATCH` 超参数用于设置批大小，即每次训练迭代的图像数量。\n- `cfg.SOLVER.BASE_LR`\
+  \ 超参数用于设置基础学习率。\n- `cfg.SOLVER.MOMENTUM` 超参数用于存储动量值。\n- `cfg.SOLVER.NESTROV` 超参数决定是否使用\
+  \ Nesterov 动量实现。\n- `cfg.SOLVER.WARMUP_ITERS` 超参数用于存储预热迭代次数。\n- `cfg.SOLVER.STEPS`\
+  \ 超参数设置学习率按 `cfg.SOLVER.GAMMA`（另一个超参数）缩小的迭代点。\n- `cfg.SOLVER.MAX_ITER` 超参数设置训练的最大迭代次数。该迭代次数不是按轮数（epoch）计数，而是按批次数计数。\n\
+  \n下面的代码片段在我们使用 TensorBoard 分析先前训练结果之后，用这些值设置相关参数：\n\n```\n```python\ncfg.SOLVER.IMS_PER_BATCH\
+  \ = 6\ncfg.SOLVER.BASE_LR = 0.001\ncfg.SOLVER.WARMUP_ITERS = 1000\ncfg.SOLVER.MOMENTUM\
+  \ = 0.9\ncfg.SOLVER.STEPS = (3000, 4000)\ncfg.SOLVER.GAMMA = 0.5\ncfg.SOLVER.NESTROV\
+  \ = False\ncfg.SOLVER.MAX_ITER = 5000\n```\n```\n\nTensorBoard 对之前训练损失的检查显示损失波动较大。因此，增加批大小有助于让变化更平滑。不过，由于\
+  \ GPU 资源有限，我们将该值设为 6。我们还设置了更高的基础学习率，并设置了相应的步长（steps），以便在指定迭代点将学习率减半（GAMMA）。\n\n\
+  恭喜！到此为止，你已经具备了必要的背景知识和代码，可以生成适用于你自己定制图像的像素均值集和标准差集。\n\n## 本章小结\n\n本章介绍了帮助您微调 Detectron2\
+  \ 优化器（solver）所需的背景知识和标准超参数。具体来说，它展示了如何使用 TensorBoard 分析训练结果并发现其中的规律。然后，我们利用代码和可视化方法来演示并找出适合\
+  \ Detectron2 优化器的超参数。本章还提供了一组被认为适合 Detectron2 目标检测模型的超参数，该模型在脑肿瘤数据集上进行了训练。作为练习，请使用本章生成的所有配置，进行训练实验，将结果加载到\
+  \ TensorBoard 中，并分析这些配置之间的差异以及它们如何提升准确率。\n\n本章涵盖了一套标准的技术和超参数，因为它们通常可用于微调机器学习模型。接下来的三章将介绍用于微调目标检测模型的微调技巧。\n\
+  \n下面的代码片段应输出以下内容：\n\n```\nMIN_SIZE_TRAIN (640, 672, 704, 736, 768, 800)\nMAX_SIZE_TRAIN\
+  \ 1333\n```\n\n`ResizeShortestEdge` 方法使用这些超参数来调整输入图像的大小。具体来说，只要较长边小于 `MAX_SIZE_TRAIN`，它就会将较短边缩放到从\
+  \ `MIN_SIZE_TRAIN` 中随机选择的某个值；否则，它会继续将较长边缩放到 `MAX_SIZE_TRAIN`。\n\n调整大小时，图像的宽高比保持不变。下面的代码片段对一个训练批次进行采样，并显示采样/变换后图像的大小：\n\
+  \n```\ntrainer._data_loader_iter = iter(trainer.data_loader)\ndata = next(trainer._data_loader_iter)\n\
+  for i in data:\n    print(i['image'].shape)\n```\n\n该代码片段的输出如下（不同运行中可能有所不同）：\n\n\
+  ```\ntorch.Size([3, 640, 640])\ntorch.Size([3, 914, 800])\ntorch.Size([3, 672, 672])\n\
+  torch.Size([3, 805, 704])\ntorch.Size([3, 704, 704])\ntorch.Size([3, 640, 640])\n\
+  ```\n\n可以观察到，所有较短的边都被缩放为 `MIN_SIZE_TRAIN` 中的某个值，且没有任何较长边超过 `MAX_SIZE_TRAIN`。请注意，这些缩放后的图像仍然具有不同的大小。因此，Detectron2\
+  \ 还会使用下面的代码片段执行一些额外的预处理：\n\n```\nimages = trainer.model.preprocess_image(data)\n\
+  print(images.tensor.shape)\n```\n\n该代码片段的输出应该给出一个图像大小（即最大图像大小四舍五入到最接近的 32 的倍数）。下面的代码片段显示了其中三张预处理后的图像：\n\
+  \n```\n# some import statements are removed for space efficiency\nfor i, item in\
+  \ enumerate(images.tensor[:3]):\n    img = np.moveaxis(item.to(\"cpu\").numpy(),\
+  \ 0, -1)\n    pixel_mean = cfg.MODEL.PIXEL_MEAN\n    pixel_std = cfg.MODEL.PIXEL_STD\n\
+  \    img = (img * pixel_std) + pixel_mean\n```\n\n```\n```python\nv = Visualizer(img,\
+  \ metadata={}, scale=0.5)\ngt_boxes = data[i]['instances'].get('gt_boxes')\nv =\
+  \ v.overlay_instances(boxes = gt_boxes)\ndpi = 80\nim_data = v.get_image()[:, :,\
+  \ ::-1]\nheight, width, depth = im_data.shape\nfigsize = width / float(dpi), height\
+  \ / float(dpi)\nfig = plt.figure(figsize=figsize)\nplt.imshow(im_data)\nplt.imshow(im_data)\n\
+  plt.axis(\"off\")\nplt.show()\n```\n```\n\n*图 7.1* 给出了该代码片段输出的图像示例：\n\n![](img/0e7994c850a84b7a53d34c7f943c7edd_161_0.png)\n\
+  \n**图 7.1：** 输入主干网络（backbone）之前的预处理图像和标签示例\n\n可以观察到，批次中较小的图像会在底部和右侧填充到最大尺寸，使所有图像具有相同大小。此外，边界框也会相应地缩放。\n\
+  \n在了解了 Detectron2 如何预处理输入图像和真实边界框后，我们现在可以对多个迭代进行采样，从该数据集中获取真实边界框，并分析它们，从而得到适合训练的尺寸和比例。\n\
+  \n```\nratios = torch.min(\n    all_ratios, inverse_ratios\n)\nworst = ratios.min(-1).values\n\
+  best = worst.max(-1).values\nreturn best\n```\n\n该函数有助于量化单个真实边界框与一组锚框（anchor）之间的适应度，并返回适应度比值列表。然而，在给定一组锚框的情况下，我们需要一个数值来量化所有真实边界框整体的适应度。\n\
+  \n### 量化适应度\n\n一种方法是在给定一组锚框的情况下，将所有真实边界框的适应度得分取平均，作为整组真实边界框与锚框之间的一个适应度分数。然而，常见的做法是丢弃不良匹配，不让它们参与平均值计算。具体来说，我们使用一个阈值\
+  \ EDGE_RATIO_THRESHOLD，并丢弃所有不良匹配。\n\n默认阈值为 0.25，这意味着如果两个框任意边的比例相差超过四倍，它们就会被视为不良匹配：\n\
+  \n```\ndef fitness(ac_wh, gt_wh, EDGE_RATIO_THRESHOLD = 0.25):\n    ratio = best_ratio(ac_wh,\
+  \ gt_wh)\n    ret = (ratio*(ratio>EDGE_RATIO_THRESHOLD).float()).mean()\n    return\
+  \ ret\n```\n\n此外，我们可以使用以下函数，通过预定义的 EDGE_RATIO_THRESHOLD 来检查使用一组给定锚框召回所有真实边界框的可能性：\n\
+  \n```\ndef best_recall(ac_wh, gt_wh, EDGE_RATIO_THRESHOLD = 0.25):\n    ratio =\
+  \ best_ratio(ac_wh, gt_wh)\n    best = (ratio > EDGE_RATIO_THRESHOLD).float().mean()\n\
+  \    return best\n```\n\n具体来说，如果某个真实边界框的各边长度不超过至少一个锚框对应边长的四倍，也不小于其四分之一，那么该真实边界框就可以被召回。\n\
+  \n下面的代码片段让我们可以检查 Detectron2 提供的默认尺寸和比例集合是否能生成一组良好的锚框，以帮助召回所有真实边界框，以及这两个集合之间的适应度分数是多少：\n\
+  \n```\nprint(\"recall\", best_recall(ac_wh, gt_wh))\nprint(\"fitness\", fitness(ac_wh,\
+  \ gt_wh))\n```\n\n\n\n\n\n该算法具有以下步骤：\n\n- 1. 从聚类算法生成的初始尺寸和比例开始。\n- 2. 根据给定的概率采样一些项目进行演化（例如，0.9\
+  \ 表示项目有 90% 的概率演化）。\n- 3. 从具有给定均值和标准差的正态随机分布中采样一些随机的演化量。\n- 4. 使用生成的随机量更改尺寸和比例。\n\
+  - 5. 使用新的尺寸和比例集合计算适应度分数。\n- 6. 如果适应度提高，则将初始尺寸和比例集合设置为这些当前集合并循环回到步骤 1。否则，继续执行步骤 2。\n\
+  \n以下代码片段实现了该算法：\n\n```\ndef evolve(sizes, ratios,\n    gt_wh,\n    iterations =\
+  \ 10000,\n    probability = 0.9,\n    muy = 1,\n    sigma = 0.05,\n    fit_fn =\
+  \ fitness,\n    verbose = False):\n# Step 1: Current anchors and their fitness\n\
+  msg = f\"Evolving ratios and sizes:\"\npbar = tqdm(range(iterations), desc = msg)\n\
+  for i, _ in enumerate(pbar):\n# Step 2 and 3: sample evolving items and amounts\n\
+  # Step 4 and 5: change sizes and ratios and new fitness\n\n    if mutated_fit >\
+  \ best_fit:\n        # Step 6: update sizes and ratios if better\nreturn sizes,\
+  \ ratios\n```\n\n以下各节解释了每一步的代码。具体而言，步骤 1 的代码使用当前的尺寸和比例生成锚点并计算当前适应度分数：\n\n```\nanchors\
+  \ = generate_anchors(tuple(sizes), tuple(ratios))\nac_wh = boxes2wh(anchors)\nanchor_shape\
+  \ = len(sizes) + len(ratios)\nbest_fit = fit_fn(ac_wh, gt_wh)\n```\n\n以下代码片段提供了步骤\
+  \ 2 和 3 的代码。这些步骤随机采样要变异的项目以及变异的量：\n\n```\nmutation = np.ones(anchor_shape)\nmutate\
+  \ = np.random.random(anchor_shape) < probability\nmutation = np.random.normal(muy,sigma,anchor_shape)*mutate\n\
+  mutation = mutation.clip(0.3, 3.0)\n```\n\n步骤 4 和 5 在获取了要更改的内容和更改量的信息后对尺寸和比例进行更改。此外，它还在执行变异后计算新的适应度分数。这些步骤的源代码如下：\n\
+  \n```\nmutated_sizes = sizes.copy()*mutation[:len(sizes)]\nmutated_ratios = ratios.copy()*mutation[-len(ratios):]\n\
+  mutated_anchors = generate_anchors(\n    tuple(mutated_sizes),\n    tuple(mutated_ratios))\n\
+  mutated_ac_wh = boxes2wh(mutated_anchors)\nmutated_fit = fit_fn(mutated_ac_wh, gt_wh)\n\
+  ```\n\n最后，如果新的适应度分数更好，则步骤 6 的代码会使用相应的当前值更新最佳分数、尺寸和比例：\n\n```\nsizes = mutated_sizes.copy()\n\
+  ratios = mutated_ratios.copy()\nbest_fit = mutated_fit\nmsg=f\"Evolving ratios and\
+  \ sizes, Fitness = {best_fit:.4f}\"\npbar.desc = (msg)\n```\n\n我们可以通过运行以下代码行来开始优化过程：\n\
+  \n```\ne_sizes,e_ratios = evolve(sizes,ratios,gt_wh,verbose=False)\n```\n\n该算法应产生大约\
+  \ 0.8835 的适应度分数。这一结果略好于聚类算法生成的尺寸和比例。最后，我们应运行以下代码片段并保存这些尺寸和比例以供将来训练：\n\n```\nprint(\"\
+  sizes\", e_sizes)\nprint(\"ratios\", e_ratios)\n```\n\n该代码片段应显示以下输出（或类似）：\n\n```\n\
+  sizes [ 68.33245953 112.91302277  89.55701886\n144.71037342  47.77637482]\nratios\
+  \ [0.99819939 0.78726896 1.23598428]\n```\n\n因此，训练配置应使用以下超参数用于尺寸和比例：\n\n```\ncfg.MODEL.ANCHOR_GENERATOR.SIZES\
+  \ = [[68.33245953],\n[112.91302277],  [89.55701886], [144.71037342],  [47.77637482]]\n\
+  cfg.MODEL.ANCHOR_GENERATOR.ASPECT_RATIOS = [[0.99819939,\n0.78726896, 1.23598428]]\n\
+  ```\n\n恭喜！到目前为止，你应该对 Detectron2 如何处理其输入以及如何为生成锚点选择一组默认超参数有了更深入的理解。以下部分涵盖了设置另一组基本参数以微调\
+  \ Detectron2 模型的步骤。它们是训练图像中像素值的均值和标准差。\n\n## 设置像素均值和标准差\n\n输入图像像素的均值和标准差在训练 Detectron2\
+  \ 模型中至关重要。具体而言，Detectron2 使用这些值来归一化输入图像。Detectron2 对此有两个配置参数。它们是 cfg.MODEL.PIXEL_MEAN\
+  \ 和 cfg.MODEL.PIXEL_STD。默认情况下，从 ImageNet 数据集生成的这两个超参数的常见值是 [103.53, 116.28, 123.675]\
+  \ 和 [57.375, 57.120, 58.395]。这些值适用于大多数彩色图像。然而，此特定案例具有灰度图像，其像素均值和标准差的值不同。因此，从训练数据集中生成这两组值将是有益的。此任务有两个主要阶段：（1）准备数据加载器以加载图像和（2）创建类以计算运行均值和标准差。\n\
+  \n## 准备数据加载器\n\nDetectron2 的数据加载器是可迭代的，可以使用随机输入生成无限数据批次。然而，我们希望分析每个输入图像一次。因此，创建自定义数据集并使用\
+  \ Pytorch 的数据加载器加载输入图像更为方便。以下代码片段导入所需的包并设置初始配置：\n\n```\n# some import statements\
+  \ are removed for space efficiency\nname_ds = \"braintumors_coco\"\naf = \"_annotations.coco.json\"\
+  \nimg_dir = name_ds + \"/train/\"\njson_file_train = name_ds + \"/train/\" + af\n\
+  batch_size = 64\nnum_workers = 2\n```\n\n值得注意的是，我们不执行训练，因此使用了更高的批大小（本例中为 64），因为有更多可用的\
+  \ GPU。以下代码片段为我们的自定义数据集准备 PyTorch 数据集类：\n\n```\n# some import statements are removed\
+  \ for space efficiency\nclass TumorDataset(Dataset):\n    def __init__(self,\n \
+  \               data,\n                img_dir=\"\",\n                transform\
+  \ = None):\n        self.data = data\n        self.img_dir = img_dir\n        self.transform\
+  \ = transform\n    def __len__(self):\n        return len(self.data)\n\n    def\
+  \ __getitem__(self, idx):\n        file_name = os.path.join(self.img_dir,\n    \
+  \                            self.data[idx]['file_name'])\n        image = cv2.imread(file_name)\n\
+  \        if self.transform is not None:\n            image = self.transform(image\
+  \ = image)['image']\n        return image\n```\n\n输入图像具有不同的尺寸。因此，我们使用 albumentations\
+  \ 包将所有输入图像转换到相同的尺寸：\n\n```\nimport albumentations as A\nfrom albumentations.pytorch\
+  \ import ToTensorV2\nimage_size = 640\naugs = A.Compose([\n    A.Resize(height =\
+  \ image_size, width = image_size),\n    ToTensorV2()])\n```\n\n值得注意的是，我们将所有输入图像调整为\
+  \ 640 x 640。以下代码片段读取 JSON 注释文件并创建 PyTorch 数据加载器：\n\n```\nimport json\nwith open(json_file_train)\
+  \ as f:\n    ds = json.load(f)['images']\n\ntds = TumorDataset(ds, img_dir=img_dir,\
+  \ transform=augs)\nimage_loader = DataLoader(tds,\n                          batch_size\
+  \ = batch_size,\n                          shuffle    = False,\n               \
+  \           num_workers = num_workers,\n                          pin_memory  =\
+  \ True)\n```\n\n此数据加载器以批次加载数据，因为输入数据集可能太大而无法一次性放入内存。因此，我们需要创建一个类以滚动/运行方式计算均值和标准差。\n\
+  \n## 计算运行均值和标准差\n\n如果可以访问整个值集，则计算一组 n 个值的均值（x̄）和标准差（std）的公式是直接的：\n\nsum = Σᵢ₌₁ⁿ\
+  \ xᵢ\nx̄ = sum / n\n\nssd = \\sum_{i=1}^{n} (x_i - \\bar{x})^2\n\nstd = \\sqrt{\\\
+  frac{ssd}{n - 1}}\n\n然而，以运行方式计算这两个统计量的计算稍微复杂一些。因此，以下公式可能有点复杂，但主要是因为数学符号。具体而言，我们必须跟踪这些统计量，然后在读取每个数据批次后更新它们。令\
+  \ \\overline{x_c}, sum_c, ssd_c, 和 std_c 表示具有当前已见项目（n_c）的当前统计量。现在，当我们看到一个具有 n_b\
+  \ 个项目的新批次 b 时，可以在此批次上计算统计量（sum_b 和 ssd_b）。新数据集的均值（\\overline{x_n}）应如下：\n\n\\overline{x_n}\
+  \ = \\frac{1}{n_c + n_b} (sum_c + sum_b) = \\frac{1}{n_c + n_b} (n_c \\overline{x_c}\
+  \ + sum_b)\n\n所有这些值都存储并可从批次数据计算。因此，新均值相应更新。类似地，此新数据集的平方差之和如下：\n\nssd_n = \\sum_{i=1}^{n_c}\
+  \ (x_i - \\overline{x_n})^2 + \\sum_{j=1}^{n_b} (b_j - \\overline{x_n})^2 = \\sum_{i=1}^{n_c}\
+  \ (x_i - \\overline{x_n})^2 + ssd_b\n\n批次的平方差之和（ssd_b）可以从当前批次数据计算。然而，我们需要展开计算的另一部分，即当前数据项相对于新均值的平方差之和，如下：\n\
+  \nssd_{c_new_mean} = \\sum_{i=1}^{n_c} (x_i - \\overline{x_n})^2 = \\sum_{i=1}^{n_c}\
+  \ (x_i)^2 - 2\\overline{x_n}\\sum_{i=1}^{n_c} x_i + n_c (\\overline{x_n})^2 = \\\
+  sum_{i=1}^{n_c} (x_i)^2 - 2\\overline{x_n} sum_c + n_c (\\overline{x_n})^2\n\n类似地，我们可以有当前项目列表的平方差之和：\n\
+  \nssd_c = \\sum_{i=1}^{n_c} (x_i - \\overline{x_c})^2 = \\sum_{i=1}^{n_c} (x_i)^2\
+  \ - 2\\overline{x_c}\\sum_{i=1}^{n_c} x_i + n_c (\\overline{x_c})^2 = \\sum_{i=1}^{n_c}\
+  \ (x_i)^2 - 2\\overline{x_c} sum_c + n_c (\\overline{x_c})^2\n\n然后，已见项目的平方和可以写成如下：\n\
+  \n\\sum_{i=1}^{n_c} (x_i)^2 = ssd_c + 2\\overline{x_c} sum_c - n_c (\\overline{x_c})^2\n\
+  \n现在，我们可以计算当前项目相对于新均值的平方差之和如下：\n\nssd_{c_new_mean} = ssd_c + 2\\overline{x_c} sum_c\
+  \ - n_c (\\overline{x_c})^2 - 2\\overline{x_n} sum_c + n_c (\\overline{x_n})^2\n\
+  \n\n\n\n这个方程现在包含了所有可计算的值。因此，我们可以计算新数据集（当前数据和新批次数据）的平方差之和，进而计算标准差。\n\n下面的代码片段实现了这些计算。首先，我们需要一个辅助方法，将运行均值广播为与输入尺寸兼容的大小，以用于后续计算：\n\
+  \n```python\ndef broad_cast(x, image_size, channel):\n    y = torch.broadcast_to(x,\
+  \ (image_size**2, channel))\n    z = y.reshape(image_size, image_size, 3)\n    return\
+  \ torch.moveaxis(z, 2, 0)\n```\n\n下面的代码片段使用了这个辅助方法，并准备了一个类，以滚动/运行的方式从一批批输入中计算运行均值和标准差：\n\
+  \n```python\nclass RunningStats:\n    def __init__(self):\n        # initialize:\
+  \ self.n = 0, self.mean = 0, self.ssd = 0\n    def push(self, x):\n        dims\
+  \ = [0, 2, 3]\n        count = 1\n        for dim in dims:\n            count *=\
+  \ x.shape[dim]\n        image_size = x.shape[-1]\n        channel = x.shape[1]\n\
+  \        if self.n == 0: # start\n            # Step 1: compute new_mean, new_ssd,\
+  \ new_count\n        else: # otherwise\n            # Step 2: store old statistics\
+  \ and compute new ones\n        # release results\n        self.mean = new_mean\n\
+  \        self.ssd = new_ssd\n        self.n = new_count\n        self.std = torch.sqrt(new_ssd/(new_count-1))\n\
+  ```\n\n这段代码应该输出如下内容：\n\n```\ntensor([20.1962, 20.1962, 20.1962])\ntensor([39.5985,\
+  \ 39.5985, 39.5985])\n```\n\n然后，我们可以将这些值用于训练配置，如下所示：\n\n```\ncfg.MODEL.PIXEL_MEAN\
+  \ = [20.1962, 20.1962, 20.1962]\ncfg.MODEL.PIXEL_STD = [39.5985, 39.5985, 39.5985]\n\
+  ```\n\n恭喜！到这一步，你应该已经掌握了相关的背景知识，并拥有了为自定义图像生成像素均值和标准差集合的代码。接下来，我们应该把上一章和本章推导出的所有配置整合起来，重新训练我们的脑肿瘤检测模型。\n\
+  \n## 整合所有配置\n\n用于训练自定义模型的代码与之前相同，包括评估功能以及保存最佳模型的钩子。然而，配置应该如下：\n\n```\n# 为了节省篇幅，省略了生成\
+  \ cfg 对象的代码。\n# Solver\ncfg.SOLVER.IMS_PER_BATCH = 6\ncfg.SOLVER.BASE_LR = 0.001\n\
+  cfg.SOLVER.WARMUP_ITERS = 1000\ncfg.SOLVER.MOMENTUM = 0.9\ncfg.SOLVER.STEPS = (3000,\
+  \ 4000)\ncfg.SOLVER.GAMMA = 0.5\ncfg.SOLVER.NESTEROV = False\ncfg.SOLVER.MAX_ITER\
+  \ = 5000\n# checkpoint\ncfg.SOLVER.CHECKPOINT_PERIOD = 500\n# anchors\ncfg.MODEL.ANCHOR_GENERATOR.SIZES\
+  \ = [[68.33245953,\n112.91302277, 89.55701886, 144.71037342, 47.77637482]]\ncfg.MODEL.ANCHOR_GENERATOR.ASPECT_RATIOS\
+  \ = [[0.99819939,\n0.78726896, 1.23598428]]\n# pixels\ncfg.MODEL.PIXEL_MEAN = [20.1962,\
+  \ 20.1962, 20.1962]\n```\n"
+- "## 图像增强技术\n\n图像增强技术极大地帮助提升了计算机视觉深度学习模型的鲁棒性和准确性。Detectron2 和许多其他现代计算机视觉架构都使用图像增强。因此，理解图像增强技术以及\
+  \ Detectron2 如何使用它们至关重要。本节介绍图像增强**是什么**、**为什么**它们很重要，并介绍执行它们常用的方法（**如何做**）。接下来的两节将解释\
+  \ Detectron2 在训练和推理过程中如何使用它们。\n\n### 为什么需要图像增强？\n\n权重数量较少的深度学习架构可能不够准确（**偏差问题**）。因此，现代架构往往复杂且拥有海量权重。训练这些模型通常需要多次遍历训练数据集；一个\
+  \ epoch 意味着整个训练数据集被模型完整遍历一次。因此，海量权重可能意味着模型倾向于记忆训练数据集中的琐碎特征（**过拟合问题**），并且在未来未见过的数据上表现不佳（**方差问题**）。\n\
+  \n一个常用来说明这种情况的典型例子是：一个经过训练的深度学习模型，用于区分金毛寻回犬和哈士奇。它在训练和评估集上表现出很高的准确率。然而在实际应用中，它的表现却很差。进一步检查模型后发现，它利用图像中下雪的背景来区分哈士奇和金毛，而不是它们真正的特征。因此，检测对象必须被置于不同的环境中。\n\
+  \n一个直接的解决方案是拥有更多的训练数据。然而，在许多情况下，获取更多图像可能并不可行。例如，从患者那里收集医学图像可能会受到法律限制。即使可以收集更多图像，这些领域的人工标注成本也可能非常高昂，因为需要高技能的专业人员进行标注。因此，图像增强技术非常重要。\n\
+  \n### 什么是图像增强？\n\n图像增强技术会变换图像及其相关标注（例如，边界框、分割掩码和关键点），并生成略有不同的副本。相同输入的副本可以让模型获得具有不同上下文的更多训练数据，从而应对过拟合并提升鲁棒性。得益于图像增强，一些现代计算机视觉深度学习架构甚至可以生成在训练期间从未重复查看同一图像的模型。下面介绍最重要且最实用的图像增强技术。\n\
+  \n- **饱和度：** 该技术改变输入图像颜色通道的鲜艳程度。它类似于向当前颜色中混入一定量的白色。例如，向蓝色中加入一些白色，会使蓝色变浅。\n- **亮度：**\
+  \ 该技术改变输入图像的光照条件。它类似于向颜色中施加一定量的光线。如果没有光线，输入就会变成黑色。\n- **曝光度：** 该技术类似于亮度。但曝光度偏向于提亮高光色调，而亮度对所有色调进行同等改变。\n\
+  - **灰度化：** 该技术将输入图像转换为单通道图像。换句话说，像素值通常范围从 0 到 255，且只有一个通道；或者，如果保留三个通道，则每个像素位置的所有通道值相同。\n\
+  - **模糊：** 该技术对图像进行平滑处理，使模型对相机对焦更鲁棒。例如，如果使用高斯模糊，某个像素取其周围像素的加权平均值（权重服从高斯分布）。\n- **噪声：**\
+  \ 该技术向图像添加随机噪声（通常是椒盐噪声）并生成一个新版本。这种方法使训练模型对相机伪影更鲁棒，并有助于应对对抗性攻击。\n\n现在，我们来看看几何畸变。\n\
+  \n### 几何畸变\n\n这一类别包括翻转、裁剪、旋转和错切等技术。图 8.2 展示了这些技术的示例：\n\n![](img/0e7994c850a84b7a53d34c7f943c7edd_181_0.png)\n\
+  \n![](img/0e7994c850a84b7a53d34c7f943c7edd_181_1.png)\n\n![](img/0e7994c850a84b7a53d34c7f943c7edd_181_2.png)\n\
+  \n![](img/0e7994c850a84b7a53d34c7f943c7edd_181_3.png)\n\n图 8.2：几何畸变中增强技术的示例\n\n\
+  让我们更详细地了解这些技术：\n\n- **Cutout（随机遮挡）：** 该技术移除输入图像的一部分（用其他值替换，如黑色或数据集中图像的平均颜色）并生成一个新版本。这种技术有助于让训练模型对某些其他物体可能遮挡目标物体一部分的情况更鲁棒。该技术迫使模型从整体上学习物体的特征，而不仅仅是关注某个特定部分。根据剪切区域的不同，该技术可能会或可能不会改变输入图像的标注。\n\
+  - **MixUp：** 该技术将两个输入图像及其相关标注按不同比例混合成一张图像，并创建新的训练数据项。它允许我们在成对输入图像及其标签的凸组合上训练模型。这些凸组合会对训练模型进行正则化，使其倾向于在训练样本之间表现出简单的线性行为。\n\
+  - **CutMix：** 该技术根据定义的比例，将一个输入图像的区域替换为另一图像的一部分，从而生成新的版本。该技术可能会移除输入图像中的标注，并包含另一图像中的标注。这种方法结合了\
+  \ Cutout 和 MixUp 方法的优点，效果良好。\n- **Mosaic：** 该技术根据一些定义的比例组合四张图像（而 CutMix 是两张），从而生成新的版本。该技术利用了前面列出的其他图像遮挡技术的优点。此外，如果由于计算资源有限而导致\
+  \ mini-batch 尺寸较小，这种技术也很有用，因为在这种情况下，一张图像相当于四张图像。\n\n恭喜！到现在，你应该已经理解图像增强技术是什么、为什么重要，以及如何执行它们。下一节将介绍如何使用\
+  \ Detectron2 应用图像增强技术。\n\n### Detectron2 的图像增强系统\n\nDetectron2 的图像增强系统包含三类主要的类：`Transformation`、`Augmentation`\
+  \ 和 `AugInput`。这些组件帮助增强图像及其相关标注（例如，边界框、分割掩码和关键点）。此外，该系统允许你应用一系列声明式的增强语句，并支持增强自定义数据类型和自定义操作。图\
+  \ 8.4 展示了 Detectron2 增强系统的简化类图：\n\n\n\n以下代码片段创建了一些帮助程序，用于可视化 Transformation 和 Augmentation\
+  \ 类的输入和输出。以下是显示图像原始尺寸的帮助方法：\n\n```python\n# some import statements are removed for\
+  \ space efficiency\ndef imshow(image):\n    dpi = plt.rcParams[\"figure.dpi\"]\n\
+  \    im_data = image[:, :, ::-1]\n    height, width, depth = im_data.shape\n   \
+  \ figsize = width / float(dpi), height / float(dpi)\n    fig = plt.figure(figsize=figsize)\n\
+  \    plt.imshow(im_data)\n    plt.axis(\"off\")\n    plt.show()\n```\n\n以下方法（visualize_image_boxes）可在输入图像上可视化边界框：\n\
+  \n```python\ndef visualize_image_boxes(img, boxes, colors=['k']):\n    v = Visualizer(img,\
+  \ metadata={})\n    v = v.overlay_instances(\n        boxes           = boxes,\n\
+  \        assigned_colors = colors*len(boxes)\n    )\n    im_data = v.get_image()\n\
+  \    imshow(im_data)\n```\n\n最后，以下方法（visualize_sample）将字典（sample）作为输入，加载图像和边界框，并利用之前构建的方法对它们进行可视化：\n\
+  \n```python\ndef visualize_sample(sample):\n    img = sample['image'].to(\"cpu\"\
+  ).numpy()\n    img = np.moveaxis(img, 0, -1)\n    boxes = sample['instances'].get('gt_boxes')\n\
+  \    visualize_image_boxes(img, boxes)\n```\n\n这些方法有助于以图像的实际尺寸可视化 Detectron2 数据集中提取的数据样本及其对应的边界框。\n\
+  \n- **NoOpTransform 类**也是 `Transform` 类的子类。它的实例用于诸如在光度失真类别的变换类中返回 `inverse()` 方法等场景。它什么也不做。具体而言，`apply_image`\
+  \ 和 `apply_coords` 抽象方法的实现返回其对应的输入，而 `inverse` 方法的实现返回此类自身的当前对象（`self`）。\n\n- **ResizeTransform\
+  \ 类**是最常用的变换之一，因为其他变换和深度学习模型通常要求图像大小相同。相比之下，输入图像可能具有不同的尺寸。此变换接受原始图像高度和宽度（`h`、`w`）、期望高度和宽度（`new_h`、`new_w`）以及插值方法（`interp`），并据此执行缩放。\n\
+  \n- **ExtentTransform 类**：此类接收输入图像的一个子区域（`src_rect`，采用 `XYXY_ABS` 格式）、期望输出尺寸（`h`、`w`）以及插值方法（`interp`），并使用给定的插值方法将提取的区域调整为期望尺寸。此外，如果任何输入子区域尺寸大于输入图像，则使用填充颜色（`fill`\
+  \ 输入参数）进行填充。以下代码片段说明了此类的用法：\n\n```python\n# data\nimg = cv2.imread(\"Chapter08/1.jpg\"\
+  )\nboxes = [[150, 140, 350, 420]]\nvisualize_image_boxes(img, boxes = boxes, colors=['k'])\n\
+  # transform\ne_tfm = T.ExtentTransform(\n        src_rect = (100, 100, 400, 470),\n\
+  \        output_size = img.shape[:2]\n    )\net_img = e_tfm.apply_image(img)\net_boxes\
+  \ = e_tfm.apply_box(boxes)\nvisualize_image_boxes(et_img, boxes = et_boxes)\n```\n\
+  \n此片段加载一个带有真实框的示例图像。然后，它创建一个 ExtentTransform 对象并调用 `apply_image` 和 `apply_box` 来相应地转换输入图像和真实框。*图\
+  \ 8.5* 显示了此代码片段的输出：\n\n```python\nY_range = np.array(Y_range)\nX, Y = np.meshgrid(X_range,\
+  \ Y_range)\ngrid = np.expand_dims(np.stack([X, Y], axis=2), axis=0)\ngrid = grid.astype('float32')\n\
+  super().__init__(grid=grid, interp=\"nearest\")\nself.X_range = X_range\nself.Y_range\
+  \ = Y_range\n```\n\n此方法（__init__）为从 pi 到 0 等距分布的角度生成余弦值范围，宽度为 441 点，高度为 543 点。然后将它们用于创建网格并初始化其超类的对象（GridSampleTransform）。此外，请注意，范围为\
+  \ [np.pi, 0] 的余弦波返回 [-1, 1] 的范围，这正是 GridSampleTransform 类输入参数所期望的。\n\nGridSampleTransform\
+  \ 有助于转换输入图像。然而，它不支持 apply_coords 方法。因此，我们需要编写 apply_box 方法来执行框变换。此 apply_box 方法利用\
+  \ _apply_1_box 对其所有输入框执行变换。_apply_1_box 方法是一个内部帮助方法，用于对单个边界框执行变换。它包含以下代码：\n\n```python\n\
+  gs_box = np.array(box)\nimg_width = self.img_w\nimg_height = self.img_h\nX_range\
+  \ = self.X_range\nY_range = self.Y_range\nx0x1 = 2*gs_box[[0, 2]]/img_width - 1\n\
+  y0y1 = 2*gs_box[[1, 3]]/img_height - 1\nx0x1 = [X_range.searchsorted(x0x1[0]),\n\
+  \        X_range.searchsorted(x0x1[1])]\ny0y1 = [Y_range.searchsorted(y0y1[0]),\n\
+  \        Y_range.searchsorted(y0y1[1])]\ngs_box = [min(x0x1), min(y0y1), max(x0x1),\
+  \ max(y0y1)]\nreturn gs_box\n```\n\n此方法（`_apply_1_box`）找到左上角（x0, y0）和右下角（x1, y1）的\
+  \ X 和 Y 坐标，并按图像的宽度和高度进行归一化，坐标中心位于图像中心。归一化确保图像的左上角具有 [-1, -1] 坐标，图像的右下角具有 [1, 1]\
+  \ 坐标，并且原点 [0, 0] 位于图像中心。此归一化反映了图像坐标值在转换为余弦值后的情况。最后，它使用 searchsorted 方法根据余弦坐标找到像素坐标。\n\
+  \n现在，我们可以像迄今为止学到的其他类一样使用此类：\n\n```python\nfc_tfm = PincushionTransform(*img.shape[:2])\n\
+  fc_img = fc_tfm.apply_image(img)\nfc_boxes = fc_tfm.apply_box(boxes)\nvisualize_image_boxes(fc_img,\
+  \ boxes = fc_boxes)\n```\n\n*图 8.8* 显示了此失真方法（右）的输出与其原始输入（左）的对比：\n\n![](img/0e7994c850a84b7a53d34c7f943c7edd_192_0.png)\n\
+  \n原始图像和真实框\n\n枕形图像和真实框\n\n图 8.8：原始图像和真实框及其枕形版本\n\n![](img/0e7994c850a84b7a53d34c7f943c7edd_194_0.png)\n\
+  \n图 8.9：源图像、目标图像及其混合版本\n\n- **PadTransform 类**用 `pad_value`（默认为 0.0）和 `seg_pad_value`（默认为\
+  \ 0）分别在输入图像和分割掩码（如果有）的左侧、顶部、右侧和底部填充 x0、y0、x1 和 y1 像素。此外，如果你想使此变换可逆，可以指定原始宽度和高度（`orig_w`\
+  \ 和 `orig_h`）。\n\n- **TransformList 类**扩展了 `Transform` 类，因此具有执行变换操作的类似方法。它接受输入参数作为变换列表（`transforms`）并将其作为属性维护。其方法按顺序将此列表中的所有变换应用于输入。例如，`TransformList`\
+  \ 对象的 `transforms` 属性中有一个 `CropTransform` 对象和一个 `PadTransform` 对象。调用此对象的 `apply_image`\
+  \ 方法首先裁剪图像，然后填充它。此场景有助于训练鲁棒模型以检测超出其特定内容的物体。例如，从哈士奇身上裁剪出雪景背景，迫使模型从哈士奇本身学习特征，而不是其背景上下文。\n\
+  \n以下代码片段说明了如何使用 `CropTransform`、`PadTransform` 和 `TransformList` 类：\n\n```python\n\
+  x0, y0, w, h = (130, 130, 250, 310)\ny1, x1 = img.shape[:2] - np.array([y0+h, x0+w])\n\
+  cr_tfm = T.CropTransform(x0, y0, w, h)\npd_tfm = T.PadTransform(x0, y0, x1, y1)\n\
+  lst_tfm = T.TransformList([cr_tfm, pd_tfm])\nlst_img = lst_tfm.apply_image(img)\n\
+  lst_boxes = lst_tfm.apply_box(boxes)\nvisualize_image_boxes(lst_img, boxes = lst_boxes)\n\
+  ```\n\n\n\n\n\nAugmentation 类是供所有增强类扩展的基类。有两个需要注意的重要方法：`get_transform(self, *args)`\
+  \ 和 `__call__(self, aug_input)`。其所有子类都会重写 `get_transform` 方法，以接受一组命名输入参数并生成一个变换对象。这组参数的名称应能被\
+  \ `AugInput` 接受（我们将在下一节了解）。`__call__` 方法使其子类能够直接与 `AugInput` 配合使用（下一节将详细介绍）。\n\n\
+  FixedSizeCrop 类将 `crop_size` 作为元组 `(height, width)` 传入，从原始输入中随机裁剪该尺寸的区域。如果该尺寸大于原始图像，它会检查\
+  \ `pad` 选项是否为 `True`。如果为 `True`，则会分别使用 `pad_value` 和 `seg_pad_value` 在右侧和底部填充输入图像和分割掩码（原始图像始终位于左上角）。该类有助于生成相同大小的输入，而深度学习模型通常需要这样的输入。以下代码片段说明了此增强类的用法：\n\
+  \n```\nfsc_aug = T.FixedSizeCrop(crop_size = (300, 300), pad=True,\n pad_value=128)\n\
+  fsc_tfm = fsc_aug.get_transform(img)\nfsc_img = fsc_tfm.apply_image(img)\nfsc_boxes\
+  \ = fsc_tfm.apply_box(boxes)\nvisualize_image_boxes(fsc_img, fsc_boxes)\n```\n\n\
+  首先，该代码片段初始化裁剪大小并设置填充选项，然后通过 `get_transform` 方法获取一个变换对象。如前一节所讨论，这个对象随后可以用作确定性变换对象。换句话说，它会从不同输入中裁剪出相同的区域。此外，将相同的变换应用于不同大小的输入将无法正常工作：\n\
+  \n![](img/0e7994c850a84b7a53d34c7f943c7edd_196_0.png)\n\n原始图像与真实边界框\n\n![](img/0e7994c850a84b7a53d34c7f943c7edd_196_1.png)\n\
+  \n裁剪后的版本\n\n图 8.11：原始图像、真实边界框及其裁剪后的版本\n\n## RandomApply 类\n\n它接受的输入参数包括一个 `Transform`\
+  \ 或 `Augmentation` 类的实例（`tfm_or_aug`）和一个概率（`prob`，默认值为 0.5），该概率决定是否执行这种变换或增强。以下代码片段说明了此类的用法：\n\
+  \n```\nra_aug = T.RandomApply(fsc_tfm, prob = 0.3)\nra_fsc_tfm = ra_aug.get_transform()\n\
+  ra_fsc_img = ra_fsc_tfm.apply_image(img)\nra_fsc_boxes = ra_fsc_tfm.apply_box(boxes)\n\
+  visualize_image_boxes(ra_fsc_img, ra_fsc_boxes)\n```\n\n如果我们多次运行整段代码（在其他次运行中会得到不同的\
+  \ `Transform` 对象），那么其中一些结果可能会被裁剪（如图 8.11 右侧所示），而另一些可能不会被裁剪（输入保持与图 8.11 左侧相同）。\n\n\
+  ## RandomCrop 类\n\n`RandomCrop` 类将 `crop_type` 和 `crop_size` 作为输入参数。我们来看一下不同的 `crop_type`\
+  \ 值及其工作方式：\n\n- `\"relative\"`：`crop_size` 必须在 `(0, 1]` 范围内（按图像大小 HxW 归一化）。然后，它会在图像中裁剪一个随机区域，其大小为\
+  \ H*crop_size[0]、W*crop_size[1]。\n- `\"relative_range\"`：从 `[crop_size[0], 1]` 中均匀随机采样一个值赋给\
+  \ `crop_size[0]`；对 `crop_size[1]` 执行相同操作。然后，新的 `crop_size` 按 `crop_type = \"relative\"\
+  ` 的方式使用。\n- `\"absolute\"`：`crop_size` 必须小于输入图像的大小。它会在图像中裁剪一个随机区域，其大小为 `crop_size[0]`、`crop_size[1]`。\n\
+  - `\"absolute_range\"`：从当前值和图像高度（`[crop_size[0], H]`）之间均匀随机采样一个值赋给 `crop_size[0]`；对\
+  \ `crop_size[1]` 执行相同操作。然后，新的 `crop_size` 按 `crop_type = \"absolute\"` 的方式使用。\n\n\
+  以下代码片段说明了此类的用法：\n\n```\nrc_aug = T.RandomCrop(\n    crop_type=\"relative\",\n  \
+  \  crop_size=(0.5, 0.5))\nrc_tfm = rc_aug.get_transform(img)\nrc_img = rc_tfm.apply_image(img)\n\
+  rc_boxes = rc_tfm.apply_box(boxes)\nvisualize_image_boxes(rc_img, rc_boxes)\n```\n\
+  \n## RandomExtent 类\n\n它将 `scale_range` 和 `shift_range` 这两个大小为 2 的元组作为输入参数。前者用于决定裁剪子区域的大小，后者用于决定提取子区域的位置。具体来说，`scale_range`\
+  \ 元组指定了一个具有低值（l）和高值（h）的范围；从该范围中均匀随机采样一个值（r）；然后，输出图像的尺寸为 r*H 和 r*W（其中 H 和 W 分别是输入图像的高度和宽度）。第二个参数\
+  \ `shift_range` 是另一个大小为 2 的元组 `(x, y)`。从 `[-x, x]` 和 `[-y, y]` 范围中分别均匀随机采样两个值 `x_shift`\
+  \ 和 `y_shift`；然后，裁剪区域还会围绕输入图像中心偏移 `x_shift*W/2` 和 `y_shift*H/2`。以下代码片段说明了此类的使用模式：\n\
+  \n```\nre_aug = T.RandomExtent(\n    scale_range=(0.5, 0.9),\n    shift_range=(0.3,\
+  \ 0.3))\nre_tfm = re_aug.get_transform(img)\nre_img = re_tfm.apply_image(img)\n\
+  re_boxes = re_tfm.apply_box(boxes)\nvisualize_image_boxes(re_img, re_boxes)\n```\n\
+  \n图 8.12 展示了该代码片段的一些示例输出（右侧）和原始输入（左侧）。可以看到，在原始输入（左侧）中，输入图像中心放置了一个虚线框。`shift_range`\
+  \ 参数决定该虚线框的大小。系统会在此框内随机选择一个点，作为裁剪区域的中心。`scale_range` 参数决定裁剪区域（实线框）的大小：\n\n![](img/0e7994c850a84b7a53d34c7f943c7edd_198_0.png)\n\
+  \n![](img/0e7994c850a84b7a53d34c7f943c7edd_198_1.png)\n\n图 8.12：原始图像、真实边界框及其 RandomExtent\
+  \ 版本\n\n## RandomFlip 类\n\n`RandomFlip` 类接受一个概率（`prob`）和两个布尔值（`horizontal` 和 `vertical`）。`prob`\
+  \ 参数用于决定是否执行翻转；如果结果为执行翻转，另外两个参数分别决定是否水平翻转和垂直翻转。以下代码片段说明了此类的用法：\n\n```\nrf_aug =\
+  \ T.RandomFlip(prob        = 0.5,\n                    horizontal = True,\n    \
+  \                vertical   = False)\nrf_tfm = rf_aug.get_transform(img)\nrf_img\
+  \ = rf_tfm.apply_image(img)\nrf_boxes = rf_tfm.apply_box(boxes)\nvisualize_image_boxes(rf_img,\
+  \ rf_boxes)\n```\n\n当多次整体运行此代码片段时，大约有 50% 的情况下输入会水平翻转，并且永远不会垂直翻转。\n\n## RandomRotation\
+  \ 类\n\n`RandomRotation` 类将 `angle`、`expand`、`center`、`sample_style` 和 `interp` 作为输入参数。`expand`\
+  \ 参数决定是否应扩展输出大小，以适配旋转后的图像尺寸。`sample_style` 参数可以是 `\"range\"` 或 `\"choice\"`。\n\n\
+  如果为 `\"range\"`（默认），则会发生以下情况：\n\n- `angle` 参数是一个度数范围 `[min, max]`，用于均匀采样一个旋转角度值。\n\
+  - `center` 参数是一个相对区间 `[[minx, miny], [maxx, maxy]]`，用于从中采样旋转中心；其中 `[0, 0]` 表示图像左上角，`[1,\
+  \ 1]` 表示图像右下角。\n\n如果为 `\"choice\"`，则会发生以下情况：\n\n- `angle` 参数是一个可供选择的旋转角度值列表。\n-\
+  \ `center` 参数为 `None`，表示旋转中心是输入图像的中心。\n\n以下代码片段说明了此类的使用模式：\n\n```\nrr_aug = T.RandomRotation(\n\
+  \        angle        = [-30, 30],\n        sample_style = \"range\",\n        center\
+  \       = [[0.4, 0.6], [0.4, 0.6]],\n        expand       = False\n        )\nrr_tfm\
+  \ = rr_aug.get_transform(img)\n```\n\n```\n```python\nrr_img = rr_tfm.apply_image(img)\n\
+  rr_boxes = rr_tfm.apply_box(boxes)\nvisualize_image_boxes(rr_img, rr_boxes)\n```\n\
+  ```\n\n该代码片段会随机采样一个介于 -30 到 30 度之间的角度值，并在中心附近采样另一个值，以旋转输入数据。\n\n## Resize 类\n\n\
+  该类非常简单。它将目标尺寸（`shape=(height, width)`）和插值方法（`interp`）作为输入参数。其 `get_transform(image)`\
+  \ 方法返回一个 `ResizeTransform` 对象，用于将输入图像和相关标注调整为目标尺寸。以下代码片段说明了此类的用法：\n\n```\n```python\n\
+  rs_aug = T.Resize(\n        shape=(640, 640)\n)\nrs_tfm = rs_aug.get_transform(img)\n\
+  rs_img = rs_tfm.apply_image(img)\nrs_boxes = rs_tfm.apply_box(boxes)\nvisualize_image_boxes(rs_img,\
+  \ rs_boxes)\n```\n```\n\n此代码片段将输入图像调整为固定的目标尺寸。这是常用的图像预处理步骤，因为神经网络通常需要相同大小的输入。然而，如果目标尺寸具有不同的宽高比，该技术不会保留输入图像的宽高比。\n\
+  \n## RandomResize 类\n\n`RandomResize` 类将 `shape_list` 和 `interp` 作为输入参数。它会使用给定的插值方法（`interp`），将输入调整为从\
+  \ `shape_list` 中采样得到的某个尺寸 `(h, w)`。以下代码片段说明了此类的使用模式：\n\n```\n```python\nrrs_aug\
+  \ = T.RandomResize(\n        shape_list=[(320, 320), (640, 640)]\n)\nrrs_tfm = rrs_aug.get_transform(img)\n\
+  rrs_img = rrs_tfm.apply_image(img)\nrrs_boxes = rrs_tfm.apply_box(boxes)\nvisualize_image_boxes(rrs_img,\
+  \ rrs_boxes)\n```\n```\n\n\n这段代码片段从指定的长度列表中随机选取一个值，然后将输入的较短边调整为该采样长度。如果输出的较长边大于1,333，它会继续调整图像尺寸（同时保持宽高比），以确保不超过该数值。\n\
+  \n`RandomCrop` 和 `CategoryAreaConstraint` 类接受 `crop_type`、`crop_size`、`single_category_max_area`\
+  \ 和 `ignored_category` 作为输入参数。前两个参数与 `RandomCrop` 类中的参数类似。然而，该类的特别之处在于，它会寻找一个裁剪区域，在该区域中，对于语义分割而言，没有任何单个类别占据的比例大于\
+  \ `single_category_max_area` 中指定的值。该值以0到1的比例形式指定（设置为1.0可禁用此功能）。最后一个参数设置类别的id，该类别不必遵循此约束。请注意，此函数采用尽力而为的策略，最多只会尝试10次来满足指定条件。以下代码片段演示了该类的使用方式：\n\
+  \n```python\ncac_aug = T.RandomCrop_CategoryAreaConstraint(\n    crop_type     \
+  \           = \"relative\",\n    crop_size                = (0.5, 0.5),\n    single_category_max_area\
+  \ = 0.5,\n    ignored_category         = None\n)\nsem_seg = np.zeros(img.shape[:2])\n\
+  cac_tfm = cac_aug.get_transform(img, sem_seg=sem_seg)\ncac_img = cac_tfm.apply_image(img)\n\
+  cac_boxes = cac_tfm.apply_box(boxes)\nvisualize_image_boxes(cac_img, cac_boxes)\n\
+  ```\n\n请注意，除了输入图像之外，`get_transform` 方法还需要提供 `sem_seg` 参数，因为该类别用于语义分割。因此，这段代码示例创建了一个仅包含全零的虚拟语义分割掩码，以便进行说明。\n\
+  \n`MinIoURandomCrop` 类接受 `min_ious`、`boxes`、`min_crop_size`、`mode_trials` 和 `crop_trials`\
+  \ 作为输入参数。该增强操作尝试执行随机裁剪，并确保输出满足输入图像（由 `min_crop_size` 控制）和边界框（由 `min_ious` 控制）的 IoU\
+  \ 要求。`min_crop_size` 参数以输入高度和宽度 (H, W) 的比例表示（范围从 0 到 1）。该类最多按以下方式执行 `mode_trials`\
+  \ 次，其中裁剪区域表示为 `(top, left, new_h, new_w)`：\n\n- I. 从 [0, *min_ious, 1] 中采样一个 `min_iou`\
+  \ 值。\n- II. 最多执行 `crop_trials` 次，执行以下操作：\n  - i. 从 `(min_crop_size*W, W)` 和 `(min_crop_size*H,\
+  \ H)` 中采样两个值以生成 `new_h` 和 `new_w`。如果裁剪尺寸比例超出 `[0.5, 2.0]` 范围，或裁剪区域退化为一条线或一个点，导致输入过度变形，则会持续重新采样。\n\
+  \  - ii. 一旦有了新尺寸，就从 `[H - new_h]` 和 `[W - new_w]` 中采样 `top` 和 `left` 值。如果裁剪区域与任何真实边界框的\
+  \ IoU 小于 `min_iou`，则继续执行第 II 步。\n\n以下代码片段演示了该类的使用方式：\n\n```python\niou_aug = T.MinIoURandomCrop(\n\
+  \    min_ious     = [0.5, 0.6, 0.7],\n    min_crop_size = 0.5,\n    mode_trials\
+  \   = 1000,\n    crop_trials   = 50\n)\niou_tfm = iou_aug.get_transform(img, boxes=boxes)\n\
+  iou_img = iou_tfm.apply_image(img)\niou_boxes = iou_tfm.apply_box(boxes)\nvisualize_image_boxes(iou_img,\
+  \ iou_boxes)\n```\n\n请注意，除了输入图像之外，`get_transform` 方法还需要真实边界框，因为该增强作用于边界框。此增强非常重要，因为它能在保留真实边界框的同时，尝试去除部分外部上下文。这种技术能够让模型专注于从物体本身而非其上下文中学习特征。\n\
+  \n请注意，我们可能需要对输入图像进行归一化，或为 `scale` 选择一个较高的值。默认的特征向量和特征值是针对 RGB 图像的，而此代码片段处理的是 BGR\
+  \ 图像。因此，该代码片段会反复反转颜色通道。\n\n**AugmentationList 类**接受一个变换或增强（augs）列表作为输入参数。此类帮助将变更（augs）按顺序应用到输入上。此类不实现\
+  \ `get_transform()` 方法；相反，它利用 `__call__` 方法将增强或变换应用到包装在 `AugInput` 内部的输入上。\n\n以下部分将进一步介绍\
+  \ `AugInput` 及其使用方式。\n\n## AugInput 类\n\n这个特殊的类封装了用于增强对象输入的数据。具体来说，该类的实例包括输入图像（`image`）和相关信息标注的属性，包括边界框（`boxes`）和语义分割（`sem_seg`）。此类有一个名为\
+  \ `transform(tfm: Transform)` 的方法，它接受一个 Transform 对象（`tfm`）作为输入参数，并对其所有属性（`image`、`boxes`\
+  \ 和 `sem_seg`）原地执行相应的变换。如果需要，用户可以定义一个类似的类，通过提供属性访问（`getattr`）和相应的变换方法，来包含需要被变换的额外属性，从而对这些属性原地执行额外的变换，并返回一个\
+  \ Transform 对象。\n\n尽管该类拥有可以单独使用的 `transform` 方法，但它主要的使用模式是作为 `Augmentation` 对象 `__call__`\
+  \ 方法的输入。在这种情况下，`Augmentation` 类的 `transform` 操作会原地修改输入，并返回一个 `Transform` 类的对象，以便在必要时对其他输入执行增强。该方法利用\
+  \ `aug_input`（一个 `AugInput` 类的对象）中的属性名称，将相应的属性值传递给 `get_transform` 方法，生成一个变换对象，然后对\
+  \ `aug_input` 对象中的数据执行相应的变换。`AugInput` 类的一个使用示例可以在以下代码片段中看到：\n\n```python\n# AugmentationList\n\
+  rse_aug = T.ResizeShortestEdge(\n    short_edge_length = (640, 672, 704, 736, 768,\
+  \ 800),\n    max_size        = 800,\n    sample_style    = 'choice')\nrf_aug = T.RandomFlip(\n\
+  \    prob       = 0.5,\n    horizontal = True,\n    vertical   = False)\naugs =\
+  \ [rse_aug, rf_aug]\naugmentation = T.AugmentationList(augs)\n```\n\n```python\n\
+  # AugInput\ninput = T.AugInput(img, boxes=boxes)\n# Transformation\ntfms = augmentation(input)\n\
+  tfm_img = input.image\ntfm_boxes = input.boxes\nvisualize_image_boxes(tfm_img, tfm_boxes)\n\
+  ```\n\n此代码片段展示了 Detectron2 中最常用的增强操作。它创建了一个包含两个增强操作的列表，用于调整输入大小并随机水平翻转。在这种情况下，增强操作会原地应用到输入上。因此，`input.image`\
+  \ 和 `input.boxes` 会返回这些属性的变换后版本。此外，返回的对象（`tfms`）是增强对象中 `Transform` 对象的一个实例，可用于修改其他输入。此代码片段展示了\
+  \ Detectron2 中使用的确切默认增强操作。然而，它有助于说明，使用声明式方法可以相对容易地接入现有的图像增强和变换。如果您需要创建自定义图像增强技术，请继续阅读——下一章将展示如何创建自定义图像增强，以及如何在测试时应用图像增强。\n\
+  \n恭喜！至此，您应该已经掌握了重要的图像增强技术，并对 Detectron2 提供的变换和增强有了深入的了解。\n\n## 总结\n\n本章介绍了图像增强以及为什么在计算机视觉中进行图像增强至关重要。然后，我们介绍了常见且最先进的图像增强技术。在理解理论基础之后，我们研究了\
+  \ Detectron2 的图像增强系统，该系统包含三个主要组件及其相关类：`Transform`、`Augmentation` 和 `AugInput`。Detectron2\
+  \ 提供了一种声明式方法，可以方便地应用现有的增强操作。\n\n现有系统支持对单个输入进行增强，而一些现代图像增强技术需要来自不同输入的数据。因此，下一章将向您展示如何修改\
+  \ Detectron2 的几个数据加载器组件，以便应用现代图像增强技术。下一章还将介绍如何在测试时应用增强。\n\n\n\n\n"
+- "## Detectron2 数据加载器\n\n在 Detectron2 中应用数据增强既简单又复杂。使用声明式方法并应用 Detectron2 提供的现有变换和增强相对容易，这应该能满足最常见需求。然而，添加需要多个数据样本的自定义增强（例如\
+  \ MixUp 和 Mosaic）则有点复杂。本节描述 Detectron2 如何加载数据，以及如何将现有和自定义数据增强整合到 Detectron2 模型训练中。图\
+  \ 9.1 展示了 Detectron2 数据加载系统的步骤和主要组件。\n\n![](img/0e7994c850a84b7a53d34c7f943c7edd_209_0.png)\n\
+  \n存在 `Dataset`、`Sampler`、`Mapper` 和 `Loader` 这些类。`Dataset` 组件通常以 JSON 格式存储数据项列表。`Sampler`\
+  \ 组件帮助从数据集中随机选择一个数据项（`dataset_dict`）。选中的数据项包含图像文件名和标注信息。然后，Mapper 加载实际图像。之后，标注和加载的图像经历增强和数据转换，转换为图像张量和标注的实例。Mapper\
+  \ 产生一个数据项，Loader 帮助将这些数据打包成批次并送入训练。一些增强技术可能希望除了当前输入外还加载额外的样本（`dataset_dict(s)` 和\
+  \ `image(s)`），这些项目在图 9.1 中用虚线表示。一旦你理解了 Detectron2 如何加载数据，将现有的数据增强整合到 Detectron2\
+  \ 训练中就会相对容易。\n\n使用的第二种增强类型是 ResizeShortestEdge，以下代码片段创建并附加该增强：\n\n```\nmin_size\
+  \ = cfg.INPUT.MIN_SIZE_TRAIN\nmax_size = cfg.INPUT.MAX_SIZE_TRAIN\nsample_style\
+  \ = cfg.INPUT.MIN_SIZE_TRAIN_SAMPLING\naugs.append(\n    T.ResizeShortestEdge(\n\
+  \        min_size,\n        max_size,\n        sample_style)\n)\n```\n\n最后，以下代码片段向此自定义训练器使用的增强列表中添加了一个\
+  \ RandomFlipping 增强：\n\n```\nif cfg.INPUT.RANDOM_FLIP != \"none\":\n    augs.append(\n\
+  \        T.RandomFlip(\n            horizontal=cfg.INPUT.RANDOM_FLIP == \"horizontal\"\
+  ,\n            vertical=cfg.INPUT.RANDOM_FLIP == \"vertical\",\n        )\n    )\n\
+  ```\n\n使用这种声明式方法，并利用 Detectron2 提供的类来整合不同的增强/变换相对容易，如 MyTrainer 类所示。这些现有的类仅适用于一个数据项（一张图像及其相关标注）。然而，一些有用的图像增强技术可能需要来自多个样本的数据。例如，MixUp\
+  \ 从两个数据样本加载输入，而 Mosaic 从四个数据样本加载输入。在这些情况下，有必要重写 Detectron2 数据加载系统的几个组件，以便将来自不同样本的标注合并为一个。下一节将说明这些场景。\n\
+  \n### 开发自定义图像增强技术\n\n假设自定义增强需要从一个数据样本（`dataset_dict`）加载标注。在这种情况下，实现自定义增强或变换并使用上一节描述的声明式方法将其整合起来相对简单。本节重点介绍需要加载并组合多个样本输入的更复杂的增强类型。在这些情况下，我们需要重写\
+  \ Detectron2 数据加载系统的几个部分。因此，本节描述了 Detectron2 数据加载系统的修改，并开发了两种自定义图像增强（MixUp 和 Mosaic）作为示例。\n\
+  \n以下是 `_convert_to_annotations` 方法的代码片段：\n\n```\nannos = []\nfor i, annotation in\
+  \ enumerate(dataset_dict.pop(\"annotations\")):\n    bbox = boxes[i]\n    annotation[\"\
+  bbox\"] = bbox\n    annotation[\"bbox_mode\"] = BoxMode.XYXY_ABS\n    annos.append(annotation)\n\
+  instances = utils.annotations_to_instances(\n    annos, image_shape,\n    mask_format=self.instance_mask_format\n\
+  )\nif self.recompute_boxes:\n    gt_boxes = instances.gt_masks.get_bounding_boxes()\n\
+  \    instances.gt_boxes = gt_boxes\n    ft_instances = utils.filter_empty_instances(instances)\n\
+  \    dataset_dict[\"instances\"] = ft_instances\n```\n\n该方法将数据集字典（`dataset_dict`）作为输入，并使用\
+  \ Detectron2 工具函数（`annotations_to_instances`）将 `dataset_dict` 中的标注转换为实例格式。此方法类似于\
+  \ `DatasetMapper` 类中的 `_transform_annotations` 方法。但是，我们需要重写此方法，以便在将标注转换为实例之前，使用变换后的边界框，而不是原始\
+  \ `dataset_dict` 中的边界框。\n\n我们需要在其扩展版本中重写 `DatasetMapper` 类的 `__call__` 方法，因为我们需要修改当前的\
+  \ `dataset_dict` 以合并从其他采样输入加载的更多标注。此方法有三个主要步骤，详述如下：\n\n**步骤 1：** 此步骤使用输入 `dataset_dict`\
+  \ 中指定的信息，将图像和相关标注数据读取到 `dataset_dict` 中。此步骤与其原始版本中的完全相同：\n\n```\ndataset_dict =\
+  \ copy.deepcopy(dataset_dict)\nimage = utils.read_image(dataset_dict[\"file_name\"\
+  ],\n                         format=self.image_format)\nutils.check_image_size(dataset_dict,\
+  \ image)\nif \"sem_seg_file_name\" in dataset_dict:\n    sem_seg_gt = utils.read_image(\n\
+  \        dataset_dict.pop(\"sem_seg_file_name\"), \"L\"\n    ).squeeze(2)\nelse:\n\
+  \    sem_seg_gt = None\n\nboxes = np.array([\n    BoxMode.convert(\n        obj[\"\
+  bbox\"],\n        obj[\"bbox_mode\"], BoxMode.XYXY_ABS)\n    for obj in dataset_dict['annotations']])\n\
+  ```\n\n**步骤 2：** 此步骤创建一个 `ExtendedAugInput` 对象，将 `dataset_dict` 作为输入参数包含在内，因为我们需要修改此\
+  \ `dataset_dict` 以添加来自其他采样输入的额外边界框。除了对 `dataset_dict` 的额外修改外，所有其他步骤与 `DatasetMapper`\
+  \ 类的原始版本保持一致：\n\n```\naug_input = ExtendedAugInput(image,\n                    \
+  \        sem_seg      = sem_seg_gt,\n                            dataset_dict =\
+  \ dataset_dict,\n                            boxes = boxes)\n\ntransforms   = self.augmentations(aug_input)\n\
+  image        = aug_input.image\nsem_seg_gt   = aug_input.sem_seg\ndataset_dict =\
+  \ aug_input.dataset_dict\nboxes        = aug_input.boxes\n\nimage_shape = image.shape[:2]\n\
+  dataset_dict[\"image\"] = torch.as_tensor(\n    np.ascontiguousarray(image.transpose(2,\
+  \ 0, 1)))\n```\n\n**步骤 3：** 最后一步利用前面描述的 `_convert_to_annotations` 方法，将 `dataset_dict`\
+  \ 中列出的变换/增强数据转换为可被 Detectron2 处理的实例：\n\n```\nif \"annotations\" in dataset_dict:\n\
+  \    self._convert_to_annotations(dataset_dict,\n                              \
+  \   boxes,\n                                 image_shape)\n```\n\n以下代码片段创建了一个 `Sampler`\
+  \ 组件，该组件有助于在执行 MixUp 和 Mosaic 等增强时采样额外输入：\n\n```\nfrom detectron2.data import DatasetCatalog\n\
+  \nclass DataDictSampler():\n    def __init__(self, name_ds):\n        ds = DatasetCatalog.get(name_ds)\n\
+  \        self.ds = ds\n    def get_items(self, n=3):\n        indices = np.random.randint(\n\
+  \            low  = 0,\n            high = len(self.ds)-1,\n            size = n)\n\
+  \        return [copy.deepcopy(self.ds[_]) for _ in indices]\n```\n\n此代码片段接受一个已在\
+  \ Detectron2 中注册的数据集名称，并加载其数据（JSON 格式）。然后，它构建一个方法（`get_items`）来随机采样一些输入以执行增强。对数据项进行深拷贝是必要的，因为增强可能会改变原始数据。\n\
+  \n恭喜！拥有了这些扩展类之后，我们就可以编写自定义增强类，将不同输入的标注组合在一起。\n\n### 开发 MixUp 图像增强技术\n\nMixUp 是一种有用且现代的图像增强技术，在前一章中已有介绍。Detectron2\
+  \ 没有为这种图像增强技术提供内置类。因此，本节提供了开发此图像增强技术的步骤。以下代码片段创建了 MixUp 增强类：\n\n```\nclass MixUpAug(T.Augmentation):\n\
+  \    def __init__(self, cfg, src_weight=0.5, dst_weight=0.5):\n        self.cfg\
+  \ = cfg\n        self.sampler = DataDictSampler(cfg.DATASETS.TRAIN[0])\n       \
+  \ self.src_weight = src_weight\n        self.dst_weight = dst_weight\n    def get_transform(self,\
+  \ image, dataset_dict):\n        cfg = self.cfg\n        # Step 1: get one more\
+  \ random input\n        # Step 2: append annotations and get mix-up boxes\n```\n\
+  \n\n\n\n\n```\nmu_boxes  = mu_boxes,\nsrc_weight  = self.src_weight,\ndst_weight\
+  \  = self.dst_weight)\n```\n\n以下代码片段创建了 MixUpTransform 类：\n\n```\nclass MixUpTransform(T.Transform):\n\
+  \    def __init__(self, image, mu_image, mu_boxes,\n                 src_weight\
+  \ = 0.5,\n                 dst_weight = 0.5):\n        # Step 1: resize the mu_image\
+  \ and mu_boxes\n        # Step 2: pad mu_image\n        # Step 3: save values\n\
+  \    def apply_image(self, image):\n        bl_tfm = T.BlendTransform(src_image\
+  \  =self.mu_image,\n                                 src_weight  =self.src_weight,\n\
+  \                                 dst_weight  =self.dst_weight)\n        return\
+  \ bl_tfm.apply_image(image)\n    def apply_coords(self, coords):\n        return\
+  \ coords\n    def apply_box(self, boxes):\n        boxes = np.vstack([boxes, self.mu_boxes])\n\
+  \        return boxes\n```\n\n该变换类有三个主要方法。`__init__` 方法使用 ResizeShortestEdge 类和填充（使用\
+  \ NumPy）将额外图像及其相关标注调整为当前输入大小。它的 `apply_image` 方法利用 BlendTransform 类并混合两张图像。它的 `apply_coords`\
+  \ 方法仅返回其输入（不执行任何操作），而它的 `apply_box` 方法合并来自两个样本的边界框。\n\n`__init__` 方法有以下三个步骤：\n\n\
+  - **Step 1:** 此步骤使用 ResizeShortestEdge 类将额外图像（mixup 图像）调整大小以适应当前输入图像：\n\n    ```\n\
+  \    image_size = image.shape[:2]\n    rse = T.ResizeShortestEdge([min(image_size)],\n\
+  \                               min(image_size),\n                             \
+  \  \"choice\")\n    aug_i = T.AugInput(image=mu_image, boxes = mu_boxes)\n    rse(aug_i)\n\
+  \    mu_image, mu_boxes = aug_i.image, aug_i.boxes\n    ```\n\n- **Step 2:** 此步骤创建一个与输入图像相同大小的图像并将\
+  \ mu_image 放置其中。换句话说，此步骤类似于对 mu_image 进行零填充以使其与当前输入图像大小相同：\n\n    ```\n    img =\
+  \ np.zeros_like(image).astype('float32')\n    img[:mu_image.shape[0], :mu_image.shape[1],\
+  \ :] = mu_image\n    ```\n\n- **Step 3:** 此最后一步获取调整大小后的图像和边界框并将其存储以供将来使用：\n\n  \
+  \  ```\n    self.mu_image   = img\n    self.mu_boxes   = mu_boxes\n    self.src_weight\
+  \ = src_weight\n    self.dst_weight = dst_weight\n    ```\n\n图 9.2 显示了 MixUp Augmentation\
+  \ 类结合来自两个输入的图像和边界框的示例：\n\n![](img/0e7994c850a84b7a53d34c7f943c7edd_218_0.png)\n\n\
+  图 9.2：MixUp Augmentation 类的示例\n\n此增强类随后可以以与 Detectron2 中其他现有增强类类似的方式使用，采用声明式方法。\n\
+  \n可以使用类似的步骤创建 MosaicAugmentation 类。这些步骤将在下一节中详细说明。\n\n## 开发 Mosaic 图像增强技术\n\nMosaic\
+  \ 图像增强技术需要将当前输入再结合三个额外输入并创建增强版本（上一章提供了进一步的细节）。对于该技术有两个类，一个用于 Augmentation 类，一个用于\
+  \ Transformation 类。以下代码片段创建了 MosaicAugmentation 类：\n\n```\nclass MosaicAug(T.Augmentation):\n\
+  \    def __init__(self, cfg):\n        self.cfg = cfg\n        self.sampler = DataDictSampler(cfg.DATASETS.TRAIN[0])\n\
+  \    def get_transform(self, image, dataset_dict):\n        cfg = self.cfg\n   \
+  \     mo_items  = self.sampler.get_items()\n        mo_images  = []\n        mo_boxes\
+  \   = []\n        # extract mo_images, mo_boxes and update dataset_dict\n      \
+  \  mt = MosaicTransform(mo_images, mo_boxes)\n        return mt\n    def __repr__(self):\n\
+  \        return \"MosaicAug(4)\"\n```\n\n该类利用之前构建的数据采样器并采样三个额外输入。然后它从这些额外输入中提取图像和边界框。它还将额外输入的标注添加到当前\
+  \ dataset_dict 的标注列表中，以便下一步可以利用它们以 Detectron2 支持的格式生成标注实例。具体来说，`__init__` 方法创建一个数据采样器对象（sampler）以采样三个额外输入用于执行\
+  \ Mosaic 任务。`__repr__` 方法用于为此对象提供字符串表示以用于消息/日志记录。\n\n该类的核心方法是 `get_transform` 方法。它首先使用数据采样器采样三个额外图像。然后它遍历采样图像，提取其图像和边界框，并分别存储到\
+  \ mo_images 和 mo_boxes 中。此外，它提取这些额外图像的标注并将其添加到当前 dataset_dict 中，以便它们可以分别转换为 Detectron2\
+  \ 标注实例。最后，它将提取的数据作为输入传递以生成 MosaicTransform 类的对象来执行变换：\n\n```\nfor ds_dict in mo_items:\n\
+  \    # mo_images\n    mo_image = utils.read_image(ds_dict[\"file_name\"],\n    \
+  \                            format=cfg.INPUT.FORMAT)\n    utils.check_image_size(ds_dict,\
+  \ mo_image)\n    mo_images.append(mo_image)\n    annotations = ds_dict[\"annotations\"\
+  ]\n    # mo_boxes\n    mo_boxes.append(np.array([\n        BoxMode.convert(\n  \
+  \          obj[\"bbox\"],\n            obj[\"bbox_mode\"],\n            BoxMode.XYXY_ABS)\n\
+  \        for obj in annotations]))\n    # add annotations\n    dataset_dict[\"annotations\"\
+  ] += annotations\n```\n\n对于 Mosaic 图像增强技术来说，结合图像和标注有点复杂，有很多不同的结合方式。*图 9.3* 说明了本节采用的方法：\n\
+  \n![](img/0e7994c850a84b7a53d34c7f943c7edd_220_0.png)\n\n`get_loc_info` 方法实现了图 9.3\
+  \ 中描述的步骤，以获取四个输入的相应起始位置、中心线、宽度和高度，如下所示：\n\n```\nimages = [image] + self.mo_images\n\
+  heights = [i.shape[0] for i in images]\nwidths = [i.shape[1] for i in images]\n\
+  ch = max(heights[0], heights[1])\ncw = max(widths[0], widths[2])\nh = (max(heights[0],\
+  \ heights[1]) +\n    max(heights[2], heights[3]))\nw = (max(widths[0], widths[2])\
+  \ +\n    max(widths[1], widths[3]))\n# pad or start coordinates\ny0, x0 = ch-heights[0],\
+  \ cw - widths[0]\ny1, x1 = ch-heights[1], cw\ny2, x2 = ch, cw - widths[2]\ny3, x3\
+  \ = ch, cw\nx_pads = [x0, x1, x2, x3]\ny_pads = [y0, y1, y2, y3]\n```\n\n`apply_image`\
+  \ 方法创建一个输出图像并将四个输入图像放置到由 `get_loc_info` 方法生成的相应位置中：\n\n```\n# get the loc info\n\
+  self.loc_info = self.get_loc_info(image)\nh, w, ch, cw, widths, heights, x_pads,\
+  \ y_pads=self.loc_info\noutput = np.zeros((h, w, 3)).astype('float32')\nimages =\
+  \ [image] + self.mo_images\nfor i, img in enumerate(images):\n    output[y_pads[i]:\
+  \ y_pads[i] + heights[i],\n           x_pads[i]: x_pads[i] + widths[i],:] = img\n\
+  ```\n\n`apply_box` 方法合并来自当前输入和三个额外输入的边界框。然后它根据每个输入图像的新位置移动/填充这些边界框：\n\n```\n# combine\
+  \ boxes\nboxes = [boxes] + self.mo_boxes\n# now update location values\n_, _, _,\
+  \ _, _, _, x_pads, y_pads = self.loc_info\nfor i, bbox in enumerate(boxes):\n  \
+  \  bbox += np.array(\n        [x_pads[i], y_pads[i], x_pads[i], y_pads[i]]\n   \
+  \ )\n# flatten it\nboxes = np.vstack(boxes)\n```\n\nMosaicAugmentation 类随后可以像其他现有\
+  \ Detectron2 增强类一样使用。图 9.4 显示了将 Mosaic 增强应用于脑肿瘤数据集的输出示例：\n\n![](img/0e7994c850a84b7a53d34c7f943c7edd_223_0.png)\n\
+  \n图 9.4：Mosaic 增强的示例\n\n此版本的输入有四张图像及其对应的标注。当批量大小较小时，此增强技术很有帮助，我们希望利用该技术来增加批量大小。此外，它可能有助于提高预测较小边界框大小标注的准确性。\n\
+  \n恭喜！到目前为止，你应该能够应用现有的 Detectron2 增强或创建自定义增强来训练 Detectron2 模型。作为练习，你可以创建一个利用这些类的训练器并训练用于检测脑肿瘤的模型。由于篇幅限制，本节未列出利用这些增强的训练器的源代码。请参考本章提供的\
+  \ Jupyter 笔记本以获取源代码。\n\n\n\n\n本节介绍了在训练过程中应用图像增强的步骤。在许多情况下，可以在测试时使用类似的技术来提高准确性，下一节将介绍这些技术，并向你展示如何应用测试时增强。\n\
+  \n## 应用测试时图像增强技术\n\n**测试时增强（TTA）** 通过提供输入图像的不同版本进行预测，并对预测结果执行**非极大值抑制（NMS）**，从而提高预测性能。Detectron2\
+  \ 提供了两个类来实现这一点：`DatasetMapperTTA` 和 `GeneralizedRCNNWithTTA`。`DatasetMapperTTA`\
+  \ 类有助于将数据集字典（JSON 格式的数据项）映射为 Detectron2 模型期望的格式，同时提供执行增强的机会。默认使用的增强是 `ResizeShortestEdge`\
+  \ 和 `RandomFlip`。`GeneralizedRCNNWithTTA` 类以原始模型和 `Mapper` 对象作为输入。它对增强后的数据进行预测，并预处理生成的输出。\n\
+  \n让我们用代码的方式来解释这两个类。按照惯例，我们首先安装 Detectron2，加载脑肿瘤数据集，并注册测试数据集。接下来，以下代码片段获取一个预训练模型：\n\
+  \n```\n```python\noutput_path = \"output/object_detector_hook/\"\n!wget --quiet\
+  \ <url_to/Chapter08/object_detector_hook.zip>\n!unzip --q object_detector_hook.zip\n\
+  !unzip -q {output_path}/model_best.pth.zip\n```\n```\n\n以下代码片段加载预训练模型配置：\n\n```\n\
+  ```python\n# get a configuration\nwith open(output_path + \"cfg.pickle\", \"rb\"\
+  ) as f:\n    cfg = pickle.load(f)\n```\n```\n\n以下 TTA 配置参数可用（并且可以设置）：\n\n```\n```python\n\
+  # current TTA settings\nprint(\"min_sizes\", cfg.TEST.AUG.MIN_SIZES)\nprint(\"max_size\"\
+  , cfg.TEST.AUG.MAX_SIZE)\nprint(\"flip\", cfg.TEST.AUG.FLIP)\n```\n```\n\n此代码片段应显示以下默认值：\n\
+  \n```\n```text\nmin_sizes (400, 500, 600, 700, 800, 900, 1000, 1100, 1200)\nmax_size\
+  \ 4000\nflip True\n```\n```\n\n可以看出，对于每个输入图像，还有十个其他增强版本（九个用于缩放，一个用于翻转）。\n\n接下来的代码片段获取测试数据集，并使用上述增强创建一个\
+  \ `DatasetMapperTTA` 对象：\n\n```\n```python\n# device\ndevice = \"cuda\" if torch.cuda.is_available()\
+  \ else \"cpu\"\ncfg.MODEL.DEVICE = device\n# get the dataset\nds = DatasetCatalog.get(name_ds_test)\n\
+  cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = 0.7\ncfg.MODEL.WEIGHTS = os.path.join(output_path,\n\
+  \                                 \"model_best.pth\")\n\nmodel = DefaultPredictor(cfg).model\n\
+  ```\n```\n\n获得模型后，以下代码片段创建一个 `GeneralizedRCNNWithTTA` 对象，并使用增强进行预测：\n\n```\n```python\n\
+  # use default DatasetMapperTTA\nmin_sizes   = cfg.TEST.AUG.MIN_SIZES\nmax_size \
+  \   = cfg.TEST.AUG.MAX_SIZE\nflip        = cfg.TEST.AUG.FLIP\ntta_mapper  = DatasetMapperTTA(min_sizes,\
+  \ max_size, flip)\n# the tta model\ntta_model   = GeneralizedRCNNWithTTA(\n    cfg,\
+  \ model,\n    tta_mapper = tta_mapper,\n    batch_size = cfg.SOLVER.IMS_PER_BATCH)\n\
+  with torch.no_grad():\n    ret = tta_model(ds)\n```\n```\n\n接下来的代码片段准备了一个辅助方法，可以按原始尺寸显示输入图像：\n\
+  \n```\ndef imshow(image):\n    dpi = plt.rcParams[\"figure.dpi\"]\n    im_data =\
+  \ image[:, :, :-1]\n    height, width, depth = im_data.shape\n    figsize = width\
+  \ / float(dpi), height / float(dpi)\n    fig = plt.figure(figsize=figsize)\n   \
+  \ plt.imshow(im_data)\n    plt.imshow(im_data)\n    plt.axis(\"off\")\n    plt.show()\n\
+  ```\n\n然后，这个 imshow 方法可以在 visualize_output 方法中使用，以可视化预测输出，帮助定性评估结果：\n\n```\ndef\
+  \ visualize_output(img, output, cfg, scale=1.0):\n    v = Visualizer(img[:, :, :-1],\n\
+  \                   MetadataCatalog.get(cfg.DATASETS.TEST[0]),\n               \
+  \    scale=scale)\n    annotated_img = v.draw_instance_predictions(\n        output[\"\
+  instances\"].to(\"cpu\"))\n    imshow(annotated_img.get_image())\n```\n\n最后，以下代码片段可视化了一些预测结果：\n\
+  \n```\nimport numpy as np\nfor idx in np.random.randint(0, len(ds), 3):\n    img\
+  \ = cv2.imread(ds[idx]['file_name'])\n    output = ret[idx]\n    visualize_output(img,\
+  \ output, cfg)\n```\n\n在许多情况下，TTA 可以提高预测准确性。然而，TTA 显著增加了推理时间（在这种特定情况下大约增加 10 倍）。此外，为了定量评估测试时增强是否有助于提高预测质量，最好改用\
+  \ F1 分数进行评估。\n\n恭喜！到这时，你应该已经掌握了重要的图像增强技术，对 Detectron2 的图像增强系统有了深入的了解，并且知道如何应用训练时和测试时增强。\n"
+- '# 第三部分：
+
+  ## 开发用于实例分割任务的自定义 Detectron2 模型
+
+
+  第三部分是另一个动手项目。这部分为读者提供了用于目标实例分割任务中收集和标注图像的常用工具。此外，它还介绍了从不同来源提取数据并重建为 Detectron2 支持格式的数据集的步骤。在训练目标分割模型之前，本节还利用代码和可视化的方法解释了使用
+  Detectron2 开发的目标分割应用程序的架构。目标实例分割模型利用目标检测模型的结果。因此，上一部分介绍的所有用于微调目标检测模型的技术，同样适用于目标实例分割模型。然而，目标实例分割有一个需要微调的重要特征：检测目标边界的质量。因此，本节还介绍了
+  PointRend，这是 Detectron2 内部的一个项目，有助于提高目标边界的清晰度。具体来说，这部分提供了使用现有 PointRend 模型的代码，以及在自定义数据集上训练自定义
+  PointRend 模型的步骤。
+
+
+  第三部分涵盖以下章节：
+
+
+  - *第 10 章，训练实例分割模型*
+
+  - *第 11 章，微调实例分割模型*
+
+  '
+- "## 10\n\n## 训练实例分割模型\n\n本章为你提供了用于目标实例分割任务中收集和标注图像的常用工具。此外，它还介绍了从不同来源提取数据并重建为 Detectron2\
+  \ 支持格式的数据集的步骤。在训练目标分割模型之前，本章还采用代码和可视化的方法，解释使用 Detectron2 开发的目标分割应用的架构。\n\n到本章结束时，你将理解用于训练目标实例分割任务模型的不同数据收集和标注技术。你将获得通过从非标准格式提取数据并将其重建为\
+  \ Detectron2 支持的目标检测格式来构建自定义数据集的实践经验。此外，你还将深入了解在自定义数据集上训练 Detectron2 目标实例分割应用的架构，并获得相应的实践经验。具体来说，本章涵盖以下主题：\n\
+  \n- 准备用于训练分割模型的数据\n- 分割模型的架构\n- 训练自定义分割模型\n\n### 技术要求\n\n你应该已完成第 1 章，以便为 Detectron2\
+  \ 准备合适的开发环境。\n\n所有代码、数据集和结果均可在本书的 GitHub 仓库中获取：https://github.com/PacktPublishing/Hands-On-Computer-Vision-with-Detectron2。\n\
+  \n## 准备用于训练分割模型的数据\n\n本节介绍了几种在你的案例中可能用到的数据准备步骤场景。具体来说，本节首先介绍准备数据集的常见任务，包括获取图像、标注图像和转换标注。此外，在实践中，数据可能以各种非标准格式出现，在这种情况下，我们可能需要从头开始执行数据准备步骤。因此，本节还介绍了使用\
+  \ Detectron2 准备脑肿瘤数据集以训练自定义分割模型的步骤。\n\n## 获取图像、标注图像和转换标注\n\n如果你没有数据集，第 3 章介绍了一般的计算机视觉应用中获取数据的常见来源。对于目标实例分割数据，你也可以去这些来源获取。此外，你可以使用第\
+  \ 3 章介绍的同一个 Python 脚本（Detectron2_Chapter03_Download_Images.ipynb）从互联网下载图像并进行标注。\n\
+  \n第 3 章还介绍了几种支持实例分割标注（多边形标注）的在线和离线数据标注工具。与通常用于边界框标注（目标检测任务）的 labelImg 类似，labelme（https://github.com/wkentaro/labelme）是一个流行的免费软件包，用于为分割任务标注图像。它提供了标记各种基本形状的工具：多边形、矩形、圆形、直线和点。你可以在终端中运行以下命令，使用\
+  \ pip 安装 labelme：\n\n```\npip install labelme\n```\n\n这个工具的用法与第 3 章介绍的 labelImg\
+  \ 类似。你可以在终端中执行以下任一命令开始标注：\n\n```\nlabelme image_folder/\nlabelme image_folder/ --labels\
+  \ labels.txt\n```\n\n第一条命令指定了 image_folder，即所有待标注图像存储的位置。如果你愿意，第二条命令允许在文本文件（labels.txt）中指定标签列表（要标注的目标类别）。标注过程随后就变得简单明了。\n\
+  \n标注完成后，每个图像都有一个输出文本文件。输出文件与图像同名，但扩展名为 .txt。将这些标注文件转换为 Detectron2 支持的 COCO 格式相对容易。例如，我们可以使用\
+  \ labelme2coco 包（https://github.com/fcakyon/labelme2coco）来完成此任务。以下命令是此包的基本用法：\n\n\
+  ```\nlabelme2coco dataset_path\n```\n\n\n\n`dataset_path` 参数是使用 labelme 标注的图像和注释的路径。该软件包的另一个有用使用模式如下：\n\
+  \n```\nlabelme2coco dataset_path --train_split_rate 0.8\n```\n\n第二个参数（--train_split_rate）允许我们按指定的比例将数据拆分为训练集和测试集（本例中为\
+  \ 0.8）。\n\n本节中描述的数据源和工具提供了常见的数据格式。然而，实际上，一些数据集以不同的存储标准存储，我们可能需要从头开始构建 Detectron2\
+  \ 支持格式的数据集。下一节介绍这样一个数据集以及准备该数据集的步骤。\n\n## 脑肿瘤分割数据集简介\n\n本章使用另一个脑肿瘤数据集，但用于分割任务。该数据集最初来自\
+  \ Jun Cheng 的 2017 年脑肿瘤数据集：https://doi.org/10.6084/m9.figshare.1512427.v5。它有 3,064\
+  \ 张图像，包含 3 种脑肿瘤：胶质瘤（1,426 张图像）、脑膜瘤（708 张图像）和垂体（930 张图像）肿瘤。以下部分提取数据，将提取的数据以 COCO\
+  \ 格式存储，并执行训练/测试划分。\n\n## 数据提取\n\n该数据集采用 MATLAB 数据格式（.mat 文件）。这就是为什么它是一个很好的示例来演示从各种形式提取数据并从头开始构建\
+  \ Detectron2 接受的标准数据集的步骤。具体来说，每个 .mat 文件具有以下字段：\n\n- label: 1 表示脑膜瘤，2 表示胶质瘤，3 表示垂体瘤\n\
+  - PID: 患者识别码\n- image: 图像数据\n- tumorBorder: 肿瘤边界的多边形坐标\n\n以下代码片段下载数据集并解压：\n\n```\n\
+  !wget --quiet https://figshare.com/ndownloader/articles/1512427/versions/5 -O segbraintumors.zip\n\
+  data_folder = \"segbraintumors\"\n!unzip -q segbraintumors.zip -d {data_folder}\n\
+  \nsets = [\"1-766\", \"767-1532\", \"1533-2298\", \"2299-3064\"]\nsets = [\"brainTumorDataPublic_\"\
+  +_ for _ in sets]\n\n!unzip -q {data_folder}/{sets[0]}.zip -d {data_folder}\n!unzip\
+  \ -q {data_folder}/{sets[1]}.zip -d {data_folder}\n!unzip -q {data_folder}/{sets[2]}.zip\
+  \ -d {data_folder}\n!unzip -q {data_folder}/{sets[3]}.zip -d {data_folder}\n```\n\
+  \n可以看出，该数据集中有四个子文件夹对应四个 zip 文件。\n\n如 *第 3 章* 中所述，Detectron2 支持 COCO 注释格式。COCO 注释文件具有\
+  \ `info`、`licenses`、`categories`、`images` 和 `annotations` 字段。以下代码片段创建一个辅助方法，该方法创建包含前三个字段的数据的\
+  \ JSON 对象，并为最后两个字段创建空列表：\n\n```python\ndef create_headers():\n    data_json = {\n\
+  \        \"info\": {\n            \"description\": \"Desc\"\n        },\n      \
+  \  \"licenses\": [{\n            \"id\": 1,\n            \"url\": \"https://creativecommons.org/licenses/by/4.0/\"\
+  ,\n            \"name\": \"CC BY 4.0\"\n        }],\n        \"categories\": [\n\
+  \            {\"id\": 0, \"name\": \"tumors\", \"supercategory\": \"none\"},\n \
+  \           {\"id\": 1, \"name\": \"meningioma\", \"supercategory\": \"tumors\"\
+  },\n            {\"id\": 2, \"name\": \"glioma\", \"supercategory\": \"tumors\"\
+  },\n            {\"id\": 3, \"name\": \"pituitary\", \"supercategory\": \"tumors\"\
+  }\n        ],\n        \"images\": [],\n        \"annotations\": []\n    }\n   \
+  \ return data_json\n```\n\n对于注释，除了分割掩码（segmentation）之外，还有边界框（bbox）和面积（area）。因此，以下代码片段创建两个辅助方法，从分割坐标计算这些字段：\n\
+  \n```python\ndef segmentation2bbox(segmentation):\n    segmentation = np.array(segmentation)\n\
+  \    segmentation = segmentation.reshape((-1, 2))\n    x_min = segmentation[:, 0].min()\n\
+  \    y_min = segmentation[:, 1].min()\n    x_max = segmentation[:, 0].max()\n  \
+  \  y_max = segmentation[:, 1].max()\n    width = x_max - x_min\n    height = y_max\
+  \ - y_min\n    bbox = [x_min, y_min, width, height]\n    return bbox\n\ndef bbox2area(bbox):\n\
+  \    return bbox[2]*bbox[3]\n```\n\n此外，以下代码片段创建一个辅助方法来生成图像的 JSON 对象：\n\n```python\n\
+  def create_image_obj(id, file_name, height, width):\n    return {\n        \"id\"\
+  : id,\n        \"license\": 1,\n        \"file_name\": file_name,\n        \"height\"\
+  : height,\n        \"width\": width\n    }\n```\n\n类似地，下一个创建一个辅助方法来生成注释的 JSON 对象：\n\
+  \n```python\ndef create_annotation_obj(id,\n                          image_id,\n\
+  \                          category_id,\n                          segmentation,\n\
+  \                          bbox):\n    iscrowd = 0\n    area = bbox2area(bbox)\n\
+  \    return {\n        \"id\": id,\n        \"image_id\": image_id,\n        \"\
+  category_id\": int(category_id),\n        \"segmentation\": [segmentation.tolist()],\n\
+  \        \"bbox\": bbox,\n        \"iscrowd\": iscrowd,\n        \"area\": area\n\
+  \    }\n```\n\n以下代码片段创建一个 JSON 对象（data_json）来存储注释，然后遍历 .mat 文件并对每个文件执行以下任务：\n\n\
+  1. 提取肿瘤图像数据并将图像写入文件\n2. 为图像创建 JSON 对象并将其附加到 data_json\n3. 提取平面坐标（边界）和标签并为注释创建 JSON\
+  \ 对象，并将其附加到 data_json：\n\n```python\ndata_json = create_headers()\nfor i in tqdm(range(1,\
+  \ 3064+1)):\n    with h5py.File(f'{data_folder}/{i}.mat', 'r') as f:\n        obj\
+  \ = f['cjdata']\n        # Step 1: extract image and write it to file\n        #\
+  \ Step 2: create JSON object for image and append it\n        # Step 3: extract\
+  \ boundaries + labels then append them\n```\n\n步骤 1：此步骤提取图像数据并将其写入文件。值得注意的是，其数据类型为\
+  \ float64 以保持图像质量：\n\n```python\nimage = obj['image'][:, :].astype('float64')\n\
+  image = (image/image.max())*255.0\nfile_name = f\"{i}.jpg\"\ncv2.imwrite(os.path.join(output_folder,\
+  \ file_name), image)\n```\n\n步骤 2：此步骤创建图像 JSON 对象并将其附加到 data_json：\n\n```python\n\
+  height, width = image.shape[:2]\ndata_json[\"images\"].append(\n    create_image_obj(\n\
+  \        id          = i,\n        file_name   = file_name,\n        height    \
+  \  = height,\n        width       = width\n    )\n)\n```\n\n步骤 3：此步骤提取当前 .mat 文件中脑肿瘤的标签及其对应的平面坐标。然后创建相应的注释对象并将其附加到\
+  \ data_json：\n\n```python\nlabel = obj['label'][:, :]\ntumorBorder = obj['tumorBorder'][:,\
+  \ :]\nfor j, lbl in enumerate(label):\n    segmentation = tumorBorder[j].reshape((-1,\
+  \ 2))[:, [1, 0]].reshape((-1))\n    bbox = segmentation2bbox(segmentation)\n   \
+  \ data_json[\"annotations\"].append(\n        create_annotation_obj(\n         \
+  \   id          = i,\n            image_id    = i,\n            category_id = lbl[0],\n\
+  \            bbox        = bbox,\n            segmentation = segmentation\n    \
+  \    )\n    )\n```\n\n以下代码片段随后将提取的注释（data_json）写入 JSON COCO 注释文件：\n\n```python\n\
+  af = \"_annotations.coco.json\"\nwith open(os.path.join(output_folder, af), \"w\"\
+  ) as f:\n    json.dump(data_json, f)\n```\n\n数据集现在已采用 COCO 格式。然而，它包含所有图像和标签在一个集合中。因此，以下部分将该数据集拆分为训练集和测试集。\n\
+  \n## 训练/测试划分\n\n以下代码片段创建一个辅助方法，根据 COCO 注释格式的字段（info、licenses、categories、images 和\
+  \ annotations）写入 JSON 文件：\n\n```python\ndef create_json(info,\n                licenses,\n\
+  \                categories,\n                images,\n                annotations,\n\
+  \                file_name):\n    obj = {\n        \"info\"         : info,\n  \
+  \      \"licenses\"     : licenses,\n        \"categories\"   : categories,\n  \
+  \      \"images\"       : images,\n        \"annotations\"  : annotations\n    }\n\
+  \    with open(file_name, \"w\") as f:\n        json.dump(obj, f)\n    print(f\"\
+  Saved {file_name}\")\n```\n\n接下来，我们提取整个数据集的 COCO 注释文件并获取其字段的数据：\n\n```python\nname_ds\
+  \ = output_folder\naf = \"_annotations.coco.json\"\nwith open(os.path.join(name_ds,\
+  \ af), \"r\") as f:\n    annotations_json = json.load(f)\n\ninfo        = annotations_json[\"\
+  info\"]\nlicenses    = annotations_json[\"licenses\"]\ncategories  = annotations_json[\"\
+  categories\"]\nimages      = annotations_json[\"images\"]\nannotations = annotations_json[\"\
+  annotations\"]\n```\n\n前三个字段（info、licenses 和 categories）对训练集和测试集相同。因此，我们只需要对最后两个（images\
+  \ 和 annotations）进行划分。在这种情况下，一张图像有一个注释，并且按相同顺序存储。因此，执行划分相对容易：\n\n```python\nfrom\
+  \ sklearn.model_selection import train_test_split\nstratify = [i['category_id']\
+  \ for i in annotations]\ntest_size = 0.1\nimages_train, images_test, annotations_train,\
+  \ annotations_test = train_test_split(\n    images,\n    annotations,\n    test_size\
+  \     = test_size,\n    stratify      = stratify,\n    random_state  = 42\n)\n```\n\
+  \n\n我们使用肿瘤类型（category_id）作为分层字段，将肿瘤类型在训练集和测试集之间进行划分。以下代码片段有助于创建训练和测试目录、移动图像并创建相应的标注文件。\n\
+  \n首先，我们为训练和测试数据集创建相应的文件夹：\n\n```\ntrain_path = os.path.join(name_ds, \"train\")\n\
+  test_path = os.path.join(name_ds, \"test\")\ntrain_af = os.path.join(train_path,\
+  \ af)\ntest_af = os.path.join(test_path, af)\nos.makedirs(train_path, exist_ok=True)\n\
+  os.makedirs(test_path, exist_ok=True)\n```\n\n接下来，我们将图像移动到相应的训练和测试文件夹中：\n\n```\n\
+  for img in tqdm(images_train):\n    frm = os.path.join(name_ds, img[\"file_name\"\
+  ])\n    to = train_path\n    shutil.move(frm, to)\nfor img in tqdm(images_test):\n\
+  \    frm = os.path.join(name_ds, img[\"file_name\"])\n    to = test_path\n    shutil.move(frm,\
+  \ to)\n```\n\n最后，我们将标注写入相应的训练和测试文件夹：\n\n```\ncreate_json(info,\n            licenses,\n\
+  \            categories,\n            images_train,\n            annotations_train,\n\
+  \            file_name = train_af)\ncreate_json(info,\n            licenses,\n \
+  \           categories,\n            images_test,\n            annotations_test,\n\
+  \            file_name = test_af)\n```\n\n可选地，你可能希望运行以下代码片段以删除整个数据集的当前标注文件：\n\n\
+  ```\n!rm {name_ds}/{af}\n```\n\n如果你在 Google Colab 上运行此笔记本，现在是使用以下片段压缩此数据集以便下载的时候了：\n\
+  \n```\n!zip -q -r {name_ds}.zip {name_ds}\n```\n\n最后，以下代码片段将此数据集下载到本地计算机以供将来使用：\n\
+  \n```\nfrom google.colab import files\nfiles.download(f\"{name_ds}.zip\")\n```\n\
+  \n恭喜！到此时，你应该已经掌握了 COCO 标注格式的组成部分以及如何从各种来源提取数据并从头开始形成此标注格式的数据集。我们已准备好在 Detectron2\
+  \ 中训练自定义分割应用。然而，在训练之前，我们应先了解此类应用的架构。\n\n## 分割模型的架构\n\n第 4 章深入探讨了 Detectron2 中实现的\
+  \ Faster R-CNN 在计算机视觉中目标检测任务的架构。Detectron2 为目标分割任务实现了 Mask R-CNN。它具有与 Faster R-CNN\
+  \ 架构相同的组件，并为分割任务增加了一个额外的头。图 10.1 显示了第 4 章中列出的 Faster R-CNN 架构。\n\n![](img/0e7994c850a84b7a53d34c7f943c7edd_239_0.png)\n\
+  \n图 10.1：Detectron2 目标检测应用的架构\n\n探索 Detectron2 对目标分割任务实现的架构的代码与目标检测任务的代码保持相同。因此，本节仅涵盖两者之间的一些差异。第一个不同之处在于，我们必须选择一个针对目标分割任务而非检测任务的预训练模型配置。因此，我们按如下方式更改配置和模型权重的相应路径：\n\
+  \n```\nconfig_file = \"<url_to/mask_rcnn_R_50_C4_1x.yaml>\"\ncheckpoint_url = \"\
+  <url_to/mask_rcnn_R_50_C4_1x.yaml>\"\n```\n\n再次，如 *第 2 章* 中所讨论的，其他模型是可用的，并且在选择一个与选择其他模型之间存在权衡。此选择选择此模型（Res50C4）是由于其简单性。主干网络和区域建议网络保持相同，并在目标检测任务中类似工作。感兴趣区域头（`roi_heads`）有一个额外的头称为掩码头（`mask_head`）。因此，以下代码片段的输出反映了差异：\n\
+  \n```\nroi_heads = predictor.model.roi_heads\nprint(roi_heads)\n```\n\n此片段除了池化器、res5\
+  \ 和 box_predictor 如 *第 4 章* 中所述外，还显示了掩码头如下：\n\n```\n(mask_head): MaskRCNNConvUpsampleHead(\n\
+  (deconv): ConvTranspose2d(2048, 256, kernel_size=(2, 2),\nstride=(2, 2))\n(deconv_relu):\
+  \ ReLU()\n(predictor): Conv2d(256, 80, kernel_size=(1, 1), stride=(1, 1))\n)\n```\n\
+  \n此掩码头是 MaskRCNNUpsampleHead 的一个实例（对于此特定情况）。它相对简单，由一个带 ReLU 激活的 ConvTranspose2d\
+  \ 层和一个 Conv2d 层组成。此掩码头可通过配置文件中的 name 参数进行配置（`cfg.MODEL.ROI_MASK_HEAD.NAME`）。\n\n\
+  图 10.2 显示了针对目标分割任务的扩展感兴趣区域头，其中包含 mask_head。\n\n![](img/0e7994c850a84b7a53d34c7f943c7edd_241_0.png)\n\
+  \n图 10.2：为分割任务扩展的感兴趣区域头，其中包含掩码头\n\n具体来说，所有输入/输出和中间处理与目标检测任务的架构相同（它们已淡出）。扩展部分（未淡出）利用检测任务预测的边界框作为其建议。它然后利用另一个与边界框预测部分相同工作的框特征提取组件。唯一的区别是它使用上一步预测的框作为建议，而不是来自区域建议网络的原始建议。除此之外，此组件的工作方式相同。以下代码片段显示了此组件的工作方式：\n\
+  \n```\n# extract features from the predicted boxes\npred_boxes = [\n    instance.pred_boxes\n\
+  \    for instance\n    in pred_instances\n]\nx = roi_heads.pooler([res4], pred_boxes)\n\
+  x = roi_heads.res5(x)\nprint(x.shape)\n```\n\n第 4 章提供了关于池化器和 res5 组件的详细信息。此代码片段应显示提取的特征为大小为\
+  \ torch.Size([5, 2048, 7, 7]) 的张量。在此情况下，第一个值（5）表示上一步（检测任务）预测的框的数量。接下来，提取的特征连同预测的实例（上一步的输出）一起通过掩码头传递：\n\
+  \n```\noutput = mask_head(x, pred_instances)\n```\n\n除了目标检测任务预测的实例中的字段（pred_boxes、pred_classes\
+  \ 和 scores）之外，此输出还有一个用于预测掩码（pred_masks）的字段，每个预测框一个。此外，如果处于训练阶段，此掩码头会采用真实分割并通过添加掩码损失（mask_loss）来更新整体损失，如图\
+  \ 10.2 所示。以下代码片段显示了预测掩码的大小：\n\n```\nprint(output[0].pred_masks.shape)\n```\n\n每个预测框对应一个预测掩码。因此，此代码片段应显示张量大小为\
+  \ torch.Size([5, 1, 14, 14])。再次，第一个数字（5）是预测边界框的数量。掩码分辨率可通过以下参数配置：\n\n```\ncfg.MODEL.ROI_MASK_HEAD.POOLER_RESOLUTION\n\
+  ```\n\n此值当前为 14（作为输出掩码分辨率）。以下代码片段可视化这些预测掩码：\n\n```\nimport matplotlib.pyplot as\
+  \ plt\nfig, axes = plt.subplots(1, 5, figsize=(15, 3))\nfor i in range(5):\n   \
+  \ mask = output[0].pred_masks[i][0]\n    mask = mask.detach().to(\"cpu\")\n    axes[i].imshow(mask)\n\
+  plt.tight_layout()\nplt.show()\n```\n\n此代码片段提取预测掩码、分离它们并可视化它们。图 10.3 显示了此代码片段的输出。\n\
+  \n![](img/0e7994c850a84b7a53d34c7f943c7edd_243_0.png)\n\n图 10.3：五个预测实例的掩码（14x14\
+  \ 分辨率）\n\n这些掩码具有检测实例的失真形状，因为它们具有正方形分辨率（本例中为 14x14），而预测实例可能具有不同的比例，如 pred_boxes 中所示。因此，需要额外步骤将这些掩码缩放到相应的预测边界框大小。后处理步骤执行此缩放：\n\
+  \n```\nfrom detectron2.modeling.postprocessing import detector_postprocess\npost_output\
+  \ = detector_postprocess(\n    results      = output[0],\n    output_height = 800,\n\
+  \    output_width  = 800,\n)\n```\n\n此代码片段采用输出实例和原始输入图像大小（800 x 800 像素）并将所有预测结果缩放到与图像大小对应的大小。此外，预测掩码被缩放到其相应的边界框大小。最后，以下代码片段可视化预测结果：\n\
+  \n```\nmetadata = MetadataCatalog.get(cfg.DATASETS.TRAIN[0])\nv = Visualizer(img[:,\
+  \ :, ::-1], metadata, scale=0.5)\ninstances = post_output.to(\"cpu\")\nannotated_img\
+  \ = v.draw_instance_predictions(instances)\nimshow(annotated_img.get_image())\n\
+  ```\n\n\n\n\n\n这个可视化的代码片段与目标检测任务的相同，它应显示如图10.4中间所示的输出。\n\n![](img/0e7994c850a84b7a53d34c7f943c7edd_244_0.png)\n\
+  \n图10.4：对象分割应用程序的示例输出\n\n最终输出中的检测掩膜会按比例缩放到最终输出中对应的检测边界框。\n\n恭喜！至此，你应该已经对Detectron2实例分割应用的架构有了深入的了解。其主要架构与目标检测应用相同，并做了一些扩展，使用预测的检测结果作为输入来预测掩膜。数据准备就绪，并且对应用架构有了深刻理解后，你可以在下一节中使用Detectron2训练一个对象分割模型。\n\
+  \n### 训练自定义分割模型\n\n上一节描述了扩展目标检测应用的对象分割应用的架构。因此，这两个应用的训练步骤和配置是相似的。本节使用前一章节中“整合所有内容”部分提供的源代码。理想情况下，我们应该执行该章节中的所有步骤，以便为这个特定数据集获得一组更好的超参数。但为了简单起见，本节按原样复用所有源代码，并重点介绍训练对象分割应用的差异。以下代码片段下载了在先前步骤中准备好的带有训练集和测试集的数据集：\n\
+  \n```bash\n!wget -q <url_to>/segbraintumors_coco.zip\n!unzip -q segbraintumors_coco.zip\n\
+  ```\n\n数据集解压后，用于Detectron2安装、注册数据集、获取训练配置、使用COCO评估器和自定义钩子构建自定义训练器以存储最佳模型、训练以及结果可视化的源代码都是相同的，除了以下几点：\n\
+  \n配置应设置用于对象实例分割的预训练模型配置和权重，而不是目标检测的：\n\n```python\nconfig_file_url = \"<url_to>/mask_rcnn_R_50_FPN_3x.yaml\"\
+  \ncheckpoint_url = \"<url_to>/mask_rcnn_R_50_FPN_3x.yaml\"\n```\n\nBestModelHook类应使用分割评估指标（segm/AP50）来选择最佳模型，而不是目标检测评估指标（bbox/AP50）：\n\
+  \n```python\nclass BestModelHook(HookBase):\n    def __init__(self, cfg,\n     \
+  \   metric = \"segm/AP50\",\n        min_max =\"max\"):\n        # other lines remain\
+  \ the same\n```\n\n上述代码片段更改了默认评估指标，下面的代码片段在创建新的钩子实例时更改它：\n\n```python\nbm_hook =\
+  \ BestModelHook(cfg,\n        metric = \"segm/AP50\",\n        min_max = \"max\"\
+  )\n```\n\n随后的训练应以相同的方式进行。然而，除了目标检测任务的损失——分类损失（`loss_cls`）、边界框回归损失（`loss_box_reg`）、区域提议分类损失（`loss_rpn_cls`）和区域提议位置损失（`loss_rpn_loc`）——对于实例分割任务，还有一个针对掩膜的损失指标（`loss_mask`）：\n\
+  \n```text\ntotal_loss: 1.325  loss_cls: 0.1895  loss_box_reg: 0.1189  loss_mask:\
+  \ 0.5053  loss_rpn_cls: 0.3287  loss_rpn_loc: 0.1724\n```\n\n上述列表是对象实例分割模型训练过程中损失的一个示例。此外，在每次评估迭代中，除了边界框（bbox）的评估指标外，还有一组类似的分割（segm）指标，用于选择最佳模型：\n\
+  \nsegm的评估结果：\n\n|       | AP     | AP50   | AP75   | APs    | APm    | APl    |\n\
+  |:------|:-------|:-------|:-------|:-------|:-------|:-------|\n|       | 25.786\
+  \ | 41.874 | 27.180 | 4.064  | 26.409 | 34.991 |\n\n以下代码片段将置信度阈值设置为0.7，并加载最佳模型：\n\
+  \n```python\ncfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = 0.7\ncfg.MODEL.WEIGHTS = os.path.join(cfg.OUTPUT_DIR,\n\
+  \                                 \"model_best.pth\")\n\npredictor = DefaultPredictor(cfg)\n\
+  ```\n\n下面的代码片段创建了一些辅助方法，用于随机预测和可视化三个数据样本，并显示真实掩膜与预测掩膜，以进行定性评估。具体来说，下面的代码片段创建了一个方法（`plot_samples`），该方法将样本作为数据字典和预测器输入，然后根据`is_gt`输入可视化真实结果或预测结果：\n\
+  \n```python\ndef plot_samples(samples,\n                met        = {},\n     \
+  \           is_gt      = True,\n                predictor  = None):\n    n = len(samples)\n\
+  \    nrows, ncols = int(np.ceil(n / 3)), 3\n    fig, axs = plt.subplots(nrows, ncols,\
+  \ figsize = (21, 7))\n    for i, s in enumerate(samples):\n        row, col = i//ncols,\
+  \ i%ncols\n        ax = axs[row][col] if len(axs.shape)==2 else axs[i]\n       \
+  \ img = cv2.imread(s[\"file_name\"])\n        v = Visualizer(img[:, :, ::-1], metadata=met,\
+  \ scale=0.5)\n        if is_gt:  # ground-truth\n            v = v.draw_dataset_dict(s)\n\
+  \        else:  # predictions\n            instances = predictor(img)[\"instances\"\
+  ].to(\"cpu\")\n            v = v.draw_instance_predictions(instances)\n        ax.imshow(v.get_image())\n\
+  \        ax.axis(\"off\")\n    plt.tight_layout()\n    plt.show()\n```\n\n下一个方法（`plot_random_samples`）从已注册的数据集（`name_ds`）中随机采样一些输入，并绘制真实结果和预测结果，用于定性评估：\n\
+  \n```python\ndef plot_random_samples(name_ds, n=3, predictor=None):\n    ds = DatasetCatalog.get(name_ds)\n\
+  \    met = MetadataCatalog.get(name_ds)\n    samples = random.sample(ds, n)\n  \
+  \  # plot samples with ground-truths\n    plot_samples(samples, met)\n    # plot\
+  \ predictions\n    plot_samples(samples,\n                met        = met,\n  \
+  \              predictor  = predictor,\n                is_gt      = False)\n```\n\
+  \n总而言之，这两个代码片段创建了两个辅助方法。第一个方法用于可视化真实数据字典，或根据数据字典和模型预测输出并可视化结果。第二个方法随机采样指定数量（n）的样本，并将它们传递给第一个方法进行可视化。下面的代码片段利用所创建的方法可视化一些结果以进行定性评估：\n\
+  \n```python\nplot_random_samples(name_ds_test, predictor = predictor)\n```\n\n图10.5显示了真实掩膜（顶部一行）和预测结果（底部一行）的示例输出。\n\
+  \n![](img/0e7994c850a84b7a53d34c7f943c7edd_248_0.png)\n\n图10.5：来自对象实例分割模型的示例预测结果\n\
+  \n即使仍然漏掉了一个预测，使用简单的模型和配置，预测结果也是不错的。进一步训练、更好的优化以及更复杂的架构应该有助于改善结果。\n\n恭喜！你现在已经掌握了使用Detectron2在自定义数据集上训练对象实例分割应用的步骤。\n\
+  \n### 总结\n\n本章介绍了获取对象实例分割任务数据的常见来源，以及从非标准注释格式中提取数据并创建Detectron2支持的格式的自定义数据集的步骤。此外，本章采用代码和可视化的方式，说明了在Detectron2中实现的对象实例分割应用架构，它是目标检测应用架构的扩展。最后，本章提供了训练用于对象实例分割任务的自定义模型以及可视化预测结果以进行定性评估的步骤。\n\
+  \n下一章介绍使用Detectron2微调对象实例分割应用并提高分割质量的技术。\n"
+- "## 11 微调实例分割模型\n\n对象实例分割模型利用目标检测模型的结果。因此，前几章介绍的所有用于微调目标检测模型的技术同样适用于对象实例分割模型。然而，对象实例分割有一个需要微调的重要特性：检测对象边界的质量。因此，本章介绍PointRend，这是Detectron2内部的一个项目，有助于提高对象边界的清晰度。\n\
+  \n到本章结束时，你将能够理解PointRend的工作原理。你还将获得使用现有PointRend模型开发具有更好分割质量的对象实例分割应用程序的实践经验。此外，你可以在自定义数据集上使用PointRend训练对象实例分割应用。具体来说，本章涵盖以下主题：\n\
+  \n- PointRend简介\n- 使用现有的PointRend模型\n- 训练自定义PointRend模型\n\n### 技术要求\n\n你必须完成第1章，才能拥有适用于Detectron2的开发环境。本书的所有代码、数据集和结果均可在本书的GitHub仓库中获取，网址为\
+  \ https://github.com/PacktPublishing/Hands-On-Computer-Vision-with-Detectron2。\n\
+  \n\n\n\n\n## PointRend 简介\n\nPointRend 是 Detectron2 的一个项目。它有助于为检测到的物体边界提供更好的分割质量。它可以与实例分割和语义分割一起使用。它是\
+  \ Mask R-CNN 头部的扩展，我们在上一章中讨论过它。它对检测到的掩码进行点采样，并在采样的点上进行预测，而不是对掩码中的所有点进行预测。这种技术使我们能够以更高的分辨率计算掩码，从而提供更高的掩码分辨率。图\
+  \ 11.1 举例说明了在使用（左）和使用（右）PointRend 时的两个图像：\n\n![](img/0e7994c850a84b7a53d34c7f943c7edd_251_0.png)\n\
+  \n![](img/0e7994c850a84b7a53d34c7f943c7edd_251_1.png)\n\n图 11.1：使用和不使用 PointRend\
+  \ 的分割质量\n\nPointRend 有助于渲染更高分辨率的分割，其物体边界清晰且不那么平滑。因此，如果要检测的物体具有尖锐边缘，则很有用。\n\n在推理时，从粗略预测开始，它通过多个步骤进行上采样以提高掩码分辨率。在每个步骤中，有三个主要任务：\n\
+  \n- 1. 采样一定数量（超参数）的点以进行预测。这种策略有助于避免在更高分辨率下对许多网格点产生计算预测。\n- 2. 从主干提取的特征图以及来自粗略预测的特征中为每个采样点提取特征。\n\
+  - 3. 使用多层感知器神经网络（Point Head）使用其提取的特征对每个采样点的标签进行分类。\n\n图 11.2 说明了推理时 PointRend 策略在三个不同分辨率下对一个物体实例的处理：\n\
+  \n![](img/0e7994c850a84b7a53d34c7f943c7edd_252_0.png)\n\n图 11.2：推理时 PointRend 预测\n\
+  \n最左边的图像是上一章讨论的 7×7 粗略预测。PointRend 对要采样的点数有一个超参数（N = 14×14，在本例中）；因此，粗略预测被上采样（例如，使用双线性插值），如前一图中间所示。此解决方案具有与要采样的点数相同数量的像素。因此，每个点都传递给\
+  \ Point Head 以预测其标签（图中间）。在下一个细分步骤中，图像被上采样到 28×28 分辨率。此分辨率的像素数多于 N 个点。因此，PointRend\
+  \ 在此处应用采样策略。N 个采样的点是更模糊的点（就它们是否应属于物体而言，它们代表边界）。换句话说，这些采样为 14×14 的点传递给 Point Head\
+  \ 以进行预测，其预测概率接近 0.5（模糊）。原因很明显：对背景或物体内的置信度很高的点不需要进行进一步预测。这种方法在推理时是迭代的。\n\n这种迭代方法不利于训练神经网络。因此，PointRend\
+  \ 在训练时使用不同的点采样策略来训练其 Point Head。该采样策略有三个参数：要采样的点数（N）、上采样常数（k）和重要性采样比率（β），即更接近边缘（模糊或预测置信度接近\
+  \ 0.5）的点的百分比。具体来说，这些点是通过以下步骤选择的：\n\n- 1. 在粗略预测中均匀采样 kN 个点（采样 kN 而不是 N 使此步骤成为过采样步骤，k\
+  \ 为过采样常数，其中 k > 1）。\n- 2. 选择 βN 个最接近边界的点（按其预测置信度与 0.5 的接近程度排名）。这些点更接近边缘，这使它们很重要。因此，β\
+  \ 被称为重要性采样比率。\n- 3. 从步骤 1 中采样的 kN 个点中选择 (1-β)N 个点，以便为训练 Point Head 共有 N 个点。\n\n\
+  图 11.3 说明了所选点（右）的示例，用于 7×7 分辨率的粗略掩码预测（左），其中 N = 14×14，k = 3 且 β = 0.75：\n\n![](img/0e7994c850a84b7a53d34c7f943c7edd_253_0.png)\n\
+  \n图 11.3：训练时 PointRend 点采样策略\n\n选择了更多点（大约 75% 在边界处），其余点在粗略掩码上均匀随机选择以提取特征并训练 Point\
+  \ Head。\n\n像其他 Detectron2 模型一样，PointRend 项目为其 Model Zoo 提供了一组内置模型，可以通过 Detectron2\
+  \ GitHub 仓库中的 projects/PointRend 文件夹访问。我们在第 2 章中使用的相同分析可用于选择合适的 PointRend 模型，在准确性和推理时间之间进行权衡。下一节演示了使用\
+  \ PointRend Model Zoo 中现有模型创建物体实例分割应用程序的步骤，并说明了这些步骤的工作原理。\n\n## 使用现有 PointRend 模型\n\
+  \n使用现有 PointRend 模型进行物体实例分割的步骤与使用上一章中描述的 Detectron2 Model Zoo 中现有 Detectron2 模型进行物体实例分割的步骤相似。因此，本节涵盖更多差异。对于\
+  \ PointRend，我们需要克隆 Detectron2 仓库以使用 PointRend 项目的配置文件：\n\n```\n!git clone --branch\
+  \ https://github.com/facebookresearch/detectron2.git detectron2_repo\n```\n\n仓库存储在当前工作目录中的\
+  \ detectron2_repo 文件夹中。克隆此仓库后，生成配置的代码略有不同：\n\n```\n# some other common import statements\
+  \ are removed here\nfrom detectron2.projects import point_rend\nconfig_file = \"\
+  detectron2_repo/projects/PointRend/configs/\nInstanceSegmentation/pointrend_rcnn_X_101_32x8d_FPN_3x_coco.\n\
+  yaml\"\ncheckpoint_url = \"detectron2://PointRend/InstanceSegmentation/\npointrend_rcnn_X_101_32x8d_FPN_3x_coco/28119989/model_final_\n\
+  ba17b9.pkl\"\n\ncfg = get_cfg()\npoint_rend.add_pointrend_config(cfg)\ncfg.merge_from_file(config_file)\n\
+  cfg.MODEL.WEIGHTS = checkpoint_url\nscore_thresh_test = 0.95\ncfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST\
+  \ = score_thresh_test\npredictor = DefaultPredictor(cfg)\n```\n\n具体来说，此代码片段利用从 PointRend\
+  \ Model Zoo 中选择的现有配置文件和模型权重。它还使用从 Detectron2 仓库克隆的文件添加 PointRend 特定配置。生成配置文件、下载现有权重并使用\
+  \ DefaultPredictor 创建预测器的其余代码类似。\n\n以下代码片段创建了一个辅助方法来以原始大小可视化给定的图像：\n\n```\ndef imshow(image):\n\
+  \    dpi = plt.rcParams[\"figure.dpi\"]\n    im_data = image[:, :, :-1]\n    height,\
+  \ width, depth = im_data.shape\n    figsize = width / float(dpi), height / float(dpi)\n\
+  \    fig = plt.figure(figsize=figsize)\n    plt.imshow(im_data)\n    plt.imshow(im_data)\n\
+  \    plt.axis(\"off\")\n    plt.show()\n```\n\n在 PointRend Model Zoo 上使用现有模型可以满足使用计算机视觉任务流行数据集训练的模型的最常见需求。然而，如果需要，PointRend\
+  \ 也允许我们在自定义数据集上训练其模型。下一节描述了在自定义数据集上训练 PointRend 模型的步骤。\n\n## 训练自定义 PointRend 模型\n\
+  \n本节描述了在脑肿瘤数据集（上一章中描述）上为物体实例分割任务训练自定义 PointRend 模型的步骤。训练自定义 PointRend 模型包括与在 Detectron2\
+  \ 中训练实例分割模型相似的步骤。因此，本节更侧重于两者之间的差异；完整源代码可在本书的 GitHub 仓库中获得。\n\n下载脑肿瘤分割数据集、安装 Detectron2\
+  \ 并注册训练和测试数据集的源代码保持不变。与上一节类似，在我们获取配置文件之前，我们需要克隆 Detectron2 仓库以使用 PointRend 项目的配置文件：\n\
+  \n```\n!git clone https://github.com/facebookresearch/detectron2.git\ndetectron2_repo\n\
+  ```\n\n初始配置的代码保持不变：\n\n```\noutput_dir = \"output/pointrend\"\nos.makedirs(output_dir,\
+  \ exist_ok=True)\noutput_cfg_path = os.path.join(output_dir, \"cfg.pickle\")\nnc\
+  \ = 3\ndevice = \"cuda\" if torch.cuda.is_available() else \"cpu\"\n```\n\n此外，以下代码片段与上一节中从\
+  \ PointRend Model Zoo 中选择现有 PointRend 模型时显示的代码片段类似：\n\n```\nfrom detectron2.projects\
+  \ import point_rend\nconfig_file = \"detectron2_repo/projects/PointRend/configs/\n\
+  InstanceSegmentation/pointrend_rcnn_R_50_FPN_3x_coco.yaml\"\ncheckpoint_file = \"\
+  detectron2://PointRend/InstanceSegmentation/\npointrend_rcnn_R_50_FPN_3x_coco/164955410/model_final_edd263.pkl\"\
+  \ncfg = get_cfg()\npoint_rend.add_pointrend_config(cfg)\ncfg.merge_from_file(config_file)\n\
+  cfg.MODEL.WEIGHTS = checkpoint_file\n```\n\n\n\n\n\n对于配置文件接下来的几段代码，理想情况下，最好运行一些步骤来为学习率、像素均值和标准差以及锚点大小和比例生成不同的配置。然而，为了简单起见，我们复用了之前执行的结果。此外，PointRend\
+  \ 模型需要为其 Point Head 设置类别数量；下面的代码片段设置了该配置：\n\n```\ncfg.MODEL.POINT_HEAD.NUM_CLASSES\
+  \ = nc\n```\n\n一旦我们有了必要的配置，就可以开始训练模型了。用于创建训练器类（BrainTumorTrainer）、最佳模型钩子（BestModelHook）、创建训练器以及注册钩子的代码片段与前一章中解释的源代码保持一致。\n\
+  \n在撰写本书时，当前的 PointRend 项目在训练过程中，如果某个训练批次没有产生任何实例（空的实例列表），就会抛出错误。这个问题在大多数数据集上不会出现，但在某些数据集上会出现。例如，在脑肿瘤分割数据集上训练当前模型时，由于批次大小较小，就会遇到这个问题。因此，下面的代码片段修改了\
+  \ PointRend 内部的采样策略代码以处理该异常。下面的代码片段导入了完成此任务所需的包：\n\n```\nimport torch\nfrom detectron2.layers\
+  \ import cat\nfrom detectron2.structures import Boxes\nfrom detectron2.projects.point_rend.point_features\
+  \ import (\n    get_point_coords_wrt_image,\n    sample_point_labels,\n    get_uncertain_point_coords_with_randomness\n\
+  )\nfrom detectron2.projects.point_rend.mask_head import (\n    calculate_uncertainty\n\
+  )\n```\n\n下面的代码片段重新定义了 `_sample_train_points` 方法来处理该异常：\n\n```\ndef _sample_train_points(self,\
+  \ coarse_mask, instances):\n    assert self.training\n    gt_classes = cat([x.gt_classes\
+  \ for x in instances])\n    with torch.no_grad():\n        # Step 1: sample point\
+  \ coordinates (point_coords)\n        # Step 2: get point_coords with respect to\
+  \ the image\n```\n\n![](img/0e7994c850a84b7a53d34c7f943c7edd_260_0.png)\n\n![](img/0e7994c850a84b7a53d34c7f943c7edd_260_1.png)\n\
+  \n真实分割掩膜\n\n使用 PointRend 的预测分割掩膜\n\n图 11.5：真实分割掩膜与使用 PointRend 的预测结果对比\n\n可以观察到，使用\
+  \ PointRend 的预测分割（右侧）相比真实分割具有更精确的边界。\n\n恭喜！至此，你应该已经深入理解了 PointRend 项目以及它如何帮助提升目标实例分割的质量。此外，你可以使用现有的\
+  \ PointRend 模型，或在自定义数据集上训练 PointRend 模型，来开发目标实例分割应用。\n\n## 总结\n\n本章介绍了微调使用 Detectron2\
+  \ 训练的目标实例分割应用的技术。总的来说，目标实例分割应用也使用目标检测部分。因此，所有用于微调目标检测模型的方法都可以用于目标实例分割模型。此外，本章讨论了\
+  \ PointRend 项目，它有助于改进检测到的对象的目标实例分割边界。具体来说，本章描述了 PointRend 的工作原理，以及使用 PointRend 模型库中现有模型开发目标实例分割应用的步骤。最后，本章还提供了在自定义数据集上训练自定义\
+  \ PointRend 模型的代码片段。\n\n再次恭喜！至此，你应该已经深入掌握了 Detectron2 的知识，并且能够通过使用现有模型或在自定义数据集上训练自定义模型来开发计算机视觉应用。下一章将讨论将构建好的模型投入部署的步骤。\n"
+- '# 第 4 部分：
+
+  将 Detectron2 模型部署到生产环境
+
+
+  最后这部分将引导你完成导出过程的各个步骤，将 Detectron2 模型转换为可部署的产物。具体来说，它描述了深度学习模型的标准文件格式（如 TorchScript）以及这些格式对应的运行时（如
+  PyTorch 和 C++ 运行时）。然后，它提供了将 Detectron2 模型转换为标准文件格式并部署到相应运行时的步骤。此外，这部分还介绍了开放神经网络交换（ONNX）框架。该框架有助于在多个框架和平台之间共享深度神经网络。当需要将
+  Detectron2 模型部署到浏览器或移动环境中时，它极其有用。最后，这部分介绍了 D2Go，这是一个用于训练、量化和部署模型的框架，具有极低的内存存储和计算需求。使用该框架创建的模型对于部署到移动或边缘设备非常有用。
+
+
+  第四部分涵盖以下章节：
+
+
+  - 第 12 章，将 Detectron2 模型部署到服务器环境
+
+  - 第 13 章，将 Detectron2 模型部署到浏览器和移动环境
+
+  '
+- "## 12\n\n## 将 Detectron2 模型部署到服务器环境\n\n本章将引导你完成导出过程的步骤，将 Detectron2 模型转换为可部署的产物。具体来说，它描述了深度学习模型的标准文件格式（如\
+  \ TorchScript）以及这些格式对应的运行时（如 PyTorch 和 C++）。然后，本章提供了将 Detectron2 模型转换为标准文件格式并部署到相应运行时的步骤。\n\
+  \n学完本章后，你将理解 Detectron2 支持的标准文件格式和运行时。你可以执行步骤，使用跟踪（tracing）或脚本化（scripting）方法将 Detectron2\
+  \ 模型导出为 TorchScript 格式。此外，你可以创建一个 C++ 应用程序来加载和执行导出的模型。\n\n在本章中，我们将涵盖以下主题：\n\n- PyTorch\
+  \ 模型支持的文件格式和运行时\n- 部署自定义 Detectron2 模型\n\n## 技术要求\n\n你应该已经完成第 1 章的学习，以具备合适的 Detectron2\
+  \ 开发环境。所有代码、数据集和结果都可以在本书的 GitHub 页面上找到：https://github.com/PacktPublishing/Hands-On-Computer-Vision-with-Detectron2。\n\
+  \n## 支持的文件格式和运行时\n\n本节介绍 PyTorch 应用（尤其是 Detectron2 应用）的开发环境、文件格式和运行时。然后使用简单示例来解释这些概念。\n\
+  \n## 开发环境、文件格式和运行时\n\n在开发和部署深度学习模型时，有三个主要概念需要掌握：开发环境和编程语言、模型文件格式以及运行时环境。图 12.1 展示了这三个概念及各自的示例。\n\
+  \n![](img/0e7994c850a84b7a53d34c7f943c7edd_265_0.png)\n\n图 12.1：开发环境、文件格式和部署环境\n\
+  \n开发环境和编程语言或框架（如 PyTorch 或 Python）通常优先考虑易用性和定制性。然而，Python 语言和 PyTorch 框架在部署时可能会遇到运行时问题。例如，它们相对于其他运行时环境（如由\
+  \ C++ 应用程序生成的可执行文件）来说速度较慢。此外，它们无法直接部署到 Web 浏览器或移动设备上。因此，用 PyTorch 编写的模型通常需要经过导出过程才能成为可部署的产物。\n\
+  \n用 PyTorch 编写的模型有其自身的文件格式，并且旨在通过 PyTorch 运行时执行。然而，为了支持跨平台以及与其他运行时环境的兼容性，PyTorch\
+  \ 支持另一种称为 TorchScript 的中间文件格式。这种 TorchScript 文件可以在不同的运行时环境中执行，例如由 C++ 应用程序加载以生成可执行文件。PyTorch\
+  \ 还允许将其模型导出为开放神经网络交换（ONNX）文件格式，以支持其他运行时环境，如 Web 浏览器和移动设备。\n\nTorchScript 有自己的解释器，其功能类似于\
+  \ Python 的受限版本。这种格式使我们能够将整个模型保存到磁盘，并在不同的环境中使用，例如使用 Python 以外的其他语言构建的服务器。TorchScript\
+  \ 格式允许编译器优化，从而带来更高效的执行。此外，TorchScript 还可以与多种后端/设备运行时交互。\n\nDetectron2 支持使用跟踪（tracing）和脚本化（scripting）方法将其模型导出为\
+  \ TorchScript。它还允许用户将模型导出为 ONNX 文件格式，该格式可以加载到不同的运行时环境中，如 Web 浏览器和移动设备。Detectron2\
+  \ 模型可以使用 caffe2_tracing 方法导出为 Caffe2 文件格式。然而，Caffe2 即将被弃用并与 PyTorch 合并。因此，本书不考虑这种选项。最后，在撰写本书时，TensorFlow\
+  \ 在生产环境中比 PyTorch 更受欢迎。因此，Detectron2 支持将其模型导出为 TensorFlow 的文件格式。\n\n\n\n\n具体来说，它包含了原始模型\
+  \ `forward` 方法的 TorchScript 格式代码。接下来，我们准备使用跟踪模型对之前创建的相同输入（X）执行预测：\n\n```python\n\
+  with torch.no_grad():\n    y = traced_model(X)\n    print(y)\n```\n\n上述代码片段应该显示与原始\
+  \ PyTorch 模型预测完全相同的结果：\n\n```text\ntensor([[0.1100],\n        [0.0000]], device='cuda:0')\n\
+  ```\n\n下面的代码片段保存了跟踪模型，重新加载它，然后使用它对相同输入执行预测，以确保我们可以在不同的环境中导出和加载模型：\n\n```python\n\
+  traced_model.save(\"traced_model.pt\")\nloaded_model = torch.jit.load(\"traced_model.pt\"\
+  )\nfor p in loaded_model.parameters():\n    print(p)\nprint(loaded_model(X))\n```\n\
+  \n这段代码应该将跟踪模型保存到硬盘。加载后，加载的模型应该具有与 PyTorch 模型相同的参数。最后，加载的模型应该对 X 输入产生与原始模型相同的预测。\n\
+  \n如果你在 Google Colab 上运行此笔记本，可以通过以下语句将此模型保存到本地系统以供将来使用：\n\n```python\nfrom google.colab\
+  \ import files\nfiles.download('traced_model.pt')\n```\n\n恭喜！通过使用跟踪方法，你应该已经掌握了将\
+  \ PyTorch 模型导出为 TorchScript 的步骤。下一节将介绍跟踪方法的局限性，并介绍使用脚本化方法执行相同任务的方法。\n\n接下来，我们可以使用与上一节相同的代码片段，通过跟踪方法执行导出：\n\
+  \n```python\ndummy_X = torch.tensor(\n    data  = [[-1, -2, -3, -4]],\n    dtype\
+  \ = torch.float32)\ntraced_model = torch.jit.trace(\n    pt_model,\n    example_inputs\
+  \ = dummy_X)\n```\n\n这段代码应该显示一条警告消息，内容如下：\n\n```\nTracerWarning: Converting a tensor\
+  \ to a Python boolean might cause the trace to be incorrect. We can't record the\
+  \ data flow of Python values, so this value will be treated as a constant in the\
+  \ future. This means that the trace might not generalize to other inputs!\n```\n\
+  \n这条警告消息表明，跟踪方法只记录了输入通过模型时的单一/静态流程，并未考虑其他情况。你可以使用上一节提供的相同代码片段来显示跟踪模型的参数：\n\n```python\n\
+  traced_model.to(device)\nfor p in traced_model.parameters():\n    print(p.data)\n\
+  ```\n\n参数应该保持不变（全部为 0.01）。然而，模型代码是不同的。具体来说，`print(traced_model.code)` 显示以下输出：\n\n\
+  ```\ndef forward(self,\n    x: Tensor) -> Tensor:\n    linear = self.linear\n  \
+  \  return torch.neg((linear).forward(x, ))\n```\n\n请注意，这个跟踪模型总是返回线性模型输出的负值（torch.neg），因为这是虚拟输入所走的路径并被记录在跟踪模型中。换句话说，对于未来的数据，if\
+  \ 代码块永远不会被执行。\n\n让我们使用跟踪模型对之前生成的 X 输入执行预测：\n\n```python\nwith torch.no_grad():\n\
+  \    y = traced_model(X)\n    print(y)\n```\n\n这段代码给出以下输出：\n\n```\ntensor([[ -0.1100]],device='cuda:0')\n\
+  ```\n\n显然，这与原始 PyTorch 模型的预测输出不同，因为执行路径是针对虚拟输入（dummy_X）的，而不是当前的 X 输入。因此，在这种情况下，应该使用脚本化方法。\n\
+  \n# 使用脚本化方法导出 PyTorch 模型\n\n继续使用上一节中的代码；下面的代码片段使用脚本化方法将 PyTorch 模型导出到 TorchScript：\n\
+  \n```python\nscripted_model = torch.jit.script(pt_model)\nprint(scripted_model.code)\n\
+  ```\n\n该片段应显示导出模型的 TorchScript 代码，如下所示：\n\n```\ndef forward(self,\n    x: Tensor)\
+  \ -> Tensor:\n    linear = self.linear\n    y = (linear).forward(x, )\n    if bool(torch.gt(torch.sum(y),\
+  \ 0)):\n        _0 = y\n    else:\n        _0 = torch.neg(y)\n    return _0\n```\n\
+  \n显然，这与跟踪方法不同，因为导出模型的 TorchScript 代码现在包含了控制流部分。此外，下面的代码片段应显示导出模型的参数（所有参数均为 0.01）：\n\
+  \n```python\nfor p in scripted_model.parameters():\n    print(p.data)\n```\n\n此外，我们可以使用导出模型对之前准备的\
+  \ X 输入执行预测，以检查结果：\n\n```python\nscripted_model.to(device)\nwith torch.no_grad():\n\
+  \    y = scripted_model(X)\n    print(y)\n```\n\n预测结果应与原始模型产生的结果完全相同（tensor([[0.1100]],\
+  \ device='cuda:0')）。此外，我们可以将模型保存到硬盘，重新加载它，显示加载模型的参数值，执行预测，并再次验证结果：\n\n```python\n\
+  # save\nscripted_model.to(\"cpu\").save(\"scripted_model.pt\")\n# load\nloaded_model\
+  \ = torch.jit.load(\"scripted_model.pt\")\n# loaded parameters\nfor p in loaded_model.parameters():\n\
+  \    print(p)\n# prediction\nloaded_model.to(device)\nloaded_model(X)\n```\n\n如果你在\
+  \ Google Colab 上运行此笔记本，还可以下载这些模型以供将来使用：\n\n```python\nfrom google.colab import files\n\
+  files.download('scripted_model.pt')\nfiles.download('pt_model.pt')\n```\n\n跟踪方法和脚本化方法各有优缺点。下一节将介绍混合方法，以充分利用两者的优势。\n\
+  \n# 混合使用跟踪和脚本化方法\n\n跟踪方法简单直接，但不能正确记录包含控制流和循环的模型。脚本化方法可以弥补跟踪方法的这一局限。然而，其支持的语法/代码可能有限。因此，在某些情况下，将两种方法结合起来可能会很有益处。\n\
+  \n```\nadd_executable(cppapp cppapp.cpp)\ntarget_link_libraries(cppapp \"${TORCH_LIBRARIES}\"\
+  )\nset_property(TARGET cppapp PROPERTY CXX_STANDARD 14)\n```\n\n值得注意的是，如果在 Windows\
+  \ 上执行，建议在此文件末尾添加一个额外部分：\n\n```\nif (MSVC)\n  file(GLOB TORCH_DLLS \"${TORCH_INSTALL_PREFIX}/lib/*.dll\"\
+  )\n  add_custom_command(TARGET cppapp\n                    POST_BUILD\n        \
+  \            COMMAND ${CMAKE_COMMAND} -E copy_if_different\n                   \
+  \         ${TORCH_DLLS}\n                            $<TARGET_FILE_DIR:cppapp>)\n\
+  endif (MSVC)\n```\n\n类似地，下面的代码片段利用 `%%writefile` 指令创建了一个 C++ 应用程序的 .cpp 文件，该应用程序加载\
+  \ TorchScript 模型、准备示例输入、执行预测并显示预测结果：\n\n```\n%%writefile cppapp/cppapp.cpp\n#include\
+  \ <torch/script.h>\n#include <iostream>\n#include <memory>\n\nint main(int argc,\
+  \ const char* argv[]) {\n    torch::jit::script::Module module =\n    torch::jit::load(argv[1]);\n\
+  \    std::cout << \"Loaded the module\\n\";\n    float data[] = {1, 2, 3, 4};\n\
+  \    torch::Tensor tensor = torch::from_blob(data, {4});\n    std::vector<torch::jit::IValue>\
+  \ inputs;\n    inputs.push_back(tensor);\n    at::Tensor output = module.forward(inputs).toTensor();\n\
+  \    std::cout << \"pred result\" << output << '\\n';\n}\n```\n\n# 用于导出模型的 Detectron2\
+  \ 工具\n\nDetectron2 提供了一个名为 TracingAdapter 的包装类，它可以帮助包装 Detectron2 模型并支持使用跟踪方法进行导出。Detectron2\
+  \ 模型接受丰富的输入，并产生丰富的输出（即，它们可以是字典或对象）。相反，跟踪函数（torch.jit.trace）接受张量作为输入/输出。因此，这个适配器类有助于将\
+  \ Detectron2 模型的输入展平为张量，使其可被跟踪。此外，它还提供了从展平结果（张量）重建丰富模型输出的工具。该类接受以下输入参数：\n\n+   -\
+  \ model：这是要导出的 Detectron2 模型。\n+   - inputs：这可以是丰富的输入（例如字典或对象），并由该类展平成张量以供跟踪。\n\
+  +   - inference_func：这是一个可选的 callable，可以在需要时替换模型推理。\n+   - allow_non_tensor：这决定输入/输出是否可以包含非张量对象。它会过滤掉非张量对象以使模型可跟踪，但如果启用，则无法重建丰富的输入/输出。此输入参数的默认值为\
+  \ False。\n\n它具有包装原始模型 forward 方法的 forward 方法。此方法提供展平的输出，可以使用该类记录的 schema（outputs_schema）转换为丰富的输出。它还提供了一个数据成员（flattened_inputs）来存储展平的输入。以下是此类的一个用法示例：\n\
+  \n```\n# adapter can use rich inputs\nadapter = TracingAdapter(model, inputs)\n\
+  # trace with flattened inputs\ntraced = torch.jit.trace(adapter, adapter.flattened_inputs)\n\
+  # produces flattened outputs\nflattened_outputs = traced(*adapter.flattened_inputs)\n\
+  # convert flattened outputs to rich outputs\noutputs = adapter.outputs_schema(flattened_outputs)\n\
+  ```\n\nTraceAdapter 类支持导出中的跟踪和 ONNX（更多内容将在下一章介绍）方法。\n\n\n\n\n\nDetectron2 提供了一个名为\
+  \ scripting_with_instances 的函数，用于使用 PyTorch 脚本化函数（torch.jit.script）执行导出。Detectron2\
+  \ 模型使用 Instances 类，并且该类的属性可以在急切模式下动态添加。PyTorch 脚本化函数不支持这种动态行为。这就是为什么需要此辅助函数（scripting_with_instances）。它接受以下输入参数：\n\
+  \n- model：这是使用脚本化方法导出的 Detectron2 模型\n- fields：它给出模型中 Instances 类使用的属性名称和类型\n\n\
+  此方法创建一个名为 new_Instances 的类，与 Instances 类似但具有静态属性。静态属性必须使用辅助方法的 fields 输入参数声明。new_Instances\
+  \ 类使模型可追踪。以下是此辅助函数的示例用法：\n\n```\nfields = {\n    \"proposal_boxes\": Boxes,\n  \
+  \  \"objectness_logits\": Tensor,\n    \"pred_boxes\": Boxes,\n    \"scores\": Tensor,\n\
+  \    \"pred_classes\": Tensor,\n    \"pred_masks\": Tensor,\n    \"pred_keypoints\"\
+  : Tensor,\n    \"pred_keypoint_heatmaps\": Tensor,\n}\nmodel.eval()\nscripted_model\
+  \ = scripting_with_instances(model, fields)\n```\n\n恭喜！你现在了解了帮助使用追踪和脚本化方法导出 Detectron2\
+  \ 模型的两个主要工具。让我们将这些方法应用于之前构建的自定义 Detectron2 模型的导出。\n\n## 导出自定义 Detectron2 模型\n\n\
+  我们首先需要安装 Detectron2，加载数据集，并获取用于导出的训练好的模型及其配置文件：\n\n```\n# install\n!python -m pip\
+  \ install \\\n'git+https://github.com/facebookresearch/detectron2.git'\n# dataset\n\
+  ```\n"
+- "## 13\n将 Detectron2 模型部署到浏览器和移动环境\n\n本章介绍开放神经网络交换（ONNX）框架。该框架有助于在多个框架和平台之间共享深度神经网络。当需要将\
+  \ Detectron2 模型部署到浏览器或移动环境时，它非常有帮助。本章还描述了 D2Go，这是一个用于以最小的内存存储和计算需求训练、量化并部署模型的框架。使用该框架创建的模型对于部署到移动或边缘设备非常有帮助。\n\
+  \n到本章结束时，你将了解 ONNX 框架及其适用场景。你可以将自定义 Detectron2 模型导出为此格式并部署到 Web 或浏览器环境。你还将了解 D2Go\
+  \ 框架的优势，并知道如何利用其 Model Zoo 上的预训练模型或使用 D2Go 训练自定义模型。你还可以对自定义模型进行量化，以进一步优化其内存并提高其计算时间。\n\
+  \n具体来说，本章涵盖以下主题：\n\n- 使用 ONNX 部署 Detectron2 模型\n- 使用 D2Go 开发移动计算机视觉应用\n\n## 技术要求\n\
+  \n你应已完成第 1 章，以便为 Detectron2 拥有合适的开发环境。\n所有代码、数据集和结果均可在本书的 GitHub 页面上获取，地址为 https://github.com/PacktPublishing/Hands-On-Computer-Vision-with-Detectron2。\n\
+  \n```\nclass SimplePyTorchModel(nn.Module):\n    def __init__(self):\n        super(SimplePyTorchModel,\
+  \ self).__init__()\n        self.linear = nn.Linear(4, 1)\n        self.linear.weight.data.fill_(0.01)\n\
+  \        self.linear.bias.data.fill_(0.01)\n\n    def forward(self, X):\n      \
+  \  return torch.relu(self.linear(X))\n```\n\n值得注意的是，我们无需训练模型，而是将权重和偏置固定为 0.01 以用于演示目的。以下代码片段随后创建了此简单神经网络的模型并将其置于评估模式：\n\
+  \n```\npt_model = SimplePyTorchModel()\npt_model.eval()\n```\n\n现在，我们已准备好使用虚拟输入将模型导出为\
+  \ ONNX 格式：\n\n```\ndummy_X = torch.tensor([[1, 2, 3, 4]], dtype=torch.float32)\n\
+  model_name = 'onnx_model.onnx'\ntorch.onnx.export(pt_model,\n    dummy_X, model_name,\
+  \ verbose=True)\n```\n\n要测试导出的模型，我们首先需要使用以下语句安装 onnx 包：\n\n```\n!pip install onnx\n\
+  ```\n\n安装 onnx 后，以下代码片段加载导出的 ONNX 模型，检查其是否格式良好，并打印其图以供检查：\n\n```\nimport onnx\n\
+  from onnx.helper import printable_graph\n# load\nloaded_model = onnx.load(model_name)\n\
+  # check (well formed)\nonnx.checker.check_model(loaded_model)\n# graph\nprint(printable_graph(loaded_model.graph))\n\
+  ```\n\n要在 ONNX 模型中运行加载的模型，我们首先需要使用以下语句安装 onnxruntime 包：\n\n```\n!pip install onnxruntime\n\
+  ```\n\n一旦运行时环境就绪，以下代码片段有助于创建推理会话并获取加载模型的输入名称：\n\n```\nimport onnxruntime as ort\n\
+  ort_session = ort.InferenceSession(model_name)\ninput_name = ort_session.get_inputs()[0].name\n\
+  print(input_name)\n```\n\n之前的代码片段应将 input_name 显示为 onnx::Gemm_0。此输入名称对于在对输入数据进行推理时为加载的模型创建输入对象非常重要，如以下代码片段所示：\n\
+  \n```\nimport numpy as np\nX = np.array([[2, 3, 4, 5]])\noutputs = ort_session.run(\n\
+  \    None,\n    {input_name: X.astype(np.float32)},\n)\nprint(outputs[0])\n```\n\
+  \n之前的代码片段创建一个批输入 X，其中包含一个实例 [2, 3, 4, 5] 并对该输入进行预测。此代码片段应显示结果为 [[0.15]]。为了验证预测的准确性，我们也可以使用原始\
+  \ PyTorch 模型对同一输入进行预测，如下所示：\n\n```\nX = torch.tensor([[2, 3, 4, 5]], dtype=torch.float32)\n\
+  with torch.no_grad():\n    y = pt_model(X)\n    print(y)\n```\n\n此代码片段应显示与在 ONNX\
+  \ 推理会话中执行的加载 ONNX 模型相同的输出（[[0.15]]）。\n\n可选地，如果你正在 Google Colab 上运行，可以运行以下代码片段以将此\
+  \ ONNX 模型下载以供将来使用：\n\n```\n```python\nfrom google.colab import files\nfiles.download('onnx_model.onnx')\n\
+  ```\n```\n\n我们现在应该已将 PyTorch 模型导出为 ONNX 格式。此模型可以部署在支持 ONNX 的各种框架和平台中。在下一节中，我们将将其部署到浏览器环境。\n\
+  \n## 将 ONNX 模型加载到浏览器\n\n如果意图是将 PyTorch 或 Detectron2 模型加载到 Web 服务器环境中，则上一章中描述的技术就足够了。此外，我们还可以将\
+  \ ONNX 模型部署到 Web 服务器环境中。然而，在许多情况下，可能需要将深度学习模型部署到 Web 浏览器环境中。因此，本节提供了一个将上一节导出的 ONNX\
+  \ 模型部署到 Web 浏览器环境的示例。为简单和一致起见，让我们使用 Google Colab 来执行我们的 Web 应用程序。\n\n以下代码片段将上一节创建的\
+  \ ONNX 模型下载到当前运行的 Google Colab 实例中：\n\n```\n```bash\n!wget <url_to/Chapter13/onnx_model.onnx>\n\
+  ```\n```\n\n此外，为了在浏览器上执行 ONNX 模型，我们需要使用以下片段将 onnx.js 下载到当前文件夹：\n\n```\n```bash\n\
+  !wget https://cdn.jsdelivr.net/npm/onnxjs/dist/onnx.min.js\n```\n```\n\n下载完成后，我们可以使用\
+  \ %%writefile 指令在当前文件夹中创建一个名为 load_onnx.html 的 HTML 文件。此 HTML 文件有助于加载下载的模型并在示例输入上执行模型以验证流程：\n\
+  \n```\n```html\n%%writefile load_onnx.html\n<html>\n\n  <head> </head>\n\n  <body>\n\
+  \    <div id=\"output\"></div>\n    <script src=\"onnx.min.js\">\n    </script>\n\
+  \    <script>\n      const myOnnxSession = new onnx.InferenceSession();\n```\n\n\
+  \n\n\n```\nmyOnnxSession.loadModel(\"./onnx_model.onnx\")\n.then(() => {\n    //\
+  \ 第一步：创建一个输入\n    // 第二步：运行并更新输出div\n});\n</script>\n</body>\n</html>\n```\n\n该\
+  \ HTML 文件首先加载下载好的 JavaScript 文件（onnx.js）。接着，它创建另一段 JavaScript 来新建一个 ONNX 推理会话并加载下载好的\
+  \ ONNX 模型（onnx_model.onnx）。模型（异步）加载完成后，会执行以下两个步骤。\n\n第一步：这一步创建一个示例输入，作为一个 ONNX 张量，其数据与上一节中的相同（[2,\
+  \ 3, 4, 5]）：\n\n```\nconst inferenceInputs = new onnx.Tensor(\n  [2, 3, 4, 5],\n\
+  \  'float32', [1, 4]\n);\n```\n\n第二步：这一步将上一步准备好的输入传给推理会话，以异步执行预测。执行生成输出对象后，它会取出输出数据并更新输出\
+  \ div 的 innerText：\n\n```\nmyOnnxSession.run([inferenceInputs])\n.then((output)\
+  \ => {\n  const outputTensor = output.values().next().value;\n  const msg = `model\
+  \ output tensor: ${outputTensor.data}`;\n  document.getElementById('output').innerText\
+  \ = msg;\n});\n```\n\n下面的代码片段创建了一个辅助方法（expose_content），它可以将指定端口上运行的 web 服务器的内容暴露给\
+  \ iframe，并将生成的 iframe 嵌入当前 Google Colab 的输出单元格中：\n\n```\nfrom IPython.display import\
+  \ Javascript\ndef expose_content(port, height=200):\n    display(Javascript(\"\"\
+  \"\n(async () =>{\n```\n\n访问 D2Go 安装文件夹时请注意 Python 版本（python3.9）。如果安装目录中不存在 configs\
+  \ 文件夹，我们可以使用以下语句克隆 d2go 仓库：\n\n```\n!git clone <url_to/d2go.git> d2go_repo\n```\n\
+  \n克隆该仓库后，我们可以使用以下语句在安装目录中创建一个名为 configs 的文件夹：\n\n```\nd2go_dir = \"/usr/local/lib/python3.9/dist-packages/d2go\"\
+  \nconfigs_dir = f\"{d2go_dir}/configs\"\nimport os\nos.makedirs(configs_dir, exist_ok=True)\n\
+  ```\n\n现在，我们可以将下载仓库中 configs 文件夹的内容复制过来：\n\n```\n!cp -r d2go_repo/configs {d2go_dir}\n\
+  ```\n\n我们可以列出该文件夹中的所有配置文件以确认复制过程，同时还可以查看 D2Go Model Zoo 中已有的模型：\n\n```\n!ls \"/usr/local/lib/python3.9/dist-packages/d2go/configs\"\
+  \n```\n\n该语句应输出以下配置文件：\n\n```\nfaster_rcnn_fbnetv3a_C4_FSDP.yaml\nkeypoint_rcnn_fbnetv3a_dsmask_C4.yaml\n\
+  faster_rcnn_fbnetv3a_C4_LSJ.yaml\nmask_rcnn_fbnetv3a_C4.yaml\nfaster_rcnn_fbnetv3a_C4.yaml\n\
+  mask_rcnn_fbnetv3a_dsmask_C4.yaml\nfaster_rcnn_fbnetv3a_dsmask_C4.yaml\nmask_rcnn_fbnetv3g_fpn.yaml\n\
+  faster_rcnn_fbnetv3g_fpn.yaml\nqat_faster_rcnn_fbnetv3a_C4.yaml\n```\n\n此外，从 d2go.model_zoo\
+  \ 包中导入 model_zoo 时可能会出现如下错误信息：\n\n```\nModuleNotFoundError: No module named 'torch.ao.pruning'\n\
+  ```\n\n如果出现该错误，你可以执行以下步骤作为此问题的快速修复：\n\n- 1. 在 d2go 安装目录中找到 `fsdp.py` 文件（例如，在 Google\
+  \ Colab 中，路径为 `/usr/local/lib/python3.9/dist-packages/d2go/trainer/fsdp.py`）。\n\
+  - 2. 找到第 16 行，将 `fqn_to_module` 的导入路径从 `'from torch.ao.pruning import fqn_to_module'`\
+  \ 改为 `'from torch.ao.sparsity.sparsifier.utils import fqn_to_module'`。\n- 3. 按 Ctrl\
+  \ + S 键保存更改。\n\n完成这些快速修复后，我们就可以在 D2Go 的 Model Zoo 中选择一个现有的 D2Go 模型。读取和选择 D2Go 预训练模型的方式与第\
+  \ 2 章中为 Detectron2 选择预训练模型的方式相同。让我们选择一个简单模型来演示加载 D2Go Model Zoo 上现有模型的步骤：\n\n```\n\
+  from d2go.model_zoo import model_zoo\nselected_model = 'faster_rcnn_fgnetv3a_C4.yaml'\n\
+  model = model_zoo.get(selected_model, trained=True)\n```\n\n完成此步骤后，我们应该已经加载了模型（model）。让我们准备一个简单输入并测试加载的模型：\n\
+  \n```\n!wget -qq <url_to/800x800image/input.jpeg>\n```\n\n下面的代码片段在推理前加载下载好的图像：\n\
+  \n```\nimport cv2\nimg = cv2.imread(\"./input.jpeg\")\n```\n\n与 Detectron2 中的 DefaultPredictor\
+  \ 类类似，D2Go 也提供了一个名为 DemoPredictor 的类，用于从加载的模型生成预测器。下面的代码片段根据输入的模型创建该类的一个实例，对加载的图像（img）执行推理并打印结果：\n\
+  \n```\nfrom d2go.utils.demo_predictor import DemoPredictor\npredictor = DemoPredictor(model)\n\
+  outputs = predictor(img)\npred_instances = outputs[\"instances\"]\nprint(pred_instances)\n\
+  ```\n\n该片段应输出以下结果：\n\n```\nInstances(num_instances=10, image_height=800, image_width=800,\n\
+  fields=[pred_boxes: Boxes(tensor([[187.2431, 211.5772,\n384.4924, 711.0326],\n \
+  \       [347.6918, 385.5148, 480.2947, 747.8323],\n        [375.6132, 371.9870,\
+  \ 620.2853, 725.2900],\n        [348.4673, 643.8885, 452.5689, 765.8668],\n    \
+  \    [455.8702, 422.2232, 640.2230, 685.9368],\n        [319.8739, 275.5755, 417.1956,\
+  \ 651.1306],\n        [224.1623, 656.9628, 340.6416, 790.6293],\n        [496.0885,\
+  \ 670.5968, 641.2301, 750.6605],\n        [345.4467, 654.7966, 552.8320, 770.0833],\n\
+  \        [499.2968, 669.8000, 639.1102, 750.0955]])), scores:\ntensor([0.9974, 0.9540,\
+  \ 0.9063, 0.6769, 0.4782, 0.3086, 0.2689,\n0.1755, 0.0990,\n        0.0933]), pred_classes:\
+  \ tensor([ 0,  0,  0, 30, 33,  0,\n30, 30, 30, 31]))\n```\n\n可以看出，所有检测到的对象都被列出，无论预测置信度如何。让我们定义一个阈值（thres_test\
+  \ = 0.5）并使用该值过滤预测结果：\n\n```\nthresh_test = 0.5\nselected_idxs = pred_instances.scores\
+  \ > thresh_test\npred_instances = pred_instances[selected_idxs]\npred_instances\n\
+  ```\n\n该片段会过滤出具有较高预测置信度的实例：\n\n```\nInstances(num_instances=4, image_height=800,\
+  \ image_width=800,\nfields=[pred_boxes: Boxes(tensor([[187.2431, 211.5772,\n384.4924,\
+  \ 711.0326],\n        [347.6918, 385.5148, 480.2947, 747.8323],\n        [375.6132,\
+  \ 371.9870, 620.2853, 725.2900],\n        [348.4673, 643.8885, 452.5689, 765.8668]])),\
+  \ scores:\ntensor([0.9974, 0.9540, 0.9063, 0.6769]), pred_classes:\ntensor([ 0,\
+  \  0,  0, 30]))\n```\n\n让我们可视化输出并定量评估预测结果：\n\n```\nfrom detectron2.utils.visualizer\
+  \ import Visualizer\n```\n\n## 训练自定义 D2Go 模型\n\n让我们使用脑肿瘤数据集训练一个 D2Go 模型，以执行脑肿瘤检测和分类任务。与上一节类似，我们需要安装\
+  \ detectron2、mobile-vision 和 d2go 包。我们还必须将 configs 文件夹复制到 d2go 安装目录，并更改导入 fqn_to_module\
+  \ 的那行代码。这些步骤与上一节描述的相同。\n\n我们还需要下载脑肿瘤数据集，并将训练集和测试集注册到 Detectron2，就像我们在训练 Detectron2\
+  \ 模型时经常做的那样（代码相同）。下载数据集并注册后，让我们选择一个 D2Go 模型进行训练。对于此任务，D2Go 提供了一个名为 GeneralizedRCNNRunner\
+  \ 的类，用于帮助创建配置文件并训练自定义模型。让我们先导入该类、选择一个模型并创建该 runner 类的一个实例：\n\n```\nfrom d2go.model_zoo\
+  \ import model_zoo\nfrom d2go.runner import GeneralizedRCNNRunner\nselected_model\
+  \ = \"faster_rcnn_fbnetsv3a_C4.yaml\"\nnc = 2\noutput_dir = './output'\nmodel_url\
+  \ = selected_model\nrunner = GeneralizedRCNNRunner()\n```\n\n现在，在开始训练之前，我们需要获取该模型的配置：\n\
+  \n```\ncfg = runner.get_default_cfg()\ncfg.merge_from_file(model_zoo.get_config_file(model_url))\n\
+  cfg.MODEL.EMA.ENABLED = False\ncfg.DATASETS.TRAIN = (name_ds_train,)\ncfg.DATASETS.TEST\
+  \ = (name_ds_test,)\ncfg.DATALOADER.NUM_WORKERS = 2\ncfg.MODEL.WEIGHTS = model_zoo.get_checkpoint_url(model_url)\n\
+  cfg.MODEL.DEVICE =\"cpu\" if ('CI' in os.environ) else \"cuda\"\ncfg.SOLVER.IMS_PER_BATCH\
+  \ = 2\ncfg.SOLVER.BASE_LR = 0.00025\ncfg.SOLVER.MAX_ITER = 5 if ('CI' in os.environ)\
+  \ else 5000\ncfg.SOLVER.STEPS = []\ncfg.MODEL.ROI_HEADS.BATCH_SIZE_PER_IMAGE = 128\n\
+  cfg.MODEL.ROI_HEADS.NUM_CLASSES = nc\ncfg.OUTPUT_DIR = output_dir\nos.makedirs(cfg.OUTPUT_DIR,\
+  \ exist_ok=True)\n```\n\n\n\n大多数配置参数与 Detectron2 模型相同：创建配置、将其与现有配置文件合并以及下载预训练权重。我们现在可以使用配置（cfg）构建模型并使用脑肿瘤数据集训练该模型：\n\
+  \n```\nmodel = runner.build_model(cfg)\nrunner.do_train(cfg, model, resume=False)\n\
+  ```\n\n显然，与训练 Detectron2 模型相比，训练此模型所需的时间要少得多，因为它是一个轻量级模型。让我们在测试数据集上评估训练好的模型：\n\n\
+  ```\nmetrics = runner.do_test(cfg, model)\nprint(metrics)\n```\n\n由于训练过程中的随机性，输出结果可能每次运行都不同。然而，在交并比（Intersection\
+  \ over Union，IoU）下的平均精度（Average Precision，AP）应约为 0.48，这是一个相当不错的评估结果。我们可以使用与上一节类似的代码对一些样本数据进行预测并可视化结果，以定性评估训练模型的性能。\n\
+  \n该训练模型轻量级，旨在部署到移动环境中。然而，它仍然使用 32 位浮点数来存储其权重和激活值；因此，它仍然被认为效率低下。如果需要进一步压缩模型空间，模型量化技术就派上用场了。下一节将详细讨论该技术。\n\
+  \n## 模型量化\n\n模型量化是一种有助于在精度略有损失的情况下降低深度神经网络计算复杂度和内存占用的技术。具体来说，深度学习模型通常以 32 位浮点数的形式存储其权重和激活值，而这种高精度数字格式需要大量的数据存储和计算时间。因此，模型量化通过将权重和激活值转换为较低精度的数据类型（如\
+  \ 8 位整数）来解决此问题。这种降低有助于减少内存使用和计算时间。值得注意的是，虽然量化可以显著降低模型的内存和计算需求，但也可能导致模型精度的损失。\n\n\
+  延续上一节，让我们先通过以下代码片段打印出训练模型第一个参数的数据类型：\n\n```\nfor name, param in model.named_parameters():\n\
+  \    if param.requires_grad:\n        print(name, param.data.dtype)\n        break\n\
+  ```\n\n## 总结\n\n本章介绍了 ONNX 模型格式以及支持它的平台和框架。该框架有助于使 Detectron2 模型能够与不同框架和平台互操作。它随后提供了将\
+  \ Detectron2 模型导出到该格式的步骤以及在浏览器环境中部署导出模型的代码。本章还介绍了 D2Go，这是一个用于以最小的内存存储和计算资源训练、优化和部署计算机视觉应用神经网络的框架。此外，其模型可进一步使用量化技术进行优化，该技术将模型权重和激活值转换为低精度数字系统。这种量化步骤进一步降低了模型内存需求并提高了计算性能。因此，D2Go\
+  \ 模型适合部署到移动或边缘设备。D2Go 在其 Model Zoo 上也有预训练模型。因此，本章提供了使用 D2Go Model Zoo 上现有模型构建计算机视觉应用的步骤。它还提供了使用\
+  \ D2Go 工具训练自定义 D2Go 模型并执行量化的步骤。\n\n恭喜，并感谢您跟随到最后一章！您现在应该认为自己是使用 Detectron2 开发实用计算机视觉应用的专家。此外，本书中提供的理论应有助于您探索其他计算机视觉深度学习架构，例如\
+  \ **You Only Look Once (YOLO)**。\n"
+- "## 索引\n\n### A\n\n- anchor ratios\n  - computing 145, 146\n  - hyperparameters\
+  \ 144, 145\n  - setting 140\n- anchor sizes\n  - generating 144, 145\n  - setting\
+  \ 140\n- annotation formats 48-55\n  - conversions 58\n- AugInput class 186, 187\n\
+  - augmentation classes 176\n- Augmentation class 177\n- AugmentationList class 186\n\
+  - FixedSizeCrop class 177\n- MinIoURandomCrop class 184\n- RandomApply class 178\n\
+  - RandomBrightness class 185\n- RandomContrast class 185\n- RandomCrop and CategoryAreaConstraint\
+  \ classes 183\n- RandomCrop class 178\n- RandomExtent class 179\n- RandomFlip class\
+  \ 180\n- RandomLighting class 185\n- RandomResize class 181\n- RandomRotation class\
+  \ 180, 181\n- RandomSaturation class 185\n- Resize class 181\n- ResizeScale class\
+  \ 182\n- ResizeShortestEdge class 182\n- average precision (AP) 21, 104, 281\n\n\
+  ### B\n\n- best model selection 103-108\n  - evaluation metrics, used for object\
+  \ detection model 103, 104\n  - sample predictions 109-111\n  - thresholds, inferencing\
+  \ 108, 109\n- bias issue 160\n- blur technique 162\n- box features 86\n- brain tumor\
+  \ object detection dataset\n  - reference link 92\n  - train/test split, performing\
+  \ 217-220\n- brain tumor segmentation dataset 213\n  - data extraction 213-217\n\
+  - brightness technique 162\n\n### C\n\n- cloud development environment, Detectron2\
+  \ 11-13\n- Colaboratory 10\n- Google Colab 10\n- clustering algorithms\n  - using,\
+  \ to select sizes and ratios for genetic algorithm 147, 148\n- COCO datasets\n \
+  \ - Pascal VOC datasets, converting to 62-64\n  - YOLO datasets, converting to 59-61\n\
+  - Colaboratory 10\n- Common Objects in Context (COCO) 19\n- computer vision 45\n\
+  - computer vision application development 36\n  - inferences, performing 37, 38\n\
+  \  - predictor, obtaining 36, 37\n  - results, visualizing 38\n- computer vision\
+  \ (CV) task 4\n  - instance segmentation 5\n  - keypoint detection 5\n  - object\
+  \ detection 4, 5\n  - panoptic segmentation 6\n  - performing 39\n  - semantic segmentation\
+  \ 5\n- convolutional neural networks (CNNs) 266\n- crop technique 163\n- custom\
+  \ image augmentation techniques\n  - data loader, modifying 193-196\n  - developing\
+  \ 192\n  - MixUp image augmentation technique, developing 196-199\n  - Mosaic image\
+  \ augmentation technique, developing 200-205\n- custom PointRend models\n  - training\
+  \ 237-241\n- custom segmentation models\n  - training 226-229\n- custom trainer\n\
+  \  - developing 111, 112\n- CutMix technique 164\n- cutout technique 164\n\n###\
+  \ D\n\n- D2Go models 265, 275\n  - training 280, 281\n  - used, for developing mobile\
+  \ computer vision apps 274\n  - using 275-279\n- data loader\n  - modifying 193-196\n\
+  \  - preparing 152, 153\n- data preparation, for training segmentation models 212\n\
+  \  - annotations, converting 212\n  - brain tumor segmentation dataset 213\n  -\
+  \ images, labeling 212\n  - images, obtaining 212\n- data processing 92\n  - data\
+  \ format conversion 97, 98\n  - data samples, displaying 98-100\n  - dataset 92\n\
+  \  - initial data explorations, downloading 92-96\n  - initial data explorations,\
+  \ performing 92-96\n- data sources 44, 45\n- default anchors\n  - generating 143,\
+  \ 144\n- default trainer class\n  - using 100-103\n\n- transformation class 176\n\
+  - transformation classes 167–173\n- **image augmentation techniques** 160\n  - applying\
+  \ 191, 192\n  - geometric distortions 162, 163\n  - image occlusions 163, 164\n\
+  \  - need for 160\n  - photometric distortions 161, 162\n- **image labeling tool**\n\
+  \  - selecting 47, 48\n- **ImageNet** 19, 44\n- **ImageNet Large Scale Visual Recognition\
+  \ Challenge (ILSVRC)** 19\n- **image occlusions** 163, 164\n  - cutmix technique\
+  \ 164\n  - cutout technique 164\n  - mixup technique 164\n  - mosaic technique 164\n\
+  - **images**\n  - labeling 56–58\n  - obtaining 45, 46, 47\n- **input images**\n\
+  \  - pixel means, setting 151\n  - preprocessing 140–142\n  - standard deviations,\
+  \ setting 151\n- **instance segmentation** 5\n- **instance segmentation application,\
+  \ developing** 26\n  - configuration file, selecting 27\n  - inferences, performing\
+  \ 28\n  - predictor, obtaining 27, 28\n  - results, visualizing 29\n- **Intersection\
+  \ over Union (IoU)** 78, 281\n\n### J\n\n- **JavaScript Object Notation (JSON)**\
+  \ 49\n\n### K\n\n- **Kaggle** 44\n  - URL 44\n- **keypoint detection** 5\n- **keypoint\
+  \ detection application development** 29\n  - configuration file, selecting 30\n\
+  \  - inferences, performing 30\n  - predictor, obtaining 30\n  - results, visualizing\
+  \ 31\n- **keypoints** 5, 29\n\n### L\n\n- **labelImg** 48\n  - reference link 48\n\
+  - **labelme**\n  - reference link 48, 212\n- **labelme2coco package**\n  - reference\
+  \ link 212\n- **Label Studio** 48\n- **Large Vocabulary Instance Segmentation (LVIS)\
+  \ dataset** 44\n  - reference link 44\n- **LibTorch** 254\n- **local development\
+  \ environment, Detectron2** 13, 14\n  - Google Colab, connecting to 14, 15\n\n###\
+  \ M\n\n- **mean()**\n  - calculating 153–157\n- **mean AP (mAP)** 104\n- **Microsoft\
+  \ COCO (Common Objects in Context)** 44\n- **Microsoft Cognitive Toolkit (CNTK)**\
+  \ 266\n\n\n\n\n\n## P\n\n微软亚洲研究院（MSRA） 20\n\nMixUp 图像增强技术\n  开发 196-199\n\nmixup\
+  \ 技术 164\n\n移动端计算机视觉应用\n  使用 D2Go 开发 274\n\n模型文件格式 246\n\n模型量化 266, 281, 282\n\n\
+  动量 132-134\n\nMosaic 图像增强技术\n  开发 200-205\n\nmosaic 技术 164\n\n## N\n\n噪声技术 162\n\
+  \n非极大值抑制（NMS） 81, 205\n\n## O\n\n目标检测 4, 5\n\n目标检测应用开发 21\n  获取配置文件 21-23\n  执行推理\
+  \ 24, 25\n  获取预测器 23, 24\n  可视化结果 25, 26\n\n目标检测模型\n  使用评估指标 103, 104\n\nONNX 模型\n\
+  \  加载到 Web 服务器环境 269-271\n\n开放神经网络交换（ONNX） 246, 265, 266\n  将自定义 Detectron2 模型导出到\
+  \ ONNX 271-274\n  将 PyTorch 模型导出到 ONNX 266-269\n  用于部署 Detectron2 模型 266\n\n过拟合问题\
+  \ 160\n\n全景分割 6\n\n全景分割应用开发 31\n  选择配置文件 32\n  执行推理 32, 33\n  获取预测器 32\n  可视化结果\
+  \ 33, 34\n\nPascal VOC 标注格式 52\n\nPascal VOC 数据集\n  转换为 COCO 数据集 62-64\n\n光度失真\n\
+  \  模糊技术 162\n  亮度技术 162\n  曝光技术 162\n  灰度技术 162\n  色调技术 161\n  噪声技术 162\n  饱和度技术\
+  \ 162\n\nPointRend 232-234\n\nPyTorch\n  参考链接 13\n\nPyTorch 模型\n  导出到开放神经网络交换（ONNX）\
+  \ 266-269\n  使用脚本化方法导出 252, 253\n  使用追踪方法导出 248-249\n\n## R\n\n循环神经网络（RNNs） 266\n\
+  \n基于区域的卷积神经网络（R-CNN） 21, 67\n\n感兴趣区域头 83, 84\n  框预测器 86-88\n  池化器 85, 86\n\n感兴趣区域（RoI）\
+  \ 10\n\n## S\n\n区域提议网络（RPN） 9, 21, 72-74\n  锚点生成器 74-77\n  组件 72\n  提议预测 81-83\n\
+  \  RPN 头 77, 78\n  RPN 损失计算 78-81\n\nroboflow\n  参考链接 48\n\nRoboflow Universe\n\
+  \  参考链接 44\n\n旋转技术 163\n\n运行时环境 246\n\n饱和度技术 162\n\n脚本化方法\n  用于导出 PyTorch 模型 252,\
+  \ 253\n  与追踪方法对比 253\n\n分割模型\n  架构 220-225\n\n语义分割 5\n\n语义分割应用开发 34\n  选择配置文件 35\n\
+  \  执行推理 35\n  获取预测器 35\n  可视化结果 35\n\n剪切技术 163\n\n标准差\n  计算 153-157\n\n随机梯度下降 125-131\n\
+  \n## T\n\nTensorBoard\n  使用其检查训练历史 118-121\n\n测试时增强（TTA） 205\n  应用 205-207\n\nTorchScript\
+  \ 模型 246\n  使用 C++ 环境部署 254-256\n\nTracingAdapter 257\n  参数 257\n\n追踪方法\n  局限性 250,\
+  \ 251\n  用于导出 PyTorch 模型 247-249\n  与脚本化方法对比 253\n\n训练数据\n  采样 143, 144\n\n训练分割模型\n\
+  \  准备数据 212\n\n变换类 167, 171-173, 176\n  BlendTransform 类 174\n  CropTransform 类\
+  \ 174\n  ExtentTransform 类 168\n  GridSampleTransform 类 170\n  NoOpTransform 类 168\n\
+  \  PadTransform 类 175\n  PILColorTransform 和 ColorTransform 类 170\n  ResizeTransform\
+  \ 类 168\n  RotationTransform 类 169, 170\n  Transform 类 167\n  TransformList 类 175\n\
+  \  VFlipTransform 和 HFlipTransform 类 170\n\n真正例（TP） 103\n\n两阶段技术 72\n\n![](img/0e7994c850a84b7a53d34c7f943c7edd_312_0.png)\n\
+  \nPacktpub.com\n\n订阅我们的在线数字图书馆，即可完整访问超过 7,000 本图书和视频，以及行业领先的工具，帮助您规划个人发展并推进职业生涯。如需了解更多信息，请访问我们的网站。\n\
+  \n# 为什么订阅？\n\n+   - 通过来自超过 4,000 名行业专业人士的实用电子书和视频，减少学习时间，增加编码时间\n+   - 通过专为您设计的技能计划改善学习效果\n\
+  +   - 每月免费获得一本电子书或视频\n+   - 全文可搜索，方便快速访问重要信息\n+   - 可复制、粘贴、打印和收藏内容\n\n您是否知道 Packt\
+  \ 提供每本已出版图书的电子书版本，并包含 PDF 和 ePub 文件？您可以在 packtpub.com 升级到电子书版本，作为纸质书客户，您有权享受电子书折扣。如需更多详情，请通过\
+  \ customerservice@packtpub.com 与我们联系。\n\n在 www.packtpub.com 上，您还可以阅读一系列免费技术文章，注册各种免费新闻通讯，并在\
+  \ Packt 图书和电子书上获得独家折扣和优惠。\n\n![](img/0e7994c850a84b7a53d34c7f943c7edd_314_0.png)\n\
+  \n# 用于异常检测的深度学习与XAI技术\n\nCher Simon\n\nISBN: 9781804617755\n\n+   - 探索用于异常检测的深度学习框架\n\
+  +   - 减少偏差，确保无偏且合乎道德的分析\n+   - 提升对隐私和法规合规性的认识\n+   - 在多个领域构建深度学习异常检测器\n+   - 比较固有和事后可解释性方法\n\
+  +   - 检查反向传播和扰动方法\n+   - 应用模型无关和模型特定的可解释性技术\n+   - 评估深度学习模型的可解释性\n\n# Packt 正在寻找像您这样的作者\n\
+  \n如果您有兴趣成为 Packt 的作者，请访问 authors.packtpub.com 并立即申请。我们已与成千上万的开发者和技术专业人士合作，像您一样，帮助他们与全球技术社区分享见解。您可以进行一般性申请，申请我们正在招募作者的特定热门主题，或提交您自己的想法。\n\
+  \n# 分享您的想法\n\n既然您已经读完了《Detectron2计算机视觉实战指南》，我们很乐意听听您的想法！如果您是从亚马逊购买的这本书，请点击此处直接前往该书的亚马逊评论页面，分享您的反馈，或在您购买本书的网站上留下评论。\n\
+  \n您的评论对我们和技术社区都很重要，将帮助我们确保提供优质内容。\n\n# 下载本书的免费 PDF 版本\n\n感谢您购买本书！\n\n您是否喜欢在移动中阅读，但又无法随身携带纸质书？\n\
+  \n您的电子书购买是否与您选择的设备不兼容？\n\n别担心，现在每本 Packt 图书都附带一个无 DRM 的 PDF 版本，完全免费。\n\n在任何地方、任何位置、任何设备上阅读。将您喜爱的技术书籍中的代码直接搜索、复制并粘贴到您的应用程序中。\n\
+  \n福利不止于此，您还可以每天在收件箱中获取独家折扣、新闻通讯和优质免费内容。\n\n按照以下简单步骤获取福利：\n\n+   1. 扫描二维码或访问以下链接\n\
+  \n![](img/0e7994c850a84b7a53d34c7f943c7edd_316_0.png)\n\n```\nhttps://packt.link/free-ebook/9781800561625\n\
+  ```\n\n+   2. 提交您的购买凭证\n\n+   3. 搞定！我们会将免费 PDF 和其他福利直接发送到您的邮箱\n\n"

@@ -1,0 +1,57 @@
+reviews:
+- 'no': 2
+  overturn_probability: 0.05
+  alternative: 其他：书籍前置内容（前言）的独立标题
+  counter_evidence:
+  - 前言通常作为卷首语，在正式章节结构之外，可能不视为传统章节
+  - 但规则明确规定前置内容统一划分为一章，因此该质疑无法成立
+  keep_split: true
+- 'no': 18
+  overturn_probability: 0.05
+  alternative: 其他：书籍前置部分（关于审阅者）的标题
+  counter_evidence:
+  - 关于审阅者可能属于版权页或致谢的一部分，而非独立章节
+  - 但规则同样将此类前置内容划分为一章，故维持分章
+  keep_split: true
+- 'no': 180
+  overturn_probability: 0.15
+  alternative: 排版断行：'第 1 部分：'后缺少部分名称，可能是断行残留
+  counter_evidence:
+  - 该行以冒号结尾且未包含部分名称，单独看并不完整，可能是排版断行
+  - 但根据部分-章节模式，部分标题本身即应分章，行内文本不完整不影响判断
+  keep_split: true
+- 'no': 191
+  overturn_probability: 0.05
+  alternative: 正文小标题：可能是第1部分引言下的子标题
+  counter_evidence:
+  - 前面的章节列表中已经出现相同标题，正文中再次出现可能只是重复
+  - 但该标题后接本章概述、主题列表和子节，符合章标题的典型特征
+  keep_split: true
+- 'no': 768
+  overturn_probability: 0.05
+  alternative: 其他：书籍部分标题，非章节级标题
+  counter_evidence:
+  - 部分标题仅用于划分大型内容块，可能不被视为章节
+  - 但规则要求遇到'第 X 部分'时也要划分新章，因此应维持
+  keep_split: true
+- 'no': 1160
+  overturn_probability: 0.1
+  alternative: 正文小标题：可能是上一章（第3章）的一个子主题
+  counter_evidence:
+  - 前文没有出现明显的'小结'或章节结束标志，可能仍处于第3章语境
+  - 但该标题后接'本章深入探讨'，明确开启新章，且符合目录第4章标题
+  keep_split: true
+- 'no': 2056
+  overturn_probability: 0.05
+  alternative: 正文小标题：可能是第5章小结后的补充说明
+  counter_evidence:
+  - 标题本身没有编号，可能与前面的'## 小结'同属上一章
+  - 但该标题与目录第6章一致，且后接概述和主题列表，明确为新章
+  keep_split: true
+- 'no': 2915
+  overturn_probability: 0.1
+  alternative: 正文小标题：可能是第7章内的一个主题，而非第8章
+  counter_evidence:
+  - 标题文本与目录中的'图像数据增强技术'略有出入，有可能是节标题
+  - 但该标题后接独立的子节（###）并涵盖一个完整主题，符合章标题特征
+  keep_split: true

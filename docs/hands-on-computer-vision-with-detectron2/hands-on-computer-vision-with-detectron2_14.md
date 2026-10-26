@@ -1,0 +1,298 @@
+## 12
+
+## 将 Detectron2 模型部署到服务器环境
+
+本章将引导你完成导出过程的步骤，将 Detectron2 模型转换为可部署的产物。具体来说，它描述了深度学习模型的标准文件格式（如 TorchScript）以及这些格式对应的运行时（如 PyTorch 和 C++）。然后，本章提供了将 Detectron2 模型转换为标准文件格式并部署到相应运行时的步骤。
+
+学完本章后，你将理解 Detectron2 支持的标准文件格式和运行时。你可以执行步骤，使用跟踪（tracing）或脚本化（scripting）方法将 Detectron2 模型导出为 TorchScript 格式。此外，你可以创建一个 C++ 应用程序来加载和执行导出的模型。
+
+在本章中，我们将涵盖以下主题：
+
+- PyTorch 模型支持的文件格式和运行时
+- 部署自定义 Detectron2 模型
+
+## 技术要求
+
+你应该已经完成第 1 章的学习，以具备合适的 Detectron2 开发环境。所有代码、数据集和结果都可以在本书的 GitHub 页面上找到：https://github.com/PacktPublishing/Hands-On-Computer-Vision-with-Detectron2。
+
+## 支持的文件格式和运行时
+
+本节介绍 PyTorch 应用（尤其是 Detectron2 应用）的开发环境、文件格式和运行时。然后使用简单示例来解释这些概念。
+
+## 开发环境、文件格式和运行时
+
+在开发和部署深度学习模型时，有三个主要概念需要掌握：开发环境和编程语言、模型文件格式以及运行时环境。图 12.1 展示了这三个概念及各自的示例。
+
+![](img/0e7994c850a84b7a53d34c7f943c7edd_265_0.png)
+
+图 12.1：开发环境、文件格式和部署环境
+
+开发环境和编程语言或框架（如 PyTorch 或 Python）通常优先考虑易用性和定制性。然而，Python 语言和 PyTorch 框架在部署时可能会遇到运行时问题。例如，它们相对于其他运行时环境（如由 C++ 应用程序生成的可执行文件）来说速度较慢。此外，它们无法直接部署到 Web 浏览器或移动设备上。因此，用 PyTorch 编写的模型通常需要经过导出过程才能成为可部署的产物。
+
+用 PyTorch 编写的模型有其自身的文件格式，并且旨在通过 PyTorch 运行时执行。然而，为了支持跨平台以及与其他运行时环境的兼容性，PyTorch 支持另一种称为 TorchScript 的中间文件格式。这种 TorchScript 文件可以在不同的运行时环境中执行，例如由 C++ 应用程序加载以生成可执行文件。PyTorch 还允许将其模型导出为开放神经网络交换（ONNX）文件格式，以支持其他运行时环境，如 Web 浏览器和移动设备。
+
+TorchScript 有自己的解释器，其功能类似于 Python 的受限版本。这种格式使我们能够将整个模型保存到磁盘，并在不同的环境中使用，例如使用 Python 以外的其他语言构建的服务器。TorchScript 格式允许编译器优化，从而带来更高效的执行。此外，TorchScript 还可以与多种后端/设备运行时交互。
+
+Detectron2 支持使用跟踪（tracing）和脚本化（scripting）方法将其模型导出为 TorchScript。它还允许用户将模型导出为 ONNX 文件格式，该格式可以加载到不同的运行时环境中，如 Web 浏览器和移动设备。Detectron2 模型可以使用 caffe2_tracing 方法导出为 Caffe2 文件格式。然而，Caffe2 即将被弃用并与 PyTorch 合并。因此，本书不考虑这种选项。最后，在撰写本书时，TensorFlow 在生产环境中比 PyTorch 更受欢迎。因此，Detectron2 支持将其模型导出为 TensorFlow 的文件格式。
+
+
+
+
+具体来说，它包含了原始模型 `forward` 方法的 TorchScript 格式代码。接下来，我们准备使用跟踪模型对之前创建的相同输入（X）执行预测：
+
+```python
+with torch.no_grad():
+    y = traced_model(X)
+    print(y)
+```
+
+上述代码片段应该显示与原始 PyTorch 模型预测完全相同的结果：
+
+```text
+tensor([[0.1100],
+        [0.0000]], device='cuda:0')
+```
+
+下面的代码片段保存了跟踪模型，重新加载它，然后使用它对相同输入执行预测，以确保我们可以在不同的环境中导出和加载模型：
+
+```python
+traced_model.save("traced_model.pt")
+loaded_model = torch.jit.load("traced_model.pt")
+for p in loaded_model.parameters():
+    print(p)
+print(loaded_model(X))
+```
+
+这段代码应该将跟踪模型保存到硬盘。加载后，加载的模型应该具有与 PyTorch 模型相同的参数。最后，加载的模型应该对 X 输入产生与原始模型相同的预测。
+
+如果你在 Google Colab 上运行此笔记本，可以通过以下语句将此模型保存到本地系统以供将来使用：
+
+```python
+from google.colab import files
+files.download('traced_model.pt')
+```
+
+恭喜！通过使用跟踪方法，你应该已经掌握了将 PyTorch 模型导出为 TorchScript 的步骤。下一节将介绍跟踪方法的局限性，并介绍使用脚本化方法执行相同任务的方法。
+
+接下来，我们可以使用与上一节相同的代码片段，通过跟踪方法执行导出：
+
+```python
+dummy_X = torch.tensor(
+    data  = [[-1, -2, -3, -4]],
+    dtype = torch.float32)
+traced_model = torch.jit.trace(
+    pt_model,
+    example_inputs = dummy_X)
+```
+
+这段代码应该显示一条警告消息，内容如下：
+
+```
+TracerWarning: Converting a tensor to a Python boolean might cause the trace to be incorrect. We can't record the data flow of Python values, so this value will be treated as a constant in the future. This means that the trace might not generalize to other inputs!
+```
+
+这条警告消息表明，跟踪方法只记录了输入通过模型时的单一/静态流程，并未考虑其他情况。你可以使用上一节提供的相同代码片段来显示跟踪模型的参数：
+
+```python
+traced_model.to(device)
+for p in traced_model.parameters():
+    print(p.data)
+```
+
+参数应该保持不变（全部为 0.01）。然而，模型代码是不同的。具体来说，`print(traced_model.code)` 显示以下输出：
+
+```
+def forward(self,
+    x: Tensor) -> Tensor:
+    linear = self.linear
+    return torch.neg((linear).forward(x, ))
+```
+
+请注意，这个跟踪模型总是返回线性模型输出的负值（torch.neg），因为这是虚拟输入所走的路径并被记录在跟踪模型中。换句话说，对于未来的数据，if 代码块永远不会被执行。
+
+让我们使用跟踪模型对之前生成的 X 输入执行预测：
+
+```python
+with torch.no_grad():
+    y = traced_model(X)
+    print(y)
+```
+
+这段代码给出以下输出：
+
+```
+tensor([[ -0.1100]],device='cuda:0')
+```
+
+显然，这与原始 PyTorch 模型的预测输出不同，因为执行路径是针对虚拟输入（dummy_X）的，而不是当前的 X 输入。因此，在这种情况下，应该使用脚本化方法。
+
+# 使用脚本化方法导出 PyTorch 模型
+
+继续使用上一节中的代码；下面的代码片段使用脚本化方法将 PyTorch 模型导出到 TorchScript：
+
+```python
+scripted_model = torch.jit.script(pt_model)
+print(scripted_model.code)
+```
+
+该片段应显示导出模型的 TorchScript 代码，如下所示：
+
+```
+def forward(self,
+    x: Tensor) -> Tensor:
+    linear = self.linear
+    y = (linear).forward(x, )
+    if bool(torch.gt(torch.sum(y), 0)):
+        _0 = y
+    else:
+        _0 = torch.neg(y)
+    return _0
+```
+
+显然，这与跟踪方法不同，因为导出模型的 TorchScript 代码现在包含了控制流部分。此外，下面的代码片段应显示导出模型的参数（所有参数均为 0.01）：
+
+```python
+for p in scripted_model.parameters():
+    print(p.data)
+```
+
+此外，我们可以使用导出模型对之前准备的 X 输入执行预测，以检查结果：
+
+```python
+scripted_model.to(device)
+with torch.no_grad():
+    y = scripted_model(X)
+    print(y)
+```
+
+预测结果应与原始模型产生的结果完全相同（tensor([[0.1100]], device='cuda:0')）。此外，我们可以将模型保存到硬盘，重新加载它，显示加载模型的参数值，执行预测，并再次验证结果：
+
+```python
+# save
+scripted_model.to("cpu").save("scripted_model.pt")
+# load
+loaded_model = torch.jit.load("scripted_model.pt")
+# loaded parameters
+for p in loaded_model.parameters():
+    print(p)
+# prediction
+loaded_model.to(device)
+loaded_model(X)
+```
+
+如果你在 Google Colab 上运行此笔记本，还可以下载这些模型以供将来使用：
+
+```python
+from google.colab import files
+files.download('scripted_model.pt')
+files.download('pt_model.pt')
+```
+
+跟踪方法和脚本化方法各有优缺点。下一节将介绍混合方法，以充分利用两者的优势。
+
+# 混合使用跟踪和脚本化方法
+
+跟踪方法简单直接，但不能正确记录包含控制流和循环的模型。脚本化方法可以弥补跟踪方法的这一局限。然而，其支持的语法/代码可能有限。因此，在某些情况下，将两种方法结合起来可能会很有益处。
+
+```
+add_executable(cppapp cppapp.cpp)
+target_link_libraries(cppapp "${TORCH_LIBRARIES}")
+set_property(TARGET cppapp PROPERTY CXX_STANDARD 14)
+```
+
+值得注意的是，如果在 Windows 上执行，建议在此文件末尾添加一个额外部分：
+
+```
+if (MSVC)
+  file(GLOB TORCH_DLLS "${TORCH_INSTALL_PREFIX}/lib/*.dll")
+  add_custom_command(TARGET cppapp
+                    POST_BUILD
+                    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+                            ${TORCH_DLLS}
+                            $<TARGET_FILE_DIR:cppapp>)
+endif (MSVC)
+```
+
+类似地，下面的代码片段利用 `%%writefile` 指令创建了一个 C++ 应用程序的 .cpp 文件，该应用程序加载 TorchScript 模型、准备示例输入、执行预测并显示预测结果：
+
+```
+%%writefile cppapp/cppapp.cpp
+#include <torch/script.h>
+#include <iostream>
+#include <memory>
+
+int main(int argc, const char* argv[]) {
+    torch::jit::script::Module module =
+    torch::jit::load(argv[1]);
+    std::cout << "Loaded the module\n";
+    float data[] = {1, 2, 3, 4};
+    torch::Tensor tensor = torch::from_blob(data, {4});
+    std::vector<torch::jit::IValue> inputs;
+    inputs.push_back(tensor);
+    at::Tensor output = module.forward(inputs).toTensor();
+    std::cout << "pred result" << output << '\n';
+}
+```
+
+# 用于导出模型的 Detectron2 工具
+
+Detectron2 提供了一个名为 TracingAdapter 的包装类，它可以帮助包装 Detectron2 模型并支持使用跟踪方法进行导出。Detectron2 模型接受丰富的输入，并产生丰富的输出（即，它们可以是字典或对象）。相反，跟踪函数（torch.jit.trace）接受张量作为输入/输出。因此，这个适配器类有助于将 Detectron2 模型的输入展平为张量，使其可被跟踪。此外，它还提供了从展平结果（张量）重建丰富模型输出的工具。该类接受以下输入参数：
+
++   - model：这是要导出的 Detectron2 模型。
++   - inputs：这可以是丰富的输入（例如字典或对象），并由该类展平成张量以供跟踪。
++   - inference_func：这是一个可选的 callable，可以在需要时替换模型推理。
++   - allow_non_tensor：这决定输入/输出是否可以包含非张量对象。它会过滤掉非张量对象以使模型可跟踪，但如果启用，则无法重建丰富的输入/输出。此输入参数的默认值为 False。
+
+它具有包装原始模型 forward 方法的 forward 方法。此方法提供展平的输出，可以使用该类记录的 schema（outputs_schema）转换为丰富的输出。它还提供了一个数据成员（flattened_inputs）来存储展平的输入。以下是此类的一个用法示例：
+
+```
+# adapter can use rich inputs
+adapter = TracingAdapter(model, inputs)
+# trace with flattened inputs
+traced = torch.jit.trace(adapter, adapter.flattened_inputs)
+# produces flattened outputs
+flattened_outputs = traced(*adapter.flattened_inputs)
+# convert flattened outputs to rich outputs
+outputs = adapter.outputs_schema(flattened_outputs)
+```
+
+TraceAdapter 类支持导出中的跟踪和 ONNX（更多内容将在下一章介绍）方法。
+
+
+
+
+
+Detectron2 提供了一个名为 scripting_with_instances 的函数，用于使用 PyTorch 脚本化函数（torch.jit.script）执行导出。Detectron2 模型使用 Instances 类，并且该类的属性可以在急切模式下动态添加。PyTorch 脚本化函数不支持这种动态行为。这就是为什么需要此辅助函数（scripting_with_instances）。它接受以下输入参数：
+
+- model：这是使用脚本化方法导出的 Detectron2 模型
+- fields：它给出模型中 Instances 类使用的属性名称和类型
+
+此方法创建一个名为 new_Instances 的类，与 Instances 类似但具有静态属性。静态属性必须使用辅助方法的 fields 输入参数声明。new_Instances 类使模型可追踪。以下是此辅助函数的示例用法：
+
+```
+fields = {
+    "proposal_boxes": Boxes,
+    "objectness_logits": Tensor,
+    "pred_boxes": Boxes,
+    "scores": Tensor,
+    "pred_classes": Tensor,
+    "pred_masks": Tensor,
+    "pred_keypoints": Tensor,
+    "pred_keypoint_heatmaps": Tensor,
+}
+model.eval()
+scripted_model = scripting_with_instances(model, fields)
+```
+
+恭喜！你现在了解了帮助使用追踪和脚本化方法导出 Detectron2 模型的两个主要工具。让我们将这些方法应用于之前构建的自定义 Detectron2 模型的导出。
+
+## 导出自定义 Detectron2 模型
+
+我们首先需要安装 Detectron2，加载数据集，并获取用于导出的训练好的模型及其配置文件：
+
+```
+# install
+!python -m pip install \
+'git+https://github.com/facebookresearch/detectron2.git'
+# dataset
+```

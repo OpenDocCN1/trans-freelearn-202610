@@ -1,0 +1,447 @@
+## 索引
+
+### A
+
+- anchor ratios
+  - computing 145, 146
+  - hyperparameters 144, 145
+  - setting 140
+- anchor sizes
+  - generating 144, 145
+  - setting 140
+- annotation formats 48-55
+  - conversions 58
+- AugInput class 186, 187
+- augmentation classes 176
+- Augmentation class 177
+- AugmentationList class 186
+- FixedSizeCrop class 177
+- MinIoURandomCrop class 184
+- RandomApply class 178
+- RandomBrightness class 185
+- RandomContrast class 185
+- RandomCrop and CategoryAreaConstraint classes 183
+- RandomCrop class 178
+- RandomExtent class 179
+- RandomFlip class 180
+- RandomLighting class 185
+- RandomResize class 181
+- RandomRotation class 180, 181
+- RandomSaturation class 185
+- Resize class 181
+- ResizeScale class 182
+- ResizeShortestEdge class 182
+- average precision (AP) 21, 104, 281
+
+### B
+
+- best model selection 103-108
+  - evaluation metrics, used for object detection model 103, 104
+  - sample predictions 109-111
+  - thresholds, inferencing 108, 109
+- bias issue 160
+- blur technique 162
+- box features 86
+- brain tumor object detection dataset
+  - reference link 92
+  - train/test split, performing 217-220
+- brain tumor segmentation dataset 213
+  - data extraction 213-217
+- brightness technique 162
+
+### C
+
+- cloud development environment, Detectron2 11-13
+- Colaboratory 10
+- Google Colab 10
+- clustering algorithms
+  - using, to select sizes and ratios for genetic algorithm 147, 148
+- COCO datasets
+  - Pascal VOC datasets, converting to 62-64
+  - YOLO datasets, converting to 59-61
+- Colaboratory 10
+- Common Objects in Context (COCO) 19
+- computer vision 45
+- computer vision application development 36
+  - inferences, performing 37, 38
+  - predictor, obtaining 36, 37
+  - results, visualizing 38
+- computer vision (CV) task 4
+  - instance segmentation 5
+  - keypoint detection 5
+  - object detection 4, 5
+  - panoptic segmentation 6
+  - performing 39
+  - semantic segmentation 5
+- convolutional neural networks (CNNs) 266
+- crop technique 163
+- custom image augmentation techniques
+  - data loader, modifying 193-196
+  - developing 192
+  - MixUp image augmentation technique, developing 196-199
+  - Mosaic image augmentation technique, developing 200-205
+- custom PointRend models
+  - training 237-241
+- custom segmentation models
+  - training 226-229
+- custom trainer
+  - developing 111, 112
+- CutMix technique 164
+- cutout technique 164
+
+### D
+
+- D2Go models 265, 275
+  - training 280, 281
+  - used, for developing mobile computer vision apps 274
+  - using 275-279
+- data loader
+  - modifying 193-196
+  - preparing 152, 153
+- data preparation, for training segmentation models 212
+  - annotations, converting 212
+  - brain tumor segmentation dataset 213
+  - images, labeling 212
+  - images, obtaining 212
+- data processing 92
+  - data format conversion 97, 98
+  - data samples, displaying 98-100
+  - dataset 92
+  - initial data explorations, downloading 92-96
+  - initial data explorations, performing 92-96
+- data sources 44, 45
+- default anchors
+  - generating 143, 144
+- default trainer class
+  - using 100-103
+
+- transformation class 176
+- transformation classes 167–173
+- **image augmentation techniques** 160
+  - applying 191, 192
+  - geometric distortions 162, 163
+  - image occlusions 163, 164
+  - need for 160
+  - photometric distortions 161, 162
+- **image labeling tool**
+  - selecting 47, 48
+- **ImageNet** 19, 44
+- **ImageNet Large Scale Visual Recognition Challenge (ILSVRC)** 19
+- **image occlusions** 163, 164
+  - cutmix technique 164
+  - cutout technique 164
+  - mixup technique 164
+  - mosaic technique 164
+- **images**
+  - labeling 56–58
+  - obtaining 45, 46, 47
+- **input images**
+  - pixel means, setting 151
+  - preprocessing 140–142
+  - standard deviations, setting 151
+- **instance segmentation** 5
+- **instance segmentation application, developing** 26
+  - configuration file, selecting 27
+  - inferences, performing 28
+  - predictor, obtaining 27, 28
+  - results, visualizing 29
+- **Intersection over Union (IoU)** 78, 281
+
+### J
+
+- **JavaScript Object Notation (JSON)** 49
+
+### K
+
+- **Kaggle** 44
+  - URL 44
+- **keypoint detection** 5
+- **keypoint detection application development** 29
+  - configuration file, selecting 30
+  - inferences, performing 30
+  - predictor, obtaining 30
+  - results, visualizing 31
+- **keypoints** 5, 29
+
+### L
+
+- **labelImg** 48
+  - reference link 48
+- **labelme**
+  - reference link 48, 212
+- **labelme2coco package**
+  - reference link 212
+- **Label Studio** 48
+- **Large Vocabulary Instance Segmentation (LVIS) dataset** 44
+  - reference link 44
+- **LibTorch** 254
+- **local development environment, Detectron2** 13, 14
+  - Google Colab, connecting to 14, 15
+
+### M
+
+- **mean()**
+  - calculating 153–157
+- **mean AP (mAP)** 104
+- **Microsoft COCO (Common Objects in Context)** 44
+- **Microsoft Cognitive Toolkit (CNTK)** 266
+
+
+
+
+
+## P
+
+微软亚洲研究院（MSRA） 20
+
+MixUp 图像增强技术
+  开发 196-199
+
+mixup 技术 164
+
+移动端计算机视觉应用
+  使用 D2Go 开发 274
+
+模型文件格式 246
+
+模型量化 266, 281, 282
+
+动量 132-134
+
+Mosaic 图像增强技术
+  开发 200-205
+
+mosaic 技术 164
+
+## N
+
+噪声技术 162
+
+非极大值抑制（NMS） 81, 205
+
+## O
+
+目标检测 4, 5
+
+目标检测应用开发 21
+  获取配置文件 21-23
+  执行推理 24, 25
+  获取预测器 23, 24
+  可视化结果 25, 26
+
+目标检测模型
+  使用评估指标 103, 104
+
+ONNX 模型
+  加载到 Web 服务器环境 269-271
+
+开放神经网络交换（ONNX） 246, 265, 266
+  将自定义 Detectron2 模型导出到 ONNX 271-274
+  将 PyTorch 模型导出到 ONNX 266-269
+  用于部署 Detectron2 模型 266
+
+过拟合问题 160
+
+全景分割 6
+
+全景分割应用开发 31
+  选择配置文件 32
+  执行推理 32, 33
+  获取预测器 32
+  可视化结果 33, 34
+
+Pascal VOC 标注格式 52
+
+Pascal VOC 数据集
+  转换为 COCO 数据集 62-64
+
+光度失真
+  模糊技术 162
+  亮度技术 162
+  曝光技术 162
+  灰度技术 162
+  色调技术 161
+  噪声技术 162
+  饱和度技术 162
+
+PointRend 232-234
+
+PyTorch
+  参考链接 13
+
+PyTorch 模型
+  导出到开放神经网络交换（ONNX） 266-269
+  使用脚本化方法导出 252, 253
+  使用追踪方法导出 248-249
+
+## R
+
+循环神经网络（RNNs） 266
+
+基于区域的卷积神经网络（R-CNN） 21, 67
+
+感兴趣区域头 83, 84
+  框预测器 86-88
+  池化器 85, 86
+
+感兴趣区域（RoI） 10
+
+## S
+
+区域提议网络（RPN） 9, 21, 72-74
+  锚点生成器 74-77
+  组件 72
+  提议预测 81-83
+  RPN 头 77, 78
+  RPN 损失计算 78-81
+
+roboflow
+  参考链接 48
+
+Roboflow Universe
+  参考链接 44
+
+旋转技术 163
+
+运行时环境 246
+
+饱和度技术 162
+
+脚本化方法
+  用于导出 PyTorch 模型 252, 253
+  与追踪方法对比 253
+
+分割模型
+  架构 220-225
+
+语义分割 5
+
+语义分割应用开发 34
+  选择配置文件 35
+  执行推理 35
+  获取预测器 35
+  可视化结果 35
+
+剪切技术 163
+
+标准差
+  计算 153-157
+
+随机梯度下降 125-131
+
+## T
+
+TensorBoard
+  使用其检查训练历史 118-121
+
+测试时增强（TTA） 205
+  应用 205-207
+
+TorchScript 模型 246
+  使用 C++ 环境部署 254-256
+
+TracingAdapter 257
+  参数 257
+
+追踪方法
+  局限性 250, 251
+  用于导出 PyTorch 模型 247-249
+  与脚本化方法对比 253
+
+训练数据
+  采样 143, 144
+
+训练分割模型
+  准备数据 212
+
+变换类 167, 171-173, 176
+  BlendTransform 类 174
+  CropTransform 类 174
+  ExtentTransform 类 168
+  GridSampleTransform 类 170
+  NoOpTransform 类 168
+  PadTransform 类 175
+  PILColorTransform 和 ColorTransform 类 170
+  ResizeTransform 类 168
+  RotationTransform 类 169, 170
+  Transform 类 167
+  TransformList 类 175
+  VFlipTransform 和 HFlipTransform 类 170
+
+真正例（TP） 103
+
+两阶段技术 72
+
+![](img/0e7994c850a84b7a53d34c7f943c7edd_312_0.png)
+
+Packtpub.com
+
+订阅我们的在线数字图书馆，即可完整访问超过 7,000 本图书和视频，以及行业领先的工具，帮助您规划个人发展并推进职业生涯。如需了解更多信息，请访问我们的网站。
+
+# 为什么订阅？
+
++   - 通过来自超过 4,000 名行业专业人士的实用电子书和视频，减少学习时间，增加编码时间
++   - 通过专为您设计的技能计划改善学习效果
++   - 每月免费获得一本电子书或视频
++   - 全文可搜索，方便快速访问重要信息
++   - 可复制、粘贴、打印和收藏内容
+
+您是否知道 Packt 提供每本已出版图书的电子书版本，并包含 PDF 和 ePub 文件？您可以在 packtpub.com 升级到电子书版本，作为纸质书客户，您有权享受电子书折扣。如需更多详情，请通过 customerservice@packtpub.com 与我们联系。
+
+在 www.packtpub.com 上，您还可以阅读一系列免费技术文章，注册各种免费新闻通讯，并在 Packt 图书和电子书上获得独家折扣和优惠。
+
+![](img/0e7994c850a84b7a53d34c7f943c7edd_314_0.png)
+
+# 用于异常检测的深度学习与XAI技术
+
+Cher Simon
+
+ISBN: 9781804617755
+
++   - 探索用于异常检测的深度学习框架
++   - 减少偏差，确保无偏且合乎道德的分析
++   - 提升对隐私和法规合规性的认识
++   - 在多个领域构建深度学习异常检测器
++   - 比较固有和事后可解释性方法
++   - 检查反向传播和扰动方法
++   - 应用模型无关和模型特定的可解释性技术
++   - 评估深度学习模型的可解释性
+
+# Packt 正在寻找像您这样的作者
+
+如果您有兴趣成为 Packt 的作者，请访问 authors.packtpub.com 并立即申请。我们已与成千上万的开发者和技术专业人士合作，像您一样，帮助他们与全球技术社区分享见解。您可以进行一般性申请，申请我们正在招募作者的特定热门主题，或提交您自己的想法。
+
+# 分享您的想法
+
+既然您已经读完了《Detectron2计算机视觉实战指南》，我们很乐意听听您的想法！如果您是从亚马逊购买的这本书，请点击此处直接前往该书的亚马逊评论页面，分享您的反馈，或在您购买本书的网站上留下评论。
+
+您的评论对我们和技术社区都很重要，将帮助我们确保提供优质内容。
+
+# 下载本书的免费 PDF 版本
+
+感谢您购买本书！
+
+您是否喜欢在移动中阅读，但又无法随身携带纸质书？
+
+您的电子书购买是否与您选择的设备不兼容？
+
+别担心，现在每本 Packt 图书都附带一个无 DRM 的 PDF 版本，完全免费。
+
+在任何地方、任何位置、任何设备上阅读。将您喜爱的技术书籍中的代码直接搜索、复制并粘贴到您的应用程序中。
+
+福利不止于此，您还可以每天在收件箱中获取独家折扣、新闻通讯和优质免费内容。
+
+按照以下简单步骤获取福利：
+
++   1. 扫描二维码或访问以下链接
+
+![](img/0e7994c850a84b7a53d34c7f943c7edd_316_0.png)
+
+```
+https://packt.link/free-ebook/9781800561625
+```
+
++   2. 提交您的购买凭证
+
++   3. 搞定！我们会将免费 PDF 和其他福利直接发送到您的邮箱
+
