@@ -1,0 +1,3 @@
+# # How it works...
+
+In this recipe, we logged in to Windows Server 2016 WIN2016IIS and checked the IP address restriction rules and access and deny rules on the server. We accessed the website `https://172.16.15.60` (**mysite.com**) from server `172.16.15.60` and website `https://172.16.15.60` (**mysite.com**) from server `172.16.15.65`.

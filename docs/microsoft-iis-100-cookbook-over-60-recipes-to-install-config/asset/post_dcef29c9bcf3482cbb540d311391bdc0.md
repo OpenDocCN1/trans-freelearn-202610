@@ -1,0 +1,125 @@
+
+## How it works...
+
+In this recipe, we performed some management tasks for IIS 10.0 on Nano Server. We added the Nano Server IP 172.16.15.63 as a trusted host for the WIN2016IIS server and connected Nano Server using a remote PowerShell command. We also checked the listed default website on IIS server. We used PowerShell commands to start and stop the website's default website services.
+
+## Creating an IIS 10.0 website on Nano Server
+
+In this recipe, we'll use PowerShell commands to connect to our Nano Server instance. We will import the IIS administration module and create a website. Finally, we will check the website's status.
+
+## Getting ready
+
+To step through this recipe, we are going to create a website in IIS 10.0 on Nano Server 2016 through PowerShell. IIS 10.0 on Nano Server can only be managed using PowerShell. You will need Nano Server 2016 with the IIS package installed. For all this installation and configuration work, you should have administrative privileges.
+
+## How to do it...
+
+- 1. Go to the **WIN2016IIS** server to connect to Nano Server 2016 through PowerShell. We have to first log in to the **WIN2016IIS** server or (a Windows Server 2016 or Windows 10 machine will do). We will use PowerShell to remotely connect to Nano Server 172.16.15.63. This is the IP in my case, but it can be different in yours.
+- 2. Open PowerShell with administrative rights on the **WIN2016IIS** server. Press *Windows + R* key from your keyboard. You will get the **Run** window.
+- 3. Type the command `RunAs /user:Administrator PowerShell_ISE.exe` in the **Run** window and click on **OK**. Now it will ask you the administrator password of **WIN2016IIS**, so type in the password for **WIN2016IIS** and press *Enter*. You will see PowerShell open with administrative rights.
+
+Have a look at the *Installing IIS 10.0 on Nano Server* recipe to learn how to run PowerShell.
+
+- 4. Let's connect to Nano Server on `172.16.15.63`. We have to first set up our Nano Server instance as the trusted host for **WIN2016IIS** server. We will write the PowerShell command `Set-Item WSMan:localhostClientTrustedHosts -Value 172.16.15.63 -Concatenate` and press *Enter*. You will get a pop-up to confirm the trusted host. Click on **Yes**. You have now finished the trusted host setup for Nano Server.
+- 5. Let's now connect Nano Server. Run the PowerShell command `Enter-PSSession -ComputerName "172.16.15.63" -Credential ~Administrator` to connect to Nano Server. You will get the popup for the Nano Server administrator password, as shown here:
+
+In the command `-ComputerName "172.16.15.63"`, substitute your IP address.
+
+![](img/1e026bc33e65e0f63d5e9b5081b6d8c8_215_0.png)
+
+- 6. You have to provide your Nano server password and press *Enter*. You will be logged in through PowerShell remotely.
+
+3. Open the file explorer on the **WIN2016IIS** server, and type `172.16.15.63\c$\Windows\System32\inetsrv\config` in the address bar of your browser. We are going to access the `C:` drive of Nano Server on the default hidden share, `c$`. It will prompt you for the administrator password. Once you've provided the correct password for Nano Server, you will get Nano Server to open to `172.16.15.63\c$\Windows\System32\inetsrv\config`, as shown here:
+
+![](img/1e026bc33e65e0f63d5e9b5081b6d8c8_219_0.png)
+
+4. You have to make some changes in `ApplicationHost.config`. Open it in Notepad:
+
+> 💡 **TIP**
+> 
+> Make the changes carefully. It's better to keep a backup file in a safe place before editing the original one!
+
+```
+<configuration>
+    <!--
+        The &lt;configSections&gt; section controls the registration of sections.
+        Section is the basic unit of deployment, locking, searching and
+        containment for configuration settings.
+
+        Every section belongs to one section group.
+        A section group is a container of logically-related sections.
+
+        Sections cannot be nested.
+        Section groups may be nested.
+
+        &lt;section
+            name="" [Required, Collection Key] [XML name of the section]
+            allowDefinition="Everywhere" [MachineOnly|MachineToApplication|AppHostOnly|Everywhere]
+            [Level where it can be set]
+            overrideModeDefault="Allow" [Allow|Deny] [Default delegation mode]
+            allowLocation="true" [true|false] [Allowed in location tags]
+        /&gt;
+
+        The recommended way to unlock sections is by using a location tag:
+        &lt;location path="Default Web Site" overrideMode="Allow"&gt;
+            &lt;system.webServer&gt;
+                &lt;asp /&gt;
+            &lt;/system.webServer&gt;
+        &lt;/location&gt;
+```
+
+5. The ApplicationHost.config file has all the IIS website-related property configuration options. Make sure you're changing the ApplicationHost.config file and not something else. You'll find nanosite.com, as shown here:
+
+![](img/1e026bc33e65e0f63d5e9b5081b6d8c8_220_0.png)
+
+6. Click on Find, and it will take you inside applicationHost.config, where the nanosite.com details are available:
+
+![](img/1e026bc33e65e0f63d5e9b5081b6d8c8_221_0.png)
+
+7. As shown in the screenshot, we've selected the site property. Here, you can change the Site Name, Physical Path, Binding Protocol, and Binding Information. We will change only the nanosite.com IP address and port number. You can see in screenshot the code bindingInformation="172.16.15.63*:8080:" *. This will used any available IP, but we will assign Nano Server's 172.16.15.63 and we change the port to 8081, as shown here:
+
+```
+</listenerAdapters>
+    <log>
+        <centralBinaryLogFile enabled="true" directory="%SystemDrive%\inetpub\logs\LogFiles"></centralBinaryLogFile>
+        <centralW3CLogFile enabled="true" directory="%SystemDrive%\inetpub\logs\LogFiles"></centralW3CLogFile>
+    </log>
+    <sites>
+        <site name="Default Web Site" id="1">
+            <application path="/">
+                <virtualDirectory path="/" physicalPath="%SystemDrive%\inetpub\wwwroot"/></virtualDirectory>
+            </application>
+            <bindings>
+                <binding protocol="http" bindingInformation="*:801:"></binding>
+            </bindings>
+        </site>
+        <site name="nanosite.com" id="1607163939">
+            <application path="/">
+                <virtualDirectory path="/" physicalPath="c:\inetpub\wwwroot\nanosite" />
+            </application>
+            <bindings>
+                <binding protocol="http" bindingInformation="172.16.15.63:8081:"></binding>
+            </bindings>
+        </site>
+    <siteDefaults>
+        <logFile logFormat="W3C" directory="%SystemDrive%\inetpub\logs\LogFiles"></logFile>
+```
+
+8. If you want to change the physical path of nanosite.com, you can edit the path as you want. Now you can Save the applicationHost.config file and close it.
+
+9. Let's check the modified nanosite.com binding information through PowerShell. On the WIN2016IIS server, open the Run prompt and execute RunAs /user:Administrator PowerShell_ISE.exe. It will ask you for the administrator password of WIN2016IIS; type it in and press Enter. You will get PowerShell open with administrative rights.
+
+10. We need to first set up a Nano Server instance that is the trusted host for the WIN2016IIS server. Run the command Set-Item WSMan:\localhost\client\trustedhosts -Value 172.16.15.63 -Concatenate. You will get a popup to confirm the trusted host. Click on Yes.
+
+11. We need to run this PowerShell command to connect Nano Server to PowerShell: Enter-PSSession -ComputerName "172.16.15.63" -Credential ~Administrator. You will get a popup for the Nano Server administrator password. Enter the administrator password and press OK.
+
+5. Run Import-module iisadministration. After this, you can create a web page through PowerShell using the following commands:
+
+```
+"Welcome to IIS on Nano Server by Ashraf Khan This Nanosite.com" | Out-File -PSPath "c:\inetpub\wwwroot\nanosite\Default.htm"
+```
+
+"Welcome to IIS on Nano Server by Ashraf Khan This Nanosite.com" is the text that will be displayed on the web page, and Out-file -PSPath is used to define the type of file and physical path of your website. You can see this in the following screenshot:
+
+![](img/1e026bc33e65e0f63d5e9b5081b6d8c8_225_0.png)
+
+6. So we've just written a single line of easy code to create an HTML webpage. Let's check the nanosite folder and see whether the file has been created.

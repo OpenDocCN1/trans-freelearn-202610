@@ -1,0 +1,5 @@
+3. Type the command RunAs /user:Administrator PowerShell_ISE.exe and press the OK button. Now, it will ask you the administrator password to WIN2016IIS. Type the administrator password and press Enter. PowerShell will open with administrative rights:
+
+![](bbox=[0.1, 0.2, 0.89, 0.62])
+
+4. You see now in the screenshot that we have a script editor and PowerShell command prompt. Let's connect to Nano Server at 172.16.15.63. We have to first set up a Nano Server instance as the trusted host for the WIN2016IIS server. Execute the PowerShell command Set-Item WSMan:\localhost\ClientTrustedHosts -Value 172.16.15.63 -Concatenate, and you will get a popup to confirm the trusted host with options Yes, Yes to all, and No. We will click on the Yes button. With this, you have finished the trusted host setup.

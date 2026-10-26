@@ -1,0 +1,73 @@
+reviews:
+- 'no': 171
+  overturn_probability: 0.1
+  alternative: 若不分章，最可能是前言/目录区域的一个二级小标题（类似‘关于作者’、‘前言’），而非真正的章节标题。
+  counter_evidence:
+  - 该行没有章节序号，与前后‘## 前言’等目录性质标题层级相同，可能只是前置内容的一部分
+  - 但后续紧跟‘在本章中，我们将涵盖以下食谱’，表明它是章节起始，因此原判断可信度高
+  keep_split: true
+- 'no': 389
+  overturn_probability: 0.85
+  alternative: 第1章内的一个配方标题（托管静态页面），序号‘2’可能是OCR或排版残留，并非真正的章序号。
+  counter_evidence:
+  - 对照目录，第2章应为‘在 IIS 10.0 中创建应用程序池’，而本行内容是托管静态页面，属于第1章列出的食谱之一
+  - 本行后文 452 行才开始应用程序池主题，且该行仍为‘###’级别，说明 389 并不是独立于第1章的顶层章节
+  - 本行前的章节列表（175-180行）明确包含‘主机静态页面’和‘测试静态页面网站’，证明该内容属于第1章
+  keep_split: false
+- 'no': 720
+  overturn_probability: 0.1
+  alternative: 若不分章，可能是第2章末尾的一个编号小节（但‘3.’与目录第3章标题一致，分章更合理）。
+  counter_evidence:
+  - 前面缺少第2章标题，可能导致‘3.’看起来突兀，但目录明确有第3章‘在 IIS 10.0 上托管多个网站’
+  - 后面紧跟‘在本章中，我们将介绍以下配方’，符合章标题的上下文特征
+  keep_split: true
+- 'no': 1172
+  overturn_probability: 0.1
+  alternative: 若不分章，可能是第5章标题的英文残留，但编号与目录对应。
+  counter_evidence:
+  - 前面第4章标题‘### 在 IIS 10.0 中构建虚拟目录’层级较低，可能造成章节边界混乱，但本行‘## 5.’是更高层级
+  - 后文‘在本章中，我们将介绍以下操作指南’确认其为章
+  keep_split: true
+- 'no': 1349
+  overturn_probability: 0.1
+  alternative: 若不分章，可能是第6章标题的英文版本，但存在前置空行‘## ’，可能被误当正文。
+  counter_evidence:
+  - 行前有一个孤立的‘## ’空标题（1347行），可能是转换噪声，但不能否定本行本身是章节标题
+  - 后文‘在本章中，我们将介绍以下教程’是典型章标题引导语
+  keep_split: true
+- 'no': 1557
+  overturn_probability: 0.15
+  alternative: 若不分章，可能是第6章末尾引出的一个二级主题，但语义上它是新一章的开始。
+  counter_evidence:
+  - 该行没有章节编号，与前后其他‘##’级别的目录条目混淆
+  - 但紧随其后的‘在本章中，我们将介绍以下操作’明确标记了章的开始
+  keep_split: true
+- 'no': 2124
+  overturn_probability: 0.2
+  alternative: 若不分章，可能是第8章（使用PowerShell管理IIS）中的一个英文小节标题，而非独立章节。
+  counter_evidence:
+  - 前一个真正的第8章标题（1854行‘## 使用 PowerShell cmdlet 管理 IIS’）未被现有结果识别，导致 2124 孤立地成为新章，但这种漏判不代表
+    2124 不是章
+  - 后文有‘在本章中，我们将介绍以下教程’，且内容对应第9章目录
+  keep_split: true
+- 'no': 2432
+  overturn_probability: 0.1
+  alternative: 若不分章，可能是第10章标题在正文中的重复，或排版残留。
+  counter_evidence:
+  - 行前有空的‘## ’（2430行），可能给人排版噪声的印象
+  - 但‘## 10. 安装和配置 SSL 网站’带编号且有‘在本章中……’引导，分章正确
+  keep_split: true
+- 'no': 2632
+  overturn_probability: 0.15
+  alternative: 若不分章，可能是第11章的标题被转换为二级标题前的普通文本。
+  counter_evidence:
+  - 没有编号，可能被误认为普通小标题
+  - 但后续‘在本章中，我们将介绍以下教程’以及目录对应关系表明它是章标题
+  keep_split: true
+- 'no': 2900
+  overturn_probability: 0.1
+  alternative: 若不分章，可能是第12章标题的普通文本行，但编号和引导语支持分章。
+  counter_evidence:
+  - 编号‘12’后面缺少点号，格式与前面章节标题不完全一致
+  - 但‘在本章中，我们将介绍以下操作’和目录对应关系明确它是章标题
+  keep_split: true

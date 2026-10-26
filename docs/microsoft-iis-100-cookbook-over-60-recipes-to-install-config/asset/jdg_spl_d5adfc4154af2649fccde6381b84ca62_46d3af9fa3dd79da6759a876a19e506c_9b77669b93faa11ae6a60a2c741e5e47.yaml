@@ -1,0 +1,88 @@
+chapter_starts:
+- 'no': 171
+  confidence: 0.95
+  final_reason: 最高层级章节标题，单独成行，语义统领后续内容，对应第1章；复核方反方证据不成立，后文‘在本章中，我们将涵盖以下食谱’确认章起始
+  accepted_evidence:
+  - '单独成行 ## 在 IIS 10.0 上集成 Windows Server 2016'
+  - 后1~3行为概述段落‘在本章中，我们将涵盖以下食谱’
+  - 目录第1章对应内容
+  rejected_evidence:
+  - 无章节序号，与前言等目录标题层级相同
+  need_human_review: false
+- 'no': 720
+  confidence: 0.95
+  final_reason: '编号特征 ## 3. Hosting Multiple Websites on IIS 10.0，单独成行，统领后续多网站内容；复核方确认目录对应且有章引导语'
+  accepted_evidence:
+  - '## 3. Hosting Multiple Websites on IIS 10.0 单独成行'
+  - 后文‘在本章中，我们将介绍以下配方’
+  - 目录第3章标题一致
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 1172
+  confidence: 0.95
+  final_reason: '编号特征 ## 5. 在 IIS 10.0 上安装 HTTP/2，单独成行，章节级标题；后文有章引导语'
+  accepted_evidence:
+  - '## 5. 在 IIS 10.0 上安装 HTTP/2 单独成行'
+  - 后文‘在本章中，我们将介绍以下操作指南’
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 1349
+  confidence: 0.94
+  final_reason: '编号特征 ## 6. Getting Your Wildcard Host Up and Running，单独成行，章节级标题；后文有章引导语'
+  accepted_evidence:
+  - '## 6. Getting Your Wildcard Host Up and Running 单独成行'
+  - 后文‘在本章中，我们将介绍以下教程’
+  rejected_evidence:
+  - '行前存在孤立 ## 空标题噪声'
+  need_human_review: false
+- 'no': 1557
+  confidence: 0.95
+  final_reason: '最高层级章节标题 ## 在 Nano Server 上部署 IIS 10.0，单独成行，统领后续内容；后文有章引导语'
+  accepted_evidence:
+  - '## 在 Nano Server 上部署 IIS 10.0 单独成行'
+  - 后文‘在本章中，我们将介绍以下操作’
+  rejected_evidence:
+  - 无章节编号，与目录条目混淆
+  need_human_review: false
+- 'no': 2124
+  confidence: 0.93
+  final_reason: '章节标题 ## Enabling ASP.NET Core with IIS on Nano Server，单独成行，对应第9章；后文有章引导语'
+  accepted_evidence:
+  - '## Enabling ASP.NET Core with IIS on Nano Server 单独成行'
+  - 后文‘在本章中，我们将介绍以下教程’
+  - 目录第9章对应
+  rejected_evidence:
+  - 前一章标题1854未被识别导致孤立
+  need_human_review: false
+- 'no': 2432
+  confidence: 0.95
+  final_reason: '编号特征 ## 10. 安装和配置 SSL 网站，单独成行，章节级标题；后文有章引导语'
+  accepted_evidence:
+  - '## 10. 安装和配置 SSL 网站 单独成行'
+  - 后文‘在本章中，我们将介绍以下操作指南’
+  rejected_evidence:
+  - '行前有空 ## 噪声'
+  need_human_review: false
+- 'no': 2632
+  confidence: 0.94
+  final_reason: '章节标题 ## 将 IIS 10.0 扩展到 FTP，单独成行，对应第11章；后文有章引导语'
+  accepted_evidence:
+  - '## 将 IIS 10.0 扩展到 FTP 单独成行'
+  - 后文‘在本章中，我们将介绍以下教程’
+  rejected_evidence:
+  - 无编号，可能被误认为普通小标题
+  need_human_review: false
+- 'no': 2900
+  confidence: 0.95
+  final_reason: '编号特征 ## 12 保护 IIS 10.0 上的网站，单独成行，章节级标题；后文有章引导语'
+  accepted_evidence:
+  - '## 12 保护 IIS 10.0 上的网站 单独成行'
+  - 后文‘在本章中，我们将介绍以下操作’
+  rejected_evidence:
+  - 编号后缺少点号，格式不完全一致
+  need_human_review: false
+rejected_lines:
+- 'no': 389
+  reason: 复核方反方证据成立：该行实为第1章内的配方标题‘2. Hosting Static Web Pages’，对照目录第2章应为‘在 IIS 10.0
+    中创建应用程序池’，本行内容属于第1章‘主机静态页面’食谱，且层级为配方级而非顶层章节；判断方误分
+  need_human_review: false
