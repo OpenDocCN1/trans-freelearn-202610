@@ -1,0 +1,34 @@
+reviews:
+- 'no': 7
+  overturn_probability: 0.15
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '# Credits 为前言类前置信息，规则要求前言、序言、致谢、关于作者等正文之前的内容统一划分为一章，单独以 Credits 起章会把后续 About
+    the Author、About the Reviewers、Preface 等拆散'
+  - '标题为 # 级别且单独成行，语义上为版权/鸣谢页而非统领正文内容的章节标题'
+  keep_split: true
+- 'no': 376
+  overturn_probability: 0.85
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题层级为 ##，非全书最高层级的大章标记，真正的章标题在本书中多以 # 出现'
+  - 前文 374 行‘下一章将专门介绍 R 中的基本数据结构——向量。然后，我们将在 *第 3 章“使用表格”* 中介绍表’表明此处应为第 2 章的内部小节，而非新章的起始
+  - '标题后 1~3 行直接进入示例代码说明，未出现章级概述段落，且后续仍使用 ### 等更深层级标题'
+  keep_split: false
+- 'no': 1441
+  overturn_probability: 0.8
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题层级为 ##，与前后大量 ## 小节同级，不符合‘只划分全书最高层级的大章’的编号特征'
+  - '前文 1439 行‘在下一章中，我们将讨论如何在 R 中处理表格’提示新章应从更上层的 # 标题开始，而 1441 行仅为该章内的首个小节‘使用 data.frame
+    类表示表格数据’'
+  - '标题后紧跟 1443 行的说明性段落而非章级概述，且后续内容仍以 ### 细分'
+  keep_split: false
+- 'no': 2400
+  overturn_probability: 0.75
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题层级为 ##，而非最高层级 #，不符合章标题格式特征'
+  - '虽然 2402 行出现‘在本章中，我们将进入 R 中空间数据分析的领域’，但该表述出现在 ## 使用栅格 下的引言段落，属于节内概述而非新章的独立开头'
+  - '前后文 2404 行起列出本节主题清单，结构上为节级内容，且后续仍有 ### 等更深层级标题'
+  keep_split: false

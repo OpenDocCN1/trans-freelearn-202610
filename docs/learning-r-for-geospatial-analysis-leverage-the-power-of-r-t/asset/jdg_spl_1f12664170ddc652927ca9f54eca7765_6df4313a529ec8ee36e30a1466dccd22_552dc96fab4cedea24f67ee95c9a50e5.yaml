@@ -1,0 +1,24 @@
+chapter_starts:
+- 'no': 7
+  confidence: 0.9
+  final_reason: 判断方与复核方均认可。# Credits 为正文之前的前置信息，规则要求前言、序言、致谢、关于作者等正文之前的内容统一划分为一章；单独以
+    Credits 起章不会拆散后续 About the Author / About the Reviewers / Preface 等前置块。
+  accepted_evidence:
+  - '标题为 # 级别且单独成行，位于正文之前'
+  - 复核方 counter_evidence 指出其为前言类前置信息，规则要求统一划分为一章
+  - 复核方 keep_split=true，overturn_probability=0.15
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 376
+  reason: '复核方反证成立。标题层级为 ##，非全书最高层级大章；前文 374 行明确提示‘下一章将专门介绍 R 中的基本数据结构——向量’，此处为第 2
+    章内部小节‘## 使用向量与时间序列’，标题后直接进入示例说明，无章级概述。判断方证据不足。'
+  need_human_review: false
+- 'no': 1441
+  reason: '复核方反证成立。标题层级为 ##，与前后大量 ## 小节同级，不符合只划分最高层级大章的编号特征；前文 1439 行提示新章应从更上层 # 开始，1441
+    行实为该章内首个小节‘使用 data.frame 类表示表格数据’。判断方证据不足。'
+  need_human_review: false
+- 'no': 2400
+  reason: '复核方反证成立。标题层级为 ## 而非最高层级 #；2402 行‘在本章中，我们将进入 R 中空间数据分析的领域’属于 ## 使用栅格 下的节内概述，非新章独立开头；前后文
+    2404 行起列出本节主题清单，结构为节级内容。判断方证据不足。'
+  need_human_review: false

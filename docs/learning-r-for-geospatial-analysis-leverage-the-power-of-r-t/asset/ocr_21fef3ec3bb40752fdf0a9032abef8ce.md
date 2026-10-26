@@ -1,0 +1,9 @@
+# Preface
+
+The defining feature of spatial data analysis is the reference within the data being analyzed to locations on the surface of the earth. This is a very broad subject encompassing distinct areas of expertise such as spatial statistics, geometric computation, and image processing.
+
+In practice, spatial data is commonly stored, viewed, and analyzed in Geographic Information System (GIS) software, of which the most well-known example is ArcGIS. However, most often, menu-based interfaces of GIS software are too narrow in scope to meet specialized demands or too inflexible to feasibly accomplish customized repetitive tasks. Writing scripts rather than using menus or working in combination with external software are two commonly used paths to solve such problems. However, what if we can use a single environment, combining the advantages of programming and spatial data analysis capabilities with a comprehensive ecosystem of computational tools that are readily implementable in customized procedures?
+
+This book will demonstrate that the R programming language is indeed such an environment and teach you how to use it in order to perform various spatial data analysis tasks.
+
+Most currently available books on this subject are focused on advanced applications such as spatial statistics, assuming you have prior knowledge of R and the respective scientific domains. Yet, introductory material on R from the point of view of a spatial data analyst, which is focused on introductory topics such as spatial data handling, computation, and visualization, is scarce. This book aims to fill that gap.

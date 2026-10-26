@@ -1,0 +1,93 @@
+reviews:
+- 'no': 5937
+  overturn_probability: 0.05
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '一级标题 # 9 空间数据的高级可视化 单独成行且后接章节概述和主题列表，符合最高层级大章特征'
+  - '前文 5927 ## 摘要 已结束上一章，后续 5939 起为新章正文'
+  keep_split: true
+- 'no': 6894
+  overturn_probability: 0.1
+  alternative: 附录大章标题
+  counter_evidence:
+  - '一级标题 # A External Datasets 单独成行，后续为附录数据集列表，符合附录级大章划分规则'
+  - '前文 6890 ## 总结 已结束正文内容'
+  keep_split: true
+- 'no': 6922
+  overturn_probability: 0.1
+  alternative: 附录大章标题
+  counter_evidence:
+  - '一级标题 # B Cited References 单独成行，后续为参考文献列表，符合附录级大章特征'
+  - '与 # A 构成附录部分-章节模式'
+  keep_split: true
+- 'no': 7483
+  overturn_probability: 0.85
+  alternative: 出版后记/广告页标题
+  counter_evidence:
+  - '标题 # 感谢您购买 Learning R for Geospatial Analysis 属于书末致谢/营销内容，非正文章节标题'
+  - '后续 7486 # 关于 Packt Publishing 等为同一出版信息板块的连续小标题，不应各自成章'
+  - 格式上为书末推广噪声，长度超过常规章标题且无统领性正文
+  keep_split: false
+- 'no': 7486
+  overturn_probability: 0.9
+  alternative: 出版信息子标题
+  counter_evidence:
+  - '# 关于 Packt Publishing 与前一条感谢页同属出版商后记板块，为排版噪声/页眉页脚类小标题'
+  - '后接公司介绍段落，非独立章节概述，后续紧跟 # 关于 Packt Open Source 等同级推广标题'
+  keep_split: false
+- 'no': 7494
+  overturn_probability: 0.9
+  alternative: 出版信息子标题
+  counter_evidence:
+  - '# 关于 Packt Open Source 为出版商宣传小标题，单独成行但无章节统领性内容'
+  - 与前后出版信息标题构成连续的广告板块，应合并为一章而非各自分章
+  keep_split: false
+- 'no': 7498
+  overturn_probability: 0.9
+  alternative: 出版信息子标题
+  counter_evidence:
+  - '# 为 Packt 撰写 为征稿广告类小标题，内容为联系方式说明，非正文章节'
+  - 属于排版断行/推广噪声，不符合章标题语义特征
+  keep_split: false
+- 'no': 7504
+  overturn_probability: 0.95
+  alternative: 广告板块标题
+  counter_evidence:
+  - '# PACKT open source 为书末推荐图书的装饰性标题，后续为 PUBLISHING 等排版噪声'
+  - 标题无序号且为营销用大写短语，长度异常且后接推广内容而非章节概述
+  keep_split: false
+- 'no': 7510
+  overturn_probability: 0.9
+  alternative: 推荐图书条目标题
+  counter_evidence:
+  - '# Big Data Analytics with R and Hadoop 为书末推荐图书的独立条目标题，非全书章节'
+  - 后接 ISBN、页数等商品信息，属于广告列表项而非章节标题
+  keep_split: false
+- 'no': 7523
+  overturn_probability: 0.9
+  alternative: 推荐图书条目标题
+  counter_evidence:
+  - '# Bioinformatics with R Cookbook 同为书末推荐图书条目，与 7510 结构相同'
+  - 为列表项/排版噪声，不应分章
+  keep_split: false
+- 'no': 7533
+  overturn_probability: 0.95
+  alternative: 广告板块标题
+  counter_evidence:
+  - '# PACKT PUBLISHING open source community experienc... 为截断的推广标题，后接图片占位'
+  - 属于排版噪声/页眉页脚类内容，无统领性正文
+  keep_split: false
+- 'no': 7537
+  overturn_probability: 0.9
+  alternative: 推荐图书条目标题
+  counter_evidence:
+  - '# Machine Learning with R 为书末推荐图书条目，后接 ISBN 和卖点列表'
+  - 为广告列表项，非章节标题
+  keep_split: false
+- 'no': 7550
+  overturn_probability: 0.9
+  alternative: 推荐图书条目标题
+  counter_evidence:
+  - '# Statistical Analysis with R 为书末推荐图书条目，与前述推荐条目同类'
+  - 内容为商品信息，非章节概述，应视为排版噪声
+  keep_split: false

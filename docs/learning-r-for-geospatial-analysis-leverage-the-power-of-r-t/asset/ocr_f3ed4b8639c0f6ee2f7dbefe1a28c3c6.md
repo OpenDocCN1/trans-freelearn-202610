@@ -1,0 +1,5 @@
+The resulting output is shown in the following screenshot:
+
+![](bbox=[0.22, 0.17, 0.78, 0.6])
+
+The points, once again, show an empirical variogram, while the continuous line is the fitted variogram model. In this case, for instance, the selected model was "Matern, M. Stein's parameterization" (code name "Ste"), with the four parameter values stated in the bottom-right corner of the image. The object v contains several components, such as the empirical variogram data points and the sums of squares between the sample variogram and the fitted variogram model. The component we are interested in is the fitted variogram model. This components' name is var_model, and it can be accessed with the $ operator, using the expression v$var_model (this behavior stems from the fact that an autofitVariogram class is built upon a list, and list elements can be accessed the same way as data.frame columns with $).

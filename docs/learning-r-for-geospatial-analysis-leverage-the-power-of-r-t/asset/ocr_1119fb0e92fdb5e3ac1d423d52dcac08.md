@@ -1,0 +1,3 @@
+![](bbox=[0.27, 0.15, 0.73, 0.58])
+
+As we can see in the preceding diagram, our goal is to create a new raster s, where each column holds the vector of row averages from r. In other words, each s row is going to represent an r row (or y axis positions in space), while each s column is going to represent an r layer (or positions in time). We will perform the operation in two steps: first, creating an empty raster s (with the required dimensions) and second, populating it with values. We will also see two different ways of accomplishing the task: using a for loop and using apply.
