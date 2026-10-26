@@ -1,0 +1,17 @@
+# The rapid evolution of application architectures
+
+An important dimension that we cannot overlook is the evolution of application architectures over the past years, which, in a way, has added an additional burden to security investigations and sign-offs.
+
+These days, monolith applications are broken down into microservices, resulting in hundreds or thousands of APIs. Previously, you just needed to safeguard countable entry points, but now, you have a dynamic scale to manage. Highly secure environments further enforce communications over mutual TLS (mTLS) between these microservices. This results in the need to manage a lot of certificates. From an operational and scalability standpoint, a common next step is to look into containerization options. Since running these containers reliably at scale is not an easy feat, the orchestration provided by a managed container platform becomes the ideal next step. Of course, who doesn’t want to simplify the management of these platforms so that a good chunk of these applications makes cloud providers such as AWS their new home?
+
+If you take a brief pause at this point and look at this gigantic shift from a security perspective, you will notice that all of this has greatly contributed to an increase in the attack surface and introduced new risks that the teams now need to safeguard themselves against. Things are no longer constrained to the application itself, but also the abstraction layers that are built on top – that is, APIs, container abstractions, and cloud platforms – each having their share to contribute.
+
+# Outdated security tools
+
+Security professionals, on the other hand, have since long been used to a specific set of tools that might not have evolved as fast as the fancy innovations in software development. As a result, security not only needs to keep up with the new tools that the developers adopt but also be on the constant lookout for new attack surfaces. In some cases, this might warrant the need for finding new security tools, adopting third-party cloud security software, or even developing bespoke solutions.
+
+All of this leads to one important point – security is never done. *It’s an ongoing cycle of improvement.* This makes it very difficult for security professionals working in modern software teams to keep up with the pace of delivery. Potential risk surfaces have increased manifold and this cannot be tackled with manual testing anymore, and at the same time, we cannot wait until the very end of the software delivery process. Therefore, injecting security scans at every single step of the delivery life cycle is key, and this is what DevSecOps is all about.
+
+# What is DevSecOps?
+
+Simply put, DevSecOps is the practice of integrating security tests into every stage of the software delivery life cycle. It is an *extension* of the DevOps approach that we have discussed so far in this book. Using tools and processes, it promotes collaboration between development, operations, and security teams. This results in software artifacts that are not only operationally efficient to produce but also safe to be released in production, at any point in time. Similar to DevOps, DevSecOps also brings in a cultural shift around how we approach security in conventional software delivery processes. Security

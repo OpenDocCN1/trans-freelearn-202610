@@ -1,0 +1,58 @@
+reviews:
+- 'no': 2
+  overturn_probability: 0.15
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '该行是正文前的 Contributors 前言类标题，规则要求前言、序言、致谢、关于作者等正文之前的内容统一划分为一章，单独以 Contributors
+    起章与标题 # AWS DevOps 简化 在同一前言块内重复切分'
+  - 前后均为作者、审阅者致谢等前言信息，无章节统领性概述段落
+  keep_split: true
+- 'no': 81
+  overturn_probability: 0.05
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '标题为 # 第 1 部分，符合部分-章节模式的最高层级划分规则'
+  - 后接 通过 AWS 和 DevOps 推动转型 概述及章节列表，上下文符合部分起始特征
+  keep_split: true
+- 'no': 321
+  overturn_probability: 0.12
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '标题为 ## 在云中利用不可变基础设施，长度适中且单独成行，后 1~3 行为概述段落，随后出现 技术要求、宠物与牲畜 等子节，语义统领性强'
+  - 上下文前为第 2 部分结尾内容，符合新章起始位置
+  keep_split: true
+- 'no': 774
+  overturn_probability: 0.05
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '标题为 # 第2部分，为部分级标题，书为部分-章节模式，应划分新章'
+  - 后接 通过一致且可重现的环境加速软件交付 概述及章节列表，符合部分起始上下文
+  keep_split: true
+- 'no': 1886
+  overturn_probability: 0.08
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '标题为 # Part 3，为英文部分级标题，与前文 # 第2部分 结构对应'
+  - 后接 容器化工作负载的安全性和可观测性 概述及章节列表，符合部分起始特征
+  keep_split: true
+- 'no': 1902
+  overturn_probability: 0.18
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '标题为 ## 在 AWS 中运行容器，单独成行且无句号，长度小于30字，后接 众所周知... 概述段落，随后出现 容器生态系统的快速介绍 等子节，语义统领性符合章节'
+  - 前文为 Part 3 概述，上下文为新章起始
+  keep_split: true
+- 'no': 2302
+  overturn_probability: 0.15
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '标题为 ## 实现工作负载的可观测性，单独成行且无句号，后接 随着软件应用日益复杂... 概述段落，随后出现 什么是可观测性 等子节，语义统领性强'
+  - 前文为第 7 章总结，符合新章起始
+  keep_split: true
+- 'no': 2811
+  overturn_probability: 0.12
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '标题为 ## 使用 AWS 实施 DevSecOps，单独成行且无句号，后接 征信机构 Equifax... 概述段落，随后出现 安全的权衡与挑战 等子节，语义统领性符合章节'
+  - 前文为第 8 章延伸阅读，上下文为新章起始
+  keep_split: true
