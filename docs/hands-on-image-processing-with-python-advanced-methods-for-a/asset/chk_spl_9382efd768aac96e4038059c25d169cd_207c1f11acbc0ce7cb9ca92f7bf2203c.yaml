@@ -1,0 +1,29 @@
+reviews:
+- 'no': 6239
+  overturn_probability: 0.1
+  alternative: 正文小节标题或章末推广页之后的编号残片；但结合后面的本章概述，它实际上是第五章标题。
+  counter_evidence:
+  - '该行使用 ### 层级，与正文中的“### 可分离性”等子标题同级别，单看 Markdown 格式容易被误判为子节。'
+  - 前一行区块是“## 获取本书PDF版本及更多内容”这类推广内容，容易把推广页之后的边界误判为章节起始。
+  keep_split: true
+- 'no': 7166
+  overturn_probability: 0.1
+  alternative: 正文小节标题或上一章末尾推广信息后的编号行；但后续紧跟“在本章中，我们将探讨……”的概述，说明它是第六章开头。
+  counter_evidence:
+  - '该行同样是 ### 层级，与大量正文子标题格式一致，仅凭格式不足以证明它是全书最高层大章。'
+  - 前面紧邻“## Get this book’s PDF version and more”等书末/章末推广内容，存在将广告噪声误判为章节标题的风险。
+  keep_split: true
+- 'no': 7961
+  overturn_probability: 0.15
+  alternative: 书的分区标签或页眉残留；但按部分-章节模式，“Part 2”属于部分标题，应作为新部分起点。
+  counter_evidence:
+  - 该行只有“Part 2”四个字符，缺少完整的描述性标题，单独看像分区标记而不是典型章标题。
+  - 下一行才是完整的“Image Enhancement and Restoration Techniques”，若严格按“标题单独成行且有实际文字”判断，分章点也可能被放到下一行。
+  keep_split: true
+- 'no': 7979
+  overturn_probability: 0.3
+  alternative: 被拆开的章标题中的编号部分，类似排版断行或标题残片；单独的“7”并不构成完整标题，真正的标题在下一行“### Image Enhancement”。
+  counter_evidence:
+  - “### 7”只包含数字编号，没有标题文字，不满足“具有统领性、概括性”的语义特征。
+  - 下一行“### Image Enhancement”才是完整的章名；如果严格按照标题格式判断，分章点也可以放在 7981 而不是 7979。
+  keep_split: true

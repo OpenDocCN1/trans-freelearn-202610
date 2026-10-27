@@ -1,0 +1,290 @@
+
+## Index
+
+### H
+
+- histogram modification
+  - contrast stretching, with scikit-image 291, 292
+- histogram equalization with scikit-image 291, 292
+- Histogram shrinkage 289
+- Histogram sliding (translation) 290
+- histogram stretching (contrast enhancement) 289
+- histogram processing
+  - using, for image enhancement 288, 289
+- Högbom CLEAN
+  - implementing 410, 413
+- holes 59
+- Holistically-Nested Edge Detection (HED) 383
+- homogeneous coordinates 62
+- homography 89
+  - implementing, with opencv-python 129, 130
+  - implementing, with scikit-image.transform.ProjectiveTransform 130-132
+  - implementing, with scikit-image.transform.warp() 130
+- HSV color space
+  - color enhancement 34
+  - grayscale images, tinting 34
+- Hue, Saturation, Value (HSV) 52
+  - used, for skin color detection 38-40
+- Hungarian matching 504
+
+### I
+
+- ideal BPF (IBPF) 256
+- Ideal Low-Pass Filter (ILPF) 251
+- image
+  - cropping 74, 75
+  - input/output, with Python 8
+  - multiple images, reading at once 17
+  - inverting 84
+  - negating 84
+  - pixelating 80
+  - pixel values, changing 91
+  - posterizing 85, 86
+  - reading/saving/displaying, with Matplotlib 10, 11
+  - reading/saving/displaying, with OpenCV-Python 19, 20
+  - reading/saving/displaying, with scikit-image 14
+  - resizing/rescaling 73
+  - resizing, to larger image 76-78
+  - resizing, to smaller image 78, 79
+  - salt and pepper noise, adding 91
+  - solarizing 85, 86
+  - translation 59
+  - translation, applying to 58
+- image array coordinates (NumPy-style) versus plotting coordinates 40
+- image classification 572
+  - interactive exploration, with Gradio 573
+  - transfer learning 573
+  - with semi-supervised learning 597-600
+- image classification, with attention networks 580
+  - CNN, with channel and spatial attention 580-583
+  - flower classification, with ViT 584, 585
+  - with swin transformer 585
+  - with vision transformer (ViT) 583, 584
+- image denoising 239, 249
+- image derivatives 344
+  - and gradients 344, 345
+  - blur detection, with Laplacian variance 347
+  - Laplacian 345
+  - noise effect, on gradient computation 349
+- image digitization 5
+- ImageDraw
+  - used, for drawing image 91
+- image editing 435
+  - with Diffusion models 435-437
+- image enhancement
+  - histogram modification, using for 289
+  - with histogram processing 288, 289
+- image enhancement, with deep learning models 328
+  - denoising, with multi-axis MLP 332-335
+  - low-light image enhancement, with Zero-DCE 329
+- image formation
+  - downsampling 162
+  - quantization 153
+  - sampling 153
+- image generation
+  - with DALL·E 2 and DALL·E 3 APIs 687-691
+  - with PIL 122
+- image inpainting
+  - with Diffusion models 437-439
+  - with stable diffusion 684
+- Imageio
+  - used, for reading and saving images 21
+- image manipulation 41
+  - operations 41
+  - with NumPy 42, 52
+  - with Matplotlib 145
+  - with opencv-python 124
+  - with PIL 75
+  - with scikit-image 55
+  - with scipy.ndimage 137
+  - with Wand 140
+- image manipulations, with scikit-image
+  - geometric transformation, with warp() function 58
+- image manipulation, with Matplotlib
+  - annotations, adding to image 145, 146
+  - contour lines, drawing 146-148
+- image manipulation, with NumPy
+  - brightness and contrast, adjusting 42
+  - color pop effects, simulating 52, 53
+  - cropping, with array slicing 42
+  - fish-eye distorted image, correcting 54
+  - horizontal and vertical flipping 44
+  - image morphing, with cross-dissolving 44
+  - Interactive Sepia Filter App, building with Gradio 47
+  - pattern, removing by image division 45
+  - sepia color filter, applying 46, 47
+- image manipulation, with opencv-python 124
+  - cropping, avoiding on image rotation 125
+  - crosshatch filter, implementing 126, 128
+  - flipping 126
+  - homography, implementing 128
+  - image flip 126
+  - image rotation 124, 125
+- image manipulation, with PIL 108
+  - blend mode algorithm 101, 102
+  - blend_modes, using 103, 104
+  - blur effects, simulating 114
+  - darker/lighter of images, obtaining 105
+  - face, anonymizing 80
+  - geometric transformations 86
+  - grayscale image, colorizing 111, 112
+  - image color palettes, interchanging 115-117
+  - image colors, changing from LUT files 112, 113
+  - image, cropping 76
+  - image, deforming 110, 111
+  - image, inverting 84
+  - image, negating 84
+  - image, pixelating 80
+  - image quality/resolution of JPEG image, compression ratio 109
+  - image, resizing 76
+  - image, solarizing/posterizing 85, 86
+  - image temperature, adjusting 117
+  - JPEG image quality/resolution, changing 108, 109
+  - log transformation 82
+  - multiple channels, combining 95
+  - opencv-python, using 114
+  - pixel values of image, changing 91
+  - point transformation, applying on multi-channel image 83, 84
+  - point transformations, applying 81
+  - power-law transformation 82, 83
+  - practical application 121, 122
+  - radial blur, applying 115
+  - RGB channels, separating of image 95
+  - temperature, adjusting with color transformation matrix 119, 120
+  - vignetting/Lomography effect, implementing 120, 121
+- image manipulation, with Pilgram 148-150
+  - pilgram.css module, using 150
+  - real-world use case highlights 151
+  - with pilgram.css module 150, 151
+- image manipulation, with scikit-image 55
+  - brightness and contrast, changing 57
+  - cumulative distribution function (CDF), computing 71-73
+  - geometric transformation, with warp() function 57
+  - image, cropping 74, 75
+  - image, inverting 55, 56
+  - image, resizing/rescaling 73
+  - inverse warping 57, 58
+  - random Gaussian noise, adding to images 69-71
+  - translation, applying to image 58
+- image manipulation, with scipy.ndimage
+  - affine transformation, applying 137
+  - interpolation, applying 139
+  - wave distortion, applying 139
+  - zooming 137, 138
+- image manipulation, with Wand 140
+  - special-effects methods, applying 142
+  - visual effects, creating 140, 142
+- image processing 7
+  - applications 7
+  - edge detection 205
+  - image, blurring 205
+  - pooling 18
+  - tasks and pipeline 7
+- image PSD 403
+- image quantization 167
+  - color images, quantizing 169
+  - error and image quality 169
+  - image compression 169
+  - non-uniform quantization 169
+  - P mode color image, with PIL 170
+  - uniform quantization 168, 169
+- image reconstruction and enhancement 388
+  - application 389
+  - pyramid-based image blending 389-391
+- image restoration
+  - applications 398
+  - as inverse problem 396
+  - core tasks 397
+  - denoising, versus deblurring 398
+  - with InstructIR 422-427
+  - with sparse representations 414
+- image restoration, with deep learning 419
+  - image denoising, with NAFNet 419
+- images
+  - distorting 143, 144
+  - random Gaussian noise, adding 69-71
+  - undistorting 143, 144
+- image segmentation
+  - background blurring, MediaPipe + DeepLabV3 (TFLite) 531, 532
+  - deep learning 484
+  - Detectron2 532
+  - practical applications 530
+  - promptable foundation models 516
+- image super-resolution (SR)
+  - with enhanced deep residual networks 338
+- image temperature
+  - adjusting, with color transformation matrix 118
+  - adjusting, with RGB scaling 117
+- image-to-image translation 653
+  - CycleGAN, using 654
+  - Pix2Pix, using 654
+- image translation
+  - affine transformation, applying to 64, 65
+  - inverse transformation 59, 60
+  - piecewise affine transformation, applying 67-69
+  - rotation, applying to image with warp() function 61
+  - similarity transformation, applying to 63, 64
+  - swirl transform, applying 66, 67
+  - transformation function, using 61, 62
+  - transformation matrix for translation 59
+  - transformation matrix, using 62
+- image types (modes) 23
+  - alpha channel, adding to PNG image 26
+  - converting, from RGB to palette mode and back 24-26
+  - converting, with PIL 23
+  - converting, with scikit-image 27
+  - RGB, converting to binary mode 24
+- inference and edge map aggregation 377
+  - detector, loading 377, 378
+  - orientation maps and NMS, using 378, 379
+- instance segmentation 493, 494
+  - Mask R-CNN 494-496
+  - YOLO (YOLOv8 / YOLOv11) 496-498
+- instruction-based image restoration (InstructIR)
+  - used, for image restoration 422-426
+- instruction-guided image editing 675
+- InstructPix2Pix
+  - used, for image editing 674, 675
+- intensity separability 453
+- interactive percentile gradient-based edge detection 360
+  - local percentile gradient 360, 361
+- inter-class variance 452
+- intermediate latent space 657
+- interpolation 12
+  - image inpainting with 157-159
+  - with Scipy 156, 157
+- interpolation methods, in cv2.remap()
+  - with defisheye 136
+- intra-class variance 452
+- inverse discrete Fourier transform (IDFT) 171
+- Inverse FFT (IFFT) 173, 204
+- inverse filter 402
+- inverse mapping 59
+- inverse problem
+  - image restoration 396
+- inverse transformation 59, 60
+- IP-Adapter (Image Prompt Adapter) 685-687
+
+### K
+
+- K-class segmentation 451
+- kernel 202
+- kernel density estimation (KDE) 464
+- Kirsch compass masks 358
+- Kirsch kernels 358-360
+- Kirsch operator 357-360
+- k-means clustering 461
+- Knew
+  - used, for controlling FOV 134
+- Kullback-Leibler (KL) divergence 479
+
+### L
+
+- lab color space
+  - contrast, adjusting 44
+  - color shifting 37
+- label map 452
+- Lagrange polynomials 155
+- Lanczos interpolation 163
+- Lanczos resampling 163, 166
+- Laplace kernel 205

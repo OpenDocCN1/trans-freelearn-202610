@@ -1,0 +1,267 @@
+
+- colour-science Python library 30
+- Compass Edge Detectors 357, 358
+- compression ratio 109
+- Conditional Generative Adversarial Networks (cGANs) 640
+    - used, for class-conditional image generation 640-647
+- conditional image generation
+    - with Conditional Variational AutoEncoder (CVAE) 648-653
+- conditional random fields (CRFs) 474
+    - internal iteration steps 477, 478
+    - manual iteration 478
+    - MAP inference 475, 476
+    - pairwise potentials 476, 477
+    - probabilistic model 474
+- Conditional Variational AutoEncoder (CVAE) 639
+    - architecture 648
+    - used, for conditional image generation 648-653
+- connected components 457
+- Contrastive Language-Image Pretraining (CLIP) 519
+- Contrast-Limited Adaptive Histogram Equalization (CLAHE) 292
+- ControlNet 686
+    - used, for Structure-Guided image generation 676, 677
+- convolution 201, 229
+    - 2D convolution 230-233
+    - 3D convolution 233, 234
+    - versus correlation 213-215
+- convolutional neural networks (CNNs) 383
+    - semantic segmentation 484
+- convolution-based resampling
+    - with PIL 165, 166
+- convolution, in frequency domain
+    - applying 219
+    - convolution theorem 219, 220
+    - convolving, with Gaussian blur kernel 220
+    - frequency spectrum, visualizing 220
+    - Gaussian blur, applying 224
+- convolution, in image processing
+    - frequency domain convolution 203
+    - need for 202
+    - practical applications 204
+    - spatial domain convolution 203
+    - spatial, versus frequency domain 204
+    - time complexity 204
+- convolution, in spatial domain
+    - applying 204
+    - applying, with opencv-python 211, 212
+    - applying, with scipy.ndimage 209-211
+    - applying, with scipy.signal 205-208
+    - performance benchmarking 212
+- convolution kernels
+    - emboss kernel 210
+    - lighten kernel 210
+    - sharpen kernel 210
+- convolution theorem 203
+- Cooley-Tukey FFT algorithm 189
+- counting coins
+    - morphological operations 457-460
+    - with segmentation 456
+- cross-correlation 215, 216
+    - with scipy.signal 215, 216
+- crosshatch filter
+    - implementing 126, 128
+- cubic convolution kernels 155
+- cubic splines 155
+- cumulative distribution function (CDF) 72
+    - computing 71, 73
+    - properties 72
+- custom segmentation model
+    - training 534
+    - U-Net, training with Keras Functional API 534-539
+    - U-Net, training with ResNet18 Backbone 539-542
+
+## D
+
+- DALL·E 2 versus DALL·E 3 690
+- Dark Channel Prior (DCP) 335
+    - used, for haze removal 335-338
+- data preprocessing 81
+- data types
+    - binary masks, with Boolean images 28
+    - converting, between data types 28
+    - inspecting, of image 27
+    - overflow and clipping 28
+- decorator 16
+- DeepFill
+    - Stable Diffusion, using with 427, 428
+- deep learning
+    - for image segmentation 484
+- deep learning-based edge detection 383
+    - as learning problem 384
+- defisheye 135, 136
+- denoising
+    - with Block-Matching and 3D (BM3D) 322-324
+    - with spline filter 160, 161
+- Denoising Diffusion Implicit Models (DDIM) 436, 437
+- Denoising Diffusion Probabilistic Models (DDPM) 437, 666-670
+    - forward diffusion process 666, 667
+    - latent diffusion 671
+    - latent space interpolation 670
+    - reverse diffusion process 668, 669
+- Dense Prediction Transformer (DPT) 503, 524, 525
+- depth estimation
+    - DPT 524, 525
+    - Monocular depth estimation 524
+    - pipeline 525, 526
+- derivative-based multiscale enhancement 386
+    - Gaussian pyramid 386
+    - image reconstruction and enhancement 388
+    - Laplacian pyramid 387
+    - right edge detector, choosing 391, 392
+- derivatives
+    - using, for classical enhancement 350
+    - using, for edge detection 354
+- Detection Transformer (DETR) 504
+- Detectron2 532, 534
+- Determinant of Hessian (DoH) 370
+- DFT properties 188
+    - distributivity 194
+    - linearity 194
+    - Parseval/Rayleigh theorem 198
+    - periodicity 190, 191
+    - ringing artifacts 192
+    - rotation 195
+    - separability 188, 189
+    - similarity/scaling 196
+    - translation and shift in phase 197
+    - windowing 190, 191
+- Dice Similarity Coefficient (DSC) 560, 561
+    - dice loss 561
+    - mean pixel accuracy 561
+    - pixel accuracy 561
+- Difference of Gaussian (DoG) 256
+- diffusion-based super-resolution 683
+- Diffusion models
+    - used, for image inpainting 437, 439
+- digital image processing 6
+    - reproducibility and version compatibility 4, 5
+- direct convolution 226
+- dirty beam 409
+
+- PNG 22
+- PPM/PNM 22
+- TIFF 22
+- filtering 202, 240
+    - characteristics 240
+    - in frequency domain 240
+- fine scales 370
+- First Order Motion Model (FOMM)
+    - used, for Deepfake generation 633, 634
+- fish-eye correction
+    - interpolation methods, in cv2.remap() 135
+- fish-eye distorted image
+    - correcting 54
+- fisheye effect
+    - field of view, controlling with Knew 134
+    - fisheye distortion, removing 133
+- FixMatch 597
+- Floyd-Steinberg dithering
+    - with error diffusion 284-288
+- focus effects 81
+- forward mapping 59
+- foundational variational framework 467
+- Fourier-based positional encodings 239
+- Fourier Feature Networks (FFNs) 239, 261, 262
+    - implementing, with JAX 262-268
+    - training 262
+- fractional Brownian field (FBF) model 177
+- frames
+    - extracting, from animated GIFs 21, 22
+- Frangi 376
+- Fréchet Inception Distance (FID) 643
+- frequency domain 239
+    - filtering 240
+- frequency domain convolution 203
+- frequency domain filters
+    - low-pass filter (LPF) 241
+    - types 240
+- frequency spectrum visualization 220
+    - with 2D plot 220, 221
+    - with 3D plot 222, 223
+- Frobenius norm 173
+- fully convolutional networks (FCNs) 485-487
+    - Atrous Convolution 487
+    - DeepLab Family 487
+    - DeepLabV3+, with keras-cv 491
+    - DeepLabV3+, with Keras_hub 490
+    - DeepLabV3, with tensorflow model garden 488-490
+    - DeepLabV3, with torchvision.models.segmentation 487, 488
+    - multi-model segmentation and ensemble, with SMP and Torchvision 492
+    - multi-model segmentation, with SMP and Torchvision 493
+- fuzzy logic-based image enhancement 292, 293
+    - color enhancement 299
+    - contrast enhancement, with Mamdani system 293
+
+## G
+
+- Gaussian Mixture Models (GMMs) 470
+- Gaussian pyramid 386, 387
+- Generative Adversarial Networks (GANs) 639, 657
+- Generative Facial Prior GAN (GFPGAN) 664, 666
+    - installing 664, 665
+- geometric transformations 86
+    - affine transformation, applying 87-89
+    - image, reflecting 86
+    - image, rotating 86
+    - projective transformation, applying 89, 90
+- Gibbs energy 474
+- Gibbs phenomenon 193
+- Global Histogram Equalization (GHE) 318
+- GPT image APIs 691
+    - AI style transfer 695, 696
+    - automated industrial inspection 699-701
+    - background replacement 704
+    - change detection, in remote sensing 706
+    - E-Commerce product enhancements 698
+    - edge-guided editing 693, 694
+    - face restoration 696, 697
+    - image colorization 701, 702
+    - image editing, with GPT image 693
+    - image inpainting 694, 695
+    - image, understanding with GPT vision 692
+    - local object editing 703
+    - medical image interpretation 707
+    - multi-image composition 697, 698
+    - object removal 703
+    - painting-to-photorealistic conversion 702
+    - scene transformation 704
+    - sketch-to-photorealistic synthesis 702
+    - Visual Question Answering (VQA) 699
+- GrabCut 470, 471
+    - iterative refinement 471
+    - optimization, via Graph Cuts 471
+    - with OpenCV-Python 471-474
+- Gradio 522-524
+    - used, for building Interactive Sepia Filter App 47
+- graph-based merging (RAG) 463
+- graphical and probabilistic methods
+    - conditional random fields (CRFs) 474
+    - GrabCut 470, 471
+- grayscale images, tinting
+    - colorizing, with vintage look 35
+    - hue gradient, displaying 34
+    - in HSV color space 34
+- gray world algorithm 300
+- guided filter 380
+- guided filtering 379-381
+
+## H
+
+- halftoning 283
+- hand landmark detection
+    - with MediaPipe 631-633
+- hard_light blend mode 103
+- Hessian matrix 372
+- high-dimensional image features, with t-SNE 566
+    - CNN brain viewer dashboard 570
+    - deep features, visualizing from VGG16 568-570
+    - MNIST embeddings 566, 567
+- high-pass filter (HPF) 250, 400, 402
+    - Butterworth filter with skimage.filters 255, 256
+    - ideal method 251, 252
+    - SNR changes with cut-off frequency 254
+    - with scipy.fftpack 252-254
+- high-resolution (HR) 338
+- Histogram Equalization (HE) 292
+- histogram matching 297
+    - scikit-image, using 298

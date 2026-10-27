@@ -1,0 +1,31 @@
+chapter_starts:
+- 'no': 12777
+  confidence: 0.88
+  final_reason: 判断方与复核方均认为‘第 3 部分’为部分级标题，虽与下一行主题行构成排版对，仍符合部分-章节模式下划分新章的规则；复核方反方证据不足以推翻。
+  accepted_evidence:
+  - 出现‘第 3 部分’为部分标题标识
+  - 复核方 overturn_probability 0.1 且 keep_split true
+  rejected_evidence:
+  - 该行仅四字缺乏主题词的质疑
+  - 可能为 PDF 转换噪声的怀疑
+  need_human_review: false
+- 'no': 12796
+  confidence: 0.75
+  final_reason: 编号‘### 10’与下一行完整标题构成拆分标题，复核方认为仍应视为第10章起始；按宁可漏分不误分原则保留，但置信度下调。
+  accepted_evidence:
+  - 出现章编号‘10’后接图像分割章节内容
+  - 复核方 keep_split true
+  rejected_evidence:
+  - 该行仅为数字残留、语义不完整
+  - 完整标题在下一行12798
+  need_human_review: false
+- 'no': 14668
+  confidence: 0.92
+  final_reason: ‘### 11 More Deep Learning Methods for Image Segmen...’ 为第11章标题起始，位于第10章结尾推广内容之后，上下文符合新章边界；复核方反方证据弱。
+  accepted_evidence:
+  - 出现第11章标题标识
+  - 复核方 overturn_probability 0.1 且 keep_split true
+  rejected_evidence:
+  - 可能为页眉/目录残留的质疑
+  need_human_review: false
+rejected_lines: []

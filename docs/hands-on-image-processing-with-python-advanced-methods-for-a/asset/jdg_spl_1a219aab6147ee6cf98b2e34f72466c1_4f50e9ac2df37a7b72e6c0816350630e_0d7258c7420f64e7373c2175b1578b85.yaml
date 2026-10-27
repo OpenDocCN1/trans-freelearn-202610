@@ -1,0 +1,41 @@
+chapter_starts:
+- 'no': 523
+  confidence: 0.95
+  final_reason: 判断方与复核方均认定为正文前言起始标题，后接自然段正文，格式语义符合章标题
+  accepted_evidence:
+  - 行523为“## 前言”，后523-535行起为前言正文段落
+  - 复核方 overturn_probability 0.15，keep_split true，确认其为正文前言真实章节标题
+  rejected_evidence:
+  - 复核方提出目录混淆可能，但后文内容证实为正文起始
+  need_human_review: false
+- 'no': 680
+  confidence: 0.75
+  final_reason: 部分-章节模式下“## Part 1”为最高层级部分标题，应划分新章；复核方虽指出标题被拆分，但仍建议保留分章
+  accepted_evidence:
+  - 判断方认定为部分标题且全书为部分-章节模式
+  - 复核方 keep_split true，overturn_probability 0.35 未推翻
+  rejected_evidence:
+  - 复核方指出第680行后紧跟第682-683行构成完整标题，单独“Part 1”语义不完整
+  need_human_review: false
+- 'no': 700
+  confidence: 0.85
+  final_reason: 第1章英文标题行，后接章首概述段落，虽与第698行章号分离但实际统领本章内容
+  accepted_evidence:
+  - 判断方认定为第1章章节标题，后接概述段落
+  - 复核方 keep_split true，overturn_probability 0.2
+  rejected_evidence:
+  - 复核方指出章号与标题拆分为两行，格式非典型单独成行
+  need_human_review: false
+- 'no': 1987
+  confidence: 0.95
+  final_reason: “### 2 图像处理”为第2章编号+标题形式，编号连续且后接章首概述，符合章标题
+  accepted_evidence:
+  - 判断方认定为第2章标题
+  - 复核方 keep_split true，overturn_probability 0.1
+  rejected_evidence:
+  - 复核方指出使用###三级格式存在子节误判风险，但后续结构证实为章标题
+  need_human_review: false
+rejected_lines:
+- 'no': 18
+  reason: 复核方反证成立：行18“## 贡献者”位于目录区，后接“### 关于作者”等目录条目及带页码目录行，并非正文独立章节；真正的正文前置内容始于第523行前言
+  need_human_review: false
