@@ -1,0 +1,24 @@
+chapter_starts:
+- 'no': 6354
+  confidence: 0.9
+  final_reason: '编号特征明确为第15章，格式为 ## 15 查看异常并提供反馈，单独成行且语义统领后续正文，与前文内容形成章节边界。复核方反方证据不足，重复标题问题不影响其为新章起点。'
+  accepted_evidence:
+  - '标题含章节编号 15，格式为 ## 15 查看异常并提供反馈，符合最高层级大章特征，后续内容为新章正文'
+  - 复核方 keep_split=true，overturn_probability 0.1
+  rejected_evidence:
+  - 6354行与紧随其后的6356行内容完全重复，表明原始文本存在标题重复提取现象
+  need_human_review: false
+- 'no': 6641
+  confidence: 0.95
+  final_reason: '文末索引标题 ## 索引，单独成行，语义明确。按规则文末索引统一划分为一章。'
+  accepted_evidence:
+  - '文末索引标题 ## 索引，按规则文末索引统一划分为一章，单独成行且语义明确'
+  - 复核方 keep_split=true，overturn_probability 0.15
+  rejected_evidence:
+  - 索引是书末参考工具，内容为字母排序的术语列表，不具备正文章节的叙事统领性
+  need_human_review: false
+rejected_lines:
+- 'no': 6140
+  reason: '复核方反方证据成立：前文6133行明确指向本章后续内容，6140行后‘配置警报’仍属同一章；该行使用 # 一级标题而本书明确章标题使用带编号的
+    ## 二级标题，层级与编号格式不一致，更可能是章节内分区标题。上下文优先原则下不应分章。'
+  need_human_review: false

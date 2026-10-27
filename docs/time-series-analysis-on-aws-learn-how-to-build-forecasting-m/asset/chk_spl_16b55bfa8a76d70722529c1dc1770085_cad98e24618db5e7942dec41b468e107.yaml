@@ -1,0 +1,59 @@
+reviews:
+- 'no': 10
+  overturn_probability: 0.15
+  alternative: 前言/序言等正文之前内容
+  counter_evidence:
+  - '该行 ## 贡献者 属于书前前置内容，与其后 ## 关于作者、## 前言 构成同一前置章节，符合‘前言、序言、致谢、关于作者等正文之前的内容统一划分为一章’规则'
+  - '上下文中 6-8 行为献词，10 行后紧跟 12 行 ## 关于作者、18 行 ## 前言，均属前置材料'
+  keep_split: true
+- 'no': 434
+  overturn_probability: 0.05
+  alternative: 部分标题
+  counter_evidence:
+  - '行内容为 # 第 1 部分：使用 Amazon Forecast 分析时间序列并交付高精度预测，符合最高层级部分标题特征，单独成行且无句号'
+  - 后 1~3 行 436-438 为部分概述段落，随后进入第 1 章内容，语义具有统领性
+  keep_split: true
+- 'no': 450
+  overturn_probability: 0.1
+  alternative: 章节标题
+  counter_evidence:
+  - '行内容为 ## 1 时间序列分析概述，带编号 1，单独成行，长度小于30字，末尾无句号'
+  - 后接 452 行重复标题和 454 行正文概述，符合章节标题上下文特征
+  keep_split: true
+- 'no': 1165
+  overturn_probability: 0.05
+  alternative: 章节标题
+  counter_evidence:
+  - '行内容为 ## 2 Amazon Forecast 概述，带编号 2，单独成行'
+  - 后接 1167 行正文介绍，符合章节起始语义
+  keep_split: true
+- 'no': 1427
+  overturn_probability: 0.1
+  alternative: 章节标题
+  counter_evidence:
+  - '行内容为 ## 创建项目并摄取数据，虽无显式编号但在第 1 部分序列中为第 3 章，语义统领后续 1435-1438 主题'
+  - 后接 1429 行正文引言，符合章节标题上下文
+  keep_split: true
+- 'no': 1947
+  overturn_probability: 0.1
+  alternative: 章节标题
+  counter_evidence:
+  - '行内容为 ## 4 使用 AutoML 训练预测器，带编号 4，单独成行'
+  - 后接 1949 行重复标题和 1951 行正文，符合章节起始特征
+  keep_split: true
+- 'no': 2264
+  overturn_probability: 0.92
+  alternative: 正文小标题
+  counter_evidence:
+  - '该行内容为 ## 技术要求，是第 5 章内部的小节标题，而非章节标题；第 5 章实际标题应为‘自定义你的预测器训练’，在 2280 行后才出现实质章节内容'
+  - '上下文前 2258-2263 为第 4 章小结，2264 立即出现 ## 技术要求，属于新章内部的常规小节，标题长度、格式与正文小标题一致，且后接 2266
+    行正文说明而非章节概述'
+  - 原判断置信度仅 0.45，且未找到带编号的‘第 5 章’标题，序号连贯性不足，符合误报为正文小标题的特征
+  keep_split: false
+- 'no': 2964
+  overturn_probability: 0.05
+  alternative: 章节标题
+  counter_evidence:
+  - '行内容为 ## 6 生成新预测，带编号 6，单独成行，末尾无句号'
+  - 后接 2966 行正文引言，符合章节起始语义
+  keep_split: true

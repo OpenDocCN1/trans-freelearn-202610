@@ -1,0 +1,13 @@
++   - **Expected output:** You can request a point-in-time forecast. In the plot shown in *Figure 2.1*, this is the dotted line located in the forecast horizon and it helps answer this type of question: *What will the value of the time series be by tomorrow?* A forecast can also emit a value for several time steps at once. This helps answer questions such as: *Which value will the time series take for every day of the coming week?* Your forecast may also be consumed by organizations or systems that expect a range of possible values; in this case, you will replace the point values with probabilistic forecasts that emit a range of possible values at each predicted time step (in the previous plot, this is represented by the area plot around the median forecast denoted by a dotted line, delimited by the lower bound and upper bound of the requested quantiles—p10 and p90 in this case).
+
+You now know how to frame a good forecasting problem, so let's apply this fresh knowledge to Amazon Forecast!
+
+# What is Amazon Forecast?
+
+**Amazon Forecast** is one of the AI-/ML-managed services available on the AWS cloud platform. Flexible and accurate forecasts are key in many business areas to predict demand and ensure inventory or raw material are stocked accordingly or predict wait times and ensure your counters are staffed accordingly. While all organizations use some form of forecasting process today, traditional methods cannot leverage the increasing quantity and complexity of time series signals available to us.
+
+**Managed services** are services where the end users only bring their data and configure some parameters to suit their needs. All other tasks, *considered as undifferentiated heavy lifting*, are performed on the users' behalf by the service. This includes the automation of all the infrastructure management: as an Amazon Forecast user, you don't have to provision and manage **virtual machines (VMs)**, configure user accounts, manage security, plan for scalability if your request volume increases, decommission unused resources, and so on.
+
+In the case of **AI-/ML-managed services**, some *data preparation, ingestion tasks, and model management activities are also performed under the hood*, allowing you to focus primarily on the problem to solve. Amazon Forecast is a scalable managed service that automates the whole **end-to-end (E2E)** forecasting pipeline, from data ingestion to model deployment and serving forecasts. The service also deals with data preparation under the hood. Amazon Forecast can do the following:
+
++   - Fill missing values in your datasets while letting you customize the parameters to use to replace them.
