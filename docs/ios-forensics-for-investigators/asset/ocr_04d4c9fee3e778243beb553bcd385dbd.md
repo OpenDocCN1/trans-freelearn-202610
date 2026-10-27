@@ -1,0 +1,1 @@
+The user has a certain degree of control over what data is synchronized to iCloud, as syncing can be enabled on a per-app setting directly from the device. The following screenshot shows iCloud syncing settings, which can be accessed by going to **Settings** | **[User]** | **iCloud** and toggling individual apps in the **Apps using iCloud** section:

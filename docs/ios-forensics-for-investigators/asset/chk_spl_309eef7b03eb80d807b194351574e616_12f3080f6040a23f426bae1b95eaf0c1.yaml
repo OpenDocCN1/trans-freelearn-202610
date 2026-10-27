@@ -1,0 +1,65 @@
+reviews:
+- 'no': 6
+  overturn_probability: 0.85
+  alternative: 正文小标题
+  counter_evidence:
+  - 标题为 '# 本书涵盖内容'，无编号、无'第X章'语义，属于前言目录类小标题而非全书最高层级大章
+  - 后接行8为描述性概述段落 '本书的组织方式是从移动取证的概述以及你应该了解的内容开始...'，符合前言介绍而非章节开篇
+  - 该行位于文件最前的前言区，与第0行 '# 调查员的 iOS 取证' 同属封面/前言信息块，按规则前言内容应统一归为一章，不应在此处再细分新章
+  keep_split: false
+- 'no': 101
+  overturn_probability: 0.05
+  alternative: 部分标题
+  counter_evidence:
+  - 标题为 '# 第1部分 – 从iOS设备获取数据'，明确为部分标题，书中存在部分-章节模式，部分标题应分章
+  - 后接行103为该部分概述，行105为'本书的这一部分包含以下章节：'，符合部分开篇上下文
+  keep_split: true
+- 'no': 114
+  overturn_probability: 0.1
+  alternative: 章节标题
+  counter_evidence:
+  - 标题为 '## 第 1 章：介绍 iOS 取证'，虽使用二级标题标记，但语义为第1章，编号特征明确
+  - 后接行116开始为正文首段介绍，符合章节起始上下文
+  keep_split: true
+- 'no': 566
+  overturn_probability: 0.05
+  alternative: 章节标题
+  counter_evidence:
+  - 标题为 '## 第 2 章：从 iOS 设备获取数据'，编号特征明确为全书最高层级大章
+  - 后接行568为章节开篇正文
+  keep_split: true
+- 'no': 994
+  overturn_probability: 0.05
+  alternative: 章节标题
+  counter_evidence:
+  - 标题为 '## 第 3 章：使用取证工具'，编号特征明确
+  - 后接行996为章节概述
+  keep_split: true
+- 'no': 1423
+  overturn_probability: 0.05
+  alternative: 章节标题
+  counter_evidence:
+  - 标题为 '## 第 4 章：处理常见的 iOS 痕迹'，编号特征明确
+  - 后接行1425为章节引言
+  keep_split: true
+- 'no': 1880
+  overturn_probability: 0.1
+  alternative: 章节标题
+  counter_evidence:
+  - '标题为 ''## Chapter 5: Pattern-of-Life Forensics''，虽为英文，但对应第5章，编号连贯'
+  - 后接行1882为章节概述段落
+  keep_split: true
+- 'no': 2302
+  overturn_probability: 0.05
+  alternative: 章节标题
+  counter_evidence:
+  - 标题为 '## 第 6 章：剖析位置数据'，编号特征明确
+  - 后接行2304为章节引言
+  keep_split: true
+- 'no': 2634
+  overturn_probability: 0.05
+  alternative: 章节标题
+  counter_evidence:
+  - 标题为 '## 第 7 章：分析连接数据'，编号特征明确
+  - 后接行2636为章节概述
+  keep_split: true

@@ -1,0 +1,3136 @@
+- '# 调查员的 iOS 取证
+
+
+
+
+
+
+  # 本书涵盖内容
+
+
+  本书的组织方式是从移动取证的概述以及你应该了解的内容开始。第一部分介绍取证流程并讨论从iOS设备获取数据的不同选项。第二部分描述了分析数据的方法和最佳实践，例如手动解析artifacts。本节还涵盖了检查中使用的最受欢迎的取证工具。本书的最后一部分讨论如何构建时间线以及创建取证报告的最佳实践。
+
+
+  _第1章，介绍iOS取证,_通过描述取证流程和iOS操作系统来介绍移动取证主题。
+
+
+  _第2章，从iOS设备获取数据,_描述了成功从iOS设备获取数据的所有可用选项。我们将讨论逻辑、物理和文件系统获取，以及更多内容，例如基于代理的提取。
+
+
+  _第3章，使用取证工具,_描述了取证工具的重要性以及调查人员如何通过使用它们受益。本章深入探讨了一些最受欢迎的工具，例如Cellebrite Physical
+  Analyzer和Magnet AXIOM。
+
+
+  _第4章，处理常见的iOS Artifacts,_介绍了可以在iOS设备上找到的常见artifacts，例如SQLite数据库和属性列表。我们将学习如何识别这些artifacts、在哪里找到它们以及如何分析它们。
+
+
+  _第5章，生活模式取证,_专注于可以帮助调查人员了解用户日常活动的artifacts，例如使用了哪些应用以及使用时长。
+
+
+  _第6章，剖析位置数据,_全部关于提取、分析和理解与位置相关的artifacts。
+
+
+  第7章，分析连接数据，讨论蜂窝取证、网络数据、蓝牙和Wi-Fi artifacts以及浏览历史。
+
+
+  第8章，电子邮件和消息取证，描述了不同的电子邮件客户端和消息应用程序以及如何分析其数据。
+
+
+  第9章，照片、视频和音频取证，深入探讨多媒体取证。
+
+
+  第10章，分析第三方应用，介绍第三方应用程序。你将学习如何分析任何类型的应用程序以及如何快速定位最受欢迎的iOS应用的artifacts。
+
+
+  第11章，锁定设备、iTunes备份和云取证，讨论更高级的主题，例如处理锁定设备以及从iCloud提取取证数据。
+
+
+  第12章，撰写取证报告和构建时间线，将前几章获得的所有知识汇集起来，通过教你如何制作全面的时间线报告。
+
+
+  # 如何充分利用本书
+
+
+  本书旨在让你可以使用任何类型的操作系统，因此大多数示例都可以通过使用Windows、macOS或Linux来复制；然而，需要注意的是，一些商业取证工具仅在Windows上可用。
+
+
+  | 书中涵盖的软件 | 操作系统要求 |
+
+  |---|---|
+
+  | Cellebrite UFED | Windows |
+
+  | Cellebrite Physical Analyzer | Windows（强烈建议至少16 GB RAM） |
+
+  | Magnet AXIOM | Windows |
+
+  | Elcomsoft iOS Forensic Toolkit | Windows, macOS |
+
+  | DB Browser for SQLite | Windows, macOS, Linux |
+
+
+  # 下载彩色图片
+
+
+  我们还提供了一份PDF文件，其中包含本书中使用的屏幕截图/图表的彩色图片。你可以在此处下载：
+
+  https://static.packt-cdn.com/downloads/9781803234083_ColorImages.pdf
+
+
+  # 使用的约定
+
+
+  本书中使用了多种文本约定。
+
+
+  文本中的代码：表示文本中的代码词、数据库表名、文件夹名、文件名、文件扩展名、路径名、虚拟URL、用户输入和Twitter账号。以下是一个示例："我们提供ZIP归档作为输入文件，我们将报告导出到输出文件夹。"
+
+
+  代码块如下所示：
+
+
+  ```
+
+  SELECT ROWID, text FROM message
+
+  ORDER BY ROWID DESC
+
+  LIMIT 5;
+
+  ```
+
+
+  任何命令行输入或输出写成如下形式：
+
+
+  ```
+
+  python3 ileapp.py -t zip -i ../iphone_dump.zip -o output
+
+  ```
+
+
+  **粗体**：表示新术语、重要单词或你在屏幕上看到的单词。例如，菜单或对话框中的单词在文本中如下所示。以下是一个示例："一旦你将所有证据来源添加到案例中，点击**GO
+  TO PROCESSING DETAILS**继续。"
+
+
+  提示或重要说明
+
+
+  如下所示出现。
+
+
+  # 免责声明
+
+
+  本书中的信息仅用于道德目的。请勿在未获得设备所有者书面许可的情况下使用本书中的任何信息。如果你从事非法活动，你很可能会被逮捕并被依法起诉。Packt Publishing或本书作者不对你滥用书中包含的任何信息承担任何责任。此处的信息只能在获得相关负责人适当书面授权的测试环境中使用。
+
+
+  # 联系我们
+
+
+  我们始终欢迎读者的反馈。
+
+
+  **一般反馈：** 如果你对本书的任何方面有疑问，请在邮件主题中提及书名并发送邮件至[customercare@packtpub.com](mailto:customercare@packtpub.com)。
+
+
+  **勘误：** 尽管我们已尽一切努力确保内容的准确性，但仍会发生错误。如果你在本書中发现错误，我们将不胜感激如果你能向我们报告。请访问[www.packtpub.com/support/errata](https://www.packtpub.com/support/errata)，选择你的书籍，点击勘误提交表单链接并输入详细信息。
+
+
+  **盗版：** 如果你在互联网上发现我们作品的任何形式的非法副本，我们将不胜感激如果你能提供位置地址或网站名称。请通过[copyright@packt.com](mailto:copyright@packt.com)联系我们并附上材料链接。
+
+
+  **如果你有兴趣成为作者：** 如果你有专业知识的主题并且有兴趣撰写或为一本书做出贡献，请访问[authors.packtpub.com](https://authors.packtpub.com)。
+
+
+  # 分享你的想法
+
+
+  一旦你读完*iOS Forensics for Investigators*，我们很想听听你的想法！请[点击此处直接前往亚马逊评论页面](https://www.amazon.com/)为
+
+
+  本书分享你的反馈。
+
+
+  你的评论对我们和技术社区都很重要，并将帮助我们确保提供优质内容。
+
+  '
+- '# 第1部分 – 从iOS设备获取数据
+
+
+  你将学习正确的iOS设备工作流程并了解iOS操作系统的工作原理基础。在第一部分结束时，你将能够成功地从iOS设备提取完整的文件系统镜像。
+
+
+  本书的这一部分包含以下章节：
+
+
+  - *第1章,* 介绍iOS取证
+
+  - *第2章,* 从iOS设备获取数据
+
+
+
+
+
+  '
+- "## 第 1 章：介绍 iOS 取证\n\n在过去十年中，智能手机经历了一场深刻的革命，以各种可能的方式影响着我们的生活：我们的设备不再只是智能手机——它们已成为存储我们数字生活（以及非数字生活）各种信息的数据中心。\n\
+  \n如今，从手掌中，我们可以冲浪网页、购买戏票、让食物送到门口，或叫一辆 Uber。我们使用设备阅读电子书、做笔记、从事创造性任务，并通过社交媒体与粉丝分享我们的生活。我们逐渐用\
+  \ iPhone 相册取代了数码相机。智能手机可以跟踪身体活动、与外部设备交互、为我们提供导航，并提醒我们可能忘记的重要会议。我们使用生产力应用来完成工作，并使用\
+  \ Apple Pay 进行支付。当然——我们使用 iPhone 与世界另一端的人取得联系。随着 iPad 和平板电脑的广泛普及，我们的设备不再只是通信设备。它们已成为一个几乎无限的内容平台，我们可以在其中享受电影、电视剧，或\
+  \ simply 听我们最喜欢的音乐。\n\n为了能够提供这些令人惊叹的功能，移动设备收集了大量数据，这些数据由 iOS 处理，有时还会同步到 iCloud。这些信息比任何台式电脑上存储的数据更充分地记录并揭示了用户的想法和活动。\n\
+  \n移动取证就是收集这些数据、保存它、评估它、验证它，并提取可以作为证据呈现的有意义见解的全部过程。\n\n在本章中，我们将涵盖以下主题：\n\n- 理解移动取证\n\
+  - 剖析 iOS 操作系统\n- 理解 iOS 安全\n- 建立工作流程\n\n## 理解移动取证\n\n由于 Apple 设备提供的用户体验、精美的设计和革命性功能而在全球流行，因此\
+  \ 2016 年 Apple 宣布已售出超过十亿部 iPhone 并不令人意外。在过去 5 年中，移动设备的使用量增长尤其迅速，2021 年的数据显示，活跃的\
+  \ iOS 设备数量达到十亿部。\n\n存储在智能手机上的信息可以帮助调查解决关键问题，揭示个人与谁联系过、在哪里以及他们用设备做了什么。随着新功能被添加到设备中，并且\
+  \ App Store 上有更多应用可用，存储在 iOS 设备上的信息量持续增长。\n\n移动取证可以定义为在法证可靠的条件下使用经过验证的手段从移动设备恢复数字证据的过程。\n\
+  \n我们能从设备上恢复的证据类型取决于设备本身以及用于数据提取的技术，但通常，智能手机包含个人信息，例如通话记录、消息、电子邮件、照片、视频、备忘录、密码、位置数据和传感器数据。没有其他计算设备像手机一样个人化。\n\
+  \n通常，检查过程应揭示所有数字证据，包括可能被隐藏、模糊或删除的痕迹。证据是通过应用既定的科学方法获得的，应充分描述数据的内容和状态，包括其位置、潜在意义以及不同数据源之间的关系。取证过程始于从移动设备提取证据的副本。一旦副本可用，下一步涉及分析数据、识别证据并制定最终报告的内容。\n\
+  \n## iOS 取证的新黄金时代\n\n在过去 3 年中，数字取证行业经历了一场重大革命。\n\n2019 年，针对 iOS 设备的 **checkm8**\
+  \ 漏洞的发现是一个彻底的游戏规则改变者，因为它为数字取证调查员打开了新的大门，允许对数以亿计的 Apple 设备进行完整文件系统提取。如果你从未见过完整文件系统提取，你可能会对设备存储的数据的范围和种类感到惊讶！\n\
+  \nCheckm8 基于一个无法修补的硬件缺陷，该缺陷直接存在于 iOS 设备的芯片上，从运行 Apple A11 芯片的设备一直到 A5 世代。这包括从 iPhone\
+  \ 4S 到 iPhone X 以及多款 iPad。\n\n此漏洞具体是一个 BootROM 漏洞，这意味着它利用了 iOS 设备在启动过程中加载的初始代码中的安全缺陷，并且无法通过\
+  \ Apple 的软件更新覆盖或修补。\n\n在 2019 年底，**checkra1n** 发布了，这是基于 checkm8 漏洞的第一个公开、闭源越狱。数字调查员和取证分析师已迅速采用\
+  \ checkra1n 来访问设备的文件系统和钥匙串；然而，与所有越狱一样，此解决方案有几个缺点，因为使用越狱不可避免地会修改设备文件系统上的某些数据，并且不被认为在法证上是可靠的。\n\
+  \n出于这些原因，Cellebrite、Elcomsoft 和 Oxygen Forensic 等厂商已开发出基于原始 checkm8 漏洞的专有解决方案，这些解决方案通过修补设备的\
+  \ RAM 来工作。这些工具允许调查员在不触及系统和用户分区以及不对设备进行任何更改的情况下执行完整文件系统提取，因为漏洞在内存中运行。\n\n换句话说，在选定的设备上，可以利用\
+  \ checkm8 漏洞提取完整文件系统，而无需实际越狱设备。下表显示了容易受到 checkm8 漏洞攻击的设备列表：\n\n| iPhone 4S | iPhone\
+  \ 5/5c/5s | iPhone 6/6s | iPhone SE |\n|---|---|---|---|\n| iPhone 7 | iPhone 8\
+  \ | iPhone X | iPad 2nd–7th gen |\n| iPad Mini 2nd and 3rd | iPad Air 1st and 2nd\
+  \ | iPad Pro | Apple Watch 1st–3rd |\n\n表 1.1 – 容易受到 checkm8 漏洞攻击的设备\n\n要利用 checkm8\
+  \ 进行文件系统提取，你的设备必须兼容，并且必须运行受支持的 iOS 版本。这是一个主要缺点，因为较新的设备，例如最新的 iPhone 13，并不受支持。然而，还有其他选择。\n\
+  \n在 2020 年，Elcomsoft 和 Belkasoft 等厂商引入了基于代理的提取，这是一种新的采集方法，允许在不越狱设备的情况下进行完整文件系统提取。安装在设备上后，代理通过软件漏洞逃离沙箱，获得对设备的无限制访问，并建立设备与计算机之间的连接。基于代理的提取在法证上是安全的，通常比大多数越狱更快更安全。截至撰写本文时，受支持的设备包括从\
+  \ 5S 到 iPhone 12 的所有 iPhone，运行 iOS 9.0 到 14.3 版本。\n\n在 2020 年 5 月，**unc0ver** 越狱发布了重大更新，增加了对基于\
+  \ A12-A13 芯片的设备的支持。截至撰写本文时，unc0ver 支持从 iPhone 5s 到 iPhone 12 的所有设备越狱。支持的 iOS 版本范围从\
+  \ iOS 11 到 iOS 14.3。\n\n尽管越狱设备允许完整文件系统提取，但它不被认为是一个法证可靠的过程。如果受支持，调查员应首先考虑更安全的选项，例如\
+  \ checkm8 或基于代理的提取。\n\n提示\n\n需要注意 checkm8 基于的提取与通过 checkra1n 或 unc0ver 越狱设备之间的区别。诸如\
+  \ **Cellebrite UFED** 和 **Elcomsoft iOS Forensics Toolkit** 之类的工具利用 checkm8 漏洞通过在设备\
+  \ RAM 中运行漏洞来临时提供对整个文件系统的访问。提取完成后，设备将正常重启。不会对设备进行永久更改。\n\n另一方面，越狱设备会留下永久痕迹，并且还需要安装\
+  \ Cydia 或 AFC2 等第三方软件包，从而对设备进行额外更改。\n\n## iOS 取证中的挑战\n\n智能手机被视为实时、动态系统，因此从取证角度来看，它们带来了几个挑战，因为数据和文件\
+  \ constantly 变化。\n\n数字调查员可能面临的主要复杂性之一是处理锁定设备：最近的 iOS 更新使密码破解几乎不可能，其他选项必须被考虑以尽可能多地提取数据。\n\
+  \n设备数量的增长以及它们运行的软件的多样性使得开发单一工具和一致的工作流程来应对所有情况变得极其困难。这通常是因为用于从一台设备提取数据的方法在发布新版本的\
+  \ iOS 时会停止工作；事实上，取证提取工具通常依赖于安全漏洞来访问设备的文件系统并提取比 iTunes 备份中通常找到的更多数据，甚至在密码未知时解锁设备。当\n\
+  \n\n新的 iOS 更新发布后，这些漏洞可能会被修补，从而使工具失效。\n\n现代调查人员在接触 Apple 设备时必须考虑这些问题，并应根据具体情况决定采用哪种最佳技术，以获取最广泛的有价值证据。\n\
+  \n## 剖析 iOS 操作系统\n\n对来自移动设备的数字证据进行取证检查，不仅需要充分理解数据，还需要了解设备本身如何工作以及这些数据是如何生成的基础知识。这在\
+  \ iOS 设备上尤其具有挑战性，因为该平台闭源，因而难以理解 iOS 到底如何与所有这些数据交互，以及设备后台发生了什么。\n\nApple 投入大量精力，通过多项安全特性来限制可在其硬件上运行的操作系统和应用软件：Apple\
+  \ 设备上运行的应用不直接与底层硬件交互，而是通过系统接口进行交互。iOS 可被定义为设备硬件组件与设备上应用之间的中介。\n\n提示\n\n许多出版物都提供有关\
+  \ iOS 硬件的信息。如需完整的 iPhone 组件和设备列表，请参阅 Apple 支持页面：https://support.apple.com/specs/iphone。\n\
+  \n## 理解 iOS 文件系统\n\n自 iOS 10 以来，Apple 文件系统（APFS）已取代 HFS+ 成为默认文件系统。APFS 是一个专有文件系统，专为移动设备而设计：它针对\
+  \ SSD 存储进行了优化，并支持强加密。在 iOS 设备上，文件系统被配置为两个逻辑磁盘分区——系统分区和用户分区：\n\n- 系统分区包含 iOS 操作系统以及设备随附的所有预加载应用，但这些应用几乎不包含证据信息。系统分区仅在设备执行固件升级时才会更新。\n\
+  - 用户分区挂载在 /private/var 目录下，包含所有用户创建的数据，并提供与调查人员相关的大部分证据信息。\n\n## 数据在 iOS 文件系统上存储在哪里？\n\
+  \niOS 管理应用与硬件之间通信的例子之一是沙盒机制，它使用户无需直接访问文件系统即可与应用交互，确保每个应用都*被包含*在一个或多个特定容器中，这些容器会在设备上安装新应用时自动创建。这种组织方式让调查人员轻松很多，因为与特定应用相关的所有文件都分组在特定位置。\n\
+  \n每个容器都有特定的作用：\n\n- 捆绑包容器包含应用本身，包括从 App Store 下载应用时附带的所有资源。\n- 数据容器保存应用和用户的数据，并进一步划分为多个目录，应用可使用这些目录来组织其数据。\n\
+  - 组容器是应用存储数据的地方，这些数据可以与同组的其他应用共享。\n\n下图展示了每个应用的容器：\n\n![](img/0b17a17d4cb56b1c25763a396dd83117_18_0.png)\n\
+  \n图 1.1 – 应用容器示意图\n\n数据容器包含几个不同的文件夹：\n\n- Documents/：此文件夹包含用户创建的文件，并且会自动纳入 iTunes\
+  \ 备份和 iCloud 备份。\n- Library/：此文件夹供应用存储与应用相关的数据，并非由用户创建。此文件夹包含在 iTunes 和 iCloud 备份中。\n\
+  - Temp/：包含应用相关的临时文件，不包含在备份中。\n\n如你所见，所有应用文件都完美地组织到各自的数据容器中。不过，你可能想知道这些容器到底存储在设备文件系统上的什么位置。设备上的每个应用都通过**全局唯一标识符（GUID）**进行标识，也称为\
+  \ BundleID 标识符。该标识符在应用首次安装时唯一生成，如果应用被更新或重新安装，则可能会改变。\n\n应用捆绑包容器存储在 iOS 文件系统的以下路径中：\n\
+  \n```\n/private/var/containers/Bundle/Application/<app-GUID>/\n```\n\n应用数据容器存储在以下路径中：\n\
+  \n```\n/private/var/mobile/Containers/Data/Application/<app-GUID>/\n```\n\n组容器存储在以下路径中：\n\
+  \n```\n/private/var/mobile/Containers/Shared/AppGroup/<app-GUID>/\n```\n\n提示\n\n\
+  在本节中，我们了解了应用在 iOS 文件系统上存储数据的位置。但系统工件呢？系统相关的数据分布在文件系统的各个位置，所以我们不会在一个地方找到所有内容！我们将深入探讨系统工件以及在哪里找到它们，详见_第4章，处理常见iOS工件_。\n\
+  \n## iOS 文件系统上的数据是如何存储的？\n\n到目前为止，我们学习了 iOS 如何将应用数据组织到容器中，以及这些容器在文件系统上的存储位置。现在，让我们讨论\
+  \ iOS 文件系统中通常包含有用证据的文件类型。\n\n除了用户生成的内容（如文档、照片、视频或文本文件）之外，存储在 iOS 设备上的数据通常由以下项目组成：\n\
+  \n- **SQLite 数据库**：SQLite 是一个独立、自包含的数据库，可以在一个文件中存储几乎任何类型的数据，包括二进制 BLOB。SQLite 数据库是应用和系统数据的主要存储来源，因此解析这些数据库将是大多数数字调查的重点之一。如果你希望尝试恢复已删除的数据，数据库也极其有用，因为已删除的记录通常会在数据库本身或其临时文件中留下数字痕迹。短信、WhatsApp\
+  \ 对话、通讯录、通话记录、备忘录和浏览器历史记录等基本工件都存储在 SQLite 数据库中。\n- **属性列表文件（Plists）**：Plists 是 iOS\
+  \ 和应用用来在设备上存储、组织和访问数据的结构化文件。这些文件可以以 XML 格式或二进制格式存储。通常，plists 用于存储应用设置或用户偏好。\n- **其他文件类型**：包括日志文件、XML\
+  \ 文件、Protocol Buffers 和 Realm 数据库。本书稍后将深入介绍这些文件类型。\n\n以下是 XML 格式的属性列表示例：\n\n```\n\
+  <?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<!DOCTYPE plist PUBLIC\
+  \ \"-//Apple//DTD PLIST 1.0//EN\"\n\"http://www.apple.com/DTDs/PropertyList-1.0.dtd\"\
+  >\n<plist version=\"1.0\">\n    <dict>\n        <key>UUID</key>\n        <string>3bdd52c7-ee36-4689-8517-c5fed2c98s5</string>\n\
+  \        <key>ClientID</key>\n```\n\niPhone X，苹果推出了 Face ID，它利用面部识别来解锁设备。\n\n解锁受密码保护的\
+  \ iOS 设备是移动取证中的主要挑战之一。\n\n由于数字密码的组合数量相对较少，理论上可以使用暴力猜测攻击来利用身份验证机制。然而，这极其危险，因为 iOS\
+  \ 被设计为对密码输入尝试进行速率限制，如果失败尝试次数过多，设备上的数据可能会被永久删除。\n\n该密码不仅用于解锁设备本身——它还是 iOS 数据保护模型的关键特性之一：密码与硬件加密密钥结合，用于生成一个唯一且极强加密的密钥，该密钥由算法用来加密用户数据。\n\
+  \n## 加密与数据保护\n\n虽然用户身份验证在防止未经授权访问物理设备方面提供了一定程度的安全性，但这些机制仍可能通过利用软件或硬件漏洞而被绕过。被入侵的设备可能会允许未经授权访问设备的文件系统。因此，从\
+  \ iPhone 4 开始，整个文件系统都使用强大的加密算法进行加密。然而，随着 iPhone 5s 的发布，苹果引入了名为**数据保护**的技术，开创了移动安全的新先例，该技术依靠多个专用组件来支持加密和生物识别。\n\
+  \n## 安全隔区\n\niOS 安全的核心是安全隔区，这是一个与主处理器和操作系统隔离的专用**片上系统（SoC）**，为数据保护和密钥管理提供加密操作。\n\
+  \n安全隔区的主要组成部分如下：\n\n\n\n- **安全隔区处理器（SEP）**，运行 Apple 修改版的 L4 微内核，并专门为安全隔区提供计算能力。\n\
+  - 一个内存保护引擎。\n- 一个**真随机数生成器（TRNG）**，用于生成随机加密密钥。\n- 专用的**高级加密标准（AES）**硬件引擎，通过安全通道直接与\
+  \ SEP 通信，并在文件写入或读取时执行内联加密和解密。\n- 一个**唯一 ID（UID）**，是唯一标识设备的加密密钥。UID 是随机生成的，在设备制造过程中直接熔入安全隔区的硬件中，因此在设备外部不可见。\n\
+  - 一个专用的、安全的非易失性存储系统，只能由安全隔区访问。数据加密密钥存储在此处，确保这些密钥永远不会暴露给 iOS 系统或应用。\n\n下图显示了安全隔区的各个组件：\n\
+  \n![](img/0b17a17d4cb56b1c25763a396dd83117_24_0.png)\n\n### 图 1.2 – 安全隔区组件\n\n安全隔区负责多项与安全相关的操作，包括生成和存储加密设备数据所需的密钥，以及评估来自\
+  \ Touch ID 和 Face ID 的生物识别数据。\n\nSEP 使用 UID 生成与特定设备绑定的加密密钥。这增加了一层安全保护：如果设备的 SSD\
+  \ 存储被物理移动到另一台设备，文件将无法解密，因此无法访问，因为每台设备都有唯一的 UID，解密文件需要原始的 UID。\n\n### iOS 数据保护密钥\n\
+  \niOS 上的数据保护通过生成和管理分层加密密钥来实现。\n\n为了便于理解，在深入细节之前，我们先来看看加密和解密过程中使用了哪些密钥，以及它们的用途是什么：\n\
+  \n![](img/0b17a17d4cb56b1c25763a396dd83117_25_0.png)\n\n图 1.3 – 用于 iOS 数据保护的加密密钥\n\
+  \n- 设备的 UID 是一个 AES 256 位密钥，在制造过程中直接熔入安全隔区。该密钥与用户的密码一起，用于解锁*类密钥*。\n- 类密钥是在设备上发生特定事件时生成的；例如，当设备被解锁时，会创建一个*完全保护*类密钥。设备锁定后不久，解密后的类密钥即被丢弃。类密钥用于包装和解包文件密钥。\n\
+  - 文件密钥是 256 位密钥，用于加密每个文件的内容；这些密钥是每个文件独立的密钥，因此每次在用户分区上创建新文件时都会随机生成。文件密钥使用类密钥加密，然后存储在文件的元数据中。所有文件的元数据都使用文件系统密钥加密。\n\
+  - 文件系统密钥是一个随机密钥，在 iOS 首次安装或设备被擦除时生成。文件系统密钥存储在设备上，其设计目的是在用户\n\n*用户认证*类；这允许数据在保持加密的同时可供设备访问。\n\
+  \n### iOS 数据加密和解密\n\n当文件写入文件系统时，文件内容使用每个文件唯一的密钥进行加密，该密钥使用类密钥进行包装，并存储在文件的元数据中。然后，元数据使用文件系统密钥进行加密。\n\
+  \n我们已经了解了类密钥是如何结合硬件 UID 和用户密码生成的，而文件系统密钥是在 iOS 安装时生成并存储在设备上。现在，让我们逐步分析单个文件的加密过程：\n\
+  \n- 1. 每次在文件系统上创建文件时，安全隔区都会生成一个 256 位的文件密钥，并将该密钥传递给硬件 AES 引擎。\n- 2. AES 引擎在文件内容写入闪存时使用提供的文件密钥对其进行加密。\n\
+  - 3. 然后，根据分配的保护类别，使用四个类密钥之一对文件密钥进行包装，并存储在文件的元数据中。\n- 4. 所有文件的元数据都使用文件系统密钥进行加密。\n\
+  \n所有密钥处理均在安全隔区内进行，因此操作永远不会暴露给系统及其应用。\n\n解密过程则相反：\n\n- 1. 打开文件时，使用文件系统密钥解密其元数据，从而获取被包装的文件密钥和分配的保护类别。\n\
+  - 2. 使用类密钥解包文件密钥，然后将其传递给 AES 引擎。\n- 3. 硬件 AES 引擎在从内存读取文件时，使用提供的文件密钥解密文件内容。\n\n这里需要理解的关键点是，你用来检查移动设备并从中提取数据的过程，才是使检查具有取证意义的关键。既不是你使用的软件，也不是你使用的硬件，而是你在检查过程中使用的过程，才使其真正具有取证意义。\n\
+  \n随着技术不断发展和不同移动设备的上市，这些指南和流程应定期审查。\n\n## 扣押和识别\n\n第一步涉及对设备的物理扣押。这包括收集设备所涉事件类型的信息，以及至少一些关于设备所有者的基本信息。\n\
+  \n扣押的方式取决于你所在的司法管辖区，因此你应熟悉有关扣押和分析智能设备的法律及其要求（通常需要搜查令）。在此阶段，你还应对预期找到的数据有一个大致了解，这将有助于你确定具体目标，并根据你的需求规划后续步骤。\n\
+  \n首先，你需要记录你所做的每一件事，并考虑如何保全证据。你*如何*处理设备至关重要，并且可能对调查结果产生巨大影响。\n\n你还应记录设备被发现时的状态。以下是一些示例：\n\
+  \n- 设备是开机还是关机？\n- 设备是否受密码保护？\n- 密码是否已知？\n- SIM 卡是否存在？\n- 是否有可见损坏？\n- 设备上的日期和时间是多少？\n\
+  - 如果设备处于开机状态，正在运行哪些应用？\n- 基本所有权信息。\n\n取证合规流程的基本要素之一是，操作应在不以任何方式更改或改变设备上数据内容的情况下进行。请注意，iOS\
+  \ 设备是活跃的动态计算机系统，因此与设备的任何交互都会导致系统文件和数据库发生变化，更不用说可能无意中删除包含有用证据的临时文件了。除下一节将指出的保全操作外，应小心限制与设备的所有交互。\n\
+  \n一旦设备被扣押，调查人员可能会忍不住手动访问设备中的数据，例如运行消息应用并直接查看设备屏幕上的对话；然而，应强烈劝阻这种做法，因为这会导致系统日志和其他与系统相关的文件被更改，这不是取证合规的行为。\n\
+  \n在此阶段，调查人员还需要识别设备、其硬件型号以及 iOS 版本。如果你想开始评估调查人员从设备中提取证据有哪些选择，这些信息将会很有用。\n\n对于每次检查，调查人员还应识别以下内容：\n\
+  \n- 检查设备的法律权限\n- 检查的目标\n- 其他潜在证据来源（包括云存储）\n\n## 保全\n\n\n\n\n\n智能手机的设计初衷就是通过蜂窝网络、蓝牙连接和无线\
+  \ Wi-Fi 网络进行通信。为了防止设备通信，尽快隔离设备非常重要。隔离设备可防止新数据（来电、接收消息等）修改现有证据，从而强制执行数据保存。此外，如果允许设备联网，数据销毁就可能发生，因为\
+  \ Apple 产品可通过 *kill signal* 远程擦除。\n\n隔离 Apple 设备最简单的方法是启用 **Airplane** 模式；这会停用设备的无线和蜂窝连接。你可以从设备的\
+  \ **Settings** 中启用 **Airplane** 模式，或如果设备已锁定，可直接从控制中心通过从底部向上滑动启用。如果设备是 iPhone X 或更新机型，你可以通过从右上角向下滑动访问控制中心。不过值得注意的是，隔离设备也可以通过将设备放入法拉第袋来实现，法拉第袋是一种由金属屏蔽制成的容器，可阻断蜂窝网络、GPS\
+  \ 和 Wi-Fi 网络使用的无线电频率。\n\n不要忘记保持设备充电，以确保其不会关机。一般来说，你希望设备保持你发现时的状态：\n\n- 如果设备是关的，就保持关机。\n\
+  - 如果它是开的，确保你保持开机状态，以免锁定！\n\n如果设备受密码保护且调查人员没有密码，这一点尤其重要：如果设备断电，它将从 AFU 状态转变为 BFU\
+  \ 状态，从而使数据恢复变得更加困难，在某些情况下甚至不可能。我们将在本章后面了解更多关于设备状态的信息。\n\n### Tip\n\n最常见的错误之一是从未锁定的设备中取出\
+  \ SIM 卡以将其与蜂窝网络隔离。在处理不同设备时这可能有意义，但你应避免从 iPhone 或 iPad 中取出 SIM 卡，因为这样做会导致 iOS 自动锁定设备，生物识别解锁将被禁用，并且\
+  \ USB 限制模式将被激活。\n\n成功扣押并隔离设备后，应注意维护设备的保管链。NIST 将保管链定义如下：\n\n> “一种通过记录处理证据的每个人的信息、收集或转移的日期/时间以及转移目的，来跟踪证据在其收集、保护和分析生命周期中的移动的过程。”\n\
+  \n你可以通过访问以下网站了解更多关于此主题的信息：\n\n[CSRC.nist.gov](https://csrc.nist.gov/)。\n\n## Acquisition\n\
+  \nAcquisition 是从设备获取信息和证据的过程。\n\n在实际采集过程开始之前，你应该清楚地了解自己正在寻找哪种证据，因为这会对你选择的工具产生很大影响。\n\
+  \n一般来说，有三种不同类型的数据采集，调查人员选择的方法会影响可以从设备中提取的数据量：\n\n- Logical acquisition\n- Full filesystem\
+  \ acquisition\n- Physical acquisition\n\n在下面的表格中，你可以看到每种方法可以提取哪种数据：\n\n| | Logical\
+  \ | Filesystem | Physical |\n|---|---|---|---|\n| Calls, calendars, contacts, and\
+  \ messages | ✓ | ✓ | ✓ |\n| User content (photos, videos, notes, and so on) | ✓\
+  \ | ✓ | P |\n| Keychain | Limited | ✓ | ✓ |\n| Third-party app data | Limited |\
+  \ ✓ | ✓ |\n| Apple Pay | - | ✓ | ✓ |\n| Location data (radio cells, GPS fixes, and\
+  \ so on) | - | ✓ | ✓ |\n| Mail | - | ✓ | ✓ |\n| User activity logs | - | ✓ | ✓ |\n\
+  | System logs | - | ✓ | ✓ |\n| Deleted data (unallocated space) | - | - | ✓ |\n\
+  | Deleted data (SQLite databases) | Limited | ✓ | ✓ |\n\n表 1.2 – 不同采集方法可提取数据的比较\n\
+  \n## Logical and filesystem extractions\n\n正如你所见，逻辑采集将从设备中提取一些用户生成的数据，例如照片、消息和笔记。逻辑提取通常是最简单、最快速的提取类型，大多数取证工具都支持它。然而，考虑到\
+  \ iOS 设备上可用的文件数量，只有获取完整的完整文件系统才能访问宝贵的证据，例如第三方应用数据、精确的位置数据和生活模式信息。\n\n文件系统提取是设备用户分区的文件和文件夹的表示；通过分析数据库和临时文件（例如\
+  \ WAL 文件），可以部分恢复已删除的数据。\n\n## Physical extraction\n\niPhone 4 及更早的设备可以进行完整的、取证可靠的整个原始磁盘物理提取。这种提取提供的数据最多，就像标准硬盘一样，系统和用户分区以及磁盘的未分配区域都会被提取。这非常有用，因为它允许调查人员恢复已删除的数据，包括消息、照片和视频。然而，随着\
+  \ iOS 5 的引入，Apple 改变了磁盘上数据的加密方式，并启用了其他安全功能，例如数据保护类密钥。截至撰写本文时，提取现代 iOS 设备的物理镜像是不可能的。\n\
+  \n## Choosing the best acquisition method\n\n调查人员应始终先执行逻辑采集，然后如果可能的话，再尝试文件系统或物理采集。\n\
+  \n通常需要越狱设备才能实现对设备文件系统的不受限制访问；然而，越来越多的厂商增加了运行取证可靠的基于 checkm8 的提取（所有操作都在设备的易失性 RAM\
+  \ 中执行）或基于代理的提取的可能性。这两个选项都允许你在不越狱设备的情况下获取完整的文件系统。\n\n归根结底，你选择的方法通常取决于四个变量：\n\n- 你发现设备的状态（锁定或未锁定）\n\
+  - 设备型号和 iOS 版本\n- 你可以使用的工具\n- 越狱设备的可能性\n\n如果设备已锁定且你没有密码，就没有一种简单的解决方案可以始终绕过 iOS 安全。然而，根据设备型号，有几个选项可以提供有限的数据。我们将在下一章详细介绍这些选项。\n\
+  \n如果设备未锁定，根据可用工具，你可以尝试文件系统提取。你应该从较不具侵入性的选项开始，例如内存中的 checkm8 漏洞利用，如果你的工具支持的话。如果设备不允许\
+  \ checkm8 漏洞利用，你可以尝试基于代理的提取，如果 iOS 版本兼容的话。虽然这需要安装代理到设备上并且可能会发生一些小的更改，但这被认为在取证上是安全的。如果这两个选项都不可用，你可以考虑通过\
+  \ checkra1n 或 unc0ver 越狱设备。确保你了解越狱的工作原理，它如何影响设备以及风险是什么。最后，如果这些选项都不可用，你将不得不进行逻辑采集。\n\
+  \n我们将在下一章学习有关从 iOS 设备提取数据的所有内容，但现在重要的是要注意，手机应使用经过测试、可重复且尽可能取证可靠的方法进行采集。强烈建议在测试设备上使用各种工具进行实验，以确定哪种采集方法和工具最适合不同的设备。\n\
+  \n如果你无法直接访问设备，还有其他证据来源可供考虑，例如 iTunes 备份和 iCloud 提取。\n\n## Analysis\n\n进行取证检查的主要目的是找到、提取和处理与特定案件或调查相关的证据。\n\
+  \n虽然没有标准流程来分析你从设备中提取的内容，但以下是一些可以帮助你入门的指南：\n\n- 浏览所有可用数据，以熟悉设备上发现的主要证据来源。\n- 使用你的工具和取证软件快速解析常见的数据源，例如\
+  \ SMS 数据库、已安装应用、通话记录、照片等。\n- 尝试使用软件恢复任何已删除的数据，并通过手动 carving 二进制文件、日志、plists 和 SQLite\
+  \ 数据库进行恢复。\n\n\n\n\n\n- 通过搜索特定于调查的关键词和细节来识别关键证据。\n- 从文件中收集元数据并查找隐藏证据（时间戳、地理位置数据、二进制\
+  \ BLOB 等）。\n- 查找不同证据之间的关系。\n- 对所有获取的证据进行时间分析，建立相关证据和事件的时间线。\n\n当处理的数据量有限时，可能通过手动浏览工作站上的所有文件夹并查看文件内容来评估证据。然而，当面对数\
+  \ GB 的数据源时，包括 SQLite 数据库、缓存和 plists，你很可能不得不求助于取证工具。在这种情况下，调查人员必须制定策略，根据数字证据的类型和调查目标使用最佳工具。\n\
+  \n我们将在 *第 2 章，从 iOS 设备获取数据* 和 *第 3 章，使用取证工具* 中详细介绍商业工具，但在那之前，必须指出所有移动取证工具都只是应用软件。这些工具并不是只需点击按钮就能进行自主处理和报告的神奇事物！数字调查人员必须了解每个工具的\
+  \ *功能* 和局限性。\n\n移动取证工具通常在可执行的提取类型上有所不同，但不同工具也兼容不同的设备和不同版本的 iOS 操作系统。鉴于各种不同的移动设备类型，没有任何单一软件支持所有移动设备。\n\
+  \n自动化工具可以加快处理庞大数据集所需的时间，我坚信现代调查人员应拥有不止一种工具可用。然而，这一过程不能替代系统化、手动的取证检查和验证。\n\n最终，一切都取决于目标设备型号、iOS\
+  \ 版本、提取类型、检查的目标以及产生的证据以后可能如何使用。\n\n## 验证\n\n在处理完设备上的证据后，调查人员必须验证已执行的所有步骤的准确性。此过程不应仅专注于验证从设备提取的数据。它还应包括验证用于检查的工具，并验证整个过程以确保其以取证可靠的方式进行。\n\
+  \n不幸的是，验证是最容易被忽视的方面之一。\n\n在开始检查之前，强烈建议在测试设备和已知数据集上尝试各种工具，以确定哪些获取和分析工具最适合特定的 iOS\
+  \ 设备型号和版本。\n\n既定的程序应指导获取和分析设备的过程。当调查人员处理来自第三方应用或 **未识别取证对象 (UFOs)** 的数据时尤其如此。必须测试实践，以确保获得的结果是\
+  \ *有效* 的并且可以独立 *重现*。\n\n被要求就其发现作证的检查员应能够解释不仅 *发现* 了什么证据，还应解释 *在哪里* 发现该数据以及 *如何*\
+  \ iOS 操作系统生成了这些证据。这可能涉及手动解码二进制数据和文件雕刻。分析用户数据被解析出的实际二进制文件以及 SQLite 数据库和 plists，为调查人员提供了深入分析\
+  \ iOS 设备文件系统的机会，提取出仅依赖自动工具可能遗漏的证据。\n\n以下列表类似于有关验证和确认的最佳实践：\n\n- **哈希值**：在获取过程中应对从设备提取的所有文件进行哈希处理，以确保不会发生任何更改。如果进行文件系统提取，可以在过程结束时为每个文件计算哈希值。数据完整性可以通过为单个文件计算哈希并将其与原始值进行检查来验证。\n\
+  - **确定性工具：** 用于检查的所有工具都应是确定性的：在相同情况下，给定工具在给定相同输入数据时应产生相同的输出。\n- **数据验证：** 检查设备上存储的已知数据是否准确报告，未做任何修改。一般来说，从设备提取的数据应与在设备屏幕上查看的数据相匹配。\n\
+  - **工具准确性：** 工具输出的质量应通过使用多个工具提取/处理相同数据并比较结果来检查。\n- **流程测试：** 在处理 UFOs 或尚未建立检查流程的证据时，通过在不同设备上和已知控制条件下测试每个解决方案来验证你的发现，并评估每次测试的结果。\n\
+  \n## 报告\n\n移动取证过程中的最后一步是报告。报告可以定义为准备一份详细摘要，说明为从移动设备获取和分析数字证据所做的工作。取证报告还应包括所有相关证据，以清晰简洁的方式呈现，以及调查得出的结论。\n\
+  \n许多取证工具提供内置的报告功能，允许你自动生成数字报告，其中包含来自调查的项目，例如以下内容：\n\n- 关键证据\n- 设备识别（型号、序列号、电话号码等）\n\
+  - 案件编号和分析员姓名\n- 检查进行的日期和时间\n- 用于提取和分析的工具\n\n根据你的司法管辖区，取证报告还应描述数据是如何提取的（逻辑、物理或文件系统提取），并解释为确保整个过程可重复且取证可靠所采取的措施。\n\
+  \n## 时间线分析\n\n最常见的取证报告形式之一包括时间分析，其定义为创建设备上在指定日期和时间发生的事件时间线的过程。\n\n时间线通常包括来自各种来源的数据；例如，位置数据、系统日志和消息证据可以结合起来，从而发现发生了什么、在哪里发生以及何时发生。\n\
+  \n确定设备上事件发生的时间并通过报告日志、文件和时间戳将设备使用与个人关联起来可能非常有用。\n\n## 总结\n\n在本章中，我们了解了取证检查的目标以及发现\
+  \ checkm8 漏洞如何为从 iOS 设备获取数据提供新的机会。\n\n首先，我们介绍了 iOS 操作系统并讨论了其安全架构的一些关键元素，例如安全飞地和数据保护。然后，我们介绍了\
+  \ iOS 取证检查的步骤。\n\n第一步是扣押设备并采用保留证据的技术，例如将设备放入法拉第袋或启用飞行模式。有不同的方法可以从 iOS 设备获取数据，这取决于型号、iOS\
+  \ 版本和可用工具。本章涵盖了逻辑和文件系统获取技术，以及越狱和基于代理的提取。\n\n分析证据应遵循彻底的验证流程，以确保商业工具产生一致的结果，并且证据已以取证可靠的方式处理。\n\
+  \n最后，我们了解了取证报告中应包含的关键要素。\n\n下一章将详细讨论 iOS 数据获取，并提供对用于进行取证检查的工具的实践方法。\n\n\n\n\n"
+- '## 第 2 章：从 iOS 设备获取数据
+
+
+  与台式电脑相比，移动设备在数据获取阶段会带来一套独特的问题。虽然在台式电脑的世界里，有一种成熟的工作流程可以让调查人员进行所谓的 *取证可靠* 的获取，但在处理移动设备时，并没有一种一刀切的程序可以适用于每一种设备。当我们处理
+  iOS 设备时，这一点变得更加明显，因为各种机型和不同版本的 iOS 意味着，要实现令人满意的获取，所执行的程序会因设备本身而异。通常，某种特定的工具、漏洞利用或厂商解决方案在设备更新到新的
+  iOS 版本后就会停止工作。对于大多数依赖公开漏洞的越狱来说，这就是典型情况，而这些漏洞随后会被苹果修复。另一个挑战是可能需要处理锁定设备；在这种情况下，从设备中提取有用信息的机会要少得多。
+
+
+  因此，数据获取可以说是 iOS 取证工作流程中最具挑战性的方面。因此，在本章中，我们将讨论各种解决方案，首先区分不同类型的获取方法及其局限性。然后我们将进入实践阶段，学习如何对
+  iOS 设备执行逻辑、文件系统和物理获取。
+
+
+  在本章中，我们将涵盖以下主题：
+
+
+  - 理解获取方法
+
+  - 越狱设备
+
+  - 快速取证设备
+
+  - 执行逻辑获取
+
+  - 执行完整文件系统获取
+
+
+  ### 理解获取方法
+
+
+  在第一章中，我们简要讨论了获取方法以及逻辑、文件系统和物理提取之间的区别。现在我们将在此基础上深入研究更高级的主题，以全面了解它们的工作原理以及我们能从每种获取方法中期望获得何种数据。
+
+
+  ### 逻辑获取
+
+
+  逻辑获取通常是从 iOS 设备提取最常见类型证据最简单、最快的方式。如果设备已解锁或你拥有密码，你肯定能够执行逻辑获取，因为所有 iOS 设备都支持它；基于 **Apple
+  File Connection (AFC) 协议**，这种获取本质上等同于运行本地（iTunes）备份，一些取证工具实际上会依赖苹果的库和 iTunes 功能从设备中提取数据。
+
+
+  逻辑获取可以使用免费软件如 **iTunes**、第三方库如 `libimobiledevice`，或使用取证软件来执行。在本章的后续部分中，我们将使用三款最受欢迎的数字取证工具来执行逻辑获取：*Cellebrite
+  UFED、Elcomsoft iOS Forensic Toolkit 和 Magnet ACQUIRE。*
+
+
+  正如我们在上一章中所了解的，逻辑获取的主要限制在于提取数据的深度和质量；虽然它会包含 *大部分* 用户生成内容，例如短信、通话记录、照片和笔记，但它 *不会*
+  包含其他珍贵的痕迹，例如电子邮件、位置数据、第三方应用和精确的系统日志。这里的关键点是，苹果和 iOS 开发者可以通过决定哪些文件会包含在备份中、哪些文件不会备份来限制逻辑提取。例如，许多流行应用，如
+  **Twitter、Facebook、Instagram、Telegram** 或 **Signal**，不会将其文件包含在本地备份中，因此这些痕迹无法通过逻辑获取获得。
+
+
+  为了让事情变得更加复杂，在 iOS 4 发布时，苹果引入了一项功能，使用户能够使用密码 **加密** 本地备份。此设置可通过 iTunes 激活，一旦启用，后续所有备份都将使用提供的密码自动加密。换句话说，如果我决定启用备份加密，下一次在任何电脑上尝试本地备份时，就需要密码才能读取备份文件。显然，这对取证调查人员来说在多个方面都构成问题；如果启用了备份加密且密码未知，从逻辑获取中提取的数据将毫无用处，因为无法解密它。一些取证工具，如
+  Elcomsoft Phone Breaker，允许调查人员通过暴力破解密码来攻击加密备份；然而，这并不能保证密码会被有效恢复，而且暴力破解攻击通常需要相当长的时间。
+
+
+  不过，还有另一种选择。自 iOS 11 起，苹果引入了直接从设备中删除用于加密本地备份的密码的可能性。
+
+
+  这里有个前提：虽然此解决方案效果完美，但它不仅会删除加密密码，还会重置 *所有* 设备的设置。显然，这会对设备中存储的一些文件产生影响，但如果没有备份密码的访问权限，这可能是你唯一的选项。
+
+
+  以下是重置本地备份加密密码的方法：
+
+
+  - 1. 在 iOS 设备上，进入 **设置 | 通用 | 还原**。
+
+  - 2. 选择 **还原所有设置** 选项并输入设备密码。
+
+  - 3. 按照步骤还原设备。
+
+
+  按照此流程，你不会丢失任何用户数据或其他密码，但它会重置通用设备设置，如壁纸、显示设置等。这当然会导致系统文件和数据库发生一些变化；因此，如果你处理的是刑事案件中的设备，请确保你了解对原始设备进行更改的后果，并确保你有法律授权执行此类操作。
+
+
+  ### 提示
+
+
+  需要注意的是，自 iOS 13 起，如果用户决定加密本地备份，将包含更多数据，包括来自钥匙串、通话、健康数据、Safari 历史记录等的数据。在执行逻辑获取时，大多数取证工具会检查是否启用了备份加密，如果未启用，则会临时启用以获取尽可能多的数据，并在获取过程结束后再次禁用。请记住这一点——如果你在执行逻辑获取前不加密备份，你将错过关键证据！
+
+
+  为了更好地了解在逻辑提取中可以期望找到哪些痕迹，请查看以下从 *Cellebrite Physical Analyzer* 截取的屏幕截图，其中显示了通过逻辑获取从
+  iOS 设备获取的数据：
+
+
+  ![](img/0b17a17d4cb56b1c25763a396dd83117_45_0.png)
+
+
+  图 2.1 – 通过逻辑获取获取的数据
+
+
+  你想要执行逻辑获取的主要原因是在处理较新设备时，因为它们通常在 iOS 更新发布后就会得到支持，因此你不必等待太久即可开始收集证据；然而，正如我们已经讨论的那样，许多项目不会包含在逻辑获取中。
+
+
+  与标准逻辑提取相比，完整文件系统提取或物理提取可让调查人员访问 iOS 设备上更多用户数据，包括完全访问钥匙串，其中还将包含可用于解密来自 Signal、Wickr、Snapchat
+  或 Facebook 等安全应用的数据的加密密钥。
+
+
+  通过获取完整文件系统，调查人员还将获得许多系统痕迹的访问权限，例如设备上发生的完整事件历史记录（锁定/解锁状态、用户交互、已安装
+
+
+
+
+  applications, AirDrop, Bluetooth, camera, and airplane mode history). Also, a lot
+  more geodata will be available from a full filesystem acquisition, including artifacts
+  from cell towers, Wi-Fi connections, and GPS locations with the corresponding geo-coordinates
+  and timestamps.
+
+
+  The following screenshots show the differences between a logical acquisition and
+  a full filesystem acquisition from the same device; the full filesystem extraction,
+  on the right, contains a lot more data:
+
+
+  ![](img/0b17a17d4cb56b1c25763a396dd83117_46_0.png)
+
+
+  still obtained during a filesystem acquisition, but the examiner is also granted
+  access to raw files stored within the device. This allows investigators to access,
+  for example, databases of all third-party applications without restrictions, and
+  recovery of deleted artifacts can also be attempted.
+
+
+  Although there are many tools that allow you to perform this kind of acquisition,
+  Apple restricts direct access to the device''s filesystem, so you will have to find
+  a workaround to gain full access to the device before a full filesystem acquisition
+  can be performed.
+
+
+  So, you may be wondering – how do I access the device filesystem? Is a **jailbreak**
+  required? Although jailbreaking is one of the available options, it is not the only
+  one.
+
+
+  At the time of writing, there are three different solutions to gain access to the
+  device''s filesystem:
+
+
+  - Using tools that leverage Checkm8, a BootROM exploit
+
+  - Using an extraction agent
+
+  - Jailbreaking the device
+
+
+  ## Checkm8
+
+
+  The publication of the Checkm8 vulnerability in 2019 by the hacker @axi0mX, which
+  is based on an unpatchable vulnerability present in the BootROM of millions of iOS
+  devices, is arguably the biggest game changer ever in the forensics industry.
+
+
+  Checkm8 is compatible with A5 to A11-based devices; this includes all devices starting
+  from the iPhone 5s up to the iPhone X, as there is no working implementation for
+  4S hardware.
+
+
+  Before we get into the details, it''s useful to understand how the iOS boot procedure
+  works and why the Checkm8 vulnerability cannot be patched.
+
+
+  ![](img/0b17a17d4cb56b1c25763a396dd83117_50_0.png)
+
+
+  Figure 2.3 – iOS secure boot chain
+
+
+  As you can see, the first step in the boot process is the execution of the code
+  from the device''s BootROM. This stage of the process is implicitly trusted because,
+  as its name implies, the BootROM is a read-only memory component that cannot be
+  modified after manufacturing by anyone, not even by Apple.
+
+
+  The Checkm8 exploit is based on a vulnerability that resides within this portion
+  of read-only memory, so this means that Apple has no way of patching it, leaving
+  hundreds of millions of iOS devices vulnerable. To have a better understanding of
+  what a breakthrough this is, keep in mind that the previous BootROM exploit was
+  discovered in 2010!
+
+
+  ### Tip
+
+
+  If you''re interested in the technical details, you can find a full report on the
+  Checkm8 vulnerability at the following link:
+
+
+  In light of these limitations, some vendors have come up with a built-in solution
+  that allows investigators to perform a full filesystem acquisition, exploiting the
+  Checkm8 vulnerability but *without* actually jailbreaking the device.
+
+
+  Currently, this feature is available in some of the most popular forensic tools,
+  including *Cellebrite UFED*, *Elcomsoft iOS Forensic Toolkit*, and *Oxygen Forensic
+  Detective*.
+
+
+  The difference between these solutions and performing a traditional jailbreak through
+  checkra1n is that these tools do not modify the device in any way; the exploit is
+  performed in the device''s RAM. Once the acquisition process ends, the device will
+  reboot normally, leaving no traces.
+
+
+  Whenever possible, this should be the preferred method to acquire the full filesystem
+  from an iOS device, as this is definitely the most forensically sound solution.
+
+
+  ## Agent-based acquisitions
+
+
+  The main drawback in Checkm8 acquisitions is that they''re not supported by newer
+  devices like the **iPhone 12** or the **iPhone 13**, as these devices are not vulnerable
+  to the Checkm8 exploit.
+
+
+  In 2020, vendors responded to these limitations by providing an alternative method
+  to extract the full filesystem from any iOS device, including the latest iPhone
+  12; this solution relies on installing an extraction agent that will exploit software
+  vulnerabilities, gain access to the entire filesystem, and establish a secure connection
+  between the device and the computer.
+
+
+  Although this method requires installing an application (**the agent**) on the device,
+  this is considered forensically safe, as the agent leaves a drastically smaller
+  footprint compared to other solutions, like jailbreaking the device. The only traces
+  left on the device are some minor changes in system log files; however, because
+  of this, depending on your jurisdiction, you may need authorization or legal authority
+  to use this method.
+
+
+  The following is a list of requirements to use this method:
+
+
+  - Supported iOS devices: all devices starting from the iPhone 5s up to iPhone 12.
+
+  - Supported iOS versions: iOS 9.0 through to iOS 14.3.
+
+  - Using an **Apple ID** registered in Apple''s Developer Program is strongly recommended
+  for installing the agent on the device, as this relieves the need to open internet
+  access on the device.
+
+
+  Currently, *Elcomsoft iOS Forensic Toolkit* and *Belkasoft Evidence Center X* are
+  the only tools that provide agent-based extraction capabilities.
+
+
+  ## Jailbreaking the device
+
+
+  Finally, let''s talk about jailbreaks! We''ve seen how it''s possible to extract
+  a full filesystem from an iOS device by exploiting the CheckM8 vulnerability or
+  by performing an agent-based acquisition. However, as we''ve learned, both these
+  methods have their limitations, and there could be some cases where jailbreaking
+  the device is your only option to perform a filesystem acquisition.
+
+
+  Applying a jailbreak will leave some permanent traces on the device, so this option
+  should only be considered as a last resort and only if you have the legal authority
+  to do so.
+
+
+  At the moment, the most popular jailbreaks are **checkra1n** and **unc0ver**. Both
+  these jailbreaks allow investigators to install third-party tools such as SSH, which
+  will give unrestricted access to the device''s filesystem.
+
+
+  In the following table, you can check the compatibility for both these jailbreaks:
+
+
+  ![](img/0b17a17d4cb56b1c25763a396dd83117_55_0.png)
+
+
+  Figure 2.4 – The main checkra1n screen
+
+
+  - 4. When you''re ready, click **Start**. The device will reboot into recovery mode
+  automatically.
+
+  - 5. You will now be presented with instructions on how to reboot the device into
+  DFU mode. Follow the instructions until your device shows a black screen:
+
+
+  ![](img/0b17a17d4cb56b1c25763a396dd83117_56_0.png)
+
+
+  Figure 2.5 – Follow the instructions to put the device in DFU mode
+
+
+  - 6. At this point, checkra1n will begin the jailbreak process. The device will
+  boot PongoOS and should look like this:
+
+
+  ![](img/0b17a17d4cb56b1c25763a396dd83117_58_0.png)
+
+
+  Figure 2.7 – Enter the passcode when requested
+
+
+  When the device reboots, you will find the checkra1n icon. Launching that application
+  will allow you to install Cydia. Once Cydia is installed, you can proceed to install
+  any third-party packages, such as SSH.
+
+
+  Remember that checkra1n is a semi-tethered jailbreak; if you reboot the device,
+  you will have to jailbreak it again using the checkra1n tool.
+
+
+  Once the device has been successfully jailbroken, you can perform a full filesystem
+  acquisition using the tool of your choice.
+
+
+  ## Triaging the device
+
+
+  When you''re dealing with iOS devices, it''s useful to gather some information directly
+  from the device prior to starting the acquisition process. Knowing what iOS version
+  is running on the device, for instance, can be useful to determine what the best
+  acquisition method is. For this purpose, we''re going to use `libimobiledevice`.
+
+
+  The `libimobiledevice` library is a cross-platform library that allows users to
+  communicate with an iOS device using their native protocol to provide access to
+  the device''s filesystem, including information about the device and its internals.
+  It works with all devices, including the most recent ones.
+
+
+  The first step is to head to http://libimobiledevice.org, where the library can
+  be downloaded for free. If you''re running Windows, instead of downloading the source
+  files and compiling them, you can download precompiled binaries from the project''s
+  GitHub repository.
+
+
+  If you''re running macOS, you can install the library simply by running the following
+  command from the terminal:
+
+
+  ```
+
+  brew install libimobiledevice
+
+  ```
+
+
+  If you''re running a Linux distribution that supports the apt packet manager, you
+  can install the library by running the following command:
+
+
+  ```
+
+  sudo apt-get install usbmuxd libimobiledevice6
+
+  libimobiledevice-utils
+
+  ```
+
+
+  Once you have installed the library, connect the device to your forensic workstation
+  and run the following command from the terminal:
+
+
+  ```
+
+  ideviceinfo
+
+  ```
+
+
+  This command will connect to the device, parse data relevant to the hardware and
+  software, and display it on screen. Keep in mind that the device will have to be
+  paired with the host system by entering the passcode. If you''re running Linux or
+  macOS, you can combine the previous command with the grep command to view some key
+  data:
+
+
+  ### Identifying the device model:
+
+
+
+
+
+
+  您可以通过运行以下命令来读取设备型号：
+
+
+  ```
+
+  ideviceinfo | grep ModelNumber
+
+  ```
+
+
+  ## 识别 iOS 版本：
+
+
+  要识别设备运行的 iOS 版本，可以运行以下命令：
+
+
+  ```
+
+  ideviceinfo | grep ProductVersion
+
+  ```
+
+
+  ## 识别设备序列号：
+
+
+  可以通过运行以下命令来解析设备的序列号：
+
+
+  ```
+
+  ideviceinfo | grep SerialNumber
+
+  ```
+
+
+  ## 识别电话号码：
+
+
+  最后，要识别设备中 SIM 卡对应的电话号码，请运行以下命令：
+
+
+  ```
+
+  ideviceinfo | grep PhoneNumber
+
+  ```
+
+
+  ## 决定最佳获取方法
+
+
+  一旦设备被扣押、正确隔离，并且您已确认硬件型号和 iOS 版本，检查过程的下一步就是评估哪种获取方法最适合在保持数据完整性的同时从设备中提取最丰富的数据。
+
+
+  一般来说，在对设备执行任何操作之前，您需要牢记这两个概念：
+
+
+  - 按照**易失性**的顺序获取证据。
+
+  - 从侵入性较低的方法开始获取证据。
+
+
+  任何获取过程的第一步都是确定目标数据的易失性；例如，如果调查范围是从设备中提取照片或解析短信，这显然不会引起任何担忧，因为这些数据写入闪存，不易失，任何获取方法都能提取这些痕迹。然而，如果调查旨在了解设备的使用方式、特定日期和时间是否有人机交互，或者设备几天前位于何处，这些痕迹的易失性要高得多，因为
+  iOS 设备上的日志文件和数据库会被不断覆盖。例如，位置数据通常会在设备上保留数周；然而，*精确的*位置数据（包括基站数据）只保留几天。在这种情况下，我们需要尽快提取此类数据，以免被覆盖。这意味着在其它操作之前尽可能先执行完整文件系统获取，因为逻辑获取不包含这些数据。
+
+
+  调查人员应清楚了解取证工具的工作原理及其对数据和设备本身的影响：
+
+
+  - 您决定做的任何事情（包括什么都不做！）都会对设备产生影响。
+
+  - 您的操作会对数据产生什么影响？
+
+  - 所选的获取方法是否需要重启设备？
+
+  - 相关痕迹能否在设备重启后保留？
+
+  - 痕迹在设备上覆盖前能保留多长时间？
+
+  - 越狱会影响哪些文件或文件夹？
+
+  - 运行 Checkm8 获取会产生哪些变化？
+
+
+  ## 执行基于代理的获取会发生哪些变化？
+
+
+  逻辑获取对设备几乎没有任何影响，因此通常这会是您的首选。如果设备易受 Checkm8 攻击，并且您拥有可执行此类获取的工具，那么 Checkm8 获取将是在不对设备做任何更改的情况下访问整个文件系统的最佳选择。如果这不是一个可行选项，下一步就是考虑基于代理的获取。最后，作为最后手段，越狱设备可以让调查人员访问整个文件系统，但请务必了解这将如何影响设备及其数据。
+
+
+  ## 执行逻辑获取
+
+
+  现在我们已经学习了理论，是时候通过执行第一次逻辑获取来将其付诸实践了。
+
+
+  几乎所有取证工具都可以执行逻辑获取；我们将重点介绍其中最流行的两种：Cellebrite UFED 和 Elcomsoft iOS Forensic Toolkit。
+
+
+  Cellebrite UFED 被视为行业标准，因为它允许调查人员执行多种不同类型的获取，包括传统逻辑获取、部分文件系统获取、通过 Checkm8 进行的完整文件系统获取，以及从已越狱设备进行的完整文件系统获取。
+
+
+  另一方面，Elcomsoft iOS Forensic Toolkit 可以执行逻辑获取、从越狱设备进行完整文件系统获取、通过基于代理的提取进行完整文件系统获取，并且还支持对旧设备的物理获取。
+
+
+  ## 使用 Cellebrite UFED 进行逻辑获取
+
+
+  在本示例中，我们将获取一台运行 iOS 12 的 iPhone 6：
+
+
+  1. 第一步是启动 Cellebrite UFED，并从主屏幕选择 Mobile device：
+
+
+  ![](img/0b17a17d4cb56b1c25763a396dd83117_63_0.png)
+
+
+  图 2.8 – Cellebrite UFED 的主屏幕
+
+
+  2. 接下来，选择 AUTO DETECT 选项，或使用屏幕左上角的搜索功能选择设备型号：
+
+
+  ### 图 2.9 – 选择设备或让 UFED 自动检测
+
+
+  3. 设备被识别后，UFED 将根据 iPhone 型号显示可用的获取方法。选择 Logical (Partial) 获取以继续：
+
+
+  ### 图 2.10 – 选择获取类型
+
+
+  4. Cellebrite UFED 的最佳功能之一是它允许您选择要提取的数据。这将大大加快提取过程，让您在几分钟内访问有用的证据。选择应提取的痕迹，然后点击
+  Next 开始获取过程：
+
+
+  ![](img/0b17a17d4cb56b1c25763a396dd83117_65_0.png)
+
+
+  ### 图 2.11 – 选择应提取的痕迹
+
+
+  5. 要执行逻辑获取，设备必须已解锁。请考虑在设备设置中禁用 Auto-lock。当设备提示配对请求时，您还应该选择 Trust（信任）此电脑：
+
+
+  ![](img/0b17a17d4cb56b1c25763a396dd83117_67_0.png)
+
+
+  图 2.13 – 提取摘要显示已提取的数据
+
+
+  您可以通过将逻辑获取内容加载到取证工具中来查看提取的数据，例如 Belkasoft Evidence Center X、Elcomsoft Phone Viewer
+  或 Cellebrite Physical Analyzer。
+
+
+  ## 使用 Elcomsoft iOS Forensic Toolkit 进行逻辑获取
+
+
+  另一个用于从 iOS 设备执行获取的优秀工具是 Elcomsoft 的取证工具包。该工具包专为 iOS 设备设计，并提供一些独特功能，例如基于代理的提取。步骤如下：
+
+
+  1. 启动 Elcomsoft iOS Forensic Toolkit，并检查设备是否被正确识别。从下面的截图可以看出，该工具分为四个部分，每个部分处理不同的获取过程。在我们的示例中，我们想要获取逻辑镜像，且设备未越狱，因此我们将选择
+  Backup 选项，该选项将执行逻辑获取：
+
+
+  ![](img/0b17a17d4cb56b1c25763a396dd83117_68_0.png)
+
+
+  图 2.14 – Elcomsoft iOS Forensic Toolkit 的主屏幕
+
+
+  2. 选择备份文件的存储文件夹：
+
+
+  ![](img/0b17a17d4cb56b1c25763a396dd83117_69_0.png)
+
+
+  图 2.15 – 选择备份的存储位置
+
+
+  3. 为了获得最完整的逻辑镜像，应启用备份加密。工具包将自动检测加密是否已启用；如果未启用，它将通过将密码设置为 123 来启用加密。获取过程结束时，备份加密将被禁用：
+
+
+  ![](img/0b17a17d4cb56b1c25763a396dd83117_70_0.png)
+
+
+  图 2.16 – 工具包将在屏幕上显示进度和调试信息
+
+
+  最后，工具包将给出获取过程的摘要。现在可以使用您选择的取证工具检查提取的文件。
+
+
+  我们已经了解了如何使用两种不同工具执行逻辑获取。请记住，有多种不同工具可以执行此类获取，包括免费工具。在下一节中，我们将学习如何执行完整文件系统获取。
+
+
+  ## 执行文件系统获取
+
+
+
+
+
+
+  ![](img/0b17a17d4cb56b1c25763a396dd83117_72_0.png)
+
+
+  **图 2.17 – 选择完整文件系统（checkm8）选项**
+
+
+  3. 接下来，设备必须关机。关机后，你需要进入 **恢复模式**，然后从那里将设备置于 **DFU 模式**。屏幕上的说明相当准确，但基本上，设备关机后，你应按住
+  **Home** 按钮同时连接设备。这会将设备置于 **恢复模式**。从那里，按住 **电源** 按钮和 **Home** 按钮 10 秒，然后松开 **电源**
+  按钮，同时继续按住 **Home** 按钮几秒。此操作可能因设备型号而异。一旦设备进入 DFU 模式，**继续** 按钮将亮起：
+
+
+  ![](img/0b17a17d4cb56b1c25763a396dd83117_73_0.png)
+
+
+  图 2.18 – UFED 将显示如何进入恢复模式和 DFU 模式的说明
+
+
+  4. 此时，UFED 将利用 Checkm8 漏洞对设备进行利用。这可能需要几分钟。整个过程在设备的易失性内存中执行，因此设备本身不会发生任何更改，并且在采集过程结束时将恢复正常启动：
+
+
+  ![](img/0b17a17d4cb56b1c25763a396dd83117_73_1.png)
+
+
+  图 2.19 – 利用设备可能需要几分钟
+
+
+  5. 一旦设备被成功利用，采集阶段将开始，设备将显示进度指示器：
+
+
+  ![](img/0b17a17d4cb56b1c25763a396dd83117_74_0.png)
+
+
+  图 2.20 – 采集进行中
+
+
+  6. 完整文件系统将被镜像并归档为 DAR 文件，其类似于 TAR 归档：
+
+
+  ![](img/0b17a17d4cb56b1c25763a396dd83117_75_0.png)
+
+
+  图 2.21 – 提取结果将归档为 DAR 文件
+
+
+  采集过程结束时，设备将自动正常重启。生成的 DAR 归档可以通过导入到 Cellebrite Physical Analyzer 或你选择的工具进行分析。
+
+
+  ### 基于代理的完整文件系统采集
+
+
+  Elcomsoft iOS Forensic Toolkit 是少数支持基于代理采集的工具之一。由于此方法需要将应用程序（代理）侧载到设备上，因此你需要一个 Apple
+  ID。在 Windows 版本中，你需要一个 Apple Developer ID，而在 macOS 上，你可以使用传统账户：
+
+
+  1. 开始时，启动工具包并检查设备是否被正确识别：
+
+
+  图 2.22 – Elcomsoft iOS Forensic Toolkit 主屏幕
+
+
+  2. 从菜单中选择选项 1，这将把代理安装到设备上。你将被要求提供 Apple ID 凭据，并且需要通过双重身份验证。然后，代理将使用你的 Apple ID 进行签名并安装到设备上：
+
+
+  ```
+
+  Toolkit.command
+
+
+  |---------------------------------------------------------------|
+
+  |                                                               |
+
+  |               Elcomsoft iOS Forensic Toolkit 7.02            |
+
+  |                                                               |
+
+  |                     (c) 2011-2021 Elcomsoft Co. Ltd.         |
+
+  |                                                               |
+
+  |---------------------------------------------------------------|
+
+
+  [Please enter Apple ID (enrolled in the Apple Development Program is preferred):
+  ]
+
+  [Please enter Apple ID password (normal, not app-specific): ]
+
+  Device with udid 7cf85b3179a6c136ae723636e6467a27888ab928 has been detected.
+
+  Device Name: iPhone
+
+  Device Model: iPhone7,2
+
+  OS Version: iPhone OS 12.4.5
+
+  Serial Number: F78PNPSKGSMT
+
+  Build Version: 16G161
+
+
+  Input 2fa 6-digit code sent to your devices OR type 0 to show another options: 868276
+
+  Individual team Effe Lab (59C356955L) will be used for installing an application
+  on the device.
+
+  Please note signing the application by this team profile will require approval on
+  the device
+
+  Certificate signing request will be submitted to the account.
+
+  Device will be enrolled in the Apple Developer Program.
+
+  Application info will be uploaded to the account.
+
+  Install: CreatingStagingDirectory (5%)
+
+  Install: ExtractingPackage (15%)
+
+  Install: InspectingPackage (20%)
+
+  Install: TakingInstallLock (20%)
+
+  Install: PreflightingApplication (30%)
+
+  Install: InstallingEmbeddedProfile (30%)
+
+  Install: VerifyingApplication (40%)
+
+  Install: CreatingContainer (50%)
+
+  Install: InstallingApplication (60%)
+
+  Install: PostflightingApplication (70%)
+
+  Install: SandboxingApplication (80%)
+
+  Install: GeneratingApplicationMap (90%)
+
+  Process has been completed.
+
+  Please launch the Acquisition agent on the iOS device now and keep it running in
+  the foreground.
+
+  Press ''Enter'' to continue
+
+  ```
+
+
+  图 2.23 – 将代理安装到设备上
+
+
+  3. 一旦代理成功安装，启动设备上的应用程序。现在，要提取钥匙串，从工具包中选择选项 2。
+
+
+  4. 钥匙串提取过程完成后，你可以继续提取完整文件系统。通常，你会想要选择选项 4，这将提取用户分区：
+
+
+  ![](img/0b17a17d4cb56b1c25763a396dd83117_78_0.png)
+
+
+  图 2.24 – 使用代理采集完整文件系统
+
+
+  5. 文件系统镜像将归档为 TAR 文件。过程完成后，选择选项 5 以卸载代理。
+
+
+  至此，我们的文件系统采集完成！
+
+
+  基于 Checkm8 的采集和基于代理的采集都是一个完整的突破，因为它们允许对整个文件系统进行取证可靠的提取，包括与第三方应用相关的所有文件。正如你所学到的，完整文件系统相比逻辑提取将包含更多数据。在接下来的章节中，我们将深入研究这些文件，并学习如何分析它们以获得有意义的证据。
+
+
+  ### 总结
+
+
+  在本章中，我们学习了采集方法之间的差异以及在 iOS 提取中可以期望找到的数据类型。我们学习了 Checkm8 漏洞的工作原理，如何利用此漏洞访问设备的文件系统，以及它的局限性。然后，我们讨论了基于代理的采集，并学习了哪些
+  iOS 版本支持此采集。
+
+
+  越狱是 iOS 世界中一个引人入胜的话题；我们讨论了其中两个最受欢迎的越狱工具，checkra1n 和 unc0ver，以及它们的兼容性。然后，我们学习了如何使用
+  checkra1n 越狱设备。
+
+
+  最后，我们学习了如何使用 Cellebrite UFED 和 Elcomsoft iOS Forensic Toolkit 执行逻辑采集，并探讨了执行完整文件系统采集的两种不同选项。
+
+
+  请记住，在本章中，我们专注于 **首次解锁后（AFU）** 采集方法，因此取证人员必须完全访问设备。在接下来的章节中，我们将研究 **首次解锁前（BFU）**
+  采集方法，以了解在锁定设备中可以找到哪些类型的痕迹。
+
+
+  在下一章中，我们将讨论取证工具，哪些是最受欢迎的，以及如何使用这些工具分析提取的数据。
+
+  '
+- "## 第 3 章：使用取证工具\n\n在上一章中，我们学习了有关不同采集技术的所有知识，以及如何使用取证工具从 iOS 设备中提取数据。在本章中，我们将学习用于数据分析的最受欢迎的工具，以及它们的特性和局限性。\n\
+  \n尽管使用取证工具进行数据分析并非严格必需，因为理论上可以手动检查文件，但使用这些工具具有许多优势。与手动解析痕迹相比，使用取证工具最明显的好处是时间：如果使用正确，这些工具是巨大的时间节省者，因为它们被编程为自动搜索相关文件、查找模式、分析已知数据结构，并从常见痕迹中提取有意义的见解。使用适当的工具可确保不会遗漏宝贵的痕迹，尽管调查人员应始终验证此类工具的输出并了解其局限性。没有完美的取证工具——每个工具都有其缺陷！大多数工具允许调查人员检查第三方应用程序以及系统应用程序，并且还可以配置为对这些应用程序自动执行自定义数据雕刻。\n\
+  \n在本章中，我们将涵盖以下主题：\n\n- 了解取证工具\n- 使用 Cellebrite Physical Analyzer\n- 使用 Magnet AXIOM\n\
+  - 使用开源工具\n\n### 了解取证工具\n\n一旦 iOS 设备及其存储的证据被成功扣押、保存并通过取证可靠的方式提取\n\n\n\nAcquisition\
+  \ process, the next steps involve processing and analyzing the extracted data.\n\
+  \nCurrently, there are a number of commercial tools available on the market that\
+  \ perform data analysis, such as *Cellebrite Physical Analyzer*, *Oxygen Forensic\
+  \ Detective*, *Magnet AXIOM*, *Belkasoft Evidence Center*, *MSAB XRY*, *EnCase Forensic*,\
+  \ and many others. In this chapter, we'll work with two of these tools, **Cellebrite\
+  \ Physical Analyzer** and **Magnet AXIOM**.\n\nWe've already seen how mobile forensics\
+  \ presents several additional challenges compared to digital forensics, and one\
+  \ significant difference has to do with how data extracted from iOS devices is analyzed;\
+  \ with mobile device forensics, using a single tool to process and analyze the evidence\
+  \ is extremely risky, as one solution will not provide all the tools that support\
+  \ all devices and all iOS versions. Generally speaking, forensic tools work by parsing\
+  \ files of interest (such as SQLite databases, plists, and log files) and running\
+  \ a series of **plugins** on these files that look for key evidence in predefined\
+  \ locations. What this means is that more recent applications may not be supported\
+  \ because if there isn't a plugin for a given app, forensic tools will not automatically\
+  \ display data for that application! No one tool can process and analyze all artifacts\
+  \ from every mobile device.\n\nTo choose the best tools for your purpose, you need\
+  \ to know the following:\n\n- Where the tool will search for data\n- What a tool\
+  \ is doing to the extracted data\n- How the tool will represent the data\n\nFor\
+  \ instance, iOS devices sometimes compress log files into archives to save space\
+  \ on disk. If your tool does not automatically extract files from archives that\
+  \ are found in an iOS extraction, you could be missing some key evidence. Make sure\
+  \ you understand exactly what files your tool parses and what files it doesn't.\n\
+  \n## Tool validation\n\nOnce the investigator has assessed which tool is the best\
+  \ fit for a particular scenario, the tool and its output should be **validated**\
+  \ before starting the examination process. Validating a tool is the process of determining\
+  \ through testing that it performs in a certain way and that the results are consistent.\n\
+  \nIn particular, the investigator should verify the following:\n\n- The tool does\
+  \ not alter the data in any way.\n- The data provided by the tool is consistent\
+  \ with what is displayed on the device.\n- The data represented by the tool is consistent\
+  \ with what you find in the source file of that particular piece of data.\n- The\
+  \ results are consistent among different forensic tools.\n\nValidation is increasingly\
+  \ important when dealing with unsupported third-party applications or **Unidentified\
+  \ Forensic Objects (UFOs)**, as some tools have some built-in features that use\
+  \ heuristics to attempt data extraction from these artifacts, but sometimes the\
+  \ results can be incomplete or inconsistent.\n\n## Tip\n\nOne of the most common\
+  \ ways to get to know your tools and validate their output is by using them to analyze\
+  \ a known device, such as your personal iPhone. Use your device to perform normal\
+  \ day-to-day activity and take notes. Then, extract and analyze data from the device\
+  \ using several tools and check that it gets reported correctly.\n\nAlthough forensic\
+  \ tools will greatly aid the investigator by speeding up the entire process, this\
+  \ software should not substitute the process of manually viewing and assessing the\
+  \ files that were extracted in the acquisition process.\n\n## Working with Cellebrite\
+  \ Physical Analyzer\n\nCellebrite software is generally regarded as the golden standard\
+  \ for mobile forensics among law enforcement and security organizations due to its\
+  \ powerful features, wide device compatibility, frequent updates, and easy-to-use\
+  \ user interface. Their most popular tools are **Cellebrite Universal Forensic Extraction\
+  \ Device (Cellebrite UFED)**, which we used in the previous chapter to acquire the\
+  \ device's filesystem, and **Cellebrite Physical Analyzer**, which is used for data\
+  \ analysis and reporting.\n\nWe will now learn how to import the extracted data\
+  \ into Physical Analyzer and then we'll go over some of the main features of this\
+  \ powerful tool.\n\n### Loading evidence and selective decoding\n\nThe first step\
+  \ in a Physical Analyzer examination is loading the evidence into the tool. You\
+  \ can accomplish this by using the **case wizard**, which is a step-by-step procedure\
+  \ that will guide you through the process and also show you some optional features\
+  \ that can be enabled. One of these is **selective decoding**, which allows investigators\
+  \ to perform faster parsing and analysis by selecting specific applications or specific\
+  \ categories that should be parsed in addition to common system artifacts. This\
+  \ is especially useful when you're dealing with devices that have dozens of installed\
+  \ applications, but you only need to parse very specific artifacts that pertain\
+  \ to a few of these apps.\n\nLet's see how this works:\n\n1. From Physical Analyzer's\
+  \ menu, choose **File | Open case** to bring up the case wizard.\n\n2. The next\
+  \ step involves choosing which files to load depending on the type of acquisition\
+  \ that was performed. If you acquired the device using Cellebrite UFED, choose Add\
+  \ | Load extraction and select the UFDX or UFD file that was created by Cellebrite\
+  \ UFED. If you used a different forensic tool and performed a filesystem acquisition,\
+  \ choose Add | GrayKey and point it to the folder or archive where the extracted\
+  \ data is stored. Finally, if you performed a logical acquisition, choose Add |\
+  \ Common source | Backup and select the folder that contains your iTunes backup.\
+  \ Then, click Next to continue:\n\n   ![](img/0b17a17d4cb56b1c25763a396dd83117_85_0.png)\n\
+  \n   *Figure 3.1 – Open the case wizard and add the folder or file that contains\
+  \ your data*\n\n3. In the next screen, the case wizard will display a set of examination\
+  \ tools that can be enabled by selecting their checkbox. Enabling parsing of archives\
+  \ can be useful to recover data from log files that have been compressed and archived\
+  \ by iOS; however, keep in mind that this will increase decoding time. In this example,\
+  \ we're going to use selective decoding to speed up the decoding process, so enable\
+  \ this tool and click on **Examine data** to start the process:\n\n   ![](img/0b17a17d4cb56b1c25763a396dd83117_86_0.png)\n\
+  \n   *Figure 3.2 — The case wizard also allows you to enable specific examination\
+  \ tools*\n\n4. At this point, Physical Analyzer will scan for applications available\
+  \ on the device, and when it's done scanning, a list will appear with several filtration\
+  \ options – for example, from the **Social networking** category, we can choose\
+  \ to only parse **Telegram Messenger** and **WhatsApp Messenger** by checking the\
+  \ boxes. When you've finished, click **Continue** to start the decoding process:\n\
+  \n   ![](img/0b17a17d4cb56b1c25763a396dd83117_87_0.png)\n\n   *Figure 3.3 – Choose\
+  \ which applications should be decoded*\n\n5. When the process finishes, the **Extraction\
+  \ Summary** pane will be displayed, which shows some key data on the device and\
+  \ a list of all the artifacts divided into categories:\n\n   **Extraction Summary**\n\
+  \n   Extractions: 1\n\n   ![](img/0b17a17d4cb56b1c25763a396dd83117_88_0.png)\n\n\
+  \   File System - Selective apps decodi...\n   Apple iPhone 6 (A1586)\n   File System\n\
+  \   Extraction start date/time: 28/07/2021 22:19:13(UTC+2)\n   Extraction end date/time:\
+  \ 28/07/2021 22:47:49(UTC+2)\n   C:\\Users\\LAB\\Documents\\My UFED Extra...\n\n\
+  \   **Device Info**\n\n   Generate preliminary device report\n\n   | Field | Value\
+  \ |\n   |---|---|\n   | Advertising Id (IDFA) #1 | AE8A0E64-8B2E-4E2D-9439-CB233DD9428E\
+  \ |\n   | AirDrop ID | A4E655FDBCE7 |\n   | Apple ID | |\n   | Detected Phone Model\
+  \ | iPhone 6 |\n   | iCloud account present | True |\n   | Model number | N61AP\
+  \ |\n   | Owner Name | iPhone |\n   | Serial | F78PNPSK5GMT |\n   | Time Zone |\
+  \ (UTC+01:00) Rome (Europe) |\n   | Unique ID | 7cf85b3179a6c136ae723636e6467a27888ab928\
+  \ |\n   | ICCID | |\n   | IMEI | |\n   | Last user ICCID | |\n   | Last used MSISDN\
+  \ | |\n   | MSISDN | |\n   | Network Interfaces | |\n   | MAC address | D2:25:98:82:3E:78\
+  \ |\n   | MAC address | D2:25:98:82:3E:87 |\n   | Wi-Fi MAC address | D0:25:98:82:3E:76\
+  \ |\n   | Phone Settings | |\n   | Find my iPhone enabled | True |\n   | Locale\
+  \ language | it_IT |\n   | Location Services Enabled | True |\n   | Message Retention\
+  \ Duration | Forever |\n   | Tethering | |\n   | Last Activation Time | 28/07/2021\
+  \ 09:38:46(UTC+0) |\n\n   **External Enrichment**\n\n   | File | Offset |\n   |---|---|\n\
+  \   | com.apple.lsidentifiers.plist | 0xC4E |\n   | com.apple.sharingd.plist | 0x199F\
+  \ |\n   | Accounts3.sqlite-wal | 0x1EFD1C |\n   | Accounts3.sqlite-wal | 0x1EF0C1\
+  \ |\n   | preferences.plist | 0xAAE |\n   | data.ark.plist | 0x23D |\n   | AccountToken.txt\
+  \ | 0x449 |\n   | com.apple.AppStore.plist | 0x264 |\n   | AccountToken.txt | 0x4BC\
+  \ |\n   | com.apple.commcenter.plist | 0x202 |\n   | AccountToken.txt | 0x2D |\n\
+  \   | CellularUsage.db | 0x6FD8 |\n   | CellularUsage.db | 0x6FEB |\n   | com.apple.commcenter.plist\
+  \ | 0x3FA |\n   | NetworkInterfaces.plist | 0x26A |\n   | NetworkInterfaces.plist\
+  \ | 0x35D |\n   | NetworkInterfaces.plist | 0x173 |\n   | com.apple.icloud.findmydevice.FMIPAccounts.plist\
+  \ | 0x0 |\n   | data.ark.plist | 0x221 |\n   | com.apple.locationd.plist | 0x7F\
+  \ |\n\n   *Figure 3.4 – Extraction Summary*\n\nNow that we have loaded and decoded\
+  \ the data, we will see how to view the decoded data.\n\n## Viewing decoded data\n\
+  \n\n\n\n## 选择应用以获取更多数据\n\n按类别浏览设备上的应用，并选择你需要额外数据的应用。\n\n注意：内部应用服务不显示在此视图中。\n\n筛选依据：全部展开\
+  \ 搜索应用\n\n- 聊天应用\n- 浏览器\n- 隐藏文件或图片\n- 实用工具\n- 社交网络\n- 生活\n- 娱乐\n- 新闻与图书\n- 金融\n\
+  - 音乐\n- 健康与健身\n\n图 3.8 – 设备上已安装应用的列表\n\n3. 下一个屏幕会提醒你，AppGenie 是一个研究工具，你必须通过手动深入检查源文件来验证结果：\n\
+  \n### AppGenie 是什么？\n\nAppGenie 是一个研究工具，试图从设备数据库中自动识别特定类型的证据。AppGenie 基于过去的解码支持和启发式规则分析数据库，并可提供额外的应用数据，如联系人、用户账户和聊天记录。\n\
+  \n作为一个研究工具，建议的结果不能替代原生的 PA 解码，应作为人工审查的初步/分流结果使用，因为它可能包含误报和不完整的结果。建议在将结果纳入报告之前先进行审查。\n\
+  \n图 3.9 – 提醒需要验证\n\n4. 最后一个屏幕会为你汇总哪些应用被选中进行额外解析。点击“开始”按钮，让 AppGenie 发挥它的魔力：\n\n\
+  AppGenie 摘要\n\n所选项目：Apple_iPhone 6 (A1586)\n\n已选择 1 个应用\n\nUber com.ubercab.UberClient\n\
+  \n图 3.10 – 应由 AppGenie 解析的应用摘要\n\n5. AppGenie 完成后，任何提取的数据都将添加到项目树中名为 **AppGenie\
+  \ 分析数据** 的类别中。\n\n正如你在这一简要介绍中所见，Cellebrite Physical Analyzer 让浏览数千个证据变得简单直接；所有数据都被分类，并可直接从检验摘要中轻松访问，AppGenie\
+  \ 还可以帮助发现未解析的证据。\n\n深入探讨 Physical Analyzer 的所有功能超出了本章的范围，因此请务必花时间充分探索该工具，并熟悉其余所有有用的功能，例如**关键词搜索、证据标记、Python\
+  \ 脚本和内置报告功能**。\n\n## 使用 Magnet AXIOM\n\nMagnet AXIOM 是最流行的数字取证工具之一。它同时支持计算机取证和移动取证，几乎完全支持所有\
+  \ Android 和 iOS 设备。该软件有两个模块：**AXIOM Process** 和 **AXIOM Examine**。第一个模块负责从设备获取证据或加载现有的提取数据，并执行数据解析和解码。解码过程完成后，你可以使用\
+  \ AXIOM Examine 查看所有恢复的证据并分析数据。\n\n### 加载证据和即时处理\n\nMagnet AXIOM 的关键特性之一是，它允许调查人员在数据处理的同时开始分析证据。在时间至关重要的所有情况下，这是一个救命的功能，因为需要尽快审查证据。\n\
+  \n在以下示例中，我们将学习如何将 iOS 设备现有的文件系统提取数据加载到 AXIOM Process，以及如何使用 AXIOM Examine 定位关键证据：\n\
+  \n1. 检验的第一步是在 AXIOM Process 中创建新案件。启动应用程序并填写案件详情。然后，点击**转到证据源：**\n\n![](img/0b17a17d4cb56b1c25763a396dd83117_96_0.png)\n\
+  \n图 3.11 – 填写案件详情\n\n2. 下一步是选择证据源。在本例中，我们分析的是 iOS 设备，因此选择**移动设备**，然后选择**iOS**：\n\
+  \n![](img/0b17a17d4cb56b1c25763a396dd83117_97_0.png)\n\n图 3.12 – 选择证据源\n\n3. 由于我们已经在上一章中获取了设备，请选择**加载证据**，然后选择**镜像**，并定位包含提取数据的文件：\n\
+  \n![](img/0b17a17d4cb56b1c25763a396dd83117_97_1.png)\n\n图 3.13 – 选择包含提取数据的文件或文件夹\n\
+  \n4. 将所有证据源添加到案件后，点击**转到处理详情**以继续：\n\n处理详情\n\n添加要搜索的关键词\n\n提供你希望在搜索中包含的关键词和正则表达式。如果某个关键词在搜索过程中命中，它会被添加到\
+  \ AXIOM Examine 的“关键词”过滤器中。\n\n添加要搜索的关键词\n\n使用 MAGNET.AI 对聊天进行分类\n\n启用聊天分类，使 AXIOM\
+  \ Examine 根据你选择的类别自动对聊天对话进行分类，并在“证据浏览器”中为它们添加标签。\n\n使用 MAGNET.AI 对聊天进行分类\n\n搜索存档和移动备份\n\
+  \n容器文件（如存档和移动备份）可以在其他证据源中找到。在此页面上配置选项，以搜索在搜索过程中发现的任何容器。\n\n搜索存档和移动备份\n\n计算哈希值\n\n\
+  导入无关文件的哈希值，这样它们就不会出现在你的案件中。\n\n计算哈希值\n\n对图片和视频进行分类\n\n你可以启用图片分类，使 AXIOM Examine\
+  \ 在“证据浏览器”中自动对其进行分类和标记。\n\n对图片和视频进行分类\n\n查找更多证据\n\n启用动态应用查找器，并配置自定义文件类型列表，以搜索 Magnet\
+  \ AXIOM 当前不支持的证据。\n\n查找更多证据\n\n案件概览\n\n证据概览\n\n案件摘要备注\n\n在此记录你的案件摘要备注。启用该设置后，这些备注将出现在案件报告中。\n\
+  \n检验员姓名：Effesecurity Lab\n\n案件摘要\n\nFullFileSystem.1.dar (545)\n\n仅查看此来源的证据\n\n\
+  证据编号：FullFileSystem.1.dar\n\n描述\n\n位置：FullFileSystem.1.dar\n\n平台：移动设备\n\n未添加图片\n\
+  \n更换图片\n\n案件处理详情\n\n案件编号\n\n扫描 1\n\n扫描人：Effesecurity Lab\n\n扫描日期：11/08/2021 00:10:49\n\
+  \n扫描描述\n\n案件信息\n\nCase Information.txt 文件包含有关案件处理方式的信息。例如，该文件包含应用于搜索的设置、搜索类型、发现的证据数量等。\n\
+  \n打开案件信息文件\n\nAXIOMExamine.log 文件包含有关遇到的任何错误、运行的作业以及常规调试信息。\n\n打开日志文件\n\n图 3.17\
+  \ – 案件仪表板屏幕\n\n7. 你可以从屏幕左下角查看进度；当新数据被恢复时，点击“加载新结果”会将证据加载到 AXIOM Examine 中，以便你立即开始分析数据。\n\
+  \n8. 当 AXIOM Process 完成后，扫描摘要将显示解码过程的结果，包括可能出现的任何异常。\n\n### 使用 AXIOM Examine 分析证据\n\
+  \n使用 AXIOM Examine 进行数据分析的起点是案件仪表板；从这个视图中，你可以查看关于案件的信息，并\n\n如果不提及一些最好的开源 iOS 取证工具，本章将不完整！**DFIR（数字取证与事件响应）**社区是现有最活跃、最有帮助的社区之一，这些工具是安全研究人员、取证检验员和开发人员辛勤工作和热情的结晶，他们与社区分享了他们的知识。\n\
+  \n### Apollo\n\n**Apple Pattern of Life Lazy Output'er（APOLLO）** 是一个由 Sarah Edwards\
+  \ 编写的 Python 脚本（你可以在 Twitter 上找到她——@iamevltwin），它处理 iOS 和 macOS 证据以提取生活模式数据，并将结果合并到单个\
+  \ SQLite 数据库或 CSV 文件中以供查看。\n\n该脚本基于许多不同的模块（其中一些由 DFIR 社区编写），每个模块运行一个或多个查询，以从 iOS\
+  \ 提取数据中提取特定数据。我们将在*第 5 章*、*生活模式取证*中广泛使用这个强大的工具。\n\n你可以从项目的 GitHub 仓库下载 APOLLO：https://github.com/mac4n6/APOLLO。\n\
+  \n### iLEAPP\n\n**iOS 日志、事件和属性列表解析器（iLEAPP）** 是一个由 Alexis Brignoni（Twitter – @AlexisBrignoni）用\
+  \ Python 3 编写的脚本，是商业取证工具的免费替代品。该工具可以解析完整的 iOS 文件系统提取数据，解析和解码你在 iOS 设备上能找到的几乎所有类型的证据。\n\
+  \n就个人而言，我发现这是除商业软件之外很好用的工具，因为它可以帮助验证你的发现。\n\n你可以从 https://github.com/abrignoni/iLEAPP\
+  \ 下载 iLEAPP。\n\n### iOS Triage\n\n\n\n\n\n此工具是一个由 Mattia Epifani（Twitter – @mattiaep）编写的\
+  \ Unix **shell 脚本**，可用于从越狱的 iOS 设备中提取数据。如果你需要对设备进行初步分类检查（包括处于 **BFU** 状态的设备），这是一个快速的解决方案。我们将在本书后面的内容中使用\
+  \ iOS Triage。\n\n你可以从 GitHub 下载此工具：\nhttps://github.com/RealityNet/ios_triage。\n\
+  \n## Sysdiagnose\n\n这是 Mattia Epifani（@mattiaep）、Adrian Leong 和 Heather Mahalik（@HeatherMahalik）对\
+  \ iOS 设备生成的**日志文件**进行研究后得出的成果。\n\n这些 Python 脚本将解析日志文件，并提供商业取证工具可能遗漏的有用证据。\n\n你可以从以下地址下载这些脚本：\n\
+  https://github.com/cheeky4n6monkey/iOS_sysdiagnose_forensic_scripts。\n\n## 使用 iLEAPP\
+  \ 分析数据\n\n让我们来看看 iLEAPP 是如何工作的，以及使用此工具可以提取哪些类型的证据。\n\n在安装 iLEAPP 之前，请确保你的系统上已安装\
+  \ Python 3。第一步是通过克隆仓库从 GitHub 下载代码。你可以运行以下命令来完成此操作：\n\n```bash\ngit clone https://github.com/abrignoni/iLEAPP.git\n\
+  ```\n\n然后，我们需要安装所需的软件包：\n\n```bash\ncd iLEAPP\npip install -r requirements.txt\n\
+  ```\n\n现在一切就绪，我们可以运行 iLEAPP 了。在此示例中，我们提供一个 ZIP 压缩包作为输入文件，并将报告导出到输出文件夹：\n\n```bash\n\
+  python3 ileapp.py -t zip -i ../iphone_dump.zip -o output\n```\n\n如你所见，我们使用 `-t`\
+  \ 选项指定提供的输入类型，使用 `-i` 选项指定输入文件的路径，使用 `-o` 选项指定输出文件夹的路径。\n\niLEAPP 处理完成后，结果将合并到一份\
+  \ HTML 报告中：\n\n![](img/0b17a17d4cb56b1c25763a396dd83117_108_0.png)\n\n图 3.21 – iLEAPP\
+  \ 生成的报告\n\n报告将包含各种痕迹和有用的证据，包括**账户数据、蜂窝数据、位置信息、应用程序数据、设备使用数据、联系人、消息**等等！\n\n这个开源软件是一个非常强大的工具，我绝对建议你多动手操作它，以充分了解它的潜力。\n\
+  \n## 总结\n\n在本章中，我们了解了最流行的商业取证工具有哪些，以及通过使用多种工具、比较它们的输出、在开始检验之前运行验证测试来验证结果的重要性。\n\n\
+  请记住，尽管这些工具极其有用，并且大大减轻了调查人员的工作，但工具本身不是证据。报告也不是证据。证据就是证据，检验人员的工作是理解该证据是如何生成的、它代表什么，以及通过分析该证据能获得哪些见解。取证软件确实有其用武之地，但它不应取代对痕迹的手动检查。换句话说，可以使用这些工具，但不要盲目相信它们，并确保你了解后台正在发生的事情。\n\
+  \n在本章后续部分，我们重点介绍了其中两款工具：Cellebrite Physical Analyzer 和 Magnet AXIOM。我们学习了如何将数据导入这些工具，以及如何使用软件的功能（如\
+  \ AppGenie 或 Connections 资源管理器）来深入挖掘数据并获得有用的见解。\n\n最后，在本章的末尾部分，我们了解了一些有用的开源脚本，并使用\
+  \ iLEAPP 从完整的文件系统提取中提取并分析了痕迹。\n\n在下一章中，我们将讨论 iOS 文件系统，并学习到哪里查找核心的 iOS 痕迹。\n"
+- "## 第 4 章：处理常见的 iOS 痕迹\n\n在前面的章节中，我们从广义上讨论了 iOS 操作系统的工作方式以及移动检验工作流程的不同阶段。然后，我们学习了各种获取方法，以及如何从设备中提取最丰富的数据。在第三章中，我们研究了取证工具，并通过将数据加载到工具中进行分析来继续我们的检验过程。\n\
+  \n移动取证调查中最关键的方面之一是验证你的发现。我们已经在前面章节中讨论了工具验证的重要性，但这个过程应进一步扩展，以确保所收集数据的完整性，并理解和解释数据的上下文，因为这对于在法庭上将其作为证据出示至关重要。这通常需要追踪源文件，并以原始格式手动查看痕迹。\n\
+  \n在本章中，我们首先介绍 iOS 设备上最常见的痕迹类型，以及如何以其原始格式查看它们。然后，我们将深入探讨 SQLite 数据库，了解它们在内部如何管理数据存储，以及我们有哪些选项可以恢复已删除的记录。最后，我们将仔细查看文件系统，了解系统痕迹位于何处，通过分析这些数据我们能获得哪些见解，以及特定应用程序的痕迹在哪里可以找到。\n\
+  \n在本章中，我们将涵盖以下主题：\n\n- 理解验证的重要性\n- 处理 iOS 痕迹\n- 定位常见痕迹\n\n### 理解验证的重要性\n\n在第三章“使用取证工具”中，我们了解了\
+  \ Cellebrite Physical Analyzer 和 Magnet AXIOM 等软件的一些功能，并对这些工具可能分析出的数据有了更好的理解。\n\n\
+  你可能会想，当这些工具已经为你完成了所有繁重的工作时，为什么检验人员还要花时间学习手动分析设备上找到的数据。首先，虽然这些软件是调查人员工具箱中的必备物品，但调查人员也应该了解这些工具的局限性，以及如何处理无法自动解析的痕迹；尽管取证工具声称支持各种不同的应用程序和痕迹，但这并不意味着这些产品能够真正解析与正在检验的特定应用程序相关的所有数据。随着移动应用程序的更新速度，取证工具不支持最近更新的应用程序，或者在某些情况下仅部分支持（只提供部分而非全部可用数据）的情况相当常见。在这种情况下，调查人员必须求助于以原始格式手动检查源文件。\n\
+  \n调查人员想要查看痕迹源文件的另一个原因是验证他们的发现；即使取证工具已经产生了可观的结果，将数据与源文件进行交叉引用以理解该数据的上下文也是非常重要的。例如，通过分析\
+  \ SQLite 数据库中的表，调查人员不仅可以理解存储了哪些数据，还可以理解这些数据在设备上是如何存储的，以及操作系统如何记录特定事件，例如来电、短信或通知。\n\
+  \n如果在检验过程中发现了对整个调查至关重要的关键痕迹，检验人员应准备好回答如下问题：\n\n- 这些数据是如何到达那里的？\n- 当我们将其置于上下文中时，这些数据告诉了我们什么？\n\
+  - 该痕迹是用户活动的结果，还是由操作系统生成的？\n- 它与设备上发现的其他数据是如何交互的？\n\n这些问题的答案往往存在于痕迹的源文件中，因此学习如何手动分析此类文件是负责\
+  \ iOS 设备检验过程的人员必须具备的技能。\n\n**验证**的重要性怎么强调都不为过；使用经验证的方法论来检验设备，通过验证工具输出来确保工具正常工作，以及通过深入研究源文件以理解数据的上下文来验证你的发现，这些都可能对调查的最终结果产生巨大影响。在某些情况下，这可能使某人失去工作与否，或者在极端情况下，决定他们是否入狱。\n\
+  \n在我们讨论 iOS 设备上常见痕迹的位置之前，下一节我们将学习如何在典型检验中手动处理你将会遇到的最常见文件类型。\n\n### 处理 iOS 痕迹\n\n\
+  一般来说，可以在 iOS 设备上找到的痕迹可分为以下类别之一：\n\n- SQLite 数据库\n- 属性列表\n- 协议缓冲区\n- XML 文件\n- 日志文件\n\
+  \n\n\n\n\n虽然最后两个文件不会构成任何问题，因为它们本质上是文本文件，可以用几乎任何文本编辑器查看，但其他文件可能（并且通常是）以**二进制格式**存储，因此需要特定的工具或库来解析数据。\n\
+  \n## 介绍 SQLite\n\n几乎每款 iOS 设备上的应用程序，包括系统自带的 **Messages**、**Contacts** 或 **Email**，都需要一个长期存储数据的场所。这是通过使用\
+  \ **SQLite** 实现的，SQLite 是一种开源、小型、自包含的关系型数据库。SQLite 数据库可以通过 `.sqlite` 或 `.sqlite3`\
+  \ 文件扩展名识别，尽管有些数据库使用 `.db` 扩展名，或其他扩展名。\n\nSQLite 在移动设备中如此受欢迎的原因在于其简单架构和出色的性能。以下是其部分特性：\n\
+  \n- **SQLite 是自包含的：** 整个数据库包含在一个文件中，该文件可直接集成到应用程序中。其无服务器架构意味着数据库作为一个独立文件工作，而非传统的客户端-服务器协议。\n\
+  - **SQLite 跨平台：** 数据库驻留在单个跨平台文件中，可以被 SQLite 支持的所有操作系统访问，包括 Windows、macOS、Linux、Android、iOS、BSD、Solaris\
+  \ 等。\n- **SQLite 完全符合 ACID：** 这允许多个应用程序或线程安全访问。它还支持大多数 SQL 查询语言，这是与几乎所有现代关系型数据库系统交互的主要方式。\n\
+  \n既然我们已经了解了 SQLite 的特性，让我们来看看它如何存储数据。\n\n## 表、列和行\n\nSQLite 数据库的基本概念应该很容易形象化——数据库包含一个或多个**表**，每个表包含的数据按**列**和**行**组织。列代表单个数据元素，例如\
+  \ *电话号码* 或 *地址*，而行代表一组值，每个列一个值。\n\nSQLite 支持五种不同的数据类型：\n\n- INTEGER\n- TEXT\n- REAL\n\
+  - BLOB\n- NULL\n\n前三种类型不言自明。**二进制大对象 (BLOB)** 数据类型将任何输入原样保留，而不将其转换为某种类型；BLOB 数据类型通常用于在\
+  \ SQLite 记录中存储复杂二进制数据结构，例如 **属性列表** 或 **协议缓冲区**。NULL 数据类型仅存储空值。\n\n要从数据库检索数据，你运行一个**查询**，它是一组用\
+  \ **SQL 语言** 编写的逻辑指令，用于解析给定表以提取你想要的数据。查询的结果实际上表示为另一个表，如以下屏幕截图所示。\n\n为了了解查询的样子，让我们看一个简单示例。以下查询从\
+  \ sms.db 数据库中提取最后五条消息：\n\n```\nSELECT ROWID, text FROM message\nORDER BY ROWID DESC\n\
+  LIMIT 5;\n```\n\n输出可在以下屏幕截图中看到：\n\n![](img/0b17a17d4cb56b1c25763a396dd83117_115_0.png)\n\
+  \n图 4.1 – DB Browser for SQLite 中显示的查询结果\n\n在不深入细节的情况下，我们将暂时关注此查询以了解 SQL 语言的基础。显然，如果你正在对\
+  \ SQLite 数据库进行取证检查，你不希望以任何方式修改数据。因此，所有查询很可能都以 SELECT 子句开头，这表示我们希望从表中读取数据。\n\n在第一行，我们选择要包含在结果中的列（ROWID\
+  \ 和 text）以及表名——在本例中为 message 表。查询的第二行指示结果应按什么顺序显示。在示例表中，每条短信都由递增的 ROWID 列标识，因此为了显示最近的消息，我们按此列以降序排列结果。由于我们只对五条消息感兴趣，我们使用\
+  \ LIMIT 命令来指示应显示多少行。\n\n### 提示\n\n如果你是 SQL 语言的新手，可以通过访问 SQLite 网站学习如何编写最常见的查询类型\n\
+  \nhttps://www.sqlite.org/lang.html.\n\n作为取证检查员，你运行的查询通常涉及过滤和搜索数据，因此你可能想了解 CASE、WHEN\
+  \ 和 WHERE 等命令。我们将在本章中看到更复杂的查询。\n\n## 运行 SQL 查询\n\n大多数取证工具都附带内置数据库查看器，允许调查人员查看整个数据库并在工具内部直接运行查询；然而，还有其他选择：\n\
+  \n- **SQLite 命令行实用程序**，可从 http://www.sqlite.org 下载，允许从命令行直接与数据库交互。\n- 其他免费工具，例如\
+  \ **DB Browser for SQLite**，允许用户通过 **图形用户界面 (GUI)** 查看数据库并在其上运行查询。DB Browser for\
+  \ SQLite 可从 https://sqlitebrowser.org 下载。\n\n调查人员应熟悉用于直接访问数据库的工具，因为当检查范围仅限于一个或多个\
+  \ SQLite 数据库时，这些工具将证明是巨大的时间节省者。使用 Cellebrite Physical Analyzer 或 Magnet AXIOM 等取证工具分析这些数据库会导致需要将整个提取加载到内存中解析；这可能非常耗时，具体取决于提取数据的大小。\n\
+  \n## 使用 SQLite 命令行工具\n\nsqlite3 是 SQLite 库的一部分的命令行实用程序。macOS 和大多数 Linux 发行版已预装它，而\
+  \ Windows 用户可以从上一节中列出的 SQLite 网站下载可执行文件。\n\n要从命令行打开 SQLite 数据库，只需输入以下内容：\n\n```\n\
+  sqlite3 filename.db\n```\n\n如果指定名称的数据库不存在，SQLite 将为你创建它。一旦你打开数据库，将显示一个 SQL 提示符，你可以在其中运行查询和命令。有许多内置命令可以用来获取数据库及其表的基本信息。\n\
+  \n如果你不熟悉数据库布局，可以通过运行 .tables 命令列出其中的所有表：\n\n```\nsqlite> .tables\nattachment   \
+  \              message\nchat                       message_attachment_join\nchat_handle_join\
+  \           message_processing_task\nchat_message_join          sync_deleted_attachments\n\
+  deleted_messages           sync_deleted_chats\n```\n\n如果你对特定表感兴趣，输入 .schema 后跟表名以显示表的列和数据类型：\n\
+  \n```\nsqlite> .schema handle\nCREATE TABLE handle (ROWID INTEGER PRIMARY KEY AUTOINCREMENT\
+  \ UNIQUE, id TEXT NOT NULL, country TEXT, service TEXT NOT NULL);\n```\n\n通过查看列名和类型，你应该能够大致了解表中存储了什么数据。在此示例中，handle\
+  \ 表中的每一行都有一个自动递增的 ROWID 列和三个 TEXT 类型的列：id、country 和 service。\n\n如果你想从表中检索数据，使用 SELECT\
+  \ 查询：\n\n```\nSELECT * FROM handle;\n```\n\n完成后，输入 `.exit` 或 `.quit` 终止 SQLite 会话。\n\
+  \n## 页面、真空化和预写日志\n\nSQLite 的一个特性使其对取证检查员如此有趣，即有可能从数据库中恢复**已删除记录**。根据数据库的范围，这可能意味着恢复已删除的短信、浏览器历史记录或与设备活动相关的日志。为了更好地理解数据恢复如何实现，我们需要退一步，了解\
+  \ SQLite 在底层如何管理 `write` 和 `delete` 操作。\n\n我们已经了解到，从逻辑角度来看，数据库中的数据组织成包含列和行的表。这是一个高级抽象层，允许用户使用简单易于可视化的数据模型（如列和行）与数据库交互；然而，在更低级别，SQLite\
+  \ 库实际上在文件系统上以不同的方式组织数据，将数据存储到**页面**中。页面类似于文件系统中的块，其目的是以二进制格式存储数据。SQLite 数据库中的每个页面可以有可变大小，默认大小为\
+  \ 4096 字节，每个页面都有一个不同的编号。第一个页面包含一个 100 字节的头部，可以使用 **十六进制查看器** 分析，例如在 macOS 和 Linux\
+  \ 上可用的 hexdump 命令行实用程序。\n\n例如，要查看名为 `sms.db` 的 SQLite 数据库的头部，我们将执行以下命令：\n\n```\n\
+  ```bash\nhexdump -n 100 -C sms.db\n```\n```\n\n`-n` 参数指定应显示的字节数。由于 SQLite 有固定大小的头部，我们只对前\
+  \ 100 字节感兴趣。`-C` 参数告诉 hexdump 实用程序也以字符串格式显示数据：\n\n\n\n```\n00000000  53 51 4c 69\
+  \ 74 65 20 66  6f 72 6d 61 74 20 33 00  |SQLite format 3.|\n00000010  10 00 02 02\
+  \ 00 40 20 20  00 00 00 13 00 00 00 43  |.....@ ......C|\n00000020  00 00 00 00\
+  \ 00 00 00 00  00 00 00 50 00 00 00 04  |..........P...|\n00000030  00 00 00 00\
+  \ 00 00 00 00  00 00 00 01 00 00 00 00  |..............|\n00000040  00 00 00 00\
+  \ 00 00 00 00  00 00 00 00 00 00 00 00  |..............|\n00000050  00 00 00 00\
+  \ 00 00 00 00  00 00 00 00 00 00 00 13  |..............|\n00000060  00 2e 24 80\
+  \                                         |..$.|\n00000064\n```\n\n图 4.2 – hexdump\
+  \ 命令的输出\n\n如你所见，前 16 个字节包含 SQLite 3 格式字符串。你可以通过以下表格作为参考来解析头部其余部分：\n\n| Offset |\
+  \ Size | Description |\n|---|---|---|\n| 0 | 16 | 头部字符串：\"SQLite format 3\\000\"\
+  \ |\n| 16 | 2 | 数据库页大小，以字节为单位。 |\n| 18 | 1 | 文件格式写入版本。1 为传统；2 为 WAL。 |\n| 19 | 1\
+  \ | 文件格式读取版本。1 为传统；2 为 WAL。 |\n| 20 | 1 | 每个页面末尾未使用的“保留”空间的字节数。通常为 0。 |\n| 21 |\
+  \ 1 | 最大嵌入有效载荷比例。必须为 64。 |\n| 22 | 1 | 最小嵌入有效载荷比例。必须为 32。 |\n| 23 | 1 | 叶节点有效载荷比例。必须为\
+  \ 32。 |\n| 24 | 4 | 文件更改计数器。 |\n| 28 | 4 | 数据库文件以页为单位的大小。 “头部中的数据库大小”。 |\n| 32 |\
+  \ 4 | 第一个空闲列表主干页面的页号。 |\n| 36 | 4 | 空闲页面的总数。 |\n| 40 | 4 | 模式 cookie。 |\n| 44 |\
+  \ 4 | 模式格式编号。支持的模式格式为 1、2、3 和 4。 |\n| 48 | 4 | 默认页面缓存大小。 |\n| 52 | 4 | 自动真空模式下最大根\
+  \ B 树页面的页号，否则为零。 |\n| 56 | 4 | 数据库文本编码。值为 1 表示 UTF-8。值为 2 表示 UTF-16le。值为 3 表示 UTF-16be。\
+  \ |\n| 60 | 4 | 由 user_version pragma 读写和设置的“用户版本”。 |\n| 64 | 4 | 增量真空模式为真（非零）。否则为假（零）。\
+  \ |\n| 68 | 4 | 由 PRAGMA application_id 设置的“应用程序 ID”。 |\n| 72 | 20 | 保留用于扩展。必须为零。\
+  \ |\n| 92 | 4 | 版本有效期编号。 |\n| 96 | 4 | SQLITE_VERSION_NUMBER |\n\n图 4.3 – SQLite\
+  \ 数据库头部参考\n\n为了表示表及其数据，SQLite 使用平衡树（B-tree）数据结构来组织页面，这是一种存储数据的高效方式。实际包含数据的页面，也称为活动页面，被分配给一个节点，该节点的功能是连接页面。\n\
+  \n文件中的活动页面进一步细分为 **cells**，它们是页面中包含数据库中每一行数据的段。当添加新单元格时，SQLite 会尝试将它们放置在页面的底部。页面中第一个单元格之前的空闲空间称为\
+  \ **unallocated space**。从取证角度来看，未分配空间非常有趣，因为它可能为空，但也可能包含先前删除的数据或先前使用页面的片段。\n\n当数据从数据库中删除时，对应的单元格或页面实际上并未被删除，而是被简单地\
+  \ *标记* 为已删除。被标记为删除的页面称为 **free pages**，SQLite 通过将它们添加到另一个数据结构 **free-list** 来管理这些页面。从数据库中删除单个记录会在页面中创建间隙；这些空间称为\
+  \ **free blocks**，SQLite 通过将它们添加到链表来跟踪这些空间。\n\n如前表所示，数据库头部在偏移量 32 处告诉我们空闲列表中的第一个页面的编号，而空闲页面的总数可以通过查看偏移量\
+  \ 36 处的值来读取。数据库中的每个页面还都有一个 8 或 12 字节的头部，具体取决于页面的类型。以下表格说明了页面头部的格式：\n\n| Offset |\
+  \ Size | Description |\n|---:|---:|---|\n| 0 | 1 | 偏移量 0 处的单字节标志，表示 B 树页面类型。 - 值为\
+  \ 2（0x02）表示页面是内部索引 B 树页面。 - 值为 5（0x05）表示页面是内部表 B 树页面。 - 值为 10（0x0a）表示页面是叶索引 B 树页面。\
+  \ - 值为 13（0x0d）表示页面是叶表 B 树页面。 |\n| 1 | 2 | 偏移量 1 处的双字节整数给出页面上第一个空闲块的起始位置，如果没有空闲块则为零。\
+  \ |\n| 3 | 2 | 偏移量 3 处的双字节整数给出页面上的单元格数量。 |\n| 5 | 2 | 偏移量 5 处的双字节整数指定单元格内容区域的起始位置。此整数的值为零时解释为\
+  \ 65536。 |\n| 7 | 1 | 偏移量 7 处的单字节整数给出单元格内容区域内的碎片化空闲字节数。 |\n| 8 | 4 | 偏移量 8 处的四字节页号为最右指针。此值仅出现在内部\
+  \ B 树页面的头部中，并从所有其他页面中省略。 |\n\n图 4.4 — SQLite 页面头部参考\n\n有了这些信息，我们就可以使用十六进制查看器手动解析文件，并查找包含已从数据库中删除的数据的空闲页面。幸运的是，有工具可以自动化此任务！\n\
+  \n## Vacuuming\n\n你可以通过检查删除数据时数据库文件大小是否发生变化来确认 SQLite 保留已删除页面的事实。因此，在正常情况下，文件大小只能随着向数据库写入新数据而增长。此外，随着向数据库添加和删除新记录，数据可能会变得碎片化，因为空闲页面会散布并混合在整个文件中。这意味着数据库中保存特定表的实际部分不会在文件中连续存储，这会影响性能。\n\
+  \n下图说明了当数据写入数据库并从中删除时发生的情况，导致文件碎片化：\n\n![](img/0b17a17d4cb56b1c25763a396dd83117_121_0.png)\n\
+  \n图 4.5 — 碎片化 SQLite 数据库中的页面\n\n对 SQLite 数据库进行 **vacuuming** 的过程通过读取数据库中的逻辑数据（表、列和行）并将其写入临时文件来解决这些问题，同时忽略空闲页面。因此，该过程会从头开始重建数据库文件，重新打包活动页面，并对文件中的数据进行碎片整理。过程完成后，临时文件的内容将被复制回原始数据库，覆盖它。\n\
+  \n下图显示了运行 VACUUM 命令后的同一数据库；数据库中存储的记录显然没有变化，但现在活动页面存储在一起且空闲页面不存在：\n\n![](img/0b17a17d4cb56b1c25763a396dd83117_122_0.png)\n\
+  \n图 4.6 – 真空处理过程后 SQLite 数据库中的页面\n\n应该很清楚，一旦真空处理过程完成，从数据库中恢复已删除记录几乎是不可能的。研究表明，iOS\
+  \ 会定期为大多数 SQLite 数据库运行 VACUUM 命令。然而，在撰写本文时，具体何时发生尚不明确，因为它似乎在很大程度上取决于设备型号和 iOS 版本。\n\
+  \n## Write-ahead logging\n\n到目前为止，我们一直专注于分析主数据库文件，以了解数据如何在该文件中存储以及在哪里查找已删除记录。然而，从取证角度来看，还有其他不应被忽视的文件，例如\
+  \ SQLite 临时文件。你在 iOS 设备上找到的最常见的临时文件类型是称为预写日志（WAL）的日志文件。\n\nWAL 文件可以通过其文件名轻松识别，因为\
+  \ -wal 字符串被附加到数据库名称上。因此，例如，如果我们正在处理一个名为 sms.db 的 SQLite 数据库，WAL 文件将被称为 sms.db-wal，并且它将创建在与主数据库文件相同的目录中。这些临时文件并不总是存在，因为只有将日志模式设置为\
+  \ WAL 的数据库才会使用预写日志方法。\n\n根据已开展的研究，可以肯定地说，iOS 设备上的大多数数据库都启用了 WAL 模式。如果是这种情况，当添加、修改或删除数据时，事务会存储在\
+  \ WAL 文件中，而不是直接存储在主 SQLite 数据库中。同样，在从数据库读取数据时，SQLite 引擎会确定特定记录的最新版本存储在哪里，并从适当的文件中读取它：\n\
+  \n![](img/0b17a17d4cb56b1c25763a396dd83117_123_0.png)\n\n图 4.7 – 添加到数据库的新记录会附加到\
+  \ WAL 文件\n\n应用程序希望在其数据库中启用 WAL 模式的原因有很多。最重要的原因是性能；页面按顺序写入 WAL 文件，并且对数据库的每次更改都会导致一次磁盘写入。此外，由于文件分离，使用多个线程的应用程序可以在写入数据库的同时从中读取。\n\
+  \n\n\n\n\n在某个时间点，WAL 文件中的数据必须转移回主数据库。此过程称为 **checkpoint**。通常，SQLite 会在 WAL 文件达到一定大小时（默认情况下为\
+  \ 1,000 页）或在最后一次数据库连接关闭时自动执行 checkpoint：\n\n![](img/0b17a17d4cb56b1c25763a396dd83117_124_0.png)\n\
+  \nFigure 4.8 – A checkpoint transfers data from the WAL file back into the main\
+  \ database\n\n## Tip\n\n需要知道的是，当所有与数据库的连接都已干净关闭时，SQLite 会执行自动 checkpoint。因此，如果你在使用\
+  \ DB Viewer 之类的工具时启用了 WAL 关闭数据库，WAL 文件的内容将被转移到主数据库，并且 WAL 文件将被删除。\n\n![](img/0b17a17d4cb56b1c25763a396dd83117_127_0.png)\n\
+  \nFigure 4.11 – Using a hex viewer to display the contents of an SQLite file\n\n\
+  通过分析数据库头以了解页面大小以及空闲页面和空闲块的位置，检查员可以使用自己选择的工具通过指定偏移量和长度来突出显示文件中的特定页面，从而有效地将该页面与剩余数据隔离开来。然后可以通过以字符串格式显示其内容来分析该页面。\n\
+  \n以下步骤描述了手动解析 SQLite 数据库页面的过程：\n\n- 1. 读取数据库头并识别页面大小和页面数量。\n- 2. 计算每个页面的偏移位置。\n\
+  - 3. 分析页面头。\n- 4. 如果是活动页面，请在未分配空间或空闲块中搜索任何有用的证据。如果是空闲页面，则分析整个页面。\n- 5. 对数据库中的每个页面重复此过程。\n\
+  \n同样的原则也适用于 WAL 文件；由于文件格式有详细记录，检查员可以使用十六进制查看器打开 WAL，计算每个帧的偏移量，隔离每个单独的帧，并通过将其转换为\
+  \ UTF-8 字符串来查看数据以识别任何可读字符串。\n\n作为示例，我们将创建一个名为 test.db 的新数据库，其中包含一个名为 Fruits 的表。然后，我们将向数据库中填充几条记录，删除一行数据，并使用十六进制查看器分析文件。为简单起见，数据库将不使用预写日志。\n\
+  \n你可以使用自己选择的软件或 sqlite3 命令行工具创建数据库。然后，运行以下查询：\n\n```\nCREATE TABLE \"Fruits\" (\n\
+  \    \"ROWID\"    INTEGER,\n    \"Fruit\"    TEXT,\n    PRIMARY KEY(\"ROWID\" AUTOINCREMENT)\n\
+  );\nINSERT INTO \"Fruits\" VALUES (1,'Apple');\nINSERT INTO \"Fruits\" VALUES (2,'Peach');\n\
+  INSERT INTO \"Fruits\" VALUES (3,'Orange');\nINSERT INTO \"Fruits\" VALUES (4,'Banana');\n\
+  DELETE FROM Fruits WHERE ROWID == 1;\n```\n\n正如以下屏幕截图所示，表中现在包含三行，如预期那样：\n\n![](img/0b17a17d4cb56b1c25763a396dd83117_128_0.png)\n\
+  \nFigure 4.12 – The table contains three rows of data\n\n我们检查的第一步是使用十六进制查看器打开文件并分析\
+  \ 100 字节的头，以从数据库中提取任何有用的信息：\n\nbytes, and copy the data to a new window in your\
+  \ editor. From now on, the offsets will be relative to the page:\n\n![](img/0b17a17d4cb56b1c25763a396dd83117_130_0.png)\n\
+  \nFigure 4.14 – The page header\n\n现在我们已将第二页加载到十六进制编辑器中，下一步涉及检查页面头：\n\n- - 在偏移量\
+  \ `01` 处，我们可以读取第一个空闲块的位置，即 `0x0FF6` 或十进制格式的 `4086`。\n- - 偏移量 `04` 处的值表示页面上的活动单元格数量，`3`。\n\
+  - - 通过查看偏移量 `05`，我们可以找到第一个非空数据单元格的位置，即 `0x0FD6` 或 `4054`。\n- - 最后，头与第一个数据单元格之间的空间是未分配空间。\n\
+  \n有了这些信息，我们可以突出显示从偏移量 4086 开始并延伸到页面底部的空闲块；十六进制查看器的右窗格将数据显示为 UTF-8 字符串：\n\n![](img/0b17a17d4cb56b1c25763a396dd83117_131_0.png)\n\
+  \nFigure 4.15 – The free block shows previously deleted data\n\n正如你所见，之前从数据库中删除的名为\
+  \ Apple 的记录仍然存在于文件中，在第二页的空闲块的右侧。\n\n## Carving for strings\n\n数据雕刻是搜索文件中特定字符串或字节的过程；检查员首先确定要搜索的字符串或模式，然后使用十六进制查看器或命令行工具在文件中搜索该字符串或模式。此过程是手动解析\
+  \ SQLite 数据库的绝佳替代方案，因为它允许调查人员立即验证给定记录是否可以在文件中找到，包括已删除数据通常隐藏的位置。\n\nstrings 工具是一个命令行实用程序，可在二进制文件中执行字符串雕刻并将结果打印到屏幕上。显示\
+  \ SQLite 数据库中可以找到的所有字符串与运行以下命令一样简单：\n\n```\nstrings sms.db\n```\n\n此工具可以与其他命令（如\
+  \ grep）结合使用，以搜索特定字符串或模式。以下命令将在我们之前示例中使用的数据库中搜索 Apple 单词：\n\n```\nstrings test.db\
+  \ | grep Apple\nApple\n```\n\n正如你所见，Apple 字符串被打印到屏幕上，这证实了它在 SQLite 数据库中被找到。这个简单的工具可以成为显示数据库中存储的所有字符串的救命技巧，包括已删除的数据！\n\
+  \n## Recovering deleted records using FQLite\n\n手动从 SQLite 数据库中恢复已删除数据的任务可能令人望而生畏；幸运的是，大多数商业取证工具都内置了此功能，但也有其他选择。截至撰写本文时，FQLite\
+  \ 可能是最完整的开源 SQLite 恢复工具，原因如下：\n\n- - 它是用 Java 编写的，因此你可以在任何操作系统上运行它。\n- - 它支持从所有数据库页面恢复已删除记录，包括空闲块和未分配空间。\n\
+  - - 它内置支持 WAL 文件。\n- - 恢复的记录可以以 CSV 格式导出。\n\n要下载 FQLite，请访问 https://www.staff.hs-mittweida.de/~pawlaszc/fqlite/\
+  \ 或前往位于 https://github.com/pawlaszczyk/fqlite 的 GitHub 仓库。\n\n我们现在将简要介绍从 sms.db\
+  \ SQLite 数据库中恢复已删除数据的过程：\n\n- 1. 启动 FQLite 并通过转到 File | Open Database 选择要尝试恢复的数据库。\n\
+  - 2. FQLite 现在将处理文件并分析数据库，搜索已删除记录。你可以通过查看屏幕底部的日志面板来跟踪进度。\n- 3. FQLite 完成后，从左侧面板中选择要检查的数据库或\
+  \ WAL 文件。\n- 4. FQLite 将显示一个包含数据库中找到的所有数据的表，包括已删除记录：\n\n![](img/0b17a17d4cb56b1c25763a396dd83117_133_0.png)\n\
+  \nFigure 4.16 – FQLite recovers deleted records from an SQLite database\n\n到目前为止，你应该对\
+  \ SQLite 的工作原理、调查人员如何通过命令行工具检查数据库以及数据恢复的最常见技术有了良好的理解。我们现在将更进一步，查看另一种流行的数据结构。\n\n\
+  ## Working with property lists\n\n虽然 Protobufs 在 iOS 设备上并不常见，但仍有一些应用程序使用它们来存储数据，因此调查人员应至少对如何处理这些文件有一个基本的了解。\n\
+  \n由于 protobuf 以二进制格式存储，因此它们不可读；protoc 命令行工具允许你显示文件的内容，并让你大致了解数据的结构。\n\n## Tip\n\n\
+  protoc 工具是 protocol buffers 包的一部分，可以从位于 https://github.com/protocolbuffers/protobuf\
+  \ 的 GitHub 仓库下载。\n\n安装 protoc 工具后，可以通过运行以下命令将 protobuf 的内容打印到屏幕上：\n\n```\nprotoc\
+  \ --decode_raw < [protobuf_blob_file]\n```\n\n使用协议缓冲区的应用程序示例包括 Apple **Notes**、Apple\
+  \ **Maps** 和 **Spotify** 应用程序。\n\n现在我们对工件的外观以及如何手动分析它们有了更好的理解，下一个部分将提供 iOS 设备上最常见的证据位置的详尽列表，以及我们可以期望获得的见解。\n\
+  \n## Locating common artifacts\n\n与应用程序相关的工件对于 iOS 调查至关重要，但设备设置、日志和用户生成的内容也很重要。在本章的最后一部分中，我们将研究\
+  \ iOS 文件系统中的一些常见位置，检查员可以快速查看以收集更多信息：\n\n\n\n| Path | Description |\n|---|---|\n\
+  | installd/Library/MobileInstallation/LastBuildInfo.plist | OS version |\n| mobile/Library/Preferences/com.apple.springboard.plist\
+  \ | Order of apps |\n| mobile/Library/Preferences/com.apple.mobilegestalt.plist\
+  \ | Device name |\n| mobile/Library/Preferences/com.apple.Preferences.plist | Disk\
+  \ usage |\n| mobile/Library/Preferences/com.apple.purplebuddy.plist | Language |\n\
+  | mobile/Library/Preferences/com.apple.commcenter.shared.plist | Phone number |\n\
+  | mobile/Library/Preferences/com.apple.corerecents.recentsd.plist | iCloud data\
+  \ |\n| preferences/SystemConfiguration/com.apple.networkidentification.plist | Network\
+  \ data |\n| preferences/SystemConfiguration/NetworkInterfaces.plist | WiFi data\
+  \ |\n| preferences/SystemConfiguration/preferences.plist | Cellular + WiFi |\n\n\
+  表 4.2 – 常见的 iOS 设备 artifacts\n\n现在我们知道了在哪里查找设置和日志，接下来我们将快速了解一下用户生成的数据，例如消息或通话存储在哪里。表\
+  \ 4.3 说明了一些最受欢迎的文件。像往常一样，路径均相对于 /private/var/：\n\n| Path | Description |\n|---|---|\n\
+  | mobile/Library/Mail/Recents.db | Recent SMS and email metadata |\n| mobile/Media/Recordings/Recordings.db\
+  \ | Audio recordings |\n| mobile/Media/PhotoData/Photos.sqlite | Photo categorization\
+  \ |\n| mobile/Library/CallHistoryDB/CallHistory.storedata | Call log |\n| mobile/Library/SMS/sms.db\
+  \ | SMS/MMS/iMessage |\n| mobile/Library/Safari/History.db | Browsing history |\n\
+  | mobile/Media/DCIM/* | Photos |\n| mobile/Library/Accounts/Accounts3.sqlite | Account\
+  \ details |\n\n表 4.3 – 常见的 iOS 用户 artifacts\n\n需要理解的是，这些表格仅包含一些最受欢迎的 artifacts，但还有很多、很多其他可能对调查有价值的文件。检查员应始终深入查看整个文件系统，以从数据中获得所有可用的见解。\n\
+  \n## Summary\n\n在本章中，我们学习了在 iOS 设备上发现的最常见类型的 artifacts 以及如何分析这些文件。\n\n首先，我们介绍了数据库并学习了\
+  \ SQLite 如何将数据组织成表、列和行。然后，我们深入研究了 SQLite 的内部架构，以了解记录在更低层级是如何组织的以及已删除记录可以在哪里找到。我们讨论了尝试恢复已删除数据的可能选项，例如通过十六进制查看器手动分析数据库或使用诸如\
+  \ FQLite 之类的工具。\n\n在章节的后面部分，我们谈到了属性列表和协议缓冲区，它们也可以以 XML 或二进制格式在 iOS 设备上找到。为了可读，这些文件首先需要解码。\n\
+  \n最后，在本章的最后一部分，我们概述了一些 artifacts 可能存在于的常见位置，并列出了在每次调查中都应考虑的一些基本文件。在下一章中，我们将讨论行为模式取证。\n"
+- "## Chapter 5: Pattern-of-Life Forensics\n\n在上一章中，我们了解了可以在 iOS 设备上找到的不同类型的 artifacts，例如\
+  \ SQLite 数据库和 plists，以及如何手动分析这些文件。在本章中，我们将利用这些知识来处理从取证角度来看最有趣的数据库，例如 **KnowledgeC**\
+  \ 数据库，它是行为模式取证的首选解决方案。\n\n行为模式数据关乎设备所有者在日常生活中进行的习惯。对于智能手机而言，这包括在任何给定时间使用了哪些应用以及使用了多长时间，设备何时被解锁，电池温度是多少，以及用户正在浏览哪个网页。\n\
+  \n我们将从定义行为模式取证开始，以便更好地理解在 iOS 设备调查中可能遇到的哪种数据。然后，我们将讨论时间戳以及如何在不同时区之间转换。然后，我们将深入研究\
+  \ KnowledgeC、电源日志和设备事件，并学习如何识别用户交互。最后，我们将介绍 Apollo，这是一款开源工具，大大简化了定位和审查行为模式 artifacts\
+  \ 的过程。\n\n在本章中，我们将涵盖以下主题：\n\n- Introducing pattern-of-life forensics\n- Working\
+  \ with timestamps\n- Logs, events, and user interaction\n- Introducing Apollo\n\n\
+  ### Introducing pattern-of-life forensics\n\n如果你从未有机会仔细查看 iOS 设备的行为模式数据，你可能会对在正常智能手机使用过程中收集、存储和处理的数据量和种类感到惊讶。通常，这些数据被操作系统用来为用户提供个性化推荐，例如\
+  \ Siri 的建议。\n\n行为模式取证到底是什么？这些数据全部关乎 **user behavior** 和 **device usage**，它使调查人员能够回答以下问题：\n\
+  \n- 用户使用设备做什么？\n- 他们访问了什么？\n- 他们与谁进行了通信？\n\n从取证角度来看，分析行为模式数据非常有用，不仅可以识别在给定时间段内设备上执行的所有活动，还可以构建设备所有者的画像；通过分析\
+  \ iOS 收集的数据，调查人员将深入了解所有者的习惯，例如用户醒来时使用哪些应用，设备最常连接哪些 Wi-Fi 网络，网页历史记录和通知。构建可被视为正常的活动画像使调查人员能够立即检测到可能对调查感兴趣的\
+  \ **patterns of abnormal behavior**。\n\n令人惊讶的是，行为模式数据在取证界得到的关注很少，主要是因为从设备获取相关 SQLite\
+  \ 数据库的挑战；这些数据在设备正常使用期间无法访问，只能通过 **full filesystem acquisition** 访问。显然，这限制了可以从中提取此类数据的设备范围，但\
+  \ **checkm8 exploit** 和其他依赖公共软件漏洞的 **agent-based acquisitions** 等技术使调查人员能够从大多数 iOS\
+  \ 设备中访问用户活动和行为。\n\n### Meaningful SQLite databases\n\n以下是与行为模式取证相关的最常见数据库列表。我们将在本书后面对每个数据库进行深入研究：\n\
+  \n- 用户和设备活动的主要来源是 `KnowledgeC.db` SQLite 数据库，它可以在 macOS 和 iOS 设备上找到。在 iOS 上，它位于\
+  \ `/private/var/mobile/Library/CoreDuet/Knowledge/`，只能通过完整文件系统获取来访问。该数据库通常包含数十万条与设备事件和用户活动相关的记录。\n\
+  \n- `interactionC.db` SQLite 数据库跟踪设备所有者与其联系人之间的最近交互，例如短信或通话。目前尚不清楚该数据库的保留期是多少，因为不同设备之间的数据不一致，但一般来说，调查人员会找到最近六个月的条目。虽然\
+  \ `interactionC.db` 不包含对话的实际内容，但它包含可以与其他 artifacts 相关联的元数据。数据库可以在 `/private/var/mobile/Library/CoreDuet/People/`\
+  \ 找到。\n\n- 位于 `/private/var/containers/Shared/SystemGroup/UUID/Library/BatteryLife/`\
+  \ 的 `CurrentPowerLog.PLSQL` 文件跟踪与电池寿命相关的数据，例如使用情况和温度。\n\n- 另一个可以帮助调查人员了解设备在特定时间点运行了哪些进程的有趣数据库是\
+  \ `DataUsage.sqlite` 数据库，它位于 `/private/var/wireless/Library/Databases/`。该数据库存储每个进程的网络使用统计信息。\n\
+  \n\n\n\n\n与生活模式取证相关的最重要主题之一是位置数据；在 iOS 上，不止一个文件会跟踪用户在任意给定时间点所处的位置，并显示用户更常访问的地点，例如位于\
+  \ `/private/var/root/Library/Caches/locationd/` 的 cache_encrypted.db 数据库，或者 consolidated.db\
+  \ 数据库。每个数据库包含的数据具有不同的粒度和详细程度，我们将在下一章深入探讨这一主题。\n\n现在我们已经了解了哪些是最常见的生活模式数据来源，你可能会想知道这些数据库中究竟会记录哪些内容。下面的截图展示了在\
+  \ Cellebrite Physical Analyzer 中查看的一些最有趣的生活模式数据痕迹：\n\n![](img/0b17a17d4cb56b1c25763a396dd83117_145_0.png)\n\
+  \n图 5.1 – Cellebrite Physical Analyzer 中的设备事件\n\n### 将 Unix 时间戳转换为可读日期，反之亦然\n\n\
+  1633614474 时间戳转人类可读日期 [批量转换]\n\n支持秒、毫秒、微秒和纳秒级别的 Unix 时间戳。\n\n假设该时间戳以秒为单位：\n**GMT**：2021\
+  \ 年 10 月 7 日星期四 13:47:54\n**你的时区**：2021 年 10 月 7 日星期四 15:47:54 GMT+02:00 夏令时\n**相对时间**：几秒前\n\
+  \n图 5.2 – 将 Unix 时间戳转换为字符串\n\n现在我们知道什么是 Unix 时间戳了，接下来看看如何使用 SQL 查询将其转换为可读的字符串。\n\
+  \n在下面的示例中，我们有一个名为 Events 的单一表，包含三列：id、uuid 和 timestamp。timestamp 列使用 Unix 格式：\n\n\
+  ```\nSELECT * FROM Events;\n```\n\n![](img/0b17a17d4cb56b1c25763a396dd83117_147_0.png)\n\
+  \n要将 Unix 时间戳转换为可读字符串，请运行以下查询：\n\n```\nSELECT id, uuid, datetime(timestamp, 'unixepoch')\
+  \ AS date FROM Events;\n```\n\ndatetime SQL 函数会将 timestamp 列中的数值转换为字符串。结果时间以 UTC\
+  \ 格式提供：\n\n```sql\nSELECT id, uuid, datetime(timestamp, 'unixepoch') AS date FROM\
+  \ Events;\n```\n\n|   | id | uuid | date |\n|---|---:|---|---|\n| 1 | 1 | dbcab8a2-7766-453a-b3b0-3a14a1d6d417\
+  \ | 2021-10-04 15:10:29 |\n| 2 | 2 | 25e66b36-f1ce-4fe3-9a30-3379bf724b00 | 2021-10-04\
+  \ 15:11:39 |\n| 3 | 3 | 2844e9a3-df4a-4ac0-ab51-d68a47f1d0f... | 2021-10-04 15:13:26\
+  \ |\n\n![](img/0b17a17d4cb56b1c25763a396dd83117_148_0.png)\n\n要以本地时间格式显示字符串，请运行以下查询：\n\
+  \n```sql\nSELECT id, uuid, datetime(timestamp, 'unixepoch',\n'localtime') AS date\
+  \ FROM Events;\n```\n\n时区将反映所使用设备的设置，通常是调查人员的工作站。\n\n### Mac 时间戳\n\n另一种常用的时间戳格式是\
+  \ Mac 绝对时间，其定义为自 2001 年 1 月 1 日 00:00:00 的 Mac 纪元以来经过的秒数。Mac 时间戳可以通过在线转换器转换为可读字符串，或者简单地将\
+  \ Mac 时间戳加上自 **Unix 纪元**以来的秒数（978307200），然后转换为字符串。\n\n以下查询演示了将 Mac 时间戳转换为本地时区字符串的过程：\n\
+  \n```sql\nSELECT id, uuid, datetime(timestamp + 978307200,\n'unixepoch', 'localtime')\
+  \ AS date FROM Events;\n```\n\nMac 时间戳通常用于 iOS 的生活模式数据中，例如 KnowledgeC.db 数据库。\n\n\
+  ## 日志、事件和用户交互\n\n在本章开头，我们介绍了生活模式取证，并了解了 iOS 如何存储和分析大量用户事件和设备事件。接着，我们学习了最常见的数据来源，如\
+  \ KnowledgeC.db 数据库，并了解了 iOS 如何通过 Unix 时间戳和 Mac 绝对时间来表示时间。\n\n现在，我们将深入探讨你在 iOS 设备上会发现的最具取证价值的\
+  \ SQLite 数据库之一。\n\n### KnowledgeC 数据库\n\nKnowledgeC.db 是跟踪几乎所有活动和设备事件（从电池电量到播放的音乐）的\
+  \ SQLite 数据库。该数据库位于 `/private/var/mobile/Library/CoreDuet/Knowledge/`，只能通过完整文件系统提取来访问。该数据库由\
+  \ 16 个表组成，但大部分有用数据都集中在其中一个表——ZOBJECT 表中。\n\n下面的截图展示了该数据库的架构：\n\n![](img/0b17a17d4cb56b1c25763a396dd83117_150_0.png)\n\
+  \n图 5.5 – KnowledgeC 数据库的架构\n\n务必记住，此数据库中的数据只会保留大约四周，然后按先进先出的原则被清除，因此如果生活模式数据是调查中的关键部分，应尽快获取设备。\n\
+  \n从取证角度来看，主要的关注表是 ZOBJECT 表，其中每一行对应一个事件或交互，数据分布在 40 列中。我们将简要介绍最有趣的几列，以理解该表如何记录事件：\n\
+  \n- 每行包含一个 ZCREATIONDATE 列，记录条目写入数据库的时间戳（Mac 格式）。\n- ZSTARTDATE 和 ZENDDATE 列包含事件开始和结束时间的时间戳。\n\
+  - ZSTARTDAYOFWEEK 列指示事件发生的星期几。\n- `ZSECONDSFROMGMT` 列以秒为单位指示 GMT 偏移量。\n- `ZSTREAMNAME`\
+  \ 列指示发生的事件类型。\n- `ZVALUESTRING` 列显示与该事件相关的应用程序的包 ID。\n\n为了更好理解该数据库会记录哪些类型的事件，我们将分析\
+  \ `ZSTREAMNAME` 列并检查其值。你可以通过运行以下 SQL 查询来查看事件类型列表：\n\n```\nSELECT DISTINCT ZOBJECT.ZSTREAMNAME\
+  \ FROM ZOBJECT ORDER BY ZSTREAMNAME;\n```\n\n在一台运行 iOS 14.6 的最新 iOS 设备上，该查询返回了 50\
+  \ 多种不同的事件类型。下面列出了一些最常见的事件类型以及如何解读 `ZOBJECT` 表中的数据。\n\n#### /device/batteryPercentage\n\
+  \nbatteryPercentage 流类型表示设备电池的电量水平。百分比值存储在 `ZVALUEDOUBLE` 列中。\n\n#### /device/isPluggedIn\n\
+  \n此事件指示设备是否已插入电源并正在充电。如果设备未插入电源，`ZVALUEINTEGER` 列将指示为 0；如果已插入电源，则指示为 1。\n\n####\
+  \ /displayIsBacklit\n\n此事件流指示背光是否亮起。如果背光关闭，`ZVALUEINTEGER` 列将指示为 0；如果背光开启，则指示为 1。此事件在设备锁定时可用于检测人为交互；只需轻触屏幕就会点亮显示屏，从而触发此事件。\n\
+  \n#### /device/isLocked\n\nisLocked 流类型指示设备是否处于密码锁定状态。锁定状态存储在 ZVALUEINTEGER 列中；值为\
+  \ 0 表示设备已锁定，值为 1 表示设备未锁定。\n\n#### /app/inFocus\n\n此事件流指示哪个应用程序处于活动状态并在前台运行。ZVALUESTRING\
+  \ 列存储应用程序的名称。可以分析 inFocus 事件以详细了解应用程序的使用情况。\n\n#### /notification/usage\n\n此事件流指示推送通知活动。ZVALUESTRING\
+  \ 列显示记录的活动类型，例如 *接收*、*清除* 和 *忽略*。此事件也有助于识别用户活动，例如用户在设备锁定时忽略通知。\n\n#### /app/webUsage\n\
+  \n此事件指示哪个应用程序正在使用互联网连接。ZVALUESTRING 列显示应用程序的名称。\n\n#### /display/orientation\n\n\
+  orientation 事件指示设备方向的变化。如果设备处于竖屏模式，`ZVALUEINTEGER` 列将指示为 0；如果处于横屏模式，则指示为 1。\n\n\
+  #### /media/nowPlaying\n\n\n\n\n此事件表示设备上正在播放多媒体内容。ZVALUESTRING 列将显示正在播放该内容的应用信息，例如\
+  \ YouTube 或 Apple Music。\n\n到目前为止，你应该对 KnowledgeC.db 数据库中记录了哪些类型的事件以及如何分析这些记录有了大致的了解。接下来，我们将深入研究更高级的主题，例如详细分析应用程序使用情况。\n\
+  \n## 分析应用程序使用情况\n\n通过分析生活模式数据可以获得的最有价值的洞察之一就是应用程序使用情况。通过分析 ZOBJECT 表中的 /app/inFocus\
+  \ 事件流，调查人员将能够识别在特定时间范围内设备上使用了哪些应用程序，以及使用了多长时间。\n\n例如，我们将运行一个查询，以识别在 48 小时时间范围内使用了哪些应用程序，时间从\
+  \ 2021 年 5 月 24 日 00:00:00 到 2021 年 5 月 26 日 00:00:00。\n\n首先，我们需要将日期和时间转换为 Mac 绝对时间戳：\n\
+  \n### 结果\n\n![](img/0b17a17d4cb56b1c25763a396dd83117_153_0.png)\n\n图 5.6 – 使用 https://www.gaijin.at/en/tools/time-converter\
+  \ 将日期和时间转换为 Mac 时间戳\n\n现在我们已经有了 Mac 绝对时间戳，我们希望查询 KnowledgeC.db 中所有发生在 643507200\
+  \ 时间戳和 643680000 时间戳之间的 /app/inFocus 事件。为此，请运行以下查询：\n\n```sql\nSELECT\ndatetime(ZOBJECT.ZSTARTDATE+978307200,\
+  \ 'UNIXEPOCH',\n'LOCALTIME') as \"START\",\ndatetime(ZOBJECT.ZENDDATE+978307200,\
+  \ 'UNIXEPOCH',\n'LOCALTIME') as \"END\",\nZOBJECT.ZSECONDSFROMGMT/3600 AS \"GMT\
+  \ OFFSET\",\n(ZOBJECT.ZENDDATE-ZOBJECT.ZSTARTDATE) as \"USAGE IN SECONDS\",\nZOBJECT.ZSTREAMNAME,\n\
+  ZOBJECT.ZVALUESTRING\nFROM ZOBJECT\nWHERE ZSTREAMNAME IS \"/app/inFocus\"\nAND ZOBJECT.ZSTARTDATE\
+  \ > 643507200\nAND ZOBJECT.ZSTARTDATE < 643680000\nORDER BY \"START\";\n```\n\n\
+  首先，我们使用 datetime SQL 命令选择开始和结束时间戳，并将其转换为可读的字符串。然后，我们计算以小时为单位的 GMT 偏移量和以秒为单位的事件持续时间。最后，我们通过仅选择之前计算出的时间戳之间发生的\
+  \ /app/inFocus 事件来过滤结果。\n\n得到的数据集如下所示：\n\n![](img/0b17a17d4cb56b1c25763a396dd83117_154_0.png)\n\
+  \n图 5.7 – 查询结果显示了应用程序的使用情况\n\n正如你所看到的，我们详细列出了设备上使用了哪些应用程序、事件的日期和时间，以及应用程序的使用时长。例如，你可以看到在这一天，我使用\
+  \ Safari 短暂浏览了网页，然后参加了一个 2 小时的 Zoom 会议，最后在 Safari 中查看了来自某个网站的 PDF 文件。\n\n另一个对调查有用的洞察是分析用户行为，判断他们是否在从事某项长期任务，例如看电影。我们可以通过按\
+  \ USAGE 列降序排列结果来实现这一点。在以下示例中，我还移除了所有时间限制：\n\n```sql\nSELECT\ndatetime(ZOBJECT.ZSTARTDATE+978307200,'UNIXEPOCH',\n\
+  'LOCALTIME') as \"START\",\ndatetime(ZOBJECT.ZENDDATE+978307200,'UNIXEPOCH',\n'LOCALTIME')\
+  \ as \"END\",\nZOBJECT.ZSECONDSFROMGMT/3600 AS \"GMT OFFSET\",\n(ZOBJECT.ZENDDATE-ZOBJECT.ZSTARTDATE)\
+  \ as \"USAGE IN SECONDS\",\nZOBJECT.ZSTREAMNAME,\nZOBJECT.ZVALUESTRING\nFROM ZOBJECT\n\
+  WHERE ZSTREAMNAME IS \"/app/inFocus\"\nORDER BY \"USAGE IN SECONDS\" DESC;\n```\n\
+  \n下面，你可以看到得到的数据：\n\n|  | 开始时间 | 结束时间 | GMT 偏移量 | 使用时长（秒） | ZSTREAMNAME | ZVALUESTRING\
+  \ |\n|---|---|---|---:|---:|---|---|\n| 1 | 2021-06-24 08:38:13 | 2021-06-24 10:56:11\
+  \ | 2 | 8278 | /app/inFocus | us.zoom.videomeetings |\n| 2 | 2021-06-06 14:53:43\
+  \ | 2021-06-06 17:07:49 | 2 | 8046 | /app/inFocus | com.apple.mobilesafari |\n|\
+  \ 3 | 2021-05-26 16:25:19 | 2021-05-26 18:38:19 | 2 | 7980 | /app/inFocus | us.zoom.videomeetings\
+  \ |\n| 4 | 2021-06-02 11:03:58 | 2021-06-02 12:31:20 | 2 | 5242 | /app/inFocus |\
+  \ com.apple.mobilesafari |\n| 5 | 2021-06-25 14:57:21 | 2021-06-25 16:23:48 | 2\
+  \ | 5187 | /app/inFocus | com.apple.mobilesafari |\n| 6 | 2021-06-24 13:37:35 |\
+  \ 2021-06-24 14:58:41 | 2 | 4866 | /app/inFocus | com.apple.mobilesafari |\n| 7\
+  \ | 2021-06-13 18:02:54 | 2021-06-13 19:23:42 | 2 | 4848 | /app/inFocus | com.apple.mobilesafari\
+  \ |\n| 8 | 2021-06-13 16:44:36 | 2021-06-13 18:02:54 | 2 | 4698 | /app/inFocus |\
+  \ com.apple.mobilesafari |\n| 9 | 2021-05-29 10:52:03 | 2021-05-29 13:09:21 | 2\
+  \ | 4638 | /app/inFocus | com.google.ios.youtube |\n| 10 | 2021-05-31 17:47:34 |\
+  \ 2021-05-31 19:04:05 | 2 | 4591 | /app/inFocus | us.zoom.videomeetings |\n| 11\
+  \ | 2021-06-01 22:03:57 | 2021-06-01 23:19:53 | 2 | 4556 | /app/inFocus | com.netflix.Netflix\
+  \ |\n| 12 | 2021-06-06 11:18:07 | 2021-06-06 12:30:11 | 2 | 4504 | /app/inFocus\
+  \ | com.apple.mobilesafari |\n\n图 5.8 — 分析长期任务\n\n正如你所看到的，我参与了相当多的长期任务，例如 Zoom 会议、网页浏览，以及在\
+  \ YouTube 和 Netflix 上播放媒体内容。现在，假设我们想更深入地挖掘数据，分析 2021 年 6 月 1 日晚上发生了什么。从之前的查询结果中，我们可以看到那天晚上我在使用\
+  \ Netflix。但我到底在看什么呢？\n\n首先，我们将计算该日期和时间的 Mac 时间戳，然后运行以下查询：\n\n```sql\nSELECT\ndatetime(ZOBJECT.ZSTARTDATE+978307200,'UNIXEPOCH',\n\
+  'LOCALTIME') as \"START\",\ndatetime(ZOBJECT.ZENDDATE+978307200,'UNIXEPOCH',\n'LOCALTIME')\
+  \ as \"END\",\nZOBJECT.ZSECONDSFROMGMT/3600 AS \"GMT OFFSET\",\n(ZOBJECT.ZENDDATE-ZOBJECT.ZSTARTDATE)\
+  \ as \"USAGE IN SECONDS\",\nZOBJECT.ZSTREAMNAME,\nZOBJECT.ZSTRUCTUREDMETADATA,\n\
+  ZOBJECT.ZVALUESTRING\nFROM ZOBJECT\nWHERE ZOBJECT.ZSTARTDATE > 644266800\nAND ZOBJECT.ZSTARTDATE\
+  \ < 644277599\nORDER BY \"START\";\n```\n\n结果如下所示：\n\n![](img/0b17a17d4cb56b1c25763a396dd83117_156_0.png)\n\
+  \n图 5.9 – 查询结果显示感兴趣时间范围内的用户交互\n\n通过分析得到的数据集，我们可以看到 Netflix 应用被启动，触发了 /media/nowPlaying\
+  \ 事件，并且设备被旋转为横屏模式。要了解 Netflix 上正在播放什么内容，我们需要分析与该事件关联的元数据。在本例中，关联 ID 为 51732，我们将使用它来查询\
+  \ ZSTRUCTUREDMETADATA 表：\n\n```sql\nSELECT\nZ_PK AS \"ID\",\nZ_DKNOWPLAYINGMETADATAKEY__TITLE\n\
+  FROM ZSTRUCTUREDMETADATA\nWHERE \"ID\" = \"51732\";\n```\n\n结果如下图所示，显示了正在播放的应用名称\
+  \ Netflix，以及我正在观看的电影名称：\n\n![](img/0b17a17d4cb56b1c25763a396dd83117_157_0.png)\n\
+  \n图 5.10 – 与 /media/nowPlaying 事件关联的元数据\n\n从这些简单的示例可以看出，调查人员能够非常详细地分析用户行为，不仅了解用户正在使用哪个应用程序，还能了解用户在该特定应用程序中具体在做什么。例如，通过定制\
+  \ SQL 查询，可以了解用户访问了哪个网站，或者正在阅读哪个 PDF 文件。我们将在接下来的章节中详细讨论这些用例。\n\n**提示**\n\n如果没有 **数字取证与事件响应（DFIR）**\
+  \ 社区的慷慨贡献，就不可能从生活模式数据中获取洞察。特别是，本章中使用的大多数查询都基于 Sarah Edwards（@iamevltwin）进行的研究。你可以访问她的博客：[https://www.mac4n6.com](https://www.mac4n6.com)。\n\
+  \n## 分析用户交互\n\n在任何涉及智能设备的数字调查中，调查人员通常首先想要回答的问题之一是设备何时被使用，以及何时发生了人机交互。这可以通过查找需要人工交互的事件来轻松发现，例如解锁设备或激活屏幕。\n\
+  \n以下查询显示了设备何时被锁定或解锁：\n\n```sql\nSELECT\ndatetime(ZOBJECT.ZSTARTDATE+978307200, 'UNIXEPOCH',\n\
+  'LOCALTIME') as \"DATE / TIME\",\nZOBJECT.ZSECONDSFROMGMT/3600 AS \"GMT OFFSET\"\
+  ,\nCASE ZOBJECT.ZVALUEINTEGER\n        WHEN '0' THEN 'UNLOCKED'\n        WHEN '1'\
+  \ THEN 'LOCKED'\n    END \"IS LOCKED\"\nFROM ZOBJECT\nWHERE ZOBJECT.ZSTREAMNAME\
+  \ LIKE \"/device/isLocked\"\nORDER BY \"DATE / TIME\";\n```\n\n结果如下面的截图所示：\n\n\n\
+  \n![](img/0b17a17d4cb56b1c25763a396dd83117_159_0.png)\n\n图 5.11 – 查询显示设备锁定状态\n\n\
+  如果我们想在每次屏幕被激活时都查找记录，即使设备未被解锁，也可以通过运行以下查询来实现：\n\n```\nSELECT\ndatetime(ZOBJECT.ZSTARTDATE+978307200,\
+  \ 'UNIXEPOCH',\n'LOCALTIME') as \"DATE / TIME\",\nZOBJECT.ZSECONDSFROMGMT/3600 AS\
+  \ \"GMT OFFSET\"\nFROM ZOBJECT\nWHERE ZOBJECT.ZSTREAMNAME LIKE \"/display/isBacklit\"\
+  \nAND ZOBJECT.ZVALUEINTEGER = '1'\nORDER BY \"DATE / TIME\";\n```\n\n resulting\
+  \ 记录将显示显示屏被激活的时间。 这些示例中使用的查询应该很容易理解，并且可以轻松自定义以匹配调查中可能感兴趣的其他事件。\n\n我们现在将研究另一种分析生活模式数据的方法，使用开源工具。\n\
+  \n## 介绍 Apollo\n\n到目前为止，我们已经学习了如何通过查询 SQLite 数据库手动分析生活模式数据。 然而，还有另一种选择可以自动化该过程，并允许调查人员查看所有数据在统一数据库中。\n\
+  \n**Apollo**，全称为 **Apple Pattern of Life Lazy Output'er**，是由 Sarah Edwards (@iamevltwin)\
+  \ 开发的 Python 脚本，它将多个数据源关联到统一的 **timeline** 中，简化了检查人员了解设备上到底发生了什么的任务。\n\n该工具由数十个高度可配置的模块组成，每个模块查询特定的\
+  \ iOS 数据库以提取数据和事件。 主 Python 脚本随后将每个模块的结果编译成统一的 **CSV** 文件或 SQLite 数据库。\n\n我们现在将介绍下载该工具、运行它并将结果导出到单个\
+  \ SQLite 数据库所需的步骤：\n\n- 1. 要下载 Apollo，请前往其 GitHub 仓库 https://github.com/mac4n6/APOLLO\
+  \ 并下载最新版本作为 ZIP 归档，或通过运行 git clone 命令克隆仓库。\n- 2. 接下来，通过指定导出格式、模块目录的位置以及应分析的数据位置来运行该工具，例如包含\
+  \ SQLite 数据库的文件夹或完整的系统提取。 例如，运行 python apollo.py -output sql modules/ fs-extraction/\
+  \ 将以 SQL 模式运行 Apollo，分析 fs-extraction 文件夹中的文件并运行 modules 文件夹中找到的所有模块。 Apollo 也可以使用不同的选项运行；\
+  \ 有关所有可用命令行选项的完整列表，您可以参考项目的 GitHub 页面。\n- 3. 当工具结束处理时，结果将存储在名为 apollo.db 的文件中。\n\
+  - 4. 然后，您可以使用您选择的工具，例如 **DB Browser**，继续分析 SQLite 数据库。\n\n![](img/0b17a17d4cb56b1c25763a396dd83117_161_0.png)\n\
+  \n图 5.12 – DB Browser 中显示的 Apollo 数据库\n\n该数据库包含一个表 APOLLO，其中包含工具模块处理过的所有数据的 timeline。\
+  \ 以下是该表列的简要说明：\n\n- Key 列包含事件发生的时间戳，以人类可读的字符串显示。\n- Activity 列显示记录了何种事件的简单描述。\n\
+  - Output 列包含与特定事件相关的所有数据的 JSON 对象。\n- Database 列指示事件是从哪个数据库提取的。\n- Module 列指示负责提取和分析事件的模块的名称。\n\
+  \n通常，从取证角度来看，输出命令将包含大部分有趣的数据。 下图显示了 `Battery Level` 事件的 JSON 对象是什么样的：\n\n```\n```json\n\
+  {\n  \"ADJUSTED_TIMESTAMP\": \"2021-06-19 07:57:09\",\n  \"LEVEL\": 31.0,\n  \"\
+  RAW_LEVEL\": 31.2364696962684408,\n  \"IS_CHARGING\": 0,\n  \"FULLY_CHARGED\": 0,\n\
+  \  \"ORIGINAL_TIMESTAMP\": \"2021-04-26 05:35:55\",\n  \"OFFSET_TIMESTAMP\": \"\
+  2021-04-28 15:48:56\",\n  \"TIME_OFFSET\": 4674074.367777824,\n  \"PLBATTERYAGENT_EVENTBATTERY_TABLE_ID\"\
+  : 480012\n}\n```\n```\n\n图 5.13 – 存储在 Apollo Output 列中的 JSON 对象\n\nApollo 的美妙之处在于它是一个完全模块化和可定制的工具，允许调查人员提取所有生活模式数据或选择仅通过使用适当的模块包含某些工件。\
+  \ 将结果浓缩到单个文件中意味着调查人员能够查看事件时间线，可以根据日期和时间轻松过滤，或通过搜索特定事件。\n\nApollo 正在积极开发中，模块不断被添加和更新。\
+  \ 最后，需要注意的是，该工具不仅支持 iOS，还允许分析来自 MacOS 设备和其他设备的生活模式数据。\n\n## 总结\n\n在本章中，我们了解了生活模式取证是什么，以及调查人员如何通过分析此类数据来可视化用户行为并检测异常模式而受益。\n"
+- "## 第 6 章：剖析位置数据\n\n在上一章中，我们了解了可以在 iOS 设备上找到的生活模式工件，例如应用程序使用情况和系统事件，以及如何手动分析数据库和日志。\
+  \ 在本章中，我们将重点关注可在移动设备上找到的最有趣的数据类型之一，即位置数据。\n\n移动设备存储了大量位置数据，例如与蜂窝基站、Wi-Fi 网络和与设备接近的蓝牙设备相关的数据。\
+  \ 位置工件也可以从第三方应用程序或多媒体文件中提取。\n\n我们将从学习位置数据是什么、设备如何确定其位置以及此数据存储在哪里开始本章。 我们将学习 GPS、蜂窝基站三角定位和\
+  \ Wi-Fi 位置之间的区别。 然后，我们将深入研究存储位置数据的一些 SQLite 数据库，并学习如何分析它们以获得有意义的见解。 最后，我们将学习 Cellebrite\
+  \ Physical Analyzer 和 Apollo 等取证工具如何加快位置数据分析过程。\n\n在本章中，我们将涵盖以下主题：\n\n- 介绍位置数据\n\
+  - GPS 定位、蜂窝基站和 Wi-Fi 网络\n- 定位位置工件\n- 使用取证工具分析位置数据\n\n### 介绍位置数据\n\n![](img/0b17a17d4cb56b1c25763a396dd83117_166_0.png)\n\
+  \n图 6.1 – 地理位置使用纬度和经度表示\n\n在接下来的章节中，我们将学习位置服务如何工作以确定设备的位置。\n\n## GPS 定位、蜂窝基站和 Wi-Fi\
+  \ 网络\n\nLocation Services iOS API 使用一种称为辅助 GPS (A-GPS) 的技术集合来确定设备的位置。 移动设备使用 A-GPS\
+  \ 而不是仅使用传统卫星 GPS 的主要原因是\n\n后者在建筑物内部性能不佳； 它也比其他技术慢，并且会迅速耗尽设备的电池。 A-GPS 通过使用外部源（例如蜂窝基站）来增强卫星\
+  \ GPS，从而提高卫星信号的速度、质量和精度。 外部源接收到的数据随后被整合以确定设备的精确位置。\n\n以下是为 A-GPS 提供支持的来源列表：\n\n\
+  - 卫星 GPS\n- 蜂窝基站\n- Wi-Fi 网络\n- 蓝牙设备\n\n我们将在以下各节中更详细地研究这些内容。\n\n你可能想知道 iOS 设备如何从\
+  \ Wi-Fi 网络或蜂窝基站解析位置； 这是由 Apple 使用 **基于同行的机制** 实现的，其中每个 iOS 设备都贡献创建网络和设备的地图。\n\n\
+  通常，该机制包括三个步骤：\n\n- 1. 如果启用了位置服务，每个 iOS 设备会定期收集和存储当前 GPS 位置以及周围蜂窝基站和 Wi-Fi 热点列表。\n\
+  - 2. 这些数据随后匿名发送到 Apple 服务器，在那里与其他收集的信息和第三方提供商整合。\n- 3. 当位置服务请求设备位置时，数据会同步回 iOS 设备。\n\
+  \n例如，如果位置服务请求设备位置且卫星 GPS 不可用，iOS 将扫描附近的蜂窝基站并查询 Apple 的基于同行生成的地图以查找与\n\n\n这些蜂窝基站。通过这种机制，定位服务可以在几秒内获得粗略位置，然后在可用时报告更精确的\
+  \ GPS 定位结果。\n\n每台 iOS 设备还有一个内部缓存，存储大量位置、蜂窝基站和 Wi-Fi 网络信息。通过访问本地缓存，设备无需数据连接即可通过 Wi-Fi\
+  \ 网络解析位置。为了使这些数据保持最新，缓存数据库会定期清除。\n\n除了这种基于对等设备的机制外，Apple 还依赖外部来源将蜂窝基站和无线网络转换为物理位置。例如，战争驾驶（wardriving）是指一个人通常驾车移动，使用笔记本电脑或智能手机搜索无线电信号，并记录自己的\
+  \ GPS 坐标以及与该无线电信号相关的数据。\n\n## 卫星 GPS\n\n传统 GPS，也称为卫星 GPS，是 iOS 设备最精确的位置数据来源。\n\n\
+  该技术基于一个由 30 多颗卫星组成的网络，这些卫星在距地球 20,000 公里的高度绕地运行。每颗卫星都会通过无线电波向地球发射信号，其中包含卫星标识符、当前位置和时间戳。因此，当设备截获卫星信号时，它会利用信号接收时间与广播时间之间的时间差来计算从接收器到卫星的距离。然后，设备利用计算出的距离和卫星的位置来计算其大致位置。\n\
+  \n值得注意的是，要计算精确位置，接收器必须锁定至少三颗卫星的信号。当视野中有四颗或更多卫星时，接收器可以确定其 3D 位置：**纬度**、**经度**和**海拔**。\n\
+  \n某些大气因素和其他误差源会影响设备 GPS 接收器的精度；不过，接收器通常精度可以达到\n\n![](img/0b17a17d4cb56b1c25763a396dd83117_171_0.png)\n\
+  \n图 6.3 – 蜂窝基站三边测量过程\n\n不难看出，三边测量过程的精度会因蜂窝基站的位置和密度而有很大差异。\n\n## Wi-Fi 与蓝牙\n\n与蜂窝基站类似，Wi-Fi\
+  \ 热点也会广播无线电信号，并且可以通过 RSSI 测量信号强度。移动设备会不断扫描无线热点，搜索已知网络，因此利用这些信息来计算设备的位置是有道理的。Wi-Fi\
+  \ 信号的覆盖范围在室外仅约 70 米，室内约 40-50 米，因此如果设备收到信号，它一定在物理上靠近热点。\n\n考虑到这一点，移动设备如何通过评估 Wi-Fi\
+  \ 网络的 RSSI 来确定设备与热点之间的大致距离就很清楚了。然后，iOS 使用前面描述的基于对等设备的机制将该数据解析为物理位置。\n\n蓝牙信标也可以以类似方式使用。\n\
+  \n## 查找位置数据痕迹\n\n在本章的第一部分，我们介绍了定位服务 API，并了解了 iOS 如何使用不同技术来评估其位置。现在，我们将深入探讨存储地理位置数据的\
+  \ SQLite 数据库。\n\n以下是一份只有在完整文件系统提取中才能找到的感兴趣文件列表：\n\n- `/private/var/mobile/Library/Caches/com.apple.routined/Cache.sqlite`\n\
+  \n  这是 iOS 位置数据的主要存储方式。`ZRTCLLOCATIONMO` 表包含多条有用记录，例如 GPS 坐标、时间戳和水平精度值，该值表示设备认为\
+  \ GPS 坐标的准确程度。`ZRTWIFIACCESSPOINTMO` 表存储了设备扫描过的 Wi-Fi 网络列表。一般来说，此数据库中的数据应被视为最新且准确的。\n\
+  \n- `/private/var/mobile/Library/Caches/com.apple.routined/Local.sqlite`\n\n  此\
+  \ SQLite 数据库在结构上与 `Cache.sqlite` 数据库相同。根据 iOS 版本的不同，`ZRTLEARNEDLOCATIONOFINTERESTSMO`\
+  \ 表通常包含任何*常去位置*的详细信息，我们稍后会研究这一点。\n\n- `/private/var/mobile/Library/Caches/com.apple.routined/Cloud-V2.sqlite`\n\
+  \n  顾名思义，此数据库存储应同步到 iCloud 的位置数据。\n\n- `/private/var/root/Library/Caches/locationd/cache_encryptedDB.db`\n\
+  \n  此数据库包含 Apple 收集到的位置数据，例如蜂窝小区和 Wi-Fi 网络；这些记录涉及与设备较近的蜂窝基站，但应始终检查这些地理坐标的准确性。\n\n\
+  - `/private/var/root/Library/Caches/locationd/cache_encryptedC.db`\n\n  此数据库存储从设备加速度计接收的数据，例如运动数据和一般健康相关数据。\n\
+  \n- `/private/var/root/Library/Caches/locationd/consolidated.db`\n\n  最后，此数据库供地理围栏（GeoFence）API\
+  \ 使用，任何创建地理围栏的应用都会存储在这里。\n\n为了更好地理解位置相关数据如何存储在这些数据库中，我们将逐一分析它们，并了解可以使用哪些查询来提取有意义的见解。\n\
+  \n## 分析位置数据\n\n正如我们已经了解到的，iOS 设备会追踪许多不同的位置相关数据痕迹。调查人员应清楚了解这些数据的存储方式和存储位置，以及哪些位置是用户实际访问过的，哪些只是靠近设备的位置。\n\
+  \n位置数据的取证分析第一步是查看 `Cache.sqlite` 数据库。该数据库包含由设备 GPS 接收器提供的极其精确的坐标历史记录。通常，这些数据会存储一周多一点的时间。\n\
+  \n我们将从查看 `ZRTCLLOCATIONMO` 表开始。以下是该表的结构：\n\n- `ZLATITUDE` 和 `ZLONGITUDE` 存储地理坐标。\n\
+  - `ZALTITUDE` 列表示海拔的估算值。该数据由设备的加速度计提供。\n- `ZHORIZONTALACCURACY` 列表示设备认为坐标的准确程度，以米为单位。\n\
+  - `ZVERTICALACCURACY` 表示海拔精度，以米为单位。\n- `ZTIMESTAMP` 列以 Mac 绝对时间格式存储时间戳。\n\n通过运行以下查询，可以获取设备位置数据的完整历史记录：\n\
+  \n```\nSELECT\n    DATETIME(ZTIMESTAMP + 978307200, 'UNIXEPOCH') AS \"TIMESTAMP\"\
+  ,\n    ZLATITUDE AS \"LATITUDE\",\n    ZLONGITUDE AS \"LONGITUDE\",\n    ZALTITUDE\
+  \ AS \"ALTITUDE\",\n    ZSPEED AS \"SPEED (M/S)\",\n    ZSPEED*2.23694 AS \"SPEED\
+  \ (MPH)\",\n    ZSPEED*3.6 AS \"SPEED (KMPH)\",\n    ZHORIZONTALACCURACY AS \"HORIZONTAL\
+  \ ACCURACY\",\n    ZVERTICALACCURACY AS \"VERTICAL ACCURACY\"\nFROM\n    ZRTCLLOCATIONMO;\n\
+  ```\n\n首先，我们使用 `datetime` SQL 命令将 Mac 绝对时间戳转换为可读字符串。然后，我们从表中选择相关列，并计算设备移动的速度。\n\n\
+  下图显示了查询结果：\n\n![](img/0b17a17d4cb56b1c25763a396dd83117_175_0.png)\n\n图 6.4 – 查询结果显示设备的位置\n\
+  \n如你所见，位置数据痕迹为调查人员提供了关于某个用户设备在特定时刻所处位置的准确信息。通常，这些数据粒度非常细，每秒记录一条条目也并不罕见。数据粒度的差异可以解释为：GPS\
+  \ 并非在所有地方都可用，因此在这些情况下，设备会转而在附近有 Wi-Fi 网络和蜂窝基站时使用它们来确定其位置。\n\n\n\n\n一旦调查人员获取了地理坐标列表，这些坐标就可以与地图提供商一起使用，以获得设备所在位置的视觉反馈。\n\
+  \n![](img/0b17a17d4cb56b1c25763a396dd83117_176_0.png)\n\n图 6.5 – 查询结果被映射出来以确定用户的行程\n\
+  \n需要注意的是，不同数据库存储的定位数据类型各不相同，准确性也高低不等。根据已开展的研究，这种被称为 **routined location data** 的数据已被证明具有高度准确性。\n\
+  \n## 理解重要位置\n\n随着 iOS 8 的发布，苹果引入了一项名为 **Frequent Locations** 的功能，从 iOS 10 开始更名为\
+  \ **Significant Locations**。基本上，每当设备访问某个位置时，都会在 SQLite 数据库中存储一条记录，其中包含设备行程的详细信息。当设备多次返回同一位置时，该位置就成为一个\
+  \ *significant location*。\n\n截至今天，苹果使用的算法如何工作以及需要多少次访问特定位置才会被视为重要位置，目前仍不清楚。就区域而言，研究发现，只要设备在重要位置\
+  \ 250 m 半径范围内，就会记录对该位置的访问。\n\n如果启用了定位服务，可以通过 **Settings | Privacy | Location Services\
+  \ | System Services | Significant Locations** 直接从设备上查看 Significant Locations。\n\n\
+  ![](img/0b17a17d4cb56b1c25763a396dd83117_177_0.png)\n\n图 6.6 – Significant Locations\
+  \ 可以直接在设备上查看\n\n请记住，自 iOS 15 以来，在设备上查看 Significant Locations 仅显示这些位置的摘要。完整数据只有通过完整的文件系统提取才能获得。\n\
+  \n从取证角度来看，频繁位置数据非常宝贵，因为它使调查人员能够了解用户经常访问的位置。此外，与重要位置相关的数据通常可以追溯到很久以前。\n\n要查看此数据，我们将在\
+  \ Local.sqlite 数据库上运行以下查询：\n\n```sql\nSELECT\nDATETIME(ZRTLEARNEDLOCATIONOFINTERESTVISITMO.ZENTRYDATE\
+  \ + 978307200, 'UNIXEPOCH') AS \"ENTRY\",\nDATETIME(ZRTLEARNEDLOCATIONOFINTERESTVISITMO.ZEXITDATE\
+  \ + 978307200, 'UNIXEPOCH') AS \"EXIT\",\n(ZRTLEARNEDLOCATIONOFINTERESTVISITMO.ZEXITDATE-ZRTLEARNEDLOCATIONOFINTERESTVISITMO.ZENTRYDATE)/60.00\
+  \ AS \"DURATION (MINUTES)\",\nZRTLEARNEDLOCATIONOFINTERESTMO.ZLOCATIONLATITUDE AS\
+  \ \"LATITUDE\",\nZRTLEARNEDLOCATIONOFINTERESTMO.ZLOCATIONLONGITUDE AS \"LONGITUDE\"\
+  ,\nZRTLEARNEDLOCATIONOFINTERESTVISITMO.ZLOCATIONUNCERTAINTY AS \"LOCATION UNCERTAINTY\"\
+  ,\nZRTLEARNEDLOCATIONOFINTERESTVISITMO.ZDATAPOINTCOUNT AS \"DATA POINTS\"\nFROM\n\
+  ZRTLEARNEDLOCATIONOFINTERESTVISITMO\nLEFT JOIN\nZRTLEARNEDLOCATIONOFINTERESTMO\n\
+  ON ZRTLEARNEDLOCATIONOFINTERESTMO.Z_PK = ZRTLEARNEDLOCATIONOFINTERESTVISITMO.ZLOCATIONOFINTEREST;\n\
+  ```\n\n尽管此查询看起来很复杂，但如果我们将其分解为逻辑步骤，实际上会容易得多：首先，我们使用 datetime SQL 命令将时间戳转换为可读的字符串。Entry\
+  \ 字段指的是设备访问重要位置的时间，而 Exit 字段表示设备离开该位置的时间。然后，我们计算访问的持续时间（Duration）并打印纬度、经度和不确定性。最后，我们打印该次访问该特定位置的数据点数（Data\
+  \ Points）。\n\n下图显示了查询结果：\n\n| # | DATE | MAC ADDRESS | CHANNEL | RSSI |\n|---|---|---|---|---|\n\
+  | 1 | 2020-04-12 12:46:19 | f8:bb:bf:1e:fa:ea | 161 | -57 |\n| 2 | 2020-04-12 12:46:19\
+  \ | f8:bb:bf:1e:fa:e4 | 161 | -57 |\n| 3 | 2020-04-12 12:46:20 | 80:da:13:72:52:64\
+  \ | 149 | -90 |\n| 4 | 2020-04-12 12:46:20 | f8:bb:bf:1e:fa:eb | 48 | -51 |\n| 5\
+  \ | 2020-04-12 12:46:20 | 58:ef:68:25:35:34 | 48 | -90 |\n| 6 | 2020-04-12 12:46:20\
+  \ | d8:d7:75:b6:28:9 | 48 | -89 |\n| 7 | 2020-04-12 12:46:20 | 80:da:13:72:52:6a\
+  \ | 149 | -89 |\n| 8 | 2020-04-12 12:46:20 | f8:bb:bf:8d:b9:c2 | 48 | -78 |\n| 9\
+  \ | 2020-04-12 12:46:20 | f8:bb:bf:90:a8:f2 | 48 | -70 |\n| 10 | 2020-04-12 12:46:20\
+  \ | b8:66:85:53:d3:7 | 44 | -85 |\n| 11 | 2020-04-12 12:46:20 | 7c:db:98:c2:30:34\
+  \ | 40 | -89 |\n| 12 | 2020-04-12 12:46:20 | f8:bb:bf:1e:fa:e8 | 48 | -50 |\n\n\
+  图 6.8 – 结果显示了设备扫描到的无线设备的详细信息\n\n尽管此表不存储诸如纬度和经度之类的地理坐标，但它仍然为调查人员提供了有关设备何时以及捕获了哪些无线信号的详细信息。通过将此数据与外部数据源（例如已知网络设备及其\
+  \ MAC 地址的列表）相关联，可以在特定时间点将设备定位在特定位置。\n\n## 理解采集的位置\n\n在本章开头，我们介绍了 A-GPS 技术，并了解了苹果如何维护一个基于同行的地图，该地图在\
+  \ Location Services 请求地理定位时下载回设备。此数据包含数千条与设备附近的蜂窝基站和 Wi-Fi 网络相关的记录，以及它们的地理坐标。设备可以使用此数据将无线电信号解析为物理位置，而无需\
+  \ GPS 信号。\n\n下载到设备上的苹果数据称为 **Harvested Locations** 数据，可在 `cache_encryptedB.db` 数据库中找到。\n\
+  \n在这里，我们可以找到几个感兴趣的表：\n\n- 蜂窝基站数据可在以下表中找到：\n  - `CdmaCellLocation`、`CellLocation`\
+  \ 和 `LteCellLocation`。\n- Wi-Fi 设备数据存储在 `wifiLocation` 表中。\n\n### 常规位置与采集位置\n\n\
+  在开始分析此数据之前，了解设备访问的位置与苹果提供的位置之间的区别非常重要：我们之前查看的数据，也称为常规位置数据，通常非常准确，因为它来自设备的 GPS，并且可以详细显示设备所在的位置。另一方面，Harvested\
+  \ Locations 数据由苹果提供，作为增强设备对该区域了解的一种方式。此数据不是从内置 GPS 接收器检索的，而是表示位于设备附近的蜂窝基站和无线设备。\n\
+  \n### 分析采集的蜂窝基站数据\n\n蜂窝基站数据存储在 `cache_encryptedB.db` 数据库中，并保留约一周。以下是一些最相关的列：\n\n\
+  - MCC，或 **Mobile Country Code**，表示蜂窝基站的国家代码。\n- MNC，或 **Mobile Network Code**，标识移动运营商。\n\
+  - CI，或 **Cell ID**，是用于表示蜂窝基站每个收发站的唯一编号。\n- `HorizontalAccuracy` 值表示设备认为坐标的精确程度，以米为单位。\n\
+  - `Latitude` 和 `Longitude` 列存储地理坐标。\n\n我们可以通过运行 SQL 查询来提取所有蜂窝相关数据，例如以下代码块所示。在用于研究<|message|>的设备上，蜂窝数据存储在\
+  \ LTECELLLOCATION 表中；不过，这取决于设备型号和 iOS 版本：\n\n```sql\nSELECT\n    DATETIME(TIMESTAMP\
+  \ + 978307200, 'UNIXEPOCH') AS \"TIMESTAMP\",\n    MCC AS \"MCC\",\n    MNC AS \"\
+  MNC\",\n    CI AS \"CI\",\n    HORIZONTALACCURACY AS \"HORIZONTAL ACCURACY\",\n\
+  \    LATITUDE AS \"LATITUDE\",\n    LONGITUDE AS \"LONGITUDE\"\nFROM LTECELLLOCATION;\n\
+  ```\n\n查询结果如下图所示：\n\n| # | TIMESTAMP | MCC | MNC | CI | HORIZONTAL ACCURACY | LATITUDE\
+  \ | LONGITUDE |\n|---|---|---|---|---|---|---|---|\n| 1 | 2020-12-12 22:25:08 |\
+  \ 310 | 260 | 18005506 | 2142.0 | 35.6559143 | -78.87465667 |\n| 2 | 2020-12-12\
+  \ 22:25:08 | 310 | 260 | 256947784 | 1414.0 | 35.62225341 | -78.87554168 |\n| 3\
+  \ | 2020-12-12 22:25:08 | 310 | 260 | 256769850 | 1414.0 | 35.66263961 | -78.87255859\
+  \ |\n| 4 | 2020-12-12 22:25:08 | 311 | 480 | 39694094 | 2977.0 | 35.62737655 | -78.84117126\
+  \ |\n| 5 | 2020-12-12 22:25:08 | 311 | 480 | 39694096 | 1414.0 | 35.62499618 | -78.84272003\
+  \ |\n| 6 | 2020-12-12 22:25:08 | 310 | 410 | 196794049 | 2094.0 | 35.66758346 |\
+  \ -78.87165069 |\n| 7 | 2020-12-12 22:25:08 | 310 | 410 | 195403799 | 1414.0 | 35.64883804\
+  \ | -78.8419876 |\n| 8 | 2020-12-12 22:25:08 | 311 | 480 | 116500503 | 1414.0 |\
+  \ 35.63685607 | -78.86347198 |\n| 9 | 2020-12-12 22:25:08 | 311 | 480 | 116500504\
+  \ | 1414.0 | 35.63601303 | -78.86531829 |\n| 10 | 2020-12-12 22:25:08 | 310 | 410\
+  \ | 195138569 | 1414.0 | 35.63536071 | -78.86586761 |\n| 11 | 2020-12-12 22:25:08\
+  \ | 310 | 410 | 195001864 | 1414.0 | 35.66678237 | -78.87182617 |\n| 12 | 2020-12-12\
+  \ 22:25:08 | 311 | 480 | 39694114 | 13696.0 | 35.63697433 | -78.86968231 |\n\n图\
+  \ 6.9 – 查询结果显示了蜂窝基站和地理位置的详细信息\n\n\n\n\n\n到目前为止，我们已经学习了如何通过在数据库上运行 SQL 查询来手动分析位置相关数据。然而，还有其他可以自动执行该过程的选项，例如使用取证工具。\n\
+  \n### 使用取证工具分析位置数据\n\n我们将重点介绍两种工具：商业工具 Cellebrite **Physical Analyzer**，以及免费工具 **Apollo**。\n\
+  \n### 使用 Physical Analyzer 查看位置数据\n\nCellebrite Physical Analyzer 通过在统一视图中显示 GPS、蜂窝和\
+  \ Wi-Fi 位置来自动化分析位置数据的任务。请记住，要访问位置数据，您需要执行完整的系统提取，因为感兴趣的文件在逻辑或 iTunes 备份中不可用。\n\n\
+  要查看位置数据，请从左侧菜单中选择 **Location Related | Device Locations | Native Locations：**\n\n\
+  ![](img/0b17a17d4cb56b1c25763a396dd83117_187_0.png)\n\n图 6.10 – 在 Physical Analyzer\
+  \ 中查看位置数据\n\n下图详细显示了剩余的列：\n\n![](img/0b17a17d4cb56b1c25763a396dd83117_187_1.png)\n\
+  \n图 6.11 – Physical Analyzer 指定了该工件的源文件\n\n正如前图所示，对于每条记录，Physical Analyzer 都会指定记录被解析的源文件。请记住，仅因为某个位置出现在结果中，并不一定意味着设备实际上访问过该位置，因为该工具也会显示收集的数据。\n\
+  \n### 使用 Apollo 分析位置数据\n\nApollo，我们在上一章中介绍过，是一款将多个数据源关联到统一 **时间线** 的 Python 脚本，简化了检查员弄清设备上到底发生了什么的任务。该工具由数十个高度可配置的模块组成，每个模块查询特定的\
+  \ iOS 数据库以提取数据和事件。Apollo 支持常规位置数据和收集数据。\n\n我们现在将介绍下载该工具、运行它并将位置数据导出为可导入地图提供商服务的\
+  \ KMZ 文件所需的步骤：\n\n- 1. 要下载 Apollo，请前往其 GitHub 仓库 https://github.com/mac4n6/APOLLO\
+  \ 并下载最新版本作为 ZIP 归档，或通过运行 git clone 命令克隆仓库。\n- 2. 接下来，通过指定导出格式、模块目录的位置以及应分析的数据位置，例如包含\
+  \ SQLite 数据库的文件夹或完整的系统提取，来运行该工具。例如，运行 python3 apollo.py extract -o sql -p apple\
+  \ -v 14 -k modules/ fs-extraction/ 将以 SQL 模式运行 Apollo，分析 fs-extraction 文件夹中的文件并运行\
+  \ modules 文件夹中找到的所有模块。请确保使用 -k 选项输出位置文件。\n- 3. 当工具结束处理后，结果将存储在一个名为 apollo.db 的文件中以及多个\
+  \ KMZ 文件中。\n- 4. 然后，您可以使用您选择的工具，例如 **Google Earth** 或 **Google Maps** 导入 KMZ 文件。\n\
+  \n下图显示了由 Apollo 输出的一个 KMZ 文件导入到 Google Maps 中的情况：\n\n![](img/0b17a17d4cb56b1c25763a396dd83117_189_0.png)\n\
+  \n图 6.12 – Google Maps 显示由 Apollo 导出的位置数据\n\n正如前图所示，将位置相关数据导入地图服务可以让调查人员即时可视化设备的所在位置，以及可能的用户行程。\n\
+  \n### 总结\n\n在本章中，我们学习了所有关于位置工件的知识，以及调查人员如何从分析此类数据中受益。\n\n首先，我们介绍了位置服务 API。然后，我们学习了\
+  \ A-GPS 如何使用多种技术来确定设备的位置，例如卫星 GPS、Wi-Fi 和蜂窝基站。我们学习了 iOS 如何管理重要位置以及此数据存储的位置。\n"
+- "## 第 7 章：分析连接数据\n\n在上一章中，我们介绍了位置相关工件，并学习了调查如何利用此类数据来获得设备可能所在的大致地理位置。在本章中，我们将重点关注连接数据。\n\
+  \n现代移动电话已从用于通过语音通信的简单手持设备发展成为与互联网通信的移动计算设备。设备与外部世界之间的几乎每次交互都会被操作系统记录，因此不足为奇的是，连接数据已成为几乎每种类型调查中最重要的证据来源：例如通话记录和互联网浏览历史对现代调查人员来说是无价的。\n\
+  \n我们将从本章开始查看蜂窝相关工件、联系人和电话通话，包括 FaceTime 视频通话。然后，我们将学习网络取证，包括如何分析设备的常用 Wi-Fi 网络和详细的网络使用情况。我们还将简要查看蓝牙取证。最后，我们将学习互联网相关工件以及如何分析\
+  \ Safari 历史记录。\n\n在本章中，我们将涵盖以下主题：\n\n- 介绍蜂窝取证\n- 分析网络数据\n- 介绍蓝牙取证\n- 了解 Safari 取证\n\
+  \n### 介绍蜂窝取证\n\n![](img/0b17a17d4cb56b1c25763a396dd83117_193_0.png)\n\n图 7.1 – com.apple.commcenter\
+  \ PLIST\n\n此 PLIST 包含多个有用的蜂窝相关值，例如其 **集成电路卡标识符 (ICCID)**、**国际移动用户识别码 (IMSI)**、**国际移动设备识别码\
+  \ (IMEI)**、设备的电话号码，以及设备最后连接的蜂窝基站的详细信息。\n\n**ICCID**\n\nICCID 是 SIM 卡的序列号。此值唯一标识物理\
+  \ SIM 卡，如果卡被更换，即使电话号码保持不变，该值也会发生变化。此值可以通过查看 PLIST 中的 LastKnownICCID 键来提取。\n\n**IMSI**\n\
+  \n**IMSI** 可以通过查看 `lastGoodImsi` 键找到。此值通常长 15 位，标识网络上的 SIM 卡。重要的是要理解，此代码与电话号码绑定，而不是物理\
+  \ SIM 卡。IMSI 由移动网络运营商用于连接电话呼叫并与 SIM 卡通信。\n\n**IMEI**\n\n**IMEI** 是一个唯一的 15 位代码，用于标识特定的移动设备。此代码与订阅者没有任何关系，仅标识移动电话；然而，当移动设备在\
+  \ GSM 网络上注册时，它也会提供设备的 IMEI，因此运营商可以通过将其 IMEI 添加到阻止列表中来阻止被报告为被盗的设备。此代码也可以由执法机构和情报机构用于跟踪移动设备，可以通过分析设备连接的蜂窝基站来定位设备。IMEI\
+  \ 可以通过查看 PLIST 中的 `kEntitlementsSelfRegistrationUpdateImei` 键找到。\n\n**MCC 和 MNC**\n\
+  \n**移动国家代码 (MCC)** 和 **移动网络代码 (MNC)** 是唯一标识蜂窝基站的值组合。移动 iOS 设备在 PLIST 下的 `LastKnownServingMcc`\
+  \ 和 `LastKnownServingMnc` 键中存储最后已知的 MCC 和 MNC 值。这些值与已知蜂窝基站的地图结合使用，可以精确定位设备的最后位置。\n\
+  \n**电话号码**\n\n最后，设备的电话号码也存储在 PLIST 中，位于 `NetworkPhoneNumber` 键下。重要的是要记住 iOS 设备\n\
+  \n|    | TIMESTAMP | SERVICE | OPERATOR | STATUS |\n|----|-----------|---------|----------|--------|\n\
+  | 3  | 2020-05-08 15:25:25 | None | NULL | NotRegistered |\n| 4  | 2020-08-24 16:55:03\
+  \ | None | NULL | NotRegistered |\n| 5  | 2020-12-12 22:19:12 | None | NULL | NotRegistered\
+  \ |\n| 6  | 2020-12-12 22:21:15 | None | NULL | NotRegistered |\n| 7  | 2020-12-12\
+  \ 22:30:00 | None | NULL | Searching |\n| 8  | 2020-12-12 22:30:11 | None | NULL\
+  \ | EmergencyOnly |\n| 9  | 2020-12-12 22:30:49 | None | NULL | Denied |\n| 10 |\
+  \ 2020-12-12 22:30:49 | None | NULL | EmergencyOnly |\n| 11 | 2020-12-12 22:33:38\
+  \ | None | Google Fi | RegisteredHome |\n| 12 | 2020-12-12 22:33:38 | 4G | Google\
+  \ Fi | RegisteredHome |\n| 13 | 2020-12-12 22:33:43 | None | Google Fi | RegisteredHome\
+  \ |\n| 14 | 2020-12-12 22:33:43 | 4G | Google Fi | RegisteredHome |\n\n图 7.2 – 蜂窝注册记录\n\
+  \n现在我们已经学习了如何提取基本的蜂窝相关数据，我们将学习如何分析通信。在本章中，我们将重点关注电话呼叫；电子邮件和消息将在第 8 章《电子邮件和消息取证》中更深入地讨论。\n\
+  \n### 分析地址簿\n\n在深入研究通话历史数据库之前，有用的是介绍 AddressBook.sqlite 数据库，其中包含设备上存储的联系人的姓名和详细信息。数据库位于\
+  \ /private/var/mobile/Library/AddressBook/，包含两个感兴趣的表 — ABPerson 和 ABMultiValue。第一个包含联系人的姓名和设备使用的额外元数据，而第二个表存储实际数据，例如电话号码和电子邮件地址。两个表通过一对多关系连接。\n\
+  \n现在我们知道了地址簿的基本结构，我们可以通过运行以下查询来提取数据：\n\n\n\n```\nSELECT p.First AS \"First Name\"\
+  ,\n       p.Last AS \"Last Name\",\n       GROUP_CONCAT(c.value) AS \"Contacts\"\
+  \nFROM   ABPerson AS p\n       LEFT JOIN ABMultiValue AS c\n             ON c.record_id\
+  \ = p.rowid\nGROUP  BY p.rowid,\n          p.first;\n```\n\n首先，我们必须选择与名字和姓氏相关的列；然后，我们必须使用\
+  \ GROUP_CONCAT SQL 函数将所有联系人数据（电话号码、电子邮件等）聚合到一列 Contacts 中。然后，我们必须使用 JOIN 语句在 ABPerson\
+  \ 和 ABMultiValue 表之间建立关系。\n\n此查询将提取地址簿中存储的所有联系人列表，如以下屏幕截图所示：\n\n![](img/0b17a17d4cb56b1c25763a396dd83117_197_0.png)\n\
+  \n图 7.3 – 从地址簿中提取的记录\n\n现在我们已经学会了如何提取联系人数据，我们可以开始分析通话记录。\n\n## 分析通话记录\n\n所有已拨出、已接听或未接听的电话和\
+  \ FaceTime 通话都记录在 CallHistory.storedata 数据库中，该数据库位于 /private/var/mobile/Library/CallHistoryDB/。\n\
+  \n### Tip\n\n`CallHistory.storedata` 数据库是在 iOS 8 中引入的。此前，通话记录位于 `call_history.db`\
+  \ 文件中。另外请注意，通话历史记录只有在 **After First Unlock (AFU)** 状态下才可用。在首次解锁之前，数据存储在名为 `CallHistoryTemp.storedata`\
+  \ 的临时文件中。\n\n从取证角度来看，最重要的数据存储在 ZCALLRECORD 表中，您将在其中找到以下列：\n\n- ZDATE 列包含通话发生的时间戳，采用\
+  \ Mac Absolute Time 格式。\n- ZADDRESS 表示拨打的电话号码，或如果是来电，则表示通话的来源。\n- ZLOCATION 列存储位置，该位置是根据电话号码计算得出的。\n\
+  - ZDURATION 列表示通话时长，以秒为单位。\n- ZORIGINATED 列表示通话是来电（0）还是去电（1）。\n- ZANSWERED 列表示来电是否被接听（1）或未接听（0）。\n\
+  - ZSERVICE_PROVIDER 列显示产生通话的服务名称。通常，这将显示为传统通话的 `com.apple.Telephony` 或 FaceTime\
+  \ 通话的 `com.apple.FaceTime`。\n\n以下 SQL 查询将从 ZCALLRECORD 表中提取有意义的数据：\n\n```\nSELECT\n\
+  DATETIME(ZDATE + 978307200, 'unixepoch', 'localtime') AS \"Date/Time\",\nZADDRESS\
+  \ AS \"Phone Number\",\nZLOCATION AS \"Location\",\nZDURATION AS \"Call in Seconds\"\
+  ,\n```\n\n分析 iOS 设备提供的网络数据可以让调查人员准确了解哪些服务和应用程序正在消耗带宽，以及设备连接了哪些网络。\n\n我们将通过学习如何从完整文件系统中提取一些基本网络相关数据来介绍该主题。\n\
+  \n## 飞行模式\n\n要检测设备是否处于飞行模式，可以检查位于 /private/var/preferences/SystemConfiguration/\
+  \ 的 com.apple.radios.plist 文件。该 PLIST 包含一个 AirplaneMode 键，其值为 true 或 false。\n\n\
+  ## Wi-Fi MAC 地址\n\n设备内无线网络接口的 MAC 地址可以通过分析位于 /private/var/preferences/SystemConfiguration/\
+  \ 的 NetworkInterfaces.plist 文件找到。IOMACAddress 键指示所需的值。请注意，每台 iOS 设备都有多个网络接口，每个接口都有唯一的\
+  \ MAC 地址。\n\n## 已知 Wi-Fi 网络\n\n已知无线网络的列表存储在 /private/var/preferences/SystemConfiguration/com.apple.wifi.plist\
+  \ 文件中。该 PLIST 包含一个已知网络的键列表，这也是一个项目数组：\n\n- SSID_STR 键包含一个可读的 SSID 字符串，用于标识网络。\n\
+  - BSSID 键指示接入点的 MAC 地址。\n- `lastJoined` 键存储用户上次手动访问网络的时间戳。\n- `lastAutoJoined` 键指示设备上次自动连接到无线接入点的时间：\n\
+  \n```\n```xml\n<key>SSID</key>\n<data>\nQ2Nvb2tpZXNEY2FzdGlugR3Vlc3Q=\n</data>\n\
+  <key>SSID_STR</key>\n<string>Cookiesdcastler5 Guest</string>\n<key>SaveDataMode</key>\n\
+  <integer>2</integer>\n<key>ScaledRSSI</key>\n<real>0.82863259315490723</real>\n\
+  <key>ScaledRate</key>\n<real>1</real>\n<key>ShareableStatus</key>\n<integer>1</integer>\n\
+  <key>Strength</key>\n<real>0.82863259315490723</real>\n<key>VHT_CAPS_IE</key>\n\
+  <dict>\n    <key>VHT_CAPS</key>\n    <integer>864041394</integer>\n    <key>VHT_SUPPORTED_MCS_SET</key>\n\
+  \    <data>\n    +v8AArP/AAA=\n    </data>\n</dict>\n<key>WiFiAutoInstantHotspotJoining</key>\n\
+  <false/>\n<key>WiFiInstantHotspotJoining</key>\n<false/>\n<key>WiFiManagerKnownNetworksEventType</key>\n\
+  <integer>1</integer>\n<key>WiFiNetworkAttributeIsKnown</key>\n<true/>\n<key>WiFiNetworkAttributeIsMoving</key>\n\
+  <false/>\n<key>WiFiNetworkAttributeIsPotentiallyMoving</key>\n<true/>\n<key>WiFiNetworkAttributeLowPopularity</key>\n\
+  <true/>\n<key>WiFiNetworkAttributePopularityScore</key>\n<integer>0</integer>\n\
+  <key>WiFiNetworkAttributeProminentDisplay</key>\n<true/>\n<key>WiFiNetworkAttributeSource</key>\n\
+  <integer>2</integer>\n<key>WiFiNetworkIsAutoJoined</key>\n<true/>\n<key>WiFiNetworkPasswordModificationDate</key>\n\
+  <date>2020-03-22T19:00:00Z</date>\n<key>addedAt</key>\n<date>2020-03-22T19:00:00Z</date>\n\
+  <key>enabled</key>\n<true/>\n```\n```\n\n图 7.5 – com.apple.wifi.plist 显示已知网络的详细信息\n\
+  \n现在我们知道如何分析设备上的基本网络数据，让我们更仔细地查看网络使用痕迹。\n\n## 分析网络使用情况\n\n分析哪些服务或应用程序正在使用网络可以帮助调查人员识别任何异常进程，例如设备上运行的\
+  \ **malware**。\n\niOS 设备上的数据使用情况存储在两个不同的文件中：\n\n- `CurrentPowerLog.PLSQL` 数据库，可在\
+  \ `/private/var/containers/Shared/SystemGroup/<GUID>/Library/BatteryLife/` 中找到，包含多个感兴趣的表。通过关联不同表中的数据，检查人员可以提取每个进程的精确数据使用情况，包括\
+  \ **Wi-Fi 接口** 和 **WAN 接口**。需要注意的是，此数据库仅存储大约 24 小时的进程数据。\n\n- `DataUsage.db` 数据库，可在\
+  \ `/private/var/wireless/Library/Databases/DataUsage.sqlite` 中找到，包含两个重要的表 – ZPROCESS\
+  \ 和 ZLIVEUSAGE。第一个存储应用程序的名称、应用程序包及其关联的进程以及时间戳；第二个表存储每个进程通过 WAN 接口进出的数据。虽然该数据库通常会存储数周的数据，但请注意，根据已开展的研究，似乎通过\
+  \ Wi-Fi 接口进出的数据未被记录。\n\n这些数据库可以帮助调查人员确定不仅哪些进程正在使用网络，而且受试者在特定时间是否正在使用应用程序。\n\n可以从\
+  \ `DataUsage.db` 数据库中运行以下查询来提取进程和网络使用数据：\n\n```\nSELECT\n    DATETIME(ZPROCESS.ZTIMESTAMP+\
+  \ 978307200,\n'UNIXEPOCH') AS \"PROCESS TIMESTAMP\",\n    ZPROCESS.ZPROCNAME AS\
+  \ \"PROCESS NAME\",\n    ZPROCESS.ZBUNDLENAME AS \"BUNDLE ID\",\n    ZLIVEUSAGE.ZWWANIN\
+  \ AS \"WWAN IN\",\n    ZLIVEUSAGE.ZWWANOUT AS \"WWAN OUT\"\nFROM ZLIVEUSAGE\nLEFT\
+  \ JOIN ZPROCESS ON ZLIVEUSAGE.ZHASPROCESS =\nZPROCESS.Z_PK;\n```\n\n以下屏幕截图显示了输出结果；它包含对调查人员非常有价值的数据，特别是如果调查中对应用程序使用感兴趣：\n\
+  \n![](img/0b17a17d4cb56b1c25763a396dd83117_203_0.png)\n\n图 7.6 – 查询结果显示设备上运行的进程及其数据使用情况\n\
+  \n在下一节中，我们将介绍蓝牙取证。\n\n## 介绍蓝牙取证\n\n使用蓝牙技术，用户可以在不同设备之间传输数据，并将耳机、扬声器或任何类型的无线设备连接到智能手机。通常，iOS\
+  \ 设备作为 Class 2 蓝牙设备运行，这意味着它们的工作范围约为 10 米（33 英尺）。\n\n\n\n\n\n从取证角度来看，iOS 设备维护以下内容：\n\
+  \n- 一份可连接用户设备的 *低功耗* 蓝牙设备列表，也称为 **已配对设备**。这些设备存储在 `/private/var/containers/Shared/SystemGroup/<GUID>/Library/Database/com.apple.MobileBluetooth.ledevices.paired.db`\
+  \ 数据库中，位于 `PairedDevices` 表下。该表维护着设备列表、其名称、其 **媒体访问控制 (MAC)** 地址以及最后看到的时间戳。\n- 其他蓝牙已配对设备（*不仅仅是低功耗*），存储在\
+  \ `/private/var/containers/Shared/SystemGroup/<GUID>/Library/Preferences/com.apple.MobileBluetooth.devices.plist`\
+  \ 文件中。该属性列表维护着设备名称和最后检测时间的列表。\n- 一份 *已见* 蓝牙设备的列表，即在设备附近但未连接的其他可用蓝牙设备。这些设备可以在 `/private/var/containers/Shared/SystemGroup/<GUID>/Library/Database/com.apple.MobileBluetooth.ledevices.other.db`\
+  \ 数据库中找到，位于 `OtherDevices` 表下。\n- 蓝牙相关事件的详细日志，例如 **连接** 和 **断开连接** 事件。这些存储在 `knowledgeC.db`\
+  \ 数据库中。\n\n由于前三个文件很容易查询，我们将集中精力从 `/private/var/mobile/Library/CoreDuet/Knowledge/knowledgeC.db`\
+  \ 数据库中提取蓝牙事件，该数据库我们在 *第 5 章，行为模式取证* 中介绍过。\n\n首先，我们必须从 `ZOBJECT` 表中选择事件的开始和结束日期。然后，我们必须通过搜索\
+  \ `/bluetooth/isConnected` 流来筛选结果。我们必须从 `ZSTRUCTUREDMETADATA` 表中提取事件状态和设备详细信息。最后，我们必须按时间顺序排列结果。\n\
+  \n最终的查询如下所示：\n\n```\nSELECT\nDATETIME(ZOBJECT.ZSTARTDATE + 978307200, 'unixepoch',\n\
+  'localtime') AS \"Start\",\nDATETIME(ZOBJECT.ZENDDATE + 978307200, 'unixepoch',\n\
+  'localtime') AS \"End\",\nCASE\n    WHEN ZOBJECT.ZVALUEINTEGER = 0 THEN \"Disconnected\"\
+  \n    WHEN ZOBJECT.ZVALUEINTEGER = 1 THEN \"Connected\"\nEND AS \"Status\",\nZSTRUCTUREDMETADATA.Z_DKBLUETOOTHMETADATAKEY__ADDRESS\
+  \ AS \"Address\",\nZSTRUCTUREDMETADATA.Z_DKBLUETOOTHMETADATAKEY__NAME AS \"Device\"\
+  \nFROM ZSTRUCTUREDMETADATA\nLEFT JOIN ZOBJECT ON ZSTRUCTUREDMETADATA.Z_PK =\nZOBJECT.ZSTRUCTUREDMETADATA\n\
+  WHERE ZOBJECT.ZSTREAMNAME = \"/bluetooth/isConnected\"\nORDER BY \"Start\" ASC;\n\
+  ```\n\n查询完成后，调查人员可以检索每次设备连接到或断开与蓝牙启用设备的连接时记录的事件列表，以及设备的 MAC 地址；结果显示在以下屏幕截图中：\n\n\
+  ![](img/0b17a17d4cb56b1c25763a396dd83117_205_0.png)\n\n图 7.7 – 显示蓝牙连接事件的查询\n\n蓝牙\
+  \ artifacts 可以成为调查的重要组成部分。通过利用有关已配对或已见设备的 data，调查人员不仅可以评估设备是否在使用并连接到某个设备，而且\n\n\
+  还可以将设备所有者在某个时间点的大致位置确定出来，如果蓝牙设备的位置已知的话。在下一节中，我们将介绍 Safari 取证。\n\n## 了解 Safari 取证\n\
+  \n分析互联网浏览活动留下的 artifacts 通常是移动取证调查的一个关键方面。嫌疑人在移动设备上使用浏览器执行几乎每项活动都会在设备本身留下痕迹，包括当然是搜索信息和浏览网页。\n\
+  \n在本节中，我们将重点关注内置于所有 iOS 设备的浏览器，**Safari**。请记住，数十个第三方浏览器可以安装在设备上，例如 **Chrome**、**Firefox**\
+  \ 和 **Opera**：审查这些应用程序并分析其 artifacts 很重要，因为它们可能包含重要数据。我们将在 _第 10 章，分析第三方应用程序_ 中学习如何分析第三方应用程序。\n\
+  \n浏览历史可能是最常恢复的项目，但也应审查其他文件。通常，通过分析 Safari artifacts 可以恢复以下数据：\n\n- 浏览历史\n- 打开/私有标签页\n\
+  - 书签/已保存页面\n- Cookies\n- 缓存文件\n\nSafari 的大部分 artifacts 存储在 `/private/var/mobile/Library/Safari/`\
+  \ 中。在此文件夹中，您将找到以下相关文件：\n\n/private/var/mobile/Containers/Data/Application/GUID/Library\n\
+  /Cookies/Cookies.binarycookies\n\nSafari cookies 存储在此文件中，采用二进制格式。要了解格式规范，请参阅以下链接：https://github.com/libyal/dtformats/blob/main/documentation/Safari%20Cookies.asciidoc。Cookies\
+  \ 也可以使用 **自动化脚本** 提取，例如 Mari DeGrazia 的 Safari-Binary-Cookie-Parser Python 脚本。它可以从\
+  \ https://github.com/mdegrazia/Safari-Binary-Cookie-Parser 下载。\n\n```\n/private/var/mobile/Containers/Data/Application/GUID/Library\n\
+  /Safari/\n```\n\n此文件夹应进行分析，因为它包含多个有用的文件，例如 Safari **缩略图**、**首选项**、**自动填充数据** 和 **下载**\
+  \ 列表。\n\n最后，让我们介绍两种不同的分析 Safari 浏览历史的方法。\n\n## 分析 Safari 历史记录\n\n正如我们之前学到的，Safari\
+  \ 将浏览历史存储在 /private/var/mobile/Library/Safari/History.db 数据库中。重要的是要理解，此文件不仅仅存储本地设备的浏览历史——它还包含已从\
+  \ **iCloud 同步** 的数据，例如其他设备的浏览历史。分析人员在分析此数据时的工作是区分哪些网站是在正在检查的设备上访问的，哪些数据是从不同设备同步的。\n\
+  \n以下屏幕截图显示了一个提取所有相关数据并生成结果记录的查询示例：\n\n```\nLEFT JOIN\n    ZSTRUCTUREDMETADATA\n\
+  \    ON ZOBJECT.ZSTRUCTUREDMETADATA =\nZSTRUCTUREDMETADATA.Z_PK\nLEFT JOIN\n   \
+  \ ZSOURCE\n    ON ZOBJECT.ZSOURCE = ZSOURCE.Z_PK\nWHERE\n    ZSTREAMNAME IS \"/safari/history\"\
+  \nORDER BY DATE ASC;\n```\n\n首先，我们必须选择浏览器事件发生的时间戳，并使用 DATETIME 函数将其转换为可读字符串。然后，我们必须在\
+  \ ZSTRUCTUREDMETADATA 表上执行 JOIN 以提取网页标题。之后，我们必须选择 URL 并计算 GMT 偏移量。最后，我们必须按时间顺序排列结果。\n\
+  \n以下屏幕截图显示了此查询的结果：\n\n![](img/0b17a17d4cb56b1c25763a396dd83117_210_0.png)\n\n图 7.9\
+  \ — 分析 KnowledgeC.db 的浏览历史\n\n在分析用户的浏览历史时，调查人员应始终检查两个数据库，因为其中一个可能包含独特的数据。\n\n##\
+  \ 介绍私有浏览\n\n为了完成本章，我们将介绍 **私有浏览**，这是 Apple 在 iOS 5 中引入的功能。当此功能处于活动状态时，用户浏览历史的详细信息不会被存储，并且已访问的网站不会同步到\
+  \ iCloud。\n\n> 正如 Apple 官方文档所述，*\"在私有浏览模式下关闭标签页后，Safari 不会记住您访问的页面、搜索历史或您的自动填充信息。\"\
+  *\n\n从取证角度来看，这在理论上构成了一个问题，因为 `history.db` 和 `KnowledgeC.db` 都不存储此数据。然而，还有其他选择：\n\
+  \n- 您可以分析设备上存储的 cookies。Safari 的网页缓存也可能揭示在私有浏览处于活动状态时浏览的网站的痕迹。\n- `BrowserState.db`\
+  \ 数据库存储活动标签页的详细信息，**包括私有标签页**。对于每个标签页，`tab_sessions` 表中都有一个条目，其中包含二进制 PLIST。将此 PLIST\
+  \ 转换为 XML 格式将允许调查人员解析文件，其中包含在该标签页内浏览的页面的历史记录。这仅在私有标签页仍在 Safari 中打开时才有效。\n- 正如我们在前几章中所学到的，已删除的数据并未从\
+  \ SQLite 数据库中永久删除——它只是被标记为已删除。通过使用 **取证工具**，可以从 `BrowserState.db` 数据库中恢复已删除的记录，其中可能包括在私有模式下打开的标签页的详细信息。要了解如何尝试从\
+  \ SQLite 数据库中恢复数据，请参阅 *第 4 章，使用常见的 iOS Artifacts*。\n\n互联网浏览 artifacts 是任何移动取证调查的重要组成部分。分析浏览历史可能提供一些见解，但访问与私有互联网浏览相关的数据可能更有启发性，揭示用户想要隐藏的任何活动。\n\
+  \n## 总结\n\n\n\n\n\n在本章中，我们学习了连接数据，以及 iOS 设备如何通过蜂窝网络、Wi-Fi 和蓝牙技术进行通信。\n\n首先，我们介绍了蜂窝取证，并学习了如何从\
+  \ iOS 提取中提取与蜂窝相关的数据，例如设备的 IMSI 和 IMEI 代码。然后，我们分析了 PowerLog 以查看相关事件，例如设备注册到蜂窝网络。\n\
+  \n之后，我们重点关注了电话通话，学习了如何从通讯录中提取联系人数据，以及如何访问通话记录，其中包含所有来电和去电的详细信息，包括 FaceTime 视频通话。然后，我们介绍了网络使用的主题，学习了哪些查询能让调查人员查看设备上运行了哪些进程，以及它们消耗了多少网络数据。\n\
+  \n最后，我们学习了 Safari 取证。我们深入研究了常见 Safari 工件的存放位置，以及如何通过 `History.db` 和 `KnowledgeC.db`\
+  \ 数据库分析浏览历史。我们还简要讨论了一些在隐私浏览模式下恢复数据的选项。\n\n在下一章中，我们将学习电子邮件和消息取证。\n\n## 电子邮件取证简介\n\
+  \n在本章的第一部分，我们将介绍电子邮件取证，并重点关注 **Apple Mail** 应用程序。可以肯定地说，Apple Mail 无疑是 iOS 设备上最流行的电子邮件客户端；然而，调查人员应记住，还有更多第三方电子邮件应用可用，例如\
+  \ **Outlook**、**Spark**、**Gmail** 和 **Airmail**。分析第三方应用将在*第 10 章“分析第三方应用”*中介绍。对电子邮件工件进行全面取证分析应包括分析\
+  \ Apple Mail 以及设备上安装的任何第三方客户端。\n\n调查 Apple Mail 数据的第一步是定位工件：这些工件可以在 `/private/var/mobile/Library/Mail`\
+  \ 文件夹中找到。请注意，需要进行完整的文件系统提取。以下是最相关文件及其描述的列表：\n\n- 对于设备上配置的每个电子邮件帐户，`Mail` 文件夹中都会有一个对应的文件夹；该文件夹的名称指向该帐户的唯一标识符。每个文件夹都包含额外的子文件夹，例如\
+  \ `Inbox`、`Sent`、`Spam` 和 `Drafts`，其中包含实际的电子邮件，存储为**电子邮件（EML）**文件。\n- `Envelope\
+  \ Index` 文件是一个 SQLite 数据库，包含多个表，这些表存储与设备上配置的每个电子邮件帐户相关的**元数据**。\n- `Protected Index`\
+  \ 数据库包含与电子邮件相关的实际数据，例如邮件正文的**摘要**、**主题**和**地址**。\n- `MailboxCollections.plist` 存储与每个帐户相关的用户偏好设置。\n\
+  - `metadata.plist` 文件存储每个邮箱最后一次同步到设备的时间戳。\n\n既然我们知道了电子邮件工件的位置，我们将直接深入这些 SQLite 数据库，解析电子邮件元数据及其内容。\n\
+  \n### 提取电子邮件元数据\n\n我们将从检查 Envelope Index 数据库开始。第一个值得关注的表是 mailboxes 表。顾名思义，该表存储了设备上配置的所有邮箱的列表。这包括单个帐户的不同文件夹，例如“重要”、“垃圾邮件”、“草稿”和“已删除”。\n\
+  \n以下截图显示了 mailboxes 表中的一些示例数据：\n\n![](img/0b17a17d4cb56b1c25763a396dd83117_215_0.png)\n\
+  \n图 8.1 – DB Browser 中显示的 mailboxes 表\n\n如截图所示，每个帐户由一个通用唯一标识符（UUID）标识（在本例中为 4FD35256-CE13-47FE-9840-EBEB5B9FD9C1），而每个文件夹由一个唯一的\
+  \ ROWID 标识。通过分析该表，检查人员可以大致了解设备上配置了多少个电子邮件帐户以及是哪些帐户。\n\n下一步涉及提取和分析存储在 `messages`\
+  \ 表中的电子邮件元数据。需要注意的是，该表中存储的某些数据必须与其他记录相关联才能有意义；事实上，数据之间的关系不仅跨越表，还跨越 `Envelope Index`\
+  \ 和 `Protected Index` 数据库。\n\n以下是从取证角度值得关注的列列表：\n\n- `external_id` 列表示包含实际电子邮件内容的\
+  \ EML 文件的名称。\n- sender 列表示发件人的电子邮件地址；该值需要与 `Protected Index` 数据库中 Addresses 表存储的记录相关联。\n\
+  - subject 列也需要与 `Protected Index` 中的 Subjects 表相关联。\n- summary 列与 Summaries 表相关联，存储电子邮件内容的前\
+  \ 500 个字节。\n- `date_sent` 列存储电子邮件发送时的时间戳。\n- `mailbox` 列显示哪个帐户和文件夹包含该电子邮件。\n- 如果电子邮件已被阅读，`read`\
+  \ 列的值为 1；如果未被阅读，则为 0。\n\n以下查询从表中提取所有相关元数据：\n\n```\nSELECT\nDATETIME(messages.date_sent,\
+  \ 'UNIXEPOCH', 'localtime') AS\n\"DATE / TIME\",\nmessages.sender AS SENDER,\nmessages.subject\
+  \ AS SUBJECT,\nmessages.summary AS SUMMARY,\nmessages.read AS READ,\nmailboxes.url\
+  \ AS MAILBOX,\nmessages.external_id AS \"EML FILENAME\"\nFROM messages\n```\n\n\
+  ![](img/0b17a17d4cb56b1c25763a396dd83117_218_0.png)\n\n图 8.3 – 按 ROWID 过滤的 addresses\
+  \ 表\n\n同样的逻辑也适用于 SUBJECT 和 SUMMARY 列。至此，您应该对如何提取电子邮件元数据有了大致的了解。在以下部分中，我们将学习如何分析电子邮件内容。\n\
+  \n### 分析电子邮件内容\n\n识别特定电子邮件是一项简单的任务，因为 Apple Mail 将每封电子邮件存储为单独的文件。当我们之前提取电子邮件元数据时，我们了解到\
+  \ messages 表为每封电子邮件存储了一条 external_id 记录，即 EML 文件的名称。这些文件存储在 `/private/var/mobile/Library/Mail/MAILBOX-UUID/`\
+  \ 中。\n\nEML 文件可以在 macOS 系统上使用 Apple Mail 桌面应用程序打开，在 Windows 上使用 Microsoft Outlook\
+  \ 打开。也可以在任何 Web 浏览器中查看电子邮件内容，只需将文件扩展名重命名为 .html 即可。\n\n要获取完整内容（包括电子邮件头），可以使用文本编辑器打开\
+  \ EML 文件，或通过终端查看，如下面的截图所示：\n\n![](img/0b17a17d4cb56b1c25763a396dd83117_219_0.png)\n\
+  \n图 8.4 – 通过终端查看的 EML 文件，显示电子邮件内容\n\n请记住，电子邮件的内容通常会被拆分到多个 EML 文件中；在这种情况下，必须将部分文件合并为一个文件才能查看完整的电子邮件。\n\
+  \n既然我们已经学习了在哪里查找电子邮件工件以及如何分析它们，我们将在本章的下一部分重点关注消息取证。\n\n## 了解消息取证\n\n**短消息服务（SMS）**\
+  \ 消息和**即时消息（IM）** 聊天应用程序（例如 **WhatsApp** 或 **Telegram**）可能包含非常重要的信息，有助于任何类型的调查。\n\
+  \n- `/private/var/mobile/Library/Preferences/com.apple.madrid.plist` 属性列表包含一组与 SMS、iMessage\
+  \ 和 FaceTime 相关的属性和用户偏好设置。特别是，该 plist 在 allAliases 键下包含一个字典，指示连接到 iMessage 帐户的所有别名，例如电话号码和电子邮件地址。\n\
+  - `/private/var/mobile/Library/Preferences/com.apple.MobileSMS.plist` 存储与 SMS 和\
+  \ iMessage 相关的偏好设置，包括 KeepMessageForDays 键，该键指示保留期限。默认情况下，此值设置为“永久”。\n- `/private/var/mobile/Library/SMS/Attachments/`\
+  \ 文件夹，顾名思义，包含通过 MMS 或 iMessage 发送的附件，例如照片、视频和音频录音。\n- `/private/var/mobile/Library/SMS/Drafts/`\
+  \ 文件夹存储草稿消息和待发送消息（用户已发送但由于例如没有连接而导致 iOS 未发送的消息）。\n- `/private/var/mobile/Library/SMS/sms.db`\
+  \ 数据库存储所有消息（SMS 和 iMessage）的所有元数据和内容。\n- 在**首次解锁前（BFU）** 接收到的消息存储在一个临时数据库中，该数据库位于\
+  \ `/private/var/mobile/Library/SMS/sms-temp.db`。\n\n我们将重点研究 sms.db 文件，学习如何从 message、chat_message_join、chat\
+  \ 和 attachment 表中提取所有消息及其元数据。以下 SQL 查询可以实现这一点：\n\n```\nSELECT\nCASE when LENGTH(chat_message_join.message_date)=18\
+  \ THEN\n    datetime(chat_message_join.message_date/100000000 + 978307200,'unixepoch','localtime')\n\
+  \    when LENGTH(chat_message_join.message_date)=9 THEN\n    datetime(chat_message_join.message_date\
+  \ + 978307200,'unixepoch','localtime')\n    else 'NA'\n```\n\n\n\n\n\n![](img/0b17a17d4cb56b1c25763a396dd83117_223_0.png)\n\
+  \nFigure 8.5 – Extracting message data from sms.db\n\n首先需要记住的是，自 **iOS 11** 起，Apple\
+  \ 开始将时间戳存储为 18 位数字，而此前消息时间戳仅为九位数字长。这意味着 sms.db 数据库很可能同时包含九位和 18 位时间戳。我们的查询首先验证时间戳的长度，并据此显示消息发送的日期和时间。然后，我们提取\
+  \ text 列和 service 列，后者指示消息是传统 SMS 还是 iMessage。account 和 account_login 列显示用户发送或接收消息时使用的电话号码或电子邮件地址。chat_identifier\
+  \ 列存储用户正在通信的对方的电话号码或电子邮件地址。最后，Date Read、Message Direction 和 Last Read 列不言自明。\n\n\
+  在涉及 SMS 和 iMessage 取证的调查中，不应忽视 Drafts 和 Attachments 文件夹，因为这些可能涉及 WhatsApp 语音通话和视频通话。这些数据库也包含在本地（iTunes）备份中。\n\
+  \n- **Telegram** 是一款跨平台即时通讯应用，兼容包括桌面电脑在内的大量设备。聊天和消息同时存储在本地设备和 Telegram 服务器上。还可选择创建秘密聊天，其中数据永远不会存储在应用服务器上。Telegram\
+  \ 证据不包含在本地或 iCloud 备份中，只能通过完整文件系统获取获得。证据和日志可找到在 `/private/var/mobile/Containers/Data/Application/<APP_GUID>/`\
+  \ 和 `/private/var/mobile/Containers/Shared/AppGroup/<APP_GUID>/`。聊天和消息，包括秘密聊天，可在\
+  \ `db_sqlite` 数据库中找到。\n\n- **Signal** 是一款适用于移动设备和桌面电脑（包括 Linux）的安全加密消息应用。Signal\
+  \ 上的所有通信，如消息、群组聊天、照片和文件传输，均采用端到端加密。Signal 对话不会存储在其服务器上，不会在本地备份中提供，也无法将数据备份到 iCloud。Signal\
+  \ 的数据库以加密形式存储在本地设备上。访问这些证据的唯一方法是执行完整文件系统获取并解密钥匙串以访问加密密钥，进而解密数据库。日志文件和用户偏好设置存储在 `/private/var/mobile/Containers/Data/Application/<APP_GUID>/`。加密数据库\
+  \ `signal.sqlite` 可在 `/private/var/mobile/Containers/Shared/AppGroup/<APP_GUID>/`\
+  \ 找到。\n\n在本节中，我们简要讨论了第三方消息应用，并了解了这些应用如何以及在何处存储对话数据。在本章的最后一部分，我们将学习如何尝试恢复已删除的消息。\n\
+  \n### Recovering deleted messages\n\n在移动设备调查中最常见的任务之一是尝试恢复用户删除的数据，例如聊天和消息，因为这些可能包含无价的证据。\n\
+  \n在本章中，我们了解到 SMS 消息和来自第三方应用的聊天都存储在 SQLite 数据库中；这意味着恢复已删除聊天的能力有效地取决于能否从 SQLite 数据库中恢复任何记录。\n\
+  \n在第 4 章《Working with Common iOS Artifacts》中，我们讨论了恢复已删除记录的几种选项，例如：\n\n- 使用十六进制查看器解析数据库\n\
+  - 字符串 carving\n- 分析预写日志 Write Ahead Log (WAL) 文件\n- 使用 FQLite 等取证工具从空闲块和未分配空间中恢复数据\n\
+  \n所有这些解决方案都可以有效恢复已删除消息，但前提是记录从数据库中清除后数据库未被 vacuum。\n\n**Tip**\n\n需要注意的是，要尝试数据恢复，数据库应通过完整文件系统获取提取，而不是逻辑获取，因为后者将包含一个在备份过程中从头重建的已\
+  \ vacuum 数据库副本。研究还表明，自 iOS 11 以来，sms.db 数据库会定期进行 vacuum，因此 SMS 消息和 iMessages 可能在检查员有机会获取设备之前就被清除。\n\
+  \n在下一节中，我们将介绍一种可用于恢复已删除消息的开源工具。\n\n### Detecting deleted messages using Mirf\n\n\
+  有时恢复已删除消息根本不可能；然而，在这种情况下，即使无法恢复其内容，也可能检测到用户删除了消息这一事实。\n\n聊天和消息以单个记录的形式存储在 SQLite\
+  \ 表中；每个记录通过一个唯一的、递增的标识符进行识别，称为 **primary key**。例如，在以下屏幕截图中，该截图包含从 WhatsApp ChatStorage.sqlite\
+  \ 数据库提取的数据，单个消息使用存储在 Z_PK 列中的标识符引用：\n\n![](img/0b17a17d4cb56b1c25763a396dd83117_227_0.png)\n\
+  \nFigure 8.6 – The Z_PK column stores a unique identifier for each message\n\n通过分析\
+  \ Z_PK 列中的值，检查员可以查找任何缺失的记录：在前一个示例中，与值 5 关联的记录丢失。这足以说明一条消息已被删除。即使无法恢复实际消息，也可以通过查看前后记录的时间戳来推断消息发送或接收的大致时间范围。值得庆幸的是，这一过程可以通过使用名为\
+  \ **Missing Record Finder for SQLite Databases (Mirf)** 的开源 Python 脚本实现自动化，该脚本可通过发现间隙来帮助检测是否删除了任何数据行。\n\
+  \n![](img/0b17a17d4cb56b1c25763a396dd83117_229_0.png)\n\nFigure 8.7 — Running Mirf\
+  \ to detect deleted messages\n\n在这种情况下，识别出一条缺失记录，包括 UTC 时区的日期范围和缺失记录编号。\n\n### Summary\n\
+  \n在本章中，我们了解了 iOS 如何在设备上存储电子邮件和消息，以及调查人员可以期望找到哪些证据。\n\n首先，我们介绍了 Apple Mail 应用并发现了电子邮件的存储位置。我们分析了相关的\
+  \ SQLite 数据库以提取电子邮件元数据，并学习了如何解析 EML 文件以查看电子邮件正文。\n\n本章后半部分，我们通过查看 iOS 如何在 sms.db\
+  \ 数据库中存储 SMS 和 iMessage 数据以及如何使用 SQL 查询提取所有消息及其元数据，专注于消息取证。然后，我们介绍了第三方消息应用的主题，并重点关注其中三个：WhatsApp、Telegram\
+  \ 和 Signal。我们了解了可以从这些应用中提取哪些数据以及最相关的 SQL 数据库。\n\n最后，在本章的最后一节中，我们讨论了尝试恢复已删除消息的不同选项，例如使用名为\
+  \ Mirf 的开源工具，该工具可检测 SQL 表中记录之间的间隙。\n\n在下一章中，我们将学习有关照片、视频和音乐取证的所有内容。\n"
+- '## Chapter 9: Photo, Video, and Audio Forensics
+
+
+  在本书的前几章中，我们专注于识别和分析存储在系统生成证据中的移动证据，例如数据库、PLIST 和日志文件。然而，任何类型的调查通常还涉及分析设备上找到的用户生成内容，例如媒体文件。
+
+
+  现代 iOS 设备可能包含数万个媒体文件，每个文件都关联着对调查至关重要的独特元数据。在本章中，我们将学习如何识别和分析照片、视频和音频文件等多媒体内容。
+
+
+  我们将从媒体取证的介绍开始，讨论照片、视频和音频录音在 iOS 设备上的存储位置。然后，我们将学习如何分析媒体元数据以获得有意义的见解，无论是从文件本身还是从相应的数据库。在本章的最后一部分，我们将学习如何分析用户行为，以了解用户通过
+  Apple 应用（如 Music 和 Safari）以及第三方应用（如 Spotify 或 Netflix）访问或观看了哪些媒体。
+
+
+  在本章中，我们将涵盖以下主题：
+
+
+  - Introducing media forensics
+
+  - Analyzing photos and videos
+
+  - Introducing EXIF metadata
+
+  - Analyzing user viewing activity
+
+
+  ### Introducing media forensics
+
+
+
+
+
+
+  我们首先来指出一些最常见的媒体相关工件存放位置：
+
+
+  - `/private/var/mobile/Media/DCIM/1**APPLE/`：此文件夹存储由用户创建或保存到设备的照片和视频。通常，图像以 **JPG**、**PNG**
+  或 **HEIC** 格式存储，视频则以 **MP4** 或 **MOV** 文件存储。
+
+  - `/private/var/mobile/Media/PhotoData/`：PhotoData 文件夹存储与媒体元数据相关的若干工件，例如 `Photos.sqlite`
+  数据库、**缩略图**（存储在 `/private/var/mobile/Media/PhotoData/Thumbnails/V2/DCIM/1**APPLE/IMG_****.JPG/****.JPG`）以及**相册**数据。通常，该文件夹会是设备上存储的任何媒体文件的主要证据来源。我们将在下一节深入分析此文件夹。
+
+  - `/private/var/mobile/Media/PhotoData/PhotoCloudSharingData/`：PhotoCloudSharingData
+  文件夹包含与“共享相簿”相关的工件，这是 iOS 的一项功能，允许用户轻松共享照片集。每个共享相簿都有一个子文件夹，其中包含 `Info.plist` 文件（包含相簿元数据，如名称、所有者等）和
+  `DCIM_CLOUD.plist`（存储相簿中照片的数量）。
+
+  - `/private/var/mobile/Media/Recordings/*`：此文件夹包含用户录制的**语音备忘录**。
+
+
+  以下截图显示了 PhotoData 文件夹中可以找到的文件和文件夹：
+
+
+  ![](img/0b17a17d4cb56b1c25763a396dd83117_234_0.png)
+
+
+  图 9.1 – PhotoData 文件夹包含媒体元数据
+
+
+  每个媒体资产都有两种相关的元数据——**EXIF 元数据**包含诸如生成图像的设备或位置等详细信息，存储在文件本身中；而 iOS 生成的元数据则存储在 `Photos.sqlite`
+  数据库中。
+
+
+  在下一节中，我们将分析该数据库，以了解如何为设备上存储的每张图像或视频提取有意义的信息。
+
+
+  ## 分析照片和视频
+
+
+  每当通过设备相机拍摄照片或视频，或将其保存到设备时，iOS 都会对其进行分析并生成大量元数据，这些元数据存储在 `Photos.sqlite` 数据库中。
+
+
+  以下是该过程中发生的事件列表：
+
+
+  1. 首先，新拍摄或保存的照片或视频以 JPG、HEIC、MP4 或 MOV 文件形式保存在 `/private/var/mobile/Media/DCIM/1**APPLE/`
+  中。随着设备上存储的照片或视频增多，文件夹名称会向上迭代（100APPLE、101APPLE、102APPLE，依此类推）。
+
+  2. 此外，还会创建 `PreviewWellImage.tiff` 图像并存储在 `/private/var/mobile/Media/PhotoData/MISC/`
+  中。该图像是 **照片** 应用中显示的缩略图，用于展示最近的一张图像。
+
+  3. 当新媒体被存储时，会在 Photos.sqlite 数据库的 ZGENERICASSET 表中创建一条新记录。从 iOS 14 开始，该表改名为 ZASSET。新记录将包含诸如内容保存时的日期和时间、上次编辑的日期和时间、文件名以及色彩空间等元数据。
+
+  4. 在后台，iOS 开始通过运行若干算法（如人脸和物体识别）来处理新创建的媒体。如果 iOS 在媒体文件中识别到的人脸关联了姓名，该照片或视频还会显示在 **照片**
+  应用中的 **人物** 相簿中。分析结果随后存储在 Photos.sqlite 数据库和 mediaanalysis.db 中，后者位于 `/private/var/mobile/Media/MediaAnalysis/`。
+
+
+  如你所见，这其中涉及很多处理过程！既然我们已经知道了工件的位置，接下来将重点分析照片和视频。
+
+
+  ## 理解 Photos.sqlite
+
+
+  Photos.sqlite 数据库包含 60 多个数据表，数据量庞大，是 iOS 取证中发现的最大数据集之一。对该数据库的详细分析超出了本书的范围，因此我们将重点从
+  ZGENERICASSET（iOS 14 和 15 中为 ZASSET）表中提取最重要的元数据片段。
+
+
+  使用你选择的工具（例如 *DB Browser for SQLite*）打开文件后，运行以下查询：
+
+
+  ```
+
+  SELECT
+
+  Z_PK,
+
+  DATETIME(ZDATECREATED + 978307200, ''UNIXEPOCH'') AS "Created
+
+  ```
+
+
+  |  | AlbumTitle | CreatorBundleID | EditorBundleID | Directory | Uniformi |
+
+  |---|---|---|---|---|---|
+
+  | 22 | 720D5959.jpg | Imgur | NULL | NULL | DCIM/100APPLE | public.jpeg |
+
+  | 23 | 720D5959.jpg | Imgur | NULL | NULL | DCIM/100APPLE | public.jpeg |
+
+  | 24 |  | NULL | NULL | com.apple.ScreenshotServicesService | DCIM/100APPLE | public.jpeg
+  |
+
+  | 25 | A30D6460.jpg | NULL | NULL | NULL | DCIM/100APPLE | public.jpeg |
+
+  | 26 | D46310D.jpg | NULL | NULL | NULL | DCIM/100APPLE | public.jpeg |
+
+  | 27 | I-13D1A552AFDF.jpg | NULL | NULL | NULL | DCIM/100APPLE | public.jpeg |
+
+  | 28 |  | NULL | com.reddit.Reddit | NULL | DCIM/100APPLE | public.jpeg |
+
+  | 29 |  | NULL | org.whispersystems.signal | NULL | DCIM/100APPLE | public.png |
+
+  | 30 |  | NULL | NULL | NULL | DCIM/100APPLE | public.jpeg |
+
+  | 31 |  | NULL | NULL | com.apple.ScreenshotServicesService | DCIM/100APPLE | public.jpeg
+  |
+
+
+  图 9.4 – CreatorBundleID 和 EditorBundleID 指示资产的来源
+
+
+  - SavedAssetType 列指示该资产是在设备上创建的，还是从其他来源同步的。
+
+  - Favorite、Hidden_File 和 TrashState 指示媒体资产是否被添加到“个人收藏”相簿、用户是否选择隐藏它，或者是否被标记为删除。
+
+  - ShareCount 和 LastSharedDate 列指示某个媒体资产被共享的次数，以及最后一次共享的时间戳：
+
+
+  | rashDate | ViewCount | PlayCount | ShareCount | LastSharedDate | FileModificationDate
+  | Has_Adjustments | AdjustmentsTimeS |
+
+  |---|---|---|---|---|---|---|---|
+
+  | 31 |  | 2 | 0 | 0 | NULL | 2020-04-06 15:02:38 | Yes | 2020-03-25 01:53 |
+
+  | 32 |  | 1 | 0 | 0 | NULL | 2020-04-06 15:02:38 | No | NULL |
+
+  | 33 |  | 2 | 0 | 0 | NULL | 2020-04-19 18:25:57 | No | NULL |
+
+  | 34 |  | 1 | 0 | 0 | NULL | 2020-04-06 15:02:38 | No | NULL |
+
+  | 35 |  | 1 | 0 | 1 | 2020-04-05 19:13:52 | 2020-04-19 18:25:57 | No | NULL |
+
+  | 36 |  | 1 | 0 | 1 | 2020-04-05 19:13:52 | 2020-04-19 18:25:57 | No | NULL |
+
+  | 37 |  | 1 | 0 | 1 | 2020-03-27 01:17:03 | 2020-04-19 18:25:58 | No | NULL |
+
+  | 38 |  | 1 | 0 | 1 | 2020-03-27 01:17:03 | 2020-04-19 18:25:58 | No | NULL |
+
+  | 39 |  | 1 | 0 | 1 | 2020-03-27 01:17:03 | 2020-04-19 18:25:58 | No | NULL |
+
+  | 40 |  | 0 | 0 | 0 | NULL | 2020-03-27 00:38:01 | No | NULL |
+
+
+  图 9.5 – ShareCount 列指示媒体资产是否与其他设备共享
+
+
+  - 通过检查 `Has_Adjustments` 列，调查人员可以了解媒体资产是否在设备上被调整、编辑或裁剪。
+
+  - 如果定位服务已启用，`Latitude` 和 `Longitude` 列会存储拍摄照片或视频地点的坐标。
+
+  - 最后，`UUID` 列指示资产的唯一标识符。
+
+
+  从该查询的结果可以看出，数据库中存储了大量元数据；但这并不是媒体元数据的唯一来源。在下一节中，我们将重点从媒体文件本身提取信息。
+
+
+  ## 介绍 EXIF 元数据
+
+
+  `Photos.sqlite` 数据库可能是一个巨大的元数据来源，但在某些情况下，数据库可能不可用，调查人员只能访问媒体文件。幸运的是，图像和视频通常包含嵌入的元数据，即所谓的**可交换图像文件格式（EXIF）**。
+
+
+  EXIF 元数据可以为调查人员提供大量信息，例如：
+
+
+  - 设备型号
+
+  - 相机设置
+
+  - 曝光和镜头规格
+
+  - 时间戳
+
+  - 位置数据
+
+  - 海拔和方位
+
+  - 速度参考
+
+
+
+
+
+
+  在 Windows 上，您可以通过右键单击媒体文件并选择 **属性** 来查看文件的元数据。然后，单击 **详细信息** 选项卡并向下滚动以查看 EXIF 数据。免费工具
+  exiftool 也可用于相同目的。它可以从 http://exiftool.org 下载，并且兼容 Windows 和 macOS。
+
+
+  在 macOS 上，您只需使用 **预览** 打开文件即可查看 EXIF。打开后，单击 **工具** 并选择 **显示检查器**。然后，单击 **Exif**
+  选项卡。
+
+
+  在大多数 Linux 发行版中，可以使用 exif 命令行工具来实现此目的。
+
+
+  到目前为止，您应该对 EXIF 元数据是什么、它如何有利于调查以及如何分析它有了一个大致的了解。
+
+
+  ## 分析用户查看活动
+
+
+  到目前为止，我们一直专注于分析照片和视频媒体资产；然而，调查人员可能不仅想了解设备上存储了哪些媒体，还想了解用户查看了哪些媒体。
+
+
+  这可能包括以下任何内容：
+
+
+  - 通过 Safari 或其他浏览器流式传输的音频/视频
+
+  - 通过 Apple Music 或第三方应用（如 Spotify）播放的音乐
+
+  - 通过第三方应用（如 YouTube 和 Netflix）播放的视频
+
+
+  我们将在 *第 5 章*、*生活模式取证* 中讨论的 KnowledgeC.db 数据库跟踪用户日常活动的大部分内容，包括与音频或视频播放相关的事件。
+
+
+  感兴趣的表是 ZOBJECT 表，它存储设备事件，并按 *流名称* 组织。每当 iOS 检测到用户启动了媒体播放时，就会触发一个 /media/nowPlaying
+  事件。
+
+  '
+- '## 第 10 章：分析第三方应用
+
+
+  App Store 于 2008 年发布，允许用户在其 iOS 设备上下载第三方应用。截至 2021 年，可供下载的应用超过 450 万个。一旦应用在商店中可用，开发人员可以发布包含错误修复或新功能的更新，这些更新将自动安装在设备上。这从取证角度来看存在问题，因为许多取证工具无法跟上应用更新的速度，而有些应用根本不受支持。
+
+
+  当需要对调查中的第三方应用程序进行分析时，检查员很可能不得不求助于手动研究、验证和分析工件，而这正是本章将要讨论的内容。
+
+
+  我们将首先学习如何了解哪些应用已安装在设备上，它们位于何处，以及调查人员应在哪里查找任何工件。然后，我们将介绍动态应用程序分析并讨论可用于研究和验证目的的几种工具。最后，我们将深入研究一些最受欢迎的第三方应用，例如
+  Facebook、Twitter、Instagram、YouTube 等。
+
+
+  在本章中，我们将涵盖以下主题：
+
+
+  - 介绍 iOS 应用程序
+
+  - 动态应用程序分析
+
+  - 实用第三方应用程序取证
+
+
+  ### 介绍 iOS 应用程序
+
+
+  图 10.1 – 数据容器的目录结构
+
+
+  Documents 文件夹包含用户创建的工件，Library 文件夹由应用程序用于存储其数据、设置和首选项，tmp 文件夹存储任何临时文件，而 SystemData
+  文件夹通常为空。
+
+
+  如前一个屏幕截图所示，Applications 文件夹包含设备上安装的每个应用的子文件夹；然而，由于文件夹按应用程序的 GUID 命名，因此仅通过查看目录结构就无法了解哪个应用是哪个。
+
+
+  在以下各节中，我们将学习如何将应用程序与其 GUID 相关联，以了解设备上安装了哪些应用。
+
+
+  ### 识别已安装的应用
+
+
+  位于 /private/var/mobile/Library/FrontBoard/ 的 applicationState.db 数据库跟踪设备上安装的任何应用程序的
+  Bundle ID，包括已删除的应用程序。通过查询此数据库，检查员不仅可以了解设备上当前安装了哪些应用，还可以了解其工件的位置。
+
+
+  数据库包含三个感兴趣的表：
+
+  application_identifier_tab、key_tab 和 kvs。第一个表包含在某个时间点安装在设备上的应用程序列表，以其 Bundle ID
+  也称为其应用程序标识符标识。
+
+
+  以下屏幕截图显示了基于我们示例数据集的表内容：
+
+
+  ![](img/0b17a17d4cb56b1c25763a396dd83117_250_0.png)
+
+
+  图 10.2 – 来自 applicationState.db 的 application_identifier 表
+
+
+  kvs 表包含两个感兴趣的列：application_identifier，它将记录映射到上一个表中的 Bundle ID，以及名为 value 的列，其中包含二进制
+  BLOB。
+
+
+  key_tab 表是描述 BLOB 内容的指南。深入研究此表超出了本节的范围，但请记住，key_tab 值为 1 表示相应的应用程序仍安装在设备上。
+
+
+  基于此逻辑，以下 SQL 查询将提取设备上当前安装的所有应用程序的 Bundle ID：
+
+
+  ```
+
+  SELECT
+
+  application_identifier_tab.[application_identifier],
+
+  ```
+
+  ```
+
+  kvs.[value]
+
+  FROM kvs, key_tab,application_identifier_tab
+
+  WHERE key_tab.[id] = ''1''
+
+  AND kvs.[key] = key_tab.[id]
+
+  AND application_identifier_tab.[id] = kvs.
+
+  [application_identifier]
+
+  ORDER BY application_identifier_tab.[id];
+
+  ```
+
+
+  此查询的结果显示在以下屏幕截图中：
+
+
+  ![](img/0b17a17d4cb56b1c25763a396dd83117_251_0.png)
+
+
+  图 10.3 – 查询打印所有已安装应用程序的 bundle ID
+
+
+  如您所见，查询打印了所有已安装应用的 Bundle ID，包括随设备预装的 Apple 开发的应用。
+
+
+  value 列包含一个 BLOB，我们将在下一节中使用它来查找应用程序存储其数据的位置。
+
+
+  ### 跟踪应用程序 GUID
+
+
+  以下屏幕截图显示了通过十六进制查看器显示的二进制 BLOB：
+
+
+  单元格中当前数据类型：二进制
+
+
+  1061 字节
+
+
+  图 10.5 – BLOB 包含二进制 PLIST
+
+
+  通过查看数据，可以看出一些字符串，例如路径和位置。
+
+
+  现在，让我们提取 BLOB 并查看生成的 PLIST。请参阅第 4 章，处理常见的 iOS 工件，以了解如何将 BPLIST 转换为基于 XML 的 PLIST。
+
+
+  以下屏幕截图显示了将数据转换为 XML 然后进行 base-64 解码后的 PLIST：
+
+
+  ![](img/0b17a17d4cb56b1c25763a396dd83117_254_0.png)
+
+
+  图 10.6 – PLIST 包含与应用容器相关的详细信息
+
+
+  如您所见，我们可以从 PLIST 中提取应用数据容器的路径。在我们的示例数据集中，如果我们找到 `/private/var/mobile/Containers/Data/Application/71B2EBD8-B6DF-4118-908C-7B2976A3019E`
+  文件夹，我们将找到 Instagram 的工件。
+
+
+  到目前为止，我们已经学习了如何识别安装在 iOS 设备上的应用以及数据存储在哪里。在以下各节中，我们将深入分析第三方应用程序。
+
+
+  ### 动态应用程序分析
+
+
+  第三方应用程序可能是证据工件的巨大来源，因为大多数应用程序都会收集、存储和处理大量用户数据。不幸的是，调查人员很可能不得不求助于手动分析这些应用程序，因为取证工具不可能支持每个应用的每次更新。即使工具
+  *确实* 支持某个应用程序，仍应进行手动检查以验证工具的结果并确保所有数据都已正确解析。
+
+
+  通常，在进行检查之前，检查员必须对感兴趣的应用程序进行一些研究，以了解它是如何工作的，它存储什么数据以及存储在哪里。这需要使用研究设备安装该应用并对其进行分析。
+
+
+  在分析移动应用程序时，调查人员没有标准流程来检查数据，因为每个应用程序的执行方式都不同；在本章中，我们将学习一种可能的方法，称为 **动态分析**。
+
+
+  一般来说，应用程序分析有两种方法：
+
+
+  - **静态分析** 涉及深入查看应用程序的代码，以识别已知函数和 API 调用，从而有助于确定应用程序的确切工作原理。
+
+  - **动态分析** 涉及在受控环境中运行应用程序并分析应用程序的行为以了解其如何
+
+
+
+  一个可简化定位应用容器任务的简单工具。
+
+
+  ## 使用 cda 定位应用的容器
+
+
+  在本章的第一部分，我们学习了如何查询 `applicationState.db` 数据库来定位 iOS 应用存储数据的位置；但是，如果取证人员能够直接访问设备，则可以使用
+  cda 工具来快速识别应用的容器。
+
+
+  该工具可从 [https://github.com/ay-kay/cda](https://github.com/ay-kay/cda) 下载，使用 Objective-C
+  编写；按照项目页面上的说明即可编译源代码文件。
+
+
+  为了让这一过程更简单，已针对 64 位 ARM 设备编译好的二进制可执行文件可以从 [https://github.com/tiepolocgian/iOS-Tools](https://github.com/tiepolocgian/iOS-Tools)
+  下载。
+
+
+  下一步是将 cda 二进制文件复制到设备上。这可以通过 scp 命令完成，该命令通过 **SSH 连接**执行文件传输。假设你已经下载了二进制文件并解压了 ZIP
+  文件，请按照以下步骤操作：
+
+
+  - 1. 在本地工作站上打开终端 shell，并使用 `cd` 命令进入 `iOS_tools` 文件夹。
+
+  - 2. 运行 `scp -P 4242 cda root@127.0.0.1:/usr/bin/` 命令，然后按 *回车键*。系统会提示你输入设备密码，密码为
+  `alpine`。输入并按下 *回车键*。
+
+  - 3. 如果命令成功，cda 二进制文件将被复制到 iOS 设备上的 `/usr/bin/` 文件夹中。通过将该可执行文件放在该文件夹中，可以从设备上的任何位置调用该工具。
+
+  - 4. 为确保其正常工作，请在连接到设备的终端 shell 中运行 `ls -la /usr/bin/` 命令。你会看到一个很长的文件列表，其中包含 cda。
+
+
+  工具复制到设备后，我们可以使用它快速定位任何已安装的应用程序。只需运行 cda，后跟应用的名称（或其部分名称）。
+
+
+  例如，在一台装有 **Instagram** 应用的测试设备上，我们可以通过运行以下命令来查找该应用存储数据的位置：
+
+
+  ```
+
+  iPhone:~ root# cda instagram
+
+  [1] Instagram (com.burbn.instagram)
+
+  Bundle: /private/var/containers/Bundle/Application/D054F8DC-95A4-4489-BBBD-68F3E457A575
+
+  Data:
+
+  /private/var/mobile/Containers/Data/Application/2A2FEE52-B59D-42F1-A810-333364E12525
+
+  ```
+
+
+  如你所见，该工具会向取证人员提供与该应用程序关联的容器列表。这包括**数据容器**（应用存储用户数据和偏好的位置）和**群组容器**（包含同一群组应用之间共享数据的位置）。
+
+
+  定位应用的容器通常是动态分析的第一步，因为这会缩小检查范围，使取证人员只需关注一两个文件夹。在下一节中，我们将学习如何监视这些文件夹，以了解应用如何以及在哪里存储其数据。
+
+
+  ## 使用 fsmon 监视文件系统事件
+
+
+  在前文中，我们介绍了动态应用分析，并了解到该过程的第一步包括运行应用并实时监视其行为。值得监视的一个方面是应用如何与文件系统交互，包括检测应用写入、编辑或删除的任何文件。
+
+
+  通过使用文件系统监视器，取证人员可以运行应用，执行诸如输入一些数据（用户认证、表单等）之类的任务，并可视化应用如何响应用户输入。这有助于他们了解哪些文件存储了哪些数据。
+
+
+  最流行的文件系统监视工具之一是 `fsmon`，这是一个由 *Sergi Álvarez* 开发的开源工具，支持许多操作系统，包括 **Linux**、**macOS**、**Android**，当然还有
+  **iOS**。该工具可以从 GitHub 下载：https://github.com/nowsecure/fsmon。
+
+
+  针对 64 位 ARM 设备的预编译二进制文件也可以从 https://github.com/tiepologian/iOS-Tools 下载。
+
+
+  第一步是将 `fsmon` 复制到设备上，就像我们对 `cda` 工具所做的那样：
+
+
+  - 1. 在本地工作站上打开终端 shell，如果你使用的是预编译二进制文件，请使用 `cd` 命令进入 `ios_tools` 文件夹。
+
+  - 2. 运行 `scp -P 4242 fsmon root@127.0.0.1:/usr/bin/` 命令，然后按 *回车键*。输入设备密码并按下 *回车键*。
+
+  - 3. 如果命令成功，`fsmon` 二进制文件将被复制到 iOS 设备上的 `/usr/bin/` 文件夹中。
+
+
+  要运行该工具，请键入 `fsmon`，后跟要监视的位置路径。例如，要运行 `fsmon` 并监视整个文件系统上的所有事件，请键入 `fsmon /`。以下截图显示了该工具的输出：
+
+
+  ![](img/0b17a17d4cb56b1c25763a396dd83117_261_0.png)
+
+
+  图 10.7 – fsmon 工具输出所有文件系统事件
+
+
+  如你所见，`fsmon` 以不同的颜色显示文件系统上发生的任何事件，具体取决于事件类型。以黄色显示的事件表示文件被*编辑*或其属性被*修改*，红色事件表示文件被*删除*，紫色事件表示*新建*的文件。
+
+
+  要了解应用在底层是如何工作的，请使用 `cda` 查找应用的数据容器所在位置。然后，使用 `fsmon` 监视该位置，并正常运行应用，执行典型的用户操作。监视工具的输出，以了解在执行特定操作后创建或编辑了哪些文件。
+
+
+  最后，在本章的下一节中，我们将简要介绍如何监视网络活动。
+
+
+  ## 使用 mitmproxy 监视网络活动
+
+
+  在执行动态应用分析时，你可能会遇到需要查看应用正在发出哪些 **API 调用**、连接哪些服务器，以及更广泛地查看通过网络发送或接收哪些数据的情况。
+
+
+  一种可能的解决方案是使用**代理服务器**来拦截和解码通过 HTTPS/SSL 发送的加密数据，例如 **mitmproxy**。
+
+
+  mitmproxy 是一个开源交互式 **HTTPS 代理**，位于客户端（iOS 应用）和服务器之间。**中间人（MITM）**是代理服务器用来拦截流量的技术名称：其原理是
+  `mitmproxy` 对客户端假装自己是服务器，对服务器假装自己是客户端，同时解码来自双方的流量。解密流量是通过在设备上安装数字证书实现的，该证书将 `mitmproxy`
+  注册为受信任的**证书颁发机构（CA）**。
+
+
+  要使用 `mitmproxy`，你必须手动将证书安装到 iOS 设备上，然后将设备配置为将流量发送到代理服务器。最后，你必须在工作站上运行代理服务器，以便监视和分析网络活动。
+
+
+  要安装 `mitmproxy`，请访问 https://mitmproxy.org 并下载安装程序。如果你的工作站安装了 `brew`，可以在终端中运行以下命令来安装代理：
+
+
+  ```
+
+  brew install mitmproxy
+
+  ```
+
+
+  服务器安装完成后，在终端中运行 `mitmproxy` 来启动它。
+
+
+  服务器启动并运行后，需要在 iOS 设备上安装 CA 证书。你可以通过设备的浏览器访问 http://mitm.it 来完成此操作；但是，在安装证书之前，需要配置其网络设置，以允许流量从设备发送到代理。请按照以下步骤操作：
+
+
+  - 1. 在设备上，打开**设置 | 无线局域网**，点击无线网络以打开**高级设置**。
+
+  - 2. 向下滚动到 **HTTP 代理**，然后点击**配置代理**。
+
+  - 3. 选择**手动**，在**服务器**字段中输入运行 mitmproxy 的工作站的 IP 地址。在**端口**字段中输入 8080。
+
+  - 4. 在设备上访问 [mitm.it](http://mitm.it)，并按照说明安装 CA 证书。
+
+  - 5. 导航至**设置 | 通用 | 关于 | 证书信任设置**。找到该证书，然后打开开关以启用它。
+
+
+  如果一切设置正确，请打开设备上的任何应用并监视工作站上的终端：你应该会看到进出设备的网络流量。
+
+
+  以下截图显示了 mitmproxy 拦截网络流量的情况：
+
+
+  ![](img/0b17a17d4cb56b1c25763a396dd83117_263_0.png)
+
+
+  图 10.8 – 使用 mitmproxy 拦截网络流量
+
+
+
+
+
+
+  一般来说，代理服务器是了解 iOS 应用程序如何与网络交互的绝佳选择。然而，在某些情况下，这种方法可能无法奏效。我们将在下一节讨论更高级的选项。
+
+
+  ## 高级应用程序分析
+
+
+  执行动态应用程序分析通常是一项简单的任务；然而，某些应用程序，尤其是像 **Instagram** 或 **Twitter** 这样流行的第三方社交网络，具有一些内置机制来防止
+  MITM 攻击。
+
+
+  其中之一是证书钉扎，这本质上意味着 mitmproxy 的证书将不会被应用程序接受。在这种情况下，监控应用程序的网络流量根本就不会起作用。这是因为数字证书将不会被信任，应用程序将无法连接到其服务器。
+
+
+  唯一的变通方法是将自定义代码注入到应用程序中以改变其工作方式。最受欢迎的代码插桩工具包之一是 **Frida**，这是一个开源工具，允许您将 JavaScript
+  代码注入到任何 iOS 应用程序中。Frida 允许检查人员追踪应用程序调用了哪些函数，打印或修改函数的参数，并在函数调用之前或之后 **注入其代码**。请记住，运行此工具需要设备越狱。
+
+
+  对 Frida 所有功能的完整介绍超出了本书的范围；您可以通过遵循 [https://frida.re/docs/home/](https://frida.re/docs/home/)
+  的教程开始使用该工具，或阅读 *Alexander Fadeev* 的博客文章；例如，[https://fadeevab.com/quick-start-with-frida-to-reverse-engineer-any-ios-application/](https://fadeevab.com/quick-start-with-frida-to-reverse-engineer-any-ios-application/)。
+
+
+  从取证的角度来看，Frida 可以与其他工具一起使用，例如 **Meduza**，以绕过证书钉扎并允许检查人员分析任何类型的 iOS 应用。Meduza 是由
+  *Dima Kovalenko* 开发的开源工具，它分为两个步骤：首先，它分析应用程序并收集应用程序用于连接到其
+
+
+  ## 社交网络应用程序
+
+
+  在本节中，我们将重点关注三个主要的社交网络应用程序，**Facebook**、**Instagram** 和 **Twitter**。**Reddit** 应用也包含在此类别中。
+
+
+  ## Facebook
+
+
+  下表显示了 Facebook 最常见的 artifacts：
+
+
+  | Artifact | Description |
+
+  |---|---|
+
+  | Library/Preferences/com.facebook.Facebook.plist | 用户偏好设置和已登录用户的详细信息（电子邮件和 Facebook
+  ID）。 |
+
+  | Library/Caches/com.facebook.Facebook.*/ | 缓存的文件和图像，例如在浏览帖子和页面时存储的媒体。 |
+
+
+  表 10.1 – 常见 Facebook artifacts
+
+
+  ## Instagram
+
+
+  下表显示了 Instagram 最常见的 artifacts：
+
+
+  ## Anno xxxj° Elizabethæ, Reginæ
+
+
+  ### An Act against such as are wilfully absent, and refuse to come to Church.
+
+
+  ### An Act for the punishment of Vagabonds, and for Relief of the Poor and Impotent.
+
+
+  ![](img/0b17a17d4cb56b1c25763a396dd83117_267_0.png)
+
+
+  | Artifact | Description |
+
+  |---|---|
+
+  | Library/Preferences/com.reddit.Reddit.plist | 用户偏好设置和已登录用户的详细信息 |
+
+  | Documents/release2/accountData/* | 包含用户数据的二进制属性列表 |
+
+  | Library/SplashBoard/Snapshots/* | 应用生成的屏幕截图 |
+
+  | Library/Caches/com.reddit.Reddit/Cache.db | 包含缓存 API 请求的 SQLite 数据库 |
+
+  | Library/Caches/com.reddit.Reddit/imagedownload/* | 包含缓存图像的 SQLite 数据库 |
+
+
+  表 10.4 – 常见 Reddit artifacts
+
+
+  现在，让我们看几个消息应用程序。
+
+
+  ## 消息应用程序
+
+
+  尽管消息应用程序已在 *第 8 章，电子邮件和消息取证* 中进行了详细讨论，但本节将为一些最常用的即时消息应用程序提供参考，例如 **WhatsApp、Telegram、Facebook
+  Messenger 和 Signal**。
+
+
+  ## WhatsApp
+
+
+  下表显示了 WhatsApp 最常见的 artifacts：
+
+
+  | Artifact | Description |
+
+  |---|---|
+
+  | Documents/com.facebook.Messenger.preferences/* | 包含用户偏好设置的 Property List |
+
+  | Library/Preferences/com.facebook.Messenger.plist | 应用程序设置 |
+
+  | Shared/AppGroup/shared_messenger_contacts/*.db | 包含联系人的 SQLite 数据库 |
+
+  | Shared/AppGroup/shared_messenger_messages/*.db | 存储聊天和消息的 SQLite 数据库 |
+
+  | Shared/AppGroup/lightspeed-imageCache/* | 缓存 |
+
+
+  表 10.7 – 常见 Facebook Messenger artifacts
+
+
+  ## Signal
+
+
+  下表显示了 Signal 最常见的 artifacts：
+
+
+  | Artifact | Description |
+
+  |---|---|
+
+  | Library/Preferences/org.whisper systems.signal.plist | 应用程序设置 |
+
+  | Library/Caches/* | 缓存的媒体和 API 请求 |
+
+  | Shared/AppGroup/Attachments/* | 媒体文件 |
+
+  | Shared/AppGroup/grdb/signal.sqlite | 包含聊天和消息的 SQLite 数据库 |
+
+
+  表 10.8 – 常见 Signal artifacts
+
+
+  接下来，我们将讨论与生产力应用程序相关的 artifacts。
+
+
+  ## 生产力应用程序
+
+
+  | Artifact | Description |
+
+  |---|---|
+
+  | Library/Preferences/com.google.Gmail.plist | 用户偏好设置、应用程序设置和已登录用户数据 |
+
+  | Library/ApplicationSupport/data/<email>/* | 包含用户数据的 SQLite 数据库 |
+
+  | Library/Caches/* | 缓存文件 |
+
+
+  表 10.13 – 常见 Gmail artifacts
+
+
+  接下来，我们将看几个多媒体应用。
+
+
+  ## 多媒体应用程序
+
+
+  本节包括允许您查看或共享媒体文件的应用程序，例如 Netflix、YouTube、Spotify、Snapchat 和 TikTok。
+
+
+  ## Netflix
+
+
+  下表显示了 Netflix 最常见的 artifacts：
+
+
+  | Artifact | Description |
+
+  |---|---|
+
+  | Library/Preferences/com.netflix.Netflix.plist | 用户偏好设置和应用程序设置 |
+
+  | Documents/store.sqlite | 包含已登录用户信息 的 SQLite 数据库 |
+
+  | Library/Caches/* | 缓存的视频流和 API 请求 |
+
+
+  表 10.14 – 常见 Netflix artifacts
+
+
+  ## YouTube
+
+
+  下表显示了 YouTube 最常见的 artifacts：
+
+
+  | Artifact | Description |
+
+  |---|---|
+
+  | Library/Preferences/com.google.ios.youtube.plist | 用户偏好设置和应用程序设置 |
+
+  | Library/Caches/* | 视频和 API 请求缓存 |
+
+
+  表 10.15 – 常见 YouTube artifacts
+
+
+  ## Spotify
+
+
+  下表显示了 Spotify 最常见的 artifacts：
+
+
+  | Artifact | Description |
+
+  |---|---|
+
+  | Library/Preferences/com.spotify.client.plist | 用户偏好设置和应用程序设置 |
+
+  | Documents/ InstrumentsModel.sqlite | 存储应用事件的 SQLite 数据库 |
+
+  | Library/ApplicationSupport/PersistentCache/mercury.db | 播放历史缓存媒体 |
+
+  | Library/ApplicationSupport/Users/<id>/recently_played | 以二进制格式的最近播放历史 |
+
+  | SplashBoard/Snapshots/* | 应用生成的屏幕截图 |
+
+
+  表 10.16 – 常见 Spotify artifacts
+
+
+  ## Snapchat
+
+
+  下表显示了 Snapchat 最常见的 artifacts：
+
+
+  | Artifact | Description |
+
+  |---|---|
+
+  | Library/Preferences/com.toyopagroup.picaboo.plist | 用户偏好设置和应用程序设置 |
+
+  | Documents/user.plist | 存储已登录用户详细信息的 Property List |
+
+  | Documents/chatConversationStore.plist | 包含聊天的 Property List |
+
+  | Documents/stories.plist | 存储故事数据的 Property List |
+
+  | Library/Caches/* | 缓存的媒体和 API 请求 |
+
+
+  表 10.17 – 常见 Snapchat artifacts
+
+
+  ## TikTok
+
+
+  下表显示了 TikTok 最常见的 artifacts：
+
+
+  | Artifact | Description |
+
+  |---|---|
+
+  | Library/Preferences/com.zhiliaoapp.musically.plist | 用户偏好设置和应用程序设置 |
+
+  | Documents/AwemelM.db | 存储 TikTok 联系人的 SQLite 数据库 |
+
+  | Documents/Aweme.db | 包含已发布 TikTok 视频的 SQLite 数据库 |
+
+  | Library/ApplicationSupport/ChatFiles/<id>/db.sqlite | 存储聊天和消息的 SQLite 数据库 |
+
+  | Library/Caches/* | 缓存的媒体和 API 请求 |
+
+
+  表 10.18 – 常见 TikTok artifacts
+
+
+  在分析第三方应用程序时，检查人员应牢记，研究和验证始终是必需的，因为应用程序不断更新，而每次更新都可能改变应用程序存储数据的方式。
+
+
+  ## 总结
+
+
+
+
+
+
+  在本章中，我们学习了第三方 iOS 应用程序。首先，我们学习了应用程序将数据存储在何处、如何识别已安装的应用程序，以及如何将应用程序与其 GUID 关联。然后，我们专注于分析第三方应用程序。我们介绍了动态分析的概念，并学习了分析应用程序的逐步流程。我们还学习了如何使用
+  cda 工具识别数据容器、如何监控文件系统变化，以及如何可视化应用程序的网络流量。
+
+
+  最后，我们提供了一份实用的速查表，其中包含可在流行的第三方 iOS 应用程序中找到的最常见工件的路径和描述。
+
+
+  在下一章中，我们将讨论 iOS 取证中的更高级主题。
+
+  '
+- "## 第 11 章：锁定设备、iTunes 备份和 iCloud 取证\n\n到目前为止，在本书中，我们学习了如何使用不同的方法执行 iOS 采集，以及如何分析提取的数据以获得有意义的见解，例如解释位置工件、解析媒体文件或分析生活模式数据。到目前为止我们所涵盖的一切都依赖于被检查的\
+  \ iOS 设备处于解锁状态，或已知密码；然而，这并不总是如此。有时调查人员可能不得不处理锁定设备，而这将是本章的重点。\n\n我们将从学习如何处理锁定设备开始，检查员有哪些选择，以及如何尝试密码破解。然后，我们将讨论\
+  \ **首次解锁前 (BFU)** 采集，并学习在这种提取中我们可能找到什么样的数据。本章后面，我们将介绍 iTunes 备份，并学习如何提取和分析它们。在本章的最后一部分，我们将讨论\
+  \ iCloud 取证，并学习如何提取备份、钥匙串和同步到 iCloud 的数据。\n\n在本章中，我们将涵盖以下主题：\n\n- 采集锁定设备\n- 锁定设备的\
+  \ BFU 采集\n- 介绍 iTunes 备份\n- 介绍 iCloud 取证\n\n### 采集锁定设备\n\n在本书记载的开头，在 *第 1 章*，*介绍\
+  \ iOS 取证* 中，我们讨论了 iOS 操作系统，并学习了 Apple 如何通过加密设备上存储的文件来实现 **数据保护**。\n\n设备的密码是加密过程中的一个重要方面，因为它用于生成\
+  \ **加密密钥**，而该密钥又用于解密数据。在用户输入屏幕锁定密码之前，几乎所有数据都无法访问。当然，有些例外，因为某些文件是操作系统运行所必需的，即使设备被锁定也需要始终可访问。\n\
+  \n由于这些原因，采集和分析锁定设备并非易事，但有几种选择。当调查人员处理锁定设备时，第一步需要 **识别** 设备及其当前状态，因为可用于尝试数据采集的选项会根据多种因素而有所不同，例如型号和\
+  \ iOS 版本。\n\n初始识别阶段应使检查员能够回答以下问题：\n\n- 锁定设备处于 BFU 还是 **首次解锁后 (AFU)** 状态？\n- 设备的硬件型号是什么？\n\
+  - 设备是否容易受到 Checkm8 攻击？\n- 设备运行的是什么 iOS 版本？\n- 设备是否曾经与台式机或笔记本电脑配对过？\n\n通过回答这些问题，检查员将能够评估可能获得对锁定设备访问的最佳行动方案。在继续之前，了解\
+  \ BFU 和 AFU 状态之间的差异很重要：\n\n- **BFU**：处于 BFU 状态的设备是指已关机或重新启动，并且自设备开机以来尚未解锁，甚至一次都没有的设备。\n\
+  - **AFU**：当设备开机并输入正确的密码时，设备进入 AFU 模式。\n\n关键在于，当设备处于 AFU 状态时，可以提取和分析的数据要多得多，因为某些加密密钥实际上保留在内存中。\n\
+  \n一旦设备成功识别，应考虑以下选项：\n\n- 定位并使用 **锁定配对记录**\n- 密码破解\n- 执行 **BFU 采集**\n- 将设备发送到第三方实验室或高级服务，例如\
+  \ **Cellebrite Advanced Services** 或 **Grayshift's GrayKey**\n- 定位并分析 **iTunes 备份**\n\
+  - 下载并分析 **iCloud 备份**\n- 下载并分析 iCloud 同步数据\n\n在本章的以下部分中，我们将讨论这些选项的利弊，首先是使用锁定配对记录。\n\
+  \n### 使用锁定配对记录访问设备\n\n**锁定记录**，也称为 **配对记录**，本质上是存储在主机计算机上的文件，其中包含用于允许 iOS 设备与已配对计算机通信的加密密钥。\n\
+  \n第一次将 iOS 设备连接到安装了 iTunes 的 PC 或 macOS 计算机时，用户将被提示通过输入设备的密码来 *信任* 该设备。这将在主机上创建锁定记录，这意味着用户每次将设备连接到计算机时无需解锁设备。\n\
+  \n如果调查人员对与设备配对的主机计算机拥有物理和合法访问权限，则可以使用锁定文件访问锁定设备并成功执行逻辑采集。\n\n然而，有一些注意事项。首先，使用配对记录访问锁定设备仅在设备处于\
+  \ **AFU 状态** 时才有效；其次，锁定记录会在一段时间后 **过期**。虽然没有确切答案说明这些记录何时过期，但已开展的研究似乎表明锁定记录在创建后 7\
+  \ 到 30 天之间任何时间过期。\n\n在 Windows 机器上，锁定记录通常存储在 `%ProgramData%\\Apple\\Lockdown\\`\
+  \ 中。\n\n在 macOS 计算机上，可以在 `/var/db/lockdown/` 中找到它们。\n\n一旦调查人员找到锁定记录，就可以使用诸如 **Elcomsoft\
+  \ iOS Forensic Toolkit** 或 **MOBILedit Forensic Express** 等工具执行逻辑采集。\n\n以下步骤描述了使用\
+  \ Elcomsoft iOS Forensic Toolkit 的过程：\n\n1. 首先，启动 Toolkit。\n2. 使用 USB-A 电缆将设备连接到工作站。\n\
+  3. 选择 **B – Backup** 选项。\n4. 在提示时，输入锁定记录的路径。\n\n如果接受配对记录，将创建逻辑备份。以下屏幕截图显示了 Toolkit\
+  \ 的主菜单：\n\n```\nElcomsoft iOS Forensic Toolkit 7.02\n\n(c) 2011-2021 Elcomsoft Co.\
+  \ Ltd.\n\nDevice connected: iPhone\nHardware model: N61AP\nSerial number: F78PNPSKG5MT\n\
+  OS version: 12.4.5\nDevice ID: 7cf85b3179a6c136ae723636e6467a27888ab928\n\nPlease\
+  \ select an action\n\nLogical acquisition\n  I  DEVICE INFO      - Get basic device\
+  \ information\n  R  RECOVERY INFO    - Get information on device in DFU/Recovery\
+  \ mode\n  B  BACKUP           - Create iTunes-style backup of the device\n  M  MEDIA\
+  \            - Copy media files from the device\n  S  SHARED           - Copy shared\
+  \ files of the installed applications\n  L  LOGS             - Copy crash logs\n\
+  \nJailbroken devices acquisition\n  D  DISABLE LOCK     - Disable screen lock (until\
+  \ reboot)\n  K  KEYCHAIN         - Decrypt device keychain\n  F  FILE SYSTEM   \
+  \   - Acquire device file system (as TAR archive)\n\nAcquisition agent (limited\
+  \ compatibility)\n  1  INSTALL          - Install acquisition agent on device\n\
+  \  2  KEYCHAIN         - Decrypt device keychain\n  3  FILE SYSTEM      - Acquire\
+  \ device file system (as TAR archive)\n  4  FILE SYSTEM (USER) - Acquire user files\
+  \ only (as TAR archive)\n  5  UNINSTALL        - Uninstall acquisition agent from\
+  \ device\n\nLegacy devices acquisition\n  A  LEGACY           - Legacy devices acquisition\
+  \ (iPhone 4/5/5C)\n\n  X  EXIT\n\n>:\n```\n\n图 11.1 – Elcomsoft iOS Forensic Toolkit\
+  \ 可以使用配对记录采集锁定设备\n\n\n\n\n\n如果设备配置为生成未加密的备份，该工具将自动设置一个临时密码，以确保备份过程中所有数据都能被获取。\n\n\
+  在下一节中，我们将讨论密码破解。\n\n## 密码破解\n\n过去，有几种方法可以尝试破解设备的密码，例如连接到设备的*黑盒*，可以对所有可能的组合进行暴力破解。不幸的是，这些方法仅支持旧设备。\n\
+  \n从 iPhone 5s 开始，苹果引入了**安全隔区**，有效减慢了密码尝试的速度，使暴力破解攻击变得不可能。\n\n仍然有一些软件工具可用于此目的，例如\
+  \ Elcomsoft 的 iOS 取证工具包，它可以对运行 iOS 4 至 iOS 10 的 iPhone 4、5 和 5c 进行密码暴力破解。\n\n如果检查人员有幸遇到这些设备之一，可以执行完整的物理获取，破解密码，并有效访问锁定的设备。要执行暴力破解攻击，设备必须启动到**DFU\
+  \ 模式**，并通过**Checkm8**漏洞进行利用。对**六位密码**的完整暴力破解攻击在 iPhone 5 上大约需要 21 小时，在 iPhone 4\
+  \ 上最多需要 40 小时。\n\n如果密码破解不可行，且未找到锁定记录，执行 BFU 获取可能是唯一的选择。我们将在下一节讨论这些获取方式。\n\n## 锁定设备的\
+  \ BFU 获取\n\n在*第 2 章*《*从 iOS 设备获取数据*》中，我们介绍了**Checkm8**漏洞和**checkra1n**越狱，它们允许检查人员完全访问从**iPhone\
+  \ 5s**到**iPhone X**设备的文件系统。即使密码未知，也可以利用此漏洞对*锁定*或*已禁用*的设备执行获取。这种获取方式称为**BFU 获取**。\n\
+  \n重要的是要理解，BFU 获取仅允许*部分*提取设备数据，因为大多数文件在输入密码之前仍处于加密状态。尽管如此，部分提取（包括钥匙串中的数据）绝对比什么都没有好，因为这些可能包含重要的证据。\n\
+  \n下表列出了通过 BFU 获取可以提取的一些最常见的工件：\n\n| 工件 |\n|---|\n| `/private/var/mobile/Library/Preferences/*`\
+  \ |\n| `/private/var/preferences/SystemConfiguration/*` |\n| `/private/var/root/Library/Preferences/*`\
+  \ |\n| `/private/var/mobile/Library/Accounts/Accounts3.sqlite` |\n| `/private/var/mobile/Library/DataAccess/*`\
+  \ |\n| `/private/installd/Library/Logs/MobileInstallation/*` |\n| `/private/var/mobile/Library/SpringBoard/*`\
+  \ |\n| `/private/var/mobile/Library/CallHistoryDB/CallHistoryTemp.storedata` |\n\
+  | `/private/var/mobile/Library/Preferences/com.apple.*` |\n| `/private/var/mobile/Library/SMS/sms-temp.db`\
+  \ |\n| `/private/var/mobile/Library/Preferences/com.apple.preferences.network.plist`\
+  \ |\n| `/private/var/wireless/Library/Databases/CellularUsage.db` |\n| `/private/var/root/Library/Caches/locationd/consolidated.db`\
+  \ |\n\n表 11.1 – BFU 获取中发现的常见工件\n\n从表中可以看出，只要设备易受 Checkm8 攻击，就可以通过 BFU 获取从锁定设备中提取一些关键工件。\n\
+  \n要执行 BFU 获取，首先使用 checkra1n 对设备进行越狱，这不需要设备解锁。然后，部分提取**钥匙串**，并使用诸如 Elcomsoft iOS\
+  \ 取证工具包之类的工具执行文件系统获取。一些取证工具，如**Cellebrite UFED**，不需要设备越狱，因为 Checkm8 漏洞利用直接在工具内执行。\n\
+  \n### 使用 Elcomsoft iOS 取证工具包执行 BFU 获取\n\n以下步骤描述了使用 Elcomsoft iOS 取证工具包执行 BFU 获取的过程：\n\
+  \n1. 首先，将设备置于恢复模式并启动 checkra1n。\n2. 按照说明将设备置于 DFU 模式并应用临时越狱。确保设备使用 USB-A 线缆连接，因为使用\
+  \ USB-C 线缆将无法工作。\n3. 启动 Elcomsoft iOS 取证工具包，并选择 **K – Keychain** 选项。\n4. 当工具提示输入密码时，按\
+  \ *Enter* 跳过此步骤。\n5. 当过程完成时，从主菜单中选择 **F – File System** 选项以获取设备的文件系统。\n6. 当工具提示输入密码时，按\
+  \ *Enter* 并等待过程完成。\n\n以下截图说明了该过程：\n\n图 11.2 – Elcomsoft iOS 取证工具包执行 BFU 获取\n\n接下来，我们将使用不同的工具重复该过程。\n\
+  \n### 使用 Cellebrite UFED 执行 BFU 获取\n\n使用 Cellebrite UFED 执行 BFU 获取也很简单，并且不需要通过 checkra1n\
+  \ 对设备进行越狱：\n\n1. 启动 Cellebrite UFED。\n2. 选择 Advanced Logical，然后选择 Full File System\
+  \ (checkm8) 选项。\n3. 使用 USB-A 线缆连接设备，然后点击 Continue。\n4. 当工具提示输入设备密码时，点击 Cancel。\n\
+  5. 点击 YES 以执行 BFU 获取。\n\n```\nWARNING: Please, unlock the device and specify passcode\
+  \ (if needed). Otherwise, press any key to proceed in a locked state, but be aware,\
+  \ that not all data may be retrieved\n\nYou pressed a key - app will try to dump\
+  \ all available items\nOverall dumped 3031 items of class 'genp'\nOverall dumped\
+  \ 1 items of class 'inet'\nOverall dumped 29 items of class 'cert'\nOverall dumped\
+  \ 117 items of class 'keys'\nOverall dumped 6 items of class 'idnt'\n\nCleaning\
+  \ up...\n[INFO] Info: New connection...\n[INFO] Device connected\n[INFO] USBMuxConnectByPort\
+  \ OK\nWarning: Permanently added '[localhost]:3022' (RSA) to the list of known hosts.\n\
+  \nDone.\n\nPress 'Enter' to continue\n```\n\n以下截图显示了选择 BFU 获取的步骤：\n\n![](img/0b17a17d4cb56b1c25763a396dd83117_286_0.png)\n\
+  \n图 11.3 – Cellebrite UFED 执行 BFU 获取\n\n获取过程完成后，可以像往常一样手动或使用取证软件（如**Cellebrite Physical\
+  \ Analyzer**）分析钥匙串和文件系统转储。\n\n### 提示\n\n值得一提的是，执行 BFU 获取完全绕过了 USB 受限模式；随着 iOS 11\
+  \ 的推出，苹果引入了一项安全功能，如果设备在过去一小时内至少未解锁一次，则阻止 USB 配件进行任何数据连接。理论上，这应该限制物理连接的*黑客工具*的攻击面；然而，通过\
+  \ Checkm8 利用设备会绕过此安全功能。\n\n尽管 BFU 获取是从锁定设备提取数据的最佳选择，但很明显，较新的设备——不易受 Checkm8 攻击——无法使用此方法获取。试图访问这些设备的调查人员将不得不求助于将手机发送到提供取证服务的第三方实验室，例如\
+  \ Cellebrite Advanced Services。\n\n如果无法*直接*获取设备，仍有可能通过定位和分析设备的**备份**来*间接*提取其数据，该备份可能存储在主机或**云**中。\n\
+  \n在本章的下一节中，我们将介绍 iTunes 备份，并学习如何提取和分析它们。\n\n## 介绍 iTunes 备份\n\n如果涉案 iPhone 是较新型号，如**iPhone\
+  \ 13**或**iPhone 12**，调查一台被未知密码锁定的设备可能会迅速使调查陷入停滞；然而，如果嫌疑人已将其设备备份到台式机或笔记本电脑，并且调查人员可以访问该机器，则可以轻松恢复、提取和分析备份。\n\
+  \n检查备份可能有益的另一个原因是，用户可能已从移动设备中删除了一些数据，但这并不会删除备份中存在的数据：事实上，备份文件包含用户认为不再存在的数据是很常见的。\n\
+  \n本地备份，也称为**iTunes 备份**，本质上是设备的逻辑获取，通常包含联系人、短信、媒体文件、日志、数据库、钥匙串、偏好设置、配置、浏览痕迹和位置数据等。用户可以手动使用**iTunes**创建备份，或者设备可以配置为在插入机器时自动创建新备份。在\
+  \ macOS 计算机上，不再需要 iTunes，备份过程可以直接从**Finder**开始。\n\n创建 iTunes 备份时，iOS 允许用户通过使用密码加密备份来增强安全性。一旦用户设置了密码，所有后续备份都将被加密，并且只有在知道密码的情况下，检查人员才能访问这些文件。然而，密码\n\
+  \n\n\ncracking can be attempted, and this will be covered in detail later on in\
+  \ the chapter.\n\nIt's important to understand that since iOS 13, iTunes backups\
+  \ will not contain user-sensitive data (such as call logs, keychain, and Safari\
+  \ history) if encryption is not enabled.\n\n## Locating backup files\n\nAn iTunes\
+  \ backup is essentially a folder named with a GUID that contains numerous subfolders\
+  \ and files. The following screenshot should give you an idea of what it looks like:\n\
+  \n![](img/0b17a17d4cb56b1c25763a396dd83117_288_0.png)\n\nFigure 11.4 – File structure\
+  \ of an iTunes backup\n\nOn Windows machines, iOS backups are typically stored at\
+  \ C:\\Users\\<user>\\AppData\\Roaming\\Apple Computer\\MobileSync\\Backup. If, however,\
+  \ the Windows app version of iTunes is installed, local backups will be stored at\
+  \ C:\\Users\\<user>\\Apple\\MobileSync\\Backup.\n\nOn machines running macOS, local\
+  \ backups will be stored at /Users/<user>/Library/Application Support/MobileSync/Backup/.\n\
+  \nBy examining these locations, the investigator may find multiple backups of the\
+  \ same device, or backups for different devices.\n\nIn the root folder of each backup,\
+  \ there are four files of interest:\n\n- Info.plist: This property list contains\
+  \ details from the device such as the IMEI, ICCID, model number, the list of all\
+  \ installed applications, and the timestamp of when the backup was created.\n- Manifest.db:\
+  \ The Manifest database is a normal SQLite database, but it will be encrypted if\
+  \ a password was specified for the backup. The main table of interest, Files, contains\
+  \ a list of all files included in a backup and their properties, such as fileID,\
+  \ domain, and path.\n- Manifest.plist: The Manifest property list stores information\
+  \ for every application that is installed on the device, such as the path to the\
+  \ app's containers. This file also contains the IsEncrypted key, which indicates\
+  \ whether the backup was encrypted or not, and the WasPasscodeSet key, which tells\
+  \ us whether the device had a passcode.\n- Status.plist: This property list contains\
+  \ generic metadata, such as the backup's unique identifier and the timestamp of\
+  \ when it was completed.\n\nSince we now have all the information from a backup,\
+  \ we can start putting the filesystem back together using our forensic tools.\n\n\
+  ## Analyzing iTunes backups\n\nOnce the investigator has located an iTunes backup,\
+  \ the filesystem has to be rebuilt and the files will need to be decrypted. Although\
+  \ this can also be done manually, the easiest solution is to import the backup into\
+  \ any mobile forensic software, such as Cellebrite Physical Analyzer or **Elcomsoft\
+  \ Phone Viewer**, and analyze the data as usual.\n\nTo import an iOS backup into\
+  \ Cellebrite Physical Analyzer, follow these steps:\n\n- 1. Launch the tool and\
+  \ from the main menu, choose **File | Open case**.\n- 2. Then, in **Case wizard**,\
+  \ click on **Add**.\n- 3. Choose **Common source | Backup | iTunes backup**.\n-\
+  \ 4. Select the folder that contains the backup and click **Continue**.\n\nOnce\
+  \ Cellebrite Physical Analyzer has finished parsing the files, the artifacts can\
+  \ be examined as if they were a normal logical acquisition. The following screenshot\
+  \ shows the correct option within **Case wizard**:\n\n![](img/0b17a17d4cb56b1c25763a396dd83117_290_0.png)\n\
+  \nFigure 11.5 – Loading an iTunes backup into Cellebrite Physical Analyzer\n\nPreviously,\
+  \ we learned that iTunes backups can be encrypted by setting a custom password.\
+  \ On such occasions, if the password is not known, the\n\n![](img/0b17a17d4cb56b1c25763a396dd83117_293_0.png)\n\
+  \nFigure 11.7 – Set up a dictionary attack or a brute-force attack\n\n- 4. You can\
+  \ set additional parameters, such as the password length, common character sets,\
+  \ or custom character sets. Then, click Done.\n- 5. Click on Start recovery to begin\
+  \ the process.\n\nFrom the research that has been carried out, it's recommended\
+  \ to attempt brute-forcing a four-digit password first, followed by a six-digit\
+  \ password and a dictionary attack, as these are the most common and easily crackable.\n\
+  \nUnfortunately, there are some cases in which recovering the password to an iTunes\
+  \ backup is simply not possible, or there may even be no local backup available.\
+  \ In these situations, one of the possible courses of action is to attempt to download\
+  \ and extract backups or data synced to iCloud.\n\nThe final section of this chapter\
+  \ will discuss iCloud forensics.\n\n## Introducing iCloud forensics\n\nIn October\
+  \ 2011, Apple introduced **iCloud**, a cloud-based platform that allows users to\
+  \ store and share files between their devices, and backup their data. iCloud is\
+  \ integrated directly into iOS and is accessible from Windows machines, macOS computers,\
+  \ or directly from the web by browsing to https://www.icloud.com.\n\nFrom a forensic\
+  \ viewpoint, cloud forensics is arguably the future of mobile forensics as it allows\
+  \ investigators to access data that may not even be stored on the device itself.\
+  \ As the majority of new devices do not (yet) support jailbreaks and full filesystem\
+  \ acquisitions, performing a cloud acquisition is a great alternative.\n\nBefore\
+  \ we dive deep into the technical details of extracting data from iCloud, it's important\
+  \ to understand exactly what kind of data we can expect to find, starting with **iCloud\
+  \ backups**.\n\n### iCloud backups\n\nSince the release of iOS 5 in 2011, Apple\
+  \ allows users to back up their devices automatically to their iCloud accounts.\
+  \ These backups are similar to the iTunes backups we discussed in the previous section\
+  \ and include most of the data that is stored on a device, such as application data,\
+  \ device settings, call logs, messages, notes, and Safari history.\n\nThe user can\
+  \ elect to include or exclude certain elements from the backup directly from the\
+  \ device by navigating to **Settings | [User] | iCloud | Manage storage | Backups.**\n\
+  \nTo perform an iCloud backup, there is no need to connect the device to a computer,\
+  \ as the backup process happens automatically during the night when the device is\
+  \ charging and connected to a Wi-Fi network. The process can also be started manually\
+  \ from the device.\n\nCloud backups are made incrementally to save space and time,\
+  \ and typically, at least two or three backups are retained in the cloud. All data\
+  \ is securely encrypted both in transit and in storage, and the encryption key is\
+  \ stored by Apple in the user's iCloud account. More sensitive data, such as Apple\
+  \ Card transactions and health data, is secured with a stronger form of protection\
+  \ known as **end-to-end encryption**; this data is encrypted using keys derived\
+  \ from information unique to the device, so nobody – not even Apple – has access\
+  \ to this data.\n\nTip\n\nWhen an investigation involves a locked device that cannot\
+  \ be acquired using any of the methods described in previous chapters, one of the\
+  \ possible workarounds is to take advantage of iCloud's automatic backup capabilities.\
+  \ Putting the device close to a known Wi-Fi network and charging it for a few hours\
+  \ will trigger the creation of a new backup that can then be downloaded and analyzed,\
+  \ revealing the data stored on the device.\n\nBackups are not the only thing that\
+  \ is stored in iCloud, as iOS also provides automatic syncing capabilities for certain\
+  \ data categories.\n\n### iCloud synced data\n\nSyncing data between iOS devices\
+  \ has become a seamless experience for the user thanks to iCloud. The following\
+  \ is a list of the most common categories that are synced to the cloud:\n\n- Account\
+  \ information\n- User settings\n- Mail\n- Call history\n- Messages\n- Contacts,\
+  \ notes, and calendars\n- Safari history, tabs, and bookmarks\n- iCloud Keychain\n\
+  - Apple Health\n\nThe user has a certain degree of control over what data is synchronized\
+  \ to iCloud, as syncing can be enabled on a per-app setting directly from the device.\
+  \ The following screenshot shows iCloud syncing settings, which can be accessed\
+  \ by going to **Settings** | **[User]** | **iCloud** and toggling individual apps\
+  \ in the **Apps using iCloud** section:\n\n\n\n## iCloud\n\n### STORAGE\n\niCloud\
+  \ — 已使用 50 GB 中的 13.6 GB\n\n![](img/0b17a17d4cb56b1c25763a396dd83117_297_0.png)\n\
+  \n- Photos\n- Backups\n- Docs\n\nManage Storage\n\n### APPS USING iCLOUD\n\n| App\
+  \ | Status |\n| --- | --- |\n| Photos | On |\n| Mail | Off |\n| Contacts | On |\n\
+  | Calendars | On |\n| Reminders | On |\n| Notes | On |\n| Messages | Off |\n| Safari\
+  \ | On |\n| Stocks | On |\n| Home | On |\n\n![](img/0b17a17d4cb56b1c25763a396dd83117_298_0.png)\n\
+  \nFigure 11.8 – Apps using iCloud from the device settings\n\niCloud 同步数据可使用取证工具下载，前提是调查人员对云数据的访问具有合法权限。下载同步数据对于调查可能极具价值，因为它能让检查人员快速访问特定证据，无需下载整个备份。\n\
+  \n### Accessing iCloud data\n\nApple 可通过法律请求向执法部门提供对 iCloud 备份和同步数据的访问权限。由于 Apple\
+  \ 持有用户的 **加密密钥**，他们可以解密用户大部分的 iCloud 数据，除使用端到端加密的敏感数据外。\n\n此解决方案存在若干缺点：\n\n- 由于请求的数据量庞大，处理执法和政府请求的过程非常缓慢。\n\
+  - Apple 返回的数据不完整，因为它不包含敏感证据，例如 Apple Card 交易、钥匙串、消息和 Safari 历史记录。\n\n还有其他选项允许调查人员直接从\
+  \ iCloud 拉取数据，但这些请求必须由 Apple 服务器授权，需提供某种形式的 **身份验证凭据**。\n\n目前，iCloud 凭据可以以三种不同格式提供：\n\
+  \n- **Apple ID 和密码**：如果调查人员对用户的 Apple ID（*电子邮件地址*）和密码具有合法访问权限，则可使用这些凭据访问 iCloud\
+  \ 数据、下载备份和同步数据，对其解密并将数据转换为 iTunes 备份。如果账户启用了 **双重验证 (2FA)**，则需要访问设备或 SIM 卡。\n- **身份验证令牌：**\
+  \ 令牌是一小部分二进制数据，其作用类似于浏览器 cookie，用于登录网站。身份验证令牌用作用户凭据的替代，允许设备在无需每次请求都提供 Apple ID 和密码的情况下对\
+  \ iCloud 进行身份验证。如果用户曾从 Windows 或 macOS 机器登录其 iCloud 账户，且调查人员可访问该计算机，则可使用令牌在无需 Apple\
+  \ ID 和密码的情况下访问 iCloud 数据。尽管 Apple 经常更改 iCloud 身份验证协议，目前令牌仅在有限时间内有效，且只能在生成它们的机器上使用。最后，使用令牌只能访问\
+  \ iCloud 中存储的部分数据，例如照片、iCloud Drive 文件、电子邮件、通话记录和 Safari 历史记录。截至撰写时，身份验证令牌无法用于访问\
+  \ iCloud 备份。令牌可通过 Elcomsoft Phone Breaker 提取。\n- **受信任设备：** 如果没有 Apple ID 和密码，但调查人员可访问用户的设备，仍可能访问用户所有的\
+  \ iCloud 数据。设备必须已登录 iCloud 资料，且必须知道设备的密码。要访问 iCloud，请将设备连接到工作站并运行 Elcomsoft Phone\
+  \ Breaker。建立信任关系后，该工具将侧载提取代理到设备上，检查人员将看到可提取的 iCloud 备份和数据的列表。目前，此解决方案适用于运行 iOS 9\
+  \ 至 14.3 的设备，或越狱设备。\n\n通过向 Apple 服务器提供用户的凭据，调查人员将能够从 iCloud 拉取备份和同步数据，可能揭示设备本身上已不再存在的关键证据。接下来，我们将讨论\
+  \ **iCloud 钥匙串**。\n\n### Introducing iCloud Keychain\n\n云取证的强大之处在于，在某些情况下，即使没有对特定设备的物理访问，也有可能获取\
+  \ iOS 备份。存储在 iCloud 中的大量用户数据对于任何移动取证调查或事件响应案件都至关重要。\n\n## Summary\n\n在本章中，我们介绍了锁定设备的主题，并了解了各种调查方法，这些方法可导致获取未知密码的设备。首先，我们学习了锁定记录的位置以及如何使用它们对锁定设备执行逻辑获取。然后，我们简要讨论了密码破解，然后转向\
+  \ BFU 获取。接下来，我们学习了 iTunes 备份的存储位置以及如何分析其元数据。最后，在本章的最后一节中，我们通过了解哪些数据同步到云端、如何访问它以及如何使用取证工具提取它，介绍了\
+  \ iCloud 取证。\n\n在本书的最后一章中，我们将学习如何编写移动取证报告以及如何将设备的证据导出到时间线。\n\n## Section 3 – Reporting\n\
+  \n在这一部分，你将了解在报告中正确结构化数据的重要性，以及如何使用时间线来呈现数据。\n\n本书的这一部分包含以下章节：\n\n- *Chapter 12*,\
+  \ Writing a Forensic Report and Building a Timeline\n\n### Chain of custody\n\n\
+  一份记录良好的 **保管链** 将取证过程联系在一起，并支持证据的完整性，以便其可在法庭上作为证据出示。无法记录保管链的任何阶段都可能损害证据的真实性和完整性，使其在法庭上无用。撰写报告的人员还应描述设备如何与蜂窝和数据网络隔离。\n\
+  \n### Device acquisition\n\n整个获取过程应详细描述，从用于该目的的工具名称开始。此数据也可以以表格形式报告，并应包括软件名称、制造商、确切版本号以及工具所使用的任务。如果执行了侵入性技术，例如越狱设备以获取完整文件系统获取，检查人员必须记录执行此类操作的原因。通常，越狱设备或执行基于代理的获取是必要的，因为逻辑获取中不存在所需的特定数据。在这种情况下，检查人员必须提供任何可能在获取过程中发生的数据更改的详细技术说明。\n\
+  \n### Analysis process\n\n通常，检查人员在检查过程中会使用多种工具：一种工具用于执行获取，另一种工具用于分析，以及其他工具用于手动解析数据，例如\
+  \ SQLite 查看器。报告应明确列出这些工具，说明是否以及何时执行了手动检查以及为何有必要。如果使用了多种工具且数据存在差异，应在报告中包含此信息。这非常常见，因为单一工具不可能支持所有第三方\
+  \ iOS 应用程序。\n\n### Evidence\n\n检查结果应在此报告部分中详细列出。根据调查范围，可能存在数千个证据；因此，证据应在报告中按逻辑排列并分为类别，例如电话日志、浏览历史和\
+  \ WhatsApp 消息等。对于每个证据，应标明源文件和哈希值。\n\n描述证据的另一种方式是通过 **时间线**，我们将在下一节更详细地介绍。使用时间线，事件列表按特定顺序表示——通常按时间顺序——这是一种很好的技术，用于确定设备在特定时间发生了何种活动。\n\
+  \n一些检查人员喜欢在此部分添加注释以解释数据或根据证据得出结论。个人而言，我认为不应在此部分撰写任何结论，因为该部分应以客观方式简单描述证据。数字取证检查员的工作是查找事实并呈现证据，然后由调查员、辩护方或检察官解释证据如何支持调查。\n\
+  \n### Comments and conclusions\n\n报告的最后一部分将概述检查的关键点。在此，检查员可以指出任何观察，描述测试和检查的结果。数据的相关性应通过关联不同来源来解释。例如，仅在报告中说明消息是从设备发送的是不够的；消息应用程序的证据应与设备日期和时间、时区、生活模式数据和应用程序使用日志相关联。良好的做法是描述检查员如何\n\
+  \n\n**完整报告**，可以自定义包含或排除工具解析出的任何类型的数据项。\n\n让我们从生成初步报告开始。\n\n## 生成初步设备报告\n\n调查团队可以使用初步设备报告，根据将获取数据加载到\
+  \ Cellebrite Physical Analyzer 后提取的一些基本数据，快速识别设备。\n\n有两种方式可以生成此报告：\n\n- 从工具的主菜单中，选择\
+  \ **报告 | 生成初步设备报告**。\n- 在 **提取摘要** 中，点击 **生成初步设备报告**。\n\n以下截图显示了该按钮的位置：\n\n## 提取摘要\n\
+  \n提取数：1\n\n传统\nApple IPHONE_BACKUP\n\n提取开始日期/时间\n\n提取结束日期/时间\n\n## 镜像哈希\n\n已为此提取计算哈希值，但没有可用的参考数据。\n\
+  \n查看详细信息\n\n## 设备信息\n\n生成初步设备报告\n\n| AirDrop ID |  | com.apple.sharingd.plist :\
+  \ 0x418 |\n| Apple ID |  | Accounts3.sqlite : 0x23F57 |\n| 检测到的手机型号 | iPhone XR\
+  \ | 外部丰富数据 |\n| 存在 iCloud 账户 | True | Accounts3.sqlite : 0x23155 |\n| 上次云备份日期 |\
+  \  | com.apple.mobile.Idbackup.plist : 0x... |\n| 型号 | N841AP | preferences.plist\
+  \ : 0x11D9 |\n| 时区 | (UTC+01:00) 罗马（欧洲） | com.apple.AppStore.plist : 0x313 |\n|\
+  \ ICCID |  | com.apple.commcenter.plist : 0x51C |\n| 上次用户 ICCID |  | CellularUsage.db\
+  \ : 0x6FD7 |\n| 上次使用的 MSISDN |  | CellularUsage.db : 0x6FEB |\n| MSISDN |  | com.apple.commcenter.plist\
+  \ : 0x4F0 |\n| iPhone XR |  |  |\n| 备份密码 |  |  |\n| 检测到的手机型号标识符 | iPhone11,8 | Info.plist\
+  \ : 0xBB73E |\n| 是否加密 | True | Manifest.plist : 0x64D |\n\n图 12.2 – 从提取摘要生成的初步设备报告\n\
+  \n报告将以 PDF 格式创建并存储到默认报告路径位置。默认路径为 C:\\Users\\<user>\\Documents\\My Reports\\。\n\n\
+  在下面的截图中，可以看到此类报告的示例：\n\n图 12.3 – 初步设备报告示例\n\n报告包含识别设备的数据，如型号、iOS 版本、序列号、ICCID、IMEI\
+  \ 和电话号码，以及与设备所有者相关的详细信息，例如登录设备时使用的 **Apple ID**，或提取中找到的用户账户。\n\n在下一节中，我们将学习如何创建完整报告。\n\
+  \n## 生成完整报告\n\n在 Cellebrite Physical Analyzer 中创建报告的第一步是确定报告中应包含哪些数据项。检查员通常会包含所有数据，但在某些情况下，尤其是调查仅侧重于少数数据项时，包含所有数据会使报告过长，并可能遗漏最重要的细节。\n\
+  \n对于每个数据项的每一条记录，检查员都可以通过勾选以下截图中高亮的复选框，选择将其包含在报告中或排除。\n\n图 12.4 – 如果启用复选框，数据项将包含在报告中\n\
+  \n请记住，默认情况下，当工具加载提取时，报告中包含所有数据项。如果要更改此设置并默认排除所有数据项，请前往 工具 | 设置 | 常规设置，并禁用默认检查所有实体。\n\
+  \n一旦检查员确定了要包含哪些数据项，请按照以下步骤创建报告：\n\n- 1. 从菜单中选择 报告 | 生成报告。将出现“生成报告”窗口，如以下截图所示：\n\n\
+  ### 图 12.6 – 报告数据集窗口\n\n4. 可以在“偏好设置”面板中微调附加设置，例如包含每个来源的哈希、翻译数据项以及使用外部数据丰富结果。点击“下一步”继续。\n\
+  \n## 提取报告 - Apple iOS iTunes（备份）\n\n## 摘要\n\n| Cellebrite Physical Analyzer 版本 |\
+  \ 7.53 |\n| 报告创建时间 | 2/27/2022 9:39:23 PM +01:00 |\n| 时区设置 (UTC) | 原始 UTC 值 |\n\
+  | 检查员姓名 | Gianluca Tiepolo |\n| 案件编号 | PP 1379/2018 |\n\n## 来源提取\n\n| 传统 | |\n|\
+  \ 选定的制造商 | Apple |\n| 选定的设备名称 | IPHONE_BACKUP |\n\n## 镜像哈希详细信息 (1)\n\n已为此提取计算哈希值，但没有可用的参考数据。\n\
+  \n| # | 名称 | 信息 | |\n| 1 | 文件夹 | 路径 | 00008020-000954DA3C79002E |\n|   |       |\
+  \ 大小（字节） | 4024701501 |\n|   |       | SHA256 | B293C94E273BC3FBD D88E27701780572486FB48D0B0C0AAEF7ED7E575B2A4326\
+  \ |\n\n## 插件\n\n| # | 名称 | 作者 | 版本 |\n| 1 | PreProject | Cellebrite | 2.0 |\n| 2\
+  \ | iPhone Backup Parser\n解析所有 iPhone 备份/逻辑/文件系统转储，并在必要时进行解密和/或创建文件系统 | Cellebrite\
+  \ | 2.0 |\n| 3 | ContactsCrossReference\n将设备联系人中的电话号码与短信和通话中的号码进行交叉引用。如果匹配，将填充通话和短信的名称字段。\
+  \ | Cellebrite | 2.0 |\n| 4 | ProjectProcessorFinisher | Cellebrite | 2.0 |\n| 5\
+  \ | PostProject | Cellebrite | 2.0 |\n\n### 图 12.8 – 提取报告摘要\n\n以下页面描述了数据项：\n\n|\
+  \  |  | ph.telegra.Telegraph |  | 发出的消息 | 2/26/2022 10:29:50 PM(UTC+0) 结束时间： 2/26/2022\
+  \ 10:29:50 PM(UTC+0) | PID: 0 TID: 0 有效 UID: 0 | 来源：InteractionC |  |\n| 118 | \
+  \ | ph.telegra.Telegraph |  | 发出的消息 | 2/26/2022 10:29:50 PM(UTC+0) 结束时间： 2/26/2022\
+  \ 10:29:50 PM(UTC+0) | PID: 0 TID: 0 有效 UID: 0 | 来源：InteractionC |  |\n| 119 | \
+  \ | ph.telegra.Telegraph |  | 发出的消息 | 2/26/2022 10:29:37 PM(UTC+0) 结束时间： 2/26/2022\
+  \ 10:29:37 PM(UTC+0) | PID: 0 TID: 0 有效 UID: 0 | 来源：InteractionC |  |\n| 120 | \
+  \ | ph.telegra.Telegraph |  | 收到的消息 | 2/26/2022 10:29:34 PM(UTC+0) 结束时间： 2/26/2022\
+  \ 10:29:34 PM(UTC+0) | PID: 0 TID: 0 有效 UID: 0 | 来源：InteractionC |  |\n| 121 | \
+  \ | ph.telegra.Telegraph |  | 收到的消息 | 2/26/2022 10:29:32 PM(UTC+0) 结束时间： 2/26/2022\
+  \ 10:29:32 PM(UTC+0) | PID: 0 TID: 0 有效 UID: 0 | 来源：InteractionC |  |\n| 122 | \
+  \ | ph.telegra.Telegraph |  | 收到的消息 | 2/26/2022 10:29:29 PM(UTC+0) 结束时间： 2/26/2022\
+  \ 10:29:29 PM(UTC+0) | PID: 0 TID: 0 有效 UID: 0 | 来源：InteractionC |  |\n| 123 | \
+  \ | ph.telegra.Telegraph |  | 发出的消息 | 2/26/2022 10:28:57 PM(UTC+0) 结束时间： 2/26/2022\
+  \ 10:28:57 PM(UTC+0) | PID: 0 TID: 0 有效 UID: 0 | 来源：InteractionC |  |\n| 124 | \
+  \ | ph.telegra.Telegraph |  | 发出的消息 | 2/26/2022 10:28:53 PM(UTC+0) 结束时间： 2/26/2022\
+  \ 10:28:53 PM(UTC+0) | PID: 0 TID: 0 有效 UID: 0 | 来源：InteractionC |  |\n| 125 | \
+  \ | ph.telegra.Telegraph |  | 发出的消息 | 2/26/2022 10:28:45 PM(UTC+0) 结束时间： 2/26/2022\
+  \ 10:28:45 PM(UTC+0) | PID: 0 TID: 0 有效 UID: 0 | 来源：InteractionC |  |\n| 126 | \
+  \ | ph.telegra.Telegraph |  | 发出的消息 | 2/26/2022 10:28:39 PM(UTC+0) 结束时间： 2/26/2022\
+  \ 10:28:39 PM(UTC+0) | PID: 0 TID: 0 有效 UID: 0 | 来源：InteractionC |  |\n| 127 | \
+  \ | ph.telegra.Telegraph |  | 收到的消息 | 2/26/2022 10:28:27 PM(UTC+0) 结束时间： 2/26/2022\
+  \ 10:28:27 PM(UTC+0) | PID: 0 TID: 0 有效 UID: 0 | 来源：InteractionC |  |\n| 128 | \
+  \ | ph.telegra.Telegraph |  | 收到的消息 | 2/26/2022 10:28:23 PM(UTC+0) 结束时间： 2/26/2022\
+  \ 10:28:23 PM(UTC+0) | PID: 0 TID: 0 有效 UID: 0 | 来源：InteractionC |  |\n| 129 | \
+  \ | ph.telegra.Telegraph |  | 收到的消息 | 2/26/2022 10:28:20 PM(UTC+0) 结束时间： 2/26/2022\
+  \ 10:28:20 PM(UTC+0) | PID: 0 TID: 0 有效 UID: 0 | 来源：InteractionC |  |\n| 130 | \
+  \ | ph.telegra.Telegraph |  | 发出的消息 | 2/26/2022 10:27:56 PM(UTC+0) 结束时间： 2/26/2022\
+  \ 10:27:56 PM(UTC+0) | PID: 0 TID: 0 有效 UID: 0 | 来源：InteractionC |  |\n\n\n\n图12.9\
+  \ – 提取报告证据列表\n\n从前面的截图中可以看到，对于每个痕迹（artifact），Cellebrite Physical Analyzer 都会输出痕迹的**名称**、**描述**、**时间戳**和**源文件**。每条记录都包含源文件特别有用，因为它能让读者轻松了解某个特定痕迹位于何处。\n\
+  \n在本章的最后部分，我们将全面了解时间线及其作用。\n\n## 时间线介绍\n\n**时间线分析**广泛用于法证调查，这类调查主要涉及在特定时间范围内收集和分析大量数据。这是一项非常有效的技术，可以确定系统在某个时间发生了什么活动，并让检验员轻松做出推断。\n\
+  \n**时间线**本质上是以特定顺序（通常是按时间顺序）显示的事件列表。时间线可以显示为列表、表格、图表或图形。\n\n通过分析时间线，法证分析师可以轻松找出特定事件或事故的发生时间。时间线分析还有助于弄清同一时间间隔内发生的任何其他事件，以及这些事件之间如何相互关联。\n\
+  \n大多数法证工具都允许检验员自动生成特定时间范围内发生的事件时间线。然后将时间线数据导出为CSV文档，并用于生成图表和图形。\n\n在下一节中，我们将学习如何使用\
+  \ **Magnet AXIOM** 生成和导出时间线。\n\n1. 在 **Timeline Explorer** 中，选择要导出的痕迹并右键单击。点击**创建导出/报告**。\n\
+  2. 点击**浏览**，选择要保存导出数据的位置：\n\n![](img/0b17a17d4cb56b1c25763a396dd83117_327_0.png)\n\
+  \n图12.12 – 将时间线导出为CSV文件\n\n3. 点击**创建**以生成CSV文件。\n4. 生成CSV文件后，可以将数据导入 **Apple Numbers**\
+  \ 或 **Microsoft Excel** 等工具，以生成图表和图形。\n\n下图展示了根据CSV文件中的数据，使用Microsoft Excel创建的时间线示例：\n\
+  \n![](img/0b17a17d4cb56b1c25763a396dd83117_328_0.png)\n\n图12.13 – 在Microsoft Excel中创建的时间线\n\
+  \n在检验过程中，通过时间线将数据可视化，为调查人员提供了发现模式或关联的机会，而这些模式或关联在以相对孤立的方式查看证据时可能会被遗漏。\n\n## 总结\n\
+  \n在本章中，我们介绍了报告的主题，并学习了制作移动法证报告的最佳实践。首先，我们讨论了报告应如何构建以及应回答哪些问题。我们将报告分为不同的部分，并分别对每个部分进行剖析。然后，我们学习了检验员如何通过使用法证工具根据正在检验的数据自动生成报告而受益。我们重点介绍了一个工具——Cellebrite\
+  \ Physical Analyzer，并学习了如何使用该工具生成初步报告和完整报告。\n\n在本章的最后部分，我们介绍了时间线分析，并学习了检验员如何通过在时间线中可视化不同事件来发现它们之间的联系。我们学习了如何使用Magnet\
+  \ AXIOM生成时间线、如何与它交互，以及如何将数据导出为CSV文件。\n\n我希望通过阅读本书，你已经获得了能够帮助你从iOS设备中获取和分析任何类型痕迹的知识。恭喜你坚持到了这里！请记住，练习和训练会让你更擅长自己的工作，并帮助你掌握移动法证这门技艺。数字取证在不断发展；要成为该领域的专家，需要个人不断适应变化的环境，寻求解决问题的新方法。\n\
+  \n## 为什么要订阅？\n\n- 借助4,000多名行业专业人士的实用电子书和视频，少花时间学习，多花时间编程\n- 通过专为你打造的学习计划，提升学习效果\n\
+  - 每月免费获得一本电子书或一个视频\n- 支持全文搜索，可轻松访问关键信息\n- 可复制粘贴、打印和书签内容\n\n您是否知道Packt为每本已出版的书都提供电子书版本，并提供PDF和ePub文件？您可以在[packt.com](https://packt.com)升级到电子书版本，而且作为印刷版书籍的客户，您还有权享受电子书版本的折扣。如需更多详情，请通过[customercare@packtpub.com](mailto:customercare@packtpub.com)与我们联系。\n\
+  \n在[www.packt.com](https://www.packt.com)，您还可以阅读一系列免费技术文章，订阅多种免费通讯，并享受Packt图书和电子书的独家折扣和优惠。\n\
+  \n## 你可能还喜欢这些书\n\n如果你喜欢这本书，你可能还会对Packt的其他图书感兴趣：\n\n![](img/0b17a17d4cb56b1c25763a396dd83117_330_0.png)\n\
+  \n### Practical Memory Forensics\n\nSvetlana Ostrovskaya, Oleg Skulkin\n\n![](img/0b17a17d4cb56b1c25763a396dd83117_332_0.png)\n\
+  \n### Learn Computer Forensics\n\nWilliam Oettinger\n\nISBN: 9781838648176\n\n-\
+  \ 了解调查流程、证据规则和道德准则\n- 识别并记录不同类型的计算机硬件\n- 了解涵盖BIOS、UEFI和启动序列的启动过程\n- 验证法证硬件和软件\n\
+  - 发现常见Windows痕迹的位置\n- 使用技术上正确的术语记录你的发现\n\n## Packt正在寻找像你一样的作者\n\n如果你有兴趣成为Packt的作者，请访问[authors.packtpub.com](https://authors.packtpub.com)并立即申请。我们曾与数千名像你一样的开发者和技术专业人士合作，帮助他们与全球技术社区分享见解。你可以提交一般申请，申请我们正在招募作者的具体热门主题，或提交你自己的创意。\n\
+  \n## 分享你的想法\n\n现在你已经读完了 *iOS Forensics for Investigators*，我们非常想听听你的想法！如果你是从亚马逊购买的这本书，请[点击此处直接前往这本书的亚马逊评论页面](https://www.amazon.com)分享你的反馈，或者在你购买这本书的网站上留下评论。\n\
+  \n你的评论对我们和技术社区都很重要，将帮助我们确保提供优质内容。\n"
