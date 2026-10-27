@@ -1,0 +1,57 @@
+reviews:
+- 'no': 26
+  overturn_probability: 0.1
+  alternative: 书前内容（前言/序言）的标题，若不分章可视为前置材料而非正文章节
+  counter_evidence:
+  - 前言属于书籍前置部分，并非真正的正文章节，统一划为一章是规则上的特殊处理而非独立章的自然语义；
+  - 该标题后不是紧接概述段落，而是空行后出现二级标题'## 本书适合谁'，与典型章标题后接概述的格式不完全一致。
+  keep_split: true
+- 'no': 98
+  overturn_probability: 0.2
+  alternative: 排版断行造成的部分标题片段（'# 第 1 部分：'单独看并不完整）
+  counter_evidence:
+  - 该行以冒号结尾，且紧接着的'设计和'、'实施'是同一标题的延续，说明原文标题被拆成多行，按排版断行标准不应将不完整的首行作为独立章标题；
+  - 该行后没有直接跟概述段，而是继续断行，提示可能是PDF提取导致的文本割裂。
+  keep_split: true
+- 'no': 379
+  overturn_probability: 0.15
+  alternative: 章内二级小标题（如果仅依据 Markdown 层级'##'判断）
+  counter_evidence:
+  - 该行使用'##'二级标题标记而非一级'#'，在文档层级中可能被当作章内子节；
+  - 编号'2'以阿拉伯数字开头且没有'第'字，也可能是章节内编号小节（如2.x）的格式，容易被误判为章标题。
+  keep_split: true
+- 'no': 757
+  overturn_probability: 0.05
+  alternative: 章标题的一部分（与下一行英文副标题连用，单独看第一行不够完整）
+  counter_evidence:
+  - 该标题下一行还有英文副标题'Managing and Collecting Data'，说明章标题实际占据两行，按'单独成行'标准不能仅凭第一行判定；
+  - 但该行是显式'第 3 章'，所以该证据不足以推翻分章判断。
+  keep_split: true
+- 'no': 1289
+  overturn_probability: 0.1
+  alternative: 目录或交叉引用中的章节条目（因前文未见第4章，序号跳跃）
+  counter_evidence:
+  - 前文没有出现第4章标题，序号从第3章直接跳到第5章，可能该行来自目录或引用而非正文实际章节；
+  - 格式为'# 5 ...'，缺少'第'字，也可能是章内编号小节被误认为全书章节标题。
+  keep_split: true
+- 'no': 1732
+  overturn_probability: 0.1
+  alternative: 正文小标题或目录条目（若怀疑其不是正文章节标题）
+  counter_evidence:
+  - 该行编号为'6 ...'而非'第 6 章'，可能是章内第六节而非全书章节标题；
+  - 该行位于'问题'、'延伸阅读'等内容之后，也可能是附加内容或附录的小标题。
+  keep_split: true
+- 'no': 2306
+  overturn_probability: 0.1
+  alternative: 分篇引导标记（章节组前的过渡标题，而非独立正文章节）
+  counter_evidence:
+  - 前面没有出现第2部分标题，部分序号不连续，可能只是章节组的起止标记；
+  - 该行后直接列出第7-11章，说明它是章节组的引导语，若严格按'章标题'看待可能造成层级混乱。
+  keep_split: true
+- 'no': 2738
+  overturn_probability: 0.2
+  alternative: 重复的章标题或装饰性页眉（同一标题在下一行再次出现）
+  counter_evidence:
+  - 行2740存在完全相同的一级标题'# 创建和使用工作簿'，表明该处可能有章首重复标题或装饰页眉，行2738可能只是目录残留；
+  - 两个连续的一级标题会造成重复分章起点，需要确认哪一行才是正文实际章节标题。
+  keep_split: true

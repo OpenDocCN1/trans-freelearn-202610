@@ -1,0 +1,86 @@
+chapter_starts:
+- 'no': 26
+  confidence: 0.95
+  final_reason: 前言属于正文之前的内容，规则明确要求统一划分为一章；双方均同意分章，复核方颠覆概率仅0.1。
+  accepted_evidence:
+  - 一级标题'# 前言'单独成行，语义统领后续内容
+  - 判断方与复核方均同意分章，复核方颠覆概率仅0.1
+  rejected_evidence:
+  - 前言属于书籍前置部分，并非真正的正文章节，但规则规定此类内容统一划为一章
+  - 标题后是二级标题'## 本书适合谁'而非概述段，但前言由多个小节组成，不影响分章
+  need_human_review: false
+- 'no': 98
+  confidence: 0.9
+  final_reason: 部分-章节模式中的'第 1 部分'标题，规则明确要求遇到部分标题须划分新章；虽标题被断行，但语义完整，双方一致保留。
+  accepted_evidence:
+  - '''第 1 部分''为全书最高层级结构，规则明确遇到部分标题须分章'
+  - 判断方与复核方均同意分章，复核方颠覆概率仅0.2
+  rejected_evidence:
+  - 行以冒号结尾且后续'设计和/实施'为标题延续，可能因PDF断行导致不完整
+  - 该行后未直接跟概述段，而是继续断行
+  need_human_review: false
+- 'no': 379
+  confidence: 0.95
+  final_reason: 第2章标题，虽使用'##'且编号无'第'字，但上下文（后接概述段）和内容均表明是章起点；双方一致保留。
+  accepted_evidence:
+  - 编号'2'对应第2章，后接'在本章中...'概述段落
+  - 上下文显示前章内容已结束，本行开启新主题
+  - 复核方颠覆概率仅0.15，保留分章
+  rejected_evidence:
+  - 使用'##'二级标题标记而非'#'，可能被当作章内子节
+  - 编号'2'无'第'字，可能是章节内编号小节
+  need_human_review: false
+- 'no': 757
+  confidence: 0.97
+  final_reason: 显式'第 3 章'标题，单独成行且统领后续数据连接与摄取内容；双方一致保留。
+  accepted_evidence:
+  - 显式'第 3 章'，为全书最高层级大章
+  - 后接正文概述，符合章标题上下文特征
+  - 复核方颠覆概率仅0.05，保留分章
+  rejected_evidence:
+  - 下一行有英文副标题，章标题占据两行，但主标题本身完整，不影响分章
+  need_human_review: false
+- 'no': 1289
+  confidence: 0.95
+  final_reason: 第5章标题，形式为'5 使用 Kusto 查询语言（KQL）'，后接概述段落，是正文章节起点；双方一致保留。
+  accepted_evidence:
+  - 编号'5'对应第5章，后接'Kusto 查询语言（KQL）是一种...'概述
+  - 单独成行，语义统领整章内容
+  - 复核方颠覆概率仅0.1，保留分章
+  rejected_evidence:
+  - 前文未见第4章标题，序号跳跃，可能来自目录或引用
+  - 格式为'# 5 ...'缺少'第'字，可能是章内编号小节
+  need_human_review: false
+- 'no': 1732
+  confidence: 0.95
+  final_reason: 第6章标题，形式为'6 Microsoft Sentinel 日志和编写查询'，后接概述段落，明确开启新章；双方一致保留。
+  accepted_evidence:
+  - 编号'6'对应第6章，后接'在上一章中，我们介绍了 Kusto 查询语言...'的章首概述
+  - 单独成行，语义统领后续日志页面与查询编写内容
+  - 复核方颠覆概率仅0.1，保留分章
+  rejected_evidence:
+  - 编号'6 ...'而非'第 6 章'，可能是章内第六节
+  - 位于'问题'、'延伸阅读'之后，或为附加内容小标题
+  need_human_review: false
+- 'no': 2306
+  confidence: 0.97
+  final_reason: 部分-章节模式中的'第3部分：安全威胁搜寻'标题，规则明确要求遇到部分标题须划分新章；双方一致保留。
+  accepted_evidence:
+  - '''第3部分''为部分标题，规则明确要求分章'
+  - 后接章节列表（第7-11章），是部分引导页
+  - 复核方颠覆概率仅0.1，保留分章
+  rejected_evidence:
+  - 前面没有出现第2部分标题，序号不连续，可能只是章节组起止标记
+  - 若严格按'章标题'看待可能造成层级混乱
+  need_human_review: false
+- 'no': 2738
+  confidence: 0.9
+  final_reason: 显式'第 8 章'标题，单独成行并统领工作簿内容；下一行重复的简化标题不影响判定；双方一致保留。
+  accepted_evidence:
+  - 显式'第 8 章'，为全书最高层级大章
+  - 后接正文概述，符合章标题上下文特征
+  - 复核方颠覆概率仅0.2，保留分章
+  rejected_evidence:
+  - 行2740存在相同的一级标题'# 创建和使用工作簿'，可能是重复的章首标题或页眉，但行2738为显式编号标题，优先作为章起点
+  need_human_review: false
+rejected_lines: []
