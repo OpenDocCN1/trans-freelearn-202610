@@ -1,0 +1,76 @@
+reviews:
+- 'no': 7
+  overturn_probability: 0.05
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 致谢属于正文之前的前置内容，按规则前言、序言、致谢等应统一划分为一章
+  - 标题单独成行且语义统领后续署名信息
+  keep_split: true
+- 'no': 53
+  overturn_probability: 0.08
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 关于审阅者属于关于作者类前置内容，规则明确前置内容统一划分为一章
+  - 后接审阅者个人介绍段落，符合前置章节的上下文特征
+  keep_split: true
+- 'no': 65
+  overturn_probability: 0.05
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 前言是书籍标准前置部分，规则明确前言应划分为一章
+  - 标题后1~3行为概述段落，符合章标题上下文特征
+  keep_split: true
+- 'no': 207
+  overturn_probability: 0.92
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题层级为 ##，非全书最高层级的大章标题，且无章序号'
+  - '标题后紧跟定义性段落而非概述段落，后续仍为同级小节 ## A CMS versus a website builder 等，属第1章内部小节'
+  - 标题长度短且语义具体，不具备统领整章的概括性
+  keep_split: false
+- 'no': 352
+  overturn_probability: 0.02
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 标题明确带章序号“2 开始使用”，符合编号特征
+  - 前后为第1章总结与第2章正文的明显分界
+  keep_split: true
+- 'no': 575
+  overturn_probability: 0.78
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题为 # 开始入门，出现在第2章“2 开始使用”内部，且紧邻 # 总结，语义上为本章内的操作小节而非新章'
+  - 前后上下文仍在第2章安装与管理控制台内容中，未出现章级概述或序号跳跃
+  - '与后续 ## 创建页面等同级结构混杂，属排版噪声/重复标题'
+  keep_split: false
+- 'no': 607
+  overturn_probability: 0.85
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题层级为 ## 创建页面，属第2章内部二级标题'
+  - '后接操作步骤 ### 动手操作——向网站添加新页面 等子节，符合小节而非章的上下文特征'
+  - 无章序号且语义具体，长度小于30字但为分点式小标题
+  keep_split: false
+- 'no': 1083
+  overturn_probability: 0.02
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 标题明确带章序号“4 设计和布局”，符合最高层级大章编号特征
+  - 前后为第2章总结与第4章正文的明显分界
+  keep_split: true
+- 'no': 2018
+  overturn_probability: 0.03
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 标题明确带章序号“5. 使用核心模块”，符合章标题编号特征
+  - 后接章级概述段落及多级子节，语义统领性强
+  keep_split: true
+- 'no': 2728
+  overturn_probability: 0.65
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题为 Chapter 4: Advanced Concepts in Modern Computin...，序号与前后章节 5 使用核心模块 不连续，且内容主题突变，与
+    CMS Made Simple 书籍主线不符，疑似插页或错误标号的排版噪声'
+  - 标题后内容为分布式系统、CAP 定理等，与前文用户权限章节语义断裂，更像是误植的示例文本而非正式章节
+  - 无中文编号且与全书语言风格不一致
+  keep_split: false

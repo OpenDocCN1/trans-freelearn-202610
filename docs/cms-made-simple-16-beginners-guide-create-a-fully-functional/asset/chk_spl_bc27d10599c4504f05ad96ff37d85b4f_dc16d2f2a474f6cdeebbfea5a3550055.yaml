@@ -1,0 +1,33 @@
+reviews:
+- 'no': 3047
+  overturn_probability: 0.88
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题使用二级 Markdown 语法 ##，在上下文中属于章节内部的小节，而非全书最高层级的大章'
+  - 前文 3039-3046 为“### 小测验 – 用户与权限”及测验选项，正是上一内容块的结束，3047 后紧跟正文说明而非章首概述段落
+  - 真正的第 8 章在 3483 行以“## 8 创建你自己的功能”出现，3047 位于该章之前，属于第 7 章内部的模块使用小节
+  keep_split: false
+- 'no': 3483
+  overturn_probability: 0.05
+  alternative: 章节标题
+  counter_evidence:
+  - 该行带显式章号“8”，独立成行，后接本章概述，符合章标题规则
+  keep_split: true
+- 'no': 4235
+  overturn_probability: 0.03
+  alternative: 章节标题
+  counter_evidence:
+  - 该行带显式章号“9”，独立成行，后接本章导语，是明确的新章起点
+  keep_split: true
+- 'no': 4820
+  overturn_probability: 0.12
+  alternative: 章节标题
+  counter_evidence:
+  - 位于前一章总结之后，后接“本章为使用CMS Made Simple创建网站的高级站长提供一些提示”和“在本章中，我们将：”的章首概述，语义上开启新章
+  keep_split: true
+- 'no': 5713
+  overturn_probability: 0.1
+  alternative: 章节标题
+  counter_evidence:
+  - 位于前一章总结之后，后接“本章帮助你在网站运行后管理你的 CMS Made Simple 网站”和“在本章中，我们将了解如何：”，符合新章标题特征
+  keep_split: true
