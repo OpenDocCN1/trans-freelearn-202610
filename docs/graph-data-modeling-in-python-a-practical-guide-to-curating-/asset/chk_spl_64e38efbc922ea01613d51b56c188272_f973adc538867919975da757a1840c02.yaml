@@ -1,0 +1,64 @@
+reviews:
+- 'no': 15
+  overturn_probability: 0.05
+  alternative: 书籍前置部分的贡献者页面标题，属于正文之前的内容，不应单独成章，而应归入前置章节的一部分
+  counter_evidence:
+  - 该行无编号，且后文紧跟'关于作者'和'关于审稿人'等二级标题，更像是一个前置内容分区标题而非独立章
+  - 虽然规则规定前置内容统一划分为一章，但该行本身可能被误认为章标题，实际它只是前置部分的一个普通标题
+  keep_split: true
+- 'no': 122
+  overturn_probability: 0.05
+  alternative: 部分标题的首行，与下一行'使用图数据建模入门'合在一起才是完整部分标题，单独一行并不完整
+  counter_evidence:
+  - 该行以冒号结尾，标题被截断，单独看并不构成完整的部分标题，可能只是排版断行
+  - 部分标题跨行显示，若不结合下一行，容易被误判为孤立文本
+  keep_split: true
+- 'no': 134
+  overturn_probability: 0.1
+  alternative: 第1部分下的子节标题（如该部分的引言），而非独立章标题
+  counter_evidence:
+  - 该行无编号，且以'##'级别出现，与部分标题的一级标题层级不同，可能被误认为是部分内的子节
+  - 它紧跟在部分标题和概述段之后，容易让人误以为只是部分下的第一个小节
+  keep_split: true
+- 'no': 523
+  overturn_probability: 0.05
+  alternative: 正文中某个小节的标题或分点编号，而非整章标题
+  counter_evidence:
+  - 编号'2'不是'第X章'或'Y.'的标准格式，可能被误认为正文中的分点编号
+  - 该行以'##'二级标题出现，与前面的'## 现实世界中的图介绍'一致，但无'章'字样，需要依靠上下文确认
+  keep_split: true
+- 'no': 1076
+  overturn_probability: 0.05
+  alternative: 某一分部的英文标题，与前面中文部分标题风格不一致，可能被误认为排版噪声或页眉
+  counter_evidence:
+  - 该行使用英文'Part 2'，而前面的部分标题是中文'第 1 部分'，语言风格不一致，可能被误判
+  - 标题为一级标题，符合部分标题特征，但跨语言混排可能引起混淆
+  keep_split: true
+- 'no': 1087
+  overturn_probability: 0.1
+  alternative: Part 2下的一个子节标题，而非第3章标题
+  counter_evidence:
+  - 该行无编号，且为英文标题，可能被误认为子节或附录标题
+  - 缺少'Chapter 3'或'第3章'等明确标记，只能通过上下文推断其章标题身份
+  keep_split: true
+- 'no': 1788
+  overturn_probability: 0.1
+  alternative: Part 2下的子节标题，而非第4章标题
+  counter_evidence:
+  - 该行无编号，且标题较短，没有'第4章'字样，容易被误认为部分内的子标题
+  - 它前面是上一章的总结段落，虽然符合章标题的上下文特征，但仅凭该行本身难以确认
+  keep_split: true
+- 'no': 2411
+  overturn_probability: 0.05
+  alternative: 部分标题的起始行，与后两行'Storing and'、'Productionizing Graphs'共同构成完整部分标题
+  counter_evidence:
+  - 该行只有'# Part 3:'，标题被断成三行，单独一行并不构成完整标题，可能被误认为排版断行
+  - 标题跨行且未在同一行闭合，容易被当作页眉或噪声处理
+  keep_split: true
+- 'no': 2424
+  overturn_probability: 0.1
+  alternative: Part 3下的子节标题，而非第5章标题
+  counter_evidence:
+  - 该行无编号，且为英文标题，可能被误认为子节或章节内的小标题
+  - 缺少'Chapter 5'或'第5章'标记，只能依赖上下文和目录信息判断
+  keep_split: true

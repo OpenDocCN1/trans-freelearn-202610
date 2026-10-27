@@ -1,0 +1,85 @@
+chapter_starts:
+- 'no': 15
+  confidence: 0.85
+  final_reason: 前置内容分区标题，贡献者/关于作者/关于审稿人等正文之前内容统一划分为一章，复核方反方证据不足
+  accepted_evidence:
+  - '# 贡献者 独立成行且位于正文前置区'
+  - '后接 ## 关于作者 ## 关于审稿人 等前置分区，符合前言类统一成章规则'
+  rejected_evidence:
+  - 复核方认为仅为普通标题
+  - 无编号
+  need_human_review: false
+- 'no': 122
+  confidence: 1.0
+  final_reason: 部分标题第 1 部分，书为部分-章节模式，部分标题需划分新章，跨行标题首行即为起始
+  accepted_evidence:
+  - '# 第 1 部分： 独立成行一级标题'
+  - 后接使用图数据建模入门概述，符合部分标题上下文
+  rejected_evidence:
+  - 复核方称标题被截断
+  need_human_review: false
+- 'no': 134
+  confidence: 0.9
+  final_reason: '第1章实质标题，虽用 ## 标记但语义为统领性章标题，后接概述与子节，上下文为第1部分首章'
+  accepted_evidence:
+  - '## 现实世界中的图介绍 独立成行，长度<30字，无句号'
+  - '后1~3行为概述段落，随后出现 ### 技术要求 等子节'
+  rejected_evidence:
+  - 复核方认为为子节标题
+  need_human_review: false
+- 'no': 523
+  confidence: 1.0
+  final_reason: 章标题 2 使用图数据模型，编号特征明确，独立成行，后接本章概述
+  accepted_evidence:
+  - '## 2 使用图数据模型 独立成行'
+  - 后接本章将引导你运用...概述段落
+  rejected_evidence:
+  - 复核方质疑编号格式
+  need_human_review: false
+- 'no': 1076
+  confidence: 1.0
+  final_reason: 部分标题 Part 2，书为部分-章节模式，部分标题需划分新章
+  accepted_evidence:
+  - '# Part 2: Making the Graph Transition 一级标题'
+  - 后接部分概述及章节列表
+  rejected_evidence:
+  - 复核方称语言不一致
+  need_human_review: false
+- 'no': 1087
+  confidence: 0.9
+  final_reason: 第3章实质标题 Data Model Transformation – Relational to Graph，语义统领后续内容，上下文为
+    Part 2 首章
+  accepted_evidence:
+  - '## Data Model Transformation – Relational to Graph... 独立成行'
+  - 后接到目前为止我们一直在为你...概述
+  rejected_evidence:
+  - 复核方认为为子节
+  need_human_review: false
+- 'no': 1788
+  confidence: 0.95
+  final_reason: 第4章标题 构建知识图谱，语义明确，后接本章将进一步扩展...概述，符合章标题上下文
+  accepted_evidence:
+  - '## 构建知识图谱 独立成行'
+  - 后接本章将进一步扩展你的知识...概述段落
+  rejected_evidence:
+  - 复核方认为无编号
+  need_human_review: false
+- 'no': 2411
+  confidence: 1.0
+  final_reason: 部分标题 Part 3 起始行，部分-章节模式下部分需划分新章，跨行标题以首行计
+  accepted_evidence:
+  - '# Part 3: 一级标题'
+  - 后两行 Storing and / Productionizing Graphs 构成完整部分名
+  rejected_evidence:
+  - 复核方称标题被断行
+  need_human_review: false
+- 'no': 2424
+  confidence: 0.95
+  final_reason: 第5章标题 Working with Graph Databases，语义统领后续内容，后接本章向你介绍...概述
+  accepted_evidence:
+  - '## Working with Graph Databases 独立成行'
+  - 后接本章向你介绍内存图数据库...概述
+  rejected_evidence:
+  - 复核方认为为子节
+  need_human_review: false
+rejected_lines: []
