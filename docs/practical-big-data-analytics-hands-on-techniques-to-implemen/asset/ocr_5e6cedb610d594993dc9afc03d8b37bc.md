@@ -1,0 +1,11 @@
++   - **Software:** Software resources that facilitate analytics on the datasets hosted in the hardware layer, such as Hadoop and NoSQL systems, represent the next level in the big data stack. Analytics software can be classified into various subdivisions. Two of the primary high-level classifications for analytics software are tools that facilitate:
++     - **Data mining:** Software that provides facilities for aggregations, joins across datasets, and pivot tables on large datasets fall into this category. Standard NoSQL platforms such as Cassandra, Redis, and others are high-level, data mining tools for big data analytics.
++     - **Statistical analytics:** Platforms that provide analytics capabilities beyond simple data mining, such as running algorithms that can range from simple regressions to advanced neural networks such as Google TensorFlow or R, fall into this category.
+
++   - **Data management:** Data encryption, governance, access, compliance, and other features salient to any enterprise and production environment to manage and, in some ways, reduce operational complexity form the next basic layer. Although they are less tangible than hardware or software, data management tools provide a defined framework, using which organizations can fulfill their obligations such as security and compliance.
+
++   - **End user:** The end user of the analytics software forms the final aspect of a big data analytics engagement. A data platform, after all, is only as good as the extent to which it can be leveraged efficiently and addresses business-specific use cases. This is where the role of the practitioner who makes use of the analytics platform to derive value comes into play. The term data scientist is often used to denote individuals who implement the underlying big data analytics capabilities while business users reap the benefits of faster access and analytics capabilities not available in traditional systems.
+
+# # Types of Big Data
+
+Data can be broadly classified as being structured, unstructured, or semi-structured. Although these distinctions have always existed, the classification of data into these categories has become more prominent with the advent of big data.

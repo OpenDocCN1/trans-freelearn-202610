@@ -1,0 +1,7 @@
++   [大数据分析实践指南：使用 Hadoop Spark NoSQL 和 R 实现企业分析与机器学习的实用指南](README.md)
++   [大数据分析实践指南：使用 Hadoop Spark NoSQL 和 R 实现企业分析与机器学习的实用指南](practical-big-data-analytics-hands-on-techniques-to-implemen_0.md)
++   [前言](practical-big-data-analytics-hands-on-techniques-to-implemen_1.md)
++   [面向大众的大数据挖掘](practical-big-data-analytics-hands-on-techniques-to-implemen_2.md)
++   [分析工具包](practical-big-data-analytics-hands-on-techniques-to-implemen_3.md)
++   [用于大数据分析的 Spark](practical-big-data-analytics-hands-on-techniques-to-implemen_4.md)
++   [An Introduction to Machine Learning Concepts](practical-big-data-analytics-hands-on-techniques-to-implemen_5.md)

@@ -1,0 +1,35 @@
+chapter_starts:
+- 'no': 69
+  confidence: 0.9
+  final_reason: 正文之前的前言统一作为一章，行69“前言”后接本书主要内容和结构概述，语义明确；行6的重复“前言”为无关内容，不构成反证。
+  accepted_evidence:
+  - 行69为“## 前言”，后接本书前言概述（行71起）
+  - 前置内容（前言等）按规定统一划分为一章
+  rejected_evidence:
+  - 行6亦有“## 前言”，但后文为无关的果树修剪内容，并非本书前言
+  need_human_review: false
+- 'no': 310
+  confidence: 0.95
+  final_reason: 行310为章级标题“面向大众的大数据挖掘”，后接“本章介绍…”及主题列表，符合章首概述特征；无编号但语义统领本章，判定为新章。
+  accepted_evidence:
+  - 后接“本章介绍大数据分析的一些显著特征…”及主题列表（行314-327）
+  - 语义能覆盖后续内容，符合章标题特征
+  rejected_evidence:
+  - 复核方指出无编号且与##小节同级，但本章开头有章首概述，足以区分
+  need_human_review: false
+- 'no': 452
+  confidence: 0.95
+  final_reason: 行452为章级标题“分析工具包”，后接“在本章中，我们将向您展示…”及安装工具列表，符合章首概述特征，判定为新章。
+  accepted_evidence:
+  - 后接“在本章中，我们将向您展示如何安装和配置您的分析工具包”及组件列表
+  - 语义统领本章内容
+  rejected_evidence:
+  - 复核方指出与“## 总结”同级，但“总结”是前章末尾，不构成反证
+  need_human_review: false
+rejected_lines:
+- 'no': 768
+  reason: 行767“# 4”已是第4章章号，768为章名文本（无Markdown标题标记），真正分章点应在767；768不独立构成章标题。
+  need_human_review: true
+- 'no': 1576
+  reason: 行1574“# 5”已是第5章章号，1576为紧随其后的章名标题；分章点应在1574，1576不应另计为新章起点。
+  need_human_review: true

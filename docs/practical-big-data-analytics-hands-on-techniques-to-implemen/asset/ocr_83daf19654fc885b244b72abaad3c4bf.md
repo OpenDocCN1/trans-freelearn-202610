@@ -1,0 +1,7 @@
+# Containers – Docker, Kubernetes, and Mesos
+
+Containers, like virtualization, create isolated guest systems, but, while Virtual Machines create a completely separate environment, containers share the same kernel as the host system and hence are considered to be closer to the hardware. Both virtualization and containers incur performance penalties due to multiple layers of abstraction—the translation of functionalities between a host and guest OS. However, containers in general have a higher level of performance because they rely on and directly use features of the guest OS instead of creating a separate OS ecosystem.
+
+Popular containers include Docker, CoreOS, and many others. Today, containers are used for the large-scale management of mainly web-related services. Containers can be started up and shut down on demand much more readily than VMs, and popular cloud providers have added dedicated support for containers, making it easy to start up thousands of containers to service web requests with simply a few lines of code. Orchestration software such as Kubernetes provide enterprise-grade capabilities for managing containers. Furthermore, platforms, such as Mesos, not only provide support for managing containers, but also add the capability of managing other legacy hardware for application-aware scheduling and other services:
+
+![](bbox=[0.042, 0.491, 0.906, 0.883])

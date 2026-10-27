@@ -1,0 +1,12 @@
+# Stakeholders of the solution
+
+The exact nature of the stakeholders of a big data solution is subjective and would vary depending on the use case and problem domain. In general, the following can be considered a high-level representation of this:
+
++   - **Business sponsor:** The individual or department that provides the support and/or funding for the project. In most cases, this entity would also be the beneficiary of the solution.
++   - **Implementation group:** The team that implements the solution from a hands-on perspective. This is usually the IT or Analytics department of most companies that is responsible for the design and deployment of the platform.
++   - **IT procurement:** The procurement department in most organizations is responsible for vetting a solution to evaluate its competitive pricing and viability from an organizational perspective. Compliance with internal IT policies and assessment of other aspects such as licensing costs are some of services provided by procurement, especially for commercial products.
++   - **Legal:** All products, unless developed in-house, will most certainly have associated terms and conditions of use. Open source products can have a wide range of properties that defines the permissibility and restrictiveness of use. Open source software licenses such as Apache 2.0, MIT, and BSD are generally more permissible relative to GNU GPL (**General Purpose License**). For commercial solutions, the process is more involved as it requires the analysis of vendor-specific agreements and can take a long time to evaluate and get approved depending on the nature of the licensing terms and conditions.
+
+# Implementing the solution
+
+The final implementation of the solution is the culmination of the collaboration between the implementation group, business beneficiaries, and auxiliary departments. The time to undertake projects from start to end can vary anywhere from 3-6 months for most small-sized projects as explained in the section on early-wins. Larger endeavors can take several months to years to accomplish and are marked by an agile framework of product management where capabilities are added incrementally during the implementation and deployment period.
