@@ -1,0 +1,56 @@
+chapter_starts:
+- 'no': 0
+  confidence: 0.85
+  final_reason: 书名/封面标题，位于正文之前的前置内容，按规则前置内容统一划分为一章；复核方反证不足，仍保持分章
+  accepted_evidence:
+  - '行0为全书根标题 # R 数据挖掘项目，位于关于作者等前置小节之前'
+  - 前言、序言、致谢、关于作者等正文之前内容统一划分为一章
+  rejected_evidence:
+  - 书名统领性不强更像文档根标题
+  need_human_review: false
+- 'no': 86
+  confidence: 0.98
+  final_reason: 编号特征：第 1 章，单独成行无句号，语义统领后续数据操作内容，为最高层级大章起始；复核方编号格式疑虑不成立
+  accepted_evidence:
+  - '行86为 # 1 使用内置 R 数据进行数据操作，单独成行'
+  - 后接本书 R Data Mining Blueprints 概述及本章学习目标，符合章起始上下文
+  rejected_evidence:
+  - 编号写作1而非第1章的格式疑虑
+  need_human_review: false
+- 'no': 633
+  confidence: 0.98
+  final_reason: 编号特征：第 2 章，单独成行，标题统领探索性数据分析内容，为最高层级大章起始；行635为章内二级标题不冲突
+  accepted_evidence:
+  - '行633为 # 2 使用汽车数据进行探索性数据分析，单独成行无句号'
+  - 后接探索性数据分析概述及学习目标
+  rejected_evidence:
+  - 行635同名二级标题的重复疑虑
+  need_human_review: false
+- 'no': 1293
+  confidence: 0.97
+  final_reason: 编号特征：第 3 章，单独成行，语义统领可视化钻石数据集章节，为最高层级大章起始；行1295为章内重复标题
+  accepted_evidence:
+  - '行1293为 # 3 可视化钻石数据集，单独成行'
+  - 后接数据可视化重要性概述
+  rejected_evidence:
+  - 与行1295重复标题的歧义
+  need_human_review: false
+- 'no': 1732
+  confidence: 0.98
+  final_reason: 编号特征：第 4 章，单独成行，标题统领回归分析内容，为最高层级大章起始；行1734为章内一级标题
+  accepted_evidence:
+  - '行1732为 # 4 使用汽车数据进行回归，单独成行'
+  - 后接数据挖掘项目目标及本章主题概述
+  rejected_evidence:
+  - 与行1734重复标题的目录残留疑虑
+  need_human_review: false
+- 'no': 2465
+  confidence: 0.97
+  final_reason: 编号特征：第 5 章，单独成行，标题统领市场篮子分析内容，为最高层级大章起始；英文标题为原版章名，格式不影响章级判定
+  accepted_evidence:
+  - '行2465为 # 5 Market Basket Analysis with Groceries Data，单独成行'
+  - 后接产品推荐场景及本章主题概述
+  rejected_evidence:
+  - 英文标题与前后中文不统一的疑虑
+  need_human_review: false
+rejected_lines: []

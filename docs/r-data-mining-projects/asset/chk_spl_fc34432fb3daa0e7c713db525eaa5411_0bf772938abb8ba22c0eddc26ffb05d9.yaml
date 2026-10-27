@@ -1,0 +1,43 @@
+reviews:
+- 'no': 0
+  overturn_probability: 0.2
+  alternative: 书籍封面/书名标题，属于前置内容中的书名页，而非独立章节
+  counter_evidence:
+  - 该行是全书总标题，缺少章节编号和正文内容，单独作为一章略显突兀
+  - 其后紧跟“关于作者”等多个前置小节，但书名的统领性不强，更像文档根标题而非章节标题
+  keep_split: true
+- 'no': 86
+  overturn_probability: 0.1
+  alternative: 目录中第1章的条目（如果它不是正文中的章标题）
+  counter_evidence:
+  - 编号写作“1”而非“第1章”或“1.”，与规则中“Y.”的编号格式略有出入，可能被误认为有序列表项
+  - 其后并未立即出现“X.Y”形式的子节，而是先有一段概述，概述虽符合章起始特征，但也可能是节前导语
+  keep_split: true
+- 'no': 633
+  overturn_probability: 0.15
+  alternative: 目录中第2章的条目，或与行635重复的章名
+  counter_evidence:
+  - 行635存在同名的二级标题“## 使用汽车数据进行探索性数据分析”，可能真正的小节从行635开始，而行633只是章节标记
+  - 标题中“使用汽车数据进行探索性数据分析”与第1章主题相近，存在被误归为一章的可能
+  keep_split: true
+- 'no': 1293
+  overturn_probability: 0.15
+  alternative: 目录中第3章的条目，或与行1295重复的章名
+  counter_evidence:
+  - 行1295有另一个不带编号的一级标题“# 可视化钻石数据集”，两个连续一级标题造成分章点歧义，行1293可能是自动生成的编号标题
+  - 该行标题“可视化钻石数据集”为普通短语，若去掉编号也可作为章内小标题，但作为最高层级标题时仍应分章
+  keep_split: true
+- 'no': 1732
+  overturn_probability: 0.15
+  alternative: 目录中第4章的条目，或与行1734重复的章名
+  counter_evidence:
+  - 行1734同样有一个不带编号的一级标题“# 使用汽车数据进行回归”，形成重复标题，可能行1732只是目录残留
+  - 标题“使用汽车数据进行回归”未包含“分析”等词，与第2、3章的完整标题风格不一致，但仍是章级标题
+  keep_split: true
+- 'no': 2465
+  overturn_probability: 0.2
+  alternative: 目录中第5章的条目，或英文原版章名残留
+  counter_evidence:
+  - 该行使用英文“Market Basket Analysis with Groceries Data”，与前后中文标题格式不统一，可能是转换时遗漏的英文原版标题
+  - 标题字符数超过30字（按字符计），且“Groceries Data”为专有名词，更像书名的一部分而非章节标题
+  keep_split: true

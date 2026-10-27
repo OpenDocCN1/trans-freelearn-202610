@@ -1,0 +1,1718 @@
+- ''
+- '# R 数据挖掘项目
+
+
+  ## 关于作者
+
+
+  **Pradeepta Mishra** 是一名数据科学家、预测建模专家、深度学习和机器学习实践者，同时也是一名计量经济学家。目前，他负责印度班加罗尔 Ma Foi
+  Analytics 的数据科学与机器学习业务。Ma Foi Analytics 是 Tomorrow''s Cognitive Insights Ecology
+  的高级分析服务提供商，通过结合尖端人工智能、专有大数据平台和数据科学专业知识，为客户提供服务。他拥有一项关于改进零售行业商品陈列图设计的专利。Pradeepta
+  曾在印度艾哈迈达巴德印度管理学院发表和展示研究论文。他是多所知名商学院的客座教师，并经常发表有关数据科学和机器学习的演讲。
+
+
+  Pradeepta 在该领域拥有超过 10 年的经验，曾使用文本挖掘流程解决分类、回归、模式识别、时间序列预测和非结构化数据分析等多个项目，涉及医疗保健、保险、零售与电子商务、制造业等领域。
+
+
+  如果你有任何问题，欢迎通过 Twitter 联系我：`@mishra1_PK`。无论何时何地，我都非常乐意帮助同行的网络专业人士。
+
+
+  > *我要感谢我的妻子 Prajna 和女儿 Aarya，感谢她们包容我深夜写作的时光。同时，我也要感谢工作中的朋友和同事，感谢他们一直以来对我写作的鼓励。*
+
+  **第 2 章“使用汽车数据进行探索性数据分析”**帮助读者理解探索性数据分析。它包括对数据集中的变量进行数值和图形表示，以便更容易地理解数据集并快速得出结论。了解数据集、分析所涉及的变量类型、不同变量之间的关联等内容非常重要。通过创建交叉列表来理解分类变量之间的关系，并对数据执行经典统计检验，可以验证关于数据的各种不同假设。
+
+
+  **第 3 章“可视化钻石数据集”**介绍了数据可视化的基础知识，以及如何使用 R 编程语言中的现有库创建高级数据可视化。当我们查看数字和统计数据时，按照不同切工观察变量，可能会得到类似的结论；然而，当我们以可视化方式查看变量和因素之间的关系时，往往会发现完全不同的结果。因此，数据可视化能够传达数字和统计数据无法表达的信息。
+
+
+  **第 4 章“使用汽车数据进行回归分析”**帮助你了解使用回归方法进行预测分析的基础知识，包括使用 R 编程实现的各种线性和非线性回归方法。本章将介绍使用回归方法进行预测分析的基础知识，包括使用
+  R 编程实现的各种线性和非线性回归方法。你将能够理解回归方法的理论背景，并通过 R 实际操作各种回归方法。
+
+
+  **第 5 章“使用杂货数据进行购物篮分析”**介绍第二种产品推荐方法，即广为人知的购物篮分析（Market Basket Analysis，MBA），也称为关联规则。该方法用于关联交易层面购买的商品，找出拥有相似商品的用户子群，并据此推荐产品。MBA
+  还可以用于制定追加销售和交叉销售策略。
+
+
+  **第 6 章“使用电子商务数据进行聚类”**将教授以下内容：什么是细分、如何应用聚类执行细分、聚类所使用的方法，以及各种细分方法的比较。本章将介绍使用各种聚类方法进行细分的基础知识。
+
+
+  **第 7 章“构建零售推荐引擎”**介绍以下内容及其使用 R 编程语言的实现：什么是推荐以及推荐的工作原理、执行推荐的类型和方法，以及使用 R 实现产品推荐。
+
+
+  **第 8 章“_降维_”**使用实际数据集和 R 实现主成分分析（PCA）、奇异值分解（SVD）以及迭代特征选择方法等降维技术。随着数据规模和数据类型不断增长，数据维度也在持续增加。降维技术在各个行业中都有广泛应用，例如图像处理、语音识别、推荐引擎、文本处理等。
+
+
+  **第 9 章“_将神经网络应用于医疗保健数据_”**将介绍各种类型的神经网络、神经网络方法及其变体，以及用于控制人工神经网络训练的不同函数，从而执行以下标准数据挖掘任务：使用基于回归的方法预测实数输出、在基于分类的任务中预测输出类别、根据历史数据预测数值属性的未来值，以及压缩特征以识别重要特征，从而执行预测或分类。
+
+
+  ## 本书所需内容
+
+
+  为了学习本书中的示例和代码，你需要从 `https://cran.r-project.org/` 下载 R 软件（也可以选择从 `https://www.rstudio.com/`
+  下载 RStudio），并将其安装到计算机上。本书没有特定的硬件要求；任何内存超过 2 GB 的计算机都可以运行，并且支持包括 Mac、Linux 和 Windows
+  在内的所有平台。
+
+
+  ## 本书适用读者
+
+
+  本书适合刚开始从事数据挖掘、数据科学或预测建模工作的读者，也适合具备一定统计知识和编程知识、处于中级水平的读者。要理解本书涵盖的数据挖掘概念，必须具备基础统计知识。不要求读者事先掌握编程知识，因为在最初几章中，我将介绍使用
+  R 进行数据管理和基础统计分析的方法。本书也适合学生、专业人士以及希望成为数据分析师的有经验人士。
+
+
+  ## 排版约定
+
+
+  本书使用多种文本样式来区分不同类型的信息。下面列出了一些样式示例，并解释其含义。
+
+
+
+
+
+
+  文本中的代码字、数据库表名、文件夹名、文件名、文件扩展名、路径名、虚拟 URL、用户输入和 Twitter 账号采用如下格式显示：“在当前场景中，我们以 `ArtPiece`
+  数据集为例，试图通过一些与业务相关的变量来预测一件艺术品是否值得购买。”
+
+
+  任何命令行输入或输出都按以下格式写出：
+
+
+  ```
+
+  > fit <- neuralnet(formula = CurrentAuctionAveragePrice ~ Critic.Ratings + Acq.Cost
+  + CollectorsAveragePrice + Min.Guarantee.Cost, data = train, hidden = 15, err.fct
+  = "sse", linear.output = F)
+
+  > fit
+
+  Call: neuralnet(formula = CurrentAuctionAveragePrice ~ Critic.Ratings + Acq.Cost
+  + CollectorsAveragePrice + Min.Guarantee.Cost, data = train, hidden = 15, err.fct
+  = "sse", linear.output = F)
+
+  1 repetition was calculated.
+
+  Error Reached Threshold Steps
+
+  1 54179625353167 0.004727494957 23
+
+  ```
+
+
+  ![](img/04e03d5ea18ca2e57a47a14c9ae47ace_14_0.png)
+
+
+  警告或重要说明显示在这样的框中。
+
+
+  ![](img/04e03d5ea18ca2e57a47a14c9ae47ace_14_1.png)
+
+
+  技巧和提示的显示样式如下。
+
+
+  ## 读者反馈
+
+
+  我们始终欢迎读者的反馈。请告诉我们您对这本书的看法——您喜欢或不喜欢的地方。读者反馈对我们非常重要，因为它有助于我们开发您真正获益的选题。若要发送一般反馈，只需发送电子邮件至
+  `feedback@packtpub.com`，并在邮件主题中注明书名。如果您在某个主题上有专长，并且有兴趣撰写或参与编写一本书，请参阅 `www.packtpub.com/authors`
+  上的作者指南。
+
+
+  ## 勘误
+
+
+  尽管我们已竭尽全力确保内容的准确性，但错误仍在所难免。如果您在我们的某本书中发现了错误——无论是文字还是代码上的错误——我们将不胜感激，恳请您向我们报告。这样，您可以帮助其他读者免于困惑，并帮助改进本书的后续版本。如果您发现任何勘误，请访问
+  `http://www.packtpub.com/submit-errata`，选择您的书籍，点击 **勘误提交表** 链接，并输入勘误的详细信息。一旦您的勘误得到核实，您的提交将被接受，勘误将上传到我们的网站，或添加到该书的“勘误”部分下的现有勘误列表中。
+
+
+  要查看之前提交的勘误，请转到 `https://www.packtpub.com/books/content/support` 并在搜索字段中输入书名。所需信息将出现在
+  **勘误** 部分下方。
+
+
+  ## 盗版
+
+
+  在互联网上，盗版受版权保护的材料是所有媒体中持续存在的问题。在 Packt，我们非常严肃地保护我们的版权和许可。如果您在互联网上发现任何形式的非法复制我们的作品，请立即向我们提供位置地址或网站名称，以便我们采取补救措施。
+
+
+  请通过 `copyright@packtpub.com` 联系我们，并附上涉嫌盗版材料的链接。
+
+
+  我们感谢您帮助保护我们的作者以及我们为您提供有价值内容的能力。
+
+
+  ## 问题
+
+
+  如果您对本书的任何方面有问题，可以通过 `questions@packtpub.com` 联系我们，我们将尽力解决该问题。
+
+  '
+- "# 1 使用内置 R 数据进行数据操作\n\n本书 *R Data Mining Blueprints* 主要侧重于使用 R 编程语言作为平台执行数据挖掘的学习方法和步骤。由于\
+  \ R 是一个开源工具，使用 R 学习数据挖掘对各个层次的学习者来说都非常有趣。本书的设计使得用户可以涵盖从数据管理技术、探索性数据分析、数据可视化和建模，一直到构建高级预测模型（如推荐引擎、神经网络模型等）的过程。本章概述了数据挖掘的概念，及其与数据科学、分析、统计建模和可视化之间的各种联系。本章通过一个真实案例研究，简要介绍了使用\
+  \ R 的编程基础知识、如何读写数据、编程符号和语法理解。本章包含用于练习的 R 脚本，以便读者获得对概念、术语以及执行某些任务背后原因的实践经验。本章的设计使得即使只有少量编程知识的读者也能够执行\
+  \ R 命令来完成各种数据挖掘任务。\n\n在本章中，我们将简要讨论数据挖掘的含义及其与数据科学、分析学和统计建模等其他领域的关系；除此之外，我们将使用 R 开始学习数据管理主题，以便您实现以下目标：\n\
+  \n- 了解 R 中使用的各种数据类型，包括向量及其运算\n- 数据框和因子序列的索引\n- 对数据框进行排序和合并以及数据类型转换\n- 字符串处理和日期对象格式化\n\
+  - 处理缺失值和 NA，以及缺失值插补技术\n- 流程控制、循环结构以及 apply 函数的使用\n\n### 什么是数据挖掘？\n\n数据挖掘可以定义为从现有数据库中解读有意义的见解，并分析结果以供业务用户使用的过程。分析来自不同来源的数据，并将其总结为有意义的信息和见解，是统计知识发现的一部分，这不仅有助于业务用户，也有助于统计分析师、顾问和数据科学家等多个群体。大多数时候，从数据库中发现知识的过程是不可预见的，结果可以以多种方式解释。\n\
+  \n越来越多的设备、平板电脑、智能手机、计算机、传感器以及其他各种数字设备，使得数据的生成和收集速度比以往任何时候都快。借助现代计算机的能力，增加的数据可以被预处理和建模，以回答与任何业务决策过程相关的各种问题。数据挖掘也可以定义为一种知识密集型搜索，它使用统计方法、机器学习技术、可视化和模式识别技术，在离散的数据库和信息库中进行搜索。\n\
+  \n结构化数据和非结构化数据的增长，例如零售店中所有产品上的条形码、制造工厂所有资产上附着基于 RFID 的标签、Twitter 推送、Facebook 帖子、遍布整个城市的用于监测不断变化的天气状况的集成传感器、视频分析、基于观看统计的视频推荐等，为各种工具、技术和方法论的发展创造了有利的生态系统。将数据挖掘技术应用于前面讨论的各种数据，不仅提供了关于数据结构的有效信息，还推荐了企业在未来可能采取的行动。\n\
+  \n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_19_0.png)\n\n图 1：数据挖掘——一门多学科交叉学科\n\n\
+  数据挖掘的过程涉及以下几个步骤：\n\n1. 从数据库和数据仓库中提取所需数据。\n2. 对数据执行合理性检查，以删除冗余字符和不相关信息。\n3. 有时，结合来自其他各种互不相交的数据库的信息非常重要。因此，寻找共同属性来合并数据库。\n\
+  4. 应用数据转换技术。有时，需要在模型中包含一些属性和特征。\n5. 输入特征之间的模式识别，可以应用任何模式识别方法。\n6. 知识表示。这包括将从数据库中挖掘的知识以可视化形式呈现给各业务利益相关者。\n\
+  \n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_20_0.png)\n\n图 2：典型的数据挖掘流程\n\n在讨论了数据挖掘的流程和核心组件之后，还需要关注人们在数据挖掘中可能遇到的一些挑战，例如计算效率、非结构化数据库及其与结构化数据库的融合、高维数据可视化等。这些问题可以通过创新方法来解决。在本书中，我们将在项目实践中探讨一些解决方案。\n\
+  \n\n\n\n\n## 它与数据科学、分析和统计建模有何关系？\n\n数据科学是一个更广泛的主题，数据挖掘概念就包含在其中。按照上述数据挖掘的定义，它是一个识别数据中隐藏模式以及一些有趣相关性的过程，这些相关性可以提供有用的见解。数据挖掘是数据科学项目中的一个子集，涉及模式识别、特征选择、聚类、监督分类等技术。分析和统计建模涉及广泛的预测模型——基于分类的模型，用于应用于数据集以解决现实世界的业务问题。这三个术语——数据科学、分析、统计建模和数据挖掘——之间存在明显的重叠。这三个术语不应孤立地看待。根据项目需求和业务问题的类型，重叠的位置可能会发生变化，但从广义上讲，所有概念都是紧密关联的。数据挖掘过程还包括基于统计和机器学习的方法来提取数据、自动化规则，并使用良好的可视化来呈现数据。\n\
+  \n## R 编程语言简介\n\n在本章中，我们将从使用 R 进行数据管理和数据操作的基础编程开始；我们还将介绍一些编程技巧。R 可以从 https://cran.r-project.org/\
+  \ 下载。根据操作系统的不同，任何人都可以在其系统上下载并安装 R 二进制文件。R 编程语言是 S 语言的扩展，是一个统计计算平台。它提供了高级预测建模能力、机器学习算法实现能力以及更好的图形可视化。R\
+  \ 还有各种其他插件，如 R.Net、rJava、SparkR 和 RHadoop，这些插件增强了 R 在大数据场景中的可用性。用户可以将 R 脚本与其他编程平台集成。有关\
+  \ R 的详细信息可以通过以下链接访问：\n\n```\nhttps://cran.r-project.org/.\n```\n\n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_22_0.png)\n\
+  \n## R 入门\n\n启动 R 时的打开消息将如前面的截图所示。在 R 控制台中输入的所有内容都是一个对象，在活动的 R 会话中创建的许多对象具有不同的关联属性，与对象关联的一个常见属性称为其类。R\
+  \ 中有两种流行的面向对象编程方法，即 S3 类和 S4 类。S3 和 S4 方法之间的基本区别在于，前者是一种更灵活的方法；然而，后者是一种更结构化的面向对象编程方法。S3\
+  \ 和 S4 方法都将任何符号、字符和数字识别为 R 会话中的对象，并提供对象可用于进一步计算的功能。\n\n## 数据类型、向量、数组和矩阵\n\n有两大数据类型集合：原子向量和复合向量。R\
+  \ 编程中的原子向量类别下基本上有五种数据类型：数值或数字、字符或字符串、因子、逻辑和复数。还有四种复合数据类型：数据框、列表、数组和矩阵。R 中的主要数据对象是向量；即使我们将一个单位数字分配给任何字母，它在\
+  \ R 中也是一个单元素向量。所有数据对象都包含一个模式（mode）和一个长度（length）。模式决定了存储在对象中的数据种类，长度决定了该对象包含的元素数量。R\
+  \ 中的 `c()` 函数表示将向量中的各个元素连接起来。\n\n```\n2 13 FALSE      DataMining\n3 24 TRUE  MachineLearning\n\
+  4 54 FALSE        Projects\n5 29 TRUE        Statistics\n```\n\n数据框是 R 编程语言中另一种流行的数据类型形式，它包含所有不同的数据类型。数据框是一个列表，包含多个长度相同但数据类型不同的向量。如果你只是从电子表格中导入数据集，默认的数据类型就是数据框。之后，可以更改各个变量的数据类型。因此，数据框可以定义为包含不同数据类型列的矩阵。在前面的脚本中，数据框\
+  \ x 包含三种不同的数据类型：数值、逻辑和字符。大多数现实世界的数据集包含不同的数据类型；例如，在零售店中，客户信息存储在数据库中。这包括客户 ID、购买日期、购买金额、是否属于任何忠诚度计划等等。\n\
+  \n关于向量有一点很重要：向量的所有元素应该是相同类型的。如果不是，R 将通过强制转换来强制转换。例如，在一个数值向量中，如果一个元素包含一个字符值，向量类型将从数值变为字符。脚本如下：\n\
+  \n```\n> x1<-c(2.5,1.4,6.3,4.6,9.0)\n> class(x1)\n[1] \"numeric\"\n> x1<-c(2.5,1.4,6.3,4.6,9.0,\"\
+  cat\")\n> class(x1)\n[1] \"character\"\n```\n\nR 区分大小写，因此“cat”与“Cat”不同。因此，在给向量分配对象名称时请务必小心。有时，记住对象名称会很困难：\n\
+  \n```\n> ls()\n  [1] \"a\"         \"centers\"   \"df\"        \"distances\"\n \
+  \ [5] \"dt2\"       \"i\"         \"indexes\"   \"km\"\n  [9] \"kmd\"       \"kmeans.results\"\
+  \ \"log_model\" \"mtcars\"\n [13] \"outliers\"  \"pred\"      \"predict.kmeans\"\
+  \ \"probs\"\n [17] \"Smarket\"   \"start\"     \"sumsq\"     \"t\"\n [21] \"test\"\
+  \      \"Titanic\"   \"train\"     \"x\"\n [25] \"x1\"        \"x2\"        \"x3\"\
+  \        \"x4\"\n [29] \"x5\"        \"y\"         \"z\"\n```\n\n```\n```text\n\
+  > mylist\n      mylist1             mylist2\ncustid  112233              443322\n\
+  custname \"John R\"           \"Frank S\"\nmobile  \"989-101-1011\"     \"781-101-6211\"\
+  \nemail   \"JohnR@gmail.com\"   \"SFranks@hotmail.com\"\n```\n```\n\n因子可以定义为分类或名义变量中以一定频率出现的各个水平。换句话说，分类变量中重复出现的水平称为因子。在以下示例脚本中，字符向量“domains”包含许多水平；使用\
+  \ `factor` 命令，可以估计每个水平的频率。\n\n序列是重复的迭代次数，可以是数值，也可以是分类或名义值，它们可以是数据集的一部分。可以使用冒号运算符创建数值序列。要使用因子变量生成序列，可以使用\
+  \ `gl()` 函数。在计算分位数和图形函数时，这是一个非常有用的函数。此外，还有其他各种可能的情况可以使用该函数：\n\n```\n```r\n> seq(from=1,to=5,length=4)\n\
+  [1] 1.000000 2.333333 3.666667 5.000000\n> seq(length=10,from=-2,by=.2)\n[1] -2.0\
+  \ -1.8 -1.6 -1.4 -1.2 -1.0 -0.8 -0.6 -0.4 -0.2\n> rep(15,10)\n[1] 15 15 15 15 15\
+  \ 15 15 15 15 15\n> gl(2,5,labels=c('Buy','DontBuy'))\n[1] Buy Buy Buy Buy Buy DontBuy\
+  \ DontBuy DontBuy\nDontBuy\n[10] DontBuy\nLevels: Buy DontBuy\n```\n```\n\n第一行代码按升序生成序列，第二行创建反向序列，最后一行创建因子数据类型的序列。\n\
+  \n## 数据类型的导入和导出\n\n如果设置了 Windows 目录路径，要将文件导入 R 系统，则无需写入文件所在的完整路径。如果 Windows 目录路径设置为系统中的其他位置，而你仍然想要访问该文件，则需要给出完整路径才能读取该文件：\n\
+  \n```\n```r\n> getwd()\n[1] \"C:/Users/Documents\"\n> setwd(\"C:/Users/Documents\"\
+  )\n```\n```\n\n```\n```r\n> library(Hmisc)\n> mydata <- spss.get(\"E:/Datasets/wage.sav\"\
+  , use.value.labels=TRUE)\n> head(mydata)\n      HRS  RATE  ERSP  ERNO  NEIN  ASSET\
+  \   AGE    DEP  RACE  SCHOOL\n1  2157  2.905 1121   291   380   7250  38.5  2.340\
+  \  32.1   10.5\n2  2174  2.970 1128   301   398   7744  39.3  2.335  31.2   10.5\n\
+  3  2062  2.350 1214   326   185   3068  40.1  2.851    NA    8.9\n4  2111  2.511\
+  \ 1203    49   117   1632  22.4  1.159  27.5   11.5\n5  2134  2.791 1013   594 \
+  \  730  12710  57.7  1.229  32.5    8.8\n6  2185  3.040 1135   287   382   7706\
+  \  38.6  2.602  31.4   10.7\n> library(sas7bdat)\n> mydata <- read.sas7bdat(\"E:/Datasets/sales.sas7bdat\"\
+  )\n> head(mydata)\n  YEAR NET_SALES PROFIT\n1 1990       900    123\n2 1991    \
+  \   800    400\n3 1992       700    300\n4 1993       455     56\n5 1994       799\
+  \    299\n6 1995       666    199\n```\n```\n\n将数据集从 R 导出到任何外部位置可以通过将读取命令更改为写入命令并更改要存储文件的目录路径来完成。\n\
+  \n## 数据类型转换\n\n有各种类型的数据，如数值、因子、字符、逻辑等。使用 R，如果格式化不当，将一种数据类型转换为另一种数据类型并不困难。在更改变量类型之前，必须查看它当前的数据类型。为此，可以使用以下命令：\n\
+  \n```\n```r\n> is.numeric(x1)\n[1] TRUE\n> is.character(x3)\n[1] TRUE\n> is.vector(x1)\n\
+  [1] TRUE\n> is.matrix(x)\n[1] FALSE\n> is.data.frame(x)\n[1] TRUE\n```\n```\n\n\n\
+  \n\n\n## 使用 R 内置数据进行数据处理\n\n```r\n> # Sorting and Merging Data\n> ArtPiece<-read.csv(\"\
+  ArtPiece.csv\")\n> names(ArtPiece)\n       [1] \"Cid\"                        \"\
+  Critic.Ratings\"             \"Acq.Cost\"                   \n       [4] \"Art.Category\"\
+  \               \"Art.Piece.Size\"             \"Border.of.art.piece\"        \n\
+  \       [7] \"Art.Type\"                   \"Prominent.Color\"            \"CurrentAuctionAveragePrice\"\
+  \  \n      [10] \"Brush\"                      \"Brush.Size\"                 \"\
+  Brush.Finesse\"              \n      [13] \"Art.Nationality\"            \"Top.3.artists\"\
+  \              \"CollectorsAverageprice\"     \n      [16] \"Min.Guarantee.Cost\"\
+  \n> attach(ArtPiece)\n```\n\n在 `ArtPiece` 数据集中，共有 16 个变量：10 个数值型变量，6 个类别型变量。使用 `names`\
+  \ 命令可以打印出数据集中所有变量的名称。`attach` 函数有助于将全部变量名称保留在当前 R 会话中，这样用户就不必每次在代码中的变量名前都输入数据集名称：\n\
+  \n```r\n> sort(Critic.Ratings)\n     [1] 4.9921 5.0227 5.2106 5.2774 5.4586 5.5711\
+  \ 5.6300 5.7723 5.9789\n5.9858 6.5078 6.5328\n    [13] 6.5393 6.5403 6.5617 6.5663\
+  \ 6.5805 6.5925 6.6536 6.8990 6.9367\n7.1254 7.2132 7.2191\n    [25] 7.3291 7.3807\
+  \ 7.4722 7.5156 7.5419 7.6173 7.6304 7.6586 7.7694\n7.8241 7.8434 7.9315\n    [37]\
+  \ 7.9576 8.0064 8.0080 8.0736 8.0949 8.1054 8.2944 8.4498 8.4872\n8.6889 8.8958\
+  \ 8.9046\n    [49] 9.3593 9.8130\n```\n\n默认情况下，排序按升序进行。若要按降序对向量排序，需要在变量名前加上负号。`Critic.Ratings`\
+  \ 变量也可以按降序排序，如下所示。要按降序排序，将 `decreasing` 设为 `TRUE`，该参数可在命令中设置：\n\n```r\n> sort(Critic.Ratings,\
+  \ decreasing = T)\n     [1] 9.8130 9.3593 8.9046 8.8958 8.6889 8.4872 8.4498 8.2944\
+  \ 8.1054\n8.0949 8.0736 8.0080\n    [13] 8.0064 7.9576 7.9315 7.8434 7.8241 7.7694\
+  \ 7.6586 7.6304 7.6173\n7.5419 7.5156 7.4722\n    [25] 7.3807 7.3291 7.2191 7.2132\
+  \ 7.1254 6.9367 6.8990 6.6536 6.5925\n6.5805 6.5663 6.5617\n    [37] 6.5403 6.5393\
+  \ 6.5328 6.5078 5.9858 5.9789 5.7723 5.6300 5.5711\n5.4586 5.2774 5.2106\n    [49]\
+  \ 5.0227 4.9921\n```\n\n大多数情况下，我们需要根据数据框中的某些输入变量或属性对数据集进行排序，而不是对单个数值向量排序。对单个变量排序与对数据框排序截然不同。以下脚本展示了如何使用\
+  \ `order` 函数对数据框进行排序：\n\n```r\n> i2<-ArtPiece[order(Critic.Ratings,Acq.Cost),1:5]\n\
+  > head(i2)\n```\n\n|    | Cid | Critic.Ratings | Acq.Cost | Art.Category | Art.Piece.Size\
+  \ |\n|----|-----|---------------|----------|--------------|----------------|\n|\
+  \ 9  | 9   | 4.9921        | 39200    | Vintage I    | 26in. X 18in.  |\n| 50 |\
+  \ 50  | 5.0227        | 52500    | Portrait Art II | 26in. X 24in. |\n| 26 | 26\
+  \  | 5.2106        | 31500    | Dark Art II   | 1in. X 7in.    |\n| 45 | 45  | 5.2774\
+  \        | 79345    | Gothic II     | 9in. X 29in.   |\n| 21 | 21  | 5.4586    \
+  \    | 33600    | Abstract Art Type II | 29in. X 29in. |\n| 38 | 38  | 5.5711  \
+  \      | 35700    | Abstract Art Type III | 9in. X 12in. |\n\n上述代码展示了评论家评分和购置成本按升序排列的结果。这里使用的是\
+  \ `order` 命令而不是 `sort` 命令。`head` 命令默认从排序后的数据集中打印前六条观测值。`order` 命令后的第二个参数 `1:5` 表示我们希望从\
+  \ `ArtPiece` 数据集中打印前六条观测值和五个变量。如果需要从开头打印 10 条观测值，可以执行 `head(i2, 10)`。该数据集没有任何缺失值；然而，任何实际数据集都不能排除存在\
+  \ NA 或缺失值的可能。因此，当存在 NA 或缺失值时，对数据框排序可能会变得棘手。下面的例子通过在数据集中加入一些任意的 NA 值，展示 `order` 命令产生的结果：\n\
+  \n```r\n> i2<-ArtPiece[order(Border.of.art.piece, na.last = F),2:6]\n> head(i2)\n\
+  \              Critic.Ratings Acq.Cost          Art.Category Art.Piece.Size\nBorder.of.art.piece\n\
+  18                    7.5156    34300          Vintage III   29in. X 6in.\n43  \
+  \                  6.8990    59500     Abstract Art Type II 23in. X 21in.\n1   \
+  \                  8.9046    49700      Abstract Art Type I 17in. X 27in.\nBorder\
+  \ 1\n12                    7.5419    37100          Silhouette III  28in. X 9in.\n\
+  Border 10\n14                    7.1254    54600          Vintage II       9in.\
+  \ X 12in.\nBorder 11\n16                    7.2132    23100          Dark Art I\
+  \       10in. X 22in.\nBorder 11\n```\n\n`na.last` 命令用于将缺失值和 NA 从数据集中单独分离出来。它们可以通过\
+  \ `na.last = TRUE` 放在数据集底部，或者通过 `na.last = FALSE` 放在数据集开头。通过将 NA 在 `order` 函数中单独处理，可以保持数据的完整性。\n\
+  \n`merge` 函数有助于合并两个数据框。要合并两个数据框，至少有一个列名是相同的。这两个数据框也可以通过一个称为按列合并（column bind）的函数来连接。为了展示按列合并与\
+  \ `merge` 函数之间的区别，我们使用了 audit.csv 数据集。从 audit 数据集中准备了两个小型数据集 A 和 B：\n\n```r\n> A<-audit[,c(1,2,3,7,9)]\n\
+  > names(A)\n[1] \"ID\"      \"Age\"     \"Employment\" \"Income\"   \"Deductions\"\
+  \n> B<-audit[,c(1,3,4,5,6)]\n> names(B)\n[1] \"ID\"        \"Employment\" \"Education\"\
+  \  \"Marital\"    \"Occupation\"\n```\n\n在数据集 A 和 B 中，有两个公共列：`ID` 和 `Employment`，它们可以用作合并两个数据框的主键。使用\
+  \ `merge` 命令时，公共列在结果数据集中只保留一次。合并后的数据框包含两个数据框中都具有完整记录的所有行：\n\n```r\n> head(merge(A,B),3)\n\
+  ```\n\n|   | ID      | Employment | Age | Income   | Deductions | Education | Marital\
+  \  | Occupation |\n|---|---------|------------|-----|----------|------------|-----------|----------|------------|\n\
+  | 1 | 1004641 | Private    | 38  | 81838.0  | 0          | College   | Unmarried|\
+  \ Service    |\n| 2 | 1010229 | Private    | 35  | 72099.0  | 0          | Associate\
+  \ | Absent   | Transport  |\n| 3 | 1024587 | Private    | 32  | 154676.7 | 0   \
+  \       | HSgrad    | Divorced | Clerical   |\n\n`merge` 函数提供了四种不同的数据组合方式：自然连接、全外连接、左外连接和右外连接。除了这些连接方式外，两个数据框还可以通过特定的单个列或多个列进行合并。自然连接只保留两个数据框中匹配的行，可以通过\
+  \ `all=F` 参数指定：\n\n```r\n> head(merge(A,B, all=F),3)\n```\n\n|   | ID      | Employment\
+  \ | Age | Income   | Deductions | Education | Marital | Occupation |\n|---|---------|------------|-----|----------|------------|-----------|---------|------------|\n\
+  | 1 | 1044221 | Private    | 60  | 7568.23  | 0          | College   | Married |\
+  \ Executive  |\n| 2 | 1047095 | Private    | 74  | 33144.40 | 0          | HSgrad\
+  \    | Married | Service    |\n| 3 | 1047698 | Private    | 43  | 43391.17 | 0 \
+  \         | Bachelor  | Married | Executive  |\n\n全外连接允许我们保留两个数据框中的所有行，这可以通过 `all=T`\
+  \ 命令指定。它执行完整合并，并在两个数据框中没有匹配数据的位置用 NA 值填充列。`merge` 函数的默认设置是丢弃两个数据框中所有不匹配的案例；要保留新数据框中的所有案例，我们需要指定\
+  \ `all=T`：\n\n```r\n> head(merge(A,B, all=T),3)\n```\n\n|   | ID      | Employment\
+  \ | Age | Income   | Deductions | Education | Marital | Occupation |\n|---|---------|------------|-----|----------|------------|-----------|---------|------------|\n\
+  | 1 | 1004641 | Private    | 38  | 81838.0  | 0          | NA        | NA      |\
+  \ NA         |\n| 2 | 1010229 | Private    | 35  | 72099.0  | 0          | NA  \
+  \      | NA      | NA         |\n| 3 | 1024587 | Private    | 32  | 154676.7 | 0\
+  \          | NA        | NA      | NA         |\n\n左外连接允许我们包含数据框一（A）中的所有行，以及数据框二（B）中匹配的行；要执行此操作，我们需要指定\
+  \ `all.x=T`：\n\n```r\n> head(merge(A,B, all.x = T),3)\n```\n\n|   | ID      | Employment\
+  \ | Age | Income   | Deductions | Education | Marital | Occupation |\n|---|---------|------------|-----|----------|------------|-----------|---------|------------|\n\
+  | 1 | 1004641 | Private    | 38  | 81838.0  | 0          | NA        | NA      |\
+  \ NA         |\n| 2 | 1010229 | Private    | 35  | 72099.0  | 0          | NA  \
+  \      | NA      | NA         |\n| 3 | 1024587 | Private    | 32  | 154676.7 | 0\
+  \          | NA        | NA      | NA         |\n\n右外连接允许我们包含数据框 B 中的所有行，以及 A 中匹配的行；指定\
+  \ `all.y=T`：\n\n```r\n> head(merge(A,B, all.y = T),3)\n```\n\n|   | ID      | Employment\
+  \ | Age | Income   | Deductions | Education | Marital | Occupation |\n|---|---------|------------|-----|----------|------------|-----------|---------|------------|\n\
+  | 1 | 1044221 | Private    | 60  | 7568.23  | 0          | College   | Married |\
+  \ Executive  |\n| 2 | 1047095 | Private    | 74  | 33144.40 | 0          | HSgrad\
+  \    | Married | Service    |\n| 3 | 1047698 | Private    | 43  | 43391.17 | 0 \
+  \         | Bachelor  | Married | Executive  |\n\n在数据框 A 和 B 中，有两个公共列：`ID` 和 `Employment`。使用\
+  \ `merge` 命令时，如果我们只按一个公共变量作为合并依据，另一个公共变量会出现在结果数据框中。如果我们选择多个公共变量作为合并条件，那么结果数据框中所有重复的列都会消失。\n\
+  \n\n\n\n\n> head(merge(A,B,by=\"ID\"),3)\n        ID Age Employment.x  Income Deductions\
+  \ Employment.y Education Marital Occupation\n    1 1044221 60 Private 7568.23 0\
+  \ Private College Married Executive\n    2 1047095 74 Private 33144.40 0 Private\
+  \ HSgrad Married Service\n    3 1047698 43 Private 43391.17 0 Private Bachelor Married\
+  \ Executive\n\n> head(merge(A,B,by=c(\"ID\",\"Employment\")),3)\n        ID Employment\
+  \ Age  Income Deductions Education Marital Occupation\n    1 1044221 Private 60\
+  \ 7568.23 0 College Married Executive\n    2 1047095 Private 74 33144.40 0 HSgrad\
+  \ Married Service\n    3 1047698 Private 43 43391.17 0 Bachelor Married Executive\n\
+  \n当两个数据框至少包含一个共同列时，merge 函数即可发挥作用。如果两个数据框包含的列完全不同，或者两者之间没有共同列，那么要合并这两个数据框，可以使用列绑定函数。列绑定函数会打印数据框\
+  \ A 和数据框 B 中的所有列，并将它们并排放置：\n\n> A<-audit[,c(2,7,9)]\n> names(A)\n[1] \"Age\"   \
+  \   \"Income\"   \"Deductions\"\n> B<-audit[,c(4,5,6)]\n> names(B)\n[1] \"Education\"\
+  \ \"Marital\"   \"Occupation\"\n> head(cbind(A,B),3)\n  Age Income Deductions Education\
+  \  Marital Occupation\n1  38 81838.0         0 College Unmarried Service\n2  35\
+  \ 72099.0         0 Associate Absent Transport\n3  32 154676.7         0 HSgrad\
+  \ Divorced Clerical\n\n## 数据框的索引或子集\n\n在处理包含大量观测值的客户数据集时，需要根据某些选择标准对数据进行子集划分，并进行有放回或无放回的抽样。索引是根据某些逻辑条件从数据框中提取数据子集的过程。subset\
+  \ 函数可以像索引一样从数据框中提取元素：\n\n> newdata <- audit[ which(audit$Gender==\"Female\" & audit$Age\
+  \ > 65), ]\n> rownames(newdata)\n[1] \"49\"  \"537\" \"552\" \"561\" \"586\" \"\
+  590\" \"899\" \"1200\" \"1598\" \"1719\"\n\n上述代码说明：从 audit 数据集中选择性别为女性且年龄大于 65 岁的观测值。which\
+  \ 命令用于根据上述两个标准选择 audit 数据的子集。满足上述条件的观测值有 10 个，数据框的行号已打印出来。使用 subset 函数也可以获得类似的结果。应该使用\
+  \ subset 函数而不是 which 函数，因为前者在传递多个条件时效率更高。让我们看看 subset 函数的使用方式：\n\n> newdata <- subset(audit,\
+  \ Gender==\"Female\" & Age > 65,\nselect=Employment:Income)\n> rownames(newdata)\n\
+  [1] \"49\"  \"537\" \"552\" \"561\" \"586\" \"590\" \"899\" \"1200\" \"1598\" \"\
+  1719\"\n\nsubset 函数中的额外参数使该函数更加高效，因为它提供了额外的好处：可以从满足逻辑条件的数据框中选择特定的列。\n\n## 日期和时间格式化\n\
+  \n日期函数返回一个 Date 类，表示自 1970 年 1 月 1 日以来的天数。as.numeric() 函数可用于创建一个数值变量，其值为自 1970 年\
+  \ 1 月 1 日以来的天数。as.Date() 的返回值是一个 Date 类对象：\n\n> Sys.time()\n[1] \"2015-11-10 00:43:22\
+  \ IST\"\n> dt<-as.Date(Sys.time())\n> class(dt)\n[1] \"Date\"\n\n系统时间函数会捕获包含时区的日期和时间。当我们使用\
+  \ as.Date 函数转换系统时间并将其存储为 R 中的新对象时，我们会发现该对象的类是 Date。weekdays 函数返回星期几的名称，如\"Monday\"\
+  或\"Wednesday\"。months 函数从日期变量中返回月份的名称。quarters 函数返回日期对象的季度名称，也可以使用 substr() 命令提取年份值：\n\
+  \n> weekdays(as.Date(Sys.time()))\n[1] \"Monday\"\n> months(as.Date(Sys.time()))\n\
+  [1] \"November\"\n> quarters(as.Date(Sys.time()))\n[1] \"Q4\"\n> substr(as.POSIXct(as.Date(Sys.time())),1,4)\n\
+  [1] \"2015\"\n\n如果数据集中给定的日期变量格式不适合进一步计算，可以使用 format 函数对其进行格式化：\n\n> format(Sys.time(),format\
+  \ = \"%m %d %y\")\n[1] \"11 10 15\"\n\n根据用户需求，可以传递给 format 参数的各种选项如下：\n\n| 选项 |\
+  \ 作用 |\n|---|---|\n| #%d | 表示日期为数字（0-31）01-31 |\n| #%a | 表示缩写的星期几，如 Mon |\n| #%A\
+  \ | A 表示未缩写的星期几，如 Monday |\n| #%m | 月份（00-12） |\n| #%b | 缩写的月份 |\n| #%B | 未缩写的月份，如\
+  \ January |\n| #%y | 两位数的年份（13） |\n| #%Y | 四位数的年份（2013） |\n\n表 1：日期格式化选项\n\n实际数据集包含日期字段，如零售中的交易日期、医疗保健中的就诊日期、BFSI\
+  \ 中的处理日期；任何时间序列数据都至少包含一个时间元素。要将日期变量纳入任何统计模型，需要进行数据转换，例如在零售场景中计算客户的新近度（vintage）。可以使用上述选项进行数据转换。\n\
+  \n## 创建新函数\n\nR 中有两种不同类型的函数：用户自定义函数和内置函数。\n\n| cos(x), sin(x), tan(x) | 还有 acos(x),\
+  \ cosh(x), acosh(x) 等 |\n|---|---|\n| log(x) | 自然对数 |\n| log10(x) | 常用对数 |\n| exp(x)\
+  \ | e^x |\n\n表 2：一些内置函数\n\n## 循环概念——for 循环\n\nfor 循环是 R 中最常用的循环结构。使用 for 循环，可以迭代地多次执行类似的任务，让我们看一个应用\
+  \ for 循环概念的示例。在以下代码中，创建了一个从 10 到 25 的数字序列。空向量 v 充当存储单元。如果以下代码中提到的条件不满足，则循环永远不会执行：\n\
+  \nx<-100:200\ny <- NULL # NULL vector as placeholder\nfor(i in seq(along=x)) {\n\
+  \  if(x[i] < 150) {\n    y <- c(y, x[i] - 50)\n  } else {\n    y <- c(y, x[i] +\
+  \ 50)\n  }\n}\nprint(y)\n\n## 循环概念——repeat 循环\n\nrepeat 循环用于在向量或数据框上迭代执行某个计算。它没有检查退出循环条件的机制；通常使用\
+  \ break 语句来退出循环。如果未能在 repeat 循环中提供任何 break 条件，则 repeat 循环将无限运行。让我们看看如何编写 repeat\
+  \ 循环的代码。以下代码中使用的 break 条件是 if x > 2.6：\n\nx <- 100\nrepeat {\n  print(x)\n  x =\
+  \ sqrt(x)+10\n  if (x > 2.6) {\n    break\n  }\n}\n\napply 函数族中还有其他函数，例如：\n- eapply：在环境中对值应用函数\n\
+  - mapply：对多个列表或向量参数应用函数\n- rapply：递归地对列表应用函数\n\n## 字符串处理\n\n字符串处理或字符处理是任何数据管理系统的重要方面。在典型的现实世界数据集中，例如客户姓名，会有不同的写法，如\
+  \ J H Smith、John h Smith、John h smith 等。经过验证，可以发现这三个名字都属于同一个人。在典型的数据管理中，标准化数据集中的文本列或变量非常重要，因为\
+  \ R 区分大小写，它会将任何差异视为新的数据点。还可能有其他变量，如车辆的名称/型号、产品描述等。让我们看看如何使用一些函数来标准化文本：\n\n> x<-\"\
+  data Mining is not a difficult subject, anyone can master the subject\"\n> class(x)\n\
+  [1] \"character\"\n> substr(x, 1, 12)\n[1] \"data Mining \"\n\n上述脚本中的对象 x 是一个字符串或字符对象。substr\
+  \ 命令用于从字符串中提取子字符串，位置由函数中定义。如果需要更改或替换某些模式或文本，可以使用 sub 命令。用户需要传递四个重要的参数：需要搜索模式的字符串、模式、需要替换的修改后模式，以及是否接受区分大小写。让我们看一个示例脚本：\n\
+  \n> sub(\"data mining\", \"The Data Mining\", x, ignore.case =T, fixed=FALSE)\n\
+  [1] \"The Data Mining is not a difficult subject, anyone can master the subject\"\
+  \n> strsplit(x, \"\")\n[[1]]\n[1] \"d\" \"a\" \"t\" \"a\" \" \" \"M\" \"i\" \"n\"\
+  \ \"i\" \"n\" \"g\" \" \" \"i\" \"s\" \" \" \"n\"\n\"o\" \"t\" \" \" \"a\" \" \"\
+  \n[22] \"d\" \"i\" \"f\" \"f\" \"i\" \"c\" \"u\" \"l\" \"t\" \" \" \"s\" \"u\" \"\
+  b\" \"j\" \"e\" \"c\"\n\"t\" \",\" \" \" \"a\" \"n\"\n[43] \"y\" \"o\" \"n\" \"\
+  e\" \" \" \"c\" \"a\" \"n\" \" \" \"m\" \"a\" \"s\" \"t\" \"e\" \"r\" \" \"\n\"\
+  t\" \"h\" \"e\" \" \" \"s\"\n[64] \"u\" \"b\" \"j\" \"e\" \"c\" \"t\"\n\n\n\n\n\n\
+  `strsplit` 函数有助于从字符串中展开字母。`sub` 命令用于更改字符串中不正确的模式。`ignore.case` 选项使用户在搜索定义字符串中的模式时能够打开或关闭大小写敏感性。\n\
+  \n## NA 和缺失值管理\n\n缺失值处理是标准数据挖掘文献中的重要任务。在 R 编程语言中，缺失值表示为 NA。NA 不是字符串或数值值；它们被视为缺失值的指示符。将数据集导入\
+  \ R 编程平台后，检查任何变量是否存在缺失值非常重要。为此，使用了 `is.na()` 命令。请参阅此处给出的示例：\n\n```r\n> x <- c(12,\
+  \ 13, 14, 21, 23, 24, NA, 25, NA, 0, NA)\n> is.na(x)\n[1] FALSE FALSE FALSE FALSE\
+  \ FALSE FALSE TRUE FALSE TRUE FALSE TRUE\n> mean(x, na.rm = TRUE)\n[1] 16.5\n> mean(x)\n\
+  [1] NA\n```\n\n对象 `x` 是一个包含一些 NA 值的数值向量。为此，可以使用 `is.na()`；在条件满足的地方，结果将为 TRUE。如果在存在\
+  \ NA 的情况下计算任何内容，我们最终会得到错误或无结果。或者，我们可以通过更改 NA 值来替换数据集，也可以在执行任何计算时删除这些 NA 值。如前面的脚本所示，用于从对象\
+  \ `x` 的均值计算中删除 NA 的是 `na.rm = T`。\n\n## 缺失值插补技术\n\n要从数据集中删除缺失值，可以使用 `na.omit()`。即使只有一个变量的数据缺失，它也会删除整行。存在各种缺失值插补方法：\n\
+  \n- **均值插补**：数据向量中的缺失值被该向量（不包括 NA）的均值或中位数值替换。\n- **局部平均法**：通过考虑 3 或 5 期的移动平均来计算缺失值的局部平均值；也就是说，对于\
+  \ 3 期平均值，缺失数据的先前和后继值可以帮助确定缺失值应为多少。\n- **保持其单独**：有时插补根本不可能，客户可能有兴趣将缺失值分开，以单独了解缺失行为。\n\
+  - **基于模型**：有一些基于模型的缺失值插补技术，例如基于回归的缺失值预测方法。\n- **聚类**：与基于回归的缺失值插补预测类似，k-means 聚类可用于对数据集中的缺失值进行插补。\n\
+  \n## 总结\n\n根据前面的讨论，可以总结如下：数据操作和数据管理是在各种实时项目上执行数据挖掘的重要步骤。由于 R 提供了更好的统计编程平台和可视化，使用\
+  \ R 向读者解释各种数据挖掘概念是有意义的。在本章中，我们介绍了数据挖掘和 R 的介绍以及概念、一些编程基础、R 数据类型等。我们还介绍了使用 R 导入和导出各种外部文件格式、排序和合并概念以及缺失数据管理技术。\n\
+  \n在下一章中，我们将学习更多关于使用 R 执行探索性数据分析的内容，以及如何理解单变量、双变量和多变量数据集。首先，我们将了解概念和实际解释，然后是 R 实现，以获得有关探索性数据分析的知识。\n"
+- "# 2 使用汽车数据进行探索性数据分析\n\n## 使用汽车数据进行探索性数据分析\n\n探索性数据分析是数据挖掘不可或缺的一部分。它涉及对数据集中变量的数值和图形表示，以便于理解并快速得出关于数据集的结论。了解数据集、用于分析的变量类型、各种变量之间的关联等非常重要。\n\
+  \n创建交叉表以了解分类变量之间的关系并对数据执行经典统计检验以验证数据关于数据的各种假设可能是有用的。\n\n您现在将了解以下内容：\n\n- 如何使用基本统计数据了解单个和多个变量的属性\n\
+  - 如何计算两个或多个变量之间的相关性和关联\n- 执行多变量数据分析\n- 任何数据集的各种概率函数的统计属性\n- 对数据应用统计检验以得出假设\n- 比较两个或多个样本\n\
+  \n```r\n$ Manufacturer : Factor w/ 32 levels \"Acura\",\"Audi\",...: 1 1 2 2 3 4\
+  \ 4 4 4 5 ...\n$ Model : Factor w/ 93 levels \"100\",\"190E\",\"240\",...: 49 56\
+  \ 9 1 6 24 54 74 73 35 ...\n$ Type : Factor w/ 6 levels \"Compact\",\"Large\",...:\
+  \ 4 3 1 3 3 3 2 2 3 2 ...\n$ Min.Price : num 12.9 29.2 25.9 30.8 23.7 14.2 19.9\
+  \ 22.6 26.3 33 ...\n$ Price : num 15.9 33.9 29.1 37.7 30 15.7 20.8 23.7 26.3 34.7\
+  \ ...\n$ Max.Price : num 18.8 38.7 32.3 44.6 36.2 17.3 21.7 24.9 26.3 36.3 ...\n\
+  $ MPG.city : int 25 18 20 19 22 22 19 16 16 ...\n$ MPG.highway : int 31 25 26 26\
+  \ 30 31 28 25 27 25 ...\n$ AirBags : Factor w/ 3 levels \"Driver & Passenger\",...:\
+  \ 3 1 2 1 2 2 2 2 2 2 ...\n$ DriveTrain : Factor w/ 3 levels \"4WD\",\"Front\",...:\
+  \ 2 2 2 2 3 2 2 3 2 2 ...\n$ Cylinders : Factor w/ 6 levels \"3\",\"4\",\"5\",\"\
+  6\",...: 2 4 4 4 2 2 4 4 4 5 ...\n$ EngineSize : num 1.8 3.2 2.8 2.8 3.5 2.2 3.8\
+  \ 5.7 3.8 4.9 ...\n$ Horsepower : int 140 200 172 172 208 110 170 180 170 200 ...\n\
+  $ RPM : int 6300 5500 5500 5500 5700 5200 4800 4000 4800 4100 ...\n$ Rev.per.mile\
+  \ : int 2890 2335 2280 2535 2545 2565 1570 1320 1690 1510 ...\n$ Man.trans.avail\
+  \ : Factor w/ 2 levels \"No\",\"Yes\": 2 2 2 2 2 1 1 1 1 1 ...\n$ Fuel.tank.capacity:\
+  \ num 13.2 18 16.9 21.1 21.1 16.4 18 23 18.8 18 ...\n$ Passengers : int 5 5 5 6\
+  \ 4 6 6 6 5 6 ...\n$ Length : int 177 195 180 193 186 189 200 216 198 206 ...\n\
+  $ Wheelbase : int 102 115 102 106 109 105 111 116 108 114 ...\n$ Width : int 68\
+  \ 71 67 70 69 69 74 78 73 73 ...\n$ Turn.circle : int 37 38 37 37 39 41 42 45 41\
+  \ 43 ...\n$ Rear.seat.room : num 26.5 30 28 31 27 28 30.5 30.5 26.5 35 ...\n$ Luggage.room\
+  \ : int 11 15 14 17 13 16 17 21 14 18 ...\n$ Weight : int 2705 3560 3375 3405 3640\
+  \ 2880 3470 4105 3495 3620 ...\n$ Origin : Factor w/ 2 levels \"USA\",\"non-USA\"\
+  : 2 2 2 2 2 1 1 1 1 1 ...\n$ Make : Factor w/ 93 levels \"Acura Integra\",...: 1\
+  \ 2 4 3 5 6 7 9 8 10 ...\n```\n\n可以显示对一些连续变量（Price、MPG.city 和 MPG.highway）和离散变量（Type、AirBags\
+  \ 和手动变速箱可用性）的单变量统计计算。您可以练习其余变量以全面了解数据集。\n\n`max()` 命令估计变量的最大值。`min()` 计算最小值。`sum()`\
+  \ 计算所有值的总和。`mean()` 函数计算值的算术平均值，`median()` 函数计算中值，`range()` 计算 `min()` 和 `max()`\
+  \ 的向量。`var()` 计算样本方差，`cor()` 计算两个向量之间的相关性。`rank()` 计算向量中值的秩向量。`quantile()` 函数计算包含向量的最小值、下四分位数、中位数、上四分位数和最大值的向量。\n\
+  \n使用 `summary()` 函数进行单变量分析：\n\n```r\n> summary(Cars93$Price)\nMin. 1st Qu. Median\
+  \ Mean 3rd Qu. Max.\n7.40 12.20 17.70 19.51 23.30 61.90\n> summary(Cars93$MPG.city)\n\
+  Min. 1st Qu. Median Mean 3rd Qu. Max.\n15.00 18.00 21.00 22.37 25.00 46.00\n> summary(Cars93$MPG.highway)\n\
+  Min. 1st Qu. Median Mean 3rd Qu. Max.\n20.00 26.00 28.00 29.09 31.00 50.00\n> summary(Cars93$Type)\n\
+  Compact Large Midsize Small Sporty Van\n16 11 22 21 14 9\n> summary(Cars93$AirBags)\n\
+  Driver & Passenger Driver only None\n16 43 34\n> summary(Cars93$Man.trans.avail)\n\
+  No Yes\n32 61\n```\n\n现在让我们查看 `summary()` 函数在数据框上的结果。对于连续变量，计算中心趋势的数值度量，对于分类变量，计算类别频率：\n\
+  \n```r\n> summary(Cars93)\nManufacturer Model Type Min.Price\nChevrolet: 8 100 :\
+  \ 1 Compact:16 Min. : 6.70\nFord : 8 190E : 1 Large :11 1st Qu.:10.80\nDodge : 6\
+  \ 240 : 1 Midsize:22 Median :14.70\nMazda : 5 300E : 1 Small :21 Mean :17.13\nPontiac\
+  \ : 5 323 : 1 Sporty :14 3rd Qu.:20.30\nBuick : 4 535i : 1 Van : 9 Max. :45.40\n\
+  (Other) :57 (Other):87\nPrice Max.Price MPG.city MPG.highway\nMin. : 7.40 Min. :\
+  \ 7.9 Min. :15.00 Min. :20.00\n1st Qu.:12.20 1st Qu.:14.7 1st Qu.:18.00 1st Qu.:26.00\n\
+  Median :17.70 Median :19.6 Median :21.00 Median :28.00\nMean :19.51 Mean :21.9 Mean\
+  \ :22.37 Mean :29.09\n3rd Qu.:23.30 3rd Qu.:25.3 3rd Qu.:25.00 3rd Qu.:31.00\nMax.\
+  \ :61.90 Max. :80.0 Max. :46.00 Max. :50.00\nAirBags DriveTrain Cylinders EngineSize\n\
+  Driver & Passenger:16 4WD :10 3 : 3 Min. :1.000\nDriver only :43 Front:67 4 :49\
+  \ 1st Qu.:1.800\nNone :34 Rear :16 5 : 2 Median :2.400\n6 :31 Mean :2.668\n8 : 7\
+  \ 3rd Qu.:3.300\nrotary: 1 Max. :5.700\n```\n\n\n\n\nHorsepower RPM Rev.per.mile\
+  \ Man.trans.avail\nMin. : 55.0 Min. :3800 Min. :1320 No :32\n1st Qu.:103.0 1st Qu.:4800\
+  \ 1st Qu.:1985 Yes:61\nMedian :140.0 Median :5200 Median :2340\nMean :143.8 Mean\
+  \ :5281 Mean :2332\n3rd Qu.:170.0 3rd Qu.:5750 3rd Qu.:2565\nMax. :300.0 Max. :6500\
+  \ Max. :3755\nFuel.tank.capacity Passengers Length Wheelbase\nMin. : 9.20 Min. :2.000\
+  \ Min. :141.0 Min. : 90.0\n1st Qu.:14.50 1st Qu.:4.000 1st Qu.:174.0 1st Qu.: 98.0\n\
+  Median :16.40 Median :5.000 Median :183.0 Median :103.0\nMean :16.66 Mean :5.086\
+  \ Mean :183.2 Mean :103.9\n3rd Qu.:18.80 3rd Qu.:6.000 3rd Qu.:192.0 3rd Qu.:110.0\n\
+  Max. :27.00 Max. :8.000 Max. :219.0 Max. :119.0\nWidth Turn.circle Rear.seat.room\
+  \ Luggage.room\nMin. :60.00 Min. :32.00 Min. :19.00 Min. : 6.00\n1st Qu.:67.00 1st\
+  \ Qu.:37.00 1st Qu.:26.00 1st Qu.:12.00\nMedian :69.00 Median :39.00 Median :27.50\
+  \ Median :14.00\nMean :69.38 Mean :38.96 Mean :27.83 Mean :13.89\n3rd Qu.:72.00\
+  \ 3rd Qu.:41.00 3rd Qu.:30.00 3rd Qu.:15.00\nMax. :78.00 Max. :45.00 Max. :36.00\
+  \ Max. :22.00\nNA's :2 NA's :11\nWeight Origin Make\nMin. :1695 USA :48 Acura Integra:\
+  \ 1\n1st Qu.:2620 non-USA:45 Acura Legend : 1\nMedian :3040 Audi 100 : 1\nMean :3073\
+  \ Audi 90 : 1\n3rd Qu.:3525 BMW 535i : 1\nMax. :4105 Buick Century: 1\n(Other) :87\n\
+  \n对于连续变量（如 RPM、马力等），summary 命令显示最小值、第一四分位数、均值、中位数、第三四分位数和最大值。对于分类变量（如汽车类型、安全气囊、手动变速箱可用性等），其单变量统计以频数表的形式表示。频数最高的类别被视为众数类别。\n\
+  \n使用 fivenum() 和 describe() 等函数也可以生成类似的汇总统计信息，它们比 summary 函数提供的信息更多：\n\n```\n> fivenum(Cars93$Price)\n\
+  [1] 7.4 12.2 17.7 23.3 61.9\n> fivenum(Cars93$MPG.city)\n[1] 15 18 21 25 46\n> fivenum(Cars93$MPG.highway)\n\
+  [1] 20 26 28 31 50\n```\n\n来自 Hmisc 库的 describe() 函数可用于更好地理解数据描述：\n\n```\n> library(Hmisc)\n\
+  > describe(Cars93)\nCars93\n27 Variables 93 Observations\nPrice\nn missing unique\
+  \ Info Mean .05 .10 .25 .50 .75 .90\n93 0 81 1 19.51 8.52 9.84 12.20 17.70 23.30\
+  \ 33.62\n.95\n36.74\nlowest : 7.4 8.0 8.3 8.4 8.6, highest: 37.7 38.0 40.1 47.9\
+  \ 61.9\nMPG.city\nn missing unique Info Mean .05 .10 .25 .50 .75 .90\n93 0 21 0.99\
+  \ 22.37 16.6 17.0 18.0 21.0 25.0 29.0\n.95\n31.4\nlowest : 15 16 17 18 19, highest:\
+  \ 32 33 39 42 46\n--------------------------------------------------\n----------------\n\
+  MPG.highway\nn missing unique Info Mean .05 .10 .25 .50 .75 .90\n93 0 22 0.99 29.09\
+  \ 22.0 23.2 26.0 28.0 31.0 36.0\n.95\n37.4\nlowest : 20 21 22 23 24, highest: 38\
+  \ 41 43 46 50\n--------------------------------------------------\n----------------\n\
+  AirBags\nn missing unique\n93 0 3\nDriver & Passenger (16, 17%), Driver only (43,\
+  \ 46%)\nNone (34, 37%)\n--------------------------------------------------\n----------------\n\
+  Man.trans.avail\nn missing unique\n93 0 2\nNo (32, 34%), Yes (61, 66%)\n```\n\n\
+  类似地，价格与高速公路里程之间的关系也可以用散点图来表示：\n\n```r\n> library(ggplot2)\n> library(gridExtra)\n\
+  > ggplot(Cars93,\n aes(Cars93$Price,Cars93$MPG.highway))+geom_point(aes(colour=(Cars93$Type)))\n\
+  \ +geom_smooth()\n```\n\n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_52_0.png)\n\n\
+  图 2：价格与高速公路里程之间的关系\n\n数值-分类关系和两个分类变量之间的关系将在第 3 章 *可视化钻石数据集* 中详细说明。\n\n## 多变量分析\n\
+  \n多变量关系是考察多个因变量和自变量及其关系的一种统计方法。在本章中，我们将简要讨论超过两个变量之间的多变量关系，但将在后续章节中详细讨论多变量分析。可以通过相关性方法以及交叉列表来了解各变量之间的多变量关系：\n\
+  \n```\n> pairs(n_cars93,main=\"Correlation Plot\", col=\"blue\")\n```\n\n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_53_0.png)\n\
+  \n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_55_0.png)\n\n从前面的图像中，我们可以得出结论：价格变量呈正偏态，因为分布右侧存在一些异常值。价格变量的均值因极端波动而被夸大，且大于众数。\n\
+  \n现在让我们尝试理解一个可以使用正态分布来回答某个假设的例子。\n\n假设高速公路上的每加仑英里数变量服从均值为 29.08、标准差为 5.33 的正态分布。那么一辆新车提供\
+  \ 35 英里/加仑里程的概率是多少？\n\n```\n> pnorm(35,mean(Cars93$MPG.highway),sd(Cars93$MPG.highway),lower.tail\
+  \ = F)\n[1] 0.1336708\n```\n\n因此，一辆新车提供 35 英里/加仑里程所需的概率为 13.36%，由于期望均值高于实际均值，lower.tail\
+  \ 相当于 FALSE。\n\n## 二项概率分布\n\n二项分布被称为离散概率分布。它描述一次实验的结果。每次试验被认为只有两种结果：成功或失败，是或否。例如，在\
+  \ Cars93 数据集的变量中，手动变速箱是否可用用“是”或“否”表示。\n\n让我们举一个例子来说明二项分布的用途。在特定部件无法正常工作的情况下，汽车有缺陷的概率是\
+  \ 0.1%。你制造了 93 辆汽车。在当前这批 93 辆汽车中至少检测出 1 辆缺陷车的概率是多少：\n\n```\n> pbinom(1,93,prob =\
+  \ 0.1)\n[1] 0.0006293772\n```\n\n因此，在 93 辆汽车的一批中识别出一辆缺陷汽车的概率为 0.0006，考虑到缺陷部件的概率为\
+  \ 0.10，这个概率非常小。\n\n## 泊松概率分布\n\n泊松分布适用于计数数据，在给定数据以及事件相关信息的情况下，你可以使用泊松概率分布预测该范围内任意数字出现的概率。\n\
+  \n让我们举个例子。假设平均每分钟有 200 位顾客访问某个电子商务网站门户。那么求一分钟后有 250 位顾客访问同一网站的概率：\n\n```\n> ppois(250,200,lower.tail\
+  \ = F)\n[1] 0.0002846214\n```\n\n因此，所需概率为 0.0002，这非常罕见。除了前面提到的经常使用的常见概率分布之外，还有许多其他分布可以在罕见情况下使用。\n\
+  \n```\nmean sd\n0.5498938 0.3888336\n> x$vcov\nmean sd\nmean 0.3023831 0.0000000\n\
+  sd 0.0000000 0.1511916\n> x$loglik\n[1] -287.1104\n> x$n\n[1] 93\n```\n\n现在我们将了解如何以图形方式表示变量的正态性：\n\
+  \n```\n> qqnorm(Cars93$MPG.highway)\n> qqline(Cars93$MPG.highway)\n```\n\n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_58_0.png)\n\
+  \n以圆圈表示的数据点偏离了直线 t。\n\n解释离散数据：其中所有类别如下：\n\n```\n> table(Cars93$Type)\nCompact Large\
+  \ Midsize Small Sporty Van\n16 11 22 21 14 9\n```\n\n```\nMidsize 5 6 1\nSmall 0\
+  \ 3 11\nSporty 1 3 2\nVan 0 1 3\n```\n\n用于检验所有因子独立性的 summary 命令可用于检验原假设：\n\n```\n\
+  > summary(contTable)\nNumber of cases in table: 93\nNumber of factors: 3\nTest for\
+  \ independence of all factors:\nChisq = 65, df = 27, p-value = 5e-05\nChi-squared\
+  \ approximation may be incorrect\n```\n\n除了前面讨论的图形方法之外，还有一些数值统计检验可用于判断变量是否服从正态分布。有一个名为\
+  \ norm.test 的库用于执行数据正态性检验，下面列出了该库中一些有助于评估数据正态性的函数：\n\n| ajb.norm.test | 调整后的 Jarque-Bera\
+  \ 正态性检验 |\n| frosini.norm.test | Frosini 正态性检验 |\n| geary.norm.test | Geary 正态性检验\
+  \ |\n| hegazy1.norm.test | Hegazy-Green 正态性检验 |\n| hegazy2.norm.test | Hegazy-Green\
+  \ 正态性检验 |\n| jb.norm.test | Jarque-Bera 正态性检验 |\n| kurtosis.norm.test | 峰度正态性检验\
+  \ |\n| skewness.norm.test | 偏度正态性检验 |\n| spiegelhalter.norm.test | Spiegelhalter\
+  \ 正态性检验 |\n| wb.norm.test | Weisberg-Bingham 正态性检验 |\n\n| ad.test | Anderson-Darling\
+  \ 正态性检验 |\n| cvm.test | Cramér-von Mises 正态性检验 |\n| lillie.test | Lilliefors（Kolmogorov-Smirnov）正态性检验\
+  \ |\n| pearson.test | Pearson 卡方正态性检验 |\n| sf.test | Shapiro-Francia 正态性检验 |\n\n\
+  \n\n\n\n让我们对`Cars93`数据集中的`Price`变量进行正态性检验：\n\n```\n> library(nortest)\n> ad.test(Cars93$Price)\
+  \ # 安德森-达林检验\nAnderson-Darling normality test\ndata: Cars93$Price\nA = 3, p-value\
+  \ = 9e-07\n> cvm.test(Cars93$Price) # 克拉默-冯·米塞斯检验\nCramer-von Mises normality test\n\
+  data: Cars93$Price\nW = 0.5, p-value = 6e-06\n> lillie.test(Cars93$Price) # 利利福斯（KS）检验\n\
+  Lilliefors (Kolmogorov-Smirnov) normality test\ndata: Cars93$Price\nD = 0.2, p-value\
+  \ = 1e-05\n> pearson.test(Cars93$Price) # 皮尔逊卡方检验\nPearson chi-square normality\
+  \ test\ndata: Cars93$Price\nP = 30, p-value = 3e-04\n> sf.test(Cars93$Price) # 夏皮罗-弗朗西亚检验\n\
+  Shapiro-Francia normality test\ndata: Cars93$Price\n```\n\n从上述检验可以看出，`Price`变量不服从正态分布，因为所有统计检验的p值均小于0.05。如果我们在双变量关系中增加更多维度，就变成了多元分析。让我们尝试理解`Cars93`数据集中汽车马力与长度之间的关系：\n\
+  \n```\n> library(corrplot)\n> o<-cor(Cars93[,c(\"Horsepower\",\"Length\")])\n> corrplot(o,method\
+  \ = \"circle\",main=\"相关性图\")\n```\n\n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_65_0.png)\n\
+  \n当我们纳入更多变量时，就变成了多元关系。让我们尝试绘制`Cars93`数据集中多个变量之间的多元关系图。\n\n```\n```r\n> library(corrplot)\n\
+  > t<-\n  cor(Cars93[,c(\"Price\",\"MPG.city\",\"RPM\",\"Rev.per.mile\",\"Width\"\
+  ,\"Weight\",\"Horsepower\",\"Length\")])\n> corrplot(t,method = \"ellipse\")\n```\n\
+  ```\n\n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_65_1.png)\n\n有多种方法可以作为参数传递给相关性图，分别是\"\
+  circle\"（圆形）、\"square\"（方形）、\"ellipse\"（椭圆）、\"number\"（数字）、\"shade\"（阴影）、\"color\"\
+  （颜色）和\"pie\"（饼图）。\n\n## 假设检验\n\n零假设表明什么都没发生，均值保持不变等等。而备择假设则表明发生了某些不同的事情，总体的均值存在差异。执行假设检验需要以下几个步骤：\n\
+  \n- 1. **提出零假设**：对总体做出一个假设陈述；例如，城市内汽车的平均油耗为40。\n- 2. **提出备择假设**：如果零假设被证明是错误的，那么还存在什么其他可能性？例如，如果城市内油耗不是40，那么是大于40还是小于40？如果它不等于40，则属于非方向性备择假设。\n\
+  - 3. **计算样本检验统计量**：检验统计量可以是t检验、f检验、z检验等等。根据数据可得性和先前声明的假设选择合适的检验统计量。\n- 4. **确定置信区间**：根据特定业务问题所需的精确程度，有三个不同的置信水平：90%、95%和99%。由研究人员/分析师自行决定选择哪个置信区间水平。\n\
+  - 5. **定义阿尔法值**：如果选择的置信水平是95%，则阿尔法值为5%。因此，确定阿尔法值有助于计算检验的p值。\n- 6. **决策**：如果所选的p值小于阿尔法水平，则有证据表明可以拒绝零假设；如果不是，则我们接受零假设。\n\
+  \n## 总体均值检验\n\n运用假设检验流程，让我们以`Cars93`数据集为例来检验总体均值。\n\n## 已知方差下均值的单尾检验\n\n假设研究人员声称样本中收集的所有汽车的平均油耗超过35。在93辆汽车的样本中，观察到所有汽车的平均油耗为29。你应该接受还是拒绝研究人员的说法？\n\
+  \n这就是我们在已知方差的情况下，对样本数据进行的总体均值单尾和双尾检验分析方式。\n\n## 比例的单尾和双尾检验\n\n使用`Cars93`数据集，假设美国制造的汽车中有40%的RPM超过5000。从样本数据中，我们发现57辆汽车中有17辆的RPM高于5000。你从这个情境中能得出什么解读？\n\
+  \n```\n> mileage<-subset(Cars93,Cars93$RPM > 5000)\n> table(mileage$Origin)\n美国\
+  \ 非美国\n17 40\n> p1<-17/57\n> p0<- 0.4\n> n <- length(mileage)\n> z <- (p1-p0)/sqrt(p0*(1-p0)/n)\n\
+  > z\n[1] -1.079\n> #计算5%阿尔法水平下的临界值\n> alpha = .05\n> z1 = qnorm(1-alpha)\n> z1\n\
+  [1] 1.645\n> ifelse(z > z1,\"拒绝零假设\",\"接受零假设\")\n[1] \"接受零假设\"\n```\n\n如果备择假设不是方向性的，则属于比例的双尾检验情形；除了临界值的计算方式不同之外，前面的计算没有任何变化。详细的脚本如下：\n\
+  \n```\n> mileage<-subset(Cars93,Cars93$RPM > 5000)\n> table(mileage$Origin)\n美国\
+  \ 非美国\n17 40\n> p1<-17/57\n> p0<- 0.4\n> n <- length(mileage)\n> z <- (p1-p0)/sqrt(p0*(1-p0)/n)\n\
+  > z\n[1] -1.079\n> #计算5%阿尔法水平下的临界值\n> alpha = .05\n> z1 = qnorm(1-alpha/2)\n> c(-z1,z1)\n\
+  [1] -1.96 1.96\n```\n\n```\n> ifelse(z > z1 | z < -z1,\"拒绝零假设\",\"接受零假设\")\n[1]\
+  \ \"接受零假设\"\n```\n\n- - **连续数据的双样本配对检验：**双样本配对检验中所检验的零假设是，某个处理对受试者没有影响、该治疗方法对受试者没有效果等等。备择假设则是，某个处理、治疗方法或药物对受试者具有统计学上显著的影响。\n\
+  \n虽然`Cars93`数据集中没有这样的变量，但我们仍然可以假设不同品牌汽车的最低价格与最高价格之间存在配对关系。\n\n- - **双样本t检验的零假设：**平均价格没有差异。\n\
+  - - **备择假设：**平均价格存在差异：\n\n```\n> t.test(Cars93$Min.Price, Cars93$Max.Price, paired\
+  \ = T)\n配对t检验\ndata: Cars93$Min.Price and Cars93$Max.Price\nt = -9.6, df = 92, p-value\
+  \ = 2e-15\nalternative hypothesis: true difference in means is not equal to 0\n\
+  95 percent confidence interval:\n-5.765 -3.781\nsample estimates:\nmean of the differences\n\
+  -4.773\n```\n\np值小于0.05。因此，可以得出结论，平均最低价格与平均最高价格之间的差异在95%置信水平下具有统计学显著性。\n\n- - **连续数据的双样本非配对检验：**从`Cars93`数据集来看，高速公路上的油耗与城市内的油耗被假定为不同的。这种差异是否具有统计学显著性，可以通过使用独立样本t检验来比较均值进行检验。\n\
+  - - **零假设：**高速公路上的MPG与城市内的MPG没有差异。\n- - **备择假设：**高速公路上的MPG与城市内的MPG存在差异：\n\n```\n\
+  韦尔奇双样本t检验\ndata: Cars93$MPG.city and Cars93$MPG.highway\n```\n\n```\nt = -8.4, df\
+  \ = 180, p-value = 1e-14\nalternative hypothesis: true difference in means is not\
+  \ equal to 0\n95 percent confidence interval:\n-8.305 -5.136\nsample estimates:\n\
+  mean of x mean of y\n22.37 29.09\n```\n\n从双样本t检验可以看出，当两个样本独立时，p值小于0.05；因此，我们可以拒绝“高速公路与城市内的平均油耗没有差异”的零假设。城市内与高速公路上的平均油耗之间存在统计学上显著的差异。这可以用稍微不同的方式来表述，比如设定一个零假设：手动挡与自动挡汽车在城市内的平均油耗差异是不同的：\n\
+  \n```\n, data=Cars93)\n韦尔奇双样本t检验\ndata: Cars93$MPG.city by Cars93$Man.trans.avail\n\
+  t = -6, df = 84, p-value = 4e-08\nalternative hypothesis: true difference in means\
+  \ is not equal to 0\n95 percent confidence interval:\n-6.949 -3.504\nsample estimates:\n\
+  mean in group No mean in group Yes\n18.94 24.16\n```\n\n因此，上述检验的结论是：自动挡与手动挡车型之间的平均油耗存在统计学上显著的差异；这是因为p值小于0.05。\n\
+  \n在应用t检验之前，检查数据的正态性是很重要的；可以使用Shapiro检验函数来评估变量的正态性：\n\n```\n> shapiro.test(Cars93$MPG.city)\n\
+  Shapiro-Wilk正态性检验\ndata: Cars93$MPG.city\nW = 0.86, p-value = 6e-08\n)\n> qqline(Cars93$MPG.city)\n\
+  ```\n\n\n\n\n\n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_71_0.png)\n\n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_71_1.png)\n\
+  \n观察城市内每加仑英里数的QQ图和直方图，可以得出结论：该变量不服从正态分布。由于英里数变量不服从正态分布，需要应用非参数方法，如Wilcoxon符号秩检验或Kolmogorov-Smirnov检验。\n\
+  \n```\n> summary(aov(Cars93$RPM~Cars93$Cylinders))\nDf Sum Sq Mean Sq F value Pr(>F)\n\
+  Cars93$Cylinders 5 6763791 1352758 4.53 0.001 **\nResiduals 87 25996370 298809\n\
+  ---\nSignif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n```\n\n从上述方差分析可以看出，p值小于0.05，因此可以拒绝原假设。这意味着至少有一种气缸类型的平均转速在统计上存在显著差异。为了确定哪一种气缸类型存在差异，可以对方差分析模型的结果进行事后检验：\n\
+  \n```\n> TukeyHSD(aov(Cars93$RPM~Cars93$Cylinders))\nTukey multiple comparisons\
+  \ of means\n95% family-wise confidence level\nFit: aov(formula = Cars93$RPM ~ Cars93$Cylinders)\n\
+  $`Cars93$Cylinders`\ndiff lwr upr p adj\n4-3 -321.8 -1269.23 625.69 0.9201\n5-3\
+  \ -416.7 -1870.88 1037.54 0.9601\n6-3 -744.1 -1707.28 219.11 0.2256\n8-3 -895.2\
+  \ -1994.52 204.04 0.1772\nrotary-3 733.3 -1106.11 2572.78 0.8535\n5-4 -94.9 -1244.08\
+  \ 1054.29 0.9999\n6-4 -422.3 -787.90 -56.74 0.0140\n8-4 -573.5 -1217.14 70.20 0.1091\n\
+  rotary-4 1055.1 -554.08 2664.28 0.4027\n6-5 -327.4 -1489.61 834.77 0.9629\n8-5 -478.6\
+  \ -1755.82 798.67 0.8834\nrotary-5 1150.0 -801.03 3101.03 0.5240\n8-6 -151.2 -817.77\
+  \ 515.47 0.9857\nrotary-6 1477.4 -141.08 3095.92 0.0941\nrotary-8 1628.6 -74.42\
+  \ 3331.57 0.0692\n```\n\n当p调整值小于0.05时，该转速均值与其他组的差异在统计上显著。\n\n带事后检验的双因素方差分析：所考虑的因素是产地和安全气囊。需要检验的假设是：这两个分类变量对转速变量是否有影响？\n\
+  \n```\n> aov(Cars93$RPM~Cars93$Origin + Cars93$AirBags)\nCall:\naov(formula = Cars93$RPM\
+  \ ~ Cars93$Origin + Cars93$AirBags)\nTerms:\nCars93$Origin Cars93$AirBags Residuals\n\
+  Sum of Squares 8343880 330799 24085482\n```\n\n```\nDeg. of Freedom 1 2 89\nResidual\
+  \ standard error: 520.2\nEstimated effects may be unbalanced\n> summary(aov(Cars93$RPM~Cars93$Origin\
+  \ + Cars93$AirBags))\nDf Sum Sq Mean Sq F value Pr(>F)\nCars93$Origin 1 8343880\
+  \ 8343880 30.83 2.9e-07 ***\nCars93$AirBags 2 330799 165400 0.61 0.54\nResiduals\
+  \ 89 24085482 270623\n---\nSignif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1\
+  \ ' ' 1\n> TukeyHSD(aov(Cars93$RPM~Cars93$Origin + Cars93$AirBags))\nTukey multiple\
+  \ comparisons of means\n95% family-wise confidence level\nFit: aov(formula = Cars93$RPM\
+  \ ~ Cars93$Origin + Cars93$AirBags)\n$`Cars93$Origin`\ndiff lwr upr p adj\nnon-USA-USA\
+  \ 599.4 384.9 813.9 0\n$`Cars93$AirBags`\ndiff lwr upr p adj\nDriver only-Driver\
+  \ & Passenger -135.74 -498.8 227.4 0.6474\nNone-Driver & Passenger -25.68 -401.6\
+  \ 350.2 0.9855\nNone-Driver only 110.06 -174.5 394.6 0.6280\n```\n\n## 非参数方法\n\n\
+  当训练数据集因不符合特定概率分布的假设而不服从任何特定概率分布时，分析数据的唯一选择就是使用非参数方法。非参数方法不遵循有关概率分布的任何假设。使用非参数方法，可以在不遵循任何假设的情况下进行推断和假设检验。现在，我们来看一组非参数检验，当数据集不符合任何特定概率分布的假设时，可以使用这些检验。\n\
+  \n### Wilcoxon符号秩检验\n\n如果不满足正态性假设，则需要应用非参数方法来回答诸如此类的问题：自动挡和手动挡汽车在城市内的平均油耗里程是否存在差异？\n\
+  \n```\n> wilcox.test(Cars93$MPG.city~Cars93$Man.trans.avail, correct = F)\nWilcoxon\
+  \ rank sum test\n\ndata: Cars93$MPG.city by Cars93$Man.trans.avail\nW = 380, p-value\
+  \ = 1e-06\n```\n\n```\n\nalternative hypothesis: true location shift is not equal\
+  \ to 0\n```\n\n如果两个样本恰好是配对样本，且样本不满足正态性假设，可以使用`paired`参数：\n\n```\n> wilcox.test(Cars93$MPG.city,\
+  \ Cars93$MPG.highway, paired = T)\nWilcoxon signed rank test with continuity correction\n\
+  \ndata: Cars93$MPG.city and Cars93$MPG.highway\nV = 0, p-value <2e-16\nalternative\
+  \ hypothesis: true location shift is not equal to 0\n```\n\n### Mann-Whitney-Wilcoxon检验\n\
+  \n如果两个样本不匹配、相互独立，且不服从正态分布，则需要使用Mann-Whitney-Wilcoxon检验来检验两个样本的均值差异在统计上是否显著不同：\n\n\
+  ```\n> wilcox.test(Cars93$MPG.city~Cars93$Man.trans.avail, data=Cars93)\nWilcoxon\
+  \ rank sum test with continuity correction\n\ndata: Cars93$MPG.city by Cars93$Man.trans.avail\n\
+  W = 380, p-value = 1e-06\nalternative hypothesis: true location shift is not equal\
+  \ to 0\n```\n\n### Kruskal-Wallis检验\n\n要比较两个以上组的均值，也就是方差分析的非参数版本，可以使用Kruskal-Wallis检验。它也被称为无分布假设的统计检验：\n\
+  \n```\n> kruskal.test(Cars93$MPG.city~Cars93$Cylinders, data= Cars93)\nKruskal-Wallis\
+  \ rank sum test\n\ndata: Cars93$MPG.city by Cars93$Cylinders\nKruskal-Wallis chi-squared\
+  \ = 68, df = 5, p-value = 3e-13\n```\n"
+- "# 3 可视化钻石数据集\n\n# 可视化钻石数据集\n\n如果没有适当的数据可视化，任何数据挖掘项目都是不完整的。仅看数字和统计数据时，或许也能看出不同切工下这些变量的相似规律，但当我们以可视化方式观察变量与因素之间的关系时，呈现的却完全是另一番景象。因此，数据可视化传达出数字和统计无法传达的信息。从数据挖掘的角度来看，数据可视化有许多优点，可以概括为以下三个要点：\n\
+  \n- 数据可视化在数据与数据使用者之间建立了强有力的沟通\n- 它能留下持久的印象，因为人们可能记不住数字，但会记住图表和形状\n- 当数据扩展到更高维度时，用数字表示没有意义，但可视化表示却有意义\n\
+  \n在本章中，读者将了解数据可视化的基础知识，以及如何使用R编程语言中的现有库创建高级数据可视化。通常，数据可视化方法可以从两个不同的角度来考虑：\n\n- 你想向受众展示什么？是比较、关系还是其他功能？\n\
+  - 你想如何展示这些洞察？哪种图表或图形方式最适合直观地展示这些洞察？\n\n基于上述两点，我们先来看看数据可视化的规则以及每种可视化背后的理论，然后再来看使用R脚本实现图形和图表的具体实践。\n\
+  \n## 可视化钻石数据集\n\n考虑到前面提到的十个要点，可以根据你想要表示的内容制定数据可视化规则，来选择最佳表示方式：\n\n- 两个变量之间的关系可以用散点图表示\n\
+  - 两个以上变量之间的关系可以用气泡图表示\n- 为了理解样本量较小的单个变量的分布，可以使用直方图\n- 为了理解样本量较大的单个变量的分布，可以使用密度图\n\
+  - 两个变量的分布可以用散点图表示\n- 3个变量之间的分布关系可以使用3D散点图表示\n- 任何带有时间戳的变量，如日、周、月、年等，都可以用折线图表示\n\
+  - 时间应始终位于水平轴上，要度量的指标应始终位于垂直轴上\n- 每个图形都应有名称和标签，这样用户不必再回到数据中才能理解它表示什么\n\n在本章中，我们将主要关注`ggplot2`库和`plotly`库。当然，我们还会介绍一些更有趣的库来创建数据可视化。R中的图形包可以按以下顺序进行组织：\n\
+  \n- 绘图\n- 图形应用（例如效应排序、大型数据集和树、以及图形）\n- 图形系统\n- 设备\n- 颜色\n- 交互式图形\n- 开发\n\n有关支持上述功能的各种库的详细说明，可以参阅链接`https://cran.r-project.org/web/views/Graphics.html`。为了获得良好的可视化效果，我们需要更多的数据点，以便提高图形的密度。在本节中，我们将使用两个数据集`diamonds.csv`和`cars93.csv`来展示数据可视化。\n\
+  \n\n\n\n\n## 钻石数据集可视化\n\n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_83_0.png)\n\n\
+  目前，图形看起来有些拥挤。为了使图形更直观，我们需要为 x 轴和 y 轴添加标签，并移除任意轴上的刻度线和文本，以使图形更加清晰。当行名或列名中包含文本或难以完整读取的大数字时，需要旋转相应轴上的文本：\n\
+  \n```r\n> #adding labels to the graph\n> gg<-gg+labs(x=\"Price in Dollar\", y=\"\
+  Carat\", )\n> gg\n> #removing text and ticks from an axis\n> gg<-gg+theme(axis.ticks.y=element_blank(),axis.text.y=element_blank())\n\
+  > gg\n> gg<-gg + theme(axis.text.x=element_text(angle=50, size=10, vjust=0.5))\n\
+  > gg\n> gg<-gg + theme(axis.text.x=element_text(color = \"chocolate\", vjust=0.45),\n\
+  + axis.text.y=element_text(color = \"brown1\", vjust=0.45))\n> gg\n```\n\n```r\n\
+  > gg<-ggplot(diamonds,aes(price,carat,color=factor(clarity)))+geom_point()\n> gg\n\
+  > gg<-gg+theme(legend.title=element_blank())\n> gg\n```\n\n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_85_0.png)\n\
+  \n```r\n> gg<-gg+theme(legend.title = element_text(colour=\"darkblue\", size=16,\n\
+  + face=\"bold\"))+scale_color_discrete(name=\"By Different Grids of Clarity\")\n\
+  > #changing the background boxes in legend\n> gg<-gg+theme(legend.key=element_rect(fill='dodgerblue1'))\n\
+  > gg\n> #changing the size of the symbols used in legend\n> gg<-gg+guides(colour\
+  \ = guide_legend(override.aes = list(size=4)))\n> gg\n> #changing the size of the\
+  \ symbols used in legend\n> gg<-gg+guides(colour = guide_legend(override.aes = list(size=4)))\n\
+  > gg\n```\n\n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_87_0.png)\n\n数据可视化的另一个重要方面是如何在绘图中展示多维切分。例如，在\
+  \ diamonds 数据集中，我们目前关注的是钻石价格与其克拉数之间的关系。还有三个变量：切工（cut）、颜色（color）和净度（clarity）。了解这一关系在这三个变量中是否保持一致是很有意义的。也就是说，要了解我们是否可以按不同的切工、不同的颜色和不同的净度类别来绘制钻石克拉数与价格之间的关系。让我们看一下这三个分类变量的分布：\n\
+  \n```r\n> table(diamonds$cut);table(diamonds$clarity);table(diamonds$color)\nFair\
+  \ Good Very Good Premium Ideal\n1610 4906 12082 13791 21551\nI1 SI2 SI1 VS2 VS1\
+  \ VVS2 VVS1 IF\n741 9194 13065 12258 8171 5066 3655 1790\nD E F G H I J\n6775 9797\
+  \ 9542 11292 8304 5422 2808\n> #adding a multi-variable cut to the graph\n> gg<-gg+facet_wrap(~cut,\
+  \ nrow=4)\n> gg\n```\n\n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_88_0.png)\n\n在上图中，`cut`\
+  \ 变量用于展示克拉数与价格之间的关系。选择的行数为四行，以便清晰呈现图形。如果我们向 `cut` 变量中再添加一个变量，即 `clarity`，图形将更加直观且更具洞察力：\n\
+  \n```r\n> #adding two variables as cut to display the relationship\n> gg<-gg+facet_wrap(~cut+clarity,\
+  \ nrow=4)\n> gg\n```\n\n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_90_0.png)\n\n使用\
+  \ `facet_grid()` 选项，我们可以借助 ggplot2 库展示两个分类变量之间的双变量关系：\n\n```r\n> #bi-variate plotting\
+  \ using ggplot2\n> gg<-gg+facet_grid(color~cut)\n> gg\n```\n\n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_91_0.png)\n\
+  \n有一些外部图形主题可以导入到 ggplot2 函数中用于可视化，例如 `library(ggthemes)`。Tableau 是一个以数据可视化、配色和主题而闻名的工具，也可以与\
+  \ ggplot 一起使用：\n\n```r\n> #Changing discrete category colors\n> ggplot(diamonds,\
+  \ aes(price, carat, color=factor(cut)))+\n+ geom_point() +\n+ scale_color_brewer(palette=\"\
+  Set1\")\n> #Using tableau colors\n> library(ggthemes)\n> ggplot(diamonds, aes(price,\
+  \ carat, color=factor(cut)))+\n+ geom_point() +\n+ scale_color_tableau()\n```\n\n\
+  ![](img/04e03d5ea18ca2e57a47a14c9ae47ace_92_0.png)\n\n可以利用颜色渐变，并在图形本身上绘制分布，对创建的图形进行细微调整：\n\
+  \n```r\n> #using color gradient\n> ggplot(diamonds, aes(price, carat))+\n+ geom_point()\
+  \ +\n+ scale_color_gradient(low = \"blue\", high = \"red\")\n> #plotting a distribution\
+  \ on a graph\n> mid<-mean(diamonds$price)\n> ggplot(diamonds, aes(price, carat,\
+  \ color=depth))+geom_point()+\n+ scale_color_gradient2(midpoint=mid,\n+ low=\"blue\"\
+  , mid=\"white\", high=\"red\" )\n```\n\n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_94_0.png)\n\
+  \n## 箱线图\n\n使用 ggplot 包不仅易于解读箱线图，也易于自定义图形。人们可以轻松识别叠加在每个对应箱线图上的离群值：\n\n```r\n> #creating\
+  \ boxplot\n> boxplot <- ggplot(Cars93,aes(Type,Price))+\n+ geom_boxplot(width =\
+  \ 0.5,fill=\"firebrick\",color=\"cadetblue2\",\n+ outlier.colour = \"purple\",outlier.shape\
+  \ = 2)+\n+ ggtitle(\"Boxplot of Price by Car Type\")\n> boxplot\n```\n\n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_97_0.png)\n\
+  \n## 地理映射\n\n任何包含城市名、州名或国家名的数据集，都可以使用 R 中的 Google Visualization 库绘制在地理地图上。利用另一个开源数据集——R\
+  \ 内置的 state.x77，我们可以展示地理地图的样子。Google Visualization 库使用 Google Maps API，尝试将地理位置与业务数据一起绘制在图上。它会在浏览器中发布输出，可以将其保存为图像以便进一步使用：\n\
+  \n```r\n> library(googleVis)\n> head(state.x77)\n```\n\n| 州 | 人口 | 收入 | 文盲率 | 预期寿命\
+  \ | 谋杀率 | 高中毕业率 | 霜冻天数 | 面积 |\n|---|---:|---:|---:|---:|---:|---:|---:|---:|\n|\
+  \ 阿拉巴马 | 3615 | 3624 | 2.1 | 69.05 | 15.1 | 41.3 | 20 | 50708 |\n| 阿拉斯加 | 365 |\
+  \ 6315 | 1.5 | 69.31 | 11.3 | 66.7 | 152 | 566432 |\n| 亚利桑那 | 2212 | 4530 | 1.8\
+  \ | 70.55 | 7.8 | 58.1 | 15 | 113417 |\n| 阿肯色 | 2110 | 3378 | 1.9 | 70.66 | 10.1\
+  \ | 39.9 | 65 | 51945 |\n| 加利福尼亚 | 21198 | 5114 | 1.1 | 71.71 | 10.3 | 62.6 | 20\
+  \ | 156361 |\n| 科罗拉多 | 2541 | 4884 | 0.7 | 72.06 | 6.8 | 63.9 | 166 | 103766 |\n\
+  \n```r\n> states <- data.frame(state.name, state.x77)\n> gmap <- gvisGeoMap(states,\
+  \ \"state.name\", \"Area\",\n+ options=list(region=\"US\", dataMode=\"regions\"\
+  ,\n+ width=900, height=600))\n> plot(gmap)\n```\n\n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_98_0.png)\n\
+  \n## 直方图\n\n这可能是每个数据挖掘从业者都必须掌握的最简单的图形。以下代码说明了如何使用 ggplot 库创建直方图：\n\n```r\n#creating\
+  \ histograms\nhistog <- ggplot(Cars93, aes(RPM)) +\n  geom_histogram(width = 0.5,\
+  \ fill=\"firebrick\", color=\"cadetblue2\",\n  bins = 20) +\n  ggtitle(\"Histogram\"\
+  )\nhistog\n```\n\n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_99_0.png)\n\n## 折线图\n\
+  \n折线图在展示原始数据时不是首选图表。然而，在展示与某个指标相关的不同类别之间的一些变化时，它非常重要。虽然不是首选图表，但如何展示并向读者讲述一个故事，取决于从业者本人：\n\
+  \n```r\n> #creating line charts\n> linechart <- ggplot(Cars93, aes(RPM, Price))\
+  \ +\n+ geom_line(color=\"cadetblue4\") +\n+ ggtitle(\"Line Charts\")\n> \n> linechart\n\
+  ```\n\n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_100_0.png)\n\n## 饼图\n\n当每个分类变量的标签少于\
+  \ 10 个时，饼图是分类变量的一种表示方式。如果超过 10 个，则建议使用直方图或条形图进行比较。使用 ggplot 库可以创建饼图。脚本如下：\n\n```r\n\
+  > #creating pie charts\n> pp <- ggplot(Cars93, aes(x = factor(1), fill = factor(Type)))\
+  \ +\n+ geom_bar(width = 1)\n> pp + coord_polar(theta = \"y\")\n```\n\n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_101_0.png)\n\
+  \n```r\n> # 3D Pie Chart from data frame\n> library(plotrix)\n> t <- table(Cars93$Type);par(mfrow=c(1,2))\n\
+  > pct <- paste(names(t), \"\\n\", t, sep=\"\")\n> pie(t, labels = pct, main=\"Pie\
+  \ Chart of Type of cars\")\n> pie3D(t,labels=pct,main=\"Pie Chart of Type of cars\"\
+  )\n```\n\n\n\n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_103_0.png)\n\n在前面图表的第二个图中，连续的长度变量决定了马力与每加仑高速公路行驶里程之间的关系。浅蓝色的点表示车身较长的汽车，而颜色较深的点表示车身较小的汽车。如果不使用连续变量，而是使用因子变量来缩放两个变量之间的关系，我们将能够看到如下图所示的第一个图：\n\
+  \n```\n> #adding a factor variable Origin to scale the scatterplot points\n> sp3<-sp+geom_point(aes(color=factor(Origin)),size=5)+\n\
+  + ggtitle(\"Scatterplot: Adding Origin Variable\")+\n+ theme(plot.title= element_text(size\
+  \ = 12, face = \"bold\"))\n> sp3\n> #adding custom color to the scatterplot\n> sp4<-sp+geom_point(aes(color=factor(Origin)),size=5)+\n\
+  + scale_color_manual(values = c(\"red\",\"blue\"))+\n+ ggtitle(\"Scatterplot: Adding\
+  \ Custom Color\")+\n+ theme(plot.title= element_text(size = 12, face = \"bold\"\
+  ))\n> sp4\n> grid.arrange(sp3,sp4,nrow=1)\n```\n\n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_107_0.png)\n\
+  \n## 堆叠条形图\n\n堆叠条形图只是条形图的另一种变体，可以通过不同的颜色组合绘制两个以上的变量。以下示例代码展示了堆叠条形图的一些变体：\n\n```\n\
+  > qplot(factor(Type), data=Cars93, geom=\"bar\", fill=factor(Origin))\n> \n> #or\n\
+  > \n> ggplot(Cars93, aes(Type, fill=Origin)) + geom_bar()\n```\n\n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_108_0.png)\n\
+  \n## 茎叶图\n\n茎叶图是定量变量的一种文本表示形式，它会根据数值中最重要的数字位对数据进行分段。例如，Cars93.csv 数据集中的城市道路行驶里程变量的茎叶图表示如下：\n\
+  \n```\n> stem(Cars93$MPG.city)\nThe decimal point is 1 digit(s) to the right of\
+  \ the |\n1 | 55666777777778888888888889999999999\n2 | 0000000011111122222223333333344444\n\
+  2 | 5555556688999999\n3 | 01123\n3 | 9\n4 | 2\n4 | 6\n```\n\n要解释茎叶图的结果：如果我们需要知道有多少个观测值大于\
+  \ 30，答案是 8。竖线左侧的数字表示十位，右侧的数字表示个位，因此相应的数值为 30、31、31、32、33、39、42 和 46。\n\n## 词云\n\n\
+  词云是一种数据可视化方法，适用于表示文本数据。例如，一组文本文件中某些词语频繁出现在多个文档中，词云可以概括这组文档所讨论的主题。因此，词云是对文本非结构化数据的一种可视化总结。词云主要用于表示社交媒体帖子，例如\
+  \ Twitter 推文、Facebook 帖子等。在创建词云之前，需要执行各种预处理任务；文本挖掘处理的最终输出将是一个包含词语及其对应频率的数据框：\n\n\
+  ```\n```r\n#Word cloud representation\nlibrary(wordcloud)\nwords<-c(\"data\",\"\
+  data mining\",\"analytics\",\"statistics\",\"graphs\",\n\"visualization\",\"predictive\
+  \ analytics\",\"modeling\",\"data science\",\n\"R\",\"Python\",\"Shiny\",\"ggplot2\"\
+  ,\"data analytics\")\nfreq<-c(123,234,213,423,142,145,156,176,214,218,213,234,256,324)\n\
+  d<-data.frame(words,freq)\nset.seed(1234)\nwordcloud(words = d$words, freq = d$freq,\
+  \ min.freq = 1,c(8,.3),\nmax.words=200, random.order=F, rot.per=0.35,\ncolors=brewer.pal(7,\
+  \ \"Dark2\"))\n```\n```\n\n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_109_0.png)\n\
+  \n## 气泡图\n\n气泡图是一种很好的可视化方法，其中气泡的大小表示数据集中每个变量的权重。下面来看一下示例图：\n\n```\n> #Bubble plot\
+  \ using plotly\n> plot_ly(Cars93, x = Length, y = Width, text = paste(\"Type: \"\
+  , Type),\n+ mode = \"markers\", color = Length, size = Length)\n```\n\n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_112_0.png)\n\
+  \n将 ggplot2 与 plotly 库结合起来可以实现良好的可视化效果，因为两个库的功能都嵌入在 ggplotly 库中：\n\n```\n> #GGPLOTLY:\
+  \ ggplot plus plotly\n> p <- ggplot(data = Cars93, aes(x = Horsepower, y = Price))\
+  \ +\n+ geom_point(aes(text = paste(\"Type:\", Type)), size = 2,\ncolor=\"darkorchid4\"\
+  ) +\n+ geom_smooth(aes(colour = Origin, fill = Origin)) + facet_wrap(~ Origin)\n\
+  > \n> (gg <- ggplotly(p))\n```\n\n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_113_0.png)\n\
+  \n## 使用 plotly 绘制条形图\n\n使用 plotly 绘制的条形图看起来比 R 中作为基础功能提供的普通条形图更加智能。下面来看一下示例图：\n\n\
+  ```\n> p <- plot_ly(\n+ x = Type,\n+ y = Price,\n+ name = \"Price by Type\",\n+\
+  \ type = \"bar\")\n> p\n```\n\n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_113_1.png)\n\
+  \n## 使用 plotly 绘制散点图\n\n两个连续变量之间的关系可以使用散点图表示。下面来看一下数据表示：\n\n```\n> # Simple scatterplot\n\
+  > library(plotly)\n> plot_ly(data = Cars93, x = Horsepower, y = MPG.highway, mode\
+  \ = \"markers\")\n> #Scatter Plot with Qualitative Colorscale\n> plot_ly(data =\
+  \ Cars93, x = Horsepower, y = MPG.city, mode = \"markers\",\n+ color = Type)\n```\n\
+  \n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_114_0.png)\n\n## 使用 plotly 绘制箱线图\n\n\
+  以下是使用 plotly 库创建一些有趣箱线图的示例：\n\n```\n> #Box Plots\n> library(plotly)\n> ### basic\
+  \ boxplot\n> plot_ly(y = MPG.highway, type = \"box\") %>%\n+ add_trace(y = MPG.highway)\n\
+  ```\n\n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_116_0.png)\n\n```\n> ### grouped\
+  \ box plots\n> plot_ly(Cars93, x = Type, y = MPG.city, color = AirBags, type = \"\
+  box\")\n%>%\n+ layout(boxmode = \"group\")\n```\n\n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_116_1.png)\n\
+  \n## 使用 plotly 绘制极坐标图\n\n使用 plotly 进行极坐标图可视化更加有趣。这是因为将光标悬停在图表上时，数据值会显示出来，从而可以识别模式之间的差异。下面来看一下示例代码：\n\
+  \n```\n> #Polar Charts in R\n> library(plotly)\npc <- plot_ly(Cars93, r = Price,\
+  \ t = RPM, color = AirBags,\nmode = \"lines\",colors='Set1')\nlayout(pc, title =\
+  \ \"Cars Price by RPM\", orientation = -90,\nfont='bold')\n```\n\n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_117_0.png)\n\
+  \n## 使用 plotly 绘制极坐标散点图\n\n使用 plotly 库，用户还可以创建一种额外的图表类型，称为极坐标散点图。与二维散点图不同，其中的点以圆形方式绘制：\n\
+  \n## 总结\n\n本章介绍了各种类型的图表。我们简要讨论了创建这些图表的语法，也简要讨论了每种图表适用的场景。创建可视化展示来向受众解释洞察和信息是一项技能，需要投入时间，并通过实践逐渐完善。本章只介绍了数据挖掘领域中最重要的数据可视化方法。然而，可供选择的图形和图表非常丰富，可以用于创建富有创新性的演示文稿。因此，本章的核心收获是：读者现在了解了数据可视化规则，以及数据挖掘中用于展示各种变量之间关系的图表和图形类型，并且理解了各种变量的分布。同时，读者还通过对两个重要的数据可视化库\
+  \ `ggplot2` 和 `plotly` 进行同步实践，获得了实际操作经验。在下一章中，我们将学习各种回归技术的应用、回归结果的解释，以及回归结果的可视化，从而理解各种变量之间的关系。\n\
+  \n\n\n\n"
+- "# 4 使用汽车数据进行回归\n\n# 使用汽车数据进行回归\n\n数据挖掘项目的主要目标之一是理解各变量之间的关系，并在感兴趣的变量与其他解释变量之间建立因果关系。在数据挖掘项目中，执行预测分析不仅能洞察数据集中隐藏的信息，还有助于做出可能影响业务成果的未来决策。在本章中，读者将了解使用回归方法进行预测分析的基础知识，包括使用\
+  \ R 编程的各种线性和非线性回归方法。读者将能够理解理论背景，并通过 R 编程语言获得所有回归方法的实际操作经验。\n\n在本章中，我们将涵盖以下主题：\n\n\
+  - 回归问题的构建\n- 线性回归\n- 逻辑回归\n- 三次回归\n- 逐步回归\n- 惩罚回归\n\n## 回归简介\n\n回归方法有助于预测目标变量的未来结果。以下是一些业务案例：\n\
+  \n- 在销售和市场营销领域，企业如何实现销售额的显著提升？如果我们对销售驱动因素进行必要的调整，能否成功预测？\n- 在零售领域，我们能否预测网站访问者数量，以便调配必要的技术支持来更好地运营网站？\n\
+  - 零售/电子商务所有者如何预测其门店在月/周/年内的客流量？\n- 在银行领域，银行如何预测申请住房贷款、汽车贷款和个人贷款的人数，以维持足够的流动资金来满足需求？\n\
+  - 在银行领域，可以使用回归方法估计违约概率，以便银行决定是否批准客户的贷款/信用卡申请。\n- 在汽车制造领域，汽车的销量与汽车价格成反比，而汽车价格由许多因素决定，例如不同金属/零部件的使用情况，以及转速、里程、长度、宽度等各种车辆特征。制造商如何预测销量？\n\
+  \n执行回归的方法有多种，包括线性和非线性。基于回归的预测分析正以不同方式应用于不同行业。回归方法支持预测连续变量、预测变量成功或失败的概率、基于特征预测事件等。\n\
+  \n## 回归问题的构建\n\n回归问题的构建对于创建良好的基于回归的预测模型非常重要。构建良好预测模型的典型方法遵循以下过程：将业务问题转化为统计问题，再将统计问题转化为统计解决方案，最后将统计解决方案转化为业务解决方案。使用基于回归的方法构建良好的预测模型需要以下步骤：\n\
+  \n```\nY = f(X) + ε.....( 1 )\nY = f(X₁, X₂....... Xₙ) + ε.....( 2 )\n```\n\n公式1展示了简单线性回归方程的构建，公式2展示了可包含多个自变量的多元线性方程。因变量必须是连续变量，自变量可以是连续变量或分类变量。我们将以\
+  \ `Cars93_1.csv` 数据集为例解释多元线性回归分析，其中因变量是汽车价格，所有其他变量是解释变量。回归分析包括：\n\n- 给定自变量的值，预测因变量的未来值\n\
+  - 评估模型拟合统计量并比较不同模型\n- 解释系数以理解因变量变化的杠杆\n- 自变量的相对重要性\n\n回归模型的主要目标是估计 beta 参数并最小化误差项\
+  \ epsilon：\n\n```\nY = β₀ + β₁X₁ + β₂X₂ + β₃X₃.....βₙXₙ ) + ε.....(3)\n```\n\n让我们使用相关性图来查看各变量之间的关系：\n\
+  \n```\n#Scatterplot showing all the variables in the dataset\nlibrary(car);attach(Cars93_1)\n\
+  > #12-\"Rear.seat.room\",13-\"Luggage.room\" has NA values need to remove them\n\
+  > m<-cor(Cars93_1[,-c(12,13)])\n> corrplot(m, method = \"ellipse\")\n```\n\n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_125_0.png)\n\
+  \n上图显示了各变量之间的关系。从每个椭圆中我们可以了解该关系：是正相关还是负相关，是强相关、中等相关还是弱相关？相关性图有助于决定保留哪些变量以进一步研究，以及从后续分析中移除哪些变量。深棕色椭圆表示完全负相关，深蓝色椭圆表示完全正相关。椭圆越窄，相关程度越高。\n\
+  \n考虑到数据集中的变量数量，阅读散点图相当困难。因此，所有变量之间的相关性可以使用相关性图来表示，如下所示：\n\n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_126_0.png)\n\
+  \n以粗体蓝色表示的相关性系数显示较高程度的正相关，而以红色显示的则显示较高程度的负相关。\n\n线性回归的假设如下：\n\n- **正态性**：估计模型中的误差项应服从正态分布\n\
+  - **线性**：待估计的参数应是线性的\n- **独立性**：误差项应是独立的，因此不存在自相关\n- **等方差**：误差项应是同方差的\n- **多重共线性**：自变量之间的相关性应为零或最小\n\
+  \n在拟合多元线性回归模型时，注意上述假设非常重要。让我们查看多元线性回归分析的汇总统计量并解释这些假设：\n\n```\n> #multiple linear\
+  \ regression model\n> fit<-lm(MPG.Overall~.,data=Cars93_1)\n> #model summary\n>\
+  \ summary(fit)\nCall:\nlm(formula = MPG.Overall ~ ., data = Cars93_1)\n```\n\n模型的估计\
+  \ beta 系数：\n\n```\n> #estimated coefficients\n> fit$coefficients\n(Intercept) Price\
+  \ EngineSize Horsepower\n2.808772930 -0.053419142 1.334180881 0.005005690\nRPM Rev.per.mile\
+  \ Fuel.tank.capacity Length\n0.001107897 0.002806093 -0.639270186 -0.059861997\n\
+  Wheelbase Width Turn.circle Rear.seat.room\n0.330572119 0.233123382 0.026694571\
+  \ -0.031404262\nLuggage.room Weight\n0.206757968 -0.008001444\n#residual values\n\
+  fit$residuals\n#fitted values from the model\nfit$fitted.values\n#what happened\
+  \ to NA\nfit$na.action\n> #ANOVA table from the model\n> summary.aov(fit)\nDf Sum\
+  \ Sq Mean Sq F value Pr(>F)\nPrice 1 885.7 885.7 110.224 7.20e-16 ***\nEngineSize\
+  \ 1 369.3 369.3 45.959 3.54e-09 ***\nHorsepower 1 37.4 37.4 4.656 0.03449 *\nRPM\
+  \ 1 38.8 38.8 4.827 0.03143 *\nRev.per.mile 1 71.3 71.3 8.877 0.00400 **\nFuel.tank.capacity\
+  \ 1 147.0 147.0 18.295 6.05e-05 ***\nLength 1 1.6 1.6 0.203 0.65392\nWheelbase 1\
+  \ 35.0 35.0 4.354 0.04066 *\nWidth 1 9.1 9.1 1.139 0.28969\nTurn.circle 1 0.5 0.5\
+  \ 0.060 0.80774\nRear.seat.room 1 0.6 0.6 0.071 0.79032\nLuggage.room 1 9.1 9.1\
+  \ 1.129 0.29170\nWeight 1 63.4 63.4 7.890 0.00648 **\nResiduals 68 546.4 8.0\n---\n\
+  Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n11 observations deleted\
+  \ due to missingness\n```\n\n从上述方差分析（ANOVA）表中可以观察到，变量 Length、Width、turn circle、rear\
+  \ seat room 和 luggage room 在 5% 的显著性水平下不具有统计显著性。ANOVA 显示了因变量来自任何自变量的变异来源。在回归模型之后应用\
+  \ ANOVA 非常重要，以了解哪个自变量对因变量有显著贡献：\n\n\n\n```r\n> #visualizing the model statistics\n\
+  > par(mfrow=c(1,2))\n> plot(fit, col=\"dodgerblue4\")\n```\n\n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_129_0.png)\n\
+  \n残差与拟合值图显示了残差值在沿着拟合线移动时的随机性。如果残差值相对于拟合值显示出任何模式，则误差项可能不是正态的。残差与拟合图表明残差项之间不存在模式；残差近似正态分布。残差基本上是模型中无法被模型解释的那部分。有几个有影响的数据点，例如第\
+  \ 42 个、第 39 个和第 83 个，如前面的图中所示。正态分位数-分位数图表明，除了几个有影响的数据点外，所有其他标准化残差点都遵循正态分布。直线是零残差线，红色线是残差与拟合关系的模式。尺度与位置图和残差与杠杆图也验证了相同的观察结果，即残差项没有趋势。尺度与位置图取标准化残差的平方根并将其与拟合值作图。\n\
+  \n通常，这些是数据中远离其他点的数据点，无论是因变量还是一个或多个自变量：\n\n```r\n> # A user friendly representation\
+  \ of the above\n> influencePlot(fit, id.n=3, col=\"red\")\n```\n\n|   | StudRes\
+  \ | Hat | CookD |\n|---|---:|---:|---:|\n| 28 | 1.9902054 | 0.5308467 | 0.55386748\
+  \ |\n| 39 | 3.9711522 | 0.2193583 | 0.50994280 |\n| 42 | 4.1792327 | 0.1344866 |\
+  \ 0.39504695 |\n| 59 | 0.1676009 | 0.4481441 | 0.04065691 |\n| 60 | -2.1358078 |\
+  \ 0.2730012 | 0.34097909 |\n| 77 | -0.6448891 | 0.3980043 | 0.14074778 |\n\n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_132_0.png)\n\
+  \n如果我们从模型中删除这些有影响的数据点，我们可以看到模型拟合优度有所改善，模型整体误差可以降低。一次删除所有有影响的点并不是一个好主意；因此我们将采用逐步的方法删除这些有影响的数据点，并监控模型统计数据的改善情况：\n\
+  \n```r\n> ## Regression after deleting the 28th observation\n> fit.1<-lm(MPG.Overall~.,\
+  \ data=Cars93_1[-28,])\n> summary(fit.1)\nCall:\nlm(formula = MPG.Overall ~ ., data\
+  \ = Cars93_1[-28, ])\nResiduals:\n    Min      1Q  Median      3Q     Max \n-5.0996\
+  \ -1.7005  0.4617  1.4478  9.4168 \n```\n\nCoefficients:\n\n| Variable | Estimate\
+  \ | Std. Error | t value | Pr(>|t|) |\n|---|---:|---:|---:|---:|\n| ... | ... |\
+  \ ... | ... | ... |\n| Turn.circle | 0.0347603 | 0.1513314 | 0.230 | 0.81908 |\n\
+  | Rear.seat.room | -0.2869723 | 0.1466918 | -1.956 | 0.05494 . |\n| Luggage.room\
+  \ | 0.1828483 | 0.1427936 | 1.281 | 0.20514 |\n| Weight | -0.0044714 | 0.0021914\
+  \ | -2.040 | 0.04557 * |\n\n---\nSignif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05\
+  \ '.' 0.1 ' ' 1\n\nResidual standard error: 2.073 on 62 degrees of freedom\n(11\
+  \ observations deleted due to missingness)\nMultiple R-squared: 0.8065, Adjusted\
+  \ R-squared: 0.7659\nF-statistic: 19.88 on 13 and 62 DF, p-value: < 2.2e-16\n\n\
+  查看前面的输出，我们可以得出结论，删除异常值或有影响的数据点会增加 R 平方值的稳健性。现在我们可以得出结论，80.65% 的因变量变化正是由模型中的所有自变量解释的。\n\
+  \n现在，使用学生化残差对 t 分位数进行 Q-Q 图，我们可以识别出更多可能的异常数据点，以提高模型准确性：\n\n```r\n> # QQ plots of\
+  \ studentized residuals, helps identify outliers\n> qqPlot(fit.2, id.n=5)\n91 32\
+  \ 55 5 83\n1 2 74 75 76\n```\n\n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_134_0.png)\n\
+  \n从前面的 Q-Q 图来看，似乎数据总体上呈正态分布，除了少数异常值，例如第 83 个、第 91 个、第 32 个、第 55 个和第 5 个数据点：\n\n\
+  ```r\n> ## Diagnostic Plots ###\n> influenceIndexPlot(fit.2, id.n=3)\n> influencePlot(fit.2,\
+  \ id.n=3, col=\"blue\")\n```\n\n|   | StudRes | Hat | CookD |\n|---|---:|---:|---:|\n\
+  | 5 | 2.1986298 | 0.2258133 | 0.30797166 |\n| 8 | -0.1448259 | 0.4156467 | 0.03290507\
+  \ |\n| 10 | -0.7655338 | 0.3434515 | 0.14847534 |\n| 83 | 3.7650470 | 0.2005160\
+  \ | 0.45764995 |\n| 91 | -2.3672942 | 0.3497672 | 0.44770173 |\n\n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_135_0.png)\n\
+  \n多重共线性问题，即预测变量之间的相关性，需要对最终回归模型进行验证。方差膨胀因子 VIF 是通常用来估计多重共线性的度量。计算 VIF 的公式为 1/ (1-R²)。任何自变量的\
+  \ VIF 值大于 10 表明存在多重共线性；因此此类变量需要从模型中删除。一次删除一个变量然后再次检查模型的 VIF 是做到这一点的最好方法：\n\n```r\n\
+  > ### Variance Inflation Factors\n> vif(fit.2)\n```\n\n| Variable | VIF |\n|---|---:|\n\
+  | Price | 4.799678 |\n| EngineSize | 20.450596 |\n| Horsepower | 18.872498 |\n|\
+  \ RPM | 5.788160 |\n| Rev.per.mile | 3.736889 |\n| Fuel.tank.capacity | 5.805824\
+  \ |\n| Length | 15.200301 |\n| Wheelbase | 11.850645 |\n| Width | 10.2432223 |\n\
+  | Turn.circle | 4.006895 |\n| Rear.seat.room | 2.566413 |\n| Luggage.room | 2.935853\
+  \ |\n| Weight | 24.977015 |\n\n变量 weight 的 VIF 最大，因此删除该变量是有意义的。删除变量后，让我们重新运行模型并计算\
+  \ VIF：\n\n```r\n## Regression after deleting the weight variable\nfit.3<-lm(MPG.Overall~\
+  \ Price+EngineSize+Horsepower+RPM+Rev.per.mile+\nFuel.tank.capacity+Length+Wheelbase+Width+Turn.circle+\n\
+  Rear.seat.room+Luggage.room, data=Cars93_1[-c(28,42,39,59,60,77),])\nsummary(fit.3)\n\
+  > vif(fit.3)\n```\n\n| Variable | VIF |\n|---|---:|\n| Price | 4.575792 |\n| EngineSize\
+  \ | 20.337181 |\n| Horsepower | 15.962349 |\n| RPM | 5.372388 |\n| Rev.per.mile\
+  \ | 3.514992 |\n| Fuel.tank.capacity | 4.863944 |\n| Length | 14.574352 |\n| Wheelbase\
+  \ | 11.013850 |\n| Width | 10.240036 |\n| Turn.circle | 3.965132 |\n| Rear.seat.room\
+  \ | 2.561947 |\n| Luggage.room | 2.935690 |\n\n```r\n## Regression after deleting\
+  \ the EngineSize variable\nfit.4<-lm(MPG.Overall~ Price+Horsepower+RPM+Rev.per.mile+\n\
+  Fuel.tank.capacity+Length+Wheelbase+Width+Turn.circle+\nRear.seat.room+Luggage.room,\
+  \ data=Cars93_1[-c(28,42,39,59,60,77),])\nsummary(fit.4)\nvif(fit.4)\n\n## Regression\
+  \ after deleting the Length variable\nfit.5<-lm(MPG.Overall~ Price+Horsepower+RPM+Rev.per.mile+\n\
+  Fuel.tank.capacity+Wheelbase+Width+Turn.circle+\nRear.seat.room+Luggage.room, data=Cars93_1[-c(28,42,39,59,60,77),])\n\
+  summary(fit.5)\n> vif(fit.5)\n```\n\n| Variable | VIF |\n|---|---:|\n| Price | 4.419799\
+  \ |\n| Horsepower | 8.099750 |\n| RPM | 2.595250 |\n| Rev.per.mile | 3.232048 |\n\
+  | Fuel.tank.capacity | 4.679088 |\n| Wheelbase | 8.231261 |\n| Width | 7.953452\
+  \ |\n| Turn.circle | 3.357780 |\n| Rear.seat.room | 2.393630 |\n| Luggage.room |\
+  \ 2.894959 |\n\n最终回归模型的系数：\n\n```r\n> coefficients(fit.5)\n```\n\n| Coefficient\
+  \ | Estimate |\n|---|---:|\n| (Intercept) | 29.029107454 |\n| Price | -0.089498236\
+  \ |\n| Horsepower | -0.014248077 |\n| RPM | 0.001071072 |\n| Rev.per.mile | 0.001591582\
+  \ |\n| Fuel.tank.capacity | -0.769447316 |\n| Wheelbase | 0.130876817 |\n| Width\
+  \ | -0.047053999 |\n| Turn.circle | -0.072030390 |\n| Rear.seat.room | -0.240332275\
+  \ |\n| Luggage.room | 0.216155256 |\n\n现在我们可以得出结论，前述回归模型中不存在多重共线性。我们可以写出最终的多元线性回归方程如下：\n\
+  \n$$\n\\mathrm{MPG.Overall}=29.03-0.09\\times\\mathrm{Price}-0.014\\times\\mathrm{Horsepower}+0.001\\\
+  times\\mathrm{RPM}+0.001\\times\\mathrm{Rev.per.mile}-0.769\\times\\mathrm{Fuel.tank.capacity}+0.131\\\
+  times\\mathrm{Wheelbase}-0.047\\times\\mathrm{Width}\n$$\n\n估计的模型参数可以解释为，价格变量每变化一个单位，MPG\
+  \ 综合预测变化 0.09 个单位。同样，其他所有自变量的估计模型系数也可以进行解释。如果我们知道这些自变量的值，我们就可以使用前面的方程预测因变量 MPG 综合的可能值。\n\
+  \n## Stepwise regression method for variable selection\n\n在逐步回归方法中，使用 OLS 估计方法形成一个基础回归模型。此后，根据\
+  \ **Akaike Information Criteria (AIC)** 值将变量添加到或从基础模型中减去。标准规则是最小的 AIC 可保证与其他方法相比的最佳拟合。取\
+  \ `Cars93_1.csv` 文件，让我们使用逐步方法创建一个多元线性回归模型。有三种不同的方法来测试最佳模型使用 step 公式：\n\n- Forward\
+  \ method\n- Backward method\n- Both\n\n在向前选择方法中，最初创建一个空模型并添加一个变量以查看 AIC 值是否有任何改善。独立变量被添加到空模型中，直到\
+  \ AIC 值有所改善。在向后选择方法中，完整模型被认为是基础模型。从模型中扣除一个独立变量并检查 AIC 值。如果 AIC 有所改善，该变量将被删除；该过程将继续进行，直到\
+  \ AIC 值最小。在两者方法中，交替使用向前和向后选择来识别最相关的模型。让我们先看一下第一次迭代的模型结果：\n\n```r\n> #base model\n\
+  > fit<-lm(MPG.Overall~.,data=Cars93_1)\n> #stepwise regression\n> model<-step(fit,method=\"\
+  both\")\n```\n\n\n\n\n\n开始：AIC=183.52  \nMPG.Overall ~ Price + EngineSize + Horsepower\
+  \ + RPM + Rev.per.mile + Fuel.tank.capacity + Length + Wheelbase + Width + Turn.circle\
+  \ + Rear.seat.room + Luggage.room + Weight\n\n| 变量 | 自由度 | 平方和 | RSS | AIC |\n|\
+  \ --- | --- | --- | --- | --- |\n| - Turn.circle | 1 | 0.147 | 546.54 | 181.54 |\n\
+  | - Rear.seat.room | 1 | 0.239 | 546.64 | 181.56 |\n| - Horsepower | 1 | 0.323 |\
+  \ 546.72 | 181.57 |\n| - Price | 1 | 6.055 | 552.45 | 182.43 |\n| - Width | 1 |\
+  \ 6.185 | 552.58 | 182.45 |\n| - RPM | 1 | 6.686 | 553.08 | 182.52 |\n| - Length\
+  \ | 1 | 6.695 | 553.09 | 182.52 |\n| - EngineSize | 1 | 8.186 | 554.58 | 182.74\
+  \ |\n| - Luggage.room | 1 | 9.673 | 556.07 | 182.96 |\n| <none> |  |  | 546.40 |\
+  \ 183.52 |\n| - Wheelbase | 1 | 35.799 | 582.20 | 186.73 |\n| - Rev.per.mile | 1\
+  \ | 40.565 | 586.96 | 187.40 |\n| - Fuel.tank.capacity | 1 | 47.646 | 594.04 | 188.38\
+  \ |\n| - Weight | 1 | 63.400 | 609.80 | 190.53 |\n\n开始时，AIC 为 183.52。在最终模型中，AIC\
+  \ 为 175.51，并且包含六个自变量，如下所示：\n\n步骤：AIC=175.51  \nMPG.Overall ~ EngineSize + RPM +\
+  \ Rev.per.mile + Fuel.tank.capacity + Wheelbase + Width + Luggage.room + Weight\n\
+  \n| 变量 | 自由度 | 平方和 | RSS | AIC |\n| --- | --- | --- | --- | --- |\n| - Luggage.room\
+  \ | 1 | 8.976 | 568.78 | 174.82 |\n| - Width | 1 | 12.654 | 572.46 | 175.34 |\n\
+  | <none> |  |  | 559.81 | 175.51 |\n| - EngineSize | 1 | 14.022 | 573.83 | 175.54\
+  \ |\n| - RPM | 1 | 19.422 | 579.23 | 176.31 |\n| - Wheelbase | 1 | 28.477 | 588.28\
+  \ | 177.58 |\n| - Rev.per.mile | 1 | 37.873 | 597.68 | 178.88 |\n| - Fuel.tank.capacity\
+  \ | 1 | 52.516 | 612.32 | 180.86 |\n| - Weight | 1 | 135.462 | 695.27 | 191.28 |\n\
+  \n在上表中，“none”项表示最终模型所在的阶段，此时无法进一步调整模型或减少变量。因此，在该节点之后继续删除变量是没有意义的。\n\n## 逻辑回归\n\n\
+  基于普通最小二乘法的线性回归模型假设因变量与自变量之间存在线性关系；而逻辑回归模型则假设二者之间存在对数关系。在现实生活中，有许多感兴趣的变量本质上是分类变量，例如是否购买某种产品、是否批准信用卡、肿瘤是否为癌性肿瘤等。逻辑回归不仅可以预测因变量所属的类别，还可以预测某个案例属于因变量某一水平的概率。自变量不必服从正态分布，也不必具有相等的方差。逻辑回归属于广义线性回归模型的一类。如果因变量有两个水平，则可以应用逻辑回归；但如果因变量有两个以上的水平，例如高、中、低，则可以应用多项逻辑回归模型。所有自变量都可以是连续变量、分类变量或名义变量。\n\
+  \n逻辑回归模型可以使用以下公式进行解释：\n\nln [ P(Y) / (1 - P(Y)) ] = β₀ + β₁X₁ + β₂X₂ + β₃X₃ + ...\
+  \ + βₙXₙ + ε ......(6)\n\nLn(P(Y)/(1-P(Y))) 表示结果的对数优势比。上式中的 beta 系数说明：解释变量每增加或减少一个单位，结果变量的对数优势比会增加还是减少，以及变化幅度。\n\
+  \n我们以 `Artpiece.csv` 数据集为例，根据自变量预测因变量“是否为一次好的购买”。\n\n对于逻辑回归模型，因变量必须是具有两个水平的二元变量。如果不是二元变量，首先需要将因变量转换为二元变量。对于自变量，检查变量类型及其水平同样十分重要。如果某些自变量是分类变量，则需要进行二元转换（为每个类别创建哑变量）。因此，下面对数据进行转换，使其符合逻辑回归模型的要求：\n\
+  \n```\n> #data conversion\n> Artpiece$IsGood.Purchase<-as.factor(Artpiece$IsGood.Purchase)\n\
+  > Artpiece$Is.It.Online.Sale<-as.factor(Artpiece$Is.It.Online.Sale)\n> #removing\
+  \ NA, Missing values from the data\n> Artpiece<-na.omit(Artpiece)\n> ## 75% of the\
+  \ sample size\n> smp_size <- floor(0.75 * nrow(Artpiece))\n```\n\n右侧表达式，即模型系数：\n\
+  \n```\n> # 95% CI for exponentiated coefficients\n> exp(confint(model1))\n```\n\n\
+  正在等待剖面分析完成……\n\n|  | 2.5 % | 97.5 % |\n| --- | --- | --- |\n| (Intercept) | 0.02301865\
+  \ | 5.5660594 |\n| Critic.Ratings | 1.12226719 | 1.1725835 |\n| Acq.Cost | 0.99998833\
+  \ | 0.9999957 |\n| CurrentAuctionAveragePrice | 0.99998274 | 0.9999881 |\n| Brush.Size1\
+  \ | 0.02326462 | 5.5558138 |\n| Brush.Size2 | 0.01714345 | 4.0948557 |\n| Brush.Size3\
+  \ | 0.02953703 | 7.1850301 |\n| Brush.SizeNULL | 0.45631813 | 109.1655370 |\n| CollectorsAverageprice\
+  \ | 0.99996666 | 0.9999850 |\n| Is.It.Online.Sale1 | 0.69545357 | 1.0142229 |\n\
+  | Min.Guarantee.Cost | 1.00000327 | 1.0000163 |\n\n```\n> confint(model1)\n```\n\
+  \n|  | 2.5 % | 97.5 % |\n| --- | --- | --- |\n| (Intercept) | -3.771450e+00 | 1.716687e+00\
+  \ |\n| Critic.Ratings | 1.153509e-01 | 1.592094e-01 |\n| Acq.Cost | -1.166650e-05\
+  \ | -4.348562e-06 |\n| CurrentAuctionAveragePrice | -1.726348e-05 | -1.193180e-05\
+  \ |\n| Brush.Size1 | -3.760822e+00 | 1.714845e+00 |\n| Brush.Size2 | -4.066139e+00\
+  \ | 1.409731e+00 |\n| Brush.Size3 | -3.522110e+00 | 1.972000e+00 |\n| Brush.SizeNULL\
+  \ | -7.845651e-01 | 4.692865e+00 |\n| CollectorsAverageprice | -3.333576e-05 | -1.500118e-05\
+  \ |\n| Is.It.Online.Sale1 | -3.631910e-01 | 1.412267e-02 |\n| Min.Guarantee.Cost\
+  \ | 3.268054e-06 | 1.631710e-05 |\n\n可以使用卡方检验统计量对逻辑回归模型的结果执行 ANOVA。根据这里展示逻辑回归偏差分析的\
+  \ ANOVA，我们可以得出结论：当向模型中加入更多自变量时，模型偏差的变化具有统计显著性。自变量按顺序逐个加入模型，并在每次迭代中将误差项的偏差与上一次迭代进行比较，以判断增加或删除某个变量是否有助于降低模型误差：\n\
+  \n```\n> #ANOVA\n> anova(model1,test=\"Chisq\")\n```\n\n偏差分析表  \n模型：二项分布，链接函数：logit\
+  \  \n响应变量：IsGood.Purchase  \n按顺序添加项（从第一个到最后一个）\n\n| 自由度 | 偏差 | 残差自由度 | 残差偏差 | Pr(>Chi)\
+  \ |\n| --- | --- | --- | --- | --- |\n| NULL |  | 54500 | 40601 |  |\n\n- **后向选择法**：所有自变量都属于初始模型的一部分。使用\
+  \ Wald 卡方显著性检验，删除卡方值最低或 p 值最高且超过 0.05 的变量（假设模型使用 95% 置信区间）。当无法再找到符合 Wald 检验标准的变量时，后向选择过程停止。\n\
+  - **前向选择法**：模型从空模型开始。根据最低 p 值或最高卡方检验统计量值，将变量加入模型。当找不到符合条件的变量时，选择过程停止。\n- **两者结合**：第三种方法是同时应用后向选择和前向选择：\n\
+  \n```\n> #auto detection of model\n> fit_step<-stepAIC(model1,method=\"both\")\n\
+  ```\n\n开始：AIC=34893.93  \nIsGood.Purchase ~ Critic.Ratings + Acq.Cost + CurrentAuctionAveragePrice\
+  \ +\nBrush.Size + CollectorsAverageprice + Is.It.Online.Sale +\nMin.Guarantee.Cost\n\
+  \n| 变量 | 自由度 | 偏差 | AIC |\n| --- | --- | --- | --- |\n| <none> |  | 34872 | 34894\
+  \ |\n| - Is.It.Online.Sale | 1 | 34875 | 34895 |\n| - Min.Guarantee.Cost | 1 | 34880\
+  \ | 34900 |\n| - Acq.Cost | 1 | 34890 | 34910 |\n| - CollectorsAverageprice | 1\
+  \ | 34898 | 34918 |\n| - CurrentAuctionAveragePrice | 1 | 34988 | 35008 |\n| - Critic.Ratings\
+  \ | 1 | 35025 | 35045 |\n| - Brush.Size | 4 | 39554 | 39568 |\n\n用于变量选择的方法是前向选择与后向选择相结合。例如，在第一步中使用前向选择，同时也应用后向选择，以检查所述变量是否可以从模型中删除。\n\
+  \n应用逐步模型选择过程时，务必牢记逐步法的局限性。有时会发生模型过拟合；有时当预测变量数量较多且大多数预测变量高度相关时，逐步回归会产生更高的变异性和较低的准确性。为解决这一问题，可以应用惩罚回归方法，下一节将对此进行讨论：\n\
+  \n```\n> summary(fit_step)\nCall:\nglm(formula = IsGood.Purchase ~ Critic.Ratings\
+  \ + Acq.Cost +\nCurrentAuctionAveragePrice +\nBrush.Size + CollectorsAverageprice\
+  \ + Is.It.Online.Sale +\n```\n\n\n\nMin.Guarantee.Cost, family = binomial(logit),\
+  \ data = train)\n偏离残差：\nMin 1Q Median 3Q Max\n-2.1596 -0.4849 -0.4096 -0.3401 3.8760\n\
+  系数：\nEstimate Std. Error z value Pr(>|z|)\n(Intercept) -6.734e-01 1.250e+00 -0.539\
+  \ 0.58995\nCritic.Ratings 1.372e-01 1.119e-02 12.267 < 2e-16 ***\nAcq.Cost -7.998e-06\
+  \ 1.867e-06 -4.284 1.83e-05 ***\nCurrentAuctionAveragePrice -1.460e-05 1.360e-06\
+  \ -10.731 < 2e-16 ***\nBrush.Size1 -1.378e+00 1.246e+00 -1.107 0.26840\nBrush.Size2\
+  \ -1.684e+00 1.246e+00 -1.352 0.17647\nBrush.Size3 -1.128e+00 1.252e+00 -0.902 0.36730\n\
+  Brush.SizeNULL 1.599e+00 1.246e+00 1.283 0.19946\nCollectorsAverageprice -2.420e-05\
+  \ 4.677e-06 -5.175 2.28e-07 ***\nIs.It.Online.Sale1 -1.710e-01 9.621e-02 -1.777\
+  \ 0.07552 .\nMin.Guarantee.Cost 9.830e-06 3.329e-06 2.953 0.00314 **\n---\nSignif.\
+  \ codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n(Dispersion parameter for\
+  \ binomial family taken to be 1)\nNull deviance: 40601 on 54500 degrees of freedom\n\
+  Residual deviance: 34872 on 54490 degrees of freedom\nAIC: 34894\nNumber of Fisher\
+  \ Scoring iterations: 5\n\n为检查自变量之间的多重共线性，使用了 VIF 衡量。针对基于逐步 AIC 的最终模型计算的 VIF 如下：\n\
+  \n```\n> library(MASS);library(plyr);library(car)\n> \n> vif(fit_step)\nGVIF Df\
+  \ GVIF^(1/(2*Df))\nCritic.Ratings 1.204411 1 1.097457\nAcq.Cost 2.582229 1 1.606932\n\
+  CurrentAuctionAveragePrice 2.527691 1 1.589871\nBrush.Size 1.094967 4 1.011405\n\
+  CollectorsAverageprice 1.084788 1 1.041532\nIs.It.Online.Sale 1.007080 1 1.003534\n\
+  Min.Guarantee.Cost 1.163249 1 1.078540\n```\n\n使用响应选项计算训练数据集的概率分数，该概率分数可用于在 AUC\
+  \ 曲线上显示分类结果，也称为接收器操作特征 ROC 曲线：\n\n```\n> train$prob=predict(fit_step,type=c(\"response\"\
+  ))\n> library(pROC)\n> g <- roc(IsGood.Purchase ~ prob, data = train)\n> g\n```\n\
+  \n分类表的阈值为 0.50（50%）概率。如果有人想改变正确分类对象的百分比，则可以通过对概率分数设置过滤器来实现。以下代码用于使用不同的概率值创建混淆矩阵。从之前的分类表可以得出结论，90%\
+  \ 的人被正确分类。\n\n## Cubic regression\n\n三次回归是回归的另一种形式，其中线性回归模型中的参数增加到一到两个级别的多项式计算。使用\
+  \ Cars93_1.csv 数据集，让我们了解三次回归：\n\n```\n> fit.6<-lm(MPG.Overall~ I(Price)^3+I(Horsepower)^3+I(RPM)^3+\n\
+  + Wheelbase+Width+Turn.circle, data=Cars93_1[-c(28,42,39,59,60,77),])\n> summary(fit.6)\n\
+  Call:\nlm(formula = MPG.Overall ~ I(Price)^3 + I(Horsepower)^3 + I(RPM)^3 +\nWheelbase\
+  \ + Width + Turn.circle, data = Cars93_1[-c(28, 42,\n39, 59, 60, 77), ])\nResiduals:\n\
+  Min 1Q Median 3Q Max\n-5.279 -1.901 -0.006 1.590 8.433\nCoefficients:\nEstimate\
+  \ Std. Error t value Pr(>|t|)\n(Intercept) 57.078025 12.349300 4.622 1.44e-05 ***\n\
+  I(Price) -0.108436 0.065659 -1.652 0.1026\nI(Horsepower) -0.024621 0.015102 -1.630\
+  \ 0.1070\nI(RPM) 0.001122 0.000727 1.543 0.1268\nWheelbase -0.201836 0.079948 -2.525\
+  \ 0.0136 *\nWidth -0.104108 0.198396 -0.525 0.6012\nTurn.circle -0.095739 0.158298\
+  \ -0.605 0.5470\n---\nSignif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 '\
+  \ ' 1\nResidual standard error: 2.609 on 80 degrees of freedom\nMultiple R-squared:\
+  \ 0.6974, Adjusted R-squared: 0.6747\nF-statistic: 30.73 on 6 and 80 DF, p-value:\
+  \ < 2.2e-16\n> vif(fit.6)\nI(Price) I(Horsepower) I(RPM) Wheelbase Width Turn.circle\n\
+  4.121923 7.048971 2.418494 3.701812 7.054405 3.284228\n> coefficients(fit.6)\n(Intercept)\
+  \ I(Price) I(Horsepower) I(RPM) Wheelbase Width\n57.07802478 -0.10843594 -0.02462074\
+  \ 0.00112168 -0.20183606 -0.10410833\nTurn.circle\n-0.09573848\n```\n\n在其他所有参数保持不变的情况下，自变量的一个单位变化会使因变量产生乘性变化，而乘法因子是贝塔系数的立方。\n\
+  \n## Penalized regression\n\n当回归模型中包含大量预测变量或高度相关的预测变量或两者兼有时的最大似然估计问题出现了，其无法在回归问题中提供更高的准确性，从而导致数据挖掘中引入惩罚回归。最大似然的特性由于高变异性和不适当的解释而无法满足回归程序。为解决该问题，最相关的子集选择出现了。然而，子集选择程序有一些缺点。为再次解决该问题，可以引入一种新方法，即众所周知的惩罚最大似然估计方法。我们将讨论两种不同的惩罚回归变体：\n\
+  \n- **Ridge regression:** 岭回归被称为 L2 二次惩罚，其方程可表示如下：\n\n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_147_0.png)\n\
+  \n与最大似然估计相比，L1 和 L2 估计方法将贝塔系数收缩至零。为了避免多重共线性问题和预测变量数量较多或两者兼有，通常在观测值较少的情况下，收缩方法可降低过拟合的贝塔系数数值。\n\
+  \n以 `Cars93_1.csv` 数据集为例，我们可以测试模型及其结果。lambda 参数基本上在对数似然函数的惩罚和拟合之间取得平衡。lambda 值的选择对模型至关重要；如果其为较小值，则模型可能对数据过拟合，高方差将变得明显，而如果选择的\
+  \ lambda 值为很大值，则可能导致有偏结果。\n\n```\n```r\n> #installing the library\n> library(glmnet)\n\
+  ```\n```\n\n```\n> #removing the missing values from the dataset\n> Cars93_2<-na.omit(Cars93_1)\n\
+  > #independent variables matrix\n> x<-as.matrix(Cars93_2[,-1])\n> #dependent variale\
+  \ matrix\n> y<-as.matrix(Cars93_2[,1])\n> #fitting the regression model\n> mod<-glmnet(x,y,family\
+  \ = \"gaussian\",alpha = 0,lambda = 0.001)\n> #summary of the model\n> summary(mod)\n\
+  Length Class Mode\na0 1 -none- numeric\nbeta 13 dgCMatrix S4\ndf 1 -none- numeric\n\
+  dim 2 -none- numeric\nlambda 1 -none- numeric\ndev.ratio 1 -none- numeric\nnulldev\
+  \ 1 -none- numeric\nnpasses 1 -none- numeric\njerr 1 -none- numeric\noffset 1 -none-\
+  \ logical\ncall 6 -none- call\nnobs 1 -none- numeric\n#Making predictions\npred<-predict(mod,x,type\
+  \ = \"link\")\n#estimating the error for the model.\nmean((y-pred)^2)\n> #Making\
+  \ predictions\n> pred<-predict(mod,x,type = \"link\")\n> #estimating the error for\
+  \ the model.\n> mean((y-pred)^2)\n[1] 6.663406\n```\n\n鉴于前述背景，回归模型能够显示出 6.66% 的误差，这意味着模型给出\
+  \ 93.34% 的准确率。这不是最终迭代。模型需要测试几次，并且需要使用袋外多个子样本来得出模型的最终准确性。\n\n- **Least Absolute Shrinkage\
+  \ Operator (LASSO)**: LASSO 回归被称为 L1 绝对值惩罚（Tibshirani, 1997）。LASSO 回归的方程可表示如下：\n\
+  \n```\nf(β) = Σ_{j=1}^{n} |β|\n```\n\n以 Cars93_1.csv 数据集为例，我们可以测试模型及其结果。lambda 参数基本上在对数似然函数的惩罚和拟合之间取得平衡。lambda\
+  \ 值的选择对模型至关重要；如果其为较小值，则模型可能对数据过拟合，高方差将变得明显，而如果选择的 lambda 值为很大值，则可能导致有偏结果。让我们尝试实现模型并验证结果：\n\
+  \n```\n> #installing the library\n> library(lars)\n> #removing the missing values\
+  \ from the dataset\n> Cars93_2<-na.omit(Cars93_1)\n> #independent variables matrix\n\
+  > x<-as.matrix(Cars93_2[,-1])\n> #dependent variale matrix\n> y<-as.matrix(Cars93_2[,1])\n\
+  > #fitting the LASSO regression model\n> model<-lars(x,y,type = \"lasso\")\n> #summary\
+  \ of the model\n> summary(model)\nLARS/LASSO\nCall: lars(x = x, y = y, type = \"\
+  lasso\")\nDf Rss Cp\n0 1 2215.17 195.6822\n1 2 1138.71 63.7148\n2 3 786.48 21.8784\n\
+  3 4 724.26 16.1356\n4 5 699.39 15.0400\n5 6 692.49 16.1821\n6 7 675.16 16.0246\n\
+  7 8 634.59 12.9762\n8 9 623.74 13.6260\n9 8 617.24 10.8164\n10 9 592.76 9.7695\n\
+  11 10 587.43 11.1064\n12 11 551.46 8.6302\n13 12 548.22 10.2275\n14 13 547.85 12.1805\n\
+  15 14 546.40 14.0000\n```\n\n\n\n**Least Angle Regression**（LARS）中的 type 选项提供了应用\
+  \ lars 模型各种变体的机会，例如 \"lasso\"、\"lar\"、\"forward.stagewise\" 或 \"stepwise\"。利用这些选项我们可以创建各种模型并比较结果。\n\
+  \n从模型的前述输出中，我们可以看到在每次迭代中 RSS 和 CP 以及自由度，因此我们需要找到 RSS 最小的最佳模型步：\n\n```\n```r\n> #select\
+  \ best step with a minim error\n> best_model<-model$df[which.min(model$RSS)]\n>\
+  \ best_model\n14\n> #Making predictions\n> pred<-predict(model,x,s=best_model,type\
+  \ = \"fit\")$fit\n> #estimating the error for the model.\n> mean((y-pred)^2)\n[1]\
+  \ 6.685669\n```\n```\n\n最佳模型出现在第 14 步，此时 RSS 最小，因此使用该最佳步我们可以进行预测。使用 predict 函数在该步进行预测，可以生成预测值，所选模型的误差为\
+  \ 6.68%。拟合模型的视觉化可以如接下来所示进行显示。垂直轴显示标准化系数，水平轴显示因变量的模型系数进展。*x* 轴显示 beta 系数绝对值与 beta\
+  \ 系数绝对值最大值之比。分子是当前估计的 beta 系数，分母是 OLS 模型的 beta 系数。当 LASSO 中的收缩参数取值为零时，模型将对应于 OLS\
+  \ 回归方法。随着惩罚参数的增加，beta 系数的绝对值之和被拉向零：\n\n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_151_0.png)\n\
+  \n在前述图中，垂直条表示变量何时被拉向零。对应于 15 的垂直条显示有 15 个预测变量需要被缩减为零，这对应于较高的惩罚参数 lambda 值 1.0。当\
+  \ lambda 惩罚参数非常小时，LASSO 将接近 OLS 回归，并且随着 lambda 的增加，你的模型中变量会变少。因此，在 lambda 值 1.0\
+  \ 之后，模型中不再有变量。\n\n*L1* 和 *L2* 被称为正则化回归方法。*L1* 不能将回归系数归零；要么得到所有系数，要么一个都没有。然而，*L2*\
+  \ 会自动进行参数收缩和变量选择。\n\n## Summary\n\n在本章中，我们讨论了如何创建线性回归、逻辑回归以及其他基于非线性回归的方法来预测业务场景中变量的结果。回归方法在数据挖掘项目中基本上非常重要，以便创建预测模型来了解未知自变量的未来值。我们研究了各种场景，了解了在何处可以应用何种类型的模型。在下一章中，我们将讨论关联规则或市场篮子分析，以了解隐藏在交易数据库中的重要模式。\n"
+- "# 5 Market Basket Analysis with Groceries Data\n\n# Market Basket Analysis with\
+  \ Groceries Data\n\n设想一下零售商或电子商务商店经理在为客户推荐合适的产品时面临的场景。产品推荐是数据挖掘实践中的一个重要领域。产品推荐可以通过三种不同的方式实现：通过将客户行为与其购买历史关联，通过将每次访问中购买的商品关联，最后通过查看各类别的毛销售额然后利用零售商的过往经验。在本章中，我们将研究第二种产品推荐方法，广为人知的市场篮子分析（MBA），也称为关联规则，即通过关联交易层级购买的商品并找出具有相似产品的用户子细分，从而推荐产品。\n\
+  \n在本章中，我们将涵盖以下主题：\n\n- What is MBA\n- Where to apply MBA\n- Assumptions/prerequisites\n\
+  - Modeling techniques\n- Limitations\n- Practical project\n\nSupport of X = number\
+  \ of transactions involving X / total number of transactions\n\n- **Confidence**：Confidence\
+  \ 总是指规则的置信度。它可以定义为 x => y 的置信度。因此，support (x U y) 表示数据库中同时包含项目集 x 和项目 y 的交易数量：\n\
+  \  \n  Confidence of X => Y = support of (X U Y) / support of (X)\n- **Lift**：Lift\
+  \ 可以定义为观察到的支持与期望支持的比例：\n  \n  Lift of a rule X => Y = support of (X U Y) / support\
+  \ of (X) * support of (Y)\n\n如果关联规则满足最小支持度和最小置信度标准，则该规则在交易数据库中得到支持。\n\n让我们举一个例子来理解这些概念。\n\
+  \n以下是一个来自 R 中 arules 库的 Groceries.csv 数据集的示例：\n\n| Transaction ID | Items |\n|---|---|\n\
+  | 001 | Bread, banana, milk, butter |\n| 002 | Milk, butter, banana |\n| 003 | Curd,\
+  \ milk, banana |\n| 004 | Curd, bread, butter |\n| 005 | Milk, curd, butter, banana\
+  \ |\n| 006 | Milk, curd, bread |\n\n项目集 X 的支持度，其中 X = {milk, banana} = 牛奶和香蕉一起购买的交易比例；4/6\
+  \ = 0.67，因此 X 项目集的支持度为 0.67。\n\n假设 Y 为 curd；X => Y，即 {milk, banana} => {curd} 的置信度，是\
+  \ support (X U Y) / support(X) 的比例；三种产品——牛奶、香蕉和酸奶——一起购买 2 次。因此规则的置信度 = (2/6)/0.67\
+  \ = 0.5。这意味着包含牛奶和香蕉的交易中 50% 的规则是正确的。\n\n规则的置信度可以解释为在已购买项目集 X 的条件下购买 Y 的条件概率。\n\n\
+  当我们在交易数据库中创建太多规则时，我们需要一个度量来对规则进行排序；lift 是对规则进行排序的度量。从前述示例中，我们可以计算规则 $X$ 到 $Y$ 的\
+  \ lift。Lift of $X \\Rightarrow Y = support\\ of\\ (X \\cup Y) / support\\ of\\ (X)\
+  \ * support\\ of\\ (Y) = 0.33/0.66*0.66 = 0.33/0.4356 = 0.7575$。\n\n## Where to\
+  \ apply MBA?\n\n为了理解大型数据库中各种变量之间的关系，需要应用市场篮子分析或关联规则。这是理解关联的最简单方法。虽然我们解释了可以应用关联规则概念的各种行业，但实际实施取决于可用的数据集类型和数据的长度。例如，如果你想研究集成在发电厂的各种传感器之间的关系，以了解在特定温度水平（非常高）下哪些传感器被激活，你可能找不到足够的数据点。这是因为非常高的温度是罕见事件，要理解各种传感器之间的关系，需要在该温度水平下捕获大量数据。\n\
+  \n## Data requirement\n\n产品推荐规则是从关联规则模型的结果中生成的。例如，如果客户已经添加了一罐可乐、一包薯片和一根蜡烛，他/她接下来会买什么？为了生成产品推荐规则，我们需要频繁项目集，因此零售商可以交叉销售产品。因此输入数据的格式应为交易格式，这在实际项目中有时会发生，有时不会。如果数据不是交易形式，则需要进行转换。在\
+  \ R 中，dataframe 是混合数据的表示。我们能否将 dataframe 转换为交易数据，以便我们可以对转换后的数据集应用关联规则？这是因为算法要求输入数据格式为交易格式。让我们看看从\
+  \ dataframe 读取交易的方法。\n\nR 中的 `arules` 库提供了一个从 dataframe 读取交易的功能。该函数提供两个选项，single\
+  \ 和 basket。在 single 格式中，每一行代表一个单一项目；然而在 basket 格式中，每一行代表一个包含项目级别的交易，并以逗号、空格或制表符分隔。例如：\n\
+  \n```\n```r\n> ## create a basket format\n> data <- paste(\n+ \"Bread, Butter, Jam\"\
+  ,\n+ \"Bread, Butter\",\n+ \"Bread\",\n```\n```\n\n```\n+ \"Butter, Banana\",\n\
+  + sep=\"\\n\")\n> cat(data)\nBread, Butter, Jam\nBread, Butter\nBread\nButter, Banana\n\
+  > write(data, file = \"basket_format\")\n>\n> ## read data\n> library(arules)\n\
+  > tr <- read.transactions(\"basket_format\", format = \"basket\", sep=\",\")\n>\
+  \ inspect(tr)\nitems\n1 {Bread,Butter,Jam}\n2 {Bread,Butter}\n3 {Bread}\n4 {Banana,Butter}\n\
+  ```\n\n现在让我们看一下如何从数据框创建单一格式的事务数据：\n\n```\n> ## create single format\n> data <- paste(\n\
+  + \"trans1 Bread\",\n+ \"trans2 Bread\",\n+ \"trans2 Butter\",\n+ \"trans3 Jam\"\
+  ,\n+ sep=\"\\n\")\n> cat(data)\ntrans1 Bread\ntrans2 Bread\ntrans2 Butter\ntrans3\
+  \ Jam\n> write(data, file = \"single_format\")\n>\n> ## read data\n> tr <- read.transactions(\"\
+  single_format\", format = \"single\", cols = c(1,2))\n> inspect(tr)\nitems transactionID\n\
+  1 {Bread} trans1\n2 {Bread,Butter} trans2\n3 {Jam} trans3\n```\n\n前面的代码解释了如何将以表格格式接收的典型事务数据（就像\
+  \ R 数据框对应的电子表格格式）转换为 arules 输入数据格式所需的事务数据格式。\n\n## 假设/前提条件\n\n实施关联规则以进行购物篮分析基于一些假设。以下是这些假设：\n\
+  \n- 假设所有数据都是分类数据。\n- 不应存在任何稀疏数据；稀疏百分比应最小。稀疏意味着数据集中有很多单元格没有值（空白单元格）。\n- 发现不同产品之间有趣关系所需的事务数量是数据库中涵盖的项目或产品数量的函数。换句话说，如果您包含更多产品而事务数量较少，数据集中的稀疏度就会更高，反之亦然。\n\
+  - 您希望在分析中包含的项目数量越多，验证规则所需的事务数量就越多。\n\n## 建模技术\n\n有两种算法在查找零售事务数据库中存在的频繁项集方面非常流行：\n\
+  \n- **Apriori 算法：**由 Agrawal 和 Srikant（1994）提出。它采用广度优先搜索，并提供事务计数。\n- **Eclat 算法：**由\
+  \ Zaki 等人（1997b）提出。它采用深度优先搜索；提供事务的交集，而非事务计数。\n\n在本章中，我们将使用 Groceries.csv 数据集，该数据集将用于这两种算法。\n\
+  \n## 局限性\n\n尽管在处理大型事务数据库中的关系时，关联规则是从业者的首选，但它们存在某些固有的局限性：\n\n- 关联规则挖掘是一种概率方法，因为它计算某产品被购买的条件的概率，即客户已经购买/将一组其他商品加入购物车。它只是估计购买该产品的可能性。规则的确切准确性可能为真，也可能不为真。\n\
+  - 关联规则是一种条件概率估计方法，使用简单的项目计数作为度量。\n- 即使具有较高的支持度、置信度和提升度，关联规则在实践中也可能没有用；这是因为在大多数情况下，琐碎的规则可能听起来很合理。没有机制可以从全局规则集中过滤掉琐碎的规则，除非使用机器学习框架（这超出了本书的范围）。\n\
+  - 该算法会提供大量规则；然而，其中只有少数是重要的，并且没有自动方法来识别有用规则的数量。\n\n## 实践项目\n\n我们将要使用的 Groceries.csv\
+  \ 数据集包含来自一家杂货店 1 个月的真实销售点（POS）交易数据。该数据集包含 9,835 笔交易，共有 169 个类别。项集被定义为顾客在同一次购物中购买的物品或产品\
+  \ P_i {i =1....n} 的组合。简而言之，项集基本上就是我们在零售店购物时通常得到的小票。小票编号被视为交易编号，小票中提到的物品被视为购物篮。数据集的一个快照如下所示：\n\
+  \n|    |    |    |    |    |    |\n|----|----|----|----|----|----|\n| 全麦面包 | 汽水\
+  \ | 果蔬汁 | 罐装啤酒 | 报纸 | 购物袋 |\n| 酸奶 | 饮料 | 瓶装水 | 特色棒 |  |  |\n| 汉堡肉 | 其他蔬菜 | 面包卷/小圆面包\
+  \ | 香料 | 瓶装水 | 卫生用品 |\n| 根茎类蔬菜 | 其他蔬菜 | 全脂牛奶 | 饮料 | 糖 |  |\n| 猪肉 | 浆果 | 其他蔬菜 | 全脂牛奶\
+  \ | 掼奶油/酸奶油 | 人工甜味剂 |\n| 牛肉 | 葡萄 | 清洁剂 |  |  |  |\n\n在上方显示的快照中，列代表物品，行代表交易。让我们探索该数据集以了解其特征：\n\
+  \n```\n> # Load the libraries\n> library(arules)\n> library(arulesViz)\n> # Load\
+  \ the data set\n> data(Groceries) #directly reading from library\n> Groceries<-read.transactions(\"\
+  groceries.csv\",sep=\",\") #reading from local computer\n```\n\n事务数据框包含三列。第一列代表产品/物品的名称，第二列代表产品的二级分类（共\
+  \ 55 个级别），第三个变量是产品的三级细分（共 10 个类别）。下面的截图可以更清楚地说明这一点：\n\n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_159_0.png)\n\
+  \n事务数据的摘要可以让人了解数据库中存在的总交易数、构成数据库的项目数、数据的稀疏度，以及事务数据库中最突出的一些项目的频率：\n\n```\nsummary(Groceries)\n\
+  transactions as itemMatrix in sparse format with\n9835 rows (elements/itemsets/transactions)\
+  \ and\n169 columns (items) and a density of 0.02609146\nmost frequent items:\nwhole\
+  \ milk other vegetables rolls/buns soda yogurt\n2513 1903 1809 1715 1372\n(Other)\n\
+  34055\n```\n\n数据集中有 9,835 笔交易；在 169 个物品中，最频繁的物品及其对应频率已在上面显示。在 9,835 × 169 的矩阵中，只有\
+  \ 0.0261（即 2.61%）的单元格有值；其余为空。这 2.61% 就是数据集的稀疏度。\n\n### 元素（项集/事务）长度分布：\n\n```\nsizes\n\
+  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17\n2159 1643 1299 1005 855 645 545 438 350\
+  \ 246 182 117 78 77 55 46 29\n18 19 20 21 22 23 24 26 27 28 29 32\n14 14 9 11 4\
+  \ 6 1 1 1 1 3 1\nMin. 1st Qu. Median Mean 3rd Qu. Max.\n1.000 2.000 3.000 4.409\
+  \ 6.000 32.000\nincludes extended item information - examples:\nlabels\n1 abrasive\
+  \ cleaner\n2 artif. sweetener\n3 baby cosmetics\n```\n\n从前面的项集长度分布可以看出，有一笔交易同时购买了\
+  \ 32 种产品。有 3 笔交易同时购买了 29 个物品。同样，我们可以解释数据集中其他项集的频率。通过项目频率图可以更好地理解这一点。要了解数据集中的前三笔交易，可以使用以下命令：\n\
+  \n```\n> inspect(Groceries[1:3])\nitems\n1 {citrus fruit,semi-finished bread,margarine,ready\
+  \ soups}\n2 {tropical fruit,yogurt,coffee}\n3 {whole milk}\n```\n\n要了解杂货数据库中包含每个物品的交易比例，可以使用以下命令。第一个物品\
+  \ frankfurter（法兰克福香肠）出现在 5.89% 的交易中；sausage（香肠）出现在 9.39% 的交易中；以此类推：\n\n```\n> cbind(itemFrequency(Groceries[,1:10])*100)\n\
+  [,1]\nfrankfurter 5.8973055\nsausage 9.3950178\nliver loaf 0.5083884\nham 2.6029487\n\
+  meat 2.5826131\nfinished products 0.6507372\norganic sausage 0.2236909\nchicken\
+  \ 4.2907982\nturkey 0.8134215\npork 5.7651246\n```\n\n在事务数据集中，有两个重要参数决定频繁项集：支持度和置信度。支持度越高，数据集中的规则数量就越少，并且您可能会错过各个变量之间有趣的关系，反之亦然。有时即使具有较高的支持度、置信度和提升度值，也不能保证获得有用的规则。因此，在实践中，用户可以尝试不同水平的支持度和置信度，以获得有意义的规则。即使最小支持度和最小置信度水平足够高，规则也似乎相当琐碎。\n\
+  \n\n\n\n\n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_162_0.png)\n\n## Apriori 算法\n\
+  \nApriori 算法利用向下封闭性，该性质表明频繁项集的任何子集也是频繁项集。Apriori 算法采用逐层搜索来寻找频繁项集。该算法仅生成等式右侧（RHS）只有一个项的规则，RHS\
+  \ 被称为后件；等式左侧（LHS）被称为前件。这意味着 RHS 中有一个项而 LHS 为空的规则也可能被视为有效规则；为了避免这些空白规则，需要将最小长度参数从\
+  \ 1 改为 2：\n\n```r\n> # Get the association rules based on apriori algo\n> rules\
+  \ <- apriori(Groceries, parameter = list(supp = 0.01, conf = 0.10))\n```\n\n参数规范：\n\
+  \n| confidence | minval | smax | arem | aval | originalSupport | support | minlen\
+  \ | maxlen | target | ext |\n|---|---|---|---|---|---|---|---|---|---|---|\n| 0.1\
+  \ | 0.1 | 1 | none | FALSE | TRUE | 0.01 | 1 | 10 | rules | FALSE |\n\n算法控制：\n\n\
+  | filter | tree | heap | memopt | load | sort | verbose |\n|---|---|---|---|---|---|---|\n\
+  | 0.1 | TRUE | TRUE | FALSE | TRUE | 2 | TRUE |\n\n```r\napriori - find association\
+  \ rules with the apriori algorithm\nversion 4.21 (2004.05.09) (c) 1996-2004 Christian\
+  \ Borgelt\nset item appearances ...[0 item(s)] done [0.00s].\nset transactions ...[169\
+  \ item(s), 9835 transaction(s)] done [0.00s].\nsorting and recoding items ... [88\
+  \ item(s)] done [0.00s].\ncreating transaction tree ... done [0.00s].\nchecking\
+  \ subsets of size 1 2 3 4 done [0.00s].\nwriting ... [435 rule(s)] done [0.00s].\n\
+  creating S4 object ... done [0.00s].\n```\n\n使用 Apriori 算法，在支持度为 1%（即规则创建中纳入的项比例最低为\
+  \ 1%）和置信度为 10% 的条件下，共得到 435 条规则。代表这 435 条规则的项共有 88 个。通过 summary 命令，我们可以了解规则的长度和规则的分布：\n\
+  \n```r\n> summary(rules)\n```\n\n规则集合包含 435 条规则\n\n规则长度分布（lhs + rhs）：大小\n\n| 长度\
+  \ | 1 | 2 | 3 |\n|---|---|---|---|\n| 计数 | 8 | 331 | 96 |\n\n| 度量 | 最小值 | 第一四分位数\
+  \ | 中位数 | 平均值 | 第三四分位数 | 最大值 |\n|---|---|---|---|---|---|---|\n| 数值 | 1.000 | 2.000\
+  \ | 2.000 | 2.202 | 2.000 | 3.000 |\n\n质量度量摘要：\n\n| 度量 | 支持度 | 置信度 | 提升度 |\n|---|---|---|---|\n\
+  | 最小值 | 0.01007 | 0.1007 | 0.7899 |\n| 第一四分位数 | 0.01149 | 0.1440 | 1.3486 |\n| 中位数\
+  \ | 0.01454 | 0.2138 | 1.6077 |\n| 平均值 | 0.02051 | 0.2455 | 1.6868 |\n| 第三四分位数 |\
+  \ 0.02115 | 0.3251 | 1.9415 |\n| 最大值 | 0.25552 | 0.5862 | 3.3723 |\n\n挖掘信息：\n\n\
+  | 数据 | 事务数 | 支持度 | 置信度 |\n|---|---|---|---|\n| Groceries | 9835 | 0.01 | 0.1 |\n\
+  \n从规则摘要可以看出，有 8 条规则仅包含 1 个项（包括 LHS 和 RHS），这些不是有效规则。如下所示；为避免空白规则，最小长度需要设为 2。使用最小长度为\
+  \ 2 后，规则总数减少到 427：\n\n```r\n> inspect(rules[1:8])\n```\n\n| # | 规则 | 支持度 | 置信度 |\
+  \ 提升度 |\n|---|---|---|---|---|\n| 1 | {} => {bottled water} | 0.1105236 | 0.1105236\
+  \ | 1 |\n| 2 | {} => {tropical fruit} | 0.1049314 | 0.1049314 | 1 |\n| 3 | {} =>\
+  \ {root vegetables} | 0.1089985 | 0.1089985 | 1 |\n| 4 | {} => {soda} | 0.1743772\
+  \ | 0.1743772 | 1 |\n| 5 | {} => {yogurt} | 0.1395018 | 0.1395018 | 1 |\n| 6 | {}\
+  \ => {rolls/buns} | 0.1839349 | 0.1839349 | 1 |\n| 7 | {} => {other vegetables}\
+  \ | 0.1934926 | 0.1934926 | 1 |\n| 8 | {} => {whole milk} | 0.2555160 | 0.2555160\
+  \ | 1 |\n\n```r\n> rules <- apriori(Groceries, parameter = list(supp = 0.01, conf\
+  \ = 0.10, minlen=2))\n```\n\n参数规范：\n\n| confidence | minval | smax | arem | aval\
+  \ | originalSupport | support | minlen | maxlen | target | ext |\n|---|---|---|---|---|---|---|---|---|---|---|\n\
+  | 0.1 | 0.1 | 1 | none | FALSE | TRUE | 0.01 | 2 | 10 | rules | FALSE |\n\n算法控制：\n\
+  \n| filter | tree | heap | memopt | load | sort | verbose |\n|---|---|---|---|---|---|---|\n\
+  | 0.1 | TRUE | TRUE | FALSE | TRUE | 2 | TRUE |\n\n```r\napriori - find association\
+  \ rules with the apriori algorithm\nversion 4.21 (2004.05.09) (c) 1996-2004 Christian\
+  \ Borgelt\nset item appearances ... [0 item(s)] done [0.00s].\nset transactions\
+  \ ... [169 item(s), 9835 transaction(s)] done [0.00s].\nsorting and recoding items\
+  \ ... [88 item(s)] done [0.00s].\ncreating transaction tree ... done [0.00s].\n\
+  checking subsets of size 1 2 3 4 done [0.00s].\nwriting ... [427 rule(s)] done [0.00s].\n\
+  creating S4 object ... done [0.00s].\n```\n\n```r\n> summary(rules)\n```\n\n规则集合包含\
+  \ 427 条规则\n\n规则长度分布（lhs + rhs）：大小\n\n| 长度 | 2 | 3 |\n|---|---|---|\n| 计数 | 331 |\
+  \ 96 |\n\n我们如何识别正确的规则集？在压缩置信度水平后，可以减少有效规则的数量。将置信度保持在 10%，并改变支持度水平，可以看到规则数量如何变化。如果规则太多，则难以实施；如果规则太少，则无法正确表示各项之间的隐藏关系。因此，拥有正确的有效规则集是在支持度和置信度之间进行权衡。下面的碎石图显示了在置信度保持\
+  \ 10% 不变时，支持度水平变化对应的规则数量：\n\n```r\n> support<-seq(0.01,0.1,0.01)\n> support\n[1]\
+  \ 0.01 0.02 0.03 0.04 0.05 0.06 0.07 0.08 0.09 0.10\n> rules_count<-c(435,128,46,26,14,\
+  \ 10, 10,8,8,8)\n> rules_count\n[1] 435 128 46 26 14 10 10 8 8 8\n> plot(support,rules_count,type\
+  \ = \"l\",main=\"Number of rules at different support %\",\n+ col=\"darkred\",lwd=3)\n\
+  ```\n\n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_165_0.png)\n\n根据碎石图结果，在支持度为 0.04、置信度为\
+  \ 10% 时，该数据集的合理有效规则数应为 26。反过来，也可以采取相同的方法来识别相关规则；保持支持度不变，改变置信度，我们可以绘制另一个碎石图：\n\n\
+  ```r\n> conf<-seq(0.10,1.0,0.10)\n> conf\n[1] 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9\
+  \ 1.0\n> rules_count<-c(427,231,125,62,15,0,0,0,0,0)\n> rules_count\n[1] 427 231\
+  \ 125 62 15 0 0 0 0 0\n> plot(conf,rules_count,type = \"l\",main=\"Number of rules\
+  \ at different confidence %\",\n+ col=\"darkred\",lwd=3)\n```\n\n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_166_0.png)\n\
+  \n根据碎石图结果，在置信度为 0.5（置信度以 10% 为步长变化）时，适用于 groceries 数据集的合理有效规则数为 15。\n\n## Eclat\
+  \ 算法\n\nEclat 算法采用自底向上的方法，利用简单的交集运算进行同质类聚类。可以在 R 中使用 eclat 函数重新运行相同的代码并获取结果。eclat\
+  \ 函数接受两个参数：支持度和最大长度：\n\n```r\n> rules_ec <- eclat(Groceries, parameter = list(supp\
+  \ = 0.05))\n```\n\n参数规范：\n\n| tidLists | support | minlen | maxlen | target | ext\
+  \ |\n|---|---|---|---|---|---|\n| FALSE | 0.05 | 1 | 10 | frequent itemsets | FALSE\
+  \ |\n\n算法控制：\n\n| sparse | sort | verbose |\n|---|---|---|\n| 7 | -2 | TRUE |\n\n\
+  ```r\neclat - find frequent item sets with the eclat algorithm\nversion 2.6 (2004.08.16)\
+  \ (c) 2002-2004 Christian Borgelt\ncreate itemset ...\nset transactions ...[169\
+  \ item(s), 9835 transaction(s)] done [0.00s].\nsorting and recoding items ... [28\
+  \ item(s)] done [0.00s].\ncreating sparse bit matrix ... [28 row(s), 9835 column(s)]\
+  \ done [0.00s].\nwriting ... [31 set(s)] done [0.00s].\nCreating S4 object ... done\
+  \ [0.00s].\n```\n\n```r\n> summary(rules_ec)\n```\n\n集合包含 31 个项集\n\n最频繁出现的项：\n\n\
+  | 项 | 计数 |\n|---|---|\n| whole milk | 4 |\n| other vegetables | 2 |\n| yogurt |\
+  \ 2 |\n| rolls/buns | 2 |\n| frankfurter | 1 |\n| (Other) | 23 |\n\n元素（项集/事务）长度分布：大小\n\
+  \n| 长度 | 1 | 2 |\n|---|---|---|\n| 计数 | 28 | 3 |\n\n| 度量 | 最小值 | 第一四分位数 | 中位数 |\
+  \ 平均值 | 第三四分位数 | 最大值 |\n|---|---|---|---|---|---|---|\n| 数值 | 1.000 | 1.000 | 1.000\
+  \ | 1.097 | 1.000 | 2.000 |\n\n质量度量摘要：\n\n| 度量 | 支持度 |\n|---|---|\n| 最小值 | 0.05236\
+  \ |\n| 第一四分位数 | 0.05831 |\n| 中位数 | 0.07565 |\n| 平均值 | 0.09212 |\n| 第三四分位数 | 0.10173\
+  \ |\n| 最大值 | 0.25552 |\n\n包含事务 ID 列表：FALSE\n\n挖掘信息：\n\n| 数据 | 事务数 | 支持度 |\n|---|---|---|\n\
+  | Groceries | 9835 | 0.05 |\n\n使用 eclat 算法，在支持度为 5% 的情况下，共有 31 条规则可以解释不同项之间的关系。这些规则包含的项至少在\
+  \ 5% 的事务中出现过。\n\n在生成商品推荐时，重要的是推荐那些具有高置信度水平的规则，而不论其支持度比例如何。基于置信度，可以得出排名前 5 的规则如下：\n\
+  \n```r\n> #sorting out the most relevant rules\n> rules<-sort(rules, by=\"confidence\"\
+  , decreasing=TRUE)\n> inspect(rules[1:5])\n```\n\n| # | 规则 | 支持度 | 置信度 | 提升度 |\n\
+  |---|---|---|---|---|\n| 36 | {other vegetables,yogurt} => {whole milk} | 0.02226741\
+  \ | 0.5128806 | 2.007235 |\n| 10 | {butter} => {whole milk} | 0.02755465 | 0.4972477\
+  \ | 1.946053 |\n| 3 | {curd} => {whole milk} | 0.02613116 | 0.4904580 | 1.919481\
+  \ |\n| 33 | {root vegetables,other vegetables} => {whole milk} | 0.02318251 | 0.4892704\
+  \ | 1.914833 |\n| 34 | {root vegetables,whole milk} => {other vegetables} | 0.02318251\
+  \ | 0.4740125 | 2.449770 |\n\n\n\n\n\n规则也可以根据提升度和支持度比例进行排序，通过更改 sort 函数中的参数。基于提升度计算的前\
+  \ 5 条规则如下：\n\n```r\n> rules<-sort(rules, by=\"lift\", decreasing=TRUE)\n> inspect(rules[1:5])\n\
+  ```\n\n| rule | lhs | rhs | support | confidence | lift |\n|------|-----|-----|---------|------------|------|\n\
+  | 35 | {other vegetables,whole milk} | {root vegetables} | 0.02318251 | 0.3097826\
+  \ | 2.842082 |\n| 34 | {root vegetables,whole milk} | {other vegetables} | 0.02318251\
+  \ | 0.4740125 | 2.449770 |\n| 27 | {root vegetables} | {other vegetables} | 0.04738180\
+  \ | 0.4347015 | 2.246605 |\n| 15 | {whipped/sour cream} | {other vegetables} | 0.02887646\
+  \ | 0.4028369 | 2.081924 |\n| 37 | {whole milk,yogurt} | {other vegetables} | 0.02226741\
+  \ | 0.3974592 | 2.054131 |\n\n## Visualizing association rules\n\n项目之间的关联以及规则如何被可视化展示，与创建规则本身一样重要：\n\
+  \n```r\n> # visualizing the rules\n> plot(rules, method='graph', interactive = T,\
+  \ shading = T)\n```\n\n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_168_0.png)\n\n前面的图使用\
+  \ apriori 算法创建。在最大数量的规则中，你至少会发现 whole milk 或 other vegetables，因为这两项商品通过节点与其他商品紧密相连。\n\
+  \n使用 eclat 算法对同一数据集进行处理，我们创建了另一组规则；以下图表展示了规则的可视化：\n\n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_169_0.png)\n\
+  \n## Implementation of arules\n\n一旦建立了良好的市场篮子分析或 arules 模型，下一步任务就是集成该模型。arules 提供了\
+  \ PMML 接口，即预测建模标记语言接口，以便与其他应用程序集成。其他应用程序可以是其他统计软件，如 SAS、SPSS 等；也可以是 Java、PHP 和 Android\
+  \ 为基础的应用程序。PMML 接口使模型集成变得更容易。在规则实施方面，零售商希望得到答案的两个重要问题是：\n\n- 客户在购买某件商品之前可能购买什么？\n\
+  - 如果客户已经购买了某些商品，他们可能还会购买什么？\n\n让我们以产品 yogurt 为例，零售商希望向客户推荐此产品。哪些规则可以帮助零售商？因此前 5\
+  \ 条规则如下：\n\n```r\n> rules<-apriori(data=Groceries, parameter=list(supp=0.001,conf\
+  \ = 0.8),\n+ appearance = list(default=\"lhs\",rhs=\"yogurt\"),\n+ control = list(verbose=F))\n\
+  > rules<-sort(rules, decreasing=TRUE,by=\"confidence\")\n> inspect(rules[1:5])\n\
+  ```\n\n| rule | lhs | rhs | support | confidence | lift |\n|------|-----|-----|---------|------------|------|\n\
+  | 4 | {root vegetables,butter,cream cheese} | {yogurt} | 0.001016777 | 0.9090909\
+  \ | 6.516698 |\n| 10 | {tropical fruit,whole milk,butter,sliced cheese} | {yogurt}\
+  \ | 0.001016777 | 0.9090909 | 6.516698 |\n| 11 | {other vegetables,curd,whipped/sour\
+  \ cream,cream cheese} | {yogurt} | 0.001016777 | 0.9090909 | 6.516698 |\n| 13 |\
+  \ {tropical fruit,other vegetables,butter,white bread} | {yogurt} | 0.001016777\
+  \ | 0.9090909 | 6.516698 |\n| 2 | {sausage,pip fruit,sliced cheese} | {yogurt} |\
+  \ 0.001220132 | 0.8571429 | 6.144315 |\n\n```r\n> rules<-apriori(data=Groceries,\
+  \ parameter=list(supp=0.001,conf = 0.10,minlen=2),\n+ appearance = list(default=\"\
+  rhs\",lhs=\"yogurt\"),\n+ control = list(verbose=F))\n> rules<-sort(rules, decreasing=TRUE,by=\"\
+  confidence\")\n> inspect(rules[1:5])\n```\n\n| rule | lhs | rhs | support | confidence\
+  \ | lift |\n|------|-----|-----|---------|------------|------|\n| 20 | {yogurt}\
+  \ | {whole milk} | 0.05602440 | 0.4016035 | 1.571735 |\n| 19 | {yogurt} | {other\
+  \ vegetables} | 0.04341637 | 0.3112245 | 1.608457 |\n| 18 | {yogurt} | {rolls/buns}\
+  \ | 0.03436706 | 0.2463557 | 1.339363 |\n| 15 | {yogurt} | {tropical fruit} | 0.02928317\
+  \ | 0.2099125 | 2.000475 |\n| 17 | {yogurt} | {soda} | 0.02735130 | 0.1960641 |\
+  \ 1.124368 |\n\n使用提升度标准也可以设计产品推荐，向客户提供：\n\n```r\n> # sorting grocery rules by lift\n\
+  > inspect(sort(rules, by = \"lift\")[1:5])\n```\n\n| rule | lhs | rhs | support\
+  \ | confidence | lift |\n|------|-----|-----|---------|------------|------|\n| 1\
+  \ | {yogurt} | {curd} | 0.01728521 | 0.1239067 | 2.325615 |\n| 8 | {yogurt} | {whipped/sour\
+  \ cream} | 0.02074225 | 0.1486880 | 2.074251 |\n| 15 | {yogurt} | {tropical fruit}\
+  \ | 0.02928317 | 0.2099125 | 2.000475 |\n| 4 | {yogurt} | {butter} | 0.01464159\
+  \ | 0.1049563 | 1.894027 |\n| 11 | {yogurt} | {citrus fruit} | 0.02165735 | 0.1552478\
+  \ | 1.875752 |\n\n- 在电信行业，基站的定位以优化用户体验为驱动，由细分练习决定。电信套餐的设计，如定制优惠（尤其是针对学生、老年人、专业人士等），基于服务使用情况，也采用聚类方法制定。\n\
+  - 在医疗行业，为不同部门如急诊护理、急性护理等决定医院床位规模，聚类练习有所帮助。此外，不同州各种疾病的报告可用于创建相似区域或地点的聚类，在这些区域可采用一套程序。\n\
+  - 在治理方面，执法机构加强在犯罪证据/事件较多的地区存在。因此聚类技术被用来创建城市群，如高、中、低犯罪地区。根据数据，他们可以相应地调配力量。\n- 在保险行业，聚类用于通过基于人口统计信息、地理位置和风险区域等参数对不同城市进行分组来决定差异化保费。\n\
+  \n## Understanding customer segmentation\n\n在标准的数据挖掘实践中，客户细分是将所有客户划分为与业务和业务问题相关的各个子群的一种方式。该子群的创建可以通过主观方法完成，也可以通过考虑业务目标来完成。在不同行业，客户细分具有不同的应用；例如，在零售业，了解客户的购买行为很重要，而显示独特购买行为的不同子群与业务相关。\n\
+  \n## Why understanding customer segmentation is important\n\n在零售和电子商务行业，优惠、活动、忠诚度计划和折扣策略都基于客户子群的购买行为。在其他行业，销售、营销策略和业务计划都是以客户行为为依据进行的，而行为驱动销售。通过对数据进行细分，可以理解这种独特的客户行为。\n\
+  \n## How to perform customer segmentation?\n\n在讨论了执行客户细分的好处后，了解如何执行客户细分很重要。执行客户细分使用的两种主要方法如下：\n\
+  \n- 基于聚类方法的客户细分\n- 使用最近购买、购买频率和货币价值（RFM）模型的客户细分\n\n在本章中，我们将讨论基于聚类的方法来执行客户细分；第二种方法不在本章范围内。\n\
+  \n## Various clustering methods available\n\n所有聚类算法都可以分为四组，如下所示：\n\n- **Hierarchical\
+  \ clustering**：使用此方法，从数据集中准备多个聚类，形成层次结构，并使用树结构对聚类进行分组，以便整个数据集可以表示为单个树结构。这种方法的优点是与基于划分的聚类不同，我们不需要指定要从数据集中创建的聚类数量。\n\
+  - **Partitioning clustering**：在此方法中，数据集基于距离函数划分为有限的聚类组，使得簇内相似性最大且簇间相似性最小。K-means\
+  \ 是数据挖掘实践中流行的一个方法，属于此类。\n- **Model-based clustering**：使用数据模型，从数据集中创建一组聚类；模型化聚类方法中使用的方法可分为两组：\n\
+  \  - 最大似然估计\n  - 贝叶斯估计\n- **Other clustering algorithms**：还有其他聚类技术，如模糊聚类、装袋聚类等。模糊聚类在数据上使用模糊逻辑，使得同一数据点可以成为多个聚类的一部分。换句话说，聚类成员资格没有排他性。这种方法基本上不同于其他三种聚类形式，其中数据点属于单个聚类。属于这一组的另一个算法被称为自组织映射（SOM）。\n\
+  \n\n\n\n\n现在，让我们以医疗保健数据集（`PimaIndiansDiabetes.csv [ref: 1]`）和零售/电子商务数据集（`Wholesalecustomers.csv\
+  \ [ref: 1]`）为例，开始使用各种聚类方法对数据集进行分割。在运行聚类分析之前，需要检查数据充分性条件。\n\n## K-means 聚类\n\nK-means聚类是一种无监督学习算法，它试图将相似的对象组合成一个组，使得组内相似性最大，组间对象相似性最小。这里的“对象”指输入到算法中的数据点。组内相似性基于称为质心（算术平均值）的中心性度量和一个距离函数来计算，该距离函数度量组内对象与中心的接近程度。K-means中的“K”表示用户可能感兴趣的簇数。K-means聚类需要遵循以下步骤。由于使用均值作为估计质心的度量，它无法避免极端观测值或异常值的影响。因此，在运行K-means聚类之前，需要检查数据集中是否存在异常值。\n\
+  \n### 1. 检查是否存在异常值\n\n让我们使用箱线图方法识别`Wholesalecustomers.csv`数据集中是否存在任何异常值：\n\n```r\n\
+  > r_df<-read.csv(\"Wholesalecustomers.csv\")\n> ####Data Pre-processing\n> par(mfrow=c(2,3))\n\
+  > apply(r_df[,c(-1,-2)],2,boxplot)\n```\n\n前面每个变量的箱线图中，须线之后的散点表明数据集中存在大量异常值。实践者通常使用封顶方法从数据集中去除异常值。如果任何数据点超过每个变量的分位数（90%分位数、95%分位数或99%分位数），则需要在相应的分位数处对这些数据点进行封顶：\n\
+  \n```r\n> #computing quantiles\n> quant<-function(x){quantile(x,probs=c(0.95,0.90,0.99))}\n\
+  > out1<-sapply(r_df[,c(-1,-2)],quant)\n```\n\n### 2. 缩放数据集\n\n在K-means聚类分析中仅包含连续变量并不能保证所有变量都处于同一尺度。例如，客户的年龄范围是0-100，而客户的收入范围是0-100,000。由于两者的度量单位不同，它们可能落入不同的簇，当需要表示更多数据点时，这会变得更加复杂。为了在聚类过程中比较各分组，所有变量都需要在同一尺度上进行标准化；这里我们对所有变量应用了标准正态变换（Z变换）：\n\
+  \n```r\n> r_df_scaled<-as.matrix(scale(r_df[ ,c(-1,-2)]))\n> head(r_df_scaled)\n\
+  Fresh Milk Grocery Frozen Detergents_Paper Delicassen\n[1,]  0.2351056 1.2829174\
+  \ 0.11321460 -0.96232799 0.1722993 0.1570550\n[2,] -0.4151579 1.3233470 0.45658819\
+  \ -0.30652122 0.4120701 0.6313698\n[3,] -0.4967305 1.0597962 0.13425842 -0.03373355\
+  \ 0.4984496 1.8982669\n[4,]  0.3041643 -0.9430315 -0.45821928 1.66113143 -0.6670924\
+  \ 0.6443648\n[5,]  1.3875506 0.1657331 0.05110966 0.60623797 -0.1751554 1.8928669\n\
+  [6,] -0.1421677 0.9153464 -0.30338465 -0.77070636 -0.1681831 0.2974239\n```\n\n\
+  ### 3. 选择初始簇种子\n\n初始随机种子的选择决定了模型收敛所需的迭代次数。通常，随机选择的初始簇种子是簇的临时均值。根据距离函数度量，距离质心更近的对象被分配为该簇的成员。随着新成员加入簇，再次计算质心，并将每个种子值替换为相应的簇质心。在K-means聚类中，这种向组中添加更多对象并因此更新质心的过程会持续进行，直到质心不再移动且对象不再改变所属簇。\n\
+  \n### 4. 确定簇数 K\n\n在R语言中，有Rcmdr（R Commander）和stats两个库支持K-means聚类，它们使用两种不同的方法。运行该算法需要加载Rcmdr库，而stats已内置在基础R中。使用K-means算法表示数据所需的簇数由碎石图根据以下公式确定：\n\
+  \n```r\n> library(Rcmdr)\n> sumsq<-NULL\n> #Method 1\n> par(mfrow=c(1,2))\n> for\
+  \ (i in 1:15) sumsq[i] <-\n+ sum(KMeans(r_df_scaled, centers=i, iter.max=500,\n\
+  + num.seeds=50)$withinss)\n>\n> plot(1:15, sumsq, type=\"b\", xlab=\"Number of Clusters\"\
+  ,\n+ ylab=\"Within groups sum of squares\", main=\"Screeplot using Rcmdr\")\n>\n\
+  > #Method 2\n> for (i in 1:15) sumsq[i] <-\n+ sum(kmeans(r_df_scaled, centers=i,\
+  \ iter.max=5000,\n+     algorithm = \"Forgy\")$withinss)\n>\n> plot(1:15, sumsq,\
+  \ type=\"b\", xlab=\"Number of Clusters\",\n+ ylab=\"Within groups sum of squares\"\
+  , main=\"Screeplot using Stats\")\n```\n\n下图解释了碎石图。使用两种方法，通过观察碎石图上的“肘部”点，确定理想簇数为4。纵轴显示组内平方和随着横轴上簇数的增加而下降：\n\
+  \n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_179_0.png)\n\n一旦确定了簇数，就可以计算簇中心和距离，下面的代码解释了K-means聚类中要使用的函数。此处的目标是对对象进行分类，使一个组与另一个组之间的对象尽可能不同，而每组内部的对象尽可能相似。可以使用以下函数计算从簇中心到各个对象的组内平方和：\n\
+  \n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_180_0.png)\n\n计算每个簇的平方和，然后相加得到数据集的组内平方和总计。此处的目标是最小化组内平方和总计。\n\
+  \n### 5. 基于最小距离分组\n\nK-means语法及参数说明如下：\n\n```r\nkmeans(x, centers, iter.max = 10,\
+  \ nstart = 1,\n       algorithm = c(\"Hartigan-Wong\", \"Lloyd\", \"Forgy\",\n \
+  \      \"MacQueen\"), trace=FALSE)\n```\n\n| 参数 | 描述 |\n|---|---|\n| `x` | **数据的数值矩阵，或可被强制转换为此类矩阵的对象（例如数值向量或所有列均为数值型的数据框）**\
+  \ |\n| `centers` | 簇的数量，比如 *k*，或一组初始（不同的）簇中心。如果是一个数字，则从 *x* 中随机选择一组（不同的）行作为初始中心。\
+  \ |\n| `iter.max` | 允许的最大迭代次数。 |\n| `nstart` | 如果中心是一个数字，应选择多少个随机集合？ |\n| `algorithm`\
+  \ | 字符型。可缩写。注意，“Lloyd”和“Forgy”是同一算法的替代名称。 |\n\n*表1：K-means语法说明*\n\n```r\n> #Kmeans\
+  \ Clustering\n> library(cluster);library(cclust)\n> set.seed(121)\n> km<-kmeans(r_df_scaled,\
+  \ centers=4, nstart=17, iter.max=50000, algorithm = \"Forgy\", trace = T)\n```\n\
+  \n使用缩放后的数据集创建簇，共4个簇和17个初始起点。在Forgy算法下进行50,000次迭代后，从模型中获得以下结果：\n\n```r\n> #checking\
+  \ results\n> summary(km)\n```\n\n对于同一数据集，我们可以预测簇成员关系，实际簇成员关系与预测簇成员关系可以用下表表示：\n\n\
+  ```r\n> #predicting cluster membership\n> Cluster$Predicted<-predict.kmeans(km,r_df_scaled)\n\
+  > table(Cluster$Membership,Cluster$Predicted)\n1 2 3 4\n1 84 0 0 0\n2 0 188 0 0\n\
+  3 0 0 65 0\n4 0 0 0 103\n```\n\n### 6. 在实际应用中实现K-means\n\n为了在其他统计软件和Web应用中实现K-means聚类，可以使用PMML脚本。**PMML**代表**预测模型标记语言（Predictive\
+  \ Model Markup Language）**，它被公认为部署预测模型的行业标准：\n\n```r\n> #pmml code\n> library(pmml);\n\
+  > library(XML);\n> pmml(km)\n```\n\n当我们以PMML格式保存模型时，它会为模型准备一个XML脚本，模型参数嵌入在脚本中。其编写方式使得任何其他外部统计软件都可以读取该模型。\n\
+  \n## 层次聚类\n\n实现层次聚类算法有两种不同的方式，但有一点是共同的：两者都使用距离度量来估计聚类成员之间的相似性：\n\n- **凝聚法：** 自底向上的方法\n\
+  - **分裂法：** 自顶向下的方法\n\n\n\n\n\n要进行层次聚类，输入数据必须是距离矩阵形式。所选方法必须是 `\"single\"`、`\"complete\"\
+  `、`\"average\"`、`\"mcquitty\"`、`\"ward.D\"`、`\"ward.D2\"`、`\"centroid\"` 或 `\"median\"\
+  ` 之一。\n\n层次聚类算法遵循以下步骤：\n\n1. 从 N 个单例簇（节点）开始，标记为 -1, ..., -N，代表初始的输入点集合。\n2. 使用距离函数，在所有成对距离中找到距离最小的一对节点/簇。\n\
+  3. 将两个节点合并为一个新节点，并移除两个旧节点。新节点依次标记为 1, 2, ...\n4. 新节点到所有其他节点的距离由 `method` 参数决定。\n\
+  5. 从步骤 2 开始重复 N - 1 次，直到剩下一个包含所有原始输入点的大节点。\n\n如果选择用于执行层次聚类的方法是 `ward`，则用于聚类的距离度量应为欧氏距离。以下代码展示了如何执行凝聚层次聚类：\n\
+  \n```r\n> hfit<-hclust(dist(r_df_scaled,method = \"euclidean\"),method=\"ward.D2\"\
+  )\n> par(mfrow=c(1,2))\n> plot(hfit,hang=-0.005,cex=0.7)\n> hfit<-hclust(dist(r_df_scaled,method\
+  \ = \"manhattan\"),method=\"mcquitty\")\n> plot(hfit,hang=-0.005,cex=0.7)\n> hfit<-hclust(dist(r_df_scaled,method\
+  \ = \"minkowski\"))\n> plot(hfit,hang=-0.005,cex=0.7)\n> hfit<-hclust(dist(r_df_scaled,method\
+  \ = \"canberra\"))\n> plot(hfit,hang=-0.005,cex=0.7)\n```\n\n这是第一个树状图：\n\nComplete、average、mcquitty、centroid、median、ward.D、ward.D2。每种方法都不同。Single\
+  \ linkage 使用最小的最小成对距离来合并两个簇。Complete linkage 使用两个不同簇中差异最大的对象之间的相似度。同样，每种方法都有其独特的计算不同簇之间相似度的方法：\n\
+  \n```r\n> summary(hfit)\nLength Class Mode\nmerge 878 -none- numeric\nheight 439\
+  \ -none- numeric\norder 440 -none- numeric\nlabels 0 -none- NULL\nmethod 1 -none-\
+  \ character\ncall 3 -none- call\ndist.method 1 -none- character\n```\n\n可以使用 `cluster`\
+  \ 库中的 `diana` 函数执行分裂层次聚类。语法如下所示：\n\n```r\ndiana(x, diss = inherits(x, \"dist\"),\
+  \ metric = \"euclidean\", stand = FALSE, keep.diss = n < 100, keep.data = !diss,\
+  \ trace.lev = 0)\n```\n\n要应用 `diana` 函数，输入数据应为矩阵或数据框类型。`diana` 函数既接受距离矩阵也接受数据框作为输入。有一个逻辑标志参数用于控制函数的输入结构。`metric`\
+  \ 参数是一个字符串，指定用于计算距离的度量方式；它有两个选项：`\"euclidean\"` 和 `\"manhattan\"`。欧氏距离是差值平方和的平方根，曼哈顿距离是绝对差值之和，其数学公式已在本章前面解释过。如果输入数据集\
+  \ `x` 已经是一个不相似度矩阵，那么 `diss` 参数将在执行时被忽略。参数 `stand` 如果取值为 `TRUE`，则表示使用原始数据集，并且需要进一步创建距离矩阵。\n\
+  \n`diana` 函数顾名思义，构建簇的层次结构，从一个包含所有观测值的大簇开始。不断划分簇，直到每个簇只包含一个观测值。在每一层，选择具有最大直径的簇，该直径基于距离函数测得的从簇中心到最外层数据点的距离：\n\
+  \n```r\ndfit<-diana(r_df,diss=F,metric = \"euclidean\",stand=T,keep.data = F)\n\
+  summary(dfit)\nplot(dfit)\n```\n\n## 使用*电子商务*数据进行聚类\n\n对分裂聚类执行 `plot` 命令会提供两种图形选项：一个指示分裂系数的横幅图，以及一个显示树状结构的树状图：\n\
+  \n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_187_0.png)\n\n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_187_1.png)\n\
+  \n对于层次聚类算法，一个额外的步骤是将树状图结构切割成有限的簇组，以便比较不同聚类方法的结果。以下函数用于切割树状结构：\n\n```r\n> #cutting\
+  \ the tree into groups\n> g_hfit<-cutree(hfit,k=4)\n> plot(hfit)\n> table(g_hfit)\n\
+  g_hfit\n1 2 3 4\n77 163 119 81\n> rect.hclust(hfit,k=4,border = \"blue\")\n```\n\
+  \n该图展示了树状结构：\n\n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_188_0.png)\n\n## 基于模型的聚类\n\
+  \nR 中有一个名为 `mclust` 的库，它提供通过 EM 算法拟合的高斯有限混合模型，用于基于模型的聚类，包括贝叶斯正则化。在本节中，我们讨论 `Mclust`\
+  \ 的语法和输出结果，其余结果可以使用剖析信息进行分析。基于模型的方法应用一组数据模型、最大似然估计方法和贝叶斯准则来识别簇，`Mclust` 函数通过期望最大化算法估计参数。\n\
+  \n`Mclust` 包基于三个参数提供各种数据模型：*E*、*V* 和 *I*。模型标识符使用这三个字母 *E*、*V* 和 *I* 来编码簇的几何特征，如体积、形状和方向。*E*\
+  \ 表示相等，*I* 在指定形状时表示单位矩阵，*V* 表示变化的方差。记住这三个字母，有一组模型默认使用 `mclust` 库运行，这些模型可以分为三类：球形、对角和椭球形。详细信息如下表所示：\n\
+  \n| 模型代码 | 描述 |\n| --- | --- |\n| EII | 球形，等体积 |\n| VII | 球形，不等体积 |\n| EEI | 对角，等体积和等形状\
+  \ |\n| VEI | 对角，变体积，等形状 |\n| EVI | 对角，等体积，变形状 |\n| VVI | 对角，变体积和形状 |\n| EEE | 椭球形，等体积、形状和方向\
+  \ |\n| EEV | 椭球形，等体积和等形状 |\n| VEV | 椭球形，等形状 |\n| VVV | 椭球形，变体积、形状和方向 |\n\n表 2：使用有限混合方法的模型描述\n\
+  \n现在让我们使用 `Mclust` 方法，基于 *E*、*V* 和 *I* 参数对观测值进行聚类和分组：\n\n```r\n> clus <- Mclust(x_df[,\
+  \ -c(1,2)])\n> summary(clus)\n------------------------------------------------------------\n\
+  Gaussian finite mixture model fitted by EM algorithm\n------------------------------------------------------------\n\
+  Mclust VEI (diagonal, equal shape) model with 9 components:\nlog.likelihood n df\
+  \ BIC ICL\n-23843.48 440 76 -48149.56 -48223.43\nClustering table:\n1 2 3 4 5 6\
+  \ 7 8 9\n165 21 40 44 15 49 27 41 38\n```\n\n从上述汇总结果可以看出，使用 VEI 模型规范创建了九个簇，并且该模型的\
+  \ BIC 最低。我们也可以绘制所有其他模型规范：\n\n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_190_0.png)\n\
+  \n从上述图形可以清楚地看出，VEI 模型规范是最佳的。使用以下代码，我们可以打印簇成员关系以及每个簇中的行数：\n\n```r\n# The clustering\
+  \ vector:\nclus_vec <- clus$classification\nclus_vec\nclust <- lapply(1:3, function(nc)\
+  \ row.names(r_df)[clus_vec==nc])\nclust # printing the clusters\n```\n\n使用带有 `parameters\
+  \ = TRUE` 的 `summary` 命令，我们可以计算每个变量的均值、方差和概率：\n\n```r\nsummary(clus, parameters\
+  \ = T)\n```\n\n## 其他聚类算法\n\n**自组织映射（SOM）** 是另一种聚类方法；它使用可视化方法来表示数据。SOM 基本上用于衍生出唯一的节点。SOM\
+  \ 创建一种网络结构，其中数据对象通过节点和边连接。利用这些节点，可以得出不同对象之间的相似性，从而创建聚类解决方案。`kohonen` 库包含 `som` 函数：\n\
+  \n```r\n> library(kohonen)\n> som_grid <- somgrid(xdim = 20, ydim=20, topo=\"hexagonal\"\
+  )\n> som_model <- som(r_df_scaled,\n+ grid=som_grid,\n+ rlen=100,\n+ alpha=c(0.05,0.01),\n\
+  + keep.data = TRUE,\n+ n.hood=\"circular\")\n> plot(som_model, type=\"changes\"\
+  ,col=\"blue\")\n```\n\n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_191_0.png)\n\n上述图形说明了平均到最近单元的距离如何随着迭代级别的增加而变化：\n\
+  \n```r\n> plot(som_model, type=\"count\")\n```\n\n\n\n\n\n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_192_0.png)\n\
+  \n上图展示了使用SOM方法的计数图。下图展示了邻居距离图。地图由不同变量着色，带颜色的圆圈表示这些输入变量在n维空间中的位置。当绘图类型为计数时，显示映射到各个单元的对象数量。灰色单元表示空单元。当类型为距离邻居时，显示到所有直接邻居的距离之和。如下图所示：\n\
+  \n```r\n> plot(som_model, type=\"dist.neighbours\")\n```\n\n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_192_1.png)\n\
+  \n```r\n> plot(som_model, type=\"codes\")\n```\n\n最后，下一张图展示了使用所有变量的码本图：\n\n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_193_0.png)\n\
+  \n在R中，kohonen库用于通过层次聚类创建自组织映射。当图形类型为codes（如前面的图所示）时，它显示码本向量；每种颜色表示输入数据集的一个特征。前面的结果和图形展示了如何创建聚类解决方案，以及如何使用SOM绘图函数可视化聚类。SOM是一种数据可视化过程，用于基于输入数据向量显示数据集中的相似对象。因此，从结果中得出的结论是如何通过目视检查创建聚类或细分。\n\
+  \n## 比较聚类方法\n\n以下是各种聚类方法的一些优点和缺点：\n\n### 对于K-means聚类：\n\nK-means聚类的优点和缺点：\n\n| 优点\
+  \ | 缺点 |\n|---|---|\n| 简单易理解，易于解释 | 不是基于稳健的方法论。主要问题在于初始随机点 |\n| 与其他聚类算法相比更灵活 | 不同的随机点会显示不同的结果。因此，需要更多迭代。\
+  \ |\n| 在大量输入特征上表现良好 | 由于需要更多迭代，从计算效率角度来看，对于大型数据集可能效率不高。处理时需要更多内存。 |\n\n### 对于SOM：\n\
+  \nSOM的优点和缺点：\n\n| 优点 | 缺点 |\n|---|---|\n| 视觉上易于理解 | 仅适用于连续数据 |\n| 新数据点可以通过视觉预测 |\
+  \ 当维度增加时难以表示 |\n\n### 参考文献\n\nLichman, M. (2013). UCI机器学习库 (http://archive.ics.uci.edu/ml).\
+  \ 加州尔湾：加利福尼亚大学信息与计算机科学学院。\n\n### 总结\n\n在本章中，我们讨论了无监督数据挖掘问题的各种细分方法及其实现。聚类是一种主观的细分方法，需要进一步研究，例如按聚类进行特征分析，并计算不同变量的均值和中位数等不同度量。如果某个聚类与另一个聚类表现出接近性，并且从业务角度来看有意义，那么可以将它们合并。我们讨论了在何种情况下使用哪种模型，以及每种模型的数据要求。在本章中，我们特别强调了数据可视化在表示聚类解决方案时的重要性。\n"
+- "# 7 构建零售推荐引擎\n\n在这个互联网时代，互联网上的一切并非对每个人都有用。不同的公司和实体使用不同的方法来为受众找到相关内容。人们开始构建算法来构造相关性分数，基于该分数可以生成推荐并推荐给用户。在我的日常生活中，每次我在Google上看到一张图片，Google会向我推荐另外3-4张图片；每次我在YouTube上寻找视频，会给我推荐另外10个视频；每次我访问Amazon购买产品，会给我推荐5-6个产品；每次我阅读一篇博客或文章，会给我推荐更多文章和博客。这证明了算法力量在起作用，基于用户的偏好或选择来推荐某些内容，因为用户的时间宝贵，而互联网上的内容是无限的。因此，推荐引擎帮助组织根据用户偏好定制产品，这样用户就不必花时间去探索需要什么。\n\
+  \n在本章中，读者将学习以下内容及其使用R编程语言的实现：\n\n- 什么是推荐，它是如何工作的\n- 执行推荐的类型和方法\n- 使用R实现产品推荐\n\n\
+  ### 什么是推荐？\n\n推荐是一种方法或技术，通过它算法检测用户正在看什么。推荐可以是产品、服务、食品、视频、音频、图片、新闻文章等。如果我们环顾四周，注意我们日复一日在互联网上观察到的东西，推荐的含义就会变得更加清晰。例如，考虑新闻聚合网站如何向用户推荐文章。它们查看文章的标签、文章发布到互联网的时间、该文章的评论数、点赞数和分享数，当然还有地理位置等细节，然后对元数据信息建模，得出一个分数。基于该分数，它们开始向新用户推荐文章。当我们在YouTube上观看视频时也会发生同样的事情。同样，啤酒推荐系统也是这样工作的；用户必须随机选择一种啤酒，基于选择的第一种产品，算法根据相似用户的历史购买信息推荐其他啤酒。当我们从在线电子商务门户购买产品时，也会发生同样的事情。\n\
+  \n### 产品推荐的类型\n\n从广义上讲，存在四种不同类型的推荐系统：\n\n- 基于内容的推荐方法\n- 基于协同过滤的推荐方法\n- 基于人口统计细分的推荐方法\n\
+  - 基于关联规则的推荐方法\n\n在基于内容的方法中，术语、概念（也称为关键词）定义了相关性。如果用户当前阅读的任何页面中的匹配关键词在互联网上可用的任何其他内容中被找到，那么就开始计算词频并分配一个分数，基于该分数，将最接近的内容呈现给用户。基本上，在基于内容的方法中，文本被用于找到两个文档之间的匹配，从而生成推荐。\n\
+  \n在协同过滤中，有两种变体：基于用户的协同过滤和基于物品的协同过滤。\n\n在基于用户的协同过滤方法中，算法计算用户与用户之间的相似度，然后根据他们的偏好生成推荐。在基于物品的协同过滤中，考虑物品与物品之间的相似度来生成推荐。\n\
+  \n在基于人口统计细分的类别中，会考虑用户的年龄、性别、婚姻状况和位置，以及他们的收入、工作或任何其他可用特征，以创建客户细分。一旦创建了细分，就会在细分层面识别最受欢迎的产品，并推荐给属于相应细分的新用户。\n\
+  \n### 执行推荐的技术\n\n过滤掉网上可用的丰富信息，并第一时间向用户推荐有用信息，是创建推荐引擎的主要动机。那么协同过滤是如何工作的？协同过滤算法基于与当前用户最相似的一组用户来生成推荐。每次请求推荐时，算法需要根据用户共同评分的物品，计算当前用户与所有其他用户之间的相似度，从而选择行为相似的用户。随后，算法将那些被与其最相似的用户给予高评分的物品推荐给当前用户。\n\
+  \n为了计算用户之间的相似度，已经提出了各种相似度度量，如皮尔逊相关系数、余弦向量相似度、斯皮尔曼相关系数、基于熵的不确定性度量和均方差。让我们看看计算和R实现背后的数学公式。\n\
+  \n协同过滤算法的目标是根据用户以前的喜好和其他志同道合用户的意见，向特定用户推荐新物品或预测某个物品的效用。\n\n基于内存的算法利用整个用户-物品数据库来生成预测。这些系统采用统计技术来找到一组与目标用户有相似历史偏好的用户，称为邻居（即他们对相同物品的评分相似，或者他们倾向于购买相似的物品集）。一旦形成了用户邻域，这些系统使用不同的算法来组合邻居的偏好，为当前用户产生预测或Top-N推荐。这些技术也称为最近邻或基于用户的协同过滤，在实践中非常流行且被广泛使用。\n\
+  \n基于模型的协同过滤算法首先开发用户评分模型，然后提供物品推荐。这类算法采用概率方法，将协同过滤过程视为在给定用户对其他物品的评分的情况下，计算用户预测的期望值。模型构建过程由不同的机器学习算法执行，如贝叶斯网络、聚类和基于规则的方法。\n\
+  \n\n\n\n\n基于物品的协同过滤算法中的一个关键步骤是计算物品之间的相似度，然后选择最相似的物品。两个物品 $i$ 和 $j$ 之间相似度计算的基本思想是，首先分离出对这两个物品都进行了评分的用户，然后应用相似度计算技术来确定相似度\
+  \ $S(i,j)$。\n\n计算物品之间相似度的方法有很多种。这里我们介绍三种这样的方法。这些是基于余弦的相似度、基于相关的相似度和调整余弦相似度：\n\n\
+  - **基于余弦的相似度：** 两个物品被视为 $m$ 维用户空间中的两个向量。它们之间的相似度是通过计算这两个向量之间角度的余弦来衡量的：\n\n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_198_0.png)\n\
+  \n以下是计算两个向量之间余弦相似度的公式。让我们通过一个数值示例来计算余弦相似度：\n\nCos (d1, d2) = 0.44\n\n| d1 | d2 |\
+  \ d1*d2 | ||d1|| | ||d2|| | ||d1||*||d2|| |\n|---|---:|---:|---:|---:|---:|\n| 6\
+  \ | 1 | 6 | 36 | 1 | 36 |\n| 4 | 0 | 0 | 16 | 0 | 0 |\n| 5 | 3 | 15 | 25 | 9 | 225\
+  \ |\n| 1 | 2 | 2 | 1 | 4 | 4 |\n| 0 | 5 | 0 | 0 | 25 | 0 |\n| 2 | 0 | 0 | 4 | 0\
+  \ | 0 |\n| 4 | 6 | 24 | 16 | 36 | 576 |\n| 0 | 5 | 0 | 0 | 25 | 0 |\n| 3 | 0 | 0\
+  \ | 9 | 0 | 0 |\n| 6 | 1 | 6 | 36 | 1 | 36 |\n\n如果为一组物品或产品明确给出了评分或评论，则有意义应用基于用户的协同过滤。如果某些物品的某些评分缺失，数据仍可以被插补，一旦缺失评分被预测，用户相似度就可以被计算，从而生成推荐。对于基于用户的协同过滤，数据将如下所示：\n\
+  \n| User | Item1 | Item2 | Item3 | Item4 | Item5 | Item6 |\n|------|------:|------:|------:|------:|------:|------:|\n\
+  | user1 | -7.82 | 8.79 | -9.66 | -8.16 | -7.52 | -8.5 |\n| user2 | 4.08 | -0.29\
+  \ | 6.36 | 4.37 | -2.38 | -9.66 |\n| user3 |  |  |  |  | 9.03 | 9.27 |\n| user4\
+  \ |  | 8.35 |  |  | 1.8 | 8.16 |\n| user5 | 8.5 | 4.61 | -4.17 | -5.39 | 1.36 |\
+  \ 1.6 |\n| user6 | -6.17 | -3.54 | 0.44 | -8.5 | -7.09 | -4.32 |\n| user7 |  | \
+  \ |  |  | 8.59 | -9.85 |\n| user8 | 6.84 | 3.16 | 9.17 | -6.21 | -8.16 | -1.7 |\n\
+  | user9 | -3.79 | -3.54 | -9.42 | -6.89 | -8.74 | -0.29 |\n| user10 | 3.01 | 5.15\
+  \ | 5.15 | 3.01 | 6.41 | 5.15 |\n\n表 1：基于用户的物品样本数据集\n\n如果二进制矩阵作为输入给出，其中级别表示产品是否被购买，则建议应用基于物品的协同过滤。样本数据集如下所示：\n\
+  \n| User | Item1 | Item2 | Item3 | Item4 | Item5 | Item6 |\n|------|------:|------:|------:|------:|------:|------:|\n\
+  | user1 | 1 | 1 | 1 | 1 | 1 | 0 |\n| user2 | 1 | 1 | 0 | 0 | 1 |  |\n| user3 | 0\
+  \ | 0 |  | 1 | 0 | 0 |\n| user4 | 0 | 1 | 1 |  | 1 | 1 |\n| user5 | 1 | 0 |  | 1\
+  \ | 0 |  |\n| user6 | 0 | 0 | 1 |  |  | 0 |\n| user7 |  | 1 | 0 | 0 | 1 | 1 |\n\
+  | user8 | 1 | 0 | 1 | 1 | 0 |  |\n\n- **可扩展性**：最近邻算法需要随着用户数量和物品数量的增加而增长的计算量。拥有数百万用户和物品时，运行现有算法的典型基于\
+  \ Web 的推荐系统将遭受严重的扩展性问题。\n\n## 实践项目\n\n数据集包含来自 1999 年 4 月至 2003 年 5 月收集的 Jester 在线笑话推荐系统匿名评分数据的\
+  \ 5000 个用户样本（Goldberg, Roeder, Gupta, and Perkins 2001）。数据集包含对 100 个笑话在 -10 到 10\
+  \ 之间的评分。数据集中所有用户都对 36 个或更多笑话进行了评分。让我们加载 recommenderlab 库和 Jester5K 数据集：\n\n```\n\
+  > library(\"recommenderlab\")\n> data(Jester5k)\n> Jester5k@data@Dimnames[2]\n[[1]]\n\
+  [1]  \"j1\"  \"j2\"  \"j3\"  \"j4\"  \"j5\"  \"j6\"  \"j7\"  \"j8\"  \"j9\"\n[10]\
+  \ \"j10\" \"j11\" \"j12\" \"j13\" \"j14\" \"j15\" \"j16\" \"j17\" \"j18\"\n[19]\
+  \ \"j19\" \"j20\" \"j21\" \"j22\" \"j23\" \"j24\" \"j25\" \"j26\" \"j27\"\n[28]\
+  \ \"j28\" \"j29\" \"j30\" \"j31\" \"j32\" \"j33\" \"j34\" \"j35\" \"j36\"\n[37]\
+  \ \"j37\" \"j38\" \"j39\" \"j40\" \"j41\" \"j42\" \"j43\" \"j44\" \"j45\"\n[46]\
+  \ \"j46\" \"j47\" \"j48\" \"j49\" \"j50\" \"j51\" \"j52\" \"j53\" \"j54\"\n[55]\
+  \ \"j55\" \"j56\" \"j57\" \"j58\" \"j59\" \"j60\" \"j61\" \"j62\" \"j63\"\n[64]\
+  \ \"j64\" \"j65\" \"j66\" \"j67\" \"j68\" \"j69\" \"j70\" \"j71\" \"j72\"\n[73]\
+  \ \"j73\" \"j74\" \"j75\" \"j76\" \"j77\" \"j78\" \"j79\" \"j80\" \"j81\"\n[82]\
+  \ \"j82\" \"j83\" \"j84\" \"j85\" \"j86\" \"j87\" \"j88\" \"j89\" \"j90\"\n[91]\
+  \ \"j91\" \"j92\" \"j93\" \"j94\" \"j95\" \"j96\" \"j97\" \"j98\" \"j99\"\n[100]\
+  \ \"j100\"\n```\n\n以下图像显示了 2000 名用户给出的真实评分的分布：\n\n```\n> data<-sample(Jester5k,2000)\n\
+  > hist(getRatings(data),breaks=100,col=\"blue\")\n```\n\n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_203_0.png)\n\
+  \n输入数据集包含个人评分；归一化函数通过居中行来减少个人评分偏差，这是一种标准的 z-score 变换。减去均值然后除以标准差。以下图表显示了前述数据集的归一化评分：\n\
+  \n```\n> hist(getRatings(normalize(data)),breaks=100,col=\"blue4\")\n```\n\n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_203_1.png)\n\
+  \n前面的 R 命令有助于识别 recommenderlab 中可用的方法、模型的<|message|>参数。\n\n实现推荐系统有六种不同的方法：popular、item-based、user\
+  \ based、PCA、random 和 SVD。让我们使用 popular 方法启动推荐引擎：\n\n```\n> rc <- Recommender(Jester5k,\
+  \ method = \"POPULAR\")\n> rc\nRecommender of type 'POPULAR' for 'realRatingMatrix'\n\
+  learned using 5000 users.\n> names(getModel(rc))\n[1] \"topN\" \"ratings\"\n[3]\
+  \ \"minRating\" \"normalize\"\n[5] \"aggregationRatings\" \"aggregationPopularity\"\
+  \n[7] \"minRating\" \"verbose\"\n> getModel(rc)$topN\nRecommendations as 'topNList'\
+  \ with n = 100 for 1 users.\n```\n\n诸如 top N、verbose、aggregation popularity 等对象可以使用\
+  \ getModel() 命令的名称打印。\n\n```\nrecom <- predict(rc, Jester5k, n=5)\nrecom\n```\n\n\
+  为了生成推荐，我们可以使用 predict 函数对同一数据集进行操作并验证预测模型的准确性。这里我们为每个用户生成 top 5 推荐笑话。预测结果如下：\n\n\
+  ```\n> head(as(recom,\"list\"))\n$u2841\n[1] \"j89\" \"j72\" \"j76\" \"j88\" \"\
+  j83\"\n$u15547\n[1] \"j89\" \"j93\" \"j76\" \"j88\" \"j91\"\n$u15221\ncharacter(0)\n\
+  $u15573\ncharacter(0)\n$u21505\n[1] \"j89\" \"j72\" \"j93\" \"j76\" \"j88\"\n$u15994\n\
+  character(0)\n```\n\n对于相同的 Jester5K 数据集，让我们尝试实现基于物品的协同过滤（IBCF）：\n\n```\n> rc <-\
+  \ Recommender(Jester5k, method = \"IBCF\")\n> rc\nRecommender of type 'IBCF' for\
+  \ 'realRatingMatrix'\nlearned using 5000 users.\n> recom <- predict(rc, Jester5k,\
+  \ n=5)\n> recom\nRecommendations as 'topNList' with n = 5 for 5000 users.\n> head(as(recom,\"\
+  list\"))\n$u2841\n[1] \"j85\" \"j86\" \"j74\" \"j84\" \"j80\"\n$u15547\n[1] \"j91\"\
+  \ \"j87\" \"j88\" \"j89\" \"j93\"\n$u15221\ncharacter(0)\n$u15573\ncharacter(0)\n\
+  $u21505\n[1] \"j78\" \"j80\" \"j73\" \"j77\" \"j92\"\n$u15994\ncharacter(0)\n```\n\
+  \n主成分分析（PCA）方法不适用于基于真实评分的数据集，因为获取相关矩阵以及随后的特征向量和特征值计算不会准确。因此，我们将不展示其应用。接下来我们将展示随机方法的工作原理：\n\
+  \n```\n> rc <- Recommender(Jester5k, method = \"RANDOM\")\n> rc\nRecommender of\
+  \ type 'RANDOM' for 'ratingMatrix'\nlearned using 5000 users.\n> recom <- predict(rc,\
+  \ Jester5k, n=5)\n> recom\nRecommendations as 'topNList' with n = 5 for 5000 users.\n\
+  > head(as(recom,\"list\"))\n[[1]]\n[1] \"j90\" \"j74\" \"j86\" \"j78\" \"j85\"\n\
+  [[2]]\n[1] \"j87\" \"j88\" \"j74\" \"j92\" \"j79\"\n[[3]]\ncharacter(0)\n[[4]]\n\
+  character(0)\n[[5]]\n[1] \"j95\" \"j86\" \"j93\" \"j78\" \"j83\"\n[[6]]\ncharacter(0)\n\
+  ```\n\n以下脚本用于构建协同过滤模型，将其应用于新数据集以预测评分，然后计算预测准确度，误差矩阵显示如下：\n\n```\n> #User based collaborative\
+  \ filtering\n> r1 <- Recommender(getData(e, \"train\"), \"UBCF\")\n> #Item based\
+  \ collaborative filtering\n> r2 <- Recommender(getData(e, \"train\"), \"IBCF\")\n\
+  > #PCA based collaborative filtering\n> r3 <- Recommender(getData(e, \"train\"),\
+  \ \"PCA\")\n> #POPULAR based collaborative filtering\n> r4 <- Recommender(getData(e,\
+  \ \"train\"), \"POPULAR\")\n> #RANDOM based collaborative filtering\n> r5 <- Recommender(getData(e,\
+  \ \"train\"), \"RANDOM\")\n> #SVD based collaborative filtering\n> r6 <- Recommender(getData(e,\
+  \ \"train\"), \"SVD\")\n> #Predicted Ratings\n> p1 <- predict(r1, getData(e, \"\
+  known\"), type=\"ratings\")\n> p2 <- predict(r2, getData(e, \"known\"), type=\"\
+  ratings\")\n> p3 <- predict(r3, getData(e, \"known\"), type=\"ratings\")\n> p4 <-\
+  \ predict(r4, getData(e, \"known\"), type=\"ratings\")\n> p5 <- predict(r5, getData(e,\
+  \ \"known\"), type=\"ratings\")\n> p6 <- predict(r6, getData(e, \"known\"), type=\"\
+  ratings\")\n> #calculate the error between the prediction and\n> #the unknown part\
+  \ of the test data\n> error <- rbind(\n+ calcPredictionAccuracy(p1, getData(e, \"\
+  unknown\")),\n+ calcPredictionAccuracy(p2, getData(e, \"unknown\")),\n+ #calcPredictionAccuracy(p3,\
+  \ getData(e, \"unknown\")),\n+ calcPredictionAccuracy(p4, getData(e, \"unknown\"\
+  )),\n+ calcPredictionAccuracy(p5, getData(e, \"unknown\")),\n+ calcPredictionAccuracy(p6,\
+  \ getData(e, \"unknown\"))\n+ )\n> rownames(error) <- c(\"UBCF\", \"IBCF\", \"POPULAR\"\
+  , \"RANDOM\", \"SVD\")\n> error\n```\n\n| Method | RMSE | MSE | MAE |\n|--------|-----:|----:|----:|\n\
+  | UBCF | 4.485571 | 20.12034 | 3.511709 |\n| IBCF | 4.606355 | 21.21851 | 3.466738\
+  \ |\n| POPULAR | 4.509973 | 20.33985 | 3.548478 |\n| RANDOM | 7.917373 | 62.68480\
+  \ | 6.464369 |\n| SVD | 4.653111 | 21.65144 | 3.679550 |\n\n从前面的结果来看，与其他推荐方法相比，UBCF\
+  \ 的误差最低。这里，为了评估预测模型的结果，我们使用 k 折交叉验证方法；k 假定取为 4：\n\n```\n> #Evaluation of a top-N\
+  \ recommender algorithm\n```\n\n\n\n## 可用于降维的技术\n\n降维技术可以分为两大类：参数或基于模型的特征约简，以及非参数特征约简。在非参数特征约简技术中，首先降低数据的维度，然后得到的数据可用于创建任何分类或预测模型，监督或非监督。然而，基于参数的方法强调通过改变特征来监控模型的整体性能和准确性，从而决定需要多少个特征来表示模型。以下是在数据挖掘文献中通常用于降低数据维度的技术：\n\
+  \n- 非参数：\n  - PCA 方法\n  - 参数方法\n  - 前向特征选择\n  - 后向特征选择\n\n我们将借助 R 编程语言使用一个数据集详细讨论这些方法。除了前面提到的这些技术外，还有一些不太流行的方法，例如删除方差低的变量，因为它们对目标变量没有太多信息贡献，以及删除缺失值较多的变量。后者属于缺失值处理方法，但仍可用于减少高维数据集中的特征。在\
+  \ R 中有两种方法，`prcomp()` 和 `princomp()`，但它们使用两种略有不同的方法；`princomp()` 使用特征向量，而 `prcomp()`\
+  \ 使用 SVD 方法。一些研究人员更倾向于使用 `prcomp()` 而非 `princomp()` 方法。我们在这里将使用两种不同的方法。\n\n## 应用何种技术？\n\
+  \n技术的实际使用取决于研究人员；他从数据中关注什么。如果你关注隐藏特征并希望将数据表示在低维空间中，PCA 是应选择的方法。如果你关注构建良好的分类或预测模型，那么先执行\
+  \ PCA 并不是一个好主意；你理想情况下应包含所有特征并通过任何参数方法，如前向或后向，选择去除冗余特征。技术选择取决于数据可用性、问题陈述以及某人计划执行的任务。\n\
+  \n```\ncov(x, y) = (∑_{i=1}^{n} (x_i - x̄)(y_i - ȳ)) / (n - 1)\n```\n\n协方差的符号比其值更重要；正的协方差值表示两个维度一起增加，反之亦然。同样，协方差的负值表示一个维度增加时，另一个维度减少。如果协方差值为零，则表明两个维度彼此独立且没有关系。\n\
+  \n- 4. 从协方差矩阵计算特征向量和特征值。所有特征向量始终来自方阵，但并非所有方阵都能生成特征向量。矩阵的所有特征向量彼此正交。\n- 5. 通过按从大到小的顺序取特征值创建特征向量。具有最高特征值的特征向量是数据集的主成分。从协方差矩阵中识别出特征向量，并将特征值按从大到小排序：\n\
+  - 6. 使用特征向量的转置版本和归一化数据的转置版本创建低维数据。为了得到转置数据集，我们将把特征向量的转置与归一化数据的转置相乘。\n\n```\nFeature\
+  \ Vector = (Eigen1, Eigen2.....Eigen 14)\n```\n\n让我们在以下部分应用这些步骤。\n\n## 围绕降维的实践项目\n\
+  \n我们将对数据集应用降维程序，既有基于模型的方法，也有基于主成分的方法，以得出较少的特征数量，以便我们可以使用这些特征将客户分类为违约者和非违约者。\n\n\
+  ## 降维\n\n对于实践项目，我们考虑了一个信用卡客户数据集 `clients.csv`，其中包含 30,000 个样本和 24 个属性或维度。我们将应用两种不同的特征约简方法：传统方法以及现代机器学习方法。\n\
+  \n## 属性描述\n\n以下是数据集中属性的描述：\n\n- **X1:** 已授予的信用额度金额（新台币）。包括个人消费者信用及其家庭（附属）信用。\n-\
+  \ **X2:** 性别（`1 = male; 2 = female`）。\n- **X3:** 教育程度（`1 = graduate school; 2 =\
+  \ university; 3 = high school; 4 = others`）。\n- **X4:** 婚姻状况（`1 = married; 2 = single;\
+  \ 3 = others`）。\n- **X5:** 年龄（岁）。\n- **X6–X11:** 过去付款历史。我们追踪了 2005 年 4 月至 9 月的过去月度付款记录，如下：\n\
+  \  - X6 = 2005 年 9 月的还款状态\n  - X7 = 2005 年 8 月的还款状态； . . .\n  - X11 = 2005 年 4 月的还款状态。还款状态的测量尺度为：-1\
+  \ = 按时支付；1 = 延迟一个月付款；2 = 延迟两个月付款； . . .；8 = 延迟八个月付款；9 = 延迟九个月付款，等等。\n- **X12–X17:**\
+  \ 账单金额（新台币）。\n  - X12 = 2005 年 9 月的账单金额；\n  - X13 = 2005 年 8 月的账单金额； . . .\n  -\
+  \ X17 = 2005 年 4 月的账单金额。\n- **X18–X23:** 上期付款金额（新台币）。\n  - X18 = 2005 年 9 月支付的金额；\n\
+  \  - X19 = 2005 年 8 月支付的金额； . . .\n  - X23 = 2005 年 4 月支付的金额。\n\n## 降维\n\n让我们获取数据集并进行必要的归一化和转换：\n\
+  \n```\n```r\n> setwd(\"select the working directory\")\n> default<-read.csv(\"default.csv\"\
+  )\ncorrplot::corrplot(cor(df),method=\"ellipse\")\n```\n```\n\n从前面的相关矩阵可以看出，X12\
+  \ 到 X17 之间存在一些较强的相关性，可能可以利用 PCA 作为线性组合合并在一起。以下图表显示了不同变量之间的相关性：\n\n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_218_0.png)\n\
+  \n在之前的相关图表中，相关性的强度由椭圆的大小反映，颜色从红色到蓝色变化。蓝色椭圆表示正相关，而白色则表示无相关。变量 X12 与变量 X13 至 X17 具有高度正相关，相关值超过\
+  \ 80%。\n\n第 1 行包含变量描述，并且有一些列是分类的；我们需要从数据集中删除这些列。其他一些变量显示为分类的，因此需要转换回数值模式：\n\n```\n\
+  ```r\n> df<-default[-1,-c(1,3:5,7:12,25)]\n> func1<-function(x){\n+ as.numeric(x)\n\
+  + }\n> df<-as.data.frame(apply(df,2,func1))\n> normalize=function(x){\n```\n\n主成分（PC）1\
+  \ 解释了数据集中 42% 的变化，主成分 2 解释了数据集中 12% 的变化。这意味着第一个 PC 与 n 维空间中约 42% 的总数据点接近。从前面的结果可以看出，前\
+  \ 8 个主成分捕获了数据集中 91.9% 的变化。剩余 8% 的变化由另外 6 个主成分解释。现在问题是如何选择主成分。一般经验法则是 80-20，如果 20%\
+  \ 的主成分可以解释数据中 80% 的变化。有 14 个变量；我们需要查看累积起来解释数据中 80% 变化的成分数量。因此，根据 80:20 的帕累托原则，建议取\
+  \ 6 个主成分，它们累积解释 81% 的变化。\n\n在多元数据集中，成分与原始变量之间的相关性称为成分载荷。主成分的载荷如下：\n\n```\n> #Loadings\
+  \ of Principal Components\n> pca1$loadings\nLoadings:\nComp.1 Comp.2 Comp.3 Comp.4\
+  \ Comp.5 Comp.6 Comp.7 Comp.8 Comp.9 Comp.10\nComp.11 Comp.12 Comp.13 Comp.14\n\
+  X1 -0.165 0.301 0.379 0.200 0.111 0.822\nX5 0.870 -0.338 -0.331\nX12 -0.372 -0.191\
+  \ 0.567 0.416 0.433 0.184 -0.316\nX13 -0.383 -0.175 0.136 0.387 -0.345 -0.330 0.645\n\
+  X14 -0.388 -0.127 -0.114 -0.121 0.123 -0.485 -0.496 -0.528\nX15 -0.392 -0.120 0.126\
+  \ -0.205 -0.523 0.490 0.362 0.346\nX16 -0.388 -0.106 0.107 -0.420 0.250 -0.718 -0.227\n\
+  X17 -0.381 0.165 -0.489 0.513 -0.339 0.428\nX18 -0.135 0.383 -0.173 -0.362 -0.226\
+  \ -0.201 0.749\nX19 -0.117 0.408 -0.201 -0.346 -0.150 0.407 -0.280 -0.578 0.110\
+  \ 0.147 0.125\nX20 -0.128 0.392 -0.122 -0.245 0.239 -0.108 0.785 -0.153 0.145 -0.125\n\
+  X21 -0.117 0.349 0.579 -0.499 -0.462 0.124 -0.116\nX22 -0.114 0.304 0.609 0.193\
+  \ 0.604 0.164 -0.253\nX23 -0.106 0.323 0.367 -0.658 -0.411 -0.181 -0.316\nComp.1\
+  \ Comp.2 Comp.3 Comp.4 Comp.5 Comp.6 Comp.7 Comp.8 Comp.9 Comp.10\nComp.11 Comp.12\
+  \ Comp.13 Comp.14\nSS loadings 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000\
+  \ 1.000\n1.000 1.000 1.000 1.000\nProportion Var 0.071 0.071 0.071 0.071 0.071 0.071\
+  \ 0.071 0.071 0.071 0.071\n0.071 0.071 0.071 0.071\nCumulative Var 0.071 0.143 0.214\
+  \ 0.286 0.357 0.429 0.500 0.571 0.643 0.714\n0.786 0.857 0.929 1.000\n> pca1\nCall:\n\
+  princomp(x = df, cor = T, scores = T)\nStandard deviations:\nComp.1 Comp.2 Comp.3\
+  \ Comp.4 Comp.5 Comp.6 Comp.7 Comp.8 Comp.9 Comp.10\n```\n\n\n\n# 降维\n\n```\n2.43\
+  \ 1.31 1.02 0.96 0.94 0.93 0.88 0.85 0.84 0.51\nComp.11 Comp.12 Comp.13 Comp.14\n\
+  0.27 0.20 0.16 0.15\n14 variables and 30000 observations.\n```\n\n以下图表表示主成分解释的百分比方差：\n\
+  \n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_221_0.png)\n\n以下碎石图显示了我们应该为该数据集保留多少个主成分：\n\
+  \n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_221_1.png)\n\n从前面的碎石图可以得出，第一主成分具有最高的方差，其次是第二和第三。从图中可以看出，三个主成分的方差高于其他主成分。\n\
+  \n以下双标图表示 n 维空间中主成分的存在：\n\n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_222_0.png)\n\
+  \n协方差矩阵的对角元素是变量的方差；非对角变量是不同变量之间的协方差：\n\n```\n> diag(cov(df))\nX1 X5 X12 X13 X14\
+  \ X15 X16 X17 X18 X19 X20\n1.7e+10 8.5e+01 5.4e+09 5.1e+09 4.8e+09 4.1e+09 3.7e+09\
+  \ 3.5e+09 2.7e+08\n5.3e+08 3.1e+08\nX21 X22 X23\n2.5e+08 2.3e+08 3.2e+08\n```\n\n\
+  分数的解释有点棘手，因为除非你将它们用于沿特征向量定义的直线上作图，否则它们没有任何意义。PC 分数是每个点相对于主轴的坐标。利用特征值你可以提取特征向量，这些特征向量描述了一条直线来解释\
+  \ PCs。PCA 是一种多维缩放形式，因为它在不丢失变量太多信息的情况下将数据表示在较低维度。成分分数基本上是载荷与均值中心化缩放数据集的线性组合。\n\n\
+  当我们处理多元数据时，可视化和围绕其构建模型非常困难。为了减少特征，使用 PCA；它减少维度，以便我们可以在较低维度中绘图、可视化并预测未来。主成分彼此正交，这意味着它们是不相关的。在数据预处理阶段，缩放函数决定了需要哪种类型的输入数据矩阵。如果使用均值中心化方法作为变换，则协方差矩阵应作为\
+  \ PCA 的输入数据使用。如果缩放函数执行标准 z 分数变换，假设标准差等于 1，则应使用相关矩阵作为 PCA 的输入数据。\n\n现在问题是应用哪种变换。如果变量高度偏斜，则应使用\
+  \ z 分数变换和基于相关性的 PCA。如果输入数据近似对称，则应应用均值中心化方法和基于协方差的 PCA。\n\n现在，让我们来看一下主成分分数：\n\n```\n\
+  > #scores of the components\n> pca1$scores[1:10,]\nComp.1 Comp.2 Comp.3 Comp.4 Comp.5\
+  \ Comp.6 Comp.7 Comp.8 Comp.9 Comp.10\nComp.11 Comp.12 Comp.13 Comp.14\n[1,] 1.96\
+  \ -0.54 -1.330 0.1758 -0.0175 0.0029 0.013 -0.057 -0.22 0.020\n0.0169 0.0032 -0.0082\
+  \ 0.00985\n[2,] 1.74 -0.22 -0.864 0.2806 -0.0486 -0.1177 0.099 -0.075 0.29 -0.073\n\
+  -0.0055 -0.0122 0.0040 0.00072\n[3,] 1.22 -0.28 -0.213 0.0082 -0.1269 -0.0627 -0.014\
+  \ -0.084 -0.28 -0.016\n0.1125 0.0805 0.0413 -0.05711\n[4,] 0.54 -0.67 -0.097 -0.2924\
+  \ -0.0097 0.1086 -0.134 -0.063 -0.60 0.144\n0.0017 -0.1381 -0.0183 -0.05794\n[5,]\
+  \ 0.85 0.74 1.392 -1.6589 0.3178 0.5846 -0.543 -1.113 -1.24 -0.038\n-0.0195 -0.0560\
+  \ 0.0370 -0.01208\n[6,] 0.54 -0.71 -0.081 -0.2880 -0.0924 0.1145 -0.194 -0.015 -0.58\
+  \ 0.505\n0.0276 -0.1848 -0.0114 -0.14273\n[7,] -15.88 -0.96 -1.371 -1.1334 0.3062\
+  \ 0.0641 0.514 0.771 0.99 -2.890\n-0.4219 0.4631 0.3738 0.32748\n[8,] 1.80 -0.29\
+  \ -1.182 0.4394 -0.0620 -0.0440 0.076 -0.013 0.26 0.046\n0.0484 0.0584 0.0268 -0.04504\n\
+  [9,] 1.41 -0.21 -0.648 0.1902 -0.0653 -0.0658 0.040 0.122 0.33 -0.028\n-0.0818 0.0296\
+  \ -0.0605 0.00106\n[10,] 1.69 -0.18 -0.347 -0.0891 0.5969 -0.2973 -0.453 -0.140\
+  \ -0.74 -0.137\n0.0248 -0.0218 0.0028 0.00423\n```\n\n较大的特征值表示维度中较大的变化。以下脚本显示了如何从相关矩阵计算特征值和特征向量：\n\
+  \n```\n> eigen(cor(df),TRUE)$values\n```\n\n```\n7.5e-03 6.4e-03 5.8e-03 3.0e-03\
+  \ 2.4e-03 1.7e-03 1.5e-03 1.8e-09\nCumulative Proportion 6.1e-01 9.1e-01 9.4e-01\
+  \ 9.5e-01 9.6e-01 9.7e-01\n9.8e-01 9.9e-01 9.9e-01 9.9e-01 1.0e+00 1.0e+00 1.0e+00\
+  \ 1.0e+00\n```\n\n下一个屏幕图表明三个主成分构成了数据集中大部分的变化。x 轴显示主成分，y 轴显示标准差（方差 = 标准差的平方）。\n\n\
+  以下脚本显示了正在创建的绘图：\n\n```\n> result<-round(summary(pca2)[1]$sdev,0)\n> #scree plot\n\
+  > plot(result, main = \"Standard Deviation by Principal Components\",\n+ xlab=\"\
+  Principal Components\",ylab=\"Standard Deviation\",type='o')\n```\n\n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_225_0.png)\n\
+  \n使用 prcomp() 函数，该函数使用 SVD 方法执行降维，可以分析如下。prcomp() 方法接受原始数据集作为输入，并且它有一个内置参数，要求将缩放设为\
+  \ true：\n\n```\n> pca<-prcomp(df,scale. = T)\n> summary(pca)\nImportance of components:\n\
+  PC1 PC2 PC3 PC4 PC5 PC6 PC7 PC8 PC9 PC10\nStandard deviation 2.433 1.310 1.0223\
+  \ 0.9617 0.9400 0.9342 0.8829 0.8524\n0.8409 0.5142\nProportion of Variance 0.423\
+  \ 0.123 0.0746 0.0661 0.0631 0.0623 0.0557\n```\n\n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_228_0.png)\n\
+  \n正交的红色线条表示解释整个数据集的主成分。\n\n在讨论了各种变量缩减方法之后，输出会是什么；输出应该是一个新的数据集，其中所有主成分彼此不相关。该数据集可用于任何任务，例如分类、回归或聚类等。从主成分分析的结果我们如何得到新的数据集；让我们看一下以下脚本：\n\
+  \n```\n> #calculating Eigen vectors\n> eig<-eigen(cor(df))\n> #Compute the new dataset\n\
+  > eigvec<-t(eig$vectors) #transpose the eigen vectors\n> df_scaled<-t(dn) #transpose\
+  \ the adjusted data\n> df_new<-eigvec %*% df_scaled\n> df_new<-t(df_new)\n> colnames(df_new)<-c(\"\
+  PC1\", \"PC2\", \"PC3\", \"PC4\",\n+ \"PC5\", \"PC6\", \"PC7\", \"PC8\",\n+ \"PC9\"\
+  , \"PC10\", \"PC11\", \"PC12\",\n+ \"PC13\", \"PC14\")\n> head(df_new)\nPC1 PC2\
+  \ PC3 PC4 PC5 PC6 PC7 PC8 PC9 PC10 PC11 PC12\n[1,] 128773 -19470 -49984 -27479 7224\
+  \ 10905 -14647 -4881 -113084 -2291 1655 2337\n[2,] 108081 11293 -12670 -7308 3959\
+  \ 2002 -3016 -1662 -32002 -9819 -295 920\n[3,] 80050 -7979 -24607 -11803 2385 3411\
+  \ -6805 -3154 -59324 -1202 7596 7501\n[4,] 37080 -39164 -41935 -23539 2095 9931\
+  \ -15015 -4291 -92461 12488 -11 -7943\n```\n\n```\n[5,] 77548 356 -50654 -38425\
+  \ 7801 20782 -19707 -28953 -88730 -12624 -9028 -4467\n[6,] 34793 -42350 -40802 -22729\
+  \ -2772 9948 -17731 -2654 -91543 37090 2685 -10960\nPC13 PC14\n[1,] -862 501\n[2,]\
+  \ -238 -97\n[3,] 2522 -4342\n[4,] -1499 -4224\n[5,] 3331 -9412\n[6,] -1047 -10120\n\
+  ```\n\n## 降维的参数方法\n\n在一定程度上，我们在第 4 章《汽车数据的回归》中触及了基于模型降维，在该章中我们尝试实现回归建模，并在该过程中尝试通过应用赤池信息准则（AIC）来减少数据维度。贝叶斯信息准则（BIC）等\
+  \ AIC 也可用于减少数据维度。就基于模型的方法而言，有两种方法：\n\n- **向前选择法**：在向前选择法中，一次向模型中添加一个变量，并计算模型拟合优度统计量和误差。如果新维度的添加减少了误差并增加了模型拟合优度，则该维度将被模型保留，否则该维度将被从模型中移除。这适用于不同的监督算法，例如随机森林、逻辑回归、神经网络和基于支持向量机的实现。特征选择过程一直持续到所有变量都经过测试。\n\
+  - **向后选择法**：在向后选择法中，模型从所有变量一起开始。然后从模型中删除一个变量并计算模型拟合优度统计量和误差（任何预定义的损失函数）。如果新维度的删除减少了误差并增加了模型拟合优度，则该维度将被从模型中删除，否则该维度将被模型保留。\n\
+  \n\n\n\n我们在本章讨论的问题是监督学习分类的一个案例，其中因变量是违约或未违约。正如我们在第4章“使用汽车数据进行回归”中的逻辑回归部分所讨论的，逻辑回归方法使用逐步降维过程从模型中移除不需要的变量。同样的操作也可以在我们本章讨论的数据集上进行。\n\
+  \n除了标准的数据降维方法之外，还有一些不太重要但可以考虑的方法，例如缺失值估计方法。在具有许多维度的庞大数据集中，稀疏性问题将是一种常见情况。在应用任何正式的降维过程之前，如果我们能在数据集上应用缺失值百分比计算方法，就可以剔除许多变量。剔除未达到最低缺失百分比的变量的阈值必须由分析师来决定。\n\
+  \n## 参考文献\n\nYeh, I. C., & Lien, C. H. (2009). 数据挖掘技术对信用卡客户违约概率预测准确性的比较。Expert Systems\
+  \ with Applications, 36(2), 2473-2480.\n\n## 小结\n\n在本章中，我们讨论了在样本数据集中执行降维的各种方法。移除冗余特征不仅提高了模型精度，还节省了计算工作量和时间。从业务用户的角度来看，维度数量较少时，构建策略比关注大量特征更直观。我们讨论了在何处使用哪种技术，以及每种方法的数据要求。降维还为大型数据集提供了有意义的洞察。在下一章中，我们将学习用于分类、回归和时间序列预测的神经网络方法。\n\
+  \n## 神经网络简介\n\n大脑的生物网络为现实场景中的信息处理和洞察生成提供了连接元素的基础。它是一个通过层连接的神经元层级结构，其中一层的输出成为另一层的输入；信息以权重形式从一层传递到另一层。与每个神经元相关的权重包含洞察，使得下一层的识别和推理变得更加容易。人工神经网络是一种非常流行且有效的方法，由与权重关联的层组成。不同层之间的关联由数学方程控制，将信息从一层传递到另一层。事实上，一个人工神经网络模型内部有一系列数学方程在起作用。下图展示了基于神经网络的模型的一般架构：\n\
+  \n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_232_0.png)\n\n图1\n\n在上图中，有三个层——输入层、隐藏层和输出层——它们是任何基于神经网络的架构的核心。人工神经网络是一种强大的技术，可用于解决许多现实世界问题，如分类、回归和特征选择。人工神经网络能够以新输入数据的形式从新经验中学习，以改进基于分类或回归任务的性能，并适应输入环境的变化。上图中的每个圆圈代表一个神经元。\n\
+  \n神经网络有多种不同的变体，用于多种不同的场景；我们将在本章从概念上解释其中几种，以及它们在实际应用中的用法：\n\n- **单隐藏层神经网络**：这是最简单的神经网络形式，如上图所示。其中只有一个隐藏层。\n\
+  - **多隐藏层神经网络**：在这种形式中，多个隐藏层将连接输入数据和输出数据。计算的复杂性。\n\n### 理解神经网络背后的数学\n\n如图1所示，不同层（输入层、隐藏层和输出层）中的神经元通过称为激活函数的数学函数相互连接。激活函数有不同的变体，如下所述。理解激活函数将有助于实现神经网络模型以获得更高的精度：\n\
+  \n- **Sigmoid函数**：这种函数经常被数据挖掘和分析领域的专业人士使用，因为它更容易解释和实现。其方程如下：\n\n  $$f(x) = \\frac{1}{1\
+  \ + e^{-\\beta x}}$$\n\n  Sigmoid函数，也称为逻辑函数，主要用于将输入层的数据转换到映射层或隐藏层。\n- **线性函数**：这是通常用于将信息从解映射层传递到输出层的简单函数之一。公式如下：\n\
+  \n  $$f(x)=x$$\n- **高斯函数**：高斯函数是钟形曲线，适用于连续变量，其目标是将输出分类为多个类别：\n\n  $$f(x) = \\frac{1}{\\\
+  sqrt{2\\pi}\\sigma} e^{\\frac{-(x-\\mu)^2}{2\\sigma^2}}$$\n- **双曲正切函数**：这是变换函数的另一种变体；用于将信息从映射层转换到隐藏层：\n\
+  \n  $$\\tanh(x) = \\frac{e^{x} - e^{-x}}{e^{x} + e^{-x}}$$\n- **对数Sigmoid传递函数**：以下公式解释用于将输入层映射到隐藏层的对数Sigmoid传递函数：\n\
+  \n  $$f(x) = \\log\\left(\\frac{1}{1 + e^{-\\beta x}}\\right)$$\n- **径向基函数**：这是另一种激活函数；用于将信息从解映射层传递到输出层：\n\
+  \n  $$f(x) = \\sum_{j=1}^{m} w_{j} h_{j}(x)$$\n\n如前所述，不同类型的传递函数在神经网络架构中可以互换。它们可以用于不同的阶段，例如从输入到隐藏、从隐藏到输出等，以提高模型精度。\n\
+  \n### 在R中实现神经网络\n\n用于统计计算的R编程提供了三个不同的库来执行各种任务的神经网络模型。这三个库是 `nnet`、`neuralnet` 和\
+  \ `rsnns`。在本章中，我们将使用 `ArtPiece_1.csv` 以及 `nnet` 和 `neuralnet` 这两个库来执行各种任务。这两个库中神经网络的语法如下所述。\n\
+  \n`neuralnet` 库依赖于另外两个库 `grid` 和 `MASS`；在安装 `neuralnet` 库时，必须确保这两个依赖库已正确安装。在拟合神经网络模型时，模型所需的精度水平决定了隐藏层的数量及其中的神经元数量；隐藏层的数量随着复杂度的增加而增加。该库提供了使用反向传播、带权重回溯的弹性反向传播（Riedmiller,\
+  \ 1994）或不带权重回溯的弹性反向传播（Riedmiller and Braun, 1993），或由 Anastasiadis 等人（2005）提出的修正全局收敛版本进行神经网络训练的选项。该包允许通过自定义选择误差函数和激活函数进行灵活设置。现在，让我们看一下语法以及其中决定模型精度的组件：\n\
+  \n| 公式 | 定义输入和输出关系 |\n| --- | --- |\n| `Data` | 包含输入和输出变量的数据集。 |\n| `Hidden` | 指定隐藏层数量的向量。例如，(10,\
+  \ 5, 2) 表示第一层有 10 个隐藏神经元，第二层有 5 个，第三层有 2 个。 |\n| `Stepmax` | 要使用的最大步数。 |\n| `Rep`\
+  \ | 迭代次数。 |\n| `Startweights` | 连接的随机权重。 |\n| `Algorithm` | 用于拟合神经网络对象的算法。`'backprop'`\
+  \ 指反向传播。`'rprop+'` 和 `'rprop-'` 分别指带权重回溯和不带权重回溯的弹性反向传播，而 `'sag'` 和 `'slr'` 分别指最小绝对梯度和最小学习率。\
+  \ |\n| `Err.fct` | 两种方法：用于基于回归的预测的**平方和误差（SSE）**和用于基于分类的问题的**交叉熵（CE）**。 |\n| `Act.fct`\
+  \ | `\"logistic\"` 和 `\"tanh\"` 分别对应逻辑函数和双曲正切函数。 |\n| `Linear.output` | 如果对输出层不应用激活函数，则该值为\
+  \ TRUE。 |\n| `Likelihood` | 如果误差函数等于负对数似然函数，将计算信息准则 AIC 和 BIC。 |\n\n**表1：neuralnet\
+  \ 语法说明**\n\n\n\n```\n$ Critic.Ratings : num 8.9 9.36 7.38 6.56 6.94 ...\n$ Buyer.No\
+  \ : int 21973 19638 19638 19638 19638 19638 19638 19638 21973 21973 ...\n$ Zip.Code\
+  \ : int 33619 33619 33619 33619 33619 33619 33619 33619 33619 33619 ...\n$ Art.Purchase.Date\
+  \ : Factor w/ 517 levels \"1/10/2012\",\"1/10/2013\",...: 386 386 386 386 386 386\
+  \ 386 386 386 ...\n$ Year.of.art.piece : Factor w/ 10 levels \"01-01-1947\",\"01-01-1948\"\
+  ,...: 6 4 5 4 4 5 7 7 ...\n$ Acq.Cost : num 49700 53200 34300 28700 28000 39200\
+  \ 29400 31500 39200 53900 ...\n$ Art.Category : Factor w/ 33 levels \"Abstract Art\
+  \ Type I\",...: 1 13 13 13 30 24 31 30 31 30 ...\n$ Art.Piece.Size : Factor w/ 864\
+  \ levels \"10in. x 10in.\",...: 212 581 68 837 785 384 485 725 485 794 ...\n$ Border.of.art.piece\
+  \ : Factor w/ 133 levels \" \",\"Border 1\",...: 2 40 48 48 56 64 74 85 74 97 ...\n\
+  $ Art.Type : Factor w/ 1063 levels \"Type 1\",\"Type 10\",...: 1 176 287 398 509\
+  \ 620 731 842 731 953 ...\n$ Prominent.Color : Factor w/ 17 levels \"Beige\",\"\
+  Black\",...: 14 16 8 15 15 16 2 16 2 14 ...\n$ CurrentAuctionAveragePrice: int 52157\
+  \ 52192 28245 12908 22729 32963 20860 25991 44919 64169 ...\n$ Brush : Factor w/\
+  \ 4 levels \"\",\"Camel Hair Brush\",...: 2 2 2 2 4 2 2 2 2 2 ...\n$ Brush.Size\
+  \ : Factor w/ 5 levels \"0\",\"1\",\"2\",\"3\",...: 2 2 3 2 3 3 3 3 3 2 ...\n$ Brush.Finesse\
+  \ : Factor w/ 4 levels \"Coarse\",\"Fine\",...: 2 2 1 2 1 1 1 1 2 ...\n$ Art.Nationality\
+  \ : Factor w/ 5 levels \"American\",\"Asian\",...: 3 1 1 1 1 3 3 1 3 1 ...\n$ Top.3.artists\
+  \ : Factor w/ 5 levels \"MF Hussain\",\"NULL\",...: 3 1 1 1 4 3 3 4 3 4 ...\n$ CollectorsAverageprice\
+  \ : Factor w/ 13193 levels \"#VALUE!\",\"0\",...: 11433 11808 7802 4776 7034 8536\
+  \ 7707 7355 9836 483 ...\n$ GoodArt.Check : Factor w/ 3 levels \"NO\",\"NULL\",\"\
+  YES\": 2 2 2 2 2 2 2 2 2 ...\n$ AuctionHouseGuarantee : Factor w/ 3 levels \"GREEN\"\
+  ,\"NULL\",...: 2 2 2 2 2 2 2 2 2 ...\n$ Vnst : Factor w/ 37 levels \"AL\",\"AR\"\
+  ,\"AZ\",...: 6 6 6 6 6 6 6 6 6 ...\n$ Is.It.Online.Sale : int 0 0 0 0 0 0 0 0 0\
+  \ 0 ...\n$ Min.Guarantee.Cost : int 7791 7371 9723 4410 7140 4158 3731 5775 3374\
+  \ 11431 ...\n```\n\n## 神经网络预测\n\n使用神经网络进行预测要求目标（因变量/输出）变量为数值型，而所有输入（自变量/特征）变量可以是任意类型。我们将基于\
+  \ ArtPiece 数据集中的所有可用参数，预测当前的拍卖平均价格。在应用基于神经网络的模型之前，对数据进行预处理非常重要，包括排除缺失值以及进行必要的转换；因此，让我们对数据进行预处理：\n\
+  \n```\nlibrary(neuralnet)\nart<- read.csv(\"ArtPiece_1.csv\")\nstr(art)\n#data conversion\
+  \ for categorical features\nart$Art.Auction.House<-as.factor(art$Art.Auction.House)\n\
+  art$IsGood.Purchase<-as.factor(art$IsGood.Purchase)\nart$Art.Category<-as.factor(art$Art.Category)\n\
+  art$Prominent.Color<-as.factor(art$Prominent.Color)\nart$Brush<-as.factor(art$Brush)\n\
+  art$Brush.Size<-as.factor(art$Brush.Size)\nart$Brush.Finesse<-as.factor(art$Brush.Finesse)\n\
+  art$Art.Nationality<-as.factor(art$Art.Nationality)\nart$Top.3.artists<-as.factor(art$Top.3.artists)\n\
+  art$GoodArt.check<-as.factor(art$GoodArt.check)\nart$AuctionHouseGuarantee<-as.factor(art$AuctionHouseGuarantee)\n\
+  art$Is.It.Online.Sale<-as.factor(art$Is.It.Online.Sale)\n#data conversion for numeric\
+  \ features\nart$Critic.Ratings<-as.numeric(art$Critic.Ratings)\nart$Acq.Cost<-as.numeric(art$Acq.Cost)\n\
+  art$CurrentAuctionAveragePrice<-as.numeric(art$CurrentAuctionAveragePrice)\nart$CollectorsAverageprice<-as.numeric(art$CollectorsAverageprice)\n\
+  art$Min.Guarantee.Cost<-as.numeric(art$Min.Guarantee.Cost)\n#removing NA, Missing\
+  \ values from the data\nfun1<-function(x){\nifelse(x==\"#VALUE!\",NA,x)\n}\nart<-as.data.frame(apply(art,2,fun1))\n\
+  art<-na.omit(art)\n#keeping only relevant variables for prediction\nart<-art[,c(\"\
+  Art.Auction.House\",\"IsGood.Purchase\",\"Art.Category\",\n\"Prominent.Color\",\"\
+  Brush\",\"Brush.Size\",\"Brush.Finesse\",\n\"Art.Nationality\",\"Top.3.artists\"\
+  ,\"GoodArt.check\",\n\"AuctionHouseGuarantee\",\"Is.It.Online.Sale\",\"Critic.Ratings\"\
+  ,\n\"Acq.Cost\",\"CurrentAuctionAveragePrice\",\"CollectorsAverageprice\",\n\"Min.Guarantee.Cost\"\
+  )]\n#creating dummy variables for the categorical variables\nlibrary(dummy)\nart_dummy<-\n\
+  ```\n\n```\ndummy(art[,c(\"Art.Auction.House\",\"IsGood.Purchase\",\"Art.Category\"\
+  ,\n\"Prominent.Color\",\"Brush\",\"Brush.Size\",\"Brush.Finesse\",\n\"Art.Nationality\"\
+  ,\"Top.3.artists\",\"GoodArt.check\",\n\"AuctionHouseGuarantee\",\"Is.It.Online.Sale\"\
+  )],int=F)\nart_num<-art[,c(\"Critic.Ratings\",\n\"Acq.Cost\",\"CurrentAuctionAveragePrice\"\
+  ,\"CollectorsAverageprice\",\n\"Min.Guarantee.Cost\")]\nart<-cbind(art_num,art_dummy)\n\
+  ## 70% of the sample size\nsmp_size <- floor(0.70 * nrow(art))\n## set the seed\
+  \ to make your partition reproducible\nset.seed(123)\ntrain_ind <- sample(seq_len(nrow(art)),\
+  \ size = smp_size)\ntrain <- art[train_ind, ]\ntest <- art[-train_ind, ]\nfun2<-function(x){\n\
+  \  as.numeric(x)\n}\ntrain<-as.data.frame(apply(train,2,fun2))\ntest<-as.data.frame(apply(test,2,fun2))\n\
+  ```\n\n在训练数据集中，有 50,867 个观测值和 17 个变量；在测试数据集中，有 21,801 个观测值和 17 个变量。当前的拍卖平均价格作为预测的因变量，仅使用另外四个数值变量作为特征：\n\
+  \n```\n>fit<- neuralnet(formula = CurrentAuctionAveragePrice ~ Critic.Ratings +\n\
+  Acq.Cost + CollectorsAverageprice + Min.Guarantee.Cost, data = train,\nhidden =\
+  \ 15, err.fct = \"sse\", linear.output = F)\n> fit\nCall: neuralnet(formula = CurrentAuctionAveragePrice\
+  \ ~ Critic.Ratings +\nAcq.Cost + CollectorsAverageprice + Min.Guarantee.Cost, data\
+  \ = train,\nhidden = 15, err.fct = \"sse\", linear.output = F)\n1 repetition was\
+  \ calculated.\nError Reached Threshold Steps\n1 54179625353167 0.004727494957 23\n\
+  ```\n\n模型主要结果的摘要由 result.matrix 提供。result.matrix 的一个快照如下所示：\n\n```\n> fit$result.matrix\n\
+  1\nerror 54179625353167.000000000000\nreached.threshold 0.004727494957\nsteps 23.000000000000\n\
+  Intercept.to.1layhid1 -0.100084491816\nCritic.Ratings.to.1layhid1 0.686332945444\n\
+  Acq.Cost.to.1layhid1 0.196864454378\nCollectorsAverageprice.to.1layhid1 -0.793174429352\n\
+  ```\n\n```\nMin.Guarantee.Cost.to.1layhid1 0.528046199494\nIntercept.to.1layhid2\
+  \ 0.973616842194\nCritic.Ratings.to.1layhid2 0.839826678316\nAcq.Cost.to.1layhid2\
+  \ 0.077798897157\nCollectorsAverageprice.to.1layhid2 0.988149246218\nMin.Guarantee.Cost.to.1layhid2\
+  \ -0.385031389636\nIntercept.to.1layhid3 -0.008367359937\nCritic.Ratings.to.1layhid3\
+  \ -1.409715725621\nAcq.Cost.to.1layhid3 -0.384200569485\nCollectorsAverageprice.to.1layhid3\
+  \ -1.019243809714\nMin.Guarantee.Cost.to.1layhid3 0.699876747202\nIntercept.to.1layhid4\
+  \ 2.085203047278\nCritic.Ratings.to.1layhid4 0.406934874266\nAcq.Cost.to.1layhid4\
+  \ 1.121189503896\nCollectorsAverageprice.to.1layhid4 1.405748076570\nMin.Guarantee.Cost.to.1layhid4\
+  \ -1.043884892202\nIntercept.to.1layhid5 0.862634752109\nCritic.Ratings.to.1layhid5\
+  \ 0.814364667751\nAcq.Cost.to.1layhid5 0.502879862694\n```\n\n如果误差函数等于负对数似然函数，则误差指的是用于计算赤池信息准则（AIC）的似然值。我们可以将协变量和响应数据存储在一个矩阵中：\n\
+  \n```\n> output<-cbind(fit$covariate,fit$result.matrix[[1]])\n> head(output)\n[,1]\
+  \ [,2] [,3] [,4] [,5]\n[1,] 14953 49000 10727 5775 54179625353167\n[2,] 35735 38850\
+  \ 9494 12418 54179625353167\n[3,] 34751 43750 8738 9611 54179625353167\n[4,] 31599\
+  \ 41615 5955 4158 54179625353167\n[5,] 10437 34755 8390 4697 54179625353167\n[6,]\
+  \ 13177 54670 13024 11921 54179625353167\n```\n\n为了比较神经网络模型的结果，我们可以使用不同的调节因素，例如改变算法、隐藏层和学习率。作为示例，我们仅使用了四个数值特征来生成预测；而我们本可以使用全部\
+  \ 91 个特征来预测当前拍卖平均价格变量。我们还可以使用 nnet 库中的不同算法，如下所示：\n\n```\n> fit<-nnet(CurrentAuctionAveragePrice~Critic.Ratings+Acq.Cost+\n\
+  + CollectorsAverageprice+Min.Guarantee.Cost,data=train,\n+ size=100)\n# weights:\
+  \ 601\ninitial value 108359809492660.125000\nfinal value 108359250706334.000000\n\
+  converged\n```\n\n\n\n\n> fit\na 4~100~1 network with 601 weights\ninputs: Critic.Ratings\
+  \ Acq.Cost CollectorsAverageprice Min.Guarantee.Cost\noutput(s): CurrentAuctionAveragePrice\n\
+  options were -\n\nBoth the libraries provide equal results; there is no difference\
+  \ in the model result, but to tune the results further, it is important to look\
+  \ at the model tuning parameters such as learning rate, hidden neurons, and so on.\
+  \ The following graph shows the neural network architecture:\n\n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_242_0.png)\n\
+  \nThe model for predicting the unseen data points can be implemented using the compute\
+  \ function available in the neuralnet library, and the predict function available\
+  \ in the nnet library.\n\n## Neural networks for classification\n\nFor classification-based\
+  \ projects, the dependent variable can be binary or can have multiple levels, such\
+  \ as credit card fraud detection, classification of customers into different clusters\
+  \ as far as the marketing is concerned, and so on. In the current scenario from\
+  \ the ArtPiece dataset, we are trying to predict whether a work of art is a good\
+  \ purchase, or not, by taking a few business-relevant variables. For demo purposes,\
+  \ we have considered only a few features, but other features present in the dataset\
+  \ can be used to generate a better result:\n\n```\n> fit<-neuralnet(IsGood.Purchase_1~Brush.Size_1+Brush.Size_2+Brush.Size_3+\n\
+  + Brush.Finesse_Coarse+Brush.Finesse_Fine+\n+ Art.Nationality_American+Art.Nationality_Asian+\n\
+  + Art.Nationality_European+GoodArt.check_YES,data=train[1:2000,],\n+ hidden = 25,err.fct\
+  \ = \"ce\",linear.output = F)\n> fit\nCall: neuralnet(formula = IsGood.Purchase_1\
+  \ ~ Brush.Size_1 + Brush.Size_2 +\n    Brush.Size_3 + Brush.Finesse_Coarse + Brush.Finesse_Fine\
+  \ +\n    Art.Nationality_American + Art.Nationality_Asian + Art.Nationality_European\n\
+  \    + GoodArt.check_YES, data = train[1:2000, ], hidden = 25, err.fct = \"ce\"\
+  ,\n    linear.output = F)\n1 repetition was calculated.\nError Reached Threshold\
+  \ Steps\n1 666.1522488 0.009864324362 8254\n> output<-cbind(fit$covariate,fit$result.matrix[[1]])\n\
+  > head(output)\n     [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]\n[1,] 1\
+  \ 0 0 0 1 0 0 1 0 666.1522488\n[2,] 1 0 0 1 1 0 0 0 0 666.1522488\n[3,] 1 0 0 1\
+  \ 0 0 1 0 0 666.1522488\n[4,] 0 1 0 1 0 0 0 1 0 666.1522488\n[5,] 0 1 0 1 0 1 0\
+  \ 0 0 666.1522488\n[6,] 1 0 0 1 1 0 0 0 0 666.1522488\n```\n\nThe actual time series\
+  \ looks as follows:\n\n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_246_0.png)\n\n```\n\
+  > fit<-nnetar(AirPassengers, p=9,P=,size = 10, repeats = 50,lambda = 0)>\nplot(forecast(fit,10))\n\
+  ```\n\nA neural-network-based forecasting model generates the following results\
+  \ as an output:\n\n```\n> summary(fit)\nLength Class Mode\nx 144 ts numeric\nm 1\
+  \ -none- numeric\np 1 -none- numeric\nP 1 -none- numeric\nscale 1 -none- numeric\n\
+  size 1 -none- numeric\nlambda 1 -none- numeric\nmodel 50 nnetarmodels list\nfitted\
+  \ 144 ts numeric\nresiduals 144 ts numeric\nlags 10 -none- numeric\nseries 1 -none-\
+  \ character\nmethod 1 -none- character\ncall 6 -none- call\n```\n\nWith a forecast\
+  \ of the next 10 periods, the graph looks as follows:\n\n![](img/04e03d5ea18ca2e57a47a14c9ae47ace_247_0.png)\n\
+  \n## Merits and demerits of neural networks\n\nThe neural network method for performing\
+  \ classification, prediction, and forecasting is still recognized as a black box\
+  \ methodology in different industries. People still provide more importance to logistic\
+  \ regression than neural network because of its complexity in explaining the relationship\
+  \ between the dependent and independent variable.\n\nThe limitations of the neural\
+  \ network model can be stated as follows:\n\n- In contrast to decision trees and\
+  \ rule extraction techniques, the knowledge (patterns) “discovered” by neural networks\
+  \ is not represented in a form understandable by humans.\n- Knowledge in a trained\
+  \ neural network (NN) is encoded in its connection weights; hence, NN cannot be\
+  \ used for descriptive data mining (exploration).\n- If NN are used for decision\
+  \ making, it is impossible to explain their decisions. Often other techniques have\
+  \ to be combined with NN for explanation.\n\nHere are the merits of neural networks:\n\
+  \n- Though it is a bit complex to understand and interpret the results, still it\
+  \ is considered a powerful technique for classification and regression\n- It is\
+  \ considered a powerful machine learning technique for automatic predictive modeling\n\
+  - It captures complex relationships in datasets, which a traditional algorithm such\
+  \ as linear regression or logistic regression fails to understand and interpret\n\
+  \n## References\n\nLichman, M. (2013). *UCI Machine Learning Repository* (http://archive.ics.uci.edu/m\
+  \ 1). Irvine, CA: University of California, School of Information and Computer Science\n\
+  \n## Summary\n\nIn this chapter, we discussed various methods of performing classification,\
+  \ regression, and forecasting using the neural network model. Be it supervised or\
+  \ unsupervised data mining problems, neural-network-based implementations are popular\
+  \ not only among users but also among business stakeholders. We discussed which\
+  \ model to use where and the data requirement for each of the models. In this chapter,\
+  \ we specifically highlighted the importance of a powerful technique with better\
+  \ accuracy always for classification- and regression-based scenarios.\n"
+- "## Index\n\n### A\n\nactivation function\n  about 224\ngaussian function 224\n\
+  hyperbolic tangent function 225\nlinear function 224\nlog sigmoid transfer function\
+  \ 225\nradial basis function 225\nsigmoid function 224\nAkaike Information Criteria\
+  \ (AIC) 127, 219\nanalysis of variance (ANOVA) 118\napply function\n  about 29\n\
+  eapply function 31\nlapply function 30\nmapply function 31\nrapply 31\nsapply function\
+  \ 30\ntapply function 30\nApriori algorithm 147, 152\nArtificial Neural Network\
+  \ (ANN) 221\nArtPiece_2.csv 113\narules\n  about 160\n  implementation 159\nassociation\
+  \ rules (arules) 143\nassociation rules\n  visualizing 158\nassumptions 147\n\n\
+  ### B\n\nbar chart 83\nBayesian Information Criteria (BIC) 219\nbivariate analysis\
+  \ 41, 42\nbivariate statistics 51\nboxplot 84\n\n### C\n\nbubble chart 85\nbuilt-in\
+  \ functions 27\nCars93_1.csv 113\ncase study 113\nCentral Limit Theorem (CLT) 44\n\
+  clustering methods 164\n  advantages 184\n  bagged clustering 164\n  comparing 184\n\
+  \  disadvantages 184\n  fuzzy clustering 164\n  hierarchical clustering 164, 173\n\
+  \  K-means clustering 166\n  model-based clustering 164, 179\n  other cluster algorithms\
+  \ 181\n  other clustering algorithms 164\n  partitioning clustering 164\nclustering\n\
+  \  with e-commerce data 162, 163\nconfidence 144\ncontingency tables 50, 51\ncontinous\
+  \ data\n  discretizing 50\n  interpreting 47, 49\ncosine similarity 165\ncubic regression\
+  \ 136, 137\ncustomer segmentation, methods\n  using clustering-based methods 164\n\
+  \  using frequency model 164\n  using monetary (RFM) model 164\n  using recency\
+  \ model 164\ncustomer segmentation\n  about 163\n  methods 164\n  performing 164\n\
+  \n### G\n\ngeo mapping\n  about 87\n  creating 109\nggplot2 library 70\ngraphics\n\
+  \  URL 70\n### H\n\nhierarchical clustering\n  about 173, 174, 177\n  Agglomerative\
+  \ method 173\n  Divisive method 173\nhistogram 89\nhypothesis testing\n  about 56\n\
+  \  population mean, testing 56\n  steps 56\n  two sample variance test 62, 63\n\
+  indexing\n  data frames 24\n### K\n\nK-means clustering\n  about 166\n  cluster\
+  \ membership, predicting for new data 172\n  dataset, scaling 168\n  demerits 184\n\
+  \  implementing, in live applications 173\n  initial cluster seeds, selecting 168\n\
+  \  merits 184\n  minimum distance, grouping 170\n  number of cluster K, deciding\
+  \ 168\n  presence of outliers, checking 166, 167\n### L\n\nL1 absolute value penalty\
+  \ 138\nLeast Angle Regression (LARS) 140\nlift 144\nlimitations 147\nline chart\
+  \ 90\nlinear regression 113, 119, 122, 125, 127\n  assumptions 116\n  equal variance\
+  \ 116\n  independence 116\n  linearity 116\n  multicollinearity 116\n  normality\
+  \ 116\nlogistic regression 129, 133, 136\n  backward selection method 133\n  both\
+  \ 133\n  forward selection method 133\nloop\n  for loop 28\n  repeat loop 28\n \
+  \ while loop 29\n### M\n\nManhattan distance 165\nMarket Basket Analysis (MBA)\n\
+  \  about 142, 143, 145\n  applying 145\n  assumptions 147\n  data requirement 145\n\
+  \  limitations 147\n  modeling techniques 147\n  practical project 148, 149, 151\n\
+  \  prerequisites 147\n  with groceries data 142\nmerging\n  data frames 19\nmileage\
+  \ per gallon (MPG) 117\nmissing value imputation techniques\n  about 32\n  clustering\
+  \ 33\n  keeping that seperate 33\n  local average method 33\n  mean imputation 32\n\
+  \  model-based 33\nmodel-based clustering 179\nmodel-based method\n  backward selection\
+  \ method 219\n  forward selection method 219\nmodeling techniques 147\nmultivariate\
+  \ analysis 43\n\n\n\n\n\n## N\n\n- NA与缺失值管理 32\n- 神经网络（NN） 237\n- 神经网络\n  - 概述 222\n\
+  \  - 应用于医疗数据 221\n  - 反向传播神经网络 223\n  - 缺点 237\n  - 前馈神经网络 223\n  - 用于分类 234\n \
+  \ - 用于预测 235\n  - 用于预报 229\n  - 在R编程中的实现 225, 226, 227\n  - 局限性 237\n  - 数学原理 224\n\
+  \  - 优点 237, 238\n  - 多隐藏层神经网络 222\n  - 单隐藏层神经网络 222\n- 神经网络\n  - 用于分类 233\n- neuralnet库\
+  \ 226\n- nnet库 225\n- 非参数方法\n  - 概述 64\n  - Kruskal-Wallis检验 65\n  - Mann-Whitney-Wilcoxon检验\
+  \ 65\n  - Wilcoxon符号秩检验 64\n- 正态概率分布 44\n\n## P\n\n- 惩罚回归\n  - 最小绝对收缩与选择算子（LASSO）\
+  \ 138\n  - 岭回归 137\n- 饼图 91\n- plotly库 70, 101\n- 销售点（POS） 148\n- 泊松概率分布 46\n- 极坐标散点图\
+  \ 107\n- 总体均值\n  - 单尾和双尾检验 58, 59, 60\n  - 方差已知时的单尾检验 56\n  - 检验 56\n- 实践项目\n  -\
+  \ Apriori算法 152\n  - arules，实现 159, 160\n  - 关联规则，可视化 158\n  - Eclat算法 156, 158\n\
+  \  - prcomp() 204\n  - 预测模型标记语言（PMML） 173\n  - 先决条件 147\n  - 主成分（PC） 210\n  - 主成分分析（PCA）\
+  \ 202\n  - princomp() 204\n- 概率分布\n  - 概述 44\n  - 二项概率分布 46\n  - 正态概率分布 44\n  -\
+  \ 泊松概率分布 46\n\n## R\n\n- R Commander（Rcmdr） 168\n- R编程语言\n  - 概述 11, 12\n  - 数组\
+  \ 12, 13, 15\n  - 数据类型 12, 13, 15\n  - 数据类型，导出 16, 17\n  - 数据类型，导入 16, 17\n  - 因子\
+  \ 15\n  - 列表管理 15\n  - 矩阵 12, 13\n  - 序列 16\n  - URL 11\n  - 向量 12, 13\n- Rcmdr库\
+  \ 168\n- 受试者工作特征（ROC） 134\n- 回归问题，公式化 112\n- 回归\n  - 概述 112\n  - 案例研究 113\n  - 线性\
+  \ 112\n  - 非线性 112\n  - 回归问题，公式化 112\n  - 使用汽车数据 111\n- 正则化回归方法 141\n- repeat循环\
+  \ 28\n- rsnns库 225\n\n## S\n\n- 散点图 92\n- 自组织映射（SOM） 164, 181\n  - 缺点 184\n  - 优点\
+  \ 184\n- 奇异值分解（SVD） 202\n- 排序\n  - 数据框 19\n- 堆叠条形图 97\n- stats库 168\n- 逐步回归方法\n\
+  \  - 用于变量选择 127\n- 字符串操作 31\n- 子集化\n  - 数据框 25\n- 支持度 143\n\n## T\n\n- 技术\n  - 用于降维\
+  \ 204\n- 变换 44\n\n## U\n\n- 单变量数据分析 35, 36, 38, 40\n- 用户自定义函数 27\n\n## V\n\n- 变量分箱\
+  \ 50\n- 变量选择\n  - 逐步回归方法 127\n- 方差膨胀因子（VIF） 125\n\n## W\n\n- while循环 29\n\n"
