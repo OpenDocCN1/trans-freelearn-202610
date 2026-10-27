@@ -1,0 +1,67 @@
+chapter_starts:
+- 'no': 114
+  confidence: 0.92
+  final_reason: 前言、序言等正文之前内容统一划分为一章，# 前言 为前言起始，位于英文前置信息之后单独成行且无句号，语义统领后续中文正文，边界清晰
+  accepted_evidence:
+  - 前言位于英文前置信息之后，单独成行且无句号，语义统领后续中文正文，符合前言统一成章规则
+  - 上下文前为 Packt 出版信息、Credits、About 等前置内容，后接正文说明，边界清晰
+  - 前言、序言、致谢、关于作者等正文之前的内容，统一划分为一章
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 218
+  confidence: 0.95
+  final_reason: '一级标题 # 使用 ASP.NET MVC 和 Bootstrap 入门 单独成行，长度<30字，末尾无标点，后1~3行为本章主题概述，后续出现子节，符合最高层级章标题特征'
+  accepted_evidence:
+  - '一级标题 # 使用 ASP.NET MVC 和 Bootstrap 入门 单独成行，长度<30字，末尾无标点'
+  - '后 1~3 行为本章主题概述，后续出现 ### 子节和第 1 章等内容，符合章标题上下文特征'
+  - '一级标题 # 使用 ASP.NET MVC 和 Bootstrap 入门，单独成行，语义统领后续内容，为第1章起始'
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 581
+  confidence: 0.95
+  final_reason: '一级标题 # 使用 Bootstrap CSS 和 HTML 元素 单独成行，语义概括后续网格、表格、表单等内容，前文为上一章摘要，后文为本章主题列表，符合新章边界'
+  accepted_evidence:
+  - '一级标题 # 使用 Bootstrap CSS 和 HTML 元素 单独成行，语义概括后续网格、表格、表单等内容'
+  - 前文为上一章摘要及下一章预告，后文为本章主题列表，符合新章边界
+  - '一级标题 # 使用 Bootstrap CSS 和 HTML 元素，单独成行，格式与上下文符合新章特征'
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 1057
+  confidence: 0.94
+  final_reason: '一级标题 # 使用 Bootstrap 组件 单独成行，末尾无句号，统领导航栏、列表组、徽章等组件内容，后接本章涵盖主题列表，前接上一章总结'
+  accepted_evidence:
+  - '一级标题 # 使用 Bootstrap 组件 单独成行，末尾无句号，统领导航栏、列表组、徽章等组件内容'
+  - 后接本章涵盖主题列表，前接上一章总结，上下文符合章标题特征
+  - '一级标题 # 使用 Bootstrap 组件，单独成行，语义概括后续组件内容，为新章起始'
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 1626
+  confidence: 0.95
+  final_reason: '一级标题 # 使用 Bootstrap JavaScript 插件 单独成行，语义覆盖下拉、模态、选项卡等插件内容，前文为上一章总结，后文为数据属性与编程式
+    API 概述'
+  accepted_evidence:
+  - '一级标题 # 使用 Bootstrap JavaScript 插件 单独成行，语义覆盖下拉、模态、选项卡等插件内容'
+  - 前文为上一章总结，后文为数据属性与编程式 API 概述，符合新章起始
+  - '一级标题 # 使用 Bootstrap JavaScript 插件，单独成行，符合章标题格式特征'
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 2046
+  confidence: 0.93
+  final_reason: '一级标题 # 创建 ASP.NET MVC Bootstrap 助手 单独成行，统领内置助手、自定义助手、流畅助手等内容，前文为上一章总结，后文为本章主题列表'
+  accepted_evidence:
+  - '一级标题 # 创建 ASP.NET MVC Bootstrap 助手 单独成行，统领内置助手、自定义助手、流畅助手等内容'
+  - 前文为上一章总结，后文为本章主题列表，格式与语义均符合最高层级章节
+  - '一级标题 # 创建 ASP.NET MVC Bootstrap 助手，单独成行，语义统领后续助手内容'
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 2550
+  confidence: 0.94
+  final_reason: '一级标题 # 创建 T4 模板以生成 Bootstrap 视图脚手架 单独成行，语义概括 T4 语法、自定义脚手架等内容，前文为上一章总结，后文为
+    Visual Studio 2013 脚手架说明'
+  accepted_evidence:
+  - '一级标题 # 创建 T4 模板以生成 Bootstrap 视图脚手架 单独成行，语义概括 T4 语法、自定义脚手架等内容'
+  - 前文为上一章总结，后文为 Visual Studio 2013 脚手架说明，上下文符合新章特征
+  - '一级标题 # 创建 T4 模板以生成 Bootstrap 视图脚手架，单独成行，为新章起始'
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines: []

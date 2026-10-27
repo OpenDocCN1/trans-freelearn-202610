@@ -1,0 +1,71 @@
+reviews:
+- 'no': 3056
+  overturn_probability: 0.2
+  alternative: 正文的大节/部分标题（如书中的 Part 标题），而非独立章节
+  counter_evidence:
+  - '该标题没有数字编号，仅凭 # 级别难以与后面的同级标题区分是章还是节。'
+  - '后续连续出现多个 # 标题（3069、3093、3122），它们更像同一教学主题下的连续步骤/节，而不是各自独立的大章。'
+  keep_split: true
+- 'no': 3069
+  overturn_probability: 0.25
+  alternative: 同一大章下的节标题（例如“将Bootstrap HTML模板转换为…”这一章中的一个小节）
+  counter_evidence:
+  - 其标题语义较窄（只讲预建HTML模板的用法），更像节而非具有全局统领性的章。
+  - 它前面是3056的总标题，后面紧跟3093、3122等同类步骤标题，说明它们是并列的节而非并列的章。
+  keep_split: true
+- 'no': 3093
+  overturn_probability: 0.2
+  alternative: 同一大主题下的步骤/节标题
+  counter_evidence:
+  - 标题“创建 ASP.NET MVC 项目”是一个操作性步骤，符合书中步骤小节的命名风格。
+  - '与其前后的 # 标题共同构成实现一个总目标的连续步骤，不应各自切章。'
+  keep_split: true
+- 'no': 3122
+  overturn_probability: 0.25
+  alternative: 同一大主题下的步骤/节标题
+  counter_evidence:
+  - “创建主布局”同样是实现整体模板转换的一个中间步骤，缺乏大章的概括性。
+  - 随后出现的二级标题（如3180“## 为 home 控制器添加视图”）说明该部分内部还有更细的小节，若它是章则内部层级过多，不太合理。
+  keep_split: true
+- 'no': 4082
+  overturn_probability: 0.1
+  alternative: 文末索引的标题，按规则仍应划为一章，但如果硬要说是误判，则可能是附录的次级标题
+  counter_evidence:
+  - '它是以 ## 开头的二级标题，而不是一级标题，理论上可能是某个附录下的节。'
+  - 但规则明确规定“文末索引也划分为一章”，因此这个反证不足以推翻分章。
+  keep_split: true
+- 'no': 4550
+  overturn_probability: 0.85
+  alternative: 书末的感谢购买页面/封面页，不是内容章节
+  counter_evidence:
+  - '它后面紧跟着另一个 # 标题“# Bootstrap for ASP.NET MVC”（书名），两个标题连续出现且没有正文，表明它们是封面/扉页文字，不是章节。'
+  - 该行位于索引之后，属于出版方附加页面，不属于技术正文，不应被切分章节。
+  keep_split: false
+- 'no': 4551
+  overturn_probability: 0.95
+  alternative: 书籍书名页/封面标题
+  counter_evidence:
+  - “Bootstrap for ASP.NET MVC” 是本书的书名，出现在封面上，不应作为章节标题。
+  - 与4550“Thank you for buying”连续出现，显然是同一张封面/扉页上的两行文字。
+  keep_split: false
+- 'no': 4553
+  overturn_probability: 0.6
+  alternative: 书末的出版信息页（关于出版社），应与其他出版信息（4561、4565）合并为一个附加信息章，而非单独成章
+  counter_evidence:
+  - 它与后续的“About Packt Open Source”和“Writing for Packt”属于同类型的出版社/品牌介绍，应统一归入一个“出版信息”章，而不是每个标题分一章。
+  - 该部分位于索引之后，属于书末的推广性附页，不属于正文的核心章节。
+  keep_split: false
+- 'no': 4561
+  overturn_probability: 0.6
+  alternative: 同一出版信息章的次级标题（About Packt Open Source）
+  counter_evidence:
+  - 它与4553、4565共同构成一组连续的出版社介绍页面，原审查员将其单独分章会造成同一主题的过度切分。
+  - 该行内容是对 Packt Open Source 品牌的一小段介绍，不具备独立大章的概括性。
+  keep_split: false
+- 'no': 4565
+  overturn_probability: 0.6
+  alternative: 同一出版信息章的次级标题（Writing for Packt）
+  counter_evidence:
+  - 与4561类似，它是对出版社征稿的说明，属于附加页的一部分，不应独立成章。
+  - '连续三个 # 标题没有间隔大篇幅正文，更符合一个附加章节下的多个小节，而按规则这些附加内容应合并为一章。'
+  keep_split: false

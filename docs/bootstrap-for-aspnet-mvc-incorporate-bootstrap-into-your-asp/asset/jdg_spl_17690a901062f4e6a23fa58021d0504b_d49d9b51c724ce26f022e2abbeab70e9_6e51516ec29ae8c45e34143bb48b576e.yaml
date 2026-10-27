@@ -1,0 +1,46 @@
+chapter_starts:
+- 'no': 3056
+  confidence: 0.95
+  final_reason: 一级标题独立成行，后接概述段落及“在本章中，我们将涵盖以下主题：”列表，语义统领后续内容；判断方与复核方均同意保留。
+  accepted_evidence:
+  - '行文单独成行，以 # 开头'
+  - 后接“在本章中，我们将涵盖以下主题：”及主题列表
+  - 后续多个节均围绕此主题展开
+  rejected_evidence:
+  - 复核方提出该标题无数字编号，但不足以推翻
+  need_human_review: false
+- 'no': 4082
+  confidence: 0.98
+  final_reason: 文末索引，按规则统一划分为一章；判断方与复核方一致认可。
+  accepted_evidence:
+  - 标题为“## 索引”
+  - 后续为索引条目
+  - 规则明确规定文末索引也划分为一章
+  rejected_evidence:
+  - 复核方提出其为二级标题，但规则优先
+  need_human_review: false
+rejected_lines:
+- 'no': 3069
+  reason: 虽为一级标题，但位于 3056 大章的主题列表中，作为“使用预建的 HTML 模板”一节，后接操作步骤，缺乏大章概述；复核方反证成立，但一级标题格式存在歧义，需人工复查。
+  need_human_review: true
+- 'no': 3093
+  reason: 标题“创建 ASP.NET MVC 项目”为操作性步骤，是 3056 章内的连续步骤之一，不具有统帅全章的语义；复核方反证成立，但一级标题格式存在歧义，需人工复查。
+  need_human_review: true
+- 'no': 3122
+  reason: 标题“创建主布局”是 3056 章下的一个实现步骤，后文亦有多个二级节，更符合节而非章；复核方反证成立，但由于是一级标题，需人工复查。
+  need_human_review: true
+- 'no': 4550
+  reason: 位于索引之后，是书末感谢购买/封面页文字，与 4551 书名标题连续出现且无正文，不是章节标题；复核方反证成立。
+  need_human_review: false
+- 'no': 4551
+  reason: 为书籍书名，不是章节标题；与 4550 连续出现，属于封面/扉页内容。
+  need_human_review: false
+- 'no': 4553
+  reason: 书末出版信息页（About Packt Publishing），与 4561、4565 同类，应合并为附加信息而非独立章节，不应单独成章。
+  need_human_review: false
+- 'no': 4561
+  reason: 书末出版信息页的次级标题，非独立章节。
+  need_human_review: false
+- 'no': 4565
+  reason: 书末出版信息页的次级标题，非独立章节。
+  need_human_review: false

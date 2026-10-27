@@ -1,0 +1,1821 @@
+- '# ASP.NET MVC 的 Bootstrap：将 Bootstrap 集成到你的 ASP.NET MVC 项目中，使你的网站更用户友好且动态
+
+
+
+
+
+
+  ## Credits
+
+
+  **Author**
+
+  Pieter van der Westhuizen
+
+
+  **Project Coordinator**
+
+  Kartik Vedam
+
+
+  **Reviewers**
+
+  Jaco Fouché
+
+  Tinus Smit
+
+  Stephan Swart
+
+
+  **Proofreaders**
+
+  Bridget Braund
+
+  Paul Hindle
+
+
+  **Commissioning Editor**
+
+  Amarabha Banerjee
+
+
+  **Indexer**
+
+  Hemangini Bari
+
+
+  **Acquisition Editor**
+
+  Rebecca Youé
+
+
+  **Production Coordinators**
+
+  Conidon Miranda
+
+  Nilesh R. Mohite
+
+  Nitesh Thakur
+
+
+  **Content Development Editor**
+
+  Priyanka S
+
+
+  **Cover Work**
+
+  Nitesh Thakur
+
+
+  **Technical Editor**
+
+  Mrunal Chavan
+
+
+  **Copy Editors**
+
+  Janbal Dharmaraj
+
+  Deepa Nambiar
+
+  Karuna Narayanan
+
+  Alfida Paiva
+
+
+  ## About the Author
+
+
+  **Pieter van der Westhuizen** is a freelance software and web developer specializing
+  in ASP.NET MVC, web technologies, and MS Office development. He started his career
+  in web development using classic ASP, Visual InterDev, HoTMetaL, and FrontPage.
+
+
+  Pieter has over 15 years of experience in the IT industry and is also one of the
+  people fortunate enough to have his hobby become his full-time profession. He is
+  also a technology evangelist for Add-in Express (www.add-in-express.com), which
+  focuses on tools for Microsoft Office integration.
+
+
+  This is Pieter''s first foray into book writing although he has been blogging since
+  2007 on his personal blog at www.mythicalmammoth.com and on the Add-in Express blog
+  since 2010. He lives with his wife and Harrier (the dog, not the bird or Jump Jet)
+  in Pretoria, South Africa.
+
+
+  ## Acknowledgments
+
+
+  To everyone who contributed to this book, thank you! A big thanks to the team at
+  Packt Publishing, especially Rebecca, Priyanka, Kartik, and Aboli, for their guidance,
+  advice, and professionalism.
+
+
+  Thanks to my three technical reviewers, Jaco, Tinus, and Stephan, for patiently
+  reading each chapter, reviewing each line of code, and contributing suggestions.
+  You helped shape this book into what it is.
+
+
+  I''d like to express my greatest love and gratitude towards my wife, Andrea, for
+  all her support, impromptu editing sessions, being a soundboard for brainstorming
+  sessions, and the general motivational pep talks during the writing of this book.
+
+
+  To my parents — even though they were not exactly sure what this book was about
+  — thank you for all your support and for allowing me to tinker with the family computer
+  from an early age.
+
+
+  I''d also like to extend a special thank you to Eugene Starostin from Add-in Express,
+  who allowed me to blog about an idea that subsequently turned into this book.
+
+
+  ## About the Reviewers
+
+
+  **Jaco Fouché** has been involved with software development for over 22 years and
+  is currently a database architect and software developer at SilverBridge in Pretoria,
+  South Africa. He holds a B.Sc degree in Computer Science from the University of
+  Pretoria. He has worked with different technologies but specializes in Microsoft
+  technologies with specific emphasis on ASP.NET MVC and Microsoft SQL Server.
+
+
+  With a number of years in the coding field, **Tinus Smit** has a passion for good,
+  clean code and solving problems. A C# .NET developer at his core, he has also gained
+  extensive knowledge of Microsoft SQL, Microsoft Dynamics CRM, JavaScript, Entity
+  Framework, and MVC.
+
+
+  The CRM experience is not limited to clicking a few buttons and dragging fields
+  around in a form. He has had a hand in solving complex business problems with CRM''s
+  workflow and plugin engines, often integrating with other systems in the process.
+  Over the years, he has learned exactly where CRM fits best, what the product can
+  do, where and how to extend it, and the best practices thereof.
+
+
+  However, in the end, these are merely tools to solve problems. In Johannesburg,
+  South Africa, he finds himself working tirelessly on projects for many companies
+  over the years (from small to enterprise-sized), using these tools and experience.
+  He sees every new challenge as an opportunity to learn something new and finds ways
+  to teach what he has learned. Armed with a database and Visual Studio, he uses pragmatism
+  and logic to help users reach their goal.
+
+
+  He can be reached on Twitter at @CodingWithTinus or on his blog at http://codingwithtinus.wordpress.com.
+
+
+  **Stephan Swart** has been interested in software development for the last 30 years.
+  He has used a variety of technologies, programming languages, and platforms. Starting
+  as a Cobol developer, embracing most of the latest technologies that were released
+  at the time, he has been involved in .NET development since the very first release
+  of .NET. In the last few years, he has lived and worked as a senior .NET developer
+  using Web, Windows, and mobile technologies for a number of different companies
+  in Europe, Canada, and South Africa. Among the technologies he used recently are
+  ASP.NET MVC, jQuery, Knockout, C#, VB .NET, WPF, Silverlight, MVVM, Xamarin, and
+  many more.
+
+
+  ## www.PacktPub.com
+
+
+  ## Support files, eBooks, discount offers, and more
+
+
+  You might want to visit www.PacktPub.com for support files and downloads related
+  to your book.
+
+
+  Did you know that Packt offers eBook versions of every book published, with PDF
+  and ePub files available? You can upgrade to the eBook version at www.PacktPub.com
+  and as a print book customer, you are entitled to a discount on the eBook copy.
+  Get in touch with us at service@packtpub.com for more details.
+
+
+  At www.PacktPub.com, you can also read a collection of free technical articles,
+  sign up for a range of free newsletters and receive exclusive discounts and offers
+  on Packt books and eBooks.
+
+
+  ![](img/371b9a67300a03b7b335eb8a6fe55d94_8_0.png)
+
+
+  ```
+
+  http://PacktLib.PacktPub.com
+
+  ```
+
+
+  Do you need instant solutions to your IT questions? PacktLib is Packt''s online
+  digital book library. Here, you can access, read and search across Packt''s entire
+  library of books.
+
+
+  ## Why subscribe?
+
+
+  - Fully searchable across every book published by Packt
+
+  - Copy and paste, print and bookmark content
+
+  - On demand and accessible via web browser
+
+
+  ## Free access for Packt account holders
+
+
+  If you have an account with Packt at www.PacktPub.com, you can use this to access
+  PacktLib today and view nine entirely free books. Simply use your login credentials
+  for immediate access.
+
+  '
+- "# 前言\n\nTwitter Bootstrap，简称为 Bootstrap，是互联网上领先的开源 CSS/HTML 和 JavaScript 框架。在发布后不久，它就成为\
+  \ GitHub 上最受欢迎的项目。它变得如此受欢迎，以至于微软在 Build 2013 大会上宣布，Visual Studio 2013 中的所有 Web 应用项目模板将默认使用\
+  \ Twitter Bootstrap。\n\nBootstrap 如此普及的主要原因之一是，它允许开发者——其中许多人以用户界面设计 notoriously\
+  \ 糟糕著称——只需付出相对较小的努力就能构建外观美观的网站。Bootstrap 还提供丰富的免费和商业模板、第三方组件、工具以及活跃且乐于助人的社区。\n\n\
+  使用 CSS 框架，特别是 Bootstrap 与 ASP.NET MVC 结合是自然而然的。Bootstrap 处理排版、表单布局和用户界面组件，让开发者能够专注于他们擅长的领域，即编写代码。这一方面对于没有内部设计师的小型开发公司尤其有价值。Bootstrap\
+  \ 版本 3 引入了移动优先的方法，这意味着使用 Bootstrap 构建的所有网站都将自动响应式，并针对小屏幕设备进行优化。\n\n### 本书涵盖内容\n\n\
+  《Bootstrap for ASP.NET MVC》将带你逐步完成使用 Bootstrap 进行布局和用户界面的全功能 ASP.NET MVC 网站的创建过程。\n\
+  \n第 1 章，Getting Started with ASP.NET MVC and Bootstrap，重点介绍如何开始使用 Bootstrap，从获取文件的位置、如何将其包含在项目中，到更详细地查看默认的\
+  \ ASP.NET MVC 项目模板。我们还将研究 CSS 和 JavaScript 的捆绑和压缩的好处。\n\n第 2 章，Using Bootstrap CSS\
+  \ and HTML Elements，检查各种 Bootstrap CSS 和 HTML 元素，如何将它们包含在 ASP.NET MVC 项目中，以及如何配置和使用它们的各种选项。\n\
+  \n第 3 章，Using Bootstrap Components，将在第 2 章 Using Bootstrap CSS and HTML Elements\
+  \ 学到的知识基础上继续构建。本章仔细研究了导航、警告、进度条、按钮组和徽章等不同组件。\n\n第 4 章，Using Bootstrap JavaScript\
+  \ Plugins，说明了 Bootstrap JavaScript 插件的使用。我们将尝试模态对话框、上下文下拉菜单、工具提示、按钮以及手风琴和轮播等用户界面组件。\n\
+  \n第 5 章，Creating ASP.NET MVC Bootstrap Helpers，指导你通过创建 ASP.NET MVC 辅助方法 and 类来减少生成\
+  \ Bootstrap 元素所需的 HTML 量。\n\n第 6 章，Creating T4 Templates to Scaffold Bootstrap Views，转向更高级的主题，即创建\
+  \ T4 模板以生成 Bootstrap 主题的脚手架视图。\n\n第 7 章，Converting a Bootstrap HTML Template into\
+  \ a Usable ASP.NET MVC Project，展示了如何转换开源 HTML 模板并使其可用于 ASP.NET MVC。\n\n第 8 章，Using\
+  \ the jQuery DataTables Plugin with Bootstrap，演示了如何使用强大的 jQuery DataTables 插件与 Bootstrap\
+  \ 和 ASP.NET 结合以显示表格数据。\n\n第 9 章，Making Things Easier with the TwitterBootstrapMVC\
+  \ Library，研究了 TwitterBootstrapMVC 库，其中包含大量预构建的 HTML 助手，使在 ASP.NET MVC 中包含 Bootstrap\
+  \ 组件变得更容易。\n\n附录，Bootstrap Resources，提供免费 Bootstrap 资源、主题和工具的列表。\n\n### 你需要什么\n\n\
+  为了充分利用本书，你需要 Visual Studio 2013 和一个现代浏览器。所有示例均使用 Visual Studio 2013、Google Chrome\
+  \ 和 Mozilla Firefox 进行测试。本书将对具有从入门级到高级的 ASP.NET MVC 开发经验以及有限的 Bootstrap 经验的人有所帮助。\n\
+  \n### 本书适合谁\n\n本书适合希望了解如何在项目中集成 Bootstrap 的 ASP.NET MVC 开发者。ASP.NET MVC 开发者也可以从涵盖高级主题的章节中受益，例如创建助手和使用\
+  \ jQuery DataTables 插件。如果你对 ASP.NET MVC 和 Bootstrap 的经验有限，本书可以作为这些技术的入门读物。\n\n###\
+  \ 约定\n\n在本書中，你会找到多种文本样式来区分不同类型的信息。以下是这些样式的一些示例及其含义。\n\n代码词、数据库表名、文件夹名、文件名、文件扩展名、路径名、虚拟\
+  \ URL、用户输入和 Twitter 账号显示如下：\"We would only need to include the `bootstrap.css` file\
+  \ into our project for the Bootstrap styles to be applied to our pages.\"\n\n代码块显示如下：\n\
+  \n```\n<system.web>\n    <compilation debug=\"true\" targetFramework=\"4.5\" />\n\
+  \    <httpRuntime targetFramework=\"4.5\" />\n</system.web>\n```\n\n当我们希望引起你对代码块中特定部分的注意时，相关行或项目以粗体显示：\n\
+  \n```\n<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js\"\
+  ></script>\n<script src=\"/bootstrap/js?v=raqa-So7giLQpXYq5LQiW8D-yNoxOAJewB8VXtgFHFEl\"\
+  ></script>\n</body>\n</html>\n```\n\n任何命令行输入或输出都写成如下形式：\n\n```\nInstall-Package\
+  \ jquery.datatables\n```\n\n新术语和重要词语以粗体显示。你在屏幕上看到的词语，例如菜单或对话框中出现的词语，在文本中显示如下：\"\
+  Right-click on the Controller folder in the Solution Explorer section and navigate\
+  \ to Add | Controller....\"\n\n\n\n\n\n## 勘误\n\n尽管我们已尽一切努力确保内容的准确性，但错误仍可能发生。如果您在我们的某本书中发现错误——可能是文本或代码中的错误——我们将不胜感激您向我们报告。通过这样做，您可以让其他读者免于挫败感，并帮助我们改进本书的后续版本。如果您发现任何勘误，请访问\
+  \ http://www.packtpub.com/support 进行报告，选择您的图书，点击勘误提交表单链接，并输入勘误的详细信息。一旦您的勘误得到验证，您的提交将被接受，勘误将被上传到我们的网站，或添加到该书标题的勘误部分下已有的勘误列表中。\n\
+  \n## 盗版\n\n互联网上版权材料的盗版是一个持续存在于所有媒体中的问题。在 Packt，我们非常重视对版权和许可的保护。如果您在互联网上发现我们作品的任何非法复制品，无论形式如何，请立即向我们提供位置地址或网站名称，以便我们采取补救措施。\n\
+  \n请通过 copyright@packtpub.com 联系我们，并附上疑似盗版材料的链接。\n\n我们感谢您帮助保护我们的作者，以及我们为您提供有价值内容的[content]\n\
+  \n## 勘误\n\n尽管我们已尽一切努力确保内容的准确性，但错误仍可能发生。如果您在我们的某本书中发现错误——可能是文本或代码中的错误——我们将不胜感激您向我们报告。通过这样做，您可以让其他读者免于挫败感，并帮助我们改进本书的后续版本。如果您发现任何勘误，请访问\
+  \ http://www.packtpub.com/support 进行报告，选择您的图书，点击勘误提交表单链接，并输入勘误的详细信息。一旦您的勘误得到验证，您的提交将被接受，勘误将被上传到我们的网站，或添加到该书标题的勘误部分下已有的勘误列表中。\n\
+  \n## 盗版\n\n互联网上版权材料的盗版是一个持续存在于所有媒体中的问题。在 Packt，我们非常重视对版权和许可的保护。如果您在互联网上发现我们作品的任何非法复制品，无论形式如何，请立即向我们提供位置地址或网站名称，以便我们采取补救措施。\n\
+  \n请通过 copyright@packtpub.com 联系我们，并附上疑似盗版材料的链接。\n\n我们感谢您帮助保护我们的作者，以及我们为您提供有价值内容的能力。\n\
+  \n## 问题\n\n如果您在本书的任何方面遇到问题，可以通过 questions@packtpub.com 联系我们，我们会尽力解决。\n"
+- "# 使用 ASP.NET MVC 和 Bootstrap 入门\n\n作为开发者，我们在使用 HTML 和 CSS 从头创建美观的用户界面时可能会感到困难。当开发者拥有多年\
+  \ Windows Forms 应用开发经验时，这尤其困难。微软推出了 Web Forms，以抽象化构建网站的复杂性，让 Windows Forms 开发者更容易从\
+  \ Windows Forms 转向 Web。这反过来又使得 Web Forms 开发者很难转向 ASP.NET MVC，对 Windows Forms 开发者来说则更难。\n\
+  \nTwitter Bootstrap 是一组经过样式化的组件、插件和布局网格，可承担繁重的工作。微软自 2013 年起将 Bootstrap 包含在所有 ASP.NET\
+  \ MVC 项目模板中。在示例项目中，我们将通过使用标准 Visual Studio MVC 项目模板创建新的 ASP.NET MVC 项目，或从空的 MVC\
+  \ 项目开始并在需要时添加必要文件来开始。\n\n在本章中，我们将涵盖以下主题：\n\n- Bootstrap 分发中包含的文件\n- 如何使用标准 Visual\
+  \ Studio 项目模板和 Bootstrap 创建 ASP.NET MVC 网站\n- 如何创建空的 ASP.NET MVC 网站并手动添加 Bootstrap\
+  \ 文件\n- 如何创建引用 Bootstrap 文件的布局文件\n- 使用 NuGet 添加 Bootstrap 文件\n- 使用捆绑和压缩改进网站性能\n\n\
+  ### Bootstrap JavaScript 文件（js 文件夹）\n\njs 文件夹包含两个文件。所有 Bootstrap 插件都包含在 bootstrap.js\
+  \ 文件中。bootstrap.min.js 文件只是上述文件的压缩版本。在将文件包含到项目中之前，请确保您已引用 jQuery 库，因为所有 Bootstrap\
+  \ 插件都需要 jQuery。\n\n默认项目模板会自动将 jQuery 库添加到您的项目中并为其创建捆绑包。如果您的视图中包含以下代码行，jQuery 捆绑包将被包含在您的页面中：\n\
+  \n```\n@Scripts.Render(\"~/bundles/jquery\")\n```\n\n### 下载示例代码\n\n您可以从 http://www.packtpub.com\
+  \ 的账户下载我们所有 Packt 书籍的示例代码文件。如果您在其他地方购买了本书，您可以访问 http://www.packtpub.com/support\
+  \ 并注册以便将文件直接发送到您的电子邮件。\n\n### Bootstrap 文件夹结构\n\n解压后的 Bootstrap 文件夹结构将如下所示：\n\n\
+  ```\nbootstrap/\n├── css/\n│   ├── bootstrap.css\n│   ├── bootstrap.min.css\n│ \
+  \  ├── bootstrap-theme.css\n│   └── bootstrap-theme.min.css\n├── js/\n│   ├── bootstrap.js\n\
+  │   └── bootstrap.min.js\n└── fonts/\n    ├── glyphicons-halflings-regular.eot\n\
+  \    ├── glyphicons-halflings-regular.svg\n    ├── glyphicons-halflings-regular.ttf\n\
+  \    └── glyphicons-halflings-regular.woff\n```\n\n### 使用标准 Visual Studio 项目模板创建的站点使用\
+  \ Bootstrap\n\n从 Visual Studio 2013 开始，创建 ASP.NET 项目时，您只有一个可选择的项目模板，即 ASP.NET Web\
+  \ Application 项目模板，如下图所示：\n\n![](img/371b9a67300a03b7b335eb8a6fe55d94_22_0.png)\n\
+  \n### 检查默认 MVC 项目布局\n\n默认项目模板添加了我们之前讨论过的所有必要 Bootstrap 文件，尽管它使用的文件夹命名约定与默认 Bootstrap\
+  \ 分发不同。默认项目布局将类似于以下截图：\n\n![](img/371b9a67300a03b7b335eb8a6fe55d94_24_0.png)\n\n\
+  ### Content 文件夹\n\nContent 文件夹包含 bootstrap.css 和 bootstrap.min.css 文件以及一个名为 Site.css\
+  \ 的样式表。此文件用于在 Bootstrap 提供的默认样式之上应用任何额外样式，并且还用于指定 ASP.NET MVC 用于表单验证的 jQuery 验证插件的样式。例如，以下\
+  \ CSS 会以红色高亮显示任何输入元素，并在该字段验证失败时在元素周围绘制边框：\n\n```\n.field-validation-error {\n  \
+  \  color: #b94a48;\n}\n\n.field-validation-valid {\n    display: none;\n}\n\ninput.input-validation-error\
+  \ {\n    border: 1px solid #b94a48;\n}\n\ninput[type=\"checkbox\"].input-validation-error\
+  \ {\n    border: 0 none;\n}\n\n.validation-summary-errors {\n    color: #b94a48;\n\
+  }\n\n.validation-summary-valid {\n    display: none;\n}\n```\n\n### fonts 文件夹\n\n\
+  fonts 文件夹包含 Glyphicons 字体以及所有必要的格式。\n\n### Scripts 文件夹\n\nScripts 文件夹包含许多脚本。最值得注意的是，本书中它包含\
+  \ bootstrap.js 和 bootstrap.min.js JavaScript 文件。默认 ASP.NET MVC 项目模板还为以下 JavaScript\
+  \ 库和插件添加了压缩和普通文件：\n\n- jQuery\n- jQuery 验证插件\n- 用于无侵入式验证的 jQuery 和 jQuery 验证支持库\n\
+  - Modernizr\n- Respond.js\n\nVisual Studio 通过将 _references.js 文件添加到 Scripts 文件夹，为\
+  \ jQuery、Bootstrap、Modernizr 以及 Respond.js 启用 IntelliSense。这在使用 JavaScript 时非常有用，在使用\
+  \ Bootstrap 组件时也非常值得使用。\n\n这些库和文件中的大多数超出了本书的范围，但我们在进展过程中会涉及其中一些。\n\n### 创建空的 ASP.NET\
+  \ MVC 站点并手动添加 Bootstrap\n\n默认项目布局是任何 ASP.NET MVC 项目的良好起点，但对于我们将在本书中构建的示例项目，我们将创建一个空的\
+  \ ASP.NET MVC 站点并手动添加必要的文件。这是通过执行以下步骤完成的：\n\n1. 首先在 Visual Studio 中创建一个新的 ASP.NET\
+  \ Web 应用程序项目，并将项目命名为 Northwind.Web。\n2. 这次，在新建 ASP.NET 项目对话框中选择 Empty 模板，并确保选中 MVC\
+  \ 复选框，如下图所示：\n\n   ![](img/371b9a67300a03b7b335eb8a6fe55d94_27_0.png)\n\n3. 将为您创建一个空的项目布局，您会注意到我们没有\
+  \ Content、Fonts 或 Scripts 文件夹——我们将自己添加它们！\n\n### 添加 Bootstrap 样式表\n\n要将 Bootstrap\
+  \ 样式表文件添加到项目中，请完成以下步骤：\n\n1. 通过在 Visual Studio 的解决方案资源管理器中右键单击新项目的名称并导航到 Add | New\
+  \ Folder 来创建新文件夹，将新文件夹命名为 css。\n2. 接下来，右键单击新创建的 css 文件夹并从上下文菜单中导航到 Add | Existing\
+  \ Item...。\n3. 浏览到您已解压 Bootstrap 分发文件的文件夹并选择位于 css 文件夹中的 bootstrap.css 文件。\n\n\n\
+  \n\n\n## 添加 Bootstrap 字体\n\n通过执行以下步骤添加所需的 Bootstrap 字体：\n\n- 1. 与样式表一样，创建一个名为 `fonts`\
+  \ 的新文件夹。\n- 2. 接下来，浏览到您已解压 Bootstrap 下载的位置，并将 `fonts` 文件夹中的所有文件添加到 Visual Studio\
+  \ 中的 `fonts` 文件夹。\n- 3. 总共应有四个文件，每个文件都命名为 `glyphicons-halflings-regular`，但具有以下不同的文件扩展名：\n\
+  \  - `.eot`\n  - `.svg`\n  - `.ttf`\n  - `.woff`\n\n## 添加 Bootstrap JavaScript 文件\n\
+  \n我们需要的最后一个 Bootstrap 文件是 `bootstrap.js`。要添加它，请执行以下步骤：\n\n- 1. 在将 `bootstrap.js`\
+  \ 文件添加到 Visual Studio 项目之前，创建一个名为 `js` 的新文件夹。\n- 2. 将 `bootstrap.js` 文件添加到此文件夹。\n\
+  - 3. 完成后，项目布局应类似于 Visual Studio Solution Explorer 中的以下屏幕截图：\n\n![](img/371b9a67300a03b7b335eb8a6fe55d94_28_0.png)\n\
+  \n## 创建站点布局文件\n\n为了在我们站点的页面之间保持一致的外观，我们将使用布局文件。此布局文件最初将使用基本的 Bootstrap HTML 模板，我们将在本书的后续内容中在此基础上进行构建。要创建此文件，请完成以下步骤：\n\
+  \n- 1. 通过在 Visual Studio 的 **Solution Explorer** 中右键单击 Views 文件夹并导航到 **Add | New\
+  \ Folder** 来创建新的布局文件。将新文件夹命名为 Shared。\n- 2. 接下来，右键单击 Shared 文件夹并导航到 **Add | New\
+  \ Item...** 选择 **MVC 5 Layout Page (Razor)** 项目模板，将新项目命名为 `_Layout.cshtml` 并单击 **Add**，如下图所示：\n\
+  \n![](img/371b9a67300a03b7b335eb8a6fe55d94_29_0.png)\n\n- 3. 在新文件添加到项目后，打开它并用以下\
+  \ HTML 标记替换其内容：\n\n```html\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta\
+  \ charset=\"utf-8\">\n<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n\
+  <meta name=\"viewport\" content=\"width=device-width,\ninitial-scale=1\">\n<title>@ViewBag.Title</title>\n\
+  <!-- Bootstrap -->\n<link href=\"@Url.Content(\"~/css/bootstrap.css\")\" rel=\"\
+  stylesheet\">\n<!--[if lt IE 9]>\n<script src=\"https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js\"\
+  ></script>\n<script src=\"https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js\"\
+  ></script>\n<![endif]-->\n</head>\n<body>\n@RenderBody()\n<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js\"\
+  ></script>\n<script src=\"@Url.Content(\"~/js/bootstrap.js\")\"></script>\n</body>\n\
+  </html>\n```\n\n在前面的标记中，我们将视口的 width 属性设置为设备的宽度，并将 initial-scale 值设置为 1。这将使我们的站点适应用户查看它的设备的屏幕尺寸。\n\
+  \n接下来，我们通过使用 Url.Content 辅助方法引用 Bootstrap 样式表。此辅助方法将虚拟或相对路径转换为绝对路径，确保在打开网页时样式表能够正确加载。\n\
+  \n然后我们检查访问该站点的浏览器是否为 Internet Explorer 9 或更早版本；如果是，我们将包含 HTML5shiv 解决方法，该解决方法可在\
+  \ Internet Explorer 9 及更早版本中启用对 HTML5 元素的样式设置。我们还包含了适用于 IE9 及更早版本的 Respond JS 库版本。\n\
+  \n在文件结束的 </body> 标签之前，我们包含了 jQuery 库和 bootstrap JavaScript 库。\n\n![](img/371b9a67300a03b7b335eb8a6fe55d94_30_0.png)\n\
+  \n> 请注意，HTML5shiv 解决方法、Respond JS 和 jQuery 文件是从内容分发网络 (CDN) 加载的。当引用大多数广泛使用的 JavaScript\
+  \ 库时，这是一种很好的方法。如果用户之前访问过使用相同 CDN 上的相同库的站点，这应该可以让您的站点加载更快，因为该库将被缓存在其浏览器中。\n\n## 创建带有\
+  \ Bootstrap 主题视图的首页控制器\n\n目前，我们创建的站点在运行项目时将返回一条错误消息，指出请求的资源无法找到。我们首先需要添加一个新的首页控制器并为其默认操作关联一个视图，以避免任何错误。要添加新控制器，请执行以下步骤：\n\
+  \n- 1. 在 **Solution Explorer** 部分中右键单击 `Controllers` 文件夹并导航到 **Add | Controller**....\n\
+  - 2. 在 **Add Scaffold** 对话框中，选择 **MVC 5 Controller - Empty** 项目，如下图所示：\n\n![](img/371b9a67300a03b7b335eb8a6fe55d94_31_0.png)\n\
+  \n- 3. 在提示时，在 **Add Controller** 对话框中输入 `HomeController` 作为新的控制器名称并单击 **Add**。\n\
+  - 4. 在控制器添加后，在空的 **Index** 方法内部右键单击并选择 **Add View**。如果方法中只有 `return View()` 语句，则认为该方法为空。\n\
+  - 5. 在 **Add View** 对话框中，保持所有字段为默认值并选择我们之前添加的布局页面。单击 **Add** 继续，如下图所示：\n\n![](img/371b9a67300a03b7b335eb8a6fe55d94_32_0.png)\n\
+  \n- 6. 将生成一个空视图，您会注意到 `ViewBag.Title` 属性以及此视图要使用的布局页面已添加到视图顶部。请考虑以下示例：\n\n```cshtml\n\
+  @{\n    ViewBag.Title = \"Index\";\n    Layout = \"~/Views/Shared/_Layout.cshtml\"\
+  ;\n}\n```\n\n视图中还将有一个 `<h2>` 元素，您可以保留原样。如果运行项目，您应该会看到视图显示，并且 `<h2>` 元素已应用默认的 Bootstrap\
+  \ 样式。\n\n# 使用 NuGet 添加 Bootstrap 文件\n\n到目前为止，我们创建了两个使用 Bootstrap 前端框架的 ASP.NET MVC\
+  \ 项目。第一个默认包含 Bootstrap 资源，因为我们使用标准的 ASP.NET MVC Visual Studio 项目模板创建了它。第二个，我们创建了一个空的\
+  \ ASP.NET MVC 项目并手动添加了 Bootstrap 文件。\n\nNuGet 是 .NET 框架的包管理器，可用于自动向 Visual Studio\
+  \ 项目添加文件和引用。NuGet 库站点上存在一个 Bootstrap 包，可让您自动将 Bootstrap 资源添加到项目中。\n\n请记住，尽管 Bootstrap\
+  \ NuGet 包假定您希望 Bootstrap 文件位于 Content 和 Scripts 文件夹中，并且会相应地创建文件夹和文件，但它还会自动检查您是否已引用\
+  \ jQuery 库，如果没有，则会按设计添加它。\n\n> NuGet 是 Microsoft 开发平台的包管理器，可轻松添加对现有库的引用。您可以在 https://www.nuget.org/\
+  \ 上阅读更多相关信息。\n\n### 使用对话框添加 Bootstrap NuGet 包\n\n将 Bootstrap NuGet 包添加到项目的选项之一是使用\
+  \ **Manage NuGet Packages** 对话框。要访问 **Manage NuGet Packages** 对话框并添加 Bootstrap NuGet\
+  \ 包，请执行以下步骤：\n\n- 1. 在 **Solution Explorer** 部分中右键单击 **References** 节点并选择 **Manage\
+  \ NuGet Packages**。单击 **Online** 选项卡并在搜索框中输入 `bootstrap` 然后按 *Enter*，如下图所示：\n\n\
+  ![](img/371b9a67300a03b7b335eb8a6fe55d94_34_0.png)\n\n- 2. 单击 **Install** 按钮将 Bootstrap\
+  \ 文件添加到项目。\n\n### 使用程序包管理器控制台添加 Bootstrap NuGet 包\n\n将 NuGet 包添加到 Visual Studio\
+  \ 项目的第二种方法是通过 **Package Manager Console** 并完成以下步骤：\n\n- 1. 在 Visual Studio 中，从 **Tools**\
+  \ 菜单导航到 **Library Package Manager | Package Manager Console**。这将打开 **Package Manager\
+  \ Console** 窗口。\n- 2. 要安装 Bootstrap NuGet 包，请输入 `Install-Package bootstrap`，如下图所示：\n\
+  \n\n\n![](img/371b9a67300a03b7b335eb8a6fe55d94_35_0.png)\n\n3. 这将创建 Content、fonts\
+  \ 和 Scripts 文件夹，并在每个文件夹中添加必要的 Bootstrap 文件。\n\n# 使用捆绑和压缩提高网站性能\n\n捆绑和压缩是 ASP.NET\
+  \ 中的一项功能，可让你提高网站加载速度。这是通过将 CSS 和 JavaScript 文件合并为一个大文件，从而限制站点需要发出的 CSS 和 JavaScript\
+  \ 文件请求数量，并从文件中删除所有不必要的字符，例如注释、空白和换行符来实现的。\n\n> 大多数现代浏览器每个主机名最多有六个并发连接的限制。这意味着如果你在页面上引用超过六个\
+  \ CSS 或 JavaScript 文件，浏览器将一次只下载六个文件，其余文件排队等待。限制 CSS 和 JavaScript 文件的数量始终是一个好主意。\n\
+  \nStyleBundle 对象用于向捆绑中添加样式表，而 ScriptBundle 对象用于添加 JavaScript 文件。BundleCollection\
+  \ 对象的 Add 方法接受这两种类型的对象。StyleBundle 和 ScriptBundle 对象接受一个字符串参数，该参数指定文件的虚拟路径，因此你应使用\
+  \ Include 方法来指定要包含在捆绑中的文件的路径。\n\n> 切勿在捆绑中包含文件名中带有 `.min` 的文件，例如 `bootstrap.min.css`\
+  \ 或 `bootstrap.min.js`。编译器会忽略这些文件，因为它们已经过压缩。\n\n### 在 ASP.NET 布局中包含捆绑\n\n要在布局文件中包含我们之前创建的捆绑，请执行以下步骤：\n\
+  \n1. 打开 Shared 文件夹中的 `_Layout.cshtml` 文件，并将其标记更改为以下内容（更改已突出显示）：\n\n```\n<!DOCTYPE\
+  \ html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta http-equiv=\"\
+  X-UA-Compatible\" content=\"IE=edge\">\n    <meta name=\"viewport\" content=\"width=device-width,\
+  \ initial-scale=1\">\n    <title>@ViewBag.Title</title>\n    @Styles.Render(\"~/bootstrap/css\"\
+  )\n    <!--[if lt IE 9]>\n    <script src=\"https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js\"\
+  ></script>\n    <script src=\"https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js\"\
+  ></script>\n    <![endif]-->\n</head>\n<body>\n    @RenderBody()\n    <script src=\"\
+  https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js\"></script>\n\
+  \    @Scripts.Render(\"~/bootstrap/js\")\n</body>\n</html>\n```\n\n2. 如果 Visual\
+  \ Studio HTML 编辑器提示它找不到 Scripts 或 Styles 对象（即这些词被高亮显示），这意味着 Views 文件夹中的 `Web.config`\
+  \ 文件缺少引用。\n\n3. 为此，请向该 `Web.config` 文件中的命名空间列表添加对 `System.Web.Optimization` 的引用。考虑以下示例：\n\
+  \n```\n<namespaces>\n    <add namespace=\"System.Web.Mvc\" />\n    <add namespace=\"\
+  System.Web.Mvc.Ajax\" />\n    <add namespace=\"System.Web.Mvc.Html\" />\n    <add\
+  \ namespace=\"System.Web.Routing\" />\n    <add namespace=\"AdventureBootstrap\"\
+  \ />\n    <add namespace=\"System.Web.Optimization\" />\n</namespaces>\n```\n\n\
+  ### 测试捆绑和压缩\n\n要启用捆绑和压缩，请打开项目根目录中的 `Web.config` 文件，并将 compilation 元素的 debug 属性更改为\
+  \ true，如下所示：\n\n```\n<system.web>\n    <compilation debug=\"true\" targetFramework=\"\
+  4.5\" />\n    <httpRuntime targetFramework=\"4.5\" />\n</system.web>\n```\n\n也可以通过将\
+  \ `BundleTable` 对象的 `EnableOptimizations` 属性设置为 true 来实现。此语句可以添加到 `Global.asax`\
+  \ 文件的 `Application_Start` 方法中，也可以添加到 `BundleConfig` 类的 `RegisterBundles` 方法中，如下所示：\n\
+  \n```\nBundleTable.EnableOptimizations = true;\n```\n\n在布局文件中添加对捆绑的引用并将 debug 属性或\
+  \ `EnableOptimizations` 属性设置为 true 后，构建并运行你的项目。网站在浏览器中打开后，查看其源代码。你应该会看到类似于以下内容的标记：\n\
+  \n```\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\"\
+  >\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n    <meta name=\"\
+  viewport\" content=\"width=device-width, initial-scale=1\">\n    <title>Index</title>\n\
+  \    <link href=\"/bootstrap/css?v=Tmp0-oSKW9MFWr7qyt2LfyMD1tap2GokH7z1W2bhfgY1\"\
+  \ rel=\"stylesheet\"/>\n    <!--[if lt IE 9]>\n    <script src=\"https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js\"\
+  ></script>\n    <script src=\"https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js\"\
+  ></script>\n    <![endif]-->\n</head>\n<body>\n    <h2>Index</h2>\n    <script src=\"\
+  https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js\"></script>\n\
+  \    <script src=\"/bootstrap/js?v=raqa-So7giLQpXYq5LQiW8D-yNoxOAJeW88VXtgFHfE1\"\
+  ></script>\n</body>\n</html>\n```\n\n请注意，高亮的行包含我们在捆绑中指定的相对路径，并且当点击例如 `/bootstrap/js`\
+  \ 链接时，浏览器将打开 Bootstrap JavaScript 文件的压缩版本。你可以看到它已被压缩，因为大多数空白和换行符已被删除。代码还将是 Bootstrap\
+  \ JavaScript 文件以及我们可能已添加到捆绑中的任何其他 JavaScript 文件的组合。\n\n### 摘要\n\n在本章中，你了解了 Bootstrap\
+  \ 下载的内容以及如何在自己的 ASP.NET MVC 项目中包含这些文件。我们还介绍了包含这些文件的各种技术以及如何使用捆绑和压缩提高网站性能。\n\n在下一章中，我们将深入探讨\
+  \ Bootstrap 的 CSS 和 HTML 元素内部结构，以及如何使用它们来设计网站的布局。\n"
+- "# 使用 Bootstrap CSS 和 HTML 元素\n\nBootstrap 提供了一系列 HTML 元素和 CSS 设置，以及一个先进的网格系统来帮助布局网页设计。这些设置和元素包括用于排版、代码格式、表格和表单布局等的实用工具。\n\
+  \n所有 CSS 设置和 HTML 元素，结合移动优先的流式网格系统，使开发人员能够快速轻松地构建直观的 Web 界面，而无需担心为较小的设备屏幕启用响应式功能和样式用户界面元素的细节。\n\
+  \n在本章中，我们将涵盖以下主题：\n\n- Bootstrap 网格系统\n- Bootstrap 表格和按钮\n- 布局不同的 Bootstrap 表单\n\
+  - 使用 Bootstrap 的验证样式进行表单验证\n- 使用编辑器模板控制表单元素的 HTML 输出\n- 在 Bootstrap 中使用图像并配置图像以实现响应式\n\
+  \n### Bootstrap 网格系统\n\n许多网站报告移动流量不断增加，预计在未来几年这一趋势将继续增长。Bootstrap 网格系统采用移动优先设计，这意味着它旨在针对具有较小显示器的设备，然后随着显示器尺寸的增加而扩展。\n\
+  \n幸运的是，这不是你需要过于担心的事情，因为 Bootstrap 处理了大部分繁重的工作。\n\n### Bootstrap 网格选项\n\nBootstrap\
+  \ 3 引入了许多预定义的网格类，以便指定设计中列的大小。这些类名在下表中列出：\n\n| 类名 | 设备类型 | 分辨率 | 容器宽度 | 列宽 |\n|---|---|---|---|---|\n\
+  | col-xs-* | 手机 | <768 px | Auto | Auto |\n| col-sm-* | 平板电脑 | ≥768 px | 750 px\
+  \ | 60 px |\n| col-md-* | 桌面 | ≥992 px | 970 px | 78 px |\n| col-lg-* | 高分辨率桌面 |\
+  \ ≥1200 px | 1170 px | 95 px |\n\nBootstrap 网格分为 12 列。在布局网页时，请记住所有列的总和应为 12。为了说明这一点，请考虑以下\
+  \ HTML 代码：\n\n```\n<div class=\"container\">\n    <div class=\"row\">\n        <div\
+  \ class=\"col-md-3\" style=\"background-color:green;\">\n            <h3>green</h3>\n\
+  \        </div>\n        <div class=\"col-md-6\" style=\"background-color:red;\"\
+  >\n            <h3>red</h3>\n        </div>\n        <div class=\"col-md-3\" style=\"\
+  background-color:blue;\">\n            <h3>blue</h3>\n        </div>\n    </div>\n\
+  </div>\n```\n\n\n\n\n\n## Bootstrap 表格\n\nBootstrap 为 HTML 表格提供了默认样式，并提供了一些选项来自定义其布局和行为。默认的\
+  \ ASP.NET MVC 脚手架在生成列表视图时会自动为表格元素添加表格类名。\n\n要亲眼看到此效果，请完成以下步骤：\n\n- 1. 在我们项目的 Models\
+  \ 文件夹中创建一个新的视图模型类，名为 `ProductViewModel.cs`。该类将包含六个属性，其代码如下所示：\n\n```csharp\npublic\
+  \ class ProductViewModel\n{\n    public int ProductID { get; set; }\n    public\
+  \ string ProductName { get; set; }\n    public decimal? UnitPrice { get; set; }\n\
+  \    public int? UnitsInStock { get; set; }\n    public bool Discontinued { get;\
+  \ set; }\n    public string Status { get; set; }\n}\n```\n\n- 2. 接下来，我们将添加一个空的 ProductsController\
+  \ 类，并只向其添加一个名为 Index 的 action result：\n\n```csharp\npublic class ProductsController\
+  \ : Controller\n{\n    private readonly ApplicationDbContext _context;\n    private\
+  \ readonly ICurrentUser _currentUser;\n\n    public ProductsController(ApplicationDbContext\
+  \ context,\n    ICurrentUser currentUser)\n    {\n        _context = context;\n\
+  \        _currentUser = currentUser;\n    }\n\n    public ActionResult Index()\n\
+  \    {\n        var models = _context.Products.Project().\n        To<ProductViewModel>().ToArray();\n\
+  \        return View(models);\n    }\n}\n```\n\n前面的代码使用依赖注入获取对 Entity Framework\
+  \ `DbContext` 对象的引用。Index 方法然后从数据库检索产品集合并使用 AutoMapper 将其映射到 `ProductViewModel`\
+  \ 对象。列表随后传递给视图。\n\n> 我们使用 `StructureMap` 来执行项目的依赖注入和控制反转。我们还使用了一个名为 AutoMapper 的工具来自动将我们的领域模型映射到项目的视图模型。两个库都可通过\
+  \ NuGet 获得，您可以在其各自的网站 `www.structuremap.net` 和 `www.automapper.org` 上阅读更多关于每个库的信息。\n\
+  \n使用 AutoMapper，我们为 `ProductViewModel` 类的 Status 属性创建了一个条件映射。如果产品已停产，我们将 Status\
+  \ 属性设置为 danger；如果 UnitPrice 超过 50，则 Status 属性设置为 info；如果 UnitsInStock 属性小于 20，则\
+  \ Status 属性设置为 warning。执行此逻辑的代码如下所示：\n\n```csharp\nMapper.CreateMap<Product, ProductViewModel>()\n\
+  \    .ForMember(dest => dest.Status,\n        opt => opt.MapFrom\n            (src\
+  \ => src.Discontinued ? \"danger\" : src.UnitPrice > 50 ?\n                \"info\"\
+  \ : src.UnitsInStock < 20 ? \"warning\" : \"\"));\n```\n\n要生成包含 Bootstrap 表格的视图，请完成以下步骤：\n\
+  \n- 1. 右键单击 `Index` 方法内部并从上下文菜单中选择 **Add View...**。在 **Add View** 对话框窗口中，从 **Template**\
+  \ 下拉菜单中选择 **List**，并从 **Model class** 下拉菜单中选择 `ProductViewModel` 类。\n\n- 2. 单击 **Add**\
+  \ 按钮创建新视图，如下图所示：\n\n![](img/371b9a67300a03b7b335eb8a6fe55d94_46_0.png)\n\n- 3. 默认的\
+  \ ASP.NET MVC 脚手架将生成一个带有类名 `table` 的基本 `<table>` 元素。我们将通过添加表格头元素 (`<thead>`) 来更改默认生成的标记，该元素将用于定义表格的列标题。\n\
+  \n- 4. 该元素后面将跟一个表格主体元素 (`<tbody>`)。表格主体元素将包含实际的行数据。 resulting 标记将如下所示的代码：\n\n```html\n\
+  <table class=\"table\">\n    <thead>\n        <tr>\n            <th>\n         \
+  \       Product Name\n            </th>\n            <th>\n                Unit\
+  \ Price\n            </th>\n            <th>\n                Units In Stock\n \
+  \           </th>\n            <th>\n                Discontinued\n            </th>\n\
+  \            <th></th>\n        </tr>\n    </thead>\n    <tbody>\n    @foreach (var\
+  \ item in Model)\n    {\n        <tr class=\"@item.Status\">\n            <td>\n\
+  \                @Html.DisplayFor(modelItem => item.ProductName)\n            </td>\n\
+  \            <td>\n                @Html.DisplayFor(modelItem => item.UnitPrice)\n\
+  \            </td>\n            <td>\n                @Html.DisplayFor(modelItem\
+  \ => item.UnitsInStock)\n            </td>\n            <td>\n                @Html.DisplayFor(modelItem\
+  \ => item.Discontinued)\n            </td>\n            <td>\n                @Html.ActionLink(\"\
+  Edit\", \"Edit\", new { /* id=item.PrimaryKey */ }) |\n                @Html.ActionLink(\"\
+  Details\", \"Details\", new { /* id=item.PrimaryKey */ }) |\n                @Html.ActionLink(\"\
+  Delete\", \"Delete\", new { /* id=item.PrimaryKey */ })\n            </td>\n   \
+  \     </tr>\n    }\n    </tbody>\n</table>\n```\n\n在前面的标记中，请注意 `<table>` 元素的类名设置为\
+  \ table。当您运行项目并打开此视图时，您的表格应使用 Bootstrap 表格样式进行样式设置，如下图所示：\n\n![](img/371b9a67300a03b7b335eb8a6fe55d94_48_0.png)\n\
+  \n### 样式化 Bootstrap 表格\n\nBootstrap 提供了额外的类，您可以用它们进一步样式化表格。要创建带边框的表格，将 `table-bordered`\
+  \ 添加到其类名中，如下所示：\n\n```html\n<table class=\"table table-bordered\">\n```\n\n要创建每个奇数行以另一种颜色高亮显示的表格，将表格的类名更改为\
+  \ `table table-striped`，如下所示：\n\n```html\n<table class=\"table table-striped\">\n\
+  ```\n\n最后，Bootstrap 还为您提供了在表格上启用悬停状态的选项。这意味着用户将光标悬停其上的行将被高亮显示。要实现此目的，将表格类更改为 `table\
+  \ table-hover`，如下所示：\n\n```html\n<table class=\"table table-hover\">\n```\n\n所有不同的类名可以组合起来创建一个带斑马条纹、带边框并带悬停效果的表格，如以下标记所示：\n\
+  \n```html\n<table class=\"table table-striped table-bordered table-hover\">\n```\n\
+  \n结果将在浏览器中看起来类似于以下屏幕截图：\n\n![](img/371b9a67300a03b7b335eb8a6fe55d94_49_0.png)\n\n\
+  ### Bootstrap 上下文表格类\n\nBootstrap 提供了额外的类，您可以用它们样式化表格的行或单元格。将以下类中的一个添加到 HTML 表格的\
+  \ `<td>` 或 `<tr>` 元素将以灰色、绿色、蓝色、橙色或红色高亮显示它，分别代表以下内容：\n\n- Active\n- Success\n- Info\n\
+  - Warning\n- Danger\n\n当然，我们也可以在 ASP.NET MVC 视图中动态应用这些样式。在我们的 ProductViewModel 视图模型中，我们有一个\
+  \ Status 属性，它可以是五个上下文 Bootstrap 类之一。通过将 `<tr>` 元素的类设置为此属性，我们可以根据其数据动态更改表格中行的颜色，如以下标记所示：\n\
+  \n```cshtml\n<tbody>\n    @foreach (var item in Model)\n    {\n        <tr class=\"\
+  @item.Status\">\n            <td>\n                @Html.DisplayFor(modelItem =>\
+  \ item.ProductName)\n            </td>\n            <td>\n                @Html.DisplayFor(modelItem\
+  \ => item.UnitPrice)\n            </td>\n            <td>\n                @Html.DisplayFor(modelItem\
+  \ => item.UnitsInStock)\n            </td>\n            <td>\n                @Html.DisplayFor(modelItem\
+  \ => item.Discontinued)\n            </td>\n            <td>\n                @Html.ActionLink(\"\
+  Edit\", \"Edit\", new { /* id=item.PrimaryKey */ })\n                @Html.ActionLink(\"\
+  Details\", \"Details\", new { /* id=item.PrimaryKey */ })\n                @Html.ActionLink(\"\
+  Delete\", \"Delete\", new { /* id=item.PrimaryKey */ })\n            </td>\n   \
+  \     </tr>\n    }\n</tbody>\n```\n\n在前面的代码中，您会注意到表格行的类被设置为 `@item.Status`。这将导致行根据我们为\
+  \ Status 属性指定的映射进行高亮显示，如下图所示：\n\n\n\n\n\n![](img/371b9a67300a03b7b335eb8a6fe55d94_51_0.png)\n\
+  \n## Bootstrap 按钮\n\nBootstrap 提供了种类繁多的按钮，具有多种颜色和尺寸。核心按钮提供五种颜色和四种尺寸的选择。按钮的颜色和尺寸通过其\
+  \ class 属性应用。用于设置按钮尺寸的类列表如下：\n\n- `btn btn-default btn-xs`\n- `btn btn-default btn-sm`\n\
+  - `btn btn-default`\n- `btn btn-default btn-lg`\n\n# 使用 Bootstrap CSS 和 HTML 元素\n\
+  \n要创建从特小到大的四个白色/默认按钮，你需要实现以下 HTML 标记：\n\n```html\n<div class=\"row\">\n    <!--\
+  \ 标准按钮 -->\n    <button type=\"button\" class=\"btn btn-default btn-xs\">Default\
+  \ Extra Small</button>\n    <button type=\"button\" class=\"btn btn-default btn-sm\"\
+  >Default Small</button>\n    <button type=\"button\" class=\"btn btn-default\">Default</button>\n\
+  \    <button type=\"button\" class=\"btn btn-default btn-lg\">Default Large</button>\n\
+  </div>\n```\n\n按钮颜色同样通过类名指定。以下是可用的颜色类名列表：\n\n- `btn-default`\n- `btn-primary`\n\
+  - `btn-success`\n- `btn-info`\n- `btn-warning`\n\n按钮的范围如下图所示：\n\n![](img/371b9a67300a03b7b335eb8a6fe55d94_52_0.png)\n\
+  \n在之前的截图中，按钮的边缘是方形的，而不是默认 Bootstrap 捆绑包中的圆角。这是因为示例站点使用了自定义的 Bootstrap 样式。你可以从 http://bootswatch.com/\
+  \ 下载各种不同的 Bootstrap 样式。\n\n## 表单布局与元素\n\n表单构成了大多数业务线应用程序的很大一部分；因此，为 Web 应用程序中的所有表单应用统一样式，不仅在视觉上令人愉悦，还能为用户提供更友好的界面。Bootstrap\
+  \ 提供了一系列 CSS 样式，使你能够创建视觉上吸引人的表单。\n\n### 水平表单\n\n用于 ASP.NET MVC 脚手架生成的默认创建和编辑模板会生成水平样式的\
+  \ Bootstrap 表单。这是通过自动将 `form-horizontal` 类名添加到 `<form>` 元素来实现的。在以下代码示例中，使用 `Html.BeginForm`\
+  \ 辅助方法创建了一个水平登录表单；该表单包含两个文本框和一个提交按钮：\n\n```\n@using (Html.BeginForm(\"Login\", \"\
+  Account\", FormMethod.Post, new {\n@class = \"form-horizontal\", role = \"form\"\
+  \ }))\n{\n    <div class=\"form-group\">\n        @Html.LabelFor(m => m.UserName,\
+  \ new { @class = \"col-md-2 control-label\" })\n        <div class=\"col-md-10\"\
+  >\n            @Html.TextBoxFor(m => m.UserName, new { @class = \"form-control\"\
+  \ })\n            @Html.ValidationMessageFor(m => m.UserName)\n        </div>\n\
+  \    </div>\n    <div class=\"form-group\">\n        @Html.LabelFor(m => m.Password,\
+  \ new { @class = \"col-md-2 control-label\" })\n        <div class=\"col-md-10\"\
+  >\n            @Html.PasswordFor(m => m.Password, new { @class = \"form-control\"\
+  \ })\n            @Html.ValidationMessageFor(m => m.Password)\n        </div>\n\
+  \    </div>\n}\n```\n\n```\n@Html.LabelFor(m => m.UserName, new { @class = \"sr-only\"\
+  \ })\n@Html.TextBoxFor(m => m.UserName, new { @class = \"form-control\", placeholder\
+  \ = \"Enter your username\" })\n@Html.ValidationMessageFor(m => m.UserName)\n</div>\n\
+  <div class=\"form-group\">\n    @Html.LabelFor(m => m.Password, new { @class = \"\
+  sr-only\" })\n    @Html.PasswordFor(m => m.Password, new { @class = \"form-control\"\
+  , placeholder = \"Enter your username\" })\n    @Html.ValidationMessageFor(m =>\
+  \ m.Password)\n</div>\n<div class=\"form-group\">\n    <input type=\"submit\" value=\"\
+  Log in\" class=\"btn btn-default\" />\n</div>\n}\n```\n\n这将在浏览器中渲染以下表单：\n\n![](img/371b9a67300a03b7b335eb8a6fe55d94_56_0.png)\n\
+  \n### Bootstrap 验证样式\n\n默认的 ASP.NET MVC 项目模板支持不显眼的验证，并自动将所需的 JavaScript 库添加到项目中。但是，你会注意到默认验证不使用\
+  \ Bootstrap 特定的 CSS 样式。当输入元素验证失败时，jQuery 验证插件会将其类名更改为 `input-validation-error`。该类名在\
+  \ `Site.css` 文件中声明，并且仅在无效输入元素周围绘制红色边框，如下面的截图所示：\n\n![](img/371b9a67300a03b7b335eb8a6fe55d94_57_0.png)\n\
+  \n然而，Bootstrap 的验证样式会将无效输入元素关联的标签字体粗细设置为粗体，并在元素周围绘制红色边框。jQuery 验证插件无法与 Bootstrap\
+  \ 验证样式配合工作的原因是，Bootstrap 并不将验证样式应用于输入元素，而是将 `has-error` 类名添加到父元素上：\n\n```html\n\
+  <div class=\"form-group has-error\">\n    <label class=\"control-label\" for=\"\
+  name\">Name</label>\n    <input type=\"text\" class=\"form-control\" id=\"name\"\
+  >\n</div>\n```\n\n在此代码中，父 `<div>` 元素的类被更改为 `form-group has-error`。\n\n为了使我们的表单在不直接修改\
+  \ jQuery 验证插件的情况下使用 Bootstrap 验证类，我们首先需要向 Scripts 文件夹添加一个名为 `jquery.validate.bootstrap.js`\
+  \ 的新 JavaScript 文件。\n\n以下代码将通过调用 `setDefaults` 函数修改 jQuery 验证插件的默认设置。然后我们使用 `highlight`\
+  \ 函数指定无效元素应如何突出显示。在此函数中，我们告诉验证插件应找到具有 `.form-group` 类的最接近的元素，并将 `has-error` 类添加给它。在\
+  \ `unhighlight` 函数中，我们移除 `has-error` 类，如下所示：\n\n```javascript\n$.validator.setDefaults({\n\
+  \    highlight: function (element) {\n        $(element).closest('.form-group').addClass('has-error');\n\
+  \    },\n    unhighlight: function (element) {\n        $(element).closest('.form-group').removeClass('has-error');\n\
+  \    }\n});\n```\n\n![](img/371b9a67300a03b7b335eb8a6fe55d94_58_0.png)\n\n> 你可以从其项目站点\
+  \ `http://jqueryvalidation.org/` 了解更多关于 jQuery 验证插件及其各种设置的信息。\n\n接下来，我们需要将新的 JavaScript\
+  \ 文件添加到 `jqueryval` 捆绑包中，该捆绑包在 `BundleConfig.cs` 文件中指定。当前的 `jqueryval` 捆绑包使用通配符将所有以\
+  \ `jquery.validate` 开头的文件添加进来。我们需要更改这一点，以明确指定每个文件，因为通配符捆绑是按字母顺序排列的，而 `jquery.validate.bootstrap.js`\
+  \ 文件应在 jQuery 验证库之后加载。以下代码将把所有必需的验证库和文件添加到我们的捆绑包中：\n\n```csharp\nbundles.Add(new\
+  \ ScriptBundle(\"~/bundles/jqueryval\").Include(\n    \"~/Scripts/jquery.validate.js\"\
+  ,\n    \"~/Scripts/jquery.validate.unobtrusive.js\",\n    \"~/Scripts/jquery.validate.bootstrap.js\"\
+  ));\n```\n\n在构建和运行项目时，你现在应该会看到 Bootstrap 验证样式应用于无效的表单元素，如下面的截图所示：\n\n## 为原始类型创建编辑器模板\n\
+  \n编辑器模板用于根据对象属性的数据类型自动生成表单输入元素。ASP.NET MVC 包含许多标准编辑器模板，但开发人员也可以创建自己的模板。编辑器模板类似于分部视图，但分部视图是按名称渲染的，而编辑器模板是按类型渲染的。\n\
+  \n当使用 Visual Studio 的默认脚手架功能为模型创建编辑视图时，它会使用 `EditorFor` HTML 辅助方法生成文本输入元素，如下所示：\n\
+  \n```\n@Html.EditorFor(model => model.CategoryName)\n```\n\n`EditorFor` 辅助方法根据模型属性的数据类型渲染其\
+  \ HTML。对于字符串值，生成的标记将类似于以下内容：\n\n```\n<input type=\"text\" name=\"CategoryName\"\
+  \ id=\"CategoryName\" data-val-required=\"The Category Name field is required.\"\
+  \ data-val=\"true\" class=\"text-box single-line\">\n```\n\n在此生成的标记中，输入元素的类为 `text-box\
+  \ single-line`。为了使文本元素使用 Bootstrap 样式正确渲染，输入元素的类应设置为 `form-control`。\n\n为了使 `EditorFor`\
+  \ 辅助方法生成具有正确类的输入元素，我们需要通过完成以下步骤来创建编辑器模板：\n\n1. 首先，在 Shared 文件夹内创建一个名为 EditorTemplates\
+  \ 的新文件夹。\n2. 接下来，向 EditorTemplates 文件夹添加一个名为 string.cshtml 的新文件，并向其中添加以下代码：\n\n\
+  ```\n@model string\n@Html.TextBox(\"\", ViewData.TemplateInfo.FormattedModelValue,\
+  \ new {\n@class = \"form-control\"})\n```\n\n在前面的代码中，我们创建了一个文本框，并向其传递了一个空字符串作为文本框的名称。这将使\
+  \ ASP.NET MVC 使用模型的属性名称作为文本框的名称。通过使用 `TemplateInfo` 的 `FormattedModelValue` 属性来指定文本框中显示的值。最后，我们指定元素的\
+  \ HTML 属性；在这种情况下，我们将其 class 属性设置为 `form-control`。\n\n现在，当使用 `EditorFor` 辅助方法渲染文本框时，生成的\
+  \ HTML 标记将如下所示：\n\n```\n<input type=\"text\" name=\"CategoryName\" id=\"CategoryName\"\
+  \ data-val-required=\"The Category Name field is required.\" data-val=\"true\" class=\"\
+  form-control\">\n```\n\n## 为非原始类型创建编辑器模板\n\nASP.NET MVC 使开发人员能够为自定义数据类型创建编辑器模板。例如，在下面的截图中，我们有一个包含一个文本框和一个多行文本框的表单：\n\
+  \n\n\n\n\n## Bootstrap 图片类\n\n可以通过将 `class` 属性设置为 `img-responsive` 来使图片响应式。这样会根据其父元素按比例缩放图片，将其最大\
+  \ `width` 设置为 100%，`height` 设置为 auto。\n\n你也可以通过圆角、圆形或外边框来塑造图片。这是通过将 `<img>` 元素的\
+  \ class 设置为以下 Bootstrap 类之一来实现的：\n\n- `img-rounded`\n- `img-circle`\n- `img-thumbnail`\n\
+  \n在下面的屏幕截图中，我们展示了一份员工及其照片的列表。员工列表从数据库中检索并传递给视图：\n\n![](img/371b9a67300a03b7b335eb8a6fe55d94_62_0.png)\n\
+  \n实现上述结果的代码如下（可在随附的示例项目中查看）：\n\n```cshtml\n@model Northwind.Web.Models.EmployeeViewModel[]\n\
+  <div class=\"container\">\n    <div class=\"row\">\n        <h2>About Us.</h2>\n\
+  \        <p>Northwind Traders are a premier supplier of various food products,</p>\n\
+  \    </div>\n    <div class=\"row\">\n        <h3>Our Team</h3>\n        @foreach\
+  \ (var item in Model)\n        {\n            <div class=\"col-md-4\">\n       \
+  \         <img src=\"@Url.Content(\"~/Images/employees/\" + item.EmployeeID + \"\
+  .png\")\" alt=\"@item.FirstName @item.LastName\" class=\"img-circle img-responsive\"\
+  >\n                <h3>\n                    @item.FirstName @item.LastName <small>@item.Title</small>\n\
+  \                </h3>\n                <p>@item.Notes</p>\n            </div>\n\
+  \        }\n    </div>\n</div>\n```\n\n在这段代码中，我们遍历模型中的每个员工项并使用 `EmployeeID` 属性作为文件名渲染一个\
+  \ `<img>` 元素。每个 `<img>` 元素的 class 属性都设置为 `img-circle`，这将使图片以圆形显示。\n\n## 摘要\n\n在本章中，我们探讨了如何使用\
+  \ Bootstrap 网格和表单类来布局各种元素。我们还解决了使用标准 Bootstrap 验证类而不是 jQuery 验证类进行表单验证的问题，以及使用 ASP.NET\
+  \ 的编辑器模板简化表单元素的创建。\n\n在下一章中，我们将探讨各种 Bootstrap 组件，包括 Bootstrap 导航栏、输入组、进度条和警告，以及如何在\
+  \ ASP.NET MVC 项目中实现它们。\n"
+- "# 使用 Bootstrap 组件\n\nBootstrap 提供了十多个组件来提供输入组、下拉菜单、导航、警告以及图标。使用这些组件在你的 Web 应用程序中，你可以为用户提供一致且易于使用的界面。\n\
+  \nBootstrap 组件本质上是通过组合各种现有的 Bootstrap 元素、添加一些唯一的类名，并表示许多网站上常用的隐喻而构成的。\n\n在本章中，我们将涵盖以下主题：\n\
+  \n- 使用 Bootstrap 导航栏\n- 实现上下文敏感的搜索栏\n- 使用列表组、徽章和媒体对象\n- 实现页面标题和面包屑\n- 使用 PagedList\
+  \ 库创建分页列表\n- 如何使用警告、输入组和按钮下拉菜单\n- 实现一个使用 SignalR 报告实时进度的进度条\n\n### Bootstrap 导航栏\n\
+  \nBootstrap 导航栏是使用 Bootstrap 框架的大多数网站上使用的组件之一。在 Visual Studio 中创建 ASP.NET MVC 网站时，默认模板会生成标准导航栏所需的所有\
+  \ HTML 标记。Bootstrap 导航栏如下图所示：\n\n![](img/371b9a67300a03b7b335eb8a6fe55d94_65_0.png)\n\
+  \n以下 `_Layout.cshtml` 文件中的代码创建了一个固定在顶部的响应式导航栏。当网站在屏幕尺寸较小的设备上打开时，它会显示一个带有三条杠的按钮，点击后会垂直显示菜单：\n\
+  \n```cshtml\n<div class=\"navbar navbar-inverse navbar-fixed-top\">\n    <div class=\"\
+  container\">\n        <div class=\"navbar-header\">\n            <button type=\"\
+  button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\".navbar-collapse\"\
+  >\n                <span class=\"icon-bar\"></span>\n                <span class=\"\
+  icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n         \
+  \   </button>\n            @Html.ActionLink(\"Northwind Traders\", \"Index\", \"\
+  Home\", null, new { @class = \"navbar-brand\" })\n        </div>\n        <div class=\"\
+  navbar-collapse collapse\">\n            @Html.Partial(\"_BackendMenuPartial\")\n\
+  \            @Html.Partial(\"_LoginPartial\")\n        </div>\n    </div>\n</div>\n\
+  ```\n\n请注意，我们使用两个局部视图根据当前用户是否已登录来生成其余的导航栏。当用户登录时，我们将向导航栏添加全局搜索功能；它将根据用户当前访问的页面返回结果。\n\
+  \n首先，将以下代码添加到 `_BackendMenuPartial` 视图；这将在导航栏内生成一个搜索框：\n\n```cshtml\n@using (Html.BeginForm(\"\
+  Index\", \"Search\", FormMethod.Post, new { @class = \"navbar-form navbar-left\"\
+  , role = \"search\" }))\n{\n    <div class=\"form-group\">\n        @Html.TextBox(\"\
+  searchquery\", \"\", new { @id = \"searchquery\", @class = \"form-control input-sm\"\
+  , placeholder = \"Search\" })\n        @Html.Hidden(\"fromcontroller\", ViewContext.RouteData.Values[\"\
+  controller\"], new { @id = \"fromcontroller\" })\n    </div>\n    <button type=\"\
+  submit\" class=\"btn btn-default btn-xs\">GO</button>\n}\n```\n\n你会注意到在上面的代码中，我们有一个名为\
+  \ `fromcontroller` 的隐藏字段，其中包含当前控制器的名称。我们从 `ViewContext` 上的 `RouteData` 对象获取此信息。此信息将用于根据当前页面返回搜索结果。\n\
+  \n表单将以 HTTP `POST` 方法向 `Search` 控制器的 `Index` 动作发送请求；这反过来会检查请求来自哪个控制器名称并返回适当的数据和视图。执行搜索的代码如下：\n\
+  \n```csharp\n[HttpPost]\npublic ActionResult Index(string searchquery, string fromcontroller)\n\
+  {\n    switch (fromcontroller)\n    {\n        case \"Products\":\n            return\
+  \ RedirectToAction(\"SearchProductsResult\", new {\n                query = searchquery\
+  \ });\n\n        case \"Customers\":\n            return RedirectToAction(\"SearchCustomersResult\"\
+  , new {\n                query = searchquery });\n\n        case \"Employees\":\n\
+  \            return RedirectToAction(\"SearchEmployeesResult\", new {\n        \
+  \        query = searchquery });\n    }\n    return View();\n}\n\npublic ActionResult\
+  \ SearchCustomersResult(string query)\n{\n    ViewBag.SearchQuery = query;\n   \
+  \ var results = _context.Customers.Where(p => p.CompanyName.Contains(query)\n  \
+  \      || p.ContactName.Contains(query)\n        || p.City.Contains(query)\n   \
+  \     || p.Country.Contains(query)).ToList();\n    return View(results);\n}\n```\n\
+  \n### 列表组\n\n列表组是灵活的组件，可以显示简单的元素列表，也可以与其他元素组合以创建具有自定义内容的复杂列表。我们的搜索将在用户搜索产品时将我们重定向到\
+  \ SearchProductsResult 视图。此视图使用列表组来显示找到的产品项。检索数据库中产品的操作方法如下：\n\n```csharp\npublic\
+  \ ActionResult SearchProductsResult(string query)\n{\n    ViewBag.SearchQuery =\
+  \ query;\n    var results = _context.Products.Where(p => p.ProductName.Contains(query)).ToList();\n\
+  \    return View(results);\n}\n```\n\n视图的 Razor 标记表示如下：\n\n```cshtml\n@model IEnumerable<Northwind.Data.Models.Product>\n\
+  @{\n    ViewBag.Title = \"Product Search Results\";\n    Layout = \"~/Views/Shared/_Layout.cshtml\"\
+  ;\n}\n<div class=\"container\">\n    <div class=\"page-header\">\n        <h1>Product\
+  \ Results <small>Results for your search term: \"@ViewBag.SearchQuery\"</small></h1>\n\
+  \    </div>\n    <ul class=\"list-group\">\n        @foreach (var item in Model)\n\
+  \        {\n            <a href=\"@Url.Action(\"Edit\", \"Products\", new { id =\
+  \ item.ProductID })\" class=\"list-group-item\">@item.ProductName <span class=\"\
+  badge\">@item.UnitsInStock</span></a>\n        }\n    </ul>\n</div>\n```\n\n在此标记中，产品项被加载到无序列表\
+  \ `<ul>` 元素中作为锚点 `<a>` 元素。每个锚点元素的类名应设置为 `list-group-item`。视图在浏览器中应如下图所示：\n\n\n\n\
+  ![](img/371b9a67300a03b7b335eb8a6fe55d94_69_0.png)\n\n## 徽章\n\n徽章用于突出显示项目。你通常会看到徽章用来指示新项或未读项的数量，具体取决于应用类型。我们在产品的搜索结果页面上使用了以下徽章来指示当前库存数量：\n\
+  \n```\n<a href=\"@Url.Action(\"Edit\",\"Products\", new { id=@item.ProductID })\"\
+  \ class=\"list-group-item\">@item.ProductName <span class=\"badge\">@item.UnitsInStock</span></a>\n\
+  ```\n\n向元素添加徽章就像添加一个 `<span>` 元素并将其类名设置为 `badge` 一样简单。\n\n## 媒体对象\n\n媒体对象组件可用于构建层级样式的列表，例如博客评论或推文。在我们的示例应用中，当用户搜索员工时，我们使用媒体对象来返回搜索结果视图。由于\
+  \ Northwind 数据库包含一个 `ReportsTo` 字段，用来指示其他员工向哪名员工汇报，因此媒体对象组件非常适合以可视方式呈现这种关系。用于搜索员工并将结果返回视图的方法如下：\n\
+  \n```\npublic ActionResult SearchEmployeesResult(string query)\n{\n    ViewBag.SearchQuery\
+  \ = query;\n    var results = _context.Employees.Where(p => p.FirstName.Contains(query)\n\
+  \        || p.LastName.Contains(query)\n        || p.Notes.Contains(query)).ToList();\n\
+  \    return View(results);\n}\n```\n\n员工搜索结果的视图使用媒体对象组件来设置员工信息的样式并显示员工照片，如下所示：\n\
+  \n```\n@model IEnumerable<Northwind.Data.Models.Employee>\n@{\n    ViewBag.Title\
+  \ = \"Employees Search Results\";\n    Layout = \"~/Views/Shared/_Layout.cshtml\"\
+  ;\n}\n<div class=\"container\">\n    <div class=\"page-header\">\n        <h1>Employees\
+  \ Results <small>Results for your search term: @ViewBag.SearchQuery</small></h1>\n\
+  \    </div>\n    @foreach (var item in Model)\n    {\n        <div class=\"media\"\
+  >\n            <a class=\"pull-left\" href=\"@Url.Action(\"Edit\", \"Employees\"\
+  , new { id = @item.EmployeeID })\">\n                <img class=\"media-object\"\
+  \ src=\"@Url.Content(\"~/Images/employees/\" + @item.EmployeeID + \".png\")\" alt=\"\
+  @item.FirstName\" width=\"64\" height=\"64\">\n            </a>\n            <div\
+  \ class=\"media-body\">\n                <h4 class=\"media-heading\">@item.FirstName\
+  \ @item.LastName</h4>\n                @item.Notes\n                @foreach (var\
+  \ emp in @item.ReportingEmployees)\n                {\n                    <div\
+  \ class=\"media\">\n                        <a href=\"#\" class=\"pull-left\">\n\
+  \                            <img alt=\"@emp.FirstName\" src=\"@Url.Content(\"~/Images/employees/\"\
+  \ + @emp.EmployeeID + \".png\")\" class=\"media-object\" width=\"64\" height=\"\
+  64\">\n                        </a>\n                        <div class=\"media-body\"\
+  >\n                            <h4 class=\"media-heading\">@emp.FirstName @emp.LastName</h4>\n\
+  \                            @emp.Title\n                        </div>\n      \
+  \              </div>\n                }\n            </div>\n        </div>\n \
+  \   }\n</div>\n```\n\n媒体对象组件由一组带有 `media`、`media-heading` 和 `media-body` 类名的元素组合而成。`media-object`\
+  \ 类名用于表示图像、视频或音频等媒体对象。最终视图应类似于以下截图：\n\n![](img/371b9a67300a03b7b335eb8a6fe55d94_71_0.png)\n\
+  \n## 页面页眉\n\nBootstrap 页面页眉用于向用户清晰地表明，页面由一个标题组成，该标题向用户介绍他们正在访问的页面。页面页眉本质上是一个 `<h1>`\
+  \ 元素，外层包裹着一个类名为 `page-header` 的 `<div>` 元素。你还可以利用 `<small>` 元素向用户提供关于该页面的额外信息。Bootstrap\
+  \ 还会在页面页眉下方添加一条水平线，以便在视觉上与页面其余部分分隔开。\n\n以下 HTML 标记创建一个页面页眉：\n\n```\n```html\n<div\
+  \ class=\"page-header\">\n    <h1>Categories <small>Add, edit and delete product\
+  \ categories</small></h1>\n</div>\n```\n```\n\n*使用 Bootstrap 组件*\n\n此标记将在浏览器中生成以下截图：\n\
+  \n![](img/371b9a67300a03b7b335eb8a6fe55d94_72_0.png)\n\n## 面包屑导航\n\n面包屑导航是 Web 设计中常用的一种隐喻，用于向用户表明他们当前在导航树中的位置。它类似于\
+  \ Windows 资源管理器中的文件路径。面包屑导航非常适合具有多级子导航的站点，并允许用户在各类父级和子级页面之间导航。\n\n在下面的标记中，我们将结合\
+  \ Razor 和 HTML 构建一个面包屑导航组件，用户可以通过它导航回主页或管理页面：\n\n```\n```html\n<ol class=\"breadcrumb\"\
+  >\n    <li>@Html.ActionLink(\"Home\", \"Index\", \"Home\")</li>\n    <li>@Html.ActionLink(\"\
+  Manage\", \"Index\", \"Manage\")</li>\n    <li class=\"active\">Categories</li>\n\
+  </ol>\n```\n```\n\n前面的标记包含一个类名为 `breadcrumb` 的有序列表 `<ol>` 元素。面包屑导航的每个子元素都作为列表项 `<li>`\
+  \ 元素添加。为了向用户表明面包屑导航的最后一个层级是当前活动页面，我们将其 `<li>` 元素的类名设置为 `active`。访问该页面时，上述代码的结果将类似于以下截图：\n\
+  \n![](img/371b9a67300a03b7b335eb8a6fe55d94_72_1.png)\n\n## 分页\n\n分页用于将内容（通常是列表）划分为多个独立页面。例如，在搭建列表视图时，默认的脚手架模板会生成一个表格，其中为你传入视图的集合中的每个项生成一行。对于少量数据来说这没问题，但如果列表包含数百个项，你的页面将需要很长时间才能加载。理想情况下，我们希望将列表视图拆分为每页仅显示五个项的可管理视图。在下面的截图中，我们将**产品**页面的表格改为使用分页：\n\
+  \n![](img/371b9a67300a03b7b335eb8a6fe55d94_73_0.png)\n\n上述视图是使用 PagedList.Mvc NuGet\
+  \ 包并完成以下步骤实现的：\n\n- 1. 要安装它，请在 Visual Studio 的**包管理器控制台**中运行以下命令：\n- \n- `Install-Package\
+  \ PagedList.Mvc`\n- 2. 此命令会将必要的依赖项添加到你的项目中。接下来，打开你的控制器操作，并将其代码更改为以下内容：\n\n```\n\
+  public ActionResult Index(int? page)\n{\n    var models = _context.Products.Project()\n\
+  \        .To<ProductViewModel>().OrderBy(p => p.ProductName);\n    int pageSize\
+  \ = 5;\n    int pageNumber = (page ?? 1);\n    return View(models.ToPagedList(pageNumber,\
+  \ pageSize));\n}\n```\n\n在前面的代码中，我们将操作方法改为接受一个名为 `page` 的整数参数。此参数用于指示用户当前正在查看列表的哪一页。然后，我们从数据库中检索产品列表，并使用\
+  \ `ProductName` 属性进行排序。\n\n`pageSize` 变量用于设置每页应显示的项数。然后，我们将产品项作为 `PagedList` 返回。`PagedList`\
+  \ 对象属于我们之前通过 NuGet 安装的 PagedList.Mvc 库的一部分。\n\n3. 接下来，打开关联的视图，并将以下代码添加到文件顶部：\n\n\
+  ```\n@using PagedList.Mvc;\n@model PagedList.IPagedList<Northwind.Web.Models.ProductViewModel>\n\
+  ```\n\n4. `using` 语句告诉视图引用 PagedList 库。然后，我们将视图的模型设置为 `ProductViewModel` 对象的 `PagedList`\
+  \ 表示形式。\n\n5. 你无需更改现有标记中的任何内容；但是，若要指示当前页码，请将以下代码添加到页面中：\n\n```\nPage @(Model.PageCount\
+  \ < Model.PageNumber ? 0 : Model.PageNumber)\nof @Model.PageCount\n```\n\n6. 上述代码将显示当前页码和总页数。若要向页面添加符合默认\
+  \ Bootstrap 样式的分页元素，请在 `<table>` 元素的结束标签正下方添加以下代码：\n\n```\n@Html.PagedListPager(Model,\
+  \ page => Url.Action(\"Index\", new { page }), PagedListRenderOptions.ClassicPlusFirstAndLast)\n\
+  ```\n\n在前面的代码中，我们使用了 PagedList 库中包含的 `PagedListPager` HTML 帮助器来显示分页元素；该元素包含所有页码，以及用于跳转到第一页和最后一页的按钮。你会注意到，`PagedListPager`\
+  \ 帮助器的最后一个参数支持九种不同的分页布局。它们如下：\n\n- Classic\n- ClassicPlusFirstAndLast\n- Minimal\n\
+  - MinimalWithItemCountText\n- MinimalWithPageCountText\n- OnlyShowFivePagesAtATime\n\
+  - PageNumbersOnly\n- TwitterBootstrapPager\n- TwitterBootstrapPagerAligned\n\n\n\
+  \n将参数设置为 `PagedListRenderOptions.TwitterBootstrapPagerAligned` 将显示两个按钮，标题为 **Older**\
+  \ 和 **Newer**。它们与容器的边缘对齐，如以下屏幕截图所示：\n\n![](img/371b9a67300a03b7b335eb8a6fe55d94_75_0.png)\n\
+  \n将参数设置为 `PagedListRenderOptions.TwitterBootstrapPager` 将在表格下方居中添加 **Previous**\
+  \ 和 **Next** 按钮：\n\n![](img/371b9a67300a03b7b335eb8a6fe55d94_75_1.png)\n\n`PagedList`\
+  \ 库开箱即支持默认的 Bootstrap 样式；这意味着您无需执行任何特定操作即可启用正确的样式。\n\n## 输入组\n\n输入组是向用户提供有关您期望他们在特定表单元素中输入的数据的额外信息的一种方法。Bootstrap\
+  \ 提供类可在输入元素之前或之后添加部分。这些部分可以包含文本或 Bootstrap 中包含的 200 个 Glyphicons 中的任何一个。\n\n> Bootstrap\
+  \ 预装了 200 个 Glyphicon Halfling 图标。通常，设置的 Glyphicon Halfling 图标不是免费的，但其创建者将其免费提供给\
+  \ Bootstrap。您可以在 http://getbootstrap.com/components/ 上阅读有关它们的更多信息。\n\n要创建文本输入元素以提示用户需要在字段中输入电话号码，我们将使用以下标记：\n\
+  \n```html\n<div class=\"form-group\">\n    @Html.LabelFor(model => model.Phone,\
+  \ new { @class = \"control-label col-md-2\" })\n    <div class=\"col-sm-4 input-group\"\
+  >\n        <span class=\"input-group-addon\">\n            <span class=\"glyphicon\
+  \ glyphicon-phone-alt\"></span>\n        </span>\n        @Html.EditorFor(model\
+  \ => model.Phone)\n        @Html.ValidationMessageFor(model => model.Phone)\n  \
+  \  </div>\n</div>\n```\n\n此标记的结果将是左侧带有灰色区域的文本输入元素，其中包含电话图像，如以下屏幕截图所示：\n\n![](img/371b9a67300a03b7b335eb8a6fe55d94_76_0.png)\n\
+  \n我们还可以创建在文本输入右侧对齐并包含文本而不是图像的输入组。例如，以下标记创建了一个文本输入字段，提示用户我们只需要电子邮件地址的第一部分，最后部分将自动附加：\n\
+  \n```html\n<div class=\"form-group\">\n    @Html.LabelFor(model => model.Email,\
+  \ new { @class = \"control-label col-md-2\" })\n    <div class=\"col-sm-4 input-group\"\
+  >\n        @Html.EditorFor(model => model.Email)\n        <span class=\"input-group-addon\"\
+  >@@northwind.com</span>\n    </div>\n</div>\n```\n\n前述标记的结果将在浏览器中看起来像以下屏幕截图：\n\n\
+  ![](img/371b9a67300a03b7b335eb8a6fe55d94_77_0.png)\n\n您还可以使用以下代码创建两侧都有灰色区域的文本输入：\n\
+  \n```html\n<div class=\"form-group\">\n    @Html.LabelFor(model => model.UnitPrice,\
+  \ new { @class = \"col-sm-2 control-label\" })\n    <div class=\"col-sm-2 input-group\"\
+  >\n        <span class=\"input-group-addon\">$</span>\n        @Html.TextBoxFor(model\
+  \ => model.UnitPrice, new { @class = \"form-control\" })\n        <span class=\"\
+  input-group-addon\">.00</span>\n        @Html.ValidationMessageFor(model => model.UnitPrice)\n\
+  \    </div>\n</div>\n```\n\n结果将在浏览器中看起来像以下屏幕截图：\n\n![](img/371b9a67300a03b7b335eb8a6fe55d94_79_0.png)\n\
+  \n## 警告\n\n警报组件用于向用户提供视觉反馈。这可用于向用户提供记录已保存的确认消息、发生错误时的警告消息，或基于系统事件的信息消息。\n\nBootstrap\
+  \ 提供四种不同样式的警报。例如，以下标记生成绿色、蓝色、橙色和红色警报框：\n\n```html\n<div class=\"alert alert-success\"\
+  ><strong>Success. You have successfully saved the file.</strong></div>\n<div class=\"\
+  alert alert-info\"><strong>Info. Something has just happened.</strong></div>\n<div\
+  \ class=\"alert alert-warning\"><strong>Warning! The file size is too big.</strong></div>\n\
+  <div class=\"alert alert-danger\"><strong>Danger! The file could not be saved.</strong></div>\n\
+  ```\n\n警报框在浏览器中应与以下屏幕截图类似：\n\n![](img/371b9a67300a03b7b335eb8a6fe55d94_80_0.png)\n\
+  \n可关闭警报是用户可以通过单击其右上角的小 X 图标关闭的警报。为了创建可关闭警报，您可以使用 alert-dismissible 类名，如下所示：\n\n\
+  ```html\n<div class=\"alert alert-warning alert-dismissible\" role=\"alert\">\n\
+  <button type=\"button\" class=\"close\" data-dismiss=\"alert\"><span aria-hidden=\"\
+  true\">&times;</span><span class=\"sr-only\">Close</span></button>\n<strong>Alert!</strong>\
+  \ This is a dismissible alert.\n</div>\n```\n\n> 您可参考本书附带的示例项目，了解如何直接从 ASP.NET MVC\
+  \ 控制器显示特定样式的警报。这些警报改编自 Matt Honeycutt 在 GitHub 上的示例：https://github.com/MattHoneycutt/Fail-Tracker。\n\
+  \n## 进度条\n\n进度条是与传统桌面以及 Web 开发一起使用的隐喻，用于向用户提供任务或操作的进度视觉反馈。Bootstrap 提供多种不同样式的进度条。\n\
+  \n### 基础进度条\n\n基础 Bootstrap 进度条显示一个纯蓝色进度条。添加带有 `sr-only` 类名的 `<span>` 元素是良好做法，以便屏幕阅读器可以读取进度百分比。以下标记生成带有标题的基础进度条：\n\
+  \n```html\n<h4>Basic Progressbar</h4>\n<div class=\"progress\">\n    <div class=\"\
+  progress-bar\" role=\"progressbar\" aria-valuenow=\"80\" aria-valuemin=\"0\" aria-valuemax=\"\
+  100\" style=\"width: 80%;\">\n        <span class=\"sr-only\">80% Complete</span>\n\
+  \    </div>\n</div>\n```\n\n此标记的结果如以下屏幕截图所示：\n\n![](img/371b9a67300a03b7b335eb8a6fe55d94_81_0.png)\n\
+  \n您还可以通过在其 `<div>` 元素内添加文本来为进度条显示内联标签：\n\n```html\n<h4>Basic Progressbar with label</h4>\n\
+  <div class=\"progress\">\n    <div id=\"progressbarTitle\" class=\"progress-bar\"\
+  \ role=\"progressbar\" aria-valuenow=\"60\" aria-valuemin=\"0\" aria-valuemax=\"\
+  100\" style=\"width: 60%;\">\n        60%\n    </div>\n</div>\n```\n\n此代码的结果如以下屏幕截图所示：\n\
+  \n![](img/371b9a67300a03b7b335eb8a6fe55d94_82_0.png)\n\n### 上下文进度条\n\n您可以使用相同的按钮和警报样式类生成不同颜色的进度条。这是通过将进度条的类名设置为以下之一来实现的：\n\
+  \n- `progress-bar-success`\n- `progress-bar-info`\n- `progress-bar-warning`\n- `progress-bar-danger`\n\
+  \n结果如以下屏幕截图所示：\n\n![](img/371b9a67300a03b7b335eb8a6fe55d94_82_1.png)\n\n### 条纹和动画进度条\n\
+  \n要生成具有渐变条纹效果的进度条，请向进度条的父 `<div>` 元素添加类名 `progress-striped`：\n\n```html\n<h4>Striped\
+  \ Progressbar (Danger)</h4>\n<div class=\"progress progress-striped\">\n    <div\
+  \ class=\"progress-bar progress-bar-danger\" role=\"progressbar\" aria-valuenow=\"\
+  80\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 80%\">\n        <span\
+  \ class=\"sr-only\">80% Complete (danger)</span>\n    </div>\n</div>\n```\n\n此结果如以下屏幕截图所示：\n\
+  \n![](img/371b9a67300a03b7b335eb8a6fe55d94_83_0.png)\n\n要添加动画效果，使进度条上的条纹看起来在移动，只需向其父\
+  \ `<div>` 元素添加 `active` 类即可：\n\n```html\n<div class=\"progress progress-striped\
+  \ active\">\n    <div class=\"progress-bar progress-bar-danger\" role=\"progressbar\"\
+  \ aria-valuenow=\"80\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width:\
+  \ 80%\">\n        <span class=\"sr-only\">80% Complete (success)</span>\n    </div>\n\
+  </div>\n```\n\n### 动态更新进度条的百分比\n\n进度条只有在实际提供特定任务进度的反馈时才有价值。要使用 ASP.NET MVC 动态更新进度条，请执行以下步骤：\n\
+  \n1. 通过在 Visual Studio 程序包管理器控制台中运行以下命令，将 SignalR NuGet 包添加到我们的项目中：`Install-Package\
+  \ Microsoft.AspNet.SignalR`\n\n\n\n\n\n## 使用 Bootstrap 组件\n\n> SignalR 是一个用于 ASP.NET\
+  \ 的库；这个库让向应用程序添加实时功能和反馈变得非常容易。你可以在 www.signalr.net 上了解更多信息。\n\n2. 接下来，在你的项目中添加一个名为\
+  \ `Hubs` 的新文件夹，并向该文件夹添加一个名为 `ProgressbarHub.cs` 的新类。将它的代码改为以下代码：\n\n```csharp\n\
+  using System.Threading;\nusing Microsoft.AspNet.SignalR;\n\nnamespace Northwind.Web.Hubs\n\
+  {\n    public class ProgressbarHub : Hub\n    {\n        public void SendProgress()\n\
+  \        {\n            for (int i = 0; i <= 100; i++)\n            {\n        \
+  \        Thread.Sleep(50);\n                Clients.Caller.sendMessage(i + \"%\"\
+  );\n            }\n        }\n    }\n}\n```\n\n3. 在上述代码中，我们的类继承自 SignalR 的 Hub 类，并且只包含一个名为\
+  \ `SendProgress` 的方法，该方法会递增一个变量，并通过 `sendMessage` 方法将值发送给任何 SignalR 客户端。\n\n4. 接下来，我们添加对\
+  \ SignalR 虚拟路径的引用。打开 `_Layout.cshtml` 文件，并在文件底部添加以下一行：\n\n```html\n<script src=\"\
+  ~/signalr/hubs\"></script>\n```\n\n5. 我们还要在现有的 bundle 中添加对 SignalR JavaScript 库的引用。打开位于\
+  \ `App_Start` 文件夹中的 `BundleConfig.cs` 文件，并按如下方式修改 jquery bundle，使其包含 SignalR 库：\n\
+  \n```csharp\nbundles.Add(new ScriptBundle(\"~/bundles/jquery\").Include(\n    \"\
+  ~/Scripts/jquery-{version}.js\",\n    \"~/Scripts/jquery.signalR-2.0.3.js\"));\n\
+  ```\n\n6. 最后，在包含进度条的页面上，在 Scripts 节中添加以下脚本：\n\n```csharp\n@section scripts\n{\n\
+  \    <script type=\"text/javascript\" language=\"javascript\">\n        $(\"#start\"\
+  ).click(function () {\n            $(\".progress-bar\").width('0%');\n         \
+  \   var progressNotifier = $.connection.progressbarHub;\n            progressNotifier.client.sendMessage\
+  \ = function (message) {\n                updateProgress(message);\n           \
+  \ };\n\n            $.connection.hub.start().done(function () {\n              \
+  \  progressNotifier.server.sendProgress();\n            });\n        });\n\n   \
+  \     function updateProgress(message) {\n            $(\".progress-bar\").width(message);\n\
+  \            $(\"#progressbarTitle\").html(message + ' Complete');\n        }\n\
+  \    </script>\n}\n```\n\n上述代码将在用户单击 ID 为 start 的按钮时执行。它首先会将页面上所有进度条的宽度设置为 0，并初始化与服务器的连接。然后我们设置服务器端要调用的函数名。在此场景中，JavaScript\
+  \ 函数名为 `updateProgress`。\n\n最后，我们建立与服务器的连接，并启动服务器端操作。如你所见，我们调用了 `sendProgress` 函数——这是在\
+  \ `ProgressbarHub` 类中声明的方法名。\n\n执行该代码后，你会看到页面上所有进度条的值都会从 0 增加到 100。\n\n## 总结\n\n\
+  在本章中，我们探索了许多不同的 Bootstrap 组件，并学习了如何在你的 ASP.NET MVC 项目中使用它们。我们还了解了使用 NuGet 包来帮助你创建分页列表和动态更新进度条。\n\
+  \n在下一章中，我们将更深入地研究 Bootstrap 组件，探讨如何使用 Bootstrap JavaScript 插件为你的网站添加更多交互性。\n"
+- "# 使用 Bootstrap JavaScript 插件\n\n为了使用 Bootstrap 插件，我们需要在项目中包含 `bootstrap.js` 或 `bootstrap.min.js`\
+  \ 文件。该文件包含所有 Bootstrap 插件，但如果你不打算在项目中使用每一个插件，最好自定义 `bootstrap.js` 文件中要包含的组件。这将减小\
+  \ Bootstrap 库的体积，并让网站加载得更快。要访问这些插件，请访问 http://getbootstrap.com/customize/ 并选择你将在项目中使用的插件。\n\
+  \n### 数据属性与编程式 API\n\nBootstrap 让你可以完全通过 HTML 标记来使用其插件。这意味着，使用大多数插件时，你不需要编写一行 JavaScript。使用数据属性是推荐的方法，并且应该是你使用\
+  \ Bootstrap 插件时的首选。\n\n例如，要让 `alert` 元素可以关闭，你需要将 `data-dismiss=\"alert\"` 属性添加到\
+  \ `button` 或 `anchor` 元素上，如下面的代码所示：\n\n```html\n<div class=\"alert alert-danger\"\
+  >\n  <button data-dismiss=\"alert\" class=\"close\" type=\"button\">×</button>\n\
+  \  <strong>Warning</strong> Shuttle launch in t-minus 10 seconds.\n</div>\n```\n\
+  \n你也可以选择通过 JavaScript 使用编程式 API 执行相同的操作。下面的代码在用户单击按钮时使用 jQuery 关闭特定的 `alert` 元素：\n\
+  \n```html\n<button class=\"close\" type=\"button\" onclick=\"$('#myalert').alert('close')\"\
+  >×</button>\n```\n\n### 级联下拉菜单\n\n你可以使用 dropdown 插件为几乎任何 Bootstrap 组件添加下拉菜单。级联下拉菜单是一种根据另一个下拉菜单中所选值来更新其数据的下拉菜单。要添加级联下拉菜单，请执行以下步骤：\n\
+  \n1. 我们将为两个按钮添加下拉菜单，以列出从数据库中检索到的地区（Region）和区域（Territory）数据。当用户选择一个地区（Region）时，区域（Territory）下拉列表将会更新，仅显示与所选地区关联的那些区域（Territory）。下面的截图展示了最终结果：\n\
+  \n![](img/371b9a67300a03b7b335eb8a6fe55d94_89_0.png)\n\n2. 这两个下拉菜单将用于我们的 Edit Customer\
+  \ 视图。为了让区域（Territory）和地区（Region）列表可以在视图中访问，我们首先使用以下代码将它们添加到 ViewBag 对象：\n\n```csharp\n\
+  public ActionResult Edit(int id)\n{\n    var model = _context.Customers.First(c\
+  \ => c.CustomerId == id);\n    ViewBag.RegionId = new SelectList(_context.Regions,\n\
+  \    \"RegionId\", \"RegionDescription\", model.RegionId);\n    ViewBag.TerritoryId\
+  \ = new SelectList(_context.Territories.Where(t => t.RegionId == model.RegionId),\
+  \ \"TerritoryId\",\n    \"TerritoryDescription\", model.TerritoryId);\n    return\
+  \ View(model);\n}\n```\n\n在这段代码中，我们首先从数据库中加载了所请求的客户，然后将数据库中的地区（Region）和区域（Territory）列表添加到\
+  \ ViewBag 对象。你会注意到，我们只检索了所选客户所在地区（Region）内的区域（Territory）。\n\n3. 接下来，我们向视图添加 Razor\
+  \ 标记，以创建两个带有下拉菜单的按钮。在下面的代码中，我们将创建两个新的 Bootstrap 表单组，其中包含地区（Region）和区域（Territory）属性的标签，以及用于携带所选地区\
+  \ ID 和区域 ID 的隐藏元素。我们遍历通过 ViewBag 对象传递给视图的地区和区域，并构建菜单项。\n\n```html\n<div class=\"\
+  form-group\">\n    @Html.LabelFor(model => model.RegionId,\n        new { @class\
+  \ = \"control-label col-md-2\" })\n    @Html.HiddenFor(model => model.RegionId)\n\
+  \    <div class=\"col-md-10\">\n        <div id=\"regiondropdown\" class=\"dropdown\"\
+  >\n            <button id=\"regionbutton\" class=\"btn btn-sm btn-info\"\n     \
+  \               data-toggle=\"dropdown\">@Model.Region.RegionDescription</button>\n\
+  \            <ul class=\"dropdown-menu\">\n                @foreach (var item in\
+  \ ViewBag.RegionId)\n                {\n                    <li><a href=\"#\" tabindex=\"\
+  -1\" data-value=\"@item.Value\">@item.Text</a></li>\n                }\n       \
+  \     </ul>\n        </div>\n    </div>\n</div>\n<div class=\"form-group\">\n  \
+  \  @Html.LabelFor(model => model.TerritoryId, new { @class =\n        \"control-label\
+  \ col-md-2\" })\n    @Html.HiddenFor(model => model.TerritoryId)\n    <div class=\"\
+  col-md-10\">\n        <div id=\"territorydropdown\" class=\"dropdown\">\n      \
+  \      <button id=\"territorybutton\" class=\"btn btn-sm btn-info\" data-toggle=\"\
+  dropdown\">@Model.Territory.TerritoryDescription</button>\n            <ul id=\"\
+  territories\" class=\"dropdown-menu\">\n                @foreach (var item in ViewBag.TerritoryId)\n\
+  \                {\n                    <li><a href=\"#\" tabindex=\"-1\" data-value=\"\
+  @item.Value\">@item.Text</a></li>\n                }\n            </ul>\n      \
+  \  </div>\n    </div>\n</div>\n```\n\n\n\n\n> 请注意，我们将菜单中锚元素<a>的tabindex项设置为-1。这样做是为了防止该元素成为Tab键顺序的一部分。\n\
+  \n- 接下来，向你的项目中添加一个名为Territories.cshtml的新分部视图。我们将使用此分部视图在用户每次更改区域时加载地区。为了加载该分部视图，我们需要向CustomerController添加一个返回PartialViewResult的新方法。此方法的代码如下：\n\
+  \n```\npublic PartialViewResult Territories(int regionId)\n{\n    ViewBag.TerritoryId\
+  \ = new SelectList(_context.Territories.Where(t => t.RegionId == regionId), \"TerritoryId\"\
+  , \"TerritoryDescription\");\n    return PartialView();\n}\n```\n\n此方法接收一个区域ID作为参数，然后将该区域关联的地区加载到ViewBag对象中。最后，该方法返回我们之前创建的Territories分部视图。\n\
+  \n- 最后，为了在用户选择不同区域时加载关联的地区，我们需要向页面添加一点JavaScript。为此，在视图中创建一个新的section，并向其中添加以下JavaScript代码：\n\
+  \n```\n@section scripts{\n<script type=\"text/javascript\">\n    $('#regiondropdown\
+  \ li a').click(function () {\n        var $this = $(this);\n        var region =\
+  \ $this.data('value');\n        var regionName = $this.text();\n        $('#RegionId').val(region);\n\
+  \        $.get(\"/Customers/Territories\", { regionId: region })\n            .done(function\
+  \ (data) {\n                $('#regionbutton').text(regionName);\n             \
+  \   $('#territorybutton').text('Select Territory');\n                $('#territories').html(data);\n\
+  \            });\n    });\n\n    $('body').on(\"click\", '#territories li a', function\
+  \ () {\n        var $this = $(this);\n        var territory = $this.data('value');\n\
+  \        var territoryName = $this.text();\n        $('#TerritoryId').val(territory);\n\
+  \        $('#territorybutton').text(territoryName);\n    });\n</script>\n}\n```\n\
+  \n上述JavaScript为区域下拉元素创建了一个点击处理程序，并将所选区域ID保存到一个变量中。然后，该变量被传递给jQuery的get方法，该方法进而向CustomerController中的Territories方法发起请求。Territories方法返回一个分部视图，其中包含区域ID与接收参数匹配的地区列表。\n\
+  \n该代码还使用jQuery的on方法，为ID为territories的元素的所有锚点子元素附加事件处理程序。然后，事件处理程序将所选地区ID保存到我们之前创建的表单内的隐藏字段中。\n\
+  \n## 模态对话框\n\n模态框用于提供一种弹出式对话框样式的元素，可用于向用户提供信息，甚至允许用户在模态框内完成表单。Bootstrap模态框基本上由三部分组成：头部、主体和底部。你可以将任何标准HTML标记放在模态框的body元素内，包括标准文本，甚至嵌入的YouTube视频。\n\
+  \n作为一般规则，始终将模态框的标记放在视图内的顶层位置——视图的顶部或底部是放置模态框标记的最佳位置。\n\n使用以下HTML和Razor标记，我们将创建一个模态框，提示用户是否要继续从数据库中删除某个客户记录。我们将在模态框的body内声明一个<form>元素，并使用在模态框的footer元素内创建的按钮来提交表单。我们还将创建一个用户可以点击以关闭模态框的按钮。这是通过向按钮添加data-dismiss=\"\
+  modal\"属性来实现的，如下所示：\n\n```\n<div class=\"modal fade\" id=\"deleteConfirmationModal\"\
+  \ tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\">\n    <div class=\"modal-dialog\"\
+  >\n        <div class=\"modal-content\">\n            <div class=\"modal-header\"\
+  >\n                <button type=\"button\" class=\"close\" data-dismiss=\"modal\"\
+  \ aria-hidden=\"true\">&times;</button>\n                <h4 class=\"modal-title\"\
+  >Deletion confirmation</h4>\n```\n\n为了显示模态框，我们不需要编写任何JavaScript。只需给锚点或按钮元素添加data-toggle=\"\
+  modal\"属性，当用户点击它时就会显示模态框，如下代码所示：\n\n```\n<a href=\"#\" data-toggle=\"modal\" data-target=\"\
+  #deleteConfirmationModal\">Delete</a>\n```\n\n为了指示要显示哪个模态框，我们在data-target属性中指定模态框的ID。\n\
+  \n上述代码的结果将显示一个模态框，类似于以下截图所示：\n\n![](img/371b9a67300a03b7b335eb8a6fe55d94_94_0.png)\n\
+  \n你也可以选择不使用data- API来显示模态框，而是使用jQuery来显示和隐藏模态框。以下JavaScript在页面加载时显示ID为deleteConfirmationModal的模态框：\n\
+  \n```\n$(document).ready(function () {\n  $('#deleteConfirmationModal').modal('show');\n\
+  });\n```\n\n你也可以使用同样的函数来隐藏模态框：\n\n```\n$('#deleteConfirmationModal').modal('hide');\n\
+  ```\n\n## 选项卡\n\n选项卡提供了一种将内容拆分为独立页面的选项。当你有一个特别大的表单并希望将其拆分为逻辑分组时，这是一个理想的组件。例如，在编辑客户记录时，你可能希望将联系详情和地址详情分开，如下面的截图所示：\n\
+  \n![](img/371b9a67300a03b7b335eb8a6fe55d94_95_0.png)\n\nBootstrap选项卡分为两部分。首先，你需要指定选项卡名称，以及当用户点击选项卡时要显示的对应<div>元素的ID。这是通过创建一个标准的无序列表<ul>元素来实现的，其中选项卡名称作为子列表项<li>。<ul>元素的class必须设置为`nav\
+  \ nav-tabs`或`nav nav-pills`，如下脚本所示：\n\n```html\n<ul class=\"nav nav-tabs\">\n  \
+  \  <li class=\"active\"><a href=\"#info\" data-toggle=\"tab\">Customer Info</a></li>\n\
+  \    <li><a href=\"#address\" data-toggle=\"tab\">Address</a></li>\n</ul>\n```\n\
+  \n你可以通过将<li>元素的data-toggle属性设置为tab或pill，并将<ul>元素的class设置为nav-pills，来使用选项卡或胶囊式导航。结果在浏览器中将如下面的截图所示：\n\
+  \n![](img/371b9a67300a03b7b335eb8a6fe55d94_96_0.png)\n\n要指定选项卡的内容，请创建一个新的<div>元素并将其class设置为tab-content。在父级<div>元素内为每个选项卡创建一个<div>元素，并将每个选项卡的<div>元素的class设置为tab-pane，如下所示：\n\
+  \n```\n<div class=\"tab-content well\">\n    <div class=\"tab-pane active\" id=\"\
+  info\">\n        Info Tab Content goes here\n    </div>\n    <div class=\"tab-pane\"\
+  \ id=\"address\">\n        Address Tab Content goes here\n    </div>\n</div>\n```\n\
+  \n在上述标记中，我们创建了两个选项卡，并通过将info选项卡的class设置为active，将其设为活动选项卡。\n\n你还可以使用jQuery激活特定页面。要在页面加载时立即激活address选项卡，请使用以下代码：\n\
+  \n```\n$(document).ready(function () {\n  $('.nav-tabs a[href=\"#address\"]').tab('show');\n\
+  });\n```\n\n## 工具提示\n\nBootstrap的工具提示插件是Jason Frame的jQuery.tipsy插件的更新版本。工具提示可用于向用户提供有关页面特定内容的附加信息标签，或提供对表单元素中预期输入的说明。\n\
+  \n工具提示可用于多种元素；例如，以下标记在用户悬停在锚点<a>元素上时显示工具提示：\n\n```\n<a data-toggle=\"tooltip\" data-placement=\"\
+  top\" data-original-title=\"Welcome to the wonderful World of Grammar!\" href=\"\
+  #\">World of Grammar</a>\n```\n\n要在任何元素上使用工具提示，请向其添加data-toggle=\"tooltip\"属性。你可以通过将data-placement属性设置为以下值之一来指定工具提示的位置：\n\
+  \n- top\n- bottom\n- left\n- right\n\n最后，设置data-original-title属性的值，以指定工具提示内应显示的文本。\n\
+  \n工具提示的一个注意事项是，出于性能考虑，data- API是选择加入的，这意味着你必须手动初始化插件。为此，请向页面添加以下JavaScript：\n\n\
+  ```\n<script type=\"text/javascript\">\n  $(document).ready(function () {\n    $('[data-toggle=\"\
+  tooltip\"]').tooltip();\n  });\n</script>\n```\n\n\n\n\n\n## 使用 Bootstrap JavaScript\
+  \ 插件\n\n前面的代码会查找所有 data-toggle 属性设置为 tooltip 的元素，并为这些元素初始化 tooltip 插件。在浏览器中，结果将与下面的截图类似：\n\
+  \n![](img/371b9a67300a03b7b335eb8a6fe55d94_98_0.png)\n\n## 弹出框（Popovers）\n\n弹出框与工具提示类似，因为它们都能向用户提供有关某个元素的附加信息，但弹出框被设计为显示更多内容，因为弹出框还允许显示标题。\n\
+  \n弹出框的定义方式与你定义弹出窗口的方式类似：向元素添加 `data-toggle`、`data-placement`、`data-original-title`\
+  \ 和 `data-content` 属性。当用户点击锚点 `<a>` 元素时，以下标记会显示一个弹出窗口：\n\n```\n```html\n<a data-content=\"\
+  The protagonist of Franz Kafka's short story The Metamorphosis\" data-placement=\"\
+  bottom\" title=\"\" data-toggle=\"popover\" href=\"#\" data-original-title=\"From\
+  \ Wikipedia\">Gregor Samsa</a>\n```\n```\n\n将 `data-toggle` 属性设置为 `popover`，即向插件指定它需要显示一个弹出框。`data-content`\
+  \ 属性包含将显示在弹出框中的内容，`data-original-title` 属性设置弹出框的标题。`data-placement` 属性表示弹出框的位置，支持四个值：top、bottom、left\
+  \ 和 right。\n\n你还可以通过设置 `data-trigger` 属性的值来指定触发弹出框的方式。当用户点击或悬停在元素上，或元素获得焦点时，都可以触发弹出框。你也可以指定手动触发。`data-trigger`\
+  \ 属性的四个选项是 click、hover、focus 和 manual。\n\n与工具提示一样，data- API 是选择加入（opt-in）机制，因此你需要手动初始化弹出框插件。在下面的代码中，我们将使用\
+  \ jQuery 查找页面中所有 `data-toggle` 属性设置为 `popover` 的元素，并为每个元素初始化弹出框插件：\n\n```\n```html\n\
+  <script type=\"text/javascript\">\n    $(document).ready(function () {\n       \
+  \ $('[data-toggle=\"popover\"]').popover();\n    });\n</script>\n```\n```\n\n在浏览器中，弹出框插件的效果类似于下面的截图：\n\
+  \n![](img/371b9a67300a03b7b335eb8a6fe55d94_100_0.png)\n\n## 手风琴组件\n\n手风琴组件最常用于常见问题（FAQ）页面，或需要将大量内容分成易于管理部分的页面。手风琴由多个面板组组成，每个面板组又包含标题元素和正文元素。要在项目中使用手风琴组件，请执行以下步骤：\n\
+  \n- 1. 要使用户点击标题时面板能够折叠，我们需要在 `panel` 标题元素内的锚点 `<a>` 元素上添加 `data-toggle` 属性，并将其值设置为\
+  \ `collapse`。\n- 2. 我们还需要通过将 `data-parent` 属性的值设置为父面板组的 ID，来指定面板的父元素。接下来，将锚点元素的\
+  \ `href` 属性设置为包含内容的 `<div>` 元素的 ID。\n- 3. 最后，我们还需要将面板正文元素的 class 设置为 `panel-collapse\
+  \ collapse`。在下面的代码中，我们将创建一个包含两个面板组的手风琴组件。第一个面板组在页面加载时会自动可见，因为我们会将其 class 设置为 `panel-collapse\
+  \ collapse in`：\n\n```\n```html\n<div class=\"panel-group\" id=\"accordion\">\n\
+  \    <div class=\"panel panel-default\">\n        <div class=\"panel-heading\">\n\
+  \            <h4 class=\"panel-title\">\n                <a data-toggle=\"collapse\"\
+  \ data-parent=\"#accordion\"\n                   href=\"#questionOne\">\n      \
+  \              How do I order from you?\n                </a>\n            </h4>\n\
+  \        </div>\n        <div id=\"questionOne\" class=\"panel-collapse collapse\
+  \ in\">\n            <div class=\"panel-body\">\n                Mauris egestas\
+  \ sem a ante accumsan tincidunt.\n                Vivamus id nisl vulputate, placerat\
+  \ arcu et.\n                sapien.\n            </div>\n        </div>\n    </div>\n\
+  \n    <div class=\"panel panel-default\">\n        <div class=\"panel-heading\"\
+  >\n            <h4 class=\"panel-title\">\n                <a data-toggle=\"collapse\"\
+  \ data-parent=\"#accordion\"\n                   href=\"#questionTwo\">\n      \
+  \              Do you ship internationally?\n                </a>\n            </h4>\n\
+  \        </div>\n        <div id=\"questionTwo\" class=\"panel-collapse collapse\"\
+  >\n            <div class=\"panel-body\">\n                Integer aliquet ligula\
+  \ eget elit faucibus, quis\n                pretium justo iaculis. Quisque quis\
+  \ dolor\n                volutpat, varius tellus eget, luctus nibh.\n          \
+  \      Cras tempus tincidunt.\n            </div>\n        </div>\n    </div>\n\
+  </div>\n```\n```\n\n4. 手风琴的效果应该类似于下面的截图：\n\n![](img/371b9a67300a03b7b335eb8a6fe55d94_102_0.png)\n\
+  \n## 轮播组件\n\n轮播组件是一种用户界面元素，你会在许多网站上看到它。它本质上是一个幻灯片，循环展示不同的元素，通常是图片。轮播组件应包含在一个 class\
+  \ 为 carousel、data-ride 属性值为 carousel 的 `<div>` 元素中。要在项目中使用轮播组件，请执行以下步骤：\n\n- 1.\
+  \ 轮播组件由一个有序列表元素 `<ol>` 组成，该元素在浏览器中渲染为小圆点，并指示当前激活的是哪一张幻灯片。该元素的标记如下：\n\n```\n<ol class=\"\
+  carousel-indicators\">\n    <li data-target=\"#myCarousel\" data-slide-to=\"0\"\
+  \ class=\"active\"></li>\n    <li data-target=\"#myCarousel\" data-slide-to=\"1\"\
+  ></li>\n    <li data-target=\"#myCarousel\" data-slide-to=\"2\"></li>\n</ol>\n```\n\
+  \n- 2. 接下来，需要创建另一个 class 为 `carousel-inner` 的 `<div>` 元素。该元素将包含实际的幻灯片及其内容。以下标记创建了一个带有一张幻灯片的此类元素：\n\
+  \n```\n<div class=\"carousel-inner\">\n    <div class=\"item active\">\n```\n\n\
+  ```\n```html\n<img src=\"@Url.Content(\"~/Images/slide1.jpg\")\" alt=\"First slide\"\
+  >\n<div class=\"container\">\n    <div class=\"carousel-caption\">\n        <h1>Unto\
+  \ all said together great in image.</h1>\n        <p>Won't saw light to void brought\
+  \ fifth was brought god abundantly for you waters life seasons he after replenish\
+  \ beast. Creepeth beginning.</p>\n        <p><a class=\"btn btn-lg btn-primary\"\
+  \ href=\"#\" role=\"button\">Read more</a></p>\n    </div>\n</div>\n</div>\n</div>\n\
+  </div>\n```\n```\n\n- 3. 最后，要在轮播两侧添加箭头，以提示用户可以导航到下一张幻灯片，请将以下标记添加到父级 `<div>` 元素中：\n\
+  \n```\n```html\n<a class=\"left carousel-control\" href=\"#myCarousel\" data-slide=\"\
+  prev\"><span class=\"glyphicon glyphicon-chevron-left\"></span></a>\n<a class=\"\
+  right carousel-control\" href=\"#myCarousel\" data-slide=\"next\"><span class=\"\
+  glyphicon glyphicon-chevron-right\"></span></a>\n```\n```\n\n- 4. 每张幻灯片应显示的时长可以通过\
+  \ `data-interval` 属性设置。在以下标记中，我们将幻灯片之间的间隔设置为 10 秒：\n\n```\n```html\n<div id=\"myCarousel1\"\
+  \ class=\"carousel\" data-ride=\"carousel\" data-interval=\"10000\">\n```\n```\n\
+  \n- 5. 与所有其他插件一样，你也可以选择使用 JavaScript 初始化插件并设置其选项。在下面的代码中，我们将初始化轮播组件，并将幻灯片之间的间隔设置为\
+  \ 10 秒：\n\n```\n```javascript\n$('#myCarousel1').carousel({\n    interval: 10000\n\
+  })\n```\n```\n\n## 总结\n\n在本章中，我们研究了各种 Bootstrap JavaScript 插件、如何初始化它们，以及如何使用 `data-`\
+  \ API 或编程式 JavaScript 方法来设置它们的选项。\n\n在下一章中，我们将探讨如何创建自己的 ASP.NET MVC 辅助方法，以减少在创建大量\
+  \ Bootstrap 元素和组件时需要编写的 HTML 标记量。\n\n\n\n\n"
+- "# 创建 ASP.NET MVC Bootstrap 助手\n\nASP.NET MVC 允许开发者通过创建静态或扩展方法来创建自己的 HTML 助手方法。本质上，HTML\
+  \ 助手只是一个返回 HTML 字符串的方法。\n\nHTML 助手使你能够在多个页面上使用相同的常用标记块，并使页面中的代码和标记更易于阅读和维护。这促进了可重用代码的使用，开发者也可以对助手方法进行单元测试。\n\
+  \n在本章中，我们将涵盖以下主题：\n\n- 内置 ASP.NET MVC HTML 助手的概述\n- 使用 @helper 语法创建助手\n- 使用静态方法创建\
+  \ HTML 助手\n- 创建 HTML 助手扩展方法\n- 创建流畅 HTML 助手\n- 创建自关闭助手\n\n## 内置 HTML 助手\n\nHtmlHelper\
+  \ 是一个在视图中渲染 HTML 内容的方法。其目的是允许开发者在多个页面中重用常见的 HTML 标记块。\n\nASP.NET MVC 提供了多种标准开箱即用的\
+  \ HTML 助手。例如，要生成以下带有 ID 和 name 属性为 CustomerName 的文本框的 HTML，请使用以下代码：\n\n```\n<input\
+  \ type=\"text\" name=\"CustomerName\" id=\"CustomerName\">\n```\n\n你应该使用如下所示的 TextBox\
+  \ 助手：\n\n```\n@Html.TextBox(\"CustomerName\")\n```\n\n大多数内置 HTML 助手都提供了多个重载版本。例如，要创建文本框并显式设置其\
+  \ name 和 value 属性，你应该使用以下重载的 TextBox 助手方法：\n\n```\n@Html.TextBox(\"CustomerName\"\
+  , \"Northwind Traders\")\n```\n\n大多数内置助手还提供了指定由元素生成的 HTML 属性的选项，通过传递匿名类型。在下面的示例中，我们将创建一个文本框并使用其中一个重载方法设置其\
+  \ style 属性：\n\n```\n@Html.TextBox(\"CustomerName\",\"Northwind Traders\", new {\n\
+  style=\"background-color:Blue;\" })\n```\n\n> 你可以在 http://bit.ly/MVCFormHelpers\
+  \ 阅读更多关于 ASP.NET MVC 中可用的标准 HTML 助手的信息。\n\n## 创建自定义助手\n\n由于 Bootstrap 提供了各种不同的组件，因此非常适合使用助手。ASP.NET\
+  \ MVC 中最简单的助手形式是你可以使用 @helper 语法创建的助手。自定义助手可以包含任何 HTML 甚至 Razor 标记。要创建生成 Bootstrap\
+  \ 按钮的简单助手方法，请完成以下步骤：\n\n- 1. 在网站根文件夹内创建一个名为 App_Code 的新文件夹。\n- 2. 在新创建的 App_Code\
+  \ 文件夹内创建一个名为 BootstrapHelpers.cshtml 的新文件。\n- 3. 向 BootstrapHelper.cshtml 文件添加以下代码：\n\
+  \n```\n@helper PrimaryButtonSmall(string id,string caption)\n{\n    <button id=\"\
+  @id\" type=\"button\" class=\"btn btn-primary btn-sm\">@caption</button>\n}\n```\n\
+  \n此代码使用 @helper 语法创建一个名为 PrimaryButtonSmall 的新助手。助手接受两个参数以指定按钮元素的 id 属性以及按钮的 caption\
+  \ 元素。我们已向按钮元素添加了适当的 Bootstrap 类以渲染蓝色主按钮。任何自定义助手必须位于 App_Code 文件夹内，以便 ASP.NET MVC\
+  \ 在你的视图中识别它。\n\n## 在视图中使用助手\n\n让我们在前一节中创建的助手中使用它。为此，打开站点中的一个视图，并将以下代码添加到页面中：\n\n\
+  ```\n@BootstrapHelpers.PrimaryButtonSmall(\"myButton\",\"My New Button\")\n```\n\
+  \n当你运行站点并查看使用助手页面的源代码时，你会看到助手生成了正确的 HTML 标记以创建以下主 Bootstrap 按钮：\n\n```\n<button\
+  \ class=\"btn btn-primary btn-sm\" type=\"button\" id=\"myButton\">My New Button</button>\n\
+  ```\n\n你会注意到，尽管这种方法有效，但它并不实用，因为这意味着我们必须为每种样式和尺寸的按钮创建 HTML 助手。解决此问题的可能方案是更改我们的助手代码，以便接受一个参数，开发者可以用它指定按钮应具有的样式和尺寸。要实现此目的，请执行以下步骤：\n\
+  \n- 1. 打开位于 App_Code 文件夹中的 BootstrapHelpers.cshtml 文件。\n- 2. 用以下代码替换文件中的代码：\n- ```csharp\n\
+  @helper Button(string style, string size, string caption, string id)\n{\n    <button\
+  \ id=\"@id\" type=\"button\" class=\"btn btn-@style btn-@size\">@caption</button>\n\
+  }\n```\n- 3. 打开使用助手的视图并添加以下标记：\n- ```csharp\n@BootstrapHelpers.Button(\"danger\"\
+  ,\"lg\",\"A Large button\",\"myLargeButton\")\n```\n\n在前一步中，我们已更新助手以接受两个字符串参数来指定\
+  \ Bootstrap 按钮的大小和样式。此方法的问题在于，开发者仍然需要知道样式和大小的名称才能渲染正确的按钮。\n\n## 使用静态方法创建助手\n\n创建助手使用我们之前提到的\
+  \ @helper 语法最简单的替代方法是创建仅返回包含 HTML 标记的字符串的静态方法。\n\n为此，我们需要完成以下步骤：\n\n- 1. 在项目根文件夹内创建一个名为\
+  \ Helpers 的新文件夹。\n- 2. 向此文件夹添加一个名为 Enums.cs 的新类。此文件将包含我们项目的枚举器。\n- 3. 向 Enums.cs\
+  \ 文件添加以下代码：\n- 4. 在 Helpers 文件夹中创建一个名为 ButtonHelper.cs 的新类。\n- 5. 向 ButtonHelper\
+  \ 类添加一个名为 Button 的方法，并向其中添加以下代码：\n\n```\npublic class Enums\n{\n    public enum\
+  \ ButtonStyle\n    {\n        Default,\n        Primary,\n        Success,\n   \
+  \     Info,\n        Warning,\n        Danger,\n        Link\n    }\n\n    public\
+  \ enum ButtonSize\n    {\n        Large,\n        Small,\n        ExtraSmall,\n\
+  \        Normal\n    }\n}\n```\n\n```\npublic static MvcHtmlString Button(string\
+  \ caption, Enums.ButtonStyle style, Enums.ButtonSize size)\n{\n    if (size != Enums.ButtonSize.Normal)\n\
+  \    {\n        return new MvcHtmlString(string.Format(\"<button type=\\\"button\\\
+  \" class=\\\"btn btn-{0} btn-{1}\\\">{2}</button>\", style.ToString().ToLower(),\
+  \ ToBootstrapSize(size), caption));\n    }\n```\n\n```\n}\nreturn new MvcHtmlString(string.Format(\"\
+  <button type=\\\"button\\\" class=\\\"btn btn-{0}\\\">{1}</button>\", style.ToString().ToLower(),\
+  \ caption));\n}\n```\n\n- 6. 最后，添加另一个名为 ToBootstrapSize 的方法：\n\n```\nprivate static\
+  \ string ToBootstrapSize(Enums.ButtonSize size)\n{\n    string bootstrapSize = string.Empty;\n\
+  \    switch (size)\n    {\n        case Enums.ButtonSize.Large:\n            bootstrapSize\
+  \ = \"lg\";\n            break;\n\n        case Enums.ButtonSize.Small:\n      \
+  \      bootstrapSize = \"sm\";\n            break;\n\n        case Enums.ButtonSize.ExtraSmall:\n\
+  \            bootstrapSize = \"xs\";\n            break;\n    }\n    return bootstrapSize;\n\
+  }\n```\n\n我们之前创建的 Button 方法接受三个参数以设置按钮的 caption、大小和样式。我们使用在 Enums.cs 文件中声明的枚举值来列出按钮可用的大小和样式——这使开发者无需记住每个\
+  \ Bootstrap 类名。\n\nButton 方法返回一个 MvcHtmlString 对象，该对象在 .NET 4 中引入。MvcHtmlString\
+  \ 对象表示一个 HTML 编码的字符串，无需再次编码。如果我们仅返回一个普通字符串对象，实际的 HTML 将在视图中呈现，而不是按钮。\n\nToBootstrapSize\
+  \ 方法基本上将 ButtonSize 值转换为表示按钮大小的有效 Bootstrap 类名。结果在浏览器中看起来类似于以下屏幕截图：\n\n![](img/371b9a67300a03b7b335eb8a6fe55d94_109_0.png)\n\
+  \n\n\n\n\n## 在视图中使用静态方法助手\n\n为了使用我们之前创建的静态方法助手，请打开你打算使用它的视图，并向其中添加以下 Razor 标记：\n\
+  \n```csharp\n@ButtonHelper.Button(\"My Button\", Enums.ButtonStyle.Warning, Enums.ButtonSize.Normal)\n\
+  ```\n\n为了使用该助手，你需要在视图顶部添加对其命名空间的引用，方法是添加以下 using 语句：\n\n```csharp\n@using Northwind.Web.Helpers\n\
+  ```\n\n## 使用扩展方法创建助手\n\n如果我们希望助手的行为方式类似于 ASP.NET MVC 内置的 HTML 助手，就需要创建一个扩展方法。扩展方法是一种用于向现有类添加新方法的技术。\n\
+  \n> 扩展方法是一种非常强大且直观的方法，可以为现有类添加额外功能，并在很多方面为你提供帮助。你可以在 MSDN 上阅读更多关于扩展方法的内容，网址为 http://bit.ly/ExtMethods。\n\
+  \n我们将通过完成以下步骤，为 HtmlHelper 类（由视图的 HTML 属性表示）创建一个扩展方法：\n\n1. 首先，在项目根目录的 `Helpers`\
+  \ 文件夹中添加一个名为 `ButtonExtensions.cs` 的新类文件。\n2. 将类类型更改为 `static`。扩展方法需要在静态类中声明。\n\
+  3. 向类中添加一个名为 `BootstrapButton` 的新方法。方法的第一个参数指明该扩展所扩展的类，并且必须以 `this` 关键字作为前缀。\n4.\
+  \ 其余参数将用于指定按钮的标题、样式和大小。该方法的代码如下：\n\n```csharp\npublic static MvcHtmlString BootstrapButton(this\
+  \ HtmlHelper helper, string caption, Enums.ButtonStyle style, Enums.ButtonSize size)\n\
+  {\n    if (size != Enums.ButtonSize.Normal)\n    {\n        return new MvcHtmlString(string.Format(\"\
+  <button type=\\\"button\\\" class=\\\"btn btn-{0} btn-{1}\\\">{2}</button>\", style.ToString().ToLower(),\
+  \ ToBootstrapSize(size), caption));\n    }\n    return new MvcHtmlString(string.Format(\"\
+  <button type=\\\"button\\\" class=\\\"btn btn-{0}\\\">{1}</button>\", style.ToString().ToLower(),\
+  \ caption));\n}\n```\n\n`BootstrapButton` 方法与我们之前创建的 `ButtonHelper` 类中的 `Button`\
+  \ 方法相同，只不过它是 `HtmlHelper` 对象的扩展方法。\n\n## 在视图中使用扩展方法助手\n\n由于 `BootstrapButton` 方法是一个扩展方法，使用它时需要打开视图并向其中添加以下标记：\n\
+  \n```csharp\n@Html.BootstrapButton(\"My Button\", Enums.ButtonStyle.Info, Enums.ButtonSize.Normal)\n\
+  ```\n\n请注意，我们使用标准的 HTML 助手来调用 `BootstrapButton` 方法。\n\n## 创建流畅的 HTML 助手\n\n流畅接口是软件开发中使用的一种技术，用于实现面向对象的\
+  \ API，从而提供更易读的代码，并且通常通过方法链来实现。\n\n> “流畅接口”一词最初由 Eric Evans 和 Martin Fowler 使用。如果你想了解更多关于流畅接口的信息，可以阅读\
+  \ Martin Fowler 的博客文章，网址为 http://bit.ly/FluentInterfaces。\n\n我们将创建一个 HTML 助手，帮助我们仅用一行代码渲染\
+  \ Bootstrap 警报。该助手将采用流畅接口的方式，这意味着我们可以使用下面一行代码渲染一个可关闭的警告警报框：\n\n```csharp\n@Html.Alert(\"\
+  This is a warning\").Warning().Dismissible()\n```\n\n要创建流畅的 HTML 助手，请完成以下步骤：\n\n\
+  1. 在项目中的 `Helpers` 文件夹内创建一个名为 `Alerts` 的新子文件夹。\n2. 向 `Alerts` 文件夹中添加一个名为 `IAlertFluent`\
+  \ 的新接口。该接口应实现 `IHtmlString` 接口。\n3. 向接口添加一个名为 `Dismissible` 的 `IAlertFluent` 属性。`IAlertFluent`\
+  \ 接口的代码应如下所示：\n\n   ```csharp\n   public interface IAlertFluent : IHtmlString\n\
+  \   {\n       IAlertFluent Dismissible(bool canDismiss = true);\n   }\n   ```\n\n\
+  4. 接下来，向 `Alerts` 文件夹中添加一个名为 `IAlert` 的新接口，并添加四个名为 `Danger`、`Info`、`Success` 和 `Warning`\
+  \ 的 `IAlertFluent` 属性。这四个属性将用于设置 `Alert` 样式，如下所示：\n\n   ```csharp\n   public interface\
+  \ IAlert : IAlertFluent\n   {\n       IAlertFluent Danger();\n       IAlertFluent\
+  \ Info();\n       IAlertFluent Success();\n       IAlertFluent Warning();\n   }\n\
+  \   ```\n\n5. 接下来，我们需要添加一个实现 `IAlert` 接口的类。向 `Alerts` 文件夹中添加一个名为 `Alert.cs` 的新类。\n\
+  6. 在我们实现 `Alert` 类上的方法之前，我们需要创建一个实现 `IAlertFluent` 接口的类。现在，向 `Alerts` 文件夹中添加一个名为\
+  \ `AlertFluent.cs` 的新类。\n7. `IAlertFluent` 接口只指定了一个方法，因此我们将在 `AlertFluent` 类中实现它，并创建一个接受\
+  \ `Alert` 对象作为参数的构造函数，如下所示：\n\n   ```csharp\n   public class AlertFluent : IAlertFluent\n\
+  \   {\n       private readonly Alert _parent;\n\n       public AlertFluent(Alert\
+  \ parent)\n       {\n           _parent = parent;\n       }\n\n       public IAlertFluent\
+  \ Dismissible(bool canDismiss = true)\n       {\n           return _parent.Dismissible(canDismiss);\n\
+  \       }\n\n       public string ToHtmlString()\n       {\n           return _parent.ToHtmlString();\n\
+  \       }\n   }\n   ```\n\n8. 打开 `Enum.cs` 文件，并添加一个名为 `AlertStyle` 的新枚举：\n\n   ```csharp\n\
+  \   public enum AlertStyle\n   {\n       Danger,\n       Info,\n       Success,\n\
+  \       Warning,\n   }\n   ```\n\n9. 打开 `Alert.cs` 文件，并添加一个名为 `_style` 的 `AlertStyle`\
+  \ 枚举局部字段、一个名为 `_dismissible` 的布尔字段，以及一个名为 `_message` 的字符串。\n\n10. 接下来，实现 `IAlert`\
+  \ 接口指定的每个方法。每个方法都将设置 `_style` 属性，并返回一个 `AlertFluent` 对象的新实例。对 `Alert` 类的引用作为参数传递给\
+  \ `AlertFluent` 构造函数。每个方法的代码如下所示：\n\n    ```csharp\n    public IAlertFluent Danger()\n\
+  \    {\n        _style = Enums.AlertStyle.Danger;\n        return new AlertFluent(this);\n\
+  \    }\n\n    public IAlertFluent Info()\n    {\n        _style = Enums.AlertStyle.Info;\n\
+  \        return new AlertFluent(this);\n    }\n\n    public IAlertFluent Success()\n\
+  \    {\n        _style = Enums.AlertStyle.Success;\n        return new AlertFluent(this);\n\
+  \    }\n\n    public IAlertFluent Warning()\n    {\n        _style = Enums.AlertStyle.Warning;\n\
+  \        return new AlertFluent(this);\n    }\n    ```\n\n11. `Dismissible` 方法的工作方式类似；它设置局部\
+  \ `_dismissible` 字段，并返回一个 `AlertFluent` 对象的新实例：\n\n    ```csharp\n    public IAlertFluent\
+  \ Dismissible(bool canDismiss = true)\n    {\n        this._dismissible = canDismiss;\n\
+  \        return new AlertFluent(this);\n    }\n    ```\n\n12. 最后，我们需要实现 `ToHtmlString`\
+  \ 属性。该属性在 `IHtmlString` 接口中指定。我们将使用 `TagBuilder` 对象为 Bootstrap Alert 类构造 HTML 标记。`ToHtmlString`\
+  \ 方法的代码如下：\n\n    ```csharp\n    public string ToHtmlString()\n    {\n        var\
+  \ alertDiv = new TagBuilder(\"div\");\n        alertDiv.AddCssClass(\"alert\");\n\
+  \        alertDiv.AddCssClass(\"alert-\" + _style.ToString().ToLower());\n     \
+  \   alertDiv.InnerHtml = _message;\n\n        if (_dismissible)\n        {\n   \
+  \         alertDiv.AddCssClass(\"alert-dismissible\");\n            alertDiv.InnerHtml\
+  \ += AddCloseButton();\n        }\n\n        return alertDiv.ToString();\n    }\n\
+  \    ```\n\n13. 上述代码创建了一个新的 `<div>` 元素，并向其添加必要的 Bootstrap Alert 类。然后，它检查警报是否应可关闭，如果是，则添加相应的类，并通过调用\
+  \ `AddCloseButton` 方法生成 HTML 以显示关闭按钮：\n\n    ```csharp\n    private static TagBuilder\
+  \ AddCloseButton()\n    {\n        var closeButton = new TagBuilder(\"button\");\n\
+  \        closeButton.AddCssClass(\"close\");\n    ```\n\n\n\n```\ncloseButton.Attributes.Add(\"\
+  data-dismiss\", \"alert\");\ncloseButton.InnerHtml = \"&times;\";\nreturn closeButton;\n\
+  }\n```\n\n14. AddCloseButton 方法还使用 TagBuilder 对象来构建必要的 HTML，以便在 Bootstrap Alert\
+  \ 类内部渲染一个关闭按钮。\n\n## 在视图中使用流畅的 HTML 帮助器\n\n为了在视图中使用流畅的 HTML 帮助器，我们需要向 Alerts 文件夹中添加最后一个名为\
+  \ AlertHelper.cs 的文件。这个类将向 HtmlHelper 对象添加一个扩展方法，以便渲染 Bootstrap Alert 类。向类中添加一个名为\
+  \ Alert 的新方法。此方法应返回一个 Alert 对象，并且它将接受两个参数。第一个参数必须以 this 关键字开头，用于指示扩展将扩展哪个类。第二个参数将是在\
+  \ Bootstrap Alert 类内部显示的实际文本。\n\nAlert 类的代码如下：\n\n```\npublic static class AlertHelper\n\
+  {\n    public static Alert Alert(this HtmlHelper html,string message)\n    {\n \
+  \       return new Alert(message);\n    }\n}\n```\n\n打开一个视图，并添加以下标记，以渲染一个可关闭的 Bootstrap\
+  \ 警告框，该警告框将显示危险样式的消息：\n\n```\n@Html.Alert(\"Core meltdown imminent\").Danger().Dismissible()\n\
+  ```\n\n该警告框在浏览器中的显示效果类似于以下截图：\n\n![](img/371b9a67300a03b7b335eb8a6fe55d94_115_0.png)\n\
+  \n## 创建自闭合帮助器\n\n自闭合帮助器是可以包含 HTML 和 Razor 标记的帮助器。内置的 @Html.BeginForm() 帮助器就是这类帮助器的一个示例。\n\
+  \n为了创建此类 HTML 帮助器，我们需要创建一个实现 IDisposable 接口的帮助器类。利用 IDisposable 接口，我们可以在对象被释放时编写元素的结束标签。\n\
+  \nBootstrap Panel 组件是此类帮助器的绝佳候选。要创建该帮助器，我们需要完成以下步骤：\n\n- 1\\. 在项目的 Helpers 文件夹中创建一个名为\
+  \ Panels 的新子文件夹。\n- 2\\. 打开 Enums.cs 文件，并添加一个名为 PanelStyle 的新项：\n- 3\\. 向 Panels\
+  \ 文件夹添加一个名为 Panel.cs 的新类文件。\n- 4\\. 向类中添加一个名为 _writer 的私有只读字段。\n- 5\\. 为 Panel 类创建一个构造函数，该构造函数接受三个参数。第一个参数是对\
+  \ HtmlHelper 对象的引用，第二个参数指定面板的标题，第三个参数指示面板的样式。\n- 6\\. 向 Panel 类的构造函数添加以下代码：\n\n\
+  ```\npublic enum PanelStyle\n{\n    Default,\n    Primary,\n    Success,\n    Info,\n\
+  \    Warning,\n    Danger\n}\n```\n\n```\npublic Panel(HtmlHelper helper, string\
+  \ title, Enums.PanelStyle style = Enums.PanelStyle.Default)\n{\n    _writer = helper.ViewContext.Writer;\n\
+  \n    var panelDiv = new TagBuilder(\"div\");\n    panelDiv.AddCssClass(\"panel-\"\
+  \ + style.ToString().ToLower());\n    panelDiv.AddCssClass(\"panel\");\n\n    var\
+  \ panelHeadingDiv = new TagBuilder(\"div\");\n    panelHeadingDiv.AddCssClass(\"\
+  panel-heading\");\n```\n\n```\nvar heading3Div = new TagBuilder(\"h3\");\nheading3Div.AddCssClass(\"\
+  panel-title\");\nheading3Div.SetInnerText(title);\n\nvar panelBodyDiv = new TagBuilder(\"\
+  div\");\npanelBodyDiv.AddCssClass(\"panel-body\");\n\npanelHeadingDiv.InnerHtml\
+  \ = heading3Div.ToString();\n\nstring html = string.Format(\"{0}{1}{2}\", panelDiv.ToString(TagRenderMode.StartTag),\
+  \ panelHeadingDiv, panelBodyDiv.ToString(TagRenderMode.StartTag));\n_writer.Write(html);\n\
+  }\n```\n\n在这段代码中，我们将 _writer 字段设置为 HtmlHelper 对象的 ViewContext 属性的 Writer 属性。通过使用此属性，我们将能够向当前视图写入\
+  \ HTML。\n\n然后，我们使用 TagBuilder 对象构建面板元素的 HTML 标记，最后将结果发送到 _writer 对象以进行输出。请注意，我们使用了\
+  \ TagBuilder 的重载 ToString 方法，以指定它只应生成 `<div>` 元素的开始标签。\n\n两个类名为 panel 和 panel-body\
+  \ 的 `<div>` 元素将在 Panel 类的 Dispose 方法中关闭，该方法的实现方式如下：\n\n```\npublic void Dispose()\n\
+  {\n    _writer.Write(\"</div></div>\");\n}\n```\n\n## 在视图中使用自闭合帮助器\n\n为了在我们创建的视图中使用该帮助器，我们将使用\
+  \ C# 的 using 关键字。using 关键字限制了对象的作用域，因此与 IDisposable 接口配合得很好。实际上，一旦帮助器完成其 HTML 输出的渲染，Dispose\
+  \ 方法将被自动调用，从而关闭最后两个 `<div>` 元素标签。\n\n要在视图中使用该帮助器，请使用以下标记：\n\n```\n@using (Html.Panel(\"\
+  Title\", Enums.PanelStyle.Success))\n{\n    <p>Hello World</p>\n    <p>Lorem ipsum\
+  \ dolor sit amet, consectetur adipiscing elit.</p>\n}\n```\n\n帮助器将生成所需的 HTML，以在浏览器中显示以下面板：\n\
+  \n![](img/371b9a67300a03b7b335eb8a6fe55d94_118_0.png)\n\n## 总结\n\n在本章中，我们探讨了如何使用\
+  \ HTML 帮助器减少视图中的标记数量。我们还了解了如何编写帮助器，使不熟悉 Bootstrap 框架的开发人员能够使用帮助器为其视图添加样式化组件。\n\n\
+  在下一章中，我们将深入探讨如何使用 Bootstrap 样式和布局生成正确样式的脚手架视图。\n"
+- "# 创建 T4 模板以生成 Bootstrap 视图脚手架\n\nVisual Studio 2013 已经包含用于 ASP.NET MVC 和 Web API\
+  \ 项目的代码生成器，使用这些内置的脚手架模板可以大幅减少你在创建标准视图和控制器操作上花费的时间。在 Visual Studio 2013 中向 ASP.NET\
+  \ MVC 项目添加标准控制器时，你已经在使用脚手架，这一点可以通过用于添加新控制器的对话框标题为 **添加脚手架** 来体现：\n\n![](img/371b9a67300a03b7b335eb8a6fe55d94_120_0.png)\n\
+  \n## T4 模板\n\nT4 代表 Text Template Transformation Toolkit（文本模板转换工具包），是微软基于模板的文本生成框架。T4\
+  \ 是控制逻辑和文本块的组合，可以生成任何类型的文本文件，包括 C# 或 VB 源文件。\n\nT4 代码生成器内置于 Visual Studio 中，用于生成内置的\
+  \ ASP.NET MVC 模板，包括标准的 MVC 和 Web API 控制器模板。\n\n> Oleg Sych 撰写了许多关于如何使用 T4 模板以及如何在您自己的开发项目中使用它获得最佳结果的非常有价值的博客文章。要了解更多信息，您可以访问他的博客\
+  \ `http://bit.ly/OlegSychT4`。\n\n不幸的是，Visual Studio 在编辑 T4 模板时不提供语法高亮或 IntelliSense\
+  \ 支持，但有可用的免费工具可以将这些功能添加到 Visual Studio 中。\n\n## T4 工具\n\n由于 Visual Studio 默认不提供\
+  \ T4 IntelliSense，我们需要安装第三方扩展来为我们启用此功能。幸运的是，有两个免费的替代方案可用。如下所示：\n\n- 用于 Visual Studio\
+  \ 的 Devart T4 编辑器（`http://bit.ly/DevArtT4`）\n- tangible T4 编辑器（`http://bit.ly/TangibleT4`）\n\
+  \n这两个扩展都提供类似的功能，但对于本书中的 T4 示例，我们将使用 tangible T4 编辑器。\n\n另一个对于简化 T4 模板创建至关重要的免费扩展是用于\
+  \ Visual Studio 的 **SideWaffle** 扩展。SideWaffle 将向 Visual Studio 添加许多极其有用的项模板，我们将使用这些模板来构建自己的\
+  \ ASP.NET MVC 脚手架视图。您可以从 `http://www.sidewaffle.com/` 下载 SideWaffle。\n\n> SideWaffle\
+  \ 不仅为 T4 提供项模板，还提供一系列项目和项模板，以及许多非常有用的代码片段。它是 GitHub 上一个积极维护的开源项目，对于任何 .NET 开发人员来说都是不可或缺的工具。\n\
+  \n## T4 语法\n\nT4 模板有一种非常特殊的语法，乍一看可能令人生畏，但一旦习惯了，它就相对容易理解和使用。T4 使用三个不同的标签来表示代码块。\n\
+  \n\n\n\n\n第一种代码块是 `<#= #>`，用于执行标签内的代码并返回文本结果。例如，在下面的标记中，代码将返回 T4 模板中 `ViewName`\
+  \ 变量的值：\n\n```\n<#= ViewName #>\n```\n\n`<# #>` 代码块执行标签内的代码并返回 void 结果。例如，下面的标记遍历集合中的每一项，并生成该项的\
+  \ `Total` 属性，后跟一个回车符：\n\n```\n<#foreach(var item in Orders) { #>\n    <#= item.Total\
+  \ + Environment.NewLine #>\n<# } #>\n```\n\n`<#+ #>` 代码块用于定义可重复使用的方法，可在 T4 模板内部调用。例如，下面的标记定义了一个名为\
+  \ `TypeName` 的方法，并返回对象的完整名称：\n\n```\n<#+ public string TypeName(object obj) { return\
+  \ obj.GetType().FullName; } #>\n```\n\n要使用该方法，只需在模板文件中调用它，如下列代码所示：\n\n```\n<#= TypeName(myObj)\
+  \ #>\n```\n\n## 自定义为控制器生成的代码\n\n在向 ASP.NET MVC 项目添加新的控制器类时，会显示“添加新搭建基架的项目”对话框，你可以从三种不同类型的控制器中选择要添加的类型：\n\
+  \n- MVC 5 控制器 - 空\n- 具有读写操作的 MVC 5 控制器\n- 使用 Entity Framework 的带视图的 MVC 5 控制器\n\n\
+  这些项都会生成样板代码，你可以稍后自定义。但是，假设我们所有项目的控制器类都需要一个接受参数的构造函数。使用标准项时，我们将不得不手动为项目中的每个控制器添加构造函数。\n\
+  \n幸运的是，我们可以覆盖为控制器生成的输出，因为本质上它们不过是 T4 模板。\n\n要自定义“MVC 5 控制器 - 空”项的输出，请执行以下步骤：\n\n\
+  1. 在 Visual Studio 中右键单击 ASP.NET MVC 项目的名称，然后导航到“添加” | “新项”。\n\n2. 导航到 Visual C#\
+  \ | Web | SideWaffle，选择“ASP.NET Scaffolding T4 files”项模板，然后单击“添加”：\n\n    ![](img/371b9a67300a03b7b335eb8a6fe55d94_123_0.png)\n\
+  \n## 创建 T4 模板以搭建 Bootstrap 视图\n\n3. 项模板会在项目中添加一个名为 `CodeTemplates` 的文件夹。在此文件夹中，它将创建\
+  \ 13 个子文件夹，其中包含 `.t4` 文件，如下面的屏幕截图所示：\n\n    ![](img/371b9a67300a03b7b335eb8a6fe55d94_124_0.png)\n\
+  \n4. 双击 `MvcControllerEmpty` 文件夹中的 `Controller.cs.t4` 文件。\n\n5. 空的 MVC 5 控制器的 T4\
+  \ 模板将在 Visual Studio 中打开。你会注意到它包含 C# 代码和 T4 标记的组合。\n\n6. 保持模板中的标记不变，但在 `Index` 方法上方添加以下代码：\n\
+  \n    ```\n    private readonly ApplicationDbContext _context;\n    private readonly\
+  \ ICurrentUser _currentUser;\n\n    public <#= ControllerName #>(ApplicationDbContext\
+  \ context,\n    ICurrentUser currentUser)\n    {\n        _context = context;\n\
+  \        _currentUser = currentUser;\n    }\n    ```\n\n```\nprivate readonly ICurrentUser\
+  \ _currentUser;\n\npublic SuppliersController(ApplicationDbContext context, ICurrentUser\
+  \ currentUser)\n{\n    _context = context;\n    _currentUser = currentUser;\n}\n\
+  \n//\n// GET: /Suppliers/\npublic ActionResult Index()\n{\n    return View();\n\
+  }\n}\n```\n\n## 自定义为视图生成的代码\n\n与控制器一样，视图的脚手架也可以自定义。在本书中使用的示例项目中，我们的视图遵循一致的外观。每个页面都有一个页头，后跟一个面包屑组件，以向用户指示当前正在查看哪个页面。\n\
+  \n在向网站添加新页面时，我们始终希望遵循这种设计，而实施这种设计的一种方法是覆盖视图的默认脚手架或添加我们自己的脚手架。我们将创建一个 T4 模板，该模板将生成一个标准的垂直\
+  \ Bootstrap 表单，其中已包含页头和面包屑组件。为此，请执行以下步骤：\n\n1. 打开 `CodeTemplates` 文件夹中的 `MvcView`\
+  \ 文件夹。\n\n2. 右键单击 `Create.cs.t4` 文件，然后选择“复制”。\n\n3. 右键单击 `MvcView` 文件夹，然后选择“粘贴”。\n\
+  \n4. 该文件将复制为 `Create.cs - Copy.t4`；将其重命名为 `VerticalForm-Bootstrap.cs.t4`。\n\n5.\
+  \ 双击 `VerticalForm-Bootstrap.cs.t4` 将其打开。\n\n6. 在 `@using (Html.BeginForm())` 行之前添加以下\
+  \ HTML 标记：\n\n    ```\n    <div class=\"container\">\n        <div class=\"page-header\"\
+  >\n            <h1><#= ViewDataTypeShortName #> </h1>\n        </div>\n    <ol class=\"\
+  breadcrumb\">\n        <li>@Html.ActionLink(\"Home\", \"Index\", \"Home\")</li>\n\
+  \        <li class=\"active\"><#= ViewDataTypeShortName #></li>\n    </ol>\n\n \
+  \   <div class=\"row clearfix\">\n        <div class=\"col-md-12\">\n    ```\n\n\
+  7. 前面的标记将在表单上方呈现页头和面包屑组件。表单将位于 Bootstrap 行的 `<div>` 元素内的网格列中。请注意，我们使用了 `ViewDataTypeShortName`\
+  \ 变量，该变量包含用作视图模型对象的短名称。\n\n8. 接下来，删除 `<div class=\"form-horizontal\">` 行以及 `<div>`\
+  \ 下方行中的 `<h4>` 和 `<hr>` 元素。\n\n9. 从模板中删除所有 `<div class=\"form-group\">` 和 `<div\
+  \ class=\"col-md-10\">` 元素。确保同时删除它们所有对应的闭合 `</div>` 标签。\n\n10. 从所有 `@Html.LabelFor`\
+  \ 方法中删除 `new { @class = \"control-label col-md-2\" }` HTML 属性设置。\n\n11. 最后，我们需要关闭所有添加到模板顶部的\
+  \ `<div>` 元素。在最后一个 `@Html.ActionLink` 行之后添加三个闭合 `</div>` 标签。\n\n模板标记就绪后，我们可以通过完成以下步骤，基于此创建一个新的搭建视图：\n\
+  \n1. 打开一个控制器类。在此示例中，我们将使用 `SuppliersController.cs` 文件。\n\n2. 右键单击 Index 方法内部，然后选择“添加视图...”：\n\
+  \n    ![](img/371b9a67300a03b7b335eb8a6fe55d94_127_0.png)\n\n3. 这将显示 **添加视图** 对话框。\n\
+  \n4. 输入视图名称，然后从 **模板** 组合框的模板列表中选择 **VerticalForm-Bootstrap** 模板。你创建的任何自定义 T4 模板都将自动列在模板列表中。\n\
+  \n5. 选择你的模型类。在此示例中，我们将使用 **Supplier** 模型。\n\n6. **数据上下文类** 字段应自动选中；如果没有，请从数据上下文类列表中选择它。单击\
+  \ **添加**：\n\n    ![](img/371b9a67300a03b7b335eb8a6fe55d94_128_0.png)\n\n7. Visual\
+  \ Studio 将使用我们的自定义模板来搭建视图，该视图将包含我们之前添加的所有标记。\n\n8. 结果应是一个垂直或标准的 Bootstrap 视图，如下面的屏幕截图所示：\n\
+  \n    ![](img/371b9a67300a03b7b335eb8a6fe55d94_129_0.png)\n\n## 创建自定义脚手架扩展\n\n如果你需要更精细地控制视图或控制器代码的搭建方式，则需要为\
+  \ Visual Studio 创建新的脚手架扩展。这种可扩展性使开发人员能够将自己的脚手架项添加到“添加脚手架”对话框中，如下面的屏幕截图所示：\n\n![](img/371b9a67300a03b7b335eb8a6fe55d94_130_0.png)\n\
+  \n要创建这样的自定义脚手架，我们将创建一个新的基本脚手架项目。此项目模板由 SideWaffle 扩展安装，并添加了创建自定义脚手架所需的所有文件。\n\n\
+  执行以下步骤来创建你自己的自定义脚手架项目：\n\n1. 在 Visual Studio 中创建一个新项目。\n\n2. 导航到 Extensibility |\
+  \ SideWaffle，选择“Basic Scaffolder”项目模板，如下面的屏幕截图所示：\n\n    ![](img/371b9a67300a03b7b335eb8a6fe55d94_131_0.png)\n\
+  \n3. 项目模板将创建两个新项目：BootstrapBasicForm 和 BootstrapBasicFormExtension。一个包含扩展的代码，另一个包含项目的\
+  \ .vsixmanifest 文件：\n\n    ![](img/371b9a67300a03b7b335eb8a6fe55d94_131_1.png)\n\
+  \n\n\n\n- 4. 打开 **BootstrapBasicFormExtension** 项目，并双击 `source.extension.vsixmanifest`\
+  \ 文件。\n\n- 5. Visual Studio 将在视觉编辑器中打开该文件，你可以在其中设置扩展的一系列属性。在本示例中，保持所有设置不变。\n\n-\
+  \ 6. 在 **BootstrapBasicForm** 项目中打开 `CustomCodeGeneratorFactory.cs` 文件。\n\n- 7.\
+  \ 在该类的顶部，声明了一个名为 `_info` 的新 `CodeGeneratorInformation` 对象。将其更改为以下代码：\n\n```csharp\n\
+  private static CodeGeneratorInformation _info = new CodeGeneratorInformation(\n\
+  \    displayName: \"Bootstrap Basic Form\",\n    description: \"Basic vertical-styled\
+  \ Bootstrap Form\",\n    author: \"Pieter\",\n    version: new Version(1, 0, 0,\
+  \ 0),\n    id: typeof(CustomCodeGenerator).Name,\n    icon: ToImageSource(Resources._TemplateIconSample),\n\
+  \    gestures: new[] { \"View\" },\n    categories: new[] { Categories.MvcView,\
+  \ \"Bootstrap\" });\n```\n\n- 8. `gestures` 参数用于指示自定义脚手架项何时显示。如果该设置设为 `View`，则只有当用户在\
+  \ Visual Studio 中添加新视图时，才会显示我们的自定义模板。\n\n- 9. `categories` 参数用于设置模板在 **添加脚手架** 对话框中的显示位置。类别显示在\
+  \ **添加脚手架** 对话框的左侧。你可以添加自己的类别，或使用内置类别。\n\n- 10. 这就是我们在 `CustomCodeGeneratorFactory`\
+  \ 类中需要做的全部工作。创建一个名为 `ServiceProviderExtensions.cs` 的新类，并向其中添加以下代码：\n\n```csharp\n\
+  internal static class ServiceProviderExtensions\n{\n    public static TService GetService<TService>(this\
+  \ IServiceProvider provider) where TService : class\n    {\n        if (provider\
+  \ == null)\n        {\n            throw new ArgumentNullException(\"provider\"\
+  );\n        }\n        return (TService)provider.GetService(typeof(TService));\n\
+  \    }\n\n    public static bool IsServiceAvailable<TService>(this IServiceProvider\
+  \ provider) where TService : class\n    {\n        if (provider == null)\n     \
+  \   {\n            throw new ArgumentNullException(\"provider\");\n        }\n \
+  \       return GetService<TService>(provider) != null;\n    }\n}\n```\n\n- 11. 保存并关闭该文件，然后打开\
+  \ CustomViewModel.cs 文件。该文件位于 UI 文件夹内，用于在 UI 之间传递数据，用户将在此处选择设置，我们的代码也会使用这些数据。\n\n\
+  - 12. 向其中添加一个名为 ProjectDbContexts 的新属性。该属性将返回项目中所有有效的 DbContext 对象。此属性的代码如下：\n\n\
+  ```csharp\npublic IEnumerable<ModelType> ProjectDbContexts\n{\n    get\n    {\n\
+  \        ICodeTypeService codeTypeService =\n            (ICodeTypeService)Context\n\
+  \                .ServiceProvider.GetService(typeof(ICodeTypeService));\n\n    \
+  \    return codeTypeService\n            .GetAllCodeTypes(Context.ActiveProject)\n\
+  \            .Where(codeType =>\n                codeType.IsValidDbContextType())\n\
+  \            .Select(codeType => new ModelType(codeType));\n    }\n}\n```\n\n- 13.\
+  \ 接下来，向该类添加三个属性：Title、ControllerName 和 ViewName：\n\n```csharp\npublic string Title\
+  \ { get; set; }\npublic string ControllerName { get; set; }\npublic string ViewName\
+  \ { get; set; }\n```\n\n- 14. 最后，添加一个名为 SelectedDbContext 的 ModelType 属性：\n\n```csharp\n\
+  public ModelType SelectedDbContext { get; set; }\n```\n\n- 15. 保存并关闭文件。\n\n## 创建\
+  \ T4 模板以搭建 Bootstrap 视图\n\n- 16. 双击 `SelectModelWindow.xaml` 文件以打开 XAML 窗体设计器。\n\
+  \n- 17. 此窗体将用于提示用户选择要用于搭建视图的模型和 `DbContext`，并输入页面标题、视图名称和控制器名称。\n\n- 18. 该窗体的 XAML\
+  \ 如下所示：\n\n```xml\n<Window x:Class=\"BasicScaffolder1.UI.SelectModelWindow\"\n \
+  \       xmlns=\"http://schemas.microsoft.com/winfx/2006/xaml/presentation\"\n  \
+  \      xmlns:x=\"http://schemas.microsoft.com/winfx/2006/xaml\"\n        xmlns:mc=\"\
+  http://schemas.openxmlformats.org/markup-compatibility/2006\"\n        xmlns:d=\"\
+  http://schemas.microsoft.com/expression/blend/2008\"\n        mc:Ignorable=\"d\"\
+  \ Height=\"233\" Width=\"511\" Title=\"Model Types\">\n    <Grid>\n        <Label\
+  \ Content=\"Choose a Model Type:\"\n               HorizontalAlignment=\"Left\"\
+  \ Margin=\"36,15,0,0\"\n               VerticalAlignment=\"Top\"/>\n        <ComboBox\
+  \ HorizontalAlignment=\"Left\"\n                  Margin=\"169,19,0,0\"\n      \
+  \            VerticalAlignment=\"Top\"\n                  ItemsSource=\"{Binding\
+  \ ModelTypes}\"\n                  DisplayMemberPath=\"DisplayName\"\n         \
+  \         SelectedItem=\"{Binding SelectedModelType,\n                  Mode=OneWayToSource}\"\
+  \n                  Width=\"311\" TabIndex=\"1\"/>\n        <Button Content=\"Add\"\
+  \ IsDefault=\"True\"\n                HorizontalAlignment=\"Left\" Margin=\"317,171,0,0\"\
+  \n                VerticalAlignment=\"Top\" Width=\"75\"\n                RenderTransformOrigin=\"\
+  -0.187,0.75\"\n                Click=\"Button_Click\" TabIndex=\"5\"/>\n\n     \
+  \   <Button Content=\"Cancel\" IsCancel=\"True\"\n                HorizontalAlignment=\"\
+  Left\" VerticalAlignment=\"Top\"\n                Width=\"75\" Margin=\"405,171,0,0\"\
+  \ TabIndex=\"6\"/>\n\n        <TextBox x:Name=\"ControllerNameTextbox\"\n      \
+  \           HorizontalAlignment=\"Left\" Height=\"23\"\n                 Margin=\"\
+  169,103,0,0\" TextWrapping=\"Wrap\"\n                 Text=\"{Binding ControllerName}\"\
+  \n                 VerticalAlignment=\"Top\" Width=\"311\" TabIndex=\"3\"/>\n\n\
+  \        <Label Content=\"View Name\"\n               HorizontalAlignment=\"Left\"\
+  \ Margin=\"36,75,0,0\"\n               VerticalAlignment=\"Top\"\n             \
+  \  RenderTransformOrigin=\"-0.342,0.269\" Width=\"98\"/>\n        <TextBox x:Name=\"\
+  TitleNameTextbox\"\n        HorizontalAlignment=\"Left\" Height=\"23\"\n       \
+  \ Margin=\"169,131,0,0\" TextWrapping=\"Wrap\"\n        VerticalAlignment=\"Top\"\
+  \ Width=\"311\" Text=\"{Binding Title}\" TabIndex=\"4\"/>\n\n        <Label Content=\"\
+  Controller Name\"\n        HorizontalAlignment=\"Left\" Margin=\"36,103,0,0\"\n\
+  \        VerticalAlignment=\"Top\"\n        RenderTransformOrigin=\"0.211,-0.154\"\
+  />\n\n        <TextBox x:Name=\"ViewNameTextbox\" Text=\"{Binding ViewName}\" HorizontalAlignment=\"\
+  Left\" Height=\"23\"\n        Margin=\"169,75,0,0\" TextWrapping=\"Wrap\"\n    \
+  \    VerticalAlignment=\"Top\" Width=\"311\" TabIndex=\"2\"/>\n\n        <Label\
+  \ Content=\"Title\" HorizontalAlignment=\"Left\"\n        Margin=\"36,131,0,0\"\
+  \ VerticalAlignment=\"Top\"/>\n\n        <ComboBox HorizontalAlignment=\"Left\"\n\
+  \        Margin=\"169,46,0,0\" VerticalAlignment=\"Top\"\n        Width=\"311\"\
+  \ ItemsSource=\"{Binding ProjectDBContexts}\" SelectedItem=\"{Binding SelectedDbContext,\
+  \ Mode=OneWayToSource}\"\n        DisplayMemberPath=\"DisplayName\"/>\n\n      \
+  \  <Label Content=\"DBContext\"\n        HorizontalAlignment=\"Left\" Margin=\"\
+  36,46,0,0\"\n        VerticalAlignment=\"Top\" Width=\"128\"/>\n\n    </Grid>\n\
+  </Window>\n```\n\n- 19. 前面的 XAML 标记会将窗体控件绑定到 CustomViewModel 类。窗体的最终设计应类似于以下屏幕截图：\n\
+  \n![](img/371b9a67300a03b7b335eb8a6fe55d94_135_0.png)\n\n- 20. 再次打开 CustomCodeGenerator.cs\
+  \ 文件，并将 GenerateCode 方法替换为以下代码：\n\n```csharp\npublic override void GenerateCode()\n\
+  {\n    var codeType = _viewModel.SelectedModelType.CodeType;\n    var title = _viewModel.Title;\n\
+  \    var controllerName = _viewModel.ControllerName;\n    var viewName = _viewModel.ViewName;\n\
+  \    IEntityFrameworkService efService =\n        Context.ServiceProvider.GetService<IEntityFrameworkService>();\n\
+  \    ModelMetadata efMetadata =\n        efService.AddRequiredEntity(Context, _viewModel.SelectedDbContext.TypeName,\
+  \ codeType.FullName);\n\n    var parameters = new Dictionary<string, object>()\n\
+  \    {\n        {\n            \"ModelType\", codeType\n        },\n        {\n\
+  \            \"ControllerName\", controllerName\n        },\n        {\n       \
+  \     \"ViewName\", viewName\n        },\n        {\n            \"Title\", title\n\
+  \        },\n        {\n            \"ModelMetadata\",efMetadata\n        }\n  \
+  \  };\n\n    ProjectItem folder = Context.ActiveProjectItem;\n    if (folder.Kind\
+  \ ==\n        EnvDTE.Constants.vsProjectItemKindPhysicalFolder)\n    {\n       \
+  \ var folderName = folder.Name;\n        var path = \"Views\\\\\" + folderName +\
+  \ \"\\\\\" + viewName;\n        AddFileFromTemplate(Context.ActiveProject, path,\n\
+  \            \"CustomTextTemplate\",\n```\n\n\n\n\n```\nparameters,\nskipIfExists:\
+  \ false);\n}\n}\n```\n\n+   21. 在前面的代码中，我们将用户在表单中捕获的值添加到 `parameters` 集合中。我们还通过使用\
+  \ `IEntityFrameworkService` 收集了所选对象的全部元数据。该服务期望其 `AddRequiredEntity` 方法的参数之一为上下文类型名称，因此我们将传入用户在表单上选择的\
+  \ `DbContext` 对象的名称。\n+   \n+   22. 然后我们将检查用户是否将生成的项目添加到文件夹中，并做出一个小的假设，即所选文件夹的父文件夹将是\
+  \ Views 文件夹。然后我们将调用 `AddFileFromTemplate` 方法。\n+   \n+   23. 在 UI 和视图模型就绪后，打开 `CustomTextTemplate.cs.t4`\
+  \ 文件。\n+   \n+   24. 模板文件的顶部部分指定了模板语言，在本例中为 C#，以及模板需要输出的扩展名。由于我们要生成一个视图，这应为 `.cshtml`。\n\
+  +   \n+   25. 我们还将在顶部声明将传递到模板的所有变量名。以下内容应添加到模板文件的顶部：\n\n```\n<#@ template language=\"\
+  C#\" #>\n<#@ output extension=\".cshtml\" #>\n<#@ assembly name=\"System.Core\"\
+  \ #>\n<#@ assembly name=\"EnvDTE\" #>\n<#@ include file=\"Imports.include.t4\" #>\n\
+  <#@ parameter name=\"ModelType\" type=\"EnvDTE.CodeType\" #>\n<#@ parameter name=\"\
+  Title\" type=\"System.String\" #>\n<#@ parameter name=\"ControllerName\" type=\"\
+  System.String\" #>\n<#@ parameter name=\"ViewName\" type=\"System.String\" #>\n\
+  <#@ parameter name=\"ModelMetadata\" type=\"Microsoft.AspNet.Scaffolding.Core.Metadata.ModelMetadata\"\
+  \ #>\n```\n\n+   26. 模板其余部分的 T4 标记如下：\n\n```\n@model <#= ModelType.Namespace.FullName\
+  \ #>.<#= ModelType.Name #>\n\n@{\n    ViewBag.Title = \"<#= Title #>\";\n}\n```\n\
+  \n## 创建 T4 模板以生成 Bootstrap 视图\n\n```\nLayout = \"~/Views/Shared/_Layout.cshtml\"\
+  ;\n}\n\n<div class=\"container\">\n    <div class=\"page-header\">\n        <h1><#=\
+  \ Title #></h1>\n    </div>\n\n    <ol class=\"breadcrumb\">\n        <li>@Html.ActionLink(\"\
+  Home\", \"Index\", \"Home\")</li>\n        <li class=\"active\"><#= Title #></li>\n\
+  \    </ol>\n\n    <div class=\"row clearfix\">\n        <div class=\"col-md-12\"\
+  >\n            @using (Html.BeginForm(\"<#= ViewName #>\", \"<#= ControllerName\
+  \ #>\", FormMethod.Post, new { role = \"form\" }))\n            {\n            \
+  \    @Html.AntiForgeryToken()\n                @Html.ValidationSummary(true)\n\n\
+  \                <#\n                    foreach (PropertyMetadata property in ModelMetadata.Properties)\n\
+  \                    {\n                    #>\n                        <div class=\"\
+  form-group\">\n                            @Html.LabelFor(model => model.<#= property.PropertyName\
+  \ #>)\n                        </div>\n                    <#\n                \
+  \    }\n                #>\n        </div>\n    </div>\n</div>\n```\n"
+- "# 将 Bootstrap HTML 模板转换为可用的 ASP.NET MVC 项目\n\n使用 Bootstrap 的主要好处之一是互联网上可用的资源种类繁多。Web\
+  \ 开发社区接受了 Bootstrap，你会发现大量有价值的模板、代码片段以及使用 Bootstrap 的建议。\n\n通过结合预设计的 Bootstrap 模板和\
+  \ ASP.NET MVC，你可以节省大量时间，而无需担心网站布局或设计。\n\n在本章中，我们将涵盖以下主题：\n\n+   - 为什么我们使用预建的 HTML\
+  \ 模板以及它们如何节省时间\n+   - 构建主布局\n+   - 添加特定的页面视图\n+   - 在视图中包含图表\n\n# 使用预建的 HTML 模板\n\
+  \n众所周知，大多数开发人员不一定是优秀的设计师。我们更喜欢在后端工作，构建性能卓越且智能的软件，有时我们倾向于把用户界面视为事后才考虑的事情。\n\n通过使用预设计的\
+  \ HTML Bootstrap 模板，我们可以为用户提供直观且设计精良的用户界面，该界面由专业设计师设计。如果设计基于 Bootstrap，开发人员已经熟悉大部分\
+  \ CSS 类名、组件和插件，无需重新学习任何东西。\n\nWeb 提供了各种免费和付费的 Bootstrap 模板。ThemeForest（www.themeforest.net）提供了令人眼花缭乱的各种付费网站样式和设计。\n\
+  \n在本章的示例中，我们将使用 Start Bootstrap（www.startbootstrap.com）设计的免费 SB Admin 2 模板。SB Admin\
+  \ 2 模板是一个使用 Bootstrap 3 的管理主题，非常适合后端管理或更复杂风格的 Web 应用程序。该主题如下图所示：\n\n![](img/371b9a67300a03b7b335eb8a6fe55d94_142_0.png)\n\
+  \n在我们使用该模板构建 ASP.NET MVC 网站之前，我们需要通过完成以下步骤下载源文件：\n\n+   1. 导航到 `http://startbootstrap.com/sb-admin-v2`\
+  \ 并单击 **Download** 按钮，以下载包含所有必要 HTML、CSS 和 JavaScript 文件的 zip 归档。\n+   2. 将文件提取到本地硬盘上的文件夹；你会注意到归档包含熟悉的\
+  \ Bootstrap 文件夹：\n+      - `css`\n+      - `font-awesome`\n+      - `fonts`\n+ \
+  \     - `js`\n+   3. 归档还包含许多 HTML 文件，展示了模板的各种页面和组件布局，如下图所示：\n\n![](img/371b9a67300a03b7b335eb8a6fe55d94_143_0.png)\n\
+  \n# 创建 ASP.NET MVC 项目\n\n要创建新的 ASP.NET MVC 项目，请执行以下步骤：\n\n+   1. 在 Visual Studio\
+  \ 中，创建新的 **ASP.NET Web Application** 项目，如下图所示：\n\n![](img/371b9a67300a03b7b335eb8a6fe55d94_144_0.png)\n\
+  \n+   2. 在 **New ASP.NET Project** 对话框中，选择 **Empty** 模板，勾选 **MVC** 复选框，然后单击 **OK**\
+  \ 按钮。\n\n![](img/371b9a67300a03b7b335eb8a6fe55d94_144_1.png)\n\n+   3. Visual Studio\
+  \ 将创建一个默认的空 MVC 项目。右键单击项目名称并导航到 Add | New Folder。创建以下四个文件夹：\n+       - css\n+  \
+  \     - font-awesome\n+       - fonts\n+       - js\n+   4. 将 SB Admin 源 css 文件夹中的以下\
+  \ .css 文件添加到项目中的 css 文件夹：\n+       - bootstrap.css\n+       - sb-admin.css\n\n5.\
+  \ 将 SB Admin 源 font-awesome\\css 文件夹中的 font-awesome.css 文件添加到项目中的 css 文件夹。\n\n6.\
+  \ 将 SB Admin 源 fonts 和 font-awesome\\fonts 文件夹中的所有文件添加到项目中的 fonts 文件夹。\n\n+   7.\
+  \ 将 SB Admin 源 js 文件夹中的以下文件添加到项目中的 js 文件夹：\n+       - bootstrap.js\n+       - sb-admin.js\n\
+  \n# 创建主布局\n\n我们已添加创建项目主布局文件所需的 CSS、JavaScript 和字体文件。接下来，我们需要创建一个 home 控制器以及一个主布局文件。为此，完成以下步骤：\n\
+  \n+   1. 右键单击 Controllers 文件夹并导航到 Add | Controller....\n+   2. 从 Add Scaffold 对话框窗口中选择\
+  \ MVC 5 Controller - Empty，然后单击 Add。\n\n3. 在 Add Controller 对话框窗口的 Controller name\
+  \ 文本框中输入 HomeController，然后单击 Add。\n\n![](img/371b9a67300a03b7b335eb8a6fe55d94_146_0.png)\n\
+  \n4. 接下来，右键单击项目中的 Views 文件夹并导航到 Add | New Folder。将文件夹命名为 Shared。\n\n5. 右键单击新创建的\
+  \ Shared 文件夹并导航到 Add | MVC 5 Layout Page (Razor)。\n\n6. 在 Specify Name for Item\
+  \ 对话框中，在 Item name 文本框中输入 _Layout，然后单击 OK。\n\n![](img/371b9a67300a03b7b335eb8a6fe55d94_146_1.png)\n\
+  \n7. 打开 SB Admin 源文件中的 blank.html 文件并将其内容复制到 _Layout.cshtml 文件。\n\n8. 将 <head> 标签更改为以下代码：\n\
+  \n```\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"\
+  width=device-width, initial-scale=1.0\">\n    <title>Start Bootstrap - SB Admin\
+  \ Version 2.0 :: @ViewBag.Title</title>\n    <link href=\"@Url.Content(\"~/css/bootstrap.css\"\
+  )\" rel=\"stylesheet\">\n    <link href=\"@Url.Content(\"~/css/font-awesome.css\"\
+  )\" rel=\"stylesheet\">\n    <link href=\"@Url.Content(\"~/css/sb-admin.css\")\"\
+  \ rel=\"stylesheet\">\n</head>\n```\n\n\n9. 在前面的标记中，我们使用 Url.Content 辅助方法将虚拟路径映射到项目中的\
+  \ .css 文件。\n\n10. 在结束 </body> 标签上方添加以下代码：\n\n```\n<script src=\"//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js\"\
+  ></script>\n<script src=\"@Url.Content(\"~/js/bootstrap.js\")\"></script>\n<script\
+  \ src=\"@Url.Content(\"~/js/sb-admin.js\")\"></script>\n@RenderSection(\"scripts\"\
+  , false)\n```\n\n11. 在前面的代码中，我们添加了对托管在 Google 内容分发网络（CDN）上的 jQuery 库的引用。我们还再次使用\
+  \ Url.Content 辅助方法将虚拟路径映射到所需的 JavaScript 文件，并使用 @RenderSection 辅助方法指定了一个名为 scripts\
+  \ 的节。\n\n12. 接下来，你会注意到页面被划分为三个不同的元素：\n\n- 一个 ID 设置为 wrapper 的 <div> 元素\n- 一个 <nav>\
+  \ 元素\n- 一个 ID 为 page-wrapper 的 <div> 元素\n\n13. 保持 <nav> 和 <div id=\"wrapper\"> 元素不变，并将\
+  \ <div id=\"page-wrapper\"> 元素内的所有标记替换为 @RenderBody() 方法。\n\n14. 主布局现已完成；接下来，我们需要为\
+  \ home 控制器上的 Index 操作添加一个视图。\n\n## 为 home 控制器添加视图\n\n我们需要为 home 控制器的 Index 操作创建一个视图，以测试我们的模板。完成以下步骤：\n\
+  \n- 1. 打开 HomeController.cs 文件，在 Index 方法内右键单击，然后从上下文菜单中选择“添加视图...”。\n\n- 2. 在“添加视图”对话框中，将“视图名称”文本框设置为\
+  \ Index，将“模板”组合框设置为“空（无模型）”。\n\n## 将 Bootstrap HTML 模板转换为可用的 ASP.NET MVC 项目\n\n\
+  - 3. 勾选**使用布局页**复选框，并选择我们之前创建的 `_Layout.cshtml` 文件作为布局页。单击**添加**。\n\n- 4. 将在 Views\\\
+  \\Home 文件夹内创建一个 Index.cshtml 文件。\n\n- 5. 向视图添加以下标记：\n\n```\n```cshtml\n@{\n    ViewBag.Title\
+  \ = \"Index\";\n    Layout = \"~/Views/Shared/_Layout.cshtml\";\n}\n<div class=\"\
+  row\">\n    <div class=\"col-lg-12\">\n        <h1 class=\"page-header\">Blank</h1>\n\
+  \    </div>\n</div>\n```\n```\n\n- 6. 运行你的项目，你应该会在浏览器中看到首页视图和布局。请注意，左侧菜单将展开显示所有项目，如下图所示：\n\
+  \n- 5. 通过在 </body> 结束元素上方添加以下行来引用 metisMenu 插件：\n+   <script src=\"@Url.Content(\"\
+  ~/js/plugins/metisMenu/jquery.metisMenu.js\")\"></script>\n- 6. 当运行你的项目时，左侧菜单现在应该正确显示了。\n\
+  \n## 添加不同的页面视图\n\nSB Admin 模板带有多种不同的页面样式，可用于构建我们自己的视图。我们将通过完成以下步骤，创建一个自定义视图，该视图显示两个面板，一个包含简单的\
+  \ Bootstrap 表单，另一个显示图像：\n\n- 1. 向你的项目添加一个新的空 MVC 5 控制器，名为 FormsController。\n- 2.\
+  \ 为控制器的 Index 方法添加一个新的空视图，并选择我们之前创建的布局页作为其布局页。\n- 3. 打开 Views\\Forms 文件夹中的 Index.cshtml\
+  \ 文件。\n- 4. 向视图添加以下标记：\n\n```\n@{\n    ViewBag.Title = \"Index\";\n    Layout =\
+  \ \"~/Views/Shared/_Layout.cshtml\";\n}\n\n<div class=\"row\">\n    <div class=\"\
+  col-lg-12\">\n        <h1 class=\"page-header\">Forms</h1>\n    </div>\n</div>\n\
+  <div class=\"row\">\n    <div class=\"col-lg-6\">\n        <div class=\"panel panel-primary\"\
+  >\n            <div class=\"panel-heading\">\n                First Panel with simple\
+  \ form\n            </div>\n            <div class=\"panel-body\">\n           \
+  \     <div class=\"row\">\n                    <div class=\"col-lg-6\">\n      \
+  \                  <form role=\"form\">\n```\n\n```\n<div class=\"form-group\">\n\
+  \    <label>Full name</label>\n    <input class=\"form-control\"\nplaceholder=\"\
+  Your full name\">\n    </div>\n    <div class=\"form-group\">\n        <label>Bio</label>\n\
+  \        <textarea class=\"form-control\"\nrows=\"3\"></textarea>\n    </div>\n\n\
+  \    <div class=\"form-group\">\n        <label>Subject</label>\n        <label\
+  \ class=\"checkbox-inline\">\n            <input type=\"checkbox\">Math\n      \
+  \  </label>\n        <label class=\"checkbox-inline\">\n            <input type=\"\
+  checkbox\">Science\n        </label>\n        <label class=\"checkbox-inline\">\n\
+  \            <input type=\"checkbox\">History\n        </label>\n    </div>\n  \
+  \  <button type=\"submit\" class=\"btn btn-primary\">Save</button>\n</form>\n</div>\n\
+  </div>\n</div>\n</div>\n</div>\n<div class=\"col-lg-6\">\n    <div class=\"panel\
+  \ panel-danger\">\n        <div class=\"panel-heading\">\n            Second Panel\n\
+  \        </div>\n        <div class=\"panel-body\">\n            <div class=\"row\"\
+  >\n                <div class=\"col-lg-6\">\n                    <p>This is a second\
+  \ panel on the page</p>\n                    <img src=\"http://placehold.it/350x150\"\
+  \nalt=\"placeholder\" />\n```\n\n```\n```html\n</div>\n</div>\n</div>\n</div>\n\
+  </div>\n</div>\n```\n```\n\n5. 上述代码将渲染两个面板，一个蓝色和一个红色，如下图所示：\n\n![](img/371b9a67300a03b7b335eb8a6fe55d94_152_0.png)\n\
+  \n最后，我们需要更改左侧导航菜单，以包含指向我们刚刚添加的视图的链接。为此，完成以下步骤：\n\n- 1. 打开 `Views\\Shared` 文件夹中的\
+  \ `_Layout.cshtml` 文件。\n- 2. 在文件中找到以下代码行：\n\n      ```html\n      <a href=\"tables.html\"\
+  ><i class=\"fa fa-table fa-fw\"></i> Tables</a>\n      ```\n\n- 3. 将上述行替换为以下内容：\n\
+  \n      ```html\n      <a href=\"@Url.Action(\"Index\",\"Forms\")\"><i class=\"\
+  fa fa-table fa-fw\"></i> Forms</a>\n      ```\n\n- 4. 我们使用 `@Url.Action` 辅助方法将用户导航到\
+  \ forms 控制器的 Index 操作。当用户点击**Forms**菜单项时，他们将看到我们之前创建的表单视图。\n\n## 向视图添加图表\n\n在 SB\
+  \ Admin 模板中，Dashboard 页面包含各种吸引人的图表，你可以使用它们以交互方式向用户显示数据。我们将通过完成以下步骤，将 SB Admin 模板中包含的\
+  \ Dashboard 页面及其功能添加到我们的项目中：\n\n- 1. 在 js\\plugins 文件夹内创建一个名为 morris 的新文件夹。\n- 2.\
+  \ 将 SB Admin 源文件中的以下两个文件添加到该文件夹：\n  - raphael-2.1.0.min.js\n  - morris.js\n- 3.\
+  \ 将 dashboard-demo.js 文件添加到 js 文件夹。\n- 4. 将 morris-0.4.3.min.css 文件添加到项目的 css 文件夹。\n\
+  - 5. 接下来，打开 _Layout.cshtml 文件，并将以下代码添加到 <head> 元素中：\n  @RenderSection(\"styles\"\
+  ,false)\n- 6. 通过添加上一行，我们可以为每个视图向布局页注入额外的 CSS 样式。\n- 7. 打开 Views\\Home 文件夹中的 Index.cshtml\
+  \ 文件。\n- 8. 将以下代码添加到文件顶部，即布局声明下方：\n  @section styles{\n    <link href=\"@Url.Content(\"\
+  ~/css//morris-0.4.3.min.css\")\" rel=\"stylesheet\">\n  }\n- 9. 上述代码会将 morris 图表组件的样式注入到我们的视图中。\n\
+  - 10. 向视图添加以下标记：\n  <div class=\"row\">\n    <div class=\"col-lg-12\">\n      <h1\
+  \ class=\"page-header\">Dashboard</h1>\n    </div>\n  </div>\n  <div class=\"row\"\
+  >\n    <div class=\"col-lg-12\">\n      <div class=\"panel panel-default\">\n\n\
+  ```\n<div class=\"panel-heading\">\n    <i class=\"fa fa-bar-chart-o fa-fw\"></i>\
+  \ Area Chart\nExample\n    <div class=\"pull-right\">\n        <div class=\"btn-group\"\
+  >\n            <button type=\"button\" class=\"btn btn-default btn-xs dropdown-toggle\"\
+  \ data-toggle=\"dropdown\">Actions\n                <span class=\"caret\"></span>\n\
+  \            </button>\n            <ul class=\"dropdown-menu pull-right\" role=\"\
+  menu\">\n                <li>\n                    <a href=\"#\">Action</a>\n  \
+  \              </li>\n                <li>\n                    <a href=\"#\">Another\
+  \ action</a>\n                </li>\n                <li>\n                    <a\
+  \ href=\"#\">Something else here</a>\n                </li>\n                <li\
+  \ class=\"divider\"></li>\n                <li>\n                    <a href=\"\
+  #\">Separated link</a>\n                </li>\n            </ul>\n        </div>\n\
+  \    </div>\n</div>\n<div class=\"panel-body\">\n    <div id=\"morris-area-chart\"\
+  ></div>\n</div>\n</div>\n</div>\n```\n\n11. 接下来，将以下 section 声明添加到文件底部，该声明会将必要的 JavaScript\
+  \ 文件注入到视图中，用于图表组件：\n\n```\n@section scripts{\n    <script src=\"@Url.Content(\"\
+  ~/js/plugins/morris/raphael-2.1.0.min.js\")\"></script>\n```\n\n\n\n\n\n```cshtml\n\
+  <script src=\"@Url.Content(\"~/js/plugins/morris/morris.js\")\"></script>\n<script\
+  \ src=\"@Url.Content(\"~/js/dashboard-demo.js\")\"></script>\n}\n```\n\n12. 最后，打开\
+  \ _Layout.cshtml 文件并找到以下行：\n\n    ```html\n    <a href=\"index.html\"><i class=\"\
+  fa fa-dashboard fa-fw\"></i> Dashboard</a>\n    ```\n\n13. 将找到的行更改为以下行：\n\n    ```cshtml\n\
+  \    <a href=\"@Url.Action(\"Index\",\"Home\")\"><i class=\"fa fa-dashboard fa-fw\"\
+  ></i> Dashboard</a>\n    ```\n\n14. 保存并关闭所有文件并运行你的项目。\n\n15. 当你导航到 **Dashboard**\
+  \ 页面时，你应该会看到一个图表渲染，类似于以下截图。\n\n![](img/371b9a67300a03b7b335eb8a6fe55d94_155_0.png)\n\
+  \n## Summary\n\n在本章中，你学习了如何将预设计的 HTML 模板转换为可用的 ASP.NET MVC 项目。本章中展示的技术可以应用于几乎任何\
+  \ HTML 模板，让你能够在无需自行设计布局的情况下构建专业设计的 Web 应用程序。\n\n在下一章中，我们将探讨如何在自己的 ASP.NET MVC 项目中包含和使用\
+  \ jQuery DataTables 插件。\n\n## Using the jQuery DataTables Plugin with Bootstrap\n\
+  \njQuery DataTables 插件允许开发者为任何 HTML 表格添加创新交互控件。\n\njQuery DataTables 插件支持多种选项和丰富的扩展。ASP.NET\
+  \ MVC 开发者也可以将其包含在自己的项目中。本章的目的不仅是向你展示如何使用 DataTables 插件，还说明了如何将几乎任何开源 JavaScript\
+  \ 和 CSS 插件或框架与 ASP.NET MVC 一起使用。\n\n在本章中，我们将涵盖以下主题：\n\n- An overview of jQuery DataTables\n\
+  - Including the jQuery DataTables plugin in your ASP.NET MVC project\n- Loading\
+  \ and displaying data with jQuery DataTables and ASP.NET MVC\n- Using some of the\
+  \ extensions\n\n### jQuery DataTables\n\nDataTables 是一个免费的、开源的 jQuery JavaScript\
+  \ 库插件，由一家名为 SpryMedia Ltd 的公司设计和创建。该插件使为任何标准 HTML 表格添加排序、过滤、分页和搜索等功能变得非常容易实现。它还提供各种扩展，可实现类似\
+  \ Excel 的功能、内联编辑和固定列等。DataTables 网站提供有良好文档的示例、博客和论坛，你可以在 www.datatables.net 上找到。\n\
+  \njQuery DataTables 插件可以通过两种方式添加到你的 ASP.NET MVC 项目中，DataTables NuGet 包或 **Content\
+  \ Delivery Network (CDN)**。\n\n### Adding DataTables to your ASP.NET MVC project\n\
+  \n要添加 DataTables 插件的基本功能，需要以下两个文件：\n\n- 第一个是 `jquery.dataTables.css`，它包含表格的默认 CSS\
+  \ 样式\n- 第二个是 `jquery.dataTables.js`，它包含用于渲染 DataTables 插件并添加必要功能的 JavaScript 逻辑\n\
+  \n这两个文件都可在 DataTables CDN 上获得，链接如下：\n\n- //cdn.datatables.net/1.10.0/css/jquery.dataTables.css\n\
+  - //cdn.datatables.net/1.10.0/js/jquery.dataTables.js\n\n### Using the DataTables\
+  \ NuGet package\n\n你也可以使用 NuGet 添加使用 jQuery DataTables 所需的所有 CSS 和 JavaScript 文件以及扩展的所有\
+  \ CSS 和 JavaScript 文件。按照以下步骤使用 NuGet 添加 jQuery DataTables：\n\n1. 在 Visual Studio\
+  \ 中，通过导航到 **Tools | Library Package Manager | Package Manager Console** 打开 **Package\
+  \ Manager Console** 窗口。\n2. 在 **Package Manager Console** 窗口中，输入以下命令：`Install-Package\
+  \ jquery.datatables`\n3. NuGet 包将在 `Content` 文件夹内添加一个 `DataTables-1.10.0` 文件夹，其中包含\
+  \ DataTables 插件所需的 `css`、`images` 和 `swf` 文件。\n4. 它还将在你的项目中向 `Scripts` 文件夹添加一个 `DataTables-1.10.0`\
+  \ 文件夹。该文件夹将包含 DataTables 插件的 JavaScript 文件以及所有扩展的 JavaScript 文件。\n\n### Using the\
+  \ CDN\n\n你可以从上述位置保存文件或将它们添加到项目中，或者更推荐的做法是添加对托管在 CDN 上的文件的引用，这将有助于提高你网站的性能。\n\n要从\
+  \ CDN 引用，请完成以下步骤：\n\n1. 在 Visual Studio 中，打开本书附带的示例项目并打开位于 `Views\\Shared` 文件夹中的\
+  \ `_Layout.cshtml` 文件。\n\n2. 在 `_Layout.cshtml` 文件的 `<head>` 元素内，通过插入以下标记行添加对 jQuery\
+  \ DataTables 样式表的引用：\n\n    ```html\n    <link rel=\"stylesheet\" type=\"text/css\"\
+  \ href=\"//cdn.datatables.net/1.10.0/css/jquery.dataTables.css\">\n    ```\n\n3.\
+  \ 打开你需要 DataTables 功能的视图，并在视图底部添加对 JavaScript 库的引用，添加以下代码：\n\n    ```cshtml\n  \
+  \  @section scripts{\n        <script type=\"text/javascript\" language=\"javascript\"\
+  \ src=\"//cdn.datatables.net/1.10.0/js/jquery.dataTables.min.js\"></script>\n  \
+  \  }\n    ```\n\n### Adding Bootstrap styling to DataTables\n\n前一节中提到的步骤将向视图和布局文件添加生成\
+  \ jQuery DataTables 基础样式和功能所需的最小文件。然而，默认的 DataTables CSS 样式在 Bootstrap 网站中看起来可能有些格格不入。\n\
+  \n幸运的是，DataTables 项目团队创建了专门针对 Bootstrap 的 CSS 样式和 JavaScript 库，以匹配你网站的外观和感觉。这两个文件也可在\
+  \ DataTables CDN 上获得：\n\n- `//cdn.datatables.net/plug-ins/be7019ee387/integration/bootstrap/3/dataTables.bootstrap.css`\n\
+  - `//cdn.datatables.net/plug-ins/be7019ee387/integration/bootstrap/3/dataTables.bootstrap.js`\n\
+  \n这两个文件以与普通 DataTables CSS 和 JavaScript 文件相同的方式添加。请记住，当在视图中包含特定于 Bootstrap 的 DataTables\
+  \ JavaScript 文件时，你需要同时引用默认的 DataTables JavaScript 文件以及特定于 Bootstrap 的文件，如以下标记所示：\n\
+  \n```html\n<script type=\"text/javascript\" language=\"javascript\" src=\"//cdn.datatables.net/1.10.0/js/jquery.dataTables.min.js\"\
+  ></script>\n<script type=\"text/javascript\" language=\"javascript\" src=\"//cdn.datatables.net/plug-ins/be7019ee387/integration/bootstrap/3/dataTables.bootstrap.js\"\
+  ></script>\n```\n\n### Loading and displaying data in jQuery DataTables\n\n为了实现\
+  \ jQuery DataTables 插件，我们首先需要创建一个新的视图，用于在 HTML 表格中列出数据。对于此示例，我们将创建一个列出 Northwind\
+  \ Traders 数据库中客户的视图。为此，完成以下步骤：\n\n1. 在 Visual Studio 中，添加一个名为 CustomersController.cs\
+  \ 的新控制器类。\n\n2. 我们在项目中实现了依赖注入，因此我们将向该类添加一个构造函数，该构造函数将自动使用以下代码设置对数据库上下文的引用：\n\n \
+  \   ```csharp\n    public CustomersController(ApplicationDbContext context)\n  \
+  \  {\n        _context = context;\n    }\n    ```\n\n3. _context 对象是在类内部声明的本地字段，如下所示：\n\
+  \n    ```csharp\n    private readonly ApplicationDbContext _context;\n    ```\n\n\
+  4. 向控制器添加一个名为 Index 的新方法。此方法向控制器返回一个 ActionResult 对象。向其中添加以下代码，该代码将客户对象列表传递给视图：\n\
+  \n    ```csharp\n    public ActionResult Index()\n    {\n        var model = _context.Customers;\n\
+  \        return View(model);\n    }\n    ```\n\n```cshtml\n<h1>Customers <small>Our\
+  \ Customers</small></h1>\n</div>\n\n<ol class=\"breadcrumb\">\n    <li>@Html.ActionLink(\"\
+  Home\", \"Index\", \"Home\")</li>\n    <li class=\"active\">Customers</li>\n</ol>\n\
+  <table class=\"table table-striped table-hover\">\n    <thead>\n        <tr>\n \
+  \           <th>\n                @Html.DisplayNameFor(model => model.\n       \
+  \         CustomerCode)\n            </th>\n            <th>\n                @Html.DisplayNameFor(model\
+  \ => model.\n                CompanyName)\n            </th>\n            <th>\n\
+  \                @Html.DisplayNameFor(model => model.\n                ContactName)\n\
+  \            </th>\n            <th>\n                @Html.DisplayNameFor(model\
+  \ => model.City)\n            </th>\n            <th>\n                @Html.DisplayNameFor(model\
+  \ => model.Country)\n            </th>\n            <th>\n                @Html.DisplayNameFor(model\
+  \ => model.Phone)\n            </th>\n        </tr>\n    </thead>\n    <tbody>\n\
+  \        @foreach (var item in Model)\n        {\n            <tr>\n           \
+  \     <td>\n                    @Html.ActionLink(item.CustomerCode,\n          \
+  \          \"Edit\", new { id = item.CustomerId })\n                </td>\n    \
+  \            <td>\n                    @Html.DisplayFor(modelItem => item.\n   \
+  \                 CompanyName)\n                </td>\n                <td>\n  \
+  \                  @Html.DisplayFor(modelItem => item.\n                    ContactName)\n\
+  \                </td>\n                <td>\n```\n\n\n\n\n\n## 使用 jQuery DataTables\
+  \ 插件与 Bootstrap\n\n```html\n$('.table').dataTable();\n});\n</script>\n}\n```\n```\n\
+  \n- 5. 在前一步中，我们添加了对 DataTables 样式表以及 JavaScript 文件的必要引用。我们创建了一个 jQuery 事件处理程序，当页面加载后，它将对所有类名为\
+  \ `table` 的 HTML 元素启用 DataTable 功能。\n\n当你运行项目并导航到 customers 视图时，你会看到客户列表会自动分页为每组十条，并且你可以搜索和排序表格内的数据，如下面的截图所示。Bootstrap\
+  \ 默认的表格样式也会被正确应用：\n\n![](img/371b9a67300a03b7b335eb8a6fe55d94_164_0.png)\n\n## DataTables\
+  \ 扩展\n\njQuery DataTables 插件提供了多种多样的扩展，可以显著增强插件的功能。\n\n### ColReorder 扩展\n\nColReorder\
+  \ 扩展允许用户通过点击并将列标题拖拽到他们喜欢的位置来重新排列表列。要为你的 DataTables HTML 表格启用列重新排序，请完成以下步骤：\n\n-\
+  \ 1. 打开 _Layout.cshtml 文件，并添加对 dataTables.colReorder.css 文件的引用：\n- ```\n<link rel=\"\
+  stylesheet\" type=\"text/css\" href=\"//cdn.datatables.net/colreorder/1.1.1/css/dataTables.colReorder.css\"\
+  >\n```\n- 2. 打开视图的 .cshtml 文件，并添加对 DataTables、DataTables Bootstrap 和 ColReorder\
+  \ 扩展 JavaScript 文件的引用：\n- ```\n<script type=\"text/javascript\" language=\"javascript\"\
+  \ src=\"//cdn.datatables.net/1.10.0/js/jquery.dataTables.min.js\"></script>\n<script\
+  \ type=\"text/javascript\" language=\"javascript\" src=\"//cdn.datatables.net/plug-ins/be7019ee387/integration/bootstrap/3/dataTables.bootstrap.js\"\
+  ></script>\n<script type=\"text/javascript\" language=\"javascript\" src=\"//cdn.datatables.net/colreorder/1.1.1/js/dataTables.colReorder.min.js\"\
+  ></script>\n```\n- 3. 最后，使用 jQuery 添加一个事件处理程序，在页面加载完成后初始化 DataTables 插件和 ColReorder\
+  \ 扩展：\n- ```\n<script type=\"text/javascript\">\n$(document).ready(function () {\n\
+  $(\".table\").DataTable({\n\"dom\": 'Rlfrtip'\n});\n});\n</script>\n```\n\n4. 当导航到该页面时，你现在应该能够拖拽并重新排列表中的列。拖拽列时会显示一条蓝线，如下图所示：\n\
+  \n![](img/371b9a67300a03b7b335eb8a6fe55d94_166_0.png)\n\n> 注意，我们从 DataTables CDN（可在\
+  \ cdn.datatables.net 获取）引用了所有扩展所需的样式表和 JavaScript 文件。\n\n### ColVis 扩展\n\nColVis\
+  \ 扩展会在 DataTable 顶部添加一个按钮，点击该按钮时，会显示表格中列名的列表，每列旁边有一个复选框。然后，用户可以取消选择他们不想在网格中看到的列名。\n\
+  \n要启用列可见性扩展，请执行以下步骤：\n\n- 1. 打开 _Layout.cshtml 文件，并添加对 dataTables.colVis.css 文件的引用：\n\
+  \n```\n<link rel=\"stylesheet\" type=\"text/css\" href=\"//cdn.datatables.net/colvis/1.1.0/css/dataTables.colVis.css\"\
+  >\n```\n\n- 2. 打开视图的 .cshtml 文件，并添加对 DataTables、DataTables Bootstrap 和 ColVis 扩展\
+  \ JavaScript 文件的引用：\n\n```\n<script type=\"text/javascript\" language=\"javascript\"\
+  \ src=\"//cdn.datatables.net/1.10.0/js/jquery.dataTables.min.js\"></script>\n<script\
+  \ type=\"text/javascript\" language=\"javascript\" src=\"//cdn.datatables.net/plug-ins/be7019ee387/integration/bootstrap/3/dataTables.bootstrap.js\"\
+  ></script>\n<script type=\"text/javascript\" language=\"javascript\" src=\"//cdn.datatables.net/colvis/1.1.0/js/dataTables.colVis.min.js\"\
+  ></script>\n```\n\n- 3. 最后，使用 jQuery 添加一个事件处理程序，在页面加载完成后初始化 DataTables 插件和 ColVis\
+  \ 扩展：\n\n```\n<script type=\"text/javascript\">\n    $(document).ready(function\
+  \ () {\n        $('table').DataTable({\n            \"dom\": 'C<\"clear\">lfrtip'\n\
+  \        });\n    });\n</script>\n```\n\n- 4. 导航到 Customers 页面时，你应该会在搜索框旁边看到一个按钮，通过该按钮可以显示或隐藏表格中的列，如下面的截图所示：\n\
+  \n![](img/371b9a67300a03b7b335eb8a6fe55d94_167_0.png)\n\n### TableTools 扩展\n\njQuery\
+  \ DataTables 的 TableTools 扩展在表格顶部添加了一个工具栏，用户可以通过它复制到剪贴板、导出为 CSV 以及将 DataTable 中的数据打印为\
+  \ PDF。这是为你的用户提供数据导出功能的一种非常简单的方法。\n\n要使用 TableTools 扩展，请执行以下步骤：\n\n- 1. 在项目根目录下创建一个名为\
+  \ `swf` 的新文件夹。\n- 2. 将 `copy_csv_xls_pdf.swf` 文件添加到 `swf` 文件夹中。该 `.swf` 文件包含在 DataTables\
+  \ 插件下载中。\n- 3. 打开 `_Layout.cshtml` 文件，并添加对 `dataTables.tableTools.css` 文件的引用：\n\
+  - ```html\n<link rel=\"stylesheet\" type=\"text/css\" href=\"//cdn.datatables.net/tabletools/2.2.1/css/dataTables.tableTools.css\"\
+  >\n```\n- 4. 打开视图的 `.cshtml` 文件，并添加对 DataTables、DataTables Bootstrap 和 TableTools\
+  \ 扩展 JavaScript 文件的引用：\n\n```html\n<script type=\"text/javascript\" language=\"\
+  javascript\" src=\"//cdn.datatables.net/1.10.0/js/jquery.dataTables.min.js\"></script>\n\
+  <script type=\"text/javascript\" language=\"javascript\" src=\"//cdn.datatables.net/tabletools/2.2.1/js/dataTables.tableTools.min.js\"\
+  ></script>\n<script type=\"text/javascript\" language=\"javascript\" src=\"//cdn.datatables.net/plug-ins/be7019ee387/integration/bootstrap/3/dataTables.bootstrap.js\"\
+  ></script>\n```\n\n- 5. 最后，使用 jQuery 添加一个事件处理程序，在页面加载完成后初始化 DataTables 插件和 TableTools\
+  \ 扩展：\n\n```javascript\n<script type=\"text/javascript\">\n    $(document).ready(function\
+  \ () {\n        var table = $('.table').dataTable();\n        var tt = new $.fn.dataTable.TableTools(table);\n\
+  \        $(tt.fnContainer()).insertBefore('div.dataTables_wrapper');\n    });\n\
+  </script>\n```\n\n6. 上面突出显示的代码用于初始化 TableTools 扩展，并将 Bootstrap 样式应用于 TableTools\
+  \ 工具栏按钮。当打开带有 DataTable 的视图时，你应该会在 DataTable 上方看到 TableTools 按钮工具栏，如下面的截图所示：\n\n\
+  ![](img/371b9a67300a03b7b335eb8a6fe55d94_169_0.png)\n\n## 总结\n\n在本章中，我们使用 jQuery\
+  \ DataTables 插件实现了一个可排序、可搜索且可扩展的 HTML 表格。我们还探讨了如何指定插件使用默认的 Bootstrap 样式。本章还应让你有信心探索其他开源插件，并将它们整合到你自己的\
+  \ ASP.NET MVC 项目中。\n\n在下一章也是最后一章中，我们将了解 `TwitterBootstrapMVC` 库，以及如何在你自己项目中使用它。\n\
+  \n流式实现还在 Visual Studio 中提供了 IntelliSense，使开发人员能够轻松发现 Bootstrap 配置选项。该库已不再是开源或免费的，但你仍然可以在\
+  \ GitHub 上查看原始项目：`https://github.com/DmitryEfimenko/TwitterBootstrapMvc`。\n\n该库的商业版本可在\
+  \ `https://www.twitterbootstrapmvc.com/` 获取。\n\n## 在项目中引入 TwitterBootstrapMVC\n\n\
+  你可以通过以下两种方式之一在项目中引入 `TwitterBootstrapMVC` 库。第一种也是推荐的方式是使用 NuGet 包，第二种方式是下载 `.dll`\
+  \ 文件并手动添加引用。\n\n### 使用 NuGet 添加 TwitterBootstrapMVC\n\n要使用 NuGet 在项目中引入 `TwitterBootstrapMVC`\
+  \ 库，请执行以下步骤：\n\n- 1. 在 Visual Studio 中，通过**工具 | 库程序包管理器 | 程序包管理器控制台**菜单打开**程序包管理器控制台**窗口。\n\
+  - 2. 在**程序包管理器控制台**窗口中，输入以下命令并按 *回车*：\n- ```\nInstall-Package TwitterBootstrapMVC5\n\
+  ```\n- 3. 接下来，导航到 `https://www.twitterbootstrapmvc.com/Download`，下载试用版或购买个人或商业许可证。\n\
+  - 4. 下载许可证文件，该文件应名为 `TwitterBootstrapMvcLicense.lic`，并将其添加到 Visual Studio 中项目的根目录。\n\
+  - 5. 打开 Views 文件夹中的 `Web.config` 文件，并将以下代码添加到 `<namespaces>` 元素中：\n- ```xml\n<add\
+  \ namespace=\"TwitterBootstrapMVC\" />\n<add namespace=\"TwitterBootstrap3\" />\n\
+  ```\n- 6. 最后，打开项目根目录中的 `Global.asax` 文件，并将以下代码行添加到 `Application_Start` 方法中：\n- ```csharp\n\
+  Bootstrap.Configure();\n```\n\n```\nInstall-Package TwitterBootstrapMVC5\n```\n\n\
+  ```\n<add namespace=\"TwitterBootstrapMVC\" />\n<add namespace=\"TwitterBootstrap3\"\
+  \ />\n```\n\n```\nBootstrap.Configure();\n```\n\n\n\n\n\n## 使用 .dll 文件添加 TwitterBootstrapMVC\n\
+  \n你不需要通过 NuGet 添加 TwitterBootstrapMVC 库，你也可以使用 .dll 文件来添加它。为此，请完成以下步骤：\n\n1. 在浏览器中，导航到\
+  \ `https://www.twitterbootstrapmvc.com/Home/Installation`，并下载位于 **选项 2：下载 .dll**\
+  \ 标题下的 zip 压缩包。\n2. 下载 zip 文件后，将文件解压到本地驱动器上的一个文件夹中。\n3. 在 Visual Studio 中，右键单击 **解决方案资源管理器**\
+  \ 窗口中的 **引用** 节点，然后从上下文菜单中选择 **添加引用...**。\n4. 浏览到解压 zip 压缩包的文件夹，然后选择 `TwitterBootstrapMVC5.dll`\
+  \ 文件。\n5. 接下来，导航到 `https://www.twitterbootstrapmvc.com/Download`，下载试用版或购买个人或商业许可证。\n\
+  6. 下载许可证文件，它应该被命名为 `TwitterBootstrapMvcLicense.lic`，并将其添加到 Visual Studio 中项目的根目录。\n\
+  7. 打开 Views 文件夹中的 Web.config 文件，并将以下代码添加到 `<namespaces>` 元素中：\n\n   ```xml\n   <add\
+  \ namespace=\"TwitterBootstrapMVC\" />\n   <add namespace=\"TwitterBootstrap3\"\
+  \ />\n   ```\n\n8. 最后，打开项目根目录中的 Global.asax 文件，并将以下代码行添加到 Application_Start 方法中：\n\
+  \n   ```csharp\n   Bootstrap.Configure();\n   ```\n\n## 使用 TwitterBootstrapMVC 辅助方法\n\
+  \nTwitterBootstrapMVC 库提供了多种 Bootstrap 辅助方法，所有这些方法都使用流畅的语法，支持方法链式调用。这些辅助方法可以减少你创建\
+  \ Bootstrap 组件所需的 HTML 标记数量。库中的方法链遵循以下模式：\n\n```csharp\n@Html.Bootstrap().TextBoxFor(m\
+  \ => m.PostalCode).Value(\"1.23\").\n    Size(InputSize.Large).Placeholder(\"Enter\
+  \ Postal Code\").\n    Format(\"{0:0.00}\").Prepend(\"US\")\n```\n\n## 表单和输入元素\n\
+  \nTwitterBootstrapMVC 为大多数表单和输入元素提供了流畅的辅助方法。\n\n### 输入元素\n\nTwitterBootstrapMVC\
+  \ 为所有 HTML 输入元素提供了 ASP.NET MVC 辅助方法；这些组件中的大多数都共享相同的链式方法。这些方法列在下表中：\n\n| 方法名 | 描述\
+  \ |\n|---|---|\n| .Label() | 将一个标签元素添加到该元素前面。 |\n| .Tooltip() | 向组件添加带有指定消息的工具提示。\
+  \ |\n| .HelpText() | 在元素旁边添加帮助文本。 |\n| .Id() | 设置元素的 id 属性。 |\n| .Class() | 设置元素的\
+  \ class HTML 属性。 |\n| .ReadOnly() | 向元素添加 readonly=\"readonly\"。 |\n| .HtmlAttributes()\
+  \ | 向元素添加指定的 HTML 属性。 |\n| .Data() | 其工作方式与 .HtmlAttributes() 方法类似，但会在属性前添加 data-\
+  \ 前缀。 |\n| .Disabled() | 向元素添加 disabled=\"disabled\"。 |\n| .DisabledDependsOn()\
+  \ | 根据另一个元素的值，有条件地禁用某个元素。 |\n| .VisibleDependsOn() | 根据另一个元素的值，有条件地隐藏某个元素。 |\n|\
+  \ .ShowValidationMessage() | 设置当元素验证失败时是否显示验证消息。 |\n\n### 表单\n\n使用以下代码，你可以生成一个简单的垂直\
+  \ Bootstrap 表单，其中包含三个文本框和一个提交按钮。前两个文本框还调用了 Placeholder 方法，向空文本框添加占位符文本；最后一个文本框还有一个名为\
+  \ HelpText 的方法，用于在文本框底部添加帮助文本。\n\n```csharp\n@using (var form = Html.Bootstrap().Begin(new\
+  \ Form()))\n{\n    @form.FormGroup().TextBoxFor(m => m.CompanyName).Placeholder(\"\
+  Enter the company name.\")\n    @form.FormGroup().TextBoxFor(m => m.ContactName).Placeholder(\"\
+  Enter the name of contact person.\")\n    @form.FormGroup().TextBoxFor(m => m.Address).HelpText(\"\
+  Short address for customer.\")\n    @Html.Bootstrap().SubmitButton()\n}\n```\n\n\
+  生成的表单在浏览器中应该类似于以下截图：\n\n![](img/371b9a67300a03b7b335eb8a6fe55d94_175_0.png)\n\n\
+  你还会注意到，如果该值是必填的，FormGroup 辅助方法会自动在字段标签上添加一个星号 (*)。\n\n要生成内联或垂直形式的相同表单，只需在 Form 对象上调用\
+  \ Type 方法，并将布局作为参数传递给 Type 方法即可。该参数是一个枚举（enum）值，启用 IntelliSense 后会列出所有可用选项：\n\n\
+  ```csharp\n@using (var form = Html.Bootstrap().Begin(new Form().Type(FormType.Inline)))\n\
+  {\n    @form.FormGroup().TextBoxFor(m => m.CompanyName).Placeholder(\"Enter the\
+  \ company name.\")\n    @form.FormGroup().TextBoxFor(m => m.ContactName).Placeholder(\"\
+  Enter the name of contact person.\")\n    @form.FormGroup().TextBoxFor(m => m.Address)\n\
+  \    @Html.Bootstrap().SubmitButton()\n}\n```\n\n生成的表单将类似于以下截图：\n\n![](img/371b9a67300a03b7b335eb8a6fe55d94_176_0.png)\n\
+  \nTextbox 辅助方法提供了以下扩展方法，用于向文本框元素添加额外的格式或功能：\n\n| 方法名 | 描述 |\n|---|---|\n| .Value()\
+  \ | 设置文本框的值。 |\n| .Size() | 设置文本框的大小。此方法也接受 InputSize 枚举。 |\n| .Placeholder() |\
+  \ 指定文本框的占位符文本。 |\n| .Format() | 用于指定文本框的数据格式。 |\n| .Append() | 将指定的字符串追加到文本框的末尾。此方法还会创建一个输入组。\
+  \ |\n| .AppendIcon() | 将图标附加到文本框的末尾。 |\n| .Prepend() | 与 .Append() 方法相反。此方法将指定的字符串添加到文本框的前面，并创建一个输入组。\
+  \ |\n| .PrependIcon() | 将指定的图标添加到文本框的前面。 |\n| .TypeAhead() | 为文本框启用 TypeAhead 功能。\
+  \ |\n\n在以下示例中，我们将为模型的 `PostalCode` 属性创建一个文本框，将其值设置为 1.23，并将其大小设置为 Large。然后，我们将指定占位符文本和格式，最后在文本框前面添加一个字符串：\n\
+  \n```csharp\n@Html.Bootstrap().TextBoxFor(m => m.MinimumTransactionValue).\n   \
+  \ Value(\"1.23\").Size(InputSize.Large).Placeholder(\"Enter Postal Code\").\n  \
+  \  Format(\"{0:0.00}\").Prepend(\"US\")\n```\n\n生成的文本框在浏览器中应类似于以下截图：\n\n![](img/371b9a67300a03b7b335eb8a6fe55d94_177_0.png)\n\
+  \n要使用 `TwitterBootstrapMVC` 库创建文本区域输入，可以使用 `TextAreaFor` 辅助方法。该辅助方法支持另外两个方法，你可以用它们来指定文本区域的列数和行数。在以下示例中，我们将为模型的\
+  \ `Address` 属性创建一个文本区域，并将其列数设置为 10，行数设置为 5：\n\n```csharp\n@Html.Bootstrap().TextAreaFor(m\
+  \ => m.Address).Columns(10).Rows(5)\n```\n\n文本区域在浏览器中的渲染效果应类似于以下截图：\n\n![](img/371b9a67300a03b7b335eb8a6fe55d94_177_1.png)\n\
+  \n## 按钮和链接\n\n`TwitterBootstrapMVC` 库为 Bootstrap 按钮和链接提供了流畅的辅助方法。按钮和链接的辅助方法都共享以下扩展方法：\n\
+  \n| 方法名 | 描述 |\n|---|---|\n| .AppendIcon() | 将指定的图标附加到按钮或链接上。 |\n| .PrependIcon()\
+  \ | 将指定的图标添加到按钮或链接的前面。 |\n| .Disabled() | 向按钮或链接添加 `disabled` 类。 |\n\n在以下代码示例中，我们将创建一个简单的提交按钮，其前面和后面都有图标。请注意使用\
+  \ `glyphicon` 类名来指定要使用的图标。\n\n```csharp\n@Html.Bootstrap().Button().AppendIcon(\"\
+  glyphicon glyphicon-pencil\").\n    PrependIcon(\"glyphicon glyphicon-music\")\n\
+  ```\n\n上述标记将在浏览器中渲染为以下截图：\n\n![](img/371b9a67300a03b7b335eb8a6fe55d94_178_0.png)\n\
+  \n`ActionLinkButton`、`Button` 和 `SubmitButton` 辅助方法共享以下扩展方法：\n\n| 方法名 | 描述 |\n|---|---|\n\
+  | .Text() | 设置按钮的标题/文本。 |\n| .Name() | 指定 HTML name 属性。 |\n| .Value() | 设置 value\
+  \ HTML 属性。 |\n| .Size() | 指定按钮的大小。此方法也接受 `ButtonSize` 枚举作为参数。 |\n| .Style() | 设置按钮的样式。此方法也接受\
+  \ `ButtonStyle` 枚举作为参数。 |\n| .ButtonBlock() | 将按钮扩展到容器的整个宽度。 |\n\n\n\n\n\n| 方法名称\
+  \ | 描述 |\n|---|---|\n| `.LoadingText()` | 这会在按钮被点击后设置应显示的文本。 |\n| `.DropDownToggle()`\
+  \ | 这会将 dropdown-toggle 类名应用到按钮上。 |\n\n以下代码使用 `TwitterBootstrapMVC` 流畅助手语法生成一个大号的绿色\
+  \ Bootstrap 按钮并设置其标题：\n\n```csharp\n@Html.Bootstrap().Button().Text(\"Buy Now\"\
+  ).Size(ButtonSize.Large).Style(ButtonStyle.Success)\n```\n\n该按钮在浏览器中应类似于以下截图：\n\n\
+  ![](img/371b9a67300a03b7b335eb8a6fe55d94_179_0.png)\n\n`ActionLinkButton` 和 `ActionLink`\
+  \ 助手共享以下扩展方法：\n\n| 方法名称 | 描述 |\n|---|---|\n| `.Protocol()` | 这指定了 URL 的协议，例如 http\
+  \ 或 https |\n| `.HostName()` | 这设置了 URL 的主机名 |\n| `.Fragment()` | 这设置了 URL 的锚点名称\
+  \ |\n| `.RouteName()` | 这指定了路由名称 |\n| `.RouteValues()` | 这设置了路由值 |\n| `.Title()`\
+  \ | 这设置了 title HTML 属性 |\n\n在以下代码中，我们将创建一个 `ActionLinkButton` 对象。请注意我们如何将 `.Style`\
+  \ 和 `.PrependIcons` 方法与 `ActionLinkButton` 方法结合使用：\n\n```csharp\n@Html.Bootstrap().ActionLinkButton(\"\
+  Go to Buttons\", \"Buttons\").Protocol(\"http\").Title(\"Buttons Link\").Style(ButtonStyle.Link).PrependIcon(\"\
+  glyphicon glyphicon-film\")\n```\n\n结果将在浏览器中渲染一个带有图标的链接，如以下截图所示：\n\n![](img/371b9a67300a03b7b335eb8a6fe55d94_180_0.png)\n\
+  \n## 折叠面板和面板\n\nTwitterBootstrapMVC 提供的折叠面板和面板助手都应使用可释放的 Begin 方法。\n\n折叠面板方法还有另一个名为\
+  \ `BeginPanel` 的方法，用于在折叠面板组件内部指示一个新的面板。以下代码将生成一个包含两个面板的折叠面板。请注意两个面板也是可释放的。\n\n```csharp\n\
+  @using (var accordian = Html.Bootstrap().Begin(new Accordion(\"FAQ\")))\n{\n   \
+  \ using (accordian.BeginPanel(\"Question 1\"))\n    {\n        <p>Etiam luctus nunc\
+  \ ipsum, sed facilisis velit.</p>\n    }\n    using (accordian.BeginPanel(\"Question\
+  \ 2\"))\n    {\n        <p>Duis volutpat iaculis nisl, ut porttitor.</p>\n    }\n\
+  }\n```\n\n折叠面板在浏览器中应类似于以下截图：\n\n![](img/371b9a67300a03b7b335eb8a6fe55d94_180_1.png)\n\
+  \n面板助手包含三个子方法，`BeginHeading`、`BeginBody` 和 `BeginFooter`。这些方法也可以通过调用 Heading、Body\
+  \ 或 Footer 方法使用简写表示法进行调用。\n\n使用以下代码，我们将生成一个带有标题和页脚的面板。我们还将通过在 Panel 对象上调用共享的 Style\
+  \ 方法来指定面板的样式。\n\n```csharp\n@using (var panel = Html.Bootstrap().Begin(new Panel().Style(PanelStyle.Danger)))\n\
+  {\n    @panel.Heading(\"Panel Heading\")\n\n    using (panel.BeginBody())\n    {\n\
+  \        <p>Proin mattis lacus ac enim aliquam, eu malesuada tortor pretium.</p>\n\
+  \    }\n    @panel.Footer(\"Panel Footer\")\n}\n```\n\n此代码将在浏览器中渲染以下截图：\n\n![](img/371b9a67300a03b7b335eb8a6fe55d94_181_0.png)\n\
+  \n## 标签页和模态框\n\n标签页和模态框组件也提供流畅助手。新的标签页组件应使用可释放的 Begin 方法创建。标签页组件内的每个标签页必须使用 Tab\
+  \ 扩展方法声明，并且每个标签页的内容应位于 BeginPanel 方法内部。\n\n在以下示例中，我们将创建一个包含两个标签页的标签页组件。请注意 Tab 方法上\
+  \ AppendBadge 扩展方法的使用。\n\n```csharp\n@using (var tabs = Html.Bootstrap().Begin(new\
+  \ Tabs(\"TabComponent\")))\n{\n    @tabs.Tab(\"Tab One\")\n```\n\n## 总结\n\n在本章中，您了解了\
+  \ TwitterBootstrapMVC 库，并看到了如何使用该库减少视图的标记量。这也是本书的最后一章，到目前为止，您应该对在自己的 ASP.NET MVC\
+  \ 项目中使用 Bootstrap 感到相当熟练，甚至可以准备好编写自己的代码生成工具和助手。\n\n请务必从 Packt Publishing 网站下载随本书附带的示例项目，以查看本书中提到的示例的实际效果。\n\
+  \n感谢您的阅读。下次见，继续编码！\n\n## Bootstrap 资源\n\nBootstrap 社区是一个充满活力和庞大的社区。以下各节按任意顺序列出了互联网上可用的\
+  \ Bootstrap 资源。\n\n### 主题\n\n以下表格列出了基于 Bootstrap 的免费和付费 HTML 主题的下载 URL：\n\n| URL\
+  \ | 描述 |\n|---|---|\n| http://startbootstrap.com/ | 该 URL 提供免费的 HTML 起始模板和 Bootstrap\
+  \ 主题。 |\n| https://wrapbootstrap.com/ | 这是 Bootstrap 付费主题和模板的市场。 |\n| http://bit.ly/ThemeForestHtml\
+  \ | ThemeForest 有超过 5,000 个付费 HTML 模板。其中许多基于 Bootstrap。 |\n| http://www.prepbootstrap.com/\
+  \ | 该 URL 提供免费的 Bootstrap 主题、模板和其他小部件，并附带完整的代码示例。 |\n| http://bootstrapzero.com/\
+  \ | 该 URL 提供开源 Bootstrap 主题和模板。 |\n| http://bootswatch.com/ | 该 URL 提供 Bootstrap\
+  \ 的免费主题。 |\n\n### 插件\n\n以下表格列出了 Bootstrap 的额外插件、插件和组件的 URL：\n\n| URL | 描述 |\n|---|---|\n\
+  | `http://bit.ly/FuelUX` | FuelUX 为 Bootstrap 提供额外的控件和增强功能，如日期选择器、微调器、树和表单向导。 |\n\
+  | `http://bit.ly/JasnyBootstrap` | Jasny Bootstrap 对现有组件提供了一些增强功能，如标签按钮和锚定警告。 |\n\
+  | `http://bit.ly/BootstrapNotify` | Bootstrap notify 使向用户显示警报样式通知变得更容易。 |\n| `http://bootstrapformhelpers.com/`\
+  \ | Bootstrap Form Helpers 是一个插件，可帮助增强您的表单。它包括颜色选择器、滑块等。 |\n| `http://www.bootstrap-switch.org/`\
+  \ | 此插件将您的复选框转换为 iOS 风格的开关控件。 |\n| `http://bit.ly/BSAppWiz` | 此插件使用 Bootstrap Application\
+  \ Wizard 为您的表单添加多步骤、类似向导的界面。 |\n| `http://tableclothjs.com/` | 此插件使用 jQuery 使您的\
+  \ Bootstrap 表格可排序和可搜索。 |\n| `http://bit.ly/TypeAhead` | 此插件由 Twitter 提供。它还为您的表单添加自动完成功能。\
+  \ |\n\n### 编辑器和生成器\n\n以下表格列出了帮助您设计和构建 Bootstrap 网站的工具的 URL：\n\n| URL | 描述 |\n|---|---|\n\
+  | `http://www.bootstrapbundle.com/` | 该 URL 提供 ASP.NET MVC Bootstrap 项目和 Visual\
+  \ Studio 2013 的项目项模板。 |\n| `http://www.layoutit.com/` | 该 URL 提供 Bootstrap 的拖放界面构建器。\
+  \ |\n| https://www.easel.io/ | 这与 LayoutIt 类似。它提供可视化拖放界面来构建您的 Bootstrap UI。 |\n\
+  | https://jetstrap.com/ | 该 URL 提供 Bootstrap 的可视化界面构建工具。 |\n| http://www.bootply.com/\
+  \ | 该 URL 提供可视化编辑器，用于快速构建 Bootstrap 界面。 |\n| http://www.divshot.com/ | 该 URL 提供\
+  \ Bootstrap 构建器和静态网站托管工具。 |\n| http://bit.ly/BSMagic | Bootstrap Magic 轻松创建您自己的\
+  \ Bootstrap 主题。 |\n| http://paintstrap.com/ | 该 URL 提供使用 COLOURlovers 配色方案生成 Bootstrap\
+  \ 主题的工具。 |\n| http://www.bootstrapdesigner.com/ | 该 URL 提供生成 Bootstrap 网站或模板的工具。\
+  \ |\n"
+- "## 索引\n\n### 符号\n\n- _BackendMenuPartial 视图 54\n- .dll 文件\n  - 用于添加 TwitterBootstrapMVC\
+  \ 库 161\n- @helper 语法\n  - 使用 94\n- @Html.BeginForm() 助手 104\n\n### A\n\n- 折叠面板和面板助手\
+  \ 168\n- 折叠面板组件\n  - 关于 88\n  - 使用 88-90\n- 折叠面板方法 168\n- Add 方法 25\n- 插件\n  - URL\
+  \ 174\n- 警告组件\n  - 关于 67, 68\n  - 可 dismiss 警告 68\n- 动画进度条 71\n- ASP.NET 布局\n  -\
+  \ 捆绑包添加 25, 26\n- ASP.NET MVC\n  - 关于 93\n  - 内置 HTML 助手 93\n  - 添加 DataTables 146\n\
+  \  - 项目创建 132, 133\n- ASP.NET MVC 网站\n  - 添加 Bootstrap 字体 16\n  - 添加 Bootstrap JavaScript\
+  \ 文件 16\n  - 添加 Bootstrap 样式表 15\n  - 创建 14, 15\n\n### B\n\n- 徽章组件 57\n- 基础进度条 69,\
+  \ 70\n- Bootstrap\n  - URL 8, 130\n  - 与标准 Visual Studio 项目模板一起使用 10, 11\n- BootstrapButton\
+  \ 方法 99\n- Bootstrap 按钮\n  - 关于 39, 40\n  - btn btn-default btn-lg 类 40\n  - btn\
+  \ btn-default btn-sm 类 39\n  - btn btn-default btn-xs 类 39\n  - btn btn-default\
+  \ 类 40\n- Bootstrap 组件\n  - 关于 53\n  - 警告 67\n  - 徽章 57\n  - 面包屑 60\n  - 按钮下拉菜单\
+  \ 66\n  - 输入组 64, 65\n  - 列表组 56\n  - 媒体对象 57-59\n  - 导航栏 53-55\n  - 页面标题 59\n \
+  \ - 分页 60-63\n  - 进度条 69\n- Bootstrap 分发\n  - 关于 8\n  - Bootstrap 文件夹结构 9\n  - Bootstrap\
+  \ 字体 8\n  - Bootstrap JavaScript 文件 9\n  - Bootstrap 样式表 8\n- Bootstrap 文件\n  -\
+  \ 使用 NuGet 添加 21\n\n\n\n\n\nBootstrap folder structure 9\nBootstrap fonts\nabout\
+  \ 8\nadding, to ASP.NET MVC site 16\nformats 8\nBootstrap forms\nabout 41\nhorizontal\
+  \ forms 41, 42\ninline forms 43\nvertical/basic forms 42, 43\nBootstrap grid system\n\
+  about 30\ngrid classes 30\ngrid options 30, 31\nBootstrap HTML elements\nabout 31\n\
+  buttons 39\nforms 41\nimages 50\ntables 32\nBootstrap image classes\nabout 50, 51\n\
+  img-circle 50\nimg-responsive 50\nimg-rounded 50\nimg-thumbnail 50\nBootstrap JavaScript\
+  \ files\nabout 9\nadding, to ASP.NET MVC site 16\nBootstrap navigation bar\nabout\
+  \ 53-55\nfixed-top navigation bar 54\nBootstrap NuGet package\nadding, dialog used\
+  \ 21, 22\nadding, Package Manager Console used 22, 23\nBootstrap plugins\nURL 76\n\
+  Bootstrap project\nbundling, adding 24, 25\nBootstrap resources\nadd-ons 174\neditors\
+  \ and generators 174\nthemes 173\nBootstrap styles\nURL 41\nBootstrap style sheets\n\
+  about 8\nadding, to ASP.NET MVC site 15\nBootstrap styling\nadding, to DataTables\
+  \ 147\nBootstrap tables\nabout 32\ncontextual table classes 37, 38\ndefault styling\
+  \ 32, 33\nstyling 36\nview, generating 33-36\nBootstrap-themed view\nused, for creating\
+  \ home controller 19, 20\nBootstrap validation styles 44-46\nbreadcrumb 60\nbuilt-in\
+  \ HTML helpers\nTextBox helper 94\nbundles\nadding, to ASP.NET layout 25, 26\nbundling\n\
+  adding, to Bootstrap project 24, 25\nbundling and minification\nabout 23\ntesting\
+  \ 26, 27\nbutton dropdowns\nabout 66\ncreating 66\nButton method 97\nbuttons and\
+  \ links helpers\n.AppendIcon() method 166\n.ButtonBlock() method 166\n.Disabled()\
+  \ method 166\n.DropDownToggle() method 167\n.Fragment() method 167\n.HostName()\
+  \ method 167\n.LoadingText() method 167\n.Name() method 166\n.PrependIcon() method\
+  \ 166\n.Protocol() method 167\n.RouteName() method 167\n.RouteValues() method 167\n\
+  .Size() method 166\n.Style() method 166\n.Text() method 166\n.Title() method 167\n\
+  .Value() method 166\n\n### C\n\ncarousel component\nabout 90\nusing 90, 91\nCDN\n\
+  using 147\ncharts\nadding, to views 141, 142\nColReorder extension\nabout 153, 154\n\
+  using 153\nColVis extension\nabout 154\nusing 154\nContent Delivery Network (CDN)\
+  \ 18, 135, 146\nContent folder, default MVC project layout 13\ncontextual progress\
+  \ bars\nabout 70\nclass name, setting 70\ncustom helper\ncreating 94, 95\nusing,\
+  \ in view 95\ncustom scaffolder extension\ncreating 118-127\n\n### D\n\ndata attributes\n\
+  versus, programmatic API 76\ndata-content attribute 87\ndata-original-title attribute\
+  \ 87\nDataTables. See jQuery DataTables\nDataTables CDN\nreference links 146\nURL\
+  \ 154\nDataTables NuGet package\nusing 146\ndata-toggle attribute 87\ndata-trigger\
+  \ attribute 87\ndefault MVC project layout\nabout 12\nContent folder 13\nfonts folder\
+  \ 13\nScripts folder 14\n\nDevart T4 editor, for Visual Studio\nURL 109\ndialog\n\
+  used, for adding Bootstrap NuGet package 21, 22\ndismissible alert 68\ndropdowns\n\
+  cascading 77-80\n\n### E\n\neditor templates\nabout 47\ncreating, for nonprimitive\
+  \ types 48, 49\ncreating, for primitive types 47, 48\nEOT font format 8\nextension\
+  \ method helper\nusing, in view 99\nextension methods\nabout 98\nURL 98\nused, for\
+  \ creating helpers 98, 99\n\n### F\n\nfluent HTML helpers\ncreating 99-103\nusing,\
+  \ in view 103\nfluent interfaces\nabout 99\nURL 99\nFont Awesome 8\nfonts folder,\
+  \ default MVC project layout 13\nforms. See Bootstrap forms\n\n### G\n\ngenerated\
+  \ code, for controllers\ncustomizing 110-113\ngenerated code, for views\ncustomizing\
+  \ 114-117\nGlyphicon Halflings icons\nURL 64\ngrid classes\ncol-lg-* 30\ncol-md-*\
+  \ 30\ncol-sm-* 30\ncol-xs-* 30\n\nH\nhelpers\ncreating, extension methods used 98\n\
+  creating, static methods used 96, 97\nhome controller\ncreating, with Bootstrap-themed\
+  \ view 19, 20\nview, creating 135, 136\nhorizontal forms 41, 42\nHtmlHelper method\
+  \ 93\nHTML helpers 93\n\nI\ninline forms 43\ninput element\n.Class() method 162\n\
+  .Data() method 162\n.DisabledDependsOn() method 162\n.Disabled() method 162\n.HelpText()\
+  \ method 162\n.HtmlAttributes() method 162\n.Id() method 162\n.Label() method 162\n\
+  .ReadOnly() method 162\n.ShowValidationMessage() method 162\n.Tooltip() method 162\n\
+  .VisibleDependsOn() method 162\ninput groups\nabout 64, 65\ntext input element,\
+  \ creating 64\n\nJ\njQuery DataTables\nabout 145\nadding, to ASP.NET MVC project\
+  \ 146\ndata, displaying 148-152\ndata, loading 148\nURL 146\njQuery DataTables,\
+  \ adding to ASP.NET MVC project\nBootstrap styling, adding 147, 148\nCDN, using\
+  \ 147\nDataTables NuGet package, using 146\njQuery DataTables extensions\nabout\
+  \ 153\nColReorder extension 153\nColVis extension 154\nTableTools extension 156\n\
+  jQuery validation plugin\nURL 46\n\nL\nlist groups component 56\n\nM\nmaster layout\n\
+  creating 133-135\nmedia-object class name 59\nmedia object component 57-59\nmenu\
+  \ plugin library\nadding 137, 138\nMicrosoft.AspNet.Web.Optimization NuGet package\n\
+  installing 24\nModal class\n.BackdropOff() method 170\n.Closeable() method 170\n\
+  .FadeOff() method 170\n.KeyboardOff() method 170\n.Remote() method 170\n.ShowOff()\
+  \ method 170\nmodal dialogs\nusing 80-82\nMvcHtmlString object 97\n\nN\nnonprimitive\
+  \ types\neditor templates, creating for 48, 49\nNorthwind database 57\nNuGet\nabout\
+  \ 21\nURL 21\nused, for adding Bootstrap 21\nused, for adding TwitterBootstrapMVC\
+  \ library 160\n\nP\nPackage Manager Console\nused, for adding Bootstrap NuGet package\
+  \ 22, 23\nPagedList library 62\nPagedList.Mvc NuGet package 61\nPagedListPager HTML\
+  \ helper\nabout 62\npagination layouts 62\npage header 59\npage views\nadding 138,\
+  \ 140\npagination 60-63\npanel helper\nabout 168\nBeginBody method 168\nBeginFooter\
+  \ method 168\nBeginHeading method 168\npopovers\nabout 87\nusing 87\nprebuilt HTML\
+  \ templates\nworking with 130, 131\nprimitive types\neditor templates, creating\
+  \ for 47, 48\nprogress bars\nanimated progress bars 71\nbasic progress bar 69, 70\n\
+  contextual progress bars 70\nstriped progress bars 71\nupdating dynamically 71-73\n\
+  S\nscaffolding 107\nScriptBundle object 25\nScripts folder, default MVC project\
+  \ layout 14\nSearchProductsResult view 56\nself-closing helpers\nabout 104\ncreating\
+  \ 104, 105\nusing, in view 105\nSideWaffle\nabout 109\nURL 109\nSignalR\nabout 72\n\
+  URL 72\nsite Layout file\ncreating 17, 18\nsite performance\nimproving, with bundling\
+  \ and minification 23\nstandard HTML helpers, ASP.NET MVC\nURL 94\nstatic method\
+  \ helper\nusing, in view 98\nstatic methods\ncreating 96\nused, for creating helpers\
+  \ 96, 97\nstriped progress bars 71\nStyleBundle object 25\nT\nT4 code generator\
+  \ 108\nT4 syntax 109, 110\nT4 templates\nabout 108\nURL 109\nT4 tools 109\nTableTools\
+  \ extension\nabout 156\nusing 156\ntabs\nabout 83\nusing 83, 84\ntextbox element\n\
+  .AppendIcon() method 164\n.Append() method 164\n.Format() method 164\n.Placeholder()\
+  \ method 164\n.PrependIcon() method 164\n.Prepend() method 164\n.Size() method 164\n\
+  .Typeahead() method 164\n.Value() method 164\nTextBox helper 94, 164\nThemeForest\n\
+  URL 130\n\n+   **themes**\n+     URLs, for downloading 173\n+   **ToBootstrapSize\
+  \ method 97**\n+   **tools, for design**\n+     URLs 174, 175\n+   **tooltips**\n\
+  +     about 85\n+     using 85, 86\n+   **TTF 8**\n+   **TwitterBootstrapMVC helpers**\n\
+  +     accordion and panel helpers 168\n+     buttons and links helpers 166, 167\n\
+  +     forms element 163-165\n+     inputs element 162\n+     tab and modal components\
+  \ 169\n+     using 161\n+   **TwitterBootstrapMVC library**\n+     about 159\n+\
+  \     adding 160\n+     adding, .dll file used 161\n+     adding, NuGet used 160\n\
+  +     helpers 161\n+     reference links 160\n+     URL, for commercialized version\
+  \ 160\n+   \n+   **V**\n+   **vertical/basic forms 42, 43**\n+   **view**\n+   \
+  \  creating, for home controller 135, 136\n+     custom helper, using in 95\n+ \
+  \    extension method helper, using in 99\n+     fluent HTML helper, using in 103\n\
+  +     self-closing helper, using in 105\n+     static method helper, using in 98\n\
+  \n![](img/371b9a67300a03b7b335eb8a6fe55d94_195_0.png)\n\n# Thank you for buying\n\
+  # Bootstrap for ASP.NET MVC\n\n# About Packt Publishing\n\nPackt, pronounced 'packed',\
+  \ published its first book \"Mastering phpMyAdmin for Effective MySQL Management\"\
+  \ in April 2004 and subsequently continued to specialize in publishing highly focused\
+  \ books on specific technologies and solutions.\n\nOur books and publications share\
+  \ the experiences of your fellow IT professionals in adapting and customizing today's\
+  \ systems, applications, and frameworks. Our solution based books give you the knowledge\
+  \ and power to customize the software and technologies you're using to get the job\
+  \ done. Packt books are more specific and less general than the IT books you have\
+  \ seen in the past. Our unique business model allows us to bring you more focused\
+  \ information, giving you more of what you need to know, and less of what you don't.\n\
+  \nPackt is a modern, yet unique publishing company, which focuses on producing quality,\
+  \ cutting-edge books for communities of developers, administrators, and newbies\
+  \ alike. For more information, please visit our website: www.packtpub.com.\n\n#\
+  \ About Packt Open Source\n\nIn 2010, Packt launched two new brands, Packt Open\
+  \ Source and Packt Enterprise, in order to continue its focus on specialization.\
+  \ This book is part of the Packt Open Source brand, home to books published on software\
+  \ built around Open Source licenses, and offering information to anybody from advanced\
+  \ developers to budding web designers. The Open Source brand also runs Packt's Open\
+  \ Source Royalty Scheme, by which Packt gives a royalty to each Open Source project\
+  \ about whose software a book is sold.\n\n# Writing for Packt\n\nWe welcome all\
+  \ inquiries from people who are interested in authoring. Book proposals should be\
+  \ sent to author@packtpub.com. If your book idea is still at an early stage and\
+  \ you would like to discuss it first before writing a formal book proposal, contact\
+  \ us; one of our commissioning editors will get in touch with you.\n\nWe're not\
+  \ just looking for published authors; if you have strong technical skills but no\
+  \ writing experience, our experienced editors can help you develop a writing career,\
+  \ or simply get some additional reward for your expertise.\n\n\n\n\n\n![](img/371b9a67300a03b7b335eb8a6fe55d94_196_0.png)\n\
+  \n![](img/371b9a67300a03b7b335eb8a6fe55d94_196_1.png)\n\n## Bootstrap Site Blueprints\n\
+  \nISBN: 978-1-78216-452-4\t\tPaperback: 304 pages\n\nDesign mobile-first responsive\
+  \ websites\nwith Bootstrap 3\n\n- 1. Learn the inner working of Bootstrap 3 and\
+  \ create web applications with ease.\n- 2. Quickly customize your designs working\
+  \ directly with Bootstrap's LESS files.\n- 3. Leverage Bootstrap's excellent JavaScript\
+  \ plugins.\n\n![](img/371b9a67300a03b7b335eb8a6fe55d94_196_2.png)\n\n## Extending\
+  \ Bootstrap\n\nISBN: 978-1-78216-841-6\t\tPaperback: 88 pages\n\nUnderstand Bootstrap\
+  \ and unlock its secrets to build\na truly customized project!\n\n- 1. Learn to\
+  \ use themes to improve your user experience.\n- 2. Improve your workflow with LESS\
+  \ and Grunt.js.\n- 3. Get to know the most useful third-party Bootstrap plugins.\n\
+  \n## [PACKT] open source\nPUBLISHING\ncommunity experience distilled\n\n![](img/371b9a67300a03b7b335eb8a6fe55d94_197_0.png)\n\
+  \n## Mobile First Bootstrap\n\nISBN: 978-1-78328-579-2      Paperback: 92 pages\n\
+  \nDevelop advanced websites optimized for mobile devices using the Mobile First\
+  \ feature of Bootstrap\n\n- 1. Get to grips with the essentials of mobile-first\
+  \ development with Bootstrap.\n- 2. Understand the entire process of building a\
+  \ mobile-first website with Bootstrap from scratch.\n- 3. Packed with screenshots\
+  \ that help guide you through how to build an appealing website from a mobile-first\
+  \ perspective with the help of a real-world example.\n\n![](img/371b9a67300a03b7b335eb8a6fe55d94_197_1.png)\n\
+  \n## ASP.NET Web API\n\n### Build RESTful web applications and services on the .NET\
+  \ framework\n\nISBN: 978-1-84968-974-8      Paperback: 224 pages\n\nMaster ASP.NET\
+  \ Web API using .NET Framework 4.5 and Visual Studio 2013\n\n- 1. Clear and concise\
+  \ guide to the ASP.NET Web API with plentiful code examples.\n- 2. Learn about the\
+  \ advanced concepts of the WCF-windows communication foundation.\n- 3. Explore ways\
+  \ to consume Web API services using ASP.NET, ASP.NET MVC, WPF, and Silverlight clients.\n\
+  \nPlease check www.PacktPub.com for information on our titles\n\n"
