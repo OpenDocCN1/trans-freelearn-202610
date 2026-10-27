@@ -1,0 +1,47 @@
+chapter_starts:
+- 'no': 89
+  confidence: 0.9
+  final_reason: 前言为正文前内容，按规则统一划分为一章，标题单独成行且语义统领后续前置部分，复核方确认应保留分章
+  accepted_evidence:
+  - '标题单独成行 ## 前言'
+  - 后接本书涵盖内容等前置概述
+  - 规则要求前言、序言、致谢、关于作者等正文前内容统一划分为一章
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 171
+  confidence: 0.95
+  final_reason: 第1章正文起始标题，单独成行、无句号、语义统领后续内容，后接本章主题列表，复核方确认章级
+  accepted_evidence:
+  - '## 什么是 Lumion？单独成行且后1~3行概述'
+  - 后接'在本章中我们将涵盖以下主题'及###子节
+  - 上下文为正文第一章起始
+  rejected_evidence:
+  - 标题使用##与前置部分同级
+  need_human_review: false
+- 'no': 595
+  confidence: 0.98
+  final_reason: 编号章节标题 '# 2 准备场景'，最高层级大章，单独成行且后接本章涵盖内容，编号连贯
+  accepted_evidence:
+  - '一级标题 # 2 准备场景'
+  - 后接'我相信在读完第一章后...'及本章学习内容列表
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 821
+  confidence: 0.98
+  final_reason: 编号章节标题 '# 3 创建材质'，最高层级大章，单独成行且后接本章学习内容，编号连贯
+  accepted_evidence:
+  - '一级标题 # 3 创建材质'
+  - 后接'现在你已经在 Lumion 中准备好了...'及学习要点列表
+  rejected_evidence:
+  - '第822行 ### 创建材质为子节重复'
+  need_human_review: false
+- 'no': 984
+  confidence: 0.98
+  final_reason: 编号章节标题 '# 4 使用 Lumion'，最高层级大章，单独成行且后接本章主题列表，编号连贯
+  accepted_evidence:
+  - '一级标题 # 4 使用 Lumion'
+  - 后接'是时候开始使用 Lumion 了...'及主题列表
+  rejected_evidence:
+  - '第986行 ## 使用 Lumion 为节级重复标题'
+  need_human_review: false
+rejected_lines: []

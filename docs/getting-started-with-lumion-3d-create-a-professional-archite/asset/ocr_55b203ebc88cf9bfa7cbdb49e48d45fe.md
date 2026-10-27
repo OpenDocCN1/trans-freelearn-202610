@@ -1,0 +1,13 @@
+# Preparing the Scene
+
+If I need more information, I generally keep the CAD drawing open to have a quick look. One important thing is that, our drawing needs a scale. Otherwise, when we import it to SketchUp or other 3D applications, we may have two basic problems; we won't be able to see our plan, either because it is too tiny and we need to zoom in, or because it is so big that we need to zoom out. And even if you zoom in or out to see the plan and modeling, the problem will still persist when we import our model to Lumion. Our model will either be huge or tiny, and we will need to go back and scale it.
+
+After all these steps, run the `Purge` and `Audit` functions to make sure all the unnecessary information is removed and the errors are fixed. The last thing you need to be sure of is that your drawing is set at the origin location `(0,0,0)`. This is very important because the drawing may not be located at the origin but rather far away from it, and when we import, things might not go well. This is not the end of the world, but you should make a habit of having your drawings close to the origin location. To move your drawing to the origin location, use the command `Move (M)`, enter `'0','0','0'`, and then press *Enter*.
+
+Now that we have planned our shots, have a clean drawing, and know what we need to model, let's start modeling.
+
+# Modeling with SketchUp, 3ds Max, and Maya
+
+The modeling process itself is relatively straightforward. I built the model of the house after doing some research on it. I gathered all plans and images that I could find online and in books. Since classic designs such as this are well documented; it wasn't difficult to find the information I needed. The modeling part was quite simple as the building does not have any complex shapes, and so, this is polygonal modeling from boxes. Hence in this case, I didn't use any complex CAD drawings; just some references for checking the measures.
+
+This topic is related to modeling, but again, teaching you how to model is out of the scope of this book. Instead, we are going to learn small tips that we can use to prepare our scene in Lumion and prepare our own models, and also how to correct some mistakes that may occur during the modeling process. I am going to focus on three 3D applications that I use the most and have experience with, but everything that you learn here can be applied to any 3D application. They may be different commands, but the end result is the same.

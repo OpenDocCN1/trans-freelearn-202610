@@ -1,0 +1,3 @@
+# Summary
+
+In this chapter you learned how to use and configure the prebuilt materials in Lumion. You found out how to use the **Landscape** material to create a terrain and some useful materials such as the **Invisible** and **Water** materials. In the final section, you discovered some places where you can find free textures and learned what you need to create a seamless **Diffuse** texture, alpha channel, and normal maps. In the next chapter, you will learn how to export your 3D model from a 3D application such as SketchUp and import it without problems in Lumion.
