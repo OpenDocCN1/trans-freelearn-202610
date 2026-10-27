@@ -1,0 +1,267 @@
+- '# Angular 精要：Angular 核心贡献者撰写的关键方面概述
+
+
+
+
+
+
+  你可以在这里找到应用程序的源代码 https://github.com/vsavkin/essential-angular-book-app。
+
+  '
+- "# 第 2 章 编译\n\nAngular 的核心是一个复杂的编译器，它接收一个 `NgModule` 类型并生成一个 `NgModuleFactory`。\n\
+  \n![](img/79f67e6cb2f5bd357461768fccf131e0_5_0.png)\n\n`NgModule` 中声明了组件。在创建模块工厂时，编译器会获取模块中每个组件的模板，并利用已声明组件和管道的信息，生成一个组件工厂。组件工厂是一个\
+  \ JavaScript 类，框架可以使用它来实例化组件。\n\n![](img/79f67e6cb2f5bd357461768fccf131e0_6_0.png)\n\
+  \n```\nNgModule\n\nComponent/Directive Types\n\nPipe Types\n\n...\n\nTemplate\n\n\
+  Component Factory\n```\n\n### 它是如何实现的？\n\n为什么我们之前没有在 Angular 1 中做到这一点？为了让 AOT 工作，应用程序必须清晰地区分静态数据和动态数据。而且编译器的构建方式必须使其只依赖静态数据。在设计并构建\
+  \ Angular 时，我们投入了大量精力来实现这一点。而类和装饰器这些新版本 JavaScript 和 TypeScript 支持的原始特性，让这一切变得容易得多。\n\
+  \n为了在实践中看到这种分离是如何工作的，让我们看下面的例子。在这里，装饰器中的信息是静态已知的。Angular 知道 `talk` 组件的选择器和模板。它也知道该组件有一个名为\
+  \ `talk` 的输入和一个名为 `rate` 的输出。但框架不知道构造函数或 `onRate` 函数做了什么。\n\n```typescript\n@Component({\n\
+  \  selector: 'talk-cmp',\n  template: `\n    {{talk.title}} {{talk.speaker}}\n \
+  \   Rating: {{ talk.rating | formatRating }}\n    <watch-button [talk]=\"talk\"\
+  ></watch-button>\n    <rate-button [talk]=\"talk\" (click)=\"onRate()\"></rate-button>\n\
+  \  `\n})\nclass TalkCmp {\n  @Input() talk: Talk;\n  @Output()...\n}\n```\n\n###\
+  \ 权衡取舍\n\n由于 AOT 优势显著，我们建议在生产环境使用它。但与其他任何事情一样，也存在权衡取舍。为了让 Angular 能够提前编译你的应用程序，元数据必须是静态可分析的。例如，以下代码在\
+  \ AOT 模式下将无法工作：\n\n```typescript\n@Component({\n  selector: 'talk-cmp',\n  template:\
+  \ () => window.hide ? 'hidden' :\n    '{{talk.title}} {{talk.speaker}}\n    Rating:\
+  \ {{ talk.rating | formatRating }}\n    <watch-button [talk]=\"talk\"></watch-button>\n\
+  \    <rate-button [talk]=\"talk\" (click)=\"onRate()\"></rate-button>'\n})\nclass\
+  \ TalkCmp {\n  //...\n}\n```\n\n`window.hide` 属性不会被定义。因此编译将无法指出错误。为了让编译器变得更智能，我们做了大量工作，使其能够理解你在构建应用程序时使用的大多数日常模式。但某些东西永远不会奏效，比如前面的示例。\n"
+- "# 第 3 章 NgModules\n\n### 提供者（Providers）\n\n我将在第 5 章《*依赖注入*》中介绍提供者和依赖注入。这里我只想指出，NgModules\
+  \ 可以包含提供者。并且导入模块的提供者会从左到右与目标模块的提供者合并，也就是说，如果多个导入模块定义了同一个提供者，最后一个模块胜出。\n\n```typescript\n\
+  @NgModule({\n  providers: [\n    Repository\n  ]\n})\nclass TalksModule {}\n\n@NgModule({\n\
+  \  imports: [TalksModule]\n})\nclass AppModule {}\n```\n\n### 引导（Bootstrap）\n\n\
+  要在 JIT 模式下引导 Angular 应用，你需要将一个模块传递给 `bootstrapModule`：\n\n```typescript\nimport\
+  \ {platformBrowserDynamic} from '@angular/platform-browser';\nimport {AppModule}\
+  \ from './app';\n\nplatformBrowserDynamic().bootstrapModule(AppModule);\n```\n\n\
+  这会将 `AppModule` 编译成模块工厂，然后使用该工厂实例化模块。如果你使用 AOT，可能需要自己提供工厂：\n\n```typescript\nimport\
+  \ {platformBrowser} from '@angular/platform-browser';\nimport {AppModuleNgFactory}\
+  \ from './app.ngfactory';\n\nplatformBrowser().bootstrapModuleFactory(AppModuleNgFactory);\n\
+  ```\n\n我说“可能需要”，是因为 CLI 和 WebPack 插件会替你处理这件事。必要时，它们会将对 `bootstrapModule` 的调用替换为\
+  \ `bootstrapModuleFactory`。\n\n### 懒加载\n\n正如我之前提到的，NgModules 不仅仅是编译单元，它们也是分发单元。这就是为什么我们引导\
+  \ NgModule，而不是组件——我们不分发组件，我们分发模块。这也是为什么我们也懒加载 NgModules。\n\n```typescript\nimport\
+  \ {NgModuleFactoryLoader, Injector} from '@angular/core';\n\nclass MyService {\n\
+  \    constructor(loader: NgModuleFactoryLoader, injector: Injector) {\n        loader.load(\"\
+  mymodule\").then((f: NgModuleFactory) => {\n            const moduleRef = f.create(injector);\n\
+  \            moduleRef.injector; // module injector\n            moduleRef.componentFactoryResolver;\
+  \ // all the component factories of the lazy-loaded module\n        });\n    }\n\
+  }\n```\n\n当应用程序运行在 JIT 模式时，加载器会编译模块；而在 AOT 模式下则不会。`@angular/core` 自带的默认加载器使用 SystemJS，但与\
+  \ Angular 中的大多数东西一样，你可以提供自己的加载器。\n"
+- "# 第 4 章 组件与指令\n\n要构建一个 Angular 应用，你需要为每个 UI 元素、屏幕和路由定义一组组件。一个应用总是有根组件（通常只有一个），它包含所有其他组件。为了让事情更简单，在本书中我们假设应用只有一个根组件，因此我们的\
+  \ Angular 应用将有一个组件树，可能看起来像这样：\n\n![](img/79f67e6cb2f5bd357461768fccf131e0_20_0.png)\n\
+  \nAppCmp 是根组件。FiltersCmp 组件具有 speaker 输入和 filter 按钮。TalksCmp 是你在底部看到的列表。TalkCmp\
+  \ 是该列表中的一项。为了理解 Angular 中组件的构成，让我们仔细看看 TalkCmp：\n\n```typescript\n@Component({\n\
+  \  selector: 'talk-cmp',\n  template: `\n    {{talk.title}}  {{talk.speaker}}\n\
+  \    {{talk.rating | formatRating }}\n    <watch-button [talk]=\"talk\"></watch-button>\n\
+  \    <rate-button [talk]=\"talk\"></rate-button>\n  `\n})\nclass TalkCmp {\n  @Input()\
+  \ talk: Talk;\n  @Output() rate: EventEmitter;\n  //...\n}\n```\n\n### 输入和输出属性\n\
+  \n一个组件有输入和输出属性，它们可以在组件装饰器中定义，也可以使用属性装饰器定义。\n\n```typescript\nclass TalkCmp {\n \
+  \ @Input() talk: Talk;\n  @Output() rate: EventEmitter;\n  //...\n}\n```\n\n数据通过输入属性流入组件。数据通过输出属性流出组件，因此得名：输入和输出。\n\
+  \n![](img/79f67e6cb2f5bd357461768fccf131e0_22_0.png)\n\n输入和输出属性是组件的公共 API。当你在应用中实例化组件时，会用到它们。\n\
+  \n```html\n<talk-cmp [talk]=\"someExpr\" (rate)=\"onRate($event.rating)\"></talk-cmp>\n\
+  ```\n\n你可以通过方括号使用属性绑定来设置输入属性。可以通过圆括号使用事件绑定来订阅输出属性。\n\n\n\n\n### 生命周期\n\n组件拥有一个定义良好的生命周期，你可以利用它。`TalkCmp`\
+  \ 并未订阅任何生命周期事件，但其他组件可以。例如，当其输入属性发生变化时，该组件会收到通知。\n\n```typescript\n@Component({\n\
+  \  selector: 'cares-about-changes'\n})\nclass CaresAboutChanges implements OnChanges\
+  \ {\n  @Input() field1;\n  @Input() field2;\n\n  ngOnChanges(changes) { // ... }\n\
+  }\n```\n\n### 提供者\n\n组件可以通过定义组件及其子组件可以注入的提供者列表来配置依赖注入。\n\n```typescript\n@Component({\n\
+  \  selector: 'conf-app',\n  providers: [Logger]\n})\nclass AppCmp { //... }\n\n\
+  @Component({\n  ...\n})\nclass TalksCmp {\n  constructor(logger: Logger) { //...\
+  \ }\n}\n```\n\n在此示例中，我们在应用组件中声明了 logger 服务，这使其在整个应用中可用。talks 组件注入了 logger 服务。我将在第\
+  \ 5 章《依赖注入》中详细讲解依赖注入。现在，只需记住组件可以配置依赖注入即可。\n\n### 查询\n\n除了访问其宿主元素外，组件还可以与其子组件交互。组件可以有两种类型的子组件：**内容子组件**和**视图子组件**。为了理解它们之间的区别，让我们看下面的示例：\n\
+  \n```typescript\n@Component({\n  selector: 'tab',\n  template: `...`\n})\nclass\
+  \ TabCmp {}\n```\n\n```typescript\n@Component({\n  selector: 'tabs',\n  template:\
+  \ `\n    Tabs:\n    <div>\n      <ng-content></ng-content>\n    </div>\n    <div>\n\
+  \      <button (click)=\"selectPrev()\">Prev</button>\n      <button (click)=\"\
+  selectNext()\">Next</button>\n    </div>\n  `,\n})\nclass TabsCmp {}\n```\n\n```typescript\n\
+  @Component({\n  template: `\n    <tabs>\n      <tab></tab>\n      <tab title=\"\
+  Two\"></tab>\n      <tab></tab>\n    </tabs>\n  `,\n})\nclass CmpUsingTabs {\n}\n\
+  ```\n\n`tabs` 组件的内容子组件是三个 `tab` 组件。The\n\n### 那指令呢？\n\n如果你熟悉 Angular 1，你一定会想“指令去哪了？”实际上，指令在\
+  \ Angular 中仍然存在。组件只是指令中最重要的类型，但不是唯一的类型。组件是一个带有模板的指令。但你仍然可以编写装饰器风格的指令，它们没有模板。\n\n\
+  ### 为什么使用模板？\n\n在我们讨论如何之前，让我们先谈谈为什么。\n\n使用模板符合最小权力原则，这是一个有用的设计原则。\n\n> 语言越不强大，就越能用存储在该语言中的数据做更多事情。[...]\
+  \ 我选择 HTML 不是为了让它成为一种编程语言，因为我希望不同的程序可以用不同的方式处理它：以不同的方式呈现它，提取目录，对其进行索引，等等。\n> \n\
+  > —蒂姆·伯纳斯-李，关于最小权力原则\n\n**注意：** 有关完整文章，请参阅 https://www.w3.org/DesignIssues/Principles.html#PLP。\n\
+  \n由于模板是纯 HTML，因此受到约束，工具和开发者可以对组件是什么以及它们如何表现做出明智的假设，而 Angular 可以做很多如果组件使用 JavaScript\
+  \ 而不是这样就无法实现的有趣事情。让我们看一些例子。\n\n### 交换实现\n\n性能很棘手：通常很难提前知道某种技术效果如何。此外，现在高效的东西可能\n\
+  \n### Angular 模板\n\n模板*可以*以 JavaScript *根本*无法实现的方式进行分析、转换和声明。设计 Angular 时，我们投入了大量精力确保模板语言具有这些特性。让我们看看我们最终得到的结果。\n\
+  \n### 属性和事件绑定\n\n输入和输出属性是指令的公共 API。数据通过输入流向指令，通过输出流出。我们可以使用属性绑定来更新输入属性。并且我们可以使用事件绑定来订阅输出属性。\n\
+  \n假设我们有一个组件，它渲染一个按钮，允许对会议演讲进行评分。我们可以在模板中这样使用该组件：\n\n```html\n<rate-button [talk]=\"\
+  myTalk\" (rate)=\"handleRate($event)\"></rate-button>\n```\n\n这告诉 Angular 每当 `myTalk`\
+  \ 发生变化时，Angular 需要通过调用 setter 自动更新 `rate-button` 组件。这也告诉 Angular 如果触发名为 `rate` 的事件，它应该调用\
+  \ `handleRate`。\n\n现在，让我们看看 `RateButtonCmp` 类：\n\n```typescript\n@Component({\n\
+  \  selector: 'rate-button',\n  templateUrl: './rate-button.component.html',\n  styleUrls:...\n\
+  ```\n\n### 让我们回顾一下\n\n这就是 Angular 模板的工作方式。让我们看看它们是否可分析、可转换，以及是否提供了我在本章开头提到的好处。\n\
+  \n与 Angular 1 相比，框架在静态上可以告诉模板的更多信息。\n\n例如，无论组件元素是什么，Angular 都知道 `[property1]=\"\
+  name\"` 中的 `name` 是一个字段读取，而 `property2=\"name\"` 中的 `name` 是一个字符串字面量。它还知道 `name`\
+  \ 属性不能由组件更新：属性绑定从父组件更新到子组件。同样，Angular 仅通过查看 `*ngFor` 就能知道模板中定义了哪些变量。最后，它可以区分模板中的静态部分和动态部分。\n\
+  \n所有这些都使我们能够在编译时可靠地 introspect 和转换模板。这是一个强大的功能，例如 Angular i18n 支持就是建立在它之上的。\n\n\
+  以这种方式设计模板后，我们还解决了 Angular 1 最大的问题之一：IDE 支持。使用 Angular 1 时，编辑器和 IDE 必须做很多猜测才能提供补全、重构和导航。\n"
+- "# 第 6 章 依赖注入\n\n依赖注入背后的想法非常简单。如果你有一个依赖于服务的组件，你不会自己创建该服务。相反，你在构造函数中请求它，框架会为你提供一个。通过这样做，你可以依赖接口而不是具体类型。这导致代码更解耦，从而实现可测试性和其他很棒的事情。\n\
+  \n![](img/79f67e6cb2f5bd357461768fccf131e0_36_0.png)\n\nAngular 带有依赖注入系统。为了了解如何使用它，让我们看一下以下组件，该组件使用\
+  \ `*ngFor` 指令渲染演讲列表：\n\n```typescript\n@Component({\n  selector: 'talks-cmp',\n\
+  \  template: `\n    <h2>Talks:</h2>\n    <talk *ngFor=\"let t of talks\" [talk]=\"\
+  t\"></talk>\n  `\n})\nclass TalksCmp {\n  constructor() { // ... get the data }\n\
+  }\n```\n\n### 注册提供者\n\n为此你需要注册一个提供者，有两个地方可以注册。第一个是在组件装饰器中。\n\n```typescript\n@Component({\n\
+  \  selector: 'talks-cmp',\n  template: `\n    <h2>Talks:</h2>\n    <talk *ngFor=\"\
+  let t of talks\" [talk]=\"t\"></talk>\n  `,\n  providers: [TalksAppBackend]\n})\n\
+  class TalksCmp {\n  constructor(backend: TalksAppBackend) {\n    this.talks = backend.fetchTalks();\n\
+  \  }\n}\n```\n\n另一个是在模块装饰器中。\n\n```typescript\n@NgModule({\n  declarations: [FormattedRatingPipe,\
+  \ WatchButtonCmp, RateButtonCmp, TalkCmp, TalksCmp],\n  exports: [TalksCmp],\n \
+  \ providers: [TalksAppBackend]\n})\nclass TalksModule {}\n```\n\n有什么区别，应该偏好哪一个？\n\
+  \n通常，我建议在它们不依赖于 DOM、组件或指令时在模块级别注册提供者。只有与 UI 相关且必须限定到特定组件的提供者才应在组件级别注册。由于 `TalksAppBackend`\
+  \ 与 UI 无关，请在模块级别注册它。\n\n### 注入器树\n\n现在你知道了依赖注入配置有两个部分：\n\n- **注册提供者**：对象应如何以及在何处创建。\n\
+  - **注入依赖**：对象依赖于什么。\n\n对象所依赖的一切（服务、指令和元素）都会注入到其构造函数中。为了使其工作，框架会构建注入器树。\n\n首先，每个带有组件或指令的\
+  \ DOM 元素都会获得一个注入器。该注入器包含组件实例、组件注册的所有提供者以及一些“本地”对象（例如，元素）。\n\n其次，在引导 NgModule 时，Angular\
+  \ 会使用模块和其中定义的提供者创建一个注入器。\n\n因此，应用的注入器树将如下所示：\n\n\n\n![](img/79f67e6cb2f5bd357461768fccf131e0_40_0.png)\n\
+  \n### 解析\n\n这就是依赖解析算法的工作方式：\n\n// this is pseudocode.\nlet inj = this;\nwhile (inj)\
+  \ {\n    if (inj.has(requestedDependency)) {\n        return inj.get(requestedDependency);\n\
+  \    } else {\n        inj = inj.parent;\n    }\n}\nthrow new NoProviderError(requestedDependency);\n\
+  ```\n\n在解析 TalksCmp 的后端依赖时，Angular 会从 talks 组件本身的注入器开始。然后，如果不成功，它会向上攀升到 app 组件的注入器，最后会上升到从\
+  \ AppModule 创建的注入器。这就是为什么要解析 TalksAppBackend，你需要在 TalksCmp、AppCmp 或 AppModule 中注册它。\n\
+  \n### 懒加载\n\n一旦开始使用懒加载，设置就会变得更复杂。\n\n懒加载一个模块类似于引导一个模块，因为它会从该模块创建一个新的注入器并将其插入到注入器树中。为了亲眼看到它，让我们更新我们的应用程序以懒加载\
+  \ talks 模块。\n\n```typescript\n@NgModule({\n  declarations: [AppCmp],\n  imports:\
+  \ [RouterModule.forRoot([\n    {path: 'talks', loadChildren: 'talks'}\n  ])]\n})\n\
+  class AppModule { }\n\n@NgModule({\n  declarations: [FormattedRatingPipe, WatchButtonCmp,\
+  \ \n    RateButtonCmp, TalkCmp, TalksCmp],\n  entryComponents: [TalksCmp],\n  providers:\
+  \ [TalksAppBackend],\n  imports: [RouterModule.forChild([\n    {path: '', component:\
+  \ TalksCmp}\n  ])]\n})\nclass TalksModule { }\n```\n\n有了这个更改，注入器树将如下所示：\n\n![](img/79f67e6cb2f5bd357461768fccf131e0_43_0.png)\n\
+  \n### 获取注入器\n\n你可以使用 `ng.probe` 来探测与页面上元素关联的注入器。当抛出异常时，你也可以看到元素的注入器。\n\n![](img/79f67e6cb2f5bd357461768fccf131e0_44_0.png)\n\
+  \n右键单击这些对象中的任何一个，将它们存储为全局变量，以便你可以在控制台中与它们交互。\n\n### 高级主题\n\n### 控制可见性\n\n你可以更具体地指定想要从哪里获取依赖。例如，你可以请求同一元素上的另一个指令。\n\
+  \n```typescript\nclass CustomInputComponent {\n  constructor(@Self() f: FormatterDirective)\
+  \ {}\n}\n```\n\n或者你可以请求同一模板中的指令，也就是说，你只能注入来自同一 HTML 文件的祖先指令。\n\n```typescript\n\
+  class CustomInputComponent {\n  constructor(@Host() f: CustomForm) {}\n}\n```\n\n\
+  最后，你可以要求跳过当前元素，这对于装饰现有提供者或构建树状结构非常有用。\n\n```typescript\nclass SomeComponent {\n\
+  \  constructor(@SkipSelf() ancestor: SomeComponent) {}\n}\n```\n\n### 可选依赖\n\n要将依赖标记为可选，请使用\
+  \ Optional 装饰器。\n\n```typescript\nclass Login {\n  constructor(@Optional() service:\
+  \ LoginService) {}\n}\n```\n"
+- "# 第 7 章 变更检测\n\n### 两个阶段\n\nAngular 将更新应用程序模型和在视图中反映模型状态这两个操作分离为两个不同的阶段。开发者负责更新应用程序模型。Angular\
+  \ 通过绑定，借助变更检测，负责在视图中反映模型的状态。框架会在每个 VM 轮转时自动执行此操作。\n\n**事件绑定**，可以使用 () 语法添加，可用于捕获浏览器事件或组件输出以在组件或指令上执行某些函数。因此它们通常会触发第一阶段。\n\
+  \n**属性绑定**，可以使用 [] 语法添加，应仅用于在视图中反映模型的状态。\n\n正如我们所学，Angular 应用程序由嵌套组件组成，因此它总是有组件树。假设对于此应用，它如下所示：\n\
+  \n![](img/79f67e6cb2f5bd357461768fccf131e0_50_0.png)\n\n接下来，定义将存储我们应用程序状态的应用程序模型。\n\
+  \n```json\n{\n  \"filters\": {\"speakers\": \"Rich Hickey\"},\n  \"talks\": [\n\
+  \    {\n      \"id\":898,\n      \"title\": \"Are we there yet\",\n      \"speaker\"\
+  : \"Rich Hickey\",\n      ...\n```\n\n### Angular 如何强制执行它？\n\n如果我尝试破坏这种分离会怎样？如果我尝试在由变更检测系统调用的\
+  \ setter 中更改应用程序模型会怎样？\n\nAngular 会尝试确保我们为组件定义的 setter 仅更新此组件或其子组件的视图状态，而不更新应用程序模型。为此，Angular\
+  \ 在开发者模式下会检查所有绑定两次。第一次传播更改，第二次确保没有更改。如果在第二次遍历中发现更改，则意味着我们的某个 setter 更新了应用程序模型；框架会抛出异常，指出违规发生的位置。\n\
+  \n```typescript\n, </tabs>\n})\nclass CmpUsingTabs {\n}\n```\n\n`tabs` 组件的内容子项是三个\
+  \ ...\n\n### ChangeDetectionStrategy.OnPush\n\n如果我们使用在多个组件之间共享的可变对象，Angular 就无法知道这些组件何时可能受到影响。一个组件可能会影响系统中的任何其他组件。这就是为什么默认情况下，Angular\
+  \ 不对组件依赖于什么做任何假设。因此它必须保守，并在每次浏览器事件时检查每个组件的每个模板。由于框架必须为每个组件执行此操作，即使新版本的 Angular 中的变更检测速度快了很多，它也可能成为性能问题。\n\
+  \n如果我们的应用程序模型状态使用不可变对象，如前例所示，我们就可以知道谈话组件何时可能发生变化。组件仅在任何输入发生变化时才会发生变化。我们可以通过将变更检测策略设置为\
+  \ OnPush 来将此信息传达给 Angular。\n\n```typescript\n@Component({\n  selector: 'talk',\n\
+  \  template: `\n    {{talk.title}} {{talk.speaker}}\n    {{talk.rating | formatRating}}\n\
+  \    <watch-button [talk]=\"talk\"></watch-button>\n    <rate-button [talk]=\"talk\"\
+  \ (rate)=\"handleRate($event)\">\n    ...\n```\n\n### 两个模块\n\n在 AngularJS 1.x 中，`ng-model`\
+  \ 指令被烘焙到核心框架中。这已不再如此。`@angular/core` 包不包含表单处理库。它只提供了我们可以用来构建它的关键原语。\n\n当然，让每个人都自己构建是不切实际的。这就是\
+  \ Angular 团队构建了 `@angular/forms` 包的原因，其中包含两个模块：`FormsModule` 和 `ReactiveFormsModule`。\n\
+  \n`FormsModule` 实现了 AngularJS 风格的表单处理。我们通过在模板中放置指令来创建表单。然后我们使用数据绑定将数据传入和传出该表单。\n\
+  \n`ReactiveFormsModule` 是处理输入的另一种方法，我们在组件类中定义表单，然后将其绑定到模板中的元素。我们倾向于使用响应式编程将数据传入和传出表单，因此得名“reactive”。\n\
+  \n乍一看，这两个模块似乎非常不同。但一旦我们理解了底层机制，我们就会看到它们有多少共同点。此外，它还会让我们了解如果需要如何构建自己的表单处理模块。\n\n\
+  ### 应用模型\n\n应用模型是由应用程序开发者提供的对象。它可以是从服务器获取的 JSON 对象，也可以是在客户端构造的某些对象。Angular 对此没有任何假设。\n\
+  \n### 表单模型\n\n表单模型是表单的与 UI 无关的表示。它由三个构建块组成：FormControl、FormGroup 和 FormArray。我们将在本章后面详细介绍表单模型。FormsModule\
+  \ 和 ReactiveFormsModule 都使用此模型。\n\n### 表单指令\n\n这些是连接表单模型与 DOM 的指令（例如 NgModel）。FormsModule\
+  \ 和 ReactiveFormsModule 提供不同的指令集。\n\n### DOM\n\n这些是我们的输入框、复选框和单选按钮。\n\n\n\n\n\n\
+  ## 表单模型\n\n![](img/79f67e6cb2f5bd357461768fccf131e0_62_0.png)\n\n为了使表单处理不依赖于 UI，`@angular/forms`\
+  \ 提供了一组用于构建表单模型的基础构件：`FormControl`、`FormGroup` 和 `FormArray`。\n\n## FormControl\n\
+  \n`FormControl` 是表单中不可分割的部分，一个原子。它通常对应于一个简单的 UI 元素，例如输入框。\n\n```\nconst c = newFormControl('Init\
+  \ Value', Validators.required);\n```\n\n一个 `FormControl` 具有一个值、一个状态和一个错误映射：\n\n\
+  ```\nexpect(c.value).toEqual('Init Value');\nexpect(c.errors).toEqual(null); //null\
+  \ means 'no errors'\nexpect(c.status).toEqual('VALID');\n```\n\n## FormGroup\n\n\
+  `FormGroup` 是一个固定大小的控件集合，一条记录。\n\n```\nconst c = new FormGroup({\n  login: new FormControl(''),\n\
+  \  password: new FormControl('', Validators.required)\n});\n```\n\n`FormGroup` 本身也是一个控件，因此具有与\
+  \ `FormControl` 相同的方法。\n\n```\nexpect(c.value).toEqual({login: '', password: ''});\n\
+  expect(c.errors).toEqual(null);\nexpect(c.status).toEqual('INVALID');\n```\n\n组的值只是其子控件值的聚合。每当子控件的值发生变化时，组的值也会随之变化。\n\
+  \n与值相反，表单组并不聚合……\n\n## 表单指令\n\n抽象地描述输入固然不错，但最终我们需要将其连接到 UI。\n\n![](img/79f67e6cb2f5bd357461768fccf131e0_65_0.png)\n\
+  \n@angular/forms 提供了两个模块来实现这一点：FormsModule 和 ReactiveFormsModule。\n\n## ReactiveFormsModule\n\
+  \n![](img/79f67e6cb2f5bd357461768fccf131e0_66_0.png)\n\n`ReactiveFormsModule` **比\
+  \ FormsModule 更容易理解和解释**。这就是我首先介绍它的原因。\n\n```typescript\n@Component({\n  selector:\
+  \ 'filters-cmp',\n  template:\n    `<div [formGroup]=\"filters\">\n      <input\
+  \ formControlName=\"title\" placeholder=\"Title\">\n      <input formControlName=\"\
+  speaker\" placeholder=\"Speaker\">\n      <input type=\"checkbox\" formControlName=\"\
+  highRating\">\n      High Rating\n    </div>`\n})\nexport class FiltersCmp {\n \
+  \ filters = new FormGroup({\n    speaker: new FormControl(),\n    title: new FormControl(),\n\
+  \    highRating: new FormControl(false),\n  });\n\n  constructor(app: App) {\n \
+  \   this.filters.valueChanges.debounceTime(200).\n      subscribe((value) => {\n\
+  ```\n\n## DOM\n\n![](img/79f67e6cb2f5bd357461768fccf131e0_68_0.png)\n\n`ngModel`、`ngControlName`\
+  \ 和其他表单指令将表单模型绑定到 UI 元素，这些元素通常是平台原生的（例如 <input>），但并不一定如此。例如，`NgModel` 可以应用于 Angular\
+  \ 组件。\n\n```\n<md-input [(ngModel)]=\"speaker\" name=\"speaker\" placeholder=\"\
+  Spe\n```\n\n`ControlValueAccessor` 是一个指令，它充当适配器，将 UI 元素连接到 `NgModel`。它知道如何读写原生 UI\
+  \ 元素。\n\n`@angular/forms` 包为所有内置的 UI 元素（如 input、textarea 等）提供了值访问器。但如果我们想将 `NgModel`\
+  \ 应用于自定义元素或 Angular 组件，就必须自己提供值访问器。\n\n```\n@Component({\n  selector: 'custom-input',\n\
+  \  providers: [\n    {\n      provide: NG_VALUE_ACCESSOR,\n      useExisting: forwardRef(()\
+  \ => CustomInputCmp),\n      multi: true\n    }\n  ]\n})\nclass CustomInputCmp implements\
+  \ ControlValueAccessor {\n  //...\n}\n```\n\n## 总结\n\n表单处理是一个复杂的问题。AngularJS 之所以如此成功，一个主要原因在于双向绑定和\
+  \ `ng-model` 为它提供了良好的解决方案。但也有一些缺点，主要是使用 `ng-model` 构建的复杂表单使应用的数据流难以跟踪和调试。Angular\
+  \ 2+ 建立在 Angular 1 的思想之上，但避免了它的这些问题。\n\n`NgModel` 及其相关指令不再是核心框架的一部分。`@angular/core`\
+  \ 包只包含我们用来构建表单处理模块的基础构件。取而代之的是，Angular 有一个单独的包——`@angular/forms`——它带有 `FormsModule`\
+  \ 和 `ReactiveFormsModule`，提供了处理用户输入的两种不同风格。\n\n这两个模块都依赖于由 `FormControl`、`FormGroup`\
+  \ 和 `FormArray` 组成的表单模型。有了这个独立于 UI 的模型，我们可以在不渲染任何组件的情况下对输入处理进行建模和测试。\n\n最后，`@angular/forms`\
+  \ 附带了一组处理内置 UI 元素（如 `<input>`）的指令，但我们也可以提供自己的指令。\n"
+- "# 第 9 章 测试\n\nAngular 的设计目标之一是让测试变得容易。因此，该框架依赖依赖注入，将用户代码与框架代码分离，并提供一套用于编写和运行测试的工具。在本章中，我将介绍测试\
+  \ Angular 组件的四种方式：隔离测试、浅层测试、集成测试和 Protractor 测试。\n\n## 隔离测试\n\n在不渲染组件的情况下测试复杂组件通常很有用。为了了解如何实现，让我们为以下组件编写一个测试：\n\
+  \n```typescript\n@Component({\n  selector: 'filters-cmp',\n  templateUrl: './filters.component.html',\n\
+  \  styleUrls: ['./filters.component.css']\n})\nexport class FiltersCmp {\n  @Output()\
+  \ change = new EventEmitter();\n\n  filters = new FormGroup({\n    speaker: new\
+  \ FormControl(),\n    title: new FormControl(),\n    highRating: new FormControl(false),\n\
+  \  });\n\n  constructor(@Inject('createFiltersObject') createFilters: Fur\n    this.filters.valueChanges.debounceTime(200).\\\
+  \n    subscribe((value) => {\n      this.change.next(createFilters(value));\n  \
+  \  });\n  }\n}\n```\n\n下面是 `filters.component.html` 的代码：\n\n```html\n<div [formGroup]=\"\
+  filters\">\n  <md-input-container>\n    <input md-input formControlName=\"title\"\
+  \ placeholder=\"Title\">\n  </md-input-container>\n\n  <md-input-container>\n  \
+  \  <input md-input formControlName=\"speaker\" placeholder=\"Spea\n  </md-input-container>\n\
+  \n  <md-checkbox formControlName=\"highRating\">\n    High Rating\n  </md-checkbox>\n\
+  </div>\n```\n\n这个例子中有几点值得注意：\n\n- 我们正在...\n\n## 浅层测试\n\n在不渲染模板的情况下测试组件类在某些场景下是可行的，但并非所有场景都如此。有时，我们只有渲染组件的模板才能编写有意义的测试。我们可以做到这一点，同时仍然保持测试的隔离性。我们只需要渲染模板，而不渲染组件的子组件。这就是通常所说的**浅层测试**。\n\
+  \n让我们看看这种方法的实际应用。\n\n```\n@Component({\n  selector: 'talks-cmp',\n  template: '<talk-cmp\
+  \ *ngFor=\"let t of talks\" [talk]=\"t\"></ta:'\n})\nexport class TalksCmp {\n \
+  \ @Input() talks: Talk[];\n}\n```\n\n这个组件只是渲染一组 TalkCmp。\n\n现在让我们看看它的测试。\n\n```\n\
+  import { async, ComponentFixture, TestBed } from '@angular/core'\nimport { By }\
+  \ from '@angular/platform-browser';\nimport { DebugElement, NO_ERRORS_SCHEMA } from\
+  \ '@angular/core';\n\nimport { TalksCmp } from './talks.component';\n\ndescribe('TalksCmp',\
+  \ () => {\n  let component: TalksCmp;\n  let fixture: ComponentFixture<TalksCmp>;\n\
+  \n  beforeEach(async(() => {\n    TestBed.configureTestingModule({\n      declarations:\
+  \ [TalksCmp],\n      schemas: [NO_ERRORS_SCHEMA]\n    })\n  })\n  ...\n```\n\n##\
+  \ 集成测试\n\n我们还可以编写一个集成测试，对整个应用程序进行测试。\n\n```\nimport {TestBed, async, ComponentFixture,\
+  \ inject} from '@angular\nimport {AppCmp} from './app.component';\nimport {AppModule}\
+  \ from './app.module';\nimport {App} from \"./app\";\n\ndescribe('AppCmp', () =>\
+  \ {\n    let component: AppCmp;\n    let fixture: ComponentFixture<AppCmp>;\n  \
+  \  let el: Element;\n\n    beforeEach(async(() => {\n        TestBed.configureTestingModule({\n\
+  \            imports: [AppModule]\n        });\n        TestBed.compileComponents();\n\
+  \    }));\n\n    beforeEach(() => {\n        fixture = TestBed.createComponent(AppCmp);\n\
+  \        component = fixture.componentInstance;\n        fixture.detectChanges();\n\
+  \        el = fixture.debugElement.nativeElement;\n    });\n\n    it('should filter\
+  \ talks by title', async(inject([App], \\\n        (app: App) => {\n        app.model.talks\
+  \ = [\n            {\n                \"id\": 1,\n                \"title\": \"\
+  Are we there yet?\",\n                \"speaker\": \"Rich Hickey\",\n          \
+  \      \"yourRating\": null,\n                \"rating\": 9.0\n            },\n\
+  \            {\n                \"id\": 2,\n                \"title\": \"The Value\
+  \ of Values\",\n                \"speaker\": \"Rich Hickey\",\n                \"\
+  yourRating\": null,\n```\n\n\n\n\n\n```\n  \"rating\": 8.0\n},\n...\n```\n\n## Protractor\
+  \ 测试\n\n最后，我们始终可以编写一个 Protractor 测试来驱动整个应用程序。\n\n```typescript\nimport {browser,\
+  \ element, by} from 'protractor';\n\nexport class TalksAppPage {\n    navigateTo()\
+  \ {\n        return browser.get('/');\n    }\n\n    getTitleInput() {\n        return\
+  \ element(by.css('input[formcontrolname=title]'));\n    }\n\n    getTalks() {\n\
+  \        return element.all(by.css('talk-cmp'));\n    }\n\n    getTalkText(index:\
+  \ number) {\n        return this.getTalks().get(index).getText();\n    }\n}\n\n\
+  describe('e2e tests', function() {\n    let page: TalksAppPage;\n\n    beforeEach(()\
+  \ => {\n        page = new TalksAppPage();\n    });\n\n    it('should filter talks\
+  \ by title', () => {\n        page.navigateTo();\n\n        const title = page.getTitleInput();\n\
+  \        title.sendKeys(\"Are we there\");\n\n        expect(page.getTalks().count()).toEqual(1);\n\
+  \        expect(page.getTalkText(0)).toContain(\"Are we there yet?\");\n    });\n\
+  });\n```\n\n## 让我们回顾一下\n\n在本章中，我们研究了测试 Angular 组件的四种方式：隔离测试、浅层测试、集成测试和 Protractor\
+  \ 测试。它们各有其适用的时机与场景：隔离测试是以测试驱动的方式开发组件、测试复杂逻辑的绝佳方法。浅层测试是隔离测试的增强版，在编写有意义的测试需要渲染组件模板时，应当使用它们。最后，集成测试和\
+  \ Protractor 测试则用于验证一组组件和服务（即应用程序）能否协同工作。\n"
+- "# 第 10 章 Angular 中的响应式编程\n\n### 核心框架中的响应式编程\n\nAngular 应用程序是一个响应式系统。用户点击按钮，应用程序响应该事件并更新模型。模型更新后，应用程序会通过组件树传播这些变更。\n\
+  \n![](img/79f67e6cb2f5bd357461768fccf131e0_81_0.png)\n\nAngular 以截然不同的方式实现了这两个箭头。让我们来探讨一下原因。\n\
+  \n### 事件与状态\n\n要理解为什么 Angular 使用两种截然不同的响应式编程方式，我们需要考察事件与状态之间的差异。\n\n在讨论响应式编程时，我们经常会谈到事件或事件流。事件流是响应式对象的一个重要类别，状态也是如此。因此，让我们\n\
+  \n### Angular 生态系统中的响应式编程\n\n我们已经了解了 Angular 核心框架本身如何支持响应式编程。现在，让我们看看 Angular 生态系统。\n\
+  \n### @angular/forms\n\nAngular 一直对构建动态表单提供了强有力的支持。这也是该框架如此成功的主要原因之一。\n\n现在，框架附带了一个模块，用于通过具体化响应式编程来处理输入。\n\
+  \n```typescript\nimport {ReactiveFormsModule, FormGroup, FormControl} from '@angular/forms';\n\
+  \n@Component({\n  selector: 'filters-and-talks',\n  template:\n    `<form [formGroup]=\"\
+  filtersForm\">\n      Title <input formControlName=\"title\">\n      Speaker <input\
+  \ formControlName=\"speaker\">\n    </form>\n\n    <talk *ngFor=\"let t of talks|async\"\
+  \ [talk]=\"t\"></talk>`\n})\nclass TalksAndFiltersCmp {\n  filtersForm = new FormGroup({\n\
+  \    title: new FormControl(''),\n    speaker: new FormControl('')\n  });\n\n  talks:\
+  \ Observable<Talk[]>;\n\n  constructor(backend: Backend) {\n    this.talks = this.filtersForm.valueChanges.\n\
+  \      debounceTime(100).\n      switchMap(filters => backend.fetch(filters));\n\
+  \  }\n}\n\n@NgModule({\n  declarations: [TalksAndFiltersCmp,...\n```\n\n### 小结\n\
+  \nAngular 应用程序是一个响应式系统。这就是为什么我们需要理解响应式编程，才能在 Angular 中高效工作。\n\n响应式编程既处理事件流，也处理状态。它可以分为透明式和具体化式两种。\n\
+  \n从一开始，Angular 框架就对透明式响应式编程提供了极好的支持。它既用于传播状态，也用于处理事件。它简单而快速，而且新版本的框架仍然支持它。\n\n但它在某些时候也可能带来限制，使某些问题的解决变得困难。这就是为什么\
+  \ Angular 现在通过 Observable 提供了对具体化响应式编程的支持。\n\nAngular 生态系统也采纳了这些理念。响应式表单模块、路由器，以及其他库（如\
+  \ NgRx），都提供了基于 Observable 的 API。\n\n"

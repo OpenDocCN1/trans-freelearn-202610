@@ -1,0 +1,1050 @@
+- pgno: 0
+  md: 'Victor Savkin, Jeff Cross
+
+
+    # Essential
+
+    Angular
+
+
+    An overview of the key aspects written by two of the Angular core contributors'
+  merge: -1
+  img_proc: true
+- pgno: 1
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 2
+  md: '+   - Resolution
+
+    +   - Lazy loading
+
+    +   - Getting injector
+
+    +   - Visualizing injector tree
+
+    +   - Advanced topics
+
+    +   - Let''s recap
+
+    +   - 7: Change Detection
+
+    +     - Chapter 7: Change Detection
+
+    +     - Two phases
+
+    +     - Why?
+
+    +     - How does Angular enforce It?
+
+    +     - Content and view children
+
+    +     - ChangeDetectionStrategy.OnPush
+
+    +     - Let''s recap
+
+    +   - 8: Forms
+
+    +     - Chapter 8: Forms
+
+    +     - Two modules
+
+    +     - High-level overview
+
+    +     - Form model
+
+    +     - Form directives
+
+    +     - The DOM
+
+    +     - Wrapping up
+
+    +   - 9: Testing
+
+    +     - Chapter 9: Testing
+
+    +     - Isolated tests
+
+    +     - Shallow testing
+
+    +     - Integration testing
+
+    +     - Protractor tests
+
+    +     - Let''s recap
+
+    +   - 10: Reactive Programming in Angular
+
+    +     - Chapter 10: Reactive Programming in Angular
+
+    +     - Reactive programming in the core framework
+
+    +     - Reactive programming in the Angular ecosystem
+
+    +     - Summary'
+  merge: -1
+  img_proc: true
+- pgno: 3
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 4
+  md: You can find the source code of the application here https://github.com/vsavkin/essential-angular-book-app.
+  merge: -1
+  img_proc: true
+- pgno: 5
+  md: '# # Chapter 2. Compilation
+
+
+    At the core of Angular is a sophisticated compiler, which takes a `NgModule` type
+    and produces a `NgModuleFactory`.
+
+
+    ![](img/79f67e6cb2f5bd357461768fccf131e0_5_0.png)
+
+
+    A `NgModule` has components declared in it. While creating the module factory,
+    the compiler will take the template of every component in the module, and using
+    the information about declared components and pipes, will produce a component
+    factory. The component factory is a JavaScript class the framework can use to
+    stamp out components.'
+  merge: -1
+  img_proc: true
+- pgno: 6
+  md: '![](img/79f67e6cb2f5bd357461768fccf131e0_6_0.png)
+
+
+    NgModule
+
+
+    Component/Directive Types
+
+
+    Pipe Types
+
+
+    ...
+
+
+    Template
+
+
+    Component Factory'
+  merge: -1
+  img_proc: true
+- pgno: 7
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 8
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 9
+  md: "# # How is it possible?\n\nWhy did not we do it before, in Angular 1? To make\
+    \ AOT work the application has to have a clear separation of the static and dynamic\
+    \ data in the application. And the compiler has to built in such a way that it\
+    \ only depends on the static data. When designing and building Angular we put\
+    \ a lot of effort to do exactly that. And such primitives as classes and decorators,\
+    \ which the new versions of JavaScript and TypeScript support, made it way easier.\n\
+    \nTo see how this separation works in practice, let's look at the following example.\
+    \ Here, the information in the decorator is known statically. Angular knows the\
+    \ selector and the template of the `talk` component. It also knows that the component\
+    \ has an input called `talk` and an output called `rate`. But the framework does\
+    \ not know what the constructor or the `onRate` function do.\n\n```\n```typescript\n\
+    @Component({\n  selector: 'talk-cmp',\n  template:\n    {{talk.title}} {{talk.speaker}}\n\
+    \    Rating: {{ talk.rating | formatRating }}\n    <watch-button [talk]=\"talk\"\
+    ></watch-button>\n    <rate-button [talk]=\"talk\" (click)=\"onRate()\"></rate-button>\n\
+    })\nclass TalkCmp {\n  @Input() talk: Talk;\n  @Output()...\n}\n```\n```"
+  merge: -1
+  img_proc: true
+- pgno: 10
+  md: "# # Trade-offs\n\nSince AOT is so advantageous, we recommend to use it in production.\
+    \ But, as with everything, there are trade-offs. For Angular to be able to compile\
+    \ your application ahead of time, the metadata has to be statically analyzable.\
+    \ For instance, the following code will not work in the AOT mode:\n\n```\n```typescript\n\
+    @Component({\n  selector: 'talk-cmp',\n  template: () => window.hide ? 'hidden'\
+    \ :\n    '{{talk.title}} {{talk.speaker}}\n    Rating: {{ talk.rating | formatRating\
+    \ }}\n    <watch-button [talk]=\"talk\"></watch-button>\n    <rate-button [talk]=\"\
+    talk\" (click)=\"onRate()\"></rate-button>'\n})\nclass TalkCmp {\n  //...\n}\n\
+    ```\n```\n\nThe `window.hide` property will not be defined. So the compilation\
+    \ will fail to point out the error. A lot of work has been done to make the compiler\
+    \ smarter, so it can understand most of the day-to-day patterns you would use\
+    \ when building your application. But certain things will never work, like the\
+    \ preceding example."
+  merge: -1
+  img_proc: true
+- pgno: 11
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 12
+  md: '# # Chapter 3. NgModules'
+  merge: -1
+  img_proc: true
+- pgno: 13
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 14
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 15
+  md: "# Providers\n\nI'll cover providers and dependency injection in Chapter 5,\
+    \ *Dependency Injection*. Here I'd like to just note that NgModules can contain\
+    \ providers. And the providers of the imported modules are merged with the target\
+    \ module's providers, left to right, that is, if multiple imported modules define\
+    \ the same provider, the last module wins.\n\n```\n@NgModule({\n  providers: [\n\
+    \    Repository\n  ]\n})\nclass TalksModule {}\n\n@NgModule({\n  imports: [TalksModule]\n\
+    })\nclass AppModule {}\n```"
+  merge: -1
+  img_proc: true
+- pgno: 16
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 17
+  md: '# # Bootstrap
+
+
+    To bootstrap an Angular application in the JIT mode, you pass a module to `bootstrapModule`:
+
+
+    ```
+
+    import {platformBrowserDynamic} from ''@angular/platform-browser'';
+
+    import {AppModule} from ''./app'';
+
+
+    platformBrowserDynamic().bootstrapModule(AppModule);
+
+    ```
+
+
+    This will compile `AppModule` into a module factory and then use the factory to
+    instantiate the module. If you use AOT, you may need to provide the factory yourself:
+
+
+    ```
+
+    import {platformBrowser} from ''@angular/platform-browser'';
+
+    import {AppModuleNgFactory} from ''./app.ngfactory'';
+
+
+    platformBrowser().bootstrapModuleFactory(AppModuleNgFactory);
+
+    ```
+
+
+    I said "may need to" because the CLI and the WebPack plugin take care of it for
+    you. They will replace the `bootstrapModule` call with `bootstrapModuleFactory`
+    when needed.'
+  merge: -1
+  img_proc: true
+- pgno: 18
+  md: "# Lazy loading\n\nAs I mentioned earlier NgModules are not just the units of\
+    \ compilation, they are also the units of distribution. That is why we bootstrap\
+    \ a NgModule, and not a component—we don't distribute components, we distribute\
+    \ modules. And that's why we lazy load NgModules as well.\n\n```\nimport {NgModuleFactoryLoader,\
+    \ Injector} from '@angular/core';\n\nclass MyService {\n    constructor(loader:\
+    \ NgModuleFactoryLoader, injector: Injecto\n    loader.load(\"mymodule\").then((f:\
+    \ NgModuleFactory) => {\n        const moduleRef = f.create(injector);\n     \
+    \   moduleRef.injector; // module injector\n        moduleRef.componentFactoryResolver;\
+    \ // all the \\\ncomponents factories of the lazy-loaded module\n    });\n   \
+    \ }\n}\n```\n\nThe loader compiles the modules if the application is running in\
+    \ the JIT mode, and does not in the AOT mode. The default loader @angular/core\
+    \ ships with uses SystemJS, but, as most things in Angular, you can provide your\
+    \ own."
+  merge: -1
+  img_proc: true
+- pgno: 19
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 20
+  md: "# # Chapter 4. Components and Directives\n\nTo build an Angular application\
+    \ you define a set of components, for every UI element, screen, and route. An\
+    \ application will always have root components (usually just one) that contain\
+    \ all other components. To make things simpler, in this book let's assume the\
+    \ application has a single root component, and thus our Angular application will\
+    \ have a component tree, that may look like this:\n\n![](img/79f67e6cb2f5bd357461768fccf131e0_20_0.png)\n\
+    \nAppCmp is the root component. The FiltersCmp component has the speaker input\
+    \ and the filter button. TalksCmp is the list you see at the bottom. And TalkCmp\
+    \ is an item in that list. To understand what constitutes a component in Angular,\
+    \ let's look closer at TalkCmp:\n\n```\n```typescript\n@Component({\n  selector:\
+    \ 'talk-cmp',\n  template: `\n    {{talk.title}}  {{talk.speaker}}\n    {{talk.rating\
+    \ | formatRating }}\n    <watch-button [talk]=\"talk\"></watch-button>\n    <rate-button\
+    \ [talk]=\"talk\"></rate-button>\n  `\n})\n```\n```"
+  merge: -1
+  img_proc: true
+- pgno: 21
+  md: "```\n```typescript\nclass TalkCmp {\n  @Input() talk: Talk;\n  @Output() rate:\
+    \ EventEmitter;\n  //...\n}\n```\n```"
+  merge: -1
+  img_proc: true
+- pgno: 22
+  md: "# # Input and output properties\n\nA component has input and output properties,\
+    \ which can be defined in the component decorator or using property decorators.\n\
+    \n```\nclass TalkCmp {\n  @Input() talk: Talk;\n  @Output() rate: EventEmitter;\n\
+    \  //...\n}\n```\n\nData flows into a component via input properties. Data flows\
+    \ out of a component via output properties, hence the names: input and output.\n\
+    \n![](img/79f67e6cb2f5bd357461768fccf131e0_22_0.png)\n\nInput and output properties\
+    \ are the public API of a component. You use them when you instantiate a component\
+    \ in your application.\n\n```\n<talk-cmp[talk]=\"someExpr\"(rate)=\"onRate($event.rating)\"\
+    ></talk-\n```\n\nYou can set input properties using property bindings, through\
+    \ square brackets. You can subscribe to output properties using event bindings,\
+    \ through parenthesis."
+  merge: -1
+  img_proc: true
+- pgno: 23
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 24
+  md: "# # Life cycle\n\nComponents have a well-defined life cycle, which you can\
+    \ tap into. `TalkCmp` does not subscribe to any life cycle events, but some other\
+    \ components can. For instance, this component will be notified when its input\
+    \ properties change.\n\n```\n```typescript\n@Component({\n  selector: 'cares-about-changes'\n\
+    })\nclass CaresAboutChanges implements OnChanges {\n  @Input() field1;\n  @Input()\
+    \ field2;\n\n  ngOnChanges(changes) { //.. }\n}\n```\n```"
+  merge: -1
+  img_proc: true
+- pgno: 25
+  md: "# Providers\n\nA component can configure dependency injection by defining the\
+    \ list of providers the component and its children may inject.\n\n```\n@Component({\n\
+    \  selector: 'conf-app',\n  providers: [Logger]\n})\nclass AppCmp { //... }\n\n\
+    @Component({\n  ...\n})\nclass TalksCmp {\n  constructor(logger:Logger) { //...\
+    \ }\n}\n```\n\nIn this example, we have the logger service declared in the app\
+    \ component, which makes them available in the whole application. The talks component\
+    \ injects the logger service. I will cover dependency injection in detail in Chapter\
+    \ 5, Dependency Injection. For now, just remember that components can configure\
+    \ dependency injection."
+  merge: -1
+  img_proc: true
+- pgno: 26
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 27
+  md: "# Queries\n\nIn addition, to access its host element, a component can interact\
+    \ with its children. There are two types of children a component can have: **content\
+    \ children** and **view children**. To understand the difference between them,\
+    \ let's look at the following example:\n\n```\n@Component({\n  selector: 'tab',\n\
+    \  template: `...`\n})\nclass TabCmp {}\n```\n\n```\n@Component({\n  selector:\
+    \ 'tabs',\n  template: `\n    Tabs:\n    <div>\n      <ng-content></ng-content>\n\
+    \    </div>\n    <div>\n      <button (click)=\"selectPrev()\">Prev</button>\n\
+    \      <button (click)=\"selectNext()\">Next</button>\n    </div>\n  `,\n})\n\
+    class TabsCmp {}\n```\n\n```\n@Component({\n  template: `\n    <tabs>\n      <tab></tab>\n\
+    \      <tab title=\"Two\"></tab>\n      <tab></tab>\n    </tabs>\n  `,\n})\nclass\
+    \ CmpUsingTabs {\n}\n```\n\nThe content children of the `tabs` component are the\
+    \ three `tab` components. The"
+  merge: -1
+  img_proc: true
+- pgno: 28
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 29
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 30
+  md: '# # What about directives?
+
+
+    If you are familiar with Angular 1, you must be wondering "What happened to directives?".
+
+
+    Actually, directives are still here in Angular. The component is just the most
+    important type of a directive, but not the only one. A component is a directive
+    with a template. But you can still write decorator-style directives, which do
+    not have templates.'
+  merge: -1
+  img_proc: true
+- pgno: 31
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 32
+  md: "# Why templates?\n\nBefore we jump into how, let's talk about why.\n\nUsing\
+    \ templates is aligned with the rule of least power, which is a useful design\
+    \ principle.\n\n> the less powerful the language, the more you can do with the\
+    \ data stored in that language. [...] I chose HTML not to be a programming language\
+    \ because I wanted different programs to do different things with it: present\
+    \ it differently, extract tables of contents, index it, and so on.\n> \n> —Tim\
+    \ Berners-Lee, on the Principle of Least Power\n\n# Note\n\nFor the full article\n\
+    refer https://www.w3.org/DesignIssues/Principles.html#PLP\n\nBecause templates\
+    \ are pure HTML, and hence are constrained, tools and developers can make smart\
+    \ assumptions about what components are and how they behave, and Angular can do\
+    \ a lot of interesting things that would have not been possible if components\
+    \ used JavaScript instead. Let's look at some of those.\n\n# Swapping implementations\n\
+    \nPerformance is tricky: often it is hard to know ahead of time how well a particular\
+    \ technique will work. In addition, what is performant right now may"
+  merge: -1
+  img_proc: true
+- pgno: 33
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 34
+  md: "# Angular templates\n\nTemplates *can* be analyzable, transformable, and declarative\
+    \ in a way that JavaScript *fundamentally* cannot be. When designing Angular we\
+    \ put a lot of effort to make sure the template language has these properties.\
+    \ Let's look at what we ended up with.\n\n# Property and event bindings\n\nInput\
+    \ and output properties are the public API of a directive. Data flows into a directive\
+    \ via its inputs and flows out via its outputs. We can update input properties\
+    \ using property bindings. And we can subscribe to output properties using event\
+    \ bindings.\n\nSay we have a component that renders a button that allows rating\
+    \ a conference talk. We could use this component in our template as follows:\n\
+    \n```\n<rate-button[talk]=\"myTalk\" (rate)=\"handleRate($event)\"></rate-\n```\n\
+    \nThis tells Angular that whenever `myTalk` changes, Angular needs to automatically\
+    \ update the `rate-button` component by calling the setter. This also tells Angular\
+    \ that if an event called `rate` is fired, it should invoke `handleRate`.\n\n\
+    Now, let's look at the `RateButtonCmp` class:\n\n```\n@Component({\n  selector:\
+    \ 'rate-button',\n  templateUrl: './rate-button.component.html',\n  styleUrls:...\n\
+    ```"
+  merge: -1
+  img_proc: true
+- pgno: 35
+  md: '# Let''s recap
+
+
+    That''s how Angular templates work. Let''s see if they are analyzable and transformable,
+    and if they provide the benefits I talked about at the beginning of this chapter.
+
+
+    Contrasting with Angular 1, there is a lot more the framework can tell about the
+    template statically.
+
+
+    For example, regardless of what the component element is, Angular knows that `name
+    in [property1]="name"` is a field read and `name in property2="name"` is a string
+    literal. It also knows that the `name` property cannot be updated by the component:
+    property bindings update from the parent to the child. Similarly, Angular can
+    tell what variables are defined in the template by just looking at `*ngFor`. Finally,
+    it can tell apart the static and dynamic parts in the template.
+
+
+    All of these allow us to reliably introspect and transform templates at compile
+    time. That''s a powerful feature, that, for instance, the Angular i18n support
+    is built upon.
+
+
+    Having designed templates in this way, we also solved one of the biggest Angular
+    1 problems: IDE support. When using Angular 1, editors and IDEs had to do a lot
+    of guessing to provide completion, refactoring, and navigation....'
+  merge: -1
+  img_proc: true
+- pgno: 36
+  md: "# Chapter 6. Dependency Injection\n\nThe idea behind dependency injection is\
+    \ very simple. If you have a component that depends on a service, you do not create\
+    \ that service yourself. Instead, you request one in the constructor, and the\
+    \ framework will provide you one. By doing so you can depend on interfaces rather\
+    \ than concrete types. This leads to more decoupled code, which enables testability,\
+    \ and other great things.\n\n![](img/79f67e6cb2f5bd357461768fccf131e0_36_0.png)\n\
+    \nAngular comes with a dependency injection system. To see how it can be used,\
+    \ let's look at the following component, which renders a list of talks using the\
+    \ for directive:\n\n```\n@Component({\n  selector: 'talks-cmp',\n  template: `\n\
+    \    <h2>Talk s:</h2>\n    <talk *ngFor=\"let t of talks\" [talk]=\"t\"></talk>\n\
+    \  `\n})\nclass TalksCmp {\n  constructor() { //..get the data }\n}\n```"
+  merge: -1
+  img_proc: true
+- pgno: 37
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 38
+  md: "# Registering providers\n\nTo do that you need to register a provider, and\
+    \ there are two places where you can do it. One is in the component decorator.\n\
+    \n```\n@Component({\n  selector: 'talks-cmp',\n  template: `\n    <h2>Talks:</h2>\n\
+    \    <talk *ngFor=\"let t of talks\" [talk]=\"t\"></talk>\n  `,\n  providers:\
+    \ [TalksAppBackend]\n})\nclass TalksCmp {\n  constructor(backend:TalksAppBackend)\
+    \ {\n    this.talks = backend.fetchTalks();\n  }\n}\n```\n\nAnd the other one\
+    \ is in the module decorator.\n\n```\n@NgModule({\n  declarations: [FormattedRatingPipe,\
+    \ WatchButtonCmp, \\\n    RateButtonCmp, TalkCmp, TalksCmp],\n  exports: [TalksCmp],\n\
+    \  providers: [TalksAppBackend]\n})\nclass TalksModule {}\n```\n\nWhat is the\
+    \ difference and which one should you prefer?\n\nGenerally, I recommend to register\
+    \ providers at the module level when they do not depend on the DOM, components,\
+    \ or directives. And only UI-related providers that have to be scoped to a particular\
+    \ component should be registered at the component level. Since TalksAppBackend\
+    \ has nothing to do with the UI, register it at the module level."
+  merge: -1
+  img_proc: true
+- pgno: 39
+  md: '# Injector tree
+
+
+    Now you know that the dependency injection configuration has two parts:
+
+
+    +   - **Registering providers**: How and where an object should be created.
+
+    +   - **Injecting dependencies**: What an object depends on.
+
+
+    And everything an object depends on (services, directives, and elements) is injected
+    into its constructor. To make this work the framework builds a tree of injectors.
+
+
+    First, every DOM element with a component or a directive on it gets an injector.
+    This injector contains the component instance, all the providers registered by
+    the component, and a few "local" objects (for example, the element).
+
+
+    Second, when bootstrapping an NgModule, Angular creates an injector using the
+    module and the providers defined there.
+
+
+    So the injector tree of the application will look like this:'
+  merge: -1
+  img_proc: true
+- pgno: 40
+  md: '![](img/79f67e6cb2f5bd357461768fccf131e0_40_0.png)'
+  merge: -1
+  img_proc: true
+- pgno: 41
+  md: "# Resolution\n\nAnd this is how the dependency resolution algorithm works:\n\
+    \n```\n// this is pseudocode.\nlet inj = this;\nwhile (inj) {\n    if (inj.has(requestedDependency))\
+    \ {\n        return inj.get(requestedDependency);\n    } else {\n        inj =\
+    \ inj.parent;\n    }\n}\nthrow new NoProviderError(requestedDependency);\n```\n\
+    \nWhen resolving the backend dependency of TalksCmp, Angular will start with the\
+    \ injector of the talks component itself. Then, if it is unsuccessful, it will\
+    \ climb up to the injector of the app component, and, finally, will move up to\
+    \ the injector created from AppModule. That is why, for TalksAppBackend to be\
+    \ resolved, you need to register it at TalkCmp, AppCmp, or AppModule."
+  merge: -1
+  img_proc: true
+- pgno: 42
+  md: "# Lazy loading\n\nThe setup gets more complex once you start using lazy-loading.\n\
+    \nLazy-loading a module is akin to bootstrapping a module in that it creates a\
+    \ new injector out of the module and plugs it into the injector tree. To see it\
+    \ in action, let's update our application to load the talks module lazily.\n\n\
+    ```\n```typescript\n@NgModule({\n  declarations: [AppCmp],\n  providers: [RouterModule.forRoot([\n\
+    \    {path: 'talks', loadChildren: 'talks'}\n  ])]\n})\nclass AppModule { }\n\n\
+    @NgModule({\n  declarations: [FormattedRatingPipe, WatchButtonCmp, \n    RateButtonCmp,\
+    \ TalkCmp, TalksCmp],\n  entryComponents: [TalksCmp],\n  providers: [TalksAppBackend,\
+    \ RouteModule.forChild([\n    {path: '', component: TalksCmp}\n  ])]\n})\nclass\
+    \ TalksModule { }\n```\n```\n\nWith this change, the injector tree will look as\
+    \ follows:"
+  merge: -1
+  img_proc: true
+- pgno: 43
+  md: '![](img/79f67e6cb2f5bd357461768fccf131e0_43_0.png)'
+  merge: -1
+  img_proc: true
+- pgno: 44
+  md: '# Getting injector
+
+
+    You can use ngProbe to poke at an injector associated with an element on the page.
+    You can also see an element''s injector when an exception is thrown.
+
+
+    ![](img/79f67e6cb2f5bd357461768fccf131e0_44_0.png)
+
+
+    Right click on any of these objects to store them as a global variable, so you
+    can interact with them in the console.'
+  merge: -1
+  img_proc: true
+- pgno: 45
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 46
+  md: "# Advanced topics\n\n# Controlling visibility\n\nYou can be more specific where\
+    \ you want to get dependencies from. For instance, you can ask for another directive\
+    \ on the same element.\n\n```\nclass CustomInputComponent {\n  constructor(@Self()\
+    \ f: FormatterDirective) {}\n}\n```\n\nOr you can ask for a directive in the same\
+    \ template, that is, you can only inject an ancestor directive from the same HTML\
+    \ file.\n\n```\nclass CustomInputComponent {\n  constructor(@Host() f: CustomForm)\
+    \ {}\n}\n```\n\nFinally, you can ask to skip the current element, which can be\
+    \ handy for decorating existing providers or building up tree-like structures.\n\
+    \n```\nclass SomeComponent {\n  constructor(@SkipSelf() ancestor: SomeComponent)\
+    \ {}\n}\n```\n\n# Optional dependencies\n\nTo mark a dependency as optional, use\
+    \ the Optional decorator.\n\n```\nclass Login {\n  constructor(@Optional() service:\
+    \ LoginService) {}\n}\n```"
+  merge: -1
+  img_proc: true
+- pgno: 47
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 48
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 49
+  md: '# # Chapter 7. Change Detection'
+  merge: -1
+  img_proc: true
+- pgno: 50
+  md: '# Two phases
+
+
+    Angular separates updating the application model and reflecting the state of the
+    model in the view into two distinct phases. The developer is responsible for updating
+    the application model. Angular via bindings, by means of change detection, is
+    responsible for reflecting the state of the model in the view. The framework does
+    it automatically on every VM turn.
+
+
+    **Event bindings**, which can be added using the () syntax, can be used to capture
+    a browser event or component output to execute some function on a component or
+    a directive. So they often trigger the first phase.
+
+
+    **Property bindings**, which can be added using the [] syntax, should be used
+    only for reflecting the state of the model in the view.
+
+
+    As we have learned, an Angular application consists of nested components, so it
+    will always have a component tree. Let''s say for this app it looks as follows:
+
+
+    ![](img/79f67e6cb2f5bd357461768fccf131e0_50_0.png)
+
+
+    Next, define the application model that will store the state of our application.'
+  merge: -1
+  img_proc: true
+- pgno: 51
+  md: "```\n{\n  \"filters\": {\"speakers\": \"Rich Hickey\"},\n  \"talks\": [\n \
+    \   {\n      \"id\":898,\n      \"title\": \"Are we there yet\",\n      \"speaker\"\
+    : \"Rich Hickey\",\n      ...\n\n```"
+  merge: -1
+  img_proc: true
+- pgno: 52
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 53
+  md: '# # How does Angular enforce It?
+
+
+    What happens if I try to break the separation? What if I try to change the application
+    model inside a setter that is invoked by the change detection system?
+
+
+    Angular tries to make sure that the setter we define for our component only updates
+    the view state of this component or its children and not the application model.
+    To do that Angular will check all bindings twice in the developer mode. First
+    time to propagate changes, and second time to make sure there are no changes.
+    If it finds a change during the second pass, it means that one of our setters
+    updated the application model, the framework will throw an exception, pointing
+    at the place where the violation happened.'
+  merge: -1
+  img_proc: true
+- pgno: 54
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 55
+  md: '```
+
+    , </tabs>
+
+    })
+
+    class CmpUsingTabs {
+
+    }
+
+    ```
+
+
+    The content children of the `tabs` component are the three ...'
+  merge: -1
+  img_proc: true
+- pgno: 56
+  md: "# ChangeDetectionStrategy.OnPush\n\nIf we use mutable objects that are shared\
+    \ among multiple components, Angular cannot know about when those components can\
+    \ be affected. A component can affect any other components in the system. That\
+    \ is why, by default, Angular does not make any assumptions about what a component\
+    \ depends upon. So it has be conservative and check every template of every component\
+    \ on every browser event. Since the framework has to do it for every component,\
+    \ it might become a performance problem even though the change detection in the\
+    \ new versions of Angular got way faster.\n\nIf our model application state uses\
+    \ immutable objects, like in the preceding example, we can tell a lot more about\
+    \ when the talk component can change. The component can change if and only if\
+    \ any of its inputs changes. And we can communicate it to Angular by setting the\
+    \ change detection strategy to OnPush.\n\n```\nComponent({\n  selector: 'talk',\n\
+    \  template: `\n    {{talk.title}} {{talk.speaker}}\n    {{talk.rating | formatRating}}\n\
+    \    <watch-button [talk]=\"talk\"></watch-button>\n    <rate-button [talk]=\"\
+    talk\" (rate)=\"handleRate($event)\">\\\n    ...\n```"
+  merge: -1
+  img_proc: true
+- pgno: 57
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 58
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 59
+  md: '# Two modules
+
+
+    In AngularJS 1.x, the `ng-model` directive was baked into the core framework.
+    This is no longer the case. The `@angular/core` package doesn''t contain a form-handling
+    library. It only provides the key primitives we can use to build one.
+
+
+    Of course, making everyone to build their own would not be practical. And that''s
+    why the Angular team built the `@angular/forms` package with two modules: `FormsModule`
+    and `ReactiveFormsModule`.
+
+
+    `FormsModule` implements AngularJS-style form handling. We create a form by placing
+    directives in the template. We then use data bindings to get data in and out of
+    that form.
+
+
+    `ReactiveFormsModule` is another take on handling input, where we define a form
+    in the component class and just bind it to elements in the template. We tend to
+    use reactive programming to get data in and out of the form, hence the name "reactive".
+
+
+    At first glance, these two modules seem very different. But once we understand
+    the underlying mechanisms, we will see how much they have in common. In addition,
+    it will give us an idea of how to build our own form-handling module if needed.'
+  merge: -1
+  img_proc: true
+- pgno: 60
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 61
+  md: '# App model
+
+
+    The app model is an object provided by the application developer. It can be a
+    JSON object fetched from the server, or some object constructed on the client
+    side. Angular doesn''t make any assumptions about it.
+
+
+    # Form model
+
+
+    The form model is a UI-independent representation of a form. It consists of three
+    building blocks: FormControl, FormGroup, and FormArray. We will look at the form
+    model in detail later in this chapter. Both FormsModule and ReactiveFormsModule
+    use this model.
+
+
+    # Form directives
+
+
+    These are the directives connecting the form model to the DOM (for example, NgModel).
+    FormsModule and ReactiveFormsModule provide different sets of these directives.
+
+
+    # DOM
+
+
+    These are ours inputs, checkboxes, and radio buttons.'
+  merge: -1
+  img_proc: true
+- pgno: 62
+  md: '# Form model
+
+
+    ![](img/79f67e6cb2f5bd357461768fccf131e0_62_0.png)'
+  merge: -1
+  img_proc: true
+- pgno: 63
+  md: "To make form handling less UI-dependent, `@angular/forms` provides a set of\
+    \ primitives for modelling forms: `FormControl`, `FormGroup`, and `FormArray`.\n\
+    \n# FormControl\n\n`FormControl` is an indivisible part of the form, an atom.\
+    \ It usually corresponds to a simple UI element, such as an input.\n\n```\nconst\
+    \ c = newFormControl('Init Value', Validators.required);\n```\n\nA `FormControl`\
+    \ has a value, status, and a map of errors:\n\n```\nexpect(c.value).toEqual('Init\
+    \ Value');\nexpect(c.errors).toEqual(null); //null means 'no errors'\nexpect(c.status).toEqual('VALID');\n\
+    ```\n\n# FormGroup\n\n`FormGroup` is a fixed-size collection of controls, a record.\n\
+    \n```\nconst c = new FormGroup({\n  login: new FormControl(''),\n  password: new\
+    \ FormControl('', Validators.required)\n});\n```\n\nA `FormGroup` is itself a\
+    \ control and, as such, has the same methods as `FormControl`.\n\n```\nexpect(c.value).toEqual({login:\
+    \ '', password: ''});\nexpect(c.errors).toEqual(null);\nexpect(c.status).toEqual('INVALID');\n\
+    ```\n\nThe value of a group is just an aggregation of the values of its children.\
+    \ Any time the value of a child control changes, the value of the group will change\
+    \ as well.\n\nIn opposite to the value, the form group doesn't aggregate the..."
+  merge: -1
+  img_proc: true
+- pgno: 64
+  md: '# Form directives
+
+
+    Abstractly describing input is all well and good, but at some point we will need
+    to connect it to the UI.'
+  merge: -1
+  img_proc: true
+- pgno: 65
+  md: '![](img/79f67e6cb2f5bd357461768fccf131e0_65_0.png)
+
+
+    @angular/forms provides two modules that do that: FormsModule and ReactiveFormsModule.'
+  merge: -1
+  img_proc: true
+- pgno: 66
+  md: "# # ReactiveFormsModule\n\n![](img/79f67e6cb2f5bd357461768fccf131e0_66_0.png)\n\
+    \n`ReactiveFormsModule` is **simpler to understand and explain than FormsModule.**\
+    \ That's why I will cover it first.\n\n```\n```typescript\n@Component({\n  selector:\
+    \ 'filters-cmp',\n  template:\n    `<div [formGroup]=\"filters\">\n      <input\
+    \ formControlName=\"title\" placeholder=\"Title\">\n      <input formControlName=\"\
+    speaker\" placeholder=\"Speaker\">\n      <input type=\"checkbox\" formControlName=\"\
+    highRating\">\n      High Rating\n    </div>`\n})\nexport class FiltersCmp {\n\
+    \  filters = new FormGroup({\n    speaker: new FormControl(),\n    title: new\
+    \ FormControl(),\n    highRating: new FormControl(false),\n  });\n\n  constructor(app:\
+    \ App) {\n    this.filters.valueChanges.debounceTime(200).\n      subscribe((value)\
+    \ => {\n```\n```"
+  merge: -1
+  img_proc: true
+- pgno: 67
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 68
+  md: '# # The DOM
+
+
+    ![](img/79f67e6cb2f5bd357461768fccf131e0_68_0.png)'
+  merge: -1
+  img_proc: true
+- pgno: 69
+  md: "The ngModel, ngControlName, and other form directives bind the form model to\
+    \ UI elements, which are often native to the platform (for example, <input>),\
+    \ but they do not have to be. For instance, NgModel can be applied to an Angular\
+    \ component.\n\n```\n<md-input [(ngModel)]=\"speaker\" name=\"speaker\" placeholder=\"\
+    Spe\n```\n\nA ControlValueAccessor is a directive that acts like a adapter connecting\
+    \ a UI element to NgModel. It knows how to read and write to the native UI-element.\n\
+    \nThe @angular/forms package comes with value accessors for all built-in UI elements\
+    \ (input, textarea, so on). But if we want to apply an NgModel to a custom element\
+    \ or an Angular component, we will have to provide a value accessor for it ourselves.\n\
+    \n```\n@Component({\n  selector: 'custom-input',\n  providers: [\n    {\n    \
+    \  provide: NG_VALUE_ACCESSOR,\n      useExisting: forwardRef(() => CustomInputCmp),\n\
+    \      multi: true\n    }\n  ]\n})\nclass CustomInputCmp implements ControlValueAccessor\
+    \ {\n  //...\n}\n```"
+  merge: -1
+  img_proc: true
+- pgno: 70
+  md: '# Wrapping up
+
+
+    Form handling is a complex problem. One of the main reasons AngularJS got so successful
+    is that two-way bindings and `ng-model` provided a good solution for it. But there
+    were some downsides, mainly complex forms built with `ng-model` made the data
+    flow of the application hard to follow and debug. Angular 2+ builds up on the
+    ideas from Angular 1, but avoids its problems.
+
+
+    `NgModel` and friends are no longer part of the core framework. The `@angular/core`
+    package only contains the primitives we can use to build a form-handling module.
+    Instead, Angular has a separate package—`@angular/forms`—that comes with `FormsModule`
+    and `ReactiveFormsModule` that provide two different styles of handling user input.
+
+
+    Both the modules depend on the form model consisting of `FormControl`, `FormGroup`,
+    and `FormArray`. Having this UI-independent model, we can model and test input
+    handling without rendering any components.
+
+
+    Finally, `@angular/forms` comes with a set of directives to handle build-in UI
+    elements (such as `<input>`), but we can provide our own.'
+  merge: -1
+  img_proc: true
+- pgno: 71
+  md: '# Chapter 9. Testing
+
+
+    One of the design goals of Angular is to make testing easy. That''s why the framework
+    relies on dependency injection, separates the user code from the framework code,
+    and comes with a set of tools for writing and running tests. In this chapter I
+    will look at four ways to test Angular components: isolated tests, shallow tests,
+    integration tests, and protractor tests.'
+  merge: -1
+  img_proc: true
+- pgno: 72
+  md: "# # Isolated tests\n\nIt is often useful to test complex components without\
+    \ rendering them. To see how it can be done, let's write a test for the following\
+    \ component:\n\n```\n```typescript\n@Component({\n  selector: 'filters-cmp',\n\
+    \  templateUrl: './filters.component.html',\n  styleUrls: ['./filters.component.css']\n\
+    })\nexport class FiltersCmp {\n  @Output() change = new EventEmitter();\n\n  filters\
+    \ = new FormGroup({\n    speaker: new FormControl(),\n    title: new FormControl(),\n\
+    \    highRating: new FormControl(false),\n  });\n\n  constructor(@Inject('createFiltersObject')\
+    \ createFilters: Fur\n    this.filters.valueChanges.debounceTime(200).\\\n   \
+    \ subscribe((value) => {\n      this.change.next(createFilters(value));\n    });\n\
+    \  }\n}\n```\n```\n\nFollowing is the code for `filters.component.html`:\n\n```\n\
+    ```html\n<div [formGroup]=\"filters\">\n  <md-input-container>\n    <input md-input\
+    \ formControlName=\"title\" placeholder=\"Title\">\n  </md-input-container>\n\n\
+    \  <md-input-container>\n    <input md-input formControlName=\"speaker\" placeholder=\"\
+    Spea\n  </md-input-container>\n\n  <md-checkbox formControlName=\"highRating\"\
+    >\n    High Rating\n  </md-checkbox>\n</div>\n```\n```"
+  merge: -1
+  img_proc: true
+- pgno: 73
+  md: 'There a few things in this example worth noting:
+
+
+    +   - We are...'
+  merge: -1
+  img_proc: true
+- pgno: 74
+  md: "# Shallow testing\n\nTesting component classes without rendering their templates\
+    \ works in certain scenarios, but not in all of them. Sometimes we can write a\
+    \ meaningful test only if we render a component's template. We can do that and\
+    \ still keep the test isolated. We just need to render the template without rendering\
+    \ the component's children. This is what is colloquially known as **shallow testing**.\n\
+    \nLet's see this approach in action.\n\n```\n@Component({\n  selector: 'talks-cmp',\n\
+    \  template: '<talk-cmp *ngFor=\"let t of talks\" [talk]=\"t\"></ta:'\n})\nexport\
+    \ class TalksCmp {\n  @Input() talks: Talk[];\n}\n```\n\nThis component simply\
+    \ renders a collection of TalkCmp.\n\nNow let's look at its test.\n\n```\nimport\
+    \ { async, ComponentFixture, TestBed } from '@angular/core'\nimport { By } from\
+    \ '@angular/platform-browser';\nimport { DebugElement, NO_ERRORS_SCHEMA } from\
+    \ '@angular/core';\n\nimport { TalksCmp } from './talks.component';\n\ndescribe('TalksCmp',\
+    \ () => {\n  let component: TalksCmp;\n  let fixture: ComponentFixture<TalksCmp>;\n\
+    \n  beforeEach(async(() => {\n    TestBed.configureTestingModule({\n      declarations:\
+    \ [TalksCmp],\n      schemas: [NO_ERRORS_SCHEMA]\n    })\n  })\n  ...\n```"
+  merge: -1
+  img_proc: true
+- pgno: 75
+  md: "# Integration testing\n\nWe can also write an integration test that will exercise\
+    \ the whole application.\n\n```\nimport {TestBed, async, ComponentFixture, inject}\
+    \ from '@angular\nimport {AppCmp} from './app.component';\nimport {AppModule}\
+    \ from './app.module';\nimport {App} from \"./app\";\n\ndescribe('AppCmp', ()\
+    \ => {\n    let component: AppCmp;\n    let fixture: ComponentFixture<AppCmp>;\n\
+    \    let el: Element;\n\n    beforeEach(async(() => {\n        TestBed.configureTestingModule({\n\
+    \            imports: [AppModule]\n        });\n        TestBed.compileComponents();\n\
+    \    }));\n\n    beforeEach(() => {\n        fixture = TestBed.createComponent(AppCmp);\n\
+    \        component = fixture.componentInstance;\n        fixture.detectChanges();\n\
+    \        el = fixture.debugElement.nativeElement;\n    });\n\n    it('should filter\
+    \ talks by title', async(inject([App], \\\n        (app: App) => {\n        app.model.talks\
+    \ = [\n            {\n                \"id\": 1,\n                \"title\": \"\
+    Are we there yet?\",\n                \"speaker\": \"Rich Hickey\",\n        \
+    \        \"yourRating\": null,\n                \"rating\": 9.0\n            },\n\
+    \            {\n                \"id\": 2,\n                \"title\": \"The Value\
+    \ of Values\",\n                \"speaker\": \"Rich Hickey\",\n              \
+    \  \"yourRating\": null,\n```"
+  merge: -1
+  img_proc: true
+- pgno: 76
+  md: "```\n  \"rating\": 8.0\n},\n...\n```"
+  merge: -1
+  img_proc: true
+- pgno: 77
+  md: "# Protractor tests\n\nFinally, we can always write a protractor test exercising\
+    \ the whole application.\n\n```\nimport {browser, element, by} from 'protractor';\n\
+    \nexport class TalksAppPage {\n    navigateTo() {\n        return browser.get('/');\n\
+    \    }\n\n    getTitleInput() {\n        return element(by.css('input[formcontrolname=title]'));\n\
+    \    }\n\n    getTalks() {\n        return element.all(by.css('talk-cmp'));\n\
+    \    }\n\n    getTalkText(index: number) {\n        return this.getTalks().get(index).getText();\n\
+    \    }\n}\n\ndescribe('e2e tests', function() {\n    let page: TalksAppPage;\n\
+    \n    beforeEach(() => {\n        page = new TalksAppPage();\n    });\n\n    it('should\
+    \ filter talks by title', () => {\n        page.navigateTo();\n\n        const\
+    \ title = page.getTitleInput();\n        title.sendKeys(\"Are we there\");\n\n\
+    \        expect(page.getTalks().count()).toEqual(1);\n        expect(page.getTalkText(0)).toContain(\"\
+    Are we there yet?\");\n    });\n});\n```"
+  merge: -1
+  img_proc: true
+- pgno: 78
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 79
+  md: '# Let''s recap
+
+
+    In this chapter we looked at four ways to test Angular components: isolated tests,
+    shallow tests, integration tests, and protractor tests. Each of them have their
+    time and place: isolated tests are a great way to test drive your components and
+    test complex logic. Shallow tests are isolated tests on steroids, and they should
+    be used when writing a meaningful test requires to render a component’s template.
+    Finally, integration and protractor tests verify that a group of components and
+    services (i.e., the application) work together.'
+  merge: -1
+  img_proc: true
+- pgno: 80
+  md: '# # Chapter 10. Reactive Programming in Angular'
+  merge: -1
+  img_proc: true
+- pgno: 81
+  md: '# Reactive programming in the core framework
+
+
+    An Angular application is a reactive system. The user clicks on a button, the
+    application reacts to this event and updates the model. The model gets updated,
+    the application propagates the changes through the component tree.
+
+
+    ![](img/79f67e6cb2f5bd357461768fccf131e0_81_0.png)
+
+
+    Angular implements these two arrows very differently. Let''s explore why.
+
+
+    # Events and state
+
+
+    To understand why Angular uses two very different ways of reactive programming,
+    we need to look at the differences between events and the state.
+
+
+    We often talk about events or event streams when discussing reactivity. Event
+    streams are an important category of reactive objects, but so is state. So let''s'
+  merge: -1
+  img_proc: true
+- pgno: 82
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 83
+  md: "# # Reactive programming in the Angular ecosystem\n\nWe have looked at how\
+    \ the Angular core framework itself supports reactive programming. Now let's look\
+    \ at the Angular ecosystem.\n\n# ## @angular/forms\n\nAngular has always had strong\
+    \ support for building dynamic forms. It's one of the main reasons the framework\
+    \ got so successful.\n\nNow the framework comes with a module that adds support\
+    \ for handling input using reified reactive programming.\n\n```\n```typescript\n\
+    import {ReactiveFormsModule, FormGroup, FormControl} from '@angular/forms';\n\n\
+    @Component({\n  selector: 'filters-and-talks',\n  template:\n    `<form [formGroup]=\"\
+    filtersForm\">\n      Title <input formControlName=\"title\">\n      Speaker <input\
+    \ formControlName=\"speaker\">\n    </form>\n\n    <talk *ngFor=\"let t of talks|async\"\
+    \ [talk]=\"t\"></talk>`\n})\nclass TalksAndFiltersCmp {\n  filtersForm = new FormGroup({\n\
+    \    title: new FormControl(''),\n    speaker: new FormControl('')\n  });\n\n\
+    \  talks: Observable<Talk[]>;\n\n  constructor(backend: Backend) {\n    this.talks\
+    \ = this.filtersForm.valueChanges.\n      debounceTime(100);\n  }\n}\n```\n```"
+  merge: -1
+  img_proc: true
+- pgno: 84
+  md: "```\nswitchMap(filters => backend.fetch(filters));\n}\n}\n\n@NgModule({\n \
+    \ declarations: [TalksAndFiltersCmp,...\n```"
+  merge: -1
+  img_proc: true
+- pgno: 85
+  md: '# Summary
+
+
+    An Angular application is a reactive system. And that''s why we need to understand
+    reactive programming to be productive with Angular.
+
+
+    Reactive programming works with event streams and the state. And it can be divided
+    into transparent and reified.
+
+
+    Since the very beginning the framework has had excellent support for transparent
+    reactive programming. It was used both to propagate the state and to handle events.
+    It is simple and fast. And the new versions of the framework still support it.
+
+
+    But it can also be limiting at times and make solving certain problems difficult.
+    That''s why Angular now comes with support for reified reactive programming, using
+    observables.
+
+
+    The Angular ecosystem embraced these ideas as well. The reactive forms module,
+    the router, and other libraries like NgRx, all provide observable-based APIs.'
+  merge: -1
+  img_proc: true
