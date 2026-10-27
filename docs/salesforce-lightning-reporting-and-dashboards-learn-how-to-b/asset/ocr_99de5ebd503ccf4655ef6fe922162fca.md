@@ -1,0 +1,3 @@
+![](bbox=[0.105, 0.105, 0.895, 0.58])
+
+Each public folder can store either reports or dashboards, but not both. It is a good practice to have a good naming pattern for report names and folder names, for example, NA Sales Reports for a folder to store all reports related to Sales for North America, and EMEA Sales Dashboards folder for all dashboards related to EMEA sales. This will help you and other users to find the report easily, and keep things organized.

@@ -1,0 +1,85 @@
+chapter_starts:
+- 'no': 8
+  confidence: 1.0
+  final_reason: 正文前辅文统一划分为一章，Credits 为前置版权/致谢页，复核方确认应维持分章
+  accepted_evidence:
+  - '## Credits 为前置内容，按规则正文之前 Credits/Foreword/About Author 等统一划分为一章'
+  - 复核方 keep_split=true，overturn_probability 0.15
+  rejected_evidence:
+  - Credits 不具统领全文语义
+  need_human_review: false
+- 'no': 309
+  confidence: 0.85
+  final_reason: 位于前言之后且后接本章概述段落，无编号但语义为第1章正文起点
+  accepted_evidence:
+  - '# Salesforce 报表和仪表板的 fundamentals 后接本章将为您提供 Salesforce 云技术的总体概述'
+  - 复核方 keep_split=true，overturn_probability 0.15
+  rejected_evidence:
+  - 标题无显式第1章编号，形式似封面/页眉残留
+  need_human_review: false
+- 'no': 621
+  confidence: 1.0
+  final_reason: '第2章编号 # 2，后接完整章标题“报表与仪表盘中的概念和权限”，位于上一章总结之后'
+  accepted_evidence:
+  - '# 2 后一行 ## 报表与仪表盘中的概念和权限'
+  - 前文为总结结束语，后文为本章概述
+  - 复核方 keep_split=true，overturn_probability 0.1
+  rejected_evidence:
+  - 单独看像章号残片
+  need_human_review: false
+- 'no': 918
+  confidence: 0.85
+  final_reason: 位于上一章总结之后，后接本章概述，实际为第3章正文起点
+  accepted_evidence:
+  - '## 在报告和仪表板中实现安全性 后接本章将说明如何在 Salesforce 中保护报告和仪表板'
+  - 复核方 keep_split=true，overturn_probability 0.2
+  rejected_evidence:
+  - 二级标题格式，易与小节混淆
+  need_human_review: false
+- 'no': 1142
+  confidence: 0.85
+  final_reason: 紧接第3章总结之后，后文为本章概述，实际为第4章正文起点
+  accepted_evidence:
+  - '## 创建和管理报表 后接你在第2章...在本章中我们将动手创建报表'
+  - 复核方 keep_split=true，overturn_probability 0.2
+  rejected_evidence:
+  - '无章序号，使用 ## 格式易与小节混淆'
+  need_human_review: false
+- 'no': 1774
+  confidence: 1.0
+  final_reason: H1 带编号 5.，后接第5章概述，为明确正文第5章标题
+  accepted_evidence:
+  - '# 5. 了解报告类型 前接上一章总结，后接您已在第4章...中学习了创建和管理报表'
+  - 复核方 keep_split=true，overturn_probability 0.05
+  rejected_evidence:
+  - 编号为 5. 而非第5章，可能被误认为列表
+  need_human_review: false
+- 'no': 2083
+  confidence: 0.85
+  final_reason: 紧接第5章总结后预告之后，后接本章概述，为第6章正文起点
+  accepted_evidence:
+  - '## 高级报表配置 后接你在第5章理解报表类型中详细学习了报表类型'
+  - 复核方 keep_split=true，overturn_probability 0.25
+  rejected_evidence:
+  - 短语在后文多处重复，似页眉残片
+  need_human_review: false
+- 'no': 2849
+  confidence: 1.0
+  final_reason: '章号 # 7 后接完整章标题，在下一章预告之后，为第7章正文起点'
+  accepted_evidence:
+  - '# 7 后一行 ## 在报表和页面中添加图表'
+  - 前文为在下一章中我们将讨论...
+  - 复核方 keep_split=true，overturn_probability 0.1
+  rejected_evidence:
+  - 单独看像章号残片
+  need_human_review: false
+rejected_lines:
+- 'no': 118
+  reason: 位于目录区域，后接带页码的目录条目如内置组件 232、仪表盘可访问性 232，非正文章标题，复核方 overturn_probability 0.97
+  need_human_review: false
+- 'no': 180
+  reason: 目录条目，第10章条目后为摘要、报告快照历史记录等带页码目录行，无正文概述，复核方 overturn_probability 0.97
+  need_human_review: false
+- 'no': 200
+  reason: 目录条目，第12章条目后紧跟刷新仪表盘、动态仪表盘等目录行，随后为索引、前言，属目录非正文，复核方 overturn_probability 0.97
+  need_human_review: false

@@ -1,0 +1,3027 @@
+- '# Salesforce Lightning 报表和仪表板：在 Salesforce Lightning Experience 中构建高级报表和仪表板指南
+
+
+
+
+
+
+
+  '
+- '## Credits
+
+
+  **Author**
+
+  Johan Yu
+
+
+  **Copy Editor**
+
+  Stuti Srivastava
+
+
+  **Reviewers**
+
+  Chamil Madusanka
+
+  Tom Blamire
+
+
+  **Project Coordinator**
+
+  Prajakta Naik
+
+
+  **Commissioning Editor**
+
+  Merint Mathew
+
+
+  **Proofreader**
+
+  Safis Editing
+
+
+  **Acquisition Editor**
+
+  Karan Sadawana
+
+
+  **Indexer**
+
+  Francy Puthiry
+
+
+  **Content Development Editor**
+
+  Siddhi Chavan
+
+
+  **Production Coordinator**
+
+  Nilesh Mohite
+
+
+  **Technical Editor**
+
+  Tiksha Sarang
+
+
+  ## Foreword
+
+
+  Before you dive into Johan''s amazing book about Salesforce technology, I want to
+  invite you to be a part of something special. We are in the midst of a major shift,
+  and we''re leaning into it with the full power of Salesforce. Our mission is to
+  empower people to blaze their own trails, as well as to motivate and educate everyone
+  in our community with how we live our values of trust, growth, innovation, and equality.
+
+
+  If you''re reading this book, you are a Trailblazer and have more power than ever
+  to make positive changes happen in your companies, communities, and careers. Doing
+  well and doing good is about the power of working together to help companies be
+  better for their customers, and businesses and to be major drivers of change. We
+  want every individual to realize their full potential in their careers and lives.
+  With this shift, we can generate hundreds of billions of dollars in GDP, create
+  millions of new jobs, and help new Trailblazers learn the skills they need to succeed.
+
+
+  I''d like to introduce you to a few of the concepts that are central to this shift
+  and core to our community: Ohana, Trailblazer, and Equality.
+
+
+  **Ohana:** This is defined broadly as "family" in Hawaiian, but at Salesforce, it
+  means to connect, collaborate, learn, and have fun together. As one Salesforce Ohana,
+  we all need to be Trailblazers, moving forward together on the same trail with the
+  intentional purpose of delivering customer success and a path into the Salesforce
+  economy. This, in turn, will generate hundreds of billions of dollars in GDP, create
+  millions of new jobs, and help new Trailblazers learn the skills they need to succeed.
+
+
+  **Trailblazer:** This is a pioneer; an innovator; a lifelong learner; a mover and
+  shaker; a leader who leaves a path for others to follow; and, most importantly,
+  someone who inspires and drives change, and is committed to making the world a better
+  place. This is all about being your best through a constant commitment to learning
+  and giving back--and that''s what this community is all about.
+
+
+  **Equality:** At Salesforce, works together with our whole Ohana--our employees,
+  customers, partners, community organizations, and the whole tech industry--to build
+  a path forward to equality for all. We are taking action across four key pillars:
+  equal pay, equal opportunity, equal education, equal rights.
+
+
+  Let me leave you with this--ask yourself what will you learn this year? What will
+  you teach? Will you be a mentor or a mentee? What’s the Salesforce path you want
+  to follow? I encourage you to BE BOLD in your life, career, and community--be a
+  part of this amazing shift!
+
+
+  **Erica Kuhl**
+
+  Vice President, Community - Salesforce
+
+
+  ## About the Author
+
+
+  **Johan Yu** has more than 19 years of experience working in the IT sector across
+  MNCs and at a leading Salesforce consulting company in the Asia-Pacific region.
+  He has spent more than 12 years working with Salesforce technology, starting his
+  career as a developer, team leader, and technical manager, among many other challenging
+  roles.
+
+
+  Based in Singapore, Johan holds 12X active Salesforce certifications, ranging from
+  Administrator to Architect/Designer certifications. In his spare time, he enjoys
+  writing blogs and answering questions in the Salesforce Success Community.
+
+
+  In May 2014, Johan became the first Salesforce MVP, not only from Singapore, but
+  also from Southeast Asia. He is also the leader of the Salesforce Singapore User
+  Group and is keen to help members solve issues related to configuration, implementation,
+  and adoption, until more technical issues arrive.
+
+
+  > > First of all, I am grateful to Almighty God for enabling me to complete this
+  book. After living and breathing with Salesforce technologies for more than a decade,
+  it’s a miracle and my happiest moment to write my second book on Salesforce. I would
+  like to thank the creator of Salesforce for the invention of such a great technology.
+  Thanks to the Salesforce MVP family and the entire Salesforce team for building
+  a great Salesforce community around the world #ohana. I wish to express my sincere
+  gratitude to my reviewers, Chamil Madusanka and Tom Blamire, for completing the
+  review and feedback of this book. I would also like to thank the whole Salesforce
+  Singapore User Group family; my co-leaders; my buddies Vladimir Vujatovic, Chrisila
+  Low, and Raphael Fraga for the dedication to the community; and many Salesforce
+  User Group leaders around the world--I can’t name each of you. Another big thanks
+  to the team at Packt for their guidance and support which made this book happen.
+  I would also like to thank my employer, church, family, and friends. Thanks to Ps
+  Jacub Suria and Ps Yenny Sari, Minister of the Indonesian Family Church, Singapore,
+  for the down-to-earth kindness and passion in giving all of us sermons and tasty
+  food! Lastly, huge thanks and love to my wife, Novida Lunardi, for being a part
+  of my life--her understanding, continued support, and encouragement helped me get
+  this book completed.
+
+
+  **Tom Blamire** is a dedicated Salesforce administrator and evangelist who accidentally
+  fell into Salesforce in 2014. He has come from an office administration background,
+  working in various industries, and tries to apply that knowledge and skillset to
+  every organization he has worked in.
+
+
+  I would like to thank Johan for initially asking me to be a part of this amazing
+  adventure; my GIF Squad colleagues, Amy, Ben, Stuart, Pat, Bill, Justice, Stacey,
+  Monica, Melinda, and Sam for their continued support, loyalty, inspiration, and
+  dedication to the cause; Marc Benioff and Parker Harris for making the greatest
+  platform on earth and helping change the lives of so many people for the better;
+  the Salesforce Success Community, Trailhead, and Awesome Admin Jobs Team for doing
+  what you do on a day-to-day basis and constantly supporting the #salesforceohana;
+  Tony Prophet and team for helping to make the world a more educated and less critical
+  place to be; and, most importantly, thank you to my wife and unborn son for everything,
+  as without you, life would be a dark and empty place to be.
+
+
+  ## www.PacktPub.com
+
+
+  For support files and downloads related to your book, please visit www.PacktPub.com.
+
+
+  Did you know that Packt offers eBook versions of every book published, with PDF
+  and ePub files available? You can upgrade to the eBook version at www.PacktPub.com
+  and as a print book customer, you are entitled to a discount on the eBook copy.
+  Get in touch with us at service@packtpub.com for more details.
+
+
+  At www.PacktPub.com, you can also read a collection of free technical articles,
+  sign up for a range of free newsletters and receive exclusive discounts and offers
+  on Packt books and eBooks.
+
+
+  ![](img/72d01bea5a9ccf02f9452aab7505d9de_9_0.png)
+
+
+  https://www.packtpub.com/mapt
+
+
+  Get the most in-demand software skills with Mapt. Mapt gives you full access to
+  all Packt books and video courses, as well as industry-leading tools to help you
+  plan your personal development and advance your career.
+
+
+  # Why subscribe?
+
+
+  - Fully searchable across every book published by Packt
+
+  - Copy and paste, print, and bookmark content
+
+  - On demand and accessible via a web browser
+
+
+
+
+
+
+  # 客户反馈
+
+
+  感谢您购买本 Packt 出版的图书。在 Packt，质量是我们编辑流程的核心。为帮助我们改进，请在该书的 Amazon 页面 https://www.amazon.com/dp/1788297385
+  上留下诚实的评价。
+
+
+  如果您想加入我们的常驻审阅者团队，您可以发送电子邮件至 customerreviews@packtpub.com。我们会以免费的电子书和视频作为回报，感谢您宝贵的反馈。帮助我们不断改进产品！
+
+
+
+
+
+  操作按钮 225
+
+
+  ## 订阅报告
+
+
+  在 Lightning Experience 中订阅报告的动手练习 228
+
+
+  ## 摘要
+
+
+  # 第9章：在 Lightning Experience 中构建仪表盘
+
+
+  ## Salesforce 中的仪表盘简介
+
+
+  内置组件 232
+
+
+  仪表盘可访问性 232
+
+
+  运行用户 233
+
+
+  动态仪表盘 233
+
+
+  新体验 234
+
+
+  ## 打开仪表盘
+
+
+  “仪表盘”选项卡 236
+
+
+  “仪表盘”菜单 238
+
+
+  “文件夹”菜单 240
+
+
+  收藏图标 241
+
+
+  搜索文本框 242
+
+
+  ## 导航到仪表盘
+
+
+  在仪表盘构建器中拖放 245
+
+
+  ## 刷新仪表盘
+
+
+  安排仪表盘刷新 248
+
+
+  ## 创建你的第一个仪表盘
+
+
+  创建仪表盘的动手练习 253
+
+
+  编辑和维护仪表盘的动手练习 258
+
+
+  ## 仪表盘组件
+
+
+  定义仪表盘组件 263
+
+
+  表格 265
+
+
+  漏斗图 266
+
+
+  仪表图 267
+
+
+  堆叠条形图 268
+
+
+  散点图 269
+
+
+  累积折线图 270
+
+
+  组合图 270
+
+
+  报告作为数据源 271
+
+
+  ## 摘要
+
+
+  # 第10章：学习高级仪表盘配置
+
+
+  ## 实现仪表盘筛选器
+
+
+  了解仪表盘筛选器 275
+
+
+  向仪表盘添加筛选器的动手练习 276
+
+
+  ## 查看仪表盘
+
+
+  安排报告快照 ........................................ 343
+
+
+  摘要和计划 .................................................... 345
+
+
+  报告快照的历史记录和监控 ............................. 347
+
+
+  历史数据报告 ............................................ 348
+
+
+  ## 摘要
+
+
+  # 第12章：Salesforce1 移动应用中的仪表盘和报告
+
+
+  ## Salesforce1 移动应用简介
+
+
+  ## 在 Salesforce1 应用中处理仪表盘
+
+
+  刷新仪表盘 ................................................. 355
+
+
+  动态仪表盘 .................................................... 356
+
+
+  仪表盘筛选器 ..................................................... 357
+
+
+  将仪表盘快照共享到 Chatter 信息流 ............................. 358
+
+
+  更改组件图表类型 ....................................... 360
+
+
+  图表详细信息和报告 ................................................ 361
+
+
+  ## 在 Salesforce1 应用中处理报告
+
+
+  报告菜单项 ....................................................... 363
+
+
+  从仪表盘向下钻取 ............................................ 364
+
+
+  向下钻取到记录 .................................................. 366
+
+
+  ## 离线访问
+
+
+  Salesforce1 应用的局限性 .................................. 366
+
+
+  摘要 ................................................................ 367
+
+
+  ## 索引
+
+
+  ## 前言
+
+
+  本书面向在日常工作中使用 Salesforce Lightning Experience 或在 Salesforce 中分析数据的 Salesforce 管理员、业务用户和管理者。它涵盖了
+  Salesforce Lightning Experience 中与报告和仪表盘相关的所有内容。本书将使业务用户受益，他们将获得从创建基本报告到高级报告和仪表盘配置的知识。管理员将学习报告和仪表盘的完整概念、对象模型、与报告和仪表盘相关的权限、报告存储以及历史数据报告。
+
+
+  报告和仪表盘是 Salesforce 平台（包括 Sales Cloud、Service Cloud 和 Force.com）中最强大且易于使用的功能之一，业务用户能够在几分钟内根据需要创建和自定义报告和仪表盘。
+
+
+  业务用户应具备基础知识，或应在日常工作中使用 Salesforce，例如登录系统、在 Salesforce Lightning 环境中导航、创建和编辑数据以及运行报告。管理员应具备自定义
+  Salesforce 的基础知识，例如 Setup 菜单、选项卡、用户配置文件、权限集以及标准对象和自定义对象。
+
+
+  ### 本书涵盖内容
+
+
+  第1章，*Salesforce 报告和仪表盘基础*，提供了 Salesforce Lightning Experience、对象模型、Setup 菜单导航以及报告和仪表盘导航的基本概述。
+
+
+  第2章，*报告和仪表盘中的概念与权限*，讨论了数据可见性与生成的报告结果之间的关系，接着介绍了报告和仪表盘的存储，以及报告和仪表盘的权限。
+
+
+  第3章，*在报告和仪表盘中实现安全性*，讨论了如何保护存储在 Salesforce 中的报告和仪表盘并限制其访问权限。
+
+
+  第4章，*创建和管理报告*，涵盖创建新报告所需的基本技能，包括选择报告格式、向报告添加筛选器以及动手创建简单报告。
+
+
+  第5章，*理解报告类型*，将报告类型解释为报告的基础，它还将决定对象和字段的可用性，包括生成报告中的数据。本章介绍了标准报告类型，包括创建自定义报告类型。
+
+
+  第6章，*高级报告配置*，讨论了使用分桶字段和自定义汇总公式对报告中的数据进行分类。
+
+
+  第7章，*在报告和页面中添加图表*，介绍了 Lightning Experience 报告中可用的图表类型、向报告添加图表以及在记录页面上使用相同图表。
+
+
+  第8章，*处理报告*，涵盖在“报告”选项卡下处理报告和可用项目、报告文件夹以及运行报告后可以配置的内容。
+
+
+  第9章，*在 Lightning Experience 中构建仪表盘*，涵盖打开和搜索仪表盘，以及导航、构建和刷新仪表盘及其组件。
+
+
+  第10章，*学习高级仪表盘配置*，解释了仪表盘中的高级功能，包括仪表盘筛选器、动态仪表盘、向下钻取，以及从 AppExchange 获取其他仪表盘。
+
+
+  第11章，*报告和仪表盘的高级提示与技巧*，涵盖报告和仪表盘中的协作、使用 URL 参数筛选报告、字段历史跟踪以及设置报告快照。
+
+
+  第12章，*Salesforce1 移动应用中的仪表盘和报告*，展示了如何使用 Salesforce1 移动应用随时随地访问报告和仪表盘，包括无互联网的离线访问。
+
+
+  ### 本书所需准备
+
+
+  充分利用本书的最佳方法是亲身体验所有练习。你需要以下内容：
+
+
+  - 一个 Salesforce 账户。建议使用 Enterprise 版或更高版本。不过，出于测试和学习目的，Sandbox 实例和 Developer 版已足够。
+
+  - 一个 Web 浏览器。
+
+  - 一个互联网连接。
+
+  - 一台计算机。
+
+  - 一部手机——iOS 或 Android。
+
+
+  ### 本书面向的读者
+
+
+  本书面向业务分析师、报告分析师、销售代表、销售运营人员和 Salesforce 管理员。本书也适用于希望使用 Lightning Experience 深入学习
+  Salesforce 报告和仪表盘的用户。你将获得与 Salesforce 中报告和仪表盘相关的知识，从创建基本报告和自定义报告开始，逐步深入 Salesforce
+  Lightning Experience 中最先进的报告和仪表盘。
+
+
+  ### 约定
+
+
+  在本书中，你会发现多种文本样式，用于区分不同类型的信息。以下是这些样式的一些示例及其含义说明。
+
+
+  文本中的代码词、数据库表名、文件夹名、文件名、文件扩展名、路径名、虚拟 URL、用户输入和 Twitter 句柄显示如下：“创建 Account 报告，并使用
+  No of Won Opportunity 字段作为报告筛选器。”
+
+
+  任何命令行输入或输出都按如下方式编写：
+
+
+  ```
+
+  SELECT Id FROM Report USING SCOPE allPrivate WHERE OwnerId =
+
+  ''00541000001cTYgAAM''
+
+  ```
+
+
+  新术语和重要词汇以粗体显示。你在屏幕上看到的文字，例如菜单或对话框中的文字，会以如下形式出现在文本中：“导航到“报告”选项卡，然后点击“新建报告”按钮。”
+
+
+  ![](img/72d01bea5a9ccf02f9452aab7505d9de_20_0.png)
+
+
+  警告或重要说明显示如下。
+
+
+  ![](img/72d01bea5a9ccf02f9452aab7505d9de_20_1.png)
+
+
+  提示和技巧显示如下。
+
+
+
+
+
+  '
+- '# Salesforce 报表和仪表板的 fundamentals
+
+
+  本章将为您提供 Salesforce 云技术的总体概述，包括云平台的优势、Salesforce Lightning Experience 的介绍、将 Salesforce
+  扩展到客户关系管理 (CRM) 之外，以及导航 Salesforce 报表和仪表板。我们还将涉及 Salesforce 架构、设置菜单和 Lightning Experience
+  用户界面。
+
+
+  本章包含适用于业务用户和 Salesforce 系统管理员的信息。本章中的一些主题讨论了系统管理员专用的功能，但业务用户可能会对更好地了解 Salesforce
+  架构感兴趣。
+
+
+  在整本书中，我们将提供笔记和提示来帮助您轻松理解 Salesforce 技术。在接下来的几章中，我们将介绍构建高级报表和仪表板的各种技能，以满足您在 Lightning
+  Experience 中的业务需求。动手活动将是大多数章节的一部分，而创建和管理报表和仪表板将在第 4 章《创建和管理报表》及以后进行介绍。
+
+
+  本章将涵盖以下主题：
+
+
+  - Salesforce 的概述和优势
+
+  - Salesforce Lightning Experience
+
+  - Salesforce 对象模型
+
+  - 导航到设置菜单
+
+  - 导航到报表和仪表板
+
+
+  以下是 Salesforce 目前提供的一些云产品：
+
+
+  - **Sales Cloud**：Sales Cloud 自动化您的销售流程
+
+  - **Service Cloud**：Service Cloud 提供进化的客户服务流程
+
+  - **Marketing Cloud**：Marketing Cloud 得益于数字营销自动化
+
+  - **Community Cloud**：Community Cloud 与您的客户和合作伙伴连接
+
+  - **Wave Analytic**：Wave Analytic 为业务用户和分析师提供分析
+
+  - **App Cloud**：App Cloud 允许您为业务需求构建应用程序
+
+  - **IoT Cloud**：IoT Cloud 用于存储和处理**物联网 (IoT)** 连接设备的 数据
+
+  - **Commerce Cloud**：Commerce Cloud 使您能够构建统一的购物体验
+
+
+  随着 Salesforce 不断收购和构建新产品，以上列表可能会随时更改。
+
+
+  简而言之，与其他本地应用程序相比，使用 Salesforce 的优势如下：
+
+
+  - 更快的实施计划
+
+  - 更低的维护成本，因为您无需购买或支持内部服务器，也无需为其维护资源
+
+  - 可扩展性和稳健性
+
+  - 安全且高性能
+
+  - 易于使用 AppExchange 上的预构建解决方案扩展功能
+
+  - 可从台式机、笔记本电脑、平板电脑和移动应用程序访问
+
+  - 面向中小型企业的企业级应用程序
+
+
+  ## Salesforce Lightning Experience
+
+
+  Lightning Experience 是一种现代、快速且美观的用户界面，旨在帮助您的销售用户提高生产力和效率。它以销售为中心构建，专注于帮助销售代表更自然地日常工作。有了
+  Lightning Experience，您的用户将获得直观且智能的用户界面。
+
+
+  Lightning Experience 采用经过验证的 Salesforce1 移动应用程序技术构建。您的销售代表已经使用移动设备输入潜在客户、记录客户会议后的任务和笔记、运行报表和仪表板等。Lightning
+  Experience 将所有这些来自移动体验的酷炫功能带入了计算机网络浏览器。
+
+
+  ## 让我们使用正确的术语
+
+
+  在许多情况下，Lightning Experience 简称为 Lightning，尽管 Salesforce 平台中有许多以“Lightning”开头的项目，例如
+  Lightning 登录、Lightning 应用构建器、Lightning for Outlook、Lightning 组件、Lightning 同步等。其中一些仅适用于
+  Lightning Experience，但其他一些在 Lightning Experience 和旧版 Classic 用户界面中都可以使用，例如 Lightning
+  Sync 用于在您的电子邮件服务器与 Salesforce 之间同步用户联系人和事件。
+
+
+  为了明确，当您遇到 Salesforce 社区中的某个人，他问您是否使用 lightning 时，他很可能指的是 Lightning Experience。为了使用正确的术语，它是
+  Lightning，而不是 Lightening 或 Lighting。
+
+
+  ## Lightning Experience 之前是什么？
+
+
+  如果您注意到了，我们在 *让我们使用正确的术语* 部分中提到了经典用户界面这个术语。是的，就是它——在 Lightning Experience 推出之前，Salesforce
+  Classic 已服务多年。Salesforce Classic 仍然存在，并被许多客户广泛使用，但主要是，Salesforce 在最近版本中引入的新功能仅适用于
+  Lightning Experience。
+
+
+  如果您仍在使用 Classic，Salesforce 敦促您迁移到 Lightning。为什么我使用迁移这个术语？因为用户界面完全不同，并且您现有的一些自定义可能无法工作，例如由您的
+  Salesforce 合作伙伴或 IT 团队构建的 JavaScript 按钮。您应在做出决定前咨询您的 Salesforce 成功经理、合作伙伴或 IT。
+
+
+  由于用户界面与 Classic 完全不同，您的用户手册、培训视频和材料等需要更新，因此请使用适当的项目管理来规划此旅程，以推出 Lightning Experience。
+
+
+  ## 让我们打开 Lightning Experience
+
+
+  本节面向仍在 Salesforce Classic 中操作的系统管理员——只有系统管理员才有权限启用 Lightning Experience。如果您已在 Lightning
+  Experience 上，可以跳过本节。
+
+
+  让我们进行一个快速的动手练习，了解如何启用 Lightning Experience：
+
+
+  1. 点击 **Setup** 导航到设置菜单，然后点击左上角菜单中的 **Lightning Experience**：
+
+
+  ![](img/72d01bea5a9ccf02f9452aab7505d9de_27_0.png)
+
+
+  2. 滚动到页面底部，查找 **Lightning Experience**，然后切换以启用它：
+
+
+  ![](img/72d01bea5a9ccf02f9452aab7505d9de_27_1.png)
+
+
+  3. 点击 **Finish Enabling Lightning Experience** 以确认：
+
+
+  ![](img/72d01bea5a9ccf02f9452aab7505d9de_28_0.png)
+
+
+  4. 一旦 Lightning Experience 启用，请注意开关变为绿色，标签更改为 **Enabled**：
+
+
+  ![](img/72d01bea5a9ccf02f9452aab7505d9de_28_1.png)
+
+
+  5. 点击右上角的姓名；您会注意到添加了一个新菜单 **Switch to Lightning Experience**，如下图所示：
+
+
+  ![](img/72d01bea5a9ccf02f9452aab7505d9de_29_0.png)
+
+
+  6. 完成！现在从菜单中点击 **Switch to Lightning Experience** 开始探索现代的 Lightning Experience。
+
+  7. 此动手练习将允许您作为系统管理员（包括其他系统管理员）尝试并探索贵组织的 Lightning Experience。您的普通用户在您为他们配置之前将看不到新的菜单
+  **Switch to Lightning Experience**。
+
+  8. 要为业务用户启用 Lightning Experience，作为系统管理员，您可以选择按配置文件启用（针对该配置文件中的所有用户）或按权限集启用（按用户分配）。
+
+  9. 要按配置文件启用，点击配置文件上的 **Edit**，滚动到 **Administrative Permissions** 部分，查找 **Lightning
+  Experience User** 权限；启用它，然后保存配置文件。
+
+  10. 要按权限集启用，相同的权限 **Lightning Experience User** 分配给需要切换到 Lightning Experience 的特定用户。
+
+
+  系统管理员的最佳实践是在为所有 Salesforce 用户启用之前先评估 Lightning Experience，并找出切换到 Lightning Experience
+  时可能无法工作的功能的差距。在启用 Lightning Experience 用户之前，另一个最佳实践是仅为一组试点用户启用，获取他们在使用 Salesforce
+  作为日常工作一部分时的反馈。如果用户具有不同类型的配置文件，权限集将是选项。
+
+
+
+
+
+  Salesforce 提供一个工具来帮助你检查组织对 Lightning Experience 的准备情况。在 Lightning Experience 设置菜单中，点击“检查你的
+  Lightning Experience 就绪情况”下的 **评估（Evaluate）** 链接。Salesforce 将把一份就绪情况报告通过电子邮件发送给你。
+
+
+  ## 切换到 Lightning Experience
+
+
+  一旦启用了 Lightning Experience 并分配了权限，先点击你的姓名，再点击 **切换到 Lightning Experience**，如下图所示：
+
+
+  ![](img/72d01bea5a9ccf02f9452aab7505d9de_30_0.png)
+
+
+  截至目前，并非所有 Classic 中的功能在 Lightning Experience 中都可用；你可能需要在必要时切换回 Classic。例如，回收站在 Lightning
+  Experience 中不可用。要切换回 Classic，点击你的头像，然后点击“切换到 Salesforce Classic”。你可以使用相同的路径切换回 Lightning
+  Experience：
+
+
+  ![](img/72d01bea5a9ccf02f9452aab7505d9de_32_0.png)
+
+
+  Summer ''17 版本为管理员提供了移除用户切换回 Classic 的切换器（switcher）的能力。如果你不是系统管理员，请联系你的系统管理员；如果你是系统管理员，则有一个新的权限控制此功能——该权限名为“在配置文件中隐藏切换到
+  Salesforce Classic 的选项”。
+
+
+  ## Salesforce 对象模型
+
+
+  无论用户界面是什么，Classic 还是 Lightning Experience，后端数据库都是相同的。你在 Classic、Lightning Experience
+  甚至 Salesforce1 移动应用中都会看到相同的数据。所有可构建的报告和仪表板都基于你的 Salesforce 组织中实现的对象模型，从对象关系到字段类型级别。在学习构建高级报告和仪表板之前，将此作为基础来了解至关重要。
+
+
+  本节将讨论 Salesforce 中的对象模型。对象是 Salesforce 中的关键组件，它们允许你存储数据。类似于数据库中的表，一个对象由多个字段组成以存储数据。你可以将某些字段设为必填，而另一些字段将由系统自动填充，例如**ID**、**创建日期**、**创建者**、**最后修改日期**和**最后修改者**。
+
+
+  你可以将对象类比为表，字段类比为表中的列，记录类比为表中的行。在下表中，字段 1 存储所有名字的值，字段 2 存储出生日期，依此类推：
+
+
+  | 记录 | 字段 1 | 字段 2 | 字段 3 |
+
+  |---|---|---|---|
+
+  | 记录 1 | John | 6月29日 | ... |
+
+  | 记录 2 | May | 12月10日 | ... |
+
+  | 记录 3 | Steve | 2月24日 | ... |
+
+
+  Salesforce 中有两类对象：
+
+
+  - 标准对象
+
+  - 自定义对象
+
+
+  ### 标准对象
+
+
+  当你订阅 Salesforce 时，默认会提供标准对象；这取决于你订阅的云类型。每个对象在特定功能上都有其独特性，并且对象之间具有内置的关系。以下是你订阅 Sales
+  和 Service Cloud 时的一些主要标准对象：
+
+
+  - **Account**：Account 用于存储你的公司与之交互的业务和组织的信息。
+
+  - **Contact**：Contact 存储与你共事的人员信息——潜在客户、客户或供应商。
+
+  - **Opportunity**：Opportunity 用于存储与客户的销售交互信息；这通常被称为**销售周期**。
+
+  - **Lead**：Lead 用于存储可能成为你公司客户或合作伙伴的人员信息。
+
+  - **Case**：Case 存储与你提供的产品或服务相关的客户交互信息。
+
+  - **Campaign**：Campaign 存储你公司的营销活动和响应信息。
+
+
+  其他一些标准对象包括 Activity、Asset、Contract、Quote、Order、Products 和 Price Book。
+
+
+  每个标准对象都带有基于对象用途的默认字段，例如，**Opportunity 中的阶段**、**Contact 中的移动电话** 等等。你可以在标准对象中创建自己的字段；这称为**自定义字段**。你可以创建的字段的最大数量取决于你订阅的
+  Salesforce 版本。
+
+
+  你可以将 Salesforce 版本升级到更高版本，例如从 Professional Edition 升级到 Enterprise Edition，只需联系你的客户经理（Account
+  Executive）并支付增加的订阅费用即可。你将继续使用相同的组织、现有的数据库和自定义配置。但如果你计划降级到较低版本，实际上是不可能降级的。在合同结束时，Salesforce
+  会为你提供一个全新的组织，你需要在其中重新配置并迁移所有数据。
+
+
+  ### 自定义对象
+
+
+  自定义对象是在组织内创建的对象，用于存储该组织业务特有的数据，这些数据无法使用标准对象存储。只有具有管理员访问权限的用户才能创建自定义对象。大多数 AppExchange
+  软件包都会创建和使用自定义对象，因为它们提供特定的业务流程。与标准对象一样，自定义对象用于在 Salesforce 中存储特定数据。
+
+
+  不要创建自定义对象来替代标准对象提供的功能。例如，如果你创建自定义 Lead 对象，你将浪费 Lead 对象提供的所有功能，例如 Lead Conversion（线索转换）。
+
+
+  可以创建的自定义对象的数量是有限的，具体取决于你订阅的 Salesforce 版本。如果你具有管理员权限，则可以在 Salesforce 中通过简单的点击（Point
+  and Click）创建对象和字段，而无需像传统数据库那样编写复杂的 SQL 脚本。
+
+
+  在标准对象中，可用的标准字段取决于对象，但每个自定义对象都带有以下少量标准字段，这些字段对所有自定义对象都是相同的：
+
+
+  - ID
+
+  - 名称
+
+  - 创建者和创建日期
+
+  - 最后修改者和最后修改日期
+
+  - 所有者（如果该对象不是主从关系（Master-Detail Relationship）中其他对象的子对象）
+
+
+  与标准对象一样，你可以在自定义对象中创建自定义字段。
+
+
+  ![](img/72d01bea5a9ccf02f9452aab7505d9de_35_0.png)
+
+
+  请按设计用途使用标准对象。例如，Salesforce CRM 提供了标准的 Account 和 Contact 对象，因此不要创建自定义字段，例如在 Account
+  中创建联系人电子邮件地址。
+
+
+  ### 对象关系
+
+
+  你可以在 Salesforce 中将一个对象关联到其他对象。例如，将自定义对象 Expense 关联到自定义对象 Project。通过这种关系，你将知道哪条费用记录用于哪个项目。在此示例中，Project
+  被视为父对象，Expense 为子对象。从记录层面来看，一个父对象可以拥有多个子对象，而一个子对象只能拥有一个父对象。要从子对象构建这种关系，需要创建一个指向父对象的查找关系（Lookup
+  Relationship）或主从关系（Master-Detail Relationship）字段。
+
+
+  Salesforce 中有三种类型的对象关系，如下所示：
+
+
+  - 主从关系（Master-Detail Relationship）
+
+  - 查找关系（Lookup Relationship）
+
+  - 层次关系（Hierarchical Relationship）
+
+
+  下表对主从关系和查找关系进行了比较：
+
+
+  | 主从关系 | 查找关系 |
+
+  |---|---|
+
+  | 你可以在两个自定义对象之间，或在自定义对象与标准对象之间定义主从关系（标准对象必须为父对象）。 | 你可以在任意两个对象之间定义关系，无论是标准对象还是自定义对象。
+  |
+
+  | 当主对象（父对象）中的记录被删除时，与该主记录相关的所有明细对象（子对象）记录也将被删除。 | 你可以配置子对象，以便在父对象被删除时，要么清除子记录中的父记录值，要么不允许删除父记录。
+  |
+
+  | 所有子记录都必须有一个关联的父记录。 | 父记录可能不是必填的，但你可以配置为必填父字段。 |
+
+  | 子记录的所有权由关联的父记录决定；子记录没有所有者。 | 每条子记录都有一个所有者。 |
+
+  | 明细记录继承主记录的共享和安全设置。 | 关联的父记录和子记录之间没有安全共享或继承。 |
+
+  | 你可以将现有自定义对象关联为子对象，但子对象中不应存在任何记录。 | 要将一个对象关联到另一个对象，对子对象的现有记录数量没有任何验证。 |
+
+  | 如果父对象中有 Roll-Up Summary 字段，则子记录中的创建、编辑或删除操作将触发父对象中的编辑操作。如果父对象中有验证规则，则该验证规则也会被触发。
+  | 你无法使用 Salesforce 开箱即用的功能在查找关系中创建 Roll-Up Summary。 |
+
+  | 支持跨对象工作流；你可以定义使用子记录的值更新父记录中的字段。 | 不支持跨对象工作流。 |
+
+  | 能够配置子记录以允许重新指定父记录为新父记录。 | 子记录始终可以重新指定父记录为另一条父记录。 |
+
+  | 能够配置共享设置，以允许根据父记录上的权限创建、编辑或删除相关的明细记录。 | 父对象和子对象之间没有共享设置依赖关系。 |
+
+
+
+
+
+  要为已包含记录作为子对象的现有对象创建主从关系，可以先将其设为查找关系，为所有子记录填充父字段，然后再将关系更改为主从关系。
+
+
+  层级关系是仅适用于用户对象的特殊查找关系。它允许用户使用查找字段将一个用户与另一个用户关联，且该关联不会直接或间接指向自身。例如，您可以创建一个自定义层级关系字段来存储每个用户的汇报经理。
+
+
+  您可以使用单个自定义对象中的两个主从关系构建多对多对象关系；这被称为**连接对象**。
+
+
+  ## 字段类型
+
+
+  Salesforce 提供各种数据类型以适应您的业务模型。其中一些是内置业务逻辑的，例如电子邮件必须遵循有效的电子邮件格式，URL 必须遵循有效的 URL 格式；无效值将被系统自动拒绝。对于每种数据类型，您可以确定要指定的附加选项，包括必填、唯一、区分大小写、外部
+  ID 和默认值。
+
+
+  以下是 Salesforce 数据类型的列表：
+
+
+  - Auto Number
+
+  - Formula
+
+  - Roll-Up Summary if an object is the parent in Master-Detail Relationship
+
+  - Hierarchical relationship--only for a User object
+
+  - Lookup Relationship
+
+  - Master-Detail Relationship
+
+  - Checkbox
+
+  - Currency
+
+  - Date
+
+  - Date/Time
+
+  - Email
+
+  - Geolocation
+
+  - Number
+
+  - Percent
+
+  - Phone
+
+  - Picklist
+
+  - Picklist (Multi-Select)
+
+  - Text
+
+  - Text Area
+
+  - Text Area (Long)
+
+  - Text Area (Rich)
+
+  - Text (Encrypted)
+
+  - URL
+
+
+  ## 导航到设置菜单
+
+
+  登录 Salesforce 后，点击窗口右上角的齿轮图标，然后点击设置链接。这将在 Web 浏览器的新标签页中打开设置页面。
+
+
+  ![](img/72d01bea5a9ccf02f9452aab7505d9de_38_0.png)
+
+
+  在左侧面板中，有许多用于配置 Salesforce 的链接。这些链接可分为三大类：ADMINISTRATION、PLATFORM TOOLS 和 SETTINGS。每个类别都有许多菜单。对于每个菜单，先点击箭头
+  >，点击菜单以打开子菜单。
+
+
+  如果您不是系统管理员，您可能会在设置页面中看到更少的菜单选项，或者您可能根本看不到设置页面——这取决于授予您的权限。
+
+
+  如果您知道一个设置名称，但不记得它位于何处，或是否属于某个菜单，您可以将设置名称输入到面板顶部的快速查找文本框中；这将快速过滤所有设置菜单，如以下屏幕截图所示：
+
+
+  ![](img/72d01bea5a9ccf02f9452aab7505d9de_39_0.png)
+
+
+  中心面板显示在设置页面中最近使用的最后十个项目（不是记录）。点击该面板中的任何链接以打开相关的设置项。右上面板将为管理员提供快速快捷方式，以快速创建单个或多个用户、自定义对象、自定义标签、电子邮件模板和工作流流程。
+
+
+  ## 导航到报表和仪表板
+
+
+  Salesforce Lightning Experience 中的 **Reports** 和 **Dashboards** 选项卡位于不同的选项卡下，如此屏幕截图所示：
+
+
+  ![](img/72d01bea5a9ccf02f9452aab7505d9de_40_0.png)
+
+
+  您可能会想，“为什么我在 Salesforce 中看不到这些选项卡？”。以下是两个原因：
+
+
+  - 请确保您的 **Profile** 或 **Permission Set** 对 **Reports** 选项卡和 **Dashboards** 选项卡的设置是
+  **Default On** 或 **Default Off**，而不是 **Tab Hidden**。您需要向您的 Salesforce 系统管理员确认此设置。
+
+  - 从选项卡行中的左上角打开 **App Launcher**（在徽标下方）；该图标为九个点组成的正方形。如果您能在此处找到报表和仪表板链接，则表示您打开的应用未添加报表和仪表板项。您可以从此处访问，或请您的管理员将这些项添加到应用中，如以下屏幕截图所示：
+
+
+  ![](img/72d01bea5a9ccf02f9452aab7505d9de_41_0.png)
+
+
+  ## 报表 / 仪表板选项卡和菜单
+
+
+  当您点击 **Reports** 选项卡时，默认情况下，您将看到最近打开的报表列表。在左侧面板中，您会找到一个包含以下项目的菜单：
+
+
+  - **Created by Me**
+
+  - **Private Reports**
+
+  - **Public Reports**
+
+  - **All Reports**
+
+
+  在 **FOLDERS** 子部分中存在以下文件夹：
+
+
+  - **Created by Me**
+
+  - **Shared with Me**
+
+  - **All Folders**
+
+
+  ![](img/72d01bea5a9ccf02f9452aab7505d9de_42_0.png)
+
+
+  如果您有创建报表的权限，您将在此页面的右上角看到 **New Report** 按钮。
+
+
+  要运行报表，只需点击报表名称，它将打开报表。生成的报表是从您的组织中提取的实时数据。
+
+
+  在主面板中，有几个列——**REPORT NAME、DESCRIPTION、FOLDER、LAST MODIFIED BY 和 SUBSCRIBED**——以及一个箭头可对报表执行一系列操作。我们将在本书的接下来的几章中讨论这些项目的大部分内容。
+
+
+  当您点击 **Dashboards** 选项卡时，同样适用。您将在主面板中找到列 **DASHBOARD NAME、DESCRIPTION、FOLDER 和 LAST
+  MODIFIED BY**。
+
+
+  ## 添加到收藏夹
+
+
+  请注意，大多数选项卡旁边都有一个箭头。点击箭头将列出所有最近打开的记录。报表和仪表板同样适用——当您打开报表或仪表板时，它将被添加到最近记录中。
+
+
+  当您的报表或仪表板打开时，您可以通过点击 **Add Favorite**（星形图标）将该报表或仪表板加入书签，报表或仪表板将被添加到您的个人收藏列表中，如以下屏幕截图所示：
+
+
+  现在查看页面顶部的 **MY FAVORITES**（星形图标）按钮。点击星形图标旁边的箭头，您将找到之前添加到收藏夹的报表或仪表板。您可以通过点击 **Edit
+  Favorites** 链接将其从收藏列表中移除：
+
+
+  ![](img/72d01bea5a9ccf02f9452aab7505d9de_44_0.png)
+
+
+  报表中也存在相同的行为——您还可以为仪表板添加书签，它们将被添加到收藏图标中。您点击收藏图标旁边的箭头即可查看它。
+
+
+  ## 总结
+
+
+  在本章中，我们首先讨论了 Salesforce 架构、使用 Salesforce 技术的好处以及 Salesforce 提供的多种产品。Lightning Experience
+  是最新的用户界面，它在旧的 Salesforce Classic 用户界面之上提供了许多增强功能和更高的生产力。我们讨论了如何切换到 Lightning Experience，并提供了如果您是
+  Lightning Experience 的新手，如何将其推广给用户的建议。
+
+
+  我们继续讨论 Salesforce 对象模型、数据在 Salesforce 中的存储方式、对象类型以及标准对象与自定义对象之间的区别。关于如何关联对象、对象之间使用主从关系和查找关系的关系，以及两种关系模型之间的比较等主题都得到了深入解释。您还了解了对象的多种字段类型。
+
+
+  接下来，我们解释了如何导航到设置菜单，提供了菜单上 **Quick Find** 的提示，并提到了主面板中最近打开的设置菜单。章节末尾，我们向您展示了在 Salesforce
+  中查找报表和仪表板的位置，并给出了如果找不到它们的原因。然后我们分享了如何导航到 **Reports and Dashboards** 选项卡，以及选项卡旁边的箭头后面。最后，我们以如何在
+  Lightning Experience 中使用收藏图标为报表和仪表板添加书签，以及如何利用该功能结束。
+
+
+  在下一章中，我们将介绍 Salesforce 中报表和仪表板的概念，报表和仪表板如何存储，与报表相关的后端数据，与报表和仪表板相关的权限，以及围绕它们的内置安全性。
+
+
+
+
+
+  '
+- "# 2\n\n## 报表与仪表盘中的概念和权限\n\n本章将解释 Salesforce 中报表和仪表盘的概念，并讨论生成报表和仪表盘的数据来源。我们还将继续讲解\
+  \ Salesforce 中报表和仪表盘的存储机制，并说明报表和仪表盘文件夹的类型。\n\n接下来我们会继续讨论权限，权限是一种基本设置，用于控制用户在 Salesforce\
+  \ 中能执行的操作。报表和仪表盘也是如此；许多权限都围绕报表和仪表盘展开，例如创建和修改报表、导出报表、安排报表计划等。\n\n到本章结束时，你将深入理解如何将数据用于报表和仪表盘、与用户相关的权限，以及如何使用\
+  \ Profile 和 Permission Set 向用户授予权限。\n\n在本章中，我们将提供注释和提示，帮助你理解重要内容。本章涵盖的主题如下：\n\n\
+  - 报表和仪表盘的数据\n- 生成报表和仪表盘\n- 报表和仪表盘文件夹\n- 报表权限\n- 仪表盘权限\n\n## 报表和仪表盘的数据\n\n先说最重要的事。你只能针对\
+  \ Salesforce 组织中已存在的数据生成报表，除非你购买了 Salesforce Connect 来连接外部数据库，将组织外部存储的数据映射到你的 Salesforce\
+  \ 组织中；外部数据源也可以是另一个 Salesforce 组织。你的报表质量取决于数据质量、数据清洁度和完整性。因此，系统采用率是在 Salesforce 中获得优质数据和报表的最关键因素之一。\n\
+  \n一旦创建了报表，你可以将其私有保存、与其他用户共享、在报表中的数据发生变化并满足设定条件时订阅通知，也可以将其安排为定时发送给自己和其他用户。\n\n在 Salesforce\
+  \ 中，报表是构建仪表盘的基本要求。仪表盘中的每个组件都需要有一个报表作为数据源。你可以在同一个仪表盘中的多个组件中重复使用同一个报表，也可以在多个仪表盘之间共享该报表。\n\
+  \n你可以使用对象中可用的任何字段（无论字段类型是什么），也可以使用多个对象中的字段来创建报表。你需要对该对象和字段具有读取访问权限，但不需要拥有编辑数据的权限。如果你需要了解更多关于对象、字段和字段类型的信息，请参阅第\
+  \ 1 章《Salesforce 报表和仪表盘基础》中的“Salesforce 对象模型”一节。正如你现在所看到的，对象和字段是创建报表的基础。\n\n## 生成报表和仪表盘\n\
+  \n当你点击一个报表时，Salesforce 会在几秒钟内即时生成该报表，报表中显示的数据是来自你 Salesforce 组织的实时数据。但如果我想查看昨天或上周的数据呢？不行，你只能针对当前数据生成报表。如果你想查看历史数据，可以设置\
+  \ Reporting Snapshot 或 Field History，但这不是某一特定日期的完整数据快照。\n\n在报表中，你只能看到你拥有访问权限的对象和字段，即使该报表是由其他人创建的。这意味着，对于同一个报表，你看到的字段或列可能会少于其他用户，因为你没有这些字段的权限。\n\
+  \n同样，对于数据集，如果某条记录在 Salesforce 中对你是不可见的，你在报表中也不会看到它。这被称为对象共享设置和对象权限。\n\n然而，仪表盘的情况则有所不同。当你打开一个仪表盘时，它显示的是截至上一次仪表盘刷新时的数据。如果仪表盘最后一次刷新是由你的同事完成的，你将看到的是你同事上次刷新时的数据，你也可以手动刷新。Salesforce\
+  \ 提供了自动刷新仪表盘的功能，但存在一定限制。\n\n## 报表和仪表盘文件夹\n\n报表和仪表盘存储在 Salesforce 中的什么位置？它们存储在**文件夹**中。你可以创建和存储的报表与仪表盘数量没有限制。为报表创建的文件夹只能用于存储报表，而为仪表盘创建的文件夹只能用于存储仪表盘。为了简化本书内容，我们称之为报表文件夹和仪表盘文件夹。\n\
+  \n你可以在这里把文件夹想象成类似于 Windows 资源管理器中的文件夹，但没有驱动器，也没有子文件夹，它不存储文件，而是根据文件夹类型用来存储报表或仪表盘。作为文件夹管理员，你可以将文件夹的可见性共享给特定用户、角色、角色及其下属，或公共组。\n\
+  \nSalesforce 中用于报表和仪表盘的文件夹类型：\n\n- 私有文件夹\n- 未归类的公共文件夹（仅用于报表）\n- 公共文件夹\n\n### 私有文件夹\n\
+  \n私有文件夹是每个 Salesforce 用户都可使用的特殊文件夹，对于报表文件夹，它也被称为**我的个人自定义报表**文件夹。对于仪表盘，它被称为**我的个人仪表盘**（Classic\
+  \ 界面）或**私有仪表盘**（Lightning Experience 界面）。在 Lightning Experience 中，存储在此文件夹中的报表被称为**私有报表**。\n\
+  \n### 未归类的公共文件夹\n\nClassic 中的**未归类的公共报表**文件夹，在 Lightning Experience 中也被称为**公共报表**文件夹，是另一个特殊的报表文件夹。存储在此报表文件夹中的报表可供所有用户访问。如果你还拥有创建和自定义报表的权限，你就能将报表存入此文件夹。\n\
+  \n### 公共文件夹\n\n要创建公共文件夹，你需要拥有创建报表文件夹或仪表盘文件夹的权限（我们将在第 3 章《在报表和仪表盘中实现安全性》中讨论与文件夹相关的所有权限）。公共文件夹是你为存储报表和仪表盘而创建的文件夹；通常，该文件夹会由许多用户共享。\n\
+  \n创建新报表后，你需要保存报表才能运行它。你可以将报表存储在公共文件夹中，以便与同事共享，供将来使用或其他用途，例如作为仪表盘的数据源，或用于电子邮件发送。根据用户权限和文件夹级访问权限，这将决定文件夹对用户是否可见、可访问——是只读还是可读写。请记住，报表的可访问性是在文件夹级别配置的，而不是在报表本身中配置的。\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_50_0.png)\n\n当文件夹对用户可见时，该用户将能够查看并运行存储在该文件夹中的所有报表。因此，控制不是按报表进行的，而是按文件夹进行的。\n\
+  \n当你从 AppExchange 安装应用时，某些应用会自带的报表，这些报表将存储在其自己的文件夹中。该文件夹会在你安装应用时创建。\n\n## 报表与仪表盘中的概念和权限\n\
+  \n点击“报表”选项卡，然后点击“所有文件夹”，即可查看你有权访问的所有报表文件夹。让我们比较一下不同用户的情况。以下截图来自一个管理员，该管理员可以访问所有文件夹：\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_51_0.png)\n\n将上面的截图与下面这张来自销售用户的截图进行比较。该销售用户只能看到一个文件夹，而不是像上面的截图那样看到三个文件夹。报表文件夹管理员可以为每个用户设置文件夹可访问性：\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_52_0.png)\n\n每个公共文件夹只能存储报表或仪表盘，不能同时存储两者。一个好的做法是为报表名称和文件夹名称制定良好的命名模式，例如，用\
+  \ “NA Sales Reports” 作为存储所有北美销售相关报表的文件夹名称，用 “EMEA Sales Dashboards” 作为存储所有与 EMEA\
+  \ 销售相关的仪表盘文件夹名称。这将帮助你和其他用户轻松找到报表，并保持内容井然有序。\n\n\n\n\n\n## 标准报表和报表文件夹\n\n当你开始使用 Salesforce\
+  \ 时，默认情况下，Salesforce 自带许多用于不同目的的标准报表。它们按对象名称和用途进行存储和分类，例如“客户和联系人报表”、“机会报表”等。\n\n\
+  从 Summer '17 版本开始，带有文件夹的标准报表仅在 Classic 中可见，在 Lightning Experience 中尚不可见。\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_53_0.png)\n\
+  \n上面的截图来自 Classic（请参阅*第1章，Salesforce 报表和仪表板基础知识*中的*切换到 Lightning Experience*部分，了解如何在\
+  \ Classic 和 Lightning Experience 之间切换）。请注意，在 Classic 中，当你点击**报表**选项卡时，你会看到来自报表和仪表板的内容，并且你可以通过查看文件夹名称前的不同图标轻松区分报表文件夹和仪表板文件夹。\n\
+  \n在 Classic 中，你可以在选项卡内进行搜索，而在 Lightning Experience 中，报表和仪表板位于不同的选项卡中。选项卡中没有搜索框，但你可以使用全局搜索来搜索报表和仪表板。\n\
+  \n## 创建报表和仪表板文件夹\n\n在 Salesforce 中创建报表文件夹和仪表板文件夹非常简单。只要你拥有相应的权限，你应该会在“报表”选项卡中看到“新建文件夹”按钮以创建报表文件夹，并在“仪表板”选项卡中看到“新建文件夹”按钮以创建仪表板文件夹。你需要拥有适当的权限才能创建报表和仪表板文件夹。我们将在本章稍后详细讨论权限。\n\
+  \n让我们进行一个快速的动手练习来创建报表文件夹。请记住，每个报表都需要存储在一个文件夹中，因此深入了解文件夹本身对你来说是有好处的。\n\n### 创建报表文件夹的动手练习\n\
+  \n确保你拥有创建报表文件夹的适当权限。让我们按照以下步骤创建一个报表文件夹：\n\n1. 导航到“报表”选项卡。\n2. 单击窗口右上角的“新建文件夹”按钮，如下面的截图所示：\n\
+  \n   ![](img/72d01bea5a9ccf02f9452aab7505d9de_54_0.png)\n\n3. 在“名称”中输入 `My First\
+  \ Report Folder` 作为报表文件夹名称。\n4. 单击“保存”按钮；将出现一条弹出消息，指示文件夹是否已成功创建。\n5. 我们刚刚创建的文件夹\
+  \ `My First Report Folder` 将显示在**所有文件夹**中，也会显示在**由我创建**的文件夹中，如下面的截图所示：\n\n   ![](img/72d01bea5a9ccf02f9452aab7505d9de_55_0.png)\n\
+  \n查看上面的截图，让我们逐一了解“报表”下的每个菜单：\n\n- **最近使用的报表：** 这将显示您最近打开的所有报表，因此您的同事将拥有不同的最近打开的报表。\n\
+  - **由我创建：** 这包含您创建的所有报表，无论这些报表存储在哪个文件夹中。\n- **私人报表：** 这是一个安全文件夹，用于存储供您个人使用的报表；存储在此处的报表其他用户无法访问，并且您无法与其他用户共享该文件夹。\n\
+  - **公共报表：** 这包含所有对所有人可见的报表。\n\n> 提示：由于此文件夹对所有用户可访问，并且任何人都可以编辑或删除它，请注意不要将您的私人或重要报表存储在此文件夹中。\n\
+  \n- **所有报表：** 这将显示您有权打开的所有报表。\n\n以下是**文件夹**下的菜单：\n\n- **由我创建：** 这将显示您创建的所有报表文件夹。\n\
+  - **与我共享：** 这是由您的同事创建但与您共享的报表文件夹列表。\n- **所有文件夹：** 这将列出您有权访问的所有报表文件夹，包括由您的同事创建的或作为从\
+  \ AppExchange 安装应用的一部分而安装的报表文件夹。\n\n## 报表和仪表板文件夹共享\n\n与创建报表和仪表板文件夹相同，从 Summer '17\
+  \ 版本开始，共享公共报表和仪表板文件夹只能在 Classic 中完成。\n\n点击**报表**选项卡，将鼠标悬停在要共享的文件夹上，然后点击文件夹名称旁边的图钉图标——您将看到**共享**选项。如果您只看到**固定到顶部**和**共享**，但没有**编辑**和**删除**，这意味着您不是该文件夹的管理员。我们将在本章中介绍文件夹访问级别。以下是从\
+  \ Classic 共享报表文件夹的截图：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_56_0.png)\n\n\
+  用户可以与**用户、角色、角色及下属或公共组**共享文件夹，并具有**查看者**、**编辑者**和**管理者**的访问级别。查看以下与其他用户共享报表的截图：\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_57_0.png)\n\n要共享报表文件夹，用户必须满足以下条件：\n\n\
+  - 对该报表文件夹具有**管理者**访问级别。\n- 拥有“管理公共文件夹中的报表”权限。\n\n> 当您创建文件夹时，您会自动被设置为该文件夹的**管理者**。\n\
+  \n报表和仪表板文件夹有三种访问级别，如下表所示：\n\n| 查看者 | 编辑者 | 管理者 |\n|---|---|---|\n| • 在文件夹树中查看文件夹<br>•\
+  \ 查看所有内容<br>• 运行报表，刷新仪表板 | • 拥有**查看者**访问权限的所有权限，以及以下权限：<br>• 编辑文件夹的所有内容<br>• 向文件夹添加内容<br>•\
+  \ 从文件夹删除内容 | • 拥有**编辑者**访问权限的所有权限，以及以下权限：<br>• 编辑文件夹名称<br>• 编辑/删除/移除共享 |\n\n###\
+  \ 共享报表文件夹的动手练习\n\n现在，让我们逐步说明如何共享报表文件夹。\n\n用例：您想将 `My First Report Folder` 文件夹共享给一个角色为\
+  \ CEO 的用户，访问级别为**查看者**，并共享给一名财务经理，我们将其命名为 **Jack Fin**，作为文件夹的**管理者**（您可以使用其他用户名进行此练习）。假设角色\
+  \ CEO 存在，并且已经创建了一个名为 `Jack Fin` 的用户。\n\n1. 导航到**报表**选项卡。\n2. 点击之前创建的报表文件夹 `My First\
+  \ Report Folder`，将鼠标悬停在报表文件夹名称上，点击图钉图标，然后点击**共享**：\n\n   ![](img/72d01bea5a9ccf02f9452aab7505d9de_58_0.png)\n\
+  \n3. 这将打开一个弹出窗口；点击**角色**链接，然后点击 CEO 旁边的**共享**按钮。将访问菜单保留为**查看者**，然后点击**完成**按钮继续。\n\
+  4. 接下来，点击“用户”链接，搜索 Jack Fin。点击该用户旁边的“共享”按钮。默认访问级别为“查看者”；点击其旁边的箭头，选择“管理者”。现在点击“完成”按钮继续，如下面的截图所示：\n\
+  \n   ![](img/72d01bea5a9ccf02f9452aab7505d9de_59_0.png)\n\n5. 点击“关闭”按钮关闭窗口。\n\n\
+  在此动手练习中，您学习了如何与具有“管理者”访问级别的用户以及角色中的用户共享报表文件夹以查看报表。\n\n## 报表权限\n\n当我们在本章前面讨论报表和仪表板文件夹时，您可能已经注意到我们谈到了创建报表、创建报表文件夹等权限。权限是控制用户在\
+  \ Salesforce 中执行操作（包括报表和仪表板）能力的基本设置。\n\n在我们开始创建报表之前，我们将讨论一些权限，这些权限决定了用户在 Salesforce\
+  \ 中运行、创建、编辑、导出、计划以及订阅报表的能力。\n\n### 运行报表\n\n这是运行报表所需的基本权限。如果没有“运行报表”权限，您将无法在 Salesforce\
+  \ 中运行任何报表。当您尝试点击报表时，您会收到一条错误消息，提示“您没有运行报表的权限。”请检查您是否拥有“运行报表”用户权限，如下面的截图所示：\n\n\n\
+  \n\n\n## 报告和仪表板中的概念和权限\n\n### 运行报表\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_60_0.png)\n\
+  \n当某个配置文件中的所有用户都需要运行报表时，管理员只需在配置文件下的“常规用户权限”部分启用此权限即可。要将此权限分配给不同配置文件中的用户，请使用权限集。记住，权限集仅按每个用户的基础添加权限，而不会移除权限，并且与用户配置文件无关。\n\
+  \n此权限还控制用户访问仪表板的权限。我们将在第 9 章《Lightning Experience 中的构建仪表板》中详细介绍仪表板。如果您无法运行报表，请联系您的管理员以启用此权限。\n\
+  \n快速检查：如果您已启用此权限，请单击报表选项卡，然后单击“所有报表”菜单。您应该在几秒钟内看到生成的报表，但如果您看到与上一张截图中类似的错误消息，则表示您没有权限运行报表。如果您完全看不到报表选项卡，请查看第\
+  \ 1 章《Salesforce 报表和仪表板基础》中的“导航到报表和仪表板”部分。\n\n### 创建和自定义报表\n\n“创建和自定义报表”权限控制用户创建新报表或修改现有报表的能力。如果没有此权限，用户在报表选项卡下将看不到“新建报表”按钮。此权限需要“运行报表”权限，因此如果用户的“运行报表”权限被禁用，则“创建和自定义报表”权限也会自动为该用户禁用。同样，当您启用“创建和自定义报表”权限时，“运行报表”权限也会自动启用。\n\
+  \n当您启用此权限时，您应该会看到**新建报表**按钮；否则，您将无法创建和自定义报表。如果您需要创建或自定义报表，请与您的管理员联系以启用此权限。以下截图显示用户有权创建报表：\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_61_0.png)\n\n### 导出报表\n\n**导出报表**权限管理用户将报表导出为\
+  \ Excel 或 CSV 文件格式的能力。与**创建和自定义报表**权限类似，此权限也依赖于**运行报表**权限。禁用**运行报表**权限将自动禁用此权限。但此权限不依赖于**创建和自定义报表**权限，这意味着用户可能能够导出报表，即使她或他无法创建或自定义报表。\n\
+  \n当您打开报表并且已启用此权限时，您将在**编辑**按钮旁边的箭头下拉菜单下看到**导出**链接。请考虑以下截图：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_62_0.png)\n\
+  \n> \U0001F4A1 **提示**  \n> 在 Classic 中，有一个选项可以将报表导出为可打印视图。导出的 Excel 文件将保留格式，并且随报表生成的汇总信息将在\
+  \ Salesforce 中生成。\n\n### 订阅报表\n\n**订阅报表**权限使用户能够订阅报表以将其发送到其电子邮件地址，而无需打开报表。当您在 Lightning\
+  \ Experience 中订阅报表时，您将按您设置的计划——**每日、每周或每月**——通过电子邮件接收更新的报表结果。\n\n拥有此权限的用户在报表打开后会看到**订阅**按钮，如以下截图所示。我们将在第\
+  \ 8 章 *使用报表* 中详细介绍订阅报表：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_63_0.png)\n\n\
+  与此权限相关的有两个权限，分别是：\n\n- **通过添加收件人订阅报表**：此权限将允许您添加其他用户以接收电子邮件发送。默认情况下，您包含在内，但在添加其他人时您可以将自己移除。\n\
+  - **通过设置运行用户订阅报表**：此权限将允许您将运行用户指定为其他人，只要该用户有权访问报表即可。\n\n### 仪表板权限\n\n在上一节查看了报表权限后，让我们现在来看一下\
+  \ Salesforce 中可用的仪表板权限。仪表板中的权限决定用户在 Salesforce 中打开、创建和编辑仪表板的能力。\n\n#### 运行报表权限\n\
+  \n我们在 *报表权限* 部分讨论了**运行报表**权限，我们在这里不会重复，但我们想强调的是，Salesforce 中的仪表板基于报表。Salesforce\
+  \ 中每个仪表板组件都由报表作为后端数据源支持。\n\n要允许用户在 Salesforce 中打开或查看仪表板，用户需要拥有运行报表的权限，并且仪表板查看用户必须有权访问用作仪表板组件数据源的报表。如果没有**运行报表**权限，用户在打开仪表板时会收到错误消息，提示**您没有权限运行报表。请检查您是否具有运行报表用户权限。**\n\
+  \n**运行报表**是每个在 Salesforce 中使用报表和仪表板的用户所需的基本权限，即使只是运行或打开报表或仪表板也需要此权限。\n\n#### 创建和自定义仪表板权限\n\
+  \n**创建和自定义仪表板**权限控制用户创建新仪表板或修改现有仪表板的能力。如果没有此权限，用户在单击**仪表板**选项卡时将无法看到**新建仪表板**按钮。\n\
+  \n此权限也需要**运行报表**权限。如果**运行报表**权限被禁用，则为用户启用**创建和自定义仪表板**是无用的。\n\n#### 管理动态仪表板权限\n\n\
+  **管理动态仪表板**权限允许用户创建和编辑动态仪表板。我们将在 *第 10 章，学习高级仪表板配置* 中更详细地了解动态仪表板。但现在，您只需要了解动态仪表板允许已登录用户根据用户权限和角色层级选择其他用户作为查看用户。\n\
+  \n在创建或编辑仪表板时，拥有此权限的用户将有选项将仪表板运行用户设置为已登录用户，或允许打开仪表板的用户更改查看用户。以下截图显示了启用动态仪表板：\n\n\
+  ![](img/72d01bea5a9ccf02f9452aab7505d9de_65_0.png)\n\n#### 查看我的团队仪表板权限\n\n**查看我的团队的仪表板**权限允许用户查看角色层级中其下属人员拥有的仪表板。\n\
+  \n在创建或编辑仪表板时，拥有**管理动态仪表板**权限和**查看我的团队的仪表板**权限的用户可以选择设置**仪表板运行用户**，并启用**允许授权用户更改运行用户**。\n\
+  \n当打开动态仪表板时，没有**查看我的团队的仪表板**权限的用户将无法更改仪表板查看用户。然而，拥有此权限的用户将能够更改并在角色层级中输入其团队中的用户作为查看用户。拥有**查看所有数据**权限的用户将能够输入任何其他用户作为查看用户。以下截图显示了如何更改仪表板查看者：\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_66_0.png)\n\n#### 安排仪表板\n\n我们将在 *第 9\
+  \ 章，Lightning Experience 中的构建仪表板* 中讨论仪表板，但现在您应该知道，当您打开仪表板时，它不会显示最新数据，而是显示您上次刷新仪表板的数据、您同事刷新过的数据，或安排自动刷新的数据。\n\
+  \nSalesforce 为拥有**安排仪表板**权限的用户提供刷新仪表板的能力，刷新次数有限。我将在 *第 9 章，Lightning Experience\
+  \ 中的构建仪表板* 中分享更多内容，但现在，只需注意我们可以安排仪表板刷新，并将仪表板通过电子邮件发送给自己或发送给其他用户。\n\n截至 Summer ’17\
+  \ 版本，此功能仅在 Classic 中可用，尚未在 Lightning Experience 中提供。\n\n\n\n\n\n# 总结\n\n在本章中，我们首先讨论了源数据，以及\
+  \ Salesforce 报告是基于 Salesforce 中的实时数据生成的。它只显示用户拥有访问权限和可见性的数据和字段。构建仪表板需要报告，因为每个仪表板组件都需要一个报告作为数据源。Salesforce\
+  \ 中的仪表板在用户打开时不会自动刷新；用户需要手动刷新，或安排其定时刷新。\n\n接着我们讨论了报告和仪表板在 Salesforce 中的存储方式和存储位置，即文件夹。我们讨论了多种类型的文件夹：私有文件夹、公共文件夹和标准文件夹。我们还讨论了用户对文件夹的访问级别类型。\n\
+  \n接下来，我们了解了权限，权限是控制用户在 Salesforce 中能做什么和看什么的基础，包括报告和仪表板。我们讨论了与报告和仪表板相关的多种权限。\n\n\
+  在下一章中，我们将说明如何保护已创建的报告和仪表板——供个人使用或与团队共享。我们还将讨论所需的配置，以允许一个包含所有用户的组对报告具有读取访问权限，并允许某些成员修改报告。\n"
+- "## 在报告和仪表板中实现安全性\n\n本章将说明如何在 Salesforce 中保护报告和仪表板。正如我们在第2章 *报告和仪表板中的概念与权限* 中所讨论的，每个报告和仪表板都存储在一个文件夹中，报告和仪表板的可访问性由存储它们的文件夹控制，而不是由报告或仪表板本身控制。\n\
+  \n在上一章中，我们还讨论了与报告和仪表板相关的权限。在本章中，我们将继续讨论与报告和仪表板文件夹相关的权限。与文件夹相关的权限有很多，例如，拥有某些权限的用户将能够查看所有公共文件夹，即使该用户名没有被添加到文件夹中。我们将逐一介绍所有这些场景。\n\
+  \n到本章结束时，你将深刻理解如何保护你的报告和仪表板，以及如何确保与团队共享的报告和仪表板是安全的。作为管理员，你将了解与报告和仪表板文件夹相关的多种权限类型，并且这些权限不应对每个用户都启用。\n\
+  \n本章涵盖的主题如下：\n\n- 私有报告和仪表板\n- 未归档公共报告\n- 公共报告和仪表板\n- 报告文件夹权限\n- 仪表板文件夹权限\n- 应用权限\n\
+  \n### 保护私有报告和仪表板\n\n私有报告是仅报告所有者（创建报告的用户）可以访问的报告，无论其用户角色或配置文件如何。私有仪表板也是如此。\n\n在第2章《报告和仪表板中的概念与权限》中，我们解释了管理员可能能够访问你的私有报告和仪表板。当“管理员可以以任何用户身份登录”设置启用时，就会出现这种情况——该设置位于“登录访问策略”设置下。你可以将这一场景类比为你的办公电子邮件，电子邮件服务器管理员可以访问它——除非必要，否则他们不应该这样做，并且该活动会被记录。\n\
+  \n拥有创建报告或创建仪表板权限的用户可以将他们创建的报告和仪表板存储在各自的私有文件夹中。对于报告，文件夹名为 My Personal Custom Reports；对于仪表板，文件夹名为\
+  \ Private Dashboards（在 Lightning 中）和 My Personal Dashboards（在 Classic 中）。请看以下截图：\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_69_0.png)\n\n要保护你的个人报告，即确保任何人都无法查看、更改或删除这些报告，请将报告存储在\
+  \ **My Personal Custom Reports** 文件夹中。即使其他用户拥有 URL，也无法访问该报告。对仪表板同样可以如此——将其存储在 **Private\
+  \ Dashboards** 文件夹中，以便私有访问。请看以下截图：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_70_0.png)\n\
+  \n但即使是私有报告，它仍会遵循数据可见性；你只能在报告中看到你自己可见的数据。类似地，当你创建或编辑报告时，只能将你有权限的对象和字段添加到报告中。报告中的对象和字段可见性也受报告类型控制，我们将在第5章\
+  \ *了解报告类型* 中讨论报告类型。\n\n简而言之，要保护你的私有报告和仪表板，只需将它们存储在个人文件夹中，仅此而已。由于这些报告和仪表板任何人都无法访问，你将无法与其他用户共享它们。\n\
+  \n### 使用未归档公共报告\n\n在第2章 *报告和仪表板中的概念与权限* 中，我们简要讨论了 **未归档公共报告**。该文件夹可供任何用户访问，因此任何拥有\
+  \ **运行报告** 权限的用户都可以运行存储在该文件夹中的报告，并将报告从该文件夹复制（另存为）到其他文件夹（包括用户自己的私有文件夹）。要保护此文件夹，实际上无计可施。\n\
+  \n但这并不意味着你可以删除或修改存储在该文件夹中的任何报告。除非你拥有特定权限，否则你只能删除或修改自己创建并存储在该文件夹中的报告——这一点我们将在本章中进一步讨论。\n\
+  \n### 使用公共报告和仪表板\n\n我们在第2章 *报告和仪表板中的概念与权限* 中讨论了公共文件夹。存储在公共文件夹中的所有报告和仪表板统称为公共报告和公共仪表板。公共报告是确保你的团队按照定义查看数据的最简单方法之一。例如，报告\
+  \ **我的团队下一季度销售管道** 将显示你的团队（你本人及你的下属，包括下属的下属——可以将其想象为多层次层级结构）下所有需要在下一季度结束前关闭的商机。你的组织可能有自己的销售管道阶段，也可能有不同的季度周期。使用共享的团队报告，所有销售经理将看到其团队的正确销售管道，而销售代表（个人贡献者）将看到自己的销售管道，并带有定义的阶段和周期。\n\
+  \n让我们看以下截图。Michael 是一位销售经理，Jack 是向 Michael 汇报的销售代表。当 Michael 打开报告时，他将看到以下报告：\n\n\
+  ![](img/72d01bea5a9ccf02f9452aab7505d9de_71_0.png)\n\n由于 Jack 是角色层级中 Michael 的下属，Jack\
+  \ 的销售管道将出现在 Michael 的报告中。\n\n理想情况下，Salesforce 中的每个用户都有一个由管理员定义的角色。该角色决定了用户在 Salesforce\
+  \ 中的数据可见性。一个角色在其下可以有多个直接下级角色，但在其上只能有一个直接上级角色。这种关系形成了角色层级，它与公司的组织结构图非常相似。由用户拥有的记录，处于记录所有者之上角色层级的用户可以看到该记录。\n\
+  \n当 Jack 打开同一份报告时，由于他没有任何下属，他只能看到自己的销售管道，如以下截图所示：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_72_0.png)\n\
+  \n同一类型的报告可用于整个组织。该报告将遵循为所有用户定义的角色层级，从 CEO 一直到销售代表角色。要创建此类报告，从技术上讲，你只需使用筛选条件来显示“我的团队的商机”，如以下截图所示：\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_72_1.png)\n\n如果报告需要服务公司中的所有用户，请确保其存储在所有用户都可访问的文件夹中，例如全球销售报告。\n\
+  \n若要与公司内的所有用户共享文件夹，你可以将其与名为 All Internal Users 的组共享。该组由系统自动生成，所有活跃用户都会作为成员被添加。\n\
+  \n\n\n\n\n为什么我们需要将此报表存储在 **Global Sales Reports** 而不是前面讨论的 **Unfiled Public Reports**\
+  \ 文件夹中？这是为了整理和最佳实践。从专门命名的文件夹中查找报表比将所有报表都放在 **Unfiled Public Reports** 中更容易。随着时间的推移，如果未妥善管理和清理，Unfiled\
+  \ Public Reports 文件夹会因添加了所有报表而变得非常混乱。\n\n团队报表也可以用于个人使用。例如，**My Closed Opportunity\
+  \ This Fiscal Year** 报表将显示运行该报表用户的名下所有已关闭商机——这应显示公司财年内你名下所有赢得和丢失的商机。运行报表时，每个用户都会根据所有权看到不同的商机。管理层可以为报表定义关键指标矩阵，每个团队成员应负责，例如\
+  \ **Amount、Close Date、Probability** 等。创建这种报表甚至更简单——你只需使用筛选条件来显示 **My opportunities**\
+  \ 即可。请考虑以下屏幕截图：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_73_0.png)\n\n## Sharing\
+  \ and securing public reports and dashboards\n\n在本章前面部分，我们强调报表和仪表板的安全性和可访问性由其报表文件夹定义。因此，最佳实践是将团队的所有报表和仪表板存储在同一文件夹中。如果你是管理该文件夹的人，你需要创建报表文件夹权限，或让你的管理员为你创建报表文件夹，并将\
+  \ Manager 级别访问权限分配给报表文件夹。这同样适用于仪表板。\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_73_1.png)\n\
+  \n创建报表文件夹的人将自动拥有该文件夹的 Manager 级别访问权限。\n\n## The Create Report Folders permission\n\
+  \n**Create Report Folders** 权限赋予用户创建新报表文件夹的能力。需要启用 **Create and Customize Reports**\
+  \ 权限才能使用此权限。\n\n当此权限启用时，一旦进入 **Reports** 选项卡，你将看到 **New Folder** 按钮；要创建报表文件夹，请点击该按钮，并在\
+  \ **Create Folder** 窗口下提供文件夹名称，如以下屏幕截图所示：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_75_0.png)\n\
+  \n## The View Reports in Public Folders permission\n\n**View Reports in Public Folders**\
+  \ 权限赋予用户查看和访问所有公共报表文件夹的可见性，即使该用户未列在该特定报表文件夹的共享访问列表中。当你通过报表文件夹中的 Share 菜单检查时，具有此权限的用户名将不会在那里列出。\n\
+  \n此权限仅限于查看报表，不能创建新报表并存储到该文件夹，或自定义该文件夹中的现有报表。此权限不应授予标准用户。\n\n## The Manage All Private\
+  \ Reports and Dashboards permission\n\n此权限与用户通过 Salesforce Lightning（包括 Classic）用户界面访问报表的能力无关。此权限的目的是报表清理，其中包括私有报表。\n\
+  \n随着时间的推移，报表和仪表板会逐渐不再使用，或用户变得不活跃并在他们的私有文件夹中留下过时的报表和仪表板。有了此权限，用户能够查询并删除保存在其他用户私有文件夹中的报表和仪表板。\n\
+  \n我们不会在本书中讨论查询，但作为参考，使用 WHERE 关键字在 USING SCOPE allPrivate 之后，并指定 WHERE 关键字之后的 OwnerId，例如：\n\
+  \n```\nSELECT Id FROM Report USING SCOPE allPrivate WHERE OwnerId =\n'00541000001cTYgAAM'\n\
+  ```\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_77_0.png)\n\n执行 **Salesforce Object\
+  \ Query Language (SOQL)** 有许多选项，从使用 Developer Console、Data Loader 到一个著名的免费工具 **Workbench**。你可以通过\
+  \ `http://workbench.developerforce.com/login.php` 打开 Workbench。\n\n## Dashboard\
+  \ folder permissions\n\n现在我们已经在前一节中看到了与报表文件夹相关的权限，让我们继续了解与仪表板文件夹相关的权限。它们非常相似——仪表板文件夹中的权限决定了用户在\
+  \ Salesforce 中查看、创建和编辑仪表板的能力。\n\n## The Create Dashboard Folders permission\n\n\
+  **Create Dashboard Folders** 权限赋予用户创建新仪表板文件夹的能力。需要启用 **Create and Customize Dashboards**\
+  \ 权限才能使用此权限。\n\n当此权限启用时，一旦进入 Dashboards 选项卡，点击 New Folder 按钮；你只需在 Create Folder\
+  \ 窗口中提供文件夹名称。请考虑以下屏幕截图：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_78_0.png)\n\n\
+  ## The Edit My Dashboards permission\n\n我们在一节前面提到了 Edit My Reports 权限。Edit My Dashboards\
+  \ 是一种类似的权限，但针对仪表板。它允许用户编辑、移动、保存和删除他们在公共仪表板文件夹中创建的仪表板。\n\n当用户有权访问文件夹时，用户能够将仪表板保存到该文件夹。用户对该文件夹的访问权限仅为\
+  \ Viewer。用户还能够在用户具有 Viewer 访问权限的公共仪表板文件夹中编辑和删除自己创建的报表。\n\n此权限不应授予标准用户，因为它会允许用户覆盖其他用户创建的仪表板；访问权限授予的仪表板文件夹仅具有\
+  \ Viewer 访问权限。\n\n## The View Dashboards in Public Folders permission\n\n**View\
+  \ Dashboards in Public Folders** 权限赋予用户查看和访问存储在公共仪表板文件夹中的所有仪表板的可见性，即使用户未列在该特定仪表板文件夹的共享访问列表中。\n\
+  \n与 **Edit My Dashboards** 权限类似，此权限也不应授予普通终端用户。\n\n## The Manage Dashboards in Public\
+  \ Folders permission\n\n**Manage Dashboards in Public Folders** 权限需要 **Create Dashboard\
+  \ Folders、View Dashboards in Public Folders 和 Edit My Dashboards** 权限。有了此权限，用户能够访问和编辑存储在公共仪表板文件夹中的所有仪表板。\n\
+  \n除此之外，此权限还允许用户共享、编辑和删除任何公共仪表板文件夹。因此，这是一个非常强大的权限。\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_79_0.png)\n\
+  \n请谨慎地仅将此权限授予绝对需要它的用户。确保具有此权限的用户不会搞乱其他用户创建的仪表板。\n\n## Applying permission\n\n现在你已经了解了运行报表、创建报表、导出报表、创建仪表板等的能力由权限控制——只有被授予这些权限的用户才能执行此类活动，正如我们在前几节中讨论的那样。\n\
+  \n保护报表或仪表板意味着确保报表或仪表板仅对应该有权访问的用户可访问；有些用户可能只需要能够运行报表，而不能修改它。这是在存储报表或仪表板的文件夹中控制，而不是报表或仪表板本身。文件夹的管理者能够配置并与其它用户共享文件夹，并确定他们的访问级别。\n\
+  \n本章前面我们还提到，与报表和仪表板文件夹相关的权限类型有很多。有了额外的权限，用户将能够访问所有报表（私有报表和私有仪表板除外），即使用户未被添加到组可访问性中。作为管理员，你应确保仅将权限授予需要它的用户。\n\
+  \n以下是通过 **Profile** 和 **Permission Set** 分配权限的差异：\n\n- **Profile**：配置文件中的所有用户都将获得为该配置文件启用的权限。当你需要向同一配置文件中的所有用户授予权限时，这是一个不错的选择，例如运行报表的权限。\n\
+  - **Permission Set**：管理员可以创建一个仅包含一个权限或包含多个权限的权限集。当你需要向跨配置文件的用户授予某些权限时，这是一个更灵活的选择，例如创建报表文件夹的权限——你可能不希望每个人都能创建文件夹，否则如果不加以控制，你的报表文件夹可能会变得混乱。\n\
+  \n## Hands-on exercise for adding permission in a Profile\n\n在此练习中，我们将向名为 **Sales\
+  \ Ops** 的自定义 **Profile** 授予 **Create and Customize Reports** 权限。假设该配置文件已在之前创建。\n\
+  \n- 1. 点击左上角菜单中的 **Setup** 齿轮图标，如以下屏幕截图所示：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_80_0.png)\n\
+  \n- 2. 点击左侧菜单中的 **Users**，然后点击 **Profiles** 子菜单。\n\n\n\n\n\n+   3. 查找配置文件名称——在本练习中，我们将使用\
+  \ Sales Ops 配置文件（在你的环境中可能不同）——然后在配置文件名称前点击 Edit 链接。\n+   \n+   4. 向下滚动，找到 **Create\
+  \ and Customize Reports** 权限。它位于 **Administrative Permissions** 部分下。选中复选框以授予权限。请参考以下截图：\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_81_0.png)\n\n+   5. 点击 **Save** 按钮，即完成。\n\
+  \n该配置文件中的所有用户现在都能够运行报表。\n\n## 使用权限集进行权限的动手练习\n\n接下来，我们将创建一个名为 **Regional Admin**\
+  \ 的新权限集。拥有此权限集的用户将能够创建报表文件夹和仪表板文件夹。请按照以下步骤进行此练习：\n\n+   1. 点击左上角菜单中的 **Setup** 齿轮图标。\n\
+  +   2. 点击左侧菜单中的 **Users**，然后点击 **Permission Sets** 子菜单。\n\n6. 在下一个屏幕中，在文本框中输入 create\
+  \ report，系统将搜索包含输入字符的权限，如以下截图所示：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_83_0.png)\n\
+  \n7. 点击 Create Report Folders；它将打开该权限，然后向上或向下滚动以点击 Edit 按钮。\n\n8. 再次找到该权限；勾选其旁边的文本框，如以下截图所示：\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_83_1.png)\n\n9. 你可能会注意到有一个信息图标，它告诉你该权限需要另一个权限——在本例中，Create\
+  \ Report Folders 权限是 Create and Customize Reports 权限所必需的。因此，Create and Customize\
+  \ Reports 权限将被自动启用到权限集中。\n\n10. 点击 Save 按钮以继续。\n\n11. 点击 **Manage Assignments**\
+  \ 按钮以检查为此权限分配的任何用户。如果想为此权限添加用户，请点击 **Add Assignments** 按钮。\n\n12. 找到需要此权限集的所有用户；点击用户旁边的复选框，然后点击\
+  \ **Assign** 按钮，如以下截图所示：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_84_0.png)\n\
+  \n13. 添加到权限集的用户将被显示，点击 **Done** 按钮以结束。\n\n## 总结\n\n在本章中，我们首先从为个人使用保护私有报表和仪表板开始。然后，我们继续讨论\
+  \ **Unfiled Public Report** 文件夹，其中具有创建报表权限的用户能够在此文件夹中存储创建的报表。此文件夹的一个用途是在真正的文件夹创建之前临时存储报表，但请注意，存储在此处的报表将可供组织中的每个人访问。\n\
+  \n接下来，我们继续讨论共享和保护公共报表和仪表板。报表文件夹和仪表板文件夹相关的所有权限也被讨论。\n\n在结束本章之前，我们提供了动手练习，通过 **Profile**\
+  \ 授予权限，该权限适用于具有该配置文件的全部用户，以及通过 **Permission Sets** 授予权限，我们可以在用户配置文件之间灵活地授予权限。\n"
+- "## 创建和管理报表\n\n你在第 2 章 *Concepts and Permissions in Reports and Dashboards* 中了解了\
+  \ Salesforce 报表的概念。我们学习了如何从数据源生成报表，报表在 Salesforce 中生成时数据如何显示，报表如何在 Salesforce 中存储，如何与团队或组织中的每个人共享报表，以及如何获取处理报表所需的权限。在第\
+  \ 3 章 *Implementing Security in Reports and Dashboards* 中，我们学习了如何保护我们的报表和仪表板。\n\n\
+  在本章中，我们将动手创建报表，讨论处理报表时的更多技术细节，探索在 Salesforce 中可以构建哪些类型的报表，以及创建新报表和维护现有报表是多么容易。我们将从\
+  \ Salesforce 中可用的多种报表格式开始，报表格式为何与报表相关如此重要，以及每种格式的优点和局限性；然后我们将继续讨论向报表添加筛选器。\n\n到本章结束时，你将获得如何根据需求选择正确的报表格式的知识，并学习如何使用报表筛选器自定义报表。\n\
+  \n在本章中，我们将提供注释和提示来帮助你理解重要事项。本章将深入涵盖以下主题：\n\n- 选择报表格式\n- 添加报表筛选器\n\n## 选择报表格式\n\n\
+  为什么报表格式在创建报表时很重要？每个 Salesforce 报表都是由报表格式构建的，报表格式将决定报表的布局、选项和设置。它还决定报表是否可作为仪表板的数据源。\n\
+  \nSalesforce 中有几种报表格式可供使用，从简单的表格报表到复杂的矩阵和联接报表。每种报表格式都有不同的用途和目的。\n\n### 报表格式类型\n\n\
+  当你创建新报表时，**Tabular** 是默认选择的报表格式。你可以在任何时候修改报表格式，即使在保存报表之后，但你可能会丢失一些配置项，具体取决于原始和目标报表格式。\n\
+  \nSalesforce 中有四种报表格式可用：\n\n- **Tabular**\n- **Summary**\n- **Matrix**\n- **Joined**\n\
+  \n让我们分别理解它们。\n\n### 表格报表格式\n\n**Tabular** 报表是在创建新报表时默认的报表格式；此格式被认为是最简单的；它以类似电子表格的方式呈现数据。数据以行和列格式呈现；每一行呈现一条记录，每一列呈现一个字段，列也可以是桶字段或自定义汇总公式。报表可用的字段取决于使用的报表类型。\n\
+  \n我们将在 *第 5 章，Understanding Report Types* 中彻底讨论报表类型，而桶字段和自定义汇总公式将在 *第 6 章，Advanced\
+  \ Report Configuration* 中讨论。目前，报表类型将决定报表中可用的字段；它可能包含来自一个对象或来自几个相关对象的全部或部分字段。\n\n\
+  尽管 **Tabular** 是最简单的格式，但它为你提供了许多能力，例如按列排序数据、添加筛选器、汇总字段、添加桶字段、记录计数、导出报表、订阅报表等。所有这些功能对\
+  \ **Summary** 和 **Matrix** 报表也同样适用。**Tabular** 报表的重点是让你查看满足筛选条件的每条记录的详细信息，类似于电子表格。\n\
+  \n让我们看一下 **Tabular** 格式的局限性：\n\n- 无分组\n- 无图表\n- 除非配置了 **Row Limit** 筛选器，否则不能用作仪表板的数据源\n\
+  \n与 **Tabular** 格式相关的其他局限性如下：\n\n- 报表生成器预览最多显示 50 行。\n- 报表最多显示 2,000 行。要查看所有行，请将报表导出到\
+  \ Excel。\n\n**Tabular** 报表格式在生成报表时具有最佳的性能表现。以下是 **Tabular** 报表的示例：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_87_0.png)\n\
+  \n## 创建表格报表的动手练习\n\n让我们考虑一个用例。我们被要求显示按员工人数降序排序的前五个账户，并筛选账户类型包含 Customer。在本练习中，我们假设你有超过五个账户，其类型包含\
+  \ Customer 文本，并且员工人数已填充：\n\n+   1. 导航到 **Reports** 选项卡并点击 **New Report..** 按钮。\n\
+  +   2. 选择 **Accounts** 报表类型并点击 **Accounts & Contacts** 类别下的加号。\n+   3. 点击 **Create**\
+  \ 按钮以继续。\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_88_0.png)\n\n4. 现在我们进入了 **Report\
+  \ Builder**，预览显示有限数量的记录。\n\n\n\n\n- 5. 将“显示”字段更改为“所有账户”。将“日期字段范围”更改为“所有时间”。\n\n\
+  ![](img/72d01bea5a9ccf02f9452aab7505d9de_89_0.png)\n\n- 6. 将“员工”字段添加到报表区域，并删除不必要的字段，如“上次活动”、“上次修改日期”、“评分”和“账单省/州”。\n\
+  \n您可以在左侧面板的“快速查找”文本框中输入字段名称来快速查找字段；文本框下方显示的字段将随您的输入自动筛选。\n\n要向报表添加字段，请双击该字段；如果该字段之前未添加到报表中，它将被添加到最后一列。另一种选择是将字段拖放到报表区域；拖动字段时请注意绿色对勾和红色方块图标。\n\
+  \n**提示：**\n\n要从报表中删除字段，请将字段标题拖放回左侧面板的字段区域；或者将鼠标悬停在报表中的字段标题上，单击箭头图标，然后点击“删除列”。\n\n\
+  - 7. 点击“筛选器”中的“添加”按钮，然后继续执行以下操作：\n\n  - 从可用字段列表中选择“类型”（您也可以手动输入字段名称，然后选择该字段）。\n\
+  \  - 从运算符列表中选择“包含”。\n  - 点击放大镜，从弹出的值中选择**客户**。就我而言，我有**客户 - 直接**和**客户 - 渠道**，但没有单独的“客户”，因此我手动输入“客户”。由于我们这里的运算符是**包含**，这将同时覆盖**客户\
+  \ - 直接**和**客户 - 渠道**。\n  - 点击“确定”按钮进行确认。\n  - 点击**添加**按钮旁边的小箭头，然后选择**行数限制为 5，按员工数降序排序**，然后点击“确定”按钮应用。\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_90_0.png)\n\n  - 点击**保存**按钮；这将打开一个弹出窗口来保存报表。\n\
+  \  - 将**报表名称**输入为 `Top 5 Customers by No of Employee`。**报表唯一名称**将自动填写。\n\n> 始终建议输入一些**描述**，以备将来参考。\n\
+  \n  - 在**报表文件夹**选项中选择**我的个人自定义报表**，这样其他人就无法访问它。\n  - 再次点击**保存**按钮以保存报表。\n  - 点击**运行报表**按钮，您应立即看到生成的报表。\n\
+  \n以下截图显示了生成的报表；您可能看到不同的数据，但结果中应有五条记录，如果您的 Salesforce 组织没有“账户”的“客户”类型，则可能少于五条或没有记录：\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_91_0.png)\n\n## 汇总报表格式\n\n**汇总**报表与**表格**报表之间的主要区别在于，**汇总**报表能够使用报表可用的任何字段（包括分桶字段）进行分组。如果**汇总**报表中没有定义分组字段，则报表将作为**表格**报表运行。\n\
+  \n**汇总**报表被认为比**表格**报表更高级；除了**表格**格式中所述的功能外，**汇总**报表还提供以下额外能力：\n\n- 为了根据值对报表进行分组，您可以使用最多三级分组来对报表进行分组。您还可以汇总数字字段的数据，并显示每个组的记录数。\n\
+  - 向报表添加图表。\n- 将报表用作仪表板的数据源；对于表格报表，只有配置了**行数限制**的报表才可以。\n- 按不同字段进行分组排序。\n- 探索隐藏单个记录详细信息的能力，以便更轻松地查看汇总的业务数据。\n\
+  \n与**表格**报表相比，**汇总**格式报表中不能添加**行数限制**。\n\n以下是一个**汇总**报表的示例：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_92_0.png)\n\
+  \n## 创建汇总报表的动手练习\n\n让我们考虑一个用例：显示所有账户，按创建账户的**日历年度**和**账户所有者**进行分组。请按照以下步骤完成此动手练习：\n\
+  \n- 1. 导航到**报表**选项卡，然后点击**新建报表**按钮。\n- 2. 选择**账户**报表类型，然后点击**账户和联系人**类别下的加号。\n-\
+  \ 3. 点击**创建**按钮继续。\n- 4. 将**显示**更改为**所有账户**。\n- 5. 将**日期字段范围**更改为**所有时间**。\n- 6.\
+  \ 将报表格式从**表格**更改为**汇总**。\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_93_0.png)\n\
+  \n- 7. 点击**筛选器**中的**添加**按钮，然后继续执行以下操作：\n\n  - 从可用字段列表中选择**类型**；您也可以手动输入字段名称，然后选择该字段。\n\
+  \  - 从运算符列表中选择**包含**。\n  - 点击放大镜，从弹出的值中选择**客户**。就我而言，我有**客户 - 直接**和**客户 - 渠道**，但没有“客户”，因此我手动输入“客户”。由于我们这里的运算符是“包含”，这将同时覆盖**客户\
+  \ - 直接**和**客户 - 渠道**。\n  - 点击**确定**按钮。\n\n- 8. 将**创建日期**拖到报表中的放置区域。\n\n您可以在**快速查找**文本框中输入字段名称以筛选字段名称。如果您看不到分组区域，请点击**显示**并选择**放置区域**。\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_94_0.png)\n\n- 9. 将字段添加到分组后，点击放置区域中**创建日期**左侧的箭头，然后导航到**按日期分组\
+  \ | 日历年度**。**按日期分组**仅在您要分组的字段是“日期”和“日期/时间”字段时可用。请参考以下截图：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_95_0.png)\n\
+  \n- 10. 将**账户所有者**拖到**创建日期**下方的放置区域。默认情况下，**显示**中的**详细信息**已选中；让我们隐藏该详情。\n\n- 11.\
+  \ 点击**显示**菜单并取消选中**详细信息**：\n\n- 12. 点击**保存**按钮；这将打开一个弹出窗口来保存报表：\n\n  - 将**报表名称**输入为**按创建年份和所有者划分的所有账户**。**报表唯一名称**将自动填写。\n\
+  \  - 始终建议输入**描述**以备将来参考。\n  - 在**报表文件夹**中选择**我的个人自定义报表**，这样其他人就无法访问它。\n  - 点击**保存**按钮保存报表。\n\
+  \n- 13. 点击**运行报表**，您应该会看到类似于以下截图所示的报表：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_96_0.png)\n\
+  \n- 14. 默认情况下，**汇总**报表将按第一个分组升序排序，然后按第二个分组升序排序。在我们的练习中，它是**创建日期**和**账户所有者**。您可以通过在报表生成器中编辑报表、点击放置区域中字段旁边的箭头并选择**分组排序依据**（如以下截图所示）来更改排序顺序：\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_96_1.png)\n\n- 15. 要从打开的报表中显示数据详细信息，请点击齿轮图标并在“选项”窗口中勾选**详细信息**；请记住，在本练习的第\
+  \ 11 步中，我们取消了**显示详细信息**。报表将重新生成并显示每条记录的详细信息，但报表分组和排序将保持不变：\n\n**报表：** 按创建年份和所有者划分的所有账户\
+  \  \n**总记录数：** 14\n\n| 创建日期 ↑ | 账户所有者 ↓ | 账户名称 | 类型 | 上次修改日期 |\n|---|---|---|---|---|\n\
+  | 2014年（12条记录） | Johan Yu（10条记录） | GenePoint | 客户 - 渠道 | 5/24/2014 |\n| 2014年（12条记录）\
+  \ | Johan Yu（10条记录） | United Oil & Gas, Singapore | 客户 - 直接 | 5/24/2014 |\n| 2014年（12条记录）\
+  \ | Johan Yu（10条记录） | Edge Communications | 客户 - 直接 | 5/24/2014 |\n| 2014年（12条记录）\
+  \ | Johan Yu（10条记录） | Burlington Textiles Corp of America | 客户 - 直接 | 5/24/2014\
+  \ |\n| 2014年（12条记录） | Johan Yu（10条记录） | Pyramid Construction Inc. | 客户 - 渠道 | 8/21/2016\
+  \ |\n| 2014年（12条记录） | Johan Yu（10条记录） | Dickenson plc | 客户 - 渠道 | 5/24/2014 |\n\
+  | 2014年（12条记录） | Johan Yu（10条记录） | Grand Hotels & Resorts Ltd | 客户 - 直接 | 5/24/2014\
+  \ |\n| 2014年（12条记录） | Johan Yu（10条记录） | Express Logistics and Transport | 客户 - 渠道\
+  \ | 5/24/2014 |\n| 2014年（12条记录） | Johan Yu（10条记录） | University of Arizona | 客户 -\
+  \ 直接 | 5/24/2014 |\n| 2014年（12条记录） | Johan Yu（10条记录） | Super Force Inc | 客户 - 直接\
+  \ | 4/15/2017 |\n| 2014年（12条记录） | Alvin Lee（2条记录） | United Oil & Gas, UK | 客户 -\
+  \ 直接 | 4/14/2017 |\n| 2014年（12条记录） | Alvin Lee（2条记录） | United Oil & Gas Corp. |\
+  \ 客户 - 直接 | 4/14/2017 |\n| 2015年（2条记录） | Johan Yu（1条记录） | King Inc | 客户 - 直接 | 4/15/2017\
+  \ |\n| 2015年（2条记录） | Alvin Lee（1条记录） | Accurate Glass | 客户 - 渠道 | 4/15/2017 |\n\
+  | 总计（14条记录） | | | | |\n\n\n\n16. 点击下拉箭头中的“保存”以保存报表中的所有更改。通过这样操作，你可以在不通过报表生成器编辑的情况下保存报表：\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_98_0.png)\n\n## 矩阵报表格式\n\n矩阵报表与汇总报表非常相似，但增加了按行和列同时分组的能力。你还可以为行和列分别设置最多两个分组级别。\n\
+  \n与表格和汇总报表格式类似，你可以在矩阵报表中添加可汇总字段。默认情况下，记录计数会添加到报表矩阵中。当你在矩阵报表中添加汇总字段时，该字段和汇总结果会显示在矩阵中，而不是像汇总或表格报表格式那样显示在列底部。一旦向矩阵报表添加了汇总字段，如果不需要，可以移除矩阵中的默认记录计数。\n\
+  \n当你有大量数据需要汇总，并且需要使用矩阵报表比较同一字段中不同值的记录时，此报表格式非常适用。如果矩阵报表至少没有一个行分组和一个列分组，在运行报表时它将显示为汇总报表。\n\
+  \n当你将报表从 **Summary** 更改为 **Matrix** 格式时，可以从 **Tabular** 或 **Summary** 报表更改为 **Matrix**\
+  \ 报表：\n\n- 第一级分组将自动变为第一级行分组\n- 第二级分组将自动变为第一级列分组\n- 第三级分组将自动变为第二级行分组\n\n在以下示例中，我们使用之前创建的相同汇总格式报表\
+  \ **All Account by creation Year and owner**；报表显示使用相同的数据和条件——只是格式不同。请注意，当你创建 **Matrix**\
+  \ 报表时，记录计数会默认添加。以下屏幕截图向我们展示了从 **Summary** 格式报表转换而来的 **Matrix** 报表：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_99_0.png)\n\
+  \n## 创建矩阵报表的动手练习\n\n让我们考虑一个用例：在 **Matrix** 格式中显示所有账户的记录计数，按 **Calendar Year** 的账户创建日期进行行分组，按\
+  \ **Account Owner** 进行列分组：\n\n- 1. 不要从头创建，让我们修改现有的 **Summary** 报表 `All Account by\
+  \ creation Year and owner` 并将其转换为 **Matrix** 报表。\n- 2. 打开 **All Account by creation\
+  \ Year and owner** 报表并点击 **Edit** 按钮，或导航到 **Reports** 选项卡，找到该报表，点击最后一列的箭头，然后点击 **Edit**\
+  \ 以打开报表生成器。\n- 3. 将报表格式从 **Summary** 更改为 **Matrix**。\n- 4. 汇总报表的第一个分组将自动变为行分组，而第二个分组将变为列分组；在我们的练习中，**Created\
+  \ Date** 将成为行分组，**Account Owner** 将成为列分组。\n\n让我们看一下以下屏幕截图，注意汇总报表的第一级和第二级分组已被转换：\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_100_0.png)\n\n当报表格式从 **Summary** 更改为\
+  \ **Matrix** 报表时：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_101_0.png)\n\n5. 由于该报表最初保存为汇总报表，你只需点击“运行报表”按钮即可以矩阵格式查看报表结果。在\
+  \ Lightning Experience 中，报表需要在运行前保存：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_101_1.png)\n\
+  \n6. 如果你只需要查看报表汇总而不查看任何明细，点击刷新图标旁边的齿轮图标（不是顶部带闪电的齿轮图标），然后取消选中“详细信息”复选框。通常我们在展示报表且只想关注汇总而不需查看明细时需要这样做，如以下屏幕截图所示：\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_102_0.png)\n\n7. 这是仅显示基于创建日期和账户所有者的汇总的报表结果，以矩阵格式呈现：\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_102_1.png)\n\n- 8. 如果你在此处点击 **Save**，这将覆盖你之前创建的\
+  \ **Summary** 报表。因此，不要点击保存，而是点击 **Clone** 将报表另存为新报表，输入新的报表名称，选择文件夹，然后在弹出窗口中点击 **Create**\
+  \ 按钮进行确认。\n- 9. 或者，当你在步骤 5 的报表生成器中时，不要点击 **Run Report** 按钮运行报表，而是点击 **Save As**\
+  \ 按钮将报表另存为新报表。\n\n## 向矩阵报表添加汇总字段的动手练习\n\n让我们考虑一个用例：在 **Matrix** 格式中显示所有商机及其总金额，按\
+  \ **Opportunity Stage** 进行行分组，按 **Opportunity Owner** 进行列分组：\n\n- 1. 导航到 **Reports**\
+  \ 选项卡并点击 **New Report** 按钮。\n- 2. 选择 **Opportunities** 报表类型并点击 **Opportunities**\
+  \ 类别下的加号。\n- 3. 点击 **Create** 按钮继续。\n- 4. 将 **Show** 更改为 **All opportunities**。\n\
+  - 5. 将 **Date Field** 范围更改为 **All Time**。\n- 6. 请注意，**Opportunity Status** 和 **Probability**\
+  \ 过滤器位于 **Show** 旁边；这些特定过滤器仅在使用 **Opportunity** 报表类型时出现。对于此练习，只需将 **Opportunity\
+  \ Status** 的默认值保留为 **Any**，将 **Probability** 保留为 **All**。\n- 7. 将报表格式从 **Tabular**\
+  \ 更改为 **Matrix**。\n\n8. 通过将其拖放到“字段”区域外，移除所有字段，只保留商机名称、金额、阶段和商机所有者字段。现在你应该看到与以下屏幕截图类似的内容：\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_104_0.png)\n\n9. 要对金额求和，将鼠标悬停在金额标题上，点击“汇总此字段...”中的箭头图标，选择\
+  \ Sum，然后点击“应用”按钮，如以下屏幕截图所示：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_104_1.png)\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_105_0.png)\n\n如果要汇总的字段尚未添加到报表中，可以直接将可汇总字段（如货币、数字和百分比）拖入矩阵，系统将提示你按\
+  \ Sum、Average、Max 或 Min 进行汇总。\n\n你可以通过拖放已汇总的字段来更改添加到矩阵中的字段顺序。要从矩阵中移除已汇总的字段，只需将其拖到左侧面板的字段区域即可。\n\
+  \n- 10. 现在你应该在矩阵中看到金额及其值；请参考步骤 11 中的屏幕截图。\n- 11. 将 **Stage** 拖为行分组，将 **Opportunity\
+  \ Owner** 拖为列分组，如以下屏幕截图所示：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_105_1.png)\n\
+  \n- 12. 请注意，你可以为行分组和列分组分别拖入另一个字段作为第二级分组。\n- 13. 由于我们只想关注汇总值，让我们通过点击 **Remove All\
+  \ Columns** 链接旁边的 **Show**，然后取消选中 **Detail** 来隐藏报表明细。\n\n- 14. 接下来，让我们也移除记录计数，因为我们只需要金额值。再次点击\
+  \ **Remove All Columns** 链接旁边的 **Show**，然后取消选中 **Record Count**。请记住，只有在矩阵中添加了字段作为汇总字段时，我们才能移除记录计数。\n\
+  \n- 15. 点击 **Save** 按钮；这将打开一个弹出窗口以保存报表：\n  - 输入 **Report Name** 为 `Opportunity by\
+  \ Stage and Owner`\n  - **Report Unique Name** 将自动填充\n  - 为便于将来参考，输入一些 **Description**\
+  \ 始终是良好做法\n  - 在 **Report Folder** 中选择 **My Personal Custom Reports**，这样无人可以访问它\n\
+  \  - 点击 **Save** 按钮保存报表\n\n- 16. 点击 **Run Report**，你应该会看到与以下报表类似的报表：\n\n| OPPORTUNITY\
+  \ OWNER | ALVIN LEE | JOHAN YU | Total |\n|---|---|---:|---:|---:|\n| **STAGE**\
+  \ | **AMOUNT Sum** | **AMOUNT Sum** | **AMOUNT Sum** |\n| Prospecting | $0.00 |\
+  \ $80,000.00 | $80,000.00 |\n| Qualification | $0.00 | $115,000.00 | $115,000.00\
+  \ |\n| Needs Analysis | $675,000.00 | $0.00 | $675,000.00 |\n| Value Proposition\
+  \ | $0.00 | $330,000.00 | $330,000.00 |\n| Id. Decision Makers | $0.00 | $110,000.00\
+  \ | $110,000.00 |\n| Perception Analysis | $0.00 | $120,000.00 | $120,000.00 |\n\
+  | Proposal/Price Quote | $270,000.00 | $100,000.00 | $370,000.00 |\n| Negotiation/Review\
+  \ | $395,000.00 | $0.00 | $395,000.00 |\n| Closed Won | $0.00 | $3,716,000.00 |\
+  \ $3,716,000.00 |\n| **Total** | **$1,340,000.00** | **$4,571,000.00** | **$5,911,000.00**\
+  \ |\n\n\n\n\n\n## 创建联合报表的手工练习\n\n让我们考虑一个用例：在一份报表中展示过去一年中与账户相关的所有已赢得商机和案例。请记住，自 Summer\
+  \ '17 版本发布以来，联合报表仅在 Classic 中可用，因此你只能在 Classic 用户界面中执行以下操作：\n\n- 1. 导航到 **Reports**\
+  \ 选项卡并点击 **New Report...** 按钮。\n- 2. 选择 **Opportunities** 报表类型；它位于 **Opportunities**\
+  \ 类别下。\n- 3. 点击 **Create** 按钮继续。\n- 4. 将 **Show** 字段更改为 **All opportunities**。\n\
+  - 5. 将 **Date Field** 更改为 **Close Date**，并将 **Range** 更改为 **Previous CY**。\n- 6.\
+  \ 点击 **Remove All Columns** 链接，点击 **OK** 确认，然后向报表添加以下字段：**Opportunity Name**、**Account\
+  \ Name** 和 **Amount**。\n- 7. 点击 **Add** 按钮添加筛选条件，其中 **Won** 等于 **True**。\n- 8. 将鼠标悬停在\
+  \ **Amount** 上，点击箭头，选择 **Summarize the Field...**，选中 **Sum** 复选框，然后选择 **Apply**\
+  \ 按钮。将报表格式更改为 **Joined**。\n- 9. 一旦报表格式更改为 **Joined**，**Add Report Type** 按钮将可用，并且\
+  \ **Opportunity** 块将被添加到报表中。\n- 10. 点击标有 **Opportunities block 1** 的块并将其更改为 Won\
+  \ Opportunities Last Year：\n\n## 创建和管理报表\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_109_0.png)\n\
+  \n- 11. 点击 **Add Report Type** 按钮继续。\n- 12. 在 **Customer Support Reports** 类别下选择\
+  \ **Cases** 报表类型，然后点击 **OK** 按钮继续。\n- 13. 逐一删除案例块中的所有字段，除了 **Subject** 和 **Account\
+  \ Name**。\n- 14. 点击块标签 **Cases block 2** 并将其更改为 `All Cases Last Year`。\n\n- 16.\
+  \ 从左侧的 COMMON FIELDS 中，将 Account Name 拖到放置区；Account Name 将自动从两个块中移除。请考虑以下截图：\n\n\
+  ![](img/72d01bea5a9ccf02f9452aab7505d9de_111_0.png)\n\n- 17. 默认情况下，Details 将被启用；让我们暂时禁用它。点击\
+  \ Show 菜单并取消选中 Details。\n\n## 使用报表筛选器\n\n报表是 Salesforce 平台最强大的功能之一；根据你的权限，你可以在几分钟内构建自己的报表，并在无需\
+  \ Salesforce 管理员或 Salesforce 开发人员帮助的情况下管理它们。\n\n我们在前几章中讨论了与报表相关的许多内容，包括创建报表的权限、与报表文件夹相关的权限，以及呈现报表布局的报表格式。\n\
+  \n与报表相关的另一个重要项目是 **report filters**。报表筛选器允许你定义要使用的哪些数据条件，以便根据某些标准将记录包含在报表中。报表中的筛选条件几乎与我们在\
+  \ Salesforce 的其他功能中发现的筛选条件相似，例如列表视图、工作流规则和 Salesforce 中的其他区域，但报表中的筛选条件甚至更强大。\n\n\
+  对于每个筛选条件，你需要设置字段、运算符和值。你可以为报表设置多个筛选器。每个筛选器的默认关系是使用 AND，但你可以使用筛选逻辑来自定义它。\n\n当你在报表构建器中时，如果你点击筛选器的\
+  \ **Add** 按钮，它将自动添加一个新筛选器，但请注意 **Add** 旁边有一个小箭头按钮；如果你点击此箭头，报表筛选器的可用选项如下：\n\n- **Field\
+  \ Filter**：这与点击 **Add** 按钮的操作相同\n- **Filter Logic**\n- **Cross Filter**\n- **Row\
+  \ Limit**：仅适用于 **Tabular** 报表格式\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_113_0.png)\n\
+  \n## 字段筛选器\n\n只需在报表构建器中点击 **Add** 按钮即可添加字段作为筛选器，或者你也可以将字段从 **Fields** 面板拖到 **Filters**\
+  \ 面板以添加报表筛选器。\n\n一旦字段被添加到 **Filters** 窗格中，选择运算符然后输入值。\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_114_0.png)\n\
+  \n如果你想为筛选值添加多个值，只需使用逗号分隔值即可。\n\n对于每个筛选器，你可以根据该特定筛选器的字段类型输入特殊值。与报表筛选器相关的一些你需要了解的项目如下：\n\
+  \n- 筛选值不区分大小写。\n- 当你筛选 **Date** 字段时，你可以输入特殊日期值，例如 `TODAY`、`NEXT WEEK`、`LASTWEEK`、`LAST\
+  \ <x> DAYS`、`LAST <x> YEARS` 等等。有关完整的日期格式和日期文字，请参阅此 Salesforce 链接 `https://developer.salesforce.com/docs/atlas.en-us.soql_sosl.meta/soql_sosl/sforce_api_calls_soql_select_dateformats.htm`。\n\
+  - 对于包含逗号的筛选值，请在文本周围加上引号，例如，`Johan, LLC`；否则，它将作为 `Johan` 或 `LLC` 进行筛选。\n- 如果你实施了多币种，你可以在筛选条件中添加货币代码，例如\
+  \ `USD 2500`、`SGD 8000`、`JPY 10000`。\n- 对于选择列表字段，你可以使用放大镜选择一个或多个要包含在筛选器中的选项，或者也可以手动输入。但当你再次编辑筛选器时，使用放大镜时现有选定的值将不会被选中；如果现有值不再有效，请手动在文本框中删除它们。\n\
+  - 对于多选选择列表字段，输入值并使用分号在值之间分隔以指定精确匹配。\n- 你可以通过勾选 **Locked** 复选框来锁定添加的筛选器，这样其他用户在运行报表时将无法更改或删除它们。\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_114_1.png)\n\n如果你无法访问定义为筛选器的字段，它将被从筛选条件中移除，并将基于剩余筛选器显示结果。\n\
+  \n## 筛选逻辑\n\n如果报表中有多个筛选器，添加筛选逻辑将允许你使用筛选器之间的逻辑运算符为筛选器指定条件。当你向报表添加筛选器时，默认情况下，所有筛选器都作为\
+  \ AND 逻辑相关，例如：\n\n- Type 包含 Customer\n- Country 等于 United States\n- Employees 大于\
+  \ 1000\n\n配置到 Salesforce 中时，它看起来如下：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_115_0.png)\n\
+  \n如果注意到，AND 将默认添加到新的筛选器行中。通过筛选逻辑，你可以指定是否使用 AND、OR 或 NOT 运算符。\n\n使用前述筛选条件，报表将生成所有\
+  \ Type 包含 \"Customer\"、账单国家等于 \"United States\" 且员工人数超过 \"1000\" 人的账户。但如果我们想获取所有\
+  \ Type 包含 \"Customer\" 且账单国家等于 \"United States\" 或员工人数超过 \"1000\" 人的账户，其中最后一个筛选器（员工）不依赖于\
+  \ Type 和 Country，该怎么办。\n\n没有筛选逻辑，我们需要创建两个单独的报表并手动合并它们，一个报表筛选条件为 Type 包含 \"Customer\"\
+  \ AND 账单国家等于 \"United States\"，另一个报表筛选条件为员工人数大于 \"1000\"。\n\n- 9. 点击 OK 按钮确认筛选器：\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_117_0.png)\n\n- 10. 在左侧的 **Fields** 文本框中输入\
+  \ **employees**，将其拖到筛选区域，并勾选 **Locked** 复选框。\n- 11. 将运算符更改为 **greater than** 并输入值\
+  \ 1000。\n- 12. 点击 **OK** 按钮确认筛选器：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_117_1.png)\n\
+  \n\n\n\n\n13. 在 **Filters** 中，导航到 **Add** 按钮后点击箭头 | **Filter Logic**。\n参考以下截图：\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_118_0.png)\n\n+   14. 默认的过滤逻辑值为 **1 AND\
+  \ 2 AND 3**；手动将其更改为 **( 1 AND 2 ) OR 3**。\n+   \n+   15. 点击 **OK** 按钮确认过滤逻辑。\n+\
+  \   \n+   16. 点击 **Save** 按钮并执行以下操作：\n+      - **Report Name** 为 `Account with Filter\
+  \ Logic`\n+      - **Report Description** 为 `All Accounts with No of Employee more\
+  \ than 1000, or Customer in US or UK`\n+      - **Report Folder** 为 **My Personal\
+  \ Custom Reports**\n+   \n+   17. 点击 **Run Report** 按钮生成报表。\n\n您可以根据需要增强前述的过滤逻辑；确保其具有正确的括号配对以及正确的值和运算符。\
+  \ 从本次练习中我们学到的另一件事是，我们在过滤值中使用逗号；如果您有多个值，只需在过滤值中添加逗号，例如 **Billing Country equals United\
+  \ States, United Kingdom**。\n\n以下是针对用例需求的报表最终结果，因为我们锁定了所有过滤器；请注意，用户在运行报表时无法更改或删除过滤器。\
+  \ 但如果您有权限编辑报表，请点击 **Edit** 按钮修改已添加的过滤器、删除现有过滤器或添加更多过滤器：\n\n| ACCOUNT OWNER | ACCOUNT\
+  \ NAME | TYPE | EMPLOYEES | BILLING COUNTRY |\n|---|---|---:|---|\n| Johan Yu |\
+  \ PMA Manufacturing | Prospect | 1,500 | - |\n| Alvin Lee | United Oil & Gas, UK\
+  \ | Customer - Direct | 24,000 | - |\n| Johan Yu | United Oil & Gas, Singapore |\
+  \ Customer - Direct | 3,000 | - |\n| Johan Yu | Burlington Textiles Corp of America\
+  \ | Customer - Direct | 9,000 | USA |\n| Johan Yu | Pyramid Construction Inc. |\
+  \ Customer - Channel | 2,680 | France |\n| Johan Yu | Grand Hotels & Resorts Ltd\
+  \ | Customer - Direct | 5,600 | - |\n| Johan Yu | Express Logistics and Transport\
+  \ | Customer - Channel | 12,300 | - |\n| Johan Yu | University of Arizona | Customer\
+  \ - Direct | 39,000 | - |\n| Johan Yu | United Oil & Gas Corp. | Customer - Direct\
+  \ | 145,000 | - |\n| Johan Yu | Super Force | Customer - Direct | 800 | United States\
+  \ |\n| Alvin Lee | Accurate Glass | Customer - Channel | - | United States |\n|\
+  \ Johan Yu | Quality Materials | Customer - Channel | - | United Kingdom |\n| **Grand\
+  \ Total (12 records)** |  |  |  |  |\n\n**Show Me:** All accounts\n\n**Created Date:**\
+  \ All time\n\n**Locked Filters**\n\n(1 AND 2) OR 3\n\n1. Type contains Customer\n\
+  2. Billing Country equals United States, United Kingdom\n3. Employees greater than\
+  \ \"1,000\"\n\n## The Cross Filter\n\n使用 **Cross Filter**，您可以为某个对象及其与其它对象和其字段的依赖关系创建报表。\
+  \ 您可以使用 **WITH** 关键字，例如 **All Account WITH Opportunity**。 此外，您还可以使用 **WITHOUT**\
+  \ 关键字创建例外报表，例如 **Account WITHOUT Closed Won Opportunity this year**。 该报表对于销售经理和管理团队评估休眠客户非常重要。\n\
+  \n> > 此过滤器在 **Joined** 格式或报表类型不允许可选相关对象的任何报表中都不可用\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_119_0.png)\n\
+  \n### Hands-on exercise for using the Cross Filter\n\n没有任何进一步解释，让我们逐步了解如何在报表中创建\
+  \ **Cross Filter**。\n\n让我们考虑一个用例：**Show all accounts** 且 **Type** 为 **Customer**\
+  \ 并拥有 **Opportunities**：\n\n+   1. 导航到 **Reports** 选项卡并点击 **New Report** 按钮。\n+\
+  \   2. 选择 **Accounts** 报表类型并点击 **Accounts & Contacts** 类别下的加号。\n+   3. 点击 **Create**\
+  \ 按钮继续。\n+   4. 将 **Show** 更改为 **All accounts**。\n+   5. 将 **Date Field Range**\
+  \ 更改为 **All Time**。\n+   6. 点击 **Add** 按钮并选择 **Type contains Customer - Direct,\
+  \ Customer - Channel**。\n+   7. 点击 **OK** 按钮确认过滤器。\n+   8. 在 Filters 中，导航到 **Add**\
+  \ 按钮后点击箭头 | **Cross Filter**。\n+   9. 选择 **Accounts with Opportunities**。 这在以下截图中显示：\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_120_0.png)\n\n10. 点击 **OK** 按钮确认过滤器。\n\
+  \n+   11. 点击 **Save** 按钮：\n+   - **Report Name** 为 `Customer with Opportunities`\n\
+  +   - **Report Description** 为 `All Customer with Opportunities`\n+   - **Report\
+  \ Folder** 为 **My Personal Custom Reports**\n\n12. 点击 **Run Report** 按钮生成报表。\n\n\
+  让我们使用同一报表并对其进行自定义：\n\n+   1. 打开报表并点击 **Edit** 按钮。\n+   2. 点击 **Accounts with Opportunities**\
+  \ 过滤器中的 **Edit** 链接。\n+   3. 点击 **Add Opportunities Filter** 链接。\n+   4. 选择 **Won\
+  \ equals True**；由于这是选择列表字段，您可以使用放大镜图标选择值。\n+   5. 再次点击 **Add Opportunities Filter**\
+  \ 链接。\n+   6. 输入 **Close Date greater or equal LAST 365 DAYS**；使用相对日期值是一个好主意，以使报表动态化而不是使用硬编码值。\n\
+  +   7. 点击 **OK** 按钮确认过滤器。\n+   8. 点击 **Run Report** 按钮生成报表。\n\n此报表将生成所有在过去 1 年内\
+  \ Closed Won 日期在今天之前的 Customers with Opportunity：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_122_0.png)\n\
+  \n## Hands-on exercise for creating more scenarios using the Cross Filter (2)\n\n\
+  让我们使用与前一个相同的报表，通过 **Cross Filter** 查看更多场景。 这里的用例是：管理层希望获取一份没有 Won 机会的 Customers\
+  \ 列表，包括没有 Opportunities 的 Customers。\n\n首先，让我们查看以下两个报表：\n\n+   1. 报表具有以下过滤器 **Account\
+  \ with Opportunities: Won equals True:**\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_123_0.png)\n\
+  \n2. 报表具有以下过滤器 Account with Opportunities: Won equals False:\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_124_0.png)\n\
+  \n前述截图中的几个账户，Edge Communications、Express Logistics and Transport、GenePoint、Grand\
+  \ Hotels & Resorts Ltd、United Oil & Gas Corp. 和 University of Arizona 同时出现在两个报表中。\
+  \ 这是因为这些账户既有 Stage 为 Closed Won 的机会，也有仍处于 Open 或 Closed Lost 的机会。 请记住，一个账户可能有多个机会。\n\
+  \n对于此用例，使用交叉过滤器不是正确的方法。 解决方案是在账户中使用 Roll-up Summary 字段并将其添加到过滤逻辑中。\n\n9. 创建一个 Account\
+  \ 报表并使用 No of Won Opportunity 字段作为报表过滤器；让我们将其命名为 Customer with No Won Opportunities：\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_126_0.png)\n\n此报表显示我们并非所有场景都适合使用带附加过滤器的\
+  \ Cross Filter。\n\n## The Row Limit filter\n\nRow Limit 过滤器仅适用于 Tabular 报表。 当您使用\
+  \ Summary、Matrix 或 Joined 格式报表时，它将不可用。\n\n一旦在 Tabular 报表中添加了行限制，您可以配置 Dashboard\
+  \ Settings。 从 Dashboard Settings 中，选择要在仪表板表格和图表中使用的名称和值。 表格同时显示名称和值，而图表按名称分组。\n\n\
+  配置了 Dashboard Settings 的 Tabular 报表可作为 Dashboard 组件的数据源使用。\n\n## Hands-on exercise\
+  \ for adding Row Limit and the Dashboard Settings button\n\n让我们考虑一个用例：创建一个报表，显示员工人数最多的前五名\
+  \ Accounts 并将报表配置为仪表板的数据源：\n\n+   1. 导航到 **Reports** 选项卡并点击 **New Report** 按钮。\n\
+  +   2. 选择 **Accounts** 报表类型并点击 **Accounts & Contacts** 类别下的加号。\n+   3. 点击 **Create**\
+  \ 按钮继续。\n+   4. 将 **Show** 更改为 **All accounts**。\n+   5. 将 **Date Field** 范围更改为\
+  \ **All Time**。\n+   6. 从报表中删除不需要的默认字段，只保留 **Account Owner** 和 **Account Name**。\n\
+  +   7. 通过拖放将 **Employees** 字段添加到报表区域。\n+   8. 在 **Filters** 中，点击 **Add** 按钮旁边的箭头\
+  \ | **Row Limit**。\n+   9. 将 **Row Limit** 更改为 **5**，**Sorted By Employees - Descending**。\
+  \ 请考虑以下截图：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_127_0.png)\n\n+   10. 点击\
+  \ **OK** 按钮。 您会注意到 **Dashboard Settings** 按钮出现在顶部行按钮中。\n+   11. 点击 **Dashboard Settings**\
+  \ 按钮。\n+   12. 选择 **Account Name** 作为 **Name**，**Employees** 作为 **Value** 并点击 **OK**\
+  \ 按钮。 一旦配置了 **Dashboard Settings** 按钮，此报表将能够用作仪表板组件的数据源。 我们将在 *Chapter 8, Working\
+  \ with Reports* 中讨论仪表板。\n\n\n\n\n\n13. 点击 **Save** 按钮：\n    - **Report Name** 为\
+  \ **Top 5 Accounts by Employee**\n    - **Report Description** 为 **Top 5 Accounts\
+  \ with most number of employees**\n    - **Report Folder** 为 **Unfiled Public Reports**；这样报告对所有其他用户可见\n\
+  \n14. 点击 **Run Report** 按钮以生成报告：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_128_0.png)\n\
+  \n## 按角色层级筛选\n\n对于机会报告，我们有一个额外的报告用于按 **Role Hierarchy** 筛选报告。此筛选器在运行报告时可见，而非在报告构建器中配置报告时可见。\n\
+  \n一旦应用筛选器，数据将被筛选以仅显示该角色下用户拥有的机会，包括该角色层级下 **Users** 中的所有用户。\n\n但如果您想筛选特定用户拥有的机会，请通过选择角色然后选择用户来缩小您的\
+  \ **Role Hierarchy** 筛选器。以下截图展示了使用 **Role Hierarchy** 筛选机会报告：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_129_0.png)\n\
+  \n## 按相对日期筛选\n\n如果您需要报告始终使用特定时间范围进行筛选，例如上个月、本月、上季度等，而不是使用固定日期，您可以选择相对日期选项。使用相对日期时，当您创建一个名为上月赢得机会的报告时，您无需每月手动调整关闭日期。\n\
+  \n首先，在配置报告时，您需要将日期字段添加到筛选器放置区，而不是日期字段筛选器中的那个；以下截图展示了在放置区筛选器中添加筛选器：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_130_0.png)\n\
+  \n当用户运行报告时，他们也可以在运行时修改此设置：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_131_0.png)\n\
+  \n## 通过点击图表筛选\n\n当向报告添加图表时，您是否知道，当您点击图表中的某个细分时，报告将自动使用图表中选定的细分进行筛选？\n\n假设我有一个名为\
+  \ **Opportunities by Stage** 的机会报告，并已添加图表。以下截图显示了添加了图表的报告：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_132_0.png)\n\
+  \n## 锁定筛选器\n\n在报告构建器中向报告添加筛选器时，确定按钮前有一个锁定复选框。这决定了运行报告的用户在查看报告时编辑或删除筛选器的能力。请考虑以下截图：\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_134_0.png)\n\n当筛选器被锁定后，它们将显示在锁定筛选器区域下，运行报告的用户将无法编辑或删除它们。请考虑以下截图：\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_134_1.png)\n\n## 总结\n\n在本章中，我们对在 Salesforce\
+  \ 平台上使用报告时组件有了更深入的了解。我们探讨了不同类型的报告格式，并查看了每种格式类型的独特性。我们看到了向报告添加筛选器是多么容易。为了进一步自定义报告，我们可以为\
+  \ **Tabular** 报告包含 **Filter Logic**、**Cross Filter** 和 **Row Limit**。\n\n尽管本章多次提及仪表板，但我们并未详细讨论它们。仪表板将在\
+  \ *第 9 章 Lightning Experience 中的构建仪表板* 及以后深入讨论。本章完全专注于报告。\n\n在下一章中，我们将详细讨论报告类型，查看报告类型为何如此重要，以及如何创建报告，正如您在本章中多次阅读到关于报告类型的介绍。\n"
+- "# 5. 了解报告类型\n\n您已在第 4 章 创建和管理报告 中学习了创建和管理报告。在该章中，我们讨论了选择正确的报告格式以确定报告布局的重要性，并讨论了如何添加报告筛选器、筛选逻辑、交叉筛选和行限制以获得所需的报告结果。\n\
+  \n您在前几章中多次阅读到关于报告类型的介绍。在本章中，我们将深入讨论报告类型，从报告类型类别、标准报告类型、自定义报告类型开始，最后通过几个动手练习来创建自定义报告类型、扩展自定义报告类型并通过创建新报告来应用它们。本章还将分享使用自定义报告类型的益处和局限性。\n\
+  \n到本章结束时，您将了解报告类型是什么，在创建新报告时需要了解报告类型的哪些知识，如何创建自定义报告类型，以及如何从自定义报告类型中受益。报告类型设置用户界面在\
+  \ Lightning 和 Classic 中相同，因此本章中的所有截图都适用于两种用户界面。\n\n在本章中，我们将提供注释和提示以帮助您理解重要事项。以下主题将被涵盖：\n\
+  \n- Report Type introduction\n- Report Type category\n- Standard report type\n-\
+  \ Custom report type\n\n### Report Type introduction\n\n如前几章所述，每个报告都需要基于一个报告类型构建：\n\
+  \n- 什么是报告类型？\n- 我们如何检查现有报告使用的报告类型？\n- 当我们创建新报告时，选择正确的报告类型有多重要？\n\n所有这些问题都将在本章中得到解答。\n\
+  \nSalesforce 报告，包括所有标准报告和自定义报告，都是基于报告类型构建的。报告类型是报告的基础。一旦报告创建完成，您就无法更改报告类型，但如果您有许多需要更改报告类型的报告，您可以聘请开发人员或顾问为您编写脚本，但我们不会在本手册中讨论这些高级主题。目前，如果您需要更改报告类型，您需要将其重新创建为新报告。\n\
+  \n报告类型定义了基于主对象和定义的关联对象之间的关系可用于报告的记录集和字段。理想情况下，维护报告类型，包括报告类型的创建、编辑和删除，应属于 Salesforce\
+  \ 管理员的工作范围，而非标准用户。作为系统管理员，您需要考虑可部署并供用户使用的报告类型的数量。提供过多的报告类型会导致用户在选择使用哪个报告类型以及它们之间的区别时感到困惑，因此请确保根据需要进行平衡。\n\
+  \n当自定义对象启用报告时，Salesforce 将自动创建报告类型，其报告类型名称等于对象的复数名称，并且该报告类型将存储在其他报告类别文件夹中。\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_137_0.png)\n\
+  \n要将自定义对象用于报告类型，请确保为该对象选择启用报告。\n\n为了更轻松地理解报告类型，让我们举一个例子——我们有一个名为 Expense 的自定义对象，其复数标签为\
+  \ Expenses，您也可以使用其他自定义对象进行测试。该对象有一个指向 Opportunity 的查找关系字段，并且已激活启用报告和跟踪字段历史。让我们快速查看自定义对象设置中的详细信息：\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_138_0.png)\n\n导航到 **Reports** 选项卡并创建新报告；您将看到已创建与\
+  \ **Expense** 相关的自定义报告类型或多个报告类型：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_138_1.png)\n\
+  \n您可以输入报告类型名称进行快速搜索。\n\n在我的组织中，在搜索文本框中输入 **expense** 会筛选出与 Expense 对象相关的四个报告类型。您的组织中可能有所不同，因此如果您看不到相同的结果也没关系，但您应该至少看到一个报告类型。让我们分析我组织中的这四个报告类型：\n\
+  \n- **Expenses**：此报告类型将包含与 Expense 对象相关的所有字段\n- **Expenses with Opportunity**：此报告类型是自动创建的，因为在我的组织中，Expense\
+  \ 对象有一个指向 Opportunity 对象的查找字段\n- **Expenses and Connections**：此报告类型是创建的，因为在我的组织中，我已配置\
+  \ Salesforce to Salesforce 连接\n- **Expense History**：此报告类型是创建的，因为已激活 **Track Field\
+  \ History**；请参阅前面的截图\n\n### 报告类型类别\n\n报告类型类别存储并以文件夹形式呈现。这有助于我们在创建新报告时快速找到正确的报告类型。根据您订阅的\
+  \ Salesforce 版本，您将获得不同的报告类型类别。\n\n您无法创建新的报告类型类别，但您可以创建自定义报告类型并将其存储在提供的类别之一中；始终是一个好做法将自定义报告类型存储在正确的类别中。\n\
+  \n多年来，您可能创建了太多报告类型，但其中许多很少使用或仅使用一次；作为管理员，您可以删除这些报告类型或在创建新报告时将其从用户选择中隐藏；这包括标准和自定义报告类型。\n\
+  \n以下是隐藏和删除报告类型的比较：\n\n| 操作 | 删除 | 隐藏 |\n|---|---|---|\n| 恢复报告类型 | 不可能 | 只需取消隐藏即可\
+  \ |\n| 现有报告 | 全部删除 | 无影响 |\n| 开始位置 | **Setup** 菜单 | **Reports** 选项卡 |\n| 适用于 | 自定义报告类型\
+  \ | 所有报告类型 |\n\n就个人而言，我更喜欢隐藏而不是删除自定义报告类型，以防将来某天需要该报告类型或被现有报告使用。\n\n\n\n\n\n## 理解报表类型\n\
+  \n删除自定义报表类型将删除使用该报表类型构建的所有现有报表，包括存储在所有用户私有文件夹中的报表。因此在删除报表类型时要谨慎，并确保它不再被使用。\n\n删除自定义报表类型的最佳实践如下：\n\
+  \n1. 隐藏报表类型。\n2. 运行报表以检查有多少个活动报表正在使用已识别的报表类型。我们将在本章后面详细讨论这一点。\n3. 将报表类型重命名并加上前缀（例如，加上**待删除**以及今天的日期）。此操作的目的是仅在\
+  \ *x* 个月后没有活动报表使用时才删除报表类型。\n\n报表类型类别结构与标准报表文件夹非常相似，但不要将两者混淆。\n\n标准报表文件夹包含 Salesforce\
+  \ 原生提供的所有标准报表；你无法覆盖它，但可以修改它并将报表另存为新报表到自定义公共报表文件夹或你的个人报表文件夹。\n\n**报表类型**类别存储所有报表类型，包括标准和自定义报表类型。你可以将自定义报表类型存储到任何**报表类型**类别中，但你无法创建或添加新的**报表类型**类别。\n\
+  \n### 隐藏报表类型的动手练习\n\n使用场景：我们可用的报表类型太多，这导致用户在选择使用哪种报表类型以及某些报表类型之间的差异时感到困惑。与其删除自定义报表类型从而自动删除使用该报表类型创建的报表，不如只隐藏不再需要的现有报表类型。\n\
+  \n1. 转到**报表**选项卡。\n2. 点击**新建报表**按钮。\n3. 点击**选择要隐藏的报表类型**复选框。\n4. 点击报表类别名称前的 + 图标以展开该类别中的所有报表类型。对于本练习，点击**账户与联系人**。\n\
+  5. 报表类型带有绿色对勾表示该报表类型在创建新报表时可用，而带有黄色叉号的表示不可用。\n6. 点击报表类型名称可在可见和隐藏之间切换。对于本练习，点击**带资产的联系人**；图标将从绿色对勾变为黄色叉号。基于该报表类型构建的所有现有报表都不会被删除。如果报表类型用作仪表板组件的数据源报表，隐藏报表类型也不会影响仪表板。请考虑以下截图：\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_141_0.png)\n\n7. 再次点击**选择要隐藏的报表类型**以取消选择；所有被隐藏的报表类型将不再对所有用户在创建新报表时可见。\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_142_0.png)\n\n### 标准报表类型\n\n当你从**报表**选项卡点击**新建报表**按钮时，你将看到如下截图中所示的**报表类型**类别列表：\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_142_1.png)\n\n标准报表类型有两种：\n\n- Salesforce\
+  \ 为标准对象提供的报表类型，例如**联系人与账户**。你很容易区分这种报表类型，因为在创建新报表时选择该报表类型时会显示**预览**。\n\n  ![](img/72d01bea5a9ccf02f9452aab7505d9de_143_0.png)\n\
+  \n- 当你为自定义对象启用**允许报表**选项时自动生成的报表类型。这种报表类型不会有**预览**，而只会显示**无预览可用**。\n\n当你将一个对象关联到另一个对象且两个对象都已启用报表时，具体会发生什么取决于关系类型。在以下示例中，我们将使用\
+  \ Customer（自定义对象）作为父对象，Claim（自定义对象）作为子对象。两个对象都已启用报表。让我们更仔细地查看主从关系和查找关系，并看看在建立这些对象之间的关系时报表类型会发生什么。\n\
+  \n### 查找关系\n\n当你在对象之间添加查找字段关系时，报表类型相关的行为如下：\n\n- 当你为 Claim 对象激活**启用报表**时，系统将自动创建**索赔**报表类型。\n\
+  - 当你以查找关系将**Claim**作为子对象关联到 Customer 对象时，系统会将 Customer 字段添加到 Claims 报表类型中。用户将看到\
+  \ Claims 报表类型中可用的额外客户名称字段，但 Customer 对象的其他字段将不可用于报表。Claims 报表类型将包含有或无 Customer 的所有索赔记录：\n\
+  \n  ![](img/72d01bea5a9ccf02f9452aab7505d9de_144_0.png)\n\n- 现有的**客户**报表类型不会发生变化，因为**Customer**是父对象。\n\
+  - 一个名为**带客户的索赔**的新报表类型将在**其他报表**类别中创建。此报表类型将包含**Claim**和**Customer**对象的所有可用字段。\n\
+  \n  ![](img/72d01bea5a9ccf02f9452aab7505d9de_145_0.png)\n\n- 此报表类型将仅显示**带客户的索赔**记录；这也意味着没有客户的**索赔**记录将不会出现在生成的报表中。\n\
+  \n### 主从关系\n\n当你在对象之间添加主从关系时，报表类型相关的行为如下：\n\n- 当你为 Claim 对象激活**启用报表**时，系统将自动创建**索赔**报表类型。\n\
+  - 当你以主从关系将**Claims**作为子对象关联到**Customers**对象时，现有的**Claims**报表类型将被移除，因为**Claim**对象在主从关系中成为\
+  \ Customer 对象的子对象。\n- 现有的**Customers**报表类型没有变化，因为 Customer 是父对象。\n- 一个名为**带索赔的客户**的新报表类型将在**其他报表**类别文件夹中创建。请注意与前面讨论的**查找关系**部分中自动创建的报表类型的区别。此报表类型具有**Customer**和**Claim**对象的所有可用字段，并将仅显示**带索赔的客户**；这也意味着没有索赔的**客户**记录将不会出现在生成的报表中：\n\
+  \n  ![](img/72d01bea5a9ccf02f9452aab7505d9de_146_0.png)\n\n让我们在矩阵中总结前述关系：\n\n| 描述\
+  \ | 查找 | 主从关系 |\n|---|---|---|\n| 索赔报表类型 | 无变化，仅添加**客户**字段名 | **索赔**报表类型将被移除 |\n\
+  | 客户报表类型 | 无变化 | 无变化 |\n| 新创建的报表类型 | **带客户的索赔**，包含两个对象的所有字段，仅显示有客户的索赔记录；此处主对象为**索赔**\
+  \ | **带索赔的客户**，包含两个对象的所有字段，仅显示有索赔的客户记录；此处主对象为**客户** |\n\n### 自定义报表类型\n\n报表类型定义了报表可用的记录集和字段。报表类型的来源可以仅来自一个对象，也可以包含相关对象。报表类型还决定只有符合报表类型中定义的条件的记录才会在其中显示。\n\
+  \n当提供的标准报表类型无法满足你的报表需求时，你的管理员可以创建自定义报表类型。自定义报表类型支持多级对象关系，从父级对象作为主对象定义，并关联到子对象和孙对象，而不是反过来。\n\
+  \n让我们看一个例子——你有一个对象关系**客户 > 索赔 > 索赔付款**；在此关系中，你可以构建自定义报表类型**客户**包含**索赔**和**索赔付款**，而不是**索赔付款**包含**索赔**和**客户**。\n\
+  \n使用标准报表类型部分中讨论的**客户**和**索赔**对象，在主从关系中，**带索赔的客户**报表类型将被自动创建。参见以下说明；灰色区域将是使用此报表类型时的报表结果：\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_147_0.png)\n\n在上图中，A 是客户对象，B 是索赔对象。**带索赔的客户**标准报表类型将在你关联对象时由系统自动创建。此报表类型将仅为**带索赔的客户**生成报表，而**无索赔的客户**将无法在报表中使用该报表类型获得。如果你需要生成包含所有客户的报表，可以使用**客户**报表类型，但**索赔**字段将不会在报表中可用。\n\
+  \n\n\n\n\n## 理解报表类型\n\n在此场景中，自定义报表类型派上用场。我们可以创建一种客户的自定义报表类型，是否包含索赔均可。此报表类型将生成客户信息及索赔信息，即使客户没有任何索赔。此报表类型将生成包含所有客户数据的报表。请参阅以下截图中的灰色区域：\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_148_0.png)\n\n使用自定义报表类型，我们可以定义一个主对象并将其与子对象关联，其中：\n\
+  \n- 主对象中的记录必须至少有一个相关对象的记录\n- 主对象中的记录可能有也可能没有相关对象的记录\n\n> 自定义报表类型从顶层对象作为**主对象**开始；它仅支持每个层级一个子对象，但允许您创建多层父子层级。\n\
+  > \n> 使用自定义报表类型，您可以定义哪些对象的字段可用于报表列。如果某个字段从自定义报表类型中移除，该字段将从使用该报表类型构建的所有报表中移除。\n\n\
+  ## 创建自定义报表类型的动手练习\n\n此练习仅适用于系统管理员或具有**管理自定义报表类型**权限的用户。在此练习中，我们将创建一个新的自定义报表类型，其中**客户**为主对象，它可能有也可能没有**索赔**，索赔可能有也可能没有索赔付款。请确保所有对象都已创建并已启用报表。\n\
+  \n- 1. 导航到 **Setup | Feature Settings | Analytics | Reports & Dashboards | Report\
+  \ Types**（或您可以在 **Setup** 菜单的 **Quick Find** 文本框中输入 `report types` 轻松找到该菜单）并单击 **New\
+  \ Custom Report Type** 按钮。\n- 2. 在 **Primary Object** 中，所选对象将位于报表类型的顶层层级；在此练习中，选择\
+  \ **Customers**。\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_149_0.png)\n\n> 记录类型保存后，您将无法更改主对象。\n\
+  \n- 3. 输入 **Report Type Label** 和 **Report Type Name**。标签最长可达 255 个字符；对于此练习，将其标记为\
+  \ `Customers with/without Claims with/without Payment`。名称将自动填充，您可以修改它，但在此练习中保持不变。\n\
+  - 4. 为自定义报表类型输入 **Description**；您可以输入最多 1,000 个字符。此描述是必填项，并在用户选择报表类型创建报表时显示。提供有意义的描述，以便用户对报表可用数据有清晰了解，例如\
+  \ `All customers with Claim information`。\n- 5. 选择 **Store in Category**；始终将报表类型存储在正确的类别中；为了让用户轻松找到报表类型，选择\
+  \ **Other Reports**。\n- 6. 选择 **Deployment Status**；单击 **Next** 按钮继续。\n  - **In\
+  \ Deployment：** 具有此状态的报表类型仅对系统管理员和具有 **Manage Custom Report Types** 或 **Customize\
+  \ Application** 权限的用户可用。在设计和测试阶段选择此选项。报表类型及其报表对所有其他用户隐藏。\n  - **Deployed：** 此报表类型及其报表将对所有人可用。测试后且准备让所有用户访问时更改为此选项。\n\
+  - 7. 单击 **Next** 按钮继续。\n- 8. 客户将显示为主对象；单击 **(Click to relate to another object)**\
+  \ 以关联到子对象。在我们的练习中，选择 **Claims**，然后同样关联 Claims 到 **Claim Payments**。\n- 9. 单击 **Save**\
+  \ 按钮完成。请考虑以下截图：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_150_0.png)\n\n## 理解报表类型\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_151_0.png)\n\n自定义报表类型从顶层对象作为主对象开始，例如，**Customer\
+  \ with Claims**；此报表将获取所有有索赔和无索赔的客户。但如果您想报告所有索赔及客户信息，而不管是否链接到客户 - **Claim with Customers**\
+  \ 呢。\n\n您仍然可以为此场景使用自定义报表类型。将索赔设为主对象而不关联到其他对象，然后使用 **Add fields related via lookup**\
+  \ » 添加来自客户对象的字段。\n\n## 扩展自定义报表类型的动手练习\n\n让我们修改前面创建的 **Customers with/without Claims\
+  \ with/without Payment** 报表类型，以满足以下要求：\n\n- 索赔对象还具有对 **Policy** 自定义对象的查找关系。我们希望从\
+  \ **Policy** 对象获取状态字段。\n- 由于隐私原因，管理层决定不让用户在报表中使用 **Customer** 对象下的名为 **Tier** 的字段。\n\
+  \n根据这些要求，让我们打开并编辑创建的报表类型：\n\n- 1. 通过导航到 **Setup | Feature Settings | Analytics |\
+  \ Reports & Dashboards | Report Types**（或您可以在 **Setup** 菜单的 **Quick Find** 文本框中输入\
+  \ *report types* 轻松找到该菜单）打开创建的报表类型并单击报表类型名称。\n- 2. 现在，您应该在该报表类型中看到 **Fields Available\
+  \ for Reports** 部分。单击 **Edit Layout** 按钮将 **Policy Status** 字段添加到报表类型；默认情况下，策略相关字段不会对报表类型可用，如以下截图所示：\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_152_0.png)\n\n- 3. 将视图更改为 **Claim Fields**，然后在\
+  \ Lookup 下方单击 **Add fields related via lookup »**。由于 **Policy** 是来自索赔对象的查找字段，您应该在此处看到\
+  \ **Policy »** 链接。请考虑以下截图：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_153_0.png)\n\
+  \n- 4. 选择 **Status** 旁边的复选框，然后单击 **OK** 按钮。\n- 5. 现在您应该看到 Status（带放大镜图标）已添加到 Claims\
+  \ 部分。\n- 6. 接下来，我们希望从 **Customers** 中移除 **Tier** 字段；只需将 **Tier** 字段拖放到右侧的 **Customers\
+  \ Fields** 面板中，如以下截图所示：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_154_0.png)\n\
+  \n- 7. 单击保存按钮。\n- 8. 请注意，在 Fields Available for Reports 部分，Customers 字段现在变为七个字段，Claims\
+  \ 变为 10 个字段。\n\n## 使用自定义报表类型的动手练习\n\n在此练习中，我们将使用前面练习中创建和编辑的报表类型：\n\n- 1. 单击 Reports\
+  \ 选项卡，然后单击 New Report... 按钮。\n- 2. 在 Select Report Type 下的 Quick Find 文本框中输入 customer。\n\
+  - 3. 选择 Customers with/without Claims with/without Payment，然后单击 Create 按钮。\n- 5.\
+  \ 选择此报表类型时默认添加了三个字段-- **Customer Name, Claim Name, Claim Payment Name**。以下截图显示有三个字段被选中。因此，如果您想添加更多默认字段，例如\
+  \ **Policy: Status**，双击该字段并选择 **Checked by Default** 复选框。请考虑以下截图：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_156_0.png)\n\
+  \n- 6. 我们不打算存储此报表，因此可以忽略此处的报表生成器。但是，如果您想保存报表，请随意将其保存到您的个人报表文件夹。\n\n## 自定义报表类型的限制和优势\n\
+  \n在阅读本章时，我们可以利用自定义报表类型实现以下功能：\n\n- 过滤与子对象相关的报表结果\n- 使用来自父对象的查找字段扩展报表\n- 隐藏字段将不可用于报表\n\
+  - 设置创建新报表时添加的默认字段\n\n实施自定义报表类型时的一些限制如下：\n\n- 自定义报表类型最多可包含 60 个对象引用。\n- 每个自定义报表类型最多可添加\
+  \ 1,000 个字段。\n- 报表类型名称的最大长度为 50 个字符，包括空格。\n\n\n\n\n\n- 有一些标准字段不适用于自定义报表类型，例如**产品计划**字段、个案和机会上的**年龄**字段等。\n\
+  - 如果在创建报表类型后，向与该报表类型关联的对象添加字段，则新添加的字段默认不会在该报表类型中可用。管理员需要手动将这些字段添加到报表类型中。\n- 一个报表类型最多可以关联四级对象关系，每一级只能包含一个对象。\n\
+  \n## 自定义报表类型的使用技巧\n\n为了以更低的维护成本充分利用自定义报表类型，作为管理员，在实施报表类型时，你需要注意以下几点：\n\n- 当在对象中创建新字段时，如果需要将新添加的字段添加到某个报表类型，请检查所有现有的报表类型。\n\
+  - 始终使用能够反映报表类型内容和筛选条件的名称。在本章前面讨论的练习中，我们使用了**有/无索赔且有/无付款的客户**作为名称，它说明了主对象是什么以及它与子对象的关系。\n\
+  - 始终添加有意义的**描述**。描述是必填项，并且对创建报表的用户可见。\n- 自定义报表类型会添加到报表类别的底部。如果你是创建报表类型的人，请提醒具有创建报表权限的用户。\n\
+  - 记得将报表类型状态改为**已部署**；否则，你的用户在构建报表时将看不到该报表；请参阅*创建自定义报表类型的动手练习*一节。\n- 如果当前报表类型需要重大更改，例如添加或编辑对象关系，建议将该报表类型克隆为一个新报表类型，以免影响使用该报表类型构建的现有报表。\n\
+  - 需要时更改字段分区文件夹名称。默认情况下，分区文件夹名称与对象名称一致。该名称会出现在报表生成器中，因此，当你从报表类型设置中更改它时，报表生成器中的分区文件夹名称也会随之更改。\n\
+  - 轻松隐藏未使用的报表类型（标准和自定义报表类型），这样你的用户就不会被过多的报表类型所困扰。其中一些可能不再需要，如果你确定它们未在活跃报表中使用，可以在隐藏几个月后将其删除。\n\
+  \n## 总结\n\n在本章中，我们详细介绍了报表类型，并探讨了为什么报表类型在构建报表时如此重要。我们还看到，当你为报表启用某个对象时，系统会自动为自定义对象生成新的报表类型。\n\
+  \nSalesforce中有两种众所周知的关联类型：当将一个对象与另一个对象关联时，可以使用查找关系和主从关系。我们讨论了这如何影响报表类型。我们介绍了如何扩展父对象中的字段，以及如何移除用户无法在报表中使用的字段。\n\
+  \n最后，我们分享了使用自定义报表类型的好处和限制，并意识到其中一个限制是，大多数人在添加新字段时会发现这些字段在报表类型中不可用。管理员需要手动添加它们；而使用标准报表类型时，当添加新字段时，对象的所有字段都会被自动添加。\n\
+  \n在下一章中，我们将讨论与报表相关的更高级功能，包括自定义汇总公式、桶字段、向报表添加图表、向页面布局添加图表以及计划报表。\n"
+- "## 高级报表配置\n\n你在第5章*理解报表类型*中详细学习了报表类型。在该章中，我们介绍了什么是报表类型，以及为什么报表类型对于构建报表如此重要。我们还讨论了报表类型类别、标准报表类型、自定义报表类型，并以一个动手练习结束：创建自定义报表类型、扩展自定义报表类型，以及通过创建新报表来应用它。\n\
+  \n在本章中，我们将继续介绍桶字段和自定义汇总公式。与报表类型不同，创建报表时必须选择报表类型；桶字段和自定义汇总公式是可选的，你可以使用也可以不使用它们。但在许多场景下，我们可以利用这些功能来构建高级报表，例如使用自定义汇总公式按月显示百分比增长趋势。\n\
+  \n学完本章后，你将完全理解桶字段的好处以及如何使用自定义汇总公式，这将有助于你构建报表。桶字段和自定义汇总公式都适用于Classic和Lightning环境，在Classic和Lightning环境中配置它们没有区别。\n\
+  \n在本章中，我们将提供注释和提示，帮助你理解重要内容。将涵盖以下主题：\n\n- 使用桶字段对数据进行分类以用于报表\n- 介绍并创建自定义汇总公式\n- 自定义汇总公式中可用的函数\n\
+  - 相关函数：`PARENTGROUPVAL` 和 `PREVGROUPVAL`\n\n### 对报表中的数据进行分类\n\n在第4章*创建和管理报表*中，我们使用**摘要格式**按可用字段将报表分组为多个级别。生成的报表将以分组形式显示，组的数量取决于用于分组的字段返回的值。这意味着，如果报表中没有返回某个值，该值将根本不会显示在分组中。例如，如果你按月份分组，可能会发现某些月份没有记录，因此这些月份不会显示。\n\
+  \n如果我们需要将某个字段的多个值归类到一个类别中呢？使用`CASE()`函数创建公式字段可能是一种解决方案，但请思考该公式字段会被多频繁地使用，或者该公式字段是否只用于一个报表？该分类是整个组织的标准，还是仅适用于某个报表？此外，只有系统管理员才能创建公式字段。\n\
+  \n如果答案仅是用于一个或极少数报表，而不是整个组织的标准，那么创建新的公式字段并不是一个好方案；此外，一个对象中可创建的公式字段数量是有上限的。对于这两种场景，桶字段就应运而生。\n\
+  \n### 桶字段\n\n那么什么是桶字段？它是Salesforce在报表中提供的一项非常强大的功能。它允许你在报表中快速对某个字段的值进行分类，而无需在对象级别创建自定义公式字段。创建桶字段时，你可以根据记录值将多个类别定义到组中；该桶字段不会影响其他报表或对象本身。\n\
+  \n例如，在**客户类型**中有以下值：\n\n- **潜在客户**\n- **客户 - 直接**\n- **客户 - 渠道**\n- **渠道合作伙伴/经销商**\n\
+  - **安装合作伙伴**\n- **技术合作伙伴**\n- **其他**\n\n你需要将所有包含 Customer 的客户类型归类为**客户**，所有包含 Partner\
+  \ 的**客户类型**归类为**合作伙伴**，所有包含 Prospect 的**客户类型**归类为**潜在客户**，其余归类为**其他**。使用桶字段，你将获得一个新字段，而无需专门在客户对象中创建自定义公式字段。对于此场景，桶字段将包含以下值：\n\
+  \n- **潜在客户**\n- **客户**\n- **合作伙伴**\n- **其他**\n\n这些值仅适用于所配置的特定报表。\n\n大多数报表格式都支持桶字段：**表格**、**摘要**和**矩阵**。但是，**联接**报表不支持桶字段。当你将报表格式更改为另一种格式时，桶字段会保留。如果你有一个包含桶字段的报表，然后将报表格式更改为联接报表，则桶字段会被移除。\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_161_0.png)\n\n一份报表中最多可以添加五个桶字段。每个桶字段最多可包含20个桶。\n\
+  \n可以使用以下字段类型作为桶字段的源字段：\n\n- **数字、货币、百分比**\n- **选择列表**\n- **文本**\n- **查找**\n\n这包括**公式**字段和**累计汇总**字段，它们返回前面所示的字段类型。\n\
+  \n以下字段类型不能用作桶字段的源字段：\n\n- **日期和日期/时间——虽然桶字段不支持这些类型，但你仍然可以通过使用“摘要”和“矩阵”报表中讨论的“分组依据”功能来实现与桶字段类似的概念**\n\
+  - **复选框——你可以创建一个返回1或0的自定义公式字段，或者一个返回文本“是/否”或“真/假”的自定义公式字段，然后在你的桶字段中使用该自定义公式字段**\n\
+  - **电子邮件**\n\n\n\n\n\n- Phone\n- Picklist (Multi-Select)\n- Text Area, Long Text\
+  \ Area, and Rich Text Area\n- URL\n\n## 为报表添加桶字段的动手练习\n\n在本练习中，我们将创建一个 Account 报表，并将包含\
+  \ Customer 的所有 Account Type 分类为 Customer，将包含 Partner 的所有 Account Type 分类为 Partner，将包含\
+  \ Prospect 的所有 Account Type 分类为 Prospect，其余的分类为 Other：\n\n- 1. 导航到 Reports 选项卡并点击\
+  \ New Report... 按钮。\n- 2. 选择 Accounts 报表类型并点击 Accounts & Contacts 类别下的加号。\n- 3.\
+  \ 点击 Create 按钮继续。\n- 4. 将 Show 改为 All Accounts。\n- 5. 将 Date Field Range 改为 All\
+  \ Time。\n- 6. 点击 Remove All Columns 以清除报表中的所有列。此链接在您想要创建一个没有任何默认字段的新报表时很有用。\n- 7.\
+  \ 通过在左侧面板中双击字段来添加 Account Name 和 Account Owner。\n- 8. 在左上角面板的 Bucket Fields 下双击\
+  \ Add Bucket Field（或将其拖到报表区域）。\n- 9. 将 Source Column 设置为 Type。\n- 10. 在 Bucket Field\
+  \ Name 中输入 Type (Core)。\n- 11. 点击 New Bucket 按钮并输入 Customer。对 Partner 和 Prospect\
+  \ 重复相同的操作。\n- 12. 选择所有 Type contains Customer 并点击 Move To 按钮。然后选择 Customer，您会注意到所选的\
+  \ picklist 字段上添加了桶标签。对 Partner 和 Prospect 重复操作。\n\n13. 勾选 Show Unbucketed values\
+  \ as \"Other.\" 以将剩余部分分类为 Other。这在以下截图中显示：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_163_0.png)\n\
+  \n14. 点击 OK 按钮继续。您会注意到报表中新增了一列 Type (Core)，标签前带有桶图标。\n\n15. 点击 Save 按钮并输入以下详细信息：\n\
+  \n- Report Name 为 Account with Bucket Fields\n- Report Folder 为 My Personal Custom\
+  \ Reports\n- 再次点击 Save 按钮\n\n16. 点击 **Run Report** 按钮生成报表。报表将如下所示：\n\n| ACCOUNT\
+  \ NAME | ACCOUNT OWNER ↑ | TYPE (CORE) |\n|---|---|---|\n| United Oil & Gas, UK\
+  \ | Alvin Lee | Customer |\n| United Oil & Gas Corp. | Alvin Lee | Customer |\n\
+  | Element Industry Ltd | Alvin Lee | Prospect |\n| Accurate Glass | Alvin Lee |\
+  \ Customer |\n| Mass-100 | Alvin Lee | Other |\n| PMA Manufacturing | Johan Yu |\
+  \ Prospect |\n\n17. 点击 **Save As** 按钮：\n\n- **Report Name** 为 **Account with Bucket\
+  \ Fields**\n- **Report Folder** 为 **My Personal Custom Reports**\n\n您可以将桶字段视为普通字段，您可以对以下项目使用桶字段：\n\
+  \n- 用作 **Summary** 和 **Matrix** 报表的分组\n- 用作报表筛选器\n- 用于报表排序\n- 在导出报表时可用；我们将在本章后面讨论导出报表\n\
+  - 当您在左侧面板输入以筛选字段时，会包含在字段搜索结果中\n\n## 根据源字段类型创建桶字段\n\n在前面的示例中，我们使用了 picklist 字段作为源字段；然而，不同的字段类型在定义桶字段时会有不同的方法。\n\
+  \n在以下各节中，我们将讨论如何使用不同类型的字段作为字段源来创建桶字段。\n\n### Picklist 字段\n\n通过以 picklist 作为字段源创建桶字段，您将能够将\
+  \ picklist 值分类到更小的类别中。使用 picklist 字段作为桶字段的源字段类型时需要注意以下几点：\n\n- 选择 picklist 值并将其移入桶中\n\
+  - 一个 picklist 不能被分类到多个桶中\n- 并非所有 picklist 字段都可作为桶的源，例如记录类型\n- 如果您未选择 **Show unbucketed\
+  \ values as \"Other,\"**，未被桶捕获的所有值将如以下截图所示：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_165_0.png)\n\
+  \n### Currency、Number 和 Percent 字段\n\n通过以货币、数字和百分比作为字段源创建桶字段，您将能够对可以用数字描述的数据进行排序。使用这些字段类型创建桶字段时需要注意以下几点：\n\
+  \n- 您需要为小范围和大范围值至少设置两个桶\n- 您可以添加多个桶范围，最多总共 20 个桶\n- 如果您未勾选 Treat empty <field name>values\
+  \ in the report as zeros，源列的空白值将如下所示：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_166_0.png)\n\
+  \n## 编辑桶字段\n\n您可以通过将鼠标悬停在左上角面板中的桶字段上，然后点击铅笔图标来编辑桶字段。您可以通过点击铅笔图标旁边的垃圾桶图标来删除桶字段。\n\
+  \n点击铅笔图标将打开桶字段窗口；要从桶字段值中移除所选值，请执行以下步骤：\n\n- 1. 点击该桶；它将显示为该桶所选的所有值。\n- 2. 点击复选框以选择该值。\n\
+  - 3. 点击 Move To 按钮，然后点击 Unbucketed Values 或另一个桶。请考虑以下截图：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_168_0.png)\n\
+  \n## 自定义汇总公式\n\n不要将报表中的自定义汇总公式与对象的公式字段混淆。它们是完全不同的事物，彼此没有任何关系，尽管它们都有公式。\n\n自定义汇总公式仅在\
+  \ Summary、Matrix 和 Joined 报表中可用。使用自定义汇总公式可根据报表中可用的数值字段或记录计数计算额外的总计。前面本章讨论的桶字段也是如此。在报表中创建的自定义汇总公式不会影响其他任何地方，也与其它报表无关。\n\
+  \n当您需要从 Lookup 或 Master-Detail Relationship 对象获取值时，公式字段才是答案；您不能将自定义汇总公式用于此目的。因此，每当您需要为任何用途（包括报表）从父\
+  \ lookup 对象获取字段值时，请创建公式字段，然后将其从页面布局中隐藏。但是，只有系统管理员才能创建公式字段。\n\n当您创建自定义汇总公式时，您需要定义返回的格式以及要返回的小数位数。以下是自定义汇总公式可返回的格式选项：\n\
+  \n- Currency\n- Number\n- Percent\n\n只有以下字段类型可用于自定义汇总公式的公式中：\n\n- Currency\n- Number\n\
+  - Percent\n- Record Count\n- 您还可以使用公式字段和汇总求和字段，这些字段返回上述字段类型\n- 与报表中的汇总字段选项类似，您可以在自定义汇总公式中使用这些选项：Sum、Max、Min\
+  \ 和 Average；例如，`Account.Number_of_Branch__c:SUM`\n\n## Summary 和 Matrix 报表中的自定义汇总公式\n\
+  \n在 Summary 报表中，自定义汇总公式可以显示在：\n\n- **All summary levels**：这与字段汇总类似\n- **Grand summary\
+  \ only**：这与总计相同\n- **Grouping**：此选项具有 1 或 2 或 3 级（取决于报表中添加了多少个分组级别）\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_170_0.png)\n\
+  \n前面的截图取自具有两个分组级别的 Summary 报表，Opportunity Owner 和 Type。\n\n对于 Matrix 报表，自定义汇总公式可以显示在：\n\
+  \n- **All summary levels.**\n- **A specific row/column grouping level...**；选择此选项后，您将可以选择对行\
+  \ (A) 和列 (B) 分组使用字段或 Grand Summary。如果您有多个行或列分组级别，您可以选择其中任何一个。\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_170_1.png)\n\
+  \n前面的截图取自具有两个行分组级别（标记为 A）的 Matrix 报表，Opportunity Owner（第一级）和 Closed（第二级），以及一个列分组级别（标记为\
+  \ B）：Type。\n\n\n\n\n\n## 高级报表配置\n\n- 1. 转到 **Reports** 选项卡并点击 **New Report...**\
+  \ 按钮。\n- 2. 选择 **Accounts** 报表类型并在 **Accounts & Contacts** 类别下点击加号。\n- 3. 点击 **Create**\
+  \ 按钮继续。\n- 4. 将 **Show** 改为 **All accounts**。\n- 5. 将 **Date Field Range** 改为 **All\
+  \ Time**。\n- 6. 将格式改为 **Summary** 并点击 **Remove All Columns**。\n- 7. 从 **Fields**\
+  \ 面板向报表添加 **Account Name** 和 **Type**。\n- 8. 将 **Account Owner** 拖到分组区域。\n- 9. 在左侧面板的\
+  \ **Fields** 下双击 **Add Formula**。如下图所示：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_172_0.png)\n\
+  \n- 10. 输入 **Column Name** 为 `Total Open Opportunities`。\n- 11. 输入 **Description**\
+  \ 为 `Total Amount of Open Opportunities`。\n- 12. 选择 **Format** 为 **Currency** 和\
+  \ **Decimal Places** 为 **2**。\n\n## 高级报表配置\n\n- 13. 选择 **Grand summary only**。\n\
+  - 14. 在 **Formula** 字段中，导航到 **Summary Fields | Total Amount of Open Opportunities\
+  \ | Sum**。请考虑以下截图：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_173_0.png)\n\n- 15.\
+  \ 公式将自动填充为 **Account.Total_Amount_of_Open_Opportunities__c:SUM**。\n- 16. 点击 **OK**\
+  \ 按钮并注意公式和报表列中添加的 **Total Open Opportunities** 选项。\n- 17. 请注意，公式汇总字段始终添加到报表的最后一列，并且您无法将其向左移动。\n\
+  - 18. 将报表保存为 **Open Opportunities**。\n- 19. 点击 **Run Report**。\n\n以下是报表结果：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_174_0.png)\n\
+  \n## 高级报表配置\n\n20. 现在让我们通过将鼠标悬停在 **Total Open Opportunities** 公式上然后点击铅笔图标来更改公式。\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_175_0.png)\n\n要编辑或删除公式，当报表处于报表构建器中时，将鼠标悬停在公式上并点击铅笔图标或垃圾桶图标；这与桶字段相同。\n\
+  \n21. 从 **Grand summary only** 改为 **All summary levels**。如下图所示：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_175_1.png)\n\
+  \n22. 点击 **OK** 按钮然后点击 **Run Report**。\n\n23. 查看以下截图中的更改；Account Owner 的小计值现在已填充：\n\
+  \n# REPORT\nOpen Opportunities\n\nTotal Records\n17\nTotal Open Opportunities\n\
+  $1,250,000.00\n\n| ACCOUNT OWNER | ACCOUNT NAME | TYPE | TOTAL OPEN OPPORTUNITIES\
+  \ |\n|---|---|---|---|\n| Alvin Lee (4 records) | Accurate Glass | Customer - Channel\
+  \ | |\n|  | Element Industry Ltd | Prospect | |\n|  | United Oil & Gas, UK | Customer\
+  \ - Direct | |\n|  | United Oil & Gas Corp. | Customer - Direct | |\n| Subtotal\
+  \ |  |  | $395,000.00 |\n| Johan Yu (13 records) | Burlington Textiles Corp of America\
+  \ | Customer - Direct | |\n|  | Dickenson plc | Customer - Channel | |\n|  | Edge\
+  \ Communications | Customer - Direct | |\n|  | Express Logistics and Transport |\
+  \ Customer - Channel | |\n|  | GenePoint | Customer - Channel | |\n|  | Grand Hotels\
+  \ & Resorts Ltd | Customer - Direct | |\n|  | King Inc | Customer - Direct | |\n\
+  |  | PMA Manufacturing | Prospect | |\n|  | Pyramid Construction Inc. | Customer\
+  \ - Channel | |\n|  | Quality Materials | Customer - Channel | |\n|  | Super Force\
+  \ Inc | Customer - Direct | |\n|  | United Oil & Gas, Singapore | Customer - Direct\
+  \ | |\n|  | University of Arizona | Customer - Direct | |\n| Subtotal |  |  | $855,000.00\
+  \ |\n| GRAND TOTAL (17 RECORDS) |  |  | $1,250,000.00 |\n\n但由于 **TOTAL AMOUNT OF\
+  \ OPEN OPPORTUNITIES** 是 Account 中的汇总求和字段，我们只需将该字段添加到报表并对其进行汇总，就能得到类似的报表结果：\n\n\
+  | REPORT Open Opportunities |\n| Total Records | Total Total Amount of Open Opportunities\
+  \ | Total Open Opportunities |\n| 17 | $1,250,000.00 | $1,250,000.00 |\n| ACCOUNT\
+  \ OWNER | ACCOUNT NAME | TYPE | TOTAL AMOUNT OF OPEN OPPORTUNITIES Sum | TOTAL OPEN\
+  \ OPPORTUNITIES |\n| Alvin Lee (4 records) | Accurate Glass | Customer - Channel\
+  \ | $0.00 | |\n|  | Element Industry Ltd | Prospect | $0.00 | |\n|  | United Oil\
+  \ & Gas, UK | Customer - Direct | $0.00 | |\n|  | United Oil & Gas Corp. | Customer\
+  \ - Direct | $395,000.00 | |\n| Subtotal |  |  | $395,000.00 | $395,000.00 |\n|\
+  \ Johan Yu (13 records) | Burlington Textiles Corp of America | Customer - Direct\
+  \ | $0.00 | |\n|  | Dickenson plc | Customer - Channel | $15,000.00 | |\n|  | Edge\
+  \ Communications | Customer - Direct | $35,000.00 | |\n|  | Express Logistics and\
+  \ Transport | Customer - Channel | $200,000.00 | |\n|  | GenePoint | Customer -\
+  \ Channel | $60,000.00 | |\n|  | Grand Hotels & Resorts Ltd | Customer - Direct\
+  \ | $265,000.00 | |\n|  | King Inc | Customer - Direct | $0.00 | |\n|  | PMA Manufacturing\
+  \ | Prospect | $0.00 | |\n|  | Pyramid Construction Inc. | Customer - Channel |\
+  \ $100,000.00 | |\n|  | Quality Materials | Customer - Channel | $0.00 | |\n|  |\
+  \ Super Force Inc | Customer - Direct | $80,000.00 | |\n|  | United Oil & Gas, Singapore\
+  \ | Customer - Direct | $0.00 | |\n|  | University of Arizona | Customer - Direct\
+  \ | $100,000.00 | |\n| Subtotal |  |  | $855,000.00 | $855,000.00 |\n| GRAND TOTAL\
+  \ (17 RECORDS) |  |  | $1,250,000.00 | $1,250,000.00 |\n\n在这种情况下，除非您需要隐藏每个商机的金额而只获取总计，否则无需创建汇总公式。本次实操中的示例并未展示报表公式汇总的真正威力；除了正常的汇总字段外，我们无法对其进行配置，并且它将始终在所有层级显示。让我们在下一个实操练习中查看汇总公式的更好用法。\n\
+  \n## 使用汇总公式的实操练习\n\n让我们考虑一个用例：在 **Summary** 报表中，在所有汇总层级添加 **Total Amount of Closed\
+  \ Opportunities**。假设已在 Account 中从 Opportunity 创建了名为 **Total Amount of Opportunities**\
+  \ 和 **Total Amount of Open Opportunities** 的汇总求和字段，并且 **Total Amount of Open Opportunities**\
+  \ 字段的详细信息已在之前的实操中讨论过，以下是 **Total Amount of Opportunities** 的汇总求和字段详细信息：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_178_0.png)\n\
+  \n- 1. 创建一个新的自定义汇总公式字段，类似于我们在之前的实操练习中创建的，并将其命名为 `Total_Closed_Opportunities`，公式为：`Account.Total_Amount_of_Opportunities__c:SUM\
+  \ - Account.Total_Amount_of_Open_Opportunities__c:SUM`\n\n2. 为了澄清本次练习，让我们在报表中添加\
+  \ Total Amounts of Opportunities 和 Total Amount of Open Opportunities 汇总求和字段，然后使用\
+  \ Sum 对其进行汇总。请考虑以下截图：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_179_0.png)\n\n\
+  3. 在前面的报表中，Total Amount of Closed Opportunity（汇总公式）等于 Total Amount of Opportunity（汇总求和字段）减去\
+  \ Total Amount of Open Opportunity（汇总求和字段）。我们在汇总公式之间使用 Subtract 运算符，我们也可以将此技术用于其他公式：\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_179_1.png)\n\n## 高级报表配置\n\n如果您注意到 **Custom\
+  \ Summary Formula** 编辑器中 **Formula** 右侧的区域，有许多函数可用于增强您的公式；它们被归类为 **All, Logical,\
+  \ Math,** 和 **Summary**。我们不会讨论每个可用函数，但让我们在下一节中看一个示例。\n\n## 使用 IF() 函数\n\nIF() 函数归类在\
+  \ Logical 函数下，此公式的语法为 **IF(logical_test, value_if_true, value_if_false)**。\n\n此函数检查条件是否返回\
+  \ true。如果是，它将返回定义的第一值；否则，它将返回第二值，例如，`IF(RowCount > 4, WON:SUM, CLOSED:SUM)`。\n\n\
+  如果记录数超过四行，此公式将返回 WON 商机的总数；否则，它将返回 CLOSED 商机的总数。WON 和 CLOSED 可从 Opportunity 报表类型获得。\n\
+  \n您不必真正输入 `WON:SUM` 和 `CLOSED:SUM` 或您想要使用的其他字段，但从 **Custom Summary Formula** 窗口，导航到\
+  \ **Summary Fields | <field name> | Sum**。\n\n一旦您点击 **Sum**，它将自动填充到公式中；只需确保将光标放在公式编辑器中即可。\n\
+  \n\n\n\n\n## 高级报表配置\n\n让我们使用前述公式查看报表结果：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_181_0.png)\n\
+  \n让我们分析前述报表；**Check Count** 是一个汇总公式：\n\n- 对于 **OPPORTUNITY OWNER Alvin Lee**，由于有四条记录，公式将返回\
+  \ **Alvin Lee** 的已关闭商机数量，为 2。在此练习中，一个商机为 **Won**，一个商机为 **Lost**。\n- 对于 **OPPORTUNITY\
+  \ OWNER Johan Yu**，有五条记录；公式将返回 **Johan Yu** 的获胜商机数量，为 4。\n- 对于 **GRAND TOTAL**，总记录数为九；公式将返回总的获胜商机数量，为\
+  \ 5：其中 **Alvin Lee** 的一个商机和 **Johan Yu** 的四个商机。\n\n## 使用 MAX() 函数\n\nMAX 函数被归类为数学函数；此公式的语法为\
+  \ MAX(number,number,...)。\n\n此函数返回所有参数中的最大值，例如，\n\n```\nMAX(Opportunity.Projected_Revenue__c:SUM,\
+  \ AMOUNT:SUM).\n```\n\n与前面解释的 IF() 函数相同；你只需点按即可获取前述公式填充。在此示例中，我们使用商机报表类型，MAX() 函数通过比较名为\
+  \ PROJECTED REVENUE 的自定义字段的合计与 AMOUNT 的合计来返回最大值。示例报表如下所示：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_182_0.png)\n\
+  \n让我们分析前述报表；MAX AMOUNT 是一个汇总公式：\n\n- 我们将 MAX AMOUNT 汇总字段设置为仅在分组级别显示，因此它不会在 GRAND\
+  \ TOTAL 中显示\n- 因为这是一个汇总公式，它不会在记录级别比较 **AMOUNT** 值与 **PROJECTED REVENUE** 值，而只在 **Summary**\
+  \ 中比较\n- 对于 **OPPORTUNITY OWNER** Alvin Lee，**AMOUNT** 大于 **PROJECTED REVENUE**，因此\
+  \ **MAX AMOUNT** 等于 **AMOUNT**\n- 对于 **OPPORTUNITY OWNER** Johan Yu，**PROJECTED\
+  \ REVENUE** 大于 **AMOUNT**，因此 **MAX AMOUNT** 等于 **PROJECTED REVENUE**。\n\n## 函数公式\n\
+  \nSalesforce 中有两种仅在汇总公式中可用且被认为是最强大的报表公式的功能。它们被归类在汇总函数下：`PARENTGROUPVAL` 和 `PREVGROUPVAL`。\n\
+  \n### PARENTGROUPVAL() 函数\n\n`PARENTGROUPVAL()` 函数返回指定分组的值；分组级别高于公式显示级别。\n\n公式语法取决于报表格式：\n\
+  \n- 在 **Summary** 和 **Joined** 报表中：*PARENTGROUPVAL(summary_field, grouping_level)*\n\
+  - 在 **Matrix** 报表中：*PARENTGROUPVAL(summary_field, parent_row_grouping, parent_column_grouping)*\n\
+  \n### 在汇总报表中使用 PARENTGROUPVAL() 函数\n\n对于 **Summary** 报表，当你选择公式显示为 **All summary\
+  \ levels** 或 **Grand summary only** 时，`PARENTGROUPVAL()` 函数不适用。只能显示为字段分组的公式可以使用此函数。\n\
+  \n接下来，我们需要为两个参数 **Summary Fields** 和分组级别填充值。让我们从分组级别参数开始；我会告诉你为什么我先从分组级别而不是 **Summary\
+  \ Fields** 参数开始。\n\n## 高级报表配置\n\n让我们通过一个动手练习来填充参数；在本次练习中，我们有一个 **Summary** 报表，有两个字段分组级别；第一级是\
+  \ **OPPORTUNITY OWNER**，第二级是 **TYPE**：\n\n1. 确保你选择公式显示为字段分组，而不是所有汇总或总汇总；因为报表有两个字段分组级别，我们将有两个选项。它们是\
+  \ **Grouping 1: Opportunity Owner** 和 **Grouping 2: Type**；让我们为本次练习选择 **Grouping\
+  \ 2: Type**。\n2. 将鼠标放在 **Formula** 编辑器中并从下拉菜单中选择 **PARENTGROUPVAL** 函数。\n3. 如果汇总报表中只有一个字段分组级别，父\
+  \ grouping_level 参数始终为 **GRAND_SUMMARY**，而如果像本次练习中那样有多个级别（两个分组级别），我们将有 **GRAND_SUMMARY**\
+  \ 和第一个分组级别的字段名称作为父分组级别的选项，在我们的练习中为 Opportunity Owner。\n4. 当公式显示选择为第二级分组时，父分组级别中的第一级分组的字段名称将被启用。简而言之，父分组级别的可用性比所选公式显示高一个级别。比较以下截图；第一张是在选择\
+  \ **Grouping 2: Type** 时：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_184_0.png)\n\
+  \n将其与以下截图进行比较。当选择 **Grouping 1: Opportunity Owner** 时，**Opportunity Owner** 在父分组级别中变为禁用：\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_185_0.png)\n\n5. 让我们为本次练习选择 **Grouping\
+  \ 2: Type** 并从单选按钮中选择 **Opportunity Owner** 作为父分组级别。\n6. 单击 **< Insert** 按钮，你将在我们的示例中获得公式添加：**PARENTGROUPVAL(summary_field,\
+  \ FULL_NAME)**。\n7. 删除 **summary_field** 文本并将其更改为正确的字段汇总。要填充 **summary_field** 参数，将光标放在逗号前，单击\
+  \ **Summary Fields**，选择你想要使用的字段名称（例如 **Amount**），并选择操作（例如 **Sum**）。现在你的公式应为 *PARENTGROUPVAL(AMOUNT:SUM,\
+  \ FULL_NAME)*。\n\n以下是最终公式。查看以下截图中分组级别之间的关系箭头：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_186_0.png)\n\
+  \n接下来，让我们创建一个新的汇总报表：\n\n1. 按 CLOSE DATE 对报表进行分组（按日历月分组日期），然后按 Opportunity Owner\
+  \ 分组。\n2. 添加一个汇总公式并命名为 Amount by Close Date；添加此公式并在 Opportunity Owner（Grouping 2）处显示，公式为\
+  \ PARENTGROUPVAL(AMOUNT:SUM, CLOSE_DATE):。\n3. 将创建的汇总公式添加到报表中。\n4. 添加 Amount 字段并将其汇总为\
+  \ Sum。这在以下截图中显示：\n\n## 高级报表配置\n\n| CLOSE DATE | OPPORTUNITY OWNER | OPPORTUNITY\
+  \ NAME | AMOUNT Sum | AMOUNT BY CLOSE DATE |\n|---|---|---|---|---:|---:|\n| June\
+  \ 2016 (3 records) | Alvin Lee (1 record) | Pyramid Emergency Generators | $100,000.00\
+  \ | |\n|  |  | Subtotal | $100,000.00 | $265,000 |\n|  | Johan Yu (2 records) |\
+  \ Element Stage 1A | $85,000.00 | |\n|  |  | Element Stage 1B | $80,000.00 | |\n\
+  |  |  | Subtotal | $165,000.00 | $265,000 |\n| Subtotal |  |  | $265,000.00 | -\
+  \ |\n| July 2016 (3 records) | Alvin Lee (1 record) | Element Phase IIa | $38,000.00\
+  \ | |\n|  |  | Subtotal | $38,000.00 | $213,000 |\n|  | Johan Yu (2 records) | Project\
+  \ Motor Head | $100,000.00 | |\n|  |  | Project Motor Links in Kentica | $75,000.00\
+  \ | |\n|  |  | Subtotal | $175,000.00 | $213,000 |\n| Subtotal |  |  | $213,000.00\
+  \ | - |\n| GRAND TOTAL (6 RECORDS) |  |  | $478,000.00 | - |\n\n让我们从截图中分析报表：\n\n\
+  - **在 2016 年 6 月**，Total Amount 为 **$265,000.00**。我们看到此值与汇总公式的值相同；这意味着汇总公式的值来自上一级，即\
+  \ Close Date 的小计。\n- **在 2016 年 7 月**，Total Amount 为 **$213,000.00**，与汇总公式中的值相同。\n\
+  - 公式的值将在报表中 **Opportunity Owner**（即第 2 级）分组中可用，父分组级别为 **CLOSE_DATE**。\n\n接下来，让我们在同一报表中创建另一个类似的公式：\n\
+  \n1. 名称为 **Amount by Grand Total**。\n2. 选择并在 **Opportunity Owner (Grouping 2)**\
+  \ 处显示汇总公式。\n3. 将父分组级别选择为 **Grand summary**。\n4. 公式为 *PARENTGROUPVAL(AMOUNT:SUM,\
+  \ GRAND_SUMMARY)*。\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_188_0.png)\n\n让我们分析前述截图：\n\
+  \n- 请注意，汇总公式值与 **GRAND TOTAL** 的值相同。\n- 汇总公式显示在 **Opportunity Owner** 分组中，即我们配置的\
+  \ Grouping 2，值是从 **GRAND_SUMMARY** 复制的（这是 Opportunity Owner 层次结构中上两级）。\n- 然而，如果你将公式更改为在\
+  \ **Close Date**（Grouping 1）中显示，值将与 **GRAND TOTAL** 相同（这是 Close Date 上一级）。参考以下截图：\n\
+  \n\n\n\n\n# 高级报表配置\n\n| CLOSE DATE | OPPORTUNITY OWNER | OPPORTUNITY NAME | AMOUNT\
+  \ Sum | AMOUNT BY CLOSE DATE | AMOUNT BY GRAND TOTAL |\n|---|---|---|---|---:|---:|---:|\n\
+  | June 2016<br>(3 records) | Alvin Lee<br>(1 record) | Pyramid Emergency Generators\
+  \ | $100,000.00 |  |  |\n|  |  | Subtotal | $100,000.00 | $265,000 | - |\n|  | Johan\
+  \ Yu<br>(2 records) | Element Stage 1A | $85,000.00 |  |  |\n|  |  | Element Stage\
+  \ 1B | $80,000.00 |  |  |\n|  |  | Subtotal | $165,000.00 | $265,000 | - |\n| Subtotal\
+  \ |  |  | $265,000.00 | - | $478,000.00 |\n| July 2016<br>(3 records) | Alvin Lee<br>(1\
+  \ record) | Element Phase IIa | $38,000.00 |  |  |\n|  |  | Subtotal | $38,000.00\
+  \ | $213,000 | - |\n|  | Johan Yu<br>(2 records) | Project Motor Head | $100,000.00\
+  \ |  |  |\n|  |  | Project Motor Links in Kentica | $75,000.00 |  |  |\n|  |  |\
+  \ Subtotal | $175,000.00 | $213,000 | - |\n| Subtotal |  |  | $213,000.00 | - |\
+  \ $478,000.00 |\n| GRAND TOTAL<br>(6 RECORDS) |  |  | $478,000.00 |  |  |\n\n从前面的示例中，我们可以很容易理解\
+  \ `PARENTGROUPVAL()` 函数会从一个或多个更高层级获取汇总值，这也是它被称为 **父组值** 的原因。\n\n接下来，让我们将 `PARENTGROUPVAL()`\
+  \ 函数用于实际操作中；我们希望了解每个月机会总额占总体的百分比。当然，没有自定义汇总公式是做不到的，这里是报表结果：\n\n| CLOSE DATE | OPPORTUNITY\
+  \ OWNER | RECORD COUNT | AMOUNT Sum | % OF TOTAL |\n|---|---|---:|---:|---:|\n|\
+  \ June 2016 | Alvin Lee | 1 | $100,000.00 | - |\n|  | Johan Yu | 2 | $165,000.00\
+  \ | - |\n| Subtotal |  | 3 | $265,000.00 | 55.44% |\n| July 2016 | Alvin Lee | 1\
+  \ | $38,000.00 | - |\n|  | Johan Yu | 2 | $175,000.00 | - |\n| Subtotal |  | 3 |\
+  \ $213,000.00 | 44.56% |\n| GRAND TOTAL |  | 6 | $478,000.00 | - |\n\n**June 2016**\
+  \ 的小计为 **55.44%**；这是通过 *265,000 / 478,000*100* 计算得出的。**July 2016** 同理，为 **44.56%**，计算方式为\
+  \ *213,000 / 478,000*100*。其背后的公式非常简单，与我们之前使用过的公式并没有太大区别：*AMOUNT:SUM / PARENTGROUPVAL(AMOUNT:SUM,\
+  \ GRAND_SUMMARY)*；简而言之，该公式会将月度小计除以 **GRAND TOTAL**。\n\n# 在矩阵报表中使用 PARENTGROUPVAL()\
+  \ 函数\n\n在 **Matrix** 报表中，此函数的语法为 *PARENTGROUPVAL(summary_field, parent_row_grouping,\
+  \ parent_column_grouping)*。\n\n与 **Summary** 报表相同；当你选择公式显示为 **All summary levels**\
+  \ 时，`PARENTGROUPVAL()` 函数不适用。该函数仅在选择 **At a specific row/column grouping level...**\
+  \ 时适用。\n\n**Summary** 报表中的分组层级参数在 **Matrix** 报表中被拆分为两个参数：**parent_row_grouping and\
+  \ parent_column_grouping**。\n\n让我们创建一个新的 Opportunity 报表，采用 **Matrix** 格式，按 **Close\
+  \ Date** 过滤为 3 个月，然后按 **Calendar Month (column)** 和 **Stage (row)** 分组。参考以下截图：\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_190_0.png)\n\n让我们考虑一个用例：我们希望了解每个阶段占 GRAND\
+  \ TOTAL 的百分比：\n\n- 1. 创建一个名为 Total Amount 的公式汇总并显示在 Column Grand Summary 中。参考以下截图：\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_191_0.png)\n\n不必担心如何获取参数的关键字；参考前面 Summary\
+  \ 报表中 PARENTGROUPVAL () 的动手练习；当你点击 < Insert 按钮时，关键字会自动填充；然后，将 AMOUNT:SUM 添加为 summary_field。运行报表，你应该会看到与以下截图类似的报表：\n\
+  \n| CLOSE DATE | APRIL 2016 |  | MAY 2016 |  | JUNE 2016 |  | Total |  |\n| STAGE\
+  \ | AMOUNT Sum | TOTAL AMOUNT | AMOUNT Sum | TOTAL AMOUNT | AMOUNT Sum | TOTAL AMOUNT\
+  \ | AMOUNT Sum | TOTAL AMOUNT |\n| Prospecting | $0.00 |  | $0.00 |  | $80,000.00\
+  \ |  | $80,000.00 | $645,000.00 |\n| Qualification | $0.00 |  | $0.00 |  | $100,000.00\
+  \ |  | $100,000.00 | $645,000.00 |\n| Id. Decision Makers | $0.00 |  | $50,000.00\
+  \ |  | $0.00 |  | $50,000.00 | $645,000.00 |\n| Closed Won | $60,000.00 |  | $0.00\
+  \ |  | $85,000.00 |  | $145,000.00 | $645,000.00 |\n| Closed Lost | $270,000.00\
+  \ |  | $0.00 |  | $0.00 |  | $270,000.00 | $645,000.00 |\n| Total | $330,000.00\
+  \ |  | $50,000.00 |  | $265,000.00 |  | $645,000.00 |  |\n\n这里的 TOTAL AMOUNT 列意义不大；它只是将\
+  \ GRAND TOTAL 复制到每个阶段的 TOTAL AMOUNT 中，而我们希望了解每个阶段占 GRAND TOTAL 的百分比。\n\n- 2. 编辑报表并更改汇总公式：\n\
+  \  - 将格式更改为 Percent\n  - 将公式更改为 AMOUNT:SUM / PARENTGROUPVAL (AMOUNT:SUM, ROW_GRAND_SUMMARY,\
+  \ COLUMN_GRAND_SUMMARY)\n\n因此，我们是将列总计除以 GRAND TOTAL 并显示百分比。报表如下：\n\n| CLOSE DATE\
+  \ | APRIL 2016 |  | MAY 2016 |  | JUNE 2016 |  | Total |  |\n| STAGE | AMOUNT Sum\
+  \ | TOTAL AMOUNT | AMOUNT Sum | TOTAL AMOUNT | AMOUNT Sum | TOTAL AMOUNT | AMOUNT\
+  \ Sum | TOTAL AMOUNT |\n| Prospecting | $0.00 |  | $0.00 |  | $80,000.00 |  | $80,000.00\
+  \ | 12.40% |\n| Qualification | $0.00 |  | $0.00 |  | $100,000.00 |  | $100,000.00\
+  \ | 15.50% |\n| Id. Decision Makers | $0.00 |  | $50,000.00 |  | $0.00 |  | $50,000.00\
+  \ | 7.75% |\n| Closed Won | $60,000.00 |  | $0.00 |  | $85,000.00 |  | $145,000.00\
+  \ | 22.48% |\n| Closed Lost | $270,000.00 |  | $0.00 |  | $0.00 |  | $270,000.00\
+  \ | 41.86% |\n| Total | $330,000.00 |  | $50,000.00 |  | $265,000.00 |  | $645,000.00\
+  \ |  |\n\n通过对 **Custom Summary Formula** 进行简单更改，你可以将公式移动到 **Row Grand Summary**\
+  \ 以获取每个月与 **GRAND TOTAL** 比较的百分比：\n\n# Custom Summary Formula\n\nColumn Name: Total\
+  \ Amount\n\nDescription:\n\nFormat: Percent    Decimal Places: 2\n\n# Where will\
+  \ this formula be displayed?\n\nThis formula calculation will be displayed in the\
+  \ report at the level you select.\n\nAt all summary levels\n\nAt a specific row/column\
+  \ grouping level...\n\nA Row Grand Summary\n\nB Close Date (by Calendar Month\n\n\
+  # Formula\n\n# Functions\n\n# Tips\n\nSummary Fields  Operators  Check Syntax\n\n\
+  All  ABS\n\n```\nAMOUNT:SUM /\nPARENTGROUPVAL(AMOUNT:SUM,\nROW_GRAND_SUMMARY,\n\
+  COLUMN_GRAND_SUMMARY)\n```\n\nABS(number)\nReturns the absolute value of a number,\
+  \ a number without its sign\n\n< Insert\n\nHelp on this function\n\n# Advanced Report\
+  \ Configuration\n\n注意 A 和 B 已更改；公式保持不变，这里是报表：\n\n| STAGE | APRIL 2016 AMOUNT | APRIL\
+  \ 2016 TOTAL AMOUNT | MAY 2016 AMOUNT | MAY 2016 TOTAL AMOUNT | JUNE 2016 AMOUNT\
+  \ | JUNE 2016 TOTAL AMOUNT | Total AMOUNT | Total TOTAL AMOUNT |\n|---|---|---:|---:|---:|---:|---:|---:|---:|\n\
+  | Prospecting | $0.00 |  | $0.00 |  | $80,000.00 |  | $80,000.00 |  |\n| Qualification\
+  \ | $0.00 |  | $0.00 |  | $100,000.00 |  | $100,000.00 |  |\n| Id. Decision Makers\
+  \ | $0.00 |  | $50,000.00 |  | $0.00 |  | $50,000.00 |  |\n| Closed Won | $60,000.00\
+  \ |  | $0.00 |  | $85,000.00 |  | $145,000.00 |  |\n| Closed Lost | $270,000.00\
+  \ |  | $0.00 |  | $0.00 |  | $270,000.00 |  |\n| Total | $330,000.00 | 51.16% |\
+  \ $50,000.00 | 7.75% | $265,000.00 | 41.09% | $645,000.00 |  |\n\n该报表显示了每个月的总金额占\
+  \ **GRAND TOTAL** 的百分比。\n\n# PREVGROUPVAL() 函数\n\nPREVGROUPVAL() 函数返回同一层级层次结构中前一个分组的值。这使你能够准备显示例如月度机会对比的报表；与\
+  \ PARENTGROUPVAL() 函数的主要区别在于返回值的层级更高。\n\nPARENTGROUPVAL() 函数的公式语法适用于所有报表格式：\n\n\
+  *PREVGROUPVAL(summary_field, grouping_level [, increment]).*\n\n获取 PARENTGROUPVAL()\
+  \ 函数公式参数的导航和提示与获取 PARENTGROUPVAL() 函数的几乎没有区别。语法中唯一的区别是增加了一个可选参数 **incremental**。如果我们跳过此参数，它将使用默认值\
+  \ 1。increment 是当前汇总之前列或行的数量；**minimum** 和默认值是 1，而最大值是 12。\n\n虽然语法与 PARENTGROUPVAL()\
+  \ 函数几乎相似，但功能完全不同。两个函数服务于不同的目的，使我们的报表更加强大。\n\n与 PARENTGROUPVAL() 函数相同；当你选择显示此公式为：At\
+  \ **All summary levels, Grand summary only** 时，此函数不适用。它仅适用于 **Summary** 报表中的字段级分组，以及\
+  \ **Matrix** 报表中的 **specific row/column grouping level**。\n\n\n\n\n\n## 在摘要报告中使用\
+  \ PREVGROUPVAL() 函数\n\n要获取 PREVGROUPVAL() 函数中参数的关键字，请执行以下步骤：\n\n- 从下拉函数菜单中选择 **PREVGROUPVAL**。\n\
+  - 对于**摘要**报告，就像 **PARENTGROUPVAL** 一样，您可以在符合条件的分组级别下选择字段；如果您有多个分组级别，我们将在后面的动手练习中详细介绍。\n\
+  - 点击**插入**按钮；您将获得使用所选参数创建的公式，例如 `PREVGROUPVAL(summary_field, CLOSE_DATE)`。\n- 点击**汇总字段**，然后选择您想要的字段和操作，例如\
+  \ **AMOUNT:SUM**。\n- 当您点击**插入**按钮时，增量参数默认不会被添加；您可以在需要时手动添加。\n\n让我们创建一个**摘要**报告：\n\
+  \n- 1. 使用**机会**报告类型。\n- 2. 按**阶段**和**关闭日期**分组（按**日历月**对日期分组）。\n- 3. 添加汇总公式，并将其命名为“上月赢单”，公式如下：`PREVGROUPVAL(AMOUNT:SUM,\
+  \ CLOSE_DATE)`。\n- 4. 在本练习中，我将过滤报告，仅显示 **关闭日期** 在两个月内的机会；这只是为了简化，以减少报告中的数据。详情请参见以下截图：\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_195_0.png)\n\n- 5. 将汇总公式添加到摘要报告。\n- 6.\
+  \ 添加“金额”字段并使用“求和”汇总。您将看到类似以下报告的内容：\n\n| 阶段 ↑ | 关闭日期 ↑ | 机会名称 ↑ | 金额 求和 | 上月赢单 |\n\
+  |---|---|---|---|---|\n| 发掘 | 2016 年 5 月 | Element Stage 1A | $85,000.00 |  |\n\
+  |  |  | Grand Hotels Kitchen Generator | $15,000.00 |  |\n|  | 小计 |  | $100,000.00\
+  \ | - |\n|  | 2016 年 6 月 | Element Stage 1B | $80,000.00 |  |\n|  | 小计 |  | $80,000.00\
+  \ | $100,000.00 |\n| 小计 |  |  | $180,000.00 | - |\n| 资格认定 | 2016 年 6 月 | Pyramid\
+  \ Emergency Generators | $90,000.00 |  |\n|  | 小计 |  | $90,000.00 | $80,000.00 |\n\
+  | 小计 |  |  | $90,000.00 | - |\n| 确定决策者 | 2016 年 5 月 | Edge Emergency Generator |\
+  \ $35,000.00 |  |\n|  | 小计 |  | $35,000.00 | $90,000.00 |\n| 小计 |  |  | $35,000.00\
+  \ | - |\n\n让我们分析一下前面的报告：\n\n- 第一个小计是 2016 年 5 月的发掘；总计小计为 $100,000.00，因为这是第一个分组，所以\
+  \ `PREVGROUPVAL()` 函数没有返回值。\n- 第二个小计是 2016 年 6 月的发掘；总计小计为 $80,000.00。现在 `PREVGROUPVAL()`\
+  \ 函数将指向第一个分组，金额为 $100,000.00。\n- 第三个小计是 2016 年 6 月的资格认定；总计小计为 $90,000.00。`PREVGROUPVAL()`\
+  \ 函数将指向第二个分组，金额为 $80,000.00。\n- 第四个小计是 2016 年 5 月的确定决策者；总计小计为 $35,000.00。`PREVGROUPVAL()`\
+  \ 函数将指向第三个分组，金额为 $90,000.00。\n\n我们刚才看到的基于分组顺序，而不是基于分组的数值。\n\n让我们对现有报告的公式做一个小的更改，从\
+  \ `PREVGROUPVAL(AMOUNT:SUM, CLOSE_DATE)` 改为 `PREVGROUPVAL(AMOUNT:SUM, STAGE_NAME)`，见以下截图：\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_197_0.png)\n\n这是生成的报告；请与之前的结果进行比较：\n\n\
+  | 阶段 ↑ | 关闭日期 ↑ | 机会名称 ↑ | 金额 求和 | 上月赢单 |\n|---|---|---|---:|---:|\n| 发掘<br>（3 条记录）\
+  \ | 2016 年 5 月<br>（2 条记录） | Element Stage 1A | $85,000.00 |  |\n|  |  | Grand Hotels\
+  \ Kitchen Generator | $15,000.00 |  |\n|  | 小计 |  | $100,000.00 | - |\n|  | 2016\
+  \ 年 6 月<br>（1 条记录） | Element Stage 1B | $80,000.00 |  |\n|  | 小计 |  | $80,000.00\
+  \ | - |\n| 小计 |  |  | $180,000.00 | - |\n| 资格认定<br>（1 条记录） | 2016 年 6 月<br>（1 条记录）\
+  \ | Pyramid Emergency Generators | $90,000.00 |  |\n|  | 小计 |  | $90,000.00 | $180,000.00\
+  \ |\n| 小计 |  |  | $90,000.00 | - |\n| 确定决策者<br>（1 条记录） | 2016 年 5 月<br>（1 条记录） |\
+  \ Edge Emergency Generator | $35,000.00 |  |\n|  | 小计 |  | $35,000.00 | $90,000.00\
+  \ |\n| 小计 |  |  | $35,000.00 | - |\n\n这里的不同之处在于，前一个分组的值将来自**阶段小计**，而不是**关闭日期小计**，如之前的报告所示。\n\
+  \n接下来，让我们使用之前的公式并添加一个值为 2 的增量参数；公式从 `PREVGROUPVAL(AMOUNT:SUM, CLOSE_DATE)` 改为 `PREVGROUPVAL(AMOUNT:SUM,\
+  \ CLOSE_DATE, 2)`。以下截图显示了一个带有 `PREVGROUPVAL` 公式的**摘要**报告：\n\n## 在矩阵报告中使用 PREVGROUPVAL()\
+  \ 函数\n\n让我们在矩阵报告中使用 PREVGROUPVAL() 函数。\n\n我们想知道每个月的**总金额**增长百分比：\n\n- 1. 创建一个**矩阵**报告，并按**关闭日期**（按**日历月**）作为行分组，**阶段**作为列分组。\n\
+  - 2. 移除**计数**，并隐藏**详细信息**。仅筛选**未结**和**已赢得**的机会。\n- 3. 创建一个名为 `Month by Month`（逐月）的公式汇总；将其分组为**关闭日期**（按**日历月**）和**列总计**。\n\
+  - 4. 将汇总格式设置为**百分比**，保留两位小数。\n- 5. 输入以下公式：`(AMOUNT:SUM - PREVGROUPVAL(AMOUNT:SUM,\
+  \ CLOSE_DATE)) / PREVGROUPVAL(AMOUNT:SUM, CLOSE_DATE)`\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_200_0.png)\n\
+  \n## 高级报告配置\n\n汇总公式将添加到每个月的金额小计旁边；从这里，我们可以轻松查看逐月百分比，并看到所有未结和已赢得的机会的百分比都在增长：\n\n\
+  | 关闭日期 | 资格认定 金额求和 | 资格认定 逐月 | 确定决策者 金额求和 | 确定决策者 逐月 | 已赢得 金额求和 | 已赢得 逐月 | 总计 金额求和\
+  \ | 总计 逐月 |\n|---|---:|---:|---:|---:|---:|---:|---:|---:|\n| 2016 年 3 月 | $0.00\
+  \ |  | $15,000.00 |  | $22,000.00 |  | $37,000.00 | - |\n| 2016 年 4 月 | $27,000.00\
+  \ |  | $0.00 |  | $40,000.00 |  | $67,000.00 | 81.08% |\n| 2016 年 5 月 | $55,000.00\
+  \ |  | $50,000.00 |  | $0.00 |  | $105,000.00 | 56.72% |\n| 2016 年 6 月 | $80,000.00\
+  \ |  | $10,000.00 |  | $0.00 |  | $90,000.00 | -14.29% |\n| 总计 | $162,000.00 | \
+  \ | $75,000.00 |  | $62,000.00 |  | $299,000.00 |  |\n\n请注意，2016 年 3 月的公式中没有显示任何值，因为它是第一个值。**2016\
+  \ 年 4 月**与上一个分组（即 **2016 年 3 月**）相比增长了 **81.08%**。**2016 年 5 月**与 **2016 年 4 月**相比增长了\
+  \ **56.72%**，而最后一个分组与上一个分组相比下降了 **-14.29%**。如前所述，`PREVGROUPVAL()` 函数无法获知上一个分组的值。在此示例中，它显示良好只是因为报告中没有任何跳过的月份。\n\
+  \n## 总结\n\n在本章中，我们详细探讨了分桶字段和**自定义汇总公式**。通过分桶字段，我们可以为报告目的对数据进行分类，而无需对对象中的字段进行任何操作。如果某个字段仅用于一两个报告，这将消除管理员创建自定义字段的需求。但是，分桶字段并非用于替代公式字段；您不能在分桶字段中进行公式计算；您可以使用它将值分组到一个分桶中。\n\
+  \n分桶字段仅适用于某些字段类型，不同的字段类型将为分桶值配置不同的方式；您可以将范围用于货币、数字和百分比，但不能用于其他类型。\n\n**自定义汇总公式**与自定义公式字段不同。您无法使用**自定义汇总公式**从另一个对象检索值，而且**自定义汇总公式**仅存在于该报告中；它不影响其他报告、对象或字段，并且您不能从其他报告中使用它。\n\
+  \n**自定义汇总公式**在**表格**报告类型中不可用，并且当您更改带有汇总公式的报告类型时，现有的汇总公式将被删除，因此请注意这一点。\n\n**自定义汇总公式**中有许多可用的函数；值将仅以数字、货币或百分比形式返回，并且您可以配置返回的小数位数。该公式仅接受有限的字段类型集，但其中包括公式字段和汇总字段。\n\
+  \n`PARENTGROUPVAL()` 和 `PREVGROUPVAL()` 函数仅在**自定义汇总公式**中可用。您无法在 Salesforce 中的任何其他公式中找到它们；它们是非常强大的函数。您可以使用\
+  \ `PARENTGROUPVAL()` 函数从父级分组层次结构中检索分组值，并使用 `PREVGROUPVAL()` 函数从同一层次结构中检索上一个分组的值。\n\
+  \n在下一章中，我们将讨论与报告相关的更多功能、向报告添加图表，以及将报告中的图表嵌入父记录页面。\n\n\n\n\n"
+- "# 7\n\n## 在报表和页面中添加图表\n\n从第 4 章《创建和管理报表》开始，您学习了如何创建和管理报表，接着在第 5 章《了解报表类型》中继续学习了报表类型，然后在第\
+  \ 6 章《高级报表配置》中使用了桶字段和自定义汇总公式。\n\n在本章中，我们将继续在报表中添加图表，并讨论 Salesforce Lightning 中可用的多种图表类型以及支持添加图表的报表格式类型，并通过一个动手练习来讲解在报表中添加和使用图表。\n\
+  \n接下来，我们将讨论如何将报表中的图表添加到记录页面，例如在账户页面中与账户相关的商机或案例；此处的图表将按打开的账户进行筛选，我们还将涵盖对此的动手练习。\n\
+  \n到本章结束时，您将完全掌握报表中图表类型的知识，并学会如何添加和编辑图表。您还将了解如何将报表中的图表添加到记录页面布局中。\n\n在本章中，我们将提供注释和提示来帮助您理解重要事项。以下主题将被涵盖：\n\
+  \n- Lightning 报表中的图表类型\n- 向报表添加图表\n- 向记录页面添加嵌入式图表\n\n## 在报表和页面中添加图表\n\n每种图表格式都有其自己的额外功能，例如内联图表，您可以在堆叠条形图中启用累积值，可以将所有条形长度设置为\
+  \ 100%，等等。\n\n让我们了解 Salesforce 中可用的每种图表类型。\n\n### 水平条形图\n\n水平条形图以水平长度显示值，因此此格式适合比较值。当\
+  \ y 轴上有许多值时，选择水平条形图格式，例如基于每个销售代表的 **金额合计** 和 **NRR 金额合计** 的管道报表。如果我们有 20 名销售代表，图表仍然看起来不错且不会过于拥挤。\n\
+  \n当您将鼠标悬停在图表上方时，它会显示条形的更详细信息，包括 x 轴值、y 轴值以及条形相对于总数的百分比。以下屏幕截图显示了水平条形图，以及将鼠标悬停在条形上时显示的信息弹出窗口：\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_205_0.png)\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_207_0.png)\n\
+  \n使用堆叠条形图时，您将有将堆叠设置为 100% 的选项；启用后，所有条形将具有相同的长度。前述水平条形图如果修改为水平堆叠条形图，将如以下屏幕截图所示：\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_207_1.png)\n\n### 堆叠垂直条形图\n\n堆叠垂直条形图与堆叠水平条形图基本相同。它会将条形改为垂直，并交换\
+  \ x 轴和 y 轴。以下屏幕截图与前一个相同，但为垂直堆叠条形图：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_208_0.png)\n\
+  \n### 折线图\n\n折线图适用于显示某一项目在时间序列中的值变化。以下是按商机负责人分组的商机折线图示例：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_209_0.png)\n\
+  \n您可以将折线图配置为显示累积值；当您想显示一段时间内项目的总数时，这是一个不错的选择。以下屏幕截图显示了具有累积值的折线图：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_210_0.png)\n\
+  \n### 圆环图\n\n使用圆环图，用户可以一目了然地看到最大部分和最小部分；除此之外，它还显示总金额和每个组的金额，例如按阶段的管道报表及其总价值。就像堆叠条形图一样，当您将鼠标悬停在组上时，它会显示组名称和组金额。以下示例显示了按关闭日期月份分组的圆环图：\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_211_0.png)\n\n## 在报表和页面中添加图表\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_213_0.png)\n\
+  \n### 向报表添加图表的动手练习\n\n在本练习中，我们将创建一个按商机 **阶段** 分组的 **商机** 报表，格式为 **汇总**。让我们逐步进行：\n\
+  \n- 1. 导航到 **报表** 选项卡并点击 **新建报表** 按钮。\n- 2. 选择 **商机** 报表类型并点击 **商机** 类别下的加号。\n-\
+  \ 3. 点击 **创建** 按钮继续。\n- 4. 将 **显示** 改为 **所有商机**。\n- 5. 将 **日期字段范围** 改为 **上财年**。\n\
+  - 6. 点击 **删除所有列** 链接以清除添加到报表的所有默认字段，然后点击 **确定** 按钮确认。\n- 7. 将报表格式更改为 **汇总**。\n-\
+  \ 8. 将以下字段拖入报表：**商机名称**、**金额** 和 **预期收入**。要快速找到字段名称，请在字段文本框中输入字段名称并双击该字段将其添加到报表中。\n\
+  - 9. 将 **阶段** 字段拖到分组放置区。\n- 10. 使用 **求和** 汇总 **金额** 和 **预期收入**。\n- 11. 点击 **显示**\
+  \ 然后点击 **详细信息** 以隐藏报表详细信息。\n- 12. 点击 **保存** 按钮并输入以下信息：\n  - 报表名称为 `Previous FY Opportunities\
+  \ by Stage`\n  - 报表文件夹为 **我的个人自定义报表**\n  - 点击 **保存** 按钮\n  - 点击 **运行报表** 按钮\n- 13.\
+  \ 您应该会看到与以下屏幕截图类似的内容；这是一个标准的 Salesforce 报表：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_214_0.png)\n\
+  \n14. 现在我们将向此报表添加图表；点击报表名称旁上方右侧的饼图图标；默认情况下，它将生成一个水平条形图：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_215_0.png)\n\
+  \n15. 如果您对该图表满意，请点击 **编辑** 按钮旁箭头下的 **保存**：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_216_0.png)\n\
+  \n16. 让我们将此图表自定义为 **圆环** 图表。\n\n17. 点击齿轮图标，即图表右侧上方的那个，而不是 **编辑** 按钮旁的齿轮图标：\n  -\
+  \ 在 **显示为** 下，选择 **圆环**。\n  - 添加 **图表标题** 为 `Previous FY Opportunity`。\n  - 在 **值**\
+  \ 下，我们可以选择 **金额合计**、**预期收入合计** 和 **记录数**；请记住在步骤 10 中我们对两个字段都使用了求和；目前只需保留为 **金额合计**。\n\
+  \  - 在 **按切片** 下，您可以通过点击颜色图标更改图表颜色。\n  - 默认情况下，**显示值** 已被勾选；让我们保持原样。\n  - 您可以选择将\
+  \ **图例位置** 显示在右侧或底部。如以下屏幕截图所示：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_217_0.png)\n\
+  \n18. 点击图表中的任意位置以显示结果。记得保存报表。这将包含我们刚刚配置的图表；否则，添加的图表将不会被保存，并且在您或他人将来打开报表时将不会存在。\n\
+  \n19. 现在让我们将报表另存为新报表并将图表格式更改为 **折线**。\n\n20. 点击 **编辑** 按钮，点击 **另存为** 按钮，报表名称为 `Previous\
+  \ FY Opportunities by Stage /Line`，然后点击 **保存并运行报表** 按钮继续。\n\n21. 点击报表中的齿轮图标；如果将鼠标悬停在图标上，它会显示弹出标签--**编辑图表**。\n\
+  \n\n\n\n\n## 在报表和页面中添加图表\n\n22. 选择**折线图**图标；保留所有默认值，只需勾选**累计**复选框。\n23. 在报表中点击任意位置以关闭**编辑图表**面板。\n\
+  24. 报表将立即显示；不要忘记再次保存报表以更新新的**折线图**：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_218_0.png)\n\
+  \n25. 接下来，让我们修改报表，使其增加第二个分组维度：**商机所有者**。点击**编辑**按钮，并将**商机所有者**拖放到**阶段**下方的分组区域中。\n\
+  26. 点击**运行报表**按钮；现在您应该看到**商机所有者**作为**阶段**之后的第二级分组被添加。\n27. 点击报表中的齿轮图标，在**编辑图表**面板中滚动到底部，注意**添加**下拉框，然后选择**分组**。\n\
+  28. 因为我们只有一个额外的分组，即**商机所有者**，所以它会默认被添加。请参考以下截图：\n\n**显示为**\n\n**图表属性**\n\n| 字段 |\
+  \ 值 |\n|---|---|\n| 图表标题 | 上一财年商机 |\n| X轴 | 阶段 |\n| Y轴 | 金额合计 |\n| 显示参考线 |  |\n\
+  | 累计 |  |\n| 添加 | 分组 |\n| 分组 | 商机所有者 |\n| 编辑 |  |\n\n29. 在报表中点击任意位置以关闭**编辑图表**面板。\n\
+  30. 现在您应该看到多条线；在我的示例中，因为我只有两个所有者，所以只显示两条线。请记住点击**保存**以保存报表更改。请参考以下截图：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_220_0.png)\n\
+  \n### 在对象页面中嵌入报表图表\n\n如果您能够直接在**客户**页面上以图表形式展示某个客户的所有商机，并按**商机阶段**分组，那岂不是很好？同样，在**客户**页面上显示该客户提出的与客户支持相关的工单图表，或其他自定义对象的图表，也是如此。这是\
+  \ Salesforce 开箱即用的一项强大功能，可以将报表图表嵌入标准或自定义对象页面中。\n\n关于记录页面中嵌入图表，需要注意以下几点：\n\n-   要将图表添加到页面布局中，您需要编辑页面布局，因此只有管理员或具有**自定义应用程序**权限的用户才能执行此操作。\n\
+  -   每个页面布局中最多只能添加两个图表。\n-   记录页面上显示的图表基于在**摘要**或**矩阵**报表中添加的图表。\n-   您无法在页面布局中修改图表类型。\n\
+  -   您可以设置图表在用户打开页面布局时自动刷新。\n-   当用户点击页面布局中的图表时，系统会打开报表，并根据用户正在查看的记录自动筛选报表，从而下钻到数据详情。\n\
+  \n### 将图表添加到页面布局的动手练习\n\n让我们考虑一个用例：在**客户**页面布局中添加一个嵌入的商机图表和个案数量图表。\n\n1. 创建一个**商机**报表，按**阶段**分组，添加**金额**字段，对其进行汇总，将报表保存到公共文件夹，添加**垂直条形图**，然后再次保存报表。\n\
+  2. 从**客户支持报表**报表类型类别中创建一个个案报表，按**状态**分组，将报表保存到公共文件夹，添加**环形图**，然后再次保存报表。\n3. 通过导航至**设置\
+  \ | 对象和字段 | 对象管理器 | 客户 | 页面布局**来编辑客户页面布局。打开相应的页面布局，在左侧菜单中找到**报表图表**。点击**报表图表**，在右侧面板中找到该报表；只有包含图表的报表才会显示在这里，并且存储在公共文件夹中：\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_223_0.png)\n\n4. 您将看到图表类型显示为报表的图标。\n\
+  5. 将这两个报表拖放到报表区域。为了获得更好的用户体验，我倾向于创建一个新分区。\n6. 将组件添加到页面布局后，点击**属性**图标进行修改：\n   -\
+  \   **大小：** 小、中、大。\n   -   **外观：** 显示报表标题，有错误时隐藏图表。\n   -   **数据：** 筛选和刷新。请参考以下截图：\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_223_1.png)\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_225_0.png)\n\
+  \n因此，请确保该报表对公司中的所有人可见，除非有特定原因不这样做。\n\n在图表的底部，您会看到图表的最后刷新时间。如果您没有为图表勾选**每次用户打开页面时刷新**，请点击此处的图表，您应该会看到**刷新**按钮和**转到报表**按钮。\n\
+  \n您可以将图表添加到其他页面布局，包括具有关联关系的自定义对象：\n\n-   对于**主从关系**，您无需更改任何内容；页面布局中的子对象字段不必在报表或图表中，即可按父字段进行筛选。\n\
+  -   对于**查找关系**，请确保报表类型中提供父字段；否则，创建一个新的报表类型来容纳它。对于**主从关系**也是一样的；您不需要在报表或图表中添加该字段。\n\
+  \n### 本章小结\n\n在本章中，我们了解了 Salesforce Lightning 中可用的图表类型。任何能够运行报表的用户都能够在运行报表时即时添加或修改图表，这包括没有创建和自定义报表权限的用户。我们还讨论了支持添加图表的报表格式。\n\
+  \n如果将图表添加到报表中，并且该报表存储在公共文件夹中，我们就可以将图表嵌入记录页面布局。一个记录页面中最多可以有两个图表。只有系统管理员或具有**自定义应用程序**权限的用户才能将图表添加到页面布局。您可以选择将图表设置为每\
+  \ 24 小时自动刷新一次，或由用户手动刷新。\n\n在下一章中，我们将讨论如何使用报表。Lightning 中的报表为我们提供了许多可供探索的功能；然后我们可以分析由这些报表生成的数据。\n"
+- '## 使用报表
+
+
+  在日常工作中，我们大多数人处理的是运行报表，而不是创建或编辑报表。因此，掌握在 Lightning Experience 中使用报表的知识非常重要，包括一些能让我们的工作更高效、更省力的技巧。
+
+
+  在本章中，我们将讨论如何使用报表，包括打开报表、搜索报表以及将报表添加到收藏夹。然后，我们将继续介绍报表导航以及运行报表时需要注意的组件，包括添加图表、显示或隐藏报表选项，以及更改和删除报表筛选器。
+
+
+  到本章结束时，您将全面掌握在 Lightning 中使用 Salesforce 报表的工作知识，包括订阅报表以通过电子邮件接收报表。
+
+
+  在本章中，我们将提供注释和提示，帮助您理解重要内容。将涵盖以下主题：
+
+
+  -   打开和搜索报表
+
+  -   导航到报表和报表组件
+
+  -   订阅报表
+
+
+  ### 打开报表
+
+
+  让我们从在 Salesforce Lightning 中打开报表开始；请记住，报表存储在报表文件夹中，可以是私有文件夹或公共文件夹。私有报表仅对将报表保存到**我的个人自定义报表**文件夹的用户可访问。我们已在*第
+  2 章，报表和仪表板中的概念与权限*中深入讨论了这一点；如需复习权限，请参阅该章节。
+
+
+  在 Salesforce Lightning 中，有多种打开报表的方法。首先，点击**报表**选项卡。
+
+
+  ### 报表选项卡
+
+
+  您将在这里看到两个主要面板：左侧面板和右侧面板。左侧面板包含**报表**和**文件夹**的类别，右侧面板将显示与左侧面板中所选菜单相关的报表或文件夹列表。
+
+
+  ### 报表菜单
+
+
+  一旦您点击**报表**选项卡，您将看到与报表相关的所有内容。左侧面板中有两个主要类别，即**报表**和**文件夹**。在**报表**类别下，有多个菜单，它们将筛选右侧面板中显示的报表。请参考以下截图：
+
+
+  ![](img/72d01bea5a9ccf02f9452aab7505d9de_228_0.png)
+
+
+
+
+
+  从前面的截图中可以看到，**报告**下有五个菜单：
+
+
+  - **最近使用**：这是单击**报告**选项卡后的默认选择。选中此项后，右侧面板将列出该用户最近打开的所有报告，因此我的最近列表会与同事的列表不同。
+
+  - **我创建的**：单击此项将显示用户创建的所有报告，包括存储在私有文件夹和公共文件夹中的报告。
+
+  - **私有报告**：这包括用户存储到**我的个人自定义报告**文件夹中的所有报告。
+
+  - **公共报告**：这些是存储在**未归档公共报告**文件夹中的报告；所有具有运行报告权限的用户都可以运行存储在此文件夹中的报告。
+
+  - **所有报告**：这将显示用户有权访问的所有报告，包括私有报告和公共报告。如果你的组织中有太多不再使用的报告，最好定期删除它们，以免此处的列表过大。
+
+
+  当你选择这里的任意菜单时，右侧面板将根据左侧选择的菜单列出所有报告。此面板中有五个列和一个操作列：**报告名称**、**描述**、**文件夹**、**最后修改者**、**已订阅**，以及一个用于操作下拉菜单的箭头图标。你可以按**报告名称**、**文件夹**、**最后修改者**和**已订阅**对列表进行排序。仅当用户具有**订阅报告**权限时，**已订阅**列才可见。
+
+
+  让我们看看每个报告可用的操作菜单：
+
+
+  ![](img/72d01bea5a9ccf02f9452aab7505d9de_229_0.png)
+
+
+  对于每个报告最后一列的操作菜单，菜单的可见性将取决于用户权限：
+
+
+  - **运行：** 这与单击报告名称运行报告相同。
+
+  - **编辑：** 仅当用户能够编辑报告时，此选项才可见。
+
+  - **订阅：** 如果用户具有**订阅**报告权限，则此选项可见。
+
+  - **导出：** 如果用户具有导出报告权限，则此选项可见。
+
+  - **删除：** 如果用户根据其在该报告文件夹中的访问权限能够删除报告，则此选项可见。用户将能够删除其私有文件夹中的所有报告。
+
+
+  ## 文件夹菜单
+
+
+  与**报告**类别一样，在**文件夹**类别下也有多个菜单，用于筛选右侧面板中显示的文件夹。请看以下截图：
+
+
+  ![](img/72d01bea5a9ccf02f9452aab7505d9de_230_0.png)
+
+
+  **文件夹**下有三个菜单：
+
+
+  - **我创建的**：这将列出你创建的所有报告文件夹
+
+  - **与我共享的**：这将列出由其他人创建但与你共享的所有报告文件夹
+
+  - **所有文件夹**：这将列出你有权访问的所有报告文件夹，无论是由你自己还是其他人创建的
+
+
+  当你选择这里的任意菜单时，右侧面板将根据左侧选择的菜单列出所有报告文件夹。这里有四个列和一个操作列。这些列分别为**文件夹名称**、**创建者**、**最后修改者**、**创建时间**，以及一个用于操作下拉菜单的箭头图标。
+
+
+  点击文件夹行最后一列中的箭头；如果用户有权删除该文件夹，则会显示**删除**菜单。对于具有删除文件夹权限的用户，用户可以从此处删除报告文件夹，但只能删除其中没有任何报告的文件夹；否则，用户将收到错误消息。
+
+
+  你还可以通过将鼠标悬停在标题上并单击列标题来按任意列对列表排序。单击一次按升序排序，再次单击按降序排序。
+
+
+  ## 收藏图标
+
+
+  在屏幕右上角、**全局操作**（**+**图标）之前，可以看到星形图标及其旁边的箭头。星形图标用于添加到收藏夹，而它旁边的箭头用于打开已添加到收藏夹的项目。收藏夹让你可以快速访问
+  Salesforce 中的重要记录、列表、组、仪表板以及其他常用页面，包括报告。
+
+
+  ![](img/72d01bea5a9ccf02f9452aab7505d9de_231_0.png)
+
+
+  收藏夹类似于 Web 浏览器中的书签，但更好，因为无论你使用哪种设备或浏览器登录 Lightning Experience，你的收藏夹都可用。因此，每个用户都有自己的收藏夹列表。
+
+
+  ## 动手练习：将项目添加到收藏夹
+
+
+  让我们考虑一个用例：因为你总是处理报告，尤其是名为**Opty by Stage (2016 H1)**的报告，请将报告选项卡和该报告添加为**收藏**。
+
+
+  你可以按照以下步骤将**报告**选项卡添加为收藏项目：
+
+
+  - 1. 单击**报告**选项卡。
+
+  - 2. 单击星形图标。
+
+  - 3. 系统将弹出“**报告**”已添加到你的收藏夹消息。请看以下截图：
+
+  - 4. 添加后，通过单击收藏图标中星形旁边的箭头来确认它已添加。请参考以下截图：
+
+
+  ![](img/72d01bea5a9ccf02f9452aab7505d9de_232_0.png)
+
+
+  ![](img/72d01bea5a9ccf02f9452aab7505d9de_232_1.png)
+
+
+  - 5. 现在你应该会在**我的收藏**下看到带有报告图标的**报告**。
+
+  - 6. 如果你从这里单击**报告**，就相当于你单击**报告**选项卡。
+
+  - 7. 你可以通过单击**编辑收藏**链接来重命名或删除它。
+
+
+  你不仅可以将**报告**选项卡添加为收藏，还可以将单个报告添加为收藏。让我们按照以下步骤操作：
+
+
+  - 1. 打开一个现有报告。在我的示例中，我将打开一个名为**Opty by Stage (2016 H1)**的报告。
+
+  - 2. 单击星形图标。
+
+  - 3. 系统将弹出“**Opty by Stage (2016 H1)**”已添加到你的**收藏**消息。
+
+  - 4. 单击收藏图标中星形旁边的箭头，你应该会看到**Opty by Stage (2016 H1)**已添加到**我的收藏**，如下截图所示：
+
+
+  ![](img/72d01bea5a9ccf02f9452aab7505d9de_233_0.png)
+
+
+  一旦**报告**被添加到收藏夹，它也会列在**报告**选项卡的**我的收藏**下。不要单击**报告**选项卡，而是单击**报告**选项卡旁边的箭头，以在**我的收藏**和**最近记录**中显示最近打开的报告。请看以下截图：
+
+
+  ![](img/72d01bea5a9ccf02f9452aab7505d9de_234_0.png)
+
+
+  此步骤可应用于**仪表板**、**客户**或任何其他记录和选项卡。添加到收藏夹的项目也将在对象选项卡中显示为**我的收藏**。如下截图所示：
+
+
+  ![](img/72d01bea5a9ccf02f9452aab7505d9de_234_1.png)
+
+
+  但如果你按 *Enter* 键或单击放大镜，系统将在搜索结果页面上显示所有结果，如下截图所示：
+
+
+  ![](img/72d01bea5a9ccf02f9452aab7505d9de_236_0.png)
+
+
+  - 6. **图表：** 单击此按钮可在报告中添加、隐藏或更改图表。我们在*第7章，在报告和页面中添加图表*中深入讨论了图表。
+
+  - 7. **筛选：** 单击该图标可隐藏或显示筛选面板，如上图中的编号 7 所示。
+
+  - 8. **协作：** 仅当启用了报告的**Chatter 动态跟踪**时，此选项才可见。我们将在*第11章，报告和仪表板的高级技巧与提示*中讨论用于协作的**Chatter
+  动态跟踪**。
+
+  - 9. **刷新：** 单击该图标可刷新报告中显示的数据，如上图中的编号 9 所示。
+
+  - 10. **设置：** 用于显示/隐藏报告结果，此处可用的选项将取决于报告格式。
+
+  - 11. **操作按钮：** 如果用户对该报告拥有多个打开权限，则按钮旁边会出现一个箭头，此按钮将包括**编辑**、**克隆**、**保存**、**订阅**、**导出**和**删除**。
+
+
+  ## 汇总字段
+
+
+  当你的报告配置了汇总字段，并且启用了**总计**（位于**设置**下）时，所有汇总字段将显示在报告标题旁边：
+
+
+  ![](img/72d01bea5a9ccf02f9452aab7505d9de_238_0.png)
+
+
+
+
+  前面的截图显示，**金额**以**求和**汇总，而**预期收入**以**求和**和**平均值**汇总；这适用于所有格式的报告。
+
+
+  ## 筛选器
+
+
+  要隐藏右侧的筛选器面板，只需单击面板右上角的箭头或单击筛选器图标；再次切换即可恢复筛选器面板。
+
+
+  在 Lightning 中，所有有权运行报告的用户都可以更改默认筛选器，例如**显示方式**、日期范围以及所有未锁定的附加筛选器，即使是没有权限创建和自定义报告的用户也可以。
+
+
+  让我们通过下面的截图来讨论这一点：
+
+
+  ![](img/72d01bea5a9ccf02f9452aab7505d9de_239_0.png)
+
+
+  此报告**按阶段的商机**是一种**商机**报告类型。对于报告类型为**商机**的报告，您会看到一个额外的默认筛选器**角色层级**，而其他报告类型则没有，它们只有**显示方式**和**日期**筛选器。用户可以在运行报告时更改筛选器。无需编辑报告；只需单击筛选器名称即可修改筛选器值。
+
+
+  以下默认筛选器是报告创建者添加的附加筛选器；创建者可以留给用户更改筛选器值，也可以锁定筛选器。前面报告中的“类型”字段未锁定，因此运行用户可以更改或移除该筛选器，点击筛选器进行编辑，或点击该筛选器中的叉号图标来移除筛选器。下面的截图显示了添加到报告中的所有筛选器，包括已锁定的筛选器：
+
+
+  ![](img/72d01bea5a9ccf02f9452aab7505d9de_240_0.png)
+
+
+  下一个筛选器“金额”已锁定，因此用户将无法删除它。这里的所有更改都不会被保存，也不会影响其他用户，除非该用户具有编辑权限并从操作按钮点击“保存”。
+
+
+  ## “协作”字段
+
+
+  如果启用了**报告的 Chatter 动态跟踪**，那么所有能够打开报告的用户都可以看到此图标。要启用此功能，请导航到**设置 | 功能设置 | 动态跟踪**，在左侧面板中找到**报告**并勾选**启用动态跟踪**。
+
+
+  默认情况下，它将具有**帖子**和**投票**用于协作。其他所有 **Chatter** 帖子也是如此；您可以使用 @ 后接用户名来提及他人。其他用户可以**点赞**、**评论**和**收藏**该帖子，而对于在
+  **Chatter** 动态中发帖的用户，该用户还可以**删除**和**编辑**该帖子。
+
+
+  ## 报告设置
+
+
+  对于**矩阵**和**汇总**报告，用户可以选择显示或隐藏--**详细信息**、**小计**、**总计**和**记录数**。考虑下面的截图：
+
+
+  ![](img/72d01bea5a9ccf02f9452aab7505d9de_241_0.png)
+
+
+  对于**表格式**报告，选项仅限于显示或隐藏**详细信息**和**总计**。考虑下面的截图：
+
+
+  ![](img/72d01bea5a9ccf02f9452aab7505d9de_242_0.png)
+
+
+  在**汇总**和**矩阵**报告中隐藏**记录数**时，它也会在顶部被隐藏。隐藏**总计**将同时隐藏报告底部以及顶部标题下方的值。**小计**仅适用于**汇总**和**矩阵**报告，这完全合理，因为**表格式**报告中没有小计。
+
+
+  ## 操作按钮
+
+
+  以下是在已打开报告中可以执行的完整操作。考虑下面的截图：
+
+
+  ![](img/72d01bea5a9ccf02f9452aab7505d9de_242_1.png)
+
+
+  根据用户权限，用户将看到不同的操作；让我们简要解释每个可用的操作：
+
+
+  - **编辑**：用于在报告构建器中编辑报告
+
+  - **克隆**：用于克隆到新报告；您可以选择将其存储为私人报告、设为公开或存储到特定文件夹
+
+  - **保存**：保存报告及所做的任何更改，例如添加图表
+
+  - **订阅**：按计划订阅报告以通过电子邮件递送；我们将在下一节讨论
+
+  - **导出**：用于将报告导出为逗号分隔的 `.csv` 或 Excel 格式 `.xls`
+
+  - **删除**：已删除的报告将在回收站中保留 15 天，并可在此期间恢复
+
+
+  ## 订阅报告
+
+
+  在 Lightning Experience 中，您可以订阅最多五个报告，并按照您设定的计划（每日、每周或每月）通过电子邮件接收刷新后的报告结果。
+
+
+  要订阅报告，您需要从**配置文件**或**权限集**获得**订阅报告**权限。除此之外，还有两个与此相关的附加权限：
+
+
+  - **订阅报告：添加收件人**
+
+  - **订阅报告：设置运行用户**
+
+
+  这些权限需要启用**订阅报告**权限。
+
+
+  这是当您订阅报告时发送给您的电子邮件示例；您可以点击报告标题直接在 Salesforce 中打开报告，或点击记录名称（如账户名称或商机名称）在 Salesforce
+  中打开报告：
+
+
+  # 按阶段的商机
+
+
+  截至 5/8/17 晚上 11:00 · 查看者：Johan Yu · 报告订阅由 Johan Yu 启动
+
+
+  所有商机 关闭日期：自定义 金额大于“10,000” 类型等于“现有客户 - 升级”、“现有客户 - 替换”、“现有客户 - 降级”
+
+
+  总记录数 总金额
+
+  14 $1,752,000.00
+
+
+  | 阶段 | 商机名称 | 账户名称 | 金额求和 | 预期收入 |
+
+  | 资格确认（2 条记录） | United Oil Emergency Generators | United Oil & Gas Corp. | $30,000.00
+  | $3,000.00 |
+
+  |  | United Oil Refinery Generators | United Oil & Gas Corp. | $27,000.00 | $2,700.00
+  |
+
+  |  |  |  | $57,000.00 |  |
+
+  | 识别决策者（1 条记录） | Edge Emergency Generator | Edge Communications | $35,000.00 | $21,000.00
+  |
+
+  |  |  |  | $35,000.00 |  |
+
+  | 谈判/审核（2 条记录） | United Oil Installations | United Oil & Gas Corp. | $70,000.00
+  | $63,000.00 |
+
+  |  | United Oil Office Portable Generators | United Oil & Gas Corp. | $125,000.00
+  | $112,500.00 |
+
+  |  |  |  | $195,000.00 |  |
+
+  | 已赢单（9 条记录） | Edge SLA | Edge Communications | $40,000.00 | $40,000.00 |
+
+  |  | United Oil Installations | United Oil & Gas Corp. | $50,000.00 | $50,000.00
+  |
+
+  |  | United Oil Installations | United Oil & Gas Corp. | $235,000.00 | $235,000.00
+  |
+
+  |  | United Oil Plant Standby Generators | United Oil & Gas Corp. | $675,000.00
+  | $675,000.00 |
+
+  |  | United Oil SLA | United Oil & Gas Corp. | $120,000.00 | $120,000.00 |
+
+  |  | United Oil Standby Generators | United Oil & Gas Corp. | $120,000.00 | $120,000.00
+  |
+
+  |  | Edge Installation | Edge Communications | $50,000.00 | $50,000.00 |
+
+  |  | Project Motor Links in Kentica | Burlington Textiles Corp of America | $75,000.00
+  | $75,000.00 |
+
+  |  | Project Motor Head | Burlington Textiles Corp of America | $100,000.00 | $100,000.00
+  |
+
+  |  |  |  | $1,465,000.00 |  |
+
+  | 总计（14 条记录） |  |  | $1,752,000.00 |  |
+
+
+  6. 您和 Alvin Lee 将在每周一早上收到附有报告的电子邮件。考虑下面的截图：
+
+
+  ![](img/72d01bea5a9ccf02f9452aab7505d9de_246_0.png)
+
+  '
+- "## 在 Lightning Experience 中构建仪表板\n\n仪表板提供一目了然的数据可视化。受众将能够在图形布局中看到数据摘要，包括图表、矩阵和表格。\n\
+  \n在 Salesforce 中，仪表板是最有趣的功能之一。它由许多组件组成。它允许您在宽阔的空白画布上展示多个组件，让受众可以轻松比较每个组件；例如，西部区域与东部区域之间的销售额、将上个月销售额与两个月前销售额进行比较，等等。\n\
+  \n在本章中，我们将详细讨论 Lightning 仪表板，并介绍**仪表板**选项卡，以及围绕仪表板视图的导航、仪表板构建器、仪表板组件和支持每个组件的数据源。\n\
+  \n仪表板的工作方式与报告不同。报告显示当前数据，而仪表板显示其上次刷新时数据的快照。\n\n到本章结束时，您将全面掌握 Lightning 中 Salesforce\
+  \ 仪表板的实用知识，从创建仪表板到安排仪表板刷新；这包括通过电子邮件发送刷新后仪表板的计划。\n\n\n\n\n在本章中，我们将提供一些注释和提示，帮助您理解重要内容。将涵盖以下主题：\n\
+  \n- 打开和搜索仪表盘\n- 浏览仪表盘\n- 仪表盘构建器\n- 仪表盘刷新\n- 仪表盘组件\n\n# Salesforce 中的仪表盘简介\n\n仪表盘是一种可视化数据，可根据报表中的条件、运行用户以及可选的仪表盘筛选器显示关键指标。一个强大的仪表盘会使用多个通常具有共同主题的报表，例如全球销售、客户支持等等。仪表盘将存储在\
+  \ Salesforce 中的数据可视化，帮助您识别趋势、整理数量并衡量其活动的影响。\n\n# 构建组件\n\n仪表盘通常由许多仪表盘组件构建而成。我们可以在一个仪表盘中混合使用不同类型的图表或表格组件。每个仪表盘组件始终需要一个报表作为数据源。但是，我们可以在同一个仪表盘中将同一个报表用作多个组件的数据源（例如，在条形图和饼图中使用同一个报表），也可以在多个不同的仪表盘中使用它。\n\
+  \n# 仪表盘的可访问性\n\n与报表类似，仪表盘也存储在文件夹中，但这些文件夹是不同类型的文件夹。文件夹控制谁可以访问仪表盘，而不是仪表盘本身。如果您有权访问仪表盘文件夹，则可以查看该文件夹中的所有仪表盘。由于仪表盘是建立在组件之上的，而每个组件都需要一个报表作为数据源，因此仪表盘运行用户也需要具有对该报表的访问权限。\n\
+  \n## 运行用户\n\n与报表不同，每个仪表盘都定义了一个运行用户，该用户将使用安全设置来确定仪表盘中显示的数据。如果运行用户是一个特定用户，则所有仪表盘查看者都将看到基于该用户（包括数据安全和层级）的仪表盘数据。因此，当您创建报表时，需要为仪表盘选择正确的运行用户，以显示正确的数据。例如，将**国家经理**设置为某个国家销售业绩仪表盘的运行用户；这将允许所有用户查看该国家的整体销售业绩。当您为团队构建业绩排行榜时，所有用户将看到相同的数据，因此请确保将仪表盘查看者设置为**国家经理**。\n\
+  \n## 动态仪表盘\n\n动态仪表盘与前面介绍的标准仪表盘完全不同。使用动态仪表盘时，仪表盘中显示的数据将遵循运行用户的可见性，而运行用户始终是当前登录用户。这样，每个用户都可以根据自己的访问级别查看仪表盘。我们将在*第10章“学习高级仪表盘配置”*中详细介绍动态仪表盘。\n\
+  \n具有特定权限的用户在运行仪表盘时将能够更改运行用户；但前提是动态仪表盘已配置为允许这样做。这对于高层管理人员通过更改运行用户来分析数据非常有用，并且无需更改仪表盘或报表筛选器。\n\
+  \n# 新体验\n\n如果您从 Classic 切换过来，Salesforce 必须在 Lightning 中重新设计整个仪表盘体验，但使用 Classic 构建的现有仪表盘可以在\
+  \ Lightning 中正常工作，无需迁移或重新配置。Lightning Experience 引入了新的仪表盘构建器，并提供了创建不同大小组件的灵活性：\n\
+  \n- **灵活的仪表盘组件大小：**您可以拖动仪表盘组件的边角或边缘来调整其大小。组件的大小可以是从一列一行到您想要的任意大小。当您调整组件大小时，图表和所有其他项目（如图例）都会自动调整大小。您可以通过单击铅笔图标来配置图表，从图表类型、图表标题、图表坐标轴等开始。请参考以下截图：\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_251_0.png)\n\n- **拖放仪表盘组件：**您可以通过拖放组件来排列仪表盘组件的位置。请参考以下截图：\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_252_0.png)\n\n- **超过三列的仪表盘：**在 Lightning\
+  \ Experience 中，仪表盘最多可以有九列，而在 Classic 中，我们最多只有三列。\n\n# 打开仪表盘\n\n如果您拥有**运行报表**权限，您将能够从**仪表盘**选项卡、搜索结果或收藏图标查看您有权访问的仪表盘。与报表类似，仪表盘的可访问性由存储该仪表盘的文件夹控制。\n\
+  \n在仪表盘选项卡中，如果您拥有“创建和自定义仪表盘”权限，则可以通过单击“新建仪表盘”按钮来创建新仪表盘，或者编辑存储在您具有编辑权限的文件夹中的现有仪表盘。有关仪表盘权限以及用于存储仪表盘的仪表盘文件夹的完整参考，请参阅第2章“报表和仪表盘中的概念与权限”和第3章“在报表和仪表盘中实施安全性”。\n\
+  \n让我们开始在 Salesforce Lightning 中打开仪表盘；请记住，仪表盘存储在仪表盘文件夹中，可以是私有文件夹或公共文件夹。私有报告仅对将仪表盘保存在“私有仪表盘”文件夹中的用户可见；我们已经在第2章“报表和仪表盘中的概念与权限”中详细讨论过这一点，因此这里不再重复。\n\
+  \n在 Salesforce Lightning 中有多种方式可以打开仪表盘。首先，单击“仪表盘”选项卡。\n\n# “仪表盘”选项卡\n\n下面是单击“仪表盘”选项卡后所截取的截图；让我们来逐一了解这里的所有组成部分：\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_253_0.png)\n\n1. **标题（以1标示）：** 这里会显示所选菜单、该文件夹中的项目数量，以及仪表盘列表是否按某列排序的信息（如果有）。\n\
+  2. **最近使用（2）：** 当您单击**仪表盘**选项卡时，默认会显示您最近打开的仪表盘列表。\n3. **仪表盘菜单（3）：** 仪表盘区域中有四个菜单。\n\
+  4. **文件夹菜单（4）：** 文件夹区域中有三个菜单。\n5. **新建仪表盘按钮（5）：** 单击此按钮可创建新的仪表盘；仅当您具有创建和自定义仪表盘的权限时，此按钮才可见。\n\
+  6. **新建文件夹按钮（6）：** 单击此按钮可为仪表盘创建新的文件夹；仅当您具有创建仪表盘文件夹的权限时，此按钮才可见。\n7. **仪表盘或文件夹区域（7）：**\
+  \ 这里显示的是仪表盘或文件夹的列表，具体取决于左侧选中的菜单。\n8. **操作按钮（8）：** 通过这里，您可以查看（与单击仪表盘名称相同）、编辑或删除仪表盘，或者删除文件夹。菜单的可见性取决于用户权限。\n\
+  9. **排序（9）：** 您可以通过单击表头，以升序或降序对仪表盘或文件夹列表进行排序。\n\n与 Lightning 中的**报表**选项卡或其他对象选项卡类似，如果您单击**仪表盘**选项卡旁边的箭头，它将显示您已添加到收藏夹的仪表盘以及最近打开的仪表盘列表。将仪表盘添加到收藏夹与将报表或其他记录添加到收藏夹类似；请参阅第8章*使用报表*。以下截图显示了当您单击**仪表盘**选项卡旁边的箭头图标时弹出的**仪表盘**选项卡菜单，包括**我的收藏**和**最近使用记录**：\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_255_0.png)\n\n# 仪表盘菜单\n\n单击**仪表盘**选项卡后，您将看到两个主面板：左侧面板和右侧面板。左侧面板包含**仪表盘**和**文件夹**菜单的分类，右侧面板将显示与左侧面板中所选菜单相关的仪表盘或文件夹列表。如下截图所示：\n\
+  \n\n\n当您在此处选择任何菜单时，右侧面板将列出基于左侧所选菜单的所有仪表板。该面板将有四列和一列操作列：DASHBOARD NAME、DESCRIPTION、FOLDER、LAST\
+  \ MODIFIED BY，以及操作下拉菜单的箭头图标。您将能够按 DASHBOARD NAME、FOLDER 和 LAST MODIFIED BY 对列表进行排序。\n\
+  \n对于每份报告最后一列中的操作菜单，菜单的可见性将取决于用户权限：\n\n- **View**：这与单击报告名称以查看仪表板相同。\n- **Edit**：只有当用户能够编辑仪表板时，此选项才会可见。\n\
+  - **Delete**：只有当用户根据文件夹中的用户访问权限能够删除报告时，此选项才会可见。用户将能够删除其个人文件夹中的仪表板。\n\n## The FOLDERS\
+  \ menu\n\n与 DASHBOARDS 的排列方式相同，您将在 FOLDERS 下找到几个菜单：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_257_0.png)\n\
+  \n**FOLDERS** 下有三个菜单：\n\n- 1. **Created by Me**：这将列出您创建的所有仪表板文件夹。\n- 2. **Shared\
+  \ with Me**：这将列出由其他人创建但与您共享的所有仪表板文件夹。\n- 3. **All Folders**：这将列出您有权访问的所有仪表板文件夹，无论是由您自己创建还是由其他人创建。\n\
+  \n当您在此处选择任何菜单时，右侧面板将列出基于左侧所选菜单的所有报告文件夹。将有四列和一列操作列。列将为 **FOLDER NAME**、**CREATED\
+  \ BY**、**LAST MODIFIED BY**、**CREATED ON**，以及操作下拉菜单的箭头图标。\n\n单击文件夹行最后一列中的箭头将显示 **Delete**\
+  \ 菜单，前提是用户具有删除文件夹的权限。对于有权删除仪表板文件夹的用户，用户可以从此处删除仪表板文件夹，但仅限于该文件夹中没有任何仪表板的文件夹；否则，用户将收到错误消息。\n\
+  \n您还可以通过将鼠标悬停在标题上并单击列标题来按任意列对列表进行排序。单击一次按升序排序，再次单击按降序排序。\n\n## The favorites icon\n\
+  \n到目前为止，您应该已经熟悉收藏夹图标；简单回顾一下，您可以将任何记录，包括报告和仪表板添加为个人收藏。只需在报告或仪表板打开时单击星形图标即可；您可以在 **Account**、**Opportunities**\
+  \ 或任何其他记录上执行此操作。\n\n添加后，您可以从 Lightning 环境中的任何位置轻松访问记录、报告和仪表板，因为它位于顶部区域并且始终可见。请考虑以下屏幕截图：\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_259_0.png)\n\n## The search textbox\n\
+  \n与报告或任何其他记录类似，您可以从全局搜索文本框搜索仪表板；只需输入完整的仪表板名称或部分名称，如果您不记得完整的仪表板名称。\n\n请确保在搜索仪表板时您不在\
+  \ SETUP 菜单中；否则它将不会搜索任何记录，而只会搜索 SETUP 菜单中的元数据，例如用户、配置文件、对象等。请参阅以下屏幕截图：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_260_0.png)\n\
+  \n## Navigating to a dashboard\n\n交互式仪表板组件为查看者提供更多信息和指向数据供应报告的链接。让我们看一下仪表板中的所有项目：\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_261_0.png)\n\n- 1. **Refresh, Edit, Clone,\
+  \ New Dashboard, or Delete：** 每个仪表板顶部的按钮和下拉菜单可一键访问管理任务。\n- 2. **View Report** underlying\
+  \ a component：您想获取指标或图表背后的数据吗？单击 **View Report** 以深入了解数据。\n- 3. **Hover over charts\
+  \ to get more information：** 将鼠标悬停在图表段上会显示有关图表的更多信息。\n- 4. **Expand dashboard components\
+  \ to get the big picture：** 单击展开图标即可查看组件的较大版本，然后继续使用 **View Report** 按钮深入了解数据。\n\
+  \n## Dragging and dropping in the Dashboard Builder\n\n**Dashboard Builder** 是一个拖放界面，用于创建和修改仪表板。您可以使用它来自定义整个仪表板、仪表板中的一列或仪表板中的一个组件。\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_262_0.png)\n\n让我们根据前面的屏幕截图介绍 Dashboard\
+  \ Builder 中的所有项目：\n\n- 1. **Editing the dashboard title (denoted by 1)：** 您可以从铅笔图标轻松更改仪表板标题。\n\
+  - 2. **Editing the components (2)：** 单击此铅笔图标可更改组件类型、排序、显示的最大值、标题、副标题和页脚。\n- 3. **The\
+  \ Delete component (3)：** 单击此叉号图标可删除组件。\n- 4. **The add + Component button (4)：**\
+  \ 单击此按钮可在仪表板中添加新组件。\n- 5. **The add + Filter button (5)：** 单击此按钮可为整个仪表板添加筛选器。\n\
+  - 6. **The undo button (6)：** 单击此按钮可撤消已更改但尚未保存的项目。\n- 7. **The redo button (7)：**\
+  \ 单击此按钮可重做项目。\n- 8. **The edit properties button (8)：** 单击此按钮可编辑仪表板属性：标题、描述、文件夹、View\
+  \ Dashboard as 和启用 Dynamic Dashboard。\n- 9. **The Save, Save As, and Delete buttons\
+  \ (9)：** **Save** 按钮保存并覆盖现有仪表板，**Save As** 按钮将仪表板另存为新仪表板，**Delete** 按钮删除仪表板。\n\n\
+  ![](img/72d01bea5a9ccf02f9452aab7505d9de_263_0.png)\n\n已删除的仪表板可在 15 天内从回收站恢复，但在\
+  \ Summer '17 版本中，回收站尚不存在于 Lightning Experience 中，因此您需要切换到 Classic 才能恢复删除。\n\n- 10.\
+  \ **The Done button (10)：** 单击此按钮可关闭仪表板编辑器：如果您尚未保存所做的更改，系统将提示您保存或丢弃更改。\n- 11. **Resize\
+  \ and move (11)：** 拖动组件角落可调整组件大小，或按住组件可移动它。\n\n## Refreshing dashboards\n\n仪表板与报告不同。当您打开报告时，报告数据将根据当前数据生成。另一方面，对于仪表板，当您打开仪表板时，它将显示截至最新仪表板刷新时的数据，无论是由任何用户还是按计划刷新。\n\
+  \n所有能够查看仪表板的用户都可以通过在打开仪表板后简单单击 **Refresh** 按钮来刷新仪表板。即使用户没有权限编辑仪表板，也能够刷新仪表板。刷新后，其他用户看到的仪表板将基于最新刷新数据。\n\
+  \n请注意，在以下屏幕截图中，仪表板标题下方的信息将向我们显示用于仪表板的数据，这与最新的仪表板刷新相同：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_264_0.png)\n\
+  \n但如果仪表板在 24 小时内未被刷新，它会通过带有感叹号图标的有用警告消息通知您，如以下屏幕截图所示：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_265_0.png)\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_265_1.png)\n\n如果您从 Classic 切换到 Lightning，并且拥有由您的供应商或顾问开发的\
+  \ Visualforce 组件，则 Visualforce 组件在 Lightning 中不再受支持。这将导致您无法刷新仪表板。为了解决此问题，请删除 Visualforce\
+  \ 组件，您应该能够在 Lightning Experience 中刷新仪表板。\n\n## Scheduling a dashboard refresh\n\n\
+  这是让系统按计划自动刷新仪表板的非常有用的功能。您还可以配置系统将仪表板通过电子邮件发送给您和您的团队。不幸的是，此功能在 Summer '17 版本之前在 Lightning\
+  \ 中不可用，因此您需要切换到 Classic 来配置此功能。\n\n\n\n\n要计划仪表板刷新，请执行以下步骤：\n\n- 1. 从 Classic 中打开仪表板。\n\
+  - 2. 单击 **刷新** 按钮附近的箭头。此选项不适用于 Salesforce 免费版。\n- 3. 单击 **计划刷新...**。请参阅以下截图：\n\n\
+  ![](img/72d01bea5a9ccf02f9452aab7505d9de_266_0.png)\n\n接下来，您需要配置以下内容：\n\n- 4. **电子邮件仪表板：**\
+  \ 如果您（和您的团队）希望在仪表板自动刷新时收到包含仪表板的电子邮件，请使用此选项。\n- 5. **频率：** 每日、每周、每月。\n- 6. **开始日期**\
+  \ 和 **结束日期**。\n\n7. 首选开始时间。请参阅以下截图：\n\n## 计划仪表板刷新\n\n此仪表板按您设置的计划刷新。要在刷新完成后发送电子邮件，请使用“电子邮件仪表板”选项。\n\
+  \n运行用户 Johan Admin\n\n电子邮件仪表板 发送给我 发送给其他人...\n\n计划刷新\n\n频率\n\n- 每日\n- 每周\n- 每月\n\
+  \n- 每个工作日\n- 每天\n\n开始 5/16/2017 [5/16/2017]\n\n结束 6/16/2017 [5/16/2017]\n\n首选开始时间\
+  \ 11:00 PM\n\n确切的开始时间将取决于作业队列活动。\n\n## 在 Lightning Experience 中构建仪表板\n\n下面是一个按计划随仪表板刷新一起发送的电子邮件示例：\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_268_0.png)\n\n如果您从电子邮件中单击仪表板标题，它将在 Web\
+  \ 浏览器中打开仪表板，并且应显示与电子邮件中相同的数据和刷新日期时间：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_269_0.png)\n\
+  \n对于在 Lightning Experience 中创建的仪表板，您将无法在 Salesforce Classic 中编辑它 - 编辑按钮将不可见。在 Classic\
+  \ 中创建的仪表板也是如此；然后，您在 Lightning 中编辑并保存，之后您无法在 Classic 中再次编辑它。您应该考虑克隆仪表板并将其保存在 Lightning\
+  \ Experience 中。这样，您仍然可以在需要时在 Salesforce Classic 中编辑原始仪表板。\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_269_1.png)\n\
+  \n要检查是否所有仪表板都已计划自动刷新，请导航到 设置 | 监控 | 作业 | 计划作业（从 Classic 中），或 设置 | 环境 | 作业 | 计划作业（从\
+  \ Lightning 中）。您可以从此处删除计划。\n\n## 创建您的第一个仪表板\n\n如果您从 Classic 切换到 Lightning，仪表板是最吸引人们切换到\
+  \ Lightning 的功能之一。在 Classic 中，仪表板组件最多可以有三列，而在 Lightning 中，组件最多可以有九列，尽管仪表板的最大组件数保持不变，即\
+  \ 20。\n\n我们在本章或前面的章节中已经讨论了许多与创建仪表板相关的主题，包括以下内容：\n\n- 仪表板权限\n- 仪表板文件夹和权限\n- 打开和搜索仪表板\n\
+  - 导航仪表板选项卡\n\n那么，让我们开始创建一个仪表板。\n\n## 创建仪表板的动手练习\n\n让我们创建一个仪表板，其中一个组件以水平条形图显示每个销售代表的客户数量，但在此之前，我们需要为仪表板组件数据源创建一份报告。假设您拥有创建报告和仪表板所需的所有权限。\n\
+  \n在 Lightning 中创建仪表板非常酷；您只需指向并单击即可构建仪表板。首先为仪表板选择一个有效的报告：\n\n- 1. 导航到 **报告** 选项卡以创建新报告。\n\
+  - 2. 报告是仪表板的基本要求，因为它将报告用作仪表板组件的数据源，所以让我们创建报告：\n  - 1. 单击 **新建报告** 按钮。\n  - 2. 通过单击\
+  \ **客户和联系人** 类别来选择 **客户** 报告类型。\n  - 3. 单击 **创建** 按钮继续。\n  - 4. 在 **显示** 筛选器中选择\
+  \ **所有客户**。\n  - 5. 将 **创建日期范围** 更改为 **所有时间**。\n  - 6. 将报告格式更改为 **摘要**。\n  - 7.\
+  \ 删除所有列，并仅向报告添加 **客户名称**。\n- 8. 将客户负责人拖到分组放置区域。\n- 9. 导航到 显示 | 详细信息 以隐藏记录详细信息。\n\
+  - 10. 将报告以名称“按所有者的客户”保存到“未归档的公共报告”文件夹。以下截图显示了创建的报告：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_271_0.png)\n\
+  \n- 3. 导航到仪表板选项卡，并单击新建仪表板按钮。\n- 4. 输入名称为“客户仪表板”。\n- 5. 通过单击交叉图标从文件夹中删除“私人仪表板”，并选择一个公共文件夹；在我的情况下，我有一个名为“公司仪表板”的仪表板文件夹。\n\
+  - 6. 单击 **创建** 按钮继续。\n- 7. 现在您应该看到九列多行的矩阵。\n- 8. 单击 **+ 组件** 按钮以开始添加仪表板组件。\n\n11.\
+  \ 默认情况下，刚添加的组件将占据三列三行。您可以调整组件使其更小或更大；让我们将其更改为两列三行。保持默认组件标题不变，即报告标题。请参阅以下截图：\n\n\
+  ![](img/72d01bea5a9ccf02f9452aab7505d9de_273_0.png)\n\n- 15. 单击 **保存** 按钮，然后点击 **完成**\
+  \ 按钮。\n- 16. 这是我们的第一个仪表板：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_273_1.png)\n\
+  \n让我们继续添加另一个仪表板组件：\n\n- 1. 单击 **编辑** 按钮。\n- 2. 单击 **+ 组件** 按钮以添加另一个仪表板组件。\n- 3.\
+  \ 选择之前创建的同一报告，**按所有者的客户**。\n- 4. 现在选择 **环形** 图表。\n- 5. 为 **副标题** 添加所有 `accounts`，为\
+  \ **页脚** 添加 `Date = all time`。\n- 6. 单击 **添加** 按钮。\n- 7. 新组件将添加到现有组件下方；将其拖到现有组件的右侧，并保持大小为\
+  \ 3 x 3 的框。\n- 8. 单击 **保存** 按钮，然后点击 **完成** 按钮；您将看到以下内容：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_274_0.png)\n\
+  \n如果您将鼠标悬停在两个图表上，您将获得我们在报告中看到的详细信息。\n让我们分析此仪表板：\n\n- 单击图表或展开图标，以全屏查看图表。\n- 注意 **查看报告**\
+  \ 链接；单击此链接将打开报告。\n- 将鼠标悬停在图表上，您将获得有关该图表切片的更多信息。\n- 在本练习中，我们证明了可以在同一仪表板中将同一报告用于多个组件，并且可以将其用于不同类型的图表。\n\
+  - 请注意仪表板标题下方的 **截至 2017 年 5 月 14 日晚上 10:22 - 以 Johan Yu 身份查看。** 这意味着查看仪表板的其他用户将看到与用户\
+  \ **Johan Yu** 相同的内容，数据刷新于 **2017 年 5 月 14 日晚上 10:22**。如果对象共享是私有的，用户将看到仪表板，其中包含的数据集是该用户没有可见性的。\n\
+  - 仪表板与报告不同。当您打开报告时，它将显示当前数据，而对于仪表板，默认情况下，它将显示截至最新刷新的数据。其他用户将能够通过单击 **刷新** 按钮来刷新仪表板，即使是没有编辑仪表板权限的用户也可以。刷新后，其他用户将看到基于最新刷新数据的仪表板。\n\
+  - 当其他用户单击 **查看报告** 时，他们将看到自己的数据（登录用户）；生成的报告不再与查看仪表板的用户相关；因此，数字可能与仪表板数据中的数字不同。\n\n\
+  ## 编辑和维护仪表板的动手练习\n\n有两种方法可以编辑仪表板：\n\n- 打开仪表板并单击 **编辑** 按钮，如下面的截图所示：\n\n\n\n一旦进入\
+  \ **Edit** 模式或 **Dashboard Builder**，您可以添加、删除或修改现有组件，与创建新仪表板时一样。您可以通过单击 **Save**\
+  \ 按钮旁箭头下的 **Save As** 链接，将修改后的仪表板保存为新仪表板，或者您也可以使用 **Save As** 下的 **Delete** 链接删除仪表板，如以下屏幕截图所示：\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_277_0.png)\n\n好的，让我们来看一个动手练习，编辑之前创建的仪表板，通过添加一个新组件然后将仪表板保存为新仪表板：\n\
+  \n1. 打开 **Account Dashboard**。\n2. 单击 **Edit** 按钮。\n3. 单击第一个组件（最左侧）并将大小更改为四列三行。\n\
+  4. 相应地将第二个组件移动到第一个组件的右侧。\n5. 通过单击 **+ Component** 按钮添加新组件。\n6. 选择相同的 **Account by\
+  \ Owner** 报表。\n7. 选择 **Vertical Bar Chart**。\n8. 将 **Sort Rows By** 更改为 **Value\
+  \ Ascending**。\n9. 添加 **Subtitle** 为 `All accounts` 和 **Footer** 为 `Date = all time`。\n\
+  10. 单击 **Add** 按钮。\n11. 修改组件大小为两列三行并将其移动到第二个组件的右侧。\n12. 单击 **Save** 按钮旁箭头下的 **Save\
+  \ As** 链接；如果单击 **Done** 按钮，系统会询问是否要保存或丢弃更改。\n13. 输入名称为 `Account Dashboard copy`；将文件夹保留为现有文件夹。\n\
+  14. 单击 **Create** 按钮。参考以下屏幕截图：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_278_0.png)\n\
+  \n15. 现在我们不再处于编辑模式或仪表板构建器中；我们处于查看模式。请注意，右上角有几个按钮和链接：\n\n- **Refresh:** 单击此按钮刷新仪表板数据。\n\
+  - **Edit:** 单击此按钮编辑仪表板。\n- **Clone:** 单击此链接克隆为新仪表板而无需编辑，并保存为新仪表板。\n- **New Dashboard:**\
+  \ 单击此项可在无需返回 **Dashboards** 选项卡的情况下创建新仪表板。\n- **Delete:** 单击此项可删除现有仪表板；被删除的仪表板将被移至回收站（截至\
+  \ Summer '17 版本，您需要切换到 Classic 才能访问回收站）。\n\n接下来，让我们将 **Account Dashboard copy**\
+  \ 仪表板从 **Company Dashboards** 文件夹移动到名为 **Asia Sales** 的文件夹：\n\n1. 编辑仪表板。\n2. 单击齿轮图标\
+  \ **Edit Dashboard Properties** 按钮。\n3. 单击现有文件夹，选择新文件夹，然后单击 **Save** 按钮关闭属性窗口。这在以下屏幕截图中显示：\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_279_0.png)\n\n4. 再次单击 **Save** 按钮以保存仪表板的更改。\n\
+  5. 现在仪表板应位于新文件夹中；您可以通过单击 Dashboards 选项卡进行双重检查，它应列在最近项目中。\n\n## The dashboard components\n\
+  \n如前所述，一个仪表板最多可包含 20 个组件，每个组件可以以图表、矩阵或表格的形式呈现。\n\n构建仪表板主要有两个步骤：\n\n1. 选择报表作为数据源。\n\
+  2. 选择组件类型。\n\n### Defining the dashboard components\n\n在 Salesforce Lightning 中提供\
+  \ 11 种仪表板组件类型（截至 Summer '17 版本）：\n\n- Horizontal Bar Chart\n- Vertical Bar Chart\n\
+  - Stacked Horizontal Bar Chart\n- Stacked Vertical Bar Chart\n- Line Chart\n- Donut\
+  \ Chart\n- Metric Chart\n- Gauge Chart\n- Funnel Chart\n- Scatter Chart\n- Table\n\
+  \n以下屏幕截图中突出显示的区域显示了这些：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_281_0.png)\n\n\
+  我们不会讨论所有组件类型，但让我们讨论其中几种。\n\n### Tables\n\n表格在以易于扫描的格式呈现信息方面很有用。图表可以让仪表板阅读者一目了然地获取信息，而表格则提供更多详细信息。将表格添加到您的仪表板以按摘要显示数据，如以下屏幕截图所示：\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_282_0.png)\n\n| STAGE | SUM OF AMOUNT\
+  \ |\n|---|---:|\n| Value Proposition | $330,000.00 |\n| Qualification | $282,000.00\
+  \ |\n| Negotiation/Review | $236,000.00 |\n| Id. Decision Makers | $170,000.00 |\n\
+  | Proposal/Price Quote | $100,000.00 |\n\n### Funnel charts\n\n当您在有序集合中有多个分组并希望显示它们之间的比例时，使用漏斗图。漏斗图非常适合显示您的机会阶段。请考虑以下屏幕截图：\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_283_0.png)\n\n### Gauge charts\n\n添加到\
+  \ Lightning Experience 仪表板的仪表图默认显示百分比和总数。您可以手动设置每个区段范围的值，并且还可以更改图表颜色。请考虑以下屏幕截图：\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_284_0.png)\n\n### Stacked Bar charts\n\
+  \n堆叠条形图非常适合比较条形之间的绝对值。要使用堆叠条形图，报表必须至少有两个分组，并且其中一个分组必须是数字。\n\n您可以将堆叠条形图配置为 100%；这使您可以比较每个条形的相对值。例如，堆叠条形图可让您比较销售代表之间的机会比例。\n\
+  \n以下屏幕截图显示了两个堆叠条形图；右侧的堆叠条形图配置为 Stack to 100%：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_285_0.png)\n\
+  \n### Scatter charts\n\n散点图可用于显示一个或两个报表数据组以及摘要。它们也适用于识别大型数据集中的趋势。要使用散点图，报表必须至少有两个汇总字段。散点图可以轻松显示机会的年龄与机会阶段。请考虑以下屏幕截图：\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_286_0.png)\n\n### Cumulative Line charts\n\
+  \n与其使用普通折线图，您可以将折线图配置为累积折线图。您可以在累积报表上制作折线图，以突出显示每月已赢得的机会。请考虑以下屏幕截图：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_287_0.png)\n\
+  \n### Combination charts\n\n组合图在单个图表上绘制两个或多个数据集，使图表 *multimetric*。例如，条形图显示每个月的管道\
+  \ **Amount**，而 **Line Chart** 显示每个月的管道数量，并在右侧添加第二个 y 轴以进行额外测量。这在以下屏幕截图中显示：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_288_0.png)\n\
+  \n## Reports as a data source\n\nSalesforce 为您提供灵活性，可使用任何已保存的报表作为组件的数据源。但是，使用保存在\
+  \ **My Personal Custom Reports / Private Report** 文件夹中的报表的组件将不适用于其他用户，除非报表存储在查看用户的私有报表文件夹中，因为仪表板是作为私有报表文件夹所有者查看的。\n\
+  \n您可以使用任何报表类型的报表作为数据源，但对于 **Tabular** 格式的报表，只有添加了 **Row Limit** 过滤器的 **Tabular**\
+  \ 报表才能用作数据源。请考虑以下屏幕截图：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_289_0.png)\n\n\
+  本节的要点是不要假设报表和仪表板中图表的类型和图表功能是相同的。它们看起来相似，但并不完全相同。\n\n## Summary\n\n在本章中，我们使用报表，包括打开报表、搜索报表以及将报表添加到收藏夹。我们还导航报表并讨论了运行报表时可用的每个组件。\n\
+  \n当您单击 **Reports** 选项卡时，您将看到最近打开的报表。您可以单击标题以排序查找报表。 **REPORTS** 下有一个菜单。在 **REPORTS**\
+  \ 下将是 **FOLDERS** 类别，您可以在其中检查您创建的文件夹、与您共享的文件夹以及您有权访问的所有文件夹。\n\n操作按钮在 Reports 选项卡中为每个报表提供，并且在打开报表后也可用，具体取决于用户一般权限和与特定报表相关的用户权限。\n\
+  \n您还了解了订阅报表；要将报表交付到电子邮件，您需要具有订阅报表的权限，并且最多可以订阅五个报表。\n\n在下一章中，我们将开始使用仪表板，其中报表充当仪表板组件的数据源。\n\
+  \n\n"
+- "## 10 学习高级仪表板配置\n\n在第9章“在Lightning Experience中构建仪表板”中，我们介绍了仪表板，从打开仪表板、导航到仪表板选项卡、导航到仪表板以及查看仪表板构建器中的项目开始。你学习了仪表板的基本结构，了解了它与报表的关系，以及仪表板如何在Salesforce平台上定义和存储。我们继续介绍了仪表板组件，它们是Salesforce仪表板的核心和灵魂。最后，我们从零开始创建了一个仪表板，然后通过仪表板过滤器对其进行了增强，并安排了仪表板的自动刷新。\n\
+  \n在本章中，你将继续学习并使用Salesforce提供的开箱即用功能创建高级仪表板。我们将从仪表板过滤器开始，介绍如何实现它以及仪表板过滤器的其他用例。我们将继续探讨动态仪表板的概念，并研究从仪表板到报表保留过滤器的仪表板向下钻取。最后，我们将在AppExchange中查找可用的预构建仪表板，并进行动手练习来安装它。\n\
+  \n本章将涵盖以下主题：\n\n- 实现仪表板过滤器\n- 使用动态仪表板\n- 仪表板和报表的下钻\n- 从AppExchange获取更多\n\n### 实现仪表板过滤器\n\
+  \n你是否曾经需要根据不同的条件来分析仪表板？例如，我们想查看当前年度、当前季度和当前月份的机会管道（pipeline）仪表板。\n\n对于这个例子，创建三个仪表板没有问题，但由于仪表板的数据源是由报表驱动的，这意味着我们需要为每个仪表板创建三组报表，如果你的仪表板有10个组件，你将需要30个报表来支持。\n\
+  \n因此，与其创建多个仪表板，不如合并起来，对用户来说只使用一个仪表板更容易，因为仪表板的所有组件都是相同的。另外，考虑一下维护30个报表和三个仪表板的工作量，并将其与一个使用10个报表作为数据源的仪表板进行比较。\n\
+  \n在这种情况下，仪表板过滤器就派上用场了；只需一个仪表板，你就可以根据选定的过滤器更改过滤器以在仪表板中包含不同的记录。\n\n### 了解仪表板过滤器\n\n\
+  仪表板过滤器是一个很好的功能，可以过滤仪表板组件中的数据。所有组件都将根据选定的过滤器进行过滤。使用仪表板过滤器，你可以在同一个仪表板上使用不同的数据组合。\n\
+  \n向仪表板添加过滤器可以让用户通过一个仪表板获得多种结果，因此一个仪表板可以起到多个仪表板的作用。如果没有过滤器，你将不得不创建多个仪表板，每个仪表板具有相同的组件但使用不同的过滤器。例如，在行业字段中添加一个过滤器，按行业跟踪客户。作为管理员，维护更少的仪表板更容易。\n\
+  \n如果你在仪表板上选择了过滤器，重新打开仪表板时，默认会应用你上次选择的过滤器。Salesforce会记住每个用户对每个仪表板应用的过滤器。\n\n要创建仪表板过滤器，你需要为过滤器定义一个标签，选择包含要过滤的信息类型的字段，然后定义过滤器如何返回数据。理想情况下，每个过滤器包含多个值，包括运算符。每个过滤器最多可以有10个值，每个仪表板最多可以有3个过滤器。\n\
+  \n### 向仪表板添加过滤器的动手练习\n\n让我们使用在第9章*在Lightning Experience中构建仪表板*中创建的**Account Dashboard**（账户仪表板）进行此练习；我们将添加一个基于**Industry**（行业）（**Account**（账户）中的一个字段）的过滤器，其选项等于：\n\
+  \n- **服装**或**教育**\n- **能源**\n- 非空白\n\n这允许用户分析与**账户行业**相关的账户数量：\n\n1. 打开并编辑**Account\
+  \ Dashboard**仪表板。如果你来自**Dashboards**（仪表板）选项卡，可以直接点击**Edit**（编辑）链接；它位于箭头操作菜单下，如下图所示：\n\
+  \   ![](img/72d01bea5a9ccf02f9452aab7505d9de_293_0.png)\n\n2. 此时，此仪表板中有两个组件；让我们添加另一个组件，例如`Account\
+  \ by Type`（按类型划分的账户）：\n   ![](img/72d01bea5a9ccf02f9452aab7505d9de_294_0.png)\n\n\
+  3. 创建一个新报表`Account by Type`：\n    - 点击**Reports**（报表）选项卡\n    - 点击**New Report**（新建报表）按钮\n\
+  \    - 选择**Accounts**（账户）记录类型，然后点击**Create**（创建）按钮\n    - 将筛选器更改为**Show as All accounts**（显示为所有账户），并将**Date\
+  \ Field Range**（日期字段范围）设置为**All time**（所有时间）\n    - 将报表格式更改为**Summary**（摘要）\n  \
+  \  - 将**Type**（类型）拖入分组区域\n    - 将报表保存为`Account by Type`，报表文件夹保存到**Unfiled Public\
+  \ Reports**（未归档的公共报表）\n\n4. 从仪表板构建器返回到仪表板，然后点击+ **Component**（组件）按钮。\n\n5. 选择刚刚创建的报表**Account\
+  \ by Type**。\n\n6. 点击**Add**（添加）按钮。如下图所示：\n   ![](img/72d01bea5a9ccf02f9452aab7505d9de_295_0.png)\n\
+  \n7. 将新添加的组件移动到第二个组件的右侧。\n\n8. 点击+ Filter（过滤器）按钮以添加过滤器。\n\n9. 选择要用作过滤器的字段；在此练习中，选择Industry（行业）。\n\
+  \n10. 在Display Name（显示名称）中，输入Account Industry（账户行业）。\n\n11. 点击Add Filter Value（添加过滤器值）按钮。\n\
+  \n12. 在过滤器选项中，在**Operator**（运算符）中选择**equals**（等于）。对于**Value(s)**（值），选择**服装**和**教育**，并在**Display\
+  \ Text**（显示文本）中输入`Apparel or Education`。请看下面的截图：\n    ![](img/72d01bea5a9ccf02f9452aab7505d9de_296_0.png)\n\
+  \n13. 点击第一个值的**Apply**（应用）按钮，然后再次点击**Add Filter Value**按钮以添加第二个过滤器值。\n\n14. 在过滤器选项中，在**Operator**中选择**equals**。对于**Value(s)**，选择**能源**，在**Display\
+  \ Text**中输入`Energy`。\n\n15. 点击第二个值的**Apply**按钮，然后再次点击**Add Filter Value**按钮以添加第三个过滤器值。\n\
+  \n16. 在过滤器选项中，选择**not equal to**（不等于）。对于**Value(s)**，将其留空；在**Display Text**中输入空白。\n\
+  \n17. 点击第三个值的**Apply**按钮，然后点击**Add**按钮。效果如下所示：\n    ![](img/72d01bea5a9ccf02f9452aab7505d9de_297_0.png)\n\
+  \n18. 返回仪表板构建器，点击Save（保存）按钮，然后点击Done（完成）退出仪表板构建器。\n\n19. 现在，仪表板中有一个名为Account Industry的过滤器，其中定义了三个值。请看下面的截图：\n\
+  \    ![](img/72d01bea5a9ccf02f9452aab7505d9de_298_0.png)\n\n21. 要删除或编辑过滤器，请点击仪表板中的**Edit**按钮进入仪表板构建器；接下来，查找铅笔图标（**Edit\
+  \ Filter**（编辑过滤器）），如下图所示：\n    ![](img/72d01bea5a9ccf02f9452aab7505d9de_300_0.png)\n\
+  \n从这里，你可以通过点击**Add Filter Value**按钮添加过滤器，或通过点击叉号图标删除该值。要编辑现有值，请点击过滤器值名称；对于此示例，让我们点击**能源**，然后选择**电子产品**，并将Display\
+  \ Text更改为`Electronics or Energy`。点击**Apply**按钮，然后点击**Update**（更新）按钮。点击**Save**按钮，然后点击**Done**退出仪表板构建器。请看下面的截图：\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_301_0.png)\n\n一个仪表板中最多可以有三个过滤器。要添加更多过滤器，请在仪表板编辑模式下点击Add\
+  \ Filter（添加过滤器）按钮。\n\n### 查看仪表板\n\n就运行时而论，正如我们在第9章*在Lightning Experience中构建仪表板*中讨论的，当你打开仪表板时，它会显示基于最新刷新（手动或计划）的数据；而对于报表，当你打开报表时，它总是显示当前数据。\n\
+  \n\n\n\n请注意，当用户从仪表盘组件中点击**查看报告**时，系统只会显示该用户可查看的记录，而不会像仪表盘查看用户那样显示。因此，每个用户生成的报告可能有所不同。\n\
+  \n普通仪表盘以特定用户（即已定义的用户）的安全设置来运行。所有对仪表盘有访问权限的用户，无论其个人设置如何，都会看到相同的数据。使用普通仪表盘的一个良好场景是，以公司高层管理人员的身份来展示仪表盘，例如业务部门负责人或地区负责人，这样员工就能了解公司的整体业绩。此外，另一个不错的方法是通过展示团队内同级别成员的绩效，来激励团队成员。\n\
+  \n## 什么是动态仪表盘？\n\n动态仪表盘允许用户根据当前运行用户的数据可见性，或团队中某位成员的数据可见性，或组织中某位成员的数据可见性来查看仪表盘数据；这取决于用户权限和仪表盘设置。借助动态仪表盘，用户可以看到基于当前运行用户数据可见性的仪表盘；这种方式更加简单，无需为每个用户单独创建仪表盘。\n\
+  \n当你需要为每位销售代表制作仪表盘时，这一功能非常实用；销售代表登录时，他们将看到自己的数据；但当经理登录时，他们将看到团队数据。此外，经理还可以通过更改查看用户，查看其团队成员各自的仪表盘，而无需更改仪表盘本身。请注意，为此目的，经理需要拥有**查看我团队的仪表盘**权限。\n\
+  \n将动态仪表盘与之前讨论过的仪表盘筛选器结合使用，可以让经理全面了解团队的销售管道或其他统计数据。\n\n在第 2 章“报告和仪表盘中的概念与权限”中，我们讨论了与仪表盘相关的权限。其中有些权限仅专门适用于动态仪表盘：\n\
+  \n- **管理动态仪表盘**权限\n- **查看我团队的仪表盘**权限\n\n拥有**管理动态仪表盘**权限的用户能够创建和编辑动态仪表盘。动态仪表盘会标记为**已将当前登录用户选为“查看仪表盘为”**，并且每个用户根据其数据可见性在仪表盘中看到不同的数据。这与普通仪表盘不同，后者所有用户都是基于某个单一用户的数据可见性看到相同的数据。\n\
+  \n对于拥有**查看我团队的仪表盘**权限的用户，当他们打开启用了**允许仪表盘查看者更改此设置（动态仪表盘）**的动态仪表盘时，他们可以从角色层级中选择其团队内的另一名用户，这样仪表盘中的所有数据都会根据该用户的数据可见性进行刷新。这包括该用户的数据、与其共享的数据以及该用户团队下属的数据。此外，拥有**查看所有数据**权限的用户将能够在动态仪表盘中选择任何用户作为仪表盘查看者。\n\
+  \n## 动态仪表盘的局限性\n\n你可以配置的动态仪表盘数量取决于你的 Salesforce 版本；企业版最多可配置 5 个动态仪表盘，无限版和性能版最多可配置\
+  \ 10 个，开发者版最多可配置 3 个。如果你需要更多动态仪表盘，可以联系你的客户经理进行购买。\n\n你不能将动态仪表盘保存到个人文件夹。动态仪表盘必须存储在具有共享访问权限的文件夹中。\n\
+  \n你不能对动态仪表盘进行计划刷新；仪表盘必须手动刷新。\n\n## 创建动态仪表盘的上机练习\n\n让我们考虑以下实践操作步骤：将普通仪表盘更改为动态仪表盘，并让用户在仪表盘中选择当前运行用户。\n\
+  \n在开始之前，请确保你拥有**管理动态仪表盘**和**查看我团队的仪表盘**权限；否则，你将不会在仪表盘属性中看到**“查看仪表盘为”**选项。如果你不确定自己是否拥有这些权限，可以联系你的\
+  \ Salesforce 管理员。这些权限在你的用户配置文件设置中定义，也可以通过**权限集**单独添加到你的用户详细信息中。这如下面的截图所示：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_307_0.png)\n\
+  \n同样，我们使用“账户仪表盘”来完成此练习。在我们将仪表盘更改为动态仪表盘之前，让我们再看看这个仪表盘；请注意，该仪表盘的查看用户是 Johan Yu，以下截图是以\
+  \ Alvin Lee 身份登录时截取的：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_308_0.png)\n\n\
+  请按照以下步骤完成此上机练习：\n\n1. 导航到“仪表盘”选项卡，找到“账户仪表盘”，点击仪表盘名称右侧箭头下的“编辑”链接。或者，你可以打开仪表盘，然后点击“编辑”按钮。\n\
+  \n2. 点击齿轮图标；将鼠标悬停在其上，标签显示为“编辑仪表盘属性”。\n\n3. 在“查看仪表盘为”下，此时应选择“我”。\n\n4. 将其更改为“当前登录用户”，并勾选“允许仪表盘查看者更改此设置（动态仪表盘）”。\n\
+  \n5. 点击“保存”按钮关闭属性窗口。\n\n6. 再次点击“保存”按钮以保存仪表盘更改，然后点击“完成”退出仪表盘生成器。\n\n7. 现在你应该能看到“查看者”旁边的“更改”链接；如果没有看到，请刷新仪表盘或刷新\
+  \ Web 浏览器。请参考以下截图：\n\n8. 点击“更改”链接；这将允许你选择其他用户作为仪表盘查看用户。在我的练习中，我将选择 Alvin Lee，如下面的截图所示：\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_309_0.png)\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_309_1.png)\n\
+  \n### 账户仪表盘\n\n截至 2017 年 5 月 21 日 下午 6:32 查看者：Johan Yu 更改\n\n账户行业 等于 服装或教育\n\n###\
+  \ 按类型划分的账户\n\n查看报告\n\n### 按所有者划分的账户\n\n所有账户 日期 = 所有时间 | 查看报告\n\n### 按所有者划分的账户\n\n\
+  所有账户 日期 = 所有时间 | 查看报告\n\n### 按类型划分的账户\n\n总记录数 2\n\n筛选器\n\n显示：所有账户\n\n创建日期：所有时间\n\
+  \n链接的筛选器：行业 等于 服装，教育\n\n| 类型 | 账户所有者 | 账户名称 | 上次修改日期 | 创建日期 | 创建者 |\n|---|---|---|---|---|---|\n\
+  | 客户 - 直接（2 条记录） | Johan Yu | Burlington Textiles Corp of America | 2017/5/4 | 2014/5/24\
+  \ | Johan |\n|  | Alvin Lee | University of Arizona | 2017/5/21 | 2014/5/24 | Johan\
+  \ |\n| 总计（2 条记录） |  |  |  |  |  |\n\n## 从 AppExchange 获取更多\n\n如果你不熟悉 AppExchange，它是\
+  \ Salesforce.com 为 Salesforce 用户托管的商业应用商店。你可以找到成千上万的应用安装到你的 Salesforce 实例中，以满足或增强你的业务需求。其中一些应用是免费的，而许多应用需要许可费用。它们由\
+  \ Salesforce 合作伙伴构建。此外，还有一些由 Salesforce Labs 提供的示例应用。Salesforce Labs 不支持他们在 AppExchange\
+  \ 上发布的应用，但它提供了许多 Salesforce 功能的示例，帮助管理员学习如何使用这些功能。\n\n从 AppExchange 安装的应用被视为第三方应用，这意味着它不受\
+  \ Salesforce 支持团队的支持。对于付费应用，通常由开发者为其应用提供支持。\n\n要访问 Salesforce AppExchange，请导航至 https://appexchange.salesforce.com，在那里你可以找到许多应用，或者你可以在文本框中借助关键字搜索它们。\n\
+  \n要查找与仪表盘相关的应用，请在搜索文本框中键入 dashboard，你将获得许多由 Salesforce Labs 构建的仪表盘应用，你可以免费安装和使用它们，还有由\
+  \ Salesforce 合作伙伴构建的应用，这些应用要么免费，要么付费。\n\n在将应用安装到生产环境之前，先将其安装到沙盒中进行试用总是一个好习惯。此外，即使你安装了\
+  \ AppExchange 包，你也可以将其卸载，而不会对你的其他 Salesforce 组织造成任何问题。\n\n以下是一些由 Salesforce Labs\
+  \ 构建的仪表盘应用：\n\n- SALESFORCE CRM DASHBOARDS\n- SALES ACTIVITY DASHBOARD\n- SERVICE\
+  \ & SUPPORT DASHBOARDS\n- SALESFORCE1 ADOPTION DASHBOARD AND REPORTS\n\n\n\n\n\n\
+  ## 学习高级仪表板配置\n\n4. 点击 **Get It Now** 按钮，如下图所示：\n\n   ![](img/72d01bea5a9ccf02f9452aab7505d9de_314_0.png)\n\
+  \n5. 点击 **Log in to the AppExchange** 按钮，使用你的 Salesforce 凭据登录。\n\n6. 现在点击 **Install\
+  \ in Production** 或 **Install in Sandbox** 按钮，如下面的截图所示：\n\n   ![](img/72d01bea5a9ccf02f9452aab7505d9de_315_0.png)\n\
+  \n7. 勾选 **I have read and agree to the terms and conditions.**，然后点击 **Confirm and\
+  \ Install!!** 按钮。\n\n8. 系统可能会提示你输入 Salesforce 用户名和密码。\n\n9. 现在你可以选择安装应用的范围：**Admin\
+  \ Only**、**All Users** 或 **Specific Profiles...**。在本练习中，我将选择 **Admin Only**，然后点击\
+  \ **Install** 按钮。\n\n10. 等待一分钟左右完成安装；安装完成后，页面会显示 **Installation Complete!**。然后点击\
+  \ **Done** 按钮。\n\n11. 安装完成后，你也会收到电子邮件通知；对于某些较大的软件包，你可能需要等待邮件通知，而不是在屏幕上看到完成状态。\n\n\
+  12. 这将带你进入 **Installed Packages** 设置菜单，你将在这里找到该应用：\n\n    ![](img/72d01bea5a9ccf02f9452aab7505d9de_316_0.png)\n\
+  \n13. 你可以点击软件包名称 **Salesforce.com CRM Dashboards** 查看软件包详细信息。你可以从这里卸载，或查看软件包组件。让我们点击\
+  \ **View Components**。\n\n14. 请注意，该软件包会在多个仪表板文件夹中安装多个仪表板，包括报表，如下面的截图所示：\n\n    ![](img/72d01bea5a9ccf02f9452aab7505d9de_316_1.png)\n\
+  \n15. 让我们打开一个 **Sales Executive Dashboard** 仪表板；你可以使用全局搜索搜索仪表板名称，或转到 **Dashboards**\
+  \ 选项卡查找该仪表板。\n\n4. 将上述报表克隆为一个名为 `Expired Pipeline` 的新报表，将其存储到同一个报表文件夹 **Global Sales**\
+  \ 中，并使用以下内容更新克隆的报表：\n\n   - 将 **Close Date** 筛选器更改为 **All Time**\n   - 添加 **Close\
+  \ Date** 作为 **Field filter**，选择操作为 **less than**，筛选值为 **Today**，勾选 **Locked** 以锁定筛选器，然后点击\
+  \ **OK** 按钮\n   - 从分组中移除 **Close Date**，但将其添加到报表中\n   - 保存报表\n\n5. 将 **Expired Pipeline**\
+  \ 报表克隆为一个名为 `Won Opportunities (YTD) by Sales Rep` 的新报表，将其存储到同一个报表文件夹 **Global Sales**\
+  \ 中，并使用以下内容更新克隆的报表：\n\n   - 将 **Opportunity Status** 更改为 **Closed Won**\n   - 将\
+  \ **Close Date** 作为 **Field filter** 的操作更改为 **less or equal**，然后点击 **OK** 按钮\n \
+  \  - 从分组中移除 **Stage**，然后添加 **Opportunity Owner** 作为分组\n   - 保存报表\n\n6. 将 **Won Opportunities\
+  \ (YTD) by Sales Rep** 报表克隆为一个名为 `Won Opportunities (YTD) by Month` 的新报表，并将其存储到同一个报表文件夹\
+  \ **Global Sales** 中。使用以下内容更新克隆的报表：\n\n   - 从分组中移除 **Opportunity Owner**，然后添加 **Close\
+  \ Date** 作为分组，将 **Close Date** 分组更改为 **Calendar Month**\n   - 保存报表\n\n7. 将 **Won\
+  \ Opportunities (YTD) by Month** 报表克隆为一个名为 `Lost Opportunities (YTD)` 的新报表，将其存储到同一个报表文件夹\
+  \ **Global Sales** 中，并使用以下内容更新克隆的报表：\n\n   - 将 **Opportunity Status** 更改为 **Any**\n\
+  \   - 添加 **Stage** 作为 **Field filter**，选择操作为 **equals**，筛选值为 **Closed Lost**，勾选\
+  \ **Locked** 以锁定筛选器，然后点击 **OK** 按钮\n   - 从分组中删除 **Opportunity Owner**，然后添加 **Lost\
+  \ Reason** 作为报表分组。**Lost Reason** 是一个自定义选项列表字段；在本练习中，你需要创建这个自定义字段或改用其他字段\n   - 保存报表\n\
+  \n8. 现在，我们在 **Global Sales** 报表文件夹中存储了五个 **Summary** 报表。\n\n让我们使用之前准备的报表再添加几个组件：\n\
+  \n1. 添加第三个组件：\n\n   - 使用报表 **Won Opportunities by Sales Rep (YTD)**\n   - 使用的 **Chart\
+  \ Type** 为 **Horizontal Bar Chart**\n   - 将组件移动到第二个组件右侧\n\n2. 添加第四个组件：\n\n   - 使用报表\
+  \ **Pipeline for 120 days by Stage**\n   - 使用的 **Chart Type** 为 **Horizontal Bar\
+  \ Chart**\n   - 在 **Y-Axis** 上选择 **Close Date**，并选择 **Sort Rows By Label Ascending**\n\
+  \   - 由于报表有两个分组，默认情况下图表中也会有两个分组。将图表大小调整为 5x7 个网格。将图表放大是为了在未来几个月更好地可视化销售管道阶段\n\n\
+  3. 添加第五个组件：\n\n   - 使用报表 **Expired Pipeline**\n   - 使用的 **Chart Type** 为 **Horizontal\
+  \ Bar Chart**\n   - 在 **X-Axis** 上选择 **Record Count**，并选择 **Sort Rows By Label Ascending**\n\
+  \   - 添加 **Subtitle** 为 **This needs to be clean!**，并将 **Footer** 设置为 **No record\
+  \ should be here**\n   - 将组件移动到第四个组件右侧，并将图表大小设置为 4x4 个网格\n\n4. 添加第六个组件：\n\n   -\
+  \ 使用报表 **Lost Opportunities (YTD)**\n   - 使用的 **Chart Type** 为 **Donut**\n   - 将组件移动到第五个组件下方，并将图表大小设置为\
+  \ 2x3 个网格\n\n5. 保存仪表板。\n\n### 让我们看看现在的效果：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_321_0.png)\n\
+  \n从这个仪表板中，有很多项目需要管理，销售经理需要重点关注和处理：\n\n1. 销售年初至今完成目标的 53%；我们需要再赢得至少 47% 的赢单机会。\n\n\
+  2. 三月份和四月份的销售业绩不佳。\n\n3. 为排行榜顶部的销售代表颁发奖金，并为排行榜底部的销售代表提供指导。\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_323_0.png)\n\
+  \n### 添加动态仪表板\n\n将仪表板启用为动态仪表板非常简单，只要您拥有所需的权限，并且尚未用完分配给您组织的动态仪表板数量：\n\n1. 编辑仪表板。\n\
+  2. 点击齿轮图标编辑仪表板属性。\n3. 在 **View Dashboard As** 选项中，选择 **The logged-in user**，并启用\
+  \ **Allow dashboard viewers to change this (dynamic dashboard)**。\n4. 保存仪表板。\n\n\
+  刷新仪表板，现在您应该会在报表名称下方的 **Viewing as** 旁边看到 **Change** 链接。通过此功能，销售经理可以将仪表板查看者用户更改为经理角色层级下的任何销售代表。\n\
+  \n### 总结\n\n本章对本书中的仪表板部分进行了总体收尾。我们首先实现了仪表板筛选器，以便一个仪表板可用于多种场景，而不是为每个条件创建一个仪表板。\n\n\
+  接着，我们深入探讨了动态仪表板，了解了它们与普通仪表板的区别，介绍了如何创建动态仪表板，最后讨论了使用动态仪表板的限制。\n\n我们介绍了仪表板中与仪表板筛选器和报表筛选器相关的下钻选项，并解释了如何从\
+  \ AppExchange 获取预构建的仪表板，无论是免费的还是付费的。在本章的最后一个主题中，我们从零开始构建了一个完整的示例仪表板，使用了报表、仪表板组件、仪表板筛选器，并启用了动态仪表板。\n\
+  \n在下一章中，我们将讨论与报表和仪表板相关的高级技巧和窍门，这些内容可能对您在 Salesforce 中创建出色的分析非常有用。\n\n\n\n\n\n##\
+  \ 利用 Chatter 开展报表和仪表板的协作\n\nSalesforce 在系统中提供了 **Chatter** 作为协作平台，类似于 Facebook，你可以发布消息、照片等内容。你还可以创建群组并在群组内进行协作。此外，通过\
+  \ **Chatter 流**，你可以在记录级别与其他用户协作，例如**客户**、**商机**以及其他对象，其中就包括报表和仪表板。\n\n### 在报表中启用协作\n\
+  \n你可以在报表中使用 **Chatter 流**与团队协作，例如，让团队关注销售管道报表或其他报表。\n\n让我们回顾一下打开报表时可用的项目——在“筛选器”旁边有一个名为“协作”的图标，如下面的截图所示：\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_326_0.png)\n\n由于这只是 Chatter 帖子或投票，你可以使用\
+  \ Chatter 风格进行发布，例如使用 @ 来提及用户名。完成后点击“共享”按钮。如下面的截图所示：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_328_0.png)\n\
+  \n与普通 Chatter 帖子类似，被提及的用户会收到通知。该用户只需点击右上角用户名旁边的“通知”图标，即可打开帖子并进行评论或点赞。为报表启用 Chatter\
+  \ 帖子可能看起来很简单，但它是一项强大的功能，可作为报表内用户之间的协作工具。此功能与记录中的 Chatter 帖子非常相似，例如客户、商机等。下面的截图显示了右侧的\
+  \ Chatter 面板：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_329_0.png)\n\n在上面的截图中，Chatter\
+  \ 页面中只有“发帖”和“投票”操作。我们可以通过导航至“设置 | 用户界面 | 全局操作 | 发布者布局”来添加或删除操作。然后编辑布局并选择“Salesforce1\
+  \ 与 Lightning 操作”。\n\n### 跟踪报表流\n\n如果你还记得，在之前的练习中，当启用报表的流跟踪时，我们还启用了以下项目的跟踪：\n\n\
+  - 报表名称\n- 报表唯一名称\n- 描述\n\n让我们做一个简单的练习：通过编辑报表来更改报表名称——打开报表属性，更改“报表名称”和“报表唯一名称”。保存报表，让我们看看跟踪是如何工作的。从报表中点击“协作”图标打开\
+  \ Chatter 面板。如下面的截图所示：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_330_0.png)\n\n\
+  ### 仪表板协作与流跟踪\n\n与报表类似，你可以在仪表板中使用 Chatter 流跟踪进行协作。“协作”图标位于仪表板上的“刷新”按钮旁边；如果你没有看到该图标，请按照以下步骤操作：\n\
+  \n1. 导航至“设置 | 功能设置 | Chatter | 流跟踪”。\n2. 查找“仪表板”并勾选“启用流跟踪”；在此处选择所有要跟踪的字段。\n3. 点击“保存”按钮。\n\
+  \n以下是你可以在仪表板流中跟踪的五个项目：\n\n- **仪表板运行用户**\n- **仪表板唯一名称**\n- **描述**\n- **标题**\n- **使用网格布局**\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_331_0.png)\n\n上面的截图显示了仪表板流中的项目。\n\n让我们快速进行一个关于仪表板协作和流跟踪的动手练习：\n\
+  \n1. 打开我们现有的仪表板“客户仪表板”。\n2. 点击“协作”图标打开 Chatter 窗口。如下面的截图所示：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_332_0.png)\n\
+  \n3. 无论是 Chatter 帖子还是投票，你都可以提及其他用户以发送通知。在本练习中，让我们创建一个新的投票，看看用户是否更喜欢新的仪表板设计。请查看以下截图：\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_333_0.png)\n\n4. 用户也可以对投票进行点赞或评论。\n5.\
+  \ 让我们为仪表板添加一个**描述**；请记住，我们之前在 **Chatter** 流跟踪中跟踪了**描述**。\n6. 编辑仪表板，编辑仪表板属性（齿轮图标），然后在**描述**文本框中添加文本。在本练习中，让我们输入`该仪表板包含与客户相关的所有项目。`\n\
+  7. 点击**保存**按钮退出仪表板属性窗口。再次点击“保存”保存仪表板，然后点击**完成**。\n8. 再次打开 Chatter 面板（协作图标），注意在“发帖”下，我们对描述所做的更改被记录为一条帖子。\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_334_0.png)\n\n9. 由于这里的流是 Chatter 流的一部分，现在让我们打开\
+  \ Chatter 选项卡。它也应当显示在那里，如下面的截图所示：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_335_0.png)\n\
+  \n### 关注仪表板\n\n你可能知道，在 Salesforce 中，我们可以关注记录，例如客户、商机或其他记录。因此，当有人更改记录值时，我们会通过 **Chatter**\
+  \ 流以及电子邮件收到更新通知（取决于每个用户的 **Chatter** 电子邮件设置）。仪表板也是如此；通过关注仪表板，用户会在自己的 **Chatter**\
+  \ 流中收到更新通知。\n\n管理员需要为仪表板启用流跟踪，否则组织中的任何用户都将无法关注任何仪表板。如果未为仪表板启用流跟踪，你将看不到该按钮。\n\n需要明确的是，当我们关注仪表板时，我们关注的是仪表板本身，而不是该仪表板中的组件，因此更新的组件不会出现在我们的\
+  \ Chatter 流中。请考虑以下截图：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_336_0.png)\n\n\
+  点击“协作”图标旁边的**+ 关注**按钮以关注仪表板。这与关注对象中的记录（例如**客户**、**商机**等）相同。当你关注仪表板时，你会收到仪表板被跟踪字段更改的通知，例如**仪表板运行用户**、**描述**、**仪表板唯一名称**和**标题**。\n\
+  \n让我们看一下下面的示例。用户会在其 Chatter 页面上看到仪表板中的帖子，不是因为该用户在该帖子中被提及，而是因为该用户关注了该仪表板，就像用户关注客户、联系人或其他记录一样：\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_337_0.png)\n\n### 发布仪表板组件快照\n\n通过将仪表板组件快照发布到\
+  \ Chatter，你可以让团队对某个主题进行回应或提供反馈，例如显示商机管道下降的仪表板组件或其他内容。一旦为仪表板启用了流跟踪，你的用户就可以将仪表板快照共享到仪表板流、Chatter\
+  \ 群组或用户流中。\n\n要启用仪表板组件快照，请导航至**设置 | 功能设置 | 分析 | 报表与仪表板设置**，并查找**启用仪表板组件快照**。如果你未启用流跟踪，用户将无法将仪表板组件发布到仪表板流。将组件发布到个人或群组的流中，可以让无权访问仪表板的人也能看到图表。\n\
+  \n快照帖子是发布时仪表板组件的一张静态图像。如果仪表板应用了筛选器，快照图像将基于应用了筛选器的组件。快照发布和用户查看的时间信息将添加到快照帖子中。\n\n\
+  以下是发布仪表板快照的三个选项：\n\n1. **此仪表板**\n2. **一个群组**\n3. **我的关注者**\n\n当快照发布到仪表板流时，所有能够打开仪表板的用户都会在\
+  \ **Chatter** 中以**帖子**的形式看到某个时间点的仪表板快照。\n\n让我们快速进行一个发布仪表板快照的动手练习：\n\n1. 打开仪表板。\n\
+  2. 选择要截取快照的组件；该组件将显示为一个大图表。\n3. 点击屏幕右下角的**共享**按钮。\n4. 你可以选择发布到此仪表板、一个群组或我的关注者。在本练习中，让我们选择**此仪表板**。\n\
+  5. 你可以在**消息**框中输入消息。\n6. 点击**发布**按钮。如下面的截图所示：\n\n\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_339_0.png)\n\
+  \n将快照发布到 **Chatter** 组会获得该 **Chatter** 组中用户的关注。发布到 **Chatter** 组动态中的快照可以被组内的所有人看到——即使是那些没有仪表板访问权限的人，因此不要发布敏感信息。要将快照发布到\
+  \ **Chatter** 组，请执行以下步骤：\n\n- 1. 打开仪表板。\n- 2. 选择要截取快照的组件；该组件将显示为一张大图表。\n- 3. 点击屏幕右下角的\
+  \ **分享** 按钮。\n- 4. 选择发布到 **一个组**，然后输入组名称。\n- 5. 你可以在 **消息** 框中输入消息。\n- 6. 点击 **发布**\
+  \ 按钮。如下图所示：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_340_0.png)\n\n## 通过 URL\
+  \ 参数筛选报告\n\n如果你熟悉 Classic，可以通过在报告 URL 后添加 `pv` 来实现报告参数。在 Lightning 中如何做到呢？幸运的是，Salesforce\
+  \ 提供了同样的功能，但在查看示例并动手练习之前，先让我们讨论一下这个功能有多强大。\n\n借助此功能，你可以在报告 URL 中传递值，这些参数相当于报告的筛选值。其中一个用途是：从记录页面创建一个自定义按钮或链接，指向已创建的报告，并通过特定筛选条件，根据源记录生成动态报告。例如，为一个客户（Account）的所有相关商机（Opportunities）生成报告。\n\
+  \nURL 参数化报告的另一个用途是：可以针对不同目的复用同一份报告，而无需创建两份相似的报告。例如，在 URL 参数的情况下，针对“新业务管道（Pipeline\
+  \ for New Business）”和“现有业务管道（Pipeline for Existing Business）”的报告，一旦报告加载完成，你可以创建带有\
+  \ URL 参数的两个书签。\n\n将参数用作报告筛选器，可以避免创建许多仅靠筛选器区分的相似报告，也无需不断编辑报告并修改筛选值。\n\n### 通过 URL\
+  \ 参数实现报告筛选器的动手练习\n\n用例：我们想要分析某些在客户页面布局中不可见的 **客户（Account）** 字段。报告将按 **客户名称（Account\
+  \ Name）** 进行筛选，但与其反复编辑报告来更改 **客户名称（Account Name）** 值，不如使用带有 URL 参数的报告筛选器。\n\n- 1.\
+  \ 创建一份简单的 **客户表格（Tabular Account）** 报告，并将其命名为 `Account Name Report`。\n- 2. 将 **显示（Show）**\
+  \ 字段选择为 **所有客户（All accounts）**。\n- 3. 将 **日期字段范围（Date Field Range）** 设置为 **所有时间（All\
+  \ Time）**。\n- 4. 添加筛选条件：**客户名称包含** `blank`；点击 **OK** 确认筛选。\n- 5. 点击 **保存（Save）**\
+  \ 按钮，然后点击 **运行报告（Run Report）**。\n- 6. 点击 **报告（Reports）** 选项卡，然后重新打开该报告（它应出现在列表顶部）。\n\
+  - 7. 下面的截图显示了生成的报告，并获取报告的 URL。在我的示例中，URL 是 `https://gs0.lightning.force.com/one/one.app#/sObject/00OB0000001sBuoMAE/view`：\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_342_0.png)\n\n- 8. 好了，现在我们要向报告 URL 添加一个参数。\n\
+  - 9. 假设我们希望显示所有名称中包含 united 的客户。\n- 10. 将 `united` 作为 URL 参数添加，然后在 Web 浏览器中按 Enter：`https://gs0.lightning.force.com/one/one.app#/sObject/00OB0000001sBuoMAE?fv0=united`。如下图所示：\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_343_0.png)\n\n正如你在前面的截图中所见，添加到参数中的 united\
+  \ 成为报告的筛选值。如果你不保存报告，报告将保持原样；但如果保存报告，united 将被永久存储在该报告中。\n\n让我们分析一下前面的报告和 URL：\n\n\
+  - 这里是原始 URL：\n\n  `https://gs0.lightning.force.com/one/one.app#/sObject/00OB0000001sBuoMAE/view`\n\
+  \n- 然后我们通过添加参数来修改 URL，如下所示：\n\n  `https://gs0.lightning.force.com/one/one.app#/sObject/00OB0000001sBuoMAE/view?fv0=united`\n\
+  \n- 我们在报告 ID（即 `00OB0000001sBuoMAE`）后面添加 `?`；`&` 表示 URL 中的新参数。如果有多个参数，从第二个参数开始，将\
+  \ `?` 替换为 `&`。\n- 我们添加 `fv0`，其中 `fv` 代表筛选值（filter value），作为参数名。`0` 是筛选条件在报告中出现的顺序编号：第一个筛选条件是\
+  \ 0，第二个是 1，第三个是 2，以此类推。要设置报告中第二个筛选条件的值，请将 `fv1` 指定为参数名。标准筛选条件不计入此顺序，也无法通过 URL 参数进行筛选。\n\
+  - 我们将 `united` 作为参数值添加——请记住，筛选条件不区分大小写，因此无论你输入 `united` 还是 `United` 都没有关系。如果想添加一个包含空格的多词值，例如\
+  \ `united oil`，你只需按原样输入即可，但浏览器会按照 URI 编码在中间添加 `%20`，因此它将变为 `https://gs0.lightning.force.com/one/one.app#/sObject/00OB0000001sBuoMAE/view?fv0=united%20oil.`\n\
+  \n现在，如果我只想更改第二个参数的筛选值，而不想更改第一个参数的筛选值，该怎么办？这不成问题——你可以仅在参数中添加 `fv1`（不包含 `fv0`），例如：`https://gs0.lightning.force.com/one/one.app#/sObject/00OB0000001sBuoMAE/view?fv1=customer`。如下图所示：\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_344_0.png)\n\n关于使用 URL 参数进行筛选，有几点需要注意，如下所示：\n\
+  \n- URL 参数仅支持手动添加到报告中的字段筛选条件。\n- 它们不支持报告提供的标准筛选条件，例如 **角色层级（Role Hierarchy）**、范围、区域、**商机状态（Opportunity\
+  \ Status）**、**概率（Probability）** 和日期筛选条件。\n- 它们不支持 **交叉筛选（Cross Filter）** 和 **行数限制（Row\
+  \ Limit）** 筛选条件。\n- 手动添加为筛选条件的第一个字段将被视为第一个参数，即 `fv0`。\n- 如果报告中添加了图表，则在应用报告筛选条件（包括使用\
+  \ URL 参数的筛选条件）时，图表会相应调整。\n- 你不能通过 URL 参数添加、更改或删除被筛选的字段；只能修改现有筛选条件的值。\n- 参数的添加顺序不必与报告筛选条件的顺序一致，例如，我们将\
+  \ `fv1` 放在 `fv0` 之前：`https://gs0.lightning.force.com/one/one.app#/sObject/00OB0000001sBuoMAE/view?fv1=customer&fv0=united`；这里，`fv1`\
+  \ 作为第一个参数添加，但它对应第二个筛选条件。然后我们添加 `fv0`（对应第一个筛选条件）作为第二个参数。仅在第一个参数前使用 `?`，然后使用 `&` 分隔其他所有参数。\n\
+  \n## 设置和使用字段历史跟踪\n\n字段历史跟踪是 Salesforce 的一项开箱即用功能，用于跟踪字段中的值更改。每个对象最多可以选择 20 个字段进行跟踪；如果需要跟踪更多字段，请联系\
+  \ Salesforce 支持。对于 **长文本区域（Text Area (Long)）**、**富文本区域（Text Area (Rich)）** 和 **多选下拉列表（Picklist\
+  \ (Multi-Select)）** 等字段类型，历史跟踪不会在记录更新时跟踪原始值和新值，而只跟踪该字段是否发生了更改。此功能虽然简单，但在审计用途上非常强大。\n\
+  \nSalesforce 保留历史记录最长为 18 个月；但是，如果你需要更长时间的归档，请联系你的 Salesforce 支持以获取字段审计追踪（Field\
+  \ Audit Trail），并定义你希望保留字段历史跟踪的时长策略。这项付费功能允许你将归档时间延长至最多 10 年。\n\n作为管理员，你可以通过几次点击自行启用字段历史跟踪——为标准对象和自定义对象选择某些重要字段进行跟踪。\n\
+  \n请记住，在启用对象跟踪并选择字段进行跟踪之前，字段值不会被跟踪。这意味着，如果你今天启用了 **客户名称** 的跟踪，你将无法跟踪今天之前对 **客户名称**\
+  \ 所做的更改。\n\n历史跟踪不仅用于跟踪你何时编辑记录，还用于跟踪你何时创建新记录，包括 **线索（Lead）** 被转换时创建的记录。当你创建新记录时，字段历史条目将被标记为\
+  \ **已创建**；当记录由 **线索（Lead）** 记录转换而来时，则被标记为 **由线索转换创建**；旧值和新值都将为空。\n\n### 标准对象的历史跟踪\n\
+  \n历史跟踪同时支持标准对象和自定义对象。但并非所有标准对象都支持字段跟踪；只有以下标准对象支持历史跟踪：**客户（Accounts）、文章（Articles）、资产（Assets）、营销活动（Campaigns）、个案（Cases）、联系人（Contacts）、合同（Contracts）、合同行项目（Contract\
+  \ Line Items）、权利（Entitlements）、线索（Leads）、商机（Opportunities）、订单（Orders）、订单产品（Order\
+  \ Products）、产品（Products）、服务合同（Service Contracts）和解决方案（Solutions）。**\n\n要在标准对象（如\
+  \ **客户**）上启用历史跟踪，请执行以下步骤：\n\n- 1. 导航到 **设置 | 对象和字段 | 对象管理器 | 客户 | 字段和关系**，然后点击 **设置历史跟踪**\
+  \ 按钮。\n- 2. 勾选 **启用客户历史** 复选框。\n- 3. 选择要跟踪的字段。\n- 4. 请注意，**描述** 将仅被跟踪更改情况。这是因为 **描述**\
+  \ 是一个 **长文本区域（Text Area (Long)）** 字段，这与跟踪类型为 **长文本区域（Text Area (Long)）**、**富文本区域（Text\
+  \ Area (Rich)）** 和 **多选下拉列表（Picklist (Multi-Select)）** 的字段时相同。\n- 5. 点击 **保存** 按钮以保存更改。\n\
+  \n\n\n\n\n## 自定义对象上的历史跟踪\n\n对于自定义对象，您需要在对象详细信息中启用跟踪，然后再选择要跟踪的字段。假设我们有一个名为 `Claim`\
+  \ 的自定义对象。请执行以下步骤：\n\n1. 导航到 **Setup | Objects and Fields | Object Manager**。\n2.\
+  \ 点击 **Claim** 对象链接并点击 **Edit** 按钮。\n3. 在可选功能中启用 **Track Field History**，然后点击 **Save**\
+  \ 按钮。这在以下屏幕截图中显示：\n\n    ![](img/72d01bea5a9ccf02f9452aab7505d9de_347_0.png)\n\n\
+  4. 从左侧菜单中选择 **Fields & Relationships**。\n5. 点击 **Set History Tracking** 按钮，并选择您想要跟踪的字段。\n\
+  6. 对标准对象中的 **Text Area (Long)**、**Text Area (Rich)** 和 **Picklist (Multi-Select)**\
+  \ 字段执行相同的操作——它只会跟踪更改，而不会跟踪旧值和新值。\n7. 点击 **Save** 按钮保存更改。\n\n## 历史对象\n\n当您为对象启用 **Field\
+  \ History Tracking** 时，在后端，Salesforce 会创建一个新对象。该对象的名称将以 **History** 结尾，例如 **AccountHistory**、**ContactHistory**\
+  \ 等标准对象，对于自定义对象则为 **__History**，例如 `Claim__History`。\n\n当记录中跟踪的字段发生任何更改时，Salesforce\
+  \ 会在此对象中创建一个新记录。例如，如果对象中有五个跟踪字段，而其中三个在一次事务中更改，Salesforce 将在此对象中创建三条记录。\n\n作为熟悉 SOQL\
+  \ 的开发人员或管理员，您可以查看该对象以查询以下内容：\n\n- `CreatedById`：进行更改的用户\n- `CreatedDate`：更改日期\n\
+  - `OldValue`：显示旧值\n- `NewValue`：显示新值\n- `ParentId`：(对于自定义对象)，与更改相关的记录 ID\n- `ObjectId`（例如：标准对象的\
+  \ `AccountId` 或 `ContactId`）\n\n您不能手动创建、更新或删除此对象中的记录，只能查询。出于很好的原因，历史对象的存储使用量不计入数据存储。\n\
+  \n## 读取历史跟踪值\n\n一旦启用历史跟踪，除了使用 API 查询之外，还有两种查看跟踪值的方法。接下来将讨论这两种方法。\n\n### 历史相关列表\n\
+  \n将字段历史信息相关列表添加到对象页面布局。此信息将对分配给特定页面布局的所有用户可见，以防您有多个页面布局。\n\n要将历史相关列表添加到对象页面布局，请打开页面布局编辑器。在此练习中，让我们以\
+  \ Account 对象为例，因此此处的相关列表为 Account History。选择 Related Lists 中的 Account History，并将其拖到页面布局中。这在以下屏幕截图中显示：\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_349_0.png)\n\n一旦历史相关列表被添加到页面布局，对跟踪字段的任何更新都将显示在此处，如以下屏幕截图中\
+  \ Related 选项卡下所示（左箭头）；但您也可以将其作为 Lightning 组件中的相关列表添加（右箭头）：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_350_0.png)\n\
+  \n让我们分析前面的屏幕截图：\n\n- 历史记录按日期以降序排序\n- 第一个历史记录显示记录何时创建\n- 在一次事务中更新多个字段时，它将作为两个不同的项目跟踪，但日期和时间相同；请参阅\
+  \ Account Owner 和 Account Number 的更改\n- 因为 Description 是一个长文本区域字段，所以它不会跟踪原始值和新值，而只是跟踪发生了更改\n\
+  \n所有对象都将具有相同的标签，并以 History 结尾，例如 Account History、Contact History、Claim History 等。但对于\
+  \ Opportunity 对象，它是一个例外——它被称为 Opportunity Field History。请考虑以下屏幕截图作为 Opportunity\
+  \ Field History 的示例：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_351_0.png)\n\n\
+  对于 API 对象名称也是如此——它被称为 **Opportunity Field History** 而不是 **Opportunity History**。**Opportunity\
+  \ History** 对象用于存储 **Opportunity Stage** 信息。\n\n### 历史报告\n\n获取历史跟踪值的另一种选择是使用报告。用户只需要拥有\
+  \ **Run Report** 权限，以及运行所创建报告的对象的访问权限即可。\n\n要创建报告，首先选择自定义报表类型，例如 **Account History**\
+  \ 报表，如以下屏幕截图所示：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_352_0.png)\n\n默认情况下，它将显示\
+  \ **My accounts**，但您可以像普通报表一样修改它。添加筛选器、添加分组、更改报表格式，并添加/删除报表字段。如果您查看左侧面板的字段可用性，只有来自\
+  \ **History Data** 组中的字段才包含历史数据，而其他字段如果您将该字段带入报表，则会在 Salesforce 中显示实时数据。请考虑以下屏幕截图中\
+  \ **History Data** 下的字段：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_352_1.png)\n\
+  \n如果您注意到前面的屏幕截图，**Account History** 报表类型的 Parent ID 为 **Account ID**。这对于其他对象也是相同的；例如，如果这是\
+  \ **Contact History**，则 **Parent ID** 将为 Contact ID。\n\n对于自定义对象，一旦在对象详细信息中启用 **Track\
+  \ Field History**，请创建一个新的自定义报表，并注意报表类型以 `History` 结尾可供您使用，例如 `Claim History`。与上述\
+  \ **Account History** 类似，您可以像普通报表一样使用此报表类型。请考虑以下屏幕截图中的报表：\n\n| HISTORY ID | PARENT\
+  \ ID | ACCOUNT NAME | EDITED BY | EDIT DATE | FIELD / EVENT | OLD VALUE | NEW VALUE\
+  \ |\n|---|---|---|---|---|---|---|---|\n| 017B000002tGNh | 001B000000SWOQO | Electric\
+  \ Inc Limited | Alvin Lee | 5/24/2017 9:10 PM | Account Number | - | 8001 |\n| 017B000002tGfz\
+  \ | 001B000000SWOQO | Electric Inc Limited | Johan Yu | 5/24/2017 9:10 PM | Account\
+  \ Owner | Johan Yu | Alvin Lee |\n| 017B000002tGcL | 001B000000SWOQO | Electric\
+  \ Inc Limited | Johan Yu | 5/24/2017 9:09 PM | Description | - | - |\n| 017B000002tGcK\
+  \ | 001B000000SWOQO | Electric Inc Limited | Johan Yu | 5/24/2017 9:08 PM | Account\
+  \ Name | Electric Inc | Electric Inc Limited |\n| 017B000002tGyA | 001B000000SWOQO\
+  \ | Electric Inc Limited | Johan Yu | 5/24/2017 9:08 PM | Created | - | - |\n| 017B000002tGVC\
+  \ | 001B000000SWOQJ | Big Inc. Limited | Johan Yu | 5/24/2017 9:07 PM | Description\
+  \ | - | - |\n| 017B000002tGVB | 001B000000SWOQJ | Big Inc. Limited | Johan Yu |\
+  \ 5/24/2017 9:07 PM | Account Name | Big Inc. | Big Inc. Limited |\n| 017B000002tGWM\
+  \ | 001B000000SWOQJ | Big Inc. Limited | Johan Yu | 5/24/2017 9:07 PM | Created\
+  \ | - | - |\n\n## 使用字段历史跟踪的限制\n\n其中一些限制之前已经解释过，但让我们在这里总结一下：\n\n- 默认情况下，最多只能跟踪 20\
+  \ 个字段\n- 对于 **Text Area (Long)**、**Text Area (Rich)** 和 **Picklist (Multi-Select)**\
+  \ 类型的字段，您无法跟踪原始值和新值\n- 并非所有标准对象都可以跟踪；例如，**User**、**Task**、**Event**、**Campaign**\
+  \ 和 **Quote**\n- 并非所有字段都可以跟踪；例如，**Formula** 字段、**Roll-Up Summary**、自动编号字段、**Created\
+  \ By**、**Last Modified By** 和 **Opportunity** 上的 **Expected Revenue** 字段\n\n## 使用\
+  \ Reporting Snapshots 报告历史数据\n\n我们能否在 Salesforce 中对数据趋势进行报告？Salesforce 是否只报告当前数据？字段历史跟踪会在检测到字段值更改时存储旧值和新值。但要将其用于趋势分析会太困难，除非您将数据导出到外部数据库并使用实时数据进行分析——它也不会包含已删除的数据（如果有）。\n\
+  \n\n\n\n那么，在 Salesforce 中是否还有其他方式可以存储历史数据，以便我们轻松用于报表？有，如果你使用的是 Salesforce 企业版或更高版本，你可以配置**报表快照**来存储历史数据。\n\
+  \n与字段跟踪一样，不要指望在配置**报表快照**之前就能获得旧的历史数据。只有在**报表快照**被正确配置并安排计划后，特定**报表快照**的历史数据才会可用。\n\
+  \n每个 Salesforce 版本都有数量有限的**报表快照**可供创建和安排计划，所以请明智使用，或者你可以联系 Salesforce 支持以获取更多数量。\n\
+  \n## 配置报表快照\n\n只有拥有**管理报表快照**权限的用户才能创建和配置报表快照。\n\n配置和实施**报表快照**的主要步骤如下：\n\n1. **创建源报表**，步骤如下：\n\
+  \n   使用**表格**或**摘要**报表格式创建报表。在目标对象中创建的记录数取决于报表格式以及报表结果中返回的记录数。\n\n   对于**表格**报表，它将是一对一的，即报表中的每条记录都将在目标对象中创建一条记录。\n\
+  \n   对于**摘要**报表，它可以是**组汇总**或**总计汇总**。**总计汇总**始终在目标对象中只创建一条记录，而**组汇总**会在目标对象中创建多条记录——数量与分组数相同。以下截图显示了**分组级别**的选项：\n\
+  \n   **编辑报表快照 — 字段映射**\n\n   **1. 选择源报表汇总分组级别**\n\n   你已选择摘要报表作为源。摘要报表记录可能被分组为一到三个级别。如果你的源报表有多个分组级别，请选择要提取汇总数据所在的分组级别。\n\
+  \n   **分组级别**\n\n   - 总计汇总\n   - 分组 1：阶段\n\n   *I = 必填信息*\n\n   ![](img/72d01bea5a9ccf02f9452aab7505d9de_355_0.png)\n\
+  \n   每次快照运行最多存储 2000 条记录。\n\n2. 要创建目标对象，请创建一个自定义对象作为目标对象，以存储报表返回的数据。确保目标对象不包含在工作流中。\n\
+  \n3. 在目标对象中创建字段：默认情况下，报表快照会提供三项信息，我们可以在目标对象字段中捕获这些信息：报表快照名称、报表快照运行用户和执行时间。创建相似的字段名称是一种好做法，否则将根据源报表创建所表示的数据。你需要创建额外的自定义字段来捕获源报表中收集的数据。\n\
+  \n### 创建摘要报表\n\n我们不会逐步介绍如何创建报表，因为前面章节已经详细讲过了。此报表需要采用摘要格式——按阶段分组，添加金额列，并使用求和进行汇总。请看下面的截图，确保你的报表与之类似。\n\
+  \n只要运行用户能够访问该报表，你可以将其存储在任何文件夹中。但作为良好实践，请专门为报表快照创建一个新的报表文件夹。\n\n我们将此报表命名为 `Opportunity\
+  \ by Stage (for Snapshot)`：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_357_0.png)\n\
+  \n### 创建自定义对象\n\n该自定义对象将用于在快照按计划运行时存储所有值。导航到设置 | 对象和字段 | 对象管理器 | 创建 | 自定义对象来创建新对象；我们将该对象命名为\
+  \ `Opportunity Snapshot`。将记录名称数据类型设置为自动编号。\n\n### 创建自定义字段\n\n在之前创建的自定义对象中，创建以下字段以存储来自报表和快照运行信息的值，并确保所创建的字段具有正确的字段类型。请参考需要创建的字段的截图：\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_358_0.png)\n\n在本练习中，我们将捕获组汇总（这由用作源报表的报表定义，该报表为摘要格式），因此我们只需要几个自定义字段来存储汇总信息，在本练习中即记录数和总金额。\n\
+  \n但如果你使用**表格**报表作为**源报表**，它将捕获报表详细信息。你可能需要创建更多字段，因为你需要从**表格**报表中捕获数据。报表中的每一行都将在目标快照对象中创建一条记录。\n\
+  \n### 创建报表快照\n\n在这里，我们按如下方式定义**报表快照**配置：\n\n1. 导航到**设置 | 功能设置 | 分析 | 报表和仪表板 | 报表快照**。\n\
+  2. 单击**新建报表快照**按钮。\n3. 输入以下信息：\n   - **报表快照名称：** 我们将其命名为 `Opportunity Snapshot`。\n\
+  \   - **描述：** 这是可选的，但为快照添加描述始终是一种好的做法。\n   - **运行用户：** 该用户将决定快照运行时的数据可见性。\n   -\
+  \ **报表源名称：** 选择我们在步骤 1 中创建的报表，**按阶段划分的机会（用于快照）**。\n   - **目标对象：** 选择我们在步骤 2 中创建的对象，**机会快照**。\n\
+  \   - 单击**保存**按钮继续。请查看以下截图：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_359_0.png)\n\
+  \n### 将字段从源报表映射到目标对象\n\n创建**报表快照**后，单击**字段映射**部分中的**编辑**按钮。\n\n- 选择分组级别为**分组 1：阶段**。\n\
+  - **将源报表中的汇总字段映射到目标对象。** 如下面的截图所示：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_360_0.png)\n\
+  \n- 单击**保存**按钮继续。\n\n### 安排报表快照计划\n\n创建**报表快照**后，单击**安排报表快照计划**部分中的**编辑**按钮。\n\n\
+  - 可选地，你可以启用根据**公共组、角色、角色和下属，**以及**用户**向你或其他用户发送电子邮件。在本练习中，我们将选择电子邮件选项中的**我**。\n\n\
+  ### 摘要和计划\n\n我们来看一下目前所完成的内容，见下面的截图：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_362_0.png)\n\
+  \n**标识**\n\n- 报表快照名称：机会快照\n- 报表快照唯一名称：Opportunity_Snapshot\n- 描述：\n- 运行用户：Jack Bob\n\
+  - 源报表：所有机会（快照）\n- 分组列：阶段\n- 下次运行：27/05/2017 23:00\n- 上次运行：26/05/2017 23:11\n- 创建者：Jack\
+  \ Bob，24/05/2017 22:24\n- 最后修改者：Jack Bob，24/05/2017 22:26\n- 目标对象：机会快照\n\n**字段映射**\n\
+  \n| 源报表列 | 目标对象字段 |\n|---|---|\n| 执行时间 | 执行时间（日期/时间） |\n| 记录数 [记录数] | 记录数（数字(16,\
+  \ 2)） |\n| 报表快照运行用户 | 运行用户 ID（文本(255)） |\n| 报表快照名称 | 快照名称（文本(255)） |\n| 阶段 | 阶段（文本(25)）\
+  \ |\n| 金额 [求和] | 总金额（货币(16, 2)） |\n\n**安排报表快照计划**\n\n| 频率 | 首选开始时间 | 开始时间 | 结束时间\
+  \ |\n|---|---|---|---|\n| 每天 | 晚上 11:00 | 24/05/2017 | 24/06/2017 |\n\n我们已经完成了实施**报表快照**所需的全部配置。之后，我们能做的就是等待到达**首选开始时间**。这是一个限制，因为我们无法立即测试。但你可以手动运行**源报表**，以确保它显示你想要收集的汇总信息。\n\
+  \n由于我们已启用**报表快照**的电子邮件通知，当天的快照计划完成后，我们将收到来自 Salesforce 的电子邮件，主题为 `Reporting Snapshot:\
+  \ Name - Status - Status`。邮件内容将描述快照的运行时间、快照运行的状态、向目标对象插入了多少条记录、失败记录数，以及指向**报表快照**日志的链接。以下是电子邮件示例：\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_363_0.png)\n\n\n\n\n## 历史记录和监控 Reporting\
+  \ Snapshot\n\n要查找快照的过去计划运行记录，请打开特定的 **Reporting Snapshot**，并向下滚动到 **Run History**\
+  \ 部分，该部分位于我们在 **Schedule Reporting Snapshot** 中安排它的位置正下方。请考虑以下屏幕截图：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_364_0.png)\n\
+  \n如果您安排了多个 **Reporting Snapshots**，您可以通过导航到 **Setup | Environment | Jobs | Scheduled\
+  \ Jobs** 来监控它们。查找类型为 **Reporting Snapshot** 的项目。请考虑以下屏幕截图：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_364_1.png)\n\
+  \n作为管理员，此页面将向您显示所有已安排的 **Reporting Snapshots**，以及每个快照下一次计划运行的时间。\n\n## 对历史数据的报告\n\
+  \n一旦快照运行，它会将报表结果复制到目标自定义对象中。您可以创建常规报表来分析该自定义对象中的数据；只需确保为该自定义对象启用了 **Enable Reports**。\n\
+  \n让我们通过创建报表来看看数据是如何复制到目标对象的：\n\n| STAGE ↑ | EXECUTION TIME | RECORD COUNT | TOTAL\
+  \ AMOUNT | RUNNING USER ID |\n|---|---|---:|---:|---|\n| Closed Lost (3 records)\
+  \ | 24/05/2017 23:11 | 3.00 | USD 9,900.00 | 00590000000OjrD |\n|  | 25/05/2017\
+  \ 23:11 | 3.00 | USD 9,900.00 | 00590000000OjrD |\n|  | 26/05/2017 23:11 | 4.00\
+  \ | USD 109,900.00 | 00590000000OjrD |\n| Closed Won (3 records) | 24/05/2017 23:11\
+  \ | 25.00 | USD 1,092,612.92 | 00590000000OjrD |\n|  | 25/05/2017 23:11 | 25.00\
+  \ | USD 1,092,612.92 | 00590000000OjrD |\n|  | 26/05/2017 23:11 | 25.00 | USD 1,092,612.92\
+  \ | 00590000000OjrD |\n| Id. Decision Makers (3 records) | 24/05/2017 23:11 | 5.00\
+  \ | USD 208,807.20 | 00590000000OjrD |\n|  | 25/05/2017 23:11 | 5.00 | USD 208,807.20\
+  \ | 00590000000OjrD |\n|  | 26/05/2017 23:11 | 5.00 | USD 208,807.20 | 00590000000OjrD\
+  \ |\n| Needs Analysis (3 records) | 24/05/2017 23:11 | 34.00 | USD 565,387.00 |\
+  \ 00590000000OjrD |\n|  | 25/05/2017 23:11 | 35.00 | USD 575,387.00 | 00590000000OjrD\
+  \ |\n|  | 26/05/2017 23:11 | 35.00 | USD 575,387.00 | 00590000000OjrD |\n| Negotiation/Review\
+  \ (3 records) | 24/05/2017 23:11 | 2.00 | USD 117,500.00 | 00590000000OjrD |\n|\
+  \  | 25/05/2017 23:11 | 2.00 | USD 117,500.00 | 00590000000OjrD |\n|  | 26/05/2017\
+  \ 23:11 | 1.00 | USD 17,500.00 | 00590000000OjrD |\n| Perception Analysis (3 records)\
+  \ | 24/05/2017 23:11 | 2.00 | USD 8,499.00 | 00590000000OjrD |\n|  | 25/05/2017\
+  \ 23:11 | 3.00 | USD 28,499.00 | 00590000000OjrD |\n|  | 26/05/2017 23:11 | 3.00\
+  \ | USD 28,499.00 | 00590000000OjrD |\n\n## 报表和仪表板的进阶技巧\n\n对于此示例，使用此报表，我们可以分析 **Record\
+  \ Count** 和 **Total Amount** 按 **Stage** 在一段时间内的变化情况。\n\n### 摘要\n\n本章分享了许多技巧，从使用\
+  \ **Chatter** 动态 feed 和群组在报表和仪表板中设置协作开始。我们继续介绍了在报表中使用参数的技巧，这是通过向 Web 浏览器 URL 添加参数来完成的。此参数会覆盖报表中定义的值，并且可以暂时更改报表筛选器值，而无需不断编辑报表。我们继续介绍了\
+  \ **Field History Tracking**，以及如何通过简单地为字段启用历史跟踪来利用它。我们不需要开发人员，并且可以在几分钟内完成。我们以一个动手练习结束本章，使用\
+  \ **Reporting Snapshot** 将每日或每周数据存储在自定义对象中。\n\n在下一章中，我们将讨论从 Salesforce1 移动应用程序访问报表和仪表板，该应用程序支持\
+  \ iOS 和 Android 设备。它还支持离线模式，供用户在没有互联网连接时需要读取、编辑和向 Salesforce 添加数据。\n"
+- "## 12. Salesforce1 移动应用程序中的仪表板和报表\n\n本章将讨论如何使用默认的 Salesforce 移动应用程序 Salesforce1\
+  \ 访问您的报表和仪表板。Salesforce1 是一款可从任何移动和平板设备体验 Salesforce 的应用程序，并将您的 Chatter、CRM、自定义应用程序和业务流程统一在一个现代化的体验中，供任何\
+  \ Salesforce 用户使用。借助 Salesforce1 平台的强大功能，您现在可以自定义和构建任何应用程序，并通过 Salesforce1 应用程序即时部署该功能。最棒的是，对于客户来说，此应用程序可免费使用——您只需输入您的\
+  \ Salesforce 用户名和密码即可。\n\n我们不会详细介绍 Salesforce1 应用程序：安装、权限、配置、通知、操作、审批、事件和导航。但我们将深入讨论诸如使用\
+  \ Salesforce1 移动应用程序访问仪表板和报表、在没有互联网连接时使用离线模式、以及使用移动 Web 浏览器访问报表和仪表板等主题。\n\nSalesforce1\
+  \ 可用于 iOS 和 Android 设备；但是，本书中使用的所有屏幕截图均来自 iPhone 或 iPad。通常，Salesforce 会在每次发布时更新应用程序版本。本书基于\
+  \ Salesforce1 应用程序版本 12.3 编写。\n\n### Salesforce1 移动应用程序简介\n\n本章将涵盖以下主题：\n\n- Salesforce1\
+  \ 应用程序简介\n- 在 Salesforce1 应用程序中使用仪表板\n- 将仪表板快照分享到 **Chatter** feed\n- 在 Salesforce1\
+  \ 应用程序中使用报表\n- 离线访问您的报表和仪表板\n- Salesforce1 移动应用程序的限制\n\nSalesforce1 移动应用程序是由 Salesforce.com\
+  \ 构建的开箱即用的企业级移动应用程序。它适用于所有 Salesforce 用户，包括 **Chatter Free** 用户。此应用程序适用于 iOS 和 Android\
+  \ 平台；您可以免费从 iOS 设备的 App Store 和 Android 设备的 Google Play 下载并安装它。\n\n该应用程序支持智能手机和平板设备。Salesforce1\
+  \ 也可供用户使用支持的移动 Web 浏览器和支持的设备使用，提供与已安装应用程序相同的用户体验；对于此选项，您无需在移动设备上安装应用程序。\n\n该应用程序可直接使用，并尊重您的\
+  \ Salesforce 配置、安全性和自定义设置，并且无需重新配置即可实现。唯一的例外是不经 Salesforce1 认证的 AppExchange 产品以及未设计或配置用于在\
+  \ Salesforce1 中使用的任何自定义 Visualforce 页面。此应用程序可让您实时访问与使用 Web 浏览器在办公室看到的相同的 Salesforce.com\
+  \ 信息。\n\n在 Salesforce1 应用程序之前，Salesforce 构建了几个不同的移动应用程序，例如 Salesforce Classic、Salesforce\
+  \ Touch、Logger & ForcePad 和 **Chatter** Mobile。Salesforce1 应用程序将所有这些统一为一个单一平台，在\
+  \ iOS 和 Android 智能手机和平板电脑上提供统一的移动体验。\n\n除非由您的管理员关闭，否则 Salesforce1 应用程序会自动为所有现有和新客户启用。当您登录\
+  \ Salesforce1 应用程序时，品牌、导航、通知和离线设置由您的 Salesforce 配置控制。以下屏幕截图是来自 iOS 设备捕获的 Salesforce1\
+  \ 应用程序示例：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_370_0.png)\n\n您可以使用仪表板名称搜索仪表板，并且应该能够找到您有权访问的所有仪表板，就像在\
+  \ Salesforce Web 页面中一样。\n\n以下是与 Salesforce1 的仪表板相关的几项内容：\n\n- 当您在 Salesforce1 应用程序中打开仪表板时，仪表板中的所有组件都将可用。\n\
+  - 对于移动设备，仪表板将以一列显示。第一个仪表板将是位于左上角的那个，下一个将位于顶部左侧组件下方（而不是右侧），然后是所有其他组件。\n- 对于平板设备，仪表板将以两列显示；第一个仪表板将是位于左上角的那个，其后是右侧的组件，该组件原本位于第一个仪表板下方。这将继续显示仪表板的所有组件。请考虑以下屏幕截图：\n\
+  \n\n\n## Salesforce1 移动应用中的仪表板和报告\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_371_0.png)\n\
+  \n至少，你需要拥有“运行报告”权限才能打开仪表板，同时还需要拥有访问仪表板文件夹的权限，这与从网页打开仪表板所需的条件相同。\n\nSalesforce1 应用中仪表板的菜单可见性不依赖于用户配置文件中的选项卡设置。点击仪表板菜单后，会打开你最近打开过的仪表板列表。\n\
+  \n在 Salesforce1 应用中打开仪表板时，与通过网页访问时一样，你可以看到仪表板上次刷新的时间以及查看用户是谁。\n\n### 刷新仪表板\n\n你也可以从移动应用刷新仪表板。点击仪表板底部的“刷新”图标，系统会提示你确认刷新仪表板。如下图所示：\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_372_0.png)\n\n### 动态仪表板\n\n当你在 Salesforce1\
+  \ 移动应用中打开动态仪表板时，如果你有权限以其他用户的身份运行该仪表板，你也可以在移动应用中执行相同操作。点击“查看身份”图标，然后选择一位用户。如下图所示：\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_373_0.png)\n\n### 仪表板筛选器\n\n当你在 Salesforce1\
+  \ 应用中打开配置了筛选器的仪表板时，你也可以从移动应用对仪表板进行筛选。点击“筛选器”图标，然后选择已定义的筛选器。如下图所示：\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_374_0.png)\n\
+  \n### 将仪表板快照分享到 Chatter 动态\n\n如果你还记得，在第11章“报告和仪表板的高级提示与技巧”中，我们解释了从浏览器中的 Salesforce\
+  \ 将仪表板快照发布到仪表板动态或用户/群组动态的功能。你也可以在 Salesforce1 应用中执行相同操作。你可以将仪表板快照发布到你的动态中，并提及另一位用户或\
+  \ Chatter 群组，操作如下：\n\n1. 从 Salesforce1 应用打开仪表板。\n2. 点击选择仪表板组件；注意组件周围的蓝色虚线——图表右上角会出现展开图标。如下图所示：\n\
+  \n    ![](img/72d01bea5a9ccf02f9452aab7505d9de_375_0.png)\n\n3. 点击展开图标以全屏打开图表。\n\
+  4. 在仪表板底部找到“分享”图标。\n5. 点击“分享”图标，然后在分享窗口中输入你想要的文本。你可以通过点击头像图标来提及用户或 Chatter 群组，或输入以\
+  \ @ 开头的文本。如果 Chatter 电子邮件通知已启用“评论中提及我”，用户将收到一封电子邮件。请看下面的截图：\n\n    ![](img/72d01bea5a9ccf02f9452aab7505d9de_376_0.png)\n\
+  \n6. 当其他用户查看你的 **Chatter** 页面时，他们会看到你 **Chatter** 动态中的仪表板快照。如下图所示：\n\n    ![](img/72d01bea5a9ccf02f9452aab7505d9de_377_0.png)\n\
+  \n### 更改组件图表类型\n\n我们无法在 Salesforce1 中从头创建仪表板，而且似乎也没有必要在移动中创建仪表板，但你可以在 Salesforce1\
+  \ 应用中更改组件图表，尽管可能无法保存。我们来详细讨论一下：\n\n1. 从 Salesforce1 应用打开仪表板。\n2. 点击仪表板组件；图表右上角会出现展开图标。\n\
+  3. 点击展开图标以全屏打开图表。\n4. 找到并点击通知图标下方的齿轮图标。\n5. 系统将为你提供更改图表类型的机会，以便轻松分析数据。\n6. 完成后点击“完成”。图表会更改，但不会保存。\n\
+  7. 当源报告中有多个分组时，你会看到堆叠条形图选项。如下图所示：\n\n    ![](img/72d01bea5a9ccf02f9452aab7505d9de_378_0.png)\n\
+  \n### 图表详细信息和报告\n\n当仪表板在 Salesforce1 应用中打开时，与在浏览器中打开一样，你也可以点击图表的某个片段以获取该片段的更多信息。\n\
+  \n当你展开仪表板时，你会看到图表下方的报告；你仍然可以点击图表的某个片段以获取更多信息。不仅如此，图表下方的报告也会根据所点击的图表分组进行筛选，如下图所示：\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_379_0.png)\n\n请注意上图中的情况：当我们点击条形时，图表下方显示记录被刷新了；从这里，你还可以看到关于该条形的更多信息，例如：金额合计。\n\
+  \n### 在 Salesforce1 应用中处理报告\n\n在 Salesforce1 移动应用中有几种访问报告的选项。让我们详细讨论它们。\n\n### 报告菜单项\n\
+  \n如果你在 Salesforce1 应用菜单中没有看到“报告”菜单，请确保添加它——导航到“设置 | 应用 | 移动应用 | Salesforce1 导航”，选择“报告”，然后添加所选项目。如下图所示：\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_380_0.png)\n\n### Salesforce1 移动应用中的仪表板和报告\n\
+  \n当你在 Salesforce1 移动应用中打开报告时，报告格式将被忽略。**摘要**和**矩阵**格式的报告将仅以列的形式呈现，类似于**表格**报告。如果报告添加了图表，在\
+  \ Salesforce1 中打开报告时该图表将不可见。\n\n在**表格**格式报告中，第一列将被冻结，因此当你向右滚动查看更多列时，第一列保持可见。对于**摘要**和**矩阵**报告，第一列（而非分组字段）将被冻结，而用作分组的字段将位于最后几列。\n\
+  \n你可以通过点击列标题对报告进行排序；默认情况下，将按升序排序——你可以再次点击标题将其改为降序排序。\n\n### 从仪表板下钻\n\n如你所知，报告是仪表板的数据源。当你在\
+  \ Salesforce1 移动应用中选择并展开仪表板组件时，你可以下钻到用作数据源的报告。报告打开时，会在报告上方显示图表。如果原始报告添加了图表，原始图表不会在\
+  \ Salesforce1 移动应用中显示。\n\n你可以通过点击报告图表中的分组来基于仪表板分组筛选报告中的数据，**表格**和**矩阵**组件除外。当你点击图表中的某个项目时，系统会提示你显示该片段的更多信息，生成报告将自动刷新并按所选的片段进行筛选。如下图所示：\n\
+  \n![](img/72d01bea5a9ccf02f9452aab7505d9de_382_0.png)\n\n在上图中，两张截图来自同一份报告。左侧选择了阶段为“资格认定”，其下方的报告已按所有者“Johan\
+  \ Yu”和阶段“资格认定”自动筛选。右侧选择了阶段为“价值主张”的条形，报告已按阶段“价值主张”自动筛选。\n\n### 下钻到记录\n\n当报告列是对象的名称时，你可以点击它以打开记录详情，例如**账户名称、机会名称、机会所有者**等。在记录详情页面，点击左上角的箭头可返回到报告。\n\
+  \n### 离线访问\n\nSalesforce1 应用支持离线访问。你可以读取、创建和编辑最近访问过的现有记录。当重新连接到互联网时，新增或修改的数据将自动同步回\
+  \ Salesforce。待同步的记录将用绿色三角形和白色箭头标记。但是，Salesforce 移动 Web 浏览器不支持离线访问。\n\n![](img/72d01bea5a9ccf02f9452aab7505d9de_383_0.png)\n\
+  \n要为 Salesforce1 应用启用离线支持，请导航到**设置 | 应用 | 移动应用 | Salesforce1 离线**，勾选**在 Salesforce1\
+  \ 中启用缓存**，并勾选**在 Salesforce1 中启用离线创建、编辑和删除**。这仅适用于你设备上安装的 Salesforce1 应用，不适用于 Salesforce1\
+  \ 移动浏览器应用。\n\n启用离线设置后，你还可以在离线模式下访问最近打开的报告和仪表板，包括下钻到记录详情。\n\n### Salesforce1 应用的局限性\n\
+  \n从移动应用访问仪表板报告存在一些局限性，但由于该应用对于移动访问非常有用，你可能不需要在小屏幕设备上使用仪表板报告的全部功能。\n\n以下是该应用的一些局限性总结：\n\
+  \n- 无法创建和编辑仪表板及报告\n- 无法修改仪表板组件\n- 报告格式被忽略\n- 报告中添加的图表不可用\n- **Chatter** 动态不可用\n\n\
+  \n\n\n"
+- "## D\n\n- dashboard component snapshot 355\n- dashboard components\n  - combination\
+  \ charts 270\n  - cumulative line chart 270\n  - defining 263\n  - Funnel chart\
+  \ 266\n  - gauge chart 267\n  - scatter chart 269\n  - stack bar charts 268\n  -\
+  \ table 265\n- dashboard filters\n  - features 275\n  - implementing 275\n  - opening,\
+  \ in Salesforce1 mobile app 357\n- dashboard folder permissions\n  - about 60\n\
+  \  - Create Dashboard Folders permission 60, 61\n  - Edit My Dashboards permission\
+  \ 61\n  - Manage Dashboards in Public Folders permission 62\n  - View Dashboards\
+  \ in Public Folders permission 62\n- dashboard folder\n  - about 31\n  - and report\
+  \ folder, levels of access 40\n  - creating 37\n  - private folder 31, 32\n  - public\
+  \ folder 33\n  - sharing 39, 40\n  - unfiled public folder 33\n- dashboard permissions\n\
+  \  - about 46\n  - Create and Customize Dashboards permission 47\n  - Manage dynamic\
+  \ dashboards permission 47, 48\n  - Run Reports permission 46, 47\n  - Schedule\
+  \ Dashboard permission 49\n  - View my team's dashboards permission 48, 49\n- dashboard\
+  \ refresh\n  - scheduling 248, 251, 252\n- dashboard\n  - about 232\n  - accessibility\
+  \ 232\n  - accessing, in Salesforce1 mobile app 352, 353,\n  - and reports drill\
+  \ down 293\n  - built-on components 232\n  - creating 253, 255, 256, 257, 258\n\
+  \  - data 30\n  - dynamic dashboard 233\n  - favorite icon 241\n  - favorites, adding\
+  \ 25, 27\n  - filter, adding to 276, 277, 278, 279\n  - filter, removing 283\n \
+  \ - following 318\n  - generating 30, 31\n  - installing, from AppExchange 296,\
+  \ 297, 299\n  - maintaining 258, 259, 260, 262\n  - navigating to 23, 244\n  - opening\
+  \ 235\n  - redesigning 234\n  - refreshing 246, 248\n  - refreshing, from Salesforce1\
+  \ mobile app 355\n  - running user 233\n  - search textbox 242\n  - tab and menu\
+  \ 24\n  - viewing 285\n- Dashboards tab\n  - about 236\n  - DASHBOARDS menu 238,\
+  \ 240\n  - FOLDERS menu 241\n- data\n  - bucket field 143\n  - bucket field, adding\
+  \ to report 145\n  - bucket field, creating depending on source field type 148\n\
+  \  - bucket field, editing 151\n  - categorizing, in reports 143\n  - for dashboards\
+  \ 30\n  - for reports 30\n- Date Formats\n  - reference link 97\n- Donut chart 194\n\
+  - dynamic dashboard\n  - about 233, 288\n  - creating 289, 291, 292\n  - limitations\
+  \ 289\n  - opening, in Salesforce1 mobile app 356\n  - using 286\n  - versus normal\
+  \ dashboard 286\n\n## F\n\n- favorite icon\n  - about 214\n  - item, adding to 215\n\
+  - favorites\n  - adding to 25, 27\n- feed tracking\n  - and dashboard collaboration\
+  \ 313\n  - report, enabling for 312\n- Field filter 97\n- field history tracking\n\
+  \  - limitations 336\n  - on custom object 330\n  - on standard objects 329\n  -\
+  \ setting 328\n  - using 328\n- field types\n  - about 20\n  - list 20\n- Filter\
+  \ Logic\n  - about 98\n  - using 99\n- filters\n  - about 222\n  - adding, to dashboard\
+  \ 276, 277, 279, 280\n  - preserving 293\n- functions formulas\n  - about 166\n\
+  \  - PARENTGROUPVAL() function 166\n  - PREVGROUPVAL() function 177\n- Funnel chart\
+  \ 195, 266\n\n## G\n\n- gauge chart 267\n\n## H\n\n- history objects 331\n- history\
+  \ related list 332, 333\n- history reports 334\n- history tracking value\n  - reading\
+  \ 331\n- Horizontal Bar chart 188\n\n## I\n\n- IF() function\n  - using 163\n- Internet\
+  \ of Things (IoT) 8\n\n## J\n\n- Joined report format\n  - about 90\n  - creating\
+  \ 91, 95\n- Junction object 20\n\n## L\n\n- Lightning Experience\n  - about 8, 9\n\
+  \  - enabling 10, 11, 13\n  - reports, subscribing to 228\n  - Salesforce Classic,\
+  \ using before 9\n  - switching to 13, 15\n- Line chart 192\n- Lock Filter 117\n\
+  - Lookup Relationship\n  - versus Master-Detail Relationship 129\n\n## M\n\n- Master-Detail\
+  \ Relationship\n  - about 128\n  - versus Lookup Relationship 19\n- Matrix report\
+  \ format\n  - about 81\n  - creating 83, 86\n  - custom summary formula 152\n  -\
+  \ Summary field, adding 86, 89\n  - Summary/Tabular report, modifying to 82\n- MAX()\
+  \ function\n  - using 165\n\n## N\n\n- normal dashboard\n  - about 287\n  - versus\
+  \ dynamic dashboard 286\n\n## O\n\n- object model\n- offline access 366\n\n## P\n\
+  \n- posting 320, 321, 322\n\n## R\n\n- report menu items 363, 364\n- reports 362\n\
+  \n## S\n\n- Salesforce\n  - about 7\n  - benefits 7, 8\n  - cloud products 8\n-\
+  \ Scatter chart 195, 269\n- search textbox 218\n- Setup menu\n  - navigating 21,\
+  \ 22\n- source field type\n  - bucket field, creating 148\n- stack bar charts 268\n\
+  - Stacked Horizontal Bar chart 189\n- Stacked Vertical Bar chart 191\n- standard\
+  \ objects\n  - about 16\n  - account 16\n  - campaign 17\n  - case 17\n  - contact\
+  \ 16\n  - lead 17\n  - opportunity 16\n- standard report type\n  - about 125\n \
+  \ - Lookup relationship 127\n  - Master-Detail Relationship 128\n- standard reports\
+  \ 36\n- static dashboard 286\n- Subscribe to reports permission\n  - about 45, 46\n\
+  \  - by recipients, adding 46\n  - by running user, setting 46\n- summarizing fields\
+  \ 221\n- Summary report format\n  - about 74\n  - creating 76, 78\n  - custom summary\
+  \ formula 153\n  - features 74\n\n## T\n\n- table 265\n- Tabular report format\n\
+  \  - about 69\n  - creating 71\n- Track Field History 122\n\n## U\n\n- unfiled public\
+  \ folder 33\n- Unfiled Public Reports\n  - using 53\n- URL parameters\n  - reports,\
+  \ filtering via 324, 326\n\n## V\n\n- Vertical Bar chart 189\n- Visualforce page\
+  \ 7\n\n## W\n\n- Workbench 60\n  - reference link 60\n\n"

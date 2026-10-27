@@ -1,0 +1,9 @@
+# Summary
+
+In this chapter, we started with a discussion on Salesforce architecture, the benefits of using the Salesforce technology, and the multiple products offered by Salesforce. Lightning Experience is the latest user interface, which offers many enhancements and more productivity over the older Salesforce Classic user interface. We discussed how to switch to Lightning Experience, and gave tips on rolling it out to your users if you are new to Lightning Experience.
+
+We continued to discuss the Salesforce object model, how data is stored in Salesforce, the types of objects, and the difference between Standard and Custom objects. Topics like how to relate objects, the relationship between objects using Master-Detail Relationship and Lookup Relationship, and a comparison between both the relationship models were explained in depth. You also learned about the multiple field types for the objects.
+
+Next, we explained how to navigate to the Setup menu, gave tips for **Quick Find** on the menu, and also mentioned about the recently open setup menu from the main panel. At the end of the chapter, we showed you where to find Reports and Dashboards in Salesforce, and gave you reasons if you can’t find them. Then we shared how to navigate to the **Reports and Dashboards** tab, and to behind the arrow next to the tab. We ended with how to bookmark reports and dashboards using the Favorite icon in Lightning Experience, and how we can take advantage of that feature.
+
+In the next chapter, we will cover the concept of Reports and Dashboards in Salesforce, how reports and dashboards are stored, backend data related to reporting, permissions related to reporting and dashboards, and the security built around them.

@@ -1,0 +1,81 @@
+reviews:
+- 'no': 8
+  overturn_probability: 0.15
+  alternative: 版权页/致谢页的栏目名，属于正文前辅文
+  counter_evidence:
+  - Credits 并不是一个内容章节标题，而是一本书前置的版权、作者、审校者等人员信息页；若只看标题本体，它不具统领全文内容的语义。
+  - 但按照规则，正文之前的 Credits、Foreword、About Author 等前置内容应统一划分为一章，因此仍应维持分章。
+  keep_split: true
+- 'no': 118
+  overturn_probability: 0.97
+  alternative: 目录（Table of Contents）中的第9章条目
+  counter_evidence:
+  - 该行前后均出现带页码的目录条目，如“操作按钮 225”“内置组件 232”“仪表盘可访问性 232”，这是典型的目录页排版，不是正文。
+  - 该行之后没有紧跟本章正文，而是紧跟子标题与页码列表，真正的正文要从“前言”后的第1章之后才出现。
+  - 若将目录中的第9章也切为新章，会与正文实际章节标题产生重复和层级混乱。
+  keep_split: false
+- 'no': 180
+  overturn_probability: 0.97
+  alternative: 目录（Table of Contents）中的第10章条目
+  counter_evidence:
+  - 该行位于目录区域，周围是“摘要”“报告快照的历史记录和监控 347”等带页码的目录行。
+  - 它后面没有正文段落，而是一系列带点线或页码的子标题，属于目录条目而非实际章标题。
+  - 当前文本中真正的第10章正文并未在该位置开始，因此此处不应分章。
+  keep_split: false
+- 'no': 200
+  overturn_probability: 0.97
+  alternative: 目录（Table of Contents）中的第12章条目
+  counter_evidence:
+  - 该行之后紧跟“刷新仪表盘”“动态仪表盘”“仪表盘筛选器”等带页码的目录行，且随后就是“## 索引”“## 前言”，说明这里仍是目录部分。
+  - 该行的“第12章”只是目录中列举的章节名，不是正文中的标题；正文并未在该位置进入第12章内容。
+  - 原判断以“缺第11章仍应分章”为由，忽略了它其实位于目录区，属于误判。
+  keep_split: false
+- 'no': 309
+  overturn_probability: 0.15
+  alternative: 正文起始处一个无编号的一级标题/卷首标题
+  counter_evidence:
+  - 该行没有“第1章”之类的显式编号，且标题文字是半翻译的“Salesforce 报表和仪表板的 fundamentals”，形式上可被误认为封面/页眉残留。
+  - 但它位于“前言”之后，并且下一行立即是“本章将为您提供 Salesforce 云技术的总体概述……”，符合章首概述段落的特征，因此仍应分章。
+  keep_split: true
+- 'no': 621
+  overturn_probability: 0.1
+  alternative: 章号残片/页码残片，真正的章标题在下一行
+  counter_evidence:
+  - 该行只有“# 2”一个数字，本身不是完整标题；单独看更像页码或章号残片。
+  - 但下一行“## 报表与仪表盘中的概念和权限”提供了完整章名，之前又是上一章的“总结”和结束语，显然这是第2章正文起点，因此维持分章。
+  keep_split: true
+- 'no': 918
+  overturn_probability: 0.2
+  alternative: 章内普通小节标题（H2）
+  counter_evidence:
+  - 该行为“##”二级标题且没有“第3章”编号，单看层级与“## 总结”“## 报表权限”等小节标题相同，存在被误判为小节的可能。
+  - 但它位于上一章“总结”之后，且后接“本章将说明如何在 Salesforce 中保护报告和仪表板……”这样的章首概述，因此实际是第3章标题。
+  keep_split: true
+- 'no': 1142
+  overturn_probability: 0.2
+  alternative: 章内普通小节标题（H2）
+  counter_evidence:
+  - 该行没有章序号，且使用“##”二级标题格式，形式上容易与“## 总结”“## 选择报表格式”等小节标题混淆。
+  - 但它紧接在第3章总结之后，后文是“你在第2章……”“在本章中，我们将动手创建报表……”的章首概述，因此应视为第4章开始。
+  keep_split: true
+- 'no': 1774
+  overturn_probability: 0.05
+  alternative: 带编号的正文一级标题（第5章）
+  counter_evidence:
+  - 行内编号为“5.”而不是“第5章”，形式上有点像有序列表或子编号；同时“了解报告类型”也可能被误认为目录行。
+  - 但它以 H1 出现，且前接上一章总结、后接“您已在第4章 创建和管理报告 中学习了……”的章首回顾，是明确的第5章标题。
+  keep_split: true
+- 'no': 2083
+  overturn_probability: 0.25
+  alternative: 页眉/重复出现的章节名残片
+  counter_evidence:
+  - 该行是“##”二级标题且没有章号，而“高级报表配置”这个短语在后面多处反复出现（如 2299、2317、2334 行），很像书籍页眉或运行头。
+  - 但它紧接在第5章总结后的“下一章”预告之后，并有“你在第5章*理解报表类型*中详细学习了报表类型……”的章首承接，因此仍是第6章正文起点。
+  keep_split: true
+- 'no': 2849
+  overturn_probability: 0.1
+  alternative: 章号残片/页码残片，真正的章标题在下一行
+  counter_evidence:
+  - 该行只有“# 7”，本身不像完整章节标题，更像页码或章号单独成行。
+  - 但下一行“## 在报表和页面中添加图表”给出完整章名，且前文是“在下一章中，我们将讨论与报表相关的更多功能……”的预告，因此这是第7章正文起点。
+  keep_split: true

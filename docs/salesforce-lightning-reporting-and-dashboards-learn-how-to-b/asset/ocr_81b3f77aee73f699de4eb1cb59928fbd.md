@@ -1,0 +1,11 @@
+# Foreword
+
+Before you dive into Johan's amazing book about Salesforce technology, I want to invite you to be a part of something special. We are in the midst of a major shift, and we're leaning into it with the full power of Salesforce. Our mission is to empower people to blaze their own trails, as well as to motivate and educate everyone in our community with how we live our values of trust, growth, innovation, and equality.
+
+If you're reading this book, you are a Trailblazer and have more power than ever to make positive changes happen in your companies, communities, and careers. Doing well and doing good is about the power of working together to help companies be better for their customers, and businesses and to be major drivers of change. We want every individual to realize their full potential in their careers and lives. With this shift, we can generate hundreds of billions of dollars in GDP, create millions of new jobs, and help new Trailblazers learn the skills they need to succeed.
+
+I'd like to introduce you to a few of the concepts that are central to this shift and core to our community: Ohana, Trailblazer, and Equality.
+
+**Ohana:** This is defined broadly as "family" in Hawaiian, but at Salesforce, it means to connect, collaborate, learn, and have fun together. As one Salesforce Ohana, we all need to be Trailblazers, moving forward together on the same trail with the intentional purpose of delivering customer success and a path into the Salesforce economy. This, in turn, will generate hundreds of billions of dollars in GDP, create millions of new jobs, and help new Trailblazers learn the skills they need to succeed.
+
+**Trailblazer:** This is a pioneer; an innovator; a lifelong learner; a mover and shaker; a leader who leaves a path for others to follow; and, most importantly, someone who inspires and drives change, and is committed to making the world a better place. This is all about being your best through a constant commitment to learning and giving back--and that's what this community is all about.
