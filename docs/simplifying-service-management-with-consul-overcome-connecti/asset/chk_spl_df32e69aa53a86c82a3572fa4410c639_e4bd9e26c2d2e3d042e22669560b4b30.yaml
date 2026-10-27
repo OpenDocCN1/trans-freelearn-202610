@@ -1,0 +1,15 @@
+reviews:
+- 'no': 3310
+  overturn_probability: 0.05
+  alternative: 正文小标题（章节内的一个分节标题）
+  counter_evidence:
+  - 该行虽然带有数字序号7，但也可以被解读为正文中独立成行的短标题，需要结合后续“本章将涵盖以下主题”才能确认是章标题。
+  - 前面的“## 总结”同样使用##标记且单独成行，说明##级别不唯一对应章节，可能造成误判。
+  keep_split: true
+- 'no': 3642
+  overturn_probability: 0.85
+  alternative: 正文中的问句短标题（例如章内小节或引导性提问）
+  counter_evidence:
+  - 标题以问号结尾，违反判断规则中“标题末尾绝无句号（。.？！）”的格式特征。
+  - 紧跟其后的“### Consul Associate 认证”等小节说明它更像是一个内容分组标题而非体系内的章条目。
+  keep_split: false

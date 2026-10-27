@@ -1,0 +1,64 @@
+reviews:
+- 'no': 22
+  overturn_probability: 0.05
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '## 前言 为正文前的序言类内容，按规则应统一划分为一章'
+  - 后接概述段落 24-26，符合前言章节特征
+  keep_split: true
+- 'no': 94
+  overturn_probability: 0.08
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 第 1 部分 为部分-章节模式的部分标题，95-96 行补全标题 Consul 用例 与架构
+  - 后接欢迎段 98 及章节列表 100-106，符合部分划分特征
+  keep_split: true
+- 'no': 107
+  overturn_probability: 0.12
+  alternative: 正文小标题
+  counter_evidence:
+  - '行 107 为 ## 1，行 108 为 Consul 概览——操作与用例，构成编号章标题'
+  - 后接章节引言 110 及子节列表 112-115，符合最高层级大章特征
+  keep_split: true
+- 'no': 275
+  overturn_probability: 0.65
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题为 ## 架构——它是如何工作的？ 无第 X 章编号，且位于第1章内容之后、仍在第1部分范围内'
+  - 前后均为第1章的子节 119、123 等，标题长度适中且后接子节列表 279-282，更符合章节内二级标题而非全书最高层级大章
+  keep_split: false
+- 'no': 1190
+  overturn_probability: 0.07
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '## Keep It Safe, Stupid, and Secure Your Cluster! 单独成行，语义统领后续安全内容'
+  - 前文 107 为第1章，2167 为第4章，位置符合第3章英文标题
+  keep_split: true
+- 'no': 2167
+  overturn_probability: 0.04
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '# 4 为编号，下一行 2168 为章名 数据中心（非贸易）联合，构成最高层级大章'
+  - 后接引言 2170 及子节 2180、2342，符合章特征
+  keep_split: true
+- 'no': 2531
+  overturn_probability: 0.06
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '## Section 2: Use Cases Deep Dive 为第二部分标题，2532-2533 补全'
+  - 后接章节列表 2537-2542，符合部分-章节模式需分章
+  keep_split: true
+- 'no': 2544
+  overturn_probability: 0.05
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '## 5 为编号，2545-2546 为章名 Little Bo Peep Lost Her Service'
+  - 后接引言 2548，符合最高层级大章
+  keep_split: true
+- 'no': 2938
+  overturn_probability: 0.06
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '## 6 连接四个或更多 单独成行，语义统领后续服务网格内容'
+  - 后接技术要求 2949 及子节 2957，符合第6章标题特征
+  keep_split: true

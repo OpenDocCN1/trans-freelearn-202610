@@ -1,0 +1,76 @@
+chapter_starts:
+- 'no': 22
+  confidence: 0.95
+  final_reason: 前言为正文前内容，按规则统一划分为一章；双方一致。
+  accepted_evidence:
+  - '## 前言 单独成行，后接概述段落，符合前言章节特征'
+  - 复核方确认 keep_split=true
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 94
+  confidence: 0.97
+  final_reason: 第 1 部分为部分-章节模式的部分标题，95-96 行补全标题，后接章节列表，符合部分划分规则。
+  accepted_evidence:
+  - '## 第 1 部分： 后接 95-96 行标题 Consul 用例 与架构'
+  - 后接欢迎段及章节列表 100-106
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 107
+  confidence: 0.95
+  final_reason: '## 1 与下一行 108 构成第1章标题，后接章节引言及子节列表，双方一致。'
+  accepted_evidence:
+  - 行 107 为编号，行 108 为章名 Consul 概览——操作与用例
+  - 后接 110 引言及 112-115 子节列表
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 275
+  confidence: 0.85
+  final_reason: 标题与目录中第2章标题一致（架构——它是如何工作的？），虽无编号，但语义统领后续整个第2章内容；复核方认为它是第1章子节不成立，因为其后续内容（技术要求、获取
+    AWS 凭证等）属于第2章。
+  accepted_evidence:
+  - '## 架构——它是如何工作的？ 与本书涵盖的内容中第2章标题对应'
+  - 后接 277 章节引言及 279-282 本章要点列表，随后为第2章子节（技术要求、获取 AWS 凭证）
+  rejected_evidence:
+  - 复核方提出该标题位于第1部分内部且无编号，可能为第1章子节；但第2章同样属于第1部分，且其后的技术要求等子节明确属于新章内容，因此该反证不成立
+  need_human_review: false
+- 'no': 1190
+  confidence: 0.95
+  final_reason: '## Keep It Safe, Stupid, and Secure Your Cluster! 单独成行，语义统领后续安全内容，位置符合第3章英文标题。'
+  accepted_evidence:
+  - 标题单独成行且无句号，为英文章标题
+  - 后接 1192 引言及 1196-1198 章节要点，且 1204 Technical requirements 为本章子节
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 2167
+  confidence: 0.97
+  final_reason: '# 4 与下一行 2168 构成第4章标题，后接章节引言及子节，双方一致。'
+  accepted_evidence:
+  - 行 2167 为编号，行 2168 为章名 数据中心（非贸易）联合
+  - 后接 2170 引言及 2180 等子节
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 2531
+  confidence: 0.95
+  final_reason: '## Section 2: Use Cases Deep Dive 为第二部分标题，后接章节列表，符合部分-章节模式需分章。'
+  accepted_evidence:
+  - '## Section 2: 后接 2532-2533 标题 Use Cases Deep Dive'
+  - 后接 2537-2542 章节列表
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 2544
+  confidence: 0.96
+  final_reason: '## 5 与下一行 2545-2546 构成第5章标题，后接章节引言，双方一致。'
+  accepted_evidence:
+  - 行 2544 为编号，行 2545-2546 为章名 Little Bo Peep Lost Her Service
+  - 后接 2548 引言
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 2938
+  confidence: 0.95
+  final_reason: '## 6 连接四个或更多 单独成行，语义统领后续服务网格内容，后接技术要求及子节，符合第6章标题。'
+  accepted_evidence:
+  - 标题含编号6与章名，单独成行
+  - 后接 2940 引言及 2949 技术要求等子节
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines: []

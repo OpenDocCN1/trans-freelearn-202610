@@ -1,0 +1,1824 @@
+- "# Consul 简化服务管理： 在动态服务架构中克服连接性和安全挑战\n\n## 贡献者\n\n## 关于作者\n\n**罗伯特·E·杰克逊**于1997年获得普渡大学电气工程理学学士学位，此后在各种成功的初创公司中担任过多个售前和售后职位，主要在网络接入技术领域。在他的职业生涯中，他扮演了多个角色，包括销售工程师、解决方案工程师、集成工程师、网络工程师和产品经理。在这些工程职位中，他从未学会开火车，但他能够从多个角度体验从传统数据中心到云计算的数字化转型。他目前受雇于\
+  \ HashiCorp，担任高级解决方案工程师，常驻美国东北部地区。\n\n> *特别感谢 Ancil McBarnett 一直以来的支持和指导，也感谢他愿意给一个老线缆工机会。我还要感谢\
+  \ Patrick Roche 和 Gina Cocivera-Wright 的鼓励——你们是最棒的啦啦队。最后但同样重要的是，我要感谢 Rachael Jackson\
+  \ 在本书创作过程中陪我度过的周末、夜晚以及焦虑不安的抓狂时刻。*\n\n## 关于审阅者\n\n**亚历克斯·申克**是 HashiCorp 的高级解决方案工程师。他拥有新英格兰技术学院的信息技术理学学士学位（主修网络工程）和伍斯特理工学院的硕士学位（主修管理）。他曾在多家组织担任\
+  \ IT 管理员、技术支持工程师、销售工程师和解决方案架构师，包括 EMC 和 Zerto。在业余时间，他喜欢驾驶他的 1978 年 Piper Archer\
+  \ II 飞机、学习德语作为第二语言以及旅行。他与妻子 Melissa 和两只猫 Maid 和 Butler 住在罗德岛。\n\n> *我要感谢 Rob 让我有机会参与他创作本书的旅程。审阅他的内容让我有机会作为技术人员成长，而且你可以通过一个人的写作风格了解很多关于他的事。我很高兴将\
+  \ Rob 视为 HashiCorp 的朋友和同事，也很荣幸能与他一起走过这段旅程。*\n> \n> *也感谢 Packt 的 Shagun，感谢她的极大耐心和让我保持正轨。*\n\
+  \n**埃德·费瑟斯顿**是一位杰出技术专家，拥有超过三十九年为最复杂技术环境设计和交付**企业架构（EA）**解决方案的经验。埃德的经验包括为众多财富500强公司提供跨多个行业的咨询项目，包括金融服务、政府、制药和零售。他在系统集成方面拥有丰富的专业知识，包括互联网和内联网、客户端/服务器以及中间件技术。他成功评估了当前状态架构以及业务和系统需求，然后制定并支持了架构和集成战略。埃德利用最佳实践和合理的流程重建\
+  \ IT 组织，通过集成和调整业务应用程序并定义角色和职责，以实现最佳业务绩效和技术功能。\n\n近年来，埃德还扩展了自己的形象，成为云计算和区块链等科技行业趋势的领先声音之一。他定期在\
+  \ Twitter 等社交媒体渠道上参与行业对话，并经常与他的 5500 名粉丝分享心得、见解和最佳实践。\n"
+- "## 前言\n\n你是否曾花费数小时排查网络问题，最后却发现应用程序的网络地址已经变了？或者，你是否因为更新防火墙或负载均衡器花费数周时间，而不得不躲避愤怒项目经理扔来的咖啡杯？也许你的工程团队正在为服务之间的端到端加密而苦苦挣扎，每个项目都在重新发明轮子，或者把安全性寄托在网络周围虚构的边界上。如果这些情况听起来很熟悉，那么\
+  \ HashiCorp Consul 或许正是你解决烦恼的答案！\n\nConsul 为服务发现、网络自动化和安全服务通信提供了一种与平台无关的解决方案。本书将深入探讨\
+  \ Consul 架构的基础，解释服务器和客户端如何运作。我们将在 Amazon Web Services 中构建自己的 Consul 系统，并保护系统免受爬虫和窃听者的攻击。在集群建立后，我们将开始向系统中部署服务，并展示\
+  \ Consul 如何发现和监控这些服务。我们将讨论多种共享服务信息的方法。不过，我们始终关注的是 Consul 如何利用这些信息动态调整网络基础设施，并促进注册服务之间的安全连接。最后，我们将快速浏览\
+  \ HCP Consul，这是 HashiCorp 云平台上提供的软件即服务（SaaS）解决方案。\n\n## 本书面向的读者\n\n任何对动态混合云环境中的网络管理挑战与解决方案感兴趣的系统架构师或\
+  \ DevOps 工程师。在讨论设备通信和连接以及网络协议栈各层时，具备基础网络知识会有所帮助。了解 Terraform 将是有益的，因为我们将使用 Terraform\
+  \ 来创建和管理我们的系统，但这不是必需的。\n\n## 本书涵盖的内容\n\n*第1章，Consul 概览——操作与用例，* 以 Consul 的简短概述和对三个主要\
+  \ Consul 用例的高层理解开篇。\n\n*第2章，架构——它是如何运作的？* 向我们展示了服务器和代理如何运作和通信，现在我们对“为什么使用 Consul”有了基本的理解。\n\
+  \n*第3章，保持安全，笨蛋，并保护你的集群！* 在了解了 Consul 的运作方式后，探讨如何保护整个系统。我们将学习如何将零信任应用于我们所有的应用程序。\n\
+  \n*第4章，数据中心（而非贸易）联盟，* 探讨了 Consul 如何促进集群跨多个环境扩展以实现全球统治，因为在全球和不断变化的世界中，我们的应用程序必须超越数据中心的地理边界。\n\
+  \n*第5章，小波比丢失了她的服务，* 探讨了 Consul 如何不仅发现服务——服务发现是 Consul 运作的基础——而且在这些服务中，它还监控并共享服务状态信息。\n\
+  \n*第6章，连接四个或更多，* 探讨了在了解我们的服务及其位置的情况下，如何使用 Consul 来识别和保护服务之间的通信。\n\n*第7章，激活我，* 涵盖了如何使用\
+  \ Consul 的服务信息简化我们的网络基础设施管理，Consul 之外的整个世界都可以利用其动态服务发现。\n\n*第8章，我们现在去哪里？* 提供了一些继续学习和使用\
+  \ Consul 的途径。我们介绍了 HashiCorp 的 Consul 助理认证（Consul Associate Certification）认证计划以获得更多知识。此外，我们还将向您展示如何注册\
+  \ HashiCorp 托管的 Consul 解决方案，从而在不承担管理集群本身开销的情况下采用 Consul。\n\n## 充分利用本书\n\n在本书中，我们将使用\
+  \ Terraform 来构建和管理 Consul 系统，虽然了解 Terraform 会有所帮助，但并非必需。我们将逐步讲解 Terraform 代码及其功能，以创建和管理\
+  \ Consul 系统。本书中的大部分操作都使用 bash 命令行。熟悉常见的 bash 操作以及使用 emacs 或 vi 编辑文本文档会很有帮助。\n\n\
+  | 本书涵盖的软件/硬件 | 操作系统要求 |\n|---|---|\n| Consul | Windows、Linux、MacOS |\n| Terraform\
+  \ | Windows、Linux、MacOS |\n| 任意文本编辑器 | |\n\n## 下载彩色图片\n\n我们还提供了一个 PDF 文件，其中包含本书使用的截图/图表的彩色图片。您可以在此处下载：`https://static.packt-cdn.com/downloads/9781800202627_ColorImages.pdf`。\n\
+  \n## 下载示例代码文件\n\n您可以从 GitHub 下载本书的示例代码文件：`https://github.com/PacktPublishing/Simplifying-Service-Management-with-Consul`。\n\
+  \n如果代码有更新，将更新在现有的 GitHub 仓库中。我们还有来自丰富图书和视频目录的其他代码包，可访问 `https://github.com/PacktPublishing/`。看看吧！\n\
+  \n## 使用的约定\n\n本书通篇使用了许多文本约定。\n\n`Code in text`：表示文本中的代码词、数据库表名、文件夹名、文件名、文件扩展名、路径名、虚拟\
+  \ URL、用户输入和 Twitter 用户名。例如：“在 Terraform 输出中，您会看到一个 `CONSUL_HTTP_ADDR` 的值。”\n\n代码块设置如下：\n\
+  \n```\nApply complete! Resources: 23 added, 0 changed, 0 destroyed.\n\nOutputs:\n\
+  \nCONSUL_HTTP_ADDR = \"http://18.218.165.4:8500\"\nConsul_Server_IPs = [\n  \"3.139.233.155\"\
+  ,\n```\n\n## 分享您的想法\n\n在您阅读了 *《使用 Consul 简化服务管理》* 之后，我们很乐意倾听您的想法！请点击此处直接进入本书的亚马逊评论页面并分享您的反馈。\n\
+  \n您的评论对我们和技术社区都很重要，并将帮助我们确保提供优质的内容。\n"
+- '## 第 1 部分：
+
+  Consul 用例
+
+  与架构
+
+
+  欢迎来到 Consul 的慰藉世界。如果你曾经建造过建筑物，你就知道地基是最重要的部分。如果你不相信我，看看比萨斜塔就知道了！本节涵盖 Consul 系统的基础方面，简要回顾为什么
+  Consul 在当今动态世界中如此关键的组件，以及 Consul 系统如何运作以支持各种用例。
+
+
+  本书的这一部分包括以下章节：
+
+
+  - 第1章，Consul 概览——操作与用例
+
+  - 第2章，架构——它是如何运作的？
+
+  - 第3章，保持安全，笨蛋，并保护你的集群！
+
+  - 第4章，数据中心（而非贸易）联盟
+
+  '
+- '## 1
+
+  Consul 概览——操作与用例
+
+
+  欢迎来到 HashiCorp Consul 的精彩世界，这是一个用于管理、自动化并安全连接网络中所有服务的多功能工具。感谢您与我一起踏上这段旅程，希望我们都能在这个过程中学到很多。在本章中，我们将从高层次回顾
+  Consul，以了解其基础知识和应用；本质上，我们将挖掘地基并浇筑混凝土，以创建一个稳定的基础，在此基础上构建您的 Consul 结构。如果您曾经看过比萨斜塔，您就会知道坚实的地基对任何重要结构都至关重要！在本章中，我们将了解以下内容：
+
+
+  - Consul 系统——组件有哪些，它们如何和谐共处？
+
+  - Consul 服务发现——触及所有其他 Consul 功能所构建的基础用例
+
+  - Consul 服务网格——Consul 服务网格的基础知识，以安全地实现服务到服务的通信
+
+  - 网络自动化——利用服务发现自动化网络基础设施的高层视图
+
+
+  我们现在还不会深入任何代码片段，但请放心，它们很快就会到来。如果您已经熟悉 Consul 的概念和用例，可以直接跳到那些章节——我保证我不会受伤（太多）。不过，当您的经理问起
+  *你到底在用这个新奇发明做什么？* 时，这一章是交给他们的绝佳选择。
+
+
+  ## Consul 系统——服务器与客户端
+
+
+  有时候，为了确切理解某件事物是如何运作的，我们需要了解所涉及的组件。毕竟，在每一种通信形式中，都有发送者和接收者，如果我们对其中任何一方不熟悉，就很难理解信息。Consul
+  本质上是一个通信引擎。它提供了一种新的结构，以促进网络服务（而不仅仅是网络设备）之间的通信。如果您在网络领域待过一段时间，就一定听说过 IP 地址、子网掩码和网关地址等术语。这些都是网络设备通信中涉及的关键组件。然而，在云、微服务和网络动态调整的辉煌世界里，这些组件会随着网络的兴衰而改变。在这个痛苦的过程中，我们认识到，我们所熟知并喜爱的寻址系统不过是一种达到目的的手段。这个目的就是服务的连接和高效通信。那么
+  Consul 是如何做到这一点的呢？我们马上就会揭晓！
+
+
+  ## Consul 服务器——其领域的主宰
+
+
+  几乎在任何操作系统或结构中，都有一个大脑。这可能不是那个与搭档 Pinky 一起日复一日试图统治世界的 Brain。我们这里关注的是做出决策的大脑。那个决定晚餐吃印度菜还是泰国菜的大脑。那个决定某天穿什么衣服的大脑。那个决定哪位员工获得最大加薪的大脑。现在，您可能会说
+  *计算机和应用程序没有大脑；它们只做我们告诉它们做的事情。* 您完全正确，但这并不意味着机器没有逻辑和智能（即使是人工的）来做决策。在某些方面，它们更为优越，因为机器和应用程序能够专注于逻辑，而不是自我和情感。对吧，Spock
+  先生？*没错，你这个顺从的原始哺乳动物。*
+
+
+
+
+
+  在思考 Consul 的大脑时，我们必须关注 **Consul 服务器集群**。查看 *服务器*（server）的同义词，我们会发现 *仆人*（servant），而这正是
+  Consul 服务器为分布式 Consul 客户端（我们稍后会讨论）所做的事情。服务器之间也协同工作，由选举产生的服务器做出主要决策，并将这些决策分发给整个集群中的其他服务器。那么，这些我网络中的仆人们会做出什么样的决策呢？
+
+
+  首先，Consul 服务器做出的最有用的决策之一就是找到服务所在的位置。Consul 所做的一切都基于这样一个前提：不仅需要发现网络上的服务及其位置，还需要将这些信息共享给任何有权请求该信息的实体。如果你回想旧式电话交换台，有人（应用程序）拿起电话，立刻接通中央接线员（服务器）。呼叫者（应用程序）会请求连接某个特定号码（服务），比如
+  *特兰西瓦尼亚 6-5000*。接线员（服务器）随后移动那些巨大的插头，将呼叫者（应用程序）与目的地方（服务）连接起来。
+
+
+  ![](img/52479dafaefba00517c48a137e037b7e_19_0.png)
+
+
+  图 1.1 – 1945 年左右的人工电话交换台
+
+
+  但如果我有一些应用程序，我不想让它们找到特定的服务呢？好吧，很高兴你问到这个问题！在某些情况下，你可能会遇到一些人或机器想要联系其他人，与他们谈论延长汽车保修期的事。也许我不想收到这些消息。那么，我会告诉那个中央接线员，不让那些呼叫者联系我，这有点像史前的
+  *勿扰电话登记处*。这些决策也由 Consul 服务器根据你的指令来管理。
+
+
+  好的，听起来 Consul 可以自动做出很多炫酷而智能的决策，但它从哪里获取做出这些决策所需的信息呢？嗯，任何决策都是怎么做出的？员工的加薪可能基于他们的工作表现，同时还要考虑他们是否也在写一本书。我们决定穿什么衣服是基于场合和环境。晚餐吃什么可能基于……嗯，变量太多，无法在此一一列举！我们做出的每一个决策，其质量都取决于我们拥有的数据。Consul
+  客户端正提供了这些数据。
+
+
+  > **重要说明**
+
+  >
+
+  > 在官方 Consul 文档中，有一个 *代理*（agent），可以配置为客户端模式或服务器模式。在本文中，我们将服务器代理简称为 *服务器*，将客户端代理简称为
+  *客户端*。
+
+
+  ## 集群的构成要素
+
+
+  正如大脑是任何系统中的决策者，也必须有实体来提供数据，并根据决策执行工作。例如，当经理做出决策时，数据很可能由董事会成员、高级管理人员，当然还有团队成员提供。话虽如此，我们都知道真正做所有工作的是团队成员！
+
+
+  为 Consul 服务器结构做出决策而提供的大量数据分为两类：
+
+
+  - Consul 配置
+
+  - 网络数据
+
+
+  当然，配置是由运行 Consul 系统的人员决定的，希望这些配置经过深思熟虑、以代码形式定义并经过同行评审。而数据则由分布在整个网络中的 Consul 客户端提供。这些客户端可能与应用程序同驻一台机器，也可能伴随应用程序运行，注视着它的一举一动。无论位于何处，客户端不仅是服务器的客户端，同时也是应用程序的客户端，代表应用程序并向服务器报告有关应用程序的信息。这使得
+  Consul 可以在网络中部署，而无需修改现有的应用程序或服务。此外，单个客户端可以代表多个服务和应用程序。
+
+
+  ![](img/52479dafaefba00517c48a137e037b7e_21_0.png)
+
+
+  图 1.2 – 代理部署选项
+
+
+  > **重要说明**
+
+  >
+
+  > 将外部服务监控器与 Consul 客户端一起使用时，应格外小心。在这种配置下，客户端可用的数据会减少，并且在迁移服务方面灵活性较低。
+
+
+  Consul 客户端不仅监控与其关联的应用程序，还收集自身与网络中其他客户端之间距离的信息。这使得服务器能够更智能地决定哪个应用程序或服务实例最适合服务于即将到来的请求。这个概念与紧急服务非常相似，比如你拨打报警电话或火警电话时。有一个你可以拨打的集中号码（即美国的
+  911），但这个集中号码会将你连接到离你当前位置最近的调度中心。随着 IP 语音服务的普及，这是一个艰难的挑战，而不断增强的网络智能帮助我们克服了它。
+
+
+  ## 服务器与客户端的结合
+
+
+  好的，现在我们知道了服务器的职责，也知道了客户端的职责，那么整个系统是如何协同工作的呢？正如我之前提到的，Consul 的一切都关乎通信。Consul 服务器之间需要相互通信，所有客户端都需要与服务器集群通信。
+
+
+  ![](img/52479dafaefba00517c48a137e037b7e_22_0.png)
+
+
+  图 1.3 – Consul 服务器与代理和谐共处
+
+
+  服务器之间的通信相当容易管理。那是一场只有 3、5 或 7 人的小型晚宴。然而，当客户端规模从几十扩展到几百，甚至可能几千时，让所有这些客户端都向相对较小的服务器集群汇报，可能会让人不堪重负。我们私密的小型晚宴已经扩展成一场拥有几十、几百甚至上千位宾客的大型派对。你能想象所有宾客都同时想要与主桌交谈吗！但是，如果宾客们能够互相聊天，他们就可以分享自己的信息，发现新事物，并且只将相关且重要的信息汇报给主桌。在某些情况下，我们可能会称这种聊天为“八卦闲聊”。奇怪的是，这正是
+  Consul 用于这种交互的协议，但我们将在后面的章节中深入探讨。
+
+
+  好了，现在我们了解了服务器的用途、客户端的用途，以及它们之间如何交互和通信。但这个惊人而美妙的系统到底能为我们做些什么呢？我为什么要在意它呢？
+
+
+  ## 哦，在哪儿，哦，我的服务都去哪儿了？
+
+
+  如前所述，与私有云和公有云基础设施实施相关的最大问题之一就是网络的流动性。在我那个年代，对网络进行任何更改都需要无数个步骤。让我们聚焦于部署一个新应用这一简单需求。假设我们的应用已经编写并测试完毕：
+
+
+  1. 审查所请求的机器需求。
+
+  2. 就所请求的机器获取多份报价。
+
+  3. 提交采购申请。
+
+  4. 根据成本，通过相应数量的管理层级为采购请求提供合理理由。
+
+  5. 向供应商提交采购订单。
+
+  6. 等待机器到货。
+
+  7. 决定我们要分配哪个 IP 地址。
+
+  8. 投票决定我们给这些机器起什么有创意的名字。
+
+  9. 确定在温暖而嘈杂的服务器机房中，我们要把机器安装在哪里。
+
+  10. 弄清楚我们如何连接这些机器。
+
+  11. 机器到货后，安装实际硬件并接通电源。
+
+  12. 与后勤部门争论纸板和剩余包装材料应该放在哪里。
+
+  13. 使用分配的网络参数（地址和名称）配置机器。
+
+  14. 排查路由和地址解析表的问题。
+
+  15. 向应用团队提供服务器的地址和凭据。
+
+
+
+
+
+
+  ![](img/52479dafaefba00517c48a137e037b7e_25_0.png)
+
+
+  图 1.4 – 查找您的迁移服务
+
+
+  正如我们所见，网络基础设施的演进在基础设施的管理和部署速度方面带来了令人惊叹的好处。然而，它也引入了一些复杂性和或许一些不受欢迎的变异性，但借助 Consul
+  服务发现，我们能够拥抱这些变化，而不必费心去弄清楚谁动了我的奶酪。那么现在我们知道了服务在哪里，下一步我们该做什么？
+
+
+  ## 这里有点网状
+
+
+  如果你在过去几年里读过任何技术文章，尤其是在微服务或 Kubernetes 的讨论中，你一定会频繁听到服务网格这个术语。就我个人而言，每当我想到网格时，很少会联想到机器之间干净的概念。通常，我会想到埋在波士顿下面的无数隧道，但那是另一个故事了。从网络角度来看，服务网格提供了一种安全连接各种服务的方式，而无需在应用程序本身中添加额外功能。但它听起来仍然有点网状，那我为什么要处理这个呢？
+
+
+  在上一节中，我们谈到了服务发现，以及确定不同应用程序和服务的位置及其健康状态是多么容易。凭借这些信息，恶意行为者可以针对服务发起各种攻击，甚至进行服务 *欺骗*。例如，如果我弄清楚某个特定应用程序正在连接到某个服务，某种数据存储或提供者，就有可能创建一个
+  rogue 服务，该应用程序会不知情地连接到它并可能泄露敏感信息。过去几年中，我们保护应用程序的能力确实有所提高，然而，在动态的云世界中，冒名顶替者、伪装者和窃听者的问题依然存在，甚至变得更糟。当这种情况发生时，通常都不是好事。
+
+
+  Consul 服务网格提供了一种网络模型，确保服务之间的所有通信不仅是加密的，而且还会验证发送方和接收方确实是他们声称的人。对这些通信系统的绝佳类比是邮政系统。
+
+
+  让我们逐步了解发送包裹的过程，一些我们想要安全并验证其到达最终目的地的重要物品：
+
+
+  - 1. 首先，我们会用某种盒子或信封包裹要发送的物品。在那个包裹上，我们会贴上标签。通常，该标签会包括包裹的收件人姓名和地址。请注意，这是固定地址。
+
+  - 2. 我们会把那个包裹交给一名邮递员……为了便于说明，我们就叫他 *Proxy*。Proxy 会确保我们就是我们所说的人，并且由于这个包裹很重要，我们会告诉
+  Proxy 我们需要确保它送到正确的人手中。
+
+  - 3. Proxy 可能会在包裹上再贴上另一个标签并开始在时空中移动包裹。由于 Proxy 位于您所在地区，他们不会随包裹一起走，但可以信任包裹在旅途中会得到保护。
+
+
+  包裹在旅途中可能会遇到各种有趣的事情，但最终，它会到达您预期的姓名和地址。Proxy 的远亲 *Envoy* 将验证包裹是否到达了基于所附标签的正确位置。如果我们想做得更精致，甚至可以收到确认（例如
+  ACK）表明它已送达。
+
+
+  这个简单的类比描述了服务网格内的通信。有需要传达的消息，但应用程序本身既没有资源也没有智能来安全地将其送达预期目的地。尤其是当预期目的地可能发生变化时，与我们的家庭地址不同，我们已经确定可能没有目的地址的详细信息。因此，应用程序会将该消息交给同一台机器上的本地代理，以消除外部窥探的可能性。该代理已配置证书，原因有两个。首先，验证其自身的真实性。其次，加密消息，以便只有
+  *内部圈子* 中的人才能获取它。当消息到达另一端时，接收代理可以验证发送方的证书并解密消息。从那里，代理会将消息交给接收应用程序，同样在同一台机器上，以消除任何外部窥探。
+
+
+  ![](img/52479dafaefba00517c48a137e037b7e_27_0.png)
+
+
+  正如我们所见，将服务网格添加到 Consul 架构中使我们不仅能够发现服务，还可以安全地、经过验证地连接到这些服务。然而，我们可能在网络中使用相同的证书来验证和加密消息。这种做法并不罕见，因此也为网格内的
+  rogue 应用程序与任何它想要的东西交谈提供了可能性。好吧，我们不能允许这种情况发生，因此通过 Consul，我们可以创建所谓的 *intention*。当你在
+  Consul 中创建意图时，你就是在告诉关联的 Consul 客户端它可以从谁接收消息，更重要的是不能从谁接收消息。这为服务网格提供了又一层安全性。
+
+
+  好吧，那个服务网格的东西有点令人困惑，但我明白了。现在我不用处理 IP 地址了，我可以设置应用程序和服务之间的连接，这些连接不仅能保护消息，还能验证发送者。我甚至可以通过创建谁可以与谁通信的规则来控制我自己的网络中的通信。但仍然有所有这些其他网络东西拖慢我的速度。即使在云中，我也会遇到防火墙、负载均衡器和其他通信设备的延迟。为什么我们不能自动化这些部分呢？好吧，当然可以！
+
+
+  ## 自动化我！
+
+
+  因此，我们已经确定，能够在没有繁琐静态寻址的情况下发现网络上可用的服务是多么好，以及如何利用它来确保服务之间消息的安全传递。难道不能把这些动态信息与网络中的其他组件共享就更好吗？那么我们为什么要这样做呢？为了理解这种功能如何改善这么多人的生活，让我们跳进时光机，再次回忆我们过去的做法，以及在进行网络调整时我们经常仍然在做的事情：
+
+
+  - 1. 耶！我们的应用程序已部署到网络中，我可以与之通信。然而，我无法访问我的应用程序需要访问的服务。最好打电话给网络团队。
+
+  - 2. 网络团队告诉我问题一定出在我这边，因为目标服务是 *alive* 并且正在响应他们的监控工具。
+
+  - 3. 在经过几天故障排除后，我们了解到路径中有一个防火墙，正在保护该服务免受邪恶生物的侵害。
+
+  - 4. 因此，接下来，我们向防火墙团队提交工单，要求配置一条规则以允许来自……你猜对了，我的 IP 地址的流量。
+
+  - 5. 当然，防火墙团队不仅被请求淹没，而且他们知道防火墙规则列表上一个错误的举动，工单数量将是他们最少的问题，所以必须格外小心。
+
+  - 6. 最终，团队能够安全地添加并测试新规则，我们就可以开始运行了。
+
+
+  现在在所有这些之后，让我们希望我们没有在工单中忘记包含任何重要信息（例如额外的端口）。更不用说当地址发生变化时（不是如果），我们需要再次进入这个流程。即使在云自动化下，这个流程今天仍然继续，原因有很多。在我个人的经验中，这些变化往往会在任何项目中造成最多的混乱和延迟，而在动态世界中，变化并没有放缓。
+
+
+
+
+
+
+  希望你能看到，Consul 所感知到的信息在此场景中扮演着如此关键的角色。当服务被添加、更新和移除时，Consul 服务器集群都能感知到这些变化，这要归功于分布式代理。现在的主要挑战是如何将
+  Consul 中的信息传递给网络设备，解决这个问题有几种方法。
+
+
+  对于网络设备而言，了解服务变化的最直接方法之一，就是让设备通过 Consul 的 API 直接从 Consul 获知这些变化。这一功能已经体现在 Consul
+  与 F5 Big-IP 负载均衡器的集成中，使用了 F5 Application Services 接口。每当 Consul 发现网络更新时，负载均衡器都能获知这些更新，并自动调整负载均衡池。尽管这种集成确实需要网络组件为
+  Consul API 专门开发功能，但负载均衡器本身并不需要部署 Consul 代理。
+
+
+  ![](img/52479dafaefba00517c48a137e037b7e_29_0.png)
+
+
+  图 1.6 – 负载均衡器向 Consul 查询服务更新
+
+
+  这种集成级别的另一种替代方案是让 Consul 将服务可用性的更新发布到消息服务，如 ActiveMQ 或 RabbitMQ。任何能够接收 HTTP 消息的消息服务或其他应用程序，都可以从
+  Consul 接收服务更新，而无需直接查询 Consul。
+
+
+  ![](img/52479dafaefba00517c48a137e037b7e_30_0.png)
+
+
+  图 1.7 – Consul 动态更新消息总线
+
+
+  一种更常见的集成方法是利用 Consul 的模板功能。顾名思义，你可以创建一个配置文件模板，以匹配你需要管理的任何设备。在该模板中，你可以指定需要从 Consul
+  获取输入的位置，例如某个端点的 IP 地址。如果你还记得，Consul 会根据它接收到的数据做出智能决策。Consul 服务器从客户端接收到的所有数据，都是构建智能动态网络这个拼图中的一块。一个非常简化的类比就是设置收款人来支付账单。我想我们很多人都做过这种事，肯定比开支票更常见。在我们的银行网站上，我们设置一个收款人——我们每月向其付款的公司或个人。例如，看看我们每月的电费账单，我们支付的金额会随着我的孩子们当月用电量而变化。他们怎么就学不会关灯呢？所以，我们设置好了收款人，我们知道我们要付钱给电力公司。这就是我们的模板。我们所需要的就是应付金额这个数据点。一旦电力公司（客户端）告诉我们（服务器）应付金额，我们就可以填入金额并完成电子支付。希望这会发生在停电之前！
+
+
+  ![](img/52479dafaefba00517c48a137e037b7e_31_0.png)
+
+
+  图 1.8 – 出色的模板功能
+
+
+  不过，模板功能不仅适用于配置文件。除了 Consul 之外，HashiCorp 还有其他几个产品，其中之一就是 Terraform。如果你不熟悉 Terraform，它提供了一种标准化的方法，可以为多个云提供商将系统基础设施定义为代码，同时它也有适用于多个应用程序的
+  provider，包括防火墙、负载均衡器、监控系统等。现在，想象一下将 Consul 服务发现的动态特性与 Terraform 的基础设施即代码平台结合起来！
+
+
+  > **重要提示**
+
+  > Consul 与 Terraform 的同步功能（称为 Consul-Terraform-Sync）在撰写本文时仍处于公开测试阶段，并且仅支持有限的一组合作伙伴模块用于自动化。以
+  HashiCorp 的开发速度，当你读到本文时，该功能很可能已得到全面支持。
+
+  '
+- "## 架构——它是如何工作的？\n\n现在，我们已经从管理层面了解了 Consul 是什么，以及它能为我们做什么，接下来我们将更深入地探讨 Consul 系统的架构，了解它是如何工作的。在本章中，我们将自行搭建一个\
+  \ Consul 集群，以便更好地理解集群中分发哪些信息、谁负责这些信息，以及它们是如何共享的。本章涵盖的主题包括：\n\n- **Consul 集群运行**\
+  \ —— 我们已经从理论上了解了 Consul 服务器如何作为集群的大脑运作，以及客户端如何监控服务。现在我们将把这一理论付诸实践。\n- **建立共识** ——\
+  \ 我们将研究 Consul 服务器如何建立共识以选举领导者并维护服务目录。\n- **集群通信协议** —— 集群服务器和客户端之间会发生大量活动。我们将更深入地探讨所有这些信息是如何共享和更新的。\n\
+  - **地理分布** —— Consul 内部管理着许多决策，而服务位置不仅仅意味着其背后的**互联网协议（IP）**地址。我们将了解 Consul 还能报告哪些其他服务标准。\n\
+  \n作为我们学习之旅的一部分，我们将使用 Terraform 在 **Amazon Web Services（AWS）** 中创建自己的 Consul 集群。如果你以前从未使用过\
+  \ Terraform，也不用担心。我们只需要执行几条基本指令，而且我已经为你写好了所有代码！如果你以前用过 Terraform，请别笑话我的代码；我从来没说过自己是软件开发人员。\n\
+  \n## 技术要求\n\n由于你将在此部分中构建自己的集群，因此有一些要求需要满足。不过，我们将在 AWS 中构建所有内容，所以你真正需要的只是能够在命令行环境中运行\
+  \ Terraform。我将使用 macOS，但 Terraform 可以在大多数桌面操作系统中运行。在接下来的几个小节中，我们将在 AWS 中设置所需内容，并下载必要的\
+  \ HashiCorp 工具。为了能够跟着我们一起操作，如果你还没有 AWS 账户，就需要创建一个。我们将全程使用 AWS 来创建和管理基础设施。我们已经尽力确保搭建这套基础设施的成本尽可能低，但仍有一些事项需要注意，例如：\n\
+  \n- 每天工作结束后，务必执行一次 `terraform destroy` 操作。这确实意味着你第二天继续工作时必须重新构建，但这是关于不可变基础设施的绝佳一课！\n\
+  - 请务必小心保管你的 AWS 凭证。切勿分享你的**访问密钥 ID**，绝对不要分享你的**秘密访问密钥**。我们会将它们设置为环境变量，这样它们就不会出现在代码中，也绝对不应该出现在你的**版本控制系统（VCS）**中！\n\
+  \n## 获取 AWS 凭证\n\n要获取 AWS 凭证，请登录 AWS `https://console.aws.amazon.com/iam/home?#`，然后进入**身份和访问管理（IAM）**。\n\
+  \n在页面左侧，你应该会看到一个 **Users（用户）** 区域，你可以在其中使用现有用户或添加新用户。我建议专门为此项目创建一个新用户。以下截图展示了该页面的概览：\n\
+  \n![](img/52479dafaefba00517c48a137e037b7e_35_0.png)\n\n图 2.1 – AWS 用户管理\n\n创建一个你满意的用户名，并在访问类型中选择**编程访问**，如*图\
+  \ 2.2* 所示。点击**下一步**按钮，继续该流程：\n\n添加用户\n\n设置用户详细信息\n\n你可以一次性添加多个具有相同访问类型和权限的用户。了解更多\n\
+  \n用户名*  h.abiff\n\n+ 添加另一个用户\n\n选择 AWS 访问类型\n\n选择这些用户将如何访问 AWS。访问密钥和自动生成的密码将在最后一步提供。了解更多\n\
+  \n访问类型* ☑ 编程访问\n为 AWS API、CLI、SDK 和其他开发工具启用访问密钥 ID 和秘密访问密钥。\n\n☐ AWS 管理控制台访问\n启用允许用户登录\
+  \ AWS 管理控制台的密码。\n\n![](img/52479dafaefba00517c48a137e037b7e_35_1.png)\n\n图 2.2 –\
+  \ 创建用户（第 1 步）\n\n\n\n\n\n下一步，我们将为新创建的用户分配适当的权限。我们假设系统中没有任何组或现有用户，因此我们将附加一个现有策略作为权限集。我们在系统中所做的一切都将利用\
+  \ **弹性计算云（EC2）** 基础设施，因此请搜索 `AmazonEC2FullAccess` 并为用户选择该选项，如下面的屏幕截图所示：\n\n![](img/52479dafaefba00517c48a137e037b7e_36_0.png)\n\
+  \n图 2.3 – 为用户设置权限\n\n既然我们已经分配了权限，接下来要做的是为账户添加一个标签，以便于识别。为我们的基础设施或账户添加标签通常是可选的。然而，为了便于识别，这始终是一个好习惯，所以添加一个标签（让它有趣一点！），如下面的屏幕截图所示，然后再次点击\
+  \ **下一步** 按钮：\n\n![](img/52479dafaefba00517c48a137e037b7e_36_1.png)\n\n图 2.4 – 为用户添加标签\n\
+  \n请继续跟着我们……我们快完成了！你接下来看到的屏幕将是对新账户信息的审核。如果你像乖孩子一样一路跟着做，你会看到与此非常相似的内容：\n\n## 添加用户\n\
+  \n## 审核\n\n审核你的选择。创建用户后，你可以查看并下载自动生成的密码和访问密钥。\n\n### 用户详细信息\n\n| 用户名 | h.abiff |\n\
+  | AWS 访问类型 | 编程访问 - 带访问密钥 |\n| 权限边界 | 未设置权限边界 |\n\n### 权限摘要\n\n以下策略将附加到上面显示的用户。\n\
+  \n| 类型 | 名称 |\n| 托管策略 | AmazonEC2FullAccess |\n\n### 标签\n\n新用户将收到以下标签\n\n| 键 | 值\
+  \ |\n| 用途 | Up and Running |\n\n图 2.5 – 用户创建审核\n\n到目前为止，我希望你已经点击了最后一个 **下一步** 按钮（好吧，至少是暂时的），并且可以为一个全新用户的创建而欢欣鼓舞！我不知道你怎么样，但当我看到一个大大的\
+  \ **成功** 标志和绿色复选框时，我总是感觉更好。不过，这里更重要的是已创建并分配给你的新用户的访问凭证，如下面的屏幕截图所示：\n\n![](img/52479dafaefba00517c48a137e037b7e_38_0.png)\n\
+  \n图 2.6 – 用户访问凭证\n\n好的——现在你已经创建了新用户，你拥有了一组非常具体且非常重要的凭证，任何凡人要记住这些凭证即使不是不可能，也是非常困难的。为了方便保存这些信息，我建议你下载\
+  \ **逗号分隔值（CSV）** 文件并将其保存在一个 *非常* 安全的位置。这不是你想与你最喜欢的表情包伙伴分享的东西，尤其是如果他们像我朋友那样的话！\n\n\
+  在该 CSV 文件中，你会找到你的 **用户名**、**访问密钥 ID** 和 **秘密访问密钥**。是的——里面还有其他一些内容，但那些不那么有用。我在这里提供了一个\
+  \ CSV 文件的示例视图：\n\n| 用户名 | 密码 | 访问密钥 ID | 秘密访问密钥 | 控制台登录链接 |\n| h.abiff |  | AKIA26CFBA32D6JFVJJB\
+  \ | NYaSFhAzZqQq4bqSGIda/Y22Guc3pB2WCA8R9jVj | https://751764047604.signin.aws.amazon.com/console\
+  \ |\n\n图 2.7 – 访问凭证 CSV 文件内容\n\n是的——我明白我刚刚通过分享我的凭证把自己暴露给了阅读这本书的任何人，而我说过你绝不应该这样做。不过，我刚刚吊销了那些凭证，所以连编辑都没有机会！\n\
+  \n现在，我们可以选择如何处理这些数据，即使我们不把它发布到 InstaFace 上。为了在 Terraform 中使用这些凭证，我们需要用它们的内容创建环境变量。我们现在将看到一些示例，以图\
+  \ 2.7 中显示的凭证为例。\n\n> **注意**\n> 这些凭证也可以保存在 Terraform 直接使用的文件中；然而，这有时会导致凭证被共享或无意中分发。然后，在你意识到之前，你就收到了一张巨额云计算账单，却没有任何比特币可以展示！\n\
+  \n一种选择是手动将凭证值复制并粘贴到 export 语句中，如下所示：\n\n```\n$ export AWS_ACCESS_KEY_ID=AKIA26CFBA32D6JFVJJB\n\
+  ```\n\n```\n$ export AWS_SECRET_ACCESS_KEY=NYaSFhAzZqQq4bqSGJda/Y22Guc...\n```\n\
+  \n或者，我们可以使用一些 Bash 工具创建环境变量（假设你与下载的文件在同一目录中），如下所示：\n\n```\n$ export AWS_ACCESS_KEY_ID=$(tail\
+  \ -n 1 new_user_credentials.csv | awk -F ',' '{print $3}')\n```\n\n```\n$ export\
+  \ AWS_SECRET_ACCESS_KEY=$(tail -n 1 new_user_credentials.csv | awk -F ',' '{print\
+  \ $4}')\n```\n\n如果你能够验证环境中的值与凭证文件中的值相同，你就知道做对了。你可以使用以下命令进行验证：\n\n```\n$ env | grep\
+  \ AWS\n```\n\n```\nAWS_ACCESS_KEY_ID=AKIA26CFBA32D6JFVJJB\n```\n\n```\nAWS_SECRET_ACCESS_KEY=NYaSFhAzZqOq4bqSGJda/Y22Guc3p...\n\
+  ```\n\n另外，如果你使用的是 Terraform Cloud，你可以将它们作为工作区的环境变量输入，如下面的屏幕截图所示。但是，请记住，我们将主要使用 **命令行界面（CLI）**\
+  \ 进行工作，所以除非你熟悉 Terraform 远程后端，否则建议直接使用 Terraform CLI：\n\n![](img/52479dafaefba00517c48a137e037b7e_40_0.png)\n\
+  \n图 2.8 – Terraform Cloud 环境变量\n\n是的！所有这些工作只是为了确保你有足够的凭证，并且它们位于正确的位置。\n\n## 安装 Terraform\
+  \ 和 Packer\n\n我们快到了……你能感觉到吗？请务必在这里仔细跟着做。我们将使用 Packer 为我们的项目创建基础镜像，并使用 Terraform\
+  \ 创建基础设施。\n\n要安装 Terraform，首先从 Terraform 下载页面 `https://www.terraform.io/downloads.html`\
+  \ 下载适合你操作系统的 ZIP 文件。\n\n要安装 Packer，首先从 Packer 下载页面 `https://www.packer.io/downloads`\
+  \ 下载适合你操作系统的 ZIP 文件。\n\n作为参考，本书中的材料是使用 Terraform 0.14.8 版本和 Packer 1.7 版本创建的。\n\n\
+  记住文件保存的位置，下载完成后，解压缩这些文件。你将得到一个 `terraform` 可执行文件和一个 `packer` 可执行文件，你需要将它们保存到一个合适的“家”中，并确保这个“家”在你的命令行路径中。\n\
+  \n就是这样！现在，你可能会问：Rob，*如果下载和使用 Terraform 这么简单，为什么不是每个人都在用呢？* 这是一个非常好的问题，我亲爱的读者……*一个非常好的问题。*\n\
+  \n## 什么是集群！\n\n如果你刚刚设置了 AWS 账户并安装了 Terraform，我可以想象你正迫不及待地想要启动一个集群。别担心——正如 Robert\
+  \ Plant 常说的，*你的时机终将到来。* 首先，我们将更深入地研究 Consul 集群操作本身所采用的机制。我之前可能提到过，Consul 的核心应用之一是促进并实现网络中所有服务之间更简单、更安全的通信机制。如果\
+  \ Consul 无法掌控其内部通信，它永远无法实现外部通信。因此，让我们来看看整个 Consul 集群（包括服务器和客户端）中的通信机制和流程。\n\n从服务器开始，它们需要共享和通信的基本信息是什么？以下是必需的内容：\n\
+  \n- 1. 领导者选举——毕竟，没有领导者，就会陷入无政府状态，服务将在街头燃烧。\n- 2. 客户端注册——服务器显然需要知道客户端何时加入集群。\n- 3.\
+  \ 服务状态和位置——服务器需要知道集群中部署的每个服务的状态及其位置。\n\n为了选举领导者，服务器节点必须达成共识。它们使用一种称为——嗯——**共识**的协议来做到这一点。我们将在接下来的章节中更详细地研究这个协议，但本质上发生的情况是，当服务器节点启动时，会进行一次选举。如果服务器没有收到有人站出来成为领导者的通知，它就会选举自己。如果其他人先选举了自己，那么该服务器就会投票给最初的领导者。最终，所有服务器将达成\
+  \ *共识*，并产生一个无可争议的领导者。同样，我们将在后面的章节中更详细地了解这是如何工作的，并讨论潜在的问题。\n\n\n\n\n已部署服务的状态及其位置不仅是服务器需要的信息，也是分布在整个网络中的客户端需要的信息。现在，这种级别的通信并不是什么新鲜事，对吧？在几乎任何分布式系统中，服务器需要了解客户端的状况，以及客户端在几乎任何分布式系统中的作用。然而，随着这些系统的扩展，最终会有成百上千甚至上万个客户端同时尝试与服务器通信。最终，服务器领导者将敲响法槌，要求法庭保持秩序！不过，在\
+  \ Consul 中，服务器和客户端都使用一种名为——嗯——**gossip** 的协议相互传播信息。这些协议名称背后的想象力真是令人惊叹。利用 gossip\
+  \ 协议，客户端与相邻客户端共享关于自身服务和状态的信息，而服务器则在一旁监听。你可以在*图 2.9*中看到此过程的概览：\n\n![](img/52479dafaefba00517c48a137e037b7e_42_0.png)\n\
+  \n那么，既然我们让所有人都开始交谈，他们到底在谈些什么？我也想知道！别把我排除在外！为了勉强保持某种重点，我们将先讨论服务器的角色，然后再讨论客户端。\n\n\
+  好了——既然我们基本了解了大型集群内部发生的情况，让我们更深入地研究一下促成这一切的协议！\n\n## Raft 共识\n\n我们已经看到 Consul 服务器如何利用**共识**协议选举领导者，但这到底意味着什么？这就是它们的全部工作吗？嗯，当然不止；否则这一节就会非常简短。Consul\
+  \ 使用的共识协议基于 Raft 算法（https://raft.github.io/raft.pdf），而 Raft 又基于 Paxos（https://en.wikipedia.org/wiki/Paxos_%28computer_science%29）。如果你觉得我们正在迅速陷入兔子洞，别担心——我们不会一直挖到水为止。\n\
+  \n## 深入探讨领导者选举\n\n你很快就会看到，一个 Consul 服务器会与若干其他服务器一起配置，并与它们组成 Raft。这在配置中被称为 `bootstrap_expect`\
+  \ 值。记住这个服务器数量很重要，因为它稍后还会出现。当然，如果一个 Consul 服务器期望与若干服务器组成 Raft，它需要知道它们，因此这些信息也会被配置。为了成为领导者，服务器需要获得\
+  \ Raft 中大多数服务器的选举——例如，如果你期望 Raft 中有五台服务器，你至少需要三台投票给你。这被称为法定人数，对于服务器集群的可用性来说是一个关键概念。就像我们参加的许多会议一样，如果没有法定人数的成员，你就无法真正做出任何决定。在某些会议上，即使有法定人数，如果没有领导，你也无法做出任何决定！如果你不确定需要多少台服务器才能达到法定人数，请参考以下公式：\n\
+  \n(服务器数量)/2 + 1 = 法定人数\n\n如果服务器数量等于法定人数规模，那么集群就没有保护机制。当然，你不可能有半台服务器，所以如果结果有小数，直接向下取整。图\
+  \ 2.11 中的表格也许也有帮助：\n\n| 服务器数量 | 法定人数 | 故障容忍度 |\n|---|---|---|\n| 1 | 1 | 0 |\n|\
+  \ 2 | 2 | 0 |\n| 3 | 2 | 1 |\n| 4 | 3 | 1 |\n| 5 | 3 | 2 |\n| 6 | 3 | 2 |\n| 7 |\
+  \ 4 | 3 |\n\n图 2.11 – 法定人数不容有失\n\n那么，让我们来看看选举是如何进行的。如果你想看这个过程非常酷的动画演示，下面这个网站很棒：http://thesecretlivesofdata.com/raft/。\n\
+  \n我们以三台服务器为例来走一遍选举：**Bart**、**Lisa** 和 **Maggie**。**Bart** 是第一台“觉醒”的服务器，因此他提名自己为*候选人*，并向\
+  \ **Lisa** 和 **Maggie** 发送请求，希望能成为*领导者*。然而，在 **Lisa** 听到 **Bart** 的请求之前，她已经向 **Bart**\
+  \ 和 **Maggie** 发送了自己的候选人提名及领导者请求，因为我们都知道 **Lisa** 更聪明。\n\n你可以在图 2.12 中看到该过程的概览：\n\
+  \n![](img/52479dafaefba00517c48a137e037b7e_45_0.png)\n\n图 2.12 – Lisa 的选举提名\n\n\
+  太棒了——我们的集群现在有了领导者！然而，服务器领导者的选举只是 Consul 实际使用共识协议的目的之一——毕竟，如果一个领导者不分享它学到的信息，那它还算什么领导者呢？\n\
+  \n> **注意**\n> \n> 虽然这个过程只有三台服务器时可以非常迅速，但它只能容忍一台 Consul 服务器的故障。你可能会想：*哇，那我就塞进 12\
+  \ 台服务器，总该没问题了吧！* 但凡事有取舍——随着 Raft 中服务器数量的增加，达到法定人数所需的时间也会增加。这不仅影响领导者选举，还影响数据一致性。通常，建议将服务器对等集保持在五到七台之间。\n\
+  \n## 服务器对等集中的数据共享\n\n现在 **Lisa** 已成为无可争议的领导者，她负责维护与 **Bart** 和 **Maggie** 共享的信息。这些信息通过\
+  \ **Lisa** 写入的日志条目进行记录和共享。这些日志条目包含了服务目录和领导者选举过程的状态，以及服务器对等集运作所需的一切。是时候开始剥洋葱了，但我希望它不会让你流泪。\n\
+  \n在对等集内，任何服务器都可以接收来自客户端的信息，并将这些信息共享给领导者。这些信息可能包含直接节点上服务状态的变更，甚至对集群内其他节点的更新。只有领导者才能更新日志条目；然而，仅仅因为领导者\
+  \ **Lisa** 知道了服务目录或其他组件的某些调整，并不意味着 **Maggie** 或 **Bart** 也拥有相同的信息。这时我们的法定人数概念再次派上用场。正如*群体思维*一样，对等集中最少数量的服务器需要就当前时间点的现实情况达成一致。因此，当\
+  \ **Lisa** 对日志文件写入更新时，她会将更新同时发送给 **Bart** 和 **Maggie**。直到 **Bart** 或 **Maggie**\
+  \ 确认他们已应用相应的日志条目且日志已被正确*复制*，该条目才被视为已*提交*。然而，一旦 **Lisa** 获得确认，并且服务器对等集中至少有一个其他成员（记住——共有三个成员，所以我们需要两个才能达到法定人数），我们就可以认为该日志条目已提交，并且我们对现实有了新的视角。\n\
+  \n所有这些交换都利用了远程过程调用（RPC）和共识机制，如图 2.15 所示。\n\n![](img/52479dafaefba00517c48a137e037b7e_48_0.png)\n\
+  \n图 2.15 – 对等集中的共识与 RPC 连接\n\n我知道你可能会想：好吧，Rob，但是如果日志变得太大怎么办？这是一个合理的担忧，可以通过服务器对等集中的公共有限状态机（FSM）来管理。当日志在服务器之间复制和提交时，FSM\
+  \ 会更新为当前状态。当对 Consul 服务器对等集发起查询时，领导者会根据 FSM 的状态响应查询。Consul 的结构使得任何一组日志的重放都会产生完全相同的状态。哇——如果人类也能如此可预测，那该多好啊！然而，正是这种状态的创建和维护，使\
+  \ Consul 能够定期对日志条目进行快照，以管理复制日志的大小。这种快照不会中断 Consul 服务，并确保对等集的长期稳定。\n\n## 传播流言的 Serf\n\
+  \n既然我们对服务器对等集的建立和运作有了更多了解，让我们更深入地看看大家都在传播什么。再次，如果我们开始解析 gossip 协议的来源，它使用 Serf（https://www.serf.io/）库，该库基于可扩展的弱一致感染式进程组成员协议，幸运的是它被缩写为\
+  \ SWIM（http://www.cs.cornell.edu/info/projects/pringlass/public_pdfs/swim.pdf）。我们从\
+  \ Raft 上跳下来，去游泳了！\n\n\n\n请看以下示意图：\n\n![](img/52479dafaefba00517c48a137e037b7e_49_0.png)\n\
+  \n图 2.16 – Gossip 连接\n\nConsul 集群中的所有成员，无论是服务器还是客户端，都处于同一个“池子”中。这样可以实现对池中所有成员的分布式发现、它们的状态，当然，还包括注册到\
+  \ Consul 客户端的任何服务的状态。虽然 gossip 是让所有代理了解集群成员和服务变更的方式，但所有信息仍然是通过直接 RPC 从代理发送到服务器节点的。请记住，peer\
+  \ 集合中的任何服务器都可以接收更新，并将其转发给领导者，以便进行法定人数提交和对状态机的更新。\n\n## 纬度的变化\n\n我们已经了解了 Consul 如何在集群内共享有关领导者选举、服务可用性变化和节点可用性变化的信息。除了这些项目之外，Consul\
+  \ 始终知道集群中每个节点相对于其他节点的地理位置。这有助于做出智能决策，例如定位离请求实体最近的可用的服务实例。发现机制利用了 Serf 库提供的网络断层扫描技术。没错——它们不仅互相\
+  \ gossip 彼此的状态，还知道彼此的位置！奇点即将来临！\n\n## 建立我们的第一个 Consul 集群\n\n关键时刻到了！在本章开头，有创建 AWS\
+  \ 账户凭据以及下载 Terraform 的说明。现在，你终于可以把这些工作派上用场了！\n\n> **注意**\n> \n> 本书涵盖了 Consul 在服务器和客户端操作方面的内容。HashiCorp\
+  \ 还提供了托管式 Consul 服务，即 **HashiCorp 云平台（HCP）**，在您自己的生产环境中部署时，这可能是理想的选择。然而，为了理解服务器操作，我们将自行操作。有关\
+  \ HashiCorp 托管 Consul 服务的更多信息，请访问 `https://portal.cloud.hashicorp.com/`。\n\n本节的所有代码都在以下\
+  \ GitHub 仓库中：\n\nhttps://github.com/PacktPublishing/Simplifying-Service-Management-with-Consul\n\
+  \n您可以 fork 该仓库，或者直接下载它并跟着操作。我们将使用该仓库中的代码为每一章构建我们的系统，相关代码位于相应的章节文件夹中。\n\n以下各节包括对我们用来创建\
+  \ Consul 集群的 Packer 和 Terraform 代码的回顾。没有必要理解代码的每个方面，但我还是想包含一些解释，以求完整。当您继续操作时，请仔细注意以\
+  \ `$` 符号表示的命令。\n\n## 构建镜像\n\n我们将从构建基础镜像开始。为了让我们所有人——毫不夸张地说——在使用镜像和操作 Consul 方面保持一致，我们将一起使用\
+  \ Packer 构建一个镜像。但别担心——你需要的所有代码都在仓库里。在 ch2 文件夹中，您会找到另一个名为 Image-Creation 的文件夹。我知道——这个名字很有创意。以下是进入该文件夹所需的代码：\n\
+  \n```\n```sh\n$ cd $github_root/Consul-Up-and-Running/ch2/Image-Creation\n```\n\
+  ```\n\n这里有几个关键项需要注意。您的构建变量都在 `variables.pkr.hcl` 中定义，如下面的代码片段所示：\n\n```\n```hcl\n\
+  variable \"owner\" {\n  type        = string\n```\n```\n\n```\ndescription = \"\
+  Owner tag to which the artifacts belong\"\ndefault     = \"packt-consul\"\n}\nvariable\
+  \ \"consul_version\" {\n    type = string\n    description = \"Three digit Consul\
+  \ version to work with\"\n    default = \"1.9.0\"\n}\nvariable \"aws_region\" {\n\
+  \    type        = string\n    description = \"AWS Region for image\"\n    default\
+  \     = \"us-east-2\"\n}\nvariable \"aws_instance_type\" {\n    type        = string\n\
+  \    description = \"Instance Type for Image\"\n    default     = \"t2.small\"\n\
+  }\n```\n\n对于这些变量中的大多数，默认值就可以了。但是，如果您想更改任何默认值，请在 variables.pkrvars.hcl 中进行修改。例如，请看下面的片段：\n\
+  \n```\nowner = \"rjackson\"\n```\n\n是的——自定义变量就是这么简单！定义我们要构建内容的 Packer 文件名为 AWS_linux_image.pkr.hcl。让我们快速看一下该文件，看看我们要构建什么。\n\
+  \n第 1 到 19 行定义了我们将用来构建 Consul 镜像的基础镜像。我们利用上述变量文件为名称和区域设置了变量。我们还在 AWS 中筛选合适的 Ubuntu\
+  \ 镜像，如下面的代码片段所示：\n\n# AWS_linux_image.pkr.hcl\n\n```\nsource \"amazon-ebs\" \"ubuntu-image\"\
+  \ {\n    ami_name = \"${var.owner}-consul-{{timestamp}}\"\n    region   = \"${var.aws_region}\"\
+  \n```\n\n```\ninstance_type = var.aws_instance_type\ntags = {\n    Name = \"${var.owner}-consul\"\
+  \n}\nsource_ami_filter {\n    filters = {\n        virtualization-type = \"hvm\"\
+  \n        name = \"ubuntu/images/*ubuntu-bionic-18.04-amd64-server-*\"\n       \
+  \ root-device-type = \"ebs\"\n    }\n    owners = [\"099720109477\"]\n    most_recent\
+  \ = true\n}\ncommunicator = \"ssh\"\nssh_username = \"ubuntu\"\n}\n```\n\n第 21-58\
+  \ 行实际构建镜像，包括我们需要的所有配置。本质上，我们是获取搜索到的初始镜像，并将我们需要的内容打包进去——因此得名 Packer。在此过程中，我们会移动几个文件供\
+  \ Consul 使用：一个定义如何在 Ubuntu 环境中管理 Consul 的服务文件，以及一个将应用于所有 Consul 节点的通用配置文件。我们还执行一些内联配置，指示\
+  \ Packer 通过 ssh 连接到节点，并在设置过程中执行一组命令。代码如下面的片段所示：\n\n```\nbuild {\n    sources = [\n\
+  \        \"source.amazon-ebs.ubuntu-image\"\n    ]\n    provisioner \"file\" {\n\
+  \        source      = \"../files/consul.service\"\n        destination = \"/tmp/consul.service\"\
+  \n    }\n    provisioner \"file\" {\n        source      = \"../files/consul-common.hcl\"\
+  \n        destination = \"/tmp/consul-common.hcl\"\n    }\n```\n\n```\n```hcl\n\
+  }\nprovisioner \"shell\" {\n  inline = [\n    \"sleep 30\",\n    \"sudo apt-get\
+  \ update\",\n    \"sudo apt install unzip -y\",\n    \"sudo apt install default-jre\
+  \ -y\",\n    \"curl -k -O \\\"https://releases.hashicorp.com/consul/${var.consul_version}/consul_${var.consul_version}_linux_amd64.zip\\\
+  \"\",\n    \"unzip consul_${var.consul_version}_linux_amd64.zip\",\n    \"sudo mv\
+  \ consul /usr/local/bin\"\n  ]\n}\nprovisioner \"shell\"{\n  inline = [\n    \"\
+  sudo /usr/local/bin/consul -autocomplete-install\",\n    \"sudo useradd --system\
+  \ --home /etc/consul/consul.d --shell /bin/false consul\",\n    \"sudo mkdir /etc/consul\
+  \ /etc/consul/consul.d /etc/consul/logs /var/lib/consul/ /var/run/consul/\",\n \
+  \   \"sudo chown -R consul:consul /etc/consul /var/lib/consul/ /var/run/consul/\"\
+  ,\n    \"sudo chmod -R a+r /etc/consul/logs/\",\n    \"sudo mv /tmp/consul.service\
+  \ /etc/systemd/system/consul.service\",\n    \"sudo mv /tmp/consul-common.hcl /etc/consul/consul.d/consul-common.hcl\"\
+  \n  ]\n}\n}\n```\n\n其中一个配置文件包含我们希望在所有 Consul 节点上使用的通用设置。就我们而言，我们只将其设置为日志设置。我们将这些设置为\
+  \ DEBUG，以便我们能深入了解 Consul 正在做什么！请看下面的代码片段：\n\n# consul-common.hcl\n\n```\nlog_file\
+  \ = \"/etc/consul/logs/\"\nlog_level = \"DEBUG\"\n```\n\n此时，您可能需要再次确认您的 AWS 环境变量已设置。您可以使用以下命令进行检查：\n\
+  \n```\n$ env |grep AWS\nAWS_ACCESS_KEY_ID=AFAIKJENNY\nAWS_SECRET_ACCESS_KEY=8675309...\n\
+  ```\n\n现在，我们准备构建！执行下面代码片段中显示的那个简单的 Packer 命令，然后花几分钟为自己打包了一个镜像而祝贺吧！选择您喜欢的饮料庆祝一下，放松一下，因为该过程大约需要\
+  \ 5 分钟：\n\n```\n$ packer build -var-file=\"variables.pkrvars.hcl\" .\n```\n\n查看输出，它看起来就像有人把圣诞灯扔满了您的终端。Packer\
+  \ 的输出全是红色的，并且有各种深浅不一的绿色，只是为了营造节日气氛。您会看到文件被移动，操作系统也在更新，以确保我们拥有所有最新的 Ubuntu 软件包。您还会看到一些关于使用\
+  \ shell 脚本进行配置的行。Packer 会根据我们在 Packer 构建定义中看到的那些 shell 配置块来创建 shell 脚本。\n\n在过程结束时，您会看到新镜像的位置和\
+  \ Amazon 系统映像（AMI）ID！如下面的片段所示。现在，您可以在自己的镜像之上构建您的 Consul 知识：\n\n```\n==> Wait completed\
+  \ after 5 minutes 52 seconds\n==> Builds finished. The artifacts of successful builds\
+  \ are:\n--> amazon-ebs.ubuntu-image: AMIs were created:\nus-east-2: ami-079a52bd81f91b201\n\
+  ```\n\n同样，无需记住该镜像 ID，因为在下一步中，Terraform 会为我们找到它！\n\n\n\n\n## 构建 Consul 集群\n\n首先，切换到\
+  \ ch2 的根目录。在这里，我们将找到用于构建集群的 Terraform 脚本。你可以通过运行以下命令来完成此操作：\n\n```\n$ cd $github_root/Consul-Up-and-Running/ch2/\n\
+  ```\n\n与构建 Packer 镜像时类似，此目录中有几个文件需要我们注意。暂时不用关心 files 目录，等我们评估用于构建集群的 Terraform 脚本时再深入探讨。\n\
+  \n如果你查看我们的 variables.tf 文件，这里定义了 Terraform 所需的变量。我总是分不清变量在哪里定义、在哪里赋值。总之，对于这五个变量，每个都有描述（这总是一个好习惯）和一个合理的默认值（好吧，从我的角度来看是合理的）。请看下面的代码片段：\n\
+  \n### variables.tf\n\n```\nvariable \"aws_region\" {\n  type        = string\n \
+  \ default     = \"us-east-1\"\n  description = \"Region for AWS Components\"\n}\n\
+  variable \"owner\" {\n  type        = string\n  default     = \"consul-demo\"\n\
+  }\nvariable \"consul_region\" {\n  type        = string\n  description = \"Region\
+  \ of consul server (not AWS Region)\"\n  default     = \"global\"\n}\nvariable \"\
+  vpc_cidr\" {\n  type        = string\n  description = \"CIDR of the VPC\"\n  default\
+  \     = \"192.168.100.0/24\"\n}\nvariable \"instance_type\" {\n```\n\n```\ntype\
+  \          = string\ndescription   = \"machine instance type\"\ndefault       =\
+  \ \"t3.micro\"\n}\n```\n\n如果你更愿意为必要的变量使用自己的值，别担心——我不会介意的。这些变量在 terraform.tfvars\
+  \ 文件中设置。请看下面的代码片段：\n\n### Terraform.tfvars\n\n```\nowner         = \"rjackson\"\n\
+  aws_region    = \"us-east-2\"\ninstance_type = \"t2.small\"\n```\n\n好了——现在我们已经按照自己的喜好设置好了变量，是时候启动我们的基础设施了！如果你以前从未使用过\
+  \ Terraform，别担心——它非常简单，而且所有代码都已构建完成。再说一次，我从不自称是软件开发人员，所以请不要嘲笑我的代码！首先，我们要启动基础设施的构建，然后剖析我们构建的内容。要开始，Terraform\
+  \ 需要下载任何必要的特定于提供程序的数据。这通过以下命令执行：\n\n```\n$ terraform init\n```\n\n当然，在不检查将要构建的内容的情况下就进行构建从来都不是好事，所以接下来，我们要规划我们的构建。此命令的所有输出都应该是绿色的加号（+），表示将要创建哪些基础设施。请注意，其中许多项目在\
+  \ apply 操作之后才能确定，因为它们需要从 AWS 分配，但浏览一下你将要构建的内容可能会很有趣。如果不感兴趣，别担心——我们会在启动构建后审查细节。\n\
+  \n现在，运行以下命令：\n\n```\n$ terraform plan\n```\n\n接下来，我们要应用我们的基础设施构建。这通过你猜对了的 terraform\
+  \ apply 来完成。这会再次触发一个 plan，并显示你将要构建的内容，但既然我们已经做过这件事了，那就来个危险的操作吧，直接自动批准。请看下面的代码片段：\n\
+  \n```\n$ terraform apply --auto-approve\n```\n\n> 注意\n> 对于你在本练习中产生的任何费用，作者概不负责。请务必在白天或夜晚结束时销毁你的基础设施。如果你想设置一个\
+  \ m3.xlarge 系统并让它连续运行几天，那随你便！\n\n好的——让我们来看看我们在构建什么。以下所有代码块（本节中的）都在 main.tf 文件中。Terraform\
+  \ 的最佳实践是将所有代码片段放在一个文件中，所以我们要做的就是这样！\n\n第一部分相当简单，只是设置了我们将要使用的 Terraform 提供程序。Terraform\
+  \ 提供程序有点像提供特定于该提供程序的功能的模块——例如，我们正在安装 AWS 提供程序，使我们能够管理 AWS 中的资源。我们指定了该提供程序的版本，以及我们将要工作的区域。provider\
+  \ 块也是调皮的人会插入其 AWS 凭据的地方，但我们永远不会那样做——对吧？？？最后，我们使用 AWS 数据源来查找我们刚刚使用 Packer 构建的镜像。以下是您需要的代码：\n\
+  \n```\nterraform {\n  required_providers {\n    aws = {\n      source  = \"hashicorp/aws\"\
+  \n      version = \"~> 2.5\"\n    }\n  }\n}\nprovider \"aws\" {\n  region = var.aws_region\n\
+  }\ndata \"aws_ami\" \"an_image\" {\n  most_recent = true\n  owners      = [\"self\"\
+  ]\n  filter {\n    name   = \"name\"\n    values = [\"${var.owner}-consul-*\"]\n\
+  \  }\n}\n```\n\n下一个部分创建了一个私钥，供我们用来 SSH 登录到我们的机器。一个组织通常会维护自己的私钥用于机器访问，但这些私钥确实不应该随意流传。更安全的方法是使用\
+  \ HashiCorp Vault Secure Shell (SSH) 助手来生成一次性 SSH 密钥，但那是另一个故事了。密钥将构建在我们的 Consul\
+  \ 机器内部，但我们也会有一个以 -consul-key.pem 结尾的本地 Privacy Enhanced Mail (PEM) 文件。您需要的代码如下面片段所示：\n\
+  \n```\nresource \"tls_private_key\" \"my_private_key\" {\n  algorithm = \"RSA\"\n\
+  \  rsa_bits = 4096\n}\nresource \"local_file\" \"private_key\" {\n  content = tls_private_key.my_private_key.private_key_pem\n\
+  \  filename = \"${var.owner}-consul-key.pem\"\n  file_permission = 0400\n}\nresource\
+  \ \"aws_key_pair\" \"consul_key\" {\n  key_name = \"${var.owner}-consul-key\"\n\
+  \  public_key = tls_private_key.my_private_key.public_key_openssh\n}\n```\n\n本部分提供了我们系统所需的大部分网络信息。由于我们不是在阅读关于\
+  \ AWS 网络复杂细节的书，你就得相信我，下面片段中的所有代码都很酷：\n\n```\nresource aws_vpc \"consul-demo\" {\n\
+  \  cidr_block           = var.vpc_cidr\n  enable_dns_hostnames = true\n  tags =\
+  \ {\n    Name = \"${var.owner}-vpc\"\n  }\n}\nresource aws_subnet \"consul-demo\"\
+  \ {\n  vpc_id     = aws_vpc.consul-demo.id\n  cidr_block = var.vpc_cidr\n  tags\
+  \ = {\n    name = \"${var.owner}-subnet\"\n```\n```\n}\n}\nresource aws_internet_gateway\
+  \ \"consul-demo\" {\n  vpc_id = aws_vpc.consul-demo.id\n\n  tags = {\n    Name =\
+  \ \"${var.owner}-internet-gateway\"\n  }\n}\nresource aws_route_table \"consul-demo\"\
+  \ {\n  vpc_id = aws_vpc.consul-demo.id\n  route {\n    cidr_block = \"0.0.0.0/0\"\
+  \n    gateway_id = aws_internet_gateway.consul-demo.id\n  }\n}\nresource aws_route_table_association\
+  \ \"consul-demo\" {\n  subnet_id     = aws_subnet.consul-demo.id\n  route_table_id\
+  \ = aws_route_table.consul-demo.id\n}\n```\n\n好的——这部分网络内容可不是能轻易略过的。AWS 安全组确定了哪些设备之间开放哪些端口。以下是已定义端口及其用途的列表：\n\
+  \n-   端口 22—SSH 访问。\n-   端口 8300-8302—这些涵盖了节点之间所有的共识、RPC 和 gossip 通信。\n-   端口 8500—用于\
+  \ Consul 的 Web 用户界面（UI）。\n-   端口 8600—Consul 利用端口 8600 进行域名系统（DNS）查询，作为服务发现功能的一部分。\n\
+  \n这些端口都已在安全组配置中设置并配置完毕。以下是说明这一点的代码：\n\n```\nresource aws_security_group \"consul-demo\"\
+  \ {\n  name   = \"${var.owner}-security-group\"\n  vpc_id = aws_vpc.consul-demo.id\n\
+  ```\n\n```\ningress {\n    from_port    = 22\n    to_port      = 22\n    protocol\
+  \     = \"tcp\"\n    cidr_blocks  = [\"0.0.0.0/0\"]\n}\ningress {\n    from_port\
+  \    = 8300\n    to_port      = 8302\n    protocol     = \"tcp\"\n    cidr_blocks\
+  \  = [\"0.0.0.0/0\"]\n}\ningress {\n    from_port    = 8500\n    to_port      =\
+  \ 8500\n    protocol     = \"tcp\"\n    cidr_blocks  = [\"0.0.0.0/0\"]\n}\ningress\
+  \ {\n    from_port    = 8600\n    to_port      = 8600\n    protocol     = \"tcp\"\
+  \n    cidr_blocks  = [\"0.0.0.0/0\"]\n}\negress {\n    from_port        = 0\n  \
+  \  to_port          = 0\n    protocol         = \"-1\"\n    cidr_blocks      = [\"\
+  0.0.0.0/0\"]\n    prefix_list_ids  = []\n}\ntags = {\n    Name = \"${var.owner}-security-group\"\
+  \n}\n}\n```\n\n\n好了，现在进入正题！在本节中，我们将创建三个 Consul 服务器，使用我们通过数据源找到的 AMI（即我们用 Packer\
+  \ 构建的 AMI）。我们使用 Terraform 脚本中创建的 SSH 密钥，并分配了一个公网 IP 地址，以便能够访问服务器。在脚本底部，我们为服务器关联了标签，以便轻松找到它们。帮你自己和你的\
+  \ IT 运维团队一个忙：永远不要在未关联逻辑标签的情况下部署基础设施！其中一个标签还能唯一标识实例，我们可以用它来唯一识别服务器。在标签正上方，有一个 `user_data`\
+  \ 字段。这非常重要，因为它调用模板文件 `server_template.tpl` 来配置 Consul 服务器。我们还将 `server_name_tag`\
+  \ 属性传递给模板文件，以帮助识别服务器。代码如下所示：\n\n```\nresource aws_instance \"consul-server\" {\n\
+  \  count                         = 3\n  ami                           = data.aws_ami.an_image.id\n\
+  \  instance_type                 = var.instance_type\n  key_name               \
+  \       = aws_key_pair.consul_key.key_name\n  associate_public_ip_address   = true\n\
+  \  subnet_id                     = aws_subnet.consul-demo.id\n  vpc_security_group_ids\
+  \        = [aws_security_group.consul-demo.id]\n  iam_instance_profile         \
+  \ = aws_iam_instance_profile.instance_profile.name\n  user_data = templatefile(\"\
+  files/server_template.tpl\", {\n    server_name_tag = \"${var.owner}-consul-server-instance\"\
+  })\n  tags = {\n    Name     = \"${var.owner}-consul-server-instance\"\n    Owner\
+  \    = var.owner\n    Instance = \"${var.owner}-consul-server-instance-${count.index}\"\
+  \n  }\n}\n```\n\n在下一个代码片段中，我们正在构建 Consul 客户端——准确地说，是四个，分别代表地、风、火、水四大核心元素。其中许多参数与服务器使用的参数相同，但请注意，这里没有\
+  \ `user_data` 部分。为了多样化，我们使用 Terraform provisioner 来配置客户端，尽管在生产环境中，像 Ansible 这样的配置管理器会更受欢迎：\n\
+  \n```\nresource aws_instance \"consul-client\" {\n  count = 4\n  ami = data.aws_ami.an_image.id\n\
+  \  instance_type = var.instance_type\n  key_name = aws_key_pair.consul_key.key_name\n\
+  \  associate_public_ip_address = true\n  subnet_id = aws_subnet.consul-demo.id\n\
+  \  vpc_security_group_ids = [aws_security_group.consul-demo.id]\n  iam_instance_profile\
+  \ = aws_iam_instance_profile.instance_profile.name\n  tags = {\n    Name = \"${var.owner}-consul-client-instance-${count.index}\"\
+  \n    Owner = var.owner\n  }\n}\n```\n\n需要注意的是，远程 provisioner 在 Terraform 领域中并不是首选；不过，我偶尔发现它在定制所需资源时非常有用。作为此配置过程的一部分，我们遍历四个客户端中的每一个并执行一些功能，如下所示：\n\
+  \n- 将名为 `httpd.json` 的服务定义文件传输到客户端。稍后当我们开始使用集群时，会进一步讨论这一点。\n- 创建一个 `consul-client.hcl`\
+  \ 配置文件。我想更深入地探讨一下这个文件：\n  - 我们宣告客户端的公网 IP 地址。这告诉 Consul 服务器以及任何请求访问此客户端上服务的设备，可以通过哪个地址访问它。我们选择客户端的公网地址，以便内部网络之外的应用程序可以访问它。\n\
+  - 我们告诉 agent 不要以服务器模式运行，因为——嗯——我们是客户端。\n- 我们启用脚本检查。这允许使用自定义脚本来检查服务健康状态，默认情况下是不启用的。\n\
+  - 我们告诉 Consul 将其服务绑定到机器的私有地址。请注意绑定地址和宣告地址之间的区别。私有地址是机器自身知道的，并标识外部接口。而我们宣告的公网地址甚至不是客户端机器本身所知道的，它由\
+  \ AWS 管理。\n- 我们告诉客户端服务器在哪里。请记住，客户端需要向服务器注册，以便传达自身及其所有受管服务的状态。\n- 我们指定与 Consul 服务器通信时使用的客户端地址。由于服务器和客户端位于同一个\
+  \ AWS 虚拟网络中，我们可以使用私有 IP 地址。\n- 将客户端配置和服务定义文件移动到配置目录（`/etc/consul/consul.d/`）。\n\
+  - 使用 Python 启动一个简单的超文本传输协议（HTTP）服务器。毕竟，创建一个 Consul 集群却不在上面运行任何服务，何必这么麻烦呢？！\n- 接下来，我们使用一个\
+  \ provisioner 在客户端机器上远程启动 Consul 服务。\n- 最后一块告诉 Terraform 它将如何连接到客户端机器。请注意，我们使用的是之前创建的\
+  \ SSH 密钥的内容。\n\n请注意，虽然客户端的配置全部都在这个 Terraform 文件中，但服务器的应用程序配置却不在这里。这是因为我们在 Terraform\
+  \ 中使用了 `user_data` 功能，而且我们很快就会看到模板文件。在 Terraform 中，当我们使用 provisioner 来执行脚本或移动文件时，我们会声明一个\
+  \ `null_resource` 属性，如下所示：\n\n```\nresource null_resource \"provisioning-clients\"\
+  \ {\n  for_each = { for client in aws_instance.consul-client : client.tags.Name\
+  \ => client }\n  provisioner \"file\" {\n    source      = \"files/httpd.json\"\n\
+  \    destination = \"/tmp/httpd.json\"\n  }\n}\n```\n\n```\n```hcl\nprovisioner\
+  \ \"remote-exec\" {\n  inline = [\n    \"sudo cat << EOF > /tmp/consul-client.hcl\"\
+  ,\n    \"advertise_addr = \\\"${each.value.public_ip}\\\"\",\n    \"server = false\"\
+  ,\n    \"enable_script_checks = true\",\n    \"bind_addr = \\\"${each.value.private_ip}\\\
+  \"\",\n    \"retry_join = [\\\"${aws_instance.consul-server[0].public_ip}\\\",\\\
+  \"${aws_instance.consul-server[1].public_ip}\\\",\\\"${aws_instance.consul-server[2].public_ip}\\\
+  \"]\",\n    \"client_addr = \\\"${each.value.private_ip}\\\"\",\n    \"EOF\",\n\
+  \    \"sudo mv /tmp/consul-client.hcl /etc/consul/consul.d/consul-client.hcl\",\n\
+  \    \"sudo mv /tmp/httpd.json /etc/consul/consul.d/httpd.json\",\n    \"nohup python3\
+  \ -m http.server 8080 &\",\n    \"sleep 60\"\n  ]\n}\nprovisioner \"remote-exec\"\
+  \ {\n  inline = [\n    \"sudo systemctl start consul\",\n  ]\n}\nconnection {\n\
+  \  type        = \"ssh\"\n  user        = \"ubuntu\"\n  private_key = local_file.private_key.content\n\
+  \  host        = each.value.public_ip\n}\n```\n```\n\n接下来，我们有实例身份信息和相关角色。这与 Consul\
+  \ 没有直接关联，但它是启用我们在 AWS 内所需通信路径所必需的。代码如下所示：\n\n```\n```hcl\nresource \"aws_iam_instance_profile\"\
+  \ \"instance_profile\" {\n  name_prefix = var.owner\n  role        = aws_iam_role.instance_role.name\n\
+  }\n\nresource \"aws_iam_role\" \"instance_role\" {\n  name_prefix        = var.owner\n\
+  \  assume_role_policy = data.aws_iam_policy_document.instance_role.json\n}\n\ndata\
+  \ \"aws_iam_policy_document\" \"instance_role\" {\n  statement {\n    effect  =\
+  \ \"Allow\"\n    actions = [\"sts:AssumeRole\"]\n\n    principals {\n      type\
+  \        = \"Service\"\n      identifiers = [\"ec2.amazonaws.com\"]\n    }\n  }\n\
+  }\n\nresource \"aws_iam_role_policy\" \"metadata_access\" {\n  name   = \"metadata_access\"\
+  \n  role   = aws_iam_role.instance_role.id\n  policy = data.aws_iam_policy_document.metadata_access.json\n\
+  }\n\ndata \"aws_iam_policy_document\" \"metadata_access\" {\n  statement {\n   \
+  \ effect = \"Allow\"\n    actions = [\n      \"ec2:DescribeInstances\",\n    ]\n\
+  \    resources = [\"*\"]\n  }\n}\n```\n```\n\n好了——现在我们已经看完了整个 Terraform 文件，让我们仔细看看那个服务器模板文件。通过该模板，我们创建了一个\
+  \ `consul-server.hcl` 服务器配置文件，并用所有必要的配置填充它，如下所示：\n\n```\n```bash\n#!/usr/bin/env\
+  \ bash\n\ncat << EOF > /etc/consul/consul.d/consul-server.hcl\nserver = true\nbootstrap_expect\
+  \ = 3\nretry_join = [\"provider=aws tag_key=Name tag_value=${server_name_tag}\"\
+  ]\nbind_addr = \"$(curl -s http://169.254.169.254/latest/meta-data/local-ipv4)\"\
+  \nadvertise_addr = \"$(curl -s http://169.254.169.254/latest/meta-data/public-ipv4)\"\
+  \nclient_addr = \"$(curl -s http://169.254.169.254/latest/meta-data/local-ipv4)\"\
+  \nui = true\nEOF\n\n# Starting consul services\nsudo systemctl start consul\n```\n\
+  ```\n\n顺着这个模板文件，让我们看看这个文件到底在做什么：\n\n- 1. 指示 Consul agent 以服务器模式运行。\n- 2. 接下来，我们指定希望在集群中看到的预期服务器数量。请记住，我们之前在讨论共识和法定人数时提到过这一点。我们创建了三个\
+  \ Consul 服务器，这意味着我们的法定人数是……（我给你一个提示——它大于一，小于三）。\n- 3. 好的——这部分相当酷。如果你还记得，在 Terraform\
+  \ 脚本中，我们有一个 `instance` 标签，用于标识各个服务器。这个 `retry_join` 配置标识了一个服务器列表，这些服务器组成了预期的三个服务器对等集。AWS\
+  \ 会用与该 `instance` 标签匹配的服务器来填充这个值。\n\n\n\n\n\n+   4. 与客户端配置类似，我们正在配置要绑定的地址（`bind_addr`）、要通告的地址（`advertise_addr`）以及我们希望被识别为的地址（`client_addr`）。我们使用的是在配置过程中设置的主机元数据来配置这些值——这是\
+  \ Terraform 和 AWS 的另一个不错的功能。\n+   5. 最后，我们启用了 Consul 的 Web UI。默认情况下 Web 界面不可用，但我们在全书中偶尔会使用它。\n\
+  \n至此，配置文件的内容就完成了。我们需要做的最后一件事是启动我们的 Consul 服务器！\n\nWahoo！恭喜你完成了所有这些疯狂的内容！我希望你阅读时的乐趣不亚于我写作时的乐趣。如果你感觉好一点，*Planet\
+  \ Caravan* 提供了一个很棒的小节拍来写作。\n\n好了——到现在为止，你的 Consul 集群应该已经启动并运行了。嘿——*up and running*：这会是一个很棒的书系名称！那么，现在我们已经把它启动起来，让我们开始四处看看。\n\
+  \n## 访问 Consul 系统\n\nTerraform 运行的输出将为你提供访问 Consul 集群所需的关键信息。这是在 Terraform 运行中作为\
+  \ *output* 产生的。另一个你会在目录中找到的输出是一个 SSH 密钥，可用于在需要时远程连接到机器，这里很快就会用到。请看下面的代码片段：\n\n```\n\
+  Apply complete! Resources: 25 added, 0 changed, 0 destroyed.\n\nOutputs:\n\nCONSUL_HTTP_ADDR\
+  \ = \"http://18.191.150.155:8500\"\nConsul_Server_IPs = [\n\"3.129.42.175\",\n\"\
+  18.191.150.155\",\n\"3.139.81.1\",\n]\n```\n\n使用前面的示例，我们将通过两种不同的方式访问 Consul 系统：通过\
+  \ CLI 和通过 Web 界面。\n\n## 使用 CLI\n\n让我们从 SSH 开始。Terraform 运行产生的工件之一是用于使用 Consul 机器进行身份验证的\
+  \ SSH PEM 密钥。该文件将命名为 `<owner>-consul-key.pem`。使用命令行 shell，从你运行 Terraform 的同一位置，你可以\
+  \ SSH 到任何 Consul 服务器——例如这个：\n\n```\n```bash\n$ ssh -i rjackson-consul-key.pem ubuntu@18.191.150.155\n\
+  ```\n```\n\n显然，你需要将密钥名称替换为你自己的密钥，并将 IP 地址替换为其中一台 Consul 服务器的 IP 地址。它可以是三个中的任何一个，所以不用担心选对\
+  \ *right* 一个。你会收到一个提示，里面有各种乱码（技术术语）关于 **Secure Hash Algorithm 256 (SHA256)** 指纹，并询问是否继续。是的——你确实想继续，然后你就会在你的第一台\
+  \ Consul 服务器上了！\n\n> **Note**\n> \n> 如果你不想 SSH 到服务器，你不需要！但是，为了通过 CLI 与 Consul 集群通信，你需要在本地安装\
+  \ Consul。别担心——它和下载 Packer 和 Terraform 一样简单；下载一个 ZIP 文件，解压，然后放到你的路径中。Consul 可以从 https://www.consul.io/downloads\
+  \ 下载。如果你决定使用远程 CLI，只需跟随操作即可，因为步骤是相同的。\n\n现在你已经在机器上了，请不要删除任何东西！不要笑——这种情况会发生。如果你记得我们在讨论模板文件时，有一个\
+  \ `bind_address` 属性指定了 Consul 将监听的地址。我们使用的是公共地址，所以我们希望将其设置为环境中的 Consul 地址。别担心——你有所有必要的信息来\
+  \ *export* 这些信息到你的环境中。我不知道为什么他们在把信息放进去时称之为 *export*，但就这样吧。\n\n在 Terraform 输出中，你会看到一个\
+  \ `CONSUL_HTTP_ADDR` 的值。这正是你要设置到环境中的变量以及该地址。再次以 Terraform 输出为例，你可以看到这里：\n\n```\n\
+  ```bash\n$ export CONSUL_HTTP_ADDR=http://18.191.150.155:8500\n```\n```\n\n好了——你已经准备就绪，让我们来看看那个集群！我们首先要做的是确保我们的所有机器、服务器和客户端都已启动并在\
+  \ Consul 系统中注册。如果你不记得数量，我们有三台服务器和四台客户端。你可以通过以下命令查看我们集群的所有 *members*：\n\n```\n```bash\n\
+  $ consul members\n```\n```\n\nFigure 2.19 – Consul web interface\n\n随意浏览这里。你已经可以看到可用服务的列表以及这些服务运行的位置。有趣的是，我们可以看到这里\
+  \ consul 在三个实例上运行，而 httpd 在四个实例上运行。点击 consul 行，你可以获取运行该服务的节点信息，如以下屏幕截图所示。这些是 Consul\
+  \ 服务器节点：\n\nFigure 2.20 – Consul service instances\n\n如果我们点击窗口顶部 **Nodes** 选项卡，这将给出与我们运行\
+  \ `consul members` 命令时类似的输出，如以下屏幕截图所示：\n\n![](img/52479dafaefba00517c48a137e037b7e_72_0.png)\n\
+  \nFigure 2.21 – Consul nodes listing\n\n就这样：你已经创建了一个完整的 Consul 集群，由三台服务器和四台客户端组成。恭喜！\n"
+- "## Keep It Safe, Stupid, and Secure Your Cluster!\n\n此时，你可能会对自己说，*哇，两章就完成了。* 好吧，很抱歉打破你的幻想，但你目前非常暴露。是的，我们构建了一个基本的\
+  \ Consul 集群，由三台服务器和四台客户端组成，但该系统没有任何安全措施。基本上，我们建造了一座没有门的玻璃房子，任何人都可以走进去，任何人都可以看到里面发生了什么。有点\
+  \ creepy，不是吗？\n\n为了了解我们将如何保护我们的系统，更重要的是保护我们的服务，让我们看看我们暴露的所有区域：\n\n- **System communication**\
+  \ – 我们已经看到所有 Consul 组件如何自由地相互通信。任何人都可以未经验证地加入该集群，任何人都可以窃听。\n- **Who can do what**\
+  \ – 即使你在集群中经过验证和身份验证，我们也需要确保可用操作的范围受到严格控制。毕竟，我们不希望任何人带着对配置的完全访问权限跳入集群。\n- Extending\
+  \ Consul – 在理解到多个组将访问 Consul 的前提下，我们希望为每个组提供他们管理自己的服务所需的访问权限，而不会干扰他人。\n\n除了这些区域之外，还有保护操作系统环境的基本程序。这包括对操作系统和文件结构的受保护访问。这些被认为是基本的管理程序，不在本書中涵盖。\n\
+  \n有了这些，让我们直接跳进去，开始看看如何开始保护我们的玻璃房子！\n\n## Technical requirements\n\n随着通过保护任何基础设施而引入的额外复杂性，我们将使用一个特定于本章的新存储库：\n\
+  \n```\nhttps://github.com/PacktPublishing/Simplifying-Service-Management-with-Consul/tree/main/ch3\n\
+  ```\n\n所有文件和代码都可用，我们将再次使用 Packer 和 Terraform 来创建我们的工作基础设施，这意味着我们也需要我们在第 2 章 Architecture\
+  \ – How Does It Work? 中建立的 AWS 凭证。\n\n本章中的练习是在 macOS Terminal 中使用原生 SSH 客户端执行的。熟悉基于命令行的文件编辑器对于在必要时查看和编辑文件也总是很有帮助的。\n\
+  \n最后，让我们重申第 2 章 Architecture – How Does It Work? 中所述的内容：\n\n- 当你一天的工作完成后，务必执行 terraform\
+  \ destroy。它意味着你继续第二天的工作时必须重建，但这对不可变基础设施来说是一个很好的教训！\n- 对你的 AWS 凭证要非常小心。永远不要分享你的访问密钥\
+  \ ID，更绝对不要分享你的秘密访问密钥。我们将把它们设置为环境变量，这样它们永远不会出现在代码中，也绝对不会出现在你的版本控制系统中！\n\n\n\n\n\n\
+  ## 保护通信路径\n\n不知道你怎么样，但每当我开始阅读有关 AES、TLS、GCM 等文档时，我的眼睛就开始发花。大量的缩写词让我们像追松鼠一样到处乱跑，但这并不能帮助我们保护\
+  \ Consul 集群的安全。所以，我的目标是用最少的缩写词来解释我们需要做些什么来保护我们的系统通信。这让我想起高中时我不得不写一篇论文，而且不能用任何形式的动词“to\
+  \ be”。谢谢您，法利先生。重要的是要记住，目前我们只关注保护我们的客户端和服务器。保护我们服务的流量并对其进行加密稍后再说，所以请耐心等待。\n\n在本书的第二章中，我们了解了\
+  \ Consul 组件之间两种主要的通信模式：**远程过程调用（RPC）** 和八卦协议。但是等等——我们读到的 Raft 和共识机制是怎么回事呢？嗯，所有这些通信都利用\
+  \ RPC 通信，并且通过 TCP 传输。八卦协议是代理之间用来相互通信的，如果你还记得的话，它利用的是 UDP。我之所以提到这些，是因为将有两种不同的方法来保护这些通信路径。让我们先谈谈保护八卦协议，仅仅因为那更容易理解一些。\n\
+  \n### 保护我们的八卦协议\n\n如果你见过一群人八卦，你就知道他们通常会紧密地聚在一起，以便没有其他人能加入并偷听他们的谈话。当你试图靠近这群人时，突然间，他们的谈话声变安静了，一种不信任感立刻产生。这是因为你可能不是他们认识的实体，或者他们可能不清楚你的立场。如果那些人因为社交距离而在更大的区域里分散开来，那就更容易偷听了。这就是我们在\
+  \ Consul 中工作的环境。尤其是在云环境中，要让八卦群体紧密地聚在一起并远离外人和窃听者就比较困难了。\n\n既然我们明白了八卦者不可能作为一个孤立的群体存在，那么确保他们谈论的内容不被其他人听到，或者至少不被理解的最佳方法是什么呢？让我们给我们的故事加个转折（不是给饮料里加片柠檬）。假设你发现自己身处一群说着你不熟悉语言的人群中。我想我们大多数人都经历过这种情况——即使他们说同一种核心语言，你可能也不明白他们说的某些词。我的妻子在印第安纳州长大，我们搬到波士顿地区时就经历过这种情况，但那是另一个故事了。在这种环境下，你可能会听到人们在说话，但你无法理解他们在说什么。这是一种保持通信开放，但对那些无权接收信息的人保密的好方法。这正是我们在保护我们的八卦代理时所做的。\n\
+  \nConsul 提供了一种生成特殊语言的方法，该语言由一个*加密密钥*定义。这个信息与我们创建的相同，但使用的语言不同。这个密钥被分发到 Consul 集群中的所有代理。即使你有多个集群相互通信，它们也都需要使用相同的语言，因此使用相同的密钥。\n\
+  \n![](img/52479dafaefba00517c48a137e037b7e_78_0.png)\n\n图 3.1 – 谁懂苏美尔语？\n\n此时，你可能会想*但是\
+  \ Rob，最终人们可以学会一种新语言并破译消息*。你说得对，虽然我们中有些人可能比其他人花更多时间学习不同的语言，但最终，只要我们足够努力，我们就能弄明白。这对于每一个加密密钥、密码和证书都是一样的，这也是为什么定期更换和更新这些安全项目很重要的主要原因。本质上，当八卦者周围的人学会了新语言，我们就要更换语言！当我们开始谈论群体中有几十、几百或几千个八卦者时，要让每个人都学会新语言、同时又不遗漏消息，这可能非常具有挑战性。幸运的是，Consul\
+  \ 可以为你管理很多这方面的事情，当我们部署新的安全系统时，我们将会看到如何做到这一点。\n\n### 保护我们的通话\n\n与八卦协议不同，当我们给人打电话时（当然，除非是电话会议），通信不会广播给分散的群体。那个对话通常是点对点的，并有一定程度的身份验证，以确认你在和谁说话。这可以是电话号码、来源号码、熟悉的声音等等。当我们研究\
+  \ Consul 代理之间的通信时，这个过程非常相似。然而，我们永远不知道是否有人在窃听那个对话。因此，保护我们的通话需要三个步骤：验证谁在呼叫、验证谁被呼叫，以及加密他们之间的消息。\n\
+  \n![](img/52479dafaefba00517c48a137e037b7e_79_0.png)\n\n图 3.2 – 安全与不安全的通信\n\n我们使用\
+  \ Consul 实现这一点的方式，与你几乎每天打开网页浏览器、登录银行账户并给我汇钱时的做法并没有太大不同。当你这样做时，你的网页浏览器会验证它是否已连接到银行的正确网站。这种验证来自于一个由某个官方权威实体签名的证书，确保你的浏览器相信该网站是有效的。如果你在浏览器中看到过弹出窗口，提示无法验证证书，那意味着该证书不是由已知且被接受的权威机构签名的。当该证书被交换时，浏览器就知道了如何加密流量，以便银行网站能够解密，同样，你的浏览器也知道如何解密从银行传回的消息。然而，我们使用\
+  \ Consul 的做法有一点小小的不同。\n\n让我们再次假设你正在从浏览器访问银行网站的场景。银行网站并不真正关心你在哪里（至少在大多数情况下是这样）。对于\
+  \ Consul，发起呼叫的代理不仅验证它在呼叫一个有效的实体，被呼叫的一方也会确保呼叫者是有效的。让我们深入探讨一下这个问题，但别担心——我们深入探讨时不会碰到水。\n\
+  \n我们将在本节中大量讨论密钥和证书。如果你从未深入研究过传输层安全（TLS），这可能会有点令人困惑，所以我将使用一些符号来标识服务器、客户端以及公钥和私钥，这些符号基于长寿动画系列片《辛普森一家》中的角色。例如，我们将有三台服务器：Bart、Lisa\
+  \ 和 Maggie。对于这三台服务器，需要某种受信任的权威机构来标识 Bart、Lisa 和 Maggie；我们将称我们的权威机构为 Marge。\n\n我们的三台服务器都需要某种方法来传输和接收只有它们自己能理解的消息。如果你还记得我们的电话类比，它们都需要验证谁在呼叫、谁被呼叫，并加密它们之间的消息。所有这些都通过专门为它们制作的证书来完成。现在，如果\
+  \ Bart 创建了自己的证书，并将这些证书分发给 Lisa 和 Maggie，它们就可以共享秘密消息。然而，什么能阻止 Homer——那个本不应该接触这些消息的家伙——加入这个群体，分享他自己的证书，并查看这些秘密消息呢？为此，我们需要\
+  \ Marge，某种中央权威机构，以确保每个人都使用她授权的证书。我们可以称她为证书颁发机构（CA）。\n\nMarge 利用她的强大力量，为 Bart 制作了两份证书，为\
+  \ Lisa 制作了两份，为 Maggie 制作了两份。这些证书有特殊的名称：公钥和私钥。公钥确认了他们的身份，并使他们能够向其他人加密消息，而私钥使他们能够解密他们收到的消息。可选地，Marge\
+  \ 可以创建特定的限制，例如证书的持续时间，以及允许哪些姓氏使用该证书。例如，如果有个人走进来，其姓氏不是 Simpson，那么他们将无法使用 Marge 的证书。\n\
+  \nMarge 使用她自己的两份证书来制作这些证书；一份标识她的权威机构，我们称之为 chop-chop，另一个秘密成分我们称之为 salt。没有其他人知道 Marge\
+  \ 的私密秘密，因为如果他们知道了，他们就可以在自己的证书中使用 salt，从而破坏 Marge 的权威性。总而言之，让我们看看我们拥有的证书：\n\n- porkchop：标识\
+  \ Marge 具有权威性的证书\n- salt：Marge 用来制作证书的秘密成分\n- bart.public_key：Bart 用来标识自己并向 Lisa\
+  \ 和 Maggie 加密秘密消息的证书\n- bart.private_key：只有 Bart 拥有，并且可以用来解密来自 Lisa 和 Maggie 的消息的证书\n\
+  \n\n\n\n\n- `lisa.public_key`: Lisa 用于识别自己并向 Bart 和 Maggie 加密秘密消息的证书\n- `lisa.private_key`:\
+  \ 只有 Lisa 拥有的证书，她可以用它来解密来自 Bart 和 Maggie 的消息\n- `maggie.public_key`: Maggie 用于识别自己并向\
+  \ Bart 和 Lisa 加密秘密消息的证书\n- `maggie.private_key`: 只有 Maggie 拥有的证书，她可以用它来解密来自 Bart\
+  \ 和 Lisa 的消息\n\n如果 Lisa 想给 Maggie 发送消息，她会使用自己的特殊公钥对消息进行加密。Lisa 将该消息发送给 Maggie，Maggie\
+  \ 可以用自己的私钥打开消息，并使用 Marge 提供的猪排来验证该消息。现在，假设 Homer 可以创建自己的公钥并向 Maggie 加密自己的消息。好吧，该密钥没有使用\
+  \ Marge 的授权，也没有她的秘密配料。因此，Maggie 知道要拒绝该消息，而伤心的 Homer 则前往 Moe's。\n\n![](img/52479dafaefba00517c48a137e037b7e_81_0.png)\n\
+  \n图 3.3 – 证书和密钥分发\n\n这正是我们保护 Consul 机器之间调用的方式。集群中的每个节点都有自己的公钥、私钥，以及由某个集中式 CA 提供的权威密钥。对于我们的练习，我们将使用\
+  \ Consul 作为我们的 CA。这只是为了帮助我们尽可能独立，但这不应该在生产环境中这样做。在现实世界中，你的公司将拥有一个 CA，安全团队中的某个人会将这些密钥提供给你（以及在证书轮换时提供新密钥）。如果你的公司已经拥抱了自动化，那么在获得授权的情况下，可以通过利用\
+  \ HashiCorp 的 Vault 来生成这些密钥。\n\n现在我们已经了解了如何保护节点之间的 gossip 以及它们的直接消息，让我们看看还能做些什么来保护我们的系统。\n\
+  \n## 使用访问控制进行访问控制\n\nConsul 功能的核心是一个分布式键/值存储。通过 gossip 协议，任何一个节点学到的东西都可以与集群中的其他节点共享。这不仅适用于我们三个主要用例，而且通常，操作员会利用\
+  \ Consul 来分发相关组件可以利用的配置参数。如果您想快速更改所有机器上的日志级别，这将非常有帮助。这也是为什么在任何生产部署中，保护 Consul 的重要性怎么强调都不为过。利用我们上一节讨论的\
+  \ TLS 密钥，我们可以验证和保护客户端与服务器之间的通信。如果我们不这样做，那么就有可能有人假装成为集群的一部分。\n\nConsul 中的访问控制系统提供了关于每个节点在网络上可以做什么的额外控制级别——因此得名\
+  \ *访问控制*。如果你曾经处理过路由设备上的 **访问控制列表 (ACLs)** 或网络防火墙规则，你可能已经熟悉访问控制的概念。然而，对于 Consul，规则可以非常精细和详细。当然，这意味着它们可能会变得非常复杂，从而增加了对某种程度的基础设施即代码（如\
+  \ Terraform）或其他自动化工具的需求。在深入了解之前，让我们先了解一下 Consul 访问控制系统包含的内容。\n\n当我们在 Consul 的领域讨论访问控制时，有三个主要部分需要我们理解：规则、策略和令牌。可选地，我们还可以为策略组创建角色，针对应应用策略的节点、服务或数据中心组。我们在本章中大量谈论确保身份识别。毕竟，本章是关于安全的，而安全的一个重要部分是确保身份。这就是为什么秘密握手和暗号被发明的原因。对于\
+  \ Consul 访问控制，该身份以令牌的形式提供，该令牌由某个权威实体生成。我们将使用 Consul 作为该权威；然而，在 HashiCorp 的 Vault\
+  \ 等系统中集中管理这些令牌会更受欢迎，不仅仅是因为我目前受雇于 HashiCorp，而是主要因为利用 Vault 为操作员提供了一种集中且安全的方法来维护和轮换这些令牌。好了，关于令牌就说到这里……令牌能为我做什么？\n\
+  \n当某人使用令牌访问 Consul 时，令牌会与策略关联，该策略包含一个或多个规则。由于策略只是规则的集合，我们将重点关注可以应用的规则。\n\n![](img/52479dafaefba00517c48a137e037b7e_83_0.png)\n\
+  \n图 3.4 – 令牌、策略和规则\n\n几乎每条规则都包含三个部分：规则类型、定义规则应用位置的变量，以及规则的控制级别。有些特殊情况变量不是必需的，但我们稍后会讨论。还有一个始终存在的默认策略，其为\
+  \ *deny* 或 *allow*，取决于你的安全态势。现在我提到了 *posture*，我坐直了……你呢？在定义默认策略时必须格外小心。如果默认是 *deny*，那么每个操作、服务、节点等都需要明确的权限才能执行某些功能。如果默认策略是\
+  \ *allow*，那么你需要指定要阻止的内容。当然，后者看起来实现起来要简单得多。然而，从安全角度来看，只识别你想要允许的少数事情要容易得多，而不是试图识别和阻止所有需要阻止的事情（这些事情\
+  \ constantly 变化）。因此，继续前进，我们将假设我们的默认策略是拒绝。你现在可能恨我，但你以后会感激的。\n\n你可以猜出 Consul 规则的控制级别，但以防你猜不到，它们如下：\n\
+  \n- **read**: 对特定资源的读取访问授予使用该令牌的人读取与资源关联的值的能力。\n- **write**: 对特定资源的写入访问授予使用该令牌的人更新或创建与资源关联的值的能力。如果你的令牌授予对资源的写入访问，你也拥有读取访问。\n\
+  - **deny**: Smackdown – 你没有权限读取或写入与所标识资源关联的值。由于我们将使用默认拒绝策略，因此我们不需要此级别。\n- **list**:\
+  \ 这是一个特殊级别，授予使用该令牌的人列出所有相关参数的能力。唯一适用的地方是在 Consul 键/值存储中，相关令牌的持有者可以列出特定路径前缀下的所有键/值组合。\n\
+  \n正如我在数学课上残酷学到的那样，每当你查看此类区域时，优先级顺序至关重要。如果有任何重叠规则，deny 优先于所有规则，写入能力优先于只读。这应该是理所当然的，但\
+  \ deny 优先于一切这一事实应该被充分理解。此外，如果你在特定规则中具有 *write* 访问权限，你会自动获得 list 访问权限。如果你具有 *list*\
+  \ 访问权限，你会自动具有 *read* 访问权限，因此控制级别是某种程度上嵌套的。我发现通过以下图表很容易记住这一点：\n\n![](img/52479dafaefba00517c48a137e037b7e_85_0.png)\n\
+  \n现在我们知道了 *什么* 可以用单个规则做，让我们看看 *在哪里* 可以（或不可以）执行这些操作……这就引出了规则类型。以下是当前支持的所有规则类型的列表。虽然我们在本次练习中只会使用其中几个，但我只是为了完整性而列出它们全部：\n\
+  \n- **ACL resource:** 控制 ACL 规则的管理。\n- **Agent:** 此规则类型控制与管理 Consul 代理相关的方面，例如加入集群、列出成员和代理配置。代理确实应该对其自己的节点具有写入访问权限；否则，它们将无法将其自己的服务信息注册到目录中。\n\
+  \n\n\n\n\n- **事件（Event）**：这专门与读取和写入 Consul 事件的能力相关。本书不会涵盖事件相关的内容，但可以利用事件根据 Consul\
+  \ 系统中的变化（包括服务可用性）来执行自定义操作。\n- **键/值（Key/Value）**：控制对 Consul 内分布式键/值存储的访问。规则可应用于读取、写入或列出键及其关联值的权限。\n\
+  - **哨兵（Sentinel）**：与犹大牧师乐队那首绝妙的歌曲无关，Sentinel 规则允许我们根据 Consul 结构编写几乎任何可能的规则。Sentinel\
+  \ 是企业版功能，且相当高级，因此本书不会涉及。\n- **密钥环（Keyring）**：这是一种无需应用变量的规则类型，因为它特定于密钥环功能。由于密钥环控制着\
+  \ gossip 协议的加密密钥，因此对此区域的访问应严格管控。\n- **节点（Node）**：这是一个重要的规则类型。它控制节点级数据，例如目录中的可用服务和节点健康状态。它还可以作为过滤器，将代理级操作限制在允许的集群成员子集内。\n\
+  - **操作员（Operator）**：这是另一种无需应用变量的规则类型，用于处理 Consul 中的操作员级操作，例如 auto-pilot 或 Raft 特定功能。与密钥环一样，对此区域的访问应严格管控。\n\
+  - **预置查询（Prepared query）**：Consul 提供了创建模板的能力，这些模板对于系统中更复杂的服务查询非常有用，包括节点位置、元数据、标签等。本书不会涵盖预置查询。\n\
+  - **服务（Service）**：这是另一个需要理解的重要规则类型。该规则类型管理服务级信息，包括对服务目录和服务健康状态的访问。\n- **会话（Session）**：Consul\
+  \ 允许你在键/值存储中分配和释放值的锁。这可以在已执行的会话中完成，本书不会涉及这部分内容。\n- **命名空间（Namespace）**：命名空间是另一个企业级功能，支持对\
+  \ Consul 集群进行细分。此规则类型允许你为整个命名空间创建由多种规则类型组成的更全面的规则。虽然本书不会过多涉及命名空间，但非常重要的是要理解，包括操作员和密钥环规则在内的几种规则类型不能应用于命名空间。这些功能是全局性的，只在默认命名空间上运行。\n\
+  \n正如你所看到的，有很多领域可以应用 ACL 来管理人类、机器或半机械人访问我们服务的权限。这也为控制各个节点提供了大量途径。\n\n当我们谈论安全性时，我们经常使用术语*最小权限*。简单地说（或写），这意味着不是给一个孩子一堆糖果并告诉他们什么不能吃，而是从孩子没有糖果开始，只提供他们能吃的东西。这就是为什么在本节前面，我们讨论了在\
+  \ Consul 中实施默认拒绝策略。如果我们将其作为标准安全规则，尤其是结合我们在上一节中讨论的证书，我们就可以进一步加强对各个节点的控制。这大大减少了任何懦夫或窃听者访问或监听我们集群操作的可能性——因为如果你没有秘密握手暗号，你就不会通过。\n\
+  \n既然我们已经解决了所有这些问题，让我们看看规则长什么样。我们将在这里查看两条规则，当我们开始实际操作系统时，这两条规则都会用到。\n\n第一条规则为 Consul\
+  \ 客户端应用了一个最小策略，使其能够在自身执行操作，并将基础设施的任何变化通知 Consul 服务器：\n\n```hcl\nnode \"ip-192-168-100-11\"\
+  \ {\n  policy = \"write\"\n}\nservice \"consul\" {\n  policy = \"write\"\n}\nagent_prefix\
+  \ \"ip\" {\n  policy = \"write\"\n}\n```\n\n在此策略中，我们有三个主要规则，看起来非常简单，但在最小权限模型中，它们的作用至关重要。\n\
+  \n策略中的第一条规则使用了节点（node）规则类型。如果没有这条规则，节点就无法向服务器集群更新它看到的服务，更重要的是，无法更新节点的健康状况和位置。如果客户端尝试加入集群，但没有与此规则关联的令牌，服务器集群甚至不会将其识别为客户端。请注意，由于节点规则仅适用于\
+  \ ip-192-168-100-11，因此该规则仅适用于此特定节点的操作，因为那是它的主机名。任何其他使用与此策略关联的令牌的节点都不会被 Consul 服务器集群识别。\n\
+  \n下一条规则属于 `service` 类型，允许我们更新节点本身上的服务目录。这特定于节点本身上的服务，而不是由 Consul 服务器集群托管的整体服务目录。要更新集中式服务目录，我们需要\
+  \ `agent` 规则，我们接下来会讨论。请注意，使用此规则，我们可以 `write` 到名为 `consul` 的服务来管理服务更改。如果我们只想读取服务的状态或可用性，我们可以使用\
+  \ `read` 指令。\n\n最后一条规则使用了 `agent` 规则类型。这与节点规则类型的重要性类似，它控制着节点功能的非常基本的方面（尽管在这种情况下，它与代理相关）。此规则允许关联令牌的持有者执行代理级功能，例如更新服务目录……这有点重要，因为\
+  \ Consul 的一切都围绕着服务。你可能已经注意到这个特定规则定义的一个不同之处：它不是指向某个特定的代理，而是使用了一个微小的变体，称为 `agent_prefix`。正如你可能已经猜到的，这适用于任何主机名以\
+  \ `ip` 前缀开头的代理。这提供了一些灵活性，允许你将规则应用于代理组，而不是为每个单独的代理编写规则。然而，这确实让我们暴露了一些，因为该规则并未锁定到某一个特定的代理。可以帮助解决这个问题的一种方法是拥有两条代理规则——一条特定于其所在的主机，使其能够写入代理操作，另一条用于从其他节点读取代理操作：\n\
+  \n```hcl\nnode \"ip-192-168-100-11\" {\n    policy = \"write\"\n}\nagent \"ip-192-168-100-11\"\
+  \ {\n    policy = \"write\"\n}\nagent_prefix \"ip\" {\n    policy = \"read\"\n}\n\
+  ```\n\n这是适用于该特定代理的一组非常有限的策略规则。以下策略稍微开放了一些，更适用于服务器集群，使其能够执行诸如写入 ACL、事件等操作：\n\n```hcl\n\
+  acl = \"write\"\nagent_prefix \"\" {\n    policy = \"write\"\n}\nevent_prefix \"\
+  \" {\n```\n\n在这里，与此策略关联的令牌的持有者将能够写入任何以 `ip-192` 开头的主机名，但只能对任何以 `ip` 开头的主机名进行只读访问。\n\
+  \n我希望你能看到，Consul 中 ACL 的灵活性允许我们在系统上定义和执行极其具体的规则。我们可以对 Consul 功能的具体领域应用各种控制。其中一些规则对于任何功能正常的系统都至关重要（例如节点或代理类型），但即使是这些规则也应该受到控制，以便它们只应用于特定的分段（主机名、域等）。接下来，我们将看看如何管理那些可以访问我们\
+  \ Consul 集群的人类，并跟踪他们在做什么，就像老大哥一样。\n\n正如我们已经看到的，使用 Terraform 来创建和管理基础设施简化了很多这种复杂性。当你开始处理包含数百、数千和数万个节点的\
+  \ Consul 集群时（是的，这种规模的集群确实存在），将基础设施作为代码使用的便利性就变得更加必要了。如果你已经厌倦了阅读，想看看所有这些安全功能是如何结合在一起的，请稍安勿躁——我们很快就会讲到。首先，我们需要快速了解一下\
+  \ Consul 系统中的审计日志记录，这是任何企业都至关重要的组成部分。\n\n## 打造你的身份\n\n作为服务生产启用的一部分，我们需要处理谁将访问系统以及他们能做什么。这通常被称为**基于角色的访问控制**，或\
+  \ **RBAC**。我们还希望能够维护系统的审计跟踪。随着我们走出那个受信任的有围墙花园网络进入云环境，最后这一点变得越来越重要。我无法告诉你，即使在受控环境中，我有多少次不得不回去弄清楚是什么改变以及何时改变破坏了我的系统！为充分披露起见，要实现这一级别的功能，需要\
+  \ Consul 的企业版许可证。\n\n实际登录 Consul 系统的过程当然可以通过使用 ACL 进行管理，然后像对待机器一样对待任何人类，给他们自己特定的访问令牌。然而，这些令牌并不像冉·阿让的\
+  \ 24601 那么简单。所以，不可避免地会有人把他们的令牌写在便利贴上贴在笔记本电脑上，或者更甚者，把它和最新的猫咪表情包一起通过电子邮件发送给朋友和家人。此外，这只有在某个工程师（会是你吗？）站在公司面前高呼*我不是一个数字，我是一个自由的人！*之前才有效。这时，高层管理办公室里传来癫狂的笑声。一个更好的解决方案是将\
+  \ Consul 连接到某种集中的身份验证和授权方法。为此，Consul Enterprise 利用了一种日益增长的集中式身份验证和授权标准——**OpenID\
+  \ Connect (OIDC)**。\n\n\n\n\n\n利用 OIDC，Consul 可以通过查询众多 OIDC 提供商之一来验证尝试访问 Consul\
+  \ 的用户（大多数企业环境至少使用一个）。如果你曾经登录某个服务并被重定向到另一个用于 Google、Yahoo、Microsoft、PayPal 或 Amazon\
+  \ 凭证的身份验证页面或弹出窗口，那么很可能你已为该身份验证使用了 OIDC。企业环境中其他流行的 OIDC 提供商包括 OKTA 和 Auth0。此过程不仅验证并对用户进行身份验证，还可以将该用户映射到一组授权策略以控制对系统的访问。毕竟，如果你曾经需要给经理提供\
+  \ Consul 集群的访问权限，你肯定不希望他们拥有管理权限！那么，让我们用另一个美妙的例子来逐步了解。\n\n作为这个故事的一部分，我们需要假设我们的更大雇主已实施\
+  \ OIDC，并且我们每个人都有自己的凭证来使用该 OIDC 提供商进行身份验证。除了我们的凭证外，我们所有人都有与我们在公司中的职位相关联的特定元数据：\n\n\
+  | Credentials | Metadata |\n| Username | Password | First Name | Last Name | Position\
+  \ |\n| sharris | ********** | Steve | Harris | Bassist |\n| bdickinson | **********\
+  \ | Bruce | Dickinson | Singer |\n| dmurray | ********** | Dave | Murray | Guitarist\
+  \ |\n| asmith | ********** | Adrian | Smith | Guitarist |\n| nmcbrain | **********\
+  \ | Nicko | McBrain | Drummer |\n\nFigure 3.6 – OIDC accounts and metadata\n\n在这个示例中，每个人都有自己独特的职位，除了\
+  \ Adrian 和 Dave。他们都属于吉他手组，我们将把它映射到 Consul 中的一个角色。回想一下，角色由 Consul 中的一组 ACL 策略组成。当我们配置\
+  \ Consul 来利用此信息时，我们创建了所谓的声明映射。这将 OIDC 提供商中配置的元数据映射到 Consul 中的变量中，然后可用于将该元数据与特定角色关联。例如，以下配置将名字和姓氏的特定映射关联起来，并且职位元数据与\
+  \ Consul 中名为 band_positions 的列表相关联：\n\n```\n{\n\"OIDCDiscoveryURL\": \"https://<OIDC_URL>/\"\
+  ,\n\"OIDCClientID\": \"<OIDC_CLIENT_ID>\",\n```\n\n```\n\"OIDCClientSecret\": \"\
+  <OIDC_CLIENT_SECRET>\",\n\"BoundAudiences\": [\"<OIDC_CLIENT_ID>\"],\n\"AllowedRedirectURIs\"\
+  : [\n    \"http://localhost:8550/oidc/callback\",\n    \"http://localhost:8500/ui/oidc/callback\"\
+  \n],\n\"ClaimMappings\": {\n    \"user.metadata.first_name\": \"first_name\",\n\
+  \    \"user.metadata.last_name\": \"last_name\"\n},\n\"ListClaimMappings\": {\n\
+  \    \"user.metadata.position \": \"band_positions\"\n}\n}\n```\n\n此配置只是允许 Consul\
+  \ 与 OIDC 提供商通信并提取特定的账户信息（名字、姓氏和职位）。然而，除非我们配置 Consul 将该元数据与特定角色关联，否则这些信息毫无意义。让我们假设\
+  \ Consul 中有一个吉他手的角色，由两个策略组成。我们可以使用以下示例命令创建该角色：\n\n```\n$ consul acl role create\
+  \ -name guitarists -policy-name rhythm -policy-name lead\n```\n\n太棒了！我们已在 OIDC 提供商中创建了我们的账户，并且在\
+  \ Consul 中定义了一个角色，该角色将账户的特定属性与一组策略相关联。但是，我们如何链接这两条信息？这可以通过所谓的绑定规则来完成。现在，我们之前没有谈论过这些，但绑定规则将一种身份验证方法与特定角色关联。绑定规则可以应用于应用程序身份验证（例如，如果你想使用\
+  \ Java Web Token 验证身份验证），但我们这里的重点是验证人类。特别是，我们希望具有吉他手职位的用户能够访问吉他手 Consul 角色。请注意拼写上的细微差别（guitarist\
+  \ 与 guitarists）。这是为了在整个过程中区分术语。\n\n够谈论我们的绑定规则了。如果我们想创建一个，我们可以使用以下示例：\n\n```\n$ consul\
+  \ acl binding-rule create -method=<oidc_name> -bind-type=role -bind-name=guitarists\
+  \ -selector='guitarist in list.band_positions'\n```\n\n在这里，我们使用在 Consul 中配置 OIDC\
+  \ 提供商时给出的 OIDC 提供商的名称。我们声明任何使用该方法登录 Consul 的人都需要使用关联的 OIDC 提供商进行身份验证。当我们收到尝试身份验证的用户元数据时，我们会在\
+  \ band_positions 列表中查找，如果我们找到 guitarist，我们就可以将 guitarists 角色（以及因此关联的所有策略）分配给这些用户。现在，为什么我们要经历所有这些工作，而我只需要创建令牌并将这些令牌交给用户呢？\n\
+  \n让我们假设我们已经完成了为吉他手创建角色的过程，并且该角色拥有自己的令牌。我们可以将同一个令牌交给 Adrian 和 Dave，他们就可以使用该令牌通过 CLI\
+  \ 或 Web 界面使用 Consul 进行身份验证。这里出现问题一；当我们跟踪审计日志时，如何区分 Adrian 和 Dave？当我们只有一个用户时可能没那么糟糕，但当\
+  \ Jannick（另一名吉他手）加入乐队时，区分用户变得更加困难（尽管他们的吉他风格截然不同）。\n\n现在，我承认所有这些都可能令人困惑，所以让我列出顺序：\n\
+  \n## Consul OIDC Authentication\n\n![](img/52479dafaefba00517c48a137e037b7e_93_0.png)\n\
+  \nFigure 3.7 – OIDC authentication process\n\n我提到过需要区分 Adrian、Dave，现在是 Jannick，因为他们登录\
+  \ Consul 系统。这是为了区分每个个人在审计日志中执行的操作。这并不是为了站在后面指责，而是为了确保流程得到遵循并且系统中的更改得到跟踪。\n\n在 Consul\
+  \ 服务器中启用审计日志非常简单。启用后，Consul 将输出条目以跟踪谁做了什么以及何时做，所有内容都写入文件。别担心——不会包含机密信息，这使得启用 OIDC\
+  \ 等身份验证方法以唯一区分用户变得更加重要。日志以 JSON 格式写入文件，可以被大多数日志分析实用程序（如 DataDog、Splunk 和 Elasticsearch）摄取。但是，在配置日志记录时，请务必设置日志文件数量和轮换频率的限制……没有人喜欢承认自己因日志记录而耗尽了空间！\n\
+  \n```\n```hcl\naudit {\n  enabled = true\n  sink \"consul_audit\" {\n    type  \
+  \ = \"file\"\n    format = \"json\"\n    path   = \"data/audit/audit.json\"\n  \
+  \  delivery_guarantee = \"best-effort\"\n    rotate_duration = \"24h\"\n    rotate_max_files\
+  \ = 15\n    rotate_bytes = 25165824\n  }\n}\n```\n```\n\n日志文件的输出标识了几个重要的信息，特别是时间戳和令牌访问者。此访问者可以链接回访问系统的个人令牌和角色（因此是用户）。我个人发现审计日志中的源\
+  \ IP 地址非常有趣，尤其是当我可以进行地理关联并确定谁从世界各地访问系统时。当然，条目还包括他们对系统做了什么！\n\n```\n```json\n{\n\
+  \  \"created_at\": \"2020-08-25T10:35:23.258765383Z\",\n  \"event_type\": \"audit\"\
+  ,\n  \"payload\": {\n    \"id\": \"3a880e2b-3f43-5d4d-97a6-26aec5eacc0c\",\n```\n\
+  \n```\n```json\n\"version\": \"1\",\n\"type\": \"HTTPEvent\",\n\"timestamp\": \"\
+  2020-08-25T10:35:23.258548744Z\",\n\"auth\": {\n  \"accessor_id\": \"48162132-6b28-de21-aee9-6903d2024f2e\"\
+  ,\n  \"description\": \"token created via OIDC login\",\n  \"create_time\": \"2020-08-25T10:35:23.158336091Z\"\
+  \n},\n\"request\": {\n  \"operation\": \"GET\",\n  \"endpoint\": \"/v1/catalog/datacenters\"\
+  ,\n  \"remote_addr\": \"172.17.0.1:48516\",\n  \"user_agent\": \"Mozilla/5.0 (Macintosh;\
+  \ Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125\
+  \ Safari/537.36\",\n  \"host\": \"192.168.64.243:31394\"\n},\n\"stage\": \"OperationStart\"\
+  \n}\n```\n```\n\n正如你所见，启用这些审计日志是操作和管理任何企业中的 Consul 系统的一个关键方面。因为我们只是正在学习系统的从业者，所以它并不那么有趣（我们应该知道我们做了什么以及何时做，尽管我承认我可能比应该更频繁地使用\
+  \ Bash 历史记录）。然而，当 Consul 推广到企业环境时，跟踪这些操作与确保系统实际运行一样关键！说到运行，我希望你准备好了。我强烈建议此时你起身走走或伸展双腿，因为接下来会变得相当复杂。\n\
+  \n## Securing your Consul cluster\n\n在开始保护你的集群之前，我需要提出一个警告。当你处理安全执行时，事情可能会变得有点棘手，尤其是在你不小心将自己锁在自己的集群之外时。幸运的是，我们只是在这里使用一个简单的开发系统。然而，在生产环境中，必须格外小心。我已尽可能自动化，但在此过程中的任何时候，你都可以销毁整个基础设施集并重建它。啊，Terraform\
+  \ 和临时基础设施的奇迹和美丽！\n\n\n\n\n\nAll the code for this section can be found in the following\
+  \ GitHub repository:\nhttps://github.com/PacktPublishing/Simplifying-Service-Management-with-Consul/tree/main/ch3\n\
+  \n## Creating the image\n\nIf you've already forked or downloaded the repository,\
+  \ you should have the corresponding folder for this chapter. This is where we'll\
+  \ be doing all our work. We are going to be building a new image for this chapter\
+  \ that includes all the certificates that have been generated for you.\n\nAs we\
+  \ build the system and look at the code, we're going to focus on the differences\
+  \ between what we did in Chapter 2, Architecture – How Does It Work?, and what we\
+  \ are doing here, simply for brevity. Unless you actually shut down your machine\
+  \ or closed your Terminal, you should still have your AWS keys: AWS_ACCESS_KEY_ID\
+  \ and AWS_SECRET_ACCESS_KEY. To check whether you still have these set properly,\
+  \ run the following command:\n\n```\n$ env | grep AWS\nAWS_ACCESS_KEY_ID=AKIA26CFBA32D6JFVJJB\n\
+  AWS_SECRET_ACCESS_KEY=NYaSFhAzZqOq4bqSGJda/Y22Guc3p...\n```\n\nSince you are all\
+  \ Packer experts by now, we're going to kick off the build so that we can review\
+  \ what we are doing while the image is created. To do that, you need to be in the\
+  \ proper folder:\n\n```\n$ cd $github_root/Consul-Up-and-Running/ch3/Image-Creation\n\
+  ```\n\nNow, kick off your Packer building using the following command:\n\n```\n\
+  packer build -var-file=\"variables.pkrvars.hcl\" .\n```\n\nNow, while the Christmas\
+  \ lights are spewing across your screen, let's take a look at the differences between\
+  \ what you are building now and what you built in Chapter 2, Architecture – How\
+  \ Does It Work?.\n\nThe first thing you might recognize is that in the source definition,\
+  \ we have slightly changed the name of the image to be used. This is just because\
+  \ we only want to be using this image to understand the security aspects of Consul.\
+  \ As we move forward, we will be using the insecure image. *But Rob, why would it\
+  \ be insecure?* I've been asking this myself nearly all my life! As we will see,\
+  \ once we secure our cluster, it becomes more much difficult to utilize and navigate.\
+  \ This is by design because, in a production environment, you don't want to make\
+  \ it easier for those nefarious hackers:\n\n```\n```hcl\nsource \"amazon-ebs\" \"\
+  ubuntu-image\" {\n  ami_name      = \"${var.owner}-secure-consul-${timestamp}\"\n\
+  \  region        = \"${var.aws_region}\"\n  instance_type = var.aws_instance_type\n\
+  \  tags = {\n    Name = \"${var.owner}-secure-consul\"\n  }\n}\n```\n```\n\nWe aren't\
+  \ really changing things that drastically, only slightly modifying the name to identify\
+  \ it as the secure image base. One of the small changes for the secure image is\
+  \ the presence of the CA file, `consul-agent-ca.pem`. Recall that the CA confirms\
+  \ that the certificate being used is valid. Marge needs to be sure that her kids\
+  \ are all using valid certificates! We could use a provisioner to move this file\
+  \ to the machines when we run the Terraform script; however, every machine needs\
+  \ the CA file, so we might as well pack that into the image:\n\n```\n```hcl\nprovisioner\
+  \ \"file\" {\n  source      = \"../files/consul-agent-ca.pem\"\n  destination =\
+  \ \"/tmp/consul-agent-ca.pem\"\n}\n```\n```\n\nWe're also going to be moving that\
+  \ file to the proper location within Consul as part of our shell provisioner:\n\n\
+  ```\n```hcl\nprovisioner \"shell\"{\n  inline = [\n    \"sudo /usr/local/bin/consul\
+  \ -autocomplete-install\",\n    \"sudo useradd --system --home /etc/consul/consul.d\
+  \ --shell /bin/false consul\",\n    \"sudo mkdir /etc/consul /etc/consul/consul.d\
+  \ /etc/consul/logs /var/lib/consul/ /var/run/consul/\",\n    \"sudo chown -R consul:consul\
+  \ /etc/consul /var/lib/consul/\"\n```\n\n```\n/var/run/consul/\",\n        \"sudo\
+  \ chmod -R a+r /etc/consul/logs/\",\n        \"sudo mv /tmp/consul.service /etc/systemd/system/consul.service\"\
+  ,\n        \"sudo mv /tmp/consul-common.hcl /etc/consul/consul.d/consul-common.hcl\"\
+  ,\n        \"sudo mv /tmp/consul-agent-ca.pem /etc/consul/consul.d/consul-agent-ca.pem\"\
+  \n    ]\n```\n```\n\nAnd that's it! These are seemingly small changes, but we should\
+  \ get used to packing our commonalities into the image files to manage how we build\
+  \ out our systems in that crazy place called the *real world*.\n\nNext, we're going\
+  \ to build our Consul system. Again, this process is very similar to what we did\
+  \ previously. We're going to kick off `terraform apply`, and while that is running,\
+  \ we'll take a look at the differences.\n\n## Building the Consul cluster\n\nNow\
+  \ that we've built the image, we can use Terraform to build the cluster itself.\
+  \ All the Terraform code exists in this chapter's root folder, so let's go there:\n\
+  \n```\n```bash\n$ cd $github_root/Consul-Up-and-Running/ch3\n```\n```\n\nAs you\
+  \ may recall, the `terraform.tfvars` file doesn't get copied over from what you\
+  \ configured in *Chapter 2, Architecture – How Does It Work?*. So, you'll have to\
+  \ make sure you edit it so that it matches your Chapter 2 file (or just copy the\
+  \ Chapter 2 `terraform.tfvars` file to the Chapter 3 directory):\n\n# Terraform.tfvars\n\
+  \n```\n```hcl\nowner         = \"rjackson\"\naws_region    = \"us-east-2\"\ninstance_type\
+  \ = \"t2.small\"\n```\n```\n\nNow that we've confirmed our variables are to our\
+  \ liking, let's start firing up our infrastructure. Remember that to get started,\
+  \ Terraform needs to download any provider-specific data necessary. This can be\
+  \ done via the following command:\n\n```\n```bash\n$ terraform init\n```\n```\n\n\
+  Next, we're going to run our plan so that we can see what changes Terraform is going\
+  \ to make. This will be all new infrastructure, so you should just see a bunch of\
+  \ green plus signs:\n\n```\n```shell\n$ terraform plan\n```\n```\n\nLet's start\
+  \ building our infrastructure now! Once again, by living dangerously (not recommended\
+  \ in production), we can auto-approve our `apply` command:\n\n```\n```shell\n$ terraform\
+  \ apply --auto-approve\n```\n```\n\nOK; let's now look at what we are building.\
+  \ Within the definition of the security groups within the `main.tf` file, we did\
+  \ make a slight modification to include access to port 8501. This is the port that\
+  \ Consul is using for secure communication:\n\n```\n```hcl\ningress {\n    from_port\
+  \   = 8501\n    to_port     = 8501\n    protocol    = \"tcp\"\n    cidr_blocks =\
+  \ [\"0.0.0.0/0\"]\n}\n```\n```\n\nThe majority of the changes, however, are where\
+  \ we are creating our AWS server instances. The big difference here is that we are\
+  \ pushing our private and public keys for each server out to the system. Please\
+  \ note that I'm using very generic certificates that were created by Consul. In\
+  \ most instances, you'll want to use specific certificates for your environment.\
+  \ As the process of creating and distributing the certificates may cause even the\
+  \ most stable person to lose their mind, I've done a lot of that for you. If you\
+  \ wish to follow the process of creating the certificates, the following command\
+  \ must be run for every server. These commands are simply for informative purposes\
+  \ as certificates have already been embedded in the infrastructure:\n\n```\n```shell\n\
+  consul tls cert create\n```\n```\n\nYou can use this command to create server and\
+  \ client certificates, and even a certificate for the CLI to access the Consul system.\
+  \ They would all use the same CA file that is also produced by the command. The\
+  \ output would be as follows:\n\n```\n```text\nconsul tls cert create -server\n\
+  ==> WARNING: Server Certificates grants authority to become a\n    server and access\
+  \ all state in the cluster including root\nkeys\n```\n\n```\nand all ACL tokens.\
+  \ Do not distribute them to production hosts\nthat are not server nodes. Store them\
+  \ as securely as CA keys.\n==> Using consul-ca.pem and consul-ca-key.pem\n==> Saved\
+  \ dc1-server-consul-0.pem\n==> Saved dc1-server-consul-0-key.pem\n```\n\nThis command\
+  \ would need to be executed for each of the three servers in the server cluster,\
+  \ and the files would need to be transferred over. For simplicity's sake, I've created\
+  \ the certificates ahead of time and placed them in their proper positions. A big\
+  \ part of the changes that have been made to the Terraform script in the `main.tf`\
+  \ file is due to the placement of these files. It can't be stressed enough that\
+  \ in a production environment, you should be using certificates provided by your\
+  \ security team (or through automation with HashiCorp's Vault):\n\n```\nmain.tfresource\
+  \ aws_instance \"consul-server\" {\n  count                       = 3\n  ami   \
+  \                      = data.aws_ami.an_image.id\n  instance_type             \
+  \  = var.instance_type\n  key_name                    = aws_key_pair.consul_key.key_name\n\
+  \  associate_public_ip_address = true\n  subnet_id                   = aws_subnet.consul-demo.id\n\
+  \  vpc_security_group_ids      = [aws_security_group.consul-demo.id]\n  iam_instance_profile\
+  \        = aws_iam_instance_profile.instance_profile.name\n  user_data = templatefile(\"\
+  files/server_template.tpl\", {\n    server_name   = \"${var.owner}-consul-server-instance\"\
+  ,\n    server_number = count.index})\n  tags = {\n    Name     = \"${var.owner}-consul-server-instance\"\
+  \n    Owner    = var.owner\n    Instance = \"${var.owner}-consul-server-instance-${count.index}\"\
+  \n  }\n  provisioner \"file\" {\n    source      = \"files/dc1-server-consul-${count.index}.pem\"\
+  \n    destination = \"/tmp/dc1-server-consul-${count.index}.pem\"\n```\n\n\n\n\n\
+  \n```\n```hcl\n}\nprovisioner \"file\" {\n  source      = \"files/dc1-server-consul-${count.index}-key.pem\"\
+  \n  destination = \"/tmp/dc1-server-consul-${count.index}-key.pem\"\n}\nprovisioner\
+  \ \"file\" {\n  source      = \"files/server_acl.hcl\"\n  destination = \"/tmp/server_acl.hcl\"\
+  \n}\nprovisioner \"remote-exec\" {\n  inline = [\n    \"sudo mv /tmp/*.pem /etc/consul/consul.d/\"\
+  \n  ]\n}\nconnection {\n  type        = \"ssh\"\n  user        = \"ubuntu\"\n  private_key\
+  \ = local_file.private_key.content\n  host        = self.public_ip\n}\n}\n```\n\
+  ```\n\n需要关注的主要点是 `user_data` 脚本中的细微变化。与其简单地通过配置传递服务器名称，我们还包含了索引。这是因为我们用于证书的文件都遵循相同的命名结构，并且索引嵌入在文件名中。这些文件都可见于\
+  \ `files` 文件夹（`$github_root/ch3/files`）：\n\n- `files/consul-agent-ca-key.pem`\n\
+  - `files/consul-agent-ca.pem`\n- `files/dc1-server-consul-0-key.pem`\n- `files/dc1-server-consul-0.pem`\n\
+  - `files/dc1-server-consul-1-key.pem`\n- `files/dc1-server-consul-1.pem`\n- `files/dc1-server-consul-2-key.pem`\n\
+  - `files/dc1-server-consul-2.pem`\n\n`consul-agent-ca-key.pem` 文件是 CA 的私钥（Consul\
+  \ 是我们的 CA）。公共 CA 文件 `consul-agent-ca.pem` 已作为镜像构建过程的一部分推送到所有机器。通过在 `aws_instance`\
+  \ 资源中使用 provisioner，我们将剩余文件传输到三个服务器（0、1 和 2）中的每一个，并将它们放置在 `/etc/consul/consul.d/`\
+  \ 目录中。\n\n利用文件 provisioner，我们还在服务器上添加了一个 ACL 配置文件。这只是为了帮助我们在开始使用 ACL 时使用。当我们配置客户端时，我们必须做一些小的更改。首先，我们必须将一个新的配置文件移动到客户端以帮助\
+  \ ACL 配置。我们还将 CA 文件添加到配置中：\n\n```\n```hcl\nresource null_resource \"provisioning-clients\"\
+  \ {\n  for_each = { for client in aws_instance.consul-client :\n  client.tags.Name\
+  \ => client }\n  provisioner \"file\" {\n    source      = \"files/httpd.json\"\n\
+  \    destination = \"/tmp/httpd.json\"\n  }\n  provisioner \"file\" {\n    source\
+  \      = \"files/client_acl.hcl\"\n    destination = \"/tmp/client_acl.hcl\"\n \
+  \ }\n  provisioner \"remote-exec\" {\n    inline = [\n      \"sudo cat << EOF >\
+  \ /tmp/consul-client.hcl\",\n      \"advertise_addr = \\\"${each.value.public_ip}\\\
+  \"\",\n      \"server = false\",\n      \"enable_script_checks = true\",\n     \
+  \ \"bind_addr = \\\"${each.value.private_ip}\\\"\",\n      \"retry_join = [\\\"\
+  ${aws_instance.consul-server[0].public_ip}\\\",\\\"${aws_instance.consul-server[1].public_ip}\\\
+  \",\\\"${aws_instance.consul-server[2].public_ip}\\\"]\",\n      \"client_addr =\
+  \ \\\"${each.value.private_ip}\\\"\",\n      \"ca_file = \\\"/etc/consul/consul.d/consul-agent-ca.pem\\\
+  \"\",\n      \"verify_incoming = true\",\n      \"verify_outgoing = true\",\n  \
+  \    \"verify_server_hostname = true\",\n      \"auto_encrypt = {\"\n```\n```\n\n\
+  ```\n```hcl\n  \" tls = true\",\n  \"}\",\n  \"EOF\",\n  \"sudo mv /tmp/consul-client.hcl\
+  \ /etc/consul/consul.d/consul-client.hcl\",\n  \"sudo mv /tmp/httpd.json /etc/consul/consul.d/httpd.json\"\
+  ,\n  \"nohup python3 -m http.server 8080 &\",\n  \"sleep 60\"\n]\n}\nprovisioner\
+  \ \"remote-exec\" {\n  inline = [\n    \"sudo systemctl start consul\",\n  ]\n}\n\
+  connection {\n  type        = \"ssh\"\n  user        = \"ubuntu\"\n  private_key\
+  \ = local_file.private_key.content\n  // private_key = file(\"~/hashicorp/aws/rjackson-east2.pem\"\
+  )\n  host        = each.value.public_ip\n}\n}\n```\n\n```\n\n除了将 CA 文件添加到配置中之外，我们还添加了一些其他参数：\n\
+  \n```\n```hcl\n\"verify_incoming = true\",\n\"verify_outgoing = true\",\n\"verify_server_hostname\
+  \ = true\",\n\"auto_encrypt = {\",\n\"  tls = true\",\n\"}\",\n```\n```\n\n```\n\
+  ```\n}\nconnect {\n  enabled = true\n}\nEOF\nsudo systemctl start consul\n```\n\
+  ```\n\n与客户端类似，我们将验证参数设置为确保使用证书文件验证接收的消息以及发送的消息。那些文件在接下来的几行中配置，但请注意，与客户端不同，我们为每个服务器配置了私钥和公钥。服务器集群必须以安全的方式配置和创建，然后才能使用\
+  \ auto_encrypt 配置启用向客户端分发证书。我想指出配置的端口。在此配置中，我们将端口 8500 配置为 HTTP，这就是我们在 *第 2 章，架构\
+  \ – 它是如何工作的？* 中使用的方法。然而，我们还具有 HTTPS 配置，端口 8501 专门用于与 Consul 集群的 TLS 通信。因此，如果你禁用\
+  \ HTTP（将 `http = -1` 设置），你将通过阻止任何未加密的 HTTP 流量来保护你的 Consul 系统。如果你想看看未认证的网页浏览器尝试与\
+  \ Consul 通信时会是什么样子，假设 Consul 系统正在运行，将你的网页浏览器指向 Terraform 输出中提供的 `CONSUL_HTTPS_ADDR`\
+  \ 参数之一。你会看到类似以下内容：\n\n![](img/52479dafaefba00517c48a137e037b7e_105_0.png)\n\n图 3.8\
+  \ – 未授权的 HTTP 访问\n\n## 保持安全、愚蠢，并保护你的集群！\n\n如果你检查证书，你会看到它是由 Consul CA 签发的并且不受信任。这是因为证书没有由官方\
+  \ CA 签名；它仅由 Consul 本身签名。\n\n![](img/52479dafaefba00517c48a137e037b7e_106_0.png)\n\
+  \n图 3.9 – 用于 HTTP 通信的证书\n\n值得庆幸的是，我们仍然打开了端口 8500，以便无阻碍地与服务器集群通信。\n\n但等等，还有更多！你还记得我们说过保护通信主要有两条路径吗？一条是通过相互\
+  \ TLS，使用证书进行 RPC 通信。那我们所有服务器的 gossip 呢？没错，我们也必须保护它，但不用担心，这要容易得多，而且像证书一样，我已经提前为你设置好了。\n\
+  \n如果你查看 `consul-common.hcl` 文件，你会看到一个额外的行，其中包含一个简单的参数 `encrypt`。该文件已作为使用 Packer\
+  \ 的镜像构建过程的一部分放置在所有服务器上：\n\n```\nlog_file = \"/etc/consul/logs/\"\nlog_level = \"\
+  DEBUG\"\nencrypt = \"86753098Qr2LsXLcfD+Y+S6RUuzUZsY1ZxdAj5E9c=\"\nencrypt_verify_incoming\
+  \ = true\nencrypt_verify_outgoing = true\n```\n\n这个值并不是我凭空编造的——好吧，不完全是。通过使用 `consul\
+  \ keygen` 命令，你可以生成一个加密密钥，然后用于加密节点之间的 gossip。由于该参数位于 `common` 配置中，所有节点都使用相同的密钥。我们还确保每个代理都在加密其流量（`encrypt_verify_outgoing`）并且只接受已加密的流量（`encrypt_verify_incoming`）。如果你想更新此加密密钥（强烈建议），你可以使用\
+  \ `consul keyring` 命令。\n\n此时，你已经拥有一个完全设置好的 Consul 集群，所有节点之间运行受保护的消息，既用于 RPC 通信，也用于\
+  \ gossip 通信。如我之前所述，将证书和加密参数作为构建的一部分包含在内的决定是为了简化流程。根据我的经验，创建和分发证书的过程具有挑战性，如果你没有机器的官方注册域名则更具挑战性。此过程应由你的安全团队完成，因此在设计\
+  \ Consul 机器之间的安全通信时，请务必让他们参与其中。\n\n## 让我们玩玩一些 ACL！\n\n现在我们的集群已经启动并运行，让我们开始玩一些 ACL。我不想在构建过程中启用\
+  \ ACL，仅仅因为没有令牌，我们将无法访问我们的 Consul 系统！我还想让你看到系统在默认拒绝策略下是如何被锁定的，然后我们再慢慢打开它。我们在这里将使用\
+  \ SSH 和构建过程中创建的密钥在机器之间频繁跳转。在真实场景中，像我们的构建一样，其中很大一部分，甚至全部，都可以用 Terraform 作为代码执行，所以如果你觉得这个过程很痛苦，你可能想接下来读一本\
+  \ Terraform 书籍。\n\n\n\n\n我们需要做的第一件事是修改服务器配置以启用 ACL。文件的结构已经放置在服务器上，所以我们只需要把它放到正确的位置，然后就可以开始操作了。现在，我们需要在集群中的**每个**服务器上执行这些操作，因为如果你只在一台服务器上启用了\
+  \ ACL，你可能会出现狗和猫和谐共处的局面，而我们绝对不能允许这种情况发生！\n\n如果你仍然能看到你的 Terraform 输出，那太好了——请务必将它们复制到一个临时文本文件中以便使用。那里有很多有用的信息。如果你是。\n\
+  \n*现在我们有了这个神级令牌，我们需要保存它！无论你把客户端和服务器的 IP 地址复制到哪里，也把这个 bootstrap 令牌复制到那里。* 你永远不知道什么时候需要这种级别的访问权限。然而，我们确实需要为我们的服务器创建一个更合理的令牌。再次强调，我们不希望那个\
+  \ root 令牌到处乱飞，虽然我们可以做到非常精细的控制，但我们现在只是设置一下，让我们熟悉使用 ACL 并了解一些相关知识。\n\n所以，我们的第一个目标是为我们的服务器创建一个包含两个简单规则的新策略。我们需要对节点和服务具有写访问权限。作为此过程的一部分，我们需要创建策略文件，这可以通过文本编辑器完成，也可以通过使用以下命令完成：\n\
+  \n```sh\ncat > first-policy.hcl << EOF\nnode_prefix \"\" {\n    policy = \"write\"\
+  \n}\nservice_prefix \"\" {\n    policy = \"read\"\n}\nEOF\n```\n\n如果你能够正确地复制粘贴（或者如果你使用的是纸质书籍，输入正确），文件应该如下所示：\n\
+  \n```hcl\nnode_prefix \"\" {\n    policy = \"write\"\n}\nservice_prefix \"\" {\n\
+  \    policy = \"read\"\n}\n```\n\n根据我们的专业知识，我们知道这允许节点写入所有节点级操作，并且能够读取所有服务级信息。使用此文件，我们将在\
+  \ Consul 中创建一个策略。这可以通过以下命令完成：\n\n```sh\n$ consul acl policy create -name \"first-token\"\
+  \ -description\n\"Server Token Policy\" -rules @first-policy.hcl\n```\n\n此命令的输出应包含所有策略信息：\n\
+  \n```\nID:            c034c84d-f4f6-6bb6-4e96-8fc9a4d7dbae\nName:          first-token\n\
+  Description:   Server Token Policy\nDatacenters:\nRules:\nnode_prefix \"\" {\n \
+  \   policy = \"write\"\n```\n\n请务必再次在三个服务器上重启 Consul，这样所有服务器节点就可以使用它们的新令牌了！\n\n\
+  现在我们的服务器节点已经设置好了，让我们看看客户端节点会发生什么。我们网络中有五个客户端节点，当你运行 `consul members` 时，它们仍然都在。这只是因为服务器正在维护与这些机器的连接。一旦这些机器上的\
+  \ Consul 服务被重启，该节点将不再能够在服务器集群上注册自己。如果你不相信我，试试看！\n\n你还记得我让你保存的那份 IP 地址列表吗？我希望你能随手拿到，因为我们需要它来访问客户端。让我们打开一个新的终端标签页或窗口，并\
+  \ SSH 到其中一个客户端。任何客户端都可以，所以从列表中随便挑一个。我喜欢挑一个有特殊数字的：\n\n```bash\n$ ssh -i rjackson-consul-key.pem\
+  \ ubuntu@3.142.52.65\n```\n\n查看服务器的主机名。它就在命令行里：\n\n```bash\nubuntu@ip-192-168-100-77:~$\n\
+  ```\n\n在你的服务器上，再次运行那个 `consul members` 命令并查找该主机。它应该在那里，但它即将被禁止进入你的 Consul 世界！重启该客户端代理：\n\
+  \n```bash\n$ sudo systemctl restart consul\n```\n\n等一分钟左右，然后在服务器上再次检查 `consul members`\
+  \ 输出。你会看到该代理已离开集群，但它仍然在那里！它可能在，但它不再被授权加入集群：\n\n```text\nip-192-168-100-77   3.142.52.65:8301\
+  \    left     client  1.9.0\n2                  dc1  <default>\n```\n\n你觉得那个客户端节点上发生了什么？我们可以通过检查其状态来获得提示。在该客户端节点上执行以下命令：\n\
+  \n```bash\n$ sudo systemctl status consul\n```\n\n\n\n\n\n在输出中，你会看到代理正在运行，但你也会看到一些错误：\n\
+  \n```\nconsul.service - Consul server agent\n    Loaded: loaded (/etc/systemd/system/consul.service;\
+  \ disabled; vendor preset: enabled)\n    Active: active (running) since Sat 2021-04-03\
+  \ 23:37:57 UTC; 3min 57s ago\n    Process: 2990 ExecStartPre=/bin/chown -R consul:consul\
+  \ /var/run/consul (code=exited, status=0/SUCCESS)\n    Process: 2979 ExecStartPre=/bin/mkdir\
+  \ -p /var/run/consul (code=exited, status=0/SUCCESS)\n    Main PID: 2991 (consul)\n\
+  \    Tasks: 7 (limit: 2347)\n    CGroup: /system.slice/consul.service\n        \
+  \    └─2991 /usr/local/bin/consul agent -config-dir=/etc/consul/consul.d/ -data-dir=/var/lib/consul/\
+  \ -pid-file=/var/run/consul/consu\n\nApr 03 23:39:04 ip-192-168-100-77 consul[2991]:\n\
+  2021-04-03T23:39:04.935Z [DEBUG] agent.auto_config: making AutoEncrypt.Sign RPC:\
+  \ addr=\nApr 03 23:39:04 ip-192-168-100-77 consul[2991]:\n2021-04-03T23:39:04.943Z\
+  \ [ERROR] agent.auto_config: AutoEncrypt.Sign RPC failed: addr=\nApr 03 23:39:04\
+  \ ip-192-168-100-77 consul[2991]:\n2021-04-03T23:39:04.944Z [ERROR] agent.auto_config:\
+  \ No servers successfully responded\n```\n\n哦！RPC 失败了，而且没有服务器成功响应！你觉得这是为什么？如果你猜到了\
+  \ ACL，那么你真的开始从这本书中学习了。我想我的英语也没那么糟糕！\n\n现在我们已经排斥了我们的客户端节点，我们需要帮助它重新回到服务器家族中。你可以用全部五个客户端来做这件事，如果你愿意的话，但在这一点上，操作一个客户端就足够了。正如你可能还记得的那样，部分配置过程包括将一个\
+  \ client_acl.hcl 文件移动到客户端，类似于我们对服务器所做的那样。让我们把那个客户端文件移动到正确的目录：\n\n```\n$ sudo mv\
+  \ /tmp/client_acl.hcl /etc/consul/consul.d/\n```\n\n如果我们查看那个文件，我们会看到它几乎与我们放置的服务器文件相同。只有一个东西缺失——合适的令牌：\n\
+  \n```\nacl = {\n    enabled = true\n    default_policy = \"deny\"\n    enable_token_persistence\
+  \ = true\n    tokens {\n        \"default\" = \"\"\n    }\n}\n```\n\n所以，在我们再次重启那个客户端节点之前，为什么不为该节点创建一个新的策略和令牌呢？这个策略会更具体一些。要创建这些项目，我们需要回到我们之前使用的\
+  \ Consul 服务器。如果你不再在环境中拥有 bootstrap 令牌，你将需要它再次。你可以通过查看环境变量来检查这一点：\n\n```\n$ env |\
+  \ grep CONSUL\n```\n\n输出应包含你正在操作的服务器的 Consul 地址，以及它的 HTTP 令牌：\n\n```\nCONSUL_HTTP_TOKEN=34e87e9d-2207-f2eb-7efc-d41674eca6f0\n\
+  CONSUL_HTTP_ADDR=http://192.168.100.146:8500\n```\n\n如果你有这两个值，并且它们是正确的，那么我们可以继续。\n\
+  \n我们将为此节点创建一个特定的策略。我正在操作的客户端节点的 hostname 为 ip-192-168-100-77。我要创建的策略规则将启用节点级和代理级的写操作，但仅限于该节点。让我们先创建该策略文件，类似于我们之前为服务器所做的那样：\n\
+  \n```\n$ cat > client-policy.hcl << EOF\nnode \"ip-192-168-100-77\" {\n    policy\
+  \ = \"write\"\n}\nagent \"ip-192-168-100-77\" {\n    policy = \"write\"\n}\nEOF\n\
+  ```\n\n生成的文件应该看起来类似这样，但我这里的节点 `ip-192-168-100-77`，你应该用你的客户端节点的 hostname 代替。现在，我们必须用这个文件创建策略：\n\
+  \n```\n$ consul acl policy create -name \"client-token\" -description \"Client ip-192-168-100-77\
+  \ Token Policy\" -rules @client-policy.hcl\n```\n\n此命令的输出应包含所有策略信息：\n\n```\nID:\
+  \                a1fb3a7c-2a42-613d-4586-5dadfb422022\nName:              client-token\n\
+  Description:       Client ip-192-168-100-77 Token Policy\nDatacenters:\nRules:\n\
+  node \"ip-192-168-100-77\" {\n    policy = \"write\"\n}\nagent \"ip-192-168-100-77\"\
+  \ {\n    policy = \"write\"\n}\n```\n\n正如我们之前所做的那样，我们现在必须为该策略创建一个新的令牌。要创建此令牌，我们将执行以下命令：\n\
+  \n```\n$ consul acl token create -description \"ip-192-168-100-77 Token\" -policy-name\
+  \ \"client-token\"\n```\n\n该命令的输出如下：\n\n```\nAccessorID:          b0b8cee4-8efd-62d2-e22c-fc84a0dc3c92\n\
+  SecretID:            776f0c07-6352-8d2f-8fc7-23f94cbafd74\nDescription:        \
+  \ ip-192-168-100-77 Token\nLocal:               false\nCreate Time:         2021-04-04\
+  \ 00:02:08.863705384 +0000 UTC\nPolicies:\n    a1fb3a7c-2a42-613d-4586-5dadfb422022\
+  \ - client-token\n```\n\n我们现在有一个新的 Secret ID 值，可以将其放在 client_acl.hcl 中。如果我们使用 Terraform\
+  \ 和 Vault，这不就容易多了吗？\n\n回到你登录正在操作的客户端的标签页，编辑 client_acl.hcl 文件以插入你的新令牌：\n\n```\n\
+  $ sudo vim /etc/consul/consul.d/client_acl.hcl\n```\n\n文件应该看起来像这样——当然是用你的令牌，而不是我的！\n\
+  \n```\nacl = {\n    enabled = true\n    default_policy = \"deny\"\n    enable_token_persistence\
+  \ = true\n    tokens {\n        \"default\" = \"776f0c07-6352-8d2f-8fc7-23f94cbafd74\"\
+  \n    }\n}\n```\n\n好的；我们有配置和令牌。你准备好现在重启那个 Consul 服务了吗？我知道我准备好了！\n\n```\n$ sudo systemctl\
+  \ restart consul\n```\n\n你可以在客户端节点上再次检查状态，或者如果你更兴奋，可以回到你的服务器节点并运行另一个 consul members。你能看到你一直在操作的节点吗？我非常希望如此！\n\
+  \n正如你可能还记得的那样，所有这些节点都同时运行着 Consul 服务以及在我们设置系统时部署的 HTTPD 服务。让我们检查一下这些服务是否已在该节点上注册。我们可以通过命令行在服务器节点上使用以下命令来完成此操作：\n\
+  \n```\n$ consul catalog services -node=ip-192-168-100-77\n```\n\n> Note\n> 如果你运行这样的命令并最终出现\
+  \ ACL 错误，你可能不在环境变量中拥有 bootstrap 令牌的服务器节点上。\n\n这非常具体到我们的节点，以及在我们的客户端节点上运行的两个服务——正如应该的那样。\n\
+  \n让我们用新的规则更新我们的 client-token 策略：\n\n```\n$ consul acl policy update -name \"client-token\"\
+  \ -rules=@client-policy.hcl\n```\n\n输出应确认你的新服务规则已写入策略：\n\n```\nID:           a1fb3a7c-2a42-613d-4586-5dadfb422022\n\
+  Name:         client-token\nDescription:  Client ip-192-168-100-77 Token Policy\n\
+  Datacenters:\nRules:\nnode \"ip-192-168-100-77\" {\n    policy = \"write\"\n}\n\
+  agent \"ip-192-168-100-77\" {\n    policy = \"write\"\n}\nservice \"httpd\" {\n\
+  \    policy = \"write\"\n}\n```\n\n太好了！我们在服务器节点上更新了策略，而从未返回客户端。这里是最终测试；你的 httpd\
+  \ 服务现在是否显示在该节点的目录中？运行以下命令来找出答案：\n\n```\n$ consul catalog services -node=ip-192-168-100-77\n\
+  ```\n\n你应该在输出中看到 httpd 服务列出。如果是这样，就站起来向世界大喊，我已经掌握了 Consul 访问控制列表！好吧，掌握可能有点夸张，但你应该为自己在这里取得的成就感到非常自豪！\n\
+  \n## Summary\n\n哇——又一个很长的章节！我不知道你怎么样，但我真的筋疲力尽了！虽然这是一本*入门*书，但使用 TLS 证书进行安全通信的概念并不是家庭晚餐的轻松话题。然而，由于\
+  \ Consul 是网络的关键服务，它维护应用程序和服务信息，因此对节点进行身份验证并加密其通信路径的必要性不言而喻。此外，Consul ACLs 提供了如此多的灵活性，以至于它们可能非常令人不知所措。然而，它们的强大功能和控制应该是任何生产环境中的核心组件。我强烈建议你继续操作其他客户端节点，为它们创建一些新的策略和令牌，看看你能管理什么。如果你担心搞坏东西，不用担心。你始终可以使用\
+  \ Terraform 来销毁和重建基础设施。说到这个，别忘了销毁你今天构建的东西……我们不想月底收到 AWS 账单而苦恼！一旦你销毁了基础设施，放松一下，喝点饮料。下一章会轻松一些，我保证。那里，我们将讨论如何将\
+  \ Consul 扩展到多个数据中心并连接集群。我们快到一半了！\n\n\n\n\n"
+- "# 4\n数据中心（非贸易）联合\n\n我很高兴地告诉你（和我自己），在经历了关于 Consul 安全性的那章颇具挑战性的内容之后，我们关于扩展 Consul\
+  \ 集群的讨论将会轻松得多。事实上，由于我们将在本节中讨论的许多功能都是 Consul Enterprise 特有的，因此不会有什么练习！\n\n在前几章中，我们主要关注于设置和保护我们的\
+  \ Consul 集群。然而，由于 Consul 是在企业环境中实施的，我们希望了解如何扩展 Consul 系统本身，并将 Consul 功能扩展到多个数据中心或区域。为了理解\
+  \ Consul 的扩展，我们将回顾以下主题：\n\n-   规模扩展——不，我们不会讨论爬行动物或音乐上的音阶，而是讨论如何扩展 Consul 系统。我们在前面的章节中已经看到，增加服务器集群会如何对达成共识所需的时间产生负面影响。那么，当我们增加客户端数量时，如何确保我们有足够的服务器结构来管理集群？我们又如何在如此庞大的系统中管理升级？\n\
+  -   细分——在了解了如何将 Consul 扩展到不同区域并管理这种扩展规模之后，我们将研究如何最佳利用这种扩展后的系统。这一操作的主要结果是，在企业环境中提供自治的\
+  \ Consul 系统，同时不放弃集中控制。\n-   联合——在这个全球化的世界中，服务很少只存在于一个区域或数据中心。在本节中，我们将了解如何跨多个区域连接服务器集群，以确保我们的服务无论位于何处都能通信。\n\
+  \n虽然我们不会直接应用本章学到的知识，但我将提供代码示例，以帮助进一步解释这些概念的实现。那么，让我们开始练习我们的“音阶”吧！\n\n## 保护与规模扩展\n\
+  \n尽管 Consul 代理可以与外部节点上的服务协同工作，但最佳实践（以及最大的灵活性）建议在运行所连接服务的节点上共同驻留一个 Consul 代理。在许多企业中，Consul\
+  \ 连接着成千上万（甚至更多）的服务，这意味着 Consul 集群拥有数千或数万个节点。当然，我们不希望只有三到五个服务器节点来管理这样一个规模的集群，所以让我们从扩展\
+  \ Consul 服务器集群开始。\n\n正如我们在第 2 章“架构——它是如何工作的？”中所了解到的，对于共识池的大小而言，越大并不总是越好。我们需要至少三台服务器才能获得法定人数，但随着服务器数量的增加，该池选举领导者所需的时间将大大延长。为了解决这个问题，Consul\
+  \ 提供了将 Consul 服务器代理配置为只读副本的能力。当设置此标志时，该代理不参与任何法定人数选举，但它仍然有助于处理节点和服务注册，就像集群中的任何其他服务器一样。\n\
+  \n![](img/52479dafaefba00517c48a137e037b7e_122_0.png)\n\n图 4.1 – 只读副本服务器\n\n使用前面的示例，让我们再次查看我们的服务器集群。我们最初将\
+  \ Bart、Lisa 和 Maggie 作为三个主要的 Consul 服务器节点。我们能够快速达成共识，但随着斯普林菲尔德的成长，我们需要开始用更多服务扩展我们的\
+  \ Consul 网络。因此，我们最终向集群中添加了三台服务器：Hugo、Marge 和 Homer。为了确保 Hugo、Marge 或 Homer 都无法投票选举服务器集群领导者，它们通过配置中的布尔参数被指定为只读副本：\n\
+  \n```\nserver = true\nbootstrap_expect = 3\nretry_join = [\"provider=aws tag_key=Name\
+  \ tag_value=${server_name_tag}\"]\nbind_addr = \"$(curl -s http://169.254.169.254/latest/meta-data/local-ipv4)\"\
+  \nadvertise_addr = \"$(curl -s http://169.254.169.254/latest/meta-data/public-ipv4)\"\
+  \nclient_addr = \"$(curl -s http://169.254.169.254/latest/meta-data/local-ipv4)\"\
+  \nui = true\nread_replica = false\n```\n\n当我们将此值设置为 `true` 时，Consul 会将该节点视为只读副本节点，并在\
+  \ `consul operator raft list-peers` 命令的输出中反映该配置：\n\n![](img/52479dafaefba00517c48a137e037b7e_123_0.png)\n\
+  \n图 4.2 – Raft 对等节点列表\n\n## Consul Autopilot\n\nConsul Autopilot 本身是一个开源功能；然而，它主要在后台运行。事实上，你已经在使用\
+  \ Autopilot 了！Consul 服务器在创建和维护法定人数方面的许多功能都是由 Autopilot 执行的。让我们来看一下 Autopilot 的配置参数，以理解为什么它是一个如此有用的小引擎。\n\
+  \n要查看集群中默认存在哪些配置，只需运行以下命令：\n\n```\n```bash\n# consul operator autopilot get-config\n\
+  ```\n```\n\n假设你使用的是相同的 Consul 版本，输出应该与以下内容相同，因为这些是默认参数：\n\n```\n```text\nCleanupDeadServers\
+  \ = true\nLastContactThreshold = 200ms\nMaxTrailingLogs = 250\nMinQuorum = 0\nServerStabilizationTime\
+  \ = 10s\nRedundancyZoneTag = \"\"\nDisableUpgradeMigration = false\nUpgradeVersionTag\
+  \ = \"\"\n```\n```\n\n在大多数情况下，这些默认参数就足够了，但如果你需要或想要更改它们，最好了解它们控制的内容：\n\n- `CleanupDeadServers`\
+  \ – 在服务器故障不可避免的情况下，你会希望尽快替换该故障服务器。这可以通过手动流程或某种自动化方法来完成。然而，在 Consul 成员列表中，如果一台故障服务器在离开前没有“道别”，它可能会在列表中停留一段时间。这可能会围绕服务器法定人数和领导者选举造成一些混乱。将该值设置为\
+  \ `true` 后，Consul 会在有新的服务器可用并接管时，立即从服务器集群中移除任何故障服务器。\n- `LastContactThreshold` –\
+  \ 正如名称所示，如果领导者在此时段内未收到某个特定服务器节点的消息，领导者将假定该节点已故障。\n- **MaxTrailingLogs** – 回想一下，数据是通过日志在\
+  \ Consul 服务器节点之间同步的，这些日志指示服务目录状态以及其他有用信息。领导者维护这些日志并将其分发给对等节点，但如果某个节点落后太多会怎样？此参数指示服务器与领导者之间允许落后的程度，以日志条目（而非日志）的数量来定义，超过该数量后节点将被视为不健康。\n\
+  - **MinQuorum** – 该值定义了在 Autopilot 可以开始修剪已被标记为死亡或不健康的服务器之前，集群中必须存在的最少服务器数量。这直接对应于清理死服务器的参数。\n\
+  - **ServerStabilizationTime** – 我们都需要一些时间才能被视为社会中稳定且有价值的成员。我的治疗师仍在试图弄清楚我需要的时间；然而，我们的集群服务器节点比人脑可预测得多。该值指示集群领导者在将集群中的新成员视为健康之前应等待多长时间。\n\
+  \n在这五个参数的基础上，为企业系统添加了三个参数：\n\n- **RedundancyZoneTag** – 每台服务器都可以配置元数据，以帮助执行任意数量的操作。其中一项操作是定义该服务器所在的冗余区域。此参数指示使用哪个标签进行该指定。\n\
+  - **DisableUpgradeMigration** – 此布尔参数直接影响 Consul 在升级过程中的表现。不过，我们不会在本书中讨论升级 Consul；升级任何分布式系统（如\
+  \ Consul）都应由单个节点的滚动更新组成。这消除了对整个集群进行下线、升级所有节点然后一次性全部重新启动（这会导致相当严重的服务中断）的需要。使用 Consul\
+  \ 时，当我们开始升级服务器时，一旦有足够多的服务器运行新版本以支持法定人数，Autopilot 就会开始将它们提升为投票者。如果我们将此值设置为 `true`，Autopilot\
+  \ 将不会自动将新服务器提升为投票者。\n\n\n\n\n+   - UpgradeVersionTag – 如果你想要手动覆盖某个 Consul agent\
+  \ 的版本，例如在集群中调整配置参数时，该参数定义了要用什么元数据来指示服务器版本。若未设置此值，Autopilot 只会查看 Consul 软件自身报告的版本。\n\
+  \n我们不打算真正去修改这些参数，除了 RedundancyZoneTag。这也将帮助我们理解 Consul agent 配置中元数据的用法。那么，让我们看一下为服务器节点配置了元数据和冗余区域的新配置：\n\
+  \n## 配置了冗余区域的 Consul 服务器配置\n\n```\nserver = true\nbootstrap_expect = 3\nretry_join\
+  \ = [\"provider=aws tag_key=Name tag_value=rjackson-consul-server-instance\"]\n\
+  bind_addr = \"192.168.100.20\"\nadvertise_addr = \"3.17.154.23\"\nclient_addr =\
+  \ \"192.168.100.20\"\nui = true\nread_replica = false\nnode_meta {\n    stooge =\
+  \ \"moe\"\n}\nautopilot {\n    redundancy_zone_tag = \"stooge\"\n}\n```\n\n这里我们有两个新的配置块，一个是\
+  \ node_meta，另一个是 autopilot。这些块中输入的内容并不多，但这就是设置冗余区域所需的全部内容。首先，我为每个节点定义了一些元数据。我将该元数据的键命名为\
+  \ stooge，值可以是 moe、larry 或 curly，用来表示我如何对服务器进行分组。如果元数据能根据你自己的网络结构指示实际区域，那也不错，但我使用\
+  \ stooge 参数是为了好玩，并展示这些键实际上几乎可以是任何内容。我们可以在 UI 中看到为每个节点配置的元数据，如下图所示：\n\n![](img/52479dafaefba00517c48a137e037b7e_128_0.png)\n\
+  \n图 4.4 – Consul agent 元数据\n\n你还可以根据元数据过滤 CLI 的输出：\n\n```\n# consul catalog nodes\
+  \ -node-meta=stooge=moe\n```\n\n| 节点 | ID | 地址 | DC |\n|---|---|---|---|\n| ip-192-168-100-20\
+  \ | 8a1da666 | 3.17.154.23 | dc1 |\n| ip-192-168-100-74 | d80b81de | 3.135.205.26\
+  \ | dc1 |\n\n请注意，在这些配置中，所有服务器的只读副本标志都设置为 false。当我们把某个服务器指定为只读副本时，本质上是在告诉 Consul：我们将自行管理只读副本的存在，不需要\
+  \ Autopilot 替我们管理。当我们使用冗余区域时，Autopilot 会确保每个冗余区域中至少有一个投票成员。加入特定区域的任何额外服务器将自动被识别为只读副本。为了让你看到实际效果，我想提供来自测试系统的新示意图，其中包含适当的服务器名称和相关元数据：\n\
+  \n## 图 4.5 – Consul 冗余区域设置\n\n在此图中，顶行是所有的投票成员，第一个节点被选为领导者。我们还可以看到为每个节点配置的元数据。我们还可以通过\
+  \ consul operator raft list-peers 命令查看投票者状态：\n\n```\nNode                ID    \
+  \                             Address            State    Voter  RaftProtocol\n\
+  ip-192-168-100-130  b48c7778-bf22-d37a-d11a-54b4f6368342  18.222.179.118:8300 follower\
+  \ true   3\nip-192-168-100-75   e211c429-9b12-00cf-f15a-2f03a13cdbd2  3.139.238.20:8300\
+  \   follower true   3\nip-192-168-100-20   8a1da666-1df7-74ed-6477-536017fae610\
+  \  3.17.154.23:8300    leader   true   3\nip-192-168-100-74   d80b81de-4acb-ba2e-d23c-fc7a02037163f\
+  \ 3.135.205.26:8300   follower false  3\nip-192-168-100-17   43c87a94-4eb0-ba2c-d4d4-17c4a9532f6a\
+  \  3.142.173.170:8300 follower false  3\nip-192-168-100-4    0babb7ce-a1ed-8be2-7ad4-d0182cc2e0a0\
+  \ 3.16.139.57:8300    follower false  3\n```\n\n## 图 4.6 – Raft 投票者状态\n\n在 Consul\
+  \ 领导者节点 ip-192-168-100-20 上，我将使用 sudo ifconfig eth0 down 命令关闭网络接口，使其失去与集群中其他节点的所有通信。\n\
+  \n> 重要说明\n> 如果你在自己环境中尝试此操作，你将失去与服务器的连接，并且需要通过 AWS 管理控制台重启服务器。\n\n如果我操作正确，节点 ip-192-168-100-74\
+  \ 将从非投票者（voter = false）转换为集群内的投票者。我们的冗余区域配置为基于 stooge 元数据键进行匹配，而 ip-192-168-100-20\
+  \ 和 ip-192-168-100-74 都属于 stooge 类型的 moe：\n\n![](img/52479dafaefba00517c48a137e037b7e_130_0.png)\n\
+  \n图 4.7 – 冗余区域 Autopilot 调整\n\n这个结果同样可以通过 consul operator raft list-peers 命令查看：\n\
+  \n```\nNode                     ID                                   Address   \
+  \         State    Voter  RaftProtocol\nip-192-168-100-130       b48c7778-fb22-d37a-d11a-54b4f6368342\
+  \  18.222.179.118:8300 leader   true   3\nip-192-168-100-75        e21c429-9b12-00cf-f15a-2f03a13cdbd2\
+  \  3.139.238.20:8300   follower false  3\nip-192-168-100-74        d80b1de-a4cb-ba2e-d23c-fc7d2037163f\
+  \  3.135.205.26:8300   follower true   3\nip-192-168-100-4         0babb7ce-aled-8b2e-f4d4-d018cc2e0a0\
+  \  3.16.139.57:8300    follower true   3\nip-192-168-100-17        43c87a94-4eb0-0ac2-da4d-17c4a9532f6a\
+  \  3.142.173.170:8300  follower false  3\n```\n\n图 4.8 – 缩减到五个 Raft 节点\n\n请注意，ip-192-168-100-74\
+  \ 的晋升并不是投票者分配的唯一调整。当 Autopilot 介入并重新调整集群时，主要目标是确保每个冗余区域中有一个投票者。\n\n![](img/52479dafaefba00517c48a137e037b7e_130_1.png)\n\
+  \n图 4.9 – Autopilot 的结果\n\n在本节中，我们了解了如何以可扩展的方式扩展 Consul 服务器集群，同时了解了 Autopilot 如何帮助维护集群自身的某种健康状态。既然我们已经完善了有效扩展\
+  \ Consul 集群的能力，就可以开始向所有同事展示 Consul 的妙处了！毕竟，一旦我们发现并学会使用一个如此强大且有用的产品，难道不想与他人分享这些信息吗？\n\
+  \n## 子分区\n\n利用 **Consul 命名空间** 功能，我们能够有效地将整个 Consul 系统细分为多个迷你系统，每个系统都有自己的自主权。这为更大的企业组织带来了多重好处：\n\
+  \n- 它利用一个集中的团队在企业规模上运营和管理 Consul。这不仅使服务管理方式保持一致，还减少了管理多个独立 Consul 系统的开销。\n- 它使各个团队能够管理和保护自己的应用程序，而无需依赖多层管理和控制。尽管\
+  \ Consul 的集中运营者拥有完全控制权，但可以在一定范围内授予团队自主权，让他们自行管理服务。\n- 拆分 Consul 不仅细分了系统的操作，还细分了服务目录本身。这使组织能够创建与\
+  \ Consul 目录其他方面完全隔离的服务。这不仅增强了服务管理的安全态势，还防止了具有重复服务名称的团队之间相互干扰。\n\n创建命名空间本身只需要一个简单的\
+  \ `write` 命令。另外，我们还将查看已创建的命名空间：\n\n```\n```text\n# consul namespace write shawn.hcl\n\
+  Name: shawn\nDescription:\n    Shawns namespace for his funny antics and visions\n\
+  # consul namespace write gus.hcl\nName: gus\nDescription:\n    Gus' namespace to\
+  \ track his pharmaceutical distribution\n# consul namespace list\ndefault:\n   \
+  \ Description:\n        Builtin Default Namespace\ngus:\n    Description:\n    \
+  \    Gus' namespace to track his pharmaceutical distribution\nshawn:\n    Description:\n\
+  \        Shawns namespace for his funny antics and visions\n```\n```\n\n请注意，有一个默认命名空间值，它将捕获所有未显式关联到某个命名空间的数据。\n\
+  \n现在已经创建了命名空间，我们可以在 Consul UI 中看到它们：\n\n![](img/52479dafaefba00517c48a137e037b7e_133_0.png)\n\
+  \n图 4.11 – 在 Consul UI 中选择命名空间\n\n\n\n\n\n如果我们想要将服务注册到特定命名空间（不是默认命名空间），只需在服务自身的配置中指定所需的命名空间即可。在之前的章节中，我们观察到了一个由\
+  \ Consul 管理的 httpd 服务。我稍微修改了那个 JSON 文件，只是为了表明该服务将在 gus 命名空间中运行。\n\n## httpd.json\
+  \ 服务定义\n\n```\n{\n    \"service\": {\n        \"name\": \"httpd\",\n        \"namespace\"\
+  : \"gus\",\n        \"tags\": [\n            \"python-server\"\n        ],\n   \
+  \     \"port\": 8080,\n        \"check\": {\n            \"args\": [\n         \
+  \       \"curl\",\n                \"localhost:8080\"\n            ],\n        \
+  \    \"interval\": \"10s\"\n        }\n    }\n}\n```\n\n当我们像配置 httpd 服务一样，将服务配置并指定到特定命名空间后，只有该命名空间的成员才能与该服务交互并获取与其关联的信息。接着上面的例子，如果我查询与我的\
+  \ Consul 系统关联的服务，最终只会得到一个服务：\n\n```\n$ consul catalog services\nconsul\n```\n\n\
+  哦，不！我的 `httpd` 服务难道没有在运行吗？我可以向你保证，该服务正在运行，只不过它位于一个独立且不同的命名空间中：\n\n```bash\n$ consul\
+  \ catalog services -namespace gus\nhttpd\n```\n\n现在，能够将这些服务分开会大有帮助；然而，如果我们没有以独特的方式保护这些命名空间，那么我们就没有真正从这些细分中获益。如果想到\
+  \ ACL 工作时的经历让你神经紧张，那么你需要相信你的直觉。当我们开始在 Consul 系统中创建命名空间时，这有点像在构建一个管理层次结构。\n\n如果你还记得，在用\
+  \ ACL 引导系统时，我们需要创建一个引导 ACL 令牌，它赋予我们对整个 Consul 系统的完全管理权限。用一个极其简化的类比，我们可以把这个管理员或管理组看作是\
+  \ Consul 系统的州长。我们称他为**勒佩托曼州长**。凭借以唯一令牌为代表的凭证，他能够为他的辖区制定规则，辖区内所有城镇和社区都必须遵守这些规则。不过，每个城镇仍然保持一定程度的自治。**约翰逊市长**拥有自己的凭证（令牌），能够为\
+  \ Rock Ridge 镇制定自己的规章制度，只要这些规则符合勒佩托曼州长制定的规则。Consul 命名空间结构的管理方式几乎完全相同。\n\n当我们在 Consul\
+  \ 中引导 ACL 功能时，我们会创建一个遵循默认全局管理策略的令牌。利用这个令牌，我们能够创建新的策略和相应的令牌，从而对 Consul 能做的所有事情进行非常细粒度的管理。当我们创建命名空间时，需要为这些操作员提供他们自己的管理策略，但不能让他们对相邻的命名空间行使权力。因此，每个命名空间都有自己的*操作员*级令牌，这些命名空间的管理员可以使用该令牌创建他们自己的策略、规则、服务等等。那么这两个默认策略有何不同？\n\
+  \n> **重要说明**\n>\n> 命名空间允许我们对服务和策略进行细分；但是，Consul 集群节点对所有命名空间都是可见的。\n\n让我们先从为 Shawn\
+  \ 的命名空间创建一个*命名空间管理级*策略开始：\n\n```\nconsul acl token create -namespace shawn -description\
+  \ \"Shawn's Management Token\" -policy-name \"namespace-management\"\n```\n\n现在，我们有了一个分配给\
+  \ shawn 命名空间的默认操作级令牌。利用 Consul CLI，我们可以观察到这两个策略的存在。请注意，为了看到*命名空间管理*策略，我需要包含相应命名空间的标志：\n\
+  \n```\n$ consul acl policy list\nglobal-management:\n  ID:             00000000-0000-0000-0000-000000000001\n\
+  \  Namespace:      default\n  Description:    Builtin Policy that grants unlimited\
+  \ access\n  Datacenters:\n\n$ consul acl policy list -namespace=shawn\nnamespace-management:\n\
+  \  ID:             2226f072-68ae-9082-6d8d-7c9bdb1a987c\n  Namespace:      shawn\n\
+  \  Description:    Default policy that grants all available privileges within a\
+  \ single namespace\n  Datacenters:\n```\n\n利用 consul acl policy read 命令，我可以查看这两个策略的详细信息。同样，对于\
+  \ shawn 命名空间，我需要在命令中包含命名空间标志。图 4.12 提供了策略差异的并排视图：\n\n| global-management | namespace-management\
+  \ |\n|---|---|\n| <pre>ID: 00000000-0000-0000-0000-000000000001&#10;Name: global-management&#10;Namespace:\
+  \ default&#10;Description: Builtin Policy that grants unlimited access&#10;Datacenters:&#10;Rules:</pre>\
+  \ | <pre>ID: 2226f072-68ae-9082-6d8d-7c9bdb1a987c&#10;Name: namespace-management&#10;Namespace:\
+  \ shawn&#10;Description: Default policy that grants all available privileges within\
+  \ a single namespace&#10;Datacenters:</pre> |\n| acl = \"write\" | acl = \"write\"\
+  \ |\n| <pre>agent_prefix \"\" {&#10;  policy = \"write\"&#10;}&#10;event_prefix\
+  \ \"\" {&#10;  policy = \"write\"&#10;}</pre> | |\n| <pre>key_prefix \"\" {&#10;\
+  \  policy = \"write\"&#10;}</pre> | <pre>key_prefix \"\" {&#10;  policy = \"write\"\
+  &#10;}</pre> |\n| keyring = \"write\" | |\n| <pre>node_prefix \"\" {&#10;  policy\
+  \ = \"write\"&#10;}</pre> | <pre>node_prefix \"\" {&#10;  # node policy is restricted\
+  \ to read within a namespace&#10;  policy = \"read\"&#10;}</pre> |\n| <pre>operator\
+  \ = \"write\"&#10;query_prefix \"\" {&#10;  policy = \"write\"&#10;}</pre> | |\n\
+  | <pre>service_prefix \"\" {&#10;  policy = \"write\"&#10;  intentions = \"write\"\
+  &#10;}&#10;session_prefix \"\" {&#10;  policy = \"write\"&#10;}</pre> | <pre>service_prefix\
+  \ \"\" {&#10;  policy = \"write\"&#10;  intentions = \"write\"&#10;}&#10;session_prefix\
+  \ \"\" {&#10;  policy = \"write\"&#10;}</pre> |\n| <pre>namespace_prefix \"\" {&#10;\
+  \  acl = \"write\"&#10;  key_prefix \"\" {&#10;    policy = \"write\"&#10;  }&#10;\
+  \  node_prefix \"\" {&#10;    policy = \"read\"&#10;  }&#10;  session_prefix \"\"\
+  \ {&#10;    policy = \"write\"&#10;  }&#10;  service_prefix \"\" {&#10;    policy\
+  \ = \"write\"&#10;    intentions = \"write\"&#10;  }&#10;}</pre> | |\n\n图 4.12 –\
+  \ 引导策略和命名空间策略\n\n请注意，引导策略中有整整一节与命名空间管理直接相关。因此，拥有这种特权策略的人能够管理每个命名空间中的 ACL、键、节点、会话和服务。换句话说，我们的州长有能力在城镇层面管理和控制事务，但城镇中的市长对其他城镇没有管辖权。此外，虽然在引导级别我们能够对集群中的节点进行写入，但在命名空间级别，由于命名空间可以访问所有节点，它只能读取。\n\
+  \n正如我们所看到的，命名空间能够将整个 Consul 系统分割成独立的迷你系统，为这些系统的操作员提供自主权。然而，在一些高度安全的环境中，可能需要在网络层真正划分\
+  \ Consul，而不仅仅是在应用层。\n\n我们整个 Consul 集群，也就是每个命名空间中的每个节点，都通过很久以前讨论过的 gossip 协议进行通信。我们不打算深入探讨这个主题，因为它相当高级。不过，考虑一下这种情况：我们可能有数千个\
+  \ Consul 节点分布在整个数据中心网络中，这种情况在生产环境中并不少见。如果你还记得，当我们开始用树示例（图 4.10）讨论命名空间时，分离发生在 Consul\
+  \ 节点之上的一层。当我们对 Consul 网络进行分段时，实际上是在把这些 gossip 池划分为更小的池，每个池都在自己的网络端口上进行通信。\n\n![](img/52479dafaefba00517c48a137e037b7e_138_0.png)\n\
+  \n我试图在图 4.13 中用不同类型的池来展示这种分段。在此示例中，所有网段（或池）都能够与核心集中式服务器集群通信。然而，由于防火墙或其他基于网络的划分，各池之间无法相互通信。通过利用\
+  \ Consul 网络分段，我们仍然可以在被分割的网络中管理整个 Consul 集群、服务和命名空间。\n\n现在，我们已经成功用 Consul 服务征服了整个数据中心，是时候继续实施\
+  \ Brain 统治世界的目标了。所以，跟我来吧，Pinky，让我们开始讨论如何连接我们的 Consul 集群。\n\n## 连接集群\n\n认为我们所有的服务都会驻留在单个数据中心内，这种想法在\
+  \ 20 年前我刚开始写这本书时或许还行得通（似乎如此）。世界已经真正演变成一个持续连接的移动环境，尽管有些人可能认为这实际上是一种倒退。无论如何，在这个世界上真正维护我们服务之间通信的唯一方法，就是确保可以从多个地理区域发现它们的可用性和位置。无论我是在波士顿、柏林还是墨尔本，我所依赖的应用程序和服务都必须可用！我们在本章所做的这一切，都是为了走到这一步！\n\
+  \n在整个书中，我们已经讨论了很多关于 gossip 和池的内容，我们将继续这一讨论。然而，你可以想象，在单个 Consul 集群内我们通信的数据量可能相当庞大，尤其是当我们接入所有服务时。如果我们愿意，我们可以简单地将\
+  \ Consul 节点部署到不同的数据中心和区域，然后就完事了。不幸的是，这会导致大量流量在整个网络上广播。此外，将 Consul 服务器节点分散到多个数据中心可能会影响服务器集群的可用性，即使有出色的\
+  \ Autopilot 也是如此。\n\n当你在广域网（WAN）上加入 Consul 集群时，集群之间不会共享目录信息。每个服务器集群只能感知到其他集群的存在，因此当某个服务请求发出时，该请求可以被传输到另一个数据中心以检查服务的可用性。\n\
+  \n\n\n\n\n到目前为止，我们只在默认的数据中心工作，形象地命名为 dc1。在本示例中，我将创建两个数据中心，Jake 和 Elwood。特定 Consul\
+  \ 代理的数据中心在配置中通过一个简单的 datacenter 参数定义。例如：\n\n```\nserver = true\ndatacenter = \"\
+  Elwood\"\nbootstrap_expect = 3\n```\n\n我已在两个数据中心 Jake 和 Elwood 中各设置了三台服务器节点。连接这两个数据中心在配置中以及通过命令行都非常简单。在配置中，我们使用\
+  \ retry_join_wan 命令，与我们已用于 Consul 节点相互发现的 retry_join 命令类似。此外，你只需要每个数据中心之间的一台服务器连接，因为它们随后会相互了解。然而，我强烈建议包含多台服务器，以防在两个数据中心需要连接时其中一台不可用：\n\
+  \n![](img/52479dafaefba00517c48a137e037b7e_140_0.png)\n\n图 4.14 – Jake 和 Elwood\
+  \ 组建乐队\n\n一旦数据中心连接起来，你可以使用 consul members -wan 命令查看所有服务器：\n\n| Node | Address |\
+  \ Status | Type | Build | Protocol | DC | Segment |\n| ip-192-168-100-140.elwood\
+  \ | 3.133.92.242:8302 | alive | server | 1.9.4+ent | 2 | elwood | <all> |\n| ip-192-168-100-180.elwood\
+  \ | 18.216.77.187:8302 | alive | server | 1.9.4+ent | 2 | elwood | <all> |\n| ip-192-168-100-203.jake\
+  \ | 18.188.194.17:8302 | alive | server | 1.9.4+ent | 2 | jake | <all> |\n| ip-192-168-100-60.jake\
+  \ | 3.140.201.212:8302 | alive | server | 1.9.4+ent | 2 | jake | <all> |\n| ip-192-168-100-81.elwood\
+  \ | 3.140.252.128:8302 | alive | server | 1.9.4+ent | 2 | elwood | <all> |\n| ip-192-168-100-97.jake\
+  \ | 3.135.63.108:8302 | alive | server | 1.9.4+ent | 2 | jake | <all> |\n\n图 4.15\
+  \ – 集群组建在一起\n\n## Summary\n\n好吧，我真心希望你喜欢这一章。我们已经看到 Consul 如何能够在许多现实场景中扩展到惊人的大量节点。我们看到了\
+  \ *read replicas* 以及更重要的是 *Autopilot* 的使用如何使我们能够扩展服务器集群，以支持拥有数万个节点的网络。我相信我最近听说过一家公司在生产环境中运行\
+  \ Consul，节点超过 100,000 个！在如此庞大的系统上集中管理所有服务的操作无疑具有挑战性，因此启用命名空间不仅有助于在 Consul 内部扩展应用程序使用，还能随着系统的增长扩展对人类操作的依赖。最后，我们研究了以几种方式联合我们的\
+  \ Consul 集群，以帮助跨数据中心扩展我们的服务可用性。正如我从一开始所说的，Consul 实现了组件和服务之间的通信。现在，这些通信路径不再受规模或地理位置的限制。\n\
+  \n到目前为止，我们应该对 Consul 的操作以及集群中各个组件如何相互协作有相当好的理解。在接下来的几章中，我们将更深入地研究 Consul 的用例，以便你开始将所有这些知识应用于价值创造型服务！第一个用例涉及\
+  \ Consul 服务发现，这是 Consul 服务提供的最基础部分。\n"
+- '## Section 2:
+
+  Use Cases
+
+  Deep Dive
+
+
+  现在我们了解了 Consul 的工作原理，让我们更深入地研究如何将 Consul 应用于我们的主要用例。我们在第 1 章《Consul 概述 – 操作和用例》中涉及了用例；然而，现在是时候更深入地挖掘并亲眼看看它们如何运作！
+
+
+  本书的这一部分包含以下章节：
+
+
+  - Chapter 5, Little Bo Peep Lost Her Service
+
+  - Chapter 6, Connect Four or More
+
+  - Chapter 7, Animate Me
+
+  - Chapter 8, Where Do We Go Now?
+
+  '
+- "## 5\nLittle Bo Peep\nLost Her Service\n\n就是现在！我们所有人都在等待的时刻！所有那些可怕的冷笑话和双关语即将得到回报，因为我们实际上开始将所有这些巨大的知识付诸实践！在每个\
+  \ Consul 用例的最基础部分都是服务信息的发现和共享。我们准备将精力更多地集中在 *为什么使用 Consul*，而不是 *什么是 Consul*。为了理解这个初始用例的为什么，让我们看看古老的童谣\
+  \ *Little Bo Peep who lost her sheep*。不过，正如你可能猜到的那样，我们失去的不是羊，而是我们的服务！\n\nLittle\
+  \ Bo Peep 在照看她的羊群，它们自由地在山坡上。只要羊群被限制在羊圈里，她很容易监控它们。它们只能游荡到一定范围，只要她控制羊圈的那些门，就没有问题！随着时间的推移，她开始了解到她的羊群如果被放任游荡，不仅能为她，还能为他人提供更丰厚的羊毛。此外，随着她允许那些羊游牧式地游荡，她发现为羊提供食物和水变得高效得多。那么，她需要管理这些羊而不把它们赶回羊圈，需要什么呢？\n\
+  \n- **Location:** 当然，她需要某种方法来追踪和定位羊。她可以通过在每只羊上安装 **Global Positioning System (GPS)**\
+  \ 追踪器来解决这个问题，以便在必要时定位它们。\n- **Health:** 她需要知道她的羊是健康的！如果其中一只感觉不舒服，她需要照顾它，而且同样重要的是，确保没有人给那只羊剪毛！\n\
+  - **Discovery:** 所以她知道它们在哪里以及感觉如何，但她将如何让其他人找到羊呢？她会定期宣布，举起一个牌子，还是也许提供一个有名人嘉宾的热线？\n\
+  \n随着我们深入本章，我们将看到 Consul 如何解决 Little Bo Peep 及其迷路的羊，我的意思是服务，这三个关键挑战。\n\n### Technical\
+  \ requirements\n\n在本节中，我们将在 **Amazon Web Services (AWS)** 上使用 Terraform 部署完整的 Consul\
+  \ 集群。如果你已经完成了 *Chapter 2, Architecture – How Does It Work?*，设置了你的 AWS 账户，下载了 Terraform，并克隆了仓库，你就准备得很充分！\n\
+  \n本章中没有特定的步骤；然而，拥有一个简单的运行中 Consul 集群（例如来自 *Chapter 2, Architecture – How Does It\
+  \ Work?*）以及提供的服务，对于导航和操作服务可能会非常有用！\n\n### Dude, where's my service?\n\n我们要解决的 Little\
+  \ Bo Peep 的第一个挑战就是简单地确定她的羊，或在这种情况下，她的服务的位置。在我们的类比中，Little Bo Peep 在每只羊上安装了 GPS 追踪器。然而，GPS\
+  \ 从根本上只提供给定点的经度和纬度。它本身并不能提供关于该点的任何信息，只知道它存在。如果她仅仅停留在安装追踪器上，她真的解决了问题吗？在非常高的层面上，她可以看到特定位置存在一个\
+  \ GPS 追踪器。然而，她还不知道哪个羊存在于该位置。她还需要某种接收器来维护所有这些 GPS 坐标的位置。这归结为服务定义和集中式服务注册。\n\n每个网络中的每个服务都有某种定义。定义的某些方面可能非常高层次，例如名称或目的。定义的某些方面可能非常详细，例如服务可以在哪个地址访问以及它监听哪个端口。历史上，这些信息可以保存在数据库、电子表格或某人隔间里的便签上。无论保存在哪里，它都需要被完全定义。Consul\
+  \ 也不例外。\n\n\n\n\nConsul 所感知的每个服务都是由，嗯，服务定义（service definition）来定义的。有人可能会说，等等，你说过这些是自动发现的——为什么还需要配置？这里要说的是，这些服务是自动发现，而不是自动定义。定义以文件形式存在，可以是\
+  \ JSON 或 HCL，Consul 能够将其与其他配置文件一起读取。这些文件可以相当复杂，也可以极其简单，具体取决于服务及其功能。我们来看一个到目前为止在我们的工作中已经使用过的服务定义：\n\
+  \n## httpd.json\n\n```\n{\n    \"service\": {\n        \"name\": \"httpd\",\n  \
+  \      \"tags\": [\n            \"python-server\"\n        ],\n        \"port\"\
+  : 8080,\n        \"check\": {\n            \"args\": [\n                \"curl\"\
+  ,\n                \"localhost:8080\"\n            ],\n            \"interval\"\
+  : \"10s\"\n        }\n    }\n}\n```\n\n你可能会注意到，这是一个名为 httpd.json 的文件，其中包含部署在 Consul\
+  \ 中的 httpd 服务的定义。当 Consul agent 启动时，它会尝试读取配置文件夹中的每个文件。这些文件可以是实际的 agent 配置、安全配置（如访问控制列表（ACL））或服务定义。这使任何组织都能够让服务开发者编写，或至少深度参与编写其服务定义，并对其进行单独管理。\n\
+  \n如果你不想为每个服务单独创建一个文件，Consul 确实提供了将多个服务合并到一个配置文件中的能力。不过，应当注意不要让这些文件过载。毕竟，你能想象一个 Consul\
+  \ agent 上运行着 100 个服务，却只有一个配置文件吗？\n\n在典型的 Consul 系统中，服务的部署、移除或更新十分频繁。如果你考虑软件开发生命周期，新服务或应用程序的孕育期可能短至几周。在许多此类情况下，可能都需要针对新版本、标签等更新服务定义。理想情况下，每次发布新服务或应用程序时，都会有一个相应的\
+  \ Consul 服务定义文件伴随该应用程序一起发布。\n\n当新应用程序或现有应用程序的新版本被部署时，服务定义也会随之更新。如果你使用的是诸如 Nomad\
+  \ 这样简单的编排器，它可以将相应的服务定义作为应用程序定义的一部分进行管理，并自动部署。然而，在传统系统中，你通常需要主动选择应用程序运行在哪些节点上，那么用于推送应用程序的任何过程都应该同时推送相应的服务定义。\n\
+  \n一旦新定义就绪，相关的 Consul agent 需要简单重载以识别调整后的配置。与大多数配置一样，服务的动态调整不会自动被识别。不过，重载 agent 非常简单，可以通过\
+  \ `consul reload` 命令或 API 调用来完成：\n\n```sh\n$ curl --request PUT $CONSUL_HTTP_ADDR/v1/agent/reload\n\
+  ```\n\n在更动态的环境中，Consul API 在这一过程中提供了大量功能。它不能帮助你部署应用程序；但是，所有的服务定义和检查都可以通过 Consul\
+  \ API 提供给 Consul agent。这对于那些需要在应用程序部署后对服务定义或该定义的任何方面（包括健康检查）进行修改的环境非常有用。不过，通过 API\
+  \ 注册服务确实需要一些额外的信息，以便确保 Consul 知道该服务预期位于哪个节点上。请注意下面用于 Consul API 的 `httpd-api.json`\
+  \ 与我们之前使用的原始 `httpd.json` 定义之间的区别。需要提供 Datacenter、Node 和 Address 字段，以便告知 Consul\
+  \ 该服务预期位于哪个节点上；同时需要提供 CheckId 和 ServiceId，以便将服务定义和检查定义关联起来。这样便可以单独推送服务和检查定义：\n\n\
+  ## httpd-api.json\n\n```json\n{\n  \"Datacenter\": \"dc1\",\n  \"Node\": \"ip-192-168-100-118\"\
+  ,\n```\n\n```\n\"Address\": \"192.168.100.118\",\n\"Service\": {\n  \"ID\": \"httpd2\"\
+  ,\n  \"Service\": \"httpd2\",\n  \"Tags\": [\n    \"python-server\"\n  ],\n  \"\
+  Address\": \"192.168.100.118\",\n  \"Port\": 8080\n},\n\"Check\": {\n  \"CheckID\"\
+  : \"httpd2\",\n  \"Node\": \"ip-192-168-100-118\",\n  \"ServiceID\": \"httpd2\"\
+  ,\n  \"Status\": \"passing\",\n  \"Definition\": {\n    \"tcp\": \"localhost:8080\"\
+  ,\n    \"interval\": \"10s\"\n  }\n}\n}\n```\n\n**重要提示**\n尽管通过 API 定义和管理服务对于 Consul\
+  \ 的程序化管理非常有用，但必须注意，如果 Consul agent 重启，通过 API 执行的所有目录条目都不会持久化。\n\n## 外部服务\n\n但是，Rob，如果我想让\
+  \ Consul 感知那些并未直接嵌入 Consul 系统的服务，该怎么办？这对 Consul 来说并不是问题；只不过，它确实需要一些额外的配置选项，类似于我们在\
+  \ API 服务定义中所做的那样。让我们考虑这样一种情况：在整个生命周期中，我们希望为开发人员提供一个集中式的 GitHub Enterprise 服务，同时让他们能够利用\
+  \ Consul 来发现 GitHub 服务。我将以 **GitHub** 托管的服务平台作为示例，但由于它只是一个 URL，这个定义可以很容易地适用于多种场景：\n\
+  \n## github.json 外部服务定义\n\n```json\n{\n  \"Node\": \"github\",\n  \"Address\": \"\
+  www.github.com\",\n  \"NodeMeta\": {\n    \"external-node\": \"true\",\n    \"external-probe\"\
+  : \"true\"\n  },\n  \"Service\": {\n    \"ID\": \"vcs\",\n    \"Service\": \"vcs\"\
+  ,\n    \"Port\": 80\n  },\n  \"Checks\": [{\n    \"Name\": \"http-check\",\n   \
+  \ \"Definition\": {\n      \"http\": \"https://www.github.com\",\n      \"interval\"\
+  : \"30s\"\n    }\n  }]\n}\n```\n\n请注意，在此服务定义中，我们同时包含了节点和检查信息。\n\n这个定义与我们之前所见不同，其重要特点是存在\
+  \ `external-node` 和 `external-probe` 参数，两者均设置为 `true`。该信息告知 Consul，此服务需要由某种外部服务管理器来监控。有趣的是，*外部服务管理器*\
+  \ 恰好是一个简单二进制守护进程的名字，它可以与所有 Consul agent 一起运行，以管理任何类型的外部查询。不过，在我们介绍它之前，先来注册我们的服务。\n\
+  \n由于不仅服务位于 Consul 之外，承载该服务的节点也位于 Consul 之外，因此 Consul 需要通过 API 注册该节点、服务以及任何附加检查。我们可以使用\
+  \ cURL 和前面代码中的 GitHub 服务定义 JSON 文件来完成此操作：\n\n```bash\n$ curl --request PUT --data\
+  \ @github.json http://<consul_http_address>:8500/v1/catalog/register\n```\n\n注册服务后，Consul\
+  \ 会认为 vcs 服务领域一切正常，并将其在服务目录中提供：\n\n![](img/52479dafaefba00517c48a137e037b7e_154_0.png)\n\
+  \n因此，我们可以看到我们的服务已经注册；然而，它还没有显示为健康状态。这是因为 Consul agent 正在寻找一个外部服务监视器来监视，嗯，那个外部服务。当\
+  \ Consul **外部服务管理器**（ESM）运行时，它也会作为 Consul 目录中的一个服务出现。有了这个服务，我们现在可以看到外部 GitHub 服务开始报告为健康状态：\n\
+  \n![](img/52479dafaefba00517c48a137e037b7e_155_0.png)\n\n图 5.2 – Consul 外部服务监视器已注册\n\
+  \n当我们查看服务详情时，不仅可以看到 GitHub 的 HTTP 检查返回健康，还可以看到一个 **外部节点状态** 检查也返回了愉快且健康的状态：\n\n\
+  ![](img/52479dafaefba00517c48a137e037b7e_155_1.png)\n\n图 5.3 – 外部服务的服务检查\n\n\n\n\
+  \n\n此时，我们已在 Consul 中定义了一个外部服务，它不仅注册在服务目录中，而且还会被监控，以确保在向任何消费者提供目录信息之前，服务处于健康状态。\n\
+  \n如果你希望将 Consul ESM 下载到自己的系统上并试用该服务，只需登录到你选择的其中一个 Consul 客户端节点。在命令行 shell 中，执行以下命令：\n\
+  \n```\n$ curl -o https://releases.hashicorp.com/consul-esm/0.5.0/ consul-esm_0.5.0_linux_amd64.tgz\n\
+  ```\n\n```\n$ tar -zxvf consul-esm_0.5.0_linux_amd64.tgz\n```\n\n这为你提供了 consul-esm\
+  \ 二进制文件，它可以像标准 Consul 代理一样，使用 HCL 配置文件进行配置！我提供了一个非常简单的配置文件。如果你想试用 ESM，只需确保修改 `local_private_ip`\
+  \ 参数，并插入与你节点对应的正确参数：\n\n```\n# consul-esm.hcl Configuration File\nlog_level = \"\
+  INFO\"\ninstance_id = \"\"\nconsul_service = \"consul-esm\"\nhttp_addr = \"<local_private_ip>:8500\"\
+  \ndatacenter = \"dc1\"\n```\n\n现在你已经有了配置文件，可以运行 consul-esm 并使用它：\n\n```\n$ sudo\
+  \ ./consul-esm -config-file=./consul-esm.hcl\n```\n\n如果你正在跟着操作（你当然应该这么做），那么你的 VCS\
+  \ 外部服务应该已在 Consul 集群中注册为健康状态。如果你想查看 Consul ESM 的源代码或其他文档，所有内容都在 GitHub 上开源提供！\n\n\
+  https://github.com/hashicorp/consul-esm\n\n既然我们已经知道了如何定义内部和外部服务，小波比也能够分辨哪些羊是她的，以及它们在哪里。她还需要一种方法来确保她的羊都健康。毕竟，生病的羊需要被照料！让我们来看看如何确保我们的羊——我是说服务——保持健康。\n\
+  \n## 汤姆少校，你还好吗？\n\n每当我们处理通信时，几乎总需要某种程度的反馈来确保接收方可用。这正是我们耳熟能详的短语的由来，比如*你现在能听到我吗？*。任何处理过网络负载均衡器或系统监控的人对*健康检查*一词都不会陌生。这正是\
+  \ Consul 可以在每个服务定义中采用的机制。尽管健康检查并非服务定义的必需部分，但我无法想象为什么会有人想要定义和部署一个没有健康检查的服务！\n\n在网络负载均衡器或系统监控领域，健康检查是由某种集中式智能定义和编排的。这意味着，如果一个负载均衡器管理着分布在\
+  \ 100 个不同节点上运行的 10 个服务，那么该负载均衡器需要跟踪 1,000 个健康检查。这不仅会在服务增长时导致一些扩展问题，而且还会（至少略微）增加网络流量。\n\
+  \n如今许多监控系统利用远程代理进行健康检查，既解决了扩展问题，也减轻了网络影响。Consul 的运作方式与监控系统类似，利用与服务一起部署的 Consul 代理来管理和执行所有本地健康检查。然而，与集中式监控系统不同，如果\
+  \ Consul 管理的服务或 Consul 节点/代理发生故障，负担并不完全落在服务器集群上。回想一下，由于我们所有的代理都在进行 gossip（八卦）通信，它们会了解对等节点的服务可用性并用于上报。因此，对于\
+  \ Consul 而言，每个管理服务的代理也会管理和执行与相应服务健康相关的检查。让我们看看为了实现这一目的，我们可以实施哪些检查：\n\n- **脚本**：顾名思义，脚本检查会执行一个预定义的自定义脚本，以执行某些功能来验证服务的健康状态。在我们使用\
+  \ `httpd.json` 服务定义的示例中，我们使用了脚本检查，利用 Linux `curl` 工具以及一些相应参数（`localhost:8080`）。虽然我使用的是一个常见工具作为脚本，但在大多数情况下，脚本是非常自定义的，会对服务健康状态进行深入查询。除了脚本之外，你还可以指定脚本运行的间隔，以及为适应脚本失败而设置的必要超时。请注意，脚本检查默认未启用，因此代理的配置必须允许脚本检查。这可以通过\
+  \ `enable_script_checks` 以及 `enable_local_script_checks` 布尔参数来实现。Consul 根据脚本返回的值来识别服务的健康状态：\n\
+  \n  - 0：服务健康。\n  - 1：服务处于警告状态。\n  - 其他任何值：服务不可用。\n\n> **注意**\n> \n> `enable_script_checks`\
+  \ 字段允许通过任何方法（包括 API）定义的脚本。如果你尚未正确保护集群安全，这会使远程实体能够在 Consul 代理上执行脚本。强烈建议将所有脚本检查定义并实现于代理本地，并专门使用\
+  \ `enable_local_script_checks`。\n\n- **HTTP**：你可能已经猜到，基于 HTTP 的检查会发起一个 HTTP 请求，以确认相关服务的健康状态。默认情况下，这是一个\
+  \ GET 请求；不过，该检查确实支持在配置中指定其他 HTTP 方法。如果需要特定的 HTTP 头，也可以通过配置中的 headers 字段指定。与基于脚本的检查类似，配置可以指定\
+  \ Consul 等待 HTTP 请求响应的超时时间，以及发起请求的间隔。此外，正如我们已经看到的保护通信的重要性，HTTP 检查确实支持 TLS 配置，以防应用程序使用安全的\
+  \ HTTP 端点。来自 HTTP 检查的任何 2xx 响应都被视为服务健康。\n\n- **TCP**：如果你曾经使用过 Telnet 来检查应用程序是否在某个端口上监听，那么\
+  \ TCP 检查非常适合你！TCP 检查只是尝试连接到应用程序应该监听的某个主机和 TCP 端口。当然，与基于 HTTP 和脚本的检查类似，配置可以指定 Consul\
+  \ 等待 HTTP 请求响应的超时时间，以及发起请求的间隔。你可能已经注意到这里的一个模式。如果 Consul 代理能够连接到主机和端口，则该服务被视为健康。\n\
+  \n- **TTL**：此检查完全基于应用程序最后已知状态的**生存时间（TTL）**。在 HTTP 和 TCP 健康检查中，Consul 会查询服务以验证可用性。然而，对于\
+  \ TTL 检查，Consul 会监听 HTTP 更新来判断服务是否健康。在大多数情况下，这仅在服务能够自我报告其状态时使用，状态可为**通过**、**警告**或**失败**。如果服务在\
+  \ TTL 值内没有报告，Consul 将假定该服务不再可用。\n\n- **Docker**：这对于确定运行在 Docker 容器内的服务或应用程序的健康状态非常有用，因为这些容器可能没有任何暴露的接口，无法使用\
+  \ TCP、HTTP 或基于脚本的检查。对于基于 Docker 的检查，Consul 利用 Docker HTTP API 或直接套接字与 Docker 主机交互。Consul\
+  \ 指示 Docker 启动一个容器应用程序来检查服务健康状态，向 Consul 报告健康信息，然后终止该容器。作为配置的一部分，你可以指定运行此检查的间隔，但没有超时时间。请注意，与脚本检查类似，这确实需要\
+  \ Consul 代理上的高级权限，因此 `enable_script_checks` 布尔配置必须设置为 `true`。\n\n- **gRPC**：一些支持\
+  \ **gRPC 远程过程调用**的应用程序可能也支持特定于 gRPC 的健康检查端点。这无疑是一种更具体的集成方式。不过，该检查支持对单个服务或多个服务进行健康验证，具体情况由\
+  \ gRPC 服务器报告。基于 gRPC 的检查定义包含我们在其他检查中见过的 `timeout` 和 `interval` 参数。此外，与 HTTP 检查类似，gRPC\
+  \ 健康检查支持用于安全网络的 TLS 配置。\n\n- **H2ping**：此检查提供与 HTTP 检查类似的功能；不过，它支持通过 HTTP2 协议定义的非常简单的\
+  \ ping 帧传输。与 HTTP 检查一样，H2ping 检查可以配置检查执行的间隔，以及在宣布检查失败前等待的超时时间。然而，与 HTTP 检查不同，H2ping\
+  \ 默认依赖 TLS 连接，但可以通过将 `tls_skip_verify` 设置为 `true` 来禁用。\n\n\n\n\n\n所有上述检查都支持可选字段，例如\
+  \ notes（用于提供有关检查的人类可读信息）和 token（用于为检查提供特定的 ACL 令牌）。此外，在许多情况下，我们并不希望健康检查仅作为一次性的操作运行。识别在我们信任服务可用之前需要发生的通过检查次数通常很有用。此外，我们可能希望确保单次检查失败并不一定否定整个服务的可用性。对于这些场景，每个检查都支持\
+  \ success_before_passing 字段以及 failures_before_critical 字段。最后，需要注意的是，Consul 支持在单个配置中定义多个检查。在很大程度上，我们的讨论一直围绕检查服务的健康状况展开。我们还应该检查\
+  \ Consul 代理所在的节点的健康状况。多个检查的应用非常适合此目的，因为我们就可以检查内存、CPU、磁盘空间等。以下 uber-check 提供了多个节点级检查的示例（请注意，与检查关联的没有\
+  \ service ID）：\n\n`# node-check.json`\n\n```json\n{\n  \"checks\": [\n    {\n  \
+  \    \"name\": \"mem\",\n      \"args\": [\"check_mem.sh\", \"-limit\", \"256MB\"\
+  ],\n      \"interval\": \"5s\",\n      \"timeout\": \"2s\"\n    },\n    {\n    \
+  \  \"name\": \"cpu\",\n      \"args\": [\"check_cpu.sh\", \"-percent\", \"90\"],\n\
+  \      \"interval\": \"10s\"\n    },\n    {\n      \"name\": \"disk\",\n      \"\
+  args\": [\"check_disk.sh\",\n        \"-path\", \"/\",\n        \"-threshold\",\
+  \ \"80\"\n      ],\n      \"interval\": \"10s\",\n      \"timeout\": \"5s\",\n \
+  \   }\n  ]\n}\n```\n\n这假设我们创建了简单的脚本来评估资源，同时将限制和阈值作为变量来考虑。如果其中任何一个脚本的结果为 1，则节点将被视为处于警告状态。为了使节点被视为健康，所有脚本的输出都必须为\
+  \ 0。\n\n就这样了。正如你所见，Consul 支持多种健康检查协议以确保服务可用性。Consul 功能的核心在于其服务目录；因此，准确了解与特定代理关联的服务的健康状况是系统的关键功能。\n\
+  \n因此，在这一点上，我们拥有一个服务目录，并且能够验证我们的服务是否健康并准备好被使用。接下来，我们将看到我们的应用程序如何发现这些服务。\n\n## 方法\
+  \ of discovery – no lawyers required\n\n每当我听到 discovery 这个词时，我就不禁想到所有律师节目和电影中引用的流程。幸运的是，我们不需要律师作为发现过程的一部分，但有几种方法可以发现我们的目录提供哪些服务。让我们在以下各节中看一些例子。\n\
+  \n### DNS\n\n任何应用程序发现服务位置的最简单方法与它们多年来一直使用的方法相同，利用 DNS。默认情况下，Consul 在 Consul 集群中的每个代理上端口\
+  \ 8600 上提供 DNS。每个节点和服务都可以使用 Consul 域进行查询。例如，如果我们想找到托管 httpd 服务的节点的地址，我们可以执行以下命令（当然使用\
+  \ Consul 节点的 IP 地址）：\n\n```\n$ dig @192.168.100.20 -p 8600 httpd.service.consul\n\
+  ```\n\n专注于查询的 answer 部分，我们可以验证已返回两个地址，可以在这些地址上找到 httpd 服务：\n\n```\n;; ANSWER SECTION:\n\
+  httpd.service.consul. 0 IN A 3.20.237.142\nhttpd.service.consul. 0 IN A 13.59.70.71\n\
+  ```\n\n*嘿 Rob，每个人都知道 DNS 使用端口 53，为什么你不直接用那个端口用于 Consul DNS？* 这是一个非常好的问题，并且与 Consul\
+  \ 运行的权限有关。为了将应用程序或服务附加到众所周知的端口 53，应用程序需要特权访问。我不建议在任何生产环境中以这种级别的访问权限运行 Consul（或大多数应用程序）。*那么我们现在如何使用它呢？*\
+  \ 别担心，小帕达万……这里有几个选项。\n\n在大多数系统中，存在大量基于 DNS 的服务，可以部署不仅用于管理该特定节点的名称解析，还可帮助该节点在网络中找到其他节点。这包括\
+  \ BIND、dnsmasq、Unbound 和 systemd-resolved 等实用程序。由于其中一些解决方案可能只解析 Consul 域，因此 Consul\
+  \ 代理配置中有一个名为 recursors 的参数。这使 Consul 能够将无法解析的任何 DNS 查询发送到另一个 DNS。\n\n### API\n\n\
+  与使用 DNS 相比，通过 API 访问服务非常简单。然而，从应用程序的角度来看，这确实需要一定程度的开发来进行服务发现。Consul 除了 API 外，还提供了一个广泛的过滤机制，以便管理用于发现服务的标准。我们可以过滤的属性包括服务的标签和节点、服务的元数据和节点、地址以及数据中心。在以下示例中，我们基于与我们的\
+  \ httpd 服务关联的 ServiceTags 进行过滤：\n\n```\ncurl http://18.189.17.157:8500/v1/catalog/service/httpd\
+  \ 'filter=ServiceTags == \"python-server\"' | jq\n```\n\n此类查询的结果相当广泛，但它全部以 JSON\
+  \ 格式提供，这已被证明对人类、机器（也许还有赛博格）解析都很容易：\n\n`# Truncated output of Consul API Service\
+  \ Query`\n\n```json\n[\n  {\n    \"ID\": \"c83108da-f84c-20cf-7882-386e91ee2b27\"\
+  ,\n    \"Node\": \"ip-192-168-100-168\",\n    \"Address\": \"13.59.70.71\",\n  \
+  \  \"Datacenter\": \"dc1\",\n    \"TaggedAddresses\": {\n      \"lan\": \"13.59.70.71\"\
+  ,\n      \"lan_ipv4\": \"13.59.70.71\",\n      \"wan\": \"13.59.70.71\",\n     \
+  \ \"wan_ipv4\": \"13.59.70.71\"\n    },\n    \"NodeMeta\": {\n      \"consul-network-segment\"\
+  : \"\"\n    },\n    \"ServiceKind\": \"\",\n    \"ServiceID\": \"httpd\",\n    \"\
+  ServiceName\": \"httpd\",\n    \"ServiceTags\": [\n      \"python-server\"\n   \
+  \ ],\n    \"ServiceAddress\": \"\",\n    \"ServiceWeights\": {\n      \"Passing\"\
+  : 1,\n      \"Warning\": 1\n    },\n    \"ServiceMeta\": {},\n    \"ServicePort\"\
+  : 8080,\n    \"ServiceEnableTagOverride\": false,\n    \"ServiceProxy\": {\n   \
+  \   \"MeshGateway\": {},\n      \"Expose\": {}\n```\n\n如前所述，所有检查都可以在命令行上运行，这是一个了解检查操作和结果的好方法。检查的结果以\
+  \ JSON 格式格式化以便于解析数据，这对于向服务可用性的其他组件发出警报很有用。对于诸如 Consul services watch 之类的东西，结果非常高级别，如以下示例所示：\n\
+  \n```json\n{\n    \"consul\": [],\n    \"httpd\": [\n        \"python-server\"\n\
+  \    ]\n}\n```\n\n与此同时，服务特定 watch 的输出要详细得多。以下示例结果已为简洁起见而截断。\n\n```json\n{\n    \"\
+  Node\": {\n        \"ID\": \"494c2e14-5442-0339-6bbd-fa84254f5aa5\",\n        \"\
+  Node\": \"ip-192-168-100-124\",\n        \"Address\": \"3.128.24.217\",\n      \
+  \  \"Datacenter\": \"dc1\",\n        \"TaggedAddresses\": {\n...\n```\n\n如果我们想找到运行我们在示例中使用的\
+  \ `httpd` 服务的节点，我们可以轻松解析查询的 JSON 结果。此外，我们可以添加一个 `passingonly` 布尔参数来指示我们只想检索托管 `httpd`\
+  \ 服务的健康实例的节点：\n\n```bash\nconsul watch -type service -service httpd -passingonly\
+  \ true |\njq \".[] | .Node.Address\"\n```\n\n当然，这些示例都与 Consul 服务交互，并且只提供 watch 的结果。以下示例指定了一个\
+  \ checks 类型 watch，当检查执行时将调用 `check-handler.py` Python 脚本：\n\n```text\nwatches =\
+  \ [\n    {\n        type = \"checks\"\n        service = \"httpd\"\n        args\
+  \ = [\"/etc/consul/consul.d/check-handler.py\"]\n    }\n]\n```\n\n为了通知外部应用程序或服务检查结果，包括我们健康服务的位置，处理程序能够将此信息发布到多种服务中。一个潜在的选项是更新服务订阅的消息队列，例如\
+  \ **RabbitMQ** 或 **ActiveMQ**。一旦 Consul 发布服务信息，任何在相应队列上监听的组件都可以检索信息。\n\n就这样了！在本节中，你学习了三种获取\
+  \ Consul 目录中服务信息的方法，从看起来最直接的 DNS 开始，到直接的 API 集成，再到可以通知几乎任何人或任何事的通知机制！\n\n## Summary\n\
+  \n我希望你喜欢这一章……定义和管理我们的服务并不是一个极其复杂的话题，但对于任何动态网络的健康运行至关重要。我们多云世界的巨大优势不在于云计算的存在；而在于能够快速创建和删除资源如何改变我们的人类运营模式。不幸的是，这种灵活性确实意味着我们的服务有能力在云中迁移和漫游。使用我们的基本示例，我们能够在\
+  \ Consul 系统中注册我们的 `httpd` 服务，确保服务健康，并查看可用于发现该服务的不同方法。现在是休息一下并玩转 Consul 系统的好时机，因为下一个主题，*service\
+  \ mesh*，有更多的工作部件要处理。坚持住……事情马上就要变得 meshy 了！\n\n\n\n\n"
+- "## 6 连接四个或更多\n\n就是它了！到目前为止你所读的一切都引向了这一点。我知道我之前说过，但这是真的。你在这本书中所读到的所有内容都引向了这一点。无论如何，欢迎来到服务网格的世界。任何具有路由和网络背景的工程师都欣赏服务网格的强大功能。多年来，我们一直专注于连接机器、分配或识别地址，并将它们分割成子网、交换机端口和路由表。当然，这些功能仍然是必需的；然而，其中很大一部分现在被定义为基础设施即代码，并由公共或私有云运营商以编程方式管理。现在我们有机会将对话提升一个层次，字面意义上的提升，这样我们就不再连接数字串，而是直接连接服务了。在本章中，我们将探讨以下主题：\n\
+  \n- 在网格内连接我们的服务 – 在上一章中，我们学习了如何发现我们的服务。现在我们将学习如何通过服务网格让它们相互通信。\n- 在网格外连接我们的服务 –\
+  \ 认为你能交互的一切都存在于服务网格内是不现实的。因此，我们需要研究如何启用和管理与外部实体的连接。\n- 保护网格 – 如果网格只是允许服务到服务通信，那会很酷，但在我看来并不太有用。一旦启用了服务网格，你就可以唯一地保护，并且轻松地禁用和启用每个服务连接。\n\
+  - 网格到网格 – 就像假设所有服务都将存在于一个网格中一样，假设只有一个网格统治一切也是不现实的！随着我们扩展网络和服务，我们将需要连接多个服务网格，提供一个网格的网格。是的，我们要变得很“网格”！\n\
+  \n我们在这里规划的进展不仅对教育有益，而且为任何网络中的服务网格采用提供了一条合乎逻辑的路径。在没有进一步的拖延，或双关语的情况下，让我们连接四个，或更多！\n\
+  \n### 技术要求\n\n在本节中，我们将使用 Terraform 在 **Amazon Web Services (AWS)** 上部署一个完整的 Consul\
+  \ 集群。如果你已经阅读过 *Chapter 2, Architecture – How Does It Work?*，设置了你的 AWS 账户，下载了 Terraform，并克隆了仓库，你就准备得很充分了！\n\
+  \n在仓库的 `ch6` 文件夹中，我们有与 `ch2` 文件夹类似的结构，提供创建镜像的代码，以及当然创建 Consul 集群的代码。如果你想跟随操作，使用\
+  \ `ch6` 创建一个新的 Consul 集群，其中包含本章中你将使用的一些服务配置文件。\n\n在我们在本章中讲解代码和功能之前，重温 *Chapter 2,\
+  \ Architecture – How Does It Work?* 并回顾部署和访问我们的基础设施所需的步骤可能会很有用。\n\n### 连接服务，而非地址\n\
+  \n无论你选择红药丸还是蓝药丸，我们所处的网络是不可否认的。媒介或底层连接并不总是被认可。毕竟，在 2020 年的大部分时间里，以及 2021 年的至少一半时间里，我们中的许多人一直生活在连接的机器中。今天几乎每部手机都存在于某种计算机网络上，由分配的地址标识。然而，作为消费者，我们并不真正关心那个地址，至少不是直接关心。提供和维护该地址的功能仅存在于允许我们的应用程序通信。全面看通信路径，除了分配的地址之外，还需要其他方面，例如某种物理连接和标识。这些方面中的每一个都作为\
+  \ **Open Systems Interconnection (OSI)** 模型中的一层发挥作用。\n\n除非你在过去几年一直在玩电缆和交换机，否则这可能是一个新概念。因此，在我们谈论更多关于服务网格之前，我想先建立一个网络的基础。别担心，我们不是在准备思科认证互联网专家考试。\n\
+  \n### 理解网络连接\n\n当我们的应用程序相互通信时，传输的消息需要在各种媒介中传输。当我们打开我们最喜欢的视频会议软件时，应用程序会连接到另一边的服务器。我想我们都能理解这一点。但是什么促进了这种通信？我们可以说它只是通过\
+  \ Wi-Fi，但这到底意味着什么？嗯，应用程序软件和 Wi-Fi 只是通信路径中的层。感谢上天，我们不必处理洋葱或怪物那样的层数。而且我们也将为我们的讨论简化层数。\n\
+  \n![](img/52479dafaefba00517c48a137e037b7e_169_0.png)\n\n图 6.1 – Vidona 通过 Swampnet\
+  \ 的连接\n\n请看图 6.1。由于沼泽地的疫情，舒렉和驴子已经很长时间没能见面了。然而，他们发现了一个名为 Vidona 的新应用程序，可以让他们虚拟地见面。当驴子呼叫舒렉时，消息起源于\
+  \ Vidona，即使用的应用程序。该消息通过一个通道流动，并被包裹在一个写有舒렉地址和驴子回邮地址的信封中。然后消息流向物理层。虽然我们无法感受到 Wi-Fi\
+  \ 信号（如果我们能感受到那会多么疯狂？），但 Wi-Fi 无线电在物理上存在。为了在 Wi-Fi 无线电上发送消息，它被打包在另一个信封中，使用不同的地址代表驴子的物理平板。\n\
+  \n现在我们有两个地址：**network** 地址和 **physical** 地址。**physical** 地址通常不会改变。它与驴子的平板相关联，并帮助平板与它\
+  \ *物理* 连接的组件通信（即使是无线）。与此同时，**network** 地址将驴子的平板标识为全局唯一的实体，这是舒렉的计算机用来响应驴子平板的地址。请注意一个非常重要的区别；驴子的\
+  \ **Vidona** 应用程序需要知道舒렉的网络地址才能连接，并且网络地址会随时间变化。此外，如果驴子和舒렉想让他们的通信不被法尔夸德勋爵窥探，**Vidona**\
+  \ 必须开发自己的安全机制。这对于 **Vidona** 的开发人员来说可能具有挑战性，而当其他应用程序需要参与这种安全通信时，难度会更大。最终，目标是在应用层提供安全连接，即\
+  \ **Vidona** 层，如图 6.2 所示：\n\n![](img/52479dafaefba00517c48a137e037b7e_170_0.png)\n\
+  \n图 6.2 – Vidona 安全连接\n\n图 6.1 和 6.2 之间的重要区别在于，尽管底层的网络流没有改变，**Vidona** 应用程序能够以看似直接和安全的方式在对等方之间通信。由于\
+  \ **Vidona** 控制此特定示例的双方，利用其内置的安全机制可能就足够了。然而，一旦混合应用程序和服务，这种连续性就会被打破。\n\n作为我们后续的对话，我们将参考网络世界中的各个层。在本章开头，我提到了\
+  \ OSI 模型，它由七层组成，如图 6.3 所示：\n\n![](img/52479dafaefba00517c48a137e037b7e_171_0.png)\n\
+  \n图 6.3 – 网络 OSI 模型\n\n就我们的目的而言，我们将主要关注最上面的三层，即应用层、表示层和会话层，我们将它们统称为应用层。传输层以及网络层也会发挥作用，不过这些是在机器级别的通信。\n\
+  \n有了对网络栈的基本理解，让我们来看看为什么仅仅依赖该栈对于当今的云世界来说是不够的。\n\n### 为什么传统网络不够用\n\n在零信任领域，我们不能仅仅隐含地假设在单台机器上运行的任何东西都是友好的。几乎每周我们都会听到一起安全事件，其起源于对某个实体受信任的假设，而该实体却被攻破了。零信任或最小权限安全概念专注于我们真正关心的身份和安全，即应用程序。如果我们的服务器或系统托管多个应用程序，我们需要一种标准化的方法来唯一标识并保护每个应用程序。为了说明这一点，我将重温常见的电话号码类比。\n\
+  \n\n\n\n当我还是个少年时，我有时会参与一些时不时可能被认为有问题的事情。幸运的是，那时我们并不是所有人兜里都揣着带 GPS 跟踪器的电脑；不过，我父母有我所有朋友家的电话号码。如果我要去迈克家，我父母就能通过迈克家的电话号码联系到我。然而，当他们打电话时，无法控制是谁接听。在我们的朋友之间，我们可以利用这种模糊性找点乐子。比如，当我们的朋友吉娜给迈克家打电话时，可能是我接的。虽然我们都很亲近，但即使在现在，有时也很难通过电话里的声音辨认出某人。而那时（固定电话音质更差）就更有挑战性了！所以，我正和吉娜聊得热火朝天，但她却以为自己在和迈克通话。这种把戏今天也能玩，只是要拿起某人的手机比在他们家拿起电话听筒更难。在这个类比中，吉娜和我就是应用程序，迈克的家就是主机。吉娜试图通过迈克家的电话号码联系迈克，但我只要在那里，就能冒充迈克。电话号码也许可信，并且明确地与主机绑定，但并不能保证应用程序的身份或安全。\n\
+  \n这个故事表明，仅仅假设 **第 4 层地址** 是任何应用的身份会带来风险。在私有数据中心，当房子被牢牢锁住、门口有守卫时，按地址识别并没有那么不合理。然而，在公有云环境中，存在合法和非法的地址伪装，尤其是在任何类型的迁移型工作负载环境（如\
+  \ Kubernetes）中，仅靠地址是远远不够的。那么，让我们看看如何通过隧道来解决这个问题。\n\n## 隧道通往安全\n\n网络隧道和**虚拟专用网络（VPN）**的概念并不新鲜。然而，在所有这些实例中，连接都基于所涉及组件的第\
+  \ 4 层地址。我们可以通过一系列点对点 VPN 来连接应用机器，但这并不能缓解对**应用**进行识别和保护的需求。实际上，使用 VPN 反而增加了对应用身份的需求，而不是单纯依赖地址。不过，我们仍然可以把\
+  \ VPN 视为我们想要达到目标的一个模型。\n\n在大多数情况下，当你建立 VPN 时，会有一个软件应用程序连接到某个远程站点或服务。连接建立后，你的设备会获得一个新的\
+  \ IP 地址，该地址在目标网络上有效，所有机器流量都经过该连接流动。VPN 的美妙之处在于，从 VPN 客户端到 VPN 服务器之间传输的信息都经过加密和安全保护。这过去是、现在依然是保护流量不被窥探的好方法。历史上，VPN\
+  \ 的使用主要面向企业网络。如今，许多人使用 VPN 不仅是为了加密流量，也是为了隐藏他们的第 4 层地址身份。我们已经确定，要实现真正安全的操作，需要验证应用程序的身份，因此使用\
+  \ VPN 实际上可能阻碍而不是帮助这项工作。\n\n![](img/52479dafaefba00517c48a137e037b7e_173_0.png)\n\
+  \n图 6.4 – VPN 流量模式\n\n现在，我并不是说 VPN 在这个世界上没有用武之地。当你需要以安全的方式连接机器时，它们提供了至关重要的功能。然而，我们讨论的不是连接机器，而是连接我们的应用。话虽如此，如果我们能把连接向上提升一层到应用层，VPN\
+  \ 的概念就能很好地延伸。这正是 Consul Service Mesh 通过 Consul Connect 所提供的。\n\nConsul Connect 功能将经过身份验证的应用连接起来，并加密这些应用之间的流量。我们已经看到，在第\
+  \ 3 章，保持安全，笨蛋，并保护好你的集群！中，Consul 服务器集群如何验证代理身份，并利用相互 TLS（mTLS）加密 RPC 流量。Consul Connect\
+  \ 使我们能够将同样的功能扩展到每个由 Consul 管理的服务。让我们花几分钟重新回顾一下 Consul 和 mTLS。\n\n还记得那些旧日时光吗？我们在\
+  \ *第 3 章，保持安全，笨蛋，并保护好你的集群！* 中玩转证书。在那过程中，我们使用 Consul 服务器作为**证书颁发机构（CA）** 来签发和管理证书（它是权威机构，还能做什么呢？）。为了降低复杂性，我们为三台服务器使用了通用证书。此外，所有客户端代理都使用一个通用证书。当时提到，在生产环境中，每个\
+  \ Consul 代理都应该拥有自己唯一的证书。当一个代理收到另一个代理的公共证书时，该证书提供了发送者的**身份**。我们知道可以**信任**这个身份，因为证书是由某个权威来源签名的。这些证书不仅提供了身份，还提供了代理之间消息加解密所需的密钥。如果这种\
+  \ mTLS 方法足以安全地验证 Consul 代理并加密流量，为什么不把它用于 Consul 管理的服务呢？\n\n使用 Consul Connect，每个服务都会分配一个唯一证书。如你所见，证书的使用对于\
+  \ Consul 工作至关重要。我们不仅有用于代理之间安全通信的证书，还有用于服务的证书。所有这些证书的管理可能相当具有挑战性，但真正的应用身份和加密所带来的好处远超这些挑战。幸运的是，与\
+  \ *第 3 章，保持安全，笨蛋，并保护好你的集群！* 非常相似，我们可以使用 Consul 作为我们应用程序的 CA。Consul 也支持使用 Vault 作为\
+  \ CA，但出于我们的目的，我们将专注于使用 Consul。无论 CA 是谁，Consul 都可以编排证书的轮换和分发，这能极大地简化 Consul 的运维工作。然而，与\
+  \ *第 3 章，保持安全，笨蛋，并保护好你的集群！* 不同的是，我们希望应用程序利用这些证书来进行身份识别和加密。不幸的是，许多应用程序并不是为支持特殊证书和加密而开发的。有用于自定义应用集成的开发库，但代理服务器非常适合这一目的，并且不需要额外的开发。\n\
+  \n这表明我们的基于 Python 的 Web 服务器正在监听 8080 端口，地址为 `0.0.0.0`。该值代表所有可用的地址和接口。在这种配置下，任何能够访问这台机器的设备都可以访问\
+  \ 8080 端口。为了增强安全性，我们要在本次练习中更改运行该 `httpd` 服务器的方式：\n\n```bash\nnohup python3 -m http.server\
+  \ 8080 --bind 127.0.0.1 &\n```\n\n通过额外的 `bind` 配置标志，我们告诉 Python `http` 服务器**只**监听\
+  \ `127.0.0.1`，也就是机器的本地回环地址。为了验证这一点，我们可以再次运行我们得心应手的 `netstat` 命令，得到以下结果：\n\n```text\n\
+  tcp        0      0 127.0.0.1:8080        0.0.0.0:*\nLISTEN     7954/python3\n```\n\
+  \n由于服务器只监听本地回环地址，任何外部应用程序都无法访问该服务器。当然，除非它们开始变得“网格化”。所以，现在我要问你，准备好和我一起“网格化”了吗？\n\n\
+  在第 *6 章，连接四个或更多* 的存储库文件夹中，我放置了一个新的 `httpd.json` 文件，以及一个 `curl.json` 文件。它们将代表我们新的网格化服务，并且作为\
+  \ Terraform 构建的一部分，这些文件将放在 Consul 客户端上。\n\n`httpd.json` 服务定义与我们的原始定义相比变化不大，只有一个主要例外。我们现在有一个\
+  \ connect 配置块，它标识该服务将利用一个 sidecar 进行连接。这个 sidecar 就是代理服务器。\n\n## httpd.json\n\n\
+  ```json\n{\n    \"service\": {\n        \"name\": \"httpd\",\n        \"id\": \"\
+  httpd-1\",\n        \"tags\": [\n            \"python-server\"\n        ],\n   \
+  \     \"port\": 8080,\n        \"connect\": {\n            \"sidecar_service\":\
+  \ {}\n        }\n    },\n}\n```\n\n\n\n请注意，此配置中的 connect 部分稍微更复杂一些。对于 sidecar 服务，我们需要一些额外的参数来告诉代理服务器\
+  \ curl 将要连接的服务（httpd），以及代理服务器应侦听请求的本地端口。在我的系统中——我鼓励你一起实践——httpd 服务运行在一个 Consul 客户端上，而\
+  \ curl 进程运行在另一个客户端上。然而，当我尝试在 Consul UI 中查看这些服务时，发现它们并不处于健康状态！\n\n![](img/52479dafaefba00517c48a137e037b7e_178_0.png)\n\
+  \n图 6.5 – 不健康的 httpd 和 curl 服务\n\n然而，我们在图 6.5 中可以看到，这些服务已通过代理处于服务网格中。嗯，这是新情况！我想知道服务处于服务网格中是否与缺乏可用性有关。如果我们查看服务实例，可以看到一个名为\
+  \ Connect Sidecar Listening 的东西，这也是我们以前从未见过的。这看起来就是问题所在，而且它显然与我们一直在研究的 sidecar 类似。\n\
+  \n![](img/52479dafaefba00517c48a137e037b7e_179_0.png)\n\n为了让此服务恢复健康，sidecar 需要一些关注。到目前为止，我们所做的只是在目录中注册了一个\
+  \ httpd 服务，并告诉 Consul 该服务将通过代理访问。然而，我们还没有做任何事情来启动该代理！使用服务网格时，每个应用程序（除非原生支持网格）都需要自己的代理服务。因此，如果\
+  \ Consul 不知道有任何与该服务配对的代理服务正在运行，该服务就不会处于健康状态。要启动 `httpd` 服务的代理服务器，我们只需要一条命令：\n\n\
+  ```\n```bash\n$ consul connect proxy -sidecar-for httpd-1 > ~/httpd-proxy.log\n\
+  &\n```\n```\n\n这里我们所做的是告诉 Consul 发出连接请求，利用内部代理，作为 `httpd-1` 服务的 sidecar 运行。*等等，我还以为只是\
+  \ httpd 呢！* 你真是敏锐…… 我非常佩服！在创建代理服务时，我们使用的是服务的 **ID**，而不是服务的 **名称**。该请求的任何输出都被重定向到日志文件，并且我们在后台运行该命令。一旦运行该命令，服务在\
+  \ Consul 系统中就健康快乐了。\n\n现在，我们必须让 curl 服务启动并运行。我觉得把 curl 称为服务有点奇怪，因为它只是一个简单的命令行工具，但为了我们的目的，我们将设想\
+  \ curl 是一个访问某个 Web 服务器的客户端应用程序。要让 curl 服务的代理服务器运行起来，我们将运行类似的命令：\n\n```\n$ consul\
+  \ connect proxy -sidecar-for curl > ~/curl-proxy.log &\n```\n\n现在，curl 和我们的 Web\
+  \ 服务器的代理服务器都已运行。在 Consul UI 中，两个服务都是健康的，我们甚至可以看到服务连接的拓扑。目前的拓扑并不令人兴奋（就像 curl 一样），但随着服务数量的增长，能够查看哪些服务已连接对于理解通信路径至关重要。我们建立的路径如图\
+  \ 6.7 所示：\n\n![](img/52479dafaefba00517c48a137e037b7e_180_0.png)\n\n图 6.7 – 通过代理连接的服务\n\
+  \n让我们从客户端的角度来稍微梳理一下这个流程。我们有一个代理服务器与我们称之为 curl 的服务一起运行。该服务的定义，特别是 local_bind_port，标识了代理应该监听消息的端口（3579）。代理在该端口上接收到的任何消息都将被发送到上游的\
+  \ httpd 服务。请注意，我们没有为该服务配置任何端口或地址；我们只拥有用作目的地的服务名称。在服务器端，我们有另一个代理服务器与我们的 httpd 服务一起运行。我们未为该服务定义端口，代理服务器在启动时动态分配端口。在本示例中，代理服务器分配了端口\
+  \ 21000。由于 httpd 服务运行在内部 localhost 接口的 8080 端口上，代理服务器知道将请求转发到该端口。\n\n为了证明服务网格正常工作，我们将假装自己是那个客户端应用程序。因此，模拟客户端请求时，我们将从客户端机器访问端口\
+  \ 3579。该消息将流经两个代理服务器到达 httpd 服务：\n\n```\n$ curl http://localhost:3579\n```\n\n响应是来自\
+  \ /home/ubuntu（Python Web 服务器运行的位置）的服务器节点目录列表。如果你想再次核对，可以使用一个名为 tcpdump 的工具：\n\n\
+  ```\n$ sudo tcpdump -nnvvXSs 1514 -i any port 21000\n```\n\n如果你在运行 httpd 服务的服务器节点上运行该命令，然后发出\
+  \ curl 命令，你会看到接收和发送的数据包。别担心，我们并不指望你能读懂数据包信息。事实上，你也读不懂！代理服务器正在使用 Consul 提供的证书来加密该通信。虽然\
+  \ Web 服务器或 curl 工具没有配置任何加密，但这两台设备之间的通信已成功加密。此外，我们所做的路由完全基于服务名称，没有任何地址配置！此时此刻，你值得获得一个祝贺性的虚拟拥抱。\n\
+  \n此时有一点需要指出：Consul 服务器集群并未参与客户端和服务器之间的实际信息交换。这些应用程序之间的数据直接通过代理流向彼此。这条数据路径通常被称为数据平面。很有创意，我知道。然而，建立该数据连接所需的代理服务器信息由\
+  \ Consul 管理。Consul 在此过程中执行的所有活动都发生在控制平面上。毕竟，这些是控制集群所必需的通信！有了这个集中控制点，我们就能够创建规则来允许或拒绝服务之间的通信。在\
+  \ Consul 的世界里，我们称之为意图（intentions）。\n\n## 表明你的意图\n\n既然我们了解了应用程序将如何通过服务网格进行通信，就需要了解如何配置和管理这种通信。我们或许希望认为所有服务都会和谐共处，并且只有那些应该相互通信的服务才会通信。然而，尽管这个想法利他主义，但它并不太现实。因此，我们需要一种机制，以便在\
+  \ Consul 系统中轻松定义哪些应用程序可以（更重要的是，不可以）相互访问。为此，我们使用所谓的 Consul 意图（Consul intention）。\n\
+  \nConsul 服务的现状有一个好处：每个服务都由人类可理解的名称定义。我强烈建议在任何系统中使用清晰独特的服务名称，以避免歧义。然而，这种努力也带来了额外的好处，因为我们现在可以通过服务名称来指定意图。如果你曾经处理过任何基于\
+  \ IP 的防火墙，你会觉得这非常令人安心。然而，与基于 IP 的防火墙类似，Consul 意图根据通信来源以及目标服务或应用来定义连接。不过，这种控制的粒度取决于服务被定义使用的协议。\n\
+  \n服务定义使管理员能够定义应用程序所在的协议。协议有四个选项：tcp、http、http2 和 grpc。不过，对于意图，我们将重点讨论前两个：tcp 和 http。\n\
+  \n`tcp` 协议定义比 `http` 协议具有更大的灵活性，因为它将支持范围扩展到 `http` 服务器之外。例如，如果你想将 Consul 用于数据库，那么将使用\
+  \ `tcp` 协议。在这种情况下，mTLS 证书中编码的应用程序身份是 IP 地址和 TCP 端口的组合。管理这些连接的意图称为第 4 层意图。如果看应用层（第\
+  \ 7 层），我们可以根据通信中实际使用的 URL 来设置意图。这对于服务路由和服务拆分是必要的，我们之前讨论代理服务器时已经提到过。\n\n第 4 层意图和第\
+  \ 7 层意图之间的另一个重要区别是意图更新的生效时机。无需深入探讨，当客户端和服务器之间存在 TCP 连接时，该连接一旦建立，就会在通信路径的生命周期内保持连接。然而，对于\
+  \ HTTP，连接仅在请求和响应信息期间处于活动状态。因此，第 7 层意图生效的速度可能比第 4 层意图快得多。Consul 不会拆除现有连接，因此只有在发出新的连接请求时，意图才会产生影响。\n\
+  \n无论在哪个层执行意图，配置过程都是相同的，并且只需要三部分信息：服务名称、通信请求的来源，以及允许还是拒绝该连接。在深入探讨意图的定义之前，我想回顾一下*第\
+  \ 4 章“数据中心（非贸易）联邦”*中的 ACL 部分。\n\n\n\n\n如果你还记得，Consul 在 ACL 方面默认有两种运行方式。我们可以隐式拒绝所有请求，只指定允许访问的部分；或者隐式允许所有请求，并指定我们想要拒绝的连接。遵循零信任模型——这对任何安全姿态都至关重要——隐式拒绝应适用于任何生产环境。Consul\
+  \ 意图（Intentions）遵循同样的模型，我们可以隐式接受所有网络连接，也可以隐式拒绝所有网络连接。无论你为 ACL 配置了何种策略，相同的策略也会应用到你的意图上。例如，如果你的\
+  \ ACL 策略是全部拒绝，那么默认情况下，任何允许的服务连接都需要显式定义。由于我们已经展示了流量通过网格传输，可以看到我们当前并没有启用全部拒绝的 ACL\
+  \ 策略。\n\n因此，为了试验意图功能，我们将使用已经建立的同一个 curl 到 http 服务器的连接。利用 CLI，让我们查看 Consul 目录中注册的服务：\n\
+  \n```\n$ consul catalog services\nconsul\ncurl\ncurl-sidecar-proxy\nhttpd\nhttpd-sidecar-proxy\n\
+  ```\n\n注意，我们实际上列出了每个 sidecar 代理服务器的服务。然而，我们的意图是管理实际服务，即 curl 和 httpd。如果我们想通过命令行阻止\
+  \ curl 和 httpd 之间的通信，非常简单：\n\n```\n$ consul intention create -deny curl httpd\n\
+  ```\n\nCLI 会响应，确认意图已创建：\n\n```\nCreated: curl => httpd (deny)\n```\n\n有了这个意图后，让我们再次尝试发出之前那条\
+  \ curl 命令：\n\n```\n$ curl http://localhost:3579\ncurl: (52) Empty reply from server\n\
+  ```\n\n如你所见，我们无法再建立连接：`Empty reply from server.`\n当我询问菜单项是否为素食时，我得到的也是同样的反应……来自服务器的空回复。\n\
+  如果此时你观察 `httpd` 服务器的日志，会看到一个非常有趣的消息：\n\n```text\n[ERROR] proxy.connect: authz call\
+  \ denied: service=httpd\nreason=\"Matched L4 intention: default/curl => default/httpd\n\
+  (ID: a605dfa9-cdcc-b304-400d-3fe708b603c1, Precedence: 9,\nAction: DENY)\"\n```\n\
+  \n从结果中，我们可以清楚地看到，`default/curl` 尝试访问 `default/httpd`，但被拒绝了。我们在这里看到的 *default* 值指的是服务及意图所适用的命名空间。这使得我们可以为\
+  \ Consul 系统中的各个命名空间配置并分配独特的意图。此外，我们已经知道，凭借适当的 ACL 令牌，我们可以确保只有获得授权的人才能在自己的命名空间中创建意图。我们还看到了一个返回的优先级值。任何规则中都会有优先级顺序。也可能存在通配符，用于概括某些规则并帮助管理。例如，我们可能希望确保系统中的某些服务\
+  \ *只* 接收连接，而从不发起传输。比如，我们的 `httpd` 服务绝不应主动向任何其他服务发起连接。为此，我们可以使用通配意图来指示 Consul 拒绝任何源自\
+  \ `httpd` 服务的请求：\n\n```shell\n$ consul intention create -deny httpd '*'\n```\n\n\
+  如果你没有在生产环境中隐式拒绝所有连接，这类规则对于管理应用可能遭受的任何潜在入侵会非常有用。例如，如果我们的 `httpd` 服务被入侵，并被用于向网格内的任何其他服务发送信息，这条意图将明确阻止此类事件的发生。还应注意，通配意图在优先级列表中非常靠后，如\
+  \ *图 6.8* 所示。意图越精确，在评估中的优先级就越高。\n\n| 源命名空间 | 源名称 | 目标命名空间 | 目标名称 | 优先级 |\n| ---\
+  \ | --- | --- | --- | ---: |\n| 精确 | 精确 | 精确 | 精确 | 9 |\n| 精确 | * | 精确 | 精确 | 8\
+  \ |\n| * | * | 精确 | 精确 | 7 |\n| 精确 | 精确 | 精确 | * | 6 |\n| 精确 | * | 精确 | * | 5 |\n\
+  | * | * | 精确 | * | 4 |\n| 精确 | 精确 | * | * | 3 |\n| 精确 | * | * | * | 2 |\n| * | *\
+  \ | * | * | 1 |\n\n图 6.8 – Consul 意图的优先级顺序\n\n在我们的 Consul 系统中，现在已经创建了两条意图：一条阻止 `curl`\
+  \ 与 `httpd` 服务通信，另一条阻止 `httpd` 服务向任何其他服务发起对外通信。在 Consul UI 中，所有已配置的意图都是可见的，甚至可以按优先级顺序排序！随着服务数量以及随之而来的意图数量增长，这个视图会变得极为有用。\n\
+  \n![](img/52479dafaefba00517c48a137e037b7e_185_0.png)\n\n图 6.9 – UI 中的意图\n\n在 UI\
+  \ 中管理意图非常简单，既可以创建新意图，也可以编辑现有意图。Consul 网格中的每个服务都会作为源和目标提供，我们可以选择允许、拒绝，或者创建一条**应用感知（Application\
+  \ Aware）**规则：\n\n![](img/52479dafaefba00517c48a137e037b7e_186_0.png)\n\n*图 6.10\
+  \ – 在 UI 中编辑意图*\n\n**应用感知**规则通过使用显式权限增加了复杂性。回想一下，第 7 层意图提供了额外的功能，可以基于 URL 路径甚至请求中的头部来定义意图。\n\
+  \n到目前为止，我们讨论的每个场景都基于一个前提：每个应用和服务都存在于服务网格内。对于那些位于网格之外的服务，我们能做些什么呢？嗯，很高兴你问这个问题，因为这个问题为下一个主题提供了一个绝佳的切入点。\n\
+  \n## 通向统治之门\n\n哇，关于服务网格的信息真是精彩又有趣！但我有个问题：并不是我所有的服务都符合进入网格的条件。引用芬兰裔美国建筑师埃罗·沙里宁的话，*你试过网关吗？*\n\
+  \n认为每个服务、每个应用都会驻留在单个服务网格中，对于任何企业部署来说都是相当不现实的。因此，Consul 提供了**网关**的概念。几乎所有现存的网关，无论是精神上的、哲学上的还是物理上的，都将两个存在领域连接起来。着眼于\
+  \ Consul，我们可以将每个集群视为一个独立的领域，在其中服务可以被发现并安全地相互通信。然而，我们还需要考虑以下场景：\n\n- **多数据中心** –\
+  \ 我们知道可以连接不同数据中心内的多个 Consul 集群。然而，一旦离开网格，我们就会失去身份和加密的安全性。\n- **外部服务** – 并非我们需要的每个服务都会存在于服务网格内。正如我们所看到的，网格要求代理服务器与相关应用共置。许多服务（例如托管的数据库）并不提供符合网格要求的嵌入式代理服务器（至少目前还没有）。\n\
+  - **外部客户端和应用** – 尤其是当我们向最终消费者提供服务时，网格需要接受来自外部实体的流量。必须有办法让外部实体进入网格，以访问它们有权使用的服务。\n\
+  \n上述三种场景中的每一种，都需要一个专用于网关操作功能的 Consul agent。此外，Envoy 代理必须与该 agent 配对，以提供那种隧道般的连接。正如我们在上一节中看到的，Consul\
+  \ 利用 Envoy 代理服务器来管理网格内服务之间的连接。如果没有 Consul 与 Envoy 之间的紧密耦合，这种功能是不可能实现的，而这种耦合正是网格网关所必需的。因此，Envoy\
+  \ 目前是唯一支持用于此目的的代理服务器。让我们来看看 Consul 如何在这些场景中应用各种网关。\n\n\n\n\n\n## 网格网关\n\n我们已经了解了如何通过服务网格安全地连接服务。我喜欢将网格网关视为一种*超级网格*。利用我们在*第4章，数据中心（而非贸易）联邦*中玩过的WAN联邦，我们能够跨多个数据中心连接Consul集群。Consul网格网关不仅为这种连接增加了加密能力，还增加了控制哪些服务被允许穿越这些数据中心的能力。\n\
+  \n![](img/52479dafaefba00517c48a137e037b7e_188_0.png)\n\n图6.11——连接数据中心的网格网关\n\n\
+  每当我们连接Consul服务网格中的一个服务时，Consul服务器集群都会通过**connect**功能管理身份证书和加密。通过网格连接集群也不例外；但我们都知道，当老板不止一个时会发生什么（更别提六个老板，六个老板）。因此，每当我们通过网格网关连接数据中心时，必须指定一个主数据中心来管理和分发证书。这些证书会在网格网关对等体之间创建一个新的mTLS会话，用于身份验证。这里需要注意的重要一点是，流经网格网关的加密流量仍然是服务到服务之间加密的。换句话说，网格网关实体不会解密服务之间的消息；它们只保留服务端点已经执行的加密。\n\
+  \n那么，如果我们不希望所有服务都穿过网关呢？没问题！当服务通过网格网关连接时，Consul集群能够识别这些服务，我们就可以编写意图（intentions）！这把巨大的权力交给了Consul管理员，他们不仅可以控制单个集群内的服务网格，还可以控制整个世界！此外，作为服务定义的一部分，我们可以告诉Consul，**上游服务**（我们想要发起连接的服务）可以通过网格网关访问。让我们看一个修改过的`curl`服务作为示例。\n\
+  \n## 跨网格网关的Curl.json\n\n```\n{\n    \"service\": {\n        \"name\": \"curl\",\n\
+  \        \"tags\": [\n            \"curl-client\"\n        ],\n        \"connect\"\
+  : {\n            \"sidecar_service\": {\n                \"proxy\": {\n        \
+  \            \"upstreams\": [{\n                        \"destination_name\": \"\
+  httpd\",\n                        \"datacenter\": \"secondary\",\n             \
+  \           \"local_bind_port\": 3579\n                    }]\n                }\n\
+  \            }\n        }\n    }\n}\n```\n\n在这个稍微修改过的服务定义中，我们告诉Consul，我们想要访问的`httpd`服务位于名为*secondary*的数据中心。这是一个连接另一个Consul数据中心以访问服务的绝佳示例，但如果目标服务不在网格内呢？\n\
+  \n## 终止网关\n\n随着**一切即服务（*aaS）**的普及，云提供商正在努力使自己脱颖而出并保持竞争力。至少，这是我的理论，我认为这导致了原本需要专用计算资源的托管服务的出现。即使这不完全正确，听起来也合乎逻辑，而且我相当确定我在互联网的某个地方读到过。托管数据库服务是这一功能的绝佳示例，不幸的是，我们无法在托管的AWS数据库服务上部署Consul代理。为此，我们有了终止网关的角色。\n\
+  \n![](img/52479dafaefba00517c48a137e037b7e_190_0.png)\n\n幸运的是，这个网关并没有在云中游荡寻找莎拉·康纳。然而，它终止的是Consul服务的安全和控制。但并非一切尽失，因为如果目标服务支持mTLS，终止网关将维持该安全连接。如果服务只支持单向TLS，网关也可以处理；但这可能会使终止网关面临潜在攻击。由于网关位于网格的边缘，与网格网关不同，它确实有能力解密它收到的流量。因此，始终建议严格控制充当网关的节点的访问权限。但有一个问题……Consul是如何知道那些甚至不在Consul集群内的服务的呢？\n\
+  \n回想我们在*第5章，小波比丢失了她的服务*中讨论服务发现时，Consul能够在注册表中包含不受Consul管理的服务。这些是**外部**服务，这说得通，因为它们对Consul来说是**外部**的。任何希望通过终止网关访问的服务都必须在Consul中注册；毕竟，如果不注册，我们怎么能发现它们呢？当我们配置终止网关时，我们需要列出可通过该网关访问的服务。这是Consul管理从网格内部到这些外部服务的发现和连接的唯一方式。我们仍然可以使用ACL和安全措施直到网关节点；然而，一旦流量离开网关，我们就需要诉诸老式的网络方式，就像我们的祖母们所做的那样。\n\
+  \n## 入口网关\n\n接下来，我们必须考虑外部广阔而可怕的世界中那些想要访问我们提供的精彩服务的实体！这需要一种方法来打开服务网格并邀请其他人加入我们。然而，我们不想只是打开门让任何东西进入我们的网格。我们付出了巨大的努力，忍受了无数糟糕的笑话，来保护我们美丽的网格。我们最不希望的就是允许邪恶的流量通过大门，使网格陷入风险。\n\
+  \n![](img/52479dafaefba00517c48a137e037b7e_191_0.png)\n\n图6.13 – 入口网关\n\n幸运的是，任何我们希望通过入口网关访问的服务都应该已经在Consul服务目录中注册了。然而，我们不想在这个过程中完全暴露自己。Consul允许我们在入口网关的配置中定义一个监听器。这个监听器告诉Consul代理（以及Envoy代理）要监听哪个端口，以及对应的服务是什么。通过这种配置，入口网关可以在指定端口接收流量，并将该流量转发到适当的目标服务。\n\
+  \n现在我们了解了Consul如何将内部和外部服务连接到网格网络，让我们快速看看一个由渴望连接的独立网络组成的环境。\n\n## 与Kubernetes构建网格\n\
+  \n在整章中，我只提到过Kubernetes一次，而且只是一带而过。部分原因是我对Kubernetes的厌恶以及我在这项技术上挣扎的无数小时。然而，像Kubernetes（或Nomad）这样的服务编排器在服务网格领域绝对有一席之地。事实上，许多人只有在应用程序编排工具的领域内才会考虑服务网格。我们不会深入讨论Kubernetes的细节，原因有很多（其中一些我已经提到过）。不过，我确实想谈谈为什么服务网格在这个领域如此重要。\n\
+  \n应用程序编排提供了一个完整的运行环境，我们的应用程序就驻留在其中。一旦部署到环境中，编排器的主要工作就是确保所需数量的实例正在运行，并确保资源得到管理。只要满足任何约束条件，应用程序可以位于集群机器中的任何位置。如果应用程序失败，编排器负责在集群内的某个位置重新启动该实例。此外，在执行机器升级时，编排器能够在集群中移动应用程序，以最好地实现预期目标。本质上，无论编排器是Kubernetes还是Nomad，它都完全控制着应用程序的位置，从而控制其寻址方式。应用程序的这种迁移性和短暂性极大地复杂化了我们之前讨论的IP寻址问题。\n\
+  \n\n\n\n\n在 Kubernetes 中，我们有自己的服务器集群来管理所有被编排的**节点**（机器）和应用程序。如今，云提供商提供了他们自己的托管 Kubernetes\
+  \ 服务，极大地简化了管理集群的（通常很严峻的）负担。集群可以有任意数量的**节点**，它们为要部署的应用程序提供计算资源。每个被部署和管理的应用程序被打包为**容器**。这就引出了\
+  \ Pod，它是一组一个或多个容器的集合，这些容器一起生存、运行和绑定。Kubernetes Pod 通常在其内的容器之间共享各种属性。这些属性包括存储，以及……等等……网络！\n\
+  \n![](img/52479dafaefba00517c48a137e037b7e_193_0.png)\n\n图 6.14 – Kubernetes 高层概览\n\
+  \n向 Kubernetes 部署应用程序时，我们使用名为 `helm` 的命令，并配有一个 helm chart，用于定义应用程序的部署方式。Consul 为此提供了自己的\
+  \ helm chart，并在 GitHub 上公开可用（`https://github.com/hashicorp/consul-k8s`）。利用这个 helm\
+  \ chart，Consul 可以安装在 Kubernetes 集群内相关 Pod 旁边，促进与 Pod 的安全网络连接。与 Kubernetes 之外的网格示例非常相似，在\
+  \ Kubernetes 内部，Consul Connect 功能利用 Envoy 代理服务器作为应用程序的连接点。主要区别在于，Consul agent 不是作为独立进程运行，而是作为配置了\
+  \ Kubernetes **注解**的集群内的 **边车（sidecar）** 进程运行。无论应用程序是网格连接的目标，还是与上游服务的网格连接的源，该进程都是相同的。\n\
+  \n此外，每当提到服务网格这个话题时，通常都会与 Kubernetes 这类编排器概念联系在一起。然而，我希望我已经向您展示了其适用性远远超出了 Kubernetes\
+  \ 集群。Kubernetes 本身就是一个高级主题，在我看来，它可能非常令人困惑，正是这种复杂性才需要像 Consul 服务网格这样的技术。\n\n## 总结\n\
+  \n恭喜！如果你能读完本章并忍受我糟糕的笑话，你就对 Consul 服务网格有了基础性的认识。服务网格的主题非常冗长，我真心希望这能为你开启这段混乱旅程提供一个不错的起点！我们讨论了（好吧，我写，你读）一些关于传统网络的内容，以及为什么服务网格在当今多云世界中是如此宝贵的工具。我们看到了网格是如何运作的，如何安全地连接服务，以及如何确保某些服务*不*进行连接。我们简要了解了如何使用网格原则连接数据中心，以及如何支持网格之外的服务。最后，我们对\
+  \ Consul 在 Kubernetes 世界中如何运作有了一个非常高层级的认识。\n\n如果服务网格这个话题真的让你兴奋，我强烈建议你继续学习。HashiCorp\
+  \ 有几个关于这个主题的教程，随着对网格需求的增长，已经产生了无数博客和视频。这个主题太广泛，一章无法涵盖，但我确实希望我能提供一些清晰的见解。接下来，我们将看看\
+  \ Consul 如何通过自动化帮助我们减少或消除那些可恶的网络变更工单！\n"
+- "## 7 动起来\n\n我们已经详细讨论了 Consul 集群对系统内部署的服务和应用程序及其相应健康状况的感知。为什么 Consul 要把所有这些信息留给自己？任何网络（无论是人的还是机器的）成功存在的一个重要部分是信息共享。在本章中，我们将探讨\
+  \ Consul 能够将信息共享给第三方组件的一些方式，以便通过自动化改善我们的生活：\n\n- 键/值（KV）存储 —— Consul 利用分布式 KV 存储在\
+  \ Consul 节点之间共享信息，但这也可以被人类和机器用来在整个集群中共享数据和指令。\n- 监视和处理器 —— 在第5章“小波比丢了她的服务”中，我们看到了\
+  \ Consul 的监视和处理器如何发布服务状态的特定变化。在本章中，我们将看到这如何用于向第三方组件分发信息。\n- Consul 和 Terraform ——\
+  \ 虽然这不是一本关于 Terraform 的书，但我们一直在使用它来创建和管理我们的基础设施。本章的最后一部分将展示 Consul 如何与 Terraform\
+  \ 协同工作，基于 Consul 的应用程序和服务感知，自动化几乎任何基础设施组件。\n\n所以，无论本章标题让你想起奇点统治人类的恐惧，还是 Rush 乐队那首令人难以置信的歌曲的旋律，请和我一起踏上通往更智能、更自足的网络世界的旅程。\n\
+  \n本章将涵盖以下主题：\n\n- 自动化的必要性\n- 使用 KV 存储进行分布式配置\n- 监视你的处理器\n- 与 Consul-Terraform-Sync\
+  \ 一同畅游\n\n### 技术要求\n\n在本节中，我们将使用 Terraform 向**亚马逊网络服务（AWS）**部署一个完整的 Consul 集群。如果你已经完成了*第2章，架构\
+  \ – 它是如何工作的？*，设置了你的 AWS 账户，下载了 Terraform，并克隆了代码仓库，那你就万事俱备了！\n\n在仓库的 `ch7` 文件夹中，我们有与\
+  \ `ch2` 文件夹类似的结构，提供用于创建镜像的代码，当然还有创建 Consul 集群的代码。如果你想跟着操作，请使用 `ch7` 创建一个新的 Consul\
+  \ 集群，其中包含一些你将在本章中使用的服务配置文件。\n\n### 自动化的必要性\n\n在信息技术领域，我们靠工单为生。谢天谢地，不是超速罚单或其他违法行为的罚单，而是请求和解决工作的方式。整个产品线和组织都建立在这些流程之上，并且理所当然。我有一位同事经常对一本叫*《凤凰项目》*的书赞不绝口。如果你没读过或听过这本书，我强烈推荐。整个虚构故事聚焦于\
+  \ IT 的流程问题，技术可能一切都很好，但进行变更的*流程*往往决定任何项目的成败。\n\n当我们审视网络和安全设备时，遵循这套工单系统的重要性成倍增加。这不像订错虚拟机规格或操作系统。最微小的失误都可能扰乱整个组织，造成数百万美元的损失和收入流失。因此，对该设备的任何更改都需要在变更管理流程中正式请求、评估、测试和跟踪。你不必在这个领域工作，也能感受到\
+  \ DNS 设置导致整个网络瘫痪、让孩子们无法参加虚拟课堂的挑战！\n\n### 使用键/值存储进行分布式配置\n\n正如我们所读到的，Consul 系统的基本协议之一是\
+  \ gossip 协议，使系统内的每个 Consul agent 都能与所有其他 agent 共享信息。这些信息由 Consul 服务器集群集中存储和管理，但所有\
+  \ agent（如果要求授权，则需正确授权）都可以访问这些数据。通过一个非常简单的 KV 接口，Consul 提供了向与系统交互的所有实体分发情报的能力。虽然这提供了一种非常简单的信息分发方式，但\
+  \ Consul 并不是一个功能完备的分布式数据存储。KV 系统中的对象最大为 512 KB，并且数据仅保留在本地数据中心。然而，这并不妨碍我们用它来做一些非常酷的事情。\n\
+  \n要了解应用 Consul KV 系统进行配置调整的好处，请考虑排查分布式应用程序的场景。毕竟，如今我们部署的几乎所有东西都由一组服务组成，而不是一个庞大的单体应用。当问题出现（它们总是会出现）时，我们会发现所需的日志数据只有在更高级别才可用。根据我过去做这件事的糟糕回忆，这个过程通常如下：\n\
+  \n1. 获取需要调整的每台机器/组件的 IP 地址。\n2. 在我的机器上打开一堆终端窗口。\n3. SSH 进入第一台机器，通常使用团队中每个人都有的共享\
+  \ PEM 密钥。\n4. 编辑配置文件以更改日志级别。\n5. 重新加载服务并检查日志，以确保服务以新的日志级别重新运行。\n6. 注销机器，继续执行列表中的下一台。\n\
+  \n一旦调试会话结束，我们不得不回到机器中并还原我们所做的更改。Ansible、Puppet 或 Chef 等配置管理工具也可以帮助进行这些更改，但这些更改通常需要更新大量脚本，这会带来额外的风险。\n\
+  \n\n\n\n\n与 Consul KV 系统交互非常简单。就像我们使用 Consul 的其他所有功能一样，我们可以利用命令行、API 或 Web 界面。键和值的路径表示为，嗯，就是一个路径，不像我们所熟知和喜爱的目录和文件结构那样。这不仅非常适合数据的组织，而且还便于基于逻辑路径的\
+  \ API 调用，而所有这些调用都是基于 REST 的。我们将逐步介绍这些操作，如果你想跟随操作，所有用于创建镜像和 Consul 系统的代码都位于我们一直使用的\
+  \ GitHub 仓库中。当然，本章有一个新的文件夹位于 `https://github.com/PacktPublishing/Consul-Up-and-Running/tree/main/ch7`。\n\
+  \n我们可以使用之前构建的镜像，不过，此次新构建包含了一些额外的功能，我们将在本章后面的部分使用这些功能。因此，我建议你创建一个更新后的镜像（`$github_root/ch7/Image-Creation`），就像我们在前几章中所做的那样。\n\
+  \n在我们的新 Consul 系统构建完成并准备就绪后，让我们在 KV 存储中创建几个值。我们将使用环境变量来确保我们命中不同的 Consul 节点，因此请密切关注。举例来说，我将引用以下\
+  \ Terraform 输出：\n\n## Terraform output\n\n```\nOutputs:\n\n\nCONSUL_HTTP_ADDR =\
+  \ \"http://3.128.180.154:8500\"\nCTS_IP = \"3.141.25.114\"\nConsul_Client_IPs =\
+  \ [\n    \"18.117.222.65\",\n    \"3.17.161.19\",\n    \"18.222.124.50\",\n    \"\
+  18.118.47.132\",\n]\nConsul_Server_IPs = [\n    \"18.222.216.65\",\n    \"3.128.180.154\"\
+  ,\n    \"18.117.157.22\",\n]\n```\n\n```\n\"LockIndex\": 0,\n\"Key\": \"son/seventh/gift\"\
+  ,\n\"Flags\": 0,\n\"Value\": \"Y2hxaXJ2b3lhbmN1\",\n\"CreateIndex\": 194,\n\"ModifyIndex\"\
+  : 194\n}\n]\n```\n\n但等等，那个值不是我们输入的值！你是对的，这是我们在 Consul 的其他区域看到的 base64 编码值。这允许我们在\
+  \ KV 存储的值中访问更复杂的数据。如果我们想在一个路径中返回多个值，我们可以在请求上设置递归标志：\n\n```\n$ curl http://18.222.124.50:8500/v1/kv/son/\\\
+  ?recurse=TRUE | jq\n```\n\n让我们看一下作为此输出一部分提供的一些其他值：\n\n- **LockIndex** – 使用 Consul\
+  \ Sessions，我们能够锁定 KV 存储中特定参数的访问权限，以防止意外覆盖或冲突。\n- **Key** – 这是从 KV 存储根目录到该键的完整路径。\n\
+  - **Flags** – 默认值为 0，此参数提供将无符号整数分配给值条目的能力。该值对 Consul 来说是不透明的，但可能有助于为广泛的 KV 实现提供额外的信息（例如版本）。\n\
+  - **Value** – 这是键的值，已编码为 base64。\n- **CreateIndex** – 这里我们有一个数值，提供有关该值相对于其他键或更新的创建时间的一些信息。\n\
+  - **ModifyIndex** – 这是输出中值得关注的一个值，因为智能状态机可以确定该值自上次查询以来是否已更改。\n\n此信息始终通过 API 返回，不过，如果你想在命令行输出中看到此详细信息，我们可以使用\
+  \ `detailed` 标志：\n\n|  |  |\n|---|---|\n| `$ consul kv get -detailed son/seventh/gift`\
+  \ |  |\n| CreateIndex | 194 |\n| Flags | 0 |\n| Key | son/seventh/gift |\n| LockIndex\
+  \ | 0 |\n| ModifyIndex | 327 |\n| Session | - |\n| Value | `clairvoyance2` |\n\n\
+  请注意，我更新了该值，并且 ModifyIndex 参数识别了这一更改。\n\n我们在这里应该注意，将密码和敏感信息写入存储可能不是最好的主意。对于密钥管理，我们确实应该利用世界级的密钥管理器，例如\
+  \ HashiCorp Vault。话虽如此，可能仍有一些信息写入此存储，需要一定程度的访问控制。回想一下，通过我们的 ACL 系统，我们能够保护 Consul\
+  \ 中的路径和功能。通过将我们的 ACL 系统与 KV 存储结合，我们可以为每个应用程序创建一个分布式存储系统，并确保只有该应用程序（使用正确的 ACL 令牌）可以访问数据存储。\n\
+  \n太棒了！使用 Consul 中的 KV 存储，我们可以将各种信息写入存储，并使其可供特定数据消费者或应用程序使用。*但 Rob，我的应用程序对 Consul\
+  \ API 或命令行一无所知，如果你认为我们会为此调整我们的开发路径，你就疯了。* 好吧，你是对的，我疯了，但这与 Consul 无关。让我向你介绍 Consul\
+  \ Template。\n\n## Consul Template\n\nConsul Template 的应用可能是我最喜欢的 Consul 功能之一了。然而，它并不仅限于\
+  \ Consul，因为 Vault 实现也可以利用相同的功能。有了 Consul Template，配置文件可以直接由 Consul 填充，使用参数，就像它是一个模板一样。我想你大概已经猜到了。\n\
+  \nConsul Template 的功能并未嵌入 Consul 本身，因此必须作为其自己的服务下载并执行。二进制文件（`consul-template`）可在\
+  \ HashiCorp 发布网站上获得，如果你想自己下载它，不过，当我们为本章构建新镜像时，Consul Template 二进制文件的安装是该过程的一部分（`https://releases.hashicorp.com/consul-template/`）。\n\
+  \n此外，作为此次构建的一部分，我创建了一个非常简单的模板文件并将其放在 `/tmp` 目录中。此模板文件是一个非常简单的文本文件，并利用了我们在 KV 存储中填充的信息，该信息标识了七个儿子中的第七个儿子的天赋：\n\
+  \n### SeventhSon.tpl\n\n```\nSeventh Son of a Seventh Son is a story about a young\
+  \ boy born\nwith the gift of {{ key \"/son/seventh/gift\" }}. It has been\npopularized\
+  \ in literary form by Orson Scott Card, and musically\nby Iron Maiden through their\
+  \ epic album of the same title.\n```\n\n在模板中，我们可以看到 Consul 被指示插入 `son/seventh/gift`\
+  \ 键的值。\n\n为了利用模板并创建文件，可以手动运行 consul-template。然而，我们正试图通过 Consul 的智能尽可能自动化。为什么我们现在要诉诸手动操作呢？因此，与其手动运行\
+  \ consul-template，我们在创建基础设施时执行的 `remote-exec` 操作的一部分中将其作为后台操作启动：\n\n```\nnohup sudo\
+  \ consul-template -consul-addr=\\\"${self.private_ip}\\\"\n-template \\\"/tmp/SeventhSon.tpl:/etc/consul/seventh_son.txt\\\
+  \",\n```\n\n此命令实例化 consul-template 应用程序，标识用于连接到 Consul 服务的 IP 地址。对于我们的基础设施，consul-template\
+  \ 函数在与 Consul 相同的机器上运行，但它可以位于其他地方并仍然使用 Consul 的数据。我们告诉 consul-template 加载模板文件 `tmp/SeventhSon.tpl`\
+  \ 并使用该模板创建一个新的文本文件（`/etc/consul/seventh_son.txt`）。由于应用程序在后台运行，consul-template 将监控已标识键的值，并在该值更改时更新目标文件。我们可以在自己的小环境中尝试一下。\n\
+  \n如果你一直跟着做，你已经为 `son/seventh/gift` 键设置了 `clairvoyance` 值。如果 consul-template 按设计工作，我们应该已经创建了文件。要验证对可用客户端之一的\
+  \ SSH，请执行以下命令：\n\n```\n$ cat /etc/consul/seventh_son.txt\n```\n\n我们应该会看到按模板指定的文本显示，其中插入了值\
+  \ `clairvoyance`：\n\n```\nSeventh Son of a Seventh Son is a story about a young\
+  \ boy born\nwith the gift of clairvoyance. It has been popularized in\nliterary\
+  \ form by Orson Scott Card, and musically by Iron Maiden\nthrough their epic album\
+  \ of the same title.\n```\n\n让我们看看当我们更改值时该文件会发生什么。更新 `son/seventh/gift` 键的值。随意通过我们之前练习的任何方法来完成。更新值后，再次检查\
+  \ `seventh_son.txt` 文件，看看你的更新值是否已反映出来。现在，我们可以想象这个简单的文本文件是应用程序的配置文件。我们的模板可以根据需要在管理大量配置文件方面一样全面，所有这些都由\
+  \ Consul KV 存储中的值动态管理并自动更新！\n\n如果你因兴奋而神经元活跃，请继续保持！Consul Template 可以做的事情远不止我们在这里涵盖的范围。项目的完整文档和源代码也可在\
+  \ GitHub 上获得，网址为 https://github.com/hashicorp/consul-template。\n\n既然我们已经介绍了 KV 存储的使用以及\
+  \ Consul Template 的使用，让我们继续并查看如何利用 Consul 监视和处理程序作为自动化第三方组件配置的另一种方法。\n\n## Watching\
+  \ your handlers\n\n早在 *Chapter 5, Little Bo Peep Lost Her Service* 中，小波比牧羊女丢失了她的服务，我们就触及了\
+  \ Consul 监视和处理程序的功能。回想一下，Consul **watch** 会观察 Consul 中任意数量的参数，并基于值更改，可以执行 **handler**\
+  \ 来执行某些功能。在 *Chapter 5, Little Bo Peep Lost Her Service* 中，我们专注于能够监视服务的状态，以便通知第三方有关服务健康状况。我们可以使用相同的功能，但不是监视服务状态，而是监视\
+  \ KV 存储中参数的状态。\n\n例如，如果我们想监视我们的键，使用直接命令行，我们将执行以下操作：\n\n```\n$ consul watch -type=key\
+  \ -key=son/seventh/gift\n{\n    \"Key\": \"son/seventh/gift\",\n    \"CreateIndex\"\
+  : 194,\n```\n\n\n\n```json\n\"ModifyIndex\": 237,\n\"LockIndex\": 0,\n\"Flags\"\
+  : 0,\n\"Value\": \"Y2hxaXJ2b3lhbmN1\",\n\"Session\": \"\"\n}\n```\n\n我们可以看到，该命令的输出为我们提供了与之前读取\
+  \ key 值时从 API 获取的几乎相同的输出。然而，我们并不是在谈论手动操作；我们想要……跟我一起说……自动化！\n\n在 Consul agent 配置中，我们可以定义希望在平台上运行的\
+  \ watches 以及一个 handler。handler 根据 watch 的结果执行某些功能，可以调用 HTTP 接口或执行自定义脚本。因此，随着被监视\
+  \ key 的值发生变化，Consul 将执行该 handler 以主动通知某个设备。例如，将以下 watch 部分添加到 agent 配置中将导致执行 update_configs.sh\
+  \ 脚本：\n\n### Sample watches configuration\n\n```hcl\nwatches = [\n    {\n      \
+  \  type = \"key\"\n        key = \"son/seventh/gift\"\n        handler_type = \"\
+  script\"\n        args = [\"/etc/consul/updates_configs.sh\"]\n    }\n]\n```\n\n\
+  这个特定的 watch 特别关注一个特定的 key，不过请记住，我们可以使用 keyprefix 定义一个 watch，从而监视 Consul KV 存储中整个路径。这使我们能够为特定配置创建多个\
+  \ key，并且当其中任何一个 key 发生变化时，watch 将执行 handler 并执行所需的操作。\n\n正如我希望你能看到的，Consul watches\
+  \ 和 handlers 在动态调整组件配置方面所能实现的强大功能是相当巨大的。我们现在已经看到了多种利用 Consul KV 存储更新配置的方法。应用程序可以通过使用\
+  \ API 的 pull 方法接收更新的配置值。我们可以利用 consul-template 函数自动调整配置文件。当然，我们也可以将 KV 信息推送到几乎任何可以通过脚本或\
+  \ HTTP 接口控制的系统。接下来，我们将研究如何超越 KV 并利用 Consul 通过 Terraform 动态调整我们的基础设施组件！\n\n## Floating\
+  \ with consul-terraform-sync\n\n在本书中，我们一直在研究 Consul 如何帮助我们发现和连接服务，重点关注更高级别的连接性（记住那个模型，工作在第\
+  \ 4 层或以上）。虽然这正是我们服务到服务通信所需的，但整个网络世界仍然依赖 IP 地址来发现、路由和保护我们的系统这一事实并未消失。防火墙和负载均衡器仍然存在，主要基于地址运行，管理进入或离开我们受管网络的流量。这通常被称为\
+  \ North/South 流量。历史上，这些组件会依赖无数健康检查来验证服务可用性，或庞大的配置文件，其中一个简单的拼写错误就可能导致整个网络瘫痪。因此，出于这些原因，由容易出错的人手工更改负载均衡和防火墙组件需要仔细审查。如果只有某种方法可以自动发现并以自动化且可追踪的方式实现对这些组件的更新呢？\n\
+  \n我们已经熟悉一个用于管理基础设施的令人难以置信的工具 Terraform，我们在本书中构建和管理自己的基础设施时一直在使用它。通过使用 Terraform\
+  \ OSS 二进制文件，我们一直在创建和销毁为我们的学习所需的 Consul 系统。如果你不熟悉 Terraform，它可以做更多的事情。在撰写本文时，Terraform\
+  \ 提供了超过 1,100 个基础设施提供商的支持集成。这包括大型云厂商以及监控组件、负载均衡器、防火墙、内容分发系统、域名系统等等。对于自动化，许多组织将 Terraform\
+  \ 与流水线流程集成，然而，我们将研究如何利用 Consul 提供的海量数据来自动化 Terraform 基础设施调整。\n\n> **Important note**\n\
+  >\n> 直到本章的这一点，我们的大部分讨论都围绕着在服务之间创建和共享配置参数。Consul 与 Terraform 的集成极大地扩展了该功能，因此作为变更控制流程的一部分也需要额外的审查。虽然我们的工作这里集中在\
+  \ Consul 和 Terraform 的开源版本上，但企业集成使能够采用细粒度策略来指定自动化可以更改什么、不能更改什么，以及什么需要额外级别的批准。此外，Terraform\
+  \ Enterprise 在整个过程中记录状态更改，提供任何自动化或已批准更改的历史记录。\n\n与 **consul-template** 类似，HashiCorp\
+  \ 提供了一个额外的独立二进制应用程序，称为 **Consul-Terraform-Sync**。为简单起见，我将继续称 Consul-Terraform-Sync\
+  \ 为 CTS。利用 CTS，Consul 监控服务目录中的更改，并基于这些更改，向 Terraform 发出请求以相应地调整基础设施：\n\n![](img/52479dafaefba00517c48a137e037b7e_207_0.png)\n\
+  \nFigure 7.2 – CTS managed infrastructure\n\n作为当前部署的一部分，我们已为 CTS 创建了一台专用机器，其 IP\
+  \ 地址由 `terraform output` 中的变量 `CTS_IP` 提供。如果找不到 Terraform 运行的输出，也没问题。运行 `terraform\
+  \ output` 将再次为你提供所有必要的数据。所以，让我们获取该 IP 地址并 SSH 进入 CTS 机器：\n\n```bash\n$ ssh -i <username>-consul-key.pem\
+  \ ubuntu@<CTS_IP>\n```\n\n当我们为本章构建基础设施时，创建了一个新目录来保存我们的 CTS 配置文件。让我们查看一下该配置文件：\n\n\
+  ### cts-config.hcl\n\n```hcl\nlog_level = \"INFO\"\nport = 8558\nsyslog {}\nbuffer_period\
+  \ {\n  enabled = true\n  min = \"5s\"\n  max = \"20s\"\n}\nconsul {\n  address =\
+  \ \"192.168.100.65:8500\"\n}\ndriver \"terraform\" {\n  log = false\n  persist_log\
+  \ = false\n  working_dir = \"\"\n  backend \"consul\" {\n    gzip = true\n  }\n\
+  }\ntask {\n  name        = \"find-httpd-nodes\"\n  description = \"Example task\
+  \ with two services\"\n  source      = \"findkim/print/cts\"\n  version     = \"\
+  0.1.0\"\n  services    = [\"httpd\"]\n}\nservice {\n  name = \"httpd\"\n  tag =\
+  \ \"python-server\"\n  # namespace = \"service-namespace\"\n  # datacenter = \"\
+  dc1\"\n  description = \"Filter for httpd services that have the python-server tag\"\
+  \n}\n```\n\n我们在此配置中有几个部分，让我们一次一个地来看。\n\n前八行描述了 CTS 应用的通用参数。log_level、port 和 syslog\
+  \ 部分应该很容易理解，但这个 buffer 是什么？\n\n我们在自动化此类更改时发现的一个挑战是，当存在任何不稳定性时，该不稳定性可能会产生连锁反应。作为人类，我们有时会花时间对情况做出反应，而到我们能够反应时，情况已经发生了变化。当然，我说有时是因为并非总是如此，我们都知道当我们不花时间时，问题就会发生。机器通常没有这种延迟问题。实际上，我们与机器和软件的问题通常恰恰相反，即应用程序响应太快，导致来回波动。我们的\
+  \ buffer 配置有助于管理这种波动，并确保在进行调整之前有一定时间等待系统达到稳定状态。\n\n下一个部分在 consul 配置块中标识了 Consul\
+  \ 相关配置参数；本质上告诉 CTS 它可以在哪里找到 Consul 服务。这里我们只有 address，然而，任何证书或令牌都将在此区域说明。正如我们已经看到的\
+  \ ACL 和令牌可以有多细粒度，我们希望确保 CTS 服务使用的是具有读取服务目录访问权限的令牌。\n\n我们知道 CTS 需要连接到 Terraform 才能启动基础设施更改。可选地，terraform\
+  \ 配置块可以指定要使用的预下载 Terraform 二进制文件和路径。然而，如果没有此指定，CTS 将下载 Terraform 二进制文件（遵循版本规范（如果包含））并将该二进制文件保存在\
+  \ CTS 工作目录中。对 Terraform 操作的日志记录以及 Terraform 后端配置应特别注意。\n\n在处理期间，Terraform 可以记录与所管理基础设施组件的交互。此日志输出可能包含敏感信息，如果存储在运行\
+  \ CTS 的机器上，可能会带来安全问题。因此，除非你正在调试，否则建议不要记录 Terraform 交互。Terraform 状态中也会记录相同的敏感信息，而这不是可选的。Terraform\
+  \ 利用该状态文件来了解所管理基础设施的当前状态，并评估需要哪些更改。\n\n\n\n\n那么，我们该如何处理这个不祥的状态文件呢？好吧，在本章的第一部分，我们谈到了分布式\
+  \ Consul KV 存储可用的功能。只要我们能将该状态文件保持在可管理的大小，少于 512 KB，我们就可以将该状态文件保存在 Consul KV 存储中。这实际上就是我们在\
+  \ terraform 块内的后端配置子块中所做的操作。这不仅为我们提供了一个可以使用 ACL 保护的分布式存储位置，还提供了对状态文件更改的指示（还记得 KV\
+  \ 响应中的 ModifyIndex 值吗）。这要求我们保持状态相对简单，但我们无论如何都应该这样做，将用于 CTS 的 Terraform 脚本仅聚焦于我们需要管理的特定基础设施。例如，如果我有\
+  \ 10 台虚拟机、一个 Kubernetes 集群和一个负载均衡器，我应该只将负载均衡器的基础设施代码作为 CTS 的一部分包含在内。\n\n所有这些关于状态和\
+  \ Terraform 配置的讨论可能看起来过分，但这里的细节不容低估。总结一下，仅将我们的 Terraform 代码聚焦于服务目录导致更改所需的内容，可以实现以下目标：\n\
+  \n- 利用 Consul KV 存储实现集中且受保护的存储 – 我们已经可以使用 Consul，为什么不将其用于此目的呢？\n- 状态文件中的敏感信息保持在最低限度，仅与\
+  \ CTS 管理的基础设施相关。\n- 通过 CTS 启动的更改更快。对于由于大型基础设施定义而导致的大型状态文件，Terraform 处理更改所需的时间会更长。\n\
+  \n我们接下来要处理的块是 task 块。现在我们终于可以定义我们希望 CTS 实际做什么了！task 块标识了将作为服务目录更改结果而执行的 Terraform\
+  \ 模块。对于我们的目的，该模块非常简单，只打印出服务节点和相关信息。然而，Terraform 模块可以在基础设施管理的范围内做几乎任何事情！Terraform\
+  \ 模块可以类比为应用程序中的一个函数，为一个特定目的而构建。一些模块可能相当庞大（例如创建整个生产 HashiCorp Vault 系统），但我们已经看到我们希望保持\
+  \ Terraform 操作的聚焦。因此，我们希望使用非常具体的模块，例如在负载均衡器中填充客户端节点。Terraform 仓库，https://registry.terraform.io/，提供了大量可供查阅的示例模块。\n\
+  \n由于这是我们第一次运行 CTS，几项操作将在后台发生。首先，CTS 将为 Terraform 状态文件准备 Consul 后端。我们也可以在 Consul\
+  \ 系统 KV 存储中看到这一点：\n\n![](img/52479dafaefba00517c48a137e037b7e_212_0.png)\n**图 7.3\
+  \ – KV 存储中的 CTS**\n\n在 CTS 的文件夹中，我们可以看到，如图 7.4 所示，我们有一个特定于已配置的 `find-httpd-nodes`\
+  \ 任务的状态文件。请注意，每个任务，因此每个模块，都会创建自己的状态文件，并将这些文件存储在此处 Consul 中：\n\n![](img/52479dafaefba00517c48a137e037b7e_212_1.png)\n\
+  **图 7.4 – 任务状态文件存储**\n\n如果我们查看我们的目录，我们还可以看到 CTS 已为我们下载了 Terraform 二进制文件，但我们也拥有这个名为\
+  \ `sync-tasks` 的文件夹。这里就是魔法的发生之处。\n\n![](img/52479dafaefba00517c48a137e037b7e_213_0.png)\n\
+  **图 7.5 – CTS 创建的内容**\n\n在 `sync-tasks` 文件夹中，我们将为 CTS 被命令的每个任务拥有一个文件夹。对于我们来说，我们只有\
+  \ `find-httpd-nodes`，这是我们任务的名称。在该文件夹中，我们有一堆 Terraform 代码！更重要的是，我们有一个 `terraform.tfvars.tmpl`\
+  \ 文件。如果你观察该文件，你会发现它看起来很像一个 Consul Template 文件。如果你继续使用 HashiCorp 产品，请习惯这些模板文件。它们非常有用，并且无处不在！\n\
+  \n当 CTS 运行 时，该模板文件用于创建一个新的 `terraform.tfvars` 文件，即实际保存用于 Terraform 代码的变量的文件。到目前为止，我们所做的只是一个检查操作；基本上，使用\
+  \ CTS 的一个任务来查看它会做什么，但实际上并不执行它。这些由 CTS 创建的变量被输入到随后用于相应调整基础设施的 Terraform 代码中。\n\n\
+  现在我们运行了命令，我们可以看到我们的 `httpd.txt` 文件已被创建。该文件是在任务的目录中创建的，我们可以通过发出以下命令查看结果：\n\n```\n\
+  $ cat /home/ubuntu/sync-tasks/find-httpd-nodes/httpd.txt\n```\n\n现在我们拥有了运行 httpd\
+  \ 服务的所有四个节点，以文本文件形式提供。这本身并不令人兴奋，直到我们看到使之特别的不是文件本身；而是它是用 Terraform 创建的！现在几乎可以在 Terraform\
+  \ 模块中执行的任何操作，都可以使用 Consul 提供的服务目录信息自动执行！当我们将服务作为守护进程运行（不是恶魔）时，CTS 将持续监控服务目录中 httpd\
+  \ 的更改，并利用 Terraform 相应地更新基础设施。\n\n## 总结\n\n让我们回顾一下我们在这里做了什么。Consul 系统有潜力保存有关您网络中服务的丰富信息。那信息就是力量！当然，这是安全连接的力量，但我希望通过本章，你已经看到\
+  \ Consul 的力量可以远远超出其 gossip 角落的象征性围墙。我们已经看到 KV 系统如何用于存储和分发配置信息。我们学习了如何构建 Consul 监视，以使服务更改通知其他组件进行配置管理。最后，我们看到了\
+  \ Consul 如何与 Terraform 互操作，使用 Consul-Terraform-Sync 能力，基于 Consul 的服务知识虚拟调整任何基础设施。现在是时候坐下来，拿起你喜欢的饮品，梦想\
+  \ Consul 能为你做的一切！\n\n## 8 我们接下来去哪里？\n\n我想用最后一章来结束本书，希望能将你进一步推向利用 Consul 系统进行服务发现、服务网格和自动化的世界。这本书只是个开始，我希望它既有趣又富有信息量。\n\
+  \n### Consul Associate 认证\n\n如果你想继续提升，我推荐 **HashiCorp 认证计划**，特别是 Consul Associate\
+  \ 考试：https://www.hashicorp.com/certification/consul-associate。\n\n在此页面上，你将找到考试的学习指南链接，以及关于注册考试的信息。虽然本书并非\
+  \ intended 作为考试的学习指南，但它应该能让你达到大部分要求。\n\n### HashiCorp Cloud Platform\n\n如果你准备启动服务，但又不想承担\
+  \ Consul 系统的运维管理，我强烈建议你注册 HashiCorp Cloud Platform。设置服务器和保护它所需的所有工作都已为你完成。入门非常容易，只需在以下网址注册即可：https://cloud.hashicorp.com/。\n\
+  \n流程的一部分要求你创建自己的组织，一旦完成，你就可以访问 HashiCorp Cloud Platform。\n\n![](img/52479dafaefba00517c48a137e037b7e_218_0.png)\n\
+  **图 8.1 – HashiCorp Cloud Platform**\n\n创建虚拟网络需要几分钟时间，但一旦完成，我们就有创建集群的选项。我们可以选择部署\
+  \ Vault 集群或 Consul 集群。由于这是一本关于 Consul 而非 Vault 的书，让我们继续创建一个 Consul 集群。\n\n![](img/52479dafaefba00517c48a137e037b7e_220_0.png)\n\
+  **图 8.3 – HashiCorp Cloud Platform 部署 Consul 集群的选项**\n\n现在我们需要填写创建 Consul 集群所需的参数。这里其实没什么好决定的，但从一个小型系统开始并使其公开可访问会更容易连接。在生产环境中，关于集群的外部连接应特别注意。\n\
+  \n\n\n\n\n## 创建 Consul 集群\n\n预配置一个基于 Consul 服务的集群实例。\n\n**集群 ID**\n\nwhat-a-cluster\n\
+  \n**HashiCorp 虚拟网络**\n\n您的集群将使用您的 HashiCorp 虚拟网络。这将把 HashiCorp 虚拟网络中的云提供商和区域与您的集群部署关联起来。\n\
+  \nveganet aws 俄勒冈州（us-west-2）\n\n**Consul 层级**\n\n**开发**\n\n用于测试和开发目的的非生产部署，可连接最多\
+  \ 50 个服务实例。开发层级集群拥有 1 个 Consul 服务器。\n\n超小型\n$0.027/小时\n大小\n2 vCPU / 1 GiB 内存\n服务实例\n\
+  1-50\n\n准备好部署生产工作负载了吗？添加支付方式以启用标准层级 Consul 集群\n用于生产部署，可连接最多 10,000 个服务实例。标准层级集群拥有\
+  \ 3 个 Consul 服务器，跨区域内的可用区复制以实现高可用性。\n添加信用卡\n\n**网络访问**\n\n允许公共连接更便于测试，因为无需更多配置即可连接并与您的集群通信，但安全性较低。\n\
+  \n允许从所选网络外部进行公共连接\n不建议用于生产服务器\n\n**Consul 版本**\n\n请指定您希望在集群上安装的 Consul 版本（如果可用）。\n\
+  \n**版本选择**\n\nv1.9.8（推荐）\n\n创建集群\n取消\n\n*图 8.4 – 配置 Consul 集群*\n\n一旦您点击那个神奇的蓝色按钮，HashiCorp\
+  \ 云平台将开始创建您自己的 Consul 集群，并托管在云端！集群创建完成后，您将看到一个类似于以下截图的屏幕：\n\n![](img/52479dafaefba00517c48a137e037b7e_222_0.png)\n\
+  \n*图 8.5 – HashiCorp 云平台中的集群概览页面*\n\n从这里，您可以生成管理员令牌，在 Web 浏览器中访问集群 URL，一切就绪！要添加客户端，请下载客户端配置并将其分发给您的\
+  \ Consul 客户端。下载的软件包包含客户端访问系统所需的证书以及任何必要的额外配置，这就是您开始云端 HashiCorp Consul 之旅所需的全部内容！\n\
+  \n## 结束\n\n我美丽的朋友，希望不只是唯一的朋友，这就是结束。或者，也许并且希望，这是您 Consul 之旅的开始。如果您有 Consul 的历史，您可能注意到我们遗漏了大量信息，我同意。在创作本书的过程中，我继续从事日常工作，寻找更多需要涵盖的内容。Kubernetes\
+  \ 就是一个例子，可能值得单独写一整本书。然而，我确实希望我们为应用 HashiCorp Consul 的多种用途和应用程序奠定了基础。Consul 节点之间的通信路径，可以说是架构中最重要的方面之一，已经得到了一些详细的解释。我们经历了保护\
+  \ Consul 集群的过程，不仅确保通信加密，还确保身份验证。我们不希望外人加入我们的群体并监听我们的八卦，对吗？将 Consul 扩展到多个数据中心和区域是架构的下一个合理步骤。当然，一旦我们有了稳定的基础，我们需要确保我们的运营和资本投资获得价值。Consul\
+  \ 通过在我们动态且不断变化的世界中进行服务发现来提供这种价值。在这个世界中简单地找到我们的服务往往并不那么简单！一旦我们能够定位我们的服务，我们利用 Consul\
+  \ 将它们连接到各种环境（内部和外部）到 Consul 的领域。当然，网络世界确实远远超出 Consul 的领域，但我们可以应用 Consul 的知识来自动化该网络基础设施。最后，尽管\
+  \ Consul 几乎可以部署在任何系统上（有些人在树莓派上运行 Consul！），但我们通常不希望在不必要的情况下处理操作系统。HashiCorp 云平台上的\
+  \ Consul 提供了快速启动托管 Consul 集群并接入您的服务的能力。\n\n我确实希望您喜欢这本书并学到了一些关于 Consul 的知识。更重要的是，我希望我已经激起了您对许多话题的好奇心。永远不要停止学习！\n\
+  \n## 您可能还喜欢的其他书籍\n\n如果您喜欢这本书，您可能对 Packt 的其他书籍感兴趣：\n\n![](img/52479dafaefba00517c48a137e037b7e_226_0.png)\n\
+  \n### HashiCorp 基础设施自动化认证指南\n\nRavi Mishra\n\nISBN：978-1-80056-597-5\n\n- 使用 Terraform\
+  \ 1.0 有效维护基础设施的生命周期\n- 重用 Terraform 代码以预配任何云基础设施\n- 在多个云提供商上编写 Terraform 模块\n- 使用\
+  \ Azure DevOps 管道使用 Terraform 工作流\n- 为 AWS、Azure 和 Google Cloud 编写 Terraform 配置文件\n\
+  - 发现安全存储 Terraform 状态文件的方法\n- 使用 Terraform Sentinel 理解策略即代码\n- 了解 Terraform Cloud\
+  \ 和 Terraform Enterprise 概述\n\n## Packt 正在寻找像您这样的作者\n\n如果您有兴趣成为 Packt 的作者，请访问 authors.packtpub.com\
+  \ 并立即申请。我们与成千上万的开发人员和技术专业人员（就像您一样）合作，帮助他们与全球技术社区分享见解。您可以进行一般申请，申请我们正在招募作者的特定热门主题，或提交您自己的想法。\n\
+  \n## 分享您的想法\n\n现在您已经读完了*使用 Consul 简化服务管理*，我们很乐意听到您的想法！如果您从 Amazon 购买了这本书，请单击此处直接转到这本书的\
+  \ Amazon 评论页面并分享您的反馈，或在您购买它的网站上留下评论。\n\n您的评论对我们和技术社区都很重要，并将帮助我们确保提供优质的内容。\n\n##\
+  \ 索引\n\n### A\n\n- 访问控制列表（ACL）\n  - 关于 135\n  - 使用 93-105\n- Consul 的访问控制系统\n  -\
+  \ 控制 68-76\n- ActiveMQ 152\n- 管理员级别权限 75\n- 一切即服务（XaaS）176\n- API 148-150\n- 应用层\
+  \ 157\n- 自动化\n  - 必要性 182, 183\n- AWS 凭据\n  - 获取 20-26\n\n### B\n\n- bart.private_key\
+  \ 证书 66\n- bart.public_key 证书 66\n- 绑定规则 78\n- 引导策略 124\n\n### C\n\n- 证书颁发机构（CA）66,\
+  \ 160\n  - 实现检查，服务\n    - Docker 145\n    - gRPC 145\n    - H2ping 145\n    - HTTP\
+  \ 144\n    - 脚本 143\n    - TCP 144\n    - TTL 145\n- 声明映射 77\n- 集群组成 6, 7\n- 通信路径\n\
+  \  - 保护调用 65-68\n  - 保护八卦 63, 64\n  - 保护 63\n- 连接功能 174\n- 共识\n  - 关于 27\n  - 服务器之间\
+  \ 28\n  - Raft 30\n- Consul\n  - 访问控制系统 68\n  - 实现身份验证 76-81\n  - 实现授权 76-81\n \
+  \ - 下载链接 55\n  - 延迟变化 35\n  - 定义服务 134-137\n- Consul Autopilot\n  - 关于 111-117\n\
+  \  - 参数 111, 112\n  - 企业版参数\n    - 系统 112, 113\n- Consul 客户端 8\n- Consul 集群\n  -\
+  \ 关于 27\n  - 构建基础镜像 36-41\n  - 构建 42-54, 84-93\n  - 连接 125-129\n  - 安全性 81\n  -\
+  \ 设置 36\n- Consul 配置块 195\n- Consul Enterprise 129\n- Consul ESM 源代码\n  - 参考链接 142\n\
+  - Consul 意图 168-172\n- Consul KV 系统 185\n- Consul 命名空间\n  - 关于 117\n  - 好处 117\n\
+  \  - 创建 118, 119\n  - httpd 服务 120\n  - 策略 124\n  - 在 Consul UI 中选择 119\n- Consul\
+  \ 服务器集群\n  - 关于 5\n  - 保护 108-110\n  - 扩展 108-110\n- Consul 服务器配置\n  - 使用冗余区域 113\n\
+  - Consul 服务器\n  - 关于 5-8\n  - 集群大小与同步时间的比较 29\n- Consul 系统\n  - 访问 54\n  - 使用 CLI\
+  \ 访问 55, 56\n  - 使用 HTTP Web 界面访问 56-58\n  - 服务器和客户端 4\n- Consul Template 188, 189\n\
+  - Consul-Terraform-Sync\n  - 关于 17, 193\n  - 内容创建 199\n  - 使用 192-195\n  - 在 KV\
+  \ 存储中 198\n- Consul 监视\n  - 关于 150-152, 190\n  - 检查 150\n  - 服务 150\n  - 服务 150\n\
+  - 容器 179\n- Consul 规则的控制级别\n  - 拒绝 70\n  - 列出 70\n  - 读取 70\n  - 写入 70\n- 控制平面 167\n\
+  - CTS 检查输出 200\n- CTS 管理的基础设施 193\n- cURL 140\n\n### D\n\n- 数据平面 167\n- 数据共享\n \
+  \ - 在服务器对等集内 33, 34\n\n\n\n\n\n## D\n\n- 分布式配置\n  - 键值存储 184-187\n- Docker 检查\n\
+  \  - 执行 145\n- 域名系统 (DNS)\n  - 136, 147, 148\n\n## E\n\n- 弹性计算云 (EC2)\n  - 基础设施\
+  \ 22\n- enable_local_script_checks 144\n- enable_script_checks 字段 144\n- 加密密钥 64\n\
+  - 熵 29\n- 外部服务 139-142, 177\n- 外部服务管理器 (ESM) 141\n\n## F\n\n- 有限状态机 (FSM) 34\n\n\
+  ## G\n\n- 网关\n  - 关于 173\n  - 入站 177, 178\n  - 网格 174, 175\n  - 终止 176, 177\n- GitHub\
+  \ 139\n-  gossip\n  - 关于 63\n  - 连接 35\n- gossip 池\n  - 通过网络分段减少 125\n- gossip 协议\
+  \ 28, 34, 184\n- gRPC 检查\n  - 执行 145\n- gRPC 远程过程调用 145\n\n## H\n\n- H2ping 检查\n\
+  \  - 执行 145\n- 处理程序 150, 190, 191\n- HashiCorp 认证计划\n  - 参考链接 203\n- HashiCorp 云平台\
+  \ (HCP)\n  - 关于 36, 204-208\n  - URL 204\n- HashiCorp Vault 安全 Shell (SSH) 45\n\
+  - HashiCorp 虚拟网络 205\n- 健康检查 143\n- HashiCorp 主机 Consul 服务\n  - URL 36\n- HTTP 检查\n\
+  \  - 执行 144\n- httpd 服务 200\n- HTTP Web 界面\n  - 用于访问 Consul 系统 56-58\n\n## I\n\n\
+  - 身份 160\n- 入站网关 177, 178\n\n## K\n\n- 键值存储\n  - 分布式配置 184-187\n- Kubernetes\n \
+  \ - 注解 179\n  - 与之网格化 178, 179\n\n## L\n\n- 第四层地址 158\n- 领导者选举 30-33\n- 最小权限 73\n\
+  - 最小权限安全 157\n- lisa.private_key 证书 67\n- lisa.public_key 证书 67\n\n## M\n\n- maggie.private_key\
+  \ 证书 67\n- maggie.public_key 证书 67\n- 网格网关 174, 175\n- 服务发现方法\n  - API 148-150\n\
+  \  - Consul 监视 150\n  - DNS 147, 148\n- 双向 TLS (mTLS) 159\n\n## N\n\n- 命名空间管理级别策略\n\
+  \  - 创建 122\n- 网络地址 156\n- 网络连接 155-157\n- 网络服务\n  - 发现 14-17\n- 网络隧道 158-167\n\
+  - 节点 179\n- 北/南流量 192\n\n## O\n\n- 一次性操作 146\n- OpenID Connect (OIDC) 76\n- 开放系统互连\
+  \ (OSI) 154\n\n## P\n\n- Packer\n  - 下载链接 26\n  - 安装 26\n- 参数，服务定义\n  - 地址 136\n\
+  \  - 元数据 136\n  - 令牌 136\n- Paxos\n  - 参考链接 30\n- 物理地址 156\n- porkchop 证书 66\n-\
+  \ 隐私增强邮件 (PEM) 文件 45\n- 私有云基础设施\n  - 实现 9-11\n- 私钥 66\n- 公有云基础设施\n  - 实现 9-11\n\
+  - 公钥 66\n\n## Q\n\n- 仲裁 30\n\n## R\n\n- RabbitMQ 152\n- 只读副本 108-110\n- 冗余区域 110\n\
+  - 远程过程调用 (RPC) 63, 128\n- 基于角色的访问控制 (RBAC) 76\n- 往返时间 (RTT) 129\n- 规则类型，Consul\n\
+  \  - ACL 资源 71\n  - 代理 71\n  - 事件 72\n  - 密钥环 72\n  - 键/值 72\n  - 命名空间 72\n  - 节点\
+  \ 72\n  - 操作员 72\n  - 预准备查询 72\n  - Sentinel 72\n  - 服务 72\n  - 会话 72\n\n## S\n\n\
+  - salt 证书 66\n- 脚本检查\n  - 执行 143\n- 安全哈希算法 256 (SHA256) 指纹 55\n- 安全，Consul 集群\n\
+  \  - ACL，操作 93-105\n  - 集群，构建 84-93\n  - 镜像，创建 82-84\n  - 实现 81\n- Serf\n  - URL\
+  \ 34\n- 服务器对等集合\n  - 数据共享 33, 34\n- 服务\n  - 检查，执行 143-147\n  - 定义 134-137\n  - 外部服务\
+  \ 139-142\n  - 发现方法 147\n  - 参数 136\n  - 参考链接 136\n- 服务目录 29\n- 服务网格 11-13\n- 侧车进程\
+  \ 179\n- SWIM\n  - 参考链接 34\n\n## T\n\n- 任务块 196\n- TCP 检查\n  - 执行 144\n- Terraform\n\
+  \  - 下载链接 26\n  - 安装 26\n- terraform 配置块 195\n- Terraform 计划输出 200\n- Terraform\
+  \ 注册表\n  - 参考链接 196\n- 生存时间 (TTL) 145\n- 传输层 161\n- 传输层安全 (TLS) 66, 129\n- 树类型\n\
+  \  - 通过命名空间分段 118\n- 信任 160\n- TTL 检查\n  - 执行 145\n\n## U\n\n- 上游服务 175\n\n## V\n\
+  \n- 虚拟专用网络 (VPNs) 158, 159\n\n## W\n\n- 广域网 (WAN) 125\n\n## Z\n\n- 零信任 157\n\n"
