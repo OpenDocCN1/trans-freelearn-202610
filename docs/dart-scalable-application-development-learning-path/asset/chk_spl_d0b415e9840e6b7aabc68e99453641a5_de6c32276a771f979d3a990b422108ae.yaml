@@ -1,0 +1,49 @@
+reviews:
+- 'no': 7
+  overturn_probability: 0.05
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 前言属于正文之前内容，按规则应统一划分为一章
+  - 标题单独成行且为书籍前置部分，语义具有统领性
+  keep_split: true
+- 'no': 105
+  overturn_probability: 0.85
+  alternative: 正文小标题
+  counter_evidence:
+  - '后续大量 ## 标题均为无编号的二级小节，如## 启动文本编辑器、## 定义 Dart、## Web 脚本的历史等，构成连续的引言式小标题群，而非最高层级章节'
+  - '首个带明确编号的章节出现在 1062 行 ## 3 幻灯片演示，说明在此之前不应出现第1章的正式划分，105 行缺乏编号且长度与上下文小标题一致'
+  - '标题后 1~3 行为概述段落而非章节概述，且前后均被同级 ## 小标题包围，符合正文小标题特征而非统领全书的章标题'
+  keep_split: false
+- 'no': 527
+  overturn_probability: 0.35
+  alternative: 正文小标题
+  counter_evidence:
+  - 该标题后紧跟引文块 > 我们把屏幕上的按钮做得如此精美...，标题末尾无句号但语义偏功能点而非概括性章节
+  - '在 105~1062 区间内存在大量同级 ## 小标题，整体仍属引言/入门部分，推断为第2章的证据主要依赖后续出现第3章的间接推理，缺乏编号或明确的章节分隔特征'
+  keep_split: true
+- 'no': 1062
+  overturn_probability: 0.02
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 标题明确带编号 '3 '，符合最高层级大章编号特征
+  - 标题单独成行且后接引文和章节概述，语义统领后续幻灯片演示内容
+  keep_split: true
+- 'no': 1651
+  overturn_probability: 0.1
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '标题为 ## 4 与下一行 语言、动作与声音 共同构成编号章节，符合编号特征'
+  - 前后章节编号连贯 3→4，语义具有统领性
+  keep_split: true
+- 'no': 2161
+  overturn_probability: 0.02
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 标题明确带 '5 ' 编号，单独成行，符合章标题格式
+  keep_split: true
+- 'no': 2671
+  overturn_probability: 0.02
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 标题明确带 '6 ' 编号，单独成行，符合章标题格式
+  keep_split: true

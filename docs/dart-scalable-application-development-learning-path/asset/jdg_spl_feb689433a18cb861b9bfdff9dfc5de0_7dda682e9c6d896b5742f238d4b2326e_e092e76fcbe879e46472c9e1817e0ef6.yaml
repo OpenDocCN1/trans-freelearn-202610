@@ -1,0 +1,38 @@
+chapter_starts:
+- 'no': 19077
+  confidence: 0.95
+  final_reason: 判断方认定为章标题且复核方采纳。标题后紧接‘在本章中，我们将介绍以下配方’的章首概述，语义统领后续 Futures/Tasks/Isolates
+    内容，符合章标题上下文特征。
+  accepted_evidence:
+  - 后接‘在本章中，我们将介绍以下配方’列表，明确为新章起始
+  - 复核方 keep_split=true，overturn_probability 0.1
+  rejected_evidence:
+  - 后文第19094行再次出现完全相同标题，可能造成混淆
+  need_human_review: false
+- 'no': 19874
+  confidence: 1.0
+  final_reason: 判断方认定为编号章标题，复核方基本同意。‘## 9 使用数据库’带明确章节编号，后接‘在本章中，我们将介绍以下小节’，编号特征+语义统领性均符合最高层级大章。
+  accepted_evidence:
+  - 带编号章标题‘9 使用数据库’，编号特征明显，且后接本章小节列表
+  - 复核方 keep_split=true，overturn_probability 0.05
+  rejected_evidence:
+  - 若忽视‘在本章中’提示仍存在歧义
+  need_human_review: false
+- 'no': 20690
+  confidence: 0.9
+  final_reason: 判断方认定章节编号‘10’单独成行与下一行章名构成新章，复核方采纳。编号单独成行且紧随‘## Polymer Dart 菜谱’，构成完整章标题，符合编号特征。
+  accepted_evidence:
+  - 章节编号‘10’单独成行，下一行‘## Polymer Dart 菜谱’为章名，共同构成新章标题
+  - 复核方 keep_split=true，overturn_probability 0.1
+  rejected_evidence:
+  - ‘## 10’单独成行缺少章名，可能被误认为页码残留
+  need_human_review: false
+rejected_lines:
+- 'no': 17732
+  reason: 复核方反证成立：该行之前已有‘### 逐行读取和处理文件’子节，后续紧跟‘## 如何实现...’而非概述，且第18001行再次出现相同标题，表明为章内
+    recipe 小标题而非最高层级章标题。采纳复核方，撤销分章。
+  need_human_review: false
+- 'no': 18362
+  reason: '复核方反证成立：前面已有‘## Creating a web server’具体 recipe，后续内容直接承接该 recipe 且无概述段落，后续多个并列
+    ## 标题均为同一章内食谱。应为正文小标题，不分章。'
+  need_human_review: false

@@ -1,0 +1,362 @@
+## 集合类
+
+集合框架为各种场景提供了以下类：
+
+- **List：** 这是一个有序集合，支持对元素的索引访问，并允许重复元素。
+- **Set：** 这是一个元素集合，其中每个元素只能出现一次。
+- **Queue：** 这是一个可以在两端操作的集合。
+- **Map：** 这是一个键值对集合，其中每个元素可以通过唯一的键来访问。
+
+它们都定义了自己特有的向集合中添加或删除元素的方式。下面我们逐一讨论。
+
+## List
+
+List 类实现了 Iterable 接口，并大量使用索引顺序来遍历集合中的元素。`List` 类可以是固定长度或可变长度的。固定长度的列表只能通过带有特定元素数量的构造函数创建：`new List(5)`。固定长度类型对所有改变列表长度的操作都有限制，并会以 `UnsupportedError` 结束。固定长度类型的特点如下：
+
+- 长度不能更改
+- 只能通过索引运算符向列表赋值
+- 不能从列表中移除元素
+- 列表无法被清空
+
+可变列表是通过 `new List()` 或 `[]` 操作得到的结果。它有一个内部缓冲区，并在需要时动态改变大小。在迭代期间尝试改变 List 类的长度会导致 ConcurrentModificationError。下图展示了基于 List 的类的层次结构：
+
+![](img/52c05b53a56abd53584e4fed738ed509_372_0.png)
+
+Dart 在实例化时总是创建 List 类的实例。如果 List 类的标准实现不够用，你可以创建自己的实现；只需扩展 ListBase 类以满足你的需要，如下面的代码所示：
+
+```
+import "dart:collection";
+
+class NewList<E> extends ListBase {
+    final List<E> _elements;
+
+    NewList() :_elements = new List<E>();
+
+    @override
+    operator [] (int index) {
+        return _elements[index];
+    }
+
+    @override
+    void operator []=(int index, value) {
+        _elements[index] = value;
+    }
+}
+```
+
+```
+@override
+int get length => _elements.length;
+
+@override
+void set length(int newLength) {
+  _elements.length = newLength;
+}
+}
+```
+
+你可能会惊讶地发现，只需要实现四个方法就能得到一个功能完整的基于列表的类。这是因为 ListBase 类的其他方法使用这四个主要方法来管理内部缓冲区并遍历元素。如果你不想扩展 ListBase 类，可以使用 ListMixin，如下所示：
+
+```
+class OtherList<E> extends MainList with ListMixin<E> {
+  // ...
+}
+```
+
+List 类接口通过 sort 方法支持排序。
+
+> List 类的 asMap 方法返回一个不可修改的 Map 视图。
+
+有时，我们需要随机重排 List 类中的元素。此时，List 类的 shuffle 方法就能派上用场：
+
+```
+import 'dart:math';
+
+main() {
+  var list = new List.from([1, 2, 3, 4, 5]);
+  print(list);
+  // => [1, 2, 3, 4, 5]
+  // Crete seed to initialize internal state of
+  // random-number generator
+  var seed = new DateTime.now().millisecondsSinceEpoch;
+  // Create instance of generator
+  var random = new Random(seed);
+  // Re-arrange elements in list
+  list.shuffle(random);
+  print(list);
+  // => [4, 5, 1, 3, 2]
+}
+```
+
+多次运行上面的代码片段，可以看到 shuffle 操作的不同结果。
+
+## LinkedList
+
+`LinkedList` 类是一个双向链表。`LinkList` 类是同一数据类型元素的集合，在插入和删除复杂结构元素时非常高效。尽管名字如此，它与 `List` 类没有任何共同之处。
+
+> `LinkedList` 类不扩展或实现 `List` 类。
+
+让我们看一下 `LinkedList` 类的类层次结构：
+
+![](img/52c05b53a56abd53584e4fed738ed509_374_0.png)
+
+`LinkedList` 中的所有元素都基于 `LinkedListEntry`，并通过指针连接。每个 `LinkedListEntry` 类都有一个指针字段，指向列表中的下一个和上一个元素。它包含所属 `LinkedList` 实例的链接。在将元素添加到另一个 `LinkedList` 类之前，必须将其从当前的类中移除。否则，会抛出 `StateError`。`LinkedList` 类的每个元素都知道自己的位置，因此我们可以使用 `LinkedListEntry` 的 `addBefore`、`addAfter` 或 `unlink` 等方法来操作它们：
+
+```
+import "dart:collection";
+```
+
+### Set
+
+Set 类是一个不能包含相同元素的集合。它不允许对集合中的元素进行索引访问，因此只能通过 `iterator` 和 `for-each` 循环方法遍历 Set 类的元素：
+
+```dart
+void main() {
+  var aset = new Set.from([3, 2, 3, 1]);
+  print(aset);
+  // => {3, 2, 1}
+}
+```
+
+Set 类最多可以包含一个 null 元素。
+
+> > Set 工厂会创建 `LinkedHashSet` 的实例。
+
+Set 类可以返回一个集合，作为其内部集合与另一个集合执行 intersection 方法的结果：
+
+```dart
+main() {
+  var aset = new Set.from([3, 2, 3, 1]);
+  print(aset);
+  // => {3, 2, 1}
+  var other = new Set.from([2, 1, 5, 6]);
+  print(other);
+  // => {2, 1, 5, 6}
+  var intersect = aset.intersection(other);
+  print(intersect);
+  // => {2, 1}
+}
+```
+
+union 方法返回一个新的 Set 类，其中包含其内部集合和另一个集合中的所有元素：
+
+```dart
+main() {
+  var aset = new Set.from([3, 2, 3, 1]);
+  print(aset);
+  // => {3, 2, 1}
+  var other = new Set.from([2, 1, 5, 6]);
+  print(other);
+  // => {2, 1, 5, 6}
+  var union = aset.union(other);
+  print(union);
+  // => {3, 2, 1, 5, 6}
+}
+```
+
+
+
+
+
+如果需要找出某个集合与其他集合元素之间的差异，请使用 Set 类的 `difference` 方法，如下所示：
+
+```
+main() {
+  var aset = new Set.from([3, 2, 3, 1]);
+  print(aset);
+  // => {3, 2, 1}
+  var other = new Set.from([2, 1, 5, 6]);
+  print(other);
+  // => {2, 1, 5, 6}
+  var difference = aset.difference(other);
+  print(difference);
+  // => {3}
+}
+```
+
+下面是基于集合的类的类层次结构：
+
+![](img/52c05b53a56abd53584e4fed738ed509_377_0.png)
+
+## HashSet
+
+HashSet 类是 Set 的哈希表实现，提供快速的查找和更新。它具有 add、contains、remove 和 length 等操作，这些操作的执行时间是恒定的：
+
+```
+import 'dart:collection';
+
+void main() {
+  var hset = new HashSet.from([3, 2, 3, 1]);
+  print(hset);
+  // => {1, 2, 3}
+}
+```
+
+通过构造函数参数，我们可以使用 HashSet 来控制一致的相等性：
+
+```
+import 'dart:collection';
+
+void main() {
+  var hset = new HashSet(equals: (e1, e2) {
+    return e1 == e2;
+  }, hashCode: (e) {
+    return e.hashCode;
+  });
+  hset.addAll([3, 2, 3, 1]);
+  print(hset);
+  // => {1, 2, 3}
+  hset.add(1);
+  print(hset);
+  //  => {1, 2, 3}
+}
+```
+
+构造函数的命名参数 `equals` 必须是一个函数，用于比较集合中两个元素的相等性。另一个构造函数命名参数 `hashCode` 必须是一个函数，用于计算指定元素的哈希码。如果两个元素被视为相等，那么它们应该返回相同的哈希码。如果两个命名参数都被省略，Set 类将使用元素内部的 equals 和 hashCode 方法。
+
+## LinkedHashSet
+
+LinkedHashSet 类是一个基于哈希表的有序 Set 实现，它维护元素的插入顺序以进行迭代，并且运行速度几乎与 HashSet 一样快。向集合添加项目的顺序决定了通过集合元素进行迭代的顺序。LinkedHashSet 中的一致相等性由 equals 运算符定义，并且主要基于 hashCode 方法的值。添加一个已经在 Set 中的元素不会改变其在迭代顺序中的位置，但删除一个元素并再次添加会使它成为迭代的最后一个元素：
+
+```
+import 'dart:collection';
+
+void main() {
+  var hset = new LinkedHashSet();
+  hset.addAll([3, 2, 3, 1]);
+  print(hset);
+  // => {3, 2, 1}
+  hset.add(1);
+  print(hset);
+  //  => {3, 2, 1}
+}
+```
+
+## SplayTreeSet
+
+最后但同样重要的是，SplayTreeSet 是一个维护集合有序排列的类，但在查找和更新方面较慢。它继承自 _SplayTree 类。_SplayTree 类是一种自平衡二叉搜索树（BST）。BST 中大多数操作所花费的时间与树的高度成正比，因此最好保持较小的高度。自平衡 BST 通过在 O(log(n)) 的对数时间内执行树变换来降低高度，其中 n 是树的高度。下图显示了类的层次结构：
+
+![](img/52c05b53a56abd53584e4fed738ed509_379_0.png)
+
+默认情况下，SplayTreeSet 类假设所有元素都是可比较的，并使用对象比较方法对它们进行排序。在我的示例中，我向 SplayTreeSet 添加了一个字符串数组：
+
+```
+import 'dart:collection';
+
+main() {
+  var sset = new SplayTreeSet();
+  sset.addAll(['33', '2', '33', '10']);
+  print(sset);
+  // => (10, 2, 33)
+}
+```
+
+从比较字符串的角度来看，结果的顺序是正确的，但我们必须按照整数值对它们进行排序，以便将它们表示为字符串。为了解决这个问题，我们可以将比较函数作为构造函数的参数传递：
+
+```
+import 'dart:collection';
+
+main() {
+  var sset = new SplayTreeSet((e1, e2) {
+```
+
+ListQueue 的初始容量为八个元素，可以通过将另一个数字作为构造函数的参数传递来更改。实际上，这个值将向上取整到最接近的 2 的幂。它始终检查队列中的元素数量，并通过创建新的 List 实例并将元素从旧实例复制到新实例来自动增长内部集合。元素的删除是通过逐个移动元素来填充空洞来执行的。Queue 类在删除元素时不会减少内部集合的大小。Queue 类中的元素可以通过 for-each 循环或 Iterator 进行遍历。
+
+## Map
+
+Map 类是键值对的集合。每个键仅引用一个值。它不允许重复的键，但允许重复的值。Map 类不是 Iterator、IteratorBase 甚至 IteratorMixin 的子类型。Map 类为键和值提供了单独的迭代器：
+
+```
+void main() {
+  var map = new Map.fromIterables([3, 2, 1], ['3', '2', '1']);
+  print(map);
+  // => {3: 3, 2: 2, 1: 1}
+}
+```
+
+Map 类允许您使用 null 值作为键。在迭代映射时，每种 Map 类实现对于元素的顺序表现略有不同。Map 类的键必须实现 equals 运算符和 hashCode 方法。
+
+> Map 工厂创建 LinkedHashMap 的实例。
+
+Map 类不支持重复键。它有一个 putIfAbsent 方法，用于查找键的值，如果不存在则添加新值，如下面的代码所示：
+
+```
+void main() {
+  var map = new Map.fromIterables([3, 2, 1], ['3', '2', '1']);
+  print(map);
+  // => {3: 3, 2: 2, 1: 1}
+  map.putIfAbsent(3, () => '33');
+  map.putIfAbsent(4, () => '4');
+  print(map);
+  // => {3: 3, 2: 2, 1: 1, 4: 4}
+}
+```
+
+## LinkedHashMap
+
+LinkedHashMap 类是 Map 的基于哈希表的实现，具有键的链表，以方便插入和删除操作，并且运行速度几乎与 HashMap 一样快。它记住键的插入顺序，并在通过键迭代时使用该顺序。值的更改不会影响键的顺序：
+
+```
+import 'dart:collection';
+
+void main() {
+  var map = new LinkedHashMap.
+    fromIterables([3, 2, 1], ['3', '2', '1']);
+  print(map);
+  // => {3: 3, 2: 2, 1: 1}
+  map.remove(3);
+  map[3] = '3';
+  print(map);
+  // => {2: 2, 1: 1, 3: 3}
+}
+```
+
+您可以提供自定义的 equals 和 hashCode 函数作为构造函数的参数。equals 函数用于将表中的键与新键进行比较。下面的 hashCode 函数用于提供键的哈希值：
+
+```
+import 'dart:collection';
+
+void main() {
+  var map = new LinkedHashMap(equals: (e1, e2) {
+    return e1 == e2;
+  }, hashCode: (e) {
+    return e.hashCode;
+  });
+  map.addAll({3: '3', 2: '2', 1: '1'});
+  print(map);
+  // => {3: 3, 2: 2, 1: 1}
+  map.remove(3);
+  map[3] = '3';
+  print(map);
+  // => {2: 2, 1: 1, 3: 3}
+}
+```
+
+下图显示了 UnmodifiableListView 的类层次结构：
+
+![](img/52c05b53a56abd53584e4fed738ed509_386_0.png)
+
+## 不可修改的映射
+
+另一个不可修改的集合是基于 Map 类的 UnmodifiableMapView。它禁止通过视图包装器修改原始映射：
+
+```
+import 'dart:collection';
+
+void main() {
+  var map = new Map.fromIterables(
+    [1, 2, 3, 4], ['1', '2', '3', '4']);
+  map[5] = '5';
+  var unmodifiable = new UnmodifiableMapView(map);
+  unmodifiable[6] = '6';
+}
+```
+
+任何修改集合的尝试都会抛出运行时异常，如下所示：
+
+```
+Unsupported operation: Cannot modify unmodifiable map
+#0      MapView&&_UnmodifiableMapMixin.[]= (...)
+#1      main (file:///.../bin/unmodifiable_map.dart:7:15)
+...
+```

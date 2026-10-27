@@ -1,0 +1,38 @@
+reviews:
+- 'no': 17732
+  overturn_probability: 0.75
+  alternative: 正文小标题（章内recipe标题）
+  counter_evidence:
+  - 该行之前已有更高层级的'### 逐行读取和处理文件'子节，且其内容与后续'## 如何实现...'紧密衔接，说明该行并非章节起点
+  - 后续紧跟的是'## 如何实现...'而非概述段落，不符合章标题通常后接概述的上下文特征
+  - 后文第18001行再次出现相同标题'## 使用文件和流'，表明该标题可能是章节内部重复出现的主题或排版噪声
+  keep_split: false
+- 'no': 18362
+  overturn_probability: 0.8
+  alternative: 正文小标题（章内recipe标题）
+  counter_evidence:
+  - 前面已有'## Creating a web server'这一具体recipe，且后续内容（'这会产生以下服务器控制台输出'）直接承接该recipe，说明本行并非新章起始
+  - 该行之后没有概述段落，而是紧跟输出描述，不符合章标题的上下文特征
+  - 后续还有多个并列的##标题（如'Posting JSON-formatted data'），它们更可能是同一章内的食谱标题，故本行应为其中之一
+  keep_split: false
+- 'no': 19077
+  overturn_probability: 0.1
+  alternative: 正文小标题（但后有'在本章中'提示，实际上应为章标题）
+  counter_evidence:
+  - 后文第19094行再次出现完全相同标题'## 使用 Futures、Tasks 和 Isolates'，存在重复标题现象，可能造成混淆
+  - 若脱离后文'在本章中，我们将介绍以下配方'的提示，该行本身也可被误读为普通小标题
+  keep_split: true
+- 'no': 19874
+  overturn_probability: 0.05
+  alternative: 正文小标题（但编号'9'和'在本章中'提示表明它是章标题）
+  counter_evidence:
+  - 该行虽然带编号，但'使用数据库'亦可作为普通短语，需依赖编号和后续'在本章中'才能确定为章标题
+  - 上下文明确有'在本章中，我们将介绍以下小节'，这种模式也可能出现在部分书籍的章首，但若忽视该提示，仍存在歧义
+  keep_split: true
+- 'no': 20690
+  overturn_probability: 0.1
+  alternative: 页码或排版噪声（但结合下一行章名，应为章节编号）
+  counter_evidence:
+  - '''## 10''单独成行，缺少章名，可能被误认为是页码残留或列表项'
+  - 但紧随其后的'## Polymer Dart 菜谱'提供了章名，应合并视为章标题，所以分章合理
+  keep_split: true

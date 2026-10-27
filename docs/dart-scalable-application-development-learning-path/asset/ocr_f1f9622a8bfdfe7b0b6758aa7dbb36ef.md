@@ -1,0 +1,13 @@
+A combination of the single-threaded execution model and asynchronous operations allows an application to perform more efficiently and is less resource intensive.
+
+The main part of Dart VM is an event loop. Independent pieces of code can register callback functions as event handlers for certain types of events. A callback is the name given to the function that is passed as an argument of another function and is invoked in future after the event occurs in another function. Events from the timer, mouse events, events of input and output, and many others occurring in the system are registered in the event queue. Event loop sequentially processes the queued events by executing the associated callback functions that have been registered.
+
+> Callbacks must be short-running functions to prevent blocking of the event loop.
+
+Dart supports anonymous functions and closures to define callbacks. The closure has a state bind to the callback function. Once the callback is executed, the state is available in the event loop. Callbacks are never executed in parallel because of single-threaded execution, so the occurrence of a deadlock is impossible. Once the callback has been executed, the event-loop fetches the next event from the event queue and applies its callback.
+
+Dart introduced a new term for tasks that must be completed later: microtasks. As the name implies, a microtask is a short-running function that does something significantly small, such as updating the state of variables or dispatching a new event. Dart VM provides a special queue for microtasks. The microtasks queue and the events queue process in a single event loop. However, the microtasks queue has higher priority than the events queue. An event loop processes all the microtasks at once, until the queue becomes empty. Then, it moves on to the events queue and processes one event per loop. Using the long-running code in the microtasks queue increases the risk of starving an event queue and can result in the reduction of responsiveness of an application.
+
+> Make sure that the microtasks are extremely small to prevent blocking of the event loop.
+
+Dart VM doesn't expose the event loop and we can't change or manage it. Bear in mind that the sequence of execution of events is predetermined by the events queue. You should also take into account the fact that the time at which the next event will be processed by the event loop is entirely unknown to you.

@@ -1,0 +1,132 @@
+reviews:
+- 'no': 2950
+  overturn_probability: 0.92
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题使用 Markdown ## 层级，书中真正的章标题为“9 实时可视化”等带编号或单独大标题'
+  - 后续内容为连续的 Dart 代码示例和说明，并非章级概述，而是同一主题下的功能小节
+  - 前后上下文仍在“博客服务器”相关章节内，未出现前章总结或新章前言
+  keep_split: false
+- 'no': 3288
+  overturn_probability: 0.88
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题为 ## 实时数据收集，格式与前后众多 ## 小节一致，非最高层级章标题'
+  - '后接引文和 ### 启动地震监测系统 等子节，属于同一大章内的模块划分'
+  - 书中真正的章标题带编号如“9 实时可视化”，此标题无编号且长度短，符合小标题特征
+  keep_split: false
+- 'no': 3390
+  overturn_probability: 0.9
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题 ## Logging 为功能模块小标题，后接 ### A simple example of logging 等三级标题'
+  - 标题末尾无句号但单独成行且长度<30字，易被误判，实际为章节内小节
+  - 上下文仍在实时数据收集大主题下，未出现章级转折
+  keep_split: false
+- 'no': 3430
+  overturn_probability: 0.9
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题 ## Saving to the database 为数据库存储子主题，使用 ## 标记'
+  - '后接 ### Installing a database system 等子节，符合小节层级'
+  - 非全书最高层级大章，书中大章有编号 9、Module 2 等
+  keep_split: false
+- 'no': 3584
+  overturn_probability: 0.85
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题 ## 维护数据库 为数据库维护流程小标题，后续为 ### 管理命令行参数 等'
+  - '格式为 ## 且位于同一大章内部，非独立章'
+  - 语义上为前文数据库操作的延续，非统领性新章
+  keep_split: false
+- 'no': 3686
+  overturn_probability: 0.87
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题 ## 单元测试 为技术小节，使用 ## 标记'
+  - '后接 ## 运行单元测试 等同级小标题，说明仍在同一主题下'
+  - 无章编号且前后无章级前言/总结
+  keep_split: false
+- 'no': 3758
+  overturn_probability: 0.9
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题 ## 实时数据与 Web 服务 为 ## 级小标题，后接 ### 释放数据 等'
+  - 书中真正的章标题为“9 实时可视化”，此标题无编号且为模块划分
+  - 上下文为同一项目演进的连续叙述
+  keep_split: false
+- 'no': 3915
+  overturn_probability: 0.88
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题 ## 创建 Web 服务 为 ## 小节，后接 ### 使用 rpc 包 等三级标题'
+  - 非最高层级章标题，格式与大量误判小标题一致
+  - 语义上为实时数据与 Web 服务下的子主题
+  keep_split: false
+- 'no': 4072
+  overturn_probability: 0.9
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题 ## 消费应用程序 为 ## 级小标题，后接 ### 打包网格 等'
+  - 无编号且位于同一大主题内部
+  - 前后无章级总结或前言
+  keep_split: false
+- 'no': 4289
+  overturn_probability: 0.05
+  alternative: 章节标题
+  counter_evidence:
+  - '标题为 ## 9 实时可视化，带编号 9，符合全书最高层级大章特征'
+  - 后接引言性段落并开启全新主题，与前文实时可视化前内容明显断开
+  keep_split: true
+- 'no': 4603
+  overturn_probability: 0.85
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题 ## 使用 dartdoc 记录 Dart 代码 为工具说明小节，使用 ## 标记'
+  - 后接代码示例而非章级概述，上下文仍在实时可视化大章内
+  - 无编号且长度适中，易误判为章标题
+  keep_split: false
+- 'no': 4674
+  overturn_probability: 0.88
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题 ## 推进 REST API 为 ## 级小节，后接 ### 向 API 传递参数 等'
+  - 非最高层级章标题，书中大章已为 9 实时可视化
+  - 语义上为 API 扩展的延续
+  keep_split: false
+- 'no': 4847
+  overturn_probability: 0.85
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题 ## 数据报告 为 ## 小节，后接 ## ReportSite 项目 等同级标题'
+  - 无编号，格式与正文小标题一致
+  - 上下文仍在同一大主题下
+  keep_split: false
+- 'no': 5084
+  overturn_probability: 0.1
+  alternative: 部分标题
+  counter_evidence:
+  - '标题为 ## Module 2，明确为模块级划分，书中后续出现 ## **掌握 Dart** 等模块标题'
+  - 与后续编号章 1. 超越 Dart 的基础 构成模块-章节结构，应划分
+  keep_split: true
+- 'no': 5086
+  overturn_probability: 0.15
+  alternative: 部分标题
+  counter_evidence:
+  - 标题 **掌握 Dart** 紧接 Module 2，为模块名称标题，语义上开启新模块
+  - 格式为二级标题且为模块级命名，符合部分划分规则
+  keep_split: true
+- 'no': 5090
+  overturn_probability: 0.05
+  alternative: 章节标题
+  counter_evidence:
+  - '标题为 ## 1. 超越 Dart 的基础，带编号 1.，为明确章节标题'
+  - '后接 ### 模块化和命名空间 等子节，符合章级结构'
+  keep_split: true
+- 'no': 5658
+  overturn_probability: 0.05
+  alternative: 章节标题
+  counter_evidence:
+  - '标题为 ## 2 高级技术与反射，带编号 2，明确为新章'
+  - 后接泛型、错误与异常等全新主题，符合章级划分
+  keep_split: true

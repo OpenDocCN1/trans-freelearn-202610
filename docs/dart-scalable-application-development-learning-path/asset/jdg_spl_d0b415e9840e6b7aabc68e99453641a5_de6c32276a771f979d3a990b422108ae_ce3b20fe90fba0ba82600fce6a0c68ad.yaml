@@ -1,0 +1,52 @@
+chapter_starts:
+- 'no': 7
+  confidence: 0.98
+  final_reason: 前言属于正文之前内容，按规则统一划分为一章；标题单独成行，复核方反方证据不成立
+  accepted_evidence:
+  - 前言属于正文之前内容，按规则应统一划分为一章
+  - 标题单独成行且为书籍前置部分，语义具有统领性
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 527
+  confidence: 0.7
+  final_reason: 判断方认为为章节起始且复核方未推翻，虽语义偏功能点但在 105~1062 区间中为相对独立的板块，且后续出现明确编号第3章，保留为章节起点
+  accepted_evidence:
+  - 该标题后紧跟引文块，标题末尾无句号
+  - 在 105~1062 区间内为相对独立的板块
+  rejected_evidence:
+  - 标题语义偏功能点而非概括性章节
+  need_human_review: false
+- 'no': 1062
+  confidence: 0.99
+  final_reason: 标题明确带编号 '3 '，符合最高层级大章编号特征，单独成行且后接章节概述
+  accepted_evidence:
+  - 标题明确带编号 '3 '，符合最高层级大章编号特征
+  - 标题单独成行且后接引文和章节概述，语义统领后续幻灯片演示内容
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 1651
+  confidence: 0.97
+  final_reason: '标题为 ## 4 与下一行 ''语言、动作与声音'' 共同构成编号章节，编号连贯 3→4，语义统领'
+  accepted_evidence:
+  - '标题为 ## 4 与下一行 语言、动作与声音 共同构成编号章节，符合编号特征'
+  - 前后章节编号连贯 3→4，语义具有统领性
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 2161
+  confidence: 0.99
+  final_reason: 标题明确带 '5 ' 编号，单独成行，符合章标题格式
+  accepted_evidence:
+  - 标题明确带 '5 ' 编号，单独成行，符合章标题格式
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 2671
+  confidence: 0.99
+  final_reason: 标题明确带 '6 ' 编号，单独成行，符合章标题格式
+  accepted_evidence:
+  - 标题明确带 '6 ' 编号，单独成行，符合章标题格式
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 105
+  reason: '复核方反方证据成立：后续大量 ## 标题均为无编号二级小节，首个带明确编号章节在 1062 行出现，105 行缺乏编号且与上下文小标题特征一致，应为正文小标题而非最高层级章节'
+  need_human_review: false
