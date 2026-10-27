@@ -1,0 +1,36 @@
+reviews:
+- 'no': 3346
+  overturn_probability: 0.05
+  alternative: 正文小标题（章内主题副标题）
+  counter_evidence:
+  - 该标题没有显式编号，且本书中许多##标题（如## 小结、## 延伸阅读）并不构成新章，存在被误判为章标题的可能。
+  - 它位于“延伸阅读”之后，虽然通常新章紧随其后，但也不排除它是附录或补充部分的标题，而非正文大章。
+  keep_split: true
+- 'no': 3852
+  overturn_probability: 0.05
+  alternative: 某一章内的英文小节标题
+  counter_evidence:
+  - 标题为英文，且周围文本多为中文，可能是原书中的一个小节名称而不是大章标题。
+  - 其前文“Further reading”也是##，若把##视为章级则会有连续的章标题，可能造成层级混淆。
+  keep_split: true
+- 'no': 4937
+  overturn_probability: 0.02
+  alternative: 目录或过渡页中的部分标题
+  counter_evidence:
+  - 该标题后没有直接正文，只有章节列表，可能只是部分引导页，不构成正文章。
+  - 但按照部分-章节模式，部分标题也应当分章，因此原判断成立。
+  keep_split: true
+- 'no': 4950
+  overturn_probability: 0.05
+  alternative: 第二部分下的第一节小标题
+  counter_evidence:
+  - 标题没有“第X章”编号，仅有短语，可能是部分内的节标题。
+  - 不过后文出现“在本章中”和“本章将探讨以下主题”，与章开头特征一致。
+  keep_split: true
+- 'no': 5866
+  overturn_probability: 0.05
+  alternative: 上一章末尾对下一主题的引导性小标题
+  counter_evidence:
+  - 它紧跟在“## 重要提示”之后，且上一章结尾已提到下一章主题，可能只是过渡性标题。
+  - 但后文有“在本章中”和“本章涵盖以下主题”，明确是新章开始。
+  keep_split: true

@@ -1,0 +1,54 @@
+chapter_starts:
+- 'no': 3346
+  confidence: 0.95
+  final_reason: 判断方与复核方均认可为新章起点。标题后以‘在本章中，我们将理解数据的完整生命周期’统领内容，前文为‘延伸阅读’结尾，符合新章上下文特征；复核方提出的‘无显式编号’和‘##标题可能为小节’的疑虑不足以推翻，因后文明确出现章级统领语和第4章回指。
+  accepted_evidence:
+  - 标题后1~3行以‘在本章中’统领数据生命周期等内容
+  - 前文为上一章的‘延伸阅读’，符合章间边界
+  - 复核方 overturn_probability 0.05 且 keep_split true
+  rejected_evidence:
+  - 无显式编号，可能为章内小标题
+  - 可能为附录/补充部分标题
+  need_human_review: false
+- 'no': 3852
+  confidence: 0.95
+  final_reason: 双方一致认为为新章。标题后明确‘在本章中，我们将构建我们的第一个完整的 dbt 项目’，且正文提及‘在第4章中’，为第5章开篇；英文标题与中文正文混排不影响章级判断，复核方疑虑不足。
+  accepted_evidence:
+  - 标题后以‘在本章中’开头并明确本章工作内容
+  - 正文出现‘在第4章中’的回指
+  - 复核方 overturn_probability 0.05 且 keep_split true
+  rejected_evidence:
+  - 标题为英文，可能为小节
+  - 前后均为##标题可能造成层级混淆
+  need_human_review: false
+- 'no': 4937
+  confidence: 1.0
+  final_reason: 部分标题，按部分-章节模式应划分新章。标题‘第二部分：使用 dbt 进行敏捷数据工程’后接章节列表，且后续出现第6章、第7章等章级内容，符合部分级分章规则。
+  accepted_evidence:
+  - 标题为‘第二部分’，符合部分-章节模式的分章条件
+  - 后文列出第6章、第7章等章节标题
+  - 复核方 overturn_probability 0.02 且 keep_split true
+  rejected_evidence:
+  - 后无直接正文，仅有章节列表，可能为引导页
+  need_human_review: false
+- 'no': 4950
+  confidence: 0.98
+  final_reason: 为第二部分下的第6章标题。后文以‘在本章中，我们将继续上一章开始的示例’开头，并出现‘本章将探讨以下主题’的章级统领语，语义和上下文均符合新章。
+  accepted_evidence:
+  - 后文出现‘在本章中’和‘本章将探讨以下主题’
+  - 位于部分章节列表中对应第6章位置
+  - 复核方 overturn_probability 0.05 且 keep_split true
+  rejected_evidence:
+  - 无‘第X章’编号，可能为节标题
+  need_human_review: false
+- 'no': 5866
+  confidence: 0.95
+  final_reason: 为第7章开篇。标题‘使用维度数据’后出现‘在上一章中’和‘在本章中’，并以‘本章涵盖以下主题’统领后续内容，主题从代码可维护性转向维度数据，符合新章边界。
+  accepted_evidence:
+  - 后文出现‘在上一章中’‘在本章中’的章级过渡语
+  - 后文以‘本章涵盖以下主题’列出本章内容
+  - 复核方 overturn_probability 0.05 且 keep_split true
+  rejected_evidence:
+  - 紧跟‘## 重要提示’之后，可能为过渡性小标题
+  need_human_review: false
+rejected_lines: []

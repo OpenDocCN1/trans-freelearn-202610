@@ -1,0 +1,36 @@
+reviews:
+- 'no': 6333
+  overturn_probability: 0.2
+  alternative: 若不分章，这行最可能是正文小标题（章内节标题）
+  counter_evidence:
+  - 该行没有“第X章”或“Y.”形式的章序号，不符合大章编号特征
+  - 上下文中有大量同级“##”标题（如6058、6120等）实际都是章内小节，仅凭格式和语义难以与节标题区分
+  keep_split: true
+- 'no': 7158
+  overturn_probability: 0.2
+  alternative: 若不分章，这行最可能是正文小标题（章内节标题）
+  counter_evidence:
+  - 该行缺少章序号，而本书其他明显大章（如8419、8764）均有数字编号
+  - 前一行“## Summary”可能仅是一个章内小结标题，不排除后续“##”仍是同一章内另一节
+  keep_split: true
+- 'no': 7871
+  overturn_probability: 0.2
+  alternative: 若不分章，这行最可能是正文小标题（章内节标题）
+  counter_evidence:
+  - 该行同样缺少章序号，可能是“总结”之后的补充小节，而不一定开启新章
+  - 在本书中，不带数字的“##”标题大量作为节标题出现
+  keep_split: true
+- 'no': 8419
+  overturn_probability: 0.1
+  alternative: 若不分章，这行最可能是列表项/页码残留（单独数字）
+  counter_evidence:
+  - 原判断标记的行号8420实际是空行，真正的标题“## 11”在8419行，行号偏移是排版噪声
+  - 单独数字“## 11”本身没有语义，但结合下一行“## 团队协作”可确认是章标题
+  keep_split: true
+- 'no': 8764
+  overturn_probability: 0.1
+  alternative: 若不分章，这行最可能是列表项/页码残留（单独数字）
+  counter_evidence:
+  - 原判断标记的行号8765实际是空行，真正的标题“## 12”在8764行，行号偏移
+  - 单独数字“## 12”容易与正文中的步骤编号混淆，但其后紧随“## 部署、执行和文档自动化”表明是章节编号
+  keep_split: true
