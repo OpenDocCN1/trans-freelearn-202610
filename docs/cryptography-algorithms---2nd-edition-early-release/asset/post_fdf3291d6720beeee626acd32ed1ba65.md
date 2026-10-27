@@ -1,0 +1,150 @@
+
+message encrypted with a public key and decrypt it with the private key of the receiver. However, in D-H, the message can only be encrypted once the key has been exchanged, using the same shared key. Here, the problem was to find a way to send the message that had been encrypted with a public key and decrypted through the private key. But as I've said, it needed a very particular inverse mathematical function. This is the real added value of the RSA invention that we are going to discover shortly.
+
+The tale of this discovery, as Rivest told it, is funny. It was April 1977 when Rivest and Adleman met at the home of a student for Easter. They drank a little too much wine and at about midnight, Rivest went back home. He started to think over the problem that had been tormenting him for almost a year. Laying on his bed, he opened a mathematics book and discovered the function that could be perfect for the goal that the group had.
+
+The function he found was a particular inverse function in modular mathematics related to the factorization problem.
+
+As I introduced in *Chapter 1, Deep Diving into Cryptography*, the problem of factorizing a large number made by multiplying two big prime numbers is considered very hard to solve, even for a computer with immense computation power.
+
+## Explaining RSA
+
+To understand this algorithm, we will consider Alice and Bob exchanging a secret message. Let's say that Bob wants to send a secret message to Alice, given the following:
+
+- **M**: The secret message
+- **e**: A public parameter (usually a fixed number)
+- **c**: The ciphertext or cryptogram
+- **p, q**: Two large random prime numbers (the private keys of Alice)
+
+The following is the public and private key generation. As you will see, the core of RSA (its magic function) is generating Alice's private key, [d].
+
+Key generation:
+
+Alice's public key, (N), is given by the following code:
+
+N = p*q
+
+As we mentioned earlier, multiplying two big prime numbers makes (N) very difficult to factorize, and makes it generally very difficult for an attacker to find [p] and [q].
+
+Alice's private key, [d], is given by the following code:
+
+[d] * e ≡ 1 (mod [p-1]*[q-1])
+
+Bob performs the encryption:
+
+c ≡ M^e (mod N)
+
+Bob sends the ciphertext, (c), to Alice. She can now decrypt (c) using her private key, [d]:
+
+c^d ≡ M (mod N)
+
+And that's it!
+
+**Note:** The bold elements – M, d, p, and q – in the algorithm are protected and secret.
+
+**Numerical example:**
+
+M = 88
+e = 9007
+p = 101
+q = 67
+N = 6767
+
+**Step 1:** Bob's encryption is as follows:
+
+88^9007 ≡ 6621 (mod 6767)
+
+Alice receives a cryptogram, that is, c = 6621.
+
+**Step 2:** Alice's decryption is as follows:
+
+9007 * d ≡ 1 (mod (101-1)*(67-1))
+d = 3943
+6621^3943 ≡ 88 (mod ...)
+
+As you can see, the secret message, [M] = 88, comes back from Alice's private key, [d] = 3943.
+
+## Analyzing RSA
+
+There are several elements to explain but the most important is to understand why this function, which is used for decrypting (c) and obtaining [M], works:
+
+M ≡ c^[d] (mod N)
+
+This is Step 2; that is, the decryption function. I have just inverted the notation by putting [M] on the left.
+
+The reason it works is hidden in the key generation equation:
+
+[d] * e ≡ 1 (mod [p-1]*[q-1])
+
+[d] is Alice's private key. For Euler's theorem, the function will probably be verified because the numbers [p] and [q] are very big and [M] is probably a co-prime of (N).
+
+If this equation is verified, then we can rewrite the encryption stage as follows:
+
+(M^e)^d (mod N)
+
+For the properties of the powers and Euler's theorem, we have the following:
+
+M^(e*d) (mod N)
+de ≡ 1 (mod (p-1)*(q-1))
+
+That is the same as writing M^1 = M (mod N). So, by inserting [d] inside the decryption stage, Alice can obtain [M].
+
+## Conventional attacks on the algorithm
+
+All the attacks that will be explained in the first part of this section are recognized and well known. That is why we are talking about conventional attacks on RSA. The first three methods of attack on RSA are related to the (mod N) public parameter. To perform an attack on N = p*q, the attacker could do the following:
+
+- Use an *efficient* algorithm of factorization to discover **p** and **q**.
+- Use new algorithms that, under certain conditions, can find the numbers.
+- Use a quantum computer to factorize **N** (in the future).
+
+Let's analyze the following three cases:
+
+- In the first case, an efficient algorithm of factorization is not yet known. The most common methods are as follows:
+  - The general number field sieve algorithm
+  - The quadratic sieve algorithm
+  - The Pollard algorithm
+- In the second case, if (**n**) is the number of digits of **N = p*q** and the attacker knows the first (**n/4**) digits or the last (**n/4**) digits of [**p**] or [**q**], then it will be possible to factorize (**N**) in an efficient way. Anyway, there is a very remote possibility of knowing it. For example, if [**p**] and [**q**] have 100 digits and the first (or the last) 50 digits of [**p**] are known, then it's possible to factorize **N**.
+
+For more information, you can refer to Coppersmith's method of factorization. More cases related to Coppersmith attacks, as explained later in this section, are where the exponents, (**e**) or [**d**], and even the plaintext, [**M**], are too short.
+
+- If an attacker uses a quantum computer, it will be theoretically possible to factorize **N** in a short time with Shor's algorithm, and I am convinced that in the future, other, more efficient quantum algorithms will arise. I will explain this theory in more detail in *Chapter 8, Quantum Cryptography*, where we talk about quantum computing and Q-cryptography.
+
+Finally, if we have a very short piece of plaintext, [**M**], and even the exponent, (**e**), is short, then RSA could be breakable. This is because the power operation, **M^e**, remains inside modulo **N**. So, in this phase of encryption, let's say we have the following:
+
+M^e < N
+
+Here, it's enough to use the **e-th** root of (**c**) to find [**M**].
+
+## Important Note
+
+I have used open brackets, **[M]**, to denote that the message has been decrypted.
+
+**Numerical example:**
+
+M = 2
+e = 3
+N = 77
+2^3 ≡ 8 (mod 77)
+
+Since **e = 3**, by performing a simple cubic root, √, we can obtain the message in cleartext:
+
+8^(1/3) = 2
+
+Here, we are working in linear mathematics and no longer in modular mathematics.
+
+A way to overcome this problem is to lengthen the message by adding random bits to it. This method is very common in cryptography and cybersecurity and is known as **padding**. There are different ways to perform padding, but here, we are talking about **bit padding**.
+
+As we covered in *Chapter 1, Deep Diving into Cryptography*, we can use ASCII code to convert text into a binary system, so the message, **[M]**, is a string of bits. If we add random bits (usually at the end, though they could also be added at the start), we will obtain something like this:
+
+. . . | 1011 1001 1101 0100 0010 0111 **0000 0000** |
+
+As you can see, the bold digits represent the padding. This method can be used to pad messages that are any number of bits long, not necessarily a whole number of bytes long; for example, a message of 23 bits that is padded with 9 bits to fill a 32-bit block.
+
+Now that we are more familiar with RSA and modular mathematics properties, we'll explore the first interesting application that was implemented with this algorithm.
+
+## The application of RSA to verify international treaties
+
+Let's say that Nation Alpha wants to monitor seismic data from Nation Beta to be sure that they don't experiment with any nuclear bombs in their territory. A set of sensors has been installed on the ground of Nation Beta to monitor its seismic activity, recorded, and encrypted. Then, the output data is transmitted to Nation Alpha, let's say, via a satellite. This interesting application of RSA works as follows:
+
+- Nation Alpha, **(A)**, wants to be sure that Nation Beta, **(B)**, doesn't modify the data.
+- Nation Beta wants to check the message before sending it (for spying purposes).

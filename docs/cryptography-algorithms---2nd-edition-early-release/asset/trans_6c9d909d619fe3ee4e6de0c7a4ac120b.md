@@ -1,0 +1,68 @@
+
+
+# plot
+
+y² = x³ + 73
+
+# Implicit plot:
+
+![](img/2c67eb1b2bfb299c02a010d62900759c_185_0.png)
+
+![](img/2c67eb1b2bfb299c02a010d62900759c_187_0.png)
+
+*Figure 7.2 – Adding and doubling points on the elliptic curve*
+
+Now, let's look at how the addition point will be represented algebraically. First, we take the coordinates of P and Q, and then calculate (s), as follows: s = (yP - yQ) / (xP - xQ). To compute **xR**, the x coordinate of point R, we have to perform this operation: xR = s^2 - (xP + xQ). To compute **yR**, the y coordinate of point R, we have to perform this operation: yR = s(xP - xR) - yP. What about computing **P + P = R = 2P**, the so-called **point double**? If we want to represent a P point added to itself
+
+so that it becomes 2P, the geometrical representation is given by the tangent passing through the P point and intersecting the curve at the R point, and again finding the reflexed point of the sum that is the symmetric point R, as shown here:
+
+![](img/2c67eb1b2bfb299c02a010d62900759c_188_0.png)
+
+Figure 7.3 – 2P point double
+
+Geographically, it is very similar to computing the sum of the point, as we saw in the preceding example.We have to draw the tangent line in the **P** point, and we find the point of intersection between the line and the curve in the **R'=(-2P)** point; finally, the reflexed x-axis point on the curve will give the **P** double point, that is, **R (2P)**.What about computing **P+P** algebraically? In this case, (**t**) will be the following: t = (3XP^2 + a)/2YP Remember that (**a**) is a parameter of the curve.So, to find the x coordinate of **R**, we have the following: xR = t^2 - 2XP The equation for the y coordinate of **R** is as follows: yR = t (xP - xR) - yP There is one more case we need to address when we operate with elliptic curves: how to add vertical points.Here is **O** represented by the *point of infinity*, given by the **SUM** value between **P** and **Q** if **xP = xQ**:
+
+called **repeated addition**, and it can be represented as follows: Q = {P + P+ P + P...+ P} n-times As we have to add the coordinates of a point to itself, we can figure out the scalar multiplication as the sum of a point with itself **n** times, so we have, for example, the following: P + P = 2P This, as we have seen, is the formula of double point (geometrically represented in *Figure 7.3*) transposed into an algebraic representation of **SUM**. Always remember that we are dealing with a curve, so the coordinates of the new intersection point are as follows: 2P (X2P, Y2P) For the same logic, we can go on with **3P**, **4P**, ... **7P**: R = 3PR = 2P +P Then we follow with **4P**: R = 4PR = 2P + 2P Then we follow with **5P**: R = 5PR = 2p + 2P + P Then we follow with **6P**: R = 6PR = 2P + 2P +2P Alternatively, it can be given like this: R = 2(3P)R = 2 (2P+ P) Finally, we have the following: R = 7PR = P + (P + (P + (P + (P + (P + (P)))))) Alternativ it can be given like this: R = 7PR = P + 6PR = P + 2(3P)R = P + 2(P + 2P) It is called multiplication, but in reality, scalar multiplication is more of a *breakdown* of the **R** number in a scalar mode because, as you can see, step by step, it is going to be reduced to the minimal entity of **P**: so, for instance, **7P** becomes a product of **P** and **2P**.Following this logic, if we have to multiply a **K** number with **P**, we have to break it down to obtain a sum of minimal elements (**P+P**) or a **2P** double point that will compose the multiplication required. Because of the formulas, we rely on addition and multiplication, as we saw in *Figure 7.5*.If we have **9P**, for example, we will have the following: 9P = 2(3P) + 3P9P = 2(2P + P) + 2P + P9P = P + 2P + 2(2P+ P) Now that we have understood this operation's logic, let's discover why these operations are so important to generate a cryptographic system on elliptic curves.As we saw in the previous chapters (for example, D–H in *Chapter 3, Asymmetric Encryption*) about cryptography, we are looking for one-way functions. These particular functions allow it to be easy to compute in one direction but are very difficult to perform in the opposite sense. In other words, it isn't easy to reverse-engineer the result. Similarly, in elliptic curves, we have to find a function such as a discrete logarithm that allows us to perform a *one-way* function.We'll now define the discrete logarithm problem transposed on an elliptic curve.It's stated that *scalar multiplication* is a one-way function.Given an elliptic curve: **E**.Known: **P**, **Q** is a multiple of **P**.Find **k**: Such that **Q = k * P**.It is a *hard problem to solve*. This is called a discrete
+
+logarithm problem of Q to the P base, and it is considered hard to solve because to find k means to calculate very complex operations. I will proceed with an example to better understand what we are dealing with. Example: In the elliptic curve group defined by the following, what is the discrete logarithm k of Q = (4,5) to the P = (16,5) base?
+
+y2 = x3 + 9x + 17 over the field F23. One (naïve) way to find k is to compute multiples of P until Q. The first few multiples of P are as follows:
+
+P = (16,5) 2P = (20,20) 3P = (14,14) 4P = (19,20) 5P = (13,10) 6F 9P = (4,5) = Q, the discrete logarithm of Q to the P base is k = 9. In a real application, k would be large enough that it would be infeasible to determine k in this manner. This is the fundamental principle behind the D-H algorithm implemented on elliptic curves that we will discover next.
+
+# Implementing the D-H algorithm on elliptic curves
+
+In this section, we will implement the D–H algorithm on elliptic curves. We saw the D–H algorithm in Chapter 3, Asymmetric Encryption. You should remember that the problem underlying the D–H key exchange is the discrete logarithm. Here, we will demonstrate that the discrete logarithm problem could be transposed on elliptic curves too. First of all, we are dealing with an elliptic curve (mod p). The base point or generator point is the first element in the D–H original algorithm represented by (g), and here we denote it by (G). Let's look at some elements to take into consideration:
+
++   - G: This is a point on the curve that generates a cyclic group.
+
+Cyclic group means that each point on the curve is generated by a repeated addition (we have seen point addition in the previous section).
+
++   - Another concept is the order of G denoted by (n):
+
+ord(G) = n The order of (G) = (n) is the size of the group. The order (n) is also the smallest positive integer [k], giving us the following: kG = O (Infinity Point)
+
++   - The next element to take into consideration is the h cofactor:
+
+**h** = (number of points on E )/n In other words, (**h**) can be defined as the number of points on **E (mod p)** divided by the order of the curve (**n**). **h = 1** is optimal. If **h > 4**, the curve is more vulnerable to attacks. Let's now analyze step by step how D–H transposed on **E** works. **Step 1: Parameter initialization:** Now let's look at the public shared parameters to initialize the D–H model on **E (mod p)**: {p, a, b, G, n, h} **p** is the (mod **p**) as we have already seen in the original D–H algorithm. **a** and **b** are the parameters of the curve. **G** is the generator. **n** is the order of **G**. **h** is the cofactor. **Step 2: Crafting the shared key on E (mod p): [K]** After the parameter initialization, Alice and Bob will define the type of the curve to adopt among the family of **E (mod p)**: y^2 = x^3 + a x + b (mod p) Bob picks up a **[β]** private key such that **1≤ [β] ≤ n-1**. Alice picks up a **[α]** private key such that **1≤ [α] ≤ n-1**. After choosing random keys, Bob and Alice can compute their public keys. Bob computes the following: B = [β] * G Alice computes the following: A = [α] * G Now (like in the original D–H algorithm), there is a generation of shared keys exchanging the public parameters:
+
++   - Bob sends **B** (**xB** and **yB**) to Alice.
++   - Alice receives **B**.
++   - Alice sends **A** (**xA** and **yA**) to Bob.
++   - Bob receives **A**.
++   - Bob computes the following:
++   
++   K = [β]*A
++   
++   - Alice computes the following:
++   
++   K = [α] * B
++   
++   - Finally, Bob and Alice hold the same information: the point on **E**: **[K]**.
+
+This point, **[K]**, is the shared key between Alice and Bob.
+
+# Important Note
+
+If Eve (the attacker) wants to know **[K]**, she has to know **[α]** or **[β]**, the private keys of Alice and Bob, given by the following functions:
+
