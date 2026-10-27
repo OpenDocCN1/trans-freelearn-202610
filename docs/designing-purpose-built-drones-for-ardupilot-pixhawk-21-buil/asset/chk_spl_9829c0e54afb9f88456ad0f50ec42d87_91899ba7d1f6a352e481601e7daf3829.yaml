@@ -1,0 +1,71 @@
+reviews:
+- 'no': 6
+  overturn_probability: 0.75
+  alternative: 正文小标题
+  counter_evidence:
+  - 前置信息统一应从书名/封面开始划分，行0 '# 为 Ardupilot Pixhawk 2.1 设计专用无人机：Ardupilot 无人机构建' 才是前言块的起始，行6
+    '## 作者简介' 只是前言内部的二级小标题
+  - 作者简介、审校者简介、为什么订阅等均为出版信息块的内部分节，单独成行且长度<30字但语义不统领后续正文，符合正文小标题特征而非最高层级章节
+  keep_split: false
+- 'no': 196
+  overturn_probability: 0.05
+  alternative: 正文小标题
+  counter_evidence:
+  - 编号为 '1' 且单独成行，后1~3行为概述段落，符合章标题规则
+  keep_split: true
+- 'no': 481
+  overturn_probability: 0.05
+  alternative: 正文小标题
+  counter_evidence:
+  - 编号 '2' 单独成行，后接本章涵盖主题列表，语义统领性强
+  keep_split: true
+- 'no': 826
+  overturn_probability: 0.05
+  alternative: 正文小标题
+  counter_evidence:
+  - 编号 '第 3 章' 单独成行，后接概述段落，符合章标题
+  keep_split: true
+- 'no': 1082
+  overturn_probability: 0.1
+  alternative: 排版断行
+  counter_evidence:
+  - 行1082 与行1084 内容完全重复 '# 第 4 章：一款高尔夫球手用的无人机'，疑似排版重复，仍为第4章起始，维持分章合理
+  keep_split: true
+- 'no': 1228
+  overturn_probability: 0.05
+  alternative: 正文小标题
+  counter_evidence:
+  - 编号 '第 5 章' 单独成行，后接概述
+  keep_split: true
+- 'no': 1365
+  overturn_probability: 0.35
+  alternative: 正文小标题
+  counter_evidence:
+  - 前言中已明确 '第6章，*一个简单的多旋翼无人机*'，行1365 '## 一个简单的多旋翼无人机' 虽无编号但语义与前言对应，且前为第5章总结，后接概述，章标题可能性高
+  keep_split: true
+- 'no': 1746
+  overturn_probability: 0.05
+  alternative: 正文小标题
+  counter_evidence:
+  - 编号 '第 7 章' 单独成行，符合章标题
+  keep_split: true
+- 'no': 2030
+  overturn_probability: 0.05
+  alternative: 正文小标题
+  counter_evidence:
+  - 编号 '第 8 章' 单独成行，后接概述
+  keep_split: true
+- 'no': 2200
+  overturn_probability: 0.9
+  alternative: 正文小标题
+  counter_evidence:
+  - 行2200 '## 飞行数据界面' 为二级标题，位于第8章 VTOL 章节内部，后续为 '## 飞行计划屏幕'、'## 初始设置屏幕' 等并列小节，属 Mission
+    Planner 参考部分的内部分节
+  - 标题无章序号，长度短且后接具体界面说明而非章级概述，前文仍在第8章 VTOL 内容延续，未出现总结或新章编号跳跃
+  keep_split: false
+- 'no': 2390
+  overturn_probability: 0.05
+  alternative: 其他
+  counter_evidence:
+  - 文末索引统一划分为一章，行2390 '# 索引' 符合规则
+  keep_split: true
