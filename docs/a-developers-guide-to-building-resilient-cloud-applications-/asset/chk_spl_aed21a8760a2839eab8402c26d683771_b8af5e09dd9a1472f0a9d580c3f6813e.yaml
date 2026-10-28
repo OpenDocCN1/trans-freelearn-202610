@@ -1,0 +1,72 @@
+reviews:
+- 'no': 4
+  overturn_probability: 0.15
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '## 前言 位于书名后、献词之后，属于前言类前置内容，规则要求前言、序言、致谢等正文前内容统一划分为一章，起始于此符合规则'
+  - 后续 6-20 行为连续的序言正文，未出现子节编号，语义上为同一前言块
+  keep_split: true
+- 'no': 190
+  overturn_probability: 0.05
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '标题为 # 第 1 部分：，符合“第 X 部分”部分-章节模式的最高层级标识'
+  - '后接 # 使用模式和技术构建面向云的应用 作为部分副标题，上下文为部分划分'
+  keep_split: true
+- 'no': 207
+  overturn_probability: 0.65
+  alternative: 正文小标题
+  counter_evidence:
+  - 行 199-201 已列出 *第 1 章，无服务器架构、事件驱动架构和云数据库简介*，表明第 1 章的标题已在前文以列表形式出现
+  - '行 195-197 为第 1 部分的引言段落，行 207 的 ## 无服务器架构、事件驱动架构和云数据库简介 后接第一章的概述段落 209-215，随后出现
+    ### 理解无服务器架构 等三级小标题，符合章节内部第一节的特征而非最高层级章标题'
+  - '格式上使用 ## 而非 #，在已存在 # 第 1 部分： 的层级体系下更可能为节级标题'
+  keep_split: false
+- 'no': 340
+  overturn_probability: 0.1
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 标题单独成行，长度 <30 字，末尾无句号，语义统领后续 API 管理内容
+  - 行 56-58 已提及第 2 章名称，与本标题语义一致，符合最高层级章节划分
+  keep_split: true
+- 'no': 946
+  overturn_probability: 0.1
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 标题单独成行，语义概括后续事件驱动与消息内容
+  - 行 201 已列出 *第 3 章，开发基于事件和基于消息的解决方案*，与本标题对应
+  keep_split: true
+- 'no': 1620
+  overturn_probability: 0.05
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '标题为 # 第 2 部分：连接应用程序与 Azure 数据库，符合部分标题模式，需分章'
+  keep_split: true
+- 'no': 1636
+  overturn_probability: 0.1
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 标题单独成行，语义统领后续 Function App 内容，对应第 4 章
+  - 行 1626 已在目录中列出 *第 4 章，在 Azure 中创建和部署 Function App*
+  keep_split: true
+- 'no': 2135
+  overturn_probability: 0.1
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 标题单独成行，语义统领 Service Fabric 内容，对应第 5 章
+  - 行 1627 目录中已列出 *第 5 章，开发 Azure Service Fabric 分布式应用程序*
+  keep_split: true
+- 'no': 2575
+  overturn_probability: 0.1
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 标题单独成行，语义统领数据概念内容，对应第 6 章
+  - 行 1628 目录中已列出 *第 6 章，应用程序数据简介*
+  keep_split: true
+- 'no': 2734
+  overturn_probability: 0.1
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 标题单独成行，语义统领 Azure SQL 数据库内容，对应第 7 章
+  - 行 1629 目录中已列出 *第 7 章，使用 Azure SQL 数据库*
+  keep_split: true

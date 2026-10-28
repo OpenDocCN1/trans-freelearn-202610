@@ -1,0 +1,77 @@
+chapter_starts:
+- 'no': 4
+  confidence: 0.85
+  final_reason: '## 前言 为正文前的前言类内容，规则要求前言、序言、致谢等正文前内容统一划分为一章，起始于此；复核方确认保持分章'
+  accepted_evidence:
+  - '## 前言 位于书名后、献词之后，属于前言类前置内容，规则要求前言、序言、致谢等正文前内容统一划分为一章，起始于此符合规则'
+  - 后续 6-20 行为连续的序言正文，未出现子节编号，语义上为同一前言块
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 190
+  confidence: 0.95
+  final_reason: '# 第 1 部分： 为部分标题，存在“第 X 部分”模式，部分和章均需分章；复核方确认保持分章'
+  accepted_evidence:
+  - '标题为 # 第 1 部分：，符合“第 X 部分”部分-章节模式的最高层级标识'
+  - '后接 # 使用模式和技术构建面向云的应用 作为部分副标题，上下文为部分划分'
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 340
+  confidence: 0.9
+  final_reason: '## API 管理——导入、管理和发布你的第一个 API 为最高层级章节标题，单独成行，对应第2章；复核方确认保持分章'
+  accepted_evidence:
+  - 标题单独成行，长度 <30 字，末尾无句号，语义统领后续 API 管理内容
+  - 行 56-58 已提及第 2 章名称，与本标题语义一致，符合最高层级章节划分
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 946
+  confidence: 0.9
+  final_reason: '## 开发基于事件和基于消息的解决方案 为最高层级章节标题，单独成行，对应第3章；复核方确认保持分章'
+  accepted_evidence:
+  - 标题单独成行，语义概括后续事件驱动与消息内容
+  - 行 201 已列出 *第 3 章，开发基于事件和基于消息的解决方案*，与本标题对应
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 1620
+  confidence: 0.95
+  final_reason: '# 第 2 部分：连接应用程序与 Azure 数据库 为部分标题，需分章；复核方确认保持分章'
+  accepted_evidence:
+  - '标题为 # 第 2 部分：连接应用程序与 Azure 数据库，符合部分标题模式，需分章'
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 1636
+  confidence: 0.9
+  final_reason: '# 在 Azure 中创建和部署 Function App 为最高层级章节标题，对应第4章；复核方确认保持分章'
+  accepted_evidence:
+  - 标题单独成行，语义统领后续 Function App 内容，对应第 4 章
+  - 行 1626 已在目录中列出 *第 4 章，在 Azure 中创建和部署 Function App*
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 2135
+  confidence: 0.85
+  final_reason: '## 开发 Azure Service Fabric 分布式应用程序 为最高层级章节标题，单独成行，对应第5章；复核方确认保持分章'
+  accepted_evidence:
+  - 标题单独成行，语义统领 Service Fabric 内容，对应第 5 章
+  - 行 1627 目录中已列出 *第 5 章，开发 Azure Service Fabric 分布式应用程序*
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 2575
+  confidence: 0.85
+  final_reason: '## 应用数据简介 为最高层级章节标题，单独成行，对应第6章；复核方确认保持分章'
+  accepted_evidence:
+  - 标题单独成行，语义统领数据概念内容，对应第 6 章
+  - 行 1628 目录中已列出 *第 6 章，应用程序数据简介*
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 2734
+  confidence: 0.9
+  final_reason: '## 使用 Azure SQL 数据库 为最高层级章节标题，单独成行，对应第7章；复核方确认保持分章'
+  accepted_evidence:
+  - 标题单独成行，语义统领 Azure SQL 数据库内容，对应第 7 章
+  - 行 1629 目录中已列出 *第 7 章，使用 Azure SQL 数据库*
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 207
+  reason: '复核方反证成立：行 199-201 已在目录中列出 *第 1 章，无服务器架构、事件驱动架构和云数据库简介*，行 207 的 ## 无服务器架构、事件驱动架构和云数据库简介
+    后接第一章概述段落并随后出现 ### 理解无服务器架构 等三级小标题，更符合章节内部节级标题而非最高层级章标题；格式使用 ## 且在 # 第 1 部分： 体系下应为节级。采纳复核方，判定不分章。'
+  need_human_review: false

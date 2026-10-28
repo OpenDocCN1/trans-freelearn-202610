@@ -1,0 +1,7 @@
+Let’s create a new Service Fabric application. First, we need to select a container template, set the service name, and specify the container image name. The image has to be reachable. The container image can be a public image in Docker Hub, for example, or a private image in Azure Container Registry or any private registry. In this case, we need to add a username and a password. You can also specify the host port and the container port that you want to use; for example, we can use port 80. Then, we will click on **Create**.
+
+![](bbox=[0.13, 0.231, 0.857, 0.637])
+
+This type of application model doesn’t add a service project since you won’t write any code. This is because all the code is already inside the container. If we expand the service manifest for the package, the `ContainerHost` element contains the image name. Optionally, you can also set environment variables in the container using the `EnvironmentVariables` element. Locally, we can deploy this type of application in the local cluster. Remotely, you can deploy the application to Azure Service Fabric.
+
+If you need to learn about creating a container, you can check out this book: *A Developer’s Guide to Cloud Apps Using Microsoft Azure* by Packt Publishing.

@@ -1,0 +1,7 @@
+# Contributors
+
+# About the author
+
+**Hamida Rebai Trabelsi** has been working in the computing domain for over 12 years. She started her professional career in Tunisia working for **multinational corporations (MNCs)** as a software developer, then served as a .NET consultant at CGI, Canada. She is currently a senior advisor and information and solution integration architect at Revenu Québec, Canada. She has been awarded as Most Valuable Professional in Developer Technologies and Microsoft DevHeros by Microsoft and holds several Azure certifications. Besides being a Microsoft Certified Trainer and a member of the .NET Foundation, Hamida is a blogger, an international speaker, and one of the finalists in the Women in IT Award in Canada in 2019.
+
+> I have been overwhelmed by the support that I have received from all of the team. They encouraged me during this period, and I feel proud that I was able to finish this book and share my experience as a developer to start with Azure. To the memory of my father, Mongi Rebai, I offer this book to you and I hope that you were with me, sharing in this new adventure that is added to my professional career. Thank you to my mum, Rafika Boukari, for your sacrifices and your support. Thank you to my husband, Mohamed Trabelsi, for believing in me. Every day, I wake up and see my son, Rayen Trabelsi, and my baby girl, Eya Trabelsi, and I feel more motivated, so thank you for this energy.

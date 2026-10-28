@@ -1,0 +1,48 @@
+reviews:
+- 'no': 3095
+  overturn_probability: 0.12
+  alternative: 正文小标题
+  counter_evidence:
+  - '前文 3077 ## Summary、3079 本章中我们探索了...、3081 在下一章中我们将讨论 Azure Storage 服务 已明确结束上一章，3095
+    后续 3097 Azure Storage 是 Microsoft 的云存储解决方案 3099 本章将介绍... 为典型的章首概述，语义统领性强'
+  - 标题单独成行且无句号，长度 <30 字，符合章标题格式特征
+  keep_split: true
+- 'no': 3474
+  overturn_probability: 0.08
+  alternative: 正文小标题
+  counter_evidence:
+  - '前文 3469 ### 问题、3471 1.、3472 2. 为上一章的问答收尾，3474 后续 3476 如果我们使用关系数据库... 3480 本章将介绍使用多模型
+    NoSQL... 3482 在本章中我们将涵盖以下主要主题 为标准的章首介绍段落'
+  - 标题单独成行、语义概括后续 Cosmos DB 内容，符合最高层级章节特征
+  keep_split: true
+- 'no': 3980
+  overturn_probability: 0.65
+  alternative: 正文小标题
+  counter_evidence:
+  - '同名标题在 4004 行再次出现 ## Big Data Storage Overview，出现重复章级标题异常'
+  - '3980 后续 3982 使用现代系统的公司会产生大量异构数据 为概述性段落，但 3995 ### Exploring Azure Data Lake Storage
+    等子节紧随其后，标题层级更接近节而非最高层级章'
+  - '前文 3976 ## Questions、3978 在创建容器之前... 已为上一章收尾，3980 与 4004 的重复提示误判为章节标题的可能性'
+  keep_split: false
+- 'no': 4480
+  overturn_probability: 0.05
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题为 # 第 3 部分： 为部分级标题，单独成行，后续 4481 确保 Azure 上的持续集成和持续容器部署 为部分介绍，符合部分-章节模式的分章规则'
+  - 后续 4487 - 第 11 章：Azure 上的容器与持续部署 明确列出本部分包含章节，语义为部分划分
+  keep_split: true
+- 'no': 4491
+  overturn_probability: 0.18
+  alternative: 正文小标题
+  counter_evidence:
+  - '前文 4480 # 第 3 部分： 已开启新部分，4489 ## 11 为章节编号标记，4491 后续 4493 容器是开发人员构建... 4497 在本章中我们将介绍...
+    4499 在本章中我们将涵盖以下主要主题 为典型章首概述'
+  - 标题单独成行、无句号、长度适中，语义统领后续容器与持续部署内容
+  keep_split: true
+- 'no': 4702
+  overturn_probability: 0.07
+  alternative: 页眉页脚
+  counter_evidence:
+  - '标题 ## 索引 单独成行，后续 4704 ## 符号、4706 401 Access Denied response 25 为索引条目列表，符合文末索引划分为一章的规则'
+  - 位于全书末尾，上下文无正文叙述，仅为索引条目，语义上为文末索引章节
+  keep_split: true
