@@ -1,0 +1,38 @@
+reviews:
+- 'no': 3286
+  overturn_probability: 0.05
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '部分标题格式符合“## Part 3: ...”的最高层级命名规范'
+  - 后接部分概述和章节列表，语义具有统领性
+  keep_split: true
+- 'no': 3296
+  overturn_probability: 0.03
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 章标题“## Embracing Continuous Improvement in Kubernetes”单独成行且无句号
+  - 后1~3行为“This chapter focuses...”概述及主题列表，符合章标题上下文特征
+  keep_split: true
+- 'no': 4048
+  overturn_probability: 0.78
+  alternative: 排版断行/其他
+  counter_evidence:
+  - 该行仅为“## 8”，仅含编号无语义概括，真正的章名在下一行“## 主动评估与预防”
+  - 单独编号行长度极短且无统领性内容，更像是目录编号或排版噪声而非完整章标题
+  - 按规则章标题应能覆盖后续内容，单独数字无法满足语义特征
+  keep_split: false
+- 'no': 4461
+  overturn_probability: 0.72
+  alternative: 排版断行/其他
+  counter_evidence:
+  - 该行仅为“# 9”，仅为编号，实际章名在下一行“## 将所有内容整合起来”
+  - 编号与标题拆分在两行，单独编号行不具备概括性，符合误判为章节标题的排版噪声模式
+  - 若按现有判断会产生双重标题，违背标题单独成行且语义完整的原则
+  keep_split: false
+- 'no': 4760
+  overturn_probability: 0.08
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 文末索引标题“## 索引”按规则应单独成章
+  - 后接索引说明及字母列表，语义独立且为全书末尾附录类内容
+  keep_split: true

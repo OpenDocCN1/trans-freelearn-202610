@@ -1,0 +1,7 @@
+Managing transitive dependencies – those not directly included by the application but required by its dependencies – also requires attention. These can be particularly challenging to track and update. Tools that provide dependency tree analysis can help teams understand and manage these indirect dependencies, ensuring that they do not introduce security vulnerabilities or stability issues.
+
+Monitoring for vulnerabilities in dependencies is critical. Leveraging security scanning tools that can identify known vulnerabilities in dependencies helps teams take proactive measures to mitigate risks. These tools can be integrated into the CI/CD pipeline to automatically scan for vulnerabilities whenever changes are made, ensuring ongoing vigilance.
+
+Version pinning is a practice that can enhance stability by specifying exact versions of dependencies to use, rather than relying on the latest versions. While this approach can prevent unexpected changes, it also requires teams to manually update these versions to benefit from bug fixes and security patches. Balancing the use of version pinning with regular updates is key to maintaining both stability and security.
+
+Documenting dependency management policies and practices ensures that all team members understand how to handle dependencies consistently. This documentation should include guidelines for adding new dependencies, updating existing ones, and responding to security vulnerabilities.

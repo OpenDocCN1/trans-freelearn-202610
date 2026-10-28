@@ -1,0 +1,7 @@
+against a wider range of failures, from hardware malfunctions to entire data center outages.
+
+Load balancing plays a crucial role in this context, distributing incoming traffic across multiple instances of an application to prevent any single instance from becoming a bottleneck. Kubernetes’ built-in load-balancing mechanisms, combined with external load balancers when necessary, can help achieve this balance, ensuring smooth performance even under heavy loads or during an instance failure.
+
+Another aspect of designing for resilience is effective resource management. This involves carefully configuring resource requests and limits for pods to prevent any one application from monopolizing resources, which could lead to system instability. Kubernetes’ **Horizontal Pod Autoscaler (HPA)** can automatically adjust the number of pod instances based on current demand, contributing to both stability and efficient resource use.
+
+Properly handling stateful applications in Kubernetes also requires special attention. StatefulSets provide a framework for deploying and managing stateful applications, offering features such as stable, persistent storage and ordered, graceful deployment and scaling. By using StatefulSets and **persistent volume claims (PVCs)**, developers can ensure that stateful applications maintain their state across restarts or migrations, crucial for applications such as databases that require consistent data.

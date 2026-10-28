@@ -1,0 +1,11 @@
+Figure 5.5 – E-commerce monitoring system The preceding use case diagram illustrates an upgraded monitoring system for an e-commerce giant, which is tackling the intricate challenge of effectively monitoring its distributed systems within a Kubernetes environment. The strategy focuses on transitioning from a reactive to a proactive monitoring posture, addressing the silent failures, alert fatigue, manual correlations, and blind spots that have been impacting system reliability and customer satisfaction.
+
+The operations team is at the forefront, integrating advanced monitoring tools that provide deeper visibility into the system’s operations. This integration allows for a more nuanced detection of issues, ideally preventing problems before they affect customers.
+
+To combat the deluge of non-critical alerts that have led to alert fatigue, the team sets up an intelligent alert system designed to prioritize alerts. This ensures that the most critical issues are flagged for immediate action, reducing the noise and helping the team to focus on genuinely impactful system events.
+
+The DevOps engineer takes charge of implementing automation for anomaly detection, which is crucial for quickly identifying and responding to unexpected system behavior without the need for labor-intensive manual data analysis.
+
+With the integration of comprehensive log analytics, the system gains the capability to perform in-depth analysis and correlation of logs across different services, which is key in diagnosing complex issues that may span multiple components of the infrastructure. This integration is crucial in transitioning away from the previously manual and error-prone correlation process.
+
+Data analysts bring their expertise to bear by establishing real-time performance dashboards, providing a live view of the system’s health and efficiency. These dashboards are critical in illuminating performance metrics that were previously not monitored adequately, helping to identify and resolve any issues affecting customer experience.

@@ -1,0 +1,94 @@
+chapter_starts:
+- 'no': 299
+  confidence: 0.75
+  final_reason: 前言为正文前统一划分为一章的起始，语义符合前言定义；位置异常为文档拼接所致，仍采纳为独立前言章
+  accepted_evidence:
+  - '行内容为 ## 前言，后接前言概述段落'
+  - 规则要求前言、序言等正文之前内容统一划分为一章
+  rejected_evidence:
+  - 位于第9章之后出现顺序异常
+  need_human_review: true
+- 'no': 424
+  confidence: 0.95
+  final_reason: 第 1 部分：理解 Kubernetes 反模式，为最高层级部分标题，单独成行且后接本部分概述
+  accepted_evidence:
+  - 标题含‘第 1 部分’，为部分-章节模式下的部分标题
+  - 后1~3行为本部分介绍概述
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 34
+  confidence: 0.9
+  final_reason: 'Part 2: Implementing Best Practices 为部分标题，虽为英文且层级标记为 ##，在部分-章节模式下仍应划分新章'
+  accepted_evidence:
+  - 标题含 Part 2，语义为部分
+  - '后接 ### 4 Practical Solutions... 等章节内容'
+  rejected_evidence:
+  - 与中文部分标题格式不一致
+  need_human_review: false
+- 'no': 154
+  confidence: 0.95
+  final_reason: 第 3 部分：实现持续改进，为最高层级部分标题，单独成行且后接第7章
+  accepted_evidence:
+  - 标题含‘第 3 部分’
+  - '后接 ## 7 拥抱 Kubernetes 的持续改进'
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 77
+  confidence: 0.9
+  final_reason: '## 5 个真实世界案例研究，编号5为大章标题，单独成行后接 ### 子节'
+  accepted_evidence:
+  - 标题以数字5开头且为统领性主题
+  - '后接 ### 从真实组织的经验中学习 等子节'
+  rejected_evidence:
+  - 缺少‘第’‘章’字样
+  need_human_review: false
+- 'no': 107
+  confidence: 0.9
+  final_reason: '## 6 性能优化技术，编号6为大章标题，单独成行后接 ### 子节'
+  accepted_evidence:
+  - 标题以数字6开头
+  - '后接 ### 优化 Kubernetes 性能的技术 等子节'
+  rejected_evidence:
+  - 格式简略
+  need_human_review: false
+- 'no': 155
+  confidence: 0.9
+  final_reason: '## 7 拥抱 Kubernetes 的持续改进，编号7为大章标题，紧跟第3部分后'
+  accepted_evidence:
+  - 编号连贯
+  - '后接 ### 持续改进的概念 等子节'
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 213
+  confidence: 0.9
+  final_reason: '## 8 主动评估与预防，编号8为大章标题，单独成行后接 ### 子节'
+  accepted_evidence:
+  - 编号连贯
+  - '后接 ### 培养主动式的 Kubernetes 思维'
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 265
+  confidence: 0.9
+  final_reason: '## 9 融会贯通，编号9为大章标题，单独成行后接 ### 子节'
+  accepted_evidence:
+  - 编号为9为最后一章
+  - '后接 ### 总结全书核心要点'
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 1217
+  confidence: 0.7
+  final_reason: '## 原因和后果 为第3章主体标题，编号在上一行 ## 3 中，标题被拆分为两行，仍作为章起始采纳但需人工复核'
+  accepted_evidence:
+  - 后接本章深入探讨...概述段落
+  - 上下文为第3章内容
+  rejected_evidence:
+  - 编号位于上一行1216，标题拆行导致起始行不完整
+  need_human_review: true
+rejected_lines:
+- 'no': 0
+  reason: 书名页标题，非正文章节起始；规则未要求书名页单独成章，前言等前置内容已另行划分
+  need_human_review: false
+- 'no': 36
+  reason: '### 4 Practical Solutions and Best Practices 为三级标题且为英文残留，紧跟 Part 2 后为目录/预览性质，后文中文正文章标题为
+    ## 实施经过验证的最佳实践，不应作为最高层级大章划分'
+  need_human_review: false

@@ -1,0 +1,6 @@
+![](bbox=[0.375, 0.09, 0.625, 0.28])
+
+https://packt.link/free-ebook/9781835460689
+
++   2. Submit your proof of purchase
++   3. That’s it! We’ll send your free PDF and other benefits to your email directly
