@@ -1,0 +1,103 @@
+reviews:
+- 'no': 6
+  overturn_probability: 0.02
+  alternative: 前言性质的正文前置部分
+  counter_evidence:
+  - 标题明确为“前言”，规则明确要求前言统一划分为一章
+  - 其后直接出现前言说明性段落
+  keep_split: true
+- 'no': 46
+  overturn_probability: 0.35
+  alternative: 正文中的主题性小标题
+  counter_evidence:
+  - 标题没有章编号，且后续仅展开“可读性”和软件成本等多个技术与历史小节
+  - 同一层级的“可读性”“构建（和维护）软件的成本”等标题表明它可能只是当前章内部的分节，而非全书大章
+  - 前文从标题、准备、读者对象、约定连续过渡到正文，缺乏明确的章编号或章引导语
+  keep_split: true
+- 'no': 95
+  overturn_probability: 0.65
+  alternative: 正文中的二级主题小标题
+  counter_evidence:
+  - 标题使用“##”，与后续“IPython并行架构”“概述”“组件”等明显属于同一章内的并列或下级主题
+  - 全文后面明确出现“第3章‘迈向 IPython 并行计算’”，说明这里很可能是第3章内容内部，而非章节起点
+  - 该标题没有章编号，也没有“本章涵盖”等章级导语
+  keep_split: false
+- 'no': 386
+  overturn_probability: 0.2
+  alternative: 章节内部的总领性小标题
+  counter_evidence:
+  - 标题没有章编号，且后面使用“### 性能分析”等三级标题，确实可能只是章内二级标题
+  - 同名标题在第467行再次出现，显示文本存在重复排版或内容拼接，削弱其作为唯一章起点的证据
+  keep_split: true
+- 'no': 507
+  overturn_probability: 0.55
+  alternative: 章内关于 rpy2.robjects 的二级小节
+  counter_evidence:
+  - 没有章编号，且其后只有“基础知识”等三级标题，形式上与普通二级小节一致
+  - 所在上下文此前已连续讨论 Octave、R 和相关扩展，可能属于同一章的语言与工具集成部分
+  - 前后存在大量内容拼接和重复标题，不能仅凭独立主题认定为大章
+  keep_split: true
+- 'no': 691
+  overturn_probability: 0.7
+  alternative: 正文中的工具或语言主题小标题
+  counter_evidence:
+  - “Hy”标题本身极短，且没有章编号或章级概述
+  - 其后内容直接转入 Matplotlib，主题跨度更像同一章中连续介绍多个工具，而非独立大章
+  - 后续标题均为“##”，但文本中没有明确的章边界或“本章”提示
+  keep_split: false
+- 'no': 788
+  overturn_probability: 0.75
+  alternative: 正文中的可视化工具小节
+  counter_evidence:
+  - 后续依次介绍 matplotlib、Bokeh、ggplot2 等多个工具，整体更像“使用其他语言和库”一章中的并列小节
+  - 标题没有章编号，也没有“本章将涵盖”等章级导语
+  - 紧接着出现“启动 matplotlib”“初始图形”等三级标题，符合二级小节结构
+  keep_split: false
+- 'no': 872
+  overturn_probability: 0.7
+  alternative: 与 Matplotlib、ggplot2 并列的可视化库小节
+  counter_evidence:
+  - 标题仅为库名，且后续是“启动 Bokeh”“交互式绘图”等下级小节
+  - 与前面的 Matplotlib 及后面的 ggplot2 处于同一可视化主题链条中
+  - 缺乏章编号和章级概述，不能仅因主题独立就判为大章
+  keep_split: false
+- 'no': 1055
+  overturn_probability: 0.45
+  alternative: 测试框架主题下的二级小节
+  counter_evidence:
+  - 前后仍在同一测试章节中连续讨论 unittest、pytest、nose2，工具之间具有明显的比较和递进关系
+  - 标题没有章编号，且后面“重要概念”是三级标题，形式上更符合二级小节
+  - 后文直到“文档”才出现明确的下一章结构，说明 unittest 可能只是测试章的一部分
+  keep_split: true
+- 'no': 1570
+  overturn_probability: 0.5
+  alternative: 测试框架比较章节中的二级小节
+  counter_evidence:
+  - 前文已经大量讨论 unittest 和 pytest，nose2 很可能是同一测试主题下的并列工具
+  - 标题没有编号或章级导语
+  - 后续内容主要是 nose2 的具体用法和插件，结构上完全可以属于测试章内部
+  keep_split: true
+- 'no': 1871
+  overturn_probability: 0.05
+  alternative: 文档主题的章标题
+  counter_evidence:
+  - 标题后明确写有“本章将涵盖以下主题”
+  - 前文总结段明确说下一章讨论文档
+  - 与前言中第9章《文档》的内容对应
+  keep_split: true
+- 'no': 2741
+  overturn_probability: 0.6
+  alternative: Jupyter 访问主题中的正文小标题
+  counter_evidence:
+  - 该标题没有章编号，且前文已经在同一主题中讨论 Jupyter 的安装、notebook、matplotlib 和 R
+  - 后续“控制台”“Jupyter 客户端”“Jupyter 的未来”明显是同一章内的并列组件
+  - 虽然与第10章主题相符，但语义对应不能替代明确的章级格式证据
+  keep_split: true
+- 'no': 2761
+  overturn_probability: 0.45
+  alternative: Jupyter 主题中的后续小节
+  counter_evidence:
+  - 标题位于 Notebook、控制台、Jupyter 客户端等相关内容之后，可能只是访问 Jupyter 章的最后部分
+  - 没有章编号，且后续仍有“官方路线图”等三级或二级展开
+  - 与第11章《走向未来》的对应关系主要来自语义推断，而不是标题格式
+  keep_split: true

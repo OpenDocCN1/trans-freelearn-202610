@@ -1,0 +1,4293 @@
+- pgno: 0
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 1
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 2
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 3
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 4
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 5
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 6
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 7
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 8
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 9
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 10
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 11
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 12
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 13
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 14
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 15
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 16
+  md: "The future of Jupyter 333\n  Official roadmap 333\n  Official subprojects 334\n\
+    \  Incubation 335\nIPython 336\n  Current activity 337\nThe rise of parallelism\
+    \ 337\n  The megahertz wars end 338\n  The problem 339\n  A parallel with the\
+    \ past 339\n  The present 340\n    Problems are getting bigger and harder 340\n\
+    \    Computers are becoming more parallel 341\n    Clouds are rolling in 342\n\
+    \    There is no Big Idea 342\nGrowing professionalism 345\n  The NSF 346\n  Software\
+    \ Infrastructure for Sustained Innovation 347\nSummary 349\nIndex 351"
+  merge: -1
+  img_proc: true
+- pgno: 17
+  md: '# Preface
+
+
+    Welcome to the world of IPython 4.0, which is used in high performance and parallel
+    environments. Python itself has been gaining traction in these areas, and IPython
+    builds on these strengths.
+
+
+    High-performance computing (HPC) has a number of characteristics that make it
+    different from the majority of other computing fields. We will start with a brief
+    overview of what makes HPC different and how IPython can be a game-changing technology.
+
+
+    We will then start on the IPython command line. Now that Jupyter has split from
+    the IPython project, this is the primary means by which the developer will interface
+    with the language. This is an important enough topic to devote two chapters to.
+    In the first, we will concentrate on basic commands and gaining an understanding
+    of how IPython carries them out. The second chapter will cover more advanced commands,
+    leaving the reader with a solid grounding in what the command line has to offer.
+
+
+    After that, we will address some particulars of parallel programming. IPython
+    parallel is a package that contains a great deal of functionality required for
+    parallel computing in IPython. It supports a flexible set of parallel programming
+    models and is critical if you want to harness the power of massively parallel
+    architectures.
+
+
+    Programs running in parallel but on separate processors often need to exchange
+    information despite having separate address spaces. They do so by sending messages.
+    We will cover two messaging systems, ZeroMQ and MPI, and in relation to both how
+    they are used in already existing programs and how they interact with IPython.
+
+
+    We will then take a deeper look at libraries that can enhance your productivity,
+    whether included in IPython itself or provided by third-parties. There are far
+    too many tools to cover in this book, and more are being written all the time,
+    but a few will be particularly applicable to parallel and HPC projects.'
+  merge: -1
+  img_proc: true
+- pgno: 18
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 19
+  md: 'Chapter 9, Documentation, discusses the different audience for documentation
+    and their requirements. The use of docstrings with reStructuredText, docutils,
+    and Sphinx is demonstrated in the context of good documentation standards.
+
+
+    Chapter 10, Visiting Jupyter, introduces the Jupyter notebook and describes its
+    use as a laboratory notebook combining data and calculations.
+
+
+    Chapter 11, Into the Future, reflects on the current rapid rate of change and
+    speculates on what the future may hold, both in terms of the recent split between
+    IPython and the Jupyter project and relative to some emerging trends in scientific
+    computing in general.
+
+
+    # What you need for this book
+
+
+    This book was written using the IPython 4.0 and 4.0.1 (stable) releases from August
+    2015 through March 2016; all examples and functions should work in these versions.
+    When third-party libraries are required, the version used will be noted at that
+    time. Given the rate of change of the IPython 4 implementation, the various third-party
+    libraries, and the field in general, it is an unfortunate fact that getting every
+    example in this book to run on every reader''s machine is doubtful. Add to that
+    the differences in machine architecture and configuration and the problem only
+    worsens. Despite efforts to write straightforward, portable code, the reader should
+    not be surprised if some work is required to make the odd example work on their
+    system.
+
+
+    # Who this book is for
+
+
+    This book is for IPython developers who want to make the most of IPython and perform
+    advanced scientific computing with IPython, utilizing the ease of interactive
+    computing.
+
+
+    It is ideal for users who wish to learn about the interactive and parallel computing
+    properties of IPython 4.0, along with its integration with third-party tools and
+    concepts such as testing and documenting results.
+
+
+    # Conventions
+
+
+    In this book, you will find a number of text styles that distinguish between different
+    kinds of information. Here are some examples of these styles and an explanation
+    of their meaning.'
+  merge: -1
+  img_proc: true
+- pgno: 20
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 21
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 22
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 23
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 24
+  md: 'The same is true today, except that the models have become larger and the simulations
+    more intricate. Testing a new nuclear missile by actually launching it is ill-advised.
+    Instead, a model of the missile is built in software and a simulation of its launching
+    is run on a computer. Design flaws can be exposed in the computer (where they
+    are harmless), and not in reality.
+
+
+    Modeling a missile is much more complex than modeling the course of a ship. There
+    are more moving parts, the relevant laws of physics are more complicated, the
+    tolerance for error is lower, and so on and so forth. This would not be possible
+    without employing more sophisticated tools than the medieval navigator had access
+    to. In the end, it is our tools'' abilities that limit what we can do.
+
+
+    It is the nature of problems to expand to fill the limits of our capability to
+    solve them. When computers were first invented, they seemed like the answer to
+    all our problems. It did not take long before new problems arose.
+
+
+    # FORTRAN to the rescue – the problems FORTRAN addressed
+
+
+    After the initial successes of the computer (breaking German codes and calculating
+    logarithms), the field ran into two problems. Firstly, the machine itself was
+    slow — or at least slower than desired — for the new problems at hand. Secondly,
+    it took too long to write the instructions (code) that the machine would execute
+    to solve the problem.
+
+
+    Making the machine itself faster was largely an engineering problem. The underlying
+    substrate went from steam and valves to electromechanical relays to vacuum tubes
+    to integrated circuits. Each change in the substrate improved the rate at which
+    instructions could be executed. This form of progress, while interesting, is outside
+    of the scope of this book.
+
+
+    Once computers evolved past needing their programs to be wired up, programmers
+    were free to start expressing their algorithms as text, in a programming language.
+    While typing is faster than running wires, it has its own issues. Fortran was
+    one of the first languages to address them successfully.
+
+
+    # Readability
+
+
+    Early languages were generally not very human-friendly. It took specialized training
+    to be able to write (and read) programs written in these languages. Programmers
+    would often add comments to their code, either within the code itself or in external
+    documentation, but the problem was deeper. The languages themselves were cryptic.'
+  merge: -1
+  img_proc: true
+- pgno: 25
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 26
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 27
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 28
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 29
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 30
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 31
+  md: '# The cost of building (and maintaining) software
+
+
+    If developers were all equal in talent, they worked for free, development time
+    were no object, all code were bug-free, and all programs only needed to run once
+    and were then thrown away, Fortran would be the clear winner given its efficiency
+    and installed library base.
+
+
+    This is not how commercial software is developed. At a first approximation, a
+    software project''s cost can be broken down into the cost of several parts:
+
+
+    +   - Requirements and specification gathering
+
+    +   - Development
+
+    +   - Execution
+
+    +   - Testing and maintenance
+
+
+    # Requirements and specification gathering
+
+
+    There is no clear differentiation between IPython and Fortran in the difficulty
+    of production, good requirements, and specifications. These activities are language-independent.
+    While the availability of prewritten software packages may impact parts of the
+    specification, both languages are equally capable of reducing requirements and
+    specifications to a working system.
+
+
+    # Development
+
+
+    As discussed previously, Python code tends to be more concise, leading to higher
+    programmer productivity. Combine this with the growing numbers of developers already
+    fluent in Python and Python is the clear winner in terms of reducing development
+    time.
+
+
+    # Execution
+
+
+    If it is costly to run on the target system (which is true for many supercomputers),
+    or the program takes a long time to run (which is true for some large-scale simulations
+    such as weather prediction), then the runtime efficiency of Fortran is unmatched.
+    This consideration looms especially large when development on a program has largely
+    concluded and the majority of the time spent on it is in waiting for it to complete
+    its run.'
+  merge: -1
+  img_proc: true
+- pgno: 32
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 33
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 34
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 35
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 36
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 37
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 38
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 39
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 40
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 41
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 42
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 43
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 44
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 45
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 46
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 47
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 48
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 49
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 50
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 51
+  md: '# # 恶性结节和良性结节
+
+
+    ![](img/8628b86fcc4f22d859c0104c2ec1d15f_51_0.png)
+
+
+    **良性结节**：形态规则、边界清晰、内部回声均匀
+
+
+    **恶性结节**：形态不规则、边界模糊、内部回声不均匀
+
+
+    乳腺结节的发病率逐年增高，超声检查是发现乳腺结节的主要手段之一。良性结节和恶性结节的超声征象有较大区别。良性结节多表现为形态规则、边界清晰、内部回声均匀；恶性结节多表现为形态不规则、边界模糊、内部回声不均匀。'
+  merge: -1
+  img_proc: true
+- pgno: 52
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 53
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 54
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 55
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 56
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 57
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 58
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 59
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 60
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 61
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 62
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 63
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 64
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 65
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 66
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 67
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 68
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 69
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 70
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 71
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 72
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 73
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 74
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 75
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 76
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 77
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 78
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 79
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 80
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 81
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 82
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 83
+  md: '# Using multiple processors
+
+
+    Given the limitations of threading for CPU-bound code, perhaps a solution can
+    be found using multiple processors. The problem with CPU-bound algorithms and
+    threading was that there was an implicitly-shared resource: the CPU. With multiple
+    processors this limitation can be eased – each function call can have its own
+    CPU, up to the physical number of CPUs. Each CPU would work independently and
+    in parallel rather than being a bottleneck. We will examine the tools that IPython
+    provides for working with multiple processors in the following sections.
+
+
+    # The IPython parallel architecture
+
+
+    The `IPython.parallel` package has moved to the `ipyparallel` project. While not
+    a major change, this has introduced a dependency on the ZeroMQ messaging library.
+
+
+    # Overview
+
+
+    The ipyparallel architecture is a natural extension of the serial IPython architecture.
+    The decoupling of the client from the interpreter lends itself to an architecture
+    in which multiple interpreters and clients can run in parallel.
+
+
+    # Components
+
+
+    The IPython architecture consists of four components:
+
+
+    +   - The IPython Engine
+
+    +   - The IPython Controller/Client
+
+    +   - The IPython Hub
+
+    +   - The IPython Scheduler
+
+
+    # The IPython Engine
+
+
+    An IPython Engine is a Python instance that accepts Python commands and objects
+    over a network connection. The ability to run engines on different processors
+    is what makes distributed computing in IPython possible.
+
+
+    # The IPython Controller
+
+
+    The IPython Controller provides an interface for working with a set of engines.
+    It consists of a hub and a set of schedulers. The Controller provides the single
+    point of contact for users who wish to interact with the engines.'
+  merge: -1
+  img_proc: true
+- pgno: 84
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 85
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 86
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 87
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 88
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 89
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 90
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 91
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 92
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 93
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 94
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 95
+  md: '# Making data matter more
+
+
+    # From Big Data to Rich Data
+
+
+    ![](img/8628b86fcc4f22d859c0104c2ec1d15f_95_0.png)
+
+
+    Data is not just about quantity;
+
+    it is about richness.
+
+
+    > > Markets are conversations, and the value of data is created through its use,
+    not through its accumulation.'
+  merge: -1
+  img_proc: true
+- pgno: 96
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 97
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 98
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 99
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 100
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 101
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 102
+  md: "Given a function func to process the data, and a subset function to determine\
+    \ what data to send to each engine, this will put the results of all the parallel\
+    \ calls into the results list.\n\nWhile not as powerful or sophisticated as Hadoop,\
+    \ these mechanisms provide a lightweight alternative suitable for exploratory\
+    \ analysis on smaller data sets.\n\n# MIMD\n\nThe Multiple Instruction Multiple\
+    \ Data stream paradigm describes a situation where multiple processors can be\
+    \ executing different instructions on different data streams. It can be viewed\
+    \ as a slightly more general form of SIMD, where each processing unit does not\
+    \ have to be in sync with all the other processing units. In practice, the term\
+    \ usually refers to the (even more general) MPMD paradigm, which will be discussed\
+    \ later.\n\n# MPMD\n\nThe Multiple Program Multiple Data stream paradigm is the\
+    \ most general form of parallel computing. In this paradigm, the individual processing\
+    \ units are essentially independent programs that may or may not communicate with\
+    \ each other. This can be especially handy in heterogeneous environments, where\
+    \ different portions of the system may require various specialized resources.\n\
+    \nGiven a program using slight modifications of earlier examples, we would want\
+    \ to ensure that the useGPUs function was executed only on nodes with an attached\
+    \ GPU:\n\n```\nimport numpy\nfrom numba pro import vectorize\n\n@vectorize([\"\
+    float32(float32, float32)\"], target=\"gpu\")\ndef vectorAdd(a, b):\n    return\
+    \ a + b\n\ndef useGPUs():\n    N = 64\n\n    A = numpy.random.rand(N).astype(numpy.float32)\n\
+    \    B = numpy.random.rand(N).astype(numpy.float32)\n    C = numpy.zeros(N, dtype=numpy.float32)\n\
+    \n    C = vectorAdd(A, B)\n    print(C)\n```"
+  merge: -1
+  img_proc: true
+- pgno: 103
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 104
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 105
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 106
+  md: "# Data parallelism\n\nSo far we have talked primarily about the way tasks are\
+    \ distributed, and have left the data in the background. It can be instructive\
+    \ to look at the way data is obtained and made available to the tasks, also. After\
+    \ all, if a task is starved for data it cannot produce any results.\n\n# No data\
+    \ dependence\n\nThis is the situation where each task either needs no data, or\
+    \ can independently generate it (perhaps through sensor readings or a random number\
+    \ generator). This can often happen when running Monte Carlo simulations, where\
+    \ the only input to each simulation is a random number.\n\n![](img/8628b86fcc4f22d859c0104c2ec1d15f_106_0.png)\n\
+    \n> **Monte Carlo simulation**\n> \n> It is often the case in a simulation, that\
+    \ exact values for parameters are not known. When this is the case, the Monte\
+    \ Carlo method entails running the simulation multiple times, with each run using\
+    \ a valid but randomly chosen value for each parameter. The results of the runs\
+    \ can then be combined statistically to provide an estimate of the desired result.\n\
+    \nIn this example, each instance of the simulation may as well generate its own\
+    \ random number, so the only data exchanges are as follows:\n\n+   - At the beginning\
+    \ of the run, some minimal amount of configuration data will be sent (for example,\
+    \ number of steps or tolerance)\n+   - At the end of the run, when results are\
+    \ collected\n\nConsider the following Monte Carlo calculation of Pi:\n\n```\n\
+    def monteCarloPI(n):\n    s = 0\n    for i in xrange(n):\n        x = random()\n\
+    \        y = random()\n        if x*x + y*y <= 1:\n            s+=1\n    return\
+    \ 4.*s/n\n\ndef parCalcPI(view, n):\n    p = len(view.targets)\n\n    ar = view.apply(monteCarloPI,\
+    \ n)\n    return sum(ar)/p\n```"
+  merge: -1
+  img_proc: true
+- pgno: 107
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 108
+  md: "```\n```python\nfor i in range(numFiles):\n    filename = \"infile\" + i +\
+    \ \".txt\"\n    dv.targets = i % numEngines]\n    asyncResults.append(dv.apply(countWords,\
+    \ fileName))\n\nfor r in asyncResults:\n    results.append(r.get())\n```\n```\n\
+    \nReaders will recognize this as similar to the scatter-gather method described\
+    \ earlier, the primary difference being that the data used by the individual engines\
+    \ is not primarily what was sent in the original call, but instead data that was\
+    \ stored in separate files.\n\nThe primary drawback to this form of data parallelism\
+    \ has to do with the underlying architecture of the physical machine. As a rough\
+    \ guide, most HPC machines will have local storage and remote storage. Local storage\
+    \ consists of RAM and a small hard drive. Remote storage consists of banks of\
+    \ hard drives and lots of tape. When a process starts on a node, the remote storage\
+    \ from that node is effectively blank. This means that any files used by that\
+    \ node have to be read from remote storage into local storage. Local and remote\
+    \ storage are connected by a network that is shared by all nodes regardless of\
+    \ who owns the processes running on them.\n\nIf, as in our toy example, a large\
+    \ number of nodes simultaneously try to open files in remote storage for reading,\
+    \ the network connecting local and remote storage will be overwhelmed by the need\
+    \ to transfer these files from remote storage to the individual nodes that need\
+    \ access. This is not, in itself, a fatal error. It will, however, kill performance,\
+    \ and is the sort of thing that will merit an angry e-mail from the system administrator.\n\
+    \nIn order to avoid such problems, it is necessary to control both what task accesses\
+    \ which file, but also where the files are physically located. This problem is\
+    \ beyond the scope of this book – if the reader is interested, **Hadoop Distributed\
+    \ File System (HDFS)** provides an interesting approach.\n\nThe preceding approaches\
+    \ all share a common feature – the data flows exclusively between the controller\
+    \ and the engines. Flows that are more sophisticated will be addressed in a later\
+    \ chapter.\n\n# # Application steering\n\nApplication steering is the interactive\
+    \ manipulation of a program with the purpose of affecting its behavior. It allows\
+    \ the user to monitor and control their application during execution. The tools\
+    \ that IPython provides to enable some basic forms of application steering have\
+    \ been laid out in this chapter. This section will limit itself to describing\
+    \ some simple applications."
+  merge: -1
+  img_proc: true
+- pgno: 109
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 110
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 111
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 112
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 113
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 114
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 115
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 116
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 117
+  md: 'To some extent then, ZeroMQ will attempt to recover from external errors. For
+    example, it will try to handle network errors in an intelligent manner, even automatically
+    retrying when that makes sense. While the framework cannot handle every error
+    that could occur, it is likely that any error that does prevent successful completion
+    of a call really requires the attention of the process that initiated the call.
+    If it did nothing else, ZeroMQ would be worth using just for this feature.
+
+
+    If it cannot succeed for whatever reason, at a low level, this means that every
+    ZeroMQ call will return a status code or fail an assertion. The Python wrapper
+    for ZeroMQ will tend to throw exceptions for any sort of error event. The following
+    table summarizes these exceptions:
+
+
+    | Exception | Condition |
+
+    |---|---|
+
+    | ZMQError | Wraps a ZeroMQ error number |
+
+    | ZMQVersionError | This is raised when a feature is not provided by the linked
+    version of libzmq |
+
+    | Again | Wrapper for ZeroMQ''s EAGAIN error |
+
+    | ContextTerminated | Wrapper for ZeroMQ''s ETERM error |
+
+    | NotDone | Timeout while waiting for a message |
+
+    | ZMQBindError | When a socket fails to bind to a port |
+
+
+    The complete details can be found at `https://pymq.readthedocs.org/en/latest/api/index.html`.
+    Every call to ZeroMQ should be wrapped in a try-catch block, and liberal use of
+    assertions is encouraged. However, as important as error handling is in production,
+    it can tend to clutter up otherwise clean code. All examples will be provided
+    without it:
+
+
+    +   - **Line 14:** Receiving a request is a blocking statement. This process will
+    wait indefinitely for a connection on the port specified previously. A limit can
+    be specified so that the wait times out.
+
+    +   - **Line 21:** After the message is received and (some minimal) processing
+    occurs, a response can be sent back to the process that initiated the connection.
+    At a low level, ZeroMQ sends bytes, not Python characters. If both the client
+    and the server are Python (and possibly the same version), sending a string in
+    this manner should work without issue.
+
+
+    Cross-language and cross-platform applications may want to use this:
+
+
+    ```
+
+    socket.send(b"World")
+
+    ```
+
+
+    Instead of using the following line of code:
+
+
+    ```
+
+    socket.send("World")
+
+    ```'
+  merge: -1
+  img_proc: true
+- pgno: 118
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 119
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 120
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 121
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 122
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 123
+  md: "# Publisher\n\nThis is the publisher. It uses a PUB socket to send the time\
+    \ and weather to an arbitrary number of subscribers:\n\n```\n```python\nimport\
+    \ zmq\nimport random\n\ncontext = zmq.Context()\nsocket = context.socket(zmq.PUB)\n\
+    socket.bind(\"tcp://*:5678\")\n\nwhile True:\n    topic = \"load\"\n    socket.send(topic\
+    \ + \" \" + str(random.random()))\n\n    topic = \"weather\"\n    messagedata\
+    \ = \"dark and stormy night\"\n    socket.send(topic + \" \" + messagedata)\n\n\
+    \    time.sleep(1)\n```\n```\n\n# Subscriber\n\nThis subscriber uses a SUB socket\
+    \ to listen to the preceding publishers. It is, however, only interested in the\
+    \ weather:\n\n```\n```python\nimport zmq\n\ncontext = zmq.Context()\nsocket =\
+    \ context.socket(zmq.SUB)\nsocket.connect(\"tcp://localhost:5678\")\nsocket.setsockopt_string(zmq.SUBSCRIBE,\
+    \ \"weather\")\n\nwhile True:\n    wtr = socket.recv_string()\n    print(\"the\
+    \ weather is: \" + wtr)\n```\n```"
+  merge: -1
+  img_proc: true
+- pgno: 124
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 125
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 126
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 127
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 128
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 129
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 130
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 131
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 132
+  md: "# Broadcasting\n\nBroadcasting would seem to be inapplicable when using MPI:\
+    \ after all, every process has the same code, so what could one know that another\
+    \ did not? One example of asymmetry comes from the use of I/O. Consider a program\
+    \ that receives input from the user, and then acts upon that input in each process.\
+    \ It would be madness for each process to ask for user input independently. The\
+    \ rank 0 process should gather the input and then send it to all the other processes,\
+    \ for example:\n\n```\n```python\nfrom mpi4py import MPI\n\ncomm = MPI.COMM_WORLD\n\
+    rank = comm.Get_rank()\n\nif rank == 0:\n    data = input(\"Please enter random\
+    \ number seed\")\nelse:\n    data = None\n\n# mpi4py wants to send an object,\
+    \ so we will leave the\n# input in that format\ndata = comm.bcast(data, root=0)\n\
+    ```\n```\n\n# Reduce\n\nWith all the processes performing separate operations,\
+    \ it can be useful to combine their results. For example, when computing the Reimann\
+    \ integral of a function, it can be much more efficient to divide the work across\
+    \ several processes. The result is then the sum of the values calculated in each\
+    \ process, for example:\n\n```\n```python\nimport numpy\n\nimport sys\nfrom mpi4py\
+    \ import MPI\n\ncomm = MPI.COMM_WORLD\nrank = comm.Get_rank()\n\n# integrate from\
+    \ in [0, 4] using 8 rectangles\na = 0\nb = 4\n```\n```"
+  merge: -1
+  img_proc: true
+- pgno: 133
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 134
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 135
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 136
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 137
+  md: '# # ZeroMQ and IPython
+
+
+    ZeroMQ is more than a messaging library for parallel environments: IPython has
+    moved to using ZeroMQ as its internal messaging infrastructure. In this section,
+    we will provide further details on the operation of IPython in terms of the ZeroMQ
+    mechanisms underlying it.
+
+
+    To do this, we will introduce some additional socket types, describe how they
+    interact to enable some of IPython''s parallel components, and finish up with
+    some use cases employing those components. While this section cannot hope to cover
+    all the details of the IPython parallel architecture, it is hoped that these examples
+    will provide the user with a basic understanding of the underlying mechanisms.
+
+
+    # ## ZeroMQ socket types
+
+
+    ZeroMQ supports a large number of different socket types, 14 at last count (version
+    4.2.0). The preceding section provided an overview of some of the important types,
+    but a discussion of the IPython architecture requires at least cursory knowledge
+    of some advanced socket types:
+
+
+    +   - **DEALER:** This is similar to a REQ socket, but is asynchronous. Each message
+    sent is sent among all connected peers in a round-robin fashion, and each message
+    received is fair-queued from all connected peers. It is compatible with ROUTER,
+    REP, and DEALER sockets.
+
+    +   - **ROUTER:** This is similar to a REP socket but is asynchronous. It keeps
+    track of all connected peers. Every message sent by a router includes the identity
+    of the message''s source. This allows the socket to route messages based on their
+    origination. Situations where a ROUTER has multiple REQ and REP sockets connected
+    require that messages be sent to the correct endpoints.
+
+
+    # ## IPython components
+
+
+    *Chapter 3, Stepping Up to IPython for Parallel Computing*, provided an overview
+    of the major IPython architectural components. We will provide more details in
+    this section, with an emphasis on how each component uses messaging to perform
+    its tasks.'
+  merge: -1
+  img_proc: true
+- pgno: 138
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 139
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 140
+  md: 'ZeroMQ goes for minimum configuration: clients and engines only need to know
+    the IP address and port of the Hub''s ROUTER socket in order to connect. Once
+    this initial connection is established, any information needed to establish further
+    connections is sent over. In addition, clients can use this connection to query
+    the Hub for state information concerning the engines. This results in a simple
+    connection architecture where the client and engine both use DEAL sockets and
+    the hub uses a ROUT:
+
+
+    ![](img/8628b86fcc4f22d859c0104c2ec1d15f_140_0.png)
+
+
+    # Heartbeat
+
+
+    The Hub is also responsible for checking which engines are still responding. It
+    does this by periodically sending a message to each engine. The engine then responds
+    with the same message, with a prefix denoting which engine responded. If an engine
+    does not respond, the Hub will attempt to terminate it.'
+  merge: -1
+  img_proc: true
+- pgno: 141
+  md: '![](img/8628b86fcc4f22d859c0104c2ec1d15f_141_0.png)
+
+
+    # IOPub
+
+
+    stdout/stderr are captured and published via a PUB socket. Both the Client and
+    the Hub receive a copy:
+
+
+    ![](img/8628b86fcc4f22d859c0104c2ec1d15f_141_1.png)'
+  merge: -1
+  img_proc: true
+- pgno: 142
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 143
+  md: '# # Opening the Toolkit – The IPython API
+
+
+    This chapter covers some useful features of IPython that did not fit in elsewhere
+    and some features that deserved deeper coverage.
+
+
+    The following topics will be covered:
+
+
+    +   - Performance profiling
+
+    +   - The `AsyncResult` class
+
+    +   - Results metadata
+
+    +   - The `Client` class
+
+    +   - The `View` class (including `DirectView` and `LoadBalancedView`)
+
+
+    > > IPython libraries are very flexible in terms of parameters. Most parameters
+    are optional, with sensible defaults. This chapter will not attempt to describe
+    every parameter for every function, but will instead cover the more interesting
+    features provided by these libraries. I have added respective links to the official
+    documentations for further reference.
+
+
+    # ## Performance profiling
+
+
+    Before optimizing a system, it is handy to know exactly which part is slow. IPython
+    adds some specialized tools for this purpose, along with the tools that Python
+    provides.'
+  merge: -1
+  img_proc: true
+- pgno: 144
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 145
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 146
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 147
+  md: "```\n```text\n1.71828182846\n1.71828182846\n1.71828182846\n1.71828182846\n\
+    1.71828182846\n1.71828182846\n1.71828182846\n1.71828182846\n1.71828182846\n1.71828182846\n\
+    1.71828182846\n1.71828182846\n1.71828182846\n1.71828182846\n1.71828182846\n1.71828182846\n\
+    1.71828182846\n1.71828182846\n1.71828182846\n1.71828182846\n1.71828182846\n1.71828182846\n\
+    1.71828182846\n1.71828182846\n1.71828182846\n1.71828182846\n1.71828182846\n1.71828182846\n\
+    1.71828182846\n1.71828182846\n1.71828182846\n1.71828182846\n10 loops, best of\
+    \ 3: 344 μs per loop\n```\n```\n\nThe `%%timeit` (and `%timeit`) accepts a number\
+    \ of options—use `?timeit` for details.\n\n# Using %%prun\n\nThe `%%prun` magic\
+    \ uses Python's built-in `cProfile` module. It provides a great deal of more information\
+    \ about where time was spent. In particular, it can break down execution time\
+    \ by function. Here is an example:\n\n```\n```python\nIn [58]: %%prun\n\ns = 0\n\
+    for i in range(1, 1500):\n    s = s + 1/math.factorial(i)\n```\n```"
+  merge: -1
+  img_proc: true
+- pgno: 148
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 149
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 150
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 151
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 152
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 153
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 154
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 155
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 156
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 157
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 158
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 159
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 160
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 161
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 162
+  md: '# Job control
+
+
+    Each View also contains functions for controlling the job in its queue. These
+    are similar to the functions provided in `Client`, but apply only to the engines
+    in the View:
+
+
+    | Method | Arguments | Effect |
+
+    |---|---|---|
+
+    | abort | `jobs` (one of):<br>`(list of) str`<br>`None`<br>`targets` | The `(list
+    of) str` is a list of `msg_id` to be aborted. If None, all jobs are aborted. This
+    occurs on all engines listed in `targets`. |
+
+    | get_result | `indices_or_msg_ids` (one of):<br>`(list of) job index`<br>`(list
+    of) msg_ids` | This gets the result of a job by `msg_id` or history index. The
+    result is an `AsyncResult` object. This is useful when a job is blocked, as the
+    client will not have access to the information. |
+
+    | queue_status | `targets` (one of):<br>`(list of) int`<br>`(list of) str` | This
+    returns the status of the listed engine queues. It defaults to all queues. |
+
+    | shutdown | `targets` (one of):<br>`list of ints`<br>`"all"`<br>`hub: bool` |
+    This terminates engine processes. If hub is True, it also terminates the Hub.
+    |
+
+
+    # DirectView
+
+
+    A `DirectView` object works as a multiplexer—it has a set of engines (`targets`)
+    and it does the same thing to all of its engines. The basic concept is that a
+    `DirectView` can be treated as if it were a single engine, except that it will
+    execute on multiple engines in parallel.
+
+
+    The effect of this on function execution is straightforward:
+
+
+    +   - For `apply*` functions, `f`, `*args`, and `**kwargs` are sent to every engine
+    in the target set.
+
+    +   - For `map*` functions, `f`, one item from `*sequences`, and `**kwargs` are
+    sent to each engine in the target set. Each engine gets a different item from
+    `*sequences`. If there are more elements in `*sequences` than there are engines,
+    some engines will execute multiple times, with a different item each time.'
+  merge: -1
+  img_proc: true
+- pgno: 163
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 164
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 165
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 166
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 167
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 168
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 169
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 170
+  md: '# Opening the Toolkit – The IPython API
+
+
+    DirectView works as a multiplexer. It has a set of engines (targets) and it does
+    the same thing to all of its engines. This allows the developer to treat a set
+    of engines as if they were a single entity. An important capability of a DirectView
+    is its ability to make things "the same" on all of its target engines. In particular,
+    DirectView provides mechanisms for data movement (a global dictionary, scatter-gather,
+    and push-pull) and for managing the environment (the sync_imports context manager).
+
+
+    A LoadBalancedView also allows multiple engines to be treated as a single engine.
+    In this case, however, the conceptual model is that of a single, nonblocking engine
+    rather than a set of engines. The controller can feed multiple jobs to the LoadBalancedView
+    without blocking. For its part, the LoadBalancedView depends on a scheduler to
+    actually execute the jobs. This does not change the environmental management situation
+    with respect to a DirectView, but it does necessitate an external data movement
+    tool, such as MPI or ZeroMQ.
+
+
+    While this chapter briefly outlined some of the more useful features of IPython''s
+    libraries, IPython cannot do everything itself. In the next chapter, we will take
+    a look at how additional languages can be combined with Python to further expand
+    the range of available tools.'
+  merge: -1
+  img_proc: true
+- pgno: 171
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 172
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 173
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 174
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 175
+  md: "This code is interesting enough to look more closely at:\n\n+   - **Line 1:**\
+    \ This magic starts the multiline R interpreter. Unlike the `%R` magic, it does\
+    \ not return anything to IPython by default. The values of variables can be pushed\
+    \ to/from R using commands that will be covered later in this section.\n+   -\
+    \ **Lines 2-3:** These lines slice the mtcars dataset/array. A subscript notation\
+    \ is used, where the subscript is a test. In English, line 2 translates to \"\
+    return all the lines in mtcars for which the cyl column has the value 4\" (similarly\
+    \ for line 3 and eight cylinders). The comma is required.\n\n> There is a subtle\
+    \ difference in R between `=` and `<-`, but it need not concern us here. For our\
+    \ purposes, replacing the equal to sign with the arrow would make no difference.\n\
+    \n+   - **Line 4:** This performs a t-test comparing the mpg columns of the four-\
+    \ and eight-cylinder cars we separated out in the previous lines. To make a long\
+    \ story short, given the cars included in the dataset, four-cylinder cars almost\
+    \ certainly make better gas mileage than eight-cylinder cars.\n\n# Pulling and\
+    \ pushing\n\nGiven our previous example, it might be interesting to know which\
+    \ cars had four cylinders (perhaps they were not representative of four-cylinder\
+    \ cars in general and our test would be less informative than we thought). Despite\
+    \ the fact that the `%R` magic does not return a value and the magic is over,\
+    \ that data has not gone away. It was stored in the fourCyl variable, which lives\
+    \ on in the shared R instance and can be pulled into IPython using the `%Rpull`\
+    \ magic:\n\n```\nIn [40]: %Rpull fourCyl\n\nIn [41]: fourCyl\nOut[41]:\n\n   \
+    \          mpg  cyl   disp   hp  drat    wt   qsec  vs  am  gear  carb\nDatsun\
+    \ 710    22.8    4  108.0   93  3.85  2.320  18.61   1   1     4     1\nMerc 240D\
+    \     24.4    4  146.7   62  3.69  3.190  20.00   1   0     4     2\nMerc 230\
+    \      22.8    4  140.8   95  3.92  3.150  22.90   1   0     4     2\n```"
+  merge: -1
+  img_proc: true
+- pgno: 176
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 177
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 178
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 179
+  md: "This fits a straight line and a quadratic equation to the data.\n\n# Using\
+    \ rpy2.objects\n\nrpy2 can be imported as a standard module and used from IPython's\
+    \ command line. There are various ways of doing this, and the option exists for\
+    \ the developer to build their own by building on top of rpy2.interface. The rpy2.objects\
+    \ module is a popular choice for general development.\n\n# The basics\n\nWhen\
+    \ you import the rpy2.objects module, a singleton object, r, is loaded. This is\
+    \ the entry point to an R process. Here is an example:\n\n```\nIn [5]: import\
+    \ rpy2.objects as robjects\n\nIn [6]: robjects.r\nOut[6]: <rpy2.objects.R at 0x2ad3d0960a90>\n\
+    ```\n\nElements from an R session are available as attributes of the robjects.r\
+    \ object:\n\n```\nIn [7]: robjects.r.mtcars\nOut[7]:\n<DataFrame - Python:0x2ad3d0dfd6c8\
+    \ / R:0x262cef0>\n[Float..., Float..., Float..., ..., Float..., Float..., Float...]\n\
+    \  mpg: <class 'rpy2.objects.vectors.FloatVector'>\n    <FloatVector - Python:0x2ad3d0dfdb08\
+    \ / R:0x2daf890>\n[21.000000, 21.000000, 22.800000, ..., 19.700000, 15.000000,\
+    \ 21.400000]\n  cyl: <class 'rpy2.objects.vectors.FloatVector'>\n    <FloatVector\
+    \ - Python:0x2ad3d0e03488 / R:0x345abaa0>\n[6.000000, 6.000000, 4.000000, ...,\
+    \ 6.000000, 8.000000, 4.000000]\n  disp: <class 'rpy2.objects.vectors.FloatVector'>\n\
+    \    <FloatVector - Python:0x2ad3d0e03988 / R:0x33ed340>\n[160.000000, 160.000000,\
+    \ 108.000000, ..., 145.000000, 301.000000, 121.000000]\n  ...\n  mpg: <class 'rpy2.objects.vectors.FloatVector'>\n\
+    \    <FloatVector - Python:0x2ad3d0e03fc8 / R:0x38dfd40>\n[1.000000, 1.000000,\
+    \ 1.000000, ..., 1.000000, 1.000000, 1.000000]\n  cyl: <class 'rpy2.objects.vectors.FloatVector'>\n\
+    ```"
+  merge: -1
+  img_proc: true
+- pgno: 180
+  md: "# Works Well with Others – IPython and Third-Party Tools\n\n```\n```text\n\
+    <FloatVector - Python:0x2ad3d0e06508 / R:0x2847ca0>\n\n[4.000000, 4.000000, 4.000000,\
+    \ ..., 5.000000, 5.000000, 4.000000]\n\ndisp: <class 'rpy2.robjects.vectors.FloatVector'>\n\
+    \n<FloatVector - Python:0x2ad3d30e06a08 / R:0x3bc0b60>\n\n[4.000000, 4.000000,\
+    \ 1.000000, ..., 6.000000, 8.000000, 2.000000]\n```\n```\n\nFor the most part,\
+    \ everything that can be done with an Rmagic can be done with robjects.r:\n\n\
+    ```\n```python\nIn [18]: %R\n\n   ....: letters\n   ....:\n\n[1] \"a\" \"b\" \"\
+    c\" \"d\" \"e\" \"f\" \"g\" \"h\" \"i\" \"j\" \"k\" \"l\" \"m\" \"n\" \"o\" \"\
+    p\" \"q\"\n[1] \"r\" \"s\"\n[20] \"t\" \"u\" \"v\" \"w\" \"x\" \"y\" \"z\"\n```\n\
+    ```\n\n```\n```python\nIn [19]: robjects.r.letters\n\nOut[19]:\n\n<StrVector -\
+    \ Python:0x2ad3d8887f48 / R:0x4735690>\n['a', 'b', 'c', ..., 'x', 'y', 'z']\n\
+    ```\n```\n\nHowever, the correspondence is not exact, as this attempt to access\
+    \ the wt column of the mtcars data frame will demonstrate:\n\n```\n```python\n\
+    In [8]: robjects.r.mtcars$mpg\n   File \"<ipython-input-8-d46a62a01451>\", line\
+    \ 1\n     robjects.r.mtcars$mpg\n                      ^\nSyntaxError: invalid\
+    \ syntax\n```\n```\n\nA numeric index is required:\n\n```\n```python\nIn [17]:\
+    \ robjects.r.mtcars[5]\n\nOut[17]:\n\n<FloatVector - Python:0x2ad3d887efc8 / R:0x31b0650>\n\
+    [2.620000, 2.875000, 2.320000, ..., 2.770000, 3.570000, 2.780000]\n```\n```"
+  merge: -1
+  img_proc: true
+- pgno: 181
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 182
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 183
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 184
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 185
+  md: "We find the eigenvalues and eigenvectors:\n\n```\nIn [13]: %octave mat = [1\
+    \ 2 3; 4 5 6; 7 8 9]; [vect, vals] = eig(mat)\n\nvect =\n\n   -0.231971  -0.785830\
+    \   0.408248\n   -0.525322  -0.086751  -0.816497\n   -0.818673   0.612328   0.408248\n\
+    \nvals =\n\nDiagonal Matrix\n\n    1.6117e+01             0             0\n  \
+    \           0   -1.1168e+00             0\n             0             0   -1.3037e-15\n\
+    ```\n\n# Tricky issues\n\nNote that the syntax/semantics can be tricky here. The\
+    \ definition of the `eig` function in the Octave language specifies the following\
+    \ behavior:\n\n+   - `lambda = eig(A)` returns the eigenvalues of A in the vector\
+    \ lambda.\n+   - `[V, lambda] = eig(A)` also returns the eigenvectors in V, but\
+    \ lambda is now a matrix whose diagonals contain the eigenvalues. This relationship\
+    \ holds true (within round-off errors): `A = V*lambda*inv(V)`.\n\nThe `[a, b]`\
+    \ notation and multiple return values do not carry over cleanly into IPython.\n\
+    \nSo, this sort of works as expected (one might as well expect x to be a two-element\
+    \ vector):\n\n```\nIn [14]: x = %octave mat = [1 2 3; 4 5 6; 7 8 9]; eig(mat)\n\
+    \nans =\n\n    1.6117e+01\n   -1.1168e+00\n   -1.3037e-15\n\nIn [15]: x\n```"
+  merge: -1
+  img_proc: true
+- pgno: 186
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 187
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 188
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 189
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 190
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 191
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 192
+  md: "# # A Study of The Feasibility of International e-Commerce Platform for China's\
+    \ Small and Medium Sized Enterprises under the Belt and Road Initiative\n\n**Feng\
+    \ Yu**  \nSchool of Economics and Management, Beijing Jiaotong University, Beijing,\
+    \ China  \nE-mail: fengyu@bjtu.edu.cn\n\n*This paper analyzes the feasibility\
+    \ and strategic path of international e-commerce for Chinese SMEs under the Belt\
+    \ and Road Initiative. Based on the current situation and existing problems, the\
+    \ paper proposes a framework of cooperative e-commerce platform and discusses\
+    \ the key factors for success.*\n\n**Keywords:** Belt and Road Initiative; SMEs;\
+    \ international e-commerce; feasibility study; cooperative platform\n\n# ## 1.\
+    \ Introduction\n\nWith the continuous advancement of the Belt and Road Initiative,\
+    \ Chinese small and medium-sized enterprises (SMEs) are facing new opportunities\
+    \ for international market expansion. However, due to limited resources and lack\
+    \ of experience, these enterprises often encounter difficulties in cross-border\
+    \ e-commerce. This study aims to explore the feasibility of establishing an international\
+    \ e-commerce platform tailored to the needs of Chinese SMEs.\n\nAs an emerging\
+    \ business model, international e-commerce can help SMEs overcome geographical\
+    \ barriers, reduce transaction costs, and improve market access. The development\
+    \ of the Belt and Road countries provides a favorable policy environment and market\
+    \ demand for such platforms.\n\n# ## 2. Literature Review\n\nExisting studies\
+    \ have extensively examined e-commerce adoption by SMEs, the impact of the Belt\
+    \ and Road Initiative on trade, and the design of cross-border platforms. However,\
+    \ few studies focus on the combination of these two topics. This paper fills this\
+    \ gap by investigating both the macro-level policy support and the micro-level\
+    \ enterprise needs.\n\n+   - Macro-level: policy coordination, infrastructure\
+    \ connectivity, trade facilitation\n+   - Micro-level: SME capabilities, technology\
+    \ adoption, logistics integration\n+   - Platform-level: business model, service\
+    \ ecosystem, risk management\n\n# ## 3. Feasibility Analysis\n\nThis section evaluates\
+    \ the feasibility of the proposed platform from the perspectives of policy, market,\
+    \ technology, and capital. The results indicate that although challenges exist,\
+    \ the overall environment is favorable for the establishment of an international\
+    \ e-commerce platform under the Belt and Road context."
+  merge: -1
+  img_proc: true
+- pgno: 193
+  md: "```\nretval = quad(\"myFunc\", 0, pi)\ndisp(\"hello\")\nendfunction\n\nfunction\
+    \ y = myFunc(x)\n    y = sin(x) * sqrt(abs(cos(x)))\nendfunction\n```\n\nWe can\
+    \ use these IPython commands to run it:\n\n```\nIn [1]: from oct2py import octave\n\
+    \nIn [2]: octave.addpath(\"/nfs/02/wit0096/Packt/chap06/\")\n\nIn [3]: octave.myIntegrate(\
+    \ )\nOut[3]: 1.3333333333333326\n```\n\nThis yields an easy integration of a complicated\
+    \ function.\n\n# Hy\n\nSometimes, nothing less than a functional programming language\
+    \ will do. This is especially true in machine learning and artificial intelligence,\
+    \ where Lisp and Scheme have a long tradition. Hy is a dialect of Lisp that translates\
+    \ expressions into Python's abstract syntax tree format.\n\nAn abstract syntax\
+    \ tree is a high-level representation of a program's structure, independent of\
+    \ the source code. The Python parser turns all Python programs into abstract syntax\
+    \ trees, after which the interpreter performs further operations on the tree on\
+    \ the path to creating executable bytecode. Because the Hy frontend accepts Hy\
+    \ code as input and produces as output an abstract syntax tree compatible with\
+    \ Python's interpreter, Hy code runs in the same interpreter as your Python code.\n\
+    \nIn practical terms, Hy programs can call any Python libraries and Python code\
+    \ can invoke Hy code.\n\nIt is available under the MIT (Expat) license from its\
+    \ home page at `http://docs.hylang.org/en/latest/`.\n\n> > \"Hy is a wonderful\
+    \ dialect of Lisp that's embedded in Python.\n> >\n> > Since Hy transforms its\
+    \ Lisp code into the Python Abstract Syntax Tree, you have the whole beautiful\
+    \ world of Python at your fingertips, in Lisp form!\""
+  merge: -1
+  img_proc: true
+- pgno: 194
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 195
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 196
+  md: 'The odd thing about Hy''s parentheses is that they come before the function
+    name and after the argument, rather than after the function name and around the
+    arguments. This is the standard syntax for Lisp and all its dialects. The syntactic
+    unit created by this form is called an *expression*, and every expression has
+    the same form:
+
+
+    ```
+
+    (<function> <arguments>)
+
+    ```
+
+
+    In Hy, everything is an expression, so there will be a lot of parentheses. It
+    can look awkward at first, but this simple syntax makes expression evaluation
+    simple:
+
+
+    +   - Apply the function to the arguments to return the value of the expression
+
+    +   - There will only ever be one function
+
+
+    # Arithmetic operations are in the wrong place
+
+
+    The code to add 1 and 1 is as follows:
+
+
+    ```
+
+    (+ 1 1)
+
+    ```
+
+
+    This follows the standard expression semantics: function first, arguments later
+    (in this case, operator first and operands later). It is not Hy''s fault that
+    people use infix notation—consistency is a virtue in a programming language. A
+    side benefit of this notation is that arithmetic operators can take an arbitrary
+    number of operands:
+
+
+    ```
+
+    (* 1 2 3 4)
+
+    ```
+
+
+    This returns 24.
+
+
+    This should not be confused with a prefix version of stack arithmetic, however.
+    The expression:
+
+
+    ```
+
+    (* + + 1 2 3 4)
+
+    ```
+
+
+    Is a syntax error. It breaks the second rule mentioned in the preceding list by
+    having more than one function inside a single set of parentheses.
+
+
+    # Function composition is everywhere
+
+
+    One can fix the previous example by using parentheses:
+
+
+    ```
+
+    (* (+ (+ 1 2) 3) 4)
+
+    ```'
+  merge: -1
+  img_proc: true
+- pgno: 197
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 198
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 199
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 200
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 201
+  md: "```\nif curr % 2 == 1:\n    curr = 3 * curr + 1\nelse:\n    curr = curr/2\n\
+    \    return tmp\n....:\n```\n\n```\nIn [21]: %hylang (f 35)\nOut[21]: 13\n```\n\
+    \nAnd so are built-in Python functions and libraries:\n\n```\nIn [28]: %hylang\n\
+    ....: (setv f (open \"hy1.hy\"))\n....: (print (.read f))\n....:\n```\n\nThis\
+    \ prints the contents of that file:\n\n```\n%hylang\n(import math)\n(defnsafesqrt\
+    \ [x]\n  (if (< x 0)\n    (math.sqrt (- 0 x))\n    (math.sqrt x)\n  )\n)\n```\n\
+    \nHy interoperates with Python in too many ways to list here, including list comprehensions,\
+    \ objects, and exceptions. It suffices to say that if you are already comfortable\
+    \ with Python and interested in branching out into a functional language, Hy is\
+    \ a good choice."
+  merge: -1
+  img_proc: true
+- pgno: 202
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 203
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 204
+  md: '# Matplotlib
+
+
+    Matplotlib is a Python-based 2D plotting library. It works well with Python, and
+    even better with IPython. It includes the `pyplot` module, which provides MATLAB-like
+    functionality. Matplotlib functionality can be accessed both programmatically
+    and interactively, from the IPython command line. The examples in this section
+    will be run from the command line for ease of explication.
+
+
+    # Starting matplotlib
+
+
+    Matplotlib should be installed along with most major IPython distributions. If
+    yours does not include it, standard package installation procedures (for example,
+    `pip install` or `sudo apt-get`) should suffice.
+
+
+    There are two ways to start up matplotlib: `matplotlib-only` or `pylab`.
+
+
+    The difference is that using `matplotlib-only` mode activates `matplotlib` interactive
+    support but does not import anything into the namespace. `pylab` mode executes
+    more imports and changes the namespace.
+
+
+    Once installed, `matplotlib-only` mode can be started either from the command
+    line or by using the `%matplotlib` magic, as shown here:
+
+
+    ```
+
+    (Ipython) -bash-4.1$ ipython --matplotlib
+
+    Python 3.4.3 |Anaconda 2.0.1 (64-bit) | (default, Oct 19 2015, 21:52:17)
+
+    Type "copyright", "credits" or "license" for more information.
+
+
+    IPython 4.0.1 -- An enhanced Interactive Python.
+
+    ?          -> Introduction and overview of IPython''s features.
+
+    %quickref  -> Quick reference.
+
+    help       -> Python''s own help system.
+
+    object?    -> Details about ''object'', use ''object??'' for extra details.
+
+    Using matplotlib backend: Qt4Agg
+
+
+    In [1]:
+
+    ```'
+  merge: -1
+  img_proc: true
+- pgno: 205
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 206
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 207
+  md: '# An initial graph
+
+
+    As always with a new module, it is worth checking to see whether everything is
+    working. From the IPython command line, issue the following commands:
+
+
+    ```
+
+    In [2]: x = randn(90000)
+
+    ```
+
+
+    ```
+
+    In [3]: hist(x, 300)
+
+    Out[3]:
+
+    ```
+
+
+    At this point, my command line printed two sorts of things:
+
+
+    +   - Two arrays and a list (the return values of the hist call)
+
+    +   - A stack trace (which went away when I deleted my matplotlib font cache in
+    ~/.cache/matplotlib/fontList*.cache)
+
+
+    More to the point, it produced the following graph:
+
+
+    ![](img/8628b86fcc4f22d859c0104c2ec1d15f_207_0.png)'
+  merge: -1
+  img_proc: true
+- pgno: 208
+  md: 'This code deserves some further description, as the first matplotlib example:
+
+
+    +   - **Line 1:** The `numpy.random.randn` function creates a one-dimensional
+    array of 90,000 floating-point numbers; they follow a normal distribution with
+    mean equal to 0 and variance equal to 1.
+
+    +   - **Line 2:** The `hist` function accepts an array as an argument and computes
+    and draws the histogram of the array. It takes many optional arguments; in this
+    case, we have provided the number of bins to use.
+
+
+    # Modifying the graph
+
+
+    It was easy to get the first graph up and running, but it could use some work.
+    The first way to change things is to change/add parameters to the constructor.
+    For example, suppose we execute this:
+
+
+    ```
+
+    In [11]: hist(x, 300, orientation="horizontal", color="green")
+
+    ```
+
+
+    It results in the following:
+
+
+    ![](img/8628b86fcc4f22d859c0104c2ec1d15f_208_0.png)
+
+
+    matplotlib2.gif'
+  merge: -1
+  img_proc: true
+- pgno: 209
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 210
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 211
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 212
+  md: '```
+
+    Out[49]: <matplotlib.text.Text at 0x2b15e5bdc7f0>
+
+    ```
+
+
+    ```
+
+    In [53]: ion
+
+    Out[53]: <function matplotlib.pyplot.ion>
+
+    ```
+
+
+    ```
+
+    In [54]: plot()
+
+    Out[54]: []
+
+    ```
+
+
+    This would result in changes to the diagram being delayed until the call to plot(
+    ), at which point they all happen simultaneously.
+
+
+    # Bokeh
+
+
+    Bokeh is a Python interactive visualization library that targets modern web browsers
+    for presentation. Its goal is to provide elegant, concise construction of novel
+    graphics in the style of D3.js and extend this capability with high-performance
+    interactivity over very large or streaming datasets. Bokeh can help anyone who
+    wants to quickly and easily create interactive plots, dashboards, and data applications.
+
+
+    For our purposes, Bokeh can be used to produce graphics that will be viewed from
+    web browsers. Although it does not support the same sort of command-line interactivity
+    as Matplotlib when used in this manner, the ability to produce durable images
+    that are easily viewed remotely is important for purposes such as reporting. In
+    addition, Bokeh''s ability to generate web pages using HTML, JavaScript, and CSS
+    means that the graph itself can be as interactive as those tools can make it.
+
+
+    A command-line-driven interactive approach is supported when using a Bokeh server,
+    but this is beyond the scope of the current section.
+
+
+    # Starting Bokeh
+
+
+    Bokeh can be installed as a standard IPython module using pip:
+
+
+    ```
+
+    pip install bokeh
+
+    ```
+
+
+    Once installed, the bokeh libraries can be accessed through a standard import
+    statement:
+
+
+    ```
+
+    In [1]: import bokeh
+
+    ```
+
+
+    Bokeh is currently in constant flux. The version used in these examples did not
+    include a %bokeh or %%bokeh magic, although one may become available.'
+  merge: -1
+  img_proc: true
+- pgno: 213
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 214
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 215
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 216
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 217
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 218
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 219
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 220
+  md: '# Interactive plots
+
+
+    An important feature of Bokeh is the ability to allow the user to interact with
+    finished plots. This is accomplished in two ways:
+
+
+    +   - Built-in Bokeh functionality
+
+    +   - The ability to interface with JavaScript in the browser
+
+
+    Our example will involve the first option.
+
+
+    # An example interactive plot
+
+
+    The following code displays two graphs side by side, and allows the user to select
+    a set of points in one graph and see where the corresponding points lie in the
+    other graph. The code introduces some new concepts, which will be discussed:
+
+
+    ```
+
+    In [2]: import numpy as np
+
+    ```
+
+
+    ```
+
+    In [3]: import bokeh.plotting as bp
+
+    ```
+
+
+    ```
+
+    In [4]: import bokeh.models as bm
+
+    ```
+
+
+    ```
+
+    In [5]: bp.output_file("bokeh4.html")
+
+    ```
+
+
+    ```
+
+    In [6]: x = np.linspace(-2 * np.pi, 2 * np.pi, 100)
+
+    ```
+
+
+    ```
+
+    In [7]: y0 = np.cos(x)
+
+    ```
+
+
+    ```
+
+    In [8]: y1 = np.sin(x)
+
+    ```
+
+
+    ```
+
+    In [9]: mySource = bm.ColumnDataSource(data=dict(x=x, y0=y0, y1=y1))
+
+    ```
+
+
+    ```
+
+    In [10]: myTools = "box_select,lasso_select,help"
+
+    ```
+
+
+    ```
+
+    In [11]: left = bp.figure(tools=myTools, width=300, height=300,
+
+    title="Left")
+
+    ```'
+  merge: -1
+  img_proc: true
+- pgno: 221
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 222
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 223
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 224
+  md: "For more information on ggplot2, see the home page for the project at http://ggplot2.org/\
+    \ and the documentation at http://docs.ggplot2.org/current/index.html.\n\n# Installing\
+    \ ggplot2 and pandas\n\nggplot2 is an optional R package. It is possible that\
+    \ it is included in your R installation. If not, it can be installed easily enough\
+    \ in IPython using R magic:\n\n```\nIn [12]: %%R\n    ...: install_packages(\"\
+    ggplot2\")\n```\n\npandas is a data analysis library for Python. It contains many\
+    \ useful utilities, including the invaluable DataFrame class. It comes installed\
+    \ with the Anaconda distribution, or can be installed using pip:\n\n```\npip install\
+    \ pandas\n```\n\n# Using DataFrames\n\nDataFrames are handy in that they are Python\
+    \ equivalents of R data frames. R uses data frames all over. Here is a simple\
+    \ example:\n\n```\nIn [10]: %%R\n    ....: x=c(1, 2, 3, 4)\n    ....: y=c(2, 3,\
+    \ 5, 7)\n    ....: df = data.frame(x, y)\n```\n\n```\nIn [11]: %%R\n    ....:\
+    \ head(df)\n    ....:\n      x y\n1 1 2\n2 2 3\n3 3 5\n4 4 7\n```\n\nNote that\
+    \ df maintained its value even between invocations of the %%R magic. The built-in\
+    \ mtcars data is a data frame in R."
+  merge: -1
+  img_proc: true
+- pgno: 225
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 226
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 227
+  md: 'mpg cyl disp hp drat wt qsec vs am gear carb
+
+    kpg
+
+    Mazda RX4 21.0 6 160 110 3.90 2.620 16.46 0 1 4 4
+
+    33.79622
+
+    Mazda RX4 Wag 21.0 6 160 110 3.90 2.875 17.02 0 1 4 4
+
+    33.79622
+
+    Datsun 710 22.8 4 108 93 3.85 2.320 18.61 1 1 4 1
+
+    36.69304
+
+    Hornet 4 Drive 21.4 6 258 110 3.08 3.215 19.44 1 0 3 1
+
+    34.43996
+
+    Hornet Sportabout 18.7 8 360 175 3.15 3.440 17.02 0 0 3 2
+
+    30.09473
+
+    Valiant 18.1 6 225 105 2.76 3.460 20.22 1 0 3 1
+
+    29.12913
+
+
+    # An initial graph
+
+
+    Now we are ready to take a stab at a first graph using ggplot2.
+
+
+    First we will look at the code. This being the first graph using ggplot2, descriptions
+    of important lines will follow:
+
+
+    ```
+
+    In [1]: %load_ext rpy2.ipython
+
+
+    In [2]: from rpy2.robjects import pandas2ri
+
+
+    In [3]: pandas2ri.activate()
+
+
+    In [4]: from rpy2.robjects import r
+
+
+    In [5]: import pandas
+
+
+    In [6]: from rpy2.robjects.lib import ggplot2
+
+
+    In [7]: df_cars = pandas2ri.ri2py(r[''mtcars''])
+
+
+    In [8]: wt = df_cars[''wt'']
+
+
+    In [9]: mpg = df_cars[''mpg'']
+
+    ```'
+  merge: -1
+  img_proc: true
+- pgno: 228
+  md: '```
+
+    In [10]: type(mpg)
+
+    Out[10]: pandas.core.series.Series
+
+
+    In [11]: df_wtVsMpg = pandas.DataFrame()
+
+
+    In [12]: df_wtVsMpg[''wt''] = wt
+
+
+    In [13]: df_wtVsMpg[''mpg''] = mpg
+
+
+    In [14]: p = ggplot2.ggplot(df_wtVsMpg)
+
+
+    In [15]: type(p)
+
+    Out[15]: rpy2.robjects.lib.ggplot2.GGPlot
+
+
+    In [16]: p.plot()
+
+    ```
+
+
+    code6.py
+
+
+    +   - **Lines 2-3:** These lines import and activate the new method of moving
+    data to/from IPython/R. This is the preferred method since v0.16.0, at which point
+    the `pandas.rpy` interface was deprecated and marked for removal in some future
+    version.
+
+    +   - **Line 7:** This line actually imports R''s `mtcars` data frame into a panda
+    DataFrame.
+
+    +   - **Lines 8-10:** These lines illustrate the DataFrame''s ability to be addressed
+    as a Python dict and the type of the result.
+
+    +   - **Lines 11-13:** Here, we start out with an empty DataFrame and add columns
+    dynamically.'
+  merge: -1
+  img_proc: true
+- pgno: 229
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 230
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 231
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 232
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 233
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 234
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 235
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 236
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 237
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 238
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 239
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 240
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 241
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 242
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 243
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 244
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 245
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 246
+  md: "If display does return a value, things are not much better. First off, it is\
+    \ not clear what meaningful value it could return. Maybe true for \"it worked\"\
+    \ and false for \"it did not work\"? That value can be tested at least. However,\
+    \ it will not resolve the underlying problem — perhaps, display returned true\
+    \ but the character was not actually displayed.\n\nThe takeaway from this short\
+    \ digression is that testing works better when the code to be tested is written\
+    \ in such a way as to make writing meaningful tests easier. The techniques for\
+    \ doing so can fill an entire book (and they have). Luckily, scientific and engineering\
+    \ code, with its emphasis on mathematical modeling, tends to naturally break down\
+    \ into testable functions.\n\n# unittest\n\nunittest is the built-in (since version\
+    \ 2.1) testing framework for Python. It is modelled after the excellent JUnit\
+    \ framework for Java, and the xUnit testing frameworks in general. This makes\
+    \ for a clean, object-oriented style.\n\n# Important concepts\n\nunittest supports\
+    \ the standard unit testing parts in a straightforward manner. The following concepts\
+    \ map onto functional elements:\n\n+   - **Test case:** This is an individual\
+    \ test or group of tests. All tests in a test case belong to the same class and\
+    \ share a fixture.\n+   - **Test fixture:** The functions required to do setUp\
+    \ and tearDown for all the test cases in a class.\n+   - **Test suite:** This\
+    \ is a collection of test cases. Test cases in a test suite are meant to be run\
+    \ together.\n+   - **Test runner:** This is a component that runs test suites\
+    \ and reports the results to the user.\n\nLet's take a closer look at some code\
+    \ from earlier as an example:\n\n```\ndef F(n):\n    curr = n\n    tmp = 1\n \
+    \   while curr != 1:\n        tmp = tmp + 1\n        if curr % 2 == 1:\n```"
+  merge: -1
+  img_proc: true
+- pgno: 247
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 248
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 249
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 250
+  md: "```\n244      self.result = testRunner.run(self.test)\n245      if self.exit:\n\
+    --> 246      sys.exit(not self.result.wasSuccessful())\n247\n248 main = TestProgram\n\
+    ```\n\nSystemExit: True\n\nIn this case, it's not that interesting, but the information\
+    \ is there if needed.\n\nA small fix should remedy this problem:\n\n```\ndef f(n):\n\
+    \    curr = n\n    tmp = 0\n    while curr != 1:\n        tmp = tmp + 1\n    \
+    \    if curr % 2 == 1:\n            curr = 3 * curr + 1\n        else:\n     \
+    \       curr = curr/2\n    return tmp\n```\n\nhail2.py\n\nAlong with a corresponding\
+    \ change to the test (normally, one would just change the original source, but\
+    \ this is clearer for instructional purposes):\n\n```\nimport unittest\nfrom hail2\
+    \ import f\n\nclass TestHailStones(unittest.TestCase):\n\n    def test_f(self):\n\
+    \        ans = [0, 0, 1, 7, 2, 5, 8, 16, 3, 19, 6]\n        for i in range(1,\
+    \ 11):\n            print(i)\n            self.assertEqual(f(i), ans[i])\n\nif\
+    \ __name__ == '__main__':\n    unittest.main()\n```\n\ntest2.py"
+  merge: -1
+  img_proc: true
+- pgno: 251
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 252
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 253
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 254
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 255
+  md: "The output would change to the following:\n\n```\nIn [2]: %run testrand.py\n\
+    Doing setUp\nDoing test_bad\nDoing tearDown\nDoing setUp\nDoing test_better\n\
+    Doing tearDown\n.Doing setUp\nDoing test_builtin\nDoing tearDown\n.\n======================================================================\n\
+    FAIL: test_bad (__main__.TestRandoms)\n----------------------------------------------------------------------\n\
+    Traceback (most recent call last):\n  File \"/nfs/02/wit0096/Packt/chap08/testrand.py\"\
+    , line 29, in test_bad\n    self.assertGreater(p, 0.05)\nAssertionError: 3.5277031043732684e-204\
+    \ not greater than 0.05\n----------------------------------------------------------------------\n\
+    Ran 3 tests in 0.171s\n\nFAILED (failures=1)\nAn exception has occurred, use %tb\
+    \ to see the full traceback.\n\nSystemExit: True\n```\n\nThere are some things\
+    \ worth pointing out about the program overall:\n\n+   - The code contains several\
+    \ tests. There is no need to label the tests as such, as unittest assumes that\
+    \ every function starting with test is a test and will run it as such."
+  merge: -1
+  img_proc: true
+- pgno: 256
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 257
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 258
+  md: "```\nDoing tearDown\n.Ddoing setUp\nDoing test_better\nDoing tearDown\n.Ddoing\
+    \ setUp\nDoing test_builtin\nDoing tearDown\n.\n------------------------------------------------------------\n\
+    Ran 3 tests in 0.227s\n\nOK\n```\n\n# Decorators\n\nIt was somewhat awkward to\
+    \ use `assertLess` for one test and `assertGreater` for other tests. This is the\
+    \ sort of small inconsistency that can easily be overlooked, leading to bigger\
+    \ problems later on. Even worse, it might be caught and \"corrected\" only for\
+    \ that correction to cause the test to fail and lead to a lot of confused standing\
+    \ around as to why it was written that way in the first place.\n\nThis sort of\
+    \ thing happens all the time, especially when tests are not written before code.\n\
+    \n> **Test-driven development**\n> **Test-driven development (TDD)** is a software\
+    \ development process in which tests are written before code. This process allows\
+    \ them to be used as an automated means by which code can be checked against (at\
+    \ least some of) the requirements. The tests can also be used to ensure that future\
+    \ changes to the code do not break any already existing functionality.\n\nIn theory,\
+    \ all tests should be run and passed before the code is accepted. This is not\
+    \ always practical. To this end, unittest provides decorators to allow the tester\
+    \ to explicitly mark failing and skipped tests.\n\nFor example, our previous test\
+    \ can be decorated as follows:\n\n```\n@unittest.expectedFailure\ndef test_bad(self):\n\
+    \    print(\"Doing test_bad\")\n    x0 = 15\n    p1 = 50\n```"
+  merge: -1
+  img_proc: true
+- pgno: 259
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 260
+  md: "It is easy to invoke from the command line:\n\n```\n(my_rpy2_zone)-bash-4.1$\
+    \ py.test\n======================================= test session starts ===\n========================================\n\
+    platform linux -- Python 3.4.4, pytest-2.8.7, py-1.4.31, pluggy-0.3.1\nrootdir:\
+    \ .../chap08, inifile:\ncollected 0 items\n\n=======================================\
+    \ no tests ran in 0.03 seconds ========================================\n```\n\
+    \npytest will attempt to auto-locate tests according to the rules that will be\
+    \ covered in a later section. In this case, none were found.\n\n# Back compatibility\n\
+    \nIt seems a shame to throw out all the work that was done on the tests from the\
+    \ previous sections. pytest will look for tests in files of the form test_*.py\
+    \ (and *_test.py). The laziest thing possible would be to just copy test1.py into\
+    \ test_1.py and see what happens:\n\n```\n(my_rpy2_zone)-bash-4.1$ cp test1.py\
+    \ test_1.py\n(my_rpy2_zone)-bash-4.1$ py.test\n=======================================\
+    \ test session starts ===\n========================================\nplatform\
+    \ linux -- Python 3.4.4, pytest-2.8.7, py-1.4.31, pluggy-0.3.1\nrootdir: .../chap08,\
+    \ inifile:\ncollected 1 items\n\ntest_1.py F\n\n=======================================\
+    \ FAILURES =========\n========================================\n________________________________________\
+    \ TestHailStones.test_f ________________________________________\n\nself = <test_1.TestHailStones\
+    \ testMethod=test_f>\n\n    def test_f(self):\n```"
+  merge: -1
+  img_proc: true
+- pgno: 261
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 262
+  md: "+   - `recurse` into directories, unless they match `norecursedirs`.\n+   -\
+    \ `test_*.py` or `*_test.py` files, imported by their test package name.\n+  \
+    \ - Test prefixed test classes (without an `__init__` method).\n+   - `test_`\
+    \ prefixed test functions or methods are test items.\n\n# Organizing test files\n\
+    \npytest allows test functions to be included in the same file as the functions\
+    \ to be tested. This has some advantages in that it makes it more likely that\
+    \ tests will be updated when functionality is, and makes the tests easy to find.\n\
+    \nHowever, this is not a good idea for any but the smallest project, for several\
+    \ reasons:\n\n+   - A good test suite can be several times the size of the code\
+    \ to be tested. Putting both in the same place obscures the code.\n+   - It is\
+    \ often the case that different groups develop tests and code. Using different\
+    \ files makes for easier version control.\n+   - Tests should not depend on how\
+    \ code is written, nor should code depend on how tests are structured. The easiest\
+    \ way to ensure this is to keep them completely separate.\n\nWhen tests are no\
+    \ longer in the same file as code, it is important to keep them somewhere easy\
+    \ to find and associate with the code they test. A parallel directory structure\
+    \ is an easy way to achieve this:\n\n```\npkg/\n    __init__.py\n    prog1.py\n\
+    \    …\n\ntests/\n    test_prog1.py\n    …\n```\n\nNote the lack of an `__init__.py`\
+    \ file in the tests directory. This provides an easier time for one of the test\
+    \ discovery rules listed previously. There is no requirement in pytest that things\
+    \ be mirrored this exactly; it is just a useful heuristic."
+  merge: -1
+  img_proc: true
+- pgno: 263
+  md: "# # Assertions\n\npytest uses the assert statement found in Python. This obviates\
+    \ the need to remember all the different `assert*` methods from unittest. Consider\
+    \ the difference in readability between this:\n\n```\nself.assertEqual(f(i), ans[i])\n\
+    ```\n\nAnd this line of code:\n\n```\nassert f(i) == ans[i]\n```\n\nIn general,\
+    \ pytest tests are smaller in terms of lines of code. The `test2.py` test file\
+    \ can be rewritten under pytest as follows:\n\n```\nfrom hail2 import f\n\nclass\
+    \ TestHailstones():\n\n    def test_f(self):\n        ans = [0, 0, 1, 7, 2, 5,\
+    \ 8, 16, 3, 19, 6]\n        for i in range(1, 11):\n            print(i)\n   \
+    \         assert f(i) == ans[i]\n```\n\ntest_2.py\n\nHere is the result:\n\n```\n\
+    In [2]: !py.test test_2.py\n=================================================\
+    \ test session starts ===\n=================================================\n\
+    platform linux -- Python 3.4.4, pytest-2.8.7, py-1.4.31, pluggy-0.3.1\nrootdir:\
+    \ /nfs/02/wit0096/Packt/chap08, inifile:\ncollected 1 items\n\ntest_2.py .\n\n\
+    ================================================= 1 passed in 0.02 seconds\n=================================================\n\
+    ```\n\nEven the results can be abbreviated with the `-q` command-line argument:\n\
+    \n```\nIn [3]: !py.test -q test_2.py\n.\n1 passed in 0.01 seconds\n```"
+  merge: -1
+  img_proc: true
+- pgno: 264
+  md: "# A test using setUp and tearDown\n\nunittest depends on overloading the setUp\
+    \ and tearDown functions from its parent class. As pytest drops the parent class,\
+    \ it needs a different mechanism. In fact, it has two: a classic xUnit-style and\
+    \ one using fixtures.\n\n# Classic xUnit-style\n\nThe following methods are provided\
+    \ to do setup and teardown:\n\n| Method | Effect |\n|---|---|\n| setup_method(self,\
+    \ method) | Called before every test method in a class |\n| teardown_method(self,\
+    \ method) | Called after every test method in a class |\n| setup_function(function)\
+    \ | Called before every test method in a module |\n| teardown_function(function)\
+    \ | Called after every test method in a module |\n\nThis makes rewriting our first\
+    \ random number test a breeze:\n\n```\nimport numpy as np\nimport myrand\nimport\
+    \ scipy.stats\nimport sys\nimport random\n\nclass TestRandoms():\n\n    def setup_method(self,\
+    \ mthd):\n        print(\"Doing setUp\")\n        self.numVals = 10000\n     \
+    \   self.vals = np.zeros((10), dtype=np.int32)\n        self.randGen = myrand.MyRand()\n\
+    \n    def test_bad(self):\n        print(\"Doing test_bad\")\n        x0 = 15\n\
+    \        p1 = 50\n        p2 = 100\n        modulus = 2217\n        self.randGen.set(p1,\
+    \ p2, x0, modulus)\n        for i in range(self.numVals):\n            tmp = self.randGen.next()\n\
+    \            tmp = tmp % 10\n```"
+  merge: -1
+  img_proc: true
+- pgno: 265
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 266
+  md: "# But It Worked in the Demo! – Testing\n\n```\ncollected 3 items\n\ntestrand_1.py\
+    \ F..\n\n========================================================== FAILURES ========\n\
+    ==================================================\n____________________________\
+    \ TestRandoms.test_bad __\n\nself = <testrand_1.TestRandoms object at 0x2b6610db1b38>\n\
+    \ndef test_bad(self):\n    print(\"Doing test_bad\")\n    x0 = 15\n    p1 = 50\n\
+    \    p2 = 100\n    modulus = 2217\n    self.randGen.set(p1, p2, x0, modulus)\n\
+    \    for i in range(self.numVals):\n        tmp = self.randGen.next()\n      \
+    \  tmp = tmp % 10\n        self.vals[tmp] = self.vals[tmp] + 1\n\n    chi2, p\
+    \ = scipy.stats.chisquare(self.vals)\n>   assert p > 0.05\nE   assert 3.5277031043732684e-204\
+    \ > 0.05\n\ntestrand_1.py:28: AssertionError\n-------------------------------\
+    \ Captured stdout setup\n--------------------------------\nDoing setUp\n--------------------------------\
+    \ Captured stdout call\n--------------------------------\nDoing test_bad\n========================================\
+    \ 1 failed, 2 passed in 1.16 seconds ========================================\n\
+    ```"
+  merge: -1
+  img_proc: true
+- pgno: 267
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 268
+  md: "```\nE    assert 3.5277031043732684e-204 > 0.05\n\ntestrand_1.py:28: AssertionError\n\
+    --------------------------------------------- Captured stdout setup\n---------------------------------------------\n\
+    Doing setUp\n--------------------------------------------- Captured stdout call\n\
+    ---------------------------------------------\nDoing test_bad\n=============================================\
+    \ 1 failed, 2 passed in 0.82 seconds =============================================\n\
+    ```\n\n# Using fixtures\n\nA function can be decorated as a pytest fixture. This\
+    \ fixture decoration can take a \"scope\" argument that specifies when the fixture\
+    \ should be called:\n\n| Scope | Effect |\n|---|---|\n| session | The function\
+    \ is executed once, at the beginning of the session |\n| module | The function\
+    \ is executed once, at the beginning of the module |\n| class | The function is\
+    \ executed once, at the beginning of the class |\n| function | The function is\
+    \ executed before every test case |\n\nOur second random number testing class\
+    \ can then be rewritten as follows:\n\n```\nimport numpy as np\nimport myrand\n\
+    import scipy.stats\nimport sys\nimport random\nimport pytest\n\nclass TestRandoms(\
+    \ ):\n\n    @classmethod\n    @pytest.fixture(scope=\"class\")\n    def setUpClass(cls):\n\
+    \        print(\"Doing setUpClass\")\n        cls.numVals = 10000\n\n    @pytest.fixture(scope=\"\
+    function\")\n    def setUp(self, request):\n```"
+  merge: -1
+  img_proc: true
+- pgno: 269
+  md: "```\nprint(\"Doing setUp\")\nself.vals = np.zeros((10), dtype=np.int32)\nself.randGen\
+    \ = myrand.MyRand( )\nself.numVals = 10000\ndef tearDown(self):\n    print(\"\
+    Doing tearDown\")\n    self.randGen.reset( )\nrequest.addfinalizer(tearDown)\n\
+    \ndef test_bad(self, setUp, setUpClass):\n    print(\"Doing test_bad\")\n    x0\
+    \ = 15\n    p1 = 50\n    p2 = 100\n    modulus = 2217\n    self.randGen.set(p1,\
+    \ p2, x0, modulus)\n    for i in range(self.numVals):\n        tmp = self.randGen.next(\
+    \ )\n        tmp = tmp % 10\n        self.vals[tmp] = self.vals[tmp] + 1\n\n \
+    \   chi2, p = scipy.stats.chisquare(self.vals)\n    assert p < 0.05\n\ndef test_better(self,\
+    \ setUp, setUpClass):\n    print(\"Doing test_better\")\n    x0 = 79\n    p1 =\
+    \ 263\n    p2 = 71\n    modulus = sys.maxsize\n    self.randGen.set(p1, p2, x0,\
+    \ modulus)\n    for i in range(self.numVals):\n        tmp = self.randGen.next(\
+    \ )\n        tmp = tmp % 10\n        self.vals[tmp] = self.vals[tmp] + 1\n\n \
+    \   chi2, p = scipy.stats.chisquare(self.vals)\n    assert p > 0.05\n\ndef test_builtin(self,\
+    \ setUp, setUpClass):\n    print(\"Doing test_builtin\")\n    for i in range(self.numVals):\n\
+    \        tmp = random.randint(0, 9)\n```"
+  merge: -1
+  img_proc: true
+- pgno: 270
+  md: '```
+
+    self.vals[tmp] = self.vals[tmp] + 1
+
+
+    chi2, p = scipy.stats.chisquare(self.vals)
+
+    assert p > 0.05
+
+
+    testrand2.py
+
+    ```
+
+
+    With appropriate editing (the addfinalizer line must be removed — in my environment,
+    it produced a Python INTERNALERROR), it runs and produces the following output:
+
+
+    ```
+
+    In [27]: !py.test -s testrand_2.py
+
+    ================================================================================
+    test session starts ===
+
+    ================================================================================
+
+    platform linux -- Python 3.4.4, pytest-2.8.7, py-1.4.31, pluggy-0.3.1
+
+    rootdir: /nfs/02/wit0096/Packt/chap08, inifile:
+
+    collected 3 items
+
+
+    testrand_2.py Doing setUpClass
+
+    Doing setUp
+
+    Doing test_bad
+
+    .Doing setUp
+
+    Doing test_better
+
+    .Doing setUp
+
+    Doing test_builtin
+
+    ```
+
+
+    This code contains some interesting features:
+
+
+    +   - **Line 6**: The use of the pytest decorators requires importing the `pytest`
+    module.
+
+    +   - **Line 11**: This is a fixture decorator. The scope is `class`, so it will
+    be called only once for this class, before any of the tests are run. This is reflected
+    in the output.
+
+    +   - **Line 16**: This fixture decorator has the `function` scope, and marks
+    this function as one that should be run before every test function.
+
+    +   - **Line 22**: This is the definition of the `tearDown` function.
+
+    +   - **Line 25**: Here, the `tearDown` function is added to the request object
+    as its finalizer. This will cause it to be called after the test has run.
+
+
+    Fixtures are even more flexible than this example can show. In particular, the
+    various fixtures can be listed as parameters to only those functions that actually
+    need them to run. It would be possible to define multiple fixtures, and each test
+    case would use a different subset based on its requirements.'
+  merge: -1
+  img_proc: true
+- pgno: 271
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 272
+  md: "The solution is to monkeypatch `os.getcwd`. A monkeypatch can set or delete\
+    \ the following:\n\n+   - An attribute\n+   - A dictionary item\n+   - An environment\
+    \ variable\n+   - Items in `sys.path`\n\nThe monkeypatch is used in a manner similar\
+    \ to a decorator object, except that the monkeypatch object is not explicitly\
+    \ declared; only its functions are called. Once a function that uses monkeypatch\
+    \ has ended, the settings obtained before it are invoked. Consider the following\
+    \ test (pseudo)code:\n\n```\ndef test_func1():\n    logdir = os.getcwd() + \"\
+    /func1/loadtests\"\n    logfile = open(logdir + \"/results1.log\", \"w\")\n  \
+    \  <do test things>\n    logfile.close()\n```\n\nThis can be monkeypatched as\
+    \ follows:\n\n```\n@pytest.fixture(scope=\"function\")\ndef change_cwd(monkeypatch):\n\
+    \    monkeypatch.setattr(\"os.getcwd\", lambda: \"/\")\n\ndef test_func1(change_cwd):\n\
+    \    logdir = os.getcwd() + \"/func1/loadtests\"\n    logfile = open(logdir +\
+    \ \"/results1.log\", \"w\")\n    <do test things>\n    logfile.close()\n```\n\n\
+    The `change_cwd` function will tell monkeypatch to change the `os.getcwd` function\
+    \ into the lambda expression that is monkeypatch's second argument. Feeding `change_cwd`\
+    \ into `test_func1` ensures that the monkeypatch call is executed. Other test\
+    \ functions that do not require this modification to `os.getcwd` will simply not\
+    \ use `change_cwd` and will see normal functionality."
+  merge: -1
+  img_proc: true
+- pgno: 273
+  md: 'A monkeypatch is similar to the concept of a mock object. A mock object is
+    a user-defined object that exposes the same interface as a different object but
+    has a much simpler implementation. For example, when testing a function that reads
+    data from a production database, it is usually undesirable to use actual production
+    data. Instead, a stable set of test data should be used for every run to ensure
+    that comparisons between runs are possible. In this case, a mock database object
+    would be constructed. It would support (a subset of) the database operations,
+    yet return the test data rather than connecting to the database servers and retrieving
+    live data. A monkeypatch performs a similar function in that it replaces a fully
+    functional value/function/object with a simplified implementation for testing.
+
+
+    # nose2
+
+
+    The nose test framework started as a clone of pytest when pytest was at version
+    0.8. Its tagline is "nose extends unittest to make testing easier" (found at http://nose.readthedocs.org/en/latest/).
+    All good things must come to an end, however; nose is currently in maintenance
+    mode and it has been for several years.
+
+
+    As unittest only works on versions of Python 2.7 and greater, unittest2 was created
+    as a backport for earlier versions. In addition to unittest''s functionality,
+    it also includes an improved API and better assertions. In effect, unittest2 is
+    not only a backport but also a revision of unittest.
+
+
+    The changes to unittest were important enough that the successor to nose—imaginatively
+    named nose2—was based on the unittest2 plugins branch. From the home page:
+
+
+    > > *nose2 is the next generation of nicer testing for Python, based on the plugins
+    branch of unittest2. nose2 aims to improve on nose by:*
+
+    > >
+
+    > > *Providing a better plugin API*
+
+    > >
+
+    > > *Being easier for users to configure*
+
+    > >
+
+    > > *Simplifying internal interfaces and processes*
+
+    > >
+
+    > > *Supporting Python 2 and 3 from the same codebase, without translation*'
+  merge: -1
+  img_proc: true
+- pgno: 274
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 275
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 276
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 277
+  md: "# # Running individual tests\n\nIndividual tests can be run by specifying the\
+    \ name of the module on the command line:\n\n```\n```text\n(my_rpy2_zone)-bash-4.1$\
+    \ ~/.local/bin/nose2 -v test1\ntest_f (test1.TestHailStones) ... 1\nFAIL\n\n===============================================================\n\
+    FAIL: test_f (test1.TestHailStones)\n---------------------------------------------------------------\n\
+    Traceback (most recent call last):\n  File \"/nfs/02/wit0096/Packt/chap08/test1.py\"\
+    , line 10, in test_f\n    self.assertEqual(f(i), ans[i])\nAssertionError: 1 !=\
+    \ 0\n\n---------------------------------------------------------------\nRan 1\
+    \ test in 0.000s\n\nFAILED (failures=1)\n```\n```\n\nDo not specify the entire\
+    \ file name, or else an unhelpful error will be generated:\n\n```\n```text\n(my_rpy2_zone)-bash-4.1$\
+    \ ~/.local/bin/nose2 -v test1.py\ntest1.py (nose2.loader.LoadTestsFailure) ...\
+    \ ERROR\n\n===============================================================\nERROR:\
+    \ test1.py (nose2.loader.LoadTestsFailure)\n---------------------------------------------------------------\n\
+    Traceback (most recent call last):\n  File \"/nfs/02/kmanalo/envs/my_rpy2_zone/lib/python3.4/unittest/case.py\"\
+    , line 58, in testPartExecutor\n    yield\n  File \"/nfs/02/kmanalo/envs/my_rpy2_zone/lib/python3.4/unittest/case.py\"\
+    , line 580, in run\n    testMethod()\n  File \"/nfs/02/wit0096/.local/lib/python3.4/site-packages/nose2/loader.py\"\
+    , line 120, in testFailure\n```\n```"
+  merge: -1
+  img_proc: true
+- pgno: 278
+  md: "```\nraise exception\nFile \"/nfs/02/wit0096/.local/lib/python3.4/site-packages/nose2/plugins/loader/parameters.py\"\
+    , line 118, in loadTestsFr\nomName\n    result = util.test_from_name(name, module)\n\
+    File \"/nfs/02/wit0096/.local/lib/python3.4/site-packages/nose2/util.py\", line\
+    \ 106, in test_from_name\n    parent, obj = object_from_name(name, module)\nFile\
+    \ \"/nfs/02/wit0096/.local/lib/python3.4/site-packages/nose2/util.py\", line 128,\
+    \ in object_from_name\n    parent, obj = obj, getattr(obj, part)\nAttributeError:\
+    \ 'module' object has no attribute 'py'\n```\n\n```\nRan 1 test in 0.000s\n```\n\
+    \n```\nFAILED (errors=1)\n```\n\nnose2 interprets the .py portion as specifying\
+    \ a module name. This can be useful when specifying a particular module but can\
+    \ lead to surprising results otherwise.\n\n# Assertions, setup, and teardown\n\
+    \nAs in pytest, nose2 uses the assert statement found in Python. It does not use\
+    \ the same fixture style as pytest, but it does support both a modified form of\
+    \ the classic xUnit-style setup and teardown along with its own set of fixtures.\n\
+    \n> The testing features of nose2 are currently a little buggy when using testing\
+    \ classes. The examples that follow will use individual testing functions contained\
+    \ in modules, but they should otherwise work similarly to the previous examples.\n\
+    \n# Modified xUnit-style\n\nRather than simple setup and teardown functions distinguished\
+    \ by name, nose2 allows setup and teardown attributes on functions. We can rewrite\
+    \ our first random number generation test as follows:\n\n```\nimport numpy as\
+    \ np\nimport myrand\nimport scipy.stats\n```"
+  merge: -1
+  img_proc: true
+- pgno: 279
+  md: "```\nimport sys\nimport random\n\nnumVals = 0\nvals = 0\nrandGen = 0\n\ndef\
+    \ setup():\n    print(\"Doing setUp\")\n    global numVals\n    global vals\n\
+    \    global randGen\n    numVals = 10000\n    vals = np.zeros((10), dtype=np.int32)\n\
+    \    randGen = myrand.MyRand()\n\ndef test_bad():\n    print(\"Doing test_bad\"\
+    )\n    x0 = 15\n    p1 = 50\n    p2 = 100\n    modulus = 2217\n    randGen.set(p1,\
+    \ p2, x0, modulus)\n    for i in range(numVals):\n        tmp = randGen.next()\n\
+    \        tmp = tmp % 10\n        vals[tmp] = vals[tmp] + 1\n\n    chi2, p = scipy.stats.chisquare(vals)\n\
+    \    assert p > 0.05\n\ndef test_better():\n    print(\"Doing test_better\")\n\
+    \    x0 = 79\n    p1 = 263\n    p2 = 71\n    modulus = sys.maxsize\n    randGen.set(p1,\
+    \ p2, x0, modulus)\n    for i in range(numVals):\n        tmp = randGen.next()\n\
+    \        tmp = tmp % 10\n        vals[tmp] = vals[tmp] + 1\n\n    chi2, p = scipy.stats.chisquare(vals)\n\
+    ```"
+  merge: -1
+  img_proc: true
+- pgno: 280
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 281
+  md: "```\n```text\ntestrand_nose2_1.FunctionTestCase (test_better) ... Doing setUp\n\
+    Doing test_better\nDoing tearDown\nok\ntestrand_nose2_1.FunctionTestCase (test_builtin)\
+    \ ... Doing setUp\nDoing test_builtin\nDoing tearDown\nok\n\n==========================================================================\n\
+    FAIL: testrand_nose2_1.FunctionTestCase (test_bad)\n--------------------------------------------------------------------------\n\
+    Traceback (most recent call last):\n  File \"/nfs/02/wit0096/Packt/chap08/testrand_nose2_1.py\"\
+    , line 33, in test_bad\n    assert p > 0.05\nAssertionError\n\n--------------------------------------------------------------------------\n\
+    Ran 3 tests in 0.184s\n\nFAILED (failures=1)\n```\n```\n\n# Using decorators\n\
+    \nnose2 provides two decorators in the `nose2.tools.decorators` module that are\
+    \ helpful in `setup` and `teardown`:\n\n| Decorator | Effect |\n|---|---|\n| `with_setup(setup)`\
+    \ | Runs the setup function before each test |\n| `with_teardown(teardown)` |\
+    \ Runs the teardown function after each test |\n\nThis allows us to rewrite the\
+    \ previous tests as follows:\n\n```\n```python\nimport numpy as np\nimport myrand\n\
+    import scipy.stats\nimport sys\nimport random\n```\n```"
+  merge: -1
+  img_proc: true
+- pgno: 282
+  md: "```\n```python\nimport nose2.tools.decorators\n\nnumVals = 0\nvals = 0\nrandGen\
+    \ = 0\n\ndef setup():\n    print(\"Doing setUp\")\n    global numVals\n    global\
+    \ vals\n    global randGen\n    numVals = 10000\n    vals = np.zeros((10), dtype=np.int32)\n\
+    \    randGen = myrand.MyRand()\n\ndef teardown():\n    print(\"Doing tearDown\"\
+    )\n    randGen.reset()\n\n@nose2.tools.decorators.with_setup(setup)\n@nose2.tools.decorators.with_teardown(teardown)\n\
+    def test_bad():\n    print(\"Doing test_bad\")\n    x0 = 15\n    p1 = 50\n   \
+    \ p2 = 100\n    modulus = 2217\n    randGen.set(p1, p2, x0, modulus)\n    for\
+    \ i in range(numVals):\n        tmp = randGen.next()\n        tmp = tmp % 10\n\
+    \        vals[tmp] = vals[tmp] + 1\n\n    chi2, p = scipy.stats.chisquare(vals)\n\
+    \    assert p > 0.05\n\n@nose2.tools.decorators.with_setup(setup)\n@nose2.tools.decorators.with_teardown(teardown)\n\
+    def test_better():\n    print(\"Doing test_better\")\n    x0 = 79\n    p1 = 263\n\
+    \    p2 = 71\n    modulus = sys.maxsize\n```\n```"
+  merge: -1
+  img_proc: true
+- pgno: 283
+  md: "```\nrandGen.set(p1, p2, x0, modulus)\nfor i in range(numVals):\n    tmp =\
+    \ randGen.next( )\n    tmp = tmp % 10\n    vals[tmp] = vals[tmp] + 1\n\nchi2,\
+    \ p = scipy.stats.chisquare(vals)\nassert p > 0.05\n```\n\n```\n@nose2.tools.decorators.with_setup(setup)\n\
+    @nose2.tools.decorators.with_teardown(teardown)\ndef test_builtin():\n    print(\"\
+    Doing test_builtin\")\n    for i in range(numVals):\n        tmp = random.randint(0,\
+    \ 9)\n        vals[tmp] = vals[tmp] + 1\n\nchi2, p = scipy.stats.chisquare(vals)\n\
+    assert p > 0.05\n```\n\nThe expected results are as follows:\n\n```\n(my_rpy2_zone)-bash-4.1$\
+    \ ./local/bin/nose2 -v testrand_nose2decs_1\ntestrand_nose2decs_1.FunctionTestCase\
+    \ (test_bad) ... Doing setUp\nDoing test_bad\nDoing tearDown\nFAIL\ntestrand_nose2decs_1.FunctionTestCase\
+    \ (test_better) ... Doing setUp\nDoing test_better\nDoing tearDown\nok\ntestrand_nose2decs_1.FunctionTestCase\
+    \ (test_builtin) ... Doing setUp\nDoing test_builtin\nDoing tearDown\nok\n======================================================================\n\
+    FAIL: testrand_nose2decs_1.FunctionTestCase (test_bad)\n----------------------------------------------------------------------\n\
+    ```"
+  merge: -1
+  img_proc: true
+- pgno: 284
+  md: "```\nTraceback (most recent call last):\n    File \"/nfs/02/wit0096/Packt/chap08/testrand_nose2decs_1.py\"\
+    , line 40,\n    in test_bad\n        assert p > 0.05\nAssertionError\n\n------------------------------------------------------------\n\
+    Ran 3 tests in 0.277s\n\nFAILED (failures=1)\n```\n\n# Plugins\n\nAn important\
+    \ feature of the move from nose to nose2 was the implementation of an improved\
+    \ plugin API. Plugins provide additional functionality and allow third parties\
+    \ to extend nose2. A complete list of all plugins would be outside of the scope\
+    \ of this book, and would be incomplete by the time it went to press in any case.\
+    \ An example should suffice to demonstrate the power of plugins.\n\n# Generating\
+    \ XML with the junitxml plugin\n\nAlthough nose2 generates test results to stdout\
+    \ by default, large test suites can be too much for one person to watch the results\
+    \ scroll by on a screen. In this case, it can be helpful for each test to generate\
+    \ output in a standardized format. The xUnit family has popularized XML as this\
+    \ format, so many test reporting tools expect it as input.\n\nIn order to output\
+    \ XML, the junitxml plugin can be invoked as follows:\n\n```\n(my_rpy2_zone)-bash-4.1$\
+    \ ~/.local/bin/nose2 -v --plugin nose2.plugins.junitxml --junit-xml testrand_nose2decs_1\n\
+    ```\n\nThe output consists of two streams:\n\n+   - The usual output, sent to\
+    \ stdout\n+   - An XML file (nose2-junit.xml), created in the directory the test\
+    \ was run in"
+  merge: -1
+  img_proc: true
+- pgno: 285
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 286
+  md: '# Summary
+
+
+    The single most important property a running program can have is being correct.
+    Too often, testing is left until the end of development, where it is either skipped
+    entirely or rushed through because the project is late. This is especially true
+    for scientific and engineering code, where lives might be at stake. Even exploratory
+    code needs to be tested so that sound decisions can be based on it. No code should
+    be accepted into the project repository without its associated unit tests. As
+    such, testing should be made as easy as possible for developers.
+
+
+    While IPython supports many wonderful visualization tools that can provide visual
+    feedback on results, there is no replacement for thorough unit testing. This chapter
+    outlined the basics of unit testing—setup, test, and teardown—and showed how three
+    different frameworks implemented these concepts. The decision of which framework
+    to use is up to the project team.
+
+
+    In the next chapter, we will look at support for another often neglected component
+    of professional-grade software: documentation. We will discuss the various audience
+    documentation is written for, the types of information important to each, formatting
+    options, and the tools available to make producing documentation relatively painless.'
+  merge: -1
+  img_proc: true
+- pgno: 287
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 288
+  md: '# Documentation
+
+
+    The following topics will be covered in this chapter:
+
+
+    +   - Inline comments
+
+    +   - Docstrings
+
+    +   - reStructuredText
+
+    +   - Docutils
+
+    +   - Sphinx
+
+
+    # Inline comments
+
+
+    We will use the term "inline comment" to refer to all comments that are meant
+    for maintenance coders and will never be visible to anyone not reading the source
+    code.
+
+
+    Inline comments start with a # sign and continue up to the end of the line. They
+    may not occur within a string literal. No characters within an inline comment
+    are interpreted.
+
+
+    Python does not support block comments. Rumors to the effect that triple double-quotes
+    (" " ") can be used to comment out multiple lines are to be disbelieved. While
+    that will often work, what actually happens is that Python looks at the included
+    lines as one multiline string. As a string, the included lines are not interpreted.
+    A string literal is created instead. As this new literal is not assigned to a
+    variable, it is immediately garbage-collected.
+
+
+    In addition to this strange behavior, triple double-quotes are used for docstrings.
+    Using them for both purposes can be confusing, which is what we set out to avoid
+    in the first place.
+
+
+    # Using inline comments
+
+
+    The "official" guide for Python style is PEP 0008 (found at `https://www.python.org/dev/peps/pep-0008/`).
+    To the extent that code can be said to be self-documenting, this guide provides
+    a standard set of suggestions for stylistic consistency that can help further
+    that goal. The section on comments in particular contains some useful recommendations:
+
+
+    +   - Comments should match code. If the code changes, make sure that the comments
+    reflect it.
+
+    +   - Comment in complete sentences.'
+  merge: -1
+  img_proc: true
+- pgno: 289
+  md: "+   - Block comments should be at the same indentation level as the code they\
+    \ apply to. Each line should start with a # sign and a single space.\n+   - Comments\
+    \ should rarely be used on the same line as code.\n\n# Function annotations\n\n\
+    Function annotations and type hints can be considered a type of inline comment.\
+    \ Function annotations originated in PEP 3107, which provided a syntax for adding\
+    \ arbitrary metadata annotations to Python functions. From the definition (https://www.python.org/dev/peps/pep-3107/):\n\
+    \n> > \"Because Python's 2.x series lacks a standard way of annotating a function's\
+    \ parameters and return values, a variety of tools and libraries have appeared\
+    \ to fill this gap. (...) This PEP aims to provide a single, standard way of specifying\
+    \ this information, reducing the confusion caused by the wide variation in mechanism\
+    \ and syntax that has existed until this point.\"\n\n# Syntax\n\nFunction annotations\
+    \ apply to two sorts of things: parameters and return values.\n\n# Parameters\n\
+    \nFor parameters, an annotation is indicated by a colon, in a manner similar to\
+    \ that of marking a default value by an equal to sign, like this for example:\n\
+    \n```\n```python\ndef foo(x: \"int >= 0\"):\n```\n```\n\nBoth an annotation and\
+    \ a default value can be indicated by placing them sequentially, as follows:\n\
+    \n```\n```python\ndef foo(x: \"int >= 0\" = 0):\n```\n```\n\nInformally, parameters\
+    \ can be described like this:\n\n```\n```text\nidentifier [: expression] [= expression]\n\
+    ```\n```\n\nHere, both the annotation and the default value are optional.\n\n\
+    # Return values\n\nThe return value of the function can be annotated by following\
+    \ the parameter list with -> and an expression. Here is an example:\n\n```\n```python\n\
+    def foo(x: \"int >= 0\" = 0) -> \"seemingly random integer\":\n    return 42\n\
+    ```\n```"
+  merge: -1
+  img_proc: true
+- pgno: 290
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 291
+  md: '# Syntax
+
+
+    Type hints use the same syntax and apply to the same things as function annotations.
+    The major extension is that they allow the annotation to be a class. The full
+    rule set is complicated, but the following hints should cover the most common
+    cases:
+
+
+    +   - Built-in classes
+
+    +   - User-defined classes
+
+    +   - Types in the `types` module
+
+    +   - Abstract base classes
+
+    +   - Special constructs, including `None`, `Any`, `Union`, `Tuple`, and `Callable`
+
+
+    A great deal of the PEP is devoted to special cases and complex types, including
+    generics, covariance and contravariance, forward references, and stub files.
+
+
+    # Semantics
+
+
+    Like PEP 3107, there is no standard semantics associated with type hints. The
+    goal instead was to provide a standard that third-party tools could work with.
+    To the extent that type hints have a semantics, it is the one provided by the
+    tool they are used with, not by the Python language itself. From the definition:
+
+
+    > "This PEP aims to provide a standard syntax for type annotations, opening up
+    Python code to easier static analysis and refactoring, potential runtime type
+    checking, and (perhaps, in some contexts) code generation utilizing type information."
+
+
+    An influential tool in the formation of the standard was mypy (http://mypy-lang.org/).
+    The purpose of mypy is to provide a static type checker for Python. While the
+    merits of static type checking in documentation and debugging can be debated,
+    it is nice to have the option.
+
+
+    # Docstrings
+
+
+    A Python docstring is a string literal. It can occur as the first statement in
+    a module or as the first statement following the definition of a function, method,
+    or class. The docstring becomes the __doc__ special attribute of that thing. Its
+    purpose is to provide a more free-form way to document part of a program.'
+  merge: -1
+  img_proc: true
+- pgno: 292
+  md: "# Example\n\nThe following code provides docstrings for an abbreviated version\
+    \ of an earlier test suite:\n\n```\n```python\n\"\"\"\nThis is an abbreviated\
+    \ version of my random number generator test\nsuite.\n\nIt uses the pytest framework.\
+    \  It does not do much in this form.\n\"\"\"\n\nimport numpy as np\nimport scipy.stats\n\
+    import random\n\nclass TestRandoms( ):\n    \"\"\"\n    This is the main class.\n\
+    \n    Normally it would hold all the tests, plus and setup and\n    tearDown fixtures.\n\
+    \    \"\"\"\n    def test_builtin(self):\n        \"\"\"\n        Test the built-in\
+    \ random number generator on 10000\n        numbers.\n        \"\"\"\n       \
+    \ num_tests = 10000\n        vals = [0 for i in range(10)]\n        for i in range(num_tests):\n\
+    \            tmp = random.randint(0, 9)\n            vals[tmp] = vals[tmp] + 1\n\
+    \n        chi2, p = scipy.stats.chisquare(self.vals)\n        assert p > 0.05\n\
+    \ndef foo( ):\n    \"\"\" I just needed a function outside of a class as an\n\
+    example\"\"\"\n    pass\n```\n```\n\ncode1.py"
+  merge: -1
+  img_proc: true
+- pgno: 293
+  md: "The docstring can be accessed by using Python's built-in help function. The\
+    \ results are displayed in the standard help fashion (that is, as if viewing a\
+    \ text file with less) and are as follows:\n\n```\nIn [4]: import codel\n\nIn\
+    \ [5]: help(codel)\nHelp on module codel:\n\nNAME\n    codel - This is an abbreviated\
+    \ version of my random number generator test suite.\n\nDESCRIPTION\n    It uses\
+    \ the pytest framework.  It does not do much in this form.\n\nCLASSES\n    builtins.object\n\
+    \        TestRandoms\n\n    class TestRandoms(builtins.object)\n    |   This is\
+    \ the main class.\n    |\n    |   Normally it would hold all the tests, plus and\
+    \ setup and teardown fixtures.\n    |\n    |   Methods defined here:\n    |\n\
+    \    |   test_builtin(self)\n    |       Test the built-in random number generator\
+    \ on 10000 numbers.\n    |\n    |   --------------------------------------------------------------------------\n\
+    \    |\n    |   Data descriptors defined here:\n    |\n    |   __dict__\n    |\
+    \       dictionary for instance variables (if defined)\n```"
+  merge: -1
+  img_proc: true
+- pgno: 294
+  md: "# Documentation\n\n```\n```text\n|  __weakref__\n|      list of weak references\
+    \ to the object (if defined)\n```\n```\n\n# FUNCTIONS\n\n```\n```text\nfoo()\n\
+    \    I just needed a function outside of a class as an example\n```\n```\n\n#\
+    \ FILE\n\n```\n```text\n/nfs/02/wit0096/Packt/chap09/code1.py\n```\n```\n\nDocstrings\
+    \ for individual parts can be accessed by naming them.\n\nHere, we access `help`\
+    \ for the class:\n\n```\n```text\nIn [6]: help(code1.TestRandoms)\n```\n```\n\n\
+    ```\n```text\nHelp on class TestRandoms in module code1:\n```\n```\n\n```\n```text\n\
+    class TestRandoms(builtins.object)\n |  This is the main class.\n |\n |  Normally\
+    \ it would hold all the tests, plus and setup and teardown\n    fixtures.\n |\n\
+    \ |  Methods defined here:\n |\n |  test_builtin(self)\n |      Test the built-in\
+    \ random number generator on 10000 numbers.\n |\n |  ----------------------------------------------------------------------\n\
+    \ |  Data descriptors defined here:\n |\n |  __dict__\n |      dictionary for\
+    \ instance variables (if defined)\n |\n |  __weakref__\n |      list of weak references\
+    \ to the object (if defined)\n```\n```"
+  merge: -1
+  img_proc: true
+- pgno: 295
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 296
+  md: "```\nself.assertEqual(f(i), ans[i])\n```\n\n```\ndef foo():\n    \"\"\"\n \
+    \   An independent function.\n\n    I needed another function to illustrate the\
+    \ docstring for a\n    function that was not a member of a class.\n    \"\"\"\n\
+    \    pass\n```\n\ncode2.py\n\nIt produces the following (abbreviated) output:\n\
+    \n```\nIn [10]: import code2\n\nIn [11]: help(code2)\n\nHelp on module code2:\n\
+    \nNAME\n    code2 - This is my hailstone unit test suite.\n\nDESCRIPTION\n   \
+    \ It uses the unittest framework.  Admittedly, it does not do much.\n\nCLASSES\n\
+    \    unittest.case.TestCase(builtins.object)\n        TestHailStones\n\n     \
+    \   class TestHailStones(unittest.case.TestCase)\n        |   The main class for\
+    \ testing the hailstone sequence generator.\n        |\n        |   Method resolution\
+    \ order:\n        |       TestHailStones\n        |       unittest.case.TestCase\n\
+    \        |       builtins.object\n```"
+  merge: -1
+  img_proc: true
+- pgno: 297
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 298
+  md: "```\naddTypeEqualityFunc(self, typeobj, function)\n\nAdd a type specific assertEqual\
+    \ style function to compare a type.\n\nThis method is for use by TestCase subclasses\
+    \ that need to register\ntheir own type equality functions to provide nicer error\
+    \ messages.\n\nArgs:\n    typeobj: The data type to call this function on when\
+    \ both values\n        are of the same type in assertEqual().\n    function: The\
+    \ callable taking two arguments and an optional\n        msg= argument that raises\
+    \ self.failureException with a\n        useful error message when the two arguments\
+    \ are not equal.\n\nassertAlmostEqual(self, first, second, places=None, msg=None,\
+    \ delta=None)\n```\n\nNote how the documentation for the `unittest.TestCase` class\
+    \ is included without additional effort.\n\n# Recommended elements\n\nPEP 0257\
+    \ documents the conventions associated with docstrings. From the standard (https://www.python.org/dev/peps/pep-0257/):\n\
+    \n> > \"The aim of this PEP is to standardize the high-level structure of docstrings:\
+    \ what they should contain, and how to say it (without touching on any markup\
+    \ syntax within docstrings). The PEP contains conventions, not laws or syntax.\"\
+    \n\nWhile there is no requirement that developers should follow these guidelines,\
+    \ third-party tools (such as Docutils and Sphinx) may rely upon them to extract\
+    \ features from docstrings."
+  merge: -1
+  img_proc: true
+- pgno: 299
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 300
+  md: 'As with any standard that allows variations, there are several groups that
+    promote different versions:
+
+
+    +   - Google weighs in its Python Style Guide at https://google.github.io/styleguide/pyguide.html#Comments
+
+    +   - numpy has its own recommendations at https://github.com/numpy/numpy/blob/master/doc/HOWTO_DOCUMENT.rst.txt#docstring-standard
+
+    +   - Epydoc prefers docstrings at http://epydoc.sourceforge.net/manual-docstring.html
+
+
+    Finally, your team should pick a multiline docstring syntax that works for it
+    and the tool (or tools) it uses to generate documentation.
+
+
+    # Semantics
+
+
+    A multiline docstring should provide enough information for an interested party
+    to use the thing it is documenting. It is not enough to just describe its name
+    and purpose. The potential user should, by reading the docstring, understand the
+    following:
+
+
+    +   - The API
+
+    +   - The inputs
+
+    +   - Functionality
+
+    +   - The output (or outputs)
+
+    +   - The error conditions
+
+    +   - The relationship with other parts of the system
+
+    +   - Example uses
+
+
+    # The API
+
+
+    This is important for classes and modules. This docstring for a module should
+    describe all classes, exceptions, and functions that are exported by that module.
+    The docstring for a class should describe its public interface and instance variables.
+    The descriptions should be brief (a single line is good enough) — more details
+    will be provided by the docstrings for the individual parts.
+
+
+    # Inputs
+
+
+    These are especially important for scripts (command-line arguments and options)
+    and functions (parameters). Users should be able to specify complete, valid inputs,
+    which means describing:
+
+
+    +   - The names of the inputs
+
+    +   - Their types'
+  merge: -1
+  img_proc: true
+- pgno: 301
+  md: '+   - Their ranges
+
+    +   - Optional versus required
+
+
+    # Functionality
+
+
+    These are important for scripts and functions. Users should understand what relationship
+    the inputs have with the outputs without being told (more than necessary) about
+    the mechanism used to achieve the results. This means using plain English to describe
+    what the function does. If there is a simple mathematical expression that the
+    function implements, this is a good place to include it. This is probably the
+    hardest part of the comment to write.
+
+
+    # Outputs
+
+
+    These are important for scripts and functions. The number and types of outputs
+    should be listed. Any side effects should also be described.
+
+
+    # Error conditions
+
+
+    Possible conditions that could result in an error should be listed. Errors fall
+    under two categories: silent errors and noisy errors.
+
+
+    Noisy errors are those that result in thrown exceptions or error codes being set.
+    All thrown exceptions should be documented. Any variables or data structures used
+    to signal errors (for example, `errno`) should also be documented.
+
+
+    Silent errors are those in which the code appears to function normally, but in
+    fact is producing invalid results. For example, many numeric algorithms produce
+    meaningful results over only a subset of otherwise legal inputs.
+
+
+    In either case, users should be presented with enough information to:
+
+
+    +   - Avoid error conditions (when possible)
+
+    +   - Detect error conditions (whether by catching an exception or by checking
+    for an error code)
+
+    +   - Recover from an error (for example, retrying, or using an alternate method)
+
+
+    # Relationship with other parts of the system
+
+
+    This is important primarily for classes, modules, and public interfaces. Object-oriented
+    systems consist of a myriad of interacting parts. Some of these parts are internal
+    to the system and some are external. The docstring should describe how the current
+    part relates to other parts.'
+  merge: -1
+  img_proc: true
+- pgno: 302
+  md: "# Documentation\n\nAn important relationship is that of dependency. One part\
+    \ can depend on another part logically (through inheritance or composition), functionally\
+    \ (for example, by being imported), or temporally (perhaps, one part performs\
+    \ the setup required for another part to function correctly). All dependencies\
+    \ should be documented.\n\nAnother important relationship is being a part of the\
+    \ same pattern. Design patterns are becoming increasingly important and dictating\
+    \ the existence of various mechanisms. If a class is part of the implementation\
+    \ of a pattern, this should be documented.\n\n# Example uses\n\nAs useful as an\
+    \ English description is, there is no substitute for a few examples. There are\
+    \ entire operating systems where the only useful documentation is in the form\
+    \ of examples.\n\n# Example\n\nWe will take an example from Rosetta Code, the\
+    \ Python implementation of the Chinese Remainder Theorem (http://rosettacode.org/wiki/Chinese_remainder_theorem#Python).\
+    \ Our implementation will be modified in two ways. First, it will use a class\
+    \ rather than the functions shown so that a full range of commenting conventions\
+    \ can be demonstrated. Second, it will be brought up to Python 3 from 2.7:\n\n\
+    ```\n'''Company boilerplate goes here.\n```\n\nSuppose n1, ..., nk are positive\
+    \ integers that are pairwise coprime. Then, for any given sequence of integers\
+    \ a1, ..., ak, there exists an integer x solving the following system of simultaneous\
+    \ congruences.\n\n```\nx ≡ a1 mod n1\n\nx ≡ a2 mod n2\n\n…\n\nx ≡ ak mod nk\n\
+    ```\n\nA full explanation of the theorem can be found at https://en.wikipedia.org/wiki/Chinese_remainder_theorem.\n\
+    \n+   **Attributes:**\n+   \n+   - None\n\n**Dependencies:**"
+  merge: -1
+  img_proc: true
+- pgno: 303
+  md: "```\nfunctools\n\n\"\"\"\n\nimport functools\n\nclass CRT:\n    \"\"\"The Chinese\
+    \ Remainder Theorem method for solving a system of linear congruences.\n\n   \
+    \ This class has no __init__ method. As such, there are no arguments required\
+    \ to construct an instance. Without class or instance variables, all objects of\
+    \ this class are stateless.\n\n    Args:\n        None\n\n    Attributes:\n  \
+    \      None\n\n    Example:\n        An example is provided in the main guard\
+    \ corresponding to the system:\n            x ≡ 2 mod 3\n            x ≡ 3 mod\
+    \ 5\n            x ≡ 2 mod 7\n    \"\"\"\n\n    def chinese_remainder(self, n,\
+    \ a):\n        \"\"\"Use the existence construction form of the CRT to compute\
+    \ the solution.\n\n        First, calculate the product of all the modulos (b1,\
+    \ n2, ..., nk) as prod\n        For each i, calculate prod/n_i as p\n        Sum\
+    \ up each ai * the multiplicative inverse of ni mod p\n\n        Args:\n     \
+    \       n: a list of modulos (n1, n2, ..., nk)\n```"
+  merge: -1
+  img_proc: true
+- pgno: 304
+  md: "```\na: a list of congruences (a1, a2, ..., ak)\n\nReturns:\n    The smallest\
+    \ integer solution to the system of congruence equations defined\n    by a and\
+    \ n.\n\nError conditions:\n    When len(n) == len(a), a solution always exists.\n\
+    \    When len(a) > len(n), any additional a's are ignored.\n    When len(n) >\
+    \ len(a), behavior is deterministic but erroneous.\n    \"\"\"\n    sum = 0\n\
+    \    prod = functools.reduce(lambda a, b: a*b, n)\n\n    for n_i, a_i in zip(n,\
+    \ a):\n        p = prod / n_i\n        sum += a_i * self.__mul_inv(p, n_i) * p\n\
+    \    return int(sum % prod)\n\ndef __mul_inv(self, a, b):\n    \"\"\"Calculate\
+    \ the multiplicative inverse of b mod a.\"\"\"\n    b0 = b\n    x0, x1 = 0, 1\n\
+    \    if b == 1:\n        return 1\n    while a > 1:\n        q = a / b\n     \
+    \   a, b = b, a%b\n        x0, x1 = x1 - q * x0, x0\n    if x1 < 0:\n        x1\
+    \ += b0\n    return x1\n\nif __name__ == '__main__':\n    n = [3, 5, 7]\n```"
+  merge: -1
+  img_proc: true
+- pgno: 305
+  md: "```\na = [2, 3, 2]\ncrt = CRT()\nprint(crt.chinese_remainder(n, a))\n```\n\n\
+    The result is as follows:\n\n```\nIn [22]: help(CRT)\n```\n\n```\nHelp on class\
+    \ CRT in module __main__:\n\nclass CRT(builtins.object)\n |  The Chinese Remainder\
+    \ Theorem method for solving a system of linear congruences.\n |\n |  Notes:\n\
+    \ |      This class has no __init__ method. As such, there are no arguments required\n\
+    \ |      to construct an instance.\n |\n |      Without class or instance variables,\
+    \ all objects of this class are stateless.\n |\n |  Args:\n |      None\n |\n\
+    \ |  Attributes:\n |      None\n |\n |  Example:\n |      An example is provided\
+    \ in the main guard corresponding to the system:\n |          x = 2 mod 3\n |\
+    \          x = 3 mod 5\n |          x = 2 mod 7\n |\n |  Methods defined here:\n\
+    ```"
+  merge: -1
+  img_proc: true
+- pgno: 306
+  md: '| chinese_remainder(self, n, a)
+
+    |     Use the existence construction form of the CRT to compute the solution.
+
+    |     First, calculate the product of all the modulus (b1, n2, ..., nk) as prod
+
+    |     For each i, calculate prod/n_i as p
+
+    |     Sum up each ai * the multiplicative inverse of ni mod p
+
+    |     Args:
+
+    |         n: a list of modulus (n1, n2, ..., nk)
+
+    |         a: a list of congruences (a1, a2, ..., ak)
+
+    |     Returns:
+
+    |         The smallest integer solution to the system of congruence equations
+    defined by a and n.
+
+    |     Error conditions:
+
+    |         When len(n) == len(a), a solution always exists.
+
+    |         When len(a) > len(n), any additional a''s are ignored.
+
+    |         When len(n) > len(a), behavior is deterministic but erroneous.
+
+    |     ---------------------------------------------------------------
+
+    | Data descriptors defined here:
+
+    | __dict__
+
+    |     dictionary for instance variables (if defined)
+
+    | __weakref__
+
+    |     list of weak references to the object (if defined)
+
+    Note that the docstring for the private method, __mul_inv, is not included.'
+  merge: -1
+  img_proc: true
+- pgno: 307
+  md: '# # reStructuredText
+
+
+    One could say a lot of things about the preceding example (in particular, that
+    there are more lines of comments than code), but it would be difficult to say
+    that the end result is aesthetically pleasing. In particular, compared to the
+    output of a program using Javadoc, this documentation looks rather plain. In order
+    to remedy this shortcoming, it was decided that a more sophisticated way of specifying
+    and generating documentation was needed.
+
+
+    # ## History and goals
+
+
+    Jim Fulton of Zope invented StructuredText as a simple markup language. It is
+    similar to WikiWikiWebMarkup but simpler. Problems with both the specification
+    and the implementation led to David Goodger creating a revised version, called
+    reStructuredText. His goals for the language were that it should be:
+
+
+    +   - Readable
+
+    +   - Unobtrusive
+
+    +   - Unambiguous
+
+    +   - unsurprising
+
+    +   - Intuitive
+
+    +   - Easy
+
+    +   - Scalable
+
+    +   - Powerful
+
+    +   - Language-neutral
+
+    +   - Extensible
+
+    +   - Output-format-neutral
+
+
+    This led to the publication of PEP 0287 (`https://www.python.org/dev/peps/pep-0287/`).
+
+
+    # ## Customers
+
+
+    Any documentation system has three groups of customers: developers, automated
+    document generation software, and readers. Each of them has different requirements
+    and limitations.'
+  merge: -1
+  img_proc: true
+- pgno: 308
+  md: '# Documentation
+
+
+    Developers have to write the documentation. As a class, developers hate typing,
+    and hate typing anything that is not code even more. Any attempt to force them
+    to write great swathes of comments will result in a failed standard. So much so
+    that if documentation can be generated from code, it should be. Any additional
+    comments should be easy to create with a standard keyboard and minimal additional
+    markup.
+
+
+    The document generation software turns the characters produced by the developers
+    into documents to be consumed by outside readers. This generally consists of a
+    transformation from the markup language used by the developers into a more human-readable
+    format. For example, the Javadoc written by developers can automatically be transformed
+    into HTML that readers can view in a browser. This transformation can include
+    the addition of both aesthetic (for example, colors and formatting) and functional
+    (for example, hyperlinks) properties. It is important for the document generation
+    software that the markup used by the developers be powerful and structured enough
+    to support this transformation.
+
+
+    Readers consume the end result of this transformation. Readers may or may not
+    be developers, but they expect the documentation to be structurally well organized.
+    The documentation should be easy to read, and it should be easy to find what one
+    is looking for. Note that readers often do not have access to the original source
+    and might not be able to read the original markup if it were to be available.
+
+
+    There is an important tension in this division between developers and readers.
+    Simply put, readers want as much documentation as possible, and in a structured
+    form. Developers will write as little documentation as they can get away with
+    and will use as little structure as possible.
+
+
+    # The solution
+
+
+    The solution that reStructuredText adopted was to use a two-fold process: a simple
+    markup language coupled with powerful documentation generation software. The markup
+    is reStructuredText and the software is Docutils. The basic process is simple:
+
+
+    +   1. The developer writes docstrings in plain text using the reStructuredText
+    conventions.
+
+    +   2. Docutils is applied to the resulting code + comments document to generate
+    documentation in an external format (for example, HTML or LaTeX).
+
+    +   3. The reader consumes the resulting document in the appropriate viewer.
+
+
+    We will later take a look at Sphinx, a documentation generation program that builds
+    upon and extends reStructuredText and Docutils.'
+  merge: -1
+  img_proc: true
+- pgno: 309
+  md: "# Overview\n\nThe basic syntax of reStructuredText is that of regular text,\
+    \ with special conventions associated with certain usages. This is in contrast\
+    \ with, say, HTML, in which metadata is associated with text through the use of\
+    \ angle brackets. For example, in HTML a bulleted list might look like this:\n\
+    \n```\n```html\n<ul>\n  <li>Python</li>\n  <li>Java</li>\n  <li>Ruby</li>\n</ul>\n\
+    ```\n```\n\nIn reStructuredText, it would look like the following:\n\n+   * Python\n\
+    +   * Java\n+   * Ruby\n\nAn important difference is that while HTML (and its\
+    \ relatives, such as XML) allows nested tags, reStructuredText does not allow\
+    \ nested markup. While this is ordinarily not an issue, it does come up from time\
+    \ to time.\n\nWhat follows is a listing of some of the more important usages.\n\
+    \n# Paragraphs\n\nA paragraph is a chunk of text separated by one or more blank\
+    \ lines. The left edge of paragraphs should line up. If a paragraph is indented\
+    \ relative to other paragraphs, it is treated as a quote.\n\nThe reStructuredText\
+    \ looks as follows:\n\n> > It turns out Abraham Lincoln never said\n> >\n> > Never\
+    \ trust anything you read on the Internet.\n> >\n> > It was Benjamin Franklin"
+  merge: -1
+  img_proc: true
+- pgno: 310
+  md: '# Documentation
+
+
+    This produces HTML output which is displayed as follows:
+
+
+    ![](img/8628b86fcc4f22d859c0104c2ec1d15f_310_0.png)
+
+
+    # Text styles
+
+
+    Text in italics should be surrounded by asterisks (*):
+
+
+    ```
+
+    Use italics for *emphasis*.
+
+    ```
+
+
+    Text in bold uses two asterisks (**):
+
+
+    ```
+
+    Using a **goto** statement is a bold move in structured programming.
+
+    ```
+
+
+    Unfortunately, there is no easy way to make text both italicized and bold.
+
+
+    For the most part, reStructuredText is pretty smart in knowing when something
+    is markup and when it should be left alone. For example, consider these strings:
+
+
+    ```
+
+    x = 5*6
+
+    x = 5*6*7
+
+    ```
+
+
+    The asterisk is not interpreted as making the 6 italicized.
+
+
+    Surrounding text with double back quotes (``) forces it to be a fixed-space literal—all
+    special characters between the quotes are left uninterpreted. Individual characters
+    that would otherwise be interpreted as markup can be escaped using a backslash
+    (\).
+
+
+    # Literal blocks
+
+
+    If there is a need to have an entire paragraph included as a literal block (that
+    is, exactly as it is, without any interpretation of markup characters or indentation
+    within the paragraph), then a paragraph containing only two colons indicates that
+    the following indented or quoted text should be taken literally. This can be useful
+    when citing code or explaining markup conventions.'
+  merge: -1
+  img_proc: true
+- pgno: 311
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 312
+  md: "It results in the following web page:\n\n![](img/8628b86fcc4f22d859c0104c2ec1d15f_312_0.png)\n\
+    \n# Bulleted lists\n\nBulleted lists work just like enumerated lists, except that:\n\
+    \n+   - The only allowed counters are -, +, and *\n+   - There is no delimiter\n\
+    \nBulleted lists support the usual rules for indentation.\n\n# Definition lists\n\
+    \nA definition list is just a series of term-definition pairs. The term is on\
+    \ the first line and the definition is in the following paragraph, which is indented.\
+    \ Here is an example:\n\n```\ndo\n    a deer, a female deer\nre\n    a drop of\
+    \ golden sun\nmi\n    a name i call myself\nfa\n```"
+  merge: -1
+  img_proc: true
+- pgno: 313
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 314
+  md: '# *Documentation*
+
+
+    It results in the following web page:
+
+
+    ![](img/8628b86fcc4f22d859c0104c2ec1d15f_314_0.png)
+
+
+    # Sections
+
+
+    The preceding markup should suffice for most developers, for most documentation.
+    Should more in-depth documentation be required, reStructuredText provides the
+    ability to break documents into sections using section headers. This is accomplished
+    by creating a single line of text consisting entirely of a single repeated character
+    (the underline). The previous line becomes the section header (the overline).
+    The underline and the overline must be of the same length. All sections that use
+    the same underline are at the same level. Any section beneath a section with a
+    different underline is at a lower level than that section.
+
+
+    Here is an example:
+
+
+    ```
+
+    Chapter 1 Main Title
+
+    --------------------
+
+
+    Section 1.1 An Important Subject
+
+    ```'
+  merge: -1
+  img_proc: true
+- pgno: 315
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 316
+  md: '# Docutils
+
+
+    Docutils is a suite of utilities for transforming text files that contain reStructuredText
+    into other formats, including HTML, XML, and LaTeX. It is meant to bridge the
+    gap between what users want to read (aesthetically pleasant formats) and what
+    programmers can easily type (plain text). Docutils falls into two broad categories:
+    libraries (to do behind-the-scenes parsing and manipulation) and frontend tools
+    (which use libraries to produce a particular output format).
+
+
+    # Installation
+
+
+    Docutils can be installed using pip:
+
+
+    ```
+
+    pip install docutils
+
+    ```
+
+
+    This will install a number of scripts, including the important transformation
+    scripts. The author''s installation is included:
+
+
+    +   - `rst2html.py`
+
+    +   - `rst2latex.py`
+
+    +   - `rst2man.py`
+
+    +   - `rst2odt_prepstyles.py`
+
+    +   - `rst2odt.py`
+
+    +   - `rst2pseudoxml.py`
+
+    +   - `rst2s5.py`
+
+    +   - `rst2xetex.py`
+
+    +   - `rst2xml.py`
+
+    +   - `rstpep2html.py`
+
+
+    # Usage
+
+
+    These scripts can be used from the command line. They expect an input from `stdin`
+    and produce the output in `stdout`:
+
+
+    ```
+
+    ./rst2html.py <infile> > <outfile>
+
+    ```'
+  merge: -1
+  img_proc: true
+- pgno: 317
+  md: '# Documenting source files
+
+
+    Unfortunately, unlike Javadoc, Docutils cannot take a .py file full of Python
+    code and automatically extract the docstrings from it in order to generate documentation.
+    There is a tool called Epydoc that will do this, but the project has been inactive
+    since 2009. A team could write a script to attempt to extract just the docstrings,
+    but there is a better solution. It will be outlined in the next section.
+
+
+    # Sphinx
+
+
+    Sphinx is a documentation generation tool. It began as a way to produce Python
+    documentation, but it is branching out to other languages, notably C/C++. It can
+    produce output in several formats, including HTML, LaTeX, ePub, man pages, and
+    plain text, among others. It accepts reStructuredText and builds upon the Docutils
+    suite, adding a few pieces of markup along the way.
+
+
+    # Installation and startup
+
+
+    Sphinx can be installed using `pip`:
+
+
+    ```
+
+    pip install sphinx
+
+    ```
+
+
+    Installation will add several scripts to the path. The first one we will examine
+    is named `sphinx-quickstart`. It will set up a prompt the user for information
+    and then a source directory, a configuration file, and some skeleton files:
+
+
+    ```
+
+    bash-4.1$ sphinx-quickstart
+
+    Welcome to the Sphinx 1.3.6 quickstart utility.
+
+
+    Please enter values for the following settings (just press Enter to accept a default
+    value, if one is given in brackets).
+
+
+    Enter the root path for documentation.
+
+    > Root path for the documentation [.] : docs
+
+
+    You have two options for placing the build directory for Sphinx output.
+
+    Either, you use a directory "_build" within the root path, or you separate
+
+    "source" and "build" directories within the root path.
+
+    ```'
+  merge: -1
+  img_proc: true
+- pgno: 318
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 319
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 320
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 321
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 322
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 323
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 324
+  md: "# Documentation\n\nThis results in the following page:\n\n![](img/8628b86fcc4f22d859c0104c2ec1d15f_324_0.png)\n\
+    \nThis is missing documentation for the `chinese_remainder` method, so that can\
+    \ be added to `index.rst` using the automethod directive:\n\n```\n```rst\n.. toctree::\n\
+    \   :maxdepth: 2\n\n.. automodule:: crt1\n```\n```"
+  merge: -1
+  img_proc: true
+- pgno: 325
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 326
+  md: "While flexible, this can be tedious and error-prone. One solution is to use\
+    \ the `:members:` attribute, like this:\n\n```\n    .. toctree::\n       :maxdepth:\
+    \ 2\n\n    .. automodule:: crt1\n       :members:\n```\n\nAnother is to use the\
+    \ `sphinx-apidoc` tool. The purpose of `sphinx-apidoc` is to extract the docstrings\
+    \ from the source files and produce `.rst` files from them. Consider this example:\n\
+    \n```\nbash-4.1$ sphinx-apidoc -o docs .\n```\n\nIt will create a set of `.rst`\
+    \ files:\n\n```\nCreating file docs/code1.rst.\nCreating file docs/code2.rst.\n\
+    Creating file docs/crt1.rst.\nCreating file docs/hail1.rst.\nCreating file docs/modules.rst.\n\
+    ```\n\nThe files themselves are not much to look at, but they can be fed into\
+    \ Sphinx or other documentation tools that are expecting reStructuredText for\
+    \ further processing. This is especially handy when using tools that cannot extract\
+    \ docstrings on their own.\n\n# Summary\n\nWhile inline comments and type notations\
+    \ are useful for developers who will be working on the code base, external parties\
+    \ need more extensive documentation, and need it in a more attractive format than\
+    \ reading the source (this is especially true when they do not have access to\
+    \ the source). This need for documentation must be balanced against the understandable\
+    \ reluctance of developers to spend a great deal of time and energy producing\
+    \ anything but code.\n\nPython's solution is to employ a lightweight markup language,\
+    \ reStructuredText, and a toolchain (Docutils, Sphinx) to transform reStructuredText\
+    \ into a more aesthetically attractive format (for example, HTML or LaTeX)."
+  merge: -1
+  img_proc: true
+- pgno: 327
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 328
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 329
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 330
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 331
+  md: "Chapter 3, Stepping Up to IPython for Parallel Computing, provides some details\
+    \ on how splitting out the kernel and REPL protocol enabled a parallel architecture\
+    \ to emerge.\n\nThis chapter will provide some examples of the power of the notebook,\
+    \ and how it relates to the other components. The move from the IPython notebook\
+    \ to the Jupyter project was probably the biggest of the reorganizations, and\
+    \ has been called The Big Split. For an in-depth look at the reasons for The Big\
+    \ Split, and details regarding its effect on various package structures, see https://blog.jupyter.org/2015/04/15/the-big-split/.\n\
+    \n# Installation and startup\n\nJupyter can be installed using pip:\n\n```\npip\
+    \ install jupyter\n```\n\nIt can be started like this:\n\n```\n(my_rpy2_zone)-bash-4.1$\
+    \ ipython notebook\n[I 10:38:27.193 NotebookApp] Serving notebooks from local\
+    \ directory: /nfs/02/wit0096\n[I 10:38:27.193 NotebookApp] 0 active kernels\n\
+    [I 10:38:27.193 NotebookApp] The Jupyter Notebook is running at: http://localhost:8888/\n\
+    [I 10:38:27.193 NotebookApp] Use Control-C to stop this server and shut down all\
+    \ kernels (twice to skip confirmation).\n/usr/bin/xdg-open: line 402: htmlview:\
+    \ command not found\nconsole.error:\n  [CustomizableUI]\n  Custom widget with\
+    \ id loop-button does not return a valid node\nconsole.error:\n  [CustomizableUI]\n\
+    \  Custom widget with id loop-button does not return a valid node\n1457711201438\
+    \  addons.update-checker  WARN  Update manifest for {972ce4c6-7e08-4474-a285-3208198ce6fd}\
+    \ did not contain an updates property\n```\n\nNote that this has started an HTML\
+    \ server (called the Jupyter Notebook App) on port 8888. It may also (depending\
+    \ on your platform) start a browser pointed at http://localhost:8888. If not,\
+    \ manually start a browser and point it there. Jupyter can only access files in\
+    \ the directory it was started in (and its subdirectories), so take care to start\
+    \ it where it can access your notebook files."
+  merge: -1
+  img_proc: true
+- pgno: 332
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 333
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 334
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 335
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 336
+  md: '# Creating a notebook
+
+
+    Of course, no one writes a notebook in JSON – it is just used as a text format
+    for persistence and interchange. The Dashboard can be used to create notebooks.
+    In the upper-right section of the interface is a dropdown box that provides options
+    to create new notebooks:
+
+
+    ![](img/8628b86fcc4f22d859c0104c2ec1d15f_336_0.png)'
+  merge: -1
+  img_proc: true
+- pgno: 337
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 338
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 339
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 340
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 341
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 342
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 343
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 344
+  md: '# Using matplotlib
+
+
+    The key to using matplotlib in a notebook is the `%matplotlib inline` magic. It
+    should be the first line in the cell. For example:
+
+
+    ![](img/8628b86fcc4f22d859c0104c2ec1d15f_344_0.png)
+
+
+    The first cell (which prints **Graphics are fun**) is Markdown; the second cell
+    creates the plot shown.'
+  merge: -1
+  img_proc: true
+- pgno: 345
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 346
+  md: '# Using R
+
+
+    The important thing when using R is that all the work should be done in R (or
+    at least the part that actually displays the plot). If not, the plot will open
+    in a separate window, rather than in the notebook. The %%R cell magic is the right
+    tool for the job. In particular, the plot should be printed out, rather than using
+    the plot( ) function. For example:
+
+
+    ![](img/8628b86fcc4f22d859c0104c2ec1d15f_346_0.png)'
+  merge: -1
+  img_proc: true
+- pgno: 347
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 348
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 349
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 350
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 351
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 352
+  md: 'IPython is not such a system. In 2001, Fernando Perez was a graduate student
+    at the University of Colorado in Boulder. He was not a computer science major,
+    he was a physics graduate student who needed to program and wanted a better tool.
+    As a physicist, his idea of "better" was different from what a computer scientist
+    might have envisioned. In particular, the formative influences on the young IPython
+    was tools designed primarily for data analysis and presentation: Mathematica (http://www.wolfram.com/mathematica/)
+    and Sage (http://www.sagemath.org/).
+
+
+    Perez has stated that IPython is "meant to be a highly configurable tool for building
+    problem-specific interactive environments," which provides a key to its history
+    and future directions.
+
+
+    Initial efforts came at the problem from two directions. On one hand, there were
+    a couple of Python extensions that already existed – IPP (by Janko Hauser) and
+    LazyPython (by Nathan Gray). On the other hand, Perez had his own ideas about
+    what should be implemented. In the end, IPython was born through a merger of code
+    from IPP, LazyPython, and Perez''s own efforts.
+
+
+    At this point development slowed down. A few stabs at making a notebook were made.
+    Some consideration was given to merging with Sage, but in the end the projects
+    went their own ways. In 2009, the first full-time developer was funded. His first
+    task was a refactoring of the entire codebase, which was at that point still a
+    mash of IPP, LazyPython, and Perez''s original code. No new functionality was
+    added, but development could move forward more easily on the newly clean code.
+
+
+    2010 was an important year. The first big development was the move to an architecture
+    based on ZeroMQ. The adoption of ZeroMQ allowed for two important architectural
+    advances: separation between the frontend and the interpreter, and support for
+    parallelism.
+
+
+    Separating the frontend and backend was huge on several fronts. Perhaps most importantly,
+    it meant that implementing a notebook was simple(r): the Notebook became just
+    another interface to the Python kernel on the back end. On the flip side, the
+    command-line interface was free to connect to a kernel that supported any language,
+    not just Python. IPython was moving from "a better Python shell" to "a multi-interface,
+    multi-language platform." Work proceeded quickly at this point: the remainder
+    of 2010 saw the development of a command-line interface, a Qt console, integration
+    into Python Tools for Visual Studio, and a prototype web notebook. 2011 saw the
+    prototype turned into a fully-working version, and IPython 0.12 was released.'
+  merge: -1
+  img_proc: true
+- pgno: 353
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 354
+  md: '# The Notebook
+
+
+    The Jupyter Notebook is the primary cause for the Big Split. Looking back over
+    the release notes for the versions of IPython before 4.0, it is clear that a great
+    number of the improvements were being made to the notebook component rather than
+    the Python-specific features, or even the underlying architecture.
+
+
+    The Notebook itself is so big it has subprojects of its own:
+
+
+    +   - The document format (and its API, nbformat)
+
+    +   - nbconvert
+
+    +   - nbviewer
+
+
+    The Notebook''s primary function is information display - the computation is left
+    to the kernels - so it seems unlikely that compatibility issues will arise at
+    this level. The notebook provides more functionality than just display, however,
+    and more functionality is being added all the time, so the opportunity for compatibility
+    issues to arise will persist.
+
+
+    # The console
+
+
+    The console is a command-line interface that can communicate with any kernel that
+    follows the Jupyter interactive computing protocol. It is not clear why a new
+    terminal interface was needed, instead of just using IPython''s terminal now that
+    it is language-independent. They certainly look the same from a user''s perspective.
+    They may actually be the same, just with some IPython-specific code swapped out
+    for Jupyter-compatible code. The documentation explains how to start and use the
+    console, but not how it is related to IPython, if at all. A quick search on the
+    web is no help, with some sites even claiming that the console is the new IPython.
+
+
+    # Jupyter Client
+
+
+    The Jupyter Client package is a Python API used to start, manage, and communicate
+    with kernels. IPython also follows this standard for its kernels. It specifies
+    the messaging protocol that all kernels must adhere to in order to communicate
+    with the notebook. The IPython kernel will certainly continue to adhere to this
+    specification as the reference kernel for Jupyter.'
+  merge: -1
+  img_proc: true
+- pgno: 355
+  md: '# # The future of Jupyter
+
+
+    Although Fernando Perez is *Benevolent Dictator For Life*, and there is a Steering
+    Committee of 10 members, Jupyter is an open source project using a revised BSD
+    license. As such, there is no authoritative list of things to do. Instead, there
+    are varying levels of "officialness."
+
+
+    # ## Official roadmap
+
+
+    At the first level are the mainline subprojects at the Jupyter GitHub site: `https://github.com/jupyter`.
+    A high-level roadmap is held at `https://github.com/jupyter/roadmap`. The following
+    table presents some highlights:
+
+
+    | Feature | Description | Details |
+
+    |---|---|---|
+
+    | **JupyterLab** | Initially a new page in the existing notebook web app that
+    allows multiple plugins in the same browser tab | Potentially a replacement for
+    the current notebook interface. A major project. |
+
+    | **ipywidgets** | Interactive widgets that tie together code in the kernel and
+    JavaScript/CSS/HTML in the browser | Improved styling. General refactoring. Compartmentalization
+    of JavaScript. |
+
+    | **JupyterHub** | Manages and proxies multiple instances of the single-user Jupyter
+    notebook server | Configuration enhancements. Sharing and collaboration. |
+
+    | **IPython** |  | Comparatively mature, so few major changes planned. |
+
+
+    At a finer level of detail are the bugs listed under the **Issues** tag and the
+    new features under the **Pulls** tag.
+
+
+    Next in line appear to be the **Jupyter Enhancement Proposals (JEPs)** (`https://github.com/jupyter/enhancement-proposals`).
+    According to the documentation (`http://jupyter.readthedocs.org/en/latest/contrib_guide_bugs_enh.html`)
+    these are similar to bug requests in that the submitter hopes someone else does
+    the work. At present, there are only four Enhancement Proposals on the site. There
+    are four pull requests. None of them appear to be prominent parts of the Roadmap.'
+  merge: -1
+  img_proc: true
+- pgno: 356
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 357
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 358
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 359
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 360
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 361
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 362
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 363
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 364
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 365
+  md: 'The difficulty comes from their patchwork nature. Knowing which tool applies
+    when and how to use it is more of an art than a science. The situation is analogous
+    to the end of the assembly language era: some developers can do amazing things
+    with these tools, but not many, and it is becoming apparent that continued ad
+    hoc progress will not be enough.
+
+
+    # Better tools
+
+
+    Another approach is to empower the programmer by giving them better tools. This
+    approach has synergies with the pragmatic evolution approach, in that new techniques
+    often require new tools to make them easy to work with, and new tools can spur
+    the development of new techniques. There are multiple sections in the Grand Challenges
+    paper devoted to tools. The paper calls out several in particular, including compilers,
+    debuggers, and development environments.
+
+
+    IPython has one foot squarely planted in this approach. To use IPython (with Python)
+    is to sacrifice some level of performance for other benefits: a high level of
+    abstraction, multi-language support, a friendly IDE, and all the other features
+    detailed in this book. It is in some way a bet – the cycles spent running IPython
+    will outweigh the ones lost to a less efficient final product. Given that the
+    power of the tools available is the difference between creating a working product
+    at all, and producing one that doesn''t work, this looks to be a safe bet.
+
+
+    To the extent that IPython is a tool for interactive parallel computing, its future
+    looks secure, if unclear. The future is secure to the extent that, as new techniques
+    are developed, IPython (and the Jupyter organization as a whole) is well situated
+    to integrate them into itself. It is unclear in that no one knows what techniques
+    will be developed in the future.
+
+
+    Because of the ongoing growth in parallel computing, learning IPython is not a
+    matter of memorizing some syntax and working through a few koans. IPython will
+    grow and evolve over the next few decades in a way that will require developers
+    to regularly update their knowledge of the field, in addition to adopting new
+    versions of the tool.
+
+
+    # The Next Big Idea
+
+
+    It may be that, between evolving new techniques and improving tools, the community
+    will arrive at a satisfactory framework for developing parallel systems. If history
+    is any guide, however, an entirely new paradigm (similar to the change from hand-coding
+    assembly language to compiling a high-level language) will be needed.'
+  merge: -1
+  img_proc: true
+- pgno: 366
+  md: 'As an example, consider Notre Dame de Paris. In outline, it sounds a great
+    deal like a software project:
+
+
+    ![](img/8628b86fcc4f22d859c0104c2ec1d15f_366_0.png)
+
+
+    Source image: https://commons.wikimedia.org/wiki/File:Notre_Dame_dalla_Senna.jpg
+
+
+    Notre Dame was built over the course of ~182 years (1163 AD - ~1345 AD) under
+    at least four different architects. It was in continuous use from its earliest
+    days, despite ongoing construction. Although there was a plan at the outset, important
+    features (including some of the famous flying buttresses) were added over time
+    as construction difficulties uncovered a need for them. It is a remarkable feat
+    of engineering.'
+  merge: -1
+  img_proc: true
+- pgno: 367
+  md: "What makes it even more remarkable is that, in a very real sense, nobody involved\
+    \ really understood what they were doing. The underlying physical laws that justified\
+    \ the architectural decisions were not understood until Newton, almost 350 years\
+    \ later. Until Newton, all architectural knowledge was a result of trial and error\
+    \ – decisions about wall thickness, height, the ability to bear loads, arch height/width,\
+    \ and all other structural parameters were made based on the accumulated results\
+    \ of past experiment and the architect's own judgement.\n\nThis does not make\
+    \ their decisions wrong – obviously, they could build quite large, stable, and\
+    \ aesthetically pleasing buildings. What it does mean is that they had strict\
+    \ limits to what they could accomplish. As buildings got larger, there were fewer\
+    \ previous examples to rely on, and the costs of failure grew.\n\nSoftware development\
+    \ for massively parallel machines shares this problem. We have a lot of experience\
+    \ building smaller parallel systems, and some for larger degrees of parallelism,\
+    \ but the problems (and the costs of failure) are growing. What the field needs\
+    \ is something similar to the Principia – a unified theory of parallel programming.\
+    \ We need the Next Big Idea.\n\nUntil the Next Big Idea comes along, the scientific\
+    \ software development community can advance by adopting some practices from the\
+    \ field of software engineering.\n\n# Growing professionalism\n\n> \"A scientist\
+    \ builds in order to learn; an engineer learns in order to build.\"\n> \n> – Fred\
+    \ Brooks\n\nWhat scientists do and what engineers do is different. Scientists\
+    \ are concerned with extending knowledge, engineers with applying it. When a scientist\
+    \ builds something, its purpose is fulfilled when the desired knowledge is gained\
+    \ – at that point, the useful life of the object is over. When an engineer builds\
+    \ something, a long useful lifetime is the purpose of applying the knowledge.\n\
+    \nMuch scientific software is written by scientists for scientific purposes. It\
+    \ is no surprise that it is often considered expendable once the knowledge it\
+    \ was written to produce has been extracted. While this approach produces immediate\
+    \ results, other researchers in the field who would also wish to use the software\
+    \ often find it difficult to use, maintain, and extend."
+  merge: -1
+  img_proc: true
+- pgno: 368
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 369
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 370
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 371
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 372
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 373
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 374
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 375
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 376
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 377
+  md: "K\nkernel 45\nKill GIL 60\nL\nlists\n  about 289\n  bulleted 290\n  definition\
+    \ lists 290, 291\n  enumerated 289\nLoadBalancedView\n  about 146\n  data movement\
+    \ 147\n  imports 147\nload balancing 82\nM\nmagic commands\n  about 38\n  custom\
+    \ magic commands, creating 39\n  Cython 40\n  debugging 38\n  documentation 38\n\
+    \  IPython, configuring 41\n  logging 38\n  OS equivalents 38\n  other languages,\
+    \ working with 38\n  profiling 38\n  working with code 38\nMapReduce\n  about\
+    \ 77, 78\n  scatter and gather 78\n  sophisticated method 79, 80\nmap_sync\n \
+    \ using 66\nmarkdown cells 320\nmarkdown text\n  URL 319\nMathematica\n  URL 330\n\
+    Matplotlib\n  about 182\n  graph, modifying 186-189\n  initial graph 185, 186\n\
+    interactivity, controlling 189, 190\nstarting 182-184\nURL 187\nusing 322\nMessage\
+    \ Passing Interface (MPI)\n  about 107\n  broadcasting 110\n  configuration, changing\
+    \ 112\n  Hello World 108\n  master 113\n  point-to-point communication 109\n \
+    \ process control 113\n  rank and role 108\n  reduce 110-112\n  URL 74\n  work,\
+    \ dividing 112, 113\n  work, parceling out 113\nmessaging, use cases\n  about\
+    \ 117\n  heartbeat 118\n  IOPub 119\n  registration 117\nMicrosoft Azure\n  URL\
+    \ 342\nMIMD (Multiple Instruction Multiple Data stream) 80\nMIT (Expat) license\n\
+    \  URL 171\nmonkeypatching 249-251\nMonte Carlo simulation 84\nMPMD (Multiple\
+    \ Program Multiple Data stream) 80-82\nmp.pool.AsyncResult class\n  about 130\n\
+    \  example program, various methods used 131, 132\n  results, obtaining 130\n\
+    multi-core machines 60\nmultiple processors\n  using 61\nmultiprocessing.pool.Pool\
+    \ class\n  about 127\n  blocking methods 127\n  example program, various methods\
+    \ used 128-130\n  nonblocking methods 128\n  results, obtaining 128"
+  merge: -1
+  img_proc: true
+- pgno: 378
+  md: "multitasking\n  about 53\n  benefits 54\nmypy\n  URL 269\n\nN\n\nNational Science\
+    \ Foundation (NSF)\n  cloud 346\nnbconvert 326\nnbviewer 328\nneed for speed 1,\
+    \ 2\nnose2\n  about 251\n  assertions 256\n  back compatibility 252-254\n  decorators,\
+    \ using 259-261\n  individual tests, running 255, 256\n  installing, pip used\
+    \ 252\n  plugins 262\n  setup 256\n  teardown 256\n  test discovery 254\n  URL\
+    \ 251\n  XML creating, junitxml plugin used 262, 263\n  xUnit-style, modified\
+    \ 256-258\nnotebook\n  about 34, 35, 332\n  creating 314, 315\n  using, with tests\
+    \ 317\nnumpy\n  URL 278\nNVD3\n  URL 213\n\nO\n\nObject-oriented programming (OOP)\
+    \ 7\noct2py module/extension\n  about 161\n  installing 161\nOctave\n  %%octave\
+    \ magic 165, 166\n  %octave magic 162\n  about 161\n  code, running 170, 171\n\
+    graphics 167\noct2py, installing 161\noct2py module/extension 161\n  magic, using\
+    \ 161\n  pushing and pulling 166-170\n  URL 161\n  using 169\nOctave module\n\n\
+    P\n\npackage management\n  with conda 33\npairwise ZeroMQ\n  client 98\n  server\
+    \ 97\npandas\n  installing 202\nparallel computing 21\nparallelism\n  about 337\n\
+    \  better tools 343\n  Big Idea 342\n  cloud 342\n  computing 341\n  issues 339,\
+    \ 340\n  megahertz wars end 338, 339\n  next Big Idea 343-345\n  present 340\n\
+    \  techniques, pragmatic evolution 342\n  types 71, 72\n  with past 339, 340\n\
+    parallelism, types\n  ipcluster and mpiexec/mpirun 74, 75\n  ipcluster and PBS\
+    \ 75\n  Multiple Instruction Multiple Data stream (MIMD) 80\n  Multiple Program\
+    \ Multiple Data stream (MPMD) 80-82\n  SIMD 72-74\n  SPMD (Single Program Multiple\
+    \ Data stream) 74\nparallel magic commands\n  %autopx magic 70\n  %pxconfig magic\
+    \ 70\n  %%px magic 69\n  %px magic 68"
+  merge: -1
+  img_proc: true
+- pgno: 379
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 380
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 381
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true

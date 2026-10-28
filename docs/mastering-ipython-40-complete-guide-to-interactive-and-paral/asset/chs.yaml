@@ -1,0 +1,890 @@
+- '# IPython 4.0 精通：使用 IPython 4.0 的交互式和并行计算 完整指南
+
+
+
+
+
+  '
+- '# 前言
+
+
+  欢迎来到 IPython 4.0 的世界，它被用于高性能和并行环境。Python 本身在这些领域逐渐受到青睐，而 IPython 正是在这些优势之上构建的。
+
+
+  高性能计算（HPC）有许多特性，使其与大多数其他计算领域有所不同。我们将首先简要介绍 HPC 的不同之处，以及 IPython 如何成为一项颠覆性技术。
+
+
+  然后我们将从 IPython 命令行开始。既然 Jupyter 已从 IPython 项目中分离出来，这就是开发者与该语言交互的主要方式。这是一个足够重要的主题，值得用两章来讲述。在第一章中，我们将重点介绍基本命令，并理解
+  IPython 如何执行这些命令。第二章将涵盖更高级的命令，让读者对命令行的功能打下坚实的基础。
+
+
+  之后，我们将讨论并行编程的一些细节。IPython parallel 是一个包含 IPython 中并行计算所需大量功能的包。它支持一套灵活的并行编程模型，如果你想利用大规模并行架构的强大能力，这一点至关重要。
+
+
+  并行运行但在不同处理器上的程序，尽管拥有独立的地址空间，往往仍需要交换信息。它们通过发送消息来实现这一点。我们将介绍两个消息传递系统：ZeroMQ 和 MPI，并涉及它们如何在现有程序中使用以及如何与
+  IPython 交互。
+
+
+  接下来，我们将更深入地探讨能够提高生产力的库，无论它们是 IPython 自带的还是第三方提供的。本书无法涵盖所有工具，而且新工具层出不穷，但其中一些将特别适用于并行和
+  HPC 项目。
+
+
+  第 9 章《文档》讨论了文档的不同受众及其需求。在良好文档标准的背景下，演示了如何使用带有 reStructuredText、docutils 和 Sphinx
+  的 docstring。
+
+
+  第 10 章《访问 Jupyter》介绍了 Jupyter notebook，并将其描述为一种结合数据和计算的实验室笔记本。
+
+
+  第 11 章《走向未来》反思了当前快速变化的节奏，并展望了未来可能的发展方向，既涉及最近 IPython 与 Jupyter 项目的分离，也涉及科学计算领域整体的一些新兴趋势。
+
+
+  # 本书所需准备
+
+
+  本书基于 2015 年 8 月至 2016 年 3 月期间的 IPython 4.0 和 4.0.1（稳定版）编写；所有示例和函数在这些版本中均应可用。当需要第三方库时，会在相应位置注明所使用的版本。鉴于
+  IPython 4 实现、各种第三方库以及整个领域的变化速度，很遗憾，无法保证本书中的每个示例都能在每位读者的机器上运行。再加上机器架构和配置的差异，问题只会更加严重。尽管我们努力编写简洁、可移植的代码，但读者在让个别示例在自己的系统上运行时遇到一些困难，也不应感到意外。
+
+
+  # 本书读者对象
+
+
+  本书面向希望充分利用 IPython、利用交互式计算的便捷性，使用 IPython 进行高级科学计算的 IPython 开发者。
+
+
+  它非常适合希望了解 IPython 4.0 的交互式和并行计算特性，以及与第三方工具和概念（如测试和结果文档化）集成的用户。
+
+
+  # 约定
+
+
+  在本书中，您会发现多种文本样式来区分不同类型的信息。以下是这些样式的一些示例及其含义说明。
+
+
+  如今也是如此，只不过模型变得更大，模拟变得更加复杂。通过实际发射来测试新型核导弹是不明智的。相反，在软件中构建导弹模型，并在计算机上运行其发射模拟。设计缺陷可以在计算机中被暴露出来（在计算机中它们是无害的），而不是在现实中。
+
+
+  对导弹进行建模比对船只航程建模要复杂得多。运动部件更多，相关物理定律更复杂，容错性更低，如此等等。如果不使用比中世纪航海家所能获得的更复杂的工具，这是不可能做到的。归根结底，是我们的工具能力限制了我们的行动范围。
+
+
+  问题的本质是不断扩展，直至填满我们解决问题的能力上限。当计算机刚被发明时，它们似乎能解决我们所有的问题。但没过多久，新的问题就出现了。
+
+  '
+- "# FORTRAN 来救援——FORTRAN 所解决的问题\n\n在计算机取得最初的成功（破解德国密码和计算对数）之后，该领域遇到了两个问题。首先，机器本身速度很慢——或者至少对于手头的新问题来说比期望的慢。其次，编写机器用来解决问题的指令（代码）花费的时间太长。\n\
+  \n让机器本身更快主要是一个工程问题。底层基质从蒸汽和阀门发展到机电继电器，再到真空管，最后到集成电路。每一次基质的变化都提高了指令执行的速度。这种形式的进步虽然有趣，但超出了本书的范围。\n\
+  \n一旦计算机发展到不再需要通过布线来设置程序，程序员就可以开始用编程语言以文本形式表达算法。虽然打字比布线快，但它也有自己的问题。Fortran 是最早成功解决这些问题的语言之一。\n\
+  \n# 可读性\n\n早期的语言通常不太人性化。编写（以及阅读）用这些语言编写的程序需要专门训练。程序员通常会在代码中添加注释，要么在代码本身中，要么在外部文档中，但问题更深层。语言本身就很晦涩难懂。\n\
+  \n# 构建（和维护）软件的成本\n\n如果开发者们都天赋相当、免费工作、开发时间不受限制、所有代码都没有错误，并且所有程序只需要运行一次然后就被丢弃，那么鉴于其效率和已有的库基础，Fortran\
+  \ 将是明显的赢家。\n\n但商业软件并非如此开发。粗略来看，软件项目的成本可以分为以下几个部分：\n\n- 需求和规格收集\n- 开发\n- 执行\n- 测试和维护\n\
+  \n# 需求和规格收集\n\n在生成良好的需求和规格的难度方面，IPython 和 Fortran 之间没有明显区别。这些活动与语言无关。虽然预先编写好的软件包的可用性可能会影响规格的某些部分，但两种语言在将需求和规格转化为可运行系统方面具有同等能力。\n\
+  \n# 开发\n\n如前所述，Python 代码往往更简洁，从而带来更高的程序员生产力。再加上越来越多的开发者已经熟练掌握 Python，在缩短开发时间方面，Python\
+  \ 显然是赢家。\n\n# 执行\n\n如果在目标系统上运行成本很高（许多超级计算机就是如此），或者程序运行时间很长（某些大规模模拟如天气预报就是如此），那么\
+  \ Fortran 的运行时效率是无与伦比的。当程序的开发工作基本完成，大部分时间都花在等待其运行完成上时，这一考量尤其重要。\n\n\n\n\n\n## 恶性结节和良性结节\n\
+  \n![](img/8628b86fcc4f22d859c0104c2ec1d15f_51_0.png)\n\n**良性结节**：形态规则、边界清晰、内部回声均匀\n\
+  \n**恶性结节**：形态不规则、边界模糊、内部回声不均匀\n\n乳腺结节的发病率逐年增高，超声检查是发现乳腺结节的主要手段之一。良性结节和恶性结节的超声征象有较大区别。良性结节多表现为形态规则、边界清晰、内部回声均匀；恶性结节多表现为形态不规则、边界模糊、内部回声不均匀。\n\
+  \n## 使用多处理器\n\n鉴于线程对于CPU密集型代码的局限性，也许可以通过使用多处理器来找到解决方案。CPU密集型算法与线程的问题在于存在一个隐式共享资源：CPU。使用多处理器可以缓解这一限制——每个函数调用都可以拥有自己的CPU，最多可达物理CPU数量。每个CPU将独立并行工作，而不是成为瓶颈。我们将在以下章节中探讨IPython为使用多处理器提供的工具。\n\
+  \n## IPython并行架构\n\n`IPython.parallel`包已迁移到`ipyparallel`项目。虽然这不是重大变化，但这引入了对ZeroMQ消息传递库的依赖。\n\
+  \n## 概述\n\nipyparallel架构是串行IPython架构的自然扩展。客户端与解释器的解耦使得多个解释器和客户端可以并行运行的架构成为可能。\n\n\
+  ## 组件\n\nIPython架构由四个组件组成：\n\n-   IPython引擎\n-   IPython控制器/客户端\n-   IPython中心\n\
+  -   IPython调度器\n\n## IPython引擎\n\nIPython引擎是一个Python实例，它通过网络连接接受Python命令和对象。在不同处理器上运行引擎的能力使IPython中的分布式计算成为可能。\n\
+  \n## IPython控制器\n\nIPython控制器为使用一组引擎提供了接口。它由一个中心（hub）和一组调度器（schedulers）组成。控制器为希望与引擎交互的用户提供了单一联系点。\n\
+  \n## 让数据更重要\n\n## 从大数据到富数据\n\n![](img/8628b86fcc4f22d859c0104c2ec1d15f_95_0.png)\n\
+  \n数据不仅仅关乎数量；\n更关乎丰富性。\n\n> 市场即对话，数据的价值通过其使用而创造，而非通过其积累。\n\n给定一个用于处理数据的函数func，以及一个用于确定向每个引擎发送哪些数据的子集函数，这将把所有并行调用的结果放入results列表中。\n\
+  \n虽然不如Hadoop强大或复杂，但这些机制提供了一种轻量级替代方案，适用于较小数据集的探索性分析。\n\n## MIMD\n\n多指令多数据流（Multiple\
+  \ Instruction Multiple Data，MIMD）范式描述了一种多个处理器可以在不同数据流上执行不同指令的情况。它可以被看作是SIMD的一种稍加通用的形式，其中每个处理单元不必与其他所有处理单元保持同步。实际上，该术语通常指（更通用的）MPMD范式，这将在后面讨论。\n\
+  \n## MPMD\n\n多程序多数据流（Multiple Program Multiple Data，MPMD）范式是并行计算最通用的形式。在这种范式中，各个处理单元本质上是独立的程序，它们之间可能通信也可能不通信。这在异构环境中尤其方便，因为系统的不同部分可能需要各种专门的资源。\n\
+  \n给定一个对先前示例稍作修改的程序，我们希望确保`useGPUs`函数仅在带有GPU的节点上执行：\n\n```python\nimport numpy\n\
+  from numba import vectorize\n\n@vectorize([\"float32(float32, float32)\"], target=\"\
+  gpu\")\ndef vectorAdd(a, b):\n    return a + b\n\ndef useGPUs():\n    N = 64\n\n\
+  \    A = numpy.random.rand(N).astype(numpy.float32)\n    B = numpy.random.rand(N).astype(numpy.float32)\n\
+  \    C = numpy.zeros(N, dtype=numpy.float32)\n\n    C = vectorAdd(A, B)\n    print(C)\n\
+  ```\n\n## 数据并行性\n\n到目前为止，我们主要讨论了任务的分布方式，而将数据置于后台。同样，审视数据的获取方式以及如何将数据提供给任务，也很有启发性。毕竟，如果任务缺乏数据，就无法产生任何结果。\n\
+  \n## 无数据依赖\n\n这种情况是指每个任务要么不需要数据，要么可以独立生成数据（也许通过传感器读数或随机数生成器）。这通常发生在运行蒙特卡洛模拟时，其中每个模拟的唯一输入是一个随机数。\n\
+  \n![](img/8628b86fcc4f22d859c0104c2ec1d15f_106_0.png)\n\n> **蒙特卡洛模拟**\n>\n> 在模拟中，参数的确切值通常是未知的。在这种情况下，蒙特卡洛方法需要多次运行模拟，每次运行对每个参数使用一个有效但随机选择的值。然后可以将各次运行的结果进行统计合并，以提供所需结果的估计值。\n\
+  \n在此示例中，每次模拟实例同样可以生成自己的随机数，因此仅有的数据交换如下：\n\n-   在运行开始时，将发送一些最少的配置数据（例如，步数或容差）\n-\
+  \   在运行结束时，当结果被收集时\n\n考虑以下蒙特卡洛计算π的示例：\n\n```python\ndef monteCarloPI(n):\n    s\
+  \ = 0\n    for i in xrange(n):\n        x = random()\n        y = random()\n   \
+  \     if x*x + y*y <= 1:\n            s+=1\n    return 4.*s/n\n\ndef parCalcPI(view,\
+  \ n):\n    p = len(view.targets)\n\n    ar = view.apply(monteCarloPI, n)\n    return\
+  \ sum(ar)/p\n```\n\n```python\nfor i in range(numFiles):\n    filename = \"infile\"\
+  \ + i + \".txt\"\n    dv.targets = i % numEngines\n    asyncResults.append(dv.apply(countWords,\
+  \ filename))\n\nfor r in asyncResults:\n    results.append(r.get())\n```\n\n读者会认出这与前面描述的散播-聚集（scatter-gather）方法相似，主要区别在于各个引擎使用的数据主要不是原始调用中发送的数据，而是存储在单独文件中的数据。\n\
+  \n这种数据并行形式的主要缺点与物理机器的底层架构有关。粗略地说，大多数HPC机器都有本地存储和远程存储。本地存储包括RAM和一个小硬盘。远程存储包括硬盘组和大量磁带。当进程在节点上启动时，该节点的远程存储实际上是空白的。这意味着该节点使用的任何文件都必须从远程存储读入本地存储。本地和远程存储通过网络连接，该网络由所有节点共享，无论运行在其上的进程属于谁。\n\
+  \n如果像我们的小示例那样，大量节点同时尝试打开远程存储中的文件进行读取，那么连接本地和远程存储的网络将因需要将这些文件从远程存储传输到需要访问的各个节点而不堪重负。这本身并不是致命错误。然而，它会严重影响性能，并且是那种会让系统管理员发来愤怒邮件的事情。\n\
+  \n为了避免这些问题，有必要既控制哪个任务访问哪个文件，也要控制文件的物理存储位置。这个问题超出了本书的范围——如果读者感兴趣，**Hadoop分布式文件系统（HDFS）**提供了一种有趣的方法。\n\
+  \n前面的方法都有一个共同特征——数据只在控制器和引擎之间流动。更复杂的流将在后续章节中讨论。\n\n## 应用引导\n\n应用引导（Application steering）是对程序进行交互式操作以影响其行为的过程。它允许用户在应用程序执行期间对其进行监控和控制。本章已经介绍了IPython为支持某些基本形式的应用引导所提供的工具。本节将仅描述一些简单的应用。\n\
+  \n\n\n\n从某种程度上说，ZeroMQ 会尝试从外部错误中恢复。例如，它会尝试以智能方式处理网络错误，甚至在合理时自动重试。尽管该框架无法处理可能发生的每一个错误，但任何确实导致调用无法成功完成的错误，很可能都需要发起调用的进程来处理。即使\
+  \ ZeroMQ 其他什么都不做，仅凭这一特性就值得使用。\n\n如果由于某种原因无法成功，在底层，这意味着每个 ZeroMQ 调用都会返回一个状态码或导致断言失败。ZeroMQ\
+  \ 的 Python 包装器往往会针对任何类型的错误事件抛出异常。下表总结了这些异常：\n\n| 异常 | 条件 |\n|---|---|\n| ZMQError\
+  \ | 包装一个 ZeroMQ 错误编号 |\n| ZMQVersionError | 当链接的 libzmq 版本未提供某个特性时抛出 |\n| Again\
+  \ | ZeroMQ EAGAIN 错误的包装器 |\n| ContextTerminated | ZeroMQ ETERM 错误的包装器 |\n| NotDone\
+  \ | 等待消息时超时 |\n| ZMQBindError | 当套接字无法绑定到端口时 |\n\n完整细节可以在 `https://pymq.readthedocs.org/en/latest/api/index.html`\
+  \ 找到。每次对 ZeroMQ 的调用都应该包装在 try-catch 块中，并且鼓励大量使用断言。然而，尽管错误处理在生产环境中很重要，但它往往会扰乱原本简洁的代码。所有示例都将省略错误处理：\n\
+  \n- **第 14 行：** 接收请求是一个阻塞语句。该进程将无限期等待先前指定端口上的连接。可以指定一个限制，使等待超时。\n- **第 21 行：** 收到消息并完成（一些最少限度的）处理后，可以将响应发送回发起连接的进程。在底层，ZeroMQ\
+  \ 发送的是字节，而不是 Python 字符。如果客户端和服务器都是 Python（且可能是同一版本），以这种方式发送字符串应该没有问题。\n\n跨语言和跨平台应用程序可能希望使用以下方式：\n\
+  \n```\nsocket.send(b\"World\")\n```\n\n而不是使用下面这行代码：\n\n```\nsocket.send(\"World\"\
+  )\n```\n\n# 发布者\n\n这是一个发布者。它使用 PUB 套接字将时间和天气发送给任意数量的订阅者：\n\n```\n```python\nimport\
+  \ zmq\nimport random\n\ncontext = zmq.Context()\nsocket = context.socket(zmq.PUB)\n\
+  socket.bind(\"tcp://*:5678\")\n\nwhile True:\n    topic = \"load\"\n    socket.send(topic\
+  \ + \" \" + str(random.random()))\n\n    topic = \"weather\"\n    messagedata =\
+  \ \"dark and stormy night\"\n    socket.send(topic + \" \" + messagedata)\n\n  \
+  \  time.sleep(1)\n```\n```\n\n# 订阅者\n\n该订阅者使用 SUB 套接字来监听上述发布者。但它只对天气感兴趣：\n\n```\n\
+  ```python\nimport zmq\n\ncontext = zmq.Context()\nsocket = context.socket(zmq.SUB)\n\
+  socket.connect(\"tcp://localhost:5678\")\nsocket.setsockopt_string(zmq.SUBSCRIBE,\
+  \ \"weather\")\n\nwhile True:\n    wtr = socket.recv_string()\n    print(\"the weather\
+  \ is: \" + wtr)\n```\n```\n\n# 广播\n\n使用 MPI 时，广播似乎并不适用：毕竟，每个进程都运行相同的代码，那么一个进程怎么能知道另一个进程不知道的信息呢？一个不对称的例子来自\
+  \ I/O 的使用。考虑一个程序，它接收用户输入，然后在每个进程中根据该输入执行操作。如果每个进程都独立地向用户请求输入，那将是疯狂的。0 号进程（rank 0）应该收集输入，然后将其发送给所有其他进程，例如：\n\
+  \n```\n```python\nfrom mpi4py import MPI\n\ncomm = MPI.COMM_WORLD\nrank = comm.Get_rank()\n\
+  \nif rank == 0:\n    data = input(\"Please enter random number seed\")\nelse:\n\
+  \    data = None\n\n# mpi4py wants to send an object, so we will leave the\n# input\
+  \ in that format\ndata = comm.bcast(data, root=0)\n```\n```\n\n# 归约\n\n当所有进程执行各自独立的操作时，将它们的计算结果合并起来可能很有用。例如，在计算函数的黎曼积分时，将工作分配到多个进程上可能会高效得多。然后所得结果就是每个进程中计算出的值之和，例如：\n\
+  \n```\n```python\nimport numpy\n\nimport sys\nfrom mpi4py import MPI\n\ncomm = MPI.COMM_WORLD\n\
+  rank = comm.Get_rank()\n\n# integrate from in [0, 4] using 8 rectangles\na = 0\n\
+  b = 4\n```\n```\n\n## ZeroMQ 与 IPython\n\nZeroMQ 不仅仅是一个用于并行环境的消息库：IPython 已经转向使用\
+  \ ZeroMQ 作为其内部消息传递基础设施。在本节中，我们将从 ZeroMQ 底层机制的角度，提供有关 IPython 运行的更多细节。\n\n为此，我们将介绍一些额外的套接字类型，描述它们如何交互以支持\
+  \ IPython 的某些并行组件，最后介绍一些使用这些组件的用例。虽然本节无法涵盖 IPython 并行架构的所有细节，但希望这些示例能让用户对底层机制有一个基本的了解。\n\
+  \n### ZeroMQ 套接字类型\n\nZeroMQ 支持大量不同类型的套接字，截至目前（版本 4.2.0）共有 14 种。上一节概述了一些重要的类型，但要讨论\
+  \ IPython 架构，至少需要对一些高级套接字类型有初步了解：\n\n- **DEALER：** 这类似于 REQ 套接字，但它是异步的。每条发送的消息都会以轮询（round-robin）方式在所有已连接对等节点间发送，每条接收的消息都会从所有已连接对等节点公平排队。它与\
+  \ ROUTER、REP 和 DEALER 套接字兼容。\n- **ROUTER：** 这类似于 REP 套接字，但它是异步的。它会跟踪所有已连接的对等节点。路由器发送的每条消息都包含消息来源的身份标识。这使得套接字能够根据消息来源进行路由。当\
+  \ ROUTER 连接了多个 REQ 和 REP 套接字时，需要将消息发送到正确的端点。\n\n### IPython 组件\n\n*第 3 章“迈向 IPython\
+  \ 并行计算”* 概述了 IPython 的主要架构组件。在本节中，我们将提供更多细节，重点介绍每个组件如何使用消息传递来执行其任务。\n\nZeroMQ 追求最小化配置：客户端和引擎只需知道\
+  \ Hub 的 ROUTER 套接字的 IP 地址和端口即可连接。一旦建立了这个初始连接，建立进一步连接所需的任何信息都会发送过去。此外，客户端还可以利用此连接向\
+  \ Hub 查询关于引擎的状态信息。这样就形成了一个简单的连接架构：客户端和引擎都使用 DEAL 套接字，而 Hub 使用 ROUT 套接字：\n\n![](img/8628b86fcc4f22d859c0104c2ec1d15f_140_0.png)\n\
+  \n# 心跳\n\nHub 还负责检查哪些引擎仍在响应。为此，它会定期向每个引擎发送一条消息。然后引擎会以相同的消息进行响应，并带有前缀表示哪个引擎作出了响应。如果某个引擎没有响应，Hub\
+  \ 将尝试终止它。\n\n\n\n\n\n![](img/8628b86fcc4f22d859c0104c2ec1d15f_141_0.png)\n\n## IOPub\n\
+  \nstdout/stderr 通过 PUB 套接字被捕获并发布。Client 和 Hub 都会收到一份副本：\n\n![](img/8628b86fcc4f22d859c0104c2ec1d15f_141_1.png)\n"
+- "## 打开工具包 – IPython API\n\n本章涵盖 IPython 中一些在其他地方未涉及的有用功能，以及一些值得深入介绍的功能。\n\n将涵盖以下主题：\n\
+  \n- 性能分析\n- `AsyncResult` 类\n- 结果元数据\n- `Client` 类\n- `View` 类（包括 `DirectView` 和\
+  \ `LoadBalancedView`）\n\n> IPython 库在参数方面非常灵活。大多数参数都是可选的，并且有合理的默认值。本章不会试图描述每个函数的每个参数，而是会介绍这些库提供的更有趣的功能。我已将相应链接添加到官方文档中，供进一步参考。\n\
+  \n### 性能分析\n\n在优化系统之前，最好确切地知道哪一部分慢。IPython 为此添加了一些专门的工具，以及 Python 提供的工具。\n\n```text\n\
+  1.71828182846\n1.71828182846\n1.71828182846\n1.71828182846\n1.71828182846\n1.71828182846\n\
+  1.71828182846\n1.71828182846\n1.71828182846\n1.71828182846\n1.71828182846\n1.71828182846\n\
+  1.71828182846\n1.71828182846\n1.71828182846\n1.71828182846\n1.71828182846\n1.71828182846\n\
+  1.71828182846\n1.71828182846\n1.71828182846\n1.71828182846\n1.71828182846\n1.71828182846\n\
+  1.71828182846\n10 loops, best of 3: 344 μs per loop\n```\n\n`%%timeit`（和 `%timeit`）接受许多选项——使用\
+  \ `?timeit` 查看详细信息。\n\n### 使用 %%prun\n\n`%%prun` 魔法命令使用 Python 内置的 `cProfile` 模块。它提供了关于时间花费在何处的更多信息。特别是，它可以按函数细分执行时间。下面是一个示例：\n\
+  \n```python\nIn [58]: %%prun\n\ns = 0\nfor i in range(1, 1500):\n    s = s + 1/math.factorial(i)\n\
+  ```\n\n### 作业控制\n\n每个 View 还包含用于控制其队列中作业的函数。这些函数与 `Client` 中提供的函数类似，但仅适用于 View 中的引擎：\n\
+  \n| 方法 | 参数 | 作用 |\n|---|---|---|\n| abort | `jobs`（以下之一）：<br>`(list of) str`<br>`None`<br>`targets`\
+  \ | `(list of) str` 是要中止的 `msg_id` 列表。如果为 None，则中止所有作业。该操作会在 `targets` 中列出的所有引擎上发生。\
+  \ |\n| get_result | `indices_or_msg_ids`（以下之一）：<br>`(list of) job index`<br>`(list\
+  \ of) msg_ids` | 通过 `msg_id` 或历史索引获取作业结果。结果是一个 `AsyncResult` 对象。当作业被阻塞时，这很有用，因为客户端将无法访问这些信息。\
+  \ |\n| queue_status | `targets`（以下之一）：<br>`(list of) int`<br>`(list of) str` | 返回所列引擎队列的状态。默认返回所有队列的状态。\
+  \ |\n| shutdown | `targets`（以下之一）：<br>`list of ints`<br>`\"all\"`<br>`hub: bool`\
+  \ | 终止引擎进程。如果 hub 为 True，它还会终止 Hub。 |\n\n### DirectView\n\n`DirectView` 对象就像一个多路复用器——它有一组引擎（`targets`），并对所有引擎执行相同的操作。基本概念是，可以将\
+  \ `DirectView` 视为单个引擎，只不过它会在多个引擎上并行执行。\n\n这对函数执行的影响很简单：\n\n- 对于 `apply*` 函数，`f`、`*args`\
+  \ 和 `**kwargs` 会被发送到目标组中的每个引擎。\n- 对于 `map*` 函数，`f`、来自 `*sequences` 的一个条目以及 `**kwargs`\
+  \ 会被发送到目标组中的每个引擎。每个引擎从 `*sequences` 中获得不同的条目。如果 `*sequences` 中的元素多于引擎数，某些引擎将多次执行，每次使用不同的条目。\n\
+  \n## 打开工具包 – IPython API\n\nDirectView 作为一个多路复用器工作。它有一组引擎（targets），并对所有引擎执行相同的操作。这使开发人员可以将一组引擎视为一个单一实体。DirectView\
+  \ 的一个重要能力是让所有目标引擎上的事物保持“相同”。具体来说，DirectView 提供了数据移动机制（全局字典、scatter-gather 和 push-pull）以及环境管理机制（sync_imports\
+  \ 上下文管理器）。\n\nLoadBalancedView 也允许将多个引擎视为单个引擎。然而，在这种情况下，概念模型是单个非阻塞引擎，而不是一组引擎。控制器可以非阻塞地向\
+  \ LoadBalancedView 提交多个作业。而 LoadBalancedView 本身则依赖调度器来实际执行作业。这不会改变相对于 DirectView\
+  \ 的环境管理状况，但确实需要外部数据移动工具，如 MPI 或 ZeroMQ。\n\n虽然本章简要概述了 IPython 库中一些更有用的功能，但 IPython\
+  \ 本身并不能完成所有事情。在下一章中，我们将了解如何将其他语言与 Python 结合，以进一步扩展可用工具的范围。\n\n这段代码非常有趣，值得更仔细地看一看：\n\
+  \n- **第 1 行：** 该魔法命令启动多行 R 解释器。与 `%R` 魔法命令不同，默认情况下它不会向 IPython 返回任何内容。变量的值可以使用本节后面会介绍的命令推送到\
+  \ R 或从 R 拉取。\n- **第 2-3 行：** 这两行对 mtcars 数据集/数组进行切片。使用了下标表示法，其中下标是一个测试。通俗地说，第 2\
+  \ 行的意思是“返回 mtcars 中 cyl 列值为 4 的所有行”（第 3 行和八缸的情况类似）。逗号是必需的。\n\n> 在 R 中，`=` 和 `<-`\
+  \ 之间存在细微差别，但在这里我们无需关心。就我们的目的而言，用箭头替换等号不会有什么区别。\n\n- **第 4 行：** 这执行了一个 t 检验，比较我们在前面几行中分离出的四缸和八缸汽车的\
+  \ mpg 列。简而言之，考虑到数据集中包含的汽车，四缸汽车几乎肯定比八缸汽车更省油。\n\n### 拉取与推送\n\n鉴于前面的示例，了解一下哪些汽车有四个气缸可能会很有趣（也许它们不能代表一般的四缸汽车，那么我们的检验就不会像我们想的那样有信息量）。尽管\
+  \ `%R` 魔法命令不返回值，而且魔法已经结束，但这些数据并没有消失。它存储在 fourCyl 变量中，该变量存在于共享的 R 实例中，可以使用 `%Rpull`\
+  \ 魔法命令将其拉取到 IPython 中：\n\n```\nIn [40]: %Rpull fourCyl\n\nIn [41]: fourCyl\nOut[41]:\n\
+  ```\n\n|   | mpg | cyl | disp | hp | drat | wt | qsec | vs | am | gear | carb |\n\
+  |---|---|---|---|---|---|---|---|---|---|---|---|\n| Datsun 710 | 22.8 | 4 | 108.0\
+  \ | 93 | 3.85 | 2.320 | 18.61 | 1 | 1 | 4 | 1 |\n| Merc 240D | 24.4 | 4 | 146.7\
+  \ | 62 | 3.69 | 3.190 | 20.00 | 1 | 0 | 4 | 2 |\n| Merc 230 | 22.8 | 4 | 140.8 |\
+  \ 95 | 3.92 | 3.150 | 22.90 | 1 | 0 | 4 | 2 |\n\n\n\n\n\n这会对数据拟合一条直线和一个二次方程。\n"
+- "## 使用 rpy2.robjects\n\nrpy2 可以作为标准模块导入，并从 IPython 的命令行中使用。有多种使用方式，开发者也可以基于 rpy2.interface\
+  \ 构建自己的使用方式。rpy2.robjects 模块是进行常规开发时的一种常用选择。\n\n### 基础知识\n\n导入 rpy2.robjects 模块时，会加载一个单例对象\
+  \ r。这是 R 进程的入口点。下面是一个示例：\n\n```python\nIn [5]: import rpy2.robjects as robjects\n\
+  \nIn [6]: robjects.r\nOut[6]: <rpy2.robjects.R at 0x2ad3d0960a90>\n```\n\nR 会话中的元素可以作为\
+  \ robjects.r 对象的属性访问：\n\n```python\nIn [7]: robjects.r.mtcars\nOut[7]:\n<DataFrame\
+  \ - Python:0x2ad3d0dfd6c8 / R:0x262cef0>\n[Float..., Float..., Float..., ..., Float...,\
+  \ Float..., Float...]\n  mpg: <class 'rpy2.robjects.vectors.FloatVector'>\n    <FloatVector\
+  \ - Python:0x2ad3d0dfdb08 / R:0x2daf890>\n[21.000000, 21.000000, 22.800000, ...,\
+  \ 19.700000, 15.000000, 21.400000]\n  cyl: <class 'rpy2.robjects.vectors.FloatVector'>\n\
+  \    <FloatVector - Python:0x2ad3d0e03488 / R:0x345abaa0>\n[6.000000, 6.000000,\
+  \ 4.000000, ..., 6.000000, 8.000000, 4.000000]\n  disp: <class 'rpy2.robjects.vectors.FloatVector'>\n\
+  \    <FloatVector - Python:0x2ad3d0e03988 / R:0x33ed340>\n[160.000000, 160.000000,\
+  \ 108.000000, ..., 145.000000, 301.000000, 121.000000]\n  ...\n  mpg: <class 'rpy2.robjects.vectors.FloatVector'>\n\
+  \    <FloatVector - Python:0x2ad3d0e03fc8 / R:0x38dfd40>\n[1.000000, 1.000000, 1.000000,\
+  \ ..., 1.000000, 1.000000, 1.000000]\n  cyl: <class 'rpy2.robjects.vectors.FloatVector'>\n\
+  \    <FloatVector - Python:0x2ad3d0e06508 / R:0x2847ca0>\n\n[4.000000, 4.000000,\
+  \ 4.000000, ..., 5.000000, 5.000000, 4.000000]\n\ndisp: <class 'rpy2.robjects.vectors.FloatVector'>\n\
+  \n<FloatVector - Python:0x2ad3d30e06a08 / R:0x3bc0b60>\n\n[4.000000, 4.000000, 1.000000,\
+  \ ..., 6.000000, 8.000000, 2.000000]\n```\n\n在大多数情况下，使用 Rmagic 可以完成的操作，都可以通过 robjects.r\
+  \ 完成：\n\n```python\nIn [18]: %R\n\n   ....: letters\n   ....:\n\n[1] \"a\" \"b\"\
+  \ \"c\" \"d\" \"e\" \"f\" \"g\" \"h\" \"i\" \"j\" \"k\" \"l\" \"m\" \"n\" \"o\"\
+  \ \"p\" \"q\"\n[1] \"r\" \"s\"\n[20] \"t\" \"u\" \"v\" \"w\" \"x\" \"y\" \"z\"\n\
+  ```\n\n```python\nIn [19]: robjects.r.letters\n\nOut[19]:\n\n<StrVector - Python:0x2ad3d8887f48\
+  \ / R:0x4735690>\n['a', 'b', 'c', ..., 'x', 'y', 'z']\n```\n\n不过，两者并不完全对应。下面尝试访问\
+  \ mtcars 数据框中的 wt 列时，就可以说明这一点：\n\n```python\nIn [8]: robjects.r.mtcars$mpg\n   File\
+  \ \"<ipython-input-8-d46a62a01451>\", line 1\n     robjects.r.mtcars$mpg\n     \
+  \                 ^\nSyntaxError: invalid syntax\n```\n\n此时需要使用数值索引：\n\n```python\n\
+  In [17]: robjects.r.mtcars[5]\n\nOut[17]:\n\n<FloatVector - Python:0x2ad3d887efc8\
+  \ / R:0x31b0650>\n[2.620000, 2.875000, 2.320000, ..., 2.770000, 3.570000, 2.780000]\n\
+  ```\n\n我们求出特征值和特征向量：\n\n```python\nIn [13]: %octave mat = [1 2 3; 4 5 6; 7 8 9];\
+  \ [vect, vals] = eig(mat)\n\nvect =\n\n   -0.231971  -0.785830   0.408248\n   -0.525322\
+  \  -0.086751  -0.816497\n   -0.818673   0.612328   0.408248\n\nvals =\n\nDiagonal\
+  \ Matrix\n\n    1.6117e+01             0             0\n             0   -1.1168e+00\
+  \             0\n             0             0   -1.3037e-15\n```\n\n## 容易混淆的问题\n\
+  \n请注意，这里的语法和语义可能比较棘手。Octave 语言中 `eig` 函数的定义规定了以下行为：\n\n-   `lambda = eig(A)` 返回\
+  \ A 的特征值，并将其存储在向量 lambda 中。\n-   `[V, lambda] = eig(A)` 还会在 V 中返回特征向量，但此时 lambda\
+  \ 是一个矩阵，其对角线包含特征值。以下关系成立（存在舍入误差）：`A = V*lambda*inv(V)`。\n\n`[a, b]` 表示法和多个返回值无法无缝转换到\
+  \ IPython 中。\n\n因此，下面的代码在一定程度上能够按预期工作（人们自然也会认为 x 应该是一个包含两个元素的向量）：\n\n```python\n\
+  In [14]: x = %octave mat = [1 2 3; 4 5 6; 7 8 9]; eig(mat)\n\nans =\n\n    1.6117e+01\n\
+  \   -1.1168e+00\n   -1.3037e-15\n\nIn [15]: x\n```\n\n## “一带一路”倡议下中国中小企业国际电子商务平台可行性研究\n\
+  \n**冯宇**  \n北京交通大学经济管理学院，中国北京  \n电子邮箱：fengyu@bjtu.edu.cn\n\n*本文分析了“一带一路”倡议下中国中小企业开展国际电子商务的可行性和战略路径。在分析当前形势与现存问题的基础上，本文提出了合作型电子商务平台框架，并探讨了成功的关键因素。*\n\
+  \n**关键词：**“一带一路”倡议；中小企业；国际电子商务；可行性研究；合作型平台\n\n### 1. 引言\n\n随着“一带一路”倡议的持续推进，中国中小企业正面临拓展国际市场的新机遇。然而，由于资源有限且缺乏经验，这些企业在跨境电子商务领域往往会遇到困难。本研究旨在探讨建立一个符合中国中小企业需求的国际电子商务平台的可行性。\n\
+  \n作为一种新兴商业模式，国际电子商务可以帮助中小企业克服地理障碍、降低交易成本并改善市场准入。“一带一路”沿线国家的发展为此类平台提供了有利的政策环境和市场需求。\n\
+  \n### 2. 文献综述\n\n现有研究已经广泛考察了中小企业对电子商务的采用、“一带一路”倡议对贸易的影响，以及跨境平台的设计。然而，很少有研究关注这两个主题的结合。本文通过同时研究宏观层面的政策支持和微观层面的企业需求，填补了这一空白。\n\
+  \n- 宏观层面：政策协调、基础设施互联互通、贸易便利化\n- 微观层面：中小企业能力、技术采用、物流整合\n- 平台层面：商业模式、服务生态系统、风险管理\n\
+  \n### 3. 可行性分析\n\n本节从政策、市场、技术和资本等角度评估拟议平台的可行性。结果表明，尽管存在挑战，但在“一带一路”背景下，建立国际电子商务平台的整体环境是有利的。\n\
+  \n```text\nretval = quad(\"myFunc\", 0, pi)\ndisp(\"hello\")\nendfunction\n\nfunction\
+  \ y = myFunc(x)\n    y = sin(x) * sqrt(abs(cos(x)))\nendfunction\n```\n\n我们可以使用以下\
+  \ IPython 命令来运行它：\n\n```python\nIn [1]: from oct2py import octave\n\nIn [2]: octave.addpath(\"\
+  /nfs/02/wit0096/Packt/chap06/\")\n\nIn [3]: octave.myIntegrate( )\nOut[3]: 1.3333333333333326\n\
+  ```\n\n这样就可以轻松地对复杂函数进行积分。\n\n## Hy\n\n有时，只有函数式编程语言才能满足需求。在机器学习和人工智能领域尤其如此，因为 Lisp\
+  \ 和 Scheme 在这些领域拥有悠久的传统。Hy 是 Lisp 的一种方言，可以将表达式转换为 Python 的抽象语法树格式。\n\n抽象语法树是对程序结构的高级表示，与源代码无关。Python\
+  \ 解析器会将所有 Python 程序转换为抽象语法树，之后解释器会在生成可执行字节码的过程中，对这棵树执行进一步操作。由于 Hy 前端接受 Hy 代码作为输入，并输出与\
+  \ Python 解释器兼容的抽象语法树，因此 Hy 代码会与 Python 代码在同一个解释器中运行。\n\n从实际应用角度看，Hy 程序可以调用任意 Python\
+  \ 库，而 Python 代码也可以调用 Hy 代码。\n\n它以 MIT（Expat）许可证发布，主页地址为 `http://docs.hylang.org/en/latest/`。\n\
+  \n> “Hy 是一种嵌入 Python 的出色 Lisp 方言。\n>\n> 由于 Hy 会将其 Lisp 代码转换为 Python 抽象语法树，因此你可以用\
+  \ Lisp 的形式，随时使用 Python 的整个精彩世界！”\n\n\n\n\n关于 Hy 的括号，奇怪之处在于它们位于函数名之前、参数之后，而不是位于函数名之后并包围参数。这是\
+  \ Lisp 及其所有方言的标准语法。这种形式创建的语法单元称为*表达式*，每个表达式都具有相同的形式：\n\n```\n(<function> <arguments>)\n\
+  ```\n\n在 Hy 中，一切都是表达式，所以会有大量括号。起初可能看起来不太习惯，但这种简洁的语法使表达式求值变得简单：\n- 将函数应用于参数，返回表达式的值\n\
+  - 永远只存在一个函数\n\n## 算术运算的位置不同寻常\n\n将 1 和 1 相加的代码如下：\n\n```\n(+ 1 1)\n```\n\n这遵循标准表达式语义：先是函数，后是参数（在这里是先运算符，后操作数）。人们使用中缀表示法并不是\
+  \ Hy 的错——一致性是编程语言的一种美德。这种表示法的一个附带好处是算术运算符可以接受任意数量的操作数：\n\n```\n(* 1 2 3 4)\n```\n\
+  \n这将返回 24。\n\n但是，这不应与栈算术的前缀版本混淆。表达式：\n\n```\n(* + + 1 2 3 4)\n```\n\n是一个语法错误。它违反前面列表中的第二条规则，因为在一对括号内包含了多个函数。\n\
+  \n## 函数组合无处不在\n\n可以用括号修复前面的示例：\n\n```\n(* (+ (+ 1 2) 3) 4)\n```\n\n```\nif curr\
+  \ % 2 == 1:\n    curr = 3 * curr + 1\nelse:\n    curr = curr/2\n    return tmp\n\
+  ....:\n```\n\n```\nIn [21]: %hylang (f 35)\nOut[21]: 13\n```\n\nPython 的内置函数和库也是如此：\n\
+  \n```\nIn [28]: %hylang\n....: (setv f (open \"hy1.hy\"))\n....: (print (.read f))\n\
+  ....:\n```\n\n这将打印该文件的内容：\n\n```\n%hylang\n(import math)\n(defn safe-sqrt [x]\n\
+  \  (if (< x 0)\n    (math.sqrt (- 0 x))\n    (math.sqrt x)\n  )\n)\n```\n\nHy 与\
+  \ Python 的互操作方式多到无法在此一一列举，包括列表推导式、对象和异常。可以说，如果你已经熟悉 Python，并且有兴趣扩展到函数式语言，Hy 是一个不错的选择。\n\
+  \n## Matplotlib\n\nMatplotlib 是一个基于 Python 的 2D 绘图库。它与 Python 配合良好，与 IPython 配合更佳。它包含\
+  \ `pyplot` 模块，提供类似 MATLAB 的功能。Matplotlib 的功能既可以通过编程方式访问，也可以在 IPython 命令行中以交互方式访问。为了便于说明，本节中的示例将在命令行中运行。\n\
+  \n## 启动 matplotlib\n\nMatplotlib 应该随大多数主流 IPython 发行版一同安装。如果你的发行版未包含它，标准的包安装过程（例如\
+  \ `pip install` 或 `sudo apt-get`）应该就足够了。\n\n有两种启动 matplotlib 的方式：`matplotlib-only`\
+  \ 或 `pylab`。\n\n区别在于，使用 `matplotlib-only` 模式会激活 `matplotlib` 的交互支持，但不会向命名空间导入任何内容。`pylab`\
+  \ 模式会执行更多导入并更改命名空间。\n\n安装后，可以通过命令行或使用 `%matplotlib` 魔法命令启动 `matplotlib-only` 模式，如下所示：\n\
+  \n```\n(Ipython) -bash-4.1$ ipython --matplotlib\nPython 3.4.3 |Anaconda 2.0.1 (64-bit)\
+  \ | (default, Oct 19 2015, 21:52:17)\nType \"copyright\", \"credits\" or \"license\"\
+  \ for more information.\n\nIPython 4.0.1 -- An enhanced Interactive Python.\n? \
+  \         -> Introduction and overview of IPython's features.\n%quickref  -> Quick\
+  \ reference.\nhelp       -> Python's own help system.\nobject?    -> Details about\
+  \ 'object', use 'object??' for extra details.\nUsing matplotlib backend: Qt4Agg\n\
+  \nIn [1]:\n```\n\n## 初始图形\n\n与其他新模块一样，值得检查一切是否正常。在 IPython 命令行中，输入以下命令：\n\n```\n\
+  In [2]: x = randn(90000)\n```\n\n```\nIn [3]: hist(x, 300)\nOut[3]:\n```\n\n此时，我的命令行打印了两类内容：\n\
+  - 两个数组和一个列表（`hist` 调用的返回值）\n- 一个堆栈跟踪（当我删除位于 ~/.cache/matplotlib/fontList*.cache\
+  \ 的 matplotlib 字体缓存后，它就消失了）\n\n更重要的是，它生成了以下图形：\n\n![](img/8628b86fcc4f22d859c0104c2ec1d15f_207_0.png)\n\
+  \n作为第一个 matplotlib 示例，这段代码值得进一步说明：\n- **第 1 行：** `numpy.random.randn` 函数创建一个包含 90,000\
+  \ 个浮点数的一维数组；它们遵循均值为 0、方差为 1 的正态分布。\n- **第 2 行：** `hist` 函数接受一个数组作为参数，计算并绘制该数组的直方图。它接受许多可选参数；在本例中，我们提供了要使用的箱数。\n\
+  \n## 修改图形\n\n让第一个图形运行起来很容易，但它还可以改进。改变事物的第一种方法是更改/添加构造函数的参数。例如，假设我们执行以下命令：\n\n```\n\
+  In [11]: hist(x, 300, orientation=\"horizontal\", color=\"green\")\n```\n\n结果如下：\n\
+  \n![](img/8628b86fcc4f22d859c0104c2ec1d15f_208_0.png)\n\nmatplotlib2.gif\n\n```\n\
+  Out[49]: <matplotlib.text.Text at 0x2b15e5bdc7f0>\n```\n\n```\nIn [53]: ion\nOut[53]:\
+  \ <function matplotlib.pyplot.ion>\n```\n\n```\nIn [54]: plot()\nOut[54]: []\n```\n\
+  \n这将导致对图表的更改被延迟到调用 plot( ) 时，届时它们会同时发生。\n\n## Bokeh\n\nBokeh 是一个 Python 交互式可视化库，面向现代\
+  \ Web 浏览器进行呈现。其目标是提供以 D3.js 风格优雅、简洁地构建新颖图形，并将这一能力扩展到对超大规模或流式数据集的高性能交互。Bokeh 可以帮助任何希望快速轻松创建交互式绘图、仪表盘和数据应用程序的人。\n\
+  \n就我们的目的而言，Bokeh 可用于生成将在 Web 浏览器中查看的图形。虽然以这种方式使用时，它不支持像 Matplotlib 那样的命令行交互性，但生成持久图像并易于远程查看的能力对于报告等目的非常重要。此外，Bokeh\
+  \ 使用 HTML、JavaScript 和 CSS 生成网页的能力意味着图形本身可以像这些工具所能实现的那样具有交互性。\n\n使用 Bokeh 服务器时支持命令行驱动的交互式方法，但这超出了当前章节的范围。\n\
+  \n## 启动 Bokeh\n\n可以使用 pip 将 Bokeh 作为标准 IPython 模块安装：\n\n```\npip install bokeh\n\
+  ```\n\n安装后，可以通过标准 import 语句访问 bokeh 库：\n\n```\nIn [1]: import bokeh\n```\n\nBokeh\
+  \ 目前处于持续变化中。这些示例中使用的版本不包含 %bokeh 或 %%bokeh 魔法命令，尽管以后可能会有。\n\n## 交互式绘图\n\nBokeh 的一个重要特性是允许用户与完成的绘图进行交互。这通过两种方式实现：\n\
+  - Bokeh 内置功能\n- 与浏览器中的 JavaScript 交互的能力\n\n我们的示例将涉及第一种选项。\n\n## 一个交互式绘图示例\n\n以下代码并排显示两个图形，并允许用户在一个图形中选择一组点，查看相应点在另一个图形中的位置。该代码引入了一些新概念，下面将进行讨论：\n\
+  \n```\nIn [2]: import numpy as np\n```\n\n```\nIn [3]: import bokeh.plotting as\
+  \ bp\n```\n\n```\nIn [4]: import bokeh.models as bm\n```\n\n```\nIn [5]: bp.output_file(\"\
+  bokeh4.html\")\n```\n\n```\nIn [6]: x = np.linspace(-2 * np.pi, 2 * np.pi, 100)\n\
+  ```\n\n```\nIn [7]: y0 = np.cos(x)\n```\n\n```\nIn [8]: y1 = np.sin(x)\n```\n\n\
+  ```\nIn [9]: mySource = bm.ColumnDataSource(data=dict(x=x, y0=y0, y1=y1))\n```\n\
+  \n```\nIn [10]: myTools = \"box_select,lasso_select,help\"\n```\n\n```\nIn [11]:\
+  \ left = bp.figure(tools=myTools, width=300, height=300,\ntitle=\"Left\")\n```\n\
+  \n\n\n\n关于 ggplot2 的更多信息，请参见项目主页 http://ggplot2.org/ 和文档 http://docs.ggplot2.org/current/index.html。\n\
+  \n## 安装 ggplot2 和 pandas\n\nggplot2 是一个可选的 R 包。你的 R 安装中可能已经包含了它。如果没有，可以在 IPython\
+  \ 中使用 R magic 轻松安装：\n\n```\nIn [12]: %%R\n    ...: install.packages(\"ggplot2\"\
+  )\n```\n\npandas 是用于 Python 的数据分析库。它包含许多有用的工具，包括非常有用的 DataFrame 类。它随 Anaconda 发行版一起安装，也可以使用\
+  \ pip 安装：\n\n```\npip install pandas\n```\n\n## 使用 DataFrame\n\nDataFrame 很方便，因为它们是\
+  \ R 数据框在 Python 中的对应物。R 到处都使用数据框。下面是一个简单的例子：\n\n```\nIn [10]: %%R\n    ....: x=c(1,\
+  \ 2, 3, 4)\n    ....: y=c(2, 3, 5, 7)\n    ....: df = data.frame(x, y)\n```\n\n\
+  ```\nIn [11]: %%R\n    ....: head(df)\n    ....:\n      x y\n1 1 2\n2 2 3\n3 3 5\n\
+  4 4 7\n```\n\n注意，即使在多次调用 `%%R` 之间，df 也保持其值。内置的 mtcars 数据是 R 中的一个数据框。\n\n|    | mpg\
+  \ | cyl | disp | hp | drat | wt | qsec | vs | am | gear | carb | kpg |\n|---|---|---|---|---|---|---|---|---|---|---|---|---|\n\
+  | Mazda RX4 | 21.0 | 6 | 160 | 110 | 3.90 | 2.620 | 16.46 | 0 | 1 | 4 | 4 | 33.79622\
+  \ |\n| Mazda RX4 Wag | 21.0 | 6 | 160 | 110 | 3.90 | 2.875 | 17.02 | 0 | 1 | 4 |\
+  \ 4 | 33.79622 |\n| Datsun 710 | 22.8 | 4 | 108 | 93 | 3.85 | 2.320 | 18.61 | 1\
+  \ | 1 | 4 | 1 | 36.69304 |\n| Hornet 4 Drive | 21.4 | 6 | 258 | 110 | 3.08 | 3.215\
+  \ | 19.44 | 1 | 0 | 3 | 1 | 34.43996 |\n| Hornet Sportabout | 18.7 | 8 | 360 | 175\
+  \ | 3.15 | 3.440 | 17.02 | 0 | 0 | 3 | 2 | 30.09473 |\n| Valiant | 18.1 | 6 | 225\
+  \ | 105 | 2.76 | 3.460 | 20.22 | 1 | 0 | 3 | 1 | 29.12913 |\n\n## 初始图形\n\n现在我们准备尝试使用\
+  \ ggplot2 绘制第一个图形。\n\n首先我们来看代码。由于这是使用 ggplot2 的第一个图形，后面会描述重要的代码行：\n\n```\nIn [1]:\
+  \ %load_ext rpy2.ipython\n\nIn [2]: from rpy2.robjects import pandas2ri\n\nIn [3]:\
+  \ pandas2ri.activate()\n\nIn [4]: from rpy2.robjects import r\n\nIn [5]: import\
+  \ pandas\n\nIn [6]: from rpy2.robjects.lib import ggplot2\n\nIn [7]: df_cars = pandas2ri.ri2py(r['mtcars'])\n\
+  \nIn [8]: wt = df_cars['wt']\n\nIn [9]: mpg = df_cars['mpg']\n\nIn [10]: type(mpg)\n\
+  Out[10]: pandas.core.series.Series\n\nIn [11]: df_wtVsMpg = pandas.DataFrame()\n\
+  \nIn [12]: df_wtVsMpg['wt'] = wt\n\nIn [13]: df_wtVsMpg['mpg'] = mpg\n\nIn [14]:\
+  \ p = ggplot2.ggplot(df_wtVsMpg)\n\nIn [15]: type(p)\nOut[15]: rpy2.robjects.lib.ggplot2.GGPlot\n\
+  \nIn [16]: p.plot()\n```\n\ncode6.py\n\n- **第 2-3 行：** 这些行导入并激活了在 IPython/R 之间传输数据的新方法。这是自\
+  \ v0.16.0 以来推荐的方法，此时 `pandas.rpy` 接口已被弃用，并标记为在未来的某个版本中移除。\n- **第 7 行：** 这一行实际上将\
+  \ R 的 `mtcars` 数据框导入为 pandas DataFrame。\n- **第 8-10 行：** 这些行展示了 DataFrame 可以像 Python\
+  \ 字典一样被访问，以及结果类型。\n- **第 11-13 行：** 这里，我们从空的 DataFrame 开始，并动态添加列。\n\n即使 display\
+  \ 确实返回了一个值，情况也好不了多少。首先，不清楚它能返回什么有意义的值。也许返回 true 表示“成功”，返回 false 表示“失败”？至少可以测试那个值。然而，这并不能解决根本问题——也许\
+  \ display 返回了 true，但字符实际上并没有被显示。\n\n从这段简短离题话中得到的启示是，当被测代码的编写方式使得编写有意义的测试更容易时，测试的效果更好。这样做的技巧可以写满一整本书（也确实如此）。幸运的是，科学和工程代码重视数学建模，往往自然地分解为可测试的函数。\n"
+- "## unittest\n\nunittest 是 Python 内置（自 2.1 版本起）的测试框架。它仿照优秀的 Java JUnit 框架以及一般的 xUnit\
+  \ 测试框架而设计。这造就了一种简洁、面向对象的风格。\n\n### 重要概念\n\nunittest 以直接的方式支持标准的单元测试组成部分。以下概念与功能元素相对应：\n\
+  \n- **测试用例：** 这是一个单独的测试或一组测试。一个测试用例中的所有测试都属于同一个类，并共享一个夹具（fixture）。\n- **测试夹具：**\
+  \ 为一个类中的所有测试用例执行 setUp 和 tearDown 所需的函数。\n- **测试套件：** 这是测试用例的集合。测试套件中的测试用例旨在一起运行。\n\
+  - **测试运行器：** 这是一个运行测试套件并向用户报告结果的组件。\n\n让我们更仔细地看前面的一些代码作为示例：\n\n```\ndef F(n):\n\
+  \    curr = n\n    tmp = 1\n    while curr != 1:\n        tmp = tmp + 1\n      \
+  \  if curr % 2 == 1:\n```\n\n```\n244      self.result = testRunner.run(self.test)\n\
+  245      if self.exit:\n--> 246      sys.exit(not self.result.wasSuccessful())\n\
+  247\n248 main = TestProgram\n\nSystemExit: True\n```\n\n在这种情况下，这并不是很有趣，但如果有需要，信息就在那里。\n\
+  \n一个小修复应该能解决这个问题：\n\n```\ndef f(n):\n    curr = n\n    tmp = 0\n    while curr !=\
+  \ 1:\n        tmp = tmp + 1\n        if curr % 2 == 1:\n            curr = 3 * curr\
+  \ + 1\n        else:\n            curr = curr/2\n    return tmp\n```\n\nhail2.py\n\
+  \n同时相应修改测试（通常只需修改原始源代码，但为了教学目的，这样更清晰）：\n\n```\nimport unittest\nfrom hail2 import\
+  \ f\n\nclass TestHailStones(unittest.TestCase):\n\n    def test_f(self):\n     \
+  \   ans = [0, 0, 1, 7, 2, 5, 8, 16, 3, 19, 6]\n        for i in range(1, 11):\n\
+  \            print(i)\n            self.assertEqual(f(i), ans[i])\n\nif __name__\
+  \ == '__main__':\n    unittest.main()\n```\n\ntest2.py\n\n输出将变为以下内容：\n\n```\nIn\
+  \ [2]: %run testrand.py\nDoing setUp\nDoing test_bad\nDoing tearDown\nDoing setUp\n\
+  Doing test_better\nDoing tearDown\n.Doing setUp\nDoing test_builtin\nDoing tearDown\n\
+  .\n======================================================================\nFAIL:\
+  \ test_bad (__main__.TestRandoms)\n----------------------------------------------------------------------\n\
+  Traceback (most recent call last):\n  File \"/nfs/02/wit0096/Packt/chap08/testrand.py\"\
+  , line 29, in test_bad\n    self.assertGreater(p, 0.05)\nAssertionError: 3.5277031043732684e-204\
+  \ not greater than 0.05\n----------------------------------------------------------------------\n\
+  Ran 3 tests in 0.171s\n\nFAILED (failures=1)\nAn exception has occurred, use %tb\
+  \ to see the full traceback.\n\nSystemExit: True\n```\n\n关于整个程序，有一些值得指出的地方：\n\n\
+  - 代码包含多个测试。无需将它们标记为测试，因为 unittest 假定每个以 test 开头的函数都是测试，并会将其作为测试运行。\n\n```\nDoing\
+  \ tearDown\n.Doing setUp\nDoing test_better\nDoing tearDown\n.Doing setUp\nDoing\
+  \ test_builtin\nDoing tearDown\n.\n------------------------------------------------------------\n\
+  Ran 3 tests in 0.227s\n\nOK\n```\n\n### 装饰器\n\n对一个测试使用 `assertLess`，对另一个测试使用 `assertGreater`\
+  \ 有点笨拙。这种小的不一致很容易被忽视，从而在以后导致更大的问题。更糟糕的是，它可能会被发现并“纠正”，但纠正反而会导致测试失败，并让人困惑地站在那里，想不明白当初为什么要那样写。\n\
+  \n这种事情经常发生，尤其是当测试不是先于代码编写时。\n\n> **测试驱动开发**\n>\n> **测试驱动开发（TDD）** 是一种软件开发过程，在这种过程中，测试先于代码编写。这个过程允许测试用作自动化手段，用来检查代码是否满足（至少部分）需求。测试还可以用来确保将来对代码的修改不会破坏任何已有的功能。\n\
+  \n理论上，在代码被接受之前，所有测试都应该运行并通过。但这并不总是可行的。为此，unittest 提供了装饰器，允许测试人员显式标记失败和跳过的测试。\n\n\
+  例如，我们之前的测试可以如下进行装饰：\n\n```\n@unittest.expectedFailure\ndef test_bad(self):\n   \
+  \ print(\"Doing test_bad\")\n    x0 = 15\n    p1 = 50\n```\n\n\n\n从命令行调用它非常容易：\n\
+  \n```\n(my_rpy2_zone)-bash-4.1$ py.test\n=======================================\
+  \ test session starts ===\n========================================\nplatform linux\
+  \ -- Python 3.4.4, pytest-2.8.7, py-1.4.31, pluggy-0.3.1\nrootdir: .../chap08, inifile:\n\
+  collected 0 items\n\n======================================= no tests ran in 0.03\
+  \ seconds ========================================\n```\n\npytest 会尝试根据将在后面章节介绍的规则自动定位测试。在这种情况下，没有找到任何测试。\n\
+  \n## 向后兼容性\n\n把之前章节中对测试所做的所有工作都丢弃似乎很可惜。pytest 会在形如 test_*.py（和 *_test.py）的文件中查找测试。最懒的做法就是直接把\
+  \ test1.py 复制成 test_1.py 看看会发生什么：\n\n```\n(my_rpy2_zone)-bash-4.1$ cp test1.py test_1.py\n\
+  (my_rpy2_zone)-bash-4.1$ py.test\n======================================= test session\
+  \ starts ===\n========================================\nplatform linux -- Python\
+  \ 3.4.4, pytest-2.8.7, py-1.4.31, pluggy-0.3.1\nrootdir: .../chap08, inifile:\n\
+  collected 1 items\n\ntest_1.py F\n\n======================================= FAILURES\
+  \ =========\n========================================\n________________________________________\
+  \ TestHailStones.test_f ________________________________________\n\nself = <test_1.TestHailStones\
+  \ testMethod=test_f>\n\n    def test_f(self):\n```\n\n- `recurse` 进入目录，除非它们匹配 `norecursedirs`。\n\
+  - `test_*.py` 或 `*_test.py` 文件，按其测试包名称导入。\n- 测试前缀的 test 类（没有 `__init__` 方法）。\n-\
+  \ 以 `test_` 为前缀的测试函数或方法是测试项。\n\n## 组织测试文件\n\npytest 允许测试函数与被测试的函数包含在同一文件中。这样做有一些优点，即更有可能在功能更新时更新测试，并且使测试易于查找。\n\
+  \n然而，对于除最小项目之外的任何项目，这都不是一个好主意，原因有几个：\n\n- 一个好的测试套件可能比被测试的代码大好几倍。把两者放在同一位置会掩盖代码。\n\
+  - 通常情况下，不同的团队开发测试和代码。使用不同的文件可以使版本控制更轻松。\n- 测试不应依赖于代码的编写方式，代码也不应依赖于测试的结构。确保这一点的最简单方法是让它们完全分开。\n\
+  \n当测试不再与代码在同一文件中时，将它们保存在易于查找并与所测试代码关联的位置非常重要。并行目录结构是一种简单的方法来实现这一点：\n\n```\npkg/\n\
+  \    __init__.py\n    prog1.py\n    …\n\ntests/\n    test_prog1.py\n    …\n```\n\
+  \n注意 tests 目录中没有 `__init__.py` 文件。这为之前列出的测试发现规则之一提供了更轻松的处理。pytest 并没有要求必须完全镜像此结构；它只是一个有用的启发式方法。\n\
+  \n## 断言\n\npytest 使用 Python 中的 assert 语句。这就避免了记住 unittest 中所有不同的 `assert*` 方法的需求。考虑一下两者在可读性上的差异：\n\
+  \n```\nself.assertEqual(f(i), ans[i])\n```\n\n与这行代码相比：\n\n```\nassert f(i) == ans[i]\n\
+  ```\n\n总体而言，pytest 测试在代码行数上更少。`test2.py` 测试文件可以在 pytest 下重写如下：\n\n```\nfrom hail2\
+  \ import f\n\nclass TestHailstones():\n\n    def test_f(self):\n        ans = [0,\
+  \ 0, 1, 7, 2, 5, 8, 16, 3, 19, 6]\n        for i in range(1, 11):\n            print(i)\n\
+  \            assert f(i) == ans[i]\n```\n\ntest_2.py\n\n以下是结果：\n\n```\nIn [2]: !py.test\
+  \ test_2.py\n================================================= test session starts\
+  \ ===\n=================================================\nplatform linux -- Python\
+  \ 3.4.4, pytest-2.8.7, py-1.4.31, pluggy-0.3.1\nrootdir: /nfs/02/wit0096/Packt/chap08,\
+  \ inifile:\ncollected 1 items\n\ntest_2.py .\n\n=================================================\
+  \ 1 passed in 0.02 seconds\n=================================================\n\
+  ```\n\n甚至结果也可以通过 `-q` 命令行参数缩写：\n\n```\nIn [3]: !py.test -q test_2.py\n.\n1 passed\
+  \ in 0.01 seconds\n```\n\n## 一个使用 setUp 和 tearDown 的测试\n\nunittest 依赖于重载其父类的 setUp\
+  \ 和 tearDown 函数。由于 pytest 去掉了父类，它需要不同的机制。事实上，它有两个：经典的 xUnit 风格和一个使用 fixtures 的方法。\n\
+  \n### 经典 xUnit 风格\n\n提供以下方法进行设置和清理：\n\n| 方法 | 效果 |\n|---|---|\n| setup_method(self,\
+  \ method) | 在类的每个测试方法之前调用 |\n| teardown_method(self, method) | 在类的每个测试方法之后调用 |\n\
+  | setup_function(function) | 在模块的每个测试方法之前调用 |\n| teardown_function(function) | 在模块的每个测试方法之后调用\
+  \ |\n\n这使得重写我们第一个随机数测试变得轻而易举：\n\n```\nimport numpy as np\nimport myrand\nimport\
+  \ scipy.stats\nimport sys\nimport random\n\nclass TestRandoms():\n\n    def setup_method(self,\
+  \ mthd):\n        print(\"Doing setUp\")\n        self.numVals = 10000\n       \
+  \ self.vals = np.zeros((10), dtype=np.int32)\n        self.randGen = myrand.MyRand()\n\
+  \n    def test_bad(self):\n        print(\"Doing test_bad\")\n        x0 = 15\n\
+  \        p1 = 50\n        p2 = 100\n        modulus = 2217\n        self.randGen.set(p1,\
+  \ p2, x0, modulus)\n        for i in range(self.numVals):\n            tmp = self.randGen.next()\n\
+  \            tmp = tmp % 10\n```\n\n## 但在演示中它运行正常！ – 测试\n\n```\ncollected 3 items\n\
+  \ntestrand_1.py F..\n\n==========================================================\
+  \ FAILURES ========\n==================================================\n____________________________\
+  \ TestRandoms.test_bad __\n\nself = <testrand_1.TestRandoms object at 0x2b6610db1b38>\n\
+  \ndef test_bad(self):\n    print(\"Doing test_bad\")\n    x0 = 15\n    p1 = 50\n\
+  \    p2 = 100\n    modulus = 2217\n    self.randGen.set(p1, p2, x0, modulus)\n \
+  \   for i in range(self.numVals):\n        tmp = self.randGen.next()\n        tmp\
+  \ = tmp % 10\n        self.vals[tmp] = self.vals[tmp] + 1\n\n    chi2, p = scipy.stats.chisquare(self.vals)\n\
+  >   assert p > 0.05\nE   assert 3.5277031043732684e-204 > 0.05\n\ntestrand_1.py:28:\
+  \ AssertionError\n------------------------------- Captured stdout setup\n--------------------------------\n\
+  Doing setUp\n-------------------------------- Captured stdout call\n--------------------------------\n\
+  Doing test_bad\n======================================== 1 failed, 2 passed in 1.16\
+  \ seconds ========================================\n```\n\n```\nE    assert 3.5277031043732684e-204\
+  \ > 0.05\n\ntestrand_1.py:28: AssertionError\n---------------------------------------------\
+  \ Captured stdout setup\n---------------------------------------------\nDoing setUp\n\
+  --------------------------------------------- Captured stdout call\n---------------------------------------------\n\
+  Doing test_bad\n============================================= 1 failed, 2 passed\
+  \ in 0.82 seconds =============================================\n```\n\n## 使用 fixtures\n\
+  \n一个函数可以被装饰为 pytest fixture。此 fixture 装饰器可以接受一个 \"scope\" 参数，指定 fixture 应该被调用的时间：\n\
+  \n| Scope | 效果 |\n|---|---|\n| session | 函数在会话开始时执行一次 |\n| module | 函数在模块开始时执行一次\
+  \ |\n| class | 函数在类开始时执行一次 |\n| function | 函数在每个测试用例之前执行 |\n\n我们的第二个随机数测试类然后可以重写如下：\n\
+  \n```\nimport numpy as np\nimport myrand\nimport scipy.stats\nimport sys\nimport\
+  \ random\nimport pytest\n\nclass TestRandoms( ):\n\n    @classmethod\n    @pytest.fixture(scope=\"\
+  class\")\n    def setUpClass(cls):\n        print(\"Doing setUpClass\")\n      \
+  \  cls.numVals = 10000\n\n    @pytest.fixture(scope=\"function\")\n    def setUp(self,\
+  \ request):\n```\n\n\n```python\nprint(\"Doing setUp\")\nself.vals = np.zeros((10),\
+  \ dtype=np.int32)\nself.randGen = myrand.MyRand( )\nself.numVals = 10000\ndef tearDown(self):\n\
+  \    print(\"Doing tearDown\")\n    self.randGen.reset( )\nrequest.addfinalizer(tearDown)\n\
+  \ndef test_bad(self, setUp, setUpClass):\n    print(\"Doing test_bad\")\n    x0\
+  \ = 15\n    p1 = 50\n    p2 = 100\n    modulus = 2217\n    self.randGen.set(p1,\
+  \ p2, x0, modulus)\n    for i in range(self.numVals):\n        tmp = self.randGen.next(\
+  \ )\n        tmp = tmp % 10\n        self.vals[tmp] = self.vals[tmp] + 1\n\n   \
+  \ chi2, p = scipy.stats.chisquare(self.vals)\n    assert p < 0.05\n\ndef test_better(self,\
+  \ setUp, setUpClass):\n    print(\"Doing test_better\")\n    x0 = 79\n    p1 = 263\n\
+  \    p2 = 71\n    modulus = sys.maxsize\n    self.randGen.set(p1, p2, x0, modulus)\n\
+  \    for i in range(self.numVals):\n        tmp = self.randGen.next( )\n       \
+  \ tmp = tmp % 10\n        self.vals[tmp] = self.vals[tmp] + 1\n\n    chi2, p = scipy.stats.chisquare(self.vals)\n\
+  \    assert p > 0.05\n\ndef test_builtin(self, setUp, setUpClass):\n    print(\"\
+  Doing test_builtin\")\n    for i in range(self.numVals):\n        tmp = random.randint(0,\
+  \ 9)\n        self.vals[tmp] = self.vals[tmp] + 1\n\n    chi2, p = scipy.stats.chisquare(self.vals)\n\
+  \    assert p > 0.05\n```\n\ntestrand2.py\n\n经过适当编辑（必须删除 addfinalizer 那一行——在我的环境中，它会导致\
+  \ Python 出现内部错误 INTERNALERROR），程序可以运行并产生如下输出：\n\n```text\nIn [27]: !py.test -s testrand_2.py\n\
+  ================================================================================\
+  \ test session starts ===\n================================================================================\n\
+  platform linux -- Python 3.4.4, pytest-2.8.7, py-1.4.31, pluggy-0.3.1\nrootdir:\
+  \ /nfs/02/wit0096/Packt/chap08, inifile:\ncollected 3 items\n\ntestrand_2.py Doing\
+  \ setUpClass\nDoing setUp\nDoing test_bad\n.Doing setUp\nDoing test_better\n.Doing\
+  \ setUp\nDoing test_builtin\n```\n\n这段代码包含一些有趣的特性：\n\n- **第 6 行**：使用 pytest 装饰器需要导入\
+  \ `pytest` 模块。\n- **第 11 行**：这是一个 fixture 装饰器。其作用域为 `class`，因此对于该类，它只会在任何测试运行之前被调用一次。这一点在输出中有所体现。\n\
+  - **第 16 行**：该 fixture 装饰器的作用域是 `function`，并将此函数标记为应在每个测试函数之前运行的函数。\n- **第 22 行**：这是\
+  \ `tearDown` 函数的定义。\n- **第 25 行**：这里将 `tearDown` 函数作为终结器（finalizer）添加到请求对象中。这会导致它在测试运行后被调用。\n\
+  \nFixture 的灵活性远不止本例所示。尤其是，可以将各种 fixture 列为参数，仅提供给那些确实需要它们运行的函数。可以定义多个 fixture，而每个测试用例将根据其需求使用不同的子集。\n\
+  \n解决方案是对 `os.getcwd` 进行 monkeypatch。monkeypatch 可以设置或删除以下内容：\n\n- 属性\n- 字典项\n- 环境变量\n\
+  - `sys.path` 中的项\n\nmonkeypatch 的使用方式类似于装饰器对象，只是 monkeypatch 对象没有被显式声明，只调用它的函数。一旦使用\
+  \ monkeypatch 的函数结束，之前获取的设置会被恢复。考虑以下测试（伪）代码：\n\n```python\ndef test_func1():\n \
+  \   logdir = os.getcwd() + \"/func1/loadtests\"\n    logfile = open(logdir + \"\
+  /results1.log\", \"w\")\n    <do test things>\n    logfile.close()\n```\n\n可以通过如下方式对其进行\
+  \ monkeypatch：\n\n```python\n@pytest.fixture(scope=\"function\")\ndef change_cwd(monkeypatch):\n\
+  \    monkeypatch.setattr(\"os.getcwd\", lambda: \"/\")\n\ndef test_func1(change_cwd):\n\
+  \    logdir = os.getcwd() + \"/func1/loadtests\"\n    logfile = open(logdir + \"\
+  /results1.log\", \"w\")\n    <do test things>\n    logfile.close()\n```\n\n`change_cwd`\
+  \ 函数会告诉 monkeypatch 将 `os.getcwd` 函数改为其第二个参数——那个 lambda 表达式。将 `change_cwd` 作为参数传入\
+  \ `test_func1`，可确保 monkeypatch 的调用被执行。其他不需要对 `os.getcwd` 做此修改的测试函数，只需不使用 `change_cwd`，就会看到正常的功能。\n\
+  \nmonkeypatch 与模拟对象（mock object）的概念类似。模拟对象是用户定义的对象，它对外暴露的接口与另一个对象相同，但实现要简单得多。例如，在测试一个从生产数据库读取数据的函数时，通常不希望使用真实的线上数据。相反，每次运行都应使用一组稳定的测试数据，以确保各次运行之间可以进行对比。在这种情况下，可以构造一个模拟数据库对象。它支持（一部分）数据库操作，但返回的是测试数据，而不是连接数据库服务器获取实时数据。monkeypatch\
+  \ 也执行类似的功能：它用一个简化的实现替换一个功能完整的值/函数/对象，以便进行测试。\n"
+- "## nose2\n\nnose 测试框架最初是 pytest 的一个克隆，当时 pytest 还处于 0.8 版本。它的标语是“nose extends unittest\
+  \ to make testing easier”（见 http://nose.readthedocs.org/en/latest/）。然而，所有美好的事物都有终结；目前\
+  \ nose 已处于维护模式，而且已经持续了数年。\n\n由于 unittest 仅适用于 Python 2.7 及以上版本，因此创建了 unittest2 作为早期版本的向后移植。除了\
+  \ unittest 的功能外，unittest2 还包含改进的 API 和更好的断言。实际上，unittest2 不仅是向后移植，也是对 unittest 的一次修订。\n\
+  \n对 unittest 的更改非常重要，以至于 nose 的继任者——颇具创意地命名为 nose2——基于 unittest2 的插件分支构建。其主页上写道：\n\
+  \n> *nose2 是基于 unittest2 插件分支的下一代 Python 测试工具。nose2 旨在改进 nose，具体方式如下：*\n>\n> - *提供更好的插件\
+  \ API*\n> - *更方便用户配置*\n> - *简化内部接口和流程*\n> - *在不进行转换的情况下，从同一代码库同时支持 Python 2 和 Python\
+  \ 3*\n\n### 运行单个测试\n\n可以通过在命令行中指定模块名称来运行单个测试：\n\n```text\n(my_rpy2_zone)-bash-4.1$\
+  \ ~/.local/bin/nose2 -v test1\ntest_f (test1.TestHailStones) ... 1\nFAIL\n\n===============================================================\n\
+  FAIL: test_f (test1.TestHailStones)\n---------------------------------------------------------------\n\
+  Traceback (most recent call last):\n  File \"/nfs/02/wit0096/Packt/chap08/test1.py\"\
+  , line 10, in test_f\n    self.assertEqual(f(i), ans[i])\nAssertionError: 1 != 0\n\
+  \n---------------------------------------------------------------\nRan 1 test in\
+  \ 0.000s\n\nFAILED (failures=1)\n```\n\n不要指定完整的文件名，否则会产生一条没有帮助的错误信息：\n\n```text\n\
+  (my_rpy2_zone)-bash-4.1$ ~/.local/bin/nose2 -v test1.py\ntest1.py (nose2.loader.LoadTestsFailure)\
+  \ ... ERROR\n\n===============================================================\n\
+  ERROR: test1.py (nose2.loader.LoadTestsFailure)\n---------------------------------------------------------------\n\
+  Traceback (most recent call last):\n  File \"/nfs/02/kmanalo/envs/my_rpy2_zone/lib/python3.4/unittest/case.py\"\
+  , line 58, in testPartExecutor\n    yield\n  File \"/nfs/02/kmanalo/envs/my_rpy2_zone/lib/python3.4/unittest/case.py\"\
+  , line 580, in run\n    testMethod()\n  File \"/nfs/02/wit0096/.local/lib/python3.4/site-packages/nose2/loader.py\"\
+  , line 120, in testFailure\n    raise exception\n  File \"/nfs/02/wit0096/.local/lib/python3.4/site-packages/nose2/plugins/loader/parameters.py\"\
+  , line 118, in loadTestsFromName\n    result = util.test_from_name(name, module)\n\
+  \  File \"/nfs/02/wit0096/.local/lib/python3.4/site-packages/nose2/util.py\", line\
+  \ 106, in test_from_name\n    parent, obj = object_from_name(name, module)\n  File\
+  \ \"/nfs/02/wit0096/.local/lib/python3.4/site-packages/nose2/util.py\", line 128,\
+  \ in object_from_name\n    parent, obj = obj, getattr(obj, part)\nAttributeError:\
+  \ 'module' object has no attribute 'py'\n```\n\n```text\nRan 1 test in 0.000s\n\
+  ```\n\n```text\nFAILED (errors=1)\n```\n\nnose2 会将 `.py` 部分理解为指定模块名的一部分。这在指定特定模块时可能很有用，但在其他情况下可能会导致出人意料的结果。\n\
+  \n### 断言、设置和拆除\n\n与 pytest 一样，nose2 也使用 Python 中的 assert 语句。它不使用与 pytest 相同的 fixture\
+  \ 风格，但确实支持一种经过修改的经典 xUnit 风格设置和拆除，以及其自己的一套 fixture。\n\n> 目前，nose2 的测试功能在使用测试类时存在一些小问题。后面的示例将使用模块中包含的单个测试函数，但其他方面应与此前的示例类似。\n\
+  \n#### 改进的 xUnit 风格\n\nnose2 没有采用仅靠函数名区分的简单 setup 和 teardown 函数，而是允许在函数上设置 setup\
+  \ 和 teardown 属性。我们可以将第一个随机数生成测试改写如下：\n\n```python\nimport numpy as np\nimport myrand\n\
+  import scipy.stats\n```\n\n\n```python\nimport sys\nimport random\n\nnumVals = 0\n\
+  vals = 0\nrandGen = 0\n\ndef setup():\n    print(\"Doing setUp\")\n    global numVals\n\
+  \    global vals\n    global randGen\n    numVals = 10000\n    vals = np.zeros((10),\
+  \ dtype=np.int32)\n    randGen = myrand.MyRand()\n\ndef test_bad():\n    print(\"\
+  Doing test_bad\")\n    x0 = 15\n    p1 = 50\n    p2 = 100\n    modulus = 2217\n\
+  \    randGen.set(p1, p2, x0, modulus)\n    for i in range(numVals):\n        tmp\
+  \ = randGen.next()\n        tmp = tmp % 10\n        vals[tmp] = vals[tmp] + 1\n\n\
+  \    chi2, p = scipy.stats.chisquare(vals)\n    assert p > 0.05\n\ndef test_better():\n\
+  \    print(\"Doing test_better\")\n    x0 = 79\n    p1 = 263\n    p2 = 71\n    modulus\
+  \ = sys.maxsize\n    randGen.set(p1, p2, x0, modulus)\n    for i in range(numVals):\n\
+  \        tmp = randGen.next()\n        tmp = tmp % 10\n        vals[tmp] = vals[tmp]\
+  \ + 1\n\n    chi2, p = scipy.stats.chisquare(vals)\n```\n\n```text\ntestrand_nose2_1.FunctionTestCase\
+  \ (test_better) ... Doing setUp\nDoing test_better\nDoing tearDown\nok\ntestrand_nose2_1.FunctionTestCase\
+  \ (test_builtin) ... Doing setUp\nDoing test_builtin\nDoing tearDown\nok\n\n==========================================================================\n\
+  FAIL: testrand_nose2_1.FunctionTestCase (test_bad)\n--------------------------------------------------------------------------\n\
+  Traceback (most recent call last):\n  File \"/nfs/02/wit0096/Packt/chap08/testrand_nose2_1.py\"\
+  , line 33, in test_bad\n    assert p > 0.05\nAssertionError\n\n--------------------------------------------------------------------------\n\
+  Ran 3 tests in 0.184s\n\nFAILED (failures=1)\n```\n\n### 使用装饰器\n\nnose2 在 `nose2.tools.decorators`\
+  \ 模块中提供了两个装饰器，它们对 `setup` 和 `teardown` 很有帮助：\n\n| 装饰器 | 效果 |\n|---|---|\n| `with_setup(setup)`\
+  \ | 在每个测试之前运行 setup 函数 |\n| `with_teardown(teardown)` | 在每个测试之后运行 teardown 函数 |\n\
+  \n这使我们能够将之前的测试重写如下：\n\n```python\nimport numpy as np\nimport myrand\nimport scipy.stats\n\
+  import sys\nimport random\nimport nose2.tools.decorators\n\nnumVals = 0\nvals =\
+  \ 0\nrandGen = 0\n\ndef setup():\n    print(\"Doing setUp\")\n    global numVals\n\
+  \    global vals\n    global randGen\n    numVals = 10000\n    vals = np.zeros((10),\
+  \ dtype=np.int32)\n    randGen = myrand.MyRand()\n\ndef teardown():\n    print(\"\
+  Doing tearDown\")\n    randGen.reset()\n\n@nose2.tools.decorators.with_setup(setup)\n\
+  @nose2.tools.decorators.with_teardown(teardown)\ndef test_bad():\n    print(\"Doing\
+  \ test_bad\")\n    x0 = 15\n    p1 = 50\n    p2 = 100\n    modulus = 2217\n    randGen.set(p1,\
+  \ p2, x0, modulus)\n    for i in range(numVals):\n        tmp = randGen.next()\n\
+  \        tmp = tmp % 10\n        vals[tmp] = vals[tmp] + 1\n\n    chi2, p = scipy.stats.chisquare(vals)\n\
+  \    assert p > 0.05\n\n@nose2.tools.decorators.with_setup(setup)\n@nose2.tools.decorators.with_teardown(teardown)\n\
+  def test_better():\n    print(\"Doing test_better\")\n    x0 = 79\n    p1 = 263\n\
+  \    p2 = 71\n    modulus = sys.maxsize\n    randGen.set(p1, p2, x0, modulus)\n\
+  \    for i in range(numVals):\n        tmp = randGen.next()\n        tmp = tmp %\
+  \ 10\n        vals[tmp] = vals[tmp] + 1\n\n    chi2, p = scipy.stats.chisquare(vals)\n\
+  \    assert p > 0.05\n\n@nose2.tools.decorators.with_setup(setup)\n@nose2.tools.decorators.with_teardown(teardown)\n\
+  def test_builtin():\n    print(\"Doing test_builtin\")\n    for i in range(numVals):\n\
+  \        tmp = random.randint(0, 9)\n        vals[tmp] = vals[tmp] + 1\n\n    chi2,\
+  \ p = scipy.stats.chisquare(vals)\n    assert p > 0.05\n```\n\n预期结果如下：\n\n```text\n\
+  (my_rpy2_zone)-bash-4.1$ ./local/bin/nose2 -v testrand_nose2decs_1\ntestrand_nose2decs_1.FunctionTestCase\
+  \ (test_bad) ... Doing setUp\nDoing test_bad\nDoing tearDown\nFAIL\ntestrand_nose2decs_1.FunctionTestCase\
+  \ (test_better) ... Doing setUp\nDoing test_better\nDoing tearDown\nok\ntestrand_nose2decs_1.FunctionTestCase\
+  \ (test_builtin) ... Doing setUp\nDoing test_builtin\nDoing tearDown\nok\n======================================================================\n\
+  FAIL: testrand_nose2decs_1.FunctionTestCase (test_bad)\n----------------------------------------------------------------------\n\
+  Traceback (most recent call last):\n    File \"/nfs/02/wit0096/Packt/chap08/testrand_nose2decs_1.py\"\
+  , line 40,\n    in test_bad\n        assert p > 0.05\nAssertionError\n\n------------------------------------------------------------\n\
+  Ran 3 tests in 0.277s\n\nFAILED (failures=1)\n```\n\n### 插件\n\n从 nose 迁移到 nose2\
+  \ 的一个重要特性是实现了改进的插件 API。插件提供了额外的功能，并允许第三方扩展 nose2。列出所有插件的完整清单超出了本书的范围，而且在出版时无论如何都难免不完整。一个示例就足以证明插件的强大功能。\n\
+  \n#### 使用 junitxml 插件生成 XML\n\n尽管 nose2 默认将测试结果输出到 stdout，但当测试套件很大时，一个人盯着屏幕观察结果滚动可能过于吃力。在这种情况下，让每个测试以标准化格式生成输出会很有帮助。xUnit\
+  \ 家族已经普及了 XML 作为这种格式，因此许多测试报告工具都期望以 XML 作为输入。\n\n为了输出 XML，可以按如下方式调用 junitxml 插件：\n\
+  \n```bash\n(my_rpy2_zone)-bash-4.1$ ~/.local/bin/nose2 -v --plugin nose2.plugins.junitxml\
+  \ --junit-xml testrand_nose2decs_1\n```\n\n输出由两个流组成：\n\n- 通常的输出，发送到 stdout\n- 一个\
+  \ XML 文件（nose2-junit.xml），创建于测试运行所在目录\n\n### 小结\n\n一个运行中的程序最重要的属性就是正确性。很多时候，测试被留到开发结束时才进行，而到了那时，由于项目已经延期，测试要么被完全跳过，要么草草了事。对于科学和工程代码来说尤其如此，因为可能危及生命。即使是探索性代码也需要经过测试，以便基于它做出合理的决策。没有相关单元测试的代码不应被接受到项目仓库中。因此，应尽可能让开发者轻松地进行测试。\n\
+  \n虽然 IPython 支持许多出色的可视化工具，可以为结果提供视觉反馈，但没有任何东西可以替代彻底的单元测试。本章概述了单元测试的基础知识——setup、test\
+  \ 和 teardown——并展示了三个不同框架如何实现这些概念。使用哪种框架的决定权在项目团队手中。\n\n在下一章中，我们将探讨对专业级软件中另一个常被忽视的组件的支持：文档。我们将讨论文档面向的不同受众、每个受众所关注的信息类型、格式选项，以及可用于让文档编写相对轻松的工具。\n"
+- "## 文档\n\n本章将涵盖以下主题：\n\n- 内联注释\n- 文档字符串\n- reStructuredText\n- Docutils\n- Sphinx\n\
+  \n### 内联注释\n\n我们将使用“内联注释”一词来指代所有面向维护编码人员、且除阅读源代码的人之外任何人都看不到的注释。\n\n内联注释以 `#` 符号开头，一直延续到行尾。它们不能出现在字符串字面量中。内联注释中的任何字符都不会被解释。\n\
+  \nPython 不支持块注释。关于三重双引号（`\"\"\"`）可用于注释掉多行的说法并不可信。虽然这通常也能奏效，但实际发生的是 Python 将所包含的行视为一个多行字符串。作为一个字符串，其中的行不会被解释，而是创建了一个字符串字面量。由于这个新字面量未赋值给任何变量，它会被立即回收。\n\
+  \n除了这种奇怪的行为之外，三重双引号还用于文档字符串。将两者混用可能会造成混淆，而这正是我们首先要避免的。\n\n#### 使用内联注释\n\nPython\
+  \ 风格的“官方”指南是 PEP 0008（见 `https://www.python.org/dev/peps/pep-0008/`）。在一定程度上，代码可以说成是自文档化的，本指南提供了一组关于风格一致性的标准建议，有助于推进这一目标。其中关于注释的部分尤其包含一些有用的建议：\n\
+  \n- 注释应与代码保持一致。如果代码发生变化，请确保注释能够反映这些变化。\n- 使用完整的句子进行注释。\n\n\n\n\n- 块注释应与它们所适用的代码保持相同的缩进级别。每一行应以\
+  \ # 符号和一个空格开头。\n- 注释很少应与代码写在同一行。\n\n## 函数注解\n\n函数注解和类型提示可以被视为一种内联注释的类型。函数注解起源于 PEP\
+  \ 3107，该 PEP 提供了为 Python 函数添加任意元数据注解的语法。从定义（https://www.python.org/dev/peps/pep-3107/）中：\n\
+  \n> \"由于 Python 的 2.x 系列缺乏标注函数参数和返回值标准方式的手段，出现了各种工具和库来填补这一空白。(...) 本 PEP 旨在提供一种单一、标准的方式来指定此信息，减少到目前为止因机制和语法差异过大而造成的混乱。\"\
+  \n\n### 语法\n\n函数注解适用于两类事物：参数和返回值。\n\n### 参数\n\n对于参数，注解由冒号表示，其方式类似于用等号标记默认值，如此示例所示：\n\
+  \n```python\ndef foo(x: \"int >= 0\"):\n```\n\n注解和默认值都可以按顺序放置来同时指示，如下所示：\n\n```python\n\
+  def foo(x: \"int >= 0\" = 0):\n```\n\n非正式地，参数可以这样描述：\n\n```text\nidentifier [: expression]\
+  \ [= expression]\n```\n\n这里，注解和默认值都是可选的。\n\n### 返回值\n\n函数返回值可以通过在参数列表后跟 -> 和一个表达式来注解。以下是示例：\n\
+  \n```python\ndef foo(x: \"int >= 0\" = 0) -> \"seemingly random integer\":\n   \
+  \ return 42\n```\n\n### 语法\n\n类型提示使用相同的语法并适用于与函数注解相同的事物。主要扩展是它们允许注解为一个类。完整规则集很复杂，但以下提示应涵盖最常见的情况：\n\
+  \n- 内置类\n- 用户定义类\n- `types` 模块中的类型\n- 抽象基类\n- 特殊构造，包括 `None`、`Any`、`Union`、`Tuple`\
+  \ 和 `Callable`\n\nPEP 的很大一部分致力于特殊情况和复杂类型，包括泛型、协变和逆变、前向引用以及存根文件。\n\n### 语义\n\n与 PEP\
+  \ 3107 一样，类型提示没有关联的标准语义。其目标是提供第三方工具可以使用的标准。在类型提示具有语义的程度上，其语义是由使用它们的工具提供的，而不是由 Python\
+  \ 语言本身提供的。从定义中：\n\n> \"本 PEP 旨在提供类型注解的标准语法，使 Python 代码更容易进行静态分析和重构，可能的运行时类型检查，以及（也许在某些上下文中）利用类型信息进行代码生成。\"\
+  \n\n形成该标准的重要工具是 mypy（http://mypy-lang.org/）。mypy 的目的是为 Python 提供静态类型检查器。虽然在文档和调试中静态类型检查的优点可以争论，但拥有该选项是很好的。\n\
+  \n## 文档字符串\n\nPython 文档字符串是一个字符串字面量。它可以作为模块中的第一个语句出现，也可以作为函数、方法或类定义后的第一个语句出现。文档字符串成为该对象的\
+  \ __doc__ 特殊属性。其目的是提供一种更自由的方式来记录程序的一部分。\n\n### 示例\n\n以下代码为一个简化的早期测试套件提供了文档字符串：\n\
+  \n```python\n\"\"\"\nThis is an abbreviated version of my random number generator\
+  \ test\nsuite.\n\nIt uses the pytest framework.  It does not do much in this form.\n\
+  \"\"\"\n\nimport numpy as np\nimport scipy.stats\nimport random\n\nclass TestRandoms(\
+  \ ):\n    \"\"\"\n    This is the main class.\n\n    Normally it would hold all\
+  \ the tests, plus and setup and\n    tearDown fixtures.\n    \"\"\"\n    def test_builtin(self):\n\
+  \        \"\"\"\n        Test the built-in random number generator on 10000\n  \
+  \      numbers.\n        \"\"\"\n        num_tests = 10000\n        vals = [0 for\
+  \ i in range(10)]\n        for i in range(num_tests):\n            tmp = random.randint(0,\
+  \ 9)\n            vals[tmp] = vals[tmp] + 1\n\n        chi2, p = scipy.stats.chisquare(self.vals)\n\
+  \        assert p > 0.05\n\ndef foo( ):\n    \"\"\" I just needed a function outside\
+  \ of a class as an\nexample\"\"\"\n    pass\n```\n\ncode1.py\n\n### 文档\n\n文档字符串可以通过使用\
+  \ Python 内置的 help 函数来访问。结果以标准帮助方式显示（即如同用 less 查看文本文件），如下所示：\n\n```text\nIn [4]:\
+  \ import code1\n\nIn [5]: help(code1)\nHelp on module code1:\n\nNAME\n    code1\
+  \ - This is an abbreviated version of my random number generator test suite.\n\n\
+  DESCRIPTION\n    It uses the pytest framework.  It does not do much in this form.\n\
+  \nCLASSES\n    builtins.object\n        TestRandoms\n\n    class TestRandoms(builtins.object)\n\
+  \    |   This is the main class.\n    |\n    |   Normally it would hold all the\
+  \ tests, plus and setup and teardown fixtures.\n    |\n    |   Methods defined here:\n\
+  \    |\n    |   test_builtin(self)\n    |       Test the built-in random number\
+  \ generator on 10000 numbers.\n    |\n    |   --------------------------------------------------------------------------\n\
+  \    |\n    |   Data descriptors defined here:\n    |\n    |   __dict__\n    | \
+  \      dictionary for instance variables (if defined)\n    |\n    |   __weakref__\n\
+  \    |       list of weak references to the object (if defined)\n\nFUNCTIONS\n \
+  \   foo()\n        I just needed a function outside of a class as an example\n\n\
+  FILE\n    /nfs/02/wit0096/Packt/chap09/code1.py\n```\n\n可以通过命名它们来访问各个部分的文档字符串。\n\
+  \n这里，我们访问类的 `help`：\n\n```text\nIn [6]: help(code1.TestRandoms)\nHelp on class TestRandoms\
+  \ in module code1:\n\nclass TestRandoms(builtins.object)\n |  This is the main class.\n\
+  \ |\n |  Normally it would hold all the tests, plus and setup and teardown\n   \
+  \ fixtures.\n |\n |  Methods defined here:\n |\n |  test_builtin(self)\n |     \
+  \ Test the built-in random number generator on 10000 numbers.\n |\n |  ----------------------------------------------------------------------\n\
+  \ |  Data descriptors defined here:\n |\n |  __dict__\n |      dictionary for instance\
+  \ variables (if defined)\n |\n |  __weakref__\n |      list of weak references to\
+  \ the object (if defined)\n```\n\n```python\nself.assertEqual(f(i), ans[i])\n```\n\
+  \n```python\ndef foo():\n    \"\"\"\n    An independent function.\n\n    I needed\
+  \ another function to illustrate the docstring for a\n    function that was not\
+  \ a member of a class.\n    \"\"\"\n    pass\n```\n\ncode2.py\n\n它产生以下（简略）输出：\n\n\
+  ```text\nIn [10]: import code2\n\nIn [11]: help(code2)\n\nHelp on module code2:\n\
+  \nNAME\n    code2 - This is my hailstone unit test suite.\n\nDESCRIPTION\n    It\
+  \ uses the unittest framework.  Admittedly, it does not do much.\n\nCLASSES\n  \
+  \  unittest.case.TestCase(builtins.object)\n        TestHailStones\n\n        class\
+  \ TestHailStones(unittest.case.TestCase)\n        |   The main class for testing\
+  \ the hailstone sequence generator.\n        |\n        |   Method resolution order:\n\
+  \        |       TestHailStones\n        |       unittest.case.TestCase\n      \
+  \  |       builtins.object\n\naddTypeEqualityFunc(self, typeobj, function)\n\nAdd\
+  \ a type specific assertEqual style function to compare a type.\n\nThis method is\
+  \ for use by TestCase subclasses that need to register\ntheir own type equality\
+  \ functions to provide nicer error messages.\n\nArgs:\n    typeobj: The data type\
+  \ to call this function on when both values\n        are of the same type in assertEqual().\n\
+  \    function: The callable taking two arguments and an optional\n        msg= argument\
+  \ that raises self.failureException with a\n        useful error message when the\
+  \ two arguments are not equal.\n\nassertAlmostEqual(self, first, second, places=None,\
+  \ msg=None, delta=None)\n```\n\n注意 `unittest.TestCase` 类的文档无需额外努力即可包含在内。\n\n###\
+  \ 推荐元素\n\nPEP 0257 记录了与文档字符串相关的约定。从标准（https://www.python.org/dev/peps/pep-0257/）中：\n\
+  \n> \"本 PEP 的目标是标准化文档字符串的高级结构：它们应包含什么内容，以及如何表述（而不涉及文档字符串内的任何标记语法）。PEP 包含约定，而非法律或语法。\"\
+  \n\n虽然开发者没有必须遵循这些指南的要求，但第三方工具（如 Docutils 和 Sphinx）可能依赖它们从文档字符串中提取特性。\n\n\n\n\n与任何允许存在不同形式的标准一样，有若干团体提倡不同的版本：\n\
+  \n- Google 在 https://google.github.io/styleguide/pyguide.html#Comments 中给出了其 Python\
+  \ 风格指南的意见\n- numpy 在 https://github.com/numpy/numpy/blob/master/doc/HOWTO_DOCUMENT.rst.txt#docstring-standard\
+  \ 提出了自己的建议\n- Epydoc 则倾向于在 http://epydoc.sourceforge.net/manual-docstring.html 使用文档字符串\n\
+  \n最终，你的团队应选择一种既适合自己、也适合其用于生成文档的工具（或多种工具）的多行文档字符串语法。\n\n## 语义\n\n多行文档字符串应提供足够的信息，使感兴趣的人能够使用它所记录的对象。仅仅描述其名称和用途是不够的。潜在用户应通过阅读文档字符串了解以下内容：\n\
+  \n- API\n- 输入\n- 功能\n- 输出（或各项输出）\n- 错误条件\n- 与系统其他部分的关系\n- 示例用法\n\n## API\n\n这对于类和模块很重要。模块的文档字符串应描述该模块导出的所有类、异常和函数。类的文档字符串应描述其公共接口和实例变量。描述应该简短（一行就足够了）——更详细的内容将由各个部分的文档字符串提供。\n\
+  \n## 输入\n\n这些对于脚本（命令行参数和选项）和函数（参数）尤其重要。用户应能够指定完整、有效的输入，这意味着需要描述：\n\n- 输入的名称\n- 它们的类型\n\
+  - 它们的取值范围\n- 可选与必需\n\n## 功能\n\n这些对于脚本和函数很重要。用户无需被过多告知用于实现结果的机制，就能理解输入与输出之间的关系。这意味着要用通俗易懂的语言描述函数的功能。如果函数实现了某个简单的数学表达式，这里是包含它的好地方。这可能是注释中最难写的一部分。\n\
+  \n## 输出\n\n这些对于脚本和函数很重要。应列出输出的数量和类型。任何副作用也应加以描述。\n\n## 错误条件\n\n应列出可能导致错误的各种条件。错误分为两类：静默错误和显式错误。\n\
+  \n显式错误是指导致抛出异常或设置错误码的错误。所有抛出的异常都应记录在文档中。任何用于指示错误的变量或数据结构（例如 `errno`）也应记录在文档中。\n\n\
+  静默错误是指代码看似正常运行，但实际上产生了无效结果的情况。例如，许多数值算法只对一部分本来合法的输入产生有意义的结果。\n\n无论哪种情况，都应向用户提供足够的信息，以便：\n\
+  \n- 避免错误条件（在可能的情况下）\n- 检测错误条件（无论是通过捕获异常还是检查错误码）\n- 从错误中恢复（例如，重试，或使用替代方法）\n\n## 与系统其他部分的关系\n\
+  \n这主要对类、模块和公共接口很重要。面向对象的系统由大量相互交互的部分组成。其中一些部分位于系统内部，一些位于外部。文档字符串应描述当前部分与其他部分的关系。\n\
+  \n## 文档\n\n一种重要的关系是依赖关系。一个部分可以在逻辑上（通过继承或组合）、功能上（例如，通过被导入），或时间上（也许，一个部分执行另一个部分正常运作所需的设置）依赖于另一个部分。所有依赖关系都应记录在文档中。\n\
+  \n另一种重要关系是作为同一模式的一部分。设计模式正变得越来越重要，并决定了各种机制的存在。如果某个类是某个模式实现的一部分，这一点应记录在文档中。\n\n##\
+  \ 示例用法\n\n尽管英文描述很有用，但几个示例仍然无可替代。在某些操作系统中，唯一有用的文档就是示例形式的。\n\n## 示例\n\n我们将从 Rosetta\
+  \ Code 中选取一个例子，即中国剩余定理的 Python 实现（http://rosettacode.org/wiki/Chinese_remainder_theorem#Python）。我们的实现将做两处修改。第一，它将使用一个类，而不是展示的函数，以便能够演示完整的注释约定。第二，它将从\
+  \ Python 2.7 升级到 Python 3：\n\n```\n'''Company boilerplate goes here.\n```\n\n假设\
+  \ n1, ..., nk 是两两互质的正整数。那么，对于任意给定的整数序列 a1, ..., ak，存在一个整数 x 满足下面的同余方程组。\n\n```\n\
+  x ≡ a1 mod n1\n\nx ≡ a2 mod n2\n\n…\n\nx ≡ ak mod nk\n```\n\n该定理的完整解释可在 https://en.wikipedia.org/wiki/Chinese_remainder_theorem\
+  \ 查看。\n\n- **属性：**\n  \n  - 无\n\n**依赖项：**\n\n```\nfunctools\n\n\"\"\"\n\nimport\
+  \ functools\n\nclass CRT:\n    \"\"\"The Chinese Remainder Theorem method for solving\
+  \ a system of linear congruences.\n\n    This class has no __init__ method. As such,\
+  \ there are no arguments required to construct an instance. Without class or instance\
+  \ variables, all objects of this class are stateless.\n\n    Args:\n        None\n\
+  \n    Attributes:\n        None\n\n    Example:\n        An example is provided\
+  \ in the main guard corresponding to the system:\n            x ≡ 2 mod 3\n    \
+  \        x ≡ 3 mod 5\n            x ≡ 2 mod 7\n    \"\"\"\n\n    def chinese_remainder(self,\
+  \ n, a):\n        \"\"\"Use the existence construction form of the CRT to compute\
+  \ the solution.\n\n        First, calculate the product of all the modulos (b1,\
+  \ n2, ..., nk) as prod\n        For each i, calculate prod/n_i as p\n        Sum\
+  \ up each ai * the multiplicative inverse of ni mod p\n\n        Args:\n       \
+  \     n: a list of modulos (n1, n2, ..., nk)\n```\n\n```\na: a list of congruences\
+  \ (a1, a2, ..., ak)\n\nReturns:\n    The smallest integer solution to the system\
+  \ of congruence equations defined\n    by a and n.\n\nError conditions:\n    When\
+  \ len(n) == len(a), a solution always exists.\n    When len(a) > len(n), any additional\
+  \ a's are ignored.\n    When len(n) > len(a), behavior is deterministic but erroneous.\n\
+  \    \"\"\"\n    sum = 0\n    prod = functools.reduce(lambda a, b: a*b, n)\n\n \
+  \   for n_i, a_i in zip(n, a):\n        p = prod / n_i\n        sum += a_i * self.__mul_inv(p,\
+  \ n_i) * p\n    return int(sum % prod)\n\ndef __mul_inv(self, a, b):\n    \"\"\"\
+  Calculate the multiplicative inverse of b mod a.\"\"\"\n    b0 = b\n    x0, x1 =\
+  \ 0, 1\n    if b == 1:\n        return 1\n    while a > 1:\n        q = a / b\n\
+  \        a, b = b, a%b\n        x0, x1 = x1 - q * x0, x0\n    if x1 < 0:\n     \
+  \   x1 += b0\n    return x1\n\nif __name__ == '__main__':\n    n = [3, 5, 7]\n```\n\
+  \n```\na = [2, 3, 2]\ncrt = CRT()\nprint(crt.chinese_remainder(n, a))\n```\n\n结果如下：\n\
+  \n```\nIn [22]: help(CRT)\n```\n\n```\nHelp on class CRT in module __main__:\n\n\
+  class CRT(builtins.object)\n |  The Chinese Remainder Theorem method for solving\
+  \ a system of linear congruences.\n |\n |  Notes:\n |      This class has no __init__\
+  \ method. As such, there are no arguments required\n |      to construct an instance.\n\
+  \ |\n |      Without class or instance variables, all objects of this class are\
+  \ stateless.\n |\n |  Args:\n |      None\n |\n |  Attributes:\n |      None\n |\n\
+  \ |  Example:\n |      An example is provided in the main guard corresponding to\
+  \ the system:\n |          x = 2 mod 3\n |          x = 3 mod 5\n |          x =\
+  \ 2 mod 7\n |\n |  Methods defined here:\n```\n\n| chinese_remainder(self, n, a)\n\
+  |     使用 CRT 的存在性构造形式来计算解。\n|     首先，将所有模数（n1, n2, ..., nk）的乘积计算为 prod\n|     对于每个\
+  \ i，将 prod/n_i 计算为 p\n|     将每个 ai 与 ni 对 p 的乘法逆元相乘后求和\n|     参数：\n|         n:\
+  \ 模数列表（n1, n2, ..., nk）\n|         a: 同余式列表（a1, a2, ..., ak）\n|     返回：\n|     \
+  \    由 a 和 n 所定义的同余方程组的最小整数解。\n|     错误条件：\n|         当 len(n) == len(a) 时，解总是存在。\n\
+  |         当 len(a) > len(n) 时，多余的 a 会被忽略。\n|         当 len(n) > len(a) 时，行为是确定的，但结果是错误的。\n\
+  |     ---------------------------------------------------------------\n| 在此定义的数据描述符：\n\
+  | __dict__\n|     实例变量的字典（如果已定义）\n| __weakref__\n|     对象弱引用的列表（如果已定义）\n\n请注意，私有方法\
+  \ __mul_inv 的文档字符串并未包含在内。\n\n\n\n## reStructuredText\n\n关于前面的示例，可以说很多（尤其是注释行比代码还多），但很难说最终效果在美学上是令人愉悦的。特别是与使用\
+  \ Javadoc 的程序输出相比，这份文档看起来相当朴素。为了弥补这一缺陷，人们决定需要一种更精细的规范和生成文档的方式。\n\n### 历史与目标\n\n\
+  Zope 的 Jim Fulton 发明了 StructuredText 作为一种简单的标记语言。它与 WikiWikiWebMarkup 类似，但更简单。规范和实现方面的问题促使\
+  \ David Goodger 创建了一个修订版本，称为 reStructuredText。他为该语言设定的目标如下：\n\n- 可读\n- 不突兀\n- 无歧义\n\
+  - 不令人意外\n- 直观\n- 简单\n- 可伸缩\n- 强大\n- 语言中立\n- 可扩展\n- 输出格式中立\n\n这导致了 PEP 0287（https://www.python.org/dev/peps/pep-0287/）的发布。\n\
+  \n### 用户\n\n任何文档系统都有三类用户：开发人员、自动化文档生成软件和读者。它们各自有不同的需求和限制。\n\n开发人员必须编写文档。作为一个群体，开发人员讨厌打字，更讨厌输入任何不是代码的内容。任何强迫他们编写大段注释的尝试都会导致标准失败。因此，如果文档可以从代码生成，就应该如此。任何额外的注释都应该易于使用标准键盘和最少量的额外标记来创建。\n\
+  \n文档生成软件将开发人员编写的文本转换成供外部读者阅读的文档。这通常包括将开发人员使用的标记语言转换为更易读的格式。例如，开发人员编写的 Javadoc 可以自动转换为读者可以在浏览器中查看的\
+  \ HTML。这种转换可以同时添加美观属性（例如颜色和格式）和功能属性（例如超链接）。重要的是，对于文档生成软件而言，开发人员使用的标记必须足够强大且结构化，以支持这种转换。\n\
+  \n读者阅读这种转换的最终结果。读者可能是开发人员，也可能不是，但他们期望文档在结构上组织良好。文档应该易于阅读，并且应该易于找到所需内容。请注意，读者通常无法访问原始源，即使原始标记可用，他们也可能无法阅读。\n\
+  \n开发人员和读者之间的这种划分存在一种重要的紧张关系。简而言之，读者希望获得尽可能多的文档，并且以结构化的形式呈现。开发人员则会尽可能少地编写文档，并尽可能少地使用结构。\n\
+  \n### 解决方案\n\nreStructuredText 采用的解决方案是使用一个两步过程：一种简单的标记语言，再加上强大的文档生成软件。标记语言是 reStructuredText，软件是\
+  \ Docutils。基本过程很简单：\n\n1. 开发人员使用 reStructuredText 约定以纯文本形式编写文档字符串。\n2. 对生成的代码+注释文档应用\
+  \ Docutils，以外部格式（例如 HTML 或 LaTeX）生成文档。\n3. 读者在适当的查看器中阅读生成的文档。\n\n稍后我们将介绍 Sphinx，这是一个建立在\
+  \ reStructuredText 和 Docutils 之上并对其进行扩展的文档生成程序。\n\n### 概述\n\nreStructuredText 的基本语法是常规文本，并针对某些用法附带了特殊约定。这与\
+  \ HTML 等语言形成对比，在 HTML 中，元数据通过尖括号与文本关联。例如，在 HTML 中，项目符号列表可能如下所示：\n\n```html\n<ul>\n\
+  \  <li>Python</li>\n  <li>Java</li>\n  <li>Ruby</li>\n</ul>\n```\n\n而在 reStructuredText\
+  \ 中，它看起来如下：\n\n- Python\n- Java\n- Ruby\n\n一个重要的区别是，虽然 HTML（及其近亲，如 XML）允许嵌套标签，但\
+  \ reStructuredText 不允许嵌套标记。虽然这通常不是问题，但偶尔也会遇到。\n\n下面列出了一些更重要的用法。\n\n#### 段落\n\n段落是由一个或多个空行分隔的文本块。段落的左边缘应对齐。如果某个段落相对于其他段落缩进，则它被视为引用。\n\
+  \nreStructuredText 如下所示：\n\n> 事实证明，亚伯拉罕·林肯从未说过\n>\n> 永远不要相信你在互联网上读到的任何东西。\n>\n>\
+  \ 那是本杰明·富兰克林说的\n\n这产生的 HTML 输出显示如下：\n\n![](img/8628b86fcc4f22d859c0104c2ec1d15f_310_0.png)\n\
+  \n#### 文本样式\n\n斜体文本应使用星号（*）括起来：\n\n```\nUse italics for *emphasis*.\n```\n\n粗体文本使用两个星号（**）：\n\
+  \n```\nUsing a **goto** statement is a bold move in structured programming.\n```\n\
+  \n遗憾的是，没有简单的方法使文本同时变成斜体和粗体。\n\n在大多数情况下，reStructuredText 很聪明，知道什么时候是标记，什么时候应该原样保留。例如，考虑这些字符串：\n\
+  \n```\nx = 5*6\nx = 5*6*7\n```\n\n星号不会被解释为将 6 变为斜体。\n\n用双反引号（``）包围文本会强制其成为等宽字面量——引号之间的所有特殊字符都保持原样，不被解释。否则会被解释为标记的单个字符可以使用反斜杠（\\\
+  ）进行转义。\n\n#### 字面量块\n\n如果需要将整个段落作为字面量块（即完全按原样，不解释段落中的标记字符或缩进），那么一个只包含两个冒号的段落表示后面的缩进或引用文本应按字面量处理。这在引用代码或解释标记约定时非常有用。\n\
+  \n它产生的网页如下：\n\n![](img/8628b86fcc4f22d859c0104c2ec1d15f_312_0.png)\n\n#### 项目符号列表\n\
+  \n项目符号列表的工作方式与枚举列表类似，除了：\n\n- 唯一允许的项目符号是 -、+ 和 *\n- 没有分隔符\n\n项目符号列表支持常见的缩进规则。\n\n\
+  #### 定义列表\n\n定义列表只是一系列术语-定义对。术语在第一行，定义在随后的缩进段落中。下面是一个示例：\n\n```\ndo\n    a deer,\
+  \ a female deer\nre\n    a drop of golden sun\nmi\n    a name i call myself\nfa\n\
+  ```\n\n它产生的网页如下：\n\n![](img/8628b86fcc4f22d859c0104c2ec1d15f_314_0.png)\n\n####\
+  \ 章节\n\n上述标记对于大多数开发人员、大多数文档来说应该足够了。如果需要更深入的文档，reStructuredText 提供了使用章节标题将文档划分为章节的能力。这是通过创建一行完全由单个重复字符（下划线）组成的文本实现的。前一行成为章节标题（上划线）。下划线和上划线必须长度相同。所有使用相同下划线的章节处于同一级别。位于使用不同下划线的章节下方的任何章节都比该章节低一级。\n\
+  \n下面是一个示例：\n\n```\nChapter 1 Main Title\n--------------------\n\nSection 1.1 An\
+  \ Important Subject\n```\n\n## Docutils\n\nDocutils 是一套工具，用于将包含 reStructuredText\
+  \ 的文本文件转换为其他格式，包括 HTML、XML 和 LaTeX。它旨在弥合用户想要阅读的内容（美观的格式）与程序员容易输入的内容（纯文本）之间的差距。Docutils\
+  \ 分为两大类：库（用于后台解析和操作）和前端工具（使用库生成特定输出格式）。\n\n### 安装\n\n可以使用 pip 安装 Docutils：\n\n```\n\
+  pip install docutils\n```\n\n这将安装许多脚本，包括重要的转换脚本。作者的安装中包括以下脚本：\n\n- `rst2html.py`\n\
+  - `rst2latex.py`\n- `rst2man.py`\n- `rst2odt_prepstyles.py`\n- `rst2odt.py`\n- `rst2pseudoxml.py`\n\
+  - `rst2s5.py`\n- `rst2xetex.py`\n- `rst2xml.py`\n- `rstpep2html.py`\n\n### 用法\n\n\
+  这些脚本可以在命令行中使用。它们从 `stdin` 读取输入，并将输出写到 `stdout`：\n\n```\n./rst2html.py <infile> >\
+  \ <outfile>\n```\n\n\n\n## 为源文件编写文档\n\n遗憾的是，与 Javadoc 不同，Docutils 无法接受包含大量 Python\
+  \ 代码的 .py 文件，并自动从中提取文档字符串以生成文档。有一个名为 Epydoc 的工具可以做到这一点，但该项目自 2009 年以来一直处于不活跃状态。团队可以编写脚本来尝试仅提取文档字符串，但还有更好的解决方案。这将在下一节中概述。\n\
+  \n## Sphinx\n\nSphinx 是一个文档生成工具。它最初用于生成 Python 文档，但目前已扩展到其他语言，尤其是 C/C++。它可以生成多种格式的输出，包括\
+  \ HTML、LaTeX、ePub、man 页面和纯文本等。它接受 reStructuredText，并在 Docutils 套件的基础上构建，同时添加了一些标记。\n\
+  \n## 安装与启动\n\n可以使用 `pip` 安装 Sphinx：\n\n```\npip install sphinx\n```\n\n安装完成后，会将多个脚本添加到路径中。我们要介绍的第一个脚本是\
+  \ `sphinx-quickstart`。它会提示用户输入信息，然后创建源目录、配置文件和某些骨架文件：\n\n```\nbash-4.1$ sphinx-quickstart\n\
+  Welcome to the Sphinx 1.3.6 quickstart utility.\n\nPlease enter values for the following\
+  \ settings (just press Enter to accept a default value, if one is given in brackets).\n\
+  \nEnter the root path for documentation.\n> Root path for the documentation [.]\
+  \ : docs\n\nYou have two options for placing the build directory for Sphinx output.\n\
+  Either, you use a directory \"_build\" within the root path, or you separate\n\"\
+  source\" and \"build\" directories within the root path.\n```\n\n## 文档\n\n这将生成如下页面：\n\
+  \n![](img/8628b86fcc4f22d859c0104c2ec1d15f_324_0.png)\n\n页面中缺少对 `chinese_remainder`\
+  \ 方法的文档，因此可以使用 automethod 指令将其添加到 `index.rst` 中：\n\n```rst\n.. toctree::\n   :maxdepth:\
+  \ 2\n\n.. automodule:: crt1\n```\n\n虽然这样很灵活，但可能繁琐且容易出错。一种解决方案是使用 `:members:` 属性，如下所示：\n\
+  \n```\n    .. toctree::\n       :maxdepth: 2\n\n    .. automodule:: crt1\n     \
+  \  :members:\n```\n\n另一种方法是使用 `sphinx-apidoc` 工具。`sphinx-apidoc` 的作用是从源文件中提取文档字符串，并根据它们生成\
+  \ `.rst` 文件。请参考以下示例：\n\n```\nbash-4.1$ sphinx-apidoc -o docs .\n```\n\n它会生成一组 `.rst`\
+  \ 文件：\n\n```\nCreating file docs/code1.rst.\nCreating file docs/code2.rst.\nCreating\
+  \ file docs/crt1.rst.\nCreating file docs/hail1.rst.\nCreating file docs/modules.rst.\n\
+  ```\n\n这些文件本身没什么可看的，但它们可以输入到 Sphinx 或其他期望 reStructuredText 的文档工具中，以进行进一步处理。当使用本身无法提取文档字符串的工具时，这一点尤其方便。\n\
+  \n## 总结\n\n虽然内联注释和类型标注对于将在代码库上工作的开发人员很有用，但外部人员需要更全面的文档，并且需要一种比阅读源代码更具吸引力的格式（尤其是当他们无法访问源代码时）。对文档的需求必须与开发人员可以理解的、不愿花费大量时间和精力去编写代码以外任何东西的心理相平衡。\n\
+  \nPython 的解决方案是采用轻量级标记语言 reStructuredText 和工具链（Docutils、Sphinx），将 reStructuredText\
+  \ 转换为外观更精美的格式（例如 HTML 或 LaTeX）。\n\n第 3 章“迈入 IPython 进行并行计算”提供了一些细节，说明如何拆分内核和 REPL\
+  \ 协议，从而使并行架构得以出现。\n\n本章将提供一些示例，展示 notebook 的强大功能，以及它与其他组件的关系。从 IPython notebook\
+  \ 到 Jupyter 项目的转变可能是最大的一次重组，被称为“大分裂”（The Big Split）。如需深入探讨“大分裂”的原因及其对各种包结构的影响，请参阅\
+  \ https://blog.jupyter.org/2015/04/15/the-big-split/。\n\n## 安装与启动\n\nJupyter 可以使用\
+  \ pip 安装：\n\n```\npip install jupyter\n```\n\n可以像这样启动：\n\n```\n(my_rpy2_zone)-bash-4.1$\
+  \ ipython notebook\n[I 10:38:27.193 NotebookApp] Serving notebooks from local directory:\
+  \ /nfs/02/wit0096\n[I 10:38:27.193 NotebookApp] 0 active kernels\n[I 10:38:27.193\
+  \ NotebookApp] The Jupyter Notebook is running at: http://localhost:8888/\n[I 10:38:27.193\
+  \ NotebookApp] Use Control-C to stop this server and shut down all kernels (twice\
+  \ to skip confirmation).\n/usr/bin/xdg-open: line 402: htmlview: command not found\n\
+  console.error:\n  [CustomizableUI]\n  Custom widget with id loop-button does not\
+  \ return a valid node\nconsole.error:\n  [CustomizableUI]\n  Custom widget with\
+  \ id loop-button does not return a valid node\n1457711201438  addons.update-checker\
+  \  WARN  Update manifest for {972ce4c6-7e08-4474-a285-3208198ce6fd} did not contain\
+  \ an updates property\n```\n\n注意，这会在 8888 端口启动一个 HTML 服务器（称为 Jupyter Notebook 应用）。它可能还会（取决于你的平台）启动指向\
+  \ http://localhost:8888 的浏览器。如果没有，请手动启动浏览器并指向该地址。Jupyter 只能访问其启动目录（及其子目录）中的文件，因此请务必在其能够访问你的\
+  \ notebook 文件的位置启动它。\n\n## 创建 notebook\n\n当然，没有人会用 JSON 编写 notebook——它只是用作持久化和交换的文本格式。可以使用仪表盘（Dashboard）创建\
+  \ notebook。在界面的右上部分有一个下拉框，提供创建新 notebook 的选项：\n\n![](img/8628b86fcc4f22d859c0104c2ec1d15f_336_0.png)\n\
+  \n## 使用 matplotlib\n\n在 notebook 中使用 matplotlib 的关键是 `%matplotlib inline` 魔术命令。它应该是单元格中的第一行。例如：\n\
+  \n![](img/8628b86fcc4f22d859c0104c2ec1d15f_344_0.png)\n\n第一个单元格（打印 **图形很有趣**）是 Markdown；第二个单元格创建了所示图表。\n\
+  \n## 使用 R\n\n使用 R 时，重要的是所有工作都应在 R 中完成（或者至少是实际显示图表的部分）。否则，图表将在单独的窗口中打开，而不是在 notebook\
+  \ 中。%%R 单元格魔术是完成这项工作的正确工具。特别是，应该打印图表，而不是使用 plot( ) 函数。例如：\n\n![](img/8628b86fcc4f22d859c0104c2ec1d15f_346_0.png)\n\
+  \nIPython 不是这样的系统。2001 年，Fernando Perez 是科罗拉多大学博尔德分校的一名研究生。他不是计算机科学专业，而是一名需要编程并希望有更好工具的物理学研究生。作为一名物理学家，他对“更好”的想法与计算机科学家可能设想的不同。特别是，对早期\
+  \ IPython 形成影响的是主要为数据分析和展示而设计的工具：Mathematica (http://www.wolfram.com/mathematica/)\
+  \ 和 Sage (http://www.sagemath.org/)。\n\nPerez 曾表示，IPython“旨在成为一个高度可配置的工具，用于构建针对特定问题的交互式环境”，这为其历史和未来方向提供了一把钥匙。\n\
+  \n最初的努力从两个方向入手。一方面，当时已经存在几个 Python 扩展——IPP（由 Janko Hauser 开发）和 LazyPython（由 Nathan\
+  \ Gray 开发）。另一方面，Perez 对自己应该实现什么有自己的想法。最终，IPython 诞生于 IPP、LazyPython 和 Perez 自己努力的代码合并。\n\
+  \n此时开发速度放缓了。有人尝试过制作 notebook。也曾考虑过与 Sage 合并，但最终项目各自发展。2009 年，第一位全职开发者获得了资助。他的第一项任务是重构整个代码库，当时它仍然是\
+  \ IPP、LazyPython 和 Perez 原始代码的大杂烩。虽然没有添加新功能，但在此后干净整洁的代码上，开发可以更容易地推进。\n\n2010 年是重要的一年。第一个重大发展是转向基于\
+  \ ZeroMQ 的架构。采用 ZeroMQ 带来了两项重要的架构进步：前端与解释器的分离，以及对并行性的支持。\n\n分离前端和后端在多个方面意义重大。也许最重要的是，这意味着实现\
+  \ notebook 变得更简单：Notebook 只是后端 Python 内核的另一个接口。另一方面，命令行界面可以自由连接到支持任何语言（不仅仅是 Python）的内核。IPython\
+  \ 正从“一个更好的 Python shell”转变为“一个多接口、多语言的平台”。此时工作进展迅速：2010 年剩余时间里，开发了命令行界面、Qt 控制台、与\
+  \ Visual Studio 的 Python 工具集成，以及一个 Web notebook 原型。2011 年，该原型变成了完全可用的版本，IPython\
+  \ 0.12 发布。\n\n\n\n\n"
+- '# Notebook
+
+
+  Jupyter Notebook 是造成这次重大分裂的主要原因。回顾 IPython 4.0 之前各版本的发行说明，可以清楚地看出，许多改进针对的是 Notebook
+  组件，而非 Python 专属功能，甚至也不是底层架构。
+
+
+  Notebook 本身规模庞大，拥有自己的子项目：
+
+
+  - 文档格式（及其 API，nbformat）
+
+  - nbconvert
+
+  - nbviewer
+
+
+  Notebook 的主要功能是显示信息——计算则交由内核完成——因此这一层似乎不太可能出现兼容性问题。不过，Notebook 提供的功能不止信息显示，而且功能还在不断增加，因此兼容性问题仍有可能出现。
+
+
+  # 控制台
+
+
+  控制台是一种命令行界面，可以与遵循 Jupyter 交互式计算协议的任何内核通信。目前尚不清楚，既然 IPython 的终端如今已与语言无关，为何还需要一种新的终端界面，而不直接使用
+  IPython 的终端。从用户的角度来看，它们看起来确实一样。实际上，它们可能是同一个东西，只是将一些 IPython 专属代码替换成了与 Jupyter 兼容的代码。文档说明了如何启动和使用控制台，却没有解释它与
+  IPython 的关系（如果存在这种关系的话）。快速搜索网络也无济于事，甚至有些网站声称控制台就是新版 IPython。
+
+
+  # Jupyter 客户端
+
+
+  Jupyter Client 包是一个 Python API，用于启动、管理内核并与之通信。IPython 的内核也遵循这一标准。它规定了所有内核必须遵循的消息传递协议，以便与
+  Notebook 通信。作为 Jupyter 的参考内核，IPython 内核必定会继续遵循这一规范。
+
+  '
+- "# Jupyter 的未来\n\n尽管 Fernando Perez 是*终身仁慈独裁者*，并且 Jupyter 设有一个由 10 名成员组成的指导委员会，但\
+  \ Jupyter 是一个采用修订版 BSD 许可证的开源项目。因此，并不存在权威的待办事项清单，取而代之的是不同程度的“官方”规划。\n\n## 官方路线图\n\
+  \n第一层是 Jupyter GitHub 站点上的主要子项目：`https://github.com/jupyter`。高层次路线图位于 `https://github.com/jupyter/roadmap`。下表列出了一些重点：\n\
+  \n| 功能 | 描述 | 详情 |\n|---|---|---|\n| **JupyterLab** | 最初是在现有 Notebook Web 应用中新增的一个页面，允许在同一个浏览器标签页中使用多个插件\
+  \ | 有望取代当前的 Notebook 界面。这是一个大型项目。 |\n| **ipywidgets** | 交互式组件，可将内核中的代码与浏览器中的 JavaScript/CSS/HTML\
+  \ 联系起来 | 改进样式。全面重构。将 JavaScript 模块化。 |\n| **JupyterHub** | 管理并代理多个单用户 Jupyter Notebook\
+  \ 服务器实例 | 改进配置。支持共享与协作。 |\n| **IPython** |  | 相对成熟，因此计划中的重大变更很少。 |\n\n更具体的事项则包括\
+  \ **Issues** 标签下列出的错误，以及 **Pulls** 标签下的新功能。\n\n接下来似乎是 **Jupyter 增强提案（JEP）**（`https://github.com/jupyter/enhancement-proposals`）。根据文档（`http://jupyter.readthedocs.org/en/latest/contrib_guide_bugs_enh.html`），这类提案与错误请求类似：提交者希望由其他人来完成相关工作。目前，该站点上只有四项增强提案，也有四个拉取请求，但它们似乎都不是路线图中的重点内容。\n\
+  \n难点在于，这些工具各自为政。知道何时该用哪种工具，以及如何使用，更像是一门艺术，而非一门科学。这种情况类似于汇编语言时代的末期：有些开发者能用这些工具做出令人惊叹的成果，但这样的人并不多；而且，显而易见，仅靠持续的临时性进展已不足以应对挑战。\n\
+  \n# 更好的工具\n\n另一种方法是为程序员提供更好的工具，增强他们的能力。这种方法与务实的演进方法相辅相成：新技术往往需要新工具才能更容易地使用，而新工具也能推动新技术的发展。《重大挑战》论文中有多个章节专门讨论工具。论文特别提到了几种工具，包括编译器、调试器和开发环境。\n\
+  \nIPython 在这一方法上可谓一只脚稳稳地踏入其中。使用 IPython（配合 Python），就意味着牺牲一定的性能，以换取其他优势：高层次抽象、多语言支持、友好的\
+  \ IDE，以及本书详述的其他所有功能。从某种意义上说，这是一场押注——运行 IPython 所耗费的计算周期，所换来的收益将超过使用效率较低的最终产品所损失的部分。考虑到工具的强大与否，往往决定了能否做出可用的产品，这看起来是一场稳妥的押注。\n\
+  \n如果把 IPython 看作交互式并行计算工具，那么它的未来似乎有保障，尽管具体前景尚不明朗。说它有保障，是因为随着新技术不断涌现，IPython（以及整个\
+  \ Jupyter 组织）完全有条件将这些技术整合进自身。说它不明朗，则是因为没人知道未来会出现哪些新技术。\n\n由于并行计算仍在持续发展，学习 IPython\
+  \ 并不是背下一些语法、做几道编程练习就能完成的事。未来几十年里，IPython 将不断发展演进，开发者不仅需要采用新版本的工具，还需要定期更新自己对这一领域的认知。\n\
+  \n# 下一个重大创意\n\n通过不断演进新技术并改进工具，社区或许能够找到一个令人满意的并行系统开发框架。然而，如果历史经验可以作为参考，我们仍然需要一种全新的范式（类似于从手写汇编代码转向编译高级语言），才能实现突破。\n\
+  \n以巴黎圣母院为例。概括而言，它听起来很像一个软件项目：\n\n![](img/8628b86fcc4f22d859c0104c2ec1d15f_366_0.png)\n\
+  \n图片来源：https://commons.wikimedia.org/wiki/File:Notre_Dame_dalla_Senna.jpg\n\n巴黎圣母院历时约\
+  \ 182 年建成（公元 1163 年至约 1345 年），期间至少更换过四位建筑师。尽管工程一直在进行，它从建成初期起便持续投入使用。虽然最初有整体规划，但随着施工困难暴露出新的需求，一些重要特征（包括著名的飞扶壁）也在后续逐步增建。这是一项非凡的工程成就。\n\
+  \n更令人惊叹的是，从某种非常现实的意义上说，参与其中的人其实都不真正明白自己在做什么。直到近 350 年后的牛顿时代，人们才理解那些能够证明建筑设计决策合理性的基本物理定律。在牛顿之前，所有建筑知识都来自反复试验：墙体厚度、建筑高度、承重能力、拱门的高度和宽度，以及其他所有结构参数，都是依据以往实验的累积结果和建筑师自身的判断来决定的。\n\
+  \n这并不意味着他们的决策是错误的——显然，他们能够建造出规模相当大、结构稳固且美观的建筑。但这意味着他们能做到的事情有严格的限度。建筑规模越大，可供借鉴的先例就越少，失败的代价也越高。\n\
+  \n面向大规模并行计算机的软件开发也面临同样的问题。我们在构建规模较小的并行系统方面积累了丰富经验，在并行度更高的系统方面也有一些经验，但问题和失败代价都在不断增大。这个领域需要类似《自然哲学的数学原理》（Principia）的成果——一套统一的并行编程理论。我们需要下一个重大创意。\n\
+  \n在下一个重大创意出现之前，科学软件开发社区可以借鉴软件工程领域的一些实践来推动发展。\n\n# 提升专业化水平\n\n> “科学家建造，是为了学习；工程师学习，是为了建造。”\n\
+  >\n> — Fred Brooks\n\n科学家和工程师的工作各不相同。科学家致力于扩展知识，工程师则致力于应用知识。科学家建造某样东西，是为了获得所需的知识；一旦获得这些知识，这个东西的使命便告结束。工程师建造某样东西，则是为了应用知识，而让它长期发挥作用正是其目的。\n\
+  \n许多科学软件都是由科学家为科学研究而编写的。因此，一旦从软件中提取出预期的知识，它往往就会被视为可以弃用，这并不令人意外。虽然这种做法能够立即取得成果，但该领域中其他同样希望使用这些软件的研究人员，往往会发现它们难以使用、维护和扩展。\n\
+  \n\n\n\n\n## K\n- 内核 45\n- 消除 GIL 60\n\n## L\n- 列表\n  - 关于 289\n  - 项目符号列表 290\n\
+  \  - 定义列表 290, 291\n  - 编号列表 289\n- LoadBalancedView\n  - 关于 146\n  - 数据移动 147\n\
+  \  - 导入 147\n- 负载均衡 82\n\n## M\n- 魔术命令\n  - 关于 38\n  - 创建自定义魔术命令 39\n  - Cython\
+  \ 40\n  - 调试 38\n  - 文档 38\n  - 配置 IPython 41\n  - 日志记录 38\n  - 操作系统等效项 38\n  -\
+  \ 使用其他语言 38\n  - 性能分析 38\n  - 使用代码 38\n- MapReduce\n  - 关于 77, 78\n  - 分散与收集 78\n\
+  \  - 高级方法 79, 80\n- map_sync\n  - 使用 66\n- Markdown 单元格 320\n- Markdown 文本\n  -\
+  \ URL 319\n- Mathematica\n  - URL 330\n- Matplotlib\n  - 关于 182\n  - 修改图表 186-189\n\
+  \  - 初始图表 185, 186\n  - 控制交互性 189, 190\n  - 入门 182-184\n  - URL 187\n  - 使用 322\n\
+  - 消息传递接口 (MPI)\n  - 关于 107\n  - 广播 110\n  - 更改配置 112\n  - Hello World 108\n  - 主节点\
+  \ 113\n  - 点对点通信 109\n  - 进程控制 113\n  - 秩与角色 108\n  - 归约 110-112\n  - URL 74\n \
+  \ - 划分工作 112, 113\n  - 分派工作 113\n- 消息传递的用例\n  - 关于 117\n  - 心跳 118\n  - IOPub 119\n\
+  \  - 注册 117\n- Microsoft Azure\n  - URL 342\n- MIMD（多指令多数据流）80\n- MIT（Expat）许可证\n\
+  \  - URL 171\n- 猴子补丁 249-251\n- 蒙特卡洛模拟 84\n- MPMD（多程序多数据流）80-82\n- mp.pool.AsyncResult\
+  \ 类\n  - 关于 130\n  - 使用多种方法的示例程序 131, 132\n  - 获取结果 130\n- 多核机器 60\n- 多个处理器\n  -\
+  \ 使用 61\n- multiprocessing.pool.Pool 类\n  - 关于 127\n  - 阻塞方法 127\n  - 使用多种方法的示例程序\
+  \ 128-130\n  - 非阻塞方法 128\n  - 获取结果 128\n- 多任务处理\n  - 关于 53\n  - 优点 54\n- mypy\n\
+  \  - URL 269\n\n## N\n- 美国国家科学基金会 (NSF)\n  - 云 346\n- nbconvert 326\n- nbviewer\
+  \ 328\n- 对速度的需求 1, 2\n- nose2\n  - 关于 251\n  - 断言 256\n  - 向后兼容性 252-254\n  - 使用装饰器\
+  \ 259-261\n  - 运行单项测试 255, 256\n  - 使用 pip 安装 252\n  - 插件 262\n  - 设置 256\n  - 拆卸\
+  \ 256\n  - 测试发现 254\n  - URL 251\n  - 使用 junitxml 插件创建 XML 262, 263\n  - 修改后的 xUnit\
+  \ 风格 256-258\n- 笔记本\n  - 关于 34, 35, 332\n  - 创建 314, 315\n  - 与测试配合使用 317\n- numpy\n\
+  \  - URL 278\n- NVD3\n  - URL 213\n\n## O\n- 面向对象编程 (OOP) 7\n- oct2py 模块/扩展\n  -\
+  \ 关于 161\n  - 安装 161\n- Octave\n  - %%octave 魔术命令 165, 166\n  - %octave 魔术命令 162\n\
+  \  - 关于 161\n  - 运行代码 170, 171\n  - 图形 167\n  - 安装 oct2py 161\n  - oct2py 模块/扩展\
+  \ 161\n    - 使用魔术命令 161\n    - 推送和拉取 166-170\n    - URL 161\n    - 使用 169\n- Octave\
+  \ 模块\n\n## P\n- 包管理\n  - 使用 conda 33\n- ZeroMQ 点对点通信\n  - 客户端 98\n  - 服务器 97\n-\
+  \ pandas\n  - 安装 202\n- 并行计算 21\n- 并行性\n  - 关于 337\n  - 更好的工具 343\n  - 重大创意 342\n\
+  \  - 云 342\n  - 计算 341\n  - 问题 339, 340\n  - 兆赫兹之争落幕 338, 339\n  - 下一个重大创意 343-345\n\
+  \  - 现状 340\n  - 技术的务实演进 342\n  - 类型 71, 72\n  - 与过去相比 339, 340\n- 并行性的类型\n  - ipcluster\
+  \ 和 mpiexec/mpirun 74, 75\n  - ipcluster 和 PBS 75\n  - 多指令多数据流 (MIMD) 80\n  - 多程序多数据流\
+  \ (MPMD) 80-82\n  - SIMD 72-74\n  - SPMD（单程序多数据流）74\n- 并行魔术命令\n  - %autopx 魔术命令\
+  \ 70\n  - %pxconfig 魔术命令 70\n  - %%px 魔术命令 69\n  - %px 魔术命令 68\n\n"

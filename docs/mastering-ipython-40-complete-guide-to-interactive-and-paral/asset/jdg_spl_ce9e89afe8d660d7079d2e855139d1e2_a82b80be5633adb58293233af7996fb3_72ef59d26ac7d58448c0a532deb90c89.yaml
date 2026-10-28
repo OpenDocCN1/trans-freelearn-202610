@@ -1,0 +1,107 @@
+chapter_starts:
+- 'no': 6
+  confidence: 0.98
+  final_reason: 双方一致：前言属于正文之前的内容，按规则统一划分为一章。
+  accepted_evidence:
+  - 标题明确为“前言”
+  - 规则要求前言、序言等正文之前内容统一分章
+  - 复核方未否决
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 46
+  confidence: 0.65
+  final_reason: 判断方与复核方均倾向保留；位于正文开头且主题独立，虽无章编号，但可作为正文首个内容章起点。
+  accepted_evidence:
+  - 正文起始位置的顶级标题
+  - 主题“FORTRAN 来救援”独立且具有统领性
+  - 后续内容围绕语言与软件成本问题展开
+  rejected_evidence:
+  - 无章编号
+  - 后文“可读性”“构建（和维护）软件的成本”等标题可能同属一个章内层级
+  need_human_review: true
+- 'no': 386
+  confidence: 0.9
+  final_reason: 标题后出现“本章涵盖”的章级引导语，后接多个三级子节，章结构清晰；复核方未否决。
+  accepted_evidence:
+  - 标题下出现“本章涵盖 IPython 中一些……有用功能”
+  - 后接“### 性能分析”“### DirectView”等子节
+  - “打开工具包 – IPython API”本身具有章题特征
+  rejected_evidence:
+  - 标题无章编号
+  - 第467行出现同名标题，存在重复排版干扰
+  need_human_review: false
+- 'no': 507
+  confidence: 0.55
+  final_reason: 独立工具主题且后接三级子节，判断方与复核方均保留；但由于缺少章编号和章级导语，需谨慎接受。
+  accepted_evidence:
+  - 主题“使用 rpy2.robjects”明确独立
+  - 后接“### 基础知识”等子节
+  rejected_evidence:
+  - 无章编号或“本章”导语
+  - 前文已连续讨论 R、Octave 等扩展，存在章内小节可能
+  need_human_review: true
+- 'no': 1055
+  confidence: 0.6
+  final_reason: 判断方与复核方均保留；unittest 是测试框架的独立结构化主题，后接多级子节。
+  accepted_evidence:
+  - unittest 测试框架主题独立
+  - 后接“### 重要概念”等子节
+  rejected_evidence:
+  - 无章编号
+  - 后文 pytest、nose2 仍围绕测试展开，可能同属一个测试大章
+  need_human_review: true
+- 'no': 1570
+  confidence: 0.55
+  final_reason: 判断方与复核方均保留；nose2 为测试框架的独立主题，后接多个三级子节，按现有证据保留。
+  accepted_evidence:
+  - nose2 测试框架主题独立
+  - 后接“### 运行单个测试”“### 使用装饰器”等子节
+  rejected_evidence:
+  - 无章编号
+  - 前文已大量讨论 unittest 与 pytest，可能属同一测试章内部
+  need_human_review: true
+- 'no': 1871
+  confidence: 0.97
+  final_reason: 双方一致：前言明确指认第9章《文档》，标题后又有“本章将涵盖以下主题”的章级引导语。
+  accepted_evidence:
+  - 前文总结明确表示下一章为“文档”
+  - 标题后出现“本章将涵盖以下主题”
+  - 与前言“第9章《文档》”对应
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 2741
+  confidence: 0.55
+  final_reason: 判断方与复核方均保留；Notebook 是 Jupyter 访问部分的核心主题，后接控制台、客户端等并列内容。
+  accepted_evidence:
+  - 后接“# 控制台”“# Jupyter 客户端”等并列主题
+  - 正文围绕 Notebook 的组成与功能展开
+  rejected_evidence:
+  - 无章编号或“本章”导语
+  - 可能是“访问 Jupyter”一章内部的较大分节
+  need_human_review: true
+- 'no': 2761
+  confidence: 0.6
+  final_reason: 判断方与复核方均保留；“Jupyter 的未来”与前言第11章《走向未来》语义对应，且后续为全书收尾内容。
+  accepted_evidence:
+  - 语义对应第11章《走向未来》
+  - 后续讨论路线图、未来工具等收尾话题
+  - 其后即进入索引部分
+  rejected_evidence:
+  - 无章编号
+  - 可能只是 Jupyter 主题下的末尾小节
+  need_human_review: true
+rejected_lines:
+- 'no': 95
+  reason: 复核方反证成立：标题为二级标题，后续“IPython并行架构”“概述”“组件”等均属同一章内并列内容；且前文已明确提到第3章《迈向 IPython
+    并行计算》，应视为章内小节而非新章。
+  need_human_review: false
+- 'no': 691
+  reason: 复核方反证成立：仅为“Hy”单文库名标题，无章编号或章级导语；其前接 rpy2/Octave 等工具、后接 Matplotlib，属于同一工具链中的并列小节。
+  need_human_review: false
+- 'no': 788
+  reason: 复核方反证成立：“Matplotlib”仅为可视化库小节，后接“启动 matplotlib”“初始图形”等下级标题，并与 Bokeh、ggplot2
+    并列，不具备独立大章结构。
+  need_human_review: false
+- 'no': 872
+  reason: 复核方反证成立：“Bokeh”与 Matplotlib、ggplot2 同处可视化工具主题链，无章编号和章级概述，应作为章内小节处理。
+  need_human_review: false
