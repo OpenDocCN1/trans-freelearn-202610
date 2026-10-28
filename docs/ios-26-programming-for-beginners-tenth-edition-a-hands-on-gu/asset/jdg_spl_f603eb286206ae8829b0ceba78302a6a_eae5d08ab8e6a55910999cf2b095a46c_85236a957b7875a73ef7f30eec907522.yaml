@@ -1,0 +1,30 @@
+chapter_starts:
+- 'no': 3633
+  confidence: 0.95
+  final_reason: 判断方与复核方一致，行内容为 '## Part 3'，单独成行且为全书最高层级部分标题，在部分-章节模式下应划分新章
+  accepted_evidence:
+  - 行内容为 '## Part 3'，单独成行且为全书最高层级部分标题
+  - 前后上下文为 Part 3 的开始，后续出现 Chapter 14 等章节
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 3652
+  confidence: 0.98
+  final_reason: 双方一致，行内容为 '## 14 MVC and Table Views'，序号与标题同行，单独成行，长度小于30字，语义统领后续内容，符合章标题特征
+  accepted_evidence:
+  - 行内容为 '## 14 MVC and Table Views'，序号与标题同行，单独成行
+  - 长度小于30字，语义统领后续内容
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 3226
+  reason: 复核方反证成立，行内容仅为 '## 13'，缺少章节名称，完整标题在下一行 3228 '## 修改应用屏幕'，标题被拆分为两行，不符合章标题通常单独成行且包含序号与名称的特征
+  need_human_review: false
+- 'no': 4075
+  reason: 复核方反证成立，行内容仅为 '## 15'，无章节名称，实际标题在下一行 4077 '## 将数据导入表格视图'，编号与标题拆分，单独编号行为排版断行
+  need_human_review: false
+- 'no': 4445
+  reason: 复核方反证成立，行内容仅为 '## 16'，完整标题在下一行 4447 '## 在视图控制器之间传递数据'，编号行单独成行不构成完整章标题
+  need_human_review: false
+- 'no': 4730
+  reason: 复核方反证成立，行内容仅为 '## 17'，实际章节名称在下一行 4732 '## Core Location 和 MapKit'，标题被拆分为编号行与名称行，不符合章标题特征
+  need_human_review: false

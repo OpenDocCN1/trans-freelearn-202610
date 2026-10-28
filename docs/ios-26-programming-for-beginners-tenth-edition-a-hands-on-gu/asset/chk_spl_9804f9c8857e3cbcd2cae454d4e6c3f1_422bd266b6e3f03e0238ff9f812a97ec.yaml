@@ -1,0 +1,71 @@
+reviews:
+- 'no': 6
+  overturn_probability: 0.72
+  alternative: 前言信息/正文小标题
+  counter_evidence:
+  - '标题为 # Contributors，无章节编号且非最高层级大章命名规范'
+  - '后接空行后直接是 # 关于作者 等前言类小节，随后是作者简介正文段落 10-12 行，并非章节概述段落'
+  - 该位置属于书前贡献者/关于作者等前言信息，按规则应与前言、致谢等统一归为一章而非单独起章，且前后无章节序号连贯性
+  keep_split: false
+- 'no': 331
+  overturn_probability: 0.08
+  alternative: 部分标题
+  counter_evidence:
+  - '标题为 ## Part 1，后续 ## Swift 为本部分名称，符合部分-章节模式下的部分标题特征'
+  - 后接 Welcome to Part 1 概述段落，符合章节划分上下文
+  keep_split: true
+- 'no': 355
+  overturn_probability: 0.05
+  alternative: 章节标题
+  counter_evidence:
+  - '标题 # 你好，Xcode 单独成行，后接欢迎段落及本章将涵盖主题列表，语义统领性强'
+  keep_split: true
+- 'no': 884
+  overturn_probability: 0.1
+  alternative: 章节标题
+  counter_evidence:
+  - '前一行 ## 3 为章号，本行为实际标题，符合编号+标题模式'
+  - 后接上一章回顾及本章学习目标概述
+  keep_split: true
+- 'no': 1217
+  overturn_probability: 0.06
+  alternative: 章节标题
+  counter_evidence:
+  - '标题 ## 5 集合类型 包含编号，单独成行，后接章节概述'
+  keep_split: true
+- 'no': 1536
+  overturn_probability: 0.04
+  alternative: 章节标题
+  counter_evidence:
+  - '标题 ## 6 Functions and Closures 单独成行，后接学习目标及主题列表'
+  keep_split: true
+- 'no': 1860
+  overturn_probability: 0.04
+  alternative: 章节标题
+  counter_evidence:
+  - '标题 ## 7 类、结构体和枚举 单独成行，后接章节概述'
+  keep_split: true
+- 'no': 2115
+  overturn_probability: 0.05
+  alternative: 章节标题
+  counter_evidence:
+  - '标题 ## 8 协议、扩展和错误处理 单独成行，后接学习目标'
+  keep_split: true
+- 'no': 2261
+  overturn_probability: 0.12
+  alternative: 章节标题
+  counter_evidence:
+  - '前一行 ## 9 为章号，本行为实际标题 Swift 并发，符合编号+标题模式'
+  keep_split: true
+- 'no': 2532
+  overturn_probability: 0.09
+  alternative: 章节标题
+  counter_evidence:
+  - '前一行 ## 10 为章号，本行为实际标题 Set Up the User Interface，后接术语介绍'
+  keep_split: true
+- 'no': 2815
+  overturn_probability: 0.09
+  alternative: 章节标题
+  counter_evidence:
+  - '前一行 ## 11 为章号，本行为实际标题 构建用户界面，后接章节概述'
+  keep_split: true

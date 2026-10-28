@@ -1,0 +1,66 @@
+reviews:
+- 'no': 5979
+  overturn_probability: 0.92
+  alternative: 正文小标题/章节内小节
+  counter_evidence:
+  - 行内容为 '## Technical requirements'，为章节内部的标准小节标题，非全书最高层级章标题
+  - 前文 5927 已出现 '## 将自定义视图添加到“日志条目详情”屏幕'，上下文仍在第19章内容中，后续 5981 起为本章资源说明，属于同一章的 Technical
+    requirements 小节
+  - 标题末尾无句号但长度短且为固定小节名，符合正文小标题特征而非章标题
+  keep_split: false
+- 'no': 6262
+  overturn_probability: 0.9
+  alternative: 正文小标题/章节内小节
+  counter_evidence:
+  - 行内容为 '## 技术要求'，为重复出现的章节内固定小节名
+  - 前文 6254 为 '# 获取本书 PDF 版本及专属附加内容'，后文 6276 起为 '## 集合视图' 等第22章内容，6262 处于章节过渡的排版噪声区，实际第22章起始应为
+    6276 的 '## 集合视图' 或更早的章号标题
+  - Technical requirements 在全书多处出现，均被误判为章起，符合误报倾向
+  keep_split: false
+- 'no': 6594
+  overturn_probability: 0.05
+  alternative: 章节标题
+  counter_evidence:
+  - 行内容为 '## 23 Adopt Liquid Glass'，符合编号+标题的章标题格式
+  - 后接 6596 起的本章概述与主题列表，上下文为新章起始
+  keep_split: true
+- 'no': 6709
+  overturn_probability: 0.88
+  alternative: 正文小标题/章节内小节
+  counter_evidence:
+  - 行内容为 '## Technical requirements'，为章节内部小节
+  - 前文 6699 仍在第23章 'Add a subtitle to the Journal List screen' 内容，后文 6711 起为第24章资源说明，6709
+    只是第24章内部的 Technical requirements 小节，非章起
+  - 标题为固定小节名，长度<30字且单独成行，易被误判为章标题
+  keep_split: false
+- 'no': 6864
+  overturn_probability: 0.03
+  alternative: 章节标题
+  counter_evidence:
+  - 行内容为 '## 25 Apple Intelligence'，符合章序号+标题格式
+  - 后接 6866 起的本章概述，语义统领后续内容
+  keep_split: true
+- 'no': 7154
+  overturn_probability: 0.35
+  alternative: 章节标题的编号行
+  counter_evidence:
+  - 行内容为 '## 26'，单独的编号行，标题的完整语义在下一行 7156 '## Foundation Models' 中才完整
+  - 按格式特征，真正的章标题通常为编号+标题同行或紧邻，单独编号行易被视为排版断行
+  - 若坚持分章，更合理的起止应为 7156 而非 7154
+  keep_split: true
+- 'no': 7365
+  overturn_probability: 0.9
+  alternative: 正文小标题/章节内小节
+  counter_evidence:
+  - 行内容为 '## 技术要求'，为章节内部固定小节
+  - 前文 7353 为第26章小结，后文 7367 起为第27章关于 App Store 提交的内容，7365 只是第27章内部的 Technical requirements
+    小节
+  - 与 5979、6262、6709 相同模式的误报
+  keep_split: false
+- 'no': 7928
+  overturn_probability: 0.02
+  alternative: 索引章节标题
+  counter_evidence:
+  - 行内容为 '## 索引'，文末索引按规则应划分为独立一章
+  - 后接 A、B 等索引条目，语义上为独立章节
+  keep_split: true
