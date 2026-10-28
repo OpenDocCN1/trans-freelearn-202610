@@ -1,0 +1,67 @@
+chapter_starts:
+- 'no': 2
+  confidence: 0.9
+  final_reason: 前置致谢类内容统一划分为前言一章，## 致谢为该前置部分的起始标题，复核方反证不足
+  accepted_evidence:
+  - '## 致谢 为前置版权/致谢区首个二级标题，后接作者编辑列表，符合前言统一分章规则'
+  - 复核方承认属前置内容且 keep_split=true
+  rejected_evidence:
+  - 复核方认为仅为版权页杂项而非独立章节标题
+  need_human_review: false
+- 'no': 171
+  confidence: 0.85
+  final_reason: '章节编号行与下一行 ## 匹配图片共同构成第1章开篇，编号行作为章起始可接受，复核方反证未推翻'
+  accepted_evidence:
+  - '行号171 为 ## 1，紧跟 ## 匹配图片，形成编号+标题的章头模式'
+  - 复核方 keep_split=true
+  rejected_evidence:
+  - '复核方认为仅为数字残留应以 ## 匹配图片为起始'
+  need_human_review: false
+- 'no': 1007
+  confidence: 0.88
+  final_reason: '## 制作一个将图片转换为文字的填空活动 后接新故事场景，前接 ## 本章小结，具备新章语义统领性'
+  accepted_evidence:
+  - 前接本章小结，后接新故事引言和练习，符合章边界上下文特征
+  - 复核方 keep_split=true
+  rejected_evidence:
+  - 复核方认为可能为章内大节
+  need_human_review: false
+- 'no': 1626
+  confidence: 0.85
+  final_reason: '章节编号 3 与下一行 ## Associating Images with Words 构成第3章标题，编号行作为起始被采纳'
+  accepted_evidence:
+  - 编号行后紧跟英文章名，后接章节引言和要点列表
+  - 复核方 keep_split=true
+  rejected_evidence:
+  - 复核方认为应以英文标题行作为起始
+  need_human_review: false
+- 'no': 1958
+  confidence: 0.9
+  final_reason: '## 对时间顺序进行排序 后接新故事场景，前接上一章总结，语义上开启第4章'
+  accepted_evidence:
+  - '前有 ### 总结，后有新故事和章节要点，符合新章上下文'
+  - 复核方 keep_split=true
+  rejected_evidence:
+  - '复核方质疑无编号且 ## 级别也用于章内大节'
+  need_human_review: false
+- 'no': 2339
+  confidence: 0.97
+  final_reason: '## 5 创建练习以提升短期记忆 带有明确章节编号，后接章节引言和要点列表，章标题特征完整'
+  accepted_evidence:
+  - '编号+标题格式，前接 ## 总结，后接引言和要点'
+  - 复核方 overturn_probability 仅0.05且 keep_split=true
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 2730
+  confidence: 0.85
+  final_reason: '## 运用出色的专注力练习减轻注意力缺陷障碍 后接独立引言和新故事，构成第6章开篇，复核方反证不足'
+  accepted_evidence:
+  - 后接章节引言、人物场景和要点列表，具备统领性
+  - 复核方 keep_split=true
+  rejected_evidence:
+  - 复核方认为可能为第5章内大节
+  need_human_review: false
+rejected_lines:
+- 'no': 2954
+  reason: 复核方反证成立：无章节编号且上下文仍属第6章水族馆主题，前文无章末总结，后文仍延续同一章活动序列，应为章内大节而非新章
+  need_human_review: false

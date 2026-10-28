@@ -1,0 +1,53 @@
+chapter_starts:
+- 'no': 3126
+  confidence: 0.98
+  final_reason: 判断方与复核方均认定分章；前接上一章总结与过渡，后接章首概述及目标列表，标题单独成行且语义统领第7章全部内容。
+  accepted_evidence:
+  - 第3124行“既然我们已经学会了如何创建减少注意力缺陷障碍的练习，我们接下来准备制作与数学运算相关的练习，这是下一...”为上一章章尾过渡
+  - 第3128-3136行出现章首引言及“在本章中……”目标列表
+  - 标题“# 玩转数学运算”单独成行、无句末标点，长度小于30字
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 3556
+  confidence: 0.97
+  final_reason: 判断方与复核方均认定分章；前接第7章总结，后接章首引言及“在本章中”目标列表，语义上独立开启第8章。
+  accepted_evidence:
+  - 第3554行“现在我们已经学会了如何创建数学运算练习，我们准备制作语言心智操作练习，这是下一章的主题。”为章尾过渡
+  - 第3558行起为章首引言，第3560行“在本章中，我们将：”后接目标列表
+  - 标题“## 语言心智操作”单独成行，语义统领后续全部内容
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 3931
+  confidence: 0.9
+  final_reason: 采纳复核方对行号的修正：3931行“## 9”为第9章的独立章号标记，紧随其后的3933行是章标题；最高层级大章应从章号行算起，故设3931为新章起点，3933不再重复分章。
+  accepted_evidence:
+  - 3931行内容为“## 9”，属于最高层级大章的编号特征
+  - 紧接第3933行“## 编写引导式句子和段落”为章标题，其后第3935行起为章首概述及目标列表
+  - 前接第3919-3929行上一章“本章小结”及章尾过渡
+  rejected_evidence:
+  - 判断方将起点放在3933标题行，但复核方指出章号行3931才是真正的新章起始行；两行同属一个章首，不应拆分两次
+  need_human_review: false
+- 'no': 4259
+  confidence: 0.96
+  final_reason: 判断方与复核方均认定分章；前接上一章Summary章尾，后接章首概述，标题为第10章章名，语义统领后续测验内容。
+  accepted_evidence:
+  - 第4257行“Now that we have learned how to create exercises t...”为上一章结尾
+  - 第4261行“Flowers and their related household items are also...”为章首概述
+  - 标题“## Running Cognitive Evaluation Tests”单独成行，无句末标点
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 4595
+  confidence: 0.97
+  final_reason: 判断方与复核方均认定分章；按规则文末索引应独立划分为一章。
+  accepted_evidence:
+  - “## 索引”位于全书末尾，后接按符号、字母分组的索引条目
+  - 规则明确“文末索引也划分为一章”
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 3933
+  reason: 复核方指出3931为章号行，真正最高层级章起始应归章号行；3933仅为紧随其后的章标题，不应再单独作为新章起点，以免同一章被拆分两次。
+  need_human_review: false
+- 'no': 4495
+  reason: 采纳复核方反证：Pop Quiz Answers 为书末测验答案汇总，后接各章答案表格，无章首概述与目标列表，属于附录性内容；规则仅明确文末索引独立成章，不宜误分为正文章节。考虑到其作为书末独立部分存在一定模糊性，标记人工复核。
+  need_human_review: true
