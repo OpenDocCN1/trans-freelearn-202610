@@ -1,0 +1,9 @@
+# Summary
+
+In this chapter, we discussed various areas of the application that might experience some growing pains over time. We addressed issues surrounding application layer validation, looked at application tiering from the Web, Application and Database Server perspectives, and also looked at the possible strategies in each tier that we can employ to ready that specific tier to handle future user growth (scale).
+
+In Application tier, we looked at how we can Service enable existing application without significant changes in the existing code. We looked at a way to speed up data and object access on the site by implementing a Caching layer using Windows Server AppFabric or MemCached.NET. Next, we looked at how network communications, emails in particular, could be speeded up by adding asynchronicity between your website and the actual process used to send emails. Then we looked at how we can better manage the various alerts that are sent out between users, for the actions that the users take on the site.
+
+In the Database tier, we looked at possible inefficiencies in the database by discussing a better way to delete data, partition, and index it. We moved on to making our search capabilities better and faster.
+
+The key to this chapter is leveraging existing technology stack to extract maximum features that help support scale, then look at your site for possible pain points, and addressing them with approaches that may not necessarily be ASP.NET or C# related. Frequently, your code may be optimized to a greater level, but may still appear to be slow. Poke around a bit to determine for yourself all the aspects that are involved with a problem, and learn to address it outside the box if that is best.

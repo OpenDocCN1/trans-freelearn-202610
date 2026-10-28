@@ -1,0 +1,35 @@
+chapter_starts:
+- 'no': 2
+  confidence: 0.95
+  final_reason: 双方一致，前置作者介绍/致谢等正文前内容统一划分为一章，About the Authors 为前置章节起始
+  accepted_evidence:
+  - 该行是二级 Markdown 标题，内容明确为 About the Authors，属于书籍正文前的作者介绍部分。
+  - 规则明确要求前言、序言、致谢、关于作者等正文之前内容统一划分为一章。
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 185
+  confidence: 0.99
+  final_reason: 双方一致，一级标题含编号“1”，单独成行且语义概括全书章节，为第1章起始
+  accepted_evidence:
+  - 行首为一级标题并带有全书连续编号“1”。
+  - 后接章节概述及二级、三级小节，具有明显的章级统领作用。
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 323
+  confidence: 0.99
+  final_reason: 双方一致，一级标题含编号“2”，单独成行且语义概括企业级框架方法，为第2章起始
+  accepted_evidence:
+  - 行首为一级标题并带有连续编号“2”。
+  - 标题后紧接本章概述和多个小节，符合章节结构。
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 916
+  reason: 复核方反证成立，## 用户账户 为二级小节标题，无章编号且在同一主题下反复出现，不构成新章
+  need_human_review: false
+- 'no': 1955
+  reason: 复核方反证成立，## 用户资料 为二级主题小节，无一级编号标记，章号证据来自代码注释而非标题，不应分章
+  need_human_review: false
+- 'no': 2947
+  reason: 复核方反证成立，# 5 仅为残缺编号无语义标题，后续主题为 Friends，排版噪声，不符合章标题语义要求
+  need_human_review: false

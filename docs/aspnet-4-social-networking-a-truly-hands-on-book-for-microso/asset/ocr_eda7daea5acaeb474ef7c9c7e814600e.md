@@ -1,0 +1,5 @@
+# Summary
+
+In this chapter we looked at the infrastructure and decisions that go into a media management application. We focused heavily on processing and storing images. But most of the principles that we looked at apply to all sorts of different file types. The only real part that would need to be tweaked is how the file is processed once it is stored on the server. In the case of audio and video files you would most likely want to transfer them to a Flash format from a WAV or WMV format so that they become more accessible to your web users or you can use Silverlight along with IIS Smooth Streaming options to stream WMV files. One aspect to keep in mind will be the content growth and space management along with it. You may want to look up some content distribution network.
+
+This chapter has added the ability to create photo albums. We then discussed the ability to upload and manipulate photos. We also discussed how to handle multiple file uploads and the most appropriate way to store them on the file system. Finally, we created a way for our users to interact with their albums and uploaded files.

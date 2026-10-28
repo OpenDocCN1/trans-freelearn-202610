@@ -1,0 +1,13 @@
+# # Moderation
+
+For us to enable Moderation, we will take advantage of the same concepts that we used in Chapter 11. This feature will be implemented as another UserControl that we can plug in wherever we need it. As it will tie in to the SystemObjects table of objects, we are free to allow our users to moderate any database-oriented content — be it textual, image based, or just about anything else. As long as it has a record ID and a table associated to it, we can moderate it.
+
+In addition to letting our users flag content for approval, we will need to create a page to manage what was flagged. We will implement a simple administration page that will show everything that is listed. For each listed item we can approve or deny the content. Approved content will no longer be visible on the site. This page will also house our gagging capabilities, which we will discuss later.
+
+This structure is identical to our other users of the SystemObjects table. It has a SystemObjectID and a SystemObjectRecordID, which allow us to add a Moderation entry and see where it points to. When we build the administration page, you will see how we can use this data to get all the objects, regardless of the type, for administration viewing purposes. In addition to the SystemObjects table, we are also linking to the Accounts table with the AccountID of the account that published the questionable content and the AccountID of the user that took action on the questionable content. Tracking this second AccountID is useful as it helps us keep track of which user is raising flags. If we find that the content isn't questionable, we can actually track the user who raised the request to find out if this is a malicious user attempting to get other innocent users banned.
+
+# ## Gags
+
+To gag a user—such as in a legal gag order—is to suppress them from being able to make comments publicly. We will extend this concept to say that we will not allow a user to publish content on our system if they have a gag order placed on them! As with flagging of questionable content, not having an automatic gagging, but having a moderator intervene will help to prevent instances where innocent users may otherwise be gagged.
+
+The most important thing to note in the Gags table is the GagUntilDate field as shown in the preceding screenshot. The date in this field is the date that the user can interact with the community again.
