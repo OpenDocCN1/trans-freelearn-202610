@@ -1,0 +1,75 @@
+chapter_starts:
+- 'no': 0
+  confidence: 0.9
+  final_reason: 双方一致；正文前内容（制作人员、关于作者、前言等）统一划分为一章，以书名行作为起始。
+  accepted_evidence:
+  - '以 # 开头的书名行，后接制作人员、关于作者等前置内容'
+  - 按规则，前言、序言、致谢等正文前内容统一划分为一章，作为起始行合理
+  rejected_evidence:
+  - 该行是书籍封面/标题页的书名，属于书籍元数据而非正文章节标题
+  - 该行后无直接正文，更像题名页而非章节
+  need_human_review: false
+- 'no': 182
+  confidence: 0.98
+  final_reason: '双方一致；以 # 开头的一级标题，编号 1 明确最高层级，单独成行且语义统领后续内容。'
+  accepted_evidence:
+  - '以 # 开头的一级标题，编号 ''1'' 表示最高层级章节'
+  - 单独成行，长度短，语义概括本章内容
+  - 后续内容为章首引语和概述，符合章标题上下文
+  rejected_evidence:
+  - 编号 '1' 后无‘第X章’字样，仅凭数字可能被误认为列表项或普通标题
+  - 下一行是引用块，可能误以为引文的一部分
+  need_human_review: false
+- 'no': 482
+  confidence: 0.98
+  final_reason: '双方一致；以 # 开头的一级标题，编号 2 连贯，单独成行，上下文为典型的章标题边界。'
+  accepted_evidence:
+  - '以 # 开头的一级标题，编号 ''2'' 连贯'
+  - 上一行是上一章总结句，下一行是本章概述，上下文典型
+  - 单独成行，语义统领本章
+  rejected_evidence:
+  - 无显著反证，仅指出若不分章可能是小节标题，但上下文明确
+  need_human_review: false
+- 'no': 1010
+  confidence: 0.98
+  final_reason: '双方一致；以 # 开头的一级标题，编号 3 连贯，单独成行且语义概括本章内容。'
+  accepted_evidence:
+  - '以 # 开头的一级标题，编号 ''3'' 连贯'
+  - 单独成行，长度短，语义概括本章
+  - 后续内容围绕添加文档和讲义展开
+  rejected_evidence:
+  - '‘添加文档和讲义’也可作常见小标题，但编号 #3 明确是大章'
+  need_human_review: false
+- 'no': 1611
+  confidence: 0.98
+  final_reason: '双方一致；以 # 开头的一级标题，编号 4 连贯，单独成行，语义统领多媒体内容。'
+  accepted_evidence:
+  - '以 # 开头的一级标题，编号 ''4'' 连贯'
+  - 单独成行，语义统领多媒体内容
+  - 章首引用块常见，不影响章标题判断
+  rejected_evidence:
+  - '标题含破折号，可能被误认为副标题式普通标题，但编号 #4 明确最高层级'
+  need_human_review: false
+- 'no': 2362
+  confidence: 0.97
+  final_reason: '双方一致；以 # 开头的一级标题，编号 6 明确大章，上下文为第6章内容。序号跳跃（缺少第5章）不影响，按规则仍需划分。'
+  accepted_evidence:
+  - '以 # 开头的一级标题，编号 ''6'' 明确大章'
+  - 上下文为第6章内容，语义统领
+  - 序号跳跃（缺少第5章）不影响，按规则仍需划分
+  rejected_evidence:
+  - 后一行是 '# ' 空标题，存在排版噪声，但内容明确是第6章标题
+  - 前面缺少 '# 5'，可能让人怀疑是某小节的编号标题，但上下文明确
+  need_human_review: false
+- 'no': 2847
+  confidence: 0.98
+  final_reason: '双方一致；以 # 开头的一级标题，编号 7 连贯，单独成行，下一行是本章概述，语义统领在线沟通内容。'
+  accepted_evidence:
+  - '以 # 开头的一级标题，编号 ''7'' 连贯'
+  - 单独成行，下一行是本章概述
+  - 语义统领在线沟通内容
+  rejected_evidence:
+  - 编号 '7' 直接放标题前，无‘第X章’字样，可能被误判为列表项；但上下文明确
+  - 上一行是空行，下一行是概述，符合章标题特征
+  need_human_review: false
+rejected_lines: []

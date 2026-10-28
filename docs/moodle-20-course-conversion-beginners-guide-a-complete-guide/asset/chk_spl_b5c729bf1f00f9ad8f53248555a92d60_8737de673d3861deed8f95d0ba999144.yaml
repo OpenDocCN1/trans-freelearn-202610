@@ -1,0 +1,50 @@
+reviews:
+- 'no': 0
+  overturn_probability: 0.1
+  alternative: 书籍封面/标题页的书名，属于书籍元数据，而非正文章节标题。
+  counter_evidence:
+  - 该行是全书书名，后跟制作人员名单，属于前置内容，本身并非一个具有统领正文的章节标题；
+  - 若严格按‘章’定义，此处没有后续正文内容，更像题名页而非章节。
+  keep_split: true
+- 'no': 182
+  overturn_probability: 0.01
+  alternative: 章标题。若不分章，它可能是一级标题的文本，但因编号和语义明确是第1章，故不成立。
+  counter_evidence:
+  - 编号‘1’后无‘第X章’字样，仅凭数字可能被误认为列表项或普通标题；
+  - 下一行是引用块，可能让人误以为这是引文的一部分，但实际是章首引语。
+  keep_split: true
+- 'no': 482
+  overturn_probability: 0.01
+  alternative: 章标题。若不分章，它可能是正文中某个一级小节标题，但上下文明确为第2章。
+  counter_evidence:
+  - 上一行480是上一章的总结句，下一行484是本章概述，符合章标题的上下文特征，因此不太可能误判；
+  - 该行与第2章编号格式一致，没有其他明显噪点。
+  keep_split: true
+- 'no': 1010
+  overturn_probability: 0.01
+  alternative: 章标题。若不分章，它可能是正文中某个一级小节标题，但编号#3决定其层级为最高。
+  counter_evidence:
+  - 该行单独成行，长度短，且后续内容围绕添加文档和讲义展开，是典型章标题；
+  - 不过标题中‘添加文档和讲义’也可作为常见小标题，但编号#3明确它是大章。
+  keep_split: true
+- 'no': 1611
+  overturn_probability: 0.01
+  alternative: 章标题。若不分章，它可能是带有副标题的普通标题，但编号#4明确是最高层级。
+  counter_evidence:
+  - 标题包含破折号，可能被误认为副标题式的普通标题，但编号#4明确是最高层级；
+  - 下一行是引用块，但章首引用是常见排版。
+  keep_split: true
+- 'no': 2362
+  overturn_probability: 0.05
+  alternative: 章标题。若不分章，它可能是一个编号列表项（如‘6 管理学生作业’）残留。
+  counter_evidence:
+  - 该行后一行是'# '（空的Markdown标题），说明文档存在排版噪声，可能让该行看起来像残留标题；但内容明确是第6章标题，上下文也是第6章内容。
+  - 前面缺少'# 5'的一级标题，可能让人怀疑该行只是某小节的编号标题，但鉴于后续内容明确是管理学生作业，仍然是章。
+  keep_split: true
+- 'no': 2847
+  overturn_probability: 0.01
+  alternative: 章标题。若不分章，它可能是一个编号列表项或正文小标题，但上下文明确为第7章。
+  counter_evidence:
+  - 编号‘7’直接放在标题前，没有‘第X章’字样，可能被误判为列表项；
+  - 上一行2846是空行，下一行2849是概述，符合章标题特征。
+  keep_split: true
