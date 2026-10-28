@@ -1,0 +1,3 @@
++   - Discussed the possibility of repurposing the grant management tool for your organization's grant application to other entities. We also briefly considered the alternative option of using CiviCRM's case management tools for grant application processing.
+
+In the next chapter, we will turn our attention to CiviCRM's reporting functions and see how we tap into the data stored to generate lists and graphical representations of our information.

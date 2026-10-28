@@ -1,0 +1,12 @@
+To identify accounts that should be polled for e-mails to attach as activities, append `&emailactivity=1` to the cron job. The frequency of this cron job will depend on how often you send broadcast e-mails, and how quickly you expect to see e-mails display as activities. In most cases, running it on an hourly basis is sufficient. This script is expected to undergo some revisions in future versions to facilitate management of multiple e-mail accounts for the two distinct purposes. Please check the online documentation for the latest updates on script usage.
+
++   - `CiviReportMail.php`: CiviCRM reports can be configured to be e-mailed on a periodic basis. For example, you may want a contribution report with the last week's summary of payments e-mailed to your staff bookkeeper every Monday morning, or your Membership Committee Chair may want a membership overview report on a monthly basis. Use this cron job to initiate mailings and configure the frequency in which they should be sent. This cron job works differently from others—you will configure a cron job for each report instance. The parameters are passed in the cron URL (in addition to the user, password, and key values): `.../bin/CiviReportMail.php?sendmail=true&instanceId=3&reset=1`. To determine the report's `instanceId`, visit the report and note the value after `/instance/` in the URL.
+
+Note that some of the scripts require certain values be configured in the code before they can be run. Those that require configuration are saved as `.txt` files. You will see the section that must be configured clearly delineated with commented code. After modifying the file, remove the `.txt` extension so they are recognized as `.php` files, and then configure your cron. For example, the `UpdateMembershipRecord.php` file requires that you determine the FROM e-mail address used for sending out renewal reminders.
+
+> As of v3.3, this script uses the default FROM e-mail address defined in the system and consequently does not require you to manually configure the address.
+
+Scripts can be run via cron using curl or wget. Check with your hosting provider for their preferred method and any specific requirements for configuring the cron. The following examples may be helpful:
+
++   - **Drupal:** `curl http://<drupal_root>/sites/all/modules/civicrm/bin/UpdateMembershipRecord.php?name=<username>&pass=<password>&key=<sitekey>`
++   - **Joomla!:** `curl http://<joomla_root>/administrator/components/com_civicrm/civicrm/bin/UpdateMembershipRecord.php?name=<username>&pass=<password>&key=<sitekey>`

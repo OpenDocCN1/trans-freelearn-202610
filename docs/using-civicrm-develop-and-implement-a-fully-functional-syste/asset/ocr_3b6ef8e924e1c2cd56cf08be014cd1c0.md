@@ -1,0 +1,11 @@
+If your organization's qualified prospect list is dense enough in some neighborhoods, then it can make sense to use walk lists for canvassers. CiviEngage provides some support in this area. It relies on core CiviCRM address parsing to pull out street numbers from civic addresses in order to produce a walk list report. Once apartment and suite numbers are reliably parsed, then it will be more effective at serving urban needs.
+
+# Other types of donations
+
+Major one-time donations and planned gifts tend to come from contacts that have a good long-term relationship with your organization or key individuals in it, a strong alignment with your mission or some part of it, trust that your organization will successfully deliver on commitments, and resources that enable them to make a major gift. Custom fields in CiviCRM can be used to track specific interests and demographic information related to ability to give. During the cultivation of the relationship, personal face-to-face relationships developed through CiviEvent and board activities can be important. Tracking of relationships among high net worth individuals, or cross-linked board memberships of other organizations can be important in identifying prospects for major donor campaigns and the best person to contact for the request. Once the ask has been made it can be useful to track meetings and phone calls regarding the negotiations about the terms of the gift, tax implications, and so on. These can be stored in generic Activities, or a more structured workflow can be created using CiviCase.
+
+# Permissions
+
+While the broader issue of permissions is covered elsewhere, we want to take a moment to re-emphasize an important concern when working with contributions. We strongly discourage deleting financial data transactions as these records have tax and financial auditing implications. Drupal installations can disable the "delete in CiviContribute" and "delete in CiviPledge" permission from all roles to prevent intentional or unintentional deletions.
+
+Joomla 1.6 will have access control capabilities and work is already being done to integrate those tools with CiviCRM's permissioning. If access control is a critical requirement for your organization and you are using Joomla!, begin by looking into what it will take to upgrade your site to Joomla! 1.6 and implement CiviCRM.

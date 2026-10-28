@@ -1,0 +1,11 @@
+# # What is Constituent Relationship Management?
+
+Constituent Relationship Management is the set of processes and supporting technologies used to initiate and improve relationships with constituents. It's important to realize that CRM is not just a technology that is brought into your organization. Managing relationships with constituents involves all of the workflows, processes, and reporting that your organization uses to get things done in order to achieve its mission, and then show how well it has achieved its mission.
+
+*Constituent* Relationship Management is the non-profit equivalent of *Customer* Relationship Management in the business world. By comparing and contrasting these two concepts, we will understand the purpose and scope of this book better.
+
+# # Customer Relationship Management versus Constituent Relationship Management
+
+In the business world, Customer Relationship Management systems are used to optimize a company's sales by focusing its resources on those who are likely to buy. They are also used to improve customer satisfaction and lower costs by providing self-service options.
+
+In order to do this properly, these systems track, automate, and personalize all aspects of client interactions across all communication channels, including website, phone, in-store, e-mail, and social media such as Twitter, forums, and blogs. Every time a customer touches the organization in whatever way, the interaction is logged. This information is used to better understand the relationship with the client, and ensure that all the interactions are designed, from one perspective, to maximize the long-term profitability of the client to the business. Typically, Customer Relationship Management systems focus on tracking and enhancing customer interactions in the marketing and sales funnel workflow for new and returning customers, and improving after-sales support. Depending on the industry and the company, CRM systems and techniques might also be used for tracking and enhancing relationships with other stakeholders, such as regulators, shareholders, or media.

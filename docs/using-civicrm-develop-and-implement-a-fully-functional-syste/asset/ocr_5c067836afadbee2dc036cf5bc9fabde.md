@@ -1,0 +1,11 @@
+# Preface
+
+CiviCRM is a web-based, open source Constituent Relationship Management (CRM) system, designed specifically to meet the needs of advocacy, non-profit, and non-governmental organizations. Elected officials, professional/trade associations, political campaigns and parties, government agencies, and other similar organizations are among its growing number of enthusiastic users. This book shows you how to harness CiviCRM's impressive array of possibilities as you develop and execute performance-critical CRM strategies.
+
+Throughout this book, we will review the structure and main functionality of CiviCRM as we guide you in developing and successfully implementing a CRM strategy for your organization using detailed explanations and practical examples.
+
+In addition, we will discuss organizational processes/workflows that are impacted by CiviCRM, providing guidance as you review and analyze your internal operations with regard to the CRM implementation. We will present best practices of constituent relationship management and provide guidance on how to effectively implement them with CiviCRM. The benefits of using CiviCRM will be felt across your organization, helping to better achieve your mission.
+
+Using CiviCRM, your organization will interact with constituents more effectively and handle staffing changes more smoothly by tracking contacts and interactions with them in a unified system shared across the organization. Organization leadership will use data gathered from constituents to analyze and inform their decision making process.
+
+If your organization raises funds through donations, contributions, event fees, and membership, you'll be able to raise more money and reduce costs by identifying qualified prospects for targeted fundraising initiatives. We will demonstrate how to attract new prospects and convert them to donors using online, direct mail, telemarketing, and direct contact channels using CiviCRM. You will learn why and how to set up and grow your monthly donor program, as well as improve the frequency, average donation amounts, and retention rates of your donor base.

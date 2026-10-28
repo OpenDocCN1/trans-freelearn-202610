@@ -1,0 +1,11 @@
+By default, the profile search opens to display just the search form itself. Adding &force=1 to the URL will cause the page to open with the form and a list of contacts (if restricted to a group, it will display just the contacts in this group). Adding &search=0 will open the page with just a listing (no search form). Adding &map=1 will include a map with the geocoded records marked (you must have address geocoding enabled in your system).
+
+# Third-party extensions
+
+Both Joomla! and Drupal have several third-party extensions that have been developed to expand the integration of CiviCRM into your website. Several of these will be of interest to member-based organizations.
+
+Three Joomla! extensions expand membership-related capabilities. You can read summaries and find downloads at http://wiki.civicrm.org/confluence/display/CRMDOC/Joomla!+Extensions+for+CiviCRM. You can also find them on the Joomla! Extension Directory.
+
++   - **CiviAuthenticate:** This plugin adds a second layer of authentication to the core Joomla! authentication that requires a user attempting to log in to have a membership in good standing. The plugin configuration includes which status level is the threshold for allowing access and redirection links for the various possible outcomes (membership is expired, no contact record found, or bad password).
++   - **CiviUser:** This extension replaces the core Joomla! user account creation process with one that interacts with CiviCRM. With this extension, only members in good standing may create a username and password account. This extension is accompanied by a module that can replace the standard Joomla! login module.
++   - **Gloriant CiviCRM:** This extension provides several functions, but of interest to member organizations is the ability to create frontend article permissioning based on CiviCRM membership. For example, if you have a certain membership category which should have article creation ability, this extension can provide that level of access control.

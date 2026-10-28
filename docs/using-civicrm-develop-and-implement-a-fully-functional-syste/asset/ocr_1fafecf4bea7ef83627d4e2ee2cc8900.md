@@ -1,0 +1,13 @@
+# CMS integration
+
+Integration between CiviCRM and Drupal or Joomla! involves people and content.
+
+Not all contacts in CiviCRM need to have user accounts in the CMS used to power your website. For example, your CRM may include all voters in a jurisdiction and your website may not provide extra functionality requiring logins except to the site administrators. In many cases, however, actions in CiviCRM such as buying a membership will lead to login access and extra permissions in your CMS, such as gaining access to members-only pages of content or discussion forums.
+
+Try to identify groups of contacts that have different permissions. These contacts will need to have user accounts in your CMS and be members of groups that are assigned different roles.
+
+You should anticipate possible content crossover between your CMS and CiviCRM. The most common case is sending newsletters with CiviMail containing teasers of articles in your CMS with links driving people to the full articles on your site. There have been some attempts to standardize this process so that the newsletters can be rendered automatically using a CiviCRM Smarty template or a Drupal Content Template implementation. While manual cutting and pasting is the best approach for the moment, you may want to think about opportunities to take advantage of information in your CRM, such as constituent interests, by linking it with data in your CMS, like content tagged pertaining to their interests.
+
+CRM systems are good at managing contacts and relationships. CMSes are good at managing content. In a few cases the strengths of CMS content management need to be applied to CRM contacts. For example, members of visual arts, music, or video artist organizations may need to have rich media associated with those contacts as well as have all of their dues and grant application transactions tracked. In these cases the CRM contacts will need CMS user accounts and those accounts will have CMS profiles with rich media associated with them.
+
+The growing number of Drupal modules and Joomla extensions that integrate with CiviCRM, particularly those that expose CiviCRM data to the CMS, provide increasing opportunities to develop cost effective custom websites based on contact and relationship data. For example, an activist organization may want to display a mash up of contact information, such as their photos, quotes on a topic, or a map, in which case the information is all coming from the CRM and the functionality driving it is coming from the CMS. In-house or external consultant resources will be able to assist in gathering your custom CRM requirements in these areas.

@@ -1,0 +1,13 @@
+The core team and many active developers also regularly hang out on the IRC channel, providing a good place to ask questions and get knowledgeable answers. As with any real-time chat room, the IRC channel will vary throughout the day in terms of the number of active users and their availability to help with your issues. So if the conversation seems quiet, don't give up — just stop by later to see if anyone is around.
+
+You may also want to become familiar with the public issue tracker (http://issues.civicrm.org). It is used by the development team and is open to the community for bug and feature tracking.
+
+If you come across what appears like a bug in the software, don't immediately create a new issue ticket. It may be something that is specific to just your implementation of CiviCRM, or it may be a bug that has already been reported or even fixed in more recent versions. A good place to start is by searching the forums at http://forum.civicrm.org for relevant posts. If you don't find anything, try to reproduce the error on the latest stable version of CiviCRM running on the demo site at http://demo.civicrm.org. Then post your problem into the appropriate forum, including the text of error messages received, what you were doing when it happened, and whether you can reproduce it on the demo site. Within a few hours or a day you'll probably have a helpful response. It may be a suggested fix or work-around, a link to a relevant page in the wiki, or a request to create a new issue on the bug tracker.
+
+If you are able to solve the problem you posted into the forum, it's a good idea to update the thread with what worked to help others who may face the problem, and to provide feedback to those assisting you. Remember that they're people too. Many who help out on the forums aren't paid for their time there. A "thanks" and a respectful tone go a long way towards getting people to help you, while an abusive, entitled tone is more likely to be met with a cold shoulder.
+
+If you put in some time figuring out how to do something that wasn't documented, then it's a great idea to write up how you did it on the wiki. Not only will it help you remember how to do it when you need to do it again six months from now, but will also help others. Some of them might even provide additional improvements to your modifications..
+
+# Community and cooperation
+
+The forums aren't just for asking about potential bugs. They're also great places to ask questions about how to do something. Try to be specific in your request, indicate how you've tried to solve your problem already, and discuss what you're considering in terms of a possible method for addressing the needs.
