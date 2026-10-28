@@ -1,0 +1,11 @@
+> For a website that is loosely coupled with an NSB design, the website could just send a message to the service queue without interrupting the web flow. A site that doesn't allow refreshing when processing an order depends on backend processes to finish, where the web flow may be interrupted. An NSB design can still give the user feedback on the status of their order without any interruption to the website.
+
+# Event-driven jobs
+
+For scheduling jobs on Windows, the Windows Task Scheduler can do the job (see http://en.wikipedia.org/wiki/Windows_Task_Scheduler). However, depending on the complexity of the job, the Windows Task Scheduler may not be enough to deal with it. For instance, if a holiday schedule needs to be checked before starting the job and if the job has dependencies on other events and services happening before it runs, you may run into limitations with the task scheduler. The Windows Task Scheduler is a great tool, but it is not event driven, as is an ESB. With ESBs, time is an event.
+
+Even though a job may be easily done by Task Manager, you will not get the global management of services, the messaging of events, commands, and messages, and the feedback of the processing from a managed perspective, unless you use a framework such as NSB.
+
+NSB extends the design to allow many facets of event-driven designing where building a simple website, scheduling a daily job, or sending payments can easily grow into something much larger in order to have, monitor, manage, extend, secure, and maintain great software quality. It is not uncommon that when these simple designs become complex, a rewrite is warranted. That is simply because software quality and extending the design were not taken into consideration ahead of time.
+
+The ESB is an architectural software design pattern and framework for designing SOA architectures. However, there are many additional software design patterns that an ESB can bring to the table as well. These will be software design patterns that NSB supports, but not all ESBs support these patterns.

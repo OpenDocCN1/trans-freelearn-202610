@@ -1,0 +1,4017 @@
+- pgno: 0
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 1
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 2
+  md: '# Learning NServiceBus Sagas
+
+
+    Copyright © 2015 Packt Publishing
+
+
+    All rights reserved. No part of this book may be reproduced, stored in a retrieval
+    system, or transmitted in any form or by any means, without the prior written
+    permission of the publisher, except in the case of brief quotations embedded in
+    critical articles or reviews.
+
+
+    Every effort has been made in the preparation of this book to ensure the accuracy
+    of the information presented. However, the information contained in this book
+    is sold without warranty, either express or implied. Neither the author, nor Packt
+    Publishing, and its dealers and distributors will be held liable for any damages
+    caused or alleged to be caused directly or indirectly by this book.
+
+
+    Packt Publishing has endeavored to provide trademark information about all of
+    the companies and products mentioned in this book by the appropriate use of capitals.
+    However, Packt Publishing cannot guarantee the accuracy of this information.
+
+
+    First published: January 2015
+
+
+    Production reference: 1240115
+
+
+    Published by Packt Publishing Ltd.
+
+    Livery Place
+
+    35 Livery Street
+
+    Birmingham B3 2PB, UK.
+
+
+    ISBN 978-1-78217-349-6
+
+
+    www.packtpub.com'
+  merge: -1
+  img_proc: true
+- pgno: 3
+  md: '# Credits
+
+
+    **Author**
+
+    Rich Helton
+
+
+    **Project Coordinator**
+
+    Mary Alex
+
+
+    **Reviewers**
+
+    Neil Bourgeois
+
+    Prashant Brall
+
+    Mark Huber
+
+
+    **Proofreaders**
+
+    Samuel Redman Birch
+
+    Maria Gould
+
+    Bernadette Watkins
+
+
+    **Commissioning Editor**
+
+    Usha Iyer
+
+
+    **Indexer**
+
+    Monica Ajmera Mehta
+
+
+    **Acquisition Editor**
+
+    Kevin Colaco
+
+
+    **Graphics**
+
+    Valentina D''silva
+
+
+    **Content Development Editors**
+
+    Akshay Nair
+
+    Priya Singh
+
+
+    **Production Coordinator**
+
+    Nilesh R. Mohite
+
+
+    **Technical Editor**
+
+    Edwin Moses
+
+
+    **Cover Work**
+
+    Arvindkumar Gupta
+
+    Nilesh R. Mohite
+
+
+    **Copy Editors**
+
+    Sarang Chari
+
+    Puja Lalwani
+
+    Veena Mukundan'
+  merge: -1
+  img_proc: true
+- pgno: 4
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 5
+  md: '# About the Reviewers
+
+
+    **Neil Bourgeois** is a software engineer at Pentair Technical Solutions, where
+    he leads the Engineering Software team. Solutions he has architected and implemented
+    include a high-volume metering and billing system for the utilities industry and
+    an industry-leading 3D engineering tool for the industrial heat-tracing field.
+    He applies the discipline of Agile software development to his work and believes
+    that great software comes from great team cultures. He strives to lead his teams
+    to great cultures.
+
+
+    **Prashant Brall** is a principal consultant and senior software architect/developer
+    who uses Microsoft technologies. He works for Veritec Pty Ltd (www.veritec.com.au)
+    in Canberra, Australia, and has been developing software for the past 18 years.
+    He enjoys writing about his experiences on his blog at https://prashantbrall.wordpress.com.
+
+
+    Prashant has also reviewed the book *Instant AutoMapper, Packt Publishing.*
+
+
+    In his leisure time, he enjoys watching movies with his wife and playing musical
+    instruments.
+
+
+    > I would like to thank my fantastic wife, Jhumur, for being my best friend and
+    for all the love and support she has given me. I would also like to thank my parents
+    Mr. Hem Brall and Mrs. Prabha Brall for all the guidance, love, and care they
+    have given me.'
+  merge: -1
+  img_proc: true
+- pgno: 6
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 7
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 8
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 9
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 10
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 11
+  md: '# Sample SFTP saga 158
+
+
+    Using XAML 160
+
+
+    Changing the process of messaging 160
+
+
+    Setting up an SFTP test environment 161
+
+
+    # Saga deployment 165
+
+
+    # ActiveMQ 168
+
+
+    The source code 168
+
+
+    # Summary 172
+
+
+    # Chapter 6: Using NServiceBus in the Cloud 173
+
+
+    # Introducing the cloud and NSB 173
+
+
+    # Introducing PaaS, IaaS, and SaaS 175
+
+
+    # Using Microsoft Azure 177
+
+
+    Introducing Azure Storage Services 178
+
+
+    Azure Service Bus and Storage Queues 180
+
+
+    Azure Storage Queues and NSB 181
+
+
+    Azure Service Bus in NSB 185
+
+
+    # Summary 193
+
+
+    # Index 195'
+  merge: -1
+  img_proc: true
+- pgno: 12
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 13
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 14
+  md: '+   - Workflow retries: Messages, or endpoints, can be told to retry a number
+    of times until they completely fail and send an error. The error is automated
+    to return to an error queue. For instance, a web service message can be sent to
+    a bank, and it can be set to retry the web service every 5 minutes for 20 minutes
+    before giving up completely. This is useful during any network or server issues.
+
+    +   - Monitoring: NSB ServicePulse can keep a finger on the pulse of its services.
+    Other monitoring can easily be done on the NSB queues to report on the number
+    of messages.
+
+    +   - Encryption: Messages between services and endpoints can be easily encrypted.
+
+    +   - High availability: Multiple services or subscribers could be processing
+    the same or similar messages from various services that are living on different
+    servers. When one server, or service, goes down, others could be made available
+    to take over those that are already running. Sagas are at the heart of the NServiceBus
+    (NSB) workflow. Sagas save the message state in the form of saga data. They can
+    retrieve the data as it is related to a message to update the message or data.
+    This allows the NSB workflow to control the flow of data and messaging from end
+    to end and correlate saved data to messages in the saga.
+
+
+    Messages are the means to transfer interaction and data between services in a
+    service-oriented architecture (SOA). Sagas correlate, save, route, and manage
+    processes that are started by these messages between services. Sagas even provide
+    timeouts to ensure that messages do not live forever in a system.
+
+
+    Sagas provide decoupling between frontend websites and backend processes. It allows
+    workflow to transfer so that a website can continue to do its work without having
+    to wait for processes to return, such as the dreaded message "Please do not refresh
+    this website as we bill your credit card".
+
+
+    NSB doesn''t stop at development on Windows servers and desktops, but plays a
+    big part in cloud development, for example with Microsoft Azure and the Microsoft
+    cloud. NSB uses Service Bus as well as storage queues, SQL Server, and other storage
+    containers. As the cloud is used more and more, NSB plays a key part in Software
+    as a Service, as it is the premier framework for ESB in the C# clouds.
+
+
+    Even if your cloud solution doesn''t end up being a C# compatible cloud, as many
+    might hide the software running behind the cloud as being preparatory, NSB is
+    a component for those that will do hybrid solutions, such as keeping data resident
+    on-site. The connection to the cloud then will likely be via web services, and
+    NSB sagas might likely provide the workflow to those web services.'
+  merge: -1
+  img_proc: true
+- pgno: 15
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 16
+  md: 'NServiceBus is the C# platform of choice for those that require workflows.
+    In sagas, high availability, high performance, monitoring, encryption, rapid deployment,
+    and many more features can only be found in this framework when building C# solutions.
+
+
+    # What this book covers
+
+
+    Chapter 1, Introduction to Sagas, discusses NServiceBus and a basic design pattern
+    that it uses, known as sagas, which is used to save states of messages. We will
+    discuss the benefits of sagas and what it brings to the table with regard to software
+    design.
+
+
+    Chapter 2, NServiceBus Saga Architecture, expands on the uses of sagas for persistence,
+    timeouts, message durability, and message handling. We will discuss various message
+    exchange patterns through examples to include gateway and cluster managing. These
+    are important concepts as they drive the high availability and high performance
+    that NSB brings to the table.
+
+
+    Chapter 3, The Particular Service Platform, is an overview of the Particular website-associated
+    tools for NServiceBus. We will discuss building sagas through the ServiceMatrix
+    tool, which is a Visual Studio extension tool for visually designing NSB endpoints,
+    messages, and services. The other tools that we will discuss at length as they
+    apply to sagas are the ServicePulse to monitor the endpoint availability during
+    production, and ServiceInsight to take a deep dive into the functionality and
+    properties of endpoints, services, and messages as they execute.
+
+
+    Chapter 4, Saga Development, focuses on various useful constructions of sagas
+    and message handlers. The purpose of sagas will be discussed as the discussion
+    goes into the need for extending and coordinating transactional integrity using
+    sagas. The chapter then morphs into a discussion of NServiceBus, using integrated
+    pre-built WCF bridges. While some might consider it unusual to discuss WCF in
+    a saga chapter, sagas become an intermediate for coordinating WCF and NServiceBus
+    work. We can decouple the workflow from the frontend for interaction with backend
+    processes through message handling. Sagas provide the means to persist the state
+    information of the messages. This discussion will also handle other queuing sources
+    as well to include RabbitMQ and ActiveMQ.'
+  merge: -1
+  img_proc: true
+- pgno: 17
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 18
+  md: '# Who this book is for
+
+
+    This book is for the beginner or intermediate C# developer who wants to learn
+    how to develop with NServiceBus and explore the NSB sagas, which is the workflow
+    heart of NSB. Many beginning pieces will be discussed with a deep dive into sagas
+    using many different Microsoft frameworks, which will also provide some basic
+    knowledge of using WPF, WCF, ASP.NET MVC, and Entity Frameworks.
+
+
+    # Conventions
+
+
+    In this book, you will find a number of text styles that distinguish between different
+    kinds of information. Here are some examples of these styles and an explanation
+    of their meaning.
+
+
+    Code words in text, database table names, folder names, filenames, file extensions,
+    pathnames, dummy URLs, user input, and Twitter handles are shown as follows: "The
+    RequestTimeout() function could take seconds, minutes, hours, days, or could be
+    executed at a specific time of day."
+
+
+    A block of code is set as follows:
+
+
+    ```
+
+    using System;
+
+    using System.IO;
+
+    using ServiceControl.Plugin.CustomChecks;
+
+    using ServiceControl.Plugin.CustomChecks.Messages;
+
+    using ServiceControl.Plugin.CustomChecks.Internal;
+
+    namespace PaymentEngine.ECommerce
+
+    {
+
+    public class MyCustomCheck : CustomCheck
+
+    {
+
+    public MyCustomCheck()
+
+    : base("ECommerce SubmitPayment check", "ECommerce")
+
+    {
+
+    ReportPass();
+
+    }
+
+    }}
+
+    ```
+
+
+    Any command-line input or output is written as follows:
+
+
+    ```
+
+    PM> Get-NserviceBusLocalMachineSettings
+
+    ```'
+  merge: -1
+  img_proc: true
+- pgno: 19
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 20
+  md: '# Errata
+
+
+    Although we have taken every care to ensure the accuracy of our content, mistakes
+    do happen. If you find a mistake in one of our books—maybe a mistake in the text
+    or the code—we would be grateful if you could report this to us. By doing so,
+    you can save other readers from frustration and help us improve subsequent versions
+    of this book. If you find any errata, please report them by visiting http://www.packtpub.com/submit-errata,
+    selecting your book, clicking on the Errata Submission Form link, and entering
+    the details of your errata. Once your errata are verified, your submission will
+    be accepted and the errata will be uploaded to our website or added to any list
+    of existing errata under the Errata section of that title.
+
+
+    To view the previously submitted errata, go to https://www.packtpub.com/books/content/support
+    and enter the name of the book in the search field. The required information will
+    appear under the Errata section.
+
+
+    # Piracy
+
+
+    Piracy of copyrighted material on the Internet is an ongoing problem across all
+    media. At Packt, we take the protection of our copyright and licenses very seriously.
+    If you come across any illegal copies of our works in any form on the Internet,
+    please provide us with the location address or website name immediately so that
+    we can pursue a remedy.
+
+
+    Please contact us at copyright@packtpub.com with a link to the suspected pirated
+    material.
+
+
+    We appreciate your help in protecting our authors and our ability to bring you
+    valuable content.
+
+
+    # Questions
+
+
+    If you have a problem with any aspect of this book, you can contact us at questions@packtpub.com,
+    and we will do our best to address the problem.'
+  merge: -1
+  img_proc: true
+- pgno: 21
+  md: '# 1
+
+    Introduction to Sagas
+
+
+    In this chapter, we will discuss an introduction to sagas. Sagas are just one
+    of the many design patterns supported by **NServiceBus (NSB)**. NSB is an **Enterprise
+    Service Bus (ESB)** that brings many design features and benefits to the end-to-end
+    enterprise. We will briefly look at these features and enter into a brief discussion
+    of some of the design patterns that NSB supports. From this point, we will introduce
+    the saga design pattern and provide a brief introduction to its purpose. The rest
+    of the book will lead into a drill-down of the saga pattern and its use, as well
+    as discuss many more of the features of NSB.
+
+
+    In this chapter, we will study the following:
+
+
+    +   - A brief introduction to ESBs
+
+    +   - Additional patterns
+
+    +     - The publish-subscribe pattern
+
+    +     - The request-reply pattern
+
+    +     - The DataBus pattern
+
+    +     - Timeout patterns
+
+    +     - Message mutation patterns
+
+    +     - Message encryption patterns
+
+    +     - The ScaleOut pattern
+
+    +     - The saga design pattern
+
+    +   - Sagas – what are they good for?'
+  merge: -1
+  img_proc: true
+- pgno: 22
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 23
+  md: '![](img/8188651cea6a881a16242b395a81399a_23_0.png)
+
+
+    The preceding diagram show very high-level interfaces, so we can drill down into
+    the protocols of the services themselves.
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_23_1.png)'
+  merge: -1
+  img_proc: true
+- pgno: 24
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 25
+  md: '+   - **Extremely configurable:** NSB is configured using the `Configure.With()`
+    function that can easily change the persistence from RavenDB to the NHibernate
+    ORM framework, or queuing from MSMQ, RabbitMQ, ActiveMQ, or SQL Queuing. Most
+    of the code, if not all, except some configurations, will work the same regardless
+    of the persistence and queuing models, as NSB takes care of the endpoint provisioning
+    and mapping.
+
+    +   - **Service hosting:** NSB takes care of the management and hosting of services
+    using the `NServiceBus.Host.exe` file.
+
+    +   - **Central production monitoring:** Particular''s ServicePulse can monitor
+    the production endpoint, message reporting, and service reporting.
+
+    +   - **ServiceInsight:** Particular''s ServiceInsight can provide a deep insight
+    through visual canvases, endpoint views, message views, and a deeper understanding
+    of saga''s messages, endpoints, and services.
+
+    +   - **Rapid development:** Particular''s ServiceMatrix is a development studio
+    extension for Visual Studio to provide rapid development through graphical canvases
+    that generate C# code.
+
+
+    Let''s look at a couple of practical needs for ESB designs.
+
+
+    +   - **Payment engine to a bank:** A C# programmer could use the Microsoft Windows
+    Communication Foundation (WCF) or Microsoft Web APIs to perform web services for
+    an external bank to debit a credit card. There are many pieces that WCF will not
+    perform to support cross-cutting concerns, such as retries and failures. NSB can
+    host the service and provide durable messaging in MSMQ that performs message retries
+    on the WCF interface. NSB will persist with messages if there is an interruption
+    of web services to third-party services, such as a bank. This includes keeping
+    track of message reporting and even the encryption of messages. So, while WCF
+    can implement the web service piece, there are many pieces outside of the realm
+    of WCF that only a product like NSB can provide cross-cutting functionality for.
+
+    +   - **An online ordering system:** When ordering a product, you may be greeted
+    with a page that spins and states **Do not refresh, processing order**. This is
+    clearly a design where the website is tightly coupled to the ordering site, including
+    the processing of the credit card. There are many automated processes that may
+    disturb a web browser, or there may be some disconnect on the server side that
+    may start the process over again. An ESB will always ensure that if you have to
+    place your order again or had an interruption, your messaging is transactional
+    and durable, ensuring integrity when charging for your order.'
+  merge: -1
+  img_proc: true
+- pgno: 26
+  md: '> For a website that is loosely coupled with an NSB design, the website could
+    just send a message to the service queue without interrupting the web flow. A
+    site that doesn''t allow refreshing when processing an order depends on backend
+    processes to finish, where the web flow may be interrupted. An NSB design can
+    still give the user feedback on the status of their order without any interruption
+    to the website.
+
+
+    # Event-driven jobs
+
+
+    For scheduling jobs on Windows, the Windows Task Scheduler can do the job (see
+    http://en.wikipedia.org/wiki/Windows_Task_Scheduler). However, depending on the
+    complexity of the job, the Windows Task Scheduler may not be enough to deal with
+    it. For instance, if a holiday schedule needs to be checked before starting the
+    job and if the job has dependencies on other events and services happening before
+    it runs, you may run into limitations with the task scheduler. The Windows Task
+    Scheduler is a great tool, but it is not event driven, as is an ESB. With ESBs,
+    time is an event.
+
+
+    Even though a job may be easily done by Task Manager, you will not get the global
+    management of services, the messaging of events, commands, and messages, and the
+    feedback of the processing from a managed perspective, unless you use a framework
+    such as NSB.
+
+
+    NSB extends the design to allow many facets of event-driven designing where building
+    a simple website, scheduling a daily job, or sending payments can easily grow
+    into something much larger in order to have, monitor, manage, extend, secure,
+    and maintain great software quality. It is not uncommon that when these simple
+    designs become complex, a rewrite is warranted. That is simply because software
+    quality and extending the design were not taken into consideration ahead of time.
+
+
+    The ESB is an architectural software design pattern and framework for designing
+    SOA architectures. However, there are many additional software design patterns
+    that an ESB can bring to the table as well. These will be software design patterns
+    that NSB supports, but not all ESBs support these patterns.'
+  merge: -1
+  img_proc: true
+- pgno: 27
+  md: '# Additional SOA patterns
+
+
+    There are many additional software design and messaging patterns that NSB supports.
+    Many such patterns can be found at http://www.enterpriseintegrationpatterns.com.
+    The purpose of design patterns is to provide reusable frameworks that have been
+    hardened through reuse in the industry, to rapidly deploy what''s been designed
+    before. NSB has several design patterns that are popular in any robust and solid
+    ESB solution.
+
+
+    # The publish-subscribe pattern
+
+
+    One of the biggest benefits of using ESB technology is the availability of the
+    publish-subscribe message pattern (for more details, see http://en.wikipedia.org/wiki/Publish-subscribe_pattern).
+    The publish-subscribe pattern has been around for a very long time, and its simplicity
+    is the cornerstone of many, many systems.
+
+
+    The pattern makes use of message queues, and NSB stores its messages through the
+    use of queues, be it MSMQ, SQL queues, RabbitMQ, Azure queues, or ActiveMQ. The
+    basic premise is that a message is published to a queue; in NSB, it uses the Bus.Publish(message)
+    function that places an event message in a queue that does not need to be sent
+    to specific receivers. There can be multiple output channels called subscribers
+    listening in on the publisher. The benefit is that the services do not depend
+    on any relationship with each other except the message, and can act independently
+    of each other. This is a service which is decoupled. This means that dependencies
+    are separated from each other.
+
+
+    Of course, normal NSB features still apply. For instance, the message will stay
+    in the queue until the subscribers pull the message off the queue to handle it.
+    For NSB, this means that the machine can be rebooted and the message will still
+    be available in the queue until the subscribers process the message, which ensures
+    that a message is never lost.
+
+
+    The subscribers will process the message, and there could be one or many subscribers.
+    For instance, the publisher may put 10 different types of messages in its queue,
+    and there could be a subscriber for each type of message.'
+  merge: -1
+  img_proc: true
+- pgno: 28
+  md: 'The NSB framework has plugins for Windows Performance Monitor. In Service Level
+    Agreement (SLA) code of the endpoint, we can specify that new services will be
+    created or alerts will be sent if the service does not meet performance criteria.
+    So if one of the subscribers is not performing well, it will force the other subscribers
+    to take over, as they are performing better across multiple machines. Because
+    of this, NSB is a highly available, durable-messaging, high-performance ESB engine
+    that can be developed in a multitude of ways. A design of the publish-subscribe
+    pattern appears as follows:
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_28_0.png)
+
+
+    In NSB, there are special types of messages used specifically for publish-subscribe,
+    called events. This forces the code to handle the message in a publish-subscribe
+    scenario, and not in a request-reply scenario.
+
+
+    The publisher-subscriber mappings are done through the application configuration
+    file. This will define the type of messages from the publisher queue that it will
+    subscribe to, to handle the messages. When these programs execute, the subscription
+    mappings will be further saved into a local database. By default, they are saved
+    in RavenDB.'
+  merge: -1
+  img_proc: true
+- pgno: 29
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 30
+  md: '# The gateway pattern
+
+
+    There are cases when services may be partly stored on one part of an organization''s
+    LAN, and other services are stored on another LAN, and the only transport to each
+    other is an HTTP or HTTPS tunnel to pass messages to NSB.
+
+
+    The main purpose of the gateway is to allow you to do the same durable fire-and-forget
+    messaging that you are accustomed to with NServiceBus across physically separated
+    sites, where sites are locations in which you run IT infrastructure and not websites.
+
+
+    The gateway only comes into play where you can''t use normal LAN-to-LAN VPN tunnels
+    or use internal LAN servers to communicate MSMQ to MSMQ. The purpose of the gateway
+    is to create messages that communicate through HTTP, but it would be preferable
+    to use HTTPS to ensure that messages are secured. The following architecture diagram
+    represents a gateway built using the NSB:
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_30_0.png)'
+  merge: -1
+  img_proc: true
+- pgno: 31
+  md: "# The source code\n\nIn this section, we will be using the following gateway\
+    \ solutions:\n\n+   - Headquarters.Messages: This refers to the common messages\
+    \ for Headquarters, SiteA, and SiteB.\n+   - Headquarters: This will receive messages\
+    \ from http://localhost:25899/Headquarter/ and http://localhost:25899/Headquarter2/,\
+    \ and send messages to http://localhost:25899/SiteA/ and http://localhost:25899/SiteB/.\n\
+    +   - SiteA: This is a project that will receive updated price information from\
+    \ Headquarters across http://localhost:25899/SiteA/ and respond that it was successful\
+    \ to Headquarters across http://localhost:25899/Headquarter2/.\n+   - SiteB: This\
+    \ is a project that will receive updated price information from Headquarters across\
+    \ http://localhost:25899/SiteB/.\n+   - WebClient: This will have an Index.htm\
+    \ page to send a JSON script to http://localhost:25899/Headquarter/.\n\nThe preceding\
+    \ code solution is built using Visual Studio 2012 in Windows Server 2012, with\
+    \ MSMQ, DTC, NServiceBus references, and SQL Server 2012 Express LocalDB installed.\n\
+    \nIn a gateway, there are incoming channels and defined site keys to send outgoing\
+    \ messages to their sites. We can see in the application configuration file of\
+    \ the headquarters that the receiving channels for the headquarters are http://localhost:25899/Headquarter/\
+    \ and http://localhost:25899/Headquarter2/.\n\nThere will be a set of site keys\
+    \ for sending sites that make up SiteA and SiteB.\n\n```\n<GatewayConfig>\n  <Sites>\n\
+    \    <Site Key=\"SiteA\" Address=\"http://localhost:25899/SiteA/\" ChannelType=\"\
+    Http\" />\n    <Site Key=\"SiteB\" Address=\"http://localhost:25899/SiteB/\" ChannelType=\"\
+    Http\" LegacyMode=\"false\" />\n  </Sites>\n  <Channels>\n    <Channel Address=\"\
+    http://localhost:25899/Headquarter/\" ChannelType=\"Http\" />\n    <Channel Address=\"\
+    http://localhost:25899/Headquarter2/\" ChannelType=\"Http\" Default=\"true\" />\n\
+    \  </Channels>\n</GatewayConfig>\n```"
+  merge: -1
+  img_proc: true
+- pgno: 32
+  md: 'The Bus.SendToSites (new[] { "SiteA", "SiteB"}) allows you to send messages
+    to multiple sites as you can see in the preceding configurations. For instance,
+    the parameter of SiteA will send the message to http://localhost:25899/SiteA/.
+
+
+    Going across alternate channels such as HTTP means that you lose the MSMQ safety
+    guarantee of exactly one message. This means that communication errors resulting
+    in retry can lead to receiving the same message more than once. To avoid burdening
+    you with de-duplication, the NServiceBus gateway supports this out of the box.
+    You just need to store the message IDs of all received messages so it can detect
+    potential duplicates. De-duplication tables can be stored on the SQL Server using
+    the NHibernate persistence configuration. This will be configured on the IBus
+    using the .UseNHibernateGatewayDeduplication() method. Of course, settings always
+    need to be applied in the App.config file to define the database connection. Here,
+    we are connecting to the local SQLE xpress instance.
+
+
+    ```
+
+    <connectionStrings><add name="NServiceBus/Transport" connectionString="cacheSendConnection=true"/>
+
+    <add name="NServiceBus/Persistence" connectionString="Data Source=.\SQLEXPRESS;Initial
+    Catalog=nservicebus;Integrated Security=True"/>
+
+    </connectionStrings>
+
+    <!-- specify the other needed NHibernate settings like below in appSettings:-->
+
+    <appSettings>
+
+    <!-- dialect is defaulted to MsSql2008Dialect, if needed change accordingly -->
+
+    <add key="NServiceBus/Persistence/NHibernate/dialect" value="NHibernate.Dialect.MsSql2008Dialect"/>
+
+    <!-- other optional settings examples -->
+
+    <add key="NServiceBus/Persistence/NHibernate/connection.provider" value="NHibernate.Connection.DriverConnectionProvider"/>
+
+    <add key="NServiceBus/Persistence/NHibernate/connection.driver_class" value="NHibernate.Driver.Sql2008ClientDriver"/>
+
+    </appSettings>
+
+    ```
+
+
+    This gateway pattern allows us to pass messages through HTTP/HTTPS to allow queuing
+    across outside systems from the local LAN. Normally web services run through HTTP/HTTPS,
+    but with NSB, the queuing process can also run through HTTP/HTTPS to outside servers,
+    where all ports are blocked and only HTTP/HTTPS can be used.'
+  merge: -1
+  img_proc: true
+- pgno: 33
+  md: "# The DataBus pattern\n\nThe DataBus is used to send large chunks of data or\
+    \ files across as an attachment because MSMQ is limited to 4 MB. For this reason,\
+    \ a reference can be passed on a local file to transfer data using the `databus`\
+    \ method. The message will provide a reference to a larger data file to be accessed\
+    \ that exceeds the message queue size due to size constraints.\n\n![](img/8188651cea6a881a16242b395a81399a_33_0.png)\n\
+    \nIn this section, we will use the gateway solution.\n\nThe path of the data bus\
+    \ has to be set in the configuration of the endpoint. We will be using a relative\
+    \ path to where the gateway project is running. Both `SiteA` and `SiteB` will\
+    \ also have relative paths. There will be a relative path to the binary file with\
+    \ a data bus subdirectory containing the files that will have a lot of data. The\
+    \ following is the code:\n\n```\npublic void Init()\n{\n    Configure.With()\n\
+    \        .DefaultBuilder()\n        .FileShareDataBus(\".\\\\databus\");\n}\n\
+    ```"
+  merge: -1
+  img_proc: true
+- pgno: 34
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 35
+  md: '![](img/8188651cea6a881a16242b395a81399a_35_0.png)
+
+
+    In NSB, we have the ability to use event-driven timer messages. This is the ability
+    of a saga to start a function, run a command, or perform many other tasks, based
+    on its timer. In the event-driven timer function, we can set a timeout for any
+    time in the day, from seconds after the process starts, to minutes, hours, days,
+    and even use a holiday table for the process. By having a managed service, the
+    usage of timers can be more complex, for instance, adding holiday tables, not
+    executing timers on weekends, and more business functions that task schedulers
+    cannot handle. Also included in NSB, is the installation and management of the
+    service itself. Time saved just in deploying services and having NSB set up DTC
+    for the administrator may already pay for the NSB licenses.
+
+
+    The source code in this section will be in NSB Version 5.0 in the TimerSaga -
+    v5 directory. Here we have the following projects:
+
+
+    +   - AppCommon: This contains the ViewModel and context for the Windows forms.
+
+    +   - TimerSubmit: This is a project that submits a timer message to the saga
+    between 1-100 seconds.
+
+    +   - TimerMessages: This contains common messages for the projects.'
+  merge: -1
+  img_proc: true
+- pgno: 36
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 37
+  md: "When we add a value between 1 and 100 seconds, the message will be sent to\
+    \ the queue of TimerSaga with the number of seconds and a RequestId to keep track\
+    \ of the message ID, as shown in the following screenshot:\n\n![](img/8188651cea6a881a16242b395a81399a_37_0.png)\n\
+    \nThe message's RequestId is used to map the message to the saga data. The saga\
+    \ is started by SubmitRequestCommand with the number of seconds in it. It will\
+    \ save the saga data in the TimerRequestData object, which will allow the original\
+    \ client data to respond to it. The number of seconds will be set in the timeout,\
+    \ and when the timeout expires, it will execute a TimeoutMessage instance that\
+    \ will be handled by the saga. The saga's object class definition that defines\
+    \ this mapping appears as follows:\n\n```\npublic class TimerRequestSaga : Saga<TimerRequestData>,\n\
+    \    IAmStartedByMessages<SubmitRequestCommand>,\n    IHandleTimeouts<TimerRequestSaga.TimeoutMessage>\n\
+    {\n```"
+  merge: -1
+  img_proc: true
+- pgno: 38
+  md: "The starting message SubmitRequestCommand will be handled by the saga's message\
+    \ handler in the following code:\n\n```\npublic void Handle(SubmitRequestCommand\
+    \ message)\n{\n    logger.Info(\"--------TimerSaga SubmitRequestCommand-------\"\
+    \ + message);\n    \n    var command = new TimeoutMessage\n    {\n        RequestId\
+    \ = message.RequestId\n    };\n    \n    // We put the number of seconds 1-100\
+    \ in the timer\n    RequestTimeout<TimeoutMessage>(TimeSpan.FromSeconds(message.Seconds),command);\n\
+    \    \n    Data.RequestId = message.RequestId;\n    Data.Seconds = message.Seconds;\n\
+    }\n```\n\nThis code will set the timer that will send a TimeoutMessage instance\
+    \ with the message's RequestId. All the messages that are part of the same starting\
+    \ message will have the same RequestId. This will keep track of which message\
+    \ started the next message, as well as map the saga data to save and retrieve\
+    \ it from the saga. The RequestId is handled like a primary key to the saga data\
+    \ that NSB will use to map the data to the messages. NSB handles the mapping,\
+    \ but we must define the unique identifiers and keep processing them in the messages.\
+    \ If this seems complicated, keep reading, as it is broken down in subsequent\
+    \ chapters.\n\nWhen the timeout that we passed to the RequestTimeout<>() code\
+    \ is reached, an instance of a timeout message is passed back to the saga. If\
+    \ it was set for 10 seconds, after 10 seconds have passed, the following message\
+    \ handler in the saga is called to process the timeout message that we set in\
+    \ the timer. The Timeout message handler appears as follows:"
+  merge: -1
+  img_proc: true
+- pgno: 39
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 40
+  md: 'When the TimerSubmit process receives the reply message, it will pop a Timer
+    in Seconds window as follows:
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_40_0.png)
+
+
+    This code has all the pieces of a simple saga. The code could be created with
+    a combination of other frameworks as well, such as Quartz for the timer and TopShelf
+    to create services, but NSB is a complete framework that provides end-to-end pieces
+    of architecture and many patterns that have all the pieces.
+
+
+    The end message that showed the Timed status in the Windows form could easily
+    be the execution of a job, another program, an e-mail of system status, a report
+    of the system status, and many more timed tasks. The number of seconds used earlier
+    was just a demonstration. The RequestTimeout() function could take seconds, minutes,
+    hours, days, or could be executed at a specific time of day. We could execute
+    the function with a weekend and holiday calendar and extend the functionality
+    further. We could create a centralized saga timer to literally schedule all the
+    tasks like Microsoft Task Scheduler, but create a managed service that can be
+    monitored, managed, perform reporting, and improve functionality in a much further
+    detailed solution.
+
+
+    # Message mutation patterns
+
+
+    Message mutators allow you to change messages by plugging custom logic into a
+    couple of simple interfaces. For instance, you can encrypt a part or all of a
+    message. The encryption message mutator is part of the NServiceBus library, and
+    can be used at any time. You can intercept the incoming message and then mutate
+    it before sending it as an outgoing message. This is the process of changing messages
+    as they leave a client and enter a server.'
+  merge: -1
+  img_proc: true
+- pgno: 41
+  md: '# The source code
+
+
+    In this section, we will be using the MessageMutators solution with the following
+    projects:
+
+
+    +   - Client: The client will send messages to the server.
+
+    +   - Server: This will receive the mutated message.
+
+    +   - Messages: This is the message format being passed between client and server.
+
+    +   - MessageMutators: This project will contain the mutation code to compress
+    and decompress the messages in TransportMessageCompressionMutator.cs and validate
+    the message annotation in ValidateMessageMutator.cs.
+
+
+    The client and server needs to be running. The client will prompt to send a good
+    or bad message. The good message is compressed so that it will pass the 4 MB MSMQ
+    buffer size, as shown in the following screenshot:
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_41_0.png)
+
+
+    The queue''s data will be validated and compressed from the client before processing
+    it in the MSMQ. This is shown in the following diagram:
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_41_1.png)
+
+
+    Then, the server will receive the message from MSMQ, but before processing it,
+    this will decompress and validate the message. It will restore the message that
+    the client mutated. This is shown in the following diagram:
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_41_2.png)
+
+
+    This is just a simple compression and data annotation validation to ensure that
+    MSMQ will process the message. One of the reasons for mutating the message may
+    be the encryption of a credit card within a payment message.'
+  merge: -1
+  img_proc: true
+- pgno: 42
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 43
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 44
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 45
+  md: "```\npublic class PaymentRequestSaga : NServiceBus.Saga.Saga<PaymentRequestData>,\n\
+    \    IAmStartedByMessages<SendCommand>,\n    IHandleMessages<ResponseCommand>,\n\
+    \    IHandleTimeouts<SendCommand>\n{\n    public void Handle(SendCommand message)\n\
+    \    {\n        ResponseCommand resp = new ResponseCommand();\n        resp.RequestId\
+    \ = message.RequestId;\n        resp.state = PaymentMessages.MessageParts.StateCodes.SentMyWCFClient;\n\
+    \        ReplyToOriginator(resp);\n        Bus.Send(message);\n        RequestTimeout(TimeSpan.FromHours(3),\
+    \ message); // 3 hours\n        Data.RequestId = message.RequestId;\n    }\n}\n\
+    ```\n\n+   - Saga<IContainSagaData>: The saga data is the data that is persisted.\
+    \ This data contains default values to be set by NSB for an ID, originator, and\
+    \ OriginalMessageId instance. Also, a unique ID should be used for the mapping\
+    \ of the message to data, and vice versa. This is shown in the following screenshot:\n\
+    \n```\npublic class PaymentRequestData : IContainSagaData\n{\n    /***\n     *\
+    \ Gets/sets the Id of the process. Do NOT generate this value in your code.\n\
+    \     The value of the Id will be generated automatically to provide the\n   \
+    \  best performance for saving in a database.\n     ***/\n    public virtual Guid\
+    \ Id { get; set; } // Required\n    /***\n     * Contains the return address of\
+    \ the endpoint that caused the process to run.\n     ***/\n    public virtual\
+    \ string Originator { get; set; } //Required\n    /***\n     * Contains the Id\
+    \ of the message which caused the saga to start.\n     This is needed so that\
+    \ when we reply to the Originator, any\n     registered callbacks will be fired\
+    \ correctly.\n     ***/\n    public virtual string OriginalMessageId { get; set;\
+    \ } //Required\n\n    [Unique]\n    public virtual Guid RequestId { get; set;\
+    \ } // Unique ID to lookup Request message\n}\n```"
+  merge: -1
+  img_proc: true
+- pgno: 46
+  md: "+   - `IHandleMessages<IMessage>`: The saga doesn't do much unless it is handling\
+    \ messages. It can retrieve the saved data of a message that is mapped by the\
+    \ configuration. NSB handles the mapping of the data to the message by the unique\
+    \ ID, in this case, `RequestId`, that is defined in `ConfigureHowToFindSaga()`.\n\
+    +   - `ConfigureHowToFindSaga()`: This function of the saga pattern is used to\
+    \ map the data to the messages. Usually, the mapping can be performance from a\
+    \ GUID or ID, but it must be a unique data type that can be stored as a primary\
+    \ key in a database. The messages that are mapped contain the same key, and when\
+    \ it passes in the saga, the data is found that matches the key. This function\
+    \ is called when the saga object is instanced.\n\n```\npublic override void ConfigureHowToFindSaga()\n\
+    {\n    ConfigureMapping<ResponseCommand>(x => x.RequestId).ToSaga(x => x.RequestId);\n\
+    }\n```\n\n# Sagas – what are they good for?\n\nSagas play a critical role in workflow\
+    \ management. Without the ability to map data to persistent data, workflow among\
+    \ messages cannot be achieved. Saga's purpose is to persist saga data objects,\
+    \ which are files with data from selected content, directed from messages in the\
+    \ message handler. The following are some of the things that sagas are good for:\n\
+    \n+   - **Saving message state/session information**: When a message is started,\
+    \ the message handler will create the saga data instance that will be saved at\
+    \ the end of the message handler. It is up to the message handler data to set\
+    \ data into an instance of the object. NSB handles the mapping. The following\
+    \ screenshot displays the code for handling messages:\n\n```\npublic void Handle(SendCommand\
+    \ message)\n{\n    ResponseCommand resp = new ResponseCommand();\n    resp.RequestId\
+    \ = message.RequestId;\n    resp.state = PaymentMessages.MessageParts.StateCodes.SentMyWCFClient;\n\
+    \    ReplyToOriginator(resp);\n    Bus.Send(message);\n    RequestTimeout(TimeSpan.FromHours(3),\
+    \ message); // 3 hours\n    Data.RequestId = message.RequestId;\n}\n```"
+  merge: -1
+  img_proc: true
+- pgno: 47
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 48
+  md: "In this scenario, we give the message three hours to perform its operations\
+    \ before timing it out. The following screenshot displays the code for providing\
+    \ timeouts:\n\n```\npublic class PaymentRequestSaga : NServiceBus.Saga.Saga<PaymentRequestData>,\n\
+    \    IAmStartedByMessages<SendCommand>,\n    IHandleMessages<ResponseCommand>,\n\
+    \    IHandleTimeouts<SendCommand>\n{\n    public override void ConfigureHowToFindSaga()...\n\
+    \n    public void Handle(SendCommand message)\n    {\n        // ...\n       \
+    \ RequestTimeout(TimeSpan.FromHours(3), message); // 3 hours\n        // ...\n\
+    \    }\n\n    public void Handle(ResponseCommand message)...\n\n    public void\
+    \ Timeout(SendCommand state)\n    {\n        ResponseCommand resp = new ResponseCommand();\n\
+    \        resp.RequestId = state.RequestId;\n        resp.state = PaymentMessages.MessageParts.StateCodes.Timeout;\n\
+    \        ReplyToOriginator(resp);\n        MarkAsComplete();\n    }\n}\n```\n\n\
+    Because the saga pattern has the ability to persist the message's state data,\
+    \ the messages become connectionless pieces of separate messages and provide a\
+    \ means to connect multiple messages to each other to perform end-to-end flow.\
+    \ Thus, the saga becomes the focal point of the interaction. The messages now\
+    \ have a behavioral pattern as they have more meaning than a single instance.\
+    \ They now have a long time to live, as when the individual message is no longer\
+    \ available, the saga data representing data for the message will still live on,\
+    \ until it is marked to be destroyed."
+  merge: -1
+  img_proc: true
+- pgno: 49
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 50
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 51
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 52
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 53
+  md: 'These examples show that in version 5.0, the bus configuration is created as
+    an object and configuration values are added to the instance of the object. The
+    bus configuration can be passed to functions as a configuration to be utilized
+    over and over for reuse of the bus configuration.
+
+
+    Other features that have been extended in NServiceBus in the newer versions also
+    include the addition of NSB packages. One such package is `NServiceBus.NLog`,
+    which is specific to using NLog in NSB version 5.0 and above. This is used to
+    extend the logging capabilities of NSB to log further information as it applies
+    to endpoints, messages, and services. Working with the `NServiceBus.NLog` package
+    has been detailed in `http://docs.particular.net/nservicebus/logging-in-nservicebus`.
+    We will demonstrate the code''s use further in this chapter.
+
+
+    # The saga workflow
+
+
+    The purpose of the saga is to provide workflow. It provides the persistence of
+    the saga data so that a message can return to the saga and have a point of reference
+    to the original messages.
+
+
+    The source code in this section is in the *CreditCardApproval – v5* section. It
+    was compiled in Visual Studio 2012 using NSB Version 5.0. The projects will appear
+    as the following:
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_53_0.png)
+
+
+    Here we have the following projects:
+
+
+    +   - `AppCommon`: This contains the ViewModel and Context for the Windows forms.
+
+    +   - `AppForAccountingDept`: This receives a purchase order number related to
+    the approval of the credit card.
+
+    +   - `CreditCardApproval`: This approves the credit card.
+
+    +   - `CreditCardSubmit`: This submits the credit card for approval.'
+  merge: -1
+  img_proc: true
+- pgno: 54
+  md: '# NServiceBus Saga Architecture
+
+
+    +   - `CreditCardMessages`: This contains the common messages for the projects.
+
+    +   - `CreditCardSaga`: This is the credit card saga that directs the workflow
+    and message routing by using message handling and saga data.
+
+
+    The flow of the messages, which does all the work (thus, workflow), will start
+    with the `CreditCardSubmit` project. This form will submit a credit card to the
+    saga, which will save its state and forward it to the `CreditCardApproval` project.
+    The `CreditCardApproval` form will either approve or deny the card and send the
+    response back to the saga. The saga will retrieve the previous message and pass
+    it back to the `CreditCardSubmit` form, and if approved, will send it to the `AppForAccountingDept`
+    project. The message flow will appear as follows:
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_54_0.png)
+
+
+    This is a very simplistic workflow as it keeps track of whether a credit card
+    is approved or not. By making the saga data persistent, it allows the persistence
+    of the saga data state to route the messages and manage the message information
+    at a single point. The saga data will contain the required ID, originator, and
+    `OriginalMessageId`, to ensure a response to the original client. These fields
+    ensure that the return is always available. We see these fields in the following
+    diagram:'
+  merge: -1
+  img_proc: true
+- pgno: 55
+  md: "![](img/8188651cea6a881a16242b395a81399a_55_0.png)\n\nThe saga data is stored\
+    \ by using the IContainSagaData interface. Even if the three fields are not explicitly\
+    \ defined, the IContainSagaData interface will define them in storage. Do not\
+    \ modify these fields as NServiceBus uses them. The primary key is another field\
+    \ that is used in all sagas to look up the saga data from the message. In this\
+    \ case, we use the RequestId that will always contain a unique value from the\
+    \ [Unique] annotation. We can see this in the following code:\n\n```\npublic class\
+    \ CreditCardRequestData : IContainSagaData\n{\n    /***\n    * Gets/sets the Id\
+    \ of the process. Do NOT generate this value in your code.\n    The value of the\
+    \ Id will be generated automatically to provide the\n    best performance for\
+    \ saving in a database.\n    * ***/\n    public Guid Id { get; set; } // Required\n\
+    \    /***\n    * Contains the return address of the endpoint that caused the process\
+    \ to run.\n    * ***/\n    public string Originator { get; set; } //Required\n\
+    \    /***\n    * Contains the Id of the message which caused the saga to start.\n\
+    \    This is needed so that when we reply to the Originator, any\n    registered\
+    \ callbacks will be fired correctly.\n    * ***/\n    public string OriginalMessageId\
+    \ { get; set; } //Required\n\n    [Unique]\n    public Guid RequestId { get; set;\
+    \ } // Unique ID to lookup Request message\n    public string Card { get; set;\
+    \ }\n    public decimal Cost { get; set; }\n    public bool RequiresApproval {\
+    \ get; set; }\n    public bool Approved { get; set; }\n}\n```"
+  merge: -1
+  img_proc: true
+- pgno: 56
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 57
+  md: "The timeout could also be used to schedule daily tasks for the saga to complete\
+    \ in its cleanup and maintenance pieces. For instance, we can send a daily e-mail\
+    \ to operations reporting how many messages the saga processed for the day and\
+    \ if it had any messages reported in the error queue. Here, we give the credit\
+    \ card approver 60 seconds to approve. The following screenshot displays the code\
+    \ for this:\n\n```\npublic void Handle(SubmitRequestCommand message)\n{\n    logger.Info(\"\
+    --------CreditCardSaga Handle-------\" + message);\n    \n    // We give the Approver\
+    \ 60 seconds to respond\n    RequestTimeout<TimeoutMessage>(TimeSpan.FromSeconds(60));\n\
+    }\n```\n\nThe saga's purpose is to manage the workflow of the messages by the\
+    \ state of the saga data. The saga will be started by a message, or many messages,\
+    \ defined in IAmStartedByMessages<>. Subsequent messages are defined in IHandleMessages<\
+    \ >. The timeout has a special message handler called IHandleTimeouts<>. We can\
+    \ observe this in the following class diagram:\n\n![](img/8188651cea6a881a16242b395a81399a_57_0.png)"
+  merge: -1
+  img_proc: true
+- pgno: 58
+  md: "In order to save the saga data, the data needs to be mapped to a message. NSB\
+    \ will do most of the mapping, but it requires the definition of the message ID\
+    \ that will be used to map the data to the message. In our saga data, we are using\
+    \ the RequestId instance as the message's data primary key. In version 4.0, we\
+    \ mapped this functionality to use the RequestId instance to map the messages\
+    \ ApproveRequestCommand and DenyRequestCommand, as shown in the following code,\
+    \ using ConfigureHowToFindSaga():\n\n```\npublic override void ConfigureHowToFindSaga()\n\
+    {\n    ConfigureMapping<ApproveRequestCommand>(x => x.RequestId).ToSaga(x => x.RequestId);\n\
+    \    ConfigureMapping<DenyRequestCommand>(x => x.RequestId).ToSaga(x => x.RequestId);\n\
+    }\n```\n\nIn version 5.0, we mapped this functionality to use the RequestId instance\
+    \ to map the messages ApproveRequestCommand and DenyRequestCommand, as shown in\
+    \ the following code, using ConfigureHowToFindSaga(SagaPropertyMapper< > mapper):\n\
+    \n```\nprotected override void ConfigureHowToFindSaga(SagaPropertyMapper<CreditCardRequestData>\
+    \ mapper)\n{\n    mapper.ConfigureMapping<ApproveRequestCommand>(x => x.RequestId).ToSaga(x\
+    \ => x.RequestId);\n    mapper.ConfigureMapping<DenyRequestCommand>(x => x.RequestId).ToSaga(x\
+    \ => x.RequestId);\n}\n```\n\nThese messages are handled by message handlers,\
+    \ such as the Handle(DenyRequestCommand message). The saga data will pull the\
+    \ record matching the message's RequestId from NSB. NSB just needs the mapping\
+    \ definition, and it handles the record that is maintaining persistence and the\
+    \ mapping, as shown in the following code:\n\n```\npublic void Handle(DenyRequestCommand\
+    \ message)\n{\n    logger.Info(\"----------CreditCardSaga Handle----------\" +\
+    \ message);\n    var reply = new SubmitRequestReplyMessage\n    {\n        RequestId\
+    \ = Data.RequestId,\n        Approved = false\n    };\n\n    ReplyToOriginator(reply);\n\
+    \    MarkAsComplete();\n}\n```"
+  merge: -1
+  img_proc: true
+- pgno: 59
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 60
+  md: "# Message flow\n\nThe originating client that starts the process will be CreditCardSubmit.\
+    \ This client could easily be a website or another means of starting the messaging\
+    \ process. The SubmitRequestCommand project is the starting message for the saga\
+    \ and the message is sent from the CreditCardSubmit project. It is defined in\
+    \ the App.config file of the CreditCardSubmit project to send to the saga in the\
+    \ following code:\n\n```\n<UnicastBusConfig ForwardReceivedMessagesTo=\"MyAudits\"\
+    >\n  <MessageEndpointMappings>\n    <add Endpoint=\"CreditCardSaga\" Messages=\"\
+    CreditCardMessages.SubmitRequestCommand, CreditCardMessages\" />\n    <add Endpoint=\"\
+    CreditCardSaga\" Messages=\"CreditCardMessages.IRequestExpiredEvent, CreditCardMessages\"\
+    \ />\n  </MessageEndpointMappings>\n</UnicastBusConfig>\n```\n\nWe can view the\
+    \ messages being sent in MSMQ, but if the saga was running, the messages would\
+    \ process too fast to observe. We can see the message in the saga without running\
+    \ all the services to take a snapshot in time, as we see in the following screenshot\n\
+    \n![](img/8188651cea6a881a16242b395a81399a_60_0.png)\n\nOnce the saga starts,\
+    \ it handles the SubmitRequestMessage message. The saga will populate the data\
+    \ with defaults and message information. Notice that RequestId is set in the saga\
+    \ data to match the message's RequestId instance. This is to map the saga data\
+    \ to the other messages that the saga handles, but in order for this RequestId\
+    \ instance to match, this key must be set in each message that the saga needs\
+    \ to map. The code for this is shown in the following screenshot:"
+  merge: -1
+  img_proc: true
+- pgno: 61
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 62
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 63
+  md: "```\npublic class SolicitApprovalFromLevel1CommandHandler : IHandleMessages<SolicitApprovalFromLevel1Command>\n\
+    {\n    public Context<ItemViewModel> Context { get; set; }\n\n    public void\
+    \ Handle(SolicitApprovalFromLevel1Command message)\n    {\n        Context.MarshalToUiThread(()\
+    \ => HandleOnUiThread(message));\n    }\n\n    private void HandleOnUiThread(SolicitApprovalFromLevel1Command\
+    \ message)\n    {\n        var item = new ItemViewModel\n        {\n         \
+    \   RequestId = message.RequestId,\n            Card = message.Card,\n       \
+    \     Cost = message.Cost\n        };\n\n        Context.Items.Add(item);\n  \
+    \  }\n}\n```\n\nAlso note that in a production system, credit cards would be encrypted.\
+    \ As we have discussed in the previous chapter, NSB easily handles the encryption\
+    \ of data and messages. This will load the selection for approval or denial as\
+    \ follows:\n\n![](img/8188651cea6a881a16242b395a81399a_63_0.png)"
+  merge: -1
+  img_proc: true
+- pgno: 64
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 65
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 66
+  md: "The saga will read and handle the message from the accounting department of\
+    \ the type, RecordEncumbranceReplyMessage. The saga will respond to the original\
+    \ client, CreditCardSubmit so that it can be updated with the Purchase Order number\
+    \ and status. We can see this in the saga message handler code in the following\
+    \ screenshot:\n\n```\npublic void Handle(RecordEncumbranceReplyMessage message)\n\
+    {\n    logger.Info(\"--------CreditCardSaga Handle------\" + message);\n    var\
+    \ reply = new SubmitRequestReplyMessage\n    {\n        RequestId = Data.RequestId,\n\
+    \        Approved = true,\n        PurchaseOrderNumber = message.PurchaseOrderNumber\n\
+    \    };\n\n    ReplyToOriginator(reply);\n    MarkAsComplete();\n}\n```\n\nThe\
+    \ originating client will receive the Purchase Order, via the saga from the accounting\
+    \ department application, as shown here:\n\n![](img/8188651cea6a881a16242b395a81399a_66_0.png)\n\
+    \nAfter the original requester receives the Purchase Order, the message is complete.\
+    \ For denial and errors, the message flow will be similar.\n\nOne may ask why\
+    \ there is so much work in a message flow. NSB is doing almost all the work for\
+    \ the message flow and mapping. Many organizations save data for the purpose of\
+    \ handling errors. The saga has a lot of basic error handling mechanisms for handling\
+    \ errors throughout messages, endpoints, and services. We have already put in\
+    \ code for timeouts so that the messages occur within a specific period of time."
+  merge: -1
+  img_proc: true
+- pgno: 67
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 68
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 69
+  md: '![](img/8188651cea6a881a16242b395a81399a_69_0.png)
+
+
+    After adding service control to the project, which we will call CreditCardApprove
+    - v5 - ServiceInsight, we can get detailed information on the saga and its messages
+    through ServiceInsight, which will look similar to what is seen in the following
+    screenshot:
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_69_1.png)'
+  merge: -1
+  img_proc: true
+- pgno: 70
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 71
+  md: '# 3
+
+    The Particular Service Platform
+
+
+    In this chapter, we will be focusing on the Particular Service Platform, which
+    includes ServicePulse, ServiceControl, ServiceInsight, and ServiceMatrix. We can
+    use ServicePulse to get a pulse of NServiceBus (NSB) endpoints, messages, sagas,
+    and services. This is more of a production monitoring product, for operations
+    to check for running NSB components.
+
+
+    ServiceInsight is the product to use to get into the details of NSB endpoints,
+    messages, sagas, and services, to drill down into issues, and to verify proper
+    operations in detail. ServiceMatrix is the graphical developer interface that
+    extends into a Visual Studio canvas for code generation of NSB endpoints, services,
+    and messages.
+
+
+    In this chapter, we will cover:
+
+
+    +   - ServicePulse
+
+    +   - ServiceControl
+
+    +   - ServiceInsight
+
+    +   - ServiceMatrix
+
+    +   - Publish-subscribe through ServiceMatrix
+
+    +   - Sagas through ServiceMatrix
+
+    +   - Introducing custom checks for ServicePulse
+
+
+    # Introducing NSB components
+
+
+    There are many tools that can be licensed from http://particular.net/ which aid
+    in developing and monitoring NSB components. NSB components include endpoints,
+    messages, and services. Components include any of the configured items on the
+    IBus.'
+  merge: -1
+  img_proc: true
+- pgno: 72
+  md: 'ServiceMatrix is an extension plugin that can be installed into Visual Studio
+    2012. This plugin creates an NSB canvas that creates various NSB components through
+    wizards, which will generate C# code to be used for the ESB. ServiceMatrix simplifies
+    and standardizes the development lifecycle by generating code to match diagrams
+    designed in the NSB Canvas, and helps developers create NSB-standardized code
+    from the NSB Visual Studio wizard. NSB wizards assist in learning how different
+    pieces make up an NSB application from end to end. ServiceMatrix also creates
+    skeleton pieces and associate generated C# code to run an end-to-end NSB solution
+    with less effort from the developer.
+
+
+    ServiceControl is a controller that is a management extension to NSB. Its code
+    can be downloaded from https://github.com/Particular/ServiceControl. ServiceControl
+    is a Windows service that collects endpoints, messages, and service information,
+    and stores it in a local RavenDB. This is done so that other products such as
+    ServicePulse and ServiceInsight can access the information to report on the heartbeats
+    of services and give detailed information regarding messages. ServicePulse checks
+    for heartbeats on NSB applications with the heartbeat plugin, and provides custom
+    checks as well. It has a dashboard that shows which NSB applications are up and
+    running for production. ServiceInsight provides details of messages, endpoints,
+    and services. It shows a detailed graphical flow of messages and properties of
+    messages that includes endpoints and service information, timeouts, payloads,
+    and more. ServiceInsight allows a deep-dive into messaging. These tools can be
+    found from the download page, http://particular.net/downloads. While it is possible
+    to monitor, maintain, and build NSB applications without these tools, there is
+    a lot of work and effort that has gone into these tools to help the developer
+    understand, build, and maintain NSB applications, to get a product that is better
+    built and is made available to the market faster.
+
+
+    We will walk through setting up ServicePulse, then ServiceInsight, and then build
+    some applications with ServiceMatrix to be examined by both, ServicePulse and
+    ServiceInsight. ServiceControl is an install that both ServicePulse and ServiceInsight
+    will need to use to gather its information. We will start with ServicePulse to
+    show us a dashboard as it is the most basic of these tools. To run any of the
+    applications in this chapter, ServiceControl, ServicePulse, ServiceMatirx, and
+    ServiceInsight must be installed. You can download these by going to http://particular.net/downloads
+    and clicking on the Download Now button to select all the products through a Platform
+    Installer, which will work on Windows 8.1 and other desktop machines. For some
+    servers such as Windows Server 2008, this button may not work, and individual
+    downloads from this page may have to be installed separately. This chapter assumes
+    that all these products are installed.'
+  merge: -1
+  img_proc: true
+- pgno: 73
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 74
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 75
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 76
+  md: 'ServicePulse will know how to call this starting point of the JSON API by its
+    setting when ServicePulse is installed. Please see the following screenshot to
+    see where we set the ServiceControl API instance:
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_76_0.png)
+
+
+    Let''s look at a simple example. We can start with the publish-subscribe MSMQ
+    example from https://github.com/Particular/NServiceBus.Msmq.Samples/tree/master/PubSub.
+
+
+    We will need to add ServiceControl plugins through NuGet to generate ServiceControl
+    endpoints for monitoring purposes, otherwise there will be nothing to monitor
+    ServiceControl. The following plugins are currently available:
+
+
+    +   - ServiceControl.Plugin.DebugSession: This is found at https://www.nuget.org/packages/ServiceControl.Plugin.Nsb4.DebugSession/
+    for version 4.x and https://www.nuget.org/packages/ServiceControl.Plugin.Nsb5.DebugSession/
+    for version 5.x. When deployed, the debug session plugin adds a specified debug
+    session identifier to the header of each message sent by the endpoint. This allows
+    messages sent by debugging or a test run within Visual Studio to be correlated,
+    filtered, and highlighted within ServiceInsight.'
+  merge: -1
+  img_proc: true
+- pgno: 77
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 78
+  md: '2. Then, we can check heartbeats in ServicePulse to validate that the applications
+    are giving heartbeats that indicate availability. We monitor ServicePulse through
+    the URL, http://localhost:9090. This can be seen in the following screenshot for
+    ServicePlus
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_78_0.png)
+
+
+    3. If there are issues with the services, always check that ServiceControl and
+    ServicePulse are running. The following screenshot shows these running:
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_78_1.png)
+
+
+    # Understanding ServiceInsight and its function
+
+
+    ServiceInsight provides detailed insights into a specific message. It provides
+    detail flow, timing, and error handling and the ability to retry the message,
+    sort the message, look at its header, look at its sagas, copy the header, copy
+    the message, and more.
+
+
+    We will explore this more with the ServiceMatrix examples that we will be building,
+    but we need to familiarize ourselves with the functions of ServiceInsight. You
+    may opt to not use some of these tools in your development, but the purpose of
+    this chapter is to discuss these tools.'
+  merge: -1
+  img_proc: true
+- pgno: 79
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 80
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 81
+  md: 'Through in the next sections of this chapter on ServiceMatrix, we will take
+    this request-response solution in the PaymentEngine - Start directory and extend
+    it to a publish-subscribe message flow, with the addition of sagas. The final
+    result will be that publish-subscribe and sagas will be in the PaymentEngine -
+    Sagas directory.
+
+    In Windows 8.1, you may have to run Visual Studio 2012 as the administrator. When
+    running Visual Studio 2012 on Windows Server 2008 and Windows Server 2012, you
+    may not have to run Visual Studio 2012 as the administrator.
+
+
+    # Creating a ServiceMatrix solution
+
+
+    We will install ServiceMatrix in Visual Studio by navigating to Tools | Extensions
+    and Updates. You will be presented with the following screen:
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_81_0.png)'
+  merge: -1
+  img_proc: true
+- pgno: 82
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 83
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 84
+  md: 'By right-clicking on the elements of these sections, we can add or change properties,
+    as shown in the following screenshot:
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_84_0.png)
+
+
+    We can accomplish similar tasks in NServiceBus Canvas. The difference is that
+    this is a visual graph showing the flow instead of a tree directory hierarchy.
+    Right-click on the graphical information as shown in the following screenshot:
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_84_1.png)
+
+
+    The Solutions Explorer pane will display the resultant generated code. Some of
+    the code will be stubs that are created to add more detail during development.
+    An event can be created through Publish Event... and a command message can be
+    created through Send Command.... We can create a send command message. We will
+    name the service Payments for the SubmitPayment command message as in the following
+    screenshot:'
+  merge: -1
+  img_proc: true
+- pgno: 85
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 86
+  md: 'At this point, the code will not compile because the message only has one endpoint.
+    We need to deploy the other endpoint with the Deploy Component... command, as
+    shown here:
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_86_0.png)
+
+
+    We can select the available endpoints. In this case, we have the ability to create
+    new endpoints graphically, just as we did for the PaymentProcessing endpoint,
+    as shown in the following screenshot:
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_86_1.png)'
+  merge: -1
+  img_proc: true
+- pgno: 87
+  md: "Then, we will have two endpoints with a command message being sent from ECommerce,\
+    \ an MVC controller, to PaymentProcessing, an NSB Host. These endpoints will be\
+    \ command consoles or service applications depending on the deployment. In the\
+    \ following screenshot, we can see the two endpoints with the message in between:\n\
+    \n![](img/8188651cea6a881a16242b395a81399a_87_0.png)\n\nThe SubmitPaymentSender\
+    \ function will send the message, and the SubmitPaymentHandler function will receive\
+    \ the message, as seen in the preceding diagram. These functions have already\
+    \ been created from ServiceMatrix and can be extended. Looking at SubmitPaymentHandler,\
+    \ we can extend the function to print the data field.\n\n```\nusing System;\n\
+    using NServiceBus;\nusing PaymentEngine.Internal.Commands.Payments;\n\nnamespace\
+    \ PaymentEngine.Payments\n{\n    public partial class SubmitPaymentHandler\n \
+    \   {\n        partial void HandleImplementation(SubmitPayment message)\n    \
+    \    {\n            // TODO: SubmitPaymentHandler: Add code to handle the SubmitPayment\
+    \ message.\n            Console.WriteLine(\"Payments received \" + message.GetType().Name);\n\
+    \            Console.WriteLine(\"Data \" + message.data);\n        }\n    }\n\
+    }\n```"
+  merge: -1
+  img_proc: true
+- pgno: 88
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 89
+  md: '![](img/8188651cea6a881a16242b395a81399a_89_0.png)
+
+
+    There are four ServiceControl plugins that can be installed, which we have mentioned
+    so far:
+
+
+    +   - **ServiceControl plugin for CustomChecks**: The CustomChecks plugin allows
+    the developer of an NSB endpoint to define a set of conditions that are checked
+    on endpoint startup, or periodically.
+
+    +   - **ServiceControl plugin for DebugSessions**: DebugSessions is a dedicated
+    plugin that enables integration between ServiceMatrix and ServiceInsight.
+
+    +   - **ServiceControl plugin for heartbeats**: The Heartbeat plugin sends heartbeat
+    messages from the endpoint to the ServiceControl queue. These messages are sent
+    every 10 seconds by default.
+
+    +   - **ServiceControl plugin for SagaAudits**: The Saga Audit plugin collects
+    saga runtime activity information. This information enables the display of detailed
+    saga data, behavior, and current status in the ServiceInsight saga view.
+
+
+    By installing the Heartbeat plugin into the ECommerce and PaymentProcessing projects,
+    ServicePulse will now give heartbeat information on the uptime of these services,
+    as shown here:
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_89_1.png)'
+  merge: -1
+  img_proc: true
+- pgno: 90
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 91
+  md: 'The **Publish Event...** option is used to create the message that will be
+    published, as shown in the following screenshot:
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_91_0.png)
+
+
+    We will name the publisher event message `PaymentAccepted` from the `PaymentProcessing`
+    host, as shown here:
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_91_1.png)'
+  merge: -1
+  img_proc: true
+- pgno: 92
+  md: "A code-convenient window will be created to review the code before deployment:\n\
+    \n![](img/8188651cea6a881a16242b395a81399a_92_0.png)\n\nThis is so that you can\
+    \ review the code before copying it into the message handler that you are publishing\
+    \ from. Here is the code:\n\n```\npublic partial class SubmitPaymentHandler\n\
+    {\n    partial void HandleImplementation(SubmitPayment message)\n    {\n     \
+    \   // TODO: SubmitPaymentHandler: Add code to handle the SubmitPayment message.\n\
+    \        Console.WriteLine(\"Payments received \" +\n        message.GetType().Name);\n\
+    \        Console.WriteLine(\"Data \" + message.data);\n        var paymentAccepted\
+    \ = new\n            PaymentEngine.Contracts.Payments.PaymentAccepted();\n   \
+    \     Bus.Publish(paymentAccepted);\n    }\n}\n```"
+  merge: -1
+  img_proc: true
+- pgno: 93
+  md: 'To add a subscriber to the publisher, simply use the **Add Subscriber...**
+    command as shown in the following screenshot:
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_93_0.png)
+
+
+    We can then add the subscriber to a new service. Let''s call it `Paying`.
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_93_1.png)'
+  merge: -1
+  img_proc: true
+- pgno: 94
+  md: 'We will also have to deploy the PaymentAcceptedHandler component as an endpoint.
+    In this scenario, we called it Paying as well. After these changes, we should
+    see the following:
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_94_0.png)
+
+
+    The Properties window of the solution will define the error and audit queues:
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_94_1.png)'
+  merge: -1
+  img_proc: true
+- pgno: 95
+  md: 'The **Properties** window will also show the various types of queues that can
+    be used:
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_95_0.png)
+
+
+    When running the solution and rerunning ServicePulse, we can see the additional
+    Paying endpoint created, which hasn''t had the plugins installed:
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_95_1.png)
+
+
+    If we review the flow in ServiceInsight, we can see the new flows:
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_95_2.png)'
+  merge: -1
+  img_proc: true
+- pgno: 96
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 97
+  md: 'We will deploy the receiving endpoint to a new endpoint called NotifyProcessing.
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_97_0.png)
+
+
+    This is what we should have so far:
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_97_1.png)'
+  merge: -1
+  img_proc: true
+- pgno: 98
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 99
+  md: '# 为什么要阅读？
+
+
+    读书让我们眼界开阔。
+
+
+    为什么要阅读？在很多人看来，这似乎不是一个问题。但在现在这个信息爆炸的时代，阅读似乎已经成为了一种奢侈。
+
+
+    读书让我们眼界开阔，能让我们站在巨人的肩膀上看到更远的世界。每一个成功的人，都离不开阅读。
+
+
+    读书能让我们拥有丰富的心灵世界。即使身处陋室，亦能感受“谈笑有鸿儒，往来无白丁”的意境。
+
+
+    读书，是世界上第一等好事。
+
+
+    - THE END -
+
+
+    > *文章来源|网络*'
+  merge: -1
+  img_proc: true
+- pgno: 100
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 101
+  md: "```\n{\n    public MyCustomCheck()\n        : base(\"ECommerce SubmitPayment\
+    \ check\", \"ECommerce\")\n    {\n        ReportPass();\n    }\n}\n```\n\nSo that\
+    \ when a submit payment is sent, we can get an additional message on ServicePulse.\n\
+    \n![](img/8188651cea6a881a16242b395a81399a_101_0.png)\n\nWe can use conditional\
+    \ statements to check for files that are present, other messages, and a number\
+    \ of conditions that can be reported as passing or failing while giving status\
+    \ to ServicePulse for operations to take action.\n\nIn the CustomChecks class,\
+    \ we can also set a timer to periodically check using the PeriodicCheck interface.\
+    \ This will set a timer to call back the class and send the condition to ServicePulse.\
+    \ It operates differently from ReportPass, as it is timer based in order to report\
+    \ the condition. When the new class references the PeriodicCheck interface, it\
+    \ requires a PerformCheck() function that will perform the custom check. In our\
+    \ function, we are using the NSB CheckResult\n\n```\nnamespace PaymentEngine.PaymentProcessing\n\
+    {\n    class CheckHealth : PeriodicCheck\n    {\n        public CheckHealth()\n\
+    \            : base(\"PaymentProcessing Healthcheck\",\n            \"PaymentProcessing\"\
+    , TimeSpan.FromMinutes(2))\n        {\n        }\n\n        public override CheckResult\
+    \ PerformCheck()\n        {\n            // Fake a failure once in a while\n \
+    \           if (DateTime.Now.Second % 2 == 0)\n            {\n```"
+  merge: -1
+  img_proc: true
+- pgno: 102
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 103
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 104
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 105
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 106
+  md: '+   - Creating a WCF client
+
+    +     - Adding the service reference
+
+    +     - Calling the reference
+
+    +   - Revisiting the design
+
+    +   - Adding the service reference
+
+    +     - Calling the reference
+
+    +   - Adding NServiceBus to MVC
+
+    +     - Message handler unit testing
+
+    +     - Saga handler unit testing
+
+    +   - RabbitMQ for NSB
+
+    +   - ActiveMQ for NSB
+
+
+    # A brief overview of ASP.NET MVC
+
+
+    **Model-View-Controller (MVC)** is the most common design pattern for implementing
+    user interfaces. ASP.NET MVC is the Microsoft framework to implement the MVC software
+    design pattern in ASP.NET. Developing by reusing known design patterns and frameworks
+    that have been justified and tested by others brings a lot of reusability of known
+    quantities into any application.
+
+
+    By breaking up the logic into controllers, which have the `session`, `request`,
+    and `response` helper functions, while passing the models, which are the View
+    Models which have the information which we want to present into the view, it moves
+    most of the logic and exposure away from the browser where APIs can be exposed.
+    We will also use Microsoft Entity Framework (EF) for many of the model objects.
+
+
+    Microsoft recommends using **Language Integrated Query (LINQ)** and EF to prevent
+    traditional SQL injection attacks. The web page at https://msdn.microsoft.com/en-in/library/bb308959.aspx
+    also discusses other security measures that can be done in EF. EF does not mitigate
+    all injection attacks (such as EF injections) but, using a combination of EF and
+    LINQ correctly, it will mitigate many common SQL injection attacks. The reasoning
+    here is that the injection can now only occur through LINQ and the EF objects
+    rather than any open SQL commands, thus narrowing the attack surface from a wide
+    range of commands to an object, and through a collection that may only be accessed
+    through a controller in MVC. There are many scripting tools running on the Internet,
+    such as SQLNinja. Visit http://sqlninja.sourceforge.net/ to find any insecure
+    SQL command.'
+  merge: -1
+  img_proc: true
+- pgno: 107
+  md: 'However, most tools are not built to signal EF attack vectors. Please visit
+    http://www.slideshare.net/rhelton_1/sql-injection-amp-entity-frameworks for more
+    information on this.
+
+
+    There are many more reasons to use an object-relationship mapper (ORM), such as
+    EF, as we can see in http://karwin.blogspot.com/2009/01/why-should-you-use-orm.html.
+    Some of these reasons include the following:
+
+
+    +   - **Generating boilerplate code**: EF generates objects from the SQL Server
+    databases and tables, thus creating boilerplate code that can be used to create,
+    update, read, and delete the fields in the tables.
+
+    +   - **Supporting OO**: EF objects support common object-oriented programming
+    design and methodology that is easy as PIE (polymorphism-encapsulation-inheritance),
+    and to include reusability.
+
+    +   - **Speeding development**: Generating code from a database and using it in
+    an application can be significantly faster than creating custom code from scratch.
+    We can see the interaction of the MVC components in the following diagram:
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_107_0.png)
+
+
+    So, why is this discussion on MVC-EF in an NSB book? That''s because most of the
+    official NSB examples are using MVC. We will be looking at some examples that
+    we have extended in MVC to include Microsoft''s best practices of EF and WCF.
+
+
+    In order to view tables and queues related to tables, we use the Kendo grids.
+    Packt publishing offers many books on Kendo, such as Kendo UI Grid (http://www.packtpub.com/kendo-ui-grid/book).
+    Some of the Kendo examples are also extended from files available at http://www.codeproject.com/Articles/606682/Kendo-Grid-In-Action.'
+  merge: -1
+  img_proc: true
+- pgno: 108
+  md: '# Sagas and web services
+
+
+    One of the many endpoints that NSB provide integration into is the **Windows Communication
+    Foundation (WCF)** endpoint. Visit http://en.wikipedia.org/wiki/Windows_Communication_Foundation
+    for more information.
+
+
+    WCF is part of the .NET Framework ecosystem which provides a runtime and a set
+    of APIs for building connected, service-oriented applications. In the **Simple
+    Object Access Protocol (SOAP)** binding, it makes use of **Web Services Description
+    Languages (WSDL)**, which defines the interface between a web service and a web
+    service client. Based on a WSDL, the XML is created on the WSDL specification
+    so that the client and server can exchange information irrespective of their programming
+    languages and platforms. It is sent between the server and the client as the protocol
+    is normally HTTP or HTTPS. There are multiple binding types; we will discuss mostly
+    SOAP binding in this book, but for more binding types, you can visit http://msdn.microsoft.com/en-us/library/ms731092%28v=vs.110%29.aspx.
+    For example, if using a WCF client and service that are both built-in C#, we may
+    consider using a NetTcpBinding class as it provides high performance between .NET
+    WCF applications. Visit http://msdn.microsoft.com/en-us/library/ms731092%28v=vs.110%29.aspx
+    for more information.
+
+
+    For simplicity''s sake, we are only going to work with a SOAP web service in WCF
+    in this chapter.
+
+
+    WCF is a highly extensible framework and allows easy integration into NServiceBus.
+    More information on NSB WCF sample integration can be found at https://github.com/Particular/NServiceBus/tree/develop/IntegrationTests/WcfIntegration
+    and http://docs.particular.net/NServiceBus/how-do-i-expose-an-nservicebus-endpoint-as-a-web-wcf-service.
+
+
+    While Microsoft''s WCF is considered a framework for implementing pieces of **service-oriented
+    architecture (SOA)** guidelines, it is not an ESB. This WCF does not contain all
+    the features and design patterns (like sagas), persistence, or other out-of-the-box
+    features to implement an end-to-end solution for SOA guidelines. On the other
+    hand, using NServiceBus as an ESB with the web services of WCF brings a lot to
+    the table that WCF and other web service frameworks do not offer.
+
+
+    # The source code
+
+
+    The directory for the code is under the `Payment_WCFService` directory. The `WCFService`
+    is used to test the client by being the WCF service.'
+  merge: -1
+  img_proc: true
+- pgno: 109
+  md: 'The solution is then run in Visual Studio 2012 in Windows Server 2012 with
+    MSMQ, DTC, RavenDB, NServiceBus Version 4.0 references, and SQL Server 2012 Express
+    LocalDB installed.
+
+
+    The `WCFService` must first be running for the client, `Payment_WCFService`, to
+    send it messages.
+
+
+    # Creating a WCF server
+
+
+    We will start by creating a `WCFServer` project in Visual Studio, as the server
+    needs to be running before it can communicate with the client. By adding the reference
+    `NServiceBus.Host` from NuGet or Package Manager Console, several NSB default
+    settings will be created in the `App.config` file for the project, an `EndpointConfig.cs`
+    file with `AsA_Server` will be created, and the project will be set to run with
+    an `NServiceBus.Host.exe` executable. We can see the creation of the files by
+    the reference in the following screenshot:
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_109_0.png)'
+  merge: -1
+  img_proc: true
+- pgno: 110
+  md: 'When we add an NServiceBus.Host reference, through either NuGet or Package
+    Manager, into the project, many other items will be added into the project as
+    well. These other items are as follows:
+
+
+    +   - An EndpointConfig.cs file will be created in the project with the default
+    settings to add endpoints.
+
+    +   - The project will be set to run as a DLL, being executed by an NServiceBus.Host.exe
+    executable when run from the debugger.
+
+    +   - Several default settings for creating a generic AsA_Server endpoint will
+    be added to the App.config file.
+
+
+    We can see from the following screenshot that when we add the NServiceBus.Host
+    reference, this sets the project to run as a DLL using the NServiceBus.Host.exe
+    executable:
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_110_0.png)
+
+
+    We will use NSB WCF Integration to save a lot of work on our part. In order to
+    use this integration, we will need a few pieces related to both NSB and WCF. These
+    are as follows:
+
+
+    +   - A web service: This is used with the NServiceBus.WcfService<TRequest, TResponse>
+    class where we define a request and response on the web service. We will show
+    here that the service called PayService will receive the PaymentMessage message
+    as the request and respond with ErrorCodes. This is shown in the following line
+    of code:
+
+    +     public class PayService : WcfService<PaymentMessage, ErrorCodes>
+
+    +   - A message handler: This is required to handle the message from the web service
+    and to process it in the integration. We will call this handler PayHandler.
+
+    +   - The request and response message structures: This is required for the PaymentMessages
+    project.
+
+    +   - The configuration for NSB with WCF: This is required in the App.config file.'
+  merge: -1
+  img_proc: true
+- pgno: 111
+  md: 'Using NSB with WCF integration is similar but different from using straight
+    WCF. In WCF, there are four basic steps that can be extended. Visit http://www.c-sharpcorner.com/UploadFile/dhananjaycoder/four-steps-to-create-first-wcf-service-for-beginners/
+    for more information.
+
+
+    These steps to create a WCF server are as follows:
+
+
+    +   1. Create a service contract. This defines the available functions between
+    the WCF client and the WCF server through interfaces.
+
+    +   2. Expose endpoints with metadata — through either App.config or Web.config.
+    We expose the endpoints through the configuration to include how the exchange
+    of data will occur.
+
+    +   3. Implement the service. That is, we add functionality and data objects to
+    the interfaces.
+
+    +   4. Consume the service. Or, in other words, expose the service to be imported
+    into a WCF client.
+
+
+    In using NSB with NHibernate, NSB takes care of the mapping of NHibernate with
+    the messages, endpoints, and services. In WCF integration, NSB also takes care
+    of many of the service contracts with the use of the message handler and the message
+    format.
+
+
+    We can observe these features pieces in the following screenshot and we will discuss
+    them further:
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_111_0.png)
+
+
+    We will add the messages next.'
+  merge: -1
+  img_proc: true
+- pgno: 112
+  md: "# Adding messages\n\nWe will now create a `PaymentMessages` project inside\
+    \ the solution, as shown in the following screenshot:\n\n![](img/8188651cea6a881a16242b395a81399a_112_0.png)\n\
+    \nWe will be using the `PaymentMessage` request message, which the request needs\
+    \ to be NServiceBus IMessage Interface having two classes, a Guid method for a\
+    \ unique ID per message, and a `PaymentReq` class:\n\n```\npublic class PaymentMessage\
+    \ : IMessage\n{\n    public Guid EventId { get; set; }\n    public PaymentReq\
+    \ paymentReq { get; set; }\n}\n```"
+  merge: -1
+  img_proc: true
+- pgno: 113
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 114
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 115
+  md: '# Adding the configuration
+
+
+    The task of configuring the App.config file for the web service still remains.
+    This step is similar to exposing the endpoint with metadata that we mentioned
+    earlier.
+
+
+    The App.config file will define several characteristics of the web service, such
+    as the listening port and URL, the security of the service, and the binding type
+    for the service. The binding type defines the communication mechanism of the endpoint,
+    be it basic HTTP, MSMQ, or any other. A list, as well as more information on WCF
+    binding, can be found at http://msdn.microsoft.com/en-us/library/ms730879(v=vs.110).aspx.
+
+
+    We could configure the App.config file by manually editing it, or by using the
+    WCF Service Configuration Editor that comes as part of Visual Studio.
+
+
+    More information on the Configuration Editor can be found here:
+
+
+    http://msdn.microsoft.com/en-us/library/ms732009(v=vs.110).aspx
+
+
+    We will now open the App.config file through the Configuration Editor to do the
+    following:
+
+
+    +   - Establish a server URL, including port number, to be available for the client
+    WCF as the WCF endpoint
+
+    +   - Establish the binding parameters that will expose the WCF service endpoints
+    in a variety of different ways
+
+    +   - Set up tracing and logging to review the transmissions and services as they
+    happen'
+  merge: -1
+  img_proc: true
+- pgno: 116
+  md: 'We start by opening the project''s App.config file and setting up the URL and
+    ports that the web service will be listening with to start configuring the endpoint—as
+    shown in the following screenshot:
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_116_0.png)'
+  merge: -1
+  img_proc: true
+- pgno: 117
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 118
+  md: 'Please visit http://msdn.microsoft.com/en-us/library/ms731734(v=vs.110).aspx
+    to review the WCF configuration schema. We can edit the binding through the service
+    endpoint as shown here:
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_118_0.png)
+
+
+    # Adding tracing
+
+
+    There may be some debate as to whether this section is required or not, as this
+    section is specific to WCF but not related to sagas or NSB. However, if your WCF
+    communication is not working between a WCF client and a WCF server, the issue
+    could be related to the message structure, the network, the WSDL, or any other
+    factor. And in order to trace the issues in WCF, the tracing feature needs to
+    be enabled and set up. This also allows us to see the reaction of the communication.
+    However, if your WCF is functional and no troubleshooting is required, feel free
+    to skip this section.'
+  merge: -1
+  img_proc: true
+- pgno: 119
+  md: "There are service tracing utilities within WCF to view graphs, messages, network\
+    \ calls, exceptions, and activities of WCF web services and web clients. Please\
+    \ refer to http://msdn.microsoft.com/en-us/library/ms732023(v=vs.110).aspx for\
+    \ more information on Microsoft Service Trace Viewer.\n\nWe can capture the messages\
+    \ between a client and a server by setting the diagnostic sections (given as <diagnostics/>)\
+    \ in the App.config file to capture these messages, and also by setting the listeners\
+    \ and sources, which will be associated with the libraries, to log events in the\
+    \ App.config file, as shown here:\n\n```\n<AuditConfig QueueName=\"audit\" />\n\
+    <system.serviceModel>\n    <diagnostics>\n        <messagelogging logEntireMessage=\"\
+    true\" logMalformedMessages=\"false\" logMessagesAtServiceLevel=\"true\" logMessagesAtTransportLevel=\"\
+    true\" maxMessagesToLog=\"30000\" maxSizeOfMessageToLog=\"30000\" />\n       \
+    \ <endToEndTracing activityTracing=\"true\" messageFlowTracing=\"true\" />\n \
+    \   </diagnostics>\n    <behaviors>\n        <serviceBehaviors>\n            <behavior\
+    \ name=\"Default\">\n                <serviceMetadata httpGetEnabled=\"true\"\
+    \ />\n                <serviceDebug includeExceptionDetailInFaults=\"true\" />\n\
+    \            </behavior>\n        </serviceBehaviors>\n    </behaviors>\n    <services>\n\
+    \        <service name=\"WCFServer.WebServices.PayService\" behaviorConfiguration=\"\
+    Default\">\n            <endpoint address=\"mex\" binding=\"mexHttpBinding\" contract=\"\
+    IMetadataExchange\" />\n            <host>\n                <baseAddresses>\n\
+    \                    <add baseAddress=\"http://localhost:9009/services/paymessage\"\
+    \ />\n                </baseAddresses>\n            </host>\n        </service>\n\
+    \    </services>\n</system.serviceModel>\n</configuration>\n```"
+  merge: -1
+  img_proc: true
+- pgno: 120
+  md: 'The following screenshot represents how we can configure message logging and
+    what kind of trace listener we are going to use to write the logs:
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_120_0.png)
+
+
+    We can view the messages being sent between the client and the server by opening
+    the svc log file in Service Trace Viewer. As shown in the following screenshot,
+    we can see the SOAP message, including the header and the body, which is what
+    the WCF server was receiving.'
+  merge: -1
+  img_proc: true
+- pgno: 121
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 122
+  md: '# Viewing the web service
+
+
+    Running the web service in Visual Studio 2012, we can view the web service through
+    the browser at http://localhost:9009/services/paymessage. It will provide some
+    simple instructions for the WCF client, as we can see in the following screenshot:
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_122_0.png)
+
+
+    And we can also see the WSDL by accessing the page from http://localhost:9009/services/paymessage?singleWsdl:
+
+
+    # Considerations when deploying
+
+
+    Please note that for most production systems, it is always recommended to install
+    digital certificates when using web services to encrypt the pipeline and verify
+    the identity of the client and the server.
+
+
+    For a real-life production system, all the communication between the WCF client
+    and WCF server must be secure using SSL, and you should look into your web services
+    using WS-Security-based applications.'
+  merge: -1
+  img_proc: true
+- pgno: 123
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 124
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 125
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 126
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 127
+  md: "```\npublic ActionResult SendWCF(int id)\n{\n    var user = new XMLLoads().GetPayments().Where(p\
+    \ => p.Id == id).FirstOrDefault();\n    var message = new XMLLoads().GetMessages().Where(p\
+    \ => p.EventId == user.EventId).FirstOrDefault();\n    ServiceReference1.WcfServiceOf_PayMessage_ErrorCodesClient\
+    \ client1 =\n        new ServiceReference1.WcfServiceOf_PayMessage_ErrorCodesClient();\n\
+    \    ErrorCodes returnCode = client1.Process(message);\n    user.errorCode = returnCode;\n\
+    \    return View(user);\n}\n```\n\nThis will be the Kendo grid in the browser\
+    \ that offers a selection to be sent to the WCF service. Upon browsing the page,\
+    \ the grid will populate with the following data and an option to send the message\
+    \ to the WCF service, as shown in the following table:\n\n| Event Id | Action\
+    \ |\n|---|---|\n| 8b265223-dc9e-4789-a6df-69d19f644ad7 | Call_Payment_Service\
+    \ |\n| 3721ba5d-4733-4d98-a5e2-8e8afa3e61f4 | Call_Payment_Service |\n| 1ac188ec-4b2e-436c-b989-db88c65db1fa\
+    \ | Call_Payment_Service |\n| 9bf180fa-f8f4-4b2b-8fac-cca73a4e2cab | Call_Payment_Service\
+    \ |\n| ee2c56f7-6d42-4314-bce5-4825ed294437 | Call_Payment_Service |\n\nThe Kendo\
+    \ grid scripting inside the SendWCFPay.cshtml file will look like the following:\n\
+    \n```\n<h2>Send Payment Message to WCF</h2>\n<script type=\"text/javascript\"\
+    >\n    $(document).ready(function () {\n        var modelData = @Html.Raw(Json.Encode(Model))\n\
+    \        $(\"#grid\").kendoGrid({\n            pageable: true\n          , sortable:\
+    \ true\n          , silectable: true\n```"
+  merge: -1
+  img_proc: true
+- pgno: 128
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 129
+  md: 'For simplicity, the MVC controller is just reading XML files (that were created
+    in a folder in C:\temp\ ) to be displayed in the frontend and selected to be sent
+    to the Payment WCF service. Using XML files in this method is not recommended
+    for production, as normally these files would be filled in by a frontend payment
+    interface to the customer for the customer information. We chose this method to
+    solidify the interfaces and test them. And designing customer interfaces to populate
+    the messages was not part of this effort. Using XML files in this type of testing
+    can be advantageous, as we could extend this example to send hundreds of messages,
+    both in order to check performance as well as to populate individual messages
+    through a customer interface without relying on the frontend.
+
+
+    What we basically have is a very common design, where we have an MVC frontend
+    calling a WCF client to interact with a WCF server. This design is also common
+    to see at some ordering sites. For instance, at, let''s say a pizza site, is a
+    pop-up saying **order being sent, do not refresh**. Because there is no decoupling
+    to the backend workflow in this example as well, if this were to become a solution
+    without decoupling through NSB, we may likely have to add payment being sent,
+    do not refresh. Many things can go wrong in the event of during the need for a
+    page refresh, just because a customer may not be refreshing their page, it does
+    not mean that something else isn''t doing a page refresh.
+
+
+    Our current architecture is as follows:
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_129_0.png)'
+  merge: -1
+  img_proc: true
+- pgno: 130
+  md: '# Saga Development
+
+
+    Let''s build some saga processing into the preceding solution to decouple the
+    MVC frontend from the WCF client. NSB will act as a mediator for the interaction
+    between these two components pieces.
+
+
+    Why a saga? It routes messages, performs timeouts, and persists a state.
+
+
+    The preceding screenshot represents the new workflow using the NServiceBus saga.
+    It seems a bit overwhelming, but NServiceBus handles all the complexity behind
+    the scenes. For the controller, it just fires and forgets. If it needs to know
+    the state of the message, it just executes an EF query on the DB. But it still
+    sends the message off, and allows NSB to handle it.
+
+
+    # The source code
+
+
+    The directory for the code is under the SagaPaymentClient directory.
+
+
+    The MVCApp - WCF is used to send WCF messages as a client using a saga.
+
+
+    The solution was built using Visual Studio 2012 in Windows Server 2012, and also
+    tested with VS 2012 running in Windows 8.1, with MSMQ, DTC, RavenDB, NServiceBus
+    Version 4.0 references, and SQL Server 2012 Express LocalDB installed.
+
+
+    Here''s what the new project will look like with the saga:
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_130_0.png)
+
+
+    The difference now is that the MVC application will interface with the saga, which
+    is MySaga, and the saga will communicate with the WCF client and the MVC application.
+    This will decouple the frontend from the WCF client, as well as have the MVC receive
+    feedback of the status directly from the saga message.'
+  merge: -1
+  img_proc: true
+- pgno: 131
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 132
+  md: '# Adding NServiceBus to MVC
+
+
+    We will next be extending our `BasicPaymentClient` folder and projects into a
+    `SagaPaymentClient` folder and projects with the addition of the bus. The differences
+    will be as follows:
+
+
+    +   - We will refactor the WCF client out of the MVC controller and move it into
+    a new message handler.
+
+    +   - We will create a database that keeps track of the state of the message.
+    The saga data will be saved in the `nservicebus` table. Ensure that it is created
+    when running the saga code.
+
+    +   - We will create a new message handler and put the WCF client code in it.
+    This code from the WCF client to the WCF server will be kept separate from the
+    frontend code as far as possible, to keep the `PayMessage` class completely separate
+    from the frontend.
+
+    +   - We will create a new message handler in the MVC that will update the DB
+    with the message state as it receives the new state from the endpoints. We will
+    look at the code for the message and saga handlers as we test them in the next
+    section.
+
+    +   - `NServiceBus.Testing` offers testing by sending messages through message
+    handlers and sagas. This includes anything that a message handler and saga can
+    do, including header manipulation and dependency injection. Refer to http://docs.particular.net/NServiceBus/unit-testing
+    for some basic examples. For the source code of `NServiceBus.Testing`, go to https://github.com/Particular/NServiceBus/tree/develop/src/.
+
+
+    The very basis of starting unit testing is to create a unit testing project in
+    Visual Studio by adding a new unit testing project to an existing solution. Visit
+    http://msdn.microsoft.com/en-us/library/hh598957.aspx and hyperlink it. The **Add
+    New Project** window is as shown here:'
+  merge: -1
+  img_proc: true
+- pgno: 133
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 134
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 135
+  md: '# Message handler unit testing
+
+
+    The message handler code will be in the unit test itself. From our project, UnitTestHandlers,
+    in which we have various unit tests, we will walk through EventMessageHandler.
+    EventMessageHandler receives a SendCommand object from the MVCApp, via the saga,
+    as shown here:
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_135_0.png)
+
+
+    We will proceed with creating a UnitTestHandler2.cs file, and then add the header
+    information and [TestMethod]. This will be under SagaPaymentClient in the UnitTestHandlers
+    project.'
+  merge: -1
+  img_proc: true
+- pgno: 136
+  md: "After the base of the file is created, we will create a normal message, SendCommand,\
+    \ with a GUID and state where the message should be at before reaching the message\
+    \ handler, called command. The code is as follows:\n\n```\nnamespace UnitTestHandlers\n\
+    {\n    [TestClass]\n    public class UnitTestHandler2\n    {\n        /***\n \
+    \        *\n         * Test the message handler for MYWCFClient\n         * This\
+    \ will call the WCF Service for a completion\n         *\n         *****/\n  \
+    \      [TestMethod]\n        public void Run()\n        {\n            Test.Initialize();\n\
+    \            /*****\n             *\n             * Create a Command message\n\
+    \             * used to look up an XML Message file\n             * on Disk, send\
+    \ to WCF Server\n             *\n             *****/\n            SendCommand\
+    \ command = new SendCommand();\n            command.RequestId = new Guid(\"8b265223-dc9e-4789-a6df-69d19f644ad7\"\
+    );\n            command.state = MyMessages.MessageParts.StateCodes.SentMyWCFClient;\n\
+    \n            // The Test code\n            Test.Handler<EventMessageHandler>()\n\
+    \                .ExpectReply<ResponseCommand>(m => m.state == MyMessages.MessageParts.StateCodes.CompleteMyWCFClient)\n\
+    \                .OnMessage<SendCommand>(command);\n        }\n    }\n}\n```\n\
+    \nWe see that the command message is passed into the .OnMessage<SendMessage>(command)\
+    \ method and a ResponseMessage object in the Reply method, with the state being\
+    \ set to CompleteMyWCFClient. When calling the unit test in Debug, we can even\
+    \ pass this message in the handler and see how it behaves, as shown here:"
+  merge: -1
+  img_proc: true
+- pgno: 137
+  md: '![](img/8188651cea6a881a16242b395a81399a_137_0.png)
+
+
+    This allows us to design and debug the handler functionality in the unit test
+    code through TDD. There are many rules that can be used when testing the handler
+    or saga. For instance, ExpectNotReply is used to expect that the handler does
+    not reply with a specific message.
+
+
+    To get information on what is available in NServiceBus.Testing, we can execute
+    the following steps:
+
+
+    +   1. Try to enter something and hover over IntelliSense.
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_137_1.png)'
+  merge: -1
+  img_proc: true
+- pgno: 138
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 139
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 140
+  md: "```\nif (returnCode == ErrorCodes.None)\n{\n    command.state =\n        StateCodes.CompleteMyWCFClient;\n\
+    }\nelse\n{\n    command.state =\n        StateCodes.MyWCFClientFail;\n}\n\nBus.Reply(command);\n\
+    Console.WriteLine(\"Success\");\n}\n```\n\nWhat happens if the XML file does not\
+    \ exist? The following is the code used then:\n\n```\n// if no XML, just fail\n\
+    if (payMessage == null)\n{\n    command.state = StateCodes.MyWCFClientFailXML;\n\
+    \    Bus.Reply(command);\n    Console.WriteLine(\"No XML Found\");\n}\nelse\n\
+    {\n    ... normal path }\n\n```\n\nAfter testing this code, we could use the tested\
+    \ code to create a class into a new project, barring the unit testing, and start\
+    \ using it as a message handler. It saves time by developing the code in a unit\
+    \ test and putting the tested product into the application's project. The unit\
+    \ test project also serves as a backup for knowing what it looked like during\
+    \ a good test.\n\n# Saga handler unit testing\n\nLet's start testing saga code\
+    \ from the previous section in the message handler:\n\n```\n// The Test code\n\
+    Test.Handler<EventMessageHandler>()\n    .ExpectReply<ResponseCommand>(m => m.state\
+    \ ==\nPaymentMessages.MessageParts.StateCodes.\nCompleteMyWCFClient)\n    .OnMessage<SendCommand>(command);\n\
+    ```"
+  merge: -1
+  img_proc: true
+- pgno: 141
+  md: "As we can see, the NServiceBus testing API makes use of a Fluent API specification\
+    \ style testing pattern as opposed to the more traditional assertion style that\
+    \ most people would normally use that are part of nunit or other xunit type frameworks.\n\
+    \nWe will now start testing the saga code from the UnitTestHandlers project and\
+    \ the UnitTestSaga2.cs file.\n\nOne thing to note is that if a saga entity object\
+    \ is deleted in different function calls, with the MarkAsComplete() method, these\
+    \ should be tested separately. This is because once we delete the object, we cannot\
+    \ delete it again. For example, in our tests, we will use the following:\n\n```\n\
+    [TestMethod]\npublic void Run()\n{\n    Test.Initialize();\n\n    /**\n     *\
+    \ State sent to Saga\n     * ***\n    */\n    SendCommand command = new SendCommand();\n\
+    \    command.RequestId = new Guid(\"8b265223-dc9e-4789-a6df-69d19f644ad7\");\n\
+    \    command.state = MyMessages.MessageParts.StateCodes.SentMyWCFClient;\n\n \
+    \   /**\n     * Response from WCF and to MVCApp\n     * ***\n    */\n    ResponseCommand\
+    \ resp = new ResponseCommand();\n    resp.RequestId = new Guid(\"8b265223-dc9e-4789-a6df-69d19f644ad7\"\
+    );\n    resp.state = MyMessages.MessageParts.StateCodes.CompleteMyWCFClient;\n\
+    \n    Test.Saga<MyTestSaga>()\n        .ExpectReplyToOriginator<ResponseCommand>()\n\
+    \        .ExpectSend<SendCommand>()\n        .When(s => s.Handle(command))\n \
+    \       .ExpectReplyToOriginator<ResponseCommand>()\n        .When(s => s.Handle(resp))\n\
+    \        .AssertSagaCompletionIs(true);\n\n    Test.Saga<MyTestSaga>()\n     \
+    \   .ExpectReplyToOriginator<ResponseCommand>()\n        .ExpectSend<SendCommand>()\n\
+    \        .ExpectTimeoutToBeSetIn<SendCommand>((state, span) => span == TimeSpan.FromHours(3))\n\
+    \        .When(s => s.Handle(command))\n        .ExpectReplyToOriginator<ResponseCommand>()\n\
+    \        .WhenSagaTimesOut()\n        .AssertSagaCompletionIs(true);\n}\n```"
+  merge: -1
+  img_proc: true
+- pgno: 142
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 143
+  md: '![](img/8188651cea6a881a16242b395a81399a_143_0.png)
+
+
+    Now that the database portion has been created, we need to create the mysaga endpoint
+    in MSMQ. This is done by simply executing the MySaga solution as follows:
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_143_1.png)'
+  merge: -1
+  img_proc: true
+- pgno: 144
+  md: 'We can view in the MSMQ Commander window that the endpoint was created, as
+    shown here:
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_144_0.png)
+
+
+    If the tests run successfully, then the mysaga endpoint is present and working.
+    We can see the test program working as follows:
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_144_1.png)'
+  merge: -1
+  img_proc: true
+- pgno: 145
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 146
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 147
+  md: 'The database table, <PayMessage>, has the following properties, as shown here:
+
+
+    |  | Column Name | Data Type | Allow Nulls |
+
+    |---|---|---|---|
+
+    | 🔑 | id | int | ☐ |
+
+    |  | EventId | uniqueidentifier | ☐ |
+
+    |  | error | varchar(50) | ☑ |
+
+    |  | state | varchar(50) | ☑ |
+
+
+    # RabbitMQ for NSB
+
+
+    RabbitMQ is a cross-platform messaging framework, like MSMQ, that can run on both
+    Linux and Windows operating systems.
+
+
+    RabbitMQ has many more features than MSMQ, such as routing, virtual hosts, and
+    a powerful admin toolset. It can run on Linux and scales out very well. For large
+    enterprise systems (especially in heterogeneous network environments), you should
+    really consider RabbitMQ. RabbitMQ can easily be changed for the MSMQ queuing
+    system in the NSB configuration.
+
+
+    For administrating RabbitMQ, a web admin interface can easily be installed. However,
+    if the command-line interface is required, then the Python language will need
+    to be installed.
+
+
+    To revisit some of the references in the earlier chapters, take a look at the
+    following:
+
+
+    +   - **Local host management site**: This can be found at http://localhost15672/#/.
+
+    +   - **Documentation**: This can be found at http://www.rabbitmq.com/documentation.html.
+
+    +   - **Windows installation**: This can be found at https://www.rabbitmq.com/install-windows.html.
+
+    +   - **NServiceBus samples**: These can be found at https://github.com/Particular/NServiceBus.RabbitMQ.Samples.
+
+    +   - **Development tools site for RabbitMQ**: This can be found at http://www.rabbitmq.com/devtools.html.
+
+    +   - **NS eviceBus.RabbitMQ source code**: This can be found at https://github.com/Particular/NServiceBus.RabbitMQ.
+
+    +   - **NServiceBus RabbitMQ hands-on lab**: This can be found at http://particular.net/HandsOnLabs.'
+  merge: -1
+  img_proc: true
+- pgno: 148
+  md: '# Saga Development
+
+
+    After installing RabbitMQ, we can set the management plugin using the rabbitmq
+    plugins to enable rabbitmq_management. This is to view the queues using the web
+    management http://localhost:15672/#/queues, as shown in the following screenshot:
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_148_0.png)
+
+
+    We can get a list of queues by entering rabbitmqctl list_queues in the RabbitMQ
+    command prompt, as shown here:
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_148_1.png)'
+  merge: -1
+  img_proc: true
+- pgno: 149
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 150
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 151
+  md: '# ActiveMQ in NSB
+
+
+    Apache Active Message Queue (ActiveMQ) is a JAVA open source framework from the
+    Apache foundation based on the Java Message Service (JMS). Visit http://en.wikipedia.org/wiki/Apache_ActiveMQ
+    and https://activemq.apache.org for more information. It will run on a machine,
+    be it Windows or Linux, in a Java Runtime Environment (JRE). JAVA has to be operational
+    on the machine and have the environment path for JAVA_HOME configured to point
+    at the root folder of the JRE. The installation instructions for ActiveMQ can
+    be found at https://activemq.apache.org/getting-started#GettingStarted20-Download.
+
+
+    # The source code
+
+
+    In this section, we will be using the ActiveMQ solution. This solution is similar
+    to RabbitMQ, except ActiveMQ is used instead of RabbitMQ.
+
+
+    There will be three basic steps:
+
+
+    +   1. Add the NServiceBuActiveMQ reference.
+
+    +   2. Change the NServiceBus transport mechanism from <MSMQ> to <ActiveMQ>.
+
+    +   3. Set the ActiveMQ transport configuration in the App.config file.
+
+
+    Once downloaded on the Windows OS, we unzipped the Window''s binary files into
+    the c:\activemq\ directory. Running the activemq.bat batch file from the command
+    prompt, in c:\activemq\bin\, will display a series of commands to show that the
+    ActiveMQ is running. This is shown in the following screenshot:
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_151_0.png)'
+  merge: -1
+  img_proc: true
+- pgno: 152
+  md: 'An alternative is to install ActiveMQ as a Windows service in which installation
+    scripts exist for both Win32 and Win64 machines. For a 64-bit Windows Server,
+    we can use InstallService.bat in c:\activemq\bin\win64\.
+
+
+    Ensure that RabbitMQ is not running as a Windows Service in the background, as
+    they utilize the same network ports. Also, Microsoft ServiceBus for Windows Servers
+    will share the same JMX ports as well, which will be port 5672. ActiveMQ''s default
+    port is 61616. Checking the ports can be done with Microsoft''s TcpView, which
+    can be found at http://technet.microsoft.com/en-us/sysinternals/bb897437.
+
+
+    To ensure that ActiveMQ is running, you may access the admin console in the browser
+    by using http://localhost:8161/admin. The default user ID and password are admin
+    and admin respectively. Please visit http://activemq.apache.org/getting-started.html
+    to have a look at the documentation. When accessing the admin console, you should
+    get something that looks like the screenshot here:
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_152_0.png)'
+  merge: -1
+  img_proc: true
+- pgno: 153
+  md: "To use ActiveMQ for NServiceBus in Visual Studio projects, the NuGet version\
+    \ of NServiceBus.ActiveMQ has to be installed. Go to https://www.nuget.org/packages/NServiceBus.ActiveMQ/1.0.5\
+    \ to look at installing PM> Install-Package NServiceBus.ActiveMQ into the projects.\
+    \ Ensure that the configuration for the IBus is set for ActiveMQ, as shown here:\n\
+    \n```\nprotected void Application_Start()\n{\n    Configure.ScaleOut(s => s.UseSingleBrokerQueue());\n\
+    \    _startableBus = Configure.With()\n        .DefaultBuilder()\n        .RijndaelEncryptionService()\n\
+    \        .UseTransport<ActiveMQ>()\n        .UnicastBus()\n        .CreateBus();\n\
+    \    Configure.Instance.ForInstallationOn<Windows>().Install();\n\n    _bus =\
+    \ _startableBus.Start();\n    AreaRegistration.RegisterAllAreas();\n\n    RegisterGlobalFilters(GlobalFilters.Filters);\n\
+    \    RegisterRoutes(RouteTable.Routes);\n}\n```\n\nEnsure that the App.Config\
+    \ or Web.Config file have the appropriate connection string for the NServiceBus/Transport\
+    \ string to point at the correct instance of the ActiveMQ queues:\n\n```\n<connectionStrings>\n\
+    <add name=\"NServiceBus/Transport\" connectionString=\"ServerUrl=activemq:tcp://localhost:61616\"\
+    />\n</connectionStrings>\n```"
+  merge: -1
+  img_proc: true
+- pgno: 154
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 155
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 156
+  md: 'We then took the example and changed the transport mechanism from MSMQ to RabbitMQ
+    with minor changes. We discussed in testing how we can change sagas and message
+    handlers to be similar, and also discussed how we can change them enough to enhance
+    their use. We also briefly discussed the many NServiceBus testing rules to build
+    the handlers in the unit testing environment, without worrying about the endpoints
+    until later.
+
+
+    We will continue in the upcoming chapters to go through more snippets and scenarios.
+    We will also go into greater detail about using handlers for transactional and
+    error handling needs. We will also talk further about using tools in these upcoming
+    discussions.'
+  merge: -1
+  img_proc: true
+- pgno: 157
+  md: '# 5
+
+    Saga Snippets
+
+
+    In this chapter, we will be focusing on snippets in sagas. We will discuss an
+    e-mail and **Secure File Transfer Protocol (SFTP)** example that will be set to
+    timeout by a daily timer in saga code. The saga code will be a mediator between
+    a frontend **Windows Presentation Framework (WPF)** and a backend client executing
+    either e-mail or SFTP. Using a saga as a mediator between frontend and backend
+    code that will interface into an external server will offer many added benefits
+    and features. The external server interface, such as an e-mail server or SFTP
+    server, is usually beyond our control and is in the control of external operations
+    or organizations, such as a bank. So, the interface into these servers is all
+    that we have to work with, and as business, software, and operational needs increase,
+    we need a framework robust enough to meet these demands. Thus, we have NSB and
+    sagas.
+
+
+    We will also walk through changing this application to support ActiveMQ. We will
+    briefly discuss ActiveMQ and how to set it up to perform these operations.
+
+
+    In this chapter, we will cover:
+
+
+    +   - Sample e-mail saga notification
+
+    +   - Sample SFTP saga
+
+    +   - Saga deployment
+
+    +   - ActiveMQ'
+  merge: -1
+  img_proc: true
+- pgno: 158
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 159
+  md: '![](img/8188651cea6a881a16242b395a81399a_159_0.png)
+
+
+    The requirement of this application is that we set a timer through a GUI. This
+    GUI will also allow some e-mail variables to be set as well, such as the email
+    server, and the To and From addresses. The timer will set a time in the saga to
+    send a daily e-mail. The daily e-mail will be a simple e-mail to send to operations
+    the available MSMQ queues. We do not wish to hardcode the timer or any of the
+    e-mail variables. We also do not wish to use the Windows Task Manager as that
+    will require more operational support. This exercise will be handled easily in
+    NSB.
+
+
+    Separating the frontend GUI from the backend email client through a saga that
+    is acting as a persistence and message mediator provides several benefits:
+
+
+    +   - Separation of duties: If the frontend has issues, the saga does not necessarily
+    propagate those issues to the email client, as long as the messaging is correct.
+
+    +   - Message durability: Depending on the configuration, the messages, endpoints,
+    and saga data is persisted to the point where the server can crash, but the data
+    is still recoverable.'
+  merge: -1
+  img_proc: true
+- pgno: 160
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 161
+  md: '![](img/8188651cea6a881a16242b395a81399a_161_0.png)
+
+
+    Microsoft Blend has a wide range of tools for building user interfaces in a What
+    You See Is What You Get (WYSIWYG) visual editor, an example of which has been
+    provided in the following screenshot:
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_161_1.png)'
+  merge: -1
+  img_proc: true
+- pgno: 162
+  md: 'While these are some of the benefits of using XAML and WPF, for our simple
+    purposes, in the TimerPickerTest project, we will be using the toolbox that is
+    enclosed with Visual Studio 2012 to do our graphics to match the following:
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_162_0.png)
+
+
+    This GUI is to set several variables: the Email Server, which by default is set
+    as the localhost, and the To and From addresses, which are both set by default
+    as test@google.com.
+
+
+    # The saga project
+
+
+    The saga project in this solution will be called TimerSaga. It will be dependent
+    on the messages found in the TimerMessages project that will contain the available
+    NSB messages.'
+  merge: -1
+  img_proc: true
+- pgno: 163
+  md: "This project will look like the typical saga projects that we have built thus\
+    \ far, as follows:\n\n![](img/8188651cea6a881a16242b395a81399a_163_0.png)\n\n\
+    We see that we are referencing the NServiceBus.Host reference, which in turn created\
+    \ the EndpointConfig.cs file to contain the code for the bus configuration. We\
+    \ also know that it must have set the NServiceBus.Host.exe file to debug this\
+    \ project as a DLL through NSB. An App.config file was also created with the NSB\
+    \ host reference to include the unicast and other settings for the EndpointConfig.cs\
+    \ file.\n\nThe App.config file will contain the setting to send SendTime, the\
+    \ message with timing information, and EmailMessage, the message with the e-mail\
+    \ information, to the EmailClient endpoint, which will have a message handler\
+    \ to send the operational e-mail. This setting will be as follows:\n\n```\n<UnicastBusConfig>\n\
+    \  <MessageEndpointMappings>\n    <add Endpoint=\"EmailClient\" Messages=\"TimerMessages.EmailMessage,\
+    \ TimerMessages\" />\n    <add Endpoint=\"EmailClient\" Messages=\"TimerMessages.SendTime,\
+    \ TimerMessages\" />\n  </MessageEndpointMappings>\n</UnicastBusConfig>\n```"
+  merge: -1
+  img_proc: true
+- pgno: 164
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 165
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 166
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 167
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 168
+  md: "```\ns_Time.SecTxt = \"00\";\n    s_Time.AmPmTxt = \"PM\";\n\n    _bus.Send(s_Time);\n\
+    }\n}\n```\n\nTo test the e-mail, here is a Simple Mail Transfer Protocol (SMTP)\
+    \ listener that will intercept the e-mails locally on port 25 for viewing, to\
+    \ test your e-mail sending scenarios. It can be found at http://smtp4dev.codeplex.com/.\
+    \ When the e-mail is sent to the localhost, it will be recorded for review in\
+    \ the smtp4dev software.\n\n![](img/8188651cea6a881a16242b395a81399a_168_0.png)\n\
+    \nIf all works well and we receive our message from the email client, we should\
+    \ be getting an e-mail that looks similar to the following screenshot:"
+  merge: -1
+  img_proc: true
+- pgno: 169
+  md: '![](img/8188651cea6a881a16242b395a81399a_169_0.png)
+
+
+    We just walked through a simple solution using a GUI to configure an email client
+    to send us a daily operational e-mail about MSMQ. This example could be easily
+    extended to provide a daily report of SQL Server tables, the number of messages
+    in an audit or error queue, and many other items to check the operational status
+    of a system.
+
+
+    Another daily example, especially for anyone dealing with payment engines sending
+    files to banks or for third-party transmissions, is the use of SFTP to send files.
+    With the usage of SFTP, e-mail, and WCF in the previous chapter, many enterprise
+    scenarios can be solved.'
+  merge: -1
+  img_proc: true
+- pgno: 170
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 171
+  md: 'The requirement of this application is that we set a timer through a GUI. This
+    GUI will also allow some SFTP variables to be set, such as the SFTP server, username,
+    password, and local text file location.
+
+
+    The timer will set a daily time in the saga to upload a daily text file, which
+    will be given a unique name based on date and time into the SFTP server. This
+    avoids overwriting the same filename.
+
+
+    The daily upload will be a simple example of uploading a file using saga interaction
+    to a remote SFTP server, such as a bank, for batch payments. We do not wish to
+    hardcode the timer or some of the SFTP variables. We also do not wish to use the
+    Windows Task Manager as that will require more operational support. This exercise
+    will be handled easily in NSB.
+
+
+    Separating the frontend GUI from the backend email client through a saga that
+    is acting as a persistence and message mediator offers several benefits:
+
+
+    +   - **Separation of duties**: If the frontend has issues, it does not necessarily
+    propagate those issues to the email client, as long as the messaging is correct.
+    SFTP may have issues logging in on occasion due to password resets, or network
+    or even server issues. By not having the frontend directly tied to the SFTP client,
+    we can avoid the frontend crashing on SFTP issues.
+
+    +   - **Message durability**: Depending on the configuration, the messages, endpoints,
+    and saga data are persisted to the point that the server can crash, but the data
+    is still recoverable.
+
+    +   - **Retries**: If a message fails, it will retry several times based on the
+    configuration.
+
+    +     This may allow us to try the SFTP client-to-server connections multiple
+    times if there are errors within the SFTP connection.
+
+    +   - **Monitoring**: There are many tools, and depending on the persistence and
+    queuing configurations, many ways to check the endpoints, messages, and services.
+
+    +     This may allow us to monitor the SFTP client as well as the information
+    being passed into it to validate if it is correct for an SFTP connection.
+
+    +   - **High availability**: NSB is a high-availability framework, meaning that
+    there are multiple connections, endpoints, and server and messaging scenarios
+    for configuration to ensure that services are always running in the background
+    and receiving information in a high-performance environment.
+
+
+    Many of these topics have been covered, but as different requirements are discussed
+    for this sample application, these features will be added by just using NSB.'
+  merge: -1
+  img_proc: true
+- pgno: 172
+  md: '# Using XAML
+
+
+    We will be using XAML as a declarative XML-based language that we had developed
+    in the previous e-mail example. The difference is that we incorporated some SFTP
+    fields instead of e-mail fields to provide the SFTP server, username, password,
+    and local text filename as variables, depicted as follows:
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_172_0.png)
+
+
+    # Changing the process of messaging
+
+
+    In the e-mail example, we used the values in EmailMessage to pass the information
+    from the saga to the email client. It looked like the following diagram:
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_172_1.png)'
+  merge: -1
+  img_proc: true
+- pgno: 173
+  md: 'For the SFTP, we will be using `SFTPMessage` instead with SFTP variables for
+    uploading a file as shown in the following diagram:
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_173_0.png)
+
+
+    Notice that the variable matches almost exactly with the input variables for the
+    SFTP portion of the frontend GUI. Code can be reused when creating services. In
+    this sample, we also use the message ID, called `RequestId`, as a primary key
+    to look up for the saga data.
+
+
+    The saga code will function in a similar manner to the email timer saga and email
+    message handler to execute the email client. However, now we will be passing SFTP
+    information from the frontend to the saga and the message handler. Instead of
+    accessing the email client, we will be executing an SFTP client. Despite these
+    message changes and using SFTP instead of e-mail, much of the code will remain
+    the same.
+
+
+    # Setting up an SFTP test environment
+
+
+    For testing, we will need an SFTP server and client. We have developed an SFTP
+    client in the saga code, but we need an SFTP server to establish the connection
+    and upload the file.'
+  merge: -1
+  img_proc: true
+- pgno: 174
+  md: "We will start by setting up a test SFTP server from http://www.freeshd.com.\
+    \ After simply running the installation, we will set up a user and the default\
+    \ directory into which the user can upload and download the files.\n\n![](img/8188651cea6a881a16242b395a81399a_174_0.png)\n\
+    \nBefore testing the entire solution that we have created using a saga, let's\
+    \ perform a simple test to ensure that the connectivity for the SFTP server is\
+    \ set correctly. We will write a simple console program to test out this connectivity\
+    \ and to see the code to put a file on the SFTP server. This sample code can be\
+    \ found in the ConsoleTestSFTP directory and will look like the following:\n\n\
+    ```\nnamespace ConsoleTestSFTP\n{\n    class Program\n    {\n        static void\
+    \ Main(string[] args)\n```"
+  merge: -1
+  img_proc: true
+- pgno: 175
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 176
+  md: '# Saga Snippets
+
+
+    When running the sample SFTP client program, we should get no exception message.
+    However, we should also check that the file has been uploaded correctly on the
+    SFTP server. In order to do that, we need to look into a couple of items in freeSSHd.
+    The first is to see where the upload directory has been set, and check the local
+    server directory for the presence of the file. We will look in the freeSSHd GUI
+    for the local directory as follows:
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_176_0.png)
+
+
+    We can look in the associated \SFTPDlr directory under C: and see that the file
+    was uploaded at the time we had tested:
+
+
+    | Name | Date modified | Type | Size |
+
+    |---|---|---|---|
+
+    | text-2014-08-31_02-53-27-AM | 8/31/2014 2:53 AM | Text Document | 1 KB |
+
+
+    An alternative to checking if the file is uploaded via freeSSHd by looking at
+    the file itself is to check the freeSSHD logs. We can check the Logging section
+    of the freeSSHd GUI to see where the log resides or even click on the Open button
+    to review it from the freeSSHd itself, as depicted in the following screenshot:
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_176_1.png)'
+  merge: -1
+  img_proc: true
+- pgno: 177
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 178
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 179
+  md: 'To find out more on the available commands that can be scripted from NServiceBus.Host.exe,
+    please see http://docs.particular.net/NServiceBus/the-nservicebus-host/, or run
+    NserviceBus.Host.exe.
+
+
+    We currently have the choice to have Windows services always running and to execute
+    NServiceBus.exe based on a set time defined in the message to the saga.
+
+
+    An alternative is to use the Windows Task Scheduler to run a console application
+    every 10 minutes, hourly, daily, monthly, and more. However, SFTP files could
+    be sent to the server between 10 AM until 4 PM, for instance, based on a precondition
+    that a message is sent to verify that the SFTP file has been validated. Business
+    requirements can be based upon a variety of conditions, and by using NSB directly,
+    we have taken many possible requirements into account to easily add enhancements,
+    such as encryption without rewriting the original functionality.
+
+
+    Another piece of advice is to explore the Quartz framework which exists in both
+    C# and Java, which is used to schedule cron jobs in code. Credit goes to Mark
+    Huber, who is the author of TopShelf. Quartz integrates Quartz into the TopShelf
+    DSL.
+
+
+    The C# version can be found at http://www.quartz-scheduler.net/.
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_179_0.png)
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_179_1.png)'
+  merge: -1
+  img_proc: true
+- pgno: 180
+  md: "In the following snippet, a service is constantly running but it runs a scheduled\
+    \ job at 9 AM every morning:\n\n```\npublic void Start()\n{\n    _log.Info(\"\
+    Service is Started\");\n    Console.WriteLine(\"Service is Started\");\n    try\n\
+    \    {\n        if (_log.IsDebugEnabled) _log.Debug(\"\\nLog successfully initialized.\"\
+    );\n        IJobDetail jobDetail = JobBuilder.Create<CronJob>().WithIdentity(\"\
+    SampleJob\", \"SampleJobGroup\").Build();\n        _log.Debug(\"cronTrigger started.\"\
+    );\n        ICronTrigger cronTrigger = (ICronTrigger)TriggerBuilder.Create()\n\
+    \            .WithIdentity(\"SampleTrigger\", \"SampleTriggerGroup\")\n      \
+    \      .WithCronSchedule(\"0 0 9 1/1 * ? *\")\n            .Build();\n       \
+    \ var schedulerFactory = new StdSchedulerFactory();\n        var scheduler = schedulerFactory.GetScheduler();\n\
+    \        scheduler.ScheduleJob(jobDetail, cronTrigger);\n        scheduler.Start();\n\
+    \    }\n```\n\nThe cron job is scheduled using a notation for 9 AM as 0 0 9 1/1\
+    \ * ? *. To understand the shortcut of cron scheduled notation, there are many\
+    \ websites that can help, such as http://www.cronmaker.com/. However, we must\
+    \ be careful here, as Quartz adds the unit of seconds making it slightly different\
+    \ from standard cron.\n\n# ActiveMQ\n\nApache Active Message Queue (ActiveMQ)\
+    \ is a Java open source framework from the Apache foundation based on the Java\
+    \ Message Service (JMS). See http://en.wikipedia.org/wiki/Apache_ActiveMQ and\
+    \ https://activemq.apache.org for more information. It will run on a machine,\
+    \ be it Windows or Linux, in a Java Runtime Environment (JRE). Java has to be\
+    \ operational on the machine and have the environment path for the JAVA_HOME configured\
+    \ to point at the root folder of the JRE. The installation instructions for ActiveMQ\
+    \ can be found at https://activemq.apache.org/getting-started#GettingStarted%20-Download.\n\
+    \n# The source code\n\nIn this section, we will be using the ActiveMQ solution;\
+    \ this solution is similar to RabbitMQ, except ActiveMQ is used instead of RabbitMQ.\n\
+    \nOnce downloaded on the Windows OS, unzip the Window's binary files into the\
+    \ c:\\activemq\\ directory. Running the activemq.bat batch file from the command\
+    \ prompt, having the path as c:\\activemq\\bin\\, will display a series of commands\
+    \ to show that the ActiveMQ is running."
+  merge: -1
+  img_proc: true
+- pgno: 181
+  md: 'Ensure that RabbitMQ is not running as a Windows service in the background
+    as it utilizes the same network ports as ActiveMQ. To ensure that ActiveMQ is
+    running, you may access the admin console in the browser by using http://localhost:8161/admin.
+    The default user ID and password is admin and admin respectively. Please visit
+    http://activemq.apache.org/getting-started.html for more information. It will
+    appear as in the following screenshot:
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_181_0.png)'
+  merge: -1
+  img_proc: true
+- pgno: 182
+  md: "To use ActiveMQ for NServiceBus in Visual Studio projects, the NuGet version\
+    \ of NServiceBus.ActiveMQ has to be installed. Visit https://www.nuget.org/packages/NServiceBus.ActiveMQ/1.0.5\
+    \ on installing PM> Install-Package NServiceBus.ActiveMQ into the projects. Ensure\
+    \ that the configuration for the IBus is set to ActiveMQ.\n\n```\nprotected void\
+    \ Application_Start()\n{\n    Configure.ScaleOut(s => s.UseSingleBrokerQueue());\n\
+    \    _startableBus = Configure.With()\n        .DefaultBuilder()\n        .RijndaelEncryptionService()\n\
+    \        .UseTransport<ActiveMQ>()\n        .UnicastBus()\n        .CreateBus();\n\
+    \    Configure.Instance.ForInstallationOn<Windows>().Install();\n\n    _bus =\
+    \ _startableBus.Start();\n    AreaRegistration.RegisterAllAreas();\n\n    RegisterGlobalFilters(GlobalFilters.Filters);\n\
+    \    RegisterRoutes(RouteTable.Routes);\n}\n```\n\nEnsure that the App.Config\
+    \ or Web.Config file have the appropriate connection string for NServiceBus/Transport\
+    \ to point at the correct instance of the ActiveMQ queues.\n\n```\n<connectionStrings>\n\
+    <add name=\"NServiceBus/Transport\" connectionString=\"ServerUrl=activemq:tcp://localhost:61616\"\
+    />\n</connectionStrings>\n```\n\nSome of the EndpointConfig.cs files may not explicitly\
+    \ call the IBus.Configure() method, so make sure that the ActiveMQ using the transport\
+    \ call is explicitly called in the EndpointConfig class."
+  merge: -1
+  img_proc: true
+- pgno: 183
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 184
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 185
+  md: '# 6
+
+    Using NServiceBus in
+
+    the Cloud
+
+
+    In this chapter, we will be focusing on snippets in NServiceBus in the cloud after
+    a very brief introduction to the cloud and some of its services. While NServiceBus
+    has support as a service bus for the Microsoft Azure cloud, it is also a beneficial
+    tool to integrate into other cloud technologies, as all clouds have support for
+    third-party integration to pass data through web services.
+
+
+    In this chapter, we will cover:
+
+
+    +   - Introducing the cloud and NSB
+
+    +   - Introducing PaaS, IaaS, and SaaS
+
+    +   - Using Microsoft Azure
+
+    +     - Introducing Azure Storage services
+
+    +     - Azure Service Bus and Storage Queues
+
+    +     - Azure Storage Queues and NSB
+
+    +     - Azure Service Bus in NSB
+
+
+    # Introducing the cloud and NSB
+
+
+    As this book is being written, NSB Version 5.0 for Azure is in the beta stage,
+    and many updates have been made to NSB for cloud computing.
+
+
+    Instead of using a local SQL Server, RavenDB, or MSMQ queuing system, all the
+    subscription data, saga persistence, timeout persistence, and queuing messages
+    can be used in Azure Storage, as well as a message be put in the Azure Service
+    Bus. In many cases, there is one-to-one mapping to storage tables and the data
+    information as keys are used to retrieve data instead of SQL schemas.'
+  merge: -1
+  img_proc: true
+- pgno: 186
+  md: 'NSB tools are adapting as well. ServiceInsight is growing to handle more details
+    with sequence diagrams for debugging outside of Visual Studio and MSMQ environments.
+    The tools are moving from being integrated locally into a physical server to being
+    integrated into a remote server where many of the details of the server itself
+    may be less important as servers are virtualized offsite. For instance, the future
+    of ServiceInsight will add Saga Sequence diagrams to add more detail than the
+    current flow diagrams. Here''s what is coming soon for ServiceInsight as a sequence
+    diagram:
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_186_0.png)
+
+
+    However, distributed transactions are not supported in many cloud technology queues.
+    Other queuing platforms, such as RabbitMQ, also do not support distributed transactions.
+    NSB Version 5.0 has the added functionality to compensate for not having distributed
+    transactions by establishing tables that keep track of the status of transactions
+    as they occur. This functionality allows transactional integrity where it may
+    not exist natively.'
+  merge: -1
+  img_proc: true
+- pgno: 187
+  md: '# Introducing PaaS, IaaS, and SaaS
+
+
+    Cloud computing services are provided using three fundamental models:
+
+
+    +   - **SaaS**: This stands for **Software as a Service**. This facilitates pay-per-use
+    managed software services for consumption. Our responsibility is the configuration
+    of these services that are managed by the cloud vendor. An example would be Google
+    mail. This offers abstraction of the business software.
+
+    +   - **PaaS**: This stands for **Platform as a Service**. This refers to pay-as-you-go
+    generic services for consumption. These are services such as queuing, web servers,
+    and other services that still require business software to be built. Our responsibility
+    includes building the business software. This offers abstraction of the services
+    that can run business software.
+
+    +   - **IaaS**: This stands for **Infrastructure as a Service**. Providers of
+    IaaS offer generic storage, networks, and servers for consumption. These are services
+    such as storage that still require services and business software that has to
+    be built. Our responsibility includes building the business software and creating
+    services for the business software. This offers abstraction of the infrastructure
+    that is running the platform services.
+
+
+    PaaS is a cloud computing service that provides a computing platform and a solution
+    stack as a service. In PaaS, the cloud computing provider provides the operating
+    systems, databases, web servers, development tools, and other services that are
+    required to host the consumer''s application.
+
+
+    IaaS is a level below PaaS, as it provides the virtual (as well as physical) machines,
+    servers, storage options, load balancers, networks, and more basic components.'
+  merge: -1
+  img_proc: true
+- pgno: 188
+  md: 'SaaS is a level higher than PaaS, as it is the software distribution model
+    in which the applications themselves are hosted by a vendor or service provider
+    and are made available to customers over a network, typically the Internet. Here
+    is a look at how Windows Azure supports IaaS and PaaS:
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_188_0.png)
+
+
+    Depending on the cloud vendor, some of these terminologies may be termed slightly
+    differently. While all cloud vendors support these components, they differ on
+    the level of abstraction of these components. For example, Windows Azure will
+    allow you to configure a virtual machine (VM) in the cloud, while others only
+    offer SaaS models. The cloud vendor as well as licensing that are selected will
+    dictate the limitations of your resources. In Windows Azure, you could create
+    a free website which will require no running cost; however, your application may
+    be shared with other websites running on that box. But if you are willing to pay
+    more, you could have a dedicated VM with your own web server running your website.
+    It all depends on what services you choose. In the cloud world, consumption of
+    resources and transactions is based on licensing. There are many resources available
+    by all cloud vendors for development in their cloud; there is also a lot of help
+    available as their goal is to get you to utilize their cloud as much as possible,
+    as that is their revenue stream.'
+  merge: -1
+  img_proc: true
+- pgno: 189
+  md: '# # 第8章 常微分方程
+
+
+    # ## 8.1 基本概念
+
+
+    常微分方程：含有未知函數、未知函數的導數（或微分）與自變數的方程式，稱之為常微分方程。若未知函數為多變數函數，且方程式含有偏導數，則稱為偏微分方程。
+
+
+    定義：n 階常微分方程之形式為
+
+
+    ```
+
+    $$F(x, y, y'', \ldots, y^{(n)}) = 0$$
+
+    ```'
+  merge: -1
+  img_proc: true
+- pgno: 190
+  md: '+   - Availability of an assortment of common on-premise tools and services
+    that work both on-site and in the cloud; for instance, using queuing and a SQL
+    server that works locally and in the cloud.
+
+    +   - Development of websites quickly in the cloud through multiple tools, such
+    as WebMatrix.
+
+    +   - Availability of on-demand services in using only what you need, and Microsoft
+    tools to help report your resources and utilization for billing verification.
+
+    +   - Ability to move to other cloud services as your software model progresses
+    and your needs change. Many business software applications that are developed
+    in Azure can be used in other cloud services.
+
+    +   - Availability of simple data storage models in reporting and configuration
+    of large data resources.
+
+
+    All of these features sum up that Microsoft allows you to develop systems on-premise
+    or in the cloud using Microsoft tools. It does not force you to stay in the cloud
+    or develop locally, but allows you to develop the pieces in the cloud that you
+    see fit, and remove them from the cloud when you see fit. Many other cloud vendors
+    may force you to use specialized tools to create solutions, which when you take
+    them out of the cloud, will have to be completely rewritten to put into a different
+    cloud service.
+
+
+    # Introducing Azure Storage Services
+
+
+    For data management, we can create a SQL Azure database in the cloud or a SQL
+    server on-premise, or a hybrid thereof. An easier method to keep SQL servers out
+    of the equation is simply to call Storage Services directly, which provides rows
+    that directly map to data. Azure Storage Services can be used both on-site through
+    the use of the Azure SDK, and in the Azure cloud.
+
+
+    Azure Storage can be used to store saga data in the tables, timeout persistence
+    in the tables, subscription information in the tables, and to transport messages
+    in the queues.
+
+
+    Other than providing SQL Azure for storing data in the cloud, Azure also provides
+    the following other types of storage, of which there are three basic types:
+
+
+    +   - **Tables**: This is based on a key-value NoSQL table format.
+
+    +   - **Binary Large Object (BLOB)**: This is used for binary storage, such as
+    video files.
+
+    +   - **Queues**: This is used for storing messages.'
+  merge: -1
+  img_proc: true
+- pgno: 191
+  md: '+   - A table is a NoSQL solution instead of the relational SQL database. It
+    can store data across multiple machines. Each table can contain partitions across
+    multiple machines. These tables have entities with partitions and row keys to
+    access the entity. It is a key-value store to store the data. These tables do
+    not enforce a schema. By not using a schema, speed is enhanced and the tables
+    are loosely coupled with the objects as they are managed by keys. The limitation
+    is not being able to execute SQL queries, but in most cases, it can take less
+    storage, thus less cost for the data. For tables, there is a partition key, row
+    key, and timestamp.
+
+    +   - A partition key: This is a unique key associated with partition as a collection
+    of all associated rows. This is used to define which partition to access; for
+    example, the name of the table.
+
+    +   - A row key: This is a unique key to identify the row in the partition, usually
+    a unique ID.
+
+    +   - Timestamp: This is the time at which the row is updated by Azure.
+
+
+    A BLOB is a group to the containers, which is just unstructured data, such as
+    a video or audio file stored as binary storage in a data store.
+
+
+    The Queue storage is very similar to storing messages in MSMQ, except that the
+    management tools are in the Azure cloud. Just as many of the Azure cloud items
+    can be managed through the Azure SDK and Visual Studio, storage queues can also
+    be managed through Visual Studio. We see timeout states, saga data, and subscription
+    data in Visual Studio as shown in the following screenshot:
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_191_0.png)
+
+
+    Besides using Visual Studio, there are many open source tools such as the Azure
+    Storage Explorer found at the following:
+
+
+    ```
+
+    http://azurestorageexplorer.codeplex.com/
+
+    ```'
+  merge: -1
+  img_proc: true
+- pgno: 192
+  md: 'The Azure Storage Explorer is shown in the following screenshot:
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_192_0.png)
+
+
+    # Azure Service Bus and Storage Queues
+
+
+    NSB supports queuing in both Azure Storage Queues and the Azure Service Bus Queues.
+
+
+    Please note that there are many differences between using Azure Storage Queues
+    and Azure Service Bus Queues.
+
+
+    > Note the different names in this example. Service Bus Queues have more features
+    for management such as guaranteed FIFO, while Azure Queues have less manageability
+    built in. Visit http://msdn.microsoft.com/en-us/library/hh767287.aspx for more
+    information.'
+  merge: -1
+  img_proc: true
+- pgno: 193
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 194
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 195
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 196
+  md: 'When we run the client, we will get the MVCApp website to send a message to
+    the WCF client through a saga to the WCF server. It will appear as follows:
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_196_0.png)
+
+
+    We will also have the MySaga and WCF client running as well to create queues and
+    persistence in the Azure emulator. In Visual Studio 2012, by going to View | Server
+    Explorer | Azure | Storage, we can view the queues and messages as they are running,
+    as follows:
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_196_1.png)'
+  merge: -1
+  img_proc: true
+- pgno: 197
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 198
+  md: 'The Azure Service Bus can be created in the Azure portal by first creating
+    the Service Bus namespace as shown in the following screenshot:
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_198_0.png)
+
+
+    We can create the Service Bus Queues, Topics, and Relays in the Azure portal,
+    and we can also manage the Service Bus through Visual Studio after it is initially
+    created in the Azure portal. The Service Bus will use a primary key and connection
+    string to be accessed, not too dissimilar to a connection string to SQL database.
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_198_1.png)'
+  merge: -1
+  img_proc: true
+- pgno: 199
+  md: 'When creating an Azure Service Bus queue, we can see the additional configuration
+    settings that are offered in this creation and not offered in Storage queues as
+    shown in the following screenshot:
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_199_0.png)'
+  merge: -1
+  img_proc: true
+- pgno: 200
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 201
+  md: 'For examples, we can also use the NServiceBus example for the Azure Cloud Service
+    Bus queues from:
+
+
+    https://github.com/Particular/NServiceBus.Azure.Samples/tree/master/VideoStore.AzureServiceBus.Cloud
+
+
+    We will set up the NSB to run Azure storage queues in the following manner:
+
+
+    +   1. Install the reference from either NuGet or the package manager for the
+    project for NServiceBus using PM> Install-Package NServiceBus.Azure.Transports.WindowsAzureServiceBus.
+
+
+    > You may need to match the compatible versions of NServiceBus core versions with
+    the corresponding NServiceBus Azure versions. One thought is to uninstall the
+    current NServiceBus references, and let the NServiceBus Azure references install
+    the required NServiceBus core references.
+
+
+    +   2. Set up the configuration on the IBus configurations. In the MySaga project
+    and EndpointConfig.cs file, we use the AzureServiceBus for the queue as follows:
+
+
+    ```
+
+    Configure.With()
+
+    .DefaultBuilder()  // Autofac Default Container
+
+    .UseTransport<NServiceBus.AzureServiceBus>()  // Azure Storage Queues
+
+    .AzureSubscriptionStorage()
+
+    .AzureSagaPersister()
+
+    .UseAzureTimeoutPersister()
+
+    .UnicastBus(); // Create the default unicast Bus
+
+    ```'
+  merge: -1
+  img_proc: true
+- pgno: 202
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 203
+  md: '> We also set the AzureSagaPersisterConfig, AzureTimeoutPersisterConfig, AzureSubscriptionStorageConfig
+    configurations to still use the Azure Storage for the database settings. We added
+    the AzureSubscriptionStorageConfig configuration to all the projects.
+
+
+    We will have to repair the settings to the projects as needed to set the transport
+    to AzureServiceBus.
+
+
+    We now have the configuration changes moved to use AzureServiceBus. When we run
+    the application we can view all the queues from the Azure management portal as
+    follows:
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_203_0.png)'
+  merge: -1
+  img_proc: true
+- pgno: 204
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 205
+  md: 'We view the connections in the Visual Studio Server Explorer:
+
+
+    There are topics, the publish-subscribe messaging, and queues that are one-to-one
+    messages.
+
+
+    We now have a running Azure Service Bus in NSB.
+
+
+    # Summary
+
+
+    In this chapter, we took a deeper dive into **Software as a Service (SaaS)** and
+    how NServiceBus ties into cloud computing. We had a very brief introduction to
+    the cloud and some of its services. We discussed the Azure Storage Services and
+    Azure Service Bus as they apply to providing persistence and message queues. Visual
+    Studio has many tools for building applications both on-premise and in the Azure
+    cloud. We walked through a sample in each, where we stored all the timeouts, saga,
+    and subscription information in Azure.'
+  merge: -1
+  img_proc: true
+- pgno: 206
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 207
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 208
+  md: 'ESB 10-12
+
+    ESB designs
+
+    practical needs 13
+
+    event-driven jobs 14
+
+    Extensible Application Markup Language (XAML)
+
+    URL 146
+
+    Extensible Application Markup Language (XAML), using
+
+    for e-mail saga notification 148-150
+
+    for SFTP saga 160
+
+    G
+
+    gateway pattern
+
+    about 18
+
+    source code 19
+
+    I
+
+    Infrastructure as a Service (IAAS) 175
+
+    J
+
+    Java Message Service (JMS) 139, 168
+
+    Java Runtime Environment (JRE) 139
+
+    JavaScript Object Notation (JSON) 62
+
+    L
+
+    Language Integrated Query (LINQ) 94
+
+    M
+
+    message
+
+    flow 48-55
+
+    message encryption patterns
+
+    about 30
+
+    source code 30, 31
+
+    message mutation patterns
+
+    about 28
+
+    source code 29
+
+    Microsoft Azure
+
+    about 177, 178
+
+    features 177, 178
+
+    Microsoft Azure PowerShell tools
+
+    URL 177
+
+    Microsoft Entity Framework (EF) 94
+
+    Microsoft Message Queuing (MSMQ) 12
+
+    Microsoft Task Scheduler 22
+
+    Model-View-Controller (MVC) 94
+
+    N
+
+    NSB
+
+    about 9
+
+    and Azure Storage Queues 181-185
+
+    and cloud 173, 174
+
+    Azure Service Bus 185-193
+
+    benefits 12
+
+    components 59
+
+    host, URL 71
+
+    NSB hosting
+
+    URL 56
+
+    NSB version 4
+
+    to 5, upgradation 39
+
+    to 5, upgradation from 39, 41
+
+    NSB version 5
+
+    features 39-41
+
+    NServiceBus. See NSB
+
+    NServiceBus, adding to MVC
+
+    about 120-122
+
+    integration tests, performing 130-134
+
+    message handler unit testing 123-125
+
+    saga handler unit testing 128-130
+
+    NServiceBus.RabbitMQ package 138
+
+    O
+
+    object-relationship mapper (ORM) 95
+
+    boilerplate code, generating 95
+
+    development, speeding 95
+
+    OO supporting 95
+
+    P
+
+    PaaS 175
+
+    patterns
+
+    DataBus pattern 21, 22
+
+    gateway pattern 18
+
+    message encryption patterns 30
+
+    message mutation patterns 28
+
+    publish-subscribe pattern 15, 16
+
+    request-reply pattern 17
+
+    saga design pattern 32
+
+    ScaleOut pattern 32
+
+    timeout patterns 22-28'
+  merge: -1
+  img_proc: true
+- pgno: 209
+  md: <!-- no content -->
+  merge: -1
+  img_proc: true
+- pgno: 210
+  md: '# T
+
+
+    timeout patterns 22-28
+
+
+    # V
+
+
+    virtual machine (VM) 176
+
+
+    # W
+
+
+    WCF
+
+
+    about 96
+
+
+    source code 96
+
+
+    WCF client
+
+
+    creating 111
+
+
+    design, revisiting 116-118
+
+
+    service reference, adding 112-114
+
+
+    service reference, calling 114-116
+
+
+    source code 118, 119
+
+
+    WCF server
+
+
+    configuration, adding 103-105
+
+
+    considerations, for deployment 110
+
+
+    creating 97-99
+
+
+    message handler, adding 102
+
+
+    messages, adding 100, 101
+
+
+    tracing, adding 106-109
+
+
+    web service, viewing 110
+
+
+    Web Service Definition
+
+
+    Language (WSDL) 10
+
+
+    Web Services Description
+
+
+    Languages (WSDL) 96
+
+
+    Windows Communication
+
+
+    Foundation (WCF) 13
+
+
+    Windows Presentation
+
+
+    Framework (WPF) 145, 146
+
+
+    Windows Task Scheduler 14'
+  merge: -1
+  img_proc: true
+- pgno: 211
+  md: '![](img/8188651cea6a881a16242b395a81399a_211_0.png)
+
+
+    # Thank you for buying
+
+
+    # Learning NServiceBus Sagas
+
+
+    # About Packt Publishing
+
+
+    Packt, pronounced ''packed'', published its first book *Mastering phpMyAdmin for
+    Effective MySQL Management* in April 2004 and subsequently continued to specialize
+    in publishing highly focused books on specific technologies and solutions.
+
+
+    Our books and publications share the experiences of your fellow IT professionals
+    in adapting and customizing today''s systems, applications, and frameworks. Our
+    solution based books give you the knowledge and power to customize the software
+    and technologies you''re using to get the job done. Packt books are more specific
+    and less general than the IT books you have seen in the past. Our unique business
+    model allows us to bring you more focused information, giving you more of what
+    you need to know, and less of what you don''t.
+
+
+    Packt is a modern, yet unique publishing company, which focuses on producing quality,
+    cutting-edge books for communities of developers, administrators, and newbies
+    alike. For more information, please visit our website: www.packtpub.com.
+
+
+    # About Packt Enterprise
+
+
+    In 2010, Packt launched two new brands, Packt Enterprise and Packt Open Source,
+    in order to continue its focus on specialization. This book is part of the Packt
+    Enterprise brand, home to books published on enterprise software – software created
+    by major vendors, including (but not limited to) IBM, Microsoft and Oracle, often
+    for use in other corporations. Its titles will offer information relevant to a
+    range of users of this software, including administrators, developers, architects,
+    and end users.
+
+
+    # Writing for Packt
+
+
+    We welcome all inquiries from people who are interested in authoring. Book proposals
+    should be sent to `author@packtpub.com`. If your book idea is still at an early
+    stage and you would like to discuss it first before writing a formal book proposal,
+    contact us; one of our commissioning editors will get in touch with you.
+
+
+    We''re not just looking for published authors; if you have strong technical skills
+    but no writing experience, our experienced editors can help you develop a writing
+    career, or simply get some additional reward for your expertise.'
+  merge: -1
+  img_proc: true
+- pgno: 212
+  md: '![](img/8188651cea6a881a16242b395a81399a_212_0.png)
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_212_1.png)
+
+
+    # Learning NServiceBus
+
+
+    ISBN: 978-1-78216-634-4      Paperback: 136 pages
+
+
+    Build reliable and scalable distributed software systems using the industry leading
+    .NET Enterprise Service Bus
+
+
+    +   1. Replace batch jobs with a reliable process.
+
+    +   2. Create applications that compensate for system failures.
+
+    +   3. Build message-driven systems.
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_212_2.png)
+
+
+    # Multithreading in C# 5.0 Cookbook
+
+
+    ISBN: 978-1-84969-764-4      Paperback: 268 pages
+
+
+    Over 70 recipes to help you learn asynchronous and parallel programming with C#
+    5.0 quickly and efficiently
+
+
+    +   1. Delve deep into the .NET threading infrastructure and use Task Parallel
+    Library for asynchronous programming.
+
+    +   2. Scale out your server applications effectively.
+
+    +   3. Master C# 5.0 asynchronous operations language support.
+
+
+    Please check www.PacktPub.com for information on our titles'
+  merge: -1
+  img_proc: true
+- pgno: 213
+  md: '![](img/8188651cea6a881a16242b395a81399a_213_0.png)
+
+
+    # CryENGINE Game Programming with C++, C#, and Lua
+
+
+    ISBN: 978-1-84969-590-9      Paperback: 276 pages
+
+
+    Get to grips with the essential tools for developing games with the awesome and
+    powerful CryENGINE
+
+
+    +   1. Dive into the various CryENGINE subsystems to quickly learn how to master
+    the engine.
+
+    +   2. Create your very own game using C++, C#, or Lua in CryENGINE.
+
+    +   3. Understand the structure and design of the engine.
+
+
+    ![](img/8188651cea6a881a16242b395a81399a_213_1.png)
+
+
+    # Enterprise Integration with WSO2 ESB
+
+
+    ISBN: 978-1-78328-019-3      Paperback: 92 pages
+
+
+    Over 15 recipes to calibrate seamless modularity to SOA and address commonly-faced
+    enterprise integration challenges with a zero-code approach
+
+
+    +   1. Learn how to implement the mostly-used Enterprise Integration Patterns
+    with WSO2 ESB.
+
+    +   2. Discover how to integrate WSO2 ESB with FIX, HL7, and SAP gateways.
+
+    +   3. Understand the key concepts behind WSO2 ESB, and find optimized recommendations
+    for deploying WSO2 ESB in a production setup.'
+  merge: -1
+  img_proc: true

@@ -1,0 +1,6 @@
++   [NServiceBus Sagas 学习指南：探索如何设计、构建和测试 NServiceBus Sagas 和消息传递](README.md)
++   [NServiceBus Sagas 学习指南：探索如何设计、构建和测试 NServiceBus Sagas 和消息传递](learning-nservicebus-sagas-discover-how-to-design-build-and-_0.md)
++   [1 引言](learning-nservicebus-sagas-discover-how-to-design-build-and-_1.md)
++   [5 Saga 代码片段](learning-nservicebus-sagas-discover-how-to-design-build-and-_2.md)
++   [6 使用 NServiceBus 在云中](learning-nservicebus-sagas-discover-how-to-design-build-and-_3.md)
++   [第7章 云服务与部署](learning-nservicebus-sagas-discover-how-to-design-build-and-_4.md)

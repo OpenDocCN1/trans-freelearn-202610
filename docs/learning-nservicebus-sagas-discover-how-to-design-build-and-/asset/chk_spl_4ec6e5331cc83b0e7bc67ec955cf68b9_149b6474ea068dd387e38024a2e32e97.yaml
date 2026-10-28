@@ -1,0 +1,39 @@
+reviews:
+- 'no': 0
+  overturn_probability: 0.7
+  alternative: 书名/封面标题
+  counter_evidence:
+  - '行内容为 ''# NServiceBus Sagas 学习指南：探索如何设计、构建和测试 NServiceBus ...''，属于图书封面/书名而非正文章节标题，前置内容统一划分为一章的起始应为前言/致谢等实际前置段落，而非书名行；书名行通常不作为章节分割点，且后续
+    3 行为空白后才出现 ## Credits 前置内容'
+  keep_split: false
+- 'no': 129
+  overturn_probability: 0.05
+  alternative: 正文小标题
+  counter_evidence:
+  - 该行 '# 1 引言' 为最高层级编号章标题，单独成行且后接本章概述段落，符合章标题特征；可作为新章起始的反方证据不足
+  keep_split: true
+- 'no': 1446
+  overturn_probability: 0.05
+  alternative: 正文小标题
+  counter_evidence:
+  - 该行 '# 5 Saga 代码片段' 为最高层级编号章标题，单独成行且后接本章介绍，符合章标题特征；反方证据不足
+  keep_split: true
+- 'no': 1685
+  overturn_probability: 0.05
+  alternative: 正文小标题
+  counter_evidence:
+  - 该行 '# 6 使用 NServiceBus 在云中' 为最高层级编号章标题，单独成行且后接本章概述，符合章标题特征；反方证据不足
+  keep_split: true
+- 'no': 1729
+  overturn_probability: 0.1
+  alternative: 正文小标题
+  counter_evidence:
+  - 该行 '# 第7章 云服务与部署' 为最高层级编号章标题，单独成行且后接 8.1 基本概念等内容，符合新章起始；序号连贯性上接第6章，合理
+  keep_split: true
+- 'no': 1865
+  overturn_probability: 0.85
+  alternative: 索引条目/正文小标题
+  counter_evidence:
+  - '该行 ''## G'' 为二级标题，仅为索引字母分组，非统领性章节标题；索引整体应划为一章，但不应在每个字母子标题处再分章，标题长度极短且后接索引条目列表而非概述段落；格式特征上为
+    ## 而非最高层级 #，属于排版噪声/索引分段'
+  keep_split: false
