@@ -1,0 +1,9 @@
+**Tips and tricks #20**
+
+**Noun/verb selection** should be switched on by default in any AutoCAD installation. However, users do (sometimes) switch it off. A typical reason might be that more than one object needs to be selected. With **Noun/verb selection** off, the command (verb) can be selected first, followed by the **Select objects** prompt (noun), where multiple objects can easily be selected, followed by the Enter key to confirm selection during the command workflow. Depending on personal preference, this type of workflow might be adopted by the user. To get the most out of this chapter, it would be ideal if you keep it switched on. You can also type `PICKFIRST` and press Enter to change the variable value. To turn it on, **PICKFIRST** should be set to **1**. Setting it to **0** (zero) turns it off.
+
+**Noun/verb selection** is incredibly useful. It makes for a much more fluid AutoCAD experience. Try using AutoCAD with it and without it, and you will see the difference it makes to your daily AutoCAD workflow.
+
+**AutoCAD for Mac**
+
+**Noun/verb selection** is not supported in AutoCAD for Mac. You will also find that the **Options** dialog box is called **Application Preferences**. You can find this by clicking on **AutoCAD 2024** (top left – if you use the 2024 version; it will be **AutoCAD 2023** for AutoCAD 2023, etc.). Select **Preferences...** and the **Application Preferences** dialog box will open. Mac users can utilize this dialog box to manage their AutoCAD settings. These settings include **Look & Feel**, where the user interface can be adapted to suit the Mac user, and **Units & Guides**, where the user can set specific source content units and target drawing units, similar to how they would be set in the Windows version of AutoCAD. The dialog box is shown in Figure 6.2.

@@ -1,0 +1,57 @@
+reviews:
+- 'no': 2982
+  overturn_probability: 0.1
+  alternative: 正文小标题（若未识别为章标题，它可能被看作章节内的一个一级子标题）
+  counter_evidence:
+  - 该行虽然以‘# 10’开头，但并未使用‘第10章’这种更明确的表述，存在被误读为正文分点标题的可能
+  - 其后第2984行以‘在上一章中……’开头，这种承上启下的过渡句也可能出现在章节末尾，不能单独作为分章铁证
+  keep_split: true
+- 'no': 3241
+  overturn_probability: 0.1
+  alternative: 页眉或书籍章节引用残留（英文标题单独成行，可能来自页眉）
+  counter_evidence:
+  - 标题为英文且较长，可能是页眉或书眉残留，而非正文中的一级标题
+  - 该行内容被截断为‘Parameters and ...’，未显示完整标题，存在 OCR 或排版噪声的可能
+  keep_split: true
+- 'no': 3545
+  overturn_probability: 0.08
+  alternative: 正文小标题（‘创建带有可见性状态的动态块’本身也可作为节标题）
+  counter_evidence:
+  - 该行为‘# 12’开头，但文中大量使用‘## 摘要’、‘## 练习文件’等子标题；若原始层级丢失，一级标题也可能对应正文小标题
+  - 标题长度较长且以名词短语结尾，与某些操作型正文小标题特征相近
+  keep_split: true
+- 'no': 3904
+  overturn_probability: 0.15
+  alternative: 排版断行（‘# 第 4 部分：’只是完整部分标题‘第 4 部分：沟通与协作’的上一行）
+  counter_evidence:
+  - 该行末尾带冒号，明显未完成，后一行 3905 才是部分名称‘沟通与协作’，说明它是被拆开的标题的一部分，而非独立完整标题
+  - 部分标题虽然按规则应划分新章，但该行本身并非完整标题，可能是转换时产生的断行
+  keep_split: true
+- 'no': 3916
+  overturn_probability: 0.08
+  alternative: 正文小标题（‘共享您的 AutoCAD 图纸’本身可作节标题）
+  counter_evidence:
+  - 行号 3916 位于第 4 部分‘沟通与协作’的章节目录之后，也可能是目录中列出的条目而非正文标题
+  - 该行只显示‘# 13’而缺少‘第13章’的完整表述，目录条目也可使用相同格式
+  keep_split: true
+- 'no': 4226
+  overturn_probability: 0.08
+  alternative: 正文小标题或节标题
+  counter_evidence:
+  - 该行格式为‘# 14’，但书中子章节也使用‘##’或‘###’；若原始层级丢失，一级标题可能被误认为章节标题
+  - 标题后第4239行才出现‘### 练习文件’，说明前面有多段概述，若视作节标题也能覆盖这些内容
+  keep_split: true
+- 'no': 4441
+  overturn_probability: 0.2
+  alternative: 正文小标题（缺少编号的章节主题句）
+  counter_evidence:
+  - 该行没有显式章序号‘15’，仅凭语义判断存在误报风险，可能是正文中的一个操作主题小标题
+  - 本章下一级标题如‘## 练习文件’、‘## 从 AutoCAD 桌面版将 DWG 文件保存到云’均以‘##’出现，而该行是‘#’，若 Markdown 级别因转换错误提升，则可能不是章节
+  keep_split: true
+- 'no': 4759
+  overturn_probability: 0.2
+  alternative: 排版断行或章号残留（‘# 16’是章号的残留，完整标题在下一行）
+  counter_evidence:
+  - 该行只有‘# 16’两个字符，标题正文‘使用 AutoCAD 中的追踪功能进行协作’位于下一行，说明原始标题被拆分为两行，单看这一行不是完整章标题
+  - 行号 4759 后直接是 4760 的二级标题，这更像一个双行标题，而不是独立成行的完整标题
+  keep_split: true

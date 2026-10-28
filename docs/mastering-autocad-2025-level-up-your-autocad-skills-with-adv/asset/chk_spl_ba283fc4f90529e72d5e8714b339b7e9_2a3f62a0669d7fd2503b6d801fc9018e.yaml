@@ -1,0 +1,66 @@
+reviews:
+- 'no': 0
+  overturn_probability: 0.15
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 书名标题位于文件最开头，通常作为封面/标题页而非正文章节起点
+  - 后续紧跟大量空行和致谢内容，语义上属于前置信息
+  keep_split: true
+- 'no': 43
+  overturn_probability: 0.05
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 规则明确前言、序言等正文前内容统一划分为一章
+  - 标题单独成行且后接概述段落，符合前言章节特征
+  keep_split: true
+- 'no': 49
+  overturn_probability: 0.85
+  alternative: 正文小标题
+  counter_evidence:
+  - '位于 # 前言 之后的前置说明区内，与 # 本书内容 # 本书读者对象 构成同一前言部分的并列小节'
+  - 标题长度短且后接说明性段落，无子节编号，语义上为前言内部的细分小标题而非最高层级大章
+  - 前言整体应统一为一章，内部再分小标题不应再起新章
+  keep_split: false
+- 'no': 53
+  overturn_probability: 0.8
+  alternative: 正文小标题
+  counter_evidence:
+  - '与 # 本书读者对象 同属前言前置说明区，紧接前言内容且后接章节目录式列表'
+  - 标题为“# 本书内容”，语义上为前言的目录介绍小节，非全书最高层级大章
+  - 在前言统一分章规则下不应再细分章节
+  keep_split: false
+- 'no': 501
+  overturn_probability: 0.05
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '编号特征 # 2 开发你自己的 AutoCAD 工作空间，符合全书最高层级大章命名'
+  - 单独成行且后接章节概述与子节，语义统领后续内容
+  keep_split: true
+- 'no': 1053
+  overturn_probability: 0.05
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '编号特征 # 4 使用高级草图设置，单独成行，符合最高层级章节'
+  - 后接技术要求、练习文件等章节结构
+  keep_split: true
+- 'no': 2365
+  overturn_probability: 0.2
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 标题单独成行且后接章节概述、练习文件等结构，语义统领后续内容
+  - 在上下文中为第 8 章 使用注释性缩放 的章节标题，虽未显式编号但为最高层级
+  keep_split: true
+- 'no': 2646
+  overturn_probability: 0.1
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '标题为 # 第 3 部分：，符合部分-章节模式下的最高层级划分'
+  - 后接内容重用总述及章节列表，语义统领后续多章
+  keep_split: true
+- 'no': 2982
+  overturn_probability: 0.05
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '编号特征 # 10 使用块属性，单独成行，符合最高层级大章'
+  - 后接章节目标与方法概述
+  keep_split: true

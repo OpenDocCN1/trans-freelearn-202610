@@ -1,0 +1,108 @@
+
+
+Locate the exercise file and open it in AutoCAD. It will look like *Figure 2.1*
+
+![](img/e5541e806f2ef46a4958b6c3d0b346a9_51_0.png)
+
+Figure 2.1: The Workspaces.dwg file when first opened
+
+The Workspaces.dwg file looks like a flat 2D drawing of a polyline with six regularly spaced circles. It isn’t. It is a 3D solid with six regularly spaced holes, but due to the default settings you are working with, in this case, the **Drafting & Annotation** workspace, AutoCAD is set up for 2D drafting.
+
+Therefore, the question is, how do you set a workspace that is more suited to 3D modeling? This is where you need to change your AutoCAD workspace to fit your needs.
+
+Return to the gearwheel icon on the status bar. Click on it, and you will see the **Workspace** menu. Select the **3D Modeling** workspace. A tick will appear next to it on the menu, and you will see the AutoCAD ribbon change to display tools that are more suited to a 3D modeling environment. *Figure 2.2* shows you the **Workspace** menu with the **3D Modeling** workspace set as current.
+
+![](img/e5541e806f2ef46a4958b6c3d0b346a9_51_1.png)
+
+Figure 2.2: The Workspace menu with 3D Modeling set as the current workspace
+
+The AutoCAD ribbon now displays all the necessary tools you may need to work on the 3D solid in the `Workspaces.dwg` file. *Figure 2.3* shows an excerpt of some of the 3D modeling tools available on the ribbon now that the workspace has been changed.
+
+![](img/e5541e806f2ef46a4958b6c3d0b346a9_52_0.png)
+
+Figure 2.3: The ribbon with the 3D Modeling workspace active
+
+With the **3D Modeling** workspace active and comparing the **Home** tab on the ribbon to the **Home** tab when using the **Drafting & Annotation** workspace, you can see that they are dramatically different. The **Home** tab now includes panels such as **Modeling**, **Mesh**, and **Solid Editing**, which are used regularly when 3D modeling.
+
+You don’t have to use the preset workspaces in AutoCAD. You can save a workspace with its own name for your own purposes. This is often preferred if you make any changes to the ribbon, as it preserves the settings of the default workspaces.
+
+## Creating your own AutoCAD workspace
+
+Whenever a separate named workspace is required, you need to click on the gearwheel icon on the status bar again. On the **Workspace** menu, select **Save Current As...**, as shown in *Figure 2.4*.
+
+![](img/e5541e806f2ef46a4958b6c3d0b346a9_52_1.png)
+
+Figure 2.4: The Workspace menu with Save Current As... displayed
+
+Staying in the **3D Modeling** workspace with the Workspaces.dwg file still open in AutoCAD, you will now make changes to the AutoCAD interface and save those changes in a saved custom workspace.
+
+The changes to the interface are going to involve utilizing the ribbon panels. Ribbon panels can easily be moved from the ribbon and placed in the drawing area in AutoCAD. They are known as sticky panels and are similar to Post-It notes – discussed in *Chapter 1*.
+
+Take a look at the **Home** tab on the ribbon. You will see various panels available when using the **3D Modeling** workspace. For this exercise, you will move the **Modeling** and **Mesh** panels into the AutoCAD drawing area. This will create sticky panels that can be moved around like Post-It notes in the AutoCAD drawing area, independently of their original positions on the AutoCAD ribbon.
+
+Click and drag on the title bar of the **Modeling** ribbon panel. You will see the panel move away from the ribbon as you move the mouse. Position the **Modeling** panel in a suitable location in the drawing area and release the mouse button. The panel is now placed in the drawing area.
+
+Repeat this workflow for the **Mesh** ribbon panel, placing it underneath the **Modeling** panel. *Figure 2.7* shows how the panels should appear in the drawing area.
+
+![](img/e5541e806f2ef46a4958b6c3d0b346a9_54_0.png)
+
+Figure 2.7: The Modeling and Mesh sticky panels
+
+**AutoCAD for Mac**
+
+As mentioned previously, the interface is different on AutoCAD for Mac. There is no way of moving panels in AutoCAD for Mac as the **Drafting** and **Modeling** workspaces in AutoCAD for Mac are fixed at the top of the icon menu on the left-hand side of the screen and cannot be changed.
+
+You have now altered the AutoCAD interface to suit your needs. The two panels have been moved to a suitable location, ready for use when 3D modeling.
+
+To maintain the location of the two *sticky panels*, you now need to save a custom workspace. The reason for this is that if you revert back to one of the default AutoCAD workspaces, the *sticky panels* will be returned to their original positions in the ribbon due to the **Customize User Interface (CUI)** settings in each preset workspace.
+
+Saving a new custom workspace ensures that the CUI settings are set to keep your *sticky panels* where you placed them.
+
+To save the custom workspace, you need to use the workflow covered earlier in the chapter. Click on the gearwheel icon and select **Save Current As...**, as shown in *Figure 2.8*.
+
+![](img/e5541e806f2ef46a4958b6c3d0b346a9_55_0.png)
+
+Figure 2.8: Selecting Save Current As... to save a custom workspace
+
+The **Save Workspace** dialog box will appear. Name your custom workspace `3D Modeling-CUSTOM` and click on **Save**. *Figure 2.9* shows you the dialog box.
+
+![](img/e5541e806f2ef46a4958b6c3d0b346a9_55_1.png)
+
+Figure 2.9: The Save Workspace dialog box with the custom workspace name
+
+This is now a saved workspace and is now also the current workspace. This workspace includes the position of the sticky panels in the AutoCAD CUI settings.
+
+If you click the gearwheel icon again, you will see your custom workspace listed on the **Workspace** menu, as shown in *Figure 2.10*.
+
+You can also see the previously saved **3D Modeling-CURRENT** workspace. The check mark next to the **3D Modeling-CUSTOM** workspace indicates the current workspace.
+
+![](img/e5541e806f2ef46a4958b6c3d0b346a9_56_0.png)
+
+Figure 2.10: The Workspace menu displaying the new custom workspace
+
+Your custom workspace includes your sticky panels. If you select the default **3D Modeling** workspace from the **Workspace** menu, you will see your sticky panels disappear from the drawing area to be repositioned in their respective positions on the **Home** tab on the ribbon.
+
+> **Tips and tricks #4**
+> 
+> You can use sticky panels in AutoCAD in any workspace. As mentioned in this chapter and the *Using sticky panels* section in *Chapter 1*, they can be returned to the ribbon at any time using the **Return Panels to Ribbon** function. Sticky panels are a great timesaver when using a dual monitor setup for your workstation. You can set up all the necessary panels you use daily in one area of the screen and save this interface configuration as your own personalized AutoCAD workspace. Should the time come when you need to reset to default settings, you simply select the appropriate default AutoCAD workspace as the current workspace, and all the *sticky panels* will be returned to the relevant locations on the ribbon. *Figure 2.11* shows how your customized interface would look when using the **3D Modeling-CUSTOM** workspace set up in this chapter.
+
+Select your **3D Modeling-CUSTOM** workspace from the **Workspace** menu, and you will see the sticky panels reappear in their locations in the drawing area, as shown previously in *Figure 2.7*.
+
+![](img/e5541e806f2ef46a4958b6c3d0b346a9_57_0.png)
+
+![](img/e5541e806f2ef46a4958b6c3d0b346a9_57_1.png)
+
+Figure 2.11: The sticky panels in the drawing area when using the 3D Modeling-CUSTOM workspace
+
+Sometimes, after creating new workspaces, and customizing existing ones, there may be a need to remove redundant workspaces from the AutoCAD interface. In the next part of the chapter, we will look at how to do this, using the CUI tool.
+
+## Removing a redundant workspace from the AutoCAD CUI
+
+Workspaces are incredibly useful and versatile, but there will come a time when you need to remove redundant workspaces from the AutoCAD CUI. You may want to rationalize how many workspaces are displayed in the **Workspace** menu, or you may just want to return back to the preset workspaces AutoCAD provides.
+
+You will need to run the AutoCAD CUI command to remove unwanted workspaces. We learned about this command in the *Introducing the AutoCAD CUI command* section in *Chapter 1*.
+
+Having a DWG file open ensures you get access to all of the AutoCAD interface, so make sure to have the Workspaces.dwg file open and current in AutoCAD.
+
+Using **Dynamic Input** or the **command line**, type in CUI and press *Enter*.
+

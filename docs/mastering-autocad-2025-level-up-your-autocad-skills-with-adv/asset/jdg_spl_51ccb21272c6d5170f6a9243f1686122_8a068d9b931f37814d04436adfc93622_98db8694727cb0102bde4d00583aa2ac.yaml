@@ -1,0 +1,74 @@
+chapter_starts:
+- 'no': 2982
+  confidence: 0.98
+  final_reason: 判断方与复核方均倾向保留。行以 '# 10' 开头单独成行，后续 2984 起为承上启下的章节概述，符合最高层级大章编号特征与语义统领。
+  accepted_evidence:
+  - '一级标题 # 10 使用块属性，符合最高层级大章编号特征，单独成行且语义统领后续内容'
+  - keep_split=true
+  rejected_evidence:
+  - 正文小标题的可能
+  need_human_review: false
+- 'no': 3241
+  confidence: 0.96
+  final_reason: 英文一级标题 '# 11 Creating a Dynamic Block with Parameters and ...' 单独成行，编号连贯且开启新章内容，复核方虽提及截断与页眉可能但保留意见占优。
+  accepted_evidence:
+  - '一级标题 # 11 Creating a Dynamic Block with Parameters and ...，编号连贯，单独成行，开启新章'
+  - keep_split=true
+  rejected_evidence:
+  - 标题截断、页眉残留的疑虑
+  need_human_review: false
+- 'no': 3545
+  confidence: 0.96
+  final_reason: ' ''# 12 创建带有可见性状态的动态块'' 编号特征明显，单独成行，后续为章节概述与练习文件，符合大章划分。'
+  accepted_evidence:
+  - '一级标题 # 12 创建带有可见性状态的动态块，编号特征明显，单独成行，语义统领'
+  - keep_split=true
+  rejected_evidence:
+  - 可能被误认为节标题
+  need_human_review: false
+- 'no': 3904
+  confidence: 0.85
+  final_reason: 部分-章节模式下部分标题应划分新章。行 '# 第 4 部分：' 虽末尾带冒号且名称在下一行 3905 出现，整体仍构成部分起始，复核方保留意见。
+  accepted_evidence:
+  - '一级标题 # 第 4 部分：，为部分-章节模式下的部分标题，按规则应划分新章'
+  - keep_split=true
+  rejected_evidence:
+  - 排版断行，标题未完整
+  need_human_review: false
+- 'no': 3916
+  confidence: 0.97
+  final_reason: ' ''# 13 共享您的 AutoCAD 图纸'' 编号特征清晰，单独成行，位于第4部分之后开启新章，复核方保留。'
+  accepted_evidence:
+  - '一级标题 # 13 共享您的 AutoCAD 图纸，编号特征，单独成行，开启新章'
+  - keep_split=true
+  rejected_evidence:
+  - 目录条目误判可能
+  need_human_review: false
+- 'no': 4226
+  confidence: 0.97
+  final_reason: ' ''# 14 比较图形和外部参考文件'' 编号特征、单独成行、语义统领后续内容，符合大章划分。'
+  accepted_evidence:
+  - '一级标题 # 14 比较图形和外部参考文件，编号特征，单独成行，语义统领'
+  - keep_split=true
+  rejected_evidence:
+  - 层级丢失误认为节标题
+  need_human_review: false
+- 'no': 4441
+  confidence: 0.88
+  final_reason: ' ''# 使用AutoCAD Web'' 无显式序号但上下文为第15章位置，单独成行且后续为章节级概述，虽存在误报风险，综合证据仍支持分章。'
+  accepted_evidence:
+  - '一级标题 # 使用AutoCAD Web，虽无显式序号但上下文为第15章位置，单独成行且语义统领后续章节内容'
+  - keep_split=true
+  rejected_evidence:
+  - 缺少编号、可能为正文小标题
+  need_human_review: false
+- 'no': 4759
+  confidence: 0.85
+  final_reason: ' ''# 16'' 为章号残留，完整标题在下一行 4760 出现。按编号特征与上下文仍为新章起始，复核方保留但认为为双行标题。'
+  accepted_evidence:
+  - '一级标题 # 16，编号特征，单独成行，后续为 ## 使用 AutoCAD 中的追踪功能进行协作，确认为新章起始'
+  - keep_split=true
+  rejected_evidence:
+  - 标题被拆分为两行，单行不完整
+  need_human_review: false
+rejected_lines: []

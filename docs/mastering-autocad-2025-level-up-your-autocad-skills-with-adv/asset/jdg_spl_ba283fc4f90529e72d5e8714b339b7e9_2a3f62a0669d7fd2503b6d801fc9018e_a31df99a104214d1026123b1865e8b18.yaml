@@ -1,0 +1,68 @@
+chapter_starts:
+- 'no': 0
+  confidence: 0.9
+  final_reason: 双方一致认为书名标题位于文件开头，单独成行，虽属前置信息但作为全书起始标记合理
+  accepted_evidence:
+  - 书名标题，位于文件开头，单独成行，符合最高层级标题特征
+  - 复核方最终确认保留分章
+  rejected_evidence:
+  - 书名标题通常作为封面/标题页而非正文章节起点
+  - 后续紧跟空行和致谢，语义上属前置信息
+  need_human_review: false
+- 'no': 43
+  confidence: 0.95
+  final_reason: 双方一致，且规则明确前言等正文前内容统一划分为一章
+  accepted_evidence:
+  - '# 前言 为正文前内容，按规则统一划分为一章'
+  - 标题单独成行且后接概述段落，符合前言章节特征
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 501
+  confidence: 0.95
+  final_reason: 双方一致，编号特征明确为全书最高层级大章，且单独成行
+  accepted_evidence:
+  - '# 2 开发你自己的 AutoCAD 工作空间 编号特征的最高层级大章'
+  - 单独成行且后接章节概述与子节，语义统领后续内容
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 1053
+  confidence: 0.95
+  final_reason: 双方一致，编号特征明确为全书最高层级大章，单独成行
+  accepted_evidence:
+  - '# 4 使用高级草图设置 编号特征的最高层级大章'
+  - 后接技术要求、练习文件等章节结构
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 2365
+  confidence: 0.85
+  final_reason: 上下文强证据表明这是下一章（第8章）标题，虽代码块中标记为##，但语义统领后续内容，复核方亦支持
+  accepted_evidence:
+  - 前文明确“在下一章中”，后接练习文件、小节结构
+  - 标题单独成行且语义上为新的最高层级章节
+  rejected_evidence:
+  - 标题未显式编号
+  - Markdown标记为二级标题层级
+  need_human_review: false
+- 'no': 2646
+  confidence: 0.9
+  final_reason: 双方一致，部分-章节模式下“第 X 部分”为最高层级划分
+  accepted_evidence:
+  - '# 第 3 部分：符合部分-章节模式下的最高层级划分'
+  - 后接内容重用总述及章节列表，语义统领后续多章
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 2982
+  confidence: 0.95
+  final_reason: 双方一致，编号特征明确为全书最高层级大章，单独成行
+  accepted_evidence:
+  - '# 10 使用块属性 编号特征的最高层级大章'
+  - 后接章节目标与方法概述
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 49
+  reason: 复核方指出该行位于前言内部，属前置说明区中的并列小标题，而非全书最高层级大章；判断方仅依据一级标题格式，无有力反驳。规则明确前言等前置内容统一划分为一章，不应再细分。
+  need_human_review: false
+- 'no': 53
+  reason: 复核方指出该行同属前言前置说明区，是章节目录式介绍小节，非独立最高层级章节；判断方无有力反驳。按“前言统一为一章”的规则，此标题不应另起新章。
+  need_human_review: false
