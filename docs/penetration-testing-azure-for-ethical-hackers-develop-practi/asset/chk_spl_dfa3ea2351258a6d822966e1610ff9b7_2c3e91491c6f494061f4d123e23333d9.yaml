@@ -1,0 +1,36 @@
+reviews:
+- 'no': 108
+  overturn_probability: 0.05
+  alternative: 若不分章，这行最可能是书籍正文之前的序言或目录中的部分标题，而不是实际内容中的结构划分。
+  counter_evidence:
+  - 该行使用“第 1 部分”而非“第 1 章”，如果书籍并非部分-章节模式，它可能只是一个视觉分隔符或排版装饰。
+  - 在它之前是“联系我们”等前置内容，可能属于书前附属材料的一部分，而非正文的核心结构。
+  keep_split: true
+- 'no': 624
+  overturn_probability: 0.05
+  alternative: 若不分章，这行最可能是正文中的小标题或编号列表项，表示第二章的标题但可能只是文档中的分节符。
+  counter_evidence:
+  - 该行以裸数字“2”开头，缺少“第”字，可能被误认为是有序列表项而非章标题。
+  - 与前一行（第1章延伸阅读）之间仅有一行空行，可能是同一章节内的子标题而非独立章节。
+  keep_split: true
+- 'no': 1133
+  overturn_probability: 0.05
+  alternative: 若不分章，这行最可能是前一章末尾的延续内容或一个分节标题。
+  counter_evidence:
+  - 该行没有“第”字，数字“3”可能表示列表中的第三项，而非章号。
+  - 在它之前的内容（Azure 渗透测试工具）尚未收束，可能这只是一个子节而非新章。
+  keep_split: true
+- 'no': 1845
+  overturn_probability: 0.1
+  alternative: 若不分章，这行最可能是原书英文版目录中的一行，或转换过程中残留的页眉/页脚。
+  counter_evidence:
+  - 该行使用英文“Section 2”，与中文正文不一致，可能来自 OCR 或排版噪声。
+  - 它出现在第3章末尾的“Further reading”之后，可能只是一个附录标题而非部分标题。
+  keep_split: true
+- 'no': 1857
+  overturn_probability: 0.3
+  alternative: 若不分章，这行最可能是章节内的小节标题，或者是部分介绍中章节名称的重复，而非真正的章节开始。
+  counter_evidence:
+  - 该行没有章编号（如“4”或“Chapter 4”），与前后章节标题格式不一致，可能是一个子标题。
+  - 在它之前，行1847-1855刚刚列出了包含“Chapter 4, Exploiting Reader Permissions”的目录，此行可能只是该目录条目的重复，而非实际章节起始。
+  keep_split: true

@@ -1,0 +1,52 @@
+chapter_starts:
+- 'no': 108
+  confidence: 0.95
+  final_reason: 双方一致认可；最高层级部分标题“第 1 部分”，符合部分-章节模式，后续紧随章节列表和正文，为明确的部分起始。
+  accepted_evidence:
+  - 标题为“第 1 部分：了解 Azure 平台与架构”，单独成行且无句号
+  - 后续列出第 1/2/3 章，说明是部分级结构
+  - 复核方未提出有效反证，保持分章
+  rejected_evidence:
+  - 可能因位于“联系我们”之后而被视为前置材料，但实际为正文第一部分开始
+  need_human_review: false
+- 'no': 624
+  confidence: 0.9
+  final_reason: 双方一致认可；编号式章标题，单独成行，后续内容以章节导语和“在本章中”展开，符合新章特征。
+  accepted_evidence:
+  - 标题“## 2 构建你自己的环境”单行出现，末尾无标点
+  - 其后为章节导语和主要内容列表
+  - 与上一章“延伸阅读”之间有明确空行分隔
+  rejected_evidence:
+  - “2”为裸数字，但上下文及后续导语足以确认是章号而非列表项
+  need_human_review: false
+- 'no': 1133
+  confidence: 0.9
+  final_reason: 双方一致认可；编号式章标题，单独成行，后续为章节导语和子节，符合新章特征。
+  accepted_evidence:
+  - 标题“## 3 查找 Azure 服务与漏洞”单独成行，无句号
+  - 紧接内容为章节导语并列出本章小节
+  - 与上一章末“Azure 渗透测试工具”内容有明确结构分隔
+  rejected_evidence:
+  - “3”可能被误认为列表项，但上下文明确其为章号
+  need_human_review: false
+- 'no': 1845
+  confidence: 0.85
+  final_reason: 双方一致认可；部分标题“Section 2”，且前文已有“第 1 部分”，形成部分-章节模式的层级，后续列出第 4–8 章，是明显的新部分起始。
+  accepted_evidence:
+  - '标题为“## Section 2: Authenticated Access to Azure”，单独成行'
+  - 后续紧跟本部分包含的章节列表（Chapter 4–8）
+  - 位于第 3 章结束之后，结构上为新的部分
+  rejected_evidence:
+  - 英文标题与中文正文混排，但原书部分标题保留英文符合排版还原，不构成反证
+  need_human_review: false
+- 'no': 1857
+  confidence: 0.8
+  final_reason: 双方一致认可；虽无编号，但语义上统领后续完整章节内容，单独成行且位于部分介绍之后，符合章节起始特征。复核方提出的目录重复可能性不足以推翻。
+  accepted_evidence:
+  - 标题“## Exploiting Reader Permissions”单独成行，无句号
+  - 后续正文直接进入该章内容（“虽然 Reader 角色……”）
+  - 位于“Section 2”的章节列表之后，与部分-章节模式一致
+  rejected_evidence:
+  - 缺少显式章号，且前文列表中曾出现 “Chapter 4, Exploiting Reader Permissions”，可能被视为重复；但后续有完整正文，确认是实际章节开始
+  need_human_review: false
+rejected_lines: []
