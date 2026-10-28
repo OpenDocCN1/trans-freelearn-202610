@@ -1,0 +1,5 @@
+# Summary
+
+In this chapter, we introduced five third-party Django apps that can enhance your website. We installed and set up `django-configurations`, which allowed us to easily switch between different settings and change them using environment variables. `dj-database-url` also helped with settings, allowing us to make database settings changes using URLs. We saw how the Django Debug Toolbar could help us see what our app was doing and help us debug problems we had with it. `django-crispy-forms` can not only render our forms using the Bootstrap CSS but also lets us save code by defining their behavior as part of the form class itself. We briefly looked at `django-allauth` and saw how it can be integrated into third-party authentication providers. In the activity for this chapter, we updated our `ModelForm` instances to use the `django-crispy-forms FormHelper` and removed some logic from the template by using the `crispy` template tag.
+
+In the next chapter, we will look at how to integrate the React JavaScript framework into a Django application.

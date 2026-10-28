@@ -1,0 +1,22 @@
+reviews:
+- 'no': 15236
+  overturn_probability: 0.85
+  alternative: 排版断行/章节编号行
+  counter_evidence:
+  - 行内容仅为 '## 14'，为孤立的章节编号而非完整标题，真正的章节标题在下一行 15238 '## 测试你的 Django 应用'；编号行单独成行不符合真正的章标题语义统领性，通常章标题应为完整语义短语；上下文中
+    15236 后紧跟空行再出现标题，符合编号+标题的排版噪声模式
+  keep_split: false
+- 'no': 15970
+  overturn_probability: 0.12
+  alternative: 正文小标题
+  counter_evidence:
+  - 该行 '## Django 第三方库' 位于上一章总结段落之后，且后接章节介绍性概述，符合最高层级章标题的上下文特征；标题长度 <30 字，单独成行，末尾无句号，语义统领后续内容；前文
+    15236 章节已结束，序号上为下一章
+  keep_split: true
+- 'no': 17190
+  overturn_probability: 0.08
+  alternative: 正文小标题
+  counter_evidence:
+  - 该行 '## Using a Frontend JavaScript Library with Django' 在上一章总结后出现，后接技术要求与章节概述，符合新章的语义与上下文特征；标题单独成行，长度合理，无句号；与前一章
+    '## Django 第三方库' 形成层级递进
+  keep_split: true

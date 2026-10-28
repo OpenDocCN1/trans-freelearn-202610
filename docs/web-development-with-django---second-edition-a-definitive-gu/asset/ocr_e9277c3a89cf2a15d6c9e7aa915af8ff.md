@@ -1,0 +1,7 @@
+# Summary
+
+In this chapter, we added the MEDIA_ROOT and MEDIA_URL settings and a special URL map to serve media files. We then created a form and a view to upload files and save them to the media directory. We saw how to add the media context processor to automatically have access to the MEDIA_URL setting in all our templates. We then enhanced and simplified our form code by using a Django form with FileField or ImageField, instead of manually defining one in HTML.
+
+We looked at some of the enhancements Django provides for images with ImageField, and how to interact with an image using Pillow. We showed an example view that would be able to serve files that required authentication using the FileResponse class. Then, we saw how to store files on models using FileField and ImageField and refer to them in a template using the FileField.url attribute. We were able to reduce the amount of code we had to write by automatically building ModelForm from a model instance. Finally, we did two activities to enhance Bookr by adding a cover image and a sample file to the Book model.
+
+In Chapter 9, Sessions and Authentication, we will learn how to add authentication to a Django application to protect it from unauthorized users.

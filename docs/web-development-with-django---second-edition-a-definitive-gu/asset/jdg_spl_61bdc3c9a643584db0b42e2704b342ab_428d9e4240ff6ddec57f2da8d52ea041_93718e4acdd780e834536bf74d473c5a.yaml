@@ -1,0 +1,37 @@
+chapter_starts:
+- 'no': 14
+  confidence: 0.9
+  final_reason: 前置内容（Contributors、关于作者、前言等）应统一划分为一章，行14为前置部分第一个出现的标题，可作为该章起点。复核方认为其属于前置内容内部结构，但规则明确要求前置内容整体为一章，故不作为反证。
+  accepted_evidence:
+  - 规则：前言、序言、致谢、关于作者等正文之前的内容，统一划分为一章
+  - 行14（## Contributors）是前置部分的第一个标题，前文为书名和致谢字样，后接多个前置子标题
+  rejected_evidence:
+  - 复核方认为该行属于前置内容内部结构，不具备全书最高层级大章特征；但该理由与“前置内容统一为一章”的规则不冲突，不构成推翻依据
+  need_human_review: false
+- 'no': 161
+  confidence: 0.99
+  final_reason: 双方一致，且排版、语义均符合新章特征：单独成行、无句号、长度合适，后接概述与多个子节，前文为前置内容结束后的总结。
+  accepted_evidence:
+  - 标题“# Django 简介”单独成行、无句号，长度符合章标题特征
+  - 后接本章概述与多个“##”子节，前文为前言/前置内容结束后的过渡段落
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 1380
+  confidence: 0.97
+  final_reason: 虽然层级为“##”，但语义上明显是第2章标题，后接上一章承接语、本章主题列表及多个子节，应划分新章。复核方虽对层级提出疑虑，但不构成推翻依据。
+  accepted_evidence:
+  - 标题“模型与迁移”语义对应第2章主题
+  - 后接“在上一章中……”“本章将涵盖以下主题”等明确的章节起始上下文，并有多个“##”子节
+  rejected_evidence:
+  - 复核方指出其层级为“##”，低于第1章的“#”，但原书Markdown转换可能不统一，且无章序号时应以语义判断为主
+  need_human_review: false
+rejected_lines:
+- 'no': 1
+  reason: 判断方给出的行号与实际文本不符；第1行为空行，非章节标题
+  need_human_review: false
+- 'no': 2
+  reason: 第2行为致谢文字，非章节标题；判断方行号误标
+  need_human_review: false
+- 'no': 3
+  reason: 第3行为空行，非章节标题；判断方行号误标
+  need_human_review: false

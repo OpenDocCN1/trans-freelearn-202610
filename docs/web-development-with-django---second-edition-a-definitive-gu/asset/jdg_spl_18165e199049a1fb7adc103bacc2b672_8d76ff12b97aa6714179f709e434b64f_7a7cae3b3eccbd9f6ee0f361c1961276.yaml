@@ -1,0 +1,23 @@
+chapter_starts:
+- 'no': 6329
+  confidence: 0.9
+  final_reason: '判断方与复核方均倾向保留分章。标题单独成行且后接章节概述性段落，上下文为上一章 ## Summary 结束、随后进入全新主题 Forms，语义上为全书最高层级新章。复核方提出的层级混用风险存在，但上下文优先于单行格式特征，证据不足以推翻。'
+  accepted_evidence:
+  - '标题单独成行 ## Forms，后接章节介绍性段落'
+  - '前文 6319 ## Summary 结束，上下文出现章节切换'
+  - 复核方 keep_split=true，overturn_probability 0.1
+  rejected_evidence:
+  - '文档中 ## 同时用于小节标题，无法仅凭层级判定'
+  need_human_review: false
+- 'no': 8841
+  confidence: 0.91
+  final_reason: '判断方与复核方均倾向保留分章。标题单独成行 ## Media Serving and File Uploads，后接章节概述与技术要求，位于
+    ## Summary 之后，构成新的全书级章节。复核方指出的格式混用风险成立但不足以推翻，上下文语义支持新章。'
+  accepted_evidence:
+  - 标题单独成行，后接章节概述段落
+  - '前文 8833 ## Summary 结束，形成章节边界'
+  - 复核方 keep_split=true，overturn_probability 0.12
+  rejected_evidence:
+  - '同层级 ## 也用于 Technical requirements 等小节，格式上存在歧义'
+  need_human_review: false
+rejected_lines: []

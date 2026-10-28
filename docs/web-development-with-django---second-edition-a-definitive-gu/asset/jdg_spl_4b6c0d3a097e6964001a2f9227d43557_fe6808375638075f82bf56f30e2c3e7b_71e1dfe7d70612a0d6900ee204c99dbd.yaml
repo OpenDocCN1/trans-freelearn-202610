@@ -1,0 +1,30 @@
+chapter_starts:
+- 'no': 15238
+  confidence: 0.95
+  final_reason: 复核方反驳成立，15236 仅为孤立章节编号行，真正的最高层级章标题为下一行 15238 '## 测试你的 Django 应用'，单独成行、语义统领后续内容，符合章标题特征
+  accepted_evidence:
+  - 行 15238 为完整语义标题 '## 测试你的 Django 应用'，单独成行且后接章节概述
+  - 15236 为编号噪声行，不具备统领性语义
+  rejected_evidence:
+  - 判断方仅以编号行 15236 作为章起点的排版依据
+  need_human_review: false
+- 'no': 15970
+  confidence: 0.98
+  final_reason: 双方一致认可，位于上一章总结后，标题单独成行、长度合理、无句号，语义统领后续第三方库内容
+  accepted_evidence:
+  - 标题 '## Django 第三方库' 后接章节介绍性概述
+  - 标题单独成行且符合格式特征
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 17190
+  confidence: 0.95
+  final_reason: 双方一致认可，上一章总结后出现英文章标题，后接技术要求与章节概述，符合新章上下文特征
+  accepted_evidence:
+  - 标题 '## Using a Frontend JavaScript Library with Django' 单独成行，语义统领后续内容
+  - 后接 Technical requirements 与章节介绍
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 15236
+  reason: 复核方指出该行为孤立的章节编号 '## 14'，非完整语义标题，真正的章标题在 15238；编号行单独成行不符合章标题语义统领性，应不分章
+  need_human_review: false
