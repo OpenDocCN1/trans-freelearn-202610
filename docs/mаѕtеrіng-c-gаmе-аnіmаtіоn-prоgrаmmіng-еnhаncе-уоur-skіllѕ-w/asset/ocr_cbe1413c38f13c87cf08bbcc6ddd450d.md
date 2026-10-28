@@ -1,0 +1,11 @@
+Instead, we will use the spheres to simplify the instances at a more detailed level by adding configurable bounding spheres to the model’s nodes. Even though we would have to now check several dozens of spheres against the spheres of another instance, we are still way below the computational power we would need to check every single triangle of both models against each other.
+
+The number of false positives will also remain at an acceptable level. As stated broadly in the Simplifying the instances for faster collision checks section, choosing between a higher detailed simplification and more computations or simpler abstractions and more false positive collision detections is a tradeoff we have to live with, but we can make the decision strategically.
+
+# Creating the data for the bounding spheres
+
+To create the sphere data, we use the same first step as in the bounding box calculations. We use the compute shaders assim_instance_transform.comp and assim_instance_matrix_mult.comp, combined with replacing the bone offset matrices with identity matrices. The result of this shader run is an SSBO containing the node positions of all instances we want to equip with bounding spheres.
+
+But, in contrast to the bounding boxes, we can use another compute shader to calculate the bounding spheres for the nodes. The third compute shader, called assim_instance_bounding_spheres.comp, uses the TRS matrices of the nodes created by the previous compute shaders, the world position matrices from the instances, and the parent node indices to create a bounding sphere for every node of every instance.
+
+Another SSBO called SphereAdjustment is used, containing a vec4 for every node. These sphere adjustments can be set by a UI extension that maps the node names of the model to one SliderFloat and one SliderFloat3, allowing us to resize and move around the bounding spheres created by the shader. By carefully placing the bounding spheres, we can make sure to have as little empty space around the model that would be detected as collision.

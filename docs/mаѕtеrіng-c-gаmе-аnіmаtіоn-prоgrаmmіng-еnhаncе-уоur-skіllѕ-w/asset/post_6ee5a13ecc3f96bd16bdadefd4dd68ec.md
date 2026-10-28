@@ -1,0 +1,234 @@
+
+The first step for every lookup table is the extraction of the minimum and the maximum keyframe times:
+
+```
+mMinTranslateTime =
+    static_cast<float>(nodeAnim->mPositionKeys[0].mTime);
+mMaxTranslateTime =
+    static_cast<float>(
+nodeAnim->mPositionKeys[mNumTranslations - 1].mTime);
+```
+
+Then, we calculate three scaling factors:
+
+```
+float translateScaleFactor = maxClipDuration /
+    mMaxTranslateTime;
+mTranslateTimeScaleFactor = maxClipDuration /
+    static_cast<float>(LOOKUP_TABLE_WIDTH);
+mInvTranslateTimeScaleFactor = 1.0f /
+    mTranslateTimeScaleFactor;
+```
+
+These include:
+
+- The first variable, translateScaleFactor, stores the ratio between the maximum clip duration and the maximum keyframe time. We need the first scaling factor when we advance the time in the lookup table data creation.
+- In mTranslateTimeScaleFactor, we calculate the ratio between the maximum clip duration and the size of our lookup table. The second scaling factor is simply the keyframe time step width of the lookup table entries.
+- As the last scaling factor, mInvTranslateTimeScaleFactor stores the inverse of the mTranslateTimeScaleFactor value. We will use the third scaling factor in the compute shader to calculate the right index position in the lookup table from the keyframe time.
+
+Next, we set a helper variable named timeIndex to 0 and iterate over our lookup table entries:
+
+```
+int timeIndex = 0;
+for (int i = 0; i < LOOKUP_TABLE_WIDTH; ++i) {
+```
+
+For every lookup table entry, we extract the translation data from the mPositionKeys array of the aNodeAnim object for the current and next keyframe times into a glm::vec4:
+
+```
+glm::vec4 currentTranslate = glm::vec4(
+    nodeAnim->mPositionKeys[timeIndex].mValue.x,
+    nodeAnim->mPositionKeys[timeIndex].mValue.y,
+```
+
+```
+nodeAnim->mPositionKeys[timeIndex].mValue.z, 1.0f);
+glm::vec4 nextTranslate = glm::vec4(
+    nodeAnim->mPositionKeys[timeIndex + 1].mValue.x,
+    nodeAnim->mPositionKeys[timeIndex + 1].mValue.y,
+    nodeAnim->mPositionKeys[timeIndex + 1].mValue.z,
+    1.0f);
+```
+
+Even though we only need the first three values for the translation, a four-element vector is used for proper data alignment in the Shader Storage Buffer Object.
+
+Now, we extract the time values for the current and next keyframes, plus the current time of the animation:
+
+```
+float currentKey = static_cast<float>(
+    nodeAnim->mPositionKeys[timeIndex].mTime);
+float nextKey = static_cast<float>(
+    nodeAnim->mPositionKeys[timeIndex + 1].mTime);
+float currentTime = i * mTranslateTimeScaleFactor /
+    translateScaleFactor;
+```
+
+For the current time, two scaling factors are used.
+
+By using the two translation vectors and the time values, we can create an interpolated glm::vec4 of the two translations at the time stamp of the lookup table entry:
+
+```
+mTranslations.emplace_back(glm::mix(
+    currentTranslate,
+    nextTranslate,
+    (currentTime - currentKey) / (nextKey - currentKey)));
+```
+
+Finally, we check whether the current time of the lookup table entry is longer than the time of the next keyframe. If it is, we increment our time index:
+
+```
+if (currentTime > nextKey) {
+    if (timeIndex < mNumTranslations - 1) {
+        ++timeIndex;
+    }
+}
+```
+
+Then, the offset value is advanced to the next lookup data position before storing the next transformation data:
+
+```
+offset += LOOKUP_SIZE;
+```
+
+After all the translation, scaling, and rotation data is stored in the animLookupData vector, we can upload the data to the SSBO:
+
+```
+mAnimLookupBuffer.uploadSsboData(animLookupData);
+```
+
+Now, the animation lookup data for the loaded model is available on the GPU. When we need to access the transformation data in the compute shader, we can simply bind the SSBO.
+
+## Adjusting the renderer code and the compute shader
+
+To be able to tell the compute shader which animation to play and/or blend, we define a new struct called PerInstanceAnimData in the OGLRenderData.h file in the opengl folder for OpenGL:
+
+```
+struct PerInstanceAnimData {
+    uint32_t firstAnimClipNum;
+    uint32_t secondAnimClipNum;
+    float firstClipReplayTimestamp;
+    float secondClipReplayTimestamp;
+    float blendFactor;
+};
+```
+
+For Vulkan, the file is named VkRenderData.h and resides in the vulkan folder.
+
+Here, we simply store the first clip number plus the timestamp of the current frame we want to render from the first clip. Also, a possible second animation clip, the time stamp for the second clip, and the blending factor between the two clips can be sent to the compute shader.
+
+In the renderer, we define two new private data members:
+
+```
+std::vector<PerInstanceAnimData> mPerInstanceAnimData{};
+ShaderStorageBuffer mPerInstanceAnimDataBuffer{};
+```
+
+The mPerInstanceAnimData variable stores the clip numbers, time stamp, and blending factor for every instance, and mPerInstanceAnimDataBuffer is the CPU-side handle for the animation data SSBO.
+
+And we declare the two buffer bindings using the same binding points as in the renderer code:
+
+```
+layout (std430, binding = 0) readonly restrict
+buffer AnimLookup {
+	vec4 lookupData[];
+};
+layout (std430, binding = 1) readonly restrict
+buffer InstanceAnimData {
+	PerInstanceAnimData instAnimData[];
+};
+```
+
+In the main() method of the compute shader, we define the same lookup table size and offset calculation as in the AssimpModel class:
+
+```
+int lookupWidth = 1023 + 1;
+uint node = gl_GlobalInvocationID.x;
+uint instance = gl_GlobalInvocationID.y;
+uint numberOfBones = gl_NumWorkGroups.x;
+uint boneOffset = lookupWidth * 3;
+uint clipOffset = numberOfBones * boneOffset;
+```
+
+We can now access all the animation settings for each instance by using the instance variable as the index in the InstanceAnimData SSBO:
+
+```
+uint firstClip = instAnimData[instance].firstAnimClipNum;
+uint secondClip = instAnimData[instance].secondAnimClipNum;
+float blendFactor = instAnimData[instance].blendFactor;
+```
+
+For instance, to get the mTranslateTimeScaleFactor value for the translation data, we must use the same formula as in C++ to access the first element of the translation lookup data for the clip:
+
+```
+float firstTransInvScaleFactor = lookupData[firstClip * clipOffset + node * boneOffset].x;
+```
+
+Even slight differences between C++ and shader formulae or data types could lead to discrepancies in the transferred data, so we need to be strict here to do exactly the same operations and use the same data types.
+
+Then, we use the inverse time scale factor to calculate the correctly scaled index in the translation lookup data:
+
+```
+int firstTransLookupIndex =
+    int(instAnimData[instance].firstClipReplayTimestamp *
+    transInvScaleFactor) + 1;
+```
+
+The per-node translation data for the first and second animation clip can also be calculated as in C++:
+
+```
+vec4 firstTranslation = lookupData[firstClip *
+    clipOffset + node * boneOffset +
+    firstTransLookupIndex];
+...
+vec4 secondTranslation = lookupData[secondClip *
+    clipOffset + node * boneOffset +
+    secondTransLookupIndex];
+```
+
+Now we can interpolate between the two animation clip translations:
+
+```
+vec4 finalTranslation = mix(firstTranslation,
+    secondTranslation, blendFactor);
+```
+
+We do the same lookup and interpolation for the scaling values. For rotation, the same code as the GLM implementation for SLERP is used.
+
+Finally, the product of all three transformation matrices is stored in the SSBO containing the resulting TRS matrices of all instances:
+
+```
+uint index = node + numberOfBones * instance;
+trsMat[index] =
+    createTranslationMatrix(finalTranslation) *
+    createRotationMatrix(finalRotation) *
+    createScaleMatrix(finalScale);
+```
+
+At this point, the mShaderTRSMatrixBuffer SSBO in the renderer contains the same data as we had with the CPU-based transformation calculations.
+
+But all we need to upload to the compute shader is the data of the animations we want to draw. So, the transformation calculation in the updateAnimation() method of the AssimpInstance class can be removed, leaving the following three lines to be executed when we update the animation of the instance:
+
+```
+mInstanceSettings.isFirstClipAnimPlayTimePos +=
+    deltaTime *
+    mInstanceSettings.isAnimSpeedFactor * 1000.0f;
+mInstanceSettings.isAnimPlayTimePos =
+    std::fmod(mInstanceSettings.isFirstClipAnimPlayTimePos,
+    mAssimpMode->getMaxClipDuration());
+mModelRootMatrix = mLocalTransformMatrix *
+    mAssimpModel->getRootTranformationMatrix();
+```
+
+We simply advance the clip time by the delta time and update the instance root matrix.
+
+If you compile and run the code now, the only visible difference is a much lower matrix generation time when the number of instances goes up. For a recent computer model, reaching 10,000 or even 20,000 animated instances of the basic model should be no problem. We don’t need so many instances in the virtual world, but the lower CPU usage for animations and animation blending gives us more freedom to implement more features in the remaining chapters of the book.
+
+Now that we have a fast and easy-to-use animation calculation, we can implement a state-based system to organize the behavior of each instance. By defining different states, like a movement direction or an action the instance will do, we create the first steps on the path to an animation system where we can control the instance as we would do in a simple game.
+
+So, let’s continue by adding new instance states.
+
+## Adding new states to the code
+
+Our future game character should be able to perform typical actions for a character in a game: wait idle for player input, walk in all four main directions, run forward, plus a bunch of other actions. Depending on the available animations, we could add a state for jumping or rolling, punching, or waving.
+
+For maximum flexibility, we will allow characters of all models to perform all the configured actions. Then we can use the UI to map an animation clip to each action we want to use for a specific model. Without a mapped animation clip, the requested action will be simply ignored.

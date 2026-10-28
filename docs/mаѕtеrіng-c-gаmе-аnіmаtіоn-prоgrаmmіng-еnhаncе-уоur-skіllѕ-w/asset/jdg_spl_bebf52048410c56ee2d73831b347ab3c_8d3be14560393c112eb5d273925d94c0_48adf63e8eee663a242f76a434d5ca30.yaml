@@ -1,0 +1,67 @@
+chapter_starts:
+- 'no': 126
+  confidence: 0.9
+  final_reason: 部分标题，符合部分-章节模式；复核方虽指出可能存在编号与标题分行，但“第X部分”按规则应划分为新章
+  accepted_evidence:
+  - 行文本为“# 第1部分”，是最高层级的部分编号
+  - 后接“## 用游戏填充世界”及本部分包含章节列表，属于部分起始页
+  - 规则规定部分-章节模式下遇到部分标题应划分新章
+  rejected_evidence:
+  - 复核方认为可能只是目录条目，实际标题由下一行给出
+  - 但该质疑不足以推翻部分标题的分章规则
+  need_human_review: false
+- 'no': 142
+  confidence: 0.95
+  final_reason: 双方一致；正式章节标题，后接欢迎段落与完整正文，上下文明确指示新章开始
+  accepted_evidence:
+  - 标题格式为“# 第1章 使用 Open Asset Import Library”，符合正式章标题
+  - 行后是欢迎段落和大量正文，非目录简介
+  - 复核方推翻概率仅5%
+  rejected_evidence:
+  - 复核方提到可能是目录条目重复，但支持证据不足
+  need_human_review: false
+- 'no': 2019
+  confidence: 0.95
+  final_reason: 双方一致；正式章节标题，后接英文副标题、欢迎段落和完整正文，上下文明确指示新章开始
+  accepted_evidence:
+  - 标题为“# 第3章 添加视觉选择”，格式规范
+  - 后接“## Adding a Visual Selection”及完整正文
+  - 复核方推翻概率仅5%
+  rejected_evidence:
+  - 复核方提到可能是目录重复，但该处有实际正文支撑
+  need_human_review: false
+- 'no': 2669
+  confidence: 0.95
+  final_reason: 双方一致；正式章节标题，后接本章欢迎段落和完整正文，上下文明确指示新章开始
+  accepted_evidence:
+  - 标题为“# 第4章 增强应用程序处理”，格式规范
+  - 后接“## 增强应用程序处理”及全部正文内容
+  - 复核方推翻概率仅5%
+  rejected_evidence:
+  - 复核方提到可能是目录重复，但正文内容完整存在
+  need_human_review: false
+rejected_lines:
+- 'no': 45
+  reason: 位于“本书涵盖内容”目录列表中，后接单句简介即转下一标题，无正文；标题用中文逗号分隔，与正式章节标题格式不符；上下文处于前言/目录区域，复核方证据成立
+  need_human_review: false
+- 'no': 48
+  reason: 同前，是“本书涵盖内容”连续目录列表中的一项，后无正文；标题格式不符合正式章节标题；复核方证据成立
+  need_human_review: false
+- 'no': 51
+  reason: 位于目录简介区域，后仅一句简介，无正文；标题格式与正式章节标题不一致；复核方证据成立
+  need_human_review: false
+- 'no': 54
+  reason: 连续目录列表中的一项，后无正文；标题使用中文逗号，与正式章节标题格式不符；复核方证据成立
+  need_human_review: false
+- 'no': 57
+  reason: “本书涵盖内容”列表的延续，后仅一句简介，无正文；上下文仍处前言/目录区域；复核方证据成立
+  need_human_review: false
+- 'no': 60
+  reason: 目录简介区域中的条目，后接单句简介，无正文；标题格式与正式章节标题不符；复核方证据成立
+  need_human_review: false
+- 'no': 63
+  reason: 连续目录列表中的一项，后无正文；标题用逗号而非空格，与正式章节标题格式不一致；复核方证据成立
+  need_human_review: false
+- 'no': 66
+  reason: “本书涵盖内容”列表最后一项，后面紧跟前言性标题，显然仍处于前言/目录部分；标题格式与正式章节标题不符；复核方证据成立
+  need_human_review: false
