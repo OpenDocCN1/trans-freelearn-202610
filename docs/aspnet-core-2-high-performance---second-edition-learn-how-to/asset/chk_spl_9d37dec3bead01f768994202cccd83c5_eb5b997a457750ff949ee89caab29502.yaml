@@ -1,0 +1,72 @@
+reviews:
+- 'no': 2
+  overturn_probability: 0.78
+  alternative: 正文小标题
+  counter_evidence:
+  - '## 制作人员 为二级标题，位于书名后、作者信息列表前，属于前置制作信息的小节而非最高层级章节标题'
+  - 前后为作者、编辑等人员名单的键值对排版，上下文为制作人员名录，符合正文前置信息的小标题特征而非统领性章标题
+  - 规则要求前言、序言、致谢、关于作者等正文之前内容统一划分为一章，起始点应为整体前置块的开始而非内部二级小标题
+  keep_split: false
+- 'no': 178
+  overturn_probability: 0.02
+  alternative: 章节标题
+  counter_evidence:
+  - '一级标题 # 开头，单独成行，编号为第 1 章，符合最高层级大章编号特征'
+  - 后 1~3 行为概述段落，随后进入子节内容，语义具有统领性
+  keep_split: true
+- 'no': 417
+  overturn_probability: 0.03
+  alternative: 章节标题
+  counter_evidence:
+  - '一级标题 # 2，为什么性能是一项功能，单独成行，编号连贯'
+  - 上下文为新章的引言段落，符合章节起始特征
+  keep_split: true
+- 'no': 546
+  overturn_probability: 0.03
+  alternative: 章节标题
+  counter_evidence:
+  - '一级标题 # 3 设置你的环境，单独成行，最高层级章节'
+  - 后文为环境搭建概述及子节列表，语义统领
+  keep_split: true
+- 'no': 867
+  overturn_probability: 0.04
+  alternative: 章节标题
+  counter_evidence:
+  - '一级标题 # 4 测量性能瓶颈，单独成行，编号连贯'
+  - 后文为本章涵盖主题列表，符合章节起始
+  keep_split: true
+- 'no': 1568
+  overturn_probability: 0.12
+  alternative: 章节标题
+  counter_evidence:
+  - '一级标题 # 7 优化 I/O 性能，单独成行，虽序号跳跃但规则允许序号跳跃仍划分新章'
+  - 后文为本章主题概述，语义统领后续 I/O 内容
+  keep_split: true
+- 'no': 2116
+  overturn_probability: 0.03
+  alternative: 章节标题
+  counter_evidence:
+  - '一级标题 # 8 理解代码执行和异步操作，单独成行，编号连贯'
+  - 上下文为新章引言
+  keep_split: true
+- 'no': 2472
+  overturn_probability: 0.03
+  alternative: 章节标题
+  counter_evidence:
+  - '一级标题 # 9 学习缓存和消息队列，单独成行，最高层级章节'
+  - 后文为本章主题列表
+  keep_split: true
+- 'no': 2738
+  overturn_probability: 0.04
+  alternative: 章节标题
+  counter_evidence:
+  - '一级标题 # 10 降低复杂性，单独成行，编号连贯'
+  - 后文为本章主题概述
+  keep_split: true
+- 'no': 2981
+  overturn_probability: 0.05
+  alternative: 章节标题
+  counter_evidence:
+  - '一级标题 # 11 监控性能回归，单独成行，最高层级章节'
+  - 后文为本章主题列表，符合章节起始
+  keep_split: true

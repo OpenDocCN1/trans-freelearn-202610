@@ -1,0 +1,7 @@
+# Summary
+
+Let's sum up what we covered in this chapter and what we will cover in the next chapter. We introduced the concept of treating performance as a feature, and we covered why this is important. We also briefly touched on some common performance problems and why we often miss them in the software development process. We'll cover these in more detail later on in this book.
+
+We showed the performance differences between various types of storage hardware. We highlighted the importance of knowing what your code runs on and, crucially, what it will run on when your users see it. We talked about how the process of scaling systems has changed from what it used to be, how scaling is now performed horizontally instead of vertically, and how you can take advantage of this in the creation of your code and systems. We showed you the tools that you can use and the licensing implications of some of them. We also explained the new world of .NET and how these latest frameworks fit in with the stable ones. We touched upon why measurement is vitally important.
+
+In the next chapter, we will show you how to get started with ASP.NET Core 2 when using Windows, Mac, or Linux. We will also demonstrate how to use Docker containers to build and run your app.

@@ -1,0 +1,13 @@
+We assume that you understand the importance of the performance for web applications, but we will recap why it’s crucial. However, you may not have had any specific or actionable advice, or much experience of performance problems occurring in the wild.
+
+By reading this book, you’ll understand what problems can occur when web applications are deployed at scale to distributed infrastructure, and you will know how to avoid or mitigate these issues. You will gain experience of how to write high-performance applications without having to learn about issues the hard way, possibly late at night.
+
+You’ll see what’s new in ASP.NET Core, why it’s been rebuilt from the ground up, and what this means for performance. You will understand the future of .NET Core and how you can now develop and deploy on Windows, macOS, and Linux. You’ll appreciate the performance of new features in ASP.NET Core, including updates to the Razor view engine, and you will be aware of cross-platform tools such as Visual Studio Code.
+
+# What this book covers
+
+Chapter 1, What’s New in ASP.NET Core 2, summarizes the significant changes between ASP.NET Core 1.0 and ASP.NET Core 2.0. We will also go into the history of the project to show why it was such a moving target. We will take a look at some of the new features in C# 6.0 and C# 7.0 to see how they can make your life easier. We will also cover .NET Standard 2.0 and how this improves library portability.
+
+Chapter 2, Why Performance Is a Feature, discusses the basic premise of this book and shows why you need to care about the performance of your software. Responsive applications are vital and it’s not simply enough to have functionalities work; they also needs to be quick. Think of the last time you heard someone complaining about an app or website, and it’s likely that they were unhappy with the performance. Poor performance doesn’t only make users unhappy, it also affects your bottom line. There’s good data to suggest that fast performance increases engagement and improves conversion rates, which is why it’s rewarded by search engines.
+
+Chapter 3, Setting Up Your Environment, shows how to get started with the latest tooling on your operating system of choice. It is no longer a case of having to use Visual Studio on Windows if you want to develop with .NET. We will cover VS 2017 and the new integrated tooling for .NET Core and ASP.NET Core. We will also cover Visual Studio for Mac (previously called Xamarin Studio) and the multi-platform VS Code editor (built using TypeScript and web technologies). We will show how to use Docker containers to make cross-platform development easy and consistent. We will also take a look at the dotnet command-line tooling.

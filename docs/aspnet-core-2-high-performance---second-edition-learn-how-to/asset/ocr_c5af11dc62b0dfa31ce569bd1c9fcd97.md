@@ -1,0 +1,9 @@
+In the following screenshot of Chrome on Android, you can see that when connecting to https://huxley.unop.uk/, Chrome uses CHACHA20_POLY1305 as the stream cipher, ECDHE for the key exchange, and ECDSA for the signature:
+
+![](bbox=[0.38, 0.18, 0.62, 0.48])
+
+The new version of TLS (1.3) is currently a draft, but it is still supported in many places. It will only allow Authenticated Encryption with Additional Data (AEAD) ciphers. AES-GCM and ChaCha/Poly are the only two ciphers that currently meet these criteria. It will also remove some other obsolete features, such as TLS compression. The good news is that TLS 1.3 not only improves security but also delivers higher performance. It is already supported by the stable versions of Firefox and Chrome. You can check support at https://caniuse.com/#feat=tls1-3.
+
+It may sometimes sound like using TLS is not always worth it, but it is an excellent idea to use HTTPS on your entire site, including any third-party resources that you load in. By doing this, you will be able to take advantage of the performance-enhancing features of HTTP/2, which include techniques that mean that it is no longer crucial to serve resources (such as JavaScript libraries) from multiple domains. You can securely host everything yourself and avoid the DNS, TCP, and TLS overhead of additional requests.
+
+All of this can be free, because Let’s Encrypt and Cloudflare provide certificates at zero cost. Cloudflare also has a TLS 1.3 beta but there can be security implications when using them. Let’s Encrypt allows you to generate certificates for use on your own servers and from 2018, it will offer wildcard certificates too. Let’s look at HTTP/2 in detail now.
