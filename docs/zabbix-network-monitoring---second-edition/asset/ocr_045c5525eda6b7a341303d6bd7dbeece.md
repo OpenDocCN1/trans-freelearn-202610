@@ -1,0 +1,7 @@
+# Visualizing Data with Graphs and Maps
+
+When done, click on the **Add** button at the bottom. Now navigate to **Monitoring | Maps** and if a map is shown, click on **All maps**. Click on **Properties** next to **First map** and in the **Automatic icon mapping** dropdown, choose the icon mapping we just created—it should be the only choice besides the `<manual>` entry. Click on the **Update** button at the bottom. If we check this map in the monitoring view now, we would see no difference, actually. To see why, let's go to the list of maps and click on **Constructor** next to **First map**. In the map editing view, click on **A test host**. The **Automatic icon selection** is not enabled. If we add a new element to this map, the automatic icon selection would be enabled for it because the map now has an icon map assigned. The existing elements keep their configuration when the icon map is assigned to the map—those elements were added when there was no icon map assigned. Holding down *Ctrl*, click on **Another host**. In the mass update form, first mark the checkbox to the left of **Automatic icon selection**, then—to the right. The first checkbox instructs Zabbix to overwrite this option for all selected elements, the second checkbox specifies that the option should be enabled for those elements:
+
+![](bbox=[0.199, 0.401, 0.801, 0.814])
+
+> Marking the **Automatic icon selection** checkbox disables the manual icon selection dropdowns—these features cannot be used at the same time for the same icon.

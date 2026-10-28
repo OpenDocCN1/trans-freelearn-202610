@@ -1,0 +1,32 @@
+chapter_starts:
+- 'no': 12706
+  confidence: 0.96
+  final_reason: 判断方认定为附录标题且单独成行，后接概述段；复核方虽提出为正文小标题的疑虑，但 overturn_probability 0.32
+    较低且 keep_split 为 true，维持分章。
+  accepted_evidence:
+  - 行内容为“## 故障排除”，单独成行且后接本章简介段落
+  - 此前 12673 已有“## 总结”收尾，上下文支持新分区
+  rejected_evidence:
+  - 复核方认为其为二级小节的替代解释
+  need_human_review: false
+- 'no': 13225
+  confidence: 0.9
+  final_reason: 判断方认定为附录主题标题；复核方提出为附录内部主题划分的反方证据，但 keep_split 为 true，维持分章。
+  accepted_evidence:
+  - 行内容为“## 成为社区的一员”，单独成行且后接概述段
+  - 与前一附录标题排版一致，语义统领后续子节
+  rejected_evidence:
+  - 复核方认为会导致附录过度拆分的担忧
+  need_human_review: false
+- 'no': 13473
+  confidence: 0.99
+  final_reason: 双方一致，文末索引标题单独成行、长度<30字、无句号，后接索引条目列表，按规则应统一划分为一章。
+  accepted_evidence:
+  - “## 索引”单独成行且为文末索引起首
+  - 上下文为索引条目列表，无子节展开
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 11987
+  reason: 复核方反方证据成立：行内容仅为“## 22”，为纯序号标记无统领性语义，真正的章节标题在下一行 11989 “## Zabbix 维护”。序号单独成行不符合章标题格式，会导致章节起始落在空编号上。
+  need_human_review: false

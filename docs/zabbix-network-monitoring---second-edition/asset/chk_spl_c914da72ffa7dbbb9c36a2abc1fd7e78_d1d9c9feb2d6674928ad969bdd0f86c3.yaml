@@ -1,0 +1,45 @@
+reviews:
+- 'no': 3046
+  overturn_probability: 0.1
+  alternative: 正文中的大节标题（章内专题）
+  counter_evidence:
+  - 该章标题在后文以“## 管理主机、用户和权限”多次重复出现，类似页眉残留，单看标题文本不能完全排除误报；
+  - 该行没有章序号，若脱离前文“摘要”结束和空行等结构标记，也可能被当作篇内大标题而非章首。
+  keep_split: true
+- 'no': 3710
+  overturn_probability: 0.85
+  alternative: 从其他文档（AI 教材/文章）误插入的排版噪声
+  counter_evidence:
+  - 前文 3706-3709 正在介绍触发器依赖配置，后文 3743 又直接继续“弹出窗口出现，告知我们有其他触发器依赖于此触发器”，中间的 AI 段落是完整自包含的插入块，与
+    Zabbix 主线没有任何过渡；
+  - 虽然带“第一章”字样，但该块内容是另一主题的完整短文，更符合混入转换结果的外部文档片段，而不是本书真正的章节结构。
+  keep_split: false
+- 'no': 4105
+  overturn_probability: 0.15
+  alternative: 正文小标题/章内专题标题
+  counter_evidence:
+  - 该标题在后文以“## Acting upon Monitored Conditions”“## 根据监控条件采取行动”等变体多次出现，疑似页眉残留，需依赖上下文判断；
+  - 该行为二级标题且无编号，而本书中“## 摘要”“## 主机和主机组”等二级标题都只是节标题，格式上并不天然高于它们。
+  keep_split: true
+- 'no': 5016
+  overturn_probability: 0.15
+  alternative: 正文小标题/章内专题标题
+  counter_evidence:
+  - 同名标题在 5026、5098、5193、5367 等处反复出现，这种重复很像页眉残留，不能仅凭标题文字判定为新章；
+  - 该标题无编号且为二级标题，同一章内还有 5020、5038 等多个二级标题，格式上并不比它们更高。
+  keep_split: true
+- 'no': 5415
+  overturn_probability: 0.2
+  alternative: 页眉页脚中的章名残留
+  counter_evidence:
+  - 该章名在 5434、5681、5804 等处反复以中英文形式出现，可能是页眉残留，需要依靠上下文确认首次出现位置；
+  - 行内写作“## 9 使用图表和地图可视化数据”，若只看编号和二级标题，也有可能被误认为节标题。
+  keep_split: true
+- 'no': 5814
+  overturn_probability: 0.95
+  alternative: 外部企业数据架构文档的误插入片段/排版噪声
+  counter_evidence:
+  - 该行后紧跟“本文档概述了企业数据架构策略”这种文档开篇语，到 5832 “如需更多详细信息…”结束，5834 又回到“一张只有一个元素的地图…”的 Zabbix
+    叙述，前后没有任何衔接；
+  - “企业数据架构”与所在章“使用图表和地图可视化数据”完全无关，且该块自成起讫，判定为误插入的外部文档片段远比判定为新章合理。
+  keep_split: false

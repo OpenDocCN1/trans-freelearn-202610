@@ -1,0 +1,46 @@
+chapter_starts:
+- 'no': 3046
+  confidence: 0.93
+  final_reason: '一级标题 # 管理主机、用户和权限，单独成行，位于前文摘要结束后的空行之后，后文以主机/用户/权限体系展开，语义统领性强，符合最高层级章起始特征。复核方疑点为标题重复出现，但上下文为首次出现且为章首。'
+  accepted_evidence:
+  - '一级标题 # 管理主机、用户和权限，单独成行'
+  - 后文 3048 起展开主机清单、权限系统等统领性内容
+  - '前文 3034 ## 摘要 结束且空行分隔'
+  rejected_evidence:
+  - 标题在后文多次重复出现疑似页眉残留
+  need_human_review: false
+- 'no': 4105
+  confidence: 0.88
+  final_reason: '二级标题 ## 对监控到的条件采取操作，单独成行，后接动作/通知体系概述，与前文触发器章节形成明显主题断裂，语义统领后续动作配置内容，判定为新章起始。'
+  accepted_evidence:
+  - 标题单独成行且后 4107 起介绍动作确保对触发器触发采取措施
+  - 与前文 4090 总结触发器内容形成章节边界
+  rejected_evidence:
+  - 标题在后文以 Acting upon Monitored Conditions 等变体出现
+  need_human_review: false
+- 'no': 5016
+  confidence: 0.88
+  final_reason: '二级标题 ## 使用模板简化复杂配置，单独成行，后续为模板创建、链接、嵌套等完整体系，语义独立且为本部分起始。复核方指出标题重复，但首次出现位置符合章首上下文。'
+  accepted_evidence:
+  - 标题后 5018 起识别模板场景、创建模板等体系内容
+  - 前文 5012 结束上一章总结
+  rejected_evidence:
+  - 同名标题在 5026、5098 等处反复出现
+  need_human_review: false
+- 'no': 5415
+  confidence: 0.92
+  final_reason: '标题 ## 9 使用图表和地图可视化数据 含章序号 9，单独成行，统领图表/地图可视化内容，与前文模板章节断裂，符合新章起始。复核方页眉疑点不成立，首次出现即为章首。'
+  accepted_evidence:
+  - 含章序号 9 且单独成行
+  - 后文 5417 起介绍图表、地图可视化体系
+  rejected_evidence:
+  - 该章名在 5434、5681 等处反复出现
+  need_human_review: false
+rejected_lines:
+- 'no': 3710
+  reason: 复核方反证成立：该段为‘第一章 人工智能概述’完整自包含的外部文档片段，前后文均为 Zabbix 触发器依赖配置，3710-3739 与主线无过渡且后文
+    3743 直接回到触发器叙述，判定为误插入噪声，不应分章。
+  need_human_review: false
+- 'no': 5814
+  reason: 复核方反证成立：## 企业数据架构 后接企业数据架构策略文档开篇至 5832 结束，5834 立刻回到 Zabbix 地图叙述，前后无衔接，与所在章‘使用图表和地图可视化数据’主题无关，判定为外部文档误插入的排版噪声，不应分章。
+  need_human_review: false

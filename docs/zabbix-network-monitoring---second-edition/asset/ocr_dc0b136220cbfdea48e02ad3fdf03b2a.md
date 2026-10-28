@@ -1,0 +1,9 @@
+Click on **Add**. Somewhere in the following images, the one we just uploaded should appear. In addition to custom icons, we can also upload background images to be used in maps. In the **Type** dropdown, switch to **Background** and click on the **Create background** button. Note that this dropdown, different from all the other pages, is located on the left hand side in 3.0.0. Again, enter a name for the background and choose an image—preferably, one sized 600x225 as that was the size of our map. Smaller images will leave empty space at the edges and larger images will be cut:
+
+![](bbox=[0.278, 0.234, 0.724, 0.325])
+
+> For the background images, it is suggested to have simple PNG images as they will provide less distraction from the actual monitoring data and will be smaller to download whenever the map is viewed.
+
+Click on **Add**. As Zabbix comes with no background images by default, the one we added should be the only one displayed now. With the images uploaded, let's try to use them in our map. Go to **Monitoring | Maps** and click on **All maps** if a map is shown. Click on **Constructor** next to **First map** and click on **Add** next to the **Icon** label, then click on the newly added icon. In the **Icons** section, change the **Default** dropdown to display whatever name you chose for the uploaded icon, then click on **Apply**. Position this new icon wherever it would look best (remember about the ability to disable snapping to the grid). You might want to clear out the **Label** field, too. Remember to click on **Apply** to see the changes on the map:
+
+![](bbox=[0.096, 0.645, 0.902, 0.873])

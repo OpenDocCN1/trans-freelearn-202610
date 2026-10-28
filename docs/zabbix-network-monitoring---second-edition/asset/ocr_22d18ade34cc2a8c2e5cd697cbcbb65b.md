@@ -1,0 +1,7 @@
++   - **Refresh:** This is the time in seconds between page refreshes when in the **Monitoring** section. While smaller values might be nice to look at when first setting up and having items with short check intervals, they somewhat increase the load on the server, and if the page contains a lot of information, then it might sometimes not even finish loading before the next refresh kicks in. Let's set this to 60 for this user—after all, they can always refresh manually when testing something. Note that some pages do not perform a full page refresh; instead, they just reload some elements on that page. A graph page, for example, only reloads the graph image.
++   - **Rows per page:** Each user can have an individual maximum rows-per-page setting. If the returned data exceeds this parameter, the interface splits the data into multiple pages. We won't change this parameter.
++   - **URL (after login):** A user might wish to always see a specific page after logging in—be it the overview, trigger list, or any other page. This option allows the user to customize that. The URL entered is relative to the Zabbix directory, so let's make this user always see **Monitoring | Triggers** when they log in, by entering `tr_status.php` here.
+
+The final result should look as follows:
+
+![](bbox=[0.21, 0.472, 0.785, 0.916])

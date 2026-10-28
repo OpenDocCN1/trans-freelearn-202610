@@ -1,0 +1,9 @@
+Ouch. While we can clearly see the effect our change had, it has also left us with very ugly historical data. The Y axis of that graph represents the total counter value (thus showing the total since the monitored system was started up), but the X axis represents the correct (delta) data. You can also take a look at the values numerically — go to the dropdown in the upper-right portion, which currently reads Graph. Choose 500 latest values from there. You'll get the following screen:
+
+![](bbox=[0.07, 0.22, 0.9, 0.45])
+
+In this list, we can nicely see the change in data representation as well as the exact time when the change was performed. But those huge values have come from the counter data, and they pollute our nice, clean graph by being so much out of scale— we have to get rid of them. Go to Configuration | Hosts and click on Items next to Another host, then mark the checkbox next to the Incoming traffic on interface eth0 item, and look at the buttons positioned at the bottom of the item list:
+
+![](bbox=[0.22, 0.63, 0.77, 0.68])
+
+The third button from the left, named Clear history, probably does what we want. Notice the 3 selected text to the left of the activity buttons — it shows the amount of entries selected, so we always know how many elements we are operating on. Click on the Clear history button. You should get a JavaScript popup asking for confirmation to continue. While history cleaning can take a long time with large datasets, in our case, it should be nearly instant, so click on the OK button to continue. This should get rid of all history values for this item, including the huge ones.

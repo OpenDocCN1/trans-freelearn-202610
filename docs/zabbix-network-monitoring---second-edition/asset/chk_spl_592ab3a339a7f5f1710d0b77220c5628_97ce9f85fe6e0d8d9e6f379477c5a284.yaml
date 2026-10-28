@@ -1,0 +1,43 @@
+reviews:
+- 'no': 2
+  overturn_probability: 0.2
+  alternative: 书籍前置内容中的一个三级小标题（如致谢列表的起头）
+  counter_evidence:
+  - 该行是三级标题（###），并非最高层级的大章标题，可能只是前置内容中的一个小节标题；
+  - 后续紧随的“关于作者”“电子书、折扣优惠等”等也同为三级标题，若都按章划分会造成过多碎片化章节
+  keep_split: true
+- 'no': 79
+  overturn_probability: 0.1
+  alternative: 正文前置内容中的二级小标题
+  counter_evidence:
+  - “前言”虽然在书籍结构中是独立部分，但在此处前后文均为前置说明，可能被误认为普通节标题；
+  - 该行使用“##”级别，与后文“本书涵盖的内容”等并列，或只是多个前置条目之一
+  keep_split: true
+- 'no': 230
+  overturn_probability: 0.05
+  alternative: 第1章正文的子节标题（但实际是章节标题）
+  counter_evidence:
+  - 该行带有数字“1”，但同书中后续章标题既有“#”也有“##”，标题级别不统一，存在被误判为普通小标题的可能；
+  - 紧邻其前的“本书涵盖的内容”列举了各章内容，此行的出现位置正好在目录之后，可能被误认为目录条目而非正文标题
+  keep_split: true
+- 'no': 832
+  overturn_probability: 0.15
+  alternative: 页眉/页脚残留的重复章名噪声
+  counter_evidence:
+  - 同一章中后续多次出现完全相同的“# 获得第一条通知”（如第849行、第877行），这些明显是页眉或重复噪声，说明该类文本可能并非每次都是真正的章节起始；
+  - 原文该章的英文标题应为“Getting Your First Notification”，此处中文翻译标题可能是翻译版页眉被误提取
+  keep_split: true
+- 'no': 1962
+  overturn_probability: 0.3
+  alternative: 第2章内部的一个子节标题（如“使用批量更新”的延续）
+  counter_evidence:
+  - 该行直接出现在“## 使用批量更新”之后，正文仍继续讨论批量更新的操作，可能只是该主题下的分段小标题；
+  - 其标题级别为“##”，与第2章内部众多“##”级节标题（如“## 探索前端”）一致，易混为节标题而非新章
+  keep_split: true
+- 'no': 2094
+  overturn_probability: 0.1
+  alternative: 第4章标题（但前面“## 4”已经暗示了章节编号，此行为完整标题）
+  counter_evidence:
+  - 前面一行“## 4”单独出现，或许“## 4”才是不完整的章节噪声，而“监控SNMP设备”可能只是其后的正文小标题；
+  - 该行标题缺少“第X章”的完整编号格式，且与前后文衔接不明显，存在被误判的可能
+  keep_split: true
