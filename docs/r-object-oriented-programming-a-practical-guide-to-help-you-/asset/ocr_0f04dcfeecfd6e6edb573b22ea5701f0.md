@@ -1,0 +1,3 @@
+# # Downloading the example code
+
+You can download the example code files for all Packt books you have purchased from your account at [http://www.packtpub.com](http://www.packtpub.com). An additional source for the examples in this book can be found at [https://github.com/KellyBlack/R-Object-Oriented-Programming](https://github.com/KellyBlack/R-Object-Oriented-Programming). If you purchased this book elsewhere, you can visit [http://www.packtpub.com/support](http://www.packtpub.com/support) and register to have the files e-mailed directly to you.

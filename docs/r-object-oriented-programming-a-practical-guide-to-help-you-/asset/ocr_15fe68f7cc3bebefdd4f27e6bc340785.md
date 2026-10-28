@@ -1,0 +1,7 @@
+# # Introduction and assumptions
+
+Date and time formations are often saved as part of the information within a dataset. Converting the information into a date or time variable is one of the less exciting chores to perform, and it is something that requires a great deal of care. In this chapter, we will discuss the ways of transforming strings and data types and demonstrate how to perform basic arithmetic operations. It is important to note that working with time and date data occurs in a number of different contexts, and there are a number of different libraries, such as chron, lubridate, and date, to help you work with time and data variables.
+
+Our focus here, though, is on R’s built-in functions used to work with time and date data. It is important to note that the commands explored here can be sensitive to small variations within a data file, and you should always double check your work especially with respect to time data. It can be a tedious task, but it is important to make sure that the data is correct. If you commonly work with time data, you should read the details found using the `help(DateTimeClasses)` command.
+
+Another complication is that time zones can change, and the general practices associated with time data can change. For example, new time zones can be changed, created, or removed, or a region can change its time zone. You should always ensure that your practices associated with time data are consistent with the practice used to generate the data that you have.

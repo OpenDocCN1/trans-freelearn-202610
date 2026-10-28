@@ -1,0 +1,7 @@
+# Copyright violations
+
+Violation of copyright laws for material on the Internet is an ongoing problem across all media. At Packt, we take the protection of our copyright and licenses very seriously. If you come across any illegal copies of our works, in any form, on the Internet, please provide us with the location address or website name immediately so that we can pursue a remedy.
+
+Please contact us at <a href="mailto:copyright@packtpub.com">copyright@packtpub.com</a> with a link to the suspected pirated material.
+
+We appreciate your help in protecting our authors, and our ability to bring you valuable content.

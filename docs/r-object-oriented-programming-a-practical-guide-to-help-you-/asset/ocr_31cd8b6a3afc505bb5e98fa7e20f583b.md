@@ -1,0 +1,3 @@
+# # Who this book is for
+
+If you are familiar with programming and wish to gain a basic understanding of the R environment and learn how to create programming applications using the R language, this is the book for you. It is assumed that you have some exposure to the R environment and have a basic understanding of R. This book does not provide extensive motivations for certain approaches and practices assuming that the reader is comfortable in the development of software applications.

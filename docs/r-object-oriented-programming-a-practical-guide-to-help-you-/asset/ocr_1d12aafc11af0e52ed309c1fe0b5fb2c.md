@@ -1,0 +1,3 @@
+# # Printing results and saving data
+
+We will explore the options available to take information stored within the R environment and express that information in either human- or machine-readable forms. We will start with a brief discussion on saving the workspace in an R environment. Next, we will discuss various commands that can be used to print information to either the screen or a file. Finally, we will discuss the primitive commands that can be used for basic file operations.

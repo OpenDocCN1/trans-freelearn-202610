@@ -1,0 +1,7 @@
+# # Overview
+
+All the previous chapters focus on specific topics, and here we bring together a number of different topics to examine an extended example. All of the classes examined here are S4 classes. These classes are used to read in a CSV file that contains the grades for students in a class. There is one class that defines how to read a grade file and how to interpret a column. Another set of classes is defined and the classes are used to track the information for a single assignment. An object of this class will include all the scores for the assignments of all students.
+
+We first discuss the new Course class, which is used to keep track of all the assignments. Next, we discuss the assignment classes that are used to keep track of the grades for a single assignment. Once the classes are defined, the details on extending the summary, plot, and show commands are given to demonstrate how common commands can be extended to react when passed a newly defined object. Finally, some basic arithmetic and accessor operators are redefined so that the R system will react in an appropriate manner when using familiar operations, such as addition or multiplication.
+
+The Course class includes objects whose type is one of the assignment classes, and it seems more natural to define the assignment classes first. The actions of the assignment classes are more intricate and include more details, while the Course class is relatively straightforward. To keep the introduction to the classes more gentle, we’ll first discuss the Course class.

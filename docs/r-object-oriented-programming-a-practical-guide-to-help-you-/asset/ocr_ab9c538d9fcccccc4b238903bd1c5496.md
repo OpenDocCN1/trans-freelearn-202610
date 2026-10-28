@@ -1,0 +1,7 @@
+# # Summary
+
+We have explored how to create S3 classes, and we did so in the context of two examples. The first example focused on how to define functions that will react based on the class name of the first argument given to the function. The first example did not make full use of basic object-oriented principles, as it is an attempt to simply introduce the idea of S3 classes. The second example extended the first example to provide a simple example of how inheritance is implemented. It demonstrated how inheritance is implemented in the context of an S3 class. It also provided a demonstration of how encapsulation is implemented under the framework of an S3 class.
+
+One downside to the approach is that there is little type checking. It is possible to make changes to an object that can make it inconsistent with the original definition. When a change is made to an object, no checks are implemented to ensure that an object has the properties that are expected of it.
+
+One way to avoid this issue is to make use of S4 classes. The approach associated with S4 classes is examined in the next chapter. Another advantage is that the S4 approach will look more familiar to those already familiar with object-oriented approaches to programming.

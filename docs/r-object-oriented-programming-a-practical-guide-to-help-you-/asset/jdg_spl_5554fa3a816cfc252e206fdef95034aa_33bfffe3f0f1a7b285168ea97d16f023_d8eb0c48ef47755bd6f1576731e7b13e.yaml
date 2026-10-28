@@ -1,0 +1,77 @@
+chapter_starts:
+- 'no': 0
+  confidence: 0.95
+  final_reason: 书名标题位于全书最开头，属正文之前内容，按规则统一划分为一章（修正判断方以“## 致谢”为起点的方案：所谓‘正文之前的内容统一划分为一章’应覆盖书名行本身，致谢是其中的板块，不应再单独起一章）
+  accepted_evidence:
+  - 行0为全书书名标题，无章编号，处于正文之前
+  - 规则：前言、序言、致谢、关于作者等正文之前的内容，统一划分为一章
+  rejected_evidence:
+  - 判断方将行2’## 致谢‘作为前置内容统一章起点，但该行只是前置板块内的三级/二级标题，若在此起章则‘书名/致谢/关于作者/前言’会被割裂成多章，与原规则’统一划分为一章‘矛盾
+  need_human_review: false
+- 'no': 472
+  confidence: 1.0
+  final_reason: 明确编号章标题，双方一致；复核未提出有效反证
+  accepted_evidence:
+  - 行472 ‘## 第2章 组织数据’带‘第2章’硬性编号
+  - 独立成行、无句号、后接概述段
+  rejected_evidence:
+  - 复核提到前文可能缺失第1章标题，但序号跳跃不影响本行仍为章起始
+  need_human_review: false
+- 'no': 862
+  confidence: 1.0
+  final_reason: 明确编号章标题，格式与上下文均符合
+  accepted_evidence:
+  - 行862 ‘## 第 3 章 保存数据与打印结果’
+  - 前有上一章总结，后有概述段与‘###’子节
+  rejected_evidence:
+  - 复核疑为目录条目，但该行处于正文流中，且上下文为上一章总结+本章概述
+  need_human_review: false
+- 'no': 1275
+  confidence: 1.0
+  final_reason: 明确编号章标题，上下文衔接自然
+  accepted_evidence:
+  - 行1275 ‘## 第 5 章 字符与字符串操作’
+  - 后接概述段与子节
+  rejected_evidence:
+  - 复核提到前面缺上一章结尾，但上一章有总结段，格式无异常
+  need_human_review: false
+- 'no': 1442
+  confidence: 1.0
+  final_reason: 明确编号章标题，且前文有‘下一章’预告
+  accepted_evidence:
+  - 行1442 ‘## 第 6 章 转换和定义时间变量’
+  - 行1440预告‘下一章’，随后独立成行带编号
+  rejected_evidence:
+  - 复核担心把‘### 总结’误当边界，但本行编号明确
+  need_human_review: false
+- 'no': 2116
+  confidence: 1.0
+  final_reason: 明确编号章标题，层级高于前后‘###’子节
+  accepted_evidence:
+  - 行2116 ‘## 第 8 章 S3 类’
+  - 行2114预告‘下一章正式定义 S3 类’
+  rejected_evidence:
+  - 复核担心前文出现多个‘###’干扰，但‘##’层级清楚
+  need_human_review: false
+- 'no': 2405
+  confidence: 1.0
+  final_reason: 明确编号章标题，空格差异不影响识别
+  accepted_evidence:
+  - 行2405 ‘## 第9章 S4类’
+  - 前有上一章总结，后接概述段
+  rejected_evidence:
+  - 复核指出缺少空格，属排版噪声，不构成反证
+  need_human_review: false
+- 'no': 2976
+  confidence: 1.0
+  final_reason: 明确编号章标题，位于总结之后并带概述段
+  accepted_evidence:
+  - 行2976 ‘## 第10章 案例研究——课程成绩’
+  - 上下文符合章边界特征
+  rejected_evidence:
+  - 复核提到破折号可能被误认为补充，但编号明确
+  need_human_review: false
+rejected_lines:
+- 'no': 2
+  reason: 行2 ‘## 致谢’属于正文之前内容的板块标题，按规则正文之前内容统一划分为一章，不应在此单独起章；裁决改为以行0书名行作为该统一章的起点
+  need_human_review: false

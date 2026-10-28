@@ -1,0 +1,41 @@
+chapter_starts:
+- 'no': 2976
+  confidence: 0.97
+  final_reason: 编号特征符合最高层级大章“第10章”，标题单独成行、末尾无句号、长度<30字；后1~3行为本章概述且随后出现分节列表，前文为上一章的总结段落。复核方反方证据不足，keep_split=true。
+  accepted_evidence:
+  - 标题为“## 第10章 案例研究——课程成绩”，明确编号且单独成行
+  - 后接“本章是我们第一个案例研究...”等概述段落
+  - '前文2966 ### 总结 为章末总结'
+  rejected_evidence:
+  - 复核方认为可能为小节标题，但编号“第10章”与前后序号连贯，属最高层级
+  need_human_review: false
+- 'no': 3751
+  confidence: 0.96
+  final_reason: 编号特征符合最高层级大章“第 11 章”，与第10章序号连贯，标题单独成行、末尾无句号；后接本章概述与分节列表。复核方指出空格与上下文铺垫差异，但不足以推翻章标题判定，keep_split=true。
+  accepted_evidence:
+  - 标题为“## 第 11 章 案例研究——模拟”，编号明确且单独成行
+  - 后接“我们现在将检查一组设计用于实现蒙特卡洛模拟的 S3 类...”概述
+  - 随后出现分节列表 - 模拟类 / 蒙特卡洛类 / 示例
+  rejected_evidence:
+  - 复核方认为空格不一致且前行为代码块结束，但排版噪声不影响编号识别
+  need_human_review: false
+- 'no': 3992
+  confidence: 0.92
+  final_reason: “## 附录 A. 包管理”为最高层级附录标题，单独成行、无句号，后接附录概述及分节。规则要求文末索引分章，附录同属独立部分。复核方对附录是否算章的疑虑不足以否定，keep_split=true。
+  accepted_evidence:
+  - 标题单独成行，格式为“## 附录 A.”，为全书最高层级附录
+  - 后接“这里简要概述了如何使用包...”概述及分节列表
+  rejected_evidence:
+  - 复核方认为可能为附录内小节，但无上层“附录”总标题证据
+  need_human_review: false
+- 'no': 4030
+  confidence: 0.95
+  final_reason: “## 索引”为文末索引标题，单独成行，后接索引条目。按规则文末索引应统一划分为一章。复核方对上下文特征的质疑不成立，keep_split=true。
+  accepted_evidence:
+  - 标题为“## 索引”，单独成行
+  - 后接“### A”索引条目，属工具性文末内容
+  - 规则明确文末索引划分为一章
+  rejected_evidence:
+  - 复核方认为无概述段落，但索引本身无需概述
+  need_human_review: false
+rejected_lines: []
