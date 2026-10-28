@@ -1,0 +1,113 @@
+
+of using the `CALENDARAUTO()` function in DAX. In this section, we will create a custom function in Power Query Editor to generate a simple `Date` dimension accepting two input parameters: `Start Year` and `End Year`. We invoke the custom function to generate a **Date** table starting from `1st Jan` of `Start Year` and ending on `31st Dec` of `End Year`.
+
+The dates generated in the **Date** column are continuous and do not have any gaps between dates. The following steps show how to use the following expressions to create and invoke the custom function:
+
++   1. The custom function can be created by copying the following Power Query expression:
+
+```
+```powerquery
+// fnGenerateDate
+(#"Start Year" as number, #"End Year" as number) as table =>
+    let
+        GenerateDates = List.Dates(#date(#"Start Year", 1, 1), Duration.Days(Duration.From(#date(#"End Year", 12, 31) - #date(#"Start Year" - 1, 12, 31))), #duration(1, 0, 0, 0)),
+        #"Converted to Table" = Table.TransformColumnTypes(Table.FromList(GenerateDates, Splitter.SplitByNothing(), {"Date"}), {{"Date", Date.Type}}),
+        #"Added Custom" = Table.AddColumn(#"Converted to Table", "DateKey", each Int64.From(Text.Combine({Date.ToText([Date], "yyyy"), Date.ToText([Date], "MM"), Date.ToText([Date], "dd")})), Int64.Type),
+        #"Year Column Added" = Table.AddColumn(#"Added Custom", "Year", each Date.Year([Date]), Int64.Type),
+        #"Quarter Column Added" = Table.AddColumn(#"Year Column Added", "Quarter", each "Qtr " & Text.From(Date.QuarterOfYear([Date])), Text.Type),
+        #"MonthOrder Column Added" = Table.AddColumn(#"Quarter Column Added", "MonthOrder", each Date.ToText([Date], "MM"), Text.Type),
+        #"Short Month Column Added" = Table.AddColumn(#"MonthOrder Column Added", "Month Short", each Date.ToText([Date], "MMM"), Text.Type),
+        #"Month Column Added" = Table.AddColumn(#"Short Month Column Added", "Month", each
+```
+
+```
+Date.MonthName([Date]), Text.Type
+    in
+        #"Month Column Added"
+```
+
+The preceding code is also available in this book’s GitHub repository, in the Chapter 6, Generate Date Dimension.m file, via the following URL: https://github.com/PacktPublishing/Expert-Data-Modeling-with-Power-BI-Second-Edition/blob/0b26cc981f0448edfa108cf9f587cef439fb454b/Source%20Code/Chapter%2006/Chapter%206,%20Generate%20Date%20Dimension.m
+
++   2. In Power Query Editor, click the New Source drop-down button.
++   3. Click Blank Query.
++   4. Rename the new query from Query1 to fnGenerateDate.
++   5. Click the Advanced Editor button from the Home tab.
++   6. Delete the existing code and paste the expressions we copied in the first step.
++   7. Click Done:
+
+![](img/5d2bce74fd6fceebed14fd1488bf7088_343_0.png)
+
+Figure 6.33: Creating the fnGenerateDate custom function in Power Query Editor
+
+The preceding process creates the fnGenerateDate custom function in Power Query Editor. The next step is to invoke the function by entering the Start Year and End Year parameters. In real-world scenarios, we confirm the date range of the Date dimension with the
+
+business to ensure the `Date` dimension supports all current and future requirements.
+
+Sometimes, we need to find the minimum and maximum dates of all the columns contributing to our data analysis with `Date` or `DateTime` data types. There are various ways to overcome those cases, such as the following:
+
++   - We can get the minimum and maximum dates by eyeballing the data if the dataset is small.
++   - We can sort each of the **OrderDate**, **DueDate**, and **ShipDate** values in ascending order to get the minimum dates, and then we can sort those columns in descending order to get the maximum dates.
++   - We can use the `List.Min()` function for each column to get the minimum dates. Then, using the `List.Max()` function for each column gives us the maximum dates.
++   - We can find the minimum and maximum dates using DAX.
++   - We can use the **Column profile** feature in Power Query Editor.
+
+Now that we have the `fnGenerateDate` custom function handy, we pass the `Start Date` and `End Date` parameters and invoke it. Our sample’s start and end years are `2010` and `2014`, respectively. We invoke the `fnGenerateDate` function as follows:
+
++   8. Select the **fnGenerateDate** custom function from the **Queries** pane.
++   9. Type in `2010` for the **Start Year** parameter and `2014` for the **End Year** parameter.
++   10. Click **Invoke**:
+
+![](img/5d2bce74fd6fceebed14fd1488bf7088_345_0.png)
+
+# Figure 6.34: Invoking the fnGenerateDate function
+
+Invoking the fnGenerateDate function creates a new table named Invoked Function. Rename it Date, as shown in the following image:
+
+![](img/5d2bce74fd6fceebed14fd1488bf7088_345_1.png)
+
+# Figure 6.35: Renaming the invoked custom function Date
+
+As a Date dimension is commonly used in Power BI, it is handy to have a custom function to reuse on other solutions if required.
+
+So far, we have created the Date dimension. Next, we will create the Time dimension.
+
+## Time
+
+The outcomes of the discovery sessions with the business showed that we need to have a Time dimension. In the previous section, we created a custom function to generate a Date dimension. In Chapter 2, Data Analysis eXpressions and Data Modeling, we discussed that we could use DAX to
+
+create the `Time` dimension. This section discusses creating the `Time` dimension in Power Query.
+
+Creating the **Time** dimension provides the flexibility to analyze the data over time elements, such as hour, minute, and second, or time buckets such as 5 min, 15 min, 30 min, and so on.
+
+The following Power Query expressions create a `Time` dimension with 5 min, 15 min, 30 min, 45 min, and 60 min time buckets:
+
+```
+```powerquery
+let
+    Source = Table.FromList({1..86400}, Splitter.SplitByNothing()),
+        #"Renamed Columns" = Table.RenameColumns(Source, {{"Column1", "ID"}}),
+        #"Time Column Added" = Table.AddColumn(#"Renamed Columns", "Time", each Time.From(#datetime(1970,1,1,0,0,0) + #duration(0,0,0,[ID]))),
+        #"Hour Added" = Table.AddColumn(#"Time Column Added", "Hour", each Time.Hour([Time])),
+        #"Minute Added" = Table.AddColumn(#"Hour Added", "Minute", each Time.Minute([Time])),
+        #"5 Min Band Added" = Table.AddColumn(#"Minute Added", "5 Min Band", each Time.From(#datetime(1970,1,1,0,0,0) + #duration(0, 0, Number.RoundDown(Time.Minute([Time]) / 5) * 5, 0)) + #duration(0, 0, 5, 0)),
+        #"15 Min Band Added" = Table.AddColumn(#"5 Min Band Added", "15 Min Band", each Time.From(#datetime(1970,1,1,0,0,0) + #duration(0, 0, Number.RoundDown(Time.Minute([Time]) / 15) * 15, 0)) + #duration(0, 0, 15, 0)),
+        #"30 Min Band Added" = Table.AddColumn(#"15 Min Band Added", "30 Min Band", each Time.From(#datetime(1970,1,1,0,0,0) + #duration(0, 0, Number.RoundDown(Time.Minute([Time]) / 30) * 30, 0)) + #duration(0, 0, 30, 0)),
+        #"45 Min Band Added" = Table.AddColumn(#"30 Min Band Added", "45 Min Band", each Time.From(#datetime(1970,1,1,0,0,0) + #duration(0, 0, Number.RoundDown(Time.Minute([Time]) / 45) * 45, 0)) + #duration(0, 0, 45, 0)),
+        #"60 Min Band Added" = Table.AddColumn(#"45 Min Band Added", "60 Min Band", each Time.From(#datetime(1970,1,1,0,0,0) + #duration(0, 0, Number.RoundDown(Time.Minute([Time]) / 60) * 60, 0)) +
+```
+
+```
+#duration(0, 0, 60, 0)),
+    #"Removed Other Columns" = Table.SelectColumns(#"60 Min Band Added",{"Time", "Hour", "Minute", "5 Min Band", "15 Min Band", "30 Min Band", "45 Min Band", "60 Min Band"}),
+    #"Changed Type" = Table.TransformColumnTypes(#"Removed Other Columns",{{"Time", type time}, {"Hour", Int64.Type}, {"Minute", Int64.Type}, {"5 Min Band", type time}, {"15 Min Band", type time}, {"30 Min Band", type time}, {"45 Min Band", type time}, {"60 Min Band", type time}})
+in
+#"Changed Type"
+```
+
+The preceding code is also available in this book’s GitHub repository, in the Chapter 6, Generate Time Dimension.m file, via the following URL: https://github.com/PacktPublishing/Expert-Data-Modeling-with-Power-BI-Second-Edition/blob/0b26cc981f0448edfa108cf9f587cef439fb454b/Source%20Code/Chapter%2006/Chapter%206,%20Generate%20Time%20Dimension.m
+
+With the preceding code handy, we only need to create a new Blank Query, rename it to Time, and copy and paste the preceding expressions into Advanced Editor, as shown in the following image:
+
+![](img/5d2bce74fd6fceebed14fd1488bf7088_347_0.png)
+
+Figure 6.36: Creating the Time dimension in Power Query Editor

@@ -1,0 +1,25 @@
+chapter_starts:
+- 'no': 8869
+  confidence: 0.72
+  final_reason: 复核方反证不足，标题单独成行且后接概述段落，前文为上一章总结，语义上为第15章内部的导言性大节起始，符合分章语义特征，保留分章。
+  accepted_evidence:
+  - '## 新选项、功能和 DAX 函数 单独成行且后接概述段落，前文为上一章总结'
+  - 复核方 overturn_probability 0.25 且 keep_split true
+  rejected_evidence:
+  - '标题无章序号且与后文大量 ## 节同层级'
+  - 标题与 9349 行内容重合可能为引导性章节导语
+  need_human_review: false
+- 'no': 9928
+  confidence: 0.9
+  final_reason: 文末索引按规则统一划分为一章，复核方反证不成立，保留分章。
+  accepted_evidence:
+  - '## 索引 为文末索引，按规则文末索引统一划分为一章'
+  - 复核方 overturn_probability 0.05 且 keep_split true
+  rejected_evidence:
+  - 索引并非作者撰写的正文章节，从严格语义看不具备章的统领性
+  need_human_review: false
+rejected_lines:
+- 'no': 9349
+  reason: '复核方反证成立：8869 行开篇列表已列出本章结构包含“新的 DAX 函数”，9349 行正是该列表第三项，为第15章内大节；前文9347-9348仍在同一章内总结，且后续小节使用
+    ##，层级混乱。应为正文小标题而非独立新章，不分章。'
+  need_human_review: false

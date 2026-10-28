@@ -1,0 +1,22 @@
+chapter_starts:
+- 'no': 0
+  confidence: 0.85
+  final_reason: 书名/封面级标题，单独成行且为全书最高层级起始；前言、序言、目录等前置内容统一划分为一章，符合前文统一归一章规则
+  accepted_evidence:
+  - 书名/封面级标题通常作为前言整体归一章，单独成行且无序号，但符合前言、序言统一划分为一章的规则
+  - 后续内容为目录/本书涵盖内容，属于前文前置信息
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 285
+  reason: '复核方指出为第2章内部小节，标题使用二级 Markdown ##，后接上一章回顾及 ### 理解虚拟表 等三级标题，语义为节内主题概括而非全章起始，判断方证据不足'
+  need_human_review: false
+- 'no': 1094
+  reason: '复核方指出位于第3章内容中部，后续仍有 ## Power Query 区分大小写、## 查询 等同级小节，上下文为章节内部结构而非新章起始，判断方误判为章节'
+  need_human_review: false
+- 'no': 1796
+  reason: '复核方指出为二级标题且后接 ### 从常见数据源获取数据 等三级小节，层级显示为章节内部划分，语义为本节主题而非全章统领'
+  need_human_review: false
+- 'no': 2424
+  reason: '复核方指出为英文二级标题，位于第5章内容中，后续紧跟 ## 数据类型转换 等同级小节，且后接过渡段落，非全书最高层级章节起始'
+  need_human_review: false

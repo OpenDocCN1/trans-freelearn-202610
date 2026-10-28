@@ -1,0 +1,41 @@
+chapter_starts:
+- 'no': 3379
+  confidence: 0.82
+  final_reason: '该行位于上一章章末 Discord 块之后，后续紧跟“在上一章中……”的章节开篇概述与本章主题列表，标题单独成行且语义统领后续“星型模式准备”内容。复核方提出的“##
+    为二级小标题”不成立，因为本书中章/部分标题同样使用 ## 标记。'
+  accepted_evidence:
+  - 3379 前为第 5 章末尾的 “Join us on Discord!” 及图片收尾
+  - 3381 行出现“在上一章中，我们学习了一些常见的数据准备步骤……”的章首概述
+  - 3389 行出现“在本章中，我们涵盖以下主题：”并列出后续要点
+  - 标题“Power Query 编辑器中的星型模式准备”语义上能够统领后续整章内容
+  rejected_evidence:
+  - '复核方认为该行以 ## 开头，属于二级小标题'
+  - 复核方认为 3363 行仍属第 5 章延续，但 3363 行实为“进入下一章”的过渡语
+  - 复核方认为后续为具体步骤而非章节概述，但 3381/3389/3391 已构成完整章首结构
+  need_human_review: false
+- 'no': 5023
+  confidence: 0.9
+  final_reason: 标题单独成行，前面是第 8 章章末的 Discord 块，后面是“在上一章中……”的章首总述、本章主题列表以及对 Chapter 9
+    文件名的引用，上下文和语义均符合新章开头。
+  accepted_evidence:
+  - 5013 行为上一章末尾“加入我们的Discord！”
+  - 5025 行出现“在上一章中，我们学习了Power BI Desktop中的数据建模组件……”的章首回顾
+  - 5027-5033 行列出本章主题列表，符合章首概述结构
+  - 5035 行引用“Chapter 9, Star Schema and Data Modeling…”进一步确认章节归属
+  rejected_evidence:
+  - 复核方未提出实质性反证，且其结论为 keep_split=true
+  need_human_review: false
+- 'no': 5781
+  confidence: 0.78
+  final_reason: 该行位于第 9 章章末 Discord 块之后，后续为部分级总述并明确列出“本节包含以下章节：Chapter 10-15”。虽然它不是某一章的章名，而是“部分”标题，但按部分-章节模式，部分标题同样应划分为新章起点。
+  accepted_evidence:
+  - 5771-5779 为上一章末尾“Join us on Discord!”及图片收尾
+  - 5783-5787 行为部分级总述：“本节重点介绍高级数据建模技术……”
+  - 5789-5796 行明确列出 Chapter 10 至 Chapter 15 的章节列表
+  - 5798 行才另起 Chapter 10 章题，说明 5781 属于更高层级的部分标题
+  rejected_evidence:
+  - 复核方认为该行是“部分总述”而非章题，但按规则部分标题也应分章
+  - '复核方认为 ## 格式与正文小节一致，但本书部分/章标题均使用相同的 Markdown 层级'
+  - 复核方认为后文为说明性文字而非章节概述，但“本节包含以下章节”正是部分开篇的典型特征
+  need_human_review: false
+rejected_lines: []

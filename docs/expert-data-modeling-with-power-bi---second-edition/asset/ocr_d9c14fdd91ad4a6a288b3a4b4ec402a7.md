@@ -1,0 +1,3 @@
+# Figure 10.8: Summarizing the Internet Sales table at the Year and Month level
+
+We can now apply the changes within the Power Query Editor window, which adds **Internet Sales Aggregated Year Month** as a new table. Moving forward with our implementation, we must create a relationship between the **Internet Sales Aggregated Year Month** table and the **Date** table. The following image shows the relationship once created:

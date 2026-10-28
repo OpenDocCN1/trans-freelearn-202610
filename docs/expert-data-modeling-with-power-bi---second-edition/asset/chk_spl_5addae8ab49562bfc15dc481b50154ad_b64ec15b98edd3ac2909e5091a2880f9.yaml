@@ -1,0 +1,42 @@
+reviews:
+- 'no': 0
+  overturn_probability: 0.15
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 书名/封面级标题通常作为前言整体归一章，单独成行且无序号，但符合前言、序言统一划分为一章的规则
+  - 后续内容为目录/本书涵盖内容，属于前文前置信息
+  keep_split: true
+- 'no': 285
+  overturn_probability: 0.75
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题使用二级 Markdown ##，而全书最高层级章节在正文中多为 ## 或 # 但上下文已在第2章内部，行285后紧跟“上一章讨论了 Power BI
+    具有不同的层”，为章节内部小节而非新章起始'
+  - '前文 73 行已有 ## Power BI 中的数据建模 作为第1章主体，285 行后仍出现 ### 理解虚拟表 等三级标题，层级结构显示为节内划分'
+  - 标题长度适中且无序号特征，语义为本节主题概括而非统领整章
+  keep_split: false
+- 'no': 1094
+  overturn_probability: 0.8
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题为 ## 在 Power BI 中介绍 Power Query M 公式语言，位于第3章内容中部，前后仍有 ## Power Query 区分大小写、##
+    查询 等同级小节，显示为章节内部结构'
+  - '标题后1~3行为概述段落但随后直接进入子节 ## Power Query 区分大小写，符合小节而非新章的上下文特征'
+  - 全书最高层级章节标题在该处应为第3章整体，实际第3章起始更早且无明确第3章编号标题
+  keep_split: false
+- 'no': 1796
+  overturn_probability: 0.7
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题 ## 从各种源获取数据 为二级标题，后续内容包含 ### 从常见数据源获取数据、### 右键单击 Parameter1 等三级小节，层级显示为章节内部划分'
+  - 上下文中 1796 行前已有大量第4章相关内容且无章节序号跳跃，标题语义为本节主题而非全章统领
+  - 标题末尾无句号且单独成行，易被误判为章节，但格式特征与正文小标题重合
+  keep_split: false
+- 'no': 2424
+  overturn_probability: 0.65
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题 ## Common Data Preparation Steps 为英文二级标题，位于第5章内容中，后续紧跟 ## 数据类型转换 等同级小节，显示为节内结构'
+  - 标题后接“在上一章中，我们讨论了一些...”的过渡段落，而非新章的概述性开篇
+  - 全书章节划分应以中文第X章为准，此英文二级标题更符合正文小标题/排版噪声特征
+  keep_split: false
