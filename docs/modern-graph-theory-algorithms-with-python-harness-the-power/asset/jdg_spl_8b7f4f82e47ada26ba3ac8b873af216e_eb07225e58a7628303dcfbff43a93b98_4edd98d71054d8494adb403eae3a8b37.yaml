@@ -1,0 +1,70 @@
+chapter_starts:
+- 'no': 13
+  confidence: 0.95
+  final_reason: 序言为正文前独立部分，单独成行标题，语义统领后续内容，复核方确认应保留
+  accepted_evidence:
+  - 序言为正文前独立部分，符合前言、序言统一划分为一章的规则
+  - 标题单独成行且语义统领后续内容
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 194
+  confidence: 0.9
+  final_reason: 第1章标题“什么是网络？”，单独成行且为最高层级大章，前一行# 1为章节编号构成完整章标题
+  accepted_evidence:
+  - 标题单独成行，长度小于30字，末尾无句号，语义统领后续内容
+  - 前一行# 1为章节编号，与之构成完整的第1章标题组合，符合最高层级大章特征
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 505
+  confidence: 0.9
+  final_reason: 第2章标题“使用 NetworkX 和 igraph 将数据整理为网络”，单独成行，上下文为章节分界
+  accepted_evidence:
+  - 单独成行，语义概括后续内容，且为第2章的正文标题
+  - 前后上下文为章节结束与开始的明显分界
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 863
+  confidence: 0.95
+  final_reason: 第 2 部分：空间数据应用，为部分-章节模式下的部分标题，应划分新章
+  accepted_evidence:
+  - 标题为‘第 2 部分：空间数据应用’，符合部分-章节模式下的部分标题划分规则
+  - 后接章节列表，语义具有统领性
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 1516
+  confidence: 0.85
+  final_reason: 第5章标题“生态数据”，单独成行最高层级大章，章节边界清晰
+  accepted_evidence:
+  - 单独成行，语义为生态数据章节，符合最高层级大章特征
+  - 前后为参考文献与技术要求，章节边界清晰
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 1858
+  confidence: 0.95
+  final_reason: 第 3 部分：时间数据应用，为部分标题，符合部分-章节模式划分规则
+  accepted_evidence:
+  - 标题为‘第 3 部分：’，为部分标题，符合部分-章节模式划分规则
+  - 后接时间数据应用介绍及章节列表
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 2606
+  confidence: 0.85
+  final_reason: 第8章标题“动态社交网络”，单独成行最高层级大章，上下文为章节分界
+  accepted_evidence:
+  - 单独成行，语义为动态社交网络，为第8章标题
+  - 上下文为章节结束与开始的明显分界
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 31
+  reason: 贡献者属于正文前作者信息类栏目，规则要求前言、序言、致谢、关于作者等正文之前内容统一划分为一章，不应各自单独成章；复核方指出应与前置信息合并
+  need_human_review: false
+- 'no': 33
+  reason: 关于作者为典型的作者介绍栏目，属于前置信息范畴，与贡献者、关于审阅者构成同一前置信息块，单独分章会导致过度拆分
+  need_human_review: false
+- 'no': 51
+  reason: 关于审阅者同样为正文前独立栏目，与序言、前言、关于作者同属前置信息，规则要求统一处理不应单独分章
+  need_human_review: false
+- 'no': 55
+  reason: 前言属正文前统一处理内容，单独为前言再起一章与‘统一划分为一章’规则冲突，更像是前置信息块的延续
+  need_human_review: false

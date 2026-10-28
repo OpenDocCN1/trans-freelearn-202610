@@ -1,0 +1,7 @@
+![](bbox=[0.331, 0.106, 0.683, 0.419])
+
+The shortest path between vertices eight and nine is simply the edge connecting vertex eight to vertex nine. Assuming that this network is not weighted, the shortest distance from this path is one. The shortest path between vertices one and six is given by the edges connecting vertex six to vertex three and vertex three to vertex one. The shortest distance between vertex six and three is, thus, two. However, the shortest path between vertex eight and vertex six does not exist and would be designated as an infinite distance.
+
+Dijkstra’s algorithm begins at one of the paired vertices and explores the vertices to which that vertex is connected. The shortest path between that initial vertex and its neighboring vertices is then recorded, minus the initial vertex (as it is already in our path set). The next set of vertices connected to the shortest-distance neighboring vertex is then explored to find the next shortest path that exists. This iterative exploration continues until the other paired vertex is found.
+
+Let’s consider how Dijkstra’s algorithm can help us find the shortest route between stores. Consider a set of five stores from the same grocery chain in one suburb that may need restocking by the parent chain’s supplier. *Table 4.1* gives a summary of the distances between these five stores in miles:

@@ -1,0 +1,9 @@
+![](bbox=[0.17, 0.09, 0.81, 0.48])
+
+Figure 2.4 – A diagram showing the processes by which genes are expressed, transcribed, and translated into proteins
+
+Let’s consider a concrete example. Cobras are venomous snakes, and their DNA encodes genes related to venom production. Transcription of these genes happens in the venom glands that produce venom and store it until the snake strikes a target. The DNA encoding these genes is transcribed into RNA, which is then translated into a protein.
+
+Gene sets transcribed together are said to be coexpressed; coexpression networks are useful in understanding the relationship between genetic factors and diseases or physical traits. In our snake venom example, genes encoding venom would be coexpressed in the venom gland, as all of the venom is produced in that part of the snake’s body. Environmental factors can indirectly influence the expression patterns of genes by modifying the DNA structures to upregulate or downregulate transcription. For instance, when our snake bites in self-defense, it may empty its venom gland completely with the bite. This will cause DNA related to venom genes to be upregulated, allowing for more venom production to replenish the snake’s supply so that it can eat and defend itself.
+
+The field of epigenetics studies these gene-environment interactions, particularly in the development of complex diseases such as cancer or mental health disorders. Typically, gene expression within or across tissues is measured through protein binding on genes of interest using some sort of microarray chip. Many human diseases involve a more complex interplay of environment and genes than the regulation of venom levels in a snake’s venom gland; some of these diseases involve many parts of the body.

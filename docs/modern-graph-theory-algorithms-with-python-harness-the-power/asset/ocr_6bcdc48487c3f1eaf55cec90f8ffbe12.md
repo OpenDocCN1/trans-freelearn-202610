@@ -1,0 +1,9 @@
+One recent edge-based centrality network has proven to be an efficient tool for finding stock market tipping points. **Forman–Ricci curvature** is a geometry-based tool that considers adjacent edges in relation to an edge of interest. On an unweighted network, Forman–Ricci curvature is calculated by subtracting the degree centrality of the two vertices attached to an edge of interest from 2. The constant, 2, represents the connection between the two vertices connected by the edge of interest. The degree centrality of both vertices connected by the edge counts the number of adjacent edges to our edge of interest (minus the vertices connected by that edge, whereby we obtain our constant of 2). In *Figures 6–3*, we see three vertices: two vertices with a single edge in relation to the middle vertex (both with a degree centrality of 1) and a middle vertex connecting to both of the outer vertices (with a degree centrality of 2). Both edges, thus, have a Forman–Ricci curvature of -1, as the sum of the vertex degree centralities for both is 3 (2 - 3 = -1).
+
+![](bbox=[0.26, 0.32, 0.74, 0.62])
+
+Figure 6.3 – An example network demonstrating Forman–Ricci curvature, where the middle vertex is pulled from both the first and third outer vertices
+
+To obtain vertex centrality metrics from this edge metric, we can sum the edge metrics for each vertex to score the vertices. In our example in *Figure 6.3*, we have outer vertices with a Forman–Ricci vertex centrality of -1, as both only connect to a single edge. However, the middle vertex connects to two edges, with a Forman–Ricci curvature of -1, giving it a Forman–Ricci vertex centrality of -2. Because this centrality metric relies on low-cost computations, it scales well to large networks and can be used as an alternative edge-based centrality score when betweenness centrality is not feasible.
+
+Now, let's explore some stock market data and see how network science can help us identify key trends over time.

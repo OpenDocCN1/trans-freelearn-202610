@@ -1,0 +1,17 @@
+The **chain rule of probability** allows us to construct a Bayesian network as a product of conditional probabilities. Consider events *A*, *B*, and *C*. Returning to our drug use example, event *A* might be regular use, event *B* trying the drug, and event *C* might be around the drug. Our causal chain is thus the following:
+
+$$P(A, B, C) = P(A \mid B, C) * P(B \mid C) * P(C)$$
+
+*P(A, B, C)* refers to the probability of all events occurring. *P(A|B, C)* refers to the probability of A occurring given that *B* and *C* have occurred. *P(B|C)* is the probability of *B* occurring given that *C* has occurred. Because these events are usually inferred from data, we need to use an algorithm to estimate the joint probability distribution *P(A,B,C)*. Typically, this is done with an expectation–maximization algorithm through the computation of expected values conditional on the data. Then, the algorithm maximizes the complete likelihood, assuming that the expected values computed are the correct ones. Values are then adjusted again given the likelihood computed in the last step. Once the expected values and likelihood converge, the algorithm stops.
+
+Now that we know the basics of Bayesian networks, let’s turn to an educational data example of causal pathways and datasets upon which Bayesian networks can learn.
+
+# Educational pathway example
+
+One of the common uses of Bayesian probability and networks is in educational research. Course sequencing involves building upon prior knowledge, and students taking courses conditional on prior knowledge must first obtain that prior knowledge before they can succeed in the course at hand. Prerequisite courses allow professors to require students to take certain courses before taking their courses. Entry to university and then to graduate programs is conditional on successful completion of exams at the previous level of education. Thus, education is a field in which Bayesian networks arise naturally. Let’s dive into an example.
+
+# Outcomes in education
+
+Many outcomes in education are the culmination of the long sequence of courses students take. For instance, in South Africa and the United States, a student hoping to practice law must take many courses and take a final examination before being able to practice law independently. Passing the examination relies on prior success in coursework and experience gained in internships and other hands-on legal activities. Most medical degrees follow a similar educational approach, with a combination of coursework, practical experience, and final examination culminating in professional status in the field.
+
+Understanding key milestones and turning points within these pathways ensures as many students as possible pass the final examinations to obtain their licenses. However, many courses exist, and not all students take the same courses throughout their education. Medical students may focus on courses most related to their medical subspecialty of interest. Law students may intern within different branches of legal practice to see what type of law they might like to practice. Thus, the data is often incomplete; coupled with small program sizes, this creates a difficult data mining scenario.

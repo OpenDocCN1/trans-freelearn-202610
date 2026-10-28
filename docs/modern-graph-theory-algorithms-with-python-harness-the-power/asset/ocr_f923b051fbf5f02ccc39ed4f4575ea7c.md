@@ -1,0 +1,9 @@
+# Application of centrality metrics across time slices
+
+The NASDAQ stock market is an American stock exchange in New York City that includes publicly traded companies such as Apple, Alphabet, Nvidia, and Microsoft. Kaggle provides a full history of NASDAQ stock prices under a public license (https://www.kaggle.com/datasets/jacksoncrow/stock-market-dataset?resource=download) that can give us stock data for these four tech companies during the period in which they were all publicly traded up to April 1, 2020. We’ve munged the data for you to include only these four stocks in the period from August 19, 2004, to April 1, 2020. Let’s take a peek at these data to see what trends might exist (Figure 6.4):
+
+![](bbox=[0.1, 0.29, 0.85, 0.64])
+
+In Figure 6.4, we can see that Alphabet has a consistently higher price, but all stocks exhibit the typical trends of constant pricing, dips, spikes, and upward or downward trends over this long period of trading. Of note is the 2020 trend, where stocks experienced the COVID-19 crash. Periods of volatility include 2008–2009 and 2016–2020.
+
+One of the important aspects of time series analysis is windowing the time series data into overlapping pieces. While windowing can be optimized by using a grid search, windowing tends to be more of an art than a science. Choosing a window impacts the length of time in which trends can be captured. In our stock market data, window length limits the period in which we can search for trends and, thus, limits the time period after the last window in which we can forecast market behavior. A window that is too large can miss important trends that impact short-term market behavior. A window that is too small can limit forecasting to the immediate future.

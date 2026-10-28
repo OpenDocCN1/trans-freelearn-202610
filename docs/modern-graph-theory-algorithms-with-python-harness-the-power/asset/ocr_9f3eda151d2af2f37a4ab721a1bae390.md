@@ -1,0 +1,9 @@
+Let’s return to our hackathon network and weight our edges based on the average number of conversations per day of the hackathon between different team members. Perhaps Machiko is coordinating the business use case of the technology and does not interact much with Ayanda, the backend engineer, but needs to make sure the front end is intuitive (Greta’s team position). However, we’d expect Ayanda and Greta to work together more frequently, as they are integrating the backend and front end of the product. Perhaps we have a weighted network as shown in Figure 1.11:
+
+![](bbox=[0.12, 0.24, 0.88, 0.62])
+
+Figure 1.11 – A weighted hackathon network of conversations between team members
+
+In addition to weighting, relationships can be undirected or directed. So far, we’ve considered undirected networks, where relationships are mutual. Friendships, Zoom calls, shared classes, team membership, and many other real-world networks involve mutual relationships. However, messages are one-way interactions, between a sender and receiver. Reposts of social media content are one-way relationships, as well. Gene regulation, population migration, airline flights, and goods transportation also involve one-way interactions. Directed graphs allow us to capture directional information in our graph, and like undirected graphs, directed graphs can be weighted or unweighted.
+
+Let’s consider a football game where the players pass a ball to each other over a 5-minute period. Perhaps one forward dribbles for a while and then passes the ball to the other forward, who quickly passes it to the open center striker. Figure 1.12 shows this weighted network of football field interactions among the teammates:

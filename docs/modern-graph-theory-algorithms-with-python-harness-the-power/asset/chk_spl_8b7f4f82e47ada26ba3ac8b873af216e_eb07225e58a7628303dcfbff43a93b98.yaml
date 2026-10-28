@@ -1,0 +1,78 @@
+reviews:
+- 'no': 13
+  overturn_probability: 0.05
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 序言为正文前独立部分，符合前言、序言统一划分为一章的规则
+  - 标题单独成行且语义统领后续内容
+  keep_split: true
+- 'no': 31
+  overturn_probability: 0.85
+  alternative: 正文前栏目/排版噪声
+  counter_evidence:
+  - 贡献者、关于作者、关于审阅者均属于正文前的作者信息类栏目，规则要求前言、序言、致谢、关于作者等正文之前的内容统一划分为一章，不应各自单独成章
+  - 该标题后紧跟正文前介绍性段落，无子节结构，格式上与序言、前言同属前置信息
+  keep_split: false
+- 'no': 33
+  overturn_probability: 0.85
+  alternative: 正文前栏目/排版噪声
+  counter_evidence:
+  - 关于作者为典型的作者介绍栏目，属于前置信息范畴
+  - 与上文# 贡献者、下文# 关于审阅者构成同一前置信息块，单独分章会导致前置信息过度拆分
+  keep_split: false
+- 'no': 51
+  overturn_probability: 0.8
+  alternative: 正文前栏目/排版噪声
+  counter_evidence:
+  - 关于审阅者同样为正文前独立栏目，与序言、前言、关于作者同属前置信息
+  - 规则要求此类内容统一划分为一章，不应为每个栏目单独分章
+  keep_split: false
+- 'no': 55
+  overturn_probability: 0.75
+  alternative: 正文前栏目
+  counter_evidence:
+  - 前言与序言均属正文前统一处理的内容，单独为前言再起一章与‘统一划分为一章’规则冲突
+  - 前后均为空行且后接正文引言段落，更像是前置信息块的延续而非最高层级大章
+  keep_split: false
+- 'no': 194
+  overturn_probability: 0.3
+  alternative: 章节标题
+  counter_evidence:
+  - 标题单独成行，长度小于30字，末尾无句号，语义统领后续内容
+  - 前一行# 1为章节编号，与之构成完整的第1章标题组合，符合最高层级大章特征
+  keep_split: true
+- 'no': 505
+  overturn_probability: 0.1
+  alternative: 章节标题
+  counter_evidence:
+  - 单独成行，语义概括后续内容，且为第2章的正文标题
+  - 前后上下文为章节结束与开始的明显分界
+  keep_split: true
+- 'no': 863
+  overturn_probability: 0.05
+  alternative: 部分标题
+  counter_evidence:
+  - 标题为‘第 2 部分：空间数据应用’，符合部分-章节模式下的部分标题划分规则
+  - 后接章节列表，语义具有统领性
+  keep_split: true
+- 'no': 1516
+  overturn_probability: 0.15
+  alternative: 章节标题
+  counter_evidence:
+  - 单独成行，语义为生态数据章节，符合最高层级大章特征
+  - 前后为参考文献与技术要求，章节边界清晰
+  keep_split: true
+- 'no': 1858
+  overturn_probability: 0.05
+  alternative: 部分标题
+  counter_evidence:
+  - 标题为‘第 3 部分：’，为部分标题，符合部分-章节模式划分规则
+  - 后接时间数据应用介绍及章节列表
+  keep_split: true
+- 'no': 2606
+  overturn_probability: 0.2
+  alternative: 章节标题
+  counter_evidence:
+  - 单独成行，语义为动态社交网络，为第8章标题
+  - 上下文为章节结束与开始的明显分界
+  keep_split: true

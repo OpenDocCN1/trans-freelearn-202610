@@ -1,0 +1,7 @@
+![](bbox=[0.282, 0.101, 0.759, 0.407])
+
+Figure 8.12 – A split heron population interaction pattern, observed at point 3
+
+Frequent changes in interaction patterns likely limited this epidemic’s potential spread, as animals interacted infrequently enough and for short enough time periods to limit exposure to infectious individuals relative to the frequent and lasting interactions noted in the crocodile population. In the wild, the frequency of interaction and duration of interaction among animals of the same species play a critical role in determining the likelihood of population epidemics within a species sharing a common geography. Solitary species tend to have lower rates of infectious disease spread than species forming large herds or flocks.
+
+Naturally occurring phenomena such as bait balls or temporary water sources after a storm provide time-limited interaction opportunities for disease to spread among solitary species or isolated herds. As such, they present an opportunity for conservationists to study epidemic potentials within populations of animals that may not interact frequently aside from a one-time event involving needed resources such as food or water. Models such as the ones we’ve examined provide the tools for estimating the impact of infectious disease on populations that are normally isolated but mix at such events.
