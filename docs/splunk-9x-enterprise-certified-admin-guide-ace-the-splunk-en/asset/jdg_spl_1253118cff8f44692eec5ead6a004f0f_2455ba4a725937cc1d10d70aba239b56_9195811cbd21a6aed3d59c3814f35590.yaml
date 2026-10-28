@@ -1,0 +1,127 @@
+chapter_starts:
+- 'no': 0
+  confidence: 0.9
+  final_reason: 书名/封面标题，其后 Contributors、关于作者、如何使用本书等均属正文之前的内容，按规则统一划分为前置章节。
+  accepted_evidence:
+  - 后续均为 Contributors、关于作者、审阅者等前件内容
+  - 规则明确前言、序言、致谢等正文前内容统一为一章
+  rejected_evidence:
+  - 书名通常作为封面信息而非正文章节标题
+  - 若单独成章可能造成前置内容重复切分
+  need_human_review: false
+- 'no': 52
+  confidence: 0.95
+  final_reason: 部分-章节模式下，'第 1 部分'标题应划分为新章；后接部分概述与章节列表。
+  accepted_evidence:
+  - 标题为'# 第 1 部分：Splunk 系统管理'
+  - 后文列出第 1 章至第 7 章，明显为部分起始
+  rejected_evidence:
+  - 部分标题有时仅作装饰性分隔
+  need_human_review: false
+- 'no': 66
+  confidence: 0.85
+  final_reason: '文字与第 1 章标题完全一致，后接''学完本章后''等章首概述，且后续有多个子节；虽标题级别为 ###，仍应作为第 1 章起点。'
+  accepted_evidence:
+  - 对应第 1 部分章节列表中的'第 1 章，Splunk Enterprise 认证管理员考试入门'
+  - 后接概述段落及多个子节
+  rejected_evidence:
+  - 标题级别为###，与后续子节标题层级相同，存在视觉混淆
+  need_human_review: false
+- 'no': 449
+  confidence: 0.95
+  final_reason: 与前文第 1 章末尾答案回顾明显分隔；标题与第 2 章'Splunk 许可证管理'对应，且后接章节概述。
+  accepted_evidence:
+  - 对应第 1 部分章节列表中的第 2 章
+  - 后接'本章的总体目标是...'等概述
+  rejected_evidence:
+  - 缺少'第 2 章'字样，可能被误认为正文内小标题
+  - 前文无显式章分隔标记
+  need_human_review: false
+- 'no': 653
+  confidence: 0.95
+  final_reason: 编号'3.'与第 3 章对应，标题单独成行且后接 RBAC 概述，符合章标题特征。
+  accepted_evidence:
+  - 对应第 1 部分章节列表中的第 3 章
+  - 后接'Splunk Enterprise 遵循RBAC...'概述段落
+  rejected_evidence:
+  - 编号'3.'在正文中也可能表示列表分点
+  need_human_review: false
+- 'no': 791
+  confidence: 0.85
+  final_reason: 内容与第 4 章'Splunk 转发器管理'对应，前接第 3 章自我评估答案，后接章节概述；标题级别不影响其章级地位。
+  accepted_evidence:
+  - 对应第 1 部分章节列表中的第 4 章
+  - 前文是第 3 章答案回顾，后文为新主题介绍
+  rejected_evidence:
+  - 标题级别为##，与第2、3章的#级别不一致
+  - 紧接第3章答案回顾，可能被误认为附属内容
+  need_human_review: false
+- 'no': 964
+  confidence: 0.8
+  final_reason: 前接第 4 章答案回顾，后续内容围绕索引概念、桶、索引创建等展开，对应第 5 章'Splunk 索引管理'；'理解 Splunk 索引'为章首标题变体。
+  accepted_evidence:
+  - 对应第 1 部分章节列表中的第 5 章
+  - 后续小节均为索引主题，且前文已结束转发器主题
+  rejected_evidence:
+  - 使用##且无显式章号，形式上像二级子标题
+  - 可能被误认为第4章内主题
+  need_human_review: false
+- 'no': 1192
+  confidence: 0.9
+  final_reason: 标题与第 6 章'Splunk 配置文件'完全对应，后接章节主题列表，是独立章起点。
+  accepted_evidence:
+  - 对应第 1 部分章节列表中的第 6 章
+  - 后接'在本章中，我们将涵盖以下主题'
+  rejected_evidence:
+  - 使用##且无显式章号
+  - 前文刚结束'复查答案'，可能被误认为同一章扩展
+  need_human_review: false
+- 'no': 1588
+  confidence: 0.95
+  final_reason: '''第 2 部分''是部分标题，部分-章节模式下需划分为新章；下一行''Splunk 数据管理''为其续行。'
+  accepted_evidence:
+  - 标题'# 第 2 部分：'为部分级标题
+  - 后接第 2 部分简介与第 8-12 章列表
+  rejected_evidence:
+  - 标题在下一行续写，存在排版断行
+  - 部分标题常作为分隔页
+  need_human_review: false
+- 'no': 1939
+  confidence: 0.9
+  final_reason: 编号'10'与第 10 章对应，后接数据解析与转换的概述；虽然缺少'章'字，但语义和上下文均为独立章起点。
+  accepted_evidence:
+  - 对应第 2 部分章节列表中的第 10 章
+  - 前接第 9 章自我评估，后接'数据旅程的第一阶段是...'概述
+  rejected_evidence:
+  - 编号'10'可能被理解为节号
+  - 前面没有明确第9章结束标志
+  need_human_review: false
+- 'no': 2254
+  confidence: 0.85
+  final_reason: 标题与第 11 章'字段提取与查找'对应，前接第 10 章答案回顾，后接章首概述，应划分为新章。
+  accepted_evidence:
+  - 对应第 2 部分章节列表中的第 11 章
+  - 后接'太好了！你已经到达第2部分的最后一章'
+  rejected_evidence:
+  - 使用##且无编号，形式上是子节标题
+  - 可能被误认为第10章补充小节
+  need_human_review: false
+- 'no': 2514
+  confidence: 0.9
+  final_reason: 与第 2 部分章节列表中的'第 12 章，自评估模拟考试'对应；前接第 11 章自我评估，段首明确为模拟考试章节，是第 12 章起点。
+  accepted_evidence:
+  - 对应第 12 章标题'自我评估模拟考试'
+  - 后文'欢迎来到...模拟考试章节'及 56 道题内容
+  rejected_evidence:
+  - 标题为##且无编号，可能被误认为第11章自评子节
+  need_human_review: false
+- 'no': 2726
+  confidence: 0.75
+  final_reason: 其后为典型文末索引条目，按规则文末索引统一划分为一章；'## D'是索引字母分节的起点。
+  accepted_evidence:
+  - 2726 行起为索引条目，如'配置文件优先级，搜索时优先级 95-97'
+  - 规则规定文末索引划分为一章
+  rejected_evidence:
+  - 没有显式'索引'标题，'## D'仅为索引字母分节
+  need_human_review: false
+rejected_lines: []

@@ -1,0 +1,71 @@
+reviews:
+- 'no': 0
+  overturn_probability: 0.1
+  alternative: 书名/封面标题
+  counter_evidence:
+  - 书名通常作为封面信息，不属于正文的章节标题
+  - 如果将其视为一章，可能造成后续前言部分重复切分
+  keep_split: true
+- 'no': 52
+  overturn_probability: 0.05
+  alternative: 部分标题（第1部分）
+  counter_evidence:
+  - 部分标题有时仅作为装饰性分隔，不承载实际章节内容
+  - 但本书明确采用部分-章节模式，部分标题应划分新章
+  keep_split: true
+- 'no': 449
+  overturn_probability: 0.1
+  alternative: 正文中的一级小标题
+  counter_evidence:
+  - 缺少'第2章'等明确编号，可能被误认为是正文内部的小标题
+  - 前文第1章结束处并无显式的章分隔标记，存在连续阅读的可能
+  keep_split: true
+- 'no': 653
+  overturn_probability: 0.05
+  alternative: 带编号的正文小标题
+  counter_evidence:
+  - 编号'3.'在正文中也可能表示列表项或分点，不一定是章标题
+  - 但该行使用一级标题标记，且后接概述段落，符合章标题特征
+  keep_split: true
+- 'no': 791
+  overturn_probability: 0.2
+  alternative: 第3章内的二级子标题
+  counter_evidence:
+  - 标题级别为'##'，与第2、3章的'#'级别不一致，可能是子节
+  - 它紧接在第3章答案回顾之后，可能仍是第3章的附属内容
+  keep_split: true
+- 'no': 964
+  overturn_probability: 0.2
+  alternative: 第4章内的二级子标题
+  counter_evidence:
+  - 使用'##'且无编号，形式上符合二级子标题的特征
+  - '''理解 Splunk 索引''也可能是第4章''转发器管理''下的一个主题，而非独立章'
+  keep_split: true
+- 'no': 1192
+  overturn_probability: 0.2
+  alternative: 第5章内的二级子标题
+  counter_evidence:
+  - 同样以'##'开头，没有显式章号，可能只是第5章的一个小节
+  - 前文'复查答案'刚结束，后文'配置文件'也可能是同一章末尾的扩展内容
+  keep_split: true
+- 'no': 1588
+  overturn_probability: 0.1
+  alternative: 部分标题（排版跨行）
+  counter_evidence:
+  - 该行'# 第 2 部分：'标题并不完整，实际标题在下一行，存在排版断行可能
+  - 部分标题在书中常作为分隔页，不一定属于正文的章节大纲
+  keep_split: true
+- 'no': 1939
+  overturn_probability: 0.1
+  alternative: 子节标题（编号10）
+  counter_evidence:
+  - 编号'10'也可能是节号而非章号，且缺少'章'字
+  - 前面的内容没有明确的第9章结束标志，可能仍在第9章内
+  keep_split: true
+- 'no': 2254
+  overturn_probability: 0.2
+  alternative: 第10章内的二级子标题
+  counter_evidence:
+  - 使用'##'且无编号，形式上是子节标题
+  - 前文第10章以'答案回顾'结束，但'字段提取与查找'也可能作为第10章的补充小节
+  keep_split: true

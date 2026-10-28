@@ -1,0 +1,3 @@
+# About the reviewer
+
+**Trayton White**, self-proclaimed “World’s Okayest Splunk Wizard,” has spent his career tinkering with systems in a variety of industries. Most recently, he worked on new Splunk offerings by testing them and developing novel use cases the technology helps solve. By adopting a “let’s try it and see” approach, he has developed in-depth knowledge of the inner workings of Splunk and enjoys sharing this information with others.

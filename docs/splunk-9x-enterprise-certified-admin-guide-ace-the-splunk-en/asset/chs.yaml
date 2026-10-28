@@ -1,0 +1,2052 @@
+- ''
+- '# Splunk 9.x 企业版认证管理员指南：借助这本全面备考指南，顺利通过 Splunk 企业版认证管理员考试
+
+
+
+
+
+
+  ## Contributors
+
+
+  ## 关于作者
+
+
+  **Srikanth Yarlagadda** 是一位经验丰富的 Splunk 安全顾问，专注于最大化 Splunk 平台的潜力以强化组织的网络安全态势。他的主要职责包括利用
+  Splunk Enterprise 及其 **安全信息和事件管理 (SIEM)** 和 **安全编排、自动化与响应 (SOAR)** 功能。Srikanth 在为
+  **安全运营中心 (SOC)** 团队监控、检测、调优和自动化安全威胁场景方面表现出色。
+
+
+  凭借扎实的背景，Srikanth 在管理 Splunk Enterprise 方面拥有丰富的经验。他熟练地处理系统管理任务，并 expertly 协调来自各种来源的数据接入。他的专长还延伸到在电信领域开发各种业务用例，体现了
+  Splunk 的强大功能。Srikanth 已获得以下官方 Splunk 认证：Splunk Enterprise Architect、Splunk Admin、Enterprise
+  Security Admin 和 Splunk SOAR Developer。
+
+
+  在他早期的职业生涯中，Srikanth 的 IT 之旅涉足了多个技术领域。他曾担任熟练的 Java 开发人员和熟练的 SOA 开发人员，甚至涉足使用 **Oracle
+  Communications Services Gatekeeper (OCSG)** 和 Oracle SOA Suite 的电信协议实现领域。
+
+
+  Srikanth 的专业知识还体现在他作为 SplunkTrust 成员的积极参与上，这是他贡献和奉献的证明。他在 Splunk 充满活力的社区论坛中频繁参与，在那里分享见解并与同好合作。
+
+
+  *我非常感激那些给予我信任并提供机会的组织。他们对我的能力的信任推动我走到今天的阶段。*
+
+
+  ## 关于审阅者
+
+
+  **Trayton White**，自称“世界上最普通的 Splunk 巫师”，在其职业生涯中一直在多个行业 tinkering with systems。最近，他通过测试新
+  Splunk 产品并开发技术所帮助解决的新颖用例来从事新 Splunk 产品的开发。通过采用“让我们试试看”的方法，他深入了解了 Splunk 的内部工作原理，并乐于与他人分享这些信息。
+
+
+  *第 5 章，Splunk 索引管理，*介绍了 Splunk 中索引的概念，索引用于存储和管理数据。本章涵盖创建和管理索引、配置数据保留策略以及优化索引设置以实现高效的数据存储和检索。
+
+
+  *第 6 章，Splunk 配置文件，*提供了有关 Splunk 配置文件的宝贵见解，配置文件在自定义和微调 Splunk 环境中发挥着关键作用。本章深入探讨各种配置文件，探索搜索时和索引时优先级，并提供使用
+  btool 命令进行故障排除的指导。
+
+
+  *第 7 章，探索分布式搜索，*是 *第 1 部分* 的最后一章。它深入探讨 Splunk 的分布式搜索能力，这涉及在各种 Splunk 实例中搜索和分析数据，包括对集群的介绍。本章涉及配置分布式搜索、检查知识包以及进行调整以最小化其大小。
+
+
+  *第 8 章，获取数据，*是向 Splunk 导入数据的介绍。它探索用于数据输入的各种方法和来源，帮助您了解如何收集和准备数据以进行有效分析。
+
+
+  *第 9 章，配置 Splunk 数据输入，*指导您完成在 Splunk 中设置数据输入的过程。您将学习如何配置诸如监控文件和目录、网络输入、脚本输入、**HTTP
+  事件收集器 (HEC)** 和 Windows 输入等方法。这些步骤可确保从各种来源到 Splunk 实例的无缝数据流。
+
+
+  *第 10 章，数据解析和转换，*将重点转移到数据操作。您将发现用于解析原始数据并将其转换为结构化格式的技术，从而实现有意义的分析和洞察。
+
+
+  *第 11 章，字段提取和查找，*探索高级数据处理，重点关注搜索时和索引时字段提取，以从原始数据中发现有价值的信息。它还深入探讨使用查找来丰富数据以提供额外上下文。
+
+
+  *第 12 章，自测模拟考试，*通过自测模拟考试强化您的学习。它提供练习问题和场景，以衡量您对本书 *第 1 部分* 和 *第 2 部分* 中所涵盖概念的理解。
+
+
+  ## 如何充分利用本书
+
+
+  要理解本书中的概念，您需要具备基础的 Splunk 用户技能，包括基本的搜索熟练度和对知识对象和字段的理解。此外，熟悉 Windows 和 Linux 操作系统是必不可少的。如果您打算参加
+  Splunk Enterprise 管理员认证考试，获得 Splunk Core Power User 认证是先决条件。
+
+
+  | 书中涵盖的软件/硬件 | 操作系统要求 |
+
+  |---|---|
+
+  | Splunk Enterprise 9.x | Windows 10/11 或 Linux |
+
+
+
+
+
+  '
+- '# 第 1 部分：Splunk 系统管理
+
+
+  本《Splunk 9.x Enterprise 认证管理员指南》的初始部分全面介绍了运行 Splunk 的核心方面。这些章节为有效管理和配置 Splunk Enterprise
+  提供了坚实的起点。*第 1 部分* 为有志成为熟练 Splunk 管理员的人奠定了坚实基础，涵盖了考试先决条件、重要的 Splunk 功能、经过验证的设置方法、许可证管理、用户访问控制、转发器管理、索引管理、探索配置文件以及实现分布式搜索（包括集群基础知识）等关键要素。这些章节将为您提供高效管理
+  Splunk Enterprise 所必需的知识和技能。
+
+
+  本部分包含以下章节：
+
+
+  - *第 1 章，Splunk Enterprise 认证管理员考试入门*
+
+  - *第 2 章，Splunk 许可证管理*
+
+  - *第 3 章，Splunk 中的用户、角色和身份验证*
+
+  - *第 4 章，Splunk 转发器管理*
+
+  - *第 5 章，Splunk 索引管理*
+
+  - *第 6 章，Splunk 配置文件*
+
+  - *第 7 章，探索分布式搜索*
+
+  '
+- "### Splunk Enterprise 认证管理员考试入门\n\n让我们开始了解 Splunk Enterprise。学完本章后，您应该了解 Splunk\
+  \ Enterprise 是什么及其丰富的功能集，并能够列出协同工作以从数据中获取业务洞察的 Splunk 组件。您还将学习如何在 Windows 环境中安装独立的\
+  \ Splunk Enterprise，以及涵盖所有 Splunk 组件的高级 Splunk 验证架构（SVA）。在本书中，您会经常发现我们交替使用 Splunk\
+  \ Enterprise 和 Splunk 这两个术语。它们都指产品本身。您很少会看到对 Splunk Inc. 的引用，该公司是开发和提供 Splunk Enterprise\
+  \ 产品的公司。\n\n本章涵盖以下主题，帮助您入门：\n\n- 介绍认证考试\n- 考试中各主题的权重\n- 介绍考试的测试模式\n- 什么是 Splunk\
+  \ Enterprise？\n- 介绍 Splunk 9.x Enterprise 功能\n- 理解 Splunk 组件\n- SVA\n- Splunk 安装——独立安装\n\
+  - 自我评估\n\n不要被主题列表的长度吓到；这些主题将在本书其余部分详细深入介绍，让您充满信心地做好准备。\n\n现在您已经了解了主题及其权重，让我们来了解考试的测试模式。\n\
+  \n### 介绍考试的测试模式\n\n考试包含 56 道题目，需在 57 分钟内完成。每道题最多有五个选项。有些题目有多个答案，属于*选择所有适用项*类别。其他题目则为*对或错*或*单项选择*。\n\
+  \n以下是不同类别的示例问题及答案。\n\n### 对或错类别\n\n问：Splunk Enterprise 只能存储和检索基于文本的数据。\n\n- A. 对\n\
+  - B. 错\n\n此处答案为选项 A。\n\n### 单项选择类别\n\n问：一个 UF 正在向 `index=linux_os` 发送数据，但该索引在索引器层不存在。在这种情况下，数据会发生什么？\n\
+  \n- A. 由于尚未配置此类索引，数据将被索引器忽略\n- B. 索引器向 UF 抛出错误消息\n- C. 由于之前不存在，会自动创建一个 linux_os\
+  \ 索引\n- D. 数据存储在 lostandfound 索引中\n\n此处答案为选项 A。\n\n### 多项选择类别\n\n问：Splunk 管理员用户默认拥有哪些功能？（选择所有适用项）\n\
+  \n- A. 管理员可以远程安装 UF\n- B. 管理员可以创建另一个管理员用户\n- C. 管理员可以为非管理员用户组创建自定义角色\n- D. 管理员可以通过\
+  \ GUI 重启 Splunk SH 实例\n\n此处答案为选项 B、C 和 D。\n\n让我们在下一节中开始学习 Splunk Enterprise。\n\n\
+  ### 什么是 Splunk Enterprise？\n\nSplunk Enterprise 是一款软件，可从异构来源收集数据，并提供分析机器数据的接口。了解\
+  \ Splunk Enterprise 有助于您在实际项目工作中根据出现的需求选择合适的功能。作为管理员，您需要充分了解 Splunk 的这些功能。该产品的主要功能如下：\n\
+  \n- **收集文本数据**：Splunk Enterprise 只能收集和搜索文本数据。非文本数据不应存储在 Splunk Enterprise 中。\n-\
+  \ **无模式**：Splunk 接受结构化、半结构化和非结构化数据，无需严格检查模式合规性。\n- **Web、命令行界面（CLI）和 REST 应用程序编程接口（API）**：Splunk\
+  \ 提供三种标准接口——用于搜索、报告、告警和配置管理的 Web 界面；通过编程方式实现所有 Web 功能的 REST API；以及用于执行系统命令、配置 Splunk\
+  \ 和运行搜索的 Splunk CLI。一般来说，Splunk 管理员使用此界面。\n- **搜索、报告和告警**：为了查询 Splunk Enterprise，它引入了专有的\
+  \ SPL，该语言在其提供的每个界面中均用于检索数据。搜索支持数据检索，可以是临时搜索，也可以安排在一天中的特定时间运行。报告涉及存储可重复使用的搜索查询，可以安排或按需运行。最后，告警是一种计划搜索，当满足给定条件时会触发一组定义的操作——告警操作可能包括发送电子邮件或执行脚本等任务。\n\
+  - **数据匿名化**：数据可能包含敏感信息，例如**个人身份信息（PII）**和**支付卡行业（PCI）**数据。例如，信用卡号和用户电话号码属于高度机密信息，仅限于特定员工群体可见或访问，这通常称为数据主权。为了符合组织的数据标准，Splunk\
+  \ 提供在索引期间屏蔽或隐藏这些数据的功能。这可以防止查询 Splunk Enterprise 的用户发现这些敏感信息。我们将在*第 10 章，数据解析和转换*中进一步研究这一点，特别是在*数据匿名化*部分。\n\
+  - **从单一部署扩展到分布式部署**：Splunk Enterprise 旨在适应各种部署规模，从单个服务器配置到大规模分布式设置。即使处理 PB 级数据量，它也能高效处理大量数据处理任务和用户支持。\n\
+  - **高可用性（HA）和灾难恢复（DR）**：集群是指一组协同工作的 Splunk 实例，以实现 HA。多站点集群是指地理上冗余的集群协同工作以实现 DR。所有集群实例通过复制共享通用配置。\n\
+  - **数据收集机制**：将数据导入 Splunk 是至关重要的一步，在包含各种数据源的大型企业中，这是一个持续的过程。Splunk 提供用于文件监控、网络输入、脚本输入和**HTTP\
+  \ 事件收集器（HEC）**的 UF 代理，以支持无代理场景。同样，它还提供用于从 Linux、Windows、云、CRM 和网络设备等收集数据的 TA。附加组件可在\
+  \ Splunk 网站（`https://splunkbase.splunk.com`）上获取。\n- **监控**：MC 应用程序是有效监督 Splunk 平台的工具。它提供对独立和分布式\
+  \ Splunk 部署性能的洞察。该应用程序包括预配置的告警和仪表板，可启用这些功能以确保对平台整体健康状况和性能进行主动监控。\n\n让我们在下一节中看看 Splunk\
+  \ 9.x 版本中新增的功能。\n\n### 介绍 Splunk Enterprise 9.x 功能\n\nSplunk Enterprise 多年来不断发展，在撰写本书时目前版本为\
+  \ 9.0.3。随着它变得越来越先进，一些功能被弃用，并添加或增强了新功能。旧版本通常达到**生命周期终止（EOL）**，这意味着 Splunk 不再提供支持或修复错误，而是建议升级到最新版本。\n\
+  \n本节涵盖 Splunk 8.x 版本中沿用至最新 9.0 产品版本的重要功能，以及 9.x 版本中引入的新功能。了解这些功能是有益的，但考试不涉及这些内容。如果您愿意，可以跳过本节：\n\
+  \n- **Dashboard Studio**：这提供了创建可视化所需的工具，例如图形、图表和统计表，并支持颜色和图像。它补充了 Splunk 之前版本中存在的经典简单\
+  \ XML 仪表板，但截至 8.2.6 版本并未取代它。\n- **联合搜索**：用于搜索本地 Splunk 部署之外的外部 Splunk 部署。本地 SH 向远程\
+  \ SH 发起搜索请求，远程 SH 充当联合提供方。远程部署可以包含单个 SH 或集群。\n- **健康报告**：Splunk Web 有一个便捷的 *Splunk\
+  \ 运行状况状态* 报告，以绿色、红色和黄色状态显示 Splunk 进程的运行状况。选择每个进程可进一步深入了解详细信息。健康报告帮助管理员快速了解平台状态，例如\
+  \ I/O 等待、摄取延迟、数据持久性、搜索延迟、磁盘空间和跳过的搜索。\n\n\n\n\n\n在下一节中，我们将学习 Splunk Enterprise 组件。\n\
+  \n## 了解 Splunk 组件\n\nSplunk Enterprise 拥有多个相互协作的核心组件，主要按其功能划分。列表非常全面。独立的 Splunk\
+  \ 部署不需要所有组件；然而，分布式和高可用部署几乎需要所有组件。\n\n关于独立部署与分布式部署的详细理解将在本章的下一节 *Splunk Validated\
+  \ Architectures (SVAs)* 中介绍。到本节结束时，你将熟悉两种类型的 Splunk 组件——即处理组件和管理组件。\n\n## 处理组件\n\
+  \n以下是处理组件：\n\n- Forwarder\n- SH\n- Indexer\n\n让我们详细了解这些组件的作用以及它们与管理组件的关联。\n\n###\
+  \ Forwarder\n\n顾名思义，它主要将数据从源转发到目标 indexer。有两种类型的 forwarder：\n\n- **Universal Forwarder\
+  \ (UF)**\n- **Heavy Forwarder (HF)**\n\nUF 通常是安装在数据产生源系统上的软件代理。它包含一个输入配置（即 `inputs.conf`\
+  \ 文件），其中列出了绝对文件路径以及诸如 index 和 sourcetype 之类的元数据字段。UF 是监控和将文件内容转发到指定 indexers 的首选方法。默认情况下，UF\
+  \ 使用 fishbucket 进程来确保数据仅被索引一次，并通过 **cyclic redundancy checks (CRCs)** 和 seek 指针避免数据重复。你将在\
+  \ *Chapter 9, Configuring Splunk Data Inputs.* 中找到有关额外支持的数据输入的更多信息以及关于 fishbucket\
+  \ 概念的详细解释。\n\n下图说明了 UF 安装在 Web 服务器上，配置为监控 Web 服务器日志并在日志更新时持续将其转发到 indexer：\n\n![](img/5319cbd6f078c6cda7fac6347f77a07d_28_0.png)\n\
+  \nFigure 1.1: UF forwarding web server logs to indexer\n\n让我们现在来看 SH，它是分布式部署中一个关键的用户[content]\n\
+  \n在下一节中，我们将学习 Splunk Enterprise 组件。\n\n## 了解 Splunk 组件\n\nSplunk Enterprise 拥有多个相互协作的核心组件，主要按其功能划分。列表非常全面。独立的\
+  \ Splunk 部署不需要所有组件；然而，分布式和高可用部署几乎需要所有组件。\n\n关于独立部署与分布式部署的详细理解将在本章的下一节 *Splunk Validated\
+  \ Architectures (SVAs)* 中介绍。到本节结束时，你将熟悉两种类型的 Splunk 组件——即处理组件和管理组件。\n\n## 处理组件\n\
+  \n以下是处理组件：\n\n- Forwarder\n- SH\n- Indexer\n\n让我们详细了解这些组件的作用以及它们与管理组件的关联。\n\n###\
+  \ Forwarder\n\n顾名思义，它主要将数据从源转发到目标 indexer。有两种类型的 forwarder：\n\n- **Universal Forwarder\
+  \ (UF)**\n- **Heavy Forwarder (HF)**\n\nUF 通常是安装在数据产生源系统上的软件代理。它包含一个输入配置（即 `inputs.conf`\
+  \ 文件），其中列出了绝对文件路径以及诸如 index 和 sourcetype 之类的元数据字段。UF 是监控和将文件内容转发到指定 indexers 的首选方法。默认情况下，UF\
+  \ 使用 fishbucket 进程来确保数据仅被索引一次，并通过 **cyclic redundancy checks (CRCs)** 和 seek 指针避免数据重复。你将在\
+  \ *Chapter 9, Configuring Splunk Data Inputs.* 中找到有关额外支持的数据输入的更多信息以及关于 fishbucket\
+  \ 概念的详细解释。\n\n下图说明了 UF 安装在 Web 服务器上，配置为监控 Web 服务器日志并在日志更新时持续将其转发到 indexer：\n\n![](img/5319cbd6f078c6cda7fac6347f77a07d_28_0.png)\n\
+  \nFigure 1.1: UF forwarding web server logs to indexer\n\n让我们现在来看 SH，它是分布式部署中一个关键的用户[content]\n\
+  \n在下一节中，我们将学习 Splunk Enterprise 组件。\n\n## 了解 Splunk 组件\n\nSplunk Enterprise 拥有多个相互协作的核心组件，主要按其功能划分。列表非常全面。独立的\
+  \ Splunk 部署不需要所有组件；然而，分布式和高可用部署几乎需要所有组件。\n\n关于独立部署与分布式部署的详细理解将在本章的下一节 *Splunk Validated\
+  \ Architectures (SVAs)* 中介绍。到本节结束时，你将熟悉两种类型的 Splunk 组件——即处理组件和管理组件。\n\n## 处理组件\n\
+  \n以下是处理组件：\n\n- Forwarder\n- SH\n- Indexer\n\n让我们详细了解这些组件的作用以及它们与管理组件的关联。\n\n###\
+  \ Forwarder\n\n顾名思义，它主要将数据从源转发到目标 indexer。有两种类型的 forwarder：\n\n- **Universal Forwarder\
+  \ (UF)**\n- **Heavy Forwarder (HF)**\n\nUF 通常是安装在数据产生源系统上的软件代理。它包含一个输入配置（即 `inputs.conf`\
+  \ 文件），其中列出了绝对文件路径以及诸如 index 和 sourcetype 之类的元数据字段。UF 是监控和将文件内容转发到指定 indexers 的首选方法。默认情况下，UF\
+  \ 使用 fishbucket 进程来确保数据仅被索引一次，并通过 **cyclic redundancy checks (CRCs)** 和 seek 指针避免数据重复。你将在\
+  \ *Chapter 9, Configuring Splunk Data Inputs.* 中找到有关额外支持的数据输入的更多信息以及关于 fishbucket\
+  \ 概念的详细解释。\n\n下图说明了 UF 安装在 Web 服务器上，配置为监控 Web 服务器日志并在日志更新时持续将其转发到 indexer：\n\n![](img/5319cbd6f078c6cda7fac6347f77a07d_28_0.png)\n\
+  \nFigure 1.1: UF forwarding web server logs to indexer\n\n让我们现在来看 SH，它是分布式部署中一个关键的用户面向的处理组件。\n\
+  \nHF 是一个 Splunk Enterprise 实例，不需要单独的二进制文件进行安装。与 UF 相比，它提供了扩展的功能集。它不仅收集和转发数据，还包括用于配置和管理的\
+  \ Splunk 用户界面。要运行 HF，需要 forwarder 许可证。通常，HF 配置为转发模式，通过禁用本地数据存储来实现。可在 Splunkbase\
+  \ 上获得的 Splunk Add-ons 可以安装在 HF 上以便于从各种来源收集数据。这种功能组合使 HF 成为在受益于用户友好界面的同时进行数据预处理和转发数据的多功能选择。\n\
+  \n### SH\n\nSH 组件是一个专用于搜索管理的 Splunk Enterprise 实例，并为用户交互提供多种接口。它向用户提供的流行接口是 web、CLI\
+  \ 和 RESTful API。\n\n多个 SH 可以组合在一起形成一个集群，称为 SH 集群（SHC）。SHC 的成员共享相同的基线配置，作业由 SH captain\
+  \ 分配给可用成员。\n\n在独立部署中，单个 Splunk Enterprise 实例（即同一实例）同时充当 SH 和 indexer。在分布式部署模型中，SH\
+  \ 或 SHC 可以向多个 indexers 提交搜索并汇总返回的结果。结果存储在本地的 dispatch 目录中，位于 $SPLUNK_HOME/var/run/splunk/dispatch\
+  \ 以便稍后检索，作业过期后结果将被删除。$SPLUNK_HOME 指的是 Splunk 软件安装的安装目录。例如，临时搜索结果（即搜索作业结果）在 dispatch\
+  \ 目录中保留 10 分钟，作业过期后将被一个名为 dispatch reaper 的进程删除，该进程每 30 秒运行一次。\n\n![](img/5319cbd6f078c6cda7fac6347f77a07d_30_0.png)\n\
+  \nFigure 1.3: Indexers receiving data from forwarders and storing it in indexes\n\
+  \n到目前为止，我们已经了解了处理组件及其在 Splunk Enterprise 部署中的作用。让我们在下一节中了解管理组件。\n\n## 管理组件\n\n这些是支持处理组件的管理组件：\n\
+  \n- Deployment Server (DS)\n- SHC Deployer (SHC-D)\n- Indexer CM\n- License Manager\
+  \ (LM)\n- MC\n\n我们将在以下小节中讨论它们。\n\n### DS\n\n使用独立的 Splunk Enterprise 实例来管理 forwarders。位于数据源（通常是\
+  \ UF）的 forwarders 通常需要新的配置来监控新文件或对现有配置进行更改，然后可选地重启。手动更改它们在大规模基础设施中是一项非常耗时的任务。这就是\
+  \ DS 发挥作用的地方，它以 apps 的形式维护配置的中央存储库。除了 UF 之外，HFs 也可以使用 DS 进行集中管理。\n\n## 分布式非集群部署\n\
+  \n分布式非集群部署比单服务器部署更适合额外的负载和索引容量。SH 和索引职责的分离增加了总拥有成本（TCO）。\n\n下图显示了具有独立 SH 和索引层的非集群部署架构：\n\
+  \n![](img/5319cbd6f078c6cda7fac6347f77a07d_34_0.png)\n\nFigure 1.5: Distributed\
+  \ non-clustered architecture\n\n在所示架构中，独立的搜索层包含一个 SHC，索引层包含多个独立的 indexers。SHC-D\
+  \ 是一个强制性的管理组件，负责使用 apps 将配置部署到 SHC。它通过从 SHC-D 向 SHC 推送配置更新的 apps 来促进部署过程。DS 用于管理\
+  \ forwarders，而 LM 存储许可证信息。DS 确保有效的 forwarder 管理，而 LM 作为许可证详细信息的中央存储库，所有其他实例都连接到它以获取许可证信息。让我们看看这种部署相对于单服务器部署的优势：\n\
+  \n- 用户数量将高于单服务器部署，并有额外的 indexer 支持\n- 独立的 indexers 将每日索引容量提高到超过 300 GB\n\n现在，让我们看看这种部署的局限性：\n\
+  \n- 无 HA 和 DR\n- 每次添加新的搜索 peer/indexer 时都需要重新配置 SH\n- 当其中一个 indexer 停机时，搜索结果可能不完整，数据摄取也可能受到影响\n\
+  - 在独立的单 SH 部署场景中，存在 **single point of failure (SPOF)**\n\n让我们看看分布式集群部署，这是一种比分布式非集群部署更先进的设置。\n\
+  \n## 分布式集群部署和 SHC – 单站点\n\n单站点分布式集群 SH 和 indexer 部署是一种高可用、 resilient 架构。站点是一个特定区域/地理位置的经典数据中心。\n\
+  \n下图显示了具有独立 SHC 和在单站点上运行的集群索引层的集群部署架构：\n\n![](img/5319cbd6f078c6cda7fac6347f77a07d_35_0.png)\n\
+  \nFigure 1.6: Distributed clustered deployment and SHC – single-site\n\n![](img/5319cbd6f078c6cda7fac6347f77a07d_37_0.png)\n\
+  \nFigure 1.7: Distributed clustered deployment and SHC – multi-site\n\n如 Figure\
+  \ 1.6 所示，每个站点的组件保持相同。然而，收集层在两个站点之间是通用的。每个站点都有一个专用的 SHC。\n\n让我们了解局限性：\n\n- Indexer\
+  \ 集群在站点之间复制数据，这称为跨站点复制，需要较低的网络延迟。100 毫秒或更少是首选。\n- SHC 独立工作，不共享工件和通用配置。\n- SHC 每个站点有\
+  \ 100 个节点的限制。\n- 每个站点都需要一个专用的 SHC-D。\n- 一个 CM 节点足以用于跨站点的整个 indexer 集群。\n\n我们已经了解了非常基本的单服务器架构（最好用于测试或开发）和先进的多站点集群部署架构。每种都有其优势、局限性和成本影响。在此阶段，你已经相当熟悉\
+  \ Splunk 组件和架构。在下一节中，我们将安装一个独立/单服务器部署，我们在这一节的开头就谈到了它。\n\n\n\n\n\n# Splunk 安装 – 独立部署\n\
+  \n如前文所述，单服务器部署由单个 Splunk 实例组成，同时兼具搜索头（SH）和索引器功能。实际上，安装并不属于管理员考试大纲的一部分；但亲自动手通过 Splunk\
+  \ Web、配置文件（.conf）以及我们将在后续章节中讨论的 CLI 选项来体验 Splunk，会非常有帮助。本节提供在 Windows 操作系统上安装 Splunk\
+  \ Enterprise 9.0.3 的说明。让我们开始吧。\n\n## 安装系统要求\n\n让我们看一下计算环境的系统要求。Splunk Enterprise\
+  \ 支持多种操作系统环境。支持的选项完整列表可在此处查看：https://tinyurl.com/2tuudjwr。Splunk 有以下硬件要求：\n\n- 64\
+  \ 位 Linux 或 Windows 发行版\n- 12 个物理 CPU 核心或 24 个 vCPU，每个核心主频 2 GHz 或更高\n- 12 GB **随机存取存储器（RAM）**\n\
+  - x86 64 位芯片架构\n- 1 GB 以太网**网络接口卡（NIC）**\n- 至少 3 GB 可用磁盘空间用于安装，并根据索引需求预留更多空间\n\n\
+  我将安装 Splunk 9.0.3 版本的系统规格如下：\n\n- 64 位 Windows 11 专业版操作系统\n- 6 个物理 CPU 核心（或 12 个\
+  \ vCPU），主频 2.1 GHz，16 GB RAM\n- x86 64 位 AMD 芯片\n- 充足的磁盘空间\n\n你可能已经注意到，我电脑的物理 CPU\
+  \ 核心数少于建议值，这完全没问题，因为我们不会在 Splunk 实例上运行生产工作负载。接下来，让我们进入安装步骤。\n\n## 安装步骤\n\n作为前提条件，你需要一条高速互联网连接，从以下位置下载\
+  \ Splunk Enterprise 免费软件包：https://www.splunk.com/en_us/download.html。如果你没有 Splunk\
+  \ 账户，请注册并登录以继续。根据操作系统选择安装包，并下载最新版本，在撰写本书时最新版本为 9.0.3。\n\n让我们开始安装：\n\n1. 下载名为 splunk-9.0.3-dd0128b1f8cd-x64-release.msi\
+  \ 的 .msi 文件。双击它开始安装。系统会提示你接受许可协议并使用默认安装选项。参考图 1.8，点击“下一步”按钮：\n\n![](img/5319cbd6f078c6cda7fac6347f77a07d_39_0.png)\n\
+  \n图 1.8：安装 – 许可协议\n\n2. 系统会提示你输入管理员账户凭据。输入详细信息。确保你记住这些信息，因为首次登录 Splunk 实例时会用到。点击“下一步”按钮（参考图\
+  \ 1.9）：\n\n![](img/5319cbd6f078c6cda7fac6347f77a07d_42_0.png)\n\n图 1.12：Splunk Enterprise\
+  \ – 首次登录页面\n\n安装已成功完成。现在，让我们在下一节总结本章所学内容。\n\n## 总结\n\n第一章到此结束。确实有很多内容需要消化。让我们简要总结一下目前所学的内容。\n\
+  \n在本章中，我们首先了解了 Splunk 认证管理员（Splunk Certified Admin）认证的先决条件、考试主题及其权重。与考试主题一致，本书分为两个部分：Splunk\
+  \ Enterprise 系统管理和数据管理。我们还讨论了考试模式，包括单选、多选以及判断题。\n\n我们了解了 Splunk Enterprise 的基本功能以及它作为数据分析产品的主要亮点。接着我们探讨了\
+  \ Splunk Enterprise 9.x 产品系列的功能，然后是组件及其在部署中的作用。\n\n我们还了解了重要的 SVA。我们涵盖了单服务器、分布式非集群、分布式集群单站点和分布式集群多站点的架构。我们讨论了它们的优势和局限性，并展示了处理和管理组件。最后，我们在\
+  \ Windows 系统上成功安装了一个 Splunk Enterprise 单实例。\n\n本章是本书其余部分的基础。我们提到的 Splunk 组件将在后续章节中详细介绍。你需要了解它们会在什么场景下使用，以及它们如何在整体\
+  \ Splunk 部署架构中发挥作用。虽然 SVA 不属于考试指南的一部分，但书中包含它们是为了让你更好地理解后续章节。\n\n在下一章中，我们将深入探讨许可证管理。许可证管理包括许可证类型、它们的工作原理以及许可证配置。\n\
+  \n在下一节中，你将练习涵盖目前所学主题的考试风格问题。\n\n## 自我评估\n\n本自我评估部分旨在帮助你更好地了解在章节涵盖的主题中，你擅长哪些部分，哪些部分需要改进。我建议你仔细阅读问题和答案，并花时间重新阅读你认为需要更多理解的部分。或者，你也可以参考\
+  \ Splunk 文档。祝你好运！\n\n你将会看到 10 道问题，每道都有可选择的答案。问题模式与“*介绍考试测试模式*”部分中讨论的相同。本节末尾提供了问题的答案。让我们开始吧：\n\
+  \n1. 以下哪些是 Splunk Enterprise 的功能？（选择所有适用的选项）\n   - A. 告警\n   - B. 搜索和报告\n   - C.\
+  \ 文件监控\n   - D. 在文件末尾将已监控的文件更新为已完成\n\n2. Splunk 是否支持监控二进制文件？\n   - A. 是\n   - B.\
+  \ 否\n\n3. UF 和 Splunk Enterprise 利用哪个概念来防止冗余数据索引？\n   - A. Bucket ID\n   - B. Fishbucket\n\
+  \   - C. Finbucket\n   - D. HashBucket\n\n10. 哪个配置文件（.conf）包含转发器上的文件监控详细信息？\n  \
+  \ - A. outputs.conf\n   - B. inputs.conf\n   - C. server.conf\n   - D. source.conf\n\
+  \n我希望你能够通过这些问题回忆起我们学过的主题。让我们回顾一下答案。\n\n## 回顾答案\n\n1. 选项 A、B 和 C 是正确答案。选项 D 不是 Splunk\
+  \ 功能。\n2. 选项 B，否。Splunk 无法监控二进制文件。它只能监控文本数据。\n3. 选项 B，Fishbucket，是正确答案。Splunk Enterprise\
+  \ 和 UF 使用查找指针和 CRC 来跟踪文件监控进度，并避免重复数据索引。\n4. 选项 A、B、C 和 D 都是 SH 的功能。\n5. 选项 A 正确（True）。索引器存储原始事件、索引文件和其他元数据文件，用于搜索处理。\n\
+  6. 选项 A 正确（True）。数据一旦写入索引，就不可更改。\n7. 选项 B、C 和 D 是正确答案。UF 是数据收集组件。\n8. 选项 C 是正确答案。SHC-D\
+  \ 通过 captain 将应用部署到所有集群成员。\n9. 选项 A、B 和 D 是正确答案。LM 在添加许可证时存储许可证文件。可选地，许可证可以堆叠，并且可以在\
+  \ LM 上创建池。许可证报告可在 LM 实例中的 MC 应用中查看。\n10. 选项 B 是正确答案。outputs.conf 和 server.conf 是用于不同目的的\
+  \ Splunk 配置文件。Splunk 中没有 source.conf 文件。\n"
+- "# Splunk 许可证管理\n\nSplunk 系统管理员的关键职责之一是许可证管理。当你首次安装 Splunk Enterprise 时，无论是个人使用还是商业使用，都需要配置许可证以启用其功能；否则，其默认许可证的有效期将在\
+  \ 60 天后到期。到本章结束时，你应该了解许可证类型、安装、Splunk 许可的工作方式、许可证分配和许可证违规，最后我们将介绍监控控制台中的许可证使用报告。\n\
+  \n本章的总体目标是让你熟悉 Splunk 许可，以便你能够选择正确的许可证类型，如果你拥有多种类型，可以堆叠许可证文件，并配置和分配正确的容量给对等节点。在本章中，我们将涵盖以下主题：\n\
+  \n- 介绍许可证类型\n- 理解许可证警告和违规\n- 许可如何运作\n- 安装、管理和监控许可证\n\n## 介绍许可证类型\n\n在直接进入类型主题之前，让我们讨论一下许可证的需求。Splunk\
+  \ Enterprise 是付费专有软件，为需要符合其业务目标的数据平台的组织提供服务。Splunk 以许可证的形式向组织销售这些服务，以激活 Splunk Enterprise\
+  \ 产品。如果你在选择适合你的用例的正确许可证时需要帮助，可以联系 Splunk 销售团队（sales@splunk.com）。\n\n我们将在以下部分讨论 Splunk\
+  \ 许可证的类型。\n\n\n\n\n\n## Splunk Enterprise 试用许可证\n\n首次安装 Splunk Enterprise 时，默认启用试用许可证。试用许可证具有以下特性：\n\
+  \n- 它仅在 60 天内有效。超过此期限后，必须选择其他许可证类型才能继续使用该产品。\n- 它允许您使用 Splunk Enterprise 的全部功能。\n\
+  - 它仅适用于单个/独立的 Splunk Enterprise 实例。\n- 该许可证将每日数据摄入量限制为 500 MB。超过此限制，Splunk 将发出许可证警告。*理解许可证警告和违规*一节详细解释了许可证违规。\n\
+  \n## Splunk 免费许可证\n\n免费许可证永久有效，并且仅支持 Splunk Enterprise 功能的子集：\n\n- 它禁用告警、身份验证、集群、分布式搜索、摘要以及向非\
+  \ Splunk 服务器的转发。\n- 每日数据摄入限制为 500 MB。许可证违规会阻止搜索功能。下一节*理解许可证警告和违规*将提供更多详细信息。\n- 它仅适用于单个/独立的\
+  \ Splunk 实例。\n\n## 转发器许可证\n\nSplunk 提供多种转发器。最常用的是**通用转发器（UF）**和**重型转发器（HF）**。让我们看看该许可证如何应用于这两种主要的转发器类型：\n\
+  \n- UF 默认已嵌入许可证，因此无需显式安装/配置许可证。\n- UF 是独立的二进制软件，消耗的资源比 HF 少。UF 可以将数据通过身份验证转发到索引器。\n\
+  - HF 是一个完整的 Splunk Enterprise 实例二进制文件，需要转发器许可证或 Enterprise 许可证。\n- 转发器许可证默认嵌入在 Splunk\
+  \ Enterprise 软件包中。\n- 带有转发器许可证的 HF 不允许进行索引。但是，允许进行身份验证。\n- 需要索引、高级身份验证和 KV Store\
+  \ 的 HF 需要 Enterprise 许可证。\n\n开发者许可证纯粹面向应用程序开发者，并启用 Splunk Enterprise 的所有功能。每个许可证都会强制执行限制——例如，许可证受限于天数、数据量、vCPU\
+  \ 数量等。下一节将详细说明许可证警告的产生、如何转变为违规，以及随后详细介绍 Splunk Enterprise 针对每种许可证类型限制的具体功能。\n\n\
+  ## 理解许可证警告和违规\n\n如果系统管理员希望维护平台的连续性，那么理解许可证限制及其对 Splunk Enterprise 平台的影响非常重要。许可证类型（无论是从\
+  \ Splunk 购买的还是免费的）都会强制执行限制，但基础设施许可证除外，它计算 vCPU 的数量，并且不强制执行许可证违规限制。其余许可证类型对每日数据量或索引数据量强制执行限制。\n\
+  \n如果许可证超出了每日允许的数据量，Splunk Enterprise 将发出许可证警告。当警告数量超过某个阈值时，即称为许可证违规。每种许可证类型的阈值都不同。许可证违规会禁用\
+  \ Splunk Enterprise 的重要功能。\n\n许可证警告会出现在 Splunk Web 的管理消息中。它们会保留数天，以便系统管理员解决。可以在监控控制台中启用许可证使用情况告警。\n\
+  \n![](img/5319cbd6f078c6cda7fac6347f77a07d_50_0.png)\n\n图 2.1：监控控制台告警——许可证使用情况和到期时间\n\
+  \n图 2.1 显示了您在监控控制台中可能收到的告警。这些告警默认处于禁用状态；您可以启用它们，并了解当使用量接近每日配额和/或许可证即将到期时它们的工作方式。\n\
+  \n许可证违规会禁用重要的 Splunk 功能，这意味着在违规期间只有部分功能可用。让我们看看在违规期间搜索和索引会发生什么：\n\n- 搜索功能（包括报表和告警）将被阻止，但内部索引除外，例如\
+  \ _internal、_audit 和 _introspection\n- 索引器将继续对数据进行索引\n\n下面讨论每种许可证类型的警告和违规阈值：\n\n\
+  - **Splunk Enterprise 试用许可证：** 在滚动 30 天周期内出现 5 次或以上警告即构成违规。许可证警告会保留 14 天。在违规期间，搜索会被阻止，索引会继续。如果您希望修复许可证违规以恢复搜索功能，没有重置选项。建议的方法是重新安装整个\
+  \ Splunk Enterprise 实例。\n- **Splunk 免费许可证：** 在滚动 30 天周期内出现 3 次或以上警告即构成违规。许可证警告会保留\
+  \ 14 天。在违规期间，搜索会被阻止，索引会继续。与试用许可证类似，免费许可证无法重置，重新安装是唯一的选择。\n- **Splunk Enterprise\
+  \ 许可证：** 每日数据量为 100 GB 或以上的许可证堆栈不会强制执行许可证警告和违规。每日数据量低于 100 GB 的许可证堆栈会发出许可证警告。在滚动\
+  \ 60 天周期内出现 45 次或以上警告即构成违规，此时搜索会被阻止，而索引会继续。要重置 Enterprise 许可证，请联系 Splunk 销售团队；他们将能够解锁所需的搜索功能。\n\
+  - **Splunk Enterprise 基础设施许可证：** 此许可证类型不会产生违规。\n- **Splunk 开发者许可证：** 在滚动 30 天周期内出现\
+  \ 5 次或以上警告即构成违规。许可证警告会保留 14 天。在违规期间，搜索会被阻止，索引会继续。开发者许可证可以通过联系 Splunk 开发者计划团队（devinfo@splunk.com）进行重置以解锁搜索功能。\n\
+  - **Splunk 转发器许可证：** 转发器许可证不适用任何违规规则。它是 Splunk Enterprise 软件包中的嵌入式许可证。在转发器许可证上进行索引需要\
+  \ Enterprise 许可证或基础设施许可证。\n\n总之，Splunk 许可证警告会提前告知管理员整体许可证使用情况，以便他们在违规发生之前采取必要的行动。在一段时间内，警告序列超过规定阈值将导致违规。在违规期间，除内部索引外，搜索会被阻止，索引会继续。超过\
+  \ 100 GB 的 Enterprise 堆栈许可证和 Enterprise 基础设施许可证都不会强制执行违规，但其余许可证类型会强制执行违规规则。除免费许可证和试用许可证外，违规的许可证可以重置。\n\
+  \n我们已经介绍了很多关于许可证警告和违规的信息；不过，您可能想知道 Splunk Enterprise 在哪个阶段跟踪许可证使用情况，以及在分布式部署架构中哪个组件跟踪使用情况。接下来的两节将重点介绍许可证管理器组件中的许可证安装，我们将详细讨论许可证在许可证使用量计算方面究竟是如何工作的。\n\
+  \n## 许可证的工作原理\n\nSplunk Enterprise 许可证按许可证堆栈或单个池跟踪每天的索引数据量。要深入了解许可证组、堆栈和池，请参阅 Splunk\
+  \ 文档：\n\n`https://docs.splunk.com/Documentation/Splunk/9.0.3/Admin/`\n\n组、堆栈、池和其他术语。本文档的内容将在下一节“安装、管理和监控许可证”中介绍。\n\
+  \n在分布式基础架构中，一个专用的 Splunk Enterprise 实例将被分配许可证管理器角色，负责跟踪整个部署的许可证使用情况。其余实例充当许可证对等节点，向管理器报告。\n\
+  \n许可证配额每天从午夜到午夜进行计量，这意味着它会重置为次日的完整配额，这是一个与管理器系统时钟协同工作的持续过程。Splunk 支持两种类型的索引，称为事件索引和指标索引。它们将在第\
+  \ 5 章“Splunk 索引管理”中介绍。对于指标索引，许可证使用量计算上限为每个指标事件固定 150 字节；对于事件索引，则按事件的完整数据大小计算。\n\n\
+  来自源头的原始数据在被索引到索引器之前会经历多个阶段。数据大小在索引阶段进行计量。各阶段将在第 8 章“数据接入”中解释。到目前为止，我们讨论了从外部源索引数据。每个正在运行的\
+  \ Splunk Enterprise 实例本地都会生成大量数据。这些数据存储在以 _（下划线）开头的内部索引中，即 _internal、_audit、_introspection、_metrics\
+  \ 和 _telemetry。\n\n让我们看看哪些数据不计入许可证配额：\n\n- Splunk 内部日志不计入\n- 为高可用性而存储在索引器集群中的复制副本\n\
+  - 具有 stash 源类型的摘要索引\n- 已索引的数据，因为它包含 tsidx 文件、元数据等，以实现更快的检索\n\n总之，许可证配额每天从午夜到午夜进行计量。数据大小在索引阶段计算。指标索引数据上限为每个事件\
+  \ 150 字节，事件索引数据则根据事件的完整大小计算。内部日志、摘要索引和复制数据不计入许可证。在分布式部署中，专用实例充当许可证管理器，在其中安装和配置许可证文件；其余实例充当许可证对等节点，并向许可证管理器报告。\n\
+  \n## 安装、管理和监控许可证\n\n既然您已经全面了解了许可证类型以及许可证使用量如何根据许可证配额进行计算，我们将讨论添加、配置和管理许可证。作为系统管理员，这些任务非常重要。我们将以\
+  \ Splunk Enterprise 许可证类型为例，讨论以下主题：\n\n- 添加许可证\n- 许可证堆叠和池\n\n\n\n\n\n- License manager\
+  \ and license peer\n- License usage and alerting\n\n让我们在以下各节中详细讨论这些内容。\n\n## 添加许可证\n\
+  \nSplunk Enterprise 许可证是一个文件，其扩展名为 .license，通常从 Splunk 购买。以下步骤也适用于其他类型的许可证，例如开发者许可证。\n\
+  \n许可证文件可以通过以下两种方法之一添加到 Splunk：\n\n- 在 Splunk Web 主页（https://<hostname>:8000）上，转到窗口右上角的菜单并导航到\
+  \ Settings | Licensing。点击 Add license 按钮，在下一个屏幕上，选择 Choose File 上传从 Splunk 销售处获得的\
+  \ .license 文件。然后，点击 Install 按钮。此时，您需要重启 Splunk 实例。以下截图显示了许可 Web 页面，您可以看到用于上传许可证文件的\
+  \ Add license 按钮。\n\n  ![](img/5319cbd6f078c6cda7fac6347f77a07d_53_0.png)\n\n  Figure\
+  \ 2.2: The Licensing web page\n\n- 第二种方法是 在 Splunk 实例运行的主机上执行 CLI 命令。您应具有 Splunk\
+  \ 许可证管理器已安装的主机的访问和执行权限。成功执行命令后需要重启：\n\n  ```\n  splunk add licenses <path_to_license_file_required>\n\
+  \  ```\n\nFigure 2.4: The license group, stack, and pool layering\n\n## 许可证堆栈\n\n\
+  许可证堆栈包含一个或多个相关许可证，其许可证配额可以相加，共同计入每天允许的数据量。\n\n例如，初始购买的 50 GB 企业许可证可以与后来购买的 40 GB\
+  \ 许可证堆叠在一起，共同允许每天 90 GB 的索引量。让我们来看一下堆叠许可证时需要记住的关键点：\n\n- Enterprise licenses and\
+  \ sales licenses can be stacked together\n- A license that is already part of one\
+  \ stack cannot be part of another stack\n- License warnings and violations will\
+  \ be raised against stacks and pools\n\n## 许可证池\n\n许可证池是堆栈许可证量的一个部分，可以分配给不同的索引器。它允许对许可证分配进行精细控制。\n\
+  \n例如，总共需要为开发和生产索引器分配 100 GB 的许可证量。然而，开发环境可能会因为\n\n在 Adding a license 部分，我们学习了如何在充当许可证存储库的\
+  \ Splunk 实例上安装许可证，该实例称为许可证管理器。登录已安装许可证的许可证管理器，转到窗口右上角，然后转到 Settings | Licensing。参考\
+  \ Figure 2.5 查看许可 Web 页面，其中包含有关许可证、容量、到期时间和许可证池的信息。在分布式部署中，其他 Splunk 实例称为许可证对等体。所有对等体都需要指向许可证管理器实例以获取许可证信息。\n\
+  \n要配置许可证对等体，请登录分布式部署中的剩余实例，例如搜索头、索引器和转发器，并将它们指向许可证管理器。登录到各个实例的 Web 界面并通过 Settings\
+  \ | Licensing 导航，如 Figure 2.2 所示，然后点击 Change to Peer 按钮，该按钮显示两个单选按钮选项，Designate\
+  \ this Splunk instance <instance_name> as the manager license server 和 Designate\
+  \ a different Splunk instance as the manager license server。如 Figure 2.6 所示，选择第二个选项，这将显示一个文本框供您输入管理器许可证服务器\
+  \ URI 及其管理端口（8089）。输入管理器许可证服务器 URI 并点击 Save 按钮以将许可证对等体连接到许可证管理器。\n\n![](img/5319cbd6f078c6cda7fac6347f77a07d_57_0.png)\n\
+  \nFigure 2.6: Configuring a license peer with the license manager URI\n\n下图显示了 Messages\
+  \ 部分，其中 Splunk Web 中会出现许可证警告和违规消息。许可证警告和违规消息会出现在许可证管理器的 Splunk Web 主页的 Messages\
+  \ 菜单栏中。\n\n![](img/5319cbd6f078c6cda7fac6347f77a07d_58_0.png)\n\nFigure 2.7: License\
+  \ warnings in Splunk Web\n\n如果许可证对等体无法访问许可证管理器，则在对等体被判定为许可证违规之前会有 72 小时的宽限期。在此情况下，搜索功能将被阻止，但索引会继续进行，直到对等体恢复与管理器实例的连接。\n\
+  \n## 许可证使用和警报\n\n监控控制台默认包含在 Splunk Enterprise 软件中。但是，它必须在独立或分布式模式下进行配置以使用。配置监控控制台不在本书的讨论范围之内，但是，如果您想探索该主题，我建议您遵循\
+  \ Splunk 文档（https://tinyurl.com/msxtcmkj）。要访问监控控制台应用程序，请登录独立 Splunk 实例的 Web 界面并通过\
+  \ Settings 菜单导航，然后点击菜单项左侧的 Monitoring Console 选项。它提供了两个可视化仪表板，可以在监控控制台的 Indexing\
+  \ | License Usage 菜单中找到。\n\nFigure 2.8 显示了 Indexing 菜单下的两个仪表板。License Usage - Today\
+  \ 仪表板显示了今日许可证使用的全面详细信息。要检查过去的使用情况，请打开 Historic License Usage 仪表板。\n\n![](img/5319cbd6f078c6cda7fac6347f77a07d_58_1.png)\n\
+  \nFigure 2.8: License usage dashboards in the monitoring console\n\n同样，监控控制台包含两个用于许可证使用跟踪的警报。参考\
+  \ Figure 2.1 了解警报详情。警报默认处于禁用状态。要监控许可证使用信息，必须手动启用警报，以便在许可证到期 2 周时发送通知，以及当每日许可证配额超过\
+  \ 90% 时。通知消息会出现在 Splunk Web 主页的 **Messages** 菜单栏中。\n\n在 Splunk Web 主页上记录警告和违规警报的还有一个地方——在\
+  \ **Settings | Licensing** 菜单下（参考 Figure 2.2）。在此处触发的警报将对当前或永久许可证违规的池和堆栈提供更精细的可视性。\n\
+  \n总之，许可证可以通过 Splunk Web、Splunk CLI 或配置文件安装。许可证管理器是所有许可证的存储库，其余 Splunk 实例向管理器报告并称为许可证对等体。如果许可证对等体无法报告\
+  \ 72 小时，它将被判定为许可证违规，其搜索功能将被阻止（尽管索引继续进行），直到它重新连接到许可证管理器实例。\n\n许可证组、堆栈和池有助于在安装多个许可证时有效管理许可证，并将一部分容量分配给特定索引器。任何时候只有一个许可证组处于活动状态。只有某些类型的许可证可以堆叠——例如，企业许可证和销售许可证可以堆叠，但基础设施许可证不能与企业许可证堆叠。监控控制台提供许可证使用报告和警报以跟踪使用情况。警报默认处于禁用状态。许可证警告和违规消息会出现在\
+  \ Splunk Web 的两个位置——一个是在 Splunk Web 主页的 **Messages** 栏中，另一个是在 **Settings | Licensing**\
+  \ 下。\n\n在 Summary 部分之后，有一些练习考试题目涵盖了我们迄今为止学到的主题。\n\n## 总结\n\n我们已经结束了许可证管理章节的学习，该章节非常全面。许可原生于\
+  \ Splunk Enterprise，其命名约定需要一些时间来消化。\n\n我们首先介绍了 Splunk 提供的许可类型，然后探讨了它们之间的差异，以检查不同许可证对不同部署选项的适用性。Splunk\
+  \ 提供 Enterprise Free 和 Trial 许可证以及具有某些限制的开发者许可证。要启用 Splunk Enterprise 的所有功能，您需要一个有效的许可证文件。如果许可证超出其限制使用，将会发出许可证警告，并在发出一定数量的警告后，许可证将被视为违规。基础设施许可证没有违规，企业许可证的配额为\
+  \ 100 GB 或更多。许可证违规会阻止重要功能，例如搜索，但索引会继续进行。Free 和 Trial 许可证无法从违规状态重置，但其他许可证可以通过联系 Splunk\
+  \ Sales 重置。\n\n\n\n\n"
+- '# 3. Splunk 中的用户、角色和身份验证
+
+
+  Splunk Enterprise 遵循**基于角色的访问控制（RBAC）**方法，该方法允许用户访问 Splunk 实例，但限制了用户能看到的内容以及他们可以执行的操作。作为
+  Splunk 系统管理员，熟悉 Splunk 的默认用户角色，并学习如何创建自定义角色以满足组织的特定需求，这一点非常重要。你还可能会被考察对角色继承（允许为单个用户分配多个角色）的理解，以及如何管理用户的索引访问权限。展示你能够使用
+  LDAP、SAML 等方法在 Splunk 中设置身份验证，这一点也很重要。这些技能在 Splunk Enterprise Admin 认证考试中会被测试，因为它们对于在
+  Splunk 环境中有效管理用户权限和访问至关重要。
+
+
+  以下是在采用 RBAC 方法时涉及的关键组成部分，我们将在本章中讨论这些内容，以及如何通过 Splunk Web 和 Splunk CLI 对它们进行配置：
+
+
+  -   用户
+
+  -   角色
+
+  -   身份验证方法
+
+
+  ### 用户
+
+
+  如前几章所述，Splunk Enterprise 实例提供了多种界面——即 Splunk Web、Splunk CLI 和 RESTful API。所有界面都必须通过允许用户通过身份验证和授权安全登录来加以保护。身份验证方法将在本章末尾进行说明。组织可以通过配置角色、能力、对象级权限和**基于角色的访问控制（RBAC）**，使其与各个用户的岗位职责保持一致，从而有效管理用户授权。然后，用户可以根据分配到的
+  Splunk 角色来执行管理任务（特权用户）或普通用户任务（创建报告、警报、仪表板等）。在 Splunk 中，必须为用户分配至少一个角色。
+
+
+  以下截图显示了 Splunk Web 主页上“设置”下的用户管理菜单项：
+
+
+  **用户与身份验证**
+
+
+  -   角色
+
+  -   用户
+
+  -   令牌
+
+  -   密码管理
+
+  -   身份验证方法
+
+
+  图 3.1：Splunk 用户与身份验证管理
+
+
+  点击图 3.1 中的“用户”菜单项后，将显示以下页面。“用户”页面包含现有用户的完整详细信息列表，并提供“编辑”操作和用于创建用户的“新建用户”按钮：
+
+
+  ![](img/5319cbd6f078c6cda7fac6347f77a07d_64_0.png)
+
+
+  图 3.2：Splunk 用户管理页面
+
+
+  例如，管理员将创建新用户，并通过分配角色允许他们搜索特定索引。管理员创建的用户将能够登录并针对允许的索引运行搜索。
+
+
+  用户是以安全方式在 Splunk 平台上执行所需操作的实体。如果没有用户，Splunk 实例就只是孤立的，无法发挥其作用。出于同样的原因，在安装后首次启动 Splunk
+  实例时，系统会提示你创建一个管理员用户帐户。
+
+
+  让我们通过 Splunk Web 添加一个新用户，并在下面的章节中了解需要填写哪些详细信息。
+
+
+  ### 创建新用户
+
+
+  可以通过 Splunk Web 或 Splunk CLI 创建新用户。这两种方式都需要管理员帐户详细信息来验证 Splunk 实例。系统管理员至少应了解以下详细信息才能完成用户创建过程：用户的全名，以及可以为用户分配的角色或用户在
+  Splunk 平台上需要具备的能力。
+
+
+  让我们看一下 CLI 命令，该命令用于添加名为 supportuser 的用户，密码为 changeme2，并分配 custom 角色 supportgroup。这里，admin:changeme
+  是管理员帐户用户名和密码，用 :（冒号）分隔：
+
+
+  ```
+
+  ./splunk add user supportuser -password changeme2 -role supportgroup -auth admin:changeme
+
+  ```
+
+
+  类似地，还有更多 CLI 命令可用于编辑现有用户、解锁用户、重置用户密码等。你可以参阅 https://docs.splunk.com/Documentation/Splunk/9.0.0/Security/ConfigureuserswiththeCLI
+  上的 Splunk 文档了解更多详细信息。
+
+
+  下面让我们看看角色及其与用户的关联。
+
+
+  ### 角色
+
+
+  角色被分配给用户，且用户至少必须被分配一个角色。角色包含一组能力，这些能力定义了用户可以在 Splunk 平台上执行哪些操作。换句话说，能力只不过是指定给某个角色的权限列表——例如，运行搜索、运行计划搜索、运行实时搜索等。
+
+
+  除了能力之外，角色还提供可配置选项，用于指定允许用户查询哪些索引、通过搜索过滤器方法进一步限制用户，以及设置配额，如磁盘空间限制和用户级搜索限制。以下截图显示了角色包含的可配置选项列表：
+
+
+  ![](img/5319cbd6f078c6cda7fac6347f77a07d_66_0.png)
+
+
+  图 3.4：编辑角色的可配置选项
+
+
+  ### 创建新角色
+
+
+  我希望你现在对角色及其重要性有了全面的了解，并且知道 Splunk 的默认角色。在本节中，让我们了解创建自定义角色的必要性，并逐步完成角色创建过程。
+
+
+  例如，为了理解新自定义角色的需求，我们考虑两个不同的索引：`web-access-data` 索引包含网站访问日志数据，`building-access-data`
+  索引包含建筑门禁日志数据。网站访问日志数据仅允许应用程序支持团队访问，建筑门禁日志数据仅允许建筑安全团队访问。在这种情况下，将为这两个团队创建两个不同的角色。
+
+
+  可以将 Splunk 默认角色分配给用户；然而，这取决于用户需要访问哪些索引、应允许哪些能力，以及磁盘配额、搜索配额等资源的分配。如果现有角色不满足用户需求，系统管理员可以通过可选地继承现有
+  Splunk 角色来创建新角色。继承现有 Splunk 角色的新角色会继承父角色的能力、索引访问权限和资源限制。
+
+
+  Splunk 不建议更改默认角色。如果你想编辑默认角色，建议的方法是克隆现有角色并更改所需的可配置选项。以下截图显示了**新建角色**创建表单：
+
+
+  ![](img/5319cbd6f078c6cda7fac6347f77a07d_68_0.png)
+
+
+  上述截图显示了要分配给角色的名称，以及五个选项卡：**继承**选项卡用于选择现有角色，**能力**选项卡用于选择角色的能力，**索引**选项卡用于选择角色可访问的索引，**限制**选项卡用于对索引字段设置搜索过滤器，最后，**资源**选项卡用于限制角色级别和用户级别允许的磁盘空间和搜索配额。点击**创建**按钮将创建一个新角色，该角色将出现在**角色**网页上，如*图
+  3.5* 所示。
+
+
+  能力是应用于用户的细粒度权限，其列表相当长。你可以参阅 https://tinyurl.com/bdffj2s6 上的文档获取完整列表。另一个查看它们的地方是
+  https://tinyurl.com/2p8nvat9 上的 authorize.conf **规范（spec）**，其中包含最新的能力列表，因为这些列表可能会发生变化。
+
+
+  到目前为止，你已经了解了通过 Splunk Web 创建/编辑现有角色的过程。一般来说，Splunk Enterprise 在文件系统上包含与 Splunk Web
+  中显示的每个设置相对应的配置文件（.conf）。Splunk 会将你在 Splunk Web 中所做的每一项更改写入配置文件。让我们看一下 authorize.conf
+  文件，其中包含*图 3.6* 中每个选项卡的角色配置详细信息。
+
+
+  让我们看一下 admin 角色的示例 authorize.conf 片段。role_admin 在 Splunk 术语中被称为节（stanza），节的格式为 `role_<角色名称>`：
+
+
+  ```
+
+  [role_admin]
+
+  # === 继承的角色 ===
+
+  importRoles = power;user
+
+  # === 能力 ===
+
+  accelerate_datamodel   = enabled
+
+  admin_all_objects      = enabled
+
+  ### 许多此类能力已启用
+
+  # === 其他设置 ===
+
+  srchIndexesAllowed = *;_*
+
+  srchIndexesDefault = main;os
+
+  srchFilter          = *
+
+  srchDiskQuota       = 10000
+
+  srchJobsQuota       = 50
+
+  ```
+
+
+  默认情况下，authorize.conf 文件位于 $SPLUNK_HOME/etc/system/default 目录中。如果你想通过配置方式创建新角色，Splunk
+  建议在 $SPLUNK_HOME/etc/system/local 系统目录或 `$SPLUNK_HOME/etc/apps/<app-name>/local`
+  应用本地目录中创建本地目录。为了使对配置文件所做的更改生效，建议重启 Splunk 实例。
+
+
+  有关所有 Splunk 配置文件的完整规范，请访问 $SPLUNK_HOME/etc/system/README 目录。你会找到扩展名为 .spec 和 .example
+  的文件。关于角色就介绍到这里。我建议你通过 Splunk Web 和 authorize.conf 规范文件来实践创建角色，以熟悉相关术语。请逐一浏览*图 3.6*
+  中显示的每个选项卡。
+
+
+  下面让我们看看 Splunk 支持的身份验证方法。
+
+
+
+
+
+
+  ## SAML
+
+
+  SAML 可用于在 Splunk 平台上启用 SSO 身份验证方案，以便用户能够通过 SSO 身份识别登录。Splunk 平台支持 SAML 2.0 协议版本，并联系
+  IdP 以检索用户的 SAML 组信息。与 LDAP 类似，SAML 组由 Splunk 管理员预先映射到 Splunk 角色。
+
+
+  Splunk 提供了非常好的文档来配置基于 SAML 身份验证的 SSO。您可以参考此处的文档：https://tinyurl.com/294zrc8u。
+
+
+  ## MFA
+
+
+  MFA 由 Splunk 平台通过 Duo 和 RSA 安全机制支持，如图 3.7 所示。此方法将允许用户使用多个服务对 Splunk 平台进行身份验证以增强安全性。
+
+
+  配置通过 Splunk Web 设置 | 身份验证方法 | 多因素身份验证菜单完成，选择其中一个单选按钮（Duo 或 RSA），然后单击“配置 Duo 安全”超链接，填写表单，然后单击“保存”按钮。
+
+
+  如果您想深入了解详细步骤，请按照 Splunk 文档链接：https://tinyurl.com/sv8rnwhb。
+
+
+  ## 脚本化身份验证
+
+
+  Splunk 平台为诸如远程身份验证拨入用户服务（RADIUS）或可插拔身份验证模块（PAM）之类的外部系统提供基于脚本的身份验证方法。Splunk Web 中没有直接选项来配置它；但是，示例脚本可在
+  SPLUNK_HOME/shared/authScriptSamples 下获得，您可以在其中按照 README 文件中的说明进行操作。
+
+
+  ## 总结
+
+
+  总之，角色、用户和身份验证方法共同保护 Splunk Enterprise 实例。我们首先了解了用户。他们是执行 Splunk 平台上所需操作和执行的首要实体。用户可以是管理员（admins）或由管理员创建的普通用户。我们通过
+  Splunk Web 界面和 Splunk CLI 了解了创建新用户。之后，我们研究了角色为用户提供了什么。
+
+
+  Splunk 遵循 RBAC 方法。角色由系统管理员创建和管理。Splunk 提供默认角色，并且可以通过继承它们通过新角色创建过程进行扩展。
+
+
+  将用户分配给特定角色是 Splunk 中常用的解决方案，用于限制他们对某些操作的访问、限制他们对资源的消耗以及控制他们对索引的访问。角色中
+
+
+  - 8. *选项 B* 是正确答案。Splunk 中没有 `roles.conf` 或 `capabilities.conf` 这样的文件。`authentication.conf`
+  包含与身份验证相关的设置。
+
+  - 9. *选项 C* 是正确答案。当在 Splunk 上本地添加用户时，他们不会针对 LDAP 进行身份验证，并且他们的凭据不会与 LDAP 同步。要启用 LDAP
+  身份验证和同步，用户需要分配给映射到 Splunk 角色的适当 LDAP 组。这确保了他们的身份验证是在 LDAP 目录中执行的，并且对他们的帐户的任何更改或更新都与
+  LDAP 服务器同步。
+
+  - 10. *选项 C* 是正确答案。例如 – `https://splunkhostname:8000/en-US/account/login?loginType=splunk.`
+
+  '
+- '## Splunk Forwarder 管理
+
+
+  *forwarder* 名称在此时应该很熟悉，因为您已经阅读过两种类型的 forwarder：**通用 forwarder（UF）** 和 **重型 forwarder（HF）**。它们是为特定用例构建的两种不同的软件二进制文件。在本章中，您将了解更多关于
+  UFs 的信息，它们在大规模和复杂的 Splunk Enterprise 环境中通过 **部署服务器（DS）** 集中管理。
+
+
+  我们将首先了解 UFs 在整体 Splunk 部署架构中的目的，然后配置 DS，以及 UF 的安装和配置。配置包括将 UF 连接到外部索引器以转发数据，并使用
+  `deploymentclient.conf` 配置来从 DS 下载应用程序。最后，您将通过监控控制台应用程序了解监控转发器。
+
+
+  本章不仅对系统管理员很重要，对数据管理员也很重要。它涉及两种类型管理员之间的共同责任，包括安装 UF、DS 和索引器连接配置，这些都是数据管理员创建转发器上必要的数据输入以将数据摄取到索引器的先决条件。
+
+
+  在本章中，我们将涵盖以下主题：
+
+
+  - 介绍通用 forwarder
+
+  - 配置部署服务器
+
+  - 安装通用 forwarder
+
+  - 在通用 forwarder 上配置转发
+
+  - 配置 `deploymentclient`
+
+  - Forwarder 监控
+
+
+  ![](img/5319cbd6f078c6cda7fac6347f77a07d_79_0.png)
+
+
+  图 4.1：源主机中的 UF 存在
+
+
+  在前面的图中，UF 安装在运行 Web 服务器的主机上。UF 旨在读取 Web 服务器日志并将其转发到索引器。
+
+
+  让我们通过 DS 的配置，然后安装和配置 UF。
+
+
+  ## 配置部署服务器
+
+
+  DS 顾名思义，集中管理对转发器的部署。它可以部署到 UFs 和 HFs，并且在应用程序部署后可以选择性地重新启动它们。在本节中，您将了解 DS 的功能以及管理转发器所需的配置。
+
+
+  让我们回顾一下 DS 设置要求：
+
+
+  - DS 是 Splunk Enterprise 软件的实例，需要 Splunk Enterprise 许可证。
+
+  - 转发器，无论是 UFs 还是 HFs，都需要配置 deploymentclient.conf 文件以与 Splunk DS 建立连接。此配置文件使转发器能够“回拨”并与
+  DS 通信。通过手动编辑 deploymentclient.conf 文件或使用 Splunk CLI，转发器可以与 DS 建立所需的连接。
+
+  - 用于管理服务器类的 serverclass.conf 配置文件可以通过导航到设置 | 转发器管理菜单的 Splunk Web 界面进行设置。Splunk DS
+  上 serverclass.conf 文件的典型位置是 $SPLUNK_HOME/etc/system/local。有关 Splunk Web 界面的更多详细信息，请参阅图
+  4.2 和 4.3。
+
+  - Splunk 应用程序/插件可以按照 Splunk 应用程序结构自定义构建，也可以从 splunkbase.com 下载，在那里有数百个预构建的应用程序/插件。
+
+  - 需要部署到转发器的应用程序/插件放置在 `$SPLUNK_HOME/etc/deployment-apps` 目录中。
+
+  - 通过 DS 部署的应用程序存储在转发器客户端的 `$SPLUNK_HOME/etc/apps` 目录中。
+
+
+  让我们在下一节中查看 `serverclass` 的配置。
+
+
+  ## 配置 serverclass
+
+
+  要通过 Splunk Web 转发器管理方法配置 DS，至少必须将一个应用程序复制到 `$SPLUNK_HOME/etc/deployment-apps` 目录；您可以从
+  splunkbase.com 下载任何示例应用程序。使用您的 Splunk 帐户登录 splunkbase.com 以下载应用程序。
+
+
+  复制应用程序到 `deployment-apps` 目录后，请按照以下步骤操作：
+
+
+  1. 复制应用程序后，以管理员身份登录 Splunk Web 并导航到 **设置 | 转发器管理**：
+
+
+  ![](img/5319cbd6f078c6cda7fac6347f77a07d_80_0.png)
+
+
+  图 4.2：Splunk Web – 转发器管理
+
+
+  2. *图 4.2* 显示 **转发器管理** 和三个选项卡：**应用程序**、**服务器类** 和 **客户端**。第一次访问此区域时，不会存在服务器类（正如选项卡名称后的零所示），因此单击
+  **create one** 链接。
+
+  3. 该链接将带您进入一个页面，您可以在其中输入类的名称并选择要映射应用程序以进行部署的应用程序和客户端。*图 4.3* 显示了两个服务器类，**AppsForLinux**
+  和 **AppsForWindows**，并且 **应用程序** 计数为每个显示 **1**：
+
+
+
+
+  ```text
+
+  # Deploying Windows App to matching IP address 10.9.8.*
+
+  # and reloads client after installation
+
+  # and restarts if necessary
+
+  [serverClass:AppsForWindows]
+
+  whitelist.0=10.9.8.*
+
+  issueReload=true
+
+  restartIfNeeded=true
+
+
+  # App ''Windows_App'' mapping to serverClass defined
+
+  [serverClass:AppsForWindows:app:Windows_App]
+
+  ```
+
+
+  根据特定类别转发器客户端需要添加或排除的应用，通常需要对 serverclass 进行更改。当组织内部署任何新的转发器客户端时，可能需要进行集中管理，这要求调整转发器的主机名、DNS
+  或 IP 地址，同时安装新的应用或转发器插件。这些是一些众所周知的场景，还可能出现许多类似的情况。
+
+
+  在此阶段，DS 已准备好接受来自转发器或部署客户端的传入连接。在下一节中，我们将安装 UF 并配置 deploymentclient.conf 文件。
+
+
+  ## 安装通用转发器
+
+
+  UF 的安装步骤因操作系统而异，UF 软件包也会根据操作系统和计算架构的不同而有所差异。在本节中，您将看到仅适用于 Windows 和 Linux 的 UF 安装说明。
+
+
+  要查看按操作系统分类的 UF 软件包列表，请访问 https://www.splunk.com/en_us/download/universal-forwarder.html。
+
+
+  在直接开始安装之前，Splunk 建议检查硬件先决条件。以下 CPU、内存和磁盘要求适用于所有操作系统上的 UF 8.2.x 至 9.x：
+
+
+  - **CPU**：1.5 GHz 时钟速度
+
+  - **主内存**：512 MB
+
+  - **磁盘**：5 GB 空间
+
+
+  让我们来看看 Windows 的安装说明。
+
+
+  ### 在 Windows 操作系统中安装
+
+
+  为了演示，我已从上述下载链接下载了与 Windows 11 64 位架构兼容的 .msi 转发器包。该包可以通过命令行/PowerShell、交互式图形用户界面（GUI）方式安装，或者如果
+  Windows 机器已启用用户帐户控制，也可以通过静默方式安装。
+
+
+  ![](img/5319cbd6f078c6cda7fac6347f77a07d_88_0.png)
+
+
+  图 4.6：转发器监控仪表板
+
+
+  如果 UF 和 DS 的设置（包括 deploymentclient 配置）已正确完成，15 分钟后，您将能够看到 Forwarders: Instance 和
+  Forwarders: Deployment 仪表板面板已填充正确的详细信息，例如按状态统计的转发器、转发器数量以及随时间变化的转发器连接数等。
+
+
+  ## 总结
+
+
+  总而言之，Splunk UF 是一个不需要任何许可证的软件二进制文件，通常安装在源系统上。UF 轻量级且消耗较少的资源。UF 监控数据并将其转发到索引器进行索引，并使用
+  fishbucket 概念仅读取文件中的数据一次。诸如 CSV、XML、JSON 等结构化数据可以使用 INDEXED_EXTRACTIONS 进行解析。UF
+  上的转发在 outputs.conf 文件中配置，该文件包含索引器主机和管理端口详细信息。
+
+
+  UF 可以安装在各受支持的操作系统和硬件规格上；我们已经了解了它在 Windows（通过交互式 GUI）和 Linux（通过 CLI/静默模式）上的安装。默认情况下，UF
+  安装在 Linux 环境中的 /opt/splunkforwarder/ 目录下，该目录通过 $SPLUNK_HOME 环境变量引用。
+
+
+  之后，我们探讨了 DS，它是一个 Splunk Enterprise 实例，用于管理大型 Splunk 环境中的众多转发器。应用存储在 $SPLUNK_HOME/etc/deployment-apps
+  中，DS 的位置和 serverclass.conf 文件包含应用与部署客户端（即转发器）的映射关系。部署到客户端的应用通常存储在 $SPLUNK_HOME/etc/apps
+  目录中。要从 DS 获取应用，转发器需要 deploymentclient.conf 文件，其中包含 DS 主机和端口详细信息。成功连接到 DS 后，默认情况下，客户端每
+  60 秒回连一次。
+
+
+  最后，我们了解了 MC 应用中的转发器管理，它基于 UF 和 DS 的内部日志提供仪表板。默认情况下，转发器管理处于禁用状态，可以在分布式 Splunk 架构中专用于
+  MC 应用的 Splunk 实例上启用。在下一章中，我们将详细了解 Splunk 配置文件。
+
+
+  在下一节中，将为您提供一些问题和答案，以测试您对本章知识的掌握情况。
+
+
+  5. 哪个文件包含转发器上的 DS 详细信息，以帮助建立与 DS 的连接？
+
+
+  - A. `server.conf`。
+
+  - B. `web.conf`。
+
+  - C. `deploymentclient.conf`。
+
+  - D. `serverclass.conf`。
+
+
+  6. 转发器是否需要与索引器建立连接？如果是，哪些说法是正确的？
+
+
+  - A. 不需要；转发器独立运行，不需要与索引器建立连接。
+
+  - B. 需要；转发器需要与索引器建立网络连接以发送数据。
+
+  - C. 需要；通过 `outputs.conf` 文件在转发器上启用转发以进行索引。
+
+  - D. 需要；转发器通过默认的 9997 接收端口将数据发送到索引器。
+
+
+  7. 关于 UF 和 HF，哪个说法是正确的？
+
+
+  - A. HF 无法连接到 DS。
+
+  - B. UF 仅兼容与 DS 配合使用。
+
+  - C. HF 和 UF 都能够连接到 DS 并获取最新的应用。
+
+  - D. 通过 `restartSplunkd` 设置进行更改后，可以通过 DS 重新启动转发器。
+
+
+  8. 监控转发器的方法有哪些？（选择所有适用的选项）
+
+
+  - A. 通过编写脚本轮询管理端口 8089。
+
+  - B. 通过 Splunk Web 中的**转发器管理**。
+
+  - C. 通过 MC 应用。
+
+  - D. 通过 DS 和转发器内部日志。
+
+
+  9. 转发器上默认的“回连”内部设置是什么？
+
+
+  - A. 60 分钟。
+
+  - B. 60 秒。
+
+  - C. 300 秒。
+
+  - D. 600 秒。
+
+
+  10. 如果您有一个专用于 Linux 转发器的应用，并且需要阻止 Windows 转发器获取它，您应该在 serverclass.conf 中选择哪些设置？
+
+
+  - A. 允许/拒绝设置。
+
+  - B. 白名单/黑名单。
+
+  - C. 在同一个服务器类中，对 Linux 主机使用白名单，对 Windows 主机使用黑名单。
+
+  - D. 无需操作——转发器足够智能，能够自行选择正确的应用。
+
+
+  希望您在回答这些问题的过程中能够回忆起我们所讨论的主题。我们将在下一节中回顾答案。
+
+
+  ## 答案回顾
+
+
+  以下是本章问题的答案：
+
+
+  - **1.** 错误——UF 无法存储、搜索和索引数据。它也没有任何用户界面可供配置。
+
+  - **2.** 选项 A 和 C 是正确答案。默认情况下，UF 附带嵌入式许可证，因此无需额外许可证。UF 可以通过在本地 props.conf 中设置 INDEXED_EXTRACTIONS
+  来解析结构化数据。UF 将利用包含查找指针的 fishbucket 索引，从文件的最后读取位置继续读取。
+
+  - **3.** 选项 A 和 B 是正确答案。默认情况下，DS 在所有 Splunk 实例上启用。应用存储在 $SPLUNK_HOME/etc/deployment-apps
+  中。DS 和转发器始终需要连接，并按照定义的间隔进行通信。
+
+  - **4.** 选项 B 正确。serverclass.conf 是包含应用与转发器客户端映射以及其他设置（如白名单、黑名单、restartSplunkd 等）的文件。
+
+  - **5.** 选项 C 正确。deploymentclient.conf 是包含 DS 主机和端口详细信息以建立连接的文件。
+
+  - **6.** 选项 B、C 和 D 是正确答案。
+
+  - **7.** 选项 C 和 D 是正确答案。UF 和 HF 都可以通过 DS 进行管理。restartSplunkd 设置有助于在部署应用后重新启动远程转发器。
+
+  - **8.** 选项 B、C 和 D 是正确答案。转发器和 DS 的内部日志用于 MC 应用仪表板。
+
+  - **9.** 选项 B 正确。60 秒是默认的回连间隔。
+
+  - **10.** 选项 C 正确。在这种情况下，白名单和黑名单是两个有用的设置。
+
+
+
+
+
+  '
+- "## 理解 Splunk 索引\n\n索引是 Splunk Enterprise 内部一种特定类型的数据存储；换句话说，简单来说，索引就是数据的存储库。例如，你在网上表单中搜索自己的地址并输入地址详情：你提供门牌号、街道和邮政编码，这些信息对你来说是唯一的。类似地，如果你想在\
+  \ Splunk 中搜索特定数据，可以通过使用其索引来找到它。\n\nSplunk 索引有两种类型，分别称为**事件**索引和**指标**索引。事件索引存储任何类型的文本数据，这是默认的索引类型。指标索引只存储必须符合特定结构的指标数据。Splunk\
+  \ 中有一些专门用于处理指标数据的特殊命令，通常以 `m` 开头，例如 `mstats`、`mpreview` 和 `mcatalog`。指标索引是一个完全不同的主题，超出了本书的范围。如果你想了解更多相关信息，请访问\
+  \ https://tinyurl.com/5n8jb6c。在本章中，我们将重点关注事件索引。从现在开始，如果没有明确说明索引类型，请假定它是事件索引。\n\n\
+  Splunk 允许你创建自己的索引，同时它也会附带一些事件索引，每个都有特定的用途。让我们来看看这些索引：\n\n- `main`：如果没有在外部输入源中指定索引，则这是\
+  \ Splunk 的默认索引。\n- `summary`：用于存储摘要数据的默认摘要索引。\n- `_internal`：存储来自各种内部源的 Splunk 内部日志，例如\
+  \ splunkd 守护进程日志、Web 访问日志、调度器日志、Python 日志等。\n- `_audit`：存储 Splunk 内部审计日志，例如登录、搜索、数据访问和管理活动。\n\
+  - `_introspection`：存储 Splunk 资源消耗和性能数据。监控控制台应用仪表板高度依赖此索引。\n- `_fishbucket`：存储文件监控输入源的检查点信息。\n\
+  - `_telemetry`：如果通过 `telemetry.conf` 启用了检测信息，则存储这些信息。\n\n创建 Splunk 索引的方法不止一种，具体取决于\
+  \ Splunk 部署架构的类型。无论采用哪种方法，都需要在索引器中配置 `indexes.conf` 文件。\n\n索引器是 Splunk Enterprise\
+  \ 的一个实例，负责在将传入数据存储到索引中之前进行处理，并响应由搜索头发出的搜索查询。在前面的章节中，我们已经简要概述了 Splunk 组件，例如索引器和搜索头。\n\
+  \n让我们来看一下索引的重要特性：\n\n- Splunk 允许管理员根据需要和需求创建自定义索引，以存储和组织特定类型的数据。\n- 每个索引都有数据大小和保留时间的限制。要查看配置设置，请参阅\
+  \ `$SPLUNK_HOME/etc/system/default` 目录中 `_internal` 索引的 indexes.conf 定义。\n- 索引以压缩格式包含最初接收的数据，这称为原始数据。它们还包含称为\
+  \ tsidx 文件的索引文件和元数据文件。\n- 索引以桶的形式在文件系统上组织数据。\n- 索引默认存储在 `$SPLUNK_HOME/var/lib/splunk`。该路径通过\
+  \ `$SPLUNK_DB` 环境变量引用。\n- 一旦数据写入索引，它就是最终的，不能被修改。\n- 具有 can_delete 角色的授权用户可以发出 delete\
+  \ 命令，以防止数据参与搜索。此命令会对数据应用删除标记。这意味着它不会永久从存储中删除数据。要永久删除事件数据，请谨慎执行 splunk clean 命令。\n\
+  - 索引的隔离取决于数据大小、数据保留策略、访问策略以及其中存储的数据类型。\n\n我希望你现在对索引有了足够的了解。在下一节中，我们将介绍 Splunk 如何以桶的形式组织数据。\n\
+  \n## 理解桶\n\n桶是索引不可分割的一部分；它们包含原始数据和索引文件。它们以文件夹的形式组织在文件系统上，并具有特定的命名模式。这些文件夹由 Splunk\
+  \ 索引器专门用于数据存储和搜索处理。\n\n为了进一步了解它们，让我们看看默认的 _introspection 索引文件夹结构：\n\n```\nC:\\Program\
+  \ Files\\Splunk\\var\\lib\\splunk\\_introspection>tree\nFolder PATH listing for\
+  \ volume Windows\nVolume serial number is 6676-C13F\nC:.\n├── colddb\n├── datamodel_summary\n\
+  ├── db\n│   ├── db_1663851317_1661686760_13\n│   │   └── rawdata\n│   ├── GlobalMetaData\n\
+  │   └── hot_v1_14\n│       └── rawdata\n└── thaweddb\n```\n\n图 5.1：Splunk 非集群索引文件夹结构\n\
+  \n我们现在已经了解了事件索引桶。数据会根据情况从热桶滚动到暖桶、冷桶、冻结桶和解冻桶。既然你已经熟悉了索引及其内部结构，让我们继续学习索引的创建。\n\n##\
+  \ 创建 Splunk 索引\n\n创建自定义索引是 Splunk 管理员的责任。如你所见，数据会一直保留在索引中，直到数据达到一定年龄或索引达到一定大小，因此在创建索引之前估算索引大小是关键的一步。准确的估算可以确保数据保留所需的时间，同时也有助于提前确定所需的存储容量。\n\
+  \n为了估算索引的大小，我们必须知道以下问题的答案：\n\n- *问题：* 数据需要保留多少天？\n  *答案：* 例如，100 天\n- *问题：* 每天预计有多少\
+  \ GB 的数据量？\n  *答案：* 例如，1 GB\n\n索引大小估算公式如下：\n\n*保留天数 X 每日数据量 X 1/2（原始数据压缩 + 索引文件）*\n\
+  \n如果我们将示例值代入，索引大小变为 100 X 1 X ½ = 50 GB。\n\n既然你已经知道如何估算索引大小并决定为其命名，让我们来看看索引创建过程。\n\
+  \n在“*理解桶*”一节中，我们看到 `$SPLUNK_HOME/etc/system/default` 目录中的 `indexes.conf` 文件有一个 `_introspection`\
+  \ 索引的条目。类似地，Splunk 自带许多内部索引，你可以在同一文件中找到。Splunk 允许我们创建自定义索引，而且创建索引的方法不止一种，这完全取决于部署架构的类型。通常，管理员会选择最合适的方法。在本节中，我们选择了一个单独的\
+  \ Splunk 实例，它同时充当搜索头和索引器。让我们来看看创建事件索引的不同方法。\n\n## Splunk Web\n\n以管理员身份登录 Splunk\
+  \ Web。转到右上角的**设置**菜单，单击**索引**。打开页面后，右上角会出现一个**新建索引**按钮。在同一页面上，你可以看到默认索引以 `_` 开头，例如\
+  \ `_internal` 和 `_audit`。\n\n如果你希望查看某个默认索引的配置，请单击该索引名称。否则，请单击**新建索引**按钮并填写**索引名称**和**整个索引的最大大小**字段，继续创建新索引。默认的**索引数据类型**设置为**事件**。指标应该\n\
+  \n- **参数：** homePath、coldPath、thawedPath、app 等\n- **示例：** $SPLUNK_HOME\\bin\\splunk\
+  \ add index windows-event-logs -app search\n\nCLI 和 Splunk Web 两种方式都会写入文件系统上的 indexes.conf\
+  \ 文件。如果你熟悉 indexes.conf 规范，那么直接创建 indexes.conf 文件也能达到同样的目的。\n\n## indexes.conf 详解\n\
+  \n让我们深入了解一下我们通过 Splunk Web 创建的 windows-event-logs 索引对应的 indexes.conf 文件。正如我们在 Splunk\
+  \ Web 一节中所了解的，该索引默认保存到名为 search 的 Search & Reporting 应用文件夹中，因此我可以在 $SPLUNK_HOME/etc/apps/search/local\
+  \ 找到它：\n\n```\n[windows-event-logs]\ncoldPath = $SPLUNK_DB\\windows-event-logs\\\
+  colddb\nenableDataIntegrityControl = 0\nenableTsidxReduction = 0\nhomePath = $SPLUNK_DB\\\
+  windows-event-logs\\db\nmaxTotalDataSizeMB = 500\nthawedPath = $SPLUNK_DB\\windows-event-logs\\\
+  thaweddb\n```\n\n这种方法的一个优点是，可以为高级索引配置设置一系列选项。但是，通过这种基于文件的方式创建新索引需要重启 Splunk 实例。\n\
+  \n有多种方法可以控制数据大小，从桶目录级别到整个索引大小。让我们看看以下高级选项以及需要备份的内容：\n\n- homePath.maxDataSizeMB\
+  \ 限制 homePath 目录中热桶和暖桶的大小。\n- coldPath.maxDataSizeMB 限制 coldPath 目录中冷桶的大小。\n- 要限制可创建的热桶和暖桶数量，请分别设置\
+  \ maxHotBuckets 和 maxWarmDBCount。对于高容量索引（索引数据量超过 10 GB/天），Splunk 建议将 maxHotBuckets\
+  \ 从默认值 3 增加到 10。\n- 默认情况下，Splunk 通过 maxDataSize = auto 将热桶大小限制为 750 MB；如果每天索引大小估算为\
+  \ 10 GB，请将此选项设置为 maxDataSize = auto_high_volume，以便 Splunk 在 64 位系统上创建 10 GB 的热桶。使用此选项是为了避免为大型索引创建过多的小桶。过多的小桶会影响\
+  \ Splunk 的性能。热桶一旦达到最大大小，就会滚动为暖桶，然后会创建新的热桶。\n\n\n\n\n\n- `maxTotalDataSizeMB` 是总索引大小限制。如果查看示例索引\
+  \ `windows-event-logs`，我们已将此值设置为 500 MB。\n- 全局设置适用于 `indexes.conf` 中指定的每个索引。完整列表请参考\
+  \ Splunk 文档中的 `indexes.conf.spec` 文件。在全局级别，可以配置 `lastChanceIndex` 选项。它作为任何未指明有效索引的外部输入的最终选项。如果此值留空，Splunk\
+  \ 将简单地丢弃这些事件。\n\n如果移动到冷存储桶的数据搜索频率不高，因此分配与热/温存储桶类似的昂贵硬件存储就不具成本效益怎么办？Splunk 建议对热/温存储桶使用低延迟高吞吐量的存储，因为它们保存的是经常被搜索的最新数据。冷存储桶可以驻留在标准延迟存储上，该存储速度慢且便宜。为实现此目的，可以使用卷来配置索引。让我们在下一节中查看卷。\n\
+  \n## 索引卷\n\n卷是文件系统上的特定目录，分配给索引以有效管理存储空间。让我们看一下在 UNIX 基于的操作系统上为我们在上一节中通过 Splunk Web\
+  \ 创建的 `windows-event-logs` 索引的卷配置：\n\n```\n[volume:hot_storage]\npath = /mnt/fast_disk\n\
+  # Optional limits the volume size to 60 GB\nmaxVolumeDataSizeMB = 61440\n\n[volume:cold_storage]\n\
+  path = /mnt/slow_disk\n#Optional limits the volume size to 50 GB\nmaxVolumeDataSizeMB\
+  \ = 51200\n\n#index definition\n[windows-event-logs]\nhomePath = volume:hot_storage/windows-event-logs\n\
+  coldPath = volume:cold_storage/windows-event-logs\nmaxTotalDataSizeMB = 51200\n\
+  thawedPath = $SPLUNK_DB/windows-event-logs/thawedDb\n```\n\n此配置在 `homePath` 和 `coldPath`\
+  \ 中包含 `volume` 关键字。`thawedPath` 设置为标准位置，因为它不能位于卷上。如果您想了解一些更高级的选项，请查看 `$SPLUNK_HOME/etc/system/README`\
+  \ 目录中的 `indexes.conf.spec` 文件。\n\n在下一节中，我们将介绍备份索引。\n\n## 备份索引\n\n到目前为止，我们已创建索引并将信息存储在存储桶中，并在\
+  \ .conf 文件中修改了其配置。如果底层硬件出现故障，并且您有无法丢失的关键数据和文件怎么办？要将 Splunk 实例恢复到原始状态，必须设置备份程序。对于认证考试，了解需要备份\
+  \ Splunk 安装的哪些文件夹非常重要。以下两个基本文件夹需要备份：\n\n- $SPLUNK_DB 目录：$SPLUNK_HOME/var/lib/splunk/\n\
+  \  热存储桶在 Splunk 运行期间无法备份；相反，可以增量地拍摄快照，并可以备份快照\n- $SPLUNK_HOME/etc 目录：此目录包含 apps、用户配置、系统配置文件和许可证\n\
+  \n在 Splunk 中，$SPLUNK_HOME/etc 目录是一个关键目录，其中包含控制整个 Splunk 部署行为的配置文件和设置。备份此目录对于确保所有配置和自定义得到保护，并在出现任何意外问题或系统故障时能够恢复至关重要。\n\
+  \n这就是我们将要介绍的关于索引创建的全部内容；我们以需要备份的内容结束。在此阶段，您应该熟悉核心索引概念和高级配置选项。让我们在下一节中查看监控索引。\n\n\
+  ## 监控 Splunk 索引\n\n作为管理员，监控随着数量增长的多个索引可能会让人不知所措。为了解决这个问题，Splunk 通过默认的监控控制台应用来监控索引。它具有许多监控功能，监控索引是其中之一。让我们看一下其菜单选项。\n\
+  \n以管理员身份登录并导航到右上角的设置。单击监控控制台。控制台在以下网络视图中打开。单击索引并选择索引详细信息：实例。\n\n![](img/5319cbd6f078c6cda7fac6347f77a07d_102_0.png)\n\
+  \n图 5.4：监控控制台中的索引仪表板\n\n我们还探讨了 Splunk 索引器作为 Splunk 架构的关键组件的作用。索引器负责处理和索引数据、高效存储数据，并响应来自用户和外部应用程序的搜索请求。数据在索引中组织成存储桶，称为热、温、冷、冻结和解冻。这些存储桶默认存储在\
+  \ $SPLUNK_DB 位置。我们讨论了当满足条件时从热到温到冷到冻结（可选）的转换。冻结存储桶不可搜索；解冻存储桶用于从冻结存储桶恢复数据以进行搜索。我们还介绍了通过\
+  \ Web、CLI 和 indexes.conf 文件创建索引。我们查看了数据老化、性能、用于存储管理的卷等高级设置。全局设置之一是 lastChanceIndex，用于存储提供无效索引的外部输入。\n\
+  \n我们讨论了备份索引数据和其他用于恢复的有用配置。我们以讨论监控控制台应用结束，该应用包含用于监控索引和卷的仪表板。在下一章中，我们将深入探讨 Splunk\
+  \ 配置文件。\n\n## 自我评估\n\n您将获得 10 道多项选择题。问题模式与第 1 章《开始使用 Splunk Enterprise 认证管理员考试》中介绍的考试测试模式部分所讨论的相同。完成后，请参考您有困难的部分。或者，您也可以参考\
+  \ Splunk 文档。祝你好运！让我们开始吧。\n\n- 1. 索引是数据的存储库，并且有一个名称。此说法是否正确？\n  A. 正确\n  B. 错误\n\n\
+  - 2. 索引器是一个 Splunk 实例。它在 Splunk 部署中的作用是什么？（多选）\n  A. 索引器存储数据。\n  B. 索引器将数据存储在 $SPLUNK_HOME\
+  \ 位置。\n  C. 索引器响应搜索头发出的搜索请求。\n  D. 存储在索引器中的数据无法删除。\n  E. 索引器默认带有内部索引。您也可以创建自定义索引。\n\
+  \n- 3. 度量索引是否存储任何类型的文本数据？\n  A. 是\n  B. 否\n\n9. 关于 indexes.conf 中的卷，哪个说法是正确的？（多选）\n\
+  \n- A. 卷是文件系统上的目录。\n- B. 卷复杂难以管理，因此需要 Splunk 支持协助。\n- C. 卷有助于有效管理存储。\n- D. 卷使用以\
+  \ volume : 为前缀的节进行配置。\n\n10. 您能否找到需要定期备份的目录？\n\n- A. $SPLUNK_HOME/var/etc\n- B.\
+  \ $SPLUNK_DB/etc\n- C. $SPLUNK_HOME/etc\n- D. $SPLUNK_DB/var/lib/splunk/fishbucket\n\
+  \n我希望您能够回忆起这些主题！让我们在下一节中查看答案。\n\n## 复查答案\n\n- 1. 正确，索引是数据的存储库，并且它们确实有名称。\n- 2. 选项\
+  \ A、C 和 E 是正确答案。索引器数据默认存储在 $SPLUNK_DB 位置。索引数据可以通过 delete 和 clean 命令删除。\n- 3. 否，度量索引仅以文本形式存储度量数据。\n\
+  - 4. 选项 B、C、D 和 E 是正确答案。\n- 5. 选项 B 正确。maxDataSize = auto 将热存储桶大小设置为 750 MB。您还可以设置的另一个选项是\
+  \ maxDataSize = <integer> | auto | auto_high_volume。只需指定整数（maxDataSize = 1000）或\
+  \ auto_high_volume 将存储桶大小设置为 10 GB，这对于日数据量超过 10 GB 的高容量索引是首选。\n- 6. 选项 D 是正确答案。数据从热到温到冷到冻结（可选）滚动。解冻存储桶用于恢复冻结数据。\n\
+  - 7. 所有选项均正确。\n- 8. 选项 C 正确。例如，index=web-logs | delete 将删除标记应用于匹配搜索条件的数据，并且不会永久从磁盘中删除索引数据。\n\
+  - 9. 选项 A、C 和 D 是正确答案。\n- 10. 选项 C 是正确答案。$SPLUNK_HOME/etc 目录包含有关用户、应用和其他系统配置详细信息的关键信息。\n\
+  \n\n\n\n"
+- "## Splunk 配置文件\n\n配置文件是 Splunk Enterprise 不可或缺的一部分。你通过 Splunk Web、CLI 或 RESTful\
+  \ 接口所做的任何配置更改，都会在后台直接更新到 conf 文件中。因此，凡是遇到 “.conf”、“conf”、“config” 或 “configuration\
+  \ file” 等术语，都应理解为同一概念。存在许多这样的 conf 文件，各自用于满足特定目的。在本章中，你将看到跨 Splunk 组件（如搜索头、索引器和转发器）常用文件的使用示例。这些文件可以存储在多个位置，例如用户目录、系统目录和应用目录。你将了解这些文件如何在内存中合并以进行处理。当你熟悉了可以存储\
+  \ .conf 文件的目录结构后，你将理解它们的优先级、处理顺序，并使用 btool 命令查找它们。\n\n你将了解到 .conf 文件对 Splunk 系统管理员和数据管理员都至关重要。系统管理员通常需要调整或重新配置系统级设置，而数据管理员则负责数据摄取、搜索时和索引时的知识对象创建，以及数据索引的故障排除。了解\
+  \ conf 文件如何协同工作，并通过 btool 和 RESTful 接口查看合并后的 conf 文件，对于每个人更深入地了解 Splunk 都是必要的。\n\
+  \n在本章中，我们将涵盖以下主题：\n- 理解 conf 文件\n- 理解 conf 文件的优先级\n- 排查 conf 文件问题\n\n## 理解 conf\
+  \ 文件\n\nSplunk Enterprise 中的 .conf 文件是在数据转发、解析、索引和搜索运行时发挥特定功能的配置文件。这些文件包含重要设置，可以通过文件系统直接或间接（通过\
+  \ Splunk Web、CLI 或 REST API）进行修改。\n\n让我们探索有关 .conf 文件的关键信息。\n\n## 文件格式和访问\n\n要修改或创建新的\
+  \ .conf 文件，你需要访问 Splunk 组件的文件系统。这通常需要在安装 Splunk 的机器上具有适当的权限或管理员权限。通过访问文件系统，你可以使用文本编辑器或其他工具编辑\
+  \ .conf 文件。\n\n## 结构和语法\n\n.conf 文件使用 <key/attribute> = <value> 格式来定义设置。每个键都有其自身的含义，并且键区分大小写。设置被组织成唯一的\
+  \ [<stanza>] 节。遵循每个 .conf 文件的定义规范非常重要，这些规范可以在 Splunk 的在线文档或安装目录下的 $SPLUNK_HOME/etc/system/README\
+  \ 中以 .spec 扩展名找到。\n\n例如，在 props.conf 文件中，KV_MODE 是正确的属性，而 kv_mode 被视为不同且不正确的属性。在\
+  \ .conf 文件中定义属性时，请确保按照相应 conf 文件的规范使用正确的大小写。以下是一个 props.conf 文件的示例结构，包含 [default]\
+  \ 节和其他自定义节：\n\n```\n# This is a comment in .conf files\n# Global settings applied\
+  \ to all stanzas in props.conf\n[default]\nTIME_FORMAT = %Y-%m-%d %H:%M:%S\nTRUNCATE\
+  \ = 20000\nCHARSET = UTF-8\n\n# Specific settings for a sourcetype\n[access_logs]\n\
+  EXTRACT-field_name = \"^\\[(\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2})\\]\"\n\n\
+  # Settings for a host\n[host::server1]\nTRANSFORMS-sethost = sethost_server1\nLINE_BREAKER\
+  \ = ([\\r\\n]+)(\\d{4}-\\d{2}-\\d{2})\nEXTRACT-myfield1 = myregex1\nEXTRACT-myfield2\
+  \ = myregex2\n```\n\n以下是关于此示例的一些说明：\n- 可以使用行首的 # 符号添加注释\n- [default] 节设置应用于所有源类型的全局设置，除非被覆盖\n\
+  - [access_logs] 节为 access_logs 源类型定义特定设置\n- [host::server1] 节为名为 server1 的特定主机指定设置\n\
+  \n![](img/5319cbd6f078c6cda7fac6347f77a07d_111_0.png)\n\n图 6.1：conf 文件的目录结构和位置\n\
+  \n图 6.1 显示了位于 SPLUNK_HOME 下的 etc\\users\\<user_name>\\<app_name>、etc\\apps\\<app_name>\\\
+  \ 和 etc\\system 目录中的 conf 文件。其中的子目录 \\default 和 \\local 是 .conf 文件的典型位置：\n- 图中的\
+  \ <user_name> 显示了内置的 admin 和 splunk-system-user 用户\n- 图中的 <app_name> 显示了开箱即用的 search\
+  \ 应用及其子目录结构\n\nSplunk 建议不要更改 etc\\system\\default 目录中的 conf 文件。相反，应创建一个 etc\\system\\\
+  local\\ 目录，并将自定义配置放在其中。\n\n## 需要记住的要点\n\nSplunk 定义了多个配置文件，这些文件附带相应的 .spec 扩展名规范。这些资源可以在\
+  \ $SPLUNK_HOME/etc/system/README 目录中找到，同时还有说明性示例。\n\n每个 conf 文件都有一个基本结构，即 [<stanza>]\
+  \ 节以及下层的 <key> = <value> 键值对设置。键区分大小写。\n\nSplunk 在 $SPLUNK_HOME/etc/system/default\
+  \ 目录下提供默认的 conf 文件，不建议编辑此目录中的文件。因此，优先使用 /local 目录来覆盖设置。\n\n不同目录中 .conf 文件的优先级决定了哪些设置优先。让我们探讨这些配置文件的考虑顺序。\n\
+  \n## 理解 conf 文件的优先级\n\n$SPLUNK_HOME/etc 是典型 Splunk Enterprise 安装中所有 conf 文件所在的父目录。在此父目录下，配置文件可以在多个位置创建。你可能想知道为什么需要在多个位置存放相同类型的文件。\n\
+  \n在 Splunk 内在各个级别配置设置的能力，为管理员、开发者和用户提供了灵活性，使其能够根据特定需求定制平台。这种灵活性允许对单个应用和用户体验进行精确控制。在多个目录中具有相同节名称的文件的优先级由\
+  \ Splunk 决定。本节后面将介绍优先级。\n\n默认情况下，Splunk Enterprise 在 $SPLUNK_HOME/etc/system/default\
+  \ 目录下提供所有系统级配置，该目录不应被更改。因此，如果需要对 /default 目录下的 conf 文件进行更改，建议在 $SPLUNK_HOME/etc/system/local\
+  \ 目录下创建，该目录优先于 /default 目录。同样，conf 文件也可能存在于以下目录下：\n- $SPLUNK_HOME/etc/users：此目录包含由每个单独用户拥有的私有、特定于用户的更改。这种所有权确保了用户特定更改的隔离，并且默认不与其他用户共享。\n\
+  - $SPLUNK_HOME/etc/apps/<app_name>/[default|local]：在应用（app）的 <app_name> 目录内创建的配置存储在此处。这些配置对任何有权访问该应用的用户可用。通过为用户分配特定角色，你可以控制他们对应用的访问，包括查看和修改\
+  \ <app_name> 目录中配置的能力。\n- $SPLUNK_HOME/etc/system/local：存储在此 Splunk 目录中的配置被视为全局配置。这些配置对于\
+  \ Splunk 实例中的每个用户都是可访问的。\n\n至此，你已了解配置文件目录的列表。让我们理解 Splunk 如何决定不同目录中相同 conf 文件的优先级（参见图\
+  \ 6.1）。优先级根据 conf 类型输入（如 props、indexes 等）及其上下文来决定。\n\n配置设置使用的上下文也会影响优先级顺序。例如，某些配置设置可能仅适用于特定的应用或数据源，而其他设置可能全局应用于整个\
+  \ Splunk 环境。两种上下文类型如下：\n- **全局**：独立于用户和应用上下文的配置文件包括与索引、监控、部署、服务器配置等相关的设置。这些配置独立于用户和应用上下文，并全局应用于\
+  \ Splunk 实例中的所有用户。\n\n\n\n\n\n## 场景 2\n\n在本场景中，我们将考察在两个不同应用中创建的相同设置。\n\n应用名称可以包含小写字母、大写字母、数字、空格和特殊字符。如果两个不同的应用中存在相同的设置，那么\
+  \ Splunk 决定在运行时执行它们的顺序，是通过对应用名称进行反向字典序排序来确定的。\n\n例如，对于我们在场景 1 中看到的相同宏，[high_response_time]\
+  \ 被定义并与可访问 WebApp 和 ITOpsApp 这两个应用的用户共享。\n\n在这种情况下，如果 WebApp 和 ITOpsApp 都有一个同名为\
+  \ [high_response_time] 的宏，那么 WebApp 应用中的宏定义将优先于 ITOpsApp 应用中的定义。这种优先级由应用名称的反向字典序决定。\n\
+  \n这意味着当 Splunk 解析 [high_response_time] 宏时，它会首先在 WebApp 应用中查找，如果在那里找到定义，就会使用该定义。如果在\
+  \ WebApp 应用中未找到定义，那么 Splunk 将查找 ITOpsApp 应用：\n\n```\n## ITOpsApp 宏用于检查超过 2000 毫秒的请求响应时间\n\
+  [high_response_time]\ndefinition = index=web_logs sourcetype=access_log response_time_ms>=2000\n\
+  ```\n\n如果你对字典序和逆序感到好奇，Splunk Lantern 上有一篇非常好的文章进行了更详细的说明：https://tinyurl.com/22hjs8am。\n\
+  \n为了避免手动检查每个配置文件中的每项设置以了解 Splunk 在运行时如何确定优先级，Splunk 提供了诸如 btool 命令和 REST API 接口等有用的工具。这些工具允许你轻松查看配置设置及其优先级。\n\
+  \n然而，在深入了解这些工具之前，让我们先重点关注索引期间的优先级。\n\n## 索引时优先级\n\n索引时优先级指的是适用于整个系统整体的配置设置，而不是针对单个用户。这些设置在全局系统级别运行，并参与诸如在输入阶段索引数据和监控文件等活动。\n\
+  \n在索引期间，各种配置文件都会发挥作用，包括 indexes.conf、server.conf、serverclass.conf 和 inputs.conf。这些文件包含影响索引活动执行方式、服务器配置方式以及数据输入监控方式的基本配置。\n\
+  \n让我们了解这些组件：\n\n- `--debug`：此选项显示 conf 文件在系统、应用或用户目录中位置的绝对路径。与 `--debug` 选项类似，还有许多有用的选项。要查看完整列表，请执行以下命令\
+  \ – `$SPLUNK_HOME/bin/splunk help btool`。\n- `--user`：此选项显示给定用户可见的配置数据。\n- `--app`：此选项显示给定应用可见的配置数据。\n\
+  - `<conf_file_prefix>`：这指的是各种配置文件名中使用的前缀——例如，props、inputs、indexes 和 transforms。\n\
+  \n让我们看一个针对 indexes.conf 文件使用 --debug 选项的 btool 命令示例：\n\n```\n./splunk btool indexes\
+  \ list --debug\n```\n\n在给定的示例中，使用 btool 命令以调试模式列出索引。我们将获得以下输出——正如你在下图中看到的，indexes\
+  \ list --debug 选项显示了 conf 文件的绝对路径以及与索引名称 _internal 关联的每项设置。\n\n![](img/5319cbd6f078c6cda7fac6347f77a07d_118_0.png)\n\
+  \n图 6.3：indexes.conf 的 btool 命令结果\n\n另一个有用的 btool 命令是检查 conf 文件中是否有任何拼写错误。它通常在每次\
+  \ Splunk 实例启动时运行。语法如下：\n\n```\n./splunk btool check\n```\n\n请记住关于 btool 的以下事实：\n\
+  \n- btool 生成的输出可能无法反映已加载内存的当前状态。如果对配置文件进行了需要重启服务的更改，即使该更改尚未在活动系统状态中生效，btool 报告也可能反映此更改。\n\
+  - btool 不受 Splunk 官方支持；但它非常强大且有用。在处理 Splunk 支持案例时，他们可能会要求提供 Splunk diag 报告，该报告包含\
+  \ btool 报告输出。\n- 使用 btool 查看 inputs.conf 文件时，输出中不会显示 [default] 节中的设置。\n- 你可以在无需\
+  \ Splunk 进程处于运行状态的情况下执行 btool 命令。\n\n## 自我评估\n\n你将获得 10 个问题和可供选择的答案。问题模式与我们在第 1\
+  \ 章中讨论的相同。评估结束后，请参阅与你难以回答的问题相关的章节。或者，你也可以参阅 Splunk 文档。祝一切顺利！让我们开始吧。\n\n- 1. 哪个 conf\
+  \ 文件是定义换行解析设置所必需的？\n  A. outputs.conf\n  B. line_breaker.conf\n  C. props.conf\n\
+  \  D. server.conf\n\n- 2. 直接在文件系统上创建 conf 文件会自动重新加载 Splunk 配置吗？\n  A. 会\n  B. 不会\n\
+  \n- 3. 如何在独立 Splunk 实例上重新加载 conf 文件更改？（选择所有适用项）：\n  A. 在 conf 文件末尾添加 restart = true\
+  \ 设置。\n  B. 使用 debug/refresh 端点。\n  C. 重启 Splunk 实例。\n  D. 什么都不做——Splunk 会自动重新加载。\n\
+  \n- 4. 作为数据管理员，你需要在通用转发器（UF）上的 /opt/splunkforwarder/etc/apps/MyApp 目录中调整名为 MyApp\
+  \ 的应用的 INDEXED_EXTRACTIONS 设置。MyApp 默认在 default/ 目录下包含了 props.conf。你将采取什么行动？\n \
+  \ A. 登录 UF 并更新 props.conf，因为该更改仅在单个主机上需要。\n  B. 登录 UF，在 MyApp 下创建 /local 目录，并使用所需设置创建\
+  \ props.conf 文件。\n  C. 什么都不做——props.conf 解析在 UF 上不起作用。\n  D. 什么都不做——这是系统管理员的工作，所以通知系统管理员。\n\
+  \n- 5. 你能确定 conf 文件可以在 Splunk 上创建或预存在的位置吗？其中 $SPLUNK_HOME = /opt/splunk？（选择所有适用项）：\n\
+  \  A. 位置 – etc/apps/users/<user-name>/<app-name>/local/\n  B. 位置 – etc/apps/<app-name>/default/\n\
+  \  C. 位置 - etc/apps/<app-name>/system/\n  D. 位置 - etc/system/default/\n  E. 位置 -\
+  \ etc/system/local/\n\n6. 在搜索时和索引时，Splunk 会考虑哪些配置文件来确定优先级？（选择所有适用项）：\n\n- A. 搜索时\
+  \ - savedsearches.conf、macros.conf 和 server.conf\n- B. 搜索时 - savedsearches.conf、macro.conf\
+  \ 和 tags.conf\n- C. 索引时 - inputs.conf、server.conf、indexes.conf 和 savedsearches.conf\n\
+  - D. 索引时 - inputs.conf、serverclass.conf、indexes.conf 和 server.conf\n\n7. 使用哪个 CLI\
+  \ 命令来排查 conf 文件错误？（选择所有适用项）：\n\n- A. ./splunk check errors\n- B. ./splunk btool\
+  \ check\n- C. ./splunk btool <conf-file-name> list --debug\n- D. ./splunk btool\
+  \ check-typos\n\n8. 用户 A 具有 power user 角色，并在搜索应用下创建了一个具有私有权限的警报。它将被存储在 Splunk 上的什么位置？\n\
+  \n- A. $SPLNUK_HOME/etc/users/local/\n- B. $SPLNUK_HOME/etc/apps/search/users\n\
+  - C. $SPLNUK_HOME/etc/users/User-A/search/local\n- D. $SPLUNK_HOME/etc/users/search/local\n\
+  \n9. 用户 A 具有 power user 角色，创建了一个警报，并与一个名为 search 的应用共享。它将被存储在 Splunk 上的什么位置？\n\n\
+  - A. $SPLNUK_HOME/etc/users/search/local\n- B. $SPLNUK_HOME/etc/apps/search/local\n\
+  - C. $SPLNUK_HOME/etc/apps/users/User-A/search/local/\n- D. $SPLUNK_HOME/etc/apps/search/default/\n\
+  \n\n\n\n\n索引器并汇总从它们接收到的结果。然后将汇总后的结果呈现给用户。\n\n另一方面，索引器负责数据索引。它从搜索头接收搜索请求，并通过搜索索引数据来处理这些请求。索引器将相关结果（基于用户的搜索查询）返回给搜索头，搜索头随后进行汇总并将其呈现给用户。\n\
+  \nSplunk 中的 **分布式搜索** 功能通过将搜索工作负载分发到多个索引器来实现可扩展性和性能优化。这使得搜索查询能够并行处理，从而加快搜索结果并提高资源利用率。\n\
+  \n让我们探索 Splunk 在独立、非集群和集群部署中的分布式搜索的一些关键事实：\n\n- 独立的 Splunk 部署不使用分布式搜索。在独立部署中，整个搜索和索引功能由单个\
+  \ Splunk 实例执行。\n- 要使用分布式搜索功能，Splunk 实例（搜索头和索引器）不需要在集群中。换句话说，集群是可选的。具有单个索引器和搜索头的简单部署也可以连接以使用此功能。参考图\
+  \ 7.1。\n- 当您拥有中小型到大规模的 Splunk 部署且具有高数据量和搜索需求时，分布式搜索就会发挥作用。它允许您将搜索工作负载分发到多个 Splunk\
+  \ 实例，这些实例可能在集群中，也可能不在集群中。\n- 在集群环境中，分布式搜索可以与集群结合使用以增强搜索功能。集群中的每个索引器都可以参与分布式搜索，从而使搜索查询能够在集群内的索引器之间分发。\n\
+  \n例如，以下是一些使用分布式搜索功能的分布式部署类型：\n\n![](img/5319cbd6f078c6cda7fac6347f77a07d_124_0.png)\n\
+  \n图 7.1：使用分布式搜索功能的分布式部署类型\n\n如需了解更多信息，请查看以下搜索头集群架构：\n\n![](img/5319cbd6f078c6cda7fac6347f77a07d_126_0.png)\n\
+  \n图 7.2：搜索头集群架构\n\n在图 7.2 中，有一个由三个搜索头实例组成的集群。这些实例前面有一个负载均衡器，它在集群中的搜索头成员之间均匀分配负载。在搜索头实例中，其中一个被选为执行搜索头队长角色，负责协调集群内的各种任务。\n\
+  \n搜索头队长实例处理诸如作业调度、配置复制、工件复制、警报跟踪以及在搜索头成员之间复制知识包等任务。然而，队长角色并非固定在特定实例上。相反，搜索头成员之间会进行持续的选举过程，以确定将接管队长角色的获胜成员。这确保了职责能够动态分配并根据需要重新分配。\n\
+  \n如果有必要手动将队长身份从一个实例转移到另一个实例，可以通过 CLI 命令启动转移。这提供了对集群内队长分配的灵活性和控制。\n\n除了搜索头实例集群和队长功能外，所提供的设置还包括一个名为\
+  \ **搜索头部署器** 的单独实例。搜索头部署器充当推送到搜索头集群的部署应用的集中枢纽，由管理员在需要时进行推送。\n\n搜索头部署器实例包含部署应用，这些应用是需要在搜索头集群中分发的配置、设置和自定义。这些应用可能包括保存的搜索、仪表板、报告、字段提取以及增强搜索头实例功能和自定义的其他对象。\n\
+  \n管理员可以在搜索头部署器上对部署应用进行更改，然后将这些更改推送到搜索头集群。这种集中化方法简化了跨多个搜索头实例的配置管理和分发，确保在部署和维护应用时的一致性。\n\
+  \n## 索引器集群\n\n索引器集群包含一组配置为作为索引器（搜索对等体）工作的 Splunk Enterprise 实例，它们共享相同的索引配置和应用。需要一个单独的实例来管理索引器集群活动；它被称为\
+  \ **集群管理器**。\n\n当处理大量数据量和并发搜索查询时，索引器集群是满足高可用性、容错性和可扩展性需求所必需的。通过利用索引器集群，组织可以保证不间断的数据访问，减轻索引器故障的影响，并实现优化的数据索引和搜索性能。\n\
+  \n索引器集群提供以下几个关键优势：\n\n- **数据可用性**：通过在多个索引器之间分发和复制数据，索引器集群可确保即使某个索引器宕机或不可用，数据仍然可访问。\n\
+  - **数据恢复**：在索引器发生故障的情况下，集群在其他索引器上保留索引数据的副本。这种冗余使得在发出搜索请求时能够从剩余的索引器中自动检索相关数据。\n-\
+  \ **数据保真度**：索引器集群通过在多个索引器之间复制和分发数据来维护数据保真度。这种复制策略可保护数据完整性和一致性，降低数据丢失风险，并确保索引数据保持准确可靠。\n\
+  \n让我们了解索引器的搜索工作原理。当用户发出搜索查询时，搜索头会将查询分发到集群中的索引器。每个索引器在其本地存储中对其本地可搜索的数据副本执行本地搜索。然后搜索头汇总和合并来自所有索引器的结果以生成最终的搜索结果集。\n\
+  \n### Tip\n\n如果不需要使用 Splunk Web 用户界面，Splunk 建议在索引器上禁用 Web 服务器。要禁用 Web 服务器，请在索引器上执行\
+  \ ./splunk disable webserver CLI 命令。\n\n## 配置分布式搜索\n\n分布式搜索功能需要配置以建立从搜索头到索引器或搜索对等体的连接。从独立的搜索头和索引器架构到大规模的多站点集群设置，所有实现都使用分布式搜索功能。参考图\
+  \ 7.2 中的部署类型，其中有三个搜索头组成集群，使分布式搜索能够与三个独立的索引器交互。索引器从各种来源接收数据，例如通用转发器、syslog 输入和用于索引的技术插件。以下是关于分布式搜索需要了解的几个基本要点：\n\
+  \n- 搜索头预先配置为在用户请求时向搜索对等体发送查询。\n- 搜索头汇总参与搜索的对等体返回的结果。\n- 搜索头将结果呈现给用户。\n- 一个名为知识包复制的持续后台进程在搜索头队长上运行（您将在本章后面学习），它会不断与搜索对等体共享信息。在非集群搜索头环境中，独立的搜索头会将包与所有连接的搜索对等体共享。\n\
+  - Splunk 建议为每个角色专门分配一个 Splunk Enterprise 实例，例如用于转发器管理的部署服务器、用于搜索头集群的搜索头部署器、用于许可的许可管理器以及用于整体部署监控的监控控制台。然而，在资源利用率较低的部署中，管理组件可以根据\
+  \ https://tinyurl.com/26f9n5zf 提供的矩阵进行共置。\n\n### Tip\n\n在分布式部署中，最佳做法是避免在搜索头上本地索引内部日志并在搜索头上启用转发。因此，内部日志和汇总索引数据将集中存储在索引器上。\n\
+  \n分布式搜索可以通过 Splunk Web、CLI 或直接修改 server.conf 和 distsearch.conf 文件进行配置。在下一节中，我们将学习通过\
+  \ CLI 和 Splunk Web 方法将索引器添加到搜索头。\n\n\n\n\n要在搜索头上添加单站点集群索引器，请在搜索头的 $SPLUNK_HOME/bin\
+  \ 目录下执行以下命令。幕后配置设置将被添加到 $SPLUNK_HOME/etc/system/local 目录下的 server.conf 文件中：\n\n\
+  ```\n./splunk add cluster-manager <scheme>://<host>:<port> -secret <indexers-pass4symmkey>\
+  \ -multisite false\n```\n\n对于每个集群管理器，都必须重复执行此命令。\n\n让我们看看此命令的各个要素：\n\n- `<scheme>://<cluster-manager-servername>:<management-port>`\
+  \ 是集群管理器的详细信息\n- `<indexer-pass4symmkey>` 是索引器集群的 pass4SymmKey/机密/安全密钥\n\n举例来说，假设您之前已执行过添加集群管理器地址\
+  \ SplunkManager01.example.com 的命令，则 server.conf 文件现在显示以下内容：\n\n```\n[clustering]\n\
+  mode = searchhead\nmanager_uri = https://SplunkManager01.example.com:8089\npass4SymmKey=\
+  \ encrypted-secreteast\n```\n\n如需更多选项（例如列出、编辑或删除集群管理器），您可以使用帮助命令。例如，在 $SPLUNK_HOME\
+  \ 的 /bin 目录下执行 ./splunk help cluster-manager。\n\n同样，如果您想了解如何编辑和/或删除搜索服务器，可以按如下方式使用帮助命令：./splunk\
+  \ help search-server。此操作应在 $SPLUNK_HOME 的 /bin 目录下完成。\n\n我们现在已经了解了如何在搜索头中同时包含集群和非集群索引器，以配置分布式搜索。接下来，下一节将指导我们使用\
+  \ Splunk Web 界面配置分布式搜索的过程。\n\n## Splunk Web\n\n使用 Splunk Web，我们可以创建与上一节中使用 CLI 所做的相同配置。让我们看看图\
+  \ 7.3 中的菜单选项。\n\n以管理员用户身份登录 Splunk Web，导航到右上角的“设置”并单击它。然后，您将在“分布式环境”下找到以下菜单项：\n\n\
+  图 7.4 包含以下文本字段：对等 URI（peer-URI:mgmt_port 格式）、远程用户名和远程密码，您可以在其中手动输入需要添加到搜索头的索引器的详细信息。填写这些字段并单击“保存”。对于每个搜索对等体，重复图\
+  \ 7.3 和图 7.4 中所示的相同步骤，将它们添加到搜索头。\n\n在下一节中，我们将向搜索头添加集群索引器。\n\n## 添加集群索引器\n\n在 Splunk\
+  \ Web 中，单击“设置”菜单，然后单击“索引器集群”，如图 7.3 所示，这将打开一个新页面，其中包含“启用索引器集群”按钮。单击该按钮并选择“搜索头节点”单选按钮，如图\
+  \ 7.5 所示。\n\n![](img/5319cbd6f078c6cda7fac6347f77a07d_133_0.png)\n\n图 7.5：分布式搜索\
+  \ – 在搜索头上启用集群\n\n图 7.5 显示了在搜索头上启用索引器集群的选项。最后，单击“下一步”按钮。将打开一个表单，如图 7.6 所示。\n\n- 要查看知识包中包含的允许配置的完整列表，请参阅搜索头的\
+  \ distsearch.conf 文件中的 [replicationAllowlist] 和 [replicationSettings:refineConf]。要检查包复制状态，可以在搜索头上执行\
+  \ splunk show bundle-replication-status 命令，或者使用监控控制台，其搜索菜单下有一个仪表板。\n\n如果公共知识包版本无法在所有搜索对等体之间复制，可能会导致搜索暂时中断。当搜索进程尝试跨对等体同步知识包时，可能会暂停几秒钟。如果建立公共包失败，搜索进程最终将放弃并继续，而不会实现同步。在这种情况下，Splunk\
+  \ 管理员将采取必要措施，识别缓慢的搜索对等体并将其隔离在搜索头上，以防止该对等体参与未来的搜索。隔离后，搜索对等体确保已正在运行的搜索完成。隔离操作仅暂停向该对等体复制知识包。\n\
+  \n可以通过 Splunk Web 单击“设置 | 分布式搜索 | 搜索对等体”来实现隔离。也可以通过 CLI 完成。成功恢复后，请解除对该对等体的隔离，以便其参与未来的搜索。\n\
+  \n以下是 CLI 隔离和解除隔离命令：\n\n```\n./splunk edit search-server -auth <user>:<password>\
+  \ <host>:<port> -action [quarantine|unquarantine]\n```\n\n让我们更详细地了解一下：\n\n- <user>:<password>\
+  \ 是搜索头的管理员级凭据\n- <host>:<port> 是搜索对等体的主机和管理端口\n- -action 的值为 quarantine 或 unquarantine\n\
+  \n最后总结一下；知识包是一个存档文件，由搜索头通过后台复制过程与搜索对等体共享。知识包包含知识对象，搜索对等体在将搜索结果返回给搜索头之前会将这些知识对象应用于搜索结果。默认情况下，包大小限制适用，为了减小其大小，可以将某些知识对象添加到搜索头的\
+  \ replicationDenyList 设置中。要暂停向特定对等体复制包，可以隔离该搜索对等体。\n\n让我们在下一节中总结我们所学到的内容。\n\n3.\
+  \ 在搜索头集群中，搜索头首领组件是否是必需的？\nA. 是\nB. 否\n\n4. 您被分配到一个关键项目，其中配置了搜索头集群来搜索多个非集群索引器。这是否利用了分布式搜索概念？\n\
+  A. 是\nB. 否\n\n5. 找出搜索头上包含索引器详细信息的配置文件。\nA. serverclass.conf\nB. server.conf\nC.\
+  \ distsearch.conf\nD. distributedpeers.conf\n\n6. 知识包包含什么？（选择所有适用项。）\nA. 用户、知识对象和应用\n\
+  B. 知识对象，如事件类型、标签和已保存搜索\nC. Splunk 二进制文件\nD. 有关搜索过程的 Splunk 内部日志\n\n7. 知识包的默认复制策略是什么？\n\
+  A. 级联\nB. RFS\nC. 经典\nD. 挂载\n\n8. 知识包已经变得太大，超过了 maxBundleSize。您是一名系统管理员；您会怎么做？\n\
+  A. 增加 maxBundleSize\nB. 从搜索头删除较大的应用\nC. 将不需要的文件/应用添加到 replicationDenyList\nD. 什么都不做；搜索头仅共享\
+  \ .delta 文件\n"
+- "# 第 2 部分：\nSplunk 数据管理\n\n本 Splunk 9.x Enterprise 认证管理员指南的第 2 部分深入探讨 Splunk 数据管理的世界。它将使您具备高效地将数据导入\
+  \ Splunk、配置数据输入、执行解析和转换、提取有意义的字段以及使用查找来增强数据所需的技能。自评估模拟考试确保您可以有效地应用所学知识。\n\n此部分包含以下章节：\n\
+  \n- 第 8 章，数据导入\n- 第 9 章，配置 Splunk 数据输入\n- 第 10 章，数据解析与转换\n- 第 11 章，字段提取与查找\n- 第\
+  \ 12 章，自评估模拟考试\n\n如果您想深入了解这些阶段的详细概述，以及队列和管道，请查看 https://tinyurl.com/bdzb cetp。请注意，这对于认证考试来说完全是可选的。\n\
+  \n我们现在已经研究了主要的数据摄取阶段和元数据字段。接下来，我们将探索 Splunk Web 中可用的 Splunk Enterprise 的“添加数据”功能。\n\
+  \n## Splunk Web – 添加数据功能\n\n“添加数据”功能位于 Splunk Web 的“设置”菜单下。只需打开此菜单并单击“添加数据”，如图 8.3\
+  \ 所示。\n\n![](img/5319cbd6f078c6cda7fac6347f77a07d_149_0.png)\n\n图 8.3：Splunk Web\
+  \ – 添加数据\n\n单击“添加数据”将打开一个新的网页，提供三种将数据导入 Splunk 的方法，如图 8.4 所示。\n\n![](img/5319cbd6f078c6cda7fac6347f77a07d_149_1.png)\n\
+  \n图 8.4：将数据导入 Splunk 的方法\n\n\n\n\n\n如你所见，第一种方法是一次性的**上传**方法，用于将数据一次性添加到 Splunk。上传的最大文件大小为\
+  \ 500 MB。\n\n第二个**监视**选项通过监视安装 Splunk 的机器上的文件和端口来获取数据。此方法允许使用多种数据输入选项，例如将实例转换为 HEC\
+  \ 接收器、启用网络端口监听 TCP/UDP 流量，以及配置脚本按定义的时间间隔从 API 拉取数据负载。\n\n上图中的第三个选项是**转发**，它专为 Splunk\
+  \ Enterprise 的单实例部署而设计，此时 Splunk 实例同时充当索引器和部署服务器。选择**转发**选项时，你可以从已连接的转发器客户端列表中进行选择。后续步骤允许你配置可在转发器上设置的具体数据输入。\n\
+  \n让我们快速了解一下**上传**选项。**上传**选项是一个有用的功能，可用于快速测试数据样本并识别事件换行。它允许你将数据文件上传到 Splunk 进行分析，从而识别数据中事件是如何被分解的。这在排查问题以及在进行输入或解析设置之前理解数据结构时尤其有帮助。在此过程中，你还可以从合适的预训练源类型中进行选择，并可通过修改\
+  \ `<Key> = <value>` 设置并观察结果来实时自定义源类型。\n\n出于演示目的，我使用以下访问日志信息，将其保存到本地系统并命名为 web-access.log。文件内容如下：\n\
+  \n```\n127.0.0.1 - - [23/Apr/2023:10:28:12 -0400] \"GET /index.html HTTP/1.1\" 200\
+  \ 1240\n127.0.0.1 - - [23/Apr/2023:10:28:13 -0400] \"GET /styles.css HTTP/1.1\"\
+  \ 200 876\n127.0.0.1 - - [23/Apr/2023:10:28:15 -0400] \"GET /scripts.js HTTP/1.1\"\
+  \ 200 432\n192.168.0.1 - - [23/Apr/2023:10:28:17 -0400] \"GET /images/logo.png HTTP/1.1\"\
+  \ 200 34012\n192.168.0.1 - - [23/Apr/2023:10:28:19 -0400] \"GET /about.html HTTP/1.1\"\
+  \ 404 345\n127.0.0.1 - - [23/Apr/2023:10:28:21 -0400] \"GET /contact.html HTTP/1.1\"\
+  \ 200 2089\n```\n\n现在，让我们点击*图 8.4* 中显示的**上传**按钮。这将打开一个带有**选择文件**按钮的**选择源**网页。点击该按钮并从本地系统上传\
+  \ web-access.log 文件。然后你将进入*图 8.5* 所示的**设置源类型**页面。\n\n*图 8.5：添加数据 – 设置源类型*\n\n图 8.5\
+  \ 有三个主要部分需要查看。\n\n在左侧，你可以看到我选择了源类型：access_combined。这是一种预训练的源类型，非常适合访问日志的结构。在右侧，显示了一个事件列表及其检测到的时间戳。要查看源类型配置设置，请展开高级部分，其中显示\
+  \ CHARSET、TIME_PREFIX、LINE_BREAKER 等及其对应的值。\n\n点击下一步按钮将进入输入设置。此页面用于设置主机和索引元数据字段，或将其保留为默认值。继续并点击审查按钮以查看元数据字段信息的摘要（见图\
+  \ 8.6）。如果你对详细信息满意，则点击提交；否则，点击返回并编辑必要的部分。\n\n*图 8.6：添加数据 – 审查阶段*\n\n如果一切顺利，点击**提交**按钮将把上传的\
+  \ `web-access.log` 文件索引到你的 Splunk 实例上，并在下一页显示**文件已成功上传**的消息。此页面还提供许多其他选项，包括**开始搜索**、**提取字段**和**添加更多数据**。点击**开始搜索**按钮将打开搜索应用并显示上传的\
+  \ `web-access.log` 文件事件。\n\n让我们结束本章并回顾一下目前学到的内容摘要。\n\n## 摘要\n\n本书*第 2 部分*的第一章旨在帮助你开始使用\
+  \ Splunk 数据管理。我们首先介绍了数据输入类型，包括基于文件的、网络、无代理（HEC）和基于脚本的选项。还有一种特殊类型的输入，可以通过从 https://splunkbase.com\
+  \ 获取的 TA 进行安装。我们还了解到，这些输入要么通过创建 `inputs.conf` 文件，要么通过 Splunk CLI 进行配置。\n\n之后，我们了解了\
+  \ Splunk 分配的默认元数据字段及其在搜索数据时的重要性。`sourcetype` 字段在 Splunk 中起着至关重要的作用，因为它有助于按源类型对数据进行分类和归类。Splunk\
+  \ 使用预训练的源类型列表，如果在输入阶段未指定 sourcetype，则会自动检测并分配适当的 sourcetype。`sourcetype` 定义在 `props.conf`\
+  \ 文件中配置，数据管理员根据所处理的数据类型创建自定义定义。`sourcetype` 配置包含重要设置，如换行边界、时间戳提取和字符集编码。这些设置在输入、解析和索引阶段应用，我们已对这些阶段进行了简要了解。\n\
+  \nSplunk Web 的**添加数据**功能是通过上传少量数据并应用 sourcetype 设置来测试数据输入的绝佳方式。我们了解了将访问日志数据文件上传到\
+  \ Splunk 实例所涉及的步骤。我们还了解了添加数据功能如何通过转发器以及监视 Splunk 实例上的本地文件来提供其他索引数据的方式。\n\n在下一章中，我们将深入探讨本章开头简要介绍的\
+  \ Splunk 数据输入。\n\n## 自我评估\n\n本节提供的问题和选项与认证考试中的问题模式相似。如果你在回答任何问题时遇到困难，请随时重新阅读本章中的相应部分。祝你好运！\n\
+  \n- 1. 选择数据索引阶段（选择所有适用项）。\n  - A. 索引\n  - B. 解析\n  - C. 输入\n  - D. 摄取\n\n- 2. 哪个阶段涉及数据收集并包含各种用于索引的数据输入选项？\n\
+  \  - A. 解析\n  - B. 输入\n  - C. 摄取\n  - D. 索引\n\n- 3. 在哪个阶段计算许可证？\n  - A. 输入\n  -\
+  \ B. 解析\n  - C. 索引\n  - D. 摄取\n\n- 4. 你是一名数据管理员，正在处理存储在运行最新版本 Linux 操作系统的源系统文件中的数据。你会选择以下哪种\
+  \ Splunk 数据输入方法？\n  - A. 编写脚本监视文件并将其直接转发到索引器\n  - B. 安装 UF 并配置基于文件的监视\n  - C. 将文件传输到\
+  \ FTP，索引器轮询要摄取的文件\n  - D. 编写脚本读取每一行并将其发送到 HEC\n\n- 5. Splunk 中哪种数据输入类型公开 RESTful\
+  \ API 以接受数据进行索引？\n  - A. 网络数据输入通过 API 发送事件\n  - B. HEC 公开 RESTful API 以进行数据索引\n\
+  \  - C. 脚本化输入集成 Splunk RESTful 数据输入 API\n  - D. 文件监视可以读取 RESTful API 并与之集成以进行索引\n\
+  \n- 6. 识别元数据字段。（选择所有适用项）\n  - A. time\n  - B. host\n  - C. sourcetype\n  - D. source\n\
+  \  - E. index\n\n- 7. 在索引数据时，是否可以在后续阶段覆盖输入阶段设置的元数据字段？\n  - A. 可以\n  - B. 不可以\n\n\
+  - 8. 一旦在输入阶段设置了索引，就无法覆盖。正确还是错误？\n  - A. 错误\n  - B. 正确\n\n- 9. Splunk 的哪个功能允许你通过上传数据样本测试\
+  \ sourcetype 设置？\n  - A. 添加数据\n  - B. 上传数据\n  - C. 批量上传\n  - D. 输入数据\n\n- 10. 哪个官方网站包含由\
+  \ Splunk 构建的加载项和应用？\n  - A. splunkapps.com\n  - B. splunkbase.com\n  - C. splunkappstore.com\n\
+  \  - D. splunkappaddon.com\n\n\n\n\n\n安装完成后，以管理员身份登录到 *第 1 章* 的 *独立* 部分中安装的 Splunk\
+  \ Enterprise 实例。登录后，导航到 **设置 | 转发和接收 | 配置接收 | 新接收端口**，然后在监听端口字段中输入 9997，并单击 **保存**。\n\
+  \n然后，配置 UF 以连接到接收索引器（在本例中为 Splunk Enterprise），可以通过直接编辑 `outputs.conf` 文件或通过命令行进行配置，就像我们在\
+  \ *第 4 章 Splunk Forwarder 管理* 的 *配置转发* 部分中所看到的那样。有关更多详细信息，您可以参考 Splunk 文档：https://tinyurl.com/2p8h9nuc。\n\
+  \n下图详细说明了我们试图创建的 UF 和索引器（Splunk Enterprise 实例）设置。\n\n![](img/5319cbd6f078c6cda7fac6347f77a07d_158_0.png)\n\
+  \n图 9.1：UF 将日志发送到接收索引器\n\n太好了！您现在有一个 UF 代理，可以为您配置输入。让我们从文件和目录监控数据输入开始。\n\n## 文件和目录监控\n\
+  \n顾名思义，此输入类型监控数据文件及其存储的目录。这是引入数据最有效的方式，也是 Splunk 推荐的处理文件最佳方法之一。监控设置在 `inputs.conf`\
+  \ 文件中配置。要启用此输入，需要在源机器上安装 UF 代理，相同的设置也适用于 **重型转发器 (HFs)** 和 Splunk Enterprise。让我们来看一下此输入类型的显著特点：\n\
+  \n- 适用于所有基于文本的文件，包括结构化格式（XML、CSV、JSON 等）和 .gzip 压缩文件。\n- 通过在 `$SPLUNK_HOME/var/lib/splunk/`\
+  \ 下的 `fishbucket` 目录中维护的检查点来跟踪正在监控的文件。\n- 在转发器重启的情况下，从上次位置恢复文件和目录监控。\n- 递归发现目录中的所有文件，包括新创建的文件。\n\
+  \n在网络问题或索引器不可用的情况下，我们可以通过设置 `queueSize` 和 `persistentQueueSize` 来防止数据丢失。`queueSize`\
+  \ 设置指的是在转发器上的输出队列空闲之前保存数据的内存队列。`persistentQueueSize` 设置可在内存队列已满时启用将数据存储到磁盘。`persistentQueueSize`\
+  \ 必须大于 `queueSize`。数据将写入转发器上的 `$SPLUNK_HOME/var/run/splunk/` 目录。\n\nUDP 输入规范与 TCP\
+  \ 相同，只是它监听 UDP 端口——其余设置和语法保持不变。UDP 的 `inputs.conf` 配置示例如下：\n\n```\n# inputs.conf\
+  \ listening on UDP port 514\n[udp://514]\nconnection_host = ip\nacceptFrom = 192.0.2.10,\
+  \ !external.example.host.com\nindex = main\nsourcetype = access_common\nqueueSize\
+  \ = 1MB\npersistentQueueSize = 100MB\n```\n\n网络输入在 *nix 和 Windows 主机上可能存在限制，因为它们需要访问某些端口以监听\
+  \ TCP/UDP。您可以自行尝试在 UF/Splunk Enterprise 实例上配置这些输入并检查端口的监听状态（在 Linux 和 Windows 主机上使用\
+  \ `netstat` 命令）。\n\n我们已到达网络输入部分的末尾。在下一节中，我们将介绍脚本化输入的配置。\n\n## 讨论脚本化输入\n\n脚本化输入对于索引无法通过文件/目录监控或使用网络输入监控的瞬态/临时数据非常有用。脚本化输入从瞬态源收集数据，然后将收集到的数据写入文件或直接转发到索引器。让我们了解一下有关此输入类型的一些事实：\n\
+  \n- 脚本化输入需要 UF 代理或 Splunk Enterprise 实例（HF）来执行脚本。\n- 可以从瞬态源收集数据，例如操作系统命令。`top`、`vmstat`、`netstat`\
+  \ 和 `iostat` 命令都利用这种类型的输入，该输入在可从 http://splunkbase.splunk.com 下载的 Splunk Unix 和\
+  \ Linux 插件中配置。Windows **技术插件 (TA)** 依赖于此输入类型来收集 Windows **活动目录 (AD)** 日志、注册表日志、WinEventLogs\
+  \ 等。也可以使用脚本从远程 API 拉取日志。\n- 支持流行的脚本类型，包括 `.py`（Python）、`.sh`（shell）、`.ps1`（PowerShell）和\
+  \ `.bat`（Windows 批处理）。\n- 脚本化输入必须安排在特定间隔运行。脚本运行的频率通过指定以秒为单位的间隔数或设置 cron 表达式来设置。\n\
+  - Splunk Enterprise 和 UF 将脚本执行消息记录在本地 splunkd.log 文件中。您可以在 _internal 索引中访问这些日志。\n\
+  - 脚本化输入可通过 Splunk Web 中的 设置 | 数据输入 | 脚本 菜单进行配置。另一种选择是在 inputs.conf 文件中创建它们，可选择将其打包到应用程序中，并使用部署服务器将其部署到转发器。参考第\
+  \ 4 章，Splunk Forwarder 管理。\n\n考虑以下脚本化输入规范：\n\n```\n# inputs.conf scripted input\
+  \ settings\n[script://<script path or cmd>]\nsource = <source to set>\nsourcetype\
+  \ = <sourcetype to set>\nindex = <index name to forward logs>\ninterval = <in seconds.\
+  \ default 60 sec or cron expression. Set -1 to run once, 0 to continuously>\npassAuth\
+  \ = <username to run the script as the OS user>\nqueueSize = <in-memory queue size>\n\
+  persistentQueueSize = <queue to store on disk when in-memory is full>\n```\n\n前述规范的节名称以\
+  \ script:// 为前缀，后跟通常的通用元数据字段 source、sourcetype 和 index，以及队列设置。特定于脚本化输入的设置是 interval\
+  \ 和身份验证信息。\n\ninterval 设置安排脚本每 x 秒运行一次。如果此处未指定任何内容，脚本将默认安排每分钟运行一次。或者，我们可以指定 cron\
+  \ 表达式。\n\nqueueSize 和 persistentQueueSize 的工作原理与 处理网络数据输入 部分中解释的类似——在索引器不可用的情况下，这两个设置都会将脚本生成的数据保存在内存和磁盘中。\n\
+  \npassAuth 设置可确保脚本由分配的用户名运行，通过为该用户创建身份验证令牌。在 Splunk 中设置脚本化输入之前，您需要创建脚本并确保它位于 Splunk\
+  \ 可以访问的文件系统路径中。然后 [script://<script path>] 节将能够从该指定位置执行脚本。出于安全原因，脚本必须放在以下位置之一：\n\
+  \n- $SPLUNK_HOME/etc/apps/<app name>/bin\n- $SPLUNK_HOME/etc/system/bin\n- $SPLUNK_HOME/bin/scripts\n\
+  \n但是，对于具有 .path 扩展名的脚本存在一个例外，它可以引用主机上任何位置的脚本（.py、.sh、.ps1 和 .bat）。.path 脚本文件本身必须位于上述位置之一，但它引用的脚本可以位于这些目录之外。\n\
+  \n让我们看一下以下调用 *nix top 命令以获取进程信息的脚本化输入。在这里，脚本路径相对于 inputs.conf 文件。脚本具有 .sh 扩展名，并安排每\
+  \ 60 秒运行一次。sourcetype 和 source 都设置为 top。此脚本生成的日志将被转发到名为 os（代表操作系统）的自定义索引：\n\n```\n\
+  [script://./bin/top.sh]\ninterval = 60\nsourcetype = top\nsource = top\nindex =\
+  \ os\ndisabled = 0\n```\n\n如果您想参考更多此类示例，请从 https://splunkbase.splunk.com/app/833\
+  \ 下载 Splunk_TA_nix 插件并检查 /default/inputs.conf 和 /bin 目录。\n\n> **提示**\n> 最佳做法是将脚本放在靠近\
+  \ inputs.conf 文件的位置。例如，如果文件位于 $SPLUNK_HOME/etc/system/local/ 目录中，则将脚本放在 $SPLUNK_HOME/etc/system/bin/\
+  \ 目录中。同样，如果 inputs.conf 位于 $SPLUNK_HOME/etc/apps/<app name>/local 目录中，则将脚本放在 $SPLUNK_HOME/etc/apps/<app\
+  \ name>/bin 目录中。\n\n就目前而言，关于脚本化输入的内容就这些——尝试从 Splunkbase 安装一个使用脚本化输入的插件来测试此功能。在下一节中，我们将介绍\
+  \ HEC 输入。\n\n## 了解 HEC 输入\n\nHEC 是一种无代理输入类型，不需要在源机器上安装转发器。此输入类型适用于能够通过 HTTP(S) 发送事件的源，例如通过\
+  \ JavaScript 库的 Web 应用、移动应用和自动化脚本。HEC 在 Splunk Enterprise 实例上公开 RESTful API 端点以接受用于索引的数据。该实例可以在分布式部署中为\
+  \ HF/索引器。让我们来看一下 HEC 输入的关键事实：\n\n- HEC 默认在 Splunk 实例上处于禁用状态，用户必须手动启用它才能开始使用。它可以通过在多个\
+  \ Splunk 实例上配置它并选择性地在前面使用负载均衡器来进行扩展。\n\n\n\n\n- 对 HEC API 的身份验证是通过源发送的 HTTP 请求中提供的令牌来完成的。令牌配置由管理员设置，并与应用程序/源团队共享，以便他们发送事件。\n\
+  - HEC 提供了两个重要的 RESTful 端点用于数据索引——一个用于访问仅限 JSON 格式的事件，另一个用于接受任何原始类型的数据。JSON RESTful\
+  \ 端点专为接受仅以 JSON 格式化的数据而设计。在向此端点发送数据时，应确保载荷（数据）以 JSON 结构正确格式化，并根据需要包含额外的元数据字段。封装在\
+  \ JSON 载荷中的原始数据事件可以是原始事件。\n- 为每个应用程序/源创建的每个令牌都必须是唯一标识符。最佳实践是使用 32 个字符的**全局唯一标识符（GUID）**作为令牌，例如\
+  \ `CD1E753F-5BB2-4F5C-AE22-FE0381A0D916`。源应用程序在将事件作为载荷发送到收集器端点时，会在 HTTP 请求中提供此令牌。\n\
+  - HEC 会自动解析接收到的 JSON 事件，因为其事件时间戳和其他元数据遵循预定义的结构。对于原始数据，如果包含时间戳，则应用断行策略；或者，可以在 `props.conf`\
+  \ 中配置 `sourcetype` 设置，以相应覆盖此行为。\n- HEC 通过 `useAck` 索引器确认设置提供事件索引确认功能。索引器确认在节级别为单个令牌启用；一个单独的端点提供事件索引的状态。\n\
+  - 要允许/限制某些地址通过 HEC 发送数据，可以在 `inputs.conf` 文件的 `[http]` 节级别配置 `acceptFrom` 设置。\n\n\
+  ## 配置 HEC\n\n现在，我们将逐步完成配置 HEC 的过程。\n\n**步骤 1：** 让我们为通过 HEC 发送数据做好准备。第一步是在 Splunk\
+  \ Web 中启用 HEC。导航至 **设置 | 数据输入 | HTTP 事件收集器**，然后点击右上角的**全局设置**按钮。这将打开一个包含**所有令牌**选项的表单。将此选项设置为**已启用**，然后点击**保存**。\n\
+  \n在**全局设置**中启用 HEC 时，您应该已经注意到几件事，其中之一是**启用 SSL** 默认处于选中状态，另一件事是收集器端点监听接收事件的 HTTP\
+  \ 端口号是 8088。\n\nHEC 全局设置也可以通过 `[http]` 节进行配置，该节默认位于 `$SPLUNK_HOME/etc/apps/splunk_httpinput/default/inputs.conf`。要使用此方法启用\
+  \ HEC，请将以下设置添加到 `$SPLUNK_HOME/etc/apps/splunk_httpinput/`\n\n- https://<splunk-hostname>:8088/services/collector/ack：用于查询事件索引状态。它适用于已启用索引器确认的令牌。\n\
+  - 完整列表可在 https://tinyurl.com/j53xmynj 获取。\n\n为了展示如何向这些 HEC 端点发送数据，我们将在 Linux 环境中使用\
+  \ curl 命令。我们可以看到有两个标头值——一个带有承载令牌值的 Authorization，另一个带有特定于客户端的唯一 GUID 的 X-Splunk-Request-Channel。\n\
+  \n这里我们以 JSON 格式的载荷发送数据——一个收集器/事件请求：\n\n```\ncurl -k -H \"Authorization: Splunk 09776ade-cf23-42c0-9138-89ad8388516a\"\
+  \ -H \"X-Splunk-Request-Channel: FE0ECFAD-13D5-401B-847D-77833BD77131\" https://mysplunk.example.com:8088/services/collector/event\
+  \ -d '{\"sourcetype\": \"signaling_data\", \"event\": \"stable signal!\"}'\n```\n\
+  \n以下是收集器/事件响应：\n\n```\n{\"text\":\"Success\",\"code\":0,\"ackId\":0}\n```\n\n这里我们以原始事件发送数据——一个收集器/原始请求：\n\
+  \n```\ncurl -k -H \"Authorization: Splunk 09776ade-cf23-42c0-9138-89ad8388516a\"\
+  \ -H \"X-Splunk-Request-Channel: FE0ECFAD-13D5-401B-847D-77833BD77131\" https://mysplunk.example.com:8088/services/collector/raw\
+  \ -d 'stable signal!'\n```\n\n我们得到如下收集器/原始响应：\n\n```\n{\"text\":\"Success\",\"code\"\
+  :0,\"ackId\":1}\n```\n\n由于我们在令牌级别设置了 useACK = 1（true），客户端必须在发送给 HEC 的请求中携带唯一的通道标识符。作为回报，客户端会收到\
+  \ HEC 以 JSON 格式返回的 ackID（请参阅前面收集器/原始事件示例中的响应载荷）。客户端进一步使用这些 ack 查询 HEC 的 /ack 端点，以了解事件索引状态，如下所示。\n\
+  \n查找事件索引状态——/ack 端点请求——需要前面两个 JSON 和原始事件请求中返回给客户端的通道标识符和 ack：\n\n```\ncurl -H \"\
+  Authorization: Splunk 09776ade-cf23-42c0-9138-89ad8388516a\" -H \"X-Splunk-Request-Channel:\
+  \ FE0ECFAD-13D5-401B-847D-77833BD77131\" https://mysplunk.example.com:8088/services/collector/ack\
+  \ -d '{\"acks\":[0,1]}'\n```\n\n上述 ack 端点请求的 JSON 响应载荷如下所示：\n`{\"acks\": {\"0\"\
+  : true, \"1\": false}}` — 其中，`true` 表示索引成功，`false` 表示该事件索引失败。一旦特定事件的 `acks` 返回 `true`，其索引状态将从内存中消失，如果客户端之后再次发送请求，它将返回\
+  \ `false`。\n\n我们已经讲完了 HEC 输入——它很有技术含量，不是吗？不要被这些技术术语所困扰。您需要记住，将 HEC 视为一个普通的 API，每个请求都需要提供令牌进行身份验证。索引器确认本质上与包裹投递跟踪功能相同——例如，您下单后（比如通过\
+  \ `/raw` 或 `/events` 端点），您会得到一个跟踪号（`ackID`），然后在门户（`/ack` 端点）中输入跟踪号（`acks`），即可跟踪包裹的位置。最后，在送达后，您会从跟踪门户收到一个*成功送达*状态。\n\
+  \n在下一节中，我们将介绍 Windows 输入。\n\n## 探索 Windows 输入\n\n到目前为止，我们介绍过的输入类型既不针对特定技术，也不针对特定操作系统。但正如其名称所示，Windows\
+  \ 输入仅适用于 Windows 主机。主机至少需要 UF 或 Splunk Enterprise 实例才能收集 Windows 特定的日志。Windows 原生日志以二进制格式存储，Windows\
+  \ 输入通过与操作系统 API 交互来获取这些日志。\n\n在 Windows 主机上安装 UF 时，您可以选择启用 Windows 输入。对于 Splunk\
+  \ Enterprise 实例，可以通过 Splunk Web 中的**设置 | 数据输入**，然后选择**本地事件日志收集**和**远程事件日志收集**来配置\
+  \ Windows 输入。远程事件日志收集需要 Windows 域帐户才能从远程主机收集日志。\n\n在已配置 UF 的大规模 Windows 主机环境中，使用部署服务器集中管理输入。在应用程序中创建并配置\
+  \ `inputs.conf`。将应用程序部署到转发器，以实现高效且集中的输入配置。让我们了解一些关于 Windows 输入的关键事实：\n\n- Windows\
+  \ 输入能够收集 Windows 事件、AD、性能监控、注册表、打印机、主机和网络日志。\n- **Windows 管理规范（WMI）** 用于从网络中的远程主机收集事件日志，通常在具有域帐户的\
+  \ Windows 服务器上。\n- 远程事件日志收集在 `wmi.conf` 文件中配置。完整规范可在 `https://tinyurl.com/37mdekpe`\
+  \ 获取。\n- 启用 Windows 日志可能会导致数据量显著增加，可能消耗我们 Enterprise 许可证的很大一部分。Splunk 提供了两个设置，`whitelist`\
+  \ 和 `blacklist`，用于在不需要的事件日志被索引之前过滤掉它们。这有助于减少许可证使用量，并仅索引所需事件。\n\n\n\n\n最后，我们考察了 HEC\
+  \ 和 Windows 输入类型。HEC 为 JSON 格式和原始事件以及索引状态查询提供了 RESTful API。我们了解到 HEC 默认是禁用的，并通过逐步操作（从启用\
+  \ HEC 到通过 API 发送数据）进行了实践。最后我们介绍了 Windows 输入，它专为仅限 Windows 的主机设计，用于在本地和远程收集各种日志事件。\n\
+  \n请注意，在所有输入类型中，HEC 不需要在源机器上安装转发器，因此它也被称为无代理输入。HEC 可以在 Splunk Enterprise 实例（如 HF）上启用，也可以在分布式部署中的索引器上启用，以接收来自应用程序客户端的日志事件。文件和目录监控、脚本化输入以及\
+  \ Windows 输入至少需要在源主机上安装 UF。网络输入可以在 UF 和 Splunk 实例（通常是 HF）上启用。\n\n本章讨论了输入收集阶段，这是第\
+  \ 8 章“数据接入”中概述的第一阶段。在接下来的章节中，我们将深入探讨解析阶段，该阶段涉及处理通过这些数据输入收集到的数据。\n\n现在是时候通过回答以下关于本章所涵盖数据输入主题的问题来测试你的知识了。\n\
+  \n### 自我评估\n\n1. 选择 Splunk 默认提供的常用数据输入类型。（选择所有适用项）：\n   - A. 二进制文件监控\n   - B. 文件和目录监控\n\
+  \   - C. 网络数据输入\n   - D. 脚本化输入\n   - E. 网络端口监控\n\n2. 你即将配置一个文件监控输入，并注意到该目录包含五年以上的数据，这些数据无需建立索引。哪个设置用于强制转发器忽略旧文件？\n\
+  \   - A. skipHistoricalFiles\n   - B. ignoreOldData\n   - C. ignoreOlderThan\n \
+  \  - D. deletePastData\n"
+- '# 10 数据解析与转换
+
+
+  数据旅程的第一阶段是输入阶段，我们在第 9 章“配置 Splunk 数据输入”中已详细讨论。数据解析是第二阶段，之后数据被索引到磁盘上。本章讨论解析阶段，该阶段紧随输入阶段之后，并以将数据交给索引阶段进行存储和搜索准备而结束。
+
+
+  可能产生的问题是，既然所有数据都已经收集完毕，元数据字段已在输入阶段设置，最终数据被转发到索引器进行索引，那么解析阶段有什么必要呢？解析阶段的主要特性包括：将整个数据流拆分为单个事件，提取并应用时间戳，为单个事件设置元数据字段，在索引前操作元数据，以及根据需要转换数据。在输入阶段，诸如索引、主机、源类型、来源和字符集等元数据字段应用于整个数据，而非单个事件。数据流作为一个整体被处理，在输入阶段不进行换行拆分或时间戳提取。
+
+
+  事件在解析阶段被转换。示例用例可能包括覆盖源类型、主机元数据、将数据路由到不同的索引、提取索引时字段，以及屏蔽或匿名化敏感信息，如个人身份信息（PII）、银行账户、社会安全号码（SSN）和电话号码。
+
+
+  在本章中，我们将通过应用 props.conf 和 transforms.conf 文件来学习解析和转换设置。作为 Splunk 数据管理员，了解此阶段对于在数据接入时或之后的某个时间点可能出现的用例应用正确解决方案至关重要。例如，你可能会被要求屏蔽信用卡信息、覆盖源类型、更改事件拆分边界，或将特定事件完全重新路由到不同的索引。我们将在本章中学习以下主题：
+
+
+  - 理解解析阶段
+
+  - 解析阶段设置 – props.conf
+
+
+  再举一个例子，当你针对特定来源（如 /var/log/web-server/access.log）将 TRUNCATE 设置为 1000 时，这意味着与该来源模式匹配的数据中的任何行都将被截断为最大长度
+  1,000 字节。将 TRUNCATE 设置为 1000 会限制匹配指定模式的来源的最大行长度（以字节为单位）：
+
+
+  ```
+
+  [source::/var/log/web-server/access.log]
+
+  TRUNCATE = 1000
+
+  ```
+
+
+  - **主机字段：** [host::<主机或主机模式>] 节适用于为来自给定主机或主机模式的数据定义自定义配置设置。这些设置可能涉及数据格式化、提取规则以及根据
+  props.conf 规范在解析阶段的其他许多内容：
+
+
+  ```
+
+  [host::< host or host pattern >]
+
+  <key> = <value>
+
+  ```
+
+
+  例如，当你针对特定主机名（如 myhost.com）将 TRUNCATE 设置为 1000 时，这意味着源自 myhost.com 主机的数据中的任何行都将被截断为最大长度
+  1,000 字节：
+
+
+  ```
+
+  [host::myhost.com]
+
+  TRUNCATE = 1000
+
+  ```
+
+
+  - **节优先级：** 当多个节匹配给定事件时，定义在更具体节中的设置优先于定义在较不具体节中的设置。具体来说，定义在 [host::<主机或主机模式>] 节中的设置覆盖
+  [<源类型名称>] 节中的设置，而定义在 [source::<来源或来源模式>] 节中的设置优先于 [host::<主机或主机模式>] 和 [<源类型名称>]
+  节。这种设置层次结构允许对 Splunk 中的数据处理进行细粒度控制，确保将最相关的设置应用于每个事件。
+
+
+  至此，我们已经了解了在各种场景中有用的节。接下来让我们看看关于换行拆分、时间戳识别、行合并等的解析设置规范。我将使用源类型节来描述这些设置。例如，我们的源类型名称是
+  web_access。请注意，设置键名区分大小写：
+
+
+  ```
+
+  ## web_access 源类型的解析设置
+
+  [web_access]
+
+  LINE_BREAKER = < 正则表达式：默认设置为换行符或回车符的数量（[\r\n]+）>
+
+  SHOULD_LINEMERGE = <true | false - 是否将多个多行事件合并为一个事件。如果设置为 true，则取决于其他设置的数量。阅读完整规范>
+
+  BREAK_ONLY_BEFORE = <仅当 SHOULD_LINEMERGE 设置为 true 时适用>
+
+  BREAK_ONLY_BEFORE_DATE = <仅当 SHOULD_LINEMERGE 设置为 true 时适用>
+
+  TIME_PREFIX = < 正则表达式：如果设置，Splunk 软件会在尝试提取时间戳之前扫描事件文本以查找此正则表达式的第一个匹配项。>
+
+  TIME_FORMAT = <strptime 风格格式>
+
+  MAX_TIMESTAMP_LOOKAHEAD = < 整数：Splunk 软件在事件中查找时间戳时应查看的字符数。默认情况下，查找前 128 个字符>
+
+  TZ = <事件的时区，如 UTC、AEDT、AST 等。如果未设置，则默认考虑 splunkd 进程的时区。>
+
+  TRANSFORMS-<类名> = <transforms.conf 节1>, <transforms.conf 节2>
+
+  ```
+
+
+  虽然上述设置对于优化 Splunk 的数据处理很有用，但值得注意的是，Splunk 会尽可能尝试使用默认值。这些默认值旨在为大多数用例提供合理的性能和功能水平。TRANSFORMS-<类名>
+  设置与 transforms.conf 相关，我们将在下一节中讨论。让我们按功能对这些设置进行分类：
+
+
+  - **换行拆分：** LINE_BREAKER 设置将数据流拆分为单独的事件行。默认情况下，它通过查找换行符或回车符的数量来确定事件边界。如果设置了 LINE_BREAKER，则必须将
+  SHOULD_LINEMERGE 设置为 false，出于性能原因，这也是可取的。
+
+  - **行合并：** SHOULD_LINEMERGE 将多个事件合并为单个事件。你可以将其设置为 true 或 false；默认情况下为 true。当我们将其设置为
+  true 时，必须设置其他设置（如 BREAK_ONLY_BEFORE_DATE 和 BREAK_ONLY_BEFORE）以识别事件边界。
+
+  - **时间戳识别：** 在解析阶段正确配置应用于每个事件的时间戳非常重要。Splunk 有一组预定义的日期时间格式（$SPLUNK_HOME/etc/datetime.xml），这些格式是常用且标准的。默认情况下，如果未显式设置
+  TIME_FORMAT，Splunk 会扫描事件的前 128 个字符以查找时间戳。如果事件包含超出 128 个字符的时间戳，或者希望限制从事件中 TIME_PREFIX
+  位置开始的时间戳扫描，可以使用 MAX_TIMESTAMP_LOOKAHEAD 或 TIME_PREFIX 设置。TIME_FORMAT 是一种 strptime
+  标准风格格式，可以在时间戳采用非标准格式时设置。请参阅此处的日期时间格式变量 - https://tinyurl.com/3kaddz23。TZ 标识数据来源的时区。要查看所有时区（TZ）ID
+  的列表，请参阅 https://en.wikipedia.org/wiki/List_of_tz_database_time_zones。
+
+
+  在某些场景下，事件可能没有日期、时间或年份值，或者这些值都没有。Splunk 会尝试根据自身的规则来确定这些值，以便在异常情况下识别时间戳。关于时间戳分配如何工作的
+  Splunk 文档可在此处获取 - https://tinyurl.com/4tjaaerb。
+
+
+
+
+
+
+  让我们来看一下 web_access 日志的以下示例来定义 props.conf 解析设置。日志中包含时间戳信息；每条日志行中的 -0500 代表美国东部标准时间（EST）时区，并且日志中的每一行都代表事件边界。让我们为此
+  web_access 日志样本编写 props.conf 信息：
+
+
+  ```
+
+  127.0.0.1 - - [10/Feb/2023:10:34:56 -0500] "GET /example-page.html HTTP/1.1" 200
+  2345 "https://www.example.com/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
+  (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36"
+
+  127.0.0.1 - - [10/Feb/2023:10:37:56 -0500] "GET /example-page.html HTTP/1.1" 400
+  2345 "https://www.example.com/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
+  (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36"
+
+  127.0.0.1 - - [10/Feb/2023:10:39:56 -0500] "GET /example-page.html HTTP/1.1" 500
+  2345 "https://www.example.com/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
+  (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36"
+
+  ```
+
+
+  以下 props.conf 配置通过每一行新行将访问日志拆分为单独的事件（默认行为），并应用正确的时间戳和时区。主要目标是正确解析访问日志：
+
+
+  ```
+
+  #props.conf for preceding web_access logs
+
+  [web_access]
+
+  LINE_BREAKER = ([\r\n]+)
+
+  SHOULD_LINEMERGE = false
+
+  TIME_PREFIX = \[
+
+  TIME_FORMAT = %d/%b/%Y:%H:%M:%S %z
+
+  TZ = EST
+
+  MAX_TIMESTAMP_LOOKAHEAD = 26
+
+  ```
+
+
+  提供的 [web_access] 段是 Splunk 中 props.conf 文件配置的一个示例。以下是每个设置的作用：
+
+
+  - LINE_BREAKER = ([\r\n]+): 此设置指定用于识别数据中换行符的正则表达式模式。在此情况下，它设置为 ([\r\n]+)，匹配一个或多个回车或换行字符的出现。
+
+  - SHOULD_LINEMERGE = false: 此设置控制 Splunk 是否应尝试将连续的数据行合并为单个事件。将此设置为 false，即表示告诉 Splunk
+  将每行数据视为单独的事件。
+
+  - TIME_PREFIX = \[: 此设置指定用于识别数据中时间戳开头的正则表达式模式。在此情况下，它设置为 \[，匹配字面上的左方括号字符。
+
+
+  - 创建新的索引时间字段提取。
+
+  - 创建高级搜索时间字段提取。
+
+  - 设置查找表，从外部源查找字段。
+
+
+  在下一节中，我们将学习数据操作用例，例如数据匿名化、将数据重新路由到不同的索引、过滤事件以及覆盖源类型。我们将在第 11 章《字段提取和查找》中学习剩余的字段提取和查找。让我们从数据匿名化开始。
+
+
+  ## 数据匿名化
+
+
+  数据匿名化是将 PII 转换为无法用于识别信息最初链接到的个人的格式的过程。数据匿名化的目的是保护敏感数据的隐私和保密性。
+
+
+  数据匿名化有多种方法，其中之一是掩码，我们将在本节中学习。
+
+
+  **掩码**涉及用非敏感的占位符值替换敏感数据——例如，用 XXXX 替换个人的电话号码，或用随机值替换其出生日期。请注意，一旦数据在解析和索引阶段被掩码，就无法撤销。
+
+
+  Splunk 具有以下两种方法来掩码数据。正如我之前提到的，强烈建议事先了解正则表达式以理解本节内容：
+
+
+  - 仅 props.conf 中的 SEDCMD 设置
+
+  - 同时使用 props.conf 和 transforms.conf
+
+
+  ### 在 props.conf 中使用 SEDCMD
+
+
+  通过 props.conf 直接应用 SEDCMD 设置在原始单个事件上工作。您可以使用此设置用于 sourcetype、source 和 host 段，如下所示。如果您熟悉
+  Linux 中的 sed，它的工作方式与 Linux 中的 sed 命令类似。其规范如下：
+
+
+  ```
+
+  # props.conf SEDCMD setting specification
+
+  [<sourcetype-name> | source::<source name> | host::<hostname>]
+
+  SEDCMD-<class> = <sed like command>
+
+  ```
+
+
+  <sed like command> 语法解释如下：
+
+
+  - sed like command - s/regex/replacement/flags.
+
+  - <class> 是一个唯一的字面字符串。
+
+  - s – 用于替换。
+
+  - sed 中的正则表达式是 PERL 兼容的正则表达式样式（可选包含捕获组）。
+
+  - replacement 是用于替换正则表达式匹配的字符串。使用 \n 进行反向引用，其中 n 为单个数字。
+
+  - Flags 可以是 g 以替换所有匹配项，或一个数字以替换特定匹配项。
+
+
+  为了更清楚，让我们通过以下包含电话号码的呼叫日志数据示例来说明：
+
+
+  - **示例：** 公司 A 是一家电信公司，将呼叫记录数据编入 Splunk Enterprise 索引，索引集设置为 carrier_records，sourcetype
+  设置为 call_records。call_records 数据包含电话号码等 PII，出于隐私原因必须进行掩码。作为数据管理员，我们的任务是使用我们刚刚学习过的
+  SEDCMD 设置在 sourcetype 级别用 XXXXXXXX 符号掩码电话号码。我们可以为此示例使用我们在第 1 章 Splunk 安装 – 独立版部分中安装的独立
+  Splunk 实例。
+
+  - **日志样本：** 在以下呼叫记录样本中，您可以找到格式为 (555) 555-1234 的电话号码，我们将使用 SEDCMD 对其进行掩码，如下所示。
+
+
+  以下是 call_records 日志样本：
+
+
+  ```
+
+  2022-03-13 15:22:08 Srikanth (555) 555-1234 made a call to Jane (555) 555-5678
+
+  2022-03-12 10:11:24 Mary (555) 555-4321 sent a message to Scott (555) 555-8765
+
+  2022-03-11 18:05:03 David (555) 555-2345 received a call from Abdul (555) 555-9876
+
+  ```
+
+
+  props.conf 文件的 SEDCMD 设置用于掩码呼叫记录中的电话号码，如下所示：
+
+
+  ```
+
+  ## props.conf masking phone numbers in call records
+
+  [call_records]
+
+  SEDCMD-maskphonenumber = s/\(\d{3}\)\s\d{3}-\d{4} /XXXXXXXX /g
+
+  ```
+
+
+  在提供的 props.conf 文件中，SEDCMD 指定了电话号码的正则表达式模式以及用于替换它们的字符串。g 标志表示日志中电话号码的所有出现都应被指定的替换字符串（XXXXXXXX）替换。
+
+
+  一旦此配置部署到独立 Splunk 实例，任何被摄取并匹配指定正则表达式的日志都将被相应地转换，并在转换后的状态下编入索引。然而，值得注意的是，在此配置更改之前已编入索引的日志将不会受到此转换的影响。
+
+
+  如果您需要掩码先前已编入索引日志中的电话号码，您需要在配置更改部署后重新摄取这些日志。
+
+
+  以下是掩码后的 call_records 日志：
+
+
+  ```
+
+  2022-03-13 16:22:18 Chuppa XXXXXXXX made a call to Chand XXXXXXXX
+
+  2022-03-13 11:19:54 Garry XXXXXXXX sent a message to Bill XXXXXXXX
+
+  2022-03-13 22:55:23 Dan XXXXXXXX received a call from Ahmad XXXXXXXX
+
+  ```
+
+
+  您可以看到电话号码已通过在 Splunk 中发出搜索请求 - index=carrier-records sourcetype=call_records 被掩码为
+  XXXXXXXX。
+
+
+  在下一节中，我们将学习使用 transforms.conf 和 props.conf 设置进行数据掩码。
+
+
+  ### 使用 transforms 和 props
+
+
+  我们将在此处使用相同的 call_records 日志样本，并使用 transforms.conf 和 props.conf 文件应用掩码设置。让我们看一下规范：
+
+
+  ```
+
+  # transforms.conf specification
+
+  [<transforms-stanza-name>]
+
+  SOURCE_KEY = <_raw by default, _MetaData:Index, MetaData:Sourcetype, MetaData:Host,
+  MetaData:Source and so on>
+
+  REGEX = <regular expression to operate on field contents specified in SOURCE_KEY>
+
+  FORMAT = <specifies the format of the event works in accordance with REGEX, for
+  fields format is fieldname::fieldvalue>
+
+  DEST_KEY = <_raw for masking in data event, can set other keys as described in Spec>
+
+
+  ## props.conf specification
+
+  [<sourcetype-name> | source::<source name> | host::<hostname>]
+
+  TRANSFORMS-<class> = <transforms stanza name 1>, <transforms stanza name 2>.. <transforms
+  stanza name N>
+
+  ```
+
+
+  transforms.conf 规范看起来很简单；然而，它支持超出本书范围的多种用例。可以使用来操作诸如 host、sourcetype、source 和 queue
+  等元数据字段的键组合都描述在此处 - https://tinyurl.com/27sxf94z 的规范文件中。
+
+
+  props.conf 规范具有 TRANSFORMS-<class> 设置。这里，<class> 是一个唯一的字面字符串。我们可以指定多个 transforms
+  段并用逗号分隔它们，以便按相同顺序应用它们。
+
+
+  我们将对以下各节中描述的其余用例使用前述 transforms.conf 和 props.conf 规范，这些用例涉及覆盖源类型、将数据重新路由到不同的索引、过滤不需要的事件并将它们发送到
+  nullQueue。
+
+
+
+
+
+
+  如果你想尝试一下，可以用所需的主机名值覆盖 host 字段。在这种情况下，DEST_KEY 将为 MetaData:Host。在下一节中，我们将学习索引路由。
+
+
+  ## 索引重新路由
+
+
+  索引是在输入阶段设置的数据存储库。在某些情况下，数据流中的一些事件应被过滤并通过不同的索引重新路由。这可以在解析阶段实现，并且仅适用于 HF/索引器。
+
+
+  以下是一些适用的场景：
+
+
+  - 数据流包含需要被过滤并存储在单独索引中的安全数据。将其存储在单独索引中，在访问控制和保留方面提供了更大的灵活性。
+
+  - 如果数据量足够大，单个索引可能无法高效地进行搜索处理。在这种情况下，将经常访问的部分数据路由到高性能索引，并将不常使用的数据保留在低性能索引中，将提高搜索性能。
+
+  - 出于合规性要求，某些事件应存储在单独的索引中。
+
+
+  为了实现索引路由，我们将依赖 transforms.conf。其规范与我们在前面章节中看到的一致。
+
+
+  我在这里考虑的示例场景是我们在“数据匿名化”一节中使用的 call_records 日志样本。如果你仔细观察日志样本，它包含客户之间的通话以及短信（SMS）记录。
+
+
+  要求是将短信记录分开并路由到索引：sms-conversations。日志中的 message 和 sent 关键字将是用于识别短信记录的 REGEX 匹配：
+
+
+  ```
+
+  ## Log sample
+
+  2022-03-13 15:22:08 Srikanth (555) 555-1234 made a call to Jane (555) 555-5678
+
+  2022-03-12 10:11:24 Mary (555) 555-4321 sent a message to Scott (555) 555-8765
+
+  2022-03-11 18:05:03 David (555) 555-2345 received a call from Abdul (555) 555-9876
+
+  ```
+
+
+  让我们来看看 transforms.conf 的设置，如下所示：
+
+
+  ```
+
+  ## transforms.conf stanza for index routing
+
+  [sms-index-routing]
+
+  SOURCE_KEY = _raw
+
+  REGEX = (message|sent)
+
+  FORMAT = sms-conversations
+
+  ```
+
+
+  2. 滚动到页面底部，你会看到“上传”选项：
+
+
+  ![](img/5319cbd6f078c6cda7fac6347f77a07d_193_0.png)
+
+
+  图 10.2：用于导入数据的“上传”选项
+
+
+  图 10.2 显示了将数据导入 Splunk 的三种不同选项。选择第一个选项“上传”，以上传 call-records 示例数据。点击后将会进入图 10.3 所示的屏幕。
+
+
+  3. 如图 10.3 所示，你可以使用“选择文件”按钮，或者拖放 call-records 示例数据。我点击了“选择文件”，然后在 Windows 中打开文件资源管理器以定位
+  call-records.sample.log 文件。点击“下一步 >”按钮：
+
+
+  ![](img/5319cbd6f078c6cda7fac6347f77a07d_193_1.png)
+
+
+  图 10.3：添加数据 | 选择文件以上传文件
+
+
+  图 10.3 显示了所选文件：call-records.sample.log。可上传的最大文件大小为 500 MB。
+
+
+  4. 点击“下一步 >”按钮将进入“设置源类型”屏幕，如图 10.4 所示。
+
+
+  ```
+
+  NO_BINARY_CHECK=true
+
+  CHARSET=AUTO
+
+  TIME_PREFIX=^
+
+  TIME_FORMAT=%Y-%m-%d %H:%M:%S
+
+  SEDCMD-maskphone  = s/\(\d{3}\)\s\d{3}-\d{4}/XXXXXXXX/g
+
+  ```
+
+
+  我们会看到以下屏幕：
+
+
+  ![](img/5319cbd6f078c6cda7fac6347f77a07d_196_0.png)
+
+
+  ## 总结
+
+
+  整个这一章直到最后都围绕 props.conf 和 transforms.conf 设置展开，内容纯粹是技术性的。我们首先了解了紧随输入阶段之后的解析阶段及其重要性。在三个组件中，完整的解析管道存在于
+  HF 和索引器上，而不在 UF 上；然而，UF 能够通过 INDEXED_EXTRACTIONS 设置解析结构化文件。我们了解到，如果索引器前面有 HF，则必须在
+  HF 上部署解析设置。
+
+
+  之后，我们查看了与 sourcetype、source 和 host 相关的 props.conf 配置块，并详细了解了用于换行符分割、行合并和时间戳标识的源类型定义规范。接下来，我们了解了与
+  props.conf 配合使用的 transforms.conf 配置块。我们进一步深入研究了通过 props.conf 应用 SEDCMD 设置进行数据脱敏，以及使用
+  transforms.conf 设置覆盖源类型、索引路由和使用 nullQueue 过滤不需要的事件。
+
+
+  最后，我们使用 Splunk 数据预览功能测试了新的源类型定义设置和数据脱敏设置 SEDCMD。
+
+
+  在下一章中，我们将深入探讨字段的主题，并探索如何创建搜索时和索引时字段。此外，我们还将重点关注查找表以及如何使用 Splunk Web 和用于查找文件编辑的 Splunk
+  应用来创建它们。
+
+
+  6. 在 Splunk Web 中，“设置源类型”/数据预览功能的文件上传大小限制是多少？
+
+  A. 5 GB 限制
+
+  B. 1 GB 限制
+
+  C. 500 MB 限制
+
+  D. 1,500 MB 限制
+
+
+  7. 源类型创建是否保存到 props.conf 文件中？
+
+  A. 是
+
+  B. 否
+
+
+  8. 在 props.conf 文件中，使用什么设置来引用 transforms 配置块？
+
+  A. TRANSFORMS-<class_name>
+
+  B. TRANSPOSE-<class_name>
+
+  C. TRANSFORMATION-<class_name>
+
+  D. PROPS-<class+name>
+
+
+  9. 今天部署的脱敏设置是否适用于先前已索引的数据？
+
+  A. 是
+
+  B. 否
+
+
+  10. 在解析阶段，哪个设置会将数据流按换行符作为行终止符拆分为单个事件？
+
+  A. LINE_BREAKER
+
+  B. TRUNCATE
+
+  C. BREAK_EVENTS
+
+  D. BREAK_ONLY_NEW_LINE
+
+
+  ## 答案回顾
+
+
+  希望你通过这些题目回忆起了本章学到的概念。让我们回顾一下答案：
+
+
+  - 1. *选项 B* 是正确答案。数据索引过程中的三个主要阶段是输入、解析和索引。
+
+  - 2. *选项 B、C 和 E* 是正确答案。你可以通过 `[sourcetype_name]`、`[source::<source_name_or_pattern>]`
+  或 `[host::<hostname_or_pattern>]` 配置块语法应用 `props.conf` 设置。
+
+  - 3. *所有选项* 都是正确的。在解析阶段，可以覆盖 `sourcetype`、`host` 和 `source` 等元数据字段，并且可以更改索引以重新路由符合特定条件的事件以及进行数据脱敏。此外，你可以过滤满足特定条件的事件，然后将这些事件从索引中丢弃。
+
+  - 4. *选项 C* 是正确的。其余选项均不正确；Splunk 中不存在这样的队列。
+
+  - 5. 答案是错误的。`SEDCMD-<class> = "<sed style regular expression>"` 设置属于 `props.conf`
+  文件。
+
+  - 6. *选项 C* 是正确的。通过 Splunk Web 中的 **设置源类型**/数据预览功能上传文件的文件大小限制为 500 MB。
+
+  - 7. *是的，没错。* 源类型定义将保存到 `props.conf` 文件中。
+
+  - 8. *选项 A* 是正确的。在 `props.file` 设置中，`TRANSFORMS-<class_name> = <transform_stanza_1>,<
+  transform_stanza_2>,...<transform_stanza_n>` 是正确语法。`<class_name>` 是唯一的字面字符串。可以分配多个
+  transforms 配置块；如果使用逗号 (,) 分隔，它们将按指定顺序执行。
+
+  - 9. *否。* 数据脱敏是解析阶段的操作，并且只适用于 Splunk 中新增的数据。过去已经摄入的数据不会受到影响。要将相同的解析阶段设置应用于历史数据，必须删除并重新摄入。
+
+  - 10. *选项 A* 是正确的。`LINE_BREAKER` 允许你指定如何将原始数据流拆分为单个事件。默认情况下，Splunk 会根据换行符（`\n`）将原始数据流拆分为事件。
+
+
+
+
+
+  '
+- "## 字段提取与查找\n\n太好了！你已经到达第 2 部分《数据管理》的最后一章。到目前为止，在第 2 部分中，我们学习了如何将数据导入 Splunk、添加输入以及解析阶段的设置，并且我们了解了数据在写入磁盘之前遍历的各个阶段。我们尚未看到的是搜索阶段，而搜索阶段对于我们迄今为止在系统管理员（设置\
+  \ Splunk）和紧随其后的数据管理员部分（整理数据并将其存储在索引器中）所做的工作至关重要。\n\n毕竟，如果一切设置正确且数据已正确索引，那么将要搜索数据的用户才是真正的业务成果。例如，如果我们将销售、API\
+  \ 日志和系统日志编入 Splunk 索引，相应的用户就可以使用数据生成月度销售报告并通过电子邮件发送，并在 API 不可用时发出警报和/或安全团队在网络中的系统中发现了某个流程的漏洞。用例对于各种利益相关者来说是无穷无尽的。\n\
+  \n所有这些工作都是在搜索头（SH）上完成的，SH 是 Splunk 的一个组件，它向索引器发出搜索请求并通过公开用户界面（UI）（Splunk Web）汇总结果，用于报告、警报、仪表板和其他有用的功能。在本章中，我们将学习\
+  \ Splunk 中被称为字段的基本构建块，以及如何在索引时和搜索时从原始数据中提取它们，以及如何使用逗号分隔值（CSV）和键值存储（KV Store）查找通过额外信息丰富数据。如果你是（或将成为）数据管理员，你将几乎每天都使用字段。\n\
+  \n在本章中，你将学习以下主题：\n\n- 了解字段和查找\n- 创建搜索时字段提取\n- 创建索引时字段提取\n- 创建查找\n\n让我们从了解字段和查找开始。\n\
+  \n### 了解字段和查找\n\n在本节中，我们将详细了解字段和查找。让我们先从字段开始。\n\n#### 字段\n\nSplunk 中的**字段**讲述了数据的故事，可用于搜索和得出所需的结果，例如报告、警报和仪表板。Splunk\
+  \ 中的原始数据按其源类型定义编入索引为单个事件。字段是数据管理员在搜索时和索引时过程中从原始数据中提取出来赋予数据特定部分的名称。Splunk 默认情况下会为数据源分配预定义字段，例如\
+  \ `host`、`source`、`sourcetype`、`splunkserver`、`_time` 等。\n\n例如，取通话记录日志，其中包含特定时间点交换的电话号码。让我们将日志数据中的字段命名为\
+  \ `time_of_call`、`caller`、`callee` 和 `duration`。\n\n你可以通过构建每日通话次数和最长通话时长报告，并在未激活国际服务的情况下拨打国际号码时发出警报。只需编写搜索查询并使用相应的\
+  \ Splunk 功能，例如报告、警报、仪表板等。\n\n让我们来看一下示例通话记录日志：\n\n```\n2023-04-08T09:30:15, +615551234567,\
+  \ +615552345678, 120\n2023-04-08T10:15:42, +615551234567, +615553456789, 60\n2023-04-08T11:20:30,\
+  \ +615552345678, +15551234567, 180\n2023-04-08T12:45:10, +615553456789, +615552345678,\
+  \ 240\n```\n\n对于第一个事件，如果我们配置了搜索时字段提取，则搜索结果中会出现以下字段/值：\n\n- `time_of_call = 2023-04-08T09:30:15`\n\
+  - `caller = +615551234567`\n- `callee = +615552345678`\n- `duration = 120`\n\n让我们回顾一下关于字段的一些必知事实：\n\
+  \n- 字段名称区分大小写。例如，`time_of_call` 和 `TIME_OF_CALL` 是不同的。\n- 用户选择的搜索模式会影响字段提取的行为以及搜索结果中返回的字段。\n\
+  \  - **快速模式：** 在此模式下，字段发现被禁用，仅返回默认字段和你搜索的特定字段。\n  - **详细模式：** 此模式发现并返回所有可用字段。\n\
+  \  - **智能模式：** 此默认模式发现并返回所有字段。对于转换命令（例如 `stats`、`chart` 等），它表现得像快速模式，否则表现得像详细模式。\n\
+  - 搜索时使用的字段值不区分大小写 - 例如，`index=web_logs http_method=\"get\"` 和 `index=web_logs http_method=\"\
+  GET\"` 搜索产生相同的结果。\n- 字段可以具有不同数据类型的值，例如字母数字（a）和数字（#）。请参阅 *Figure 11.1* 了解符号。\n- 字段可以在索引过程中提取并存储。这意味着它们会永久存储在磁盘上的索引文件中，这会占用额外的存储空间。\n\
+  - `_raw`（原始数据事件）、`_time`（事件发生时间）和 `_indextime`（事件被索引的时间）Splunk 内部字段名称由 Splunk 用于内部处理，用户在搜索数据时可以访问它们。\n\
+  - 预定义/默认的 `host`、`index`、`linecount`、`punct`、`source`、`sourcetype`、`splunk_server`\
+  \ 和 `timestamp` 字段提供有关数据的基本信息。这些字段默认分配给每个事件。\n- Splunk 默认情况下会在搜索时即时自动提取 **键值（KV）**\
+  \ 对和 JSON 数据格式。`props.conf` 中的 `KV_MODE` 和 `AUTO_KV_JSON` 设置使其能够工作。\n- Splunk 允许你在搜索时和索引时过程中创建自定义字段提取。搜索时字段提取过程提供了一个\
+  \ UI，用于为非结构化数据和通过分隔符的结构化数据创建正则表达式。我们将在即将到来的部分中讨论这两种类型的提取。\n\n让我们看看字段在 Splunk 搜索结果中的外观，如下图所示：\n\
+  \n![](img/5319cbd6f078c6cda7fac6347f77a07d_204_0.png)\n\nFigure 11.1: Fields in\
+  \ Splunk search results\n\n上图显示了字段在 Splunk 中的外观，其中显示了默认字段、自定义提取字段（method = GET）、自动提取字段（namespace\
+  \ = search）以及数据类型符号（a 表示字母数字，# 表示数字）。\n\n#### 查找\n\n查找是从外部源加载到 Splunk 中以丰富数据额外信息的。最常用的查找是\
+  \ CSV 文件格式的内容和 KV Store（由 MongoDB 处理）。读取查找文件的流行 Splunk 搜索处理语言（SPL）命令是 input lookup\
+  \ 和 lookup。Splunk 支持以下类型的查找。我们将在本章中学习有关 CSV 和 KV Store 支持的查找的内容：\n\n- 地理空间查找\n-\
+  \ 外部查找\n- CSV 查找\n- KV Store 查找\n\n地理空间查找包含与世界各地相关地点的经度和纬度等地理空间信息。默认情况下，Splunk 随附美国信息和世界各国信息。你可以在搜索和报告应用程序中发出搜索请求\
+  \ - | input lookup geo_countries - 并单击可视化选项卡，然后选择 Choropleth Map。\n\n**外部查找**，也称为**脚本化查找**，通过连接到外部源（例如\
+  \ API）为 Splunk 中的事件获取额外信息。\n\n**CSV 查找**是最流行的查找，通常为 .csv 格式。数据管理员/用户定义包含在 Splunk\
+  \ 中搜索数据时所需额外信息的 CSV 文件以进行丰富。CSV 查找本质上是静态的；因此，最佳做法是保持它们简单且尺寸较小。我们将在最后一节学习 CSV 查找的创建。\n\
+  \n例如，通话记录日志包含以数字为前缀的国家代码，例如 +61、+1 等；但是，它没有国家名称。可以按如下方式定义并加载到 Splunk 中的 CSV 查找名称\
+  \ – country_code_to_name_mapping.csv：\n\n```\ncountry_code, country_name\n+61, Australia\n\
+  +1, USA\n```\n\n报告可以通过将此查找与国家代码匹配来使用它，并为相关利益相关者检索国家名称以增强可读性。\n\n**KV Store 查找**由\
+  \ MongoDB 处理，MongoDB 是一种 NoSQL 文档型数据库。KV Store 查找由称为 **集合** 的配置支持。信息以 KV 对的形式存储在集合中，并且集合中的每一行都由字段\
+  \ `__key` 唯一标识。KV Store 查找适用于大型查找并且需要频繁更新。\n\n例如，与 IP 地址、DNS 和域相关的威胁情报源需要对名为 threat_intel\
+  \ 的查找进行持续更新。threat_intel 查找由安全团队在排查组织网络日志中存储在 Splunk 中的潜在漏洞时使用。\n\n在本节中，我们了解了 Splunk\
+  \ 字段对于搜索和检索数据的重要性。我们介绍了默认和内部字段，并使用通话记录日志的示例演示了自定义字段。我们还讨论了大小写敏感性、KV 对的自动提取以及 Splunk\
+  \ Web 的正则表达式和分隔符提取方法。此外，我们还探讨了不同类型的查找文件类型，即将到来的部分将重点介绍 CSV 和 KV Store 查找。\n\n在下一节中，我们将学习搜索时字段提取。\n\
+  \n### 创建搜索时字段提取\n\nSH 在执行搜索时提取中发挥着至关重要的作用。当用户发出搜索请求时，SH 执行搜索并作为流程的一部分执行搜索时字段提取。\n\
+  \nSH 在搜索执行期间将定义的提取规则或模式应用于原始数据。它根据这些规则动态地从事件中提取相关字段及其关联值。然后提取的字段用于进一步分析、过滤、可视化或其他操作。\n\
+  \n\n\n\n\n# 图 11.2：Splunk Web 字段提取器启动\n\n图 11.2 显示了我为演示而索引的 callrecords 源类型日志。点击\
+  \ Extract Fields 会打开 Select Method 页面，如图 11.3 所示：\n\n# 图 11.3：字段提取器 – 选择方法\n\n#\
+  \ 保存\n\n为提取命名并设置权限。\n\n图 11.5：字段提取器 – 保存 REPORT\n\n3. 图 11.5 显示了保存的最终详细信息；在高亮的框中，我为\
+  \ REPORT 命名为 callrecords-extract 并将 Permissions 设置为 Owner，这意味着提取仅对用户私有。剩余的 Source\
+  \ type、Fields 和 Delimiter 区域显示各自的详细信息以便在点击 Finish 按钮前进行核实。最后，点击 Finish 按钮，这将保存提取并返回\
+  \ Success! 屏幕。\n\n4. 让我们验证我们创建的字段是否已正确提取。执行 index=main sourcetype=callrecords Splunk\
+  \ 搜索，你将被呈现事件。展开（>）其中一个并观察被提取的字段和值，如图 11.6 所示：\n\n# 图 11.16：查找定义 – 添加新\n\n6. 图 11.16\
+  \ 显示 Destination app 为 search，为定义输入的名称为 phone_no_country_code_to_name，Type 默认填充为\
+  \ File-based，并且从 Lookup file 下拉菜单中，我选择了我们在步骤 3 中上传的查找表文件。最后，点击 Save 将带你到显示 Successfully\
+  \ saved 消息的页面：\n\n![](img/5319cbd6f078c6cda7fac6347f77a07d_221_0.png)\n\n# 图 11.17：查找定义保存成功\n\
+  \n7. 图 11.17 显示在 search 应用中保存的定义（phone_no_country_code_to_name），并且 Sharing 设置为 Private，Permissions\
+  \ 选项可与其它用户共享。\n\n就这样，我们已成功在 Splunk 中创建了一个查找。要验证我们迄今为止完成的工作，请在 search 应用下打开一个搜索窗口并执行\
+  \ | inputlookup phone_no_country_code_to_name 查询。如图 11.18 所示，你将被呈现 country_code\
+  \ 和 country_name 的表格格式：\n\nFigure 11.18: Lookup verification\n\n在下一节中，我们将学习关于 KV\
+  \ Store 查找的内容。\n\n# KV Store 查找\n\nKV Store 查找需要在创建查找定义之前预先创建集合。Splunk Web 不提供通过\
+  \ UI 创建集合的功能。相反，一个 Splunk 支持的应用 – Splunk App for Lookup file editing（又名 Lookup Editor）–\
+  \ 在 splunkbase.com 有助于创建它。\n\n按照 https://splunkbase.splunk.com/app/1724 上的应用安装步骤并在你的\
+  \ Splunk 实例中安装它。该应用为 KV Store 查找的创建执行以下高层步骤：\n\n- 创建一个集合（`collections.conf`）\n-\
+  \ 创建一个查找定义\n\n我们使用与上一节中创建的相同的 `country_code`、`country_name` 查找也用于 KV Store：\n\n\
+  - 1. 安装后，从 Apps 菜单启动 Splunk App for Lookup File Editing。在右上角，点击 Create a New Lookup\
+  \ | KV Store Lookup。图 11.19 显示了选项。它将打开一个创建新查找的页面：\n\n```\ninputlookup phone_no_country_code_to_name\n\
+  ```\n\n| country_code | country_name |\n|---|---|\n| +61 | Australia |\n| +91 |\
+  \ India |\n| +1 | USA |\n| +47 | Norway |\n| +358 | Finland |\n| +33 | France |\n\
+  | +44 | UK |\n\n# 图 11.21：查找集合 – 已创建\n\n![](img/5319cbd6f078c6cda7fac6347f77a07d_224_0.png)\n\
+  \n4. 要从搜索访问集合，需要创建 transforms 段。为此，点击图 11.22 左上角的 Lookups 菜单项：\n\n![](img/5319cbd6f078c6cda7fac6347f77a07d_224_1.png)\n\
+  \n# 图 11.22：查找 – 创建转换\n\n5. 如图 11.22 所示，搜索我们在之前步骤中创建的 kv_country_code_to_name 查找并点击\
+  \ Open in Search 链接。这将打开一个 Create Lookup Transform 弹出窗口。在 Transform name 文本框中输入\
+  \ kv_country_code_to_name 并点击 Create Transform 按钮。\n\n6. 现在，在 Search App 下打开一个搜索栏并执行\
+  \ | inputlookup append=t kv_country_code_to_name 查询。\n\n如图所示 Figure 11.23，你将被呈现我们在步骤\
+  \ 3 中创建的结果：\n\n![](img/5319cbd6f078c6cda7fac6347f77a07d_224_2.png)\n\n# 图 11.23：KV\
+  \ Store 查找 – 最终验证\n\n```\n| inputlookup append=t kv_country_code_to_name\n```\n\n\
+  并创建了 transforms 以在搜索中访问查找。我们了解到该应用可以比标准的 Splunk Web 方法更轻松地创建 CSV 和 KV Store 查找。\n\
+  \n我想借此机会向你表达我衷心的感谢，感谢你陪我走过本书的篇章。探索 Splunk 的复杂性和其各种功能是一件愉快的事，我希望你能从这些章节中获得价值和见解。\n\
+  \n当你继续你的 Splunk 之旅时，我祝你在追求 Splunk Certified Admin 考试的道路上一切顺利。记住要保持专注，彻底复习材料，并练习动手练习以加强你的技能。\n\
+  \n记住学习是一个持续的过程，总有更多东西可供发现。我鼓励你继续探索并扩展你对 Splunk 的理解，利用其功能来解锁新的见解和解决方案。再次感谢你陪我走过这段旅程。愿你在\
+  \ Splunk 领域的努力充满成功和有意义的发现。\n\n在下一章中，你将获得一份模拟考试，用于在实际考试格式的 56 道题中进行自我评估。我们还将在最后讨论答案以检查你的尝试并刷新你的理解。在下一节中，你已获得示例问题及其答案，以测试你对\
+  \ Splunk 字段和查找的理解。\n\n# 自我评估\n\n与其它章节一样，本节是关于自我测试你迄今为止学到的主题知识。你有 10 道题，答案在问题之后给出。如每次重申的那样，如果你难以回答问题，请随时再次复习相应章节。让我们开始：\n\
+  \n- 1. 字段名称是否区分大小写？\n  A. 是\n  B. 否\n\n- 2. Splunk 在搜索时是否自动从键值格式中提取字段/值？\n  A. 是\n\
+  \  B. 否\n\n- 3. 选择 Splunk 中可用的查找文件类型（全部选择）：\n  A. JSON 查找\n  B. CSV 查找\n  C. KV\
+  \ Store 查找\n  D. 地理空间查找\n\n4. 关于 CSV 查找，哪些陈述是正确的？全部选择：\nA. CSV 查找将信息存储在 MongoDB\
+  \ 中\nB. CSV 查找文件具有 .csv 扩展名\nC. CSV 查找文件用于通过与 Splunk 中现有事件关联来丰富信息。\nD. CSV 查找包含带标题的逗号分隔值信息\n\
+  \n5. Splunk Web 中用于搜索时字段提取创建的两种方法是什么？\nA. 正则表达式\nB. KV 对提取\nC. 分隔符提取\nD. JSON 默认提取\n\
+  \n6. Splunk Web 中的正则表达式方法是否自行生成正则表达式？\nA. 是\nB. 否\n\n7. 索引时字段在 Splunk 索引中的存储是否永久？\n\
+  A. 是\nB. 否\n\n8. 识别 Splunk 在索引阶段提取并存储的默认字段（全部选择）：\nA. source\nB. sourcetype\nC.\
+  \ host\nD. splunk_server\n\n9. 我们能否为结构化内容如 CSV 和 PSV 类型在 UF 上设置 INDEXED_EXTRACTIONS？\n\
+  A. 否\nB. 是\n\n10. 创建自定义索引时字段提取是否占用索引器上的额外存储空间？\nA. 否\nB. 是\n\n\n\n\n"
+- "## 自我评估模拟考试\n\n欢迎来到《Splunk Enterprise 认证管理指南》的模拟考试章节！恭喜你在这条通往 Splunk Enterprise\
+  \ 认证管理员的路途上走到了这一里程碑。在本章中，我们将深入探讨一系列自我评估问答，旨在测试你的知识，并巩固全书所涉及的概念。\n\n在继续之前，我想赞扬你在备考过程中所付出的努力和心血。你已经对\
+  \ Splunk 平台、其管理功能及其强大特性有了全面的理解。这最后一章将为你提供一个评估学习进度、发现可能需要进一步学习或澄清的领域的机会。请记住——自我评估问题旨在挑战你对\
+  \ Splunk Enterprise 管理概念的理解，因此请以开放的心态对待它们，并运用你在整个学习过程中积累的知识。慢慢来，仔细阅读问题，选择最恰当的答案。\n\
+  \n完成自我评估问题后，你可以参照本章提供的答案来评估你的表现。检查任何错误答案并理解其背后的概念，对于进一步提升知识至关重要。请记住，本次自我评估并非为了模拟真实的认证考试。相反，它作为一种工具，用于衡量你的准备程度，并指出任何可能需要改进的地方。把它当作一个调整理解、巩固知识的机会。\n\
+  \n原考试时长为 60 分钟、共 56 道题，要求你有效管理时间。考虑到你需要阅读和理解每道题的时间，为每道题分配大约 1 分钟是很重要的。\n\n以下是考试建议时间管理的分配：\n\
+  \n- **阅读、理解并回答每道题：** 每题 1-1.5 分钟\n- **检查答案：** 考试结束前留出 3 分钟\n\n遵循这种时间管理策略，你可以确保有足够的时间阅读和理解每道题、提供准确答案，并在提交考试前检查你的回答。\n\
+  \n对于本自我评估章节，你将一共获得 56 道题，与原始考试格式一致。这些题目经过精心设计，涵盖 Splunk Enterprise 管理的各个方面，确保对你的知识和技能进行全面评估。请记住——自信源于充分准备。因此，请把最后一章当作巩固专业知识、以确定性迎接认证考试的机会。祝你顺利成为一名合格的\
+  \ Splunk Enterprise 管理员，让我们开始自我评估问题吧！\n\n## 模拟考试问题\n\n- 1. 在 Splunk 中，哪个配置文件负责指定要收集和索引的数据输入？\n\
+  \  A. inputs.conf\n  B. props.conf\n  C. transforms.conf\n  D. indexes.conf\n\n\
+  - 2. 你是一名系统管理员：如何控制对 Splunk 中特定索引和资源的访问？\n  A. 在 Splunk 服务器上配置防火墙规则。\n  B. 在将数据索引到\
+  \ Splunk 之前对数据进行加密。\n  C. 设置身份验证机制，例如轻量级目录访问协议（LDAP）或安全断言标记语言（SAML）。\n  D. 遵循 Splunk\
+  \ 基于角色的访问控制（RBAC），并创建一个可以配置为允许访问特定索引和资源的角色。角色又可以分配给用户。\n\n- 3. 哪个 Splunk 组件负责将应用部署到转发器？\n\
+  \  A. 部署服务器（DS）\n  B. 重型转发器（HF）\n  C. 许可证管理器（LM）\n  D. 搜索头（SH）\n\n- 4. Splunk 索引器的作用是什么？\n\
+  \  A. 它对传入数据进行索引和存储，以供搜索和分析\n  B. 它提供基于 Web 的界面，用于搜索和可视化数据\n  C. 它管理用户身份验证和访问控制\n\
+  \  D. 它根据定义的条件运行计划搜索并生成警报\n\n23. 在 Splunk 中，如何配置 DC 以与 DS 通信？（选择所有适用项）\n\n- A. 在\
+  \ deploymentclient.conf 文件中指定 DS 的地址\n- B. 通过 Splunk Web 界面，路径为“设置 | 部署客户端”\n- C.\
+  \ 在 DC 上执行 CLI 命令\n- D. 联系 Splunk 支持以获取配置方面的帮助\n\n24. 你能指出定义索引创建设置的配置文件吗？\n\n- A.\
+  \ server.conf\n- B. inputs.conf\n- C. indexes.conf\n- D. outputs.conf\n\n25. 在 Splunk\
+  \ 索引器中，热桶和温桶存储的位置是什么？（选择配置设置）\n\n- A. hotPath\n- B. homePath\n- C. coldPath\n- D.\
+  \ warmPath\n\n26. 定义索引最大大小的设置是什么？\n\n- A. maxTotalDataSizeMB\n- B. maxDataSizeMB\n\
+  - C. indexMaxSize\n- D. indexTotalSize\n\n27. 从索引中删除数据的命令有哪些？（选择所有适用项）\n\n- A. 通过\
+  \ Splunk 搜索请求执行 delete 命令\n- B. 通过 Splunk CLI 执行 delete 命令\n- C. 通过 Splunk 搜索请求执行\
+  \ splunk clean 命令\n- D. 通过 Splunk CLI 执行 splunk clean 命令\n\n28. Splunk 能否搜索索引的冻结桶？\n\
+  \n- A. 能\n- B. 不能\n\n34. 在 Splunk 中，索引时（全局）优先级的最顶层目录是什么？\nA. $SPLUNK_HOME/etc/apps/<app_name>/default\n\
+  B. $SPLUNK_HOME/etc/users/<app_name>/local\nC. $SPLUNK_HOME/etc/system/default\n\
+  D. $SPLUNK_HOME/etc/system/local\n\n35. Splunk 系统级配置默认存储在哪个位置？\nA. $SPLUNK_HOME/etc/system/default\n\
+  B. $SPLUNK_HOME/etc/apps/\nC. $SPLUNK_HOME/bin\nD. $SPLUNK_HOME/etc/apps/\n\n36.\
+  \ 在搜索头集群（SHC）中，至少需要多少个搜索头（SH）？\nA. 两个\nB. 三个\nC. 四个\nD. 一个\n\n37. 搜索因子（SF）配置在哪个\
+  \ Splunk 组件上？\nA. 搜索头（SH）\nB. 索引器\nC. 搜索头船长（SH captain）\nD. 许可证管理器（LM）\n\n38. 如果在索引器集群上设置了复制因子（RF）为\
+  \ 4，那么集群中至少需要多少个索引器实例？\nA. 三个\nB. 两个\nC. 四个\nD. 八个\n\n39. 你能说出在搜索头（SH）上包含分布式搜索设置的两个配置文件的名称吗？\n\
+  \n- A. outputs.conf\n- B. server.conf\n- C. serverclass.conf\n- D. distsearch.conf\n\
+  \n40. 在搜索头（SH）上，知识包复制的默认 replicationPolicy 值是什么？\n\n- A. replicationPolicy = cascading\n\
+  - B. replicationPolicy = classic\n- C. replicationPolicy = mounted\n- D. replicationPolicy\
+  \ = rfs\n\n41. 在搜索头（SH）中，知识包复制的默认 maxBundleSize 限制是多少？\n\n- A. 2 GB\n- B. 4 GB\n\
+  - C. 1 GB\n- D. 3 GB\n\n42. 在 Splunk 的摄取过程中，数据要经历三个阶段。以下哪项是 Splunk 中数据处理的这三个阶段？\n\
+  \n- A. 输入\n- B. 解析\n- C. 索引\n- D. 复制\n\n43. 在 Splunk 中，文件/目录监控的配置应放在哪里？\n\n- A.\
+  \ transforms.conf\n- B. inputs.conf\n- C. props.conf\n- D. indexes.conf\n\n44. 在\
+  \ Splunk 中用于添加输入（inputs）的 Splunk CLI 命令是什么？\n\n- A. splunk add monitor <path_to_data_source>\
+  \ -index <index_name> -sourcetype <sourcetype_name>\n- B. splunk add inputs <path_to_data_source>\
+  \ -index <index_name> -sourcetype <sourcetype_name>\n- C. splunk add files <path_to_data_source>\
+  \ -index <index_name> -sourcetype <sourcetype_name>\n- D. splunk add directory <path_to_data_source>\
+  \ -index <index_name> -sourcetype <sourcetype_name>\n\n45. 允许在请求中摄取任何文本负载的 HTTP\
+  \ 事件收集器（HEC）端点是什么？\n\n- A. services/collector/event\n- B. services/collector/raw\n\
+  - C. services/collector/text\n- D. services/collector/ack\n\n46. 在 Splunk 中，如何有选择地摄取\
+  \ Windows 输入的特定事件代码？\n\n- A. 在 inputs.conf 中使用 Event_codes = <逗号分隔的代码列表>\n- B. 在\
+  \ inputs.conf 中使用白名单/黑名单设置\n- C. 没有可能的解决方案进行选择性摄取，因此请在搜索时过滤代码\n- D. 以上都不是\n\n47.\
+  \ 你能识别数据通过哪些数据输入方式被摄取到 Splunk 中吗？（选择所有适用项）\n\n- A. HEC——无代理输入\n- B. 文件和目录监控\n- C.\
+  \ 网络输入\n- D. 使用技术插件（TA）进行数据收集\n\n48. 在文件与目录输入中，如何递归地监控子目录？\n\n- A. *（通配符）\n- B.\
+  \ ...（目录段中的三点省略号）\n- C. 将各个子目录单独配置为监控输入\n- D. % %（在目录段中使用此表示法）\n\n\n\n\n55. 作为数据摄入的一部分，通过在转发器上设置\
+  \ INDEXED_EXTRACTIONS，哪个阶段会被跳过执行？\n\n+   A. 输入\n+   B. 解析\n+   C. 索引\n+   D. 摄入\n\
+  \n56. 为什么持久队列在 Splunk 中很有用？\n\n+   A. 它有助于减少 Splunk 中的总体存储需求\n+   B. 它能够为关键事件启用实时告警和通知\n\
+  +   C. 它防止高容量数据摄入期间的数据丢失\n+   D. 它提高了历史数据分析的查询性能\n\n你已经完成了模拟考试题部分的全部内容。让我们回顾一下答案。\n\
+  \n## 回顾答案\n\n+   1. 选项 A 是正确答案。inputs.conf 文件通常包含用于摄入的数据输入。props.conf 和 transforms.conf\
+  \ 包含解析阶段配置和字段提取，而 indexes.conf 配置 Splunk 索引。我们在第 6 章“Splunk 配置文件”中简要介绍了这些文件。\n+\
+  \   2. 选项 D 是正确答案。选项 C 涉及向 Splunk 进行用户认证所需的认证方法。请参阅第 3 章“Splunk 中的用户、角色和认证”中的“角色和认证方法”部分。\n\
+  +   3. 选项 A 是正确答案。部署服务器（DS）为连接到它的转发器存储应用程序。通过使用 serverclass.conf 配置文件，DS 配置要部署到转发器的必要应用程序。有关各种\
+  \ Splunk 组件的更多详细信息，请参阅第 1 章“Splunk Enterprise 认证管理员考试入门”中的“了解 Splunk 组件”部分。\n+ \
+  \  4. 选项 A 是正确答案。索引器的重要功能是存储数据并响应用户通过搜索头（SH）发出的搜索请求。在典型的生产部署中，索引器上会禁用 Web UI。选项\
+  \ B、C 和 D 是搜索头（SH）的功能。\n+   5. 选项 C 是正确答案。顾名思义，LDAP 认证方法通常配置为连接到组织现有的目录服务器，并让用户使用现有凭据进行认证。Splunk\
+  \ 还支持其他认证方法，例如 SAML、本地和外部认证。\n"
+- "## D\n\n配置文件优先级，\n  搜索时优先级\n  场景 95-97\nCSV 查找 187, 201-203\n循环冗余校验（CRC）143\n数据匿名化\
+  \ 166\n  在 props.conf 中使用 SEDCMD 166, 167\n  使用 transforms 和 props 168, 169\n数据索引阶段\n\
+  \  索引阶段 130\n  输入阶段 129\n  解析阶段 130\n数据掩蔽 177\nDebian (deb) 66\n分隔数据提取 188-192\n\
+  部署客户端\n  配置 68\n部署服务器（DS）160\n  配置 61\n  serverclass 配置 62-64\n分布式集群部署\n  与 SHC\
+  \ 的多站点\n  多站点的局限性 18, 19\n  单站点的优缺点 17, 18\n分布式部署 105\n分布式非集群部署 16\n  优势 16\n分布式搜索\
+  \ 105-07\n  配置 111\n  关键事实 106\n  Splunk CLI 112\n  Splunk Web 113\n\n## E\n\n东部标准时间（EST）164\n\
+  企业安全（ES）107\n事件索引 34, 76\n外部查找 187\n\n## F\n\n字段 183-186\n文件和目录监控 140\n  数据输入 140-144\n\
+  转发器\n  HF 9\n  监控 69, 70\n  UF 9\n转发器许可证 30\n转发 66\n  配置 66-68\n冻结存储桶 79\n\n## G\n\
+  \n地理空间查找 186\n全局 94\n全局唯一标识符（GUID）149\n谷歌云平台（GCP）8\n谷歌云存储（GCS）8\n图形用户界面（GUI）64\n\
+  \n## H\n\n重型转发器（HF）9, 30, 160, 197\nHEC 输入 148\n  配置 149, 150\n  发送数据 150-152\n\
+  \  关键事实 148, 149\n高可用性（HA）9\n热存储桶 79\nHTTP 事件收集器（HEC）7, 170\n\n## I\n\n身份提供者（IdP）52\n\
+  索引器集群 109\n  优势 109\n索引器集群化 109, 110\n索引器/搜索对等节点 105\n索引\n  备份 84\n索引阶段 130\n索引时字段提取\
+  \ 196\n  创建 196, 197\n  结构化数据提取 197-199\n  非结构化数据提取 199, 200\n索引时优先级 97-99\n信息技术服务智能（ITSI）107\n\
+  输入阶段 129\n\n## K\n\n键值（KV）对 185\n键值存储（KV 存储）查找 183\n知识包 116, 117\n  复制 117, 118\n\
+  KV 存储查找 187, 204-207\n\n## L\n\n将 LDAP 配置为认证方案\n  参考链接 53\n字典序 99\n许可证\n  使用情况和告警\
+  \ 40, 41\n  警告和违规 32, 33\n许可证组 36\n许可证管理器 39, 40\n许可证对等节点 38-41\n许可证池 37\n许可证堆栈\
+  \ 37\n许可证类型 29\n  转发器许可证 30\n  Splunk 开发者许可证 31, 32\n  Splunk Enterprise 基础设施许可证\
+  \ 31\n  Splunk Enterprise 许可证 31\n  Splunk Enterprise 试用许可证 30\n  Splunk 免费许可证 30\n\
+  许可证违规 32\n许可证管理\n  添加 35, 36\n  安装 34\n  管理和监控 34\n  工作原理 33, 34\n轻量级目录访问协议（LDAP）52,\
+  \ 53\nLinux 操作系统\n  安装通用转发器（UF）65\nLinux 操作系统安装\n  用于 .deb 的命令 66\n  用于 .rpm 的命令\
+  \ 66\n  用于 .tgz（TAR 文件）的命令 66\n查找 186, 187\n  创建 201\n  CSV 查找 201-204\n  KV 存储查找\
+  \ 204-207\n\n## M\n\n管理组件 12\n  部署服务器 12\n  索引器集群管理器（CM）13\n  许可证管理器 13\n  监控控制台（MC）13,\
+  \ 14\n  SHC 部署器 13\n\n## N\n\n掩蔽 166\n指标 76\n指标索引 34\n监控控制台（MC）4, 69\n多因素认证（MFA）52,\
+  \ 54\n使用 Duo Security 的多因素认证\n  参考链接 54\n多站点索引器集群化 110\n原生 Splunk 53\n网络数据输入\n \
+  \ 处理 144, 145\n  TCP 和 UDP 输入 145, 146\n非集群索引器\n  添加到 Splunk CLI 112\n  添加到 Splunk\
+  \ Web 114, 115\n不可搜索数据 110\n\n## P\n\n解析阶段 130\n数据匿名化 166\n索引重新路由 171, 172\nprops.conf\
+  \ 设置 161-165\n设置 160\n覆盖源类型 169, 170\ntransforms.conf 设置 165\n删除不需要的事件 172, 173\n\
+  Perl 兼容正则表达式（PCRE）63, 161\n个人身份信息（PII）6, 159\n管道分隔值（PSV）188\n可插拔认证模块（PAM）54\n处理组件\n\
+  \  转发器 9, 10\n  索引器 11, 12\n  搜索头（SH）10, 11\n\n## Q\n\n隔离 118\n\n## R\n\n红帽包管理器（rpm）66\n\
+  正则表达式（regex）161\n远程认证拨入用户服务（RADIUS）54\n复制因子（RF）110\nREST 应用程序编程接口（API）6\n基于角色的访问控制（RBAC）45\n\
+  角色 48, 49\n  管理员 49\n  can_delete 49\n  创建 50, 51\n  高级用户 49\n  用户 49\n\n## S\n\n\
+  脚本化认证 54\n脚本化输入\n  讨论 146-148\n脚本化查找 187\n可搜索副本 110\n搜索因子（SF）110\n搜索头 105\n搜索头主节点\
+  \ 108\n搜索头集群部署器 13\n搜索头集群化\n  概述 107-109\n搜索头集群（SHC）10\n搜索头部署器 109\n搜索头（SH）组件 10,\
+  \ 11\n搜索对等节点 105\n搜索处理语言（SPL）4, 186\n搜索时字段提取\n  创建 187, 188\n  分隔数据提取 188-192\n\
+  \  非结构化数据提取 192-196\n搜索时优先级 95\n安全断言标记语言（SAML）53, 54\n职责分离（SoD）49\nserverclass\n\
+  \  配置 62-64\n短消息服务（SMS）171\n简单网络管理协议（SNMP）144\n单服务器部署\n  优缺点 15\n使用 SAML 配置单点登录\n\
+  \  参考链接 54\n单点登录（SSO）52\n站点 17\n站点 RF 110\n站点 SF 110\n社会安全号码（SSN）159\n安全套接层（SSL）144\n\
+  规范（spec）51, 161\nSplunk\n  URL 129\nSplunk CLI 112\n  添加集群索引器 112, 113\n  添加非集群索引器\
+  \ 112\nSplunk CLI 命令\n  用于添加索引 81\nSplunk 组件 9\n  管理组件 12\n  处理组件 9\nSplunk 开发者许可证\
+  \ 31, 32\n  警告和违规 33\nSplunk Enterprise 6\n  功能 6, 7\nSplunk Enterprise 9.X 功能 7\n\
+  \  集群管理器（CM）冗余 8\n  配置跟踪器 8\n  Dashboard Studio 7\n  持久搜索 8\n  联合搜索 7\n  健康报告 7\n\
+  \  Ingest Actions 8\n  SmartStore Azure Blob 支持 8\n  Splunk Assist 8\nSplunk Enterprise\
+  \ 基础设施许可证 31\n  警告和违规 33\nSplunk Enterprise 许可证 31\n  警告和违规 33\nSplunk Enterprise\
+  \ 试用许可证 30\n  警告和违规 33\nSplunk Forwarder 许可证\n  警告和违规 33\nSplunk 免费许可证 30\n  警告和违规\
+  \ 33\nSplunk 索引 76\n  特性 76\n  CLI 81, 82\n  创建 80\n  事件索引 76\n  indexes.conf 82\n\
+  \  监控 84, 85\n  Splunk Web 80, 81\n  卷 83\n\n\n\n\n\n## S\n\n- Splunk 安装 20\n  -\
+  \ 步骤 21-24\n  - 系统要求 20\n- Splunk 平台功能\n  - 参考链接 51\n- Splunk 验证架构 (SVAs) 14\n \
+  \ - 分布式集群部署和 SHC，多站点 18, 19\n  - 分布式集群部署和 SHC，单站点 17, 18\n  - 分布式非集群部署 16, 17\n\
+  \  - 参考链接 14\n  - 单服务器部署 15\n- Splunk Web 80, 81, 113\n  - Add Data 功能 131-134\n\
+  \  - 集群索引器，添加 115, 116\n  - 非集群索引器，添加 114, 115\n- Splunk Web 数据\n  - 屏蔽 177\n  -\
+  \ 预览 173, 174\n  - 源类型定义，创建 174-177\n- SSL 用户数据报协议 (UDP) 144\n- stanza 51\n- 结构化数据提取\
+  \ 197-199\n\n## T\n\n- 制表符分隔值 (TSV) 188\n- 技术插件 (TAs) 4\n- 解冻桶 79\n- 传输控制协议 (TCP)\
+  \ 144\n\n## U\n\n- 通用转发器 (UF) 4, 139, 197\n  - 安装 64\n  - 在 Linux OS 中安装 65\n  -\
+  \ 在 Windows OS 中安装 64, 65\n- 解除隔离 118\n- 非结构化数据提取 192-200\n- 用户 45, 46\n  - 创建 46,\
+  \ 48\n- 用户，使用 CLI 配置\n  - 参考链接 48\n\n## W\n\n- 温桶 79\n- Web，命令行界面 (CLI) 6\n- Windows\
+  \ 输入\n  - 探索 152-154\n- Windows OS\n  - 通用转发器 (UF)，安装 64, 65\n\n![](img/5319cbd6f078c6cda7fac6347f77a07d_251_0.png)\n\
+  \npacktpub.com\n\n订阅我们的在线数字图书馆，即可完全访问超过 7,000 本书籍和视频，以及帮助您规划个人发展并推进职业生涯的行业领先工具。更多信息，请访问我们的网站。\n\
+  \n## 为什么订阅？\n\n- 花更少时间学习，花更多时间编码，使用来自 4,000 多名行业专业人士的实用电子书和视频\n- 使用专为你打造的技能计划改善学习\n\
+  - 每月免费获得一本电子书或视频\n- 完全可搜索，便于轻松访问重要信息\n- 复制粘贴、打印和书签内容\n\n您知道 Packt 为每本出版的书籍提供电子书版本，文件格式为\
+  \ PDF 和 ePub 吗？您可以在 packtpub.com 升级到电子书版本，作为印刷书籍客户，您有权享受电子书折扣。请通过 customercare@packtpub.com\
+  \ 与我们联系以获取更多详情。\n\n在 www.packtpub.com，您还可以阅读大量免费技术文章，订阅一系列免费通讯，并获得 Packt 书籍和电子书的独家折扣和优惠。\n\
+  \n## 您可能喜欢的其他书籍\n\n如果您喜欢这本书，您可能对 Packt 的这些其他书籍感兴趣：\n\n![](img/5319cbd6f078c6cda7fac6347f77a07d_252_0.png)\n\
+  \n### 使用 Splunk 9.x 进行数据分析\n\nDr. Nadine Shillingford\n\nISBN: 978-1-80324-941-4\n\
+  \n- 安装和配置 Splunk 9 环境\n- 使用 Dashboard Studio 中的灵活布局选项创建高级仪表板\n- 了解 Splunk 许可模式\n\
+  - 创建表格并使用 Splunk 9.x 中可用的各种图表类型\n- 探索新的配置管理功能\n- 实施 Splunk 9.x 中引入的性能改进\n- 将 Splunk\
+  \ 与 Kubernetes 集成以优化 CI/CD 管理\n\n## Packt 正在寻找像您这样的作者\n\n如果您有兴趣成为 Packt 的作者，请访问\
+  \ authors.packtpub.com 并立即申请。我们已与数千名开发人员和技术专业人士合作，就像您一样，帮助他们与全球技术社区分享他们的见解。您可以提交通用申请，申请我们正在招聘作者的特定热门主题，或提交您自己的想法。\n\
+  \n## 分享您的想法\n\n现在您已完成 *Splunk 9.x Enterprise Certified Admin Guide*，我们很想听听您的想法！如果您从\
+  \ Amazon 购买了本书，请点击此处直接前往本书在 Amazon 的评论页面并分享您的反馈，或在您购买的网站上留下评论。\n\n您的评论对我们和技术社区非常重要，将帮助我们确保提供优质内容。\n\
+  \n## 下载本书的免费 PDF 副本\n\n感谢您购买本书！\n\n您喜欢随时阅读但无法随身携带印刷书籍吗？\n\n您的电子书购买与您选择的设备不兼容？\n\n\
+  不用担心，现在每本 Packt 书籍您都可以免费获得该书的 DRM-free PDF 版本。\n\n在任何地方、任何地点、在任何设备上阅读。直接从您喜爱的 technical\
+  \ 书籍中搜索、复制和粘贴代码到您的应用程序中。\n\n福利还不止于此，您可以每天通过电子邮件获得独家折扣、通讯和优质免费内容。\n\n按照以下简单步骤获取福利：\n\
+  \n1. 扫描二维码或访问下方链接\n2. 提交您的购买证明\n3. 就是这样！我们会直接将您的免费 PDF 和其他福利发送到您的电子邮件\n\n![](img/5319cbd6f078c6cda7fac6347f77a07d_255_0.png)\n\
+  \n```\nhttps://packt.link/free-ebook/9781803230238\n```\n\n"
