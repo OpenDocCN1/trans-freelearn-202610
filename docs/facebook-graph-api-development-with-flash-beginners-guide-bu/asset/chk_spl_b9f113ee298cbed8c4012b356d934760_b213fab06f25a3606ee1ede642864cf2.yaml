@@ -1,0 +1,31 @@
+reviews:
+- 'no': 0
+  overturn_probability: 0.1
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 书名标题符合全书起始特征，单独成行且为最高层级标识
+  keep_split: true
+- 'no': 40
+  overturn_probability: 0.2
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - Preface 为前置内容，按规则应与致谢等统一划为前文一章，位置合理
+  keep_split: true
+- 'no': 107
+  overturn_probability: 0.85
+  alternative: 正文小标题
+  counter_evidence:
+  - 该标题出现在 Preface 之后、Introduction 之后的内容中，后续为 It's popular、Numbers 等二级小节，上下文为第1章内部的节标题而非最高层级大章；标题语义为本章引言性小节，长度短且无编号特征；前后无章节序号连贯性，符合正文小标题特征
+  keep_split: false
+- 'no': 288
+  overturn_probability: 0.05
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '编号特征 ## 2 为全书最高层级大章标记，后接 ## 欢迎来到图谱，符合章节起始规则'
+  keep_split: true
+- 'no': 2708
+  overturn_probability: 0.8
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题 ## 深入挖掘图 位于第2章内容内部，后续仍为动手实践、分页等子节，无章节编号且语义为本章内部分段；前后上下文连续，未出现上一章总结或新章序号，符合正文小标题而非最高层级章节'
+  keep_split: false

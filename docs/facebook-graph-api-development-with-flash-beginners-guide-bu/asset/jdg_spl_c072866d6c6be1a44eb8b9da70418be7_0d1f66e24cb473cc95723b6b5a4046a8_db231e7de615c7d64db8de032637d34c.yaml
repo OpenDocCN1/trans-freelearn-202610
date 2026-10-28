@@ -1,0 +1,34 @@
+chapter_starts:
+- 'no': 3056
+  confidence: 0.85
+  final_reason: 双方均同意分章；该行以一级标题单独成行，语义统领后续搜索相关讨论，具备章标题的格式与语义特征。
+  accepted_evidence:
+  - 行文本为“# Search Me”，单独成行且无末尾标点
+  - 后文围绕搜索主题展开，包含多个子标题，具备统领性
+  - 判断方与复核方均倾向保留分章
+  rejected_evidence:
+  - 缺少与全书其他章标题一致的编号格式
+  - 前文内容紧密衔接，存在作为小节标题的可能
+  need_human_review: false
+- 'no': 4707
+  confidence: 0.92
+  final_reason: 复核方指出该行是紧接“## 7”编号后的完整章名；标题语义明确、后接引言段落，符合章标题特征，应作为第7章实际起点。
+  accepted_evidence:
+  - 行文本为“## FQL 相关问题”，单独成行且无标点
+  - 后文以介绍性段落开头，并列出本章学习目标
+  - 上一行“## 7”为其编号，二者共同构成完整章节标题
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 4705
+  reason: 复核方证据成立：该行仅为孤立的章号“## 7”，无任何语义统领性；真正的章名在下一行（4707），分章点应设在包含完整标题的行。
+  need_human_review: false
+- 'no': 5645
+  reason: 位于书末答案区域，标题后直接是第5章答案表格，无概述段；与第6、7章答案连续排列，属于答案部分的子标题而非正式正文章节。
+  need_human_review: false
+- 'no': 5653
+  reason: 紧随第5章答案表格之后，性质与5645相同，是第6章答案的子标题，不应单独划分新章。
+  need_human_review: false
+- 'no': 5661
+  reason: 与5645、5653同属书末连续答案列表，且后面紧跟索引，应视为同一附录内容，不应作为正式章节。
+  need_human_review: false

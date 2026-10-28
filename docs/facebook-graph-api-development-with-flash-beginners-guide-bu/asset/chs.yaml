@@ -1,0 +1,2258 @@
+- ''
+- '# Facebook Graph API Flash 开发 初学者指南：社交 Flash 应用构建指南 完全集成 Facebook Graph API
+
+
+
+
+
+
+  ## Acknowledgement
+
+
+  I''d like to thank my Dad, for teaching me how to be technical; my Mum, for teaching
+  me how to write; and my little sister, for not being too jealous that I beat her
+  to being a published author.
+
+
+  I also want to thank Ryan Henson Creighton, for inadvertently introducing me to
+  David Barnes; all the Flash developers that make up the awesome community I''m happy
+  to be a part of, particularly Bram, Ryan, Rasmus, Jeff and Steve, and Daniel; Tom,
+  for letting me use his tutorial as a template for my first (and still most popular!)
+  piece of writing; Ian Yates and the rest of Envato™, for enabling me to keep working
+  and earning a living while writing this book; Keith Peters, for providing the awesome
+  MinimalComponents I used throughout this book; and everyone that''s ever commented
+  on anything I''ve written – I really appreciate that.
+
+
+  Finally, I must express my appreciation for and thanks to David, Vishal, Hyacintha,
+  Paramanand, Priya, Namita, and everyone else at Packt Publishing for all their support,
+  help, and hard work. I know I can be stubborn, but it''s been a pleasure to work
+  with you all. In particular, thank you to David, who not only approved this book
+  in the first place, but also gave me a huge amount of guidance in all aspects of
+  writing it. And of course, I have to thank Emanuele, not just for doing the technical
+  review of this book, but also for his blog, which (by a funny turn of events) was
+  one of my key inspirations to start writing about Flash in the first place.
+
+
+  ## www.PacktPub.com
+
+
+  ### Support files, eBooks, discount offers and more
+
+
+  You might want to visit www.PacktPub.com for support files and downloads related
+  to your book.
+
+
+  Did you know that Packt offers eBook versions of every book published, with PDF
+  and ePub files available? You can upgrade to the eBook version at www.PacktPub.com
+  and as a print book customer, you are entitled to a discount on the eBook copy.
+  Get in touch with us at service@packtpub.com for more details.
+
+
+  At www.PacktPub.com, you can also read a collection of free technical articles,
+  sign up for a range of free newsletters, and receive exclusive discounts and offers
+  on Packt books and eBooks.
+
+
+  ![](img/4e826fa36038b86f2087ef8b818d0acf_7_0.png)
+
+
+  http://PacktLib.PacktPub.com
+
+
+  Do you need instant solutions to your IT questions? PacktLib is Packt''s online
+  digital book library. Here, you can access, read, and search across Packt''s entire
+  library of books.
+
+
+  ### Why Subscribe?
+
+
+  - Fully searchable across every book published by Packt
+
+  - Copy and paste, print and bookmark content
+
+  - On demand and accessible via web browser
+
+
+  ### Free Access for Packt account holders
+
+
+  If you have an account with Packt at www.PacktPub.com, you can use this to access
+  PacktLib today and view nine entirely free books. Simply use your login credentials
+  for immediate access.
+
+  '
+- "## Preface\n\nFacebook is big, by all meanings of the word. It's used by half a\
+  \ billion people—and countless businesses, bands, and public figures—for socializing\
+  \ and self-promotion. It's also a huge development platform, with tens of thousands\
+  \ of applications.\n\nIt's now common to see a Facebook \"Like\" button on blog\
+  \ posts, news articles, and many other websites. In the same way, Facebook integration\
+  \ is becoming more and more desirable for browser-based RIAs and games, with some,\
+  \ like FarmVille, even being based entirely around Facebook. That's where Flash\
+  \ comes in.\n\n## What this book covers\n\n*Chapter 1, Introduction,* gets you up\
+  \ to speed with Facebook and ready to learn to develop Flash applications that connect\
+  \ with the Facebook platform. You'll learn why it's worth putting more time into\
+  \ developing for Facebook than other social networks (and why it's likely to stay\
+  \ that way), and get yourself technically set up for coding.\n\n*Chapter 2, Welcome\
+  \ to the Graph,* introduces you to Facebook's model for connecting all the information\
+  \ in its huge data stores—the **Graph API**. You'll discover how intuitive this\
+  \ model is, and will start to explore the publicly available data using AS3 through\
+  \ utility code, which you'll build from scratch.\n\n*Chapter 3, Let Me In!,* breaks\
+  \ down Facebook's systems for security, permissions, and authentication. You'll\
+  \ learn how to access the private data of Facebook users (including their photos,\
+  \ biographical information, and lists of friends). You will also start using the\
+  \ official Adobe ActionScript 3 SDK for Facebook platform alongside your own utility\
+  \ code.\n\n*Chapter 4, Digging Deeper into the Graph,* helps you understand the\
+  \ concepts of paging and filtering, so that you aren't restricted to using only\
+  \ the default dataset that Facebook presents you with. You'll find out how to obtain\
+  \ data from specified dates, and how to speed up your applications by retrieving\
+  \ information from multiple sources at once.\n\nChapter 5, Search Me, builds on\
+  \ the previous chapter by teaching you how to search for data based on criteria\
+  \ other than dates. You'll learn how to retrieve Wall Posts by specific users, pages\
+  \ with specific names, and places by specific geographical coordinates.\n\nChapter\
+  \ 6, Adding to the Graph, takes you beyond merely retrieving data and into publishing\
+  \ new data to Facebook. You'll find out how to create new Wall Posts (including\
+  \ rich posts including images and embedded hyperlinks); how to comment on other\
+  \ users' Wall Posts; how to create new events, notes, and albums; and how to upload\
+  \ photos from your hard drive.\n\nChapter 7, FQL Matters, takes a break from the\
+  \ Graph API to teach you how to learn a powerful search tool—Facebook Query Language.\
+  \ You'll trade the Graph API's intuitiveness and simplicity for FQL's depth and\
+  \ additional features, while also understanding the benefits that each approach\
+  \ offers over the other.\n\nChapter 8, Finishing Off, wraps up what you've learned\
+  \ throughout the book and gets you ready to release your application to the wild.\
+  \ You'll find out how to embed your application into the Facebook website itself;\
+  \ how to get it into the official Facebook Application Directory; and how to export\
+  \ it as a desktop or Android application, while still keeping its Facebook connectivity.\
+  \ Finally, you'll learn how to keep up-to-date with the ever-changing Facebook platform,\
+  \ and discover some useful resources for taking what you've learned even further.\n\
+  \nAppendix, Pop Quiz Answers, contains answers to all the Pop Quizzes in the book\n\
+  \n## What you need for this book\n\nTo develop and compile the example code in this\
+  \ book, you will need an AS3 compiler. Sample projects are provided for use with\
+  \ Flash Professional (CS3 and above), Flash Builder, and the free FlashDevelop IDE\
+  \ (with the Flex SDK); if you use a different workflow you will be able to convert\
+  \ these to fit your tools.\n\nYou'll also need previous experience with AS3 class-based\
+  \ coding and a Facebook account. The exact requirements here, along with what to\
+  \ do if you don't meet them, are detailed in Chapter 1.\n\n## Who this book is for\n\
+  \nIf you are an AS3 developer who wants to create applications and games that integrate\
+  \ with Facebook—either on the Facebook website itself or off it, then this book\
+  \ is for you. Even if you have no previous experience with Facebook, databases,\
+  \ or server-side programming, you can follow this book.\n\n## Conventions\n\nIn\
+  \ this book, you will find a number of styles of text that distinguish between different\
+  \ kinds of information. Here are some examples of these styles, and an explanation\
+  \ of their meaning.\n\nCode words in text are shown as follows: \"All we have to\
+  \ do is pass it an argument of type `graph.GraphObject`.\"\n\nA block of code is\
+  \ set as follows:\n\n```\nfor (var key:String in decodedJSON)\n{\n    graphObject[key]\
+  \ = decodedJSON[key];\n}\n```\n\nWhen I wish to draw your attention to a particular\
+  \ part of a code block, the relevant lines or items are set in bold:\n\n```\nif\
+  \ (decodedJSON.data)\n{\n    //has a \"data\" property so we assume it is a Graph\
+  \ List\n    var graphList:GraphList = new GraphList();\n}\n```\n\n**New terms**\
+  \ and **important words** are shown in bold. Words that you see on the screen, in\
+  \ menus or dialog boxes for example, appear in the text like this: \"Compile and\
+  \ run your SWF, then expand the **Connections** box and click on **posts**\".\n\n\
+  Warnings or important notes appear in a box like this.\n\nTips and tricks appear\
+  \ like this.\n"
+- '## Introduction
+
+
+  More and more Flash games and **Rich Internet Applications (RIAs)** are allowing
+  users to log in using their Facebook account—it''s a safe assumption that most users
+  will have one. Companies are asking freelancers for deeper Facebook integration
+  in their projects. It''s practically a buzzword.
+
+
+  But why the big fuss?
+
+
+  ## It''s popular
+
+
+  - Facebook benefits from the snowball effect: it''s big, so it gets bigger.
+
+  - People sign up because most of their friends are already on it, which is generally
+  not the case for, say, Twitter. Businesses sign up because they can reach so many
+  people. It''s a virtuous circle.
+
+  - There''s a low barrier to entry, too; it''s not just for techies, or even people
+  who are "pretty good with computers;" even old people and luddites use Facebook.
+  In February 2010, the technology blog **ReadWriteWeb** published an article called
+  "Facebook Wants to Be Your One True Login," about Facebook''s attempts to become
+  the de facto login system throughout the Web. Within minutes, the comments filled
+  up with posts from confused Facebook users:
+
+
+  ![](img/4e826fa36038b86f2087ef8b818d0acf_22_0.png)
+
+
+  (Source: http://www.readwriteweb.com/archives/facebook_wants_to_be_your_one_true_login.php.)
+
+
+
+
+
+
+  显然，ReadWriteWeb 文章暂时成为 **Facebook Login** 的顶级搜索结果，导致数百名 Facebook 用户——将 Google 或
+  Bing 等同于互联网——误以为这篇博文实际上是重新设计的 `Facebook.com`。评论表单恰如其分地有一个 **Sign in with Facebook**
+  按钮，可以用来代替手动输入姓名和电子邮件地址来签署评论——当然，Facebook 用户将其误解为新的 **Log in** 按钮。
+
+
+  然而……所有这些人都能熟练地使用 Facebook，以至于当它似乎变得无法使用时，他们会大发雷霆。这不仅仅是极客和学生的网站；它具有严重的市场吸引力。
+
+
+  甚至《社交网络》——一部基于 Facebook 创立的电影——也具有这种吸引力：它以 #1 开画，并在第二个周末继续保持。
+
+
+  ## Numbers
+
+
+  根据 Facebook 的统计页面（`http://www.facebook.com/press/info.php?statistics`），在 2010 年
+  11 月时，任何一个月内都有超过 5 亿人登录 Facebook。为了便于理解，整个世界的人口还不到 70 亿。
+
+
+  据估计，Twitter 拥有 9500 万月活跃用户（根据 `eMarketer.com` 2010 年 9 月的报告），MySpace 也是如此。基于 Facebook
+  平台的最大游戏 **FarmVille** 拥有超过 5000 万用户：超过任一竞争社交网络人口的一半以上。
+
+
+  据报道，FarmVille 利润巨大，一些外部报告声称其母公司 **Zynga** 产生的利润是 Facebook 本身的两倍以上（尽管对此要持保留态度）。当然，并非每个
+  Facebook 游戏或应用程序都能如此成功，而且 FarmVille 也受益于与 Facebook 本身相同的滚雪球效应，使得竞争变得困难——但这几乎无关紧要；这些数字验证了
+  Facebook 作为可以建立盈利业务的平台。
+
+
+  ## It''s everywhere
+
+
+  正如上述 ReadWriteWeb 文章所解释的，Facebook 已成为许多网站的标准登录方式。为什么还要在浏览器的列表（或你的记忆）中再添加另一个用户名/密码组合，如果你可以用一个
+  Facebook 登录来替代它们全部呢？
+
+
+  ## Introduction
+
+
+  这并不仅限于发布博客评论。英国电视广播公司 Channel 4 允许观众按需访问其整个电视节目单，无需为特定的 Channel 4 账户注册：
+
+
+  ![](img/4e826fa36038b86f2087ef8b818d0acf_24_0.png)
+
+
+  同样，Facebook 也受益于这种滚雪球效应：随着越来越多的网站启用 Facebook 登录，它变得越发成为标准，而又越多的网站决定添加 Facebook 登录以跟上其他人。
+
+
+  除了登录功能外，许多网站还允许用户通过 Facebook 分享其内容。另一家英国电视广播公司 BBC 允许用户将他们推荐的电视节目链接直接发布到 Facebook：
+
+
+  ![](img/4e826fa36038b86f2087ef8b818d0acf_24_1.png)
+
+
+  博客——或者，确实是带有文章的许多网站——允许读者点赞一篇帖子，将这一事实发布在 Facebook 上以及网站本身：
+
+
+  ![](img/4e826fa36038b86f2087ef8b818d0acf_24_2.png)
+
+
+  因此，每月有五亿人使用 Facebook 网站，同时 Facebook 也在互联网上进一步传播，甚至超越。 “Facebook Messages” 存储用户整个对话历史，包括电子邮件、短信、聊天和
+  Facebook 本身；“Facebook Places” 允许用户签到某个物理位置，让朋友知道他们在那里。
+
+
+  没有其他网络具有这种覆盖范围。
+
+
+  ## It''s interesting to develop for
+
+
+  随着所有这些扩展，开发人员很难跟上 Facebook 平台。 有时会出现错误、未记录的区域和停机时间，所有这些都可能使开发更加困难。
+
+
+  但底层系统——在 2010 年 4 月引入的 **Graph API**——非常有趣。之前的 API 在其四年的生命周期中变得臃肿和笨重；Graph API 感觉设计良好，有充足的扩展空间。
+
+
+  本书主要关注 Graph API，因为它是现代 Facebook 开发的基础。你将在 *Chapter 2, Welcome to the Graph* 中正式了解它。
+
+
+  ## Have a go hero – get on Facebook
+
+
+  如果你还没有在 Facebook 上，立即注册（免费） http://facebook.com。你需要一个账户才能开发使用它的应用程序。花点时间熟悉它：
+
+
+  - 设置个人资料。
+
+  - 在朋友的 **Walls** 上发布消息。
+
+  - 在 http://apps.facebook.com/onthefarm 上看看 FarmVille 的喧嚣到底是怎么回事。
+
+  - 使用 Facebook Places 签到某个位置。
+
+  - 使用你的 Facebook 账户登录一些博客。
+
+  - 从 YouTube 网站将一些 YouTube 视频分享到你自己的 Wall 上。
+
+  - “Like” 一下某物。
+
+  - Go native!
+
+
+  ## Web hosts
+
+
+  如果你已经拥有一个可公开访问的 Web 服务器，或者已注册一个可通过 FTP 上传 SWF 和 HTML 页面的 Web 主机，请跳到 *How much AS3
+  knowledge is required?* 部分。
+
+
+  ### What''s a web host?
+
+
+  我假设你大致了解互联网的工作原理：当你在计算机上的 Web 浏览器中输入 URL 并点击 **Go** 时，它会从另一台计算机、**web server** 检索所需的所有页面和图像并显示它们。它用来查找
+  Web 服务器的确切方法和信息返回到计算机的协议在这里不相关。
+
+
+  你可以买一台电脑，安装一些服务器软件，并将其连接到你的互联网连接，你就会拥有一个功能性的 Web 服务器。但你必须维护它并保持安全，而且你的 ISP 可能不会很高兴你向其他人的浏览器发送所有这些页面和图像。更好的选择是付钱给另一家公司为你处理所有这些——一个
+  Web 主机。
+
+
+  ### Why do you need one?
+
+
+  - 为了构建一个基于在线 SWF 的应用程序或游戏，允许用户使用其 Facebook 账户登录（SWF 能够访问他们的个人资料、朋友列表、Wall 等），你需要控制一个网页。
+
+  - 技术上，你可能可以想出一些黑客方法来绕过这一点——也许通过在 Google sites 和 MegaSWF 上托管所有内容——但从长远来看，这不值得。为学习而花钱购买一个
+  Web 主机；如果你将来从事专业的 Facebook 应用程序开发，你肯定需要访问一个。
+
+
+  ### How do you choose one?
+
+
+  - 有大量 Web 主机可供选择，它们之间也有大量可配置的选项。你需要多少磁盘空间？每月多少带宽？多少处理能力？一些主机将为你提供一台专属服务器，而另一些则将你的文件放在与其他客户相同的计算机上。当然，你还要考虑客户服务的质量以及公司保持服务器在线的可靠性。加上“云托管”等术语，足以让人头晕。
+
+  - 你只需要一个允许你上传 HTML 文件和 SWF 的主机；本书还假设你能够使用 FTP 将文件从计算机传输到主机，尽管这不是严格必要的。
+
+  - 想在不浪费时间比较主机的情况下立即开始吗？选择 Media Temple。本书中的代码都是使用 Media Temple Grid Service 账户测试的，可在
+  http://mediatemple.net/webhosting/gs/ 获取。它提供的功能远超本书项目所需，当然，价格为每月 $20。这不是最便宜的选择，但额外的服务和功能在你构建自己的
+  Facebook 应用程序和游戏时肯定会派上用场。
+
+
+  - **How To Use A Document Class In Flash**—一个简短的教程，帮助你快速掌握在 Flash CS3 及以上版本中使用文档类的方法：http://active.tutsplus.com/tutorials/actionscript/quick-tip-how-to-use-a-document-class-in-flash/。
+
+  - **AS3 101**—一系列教程，带你了解 AS3 开发的基础知识。特别是，从第 8 部分开始阅读，因为这些部分涉及 AS3 中的 OOP：http://active.tutsplus.com/series/as3-101/。
+
+
+  - 你还应该知道如何创建和编译 SWF 项目，并且熟悉足够的 HTML 以便能够在其中嵌入 SWF。我们将为此目的使用 **SWFObject**（这是 Flash
+  CS5 使用的默认嵌入方法）；如果你不确定这意味着什么，请在此熟悉一下：http://code.google.com/p/swfobject/。
+
+  - 本书中使用的所有重要 AS3 类和关键字在变得相关时都会简要解释，因此即使你还没有记住 **LiveDocs** 也不用担心。说到 LiveDocs，请记住你始终可以使用它们来查找不熟悉的代码：http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/index.html。
+
+
+  ## The source code
+
+
+  在 *Chapter 2, Welcome to the Graph* 开始时，你将获得一个 Flash 项目，它只是一个空的用户界面——后端将由你使用第 2
+  章到第 6 章中学到的知识来构建。
+
+
+  该项目名为 **Visualizer**，包含类结构和所有 UI，用于一个可以用来表示 Facebook 上存储的所有信息的应用程序。你将远远超出仅仅允许人们登录应用程序并获取他们的用户名；使用
+  AS3 和 Graph API 可以实现更多，你将了解所有内容。
+
+
+  尽管项目很复杂，但类被安排成你只需要修改其中少数几个，而且这些类最初几乎没有代码。这意味着你不必深入挖掘你没有编写的大量代码！你可以完全专注于学习 Facebook
+  方面的 Flash 开发。
+
+
+  第 2 章到第 6 章中的每一章都有两个关联的 ZIP 文件：一个是章节开始时的项目，另一个是章节结束时的项目。这意味着你可以按任何顺序跳过这些章节，但如果你按顺序进行学习会更容易。所有项目文件均以兼容
+  Flash CS3 及以上版本、Flash Builder 和 FlashDevelop 的形式提供——如果你使用不同的 Flash 编辑器，你应该很容易转换项目。
+
+
+
+
+
+
+  ## 简介
+
+
+  当你第一次编译这个项目时，它看起来像这样：
+
+
+  ![](img/4e826fa36038b86f2087ef8b818d0acf_30_0.png)
+
+
+  没什么可看的。但用不了多久，你就会添加各种功能，让它能够用来浏览 Facebook，渲染不同的页面和照片：
+
+
+  ![](img/4e826fa36038b86f2087ef8b818d0acf_30_1.png)
+
+
+  ## 简介
+
+
+  然而，本书的主要目的是教你 Facebook Flash 开发背后的底层概念；一旦你理解了这些，实际使用的代码和 SDK 就无关紧要了。因此，本书还会教你如何从头开始编写你可能需要的每一种
+  Facebook 交互程序。代码将完全属于你自己，你会理解每一行，没有任何抽象阻碍。
+
+
+  除了用于 Facebook 平台的 Adobe AS3 SDK 之外，还大量使用了另外两个代码库：
+
+
+  - **MinimalComps**：Keith Peters 编写的出色轻量级用户界面组件，可在 http://www.minimalcomps.com/ 获取，采用
+  MIT 许可证。
+
+  - **as3corelib**：一组用于处理 AS3 的类和工具，包括用于 JSON 序列化的类，可在 https://github.com/mikechambers/as3corelib
+  获取，采用 BSD 许可证。
+
+
+  ## 调试
+
+
+  从第 3 章开始，你的 SWF 需要从你的服务器上通过 Web 浏览器运行才能正常工作。（原因请看那一章。）这使调试变得棘手——浏览器中没有“输出”面板，因此
+  trace 语句不会自动可见。
+
+
+  Visualizer 包含一个对话框功能，你可以用它来解决这个问题。可以从显示列表中的任何类创建它。为此，首先导入 DialogEvent 类：
+
+
+  ```
+
+  import events.DialogEvent;
+
+  ```
+
+
+  然后，分发一个类型为 DIALOG 的 DialogEvent，参数中包含你希望输出的文本：
+
+
+  ```
+
+  dispatchEvent(new DialogEvent(DialogEvent.DIALOG, "Example"));
+
+  ```
+
+
+  它看起来像这样：
+
+
+  ![](img/4e826fa36038b86f2087ef8b818d0acf_32_0.png)
+
+
+  当然，这只对 Visualizer 项目有用。当你构建自己的项目时，又能做些什么呢？
+
+
+  ## 简介
+
+
+  在 Google Chrome 中，你可以通过点击[扳手] | 工具 | 清除浏览数据...，选择“清空缓存”，并选择适当的时间段来完成：
+
+
+  ![](img/4e826fa36038b86f2087ef8b818d0acf_34_0.png)
+
+
+  ![](img/4e826fa36038b86f2087ef8b818d0acf_34_1.png)
+
+
+  你应该可以轻松地通过 Google 搜索«浏览器名称»删除缓存，为你的浏览器找到等效选项。
+
+
+  ## 最后说明...
+
+
+  Facebook 的开发人员一直在调整这个平台。这会使得在其上开发令人兴奋，因为新功能总在不断添加；但也可能让人非常沮丧，因为旧功能可能会被移除，或者其实现方式发生变化；任何内容都可能在任何时候被修改。
+
+
+  新的平台 API（Graph API）是一个坚实的基础，而且看起来会持续一段时间——请记住，以前的平台 API 持续了四年。但它是模块化的，各个部分可能会发生变化，甚至可能被移除。
+
+
+  因此，本书的部分内容在你阅读时可能已经过时，某些指令在当前的 Facebook 平台版本上可能不会产生与本书编写时相同的结果。如果你担心这一点，可以在*第 8
+  章：跟上扎克伯格家族*的最后一节了解如何跟上平台的所有变化。
+
+
+  但现在，请直接进入*第 2 章：欢迎来到图谱*，开始开发吧！
+
+  '
+- "## 2\n\n## 欢迎来到图谱\n\n> Facebook 拥有关于人物、公司、活动、相册等的大量信息。它也知道这一切是如何关联的：哪个人拥有哪个相册；哪些人出现在哪张照片中；哪个公司组织哪场活动。\n\
+  \n四年来，这些信息都是通过一个庞大而杂乱的 API 来访问的，随着新功能的不断加入，它变得越来越复杂。2010 年 4 月，Facebook 推出了 Graph\
+  \ API，极大地简化了开发人员检索所有这些数据的方式。\n\n在本章中，我们将：\n\n- 探索 Facebook 图谱\n- 了解 Graph API 是什么，以及它如何组织\
+  \ Facebook 上的所有数据\n- 使用 AS3 和 Graph API 访问公开图谱数据\n\n那么让我们开始吧。\n\n## 通过浏览器访问 Graph\
+  \ API\n\n我们直接来看看 Graph API 如何表示一个公共页面的信息。\n\n当我提到大写 P 的页面（Page）时，我指的不是 Facebook\
+  \ 网站中的任意网页；我指的是一种特定类型的页面，也称为公共主页。每个 Facebook 用户都有自己的个人主页；你可以通过登录 Facebook 并点击网站顶部导航栏中的“主页”链接来查看自己的个人主页。公共主页看起来类似，但它是为商家、乐队、产品、组织和公众人物设计的，作为他们在\
+  \ Facebook 上存在的一种方式。\n\n这意味着许多人同时拥有个人主页和公共主页。例如，Facebook 的首席执行官马克·扎克伯格在 http://www.facebook.com/zuck\
+  \ 有一个个人主页，在 http://www.facebook.com/markzuckerberg 有一个公共主页（页面）。这样，他可以用个人主页与朋友和家人保持联系，同时用公共主页与粉丝和支持者建立连接。\n\
+  \n还有第二种页面类型：社区主页。同样，这些页面看起来与个人主页非常相似；区别在于它们基于主题、经历和事业，而不是实体。此外，它们会自动从维基百科检索相关主题的信息，并包含一个实时更新的关于该主题的帖子动态。\n\
+  \n这一切可能让人有点困惑——别担心！一旦你开始使用，一切都会变得有意义。\n\n### 动手实践 —— 加载一个页面\n\n浏览到 http://www.facebook.com/PacktPub\
+  \ 加载 Packt Publishing 的 Facebook 页面。你会看到最近的帖子列表、一个信息标签、一些相册（大多包含书籍封面）、一张主页头像照片，以及粉丝和链接的列表。\n\
+  \n## Packt Publishing\n\n主页  信息  照片  讨论\n\n添加到我的主页收藏\n\n推荐给朋友\n\n通过短信订阅\n\n我们的书籍和出版物分享您的\
+  \ IT 同行在采用和定制当今系统、应用程序和框架方面的经验。\n\n# 信息\n\n成立时间：\n2004 年\n\n# 412 人赞\n\n# 照片\n\n\
+  3 个相册中的 2 个  查看全部\n\n主页照片\n约 2 个月前更新。\n\n书籍\n约 7 个月前更新。\n\n# 链接\n\n449 个链接中的 3 个\
+  \  查看全部\n\nPackt 开源畅销书优惠 | Packt Publishing 技术与 IT 书店\n10 月 22 日 13:35\n\nPackt\
+  \ 最新发布：PHP 5 社交网络 | Packt Publishing 技术与 IT 书店\n10 月 22 日 10:41\n\nPackt 全新十月开源书籍\
+  \ | Packt Publishing 技术与 IT 书店\n10 月 22 日 09:45\n\n# 基本信息\n\n成立时间：2004 年\n\n# 详细信息\n\
+  \n网站：http://www.PacktPub.com\n\n公司概述：Packt 是一家现代 IT 图书出版商，专注于为开发人员、管理员和新手社区出版前沿书籍。\n\
+  \nPackt 于 2004 年 4 月出版了第一本书《Mastering phpMyAdmin for MySQL Management》。\n\nFacebook\
+  \ 页面：http://www.facebook.com/PacktPub\n\n这就是网站用户查看信息的方式。我们的代码会如何“看待”它？让我们看一下 Graph\
+  \ API 如何表示 Packt Publishing 的页面：在浏览器中访问 https://graph.facebook.com/PacktPub。这称为\
+  \ Graph URL——请注意，它与页面本身的 URL 相同，但使用的是安全的 https 连接，并使用 graph 子域，而不是 www。\n\n你将看到如下内容：\n\
+  \n```\n{\n  \"id\": \"204603129458\",\n  \"name\": \"Packt Publishing\",\n  \"picture\"\
+  : \"http://profile.ak.fbcdn.net/hprofile-ak-snc4/hs302.ash1/23274_204603129458_7460_s.jpg\"\
+  ,\n  \"link\": \"http://www.facebook.com/PacktPub\",\n  \"category\": \"Products_other\"\
+  ,\n  \"username\": \"PacktPub\",\n  \"company_overview\": \"Packt is a modern, IT\
+  \ focused book publisher, specializing in producing cutting-edge books for communities\
+  \ of developers, administrators, and newbies alike.\\n\\nPackt published its first\
+  \ book, Mastering phpMyAdmin for MySQL Management in April 2004.\",\n  \"fan_count\"\
+  : 412\n}\n```\n\n## 刚才发生了什么？\n\n你刚刚在浏览器中获取了 Graph API 对 Packt Publishing 页面的表示。\n\
+  \nGraph API 的设计目标是易于上手——几乎可以说是自文档化的——你可以看到它在这方面非常成功。很明显，上述数据是一个字段及其值的列表。\n\n有一个字段可能不太清楚：id；这个数字是\
+  \ Facebook 在内部用来引用该页面的。这意味着页面可以有两个 ID：一个是 Facebook 自动分配的数字 ID，另一个是页面所有者选择的字母数字 ID。这两个\
+  \ ID 是等价的：如果你浏览 https://graph.facebook.com/204603129458，你会看到与浏览 https://graph.facebook.com/PacktPub\
+  \ 完全相同的数据。\n\n## 自己动手 —— 探索其他对象\n\n当然，Packt Publishing 页面并不是你可以在浏览器中使用 Graph API\
+  \ 探索的唯一页面。通过 Facebook 网站找到一些其他页面，然后使用 https://graph.facebook.com/id 格式，查看它们的 Graph\
+  \ API 表示。它们的信息是更多，还是更少？\n\n\n\n\n\n接下来，继续看看其他类型的 Facebook 对象：个人主页、活动、群组。对于个人主页，其\
+  \ `id` 可能由字母和数字组成（如果该用户注册了自定义 Facebook 用户名，网址为 http://www.facebook.com/username/），但通常情况下\
+  \ `id` 是数字，由 Facebook 在用户注册时自动分配。\n\n对于某些类型的对象（如相册），`id` 的值在 Facebook 网站内的 URL 中并不明显；我们将在本章后面介绍如何找到这些\
+  \ `id`。\n\n在某些情况下，你会收到一条错误消息，例如：\n\n```\n{\n  \"error\": {\n    \"type\": \"OAuthAccessTokenException\"\
+  ,\n    \"message\": \"An access token is required to request this resource.\"\n\
+  \  }\n}\n```\n\n同样，我们稍后会在本书中讨论这意味着什么以及如何解决它。\n\n## 通过 AS3 访问 Graph API\n\n现在你已经了解了在浏览器中访问和读取\
+  \ Facebook 数据是多么容易，我们将看看如何在 AS3 中获取这些数据。\n\n### 动手实践——在 AS3 中检索页面信息\n\n按照第 1 章中的说明，从第\
+  \ 2 章的起始文件设置项目。检查项目能否无错误地编译（可能会有一些警告，具体取决于你的 IDE）。你应该看到一个 640 x 480 像素的 SWF，全白色，左上角只有三个按钮：放大、缩小和重置视图：\n\
+  \n![](img/4e826fa36038b86f2087efb818d0acf_41_0.png)\n\n这个项目是一个富互联网应用程序（RIA）的基础，它将能够使用\
+  \ Graph API 探索 Facebook 上的所有信息。所有 UI 代码都已就位，只等着一些 Graph 数据来渲染。我们的任务是编写代码来检索数据并将其传递给渲染器。\n\
+  \n我不打算分解整个项目并解释每个类的作用，因为本书的重点是使用 Facebook 和 Flash，而不是构建 RIA。目前你需要知道的是，项目初始化时会创建\
+  \ `controllers.CustomGraphContainerController` 类的一个实例，它负责引导数据流入和流出 Facebook。为此，它从\
+  \ `controllers.GCController` 类继承了一些有用的方法；我们稍后会用到这些方法。\n\n在你的 IDE 中打开 `CustomGraphContainerController`\
+  \ 类。它位于 `\\src\\controllers\\CustomGraphContainerController.as`，应该与下面的代码清单类似：\n\n\
+  ```\npackage controllers\n{\n    import ui.GraphControlContainer;\n\n    public\
+  \ class CustomGraphContainerController extends GCController\n    {\n\n        public\
+  \ function CustomGraphContainerController\n            (a_graphControlContainer:GraphControlContainer)\n\
+  \        {\n            super(a_graphControlContainer);\n        }\n\n    }\n}\n\
+  ```\n\n我们要做的第一件事是通过 Graph URL 获取 Packt Publishing 页面的 Graph API 表示，就像我们使用 Web 浏览器时所做的那样。为此，我们可以使用\
+  \ `URLLoader`。\n\n> `URLLoader` 和 `URLRequest` 类通常一起使用，用于从 URL 下载数据。数据可以是文本、二进制数据或\
+  \ URL 编码的变量。\n> 下载过程通过将 `URLRequest` 对象（其 `url` 属性包含请求的 URL）传递给 `URLLoader` 的 `load()`\
+  \ 方法来触发。\n> 一旦所需数据下载完成，`URLLoader` 会分发一个 `COMPLETE` 事件。然后可以从其 `data` 属性中检索数据。\n\n\
+  按照下面的方式修改 CustomGraphContainerController.as（突出显示的行是新增的）：\n\n```\npackage controllers\n\
+  {\n    import flash.events.Event;\n    import flash.net.URLLoader;\n    import flash.net.URLRequest;\n\
+  \    import ui.GraphControlContainer;\n\n    public class CustomGraphContainerController\
+  \ extends GCController\n    {\n\n        public function CustomGraphContainerController\n\
+  \            (a_graphControlContainer:GraphControlContainer)\n        {\n      \
+  \      super(a_graphControlContainer);\n\n            var loader:URLLoader = new\
+  \ URLLoader();\n            var request:URLRequest = new URLRequest();\n       \
+  \     //Specify which Graph URL to load\n            request.url = \"https://graph.facebook.com/PacktPub\"\
+  ;\n            loader.addEventListener(Event.COMPLETE,\n                onGraphDataLoadComplete);\n\
+  \            //Start the actual loading process\n            loader.load(request);\n\
+  \        }\n\n        private function onGraphDataLoadComplete(a_event:Event):void\n\
+  \        {\n            var loader:URLLoader = a_event.target as URLLoader;\n  \
+  \          //obtain whatever data was loaded, and trace it\n            var graphData:String\
+  \ = loader.data;\n            trace(graphData);\n        }\n\n    }\n}\n```\n\n\
+  我们在这里所做的只是下载 https://graph.facebook.com/PacktPub 上的任何信息，并将其输出到输出窗口。\n\n测试你的项目，并查看输出窗口。你应该看到以下数据：\n\
+  \n```\n{\"id\":\"204603129458\",\"name\":\"Packt Publishing\",\"picture\":\"http:\\\
+  \\\\\\profile.ak.fbcdn.net\\\\hprofile-ak-snc4\\\\hs302.ash1\\\\23274_204603129458_7460_s.jpg\"\
+  ,\"link\":\"http:\\\\\\\\www.facebook.com\\\\PacktPub\",\"category\":\"Products_other\"\
+  ,\"username\":\"PacktPub\",\"company_overview\":\"Packt is a modern, IT focused\
+  \ book publisher, specializing in producing cutting-edge books for communities of\
+  \ developers, administrators, and newbies alike.\\n\\nPackt published its first\
+  \ book, Mastering phpMyAdmin for MySQL Management in April 2004.\",\"fan_count\"\
+  :412}\n```\n\n如果出现错误，请检查你的代码是否与上面提到的代码一致。如果输出窗口中没有任何内容，请确保你已连接到互联网。如果仍看不到内容，可能是你的安全设置阻止了\
+  \ Flash 访问互联网，请检查这些设置。\n\n## 刚才发生了什么？\n\n值之间的换行和制表符丢失了，一些字符也被转义了，这使数据难以阅读……但你可以看到，这与我们浏览\
+  \ https://graph.facebook.com/PacktPub 时获得的数据完全相同。这并不奇怪；`URLLoader` 所做的就是这些。\n\n\
+  这种形式的数据对我们来说不太有用。要对它进行处理，我们需要将其转换为一个可以在 AS3 中原生交互的对象。\n\nGraph API 使用的格式称为 JSON（JavaScript\
+  \ Object Notation，读作“Jason”）。\n\nJSON 是一种人类可读的、基于文本的数据格式标准。它允许你以键值对的形式表示对象，如下所示：\n\
+  \n```\n{\n  \"key1\": \"value1\",\n  \"key2\": \"value2\",\n  \"key3\": \"value3\"\
+  \n}\n```\n\n值可以是字符串（用引号括起来），也可以是数字、布尔值或 null（不用引号括起来）。\n\nJSON 对象还可以包含数组，使用方括号：\n\
+  \n```\n{\n  \"key1\": \"value1\",\n  \"array\":\n  [\n    \"First item in array\"\
+  ,\n    \"Second item in array\",\n    \"Third item in array\"\n  ]\n}\n```\n\n它们甚至可以通过嵌套花括号来包含其他\
+  \ JSON 对象：\n\n```\n{\n  \"key1\": \"value1\",\n  \"subObject\":\n  {\n    \"subKey1\"\
+  : \"subValue1\",\n    \"subKey2\": \"subValue2\",\n  }\n}\n```\n\n这些子对象可以包含其他对象和数组，而数组也可以包含其他对象或数组。\n\
+  \n请注意，这与 AS3 中声明对象的语法非常相似：\n\n```\nvar as3Object:Object = {\n  key1:\"value1\",\n\
+  \  key2:\"value2\",\n  subObject:{\n    subKey1:\"subValue1\"\n  },\n  myArray:[1,\
+  \ 2, 3]\n}\n```\n\n更多信息，请访问 http://www.json.org。\n\n与 XML 不同，AS3 没有用于处理 JSON 对象的原生特性——但有一个官方支持的库可以实现这一点。\n\
+  \n```\n\"category\": \"Products_other\",\n\"username\": \"PacktPub\",\n\"company_overview\"\
+  : \"Packt is a modern, IT focused book publisher, specializing in producing cutting-edge\
+  \ books for communities of developers, administrators, and newbies alike.\\n\\nPackt\
+  \ published its first book, Mastering phpMyAdmin for MySQL Management in April 2004.\"\
+  ,\n\"fan_count\": 412\n}\n```\n\n并且它将字符串转换成了一个原生 AS3 对象，就像我们键入了以下代码一样：\n\n```\n\
+  var graphObject:Object = {};\ngraphObject.id = \"204603129458\";\ngraphObject.name\
+  \ = \"Packt Publishing\";\ngraphObject.picture = \"http://profile.ak.fbcdn.net/hprofile-ak-snc4/hs302.ash1/23274_204603129458_7460_s.jpg\"\
+  ;\ngraphObject.link = \"http://www.facebook.com/PacktPub\";\ngraphObject.category\
+  \ = \"Products_other\";\ngraphObject.username = \"PacktPub\";\ngraphObject.company_overview\
+  \ = \"Packt is a modern, IT focused book publisher, specializing in producing cutting-edge\
+  \ books for communities of developers, administrators, and newbies alike.\\n\\nPackt\
+  \ published its first book, Mastering phpMyAdmin for MySQL Management in April 2004.\"\
+  \ngraphObject.fan_count = 412;\n```\n\n（请注意，与我们之前看到的原始字符串不同，URL 中的斜杠没有被转义。）\n\n\
+  这意味着我们可以轻松地访问 Facebook 关于该页面的任何信息，甚至可以遍历每一条数据。\n\n### 动手实践——可视化信息\n\n不要再只是输出了！是时候在我们的实际\
+  \ SWF 中显示一些内容了。\n\n`CustomGraphContainerController` 继承了一个名为 `renderGraphObject()`\
+  \ 的方法，它可以帮助我们完成这项工作。我们只需要向它传递一个 `graph.GraphObject` 类型的参数。\n\n`GraphObject.as` 是一个简单的类；你可以随意打开并查看它：\n\
+  \n```\npackage graph\n{\n    import graph.controls.GraphObjectRenderer;\n    public\
+  \ dynamic class GraphObject extends BaseGraphItem\n```\n\n\n\n\n\n```\n{\n    public\
+  \ var rendererObject:GraphObjectRenderer;\n    public var graphObjectListRenderers:Array\
+  \ = [];\n\n    public function GraphObject()\n    {\n\n    }\n\n}\n}\n```\n\n老实说，我们无需担心这里的任何代码。你只需要知道它是动态的，也就是说我们可以在运行时为它分配新的属性，而不必预先指定它们的名称。所以我们可以这样做：\n\
+  \n```\nvar graphObject:GraphObject = new GraphObject();\ngraphObject.favoriteColor\
+  \ = \"red\";\n```\n\n当一个 GraphObject 被传递给 CustomGraphContainerController.renderGraphObject()\
+  \ 方法时，该 GraphObject 的每一个属性都会被自动渲染到一个漂亮的列表中。也就是说，除了类中已经定义的那两个属性之外的所有属性！\n\n因此，我们必须在\
+  \ CustomGraphContainerController.onGraphDataLoadComplete() 内完成的工作是：\n\n- 1. 创建一个\
+  \ GraphObject 的新实例。\n- 2. 将 decodedJSON 的所有属性复制到这个新的 GraphObject 中。\n- 3. 将 GraphObject\
+  \ 传递给 renderGraphObject()。\n- 4. 实现该操作的代码如下：\n\n```\nprivate function onGraphDataLoadComplete(a_event:Event):void\n\
+  {\n    var loader:URLLoader = a_event.target as URLLoader;\n    //obtain whatever\
+  \ data was loaded, and trace it\n    var graphData:String = loader.data;\n    var\
+  \ decodedJSON:Object = JSON.decode(graphData);\n\n    var graphObject:GraphObject\
+  \ = new GraphObject();\n    //copy all the properties from decodedJSON to graphObject\n\
+  \    for (var key:String in decodedJSON)\n```\n\n```\n{\n    graphObject[key] =\
+  \ decodedJSON[key];\n}\nthis.renderGraphObject(graphObject);\n}\n```\n\n5. 编译并测试。SWF\
+  \ 显示在下面的截图中：\n\n![](img/4e826fa36038b86f2087ef8b818d0acf_49_0.png)\n\n你可以多次点击“放大”按钮，使渲染器更大更清晰，如上图所示。你的渲染器可能以不同于图示的顺序显示字段；Facebook\
+  \ 会以任意顺序返回字段。\n\n## 刚才发生了什么？\n\n舞台上出现的窗口就是我所称的渲染器——具体来说，是一个 Graph Object 渲染器。你可以通过标题栏拖动它，内容可以滚动，也可以通过点击右上角的按钮来关闭它。\n\
+  \n因此，你已经成功地从 Facebook 的 Graph API 获取数据，并将它显示在 SWF 中。你的 SWF 非常灵活；将 request.url 改为指向另一个\
+  \ Facebook 对象的 Graph URL，你就会看到它显示在渲染器中。\n\nGraphObject 中的大部分数据会以简单的“key: value”格式显示在窗口内的文本区域中。Page\
+  \ 的 name 字段显示在窗口的标题栏中，如果 Page 具有 picture 字段（我们可以从 JSON 中看到 PacktPub 确实有），则图像会被下载，并通过\
+  \ Loader 显示在渲染器中。\n\n> 与 URLLoader 一样，flash.display.Loader 类会下载给定 URLRequest 所指向的对象，并在就绪时分派一个\
+  \ COMPLETE 事件。与 URLLoader 不同的是，Loader 用于下载图像和 SWF，而且该事件实际上是由其子对象之一 contentLoaderInfo\
+  \ 分派的。此外，Loader 扩展了 DisplayObject，并在下载完成后呈现图像的外观。\n>\n> Flash 的安全模型会阻止图像数据被与其所在域不同的\
+  \ SWF 访问，除非图像所在域中存在允许该访问的跨域策略文件。幸运的是，Facebook 的跨域策略文件非常宽松，允许所有域进行此类访问。\n\n所以，事实上，这仅仅是以图形方式表示\
+  \ Graph API 中的 Page 对象的一种方式。\n\n## 理解连接\n\n你可能会想：“这固然不错，但它并没有显示与 Page 关联的所有数据，是吗？墙帖和照片在哪里呢？”\n\
+  \n## 动手实践——在浏览器中查找连接\n\nFacebook 将墙帖、照片、视频甚至状态都视为 Graph API 中的独立对象，而不是将它们全部塞进一个\
+  \ Page 对象中。例如，下面是一个表示 Packt Publishing 单条 Post 的对象：\n\n```\n{\n  \"id\": \"204603129458_127056137323572\"\
+  ,\n  \"from\": {\n    \"name\": \"Packt Publishing\",\n    \"category\": \"Products_other\"\
+  ,\n    \"id\": \"204603129458\"\n  },\n  \"message\": \"The Amazon SimpleDB Developer\
+  \ Guide has been published! Get your copy now! http://bit.ly/b1FQUG\",\n  \"picture\"\
+  : \"http://external.ak.fbcdn.net/safe_image.php?d=c4a7887cb52dd8f93e439aaec13c034b&w=130&h=130&url=https%3A%2F%2Fwww.packtpub.com%2Fsites%2Fdefault%2Ffiles%2Fimagecache%2Fproductvw%2F2F7344EN_MockupCover%2520Template.jpg\"\
+  ,\n  \"link\": \"http://bit.ly/b1FQUG\"\n}\n```\n\n```\n\"name\": \"Amazon SimpleDB\
+  \ Developer Guide | Packt Publishing Technical & IT Book Store\",\n\"caption\":\
+  \ \"bit.ly\",\n\"description\": \"Gain in-depth understanding of Amazon SimpleDB\
+  \ with PHP, Java, and Python examples, and run optimized database-backed applications\
+  \ on Amazon\\\\'s Web Services cloud\",\n\"icon\": \"http://static.ak.fbcdn.net/rsrc.php/zB010/hash/9yvl7ltw.gif\"\
+  ,\n\"type\": \"link\",\n\"created_time\": \"2010-06-04T12:39:44+0000\",\n\"updated_time\"\
+  : \"2010-06-04T12:39:44+0000\",\n\"likes\": 1\n}\n```\n\n这个对象现在已经过期，无法再通过 Graph\
+  \ API 获取，但正如你所猜测的，它之前可以在 https://graph.facebook.com/204603129458_127056137323572\
+  \ 访问到。它采用与 Page 对象相同的格式——尽管字段略有不同——因此我们的 Graph Object 渲染器可以正常渲染它。\n\n当然，除非我们知道与\
+  \ Packt Publishing 关联的每个 Post 的 ID，否则这毫无用处，而且我们无从得知去哪里找这些 ID。真的是这样吗？\n\n我之前说过，Graph\
+  \ API 被设计为自文档化的。我们可以通过在任意 Graph URL 末尾添加一个 metadata=1 标志来请求关于任何 Graph Object 的额外“元”信息。请在浏览器中查看：https://graph.facebook.com/PacktPub?metadata=1。JSON\
+  \ 中出现了一个新属性 type：\n\n```\n\"type\": \"page\"\n```\n\n这很有用；正如我所说，Posts 和 Pages（实际上所有\
+  \ Graph Objects）都采用相同的格式，因此这为我们提供了一种区分它们的方法。\n\n不过，更直接有趣的是新的 metadata 对象。它包含一个对象\
+  \ connections 和一个数组 fields。我们先来看看 fields：\n\n```\n\"fields\": [\n{\n\"name\": \"\
+  id\",\n\"description\": \"The page's ID\"\n},\n{\n\"name\": \"name\",\n\"description\"\
+  : \"The page's name\"\n},\n{\n\"name\": \"picture\",\n\"description\": \"The pages\
+  \ profile picture\"\n```\n\n```\n},\n{\n  \"name\": \"category\",\n  \"description\"\
+  : \"The page's category\"\n},\n{\n  \"name\": \"fan_count\",\n  \"description\"\
+  : \"\\\\/* The number of fans the page has\"\n}\n]\n```\n\n这个列表说明了 Graph Object\
+  \ 主体中每个字段的含义。在撰写本文时，这仍然是一个相当新的功能，因此当你加载时，列表可能会更完整。\n\nconnections 对象如下：\n\n```\n\
+  \"connections\": {\n  \"feed\": \"https://graph.facebook.com/packtpub/feed\",\n\
+  \  \"posts\": \"https://graph.facebook.com/packtpub/posts\",\n  \"tagged\": \"https://graph.facebook.com/packtpub/tagged\"\
+  ,\n  \"statuses\": \"https://graph.facebook.com/packtpub/statuses\",\n  \"links\"\
+  : \"https://graph.facebook.com/packtpub/links\",\n  \"notes\": \"https://graph.facebook.com/packtpub/notes\"\
+  ,\n  \"photos\": \"https://graph.facebook.com/packtpub/photos\",\n  \"albums\":\
+  \ \"https://graph.facebook.com/packtpub/albums\",\n  \"events\": \"https://graph.facebook.com/packtpub/events\"\
+  ,\n  \"videos\": \"https://graph.facebook.com/packtpub/videos\"\n}\n```\n\n浏览上面列表中的某个\
+  \ URL：http://graph.facebook.com/packtpub/posts。它返回一个 JSON，包含一个名为 data 的数组和一个名为 paging\
+  \ 的对象。data 数组包含多个 Post 对象；我们将在本书后面讨论 paging。\n\n## 刚才发生了什么？\n\nmetadata=1 参数告诉 Graph\
+  \ API 显示当前对象的所有元数据，在本例中，包括该对象的类型、对象属性描述的数组，以及包含与此 Page 连接的对象的列表的所有 URL。\n\nGraph\
+  \ API 名称正源于这种布局。在日常用法中，“graph”指的是下图所示的那种图表：\n\n\n\n![](img/4e826fa36038b86f2087ef8b818d0acf_53_0.png)\n\
+  \n但在数学中，“图”指的是由边连接起来的任意节点集合，如下一张图所示：\n\n![](img/4e826fa36038b86f2087ef8b818d0acf_53_1.png)\n\
+  \nGraph API 对 Facebook 数据的表示方式如下图所示：\n\n![](img/4e826fa36038b86f2087ef8b818d0acf_53_2.png)\n\
+  \n在上图中，每个对象都是一个节点，线条代表不同类型的连接。\n\n获取 http://graph.facebook.com/packtpub/posts 可以得到所有通过\
+  \ “post” 连接与 PacktPub 相连的节点——即所有发布在 Packt 主页上的 Post 对象：\n\n![](img/4e826fa36038b86f2087ef8b818d0acf_54_0.png)\n\
+  \n## 动手实践——探索连接\n\n既然你已经了解了 metadata 参数，不妨在浏览器中探索不同类型的连接，看看你还能发现哪些新类型的对象。\n\n##\
+  \ 渲染列表\n\n如果尝试使用我们加载 Packt Publishing Page 对象时所用的同一段代码来加载 https://graph.facebook.com/packtpub/posts，会发生什么？\n\
+  \n我们在输出面板中得到：\n\nGraph Object was null!\n\n并不成功。Graph API 在这里组织 JSON 的方式与它为 Page、Post\
+  \ 或任何其他 Graph Object 组织 JSON 的方式完全不同。其他连接 URL 返回的 JSON 也是如此。我们把这种结构称为 Graph List。\n\
+  \n## 动手实践——渲染帖子列表\n\n由于 Graph List 的 data 属性是一个由 Graph Object 组成的数组，我们可以直接遍历该数组，并为每个元素创建一个新的\
+  \ Graph Object Renderer。如果你愿意，当然可以自己试一试，不过我有另一种解决方案。\n\n我创建了第二个渲染器——这次是 Graph List\
+  \ Renderer。我还创建了一个名为 graph.GraphList 的类。CustomGraphContainerController 继承了一个名为 renderGraphList()\
+  \ 的方法。不出意料，该方法接收一个 graph.GraphList 类型的对象作为参数，并创建一个新的 Graph List Renderer 来显示其内容。因此，我们需要从\
+  \ Graph API 接收一个 Graph List，并将其转换为 GraphList 类的实例。GraphList 类比 GraphObject 类要稍微复杂一些；它有一个名为\
+  \ addToList() 的方法，我们可以向它传递任意 GraphObject 实例，将其添加到列表中。\n\n我们仍然需要遍历 data 数组，但不再单独渲染每个\
+  \ GraphObject，而是将每个对象添加到一个 GraphList 中，然后渲染该列表。\n\n修改 CustomGraphContainerController\
+  \ 请求的 URL，使其加载帖子列表：\n\n```\npublic function CustomGraphContainerController\n   \
+  \ (a_graphControlContainer:GraphControlContainer)\n{\n    super(a_graphControlContainer);\n\
+  \n    var loader:URLLoader = new URLLoader();\n    var request:URLRequest = new\
+  \ URLRequest();\n    //Specify which Graph URL to load\n    request.url = \"https://graph.facebook.com/PacktPub/posts\"\
+  ;\n    loader.addEventListener(Event.COMPLETE, onGraphDataLoadComplete);\n    //Start\
+  \ the actual loading process\n    loader.load(request);\n}\n```\n\n现在，加载完成后，我们需要检查返回的项目是\
+  \ Graph Object 还是 Graph List。我们可以通过查找名为 data 的属性来判断：如果该属性存在，我们就假定它属于 Graph List。\n\
+  \n```\nprivate function onGraphDataLoadComplete(a_event:Event):void\n{\n    var\
+  \ loader:URLLoader = a_event.target as URLLoader;\n    //obtain whatever data was\
+  \ loaded, and trace it\n    var graphData:String = loader.data;\n    var decodedJSON:Object\
+  \ = JSON.decode(graphData);\n\n    if (decodedJSON.data)\n    {\n        //has a\
+  \ \"data\" property so we assume it is a Graph List\n    }\n}\n```\n\n```\nelse\n\
+  {\n    //no \"data\" so we assume it is a Graph Object\n    var graphObject:GraphObject\
+  \ = new GraphObject();\n    //copy all the properties from decodedJSON to graphObject\n\
+  \    for (var key:String in decodedJSON)\n    {\n        graphObject[key] = decodedJSON[key];\n\
+  \    }\n    this.renderGraphObject(graphObject);\n}\n```\n\n在这个 if 块中，我们首先创建一个新的\
+  \ GraphList 实例：\n\n```\nif (decodedJSON.data)\n{\n    //has a \"data\" property\
+  \ so we assume it is a Graph List\n    var graphList:GraphList = new GraphList();\n\
+  }\n```\n\n（你需要导入 graph.GraphList。）\n\n接下来，记住 decodedJSON.data 是一个对象数组；我们遍历这个数组，并从每个元素创建一个\
+  \ GraphObject。\n\n```\nif (decodedJSON.data)\n{\n    //has a \"data\" property so\
+  \ we assume it is a Graph List\n    var graphList:GraphList = new GraphList();\n\
+  \    var childGraphObject:GraphObject;\n    for each (var childObject:Object in\
+  \ decodedJSON.data)\n    {\n        childGraphObject = new GraphObject();\n    \
+  \    for (var childKey:String in childObject)\n        {\n            childGraphObject[childKey]\
+  \ = childObject[childKey];\n        }\n    }\n}\n```\n\n这基本上与加载单个 Graph Object 时我们对\
+  \ decodedJSON 所做的操作相同。\n\n那么 Graph List 中的另一个属性——paging 对象呢？我们也应该把它加进来：\n\n```\n\
+  if (decodedJSON.data)\n{\n    //has a \"data\" property so we assume it is a Graph\
+  \ List\n    var graphList:GraphList = new GraphList();\n    var childGraphObject:GraphObject,\n\
+  \    for each (var childObject:Object in decodedJSON.data)\n    {\n        childGraphObject\
+  \ = new GraphObject();\n        for (var childKey:String in childObject)\n     \
+  \   {\n            childGraphObject[childKey] = childObject[childKey];\n       \
+  \ }\n        graphList.addToList(childGraphObject);\n    }\n    graphList.paging\
+  \ = decodedJSON.paging;\n}\n```\n\n最后，我们将 GraphList 实例传递给 renderGraphList()：\n\n\
+  ```\nif (decodedJSON.data)\n{\n    //has a \"data\" property so we assume it is\
+  \ a Graph List\n    var graphList:GraphList = new GraphList();\n    var childGraphObject:GraphObject,\n\
+  \    for each (var childObject:Object in decodedJSON.data)\n    {\n        childGraphObject\
+  \ = new GraphObject();\n        for (var childKey:String in childObject)\n     \
+  \   {\n            childGraphObject[childKey] = childObject[childKey];\n       \
+  \ }\n        graphList.addToList(childGraphObject);\n    }\n    graphList.paging\
+  \ = decodedJSON.paging;\n    this.renderGraphList(graphList);\n}\n```\n\n## 欢迎来到\
+  \ Graph\n\n编译 SWF 并进行测试。下面的截图显示了结果：\n\n![](img/4e826fa36038b86f2087ef8b818d0acf_58_0.png)\n\
+  \n它是一个可滚动的窗口，包含列表中的所有 Graph Object。\n\n当你点击 Graph Object 下方的 Pop Out 按钮时会发生什么？\n\
+  \n![](img/4e826fa36038b86f2087ef8b818d0acf_58_1.png)\n\n你可能已经猜到，设置 variables.metadata\
+  \ = 1 与在 URL 末尾加上 ?metadata=1 完全一样。这样做虽然需要多写几行代码，但可以更容易地设置不同的参数，也能让参数与 URL 分离。\n\
+  \n无论如何，编译 SWF，你应该会看到下面的截图：\n\n![](img/4e826fa36038b86f2087ef8b818d0acf_61_0.png)\n\
+  \n注意到 Renderer 底部新增的 Connections 栏了吗？点击 Show 按钮：\n\n![](img/4e826fa36038b86f2087ef8b818d0acf_61_1.png)\n\
+  \n## 刚才发生了什么？\n\n我们现在可以在 Graph Object 的渲染器中直接看到它的所有连接。当然，除非我们能看到每条连接的末端是什么，否则这并没有太大意义！\n\
+  \n## 引入 Requestor\n\n理想情况下，当用户从滚动列表中点击某个连接时，应该创建并显示该连接对应的一个新的 Graph List Renderer。\n\
+  \n为此，我们需要向列表添加一个 MouseEvent.CLICK 监听器，并用它来触发对被点击连接的新 URLLoader 请求。\n\n幸运的是，项目中的其他地方已经提供了全部\
+  \ UI 代码；我们只需要接入即可。为此，我们需要使用我所说的 Requestor。\n\n## 动手实践——创建 HTTP Requestor\n\n思路是将\
+  \ CustomGraphContainerController 中与 URLLoader 相关的所有代码移动到一个单独的类中，名为 HTTPRequestor。然后，我们将\
+  \ CustomGraphContainerController 的构造函数替换为以下内容：\n\n```\npublic function CustomGraphContainerController(a_graphControlContainer:GraphControlContainer)\n\
+  {\n    super(a_graphControlContainer);\n    _requestor = new HTTPRequestor();\n\
+  \    _requestor.request(new GraphRequest(\"PacktPub\"));\n}\n```\n\n为什么要这么做？除了更简洁之外，还有两个主要优点：\n\
+  \n- 1. 请求多个 Graph Object 或 Graph List 要简单得多；无需处理多个 URLLoader 实例。\n- 2. 在下一章中，我们将看到如何使用官方的\
+  \ Adobe AS3 Facebook SDK 从 Graph API 检索信息。如果请求的所有代码都封装在一个类中，那么只需要修改一行代码，就可以从使用 HTTP\
+  \ 切换到使用 Adobe 的 SDK：\n\n```\npublic function CustomGraphContainerController(a_graphControlContainer:GraphControlContainer)\n\
+  {\n    super(a_graphControlContainer);\n    _requestor = new SDKRequestor();\n \
+  \   _requestor.request(new GraphRequest(\"PacktPub\"));\n}\n```\n\n\n\n\nGraphRequest\
+  \ 是一个简单的类；其构造函数允许你使用两个参数来指定要从 Graph API 获取的内容：\n\n- objectID，任意 Graph 对象的名称。\n-\
+  \ connectionID，该 Graph 对象的任意连接名称。\n\n因此，要请求 Packt Publishing 页面，你可以使用以下 GraphRequest：\n\
+  \n```\nnewGraphRequest(\"PacktPub\");\n```\n\n而要从 Packt Publishing 页面请求帖子列表，你可以使用以下代码：\n\
+  \n```\nnewGraphRequest(\"PacktPub\", \"posts\");\n```\n\n该类已经编写完成，位于 \\src\\com\\\
+  graph\\apis\\http\\HTTPRequestor.as。看一下！它与我们在 CustomGraphContainerController.as\
+  \ 中编写的代码有一些不同，但都有注释进行解释：\n\n```\npackage graph.apis.http\n{\n    import events.DialogEvent;\n\
+  \    import events.RequestEvent;\n    import flash.events.Event;\n    import flash.events.EventDispatcher;\n\
+  \    import flash.events.HTTPStatusEvent;\n    import flash.events.IEventDispatcher;\n\
+  \    import flash.events.IOErrorEvent;\n    import flash.net.URLLoader;\n    import\
+  \ flash.net.URLRequest;\n    import flash.net.URLVariables;\n    import flash.utils.Dictionary;\n\
+  \    import graph.apis.base.IRequestor;\n    import graph.BaseGraphItem;\n    import\
+  \ graph.GraphList;\n    import graph.GraphObject;\n    import graph.GraphRequest;\n\
+  \    import com.adobe.serialization.json.JSON;\n\n    //the class needs to dispatch\
+  \ events (see later in code for why)\n    public class HTTPRequestor extends EventDispatcher\
+  \ implements IRequestor\n    {\n        //this is used to figure out which GraphRequest\
+  \ created each\n        //loader\n        private var _requests:Dictionary = new\
+  \ Dictionary();\n\n        public function HTTPRequestor(target:IEventDispatcher\
+  \ = null)\n        {\n            //this is needed because the class extends EventDispatcher\n\
+  \            super(target);\n        }\n\n        public function request(a_request:GraphRequest):void\n\
+  \        {\n            var loader:URLLoader = new URLLoader();\n            var\
+  \ urlRequest:URLRequest = new URLRequest();\n            var variables:URLVariables\
+  \ = new URLVariables();\n\n            //We construct a URL from the parameters\
+  \ of the GraphRequest\n            urlRequest.url = \"https://graph.facebook.com/\"\
+  \ + a_request.objectID;\n            if (a_request.connectionID)\n            {\n\
+  \                urlRequest.url += \"/\" + a_request.connectionID;\n           \
+  \ }\n\n            variables.metadata = 1;\n            urlRequest.data = variables;\n\
+  \n            //this is used to figure out which GraphRequest created the loader\
+  \ later\n            _requests[loader] = a_request;\n\n            loader.addEventListener(Event.COMPLETE,\
+  \ onGraphDataLoadComplete);\n            loader.load(urlRequest);\n        }\n\n\
+  \        private function onGraphDataLoadComplete(a_event:Event):void\n        {\n\
+  \            var loader:URLLoader = a_event.target as URLLoader;\n            var\
+  \ graphData:String = loader.data;\n            var decodedJSON:Object = JSON.decode(graphData);\n\
+  \n            //we find the original GraphRequest used to start the loader\n   \
+  \         var originalRequest:GraphRequest = _requests[loader] as GraphRequest;\n\
+  \n            if (decodedJSON.data)\n            {\n                var graphList:GraphList\
+  \ = new GraphList();\n                var childGraphObject:GraphObject;\n      \
+  \          for each (var childObject:Object in decodedJSON.data)\n             \
+  \   {\n                    childGraphObject = new GraphObject();\n             \
+  \       for (var childKey:String in childObject)\n                    {\n      \
+  \                  childGraphObject[childKey] = childObject[childKey];\n       \
+  \             }\n                    graphList.addToList(childGraphObject);\n  \
+  \              }\n                graphList.paging = decodedJSON.paging;\n\n   \
+  \             //we use the properties of the original GraphRequest to add\n    \
+  \            //some extra data to the GraphList itself\n                graphList.ownerID\
+  \ = originalRequest.objectID;\n                graphList.connectionType = originalRequest.connectionID;\n\
+  \n                //since this class does not have a renderGraphList() method,\n\
+  \                //we dispatch an event, which CustomGraphContainerController\n\
+  \                //will listen for, and call its own renderGraphList() method\n\
+  \                dispatchEvent(new RequestEvent(RequestEvent.REQUEST_COMPLETED,\n\
+  \                    graphList));\n            }\n            else\n           \
+  \ {\n                var graphObject:GraphObject = new GraphObject();\n        \
+  \        for (var key:String in decodedJSON)\n                {\n              \
+  \      graphObject[key] = decodedJSON[key];\n                }\n\n             \
+  \   //since this class does not have a renderGraphList() method,\n             \
+  \   //we dispatch an event, which CustomGraphContainerController\n             \
+  \   //will listen for, and call its own renderGraphList() method\n             \
+  \   dispatchEvent(new RequestEvent(RequestEvent.REQUEST_COMPLETED,\n           \
+  \         graphObject));\n            }\n        }\n    }\n}\n```\n\n编译并运行你的 SWF，然后展开\
+  \ **连接** 框并点击 \"posts\"：\n\n![](img/4e826fa36038b86f2087ef8b818d0acf_67_0.png)\n\
+  \n太好了！Graph List Renderer 出现了，并带有一条指向该页面的黑线，表示它们之间存在连接。其他连接呢？试着点击 **状态**。\n\n**Error\
+  \ #2044: Unhandled ioError.text=Error #2032: Stream Error. URL:**\n**https://graph.facebook.com/204603129458/statuses?metadata=1**\n\
+  \n糟糕。\n\n## 刚才发生了什么？\n\n如果你在浏览器中加载这个有问题的 URL（https://graph.facebook.com/packtpub/statuses），你将看到以下消息：\n\
+  \n```\n{\n  \"error\": {\n    \"type\": \"OAuthAccessTokenException\",\n    \"message\"\
+  : \"An access token is required to request this resource.\"\n  }\n}\n```\n\n这个错误是由于未通过你的\
+  \ SWF 登录 Facebook 造成的。我们将在下一章探讨如何解决这个问题。\n\n目前，你可以通过向 URLLoader 添加一个 IO_ERROR 事件监听器来绕过该错误。在\
+  \ HTTPRequestor.as 中，修改 request()：\n\n```\npublic function request(a_request:GraphRequest):void\n\
+  {\n    var loader:URLLoader = new URLLoader();\n    var urlRequest:URLRequest =\
+  \ new URLRequest();\n    var variables:URLVariables = new URLVariables();\n\n  \
+  \  //We construct a URL from the parameters of the\n    //GraphRequest\n    urlRequest.url\
+  \ = \"https://graph.facebook.com/\" +\n        a_request.objectID;\n    if (a_request.connectionID)\n\
+  \    {\n        urlRequest.url += \"/\" + a_request.connectionID;\n    }\n\n   \
+  \ variables.metadata = 1;\n    urlRequest.data = variables;\n\n    //this is used\
+  \ to figure out which GraphRequest\n    //created the loader later\n    _requests[loader]\
+  \ = a_request;\n\n    loader.addEventListener(Event.COMPLETE,\n        onGraphDataLoadComplete);\n\
+  \    loader.addEventListener(IOErrorEvent.IO_ERROR,\n        onIOError);\n    loader.load(urlRequest);\n\
+  }\n```\n\n![](img/4e826fa36038b86f2087ef8b818d0acf_68_0.png)\n\n你需要导入 flash.events.IOErrorEvent。现在，在同一个类中，创建一个简单的事件处理函数来跟踪错误：\n\
+  \n```\nprivate function onIOError(a_event:IOErrorEvent):void\n{\n    trace(a_event.text);\n\
+  }\n```\n\n![](img/4e826fa36038b86f2087ef8b818d0acf_68_1.png)\n\n这样，你可以在输出窗口中看到错误，但它不会导致\
+  \ SWF 崩溃。注意：try-catch 块无法处理这类错误。\n\n```\n\"updated_time\": \"2010-03-18T14:46:50+0000\"\
+  \n},\n{\n  \"id\": \"307932939458\",\n  \"from\": {\n    \"name\": \"Packt Publishing\"\
+  ,\n    \"category\": \"Products_other\",\n    \"id\": \"204603129458\"\n  },\n \
+  \ \"name\": \"Books\",\n  \"description\": \"Packt Books\",\n  \"link\": \"http://www.facebook.com/\n\
+  \    album.php?aid=180619&id=204603129458\",\n  \"count\": 32,\n  \"type\": \"normal\"\
+  ,\n  \"created_time\": \"2010-02-04T12:32:17+0000\",\n  \"updated_time\": \"2010-03-18T16:08:42+0000\"\
+  \n}\n],\n\"paging\": {\n  \"previous\": \"https://graph.facebook.com/204603129458/\n\
+  \    albums?metadata=1&limit=25&since=2010-09-30T10%3A13%3A53%2B0000\",\n  \"next\"\
+  : \"https://graph.facebook.com/204603129458/\n    albums?metadata=1&limit=25&until=2010-02-04T12%3A32%3A16%2B0000\"\
+  \n}\n}\n```\n\n## 动手实践 – 从相册加载照片\n\n然而，正如我们已经确认的，data 中的每个对象本身都是一个 Graph Object。让我们通过浏览\
+  \ https://graph.facebook.com/307932939458?metadata=1 来查看 id 为 307932939458 的 Packt\
+  \ Books 相册：\n\n```\n{\n  \"id\": \"307932939458\",\n  \"from\": {\n    \"name\"\
+  : \"Packt Publishing\",\n    \"category\": \"Products_other\",\n    \"id\": \"204603129458\"\
+  \n  },\n  \"name\": \"Books\",\n  \"description\": \"Packt Books\",\n  \"link\"\
+  : \"http://www.facebook.com/\n    album.php?aid=180619&id=204603129458\",\n  \"\
+  count\": 32,\n  \"type\": \"album\",\n  \"created_time\": \"2010-02-04T12:32:17+0000\"\
+  ,\n  \"updated_time\": \"2010-03-18T16:08:42+0000\",\n  \"metadata\": {\n```\n\n\
+  \n\n\n这张图看起来越来越复杂了（而且与之前画出的数学图的相似之处现在也一目了然）。当然，一旦涉及人，连接数量就会变得离谱。用户可以通过各种方式连接到任何其他对象：与另一个用户成为好友、在照片、视频或笔记中被标记、发布评论、链接或其他条目，或者在\
+  \ Facebook 上点击喜欢任何其他元素。\n\n![](img/4e826fa36038b86f2087ef8b818d0acf_74_0.png)\n\n\
+  如果你从一个主页开始，不断遍历与它相连的所有对象，然后再遍历与这些对象相连的所有对象，如此反复，你就可以覆盖大量节点，而不必再从新的主页开始。\n\n图的力量在于其灵活性。每种类型的图对象（Graph\
+  \ Object）与其他类型的图对象都具有相同的基本结构——图列表（Graph List）除外（图列表包含图对象数组）。这就是为什么我们的图对象渲染器（Graph\
+  \ Object Renderer）可以轻松显示任何类型的图对象。\n\n另外，你注意到了吗？并非只有评论才有`from`属性。相册也有，单独的照片也有，几乎所有不是主页或用户的对象类型都有。这意味着你可以从任何对象开始，找到它的创建者，然后从那里向外遍历图。\n\
+  \n图模型对隐私有重要影响。假设我们被授予访问某个主页信息的权限，同时也能访问与该主页相连的任何对象的信息。那么，我们就可以从该主页出发依次到达：\n\n- 该主页发布的相册，再到\n\
+  - 该相册中的一张照片，再到\n- 在照片中被标记的用户，再到\n- 该用户的墙贴列表，再到\n- 第一个用户的朋友在某条帖子上发表的评论，再到\n- 发表该评论的用户，再到\n\
+  - 该用户喜欢的电视节目，再到\n- 在该电视节目主页上发布的链接，再到\n- 发布该链接的用户\n\n以此类推。因此，Facebook 使用一套更详细的规则来决定用户能访问什么、应用能代表用户访问什么，也就不足为奇了。我们将在下一章讨论这些规则。\n\
+  \n## 整合起来\n\n最后，让我们来看看，从 Packt Publishing 主页出发，我们能在图中遍历多远。\n\n## 动手时间 – 遍历图\n\n\
+  将可视化工具（Visualizer）设置为从请求 PacktPub 主页开始。现在，编译并运行你的 SWF，使用**连接**框和**弹出**按钮来探索图，看看你能走多远。别忘了你可以拖拽渲染器，还可以缩小视图，让\
+  \ Flash Player 窗口中容纳更多内容！另外请记住，黑线表示连接，而灰线表示对象属于某个列表。\n\n## 小结\n\n本章我们学到了很多关于 Graph\
+  \ API 的知识：不仅了解了它是什么，还学会了如何在 AS3 中访问它。\n\n需要掌握的关键点：\n\n- Graph API 之所以叫这个名字，是因为它将\
+  \ Facebook 的所有数据表示为一个由对象和连接组成的巨大图。\n- Graph API 有两种元素类型：图对象和图列表。\n- 图对象可能有两个 ID：一个是\
+  \ Facebook 指定的数字 ID，另一个可能是图对象所有者指定的字母数字 ID。\n- 图对象有连接；连接指向图列表；图列表包含图对象。\n- 用于获取图对象的\
+  \ Graph URL 格式为 `https://graph.facebook.com/graph_object_id`。\n- 用于获取图列表的 Graph\
+  \ URL 格式为 `https://graph.facebook.com/graph_object_id/connection_id`。\n- Graph URL\
+  \ 以 JSON 格式返回数据。这是一种基于文本的格式，使用键值对来表示包含属性、数组和其他对象的对象。\n- 有时，Graph URL 会返回错误消息；这些消息也是\
+  \ JSON 格式。\n- 我们可以在 Graph URL 中使用 `?metadata=1` 参数，让它返回关于该元素的额外信息，比如从图对象出发的连接列表。\n\
+  - 对于属于图列表的图对象，不会返回元数据。\n- 图对象的 JSON 表示可以使用 `as3corelib` 库反序列化为我们可以在代码中使用的 AS3 对象。\n\
+  \n我们还讨论了 Graph API 为何如此灵活，因为它对 Facebook 数据库中的每种对象类型都使用相同的基本结构。\n\n但当我们尝试获取某些对象的信息时，如果遇到授权错误，又该怎么办呢？这正是我们下一章要讨论的内容。\n\
+  \n## 刚才发生了什么？\n\n如你所见，Facebook 的安全机制限制了你能够查看关于某个人的哪些信息。这并不是一个简单的二元设置——\"要么你能看到这个信息，要么你能看到那个信息\"\
+  ——而是基于：\n\n- 你与对方的连接方式\n- 你是否已登录 Facebook\n\n特别有意思的是，即使你从未见过某人，也没有共同的朋友或网络，仅仅通过登录\
+  \ Facebook，你往往就能看到关于这个人的更多信息。对有些人来说，如果你没有登录，甚至可能无法查看他们的个人主页；Facebook 甚至可能会否认它的存在。\n\
+  \n每个 Facebook 用户都有一个权限列表，其中规定了其他用户根据与该用户的连接关系可以查看哪些关于他们的信息。如果你没有权限查看某些数据，Facebook\
+  \ 的安全机制就不会将其显示给你。\n\n权限可能非常复杂，难以弄清楚。下面是一个用户的权限可能呈现的样子：\n\n![](img/4e826fa36038b86f2087ef8b818d0acf_81_0.png)\n\
+  \n这个页面分为两个主要部分：**基本目录信息**和**在 Facebook 上的分享**。花点时间深入研究这些部分，看看哪些信息可以被谁查看。你可能会惊讶地发现，关于你的大量信息对任何想看的人来说都是公开的。\n\
+  \n在这两个页面中自定义设置时，你可以点击**预览我的个人主页**，查看你指定的任何人眼中的个人主页是什么样子。\n\n有几项信息始终对任何已登录用户可见：你的姓名、性别、个人主页头像和网络列表。其他所有信息的访问权限都可以修改。\n\
+  \n## 这和图 API 有什么关系？\n\n这些信息都很好，但它会影响我们的应用程序吗？\n\n试着通过他们的 Graph URL 访问你刚才查看过的所有人的个人主页。请记住，如果他们的\
+  \ Facebook URL 是 http://www.facebook.com/username，那么他们的 Graph URL 就是 https://graph.facebook.com/username；如果他们的\
+  \ Facebook URL 是 http://www.facebook.com/profile.php?id=12345678，那么他们的 Graph URL\
+  \ 就是 https://graph.facebook.com/12345678。\n\n你会注意到，你能看到的信息只有：\n\n- 姓名（以及名字、姓氏等单独的字段）\n\
+  - 个人主页头像（通过 https://graph.facebook.com/id/picture）\n- 性别\n\n所有这些信息都是公开可用的。即使你在未登录时能在他们的个人主页上看到额外信息，这一点也依然成立。\n\
+  \nGraph API 无法检测我们是否在另一个浏览器窗口中登录了 Facebook，所以这里我们看到的一切都是从尚未登录的用户的视角看到的。\n\n例如，我的页面如下面几行代码所示：\n\
+  \n```\n{\n  \"id\": \"«redacted»\",\n  \"name\": \"Michael James Williams\",\n \
+  \ \"first_name\": \"Michael\",\n  \"middle_name\": \"James\",\n  \"last_name\":\
+  \ \"Williams\",\n  \"gender\": \"male\",\n  \"locale\": \"en_GB\"\n}\n```\n\n而且，虽然你可以通过在\
+  \ URL 中添加 metadata=1 来查看连接 URL 列表，但尝试访问其中任何一个 URL 都会导致以下错误：\n\n```\n{\n  \"error\"\
+  : {\n    \"type\": \"OAuthAccessTokenException\",\n    \"message\": \"An access\
+  \ token is required to request this resource.\"\n  }\n}\n```\n\n但什么是访问令牌？\n\n##\
+  \ 访问令牌是授权的证明\n\n想象一栋安保严密的大楼。要从正门进入，你需要向门卫出示护照、驾照和社会安全号码——只是为了证明你是谁。一旦他确认无误，就会给你一张临时通行证，上面写着你的名字，让你别在夹克上。\n\
+  \n在大楼里，大家都信任这张通行证。你不需要冒险向他们出示重要的个人证件；这些证件只有门卫会看到。\n\n访问令牌就像那张通行证。Facebook 会向已登录用户提供一串字符，这串字符表示\"\
+  我是这个人，并且我已登录\"，它可以作为参数传递给 Graph URL，从而访问该用户有权查看的信息。\n\n不过，事情还不止这些。\n\n## 用户/应用程序授权\n\
+  \n实际上需要两种授权：用户的授权和应用程序的授权。其运作方式如下：\n\n用户乔（Joe User）想在比尔的酷应用（Bill's Cool Application）中做某件事，这件事需要该应用访问乔的一些受限信息。应用无法访问这些信息，于是他们俩通过\
+  \ Graph API 联系 Facebook。\n\n这个应用说：\"嘿，Facebook，我是比尔的酷应用，我想访问用户乔的数据。\"\n\n\n\nFacebook\
+  \ 回复：“首先我需要看看你的 ID，以证明你确实是 Bill 的酷应用。”\n\n应用说：“没问题，这是我的凭证。”\n\nFacebook 检查了一下，说：“这些看起来没问题。等等，我怎么知道这是真正的用户\
+  \ Joe，而不是某个戴假发的家伙？”\n\nJoe 用他的电子邮件地址和密码登录 Facebook，同时遮挡住这些信息，以免 Bill 的酷应用看到。应用礼貌地看向别处。\n\
+  \nFacebook 说：“嘿，Joe，很高兴见到你。你愿意让 Bill 的酷应用访问它请求的这些数据吗？”\n\nJoe 检查了应用想要获取的内容，说：“是的，当然，我没问题。”\n\
+  \nFacebook 说：“太好了。好的，Bill 的酷应用，这是访问令牌。如果你想访问 Joe 的任何数据，在请求信息时只需出示这个令牌，我就会把数据给你。”\n\
+  \n应用说：“酷！那么，我可以随时使用这个令牌吗？”\n\nFacebook 说：“嗯，不是的。它会在几个小时内过期。之后，你必须再申请一个，而且需要 Joe\
+  \ 保持登录状态才能获取。如果 Joe 登出，情况也一样；你需要获取另一个令牌，这意味着要让 Joe 再次登录。”\n\n应用说：“这似乎有点不方便。你的意思是我每隔几个小时就得让\
+  \ Joe 同意我访问他的数据？”\n\nFacebook 回答：“哦，不，不，不。既然 Joe 已经同意你可以查看他的信息，我会记住这一点，不会再打扰他询问。而且如果他已经登录，我也不需要查看他的电子邮件和密码。”\n\
+  \nJoe 和应用感谢了 Facebook，然后去做他们最初想做的事情。\n\n当然，这些信息并不是通过对话形式传递的，那太傻了。应用凭证通过 Graph URL\
+  \ 传递给 Facebook，而用户通过标准的 Facebook 登录网页提供他们的凭证。Facebook 不是通过 JSON 返回访问令牌，而是通过一个参数传递给应用的\
+  \ URL——这就是为什么你的应用需要一个 Web 主机。\n\n首先，你可能想知道我们从哪里获得应用凭证。我们不能凭空捏造；我们需要先在 Facebook 上注册我们的应用。现在让我们来做这件事。\n\
+  \n## 动手实践 – 在 Facebook 上注册应用\n\n在 http://www.facebook.com/developers/ 注册成为 Facebook\
+  \ 开发者。别担心；这是免费的，而且是即时的。\n\n你可能会被要求通过输入有效的手机号码或添加信用卡来验证你的 Facebook 账户。你不会被收费（如果你选择短信验证方式，可能需要支付标准短信的费用）；这是为了确保每个应用都对应着一个真实的人。\n\
+  \n在开发者页面，点击右上角的**设置新应用**：\n\n![](img/4e826fa36038b86f2087ef8b818d0acf_86_0.png)\n\
+  \n你将被要求输入应用的名称。最好将你的名字或公司名称作为应用名称的一部分，这样更有可能确保唯一性。（如果你愿意，之后也可以更改应用名称；这并不是一成不变的。）你还需要同意**Facebook\
+  \ 条款和条件**——请务必先阅读它们。\n\n![](img/4e826fa36038b86f2087ef8b818d0acf_86_1.png)\n\n##\
+  \ 动手实践 – 使用浏览器请求访问令牌\n\n打开浏览器，访问 https://graph.facebook.com/oauth/authorize?client_id=<insert_application_id>\
+  \ （将 <insert_application_id> 替换为你应用的应用程序 ID）。\n\n你会看到以下错误：\n\n```\n{\n  \"error\"\
+  : {\n    \"type\": \"OAuthException\",\n    \"message\": \"Missing redirect_uri\
+  \ parameter.\"\n  }\n}\n```\n\nFacebook 不会直接输出访问令牌；它希望将浏览器重定向到另一个网页，并将访问令牌传递给该页面。目前，这还不是很有用。我们的\
+  \ Flash 应用是作为独立的 SWF 文件运行的，并未嵌入到页面中——所以我们将采用一个快速的变通方法。\n\n### 在我们的应用中注册重定向 URI\n\
+  \n进入你的应用设置（访问 http://www.facebook.com/developers，然后点击你的应用名称，再点击“编辑设置”）。点击左侧导航栏中的“网站”选项卡。\n\
+  \n![](img/4e826fa36038b86f2087ef8b818d0acf_89_0.png)\n\n你会看到如下截图所示的面板：\n\n![](img/4e826fa36038b86f2087ef8b818d0acf_90_0.png)\n\
+  \n“站点 URL”框定义了在授权用户和应用后 Facebook 重定向到的 URL。这也是访问令牌将被传递到的 URL。\n\n在我们创建自己的页面之前，我们将其设置为\
+  \ Google 首页。我相信他们不会介意的。在框中输入 http://google.com/ ，然后点击“保存更改”。\n\n![](img/4e826fa36038b86f2087ef8b818d0acf_90_1.png)\n\
+  \n如果你再次尝试访问 https://graph.facebook.com/oauth/authorize?client_id=<your_application_id>\
+  \ ，你仍然会得到相同的错误信息。即使我们在应用设置中指定了重定向目标页面，我们仍然需要将它传递给授权 URL。\n\n将凭证作为参数输入到 URL 中存在安全风险；它们不够安全，可能被任何人读取。这就产生了一个问题：Facebook\
+  \ 希望看到我们的应用密钥，以证明我们确实是使用所提供的应用 ID 登录的，但我们不能冒险通过 URL 传递密钥。\n\n为了解决这个问题，我们可以告诉 Facebook，我们正在使用用户端的\
+  \ Web 浏览器进行身份验证，这样 Facebook 就会让我们通过，而无需我们的应用密钥。这需要传递另一个参数：type=user_agent（user agent\
+  \ 是运行在用户计算机上的 Web 浏览器等应用程序的通用术语）。\n\n所以，请访问此 URL：https://graph.facebook.com/oauth/authorize?client_id=«your_application_id»&redirect_uri=http://google.com&type=user_agent。\n\
+  \n> 请注意，每个参数的值与下一个参数的名称之间用“&”符号分隔，而且第二个参数叫作 redirect_uri，而不是 redirect_url。（这不是笔误；URL\
+  \ 是 URI 的一种特定类型。）\n\n你应该会看到一个 Facebook 登录网页：\n\n![](img/4e826fa36038b86f2087ef8b818d0acf_91_0.png)\n\
+  \n输入你的详细信息并点击“登录”。你将被要求允许该应用访问你的基本信息：\n\n![](img/4e826fa36038b86f2087ef8b818d0acf_91_1.png)\n\
+  \n### 放我进去！\n\n点击“允许”。你将被重定向到 Google——但请仔细查看这个 URL：\n\n```\nhttp://google.com/#access_token=123675230995389%7C2.hX2Png6g2LUuczfd4tLPbQ__.3600.1276960311-169573433058884%7C8BAAidDtlt8fulZHA3bC3YxcCwM\n\
+  ```\n\n终于！我们有了访问令牌。你可以看到它是我们被重定向到的 URL 中 access_token 参数的值。在这个例子中，它是：123675230995389%7C2.hX2Png6g2LUuczfd4tLPbQ__.3600.1276960311-169573433058884%7C8BAAidDtlt8fulZHA3bC3YxcCwM。\n\
+  \n（你的令牌会不同，因为令牌是基于用户 ID、应用 ID 和授权时间生成的，但看起来会类似。）\n\n### 使用访问令牌\n\n让我们试一试。像之前一样，尝试通过\
+  \ Graph API 加载你自己的个人资料：\n\n```\nhttps://graph.facebook.com/«your_username»\n```\n\
+  \n如果你还记得，我之前得到的是：\n\n```\n{\n  \"id\": \"«redacted»\",\n  \"name\": \"Michael James\
+  \ Williams\",\n  \"first_name\": \"Michael\",\n  \"middle_name\": \"James\",\n \
+  \ \"last_name\": \"Williams\",\n  \"gender\": \"male\",\n  \"locale\": \"en_GB\"\
+  \n}\n```\n\n现在再试一次，但这次在 URL 中添加一个 access_token 参数：\n\n```\nhttps://graph.facebook.com/«your_username»?access_token=123675230995389%7C2.hX2Png6g2LUuczfd4tLPbQ__.3600.1276960311-169573433058884%7C8BAAidDtlt8fulZHA3bC3YxcCwM\n\
+  ```\n\n这一次，你会得到更多数据，如下面的代码片段所示：\n\n```\n{\n  \"id\": \"«redacted»\",\n  \"name\"\
+  : \"Michael James Williams\",\n  \"first_name\": \"Michael\",\n  \"middle_name\"\
+  : \"James\",\n  \"last_name\": \"Williams\",\n  \"link\": \"«redacted»\",\n}\n```\n\
+  \n\n\n\n\"about\": \"Twitter: @MichaelJW\",\n\"gender\": \"male\",\n\"timezone\"\
+  : 1,\n\"locale\": \"en_GB\",\n\"verified\": true,\n\"updated_time\": \"2010-06-16T20:38:01+0000\"\
+  \n}\n\n好，虽然不多，但它证明了我们已成功获得授权，并且可以看到在获得访问令牌之前无法看到的更多信息。\n\n尝试在没有访问令牌的情况下访问你的好友列表：\n\
+  \n```\nhttps://graph.facebook.com/«your_username»/friends\n{\n  \"error\": {\n \
+  \   \"type\": \"OAuthAccessTokenException\",\n    \"message\": \"An access token\
+  \ is required to request this resource.\"\n  }\n}\n```\n\n几乎什么都没有。现在，使用访问令牌（将 «your_access_token»\
+  \ 替换为实际的访问令牌）：\n\n```\nhttps://graph.facebook.com/«your_username»/friends?access_token=«your_access_token»\n\
+  {\n  \"data\": [\n    {\n      \"name\": \"JohnFaikname\",\n      \"id\": \"«redacted»\"\
+  \n    },\n    {\n      \"name\": \"Sarah Toetalee-Maidup\",\n      \"id\": \"«redacted»\"\
+  \n    },\n    {\n      \"name\": \"Bob Frendomyn e\",\n      \"id\": \"«redacted»\"\
+  \n    },\n  ]\n}\n```\n\n- 2. 你通过直接通过 `Facebook.com` 登录网页登录到自己的账户，证明了自己作为 Facebook\
+  \ 用户的身份。\n- 3. Facebook 问你是否愿意让该应用程序访问你的信息，而你授予了它权限。\n- 4. Facebook 将访问令牌传回应用程序先前指定的页面（在本例中为\
+  \ Google 主页）。\n\n这种工作流程并不独特于 Facebook。它实际上是 **OAuth 2.0 协议** 的一部分，被称为 **用户代理流程**。这意味着一旦你掌握了允许应用程序使用\
+  \ Facebook 进行身份验证所需的工作流程，你就能将该知识应用到编写可使用任何其他使用 OAuth 2.0 的系统进行身份验证的应用程序。\n\n> OAuth\
+  \ 2.0 协议的官方文档在这里：http://tools.ietf.org/html/draft-ietf-oauth-v2-05#section-3.5。\n\
+  \n## 保持秘密\n\n看起来我们不需要在 Graph URL 中传递 **应用程序密钥** 来进行身份验证，这很奇怪。其原因在于，如果我们以这种方式传递密钥，那么用户或用户计算机上运行的另一个程序就可以获取它，并冒充我们的应用程序使用它——请记住，密钥类似于密码。因此，用户代理流程让我们能够在不使用其密钥的情况下对应用程序进行身份验证，适用于这种不安全的情况。\n\
+  \n用户或桌面应用程序仍然有可能获取访问令牌并用它冒充用户登录到我们的应用程序。但用户这样做没有意义，因为他使用此方法可以访问的任何信息，他本来就可以通过 Facebook\
+  \ 网站访问。至于桌面应用程序，好吧，这只是运行计算机的日常风险之一，与病毒和间谍软件一样。\n\n## Facebook 给了我们什么？\n\n查看 Facebook\
+  \ 在身份验证后重定向我们的 URL：\n\n```\nhttp://google.com/#access_token=123675230995389%7C2.hX2Png6g2LUuczfd4tLPbQ__.3600.1276960311-169573433058884%7C8BAAidDt1t8fulZHA3bC3YxcCwM.&expires_in=6561\n\
+  ```\n\n有两个参数：`access_token` 和 `expires_in`。\n\n第二个参数告诉我们访问令牌在多少秒后过期。它看起来像一个随机数字，但有一个规律：如果我们在\
+  \ 14:32:07 请求令牌，它将在 16:00:00 过期；9:15:34 请求的令牌将在 11:00:00 过期。将令牌生成时间的两小时后，去掉分钟和秒，你就会找到过期时间。\n\
+  \n乍一看，访问令牌似乎是一堆字符。实际上，它包含了一些有用的信息。\n\n首先，你应该知道 %7C 是 “管道” 字符 | 的代码，这样它才能在 URL 中传递。因此将两个\
+  \ %7C 替换为管道：\n\n```\n123675230995389|2i.hX2Png6g2LUuczfd4tLPbQ__.3600.1276960311-169573433058884|8BAAidDtl8fulZHA3bC3YxcCwM.\n\
+  ```\n\n这里有三条有用的信息：\n\n- 1. 应用程序 ID：第一个管道之前的数字——本例中为 123675230995389。\n- 2. 当前用户的\
+  \ ID：在破折号之后、最后一个管道之前——本例中为 169573433058884。\n- 3. 过期时间：在用户 ID 之前——本例中为 1276960311。这是以\
+  \ Unix 时间给出的。\n\nUnix 时间系统将时间点描述为从 1970 年 1 月 1 日午夜 UTC 起算的秒数，不考虑闰秒。它提供了一种简单的方法，将自\
+  \ 1970 年以来的任何时间点编码为单个整数。\n\n网站 UnixTime.info 包含一个简单的转换器，用于在 Unix 时间戳和常规日期格式之间切换。\n\
+  \n> 在 AS3 中，Date 类可用于在两种时间格式之间转换。将值 epochTime*1000 作为第一个参数传递给 Date() 构造函数以用该时间初始化\
+  \ Date。Date 对象的 time 属性将以 Unix 格式返回日期，尽管 Flash 使用毫秒作为其基本时间单位，因此乘以了 1000。\n\n这意味着，给定任何访问令牌，你都可以找出哪个用户请求了它、何时过期以及它适用于哪个应用程序——尝试浏览\
+  \ https://graph.facebook.com/your_application_id。\n\n```\nvar variables:URLVariables\
+  \ = new URLVariables();\n\n//We construct a URL from the parameters of the GraphRequest\n\
+  urlRequest.url = \"https://graph.facebook.com/\" + a_request.objectID;\nif (a_request.connectionID)\n\
+  {\n    urlRequest.url += \"/\" + a_request.connectionID;\n}\n\nvariables.metadata\
+  \ = 1;\nvariables.access_token = \"123675230995389%7C2.hX2Png6g2LUuczfd4tLPbQ__.3600.1276960311-169573433058884%7C8BAAidDtl8fulZHA3bC3YxcCwM.\"\
+  \nurlRequest.data = variables;\n\n//this is used to figure out which GraphRequest\
+  \ created the loader later\n_requests[loader] = a_request;\n\nloader.addEventListener(Event.COMPLETE,\
+  \ onGraphDataLoadComplete);\nloader.addEventListener(IOErrorEvent.IO_ERROR, onIOError);\n\
+  loader.load(urlRequest);\n}\n```\n\n测试应用程序；如果它没有加载任何 Renderer，你的访问令牌可能已过期。在这种情况下，Graph\
+  \ API 将返回以下内容（在浏览器中加载时）：\n\n```\n{\n  \"error\": {\n    \"type\": \"OAuthException\"\
+  ,\n    \"message\": \"Error processing access token.\"\n  }\n}\n```\n\n并且 I/O 错误将被传递给你的应用程序。我们可以通过将\
+  \ IOErrorEvent 监听器添加到 URLRequest 对象来对这些错误做出反应；第 2 章《Time for Action: Creating an\
+  \ HTTP Requestor》中的 What Just happened? 部分提供了此方面的说明。\n\n因此，如果你确实收到 I/O 错误，请在浏览器中像我们之前那样生成一个新的访问令牌。在浏览器中加载\
+  \ https://graph.facebook.com/oauth/authorize?client_id=«your_application_id»&redirect_uri=http://google.com&type=user_agent，提取加载的\
+  \ URL 参数中的访问令牌，然后将其粘贴到你的代码中。\n\n## 让我进入！\n\n这次测试应用程序时，你应该会看到下一个截图：\n\n![](img/4e826fa36038b86f2087ef8b818d0acf_100_0.png)\n\
+  \n太好了！我们可以看到列表中出现了新的字段，比如 verified 和 about。\n\n再试着点击列表中的 friends 连接：\n\n![](img/4e826fa36038b86f2087ef8b818d0acf_100_1.png)\n\
+  \n它工作得正如我们所期望的那样。 （请记住，HTTPRequestor 将访问令牌作为参数传递给所有请求的 Graph URL。）\n\n看看我们请求用户资料时加载的内容：\n\
+  \n```\nhttps://graph.facebook.com/your_user_id?access_token=«your_access_token»&metadata=1\n\
+  {\n  \"id\": \"169573433058884\",\n  \"name\": \"Michael James Williams\",\n  \"\
+  first_name\": \"Michael\",\n  \"middle_name\": \"James\",\n  \"last_name\": \"Williams\"\
+  ,\n  \"link\": \"http://www.facebook.com/«redacted»\",\n  \"about\": \"Twitter:\
+  \ @MichaelJW\",\n  \"gender\": \"male\",\n  \"timezone\": 1,\n  \"locale\": \"en_GB\"\
+  ,\n  \"verified\": true,\n  \"updated_time\": \"2010-06-16T20:38:01+0000\",\n  \"\
+  metadata\": {\n    \"connections\": {\n      \"home\": \"https://graph.facebook.com/«redacted»/home?access_token=«your_access_token»\"\
+  ,\n      \"feed\": \"https://graph.facebook.com/«redacted»/feed?access_token=«your_access_token»\"\
+  ,\n      \"friends\": \"https://graph.facebook.com/«redacted»/friends?access_token=«your_access_token»\"\
+  ,\n      «...some datacut out here, for length...»\n    }\n  },\n  \"type\": \"\
+  user\"\n}\n```\n\n请注意，connections 列表中的 Graph URL 已预先填入了 access_token 参数。Visualizer\
+  \ 的代码不使用这些 Graph URL——它使用形式为 https://graph.facebook.com/<id_of_object>/<name_of_connection>\
+  \ 构造它们——但这项知识可能对你的项目有用。\n\n正如你从 Visualizer 中看到的，friends 连接的 Graph List 只包含非常基本的信息：用户的\
+  \ ID 和姓名。然而，你朋友的完整 Graph 对象中加载了更多信息——不过具体数量取决于你朋友的隐私设置。\n\n\n\n\n## 让我进去！\n\n要了解你的朋友可以通过应用程序访问到关于你的多少信息，请登录\
+  \ Facebook 网站，依次点击“账户 | 隐私设置”，选择“编辑使用应用程序、游戏和网站的设置”，然后查看“通过你的朋友可访问的信息”设置：\n\n![](img/4e826fa36038b86f2087ef8b818d0acf_102_0.png)\n\
+  \n## 这是作弊！\n\n好吧，在浏览器中生成访问令牌，然后直接将其粘贴到源代码中，并不是一种好的认证处理方式。我们需要在应用程序本身中获取访问令牌。\n\n\
+  ## 动手实践 – 通过应用程序进行认证\n\n在浏览器中进行认证时，我们会访问 `https://graph.facebook.com/oauth/authorize?client_id=<your_application_id>&redirect_uri=http://google.com&type=user_agent`，所以让我们从在代码中加载该\
+  \ URL 开始。\n\n首先，在 HTTPRequestor.as 中创建一个新函数 attemptToAuthenticate()：\n\n```\npublic\
+  \ function attemptToAuthenticate():void\n{\n    var loader:URLLoader = new URLLoader();\n\
+  \    var urlRequest:URLRequest = new URLRequest();\n\n    var variables:URLVariables\
+  \ = new URLVariables();\n\n    urlRequest.url = \"https://graph.facebook.com/oauth/authorize\"\
+  ;\n    variables.client_id = \"<your_application_id>\";\n    variables.type = \"\
+  user_agent\";\n    variables.redirect_uri = \"http://google.com\";\n    urlRequest.data\
+  \ = variables;\n\n    loader.addEventListener(Event.COMPLETE, onAuthenticationComplete);\n\
+  \    loader.addEventListener(IOErrorEvent.IO_ERROR, onIOError);\n    loader.load(urlRequest);\n\
+  }\n```\n\n请确保将 <your_application_id> 替换为你的实际应用程序 ID。\n\n我们使用与加载 Graph 对象时相同的 IO_ERROR\
+  \ 处理函数，但需要一个新的函数 onAuthenticationComplete()，用于加载完成后的处理；将其添加到 HTTPRequestor.as 中：\n\
+  \n```\nprivate function onAuthenticationComplete(a_event:Event):void\n{\n    trace(\"\
+  Authentication complete\");\n    var loader:URLLoader = URLLoader(a_event.target);\n\
+  \    trace(loader.data);\n}\n```\n\n这里没什么复杂的；它会输出返回的任何内容。\n\n在 CustomGraphContainerController.as\
+  \ 中，让我们修改构造函数，使其启动此认证流程，而不是加载用户配置文件：\n\n```\npublic function CustomGraphContainerController(a_graphControlContainer:GraphControlContainer)\n\
+  {\n    super(a_graphControlContainer);\n    _requestor = new HTTPRequestor();\n\
+  \    addEventListenersToRequestor();\n    _requestor.attemptToAuthenticate();\n\
+  \    //_requestor.request(new GraphRequest(\"<your_user_id>\"));\n}\n```\n\n在此之前，我们需要将该函数添加到\
+  \ IRequestor 接口中。将 \\src\\graph\\apis\\base\\IRequestor.as 修改为：\n\n```\npackage\
+  \ graph.apis.base\n{\n    import flash.events.IEventDispatcher;\n    import graph.GraphRequest;\n\
+  \n    public interface IRequestor extends IEventDispatcher\n    {\n        function\
+  \ request(a_request:GraphRequest):void;\n        function attemptToAuthenticate():void;\n\
+  \    }\n}\n```\n\n测试一下。会输出什么？会输出大量 HTML，将其粘贴到空白的 .html 文件中并在浏览器中打开后，效果如下：\n\n![](img/4e826fa36038b86f2087ef8b818d0acf_104_0.png)\n\
+  \n> 如果遇到错误，或者根本没有返回数据，请在浏览器中加载该 URL，查看返回的错误消息。确保 URLVariables 对象的所有属性都设置正确。\n\n\
+  ## 刚才发生了什么？\n\n哦，对，我们需要先登录。但这里有个问题：由于我们是在 Flash Player 内加载 URL，而不是在浏览器中，因此无法访问浏览器\
+  \ Cookie，所以 Facebook 无法记住我们是谁，并将我们重定向到登录页面。当然，由于我们不在浏览器中，我们实际上看不到这个页面！\n\n我们可以编写代码创建一个\
+  \ Flash 登录表单，并将用户的电子邮件地址和密码提交到真正的 Facebook 登录表单，但用户为什么要相信我们的应用不会劫持他们的数据呢？\n\n##\
+  \ 另一种方法\n\n有几种方法可以解决这个问题，具体取决于我们使用的是 AIR 还是 Flash Player。在本章中，我们将使用最简单的方法：将 SWF\
+  \ 嵌入网页中，并使用 JavaScript 打开登录页面，然后将访问令牌传回 Flash Player。\n\n## 动手实践 – 通过 JavaScript\
+  \ 进行认证\n\n接下来会发生以下步骤：\n\n- 1. 我们将把应用程序的 SWF 嵌入网页中，并在浏览器中加载该页面。\n- 2. 应用程序将调用网页内的\
+  \ JavaScript 函数，让它在新的浏览器窗口中加载“授权”URL。\n- 3. 新窗口可能会要求我们登录；一旦认证成功，它将重定向到重定向 URI 页面，就像我们之前使用它时一样。\n\
+  - 4. 不过，这次我们将把重定向 URI 页面改为我们控制的页面（而不是使用 Google 主页）。该页面将获取访问令牌，并将其传回包含我们应用程序 SWF\
+  \ 的页面中的 JavaScript 函数。\n- 5. 然后，该 JavaScript 函数会将访问令牌传递给应用程序中的 AS3 函数，之后该函数就可以在任何地方使用它了。\n\
+  \n要让这正常工作，Facebook 将我们重定向到的网页（第 4 步中包含 SWF 的页面）必须在线。这意味着我们需要有一个 Web 主机。有关如何设置，请参阅第\
+  \ 1 章。\n\n将你的项目发布到 Web，这样最终会得到一个包含 Visualizer SWF 的网页——同样，具体方法在第 1 章中已概述——并将其上传到你的主机。假设该网页名为\
+  \ `index.html`，并且你已将所有文件上传到 `http://host.com/visualizer/`。\n\n在浏览器中加载 `http://host.com/visualizer/index.html`。你会看到……嗯，没什么内容，因为应用程序仍然设置为尝试认证，而不是加载任何数据，并且在认证这一步失败了。但如果你看左上角，应该会看到熟悉的\
+  \ UI 控件：**放大**、**缩小**和**重置视图**。（如果你看到“Movie Not Loaded”，请检查你的 HTML 页面是否设置为加载正确的\
+  \ SWF，以及你是否将所有文件（而不是仅仅 `index.html`）上传到了 Web 主机。）\n\n要打开一个包含 Facebook 登录页面的新窗口，我们需要在\
+  \ index.html 中运行以下 JavaScript 代码：\n\n```\nwindow.open('https://graph.facebook.com/oauth/authorize?client_id=<your_application_id>&redirect_uri=http://google.com&type=user_agent',\
+  \ '<window_name>', 'height=370,width=670');\n```\n\n你可能已经猜到这段代码的作用了，因为 JavaScript\
+  \ 语法与 ActionScript 非常相似；它会加载一个弹出窗口，并指定高度、宽度和 URL。`<window_name>` 参数是一个稍后可以用来引用该窗口的值。\n\
+  \n我们可以将这段代码放到页面的 HTML 中。但是，为了避免弄乱 SWF 嵌入代码（并让我们的 SWF 更灵活一些），我们将使用 ExternalInterface\
+  \ 从 SWF 中将其注入页面。\n\n![](img/4e826fa36038b86f2087ef8b818d0acf_106_0.png)\n\n> flash.external.ExternalInterface\
+  \ 类允许 SWF 中的 ActionScript 代码与包含该 SWF 的 HTML 页面中的 JavaScript 代码进行通信。这意味着 SWF 可以调用\
+  \ JavaScript 方法，反之亦然。\n\n打开 HTTPRequestor.as 并导入 ExternalInterface 类：\n\n```\nimport\
+  \ flash.external.ExternalInterface;\n```\n\n现在，移除我们之前放在 attemptToAuthenticate()\
+  \ 中的所有代码，并将其替换为 ExternalInterface 调用：\n\n```\npublic function attemptToAuthenticate():void\n\
+  {\n    ExternalInterface.call(\"window.open\",\n        \"https://graph.facebook.com/oauth/authorize?client_id=<your_application_id>&type=user_agent&redirect_uri=http://google.com\"\
+  ,\n        \"facebookLoginWindow\",\n        \"height=370, width=600\");\n}\n```\n\
+  \n编译你的 SWF（避免在独立 Flash Player 中测试，因为它在浏览器之外无法访问 ExternalInterface），并将其上传到你的 Web\
+  \ 主机，覆盖之前的版本。然后，在浏览器中刷新 index.html。\n\n\n\n\n> 弹出窗口很可能会被拦截。为了防止你能够自动加载无数个弹出窗口，浏览器会阻止通过调用\
+  \ `window.open()` 打开的弹出窗口，除非该调用来自 `MOUSE_CLICK` 事件的处理程序。\n> 你可以随意在应用程序中添加一个“登录”按钮，并将\
+  \ `attemptToAuthenticate()` 函数的内容移到该按钮的点击处理函数中；反正我会直接在浏览器中点击**允许弹出窗口**。\n\n一旦弹出窗口正常工作，你会看到\
+  \ Facebook 登录页面或 Google 首页，具体取决于你当前是否已登录 Facebook。为了确保你能看到登录页面，请退出 Facebook，或在隐私浏览模式下加载\
+  \ `index.html`。最终，你会看到下面这张截图：\n\n![](img/4e826fa36038b86f2087ef8b818d0acf_107_0.png)\n\
+  \n## 创建回调网页\n\n一旦你登录，你会被重定向到 Google。然而，我们需要用户被重定向到的页面——**回调**网页——是一个由我们控制的页面，这样我们才能在页面内放入一些\
+  \ JavaScript 来获取访问令牌并将其传递回我们的应用程序。\n\n新建一个 HTML 页面 `callback.html`，并输入以下代码：\n\n\
+  ```\n<html>\n<head>\n  <script type=\"text/javascript\">\n  <!--\n  window.opener.setAccessToken(window.location.hash);\n\
+  \  //-->\n</script>\n</head>\n<body>\n<h2>Close this window</h2>\n<p>The access\
+  \ token has been passed back to index.html.</p>\n</body>\n</html>\n```\n\n你可能希望该窗口在完成任务后自动关闭。这很简单：只需在\
+  \ JavaScript 中再添加一行代码，如下所示：\n\n```\n<script type=\"text/javascript\">\n<!--\n  \
+  \  window.opener.setAccessToken(window.location.hash);\n    self.close();\n//-->\n\
+  </script>\n```\n\n我突出显示了最重要的一行；它找到打开弹出窗口的窗口，并在该窗口的页面中调用名为 setAccessToken() 的 JavaScript\
+  \ 函数，将弹出窗口 URL 的“哈希值”传递给它（也就是 `#` 字符之后的所有内容）。记住，弹出窗口的 URL 将是：\n\n```\nhttp://www.google.com/#access_token=123675230995389%7C2._X2CYJw2h7tOH9T9i7tkCg__.3600.1277610200-169573433058884%7Cy3fkK9oobNvC6DSSFChUVFeJrMO\n\
+  ```\n\n因此，哈希值中会包含访问令牌。\n\n我们需要编写这个 setAccessToken() 函数——不过首先，让我们把 callback.html\
+  \ 设为正式的回调网页。将 callback.html 上传到你的 Web 主机上与 index.html 相同的目录，然后转到 Facebook 开发者页面并编辑你的应用程序设置。\n\
+  \n在 Web Site 标签页中，在 Site URL 输入框中输入你的主机的基础域名。例如，如果你的 callback.html 页面位于 http://host.com/visualizer/callback.html，请输入\
+  \ http://host.com/。\n\n现在，在 HTTPRequestor.as 中，在 attemptToAuthenticate() 函数里，将 URL\
+  \ 的 redirect_uri 参数改为指向 callback.html：\n\n```\npublic function attemptToAuthenticate():void\n\
+  {\n    ExternalInterface.call(\"window.open\",\n        \"https://graph.facebook.com/oauth/authorize?client_id=165373950152944&type=user_agent&redirect_uri=http://host.com/visualizer/callback.html\"\
+  ,\n        \"facebookLoginWindow\",\n        \"height=370, width=600\");\n}\n```\n\
+  \n重新编译你的应用程序，并上传到你的 Web 主机，覆盖旧版本。在浏览器中刷新 `index.html`。你应该会看到弹出窗口出现，并且（一旦你登录）它会加载\
+  \ `callback.html`：\n\n![](img/4e826fa36038b86f2087ef8b818d0acf_109_0.png)\n\n不过，目前这实际上是在“说谎”。访问令牌并没有传回，因为还没有\
+  \ `setAccessToken()` 函数来接收它！\n\n## 接收访问令牌\n\n借助 `ExternalInterface`，我们可以让 `index.html`\
+  \ 中的 JavaScript 调用我们 SWF 内的 ActionScript 函数。\n\n1. 我们来创建一个 ActionScript 函数，它接收哈希值并从中提取访问令牌。\n\
+  2. 将这个新函数添加到 `HTTPRequestor.as` 中：\n\n```\nprivate function setAccessToken(a_hashValue:String):void\n\
+  {\n    var hashParams:Array = a_hashValue.substr(1).split(\"&\");\n    var hashKeyAndValue:Array;\n\
+  \n    for (var i:int = 0; i < hashParams.length; i++)\n    {\n        hashKeyAndValue\
+  \ = (hashParams[i] as String).split(\"=\");\n        if (hashKeyAndValue[0] == \"\
+  access_token\")\n        {\n            this.accessToken = hashKeyAndValue[1];\n\
+  \            break;\n        }\n    }\n    this.request(new GraphRequest(\"me\"\
+  ));\n}\n```\n\n现在，将以下代码添加到你的 HTTPRequestor() 构造函数中：\n\n```\npublic function HTTPRequestor(target:\
+  \ IEventDispatcher = null)\n{\n    //this is needed because the class extends EventDispatcher\n\
+  \    super(target);\n    ExternalInterface.addCallback(\"setAccessToken\", setAccessToken);\n\
+  \n    ExternalInterface.call(\"function() {\\n\" +\n        \"window.setAccessToken\
+  \ = function(hashValue){\\n\" +\n        \"  var visualizer = document.getElementById('Visualizer');\\\
+  n\" +\n        \"  visualizer.setAccessToken(hashValue);\\n\" +\n        \"}\\n\"\
+  \ +\n        \"}\");\n}\n```\n\n突出显示的代码创建并调用了一个匿名函数，该函数包含我们真正想要调用的函数。这有点乱，但确实有效。\n\
+  \n重新编译你的 SWF 并上传到你的主机。刷新 index.html。弹出窗口会显示，可能会提示你登录，然后重定向到“Close this window”页面。紧接着，你会看到下面这张截图：\n\
+  \n![](img/4e826fa36038b86f2087ef8b818d0acf_112_0.png)\n\n成功！\n\n## 刚才发生了什么？\n\n\
+  你刚刚为你的 Flash 应用添加了真正的 Facebook 身份验证。\n\n用户直接在 Facebook 上登录，而不是通过你的应用，从而将安全风险降到最低。Facebook\
+  \ 将访问令牌传回你编写的回调页面，该页面再通过另一个网页将其传回你的 SWF，现在 SWF 就可以在请求 Graph API 数据时使用它了。\n\n## 那些之前没有使用过该应用的用户呢？\n\
+  \n我们还没有完整地测试身份验证，因为之前在浏览器中做实验时，我们已经授予了应用程序访问我们数据的权限。\n\n幸运的是，撤销这一切非常容易，我们可以假装从未见过这个应用。登录\
+  \ Facebook，点击 Account | Application Settings。在列表中找到你的应用程序，然后点击 X 按钮，如下面截图所示：\n\n\
+  ![](img/4e826fa36038b86f2087ef8b818d0acf_113_0.png)\n\nFacebook 会要求你确认此决定。（应用程序将保留在你的开发者页面，即使它会从你的应用页面中移除。）\n\
+  \n![](img/4e826fa36038b86f2087ef8b818d0acf_113_1.png)\n\n刷新 index.html。这一次，弹出窗口会请求获取你信息的权限：\n\
+  \n![](img/4e826fa36038b86f2087ef8b818d0acf_114_0.png)\n\n点击**允许**，弹出窗口就会被重定向到 callback.html，它会像之前一样将访问令牌传递给\
+  \ visualizer。\n\n## 小试牛刀——处理犹豫不决的用户\n\n如果用户点击了**不允许**对话框呢？\n\n目前，如果没有访问令牌，应用程序什么都不会做；它只是耐心地等待。如果弹出窗口出现时，用户没有点击**允许**——或者用户因为弹出窗口被拦截而没有看到它——应用程序就不会优雅地失败，而只是坐在那里一直等待。\n\
+  \n为你的应用程序添加一些功能，让它能处理这类情况。也许它可以在几秒钟后弹出一条消息，提示“你需要登录 Facebook 并批准此应用程序才能使用它。”或者你也可以先加载一个不同的\
+  \ Graph 对象，只在用户试图访问需要访问令牌的内容时才要求登录。\n\n既然你的应用已经上线，你可以让别人通过访问 index.html 来查看它。找一些朋友来测试一下吧。\n\
+  \n## 扩展权限\n\n不过，我们目前还不能访问所有内容。在你的浏览器中，尝试加载 https://graph.facebook.com/me/inbox （将访问令牌作为一个参数传入）。你会收到以下消息：\n\
+  \n```\n{\n  \"error\": {\n    \"type\": \"Exception\",\n    \"message\": \"(#612)\
+  \ mailbox requires the read_mailbox extended permission.\"\n  }\n}\n```\n\n就像作为用户，你可以限制其他用户查看你\
+  \ Facebook 个人资料的某些部分一样，你也可以通过 Graph API 限制某些应用访问特定信息。\n\n在这个例子中，我们正以应用的身份尝试访问我的收件箱，但被告知没有权限。那么我们又该如何获得权限呢？\n\
+  \n## 实践时刻——获取扩展权限\n\n要请求超出基本范围的权限，其实非常容易：在调用授权 URL 时，额外传入一个名为 scope 的参数。\n\n将 scope\
+  \ 参数的值设置为你想要请求的扩展权限的名称。例如，要请求访问用户的收件箱，请使用以下 URL：\n\n```\nhttps://graph.facebook.com/oauth/authorize?client_id=<your_application_id>&type=user_agent&redirect_uri=<your_callback_url>&scope=read_mailbox\n\
+  ```\n\n在浏览器中尝试这个 URL，你会看到这个对话框：\n\n![](img/4e826fa36038b86f2087ef8b818d0acf_115_0.png)\n\
+  \n\n## 刚才发生了什么？\n\n一旦用户点击“允许”（Allow），Facebook 就会记住该决定，你的应用将无需再次请求该权限——就像用户首次授权应用查看其基本信息时一样。\n\
+  \n你可以一次请求多个扩展权限；只需用逗号将它们分隔开：\n\n```\nhttps://graph.facebook.com/oauth/authorize?client_id=<your_application_id>&type=user_agent&redirect_uri=<your_callback_url>&scope=read_mailbox,user_photos,user_interests\n\
+  ```\n\n不过，扩展权限不仅仅与你有关。授予 `user_interests` 扩展权限后，应用可以访问用户的兴趣列表（当然，这些兴趣以 Graph 对象列表表示）；此外还有一个\
+  \ `friends_interests` 扩展权限，允许应用访问用户所有好友的兴趣列表。\n\n实际上，大多数扩展权限都有“仅用户”和“好友”两个版本；查看官方文档可了解所有权限的列表：http://developers.facebook.com/docs/authentication/permissions.\n\
+  \n## 动手实践 – 请求扩展权限\n\n要让应用始终请求 `user_interests` 扩展权限，我们只需将 `HTTPRequestor.attemptToAuthenticate()`\
+  \ 修改为：\n\n```\npublic function attemptToAuthenticate():void as shown in the following\
+  \ code:\n{\n    ExternalInterface.call(\"window.open\",\n    \"https://graph.facebook.com/oauth/authorize?\n\
+  \    client_id=<your_application_id>&type=user_agent&\n    redirect_uri=<your_callback_url>\"\
+  \n    + \"&scope=user_interests\",\n    \"facebookLoginWindow\",\n    \"height=370,\
+  \ width=600\");\n}\n```\n\n这样就能正常运行了；它会弹出一个窗口，询问你是否允许应用访问你的个人资料信息。\n\n如果这就是你所需要的——而且以后也只需要这些——那么可以就此打住。但如果你希望让它更灵活一点呢？\n\
+  \n首先，我们让 `attemptToAuthenticate()` 函数接受任意数量的扩展权限作为参数，并将它们以逗号分隔的列表形式追加到 `scope` 参数中：\n\
+  \n```\npublic function attemptToAuthenticate(...permissions):void\n{\n    var scope:String\
+  \ = \"\";\n    if (permissions.length > 0)\n    {\n        scope = \"&scope=\" +\
+  \ permissions.join(\",\");\n    }\n    ExternalInterface.call(\"window.open\",\n\
+  \        \"https://graph.facebook.com/oauth/authorize?client_id=165373950152944&type=user_agent&redirect_uri=http://gamedev.michaeljameswilliams.com/scrap/visualizer/callback.html\"\
+  \n        + scope,\n        \"facebookLoginWindow\",\n        \"height=370, width=600\"\
+  );\n}\n```\n\n![](img/4e826fa36038b86f2087ef8b818d0acf_117_0.png)\n\n> 将 `permissions`\
+  \ 作为函数的唯一参数，意味着我们可以向它传递任意数量的参数，它们会组成一个名为 `permissions` 的数组。（这被称为 `...`（rest）参数，如果你想进一步了解的话。）\n\
+  >\n> 然后，我们可以使用 `Array.join()` 方法将该数组中的所有字符串合并为单个字符串，形式为逗号分隔的列表。\n\n我们必须修改 `IRequestor.as`\
+  \ 中方法的签名，以匹配我们对该函数所做的更改：\n\n```\npackage graph.apis.base\n{\n    import flash.events.IEventDispatcher;\n\
+  \    import graph.GraphRequest;\n\n    public interface IRequestor extends IEventDispatcher\n\
+  \    {\n        function request(a_request:GraphRequest):void;\n        function\
+  \ attemptToAuthenticate(...permissions):void;\n    }\n}\n```\n\n## 让我进去！\n\n现在，我们只需将所需的扩展权限传递给该方法。在\
+  \ `CustomGraphContainerController.as` 中，修改构造函数：\n\n```\npublic function CustomGraphContainerController(a_graphControlContainer:GraphControlContainer)\n\
+  {\n    super(a_graphControlContainer);\n    _requestor = new HTTPRequestor();\n\
+  \    addEventListenersToRequestor();\n    _requestor.attemptToAuthenticate(\"friends_interests\"\
+  ,\n        \"read_mailbox\");\n}\n```\n\n编译 SWF 并上传到你的主机。在浏览器中测试时，它会要求你授予这两项权限：\n\
+  \n![](img/4e826fa36038b86f2087ef8b818d0acf_118_0.png)\n\nVisualizer 项目包含一个 `ExtendedPermissions.as`\
+  \ 类，旨在让这一过程更简单。它为每个扩展权限都定义了一个 `public static const`，并在注释中附带简短的功能说明。\n\n## 动手实践 –\
+  \ 实现 SDK\n\nSDK 源文件已下载并复制到 Visualizer 项目目录中；你可以在 `\\src\\com\\facebook\\` 下找到它们。（有关下载最新版\
+  \ SDK 并将其包含到你自己的项目中的信息，请参阅第 1 章。）\n\n我们将构建另一个 Requestor，不过这次它将由 SDK 驱动，而不是我们自己的\
+  \ `URLRequest`。首先在 `\\src\\apis\\` 中创建一个名为 `\\sdk\\` 的新文件夹。然后，在该文件夹中创建一个名为 `SDKRequestor.as`\
+  \ 的新文件。让它像 `HTTPRequestor` 一样继承 `EventDispatcher` 并实现 `IRequestor`。\n\n以下是该类的基本代码：\n\
+  \n```\npackage graph.apis.sdk\n{\n    import flash.events.EventDispatcher;\n   \
+  \ import flash.events.IEventDispatcher;\n    import graph.apis.base.IRequestor;\n\
+  \    import graph.GraphRequest;\n\n    public class SDKRequestor extends EventDispatcher\n\
+  \        implements IRequestor\n    {\n\n        public function SDKRequestor(target:IEventDispatcher\
+  \ = null)\n        {\n            super(target);\n        }\n\n        public function\
+  \ request(a_request:GraphRequest):void\n        {\n        }\n\n        public function\
+  \ attemptToAuthenticate(...permissions):void\n        {\n        }\n    }\n}\n```\n\
+  \n接下来，导入 `Facebook` 类。这是用于基于 Web 应用的 API：\n\n```\nimport com.facebook.graph.Facebook;\n\
+  ```\n\n在使用这个类之前，需要先对其进行初始化。为此，我们必须向它传递应用的 ID 和一个回调函数。请在 `SDKRequestor()` 构造函数中完成：\n\
+  \n```\npublic function SDKRequestor(target:IEventDispatcher = null)\n{\n    super(target);\n\
+  \n    Facebook.init(\"«your_application_id»\", initComplete);\n}\n```\n\n接下来，我们必须创建\
+  \ `initComplete()` 函数，它会在初始化过程完成后被调用。请将以下代码添加到 `SDKRequestor.as` 中：\n\n```\nprivate\
+  \ function initComplete(success:Object, fail:Object):void\n{\n}\n```\n\n该函数需要这两个参数——`success`\
+  \ 和 `fail`——否则代码将无法编译。如果初始化没有问题，那么 `success` 将是一个 `com.Facebook.graph.data.FacebookSession`\
+  \ 类型的对象；否则，`success` 将为 `null`，而 `fail` 将包含详细信息。让我们用以下代码来处理：\n\n```\nprivate function\
+  \ initComplete(success:Object, fail:Object):void\n{\n    if (success is FacebookSession)\n\
+  \    {\n        //was a success.\n    }\n    else\n    {\n        //was a failure.\
+  \ See contents of 'fail' object.\n    }\n}\n```\n\n你还必须导入 `FacebookSession`，如下所示：\n\
+  \n```\nimport com.facebook.graph.data.FacebookSession;\n```\n\n我们让它准备就绪时派发一个 `COMPLETE`\
+  \ 事件，这样就能知道调用其他方法是安全的：\n\n```\nprivate function initComplete(success:Object, fail:Object):void\n\
+  {\n    if (success is FacebookSession)\n    {\n        dispatchEvent(new Event(Event.COMPLETE))\n\
+  \    }\n    else\n    {\n        //was a failure. See contents of 'fail' object.\n\
+  \    }\n}\n```\n\n为此，你必须导入 `flash.events.Event`，否则无法正常工作。\n\nAPI 初始化完成后，我们可以使用 `Facebook.login()`\
+  \ 方法对用户进行身份验证。对该方法的调用应放在 `attemptToAuthenticate()` 中：\n\n```\npublic function attemptToAuthenticate(...permissions):void\n\
+  {\n    Facebook.login(loginComplete);\n}\n```\n\n这将弹出一个窗口，要求用户登录并允许我们的应用访问其个人资料。如果没有弹出窗口，请检查是否启用了\
+  \ Cookie；否则将无法正常工作。\n\n传给 `Facebook.login()` 的 `loginComplete` 参数是另一个回调函数，其形式与 `initComplete()`\
+  \ 相同，会在用户完成身份验证后被调用。请将其添加到 `SDKRequestor.as` 中：\n\n```\nprivate function loginComplete(success:Object,\
+  \ fail:Object):void\n{\n    if (success is FacebookSession)\n    {\n        //was\
+  \ a success.\n    }\n    else\n    {\n        //was a failure. See contents of 'fail'\
+  \ object.\n    }\n}\n```\n\n\n\n\n\n`requestComplete()` 回调所需的格式几乎与其它回调相同，如下面几行代码所示：\n\
+  \n```\nprivate function requestComplete(result:Object, fail:Object):void\n{\n  \
+  \  if (result != null)\n    {\n        //was a success.\n    }\n    else\n    {\n\
+  \        //was a failure. See contents of 'fail' object.\n    }\n}\n```\n\n将它添加到\
+  \ `SDKRequestor.as` 中。注意这次我们使用的是 `result` 参数而不是 `success` 参数（这其实并不重要，但名字更准确），而且它只是一个\
+  \ `Object`，而不是 `FacebookSession` 的实例。\n\n事实上，`result` 的形式与我们在 `HTTPRequestor.onGraphDataLoadComplete()`\
+  \ 中自己创建的 `decodedJSON` 对象完全相同。这意味着我们可以复制粘贴之前处理它的代码——就这么做：\n\n```\nprivate function\
+  \ requestComplete(result:Object, fail:Object):void\n{\n    if (result != null)\n\
+  \    {\n        var decodedJSON:Object = result;\n        if (decodedJSON.data)\n\
+  \        {\n            var graphList:GraphList = new GraphList();\n           \
+  \ var childGraphObject:GraphObject;\n            for each (var childObject:Object\
+  \ in decodedJSON.data)\n            {\n                childGraphObject = new GraphObject();\n\
+  \                for (var childKey:String in childObject)\n                {\n \
+  \                   childGraphObject[childKey] = childObject[childKey];\n      \
+  \          }\n                graphList.addToList(childGraphObject);\n         \
+  \   }\n            graphList.paging = decodedJSON.paging;\n            graphList.ownerID\
+  \ = originalRequest.objectID;\n            graphList.connectionType = originalRequest.connectionID;\n\
+  \n            dispatchEvent(new RequestEvent(RequestEvent.REQUEST_COMPLETED,\n \
+  \               graphList));\n        }\n        else\n        {\n            var\
+  \ graphObject:GraphObject = new GraphObject();\n            for (var key:String\
+  \ in decodedJSON)\n            {\n                graphObject[key] = decodedJSON[key];\n\
+  \            }\n\n            dispatchEvent(new RequestEvent(RequestEvent.REQUEST_COMPLETED,\n\
+  \                graphObject));\n        }\n    }\n    else\n    {\n        //was\
+  \ a failure. See contents of 'fail' object.\n    }\n}\n```\n\n你还需要以下导入：\n\n```\n\
+  import graph.GraphList;\nimport graph.GraphObject;\nimport events.RequestEvent;\n\
+  ```\n\n这里有一个大问题。我们在代码中引用了 originalRequest，但我们没有任何办法获取原始的 GraphRequest 实例！\n\n解决方案是使用一种叫做柯里化的编程技巧。这允许我们在发出请求时向回调函数传递额外的值。\n\
+  \n> 如果你不明白柯里化是如何工作的，不用担心。我不会在这里解释它，因为它比较高级，而且与 Facebook 关系不大——使用它的代码是特定于 Visualizer\
+  \ 的。关于柯里化的优秀解释，请参阅 Jackson Dunstan 的文章：http://jacksondunstan.com/articles/338。\n\
+  \n![](img/4e826fa36038b86f2087ef8b818d0acf_126_0.png)\n\n将 `request()` 函数改为：\n\n\
+  ```\npublic function request(a_request:GraphRequest):void\n{\n    var graphItem:String\
+  \ = \"/\" + a_request.objectID;\n    if (a_request.connectionID)\n    {\n      \
+  \  graphItem += \"/\" + a_request.connectionID;\n    }\n    Facebook.api(graphItem,\
+  \ function(result:Object, fail:Object):void {\n        requestComplete.call(this,\
+  \ result, fail, a_request); } );\n}\n```\n\n现在，修改 `requestComplete()` 的签名以接受一个额外参数：\n\
+  \n```\nprivate function requestComplete(result:Object, fail:Object, originalRequest:GraphRequest):void\n\
+  ```\n\nSDKRequestor 现在可以进行测试了。切换到 CustomGraphContainerController.as，并将其改为：\n\n```\n\
+  package controllers\n{\n    import flash.events.Event;\n    import graph.apis.base.ExtendedPermissions;\n\
+  \    import graph.apis.http.HTTPRequestor;\n    import graph.apis.sdk.SDKRequestor;\n\
+  \    import graph.GraphRequest;\n    import ui.GraphControlContainer;\n\n    public\
+  \ class CustomGraphContainerController extends GCCcontroller\n    {\n        public\
+  \ function CustomGraphContainerController\n            (a_graphControlContainer:GraphControlContainer)\n\
+  \        {\n            super(a_graphControlContainer);\n            _requestor\
+  \ = new SDKRequestor();\n            addEventListenersToRequestor();\n         \
+  \   //we must wait for the SDK to initialize before we can do\n            //anything\
+  \ else with it\n            _requestor.addEventListener(Event.COMPLETE, onSDKInitialize);\n\
+  \        }\n\n        private function onSDKInitialize(a_event:Event):void\n   \
+  \     {\n            _requestor.attemptToAuthenticate();\n        }\n    }\n}\n\
+  ```\n\n现在我们要做的就是创建一个包含 SWF 的 HTML 页面。我们不能使用到目前为止一直使用的标准 `index.html` 页面，因为 SDK 需要某些\
+  \ JavaScript 函数才能工作。\n\nAdobe 提供了一些 **wrapper** HTML 页面作为我们 SWF 的容器。其中一个页面 `sdkindex.html`\
+  \ 位于 `\\bin\\adobesdk\\` 文件夹中，旁边有一个名为 `FBJSBridge.js` 的 JavaScript 文件。将 `sdkindex.html`\
+  \ 和 `FBJSBridge.js` 都复制到你的 `\\bin\\` 目录中。\n\n在文本编辑器中打开 `sdkindex.html`，并找到以下行：\n\
+  \n```\nembedSWF(\"Visualizer.swf\", \"flashContent\", \"600\", \"300\", \"10.0\"\
+  );\n```\n\n将 `Visualizer.swf` 替换为你的 SWF 名称。\n\n最后，将 `sdkindex.html`、`FBJSBridge.js`\
+  \ 和你的 SWF 上传到你的网络主机上的同一目录，如往常一样，并在网络浏览器中加载 `http://host.com/sdkindex.html`。\n\n\
+  ## What just happened?\n\n你刚刚将官方的 Adobe ActionScript 3 SDK for Facebook Platform\
+  \ 添加到你的应用程序中，作为本章前面构建的类的替代方案。\n\nSDK 的工作方式与我们的类非常相似，只是更加精致；它也使用 `URLRequest` 对象来检索数据，并将结果\
+  \ JSON 解码为原生的 AS3 对象。\n\n为了使 SDK 正常工作，它导入了两个包含 JavaScript 函数的 JS 文件，这些函数实际上驱动了 Facebook\
+  \ 登录和集成。这两个文件称为：`FBJSBridge.js`，包含在项目中；以及 `all.js`，从 Facebook 服务器加载。只要你的网页使用 SWFObject\
+  \ 并导入这些 JavaScript 文件，你就应该能够使用 SDK。\n\n## Have a go hero – requesting extended permissions\
+  \ with the SDK\n\n`Facebook.login()` 方法接受第二个参数：`options`，一个原生的 AS3 `Object`。它用于请求扩展权限；只需提供一个具有字符串属性\
+  \ `perms` 的对象，该属性是权限的逗号分隔列表。\n\n使用它来修改你的 `SDKRequestor.attemptToAuthenticate()`\
+  \ 方法，使其可以接受任意数量的扩展权限作为参数并使用 `Facebook.login()` 方法请求它们。\n\n## Pop Quiz\n\n- 1. What\
+  \ does \"me\" do?\n  - a. Returns the authenticated user's ID\n  - b. Stands in\
+  \ as the authenticated user's ID when used in a Graph URL.\n  - c. It represents\
+  \ the ID of a Facebook user called Mike Eddington\n\n- 2. Why didn't we obtain an\
+  \ access token using AS3 alone?\n  - a. `URLRequest` objects can't load the Facebook\
+  \ login page\n  - b. It's only possible to obtain a token using JavaScript\n  -\
+  \ c. We wanted to present the user with a genuine Facebook login page, for trust\
+  \ reasons\n\n- 3. Why shouldn't you ask for all the extended permissions your application\
+  \ might possibly need at once?\n  - a. It's likely to scare users away\n  - b. Only\
+  \ five permissions can be granted at any one time\n  - c. This is a violation of\
+  \ the Facebook terms of service\n\n## Summary\n\n在本章中，关键词是安全、权限和身份验证。\n我们学习了：\n\n\
+  - Facebook 如何限制我们访问不应该访问的信息\n- 用户如何决定哪些信息可以被其他用户（和应用）看到\n- 应用如何请求查看用户更多信息的权限\n-\
+  \ 用户和应用如何共同使用 Facebook 进行身份验证\n\n## Key takeaways\n\n- 如果你尝试在没有身份验证证明的情况下访问 Graph\
+  \ 对象，Graph API 只会提供关于某人的某些细节。\n- 访问令牌是授权证明，与用户和应用程序相关联。\n- 用户有两个凭证：电子邮件地址和密码。\n\
+  - 应用程序有三个凭证：应用程序 ID（类似于用户名）、应用程序密钥（类似于密码，可以更改）和 API 密钥（用于访问 Graph API）。\n\n\n\n\n\
+  \n## Time for action – displaying the number of objects in a list\n\n打开你的 `Visualizer`\
+  \ 项目。我们将打开一个隐藏选项，使 List Renderer 窗口的标题包含 Graph List 中的项目数量。\n\n- 1. 首先，让我们从 `SDKRequestor`\
+  \ 切回 `HTTPRequestor`。打开 `CustomGraphContainerController.as` 并更改创建新 Requestor 的那一行：\n\
+  \n```\npublic function CustomGraphContainerController(a_graphControlContainer:GraphControlContainer)\n\
+  {\n    super(a_graphControlContainer);\n    _requestor = new HTTPRequestor();\n\
+  \    addEventListenersToRequestor();\n    //we must wait for the Requestor to initialise\
+  \ before we can do anything else with it\n    _requestor.addEventListener(Event.COMPLETE,\
+  \ onRequestorInitialize);\n}\n```\n\n我们将在本章后面再回到 SDK Requestor。\n\n- 2. 有一个小问题：这个类正在等待\
+  \ Requestor 分发 `COMPLETE` 事件，表明它已完成初始化，但我们的 `HTTPRequestor` 并没有这样做。我们可以移除事件监听器，但修改\
+  \ Requestor 会更容易；打开 `HTTPRequestor.as`，并添加一个新函数：\n\n```\npublic function initialize():void\n\
+  {\n    dispatchEvent(new Event(Event.COMPLETE));\n}\n```\n\n- 3. 也修改 `SDKRequestor.as`，将对\
+  \ `Facebook.init()` 的调用从构造函数函数移动到新的函数 `initialize()`：\n\n```\npublic function SDKRequestor(target:IEventDispatcher\
+  \ = null)\n{\n    super(target);\n    //Facebook.init(\"165373950152944\", initComplete);\n\
+  }\n\npublic function initialize():void\n{\n    Facebook.init(\"165373950152944\"\
+  , initComplete);\n}\n```\n\n- 4. 将 initialize() 函数添加到 IRequestor.as 接口中：\n\n```\n\
+  package graph.apis.base\n{\n    import flash.events.IEventDispatcher;\n    import\
+  \ graph.GraphRequest;\n\n    public interface IRequestor extends IEventDispatcher\n\
+  \    {\n        function request(a_request:GraphRequest):void;\n        function\
+  \ attemptToAuthenticate(...permissions):void;\n        function initialize():void;\n\
+  \    }\n}\n```\n\n- 5. 最后，在 CustomGraphContainerController.as 的构造函数中添加对这个新的 initialize()\
+  \ 函数的调用：\n\n```\npublic function CustomGraphContainerController(a_graphControlContainer:GraphControlContainer)\n\
+  {\n    super(a_graphControlContainer);\n    _requestor = new HTTPRequestor();\n\
+  \    addEventListenersToRequestor();\n    //we must wait for the Requestor to initialise\
+  \ before we can do anything else with it\n    _requestor.addEventListener(Event.COMPLETE,\
+  \ onRequestorInitialize);\n    _requestor.initialize();\n}\n```\n\n这会更改项目其他地方的一个设置，进而指示新的\
+  \ Graph List Renderer 在渲染器窗口的标题中显示其 Graph Objects 的总数。你无需理解其工作原理；可以说它使用了适当 GraphList\
+  \ 实例内部的列表数组的 length 属性。\n\n- 8. 重新编译 SWF 并加载相同的连接：\n\n![](img/4e826fa36038b86f2087ef8b818d0acf_135_0.png)\n\
+  \n## What just happened?\n\n我们现在可以看到我个人资料的 feed 连接返回的 Graph List 中有多少个对象：25。但自然地，我加入\
+  \ Facebook 以来发布的动态更新远不止 25 条。发生了什么？进一步探索显示，25 似乎是请求列表时返回项目的默认最大数量。有时你会得到更少的结果，即使相册或\
+  \ feed 中有超过 25 个对象。\n\n对于新闻 feed 来说，这可能没问题，因为只有最近的条目才相关，但对于相册来说却是无用的；自然地，你希望看到所有照片。\n\
+  \n我们如何让 Facebook 给我们更多对象？\n\n## What just happened?\n\n发生了四种可能的情况之一：\n\n- 1. 你的\
+  \ SWF 变得很慢并最终崩溃\n- 2. 没有数据传到 SWF\n- 3. SWF 渲染了一个新的列表，但其中不包含 5,000 个对象\n- 4. SWF\
+  \ 渲染了一个包含 5,000 个对象的新列表\n\n很难预测你会看到哪种结果。以前，Graph API 甚至无法处理一次请求 500 个对象 – 它会超时并返回一个完全空白的页面，甚至没有空的\
+  \ JSON 或错误消息。\n\n最近情况有了巨大改善；似乎 Facebook 会一次性返回尽可能多的对象，直到包括你指定的 `limit` 数量。如果有任何问题，更可能是你的代码处理数据花费时间过长，而不是\
+  \ Facebook 超时。\n\n这意味着，在很多实际情况下，你可以请求列表中大量对象并获得所需的一切。但这很粗糙。让我们来看一个替代方案。\n\n## Paging\n\
+  \n与其一次性请求例如 250 个对象，我们可以让列表分成几个页面，每个页面包含较少数量的对象。\n\n![](img/4e826fa36038b86f2087ef8b818d0acf_139_0.png)\n\
+  \n我们应该能够看到 feed 中第 301 – 325 条帖子。试试看。写作时的结果如下：\n\n```\n{\n  \"data\": [\n\n  ]\n\
+  }\n```\n\n等等，什么？\n\n## What just happened?\n\nGraph API 对可以从用户或页面的流和状态更新中检索的内容有限制，其中包括其\
+  \ feed 连接。官方文档说这些连接仅限于最近 30 天或 50 条帖子，以较大者为准。\n\n这并不是 limit-offset 参数的唯一问题。尝试加载此\
+  \ URL：\n\n```\nhttps://graph.facebook.com/facebook/feed?offset=2&limit=1\n```\n\n\
+  ...你会得到与之前相同的空 JSON – 但加载此 URL：\n\n```\nhttps://graph.facebook.com/facebook/feed?offset=2&limit=4\n\
+  ```\n\n...你会收到恰好一个结果。然而，你可以将 limit 设置为 6 而不会收到任何额外对象！\n\n这毫无意义。越深入研究，越显得不合逻辑。\n\n\
+  这是一个持续存在的问题；如果你想跟上该领域所做的任何更改，请订阅此链接上的官方 Facebook Bug Tracker 线程：\n\n```\nhttp://bugs.developers.facebook.net/show_bug.cgi?id=10576\n\
+  ```\n\n> 当然，很有可能等你读到这本书时，这些问题已经得到解决。那样的话，恭喜你！\n\n尽管如此，我们可以看到 limit 和 offset 对于其他连接是如何工作的。\n\
+  \n## What just happened?\n\n我们现在已将 `limit-offset` 分页功能添加到我们两个 Requestor 中：我们从头构建的\
+  \ HTTP Requestor，以及基于官方 SDK 的 SDK Requestor。\n\n要测试这一点，在 `CustomGraphContainerController.as`\
+  \ 中创建一个新的 `GraphRequest` 实例，在当前 Requestor 初始化后使用：\n\n```\nprivate function onRequestorInitialize(a_event:Event):void\n\
+  {\n    _requestor.attemptToAuthenticate(ExtendedPermissions.READ_STREAM);\n    var\
+  \ testRequest:GraphRequest = new GraphRequest(\"me\", \"likes\");\n    testRequest.limit\
+  \ = 20;\n    testRequest.offset = 50;\n    _requestor.request(testRequest);\n}\n\
+  ```\n\n不要忘记用两个 Requestor 都测试它！\n\n## Date-Based filtering\n\n你是否注意到上面概述的分页系统存在任何潜在问题（除了目前按预期工作不正常之外）？\n\
+  \n对于获取某个特别受欢迎的帖子的评论列表呢？\n\n假设你希望获取帖子的 100 条最新评论，并且需要使用分页来实现。你请求评论 1-25、26-50，然后是\
+  \ 51-75。然而，在这时，其他人发布了一条评论，被添加为新的 #1。旧的 #1 变成新的 #2，旧的 #2 变成新的 #3，依此类推，因此当你请求 76-100\
+  \ 时，你实际上收到了评论 #76 两次 – 几秒钟前它是 #75！\n\n更糟的是，你现在没有新的评论 #1。因此，你可以尝试按相反顺序获取页面：76-100、51-75，然后是\
+  \ 26-50。这次，如果添加了一条新评论作为 #1，旧的 #25 变成 #26。但你现在请求评论 1-25；旧的 #25 没有进入你的列表，所以出现了空白。这甚至还没提到如果删除了一条评论会发生什么。\n\
+  \n现实中，这些并不是大问题；它们只是说明 `limit-offset` 分页方法并不完美。作为替代方案，我们可以根据时间和日期对数据进行分页。\n\n\n\n\
+  \n"
+- "## 深入挖掘图\n\n另外，请注意，“30天或50条帖子”的限制似乎在这里不适用，因为这篇帖子比一年还要老，而此后发布的帖子远不止50条。\n\n不幸的是，这就是使用\
+  \ Graph URL 分页时的情况，至少目前是这样。有时它按预期工作，但有时它会表现出奇怪而神秘的行为，正如我们所见的。同样，很可能等你读到本文时所有问题都已解决——但以防万一没有，在围绕\
+  \ Graph URL 分页设计项目时请谨慎。\n\n**在它能正常工作的情况**下，`until` 参数可以接受多种不同的日期格式：\n\n- 31march2009\n\
+  - May-4th-2010\n- 2010-12-25\n- Yesterday\n- First Monday of September 2009\n- 12\
+  \ days ago\n- -7 weekdays\n\n你也可以指定时间：\n\n- 31march2009 15:10\n- May-4th-2010 noon\n\
+  - 2010-12-25T08:00:00\n- 12 days ago 8pm\n- Today 7:30AM\n\n完整的格式列表可在以下地址找到： http://www.php.net/manual/en/datetime.formats.php。\n\
+  \n> **记住：** URL 不喜欢 + 等字符（甚至空格也不行），所以在将 URL 传递给 URLRequest 之前，请务必对其进行编码。你可以使用 AS3\
+  \ 内置的 `escape()` 方法来实现：\n>\n> ```\n> var urlEncodedString:String = escape(unencodedURL);\n\
+  > ```\n>\n> 有关更多信息，请查看 escape() 的 LiveDocs 页面：\n> http://www.adobe.com/livedocs/flash/9.0/ActionScriptLangRefV3/package.html#escape()。\n\
+  \n因此，`until` 参数让我们可以指定按其过滤数据的最新日期和时间；它还有一个姐妹参数让我们可以指定最早的日期：`since`。它以完全相同的方式工作，并允许完全相同的日期和时间格式。\n\
+  \n> 要请求 Facebook 页面从 2010 年 4 月 21 日（Graph API 发布的日子）开始的帖子，我们将使用此 URL：\n> `https://graph.facebook.com/facebook/photos?since=21april2010T00:00:01&until=21april2010T23:59:59`\n\
+  >\n> 如果当天有超过 25 条帖子，那么我们甚至可以在 `since` 和 `until` 旁边使用 `offset` 和 `limit` 来将该列表拆分为更小的页面。\n\
+  >\n> 该确切的 URL 不会返回任何数据（因为它已超过 30 天），但此示例展示了你必须使用的格式。\n\n好了，让我们将其集成到我们的应用程序中。\n\n\
+  ### 行动时间 – 为 GraphRequest 实例添加 since 和 until\n\n允许我们对 `GraphRequest` 实例使用 `since-until`\
+  \ 的过程几乎与允许我们使用 `limit-offset` 的过程相同。\n\n1. 按以下代码所示向 `GraphRequest.as` 添加 `since`\
+  \ 和 `until` 字符串属性：\n\n   ```\n   package graph\n   {\n       public class GraphRequest\n\
+  \       {\n           public var objectID:String = \"\";\n           public var\
+  \ connectionID:String = \"\";\n           public var limit:int = 25;\n         \
+  \  public var offset:int = 0;\n           public var since:String = \"\";\n    \
+  \       public var until:String = \"\";\n\n           public function GraphRequest(a_objectID:String\
+  \ = \"\",\n               a_connectionID:String = \"\")\n           {\n        \
+  \       this.objectID = a_objectID;\n               this.connectionID = a_connectionID;\n\
+  \           }\n       }\n   }\n   ```\n\n2. 在 `HTTPRequestor.as` 中，根据这些新字符串设置 URLVariables\
+  \ 对象的属性：\n\n   ```\n   public function request(a_request:GraphRequest):void\n  \
+  \ {\n       var loader:URLLoader = new URLLoader();\n       var urlRequest:URLRequest\
+  \ = new URLRequest();\n       var variables:URLVariables = new URLVariables();\n\
+  \n       //We construct a URL from the parameters of the GraphRequest\n       urlRequest.url\
+  \ = \"https://graph.facebook.com/\" +\n           a_request.objectID;\n       if\
+  \ (a_request.connectionID)\n       {\n           //remember, this means a connection\
+  \ (and thus a list)\n           //was requested\n           urlRequest.url += \"\
+  /\" + a_request.connectionID;\n       }\n\n       variables.metadata = 1;\n    \
+  \   variables.limit = a_request.limit;\n       variables.offset = a_request.offset;\n\
+  \       variables.since = a_request.since;\n       variables.until = a_request.until;\n\
+  \       if (accessToken != \"\")\n       {\n           variables.access_token =\
+  \ accessToken;\n       }\n       urlRequest.data = variables;\n\n       //this is\
+  \ used to figure out which GraphRequest created the\n       //loader later\n   \
+  \    _requests[loader] = a_request;\n\n       loader.addEventListener(Event.COMPLETE,\n\
+  \           onGraphDataLoadComplete);\n       loader.addEventListener(IOErrorEvent.IO_ERROR,\
+  \ onIOError);\n       loader.load(urlRequest);\n   }\n   ```\n\n3. 修改 `SDKRequestor.as`\
+  \ 中 `request()` 函数内传递给 `Facebook.api()` 方法的第三个参数：\n\n   ```\n   public function\
+  \ request(a_request:GraphRequest):void\n   {\n       this._showListFilters = true;\n\
+  \n       _requestor = new HTTPRequestor();\n       addEventListenersToRequestor();\n\
+  \       //we must wait for the Requestor to initialise before we can do\n      \
+  \ //anything else with it\n       _requestor.addEventListener(Event.COMPLETE,\n\
+  \           onRequestorInitialize);\n\n       _requestor.initialize();\n   }\n \
+  \  ```\n\n4. 保存、编译并上传你的项目，然后打开任何连接以创建列表渲染器。 （如果结果不多，请删除 `onRequestorInitialize()`\
+  \ 中设置特定 `since-until` 或 `limit-offset` 值的行。）\n\n   ![](img/4e826fa36038b86f2087ef8b818d0acf_150_0.png)\n\
+  \n5. 点击上一个屏幕截图中所示的新过滤栏上的显示按钮。\n\n   ![](img/4e826fa36038b86f2087ef8b818d0acf_151_0.png)\n\
+  \n6. 此新面板允许你输入用于 `since-until` 过滤的日期。\n\n7. 在框中输入任何日期和时间，或使用 C 按钮调出日历控件以代替使用。\n\n\
+  8. 当用户在此面板中点击过滤按钮时，它会调用 `CustomGraphContainerController` 扩展的类中的受保护函数 `listFilterCallback()`，并将输入的日期和列表渲染器所代表的\
+  \ Graph 对象和连接的 ID 传递给它。\n\n这意味着 `CustomGraphContainerController` 继承了该函数，因此我们可以让它使用这些日期为此\
+  \ Graph 对象和连接创建一个新的 `GraphRequest`。\n\n9. 因此，打开 `CustomGraphContainerController.as`\
+  \ 并重写该函数：\n\n   ```\n   override protected function listFilterCallback(a_objectID:String,\
+  \ a_connectionType:String, a_since:String, a_until:String):void\n   {\n       super.listFilterCallback(a_objectID,\
+  \ a_connectionType, a_since, a_until);\n   }\n   ```\n\n继承的函数只是一个存根——它什么也不做。\n\n\
+  10. 现在，使用参数中传递的信息创建并使用一个新的 `GraphRequest`：\n\n    ```\n    override protected function\
+  \ listFilterCallback(a_objectID:String, a_connectionType:String, a_since:String,\
+  \ a_until:String):void\n    {\n        super.listFilterCallback(a_objectID, a_connectionType,\
+  \ a_since, a_until);\n        var filterRequest:GraphRequest = new GraphRequest(a_objectID,\
+  \ a_connectionType);\n        filterRequest.since = a_since;\n        filterRequest.until\
+  \ = a_until;\n        _requestor.request(filterRequest);\n    }\n    ```\n\n11.\
+  \ 编译并上传 SWF，然后通过在过滤面板中输入两个日期并点击过滤按钮来测试更改。\n\n### 发生了什么？\n\n![](img/4e826fa36038b86f2087ef8b818d0acf_152_0.png)\n\
+  \n```\n\"picture\": \"http://photos-c.ak.fbcdn.net/hphotos-ak-snc3/hs185.snc3/19239_307944374458_204603129458_4527791_8102041_s.jpg\"\
+  ,\n\"source\": \"http://sphotos.ak.fbcdn.net/hphotos-ak-snc3/hs185.snc3/19239_307944374458_204603129458_4527791_8102041_n.jpg\"\
+  ,\n\"height\": 666,\n\"width\": 540,\n\"link\": \"http://www.facebook.com/photo.php?pid=4527791&id=204603129458\"\
+  ,\n\"icon\": \"http://static.ak.fbcdn.net/rsrc.php/z2E5Y/hash/8as8iqdm.gif\",\n\"\
+  created_time\": \"2010-02-04T12:40:07+0000\",\n\"updated_time\": \"2010-03-18T16:08:42+0000\"\
+  \n}\n],\n\"paging\": {\n\"previous\": \"https://graph.facebook.com/307932939458/photos?limit=25&since=2010-03-18T16%3A00%3A38%2B0000\"\
+  ,\n\"next\": \"https://graph.facebook.com/307932939458/photos?limit=25&until=2010-02-04T12%3A40%3A06%2B0000\"\
+  \n}\n}\n```\n\n看到那个名为 `paging` 的节点了吗？它显然包含两个 URL，尽管它们似乎在末尾附加了一些乱码。实际上，这不是乱码；它只是\
+  \ URL 编码。以下是解码后的上一个 URL 的样子：\n\n```\nhttps://graph.facebook.com/307932939458/photos?limit=25&since=2010-03-18T16:00:38+0000\n\
+  ```\n\n它显然是一个带时间戳的日期，传递给 `since` 参数，就像我们使用的一样。\n\nFacebook 提供这些作为比本章前面探索的基于 offset/limit\
+  \ 的分页更容易的替代方案。基于时间的分页比基于列表中项目位置的分页更有意义（正如我们之前探索的那样），因为项目创建的日期和时间永远不会改变，而项目在列表中的位置会在向该列表添加新项目时发生变化。\n\
+  \n确实，项目被删除可能会导致问题：如果我们已经下载了该项目，则可能无法检测到它已消失，导致我们的数据不正确。即使我们进行二次检查并将其删除，它也会留下空白，导致曾经包含它的页面比其他页面更短。这些是否是严重问题取决于应用程序。\n\
+  \n\n\n\n\n由于这些分页链接与 JSON 一起打包，因此与基于 `limit` 和 `offset` 参数自行设计系统相比，它们通常更容易实现。在我们的例子中这并不完全正确，因为我们必须从\
+  \ `next` 和 `previous` URL 中提取 `since` 和 `until` 参数，然后将它们传递给 `GraphRequest` 对象——提取集合中最早和最晚的\
+  \ Graph 对象日期并使用它们会更容易。\n\n尽管如此，这在你未来从事的其他项目中可能会派上用场，因此值得一提。\n\n## 一次请求多个 ID\n\n\
+  本章前面我们学习了如何检索特定日期范围内的一系列墙贴。如何获取撰写这些帖子的人的基本信息？\n\n根据迄今为止所见，显而易见的答案是遍历所有人的所有 ID，并为每个\
+  \ ID 请求 User 对象。\n\n这样做是可以的，但有点笨拙，而且我们无法将这些人相互关联。难道不希望我们能一次性在一个列表中全部获取吗？\n\n###\
+  \ 动手时间 – 在 Graph URL 中使用 ids 参数\n\n在浏览器中加载以下 URL：\n\n```\nhttps://graph.facebook.com/?ids=facebook,packtpub\n\
+  {\n  \"facebook\": {\n    \"id\": \"20531316728\",\n    \"name\": \"Facebook\",\n\
+  \    \"picture\": \"http://profile.ak.fbcdn.net/hprofile-ak-snc4/hs624.ash1/27535_20531316728_5553_s.jpg\"\
+  ,\n    \"link\": \"http://www.facebook.com/facebook\",\n    \"category\": \"Technology\"\
+  ,\n    \"username\": \"facebook\",\n    \"founded\": \"February 4, 2004\",\n   \
+  \ \"company_overview\": \"«overview»\",\n    \"mission\": \"Facebook's mission is\
+  \ to give people the power to share and make the world more open and connected.\"\
+  ,\n    \"fan_count\": 12672143\n  },\n  \"packtpub\": {\n    \"id\": \"204603129458\"\
+  ,\n    \"name\": \"Packt Publishing\",\n    \"picture\": \"http://profile.ak.fbcdn.net/hprofile-ak-snc4/hs302.ash1/23274_204603129458_7460_s.jpg\"\
+  ,\n    \"link\": \"http://www.facebook.com/PacktPub\",\n    \"category\": \"Products_other\"\
+  ,\n    \"username\": \"PacktPub\",\n    \"company_overview\": \"«overview»\",\n\
+  \    \"fan_count\": 437\n  }\n}\n```\n\n### 发生了什么？\n\n我们一次性将两个 Page 的 ID 传递给 Graph，使用\
+  \ ids 参数，它返回了一个包含两者基本信息的 JSON。\n\n所以这是一个列表，对吧？\n\n错了！\n\n好吧，根据我们迄今为止使用的定义，它不是一个列表，因为没有\
+  \ data 节点。我称之为复合对象。将其与直接请求 Facebook Page 时得到的结果进行比较：\n\n```\nhttps://graph.facebook.com/facebook\n\
+  {\n  \"id\": \"20531316728\",\n  \"name\": \"Facebook\",\n  \"picture\": \"http://profile.ak.fbcdn.net/hprofile-ak-snc4/hs624.ash1/27535_20531316728_5553_s.jpg\"\
+  ,\n  \"link\": \"http://www.facebook.com/facebook\",\n  \"category\": \"Technology\"\
+  ,\n  \"username\": \"facebook\",\n  \"founded\": \"February 4, 2004\",\n  \"company_overview\"\
+  : \"«overview»\",\n  \"mission\": \"Facebook's mission is to give people the power\
+  \ to share and make the world more open and connected.\",\n  \"fan_count\": 12672338\n\
+  }\n```\n\n你可以看到，当一次性请求多个 Graph 对象时，这些对象会被挤压成单个对象的子节点，每个节点都以其 ID 标记。\n\n自然地，你不必使用\
+  \ Page ID；你可以使用 Graph 中任何对象的 ID，包括相册、照片和用户。更重要的是，你可以混合请求 ID 的类型，因此你可以同时请求一个事件、三个用户和十几张照片，它们会以相同的\
+  \ JSON 返回。\n\n### 试试英雄 – 基于列表结果创建复合对象\n\n重温我们之前看到的内容——查找在你上次生日时在你墙上发帖的人——但这次，请求并渲染一个包含所有这些\
+  \ User 对象的复合对象。\n\n这是一个很大的挑战：最好的做法不是在 Visualizer 本身内部完成，而是在一个全新的项目内部完成。你能从头创建一个可以做到这一点的项目吗？自然地，你可以重用\
+  \ Visualizer 中的任何有用类，比如 Requestors 和 ExtendedPermissions 类。\n\n## 总结\n\n分页意味着将长数据集合拆分为多个较小的组件，称为页面。不要将这种类型的页面与\
+  \ Facebook 页面对象或网页混淆。\n\n- 页面中的记录数可以使用名为 `limit` 的参数设置。`limit` 的默认值是 25。\n- `offset`\
+  \ 参数可用于指定应返回的集合中的第一个对象。`offset` 的默认值是 0。\n- 页面可以通过组合 `offset` 和 `limit` 参数来定义——尽管在撰写本文时\
+  \ Graph API 在这一点上有点不稳定。\n- `since` 和 `until` 参数将 Graph 列表过滤到指定的日期和时间范围。\n- 日期和时间可以用多种格式书写；请参阅\
+  \ http://www.php.net/manual/en/datetime.formats.php 获取完整列表。\n- 四个参数——`limit`、`offset`、`since`\
+  \ 和 `until`——可以同时一起使用。\n- 要通过 Graph URL 指定这些参数，只需将它们作为 URL 参数传递，或使用 AS3 `URLVariables`\
+  \ 类的实例。\n- 要通过 SDK 指定这些参数，将它们作为对象的属性包含在内，作为传递给 `Facebook.api()` 函数的第三个参数。\n- 作为\
+  \ JSON 对象返回的 Graph 列表有一个名为 `paging` 的属性，其中包含下一页和上一页数据的 URL。这些 URL 使用 `since-until`\
+  \ 分页，而不是 `limit-offset`。\n- 可以使用以下格式的 Graph URL 获得 **复合对象**：`https://graph.facebook.com/?ids=id1,id2,id3,...`。它包含多个对象，其\
+  \ JSON 格式与 Graph 列表类似，但没有 `data` 节点。\n\n我们已经学习了如何深入挖掘 Graph，揭示我们已知其 ID 的 Graph 对象和连接的更多信息，但如果要根据其内容而不是其\
+  \ ID 来查找 Graph 对象呢？在下一章中，我们将学习如何搜索 Graph 来做到这一点。\n\n## 快速测验\n\n1. 为什么 Facebook 默认将\
+  \ Graph 列表拆分为页面，而不是在每次请求时一次性提供所有数据？\n   a. Facebook 仅在数据银行中保留最近一周的信息\n   b. 这是在访问速度和提供的信息量之间的一种折中\n\
+  \   c. 隐私问题\n2. 参数 `limit`、`offset`、`since` 和 `until` 有什么作用？\n   a. 允许你缩小从集合返回的结果范围\n\
+  \   b. 在特定时间段内限制用户对 Graph 对象的访问\n3. 在分页时，为什么使用 Graph 列表 JSON 对象中的“next”和“previous”URL\
+  \ 比使用 `limit` 和 `offset` 构建自己的 URL 更好？\n   a. 基于日期的分页可以更精细地控制要请求的帖子\n   b. 基于日期的分页意味着\
+  \ Graph 对象不会在页面之间遗漏\n   c. 基于日期的分页意味着如果在分页期间创建或删除 Graph 对象，也不会遗漏\n\n## 动手时间 – 检查快速搜索结果\n\
+  \n在浏览器中登录 Facebook，在页面顶部的搜索栏中输入“test”，看看下拉列表中出现了什么：\n\n![](img/4e826fa36038b86f2087ef8b818d0acf_162_0.png)\n\
+  \n现在试试一个名字：\n\n![](img/4e826fa36038b86f2087ef8b818d0acf_163_0.png)\n\n### 发生了什么？\n\
+  \nFacebook 对名字使用智能搜索；注意当我输入“bob”时，它找到了包含“Bob”、“Rob”和“Robert”的结果。同样，如果你搜索“Jim”，它会找到“James”。\n\
+  \n（这可能会让人困惑；我花了很长时间挠头试图弄明白为什么搜索“Liz”会列出我的朋友 Beth——她的名字并不是 Elizabeth 的简称！）\n\n这不是通配符搜索。搜索“obert”不会找到名为“Robert”的人。\n\
+  \n从我的结果可以看出，搜索结果包括群组、应用程序和游戏，与其他用户混合在一起。如果我选择了不同的搜索词，搜索也可能找到事件和页面。\n\n\n\n\n"
+- "# Search Me\n\n除了智能名称识别搜索外，Facebook 还使用智能排序来排列列表，排名结果以便首先向你展示你最有可能查找的内容：你点赞的页面和群组排名更高，你在宾客名单上的活动排名也更高，以及你添加的应用程序和游戏排名也更高。Facebook\
+  \ 还会检查一些事情来判断你可能在寻找哪些人：\n\n- ◆ 你是否已经是该人的朋友？\n- ◆ 你们是否有很多共同朋友？\n- ◆ 你们是否生活在同一地区？\n\
+  - ◆ 你们是否在同一网络中（大学、学校、工作场所）？\n\n这样，大多数情况下，你会在短的下拉结果列表中找到你正在寻找的人或对象。但如果没有，你就需要去进行完整搜索。\n\
+  \n## Time for action – Using the Full Search results\n\n在搜索框中输入查询，然后点击放大镜图标或下拉列表底部的“查看更多结果”项目即可进入完整搜索页面：\n\
+  \n![](img/4e826fa36038b86f2087ef8b818d0acf_164_0.png)\n\n下一张截图中显示了完整页面：\n\n![](img/4e826fa36038b86f2087ef8b818d0acf_165_0.png)\n\
+  \n（另外，请注意，这些列表允许你翻页查看结果。）\n\n第四，左侧的选项包括一些在下拉列表中不会出现的对象类型：\n\n- ♦ Web results (powered\
+  \ by Bing) – 本质上是 Facebook 网站内部的搜索引擎前端\n- ♦ Posts by friends – 墙帖、笔记、链接、视频、照片和状态\n\
+  - ♦ Posts by everyone – 仅墙帖、笔记、链接和状态\n\n最后，你可以更改这些搜索的许多子选项：按地区或位置缩小帖子范围；按学校或工作场所筛选人员；查找今天、明天、本周或本月发生的活动，等等。\n\
+  \n## What just happened?\n\n这一切都相当直接。这里唯一令人困惑的一点是：为什么完整搜索的顶部结果与快速搜索的不匹配？\n\n（我搜索了“Liz”，快速搜索将我的朋友\
+  \ Beth 列在首位，我的朋友 Elizabeth 列在第二位；当我进行完整搜索时，在“全部结果”标签中两者都没有出现，只有 Beth 出现在“人物”结果中——Elizabeth\
+  \ 完全不见了！）\n\n当然，不同页面使用不同的搜索算法并不令人意外，但它们差异如此之大就说不通了。由于我们目前只是在查看网站本身，这并不重要——不过，当我们通过\
+  \ Graph API 进行搜索时，我们会遇到类似的问题，而这正是我们接下来要做的。\n\n## Searching with a Graph URL\n\n\
+  你知道它要来了。\n\n我们将首先搜索公众可见的 Graph 对象。\n\n## Time for action – searching without authorization\n\
+  \n基本的搜索查询 Graph URL 为：\n\n```\nhttps://graph.facebook.com/search?type=«type»&q=«query»\n\
+  ```\n\ntype 参数让你可以选择一个选项（与完整搜索左侧相同），而 q（查询）指定搜索词。\n\n## 教材简析\n\n《祖父的园子》是统编版语文五年级下册第一单元的一篇课文，节选自萧红的自传体小说《呼兰河传》。课文以第一人称叙述，描写了作者童年时代在祖父园子里的快乐生活，展现了祖父的慈爱与宽容，表达了作者对童年生活的怀念和对自由的向往。\n\
+  \n## 学情分析\n\n五年级学生已具备一定的阅读理解能力，能够初步把握文章主要内容，体会文章表达的思想感情。但对作者借助具体事物表达情感、运用拟人、排比等修辞手法表情达意的方法还缺乏深入的体会，需要教师引导品读感悟。\n\
+  \n## 教学目标\n\n- 1. 认识“蚱、啃”等生字，会写“蝴、蝶”等生字，正确读写“蝴蝶、蜻蜓、蚂蚱”等词语。\n- 2. 正确、流利、有感情地朗读课文，了解课文内容。\n\
+  - 3. 抓住重点语句，体会作者在园子里的快乐与自由，感受祖父的慈爱。\n- 4. 学习作者留心观察、借助具体事物表达情感的写作方法。\n\n## 教学重难点\n\
+  \n重点：抓住重点语句，体会作者在园子里的快乐与自由，感受祖父的慈爱。\n难点：学习作者留心观察、借助具体事物表达情感的写作方法。\n\n## Differences\n\
+  \n然而，即使经过身份验证，通过 Graph URL 搜索获得的结果也不总是与完整搜索中看到的结果匹配。当查找人员时尤其如此；默认情况下，所有应用都可以访问经过身份验证用户的朋友姓名和\
+  \ ID，但其他信息可能被隐藏。\n\n例如，通过在用户搜索中输入电子邮件地址作为查询，我们可以找到拥有该确切电子邮件地址的任何人——除非他们在隐私设置中注明不希望该信息对其他应用可用。（另请参阅“帐户\
+  \ | 隐私设置 | 应用和网站 | 通过你的朋友可访问的信息”中的选项，如第三章所述。）\n\n有时这会完全排除特定结果；有时会使相同的结果出现，但顺序不同。记住这一点进行测试：如果通过你的应用搜索获得的结果与通过网站搜索获得的结果不同，这并不一定意味着你的应用存在错误。\n\
+  \n## Restrictions\n\n与完整搜索相比，通过 Graph URL 搜索时可用的子选项非常有限。我们无法按位置或学校筛选用户，按类型筛选群组，或按日期筛选活动（即使使用\
+  \ since/until 分页）。\n\n我们也不能将帖子限制为特定语言，这使得它们比可能的情况要没用得多（正如我们在搜索“Packt”，一个常见的德语词时所看到的）。但我们可以做类似的事情。\n\
+  \n有一个名为 locale 的参数，它接受诸如“en_US”（美国英语）和“fr_FR”（法语）之类的语言。这可以用两种方式使用。\n\n首先，我们可以用它来转换接收到的信息。例如，这里是\
+  \ Facebook CTO Bret Taylor 的用户对象：\n\n```\nhttps://graph.facebook.com/btaylor\n{\n\
+  \  \"id\": \"220439\",\n  \"name\": \"Bret Taylor\",\n  \"first_name\": \"Bret\"\
+  ,\n  \"last_name\": \"Taylor\",\n  \"link\": \"http://www.facebook.com/btaylor\"\
+  ,\n  \"gender\": \"male\",\n  \"locale\": \"en_US\"\n}\n```\n\n在下一个代码片段中，我们将用户对象的\
+  \ locale 设置为法语：\n\n```\nhttps://graph.facebook.com/btaylor?locale=fr_FR\n{\n  \"\
+  id\": \"220439\",\n  \"name\": \"Bret Taylor\",\n  \"first_name\": \"Bret\",\n \
+  \ \"last_name\": \"Taylor\",\n  \"link\": \"http://www.facebook.com/btaylor\",\n\
+  \  \"gender\": \"homme\",\n  \"locale\": \"en_US\"\n}\n```\n\n几乎没有什么变化——除了 gender\
+  \ 的值，从 male 变成了 homme。这在你需要以不同语言提供基本信息，而无需聘请翻译时很有用。\n\n其次，请注意 Bret 的 locale 设置为\
+  \ en_US。所有用户都有一个 locale；它可以在“帐户 | 语言”中设置，并定义你查看 Facebook 网站的语言。我们可以使用以下 Graph URL\
+  \ 将帖子搜索结果过滤为仅显示具有特定 locale 的用户的帖子：\n\n```\nhttps://graph.facebook.com/search?type=post&q=test&locale=fr_FR\n\
+  ```\n\n这与按指定语言搜索帖子并不完全相同——因此我们无法消除所有使用“Packt”作为德语句子一部分的结果——但很接近。而这正是我们可以在完整搜索中的帖子搜索中设置的子选项。\n\
+  \n完整的本地化列表可在 http://www.facebook.com/translations/FacebookLocales.xml 获取。\n\n示例如下：\n\
+  \n```\n<?xml version='1.0'?>\n<locales>\n  <locale>\n    <englishName>Catalan</englishName>\n\
+  \    <codes>\n      <code>\n        <standard>\n          <name>FB</name>\n    \
+  \      <representation>ca_ES</representation>\n        </standard>\n      </code>\n\
+  \    </codes>\n  </locale>\n</locales>\n```\n\n其中有一些奇怪的选择，比如英语（倒着写），所以请自行查看。\n\n\
+  ## Time for action – implementing a Search window in the Visualizer\n\n好吧，现在我们知道了\
+  \ Graph URL 搜索可以做什么，让我们在应用中使用它。\n\nVisualizer 项目包含一个用于搜索 Graph 的窗口，其中包含 UI 元素。它是隐藏的，但我们可以以与在列表渲染器上启用过滤面板相同的方式启用它。\n\
+  \n加载 Visualizer 项目并打开 CustomGraphContainerController.as。在构造函数函数中，将 _canShowSearchUI\
+  \ 属性（继承自 CustomGraphContainerController 扩展的类）设置为 true：\n\n```\npublic function CustomGraphContainerController\n\
+  (a_graphControlContainer:GraphControlContainer)\n{\n    super(a_graphControlContainer);\n\
+  \    this._showListCounts = true;\n    this._showListFilters = true;\n    this._canShowSearchUI\
+  \ = true;\n    _requestor = new HTTPRequestor();\n    addEventListenersToRequestor();\n\
+  \    //we must wait for the Requestor to initialise before we can do\n    //anything\
+  \ else with it\n    _requestor.addEventListener(Event.COMPLETE, onRequestorInitialize);\n\
+  \    _requestor.initialize();\n}\n```\n\n编译项目，将 SWF 上传到你的网络主机，并使用常规 URL 在浏览器中加载它。结果显示在下一张截图中：\n\
+  \n![](img/4e826fa36038b86f2087ef8b818d0acf_177_0.png)\n\n\n\n\n可以看到，左上角新增了一个**搜索**按钮，点击后主舞台区域会显示新的**搜索**窗口。你会注意到前六个单选按钮对应`type`参数的允许值；暂时不用关心**我的动态**或**好友的帖子**。\n\
+  \n当点击窗口内的**搜索**按钮时，它会调用`CustomGraphContainerController.as`所继承的类中的`search()`函数，并向其传递三个值：\n\
+  \n- 查询\n- 类型\n- 用户ID（其中包含下方文本框中的值——同样，我们稍后会再讨论）\n\n这个函数完全是空的，所以目前点击该按钮不会执行任何操作；我们需要重写`search()`并让它正常工作！\n\
+  \n1. 在`CustomGraphContainerController.as`中，添加以下函数：\n\n```\noverride public function\
+  \ search(a_query:String = \"\", a_type:String = \"\", a_userID:String = \"\"):void\n\
+  {\n\n}\n```\n\n2. 现在添加实际的搜索代码。我们从HTTP Requestor开始。这个过程与直接请求Graph Object或Graph List非常相似——事实上，它甚至更简单。打开`HTTPRequestor.as`并创建一个新函数，如下所示：\n\
+  \n```\npublic function search(a_query:String = \"\", a_type:String = \"\"):void\n\
+  {\n    var loader:URLLoader = new URLLoader();\n    var urlRequest:URLRequest =\
+  \ new URLRequest();\n    var variables:URLVariables = new URLVariables();\n\n  \
+  \  urlRequest.url = \"https://graph.facebook.com/search\";\n\n    variables.metadata\
+  \ = 1;\n    if (accessToken != \"\")\n    {\n        variables.access_token = accessToken;\n\
+  \    }\n    variables.q = a_query;    //not variables.query!\n    variables.type\
+  \ = a_type;\n```\n\n### 刚才发生了什么？\n\n我们的Visualizer现在可以根据你输入的查询条件搜索Graph对象。由于结果以Graph\
+  \ List的形式返回，我们的应用程序将获取这些对象的所有信息——这也意味着我们也能看到它们之间的连接。\n\n### 动手实践——通过SDK进行搜索\n\n\
+  通过SDK实现搜索也很容易。先打开SDKRequestor.as，并添加一个名为search()的新函数，就像我们对HTTPRequestor所做的那样：\n\n\
+  ```\npublic function search(a_query:String = \"\", a_type:String = \"\"):void\n\
+  {\n}\n```\n\n与请求时一样，我们向Facebook.api()方法传递三个参数：\n\n1. /search（一个包含Graph URL关键部分的字符串）\n\
+  2. 回调函数的引用\n3. 一个包含参数（q和type——记住不要使用query作为参数名！）的对象\n\n因此，将以下代码中的调用添加到你的search()函数中：\n\
+  \n```\npublic function search(a_query:String = \"\", a_type:String = \"\"):void\n\
+  {\n    Facebook.api(\n        \"/search\",\n        searchComplete,\n        { metadata:\
+  \ 1, q:a_query, type:a_type }\n    );\n}\n```\n\n这次不需要使用柯里化（currying），因为我们无需保持对原始GraphRequest对象的引用。\n\
+  \nsearch()函数就到此为止。不过，我们还需要编写数据加载完成后的回调函数，因此创建一个新的函数searchComplete()，如下列代码所示：\n\n\
+  ```\nprivate function searchComplete(success:Object, fail:Object):void\n{\n}\n```\n\
+  \n与其他SDK回调一样，此函数必须接受两个参数：result和fail。\n\n由于搜索结果以Graph List的形式返回，我们可以复用requestComplete()函数中的大部分代码。如下列代码所示修改searchComplete()：\n\
+  \n```\nprivate function searchComplete(result:Object, fail:Object):void\n{\n   \
+  \ if (result != null)\n    {\n        var decodedJSON:Object = result;\n       \
+  \ var graphList:GraphList = new GraphList();\n        var childGraphObject:GraphObject;\n\
+  \        for each (var childObject:Object in decodedJSON)\n        {\n         \
+  \   childGraphObject = new GraphObject();\n            for (var childKey:String\
+  \ in childObject)\n            {\n                childGraphObject[childKey] = childObject[childKey];\n\
+  \            }\n            graphList.addToList(childGraphObject);\n        }\n\
+  \        graphList.paging = decodedJSON.paging;\n\n        dispatchEvent(new RequestEvent(RequestEvent.REQUEST_COMPLETED,\
+  \ graphList));\n    }\n    else\n    {\n        //was a failure. See contents of\
+  \ 'fail' object.\n    }\n}\n```\n\n与HTTP Requestor一样，如果你想回顾这一切是如何工作的，请查看第2章和第3章。\n\
+  \n现在两个Requestor都有了search()方法；我们可以将该方法添加到IRequestor接口中。如下修改IRequestor：\n\n```\npackage\
+  \ graph.apis.base\n{\n    import flash.events.IEventDispatcher;\n    import graph.GraphRequest;\n\
+  \n    public interface IRequestor extends IEventDispatcher\n    {\n        function\
+  \ request(a_request:GraphRequest):void;\n        function attemptToAuthenticate(...permissions):void;\n\
+  \        function initialize():void;\n        function search(a_query:String = \"\
+  \", a_type:String = \"\"):void;\n    }\n}\n```\n\n这意味着我们不再需要在CustomGraphContainerController.search()中将_requestor强制转换为HTTPRequestor，因此打开CustomGraphContainerController.as并修改该方法：\n\
+  \n```\noverride public function search(a_query:String = \"\", a_type:String = \"\
+  \", a_userID:String = \"\"):void\n{\n    _requestor.search(a_query, a_type);\n}\n\
+  ```\n\n在测试之前，剩下要做的就是修改构造函数，使_requestor创建为SDKRequestor而不是HTTPRequestor。具体操作如下：\n\n\
+  ```\npublic function CustomGraphContainerController(a_graphControlContainer:GraphControlContainer)\n\
+  {\n    super(a_graphControlContainer);\n    this._showListCounts = true;\n    this._showListFilters\
+  \ = true;\n    this._canShowSearchUI = true;\n\n    _requestor = new SDKRequestor();\n\
+  \    addEventListenersToRequestor();\n    //we must wait for the Requestor to initialise\
+  \ before we can do anything else with it\n    _requestor.addEventListener(Event.COMPLETE,\
+  \ onRequestorInitialize);\n\n    _requestor.initialize();\n}\n```\n\n### 搜索一下\n\n\
+  保存、编译并上传SWF文件。在浏览器中加载它——记得使用sdkindex.html。\n\n![](img/4e826fa36038b86f2087ef8b818d0acf_184_0.png)\n\
+  \n太好了，成功了！\n\n### 刚才发生了什么？\n\n我们刚刚添加了与之前相同的搜索功能，但这次是通过SDK实现的。请记住，这意味着如果用户已通过身份验证，访问令牌会被自动使用。\n\
+  \n### 挑战自我——设置语言区域\n\n现在我们可以搜索帖子了，那么将搜索结果限制为具有指定语言区域的用户发布的帖子怎么样？\n\n你可以在search()方法中硬编码要使用的区域设置，或者（如果你对操作XML很熟悉）可以让你的项目从\
+  \ http://www.facebook.com/translations/FacebookLocales.xml 中随机选择一个区域设置。\n\n## 搜索动态和主页帖子\n\
+  \n与Facebook的完整搜索相比，Graph URL搜索可能有所限制，但有两种类型的搜索只能通过Graph API完成：\n\n- 在你的动态中搜索特定项目\n\
+  - 搜索特定好友发布的内容\n\n### 动手实践——搜索你的动态\n\n你的动态是你登录Facebook网站时看到的列表；包含你的好友（以及你订阅的其他Graph网站，例如你“赞”过的页面）发布的全部状态更新、链接、视频和照片。\n\
+  \n我们已经知道，可以通过个人资料的home连接访问该动态：\n\n```\nhttps://graph.facebook.com/me/home?access_token=«access_token»\n\
+  ```\n\n正如你所料，它会返回一个Graph List。\n\n我们可以通过为q参数指定值来在此动态中搜索：\n\n```\nhttps://graph.facebook.com/me/home?q=test&access_token=«access_token»\n\
+  ```\n\n```\n\"data\": [\n  {\n    \"id\": \"151673724649_415202504649\",\n    \"\
+  from\": {\n      \"name\": \"Activetuts\",\n      \"category\": \"Products_other\"\
+  ,\n      \"id\": \"151673724649\"\n    },\n    \"message\": \"Test Your Observation\
+  \ Skills With an AS3 Difference Game \\u2013 Active Premium\",\n    \"link\": \"\
+  http://feedproxy.google.com/~r/Flashtuts/~3/i8-bZF-Mvhc/\",\n    \"description\"\
+  : \"Today, we have another Active Premium tutorial exclusively available to Premium\
+  \ members. If you want to take your ActionScript skills to the next level, then\
+  \ we have an awesome tutorial for you, courtesy of Stephan Meesters\",\n    \"type\"\
+  : \"link\",\n    \"created_time\": \"2010-07-28T11:07:12+0000\",\n    \"updated_time\"\
+  : \"2010-07-28T11:07:12+0000\"\n  }\n],\n\"paging\": {\n```\n\n\n\n\n```\n\"previous\"\
+  : \"https://graph.facebook.com/61300894/home?q=test&access_token=«access_token»&limit=25&since=2010-07-28T11%3A07%3A12%2B0000\"\
+  ,\n\"next\": \"https://graph.facebook.com/61300894/home?q=test&access_token=«access_token»&limit=25&until=2010-07-20T15%3A01%3A01%2B0000\"\
+  \n}\n```\n\n## 发生了什么？\n\n或许这更应该被视为一种过滤器，而非搜索。无论如何，最终结果都是来自你新闻 feed 中包含指定查询的帖子的 Graph\
+  \ 列表。\n\n搜索词不必出现在帖子的实际文本中；假设我朋友 Bill 的生日到了。如果我加载：\n\n```\nhttps://graph.facebook.com/me/home?q=Bill&access_token=«access_token»\n\
+  ```\n\n那么我会看到：\n\n- 我在 Bill 墙上发布的帖子，写着“Happy Birthday, Bill!”（因为帖子中包含“Bill”这个词）\n\
+  - 我朋友 Bob 在 Bill 墙上发布的帖子，写着“Happy Birthday!”（因为接收帖子的对象叫“Bill”——这意味着我的帖子出现在这些结果中有两个原因）\n\
+  - Bill 发布的一条帖子写着“Thanks for the birthday wishes, everyone!”（因为他的名字是 Bill）\n\n不幸的是，没有办法缩小范围并指定你希望匹配的位置——至少，使用\
+  \ Graph Search URL 是做不到的。\n\n你可能在想，我们能否用另一个人的 User ID 代替“me”，从而看到他们的新闻 feed 中会出现哪些帖子。我们不能这样做，出于隐私原因，但我们可以做类似的事情。\n\
+  \n## 行动时间 – 搜索朋友的墙帖\n\n令人困惑的是，你的新闻 feed 的 Graph URL（登录后可见）是：\n\n```\nhttps://graph.facebook.com/me/home?access_token=«access_token»\n\
+  ```\n\n通往你墙的链接是：\n\n```\nhttps://graph.facebook.com/me/feed?access_token=«access_token»\n\
+  ```\n\n这只是需要记忆的东西，我恐怕。\n\n```\n\"from\": {\n    \"name\": \"JohnSmith\",\n    \"\
+  id\": \"«redacted»\"\n},\n\"to\": {\n    \"data\": [\n        {\n            \"\
+  name\": \"Bill Smith\",\n            \"id\": \"«redacted»\"\n        }\n    ]\n\
+  },\n\"message\": \"happy birthday bill\",\n\"type\": \"status\",\n],\n\"paging\"\
+  : {\n    \"previous\": \"https://graph.facebook.com/502630189/feed?&access_token=«access_token»&limit=25&since=2010-08-01T12%3A09%3A34%2B0000\"\
+  ,\n    \"next\": \"https://graph.facebook.com/502630189/feed?&access_token=«access_token»&limit=25&until=2010-07-31T08%3A59%3A06%2B0000\"\
+  \n}\n```\n\n当我们在同一连接中搜索“birthday”一词时，我们会看到以下输出：\n\n```\nhttps://graph.facebook.com/BillSmith/feed\
+  \ access_token=«access_token»&q=birthday\n{\n    \"data\": [\n        {\n      \
+  \      \"id\": \"«redacted»\",\n            \"from\": {\n                \"name\"\
+  : \"Bill Smith\",\n                \"id\": \"«redacted»\",\n            },\n   \
+  \         \"to\": {\n                \"data\": [\n                    {\n      \
+  \                  \"name\": \"JerryJohnson\",\n                        \"id\":\
+  \ \"«redacted»\",\n                    }\n                ]\n            }\n```\n\
+  \n我的新闻 Feed 搜索使用 /me/home，而朋友的帖子搜索使用 /«username»/feed，其中 «username» 是输入到文本框中的值。\n\
+  \n让我们先将我的新闻 Feed 搜索添加到两个 Requestors。唯一需要更改的是请求的 URL；我们不再使用 /search，而是使用 /me/home。搜索窗口在选中我的新闻\
+  \ Feed 时返回 “home” 作为 type 的值，因此按以下代码所示修改 HTTPRequestor.as 中的 search() 方法：\n\n```\n\
+  public function search(a_query:String = \"\", a_type:String = \"\"):void\n{\n  \
+  \  var loader:URLLoader = new URLLoader();\n    var urlRequest:URLRequest = new\
+  \ URLRequest();\n    var variables:URLVariables = new URLVariables();\n\n    if\
+  \ (a_type == \"home\")\n    {\n        urlRequest.url = \"https://graph.facebook.com/me/home\"\
+  ;\n    }\n    else\n    {\n        urlRequest.url = \"https://graph.facebook.com/search\"\
+  ;\n    }\n\n    variables.metadata = 1;\n    if (accessToken != \"\")\n    {\n \
+  \       variables.access_token = accessToken;\n    }\n    variables.q = a_query;\
+  \      //not variables.query!\n    variables.type = a_type;\n    urlRequest.data\
+  \ = variables;\n\n    loader.addEventListener(Event.COMPLETE, onGraphSearchComplete);\n\
+  \    loader.addEventListener(IOErrorEvent.IO_ERROR, onIOError);\n    loader.load(urlRequest);\n\
+  }\n```\n\n同样，对 SDKRequestor.as 中的 search() 方法做以下更改：\n\n```\npublic function search(a_query:String\
+  \ = \"\", a_type:String = \"\"):void\n{\n    var urlStub:String;\n    if (a_type\
+  \ == \"home\")\n    {\n        urlStub = \"/me/home\";\n    }\n    else\n    {\n\
+  \        urlStub = \"/search\";\n```\n\n```\n}\nFacebook.api(\n    urlStub,\n  \
+  \  searchComplete,\n    { metadata: 1, q:a_query, type:a_type }\n);\n}\n```\n\n\
+  我们不需要更改其他任何内容，因为这些搜索仍然会返回一个 Graph 列表。\n试试看：\n\n![](img/4e826fa36038b86f2087ef8b818d0acf_191_0.png)\n\
+  \n成功。添加朋友的帖子搜索会稍微棘手一些，但也没多少。首先我们必须允许 Requestors 的 search() 函数接受另一个参数：User ID。\n\n\
+  打开 IRequester.as 并向函数签名添加此参数：\n\n```\npackage graph.apis.base\n{\n    import flash.events.IEventDispatcher;\n\
+  \    import graph.GraphRequest;\n\n    public interface IRequestor extends IEventDispatcher\n\
+  \    {\n        function request(a_request:GraphRequest):void;\n        function\
+  \ attemptToAuthenticate(...permissions):void;\n```\n\n## 搜索我\n\n仅此而已。按下一张截图所示进行测试：\n\
+  \n![](img/4e826fa36038b86f2087ef8b818d0acf_194_0.png)\n\n很酷。\n\n## 发生了什么？\n\n你已在应用程序中构建了两种额外的搜索功能：\n\
+  \n- ♦ 搜索你的新闻 feed 中的帖子\n- ♦ 搜索特定朋友的帖子\n\n由于你的新闻 feed 由朋友（以及你订阅的其他 Graph 对象）的帖子组成，第一种帖子本质上与完整搜索中存在的“朋友的帖子”选项相同，但该选项在搜索\
+  \ URL 中缺失。\n\n通过 Facebook 网站无法完成按特定朋友发布的帖子进行搜索。恭喜！你的应用程序现在比 Facebook 具有更多功能。\n\n\
+  - 没有 access token，某些类型的搜索（如 `user`）无法执行\n- 使用 access token 时，搜索结果会根据授权用户进行定制：例如，如果人们住在附近，则在搜索中排名更高\n\
+  - 某些搜索类型需要在返回任何结果之前授予一定的扩展权限——有关更多详细信息，请参阅 `http://developers.facebook.com/docs/authentication/permissions`\n\
+  - 你可以使用 locale URL 参数设置 JSON 对象返回的某些属性的语言环境：`https://graph.facebook.com/<id>?locale=fr_FR`\n\
+  - 你还可以将帖子搜索结果过滤为仅显示使用特定语言环境的人发布的帖子：`https://graph.facebook.com/search?type=post&q=<query>&locale=fr_FR`\n\
+  - 完整的语言环境列表可在 `http://facebook.com/translations/FacebookLocales.xml` 获取\n- 你可以使用此\
+  \ Graph URL 过滤你的新闻 feed 条目：`https://graph.facebook.com/me/home?access_token=<access_token>&q=<query>`\n\
+  - 你可以使用此 Graph URL 过滤给定朋友发布的所有内容：`https://graph.facebook.com/<username>/feed?access_token=<access_token>&q=<query>`\n\
+  \n## 测验\n\n- 1. 如果你从 Graph URL 搜索获得的结果与网站搜索的结果不匹配，可能出了什么问题？\n  a. 向 Graph URL 传递了不正确的参数\n\
+  \  b. 使用了不正确的 Graph URL\n  c. 用户的隐私设置不允许应用程序访问其数据\n  d. 以上任何一种都有可能\n- 2. `https://graph.facebook.com/<username>/feed?q=<query>`\
+  \ 的结果和 `https://graph.facebook.com/<username>/feed` 的结果有什么奇怪之处？\n  a. 即使用户的隐私设置调到最高也能获得它们\n\
+  \  b. 第一个不像所有其他 Graph Search URL 那样对第二个起过滤作用\n  c. 两个 URL 总是返回完全相同的 JSON\n\n\n\n\
+  \n\n## 添加到图谱\n\n> 我们花费了大量时间观察图谱，既作为匿名外部人员，也作为已认证用户。我们了解不同类型的节点以及它们之间的连接。现在是时候创建一些属于我们自己的了。\n\
+  \n在本章中，你将学习：\n\n- 如何使用 Graph API 创建新的 Graph 对象\n- 如何从 Graph 中删除现有对象\n- Graph API\
+  \ 在添加内容方面的限制，与 Facebook 网站相比如何\n\n让我们开始吧...\n\n## 你好，Facebook！\n\n我通常不是“Hello World”应用的粉丝，但在这里它如此相关，我会破例。我们将从向已登录用户的墙上发布一条消息开始。\n\
+  \n### 行动时间 – 发布到用户的动态\n\n我们先从简单开始。只需让用户输入一行文字，并将其发布到他们的墙上。\n\n当用户输入消息并点击发布时，我们希望消息被发布到他们的墙上。目前，代码设置好将包含消息的\
+  \ AS3 对象传递给 CustomGraphContainerController 扩展的类中的 publish() 方法。就像之前的章节一样，我们将重写此方法并编写新代码来处理\
+  \ Facebook 集成。\n\n在 CustomGraphContainerController.as 中，添加此函数：\n\n```\noverride\
+  \ public function publish(a_publishObject:PublishObject):void\n{\n    super.publish(a_publishObject);\n\
+  }\n```\n\nPublishObject 类包含一个名为 message 的属性，用于保存用户在“发布到墙”窗口中输入的消息。我们需要导入此类：\n\n\
+  ```\nimport graph.apis.base.PublishObject;\n```\n\nUI 部分就绪。接下来，我们将此对象传递给 Requestor\
+  \ 中的一个方法来处理在 Facebook 上发布帖子。在 IRequestor.as 中添加一个新函数 publish()：\n\n```\npackage\
+  \ graph.apis.base\n{\n    import flash.events.IEventDispatcher;\n    import graph.GraphRequest;\n\
+  \n    public interface IRequestor extends IEventDispatcher\n    {\n        function\
+  \ request(a_request:GraphRequest):void;\n        function attemptToAuthenticate(...permissions):void;\n\
+  \        function initialize():void;\n        function search(a_query:String = \"\
+  \", a_type:String = \"\", a_userID:String = \"\"):void;\n        function publish(a_publishObject:PublishObject):void;\n\
+  \    }\n}\n```\n\nPublishObject 实例包含我们所需的所有信息，因此它是传递给此方法的唯一参数。\n\n现在在 SDKRequestor.as\
+  \ 和 HTTPRequestor.as 中都添加 stub publish() 函数：\n\n```\npublic function publish(a_publishObject:PublishObject):void\n\
+  {\n}\n```\n\n你还需要在这两个类中导入 PublishObject：\n\n```\nimport graph.apis.base.PublishObject;\n\
+  ```\n\n我们将像往常一样先编写 HTTPRequestor 的代码，因此更改 CustomGraphContainerController.as 中实例化\
+  \ _requestor 对象的构造函数函数中的那一行，使其创建 HTTPRequestor：\n\n```\n_requestor = new HTTPRequestor();\n\
+  ```\n\n最后，修改 CustomGraphContainerController.as，使其 publish() 方法调用 Requestor 的 publish()\
+  \ 方法：\n\n```\noverride public function publish(a_publishObject:PublishObject):void\n\
+  {\n    super.publish(a_publishObject);\n    _requestor.publish(a_publishObject);\n\
+  }\n```\n\n一切就绪，但我们如何从 Visualizer 将消息发布到实际的 Facebook 墙上呢？\n\n## 请求方法\n\n向用户的墙上发布消息与从中筛选信息并没有更复杂——我们使用\
+  \ Graph URL，https://graph.facebook.com/me/feed，并传递两个参数：\n\n- 访问令牌，以及\n- 要发布的消息\n\
+  \n不同之处在于我们如何传递这些参数。我们不能再简单地加载 URL 了。自己试试：浏览 https://graph.facebook.com/me/feed?access_token=«access_token»&message=Hello。它会以\
+  \ JSON 格式返回你的动态，但不会发布到其中。\n\n我们仍然使用 URLLoader 和 URLRequest，但使用不同的请求方法。\n\n### 什么是请求方法？\n\
+  \nHTTP 请求方法是一种告诉 Web 服务器当我们请求页面或其他资源时，我们希望它执行何种操作的方式。\n\n默认情况下，AS3 URLRequest 使用一种名为\
+  \ GET 的 HTTP 请求方法；这是一种“安全”方法，之所以称为安全，是因为它不要求服务器更改任何信息，只是将其传回——这正是到目前为止本书中我们所需的一切。\n\
+  \n发布墙帖显然会引起更改，因此我们应该使用“不安全”方法——在本例中为 POST。这与提交会更改或添加数据的网页表单时使用的相同方法，例如在亚马逊订购书籍时。\n\
+  \n> 出于安全原因，Flash Player 10 及以上版本只允许在用户发起加载时使用 POST 方法。这意味着你的应用程序不能自动向 Graph 发布（例如，基于用户登录时间的长短）；相反，你必须始终从例如按钮的\
+  \ MOUSE_CLICK 事件处理函数中发布。\n\n### 行动时间 – 使用 POST 方法\n\n1. 要指定我们想要使用 POST 方法，我们更改 URLRequest\
+  \ 的 method 属性（毕竟 POST 是一个请求方法）。另一个类 flash.net.URLRequestMethod 包含所有允许值的常量，因此在 HTTPRequestor.as\
+  \ 中导入它：\n```\nimport flash.net.URLRequestMethod;\n```\n2. 我们以与 request() 和 search()\
+  \ 方法相同的方式设置 URLLoader、URLRequest 和 URLVariables 实例：\n```\npublic function publish(a_publishObject:PublishObject):void\n\
+  {\n    var loader:URLLoader = new URLLoader();\n    var urlRequest:URLRequest =\
+  \ new URLRequest();\n    var variables:URLVariables = new URLVariables();\n}\n```\n\
+  3. 因为我们想要发布到自己的墙上，所以我们使用个人资料的 feed 连接作为 URL——没有单独的发布到墙 URL：\n```\npublic function\
+  \ publish(a_publishObject:PublishObject):void\n{\n    var loader:URLLoader = new\
+  \ URLLoader();\n    var urlRequest:URLRequest = new URLRequest();\n    var variables:URLVariables\
+  \ = new URLVariables();\n\n    urlRequest.url = \"https://graph.facebook.com/me/feed\"\
+  ;\n}\n```\n4. 现在我们使用 URLRequestMethod 类中的 POST 常量来设置请求方法：\n```\npublic function\
+  \ publish(a_publishObject:PublishObject):void\n{\n\n```\n\n```\nurlRequest.data\
+  \ = variables;\n\nloader.addEventListener(Event.COMPLETE, onPublishComplete);\n\
+  loader.addEventListener(IOErrorEvent.IO_ERROR, onIOError);\nloader.load(urlRequest);\n\
+  }\n```\n\n7. 为 COMPLETE 事件创建事件处理函数：\n\n```\nprivate function onPublishComplete(a_event:Event):void\n\
+  {\n    dispatchEvent(new DialogEvent(DialogEvent.DIALOG,\n        \"Publish complete!\"\
+  ));\n}\n```\n\n记住，DialogEvent 可用于在 Visualizer 项目中显示对话框框，包含你想要的任何消息。不过，使用它时你需要导入\
+  \ events.DialogEvent。\n\n编译、上传并执行 SWF，你会发现……它不起作用。\n\n### 刚才发生了什么？\n\n要找出为什么不起作用，我们可以为\
+  \ URLLoader 添加一种新的事件监听器——HTTPStatusEvent 监听器。\n\n此类型的事件由服务器返回，并在 IO_ERROR 或 COMPLETE\
+  \ 事件之前分发。其 status 属性包含响应的“HTTP 代码”，这是一种简化的简写来解释响应状态。例如，404 是一个 HTTP 状态代码，表示“未找到”。完整列表可在\
+  \ http://en.wikipedia.org/wiki/List_of_HTTP_status_codes 查看，但通常你会看到：\n\n- 200：如果没有问题\n\
+  - 400：如果发送的请求格式错误（最有可能是 URL 变量中的拼写错误）\n- 403：如果不允许你访问请求的资源\n- 404：如果服务器上找不到你请求的资源\n\
+  - 500：如果出现其他问题（如权限不足）\n\n（你也可能看到 0，如果 Flash Player 由于其环境中的某些条件而无法检测 HTTP 响应代码。）\n\
+  \n这可以提供有用的额外信息来帮助缩小 IO_ERROR 问题范围，或检测不会分发 IO_ERROR 事件的问题。\n\n\n\n\n\n4. 编译、上传并执行\
+  \ Visualizer，然后再次尝试在自己的 Wall 上发布。\n\n   它仍然不会工作，但你会看到类似这样的对话框：\n\n   ![](img/4e826fa36038b86f2087ef8b818d0acf_209_0.png)\n\
+  \n## What just happened?\n\n对话框显示 HTTP 状态：403。正如前面提到的，这意味着我们不被允许访问我们试图访问的资源——也就是说，我们不被允许发布到\
+  \ Wall。换句话说，我们没有权限……或者更准确地说，我们尚未被授予所需的扩展权限。\n\n> 有可能你会看到 HTTP 状态码响应为 500。这是可以的——这是一个相当通用的错误信息，表示“出现问题”，在这种情况下也是如此。原因很可能仍然是缺少扩展权限。\n\
+  >\n> 当然，如果你在书中更早的时候就已授予你的应用程序所需的权限，你就不会遇到任何问题了！\n\n## Time for action – granting\
+  \ the required permission\n\n1. 在此之前能工作，我们必须授予应用程序 `publish_stream` 扩展权限，因此请在 `CustomGraphContainerController.as`\
+  \ 中的 `onRequestorInitialize()` 函数内进行如下修改：\n\n   ```\n   private function onRequestorInitialize(a_event:Event):void\n\
+  \   {\n       _requestor.attemptToAuthenticate(\n           ExtendedPermissions.READ_STREAM,\n\
+  \           ExtendedPermissions.PUBLISH_STREAM);\n   }\n   ```\n\n2. 编译、上传并再次尝试。你在加载页面时会看到权限请求弹出：\n\
+  \n   ![](img/4e826fa36038b86f2087ef8b818d0acf_210_0.png)\n\n3. 点击 Allow，然后打开你的 Feed\
+  \ List Renderer，并点击 Publish。在框中输入一些文本：\n\n   ![](img/4e826fa36038b86f2087ef8b818d0acf_210_1.png)\n\
+  \n   ...然后点击 Post。检查 Facebook 网站上的你的 Wall：\n\n   ![](img/4e826fa36038b86f2087ef8b818d0acf_210_2.png)\n\
+  \n它工作了吗？\n\n在发布时，我们需要传递第四个变量：\n\n- 要使用的 HTTP 请求方法\n\n从我们对 HTTP Requestor 的工作来看，你已经知道这需要是\
+  \ POST。因此，请修改 `SDKRequestor.as` 中的 `publish()` 方法，如下所示：\n\n```\npublic function\
+  \ publish(a_publishObject:PublishObject):void\n{\n    var urlStub:String = \"/me/feed\"\
+  ;\n    Facebook.api(urlStub, publishComplete,\n        { message:a_publishObject.message\
+  \ },\n        URLRequestMethod.POST\n    );\n}\n```\n\n确保导入 `flash.net.URLRequestMethod`。\n\
+  \n接下来，你需要创建 `publishComplete()` 函数作为回调使用：\n\n```\nprivate function publishComplete(result:Object,\
+  \ fail:Object):void\n{\n\n}\n```\n\n使用 SDK 时我们不需要为 HTTP 状态或安全错误添加事件监听器；只需检查结果是否为\
+  \ null；如果是，更多细节应位于 fail 对象中：\n\n```\nprivate function publishComplete(result:Object,\
+  \ fail:Object):void\n{\n    if (result != null)\n    {\n        dispatchEvent(new\
+  \ DialogEvent(DialogEvent.DIALOG,\n            \"Publish complete!\"));\n    }\n\
+  \    else\n    {\n        dispatchEvent(new DialogEvent(DialogEvent.DIALOG,\n  \
+  \          \"Publish failed. Details: \" + String(fail)));\n    }\n}\n```\n\n如果要使用它，请确保导入\
+  \ `events.DialogEvent`。\n\n我们首先集中在 `message`、`picture`、`link`、`name`、`caption` 和\
+  \ `description` 上，并通过发布使用它们的富帖子来了解它们的作用。\n\nVisualizer 可以配置为显示一个包含这六个参数所有输入字段的窗口，而不是仅\
+  \ `message`。要做到这一点，请在 `CustomGraphContainerController.as` 中找到这一行：\n\n```\nthis._publishingCapability\
+  \ = PublishingCapabilities.BASIC;\n```\n\n...并将其替换为：\n\n```\nthis._publishingCapability\
+  \ = PublishingCapabilities.COMPLETE;\n```\n\n当你在 `feed` List Renderer 上点击 **Publish**\
+  \ 按钮时，你会看到新的窗口：\n\n![](img/4e826fa36038b86f2087ef8b818d0acf_215_0.png)\n\n**Post**\
+  \ 按钮仍然将 `PublishObject` 的实例传递给 `CustomGraphContainerController` 扩展的类中的同一个函数 `publish()`。与之前不同的是，`PublishObject`\
+  \ 设置了更多属性。\n\n具体来说，它可以具有以下任何属性：\n\n- `message`\n- `pictureURL`: 对应于 `picture`\n\
+  - `linkURL`: 对应于 `link`\n\n同样，编辑 `SDKRequestor.as` 中的 `publish()` 函数：\n\n```\npublic\
+  \ function publish(a_publishObject:PublishObject):void\n{\n    var urlStub:String\
+  \ = \"/me/feed\";\n    Facebook.api(urlStub, publishComplete,\n    {\n        message:a_publishObject.message,\n\
+  \        picture:a_publishObject.pictureURL,\n        link:a_publishObject.linkURL,\n\
+  \        name:a_publishObject.linkName,\n        caption:a_publishObject.caption,\n\
+  \        description:a_publishObject.description\n    },\n    URLRequestMethod.POST\n\
+  \    );\n}\n```\n\n在你的主机上测试 Visualizer。以下是来自 Wikipedia 和 Wikimedia Commons 的一些测试数据：\n\
+  \n- message: Hello Britain!\n- picture: http://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Flag_of_the_United_Kingdom.svg/200px-Flag_of_the_United_Kingdom.svg.png\n\
+  - link: http://en.wikipedia.org/wiki/Union_Flag\n- name: Union Flag\n- caption:\
+  \ en.wikipedia.org\n- description: The Union Flag, also known as the Union Jack,\
+  \ is the flag of the United Kingdom\n\n结果如下：\n\n![](img/4e826fa36038b86f2087ef8b818d0acf_217_0.png)\n\
+  \n![](img/4e826fa36038b86f2087ef8b818d0acf_219_0.png)\n\n关于图像的说明：帖子中的那个小图像仍然托管在\
+  \ Wikimedia Commons，但通过托管在 Facebook 服务器上的代理 PHP 访问——本例中为 http://platform.ak.fbcdn.net/。该服务器上的\
+  \ crossdomain.xml 如下：\n\n```\n<cross-domain-policy>\n    <site-control permitted-cross-domain-policies=\"\
+  master-only\"/>\n    <allow-access-from domain=\"*\"/>\n</cross-domain-policy>\n\
+  ```\n\n这意味着无论原始图像托管在何处，你的应用程序都可以直接访问图像的 BitmapData，而不会出现任何沙箱安全问题。\n\n实际创建的 Graph\
+  \ Object 看起来像这样：\n\n```\n{\n  \"id\": \"«redacted»\",\n  \"from\": {\n    \"name\"\
+  : \"Michael James Williams\",\n    \"id\": \"«redacted»\"\n  },\n  \"message\":\
+  \ \"Hello Britain!\",\n  \"picture\": \"http://platform.ak.fbcdn.net/www/app_full_proxy.php?app=«redacted»&v=1&size=z&cksum=«redacted»&src=http%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2Fa%2Fae%2FFlag_of_the_United_Kingdom.svg%2F200px-Flag_of_the_United_Kingdom.svg.png\"\
+  ,\n  \"link\": \"http://en.wikipedia.org/wiki/Union_Flag\",\n  \"name\": \"Union\
+  \ Flag\",\n  \"caption\": \"en.wikipedia.org\",\n  \"description\": \"The Union\
+  \ Flag, also known as the Union Jack, is the flag of the United Kingdom.\",\n  \"\
+  icon\": \"http://graph.facebook.com/images/icons/hidden.gif\",\n  \"actions\": [\n\
+  \    {\n      \"name\": \"Comment\",\n      \"link\": \"http://www.facebook.com/«redacted»/posts/«redacted»\"\
+  \n    },\n    {\n      \"name\": \"Like\",\n      \"link\": \"http://www.facebook.com/«redacted»/posts/«redacted»\"\
+  \n    }\n  ],\n  \"privacy\": {\n    \"description\": \"Friends only\",\n```\n\n\
+  现在再次查看 Wall 帖子：\n\n![](img/4e826fa36038b86f2087ef8b818d0acf_223_0.png)\n\n操作是帖子下方其他\
+  \ Facebook 用户可以点击的链接。\n\n我们可以通过将 JSON 传递给 actions 参数来添加我们自己的用户定义操作，例如“Visit my website”或“Plant\
+  \ some crops”。\n\n## Time for action – literally\n\n1. 打开 `HTTPRequestor.as` 并找到\
+  \ `publish()` 函数。在函数内创建原生 AS3 对象如下：\n\n   ```\n   var actionObj:Object = [ {\n \
+  \      name:\"Visit my Twitter Page\",\n       link:\"http://twitter.com/MichaelJW\"\
+  \n   } ];\n   ```\n\n   方括号定义一个数组，因此我们也可以将其键入为 Array 而不是 Object，但这并不重要。\n\n2. 接下来，在同一个函数中，使用我们之前使用过的\
+  \ JSON 库将此对象编码为 JSON 字符串：\n\n   ```\n   var actionString:String = JSON.encode(actionObj);\n\
+  \   ```\n\n3. 现在，将此 String 作为 URLVariables 对象的属性添加，称为 `actions`：\n\n   ```\n   variables.message\
+  \ = a_publishObject.message;\n   variables.picture = a_publishObject.pictureURL;\n\
+  \   variables.link = a_publishObject.linkURL;\n   variables.name = a_publishObject.linkName;\n\
+  \   variables.caption = a_publishObject.caption;\n   variables.description = a_publishObject.description;\n\
+  \   variables.actions = actionString;\n   urlRequest.data = variables;\n   ```\n\
+  \n\n\n\n\n4. 在 SDKRequestor.as 中做类似的修改：\n\n```\npublic function publish(a_publishObject:PublishObject):void\n\
+  {\n    var urlStub:String = \"/\" + a_publishObject.ownerID + \"/feed\";\n    var\
+  \ actionObj:Object = [ {\n        name:\"Visit my Twitter Page\",\n        link:\"\
+  http://twitter.com/MichaelJW\"\n    } ];\n    var actionString:String = JSON.encode(actionObj);\n\
+  \    Facebook.api(urlStub, publishComplete,\n    {\n        message:a_publishObject.message,\n\
+  \        picture:a_publishObject.pictureURL,\n        link:a_publishObject.linkURL,\n\
+  \        name:a_publishObject.linkName,\n        caption:a_publishObject.caption,\n\
+  \        description:a_publishObject.description,\n        actions:actionString\n\
+  \    },\n        URLRequestMethod.POST\n    );\n}\n```\n\n5. 你需要导入 com.adobe.serialization.json.JSON。测试一下：\n\
+  \n![](img/4e826fa36038b86f2087ef8b818d0acf_224_0.png)\n\n## What just happened?\n\
+  \n你已向来自你项目的帖子添加了一个应用特定的操作。每个帖子只能添加一个这样的操作，但当然，它不必对每个帖子都相同。\n\n该操作是一个功能性超链接；点击它会带你到我的\
+  \ Twitter 页面。不过，Facebook 会在所有此类链接末尾添加一个 URL 参数 ref=nf，因此先测试一下——例如，尝试加载 http://google.com?ref=nf\
+  \ 会得到 404 消息。\n\n3. 在 SDKRequestor.as 中添加类似的代码：\n\n```\npublic function publish(a_publishObject:PublishObject):void\n\
+  {\n    var urlStub:String = \"/\" + a_publishObject.ownerID + \"/feed\";\n    var\
+  \ actionObj:Object = [ {\n        name:\"Visit my Twitter Page\",\n        link:\"\
+  http://twitter.com/MichaelJW\"\n    } ];\n    var actionString:String = JSON.encode(actionObj);\n\
+  \n    var privacyObj:Object = {\n        value:\"EVERYONE\"\n    }\n    var privacyString:String\
+  \ = JSON.encode(privacyObj);\n\n    Facebook.api(urlStub, publishComplete,\n   \
+  \ {\n        message:a_publishObject.message,\n        picture:a_publishObject.pictureURL,\n\
+  \        link:a_publishObject.linkURL,\n        name:a_publishObject.linkName,\n\
+  \        caption:a_publishObject.caption,\n        description:a_publishObject.description,\n\
+  \        actions:actionString,\n        privacy:privacyString\n    },\n        URLRequestMethod.POST\n\
+  \    );\n}\n```\n\n4. 通过将 value 设置为 EVERYONE，我们将使帖子对任何可以看到你 Wall 的人可见，而不仅仅是你的朋友。\n\
+  \n还有哪些其他选项？\n\n好吧，value 可以设置为：\n\n- EVERYONE\n- ALL_FRIENDS\n- NETWORKS_FRIENDS\n\
+  - FRIENDS_OF_FRIENDS\n\n这些含义都很明显，除了 NETWORKS_FRIENDS（它允许你的朋友加上你网络中的任何人查看帖子）。\n\n\
+  value 的另一个可能设置是：CUSTOM。使用它可以让你为 privacyObj 指定另外两个属性——networks 和 friends。\n\n对于 networks\
+  \ 属性，输入应允许查看你帖子的网络的 ID 的逗号分隔列表，如下所示：\n\n```\nvar privacyObj:Object = {\n    value:\"\
+  EVERYONE\",\n    networks:\"network1,network2,network3\"\n}\n```\n\n要允许所有网络查看帖子，只需将\
+  \ 1 作为值输入即可。\n\n对于 friends 属性，输入以下其中之一：\n\n- EVERYONE\n- NETWORKS_FRIENDS\n- FRIENDS_OF_FRIENDS\n\
+  - ALL_FRIENDS\n- SELF\n- NO_FRIENDS\n\n同样，很清楚每个的作用是什么。NO_FRIENDS 让你仅允许指定网络中的人查看帖子。\n\
+  \nfriends 的另一个可能设置是：SOME_FRIENDS。这会为你提供可以为 privacyObj 设置的另一对属性——allow 和 deny。这两个属性都接受用户\
+  \ ID（混合好友列表 ID）的逗号分隔列表；allow 定义谁可以看到帖子，而 deny 定义谁不能。\n\n因此，你的 privacyObj 可能看起来像这样：\n\
+  \n```\nvar privacyObj:Object = {\n    value:\"CUSTOM\",\n    networks:\"network1,network2,network3\"\
+  ,\n    friends:\"SOME_FRIENDS\",\n    allow:\"bob.smith,joe.q.faikname\",\n    deny:\"\
+  bill.the.jerk\"\n}\n```\n\n## What just happened?\n\n正如你所见，你可以精细控制用户 Wall 上帖子的隐私级别。使用“正确”的设置完全取决于你的应用程序及其受众；只需了解可能实现的功能即可。\n\
+  \n> 你无法控制用户在其他用户、页面、活动或群组的 Wall 上发布的帖子的隐私设置；这些帖子始终可以被任何可以看到该 Wall 的人看到。\n\n## Source\n\
+  \n`source` 参数据说允许你将小型照片库、Flash 对象（如视频剪辑）和 MP3 音乐嵌入到帖子中，以及自定义键值对，这些键值对（虽然在 Facebook\
+  \ 网站上不可见）稍后可以被你的应用程序或任何其他应用程序读取。\n\n不幸的是，在撰写本文时，该功能与 Graph API 的配合并不正确。请查看 `source`\
+  \ 参数可以实现的功能：http://developers.facebook.com/docs/guides/attachments。希望到你阅读这一段时，该功能能得到完全实现并记录在案。\n\
+  \n## Deleting Graph Objects\n\n我们已经掌握了添加帖子的方法，但后来如何删除它们呢？\n\n## Time for action\
+  \ – deleting a Post\n\nFacebook 删除帖子的界面是一个在悬停时出现的 Remove 按钮：\n\n![](img/4e826fa36038b86f2087ef8b818d0acf_228_0.png)\n\
+  \nVisualizer 项目也有一个 Delete 按钮；让我们看看如何添加它。\n\n## Time for action – deleting Posts\
+  \ using the Visualizer\n\n1. 我们可以通过使用另一个隐藏选项来启用 Visualizer 的 Delete 按钮。在 CustomGraphContainerController.as\
+  \ 的构造函数中，将 this._showDeleteButtons 设置为 true：\n\n```\npublic function CustomGraphContainerController(a_graphControlContainer:\
+  \ GraphControlContainer)\n{\n    super(a_graphControlContainer);\n    this._showListCounts\
+  \ = true;\n    this._showListFilters = true;\n    this._canShowSearchUI = true;\n\
+  \    this._publishingCapability = PublishingCapabilities.COMPLETE;\n    this._showDeleteButtons\
+  \ = true;\n    _requestor = new SDKRequestor();\n    addEventListenersToRequestor();\n\
+  \    //we must wait for the Requestor to initialise before we can do\n    // anything\
+  \ else with it\n    _requestor.addEventListener(Event.COMPLETE, onRequestorInitialize);\n\
+  \    _requestor.initialize();\n}\n```\n\n2. 下次加载 SWF 时，你将在 List Renderer 中看到这个新按钮：\n\
+  \n![](img/4e826fa36038b86f2087ef8b818d0acf_229_0.png)\n\n我们将从（像往常一样）HTTPRequestor\
+  \ 的代码开始，因此请确保你的项目设置为将 _requestor 实例化为 HTTPRequestor 而不是 SDKRequestor。我们可以重用 publish()\
+  \ 的大部分代码；按如下方式修改 HTTPRequestor.as 的 deleteObject() 函数：\n\n```\npublic function deleteObject(a_objectID:String):void\n\
+  {\n    var loader:URLLoader = new URLLoader();\n    var urlRequest:URLRequest =\
+  \ new URLRequest();\n    var variables:URLVariables = new URLVariables();\n\n  \
+  \  if (this.accessToken != \"\")\n    {\n        variables.access_token = this.accessToken;\n\
+  \    }\n    urlRequest.data = variables;\n\n    loader.addEventListener(Event.COMPLETE,\
+  \ onDeleteComplete);\n    loader.addEventListener(IOErrorEvent.IO_ERROR, onIOError);\n\
+  \    loader.addEventListener(HTTPStatusEvent.HTTP_STATUS, onHTTPStatusReturned);\n\
+  \    loader.addEventListener(SecurityErrorEvent.SECURITY_ERROR, onSecurityError);\n\
+  \    loader.load(urlRequest);\n}\n```\n\n4. 请注意，与使用 onPublishComplete() 作为 COMPLETE\
+  \ 事件处理函数不同，我们使用的是 onDeleteComplete()，因此请创建该函数：\n\n```\nprivate function onDeleteComplete(a_event:Event):void\n\
+  {\n    dispatchEvent(new DialogEvent(DialogEvent.DIALOG, \"Deleted!\"));\n}\n```\n\
+  \n我们需要使用哪个 URL？很简单：我们使用要删除的 Graph 对象的 Graph URL。因此：\n\n```\npublic function deleteObject(a_objectID:String):void\n\
+  {\n    var loader:URLLoader = new URLLoader();\n    var urlRequest:URLRequest =\
+  \ new URLRequest();\n    var variables:URLVariables = new URLVariables();\n\n  \
+  \  urlRequest.url = \"https://graph.facebook.com/\";\n    urlRequest.url += a_objectID;\n\
+  \n    if (this.accessToken != \"\"\n\n\n```\n{\n    variables.access_token = this.accessToken;\n\
+  }\nurlRequest.data = variables;\n\nloader.addEventListener(Event.COMPLETE, onDeleteComplete);\n\
+  loader.addEventListener(IOErrorEvent.IO_ERROR, onIOError);\nloader.addEventListener(HTTPStatusEvent.HTTP_STATUS,\n\
+  \    onHTTPStatusReturned);\nloader.addEventListener(SecurityErrorEvent.SECURITY_ERROR,\n\
+  \    onSecurityError);\nloader.load(urlRequest);\n}\n```\n\n5. 那么HTTP请求方法呢？有一种叫做DELETE的方法，它绝对不是“安全”方法，而且正是我们想要的。不幸的是，出于安全考虑，我们只能在AIR中使用它。下面是代码，以防你以后编写AIR应用程序：\n\
+  \n```\npublic function deleteObject(a_objectID:String):void\n{\n    var loader:URLLoader\
+  \ = new URLLoader();\n    var urlRequest:URLRequest = new URLRequest();\n    var\
+  \ variables:URLVariables = new URLVariables();\n\n    urlRequest.url = \"https://graph.facebook.com/\"\
+  ;\n    urlRequest.url += a_objectID;\n    urlRequest.method = URLRequestMethod.DELETE;\n\
+  \n    if (this.accessToken != \"\")\n    {\n        variables.access_token = this.accessToken;\n\
+  \    }\n    urlRequest.data = variables;\n\n    loader.addEventListener(Event.COMPLETE,\
+  \ onDeleteComplete);\n    loader.addEventListener(IOErrorEvent.IO_ERROR, onIOError);\n\
+  \    loader.addEventListener(HTTPStatusEvent.HTTP_STATUS,\n        onHTTPStatusReturned);\n\
+  \    loader.addEventListener(SecurityErrorEvent.SECURITY_ERROR,\n        onSecurityError);\n\
+  \    loader.load(urlRequest);\n}\n```\n\n不过，如果你是在制作常规的Flash Player SWF，URLRequestMethod类甚至不会有DELETE常量。\n\
+  \n对于基于常规SWF的应用程序，情况并没有复杂多少。我们只有两种请求方法可选——GET和POST。因为GET是安全方法，我们不能用它来删除服务器上的对象，所以必须使用POST：\n\
+  \n```\npublic function deleteObject(a_objectID:String):void\n{\nvar loader:URLLoader\
+  \ = new URLLoader();\nvar urlRequest:URLRequest = new URLRequest();\nvar variables:URLVariables\
+  \ = new URLVariables();\n\nurlRequest.url = \"https://graph.facebook.com/\";\nurlRequest.url\
+  \ += a_objectID;\nurlRequest.method = URLRequestMethod.POST;\n\nif (this.accessToken\
+  \ != \"\")\n{\n    variables.access_token = this.accessToken;\n}\nurlRequest.data\
+  \ = variables;\n\nloader.addEventListener(Event.COMPLETE, onDeleteComplete);\nloader.addEventListener(IOErrorEvent.IO_ERROR,\
+  \ onIOError);\nloader.addEventListener(HTTPStatusEvent.HTTP_STATUS, onHTTPStatusReturned);\n\
+  loader.addEventListener(SecurityErrorEvent.SECURITY_ERROR, onSecurityError);\nloader.load(urlRequest);\n\
+  }\n```\n\n……但我们可以轻松地通过传递一个新参数——method=delete——来告诉Facebook将其视为DELETE请求：\n\n```\n\
+  public function deleteObject(a_objectID:String):void\n{\nvar loader:URLLoader =\
+  \ new URLLoader();\nvar urlRequest:URLRequest = new URLRequest();\nvar variables:URLVariables\
+  \ = new URLVariables();\n\nurlRequest.url = \"https://graph.facebook.com/\";\nurlRequest.url\
+  \ += a_objectID;\nurlRequest.method = URLRequestMethod.POST;\n\nif (this.accessToken\
+  \ != \"\")\n{\n    variables.access_token = this.accessToken;\n}\nvariables.method\
+  \ = \"delete\";\nurlRequest.data = variables;\n\nloader.addEventListener(Event.COMPLETE,\
+  \ onDeleteComplete);\nloader.addEventListener(IOErrorEvent.IO_ERROR, onIOError);\n\
+  loader.addEventListener(HTTPStatusEvent.HTTP_STATUS,\n    onHTTPStatusReturned);\n\
+  loader.addEventListener(SecurityErrorEvent.SECURITY_ERROR,\n    onSecurityError);\n\
+  loader.load(urlRequest);\n}\n```\n\n这个方法和AIR版本一样有效，而且只多花我们一行代码。\n\n要使用SDK删除对象，我们可以使用`Facebook.api()`，但有一个快捷方法：`Facebook.deleteObject()`。它接受两个参数——要删除的Graph\
+  \ Object的ID和一个回调函数。这使得所需代码非常简单；将其添加到SDKRequestor.as中：\n\n```\npublic function deleteObject(a_objectID:String):void\n\
+  {\n    Facebook.deleteObject(a_objectID, deleteComplete);\n}\n\nprivate function\
+  \ deleteComplete(result:Object, fail:Object):void\n{\n    if (result != null)\n\
+  \    {\n        dispatchEvent(new DialogEvent(DialogEvent.DIALOG, \"Deleted!\"));\n\
+  \    }\n    else\n    {\n        dispatchEvent(new DialogEvent(DialogEvent.DIALOG,\n\
+  \            \"Deletion failed. Details: \" + String(fail)));\n    }\n}\n```\n\n\
+  编译、上传，然后通过删除你墙上的一条帖子来测试新的更改。\n\n## 刚才发生了什么？\n\n你应该已经看到一条墙上的帖子从Facebook上被删除了。\n\n\
+  > 最新消息：在本书即将出版之前，Facebook似乎改变了Graph API，使得墙上的帖子只能由最初用于发布该帖子的应用程序删除。以前，可以删除已登录用户墙上的任何帖子，也可以删除该用户在他人墙上发布的任何帖子。在撰写本文时，官方Graph\
+  \ API文档并未提及此限制。因此，如果你在删除帖子时遇到问题，请先通过Visualizer创建一个帖子，然后再尝试删除它。\n\n这再次只需要`publish_stream`扩展权限；到目前为止，你应该已经清楚这个权限有多强大了。你可以使用相同的代码删除其他类型的Graph\
+  \ Object，而不仅仅是帖子。如果你的应用程序有权限修改或创建对象，那么它也有权限删除它。\n\n如果你尝试通过Facebook网站删除帖子，它会要求确认：\n\
+  \n![](img/4e826fa36038b86f2087ef8b818d0acf_235_0.png)\n\n这是个好主意，值得在你自己的项目界面中使用。Visualizer不会要求确认，而且即使删除后也不会从List\
+  \ Renderer中移除帖子——尽管这确实让你看到如果尝试删除一个已经被删除的帖子会发生什么……\n\n## 发布其他类型的Graph Object\n\n\
+  所有可以创建的Graph Object类型都可以按照与墙帖子相同的基本步骤来创建：\n\n- 使用`POST HTTP`请求方法\n- 使用`URLVariables`对象设置参数\n\
+  - 确保你拥有访问令牌和所需的权限\n\nGraph List Renderer的Publish按钮总是会创建一个窗口，其中的输入与正在渲染的Graph List相对应，而这个窗口又总是将其值传递给`CustomGraphContainerController`的`publish()`函数（在一个`PublishObject`实例内部），因此你可以试验不同的类型。\n\
+  \n每当有人评论该帖子时，用户还会收到电子邮件和通知。这就像一个微型订阅，也是一种认可的标志。\n\n请求的URL是：\n\n```\nhttps://graph.facebook.com/<post_id>/likes\n\
+  ```\n\n没有任何参数。\n\n点赞需要`publish_stream`权限。\n\n## 那么“点赞”其他Graph Object呢？\n\n在第2章中，我们了解了“点赞”连接如何将人们与电视节目、电影、音乐、兴趣和活动联系起来；“点赞”连接构成了Graph\
+  \ Web中的许多分支。然而，Graph API不允许我们“点赞”帖子以外的任何东西（即使尝试点赞评论也会导致HTTP状态码500）。\n\nFacebook表示，他们不打算允许开发者为其他任何东西创建“点赞”。他们的目标似乎是确保任何用户都不会点击非官方的“点赞”按钮（或者至少，不会在Facebook未批准的环境中点击“点赞”按钮；Yelp.com有自己设计的“点赞”按钮，因为他们是Facebook的合作伙伴网站）。\n\
+  \n所以，遗憾的是，无法通过Graph API修改用户的电视节目、电影、兴趣或活动。\n\n## 删除点赞\n\n点赞没有自己的ID，所以我们不能通过尝试删除\
+  \ https://graph.facebook.com/<like_id> 来删除点赞。相反，我们必须使用这个URL：https://graph.facebook.com/<graph_object_id>/likes。\n\
+  \n如你所知，这是连接的Graph URL，如果我们试图在浏览器中加载它，它会返回一个Graph List。然而，当我们尝试使用“删除Graph Objects”一节中描述的过程删除该URL时，它会使授权用户“取消赞”该Graph\
+  \ Object。\n\n\n\n\n\n## 笔记\n\n笔记就像微型博客文章：\n\n![](img/4e826fa36038b86f2087ef8b818d0acf_238_0.png)\n\
+  \n要请求的 URL 是：https://graph.facebook.com/<id>/notes。\n\n该 ID 只能是当前用户的 ID，或者是用户管理的主页的\
+  \ ID。\n\n尽管笔记通常比墙贴更长，并且能够支持图片、链接和格式化文本，但只需要两个参数：\n\n- message：这是一个 HTML 字符串（这就解释了为什么能添加图片和格式化内容）\n\
+  - subject：笔记的标题\n\n要发布笔记，你的应用程序需要 publish_stream 权限。\n\n## 活动\n\n活动看起来像这样：\n\n![](img/4e826fa36038b86f2087ef8b818d0acf_239_0.png)\n\
+  \n与主页一样，活动也有一个留言墙，可以使用 /«event_id»/feed 这个 URL 路径前缀向其发布内容。活动也有成员列表，但成员分为四个类别：\n\n\
+  - ♦ 参加：/«event_id»/attending\n- ♦ 可能参加：/«event_id»/maybe\n- ♦ 不参加：/«event_id»/declined\n\
+  - ♦ 等待回复：/«event_id»/noreply\n\n用户可以收到邀请，并可以用前三个类别中的任意一个进行 RSVP；这让日程安排变得简单一些。\n\n\
+  另一个连接，/«event_id»/invited，包含了所有被邀请到该活动的人员列表，无论他们是否回复。\n\n要创建活动，请向此 URL 发送 POST 请求：https://graph.facebook.com/«id»/events。\n\
+  \n（与笔记一样，该 ID 只能是当前用户的 ID，或者是用户管理的主页的 ID。）\n\n需要三个参数：\n\n- `name`：活动的标题\n- `start_time`：活动开始的时间和日期\n\
+  - `end_time`：活动结束的时间和日期\n\n两个日期都必须以 **ISO 8601** 格式输入。维基百科关于 ISO 8601 的信息比你需要的还要多（http://en.wikipedia.org/wiki/ISO_8601）；简单总结一下，**2010年11月8日\
+  \ UTC 下午1:25** 表示为 `2010-11-08T13:25Z`。如果你让用户手动输入时间，请确保将其调整到 UTC 时区！\n\n要创建活动，你的应用程序需要\
+  \ `create_event` 权限。\n\n## 活动回复（RSVP）\n\nFacebook 没有使用一个单一的 URL 来提交 RSVP 并在参数中设置\
+  \ RSVP 类型，而是使用了三个独立的 URL：\n\n- https://graph.facebook.com/«event_id»/attending：参加\n\
+  - https://graph.facebook.com/«event_id»/maybe：可能参加\n- https://graph.facebook.com/«event_id»/declined：不参加\n\
+  \n当用户通过网站界面进行 RSVP 时，Facebook 会询问用户是否附上（可选的）备注（例如，“抱歉我那天去不了”或“非常期待！”）。然而，上述三个 URL\
+  \ 不接受任何参数；如果你想让用户发布 RSVP 备注，只需将其作为一条帖子发布到 `/feed` 连接即可。\n\nRSVP 并非一成不变；用户之后可以改变主意。在设计与此相关的应用时请记住这一点！不要因为用户已经有\
+  \ RSVP 状态就阻止他们再次设置。\n\n要进行 RSVP，你的应用程序需要 `rsvp_event` 权限。\n\n```\nloader.addEventListener(HTTPStatusEvent.HTTP_STATUS,\n\
+  \    onHTTPStatusReturned);\nloader.addEventListener(SecurityErrorEvent.SECURITY_ERROR,\n\
+  \    onSecurityError);\nloader.load(urlRequest);\n```\n\n……我们必须这样做：\n\n```\nvariables.message\
+  \ = a_publishObject.message;\nvariables.source = a_publishObject.source;\nurlRequest.data\
+  \ = variables;\na_publishObject.source.addEventListener(\n    DataEvent.UPLOAD_COMPLETE_DATA,\
+  \ onPublishComplete);\na_publishObject.source.addEventListener(IOErrorEvent.IO_ERROR,\n\
+  \    onIOError);\na_publishObject.source.addEventListener(HTTPStatusEvent.HTTP_STATUS,\n\
+  \    onHTTPStatusReturned);\na_publishObject.source.addEventListener(\n    SecurityErrorEvent.SECURITY_ERROR,\
+  \ onSecurityError);\na_publishObject.source.upload(urlRequest);\n```\n\nSDK Requestor\
+  \ 不需要真正的修改；它使用 FileReference 并封装了上传过程。这意味着我们可以像往常一样直接调用 Facebook.api()：\n\n```\n\
+  Facebook.api(urlStub, publishComplete,\n{\n    message:a_publishObject.message,\n\
+  \    source:a_publishObject.source\n},\nURLRequestMethod.POST\n);\n```\n\n在每种情况下，记得将\
+  \ URL 路径前缀改为 /«album_id»/photos。\n\n将照片上传到相册需要 publish_stream 权限。与相册类似，你可能还想授予 `user_photos`\
+  \ 权限。\n\n不出所料，要向相册添加照片，用户必须要么拥有该相册，要么管理拥有该相册的主页。\n\n## 签到\n\n**签到**由 Facebook 地点（Places）使用，允许用户发布他们当前的位置以及关于该地点的消息。\n\
+  \n要创建签到，请向此 URL 发送 POST 请求：https://graph.facebook.com/«user_id»/checkins。\n\n唯一允许的\
+  \ ID 是已认证用户的 ID（所以你可以改用 me）。\n\n支持三个参数：\n\n- `coordinates`\n- `place`\n- `message`\n\
+  \n`coordinates` 参数必须是一个包含两个属性（纬度和经度）的 JSON 字符串。使用本章前面提到的 JSON.encode() 方法将原生 AS3\
+  \ 对象转换为 JSON 字符串。\n\n`place` 参数应该是与用户当前所在位置对应的地点（Place）的 ID。在第5章中，我们看到了如何搜索给定位置附近的地点（Places）并获取其\
+  \ ID。\n\n`message` 参数是可选的——它是用户对自己正在做什么的简单评论。例如，“刚在奥尔顿塔玩了激流勇进。”\n\n创建签到需要 `publish_checkins`\
+  \ 权限。你可能还想授予 `user_checkins` 权限，以允许用户查看他们的其他签到。\n\n## 其他功能呢？\n\n有很多操作你可以通过 Facebook\
+  \ 网站界面完成，但无法通过 Graph API 完成。我们已经看到了“赞”功能的限制；还有哪些缺失的功能？\n\n## 发送站内信\n\n可以读取站内信（如第5章所述），但不能创建和发送这些消息。Facebook\
+  \ 曾计划允许应用创建站内信，但这一计划似乎已被废弃。这项功能有可能会作为新消息功能的一部分被纳入；更多相关信息请参见第8章。\n\n## 创建主页、群组、应用和视频\n\
+  \n无法通过 Graph API 创建这些类型的任何 Graph 对象。\n\n这有点令人惊讶——群组与活动并没有太大不同，而主页反过来也与群组没有太大不同。无法创建视频的功能甚至更奇怪，因为这意味着无法创建能够直接将视频上传到\
+  \ Facebook 的移动应用。\n\n不过，不能通过其他应用创建应用倒是可以理解的！\n\n## 更改个人资料信息\n\n你的应用程序无法更改用户的感情状态、当前所在地、最喜欢的语录、教育背景，或任何类似信息。由于\
+  \ Graph API 不允许对除墙贴之外的任何内容进行“赞/取消赞”，这意味着用户的整个信息栏都“只能看，不能碰”。\n\n## 添加好友\n\n应用无法向其他用户发送好友请求，也无法将某人从当前用户的好友列表中移除。（尽管你可以向其他用户发送足够多的无礼消息，鼓励他们将当前用户从其好友列表中移除。）\n\
+  \n## 邀请好友参加活动\n\n你可以创建活动，但无法邀请任何人参加。真有意思。\n\n## 快速测验\n\n- 1. 为什么我们突然需要使用不同的 HTTP\
+  \ 请求方法？\n  a. 我们自始至终都应该使用 POST\n  b. Graph API 自你阅读上一章以来已经改变了\n  c. 在更改数据时，HTTP\
+  \ 要求我们使用“不安全”的方法\n- 2. 为什么要费心监听不同类型的 HTTP 状态码？\n  a. 既然我们现在使用的是不同的 HTTP 请求方法，我们就需要这样做\n\
+  \  b. 这些代码可以为我们提供关于发布尝试失败原因的额外信息\n\n\n\n\n\n3. 没有访问令牌，我们可以发布什么？\n\na. 什么都不能\nb.\
+  \ 只能发布状态消息\nc. 只能点赞\nd. 什么都可以\n\n## 总结\n\n现在，你已经学会了如何创建多种不同类型的图谱对象：帖子、评论、活动等等。你还学会了在需要时如何删除它们。\n\
+  \n对于图谱 API 无法做到的事情，你是否感到惊讶？\n\n在下一章中，我们将重新审视图谱，但我们将使用一个强大的新工具——Facebook 查询语言。\n\n\
+  要点回顾：\n\n- 要通过 HTTP 发布，照常使用 URLRequest/URLLoader/URLVariables 设置，并在 URLVariables\
+  \ 实例中随访问令牌一起包含新图谱对象的参数。\n- 使用的 URL 是 https://graph.facebook.com/«id»/«connection»。务必使用\
+  \ flash.net.URLRequestMethod.POST。\n- 要通过 SDK 发布，调用 Facebook.api(\"«id»/«connection»\"\
+  , «callback», {parameter1:\"value1\", parameter2:\"value2\"}, URLRequestMethod.POST)。\n\
+  - 上传照片需要 FileReference。使用 FileReference.browse() 让用户从硬盘中选择图片。\n- 要通过 HTTP 上传：使用\
+  \ FileReference.upload() 而不是 URLLoader.load()。\n- 要通过 SDK 上传：只需将 FileReference 作为\
+  \ URLVariables 实例中 source 参数的值传入，然后照常调用 Facebook.api() 即可。\n- 通过图谱 API，你只能“赞”帖子，不能“赞”其他内容。这意味着我们无法修改用户的兴趣或最喜欢的电视节目。\n\
+  - 在编写本书时，我们只能删除使用同一应用程序创建的帖子。\n- 要通过 HTTP 删除，只需使用 URLRequestMethod.POST 将 `method=delete`\
+  \ 传递给 `https://graph.facebook.com/<id>`。\n- 如果使用 AIR，你可以直接用 `URLRequestMethod.DELETE`\
+  \ 加载 `https://graph.facebook.com/<id>`。\n- 要通过 SDK 删除，调用 `Facebook.deleteObject(\"\
+  <id>\", \"<callback>\")`。\n- 例外情况是删除“赞”；在这种情况下，要删除的 URL 路径是 `<id>/likes`。\n- 发布所需的完整参数和权限列表可在\
+  \ `http://developers.facebook.com/docs/reference/api` 查看。\n- 出于安全原因，Flash Player\
+  \ 10 及以上版本不允许你的应用程序通过 `HTTP POST` 方法发布任何内容，除非该操作是由用户发起的（例如，通过点击按钮）。\n\n## 7\n"
+- "## FQL 相关问题\n\n> 图谱是访问 Facebook 数据的一种极佳模型；它能够处理网站上海量的信息，并让访问变得简单易行。\n\n> 然而，有时我们希望获得额外的控制力和更强大的能力。这时就要用到\
+  \ FQL 了。它是一种专为搜索 Facebook 数据库而设计的编程语言——而且它不使用图谱。\n\n在本章中，我们将：\n\n- 回顾不同的数据表示和可视化模型\n\
+  - 通过使用 FQL 获取一些 Facebook 数据来熟悉它\n- 学习如何使用 FQL 来完成（几乎）所有图谱能做的事情\n- 发现图谱比 FQL 更擅长的方面\n\
+  - 找出如何检测已授予哪些扩展权限\n- 了解一些高级 FQL 特性\n\n那么，让我们开始吧……\n\n## 什么是 FQL？\n\nFQL（按首字母缩写读作“eff-cue-ell”）是\
+  \ Facebook 版本的数据库语言 SQL。不知道 SQL 是什么？别担心，你不需要知道。在本章中，我会假设你对 FQL、SQL 或数据库一无所知。所以在深入探讨\
+  \ FQL 是什么之前，让我们先退一步，看看数据库。\n\n## 但如果我已经会 SQL 了呢？\n\n即使你懂 SQL，也值得读一读本章，以复习一些概念，并了解\
+  \ FQL 与常规 SQL 之间的差异。特别是，可以参考“限制”部分。\n如果你有 SQL 经验，你可能会惊讶于 FQL 缺少多少功能。最明显的是，它没有 INSERT、DELETE\
+  \ 或 UPDATE 子句。此外，缺少 JOIN、GROUP BY 和 LIKE；你必须指定要返回的字段集，而不能输入 SELECT *，而且在 FROM 子句中只能指定一个表。\n\
+  \n![](img/4e826fa36038b86f2087ef8b818d0acf_250_0.png)\n\n## 理解 FQL 接口\n\n我们一直把 Facebook\
+  \ 数据看作第 2 章中列出的图谱格式来查看，但实际上，这仅仅是一种数据模型；图谱 API 就像是一个包装器，让数据看起来像是按那种方式组织的。其实并非如此。\n\
+  \n数据的组织方式重要吗？对于我们的目的来说并不重要。重要的是我们用来访问数据的接口。到目前为止，这个接口一直是图谱 API；我们通过图谱 URL 获取了所有数据，并用\
+  \ AS3 进行处理。\n\n但还有另一种查看数据的方式，它类似于传统的数据库结构。在这种情况下，所有数据都保存在表中，按列、行和字段组织。用一个例子来解释更容易：\n\
+  \n| user |  |  |  |  |  |  |\n|---|---|---|---|---|---|---|\n| uid | first_name\
+  \ | middle_name | last_name | name | sex | username |\n| 123456 | Michael | James\
+  \ | Williams | Michael James Williams | male | michael_james_williams |\n| 789012\
+  \ | Joe | Quincy | Faikname | Joe Q Faikname | male | joe_q_faikname |\n\n为了简洁起见，省略了部分列。\n\
+  \n这是一张数据表。具体来说，它是 user 表，你可以从下面的标题看出来：\n\n![](img/4e826fa36038b86f2087ef8b818d0acf_250_1.png)\n\
+  \n每一**列**代表数据的一个属性：\n\n![](img/4e826fa36038b86f2087ef8b818d0acf_251_0.png)\n\n每一**行**对应一个对象，包含其所有属性：\n\
+  \n![](img/4e826fa36038b86f2087ef8b818d0acf_251_1.png)\n\n行和列的交点——即某个对象的某个属性——称为一个**字段**：\n\
+  \n![](img/4e826fa36038b86f2087ef8b818d0acf_251_2.png)\n\n你也可以把这种结构想象成电子表格；这是以网格形式存储数据的一种简单而自然的方式。（当然，如果你熟悉关系数据库，你也可以直接把它想象成关系数据库中的一张表！）\n\
+  \n## 数据模型\n\n现在我们有了三种不同的模型可以用来思考 Facebook 数据：\n\n1. AS3 面向对象模型：我们有一些包含特定属性的类，以及这些类的实例，实例中包含关于特定项目的信息。例如，我们可以创建一个名为\
+  \ User 的类，它包含某些属性，并定义该类的一个实例：\n\n```\nclass User\n{\n    public var uid:int;\n```\n\
+  \n让我们看一个例子，从 page 表中获取一些信息：\n\n| page |\n|------|\n| page_id |\n| name |\n| website\
+  \ |\n| type |\n| location |\n\n其中每一项——page_id、name、website、type 和 location——都是列，就像\
+  \ uid、first_name、middle_name、last_name、name、sex 和 username 是 user 表的列一样。\n\n## 动手实践——从\
+  \ Page 表检索信息\n\n那么我们如何使用它呢？当然，我们不能请求对象，因为我们不是在使用对象模型——但我们甚至也不请求行（行与对象是近似的对应物）。我们请求的是特定字段。如果我们只对页面关联网站的\
+  \ URL 感兴趣，我们只需请求“website”列中的结果：\n\n```\nSELECT website\n```\n\n接下来，我们必须指定我们感兴趣的表。在本例中，就是“page”：\n\
+  \n```\nSELECT website\nFROM page\n```\n\n现在我们指定一个条件来缩小搜索范围：\n\n```\nSELECT website\n\
+  FROM page\nWHERE name = \"Facebook\"\n```\n\n（请注意，在检查这个条件时，我们使用 = 而不是 ==，这与 AS3\
+  \ 不同。）\n\n这三个元素构成一个“查询”。当我们运行这个查询时——类似于编译 AS3——我们将收到 http://www.facebook.com/，因为这是\
+  \ page 表中 name 为 Facebook 的那一行的 website 列字段的值。\n\n![](img/4e826fa36038b86f2087ef8b818d0acf_253_0.png)\n\
+  \n> 通常会看到 FQL 关键字全部大写，如 SELECT、FROM 和 WHERE，但这并不是硬性要求。不过，这确实有助于提高可读性。\n\n\n\n\n\
+  ```\n\"username\": \"facebook\",\n\"founded\": \"February 4, 2004\",\n\"company_overview\"\
+  : \"Millions of people use Facebook everyday to keep up with friends, upload an\
+  \ unlimited number of photos, share links and videos, and learn more about the people\
+  \ they meet.\\n\\n\\\"Like\\\" this page for ongoing updates on new products, announcements\
+  \ and stories. \\n\\nOther ways to connect with us:\\nVisit the Facebook Blog at\
+  \ http://blog.facebook.com\\nFollow us on Twitter: @facebook\\nSubscribe to more\
+  \ video at http://www.youtube.com/facebook\\n\",\n\"mission\": \"Facebook's mission\
+  \ is to give people the power to share and make the world more open and connected.\"\
+  ,\n\"fan_count\": 17565186\n}\n```\n\n然后，ID 为 107885072567744 的页面：\n\nhttps://graph.facebook.com/107885072567744\n\
+  \n```\n{\n  \"id\": \"107885072567744\",\n  \"name\": \"Facebook\",\n  \"link\"\
+  : \"http://www.facebook.com/pages/Facebook/107885072567744\",\n  \"category\": \"\
+  Interest\",\n  \"is_community_page\": true,\n  \"description\": \"<p><b>Facebook</b>\
+  \ is a <a href=\\\"/pages/w/107511275938278\\\">social networking</a> website launched\
+  \ in February 2004 that is operated and privately owned by Facebook, Inc., with\
+  \ more than 500 million active users in July 2010.</p>\",\n  \"fan_count\": 299474\n\
+  }\n```\n\n啊哈！第二个是一个社区主页——一个由 Facebook 用户创建并拥有的、关于 Facebook 的页面，而不是 Facebook 自身创建的。如果你在浏览器中加载这个主页（使用\
+  \ link 属性中的 URL），你会看到“网站”字段没有任何内容，这就是为什么我们第一次查询得到的第二个结果是空白的。谜团解开了。\n\n## 动手实践——创建\
+  \ FQL 查询构建器\n\n创建一个 Flash 应用程序，允许你输入 FQL 查询，运行它，并显示结果。你需要使用某个东西，就像我们在第 2 章中所做的那样。这将使你在本章其余部分测试查询时容易得多！\n\
+  \n## 连接呢？\n\n所以这本质上是从单个 Graph 对象获取数据的 FQL 等价物。但获取 Graph 对象的连接又等价于什么呢？\n\n理解数据库模型中连接的形成方式，比使用\
+  \ Graph API 模型更难掌握。（如果这是 Graph API 背后的主要动机之一，我也不会感到惊讶。）在某种意义上，你必须反向思考。\n\n让我们以装满照片的相册为例。首先，想象我们创建了一个名为“迈克尔超棒的假期照片”的空相册。在数据库模型中，它看起来像这样：\n\
+  \n| album |\n|---|---|---|\n| aid | owner | name |\n| «自动» | «我的用户ID» | 迈克尔超棒的假期照片\
+  \ |\n\n`album` 表有一个 `cover_pid` 字段，它被设置为我想设为封面照片的那张图片的 ID。那么假设我拍了一张机场的照片并上传为封面照片；它会被自动分配一个\
+  \ ID。\n\n现在我们可以将机场照片的 ID 作为 `album` 表的 `cover_pid` 字段的值：\n\n| album |\n|---|---|\
+  \ \n| aid | owner | name | cover_pid |\n| «自动» | «我的用户ID» | 迈克尔超棒的假期照片 | «机场照片的ID»\
+  \ |\n\n我们可以这样说明：\n\n![](img/4e826fa36038b86f2087ef8b818d0acf_257_0.png)\n\n好了，这解释了一张照片如何连接到一个相册。我们可以用以下\
+  \ FQL 查询找出哪个相册以某张照片作为封面：\n\n```\nSELECT aid\nFROM album\nWHERE cover_pid = «specific\
+  \ photo's ID»\n```\n\n反过来，我们可以用这个查询找出哪个照片是某个相册的封面：\n\n```\nSELECT pid\nFROM photo\n\
+  WHERE pid = «album's cover_pid»\n```\n\n……实际上，我们可以用一个非常相似的查询找出某个相册中有哪些照片：\n\n```\n\
+  SELECT pid\nFROM photo\nWHERE aid = «album's ID»\n```\n\n与 Graph 模型相比，这可以被认为是“反向”的，因为在\
+  \ Graph 中，你获取相册对象并请求所有相关的照片：`album/photos`；而在数据库模型中，你获取照片表并请求所有属于某个相册的行：`FROM photo\
+  \ WHERE aid = «album id»`。\n\n## 照片、相册及其所有者\n\n你注意到了吗？photo 和 album 表都有一个名为 “owner”\
+  \ 的字段，包含所有者的用户 ID？现在，我们当然可以把它们连接起来。第一次尝试可能看起来像这样：\n\n![](img/4e826fa36038b86f2087ef8b818d0acf_259_0.png)\n\
+  \n那条线上方该放什么词？聪明的猜测是“是”，因为所有者相同——小心，这是一个陷阱。\n\n这些“实体关系”线并不连接数据库表中的*字段*；它们连接整个表，*使用*字段作为“键”。记住从左到右阅读动词的规则。如果我们使用“是”作为动词，它就会变成“照片是指定的相册”，这显然是错误的。\n\
+  \n我们不能直接连接这两张表，因为它们的关系是通过另一个实体建立的。让我来展示一下我的意思：\n\n![](img/4e826fa36038b86f2087ef8b818d0acf_260_0.png)\n\
+  \n现在我们有了三张表（photo、album、user）和四个关系：\n\n- 照片属于指定的相册\n- 照片是指定相册的封面\n- 照片属于指定的用户\n\
+  - 用户拥有指定的相册\n\n所以我们可以用这个查询获取某个用户所有照片的 URL：\n\n```\nSELECT src\nFROM photo\nWHERE\
+  \ owner = «user's ID»\n```\n\n## 动手实践——获取用户的相册\n\n看看你能否写出一个等效的查询，用于获取某个用户所有相册的 URL。你需要使用的表和列名都在上面的图中，但你可以在\
+  \ http://developers.facebook.com/docs/reference/fql/ 找到更多信息。\n\n记住，你总是可以通过 API URL\
+  \ 调用来检查你的查询。\n\n## 主键\n\n你注意到了吗？关系线的一端总是指向表的主 ID？\n\n- `photo.pid`\n- `user.uid`\n\
+  - `album.aid`\n\n这些字段中的每一个都被称为该表的**主键**。这意味着任何给定的行都可以用该字段（且仅用该字段）来标识；每一行在其主键字段中都有一个值，并且没有两行具有相同的主键值。\n\
+  \n通过用粗体书写主键的名称，我们可以更容易地理解表之间的关系。\n\n我们也有一个名称，用于指向其他表主键的字段，比如：\n\n- `photo.owner`（链接到\
+  \ `user.uid`）\n- `photo.aid`（链接到 `album.aid`）\n- `album.cover_pid`（链接到 `photo.pid`）\n\
+  \n我们称这些为**外键**，并且倾向于在任何图中用斜体书写它们。\n\n我们之前关于 **photo**、**user** 和 **album** 表的图可以重新绘制，如下一张截图所示：\n\
+  \n![](img/4e826fa36038b86f2087ef8b818d0acf_261_0.png)\n\n## 乌鸦脚\n\n所以我们有两条线连接 album\
+  \ 表和 photo 表。\n\n对于给定的相册，这两个查询的结果有什么不同？\n\n```\nSELECT pid\nFROM photo\nWHERE aid\
+  \ = «album ID»\n```\n\n和\n\n```\nSELECT pid\nFROM photo\nWHERE pid = «album's cover_pid»\n\
+  ```\n\n答案是，第一个可能返回多个照片的 ID，而第二个只会返回一个。我们可以在关系语句的措辞中明确这一点，像这样：\n\n> 相册包含**零个或多个**照片\n\
+  \n> 相册的封面是**一个且仅一个**照片\n\n注意，我必须反转句子，以“相册”而不是“照片”开头，这样才有意义。\n\n我们也可以在图中表示这一点；我们使用所谓的**乌鸦脚标记法**：\n\
+  \n![](img/4e826fa36038b86f2087ef8b818d0acf_262_0.png)\n\n顶部线右侧的三个叉（“**乌鸦脚**”）表示“多”，圆形表示“零”，所以这读作“零到多”或“零或多个”。底部线右侧的一对横线表示“一个且仅一个”。\n\
+  \n不过，这并没有说明全部情况。并非所有照片都是相册的封面照片。我们需要反转句子来用语言解释：\n\n> “照片属于一个且仅一个相册”\n\n> “照片是零个或一个相册的封面”\n\
+  \n![](img/4e826fa36038b86f2087ef8b818d0acf_263_0.png)\n\n这里，顶部线上的一对横线再次表示“一个且仅一个”，而圆和横线表示“零或一个”。我保留了线上的其他标记，但由于表现在调换了方向，它们位于左侧而不是右侧。\n\
+  \n一开始阅读这些图有点棘手；最好的方法是将它们分解成我们在这里所做的成对句子。你最终会掌握的。\n\n## 动手实践——绘制你自己的乌鸦脚\n\n学习使用乌鸦脚标记法的另一种方法是绘制你自己的图。重新绘制连接\
+  \ photo、user 和 album 表的图，并在每条线的每一侧添加适当的标记。记住从成对的关系语句开始，弄清楚你需要表达什么！\n\n你可以用铅笔和纸来完成，但如果你想进一步为所有表绘制图，可以考虑使用像\
+  \ DbSchema 这样的软件：http://www.dbschema.com/。记住，表和列的列表可在 http://developers.facebook.com/docs/reference/fql/\
+  \ 获取。\n\n## 链接表\n\n我们如何在朋友之间创建同样的链接？嗯，这必须是 user 表与其自身之间的关系，所以一个不错的初步猜测是：\n\n> “一个用户与零个或多个用户是好友”\n\
+  \n\n\n……反过来写的句子也完全相同。到目前为止，一切顺利。不过，当我们尝试把它画出来时，事情就变得棘手了。下面这两种方式可行吗？\n\n![](img/4e826fa36038b86f2087ef8b818d0acf_264_0.png)\n\
+  \n![](img/4e826fa36038b86f2087ef8b818d0acf_264_1.png)\n\n不行。这是数据库模型的一条基本规则：表之间不能存在“多对多”关系。这里我们尝试的是两张表相同的情况，但即使表不同，这条规则也同样适用。\n\
+  \n我想那我们最好放弃吧。当然，其实并非如此。相反，我们使用一种称为“链接表”的东西：\n\n![](img/4e826fa36038b86f2087ef8b818d0acf_264_2.png)\n\
+  \n这些关系的标签很棘手；由于链接表不是实实在在的东西，合适的标签必须像是“被分配给”，这没什么帮助。实际上，链接表本身就表达了这种关系，所以你通常可以完全省略标签。或者，也可以像它们通过链接表连接那样来标注，比如“是……的好友”。\n\
+  \n这使得查找用户的好友比查找他们的照片要困难一些。不过，我们可以像这样获取好友 ID 的列表：\n\n```\nSELECT uid2\nFROM friend\n\
+  WHERE uid1 = «user's ID»\n```\n\n## 刚才发生了什么？\n\n该查询将获得与指定用户为好友的所有用户的 ID 列表。别担心，每一行都会以\
+  \ ID 顺序调换的方式重复存储；如果有一行是“uid1 = 123”和“uid2 = 456”，那么就会有另一行是“uid1 = 456”和“uid2 = 123”。这意味着如果你只查询\
+  \ uid2 的值，也不会漏掉任何人。\n\n获取用户好友姓名的列表则更难一些。让我们考虑一下如何借助 AS3 来实现。\n\n## 动手实践 – 使用 AS3\
+  \ 获取用户好友的姓名\n\n我们可以从使用上面的查询获取用户好友的 ID 列表开始：\n\n```\nSELECT uid2\nFROM friend\nWHERE\
+  \ uid1 = «user's ID»\n```\n\n从本章前面的内容可知，我们可以调用这个 API URL 来获取该列表：\n\n```\nhttps://api.facebook.com/method/fql.query?access_token=«access_token»&format=json&query=SELECT%20page_id%20FROM%20page%20WHERE%20name%20=%20%22Facebook%22\n\
+  ```\n\n不过，实际上这样是行不通的。就像使用 Graph API 访问私人信息一样，你需要使用访问令牌。（关于如何生成访问令牌，可参阅第 3 章。）\n\n\
+  那么，正确的 API URL 是：\n\n```\nhttps://api.facebook.com/method/fql.query?access_token=ACCESS_TOKEN&format=json&query=SELECT%20page_id%20FROM%20page%20WHERE%20name%20=%20%22Facebook%22\n\
+  ```\n\n有了用户的 ID，我们可以使用以下查询获取他们的姓名：\n\n```\nSELECT name\nFROM user\nWHERE uid = «user's\
+  \ ID»\n```\n\n## 权限\n\n仅仅因为你不是通过 Graph 访问数据，并不意味着你可以随意获取任何你想要的信息。你仍然受到与之前相同的身份验证要求的约束。例如，你需要一个访问令牌才能运行此查询：\n\
+  \n```\nSELECT uid\nFROM user\nWHERE name=\"Michael James Williams\"\n```\n\n在使用\
+  \ FQL 时，扩展权限仍然适用。如果你在没有任何权限的情况下尝试查询 `mailbox_folder` 表，你将收到一个 `error 612`，提示你 **邮箱需要\
+  \ read_mailbox 扩展权限。**\n\n在撰写本文时，文档中还没有指南说明访问特定表（或字段）需要哪些扩展权限。最接近的是这个页面，它从 Graph\
+  \ 的角度进行了描述：http://developers.facebook.com/docs/authentication/permissions。\n\n##\
+  \ 检查现有权限\n\n数据库模型提供而 Graph 不具备的一个很棒的功能，是能够获取当前用户被授予的扩展权限列表。\n\n这是通过 `permissions`\
+  \ 表实现的，该表有很多列：\n\n|  |  |\n|---|---|\n| `uid`（整数）– 用户 ID（必须是当前用户）或主页 ID |  |\n|\
+  \ `publish_stream`（布尔值）– 如果用户或主页拥有 `publish_stream` 权限，则返回 1，否则返回 0 |  |\n| `create_event`（布尔值）–\
+  \ 如果用户或主页拥有 `create_event` 权限，则返回 1，否则返回 0 |  |\n| `rsvp_event`（布尔值）– 如果用户或主页拥有\
+  \ `rsvp_event` 权限，则返回 1，否则返回 0 |  |\n\n等等。表中每一个可能的权限都对应一列；每种情况下，值都为 1 或 0。\n\n因此，如果当前用户的\
+  \ ID 是 123456，我们可以使用以下 FQL 查询来了解他们是否已向我们的应用授予 `publish_stream` 权限：\n\n```\nSELECT\
+  \ publish_stream\nFROM permissions\nWHERE uid=123456\n```\n\n> 请注意，此限制仅要求查询字段中*至少有一个*是可索引的。`SELECT`\
+  \ 子句中指定的字段可以是 `FROM` 子句指定表中的任意字段。在本章后面，你将看到如何在一个 `WHERE` 子句中同时查询多个字段，其中只需有一个字段可索引。\n\
+  \n## 这在实践中有影响吗？\n\n一般来说，你在搜索查询中实际需要使用的字段都是可索引的；你很少会想根据用户头像的 URL 来搜索用户。不过，也有一些例外需要留意。例如，在\
+  \ `event` 表中，只有 `eid` 字段（主键）是可索引的，这意味着你不能跨数据库中的所有活动进行搜索，以找到在指定地点举行或名称中包含指定词条的活动。\n\
+  \n## 高级 FQL\n\n到目前为止，我们所介绍的内容已经足够涵盖使用 Graph 调用所能完成的大部分操作，甚至更多。让我们来看看 FQL 更高级的特性。\n\
+  \n## 运算符\n\n与 AS3 中的 `if` 语句一样，FQL 的 `WHERE` 子句既可以使用逻辑运算符，也可以使用比较运算符。\n\n## 比较\n\
+  \n我们可以使用数学比较运算符 =、<、>、<=、>= 和 !=。（!= 的另一种写法是 <>，你可能会在网上的示例中看到。）\n\n除了 = 之外，这些运算符的用法与\
+  \ AS3 中相同。= 类似于 AS3 中的 ==，用于检查相等性而非赋值。\n\n使用这些运算符最有用的场景，是当你想要过滤掉超过某个年龄的对象时。\n\n\
+  ## 逻辑\n\n`AND`、`OR` 和 `NOT` 对你来说应该很熟悉，尽管在 AS3 中我们分别将它们写成 `&&`、`||` 和 `!`。\n\n我们在本章前面已经介绍过\
+  \ `IN`；它允许我们检查给定项是否存在于给定列表中。\n\n## 牛刀小试 – 根据地点获取你的活动列表\n\n在本章前面我们了解到，我们不能运行以下查询：\n\
+  \n```\nSELECT eid\nFROM event\nWHERE location = 'london'\n```\n\n这是因为 event 中唯一可索引的字段是\
+  \ eid。\n\n这里有一种绕过它的巧妙方法：\n\n```\nSELECT eid\nFROM event\nWHERE eid != -1 AND location\
+  \ = 'london'\n```\n\n不幸的是，这行不通。Facebook 会告诉你“你的语句不可索引。”唉，算了。\n\n所以，请设计一个查询，搜索当前用户已知道的、在伦敦举行的活动——为此，你需要使用\
+  \ event_member 表和 IN 运算符创建一个子查询。\n\n（event_member 表是一个链接表，有两个可索引字段：uid，对应用户；eid，对应活动。）\n\
+  \n## 牛刀小试 – 找出不速之客\n\n想要更大的挑战吗？\n\n选择一个拍摄了大量照片的活动。使用 FQL 和 AS3，编写一段代码，接收一个活动 ID\
+  \ 和该活动相册的 ID 列表，并输出在相册中被标记但未被邀请参加该活动的人的姓名列表。\n\n## 排序\n\nORDER BY 子句允许我们按特定字段对结果进行排序。例如，你可以像下面几行代码所示，获取你自己的好友列表：\n\
+  \n```\n# SELECT name\n# FROM user\n# WHERE uid IN (\n    * SELECT uid2\n    * FROM\
+  \ friend\n    * WHERE uid1 = « your User ID »\n```\n\n你可以添加以下新子句，按字母顺序显示它们：\n\n\
+  ```\nSELECT name\nFROM user\nWHERE uid IN (\n    SELECT uid2\n    FROM friend\n\
+  \    WHERE uid1 = «your User ID»\n)\nORDER BY name\n```\n\n编写 ORDER BY name DESC\
+  \ 可按降序排序，或编写 ORDER BY name ASC 按升序排序。默认值为 ASC。\n\n当在 Flash 中检索需要按特定顺序显示的数据时，这非常有用；所有工作都可以在服务器端完成，而不必获取所有数据并用\
+  \ AS3 排序。这一点是 Graph 调用无法做到的。\n\n## 分页\n\n与 Graph 一样，分页主要有两种方式：按日期或按数字。\n\n按日期分页使用比较运算符：\n\
+  \n```\nSELECT aid\nFROM album\nWHERE owner = «your User ID» AND created < «latest\
+  \ date» AND created > «earliest date»\n```\n\n你还可以使用算术运算符（+、-、/、*）来让日期比较更易于阅读：\n\
+  \n```\nSELECT aid\nFROM album\nWHERE owner = «your User ID» AND created < «certain\
+  \ date» AND created > «certain date» - 10\n```\n\n按数字分页使用 LIMIT 和 OFFSET，就像 Graph\
+  \ 调用一样：\n\n```\nSELECT aid\nFROM album\nWHERE owner = «your User ID»\nLIMIT 15\n\
+  OFFSET 30\n```\n\n更多关于分页的信息，请参阅第 4 章。\n\n\n\n\n## 一次调用多个查询\n\n如果你知道需要调用不止一个查询，并且这些查询的调用顺序并不重要，你可以通过一个\
+  \ API URL 将它们全部调用来提高性能。所有结果将一次性返回。\n\n语法是：\n\n```\nhttps://api.facebook.com/method/fql.multiquery?queries=[\"\
+  SELECT x FROM a WHERE c\", \"SELECT y FROM b WHERE d\"]&access_token=«access_token»\n\
+  ```\n\n尽管在这个示例中我只使用了非常简单的查询，但你并不限于这些。\n\n## 小测验\n\n+   1. 何时使用 FQL 而不是 Graph API\
+  \ 才有意义？\n+      a. 当发布信息到 Facebook 时\n+      b. 当尝试检索特定字段列表时\n+      c. 当尝试了解用户的扩展权限时\n\
+  +   2. 何时使用 Graph API 而不是 FQL 才有意义？\n+      a. 当发布信息到 Facebook 时\n+      b. 当尝试检索特定字段列表时\n\
+  +      c. 当尝试了解用户的扩展权限时\n+   3. 数据库表中的列和行与 AS3 模型中的对象和属性如何对应？\n+      a. 列像属性，行像对象\n\
+  +      b. 列像对象，行像属性\n\n## 总结\n\n在本章中，你从对 FQL 一无所知，到能够使用它进行比 Graph API 更高级的搜索查询。你还了解了一些\
+  \ Graph API 不支持的技术，例如如何获取当前用户被授予的扩展权限列表。\n\n要点如下：\n\n+   - 数据库将数据安排成表、列、行和字段\n+\
+  \   - FQL 代表 Facebook Query Language\n+   - 提交 FQL 查询的 API URL 为 https://api.facebook.com/method/fql.query?access_token=ACCESS_TOKEN&format=FORMAT&query=FQL_QUERY\
+  \ — FORMAT 可以是 json 或 xml\n+   - FQL 查询必须查询可索引字段\n+   - 通过将两张表的名称（不是列！）与线前的动词组合起来阅读实体关系线\n\
+  +   - 可以查询权限表以了解经过身份验证的用户被授予了哪些扩展权限\n+   - 表及其列的列表（附带哪些字段可索引的指南）可以在 http://developers.facebook.com/docs/reference/fql/\
+  \ 找到\n\n在下一章中，我们将总结本书中迄今为止学到的所有内容，并完成你的应用程序的整体构建。\n\n## 在 Facebook 上\n\n截至撰写时，有三种方式让用户从\
+  \ Facebook 网站内访问你的应用程序：在 IFrame 中，通过 FBML，以及在 Page Tab 中。我们将依次介绍这些是什么，以及如何使用它们。\n\
+  \n## IFrame\n\n还记得 frames 吗？它们回来了...\n\n在九十年代，每隔一个网站都使用 HTML <frame> 标签来布局页面。这种时尚最终被更干净、更适合书签的方法所取代，并且从未被怀念。\n\
+  \n但现在 frames 又在普遍使用——或者更确切地说，它们的姐妹标签 <iframe>。\n\nIFrame，或“内联框架”，允许你将一个完整的网页完全嵌入到另一个网页中，即使这两个页面位于不同的服务器和域中。如果你查看例如\
+  \ FarmVille 应用程序页面（http://apps.facebook.com/onthefarm/）的源代码，你会看到情况确实如此，如下一张截图所示：\n\
+  \n![](img/4e826fa36038b86f2087ef8b818d0acf_280_0.png)\n\nFacebook 站点上的页面称为 Canvas（不要与\
+  \ HTML5 的 canvas 混淆）。\n\n现在，我们已经有一个托管在外部主机上的页面（嵌入了 SWF）：http://host.com/visualizer/index.html。我们不需要对该页面做任何更改即可将其加载到\
+  \ Facebook 上的 IFrame 中；设置全部在 Facebook 开发者应用程序中。\n\n## 动手时间 – 设置一个 IFrame 应用程序\n\n\
+  浏览到 http://www.facebook.com/developers/apps.php 并在列表中找到你的应用程序。选择它，然后点击 Edit settings。从左侧菜单中选择\
+  \ Facebook Integration。\n\n![](img/4e826fa36038b86f2087ef8b818d0acf_281_0.png)\n\
+  \n设置可以在上一张截图中看到。以下是它们的含义，以及应如何设置：\n\n+   ♦ Canvas Page：这是用户将在 Facebook 内浏览以加载你的应用程序的\
+  \ URL。正如我们上面看到的，FarmVille 使用 http://apps.facebook.com/onthefarm。输入一个简短且描述性的名称；它不必太巧妙，因为用户更可能通过\
+  \ Facebook 书签到达该页面，而不是通过输入 URL。你以后可以更改此 URL。\n+   ♦ Canvas URL：这是被加载到位于 Canvas 页面内的\
+  \ IFrame 中的页面的 URL。你的应用程序可以包含用户可以在其间导航的多个 HTML 页面；Canvas URL 是将被加载的第一页。将其设置为你的应用程序的\
+  \ URL，即 http://host.com/visualizer/index.html。\n+   ♦ Canvas Type：IFrame 或 FBML。我们目前使用\
+  \ IFrame；我们将在本章后面介绍 FBML。\n\n## 动手时间 – 将应用程序添加到 Page 标签\n\n要将你的应用程序作为你在管理的 Page\
+  \ 上的标签添加，你必须首先将其标记为可以嵌入到标签中。打开应用程序的设置，并导航到 Facebook Integration 部分。在 Page Tabs 子部分中，输入以下内容：\n\
+  \n+   - **Tab Name**：要在标签上显示的名称（保持简短）\n+   - **Tab URL**：应用程序网页的文件名，相对于 Canvas URL\n\
+  +   - **Edit URL**：留空\n\n![](img/4e826fa36038b86f2087ef8b818d0acf_285_0.png)\n\n\
+  接下来，从开发者仪表板浏览到应用程序的 Application Profile Page，并从左侧菜单点击 Add To My Page：\n\n![](img/4e826fa36038b86f2087ef8b818d0acf_285_1.png)\n\
+  \n> 将添加到我的页面的收藏夹会将应用程序的个人资料链接到你的 Page，而不是应用程序本身。\n\n你会得到一个你控制的 Pages 列表；如果你没有 Page，可以按照\
+  \ http://www.facebook.com/FacebookPages 上的说明学习如何创建一个。\n\n但让我们看看当你能够创建它们时，你需要了解有关标签的知识。\n\
+  \n从技术角度来看，最重要的点是标签的宽度只有 520 像素，因此在布局你的应用程序及其标签页面时请记住这一点。你甚至可能希望创建一个单独的网页来容纳 SWF——甚至是单独的\
+  \ SWF——用于标签内使用。\n\n如果你为一家公司制作了一个广告游戏，并集成了 Facebook 以在游戏中使用玩家自己的名字并让他们将分数发布到他们的 Wall\
+  \ 上，你可以将游戏放在该公司 Facebook 页面的标签上，而不是仅使用独立的应用程序页面。\n\nAdobe 就采用了这种方法，使用他们的 Flex 测验游戏\
+  \ Cube Builder：\n\n![](img/4e826fa36038b86f2087ef8b818d0acf_287_0.png)\n\n门户可能会阻止\
+  \ SWF 从外部站点加载数据，这意味着访问即使是公共 Graph 数据也会变得棘手或不可能。这不太可能——如果完全阻止外部资源，游戏内广告如何工作？——但值得留意。\n\
+  \n真正的难题在于身份验证。这有两个原因：\n\n+   ♦ 为了获得访问令牌，我们在 SWF 嵌入的页面内调用一个 JavaScript 函数。但 Flash\
+  \ 游戏门户不让我们访问网页的源代码，因此我们无法插入此 JavaScript 函数以运行。此外，门户很可能会阻止 SWF 使用 `ExternalInterface`\
+  \ 调用 JavaScript 函数，因为它们可能构成安全风险。\n+   \n+   ♦ 在第 3 章中，我们了解到我们必须将 Site URL 设置为与应用程序主机的基本域名相匹配。如果它们不匹配——比如说，如果你的应用程序位于\
+  \ `http://portal.com/games/awesomegame.html` 但 Site URL 设置为 `http://host.com/~`\
+  \ Facebook 将不允许用户进行身份验证。这意味着我们不能允许托管在不同门户上的游戏通过同一个 Facebook 应用程序进行身份验证。\n\n因此，很遗憾，Facebook\
+  \ 并未为可以从不同站点运行的 SWF 设计其应用程序模型。一个可能的变通方法是导入一个托管在你自己的服务器上的单独 SWF 到主游戏 SWF 中，并让该单独的\
+  \ SWF 处理身份验证……但实现这一点超出了本书的范围。\n\n不过，你不必自己做所有这些工作！如果你不需要访问整个 Graph API，而只想能够在用户的\
+  \ Wall 上发布消息、检索他们的个人资料信息并获取他们的 Facebook 好友列表，那么你可以使用 Mochi Social Platform。\n\n\
+  这是一个由 Mochi Media 提供的免费 ActionScript API，它与 Facebook、Twitter 和 MySpace API 集成，允许你发布到并访问这三个社交网络的数据。它还允许你存储关于玩家的任意数据并将其链接到他们的社交网络个人资料。这意味着你可以存储他们的最高分数、其他统计数据，甚至他们构建的整个自定义关卡。\n\
+  \n更多信息，请访问 `http://www.mochimedia.com/developers/social.html`。\n\n## 作为桌面 AIR 应用程序\n\
+  \n尽管我们编写的大部分 `HTTPRequestor` 代码在桌面 AIR 应用程序中无需任何更改即可工作，但有一个障碍：身份验证。由于在使用 AIR 时，我们没有嵌入在\
+  \ HTML 页面中的 SWF，我们如何显示 Facebook 授权页面、获取访问令牌并将其传递给 AS3 函数？\n\n\n\n\n\n## 行动时间 – 通过\
+  \ AIR 使用 HTTP 进行授权\n\n与其将我们的应用程序放在 HTML 页面中，我们必须将 HTML 页面放在我们的应用程序中。为此，我们可以使用 `HTMLLoader`。\n\
+  \n`flash.html.HTMLLoader` 类，仅在 AIR 中可访问，是一种 `DisplayObject` 类型，它充当 HTML 内容的容器。我们用它来加载应用程序的\
+  \ Facebook 登录页面，就像我们在第 3 章中使用弹出窗口所做的那样。在那一章中，一旦用户登录，弹出窗口就会重定向到另一个页面，将访问令牌作为哈希的一部分传递，而该页面的源代码中的\
+  \ JavaScript 会提取哈希并将其传递给 SWF。在 AIR 中，我们的应用程序将使用事件侦听器来检测此重定向，并直接提取哈希。\n\n以下是其分解方式。这些是通用说明，而不是针对\
+  \ Visualizer，因此请根据项目需要进行实现：\n\n1. 首先，导入 `HTMLLoader`。\n\n   ```\n   import flash.html.HTMLLoader;\n\
+  \   ```\n\n2. 接下来，创建此类的一个实例，并添加事件侦听器以在内容被重定向时触发。\n\n   ```\n   var htmlLoader:HTMLLoader\
+  \ = new HTMLLoader();\n   htmlLoader.addEventListener(Event.LOCATION_CHANGE, onRedirect);\n\
+  \   ```\n\n   （不要忘记 `import flash.events.Event`。）\n\n3. `HTMLLoader` 默认的宽度和高度为零，这没有用，因为我们需要用户在其中点击按钮！因此，请调整其大小。\n\
+  \n   ```\n   var htmlLoader:HTMLLoader = new HTMLLoader();\n   htmlLoader.addEventListener(Event.LOCATION_CHANGE,\
+  \ onRedirect);\n   htmlLoader.width = 640;\n   htmlLoader.height = 480;\n   ```\n\
+  \n4. 将其添加到显示列表中以便可见。\n\n   ```\n   var htmlLoader:HTMLLoader = new HTMLLoader();\n\
+  \   htmlLoader.addEventListener(Event.LOCATION_CHANGE, onRedirect);\n   htmlLoader.width\
+  \ = 640;\n   htmlLoader.height = 480;\n   addChild(htmlLoader);\n   ```\n\n5. 加载\
+  \ Facebook 授权 URL：\n\n   ```\n   var stageWebView:StageWebView = new StageWebView();\n\
+  \   stageWebView.stage = this.stage;\n   stageWebView.viewPort = new Rectangle(0,\
+  \ 0, stage.stageWidth, stage.stageHeight);\n   stageWebView.addEventListener(LocationChangeEvent.LOCATION_CHANGE,\
+  \ onRedirect);\n   var authURL:String = \"https://graph.facebook.com/oauth/authorize?client_id=<application_id>&type=user_agent&redirect_uri=<redirect_url>\"\
+  ;\n   stageWebView.loadURL(authURL);\n   ```\n\n6. 请注意，`StageWebView.loadURL()`\
+  \ 方法不需要 `URLRequest`，而是需要一个 `String`。\n\n7. 以与之前相同的方式从哈希中提取访问令牌：\n\n   ```\n   private\
+  \ function onRedirect(a_event:LocationChangeEvent):void\n   {\n       var stageWebView:StageWebView\
+  \ = a_event.target as StageWebView;\n       if (stageWebView.location.indexOf(\"\
+  #\") != -1)\n       {\n           var hash:String = stageWebView.location.substr(stageWebView.location.indexOf(\"\
+  #\") + 1);\n           setAccessToken(hash);\n       }\n   }\n   ```\n\n8. 你不能使用\
+  \ `removeChild()` 来移除 `StageWebView`，因此使用此方法：\n\n   ```\n   private function onRedirect(a_event:LocationChangeEvent):void\n\
+  \   {\n       var stageWebView:StageWebView = a_event.target as StageWebView;\n\
+  \       if (stageWebView.location.indexOf(\"#\") != -1)\n       {\n           var\
+  \ hash:String = stageWebView.location.substr(stageWebView.location.indexOf(\"#\"\
+  ) + 1);\n           setAccessToken(hash);\n           stageWebView.stage.nativeWindow.close();\n\
+  \       }\n   }\n   ```\n\n这样就可以工作了！我们只需要做一个小小的调整。在 Android 上，StageWebView 使用 Android\
+  \ 操作系统系统网络控件（在桌面 AIR 中，使用内部 AIR WebKit 引擎）。由于我们无法完全控制它，因此我们需要确保它不会做任何意外的操作，例如打开浏览器应用程序。\n\
+  \n9. 为此，只要 StageWebView 实例分派 `LOCATION_CHANGING` 事件，就阻止其默认操作（该事件在位置更改前立即分派）：\n\n\
+  \   ```\n   var stageWebView:StageWebView = new StageWebView();\n   stageWebView.stage\
+  \ = this.stage;\n   stageWebView.viewPort = new Rectangle(0, 0, stage.stageWidth,\
+  \ stage.stageHeight);\n   stageWebView.addEventListener(LocationChangeEvent.LOCATION_CHANGE,\
+  \ onRedirect);\n   stageWebView.addEventListener(LocationChangeEvent.LOCATION_CHANGING,\
+  \ onRedirecting);\n   var authURL:String = \"https://graph.facebook.com/oauth/authorize?client_id=<application_id>&type=user_agent&redirect_uri=<redirect_url>\"\
+  ;\n   stageWebView.loadURL(authURL);\n\n   private function onRedirecting(a_event:LocationChangeEvent):void\n\
+  \   {\n       var stageWebView:StageWebView = a_event.target;\n       a_event.preventDefault();\
+  \  //stop any unexpected default behavior\n       stageWebView.loadURL(a_event.location);\n\
+  \       //...but continue loading the URL\n   }\n   ```\n\n## 发生了什么？\n\n使用 StageWebView，你已通过\
+  \ AIR for Android 应用程序使用 Facebook 对用户进行了身份验证。由于 URLLoader 实例可以在 AIR for Android\
+  \ 中与在常规 SWF 中相同的方式使用，这意味着你现在可以使用 Flash 创建完全集成 Facebook 的 Android 应用程序。\n\n## 试试英雄\
+  \ – 修改 SDK 以用于 Android\n\n截至撰写本文时，SDK 使用 `HTMLLoader` 进行 AIR 身份验证，并使用 JavaScript\
+  \ 进行 SWF 身份验证，因此无法用于对 Android 应用程序进行身份验证。如果你真的想在 Android 项目中使用 SDK，你就必须自己做一些更改。\n\
+  \n为 SDK 添加基于 StageWebView 的登录功能。不要修改现有的 SDK 类文件，而是创建扩展现有类的新类文件——这样，如果你将来更新 SDK，它们就不会丢失。\n\
+  \n这是一个棘手的挑战，因为你将修改他人的代码，但如果你想使用 SDK，这也是值得的。\n\n## 选择应用程序的 Facebook 设置\n\n应用程序的设置不仅仅是\
+  \ Canvas URL。以下是一些更有趣的选项：\n\n- **Advanced | Deauthorize Callback**：在这里你可以指定一个 URL，每当用户移除你的应用程序时就会调用该\
+  \ URL；用户的 ID 将传递给此 URL。为了对该 ID 做些什么，你需要使用服务器端脚本语言——请参阅本章后面的“下一步？”。有关解码信息的更多信息，请访问这里：http://developers.facebook.com/docs/authentication/\n\
+  - **About | Developers**：允许你将其他用户设为应用程序的开发者，从而让他们访问应用程序设置。\n- **Advanced | Sandbox\
+  \ Mode**：非常适合测试，这将只允许列为该应用程序开发者的用户登录你的应用程序。\n- **Facebook Integration | Bookmark\
+  \ URL**：在 Facebook 主页的左侧，你可以看到你使用过的应用程序和游戏列表。这些被称为 **Bookmarks**；设置 Bookmark URL\
+  \ 可让你选择这些链接指向的位置。Bookmark 右侧的数字称为 **Counter**，可让用户了解应用程序内的通知和更改。阅读有关 Counters 的更多信息：http://developers.facebook.com/docs/guides/canvas/#bookmarks。\n\
+  - **About | Icon and About | Logo**：图标出现在 Bookmarks 旁边以及通过你的应用创建的墙贴下方，而徽标则出现在授权页面和搜索结果中。\n\
+  \n![](img/4e826fa36038b86f2087ef8b818d0acf_297_0.png)\n\n![](img/4e826fa36038b86f2087ef8b818d0acf_299_0.png)\n\
+  \n缩略图图像使用 Graffiti 绘制，给出了它可以做什么的快速示例。关于段落简洁地概括了应用程序的目的，而描述则增加了一些社会认同：“很多人喜欢这个，所以你可能也会喜欢！”\n\
+  \n实际上，页面的很大一部分都是关于社会认同（对于社交网络上的社交应用来说也许并不奇怪）：\n\n- 显示使用该应用程序的朋友\n- 平均用户评分（4.3 分之\
+  \ 5）\n- 大量的评论\n\n\n\n\n\n+   - 数百万月活跃用户\n+   - 大量点击过那个**赞**按钮的用户\n\n显然，你对这些没有任何直接控制权！但它们确实在很大程度上影响着人们对你应用或游戏的看法，所以请记住这一点。\n\
+  \n## 动手实践——创建你的应用资料页\n\n在 Developers 应用中浏览到你的应用列表，从列表中选择你的应用，然后点击**应用资料页**。\n\n\
+  ![](img/4e826fa36038b86f2087ef8b818d0acf_300_0.png)\n\n**开始使用**标签页将引导你完成头像、状态更新和基本信息的设置。记住，你的主要目标是让人们点击**前往应用**按钮！\n\
+  \n## 类风湿性关节炎\n\n类风湿性关节炎是一种以关节滑膜慢性炎症为特征的自身免疫性疾病。常表现为对称性多关节炎，可导致关节软骨和骨破坏。\n\n**临床表现**：多见于女性。早期表现为晨僵、关节肿痛，常累及近端指间关节、掌指关节和腕关节；晚期可出现关节畸形。\n\
+  \n- 关节外表现：类风湿结节、间质性肺病、血管炎。\n- 实验室检查：类风湿因子阳性、抗CCP抗体阳性、血沉增快、CRP升高。\n\n**诊断**：主要依据临床表现、实验室检查和影像学检查。\n\
+  \n| 药物 | 用法 |\n| --- | --- |\n| 甲氨蝶呤 | 7.5-25 mg，每周1次 |\n| 柳氮磺吡啶 | 0.75-3 g/d |\n\
+  | 羟氯喹 | 0.2-0.4 g/d |\n\n**治疗**：应尽早使用改善病情抗风湿药，同时注意监测药物不良反应。\n\n> > 早期诊断和规范治疗是改善类风湿性关节炎预后的关键。\n\
+  \n## 测试用户\n\nFacebook 政策禁止任何人创建多个用户帐户。不过，现在可以使用 Graph API 创建最多 50 个专门用于测试应用的用户帐户。\n\
+  \n更多信息，请参阅 http://developers.facebook.com/docs/test_users。\n\n## 新版消息\n\n2010年11月，Facebook\
+  \ 宣布推出备受期待的“Gmail 杀手”——新版消息。该功能允许用户将消息、短信、聊天和电子邮件整合到同一个会话线程中，实现跨平台通信。\n\nGraph API\
+  \ 和 FQL 将可通过名为 `/thread/` 的新连接来访问这些消息。\n\n更多信息，请参阅 http://developers.facebook.com/docs/reference/api/thread\
+  \ 上的文档。\n\n## Facebook 开发者资源\n\n这里有一些非常适合加入浏览器书签和 RSS 阅读器的优秀网站。\n\n## Facebook 官方资源\n\
+  \n- ♦ 所有 Facebook 开发者的核心信息来源是 http://developers.facebook.com/。在这里，你可以访问涵盖 API 各个方面的海量文档，以及（非常活跃的）开发者论坛，在那里可以与他人讨论应用开发。\n\
+  - ♦ 你还可以通过平台实时状态页面 http://developers.facebook.com/live_status 查看 Facebook 平台的当前状态。如果你的应用出现问题，而你在自己这边找不到原因，可以查看此页面，了解问题是否出在\
+  \ Facebook 一方。\n- ♦ 你还应该了解 Facebook 平台缺陷跟踪系统：http://bugs.developers.facebook.net/。由于平台变更非常频繁，偶尔会出现一些缺陷。这个缺陷跟踪系统可帮助你向\
+  \ Facebook 管理员反馈缺陷；它也可以用来确认你遇到的问题是否是常见缺陷。\n\n## 其他优秀网站\n\n整个 InsideNetwork（http://www.insidenetwork.com/）对\
+  \ Facebook 开发者来说具有极高的阅读价值。它包括：\n\n- Inside Facebook：http://www.insidefacebook.com/\
+  \ – 关于 Facebook 和 Facebook 平台的新闻\n- AppData：http://www.appdata.com/ – Facebook 应用的指标和流量趋势分析\n\
+  - PageData：http://pagedata.insidefacebook.com/ – 与 AppData 类似，但针对的是 Facebook 主页而非应用\n\
+  - Inside Virtual Goods：http://www.insidevirtualgoods.com/ – 关于虚拟商品的研究、数据和分析（一旦 Facebook\
+  \ Credits 公开推出，这将尤其相关）\n- Inside Social Games：http://www.insidesocialgames.com/\
+  \ – 关于不断增长的社交游戏市场（包括 Facebook 游戏）的新闻与分析\n\n另一个关于 Facebook 游戏开发的优秀博客是 Facebook Indie\
+  \ Games：http://fbindie.posterous.com/。\n\n随着你阅读越来越多的此类网站，你会遇到各种可能不认识的术语和缩写，例如 DAU、MAU\
+  \ 和 K 因子。Wavedash.net 提供了一个有用的参考，说明其中许多术语的含义：http://www.wavedash.net/2010/04/the-secret-glossary-of-social-games-analytics/。\n\
+  \n博客“Cognition.ca”中关于 Facebook 开发的帖子不多，但其中有两篇我觉得非常有用：\n\n- http://www.cognition.ca/2007/11/using-ssh-tunnels-to-develop-facebook-applications.html\n\
+  - http://www.cognition.ca/2008/02/facebook-application-development-how-to-11-tips-you-dont-want-to-miss.html\n\
+  \n也请看看后一篇文章的评论。虽然其中有些信息已经过时，但确实有一些很好的建议，比如设置应用测试版本，以免将未经测试的更改推送到线上版本。\n\n在第6章中，我提到过\
+  \ Facebook 不允许你通过官方 Facebook 赞按钮以外的任何方式给 Graph 对象（帖子除外）“点赞”。嗯，这不完全正确——Hook 团队似乎已经攻克了这个问题。详情请参阅这篇博文（但请记住，Facebook\
+  \ 不希望你这样做，所以无法保证这个方法永远有效）：http://labs.byhook.com/2010/08/03/facebook-like-button-in-flash/。\n\
+  \n## 我，我，我\n\n我的网站是 http://michaeljameswilliams.com/。在那里，你可以找到我的 Flash 游戏开发教程博客，如果你有任何问题或想雇用我，也可以与我联系。我在\
+  \ Twitter 上的账号是 @MichaelJW。\n\n我也是 http://active.tutsplus.com/ 的编辑，该网站发布包括 Facebook\
+  \ 应用开发在内的 Flash 教程。\n\n是的，我在 Facebook 上，但恐怕我不会加你好友——抱歉！我喜欢把好友列表精简为仅限于现实中认识的人。（这是不是有点讽刺？）不过，你可以通过我的公共主页与我联系：http://www.facebook.com/pages/Michael-James-Williams/16957343058884–\
+  \ 给我留言，告诉我你对这本书的看法！\n\n## 跟上扎克伯格们的节奏\n\nFacebook 一直在更改和改进其服务。事情总是在变化；作为开发者，你必须应对这一点。\n\
+  \n更重要的是，你必须接受这一点。每当 Facebook 宣布新功能、移除旧功能或更改现有功能时，开发者们就会群起抱怨，说这将使他们的应用瘫痪，使他们的进度大幅倒退，并让他们失去大量收入和用户。\n\
+  \n大声表达不满没问题，但在某个节点上，这就变成了否认现实。只要你使用 Facebook 网站一段时间，你就会知道，他们乐于进行大规模、彻底的更改——例如推出动态消息（News\
+  \ Feed），移除用户主页上的标签页和框（Tabs and Boxes）——并且不顾用户抱怨而坚持到底。而且通常，他们对如何让网站变得更好的直觉是正确的。\n\
+  \n因此，API 领域也是如此，这并不奇怪。也许这对开发者不公平，但这不太可能会改变。所以请记住，在构建项目时，如果它过度依赖 Graph API 的某一个单一特性（或\
+  \ Facebook 界面，或可用数据），那么你就有被釜底抽薪的危险。请记住与客户商定好定价结构，这样几个月后当他们的项目中的 Facebook 集成代码需要更改时，你不会因为合同而被要求免费来做。\n\
+  \n幸运的是，你对 Graph API 的了解基于核心概念，而非具体实现。你理解 Graph 本身，而不仅仅是知道如何复制粘贴与 Facebook 相关的 AS3\
+  \ 代码片段。这意味着你将能够应对任何新事物。\n\n## 应对变化\n\n请留意以下两个页面：\n\n- Facebook 开发者博客：http://developers.facebook.com/blog/\n\
+  - Facebook 开发者路线图：http://developers.facebook.com/roadmap\n\n该博客会宣布与开发者相关的更改，而路线图则简要总结这些即将到来的更改。\n\
+  \n通常，新更改会在实施前几周甚至几个月就公布。通常情况下，你可以在迁移被强制执行之前的某段时间内在应用中启用这些更改，这对测试你需要对代码进行的改动很有用。\n\
+  \n现在就去阅读该博客自 2010年11月（本书完成之时）以来的存档，然后订阅它以定期获取更新。这样，你就能保持与时俱进。\n\n## 小结\n\n在本章中，我们探讨了如何从技术问题转向实际问题，以及接下来该何去何从。剩下的就是你去大展身手，创建一些精彩的\
+  \ Facebook 应用了！\n\n祝你在开发工作中一帆风顺。我和参与本书的所有人都感谢你的阅读！希望这本书对你有用。如果你开发了任何 Facebook 应用或游戏，请告诉我——我很想看看它们。\n\
+  \n\n\n\n\n## 第5章\n\n| 问题 | 答案 | 解释 |\n| --- | --- | --- |\n| 1 | d | 可能是以上任何一种 |\n\
+  | 2 | b | 第一个不会作为第二个的过滤器，这与所有其他 Graph Search URL 不同 |\n| 3 | a, d | 结果是个性化的，因此更相关的结果排名更高<br>可以使用更多类型的搜索（如用户）\
+  \ |\n\n## 第6章\n\n| 问题 | 答案 | 解释 |\n| --- | --- | --- |\n| 1 | c | HTTP 要求我们在更改数据时使用“不安全”的方法\
+  \ |\n| 2 | b | 这些代码可以为我们提供关于发布尝试失败原因的额外信息 |\n| 3 | a | 没有 |\n\n## 第7章\n\n| 问题 |\
+  \ 答案 | 解释 |\n| --- | --- | --- |\n| 1 | b, c | 当尝试检索特定的字段列表时<br>当试图查明用户的扩展权限时 |\n\
+  | 2 | a | 当向 Facebook 发布信息时 |\n| 3 | a | 列类似于属性，行类似于对象 |\n\n### F\n\n- Facebook\
+  \ API\n  - 约 290\n  - Facebook Chat API、JavaScript SDK 291\n  - Insights API、JavaScript\
+  \ SDK 290\n  - Internationalization API、JavaScript SDK 291\n  - JavaScript SDK 290\n\
+  - Facebook 应用目录 288, 289\n- Facebook Chat API 291\n- Facebook Developer\n  - URL\
+  \ 72\n- Facebook Developer Blog\n  - URL 296\n- Facebook 开发者资源\n  - 官方 Facebook\
+  \ 资源 293\n  - 其他网站 294\n- Facebook Developer Roadmap\n  - URL 296\n- Facebook 功能\n\
+  \  - Facebook 信用 292\n  - 新消息 293\n  - 测试用户 293\n- Facebook.login() 方法 114\n- Facebook\
+  \ 页面\n  - 加载 24\n- Facebook.postData() 方法 199\n- Facebook 查询语言。参见 FQL\n- FBML 270\n\
+  - 信息流\n  - 搜索 171\n  - 通过可视化工具搜索 175-181\n- 字段 237\n- FileZilla\n  - URL 13\n- 筛选按钮\
+  \ 138\n- flash.display.Loader 类 36\n- Flash 游戏门户 274, 275\n- 用于 Firebug 的 Flash\
+  \ Tracer 19\n- FQL\n  - 关于 235\n  - 数据模型 237\n  - 数据表示 238\n  - 重新创建现有 Graph API\
+  \ 调用 254\n  - 字段 237\n  - 接口 236, 237\n- FQL 高级\n  - 关于 258\n  - 比较运算符 258\n  -\
+  \ 逻辑运算符 258\n  - 调用多个查询 262\n  - 运算符 258\n- FQL 查询构建器\n  - 创建 242\n- friends_interests\
+  \ 扩展权限 102\n- friends 属性 213\n- 好友的墙贴\n  - 搜索 172\n- FROM 子句 258\n- from 属性 61\n\
+  - FTP（Media Temple 的说明）\n  - URL 13\n- 函数，FQL\n  - lower(string) 261\n  - me() 261\n\
+  \  - now() 261\n  - rand() 261\n  - strip_tags(field) 261\n  - strlen(string) 261\n\
+  \  - strpos(string, term) 261\n  - substr(string, startpos, length) 261\n  - upper(string)\
+  \ 261\n\n### G\n\n- Graph\n  - 作为层 254\n  - 遍历 61, 62\n- Graph API\n  - 关于 21, 69\n\
+  \  - 通过 AS3 访问 27-30\n  - 通过浏览器访问 24\n- graph.GraphList 类 41\n- graph.GraphObject\
+  \ 33\n- GraphList 类 41\n- GraphList 实例 43\n- GraphList 实例 121\n- Graph List 渲染器\
+  \ 41\n- 图形模型 238\n- GraphObject.as 类 33\n- GraphObject 类 41\n- GraphObject 实例 41\n\
+  - Graph Object 渲染器 35\n- graph 对象\n  - 相册 227\n  - 签到 230\n  - 评论 222\n  - 删除 214\n\
+  \  - 活动 RSVP 226\n  - 活动 225, 226\n  - 点赞 223\n  - 删除点赞 223\n  - 笔记 224\n  - 照片\
+  \ 228, 229\n  - 删除帖子 214\n  - 使用可视化工具删除帖子 215-220\n  - 发布 221\n- GraphRequest 138\n\
+  - GraphRequest 类 49\n- GraphRequest 实例 63, 130, 135\n- GraphRequest 实例\n  - 添加 since\
+  \ 133-135\n  - 添加 until 133-135\n- GraphRequest 对象 167\n- Graph URL\n  - 关于 26\n\
+  \  - 使用 ids 参数 142, 143\n  - 使用 ids 参数 141\n  - 带授权搜索 158-160\n  - 无授权搜索 153-157\n\
+  - 群组\n  - 创建 231\n\n### H\n\n- header（字符串）256\n- HTTP\n  - 用于通过 AIR 进行授权 276-278\n\
+  - HTTP POST 方法 233\n- HTTPRequestor 类 48\n- HTTPRequestor() 构造函数 97, 98\n- HTTPRequestor.request()\
+  \ 96\n- HTTPStatusEvent 监听器 192\n\n### I\n\n- ids 参数\n  - 用于 Graph URL 142, 143\n\
+  - if 块 42\n- IFrame\n  - 关于 266, 267\n  - 设置应用程序 267-270\n- 收件箱消息\n  - 发送 230\n\
+  - 信息\n  - 可视化 33-36\n- 信息\n  - 从页面表检索 239-242\n- initComplete() 函数 108\n- initialize()\
+  \ 函数 119\n- Inside Facebook\n  - URL 294\n- InsideNetwork\n  - URL 294\n- Inside\
+  \ Social Games\n  - URL 294\n- Inside Virtual Goods\n  - URL 294\n- Insights API\
+  \ 290\n- Internationalization API 291\n- IOErrorEvent 监听器 85\n- IO_ERROR 事件监听器 54\n\
+  - IRequestor.as 接口 119\n- IRequestor 接口 89, 168\n\n### J\n\n- JavaScript SDK\n \
+  \ - Facebook Chat API 291\n  - Insights API 290\n  - Internationalization API 291\n\
+  - JSON.decode() 方法 32\n- JSON.encode() 方法 230\n- JSON（JavaScript 对象表示法）30\n- JSON\
+  \ 对象\n  - 反序列化 32, 33\n\n### K\n\n- Komodo Edit\n  - URL 13\n\n### L\n\n- length\
+  \ 属性 121\n- 点赞 222\n- 限制\n  - 添加到 GraphRequest 128, 129\n  - 用于其他连接 128\n- limit\
+  \ 参数 127\n- listFilterCallback() 函数 137\n\n### P\n\n- 主键\n  - 关于 247\n  - album.cover_pid\
+  \ 247\n  - photo.aid 247\n  - photo.owner 247\n- 隐私\n  - 设置帖子隐私设置 211-213\n- privacy\
+  \ 参数 208\n- 个人资料页面，应用程序\n  - 创建 286\n  - 编辑 284, 285\n- 公共个人资料 24\n- 发布按钮 216\n\
+  - publishComplete() 函数 198\n- publish() 函数 188, 202, 221\n- publish() 方法 188, 189,\
+  \ 207, 228\n- PublishObject 222\n- PublishObject 类 188\n- PublishObject 实例 188,\
+  \ 221\n- PublishObject 参数 191\n- publish_stream（布尔值）255\n- publish_stream 权限 223,\
+  \ 224\n\n### Q\n\n- q 参数 171\n\n### R\n\n- rand() 函数 261\n- 实时更新 292\n- redirect_uri\
+  \ 参数 94\n- 关系数据库模型 238\n- renderGraphList() 方法 41\n- renderGraphObject() 方法 33\n\
+  - requestComplete() 回调 111\n- requestComplete() 函数 110, 168\n- request() 函数 110,\
+  \ 113, 134\n- request 方法\n  - 关于 189, 190\n  - 监听错误 193, 195\n  - 使用 POST 方法 190-192\n\
+  \  - 授予所需权限 195-197\n  - 通过 SDK 发布 197-199\n- request() 方法 190\n- 请求者\n  - 关于 48\n\
+  \  - 创建 HTTP 请求者 48, 52, 53\n- 限制，FQL\n  - 关于 256\n  - 使用可索引字段进行搜索 257\n- result\
+  \ 参数 111\n- 富互联网应用程序 (RIA) 8\n- 富帖子\n  - 发布 200-203\n- rsvp_event（布尔值）255\n\n###\
+  \ S\n\n- scope 参数 101, 103\n- SDK\n  - 通过 AIR 授权 278, 279\n  - 为 Android 修改 282\n\
+  \  - 通过其搜索 167-170\n- SDKRequestor.attemptToAuthenticate() 方法 114\n- SDKRequestor()\
+  \ 构造函数 108\n- 搜索\n  - 搜索信息流 171\n  - 通过可视化工具搜索信息流 175-181\n  - 搜索好友的墙贴 172\n  -\
+  \ 使用完整搜索结果 150-153\n  - 设置区域设置 170\n  - 搜索新闻源 171, 172\n  - 检查快速搜索结果 148-150\n \
+  \ - 限制 161, 162\n  - 通过 SDK 搜索 170\n  - 在可视化工具中实现搜索窗口 163-166\n  - 通过 SDK 167-170\n\
+  \  - 搜索墙贴 171\n  - 使用网站搜索框 147\n  - 带授权 158-160\n  - 无授权 153-156\n- searchComplete()\
+  \ 168\n- search() 函数 166, 167\n- search() 方法 166, 168, 190\n- 搜索结果\n  - 检查 148-150\n\
+  \  - 使用完整搜索结果 150-153\n- 搜索窗口\n  - 在可视化工具中实现 163-166\n- setAccessToken() 94, 97\n\
+  - setAccessToken() 函数 94, 95, 97\n- 显示按钮 47\n- since 参数 158\n- SOS max 19\n- 源代码\
+  \ 15\n- source 参数 208, 214\n- 状态消息 199\n- status 属性 192\n- strip_tags(field) 函数\
+  \ 261\n- strlen(string) 函数 261\n- strpos(string, term) 函数 261\n- substr() 函数 261\n\
+  - substr(string, startpos, length) 函数 261\n- success 参数 111\n- summary（字符串）256\n\
+  \n### T\n\n- 表\n  - 链接 249, 250\n- TextMate\n  - URL 13\n- this.accessToken 96\n\
+  - time 属性 82\n- type 参数 153, 181\n\n### U\n\n- uid（整数）255\n- until 参数 133, 158\n\
+  - upper(string) 函数 261\n- URLLoader 请求 48\n- URL 参数 191\n- URLRequestMethod 类 190\n\
+  - URLRequest 对象 28, 114\n- URLVariables 对象 90, 200\n- URLVariables 参数 197\n- 用户代理流程\
+  \ 81\n- 用户/应用程序授权 70, 71\n- user_checkins 权限 230\n- 用户信息流\n  - 发布到 185-189\n- user_interests\
+  \ 扩展权限 102\n\n### V\n\n- 视频\n  - 创建 231\n- 可视化工具\n  - 关于 15\n  - 通过其搜索信息流 175-181\n\
+  \  - 在其中实现搜索窗口 163-166\n- Vizzy Flash Tracer 19\n\n### W\n\n- 墙\n  - 使用可视化工具发布到墙\
+  \ 207, 208\n- 墙贴\n  - 搜索 171\n- 网络主机\n  - 关于 11\n  - 必要性 12\n  - 选择方法 12\n  - 软件要求\
+  \ 13\n- website 属性 241\n- window.open() 93\n\n### Z\n\n- 放大按钮 35\n\n![](img/4e826fa36038b86f2087ef8b818d0acf_321_0.png)\n\
+  \n## 感谢您购买《使用 Flash 进行 Facebook Graph API 开发：初学者指南》\n\n## 关于 Packt Publishing\n\n\
+  Packt，发音为“packed”，于 2004 年 4 月出版了第一本书《Mastering phpMyAdmin for Effective MySQL Management》，此后一直专注于出版关于特定技术和解决方案的高度聚焦的书籍。\n\
+  \n我们的书籍和出版物分享了您的 IT 同行在改编和定制当今系统、应用程序和框架方面的经验。我们基于解决方案的书籍为您提供定制软件和技术以完成工作的知识和能力。Packt\
+  \ 的书籍比您过去看到的 IT 书籍更具体、更少泛泛而谈。我们独特的商业模式使我们能够为您带来更集中的信息，让您获得更多需要知道的内容，减少不需要的内容。\n\n\
+  Packt 是一家现代而独特的出版公司，专注于为开发者、管理员和新手社区制作高质量的前沿书籍。如需更多信息，请访问我们的网站：www.PacktPub.com。\n\
+  \n## 为 Packt 撰稿\n\n我们欢迎所有对写作感兴趣的人士垂询。书籍提案应发送至 author@packtpub.com。如果您的书的想法还处于早期阶段，并且您希望在撰写正式图书提案之前先进行讨论，请与我们联系；我们的一位策划编辑将与您联系。\n\
+  \n我们不仅仅在寻找已出版过作品的作者；如果您有很强的技术技能但没有写作经验，我们经验丰富的编辑可以帮助您发展写作生涯，或者仅仅为您的专业知识获得一些额外奖励。\n\
+  \n\n\n\n\n![](img/4e826fa36038b86f2087ef8b818d0acf_323_0.png)\n\n![](img/4e826fa36038b86f2087ef8b818d0acf_323_1.png)\n\
+  \n## Google App Engine Java and GWT Application Development\n\nISBN: 978-1-849690-44-7\
+  \      Paperback:480 pages\n\nBuild powerful, scalable, and interactive web applications\
+  \ in the cloud\n\n- 1. Comprehensive coverage of building scalable, modular, and\
+  \ maintainable applications with GWT and GAE using Java\n- 2. Leverage the Google\
+  \ App Engine services and enhance your app functionality and performance\n- 3. Integrate\
+  \ your application with Google Accounts, Facebook, and Twitter\n- 4. Safely deploy,\
+  \ monitor, and maintain your GAE applications\n\n![](img/4e826fa36038b86f2087ef8b818d0acf_323_2.png)\n\
+  \n## XNA 4.0 Game Development by Example: Beginner's Guide\n\nISBN: 978-1-849690-66-9\
+  \      Paperback: 428 pages\n\nCreate your own exciting games with Microsoft XNA\
+  \ 4.0\n\n- 1. Dive headfirst into game creation with XNA\n- 2. Four different styles\
+  \ of games comprising a puzzler, a space shooter, a multi-axis shoot 'em up, and\
+  \ a jump-and-run platformer\n- 3. Games that gradually increase in complexity to\
+  \ cover a wide variety of game development techniques\n- 4. Focuses entirely on\
+  \ developing games with the free version of XNA\n\n"

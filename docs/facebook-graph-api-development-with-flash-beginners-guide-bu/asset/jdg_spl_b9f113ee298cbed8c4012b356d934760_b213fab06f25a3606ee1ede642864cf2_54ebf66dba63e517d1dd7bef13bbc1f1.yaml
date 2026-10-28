@@ -1,0 +1,45 @@
+chapter_starts:
+- 'no': 0
+  confidence: 0.9
+  final_reason: 双方一致：书名标题，单独成行，为全书起始的最高层级标识，符合分章规则
+  accepted_evidence:
+  - 书名标题符合全书起始特征，单独成行且为最高层级标识
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 40
+  confidence: 0.85
+  final_reason: 双方一致：## Preface 为前言类前置内容，按规则与致谢、关于作者等合并为前文一章，作为该部分的起始
+  accepted_evidence:
+  - Preface 为前置内容，按规则应与致谢等统一划为前文一章，位置合理
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 107
+  confidence: 0.9
+  final_reason: '判定为第1章章标题：本书目录明确 Chapter 1 即 Introduction，后续 It''s popular、Numbers
+    等为该章子节；第2章编号 ## 2 紧随其后，构成连续章节序列。复核方将其降为正文小标题的证据不成立'
+  accepted_evidence:
+  - '*Chapter 1, Introduction,* gets you up to speed wi...（目录证据）'
+  - '后续存在 ## 2 / ## 欢迎来到图谱 的下一章标记'
+  - 标题单独成行、无句号、后接概述段与多个子节
+  rejected_evidence:
+  - 复核方认为其为第1章内部节标题；但 It's popular、Numbers 等正是章内小节，Introduction 作为章名与该章内容相符
+  need_human_review: false
+- 'no': 288
+  confidence: 0.95
+  final_reason: '双方一致：## 2 为第2章编号，后接 ## 欢迎来到图谱（Welcome to the Graph），符合最高层级章节起始特征'
+  accepted_evidence:
+  - '编号特征 ## 2 为全书最高层级大章标记，后接 ## 欢迎来到图谱，符合章节起始规则'
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 2708
+  confidence: 0.8
+  final_reason: '判定为第4章章标题：本书目录 Chapter 4 为 Digging Deeper into the Graph，本行 ## 深入挖掘图
+    即其中文标题；后接内容覆盖 since/until 过滤、分页、多 ID 请求等该章主题，且在此之前的 Summary/Key takeaways 已标记前章结束。复核方反证不足'
+  accepted_evidence:
+  - '*Chapter 4, Digging Deeper into the Graph,* helps ...（目录证据）'
+  - 标题单独成行、无句号、语义概括后续的 since/until、分页、ids 请求等内容
+  - '后续出现 ### 行动时间 等子节，符合章标题后接子节结构'
+  rejected_evidence:
+  - 复核方认为无编号且位于第2章内部；但章标题不强制编号，目录证据表明其对应 Chapter 4，Summary 等章末标记说明前章已结束
+  need_human_review: false
+rejected_lines: []

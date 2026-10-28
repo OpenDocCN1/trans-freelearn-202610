@@ -1,0 +1,36 @@
+reviews:
+- 'no': 3056
+  overturn_probability: 0.35
+  alternative: 正文小标题（章节内的大标题）
+  counter_evidence:
+  - 该标题“# Search Me”没有编号，而本书其他章节标题多以“## 数字”或“第X章”形式出现，缺乏编号特征。
+  - 前文3042-3050仍在讨论搜索结果，与后续内容紧密衔接，更像是一个小节标题而非独立大章。
+  keep_split: true
+- 'no': 4705
+  overturn_probability: 0.6
+  alternative: 章号残留或页眉，实际章节标题在下一行（4707）
+  counter_evidence:
+  - “## 7”只是一个孤立的数字，没有语义，不能独立构成章标题；真正的章名是紧接着的“## FQL 相关问题”。
+  - 在排版中，章号和章名常常分两行显示，分章点应设在包含完整标题的行（4707），而不是孤立的数字行。
+  keep_split: false
+- 'no': 5645
+  overturn_probability: 0.8
+  alternative: 测验答案部分的子标题（第5章答案）
+  counter_evidence:
+  - 标题后直接是答案表格，没有概述段落，不符合章标题通常后接概述的特征。
+  - 它出现在书末答案区域，与第6、7章答案连续排列，更像是附录中的条目，而不是独立的新章。
+  keep_split: false
+- 'no': 5653
+  overturn_probability: 0.8
+  alternative: 测验答案部分的子标题（第6章答案）
+  counter_evidence:
+  - 紧随第5章答案表格之后，内容类型相同，属于同一附录连续章节。
+  - 标题过于简短（“第6章”），没有章名，仅标明对应章节，适合作为条目而非章。
+  keep_split: false
+- 'no': 5661
+  overturn_probability: 0.8
+  alternative: 测验答案部分的子标题（第7章答案）
+  counter_evidence:
+  - 与前两个答案标题一样，属于连续答案列表，应视为同一附录内容。
+  - 后面紧跟索引（### F），说明它位于书末附属部分，不应作为正式章节。
+  keep_split: false

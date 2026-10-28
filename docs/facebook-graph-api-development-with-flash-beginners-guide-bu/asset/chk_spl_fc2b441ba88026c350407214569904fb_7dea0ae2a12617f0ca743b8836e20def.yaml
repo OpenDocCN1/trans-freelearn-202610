@@ -1,0 +1,18 @@
+reviews:
+- 'no': 5920
+  overturn_probability: 0.92
+  alternative: 索引字母子标题
+  counter_evidence:
+  - 该行后紧跟的是 '- scope 参数 101, 103' 等索引条目列表，上下文全为索引条目而非章节正文
+  - '### S / ### T / ### U 等字母标题在同一索引区块内连续出现，属于索引内部的字母分段标记，并非全书最高层级大章'
+  - 标题后 1~3 行无概述段落，直接是列表项，符合索引排版噪声特征，不符合章标题的语义统领性
+  keep_split: false
+- 'no': 6028
+  overturn_probability: 0.78
+  alternative: 文末附属信息子标题
+  counter_evidence:
+  - '6028 后紧跟 6030 ## 关于 Packt Publishing、6038 ## 为 Packt 撰稿、6052 ## Google App Engine...
+    等多个 ## 级标题，均属出版商致谢/宣传附录的同一后记区块'
+  - '规则要求前言、序言、致谢、关于作者等正文之前/之后的内容统一划分为一章，不应按每个 ## 子标题拆分'
+  - 标题长度较长且为感谢语，语义上为附属信息区内的分段小标题，而非全书最高层级章节
+  keep_split: false
