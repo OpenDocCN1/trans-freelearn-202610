@@ -1,0 +1,64 @@
+reviews:
+- 'no': 7
+  overturn_probability: 0.25
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '前言属于正文前统一章节的组成部分，但本文件在第0行已有 # Clojure 编程秘籍 作为封面标题，前言后紧跟本书涵盖内容、阅读本书所需条件等目录式小标题，缺乏独立章的统领性概述段落'
+  keep_split: true
+- 'no': 43
+  overturn_probability: 0.92
+  alternative: 正文小标题/配方标题
+  counter_evidence:
+  - '编号为 1. 的配方标题，后续内容为 介绍、启动 REPL！、准备工作、如何操作... 等配方固定子节结构，而非章节概述；真正的最高层级章节在第1430行出现
+    # 第 1 章 使用 Clojure 进行实时编程，序号与层级冲突'
+  keep_split: false
+- 'no': 145
+  overturn_probability: 0.9
+  alternative: 正文小标题/配方标题
+  counter_evidence:
+  - '编号为 2. 的配方标题，上下文为 Clojure 集合及其基本函数、准备工作、如何操作... 等配方子节；与第659行起的 # 6. 并发与并行 等 Markdown
+    章标题层级不一致，属于食谱内部的二级标题'
+  keep_split: false
+- 'no': 286
+  overturn_probability: 0.9
+  alternative: 正文小标题/配方标题
+  counter_evidence:
+  - '编号为 3. 的配方标题，后续为 使用解构技术、准备工作、如何操作... 等配方结构；书中最高层级章标题使用 # 6.、# 7. 等 Markdown 标题，3.
+    属于配方层级'
+  keep_split: false
+- 'no': 659
+  overturn_probability: 0.1
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '标题以 # 开头单独成行，编号为 6.，语义统领并发与并行整块内容，后续出现 引言、使用 Clojure 解决并发问题 等子节，符合最高层级大章特征'
+  keep_split: true
+- 'no': 871
+  overturn_probability: 0.08
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '标题以 # 开头单独成行，编号为 7.，语义统领高级技巧整块内容，后续为 引言、Hacking Clojure 代码 等子节，符合最高层级大章特征'
+  keep_split: true
+- 'no': 963
+  overturn_probability: 0.08
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '标题以 # 开头单独成行，编号为 8.，语义统领 Web 应用程序整块内容，后续为 引言、Clojure 与 Vaadin 等子节，符合最高层级大章特征'
+  keep_split: true
+- 'no': 1083
+  overturn_probability: 0.95
+  alternative: 列表项
+  counter_evidence:
+  - 行首为 '- 9. 测试'，属于列表项格式，上下文为 1079 行起的 '- 使用 om.next 入门' 等列表，整体为目录/清单内容，非单独成行的章标题；标题末尾无统领性概述段落
+  keep_split: false
+- 'no': 1131
+  overturn_probability: 0.95
+  alternative: 列表项
+  counter_evidence:
+  - 行首为 '- 10. 部署与 DevOps'，属于列表项格式，上下文为连续的 '- 简介'、'- Riemann - 监控...' 等列表条目，排版噪声而非独立章节标题
+  keep_split: false
+- 'no': 1430
+  overturn_probability: 0.05
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '标题以 # 第 1 章 开头单独成行，语义统领 使用 Clojure 进行实时编程 全部内容，后续为 在本章中，我们将涵盖以下主题： 等章节概述，符合最高层级大章判断规则'
+  keep_split: true

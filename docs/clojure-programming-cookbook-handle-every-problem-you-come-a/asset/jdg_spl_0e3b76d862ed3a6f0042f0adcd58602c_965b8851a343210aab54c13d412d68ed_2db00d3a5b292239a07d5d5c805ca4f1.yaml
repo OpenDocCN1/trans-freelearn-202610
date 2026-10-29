@@ -1,0 +1,58 @@
+chapter_starts:
+- 'no': 7
+  confidence: 0.7
+  final_reason: 前言类正文前内容统一划分为一章，判断方采纳且复核方 overturn_probability 0.25 认为保留合理
+  accepted_evidence:
+  - 前言、序言等正文之前内容统一划分为一章，首个前言类标题
+  - keep_split true
+  rejected_evidence:
+  - 前言后紧跟目录式小标题缺乏独立章统领性概述段落
+  need_human_review: false
+- 'no': 659
+  confidence: 0.9
+  final_reason: '双方一致，# 6. 并发与并行 以 # 开头单独成行，编号为最高层级大章，语义统领整块内容'
+  accepted_evidence:
+  - '标题以 # 开头单独成行，编号为 6.，语义统领并发与并行整块内容'
+  - keep_split true
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 871
+  confidence: 0.9
+  final_reason: 双方一致，# 7. 高级技巧 为最高层级 Markdown 章标题，单独成行且统领后续子节
+  accepted_evidence:
+  - '标题以 # 开头单独成行，编号为 7.，语义统领高级技巧整块内容'
+  - keep_split true
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 963
+  confidence: 0.9
+  final_reason: 双方一致，# 8. Web 应用程序 为最高层级 Markdown 章标题，单独成行且统领后续内容
+  accepted_evidence:
+  - '标题以 # 开头单独成行，编号为 8.，语义统领 Web 应用程序整块内容'
+  - keep_split true
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 1430
+  confidence: 0.95
+  final_reason: 双方一致，# 第 1 章 使用 Clojure 进行实时编程 为正式最高层级章标题，单独成行并有章节概述
+  accepted_evidence:
+  - '标题以 # 第 1 章 开头单独成行，语义统领全部内容，后续为章节概述'
+  - keep_split true
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 43
+  reason: 复核方反证成立：1. 为配方级标题，后续为 介绍、启动 REPL！、准备工作 等配方子节结构，真正的最高层级章节在 1430 行，序号层级冲突
+  need_human_review: false
+- 'no': 145
+  reason: '复核方反证成立：2. 为配方级标题，上下文为集合配方子节，与 # 6. 等 Markdown 章标题层级不一致'
+  need_human_review: false
+- 'no': 286
+  reason: 复核方反证成立：3. 为配方级标题，后续为 使用解构技术、准备工作 等配方结构，非最高层级大章
+  need_human_review: false
+- 'no': 1083
+  reason: 复核方反证成立：行首为 '- 9. 测试'，属于列表项格式，上下文为列表清单，非独立成行的章标题
+  need_human_review: false
+- 'no': 1131
+  reason: 复核方反证成立：行首为 '- 10. 部署与 DevOps'，属于列表项格式，排版噪声而非独立章节标题
+  need_human_review: false

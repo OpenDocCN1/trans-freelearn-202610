@@ -1,0 +1,65 @@
+reviews:
+- 'no': 21478
+  overturn_probability: 0.05
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '该行为英文全书最高层级章节标题 # Chapter 10. Deployment and DevOps，单独成行且后接章节介绍段落，符合编号与语义特征'
+  keep_split: true
+- 'no': 22914
+  overturn_probability: 0.95
+  alternative: 目录/索引条目
+  counter_evidence:
+  - 上下文为 22862 起的 Table of Contents 目录页，行 22864 起为 Clojure Programming Cookbook 26
+    等页码信息
+  - 该行 1. Live Programming with Clojure 出现在目录列表中，后续行 22916 Introduction 44 等均为目录项而非正文
+  - 目录条目不应作为正文章节划分点
+  keep_split: false
+- 'no': 22961
+  overturn_probability: 0.95
+  alternative: 目录/索引条目
+  counter_evidence:
+  - 位于同一 Table of Contents 区块内，行 22962 之后为 引言 90 等目录子项
+  - '格式为 ## 2. 与集合交互，出现在目录页码列表中，非正文章节标题'
+  keep_split: false
+- 'no': 23042
+  overturn_probability: 0.95
+  alternative: 目录/索引条目
+  counter_evidence:
+  - 仍在 Table of Contents 连续列表中，行 23044 之后为 引言 134 等目录项
+  - 无正文概述段落，前后均为目录页码条目
+  keep_split: false
+- 'no': 23155
+  overturn_probability: 0.95
+  alternative: 目录/索引条目
+  counter_evidence:
+  - 上下文为目录页，行 23156 引言 210 等均为目录子项
+  - '该行 ## 4. 文件访问和网络 为目录条目，非实际章节起始'
+  keep_split: false
+- 'no': 23269
+  overturn_probability: 0.95
+  alternative: 目录/索引条目
+  counter_evidence:
+  - 仍处 Table of Contents 区域，行 23270 简介 292 等为目录项
+  - 无章节正文统领性概述，后续为目录列表
+  keep_split: false
+- 'no': 23390
+  overturn_probability: 0.95
+  alternative: 目录/索引条目
+  counter_evidence:
+  - '目录列表中条目 ## 6. 并发与并行 369，后续行 23391 简介 369 等均为目录项'
+  - 非正文章节标题
+  keep_split: false
+- 'no': 23496
+  overturn_probability: 0.95
+  alternative: 目录/索引条目
+  counter_evidence:
+  - '目录页内条目 ## 7. 高级技巧 450，后续行 23497 简介 450 等为目录子项'
+  - 无正文段落支撑
+  keep_split: false
+- 'no': 23612
+  overturn_probability: 0.95
+  alternative: 目录/索引条目
+  counter_evidence:
+  - 目录列表中 9. 测试 588 条目，后续行 23613 介绍 588 等均为目录项
+  - 该行属于目录页码索引，不应划分新章
+  keep_split: false

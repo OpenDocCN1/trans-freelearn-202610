@@ -1,0 +1,3 @@
+```
+[{"id":1,"name":"macbook air 11.6","maker":"Apple","description":"Apple MacBook Air MJVM2LL/A 11.6-Inch laptop","clock":1.6,"ram":4,"price":797.00},{"id":2,"name":"thinkpad x260","maker":"Lenovo","description":"Lenovo ThinkPad X260 20F6005HUS 12.5 Ultrabook","clock":2.3,"ram":8,"price":1009.00},{"id":3,"name":"ASUS VivoBook","maker":"ASUS","description":"ASUS VivoBook E200HA-US01-GD Portable 11.6","clock":1.8,"ram":2,"price":199.99}]
+```
