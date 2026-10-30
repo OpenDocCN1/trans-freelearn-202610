@@ -1,0 +1,45 @@
+reviews:
+- 'no': 9
+  overturn_probability: 0.85
+  alternative: 前言部分小标题 / 前置内容块内二级标题
+  counter_evidence:
+  - 该行位于致谢、关于作者、关于审阅者、Preface 等前置信息块中，前后均为正文之前的序言性内容
+  - 规则要求前言、序言、致谢、关于作者等正文之前的内容统一划分为一章，Contributors 只是该统一块内的子标题，不应单独成章
+  - 标题无章节编号，语义上仅统领 Contributors 小节，后续紧跟 About the author、About the reviewers、Preface
+    等同级前置小节，非最高层级章节
+  keep_split: false
+- 'no': 175
+  overturn_probability: 0.12
+  alternative: 部分标题
+  counter_evidence:
+  - 标题包含‘第一部分’，书中存在部分-章节模式，按规则部分标题应划分新章
+  - 标题单独成行，后接本部分概述及章节列表，语义统领后续多章内容
+  keep_split: true
+- 'no': 187
+  overturn_probability: 0.08
+  alternative: 章节标题
+  counter_evidence:
+  - 标题单独成行、无句号、长度小于30字，符合章节格式特征
+  - 后1~3行为本章概述及主题列表，前文为第一部分章节目录，语义具有统领性
+  keep_split: true
+- 'no': 915
+  overturn_probability: 0.28
+  alternative: 章节标题
+  counter_evidence:
+  - 前文为第1章总结段落，后接本章概述，语义上统领后续内容
+  - 标题单独成行、无句号，格式符合最高层级章节特征；前一行‘# 2’为排版噪声/页码残留，不构成独立章节
+  keep_split: true
+- 'no': 2050
+  overturn_probability: 0.22
+  alternative: 章节标题
+  counter_evidence:
+  - 前文为第2章总结，后接本章概述及主题列表，上下文符合章节起止
+  - 标题单独成行、无句号，语义统领后续序列化内容；前一行‘# 3’为排版噪声
+  keep_split: true
+- 'no': 2843
+  overturn_probability: 0.1
+  alternative: 章节标题
+  counter_evidence:
+  - 前文为第3章总结‘在下一章中，我们将学习如何使用 Django 管理后台…’，后接本章概述，上下文特征明确
+  - 标题单独成行、无句号，语义统领后续 Django Admin 与管理命令内容
+  keep_split: true

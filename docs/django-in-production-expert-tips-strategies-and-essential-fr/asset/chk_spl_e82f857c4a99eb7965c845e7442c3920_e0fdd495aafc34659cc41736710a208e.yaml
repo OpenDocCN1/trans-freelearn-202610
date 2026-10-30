@@ -1,0 +1,49 @@
+reviews:
+- 'no': 3227
+  overturn_probability: 0.9
+  alternative: 章节编号标记/排版噪声
+  counter_evidence:
+  - 标题仅为 '# 5'，无语义概括内容，无法统领后续章节
+  - 标题后1~3行并非概述段落，而是直接跟随另一个一级标题 '# Mastering Django Authentication and Authorizatio...'，不符合章节标题上下文特征
+  - 真实的章节标题在下一行 3229，当前行仅为编号标记，属于排版噪声
+  keep_split: false
+- 'no': 3668
+  overturn_probability: 0.15
+  alternative: 部分标题
+  counter_evidence:
+  - 标题为 '第 2 部分 – 使用 Django 的高级概念'，符合部分-章节模式下的部分起始特征
+  - 标题后紧跟概述段落 '在本部分，我们可以预期学习 Django 的高级概念...'，语义统领后续章节列表
+  - 格式单独成行、无句号、长度合适，上下文符合分章规则
+  keep_split: true
+- 'no': 3680
+  overturn_probability: 0.9
+  alternative: 章节编号标记
+  counter_evidence:
+  - 标题仅为 '# 6'，无语义内容，不具备统领性
+  - 标题后直接为另一个一级标题 '# 缓存、日志记录和节流'，未出现概述段落，上下文特征不符
+  - 真实章节标题在 3682 行，当前行仅为编号标记
+  keep_split: false
+- 'no': 4088
+  overturn_probability: 0.25
+  alternative: 章节标题
+  counter_evidence:
+  - 标题单独成行、无句号、长度<30，语义概括性强，可覆盖后续分页/信号/中间件内容
+  - 标题后出现概述段落并随后出现子节 '## 技术要求'，符合章节上下文特征
+  - 位于上一章摘要后，位置符合新章起始
+  keep_split: true
+- 'no': 5053
+  overturn_probability: 0.9
+  alternative: 章节编号标记
+  counter_evidence:
+  - 标题仅为 '# 8'，无语义概括
+  - 标题后直接为一级标题 '# 使用 Django 的 Celery'，无概述段落
+  - 真实章节标题在 5055 行，当前行仅为编号标记
+  keep_split: false
+- 'no': 5335
+  overturn_probability: 0.9
+  alternative: 章节编号标记
+  counter_evidence:
+  - 标题仅为 '# 9'，无语义内容
+  - 标题后直接为一级标题 '# Writing Tests in Django'，不符合标题后1~3行概述的上下文特征
+  - 真实章节标题在 5337 行，当前行仅为编号标记
+  keep_split: false

@@ -1,0 +1,48 @@
+chapter_starts:
+- 'no': 175
+  confidence: 0.9
+  final_reason: 部分标题，书为部分-章节模式，需同时划分部分；标题单独成行后接本部分概述及章节列表，语义统领后续多章
+  accepted_evidence:
+  - 标题包含‘第一部分’，符合部分-章节模式
+  - 标题单独成行，后接本部分概述及章节列表，语义统领后续多章内容
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 187
+  confidence: 0.9
+  final_reason: 第1章标题，单独成行无句号长度合适，后接本章概述及主题列表，语义具有统领性
+  accepted_evidence:
+  - 标题单独成行、无句号、长度小于30字，符合章节格式特征
+  - 后1~3行为本章概述及主题列表，前文为第一部分章节目录，语义具有统领性
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 915
+  confidence: 0.85
+  final_reason: 第2章标题，前文为第1章总结，后接本章概述，标题单独成行无句号；前一行‘# 2’为排版噪声
+  accepted_evidence:
+  - 前文为第1章总结段落，后接本章概述，语义上统领后续内容
+  - 标题单独成行、无句号，格式符合最高层级章节特征
+  - 前一行‘# 2’为排版噪声/页码残留，不构成独立章节
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 2050
+  confidence: 0.85
+  final_reason: 第3章标题，前文为第2章总结，后接本章概述及主题列表；前一行‘# 3’为排版噪声
+  accepted_evidence:
+  - 前文为第2章总结，后接本章概述及主题列表，上下文符合章节起止
+  - 标题单独成行、无句号，语义统领后续序列化内容
+  - 前一行‘# 3’为排版噪声
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 2843
+  confidence: 0.9
+  final_reason: 第4章标题，前文为第3章总结‘在下一章中…’，后接本章概述，标题单独成行无句号，语义统领后续内容
+  accepted_evidence:
+  - 前文为第3章总结，后接本章概述，上下文特征明确
+  - 标题单独成行、无句号，语义统领后续 Django Admin 与管理命令内容
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 9
+  reason: 复核方指出该行位于致谢、关于作者、关于审阅者、Preface 等前置信息块中，为前置内容块内二级标题，非最高层级章节；按规则前言、序言、致谢、关于作者等正文之前的内容应统一划分为一章，Contributors
+    只是该统一块内的子标题，不应单独成章
+  need_human_review: false

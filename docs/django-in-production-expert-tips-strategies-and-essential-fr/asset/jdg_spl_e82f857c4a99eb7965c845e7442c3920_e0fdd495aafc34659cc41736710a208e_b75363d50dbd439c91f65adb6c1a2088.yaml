@@ -1,0 +1,35 @@
+chapter_starts:
+- 'no': 3668
+  confidence: 0.95
+  final_reason: 双方均认可为部分标题，符合部分-章节模式下的部分起始，标题单独成行无句号且后接概述段落统领后续章节列表
+  accepted_evidence:
+  - 标题为 '# 第 2 部分 – 使用 Django 的高级概念'，符合部分起始特征
+  - 标题后紧跟概述段落 '在本部分，我们可以预期学习 Django 的高级概念...' 并列出章节列表
+  - 复核方 overturn_probability 0.15 且 keep_split=true
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 4088
+  confidence: 0.85
+  final_reason: 一级标题单独成行、无句号、语义概括性强，可覆盖后续分页/信号/中间件内容，标题后出现概述并随后出现子节，位于上一章摘要后，复核方认可
+  accepted_evidence:
+  - 标题 '# 使用分页、Django 信号和自定义中间件' 单独成行、长度合适、无句号
+  - 标题后 1~3 行为概述段落且随后出现子节 '## 技术要求'
+  - 位于上一章 '# 摘要' 后，位置符合新章起始，复核方 keep_split=true
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 3227
+  reason: 复核方指出仅为编号标记 '# 5' 无语义概括内容，标题后直接跟随另一一级标题 '# Mastering Django Authentication...'
+    而非概述段落，真实章节标题在 3229，判断方证据不足，优先采纳复核反证
+  need_human_review: false
+- 'no': 3680
+  reason: 复核方指出仅为编号标记 '# 6' 无统领性语义，标题后直接为章节标题 '# 缓存、日志记录和节流'，真实章节标题在 3682，上下文特征不符
+  need_human_review: false
+- 'no': 5053
+  reason: 复核方指出仅为编号标记 '# 8' 无语义概括，标题后直接为一级标题 '# 使用 Django 的 Celery'，无概述段落，真实章节标题在
+    5055
+  need_human_review: false
+- 'no': 5335
+  reason: 复核方指出仅为编号标记 '# 9' 无语义内容，标题后直接为一级标题 '# Writing Tests in Django'，不符合标题后 1~3
+    行概述的上下文特征，真实章节标题在 5337
+  need_human_review: false

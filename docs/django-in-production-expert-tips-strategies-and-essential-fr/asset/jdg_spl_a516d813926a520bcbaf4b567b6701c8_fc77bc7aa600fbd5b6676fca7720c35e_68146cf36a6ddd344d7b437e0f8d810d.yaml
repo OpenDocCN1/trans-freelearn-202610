@@ -1,0 +1,66 @@
+chapter_starts:
+- 'no': 6007
+  confidence: 0.9
+  final_reason: 判断方与复核方均采纳。标题单独成行、末尾无句号，后 1~3 行为概述段落，语义统领后续内容，符合章标题特征；前置编号存在重复切分风险但标题行为实际命名，仍以标题行作为章节起始。
+  accepted_evidence:
+  - 标题单独成行且后 1~3 行为概述段落，语义统领后续内容，符合章标题特征
+  rejected_evidence:
+  - 前一行 6005 为 '# 10' 章节编号，已构成最高层级章节起始，单独再在 6007 分章易产生重复切分
+  need_human_review: false
+- 'no': 6362
+  confidence: 0.9
+  final_reason: 部分-章节模式下新部分起始。标题单独成行，后接章节列表，语义上统领后续章节，符合部分划分规则。
+  accepted_evidence:
+  - 前文 6354 为 '# 总结'，本行后接章节列表，语义上统领后续章节，符合部分-章节模式下的新部分划分
+  rejected_evidence:
+  - 标题长度明显超过 30 字且含中英混合，格式上偏长
+  need_human_review: false
+- 'no': 6373
+  confidence: 0.9
+  final_reason: 第11章标题行。标题单独成行、末尾无句号，后接概述段落，语义统领性强，虽前行有 '# 11' 编号，仍以标题行作为章节命名点。
+  accepted_evidence:
+  - 标题单独成行、末尾无句号，后接概述段落，语义统领性强
+  rejected_evidence:
+  - 前一行 6371 为 '# 11' 章节编号，编号特征已满足最高层级大章
+  need_human_review: false
+- 'no': 6843
+  confidence: 0.9
+  final_reason: 第12章标题行。标题单独成行，后 1~3 行为概述段落，符合章标题上下文特征，编号前置不影响标题行的章节识别。
+  accepted_evidence:
+  - 标题单独成行，后 1~3 行为概述段落，符合章标题上下文特征
+  rejected_evidence:
+  - 前一行 6841 为 '# 12' 章节编号，编号特征已先行出现
+  need_human_review: false
+- 'no': 7459
+  confidence: 0.9
+  final_reason: 第4部分起始。虽行内容被截断，但前文为总结段落，后接章节列表，语义上为新部分起始，符合部分-章节模式。
+  accepted_evidence:
+  - 前文为总结段落，后接章节列表，语义上为新部分起始，符合部分-章节模式
+  rejected_evidence:
+  - 行内容被截断为 'Applica...'，存在排版截断噪声
+  need_human_review: false
+- 'no': 7470
+  confidence: 0.9
+  final_reason: 第13章标题行。标题单独成行、末尾无句号，后接概述段落，语义统领性强，编号前置不改变标题行的章节属性。
+  accepted_evidence:
+  - 标题单独成行、末尾无句号，后接概述段落，语义统领性强
+  rejected_evidence:
+  - 前一行 7468 为 '# Chapter 13' 章节编号，编号特征已满足
+  need_human_review: false
+- 'no': 8172
+  confidence: 0.9
+  final_reason: 第14章标题行。标题单独成行，后接概述段落，符合章标题上下文特征，编号前置不影响识别。
+  accepted_evidence:
+  - 标题单独成行，后接概述段落，符合章标题上下文特征
+  rejected_evidence:
+  - 前一行 8170 为 '# 14' 章节编号，编号特征已先行出现
+  need_human_review: false
+- 'no': 8754
+  confidence: 0.95
+  final_reason: 文末索引。规则明确文末索引应单独划分为一章，标题单独成行后接索引条目，符合划分要求。
+  accepted_evidence:
+  - 规则明确文末索引应单独划分为一章，且标题单独成行后接索引条目
+  rejected_evidence:
+  - 索引标题在正文中易被误判为普通小标题
+  need_human_review: false
+rejected_lines: []
