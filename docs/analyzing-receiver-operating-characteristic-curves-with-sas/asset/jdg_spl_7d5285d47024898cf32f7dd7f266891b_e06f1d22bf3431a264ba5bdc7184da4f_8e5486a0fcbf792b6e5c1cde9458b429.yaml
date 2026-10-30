@@ -1,0 +1,27 @@
+chapter_starts:
+- 'no': 3130
+  confidence: 0.95
+  final_reason: '一级标题 # 参考文献，文末参考文献按规则应统一划分为一章；前后文从正文直接转入文献条目列表，语义统领且独立成块。复核方支持保留。'
+  accepted_evidence:
+  - '一级标题 # 参考文献，文末参考文献按规则应统一划分为一章'
+  - 前后文从正文内容直接转入文献条目列表，语义上具有统领性且独立成块
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 3187
+  confidence: 0.95
+  final_reason: '# 索引 为文末索引的统一章节标题，后续为索引条目，结构独立且与参考文献分离。复核方支持保留。'
+  accepted_evidence:
+  - '一级标题 # 索引，文末索引按规则应统一划分为一章'
+  - 后续 3189 起为索引条目，结构独立且与参考文献章节分离
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 3074
+  reason: '复核方反证成立：标题为 ## A.2 属于附录子层级 A.2，规则要求只划分全书最高层级大章，X.Y 子层级不应划分；前后文仍在附录 A 连续论述，无章节级概述。判断方采纳不足，予以否决。'
+  need_human_review: false
+- 'no': 3623
+  reason: 复核方反证成立：## 来自 SAS Press 的书籍 为参考文献附录内的二级书目分组标题，非全书最高层级章节；前后文为书目列表延续，无章节概述。属于应排除的正文小标题/分组标题。
+  need_human_review: false
+- 'no': 3915
+  reason: 复核方反证成立：## JMP® 书籍 为参考文献附录内的二级书目分组标题，与 3623 同属书目分组；前后文直接列书名，无独立章节语义。不符合最高层级章标题特征。
+  need_human_review: false

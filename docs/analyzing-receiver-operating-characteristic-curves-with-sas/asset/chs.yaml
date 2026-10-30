@@ -1,0 +1,1810 @@
+- '# SAS 接收者操作特征曲线分析
+
+
+
+
+
+  '
+- '## Preface
+
+
+  When I received my Ph.D. in statistics, I had not heard the term *receiver operating
+  characteristic (ROC) curve*. Like most biostatisticians, my introduction to ROC
+  curves came through my involvement in studies of medical diagnostics. Later, I realized
+  that they are used, although not as much as they should be, in other fields, such
+  as credit scoring and weather forecasting, which make intensive use of statistical
+  prediction methods. As my exposure grew, I needed more options in SAS to analyze
+  ROC curves. However, over time, I realized that SAS offers more on ROC curves than
+  I initially thought. I also accumulated a good deal of statistical knowledge and
+  SAS tricks on ROC curves that may be helpful for those who now find themselves where
+  I found myself several years ago. I wrote this book to share these experiences.
+
+
+  There are two recent statistical texts that cover ROC curves: *Statistical Methods
+  in Diagnostic Medicine* (Zhou, McClish, and Obuchowski, 2002) and *The Statistical
+  Evaluation of Medical Tests for Classification and Prediction* (Pepe, 2003). There
+  is a natural overlap of coverage between these two texts and this book, but there
+  are also important differences. First and foremost, this book is for the practitioner
+  and, as such, matters of implementation and practice take priority over theoretical
+  concerns. I also made a conscious effort to cover other fields that benefit from
+  ROC curves. Nevertheless, diagnostic medicine remains the most common area of ROC
+  curve application and served in this book as the source of many examples.
+
+
+  It is not possible to write a book without excluding subjects that some readers
+  would have found absolutely essential. I am happy to receive e-mail on these topics
+  and willing to share whatever expertise and programs I may have.
+
+
+  It is also not possible to write a book without making mistakes. Despite my best
+  efforts, you may find technical errors; please let me know about them. Also, refer
+  to the companion Web site for this book at support.sas.com/gonen for updates to
+  both the SAS code and the book.
+
+
+  ROC on.
+
+
+
+
+
+  '
+- '## 致谢
+
+
+  本书得益于 Eugenia Bastos、Zoran Bursac、David Olaleye、Paul Savarese、Barbara Schneider、Yu
+  Shyr、David Schlotzhauer 和 Doug Wielenga 的仔细审阅和建议。特别感谢 Memorial Sloan-Kettering 的
+  Nicole Ishill 审阅文本并测试宏。
+
+
+  我感谢我的编辑 Judy Whatley 在导致本书诞生的漫长过程中每个阶段都给予我无尽的帮助和耐心。SAS Press 的以下人员在使本书成为可能方面也发挥了重要作用：Mary
+  Beth Steinbach、Kathy Restivo、Candy Farrell、Patrice Cherry、Jennifer Dilley、Shelly
+  Goodin 和 Liz Villani。SAS Institute 的 Jeanne Ferneyhough 提供了 SAS/GRAPH 所需的专业帮助。
+
+
+  Steven Larson、Heiko Schöder、Timothy Akhurst、Robert Downey、Richard Wong、John Carrino
+  和 Andre Güettler 慷慨地允许使用他们的数据集作为示例。
+
+
+  如果没有我妻子 Elza 以及我的女儿 Deniz 和 Selin 的支持和理解，完成这样一个项目是不可能的。她们 admirably 忍受了我不规律的日程安排、态度和情绪波动。
+
+
+  ## 引言
+
+
+  ![](img/ac26020abd4f22abfaafc0607939c6e4_11_0.png)
+
+
+  1.1 关于接收者操作特征曲线 ............................................ 1
+
+
+  1.2 章节概要 ............................................................... 3
+
+
+  ## 1.1 关于接收者操作特征曲线
+
+
+  本书描述了如何使用 SAS 软件分析接收者操作特征（ROC）曲线。接收者操作特征曲线是评估预测准确性的统计工具。它通常缩写为 ROC 曲线或 ROC 图，后者在数据挖掘文献中更常用。
+
+
+  做出预测已成为每个企业和科学探究领域的必不可少的一部分。一个不可逆地渗透到日常生活中的简单例子是天气预报。几乎所有新闻来源，包括报纸、广播和电视新闻，都提供详细的天气预报。美国甚至有一个专门的天气预报电视频道。
+
+
+  当然，天气预报的影响超出了城市居民是否带伞的决定。恶劣天气对交通、农业和建筑等许多重要活动都有负面影响。因此，收集有助于预测天气条件的数据并建立统计模型从这些数据中产生预测，已成为主要产业。
+
+
+  这些预测的消费者了解其准确性非常重要。这有助于他们将这些预测纳入未来的计划中。它也有助于他们在竞争提供商之间做出选择。同样，预测提供商评估其预测的准确性也很重要，因为准确性是其产品质量的直接指标。当提供商决定投资技术以改善预测时，评估准确性也很重要。预测的改进与准确性的改进密不可分。
+
+
+  信用评分是做出预测的另一个例子：当潜在债务人申请信用时，债权人评估违约的可能性以决定是否贷款以及贷款利率。准确评估债务人违约的可能性对债权人保持竞争力至关重要。因此，信用评分系统背后的预测模型仍然是专有的。尽管如此，其预测能力需要持续评估，以便债权人保持盈利。
+
+
+  最后一个例子涉及医学诊断领域。*预测*一词很少出现在该文献中，但诊断是对表现出某些症状和主诉的患者可能出现的问题的预测。大多数疾病会引起血液或尿液中某物质水平的升高反应。然而，这样的升高水平可能有其他原因；因此，仅评估血液或尿液水平可能会导致误诊。了解此类诊断的准确性至关重要，因为它们会影响后续的评估和治疗。常见的情况是存在多个诊断标记或工具，对它们的公平评估涉及比较它们的准确性。这些诊断选项在成本和对患者的风险方面可能有所不同，在这种情况下，可以进行决策分析，其中每个工具的价值根据该工具所做诊断的准确性来量化。
+
+
+  所有这些例子都有一个共同主题。在预测实体的价值已知之前就会做出预测。我们需要一种方法来评估这些预测的准确性。正如这些例子所表明的，如果该方法能够比较几个预测的准确性将很有帮助。
+
+
+  用于命名预测和结果的约定各不相同。表 1.1 总结了最常用的名称。
+
+
+  ### 表 1.1 ROC 曲线元素的常用命名法
+
+
+  | 预测变量 | 待预测变量 | 待预测变量的值 |
+
+  |---|---|---|
+
+  | 预测因子 | 结果 | 病例/对照 |
+
+  | 标记 | 状态 | 有病/无病 |
+
+  | 分数 | 金标准 | 阳性/阴性 |
+
+  | 预测 | 指标 | 存在/不存在 |
+
+  |  |  | 事件/非事件 |
+
+
+  ROC 曲线提供了一种全面且视觉上吸引人的方法来总结预测的准确性。它们广泛适用，无论预测的来源如何。您还可以通过比较所得预测的 ROC 曲线来比较生成预测的不同方法的准确性。因此，可能会令人惊讶地意识到
+  ROC 曲线通常在统计学家的教育和培训中被忽略。大多数统计学家是在工作中按需学习 ROC 曲线，并为这种类型的分析的某些不寻常特征而苦苦挣扎。
+
+
+  对于 SAS 用户来说，情况更糟，很少有直接的方法可以在 SAS 中执行 ROC 分析。然而，许多现有过程只需稍加调整即可生成 ROC 曲线。SAS Institute
+  还提供了一个宏来执行部分计算。本书描述了如何使用 SAS 中可用的功能生成 ROC 曲线，并扩展了使用其他 SAS 过程进行的进一步分析。
+
+
+  ## 1.2 章节概要
+
+
+  准确性评估方法取决于预测因子的性质。第 2 章“单个二元预测因子”和第 3 章“单个连续预测因子”介绍了二元变量和连续变量的适当方法。这两章讨论的材料在后续章节中反复使用，因此在继续阅读之前必须很好地掌握这些概念。如果您已经熟悉这些统计概念，但更感兴趣的是了解
+  SAS 在 ROC 曲线方面的能力，请跳过介绍和讨论这些概念的部分。本书中大部分 SAS 代码都是在示例的背景下呈现的，因此对于那些读者来说，粗略阅读第 2 章和第
+  3 章以熟悉符号，然后仔细遵循示例以掌握 SAS 代码就足够了。
+
+
+  大多数计算使用 PROC FREQ、PROC LOGISTIC 或 PROC NLMIXED 执行。还有一些宏在绘制 ROC 曲线或计算 ROC 曲线下面积的标准误差方面非常有用。偶尔会调用
+  PROC TRANSREG（用于 Box-Cox 转换）或 PROC MIXED 以及使用 PROC SURVEYSELECT 创建自助样本。
+
+
+  注意：这里需要呈现的大多数内容都没有标准的数学符号。我试图在个人偏好和广泛接受的做法之间取得平衡；这就是为什么即使对统计概念感到舒适的人也建议进行粗略阅读。
+
+
+  第 4 章“ROC 曲线的比较和协变量调整”比较了几个标记的 ROC 曲线并对其进行协变量调整。为此的主要工具是回归，它可以容纳分类和连续协变量。回归方法还可以通过在类似
+  ANOVA 的模型中使用哑变量来表示标记，从而比较几个标记的准确性。虽然这些回归模型的机械方面与其他回归模型相似，但模型系数的包含和解释是 ROC 曲线领域的独特之处。
+
+
+  第 5 章“有序预测因子”重复了第 3 章和第 4 章中关于有序预测因子的材料。思想非常相似，但统计技术略有不同，例如使用潜在变量 probit 回归模型，在
+  ROC 文献中也 commonly 称为双正态模型。虽然有可能仅凭对早期材料的肤浅理解来学习第 5 章，但我建议先掌握第 2 章和第 3 章中的概念。
+
+
+  第 6 章“Lehmann 家族的 ROC 曲线”和第 7 章“带删失数据的 ROC 曲线”介绍了尚未进入其他书籍的相对较新的材料。第 6 章的重点是 Lehmann
+  家族的 ROC 曲线，完全使用比例风险模型。比例风险模型在生存分析中常规使用，但在其他应用中很少使用。第 6 章展示了如何使用它来创建 ROC 曲线并使用 PROC
+  PHREG 的功能扩展到回归模型和聚类数据。大多数统计学家将 PROC PHREG 与删失数据联系在一起，但第 6 章处理的是完全观察到的二元结果，就像第 2
+  章到第 5 章中的结果变量一样。创建带删失数据的 ROC 曲线的问题在第 7 章中得到解决。提供了两种计算一致性概率的方法，并讨论了时间依赖性 ROC 曲线。
+
+
+  第 8 章“使用 ROC 曲线评估多变量预测模型”讨论了在同一数据集上构建和评估多变量预测模型时使用 ROC 曲线。第 9 章在数据挖掘的背景下使用相同的概念。虽然概念保持不变，但主要的
+  SAS 数据挖掘引擎 SAS Enterprise Miner 具有非常
+
+
+
+
+  不同于 SAS/STAT 软件的用户界面和功能。因此，第 9 章的大部分内容讨论了如何在 SAS Enterprise Miner 中开发模型，以及如何使用模型评估的内置功能生成
+  ROC 曲线。还展示了导出 ROC 曲线数据的各种方法，以便您可以使用 SAS/GRAPH 软件创建自定义绘图。
+
+
+  所呈现的大部分 SAS 代码由 SAS/STAT 和 SAS/GRAPH 软件组成；Base SAS 偶尔用于准备分析和绘图的数据。SAS/STAT 过程 FREQ、LOGISTIC、MIXED
+  和 NLMIXED 提供了分析所需的大部分弹药。
+
+
+  您应该对线性模型和回归分析有基本的了解。本书假设您没有使用 SAS/STAT 过程的先前经验；然而，如果您不熟悉常见的 SAS 系统概念，例如 BY 处理或 CLASS
+  语句，您可能会从查阅通用 SAS 手册中受益。
+
+
+  本书包含一个通用宏，可用于绘制 ROC 曲线，而与预测的性质或来源无关。那些发现该宏提供的选项足够的人可能不需要直接使用 SAS/GRAPH 软件。然而，图形展示涉及个人风格的程度，您可能希望自定义曲线并使用特定的注释。如果是这样，您可以使用宏创建的中间数据集并编写自己的
+  SAS/GRAPH 代码来生成自定义图形。
+
+
+  本书中介绍的 SAS 代码，尤其是宏，很可能会演变。代码可从本书的配套网站 support.sas.com/gonen 下载，将会定期更新，因此请经常查看该网站以获取最新进展。
+
+  '
+- "# 单个二元预测器\n\n![](img/ac26020abd4f22abfaafc0607939c6e4_15_0.png)\n\n+   2.1 引言 .........................................................\
+  \ 5\n+   2.2 霜冻预报示例 ............................................... 5\n+   2.3 误分类率\
+  \ ............................................... 6\n+   2.4 灵敏度和特异性 ..........................................\
+  \ 7\n+   2.5 使用 PROC FREQ 进行计算 ....................................... 8\n\n## 2.1\
+  \ 引言\n\n预测的最简单场景之一是二元预测器的情况。它不仅因为它包含了 ROC 曲线的最关键构建块而重要，而且因为它在实践中经常遇到。本章使用天气预报中的一个例子来说明这些概念。处理类似数据的难题也很丰富，从诊断医学到信用评分。\n\
+  \n## 2.2 霜冻预报示例\n\nThornes 和 Stephenson（2001）从天气预报产品的角度回顾了预测准确性的评估。他们的开篇示例非常简单且易于理解，对所有数据分析人员而言，无论其气象学训练如何。该示例讨论了\
+  \ 1995 年冬季在英国利兹和赫尔之间的 M62 公路提供的霜冻预报。霜冻发生在道路温度低于 0 °C 时。首先，为每晚制作预报为二元指标（霜冻或无霜冻）。然后在整晚监测道路的实际表面温度，并将结果记录为霜冻，如果温度降至\
+  \ 0 °C 以下，则记录为无霜冻，如果温度未降至 0 °C 以下。公路局提供的指南规定，结果（预报和实际）仅对实际温度低于 5 °C 的日子以汇总方式报告（参见表\
+  \ 2.1 中的霜冻和无霜冻列和行）。该示例指的是 1995 年冬季，当时实际道路表面温度在 77 个夜晚低于 5 °C。结果见表 2.1。这种表格描述是报告准确性的标准方式，当预测和结果都是二元时。它视觉上吸引人且易于导航，并且包含所有必要信息。\n\
+  \n有 29 个夜晚预报霜冻且观察到霜冻，有 38 个夜晚预报无霜冻且未观察到霜冻。这两个单元格（表 2.1 的阴影部分）代表两种正确的预报类型。这些两个单元格的通用术语为\
+  \ *真阳性 (TP)* 和 *真阴性 (TN)*。这种术语的根源可追溯到医学诊断研究，当测试显示疾病时称为阳性，未显示时称为阴性。类比而言，您可以将霜冻视为阳性，无霜冻视为阴性，在这种情况下，表\
+  \ 2.1 中有 29 个真阳性和 38 个真阴性。\n\n### 表 2.1 道路表面温度的预报准确性\n\n| Forecast | Observed |\
+  \  |  |\n| | Frost | No Frost | Total |\n| Frost | 29 | 6 | 35 |\n| No Frost | 4\
+  \ | 38 | 42 |\n| Total | 33 | 44 | 77 |\n\n预报错误呢？有 6 个夜晚预报霜冻但未观察到。有 4 个夜晚预报无霜冻，但观察到霜冻。可以很容易地将术语扩展为将这两个单元格称为\
+  \ *假阳性 (FP)* 和 *假阴性 (FN)*。表 2.2 使用此处引入的术语对表 2.1 进行了通用表示。\n\n### 表 2.2 二元预测的准确性报告\n\
+  \n| Forecast | Observed |  |  |\n| | Positive | Negative | Total |\n| Positive |\
+  \ True Positive (TP) | False Positive (FP) | TP+FP |\n| Negative | False Negative\
+  \ (FN) | True Negative (TN) | FN+TN |\n| Total | TP+FN | FP+TN | TP+FP+FN+TN |\n\
+  \n## 2.3 误分类率\n\n总结预报准确性有多种方法。显而易见的一种是 *误分类率 (MR)*，它是所有被误分类夜晚的比例，即假阴性和假阳性的总和除以所有夜晚：\n\
+  \n$$MR = \\frac{FN + FP}{TP + FN + FP + TN}$$\n\n误分类率的 1 倍有时称为 *正确百分比* 或简单地称为 *准确性*。表\
+  \ 2.1 中数据的 MR 为 10/77=13%。\n\n虽然误分类率易于计算和理解，但有时对于理解误分类背后的机制来说过于粗糙。如果信息没有仔细组装，它也容易产生偏差。假设不是遵循公路局的指南，预报提供者决定包含日历年的所有夜晚。表\
+  \ 2.1 中报告了 77 个夜晚，并且根据定义，所有这些夜晚的实际温度都降至 5 °C 以下。因此，其余 288 个夜晚全部高于 5 °C（无霜冻），将列边际总数增加到\
+  \ 33 个霜冻夜晚（不变）和 332 个无霜冻夜晚。可能 温度高于 5 °C 的 288 个夜晚的 MR 远低于温度低于 5 °C 的夜晚的 MR。假设这些\
+  \ 288 个夜晚的误分类率为 5%，导致 15 个误分类夜晚（四舍五入）。那么 365 个夜晚中总共有 25 个误分类夜晚，MR 为 25/265=7%。表\
+  \ 2.3 显示了几种可能性。\n\n### 表 2.3 温度高于 5 °C 的 288 个夜晚的误分类百分比以及所有 365 个夜晚的相应 MR\n\n| Percent\
+  \ misclassified for the 288 nights when the temperature was above 5 °C | 0 | 1 |\
+  \ 2 | 4 | 6 | 8 | 10 | 12 | 13 |\n| Percent misclassified for all 365 nights | 2.7\
+  \ | 3.5 | 4.3 | 5.9 | 7.5 | 9.1 | 10.6 | 12.2 | 13.0 |\n\n很明显，MR 对样本中包含哪些夜晚很敏感，因为预报的性能对于一年中的所有夜晚来说并不均匀。也很明显，随着您在样本中包含更多易于预报的夜晚，MR\
+  \ 会变小。您可以安全地假设，对于春季和夏季的温暖日子，M62 的夜间霜冻预报是不必要的，因为大多数人可以在不求助于科学获得的预报的情况下相当准确地做出相同的预测（无霜冻！）。这就是为什么公路局将准确性报告限制在实际温度为\
+  \ 5 °C 或更低的夜晚的原因。这也强调了 MR 的解释取决于样本中霜冻夜晚的比例（本例中为 30%）。该比例有时称为患病率。\n\n在信用评分等不受监管的领域，评分算法大多是专有的，没有关于如何评估准确性的此类规则，甚至没有指导方针。此外，预测的消费者在解释准确性的细节或复杂性方面并不总是勤勉或有知识。因此，您需要更稳健的度量。\n\
+  \n## 2.4 灵敏度和特异性\n\n报告二元预测准确性的最常见方法是分别使用真（或假）阳性和真（或假）阴性。这承认了假阴性预测可能与假阳性预测有不同的后果。它还使这些度量独立于患病率。因此，这些两个度量被认为衡量预测器的固有能力。在这个天气预报示例中，假阳性可能成本较低，因为其主要后果可能是更谨慎、准备更好的驾驶员。另一方面，假阴性可能导致准备不足和事故。这表明应分别报告假阳性和假阴性率。\n\
+  \n```\nFPR = FP / (TN + FP),   FNR = FN / (TP + FN)\n```\n\n\n\n\n\n更常见的做法是使用真阳性率和真阴性率，定义为\n\
+  \n$$TPR = \\frac{TP}{TP + FN}, \\quad TNR = \\frac{TN}{TN + FP}$$\n\n真阳性率（TPR）有时被称为*sensitivity*，真阴性率（TNR）有时被称为*specificity*。虽然这些是常规出现在统计文献中的通用术语，但每个领域都有自己的术语。例如，天气预报员使用\
+  \ FNR 的失误率和 FPR 的误报率。\n\n天气预报数据的 FNR 和 FPR 分别为 4/33=12% 和 6/44 = 14%。敏感性和特异性分别为\
+  \ 29/33=88% 和 38/44=86%。在这种情况下，FPR 和 FNR 彼此非常接近。当这种情况发生时，它们也将非常接近 MR。事实上，MR 是 FPR\
+  \ 和 FNR 的加权平均值：$MR = w*FPR + (1-w)*FNR$，其中权重（$w$）是观测到霜冻的夜晚所占的比例。这有时被称为霜冻的*prevalence*。\n\
+  \n请注意，TPR 和 TNR 的分母是总观测阳性和阴性。可以定义类似的量，使用预测阳性和阴性作为分母。在这种情况下，对应于敏感性和特异性的比率称为*positive\
+  \ predictive value (PPV)* 和 *negative predictive value (NPV)*：\n\n$$PPV = \\frac{TP}{TP\
+  \ + FP}, \\quad NPV = \\frac{TN}{TN + FN}$$\n\n熟悉 PROC LOGISTIC 的 SAS 用户会认识到 PPV\
+  \ 和 NPV 实际上被称为 TPR 和 TNR。这可能是混淆的来源。本书不使用已建立的 PROC LOGISTIC 术语，因为它定义 TPR 和 TNR 与其在医学诊断文献中的使用方式一致。尽管如此，为了尽量减少混淆，敏感性和特异性比\
+  \ TPR 和 TNR 使用得更频繁。\n\n## 2.5 使用 PROC FREQ 进行计算\n\n在 SAS 中计算所有这些度量相对容易。以下 DATA 步为\
+  \ PROC FREQ 的后续使用准备数据：\n\n```\ndata m62;\n    input forecast $ observed $ weight;\n\
+  \    datalines;\nFrost Frost 29\nFrost No_Frost 6\nNo_Frost Frost 4\nNo_Frost No_Frost\
+  \ 38\n;\nrun;\n```\n\n以下 PROC FREQ 的执行提供了必要的计算：\n\n```\nproc freq data=m62;\n  \
+  \  table forecast*observed;\n    weight weight;\nrun;\n```\n\n输出 2.1 包含许多有用的信息。作为对\
+  \ PROC FREQ 输出的快速复习，每个单元格中四个数字的含义可在表格左上角找到。第一个数字是频数（即 TP、FP、FN 和 TN）。第二个数字（Percent）使用表格总和（列总和之和或行总和之和，本例中为\
+  \ 77）作为分母。第三个数字（Row Pct）是行百分比（即使用行总和作为分母的比例）。最后，第四个数字（Col Pct）是使用列总和作为分母的列百分比。\n\
+  \n## Output 2.1\n\n| forecast | observed |  |\n|---|---|---|\n| Frequency |  | \
+  \ |\n| Percent |  |  |\n| Row Pct |  |  |\n| Col Pct | Frost | No_Frost | Total\
+  \ |\n| Frost | 29 | 6 | 35 |\n|  | 37.66 | 7.79 | 45.45 |\n|  | 82.86 | 17.14 |\
+  \  |\n|  | 87.88 | 13.64 |  |\n| No_Frost | 4 | 38 | 42 |\n|  | 5.19 | 49.35 | 54.55\
+  \ |\n|  | 9.52 | 90.48 |  |\n|  | 12.12 | 86.36 |  |\n| Total | 33 | 44 | 77 |\n\
+  |  | 42.86 | 57.14 | 100.00 |\n\n这些数字中的每一个在计算迄今讨论的度量时都有作用。例如，MR 是表格中非对角线元素的表格百分比（第二组数字）的总和：7.79+5.19=12.98%。PPV\
+  \ 和 NPV 可以在行百分比中找到，因为行总和与预测相关。这里，PPV 为 82.86%，NPV 为 90.48%。最后，敏感性和特异性可从列百分比获得（本例中为\
+  \ 87.88% 和 86.36%），意味着敏感性为 87.88%，特异性为 86.36%。\n\n必须非常清楚地理解敏感性、特异性、PPV 和 NPV 的正确解释。让我们先从预测值开始。它们的分母是阳性和阴性预测的数量。在天气预报示例中，PPV\
+  \ 可以解释为预报霜冻时实际发生霜冻的概率，而 NPV 是预报无霜冻时观测到无霜冻的概率。因此，如果 M62 高速公路预报有霜冻，则实际发生霜冻的概率估计为 82.86%。同样，如果预报没有霜冻，则不会出现霜冻的概率估计为\
+  \ 90.48%。\n\n相比之下，敏感性和特异性的分母是观测到的阳性和阴性。因此，敏感性是在所有霜冻夜晚中，预报正确识别出霜冻夜晚的概率；同样，特异性是在所有无霜冻（且低于\
+  \ 5 °C）的夜晚中，预报正确识别出无霜冻夜晚的概率。在我们的示例中，霜冻被正确预报的概率估计为 87.88%，无霜冻被正确预报的概率估计为 86.36%。\n\
+  \n很容易想象这些概率作为偶尔的天气预报消费者时的实用性。如果你只在冬季的几个夜晚从利兹开车到赫尔走 M62，你只关心预报在那几个夜晚是否准确。另一方面，负责保持高速公路无霜的机构在决定是否支付这些预报费用时可能更感兴趣于敏感性和特异性，因为这关系到即将到来的冬季整个“队列”的夜晚，而该机构的决策应基于预报的长期表现。\n\
+  \n很容易认识到，如果相应的分母被视为固定，则敏感性、特异性以及阳性和阴性预测值都是二项比例。技术术语是条件于分母。这很容易导致在 PROC FREQ 中使用二项式功能来计算区间估计。\n\
+  \n以下代码使用两次单独的 PROC FREQ 调用来获得敏感性和特异性的估计值以及置信区间和关于特定零值的假设检验。请注意使用 WHERE 语句为每次计算选择适当的分母：\n\
+  \n```\ntitle \"Sensitivity\";\nproc freq data=m62(where=(observed='Frost'));\n \
+  \ table forecast / binomial(p=0.8);\n  weight weight;\n  exact binomial;\nrun;\n\
+  ```\n\nBINOMIAL 关键字后括号中指定的值是假设检验的零值。指定了 80% 的零值。该值仅为演示 BINOMIAL 选项的假设检验功能而选择。它与示例中实际感兴趣的值无关。\n\
+  \n输出 2.2 显示了敏感性，估计为 87.88% 或 33 个中的 29 个。这 33 个霜冻夜晚中的每一个都可以被视为独立的伯努利变量：其中 29 个为阳性（1），4\
+  \ 个为阴性（0）。它们的和（29）是二项变量，其样本量（分母）为 33，敏感性为该变量的二项比例。\n\n## Output 2.2\n\nSensitivity\n\
+  \nThe FREQ Procedure\n\nforecast    Frequency    Percent    Cumulative Frequency\
+  \    Cumulative Percent\nFrost       29           87.88      29                \
+  \       87.88\nNo_Frost    4            12.12      33                       100.00\n\
+  \n    Binomial Proportion\n    for forecast = Frost\n\nProportion              \
+  \   0.8788\nASE                        0.0568\n95% Lower Conf Limit       0.7674\n\
+  95% Upper Conf Limit       0.9901\n\nExact Conf Limits\n95% Lower Conf Limit   \
+  \    0.7180\n95% Upper Conf Limit       0.9660\n\n    Test of HO: Proportion = 0.8\n\
+  \nASE under HO               0.0696\nZ                          1.1315\nOne-sided\
+  \ Pr >  Z          0.1289\nTwo-sided Pr > |Z|         0.2578\n\nExact Test\nOne-sided\
+  \ Pr >=  P         0.1821\nTwo-sided = 2 * One-sided  0.3643\n\nSample Size = 33\n\
+  \n\n\n\n\n第一组置信限基于众所周知的二项分布的正态近似。这些置信区间的关键量是渐近标准误（ASE），其计算公式为\n\nASE = sqrt( p(1\
+  \ - p) / n )\n\n其中 n 为二项比例的分母（在本例中为灵敏度），p 为数据中比例的估计值。灵敏度的 ASE 为 5.68%。\n\nASE 下出现的置信限基于渐近理论。如果\
+  \ n 较大，则 95% 置信区间可使用\n\np ± 1.96 × ASE\n\n计算。输出报告灵敏度的渐近 95% 置信区间为 (76.74%, 99.01%)。\n\
+  \n与之相比，精确置信限基于二项分布，在小样本和/或罕见事件时覆盖率更好。因为在指定了 BINOMIAL 选项时默认会计算精确置信限，因此无需使用渐近置信限。灵敏度的精确\
+  \ 95% 置信区间为 (71.80%, 96.60%)。渐近区间与精确区间之间的差异突出了中等样本量的典型效应。\n\n最后，输出的最后一部分提供了灵敏度是否等于\
+  \ 80% 的检验。PROC FREQ 输出中报告的 z 统计量通过 z = p / ASE(null) 计算，其中 ASE(null) 表示在原假设下的 ASE。这是一种常见的计算检验统计量的方法，有时称为\
+  \ Wald 检验。我们假设下的 ASE(null) 为 6.96%，对应的 z 值为 1.13。在大样本中，在原假设下 z 服从正态分布，因此可以通过查标准正态表获得\
+  \ p 值。这得到双侧 p 值为 0.26，提示霜冻预报的灵敏度与 80% 无差异。\n\n一般而言，置信区间和假设检验在渐近标准误的计算上存在重要差异。5.68%\
+  \ 的 ASE 使用观察到的 p 值 87.88%，而 H₀ 下的 ASE（此处为 6.96%）使用原假设中的 p 值 80%。\n\n## Output 2.3\n\
+  \n### Specificity\n\nThe FREQ Procedure\n\n| forecast | Frequency | Percent | Cumulative\
+  \ Frequency | Cumulative Percent |\n|---|---|---|---|---|\n| No_Frost | 38 | 86.36\
+  \ | 38 | 86.36 |\n| Frost | 6 | 13.64 | 44 | 100.00 |\n\nBinomial Proportion for\
+  \ forecast = No_Frost\n\nProportion (P)  0.8636\nASE  0.0517\n95% Lower Conf Limit\
+  \  0.7622\n95% Upper Conf Limit  0.9650\n\nExact Conf Limits\n95% Lower Conf Limit\
+  \  0.7265\n95% Upper Conf Limit  0.9483\n\nTest of H0: Proportion = 0.75\n\nASE\
+  \ under H0  0.0653\nZ  1.7408\nOne-sided Pr > Z  0.0409\nTwo-sided Pr > |Z|  0.0817\n\
+  \nExact Test\nOne-sided Pr >= P  0.0523\nTwo-sided = 2 * One-sided  0.1046\n\nSample\
+  \ Size = 44\n\n以下代码创建 Output 2.3：\n\n```\ntitle \"Specificity\";\nproc freq data=m62(where=(observed='No_Frost'))\
+  \ order=freq;\n    table forecast / binomial(p=0.75);\n    weight weight;\n    exact\
+  \ binomial;\nrun;\n```\n\n对特异性的输出解释与灵敏度类似。特异性估计为 86.36%，ASE 为 5.17%。基于 ASE 的 95%\
+  \ 置信区间为 (76.22%, 96.50%)，95% 精确置信区间为 (72.65%, 94.83%)。检验特异性是否超过预先设定的 75% 目标值得到渐近\
+  \ p 值为 0.0817，精确 p 值为 0.1046。在此分析下，你会保留原假设。\n\nPROC FREQ 中的 ORDER= 选项在 SAS 默认选择与你想要的二项事件不同时可能很有帮助。这会导致以期望类别的补集方式计算二项比例。你始终可以从输出中减去\
+  \ 1 的值并以类似方式调整假设值以获得正确的分析。但也可以通过使用 PROC FREQ 语句的 ORDER 选项来获得完全期望的输出。为了更好地理解 ORDER\
+  \ 语句的正确用法，重要的是要理解，默认情况下（即没有 ORDER 选项时）PROC FREQ 使用 TABLE 变量的未格式化值的按字母顺序排列列表中的第一个值作为事件。这导致霜冻被视为事件，报告的分析是\
+  \ FPR 而不是特异性。ORDER=FREQ 告诉 PROC FREQ 使用最常见的类别作为事件，从而得到期望的分析。当特异性大于 50% 时此方法有效，这应涵盖大多数情况。当特异性小于\
+  \ 50% 时，ORDER=FREQ 也会使用错误的类别作为事件。万无一失的系统需要先按预测变量以降序对数据进行排序，然后再使用不带 ORDER= 指定 的 PROC\
+  \ FREQ。\n"
+- "## Single Continuous Predictor\n\n![](img/ac26020abd4f22abfaafc0607939c6e4_25_0.png)\n\
+  \n- 3.1 Dichotomizing a Continuous Predictor...........................................................\
+  \ 15\n- 3.2 The ROC Curve .......................................................................\
+  \ 18\n- 3.3 Empirical ROC Curve and the Conditional Distributions of the Marker..\
+  \ 20\n- 3.4 Area under the ROC Curve ...............................................................\
+  \ 21\n- 3.5 Selecting an Optimal Threshold...........................................................\
+  \ 25\n- 3.6 The Binormal ROC Curve...............................................................\
+  \ 26\n- 3.7 Transformations to Binormality ...........................................................\
+  \ 30\n- 3.8 Direct Estimation of the Binormal ROC Curve .......................................\
+  \ 32\n- 3.9 Bootstrap Confidence Intervals for the Area under the Curve.............\
+  \ 33\n\n## 3.1 Dichotomizing a Continuous Predictor\n\n现在让我们考虑自然导致使用 ROC 曲线的问题。假设你试图预测一个二元结果，比如天气预报，但你拥有的不是二元预测因子而是一个连续预测因子。大多数天气预报是由统计模型产生的，它们为结果生成一个概率水平。例如，大多数天气预报在摘要中提到降雨，但如果你查看细节，它们还会报告降雨的几率。你将如何评估这些概率（或更恰当地说是产生这些预测概率的模型）的预测准确性？\n\
+  \n由于你已经知道如何对二元预测因子进行预测准确性分析（使用灵敏度和特异性等指标），你可能会考虑通过使用阈值将预测概率转化为二分变量。然而，结果显然会取决于阈值的选择。那如果使用多个阈值并报告每个阈值的结果呢？ROC\
+  \ 曲线提供了一种方法。通过仅关注灵敏度和（1 减去）特异性，ROC 曲线提供了一种方法。\n\n让我们用医学诊断领域的例子。诊断癌症的一种方法是使用一种特殊的扫描，称为\
+  \ *正电子发射断层扫描 (PET)*。PET 产生一个称为 *标准化摄取值 (SUV)* 的指标，它是一个正数，表示所考虑的身体部位患癌的可能性。测量 SUV\
+  \ 后，患者会接受活检，其中从疑似区域取出一小块组织并在显微镜下检查以评估其是否癌变。此过程称为 *病理验证*，被认为是金标准。使用第 1 章引入的术语，我们将\
+  \ SUV 称为标记，病理验证称为金标准。\n\n数据由 Wong et al. (2002) 报道。有 181 名患者，其中 67 名被金标准发现患有癌症。由于我们处理的是连续预测因子，因此不再可能以表格形式报告数据。相反，你可以使用以下来自\
+  \ PROC UNIVARIATE 的并排直方图，该图可通过同时使用 CLASS 和 HISTOGRAM 语句获得。例如，以下代码用于生成图 3.1：\n\n\
+  ```\nproc univariate data=HeadNeck noprint;\nclass gold_standard / keylevel='-';\n\
+  var suv;\nhistogram suv / turnvlabels cfill=ligr cframe=white\n    cframeside=white\
+  \ endpoints=0 to 20 by 2 cbarline=black\n    font=swissb height=4;\nrun;\n```\n\n\
+  ## Figure 3.1 Side-By-Side Histograms for SUV\n\n![](img/ac26020abd4f22abfaafc0607939c6e4_26_0.png)\n\
+  \n当在 PROC UNIVARIATE 中使用 CLASS 语句调用 HISTOGRAM 语句时，会为类别变量的每个值生成单独的直方图。KEYLEVEL= 选项确保所选级别始终出现在顶部（在本例中，代码首先显示金标准阴性患者的直方图）。HISTOGRAM\
+  \ 语句中使用的选项在视觉上增强了图形。它们的使用在 *Base SAS Procedures Guide: Statistical Procedures* 中有详细说明，该指南可在\
+  \ support.sas.com/documentation/onlinedoc/sas9doc.html 获取。\n\n\n\n\n\n图的上面面板是金标准阴性患者（无癌症）的\
+  \ SUV 直方图，下面面板是金标准阳性患者（有癌症）的 SUV 直方图，如纵轴所示。癌症患者往往具有较高的 SUV 值；只有少数人的 SUV 非常低。非常高的\
+  \ SUV（例如，10 或更高）几乎肯定意味着癌症。然而，SUV 在中间范围（大约 4–10）的分布之间存在一定的重叠。因此，SUV 的极端值强烈暗示癌症或无癌症，但在中间存在一个灰色区域。这实际上是许多连续预测变量的非常常见的图景。那么，SUV\
+  \ 用于诊断癌症的准确性如何？\n\n一种粗略的处理问题的方法是计算各种阈值的敏感性和特异性。图 3.2 使用 7 作为阈值。左侧（SUV≤7）被认为是癌症阴性，右侧（SUV>7）被认为是癌症阳性。HREF=7\
+  \ 选项在 HISTOGRAM 语句中使用来绘制参考线，并且使用 FRONTREF 选项确保参考线位于直方图条的前面。\n\n更大比例的金标准阴性患者具有 SUV≤7\
+  \ 并被分类为无癌症。同样，更大比例的金标准阳性患者具有 SUV>7 并被分类为有癌症。\n\n## 图 3.2 在 SUV=7 处二分\n\n![](img/ac26020abd4f22abfaafc0607939c6e4_27_0.png)\n\
+  \nSUV 的二分化可以使用以下 DATA 步命令完成：\n\n```\nsuv7=(suv>7);\n```\n\n如果 SUV 变量包含缺失值，这可能会产生不良行为，因为缺失值将满足\
+  \ suv≤7，在这种情况下将被重新编码为 0。如果要重新编码的变量包含缺失值，应使用 IF-THEN 语句。\n\n使用变量 SUV7，你可以很容易地获得上一章天气预测示例中考虑的那种\
+  \ 2x2 表。对于本数据集，它看起来像表 3.1 中的单元格：\n\n## 表 3.1 SUV>7 在癌症诊断中的准确性\n\n| SUV>7 分类 | 金标准诊断\
+  \ |  |  |\n| | 癌症 | 无癌症 | 总计 |\n| 癌症 | 25 | 3 | 28 |\n| 无癌症 | 42 | 111 | 153 |\n\
+  | 总计 | 67 | 114 | 181 |\n\n行是 SUV>7 规则的分类，列是金标准的分类。利用第 2 章介绍的技术，你可以使用 PROC FREQ\
+  \ 来估计敏感性和特异性分别为 25/67=37% 和 111/114=97%。因此，使用 7 作为 SUV 阈值将患者分类为有癌症或无癌症具有高度特异性，但敏感性值得怀疑。这不一定是对整个标准化摄取值谱诊断癌症能力的裁决。事实上，图\
+  \ 3.2 表明将阈值向左移动（即使用较低的阈值）将提高敏感性，同时降低特异性。由于使用 7 作为阈值的敏感性如此之差而特异性如此之高，这可能是一种值得的策略。这可能有助于你找到更好的阈值，但仍不足以确定\
+  \ SUV 是否是癌症的良好预测因子。下一节将解释如何使用 ROC 曲线来完成此操作。\n\n## 3.2 ROC 曲线\n\n之前的分析可以针对各种阈值重复，每个阈值可能产生不同的敏感性和特异性值。报告此类分析结果的一种方法是表格形式。表\
+  \ 3.2 是一个示例，报告了几个选定阈值的结果。\n\n## 表 3.2 SUV 在诊断癌症中的准确性，针对各种阈值\n\n| 阈值 | 1 | 3 | 5\
+  \ | 7 |\n| 敏感性 | 97% | 93% | 61% | 37% |\n| 特异性 | 48% | 65% | 88% | 97% |\n\n表 3.2\
+  \ 清楚地显示了通过改变阈值可以获得的敏感性和特异性的广泛范围。它还确定了两者之间的反向关系：一个增加，另一个减少，反之亦然。这可以从直方图中看出。如果你将虚线向左移动（例如，从\
+  \ 7 改为 5），将有更多患者被分类为阳性：其中一些是金标准阳性，即真阳性，这将提高敏感性。然而，其他人将是金标准阴性，即假阳性，这将降低特异性。因此，表 3.2\
+  \ 中观察到的关系是普遍的：不可能改变阈值使得特异性和敏感性同时增加。\n\n表格形式在可容纳的阈值数量上有限制。你可以绘制敏感性与特异性，使其能够容纳所有可能的阈值。表\
+  \ 3.2 显示由于两者呈反向关系，敏感性与特异性的图将显示下降趋势。可以获得视觉上更具吸引力的显示方法是绘制\n\n敏感性与一减去特异性。这称为 *接收者操作特征\
+  \ (ROC)* 曲线。图 3.3 表示对应于 PET 数据集的 ROC 曲线。\n\n## 图 3.3 PET 数据集的 ROC 曲线\n\n![](img/ac26020abd4f22abfaafc0607939c6e4_29_0.png)\n\
+  \n点被称为 *观察到的操作点*，因为你可以生成一个在任意点的敏感性和特异性水平上执行（或 *操作*）的二元标记。在此图中，操作点被连接起来，形成所谓的 *经验*\
+  \ ROC 曲线。其含义是 ROC 曲线上的任何点都是可行的操作点，尽管你可能需要在观察到的标记值之间进行插值以找到正确的阈值。\n\n图 3.3 中的 ROC\
+  \ 曲线使用以下代码生成：\n\n```\nproc logistic data=HeadNeck noprint;\n    model gold_standard=suv\
+  \ / outroc=ROCData;\nrun;\n\nsymbol1 v=dot i=join;\nproc gplot data=ROCData;\n \
+  \   plot _sensit_*_1mspec_;\n\nrun;\nquit;\n```\n\nPROC LOGISTIC 中 OUTROC= 选项产生的数据集会自动为每个可能的阈值计算敏感性和一减去特异性，并将这些变量命名为\
+  \ _SENSIT_ 和 _1MSPEC_，然后可以使用标准的 SAS/GRAPH 过程进行绘图。\n\nROC 曲线上的每个点对应于一个阈值，尽管阈值的值从图中并不明显。这被认为是对\
+  \ ROC 曲线的优势，因为它使标记强度评估摆脱了测量尺度。SUV 在不同尺度上测量的 ROC 曲线将与此处产生的一致。尽管如此，为了更好地理解 ROC 曲线，在少数选定点上标明阈值可能是有帮助的。为了突出这些阈值提供的敏感性和特异性，还可以在选定点包含水平和垂直参考线。\n\
+  \n包含可能的阈值并不是你可以做的唯一视觉增强。最常见的增强是包含 45 度线。该线代表无信息测试的 ROC 曲线，并且是感兴趣 ROC 曲线应超过的视觉下限。最后，通常使水平和垂直轴长度相同，从而产生正方形图，而不是\
+  \ SAS/GRAPH 默认的矩形图。这些功能在 %PLOTROC 宏中可用。有关更多信息，请参阅本书的配套网站 support.sas.com/gonen。\n\
+  \n图 3.4 显示了 SUV 的 ROC 曲线，具有这些增强功能。它由 %PLOTROC 宏生成，调用如下：\n\n```\n%plotroc(data=HeadNeck,marker=suv,gold=gold_standard,anno=4,tlist=3\
+  \ 4 5);\n```\n\n%ROCPLOT 宏也可用于此目的，可从 SAS 获得。\n\n## 图 3.4 具有增强功能的 PET 数据集的 ROC 曲线\n\
+  \n![](img/ac26020abd4f22abfaafc0607939c6e4_30_0.png)\n\n## 3.3 经验 ROC 曲线和标记的条件分布\n\
+  \n经验 ROC 曲线的便捷数学表示为其许多属性提供了进一步的见解。如图 3.1 所示，应根据金标准值检查标记的分布。设 f(t|D=0) 和 f(t|D=1)\
+  \ 为金标准阴性和阳性患者的标记条件密度。上直方图是 f(t|D=0) 的近似，下直方图是 f(t|D=1) 的近似。现在定义 F 和 G 为对应于 f(t|D=0)\
+  \ 和 f(t|D=1) 的生存函数（即一减去累积分布），即\n\n\n\n$$F(t)=\\int_{t}^{\\infty} f(s\\mid D=0)\\\
+  ,ds$$ $$G(t)=\\int_{t}^{\\infty} f(s\\mid D=1)\\,ds$$\n\n因为 $G(t)$ 中的所有患者按定义都是金标准阳性，$G(t)$\
+  \ 描述的是所有阳性患者中 SUV 超过 $t$ 的阳性患者所占比例。这不过是当 $t$ 用作阈值时的灵敏度。类似地，$1-F(t)$ 就是特异性；因此，$F(t)$\
+  \ 表示一减去特异性。因此，ROC 曲线是 $F(t)$ 与 $G(t)$ 随每个 $t$ 的作图。\n\n尽管在数学上是正确的，但这并不能完全描述 ROC 曲线，因为它依赖于\
+  \ $t$。然而，我们知道 $F(t)$ 是 ROC 曲线的 x 坐标。令 $x=F(t)$ 并求解 $t$，得到 $t=F^{-1}(x)$。对应于 $t$\
+  \ 的灵敏度是 $G(t)$。因此，对应于 $x$ 的灵敏度由下式给出\n\n$$y=G(F^{-1}(x))$$\n\n这种表示有几个重要特征。首先，它是通用的。对标记物或金标准没有任何假设。它还明确了\
+  \ ROC 曲线对整个分布函数的依赖性。这种表示也解释了为什么 ROC 曲线关注灵敏度和特异性而不是 NPV 和 PPV。阳性预测值和阴性预测值的分母会随阈值变化，并且不适合用预测变量的累积分布函数进行记号和分析。\n\
+  \n这种关系也可以用来突出经验 ROC 曲线的一个基本性质，即它在标记物的单调变换下是不变的。为了理解这一概念，想象使用 $h(t)$ 而不是 $t$ 作为标记物，其中\
+  \ $h(.)$ 是一个单调函数（单调函数保持数据的秩；统计学中使用的几乎所有变换，如对数或幂，都是单调的）。$F$ 和 $G$ 对 $h(t)$ 的形状与对\
+  \ $t$ 的形状相同；唯一的区别在于它们的水平轴。这只会改变阈值，而不会改变由此产生的 ROC 曲线。\n\n## 3.4 ROC 曲线下面积\n\nROC\
+  \ 曲线是对连续预测因子准确性的概括。然而，有时你可能想要对 ROC 曲线本身进行概括。ROC 曲线最常用的汇总统计量是 ROC 曲线下面积（AUC）。\n\n\
+  在经验 ROC 曲线中，你可以通过所谓的梯形法则来估计 AUC：\n\n- 1. 使用观察点作为角点形成梯形。\n- 2. 用角点的坐标计算这些梯形的面积。\n\
+  - 3. 将这些面积相加。\n\n对于像图 3.3 中那样具有许多可能阈值的曲线，这可能是一项相当大的工作。幸运的是，AUC 与一些众所周知的统计量有关，例如一致性、Somers’\
+  \ D 和 Mann-Whitney 检验统计量。这种联系与第 3.3 节中讨论的不变性属性有关。对单调变换的不变性意味着 ROC 曲线是一个基于秩的度量。从观察到的标记值中使用的唯一信息是它们相对的秩。\n\
+  \n我们将利用这些关系不仅便于计算，而且有助于深入了解曲线下面积的含义并改善解释。特别是，我们将看到如何使用 PROC LOGISTIC 估计一致性以及使用 PROC\
+  \ FREQ 估计 Somers’ D。AUC 与 Mann-Whitney 统计量之间的关系在概念化方面与其他关系一样有用，但在 SAS 角度来看并不那么有用。这里未探讨它。\n\
+  \n### 3.4.1 一致性及使用 PROC LOGISTIC 计算 AUC\n\n一致性概率衡量预测和结果一致的频率。以 PET 示例继续，如果在随机选择的患者对中，SUV\
+  \ 较高的那位患有癌症，而 SUV 较低的那位没有癌症，则该对被称为一致对。SUV 较高的患者没有癌症但 SUV 较低的患者有癌症的对被称为不一致对。一些对的\
+  \ SUV 相同，它们被称为结对。最后，一些对是非信息性的；例如，两位患者都可能患有癌症或都可能没有患癌症。这些对无法归类为一致或不一致。\n\n一致性概率定义为一致对数加上结对数的一半除以所有信息对数（即排除非信息对）。本质上，每个结对被计为一半不一致和一半一致。这是在许多秩程序中一个基本概念，有时被称为随机打破结。\n\
+  \n表达一致性的等价方式是 P(SUV₊>SUV₋)，其中 SUV₋ 表示金标准阴性患者的 SUV，SUV₊ 表示金标准阳性患者的 SUV。图 3.1 有助于可视化这一过程。如果从上部直方图中随机选择一个\
+  \ SUV，从下部直方图中选择一个，选自下部的那个高于选自上部的那个的几率是多少？\n\n对我们而言最重要的结果是，ROC 曲线下面积等于各种 SAS 过程报告的一致性概率。例如，PROC\
+  \ LOGISTIC 在其标准输出的“Association of Predicted Probabilities and Observed Responses”标题下报告一致性。使用生成\
+  \ ROC 曲线绘图数据集的同一 PROC LOGISTIC 调用，你可以从标记为“c”的输出中获得 AUC。在 PET 示例中，这为 0.871（或 87.1%），如输出\
+  \ 3.1 所示。输出还包含计算的元素（即一致对、不一致对和结对的数量）。\n\n### Output 3.1\n\n| Association of Predicted\
+  \ Probabilities and Observed Responses |\n| Percent Concordant 86.1 Somers' D 0.743\
+  \ |\n| Percent Discordant 11.8 Gamma 0.758 |\n| Percent Tied 2.1 Tau-a 0.348 |\n\
+  | Pairs 7638 c 0.871 |\n\nAUC 是从数据估计的，因此此估计必须有一个标准误差。使用 PROC LOGISTIC 估计 AUC 的主要缺点是相关的标准误差不可用。幸运的是，PROC\
+  \ FREQ 为此提供了间接替代方案。\n\n### 3.4.2 Somers’ D 和使用 PROC FREQ 的 AUC\n\nPROC LOGISTIC\
+  \ 输出还包括 Somers’ D。D 和 AUC 通过方程 D=2*(AUC-0.5) 相关。Somers’ D 只是 AUC（或一致性）的一个重新缩放版本，其取值在\
+  \ -1 到 1 之间，像通常的相关系数一样，而不是 0 到 1。PROC LOGISTIC 不报告 Somers’ D 的标准误差。然而，PROC FREQ\
+  \ 报告 Somers’ D 及其标准误差，如以下示例所示：\n\n```\nproc freq data=HeadNeck;\n    table suv*gold_standard\
+  \ / noprint measures;\nrun;\n```\n\nNOPRINT 选项抑制频率表的打印，因为 SUV 的每个唯一值将被解释为表的行，频率表可能长达数页。MEASURES\
+  \ 选项确保打印各种关联度量，包括 Somers’ D。输出 3.2 显示了此 PROC FREQ 调用的结果。\n\n### Output 3.2\n\n|\
+  \ Statistic | Value | ASE |\n|---|---|---|\n| Gamma | 0.7585 | 0.0498 |\n| Kendall's\
+  \ Tau-b | 0.5374 | 0.0402 |\n| Stuart's Tau-c | 0.6925 | 0.0561 |\n| Somers' D C|R\
+  \ | 0.3889 | 0.0323 |\n| Somers' D R|C | 0.7426 | 0.0523 |\n| Pearson Correlation\
+  \ | 0.6187 | 0.0395 |\n| Spearman Correlation | 0.6311 | 0.0466 |\n| Lambda Asymmetric\
+  \ C|R | 0.6716 | 0.0634 |\n| Lambda Asymmetric R|C | 0.0081 | 0.0180 |\n| Lambda\
+  \ Symmetric | 0.2408 | 0.0318 |\n| Uncertainty Coefficient C|R | 0.6252 | 0.0521\
+  \ |\n| Uncertainty Coefficient R|C | 0.1225 | 0.0104 |\n| Uncertainty Coefficient\
+  \ Symmetric | 0.2049 | 0.0172 |\n| Sample Size = 181 | | |\n\n报告了两个 Somers’ 统计量：C|R\
+  \ 使用列变量作为预测因子，行变量作为金标准，而 R|C 使用行变量作为预测因子，列变量作为金标准。这里相关的统计量是 R|C，报告为 0.7426，标准误差为\
+  \ 0.0523。如果表是这样构造的，即标记物（SUV）是列变量，金标准是行变量，那么我们将使用 Somers’ D C|R 统计量。\n\n\n\n\n\n\
+  使用以下关系\n\n```\n$$AUC = \\frac{D + 1}{2}$$\n```\n\n可以计算出曲线下面积为 0.8713，与 LOGISTIC\
+  \ 输出相同，后者报告了三位有效数字。同样使用关系\n\n```\n$$se(AUC) = \\frac{se(D)}{2}$$\n```\n\nAUC 的标准误差计算为\
+  \ 0.026。可以使用渐近正态理论为 AUC 计算置信区间\n\n```\n$$AUC + 1.96 * se(AUC)$$\n```\n\n结果为 (0.8203,\
+  \ 0.9222)。这比 PROC LOGISTIC 提供的分析更完整，因为你可以判断抽样变异对 AUC 估计的影响。\n\n### 3.4.3 The %ROC\
+  \ Macro\n\n虽然 PROC FREQ 对于计算曲线下面积及其标准误差而言对我们的目的已足够，但现在是介绍一个 SAS 宏的好时机，该宏主要用于比较几条\
+  \ ROC 曲线的下面积；不过它也可以将单条 ROC 曲线作为特例来处理。%ROC 宏目前为第 1.5 版，可在以下 URL 下载：\n\nsupport.sas.com/samples_app/00/sample00520_6_roc.sas.txt\n\
+  \n以下是可用于此示例的代码：\n\n```\n%roc(data=HeadNeck,var=SUV,response=gold,contrast=1,details=no,\n\
+  \    alpha=.05);\n```\n\n用于调用 %ROC 的宏变量有\n\n- Response：这是金标准，或结局。你需要创建一个数据集变量，其取值仅为\
+  \ 0 或 1；宏无法对观察到的二分类重新编码。该变量必须是数值型；仅有两个不同值（0 和 1）的字符变量会通过宏的错误检查设施，但会产生 PROC IML 错误，这很难调试。\n\
+  - Var 指定标记。\n- Contrast 主要用于比较几条曲线，如我们在后面章节中会看到的。对于单条 ROC 曲线，Contrast 的值始终为 1。\n\
+  - Alpha 与置信限估计有关。\n- Details 控制打印输出的多少。\n\nOutput 3.3 显示了此调用的结果。曲线下面积为 87.13%，与\
+  \ PROC LOGISTIC 的一致性相同，也与 PROC FREQ 中 Somers’ D 导出的一致。标准误差也与 PROC FREQ 中 Somers’\
+  \ D 导出标准误差相同。置信区间也相匹配，至多存在舍入误差。\n\n## Output 3.3\n\n```\nThe ROC Macro\n\n     \
+  \   ROC Curve Areas and 95%\n            Confidence Intervals\n        ROC Area\
+  \ Std Error Confidence Limits\nSUV     0.8713    0.0263    0.8198    0.9228\n```\n\
+  \n经常使用 ROC 曲线的用户应该熟悉这个宏。另一方面，如果你只是偶尔需要 AUC 估计及其标准误差，那么使用 PROC FREQ 可能更容易。\n\n##\
+  \ 3.5 Selecting an Optimal Threshold\n\n在某些情况下，虽然原始预测是连续的，但报告二元预测是有意义的。回顾本章开头使用的降雨预测示例。假设你有一个模型可提供某一天降水概率的预测概率。除了这个预测概率之外，你可能还想显示一个描绘降雨的图标，以更简单的形式传达预测。我们大多数人都见过电视或报纸天气预报中的此类图标。通过包含此图标，我们本质上是基于连续预测因子（降雨预测概率）报告二元预测（降雨/无降雨）。这相当于选择一个阈值，这本身相当于在\
+  \ ROC 曲线上选择一个工作点。\n\n有时外部标准可能会指导工作点的选择。在没有此类标准的情况下，你可能会选择在某种意义上最优的阈值。有两种广泛使用的方法：\n\
+  \n- 1. 选择使 resulting 二元预测尽可能接近完美预测因子的阈值。\n- 2. 选择使 resulting 二元预测尽可能远离无信息预测因子的阈值。\n\
+  \n为了更好地理解这些方法，请记住完美预测因子在其 ROC 曲线上只有一个点（即单位正方形的左上角），灵敏度为 100%，特异性为 100%。同样，无信息标记的\
+  \ ROC 曲线沿单位正方形的对角线。ROC 曲线上某点与这些参考点之间的距离使用所谓的欧几里得方法来衡量。坐标为 (x₁, y₁) 和 (x₂, y₂) 的点\
+  \ A 和 B 之间的欧几里得距离如下给出：\n\n```\nd_AB = √(x₁ − x₂)² + (y₁ − y₂)²\n```\n\n为了说明这一点，经验\
+  \ ROC 曲线在图 3.5 中再次绘制，其中包含两个候选最优工作点 A 和 B。R 表示选择最优阈值的第一种方法的参考点。同样，P 和 Q 表示第二种方法的参考点。根据第一个定义，你需要计算线段\
+  \ RA 和 RB 的长度，如果 RA 比 RB 短，则偏好 A。同样，如果采用第二种阈值选择方法，则需要比较 AP 和 BQ 的长度，如果 AP 比 BQ 长，则偏好\
+  \ A。\n\n## Figure 3.5 Choosing the Optimal Threshold Using the Empirical ROC Curve\n\
+  \n![](img/ac26020abd4f22abfaafc0607939c6e4_36_0.png)\n\n%PLOTROC 宏的 OPTIMAL 选项会生成一个名为\
+  \ _OPTIMAL_ 的数据集，该数据集为每个阈值计算这里解释的两个距离。这两个变量称为 DIST_TO_PERFECT 和 DIST_TO_NONINF，可用于在\
+  \ ROC 曲线上选择最优工作点。\n\n方法选择主要由应用领域决定。在医学诊断的背景下，最优通常意味着接近理想，而在工程背景下通常意味着远离随机。事实上，这里考虑的垂直距离度量等于\
+  \ Youden’s index，这是一种在质量控制中流行的准确性汇总度量，尽管它最初是在医学背景下引入的（Youden, 1950）。\n\n不幸的是，两种最优性标准会产生不同的最优工作点。这由\
+  \ Perkins 和 Schisterman（2006）从分析上证明。大多数时候，两者足够接近，可以消除对方法选择的任何担忧。\n\n## 3.6 The Binormal\
+  \ ROC Curve\n\n到目前为止，我们的重点一直放在经验曲线上，即通过连接观察到的（灵敏度，1-特异性）对得到的曲线。经验曲线被广泛使用，因为它易于生成，并且对标记分布的变化具有鲁棒性（在秩的基础上）。但有时你可能更喜欢平滑曲线。平滑\
+  \ ROC 曲线的最常见方法是使用双正态模型。\n\n双正态模型假设标记（或单调变换）在金标准类别内的分布为正态分布。对于 PET 数据集示例，我们可以假设癌症患者的\
+  \ SUV 服从正态分布，均值为 μ₁，方差为 σ₁²，而无癌症患者的 SUV 服从正态分布，均值为 μ₀，方差为 σ₀²。然后，使用经验 ROC 曲线的记号\n\
+  \n```\nF(t) = Φ( (μ₀ - t) / σ₀ )\n```\n\n阈值 t 可以写成 x 的函数如下：\n\n```\nt = μ₀ - σ₀\
+  \ Φ⁻¹(x)\n```\n\n由于阈值 t 对应于灵敏度 F(t)，我们可以写出 ROC 曲线的函数形式如下：\n\n```\nG(t) = Φ( (μ₁\
+  \ - t) / σ₁ ) = Φ( (μ₁ - μ₀ + σ₀ Φ⁻¹(x)) / σ₁ ) = Φ( a + b Φ⁻¹(x) )\n```\n\n其中\n\
+  \n```\na = (μ₁ - μ₀) / σ₁ ,   b = σ₀ / σ₁\n```\n\n这两个参数 a 和 b 通常被称为双正态参数。有时它们被称为截距和斜率，因为在正态概率纸上绘制双正态曲线会得到截距为\
+  \ a、斜率为 b 的直线。这种做法现在并不常见，但命名法仍然沿用。\n\n如果标记值不是正态分布的，但在单调变换后可以是正态分布，则双正态 ROC 曲线拟合到变换后的值。尽管如此，拟合到变换后值的双正态曲线仍被认为是对未变换标记的\
+  \ ROC 曲线，因为标记的真实 ROC 曲线在单调变换下是不变的，如第 3.3 节所示。因此，存在单调标准化变换就足以证明使用双正态方法。\n\n一方面，这是一个相对较弱的要求，表明大多数预测因子都可以被认为是双正态的。另一方面，确定\
+  \ h 的函数形式本身可能是一项艰巨的任务。请注意，相同的 h(.) 必须将标记对金标准阳性和阴性患者都变换为正态。这个过程可能具有挑战性，并在下一节中讨论。\n\
+  \n双正态模型的曲线下面积也有闭式表达式：\n\n```\nAUC = Φ( a / √(1 + b²) )\n```\n\n双正态模型的估计需要估计 a 和\
+  \ b，这反过来需要分别在每个结局组中估计均值和方差。这只需使用带 CLASS 语句的 PROC MEANS 即可完成。但使用 PROC NLMIXED 有许多优点，下面的示例演示了这一点。如果你不熟悉\
+  \ PROC NLMIXED，SAS/STAT 家族中的相对新成员，请参阅附录，了解其相关功能的介绍。\n\n\n\n\n\n```\nproc nlmixed\
+  \ data=HeadNeck;\n    parameters m1=0 m0=0 s1=1 s0=1;\n    if gold=1 then m=m1;else\
+  \ if gold=0 then m=m0;\n    if gold=1 then s=s1**2;else if gold=0 then s=s0**2;\n\
+  \    a=(m1-m0)/s1;\n    b=s0/s1;\n    model suv ~ normal(m,s);\n    estimate 'a'\
+  \ a;\n    estimate 'b' b;\n    estimate 'AUC' probnorm(a/sqrt(1+b**2)));\nrun;\n\
+  ```\n\n要将此代码用于您的数据集，请用金标准和标记的变量名替换变量 Gold 和 SUV。执行此操作后，NLMIXED 输出的相关部分显示在输出 3.4\
+  \ 的 Additional Estimates 下。\n\n## Output 3.4\n\n| Additional Estimates |\n| Label\
+  \ | Estimate | Standard Error | DF | t Value | Pr > |t| | Alpha | Lower | Upper\
+  \ |\n| a | 1.4086 | 0.1830 | 181 | 7.70 | <.0001 | 0.05 | 1.0476 | 1.7696 |\n| b\
+  \ | 0.6597 | 0.07196 | 181 | 9.17 | <.0001 | 0.05 | 0.5177 | 0.8017 |\n| AUC | 0.8802\
+  \ | 0.02727 | 181 | 32.27 | <.0001 | 0.05 | 0.8263 | 0.9340 |\n\n可以看到，二元正态参数 a 和\
+  \ b 的估计值分别为 1.4086 和 0.6597。相应的 ROC 曲线由 Φ(1.41 + 0.66 Φ⁻¹(x)) 表示，其中 x 的取值范围为 0 到\
+  \ 1。ROC 曲线在 0 到 1 之间所有点都有定义，这是该模型的一个特征。虽然并非所有阈值都被观察到，但二元正态模型进行插值并为一特异性所有可能取值提供灵敏度值。\n\
+  \n得到的 AUC 为 0.8802，标准误差为 0.02727。您可以使用标准渐近法形成 95% 置信区间：AUC±1.96*se(AUC)，结果为 (0.826,\
+  \ 0.934)。表 3.3 比较了二元正态模型与经验分析的结果。AUC 估计值和置信区间都非常接近。\n\n## Table 3.3 Comparison of\
+  \ AUC Estimates from the Empirical and Binormal ROC Curves\n\n| Method | AUC | SE\
+  \ | Confidence Interval |\n| Empirical | 0.8713 | 0.0263 | 0.820–0.923 |\n| Binormal\
+  \ | 0.8802 | 0.0273 | 0.826–0.934 |\n\n从 ROC 曲线分析的角度来看，ESTIMATE 语句是 PROC NLMIXED\
+  \ 的一个重要优势，因为它允许您直接获得 a、b 和 AUC 的估计值，以及更重要的是其标准误差。另一个优势将在后续章节中变得明显，即它足够灵活，可以容纳几种不同类型的\
+  \ ROC 曲线。\n\n下面是使用 PET 数据集示例对经验曲线（实线）和二元正态曲线（虚线）进行的图形比较。早期，二元正态 ROC 曲线高于经验曲线，表明灵敏度相对于经验值被高估。后来，两条曲线相交，二元正态曲线开始低估灵敏度。大多数情况下，两条曲线之间的差异小于\
+  \ 10%。对于大多数用途而言，这可以被认为是一个拟合合理的二元正态 ROC 曲线。图 3.6 显示了两条不同曲线的比较图。\n\n## Figure 3.6\
+  \ Comparison of Empirical and Binormal ROC Curves\n\n![](img/ac26020abd4f22abfaafc0607939c6e4_39_0.png)\n\
+  \n图 3.6 由以下 SAS 语句生成。关键思想在于 DATA 步，其中 PROC LOGISTIC 中 OUTROC= 选项产生的数据集（此处称为 ROCData）从二元正态模型生成灵敏度。ROCData\
+  \ 已包含经验曲线的灵敏度和一特异性对。另一个变量，此处称为 _BSENSIT_，使用二元正态模型的功能形式以及用 PROC NLMIXED 估计的参数（前面已描述）添加。然后将\
+  \ _BSENSIT_ 和 _SENSIT_ 对 _1MSPEC_ 进行绘图，并在同一张图上叠加。实线为经验曲线（_SENSIT_），虚线为二元正态曲线（_BSENSIT_）。\n\
+  \n```\ndata ROCData;\n    set ROCData;\n    _bsensit_=probnorm(1.41+0.66*probit(_1mspec_));\n\
+  run;\n```\n\n```\naxis1 length=12cm order=0 to 1 by 0.2 label=(f=swissb h=2)\n \
+  \   value=(font=swissb h=2);\naxis2 length=12cm order=0 to 1 by 0.2 label=(a=90\
+  \ f=swissb h=2)\n    value=(font=swissb h=2);\n```\n\n```\nsymbol1 v=none i=join\
+  \ w=3 l=1 c=black;\nsymbol2 v=none i=join w=3 l=3 c=black;\n```\n\n```\nproc gplot\
+  \ data=ROCData;\n    plot (_sensit_ _bsensit_)*_1mspec_ / haxis=axis1 vaxis=axis2\n\
+  \        overlay;\nrun;\nquit;\n```\n\n## 3.7 Transformations to Binormality\n\n\
+  正态性假设在二元正态模型中起着至关重要的作用。熟悉 t 检验和方差分析理论的统计学家可能会因大样本量可以克服非正态性影响的普遍观念而忽视其重要性。对于比较多个组均值的程序（例如\
+  \ t 检验或 F 检验），这通常是正确的，主要是因为在大样本中，样本均值即使个体观测明显非正态也能近似为正态分布。\n\n相比之下，ROC 曲线不仅仅比较患病组和未患病组的均值。事实上，正如第\
+  \ 3.3 节所示，ROC 曲线可以表示为 G(F⁻¹(x))，其中 x 为一特异性，G(.) 为患病组预测因子的累积密度，F(.) 为未患病组的累积密度。因此，准确估计\
+  \ ROC 曲线需要准确估计 F 和 G 的所有点。二元正态模型假设 F 和 G 为正态分布的累积密度函数，并且这两个正态分布的参数从数据中估计。如果数据明显非正态，则\
+  \ F 和 G 的估计在多个点上可能严重不准确。这不能通过收集更大的样本轻易解决。\n\n因此，使用二元正态模型会引发数据是否确实为正态以及非正态性是否可以通过单调变换修复的问题。基于第\
+  \ 3.3 节，您可能会认为所有 ROC 曲线都是不变的。这显然不是这种情况。所有参数 ROC 曲线，特别是二元正态模型，都不是对单调变换不变的。\n\n标准化变换在最小二乘回归和方差分析中很有兴趣，因此关于它的文献非常丰富。其中最流行的方法之一是\
+  \ PROC TRANSREG 中实现的 Box-Cox 幂族。\n\nBox-Cox 幂族变换可以定义为\n\ny^{(λ)} = { (y^λ - 1)/λ\
+  \   λ > 0\n            log(y)       λ = 0 }\n\n每个 λ 值定义一个变换。例如，λ=1 使用原始值，λ=0 对应对数变换。此定义假设\
+  \ y 最初为非负；如果不是这种情况，可以添加一个常数来移动值。思路是根据观察到的数据选择 λ。PROC TRANSREG 使用 λ 的最大似然估计以及相关的置信区间。由于\
+  \ λ 的选择取决于数据，建议将其估计值四舍五入到最接近的四分之一，只要它们在相关的置信区间内即可。\n\n这种表示没有考虑到金标准。需要标准化的标记分布是条件分布（以金标准为条件，前面记号中的\
+  \ F 和 G）。相比之下，Box-Cox 族试图标准化标记值的边际分布。您可以重新定义该族使其标准化条件分布。最简单的方法是认识到以标记为结果、金标准为协变量的方差分析模型是建模所需条件分布的一种方法。有关更多信息，请参阅\
+  \ Sakia (1992)。\n\n在 PET 示例中，您可以使用以下对 PROC TRANSREG 的调用来估计 λ。模型的左侧包含要变换的标记值，右侧包含金标准，如前所述，以确保条件分布被标准化。PARAMETER=\
+  \ 选项指定在估计 λ 之前添加到所有观测值的一个常数。由于某些 SUV 为 0，因此添加了一个任意选择的小数（0.1）。\n\n```\nproc transreg\
+  \ data=HeadNeck;\n    model boxcox(suv/parameter=0.1) = class(gold);\nrun;\n```\n\
+  \n输出 3.5 显示了结果。主要输出是每个 λ 的 (对数) 似然值。如图例中所述，小于号（<）指向最佳 λ（即使似然最大化的那个）。带星号 (*) 的观测值形成置信区间，而加号\
+  \ (+) 是 λ 的方便选择。根据方便性的标准，数字必须为整数且包含在置信区间内。在此示例中，λ=0.5 被确定为最佳选择，意味着平方根变换。\n\n## Output\
+  \ 3.5\n\nThe TRANSREG Procedure\n\nTransformation Information\nfor BoxCox(suv)\n\
+  \n| Lambda | R-Square | Log Like |\n| -3.00 | 0.25 | -1135.75 |\n| -2.75 | 0.25\
+  \ | -1032.16 |\n| -2.50 | 0.25 | -930.05 |\n| -2.25 | 0.25 | -829.71 |\n| -2.00\
+  \ | 0.25 | -731.55 |\n| -1.75 | 0.25 | -636.09 |\n| -1.50 | 0.26 | -544.03 |\n|\
+  \ -1.25 | 0.26 | -456.31 |\n| -1.00 | 0.26 | -374.17 |\n| -0.75 | 0.27 | -299.21\
+  \ |\n| -0.50 | 0.28 | -233.40 |\n| -0.25 | 0.31 | -179.12 |\n| 0.00 | 0.34 | -139.18\
+  \ |\n| 0.25 | 0.38 | -116.98 * |\n| 0.50 + | 0.42 | -115.97 < |\n| 0.75 | 0.43 |\
+  \ -137.84 |\n| 1.00 | 0.42 | -180.65 |\n| 1.25 | 0.39 | -239.65 |\n| 1.50 | 0.35\
+  \ | -309.89 |\n| 1.75 | 0.30 | -387.75 |\n| 2.00 | 0.26 | -470.92 |\n| 2.25 | 0.23\
+  \ | -558.00 |\n| 2.50 | 0.20 | -648.08 |\n| 2.75 | 0.17 | -740.57 |\n| 3.00 | 0.14\
+  \ | -835.03 |\n\n< - Best Lambda\n* - Confidence Interval\n+ - Convenient Lambda\n\
+  \n\n\n\n\n你可以在 PROC TRANSREG 中使用 OUTPUT 语句创建一个包含转换后值的数据集。这些转换后的值随后可以在类似于第 3.6 节中的\
+  \ PROC NLMIXED 调用中使用，以估计转换后变量的双正态参数。虽然这里没有详细说明操作步骤，但你可能希望尝试这个练习以获得实践技能。\n\n## 3.8\
+  \ 双正态 ROC 曲线的直接估计\n\n第 3.6 节描述了如何从基本假设出发推导出双正态 ROC 曲线的函数形式，即标记在阳性和阴性组中的分布为正态分布（均值和方差可能不同）。随后说明了如何使用\
+  \ PROC NLMIXED 获得这两个正态分布参数的估计值。该方法假设观测数据服从正态分布。然而，正如第 3.7 节所述，可以对观测值进行转换以改善正态性假设的符合程度，然后在转换后的值上应用第\
+  \ 3.4 节概述的方法来获得 ROC 曲线的改进估计。\n\n估计双正态 ROC 曲线还有一种更简单、更直接的方法。请注意，双正态曲线只有两个参数 a 和 b，且\
+  \ ROC 曲线由下式给出\n\ny = Φ(a + bΦ⁻¹(x))\n\n其中 y 为灵敏度，x 为 1 减去特异度。你可以先绘制观测到的 ROC 点，就像绘制经验\
+  \ ROC 曲线一样，但不要将它们连接起来，而是拟合上述形式曲线并找到使拟合效果最佳的 a 和 b。该过程可通过以下观察进一步简化：\n\nΦ⁻¹(y) = a\
+  \ + bΦ⁻¹(x)\n\n因此，如果 ROC 点首先转换到 probit 尺度上，则你只需要拟合一条直线，这几乎可以[content]\n\n你可以在 PROC\
+  \ TRANSREG 中使用 OUTPUT 语句创建一个包含转换后值的数据集。这些转换后的值随后可以在类似于第 3.6 节中的 PROC NLMIXED 调用中使用，以估计转换后变量的双正态参数。虽然这里没有详细说明操作步骤，但你可能希望尝试这个练习以获得实践技能。\n\
+  \n## 3.8 双正态 ROC 曲线的直接估计\n\n第 3.6 节描述了如何从基本假设出发推导出双正态 ROC 曲线的函数形式，即标记在阳性和阴性组中的分布为正态分布（均值和方差可能不同）。随后说明了如何使用\
+  \ PROC NLMIXED 获得这两个正态分布参数的估计值。该方法假设观测数据服从正态分布。然而，正如第 3.7 节所述，可以对观测值进行转换以改善正态性假设的符合程度，然后在转换后的值上应用第\
+  \ 3.4 节概述的方法来获得 ROC 曲线的改进估计。\n\n估计双正态 ROC 曲线还有一种更简单、更直接的方法。请注意，双正态曲线只有两个参数，a 和 b，且\
+  \ ROC 曲线由下式给出\n\ny = Φ(a + bΦ⁻¹(x))\n\n其中 y 为灵敏度，x 为 1 减去特异度。你可以先绘制观测到的 ROC 点，就像绘制经验\
+  \ ROC 曲线一样，但不要将它们连接起来，而是拟合上述形式曲线并找到使拟合效果最佳的 a 和 b。该过程可通过以下观察进一步简化：\n\nΦ⁻¹(y) = a\
+  \ + bΦ⁻¹(x)\n\n因此，如果 ROC 点首先转换到 probit 尺度上，则你只需要拟合一条直线，这几乎可以轻而易举地通过最小二乘法完成。有许多 SAS/STAT\
+  \ 过程可用于此目的，但 PROC REG 提供了最简单的接口。假设 ROCData 是由 PROC LOGISTIC 的 OUTROC= 选项创建的数据集。那么你可以通过使用以下代码来估计双正态参数：\n\
+  \n```\ndata ROCData;\n    set ROCData;\n    _y=probit(_sensit_);\n    _x=probit(_1mspec_);\n\
+  run;\n\nproc reg data=ROCData;\n    model _y=_x;\nrun;\nquit;\n```\n\n该方法在头颈癌数据中对双正态参数\
+  \ a 和 b 的估计分别为 1.71 和 0.85，而通过使用 PROC NLMIXED 直接对标记值建模时估计值为 1.31 和 0.66。图 3.7 显示了对经验曲线（实线）的两种不同双正态拟合。虚线为\
+  \ PROC NLMIXED 的估计，点线为 PROC REG 的估计。\n\n## 图 3.7 由 NLMIXED、REG 和 LOGISTIC 过程获得的\
+  \ ROC 曲线估计\n\n![](img/ac26020abd4f22abfaafc0607939c6e4_43_0.png)\n\n尽管由于其简单性，使用最小二乘法直接估计\
+  \ ROC 曲线很有吸引力，但它并非没有问题，尤其是 ROC 曲线上的点实际上来自累积分布函数且并非独立。因此 PROC REG 的标准误很可能低估了真实标准误。因此，你不应使用最小二乘估计进行推断（如报告置信区间），而应作为双正态参数的点估计。由于双正态曲线是双正态参数的函数，使用最小二乘估计直接估计\
+  \ ROC 曲线是正确的，但由此产生的标准误和 p 值是不正确的。\n\n## 3.9 曲线下面积的 Bootstrap 置信区间\n\nBootstrap 是一种现代方法，最初用于评估点估计的变异性。此后已扩展到执行假设检验、预测模型的验证、模型选择以及许多其他统计任务。\n\
+  \n在本书中，bootstrap 方法用于\n\n- ROC 曲线下面积的非参数置信区间\n- 比较两个或多个 ROC 曲线相对于其 AUC 的假设检验\n-\
+  \ 校正多变量预测模型（如 logistic 回归）或数据挖掘预测（如分类树）的评估中的乐观偏差。\n\n简而言之，bootstrap 样本是通过有放回地从观测数据中抽样获得的。以下步骤以伪代码描述该过程：\n\
+  \n1. 创建 B 个数据集，每个数据集都是从原始数据中有放回随机抽样得到的。\n2. 对于 i=1,...,B，按分析原始数据集的方式对数据集 i 进行分析（例如，计算经验\
+  \ AUC）。将结果（可能有多个值）分配给 R(i)。\n3. R(1), ..., R(B) 是 R 的抽样分布的近似。\n\n近似效果随 B 增大而变好。在大多数应用中，B\
+  \ 在 200 到 2,000 之间。从近似抽样分布估计的统计量即为所需估计。例如，B 个数值 R(i) 的标准差近似于 R 的标准误。有关 bootstrap\
+  \ 方法的进一步回顾超出了本书范围。请参阅 Efron 和 Tibshirani（1993）获取更多信息。\n\n宏 %BOOT1AUC 可从本书的配套网站 support.sas.com/gonen\
+  \ 获得，用于对单个 ROC 曲线的曲线下面积进行 bootstrap 分析。示例调用如下：\n\n```\n%boot1auc(data=HeadNeck,marker=suv,gold=ngold);\n\
+  ```\n\n尽管还有另外两个可能的输入：BOOT 指定 bootstrap 样本数（默认为 1,000），ALPHA 指定置信区间的误差水平。输出 3.6 显示了结果。\n\
+  \n### 输出 3.6\n\nsuv 的 AUC 的 Bootstrap 分析\nAUC  StdErr\n--------\n0.871523  0.026945\n\
+  \n95% 置信区间\nLowerLimit  UpperLimit\n--------\n0.813384  0.920954\n\n如果你想进一步开发自己的\
+  \ bootstrap 应用，PROC SURVEYSELECT 提供了使用 SAS 创建 bootstrap 样本的最简单方法：\n\n```\nproc surveyselect\
+  \ data=HeadNeck method=urs n=181 out=_sample outhits rep=100 noprint;\nrun;\n```\n\
+  \n此 PROC SURVEYSELECT 调用生成 100 个样本（由 REP= 选项指定），每个样本有 181 个元素（由 N= 选项指定）。通常，每个 bootstrap\
+  \ 样本的大小与原始数据集相同，因此 N= 选项通常等于样本量。METHOD=URS 允许无限制随机抽样，对应于一种抽样方案，该方案为数据集中每个记录赋予相等概率并进行有放回抽样。OUT=\
+  \ 选项指定保存 bootstrap 样本的数据集。最后，OUTHITS= 选项确保在有放回抽样中被多次选中的记录在输出数据集中按其被选中的次数出现。默认情况下（当未指定\
+  \ OUTHITS= 选项时），该记录用单条观测表示，并附带一个变量指示命中次数（即被选中的次数）。\n\nPROC SURVEYSELECT 创建的数据集的一个重要特征是它包含一个名为\
+  \ Replicate 的变量，用于标识 bootstrap 样本。由于 bootstrap 样本是分别分析的，你可以使用大多数 SAS/STAT 过程中可用的\
+  \ BY 处理。例如，要计算每个 bootstrap 样本的 AUC，你可以使用 BY REPLICATE 语句调用 PROC LOGISTIC 并使用 ODS\
+  \ OUTPUT 语句创建输出数据集。该输出数据集还将包含 REPLICATE 列以及为每个 bootstrap 样本计算的 AUC 指标。因此，有了 PROC\
+  \ SURVEYSELECT，开发 bootstrap 方法的 SAS 代码变得大大简化。此外，由于 BY 处理比使用宏循环等竞争方式执行相同任务要快得多，这种策略导致程序在计算上更高效。这一点至关重要，因为\
+  \ bootstrap 方法可能需要大量的计算资源。\n\n\n\n\n![](img/ac26020abd4f22abfaafc0607939c6e4_47_0.png)\n\
+  \n- 4.1 引言 ......................................................... 37\n- 4.2 前列腺癌预后中的一个例子\
+  \ .................................... 38\n- 4.3 配对与非配对比较 ...........................................\
+  \ 38\n- 4.4 比较经验 ROC 曲线下的面积 ........................... 39\n- 4.5 比较双正态 ROC 曲线.............................................\
+  \ 42\n- 4.6 双正态与经验 ROC 曲线的差异 ...................... 46\n- 4.7 经验 ROC 曲线下面积差别的 Bootstrap\
+  \ 置信区间....................................................... 48\n- 4.8 ROC 曲线的协变量调整\
+  \ .......................................... 48\n- 4.9 双正态 ROC 曲线的回归模型 ..................................\
+  \ 49\n"
+- "## ROC 曲线的比较与协变量调整\n\n## 4.1 引言\n\n在许多情况下，会有一组竞争性的预测方法可供选择，因此比较预测结果通常很有意义。例如，昂贵的侵入性检查或放射学扫描与简单的临床检查相比，在诊断某种疾病方面如何？或者，在已经拥有债务人简单财务摘要的情况下，花费大量成本获取详细的信用报告是否值得？增量的准确性提高是否能证明额外的成本合理？这里的成本一词使用较为宽泛；例如，对患者进行额外诊断扫描所带来的额外负担也被视为一种成本。当然，也需要考虑传统的成本：获取额外扫描的货币成本也需要纳入考虑。在决定这些成本是否合理之前，你需要评估预测准确性的提升。\n\
+  \n比较竞争性预测因子的一种常见且简单的方法是为每个预测因子构建 ROC 曲线。这些 ROC 曲线的视觉比较通常会揭示几个有用的特征。此外，还可以对两条 ROC\
+  \ 曲线进行统计学显著性差异的比较。本章讨论了在统计上比较两条或多条 ROC 曲线的非参数和参数方法。\n\n## 4.2 前列腺癌预后的一个例子\n\n第 3\
+  \ 章使用了一个来自癌症诊断和监测的例子来介绍 ROC 曲线。本章使用一个来自癌症预后的例子来研究比较两条 ROC 曲线的方法。这次，数据来自患有骨转移的前列腺癌患者。传统上，这些患者会接受骨扫描，这是一种揭示骨骼异常的放射学检查。你可以计算一个汇总指标，称为骨扫描指数\
+  \ ，它表示患者骨骼疾病的程度。一个竞争性的标志物是第 3 章中用于识别头颈部癌症的 PET 扫描中的 SUV。前列腺数据集包含 51 名患者的 BSI 和 SUV\
+  \ 测量值。感兴趣的结果是一年生存率——即在测量 BSI 和 SUV 后一年患者是否存活。每位患者至少随访一年并记录结果。40 名患者在一年时死亡，11 名存活。\n\
+  \n本章在整个过程中使用此例子来比较 SUV 的 ROC 曲线与 BSI 的 ROC 曲线。但在进一步讨论之前，我们需要区分配对和非配对的数据收集机制，这是涉及\
+  \ ROC 曲线比较的大多数数据集相关的重要问题。\n\n## 4.3 配对与非配对比较\n\n处理任何统计比较时，你需要区分非配对数据和配对数据。这里，非配对是指要比较的两组中的数据来自不同的抽样单元，而配对是指每个抽样单元恰好贡献了一对观测值：一个到每一组。\n\
+  \n考虑随机临床试验评估筛查乳房X光检查的例子。女性被随机分配到标准护理，即定期临床检查，或乳房X光检查，即在标准护理基础上增加乳房X光检查。无论是否使用 ROC\
+  \ 曲线进行的比较，结果都是非配对的。研究中的每位女性要么在一个研究组，要么在另一个研究组。\n\n现在，考虑另一项研究，评估手术前成像肿瘤的 PET。假设这方面的标准成像工具很可能是计算机断层扫描\
+  \ 。一种可能性是将患者随机分配接受 CT 或 PET，从而形成非配对比较。然而，比较两者的一种统计上更有效的方法是安排患者接受两次扫描，从而形成配对数据情况。\n\
+  \n在传统统计学中，大多数比较涉及非配对数据而不是配对数据。例如，两样本 t 检验可能是应用最广泛的统计检验。其原因并非效率更高。事实上，对于固定的样本量，配对技术通常比非配对技术更有力。然而，实现配对设计更困难，有时甚至不可能。许多药物和干预措施的随机试验使用非配对设计，因为让受试者接受多种治疗或干预通常很困难，如果不是不可能的话。想象一下比较手术治疗与密切观察的试验，这是一种常见的选择，用于早期惰性肿瘤，如某些前列腺癌。患者不可能同时接受两种治疗。\n\
+  \n配对比较在某些领域已成为首选设计，包括预测标志物的比较。所考虑的许多标志物可以应用于每个抽样单元，而不会带来太多负担、成本或不当后果。因此，本章重点介绍使用配对数据比较\
+  \ ROC 曲线，尽管会提及非配对比较。\n\n## 4.4 比较经验 ROC 曲线下的面积\n\n除了配对与非配对数据的区别外，你还需要决定比较 ROC 曲线意味着什么。它可能是指比较整个曲线，也可能是指比较某些汇总指标，例如曲线下的面积。\n\
+  \n处理经验 ROC 曲线时，通常的选择是比较汇总指标。替代方案，即比较整个曲线，在没有模型帮助的情况下是一项困难的任务。当然， caveat 是两个预测因子可能具有相同的\
+  \ AUC 但非常不同的 ROC 曲线。因此，图形显示所比较的 ROC 曲线应始终伴随比较 AUC 的统计检验。\n\n### 4.4.1 配对数据的比较\n\n\
+  你可以以两种方式组织配对数据。最直观的方式是为每个受试者设置一行，为每个标志物设置一列，再加上结果的一列。等价的方式是为每个受试者-标志物组合设置一行，每个受试者产生两行。结果变量将在这两行中重复，并添加一个包含受试者标识符的额外列以跟踪配对。这两种数据结构分别称为宽格式和长格式，显然是指数据矩阵的形状。两者可以通过简单的\
+  \ DATA 步指令相互转换。\n\n第 3 章中用于获得 AUC 标准误估计的 %ROC 宏也可以用于比较两条 ROC 曲线，前提是数据是配对的。此宏中实现的方法本质上是非参数的。每个\
+  \ AUC 均使用前一章中描述的一致性方法进行估计。一致性统计量是 U 统计量类中的一员。AUC 的方差及其之间的协方差可以使用 U 统计量理论的一般原理计算。有关更多信息，请参阅\
+  \ DeLong 等人 1988 年的文献。\n\n%ROC 宏期望数据采用宽格式。以下宏调用执行所需的比较：\n\n```\n%roc(data=bone,\
+  \ var=bsi suv1, response=gold, contrast=1 -1);\n```\n\nVAR 宏变量指定包含两个标志物值的变量名称。CONTRAST\
+  \ 宏变量期望的输入类似于 PROC GLM 中的 CONTRAST 语句，因此 1 -1 指的是 VAR 宏变量中所述两个变量的差值。\n\n\n\n\n\n\
+  Output 4.1 显示了此调用的结果。每个 ROC 曲线的 AUC 估计值及其标准误差和（边际）置信区间首先出现。BSI 的 AUC 为 0.7795，与\
+  \ SUV 的 0.6773 相比相当有利。然而标准误差相当大：BSI 为 0.0771，SUV 为 0.0836，导致置信区间很宽。BSI 的 AUC 的 95%\
+  \ 置信区间范围从 0.6284 到 0.9307。SUV 的置信区间在 0.5134 到 0.8412 之间。似乎 SUV 几乎无法与随机预测器区分开来（因为下限置信限仅略高于\
+  \ 0.50）。\n\n## Output 4.1\n\n```\nThe ROC Macro\n\n    ROC Curve Areas and 95%\n\
+  \          Confidence Intervals\n    ROC Area Std Error Confidence Limits\n\nBSI\
+  \    0.7795    0.0771    0.6284    0.9307\nsuv1   0.6773    0.0836    0.5134   \
+  \ 0.8412\n\n    Contrast Coefficients\n            BSI       suv1\n\nRow1      \
+  \ 1        -1\n\n        Tests and 95% Confidence Intervals for Contrast Rows\n\
+  \    Estimate  Std Error Confidence Limits     Chi-square Pr > ChiSq\n\nRow1   0.1023\
+  \    0.0954   -0.0847     0.2893      1.1491   0.2837\n\n        Contrast Test Results\n\
+  Chi-Square   DF      Pr > ChiSq\n\n    1.1491    1      0.2837\n```\n\n接下来出现对比信息。这可用于验证结果是否针对预期比较，并推断差异的方向。在此示例中，AUC\
+  \ 曲线的正差异指向 BSI 是更好的检验。下一部分输出比较了两个 ROC 曲线。两个 AUC 的差异为 0.1023，如 Estimate 列下所示。这可以直接通过\
+  \ 0.7795 和 0.6773 之间的差值获得，即输出第一部分中报告的 BSI 和 SUV 的 AUC。然而，你不能根据单个面积的信息计算差异的标准误差，因为数据是配对的。基于此标准误差，两个\
+  \ AUC 之间的差异不显著（p=0.2837），置信区间为（-0.0847，0.2893）跨越 0。\n\n似乎检验统计量和 p 值被报告了两次。如果对比涉及多于一行，则对比行上的输出将为对比中的每一行包含一行。标记为“Contrast\
+  \ Test Results”的部分仍将报告一个具有 r−1 自由度的单一 p 值，其中 r 为行数。因此，只有在对比只有一行时，“Contrast Rows”部分和“Contrast\
+  \ Test”部分的信息才一致。\n\n如本文所述，必须呈现 ROC 曲线的可视化显示以及 AUC 的比较。图 4.1 由第 3 章中介绍的 %PLOTROC\
+  \ 宏生成。语法修改与 %ROC 宏中的类似（即多个标记在 VAR 宏变量中指定，用空格分隔）。\n\n```\n%plotroc (bone bsi,suv,gold,anno=4,tlist1=1.08\
+  \ 2.29, tlist2=4.8 5.8);\n```\n\n## Figure 4.1 ROC Curves for BSI (Solid) and SUV\
+  \ (Dashed) Overlaid\n\n![](img/ac26020abd4f22abfaafc0607939c6e4_51_0.png)\n\n图 4.1\
+  \ 显示 BSI 在特异性的大多数取值下比 SUV 具有更高的敏感性。在敏感性为 50% 至 80% 的范围内，BSI 的敏感性明显高于 SUV。BSI 的阈值为\
+  \ 2.29 可实现超过 80% 的敏感性和超过 70% 的特异性。SUV 的任何操作点都无法提供可比的准确性。尽管如此，请记住，显示的 AUC 估计具有较高的变异性，并且差异没有统计学意义。\n\
+  \n### 4.4.2 Comparisons with Unpaired Data\n\n从理论上讲，%ROC 宏只能在数据为配对时比较两个预测因子的 AUC。由于在\
+  \ ROC 曲线领域中非配对设计非常罕见，没有宏执行所需比较。幸运的是，非配对比较可以通过手工或几行 DATA 步代码轻松完成：如果 AUC₁ 和 AUC₂ 是两个\
+  \ AUC 估计值，其相关标准误差为 s₁ 和 s₂，则非配对比较的检验统计量如下：\n\nT = (AUC₁ - AUC₂)² / (s₁² + s₂²)\n\
+  \n在大样本中，在零假设下（即两个 AUC 确实相等时），T 将具有一个自由度的卡方分布。\n\n请注意，AUC₁ 和 s₁ 是在仅对第一个预测因子执行 %ROC\
+  \ 宏时报告的，如第 3 章中所述。同样，AUC₂ 和 s₂ 是从第二次 %ROC 调用估计的。一旦计算出 T，两侧 p 值可使用 DATA 步中的以下行找到：\n\
+  \n```\np_value=1-probchi(t_unpaired,1);\n```\n\n如果前列癌研究仅提供 PET 或 BSI（但不是两者），使得 resulting\
+  \ 数据结构为非配对，并且如果 AUC 估计值及其标准误差与之前所述相同（AUC 为 0.7795 和 0.6773，标准误差为 0.0771 和 0.0836），则\
+  \ T 将为 0.8095，p 值为 0.3683。使用非配对设计 p 值增加可通过配对设计的有效性增加来解释，如第 4.3 节中简要讨论的那样。\n\n##\
+  \ 4.5 Comparing the Binormal ROC Curves\n\n第 3 章表明，你可以通过假设标记在患病组和未患病组的分布具有正态分布且参数可能不同来获得\
+  \ ROC 曲线的模型化估计。具体而言，如果患病患者的标记值服从均值为 μ₁ 和方差为 σ₁² 的正态分布，并且未患病患者的标记值服从均值为 μ₀ 和方差为 σ₀²\
+  \ 的正态分布，则 ROC 曲线可函数写为\n\nΦ(a + bΦ⁻¹(x))\n\nAUC 给出为\n\nΦ( a / √(1+b²) )\n\n其中双正态参数\
+  \ a 和 b 给出为\n\na = (μ₁ - μ₀)/σ₁,   b = σ₀/σ₁\n\n接下来，我们详细讨论配对数据；关于非配对数据的评论出现在本节末尾。\n\
+  \n### 4.5.1 Comparisons Based on the Binormal Model with Paired Data\n\n数据的配对性质需要在继续之前对模型进行一些调整。设\
+  \ Xᵢⱼ 表示第 i 个患者和第 j 个标记的标记值。然后 Xᵢⱼ（或其某种变换）假定在患者有阳性结果时具有以下正态分布：\n\nXᵢⱼ ~ N( μ₁ⱼ +\
+  \ uᵢ, σ₁ⱼ² )\n\n如果患者有阴性结果，则 $X_{ij}$ 的分布为\n\n$X_{ij} \\sim N\\left(\\mu_{0j}+u_i,\\\
+  sigma_{0j}^2\\right)$\n\n$u_i$ 也服从正态分布：\n\n$u_i \\sim N\\left(0,\\sigma_r^2\\right)$\n\
+  \n关键假设是 $u_i$ 和 $u_{i'}$ 对于 $i\\neq i'$ 是独立的。\n\n该模型为每个标记有四个基本参数：$\\mu_{1i}$ 和 $\\\
+  mu_{0i}$ 是标记 $j$ 的结果阳性和结果阴性患者的均值，$\\sigma_{1i}$ 和 $\\sigma_{0i}$ 是两个标准差。在这方面，它是每个标记单独的标准双正态模型。为了考虑同一受试者上两个标记测量之间的相关性，引入了随机效应\
+  \ $u$。因为 $u_i$ 是受试者特异性效应，在同一患者上测量的两个标记值将具有相同的 $u_i$。这种共同性在同一受试者上进行的两个测量（每个标记一个）上诱导出相关性。因为\
+  \ $u_i$ 和 $u_{i'}$ 对于 $i\\neq i'$ 是独立的，所以在不同受试者上测量的标记值之间没有相关性。在大多数设置中使用随机效应来诱导受试者选定对上的相关性是一种标准技术。\n\
+  \n以下代码段首先运行 PROC TRANSREG 以确定正态性变换。请参阅第 3.7 节，了解此步骤在拟合双正态模型中的作用的详细解释。\n\n```\nproc\
+  \ transreg data=bone;\n    model boxcox(suv1/parameter=0.1 geometricmean)=class(gold);\n\
+  \    output out=trsuv;\nrun;\n\nproc transreg data=bone;\n    model boxcox(bsi/parameter=0.1\
+  \ geometricmean)=class(gold);\n    output out=trbsi;\nrun;\n```\n\nBox-Cox 模型确定对数变换对\
+  \ BSI 和平方根变换对 SUV 是实现正态性的最佳可能变换（未显示详细的 PROC TRANSREG 输出）。输出数据集 TRSUV 和 TRBSI 由 PROC\
+  \ TRANSREG 中的 OUTPUT 语句创建，并包含变换后的协变量 TBSI 和 TSUV。这两个数据集合并形成 Long，即长格式的数据集。然后 PROC\
+  \ NLMIXED 找到如前所述的随机效应双正态模型的极大似然估计。\n\n```\ndata long;\n    set trbsi(keep=_name_\
+  \ gold tbsi rename=(tbsi=result _name_=subid)\n        in=in1)\n        trsuv(keep=_name_\
+  \ gold tsuv rename=(tsuv=result _name_=subid)\n        in=in2);\n    if in1 then\
+  \ marker=0; else if in2 then marker=1;\nrun;\n```\n\n\n\n\n```\nproc nlmixed data=long\
+  \ method=firo technique=quanew;\n    parms sr=1 s11=3 s10=0.3 s01=2 s00=0.2 m11=7\
+  \ m10=1 m01=2 m00=0;\n    bounds sr s11 s10 s01 s00>0;\n    if gold=1 and marker=0\
+  \ then do;\n        m=m10+u; s=s10**2; end;\n    if gold=1 and marker=1 then do;\n\
+  \        m=m11+u; s=s11**2; end;\n    if gold=0 and marker=0 then do;\n        m=m00+u;\
+  \ s=s00**2; end;\n    if gold=0 and marker=1 then do;\n        m=m01+u; s=s01**2;\
+  \ end;\n    a1=(m11-m01)/s11;\n    b1=s01/s11;\n    a0=(m10-m00)/s10;\n    b0=s00/s10;\n\
+  \    auc1=probnorm(a1/sqrt(1+b1**2));\n    auc0=probnorm(a0/sqrt(1+b0**2));\n  \
+  \  model result ~ normal(m,s);\n    random u ~ normal(0,sr) subject=subid;\n   \
+  \ estimate 'a1' a1;\n    estimate 'b1' b1;\n    estimate 'AUC1' auc1;\n    estimate\
+  \ 'a0' a0;\n    estimate 'b0' b0;\n    estimate 'AUC0' auc0;\n    estimate 'AUC1-AUC0'\
+  \ auc1-auc0;\n    contrast 'AUC1-AUC0' auc1-auc0;\n    contrast 'Equality of ROC\
+  \ curves' a1-a0, b1-b0;\nrun;\n```\n\nPROC NLMIXED 中对模型的根本描述与第 3.6 节中的描述相似，只是随机效应\
+  \ u 有两个例外。RANDOM 语句将 u 声明为随机效应。对于熟悉 PROC MIXED 的人来说，RANDOM 语句具有类似的功能但语法不同。在 PROC\
+  \ MIXED 中，你不需要指定随机效应的分布，因为正态随机效应是唯一可用的选项。在 PROC NLMIXED 中，你必须指定随机效应的分布，因为 PROC NLMIXED\
+  \ 识别的任何内置分布都是一个选项。另一个区别是，在 PROC MIXED 中，指定 RANDOM 语句可确保随机效应被添加到模型中；在 PROC NLMIXED\
+  \ 中，你必须在编程语句中将项 u 添加到均值函数中。有关 PROC NLMIXED 的语法和功能简要介绍，请参阅附录。\n\n除了随机效应的存在外，与第 3\
+  \ 章中的调用相比，此次对 PROC NLMIXED 的调用在其他几个方面也不同。例如，CONTRAST 语句提供了参数的联合检验。可以将其视为同时执行的多个\
+  \ ESTIMATE 语句。为了说明这一点，注意\n\n```\nestimate 'AUC1-AUC0' auc1-auc0;\n```\n\n和\n\n```\n\
+  contrast 'AUC1-AUC0' auc1-auc0;\n```\n\n执行相同的检验（即 AUC 的相等性）。你通常会通过使用 ESTIMATE 语句来执行此操作；在此目的下包含\
+  \ CONTRAST 语句仅用于演示。\n\n在此处 CONTRAST 语句更重要的用途是检验两个 ROC 曲线的整体相等性。请注意，两个双正态 ROC 曲线只有在具有相同的双正态参数时才相同。因此，比较两个或多个双正态曲线的\
+  \ a 和 b 提供了检验两条曲线是否相同的一种方法。这是通过以下 CONTRAST 语句实现的：\n\n```\ncontrast 'Equality of\
+  \ ROC curves' a1-a0, b1-b0;\n```\n\n它检验原假设\n\nH₀ : a₀ = a₁  &  b₀ = b₁\n\n相对于备择假设，即至少有一个双正态参数不同。请注意，不可能使用\
+  \ ESTIMATE 语句表达这一点。\n\n## 输出 4.2\n\n参数估计\nParameter | Estimate | Standard Error\
+  \ | DF | t Value | Pr > |t| | Alpha | Lower | Upper\nsr | 2.5830 | 42.7645 | 101\
+  \ | 0.06 | 0.9520 | 0.05 | -82.2504 | 87.4163\ns11 | 1.2701 | 16.8601 | 101 | 0.08\
+  \ | 0.9401 | 0.05 | -32.1758 | 34.7159\ns10 | 1.3251 | 16.1371 | 101 | 0.08 | 0.9347\
+  \ | 0.05 | -30.6866 | 33.3368\ns01 | 2.8855 | 7.4207 | 101 | 0.39 | 0.6982 | 0.05\
+  \ | -11.8353 | 17.6062\ns00 | 1.8913 | 11.3087 | 101 | 0.17 | 0.8675 | 0.05 | -20.5422\
+  \ | 24.3248\nm11 | 4.8146 | 0.6176 | 101 | 7.80 | <.0001 | 0.05 | 3.5894 | 6.0398\n\
+  m10 | 2.3499 | 0.6280 | 101 | 3.74 | 0.0003 | 0.05 | 1.1040 | 3.5958\nm01 | 2.3526\
+  \ | 0.5222 | 101 | 4.50 | <.0001 | 0.05 | 1.3166 | 3.3885\nm00 | -0.1234 | 0.3924\
+  \ | 101 | -0.31 | 0.7538 | 0.05 | -0.9019 | 0.6551\n\n对比\nLabel | Num DF | Den DF\
+  \ | F Value | Pr > F\nAUC1-AUC0 | 1 | 101 | 0.01 | 0.9369\nEquality of ROC curves\
+  \ | 2 | 101 | 0.00 | 0.9963\n\n附加估计\nLabel | Estimate | Standard Error | DF | t\
+  \ Value | Pr > |t| | Alpha | Lower | Upper\na1 | 1.9385 | 25.7415 | 101 | 0.08 |\
+  \ 0.9401 | 0.05 | -49.1258 | 53.0028\nb1 | 2.2719 | 24.3351 | 101 | 0.09 | 0.9258\
+  \ | 0.05 | -46.0023 | 50.5462\nAUC1 | 0.7826 | 0.9919 | 101 | 0.79 | 0.4320 | 0.05\
+  \ | -1.1850 | 2.7502\na0 | 1.8665 | 22.7369 | 101 | 0.08 | 0.9347 | 0.05 | -43.2374\
+  \ | 46.9704\nb0 | 1.4273 | 8.8715 | 101 | 0.16 | 0.8725 | 0.05 | -16.1713 | 19.0259\n\
+  AUC0 | 0.8579 | 1.9318 | 101 | 0.44 | 0.6579 | 0.05 | -2.9742 | 4.690\nAUC1-AUC0\
+  \ | -0.07534 | 0.9492 | 101 | -0.08 | 0.9369 | 0.05 | -1.9583 | 1.8076\n\n输出的参数估计部分给出了模型参数的估计，在这里用处不大。ROC\
+  \ 分析更有趣的部分是附加估计部分，它提供了 ESTIMATE 语句结果的信息，包括 BSI 的双正态参数（$a_0$ 和 $b_0$）和 SUV（$a_1$\
+  \ 和 $b_1$）。该部分还报告了每个标记的隐含 AUC（$AUC_1$ 和 $AUC_0$）以及两个 AUC 之间的差异。我们看到 AUC 被估计为 SUV\
+  \ 为 0.7825，BSI 为 0.8579。它们的差异为 0.0753，且不显著，$p$=0.9369。\n\n两个对比在对比部分报告。第一个是两个 AUC\
+  \ 之间的差异，仅在此重复以突出 ESTIMATE 和 CONTRAST 语句之间的相似性。该对比具有与 ESTIMATE 语句相同的 $p$ 值（理应如此），但使用的是\
+  \ $F$ 统计量而非 $t$ 统计量。如果你熟悉方差分析，你会记得分子自由度为 1 的 $F$ 统计量与相应的 $t$ 统计量的平方相同。这里的原理也适用，尽管从此输出中很难看出，因为检验统计量的绝对值非常小。尽管如此，请注意\
+  \ $t$=-0.08，其平方约为 0.01，四舍五入到小数点后两位。\n\n真正感兴趣的对比是双正态参数相等性的联合检验。结果强烈表明，没有证据反对等 ROC\
+  \ 曲线假设（$p$=0.99）。\n\n### 4.5.2 基于双正态模型且数据非配对的比较\n\n如第 4.5.1 节所述，随机效应 $u$ 仅引入到双正态模型中以解释受试者内相关性。在非配对设计中，受试者内相关性按定义为\
+  \ 0。这提示了一种修改上一节代码的简单方法：移除 $u$。这相当于移除 RANDOM 语句并清理编程语句中 $m$ 的定义方式。\n\n## 4.6 双正态与经验\
+  \ ROC 曲线之间的差异\n\n双正态模型和经验模型得出不同结论的情况并不少见。它们之间的差异类似于秩检验和 $t$ 检验之间的差异。如果双正态模型的基础假设成立，则双正态模型具有更高的功效，这可能解释了显著的结果。另一方面，如果模型假设不成立，则\
+  \ I 类错误可能被夸大，这表现为假阳性结果增加。虽然不可能确定哪一个是驱动因素，但 PROC NLMIXED 的输出的某些特征以及如图 4.2 所示的探索性图形分析，仍然是检验双正态性假设的最佳方式。\n\
+  \n图 4.2 叠加了经验和双正态 ROC 曲线，后者由 PROC NLMIXED 估计。实线表示 BSI，虚线表示 SUV。阶梯函数表示经验 ROC 曲线，而平滑曲线来自双正态模型。两个双正态曲线对经验曲线的拟合都很差。这也解释了\
+  \ AUC 估计之间的差异。对于 BSI，经验 AUC 为 78%，而双正态 AUC 为 85%，对于 SUV，对应的估计值分别为 68% 和 78%。\n\n\
+  ## 图 4.2 前列腺癌数据的 ROC 曲线比较\n\n![](img/ac26020abd4f22abfaafc0607939c6e4_57_0.png)\n\
+  \n拟合不良的另一个迹象是模型参数变异性的估计值异常大。a 和 b 的估计值看起来正常，但标准误差比模型参数大 10 到 20 倍。虽然在估计值接近 0 时可能会发生这种情况，但该模型中的估计值并不接近\
+  \ 0。\n\n请注意，尽管双正态模型非常流行，但它们做出了一些强有力的假设。双正态 ROC 曲线不再基于秩；每个观测值都会对双正态斜率和截距的估计做出贡献。正态性的偏差可能会对估计曲线产生不当影响，并对统计推断产生后果。一般来说，使用双正态模型比较\
+  \ ROC 曲线几乎没有理由，因为基于经验曲线的<|message|> 方法是高效的并且已在 SAS 中实现。\n\n然而，你应该将双正态模型保留在你的工具箱中。当连续协变量可能影响标记的预测准确性时，就无法再使用经验\
+  \ ROC 方法。你必须使用基于模型的技术，而双正态模型（以及后续章节中介绍的 Lehmann 家族）提供了一个全面的框架来得出推断。\n\n\n\n\n##\
+  \ 4.7 经验 ROC 曲线下面积差异的 Bootstrap 置信区间\n\n第 3 章中发展的 bootstrap 思想可以扩展以获得 AUC 差异的置信区间，以及检验差异是否显著的\
+  \ p 值。策略与以下类似：\n\n- 生成 B 个 bootstrap 样本。\n- 对于每个样本 i，计算两个 ROC 曲线的 AUC，AUC0^(i) 和\
+  \ AUC1^(i)，并计算差异 Δ^(i) = AUC0^(i) − AUC1^(i)。\n- B 个数值，Δ^(1) 到 Δ^(B)，近似了两个 AUC 之间差异的抽样分布。\n\
+  \n这可以通过使用 %BOOT2AUC 宏来实现，该宏可从本书的配套网站 support.sas.com/gonen 获得。%BOOT2AUC 宏与第 3.9\
+  \ 节中介绍的 %BOOT1AUC 宏类似。唯一的区别是它允许为 VAR 宏变量指定两个变量名。例如，以下调用请求比较 SUV 和 BSI：\n\n```\n\
+  %boot2auc(HeadNeck,suv bsi,ngold);\n```\n\n结果出现在输出 4.3 中。\n\n### 输出 4.3\n\n| AUC1\
+  \ | SE | AUC2 | SE | Difference | SE |\n|---|---|---|---|---|---|\n| 0.761397 |\
+  \ 0.080334 | 0.674859 | 0.080334 | 0.086573 | 0.123361 |\n\n95% Confidence Interval\
+  \ for Difference\n\n| LowerLimit | UpperLimit |\n|---|---|\n| -0.24815 | 0.280488\
+  \ |\n\nH0: Difference=0\np=0.341\n\n输出的第一部分报告了单个 AUC 的点估计值和标准误差，以及它们的差异。AUC 及其标准误差按宏调用中指定的顺序呈现并标记。BSI\
+  \ 的 bootstrap 估计 AUC 为 0.761，SUV 为 0.675。差异为 0.087，在临床上相当可观，但在统计上不显著，p=0.341，置信区间为\
+  \ (−0.248, 0.280)，包含 0。\n\n## 4.8 ROC 曲线的协变量调整\n\n在某些情况下，协变量会影响预测的准确性。在这种情况下，你需要对这些协变量进行\
+  \ ROC 曲线的调整。例如，在天气预报的背景下，产生预报的同一模型可能根据预报地点的地理位置的海拔高度而具有不同的准确性。在医学诊断领域，某些患者方面的因素，例如对治疗的既往暴露，可能影响诊断工具准确识别其当前医疗状况的能力。最后，在信用评分领域，相同的评分方法在不同国家可能表现不同，也许是由于对财务结果报告方式的不同法律要求。\n\
+  \n区分协变量是结果的预测因子与协变量是结果的危险因素非常重要。为了使这种区别具体化，请考虑医学诊断领域的例子。淋巴瘤是淋巴结的癌症。恶性结节通常会增大，因此淋巴结的大小可以很好地预测淋巴瘤。然而，恶性并不是淋巴结增大的唯一原因。淋巴结在患者对抗感染时也会增大。因此，淋巴结的大小可能在最近未感染的患者中是一个很好的预测因子，但在患者最近感染过时则是一个较差的预测因子。另一方面，是否最近感染并不是淋巴瘤的良好预测因子。因此，最近感染是一个可能影响\
+  \ ROC 曲线的协变量，但不是一个可用于预测癌症存在的协变量，无论是单独使用还是与其他预测因子结合使用。\n\n相比之下，淋巴瘤（或也许任何癌症）的家族史会使患者患癌症的可能性更大，因为某些癌症是遗传的。这可以正式或非正式地纳入诊断。患者是否有癌症家族史通常不会影响淋巴结增大是否能很好地预测癌症。因此，癌症家族史不是调整\
+  \ ROC 曲线的候选因素。\n\n在最简单的形式中，对于分类协变量，调整意味着为协变量的每个取值估计单独的 ROC 曲线。对于连续协变量，你可以设想无限多个\
+  \ ROC 曲线，每个可能的协变量值对应一个。这需要使用一个模型来假设协变量与 ROC 曲线参数之间的关系。毫不奇怪，主要的此类模型是回归。下一节将研究第 3\
+  \ 章研究的双正态模型如何被表述为回归模型。\n\n## 4.9 双正态 ROC 曲线的回归模型\n\n最简单的回归模型不包含任何协变量。它在实践中不是一个有用的模型，但有助于构建概念。在\
+  \ ROC 曲线的背景下，如果 T 表示标记，D 表示疾病状态（金标准），则可以写成\n\nT = α₀ + α₁ D + e^{2 D β} ε\n\n其中\
+  \ ε 具有均值为 0、方差为 σ₀² 的正态分布。经过一些代数运算，可以证明\n\na = α₁ / (e^{β} σ₀²),   b = e^{β}\n\n\
+  记住，变量 D 的系数表示标记在 D=1 和 D=0 时均值的差异。这对任何线性模型都成立，并且将在后续章节中用于从更复杂的模型中提取与 ROC 曲线相关的信息。\n\
+  \n该模型不能使用 SAS/STAT 软件中的标准线性模型程序（如 GLM 或 REG）拟合。然而，它可以用 PROC MIXED 拟合，正如我们在第 3 章中看到的那样，也可以用\
+  \ PROC NLMIXED 拟合。PROC MIXED 语法更容易，因为它遵循大多数 SAS/STAT 程序的总体结构。另一方面，PROC NLMIXED 可以推广到有序标记的情况，正如我们在第\
+  \ 5 章中将看到的那样，因此采用 PROC NLMIXED 作为建模 ROC 曲线的 SAS/STAT 程序的主要选择是有价值的。\n\n现在我们可以联合建模协变量。首先考虑一个二元标记\
+  \ W：\n\n```\nT = α₀ + α₁D + α₂W + e^{2β} ε\n```\n\n这意味着\n\n```\nT = { α₀ + α₁D +\
+  \ e^{2Dβ} ε,   W = 0\n      α₀ + α₂ + α₁D + e^{2Dβ} ε,   W = 1 }\n```\n\n这两个方程构成了模型所暗示的两个标记的\
+  \ ROC 曲线的基础。请注意，D 的系数对两个 ROC 曲线都是相同的。事实上，这两个方程仅在截距上不同。因此，所暗示的双正态参数 a 和 b 相同。\n\n\
+  你可以得出结论，仅将协变量作为主效应加入不会导致对两个 ROC 曲线进行单独建模。\n\n现在考虑以下内容：\n\n```\nT = α₀ + α₁D + α₂W\
+  \ + α₃DW + e^{2βD} ε\n```\n\n这会产生 W=0 和 W=1 的以下子模型：\n\n```\nT = { α₀ + α₁D + e^{2βD}\
+  \ ε,          W = 0\n      (α₀ + α₂) + (α₁ + α₃)D + e^{2βD} ε,   W = 1 }\n```\n\n\
+  这两个子模型生成两个不同的 ROC 曲线，因为 D 的系数相差 α₃。\n\n特别对于 W=0\n\n```\na = α₁ / (e^{β} σ₀²),  \
+  \ b = e^{β}\n```\n\n对于 W=1\n\n```\na = (α₁ + α₃) / (e^{β} σ₀²),   b = e^{β}\n```\n\
+  \n注意，如果 α₃=0，则两个标记的 ROC 曲线相同。\n\n原则上，该模型可以容纳在两个标记上收集的数据。你可以为任何标记创建一个二元变量，然后将其用作\
+  \ W 的替代来进行比较。通常，标记比较与协变量调整之间存在两个实际差异：\n\n- 标记比较通常涉及配对数据（如上一章解释的那样），而协变量调整涉及非配对数据。\n\
+  - 标记比较通常使用 *异方差* 模型（允许由结果定义的两个组内方差不同），而协变量调整通常采用 *同方差* 模型（假设由结果定义的两个组内方差相等）。\n"
+- "## 有序预测因子\n\n![](img/ac26020abd4f22abfaafc0607939c6e4_63_0.png)\n\n- 5.1 Introduction\
+  \ ......................................................... 53\n- 5.2 Credit Rating\
+  \ Example................................................... 54\n- 5.3 Empirical\
+  \ ROC Curve for Ordinal Predictors............................... 54\n- 5.4 Area\
+  \ under the Empirical ROC Curve ..................................... 56\n- 5.5\
+  \ Latent Variable Model .................................................. 57\n\
+  - 5.6 Comparing ROC Curves for Ordinal Markers ............................... 63\n\
+  \n## 5.1 引言\n\n第 3 章讨论了单一连续预测因子，这可能是 ROC 曲线最自然、最常见的设定。尽管如此，ROC 曲线的思想同样适用于有序预测因子。本章研究如何将前一章的技术扩展以适应有序预测因子。\n\
+  \n有序预测因子可以通过多种方式产生。有时，它们只是底层连续预测因子分类的结果。虽然这可能导致信息损失，从而降低预测准确性，但拥有简单且易于传达的预测因子的收益可能抵消这些损失。降雨预报可能提供一个例子。有时它们报告为低-中-高，其他时候则以\
+  \ 10% 的增量报告。无论使用何种术语报告分类预测因子，数据分析都可以使用预测因子作为有序变量进行。\n\n有序预测也可能通过专家意见产生。大多数主观意见难以量化，但提供按其概率排序的几个情景相对容易——实际上是报告有序预测。例子可以在几乎任何领域找到，例如医学（诊断放射科医生报告其对疾病机会或严重程度的评估）、商业（顾问对消费者偏好可能性的看法）或金融（股票选择，报告为买入、持有或卖出）。\n\
+  \n\n\n\n\n从 ROC 曲线的角度来看，连续预测因子和有序预测因子之间存在二元性。经验曲线和双正态模型都可以容纳有序预测因子，要么直接使用，要么经过一些修改。第\
+  \ 5.3 节和第 5.4 节提供了详细信息。\n\n## 5.2 信用评级示例\n\n考虑以下由 Güttler（2005）收集并发表的数据集，该数据集涉及世界上两家最著名的信用评估机构——穆迪和标准普尔的评分系统表现。表\
+  \ 5.1 报告了穆迪评级的数据，穆迪评级使用 17 个有序等级，从 Aaa（最有利评级）到 C（最不利评级）。Rating 行列出了这 17 个评级，Default\
+  \ 行包含研究随访期间违约的公司数量，而 Total 行则列出了同一时期获得特定信用评级的公司总数。本例的目的是评估穆迪评级作为违约可能性预测因子的准确性。对于从\
+  \ Aaa 到 C 的 17 个评级中的每一个，都提供了样本中的总数以及该总数中违约的数量。\n\n### 表 5.1 穆迪评级\n\n| Rating | Aaa\
+  \ | Aa1 | Aa2 | A1 | A2 | A3 | A3- | Baa1 | Baa2 |\n| Default | 0 | 0 | 0 | 0 |\
+  \ 0 | 1 | 0 | 1 | 0 |\n| Total | 49 | 47 | 120 | 164 | 163 | 254 | 226 | 238 | 242\
+  \ |\n| Rating | Baa3 | Ba1 | Ba2 | Ba3 | B1 | B2 | B3 | C |  |\n| Default | 1 |\
+  \ 1 | 1 | 2 | 8 | 15 | 13 | 55 |  |\n| Total | 212 | 105 | 108 | 175 | 238 | 215\
+  \ | 139 | 164 |  |\n\n请注意，表 5.1 包含了所有数据。对于有序预测因子，你可以用近 3,000 个观测值完整地展示一个数据集，因为空间需求更多取决于类别的数量，而非实际样本量。这与连续数据形成对比，连续数据的原始数据通常由于空间限制而未被报告。\n\
+  \n## 5.3 有序预测因子的经验 ROC 曲线\n\n有序预测因子的经验 ROC 曲线建立在与连续预测因子的经验 ROC 曲线相同的原理上。事实上，由于经验\
+  \ ROC 曲线仅基于数据的秩，因此预测因子是有序还是连续的，对 ROC 曲线的构建方式没有影响。因此，第 3 章的方法可用于构建和比较具有有序预测因子的经验\
+  \ ROC 曲线。\n\n简要回顾一下，使用有序预测因子的每个不同观测值作为可能阈值，你可以计算由此产生的二元预测因子的敏感性和特异性。对每个阈值绘制敏感性与\
+  \ 1 减去特异性的散点图就构成了 ROC 点。请注意，以下代码与第 3 章中用于连续预测因子的程序完全相同：\n\n```\nproc logistic data=moody;\n\
+  \    model default=moody / outroc=rocdata;\nrun;\n\naxis1 length=12cm order=0 to\
+  \ 1 by 0.2 label=(f=swissb h=2)\nvalue=(font=swissb h=2) offset=(.5 .5)cm;\naxis2\
+  \ length=12cm order=0 to 1 by 0.2 label=(a=90 f=swissb h=2)\nvalue=(font=swissb\
+  \ h=2) offset=(.5 .5)cm;\n\nsymbol1 v=none i=join c=black;\n\nproc gplot data=rocdata;\n\
+  \    plot _sensit_*_1mspec_ / haxis=axis1 vaxis=axis2;\nrun;\nquit;\n```\n\n###\
+  \ 图 5.1 穆迪评级数据的 ROC 点\n\n![](img/ac26020abd4f22abfaafc0607939c6e4_65_0.png)\n\n\
+  图 5.1 包含使用 PROC LOGISTIC 获得的穆迪评级的 ROC 点。请注意，对于此工作，变量 moody 必须是数值型。另请注意 AXIS 语句的\
+  \ OFFSET= 选项的使用，用于在两个轴的两侧打印一些空白以改善显示效果。另请注意，没有一家获得前五个评级（AAA 至 A2）的公司违约，因此这五个评级都由右上角的同一点表示（100%\
+  \ 敏感性和 100% 特异性）。\n\n特意使用术语 ROC 点。图 5.1 没有 ROC 曲线，只有每一点都是穆迪评级的可行操作点。可以连接这些点，就像我们对连续预测因子所做的那样，最终得到\
+  \ ROC 曲线。你可以争辩说，由于有序预测因子的定义，未观察到的中间阈值是不可能的，因此由此产生的曲线没有意义。想象一下在图 5.1 中连接这些点。穆迪评分在\
+  \ B2 和 C 之间没有分数，因此图中连接两个最左点线段上的点代表不存在的阈值的操作特征（即敏感性和特异性）。反驳意见认为，大多数有序量表的等级是任意定义的，可以更改。如果有序预测是通过对连续预测因子进行分类获得的，那么就可以明确地重新审视阈值。在主观意见的情况下，可以要求专家通过使用更多等级的量表来完善他们的预测。在我们的例子中，穆迪可能会在检查图\
+  \ 5.1 后决定 Aa1 和 Aa2 之间（从右数第二个和第三个点）的差距太宽。这可以通过在这两个之间引入新的阈值来解决。\n\n连接点还有一个实际后果：它使得可以明确地定义有序预测因子的曲线下面积。因此，我建议对有序预测因子使用\
+  \ ROC 曲线而不是 ROC 点。\n\n## 5.4 经验 ROC 曲线下面积\n\n经验 ROC 曲线下面积的计算使用梯形法则，与对连续标记的处理方式相同。%ROC\
+  \ 宏可用于此目的，因为经验 ROC 曲线及其下面积是基于秩的函数。宏调用与第 3 章中使用的完全相同：\n\n```\n%roc(data=moody,var=moody,response=def,contrast=1);\n\
+  ```\n\n熟悉的 %ROC 输出（见输出 5.1）显示 AUC 为 0.915，95% 置信区间范围为 0.891 至 0.940。\n\n### 输出 5.1\n\
+  \n```\nThe ROC Macro\n\nROC Curve Areas and 95%\nConfidence Intervals\nROC Area\
+  \ Std Error Confidence Limits\nmoody 0.9153 0.0124 0.8909 0.9397\n```\n\n与使用 %ROC\
+  \ 宏类似，你可以使用 %BOOT1AUC 宏来计算曲线下面积的基于自助法的估计值和标准误差。输出 5.2 显示了自助法的结果，与 %ROC 宏产生的结果相似。\n\
+  \n### 输出 5.2\n\n```\nBootstrap Analysis of the AUC for moody\n\n    AUC    StdErr\n\
+  \    -----------\n0.913584  0.012242\n\n95% Confidence Interval\n\n    LowerLimit\
+  \    UpperLimit\n    -----------\n    0.888271      0.935495\n```\n\n## 5.5 潜变量模型\n\
+  \n与连续预测因子一样，经验 ROC 曲线假设最少，但不易扩展以进行协变量调整。在第 3 章中，我们开发了双正态模型，并在第 4 章中演示了其在协变量调整中的应用。\n\
+  \n也可以为有序预测因子开发双正态模型。想象一下，你从一个连续预测因子开始，但决定对其进行分类并仅报告有序预测因子，例如无、低、中和高（就像某些降雨预报那样）。预报的消费者只能观察到有序值。尽管这些连续预测，即潜变量，仍然未被观察到，但在每个有序值处的敏感性和特异性代表了潜变量的\
+  \ ROC 曲线上的点。基本思想在图 5.2 中给出。\n\n### 图 5.2 有序预测因子的三个 ROC 点\n\n![](img/ac26020abd4f22abfaafc0607939c6e4_68_0.png)\n\
+  \n图的上部水平线代表潜变量的连续体。潜变量轴上的三个哈希标记表示与观察到的有序预测因子相对应的阈值。下部的实线是潜变量的 ROC 曲线，曲线上的哈希标记是 ROC\
+  \ 点。重要的是，有序变量的 ROC 点位于潜变量的 ROC 曲线上。\n\n现在查看图 5.3，其中仅包含 ROC 点。在不知道或假设潜变量的某些特征的情况下，你无法仅使用\
+  \ ROC 点来估计潜变量的 ROC 曲线。连接这些点不太可能代表潜变量的真实 ROC 曲线，因为真实的 ROC 曲线更可能是平滑的。你需要使用有关潜变量的信息在\
+  \ ROC 点之间进行插值。当然，潜变量是不可观察的，因此你只能做出假设。\n\n\n\n\n\n## 图 5.3 图 5.2 中同一序数预测变量的 ROC 点\n\
+  \n![](img/ac26020abd4f22abfaafc0607939c6e4_69_0.png)\n\n最常见的假设是潜变量服从正态分布。这就产生了所谓的*潜二元正态模型*。目前，我们将潜二元正态模型与第\
+  \ 3 章中的模型区分开来。潜二元正态模型假设当 D=1 时，潜变量服从均值为 μ₁、方差为 σ₁² 的正态分布；当 D=0 时，服从均值为 μ₀、方差为 σ₀²\
+  \ 的正态分布。利用序数标记的观测频率（如表 5.1 中的）无法同时估计 μ₀、σ₀²、μ₁ 和 σ₁²。这四个参数存在多组（事实上无限多）组合可以产生相同的观测数据，且无法区分它们。然而，如果我们通过固定\
+  \ μ₀ 和 σ₀² 来锚定其中一个正态分布，则可以估计 μ₁ 和 σ₁²。为简化起见，假设我们选择 μ₀=0 σ₀²=1 并得到 μ₁ 和 σ₁² 的估计值，记为\
+  \ μ̂ 和 σ̂²。若我们设 μ₀=m σ₀²=s，则 μ₁ 和 σ₁² 的估计值将变为 μ̂ + m 和 s σ̂²。这可以证明，因为正态分布是所谓的*位置-尺度族*的成员。其含义是，在不失一般性的情况下，我们始终可以使用标准正态作为锚点，并将由此得到的估计值视为两个均值的差和两个方差的比。\n\
+  \n这些考虑导致了 ROC 曲线专用序数回归模型的开发，最初由 Tosteson 和 Begg（1988）提出。在该模型中，D 是金标准的指示变量，即 D=0\
+  \ 或 D=1。潜变量 X 服从均值为 αD、方差为 e^{2βD} 的正态分布。这相当于假设 D=0 时为标准正态，而 D=1 时可能为不同的正态密度。因此，X\
+  \ 的这种表示与前面描述的潜二元正态模型一致。\n\n假设 $R$ 是具有 $k$ 个水平的序数预测变量，由对 $X$ 应用阈值 $\\theta_1...,\
+  \ \\theta_k$ 产生。则 $R$ 等于 $k$ 的概率由下式给出：\n\n$P(R=k)=P(\\theta_{k-1}<X\\le\\theta_k)$\n\
+  $=\\Phi\\left(\\frac{\\theta_k-\\alpha D}{e^{\\beta D}}\\right)-\\Phi\\left(\\frac{\\\
+  theta_{k-1}-\\alpha D}{e^{\\beta D}}\\right)$\n\n我们在第 3 章中看到 ROC 曲线与累积分布密切相关。因此，使用\
+  \ $\\gamma_k(D)=P(R\\le k)$ 而不是 $P(R=k)$ 得到以下 probit 回归模型：\n\n$\\gamma_k(D)=\\Phi\\\
+  left(\\frac{\\theta_k-\\alpha D}{e^{\\beta D}}\\right)$\n\n注意 $1-\\gamma_k(D)$ 是标记超过阈值的概率，因而预测\
+  \ D=1。这代表 D=1 时的灵敏度，以及 D=0 时的 1 减特异度。因此，对所有 $k$ 作出 $1-\\gamma_k(0)$ 与 $1-\\gamma_k(1)$\
+  \ 的图即得到潜变量的 ROC 曲线。由此得到的平滑曲线，类似于连续预测变量的情况，为\n\n$y=\\Phi\\left(\\alpha+e^{-\\beta}\\\
+  Phi^{-1}(x)\\right)$\n\n其中 $x$ 为 1 减特异度，$y$ 为灵敏度。在该模型下，曲线下面积为\n\n$A=\\Phi\\left(\\\
+  frac{\\alpha}{\\sqrt{1+e^{-2\\beta}}}\\right)$\n\n设 $a=\\alpha$ 且 $b=e^{-\\beta}$，你可以看到\
+  \ AUC 的公式等价于单个连续预测变量的情况。这并不令人惊讶，因为我们在第 5.2 节和第 5.3 节中持续观察到连续预测变量与序数预测变量之间存在强烈的对偶性。\n\
+  \n我们将此称为*序数-probit 回归模型*。其他序数回归模型可以通过假设潜变量服从不同的分布而得到，在这种情况下，推导中的 probit 链接将被所选分布的累积分布函数所取代。实际上，在潜模型设定中，使用其他分布的情况非常罕见。\n\
+  \n熟悉 LOGISTIC、GENMOD 和 PROBIT 过程功能的人可能会错误地得出结论，这些过程可以作为序数预测变量分析的主要工具。事实上，这三个过程不足以容纳参数\
+  \ $\\beta$。只有在你愿意预先将 $\\beta$ 固定为 1 仅估计 $\\alpha$ 时才使用它们。这些过程被开发用于估计一类称为*广义线性模型*的模型，而这里定义的序数-probit\
+  \ 回归模型当且仅当 $\\beta$=1 时才属于该族。因此，要以前面所述的完全一般性拟合序数 probit 模型，你需要使用 PROC NLMIXED 的功能。\n\
+  \n我们将以穆迪的数据为例。注意，前五个类别（Aaa 至 A2）没有观察到的违约，因此灵敏度和特异度相同。用本章的语言来说，γ_k(0) 和 γ_k(1) 对\
+  \ k=1,…,5 相同。因此，我们无法估计任何四个阈值（θ_1、θ_2、θ_3、θ_4），因为在假设的潜变量分布中从 −∞ 到 θ_5 之间的任意点都与我们的数据一致。为了使序数回归能够处理所有模型参数，我们需要合并一些类别。表\
+  \ 5.2 中的合并是为本次分析选择的。\n\n## 表 5.2 穆迪评级数据的合并版本\n\n| Rating | A | Baa | Ba | B | C\
+  \ |\n|---|---|---|---|---|---|\n| Default | 1 | 2 | 4 | 36 | 55 |\n| Total | 1023\
+  \ | 692 | 388 | 592 | 164 |\n\n在合并版本中，A 代表 Aaa 至 A3-，Baa 代表 Baa1 至 Baa3，Ba 代表 Ba1\
+  \ 至 Ba3，B 代表 B1 至 B3。C 未与其他类别合并。\n\n在继续拟合该模型之前，重要的是要强调潜变量是不可观测的，因此只能估计阈值的相对位置。换句话说，具有不同绝对值但相对位置相同（即它们之间的距离相同）的两组阈值将具有相同的似然。因此我们需要任意固定其中一个阈值，以便估计其他阈值。以下\
+  \ PROC NLMIXED 代码假设第一个阈值为 0 并将前述序数-probit 回归模型拟合到合并版本的信用评级数据。\n\n```\nproc nlmixed\
+  \ data=moody gconv=0;\n  parms alpha=1 theta1=1 theta2=2 theta3=3 beta=1;\n  bounds\
+  \ theta1>0, theta2>0, theta3>0;\n  eta1=alpha*default;\n  eta2=exp(beta*default);\n\
+  \    if rating=1 then z = probnorm(-eta1/eta2);\n  else if rating=2 then z = probnorm((theta1-eta1)/eta2)\n\
+  \                        probnorm(-eta1/eta2);\n  else if rating=3 then z = probnorm((theta2+theta1-eta1)/eta2)\n\
+  \                        - probnorm((theta1-eta1)/eta2);\n  else if rating=4 then\
+  \ z = probnorm((theta3+theta2+theta1-eta1)/eta2)\n                        - probnorm((theta2+theta1-eta1)/eta2);\n\
+  \  else if rating=5 then z = 1 - probnorm((theta3+theta2+theta1-eta1)/eta2);\n \
+  \ if z>1e-6 then ll=log(z);\n  else ll=-1e6;\n  model rating ~ general(ll);\n  estimate\
+  \ 'AUC' probnorm(alpha/sqrt(1+beta**2));\nrun;\n```\n\n如果不熟悉语法或输出，附录中关于 PROC NLMIXED\
+  \ 的简短介绍可能会有所帮助。输出 5.3 显示了结果。\n\n## 输出 5.3\n\nParameter Estimates\nParameter Estimate\
+  \ Standard Error DF t Value Pr > |t| Alpha Lower Upper\nalpha 1.9898 0.1157 2859\
+  \ 17.21 <.0001 0.05 1.7631 2.2166\ntheta1 0.5192 0.01679 2859 30.92 <.0001 0.05\
+  \ 0.4863 0.5521\ntheta2 0.3533 0.01667 2859 21.19 <.0001 0.05 0.3206 0.3860\ntheta3\
+  \ 0.9907 0.03948 2859 25.10 <.0001 0.05 0.9133 1.0681\nbeta -0.2368 0.1336 2859\
+  \ -1.77 0.0764 0.05 -0.4987 0.02517\n\nParameter Estimates\nParameter Gradient\n\
+  alpha 9.587E-7\ntheta1 0.000012\ntheta2 -2.58E-6\ntheta3 -3.04E-6\nbeta -8.23E-6\n\
+  \nAdditional Estimates\nLabel Estimate Standard Error DF t Value Pr > |t| Alpha\
+  \ Lower Upper\nAUC 0.9736 0.009248 2859 105.27 <.0001 0.05 0.9555 0.9917\n\n只要模型拟合过程收敛，迭代历史和梯度对我们来说就没用。最相关的模型参数估计值可在参数估计输出部分找到，其中\
+  \ α̂ = 1.99 且 β̂ = −0.24。如第 3 章所述，ESTIMATE 语句是 PROC NLMIXED 的一个特别方便的功能；它可以计算模型参数任何一对一函数的估计值及其标准误。利用此功能，我们估计\
+  \ AUC 为 97%，标准误为 0.9%，95% 置信区间为 95.6% 至 99.2%。从各方面来看，穆迪的评级都是违约的优秀预测因子。\n\n虽然没有直接用处，但该模型也估计了三个阈值。它们估计值（在参数估计部分标记为\
+  \ theta1、theta2 和 theta3）为 0、0.5192、0.5192+0.3533=0.8725 和 0.8725+0.9907=1.8632。记住潜变量对\
+  \ D=0 为标准正态，对 D=1 为均值 1.99（α̂）且方差 0.62（e^{2β̂}）的正态分布，我们可以精确计算序数预测变量每个水平的预期比例。\n\n\
+  或者，我们可以通过简单地代入 α 和 β 的估计值来计算 AUC 的估计值，但标准误的计算需要使用泰勒近似进行一些分析推导。\n\n所得 ROC 点以图 5.4\
+  \ 中的黑色点给出，并叠加了二元正态模型的平滑线。拟合在高阈值（低灵敏度）时非常好，但在较高阈值时与经验曲线存在一些偏差。\n\n\n\n\n\n### 图 5.4\
+  \ 潜变量双正态模型隐含的 ROC 曲线\n\n![](img/ac26020abd4f22abfaafc0607939c6e4_73_0.png)\n\n##\
+  \ 5.6 有序标记 ROC 曲线的比较\n\n比较有序 ROC 曲线可以基于经验曲线或潜变量双正态模型。%ROC 宏可用于比较两条经验 ROC 曲线下的面积。或者，潜变量双正态模型可用于比较两个潜变量双正态曲线的参数。\n\
+  \n### 5.6.1 转移性结直肠癌示例\n\n结肠和直肠中的一些肿瘤会扩散到肝脏，在这种情况下称为转移性结直肠癌。如果扩散仅限于肝脏，则可以手术切除。但如果存在其他转移部位，则肝脏手术不合适。因此，所有接受肝脏手术的转移性结直肠癌患者都会被仔细筛查肝外肿瘤。本节中的示例比较了两种不同的肝外成像方法：计算机断层扫描（CT）和正电子发射断层扫描（PET）。每位患者都接受了两种扫描，每张图像均由放射科医生使用三点量表进行评估：阳性（癌症存在）、可疑和阴性（癌症不存在）。\n\
+  \n### 5.6.2 比较经验 ROC 曲线下的面积\n\n正如使用 %ROC 宏可以构建有序预测变量的经验曲线一样，也可以使用该宏比较多条经验 ROC 曲线下的面积。以下对\
+  \ %ROC 宏的调用可生成所需的比较：\n\n```\n%roc(version,data=modif,var=pet ct,response=surg,contrast=1\
+  \ -1);\n```\n\n输出 5.4 显示了结果。\n\n### 输出 5.4\n\nROC 宏\n\nROC 曲线面积及 95% 置信区间\n\n| ROC\
+  \ Area | Std Error | Confidence Limits |\n|---|---|---|\n| pet 0.6744 | 0.2349 |\
+  \ 0.2141 1.1347 |\n| ct 0.5526 | 0.2162 | 0.1289 0.9763 |\n\n对比系数\npet ct\nRow1\
+  \ 1 -1\n\n对比行检验及 95% 置信区间\nEstimate Std Error Confidence Limits Chi-square Pr >\
+  \ ChiSq\n0.6744 0.2349 0.2141 1.1347 8.2461 0.0041\n0.5526 0.2162 0.1289 0.9763\
+  \ 6.5346 0.0106\n\n对比检验结果\nChi-Square DF Pr > ChiSq\n11.6473 2 0.0030\n\n曲线下面积为\
+  \ PET 的 0.6744，CT 的 0.5526，置信区间很宽，在一种情况下超过 1。根据定义，AUC 不能超过 1，因此上限 1.1347 是用于置信区间计算的渐近方法的不足之处。通常，置信区间可从下方截断至\
+  \ 0，从上方截断至 1。经验 ROC 曲线下面积之差为 0.1218，且显著（p=0.003）。\n\n### 5.6.3 比较潜变量双正态 ROC 曲线下的面积\n\
+  \n作为经验方法的替代，可以对 PET 和 CT 均假设潜变量双正态模型。此时，不难看出比较两个潜变量双正态曲线的步骤可借鉴第 3 章的双正态方法。关键思想是考虑一个具有二元疾病状态（癌症/无癌症）和二元指示变量（PET/CT）主效应及其交互作用的回归模型。这导致右侧与第\
+  \ 4.9 节中考虑的模型相同。交互项系数的关键作用再次显现，代表两条 ROC 曲线之间的差异。随机项 u 代表由配对设计引起的两次检测之间的相关性。\n\n\
+  以下代码中 α₃ 的 p 值可用于比较两个双正态曲线。变量 Test 是二元指示变量 CT/PET。\n\n```\nproc nlmixed gconv=0;\n\
+  \  parms alpha1=1 alpha2=1 alpha3=1 theta2=3 beta=1 s=1;\n  bounds theta2>0;\n \
+  \ eta1=alpha1*surg+alpha2*test+alpha3*surg*test+u;\n  eta2=exp(beta*surg);\n   \
+  \ if result=1 then z = probnorm(-eta1/eta2);\n  else if result=3 then z = probnorm((theta2-eta1)/eta2)\
+  \ - probnorm((theta2-eta1)/eta2);\n  else if result=5 then z = 1 - probnorm((theta2-eta1)/eta2);\n\
+  \  if z>1e-6 then ll=log(z);\n    else ll=-1e6;\n  model result ~ general(ll);\n\
+  \  random u ~ normal(0,s) subject=patient;\nrun;\n```\n\n有序标记的协变量调整可使用第 4 章中的相同表示，通过使用交互项来实现。转移性结直肠癌示例中没有感兴趣的协变量，但假设患者的年龄可能影响\
+  \ CT 扫描的准确性。然后可使用以下对 PROC NLMIXED 的调用获得 CT 扫描的年龄调整 ROC 曲线：\n\n```\nproc nlmixed\
+  \ gconv=0;\n  parms alpha1=1 alpha2=1 alpha3=1 theta2=3 beta=1 s=1;\n  bounds theta2>0;\n\
+  \  eta1=alpha1*surg+alpha2*age+alpha3*surg*age;\n  eta2=exp(beta*surg);\n    if\
+  \ result=1 then z = probnorm(-eta1/eta2);\n  else if result=3 then z = probnorm((theta2-eta1)/eta2)\
+  \ - probnorm((theta2-eta1)/eta2);\n  else if result=5 then z = 1 - probnorm((theta2-eta1)/eta2);\n\
+  \  if z>1e-6 then ll=log(z);\n    else ll=-1e6;\n  model result ~ general(ll);\n\
+  run;\n```\n\n请注意此模型中随机效应 u 的缺失。正如我们在第 4 章中回顾的那样，标记比较与协变量调整之间的一个显著区别是，标记比较通常涉及配对数据（每位患者均由每个标记测量），而协变量调整不具有这一特征。\n"
+- "## Lehmann ROC 曲线族\n\n![](img/ac26020abd4f22abfaafc0607939c6e4_77_0.png)\n\n- 6.1\
+  \ 引言 ........................................................................................\
+  \ 67\n- 6.2 Lehmann 分布族 .............................................................\
+  \ 67\n- 6.3 磁共振示例 ................................................................\
+  \ 70\n- 6.4 协变量调整.........................................................................\
+  \ 73\n- 6.5 使用估计方程处理聚类数据 ............................... 75\n- 6.6 使用 Lehmann ROC\
+  \ 曲线族比较标记............. 79\n- 6.7 Lehmann ROC 曲线族的优点和缺点\nROC 曲线 ...............................................................................................\
+  \ 80\n\n## 6.1 引言\n\n前五章涵盖了分析 ROC 曲线的传统方法。本章介绍了一种构建连续预测变量 ROC 曲线的不同方法。该方法具有三个重要优势，即\n\
+  \n- 对应于具有非常简单函数形式的 ROC 曲线\n- 轻松与内置 SAS 过程配合使用\n- 便于对比较 ROC 曲线和协变量调整进行易于推广。\n\n##\
+  \ 6.2 Lehmann 分布族\n\n在第 3 章中，我们根据金标准状态值的标记值条件累积分布函数的补集推导了 ROC 曲线的一般表示。如果 D=0,1 表示金标准，W\
+  \ 为标记，则我们定义\n\nF(w) = P(W > w | D = 1)\nG(w) = P(W > w | D = 0)\n\n则 W 的 ROC 曲线由下式给出\n\
+  \ny = F(G^{-1}(x))\n\n该结果普遍成立，对 F 和 G 没有特别限制。第 3 章使用该结果通过简单地将 F 和 G 替换为正态分布的相应累积密度来推导双正态模型的\
+  \ ROC 曲线的函数形式。\n\n双正态族的替代方法是假设 F 和 G 彼此相关如下：\n\nG(w) = F(w)^{θ}\n\n由该方程定义的分布族称为\
+  \ Lehmann 族。该族由 Lehmann 在其关于各种统计检验功效函数研究的开创性著作（Lehmann, 1953）中使用。因此，该分布族有时也被称为 Lehmann\
+  \ 备择。\n\n必须认识到，该方程并不能唯一定义标记值的实际分布。它仅在彼此参照的情况下识别分布。因此，半参数一词常用于描述该族。指数分布属于 Lehmann\
+  \ 族。具有共同尺度参数的 Weibull 分布也属于该族。另一方面，正态和对数正态分布不是 Lehmann 族的成员。\n\n前述方程意味着以下内容：\n\n\
+  y = x^{θ}\n\n这是对应于 Lehmann 族的 ROC 曲线的函数形式。换句话说，如果标记值的条件分布通过 θ 以 Lehmann 族的方式相互关联，则\
+  \ ROC 曲线将具有该方程中的简单幂形式。因此，如果你能从数据中估计 θ，则 ROC 曲线的估计值将立即可用。\n\nLehmann 族的一个重要优点是 θ\
+  \ 的估计方法已得到广泛研究并已实现。为此，首先定义以下方程：\n\nh_F(w) = f(w) / F(w)\n\n其中 f 是对应于 F 的密度函数，h 通常称为风险函数，在生存分析中起着核心作用。如果\
+  \ G = F^{θ}，则相应风险函数之间存在以下关系：\n\n\n\n\\(\\frac{h_F(w)}{h_G(w)} = \\theta\\)\n\n熟悉删失数据分析的统计学家会认识到这就是比例风险族。Lehmann族与比例风险族是相同的。Cox（1972，1975）在两篇关键论文中提出了偏似然的思想，并展示了如何用它来估计\
+  \ θ。他的工作为 Cox（或比例风险）回归模型铺平了道路，而这些模型已成为建模删失数据的首要工具。SAS 中的 PHREG 过程实现了该方法，并为 Lehmann\
+  \ 族的参数估计提供了便捷的途径。\n\n虽然熟悉比例风险模型和 PROC PHREG 有助于理解本章，但也可能导致混淆。因为比例风险模型几乎只用于删失数据，所以很容易错误地假设本章描述的是如何获得删失数据的\
+  \ ROC 曲线。事实上，比例风险族和偏似然方法都不要求数据是删失的。本章中的数据集在结构上实际上与第 3 章和第 4 章中的数据集完全相同：连续标记和二元金标准。目标是提供对二元正态模型的替代方案，后者拥有完整的回归模型集合。\n\
+  \n第 4 章中开发的二元正态模型的回归版本背后的原理是使用标记值作为因变量，金标准作为自变量纳入回归模型。我们在这里使用同样的思路。在比例风险回归的背景下，这意味着\n\
+  \n\\(h_F(w; D) = h_G(w) \\exp\\{\\beta D\\}\\)\n\nPROC PHREG 会产生 β 的估计值及其标准误。我们可以用这些值得到\
+  \ θ 的估计值及其标准误。记住 W 是标记，D 是二元结局。因此，如果 D=0，则 h_F=h_G；如果 D=1，则 h_F=h_G e^β。整理后得到以下方程：\n\
+  \n\\(\\frac{h_F(w)}{h_G(w)} = e^{\\beta}\\)\n\n将此与 \\(\\frac{h_F(w)}{h_G(w)} = \\\
+  theta\\) 比较可得：\n\n\\(\\hat{\\theta} = e^{\\beta}\\)\n\n你可以使用泰勒定理近似 \\(\\hat{\\theta}\\\
+  ) 的方差如下：\n\n\\(V(\\hat{\\theta}) = \\hat{\\theta}^2 V(\\hat{\\beta})\\)\n\n\\(\\\
+  hat{\\beta}\\) 和 \\(V(\\hat{\\beta})\\) 均可从 PROC PHREG 输出中获得。\n\n一旦 θ 被估计，ROC 曲线就完全确定，可以计算\
+  \ AUC 等汇总指标。利用 Lehmann 族 ROC 曲线的函数形式，可以计算 AUC 的估计值为\n\nAŪC = ∫ x^θ dx = 1 / (1 +\
+  \ θ̂)\n\n而 AUC 估计值的方差为\n\nV(AŪC) = V(θ̂) / (θ̂ + 1)^4\n\n所有所需分量再次可从 PROC PHREG 输出中获得。你还可以使用\
+  \ x^θ 的标准误为 ROC 曲线形成点估计置信带：\n\nV(y(x)) = [x^θ̂ log x]^2 V(θ̂)\n\nGönen 和 Heller（2007）详细研究了\
+  \ ROC 曲线的 Lehmann 族的使用。由 y = x^θ 给出的 ROC 曲线已在文献中被研究；例如参见 Hanley（1988）。它们使用 Lehmann\
+  \ 族的推导以及使用 Cox 回归过程的实现已由 Gönen 和 Heller（2007）明确提出。\n\n## 6.3 磁共振示例\n\nZajick 等人（2005）报告了一项关于使用化学位移磁共振区分正常、良性和恶性椎体骨髓病变的研究。感兴趣的标记是同相和异相信号强度之间的百分比差异。该文章重点在于为正常椎体骨髓的信号强度变化建立一个值范围。在这里，我们用其数据实现不同目标：评估信号强度变化在区分正常和良性椎体骨髓病变方面的能力。\n\
+  \n共对 75 名患者的 569 个正常椎体进行了评估，与 92 名患者的 215 个良性病变相比。图 6.1 展示了正常和良性椎体信号强度变化的并排直方图。该图由\
+  \ UNIVARIATE 过程的 HISTOGRAM 语句生成。完整代码在第 3.1 节的正电子发射断层扫描示例中给出。从直方图可以明显看出两个分布存在一定重叠，表明该标记可能没有区分两类病变的能力。\n\
+  \n### Figure 6.1 Histograms of the Change in Signal Intensity for Normal and Benign\
+  \ Vertebrae\n\n![](img/ac26020abd4f22abfaafc0607939c6e4_81_0.png)\n\n图 6.2 中的经验\
+  \ ROC 点验证了这一怀疑，因为 ROC 曲线仅略高于参考线。图 6.2 由 LOGISTIC 过程 MODEL 语句中的 OUTROC 选项生成，使用与第\
+  \ 3.2 节中类似的语句。\n\n### Figure 6.2 ROC Points for the Change in Signal Intensity for\
+  \ Normal and Benign Vertebrae\n\n![](img/ac26020abd4f22abfaafc0607939c6e4_81_1.png)\n\
+  \n在第一次分析中，忽略患者为分析贡献多个椎体这一事实；这相当于将 569 个数据点视为来自不同受试者。要估计 θ，使用对 PROC PHREG 的以下调用：\n\
+  \n```\nproc phreg data=tmp1.ph;\n    model signal=grp / rl;\n    if group='Normal'\
+  \ then grp=0;\n    else if group='Benign' then grp=1;\nrun;\n```\n\nPROC PHREG 是\
+  \ SAS/STAT 过程，允许编程语句。这些语句使你能够创建可在 MODEL 语句中使用的变量。在过程内部使用编程语句有助于避免在调用过程之前进行 DATA\
+  \ 步编程。一个重要的缺点是创建的变量是临时的；因此，如果新变量在分析的其他地方需要，使用 DATA 步会更有效。\n\n在本例中，编程语句用于创建一个名为 GRP\
+  \ 的新变量。由于 PROC PHREG 仅处理数值变量，因此该变量是必要的。RL 选项请求风险比的置信区间。记住 θ，即 Lehmann 族中唯一的參数，与风险比相同。\n\
+  \nOutput 6.1 的相关部分如下：\n\n### Output 6.1\n\nAnalysis of Maximum Likelihood Estimates\n\
+  Parameter DF Parameter Estimate Standard Error Chi-Square Pr > ChiSq Hazard Ratio\
+  \ 95% Hazard Ratio Confidence Limits\ngrp 1 0.35541 0.08815 16.2559 <.0001 1.427\
+  \ 1.200 1.696\n\n这里，θ 的估计值为 1/1.427=0.701。θ 是否大于或小于 1 取决于分组顺序。如果使用以下语句，结果将表明风险比小于\
+  \ 1：\n\n```\nproc phreg data=tmp1.ph;\n    model signal=grp / rl;\n    if group='Normal'\
+  \ then grp=1;\n    else if group='Benign' then grp=0;\nrun;\n```\n\n记住这里的风险是指 grp=1\
+  \ 对应具有更高信号的几率。\n\nβ̂ 的标准误估计为 0.088，因为 θ̂ 的方差为 θ̂² Var(θ̂)=0.062。利用这些值，你可以绘制该数据集的\
+  \ Lehmann 族 ROC，并附带 95% 点估计置信带（图 6.3）。\n\n### Figure 6.3 The ROC Points (Dots),\
+  \ the Lehmann ROC Curve (Solid Line), and the 95% Confidence Intervals (Dashed Lines)\n\
+  \n![](img/ac26020abd4f22abfaafc0607939c6e4_83_0.png)\n\n经验曲线的下面积计算为 0.597，标准误为 0.025（使用\
+  \ %ROC 宏，细节省略），而 Lehmann ROC 曲线的下面积为 0.588，标准误为 0.030。后一对数值是使用第 9.1 节提供的解析关系计算的。经验估计与\
+  \ Lehmann 估计的接近程度表明 Lehmann 模型对数据拟合良好。\n\n## 6.4 调整协变量\n\n正如我们在第 4 章中看到的，协变量可能会影响标记的准确性，ROC\
+  \ 曲线可能需要相应调整。将第 5 章研究的回归模型扩展到 Cox 回归的背景下很容易，如下所示：\n\nh(V | D, U) = \\tilde{h}(v)\
+  \ exp{β₁ D + β₂ U + β₃ D U}\n\n这为 Lehmann ROC 曲线提供了基于回归的协变量调整。这种构造在包含金标准 D 与协变量\
+  \ U 之间的交互作用方面是相似的。为了了解协变量调整的 ROC 曲线的形式，考虑一个 D=1 的观测与一个 D=0 的观测的风险函数之比：\n\nh(V |\
+  \ U, D = 1) / h(V | U, D = 0) = exp{β₁ + β₃ U}\n\n\n\n并且调整后 ROC 曲线的形式如下：\n\ny =\
+  \ x^{θ(u)}\n\n其中\n\nθ(U) = β₁ + β₃U\n\n正如第 5 章所述，协变量的 ROC 曲线不受 β₂ 影响，但必须在模型中包含年龄的主效应；否则，β₃\
+  \ 的估计值，即 ROC 曲线的关键组成部分，可能会有偏倚。\n\n继续以磁共振为例，年龄可能是这种类型的磁共振成像准确性的一个重要因素，该成像专注于组织中的水脂比。由于患者随着年龄增长自然会积累脂肪，该标记物在老年人中可能效果较差，存在将因年龄导致的脂肪误认为是良性病变导致的脂肪的可能性。\n\
+  \n下面的 PHREG 调用提供了所需的估计值：\n\n```\nproc phreg data=tmp1.ph;\n    model signal=grp\
+  \ age grpage/r1;\n    if group='normal' then grp=0;\n    else if group='benign'\
+  \ then grp=1;\n    grpage=grp*age;\nrun;\n```\n\n再次注意编程语句的使用，不仅用于创建组变量，还用于创建交互项。输出\
+  \ 6.2 包含来自 PHREG 过程的相关数字。三个参数估计为 β₁=1.29，β₂=-0.003，和 β₃=-0.014。年龄系数的负号表明准确性随年龄增加而下降。输出\
+  \ 6.2 显示了结果。\n\n## Output 6.2\n\n| Analysis of Maximum Likelihood Estimates |\n\
+  | Variable | DF | Parameter Estimate | Standard Error | Chi-Square | Pr > ChiSq\
+  \ | Hazard Ratio | 95% Hazard Ratio Confidence Limits |\n| grp | 1 | 1.28789 | 0.44629\
+  \ | 8.3276 | 0.0039 | 3.625 | 1.512 | 8.694 |\n| Age | 1 | -0.00297 | 0.00320 |\
+  \ 0.8650 | 0.3523 | 0.997 | 0.991 | 1.003 |\n| grpage | 1 | -0.01432 | 0.00706 |\
+  \ 4.1123 | 0.0426 | 0.986 | 0.972 | 1.000 |\n\n将 β₁ 和 β₃ 代入 θ(u) = β₁ + β₃U 得到以下方程：\n\
+  \nθ(AGE) = 1.288 − 0.014*AGE\n\n将其代入 $y = x^{\\theta(u)}$ 后，得到年龄调整后的 ROC 曲线：\n\n\
+  $y = x^{1.288 - 0.014*AGE}$\n\n你可以通过绘制几个选定年龄值的 ROC 曲线来获得图形表示（见图 6.4）。图 6.4 中的每条\
+  \ ROC 曲线都是 $y = x^{1.288 - 0.014*AGE}$ 在不同年龄值下的绘制。最低曲线代表 70 岁患者，最高曲线代表 40 岁患者。中间的曲线代表以\
+  \ 5 年为增量的不同年龄水平。正如 $\\beta_3$ 的负号所预期的那样，随着年龄的增加，ROC 曲线越来越接近对角线。\n\n## Figure 6.4\
+  \ ROC Curves for Different Age Values\n\n![](img/ac26020abd4f22abfaafc0607939c6e4_85_0.png)\n\
+  \n也可以回答是否需要协变量调整的问题。请注意，当 $\\beta_3=0$ 时，调整后和未调整的 ROC 曲线重合。因此，对 $\\beta_3=0$ 的检验是一种判断是否应报告调整后或未调整\
+  \ ROC 曲线的方法。该检验的 $p$-值为 0.0426（见输出 6.2）；因此，基于此分析，年龄调整后的 ROC 曲线是合适的。\n\n## 6.5 Using\
+  \ Estimating Equations to Handle Clustered Data\n\n迄今为止描述的所有方法都要求各个数据点彼此独立。当对每个个体单元只进行一次观测时，通常满足这一要求。这里的个体单元可以是等待诊断的患者、申请贷款的债务人，或用于发布天气预报的日历日。\n\
+  \n正如磁共振示例中所述，有时可能从一个个体单元获得多个观测值。在这种情况下，研究问题集中于识别异常椎体骨髓过程并将其分类为正常或良性。进行磁共振成像的放射科医生根据图像指示测量信号的椎体数量。有些患者可能只提供一个测量值，而其他患者则提供多个测量值。当患者对分析贡献多个观测值时，\
+  \ resulting 数据集被称为 *clustered*。该术语源于这样的观察：来自同一单元的数据表现相似并倾向于聚在一起。\n\n思考聚类数据的直观方式是，两个独立数据点所包含的信息通常多于两个聚类数据点所包含的信息。聚类使得个体数据点彼此表现得更像，而不像原本那样。净结果通常是标准误差增加（与数据点独立相比），而点估计通常不会受到实质性影响。\n\
+  \n可以在其他领域想到聚类数据的例子。某一天的天气预报通常是多维的：温度、降水和气压都可能同时被预测。同一天的预测会倾向于聚类，因为它们都与相同的潜在气象事件的各个方面相关。\n\
+  \n聚类数据并不总是源于每个观测单元的多次测量。也可能有其他原因怀疑观测值的一个子集彼此表现相似。例如，同一邮政编码区的债务人可能表现出相似的违约行为。同一工厂制造的零件可能表现出相似的故障模式。所有这些都会影响\
+  \ ROC 曲线的分析。\n\n聚类数据的分析本身就是一个统计学主题。从 SAS 用户的角度来看的概述可在 Littell 等人（2006）所著的 *SAS for\
+  \ Mixed Models, Second Edition* 中找到，适用于连续结果，以及 Stokes、Davis 和 Koch（2001）所著的 *Categorical\
+  \ Data Analysis Using the SAS System, Second Edition*。\n\n处理聚类数据的一种方法是基于广义估计方程。这是一种使用对数据点独立性假设的偏离具有稳健性的方法来估计模型参数的方法。这种方法在分析相关的二元数据时非常流行，并且已扩展到删失数据的情形。它可以使用\
+  \ PROC PHREG 中的 COVSANDWICH 选项拟合。该选项以协方差的夹心估计量命名，后者是估计方程得到的估计量的特征之一。\n\n如果我们按如下方式修改对\
+  \ PROC PHREG 的调用，则模型将使用估计方程拟合，而不是通常的部分似然。ID 语句定义了标识聚类变量的变量。共享相同 ID 值的记录被聚类。\n\n\
+  ```\nproc phreg data=tpm1.ph covsandwich(aggregate);\n    model signal=group/r1;\n\
+  \    if group='Normal' then grp=0;\n    else if group='Benign' then grp=1;\n   \
+  \ id name;\nrun;\n```\n\n使用 COVSANDWICH 选项时，PHREG 输出的格式不会改变。特别是我们看到 θ 估计为 1/1.427=0.701（与第\
+  \ 6.3 节相同），支持聚类对点估计几乎没有影响甚至没有影响的观点。由于 θ̂ 没有改变，AUC 的估计值保持在 0.588 不变。另一方面，β̂ 的标准误差现在为\
+  \ 0.144，从 0.088 上升，增加了 63.5%，如 StdErrRatio 列所示，这是 COVS 选项存在时 PROC PHREG 输出的唯一新增内容。见输出\
+  \ 6.3。这导致 θ̂ 的标准误差增加到 0.101，AUC 的标准误差从 0.030 增加到 0.050。\n\n## Output 6.3\n\n| Analysis\
+  \ of Maximum Likelihood Estimates |\n| Parameter | DF | Parameter Estimate | Standard\
+  \ Error | StdErr Ratio | Chi-Square | Pr > ChiSq |\n| group benign | 1 | 0.35541\
+  \ | 0.14413 | 1.635 | 6.0808 | 0.0137 |\n| Analysis of Maximum Likelihood Estimates\
+  \ |\n| Parameter | Hazard Ratio | 95% Hazard Ratio Confidence Limits | Variable\
+  \ Label |\n| group benign | 1.427 | 1.076 1.892 | group benign |\n\n图 6.5 在图 6.4\
+  \ 的基础上增加了基于估计方程的置信带。虚线均表示 95% 置信区间，一个基于假设独立性的标准误差（较窄的带），另一个基于估计方程（较宽的带）。该图无意帮助你选择估计方法。是否应使用估计方程取决于根据研究的性质是否合理地预期存在聚类。\n\
+  \n\n\n\n\n## 图 6.5 聚类对 ROC 曲线变异性的影响\n\n![](img/ac26020abd4f22abfaafc0607939c6e4_88_0.png)\n\
+  \n估计方程的一个吸引人的特点是该方法基于回归模型，因此协变量调整在原则上和实现上都是微不足道的。例如，以下对 PROC PHREG 的调用拟合了一个年龄调整模型，同时考虑了每个患者有多个椎体骨髓过程的事实：\n\
+  \n```\nproc phreg data=ph covs(aggregate);\n    model signal=grp age grpage / rl;\n\
+  \    id name;\n    if group='normal' then grp=0;\n    else if group='benign' then\
+  \ grp=1;\n    grpage=grp*age;\nrun;\n```\n\n结果显示在输出 6.4 中，再次以使用偏似然拟合模型的方式呈现。年龄调整\
+  \ ROC 曲线的函数形式与第 6.4 节中得到并给出的形式相同\n\ny = x^{1.288−0.014*AGE}\n\n主要区别，如你可能猜到的，是标准误差。参见输出\
+  \ 6.4。\n\n## 输出 6.4\n\n最大似然估计分析\n\n| Variable | DF | Parameter Estimate | Standard\
+  \ Error | StdErr Ratio | Chi-Square | Pr > ChiSq | Hazard Ratio | 95% Hazard Ratio\
+  \ Confidence Limits |\n|---|---|---|---|---|---|---|---|---|\n| grp | 1 | 1.28789\
+  \ | 0.89378 | 2.003 | 2.0763 | 0.1496 | 3.625 | 0.629 20.898 |\n| Age | 1 | -0.00297\
+  \ | 0.00881 | 2.758 | 0.1137 | 0.7359 | 0.997 | 0.980 1.014 |\n| grpage | 1 | -0.01432\
+  \ | 0.01337 | 1.894 | 1.1459 | 0.2844 | 0.986 | 0.960 1.012 |\n\nβ₃ 的标准误差增加了 89.4%。这导致\
+  \ p 值为 0.284，与偏似然分析的 p 值相比要大得多。我们得出结论，在调整了聚类后，不需要对年龄进行进一步调整。\n\n## 6.6 使用 Lehmann\
+  \ ROC 曲线族比较标记\n\n第 5 章探讨了使用回归模型比较两个或多个 ROC 曲线的想法。主要思想是在回归模型中包含标记类型的指示变量。对于双正态模型，适当的回归模型是异方差正态回归。对于\
+  \ Lehmann 族，适当的回归模型是比例风险回归，正如我们在第 6.3 节中已经看到的那样。\n\n具体来说，设 U 为指示变量，对两个不同的标记或预测因子取值为\
+  \ 0 和 1。然后，遵循第 6.3 节的逻辑，你可以写出以下方程：\n\n```\nh(V | U, D = 1) / h(V | U, D = 0) = exp{β₁\
+  \ + β₃U}\n```\n\n该模型与第 4 章和第 5 章中在双正态模型背景下的模型相似。它在形式上也与第 6.2 节中考虑的模型完全相同，其中 U 表示年龄，一个连续协变量。因此，PHREG\
+  \ 语句也完全相同，这里不再重复显示。\n\n如果 β₃ = 0，则两个 ROC 曲线相同。因此，可以通过检验 H₀ : β₃ = 0 来进行正式比较。PROC\
+  \ PHREG 输出中 readily 可用的 Wald 检验可用于此目的。从操作角度来看，比较两个标记的 ROC 曲线与比较不同年龄组的 ROC 曲线没有区别，因此第\
+  \ 6.4 节中描述的步骤也适用于此。\n\n标记比较可能与协变量比较不同的一个潜在重要方面是，正如我们在第 4 章中讨论的那样，配对设计是大多数涉及多个标记比较的研究中数据收集的主要形式。之前的模型在用偏似然估计时隐含假设观测是独立的。但第\
+  \ 6.4 节表明，使用估计方程方法拟合回归模型可以让你在数据相关时获得适当的标准误差估计。配对数据是相关数据的特例，前一节概述的边际模型方法可用于在存在配对数据的情况下拟合模型。\n\
+  \n## 6.7 Lehmann ROC 曲线族的优点和缺点\n\n随着单个预测因子 ROC 曲线的非参数方法的出现，你不需要使用双正态模型或 Lehmann\
+  \ 族。这些基于模型方法的实用性只有在考虑更复杂的问题时才会变得明显，例如协变量调整或相关数据。\n\n与任何基于模型的统计方法一样，Lehmann ROC 曲线族的性能直接取决于数据生成过程被\
+  \ Lehmann 假设近似的程度。如果有强有力的证据表明数据遵循 Lehmann 假设，则本章讨论的方法是适当且优选的。在这些条件下，ROC 曲线的常见统计任务，例如协变量调整、多个标记的比较以及使用聚类数据的分析，都可以使用\
+  \ PROC PHREG 处理，这是 Lehmann 族的一个主要优势。\n\n尽管尽最大努力验证或排除 Lehmann 假设，数据可能既不强烈偏离也不强烈支持\
+  \ Lehmann 假设。虽然没有替代仔细和专业的统计分析，但你应该考虑 Lehmann 族和竞争方法的优点和缺点。Lehmann 族的主要优点是其简单的函数形式，使结果易于解释并获得洞察，以及软件的可用性。主要缺点是其灵活性不足：使用单个参数，可能无法容纳经验上明显的\
+  \ ROC 曲线形状。\n"
+- "## 带删失数据的 ROC 曲线\n\n![](img/ac26020abd4f22abfaafc0607939c6e4_91_0.png)\n\n- 7.1\
+  \ 引言 ......................................................... 81\n- 7.2 肺癌示例 ...................................................\
+  \ 81\n- 7.3 带删失数据的 ROC 曲线 ......................................... 82\n- 7.4 带删失数据的符合概率\
+  \ ........................... 88\n- 7.5 符合概率与 Cox 模型 ............................\
+  \ 91\n\n## 7.1 引言\n\n在许多应用中，二元结果事件并非立即可观察。例如，大多数信用评分算法试图预测到某一时间点的违约概率。如果数据集中每个受试者在至少到该时间点仍在观察中，则结果是真正二元的，我们迄今看到的方法适用。但可能不希望等待所有受试者的结果都被观察到。可以进行时间-事件分析，用违约发生前的经过时间替代是/否违约。这种分析的优点是可以容纳受试者之间不同的随访时间。虽然它不如等待所有受试者达到预设时间那样有力，但通常可以更快完成，且效率损失通常很小。\n\
+  \n## 7.2 肺癌示例\n\n肺癌是最常见和致命的癌症之一。其预后受两个因素 heavily 影响：肿瘤大小和淋巴结受累。使用这些因素，你可以预测死亡的可能性并据此计划进一步治疗。这些因素最好在手术中切除的肿瘤标本上测量。然而，在手术前准确描述预后有相当大的兴趣。第\
+  \ 3 章描述了来自正电子发射断层扫描（PET）扫描的标准化摄取值（SUV）。在本例中我们将研究 SUV 作为肺癌死亡率标记的准确性。本分析的目标是看看 SUV\
+  \ 是否能预测手术后肺癌患者的生存。由于 SUV 在手术前可用，如果它具有合理的预测价值，将具有重要的实际意义。\n\n本研究的的数据集有三个变量：SUV、Survival\
+  \ 和 Status。Survival 是手术到死亡之间经过的时间。对于分析时仍存活的患者，它代表手术到最后随访之间的时间。Status 是一个二元变量，表示患者在最后联系时是死亡还是存活。如果\
+  \ status=1，则患者死亡，Survival 变量是实际生存时间。如果 status=0，则患者存活，Survival 是随访时间。这些患者被称为删失，因为我们没有观察到他们的生存时间。\n\
+  \n这种数据结构是删失数据的典型形式，它立即揭示了所需统计分析的复杂特征。结果（即生存时间）以特定方式由两个变量（Survival 和 Status）组合表示。此外，对于部分患者，实际结果未被观察到。传统的统计方法不能直接应用于\
+  \ Survival 变量来推断生存时间。例如，Survival 变量的中位数会低估实际中位数，因为它把删失患者的随访时间当作实际生存时间处理。\n\n因此，删失数据的分析需要特殊方法。由于删失数据在临床研究中无处不在，更不用说工程可靠性（设备故障时间）和金融（违约时间）等其他领域，这些特殊方法已被广泛研究。本章使用了两种更受欢迎的删失数据方法。一种是生存时间分布的\
+  \ Kaplan-Meier 估计，另一种是比例风险（Cox）回归。我们在上一章中已经使用了 Cox 模型，尽管是从完全不同的角度。\n\n严格来说，了解本章几乎不需要关于删失数据的先验知识，但要掌握细节而没有一些经验是困难的。Paul\
+  \ Allison 的 Survival Analysis Using the SAS System: A Practical Guide（1995）或 Alan\
+  \ Cantor 的 SAS Survival Analysis Techniques for Medical Research, Second Edition（2003），两者都是\
+  \ SAS Press 出版的书籍，对此目的有帮助。\n\n## 7.3 带删失数据的 ROC 曲线\n\n我们反复强调生成 ROC 曲线需要二元结果。如果 W\
+  \ 是预测因子，D 是二元结果，你可以写\n\nP(W > c | D = 1)\nP(W ≤ c | D = 0)  (7.1)\n\n来表示对应于某个阈值\
+  \ c 的灵敏度和特异性。我们在第 3 章中看到，这两个概率可以用 W 的条件分布表示，并且它们构成了经验 ROC 曲线的<|message|>。\n\n在生存模型背景下，结果是事件发生（例如死亡或违约）为止经过的时间。这可以被视为随时间变化的二元结果。方程（7.1）现在被替换为\n\
+  \nP(W > c | D(t) = 1)\nP(W ≤ c | D(t) = 0)  (7.2)\n\n\n\n这突出了在删失数据的背景下，敏感性和特异性是时间的函数这一事实。\n\
+  \n使用公式（7.2），我们可以估计每个 c 的敏感性和特异性，并绘制这些估计值以得到特定时间点 t 的 ROC 曲线。估计值可通过以下关系获得，该关系源于条件概率的定义以及贝叶斯定理的应用：\n\
+  \nP(W > c | D(t) = 1) = {1 − S(t | W > c)} P(W > c) / (1 − S(t))\nP(W ≤ c | D(t)\
+  \ = 0) = S(t | W ≤ c) P(W ≤ c) / S(t)  (7.3)\n\n在公式（7.3）中以及本章其他地方，S(t) 表示生存函数——即\
+  \ S(t)=P(T>t)。事实证明，公式（7.3）右边三个分量都可以用 SAS 计算出来。以下各节详细说明如何使用数据计算公式（7.3）。为说明起见，我们将使用\
+  \ c=9 和 t=36，但以下步骤也可以对其他 c 和 t 值重复。\n\n## 7.3.1 S(t) 的估计\n\n如前所述，S(t)=P(T>t) 是变量\
+  \ T 的生存函数（即熟悉的累积分布函数的相反数），它受删失影响。对删失变量的累积分布进行计算需要特殊方法。其中最流行的方法，另称为 Kaplan-Meier\
+  \ 或乘积极限估计方法，已在 SAS/STAT 软件的 PROC LIFETEST 中实现。PROC LIFETEST 是在使用公式（7.3）时计算所需分布的主要工具。以下调用返回\
+  \ 3 年时的生存概率：\n\n```\nproc lifetest data=lung timelist=(36);\n    time survival*status(0);\n\
+  run;\n```\n\nTIME 语句具有特殊的语法，将两列中的结果信息结合在一起。先指定的变量（在星号之前）是生存时间，后指定的变量（在星号之后）是状态。在状态变量之后用括号列出指示删失的状态变量值。最后，timelist=(36)\
+  \ 仅打印出 3 年（36 个月）生存函数的估计值。否则，默认情况下会打印数据集中所有观察到时间点的生存概率。\n\n输出 7.1 显示了此次 PROC LIFETEST\
+  \ 调用的结果。相关部分标记为 Product-Limit Survival Estimates（product-limit 是 Kaplan-Meier 估计的另一种名称）。关注的时间点列在\
+  \ Timelist 标题下，对应的概率标记为 Survival。请记住 S(t)=P(T>t)，并且 1−S(t)=P(T≤t) 给出在 Failure 标题下。我们从输出\
+  \ 7.1 的结果中看到 S(t)=0.7676 且 1−S(t)=0.2324。\n\n### Output 7.1\n\nThe SAS System\n\
+  The LIFETEST Procedure\n\n### Product-Limit Survival Estimates\n\n| Timelist | Survival\
+  \ | Survival | Failure | Survival Standard Error | Number Failed | Number Left |\n\
+  | 36.0000 | 36.0000 | 0.7676 | 0.2324 | 0.0529 | 19 | 23 |\n\n### Summary Statistics\
+  \ for Time Variable Survival\n\n### Quartile Estimates\n\n| Percent | Point Estimate\
+  \ | 95% Confidence Interval [Lower Upper) | |\n| 75 | . | . | . |\n| 50 | . | 49.0000\
+  \ | . |\n| 25 | 44.0000 | 24.0000 | . |\n\nMean    Standard Error\n41.8379     \
+  \   1.4697\n\nNOTE: The mean survival time and its standard error were underestimated\
+  \ because the largest observation was censored and the estimation was restricted\
+  \ to the largest event time.\n\n### Summary of the Number of Censored and Uncensored\
+  \ Values\n\n| Total | Failed | Censored | Percent Censored |\n| 100 | 21 | 79 |\
+  \ 79.00 |\n\n## 7.3.2 P(T|W) 的估计\n\nP(T|W) 从根本上也是一个时间-事件分布，同样可以用 PROC LIFETEST 估计。需要记住的关键点是根据\
+  \ W 中指定的条件排除适当的患者。因此，当你计算 P(T|W>9) 时，你需要仅包含 SUV 大于 9 的患者，如以下对 PROC LIFETEST 的调用所示：\n\
+  \n```\nproc lifetest data=lung(where=(suv>9)) timelist=(36);\n    time survival*status(0);\n\
+  run;\n```\n\n输出 7.2 的格式与输出 7.1 相同（仅显示相关部分），告知我们 1−S(T|W>9)=0.3665。类似获得的方程 S(T|W≤9)\
+  \ 等于 0.8960（此处未显示）。\n\n### Output 7.2\n\nThe SAS System\n\nThe LIFETEST Procedure\n\
+  \nProduct-Limit Survival Estimates\n\n| Timelist | Survival | Survival | Failure\
+  \ | Standard Error | Number Failed | Number Left |\n| 36.0000 | 29.0000 | 0.6335\
+  \ | 0.3665 | 0.0784 | 16 | 8 |\n\n## 7.3.3 P(W) 的估计\n\nW 不受删失影响，因此原则上 P(W>c) 是超过\
+  \ c 的观测比例。P(W) 可以在 SAS 中以多种方式计算，包括使用 DATA 步或 PROC SQL 编程，以及使用 PROC UNIVARIATE 和\
+  \ PROC FREQ。你也可以使用 PROC LIFETEST，因为在没有删失的情况下，Kaplan-Meier 方法会产生与标准方法相同的结果。由于指定状态变量是可选的，因此\
+  \ PROC LIFETEST 可用于此目的，如下所示：\n\n```\nproc lifetest data=lung timelist=(9);\n   \
+  \ time suv;\nrun;\n```\n\n这是与之前的 PROC LIFETEST 调用相比有些不寻常的调用。SUV 是需要分布的变量；因此 timelist=9。没有状态变量的原因是\
+  \ W 不受删失影响。PROC LIFETEST 的输出（输出 7.3）表明 P(W>9)=0.50。这是 Timelist 和 SUV 标题下的值不同的第一个例子。前者列出\
+  \ PROC LIFETEST 语句的 TIMELIST= 选项请求的值，而后者显示报告的生存和失败概率所适用的最近观测值。如果请求的时间点被观测到，则两列将具有相同的数字。\n\
+  \n### Output 7.3\n\nThe SAS System\n\nThe LIFETEST Procedure\n\nProduct-Limit Survival\
+  \ Estimates\n\n| Timelist | SUV | Survival | Failure | Standard Error | Number Failed\
+  \ | Number Left |\n| 9.00000 | 8.9300 | 0.5000 | 0.5000 | 0.0500 | 50 | 50 |\n\n\
+  ## 7.3.4 综合起来\n\n第 7.3.1 节至第 7.3.3 节演示了如何使用 SAS 过程 PROC LIFETEST 从数据中计算公式（7.3）的分量。利用这些节的结果，你可以按如下方式计算\
+  \ SUV 为 9 时 3 年的敏感性和特异性：\n\nP(W > c | D = 1) = {1 − S(t | W > c)} P(W > c) / (1\
+  \ − S(t)) = (1 − 0.6335) * 0.5 / (1 − 0.7676) = 0.7885\nP(W ≤ c | D = 0) = S(t |\
+  \ W ≤ c) P(W ≤ c) / S(t) = 0.8960 * 0.5 / 0.7676 = 0.5836\n\n通过改变 c，你可以获得每个 c 的敏感性和\
+  \ 1 减去特异性。这些对的图构成 ROC 曲线。\n\n这里有一个潜在问题。然而，在第 3 章中给出的例子中，ROC 曲线保证是单调递增的。对于删失数据则没有这种保证，因为\
+  \ Kaplan-Meier 估计不是时间的光滑函数（它们有多个跳跃）。这意味着，随着 1 减去特异性的增加，敏感性偶尔可能会下降，违反了 ROC 曲线的核心前提。单调性缺失在小样本中可能很明显，但在大多数具有大样本和/或事件的数据集中几乎不易察觉。\n\
+  \n如果 S(t) 的估计没有跳跃和平坦区域——即如果它本身是单调的——ROC 曲线也将是单调的。认识到这一点，Heagerty 等人（2000）建议使用不同的\
+  \ S(t) 估计量，即加权 Kaplan-Meier 估计量。\n\n宏 %TDROC 生成时间依赖 ROC 曲线。宏的必需输入是 DSN（数据集名称）、Marker、TimeVar、Status\
+  \ 和 TimePT。TimePT 变量指定进行预测的时间。Status 变量必须满足 PROC LIFETEST 的要求：它必须是数值，并且必须在括号后跟随指示删失的值列表。宏还具有一个选项（smooth=1），用于实现\
+  \ S(t) 的光滑估计。默认情况下 smooth=0。另一个可选输入是 PLOT（默认值为 1），控制曲线是否被绘制。当 plot=0 时，仅提供敏感性和特异性对的数据集。\n\
+  \n图 7.1 是 SUV 作为肺癌数据中 3 年预后标记的 ROC 曲线，由对 %TDROC 宏的以下调用生成：\n\n```\n%TDROC(DSN=lung,\
+  \ MARKER=suv, TIMEVAR=survival, STATUS=status(0),\n    TIMEPT=36);\n```\n\n\n\n\n\
+  \n## 图 7.1 SUV 在肺癌中预测能力的 3 年 ROC 曲线\n\n![](img/ac26020abd4f22abfaafc0607939c6e4_97_0.png)\n\
+  \n图 7.1 中 ROC 曲线的 AUC 为 0.657，表明其准确性处于中等水平。曲线本身从未远离对角线，支持相同的结论。当然，ROC 曲线应在预测方法的竞争背景下进行评估。在生存分析中，做出准确预测要困难得多，因为所预测的事件在某些情况下可能在数年后发生，在此期间患者可能发生许多其他事情。从这个角度来看，0.657\
+  \ 的 AUC 代表了相当可观的准确性水平。\n\n很明显，选择时间点会影响结论。在某些情况下，研究人员有明确的目标时间点。其他研究缺乏这种明确性，可能给统计学家在选择时间点时带来问题。在这些情况下，尝试几个时间点并同时呈现结果，如图\
+  \ 7.2 所示。\n\n## 图 7.2 SUV 在肺癌中预测能力的 2 年、3 年和 4 年 ROC 曲线\n\n![](img/ac26020abd4f22abfaafc0607939c6e4_98_0.png)\n\
+  \n要生成如图 7.2 所示的显示，你需要了解 %TDROC 宏如何命名输出数据集。宏语言中的数据集名称为 &&DSN_&TIMEPT，因此对于肺癌示例，图 7.2\
+  \ 中三个 ROC 曲线的三个数据集分别命名为 LUNG_24、LUNG_36 和 LUNG_48。\n\n总体而言，三条曲线形状相似，尽管在特异性较高水平时敏感性似乎随时间增加，而在特异性较低水平时随时间减少。三个曲线的\
+  \ AUC 分别为 0.618、0.657 和 0.729，表明 SUV 在预测患者状态方面在较晚年份比较早年份更有效。另一方面，曲线之间的大部分差异出现在特异性小于\
+  \ 0.5 的区域，因此 AUC 的差异在实际意义上可能无关紧要。\n\n## 7.4 带删失数据的符合概率\n\n第 7.3 节解释了如何使用删失数据构建 ROC\
+  \ 曲线。其基本思想是在给定时间点对时间-事件结果进行二分化。因此，ROC 曲线是针对特定时间点定义的。为了了解标记的整体预测价值，你需要进行如图 7.2 所示的分析。\n\
+  \n本节讨论一种替代方法来评估标记预测删失结果的整体价值。这种替代方法基于符合性的思想。在第 3 章中，我们看到，对于二元结果，经验 ROC 曲线下的面积等价于符合概率。作为提醒，符合概率是在一对受试者中定义，其中一对有结果而另一对没有。具有结果的受试者标记值大于另一受试者的概率称为符合概率。\n\
+  \n以下表达符合概率的方式与该定义一致，并且也使其能够推广到删失结果。定义\n\n```\nψ(W_i, W_j) = { 1    W_i > W_j\n \
+  \                 0.5  W_i = W_j\n                  0    W_i < W_j }\n```\n\n因此\
+  \ ψ 指示哪位成员的配对具有较高值，平局用 0.5 表示。假设有 n 名患者有结果，m 名患者没有结果。那么总共有 mn 对，符合概率可以写为如下：\n\n\
+  ```\n1/(mn) Σ_{i=1}^n Σ_{j=1}^m ψ(W_i, W_j)\n```\n\n求和表示 W_i > W_j 的配对数（对平局进行了调整），因此整个表达式是患者配对中标记值较高者具有结果的比例。\n\
+  \n你可以在时间-事件环境中使用符合性的思想。要了解如何将符合性的定义适用于删失结果，设 T_i 和 T_j 为标记值分别为 W_1 和 W_2 的一对患者中的事件时间。标记\
+  \ W 与删失结果 T 之间的符合性定义为\n\n```\nCP(W, T) = P(T_1 > T_2 | W_1 > W_2)\n```\n\n由于 T 受到删失的影响，此估计量无法使用，因为结果是部分观察到的。\n\
+  \nHarrell 等人（1982）提出了一种可以与删失数据一起使用的该估计量的修改方法。该方法基于这样一个认识：即使存在删失，一些配对的结果也可以排序。例如，如果第二个受试者死亡，其生存时间短于第一个仍存活受试者的随访时间，我们可以确定\
+  \ T_1 > T_2。表 7.1 列出了所有可能性以及相应的 ψ(W_1, W_2) 值。如果 ψ(W_1, W_2)=1，则表示预测与结果一致。如果 ψ(W_1,\
+  \ W_2)=0，则表示预测与结果不一致。最后，(W_1, W_2)=? 表示由于删失，无法确定预测与结果是否一致或不一致。\n\n## 表 7.1 带删失数据时所有可能的配对及符合状态\n\
+  \n| Subject 1 | Subject 2 | T₁ and T₂ | Ψ(W₁,W₂) |\n|---|---|---|---|\n| Event |\
+  \ Event | T₁>T₂ | 1 |\n| Event | No Event | T₁>T₂ | ? |\n| No Event | Event | T₁>T₂\
+  \ | 1 |\n| No Event | No Event | T₁>T₂ | ? |\n| Event | Event | T₁<T₂ | 0 |\n| Event\
+  \ | No Event | T₁<T₂ | 0 |\n| No Event | Event | T₁<T₂ | ? |\n| No Event | No Event\
+  \ | T₁>T₂ | ? |\n\n现在我们可以使用表 1 中的定义评估所有配对以查看它们是否一致。分母是有信息量的配对数（即我们可以做出决定的配对），在以下等式中用\
+  \ k 表示。记号 (i,j)=1 到 (i,j)=k 表示求和是在 (i,j) 配对上进行，并且有 k 个这样的配对。由此得到的符合概率估计量通常称为 c-index。\n\
+  \n```\nc = 1/k Σ_{(i,j)=1}^k ψ(W_i, W_j)\n```\n\nc-index 有几个优点。它模仿了二元数据下 ROC 曲线下面积的计算，它是直观的，并且在概念上计算简单。尽管概念上简单，计算需要形成所有配对，可能需要很长时间。c-index\
+  \ 的计算并未内置于现有的 SAS 过程中，但可以从本书网站获得的 %CINDEX 宏可用于计算，如下所示：\n\n```\n%CINDEX (DSN=LUNG,\
+  \ PRED=SUV, SURV=SURVIVAL, CENS=CENS);\n```\n\n这里，DSN 是数据集的名称，Pred 是数据集中用作预测变量的变量，Surv\
+  \ 是生存时间变量，Cens 是删失指示符（1 表示删失，0 表示事件）。输出 7.4 仅报告 c-index。\n\n## 输出 7.4\n\n```\ncindex\n\
+  --------\n0.692708\n```\n\n在肺癌示例的情况下，使用 c-index 作为估计量，符合概率估计为 0.69。\n\n如果感兴趣的问题涉及多个标记或多变量预测模型，则\
+  \ %CINDEX 宏的输入宏变量 PRED 应指向包含多变量模型预测的变量。\n\n尽管有所有优点，c-index 有一个很大的缺点。它不是真实符合概率的一致估计量。一致估计量随着样本量的增加而更接近真实值。然而，即使样本量增加，c-index\
+  \ 仍可能远离真实值。因此，即使在大样本中，c-index 也可能给出“错误”的答案。根据我的经验，如果删失率较低（这意味着未决配对的比例较低），c-index\
+  \ 工作得相当好。随着删失率的增加，其性能变得不可预测。\n\nc-index 不一致的原因，至少直观上，是它使用了观察到的生存或随访时间。除非采用参数模型，否则使用观察值的程序不会提供一致的估计值。因此，大多数非参数或半参数删失数据分析方法，例如\
+  \ Kaplan-Meier 估计或比例风险回归，使用数据的秩，而不是其实际值。\n\n在结束本节之前，请注意符合概率的一个有趣性质：\n\nCP(W,T)=1−CP(−W,T)\n\
+  \n该等式告诉我们，如果标记在结果不太可能时已知具有高值，则 CP 可能小于 0.5。这种情况下更有信息量的度量是 1−CP，它可以作为标记正确排序事件时间的度量。\n\
+  \n## 7.5 符合概率与 Cox 模型\n\n在一种非常重要的特殊情况下，计算符合概率有另一种方法。大多数涉及删失数据的回归情况，例如在连续协变量与删失结果之间或多个协变量与删失结果之间建模的关系，都在\
+  \ Cox 模型（比例风险回归）框架内处理。事实证明，在 Cox 模型背景下，符合概率可以解析计算。以下推导来自 Gönen 和 Heller（2005）。\n\
+  \n\n\n\n\n起始点是用于删失结局的符合概率定义，如第7.4节所述：\n\nCP(W,T) = P(T₁ > T₂ | W₁ > W₂)\n\n其中 T\
+  \ 为生存时间，W 为预测因子。暂时，我们将使用单一预测因子。对多个预测因子的情况的扩展将随后进行。Cox模型对此情形的规定为\n\nh(t|W) = h₀(t)\
+  \ exp{βW}\n\n其中 h(t) 为 t 的风险函数，写成两个项的乘积：一个仅涉及 t 的项（h₀，基线风险）和一个仅涉及 W 的项（线性部分）。利用风险与生存函数之间的关系，可以写出等价表达式：\n\
+  \nS(t|W) = S₀(t) exp{βW}\n\n有关如何证明这两个表达式等价的更多信息，可在大多数涵盖Cox模型的书籍中找到，例如 Survival Analysis\
+  \ Using the SAS System: A Practical Guide (Allison, 1995)。\n\n现在你可以用生存函数重写符合概率：\n\
+  \nP(T₁ > T₂ | W₁ > W₂) = ∫ S₁(t | W₁) dS₂(t | W₂)\n\n理解该方程需要一定的高级概率知识，但在这里它用于说明符合概率可以用仅\
+  \ S(t) 表示。如果将Cox模型中 S₁ 和 S₂ 的形式代入，则右手边的积分可以按如下方式求值：\n\nP(T(βᵀW₂) > T(βᵀW₁)) = ∫\
+  \ S₁(t | W₁) dS₂(t | W₂) = [1 + exp{βᵀ(W₂ − W₁)}]⁻¹\n\n因此，要在Cox模型的背景下评估预测因子 W 的判别能力，你需要\
+  \ β 的估计值以及数据所有可能配对的 W 值。请注意，T 仅通过 β 的估计进入计算，而 β 的估计可使用偏似然完成。因此，删失可通过拟合Cox模型的现有方法自然处理。这是计算符合概率的这种方法的一个特别优势。\n\
+  \n如果存在多个预测因子，则 W 和 β 均为向量。相同的表达式可以用向量记号写成如下：\n\nP(T(βᵀW₂) > T(βᵀW₁)) = [1 + exp{βᵀ(W₂\
+  \ − W₁)}]⁻¹\n\n迄今为止推导出的表达式涉及特定的观测对，记为 1 和 2。要在包含若干观测的数据集中使用，我们需要对每对观测计算该概率。这给出了符合概率估计的公式（标记为\
+  \ CPE）：\n\nCPE = 2 / [n(n-1)] Σ Σ_{i<j} { I(β̂^T w_{ji} < 0) / [1 + exp{-β̂^T w_{ji}}]\
+  \ + I(β̂^T w_{ji} ≥ 0) / [1 + exp{β̂^T w_{ji}}] }\n\n其中 w_{ji} = w_j - w_i。求和项由两部分组成，表示预测因子较高值或较低值与更长生存相关的情况，这反映在回归系数的符号中。如果\
+  \ β > 0，则协变量的较高值与风险的较高值相关。在这种情况下，对于特定配对，如果 w_j > w_i，则 T_j 大于 T_i 的概率应大于 0.5，因此求和项的第二项应适用，因为\
+  \ β^T w_{ji} > 0 且 exp{β^T w_{ji}} > 0。因此，(1 + exp{β^T w_{ji}})^{-1} > 0.5。取决于 β\
+  \ 和 w_{ji} 符号的其他三种情况可以以类似方式解释。\n\n如前所述，使用偏似然的Cox模型软件的可用性是主要的操作优势。它也构成理论优势之一。偏似然估计是一致的；也就是说，随着样本量的增长，结果越来越接近参数的底层真实但未知的数值。众所周知，一致估计量的函数也是一致的。由于计算\
+  \ CPE 仅估计 β，因此 CPE 也是一致的。这是在Cox模型背景下应偏好 CPE 而非 c-index 的重要原因。\n\nCPE 可使用 %CPE 宏进行估计，该宏可从本书的配套网站\
+  \ support.sas.com/gonen 获取。宏调用与 %CINDEX 类似：\n\n```\n%CPE(DSN=LUNG, COVARIATES=SUV\
+  \ SIZE, SURV=SURVIVAL, CENS=CENS);\n```\n\nOutput 7.5 显示了结果。\n\n## Output 7.5\n\n\
+  | Concordance Probability Estimate for the Cox Model |\n| CPE | StdErr |\n| 0.6524\
+  \ | 0.0582 |\n\nCINDEX 和 CPE 宏调用的一个重要区别是，预测因子以 MODEL 语句右手边出现的方式用空格列出。\n\n我们看到肺部数据集的\
+  \ CPE 小于 c-index。根据我的经验，这通常是这种情况。c-index 似乎高估了真实的符合概率，尤其是在删失比例高时。由于 CPE 是一个一致估计，而\
+  \ c-index 不是（如前所述），因此在Cox回归模型预测的背景下，CPE 是一个更好的度量。\n\n![](img/ac26020abd4f22abfaafc0607939c6e4_105_0.png)\n\
+  \n+   8.1 Introduction ...........................................................\
+  \ 95\n+   8.2 Liver Surgery Example ...................................................\
+  \ 96\n+   8.3 Resubstitution Estimate of the ROC Curve...................................\
+  \ 97\n+   8.4 Split-Sample Estimates of the ROC Curve....................................\
+  \ 99\n+   8.5 Cross-Validation Estimates of the ROC Curve ...............................\
+  \ 102\n+   8.6 Bootstrap-Validated Estimates of the ROC Curve ............................\
+  \ 106\n"
+- "## Using the ROC Curve to Evaluate Multivariable Prediction Models\n\n## 8.1 Introduction\n\
+  \n我们迄今为止的讨论主要集中于单一预测因子。其他变量也被考虑，例如在比较几个预测因子或协变量调整的 ROC 曲线时，但不是以从多变量模型产生预测并评估其准确性的形式。第\
+  \ 8 章和第 9 章处理这个问题。\n\n强调单一预测因子的原因值得讨论。首先，它们为评估更复杂的模型提供了基础。其次，单一预测因子应用在实践中很常见，因此值得特别关注。诊断放射学是一个很好的例子，其中预测因子通常是接受扫描的患者的产物。虽然将来自多个数据源的信息结合起来（如磁共振成像和计算机断层扫描等替代诊断扫描）可提高准确性，但压倒性的财务和伦理关注点在于最大限度地减少扫描次数。这导致了在少数候选中挑选最佳单一预测因子的关注。将来自多种扫描类型的信息结合起来很少是感兴趣的，因为准确性的增量改善通常无法证明患者接受额外诊断程序的成本和负担是合理的。\n\
+  \n诊断放射学以外的多数预测问题涉及多个变量。通常，你设法预测的大多数结局都是复杂的、多个维度的实体，只能通过审慎使用多个变量来捕捉。这通常意味着构建模型，这需要从几个竞争模型中进行选择。该过程的目标是找到最适合数据的模型，但不可避免地导致过拟合。*过拟合*\
+  \ 指的是一个模型比它预见到未来观测的情况更好地描述了观测数据。\n\n从用于模型拟合的数据集计算的模型性能度量（如 ROC 曲线或 ROC 曲线下面积）被称为通过\
+  \ *自预测* 或 *重代入* 获得。这些术语源于使用模型预测生成自身的数据并将模型重新代入数据以获得预测的做法。对此方法的另一个、有些轻率的术语是 *双重使用*，指的是数据集被使用两次，一次用于拟合，一次用于预测。ROC\
+  \ 曲线及其汇总度量倾向于反映自预测中的乐观性，因为它们表明的准确性比模型在实践中允许的要好。\n\n大多数统计学家建议采取措施防止过拟合。该过程通常称为 *验证*。以下是特别适用于\
+  \ ROC 曲线且可在 SAS 中相对轻松实现的方法：拆分样本验证和样本重用验证。样本重用方法实际上可以用两种不同的方式实现：交叉验证和自助法。本章涵盖这些方法。\n\
+  \n*拆分样本验证* 要求将样本分为两部分，即所谓的训练集和测试集。模型在训练集上拟合，其性能在测试集上评估。这模仿了模型在未参与模型开发的数据集上使用的现实生活情况。从测试集估计的性能度量比从训练集估计的度量更接近真实值（偏差更小）。拆分样本验证易于理解和实现。它也很好地近似现实生活。其主要缺点是数据使用效率低下：对于小到中等的样本量，训练集和测试集都不足以产生可重复的结果。\n\
+  \n样本重用方法试图通过以不同方式重复使用观测数据点来提高效率。这种重复使用导致性能估计的方差更小。一般而言，然而，由于每个数据点被使用多次，偏差会增加。尽管如此，大多数研究在均方误差等综合标准方面更倾向于样本重用。换句话说，偏差的增加被方差的减少所抵消。\n\
+  \n最知名的样本重用方法是 *交叉验证*。数据被分为 *k* 个段（通常大小相等），其中一部分留作测试，其余 *k−1* 部分用于训练模型。然后该过程对每个段重复，并将得到的准确性度量在\
+  \ *k* 个段上平均。当 *k=n* 时，每个数据点构成一个段， resulting 过程称为 *留一法* 验证。\n\n交叉验证的替代方法是使用自助样本。我们在前几章中看到，自助法可用于获得置信区间和\
+  \ *p*-值。当目标是模型验证时，以相同方式获得的自助样本可用于校正过拟合。第 8.6 节将向你展示如何操作。\n\n## 8.2 Liver Surgery\
+  \ Example\n\n我们将在本章中作为示例使用来自肝脏外科领域的数据集。手术是肝癌患者最有希望的治疗选择。Liver 数据集包含 554 例切除肝肿瘤手术的记录。它是\
+  \ Jarnagin 等人（2002）分析的数据的子集。变量包括人口统计学、术前患者特征如现有合并症、手术变量如失血量，以及术后变量如手术后并发症的发生和严重程度。\n\
+  \n\n\n\n\n由于肝肿瘤的特性，以及肝脏具有独特的再生能力，大多数手术都包括切除肝脏的相当大一部分。这使患者面临并发症风险升高的情况。在手术前预测并发症的可能性，可以使负责的医生和护士团队根据需要增加对患者的术后监测。这对于向患者及其家属进行咨询也很有帮助。\n\
+  \n我们将使用以下术前变量作为术后并发症的潜在预测因子：年龄、是否存在任何合并症、手术范围（广泛 vs. 局限，其中广泛定义为切除整个肝叶或一侧肝脏的手术）、双侧手术（是否涉及肝脏两侧叶的切除），以及切除的节段数（节段是肝脏的八个解剖分区之一）。年龄和节段数被视为连续变量。典型的切除节段数在\
+  \ 1 到 4 之间，但偶尔会切除 5 或 6 个节段。\n\n## 8.3 ROC 曲线的再代入估计\n\n下面的代码基于 PROC LOGISTIC 使用逐步模型选择方法构建预测。逻辑回归是\
+  \ SAS/STAT 中可用于构建二元结果预测模型的众多选项之一。同样，逐步选择是多种可用的模型选择技术之一。这里的目标并不是声称逻辑回归是构建预测模型的最佳方法，也不是推广逐步作为模型选择策略。重点在于使用多种技术进行模型验证。\n\
+  \n```\nproc logistic data=liver;\n    model complications=age_at_op comorb lobeormore_code\n\
+  \        bilat_resec_code numsegs_resec /selection=stepwise;\nrun;\n```\n\n此 PROC\
+  \ LOGISTIC 调用请求使用逐步方法选择模型。逐步选择一次引入一个变量，然后根据其统计显著性水平在需要时将其移除。以下是逐步选择的算法总结：\n\n- 1.\
+  \ 对于每个候选变量，通过将该变量添加到上一步的现有模型中生成 p 值。在第一步，所有模型语句中的变量都是候选变量，现有模型是仅截距模型。\n- 2. 选择显著性最高（p\
+  \ 值最低）的候选变量，并用所选变量的加入更新现有模型。如果没有变量满足进入标准（默认 p≤0.05，但可使用 MODEL 语句的 SLE 选项进行调整），则认为现有模型为最终模型。\n\
+  - 3. 从现有模型中移除失去显著性（默认 p>0.05，但可使用 MODEL 语句的 SLS 选项进行调整）的任何变量。如果有多个变量失去显著性，则一次移除一个变量，从\
+  \ p 值最高的变量开始。每次移除后，通过重新拟合模型重新生成 p 值。将被移除的变量返回到候选变量列表。\n- 4. 此时，现有模型中的所有变量都应按 SLS\
+  \ 标准显著。所有其他变量应位于候选变量列表中。转到步骤 1 并重复该过程，直到候选变量均不显著且现有模型中的变量均无法移除。\n\n逐步选择是一个被广泛研究且颇具争议的话题。这里使用它来演示模型选择的数据依赖性，并大致说明模型选择程序如何尝试选择一个对数据拟合最佳且对过拟合几乎没有或没有惩罚的模型。尽管逐步选择有替代方案或修改形式，但通常大多数形式的模型选择都会导致过拟合。\n\
+  \n相关结果部分显示在输出 8.1 中。第一张表总结了逐步选择。在此示例中，六个变量中只有两个被发现显著：切除的节段数和年龄。\n\n### Output 8.1\n\
+  \n逐步选择摘要\nStep  Effect  Number  Score  Wald\n      Entered Removed DF In Chi-Square\
+  \ Chi-Square Pr > ChiSq\n1 NUMSEGS_RESEC 1 1 52.6217 <.0001\n2 AGE_AT_OP 1 2 7.9473\
+  \ 0.0048\n\n最大似然估计分析\nParameter DF Estimate Standard Error Wald Chi-Square Pr >\
+  \ ChiSq\nIntercept 1 2.0959 0.3867 29.3791 <.0001\nAGE_AT_OP 1 -0.0166 0.00596 7.7810\
+  \ 0.0053\nNUMSEGS_RESEC 1 -0.3475 0.0518 45.0295 <.0001\n\n优势比估计\nEffect Point Estimate\
+  \ 95% Wald Confidence Limits\nAGE_AT_OP 0.984 0.972 0.995\nNUMSEGS_RESEC 0.706 0.638\
+  \ 0.782\n\n预测概率与观察响应的关联\nPercent Concordant 69.4 Somers' D 0.392\nPercent Discordant\
+  \ 30.3 Gamma 0.393\nPercent Tied 0.3 Tau-a 0.196\nPairs 76720 c 0.696\n\n熟悉的 PROC\
+  \ LOGISTIC 输出表明，该双变量模型的 AUC 为 0.696，我们认为该估计是乐观的，其原因如前所述。对应于该模型的 ROC 曲线绘制在图 8.1 中。当然，被高估的不仅是\
+  \ ROC 曲线下的面积；对于每个特异性值而言，估计的敏感性也是乐观的。\n\n## Figure 8.1 Resubstitution Estimate of\
+  \ the ROC Curve for the Liver Resection Data\n\n![](img/ac26020abd4f22abfaafc0607939c6e4_109_0.png)\n\
+  \n## 8.4 ROC 曲线的样本分割估计\n\n现在，我们将看到如何使用验证来减少再代入估计中的偏差。样本分割验证的第一步是将数据集分为两部分：训练样本和测试样本。它们不必大小相等。事实上，传统上训练集大于测试集。常用的分割比例是\
+  \ 2:1，其中三分之二的观测值分配给训练集，剩余三分之一分配给测试集。该分割通常是随机进行的，尽管有时你可能希望使用分层分割。分层分割确保一个变量（或最多几个变量）的比例在训练集和测试集中均出现。\n\
+  \n在样本分割后，预测模型在训练集上构建，并在测试集上使用在训练集上优化的模型获得 ROC 曲线所需的估计。\n\n在 SAS 中可以通过多种方式进行样本分割。以下\
+  \ DATA 步是一个示例：\n\n```\ndata training test;\n    set liver;\n    seed=12061996;\n\
+  \    unif=ranuni(seed);\n    if unif>0.333 then output training;\n    else output\
+  \ test;\nrun;\n```\n\n在此 DATA 步中，使用 RANUNI 函数生成均匀随机变量 Unif。然后根据 Unif 随机变量的相应实现，将每个观测值分配到训练集或测试数据集。基本上，Unif\
+  \ 变量代表一个有偏硬币翻转，决定所考虑的观测值是用于训练模型还是测试模型。\n\nUnif 的阈值选为 0.333；因此，大约三分之一的记录将具有 unif<0.333。由于\
+  \ Unif 是一个随机变量，此随机变量的每次实现都会产生 unif<0.333 的记录比例略有不同的结果。因此，这种方法并不总是产生精确的 2:1 匹配。如果需要精确的\
+  \ 2:1 分割，则可以先按 Unif 对数据进行排序，然后从排序序列的开头取出训练数据所需数量的记录（在此示例中为所有记录的恰好三分之二），其余记录分配给测试集。在大多数情况下，精确分割是不必要的，以上给出的代码就足够了。\n\
+  \n创建训练集和测试集后，第一项任务是使用训练数据拟合模型，如下所示：\n\n```\nproc logistic data=training outmodel=model1;\n\
+  \    model complications=age_at_op comorb lobeormore_code\n        bilat_resec_code\
+  \ numsegs_resec / selection=s;\nrun;\n```\n\n此对 PROC LOGISTIC 的调用与主要区别在于 OUTMODEL=\
+  \ 选项，该选项保存拟合模型的详细信息，例如参数估计值和标准误差。OUTMODEL= 选项的强大之处通常在与它的姐妹选项 INMODEL= 结合使用时更为明显，后者接受由\
+  \ OUTMODEL= 选项保存的模型，如下所示：\n\n```\nproc logistic inmodel=model1;\n    score data=test\
+  \ out=testscore;\nrun;\n```\n\n请注意没有 MODEL 语句。这是因为不希望进行新的模型拟合。相反，所有计算都基于 INMODEL=\
+  \ 选项指定的模型。SCORE 语句使用 INMODEL= 选项指定的拟合模型对测试数据集生成预测。SCORE 语句的 OUT= 选项生成一个数据集，其中包含预测概率以及\
+  \ DATA= 选项指定的数据集中所有原始变量。\n\n此时，你可以使用第 3 章中开发的技术使用 %PLOTROC 宏绘制 ROC 曲线，或使用 %ROC 宏计算曲线下面积。从测试集生成的\
+  \ ROC 曲线及其下面积被认为是真实 ROC 曲线和 AUC 的无偏估计。关键观察是 SCORE 语句获得的预测概率充当标记值。例如，以下对 %ROC 宏的调用产生样本分割的\
+  \ AUC 估计（见输出 8.2），结果为 0.677，大约比再代入估计的 0.696 低 0.02，说明了再代入估计中的乐观性：\n\n```\n%roc(data=testscore,\
+  \ var=p_1, response=complications, contrast=1,\n        details=no, alpha=.05);\n\
+  ```\n\n\n\n\n\n## Output 8.2\n\n```\nThe ROC Macro\n\n        ROC Curve Areas and\
+  \ 95%\n            Confidence Intervals\n    ROC Area Std Error Confidence Limits\n\
+  \nP_1    0.6767    0.0414    0.5957    0.7578\n```\n\n请注意 P_1 是 SCORE 语句分配给预测值的变量名。\n\
+  \n也可以使用第 3 章中介绍的 %PLOTROC 宏绘制分割样本 ROC 曲线。由于 P_1 给出到若干有效数字，因此在数据集 TESTSCORE 中创建了一个新变量\
+  \ P1 以便于打印阈值。P1 的创建方式如下：\n\n```\nP1 = ROUND(P_1,0.01);\n```\n\n然后使用以下 %PLOTROC 调用：\n\
+  \n```\n%PLOTROC (dsn=testscore, marker=p1, gold=complications, anno=4,\n       \
+  \         tlist=0.45 0.51 0.58);\n```\n\n## Figure 8.2 Split-Sample Estimate of\
+  \ the ROC Curve Using the %PLOTROC Macro\n\n![](img/ac26020abd4f22abfaafc0607939c6e4_111_0.png)\n\
+  \n请注意，图 8.2 中的阈值以预测概率描述，因为绘制的标记是 logistic 模型中的预测概率（参见 %PLOTROC 宏调用中的 MARKER=）。\n\
+  \n作为 %PLOTROC 宏的替代方案，您可以使用 SCORE 语句的 OUTROC= 选项，该选项生成的数据集在结构上与 MODEL 语句中的 OUTROC=\
+  \ 选项相同。具体而言，它包含变量 _SENSIT_ 和 _1MSPEC_，可用于 PROC GPLOT 调用中的 PLOT 语句。\n\n```\nproc\
+  \ logistic inmodel=model1;\n    score data=test out=testscore outroc=rocvalid;\n\
+  run;\n```\n\n最后，叠加重抽样估计和分割样本估计是有启发性的。这在图 8.3 中实现，该图显示了两条 ROC 曲线，一条通过重抽样获得，另一条通过分割样本验证获得。重抽样曲线在大部分情况下位于分割样本曲线之上，但存在分割样本曲线上升超过重抽样曲线的区域。这似乎与重抽样会导致\
+  \ ROC 曲线上所有点都被高估的预期相悖。这突出了分割样本方法的首要缺点；即，它只提供一个测试集，在该测试集上可以计算准确性估计值（如给定特异性下的敏感性）。尽管它提供了无偏估计，但这些估计包含相当大的变异性，我们刚刚观察到的这种情况并不少见。这是使用下一节中讨论的样本重用方法的主要原因。\n\
+  \n## Figure 8.3 Comparison of the Resubstitution and Split-Sample Estimates of the\
+  \ ROC Curve for the Liver Resection Example\n\n![](img/ac26020abd4f22abfaafc0607939c6e4_112_0.png)\n\
+  \n## 8.5 Cross-Validation Estimates of the ROC Curve\n\n### 8.5.1 Leave-One-Out\
+  \ Estimation\n\nPROC LOGISTIC 提供了一个内置选项用于交叉验证，即执行留一法。如本章介绍中简要解释的那样，留一法通过暂时剔除一个观测值，在剩余数据集上构建模型，然后使用该模型预测被剔除的记录来实现。当此过程对每个观测值重复时，使用对预测观测值“盲”的模型为数据集中每条记录获得一个预测。这些预测构成了交叉验证\
+  \ ROC 曲线的<|message|> 基础。\n\n可以使用以下代码通过 PROC LOGISTIC 执行留一交叉验证。OUTPUT 语句中的 PREDPROBS=X\
+  \ 选项指定使用留一交叉验证而不是重抽样。此选项适用于 OUTPUT 语句生成的所有预测概率。如果省略 PREDPROBS= 选项，则预测概率使用重抽样计算。\n\
+  \n```\nproc logistic data=liver;\n    model complications=age_at_op comorb lobeormore_code\n\
+  \        bilat_resec_code numsegs_resec / selection=s;\n    output out=outx predprobs=x;\n\
+  \    ods output classification=classroc;\nrun;\n```\n\n现在可以使用与分割样本验证推荐的相同方法绘制 ROC\
+  \ 曲线，包括其中一个绘图宏。ROC 曲线下面积及其标准误差可通过 %ROC 宏获得。以下对 %ROC 宏的调用使用 PROC LOGISTIC 在指定 PREDPROBS=X\
+  \ 选项时创建的数据集，生成留一估计的 AUC（Output 8.3）。交叉验证预测概率的变量名为 XP_1：\n\n```\n%roc(data=outx,\
+  \ var=xp_1, response=complications, contrast=1);\n```\n\n## Output 8.3\n\n```\n\
+  The ROC Macro\n\n        ROC Curve Areas and 95%\n            Confidence Intervals\n\
+  \    ROC Area Std Error Confidence Limits\n\nXP_1  0.6875    0.0226    0.6431  \
+  \  0.7318\n```\n\n通过留一交叉验证获得的 AUC 估计值为 0.6875，置信区间为 0.6431–0.7318。图 8.4 对比了 ROC\
+  \ 曲线的重抽样估计和留一估计。虽然两条曲线非常接近，但留一估计始终低于重抽样估计。\n\n## Figure 8.4 Comparison of the Resubstitution\
+  \ and Leave-One-Out Estimates of the ROC Curve for the Liver Resection Example\n\
+  \n![](img/ac26020abd4f22abfaafc0607939c6e4_114_0.png)\n\n乍一看，在此示例中使用 OUTROC= 选项绘制\
+  \ ROC 曲线似乎是合理的。然而，PREDPROBS=X 选项不影响 MODEL 语句中 OUTROC= 选项创建的数据集。即使同时指定 OUTROC= 和\
+  \ PREDPROBS=X 选项，OUTROC= 选项创建的数据集仍报告重抽样估计值。同样，相关性度量包括 c 和 Somers’ D 也按重抽样基准报告。因此，通常用于获得\
+  \ ROC 点和曲线下面积的方法不适用于交叉验证，这些任务必须在 PROC LOGISTIC 外部手动执行。\n\n### 8.5.2 K-Fold Cross-Validation\n\
+  \n虽然指定 PREDPROBS=X 选项是获得留一估计的便捷方法，但您应该了解更多关于如何在 SAS 中使用 %XVAL 宏执行交叉验证的信息。您可以使用此宏执行\
+  \ k 折交叉验证。当使用 PROBIT、GENMOD 或 GAM 等不提供标准交叉验证选项的其他过程进行预测时，这也很有帮助。\n\nk 折交叉验证的起点涉及将数据划分为\
+  \ k 个随机选择的段，其中 k 由用户提供。在 k 折交叉验证中，分析重复 k 次。对于每次分析，其中 k 个段中的一个被留作测试集，其余 k−1 个用于训练。在每次分析中，模型对测试数据是盲的。表\
+  \ 8.1 解释了 k=5 的特殊情况下每个段在交叉验证中的作用。\n\n## Table 8.1 The Role of Segments within Each\
+  \ Analysis in Five-Fold Cross-Validation\n\n|  | Segment 1 | Segment 2 | Segment\
+  \ 3 | Segment 4 | Segment 5 |\n|---|---|---|---|---|---|\n| Analysis 1 | Training\
+  \ | Training | Training | Training | Test |\n| Analysis 2 | Training | Training\
+  \ | Training | Test | Training |\n| Analysis 3 | Training | Training | Test | Training\
+  \ | Training |\n| Analysis 4 | Training | Test | Training | Training | Training\
+  \ |\n| Analysis 5 | Test | Training | Training | Training | Training |\n\n这种验证方案有几个优点：\n\
+  \n- 它在概念上很简单。\n- 每个段（因此每个数据点，因为段不重叠）恰好在测试集中出现一次，因此对每个数据点只进行一次预测。\n- k 的选择允许在训练集和测试集的大小上进行一定的灵活性。\n\
+  \n第二点构成了我们目的的验证基础。由于每个观测值都有一个预测，因此可以直接从这些预测值获得 ROC 曲线。这可以通过使用上一节中描述的任何方法实现，因为从获得\
+  \ ROC 曲线的角度来看，使用 PROC LOGISTIC 的 SCORE 语句获得的数据集与 k 折交叉验证的 k 次分析中合并的测试数据之间没有区别。\n\
+  \n%XVAL 宏可从本书的配套网站 support.sas.com/gonen 获得，可执行交叉验证。K 是宏的输入之一，以及数据集名称、结果和协变量。%XVAL\
+  \ 宏不产生输出，但生成一个名为 _XVAL_ 的数据集，其中包含交叉验证的预测概率（P_0 和 P_1=1-P_0）以及原始变量。此结果数据集可用于对 %PLOTROC\
+  \ 和 %ROC 宏的调用，以获得 ROC 曲线及其下面积的交叉验证估计。例如，以下三个宏调用对 Liver 数据执行五折交叉验证：\n\n```\n%xval(dsn=liver,outcome=complications,covars=age_at_op\
+  \ comorb lobeormore_code bilat_resec_code numsegs_resec,k=5);\n%plotroc(xval,P_1,COMPLICATIONS,anno=2);\n\
+  %roc(data=xval,var=P_1,response=COMPLICATIONS,CONTRAST=1);\n```\n\n%PLOTROC 宏生成的\
+  \ ROC 曲线出现在图 8.5 中，%ROC 宏的结果出现在 Output 8.4 中。五折验证 AUC 的估计值为 0.6883，标准误差为 0.0226，几乎与留一估计无法区分。\n\
+  \n\n\n\n\n### 图 8.5 五折交叉验证的 ROC 曲线估计\n\n![](img/ac26020abd4f22abfaafc0607939c6e4_116_0.png)\n\
+  \n## 输出 8.4\n\n```\nThe ROC Macro\n\n        ROC Curve Areas and 95%\n         \
+  \   Confidence Intervals\nROC Area Std Error Confidence Limits\nP_1  0.6883    0.0226\
+  \    0.6440    0.7326\n```\n\n交叉验证的需求不仅限于由 PROC LOGISTIC 拟合的线性 logistic 模型。其他接受类似数据但使用不同方法拟合模型的\
+  \ SAS 过程，例如 PROC GENMOD、PROC GAM 和 PROC PROBIT，也能从交叉验证方案中受益。很难编写一个适用于所有过程的通用宏，因为每个过程的输出语法和输出传送系统\
+  \ Output Delivery System (ODS) 表名都不同。但相对容易将 %XVAL 宏为不同过程量身定制。宏中的初始 DATA 步在数据集中添加一个变量\
+  \ XV，该变量取值从 1 到 K，表示观测值属于哪一折。此部分独立于统计预测模型或使用的 SAS 过程。你必须修改使用 PROC LOGISTIC 的代码部分。此修改需要特定过程的专业知识，可能由具有特定过程和宏编程经验的用户完成。\n\
+  \n## 8.6 ROC 曲线的 Bootstrap 验证估计\n\n另一种通过验证获得 ROC 曲线的样本重用方法是使用 bootstrap 样本。这不如交叉验证直观，但在某些情况下，其估计的方差可能更低。\n\
+  \nBootstrap 验证首先通过形成 B 个 bootstrap 样本开始。对于交叉验证，K 是一个较小数字，约为 5 到 10，而对于 bootstrap\
+  \ 验证，B 通常会更大，至少数百个，也许 1,000 个。然后每个 bootstrap 样本用作训练样本。然后原始数据集和 bootstrap 样本用作测试样本。感兴趣的度量，例如\
+  \ AUC，使用原始数据作为测试样本估计的值与使用 bootstrap 样本作为测试样本估计的感兴趣度量之间的差异是 *乐观* 的度量。此差异可以从感兴趣度量的重代入估计中减去，以获得\
+  \ bootstrap 验证估计。这样产生的估计有时称为 *乐观校正* 或 *乐观调整* 估计。\n\n算法如下：\n\n+   1. 在原始数据集上计算感兴趣的度量\
+  \ M，记为 Mₒ。\n+   2. 创建 B 个 bootstrap 样本。对于 i=1, ... B，执行以下操作：\n+      a. 在 bootstrap\
+  \ 样本上训练模型\n+      b. 使用训练好的模型在原始数据上计算 M；记为 Mₒᵢ\n+      c. 使用训练好的模型在 bootstrap 样本上计算\
+  \ M；记为 M_bᵢ\n+      d. 计算差异：dᵢ = Mₒᵢ − M_bᵢ\n+   3. 从 Mₒ 中减去 mean(dᵢ)。这是 bootstrap\
+  \ 验证的感兴趣度量。\n\n%BVAL 宏，其语法与 %XVAL 宏相似，生成两个数据集 BVAL1 和 BVAL2，分别包含使用原始数据和 bootstrap\
+  \ 样本的预测概率。它还计算乐观 AUC、乐观校正和校正后 AUC。\n\n```\n%bval(dsn=liver,outcome=complications,covars=age_at_op\
+  \ comorb lobeormore_code bilat_resec_code numsegs_resec,B=100);\n```\n\n输出 8.5 是使用\
+  \ 100 个 bootstrap 样本运行 %BVAL 宏得到的结果。\n\n## 输出 8.5\n\n| The SAS System |\n| Optimistic\
+  \ AUC | Optimism Correction | CorrectedAUC |\n| 0.695842 | 0.007179 | 0.688663 |\n\
+  \n当从重代入估计 0.695842 中减去 0.007179 的乐观校正时，AUC 的 bootstrap 验证估计为 0.6887。注意，这与上一节中获得的五折交叉验证估计几乎相同。实际上，对于合理大的数据集，留一法、k\
+  \ 折交叉验证和 bootstrap 方法会产生相似的结果，选择将取决于应用领域的传统以及软件的可及性。\n"
+- "## SAS Enterprise Miner 中的 ROC 曲线\n\n![](img/ac26020abd4f22abfaafc0607939c6e4_119_0.png)\n\
+  \n+   9.1 引言 ......................................................... 109\n+  \
+  \ 9.2 房屋净值贷款示例 ............................................... 110\n+   9.3 SAS\
+  \ Enterprise Miner 中单个模型的 ROC 曲线 ............. 111\n+   9.4 SAS Enterprise Miner\
+  \ 中竞争模型的 ROC 曲线 ........ 113\n+   9.5 使用 PROC GPLOT 从 SAS Enterprise Miner 导出的 ROC\
+  \ 曲线 ......................................................... 116\n\n## 9.1 引言\n\
+  \nSAS Enterprise Miner 是一套数据挖掘工具。它于 1998 年推出，主要由营销分析师、数据库营销人员、风险分析师、欺诈调查员以及其他试图在大量数据中寻找模式的专业人士使用。SAS\
+  \ Enterprise Miner 运行在标准的 SAS 平台上，但它使用图形用户界面 GUI，与 SAS 使用的其他任何界面都不同。此外，虽然其运行的 SAS\
+  \ 引擎是可访问的，但 SAS Enterprise Miner 的设计前提是用户将通过其 GUI 访问它。这与本书迄今为止的重点 Base SAS 和 SAS/STAT\
+  \ 形成对比，后者主要通过程序编辑器和运行代码段来访问。\n\nSAS Enterprise Miner 为数据挖掘提供多种方法，包括聚类、降维、链接分析和预测建模。本章重点关注预测建模。在第\
+  \ 8 章中，我们研究了多变量预测模型的 ROC 曲线，并保留 logistic 回归来演示多变量模型中出现的问题以及使用 SAS/STAT 的解决方案。在许多方面，本章是第\
+  \ 8 章的扩展，因为它使用 SAS Enterprise Miner 的功能来检查分类树和神经网络。\n\nSAS Enterprise Miner 具有内置功能，可作为模型评估的一部分生成\
+  \ ROC 曲线。此外，你可以从生成 ROC 曲线时在后台创建的表中创建一个 SAS 数据集。此数据集然后可与前几章中开发的技术一起用于增强绘图。最后，你可以在\
+  \ SAS Enterprise Miner 中使用为此目的开发的预测模型对数据集进行评分。评分结果也可以保存为 SAS 数据集，使你能够根据需要访问第 3 章至第\
+  \ 6 章的建模方法。事实上，甚至可以生成用于评分的 SAS 代码。\n\n本章无意作为 SAS Enterprise Miner 的全面指南。模型构建和选择的核心数据挖掘步骤仅在有助于你理解所得数据曲线的程度上进行介绍。我们在此使用的各种中间步骤，例如缺失数据插补，可能不适用于其他数据挖掘练习。要获得\
+  \ SAS Enterprise Miner 的扎实背景，请参阅 Patricia Cerrito 所著的《使用 SAS Enterprise Miner 进行数据挖掘入门》2006\
+  \ 年版。\n\n本章的读者是 SAS Enterprise Miner 用户，尤其是那些尚未使用该软件进行 ROC 曲线分析的用户。这里假设你已熟悉第 3 章水平的\
+  \ ROC 曲线，因此此时快速阅读第 3 章可能有用。\n\n## 9.2 房屋净值贷款示例\n\n本章示例的数据来自 SAS Enterprise Miner\
+  \ 的示例数据库 Sampsio.Hmeq。库 Sampsio 在加载 SAS Enterprise Miner 时内部定义，其中包含此数据集。它包含近 6,000\
+  \ 条记录和 13 个变量，其中一个是数据挖掘语言中的结果变量或目标。数据集描绘了一家金融服务公司的房屋净值贷款记录。约 20% 的过去房屋净值信用额度导致违约。为了试图降低违约率，或许生成申请人定制的利率，公司希望建立一个预测房屋净值贷款违约风险的模型。目标变量称为\
+  \ BAD，值为 1 表示违约，0 表示正常服务贷款。12 个预测变量及其简要定义如下：\n\n+   - CLAGE：最老信用额度年龄（月）\n+   - CLNO：信用额度数量\n\
+  +   - DEBTINC：债务收入比\n+   - DELINQ：拖欠信用额度数量\n+   - DEROG：重大不良报告数量\n+   - JOB：债务人职业\n\
+  +   - LOAN：贷款金额\n+   - MORTDUE：现有抵押贷款到期金额\n+   - NINQ：近期信用查询次数\n+   - REASON：贷款原因（债务合并或房屋改善）\n\
+  +   - VALUE：房产价值\n+   - YOJ：在现职工作年限\n\n目标是使用数据集中另外 12 个变量为 BAD 变量找到一个预测模型。虽然我们将逐步进行构建预测模型所需的步骤，但重点是使用\
+  \ SAS Enterprise Miner 的内置功能构建 ROC 曲线，以及探索如何将预测值导出到 SAS 数据集，以便可以使用前几章中讨论的方法和宏执行自定义分析。\n\
+  \n\n\n\n\n## 9.3 SAS Enterprise Miner 中单个模型的 ROC 曲线\n\nSAS Enterprise Miner 将其对象组织在流程图中，其中包含数据、模型和结果。流程图的组成部分称为节点，它们可以连接到流程中的其他节点。流程可以保存为项目，其中可能还包含其他流程。\n\
+  \nSAS Enterprise Miner 中的大多数操作都可以通过三种等效方法指定：使用菜单、使用工具栏或使用项目导航器（SAS Enterprise Miner\
+  \ 启动时窗口的左侧部分）。工具栏和项目导航器包含可以拖放的图标，因此比使用菜单更方便。您还可以自定义这些图标。\n\n按照以下步骤准备预测建模的数据。首先，定义数据源。这类似于在\
+  \ SAS DATA 步中使用 LIBNAME 语句，然后使用 PROC COPY 将所需数据集带到工作区。然后，从数据源中选择一个具体的数据集进行工作。在数据挖掘中，将数据划分为训练、验证和测试数据集是惯例，可以使用数据划分节点完成。训练和验证数据在第\
+  \ 8 章中有讨论，其中术语测试数据与验证数据可互换使用。本章的术语遵循 SAS Enterprise Miner 的用法，因此此处的验证数据和测试数据指的是两个不同的实体。验证数据集的使用目的与第\
+  \ 8 章中相同，但此处的测试数据集主要用于对验证数据集的发现进行确认。这种做法在数据挖掘以外的领域中不太常见。\n\n以下步骤更精确地描述了如何执行这些任务：\n\
+  \n- 1. 通过在项目导航器中右键单击数据来源，选择创建数据源并按菜单操作进行。确保变量 BAD 的模型角色字段为目标且类型为二元。所有其他变量应列为输入。\n\
+  - 2. 通过从工具栏或项目导航器拖放创建一个新图表。图表图标描绘了一系列相互连接的方框，上面有一个黄色星星。创建新图表的替代方法包括选择文件→新建→图表或按住\
+  \ CTRL 和 Shift 键并按 D。\n- 3. 双击窗口左上角的数据源。将 Home Equity 拖放到图表工作区中（窗口的右侧部分，此时应为空白）。\n\
+  - 4. 通过将图标拖放到图表工作区中添加数据划分，或 alternatively 选择操作→添加节点→采样→数据划分。\n- 5. 用箭头连接 Home Equity\
+  \ 和数据划分图标。当光标呈铅笔形状时可以绘制箭头。\n\n请注意，图表指定了要执行的操作，但仅指定是不够的以便执行。流程，无论整体还是子集，都需要运行才能执行指定的操作。例如，当数据划分节点运行时，会创建训练、验证和测试集。要运行流程，请右键单击节点并选择运行。所选节点之前及包括该节点的所有节点将按顺序执行。可以随着图表的指定逐个运行每个节点，但分大块运行流程更高效。\n\
+  \n现在我们准备进行建模。由于目标变量是二元的，逻辑回归是建模的合理起点。要在 SAS Enterprise Miner 中拟合逻辑模型，您需要添加一个指定此操作的节点，并将回归节点连接到数据划分节点创建的数据集。以下步骤描述了此过程：\n\
+  \n- 1. 在模型选项卡高亮显示时，通过拖动图标将回归节点添加到图表中。\n- 2. 用箭头将数据划分节点连接到回归节点。\n- 3. 通过从评估选项卡拖放将模型比较节点添加到图表中，并用箭头将其连接到回归节点。\n\
+  \n此时，显示应大致如图 9.1 所示。\n\n## 图 9.1 使用逻辑回归预测房屋净值贷款违约\n\n![](img/ac26020abd4f22abfaafc0607939c6e4_122_0.png)\n\
+  \n现在，右键单击模型比较节点并选择运行。一旦节点运行，其结果将在整个 SAS Enterprise Miner 会话中保持可用。图表和结果默认保存，并在以后重新启动\
+  \ SAS Enterprise Miner 会话时可用。\n\n当模型比较节点运行时，右键单击该节点并选择结果。会出现一个新窗口，其中包含标题为拟合统计、输出和\
+  \ ROC 图的子窗口。在 ROC 图子窗口中，有三条 ROC 曲线，分别对应每个数据集：训练、验证和测试。图 9.2 仅聚焦于训练集的 ROC 曲线，显示在左上角。45\
+  \ 度参考线，在图例中称为基线，默认绘制。随着您沿曲线移动光标，弹出文本框会提供该 ROC 曲线点的灵敏度和特异性详细信息。图 9.2 包含一个示例点，其中灵敏度为\
+  \ 50.5%，一减去特异性为 94.9%。\n\n## 图 9.2 使用房屋净值贷款数据对逻辑回归模型的 ROC 曲线\n\n![](img/ac26020abd4f22abfaafc0607939c6e4_123_0.png)\n\
+  \n如输出 9.1 所示，曲线下面积在输出窗口中 readily 报告，标记为 ROC 指数，分别为训练、验证和测试集的 0.72385、0.69319 和 0.67768。\n\
+  \n## 输出 9.1\n\n```\nFit Statistics\nModel selection based on _TMISC_\n\nTrain: \
+  \     Valid:      Test:\nRoc         Roc         Roc\nIndex       Index       Index\n\
+  0.72385     0.69319     0.67768\n```\n\n## 9.4 SAS Enterprise Miner 中竞争模型的 ROC 曲线\n\
+  \n除了逻辑回归外，我们还将使用 SAS Enterprise Miner 工具包中的另外两种方法：决策树和神经网络。它们在 SAS/STAT 中不可用，因此使用\
+  \ SAS 的统计学家可能不熟悉它们。出于这个原因，这里简要描述这些方法。\n\n决策树，也称为统计文献中的递归划分，主要是以分层方式考虑每个变量的二元分割。对于第一次分割，所有变量都会逐一考虑，并保留提供最佳分割的变量（根据常用的几个标准之一，例如误分类率或基尼指数）。不再进一步分割的节点称为*终端节点*或*叶节点*。一旦选择了该变量，相同的过程会再次重复两次，分别针对二元分割的两侧。SAS\
+  \ Enterprise Miner 还考虑一个节点一侧的多次分割，因此可能出现一侧为叶节点而另一侧分割多次的树。多项变量被分组为两组，以便得到的二元分组给出最佳分割。同样，连续变量也通过找到最佳截止值分割为两组。房屋净值贷款示例的\
+  \ resulting 决策树出现在图 9.3 中。\n\n## 图 9.3 房屋净值贷款示例的示例决策树\n\n![](img/ac26020abd4f22abfaafc0607939c6e4_124_0.png)\n\
+  \n例如，第一个使用的变量是 DEBTINC，这是一个连续变量。它在 44.7337 处分割。对于负债收入比小于 44.7337 的人，下一个最佳分割是 VALUE，分割点为\
+  \ 303,749。\n\n决策树在重要方面区别于逻辑回归和神经网络：没有统计模型。因为没有模型，所以没有预测方程。当对新观测进行评分时，它会从树的顶部“落下”，并根据协变量的值在每个节点遵循指定的路径，直到到达终端节点（或叶节点）。这可以描述为一系列\
+  \ IF-THEN-ELSE 语句形式的规则。\n\n树的二元分割结构是一个优势，因为它易于解释。它也可能是一个缺点，尤其是在某些预测变量是连续的情况下。对连续协变量的分类可能导致效率低下并对预测性能产生不利影响。决策树的另一个优点是它们能非常有效地处理缺失数据。这是通过在每个节点建立替代分割来实现的，当该节点的分割变量缺失时可以使用。\n\
+  \n*神经网络*是一个总称，用来描述构建模仿大脑功能的模型的方法。它们的精确数学描述很复杂且不太可能\n\n\n\nbenefit an ROC-focused\
+  \ discussion. Think of neural networks as a specific yet flexible class of nonlinear\
+  \ regression models.\n\nBefore we run decision trees and neural networks on the\
+  \ same data set, there is one important issue to consider about missing data. Both\
+  \ logistic regression and neural networks require complete observations. If any\
+  \ portion of a record is missing, that record is completely ignored during model\
+  \ building. Decision trees are more forgiving. They consider surrogate splits in\
+  \ case the variable for the primary split is missing. For this reason, if we run\
+  \ logistic regression, neural networks, and decision trees on the same input data,\
+  \ the actual data that the predictive model rests on may not be identical from one\
+  \ method to the other. You could address this by imputing the value from a distribution\
+  \ derived from the normal density. An imputation node can be dragged and dropped\
+  \ from the Modify tab, as seen in Figure 9.4. The same figure also shows the addition\
+  \ of decision tree and neural network nodes, both dragged and dropped from the Model\
+  \ tab.\n\n## Figure 9.4 SAS Enterprise Miner Diagram Workspace for the Competing\
+  \ Models Example\n\n![](img/ac26020abd4f22abfaafc0607939c6e4_125_0.png)\n\nThe flow\
+  \ in Figure 9.4 implies that the same data set will be analyzed three different\
+  \ ways and the results compared in the final node.\n\nThree ROC curves, one for\
+  \ each method of analysis, are plotted to better assess the predictive power of\
+  \ the models (see Figure 9.5). Neural networks and logistic regression have very\
+  \ similar performance. The decision tree outperforms regression and neural networks.\
+  \ It has higher sensitivity than the other two for a given value of specificity\
+  \ for the most part, especially in the range where both sensitivity and specificity\
+  \ are above 0.5. The neural network method is slightly better than the regression\
+  \ method, although the difference between the two seems to dissipate in the validation\
+  \ and test sets. Output 9.2 reports the AUCs for each model and data set. The AUC\
+  \ for the decision tree is consistently above 85%, while the other two models’ AUCs\
+  \ cluster around 80%.\n\n## Output 9.2\n\n|  | Train: | Valid: | Test: |\n| Model\
+  \ | Roc | Roc | Roc |\n| Node | Index | Index | Index |\n|  |  |  |  |\n| Neural\
+  \ | 0.84003 | 0.78812 | 0.80917 |\n| Reg | 0.81356 | 0.78147 | 0.79139 |\n| Tree\
+  \ | 0.86871 | 0.85724 | 0.85971 |\n\n## Figure 9.5 ROC Curves from SAS Enterprise\
+  \ Miner for Each of the Three Models and Data Sets\n\n![](img/ac26020abd4f22abfaafc0607939c6e4_126_0.png)\n\
+  \n## 9.5 ROC Curves Using PROC GPLOT with Exported Data from SAS Enterprise Miner\n\
+  \nWhile SAS Enterprise Miner provides a built-in capability for plotting the ROC\
+  \ curve, sometimes you might want to output the data set containing the ROC points\
+  \ so that you can use the %PLOTROC macro for custom graphics. This can be done by\
+  \ selecting View→Table, which displays the SAS data set behind the ROC curve. At\
+  \ this point, selecting File→Save As gives you the option to save the table as a\
+  \ permanent data set that can be accessed later using Base SAS and SAS/GRAPH.\n\n\
+  To give you some ideas, Output 9.3 lists the first 23 observations in the data set\
+  \ produced by SAS Enterprise Miner using the flow in Figure 9.4. The key variables\
+  \ are SENSITIVITY and ONEMINUSSPECIFICITY. Additional useful variables are MODELNODE\
+  \ and DATAROLE. The MODEL variable contains four categories: _Baseline_ (denoting\
+  \ the model where no covariate information is used, which results in the 45-degree\
+  \ line), Neural (corresponding to the Neural Network node), Reg (corresponding to\
+  \ the Regression node), and Tree (corresponding to the Decision Tree node). DATAROLE\
+  \ simply indicates whether the corresponding observation is for training, validation,\
+  \ or testing only. Traditionally, ROC curves are plotted only for the validation\
+  \ data set, but you can compare the amount of overestimation with the availability\
+  \ of this variable in Output 9.3.\n\n## Output 9.3\n\n| Obs | Node | Model Node\
+  \ | Variable | Role | Event | Specificity | Sensitivity |\n|---|---|---|---|---|---|---|---|\n\
+  | 1 | Neural | _Baseline_ | BAD | TRAIN | 1 | 0.00000 | 0.00000 |\n| 2 | Neural\
+  \ | _Baseline_ | BAD | TRAIN | 1 | 1.00000 | 1.00000 |\n| 3 | Neural | _Baseline_\
+  \ | BAD | VALIDATE | 1 | 0.00000 | 0.00000 |\n| 4 | Neural | _Baseline_ | BAD |\
+  \ VALIDATE | 1 | 1.00000 | 1.00000 |\n| 5 | Neural | _Baseline_ | BAD | TEST | 1\
+  \ | 0.00000 | 0.00000 |\n| 6 | Neural | _Baseline_ | BAD | TEST | 1 | 1.00000 |\
+  \ 1.00000 |\n| 7 | Neural | Neural | BAD | TRAIN | 1 | 0.00000 | 0.08000 |\n| 8\
+  \ | Neural | Neural | BAD | TRAIN | 1 | 0.00000 | 0.09263 |\n| 9 | Neural | Neural\
+  \ | BAD | TRAIN | 1 | 0.00000 | 0.10737 |\n| 10 | Neural | Neural | BAD | TRAIN\
+  \ | 1 | 0.00000 | 0.11368 |\n| 11 | Neural | Neural | BAD | TRAIN | 1 | 0.00000\
+  \ | 0.12000 |\n| 12 | Neural | Neural | BAD | TRAIN | 1 | 0.00000 | 0.12421 |\n\
+  | 13 | Neural | Neural | BAD | TRAIN | 1 | 0.00000 | 0.12632 |\n| 14 | Neural |\
+  \ Neural | BAD | TRAIN | 1 | 0.00000 | 0.13263 |\n| 15 | Neural | Neural | BAD |\
+  \ TRAIN | 1 | 0.00000 | 0.13474 |\n| 16 | Neural | Neural | BAD | TRAIN | 1 | 0.00000\
+  \ | 0.14737 |\n| 17 | Neural | Neural | BAD | TRAIN | 1 | 0.00052 | 0.15579 |\n\
+  | 18 | Neural | Neural | BAD | TRAIN | 1 | 0.00052 | 0.16632 |\n| 19 | Neural |\
+  \ Neural | BAD | TRAIN | 1 | 0.00052 | 0.18316 |\n| 20 | Neural | Neural | BAD |\
+  \ TRAIN | 1 | 0.00210 | 0.19579 |\n| 21 | Neural | Neural | BAD | TRAIN | 1 | 0.00315\
+  \ | 0.20000 |\n| 22 | Neural | Neural | BAD | TRAIN | 1 | 0.00315 | 0.20842 |\n\
+  | 23 | Neural | Neural | BAD | TRAIN | 1 | 0.00367 | 0.21263 |\n\n| Obs | True Positive\
+  \ | True Negative | False Positive | False Negative | First In Group | Last In Group\
+  \ | Up Posterior | Low Posterior |\n|---|---|---|---|---|---|---|---|---|\n| 1 |\
+  \ 357 | 0 | 1433 | 0 | 0.01638 | 0.01414 | 0.01649 | 0.00000 |\n| 2 | 357 | 0 |\
+  \ 1433 | 0 | 0.01638 | 0.01414 | 0.01649 | 0.00000 |\n| 3 | 357 | 0 | 1433 | 0 |\
+  \ 0.01638 | 0.01414 | 0.01649 | 0.00000 |\n| 4 | 357 | 0 | 1433 | 0 | 0.01638 |\
+  \ 0.01414 | 0.01649 | 0.00000 |\n| 5 | 357 | 0 | 1433 | 0 | 0.01638 | 0.01414 |\
+  \ 0.01649 | 0.00000 |\n| 6 | 357 | 0 | 1433 | 0 | 0.01638 | 0.01414 | 0.01649 |\
+  \ 0.00000 |\n| 7 | 38 | 1907 | 0 | 437 | 0.99957 | 0.99066 | 1.00000 | 0.98994 |\n\
+  | 8 | 44 | 1907 | 0 | 431 | 0.98922 | 0.98331 | 0.98994 | 0.98054 |\n| 9 | 51 |\
+  \ 1907 | 0 | 424 | 0.97777 | 0.96834 | 0.98054 | 0.96766 |\n| 10 | 54 | 1907 | 0\
+  \ | 421 | 0.96698 | 0.96111 | 0.96766 | 0.95897 |\n| 11 | 57 | 1907 | 0 | 418 |\
+  \ 0.95682 | 0.94955 | 0.95897 | 0.94757 |\n| 12 | 59 | 1907 | 0 | 416 | 0.94559\
+  \ | 0.93612 | 0.94757 | 0.93349 |\n| 13 | 60 | 1907 | 0 | 415 | 0.93087 | 0.93087\
+  \ | 0.93349 | 0.92554 |\n| 14 | 63 | 1907 | 0 | 412 | 0.92020 | 0.91320 | 0.92554\
+  \ | 0.91079 |\n| 15 | 64 | 1907 | 0 | 411 | 0.90838 | 0.90838 | 0.91079 | 0.90047\
+  \ |\n| 16 | 70 | 1907 | 0 | 405 | 0.89257 | 0.88287 | 0.90047 | 0.88271 |\n| 17\
+  \ | 74 | 1906 | 1 | 401 | 0.88255 | 0.87657 | 0.88271 | 0.87213 |\n| 18 | 79 | 1906\
+  \ | 1 | 396 | 0.86769 | 0.86015 | 0.87213 | 0.85448 |\n| 19 | 87 | 1906 | 1 | 388\
+  \ | 0.84880 | 0.84035 | 0.85448 | 0.83941 |\n| 20 | 93 | 1903 | 4 | 382 | 0.83848\
+  \ | 0.83108 | 0.83941 | 0.82600 |\n| 21 | 95 | 1901 | 6 | 380 | 0.82092 | 0.81388\
+  \ | 0.82600 | 0.81205 |\n| 22 | 99 | 1901 | 6 | 376 | 0.81022 | 0.80096 | 0.81205\
+  \ | 0.79862 |\n| 23 | 101 | 1900 | 7 | 374 | 0.79628 | 0.78792 | 0.79862 | 0.78480\
+  \ |\n\nThe ROC curves in Figure 9.6 are identical to the ones in the second panel\
+  \ of Figure 9.5 and are generated by PROC GPLOT using the following statements.\
+  \ You can exercise more control on the aesthetic and functional aspects of the curve\
+  \ with PROC GPLOT.\n\n```\naxis1 length=12cm order=0 to 1 by 0.2 label=(f=swissb\
+  \ h=2)\nvalue=(font=swissb h=2);\naxis2 length=12cm order=0 to 1 by 0.2 label=(a=90\
+  \ f=swissb h=2)\nvalue=(font=swissb h=2);\n\nsymbol1 v=none i=join w=2 c=black l=33\
+  \ h=1.5;\nsymbol2 v=none i=join w=2 c=black l=1 h=1.5;\nsymbol3 v=none i=join w=2\
+  \ c=black l=3 h=1.5;\nsymbol4 v=none i=join w=2 c=black l=9 h=1.5;\n\nlegend1 position=(inside\
+  \ right bottom) frame across=1;\n\nproc gplot data=em(where=(datarole='VALIDATE'));\n\
+  \  plot sensitivity*oneminusspecificity=model / haxis=axis1\nvaxis=axis2 legend=legend1;\n\
+  run;\nquit;\n```\n\n## Figure 9.6 ROC Curves for the Validation Data Using PROC\
+  \ GPLOT\n\n![](img/ac26020abd4f22abfaafc0607939c6e4_128_0.png)\n\n\n\n\n"
+- "# PROC NLMIXED 简介\n\n![](img/ac26020abd4f22abfaafc0607939c6e4_129_0.png)\n\nA.1\
+  \ 使用 PROC GLM 与 PROC NLMIXED 拟合简单线性模型 ............ 119\nA.2 PROC NLMIXED 与双正态模型\
+  \ ........................................ 124\n\nPROC NLMIXED 在本书中发挥着核心作用。第 3、4\
+  \ 和 5 章使用它来拟合双正态模型，双正态模型是构建和分析 ROC 曲线的<|message|>基本工具之一。\n\nPROC NLMIXED 提供了独特且范围广泛的功能，但其语法与其他大多数\
+  \ SAS/STAT 模型过程不同。因此，对于习惯于通过研究模型拟合所用程序来获得见解的读者来说，PROC NLMIXED 代码可能难以辨认且更难掌握。本附录面向熟悉通用\
+  \ SAS/STAT 模型语法但对 PROC NLMIXED 尚不熟悉的用户。以下过程的常规用户可能会发现本附录有所帮助：GLM、ANOVA、REG、GENMOD、LOGISTIC、PROBIT\
+  \ 和 MIXED。\n\n本附录并非 PROC NLMIXED 所有特性的总结。相反，它侧重于与 ROC 曲线相关的功能。SAS/STAT 手册对 PROC\
+  \ NLMIXED 提供了详尽的覆盖，对于希望将该过程用于本附录所涵盖范围之外的用户而言，这些手册会很有帮助。\n\n## A.1 使用 PROC GLM 与\
+  \ PROC NLMIXED 拟合简单线性模型\n\n考虑以下生成包含 100 个观测值的数据集的编程语句。存在一个分组变量 X，取值为 0 或 1，以及一个结果变量\
+  \ Y，在每个组内服从正态分布。目标是使用 PROC GLM 和 PROC NLMIXED 将以下模型拟合到该数据集：\n\ny = α + βX + ε\n\n\
+  其中 ε 服从均值为 0、方差为 σ² 的正态分布。\n\n```\ndata appendix;\n    do i=1 to 100;\n        x=rand('bernoulli',0.5);\n\
+  \        e=rannor(0);\n        y=x+e;\n        output;\n    end;\nrun;\n```\n\n\
+  以下语句在 PROC GLM 中拟合该模型。PROC GLM 中的 MODEL 语句专门设计为识别该模型的这些特殊特征：\n\n- 存在截距（有排除截距的选项）\n\
+  - 模型项的线性\n- 误差项服从方差恒定的正态分布。\n\n因此，只需写出 model y=x 就足够了。\n\n```\ntitle \"Simple Linear\
+  \ Model Using GLM\";\nproc glm;\n    model y=x;\nrun;\nquit;\n```\n\n输出 A.1 显示了\
+  \ PROC GLM 的结果。α（标记为 Intercept）和 β（标记为 X）的参数估计值分别为 −0.241 和 1.254，标准误差分别为 0.148\
+  \ 和 0.197。σ² 的估计值由均方误差提供（0.9578）。\n\n## Output A.1\n\nSimple Linear Model Using\
+  \ GLM\n\nThe GLM Procedure\n\nNumber of Observations Read          100\nNumber of\
+  \ Observations Used          100\n\nDependent Variable: Y\n\nSource       DF   Sum\
+  \ of Squares   Mean Square   F Value   Pr > F\nModel        1    38.7439429    \
+  \   38.7439429    40.45     <.0001\nError        98   93.8638957       0.9577949\n\
+  Corrected Total 99 132.6078386\n\nR-Square   Coeff Var   Root MSE   y Mean\n0.292169\
+  \   212.2180    0.978670   0.461163\n\nSource   DF   Type I SS   Mean Square   F\
+  \ Value   Pr > F\nx        1    38.74394287 38.74394287   40.45     <.0001\n\n##\
+  \ Output A.1 (continued)\n\n| Source | DF | Type III SS | Mean Square | F Value\
+  \ | Pr > F |\n|---|---|---|---|---|---|\n| x | 1 | 38.74394287 | 38.74394287 | 40.45\
+  \ | <.0001 |\n\n| Parameter | Estimate | Standard Error | t Value | Pr > |t| |\n\
+  |---|---|---|---|---|\n| Intercept | -0.241051559 | 0.14754004 | -1.63 | 0.1055\
+  \ |\n| x | 1.253953858 | 0.19715868 | 6.36 | <.0001 |\n\nPROC NLMIXED 没有具有这些特征的\
+  \ MODEL 语句。相反，模型需要逐步传达给 PROC NLMIXED，并对模型和变量的分布提供具体说明。以下 PROC NLMIXED 代码拟合相同的模型：\n\
+  \n```\ntitle \"Simple Linear Model Using NLMIXED\";\nproc nlmixed;\n    parms var=1\
+  \ alpha=0 beta=0;\n    mu=alpha+x*beta;\n    model y~normal(mu,var);\nrun;\nquit;\n\
+  ```\n\n从末尾开始拆解 PROC NLMIXED 程序最有用。MODEL 语句与 PROC GLM 中的语句没有相似之处。等号被波浪号（~）取代，其含义为“服从分布”。因此，此模型语句指定响应变量\
+  \ Y 服从均值为 MU、标准差为 VAR 的正态分布。PROC GLM 语法与 PROC NLMIXED 语法之间的一个关键区别是，在 PROC NLMIXED\
+  \ 中，MODEL 语句的右侧只能允许参数，而在 PROC GLM 中，只能允许变量。\n\n语句 mu=alpha+x*beta 将模型参数与数据集变量连接起来。它指定正态分布的均值与协变量\
+  \ X 以线性方式相关。大多数 DATA 步函数都可用于 PROC NLMIXED 中的编程，因此您可以构建参数之间几乎任何函数关系。\n\n最后，PARMS\
+  \ 语句告诉 PROC NLMIXED 哪些项是参数。PARMS 语句不是必需的。如果没有它，PROC NLMIXED 假定任何未从数据集中分配值，或未从过程内的编程语句中分配值的项都是参数。在本例中，可以很容易地检查省略\
+  \ PARMS 语句不会改变输出。在更复杂的模型中，PARMS 语句有助于您跟踪模型参数。参数名称后等号后面的数字是 PROC NLMIXED 所采用的数值搜索方法的起始值。目前可以安全地忽略它们，直到本附录后面简要讨论\
+  \ PROC NLMIXED 中使用最大似然的含义为止。\n\n此 PROC NLMIXED 调用产生的输出如下所示。α、β 和 σ² 的参数估计值分别为 −0.241、1.254\
+  \ 和 0.9386，标准误差分别为 0.148、0.197 和 0.1327。α 和 β 的估计值与 PROC GLM 提供的估计值相同（在舍入范围内），但\
+  \ σ² 的估计值似乎略有差异（0.9578 与 0.9386）。这种差异源于两个过程使用的不同估计方法。这种差异通常很小，尤其是在中等到大样本量时。我们接下来会讨论这个问题。\n\
+  \n## Output A.2\n\n```\nSimple Linear Model Using NLMIXED\n\nThe NLMIXED Procedure\n\
+  \nSpecifications\n\nData Set                          WORK.APPENDIX\nDependent Variable\
+  \                 Y\nDistribution for Dependent Variable Normal\nOptimization Technique\
+  \             Dual Quasi-Newton\nIntegration Method                 None\n\nDimensions\n\
+  \nObservations Used                  100\nObservations Not Used               0\n\
+  Total Observations                100\nParameters                          3\n\n\
+  Parameters\n\nvar    alpha    beta    NegLogLike\n1          0       0      168.83132\n\
+  \nIteration History\n\nIter    Calls    NegLogLike      Diff      MaxGrad      Slope\n\
+  1          2    148.184071   20.64725   18.21043   -535.042\n2          3    142.074894\
+  \    6.109177  10.23585    -21.7239\n3          6    140.056178    2.018716   7.234336\
+  \     -8.129\n4          7    139.602406    0.453772   9.640041    -4.14434\n5 \
+  \         8    138.860921    0.741485   3.650731    -1.86665\n6         10    138.744238\
+  \    0.116683   1.583923    -0.32313\n7         12    138.727766    0.016472   0.114029\
+  \    -0.03642\n8         14    138.727636    0.00013    0.008173    -0.00027\n```\n\
+  \n## Output A.2 (continued)\n\n```\nSimple Linear Model Using NLMIXED\n\nThe NLMIXED\
+  \ Procedure\n\nIteration History\n\nIter    Calls    NegLogLike    Diff    MaxGrad\
+  \    Slope\n9       16       138.727635    7.861E-7    0.000312    -1.62E-6\n10\
+  \      18       138.727635    2.272E-9    0.000024    -4.4E-9\n\nNOTE: GCONV convergence\
+  \ criterion satisfied.\n\nFit Statistics\n\n-2 Log Likelihood                  \
+  \   277.5\nAIC (smaller is better)                283.5\nAICC (smaller is better)\
+  \               283.7\nBIC (smaller is better)                291.3\n\nParameter\
+  \ Estimates\n\nParameter    Estimate    Standard Error    DF    t Value    Pr >\
+  \ |t|    Lower    Upper    Gradient\nvar          0.9386      0.1327           \
+  \ 100   7.07       <.0001      0.6753   1.2020   -8.19E-6\nalpha        -0.2411\
+  \     0.1461            100   -1.65      0.1020      -0.5308  0.04872  -0.00002\n\
+  beta         1.2540      0.1952            100   6.42       <.0001      0.8667 \
+  \  1.6412   -0.00002\n```\n\nPROC GLM 使用最小二乘法来寻找估计值。对于给定的统计线性模型，最小二乘方程具有闭式解；也就是说，您可以求解一组线性方程来获得估计值。PROC\
+  \ GLM 输出中的诸如平方和和均方等信息都与总平方和的方差分析分解有关，该概念与最小二乘方法密切相关。\n\n相比之下，PROC NLMIXED 使用基于似然的方法。这些方法非常通用。它们可有效用于非线性或非正态模型。一般性的代价是缺乏闭式解。一般来说，似然方程是非线性的，只能通过数值搜索算法求解。例如，在\
+  \ PROC NLMIXED 输出的 Specifications 标题下，优化方法列为 Dual Quasi-Newton。这是求解似然方程以获得估计值的一种方法。Dual\
+  \ Quasi-Newton 算法（以及 PROC NLMIXED 中可通过过程语句的 METHOD 选项指定的其他算法）是迭代的。该算法以小的步长，称为迭代，向解迈进。迭代的起点是\
+  \ PARMS 语句中列出的（等号后）的值。输出中的 Iteration History 部分给出了每次迭代的详细信息。该表通常仅对 PROC NLMIXED\
+  \ 的高级用户有用。\n\nσ² 估计值略有差异的原因是最大似然估计使用 n（总样本量）作为方差估计的分母，而最小二乘法使用 n−p，其中 p 是模型参数的数量。在\
+  \ p 相对于 n 很小的程度上，估计值会接近。您可以通过将误差平方和（93.8639）除以 100 从 PROC GLM 输出中获得最大似然估计。\n\n\n\
+  \n\n\n模型拟合通过似然准则进行评估，例如 PROC NLMIXED 中报告在 Fit Statistics 下的 Akaike 信息准则（AIC）或贝叶斯信息准则（BIC）。这些准则对于模型比较很有用。PROC\
+  \ MIXED 的用户，另一种使用似然方法的程序，会熟悉这些准则。相比之下，PROC GLM 中的模型拟合通常通过全模型 F 检验来评估，而 F 检验是平方和的函数。\n\
+  \nParameter Estimates 表的结构与其它 SAS/STAT 程序的输出相似。输出中通常还有一列标记为 Alpha，报告用于置信区间的显著性水平，这里为节省空间已删除。还提供了一个额外信息，即最终迭代时的梯度值，但这可能只对高级用户有益。\n\
+  \n## A.2 PROC NLMIXED 与双变量正态模型\n\n了解第 3 章和第 5 章中使用的 PROC NLMIXED 程序是如何开发的可能会很有用。首先，考虑第\
+  \ 3.5 节中的模型和代码：\n\n```\nproc nlmixed;\n  parms m1=0 m0=0 s1=1 s0=1;\n  if gold=1\
+  \ then m=m1;else if gold=0 then m=m0;\n  if gold=1 then s=s1**2;else if gold=0 then\
+  \ s=s0**2;\n  a=(m1-m0)/s1;\n  b=s0/s1;\n  model y~normal(m,s);\n  estimate 'a'\
+  \ a;\n  estimate 'b' b;\n  estimate 'AUC' probnorm(a/sqrt(1+b**2));\nrun;\nquit;\n\
+  ```\n\nMODEL 语句指定了一个均值为 M、方差为 S 的正态分布结果，均值和方差由两个 IF 语句定义。这会产生 ROC 分析，但你必须手动（或在 DATA\
+  \ 步中）生成双变量正态参数 a 和 b 以及 ROC 曲线下面积（AUC）的点估计。获得它们的方差将花费相当多的时间和一些 PROC IML 知识。这凸显了\
+  \ ESTIMATE 语句的实用性，在其中你可以使用类似 DATA 步的编程方法定义任何非线性变换并获得点估计和标准误。以下代码展示了两种不同的方法：\n\n\
+  - 1. 这些量可以先定义然后再估计。此方法用于上述代码中的双变量正态参数 a 和 b。\n- 2. 定义可以在 ESTIMATE 步骤中执行。此方法用于上述代码中的\
+  \ AUC。\n\n请注意，PROC GLM 及其他 SAS/STAT 程序中的 ESTIMATE 语句仅适用于线性变换，因此使用例如 PROC GLM 获得\
+  \ a、b 和 AUC 的估计是不可能的。\n\n现在让我们重新审视第 5 章中的潜在双变量正态模型。这突出了 PROC NLMIXED 的一个主要优势：能够指定任意似然函数。\n\
+  \n```\nproc nlmixed data=moody gconv=0;\n    parms alpha=1 theta1=1 theta2=2 theta3=3\
+  \ beta=1;\n    bounds theta1>0, theta2>0, theta3>0;\n    eta1=alpha*def;\n    eta2=exp(beta*def);\n\
+  \        if r11=1 then z=probnorm(-eta1/eta2);\n    else if r11=2 then z=probnorm((theta1-eta1)/eta2)-\n\
+  \        probnorm(-eta1/eta2);\n    else if r11=3 then z=probnorm((theta2+theta1-eta1)/eta2)-\n\
+  \        probnorm((theta1-eta1)/eta2);\n    else if r11=4 then z=probnorm((theta3+theta2+theta1-eta1)/eta2)-\n\
+  \        probnorm((theta2+theta1-eta1)/eta2);\n    else if r11=5 then z=1 - probnorm((theta3+theta2+theta1-\n\
+  \        eta1)/eta2);\n    if z>1e-6 then ll=log(z);\n    else ll=-1e6;\n    model\
+  \ r11 ~ general(ll);\n    estimate 'AUC' probnorm(alpha/sqrt(1+beta**2));\nrun;\n\
+  ```\n\nMODEL 语句指定了一个 GENERAL（LL）模型。这意味着似然函数（的对数）由用户通过项 LL 定义。回想一下 R11 表示有序信用评分，底层模型是有序回归的潜在模型。每个\
+  \ IF 语句指定了 R11 的每个可能取值对似然的贡献。这些贡献在第 5 章中被推导为\n\n$$\\gamma_k(z)=\\Phi\\left(\\frac{\\\
+  theta_k - \\alpha D}{e^{\\beta z}}\\right)$$\n\nIF 语句的结构与此公式非常接近。这些语句唯一地定义了 Z 的值，即似然，进而定义\
+  \ LL，即 Z 的对数。贡献小于 10^-6 的似然将被计为 10^-6 的条件确保了非常小的贡献不会导致数值不稳定。\n"
+- '# 参考文献
+
+
+  Allison, P.D. (1995). *Survival Analysis Using the SAS System: A Practical Guide*.
+  Cary, NC: SAS Institute Inc.
+
+
+  Cantor, A.B. (2003). *SAS Survival Analysis Techniques for Medical Research, Second
+  Edition*. Cary, NC: SAS Institute Inc.
+
+
+  Cerrito, P. B. (2006). *Introduction to Data Mining Using SAS Enterprise Miner*.
+  Cary, NC: SAS Institute Inc.
+
+
+  Cox, D.R. (1972). “Regression models and life tables (with discussion).” *Journal
+  of the Royal Statistical Society. Series B* 34:187–220.
+
+
+  Cox, D.R. (1975). “Partial likelihood.” *Biometrika*. 62:269–276.
+
+
+  DeLong, E.R., D.M. DeLong, and D.L. Clarke-Pearson. (September, 1988). “Comparing
+  the areas under two or more correlated receiver operating characteristic curves:
+  A nonparametric approach.” *Biometrics*. 44(3):837–845.
+
+
+  Efron, B., and R. Tibshirani. (1993). *An Introduction to the Bootstrap*. New York:
+  Chapman & Hall.
+
+
+  Gönen, M., and G. Heller. (2005). “Concordance probability and discriminatory power
+  in proportional hazards regression.” *Biometrika*. 92:965–970.
+
+
+  Gönen, M., and G. Heller. (2007). “Lehmann family of ROC curves.” (Under peer review).
+  Available at www.bepress.com/mskccbiostat/paper11/.
+
+
+  Güttler, A. (2005). “Using a bootstrap approach to rate the raters.” *Financial
+  Markets and Portfolio Management*. 19(3):277–295.
+
+
+  Hanley, J.A. (August, 1988). “The robustness of the ‘binormal’ assumptions used
+  in fitting ROC curves.” *Medical Decision Making*. 8(3):197–203.
+
+
+  Harrell, F.E., Jr., R.M. Califf, D.B. Pryor, K.L. Lee, and R.A. Rosati. (1982).
+  “Evaluating the yield of medical tests.” *Journal of the American Medical Association*.
+  247(18):2543–2546.
+
+
+  Heagerty, P.J., T. Lumley, and M.S. Pepe. (2000). “Time-dependent ROC curves for
+  censored survival data and a diagnostic marker.” *Biometrics*. 56(2):337–344.
+
+
+  Jarnagin, W.R., M. Gönen, Y. Fong, R.P. DeMatteo, L. Ben-Porat, S. Little, C. Corvera,
+  S. Weber, and L.H. Blumgart. (October, 2002). “Improvement in perioperative outcome
+  after hepatic resection: Analysis of 1,803 consecutive cases over the past decade.”
+  *Annals of Surgery*. 236(4):397–407. Discussion 406-7. PMID: 12368667 [PubMed -
+  indexed for MEDLINE].
+
+
+  Lehmann, E.L. (1953). “The power of rank tests.” *The Annals of Mathematical Statistics*.
+  24:23–43.
+
+
+  Littell, R.C., G.A. Milliken, W.W. Stroup, R.D. Wolfinger, and O. Schabenberger.
+  (2006). *SAS for Mixed Models, Second Edition*. Cary, NC: SAS Institute Inc.
+
+
+  Pepe, M.S. (2003). *The Statistical Evaluation of Medical Tests for Classification
+  and Prediction*. New York: Oxford University Press.
+
+
+  Perkins, N.J., and E.F. Schisterman. (April, 2006). “The inconsistency of ‘optimal’
+  cutpoints using two criteria based on the Receiver Operating Characteristic Curve.”
+  *American Journal of Epidemiology*. 163(7):670–675.
+
+
+  Sakia, R.M. (1992). “The Box-Cox transformation technique: A review.” *The Statistician*.
+  41:169–178.
+
+
+  Stokes, M.E., C.S. Davis, and G.G. Koch. (2000). *Categorical Data Analysis Using
+  the SAS System, Second Edition.* Cary, NC: SAS Institute Inc.
+
+
+  Thornes, J.E., and D.B. Stephenson. (September, 2001). “How to judge the quality
+  and value of weather forecast products.” *Meteorological Applications.* 8(3):307–314.
+
+
+  Tosteson, A.N., and C.B. Begg. (1988). “A general regression methodology for ROC
+  curve estimation.” *Medical Decision Making.* 8(3):204–215.
+
+
+  Wong, R.J., D.T. Lin, H. Schöder, S.G. Patel, M. Gönen, S. Wolden, D.G. Pfister,
+  J.P. Shah, S.M. Larson, and D.H. Kraus. (October, 2002). “Diagnostic and prognostic
+  value of [¹⁸F]fluorodeoxyglucose positron emission tomography for recurrent head
+  and neck squamous cell carcinoma.” *Journal of Clinical Oncology.* 20(20):4199–4208.
+
+
+  Youden, W.J. (1950). “Index for rating diagnostic tests.” *Cancer.* 3(1):32–35.
+
+
+  Zajick, D.C., Jr., W.B. Morrison, M.E. Schweitzer, J.A. Parellada, and J.A. Carrino.
+  (November, 2005). “Benign and malignant processes: Normal values and differentiation
+  with chemical shift MR imaging in vertebral marrow.” *Radiology*. 237(2):590–596.
+
+
+  Zhou, X-H., D.K. McClish, and N.A. Obuchowski. (2002). *Statistical Methods in Diagnostic
+  Medicine.* New York: John Wiley & Sons.
+
+
+
+
+  '
+- "# 索引\n\n## A\n\naccuracy\n  基于误分类率  6\n  灵敏度与特异度  7–8\narea under ROC curves (AUC)\n\
+  \  双正态曲线  27–28\n  双正态曲线，比较  42–46, 65–66\n  AUC 的自助法置信区间  33–35\n  ROC 曲线的自助法验证估计\
+  \  107\n  比较置信区间  48\n  使用 FREQ 过程计算  23–24\n  使用 LOGISTIC 过程计算  22–23\n  使用 %ROC\
+  \ 宏计算  24–25\n  ROC 曲线的交叉验证估计  103–104\n  经验曲线  21–25\n  经验曲线，比较  39–42, 64–65\n\
+  \  经验曲线，有序标记  54–55\n  ROC 曲线的 Lehmann 家族  70\n  有序标记  63–66\n  带删失数据的 ROC 曲线  86–88\n\
+  \  ROC 曲线的分样本估计  100–102\nasymptotic standard error (ASE)  12\nAUC\n  参见 area under\
+  \ ROC curves\nAXIS statement  55\n\n## B\n\nbinary predictor  5–14\n  用于报告连续预测变量\
+  \  25–26\n  霜冻预报（示例）  5–6\n  强调的原因  95\nBINOMIAL keyword (FREQ procedure)  10, 12\n\
+  binormal parameters  27\nbinormal ROC curves  26–30, 96\n  下面积  27–28\n  与经验曲线比较\
+  \  29, 46–47\n  比较下面积  42–46\n  直接估计  32–33\nlatent  57–63\nlatent，下面积比较  65–66\n\
+  normality  30\n回归模型  49–51, 59–60, 69\n标准摄取值（SUV）  26–27\n向双正态的转换  30–32\nbinormal\
+  \ ROC curves, area under\n  参见 area under ROC curves (AUC)\n%BOOT1AUC macro  34,\
+  \ 56\nbootstrap samples for confidence intervals  96\n  用于曲线下面积（AUC）  33–35\n  用于\
+  \ AUC 差值  48\nbootstrap-validated estimates of ROC curves  96, 106–107\nBox-Cox\
+  \ power transformations  30–31, 43\n%BVAL macro  107\n\n## C\n\nc-index  90–91,\
+  \ 93\ncancer examples  38, 81–82\ncensored data, ROC curves with  81–93\n  曲线下面积\
+  \  86–88\n  一致性概率  88–91\n  单调函数与删失数据  86\n%CINDEX macro  90\nCLASS statement, UNIVARIATE\
+  \ procedure  16\n\"close to the ideal\"  26\nclustered data  75–79\ncomparing ROC\
+  \ curves  38\n  用于有序预测变量  63–66\n  ROC 曲线的 Lehmann 家族  79\n  配对 vs. 非配对数据  38–39\n\
+  competing models, ROC curves for  113–116\nconcordance probability  22\n  另见 area\
+  \ under ROC curves (AUC)\n  带删失数据的 ROC 曲线  88–91\n  与 Cox 回归模型  91–93\nconditioning\
+  \  10\nconfidence intervals for sensitivity and specificity  10–12\nconfidence intervals\
+  \ from bootstrap samples  96\n  用于曲线下面积（AUC）  33–35\n  用于 AUC 差值  48\ncontinuous\
+  \ predictor  15–35, 97–98\n  二值化  15–18\ncontinuous predictor (continued)\n  ROC\
+  \ 曲线的 Lehmann 家族  67–80\n  操作点  25–26\n  最优阈值  25–26\n  强调的原因  95\n  使用二元预测变量报告\
+  \  25–26\n  ROC 曲线  18–20\n  阈值  25–26\nCONTRAST statement, NLMIXED procedure  44–46\n\
+  CONTRAST variable, %ROC macro  39–40\ncovariate adjustment for ROC curves  48–49\n\
+  \  Lehmann 家族  73–75\nCOVSANDWITCH option, PHREG procedure  76–77\nCox regression\
+  \ models  69, 91–93\n%CPE macro  93\ncredit rating example  54\ncredit scoring \
+  \ 2\ncross-validation estimates of ROC curves  96, 102–106\n  曲线下面积  103–104\n \
+  \ k 折交叉验证  96, 104–106\n  LOGISTIC 过程  102–104\n  重代入估计 vs.  104\nD\ndata clustering\
+  \  75–79\ndecision trees  113\ndichotomizing continuous predictors  15–18\ndiscordant\
+  \ pairs\n  参见 concordance probability\ndouble dipping  96\nE\nempirical ROC curves\
+  \  20–26, 63–66\n  与双正态曲线比较  29, 46–47\n  比较下面积  39–42\n  用于有序预测变量  54–57, 64–65\n\
+  empirical ROC curves, area under\n  参见 area under ROC curves (AUC)\nESTIMATE statement,\
+  \ NLMIXED procedure  28, 44–46, 62\nestimating equations for clustered data  75–79\n\
+  Euclidean method  25\nexported data, GPLOT procedure with  116–118\nF\nfalse negatives\
+  \ (FN)  6, 7–8\n  使用 FREQ 过程计算  9\nfalse positives (FP)  6, 7–8\n  使用 FREQ 过程计算\
+  \  9\n\"far from random\"  26\nFREQ procedure  8–14\n  BINOMIAL keyword  10, 12\n\
+  \  计算假阴性和假阳性  9\n  计算误分类率  9\n  计算阴性和阳性预测值  9\n  计算灵敏度  9–12\n  计算特异度  9–10, 13\n\
+  \  计算 Somer's D 和 AUC  23–24\n  ORDER= 选项  14\n  TABLE statement  23\nFRONTREF option,\
+  \ HISTOGRAM statement (UNIVARIATE)  17\nfrost forecast (example)  5–6\nG\ngeneralized\
+  \ estimating equations  76\nGPLOT procedure  116–118\nH\nhazard function  68\nheteroscedastic\
+  \ models  51\nHISTOGRAM statement, UNIVARIATE procedure  16\n  FRONTREF option \
+  \ 17\n  HREF= option  17\nhome equity loan example  110\nhomoscedastic models  51\n\
+  HREF= option, HISTOGRAM statement  17\nI\nINMODEL= option, LOGISTIC procedure  100\n\
+  intercept  27\ninvariance to monotone transformations  21, 22\nK\nk-fold cross-validation\
+  \  96, 104–106\nKaplan-Meier estimation method  83\nL\nlatent binormal ROC curves\
+  \ 57–63\n  比较下面积 65–66\nleave-one-out validation 96, 102–104\nleaves (SAS Enterprise\
+  \ Miner) 114\nLehmann family of ROC curves 67–80\n  协变量调整 73–75\n  曲线下面积 70\n  聚类数据\
+  \ 75–79\n  比较曲线 79\nLIFETEST procedure 83–85\n  TIME statement 83\nliver surgery\
+  \ example 96–97\nlocation-scale families 59\nLOGISTIC procedure 8, 19\n  计算 AUC\
+  \ 22–23\n  ROC 曲线的交叉验证估计 102–104\n  INMODEL= option 100\n  OUTMODEL= option 100\n\
+  \  ROC 曲线的重代入估计 96\n  SCORE statement 100, 101\n  ROC 曲线的分样本估计 100–102\nlung cancer\
+  \ example 81–82\nM\nmagnetic resonance example 70–73\nMEASURES option, TABLE statement\
+  \ (FREQ) 23\nMETHOD= option, SURVEYSELECT procedure 34\nmisclassification rate (MR)\
+  \ 6–7\n  使用 FREQ 过程计算 9\n  在 ROC 曲线中 19\nMIXED procedure 44\n  双正态 ROC 曲线的回归模型 49–50\n\
+  MODEL statement\n  OUTROC= option 19, 71, 101, 104\n  RL option 72\n  SLE option\
+  \ 97\n  SLS option 97\nmonotone functions 21\n  删失数据和 86\nmonotone transformations,\
+  \ invariance to 21, 22\nMR\n  参见 misclassification rate\nmultiple observations from\
+  \ individual unit 75–79\nmultivariable prediction models 95–107\n  ROC 曲线的自助法验证估计\
+  \ 96, 106–107\n  ROC 曲线的交叉验证估计 96, 102–106\n  ROC 曲线的重代入估计 96, 97–99, 102, 104\n\
+  \  ROC 曲线的分样本估计 96, 99–102\nN\nnegative predictive value (NPV) 8\n  使用 FREQ 过程计算\
+  \ 9\nneural networks 114–115\nNLMIXED procedure 27–28\n  CONTRAST statement 44–46\n\
+  \  ESTIMATE statement 28, 44–46, 62\n  估计双正态 ROC 曲线 32–33\n  有序-概率回归模型 60–62\n \
+  \ RANDOM statement 44\n  双正态 ROC 曲线的回归模型 49–50\nnodes (SAS Enterprise Miner) 111,\
+  \ 114\nNOPRINT option, TABLE statement (FREQ) 23\nnormality, in binormal models\
+  \ 30\nNPV (negative predictive value) 8\n  使用 FREQ 过程计算 9\nO\nobservations, multiple\
+  \ from individual unit 75–79\nobserved operating points 19\nOFFSET= option, AXIS\
+  \ statement 55\noperating point\n  continuous predictor 25–26\n  observed 19\nOPTIMAL\
+  \ option, %PLOTROC macro 26\noptimal threshold, continuous predictor 25–26\noptimism-adjusted\
+  \ estimates 106\nORDER= option, FREQ procedure 14\nordinal predictors 53–66\n  比较\
+  \ ROC 曲线 63–66\n  有序预测变量的经验 ROC 曲线 54–57, 64–65\n  潜在双正态 ROC 曲线 57–63\n  有序-概率回归模型\
+  \ 60–62\nOUT= option, SURVEYSELECT procedure 34\nOUTHITS= option, SURVEYSELECT procedure\
+  \ 34–35\nOUTMODEL= option, LOGISTIC procedure 100\nOUTPUT statement, PREDPROBS=X\
+  \ option 103, 104\nOUTROC= option\n  MODEL statement 19, 71, 101, 104\n  SCORE statement\
+  \ (LOGISTIC) 101\nP\npaired data 38–39\n  比较双正态 ROC 曲线 42–46\n  比较经验 ROC 曲线 39–41\n\
+  PARAMETER= option, BOXCOX transformation 31\npartitioning, recursive 113\npercent\
+  \ correct statistic 6\nPET scanning (example) 16–17\nPHREG procedure 69–70, 72–73,\
+  \ 74\n  聚类数据 75–79\n  COVSANDWITCH option 76–77\n%PLOTROC macro 41, 100–101, 105,\
+  \ 116\n  OPTIMAL option 26\npositive predictive value (PPV) 8\n  使用 FREQ 过程计算 9\n\
+  prediction\n  business of 1\n  in medical diagnostics 2\nprediction models, multivariable\n\
+  \  参见 multivariable prediction models\npredictors\n  另见 binary predictor\n  另见 continuous\
+  \ predictor\n  二值化连续 15–18\n  有序 53–66\nPREDPROBS=X option, OUTPUT statement 103,\
+  \ 104\nprevalence 7\nproduct limit estimation method 83\nproportional hazards regression\
+  \ 69, 79\n  与一致性概率 91–93\nprostate cancer prognosis (example) 38\nR\nRANDOM statement,\
+  \ NLMIXED procedure 44\nrandomly breaking the ties 22\nreceiver operating characteristic\
+  \ curves\n  参见 ROC curves\nrecursive partitioning 113\nREG procedure 32–33\nregression\n\
+  \  Cox regression models 69, 91–93\n  双正态 ROC 曲线的模型 49–51, 69\n  双正态 ROC 曲线的有序模型\
+  \ 59–60\n  有序-概率模型 60–62\n  比例风险回归 69, 79, 91–93\nresubstitution estimates of ROC\
+  \ curves 96, 97–99, 102\n  与交叉验证估计比较 104\n  LOGISTIC 过程 96\n  与分样本估计比较 102\nRL option,\
+  \ MODEL statement 72\nROC curves 1–3\n  另见 binormal ROC curves\n  另见 empirical ROC\
+  \ curves\n  ROC 曲线的自助法验证估计 96, 106–107\n  ROC 曲线的协变量调整 48–49, 73–75\n  ROC 曲线的交叉验证估计\
+  \ 96, 102–106\n  用于竞争模型 113–116\n  用于单个连续预测变量 18–20\n  用于单个模型 111–113\n  在 SAS Enterprise\
+  \ Miner 中 109–118\n  ROC 曲线的 Lehmann 家族 67–80\n  ROC 曲线中的误分类率 19\n  多变量预测模型 95–107\n\
+  \  命名法 2\n  ROC 曲线的重代入估计 96, 97–99, 102, 104\n  半参数 68\n  平滑 26\n  ROC 曲线的分样本估计\
+  \ 96, 99–102\n  带删失数据 81–93\n\n\n\n\nROC 曲线，曲线下面积\n参见 ROC 曲线下面积（AUC）\nROC 曲线，比较\
+  \ 38\n对于有序预测因子 63–66\nLehmann 家族的 ROC 曲线 79\n配对 vs. 未配对数据 38–39\n%ROC 宏 24–25, 103\n\
+  比较经验曲线 39–42, 64–65\nCONTRAST 变量 39–40\n具有有序标记的经验曲线 56–57\nROC 点 54–55\n另见 有序预测因子\n\
+  %ROCPLOT 宏 20\nS\nSAS Enterprise Miner 109–118\n使用导出数据的 GPLOT 过程 116–118\n叶节点 114\n\
+  节点 111, 114\n竞争模型的 ROC 曲线 113–116\n单一模型的 ROC 曲线 111–113\n终端节点 114\nSCORE 语句，LOGISTIC\
+  \ 过程 100\nOUTROC= 选项 101\n自预测 96\n半参数 ROC 曲线 68\n灵敏度 7–8\n使用 FREQ 过程计算 9–12\n置信区间\
+  \ 10–12\n相对于特异性作图 18–19\n带删失数据的 ROC 曲线 82–83\n单一二元预测因子 5–14\n用于报告连续预测因子 25–26\n\
+  霜冻预报（示例）5–6\n强调的原因 95\n单一连续预测因子 15–35, 97–98\n二值化 15–18\nLehmann 家族的 ROC 曲线 67–80\n\
+  强调的原因 95\n使用二元预测因子报告 25–26\nROC 曲线 18–20\n单一模型，ROC 曲线 111–113\nSLE 选项，MODEL 语句 97\n\
+  斜率 27\nSLS 选项，MODEL 语句 97\n平滑 ROC 曲线 26\nSomer's D 统计量 23–24\n特异性 7–8\n使用 FREQ 过程计算\
+  \ 9–10, 13\n置信区间 10–12\n相对于灵敏度作图 18–19\n带删失数据的 ROC 曲线 82–83\nROC 曲线的分割样本估计 96, 99–102\n\
+  曲线下面积 100–102\n用于此的 LOGISTIC 过程 100–102\n重代入估计 vs. 102\n分层分割 99\n逐步选择 97–98\n分层分割\
+  \ 99\nSURVEYSELECT 过程 34–35\nMETHOD= 选项 34\nOUT= 选项 34\nOUTHITS= 选项 34–35\n生存模型\
+  \ 82–83\nSUV（标准化摄取值）16–17\n双变量曲线 26–27\n二值化 17\n直方图 16, 17\nT\nTABLE 语句，FREQ 过程\
+  \ 23\nMEASURES 选项 23\nNOPRINT 选项 23\n%TDROC 宏 86–88\n终端节点（SAS Enterprise Miner）114\n\
+  阈值，连续预测因子 25–26\nTIME 语句，LIFETEST 过程 83\nTNR（真阴性率）\n参见 特异性\nTPR（真阳性率）\n参见 灵敏度\n\
+  TRANSREG 过程 30–32, 43\n梯形法则 21–22\n真阴性率（TNR）\n参见 特异性\n真阴性（TN）6, 9\n真阳性率（TPR）\n参见\
+  \ 灵敏度\n真阳性（TP）6, 9\n两样本 t 检验 38\n\n## U\nU 统计量 39\n\n用于 SUV 直方图的 UNIVARIATE 过程\n\
+  16\n\n未配对数据 38–39\n比较双变量 ROC 曲线 46\n比较经验 ROC 曲线 41–42\n\n## V\n验证 96\n自助法验证的 ROC\
+  \ 曲线估计 96, 106–107\n交叉验证估计的 ROC 曲线 96, 102–106\n留一法验证 96, 102–104\n重代入估计的 ROC 曲线\
+  \ 96, 97–99, 102, 104\n分割样本估计的 ROC 曲线 96, 99–102\n\n## W\nWald 检验 12, 79\n天气预报示例\
+  \ 1, 5–6\n\n## X\n%XVAL 宏 104–105\n\n## 来自 SAS Press 的书籍\n\n使用 SAS® 的高级对数线性模型\n\
+  作者 Daniel Zelterman\n\n使用 SAS® 进行临床试验分析：实用指南\n作者 Alex Dmitrienko, Geert Molenberghs,\
+  \ Walter Offen, 和 Christy Chuang-Stein\n\n使用 SAS® 分析接收者操作特征曲线\n作者 Mithat Gönen\n\
+  \nAnnotate: Simply the Basics\n作者 Art Carpenter\n\n使用 SAS® 软件的第二版 应用多元统计\n作者 Ravindra\
+  \ Khattree 和 Dayanand N. Naik\n\n第五版 应用统计学与 SAS® 编程语言\n作者 Ronald P. Cody 和 Jeffrey\
+  \ K. Smith\n\nAn Array of Challenges — Test Your SAS® Skills\n作者 Robert Virgile\n\
+  \n使用 SAS/IntrNet® 构建 Web 应用程序：应用程序调度器的指南\n作者 Don Henderson\n\n第二版 Carpenter 的 SAS®\
+  \ 宏语言完全指南\n作者 Art Carpenter\n\nCarpenter 的 SAS® REPORT 过程完全指南\n作者 Art Carpenter\n\
+  \n统计学漫画指南\n作者 Larry Gonick 和 Woollcott Smith\n\n第二版 使用 SAS® 系统进行分类数据分析\n作者 Maura\
+  \ E. Stokes, Charles S. Davis, 和 Gary G. Koch\n\n使用 SAS® 软件进行数据清理技术\n作者 Ron Cody\n\
+  \n第二版 使用 SAS® 示例进行临床研究的常用统计方法\n作者 Glenn A. Walker\n\nSAS® 索引的完整指南\n作者 Michael A.\
+  \ Raithel\n\n使用 SAS® Enterprise Miner™ 进行 CRM 分段和聚类\n作者 Randall S. Collica\n\n使用\
+  \ SAS® Learning Edition 2.0 进行数据管理和报告变得简单\n作者 Sunil K. Gupta\n\n使用 SAS® 进行分析的数据准备\n\
+  作者 Gerhard Svolba\n\n调试 SAS® 程序：工具和技术手册\n作者 Michele M. Burlew\n\n使用 SAS® Enterprise\
+  \ Miner™ 进行商业智能和数据挖掘的决策树\n作者 Barry de Ville\n\n效率：提高 SAS® 应用程序的性能\n作者 Robert Virgile\n\
+  \nSAS® 日期和时间的必备指南\n作者 Derek P. Morgan\n\nSAS® 用户的 SAS/GRAPH® 软件如何操作手册\n作者 Thomas\
+  \ Miron\n\nSAS® 提示和技巧来自全球各地，第二版\n作者 Phil Mason\n\nInstant ODS：输出传送系统的样式模板\n作者 Bernadette\
+  \ Johnson\n\n使用 SAS® 软件通过 Meta-分析综述整合结果\n作者 Morgan C. Wang 和 Brad J. Bushman\n\n\
+  使用 SAS® Enterprise Miner™ 快速入门数据挖掘\n作者 Patricia B. Cerrito\n\n通过示例学习 SAS®：程序员指南\n\
+  作者 Ron Cody\n\n第二版 在计算机实验室学习 SAS®\n作者 Rebecca J. Elliott\n\nSAS® 小书：入门\n作者 Lora\
+  \ D. Delwiche\n和 Susan J. Slaughter\n\nSAS® 小书：入门，第二版\n作者 Lora D. Delwiche\n和 Susan\
+  \ J. Slaughter\n（更新至包含 SAS 7 功能）\n\nSAS® 小书：入门，第三版\n作者 Lora D. Delwiche\n和 Susan\
+  \ J. Slaughter\n（更新至包含 SAS 9.1 功能）\n\nEnterprise Guide® 3.0 的 SAS® 小书\n作者 Susan\
+  \ J. Slaughter\n和 Lora D. Delwiche\n\nEnterprise Guide® 4.1 的 SAS® 小书\n作者 Susan\
+  \ J. Slaughter\n和 Lora D. Delwiche\n\n使用 SAS® 系统的逻辑回归：\n理论与应用\n作者 Paul D. Allison\n\
+  \nSAS® 的纵向数据：程序员指南\n作者 Ron Cody\n\n使用 SAS® 轻松制作地图\n作者 Mike Zdeb\n\n使用 JMP® 进行测量、分析和控制：制造的质量技术\n\
+  作者 Jack E. Reece\n\n离散数据的模型\n作者 Daniel Zelterman\n\n使用 SAS® 进行多重比较和多重检验 文本和工作簿套装\n\
+  （本书套装中的书籍也可单独出售）\n作者 Peter H. Westfall, Randall D. Tobias,\nDror Rom, Russell D.\
+  \ Wolfinger,\n和 Yosef Hochberg\n\n使用宏简化多图显示\n作者 Perry Watts\n\n使用 SAS® 软件进行多元数据降维和判别\n\
+  作者 Ravindra Khattree\n和 Dayanand N. Naik\n\n输出传送系统：基础知识\n作者 Lauren E. Haworth\n\n\
+  SAS® 用户的无痛 Windows 手册，第三版\n作者 Jodie Gilmore\n（更新至包含 SAS 8 和 SAS 9.1 功能）\n\n使用 SAS®\
+  \ 进行制药统计：实用指南\n编辑 Alex Dmitrienko, Christy Chuang-Stein,\n和 Ralph D'Agostino\n\n\
+  PROC FORMAT 的威力\n作者 Jonas V. Bilenas\n\n使用 SAS® Enterprise Miner™ 进行预测建模：商业应用的实用解决方案\n\
+  作者 Kattamuri S. Sarma, Ph.D.\n\n使用 SAS® 进行 PROC SQL：基础知识之外\n作者 Kirk Paul Lafler\n\
+  \nPROC TABULATE 示例\n作者 Lauren E. Haworth\n\n第五版 专业 SAS® 程序员口袋参考\n作者 Rick Aster\n\
+  \n第二版 专业 SAS® 编程快捷方式\n作者 Rick Aster\n\n使用 SAS/GRAPH® 软件快速获得结果\n作者 Arthur L. Carpenter\n\
+  和 Charles E. Shipp\n\n使用输出传送系统快速获得结果\n作者 Sunil K. Gupta\n\n使用 SAS® 读取外部数据文件：示例手册\n\
+  作者 Michele M. Burlew\n\n使用 SAS® 软件进行回归和方差分析：综合方法\n作者 Keith E. Muller\n和 Bethel A.\
+  \ Fetterman\n\nSAS® For Dummies®\n作者 Stephen McDaniel\n和 Chris Hemedinger\n\n第二版\
+  \ 使用 SAS® 进行时间序列预测\n作者 John C. Brocklebank\n和 David A. Dickey\n\n第四版 SAS® 用于线性模型\n\
+  作者 Ramon C. Littell, Walter W. Stroup,\n和 Rudolf J. Freund\n\n第二版 SAS® 用于混合模型\n\
+  作者 Ramon C. Littell, George A. Milliken, Walter W. Stroup,\nRussell D. Wolfinger,\
+  \ 和 Oliver Schabenberger\n\nSAS® 用于蒙特卡洛研究：定量研究者的指南\n作者 Xitao Fan, Ákos Felsővályi,\
+  \ Stephen A. Sivo,\n和 Sean C. Keenan\n\n通过示例的 SAS® 函数\n作者 Ron Cody\n\nSAS® 用于 Java\
+  \ 的图形：使用 SAS® AppDev Studio™ 和输出传送系统的示例\n作者 Wendy Bohnenkamp\n和 Jackie Iverson\n\
+  \n第二版 SAS Guide to Report Writing\n作者 Michele M. Burlew\n\n\n\nSAS® 宏编程轻松入门，第二版\n\
+  作者 Michele M. Burlew\n\nSAS® 编程实例\n作者 Ron Cody\n和 Ray Pass\n\nSAS® 研究人员与社会科学家的编程，第二版\n\
+  作者 Paul E. Spector\n\nSAS® 制药行业编程\n作者 Jack Shostak\n\nSAS® 医学研究生存分析技术，第二版\n作者 Alan\
+  \ B. Cantor\n\nSAS® 系统初级统计分析，第二版\n作者 Sandra D. Schlotzhauer\n和 Ramon C. Littell\n\
+  \nSAS® 系统回归分析，第三版\n作者 Rudolf J. Freund\n和 Ramon C. Littell\n\nSAS® 系统统计图形，第一版\n\
+  作者 Michael Friendly\n\nSAS® 工作簿与解答集\n（本套书中的书籍也可单独出售）\n作者 Ron Cody\n\n使用 SAS® 节省时间和金钱\n\
+  作者 Philip R. Holland\n\n为 SAS® 用户选择社会科学数据的统计技术：指南\n作者 Frank M. Andrews, Laura Klem,\
+  \ Patrick M. O'Malley, Willard L. Rodgers, Kathleen B. Welch, 和 Terrence N. Davidson\n\
+  \n使用 SAS® 系统进行统计质量控制\n作者 Dennis W. King\n\n使用 SAS® Enterprise Guide® 进行统计\n作者 James\
+  \ B. Davis\n\n逐步使用 SAS® 系统进行因子分析和结构方程建模的方法\n作者 Larry Hatcher\n\n逐步使用 SAS® 进行单变量和多变量统计的方法，第二版\n\
+  作者 Norm O'Rourke, Larry Hatcher, 和 Edward J. Stepanski\n\n使用 SAS® 逐步学习基础统计：学生指南与练习\n\
+  （本套书中的书籍也可单独出售）\n作者 Larry Hatcher\n\n使用 SAS® 进行生存分析：实用指南\n作者 Paul D. Allison\n\n\
+  在 OS/390 和 z/OS 环境中优化 SAS® 应用，第二版\n作者 Michael A. Raithel\n\n单变量和多变量广义线性模型：使用 SAS®\
+  \ 软件的理论与应用\n作者 Neil H. Timm 和 Tammy A. Mieczkowski\n\n使用 SAS® 进行金融研究\n作者 Ekkehart\
+  \ Boehmer, John Paul Broussard, 和 Juha-Pekka Kallunki\n\n使用 SAS® 窗口环境：快速教程\n作者 Larry\
+  \ Hatcher\n\n可视化分类数据\n作者 Michael Friendly\n\n使用示例进行 SAS® Web 开发，第二版\n作者 Frederick\
+  \ E. Pratter\n\n使用 SAS® 系统进行调查研究的指南\n作者 Archer Gravely\n\n## JMP® 书籍\n\n使用 JMP®\
+  \ 进行初级统计\n作者 Sandra D. Schlotzhauer\n\nJMP® 基础单变量和多变量统计：逐步指南\n作者 Ann Lehman, Norm\
+  \ O'Rourke, Larry Hatcher, 和 Edward J. Stepanski\n\nJMP® Start Statistics，第三版\n\
+  作者 John Sall, Ann Lehman, 和 Lee Creighton\n\n使用 JMP® 进行回归\n作者 Rudolf J. Freund,\
+  \ Ramon C. Littell, 和 Lee Creighton\n"

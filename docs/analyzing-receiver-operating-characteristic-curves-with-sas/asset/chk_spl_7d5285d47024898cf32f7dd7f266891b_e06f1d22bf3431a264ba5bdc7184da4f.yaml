@@ -1,0 +1,39 @@
+reviews:
+- 'no': 3074
+  overturn_probability: 0.85
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题为 ## A.2，属于附录子层级 A.2，规则要求只划分全书最高层级大章，X.Y 子层级不应划分新章节'
+  - 前后文仍在附录 A 的连续论述中，后续 3076 行直接承接说明，未出现章节级概述段落
+  - 格式上为二级 Markdown 标题且带编号，符合正文小节而非最高层级章标题特征
+  keep_split: false
+- 'no': 3130
+  overturn_probability: 0.05
+  alternative: 其他
+  counter_evidence:
+  - '一级标题 # 参考文献，文末参考文献按规则应统一划分为一章'
+  - 前后文从正文内容直接转入文献条目列表，语义上具有统领性且独立成块
+  keep_split: true
+- 'no': 3187
+  overturn_probability: 0.05
+  alternative: 其他
+  counter_evidence:
+  - '一级标题 # 索引，文末索引按规则应统一划分为一章'
+  - 后续 3189 起为索引条目，结构独立且与参考文献章节分离
+  keep_split: true
+- 'no': 3623
+  overturn_probability: 0.8
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题为 ## 来自 SAS Press 的书籍，为参考文献附录内的二级小标题，非全书最高层级章节'
+  - 前后文仍在参考文献书目列表的延续，3625 起直接列书名作者，无章节概述段落
+  - 规则要求排除正文段落中的小标题、分点，排版噪声等误判为章节标题，此处为书目分组标题
+  keep_split: false
+- 'no': 3915
+  overturn_probability: 0.8
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题为 ## JMP® 书籍，为参考文献附录内的二级小标题，与 3623 同属书目分组'
+  - 前后文仍为书目列表，3917 起直接列书名，无独立章节语义
+  - 属于排版上的分组标题，不符合真正的章标题单独成行且统领后续内容的最高层级特征
+  keep_split: false

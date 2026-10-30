@@ -1,0 +1,1 @@
+Note the absence of a random effect from u in this model. As we reviewed in Chapter 4, a notable difference between marker comparisons and covariate adjustment is that marker comparisons usually involve paired data (each patient measured by each marker) while covariate adjustment does not have this feature.
