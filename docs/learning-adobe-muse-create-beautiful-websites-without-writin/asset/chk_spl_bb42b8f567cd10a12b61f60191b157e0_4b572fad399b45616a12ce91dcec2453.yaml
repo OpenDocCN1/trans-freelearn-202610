@@ -1,0 +1,48 @@
+reviews:
+- 'no': 2981
+  overturn_probability: 0.88
+  alternative: 章节副标题/正文小标题
+  counter_evidence:
+  - 前一行 2980 为 '## 8'，符合编号特征的最高层级章号，真正的章起始应为编号行
+  - 该行 '使用小部件自定义——菜单和面板' 为编号后的统领性副标题，长度>30字且为章节说明性标题，非独立章号行
+  - 上下文中 2980 与 2981 构成编号+标题的成对结构，单独把 2981 划分为新章会割裂编号与标题
+  keep_split: false
+- 'no': 3242
+  overturn_probability: 0.9
+  alternative: 章节副标题/正文小标题
+  counter_evidence:
+  - 前一行 3240 为 '## 9'，为最高层级章号，章起始应指向编号行
+  - 该行 '## 更多小部件——组合和幻灯片' 为编号后的章节名，格式上与 2981 情况相同，属于编号的延续而非独立章起止
+  - 后接本章学习目标概述段落，符合编号+标题的整体章节结构，单独分章会导致重复
+  keep_split: false
+- 'no': 3483
+  overturn_probability: 0.9
+  alternative: 章节副标题/正文小标题
+  counter_evidence:
+  - 前一行 3481 为 '## 10'，为章号编号行
+  - 该行 '## Muse，认识 Adobe Creative Suite' 为编号后的标题行，标题末尾无句号但长度较大且为说明性标题
+  - 上下文显示 3481 与 3483 为成对的编号+标题，误将标题行作为章起会错位
+  keep_split: false
+- 'no': 3665
+  overturn_probability: 0.9
+  alternative: 章节副标题/正文小标题
+  counter_evidence:
+  - 前一行 3664 为 '## 11'，符合最高层级章号特征
+  - 该行 '## 预览和测试你的网站' 为编号后的章节名，后接概述段落，实际章起应为 3664
+  - 单独把标题行划分为新章会使编号行成为孤立的无意义标题
+  keep_split: false
+- 'no': 3873
+  overturn_probability: 0.9
+  alternative: 章节副标题/正文小标题
+  counter_evidence:
+  - 前一行 3871 为 '## 12'，为章号编号行
+  - 该行 '## 发布你的网站' 为编号后的标题，符合编号+标题的章节模式
+  - 原判断将标题行作为章起，忽略了编号行的先行性，违反编号特征判断规则
+  keep_split: false
+- 'no': 4104
+  overturn_probability: 0.15
+  alternative: 文末索引标题
+  counter_evidence:
+  - 该行 '## 索引' 单独成行，位于文末，符合文末索引统一划分为一章的规则
+  - 前后无编号跳跃，也无子节干扰，维持分章合理
+  keep_split: true

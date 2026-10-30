@@ -1,0 +1,57 @@
+reviews:
+- 'no': 101
+  overturn_probability: 0.95
+  alternative: 目录条目/排版噪声
+  counter_evidence:
+  - 该行出现在目录/页眉区域，后续多行以 '- ' 开头的子目和页码 118、123 等构成目录列表
+  - 同内容的章节标题在正文 2214 行后才出现，101 行是目录重复项而非正文起始
+  - 标题末尾带页码 117，格式特征不符合真正的章标题
+  keep_split: false
+- 'no': 121
+  overturn_probability: 0.95
+  alternative: 目录条目/排版噪声
+  counter_evidence:
+  - 位于目录区块，紧跟 101 行的目录列表，后续为 '- 你好，网页友好型图像 144' 等子目
+  - 标题末尾带页码 143，长度超过正常章标题且为目录样式
+  - '正文真正的第 7 章起始在 2637 行 ## 7 后'
+  keep_split: false
+- 'no': 151
+  overturn_probability: 0.95
+  alternative: 目录条目/排版噪声
+  counter_evidence:
+  - 目录列表中条目，标题后带页码 167，后续为 '- 处理小部件 168' 等子目
+  - '与正文 2980 行 ## 8 的章节起始重复，属目录噪声'
+  - 格式为目录行而非单独成行的正文章标题
+  keep_split: false
+- 'no': 171
+  overturn_probability: 0.95
+  alternative: 目录条目/排版噪声
+  counter_evidence:
+  - 目录区块条目，标题后带页码 187，后续为子目列表
+  - '正文第 9 章实际起始在 324 行 ## 第 9 章 后，171 行为目录重复'
+  - 标题末尾带页码不符合章标题格式特征
+  keep_split: false
+- 'no': 184
+  overturn_probability: 0.95
+  alternative: 目录条目/排版噪声
+  counter_evidence:
+  - 目录条目，标题后带页码 205，后续为子目列表
+  - '正文第 10 章实际起始在 337 行 ## 第 10 章 后，属目录噪声'
+  - 单独成行但语义上为目录索引而非统领性章节起始
+  keep_split: false
+- 'no': 194
+  overturn_probability: 0.95
+  alternative: 目录条目/排版噪声
+  counter_evidence:
+  - 目录列表条目，标题后带页码 217，后续为子目列表
+  - '正文第 11 章实际起始在 347 行 ## 第 11 章 后'
+  - 标题末尾带页码且上下文为目录，排版噪声特征明显
+  keep_split: false
+- 'no': 218
+  overturn_probability: 0.95
+  alternative: 目录条目/排版噪声
+  counter_evidence:
+  - 目录区块条目，标题后带页码 229，后续为子目列表直至索引
+  - '正文第 12 章实际起始在 371 行 ## 第 12 章 后'
+  - 为目录重复项，不应作为新章划分
+  keep_split: false

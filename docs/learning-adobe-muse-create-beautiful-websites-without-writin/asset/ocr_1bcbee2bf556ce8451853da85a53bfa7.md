@@ -1,0 +1,5 @@
+Just to give a very brief history lesson, web-safe colors were a small palette of fewer than 256 colors that would display properly on both Windows computer and Mac computer monitors. Today's monitors can show literally millions of colors; even the phone in your pocket can handle more colors today than those old monitors.
+
+![](bbox=[0.315, 0.157, 0.726, 0.627])
+
+If you're using Photoshop or Illustrator to create your graphics, you'll see that when you choose **Save for Web & Devices**, you can still convert the colors in your image to their web-safe equivalent by using the **Color Table** section. You can also see the web-safe color palette by using the context-sensitive menu on the **Swatches** panel in both of these programs. However, it is highly unlikely that we will ever need to use that option again for web graphics.
