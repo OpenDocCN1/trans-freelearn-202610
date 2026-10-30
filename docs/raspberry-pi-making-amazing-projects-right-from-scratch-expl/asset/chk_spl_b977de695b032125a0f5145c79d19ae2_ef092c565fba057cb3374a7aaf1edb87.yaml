@@ -1,0 +1,71 @@
+reviews:
+- 'no': 9223
+  overturn_probability: 0.1
+  alternative: 若不分章，这行最可能是书籍的模块分组标题（如Part/Module），而非章节标题。
+  counter_evidence:
+  - 该行使用'## 模块 3'，更像是书籍的内容分组而非独立章节，且后续有'### 1 配置和编程树莓派'作为真正的章标题，因此可能不应单独分章
+  - 原判断依据是'部分-章节模式'，但'模块'并非规则中明确提到的'第 X 部分'，存在解释空间
+  keep_split: true
+- 'no': 9227
+  overturn_probability: 0.25
+  alternative: 若不分章，这行可能是模块3下的一个子节标题（因为使用###三级标题）。
+  counter_evidence:
+  - 该行以'###'开头，根据'只划分最高层级的大章'的规则，三级标题可能是子节而非一级章标题
+  - 它位于'## 模块 3'之下，可能只是一个章节内部的编号小标题，而不是独立章
+  keep_split: true
+- 'no': 9481
+  overturn_probability: 0.15
+  alternative: 若不分章，这行可能是页面残留的章号或页码，而非完整标题。
+  counter_evidence:
+  - 该行只有'## 2'，没有任何标题文字，过于简短，更像转换产生的断行或页眉残留
+  - 紧接着的'## 构建双足机器人'才是实际标题，'## 2'可能只是同一标题的拆分，不应作为独立分章起点
+  keep_split: true
+- 'no': 9720
+  overturn_probability: 0.05
+  alternative: 若不分章，这行可能是正文中的一个带编号的小节标题，但上下文表明它是章标题。
+  counter_evidence:
+  - 该行格式与前后章节标题一致，且后文有'在本章中，你将学习'，语义上确为章首
+  - 几乎不存在推翻理由，仅因'##'是二级标题，若书籍层级不同可能被视为子节，但本书中它是章
+  keep_split: true
+- 'no': 9960
+  overturn_probability: 0.2
+  alternative: 若不分章，这行可能是前一段落后的正文小标题，而非新章起始。
+  counter_evidence:
+  - 该行没有章节序号，仅凭语义判断，有可能被误认为是正文中的过渡性小标题
+  - 前面紧邻'## 小结'，若无后续'具体来说，你将学习'的佐证，容易与小结下的子标题混淆
+  keep_split: true
+- 'no': 10144
+  overturn_probability: 0.2
+  alternative: 若不分章，这行可能是孤立的章号/页码残留，因为在它后面还有'# 路径规划'等标题。
+  counter_evidence:
+  - '''# 5''过于简短，且使用一级标题''#''，与其他章节标题的''##''格式不一致，可能是转换错误'
+  - 真正的标题内容在下一行'# 路径规划'，因此'# 5'可能只是被误拆的章号，不应单独作为分章点
+  keep_split: true
+- 'no': 10367
+  overturn_probability: 0.05
+  alternative: 若不分章，这行最可能是正文中引用的书名或章节名，但它是明确的'第 6 章'。
+  counter_evidence:
+  - 该行明确包含'第 6 章'，符合最高层级章标题特征，很难找到反证
+  - 唯一可能的质疑是它前面有'##'，但本书其他章也使用'##'，格式统一
+  keep_split: true
+- 'no': 10540
+  overturn_probability: 0.05
+  alternative: 若不分章，这行可能是一个子级标题，但它是'7 远程访问你的双足机器人'，与前面章节序号连贯。
+  counter_evidence:
+  - 该行带有序号7且后接'在本章中，你将学习'，是典型章首
+  - 没有实质反证，仅为完成任务提出微弱的格式疑问
+  keep_split: true
+- 'no': 10686
+  overturn_probability: 0.1
+  alternative: 若不分章，这行可能是书末附录或参考文献的标题，但规则要求文末索引/参考书目分章。
+  counter_evidence:
+  - 参考书目不属于正文，可能被视为附属内容，但规则明确要求划分为一章
+  - 如果只分正文章节，许多书籍的参考书目不分章，但本规则要求分
+  keep_split: true
+- 'no': 10700
+  overturn_probability: 0.35
+  alternative: 若不分章，这行可能是书末的推广宣传语或版权页标题，而非正式章节。
+  counter_evidence:
+  - '''感谢您购买''是典型的出版宣传用语，可能只是扉页或封底内容，不应作为独立章节'
+  - 它后面紧接着'## 关于Packt出版社'等多个类似推广标题，若全部划分为章节会导致无意义章节过多
+  keep_split: true

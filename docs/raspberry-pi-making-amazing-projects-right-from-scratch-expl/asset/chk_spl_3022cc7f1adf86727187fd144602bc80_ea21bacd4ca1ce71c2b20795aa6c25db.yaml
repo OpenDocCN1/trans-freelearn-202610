@@ -1,0 +1,64 @@
+reviews:
+- 'no': 113
+  overturn_probability: 0.15
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 标题为“## 模块 1：以实例学习树莓派”，属于部分-章节模式的最高层级模块标题，后续内容确实以模块为单位展开
+  - 前后有明确的章节过渡，符合部分起始特征
+  keep_split: true
+- 'no': 117
+  overturn_probability: 0.05
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 标题为“## 1 树莓派和 Python 简介”，编号为全书最高层级大章，单独成行且语义统领后续多节内容
+  - '后 1~3 行为概述段落，随后出现子节 ### 单板计算机，符合章标题上下文特征'
+  keep_split: true
+- 'no': 655
+  overturn_probability: 0.85
+  alternative: 排版断行
+  counter_evidence:
+  - 标题被拆分为两行，no 655 仅为“## 2”，实际章节名在 no 657 “Minecraft Pi”，标题未单独成行完整呈现
+  - 格式特征不满足：真正的章标题通常单独成行且长度小于30字，此处编号与名称断行属于排版噪声
+  keep_split: false
+- 'no': 937
+  overturn_probability: 0.25
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 标题“## 使用 PyGame 构建游戏”单独成行，前文有“## 总结”过渡，后续内容独立成体系，语义具有统领性
+  - 虽无显式编号，但符合语义判断的最高层级章特征
+  keep_split: true
+- 'no': 1268
+  overturn_probability: 0.2
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 标题“## 使用网络摄像头和 Pi Camera”单独成行，后续覆盖网络摄像头、Pi Camera、延时摄影等完整主题
+  - 前后有章节总结过渡，符合新章起始上下文
+  keep_split: true
+- 'no': 1582
+  overturn_probability: 0.1
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 标题“## 5 GPIO 编程入门”为编号大章，单独成行且语义统领 GPIO 相关全部内容
+  - '后续出现子节 ## 介绍 GPIO 引脚、## 构建 LED 闪烁器 等，符合章-节结构'
+  keep_split: true
+- 'no': 1911
+  overturn_probability: 0.75
+  alternative: 正文小标题
+  counter_evidence:
+  - 标题“## Setting up the prerequisites”为流程性小节标题，后文为材料清单和安装步骤，属于章节内部的准备小节
+  - 前文总结提示下一章为动画制作，但本标题语义偏操作步骤，长度和统领性弱于最高层级章标题，更符合正文小标题
+  keep_split: false
+- 'no': 2096
+  overturn_probability: 0.1
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 标题“## Introduction to Computer Vision”单独成行，统领 OpenCV、NumPy、图像处理等完整主题
+  - 前后有章节总结过渡，符合新章起始特征
+  keep_split: true
+- 'no': 2837
+  overturn_probability: 0.15
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 标题“## 创建自己的运动检测与跟踪系统”单独成行，覆盖阈值化、噪声消除、形态学、轮廓、运动检测等完整主题
+  - 语义具有统领性且与前章计算机视觉基础形成递进，符合章标题特征
+  keep_split: true

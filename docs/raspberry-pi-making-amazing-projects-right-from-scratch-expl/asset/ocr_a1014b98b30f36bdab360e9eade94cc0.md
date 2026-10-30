@@ -1,0 +1,7 @@
+One of the challenges of accessing the system remotely is that you need to know the IP address of your board. There is a way to discover this by using an IP scanner application. There are several scanners available for free; on Windows, a possible choice is Advanced IP Scanner, which is available from `http://www.advanced-ip-scanner.com/`. Here is what the program looks like when it is run:
+
+![](bbox=[0.176, 0.239, 0.824, 0.481])
+
+Clicking on the **Scan** selector scans for all the devices connected to the network. You can also do this in Linux; one application for IP scanning in Linux is called Nmap. To install Nmap, type `sudo apt-get install nmap`. To run Nmap, type `sudo nmap -sP 10.25.155.1/154` and the scanner will scan the addresses from 10.25.155.1 to 10.25.155.154.
+
+These scanners can let you know which addresses are being used, and this should then let you find your Raspberry Pi IP address. Since you are going to access your device via SSH, you'll also need an SSH terminal program running on your remote computer. If you are running Microsoft Windows, you can download such an application. One simple and easy choice is Putty. It is free and does a very good job of allowing you to save your configuration so you don't have to type it in each time. This program is available at `www.putty.org`.

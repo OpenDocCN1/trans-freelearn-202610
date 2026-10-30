@@ -1,0 +1,112 @@
+# Raspberry Pi：从零开始制作惊人项目！：探索 Raspberry Pi 的强大功能并开箱即用构建自己的项目：三模块课程
+
+## Credits
+
++   **Authors**
++   - Ashwin Pajankar
++   - Arush Kakkar
++   - Matthew Poole
++   - Richard Grimmett.
+
++   **Reviewers**
++   - Nathan Johnson
++   - Elliot Kermit-Canfield
++   - Anna Torlen
++   - Lihang Li
++   - Cédric Verstraeten
++   - Ashwin Pajankar
++   - Werner Ziegelwanger
+
++   **Content Development Editor**
++   - Sumeet Sawant
++   
++   **Production Coordinator**
++   - Arvindkumar Gupta
+
+## Preface
+
+Machine learning and predictive analytics are becoming one of the key strategies for unlocking growth in a challenging contemporary marketplace. It is one of the fastest growing trends in modern computing and everyone wants to get into the field of machine learning. In order to obtain sufficient recognition in this field, one must be able to understand and design a machine learning system that serves the needs of a project. The idea is to prepare a Learning Path that will help you to tackle the real-world complexities of modern machine learning with innovative and cutting-edge techniques. Also, it will give you a solid foundation in the machine learning design process, and enable you to build customized machine learning models to solve unique problems
+
+## What this learning path covers
+
+*Module 1, Raspberry Pi By Example,* provides you an introduction to the Raspberry Pi. It helps in building games with PyGame and creation of real-life applications with the Raspberry Pi. It further demonstrates the GPIO and cameras with advanced concepts in OpenCV. This module further delves with setting up a web server and creating network utilities.
+
+*Module 2, Building a Home Security System with Raspberry Pi,* lets you explore the GPIO Port along with building input / output expansion board which helps in overcoming the limitations on GPIO. It helps you to create log files based on events using Bash Scripts. This module further covers a miscellany of things for accessing home security control panel.
+
+*Module 3, Raspberry Pi Robotics Essentials,* starts with configuring and programming Raspberry Pi, along with construction of biped platform. It further covers in-depth planning of biped with the details of connecting webcam, hardware and software in order to use input visual data into our system.
+
+## What you need for this learning path
+
++   - Module 1, Raspberry Pi By Example, recommends you to use the following kit:
++     Raspberry Pi Model B, B+ or 2 (Multiple boards for last two chapters)
++     USB hub, powered preferably
++     Networking hub
++     PC for preparing SD card
++     Webcam and/or Pi Camera
++   - Module 2, Building a Home Security System with Raspberry Pi, will need the following software:
++     Gparted dd fake-hwclock
++     Win32 Disk Imager 0.9.5 PuTTY
++     i2c-tools
++   - Module 3, Raspberry Pi Robotics Essentials, asks you to use Raspbian, putty, Image Writer for Windows, libusb-1.0.0-dev and VncServer.
+
+## Who this learning path is for
+
+Novice programmers and hobbyists who want to understand how to use Raspberry Pi to build interesting projects and home automation systems, as well as for those who want to delve deeper into the world of Raspberry Pi
+
+## Reader feedback
+
+Feedback from our readers is always welcome. Let us know what you think about this course – what you liked or disliked. Reader feedback is important for us as it helps us develop titles that you will really get the most out of.
+
+To send us general feedback, simply e-mail feedback@packtpub.com, and mention the course's title in the subject of your message.
+
+If there is a topic that you have expertise in and you are interested in either writing or contributing to a book, see our author guide at www.packtpub.com/authors.
+
+## Customer support
+
+Now that you are the proud owner of a Packt course, we have a number of things to help you to get the most from your purchase.
+
+## Downloading the example code
+
+You can download the example code files for this course from your account at http://www.packtpub.com. If you purchased this course elsewhere, you can visit http://www.packtpub.com/support and register to have the files e-mailed directly to you.
+
+You can download the code files by following these steps:
+
++   1. Log in or register to our website using your e-mail address and password.
++   2. Hover the mouse pointer on the SUPPORT tab at the top.
++   3. Click on Code Downloads & Errata.
++   4. Enter the name of the course in the Search box.
++   5. Select the course for which you're looking to download the code files.
++   6. Choose from the drop-down menu where you purchased this course from.
++   7. Click on Code Download.
+
+You can also download the code files by clicking on the Code Files button on the course's webpage at the Packt Publishing website. This page can be accessed by entering the course's name in the Search box. Please note that you need to be logged in to your Packt account.
+
+Once the file is downloaded, please make sure that you unzip or extract the folder using the latest version of:
+
++   - WinRAR / 7-Zip for Windows
++   - Zipeg / iZip / UnRarX for Mac
++   - 7-Zip / PeaZip for Linux
+
+The code bundle for the course is also hosted on GitHub at https://github.com/PacktPublishing/Raspberry-Pi-Making-Amazing-Projects-Right-from-Scratch-
+
+## Errata
+
+Although we have taken every care to ensure the accuracy of our content, mistakes do happen. If you find a mistake in one of our courses — maybe a mistake in the text or the code — we would be grateful if you could report this to us. By doing so, you can save other readers from frustration and help us improve subsequent versions of this course. If you find any errata, please report them by visiting http://www.packtpub.com/submit-errata, selecting your course, clicking on the Errata Submission Form link, and entering the details of your errata. Once your errata are verified, your submission will be accepted and the errata will be uploaded to our website or added to any list of existing errata under the Errata section of that title.
+
+To view the previously submitted errata, go to https://www.packtpub.com/books/content/support and enter the name of the course in the search field. The required information will appear under the Errata section.
+
+## Piracy
+
+Piracy of copyrighted material on the Internet is an ongoing problem across all media. At Packt, we take the protection of our copyright and licenses very seriously. If you come across any illegal copies of our works in any form on the Internet, please provide us with the location address or website name immediately so that we can pursue a remedy.
+
+Please contact us at copyright@packtpub.com with a link to the suspected pirated material.
+
+We appreciate your help in protecting our authors and our ability to bring you valuable content.
+
+## Questions
+
+If you have a problem with any aspect of this course, you can contact us at questions@packtpub.com, and we will do our best to address the problem.
+
+
+
+

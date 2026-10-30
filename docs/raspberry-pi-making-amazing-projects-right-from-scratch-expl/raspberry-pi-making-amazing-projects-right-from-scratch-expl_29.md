@@ -1,0 +1,145 @@
+## 7 远程访问你的双足机器人
+
+现在你的双足机器人已经运行起来了，你会想要让它进入世界，但仍然能够远程监控和控制它。这将有助于你的开发以及部署，并将开启各种新的场景和应用。
+
+在本章中，你将学习：
+
+- 如何为你的双足机器人添加一个无线 LAN 适配器并将其设置为无线接入点
+- 如何使用此接入和一个摇杆控制你的双足机器人
+- 如何使用无线 LAN 连接获取第一人称视频（FPV），以便你可以看到你的双足机器人所看到的内容
+
+### 添加无线适配器并创建接入点
+
+在第 1 章《配置和编程 Raspberry Pi》中，你学习了如何添加无线适配器并让 Raspberry Pi 连接到你的无线网络。这是一种访问 Raspberry Pi 的有用方式，但如果你想将你的机器人带到无线 LAN 覆盖范围之外，你需要将其设置为接入点。
+
+执行此操作的第一个步骤是安装无线 LAN 设备。一个价格便宜且易于配置的设备是 Edimax Wifi Adapter 设备（产品信息可在 http://www.edimax.com/edimax/merchandise/merchandise_detail/data/edimax/global/wireless_adapters_n150/ew-7811un 获取）。它可在大多数在线电子商店获得：
+
+![](img/631e8b200cce187082ee46b0eb1681b3_576_0.png)
+
+一旦你安装了设备并启动 Raspberry Pi，输入 lsusb 命令。这应该会显示如下屏幕截图中的内容：
+
+![](img/631e8b200cce187082ee46b0eb1681b3_576_1.png)
+
+Edimax 设备列在连接到 USB 端口的设备集中。
+现在，执行以下步骤：
+
+1. 通过输入 `sudo apt-get install hostapd` 确保你已安装 `hostapd`。此应用程序是一个后台应用程序，控制 Raspberry Pi 上无线配置。
+2. 默认版本的 `hostapd` 不幸地默认不支持 Edimax 芯片组。因此，你需要通过输入 `wget http://www.daveconroy.com/wp3/wp-content/uploads/2013/07/hostapd.zip` 下载一个支持的版本。
+3. 现在，通过输入 `unzip hostapd.zip` 解压此文件。
+4. 通过输入 `sudo mv /usr/sbin/hostapd /usr/sbin/hostapd.bak` 备份你的原始 `hostapd` 应用程序。这样，如果你以后想恢复它，你就有它了。
+5. 现在，通过输入 `sudo mv hostapd /usr/sbin/hostapd.edimax` 将新版本的 `hostapd` 移动到正确目录。
+6. 对于下一步，输入 `sudo ln -sf /usr/sbin/hostapd.edimax /usr/sbin/hostapd`；这将创建一个软链接到新文件，以便它作为 `hostapd` 应用程序执行。
+7. 输入 `sudo chown root.root /usr/sbin/hostapd`，这将更改此文件的拥有者和组为 root。
+8. 输入 `sudo chmod 755 /usr/sbin/hostapd` 使此文件对拥有者可执行。
+9. 现在你需要配置你的无线接入点。通过输入 `sudo emacs /etc/hostapd/hostapd.conf` 编辑文件，使其看起来像以下屏幕截图：
+
+    ![](img/631e8b200cce187082ee46b0eb1681b3_577_0.png)
+
+10. 你现在需要编辑 `/etc/network/interfaces` 文件，如以下屏幕截图所示：
+
+    ![](img/631e8b200cce187082ee46b0eb1681b3_578_0.png)
+
+11. 这将把接入点的地址设置为 **10.10.0.1**。
+
+12. 现在，输入 `sudo apt-get install isc-dhcp-server` 安装一个 dhcp 服务器，以便连接到它的设备能够获得动态地址。
+
+13. 现在，编辑 `/etc/dhcp/dhcpd.conf` 并添加这些行：
+
+    ![](img/631e8b200cce187082ee46b0eb1681b3_578_1.png)
+
+
+
+14. 下一步是编辑 /etc/default/hostapd，以便在开机时启动所有服务，通过添加以下行：
+
+![](img/631e8b200cce187082ee46b0eb1681b3_579_0.png)
+
+15. 现在输入以下两个命令；sudo update-rc.d hostapd enable 和 sudo update-rc.d isc-dhcp-server enable，然后重启 Raspberry Pi。
+
+现在你应该能够作为无线接入点连接到你的 Raspberry Pi。
+
+## 添加摇杆遥控器
+
+现在你可以通过远程计算机访问 Raspberry Pi，可以 SSH，就像你可能使用有线连接时所做的那样，发出命令，甚至使用远程计算机控制双足机器人。这引入了许多不同的可能性，其中之一就是使用连接到远程计算机的摇杆来控制你的项目。
+
+要添加游戏控制器，你首先需要找到一个可以连接到计算机的游戏控制器。如果你使用的是 Microsoft Windows 作为主机计算机的操作系统，几乎任何可以连接到 PC 的 USB 控制器都可以使用。如果使用 Linux 作为远程计算机，同类型的控制器也适用。事实上，你可以使用另一台 Raspberry Pi 作为远程计算机。
+
+由于摇杆将连接到远程计算机，你需要运行两个程序：一个在远程计算机上运行，一个在双足机器人上的 Raspberry Pi 上运行。你还需要一种在它们之间通信的方式。在以下示例中，你将使用无线局域网接口和客户端-服务器通信模型。你将在远程计算机上运行服务器程序，并在双足机器人上的 Raspberry Pi 上运行客户端程序。
+
+> 有关这种模型及其在游戏应用中使用的优秀教程，请参阅 http://www.raywenderlich.com/38732/multiplayer-game-programming-for-teens-with-python。
+
+第一步是简单地将你的 USB 游戏控制器插入远程计算机。一旦将控制器连接到远程计算机，你需要在 Raspberry Pi 上创建一个 Python 程序，该程序将接收从远程计算机客户端发送的信号并将其发送到在 Raspberry Pi 上运行的服务器，以便你可以向双足机器人的舵机发送正确的信号。
+
+在执行此操作之前，你需要在 Raspberry Pi 上安装将使此功能正常工作的库。第一个是名为 pygame 的库。通过输入 sudo apt-get install python-pygame 安装它。你还需要通过输入 sudo apt-get install python-setuptools 安装一套 Python 安装工具。然后，你需要一个名为 PodSixNet 的 LAN 通信层库。这将允许两个应用程序，即远程计算机上的客户端和在 Raspberry Pi 上运行的服务器进行通信。要安装它，请按照 http://mccormick.cx/projects/PodSixNet/ 上的说明进行操作。现在你可以在双足机器人的 Raspberry Pi 上创建程序了。程序的第一部分是你在第 3 章《双足机器人的运动》中创建的程序中的 Python 函数。在本节中，你将创建一个名为 QuadGame 的类。此类将接收连接到服务器的游戏控制器的输入，并将其转换为将发送到双足机器人舵机控制器的命令。
+
+以下是这些控制的表格：
+
+| Joystick control | Biped control |
+|---|---|
+| Button 2 | Robot home position |
+| Button 1 | Robot turn right |
+| Button 3 | Robot turn left |
+| Joystick Up | Robot walk forward |
+
+现在，以下是代码的初始部分，即 Python 导入语句：
+
+![](img/631e8b200cce187082ee46b0eb1681b3_581_0.png)
+
+以下是 BoxesGame 类，即将响应摇杆的代码：
+
+![](img/631e8b200cce187082ee46b0eb1681b3_581_1.png)
+
+## 远程访问你的双足机器人
+
+这是代码的有趣部分。此代码接收来自远程计算机的输入并将其转换为动作。第一个 if 语句确定从连接有摇杆的远程计算机发送的数据类型。它可以是按钮按下，其中 data["type"] == 10，然后语句 data["info"]["button"] == 2 确定按钮 2 已被按下。在这种情况下，这将发送命令，使机器人移动到初始位置。如果 if data["type"] == 7;，则这是一个摇杆事件，并且 if data["info"]["value"] < - 0.9，则这将确定摇杆处于向上位置，机器人应向前移动。
+
+以下是客户端程序的摇杆控制器部分的最后部分，以供完整参考：
+
+![](img/631e8b200cce187082ee46b0eb1681b3_582_0.png)
+
+这最后一段代码初始化游戏循环，该循环在接收输入时将其发送到舵机控制器，然后发送到飞行控制器。
+
+你还需要在远程计算机上运行一个服务器程序，该程序将接收来自游戏控制器的信号并将其发送到客户端。你将使用 Python 版本 2.7 用 Python 编写此代码，可以从这里安装。此外，你还需要安装 pygame 库。如果你使用的是远程计算机上的 Linux，则输入 sudo apt-get install python-pygame。如果你使用的是远程机器上的 Microsoft Windows，则按照 http://www.pygame.org/download.shtml 上的说明进行操作。
+
+你还需要前面描述的 LAN 通信层。你可以在 http://mccormick.cx/projects/PodSixNet/ 上找到可在 Microsoft Windows 或 Linux 上运行的版本。以下是服务器代码的两个部分的列表：
+
+![](img/631e8b200cce187082ee46b0eb1681b3_583_0.png)
+
+## 远程访问你的双足机器人
+
+这第一部分创建了三个类：
+
+- 1. 第一个，class ClientChannel，建立了项目的通信通道。
+- 2. 第二个，class BoxServer，设置了一个服务器，以便你可以将摇杆动作传达给双足机器人上的 Raspberry Pi。
+- 3. 最后，第三个类，Game，只是初始化了一个包含你所需的一切的游戏。
+
+以下是代码的后半部分：
+
+![](img/631e8b200cce187082ee46b0eb1681b3_584_0.png)
+
+这部分代码初始化摇杆，以便所有控制都可以发送到双足机器人的 Raspberry Pi。
+
+你需要在两台计算机上运行这些程序，输入连接到摇杆的远程计算机的 Internet 地址。以下是在远程计算机上运行程序时的外观，在运行远程计算机上的程序之前：
+
+![](img/631e8b200cce187082ee46b0eb1681b3_585_0.png)
+
+以下是程序在 Raspberry Pi 上运行并连接到机器人时的外观：
+
+![](img/631e8b200cce187082ee46b0eb1681b3_585_1.png)
+
+最后，以下是当机器人的 Raspberry Pi 启动并连接时，程序在远程计算机上的外观：
+
+![](img/631e8b200cce187082ee46b0eb1681b3_586_0.png)
+
+现在你可以使用摇杆远程控制你的机器人！
+
+## 添加远程查看功能
+
+你的双足机器人现在可以从远程计算机获取信息并响应摇杆按键，但你可能希望能够通过网络摄像头看到双足机器人所看到的内容。这使用网络摄像头、vncserver 和你在 *第 6 章， 为你的双足机器人添加视觉* 中使用的功能很容易配置。使用此方法，你可以轻松获得双足机器人所看到的图片，它应该类似于以下内容：
+
+![](img/631e8b200cce187082ee46b0eb1681b3_587_0.png)
+
+现在你既可以看到你的机器人正在去哪里，又可以通过摇杆控制它。
+
+## 总结
+
+就是这样，但这真的只是开始。你的机器人有一些基本动作和一些基本控制能力，但现在你应该也有知识和技能将你的双足机器人提升到更远的水平。你可以教它如何跳舞，跟随手势，以及你能想象到的几乎任何事情。

@@ -1,0 +1,141 @@
+reviews:
+- 'no': 3006
+  overturn_probability: 0.9
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题为 ## 级，上下文在同一大章的运动检测内容内部，后续仍为 3.2 级小节，非最高层级章标题'
+  - 标题后 1~3 行为概述段落而非章级概述，且前后无章结束总结特征
+  keep_split: false
+- 'no': 3064
+  overturn_probability: 0.9
+  alternative: 正文小标题
+  counter_evidence:
+  - '与 3006 属于同一主题的二级小节，格式为 ## 且长度>30字倾向小标题'
+  - 前后文连续的代码演示，未出现章级分隔的总结/习题
+  keep_split: false
+- 'no': 3166
+  overturn_probability: 0.95
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题为 ## 小结，属于章节内部的收尾小标题，非最高层级章标题'
+  - 规则明确小结为正文内部结构，不应划分新章
+  keep_split: false
+- 'no': 3194
+  overturn_probability: 0.85
+  alternative: 正文小标题
+  counter_evidence:
+  - '## 设置 GrovePi 为项目步骤小标题，后续为安装步骤列表，非统领整章的语义'
+  - 上下文仍在 GrovePi 这一大节内部
+  keep_split: false
+- 'no': 3269
+  overturn_probability: 0.85
+  alternative: 正文小标题
+  counter_evidence:
+  - '## 显示天气 为具体项目示例小标题，长度短且为二级标题'
+  - 前后为代码与说明，未出现章级起止特征
+  keep_split: false
+- 'no': 3329
+  overturn_probability: 0.85
+  alternative: 正文小标题
+  counter_evidence:
+  - '## 入侵检测系统 为项目级小节，位于 GrovePi 章节内部'
+  - 标题后直接进入代码描述，非章级概述
+  keep_split: false
+- 'no': 3367
+  overturn_probability: 0.8
+  alternative: 正文小标题
+  counter_evidence:
+  - '## Grove传感器与树莓派 为二级小标题，语义为段落主题而非全书最高层级'
+  - 前后无章编号或前言/致谢等章级标记
+  keep_split: false
+- 'no': 3385
+  overturn_probability: 0.6
+  alternative: 正文小标题
+  counter_evidence:
+  - '## 树莓派物联网 虽为大主题，但仍为 ## 级且在第 11 章前后结构中更像节标题'
+  - '后续出现 ### 物联网简介 等更细层级，说明其为节而非章'
+  keep_split: false
+- 'no': 3535
+  overturn_probability: 0.9
+  alternative: 正文小标题
+  counter_evidence:
+  - '## Setting up a SQLite database in Python 为英文二级小标题，位于物联网章节内部'
+  - 标题后为代码示例，非章级统领
+  keep_split: false
+- 'no': 3619
+  overturn_probability: 0.85
+  alternative: 正文小标题
+  counter_evidence:
+  - '## 构建一个推文天气站 为项目示例小标题，上下文为物联网章节的子内容'
+  - '标题长度适中且为 ## 级，不符合最高层级章标题'
+  keep_split: false
+- 'no': 3710
+  overturn_probability: 0.85
+  alternative: 正文小标题
+  counter_evidence:
+  - '## 为我们的天气站添加语音功能 为功能扩展小节，语义具体'
+  - 前后为 espeak 安装步骤，非章级划分
+  keep_split: false
+- 'no': 3766
+  overturn_probability: 0.05
+  alternative: 章节标题
+  counter_evidence:
+  - '编号章标题 ## 11，单独成行，符合最高层级章节特征'
+  keep_split: true
+- 'no': 3781
+  overturn_probability: 0.8
+  alternative: 正文小标题
+  counter_evidence:
+  - '## Introducing a Pi-based supercomputer 为第 11 章下的二级小节，英文标题且为 ## 级'
+  - 后续内容为章节引言而非新章起始
+  keep_split: false
+- 'no': 4208
+  overturn_probability: 0.05
+  alternative: 章节标题
+  counter_evidence:
+  - '编号章标题 ## 12，单独成行，最高层级'
+  keep_split: true
+- 'no': 4210
+  overturn_probability: 0.7
+  alternative: 正文小标题
+  counter_evidence:
+  - '## 使用树莓派进行高级网络 为第 12 章的节标题，虽语义大但仍为 ## 级且在编号章后'
+  - 规则要求最高层级需编号或第 X 章
+  keep_split: false
+- 'no': 4558
+  overturn_probability: 0.05
+  alternative: 章节标题
+  counter_evidence:
+  - '编号章标题 ## 13 在树莓派上设置 Web 服务器，符合章级格式'
+  keep_split: true
+- 'no': 4765
+  overturn_probability: 0.05
+  alternative: 章节标题
+  counter_evidence:
+  - '编号章标题 ## 14 使用树莓派进行 Python 网络编程，最高层级'
+  keep_split: true
+- 'no': 5712
+  overturn_probability: 0.05
+  alternative: 章节标题
+  counter_evidence:
+  - '编号章标题 ## 15 新款 Raspberry Pi 型号，最高层级'
+  keep_split: true
+- 'no': 5792
+  overturn_probability: 0.3
+  alternative: 章节标题
+  counter_evidence:
+  - '## Module 2 为模块级标题，单独成行且语义统领后续内容，可视为最高层级划分'
+  keep_split: true
+- 'no': 5798
+  overturn_probability: 0.2
+  alternative: 章节标题
+  counter_evidence:
+  - '## 1 为编号章标题，单独成行'
+  keep_split: true
+- 'no': 5800
+  overturn_probability: 0.85
+  alternative: 正文小标题
+  counter_evidence:
+  - '## 设置您的 Raspberry Pi 为第 1 章下的二级小节，标题后为准备工作列表'
+  - 非最高层级章标题
+  keep_split: false
