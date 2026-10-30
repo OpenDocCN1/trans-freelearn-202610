@@ -1,0 +1,4205 @@
+- '# Power Automate Desktop RPA 民主化
+
+
+
+
+
+  '
+- '## 前言
+
+
+  在我们的私人生活和职业生活中，我们都熟悉这样的场景：不得不执行重复且乏味的 IT 任务。微软提供了 Power Automate Desktop，这是一个免费工具，可用于解决从小型到大型的自动化场景。
+
+
+  在本书中，您将学到使用 Power Automate Desktop 自动化重复且单调的流程所需的一切，从而释放出更多时间去做更重要的事情。本书介绍了该程序的历史及其在
+  Microsoft Power Platform 中的当前角色，然后解释了用户界面自动化的概念，以及如何利用 Power Automate Desktop 实现本地安装的程序或进程以及
+  Web 浏览器的自动化。
+
+
+  随着学习的深入，您将通过大量示例了解 Power Automate Desktop 的完整功能集，从变量、条件和分支等基本概念，到本地桌面的功能（如文件和文件夹管理），再到连接数据库、大型机计算机和
+  SAP 自动化。
+
+
+  最后几章还涉及人工智能的主题以及如何将其融入流程，同时介绍了 Power Automate Desktop 如何用于大型企业，在大型企业中，治理、合规性、扩展和安全性等额外主题也发挥着作用。
+
+
+  ## 本书读者对象
+
+
+  本书不要求读者具备特殊的 IT 知识，因此一个有抱负且对流程感兴趣的 Windows 用户将能够很好地掌握本书内容，因为所有必要的概念都已解释清楚。对于更复杂系统的连接，如
+  SAP、大型机或 Web 服务，本书解释了基本功能。要实现这些，则需要具备相关领域的知识。
+
+
+  流程。
+
+
+  *第11章*，*使用 API 和 Web 服务*，展示了 Power Automate Desktop 如何与不同的 API 和 Web 服务协同工作，以设计自动化流程。
+
+
+  *第12章*，*PAD 企业最佳实践*，解释了 Power Automate Desktop 如何作为更大自动化项目的一部分发挥作用，以及需要考虑哪些方面。
+
+
+  ## 如何充分利用本书
+
+
+  要使用本书中的内容，只需要 Windows 10 或 11 操作系统以及最新版本的 Power Automate Desktop。安装方法在*第2章*中介绍。它还实现了各种应用程序的自动化，例如浏览器（Edge、Chrome
+  或 Firefox）、Microsoft Office 以及其他可能已安装的应用程序。
+
+
+  有些章节侧重于要自动化的特定应用程序，例如 SAP 或大型机应用程序。为此，使用了开发或试用许可证，其购买和安装过程在相应章节中加以说明。
+
+
+  **如果您使用的是本书的数字版本，我们建议您自行输入代码或从本书的 GitHub 仓库获取代码（下一节提供了链接）。这样做有助于避免因复制粘贴代码而可能产生的错误。**
+
+
+  ## 下载示例代码文件
+
+
+  您可以从 GitHub 上的 https://github.com/PacktPublishing/Democratizing-RPA-with-Power-Automate-Desktop
+  下载本书的示例代码文件。如果代码有更新，会在 GitHub 仓库中进行更新。
+
+
+  **粗体：**表示新术语、重要词语或屏幕上显示的词语。例如，菜单或对话框中的词语以**粗体**显示。下面是一个示例：“单击 **全部可用** 条目的下拉菜单，并将其更改为
+  **仅第一个**。”
+
+
+  提示或重要说明会以这种方式显示。
+
+
+  ## 联系我们
+
+
+  我们始终欢迎读者的反馈。
+
+
+  **一般反馈：**如果您对本书的任何方面有疑问，请发送电子邮件至 [customercare@packtpub.com](mailto:customercare@packtpub.com)，并在邮件主题中注明书名。
+
+
+  **勘误：**尽管我们已尽一切努力确保内容的准确性，但错误仍可能发生。如果您在本书中发现错误，我们将不胜感激地请您向我们报告。请访问 [www.packtpub.com/support/errata](https://www.packtpub.com/support/errata)
+  并填写表格。
+
+
+  **盗版：**如果您在互联网上发现任何形式的非法盗版作品，请将地址或网站名称告知我们，我们将不胜感激。请通过 [copyright@packt.com](mailto:copyright@packt.com)
+  联系我们，并提供相关材料的链接。
+
+
+  **如果您有兴趣成为作者：**如果您有擅长的主题，并且有兴趣撰写或参与编写一本书，请访问 [authors.packtpub.com](https://authors.packtpub.com)。
+
+
+  ## 分享您的想法
+
+
+  读完 *使用 Power Automate Desktop 普及 RPA* 后，我们很想听听您的想法！请[单击此处直接进入本书的亚马逊评论页面](https://www.amazon.com/)并分享您的反馈。
+
+
+  您的评论对我们和技术社区都非常重要，这将帮助我们确保提供优质的内容。
+
+
+  ## 下载本书的免费 PDF 版本
+
+
+  感谢您购买本书！
+
+
+  您是否喜欢随时随地阅读，但又无法随身携带纸质书？您购买的电子书与您选择的设备不兼容？
+
+
+  别担心，现在每本 Packt 图书均附带一个免费的、无 DRM 的 PDF 版本。
+
+
+  您可以在任何地点、任何设备上阅读。搜索、复制和粘贴您喜爱的技术书籍中的代码，直接应用到您的应用程序中。
+
+
+  福利还不止这些，您还可以独享折扣、订阅电子通讯，并在收件箱中每天收到优质免费内容。
+
+
+  按照以下简单步骤即可享受这些福利：
+
+
+  1. 扫描二维码或访问以下链接
+
+
+  ![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_9_0.png)
+
+
+  https://packt.link/free-ebook/9781803245942
+
+  '
+- "## Power Automate Desktop 入门\n\n**Power Automate Desktop (PAD)** 基于一种称为**机器人流程自动化\
+  \ (RPA)** 的原理。在本章中，我们将了解 PAD 的基本概念，并探讨微软用来创建该产品的基础。此外，我们还将了解该产品如何融入 Power Platform\
+  \ 生态系统，以及它能带来哪些可能性。\n\n在本章中，我们将涵盖以下主题：\n\n- 什么是 PAD，它能做什么？\n- 这一切是如何开始的——机器人流程自动化\n\
+  - Microsoft Power Platform 概览\n- UI 流程揭秘及其在 Power Platform 中的作用\n- 一个展示 PAD 和 Power\
+  \ Platform 惊人潜力的首个示例\n\n在本章结束时，您将对 RPA 的概念以及 PAD 如何融入微软的自动化战略有全面的理解。第一个示例将向您展示 PAD\
+  \ 的潜力，并让您初步体验本书将要介绍的内容。\n\n### 什么是 PAD，它能做什么？\n\n为了更好地理解 PAD 的功能，我们将在以下小节中介绍一些最适合使用\
+  \ PAD 的示例。\n\n### 示例 1 – 自动回复信函处理\n\n想象一下，您孩子所在的学校要组织一场活动，而您是组织团队的一员。\n\n组织团队中的某个人已经创建了一封模板信函，发给所有学生家长，家长需通过勾选来表示是否同意其孩子参加。这些信函会以\
+  \ Word 文档的形式返回，其中包含学生姓名，以及每个案例中表示同意或拒绝的勾选框。\n\n现在您需要生成一份 Excel 列表，以汇总接受和拒绝的情况。为此，您必须打开每个\
+  \ Word 文档，查看是哪个学生以及勾选了哪个选项。整个过程如下图所示：\n\n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_12_0.png)\n\
+  \n图 1.1 – 如何根据电子邮件附件生成报告\n\n\n\n\n\n根据学生人数以及需要查阅的信息量，这是一项繁琐且耗时的任务。正如前面的图表所示，这个过程相当枯燥且耗时。此外，我们还需要在达到报告截止日期之前每天重复此操作。\n\
+  \nPAD 可以在这种情况下提供帮助。可以创建一个流程来检查属于特定主题的所有电子邮件并将 Word 文档保存到特定文件夹中。另一个流程可以检查该文件夹中的所有文件或文档，提取相关信息，并将其传输到\
+  \ Excel 电子表格中。你只需创建一次此流程，它就会自动完成剩下的工作。\n\n如果信件以打印输出的形式返回，甚至可以使用 **光学字符识别 (OCR)**。\n\
+  \n## 示例 2 – 遗留应用的集成\n\n即使在今天，仍然有大量专门为特定用例创建且因各种原因无法现代化改造的遗留应用。这些原因包括预算不足、技术过时，以及缺乏资源、能力和时间。\n\
+  \n员工几乎被迫使用该应用，而且非常经常地，这样的应用无法通过 **应用程序编程接口 (API)** 或任何其他兼容接口以编程方式访问数据或流程。\n\n那么，当这样的应用必须集成到更大的上下文中时会发生什么呢？例如，可能存在一个销售平台，其中记录了订单和发票。然而，这些数据也必须流入遗留应用以保持数据库一致。或者，也许在遗留应用中生成了一个唯一的客户编号，该编号必须在其他地方使用（有关示例，请参阅\
+  \ *第 7 章*）。\n\n无论如何，必须有一种方法来处理这个遗留应用并将其集成到更大的上下文中——而这正是 PAD 发挥作用的地方。\n\n借助 PAD，我们可以远程控制任何桌面应用，记录一个始终相同的序列，然后再次运行它。借助\
+  \ PAD，我们还可以远程执行此流程或从外部事件触发（作业在系统中在线输入），读取计算或输入结果，并将其作为值回放到工作流中。\n\n这意味着一个无法从外部调用且只能手动操作的应用，仍然可以被自动化并集成。这也意味着在系统环境中，多个应用参与一个流程但没有技术连接时，可以使用\
+  \ PAD 设计一个连贯的流程并在这些应用之间交换数据。\n\n凭借其近 400 个操作（截至撰写时；可用操作的数量不断增长），PAD 可以覆盖所有用户场景，从\
+  \ Web 和桌面应用到数据库、文件和文件夹，再到电子邮件和脚本集成。下面的图表说明了 PAD 在连接方面的能力：\n\n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_14_0.png)\n\
+  \n图 1.2 – PAD 功能\n\n除了远程控制本地安装的程序外，PAD 还可以连接到众多外部系统和环境，例如来自 Microsoft 或 AWS 的云环境，并将人工智能纳入脚本和\
+  \ Web 自动化中。所有这些连接都可以在 PAD 的流程中使用，从而实现跨系统流程的映射。\n\n这说明 PAD 可以覆盖广泛的用例。然而，这并不意味着 PAD\
+  \ 适用于所有事情。在下一节中，我们将看看流程应满足哪些标准才能使使用 PAD 变得合理。\n\n## 哪些流程应该被自动化？\n\n正如我们在前几节中看到的，PAD\
+  \ 功能非常强大，可用于私人以及商业环境。流程和工作流无处不在，我们每天都在使用它们，但哪个流程适合自动化呢？\n\n使用 PAD 创建流程也需要一定的工作量，因此值得仔细研究是否值得自动化某个流程。以下是做出选择时可以参考的一些方面：\n\
+  \n- 你是否充分理解该流程并且其执行方式是否一致？如果存在太多变体或不可预测的行为，自动化将非常困难，甚至不可能。\n- 是否有足够多的重复次数或甚至高频执行该流程，以使投入的工作物有所值（**投资回报率\
+  \ – ROI**）？\n- 该流程是否主要为手动操作，并且存在许多可以通过自动化消除的错误？\n\n可能还有其他影响自动化流程决策的方面，但如果你以这些问题作为起点，你就走在正确的道路上。\n\
+  \n## 一切的开始 – 机器人流程自动化\n\nRPA 的历史可以追溯到 1990 年代至 2000 年代。当时 **用户界面 (UI)**，有时也称为 **图形用户界面\
+  \ (GUI)** 软件测试的需求变得更加强烈——即能够自动点击软件 GUI、输入值并查询输出。为此，开发了第一批工具，使首次使用记录和回放方法进行 UI 和回归测试成为可能。屏幕抓取技术也用于此目的，通过它可以实现从一个应用中提取数据的自动化，以便在其他地方进一步使用。由此产生的自动运行流程也可以称为\
+  \ **bot**（**robot** 的简称）。\n\n稍晚一些，在 2005 年，一家名为 Softomotive 的公司成立，将记录和回放的概念扩展到能够在不同\
+  \ Windows 应用之间实现工作流和数据传输，从而跨应用自动化流程。该产品名为 WinAutomation，并与其他制造商一起长期成为 RPA 软件的领先提供商之一。\n\
+  \nSoftomotive 于 2020 年被 Microsoft 收购，其产品 WinAutomation 的功能被集成到 Power Automate 模块中，该模块当时对自动化基于桌面的流程的功能非常有限。尽管如此，Power\
+  \ Platform 在此阶段作为整体概念已经非常强大；我们将在 *第 2 章* 中讨论这一点。\n\n## Microsoft Power Platform\
+  \ 一览\n\nPower Platform 的真正起源可以追溯到很久以前，当时人们还在谈论 Microsoft 业务解决方案。那时，Microsoft\n\n\
+  进入市场推出了一款新的 CRM 系统，为今天的 Power Platform 奠定了基础。该生态系统由多个子组件组成，它们可以非常紧密地协同工作，也可以单独使用：\n\
+  \n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_17_0.png)\n\n跨越 Microsoft 365、Azure、Dynamic\
+  \ 365 和独立应用的低代码平台。\n\n图 1.3 – Microsoft Power Platform\n\n这些是组件：\n\n- **Power BI：**\
+  \ 一种用于在仪表板和报告中可视化任何类型数据的工具。Power BI 还可以从其他组件捕获实时数据，并利用连接器功能访问几乎任何数据源中的数据，并将其与其他数据结合以创建跨系统仪表板。\n\
+  - **Power Apps：** 这允许用户创建可用于特定业务流程的不同类型的应用。有不同类型的应用，它们又可根据表单因素（手机/平板电脑）或创建方式（画布与模型驱动）进行划分。Power\
+  \ Apps 也利用连接器概念在应用中使用任何数据源。\n- **Power Automate（原 Microsoft Flow）：** 这是 Power Platform\
+  \ 内创建的工作流和业务流程的通用术语。PAD 也属于这一类别；我们将在下一章更详细地介绍它。但这里还有其他组件，例如 **业务流程流 (BPFs)**。\n\
+  - **Power Virtual Agents：** 该模块允许你创建所谓的聊天机器人。它可以嵌入到网站或其他渠道中，为网站访问者提供一种交互方式来联系公司、询问订单状态等。\n\
+  - **Power Pages（原 PowerApps Portal）：** 该模块在撰写时处于预览阶段，源自已存在相当长时间的门户领域。它是一个内容管理系统，可用于创建外部网站。\n\
+  \n前面的图表还显示了 Power Platform 的另外三个重要构建块：\n\n### 数据连接器\n\n借助数据连接器，可以访问并使用通过 Power Platform\
+  \ 提供的所有数据源。今天已有超过 400 个可用，并且每天都在增加。然而，如果 Microsoft 或第三方制造商未提供连接器，也可以在组件中创建自己的连接器并使用它。\n\
+  \n### AI Builder\n\nAI Builder 允许你在应用或工作流中包含人工智能。提供的模型涵盖信息提取和文本识别，以及翻译，但也包括情感识别或根据你的标准对客户反馈进行分类。在这里，你也可以创建自己的\
+  \ AI 模型，使其在平台中可用，并由应用或工作流创建者使用。\n\n\n\n\n\n- **Cloud flows**：这类流程在云中运行，意味着它们在 Power\
+  \ Platform 内的 Microsoft 云基础设施上运行。云流程在特定的触发事件上运行——例如，*创建了新联系人*。它也可以立即运行，例如通过 Power\
+  \ App 中的按钮按下，或按计划运行——例如每小时一次。云流程可以在浏览器中的设计器中设计，并且可以集成任何在线可用的数据或系统。\n- **Business\
+  \ Process flows**：Dynamics 365 包含大量预定义的业务流程，例如 *潜在客户资格认定*。它描述了潜在客户成为真实客户的路径，以及实现此目标所需的措施和操作。所有这些操作都记录在\
+  \ BPF 中，并帮助用户确定下一步需要做什么以进一步确认潜在客户。这些流程仅在所谓的模型驱动应用中使用，在本书的上下文中不相关。为了更有效的业务流程，可以将云流程和\
+  \ BPF 合并。\n- **Desktop flows or UI flows**：这类流程在本地机器或工作站上运行，该工作站也可以是虚拟机。PAD 用于创建和设计这类流程，这些流程可以访问本地安装的应用程序或操作系统的资源。\n\
+  \n## Note\n\n本书重点关注桌面流程，PAD 是专门用于创建这类流程的工具。\n\nPAD 包含超过 450 个所谓的 actions，可用于设计流程。这些操作和所有设计功能将在后续章节中进行探讨。在以下小节中，将解释本地数据网关的概念，以及环境的概念。\n\
+  \n## Connecting PAD to the cloud\n\n在上一节中，我们了解到云流程可以访问在线的数据和系统。然而，在某些情况下，云流程需要访问位于家庭或企业网络中的本地机器\n\
+  \n（本地部署）——也就是说，它需要实现从 Microsoft Cloud/Power Platform 到本地机器的连接，正如我们在以下示例中看到的那样。\n\
+  \n在这种情况下，安全问题变得尤为突出。例如，公司不希望外部访问内部系统，或仅在非常有限和受控的条件下允许访问。担忧是有道理的，因为此类场景通常需要调整防火墙和端口，这可能会允许外部攻击。\n\
+  \n一方面不淡化这个问题，另一方面也不深入探讨安全主题，这里介绍了 Power Automate machine runtime 的概念。这提供了一种安全的方式，允许从\
+  \ Microsoft Cloud 系统访问本地计算机。\n\n在本地计算机上安装和配置 machine runtime 时，您需要连接到 Power Platform\
+  \ 并指定相应的凭据，以在环境中注册本地机器。此后，Microsoft Cloud 内的不同组件就可以利用此连接。\n\n## Gateways for Desktop\
+  \ flows are deprecated\n\n用于连接本地数据来源的常用工具是所谓的本地数据网关。该工具仍然存在，但不再支持用于连接桌面流程。相反，使用\
+  \ Power Automate machine runtime 从云中调用本地桌面流程。对于 machine runtime 的使用，必须满足关于版本和许可证的某些要求。这将在第\
+  \ 9 章中详细介绍。\n\n## Introducing Power Platform environments\n\nPower Platform 是各个组件在环境中创建、存储和执行的生态系统。\n\
+  \n因此，环境是一个容器，可以将各种组件（如应用和流程）包裹起来，反之，每个组件（应用、流程等）始终属于且仅属于一个环境。\n\n流程是否显示在流程列表中取决于是否选择了正确的环境。我们将在本书的示例中始终考虑这一点。\n\
+  \n在本节中，我们了解到 PAD 不仅是用于自动化本地应用程序的程序，而且它处于 Microsoft Power Platform 的更大背景中。PAD 可以集成到更大的场景中，并在企业环境中使用。下一节展示了\
+  \ PAD 如何使用 Office 程序映射一个总体流程的初始示例。\n\n## Understanding the potential of PAD by looking\
+  \ at an example with MS Office\n\n让我们再回顾一下开头的示例，其中要求您作为家长委员会帮助组织一次学校活动。该场景如下所示：\n\
+  \n- 1. 即将举行一次学校活动，家长委员会需要获得学生家长的同意。\n- 2. 为此已经发出信件，并附带了一份 Word 文档。在此文档中，家长可以勾选是否同意其子女参加。之后，家长应将\
+  \ Word 文档发送回特定电子邮件地址。为此示例定义了一个文档，看起来如下：\n\n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_24_0.png)\n\
+  \n图 1.5 – 流程的结构视图\n\n这里的想法是，您可以根据需要执行此流程，以收集收件箱中收到的所有家长回复。基于此结构化流程图，很容易创建一个 UI 流程来完成此操作。让我们看看这里的主要构建块以及它们如何在\
+  \ PAD 中创建。在后续章节中，我们将学习如何详细创建这样的流程：\n\n- 1. 启动 Outlook 并将消息保存到特定文件夹。\n\n以下屏幕截图显示了\
+  \ Desktop flow 的第一部分：\n\n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_25_0.png)\n\n\
+  图 1.6 – PAD Outlook 操作\n\n每个带有符号的框代表一个操作，可以通过拖放将其放置在设计画布上。PAD 中有超过 450 个操作，按 **Outlook**、**Files**\
+  \ 和 **Folders** 等不同类别分组。前四个操作与 Outlook 相关且不言自明：\n\n- **Launch Outlook：** 在桌面上启动\
+  \ Outlook 程序。\n- **Retrieve email messages from Outlook：** 检索特定文件夹中的消息，并允许将消息中的附件存储到特定文件夹中。\n\
+  - **Process email messages in Outlook：** 这允许将消息移动到其他文件夹。我们将使用它将消息从收件箱移动到某个子文件夹。\n\
+  - **Close Outlook：** 关闭程序。\n\n2. *使用跟踪工作簿打开 Excel。*\n\n第二步负责将附带的 Word 文档存储到特定文件夹中，该文件夹将在下一个构建块中使用：\n\
+  \nLaunch Excel\nLaunch Excel and open document SaveAttachmentsFolder \\Activity\
+  \ Tracker.xlsx using an existing Excel process and store it into Excel instance\
+  \ ExcelInstance\n\nGet files in folder\nRetrieve the files in folder SaveAttachmentsFolder\
+  \ and its subfolders that match *.docx and store them into Files\n\nGet current\
+  \ date and time\nRetrieve the current datetime and store it into CurrentDateTime\n\
+  \n图 1.7 – PAD Excel 和文件系统操作\n\n让我们看看这些操作：\n\n- **Launch Excel**：打开 Excel 并打开特定工作簿以存储响应。\n\
+  - **Get Files in a folder**：此操作检查本地文件系统并创建一个特定文件夹中的文件列表。也可以应用文件筛选器。在我们的案例中，我们只想要\
+  \ .docx 扩展名的 Word 文档。\n- **Get Current date and time**：这里，流程确定当前日期和时间，我们随后可以将它包含在\
+  \ Excel 中的相应条目中。\n\n## 3. 处理附件文件夹中的每个文档。\n\n以下块包含对每个 Word 文档的处理。最后一句话包含 for each\
+  \ 关键字，该关键字也在 PAD 中用于遍历项目列表。在最后一个构建块中，此项目/文档列表是由 Get files in folder 操作创建的，并且以下块以该\
+  \ for each 循环开始，如以下屏幕截图所示：\n\n\n\nFigure 1.8 – Handling each document in a loop\n\
+  \nThe actions are as follows:\n\n- **Rename file(s):** Used to rename one or more\
+  \ files. Since we are iterating through the list of Word documents, each iteration\
+  \ contains a different file in the folder. To identify the current file, this gets\
+  \ renamed to `work-in-progress.docx`.\n- **Run application:** PAD does not have\
+  \ specific actions for Microsoft Word, but like any other application, this program\
+  \ can also be automated. With this action, we start Microsoft Word on the local\
+  \ machine with a specific document, called `work-in-progress.docx`, which is the\
+  \ current document.\n- **Get selected checkboxes in window:** This action can extract\
+  \ `true` (for checked) or `false` (for unchecked) from any window of an application.\
+  \ In our example, we extract the information from the checkboxes of the Word document.\
+  \ We need this for the two checkboxes in the document, which is based on a template\
+  \ that was generated and sent in advance.\n- **Extract data from window:** Similar\
+  \ to a checkbox, this action allows us to extract text data from a window. We use\
+  \ this to extract the name of the child in the document.\n- **Get first free column/row\
+  \ from Excel workbook:** The workbook has already been opened in one of the actions.\
+  \ This action helps activate the first empty cell so that we can put content in\
+  \ it.\n- **Write to Excel worksheet:** This action writes data to the Excel cell\
+  \ specified. We need to perform this action four times to put all the data in.\n\
+  - **Terminate process:** This closes the Word application so that it can be opened\
+  \ with the next document in the next iteration.\n\n### 4. Housekeeping.\n\nFinally,\
+  \ we need to do some housekeeping, which will be covered by the actions shown in\
+  \ the following screenshot:\n\n| # | Action | Description |\n|---|--------|-------------|\n\
+  | 21 | Delete file(s) | SaveAttachmentsFolder \"work-in-progress.docx\" |\n| 22\
+  \ | Save Excel | Save the Excel document stored into ExcelInstance |\n| 23 | Close\
+  \ Excel | Save the Excel document and close the Excel instance ExcelInstance |\n\
+  \nFigure 1.9 – Housekeeping PAD actions\n\nIn detail, these actions do the following:\n\
+  \n- **Delete file(s):** Microsoft Word creates a hidden file when it opens a document\
+  \ that sometimes isn’t deleted and stays in the filesystem. To make sure that we\
+  \ will have valid documents in our folder the next time we run the flow, we just\
+  \ delete the hidden file, if it exists.\n- **Save Excel:** Saves our entries in\
+  \ the workbook.\n- **Close Excel:** Closes the program.\n\nThis UI flow might look\
+  \ quite extensive because of multiple repetitions to store data in Excel, but it\
+  \ is nevertheless easy to create and very powerful. The time saved is enormous and\
+  \ it increases the more that parents need to be contacted and the more messages\
+  \ that need to be processed. In addition, this process could also be extended to\
+  \ using physical letters as input or responding to email messages.\n\nThere are,\
+  \ of course, other examples of Desktop Flows and Power Automate that create connections\
+  \ to some external systems or UI flows that get triggered from some cloud system.\
+  \ We will see examples of this throughout this book.\n\n## Summary\n\nIn this chapter,\
+  \ we started by providing an overview of PAD and how this product has been integrated\
+  \ by Microsoft into their Power Platform ecosystem. We saw that the product fits\
+  \ perfectly into Microsoft’s strategy and fills the gap in desktop software integration\
+  \ very well.\n\nIn our first example, we learned how different Office programs can\
+  \ be integrated to automate a repetitive process. Instead of handling each message\
+  \ and document separately, PAD saved the documents and extracted the relevant information.\
+  \ Thereby, we were able to save a lot of time by automating this process.\n\nIn\
+  \ the next chapter, we will create a flow by taking a small and very useful tool\
+  \ to help us: the recorder.\n\n## Further reading\n\nTo learn more about the topics\
+  \ that were covered in this chapter, take a look at the following resources:\n\n\
+  - *Workflow Automation with Microsoft Power Automate*, by Aaron Guilmette (Packt\
+  \ Pub)\n- *Microsoft Power Platform Solution Architect’s Handbook*, by Hugo Herrera\
+  \ (Packt Pub)\n- Microsoft Power Platform documentation:\n  https://learn.microsoft.com/en-us/power-platform/\n\
+  - About the on-premises data gateway: https://learn.microsoft.com/en-us/power-platform/admin/wp-onpremises-gateway\n\
+  - Power Platform environments overview:\n  https://learn.microsoft.com/en-us/power-platform/admin/environments-overview\n"
+- "## Using Power Automate Desktop and Creating Our First Flow\n\nIn the previous\
+  \ chapter, we saw how **Power Automate Desktop (PAD)** was born and how powerful\
+  \ the tool can be for automating repetitive tasks. In this chapter, we will take\
+  \ a detailed look into the following:\n\n- What is necessary for installing PAD\
+  \ on a local machine\n- How the application is built up\n- How to create our first\
+  \ flow by using the built-in recorder\n\nTo use PAD effectively, a basic understanding\
+  \ of the application is essential, as we will spend most of our time on the very\
+  \ areas presented here. Also, knowledge of the PAD recorder will be extremely helpful\
+  \ throughout this book because it can also save us a lot of time when creating flows.\
+  \ Now, let’s look at how we can get PAD running on our computers.\n\n### Understanding\
+  \ the prerequisites for installing PAD\n\nLet’s begin by taking a look at what you\
+  \ need to get Power Automate up and running on a local machine. Two things are required\
+  \ to install Power Automate:\n\n- A Windows operating system (Windows 10 or Windows\
+  \ 11 Home edition or above) and some hardware requirements/recommendations\n- A\
+  \ Microsoft work or school account to sign in to Power Automate\n\nSince there are\
+  \ specific things to consider, let’s take a closer look at each of these topics\
+  \ now.\n\n### Microsoft account\n\nTo be able to access the files for installing\
+  \ PAD, a Microsoft account (formerly known as Windows Live ID) is required. There\
+  \ are different types of accounts and all of them are suitable for using PAD:\n\n\
+  - **(Personal) Microsoft account:** This is probably the most commonly used type\
+  \ of account in the private area. It is free and provides access to Microsoft’s\
+  \ consumer services such as **Outlook.com, OneDrive, and Office applications**.\
+  \ To sign up, an existing email address can be used or a new one can be created.\
+  \ This account can also be used to sign in to a Windows machine.\n- **Work or school\
+  \ account:** This type of account is created by an organization that uses **Azure\
+  \ Active Directory (AAD)** as the authentication and authorization platform. Typically,\
+  \ additional services or subscriptions are purchased that offer additional functionality\
+  \ to users.\n- **Organization premium account:** This is a special form of work\
+  \ or school account. In this case, the organization is not only managing users via\
+  \ AAD but has also moved certain or all parts of IT to the cloud, such as Exchange,\
+  \ Teams, and Business applications.\n\nWith all three types, the full potential\
+  \ of PAD can be unleashed. The organization’s premium account has the following\
+  \ capabilities on top:\n\n- Connecting and integrating with cloud flows (see the\
+  \ previous comments on the operating system)\n- Collaboration and advanced functionality\
+  \ (such as central Dataverse storage, sharing of flows, as well as centralized management\
+  \ and reporting)\n- Additional premium functionality such as access to AI Builder\
+  \ and unattended execution of flows\n\nFor the vast majority of use cases, a personal\
+  \ Microsoft account is sufficient. Nevertheless, in the following chapters of this\
+  \ book, we will see scenarios where a premium account is necessary to access specific\
+  \ services.\n\n### Additional notes on accounts\n\nTo install PAD, a user with administrator\
+  \ privileges on the device is required. A Windows local or domain account with these\
+  \ privileges should be used. To access PAD installation files, however, one of the\
+  \ Microsoft accounts mentioned previously is necessary. The Windows local account\
+  \ can be associated with the Microsoft account in the corresponding Windows account\
+  \ settings.\n\nNow that we know the prerequisites, let’s take a look at how to install\
+  \ the software.\n\n### Installing PAD\n\nThe installation files for PAD are not\
+  \ on the local Windows medium – you must download these from the Microsoft download\
+  \ center. Therefore, an active internet connection and a modern browser are required\
+  \ – Microsoft Edge version 80 or higher or Google Chrome. For this book, I am using\
+  \ a machine with Windows 11 Home edition and a freshly created personal Microsoft\
+  \ account. To install PAD, do the following:\n\n- 1. Open your browser and navigate\
+  \ to https://www.office.com. If you are not already logged in, do so with your Microsoft\
+  \ account.\n- 2. On the right-hand side, you should see a list of familiar icons\
+  \ such as those for Word, Excel, and more. Click on the last one, called Apps. Clicking\
+  \ this icon will make additional apps appear:\n\n\n\n\n\n# 更多来自 Microsoft 365\n\n\
+  # 日历\n\n管理并共享你的日程。\n\n# 表单\n\n自定义调查和测验，获取实时结果。\n\n# OneNote\n\n创建数字笔记本。\n\n# Power\
+  \ Automate\n\n同步文件等以简化你的工作。\n\n# Sway\n\n创建交互式报告和演示文稿。\n\n# 图 2.1 – Microsoft Office\
+  \ 主页，附带其他应用\n\n3. 点击 Power Automate。如果看不到此图标，请向下滚动一点。接下来，你可能会看到一个欢迎屏幕，要求你选择正确的区域或国家。请选择适当的条目并按下\
+  \ 开始。\n\n4. 你将被重定向到 Power Automate 的起始屏幕，这里隐藏着安装文件。点击左侧导航栏中的 我的流：\n\n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_36_0.png)\n\
+  \n# 图 2.2 – 在 Power Automate 中访问我的流\n\n5. 在下一个屏幕上，右上角有一个 安装 按钮，可显示 PAD 和本地数据网关的安装文件。点击第一个条目开始安装\
+  \ PAD：\n\n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_37_0.png)\n\n图 2.3 – 安装文件\n\n\
+  另一种安装 PAD 的方式是通过 Microsoft Store：\n\n+   1. 打开 Microsoft Store 应用并在搜索栏中输入 Power\
+  \ Automate。\n+   2. 你会看到 Power Automate 作为搜索结果的第一项。点击 安装 按钮获取该工具（我已经安装过它，所以我可以打开它）：\n\
+  \n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_38_0.png)\n\n# 图 2.4 – 从 Microsoft Store\
+  \ 安装 Power Automate\n\n+   3. 无论是通过下载文件还是商店，都运行安装过程；这很简单。你会收到一条消息，说明安装成功。\n\n+ \
+  \  4. 之后，点击 Windows 开始 按钮并输入 Power Automate。安装程序不会创建任何快捷方式，因此最好将此程序固定到开始菜单或任务栏：\n\
+  \n图 2.5 – 本地固定并启动 Power Automate\n\n5. 点击 Power Automate 图标启动程序。\n\n# 重要说明\n\n请注意，该程序称为\
+  \ Power Automate 而不是 Power Automate Desktop。不要混淆——我们是在正确的位置。该程序可能会找到软件的更新版本并自动应用。\n\
+  \n当程序最终启动时，你还需要使用 Microsoft 帐户登录。之后，你应该再次选择一个区域并浏览 Power Automate 的导览，这也是 PAD 已成功安装的确认。\n\
+  \n# 创建我们的第一个流\n\n现在我们已成功安装 PAD，是时候创建我们的第一个简单流了：\n\n+   1. 此时，程序已启动并提供了一个欢迎屏幕。请注意不同的标签，它们允许你切换到你的流，甚至查看来自\
+  \ Microsoft 的示例程序，值得一看。从流容器屏幕开始，选择 + 新建流，可以从左上角的菜单栏或屏幕中间选择：\n\n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_40_0.png)\n\
+  \n图 2.6 – 创建我们的第一个流\n\n2. 在下一个对话框中，你将被要求为流命名。虽然这是可选的，但为流命名是良好的做法。这次让我们选择 **Welcome\
+  \ Flow**。你可以继续点击 **创建** 按钮开始设计器：\n\n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_41_0.png)\n\
+  \n图 2.7 – 流容器屏幕，带有 + 新建流 选项\n\n3. 这将启动 PAD 流的设计界面，这很可能就是我们在本书中将花费大部分时间的地方。在下一节中，我们将学习所有各个区域的含义以及它们的功能。但现在，让我们创建我们的第一个流。\n\
+  \n在我们的第一个流中，想法是我们希望流询问我们的名字，然后将其用于显示一个友好的欢迎消息。为了实现这一点，我们将使用 **消息框** 动作。查看左侧的条目列表并将鼠标悬停在名为\
+  \ **消息框** 的条目上，你应该会看到以下内容：\n\n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_42_0.png)\n\
+  \n# 图 2.8 – 探索操作窗格\n\n4. 当你对不同操作更加熟悉后，你也可以使用左上角的搜索栏来显示特定的一组操作。尝试点击搜索框并输入 display\
+  \ as some text。左侧操作列表会根据搜索词的结果进行调整：\n\n# 图 2.9 – 使用搜索栏\n\n我们现在感兴趣的是 **显示输入对话框**\
+  \ 操作，它是列表中的第二个条目。记住，你也可以使用左侧的完整操作列表并展开 **消息框** 操作组：\n\n+   1. 要将操作放置到设计画布上，只需点击并按住\
+  \ **显示输入对话框** 条目，然后将其拖放到窗口中间的 **主** 标签下方：\n\n# 图 2.10 – 将操作拖到画布上\n\n2. 松开鼠标按钮后，立即会出现一个对话框。在这里，我们需要输入所需的数据：\n\
+  \n# 显示输入对话框\n\n显示一个提示用户输入文本的对话框 更多信息\n\n# 选择参数\n\n输入对话框标题：\n\nWhat is your name?\n\
+  \n输入对话框消息：\n\nPlease tell me your name:\n\n默认值：\n\n输入类型：\n\n单行\n\n始终置顶输入对话框：\n\n\
+  产生的变量\n\nUserInput\n\nButtonPressed\n\n出错时\n\n保存\n\n取消\n\n# 图 2.11 – 显示输入对话框参数\n\
+  \n我们需要在此对话框中提供以下信息：\n\n+   1. 为输入对话框的标题输入一个名称。此标题出现在消息框的标题栏中。\n\n+   2. 为对话框输入一条消息。在这种情况下，我们想知道此人的名字。\n\
+  \n+   3. 你不需要在此处输入任何内容。然而，用户输入的名字的值必须存储在某个地方，以便稍后显示。此操作会产生一个变量作为内部存储，用于保存用户的输入。\n\
+  \n+   4. 点击 保存 按钮保存并关闭此对话框。\n\n3. 设计画布现在应包含第一个操作，看起来像这样：\n\n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_46_0.png)\n\
+  \n图 2.12 – 画布中的第一个操作\n\n现在我们有了一种查询名字的方法，我们希望再次向用户显示该名字。为此，我们将使用 显示消息 操作。点击并拖动此操作，将其放置在现有操作下方：\n\
+  \n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_46_1.png)\n\n图 2.13 – 将显示消息操作拖到画布上\n\n\
+  需要注意的是，有一条线指示操作将被放置的位置。以后，当我们有更大的流和更多操作时，这将允许我们在流中间放置一个操作并非常轻松地修改序列。就像我们的第一个操作一样，松开鼠标后立即会出现一个对话框，我们可以在其中指定此操作的参数：\n\
+  \n# 显示消息\n\n显示一个消息框 更多信息\n\n# 选择参数\n\n消息框标题：\n\nHello and welcome to PAD!!\n\n要显示的消息：\n\
+  \nHello\n\n消息框图标：\n\n搜索变量\n\n名称 类型\n\n流变量 2\n\nButtonPressed 文本值\n\nUserInput 文本值\n\
+  \n消息框按钮：\n\n默认按钮：\n\n始终置顶消息框：\n\n自动关闭消息框：\n\n产生的变量 ButtonPre\n\n出错时\n\n保存 取消\n\n\
+  图 2.14 – 显示消息操作的参数\n\n同样，我们需要在此处输入一些信息：\n\n+   1. 这将是用户在消息框标题中看到的文本。\n+   2. 我们想要显示的消息文本。\n\
+  +   3. 在消息框文本字段的右侧，有一个带括号的小 X 符号。这是一个可用于从流中的变量插入动态内容的按钮。在之前的操作中，我们将用户名字存储在一个名为 UserInput\
+  \ 的变量中。点击 X 按钮时，顶部会出现另一个对话框，显示此流中可用的变量。在这里，我们可以选择 UserInput 并点击 选择 按钮。变量将被插入到消息文本框中。它现在应该看起来像这样：\n\
+  \n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_48_0.png)\n\n图 2.15 – 在消息中使用变量\n\n+ \
+  \  4. 点击 保存 按钮保存并关闭对话框。\n+   5. 我们的第一个 UI 流现在看起来像这样：\n\n\n\n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_49_0.png)\n\
+  \n# 图 2.16 – 我们完成的第一个流程\n\n6. 要测试此流程，我们需要运行它。可以按操作画布顶部的“播放”按钮，或者转到“调试”菜单并选择“开始”来完成。运行流程的快捷键是\
+  \ F5。\n\n果然，出现了一个输入对话框，要求我们输入姓名，现在我们可以将其输入到文本框中：\n\n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_49_1.png)\n\
+  \n图 2.17 – 运行我们的第一个流程 – 第 1 部分\n\n另外，请注意，后台程序的界面发生了一点变化。带有蓝色背景的条目表示流程的当前步骤。输入姓名并点击**确定**按钮。流程将继续执行下一步，并显示一个消息框，其中包含你输入的姓名：\n\
+  \n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_50_0.png)\n\n图 2.18 – 运行我们的第一个流程 – 第\
+  \ 2 部分\n\n再次强调，应用程序中的蓝色背景表示当前步骤。点击**确定**关闭消息框并结束流程。恭喜——你已经创建并执行了第一个 UI 流程！\n\n##\
+  \ 用户界面构成详解\n\n现在我们已经了解了 PAD 的基本功能，接下来仔细看看这个应用程序及其可能性。PAD 由两个窗口组成：\n\n- 容器窗口或 Power\
+  \ Automate 控制台\n\n### Power Automate 容器窗口\n\n启动程序时，我们看到的第一个窗口是容器窗口，也称为 Power Automate\
+  \ 控制台。以下截图显示了该窗口：\n\n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_51_0.png)\n\n图 2.19\
+  \ – PAD 容器窗口\n\n它包含以下元素：\n\n- 1. **UI 流程列表：** 如果将鼠标悬停在列表中的某个项目上，系统会显示其他附加选项，例如*播放*按钮或*编辑*按钮。*编辑*按钮只会打开设计器窗口（见下图），而*启动*按钮会立即运行流程，而无需先打开设计器窗口。\n\
+  \n你还会在桌面上收到有关流程状态的通知（已启动、已成功等）：\n\n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_52_0.png)\n\
+  \n图 2.20 – 有关流程的 Windows 通知\n\n编辑按钮右侧的三个点会打开一个上下文菜单，你可以在其中运行或编辑流程，还可以重命名、删除或复制流程：\n\
+  \n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_53_0.png)\n\n图 2.21 – 流程列表上下文菜单\n\n**详细信息**选项会显示流程的属性，包括其名称和说明、所有者、创建日期和最后修改时间。\n\
+  \n- 2. **控制台区域切换**：你还可以从**我的流程**选项卡切换到**示例**选项卡。这里展示的是 Microsoft 提供的各种不同示例，包括 Excel、桌面、Web\
+  \ 等自动化。虽然这些示例并未涵盖程序的所有功能，但还是值得一看，或许可以尝试其中某个示例。\n\n- 3. **创建新流程**：此按钮会启动一个对话框，你可以在其中输入新\
+  \ UI 流程的名称。虽然这不是必填项，但为流程提供一个有意义的名称是合理的。有一个**创建**按钮，用于确认名称并启动带有空白画布的设计器窗口。\n\n- 4.\
+  \ **PAD 设置**：此按钮会启动**设置**对话框。在这里，我们可以修改 PAD 的启动行为，还可以使用热键停止正在运行的流程。此外，还可以更改监控和通知设置（Windows\
+  \ 通知、流程监控窗口或什么都不通知）。\n\n- 5. 登录信息：单击标题栏中的姓名，会提供有关当前用户及其登录信息的信息。在这里，也可以注销并以其他用户身份登录。\n\
+  \n### 设计器窗口\n\n现在让我们仔细看看设计器窗口：\n\n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_54_0.png)\n\
+  \n图 2.22 – PAD 的设计器窗口\n\n这里包含以下元素：\n\n- 1. 操作窗格：窗口左侧属于操作窗格。操作代表流程能够执行的功能，例如“打开 Excel”或“获取文件夹中的文件”。这些操作被分组到不同的类别中，例如“系统”或“文件夹”。展开相应的项目，即可看到属于某个类别的所有操作。只需点击类别左侧的箭头图标即可。在整本书中，我们都会逐一介绍这些操作。列表顶部还有一个**搜索**框。如果你在此输入搜索词，操作列表就会根据该搜索词进行筛选。我们在第一个流程中就使用了这个功能。\n\
+  \n- 2. **流程设计器区域**：窗口中间是一个画布，包含构成此流程的所有操作。可以通过从**操作**窗格中拖放操作来将其放置到画布上。当流程启动时，操作将按照此处列出的顺序运行。只需单击并拖拽现有条目并将其放到其他位置，即可重新排列此操作列表。系统会显示一条水平线，指示操作可以放置的位置。我们在前面的示例中见过这一点。你还可以双击某个操作以打开该操作的设置对话框并修改条目。在此区域中，还有一个查看子流程的选项。子流程只是封装了一组特定操作的另一个\
+  \ UI 流程。通过使用子流程，可以将大型流程划分为不同的部分。子流程始终属于某个常规流程，不会在其他流程之间共享。\n\n- 3. **流程控制栏**：操作列表顶部的小工具栏允许你保存、启动、停止和录制流程。还有一个选项可以启动流程并逐步执行操作，这也称为**调试**。我们将在下一节中更详细地介绍这一点以及录制器。\n\
+  \n- 4. **变量查看器窗格**：右侧是一个显示流程变量的区域。变量是流程在运行时存储信息的重要方面。变量将在*第 5 章*中介绍。\n\n- 5. **输入元素切换器**：还需注意变量图标\
+  \ {x} 下方的两个额外小图标。这些图标可用于切换到包含 UI 元素和图像的区域，该区域也将在后面介绍。你可以通过单击图标隐藏此区域。\n\n- 6. **操作与执行摘要**：底部有一个小工具栏，用于汇总当前流程。还可以为流程运行设置特定的延迟——在此示例中为\
+  \ 100 毫秒。\n\n这是应用程序的菜单栏。除典型的保存和编辑功能外，调试功能也再次在此提供，其中还可以设置断点。这样可以让流程执行到某个特定点，以便在发生错误时检查设置和变量：\n\
+  \n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_56_0.png)\n\n图 2.23 – 调试菜单\n\n当流程运行出错时，设计器窗口还会出现在屏幕底部的另一个区域中。这里将显示流程在何处停止以及停止原因的详细信息。现在我们已经了解了更多细节，我们将在下一节使用录制器创建另一个流程。\n\
+  \n### 使用录制器\n\n正如你在上一章中看到的，PAD 设计器窗口不仅允许我们将操作拖放到设计画布上，还允许我们录制 UI 流程。此概念类似于屏幕录制器，它记录每一个步骤、每一次鼠标点击和键盘按键，以便之后按相同方式回放此系列操作。\n\
+  \n我们想使用这一功能来创建 PacktPub 出版社所有书名的概览，以便在其他地方（例如数据库中）使用这些信息。遗憾的是，我们无法直接访问 PacktPub\
+  \ 的底层数据源，但可以通过其网站 https://subscription.packtpub.com/search 获取书名。然而，我们不想在网站上逐个高亮每一个书名，然后再复制粘贴到另一个工具中。那将花费很长时间，而且相当枯燥。PAD\
+  \ 可以替我们完成这项工作。\n\n在下面的示例中，我们将使用一种称为网页抓取的概念——即从网页中结构化地提取信息。请注意，这也适用于许多其他网站，因此该技术可以通用。但是，使用此方法的前提是，我们必须为所使用的浏览器安装并激活一个小扩展程序，以便\
+  \ PAD 可以访问网页中的元素。那么，让我们开始吧：\n\n- 1. 创建一个新流程，并为其指定一个有意义的名称，例如**网页抓取 PacktPub**。\n\
+  - 2. 在操作窗格中找到**浏览器自动化操作**组并展开它。你会看到来自 Google、Firefox 和 Microsoft Edge 的每种浏览器都有一个**启动新的...**操作。我的机器上安装了\
+  \ Microsoft Edge，因此我会单击并将此操作拖到画布上：\n\n\n\n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_58_0.png)\n\
+  \n# 图 2.24 – 将浏览器操作拖到画布上\n\n3. 此时，系统可能会要求你为 PAD 安装浏览器扩展：\n\n# 你需要 Power Automate\
+  \ 扩展。\n\n+   1. 要在你的流程中使用网页自动化，请选择“获取扩展”以下载并安装到所选浏览器。\n+   2. 安装后，请确保在浏览器中启用该扩展。\n\
+  \n# 图 2.25 – 浏览器扩展安装对话框\n\n4. 这只会发生一次。获取扩展并确保其已激活。\n\n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_60_0.png)\n\
+  \n图 2.27 – 录制按钮\n\n此时，PAD 设计器将消失，而是一个较小的录制窗口会出现。 它应该看起来像这样：\n\n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_60_1.png)\n\
+  \n图 2.28 – 录制窗口\n\n现在，有趣的部分开始了。 通过点击屏幕中间的按钮或顶部的按钮开始录制。 录制窗口将发生变化，并在 **Recorded actions**\
+  \ 下方显示一个空区域。 使用鼠标将光标悬停在网站上的不同元素上，例如书籍图片。 你会看到 PAD 尝试识别网站上的不同元素并相应地框出它们。 在下面的屏幕截图中，我将光标悬停在书籍图片上：\n\
+  \n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_61_0.png)\n\n图 2.29 – 检测网页元素\n\n为了让录制器正确识别网页元素，有时需要一点技巧。\
+  \ 将鼠标移出所需区域然后移回也有助于获得正确的标记。 一旦正确的元素被突出显示，请点击鼠标右键以便选择我们想要从该元素中提取的信息。 该元素的上下文菜单将出现，以便我们可以选择不同的条目：\n\
+  \n图 2.31 – 录制器中的一个已录制操作\n\n## 重要说明 – 删除额外操作\n\n你可能会有其他操作被录制器记录下来，这取决于你点击的位置和可能按下的键。\
+  \ 对于我们的示例，录制器中只能有一个操作。 使用 **Delete** 按钮（垃圾桶符号）删除任何额外的操作。\n\n现在，对书籍的标题重复相同的过程。 使用鼠标将光标悬停在元素和标题上，然后点击鼠标右键：\n\
+  \n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_64_0.png)\n\n图 2.32 – 从网页元素中提取数据\n\n\
+  这次，我们想要提取元素的标题。 这样，我们就捕获了网页上的两个元素，它们在录制器窗口中表示如下：\n\n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_65_0.png)\n\
+  \n图 2.33 – 录制器中的提取数据\n\n这里有一个重要的区别：PAD 已经识别出我们从网页上的一个记录中捕获了两条信息。 我们的下一步将是转到下一个元素，而这就是一些魔法的开始。\
+  \ 如果你重复第一步并标记下一本图书图片并再次提取 Src 信息，PAD 将识别出这种模式并假设你想要对第一个元素做同样的操作。 我们可以在网页上看到这一点，因为\
+  \ PAD 已用绿色虚线标记了相应的元素：\n\n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_66_0.png)\n\n\
+  图 2.34 – 录制器的模式识别\n\n## 模式识别\n\n请注意，有时需要捕获不止两个结构，录制器才会识别出模式。 因此，如果 PAD 没有立即识别出模式，请继续进行下一个元素。\
+  \ 识别\n\n还取决于 HTML 的底层结构。 最迟在第三或第四个元素后，模式将被识别。\n\n这意味着 PAD 现在将捕获此页面上的所有元素。 但下一页的书籍怎么办？\
+  \ 让我们向下滚动以便可以看到该网站上的分页控件：\n\n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_67_0.png)\n\
+  \n图 2.35 – 加入导航\n\n我们现在可以使用单个箭头按钮加载下一页。 右键单击以下屏幕截图中显示的元素并选择 Set this element as\
+  \ pager：\n\n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_68_0.png)\n\n图 2.36 – 在录制中使用分页器\n\
+  \n元素现在会带有一个小蓝色的虚线边框，表示分页功能。 查看录制器窗口，这里应该只看到一个元素：\n\nHelp\n\nDone\n\nCancel\n\n#\
+  \ 图 2.37 – 已录制的网页抓取操作\n\n如果错误捕获了其他元素，只需删除它们即可。 你现在可以通过点击 Done 按钮停止录制。 现在，已录制的动作将被传输到主\
+  \ PAD 设计窗口：\n\n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_70_0.png)\n\n# 图 2.38 –\
+  \ 将已录制操作传输到设计器\n\n操作列表中还有注释，描述了录制器生成的动作的开始和结束。 让我们通过双击它来更详细地研究 Extract data from\
+  \ web page 操作：\n\n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_71_0.png)\n\n图 2.39 –\
+  \ 显示网页数据提取\n\n这里有趣的部分是 **Extract data from** 和 **Store data mode**。 在流程中第一个操作加载浏览器后，此操作会提取网页上的所有数据，除非我们另有说明。\
+  \ 在某些情况下这可能很有用，但对于我们的测试，我们只想提取前 10 页。 点击 **All available** 条目的下拉菜单并将其更改为 **Only\
+  \ the first**。 现在会出现另一个文本框，我们可以在其中输入要处理的网页数量。\n\n此示例的最后一个设置是 **Store data mode**。\
+  \ 到目前为止，所捕获的数据存储在一个变量中（在我的示例中为 `DataFromWebPage`）。 但当然，还有其他方法可以处理这些数据。 例如，你可以取该变量并在提取网页数据后将其用作另一个操作的输入，或者你可以选择将其存储在\
+  \ Excel 中。 因此，点击 **Store data mode** 的下拉菜单并将值从 **Variable** 更改为 **Excel spreadsheet**：\n\
+  \n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_72_0.png)\n\n图 2.40 – 修改网页数据提取参数\n\n\
+  现在，网页数据提取将仅运行前 10 页，获取数据，启动 Excel 并新建一个电子表格，然后将捕获的数据粘贴其中。 现在保存对话框，让表演开始吧。 在我的机器上，提取\
+  \ 120 条记录并将其粘贴到 Excel 中花费了 45 秒。\n\n## 总结\n\n安装 PAD 很简单，就像安装任何其他 Microsoft 工具一样。\
+  \ 一旦你为 Microsoft 帐户注册，你就可以登录该程序并立即开始创建你的 UI 流程。\n\n建议尝试操作并使用该工具即使是自动化简单的任务。 这将使你更熟悉该程序，正如我在本章中解释的那样。\
+  \ 录制器可以为你节省大量工作，并且可用于新的或现有的流程。 尤其是当网页抓取是一项任务时，此工具非常方便。\n\n在下一章中，我们将继续我们的旅程并查看 PAD\
+  \ 的编辑和调试功能。\n\n## 进一步阅读\n\n要了解更多本章涵盖的主题，请查看以下资源：\n\n- *Install Power Automate Browser\
+  \ extensions:* https://learn.microsoft.com/en-us/power-automate/desktop-flows/install-browser-extensions\n\
+  - *Record desktop flows:* https://learn.microsoft.com/en-us/power-automate/desktop-flows/recording-flow\n\
+  \n图 3.2 – 操作 kebab 菜单选项\n\n我们有以下选项：\n\n- **Edit**: 这会弹出特定操作的 **Parameter** 对话框。\
+  \ 此对话框可能会根据我们使用的操作而变化。 **Launch Outlook** 操作的设置与其他 **Get files in folder** 不同。\n\
+  - **Run from here**: 如果我们使用此命令（或 *Alt+F5*），流程将从此操作开始执行。 所有之前的操作都不会被执行。 如果在此之前有其他操作对于所选操作被执行是必要的，这可能会导致错误。\
+  \ 但尽管如此，如果流程之前出现错误，你只想从此处开始，这也可能是一个方便的功能。\n- **Undo / Redo / Cut / Copy / Paste**:\
+  \ 这些是从其他程序（如 Office）中熟知的编辑功能。\n- **Move up / Move down**: 而不是点击并拖动操作，我们可以使用这些命令或使用快捷键。\n\
+  - **Disable action**: 这也是设计流程时非常有用的功能。 它允许你禁用一个操作，使其不会被执行。\n\n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_76_0.png)\n\
+  \n\n\n\n\n例如，你可能希望在流程结束时做一些清理工作并删除文件或关闭程序。但是，如果你仍处于设计的中间阶段，你可以禁用这些操作，以便更专注于设计。这在调试流程时也很有帮助（我们将在下一节中进行）。但请注意不要禁用循环或条件语句中的步骤。这些操作用一个开始和一个结束将一个或多个其他操作封装起来。下面的图片显示了一个\
+  \ if 条件操作和另一个 if 流程操作。后者条件的对应结束语句被禁用，这导致了错误。\n\n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_77_0.png)\n\
+  \n图 3.3 – 禁用操作和错误消息\n\n删除：与其禁用操作，也可以直接删除它，这会将操作及其所有参数设置从流程中移除。\n\n## 参数对话框\n\n一旦我们从\
+  \ **Actions** 面板将一个操作拖放到工作区，就会弹出一个对话框，要求我们提供信息——参数对话框。下面的屏幕截图显示了 **Get files in\
+  \ folder** 操作的参数对话框：\n\n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_78_0.png)\n\n图\
+  \ 3.4 – 参数对话框\n\n此对话框显示所选操作的特定参数。由于几乎每个操作都不同，对应的参数对话框也会显示不同的参数。确实有一些操作具有相似的参数，例如\
+  \ **Copy file(s)** 和 **Move file(s)**，但这些更多是例外。\n\n参数对话框让你输入操作执行所需的所有必要信息。这些信息可以是文本或数字、下拉菜单的选择、切换开关，例如上一张截图中的\
+  \ **Include subfolders**，有时甚至更复杂的信息。\n\n有时，参数也会分为最常用和高级的。它们在对话框首次出现时是隐藏的，但可以通过展开\
+  \ **Advanced** 区域来显示。我们也可以在前面的截图中看到此区域。\n\n### 重要说明\n\n参数对话框不会显示操作正常工作所需的必填字段。判断某个参数是否为必填的唯一方法是将其留空并保存操作。缺失的信息将作为错误显示在窗口底部的消息窗口中。UI\
+  \ 流程在这些错误被纠正之前不会运行。\n\n操作还可以产生或捕获可在流程中后续步骤中使用的信息。例如，在 *Figure 3.4* 中，**Get files\
+  \ in folder** 操作会创建给定文件夹中的文件列表。为了使此信息可供后续操作使用，会生成变量来存储它。在前面的示例中，操作创建了一个名为 **Files**\
+  \ 的变量。下面的屏幕截图显示此对话框部分也可以展开：\n\n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_79_0.png)\n\
+  \n图 3.5 – 展开的变量区域\n\n展开后，可以相应地重命名变量。在这里，我们将变量重命名为 `MySpecialVariable`。命名约定将在下一章中更详细地讨论。如果变量的数据在流程中不会被使用，可以通过按下相应的切换开关来禁用变量的创建。\n\
+  \n在为操作提供所有所需信息后，即可保存它。操作产生的变量随后会显示在右侧的 **Flow variables** 区域中。现在，这些变量也可以作为另一个操作的输入来使用。要使用变量作为输入，\n\
+  \n我们不会将信息硬编码到参数输入框中，而是使用右侧的 {x} 符号。有关变量的更多信息以及所有细节，请参阅第 5 章。\n\n现在我们知道了设计器窗口的细节，让我们来看看全局菜单选项提供的额外功能。\n\
+  \n## 全局菜单选项\n\n我们在上一章中已经涉及过菜单栏。这些功能在我们编辑流程时非常有价值。让我们来看看最重要的菜单选项：\n\n- **File | Save\
+  \ / Save As...**：保存流程或使用 Save As... 选项创建副本并为流程提供新名称。\n- **Edit | Undo / Redo**：这些是众所周知的选项，允许你在设计器中撤消或重做任何操作。如果不小心删除了操作，这也非常有用。\n\
+  - **Edit | Select all / Clear selection / Invert selection**：工作区中的一个或多个操作可以被 *selected*。如果你点击一个操作，它就会被选中。按住\
+  \ shift 键并选择另一个操作时，中间的所有操作也会被选中。现在，这组操作可以被删除、激活或停用，甚至可以一起移动到工作区的其他位置。这些菜单选项处理此选择。\n\
+  - **Edit | Go to line**：有时能够立即跳转到特定行会很方便，例如在处理大型流程和许多操作时，或出现错误时，因为错误消息也包含行号。\n-\
+  \ **Debug | Toggle breakpoint / Remove all breakpoints**：当选择一个操作时，此菜单选项会在该行放置一个断点。另一种方法是直接点击行号左侧。我们将在下一节中更详细地讨论断点。\n\
+  \n如果流程被停止，在该断点之前的所有操作执行结果都会被保留。如图 3.6 所示，断点位于 **Launch Outlook** 操作之后。如果我们现在停止流程执行，Outlook\
+  \ 仍会保持打开状态。这种行为在遵循分阶段的流程设计方法时也很方便（参见下一节）。断点在控制变量的值时也非常有用。我们将在下一节中使用断点。\n\n暂停流程的另一种选项是使用\
+  \ *pause* 按钮，该按钮在流程运行时可见。实际上，*play* 按钮会变为 *pause* 按钮，如下图所示：\n\n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_82_0.png)\n\
+  \n图 3.7 – 暂停按钮\n\n这也允许你在不使用断点的情况下在任何位置暂停流程。\n\n## 使用子流程\n\n在每个流程中，我们还可以创建子流程。这是一种将较大的\
+  \ UI 流程结构化为不同部分的概念，这些部分反过来可以在主流程中调用和引用：\n\n### 主流程\n\n大型流程带循环\n\n### 主流程\n\n起始操作\n\
+  \n子流程中的循环\n\n清理和流程结束\n\n图 3.8 – 分解流程\n\n包含任务整体逻辑的主流程因此变得更易读、更易理解。所有变量都在主流程中可用并且可以更改，无需指定传递参数。甚至可以在子流程中调用不同的子流程，如果你想进一步结构化工作的话。下面的图显示了我们之前示例中的主流程和两个子流程：\n\
+  \n### 主流程\n\n### HandlWordDocument 子流程\n\n### WriteToExcel 子流程\n\n### 图 3.9 – 主流程和子流程\n\
+  \n子流程存储在流程本身内，只能在包含的流程中使用。如果你查看 **Actions** 面板，你也可以看到有一个 **Run flow** 操作组，其中包含一个\
+  \ **Run desktop flow** 操作。此附加选项将在 *第 4 章* 中讨论。\n\n要创建子流程，请点击工作区顶部的 **Subflows**\
+  \ 下拉菜单，如下图所示。在下拉菜单中，你也可以看到任何已存在的子流程：\n\n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_84_0.png)\n\
+  \n### 图 3.9 – 创建子流程\n\n新的子流程会作为主流程旁边的额外标签出现，它开始时有一个空白工作区可供拖入操作。另一个选项是从主流程剪切并粘贴一个或多个操作到子流程中。在主流程中，你现在可以使用\
+  \ **Flow control | Run subflow** 操作在相应的参数对话框中指定要运行的子流程。\n\n现在我们已经学习了一些编辑流程的方法，让我们探索如何利用这些技能有效地创建它们。\n\
+  \n\n\n\n# 创建有效流程的策略\n\n我们已经在上一节中介绍了流程设计器窗口和菜单选项。在本节中，我们想看看如何利用这些可能性，将其纳入 UI 流程的设计中。\n\
+  \n让我们回顾一下第一章中的初始示例。挑战是自动从通过电子邮件发送给我们的多个 Word 文档中提取信息。我们希望将这些信息保存到 Excel 电子表格中以便进一步报告。最终，这个流程大约有\
+  \ 22 个操作、13 个流程变量和 2 个输入/输出变量。这个流程已经具有相当大的复杂性，因此让我们探讨如何减少这种复杂性并实现该流程。\n\n## 从简单开始\n\
+  \n第一个建议是鼓励你从简单开始并逐步进行。以我们给出的示例为例，只需将 **Launch Outlook**、**Retrieve email messages\
+  \ in Outlook** 和 **Process email messages in Outlook** 操作拖到工作区并尝试使用它们。一旦你熟悉了这个主题，就可以继续下一个任务。也可以创建单独的流程来测试，然后将所学知识纳入另一个流程。\n\
+  \n## 分解整体任务\n\n在前一个概念的基础上，对于较大的任务，通常将整体任务分解为几个部分是有用的，如 *Figure 3.8* 所示。你可以通过使用子流程来实现这一点。参考我们之前的示例，这可能看起来像这样：\n\
+  \n- **Part 1 — message and attachment retrieval:** 我们需要从家长那里检索所有新消息\n- **Part 2\
+  \ — processing of each attachment:** 我们想查看每个 Word 文档并提取相关信息以存储在电子表格中\n- **Part 3\
+  \ — cleanup and housekeeping:** 关闭所有打开的程序\n\n我们现在可以分别处理各个任务，这立即降低了复杂性。\n\n## 在循环之前先处理单个项目\n\
+  \n在我们的示例中，我们希望处理家长发送给我们的多个 Word 文档。我们可以使用 XY 操作来访问列表中的所有文档。\n\n然而，在遍历文档列表之前，我们必须首先为单个文档明确我们想要提取什么数据以及如何存储它。因此，在对所有文档进行循环之前，先用单个文档通过流程并设计这些步骤是有意义的。稍后，可以将循环操作拖到工作区并将单个处理放在其中。为此，你可以简单地拖放所需的操作，正如我们在本章前面学到的那样。\n\
+  \n## 禁用以测试步骤\n\n在某个时刻，会出现一个较长的流程，需要反复运行以进行测试。相同的步骤会一遍又一遍地从头到尾运行。然而，如果只需要测试或完善特定部分，则有意义地省略那些不在焦点上的操作。这些操作可以简单地为此目的而停用，并可以使用断点在所需操作处停止。\n\
+  \n在我们的示例中，在 **Get files in folder** 操作中列出文档时可能会遇到错误。对于错误检测，Outlook 是否先启动以及是否获取了所有电子邮件并不重要。因此，我们可以简单地为此测试禁用这些步骤。此外，在这种情况下，在\
+  \ **Get files in folder** 操作中设置断点是有意义的，以便流程在错误发生时或稍早时恰好暂停。我们可以在以下屏幕截图中看到此条件：\n\n\
+  ![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_87_0.png)\n\nFigure 3.10 – Disabled actions\
+  \ and breakpoint\n\n通过这种方式，本章中学到的技术可用于快速高效地开发和排除 UI 流程的故障。\n\n## 适应可用选项\n\n有时你会有关于流程的绝佳想法，以及如何让日常任务更轻松。但随后你意识到，不幸的是，流程无法按照你想象的方式映射和设计，因为没有合适的\n\
+  \n# 基本结构元素和流程控制\n\n流程通常从上到下执行。然而，有时我们需要包含分支甚至重复某些操作。在本章中，我们将研究如何控制处理中操作的顺序，因为控制流程逻辑是其创建的重要组成部分。\n\
+  \n在本章中，我们将涵盖以下主题：\n\n- Using conditionals\n- Handling repetitive tasks with Loop\
+  \ statements\n- Error handling\n\n## 技术要求\n\n你需要一台安装了 PAD 的工作站，并且应该知道该应用程序的工作原理以及如何创建一个简单的流程。\n\
+  \n## 使用条件\n\n条件用于确保在执行操作或一系列操作之前先检查某个状态。它们是编程中的基本概念之一，可以在没有编程知识的情况下构建流程。我们已经在之前的示例之一中使用了条件，在那里我们需要在创建文件夹之前检查文件夹是否存在。条件通常被称为\
+  \ `If` 语句。\n\n要使用条件，我们需要将 **Conditionals** 操作组中的一个操作拖到工作区。我们可以在列表顶部找到该操作组，如以下屏幕截图所示：\n\
+  \n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_90_0.png)\n\nFigure 4.1 – Elements in\
+  \ the Conditionals action group\n\n需要注意的是，*Figure 4.1* 中列出的这些操作必须按特定顺序和序列使用。以下小节将解释如何在上下文中使用每个操作。\n\
+  \n## 从 If 和 Else 开始\n\n在大多数情况下，当我们需要检查条件时，`If` 语句操作是起点。如果你将 `If` 操作拖到工作区，操作参数对话框会出现并需要信息，如\
+  \ *Figure 4.2* 所示：\n\n- **First operand:** 确定我们想要检查什么\n- **Operator:** 确定检查时要使用哪个操作\n\
+  - **Second operand:** 确定要与什么进行比较\n\n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_91_0.png)\n\
+  \nFigure 4.2 – If action parameter dialog\n\n本质上，这里发生的是我们可以将两个值（第一个和第二个操作数）相互比较（相等或不相等、大于等），然后决定如果它们匹配或不匹配时会发生什么。如果我们现在用一些有意义的值（或一些静态文本用于演示目的）填充第一个和第二个操作数，工作区将如下所示：\n\
+  \n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_92_0.png)\n\nFigure 4.3 – A generic If\
+  \ block\n\n正如我们所见，End 操作已自动放置在 If 操作下方，以标记此块的结束。\n\nDo not disable or delete the\
+  \ End block\n\nEnd 关闭块只是另一个操作，它可以被移动、禁用甚至删除。如果你这样做，流程设计器会立即显示一个错误，提示 End 语句丢失。如果你不小心删除了\
+  \ End 语句，你可以转到 Flow control 操作组并将新的 End 操作拖到工作区中的正确位置。请注意也要将 End 放在条件块的末尾，而不是仅在\
+  \ If 之后。\n\n我们现在可以将其他操作直接拖到此块中。这些操作只有在 If 操作和运算符评估为真时才会被执行。例如，我们可以简单地将 Display message\
+  \ 操作拖到块中，如果评估返回 true，则显示消息框。但如果结果为 false 呢？嗯，在这种情况下，除非我们在 If 和 End 语句之间还拖入一个 Else\
+  \ 操作，否则什么也不会发生。现在放置在 Else 块下方的所有操作将在 `If` 块评估为 *false* 时执行。为了测试这一点，我们也可以将 **Display\
+  \ message** 操作拖到工作区中 `Else` 块下方并显示不同的消息，如以下屏幕截图所示：\n\n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_93_0.png)\n\
+  \nFigure 4.4 – If-Else block with different messages\n\n另一个重要概念是 `If` 语句可以嵌套；也就是说，在\
+  \ `If` 块内，可以放置另一个 `If` 块。我们将在本章的后续部分学习一些示例。\n\n由于比较两个静态值并没有多大意义，我们希望比较存储在变量中的值。我们将在下一章更深入地探讨变量的主题，但为了本章的目的，让我们创建一些简单的变量。为此，使用工作区右侧\
+  \ **Input / output variables** 区域的 *plus* 按钮，并选择 **Input**。\n\n\n\n\n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_94_0.png)\n\
+  \n图 4.5 – 创建一个新的输入变量\n\n在下面的对话框中，我们有选项为变量指定名称、数据类型和默认值。现在使用此对话框五次来创建以下变量：\n\n| 变量名/外部名称\
+  \ | 数据类型 | 默认值 |\n|---|---|---|\n| NumberVar1 | Number | 12345 |\n| NumberVar2 |\
+  \ Number | 5 |\n| TextVar1 | Text | The quick brown fox |\n| TextVar2 | Text | fox\
+  \ |\n| TextVar3 | Text | 12345 |\n\n表 4.1 – 条件测试的变量列表\n\n以下截图显示了 **Edit input variable**\
+  \ 对话框以创建变量，在此例中为 `NumberVar1`。点击 **Save** 按钮保存变量。\n\n## Edit input variable\n\n\
+  编辑现有输入或输出变量的属性 More info\n\n变量名: NumberVar1\n\n数据类型: Number\n\n默认值: 1\n\n外部名称: NumberVar1\n\
+  \n描述: Add an input description\n\nMark as sensitive\n\nSave Cancel\n\n图 4.6 – 编辑输入变量\n\
+  \n最后，你应该能看到所有变量如 *图 4.5* 所示。我们现在可以用这些变量替换 If 语句开头处的静态值。为此，双击 If 块以再次调出参数对话框。现在，我们可以用一些变量编辑第一个和第二个操作数：\n\
+  \n- 1. 删除现有的静态值（在我们的示例中为 123）。\n- 2. 按下输入框右侧的 {x} 按钮。这会启动子窗口以选择变量。你应该能看到所有变量\n-\
+  \ 3. 为第一个操作数选择 **NumberVar1**。\n- 4. 按下 **Select** 按钮。\n\n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_96_0.png)\n\
+  \n图 4.7 – 在操作参数对话框中使用变量\n\n对第二个操作数重复上述步骤并选择 **NumberVar2** 作为变量。最终结果显示在以下截图中：\n\n\
+  ## Does not contain, Is empty / Isn’t empty, as well as Starts with / Doesn’t start\
+  \ with / Ends with / Doesn’t end with.\n\n比较结果在很大程度上取决于变量的内容。我鼓励你重建本示例中的简单流程并尝试不同的选项，更改运算符和变量的值。通过使用\
+  \ Display message 操作，你立即可以看到操作的结果。PAD 在这里非常友好，也允许使用不同类型的变量。\n\n## Use Variables\
+  \ of the Same Type\n\n尽管 Microsoft 关于条件语句的文档（https://learn.microsoft.com/en-us/power-automate/desktop-flows/use-conditionals）说明不同，并且在比较文本类型变量与数字类型变量时不会报错。对于此操作，两个变量都需要转换为相同类型。此转换的结果并不总是可预测的，即使在某些情况下结果是有意义的，也建议使用相同类型的变量以避免不一致或意外行为。\n\
+  \n## Else If action\n\n有时一个条件操作不足以分支到需要执行的动作的正确路径。使用常规 Else 语句时，该部分中的动作始终作为唯一的替代分支执行，因为条件不会再次评估。\n\
+  \n使用 Else If，也可以在 Else 部分定义另一个条件，该条件也可以完全独立于第一个条件。为此，只需将 Else If 操作拖放到开始的 If 块和\
+  \ Else 块之间，Else 块必须始终是此构造中的最后一个块。以下示例应说明条件语句的使用。思路如下：\n\n- - 评估某支曲棍球队是否赢得了一场比赛，如果赢了，净胜球是多少。\n\
+  - - 这只是一个示例实现，其中球队可以在获胜信息中获得特别认可或公平信息。这只是为了演示 `Else if` 语句的使用，并不意味着一支球队不能同时获胜且非常公平，当然。\n\
+  - - 运行此流程时只会显示一条消息。流程完全分支到评估条件为真的部分。如果都不匹配，则分支到 `Else` 分支。你可以在循环内使用多个 `else if`，\n\
+  - - 你可以轻松更改变量及其值以测试不同的分支。\n\n条件语句在设计流程时非常有帮助。PAD 创建 UI 流程的简单性使你能够立即上手设计。然而，在更复杂的场景中，退一步在流程图中绘制逻辑也非常有用。多个嵌套的条件语句和\
+  \ `Else if` 尤其难以以后维护，因此始终最好尽可能简化逻辑。\n\n## Special If actions\n\n上一节描述的条件概念能够处理硬编码值和变量。但如果我们需要做一些更复杂的事情，例如检查文件是否存在呢？\n\
+  \nPAD 为这些目的提供了特殊的 `If` 操作，我们将在相应章节中介绍它们。为了先有个印象，这里列出了特殊 `If` 操作及其功能简要说明：\n\n| 操作名称\
+  \ | 位于操作组 | 功能 |\n|---|---|---|\n| `If file exists` | Files | 检查文件是否存在或不存在 |\n|\
+  \ Name of the action | Located in action group | Functionality |\n| If Folder exists\
+  \ | Folder | 检查文件夹是否存在或不存在 |\n| If service | Windows services | 检查服务是否已停止、已安装或未安装、正在运行或已暂停\
+  \ |\n| If process | System | 检查进程是否正在运行或未运行 |\n| If window | UI automation | 检查窗口是否打开或未打开，以及是否为前台窗口\
+  \ |\n| If window contains | UI automation | 检查窗口中是否存在特定的文本或 UI 元素 |\n| If image\
+  \ | UI automation | 检查屏幕上是否找到选定的图像 |\n| If web page contains | Browser automation\
+  \ | 检查网页上是否存在特定的文本或元素 |\n| If text on screen (OCR) | OCR | 检查屏幕上是否出现字符串/字符序列 |\n\
+  \n表 4.2 – 特殊 If 操作列表\n\n正如我们在前表中看到的，PAD 提供了大量功能来利用我们流程中的条件动作序列。甚至可以为条件设置多个分支，这将在下一节中探讨。\n\
+  \n## Conditionals with multiple branches\n\n有时也需要将一个值分类到多个类别之一，而不是执行单一测试。例如，可以根据达到的百分比确定学校成绩。有多个分支，每个分支都可以列出自己的动作序列。这时我们会使用\
+  \ `Switch-Case` 构造。\n\n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_103_0.png)\n\n图\
+  \ 4.10 – 使用 Switch-Case 操作评估学生成绩\n\n在前面的示例中，我们可以看到如何使用 `Switch-Case` 构造确定学生成绩。这些操作也位于\
+  \ **Conditionals** 操作组中。在前面的示例中，我们希望创建一个流程，根据以下规则根据成绩百分比显示单独的消息框：\n\n- - Grade A\
+  \ > 90 – 100%\n- - Grade B > 80 – 89%\n- - Grade C > 70 – 79%\n- - Grade D > 60\
+  \ – 69%\n\nGrade F > 0 - 59%\n\n要创建前面的流程，请按照以下说明操作：\n\n- 1. 创建一个名为 `StudentGradePercentage`\
+  \ 的输入流程变量，类型为 `Number`，并赋予一些默认值，在我的例子中为 85。\n- 2. 在 **Conditionals** 操作组中找到 **Switch**\
+  \ 语句并将其拖到工作区。注意也会创建对应的 `End` 语句。\n- 3. 在该操作的操作参数对话框中，使用 *步骤 1* 中的变量作为要检查的值。\n- 4.\
+  \ 从 **Conditionals** 操作组拖动一个 **Case** 操作到 `Switch` 和 `End` 操作之间。\n- 5. 使用 `Greater\
+  \ than or equal to (>=)` 作为运算符，并使用值 90 作为比较值。\n- 6. 使用搜索栏或 **Messages** 操作组找到或定位\
+  \ `Display message box` 操作，并将其拖到 `Case` 操作正下方。\n- 7. 在该操作对话框中，输入标题和根据成绩的消息。\n- 8.\
+  \ 对成绩 `A` 到 `D` 重复 *步骤 4 到 7*，使用不同的值和消息。\n- 9. 对于成绩 `F`，我们使用 `Default case` 操作，它是整个语句中的最后一个操作。我们不需要为此指定任何值。如果之前的条件都不为\
+  \ `true`，则会执行此操作。别忘了在这里也放置 **Display message**。\n\n请注意，在 `Switch` 语句中，即使某个值可能适用于多个条件，也一次只执行一个分支，并且将是第一个匹配条件的分支。顺序起决定性作用。例如，如果我先列出\
+  \ `Case >= 80` 指令，值 95 将落入其中，对应的操作将被执行，构造将被退出，尽管实际上另一个分支（`Case >= 90`）才是正确的。我们现在已经了解了如何控制\n\
+  \n\n\n动作序列，取决于某些条件，无论是单分支还是多分支。下一节将介绍我们需要做什么才能根据参数重复执行某些动作。\n\n## 使用循环语句处理重复任务\n\
+  \n在编程语言中，另一个有价值的概念是通过列表迭代或在特定次数内运行一组特定的语句和动作。这也可以在 PAD 中通过使用循环动作来实现。这些位于 **Loops**\
+  \ 动作组中。\n\n### 循环动作\n\n让我们从循环动作开始，并为 *Ludo* 桌游创建一个骰子模拟器。在这个桌游中，玩家必须使用在游戏开始前选择的颜色的棋子绕行棋盘。骰子掷三次。如果结果为\
+  \ 6，玩家可以移动棋子。如果不是，他们需要再次尝试。以下是模拟此情况的流程：\n\n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_105_0.png)\n\
+  \n*Figure 4.11 – Roll the dice flow with a loop statement*\n\n以下是前一图中步骤的详细说明：\n\n\
+  1. 打开 **Loops** 动作组并找到 `Loop` 动作。将其拖到工作区并设置以下值：\n\n   - **Start from:** 1\n   -\
+  \ **End to:** 3\n   - **Increment by:** 1\n\n   这将导致循环执行三次。\n\n2. 我们现在需要创建一个随机数作为掷骰子的结果。使用\
+  \ **Actions** 组上方搜索栏搜索 `random` 关键字。你会找到一个名为 **Generate random number** 的动作。将其拖到\
+  \ `Loop` 动作正下方。在动作参数对话框中，最小值输入 `1`，最大值输入 `6`。还尝试通过展开 `Variables produced` 区域并双击名称，将默认变量名\
+  \ `RandomNumber` 重命名为 `DiceResult`。确保新变量名被百分号包围，像这样：`%DiceResult%`。\n\n3. 现在，我们需要检查结果是否等于\
+  \ `6`，这意味着我们将继续游戏并停止再次掷骰子。我们现在将使用本章上一节中的条件来检查 `DiceResult` 的值。如果结果等于 `6`，我们将显示一个消息框确认这一点。\n\
+  \n### Important Note\n\n在消息框之后，我们使用 `Exit loop` 动作来停止再次掷骰子。该动作也位于 **Loops** 动作组中，不需要任何额外配置。\n\
+  \n4. 在 If 动作的 Else 分支中，我们只想在结果不等于 6 时显示骰子的结果。\n\n请注意，在前面的示例中，我们使用了 Exit loop 动作来离开循环过程。还有一个\
+  \ Next Loop 动作，可以在 Loop 动作内部使用。根据动作在 Loop 动作内部放置的位置，所有后续动作将被跳过，并强制进行下一次迭代。\n\n###\
+  \ 循环条件\n\n另一种遍历动作列表的方式是使用循环条件动作。在编程语言中，这被称为 while 循环。只要特定条件为真，一组动作就会被重复执行。\n\n在下一个示例中，我们将看到这是如何工作的。以下流程实现了一个猜数字游戏。开始时，会确定一个随机数，用户必须猜出它是什么数字。如果用户输入正确数字，游戏获胜且循环结束；否则，尝试次数会增加。以下是流程的实现：\n\
+  \n*Figure 4.12 – The guessing game implementation*\n\n以下是步骤的详细说明：\n\n1. 流程从定义两个变量开始，Counter（一个数字，初始化为\
+  \ 0）和 GuessRight（一个布尔值，初始化为 False，用于存储用户猜测的状态），以及一个 Generate random number 动作。为了让用户更容易一些，将在\
+  \ 1 到 20 之间生成一个数字并存储在 RandomNumber 变量中。\n\n2. 接下来，将使用循环条件动作。操作参数对话框中的第一个操作数将是 GuessRight\
+  \ 变量，我们希望将其与固定值 False 进行比较。这意味着只要 GuessRight 的值为 false（用户未输入正确数字），循环就会继续。\n\n3.\
+  \ 接下来，我们想显示一个输入屏幕，允许用户输入数字。我们为此使用 Display input dialog 动作，该动作也位于 Message boxes 动作组中。我们只需在此处输入标题和消息。输入值将存储在名为\
+  \ UserInput 的变量中。\n\n4. 用户输入猜测后，我们需要检查随机数是否等于用户输入。我们使用 If 条件来执行此操作。如果两个值相同，我们使用\
+  \ Set variable 动作将 GuessRight 变量修改为 true 并显示成功消息。通过修改变量，我们也导致循环结束。\n\n**Set variable**\n\
+  \n设置新变量或现有变量的值，创建新变量或覆盖先前创建的变量 More info\n\n| Field | Value |\n| --- | --- |\n|\
+  \ Variable | GuessRight |\n| Value | True |\n\nSave Cancel\n\n*Figure 4.13 – Set\
+  \ variable action*\n\n5. 在 Else 分支中，我们只是增加用户的尝试次数计数器，如图 4.12 所示，并显示一个消息框。\n\nSpoiler\
+  \ alert: 你可以在窗口右侧的 Flow variables 部分看到你需要猜的数字。\n\n### For each\n\n另一个非常常见的场景是遍历给定元素，例如文件夹中的文件，就像我们在之前的示例中已经看到的那样。For\
+  \ each 动作用于此目的，并且需要一个项目列表、数据表或数据行作为输入，以便为每个元素执行一组动作。\n\n有一些内置动作已经生成项目列表，例如 Get files\
+  \ in folder 或 Get subfolders in folder，但也可以创建自己的项目列表作为变量并使用它们。\n\n我们将在下一章详细讨论变量和列表的主题，并查看如何使用\
+  \ For each 动作的示例。\n\n### 流程控制的附加动作\n\n在前面的章节中，我们学习了条件和循环结构，控制流程的基本构建块。在本节中，我们将查看影响流程中动作流程的额外方法。这些动作包含在相应的动作组\
+  \ Flow control 中。\n\n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_110_0.png)\n\n*Figure\
+  \ 4.14 – Flow control actions*\n\n让我们看看这些动作能带来什么。我们还将在一个示例中看到这些动作的使用：\n\n- **Comment:**\
+  \ 此动作可用于在流程中添加注释并记录动作。\n- **End:** 不能单独工作，但如果我们意外删除了属于 `If` 动作或循环的 `End` 动作，我们可以使用此动作来完成流程。\n\
+  - **Exit subflow and Run subflow:** 我们已经在一个早期的示例中使用了 **Run subflow**。**Exit subflow**\
+  \ 只能在子流程中使用以停止子流程并返回调用它的位置。\n- **Get last error:** 检索流程中发生的最后一个错误并将其存储在变量中以供进一步处理。\n\
+  - **Go to and Label:** `Label` 在流程中设置一个标记，即动作列表中的特定位置。通过 **Go to**，可以使用标签将执行流程转移到该位置。例如，可以将\
+  \ **Label** 动作拖到流程中的任何位置并将其命名为 `Position1`。使用 **Go to**，我们现在可以说 `jump to the label\
+  \ called Position1` 并从那里执行。\n- **On block error:** 允许我们将一组动作封装在块中并最终捕获执行中的错误。我们将在下一节讨论这一点。\n\
+  - **Stop flow:** 当此动作执行时立即停止流程。可以配置流程是成功结束还是以错误消息结束。如果是后者，还可以定义错误消息。\n- **Wait:**\
+  \ 此动作暂停流程特定秒数。这在流程需要等待程序启动或屏幕刷新时尤其有帮助。\n\n让我们使用我们之前猜数字游戏来制作一个不使用循环语句但利用我们额外流程控制元素的替代实现。流程的工作方式完全相同，看起来如下：\n\
+  \n\n\n# 图 4.15 – 第二个猜数字游戏实现\n\n详细流程说明如下：\n\n+   1. 这里，我们插入了注释以便更好地记录流程。\n+   2.\
+  \ 在输入对话框之前放置了一个名为 StartOver 的标签动作。这是当答案错误时我们希望执行重新开始的流程位置。\n+   3. Wait 动作会暂停流程一段时间。为了让它更有趣一些，我们可以使用失败尝试次数的计数器作为这里的数值。这意味着用户需要的尝试次数越多，下一次猜测的新消息框出现所需的时间就越长。\n\
+  +   4. Go to 动作会跳回到 StartOver 标签并从那里执行。\n\n创建一个新的流程并定义一个简单的文本类型变量，FileToDelete，默认值为\
+  \ C:\\deletethis.txt。\n\n接下来，在 File 动作组中定位 Delete file(s) 动作并将其拖到工作区。动作参数对话框会出现，我们可以将变量名作为要删除的文件填入。但在现在按下\
+  \ OK 之前，我们希望使用 On error 功能来处理错误。如果我们按下对话框中的相应按钮，它应该看起来像这样（我稍微展开了对话框）在左侧：\n\n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_114_0.png)\n\
+  \n图 4.16 – On error 对话框\n\n这里我们可以选择两个主要选项：\n\n+   - **Throw error**（右侧）：这是默认设置，会停止流程的运行。\n\
+  +   - **Continue flow run**（左侧）：如果我们点击此选项，对话框会变为前一张截图左侧的那个。现在我们可以决定如果发生错误会发生什么。\n\
+  \n当我们选择继续流程运行时，我们可以通过该选项下方的下拉框来确定会发生什么。这里，我们有以下选项：\n\n# Delete file(s)\n\n如果动作失败，以下规则将适用\
+  \ 更多信息\n\n发生错误时重试动作\n\n# All errors\n\n变量 NewVar {x} 文件在哪里？ {x}\n\nContinue flow\
+  \ run\n\nThrow error\n\n异常处理模式\n\n转到下一个动作\n\n# Advanced\n\n文件路径包含无效字符\n\n文件未找到\n\
+  \n无法删除文件\n\n返回参数\n\n保存\n\n取消\n\n# 图 4.17 – 高级错误处理\n\n只能有一个部分处于活动状态，可以通过图 4.17 中显示的蓝色盾牌图标来识别。Advanced\
+  \ 部分包含与应删除的文件相关的所有可能发生的错误。如果我们选择另一个动作，这些选项会相应改变。但这允许针对某个动作检查特定错误。\n\n在我的示例中，我选择使用\
+  \ **All errors** 部分并设置一个名为 **NewVar** 的新变量，其中包含一些附加信息。在这里按下 **Save** 并设计其余流程后看起来像这样：\n\
+  \n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_117_0.png)\n\n图 4.18 – 带有错误的流程\n\n请注意，第一个动作\
+  \ **Delete file(s)** 现在在行号左侧有一个新图标，表示错误处理已激活。我们也可以使用 **Get last error** 动作来获取错误本身并将其存储在另一个变量中，然后在消息框中显示。\n\
+  \n现在我们知道如何为动作提供错误处理了。现在，让我们看看如果我们不确定列表中哪个动作会发生错误时该怎么办，以及如何捕获它。\n\n# On block error\n\
+  \n我们在之前的示例中看到，为动作定义错误处理并让流程在发生错误时仍运行到结束是很容易的。但如果我们有多个可能失败的动作呢？或者甚至是一组带有某些逻辑的特定动作可能会出错？On\
+  \ block error 动作可以在这里提供帮助。此动作允许将一个或多个动作放在此块内并定义发生错误时应做什么。这与我们之前查看的错误处理非常相似，只是没有针对动作特定错误的高级部分。在编程中，这被称为\
+  \ try-catch 块。\n\n与之前相同的示例，但现在使用 On block error 动作看起来像这样：\n\n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_118_0.png)\n\
+  \n图 4.19 – 使用 Onblockerror 的错误处理\n\nOn block error 的动作参数对话框定义与单个动作相同。流程将运行到结束，消息框将显示相应的错误消息。\n\
+  \n# 总结\n\n能够控制流程执行对于流程设计师来说至关重要。在本章中，我们学习了如何使用条件和循环以及控制流程的其他方法一起使用。最后，我们研究了如何在流程中处理错误并使流程有序结束。\n\
+  \n在本书的其余部分，我们将继续应用本章学到的内容，而下一章也同样如此，在下一章中我们将学习另一个重要概念：变量。\n"
+- "# 变量、UI 元素和图像\n\n通常，流程会使用来自外部的输入，无论是传递的值还是需要远程控制的应用程序。在本章中，我们将查看这些输入元素。它们位于设计器窗口的右侧，也是我们可以在此处找到变量、UI\
+  \ 元素和图像区域的地方（见图 5.1）。我们将详细介绍以下主题：\n\n+   - 变量到底是什么，有哪些类型的变量？\n+   - UI 元素是什么，它们在\
+  \ UI 流程中如何使用？\n+   - 图像在 PAD 的上下文中扮演什么角色，如何使用它们？\n\n这三个主题的共同点是它们都可以作为自动化的输入使用。\n\
+  \n# 变量及其使用方法\n\n**变量**是一个可以存储值的对象（或设计元素）。你也可以把它想成一个可重用的组件，可以存储任何值。没有至少一个变量就没有有意义的流程。变量可以在设计器窗口的右侧创建和使用，如下图所示：\n\
+  \n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_120_0.png)\n\n图 5.1 — 设计器工作区中的变量\n\n\
+  在最右侧，还有 UI 元素和图像的符号，我们在本章中也会介绍它们。通过此面板，我们可以搜索变量、创建新的输入/输出变量（见下一节），并检查变量值。以下图显示了同一区域，称为\
+  \ **Variable value viewer** 区域，其中包含一些已填充的值和附加功能：\n\n变量始终具有特定类型，例如 **text** 或 **number**。这决定了可以存储在该变量中的数据类型。有多种类型可用，我们将在后续部分深入探讨。\n\
+  \n我们可以区分我们自己创建的变量（输入和输出）或由动作创建的变量（流程变量）。这些变量都会显示在相应的区域。让我们逐一查看它们。\n\n# ## 流程变量\n\
+  \n这组变量是由流程动作产生的，以便在流程中稍后使用。让我们看一下：\n\n+   - **Run application** 动作（`System` 组）启动给定应用程序并创建一个名为\
+  \ `AppProcessId` 的变量，其中包含该应用程序的 Windows 进程标识符。我们可以使用 `Terminate process` 和此变量来关闭应用程序。\n\
+  +   - **Get files in folder** 动作（`Folder` 组）创建一个包含该文件夹中文件列表的变量。此列表可用于迭代并读取或修改这些文件。\n\
+  +   - **Display message** 动作（`Message boxes` 组）显示一个用于确认（例如 **Ok** 或 **Cancel**）的消息框，因此会创建一个包含所按按钮文本的变量。\n\
+  \n流程变量不能直接在设计器中设置。但是，可以使用 `Set variable` 动作为其分配值。根据动作的不同，会创建不同类型和不同类型的变量。在前面的列表中，第一个变量将是\
+  \ `number` 类型，而第二个将是 `list` 类型。此类型无法更改，因此我们必须按原样使用这些变量。\n\n让我们创建一个新的流程并仅将 **Display\
+  \ message** 动作拖到工作区。在即将出现的对话框中，查看下半部分\n\n\n**生成的变量**部分，并使用向下箭头符号展开。  \n它看起来应该像这样：\n\
+  \n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_123_0.png)\n\n图5.3 – 流程变量的创建\n\n由于此操作会显示一条消息并提供按钮来关闭对话框，因此会创建一个名为**ButtonPressed**的变量。请注意，我还将**消息框按钮**的值更改为了**OK\
+  \ – Cancel**，这样在对话框中就不会只提供一个**OK**按钮，而是两个。`ButtonPressed`变量的值将包含用户将要按下的按钮的名称：**OK**或**Cancel**。这样，流程设计者就可以根据按下的按钮来评估该值并执行相应的操作。Microsoft提供的示例大量使用了此功能。提醒一下，您可以在PAD主窗口中访问这些示例，点击**我的流程**右侧的**示例**即可：\n\
+  \n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_124_0.png)\n\n图5.4 – Microsoft提供的PAD示例\n\
+  \n另外，请注意，我们可以使用相应的切换开关来禁用变量的生成。这适用于PAD中所有可能暴露变量的操作。如果我们对变量的内容不感兴趣，并且在后续处理中不需要它，这样做也是合理的，并且可以使变量列表更清晰（参见*图5.3*）。\n\
+  \n为了清晰起见，也可以重用流程变量。假设我们稍后需要在流程中使用另一个消息框。将另一个操作拖入设计器将产生另一个变量——在本例中为`ButtonPressed2`。如果我们不想保留第一个消息框的结果，我们可以将变量重命名为`ButtonPressed`。要做到这一点，我们可以双击对话框中的变量名称并进行更改。这样，我们可以覆盖现有变量的名称，而不是创建一个新变量。但是，我们也可以使用另一种方法，可以在kebab菜单中找到，以及其他操作，如下图所示：\n\
+  \n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_125_0.png)\n\n图5.5 – 流程变量的选项\n\n可以选择以下操作；每个操作都针对选中的变量：\n\
+  \n- **查看**：显示一个包含该变量当前值的对话框。\n- **重命名**：为这个变量赋予另一个名称。\n- **查找使用位置**：在流程中搜索此变量，并在窗口下部的单独窗口中显示结果。这是一个非常方便的功能，可以找到使用变量的所有位置。\n\
+  - **标记为敏感**：详见下文说明。\n- **固定**：将此变量固定到窗口顶部。所有其他变量将显示在固定的变量下方。\n\n如果将一个流程变量重命名为现有名称，我们需要确认这两个变量是否应合并。如果我们采用前面两个消息框的示例，并将**ButtonPressed2**重命名为**ButtonPressed**，效果如下：\n\
+  \n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_126_0.png)\n\n图5.6 – 合并流程变量\n\n合并仅适用于流程变量\n\
+  \n合并功能仅适用于流程变量，不适用于输入/输出变量。要更改输入/输出变量的名称，只需编辑它并更改名称，但该名称在所有其他输入/输出变量中必须是唯一的。否则，变量编辑器中会直接显示错误消息。但是，流程变量可以与输入/输出变量同名。流程变量不能被显式删除。当相应的操作（依赖关系将自动设置）从流程中移除时，这些变量会被移除。但是，如果某个操作重用了某个变量（如我们的示例所示），则流程变量将一直保留，直到最后一个使用该变量的操作被移除（这是出于安全原因）。\n\
+  \n如果相应的操作被禁用，流程变量也会消失。稍后在流程逻辑中使用此变量的任何操作都将失败。\n\n## 输入和输出变量\n\n我们在前面的示例中使用了输入变量。输入和输出变量使我们能够将外部数据引入流程（输入变量），也可以将数据暴露给外部（输出变量）。后者尤其有意义，例如，当流程是更大体系的一部分，并且需要将某些值返回给另一个云流程时。\n\
+  \n我们在前面的示例中使用这些类型的变量来定义一些输入数据，方法是手动设置值（我们在定义变量时可以将其设置为默认值），这在某些情况下非常有用，而流程变量则不能这样做。当我们在流程的不同位置需要相同的数据时，应该为此数据使用变量。\n\
+  \n例如，假设我们想要创建一个流程，在特定文件夹中执行一些复杂的文件夹操作和文件移动。这个特定文件夹将用于流程中的多个操作。如果我们出于某种原因想要更改这个基础文件夹，我们需要在许多位置进行更改。相反，可以引入一个变量来存储所有操作都将运行的基础文件路径。更改此变量将导致它在所有使用它的位置更新。\n\
+  \n创建变量非常简单。在*图5.1*中，输入/输出变量字段中间有一个小的+号。单击它，我们可以在输入或输出变量之间进行选择。以下创建变量的对话框对于两种类型都是相同的：\n\
+  \n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_130_0.png)\n\n图5.8 – 一个简单的计算流程\n\n这是此流程的操作列表，具有以下功能：\n\
+  \n- 使用**设置变量**操作，将`op1`和`op2`相加的结果赋值给`output1`变量。请注意`%`表示法，我们将在本章后面介绍：\n\n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_130_1.png)\n\
+  \n图5.9 – 使用带有%表示法的设置变量\n\n创建一个**显示消息**操作，在标题中使用`username`变量，并在消息文本中显示计算结果：\n\n###\
+  \ 显示消息\n\n显示一个消息框 更多信息\n\n选择参数\n\n消息框标题：欢迎 %username%\n\n要显示的消息：结果是：%output1%\n\n\
+  图5.10 – 显示计算结果\n\n请注意，您可以手动输入变量，也可以使用 {x} 按钮访问变量查看器。现在，保存并关闭流程设计器，然后通过按播放按钮从控制台窗口启动流程。您应该会看到以下对话框：\n\
+  \n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_132_0.png)\n\n图5.11 – 流程输入对话框\n\n您将看到不同输入的外部变量名称。如果您为操作数输入一些值和一个名称，流程将继续执行，并显示消息框和输出值。\n\
+  \n## 变量类型\n\n输入/输出变量可以是简单类型（文本、数字或布尔值），也可以是复杂类型（自定义对象、列表或数据表）。简单类型只能包含一个值（text =\
+  \ “some text value”，number = 5，或 boolean = True 或 False），而复杂类型可以包含多个条目甚至记录。这很有意义，特别是当桌面流程是更大场景的一部分时，不仅要传输和处理简单值，还要传输和处理列表和表格。让我们探讨有哪些可用的复杂变量类型。\n\
+  \n要使用变量，我们在操作组列表的最顶部有一个专门的操作组，叫做**变量**。在这里，我们会发现许多处理复杂数据类型的操作，但也有一些针对简单类型的操作，例如数字数据类型：\n\
+  \n- **截断数字**：允许您提取数值的整数部分或小数部分。\n- **生成随机数**：用于在给定边界内创建随机数。我们在上一章的骰子模拟中使用了这个功能。\n\
+  - **增加变量**和**减少变量**：顾名思义。\n\n其余操作与复杂数据类型相关，我们接下来将介绍。\n\n### 列表数据类型\n\n如果需要分别存储多个值，可以使用列表。在编程术语中，这相当于一维数组。可以使用相应的操作**创建新列表**来创建列表，或者定义具有该类型的输入/输出变量。其他操作也会创建列表，例如**从Outlook检索电子邮件**或**获取文件夹中的文件**。当您有一个列表时，使用`for\
+  \ each`循环遍历所有项目非常方便。我们在前面的章节中见过。尽管如此，也可以通过索引访问列表的各个成员，索引以0作为第一个元素。语法如下：\n\n```\n\
+  %Listname[StartIndex:NumberOfEntries]%\n```\n\n示例：假设有一个汽车列表，包含以下条目：`Mercedes, Aston\
+  \ Martin, BMW, Chrysler, Fiat, Toyota, and so on.` `%Cars[0:3]%`表达式会选择`Mercedes,\
+  \ Aston Martin, and BMW.` 记住：我们从0开始计数。\n\n我们还有其他可用于列表的操作。要操作列表的内容，我们可以使用以下方法：\n\n\
+  - 清除列表\n\n\n\n\n\n- 添加项目到列表\n- 从列表中移除项目\n- 排序列表，洗牌列表\n- 反转列表\n- 从列表中移除重复项目\n\n所有这些都相当自解释，并且会按其名称所暗示的方式执行。它们不会暴露任何额外的变量。\n\
+  \n某些操作需要两个列表来运行。这些是合并列表、查找公共列表项和减去列表。然而，这些操作会创建一个新的列表，即相应操作的运算结果。\n\n## 数据表\n\n\
+  除了单维列表数据类型之外，我们还可以使用二维或表格型数据表来存储值。你可以将数据表视为一个简单的 Excel 电子表格。有一个特定的操作可以从 Excel 电子表格中读取数据并返回一个数据表。这些操作会创建和操作数据行，它们也位于\
+  \ Variables 操作组中，但在 Data table 文件夹下。\n\n要创建数据表变量，我们可以使用创建新的数据表选项。操作参数对话框中包含一个编辑按钮用于定义表格：\n\
+  \nFigure 5.12 – Creating a data table\n\n我们可以双击现有列来重命名它们，或按 + 按钮添加新列和行。保存将存储值并返回到操作参数对话框，显示新数据表包含的行数和列数。为了演示数据表的不同操作，我创建了一个包含六行两列的简单表格，并将其命名为\
+  \ CarsTable，如以下屏幕截图所示：\n\n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_135_0.png)\n\n\
+  Figure 5.13 – The Cars table\n\n现在，如果我们想向该表格添加新行，可以使用 **Insert row into data table**\
+  \ 操作。在相应的操作参数对话框中，我们需要选择数据表及其 **Into location**。在这里，我们可以选择 **End of the data table**\
+  \ 或 **before a row index**，选择后需要指定。添加的新值必须符合特定的语法。要添加一条制造商为 Chevrolet 且国家为 USA 的新汽车记录，我们需要输入\
+  \ `%['Chevrolet', 'USA']%`。\n\n我们将在下一节讨论 `%` 记法，但本质上，我们需要在 **New value(s)** 参数中传递一个列表或数据行，并用百分号封装。\n\
+  \n**Update data table item** 的工作方式略有不同，因为它只是更新某个特定的单元格或项目。我们需要将列和行号作为参数值传递，以及要设置的新值。\n\
+  \n要删除一行，请使用 **Delete row from data table** 并将行索引作为参数传递。\n\n**Find or replace in\
+  \ data table** 操作是最复杂的，因为它具有很多功能。如其名称所示，它可以只是查找或查找并替换。可以利用正则表达式查找某些文本，并指定是否使用大小写敏感搜索。此操作的结果是另一个数据表，其中包含匹配项的列和行作为单独记录。\n\
+  \n让我们看一下以下示例，看看它是如何工作的。\n\n基于 Cars 表，我们想要插入包含一辆新汽车的新行。现在，我们想在所有位置将文本 USA 替换为 United\
+  \ States。我们可以创建一个如下所示的流程：\n\nFigure 5.14 – Working with data tables\n\n这里使用了 **Find\
+  \ or replace in data table** 操作来查找术语 USA 的所有出现。我将其配置如下：\n\n**Main**\n\n| Action\
+  \ | Description |\n| --- | --- |\n| Create new data table | Create a new data table\
+  \ and store it into CarsTable |\n| Insert row into data table | Appends the row\
+  \ `['Chevrolet', 'USA']` at the end of CarsTable |\n| Find or replace in data table\
+  \ | Finds all items in CarsTable containing the text `'USA'` and stores the matched\
+  \ cells into DataTableMatches |\n| For each CurrentItem in DataTableMatches | |\n\
+  | Update data table item | Updates the data table CarsTable at row index `CurrentItem['Row']`\
+  \ and column `CurrentItem['Column']` with the value `'United States'` |\n| End |\
+  \ |\n\n## Variables\n\nSearch variables\n\nInput / output variables 0\n\nThere aren't\
+  \ any input or output variables here yet\n\nFlow variables 3\n\n- CarsTable\n- CurrentItem\n\
+  - DataTableMatches\n\n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_138_0.png)\n\nFigure\
+  \ 5.15 – The Find and replace in data table action\n\n此操作会创建一个名为 **DataTableMatches**\
+  \ 的新数据表，在我们的例子中包含两条记录，即美国汽车的记录。流程运行后双击此变量会显示此表格的内容：\n\n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_141_0.png)\n\
+  \nFigure 5.18 – The data table before and after the update\n\n### Find and replace\
+  \ with “Replace” mode\n\n请注意，我们本可以使用“Replace”模式的 Find and replace 操作，而不是仅查找。通过这样做，我们可以在参数操作对话框中确定用于替换的文本片段。这将是一种更方便的方式来替换数据表中的文本，我们就不需要遍历此操作产生的数据表了。但有时，我们只需要查找给定的文本片段，而不直接用其他文本替换它或执行更复杂的操作。前面示例中展示的技术就可以用来完成这些任务。\n\
+  \n这个小例子说明了数据表的工作方式。在本书中，我们还将使用其他会产生数据表的操作。它们如下：\n\n- Read from Excel worksheet (the\
+  \ Excel action group)\n- Execute SQL statement (the Database action group)\n- Extract\
+  \ data from web page (the Browser automation action group in the Web data extraction\
+  \ subfolder)\n\n这些操作将在相应的章节中介绍。\n\n## 自定义对象\n\n到目前为止，我们查看的数据类型都表现出相似的结构，例如数据表，其中相关记录始终具有相同的结构。然而，我们也可以使用一种称为\
+  \ **object** 的数据类型，它由一组属性和相关值描述。让我们以本章前面出现的 `cars` 示例为例。例如，一辆汽车具有以下属性：品牌、颜色、制造年份、车辆类型等。有一段时间以来，所谓的\
+  \ **JavaScript Object Notation (JSON)** 格式在此类对象的表示中占据主导地位。这可能看起来如下：\n\n```\n{\n\
+  \  'Brand': 'BMW',\n  'Color': 'blue',\n  'year of manufacture': '2020',\n  'type\
+  \ of vehicle': 'SUV'\n}\n```\n\n可以为自定义对象创建输入/输出变量。你所要做的就是选择 **Custom object** 作为数据类型。然后，你可以在单独的对话框中编辑对象的数据：\n\
+  \n**Tip:** If you want to have a readable JSON file that you can easily edit, you\
+  \ can use the free JSON Formatter at https://jsonformatter.org/.\n\nFigure 5.19\
+  \ – Creating and editing a custom object\n\n当我们需要创建与某些外部 Web 服务通信的流程时，此数据类型特别有用，这些服务期望或返回\
+  \ JSON 对象。我们将在本书后面发现这一点。\n\n要将自定义对象转换为有效的 JSON 字符串，我们可以使用 Convert custom object\
+  \ to JSON 操作，它期望自定义对象作为输入并生成包含 JSON 字符串的新变量。反向操作是 Convert JSON to custom object。两个操作都在\
+  \ Variables 操作组中。我们将在本书后面查看这些操作的使用示例。\n\n## 文本数据类型及对应操作\n\n我们现在已经了解了 PAD 自带复杂的复杂数据类型。文本数据类型不属于这一组数据类型，但有大量操作仅处理此数据类型。因此，从我的角度来看，在这里简要提及是有意义的。\n\
+  \n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_143_0.png)\n\n这些操作位于 Text 操作组中，执行你期望文本编辑器完成的所有任务，并且在流程设计中非常有用。其中包括\
+  \ Split text、Get subtext、Crop text 等等。我想特别强调 Recognize entities in text 操作，它能够使用\
+  \ AI 从一段文本中提取某些实体。我鼓励你为此目的尝试 Microsoft 的相应示例。为此，切换到 Console 窗口并进入 Examples 部分。在\
+  \ Text Manipulation 标题下，你会找到一个名为 Extract phone numbers and emails from text 的条目。编辑此流程并查看调用，以体验首次与\
+  \ PAD 交互时 AI 的强大功能。\n\n## % 记法\n\n在我们之前看到的所有示例中，我们都需要使用 % 记法，每当我们想使用变量时都需要它。变量或其中包含一个或多个变量的表达式必须始终用\
+  \ % 字符括起来，因为正是这部分会被 PAD 评估。在两个 % 字符之间，可以使用变量或硬编码值一起使用简单的算术运算、逻辑比较或表达式。以下是一些示例：\n\
+  \n- `%CarName%`: Returns the content of a variable called `CarName`.\n- `%'CarName'%`:\
+  \ Please notice the quotes. This returns the hard-coded `CarName` value.\n- `%Counter\
+  \ + 1%`: Returns the value of the `Counter` variable increased by 1.\n- `%(Counter\
+  \ + 1) > 15%`: Makes use of parenthesis and returns a Boolean value of `True` if\
+  \ the `Counter` variable has a value of 15; otherwise, it returns False.\n- `%NettoPrice\
+  \ + VAT%`: Returns the sum of the values of the `NettoPrice` and `VAT` variables.\n\
+  \n### Using the % sign as a simple character\n\n\n\n\n\n有时，我们可能想使用 % 符号而不是在表达式中，而只是作为一个普通字符。在这种情况下，可以通过另一个百分号（%%）来转义该字符。\n\
+  \n这种记法非常直接易用，有时在我们本应只放置变量本身的字段中直接进行简单计算非常方便。除此之外，在这些表达式中，还可以使用变量的数据类型属性。这指的是由非内置数据类型提供的那些属性。例如，日期、列表、文件、文件夹、Outlook\
+  \ 消息、Web 浏览器实例等。例如，**获取文件夹中的文件** 操作会返回一个文件列表，每个文件都是 **File** 数据类型。我们可以遍历此列表，并在名为\
+  \ `currentItem` 的变量中保存当前项，以访问以下等属性：\n\n- `% currentItem.FullName%` 包含文件的完整路径\n-\
+  \ `% currentItem.Size%` 是文件的大小（以字节为单位）\n\n请参阅 *进一步阅读* 部分，以获取所有数据类型及其属性的官方文档链接。\n\
+  \n变量和 % 记法是创建流的极其重要部分。熟悉这一概念以及如何创建和操作变量至关重要。现在，让我们看看如何创建 UI 元素以远程控制外部应用程序。\n\n##\
+  \ 识别和创建 UI 元素\n\n在 *第 1 章* 中，我们了解到 PAD 来自 **机器人流程自动化（RPA）** 领域，这涉及远程控制本地应用程序。正是这些应用程序提供了可用于流程处理的输入选项。这些输入选项由\
+  \ PAD 识别\n\n## 图 5.20 – 使用录制器捕获 UI 元素\n\n如你所见，我使用了按钮序列 3，然后是 *（乘以），然后是 9，后跟 =（等于按钮），最后点击结果文本字段内部。\n\
+  \n现在你可以在录制器中按下 Done 按钮，将捕获的元素传输到流程设计器。UI 元素窗格应如下所示：\n\n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_148_0.png)\n\
+  \n图 5.21 – UI 元素层次结构\n\n现在我们有了一些 UI 元素，也可以演示其用法。PAD 为不同 UI 元素提供了专用操作。由于我们捕获了按钮，因此可以使用\
+  \ Press button in window 操作（UI 自动化 | 表单填充 操作组）来模拟 PAD 的计算。只需将此操作四次拖入设计器并选择正确的 UI\
+  \ 元素序列。应如下所示：\n\n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_149_0.png)\n\n图 5.22 –\
+  \ 模拟计算的流程\n\n我们也可以使用 Get details of the UI element in window 操作来提取结果文本字段的数据以在其他地方使用。执行此流程将根据流程中的序列神奇地按下按钮。这就是\
+  \ UI 自动化。\n\n也可以为桌面图标或任务栏图标创建 UI 元素。结合 UI 自动化操作组中的操作，这为我们提供了广泛的自动化选项。\n\n然而，不仅 Windows\
+  \ 应用程序可以被远程控制。PAD 还可以访问和远程控制 Web 应用程序和页面。流程与 Windows 应用程序相同。但是，必须为所使用的浏览器安装相应的浏览器扩展，以便\
+  \ PAD 能够识别 Web 元素。Microsoft 提供了\n\n适用于 Google Chrome、Mozilla Firefox 和 Microsoft\
+  \ Edge 的浏览器扩展（有关更多信息，请参阅 *进一步阅读* 部分）。\n\n虚拟桌面也可以纳入自动化。然而，要在其中识别 UI 元素，也需要一个小型扩展——所谓的虚拟桌面\
+  \ Power Automate 代理。有关此内容的更多信息可在本章的最后一节以及 *进一步阅读* 部分找到。\n\n因此，识别 UI 元素发挥着非常重要的作用，以便可以执行相应的操作，例如点击或\
+  \ *按下按钮*。PAD 将每个 UI 元素在所谓的 selector 下进行层次化排列，并分配名称和属性，使该元素在相应应用程序和操作系统中唯一。双击创建的\
+  \ UI 元素会显示该选择器及其属性，如下图所示：\n\n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_150_0.png)\n\
+  \n图 5.23 – Windows 按钮的选择器视图\n\n也可以创建选择器并禁用元素的现有选择器。这在测试时尤其有帮助，因为正确识别 UI 元素对自动化至关重要。\n\
+  \n我们将在 *第 6 章* 中查看更多细节和示例。\n\n## 如何在 PAD 中使用图像\n\n正如我们在上一节中所了解的，PAD 可以通过特定的选择器识别\
+  \ UI 元素。但在某些情况下，我们需要其他机制来执行某些操作，例如将鼠标移动到特定位置并执行操作。这时图像就派上用场了。我们有以下使用图像作为输入的操作：\n\
+  \n- **if image** 检查屏幕上是否存在图像\n- **Wait for image** 等待图像出现在屏幕上或从屏幕上消失\n- **Move mouse\
+  \ to image** 将鼠标移动到屏幕上的图像\n\n结合 **Send mouse click**，甚至可以在不知道 UI 元素的情况下执行操作。这种技术也很有用，如果我们需要在没有代理的虚拟或远程桌面上进行自动化，例如\
+  \ Linux 或 Unix。任何系统上的任何程序都可以通过这种技术远程执行和控制。因此，例如，如果有一个在 Linux 系统上运行且没有任何 API 的业务应用程序，也可以用\
+  \ PAD 自动化该程序。\n\nPower Automate agent for virtual desktops\n\n运行 PAD 的计算机原则上也可以远程控制\
+  \ **远程桌面协议（RDP）** 会话。如果远程系统也是 Windows 系统，可以在该系统上安装 Power Automate agent for virtual\
+  \ desktops。这使得在 RDP 会话内也能使用 UI 元素成为可能。这适用于 Citrix 和 Microsoft Remote Desktop。\n\n\
+  对于所有其他操作系统，你只能使用 PAD 图像进行远程控制。\n\n要创建或捕获图像，我们可以使用流程设计器窗口最右侧的第三个选项，它会显示图像区域。按下 **Capture\
+  \ image** 按钮即可让你在屏幕上点击并拖动选择区域。这由放大镜支持，以便尽可能精确。释放鼠标后，你将被提示为图像输入名称。如果我们对屏幕上任何所需区域执行此操作，我们将很快拥有一个图像库，可以使用\
+  \ PAD 操作进行操作。\n\n以下基本示例演示了图像的用法。因此，我通过 Microsoft Remote Desktop 程序访问 Linux 会话。对于此演示，我只想在该会话中启动文件资源管理器。为此，请执行以下步骤：\n\
+  \n- 1. 导航到 **Activities** 菜单并左键单击它。\n- 2. 等待任务栏出现。\n- 3. 按下文件资源管理器的按钮，如下图所示：\n\n\
+  ![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_153_0.png)\n\n图 5.24 – 远程控制 Linux 系统\n\n\
+  为了能够做到这一点，我需要通过前面描述的流程在 PAD 中创建两个图像：一个用于 Activities 菜单项，另一个用于文件资源管理器图标。下图显示了执行此操作所需创建的流程：\n\
+  \n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_154_0.png)\n\n图 5.25 – 流程中的图像\n\n让我们看一下流程的各个步骤：\n\
+  \n- 1. **Move mouse to image**：要使用此操作，需要提供图像——在本例中为 **Activities** 图像。此操作还允许我们在移动后直接发送鼠标点击。此外，我使用了高级图像识别算法在屏幕上查找图像：\n\
+  \n\n\n\n\n- Power Automate 浏览器扩展：https://learn.microsoft.com/en-us/power-automate/desktop-flows/install-browser-extensions\n\
+  - 在虚拟桌面上自动化：https://learn.microsoft.com/en-us/power-automate/desktop-flows/virtual-desktops\n\
+  - 在虚拟桌面上自动化：https://learn.microsoft.com/en-us/power-automate/desktop-flows/virtual-desktops?source=recommendations\n\
+  \n## UI 自动化的操作\n\n在上一章中，我们学习了 UI 元素以及它们如何识别应用程序交互的区域。在本章中，我们将重点介绍 PAD 可以通过 UI 元素操作实现的功能。这包括涵盖以下内容：\n\
+  \n- 探索不同的 UI 操作及其用途\n- 使用 UI 操作实现数据交换（提取数据和表单填写）以及两个应用程序之间的自动化\n\n到本章结束时，你将了解识别必要的按钮和\
+  \ UI 元素所需的内容，并通过 UI 操作触发它们，以安全可靠地重复所需任务并在流程中配置它们。\n\n### 为什么我们需要 UI 操作？\n\n随着时间的推移，创建了无数适用于\
+  \ Windows 的应用程序，其中许多至今仍然存在。微软本身也创建了出色的选项，可以使用 Visual Basic 和 Visual Studio 等工具定制你的应用程序。然而，其中许多应用程序仍然无法通过\
+  \ API 访问，必须手动操作——也称为人机界面。\n\n正如我们将在本书后面看到的那样，PAD 可以直接与众多广泛使用的标准应用程序（如 Office 和 Outlook）一起工作，但不可能用专用操作覆盖各种不同的应用程序的丰富内容。而这正是\
+  \ UI 元素操作存在的理由。术语 **UI 自动化** 指的是 PAD 的通用能力，可以与任何应用程序窗口一起工作，从而远程控制任何应用程序和控制元素。\n\n\
+  为了强制执行这种非常通用的方法，该操作组中的操作相应地通用，可以分为以下几部分：\n\n- 识别一个窗口\n- 与应用程序控件交互\n- 从窗口中提取数据\n\
+  - 在窗口中填写数据\n\n在深入另一个示例以利用这些操作之前，让我们先仔细看看每个操作。\n\n### 识别一个窗口\n\n我们需要做的第一件事是获取我们想要控制的应用程序的窗口。我们已经知道有几种启动程序的方法，例如使用\
+  \ *run application* 操作或使用 Excel 或 Outlook 等程序的专用操作。以下操作可识别窗口或使其可供 PAD 访问，尤其是在与其他窗口结合使用时：\n\
+  \n- **Get window/focus window**：可在 **Windows** 子组中找到。你可以获取或聚焦正在运行的窗口并返回标题和/或窗口句柄。\n\
+  - **Set window state/set window visibility**：可在 **Windows** 子组中找到。你可以将窗口的状态设置为 **restored**、**maximized**\
+  \ 或 **minimized**，从而隐藏窗口或使其再次可见。\n- **Move/resize/close window**：也在 **Windows**\
+  \ 子组中，此操作可通过提供 *X* 和 *Y* 坐标将窗口移动到桌面的特定位置，可将窗口大小更改为特定宽度和高度，或直接关闭窗口。\n- **If window/wait\
+  \ for window/wait for window content**：此操作根据窗口是否打开/聚焦与否，在条件块中执行操作，等待窗口打开/关闭/成为焦点/失去焦点，并等待应包含在窗口中的特定\
+  \ UI 元素。\n\n这些操作在应用程序打开或操作期间可能存在延迟的情况下尤其有帮助。如果 PAD 要访问尚未显示的 UI 元素，则可以使用这些操作等待元素出现。\n\
+  \n### 与窗口交互\n\nPAD 还需要能够远程控制应用程序。这意味着单击按钮或区域或拖放元素。这可以通过以下操作实现，这些操作不言自明：\n\n- Select\
+  \ a tab in a window\n- Hover the mouse over a UI element in a window\n- Click on\
+  \ a UI element in a window\n- Drag and drop a UI element in a window\n- Expand/collapse\
+  \ a tree node in a window\n\n这些操作使用之前已定义的 UI 元素；例如，使用录制器。在本章的示例中，我们将使用其中一些操作来远程控制应用程序。\n\
+  \n### 从窗口中提取数据\n\n我们在之前的示例之一中使用了一些这些操作，在其中提取了 Word 文档中复选框的值。提取应用程序数据时还有更多可能性：\n\n\
+  - **Get the details of window**：此操作会生成一个包含窗口属性（如其标题或源文本）的变量。所需属性可在操作对话框中选择。\n- **Get\
+  \ the details of a UI element in a window**：此操作与前一个操作相同，只是它针对特定 UI 元素以及不同的数据库和 Windows\
+  \ 桌面应用程序。此场景在下图中说明：\n\n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_162_0.png)\n\n图\
+  \ 6.1 – Orders to Invoices 结构视图\n\n在此场景中，使用 MS Access 创建了一个数据库应用程序。此应用程序可能通过网络共享被多个用户使用，并包含有关客户和供应商的信息。用户还可以在此数据库中存储来自客户的订单，但出于某种原因，客户的发票需要通过另一个应用程序处理。此应用程序是一个在用户桌面上运行的\
+  \ Windows 可执行程序。\n\n### Microsoft Access 数据库作为源系统\n\n我们在本示例中使用的数据库是微软提供的一个示例数据库。从\
+  \ Windows 程序任务栏启动 MS Access 也会提供大量示例数据库，其中 *Northwind* 数据库是其中之一。我们可以使用搜索功能查找此示例，双击它，并将其本地存储在我们的\
+  \ `Documents` 文件夹中。\n\n此数据库包含大量功能，从具有不同用户角色的可能性和输入数据的漂亮对话框开始（见下图）：\n\nNorthwind\
+  \ Login\n\nSelect Employee\nAndrew Cencini\nLogin\n\nNorthwind Traders\n\nI am:\
+  \ Andrew Cencini\n\n- Quick Links\n- View Inventory\n- View Orders\n- View Customers\n\
+  - View Purchase Orders\n- View Suppliers\n- View Employees\n- View Shippers\n- Sales\
+  \ Reports\n\nActive Orders\n\n| Status | Date | Customer |\n| --- | --- | --- |\n\
+  | New | 25/04/2006 | Company C |\n| New | 25/04/2006 | Company D |\n\nInventory\
+  \ to Reorder\n\n| Product | Qty Available | Reorder Level |\n| --- | --- | --- |\n\
+  | Northwind Traders Boysenberry Spread | 0 | 25 |\n| Northwind Traders Dried Pears\
+  \ | 0 | 10 |\n| Northwind Traders Curry Sauce | 0 | 10 |\n| Northwind Traders Fruit\
+  \ Cocktail | 0 | 10 |\n| Northwind Traders Scones | 0 | 5 |\n| Northwind Traders\
+  \ Beer | 0 | 15 |\n| Northwind Traders Clam Chowder | 0 | 10 |\n| Northwind Traders\
+  \ Chocolate | 0 | 25 |\n| Northwind Traders Gnocchi | 1 | 30 |\n\nOrder List\n\n\
+  Add New Order\n\n| Status | Salesperson | Customer | Ship Date | Shipping | Taxes\
+  \ | Total |\n| --- | --- | --- | --- | --- | --- | --- |\n| New | Nancy Freehafer\
+  \ | Company A |  | 0.00 € | 0.00 € | 1,674.75 € |\n| New | Nancy Freehafer | Company\
+  \ A |  |  |  | 736.00 € |\n\nOrder # (New)\n\nOrder Details\n\n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_165_0.png)\n\
+  \n图 6.2 – Northwind Access 应用程序\n\n在我们的示例中，我们假设多个用户会将订单添加到数据库中。但要创建发票，数据必须传输到开票应用程序。两个应用程序都没有内置将数据传输到其他地方的能力。\n\
+  \n将 Access 数据库作为核心应用程序之一是非常常见的场景，在小型甚至有时较大的公司中也是如此。这对于我们场景中将要使用的第二个应用程序也是如此。\n\n\
+  ### Windows 可执行文件作为目标系统\n\n我们将使用微软提供的一个示例应用程序 Contoso Invoicing 作为目标系统。这只是一个普通 Windows\
+  \ 应用程序的示例，具有导航树、菜单、工具栏以及用于查看和捕获数据的一些表单等特定特征。请参阅进一步阅读部分，了解有关如何安装此应用程序的更多详细信息，其外观如下：\n\
+  \n\n\n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_166_0.png)\n\n**图 6.3 – “Contoso\
+  \ 发票”应用程序**\n\n安装过程中还会创建一个桌面图标，我们很快就会用到它。这里还需要说明的是，安装程序还会提供一个 Excel 工作簿，其中包含此应用程序的所有数据。该文件位于标准用户的文档文件夹中，路径为\
+  \ Contoso Invoicing - 1.0.15.0。我们可以根据需要修改此 Excel 工作簿，例如再次删除示例数据。\n\n要创建发票，我们必须调用导航树中的“发票”菜单项，如前一张屏幕截图所示，然后输入数据。这概括了中小型企业中一种非常典型的设置示例。\n\
+  \n## 分解工作流\n\n这是一个并不简单的流程，因此最佳实践是将其拆分成更小的部分。由于 UI 元素交互始终会使用大量操作，这些较小的流程将更易于维护和测试：\n\
+  \n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_167_0.png)\n\n**图 6.4 – 分解“订单到发票”工作流**\n\
+  \n1. 要确定需要创建哪些新发票，我们首先需要在 Northwind 数据库中识别这些订单，并将订单存储在数据表中。接下来，我们必须遍历此数据表，并在 Contoso\
+  \ Invoicing 应用程序中创建新发票。每张新发票都会生成一个发票 ID，我们也可以将其保存到数据表中。\n2. 最后一个例程会获取这些新的发票 ID，并使用相关信息更新数据库。\n\
+  \n提示：这三个例程被拆分为以下子流程。这样做的原因是，可以识别与特定操作相关的问题，并改进流程的维护：\n\n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_167_1.png)\n\
+  \n**图 6.5 – “订单到发票”的子流程**\n\n要创建整个工作流，我们需要应用本书中讨论的所有知识，包括流程控制、变量和 UI 元素。下面来看看可以使用哪些不同的子流程来完成这些任务。\n\
+  \n### GetNorthWindNewOrders 子流程\n\n在此子流程中，我们希望启动数据库应用程序，并最终获取数据库中所有新到达订单的列表。\n\n\
+  要远程控制该应用程序，我们需要定义或捕获相应的 UI 元素，以便实现所需的结果。在上一章中，我们学习了如何完成此操作。此外，还需要定义一些变量。以下是获取新订单的详细流程：\n\
+  \n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_168_0.png)\n\n**图 6.6 – 提取新订单的子流程**\n\
+  \n以下是对不同步骤（行号）的说明。\n\n*步骤 2* 使用 Northwind 数据库启动 Microsoft Access。这里使用了两个变量。`MSAccessApp`\
+  \ 包含 Microsoft Access 可执行文件的完整路径，而 `NorthWindDB` 包含数据库本身的路径。\n\n在*步骤 3*中，我们使用第一个\
+  \ UI 操作，称为**等待窗口**。旧程序或性能较低的计算机（处理器、RAM 等）在启动程序时可能会有一定延迟。此操作会暂停流程，直到指定窗口出现。在本例中，流程会等待登录屏幕出现。登录窗口之前已被捕获为\
+  \ UI 元素。\n\n*步骤 4*会触发登录按钮的单击操作。如*图 6.2*所示，数据库应用程序首先要求用户登录。这里，我们只需选择第一个用户，然后按下登录按钮。\n\
+  \n现在，我们应该等待主应用程序窗口出现。因此，在*步骤 5*中，我们再次使用**等待窗口**操作。\n\n在*步骤 6*中，我使用图像来定位应用程序右侧的**查看订单**链接。记录器无法将其检测为独立的\
+  \ UI 元素，因此我必须使用 PAD 的图像功能将鼠标移动到该链接并单击它。这是一个很好的示例，说明 PAD 甚至可以处理这类情况。\n\n在*步骤 8 到\
+  \ 11*中，我使用 MS Access 功能区按钮筛选订单列表，使其只包含新订单，然后选中所有新订单并将其复制到剪贴板。这样，便可以在下一个子流程中解析其内容。\n\
+  \n请注意，此时我们并没有关闭应用程序。\n\n### ExtractNewOrders 子流程\n\n此时，我们只有剪贴板中的一些文本。但要遍历新订单列表，我们需要以某种方式将这些文本转换为数据表。下图展示了相应流程以及实现方法：\n\
+  \n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_170_0.png)\n\n**图 6.7 – 从剪贴板文本生成数据表**\n\
+  \n在步骤 1 中，我们通过使用剪贴板操作组中的“获取剪贴板文本”操作，将剪贴板文本存储到文本变量中。现在，我们可以将该文本拆分为文本列表（步骤 3）。\n\n\
+  接下来，我们创建一个具有正确列的数据表变量。这些列包括 MS Access 订单表中的所有列，以及一个额外的发票 ID 列，该 ID 稍后由 Contoso Invoicing\
+  \ 应用程序生成：\n\n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_171_0.png)\n\n**图 6.8 – 内部订单数据表定义**\n\
+  \n在步骤 5 中，我们开始遍历文本列表。对于列表中的每个条目，都需要再次拆分文本，以获取每一列的单独值。这些值会在步骤 7 中存储到数据表中。\n\n最后，我们需要清理数据表并删除前两行（第\
+  \ 1 行为空行，是在定义数据表时创建的；第 2 行包含剪贴板文本中的列标题信息）。\n\n现在，我们就有了一个包含所有新订单的数据表，可以对其进行处理。\n\n\
+  ### InvoiceOrders 子流程\n\n此子流程负责在 Contoso Invoicing 应用程序中创建发票。这里，我们也需要首先识别相应的 UI\
+  \ 元素，例如“发票”树节点、新建按钮（加号图标）、保存按钮（加号图标）等。下图展示了所需的 UI 元素：\n\n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_172_0.png)\n\
+  \n**图 6.9 – Contoso Invoicing 中的 UI 元素**\n\n如我们所见，我们需要更多 UI 操作来填充数据并提取数据。下图展示了为我们完成所需步骤的流程：\n\
+  \n- 保存\n- 运行\n- 停止\n- 运行下一个操作\n- 记录器\n- 子流程\n- 主流程\n- ExtractNewOrders\n- GetNorthWindNewOrd...\n\
+  - InvoiceOrders\n- WriteBackInvoiceIDs\n\n| 步骤 | 动作类型 | 动作详情/注释 |\n|------|---------|---------------|\n\
+  | 1 | 运行应用程序 | 使用参数运行应用程序 ContosoInvoiceApp，并将其进程 ID 存储到 ContosoInvoiceAppID |\n\
+  | 2 | 等待窗口 | 等待窗口 Window 'Contoso Invoicing' 打开 |\n| 3 | 在窗口中单击 UI 元素 | 单击 UI 元素\
+  \ Treeviewbutton 'Invoices' |\n| 4 | 循环 | LoopIndex 从 0 到 NewOrders.RowsCount -\
+  \ 1，步长为 1 |\n| 5 |  | 单击“新建”按钮 |\n| 6 | 在窗口中单击 UI 元素 | 单击 UI 元素 Button 'New' |\n\
+  | 7 |  | 填写日期、账户、联系人和金额 |\n| 8 | 在窗口中填充文本字段 | 使用 NewOrders [ LoopIndex ][1] 填充文本框\
+  \ Textbox 'Date' |\n| 9 | 在窗口中填充文本字段 | 使用 NewOrders [ LoopIndex ][4] 填充文本框 Textbox\
+  \ 'Account' |\n| 10 | 在窗口中填充文本字段 | 使用 NewOrders [ LoopIndex ][3] 填充文本框 Textbox 'Contact'\
+  \ |\n| 11 | 识别文本中的实体 | 识别文本 NewOrders [ LoopIndex ][8] 中的所有 Currency 实体，并将结果存储到\
+  \ RecognizedEntities |\n| 12 | 设置变量 | 将变量 AmountNumber 赋值为 RecognizedEntities [0][0]\
+  \ |\n| 13 | 替换文本 | 将 AmountNumber 中的 '\\' 替换为 ''，并将结果存储到 AmountNumber |\n| 14 |\
+  \ 在窗口中填充文本字段 | 使用 AmountNumber 填充文本框 Textbox 'Amount' |\n| 15 |  | 提取 InvoiceID\
+  \ |\n| 16 | 从窗口提取数据 | 从 UI 元素 Textbox 'InvoiceID' 中提取所有记录，并将结果存储到 InvoiceID |\n\
+  | 17 |  | 在数据表中填写 InvoiceID |\n| 18 | 更新数据表项 | 更新数据表 NewOrders 的第 LoopIndex 行、第\
+  \ 9 列，将其值设置为 InvoiceID |\n| 19 |  | 单击“保存”按钮 |\n| 20 | 在窗口中单击 UI 元素 | 单击 UI 元素 Button\
+  \ 'Save' |\n| 21 | 结束 |  |\n| 22 | 终止进程 | 终止 ID 为 ContosoInvoiceAppID 的进程 |\n\n\n\
+  \n\n\n**图 6.10 – 将订单开具发票到 Contoso Invoicing**\n\n再次，让我们逐步了解细节：\n\n1. *步骤 1* 启动应用程序。\n\
+  2. *步骤 2* 等待主应用程序窗口出现。\n3. *步骤 3* 点击 **Invoices** 树节点。现在我们准备插入发票了。\n4. *步骤 4* 启动一个循环并遍历新订单的数据表。\n\
+  \n请注意，我选择使用索引版本进行迭代。这样在最后填充生成的发票 ID 数据时更容易，因为我可以通过循环索引引用当前迭代步骤。\n\n在循环中，我们对表中的每一行数据都做同样的操作：\n\
+  \n1. 点击 **New** 按钮（*步骤 6*）。\n2. 填写日期、账户、联系人和金额的数据（*步骤 8 至 14*）。这里，我们使用 **Form filling**\
+  \ 操作子组中的 **Populate text field** 操作。还有一件特别需要注意的事情。因为我们将数据从数据库中作为文本提取出来，货币字段包含一个\
+  \ Invoicing 应用无法理解的值。需要进行转换才能输入正确的值。要转换金额值，我们可以使用 **Recognize entities in text**\
+  \ 操作。在这种情况下，实体是指诸如电子邮件、IP地址或货币值之类的东西。此操作使用人工智能并分析给定的文本，以及检测规则。操作返回包含所有检测到的值的 data\
+  \ table。它可以这样配置：\n\n> **Recognize entities in text**\n> Recognizes entities in text,\
+  \ such as numbers, units, date/time and others expressed in natural language across\
+  \ multiple languages More info\n>\n> Select parameters\n>\n> Text to recognize from\
+  \ %NewOrders[LoopIndex][8]% {x}\n> Entity type: Currency\n> Language: English\n\
+  >\n> Variables produced RecognizedEntities\n>\n> Save Cancel\n\n**图 6.11 – Recognize\
+  \ entities in text 配置**\n\n3. 提取生成的发票 ID 数据并将其存储在数据行的最后一个元素中。这里，我们使用 Extract data\
+  \ from window 操作来捕获生成的发票 ID。\n4. 步骤 18 使用提取的发票 ID 更新订单数据表。\n5. 在步骤 20 中，我们点击 Save\
+  \ 按钮。\n\n在这一阶段，我们已经建立了两个应用程序之间的通信，并将新订单作为发票插入到 Contoso Invoicing 应用中。此外，我们现在知道每个订单的所有发票\
+  \ ID，以便我们可以为参考而更新 MS Access 数据库本身。让我们看看这里需要做什么。\n\n### WriteBackInvoiceIDs 子流程\n\
+  \n最后，我们希望更新 MS Access 数据库，以便用户可以看到已创建发票。现在，这可以通过多种方式实现。不幸的是，数据库本身并没有为我们提供一种简单的方法来标记订单以便开具发票。这就是为什么我们可以选择一种简单的方法将此信息传回数据库，通过更新每个订单中的\
+  \ Notes 字段。我们将通过动态创建包含订单 ID 以及发票 ID 的 SQL 语句来实现这一点（两者都在我们的数据表中）。该语句可能如下所示，例如：\n\n\
+  ```sql\nUPDATE Orders SET Notes = \"Invoice ID: 1159\" WHERE [Order ID] = 59\n```\n\
+  \n执行此操作的流程显示在以下图中：\n\n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_176_0.png)\n\n**图\
+  \ 6.12 – 导航到 SQL 面板**\n\n为了能够将查询文本粘贴到 MS Access 中，我们需要 PAD 导航到可以处理查询的位置。您可以通过点击\
+  \ Create 功能区，然后点击 Query Design 按钮来执行此操作。之后，我们需要切换到 SQL 视图，以便在那里输入查询。这就是流程在 *步骤 3\
+  \ 至 6* 中所做的。\n\n请注意，我们正在对订单数据表中的每条记录运行此例程。在 *步骤 8* 中，我们创建更新后的 SQL 语句，并再次使用名为 **Populate\
+  \ text field in window** 的表单填充 UI 操作。\n\nMS Access 中有一个 **Run** 按钮可用于执行查询。在 *步骤\
+  \ 9* 中，我们指示 PAD 按下此按钮。MS Access 的默认行为是弹出一个对话框，之后我们必须确认操作。在 *步骤 12* 中，我们告诉 PAD 执行此操作。\n\
+  \n接下来，我们希望关闭查询窗口并重新开始。在 *步骤 13* 中，我们按下关闭查询窗口的按钮；再次，我们需要让 PAD 确认我们不希望保存查询。这标志着循环的结束，以便我们可以重新开始：\n\
+  \n```text\nSubflows\n\nNewOrders\nInvoiceOrders\nWriteBackInvoiceIDs\n\nFor each\
+  \ CurrentItem in NewOrders\n\nnavigate to SQL input pane\n\nClick UI element in\
+  \ window\nClick on UI element Tab Item 'Create'\n\nClick UI element in window\n\
+  Click on UI element Button 'Query Design'\n\nClick UI element in window\nClick on\
+  \ UI element MenuItem: More Options\n\nClick UI element in window\nClick on UI element\
+  \ MenuItem: SQL View\n\ncreate dynamic SQL statement\n\nPopulate text field in window\n\
+  Populate text box Pane 'Query1' with 'UPDATE Orders SET Notes = \"Invoice ID: '\
+  \ + CurrentItem[9] + '\" WHERE [Order ID] = ' + CurrentItem[0]\n\nClick UI element\
+  \ in window\nClick on UI element Button 'Run'\n\nWait for window\nWait for window\
+  \ Window 'Microsoft Access' to open\n\nclose the query and start over\n\nClick UI\
+  \ element in window\nClick on UI element Button 'Yes'\n\nClick UI element in window\n\
+  Click on UI element Button 'NetUIDocumentTabCloseButton'\n\nWait for window\n```\n\
+  \n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_179_0.png)\n\n**图 6.13 – 使用发票信息更新 MS\
+  \ Access**\n\n乍一看，整个过程似乎有点繁琐，但它揭示了以下几点：\n\n- PAD 完全有能力与应用程序交互并确认对话框\n- 无论是 Microsoft\
+  \ 的应用程序还是不是，都无关紧要，因为 UI 元素的概念是通用的\n- PAD 可以从其他应用程序中提取数据并使用它们与 UI 元素一起创建进一步的操作\n\
+  - 如果此处介绍的任务必须每天执行一次甚至多次（这种情况完全可能），那么这里展示的集成和自动化将获得数倍回报\n\n除了这些重要点之外，我还想做出以下评论：\n\
+  \n- 如前所述，数据库中也有计费功能。然而，在创建发票之前，必须满足进一步的条件，我为了这个示例的利益而忽略了它们。\n- 在移交金额时，我们为了简单起见没有执行任何货币转换。\n\
+  - 我们使用的所有 UI 元素之前都已通过记录器插入到 PAD 中。[第 5 章](Chapter 5) 详细描述了如何实现这一点。\n\n在本节中，我们了解了\
+  \ PAD 如何弥合两个需要相互交换数据的不同应用程序之间的差距。通过执行数据提取，我们可以从一个应用程序读取信息，将其转换为另一种格式，并使用表单填充 UI\
+  \ 操作将其插入到第二个应用程序中。\n\n## 摘要\n\n在本章中，我们了解了 PAD 如何允许两个原本没有连接的应用程序交换数据。通过定义 UI 元素并使用\
+  \ UI 操作，任何应用程序都可以被远程控制，从而集成到更大的自动化上下文中。在这里，PAD 充当一个高级实体，允许应用程序环境相互通信；否则，除非手动操作，否则根本不可能进行数据交换。\n\
+  \n在下一章中，我们将查看可用于管理和远程控制计算机、其文件和服务的其他操作。\n\n## 进一步阅读\n\n以下演练 *Microsoft ‘RPA in a\
+  \ Day’ Training Material Update* 提供了完整的课程，其中包含不同的模块，也利用了本章中使用的示例应用程序。该文章包含一个链接供您下载材料。在\
+  \ `Lab data packages` 文件夹中，有另一个名为 `Prerequisites` 的文件夹，其中包含 Windows 应用程序的安装程序：https://powerautomate.microsoft.com/en-us/blog/announcing-microsoft-rpa-in-a-day-version-2/。\n\
+  \nUI 自动化参考：https://learn.microsoft.com/en-us/power-automate/desktop-flows/actions-reference/uiautomation\n\
+  \n\n\n\n"
+- '## 自动化你的桌面和工作站
+
+
+  在本章中，我们将查看系统管理的一部分且具有高度实用性的大量操作。其中一些操作将在本章中介绍，具体如下：
+
+
+  - 工作站管理操作，包括脚本编写
+
+  - 文件和文件夹
+
+  - 计算机外设，如鼠标和键盘、打印机和剪贴板
+
+
+  我们将用本章的第一部分来介绍使系统管理成为可能的操作组，然后再探讨文件夹和文件管理的可能性。
+
+
+  最后一部分涉及计算机外设的自动操作。我们将创建一个 PowerPoint 幻灯片演示文稿来记录本地工作站的状态。到本章结束时，我们将了解到 Power Automate
+  Desktop（PAD）可以管理本地计算机的所有重要方面，并且这为文件夹和文件管理提供了强大的工具。
+
+
+  ## 技术要求
+
+
+  操作系统（OS）进程和 Windows 服务是至关重要的组件，不当操作可能会影响 Windows 操作系统的稳定性和可靠性。这就是为什么需要管理员权限来操作这些组件。
+
+
+  你可以在以下链接找到技术要求：
+
+  https://learn.microsoft.com/en-us/power-automate/desktop-flows/requirements.
+
+
+  ## Windows 和桌面管理
+
+
+  在小型和大型网络中对工作站进行大规模管理，今天可以由众多工具支持，例如 Active Directory 组策略、Microsoft Intune、Microsoft
+  System Center 等。管理区域中的典型管理任务如下：
+
+
+  - 安装和设置操作系统
+
+  - 创建、配置和授权用户访问
+
+  - 为用户安装额外的标准软件，如 Office 或其他应用程序
+
+  - 通过执行命令或脚本并监控和管理进程和 Windows 服务来执行定期维护和健康检查
+
+
+  如前所述，这些任务可以部分由其他机制覆盖，例如 Active Directory 组策略、Microsoft Intune、Microsoft System Center
+  功能或其他第三方管理软件。通常，此类工具需要更大的采购和维护成本，并且软件面向大型环境中的专业 IT 管理员。这些工具还需要在本地安装代理软件（一个安装的 Windows
+  服务），该服务会频繁地与中央管理实例联系以获取新更新，然后可以部署这些更新。
+
+
+  在下一节中查看 PAD 的功能后，它似乎在该领域是一个有用的工具。为了阐明远程管理软件和 PAD 的不同方法在定位上的差异，我们可以查看以下表格：
+
+
+  | Feature | Remote Management Software | Power Automate Desktop |
+
+  |---|---|---|
+
+  | Feature | Remote Management Software | Power Automate Desktop |
+
+  | General approach | Consistently manage desktops and OSes by providing a set of
+  software packages and monitoring devices and OS security | Executes desktop actions
+  that cannot be performed automatically and remotely controls the operation of software
+  by simulating a user |
+
+  | Provide management of desktops | Centrally, with remote agents to be installed
+  on each machine | Distributed – a desktop flow is created on one machine and can
+  be shared afterward |
+
+  | Install software packages | Automatically after central configuration | The creation
+  of a flow is required for each package to be installed |
+
+  | Ability to operate software | Not available | The creation of a flow is required
+  for operating software |
+
+
+  表 7.1 – 远程管理软件与 PAD 的比较
+
+
+  正如我们在前面的表格中所看到的，PAD 并非旨在覆盖集中式网络管理，尽管我们发现了一些操作组，可用于创建流程以执行管理任务，其中一些任务在集中式网络管理中无法实现或不可用。
+
+
+  另一方面，使用此类管理软件无法映射桌面上一个或多个软件产品的单个操作。
+
+
+  因此，在此环境中 PAD 出现了以下用例：
+
+
+  - 需要对工作站进行管理，但没有可用的管理软件
+
+  - 必须在本地计算机上执行一项任务，而此类管理软件无法映射该任务
+
+
+  ## 操作
+
+
+  ![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_185_0.png)
+
+
+  图 7.1 – PAD 中的系统操作
+
+
+  Windows 中的一个进程代表已启动的程序。这样的进程既有名称也有唯一的 ID。我们可以通过在命令行上执行 `tasklist` 命令来查看 Windows
+  中所有已启动的进程。因此，如果我们运行 Microsoft Word 或任何其他程序，对应的进程将被启动。通常，用户会与为特定程序启动的进程进行交互。PAD 有一个
+  **Run application** 操作也可以做到这一点。我们在之前的示例中多次使用过此操作。我们可以使用此操作在桌面上启动任何应用程序，或通过提供一些命令行参数来打开与特定应用程序关联的文档，如下图所示：
+
+
+  ![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_186_0.png)
+
+
+  图 7.2 – 运行应用程序操作参数
+
+
+  **Application path** 参数确定可执行程序，包括应用程序的完整路径。
+
+
+  在 **Command line arguments** 参数中，我们可以输入应用程序所知道且我们想要传入的所有额外参数。在前面的示例中，我们使用了打开文档的命令行开关。
+
+
+  查找应用程序完整路径的提示
+
+
+  如果您想知道应用程序的完整路径，而 Windows 开始菜单中只有条目，请执行以下操作：
+
+
+  - 1. 通过输入其名称来识别应用程序，然后右键单击图标并选择 **Open file location**。这将打开 Windows 资源管理器到应用程序的快捷方式
+
+  - 2. 现在右键单击快捷方式并再次选择 **Open file location**。这将在 Windows 资源管理器中定位可执行程序。
+
+  - 3. 最后，右键单击应用程序并选择 **Copy as path** 或 *Ctrl + Shift + C* 并将此值粘贴到 **Application
+  path** 参数字段中。
+
+
+  如果您想为应用程序使用特定的工作文件夹，可以在相应参数中指定。**Window style** 确定应用程序窗口将显示为正常、最大化、最小化或隐藏。
+
+
+  某些应用程序在显示应用程序窗口之前需要一些时间。这意味着进程已经启动，但 **用户界面（UI）** 尚未显示。另一个原因可能是本地计算机的性能。但如果我们需要此应用程序窗口进行进一步处理，我们可以指定应用程序启动时要执行的操作：立即继续或等待应用程序加载或完成。
+
+
+  执行此操作后，应用程序的进程 ID 将存储在相应的变量中。此变量稍后可用于通过终止进程来关闭程序。
+
+
+  为了弥补配置较差的计算机的延迟，如果 PAD 可以等待应用程序的可用性以及进程的可用性，或者检查进程是否已在运行（或不再运行），以便在必要时启动下一个资源密集型应用程序，这将很有帮助。这就是
+  **If process** 和 **Wait for process** 操作发挥作用的地方，它们做它们所说的，并且需要一个进程名称：
+
+
+  - **If process:** 这会检查给定的进程名称是否正在运行或未运行
+
+  - **Wait for process:** 这会暂停流程的执行
+
+
+  接下来，让我们讨论一个场景，这些操作可能非常有用：
+
+
+  - 我们假设有一个非常庞大、占用资源大的桌面应用程序，由于 CPU 和 RAM 的限制，我们只能在计算机上运行一次。
+
+  - 当我们手动启动应用程序时，在 UI 加载并应用程序变为可用之前需要一些时间。在这里，我们可以使用 **Run application** 操作并将 **After
+  application launch** 参数设置为 **Wait for the application to complete**。
+
+  - 我们必须确保该应用程序只有一个实例。否则，计算机将不再响应。应用程序有时也会崩溃，因此我们希望确保在启动新实例之前终止任何孤立的进程。**If process**
+  操作可以在这里帮助检查是否仍有另一个进程正在运行该应用程序，并且我们将使用 **Terminate process** 操作来关闭该进程。
+
+  - 我们需要在该应用程序中非常频繁地运行一些操作，因此我们希望使用 PAD 来自动化这些任务。在此步骤中，我们将设计流程并创建 UI 元素和操作来执行我们需要的任务。
+
+  - 在对应用程序的工作完成后，我们希望确保应用程序已正确且完全关闭。我们可以利用
+
+
+
+
+  **Wait for process** action here and check whether the process is terminated. We
+  could also take care of any timeouts for this action and retry terminating the process.
+
+
+  ## 避免多种设备配置的技巧
+
+
+  由 IT 部门负责的设备策略将避免组织内部硬件的碎片化。
+
+
+  **System** 动作组还具有其他动作，我们已将其总结如下：
+
+
+  - **If process/Wait for process**：之前已讨论过。
+
+  - **Run application/Terminate process**：之前已讨论过。
+
+  - **Ping**：此动作向远程计算机发送网络消息并检查远程机器是否可访问。
+
+  - **Set/Get/Delete Windows environment variable**：这些环境变量可以以中央位置存储数据和值，供操作系统和所有其他已安装程序使用。存在标准环境变量，例如
+  **WINDIR**（Windows 操作系统的安装位置）或 **PATH**（包含可通过命令行直接访问的重要程序的目录列表）。这些对应的动作可以在 PAD 流程中管理这些条目。
+
+
+  除了使用 UI 运行应用程序（进程）外，操作系统还具有不与用户交互的后台服务概念。这些服务也是进程，因为一旦启动，它们就会出现在活动进程列表中，通常由名为 `svchost.exe`（服务的宿主应用程序）的应用程序包装。但它们需要特殊处理，我们为此专门提供了
+  PAD 动作，位于 **Windows services** 动作组中（见下图）：
+
+
+  要成功执行前面的流程，PAD 必须以更高的授权执行。为此，PAD 必须先完全关闭。系统托盘中的后台进程也必须关闭。然后，可以从 Windows 菜单启动 PAD。为此，右键单击程序图标并选择
+  **Run as administrator** 选项。此后，PAD 可以正常使用，流程将无错误运行。
+
+
+  另一个值得提及的话题是 **Processes and Services** 动作的有用功能，这使得创建桌面流程时的工作更轻松。对于 **Processes**
+  和 **Services**，相关元素的选择通过预填充的下拉列表变得更加容易。以下截图显示了可由 PAD 操作的预填充服务列表：
+
+
+  list of processes and use it afterward in our flow. And, of course, it is still
+  possible to use a variable in these parameters.
+
+
+  ## 命令行会话和脚本
+
+
+  在本节中，我们将查看使用 PAD 通过 Windows 命令行（CMD）执行自己的命令并通过脚本语句、拦截结果并进一步处理结果的可能性。为此，我们将查看以下动作组：
+
+
+  - **CMD session**：执行以下动作：**Open CMD session**/**Close CMD session** 以及 **Read from
+  CMD session**/**Write to CMD session**/**Wait for text on a CMD session**
+
+  - **Scripting**：运行 DOS 命令/VBScript/JavaScript/PowerShell 脚本/Python 脚本
+
+
+  每个操作系统都有一个命令行（有时也称为 **console**），有时这是访问系统的唯一形式。因此，可能性非常广泛，任何原本需要 UI 完成的操作都可以通过命令行执行，甚至更多。Windows
+  CMD 是目前发出命令的标准工具。命令行当然也可以通过 Windows 程序菜单、Windows 键 + R 快捷方式以及 cmd 命令手动启动。以下流程使用了我们在
+  **CMD session** 动作组中找到的所有动作：
+
+
+  ![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_194_0.png)
+
+
+  Figure 7.6 – Using the command-line actions in PAD
+
+
+  该流程具有以下步骤：
+
+
+  1. **Open CMD session**：这是使用 CMD 时的第一个动作，因为该动作创建了 `CmdSession` 变量，后续动作使用该变量发出命令。也可以在参数中设置会话的特定工作文件夹。
+
+  2. **Write to CMD session**：这里，将指定参数中的命令传递给命令行并执行。在我们的示例中，我们使用 `net start` 命令，它返回工作站上所有已启动服务的列表。
+
+  3. **Wait for text on CMD session**：如果命令执行需要一些时间，此动作会暂停流程的进一步执行并等待特定文本出现在命令行上。在我们的示例中，命令返回
+  `The command completed successfully` 文本，我们在此使用它。其他命令可能返回其他结果甚至什么都不返回。请注意，此动作会阻塞流程，直到给定文本返回。可能需要为此动作设置超时并处理错误。
+
+  4. **Read from CMD session**：此动作获取命令的输出并将其存储在 `CmdOutput` 变量中。除了常规返回值外，还有错误输出，也会创建变量以便进一步处理。
+
+  5. **Write text to file**：此动作不属于 **CMD session** 动作组，而是属于稍后本章讨论的 **File** 动作组。该动作接收一个变量并将内容写入可在参数中定义为文本文件的文件。我们正在创建保存在用户工作站桌面上的文件。
+
+  6. **Close CMD session**：关闭之前打开的会话。
+
+
+  我们在此流程中创建了一个包含所有已启动服务的文本文件，我们可以对此进行进一步调查，或现在通过电子邮件将其发送到中央维护邮箱以便进一步处理。
+
+
+  执行特定命令集的另一种方法是使用 PAD 中的 **scripting** 功能。**Scripting** 动作组提供了五个脚本引擎，其工作原理如下图所示：
+
+
+  ![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_196_0.png)
+
+
+  Figure 7.7 – The basic function of a Run Script action
+
+
+  让我们更仔细地看看前一图中描述的概念：
+
+
+  1. 首先要注意的是提到了 **Run Script** 动作，这使我们能够使用 PAD 中可用的所有代表性引擎，包括 DOS 命令、VBScript、JavaScript、PowerShell
+  脚本和 Python 脚本。脚本对于某些功能的小代码块非常有用，否则会非常繁琐或根本不可用。不同的脚本引擎各有优势，让我们可以选择我们已知的脚本语言。也可以设想某些功能已在其他地方使用脚本语言实现，因此此实现可以在此处再次使用。
+
+  2. 现在，要将脚本集成到 PAD 流程中，我们需要将数据和值传递给脚本并回放结果。我们可以使用我们在变量章节中已学到的 % 标记非常轻松地完成此操作。
+
+  3. 下一步是用相应的脚本语言实现实际功能。在此实现的末尾，应定义另一个变量，其中包含返回值，并通过标准输出写回。此值随后可在通过调用脚本块的动作定义的变量中使用。让我们看一个小例子：
+
+
+  ![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_197_0.png)
+
+
+  Figure 7.8 – Using a Scripting action in PAD
+
+
+  该流程显示了在 PAD 流程中使用 **Scripting** 动作的一般概念，通过实现一些简单的脚本。在此示例中，我们希望要求用户输入一些应转换的文本：
+
+
+  1. **Display input dialog**：这会向用户显示消息框以输入一些文本。
+
+
+
+
+
+
+  +   2. **设置变量**：在此，我们将 `InputValue` 输入变量设置为用户输入的文本。
+
+  +   3. **运行 JavaScript**：我们在此以 **Run JavaScript** 动作为例。在脚本中，`inputVariable1` 内部变量被设置为
+  `InputValue` 流程变量的值。也可以将多个变量传递到脚本中。脚本随后定义了 `outputVariable` 输出变量，并通过调用 `toUpperCase()`
+  JavaScript 函数将输入变量的值转为大写，并通过 `Wscript.Echo(outputVariable)` 将该值写入标准输出。通过此操作，该值随后可在
+  `JavascriptOutput` 流程输出变量中使用。
+
+  +   4. **显示消息**：流程中的最后一步只是显示 JavaScript 处理的结果。
+
+
+  我希望对之前的示例添加以下评论：
+
+
+  +   - 该流程只是一个示例，用于展示使用 **Scripting** 动作时的基本功能。当然，使用内置函数也可以实现此过程的结果。
+
+  +   - 底层的 Scripting 主机具有特定版本，这也决定了可用的 Scripting 功能。**Windows Script Host (WScript)**
+  的版本号为 5.812（只需在变量中输出 `WScript.Version`）。Python 主机允许使用 Python 2 脚本，而 PowerShell 版本为
+  5.1.22621。由于我们使用 PAD 在 Windows 机器上运行，因此也可以实例化一个 ActiveX 对象，例如 Microsoft Word 的实例，并使用此类技术执行所有可能的操作（参见
+  https://learn.microsoft.com/en-us/power-automate/desktop-flows/how-to/extract-text-word-document）。
+
+  +   - 每个 **Scripting** 动作都有一个开关，用于将脚本输出与潜在的脚本错误分开。建议启用此开关并为脚本错误设置专用变量。这样调试脚本会更容易，因为第二个变量直接包含错误消息。出于简化的考虑，我们没有实现任何错误
+
+  +   - 你可能已经注意到，在此动作组中还有一个 **Run DOS command** 动作。与 **CMD session** 的区别在于，在那里我们可以依次发出一个又一个命令并检查结果，而使用
+  **Run DOS command** 时，我们定义包含多个命令的脚本并将其作为一个块运行。
+
+
+  在本节中，我们了解到 PAD 为配置本地计算机提供了大量可能性。在下一节中，我们将查看处理文件夹和文件的可能性。
+
+
+  ## 在桌面上处理文件和文件夹
+
+
+  使用 PAD 也可以自动化文件夹和文件的操作，例如执行复制或排序操作，或将文件归档到特定的文件夹结构中。我们在本书的开篇示例中已经了解了一些这些动作。首先，让我们看看与文件夹相关的动作，包括以下内容：
+
+
+  +   - `If folder exists`：此操作启动条件块并检查文件夹是否存在与否
+
+  +   - `Get files in folder / Get subfolders in folder`：这会创建包含在特定文件夹中的文件或文件夹的列表
+
+  +   - `Create / delete / empty / copy / move / rename folder`：这些操作在给定文件夹上执行特定操作
+
+  +   - `Get special folder`：这会检索 Windows 中特殊文件夹的路径，例如 **Desktop**、**Internet Cache**
+  等
+
+
+  正如我们在此看到的，没有愿望得不到满足。结合以下用于文件的动作，这些功能得到了进一步完善：
+
+
+  +   - `If file exists / Wait for file`：可用于检查文件是否存在/不存在或文件是否被创建/删除。
+
+  +   - `Copy / Move / Delete / Rename files`：针对一个或多个文件的操作。
+
+  +   - `Read / Write text to file / CSV file`：已在之前的示例（CMD 会话）中使用。
+
+  +   - `Get file path`：此操作会生成多个变量，包含根路径、目录、带扩展名的文件名、不带扩展名的文件名以及扩展名本身。
+
+  +   - `Get temporary file`：与名称不同，这里会创建一个临时空文件，可用于进一步用途。
+
+  +   - `Convert file to Base64 or back/t4o binary or back`：在某些情况下可能需要文件转换，以便通过特定协议传输文件并转换回可读格式。例如，Base64
+  编码将二进制数据编码为可打印文本。
+
+
+  在这种情况下另一个值得提及的动作组是 **Compression**，它处理需要压缩或解压缩的一个或多个文件。这与我们在使用 Windows 资源管理器时右键单击任意文件并选择
+  **Compress to Zip** 时可用的功能相同。
+
+
+  现在让我们看一个示例，说明如何使用这些动作创建流程，将特定文件的每日备份复制到网络共享。从概念上讲，流程应执行以下操作：
+
+
+  ![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_201_0.png)
+
+
+  图 7.9 – 使用桌面流程备份数据
+
+
+  首先，让我们看看在实际执行备份之前需要检查的先决条件。为了灵活地处理要备份的文件，可以在文本文件中定义所有要备份的文件夹并先读取它们。之后，我们仍可以检查所有必要的临时文件夹是否存在。
+
+
+  ![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_202_0.png)
+
+
+  图 7.10 – 备份控制文本文件
+
+
+  这些准备工作可以很容易地外包给子流程。这将如下所示：
+
+
+  ### 提示
+
+
+  创建子流程的原因纯粹是为了维护和性能。技术上在一个流程中也能工作。
+
+
+  我们无法详细讨论每个动作；这超出了本书的范围。然而，了解动作组中隐藏的基本功能非常重要，这样你就知道在哪里查找以掌握特定任务。
+
+
+  在最后一节中，我们将探索用于与工作站交互并处理外设的动作。
+
+
+  ## 操作计算机外设
+
+
+  本节介绍的动作完善了 PAD 管理工作站的能力，通过模拟操作或当然覆盖其他用例。以下组件可以被控制，并作为动作组存在：
+
+
+  +   - 工作站本身和连接的打印机
+
+  +   - 鼠标和键盘
+
+  +   - 剪贴板
+
+
+  通过这些动作组，可以通过移动鼠标或按下按键来模拟完整的用户会话。
+
+
+  这在例如无法使用之前讨论的选项（UI 元素或图像）与应用程序通信时也可能有所帮助。也许我们无法捕获 UI 元素，但仍然可以将鼠标导航到特定位置并发送点击甚至按键。
+
+
+  然而，在这一点上，我们必须非常精确，原因如下。我们将在本示例中看到，**Send mouse click** 动作使用屏幕的 X 和 Y 坐标。这意味着鼠标会被精确引导到这些坐标，然后触发点击。这将一直有效，直到本地机器的屏幕分辨率最终被更改或流程在具有不同分辨率的另一台机器上运行。相同的坐标随后会导致完全不同的
+
+
+  位置，因此流程不再正常工作。关系如下图所示：
+
+
+  ![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_206_0.png)
+
+
+  图 7.13 – 不同的屏幕分辨率和相同的坐标
+
+
+  正如我们在前面的图中看到的，坐标 **X=960** 和 **Y=540** 在左侧屏幕的正中间。但当屏幕分辨率发生变化时，这些坐标位于左上角而不是中间。这意味着在使用使用鼠标坐标的动作时，必须始终确保屏幕分辨率与创建流程时使用的分辨率相同。通过
+  **Get screen resolution** 和 **Set screen resolution** 动作，可以检查这些设置并在必要时进行更改。
+
+
+  让我们详细看看选项。
+
+
+  ### 工作站
+
+
+  此动作组包含所有与工作站更狭义相关的动作。包括以下内容：
+
+
+  +   - **Workstation: Lock Workstation/Log off User/Shutdown computer:** 区分不同的动作很重要。**Lock**
+  对应于 Windows 中的相同锁定功能，也可通过 *Windows* 键 + L 快捷方式使用。流程随后将在后台继续运行。注销当前用户将从该点起终止流程，**Shutdown
+  computer** 动作也是如此。最后一个
+
+
+
+
+  也提供了一个参数来定义是仅关机、重启、休眠，还是将工作站设为睡眠。
+
+
+  +   - **Print: Print document/Get default printer/Set default printer:** 这些操作使用文档名称的文本字段，获取或设置打印机。
+
+  +   - **Screen: Get screen resolution/Set screen resolution/Control screen saver:**
+  这些操作需要一个已连接的控制台会话才能工作。此会话在用户登录到工作站并且 PAD 由该用户执行时可用。这意味着用户已登录并启动了 PAD 控制台。在无人值守场景中，这些操作没有任何效果。设置屏幕分辨率有助于以标准化方式运行场景，例如使用屏幕坐标的场景，如鼠标移动（参见下一节）。
+
+  +   - **Miscellaneous other actions: Show desktop/Play sound/Empty recycle bin/Take
+  screenshot:** 这里值得一提的是，**Show desktop** 既可以显示桌面，也可以恢复所有窗口。此外，**Take screenshot**
+  对于收集和记录有关系统的信息非常有用，适用于整个桌面或前台窗口。
+
+
+  在查看另一个示例之前，让我们先来看一下键盘和鼠标的操作。
+
+
+  ## Mouse, keyboard, and clipboard
+
+
+  该组中的操作完成了本章关于模拟用户会话的可能性，并提供了真实用户可以执行的所有操作，从特定的鼠标序列到发送快捷键和预定义键组合。以下是详细信息：
+
+
+  +   - **Block Input**: 此操作有一个开关，可阻止或解除阻止用户进行的任何按键或鼠标点击。这在执行期间很有用，可以防止用户额外的按键或鼠标点击干扰流程。但请注意。一方面，请务必在流程的末尾插入
+  `Unblock` 操作。并且
+
+  请不要在中间创建断点，因为这会停止流程，并且由于输入被阻止，没有机会继续流程。
+
+  +   - **Get mouse position**: 这会将鼠标指针的坐标存储在两个变量中（x 位置和 y 位置），相对于屏幕或前台窗口。
+
+  +   - **Move mouse / to image / to text on screen (OCR)**: 可用于将鼠标指针移动到屏幕上的特定位置。你也可以将鼠标指针放置在所需位置并按
+  Ctrl + Shift。这会将当前坐标传输到操作参数中。还有多种运动行为，从 **instant** 到 **with animation (high speed)**。使用
+  **Move mouse to image** 操作时，可以定义或选择一个图像（参见 *第 5 章* 关于图像）来移动鼠标，甚至在移动后发送点击。PAD 还可以通过使用
+  **光学字符识别 (OCR)** 技术来检测屏幕上的文本。**Move mouse to text on screen (OCR)** 允许你选择 OCR 引擎、应查找的文本以及一些附加选项。例如，如果你已确定屏幕上想要执行鼠标点击的区域，该区域可能带有文本标签，则可以使用此操作成功地将鼠标移动到该区域并触发点击。
+
+  +   - **Send mouse click**: 此操作可以发送各种鼠标事件，从标准的左键单击和右键单击、双击到中键单击。也可以仅发送按钮按下事件，并在另一个时间发送按钮抬起事件。此操作还包括一个开关，允许将鼠标指针移动到特定坐标，这本质上与
+  **Move mouse** 操作相同。
+
+  +   - **Wait for mouse**: 当应用程序接收到鼠标点击时，鼠标光标可能会变为 **wait** 光标或 **hourglass** 光标。此操作可用于等待光标再次变为普通光标/不变为普通光标。
+
+
+  通过这些鼠标控制操作，可以模拟工作站前可能不存在的硬件，例如，如果鼠标上没有中键。我们还可以实现并模拟 *click-and-drag*
+
+  或 *drag-and-drop* 操作。然而，大多数应用程序不仅可以通过鼠标操作，通常还可以通过键盘直接输入的一整套快捷键立即触发操作。为了使 PAD 也能使用这种非常高效的操作方式，提供了以下键盘操作：
+
+
+  **Send keys**: 如果我们想在前台窗口/窗口实例/标题或类或 UI 元素中光标当前位置输入一些文本，这就是要使用的操作。以下屏幕截图显示了此操作的<|message|>
+
+
+  ## Send keys
+
+
+  向当前活动的应用程序发送按键 更多信息
+
+
+  ## Select parameters
+
+
+  Send keys to: Foreground window
+
+
+  Text to send: Input as text, variable or expression
+
+
+  Insert special keys Insert modifier
+
+
+  Delay between keystrokes: 10
+
+
+  Send Text as hardware keys:
+
+
+  On error Save Cancel
+
+
+  以下示例使用了我们刚刚学习的一些操作。我们想要创建一个流程，收集有关当前系统的一些信息，将其存储在 PowerPoint 幻灯片中，并将该报告保存到 OneDrive。这将需要一系列鼠标点击和按键发送来完成此操作。
+
+
+  请注意，我们在此示例中没有使用 UI 元素，这也将是一个非常好的选择。相反，我们想要使用之前定义的操作来模拟用户会话。所以，让我们看看流程是什么样的：
+
+
+  ![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_211_0.png)
+
+
+  Figure 7.15 – A flow to create a PowerPoint system report
+
+
+  正如我们在这里看到的，流程再次被结构化为一些子流程，以便更易于阅读和维护。第一个子流程通过使用 Windows 按钮打开 PowerPoint，第二个子流程使用当前日期创建第一个介绍幻灯片。第三个子流程启动
+  Windows 系统信息窗格，截取屏幕截图并将其放入剪贴板。在第四个流程中，此屏幕截图被插入到第二张幻灯片中，经过一些格式设置后，我们将幻灯片保存并关闭到
+
+  默认的 OneDrive 文件夹。所有子流程都嵌入在 **Block Input** 操作中，其中第一个打开阻止，第二个解除阻止。
+
+
+  让我们看看第一个子流程的细节：
+
+
+  ![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_212_0.png)
+
+
+  Figure 7.16 – Launch PowerPoint with the Send mouse click action
+
+
+  在第一个操作中，我们触发对 Windows 按钮的点击以激活 **Start** 菜单。这里显示的坐标是我的桌面的坐标。在另一个桌面上可能不同。
+
+
+  Different desktops for flow creation and execution
+
+
+  我们稍后会看到，可以使用一台计算机进行流程创建，而潜在的另一台（或多台）计算机用于流程执行。当 **Send mouse click** 操作在 UI 流程中使用时，建议确保用于创建的计算机与用于执行的计算机具有相同的屏幕分辨率（标准化环境）。否则，**Send
+  mouse click** 操作的坐标
+
+  可能无法工作。或者，我们也可以使用屏幕分辨率的操作来为执行桌面建立标准化
+
+
+  在第二个操作中，我们只需使用键盘输入将 Powerpoint 文本发送到开始菜单，这会触发对相应程序的搜索。在最后一步中，我们再次使用鼠标点击来启动搜索列表中的第一个程序。这里也适用关于坐标的注释。这将启动
+  PowerPoint，我们可以继续下一个子流程：
+
+
+  ![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_213_0.png)
+
+
+  Figure 7.17 – Creating the first slide with PAD
+
+
+  在第一个操作中，我们点击 PowerPoint 中标准布局的图像。**Move mouse to image** 操作允许我定义一个我刚刚在该操作中创建的图像。这现在会导致
+  PowerPoint 显示具有默认布局和第一个起始幻灯片的演示文稿。
+
+
+  接下来的两个步骤确定当前日期和工作站的名称。对于后者，使用了 PowerShell 的脚本操作。在此子流程的最后一步中，由 **System Report**
+  文本和当前日期组成的标题被插入到幻灯片中。我们稍后在保存文件时会使用工作站名称。这就把我们带到了下一个子流程：
+
+
+  ![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_214_0.png)
+
+
+  Figure 7.18 – Create a screenshot for System information with PAD
+
+
+  此子流程再次使用 **Send mouse click** 操作来访问 Windows **Start** 菜单，但这次我们使用右键单击事件来启动
+
+
+
+  这是用于管理程序的特设菜单。在该菜单中，我们使用 **发送按键** 操作触发向下箭头键三次，然后按 *回车* 键启动 **系统信息** 窗格。接下来，我们使用
+  *第4章* 中的 **等待图像** 操作，将前台窗口的截图保存到剪贴板，然后再次关闭 **系统信息** 窗口。现在，我们已有足够的信息，可以在下一个子流程中继续处理演示文稿的下一张幻灯片：
+
+
+  ## 子流程
+
+
+  ### SystemInfoScreenshot
+
+
+  ### CreateSlide2
+
+
+  ### SaveAndClosePPT
+
+
+  1
+
+  发送按键
+
+  向前台窗口发送以下按键：''{Control}({M})''
+
+
+  2
+
+  发送按键
+
+  向前台窗口发送以下按键：''{Control}({V})''
+
+
+  3
+
+  将图像向右移动
+
+
+  4
+
+  发送鼠标单击
+
+  在 711, 442（屏幕）处发送左键按下事件
+
+
+  5
+
+  发送鼠标单击
+
+  在 880, 442（屏幕）处发送左键松开事件
+
+
+  6
+
+  调整图片大小
+
+
+  7
+
+  发送鼠标单击
+
+  在 725, 210（屏幕）处发送左键按下事件
+
+
+  8
+
+  发送鼠标单击
+
+  在 844, 334（屏幕）处发送左键松开事件
+
+
+  9
+
+  向上移动图像
+
+
+  10
+
+  发送鼠标单击
+
+  在 1024, 493（屏幕）处发送左键按下事件
+
+
+  11
+
+  发送鼠标单击
+
+  在 1024, 445（屏幕）处发送左键松开事件
+
+
+  12
+
+  点击幻灯片标题并保存
+
+
+  13
+
+  将鼠标移动到图像
+
+  将鼠标指针移动到整个屏幕上找到的图像中心，并对其发送左键单击
+
+
+  14
+
+  发送按键
+
+  向前台窗口发送以下按键：''System Information''
+
+
+  ## 图 7.19 – 在 PowerPoint 中粘贴并调整截图大小
+
+
+  第一个 **发送按键** 操作使用了特殊的按键组合。通过键盘快捷键 *Ctrl + M*，我们可以在当前幻灯片中插入一张新幻灯片。要在 PAD 中触发此按键组合，我们需要为
+  M 指定带花括号的 `{Control}({M})`。标准命令 *Ctrl + V* 也是如此，用于将剪贴板中的内容粘贴到当前位置。
+
+
+  在第 4 行和第 5 行中，我们使用 **左键按下** 和 **左键松开** 鼠标事件将截图稍微移动到幻灯片的右侧。第 7 行和第 8 行使用了相同的技术来调整图片大小。我们将图像缩小一些，以便更好地适应幻灯片。为了向上移动图片，第
+  10 行和第 11 行再次使用了该技术。第 13 行和第 14 行填写了此幻灯片的标题信息，这标志着创建的结束。最后一个子流程负责保存并关闭 PowerPoint：
+
+
+  ![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_217_0.png)
+
+
+  ## 图 7.20 – 使用 PAD 保存并关闭 PowerPoint
+
+
+  同样，**发送按键** 操作用于发出保存幻灯片的键盘快捷键。这会使 PowerPoint 显示 **保存** 对话框。在这里，我们只需发送 **System Report**
+  以及之前在我们的 PowerShell 脚本中提取的工作站名称的按键。最后一个 **发送鼠标单击** 操作只是关闭程序。
+
+
+  ## 最后说明
+
+
+  此处展示的流程是在分辨率为 1,920x1,200、缩放比例为 100%（即不放大字体或图标）的桌面上创建的。如果该流程在具有不同分辨率的另一台桌面上运行，则可能无法正常工作。因此，这里展示的流程是对可行性的演示。在实践中，肯定会使用其他机制来创建此类报告。
+
+
+  ## 总结
+
+
+  在本章中，我们了解了大量用于管理工作站的操作。此外，通过脚本集成可以获得更多信息，并且可以执行比单独使用 PAD 更多的操作。同时，鼠标和键盘的使用扩展了 PAD
+  在任意程序中的适用范围。在此基础上，下一章我们将研究特殊应用程序，包括 SAP 和大型机自动化。
+
+
+  ## 延伸阅读
+
+
+  - Office 程序的命令行开关：https://support.microsoft.com/en-us/office/command-line-switches-for-microsoft-office-products-079164cd-4ef5-4178-b235-441737deb3a6
+
+  - 命令行参考：https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/windows-commands
+
+  - PAD 操作参考：https://learn.microsoft.com/en-us/power-automate/desktop-flows/actions-reference
+
+  '
+- '## 自动化标准业务应用程序
+
+
+  到目前为止，我们已经遇到了许多使用 PAD 集成和自动化各种应用程序的示例。本章旨在深化其中一些内容，并使用 PAD 连接新的广泛应用领域。本章将涵盖以下主题：
+
+
+  - 自动化 Microsoft 365（也称为 Office）应用程序
+
+  - 集成和自动化 SAP
+
+  - 连接和使用大型机应用程序
+
+  - 自动化基于浏览器的业务应用程序
+
+
+  到本章结束时，我们将了解如何自动化两种非常常见的业务应用程序场景，以便您可以连接其他应用程序。此外，您将对如何自动化基于 Web 的业务应用程序有更深入的理解。
+
+
+  ### 技术要求
+
+
+  本章的各节介绍了如何自动化不同的软件产品，每种产品也有不同的先决条件。这些先决条件的详细信息在相应章节的开头列出。
+
+
+  本章的最后一节提供了一个如何自动化基于 Web 的业务应用程序（如 Dynamics 365）的示例。您需要申请一个 Dynamics 365 for Sales
+  的试用实例。该试用版是免费的，并且对于此练习来说完全足够（您可以在此处申请试用版：https://dynamics.microsoft.com/en-us/dynamics-365-free-trial/）。但是，由于这是一个业务解决方案，您还需要一个
+  Microsoft 商业帐户才能申请试用版。
+
+
+  ## 自动化 Microsoft Office
+
+
+  在本书的前几章中，我们几乎在示例中使用了所有 Office 产品。我们在*第1章*的入门示例中使用了 Excel 和 Outlook，而在最后两章中，我们了解了如何将
+  Microsoft Access 和 PowerPoint 用作 UI 自动化的一部分。虽然后一种概念可以与鼠标和键盘操作结合使用以包含任何应用程序，但 Outlook
+  和 Excel 有专门的 PAD 操作可以在流程中使用。在本节中，我们将仔细研究这些操作组。
+
+
+  ## 使用操作自动化 Outlook
+
+
+  能够将 Outlook 集成到 PAD 中在许多情况下都非常有用。正如我们在*第1章*的示例中已经看到的，可以接收许多相同性质的电子邮件或附件，将它们移动到特定文件夹，保存它们，甚至在必要时回复。另一种场景可能是，您从支持地址检索消息，并使用该信息触发进一步的内务处理，例如将某些数据输入其他系统。本章中的示例将向您展示另一个用例。在这里，必须定期向新用户提供信息，以便他们能够登录
+  SAP 系统。同样，Outlook 可以直接集成到流程中并直接发送此通知。在相应的 *Outlook* 操作组中，以下操作可用于帮助我们完成这些任务：
+
+
+  - **启动/关闭 Outlook**：此操作启动或结束一个 Outlook 实例。在 **启动** 操作中会创建一个相应的变量，该变量可在之后的 **关闭**
+  操作中用于终止程序。
+
+  - **检索电子邮件消息**：此操作可以接受一个电子邮件帐户，并允许您为要接收的电子邮件定义筛选参数。此外，还可以对任何附件进行设置。
+
+  - **发送消息/回复消息**：这些操作创建一条新消息，其中包含所有必填字段，例如邮件正文、主题和
+
+
+  ## 使用 SAP
+
+
+  SAP 既是公司名称，也是企业管理软件。至少从名称上看，这个软件产品应该为所有人所知，因为它在全球范围内非常普及，尤其是该公司代表了软件和编程领域全球第四大公司。在很长一段时间里，**SAP
+  ERP** 是 **企业资源规划（ERP）** 领域的标准软件，而它又基于 **SAP R/3**，该软件于 1992 年首次推出。SAP ERP 的最新版本是
+  6.0 版，于 2006 年推出，此后一直通过服务包和小型增强功能进行维护。它现在被视为遗留技术，新版本是 **SAP S/4HANA（高性能分析设备）**。
+
+
+  然而，不久前，SAP 宣布 SAP ERP 将继续支持到 2027 年或 2030 年（提供扩展支持；详情请参阅 *延伸阅读* 部分），这当然是有充分理由的。这种向新版本
+  S/4HANA 的迁移和切换对许多客户来说都伴随着高昂的成本。除了软件，硬件通常也必须更换，如果不同时计划使用云，这对 ERP 软件来说可能代价高昂——所有这些原因使得我们今天仍然能找到许多
+  SAP R/3 安装。PAD 自动化可能非常有用，因为公司会非常仔细地考虑是否以及愿意在一个过时的软件系统上投入多少资金。那么，为什么不使用一个轻量级集成解决方案，把节省下来的钱投入到未来
+  ERP 系统的项目中呢？那么，让我们来看看如何使用 PAD 连接到称为 **SAPGUI** 的 SAP 界面，以下示例需要在本地安装该界面，它是 SAP ERP
+  系统的标准客户端软件。该软件包含在用于开发目的的 SAP 测试系统试用版中，本示例就是在此基础上构建和使用的。
+
+
+  ### 提示
+
+
+  必须安装并启用脚本编写功能，PAD 才能捕获和定位此程序中的元素。以下屏幕截图显示了如何在 SAPGUI 中允许脚本编写：
+
+
+
+
+
+
+  ## 使用 PAD 进行分布式用户管理
+
+
+  让我们想象一下，我们负责为下个月入职我们小公司的用户设置账号。除了登录名和邮箱之外，当然还需要 SAP 登录名。人力资源部门已经在 Active Directory
+  中创建了账号，并在 Excel 电子表格中收集了这些用户的信息。我们的任务是在 SAP 中创建其中列出的用户，并通过电子邮件发送登录信息。这也包括创建初始密码。因此，我们需要一个流程来为我们执行以下操作：
+
+
+  - 从 Excel 电子表格中读取所有用户并提取数据
+
+  - 启动 SAPGUI 并调用创建新用户的相应事务（SU01）
+
+  - 遍历 Excel 数据，生成新密码，将其存储在表格的对应行中，并使用该数据在 SAP 中创建用户
+
+  - 向用户发送包含初始密码的电子邮件
+
+
+  ### 存储 Excel 工作表并关闭 Excel 和 SAPGUI
+
+
+  由于我们没有用于自动化 SAPGUI 的单独操作，因此我们必须使用已知的技术远程控制该应用程序。然而，由于该应用程序也可以通过键盘输入出色地操作，我们希望尽可能避免创建
+  UI 元素和图像。使用键盘输入作为在应用程序中导航的选项有时会是一个优势，因为这样用户就不会依赖屏幕分辨率以及提前捕获所有 UI 元素的需求。
+
+
+  此外，这次我们希望应用我们已证实的将整体流程划分为更小子流程的做法。完整的流程将如下所示：
+
+
+  顾名思义，该区域启动 SAPGUI，该程序必须安装在您的计算机上。程序在第一个操作中直接调用。该程序由两个窗口组成——一个用于选择要登录的系统，另一个用于登录和运行程序。为了能够在后续流程中直接寻址这些窗口，这些窗口以
+  UI 元素的形式定义。为了做到这一点，最好先手动启动一次程序，并通过 PAD 将两个窗口定义为 UI 元素。
+
+
+  要启动 SAPGUI 程序，我们可以实现如下流程：
+
+
+  ![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_226_0.png)
+
+
+  图 8.3 – 使用 PAD 启动 SAPGUI
+
+
+  首先，我们必须通过 **Run application** 操作（第 1 行）运行主 `saplogon.exe` 可执行文件。该可执行文件在 SAP 客户端软件的标准安装后可用。这基本上等同于在
+  Windows 桌面上双击相应的快捷方式。第 2 行中，我们等待窗口出现；之后我们将看到 **SAP Logon** 屏幕，在此我们可以选择要登录的系统：
+
+
+  ![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_227_0.png)
+
+
+  图 8.4 — SAP 系统选择
+
+
+  正如我们所见，我只注册了一个系统。因此我只需在此处发送按键（第 3 行）按下 *Enter*。如果您注册了多个系统并希望登录到特定系统，则需要确保首先选中了正确的条目。
+
+
+  第 4 行中，我们等待主 SAP 窗口出现，其外观如下：
+
+
+  ![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_228_0.png)
+
+
+  图 8.5 – SAP 登录屏幕
+
+
+  如前所述，该软件也设计为仅使用按键操作。我们可以通过 UI 元素的淡红色边角看到光标所在位置——在本例中为用户名文本框。同样，这是该软件的默认行为，我们可以利用这一点。然而，如果我们需要登录到不同的客户端（参见前一屏幕截图中的
+  Client 字段），我们就需要确保这些设置已完成。
+
+
+  在流程的第 5 行和第 6 行中，我们输入用户名和密码。要从一个字段跳转到下一个字段，我们只需使用 Tab 键。这些值存储在两个输入变量中，并标记为敏感。最后一步是按
+  Enter 并等待登录过程完成（第 6 行和第 7 行）。此时，我们已成功登录系统，可以开始在 SAP 中使用程序。
+
+
+  ### “Launch_Excel” 和 “Launch_Outlook” 子流程
+
+
+  我们主流程中的下一步是查找需要在 SAP 系统中注册的用户，然后通过
+
+
+  由于我们希望将生成的密码存储在用户的对应行中，因此我们此时不会关闭 Excel。从这里开始，我们可以开始处理每个用户。
+
+
+  ### 用户数据处理
+
+
+  现在我们已经启动了 SAPGUI 以及 Outlook 和 Excel，我们准备好处理每个用户的数据了。我们必须做的第一件事是在 SAP 中调用一个名为 SU01
+  的特定事务——这正是我们在主流程第 4 行中所做的。
+
+
+  ### SAP 和事务代码
+
+
+  在使用 SAP ERP 时，我们经常谈论所谓的报表和事务，它们用于执行业务需求和流程。事务代码（例如 SU01）启动一个用于输入参数的程序，并且非常经常随后启动一个报表。此处使用的事务例如允许输入用户名，可以对其进行搜索或创建。因此，这里展示的过程代表了使用
+  SAP 的非常典型的例行操作。
+
+
+  以下屏幕截图显示了此步骤的操作参数对话框：
+
+
+  **Send keys**
+
+
+  Sends keys to the application that is currently active (More info)
+
+
+  **Select parameters**
+
+
+  | Parameter | Value |
+
+  | --- | --- |
+
+  | Send keys to | UI element |
+
+  | UI element | `appmask > Window ''SAP''` |
+
+  | Text to send | Input as text, variable or expression {x} |
+
+  |  | `su01{Return}` |
+
+  | Insert special keys | (button) |
+
+  | Insert modifier | (button) |
+
+  | Delay between keystrokes | 10 |
+
+  | Send Text as hardware keys | |
+
+  | On error | |
+
+  | Save | (button) |
+
+  | Cancel | (button) |
+
+
+  图 8.7 – 调用 SAP 事务 “SU01”
+
+
+  我们在这里更仔细地查看此步骤的原因是，我们将在本示例中始终使用这一基本概念：
+
+
+  - 因为我们也可以使用此操作选择之前定义的 UI 窗口，所以我们不必注意该窗口是否也在前台。这在流程中处理多个程序且无法始终知道当前哪个窗口在前台时尤其有用。通过指定
+  UI 元素，按键将被发送到指定的窗口——在我们的例子中是 SAPGUI。
+
+  - 我们可以通过键盘输入完全完成任务，使我们独立于按钮或列表项等额外的 UI 元素。因此，此流程也独立于屏幕分辨率。
+
+  - PAD 操作还允许我们执行特殊按键，例如 *Shift + Tab*（在界面中向后跳转一个字段）或 *Ctrl + S*（保存的快捷方式，也适用于 SAP）。
+
+  - 除此之外，我们可以以毫秒为单位指定按键之间的时间。这在 SAPGUI 在较慢的计算机上运行时很有用。
+
+
+  执行此操作后，我们将进入 SAP 中维护用户的屏幕。接下来，我们遍历循环（第 5 行至第 9 行），其中我们完成以下子任务：
+
+
+  - 确定要处理的用户信息（`Read_ExcelUserRow` 子流程）。我们之前读取了用户表。
+
+  - 使用该信息在 SAPGUI 中输入（`Enter_SAPUserData` 子流程）。
+
+  - 向用户发送包含初始登录凭据的电子邮件。
+
+
+  对于循环本身，我们并不是使用 `For each` 循环遍历行列表。相反，我们可以使用基于索引的方法，因为这使得更容易将数据写回 Excel 中的正确行。让我们看看
+  `Read_ExcelUserRow` 子流程的细节，看看这是如何工作的：
+
+
+  图 8.8 – 读取用户数据并生成随机密码
+
+
+  请注意，我们在第 1 行立即为登录创建随机密码。我们使用文本操作组中的 Create random text 操作。此操作正是为此目的而创建的，因为可以定义长度和复杂性等可能性。第
+  2 行至第 6 行中，我们创建流程变量，以便在流程后续更轻松地使用这些数据。第 7 行负责将生成的密码保存到 Excel 工作表的对应行中。在这里，我们使用了
+  LoopIndex 变量，其中包含我们当前正在处理的行的编号。
+
+
+  Subflows: Read_ExcelUserRow, Enter_SAPUserData, Launch_Outlook
+
+
+  | Step | Action | Description |
+
+  | --- | --- | --- |
+
+  | 1 | Create random text | Create a random text of length between 8 and 10 characters
+  using uppercase letters, lowercase letters, symbols and digits and store it in InitialPassword
+  |
+
+  | 2 | Set variable | Assign to variable UserName the value ExcelData[LoopIndex][0]
+  |
+
+  | 3 | Set variable | Assign to variable UserFirstName the value ExcelData[LoopIndex][1]
+  |
+
+  | 4 | Set variable | Assign to variable UserLastName the value ExcelData[LoopIndex][2]
+  |
+
+  | 5 | Set variable | Assign to variable UserEmail the value ExcelData[LoopIndex][3]
+  |
+
+  | 6 | Set variable | Assign to variable UserAlias the value ExcelData[LoopIndex][4]
+  |
+
+  | 7 | Write to Excel worksheet | Write the value InitialPassword into cell in column
+  6 and row LoopIndex + 2 of the Excel instance ExcelInstance |
+
+
+  在下一个子流程中，我们再次使用 SAPGUI 并操作程序以创建新用户。如前所述，这完全可行
+
+
+
+
+  使用仅键盘操作。我们想要创建的序列可以用以下键盘命令或输入来表示：
+
+
+  - 1. 输入用户名，然后按 *Tab*。
+
+  - 2. 输入用户别名，然后按 *F8*（这是 *create* 的功能键）。
+
+  - 3. 按两次 *Tab*（跳转到姓氏字段）。
+
+  - 4. 输入用户的姓氏，然后按 *Tab*。
+
+  - 5. 输入用户的名字，然后按 *Tab*，
+
+  - 6. 依此类推…
+
+
+  该序列对每个新用户重复，最后以 *Ctrl + S* 结束以进行 **Save**，之后我们会回到屏幕以输入下一个用户：
+
+
+  ![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_234_0.png)
+
+
+  图 8.9 — “Enter_SAPUserData” 子流程
+
+
+  循环的最后一步是向用户发送包含登录信息的电子邮件。为此，我们必须使用 **Send email message through Outlook** 动作。由于我们在主流程开始时已经打开了
+  Outlook，我们可以只使用此动作，其配置如下：
+
+
+  ![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_236_0.png)
+
+
+  图 8.10 – “Send email message through Outlook” 动作参数
+
+
+  在这里，我们使用了之前创建的不同变量。它们使设置比使用带索引的表变量更易读。
+
+
+  此时，循环结束并为该 Excel 工作簿中的每条记录重新开始。之后，Outlook 和 Excel 会通过其对应的动作关闭。SAPGUI 可以通过适用于所有 Windows
+  程序的键盘命令关闭：*Alt + F4*。之后，程序会要求确认注销，这也可以通过另一个按键提供。
+
+
+  ## Additional thoughts and automation options
+
+
+  当然，对于每个挑战，通常有几种可能的解决方案，这里介绍的方法并不是唯一一种。例如，也可以在处理完 SAP 中的数据并向用户发送电子邮件后才打开 Outlook。这对于内存较小的计算机来说可能也是更好的变体。而且正如前面提到的，SAPGUI
+  也可以通过其他方式进行自动化。
+
+
+  微软最近在其文档中添加了关于 SAPGUI 集成和自动化的大量信息，这也再次强调了这种可能性的重要性。
+
+
+  在这里，我们将讨论多种实现选项：
+
+
+  - - **Pro-code**：在此方法中，使用 VBScript 与底层的 SAPGUI Scripting API 交互。这里，SAPGUI 以 VBScript
+  命令的形式记录要执行的动作，然后可以导入并在 PAD 中使用。乍一看听起来很简单。然而，除非你恰好是这种脚本语言的专家，否则流程的更改将难以实现。
+
+  - - **Low-code/no-code**：这两种方法使用记录器来捕获特定的字段，如按钮和文本字段，然后进行调整
+
+
+  > 之后。这遵循了我们在 *第 5 章和第 6 章* 中学到的创建 UI 元素的概念。
+
+
+  本节介绍了一个非常流行的业务应用程序，我们学习了如何使用 PAD 来自动化这个有时非常复杂的程序。下一节将介绍所有业务应用程序 IT 的开端，并展示如何自动化和集成仍然非常流行的主机应用程序。
+
+
+  ## Integrating mainframe scenarios
+
+
+  术语 **mainframe** 指的是一个可追溯到 1950 年代的计算机家族。这些机器的操作较少依赖图形界面，而更多依赖基于字符的用户界面。它们的特点是可靠性非常高，以及对输入/输出和算术运算的吞吐量非常高。尽管从今天的角度来看该技术似乎过时，但主机仍然被广泛使用。在经典
+  IT 领域，区分了批处理和对话程序。此类环境中不存在 API。信息交换大多基于文件或通过数据库访问。主机应用程序最常用于 **企业资源规划 (ERP)**、财务会计、仓储、订购等领域。因此，可以设想许多集成主机应用程序可能有用的场景：
+
+
+  - - 网上商店接收客户订单，这些订单必须输入到中央仓储系统
+
+  - - 供应商使用网络门户确认其交付，这些交付反过来必须输入到中央系统
+
+
+  特别是在必须通过对话程序进行输入时，自动化是一个挑战，但我们可以用 PAD 很好地应对。主机的主要制造商有 Unisys、Fujitsu Siemens，当然还有最大的
+  IBM，其 zSeries 和 AS/400 机器。其中最常用的操作系统之一是 **Multiple Virtual Storage (MVS)**，后来更名为
+  OS/390，最后为 zSeries 机器提供 64 位支持的 z/OS。幸运的是，对于我们这些没有主机可用或无法连接到这些主机的人来说，有一个较旧版本的 MVS
+  的仿真可用，它在 Linux 安装上运行得非常好。此外，在我们的 PAD Windows 机器上，必须安装终端仿真软件，并且必须存在对仿真的网络访问。如果一切都已配置好，我们可以启动终端仿真并会看到
+  MVS 的欢迎屏幕：
+
+
+  ![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_239_0.png)
+
+
+  图 8.11 – 用于访问 MVS 的终端仿真
+
+
+  ## Software prerequisites
+
+
+  要控制终端应用程序，需要终端仿真软件以及对主机的访问。PAD 提供了与 Micro Focus Reflection 或任何提供 HLLAPI 实现的其他软件（如
+  RocketSoftware BlueZone、IBM Personal
+
+
+  Communications 和 Cybelesoft zScope）配合使用的终端仿真动作。对于本书，我使用了一个 Micro Focus Reflection
+  的试用版，并创建了一个基于 IBM 技术的常见主机系统的仿真虚拟机。请参阅相应章节了解更多信息。
+
+
+  现在我们已经具备了所有先决条件，可以登录系统并探索其功能。要访问程序，需要提供有效的用户 ID 和密码。此版本附带了文档中提供的预配置用户和密码。主机场景的虚拟设计足够复杂。通常，用户会找到满足特定目的的某些程序，例如
+  **update inventory** 和 **trigger supplier order**。这些程序以库的形式组织；最终用户可以通过键盘输入直接启动这些程序，然后使用数据和参数启动业务流程。在我们的测试环境中，不幸的是，我们没有触发业务流程的程序，但原理是相同的，因此我们可以使用示例流程来演示这种交互模式。
+
+
+  我们可用于终端会话的动作列表显示此类应用程序完全通过键盘操作：
+
+
+  - - **Open/close terminal session**：当使用 **Open terminal session** 时，会创建一个包含终端会话对象的变量。在这里，可以在不同的提供商之间进行选择（*Micro
+  Focus Reflection* 或通用 HLLAPI），也可以选择安装路径和要连接的会话。在我的示例中，我创建了一个包含连接信息的会话文件并将其提供给参数：
+
+
+  ![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_241_0.png)
+
+
+  # 图 8.12 – “Open terminal session” 动作参数
+
+
+  - - **Move cursor on the terminal session:** 有时需要将光标放在特定位置以输入一些数据。此动作可用于通过提供行号和列号的值将光标放在所需位置。
+
+  - - **Get/set text from or to the terminal session:** 这些动作用于向主机程序输入或读取数据——例如，要输入的订单的数据，包括订单项目，可以使用
+  `set text` 输入。然后，后来可以读取自动创建的订单号 `get text`。
+
+  - - **Send key to terminal session:** 此动作用于在终端仿真中执行控制——例如，通过发送 `Transmit`
+
+
+
+
+
+  在再次发送 `<transmit>` 消息两次之前，需要一些时间进行处理。我们需要这样做，因为在到达主屏幕之前，操作系统将呈现两个额外的屏幕（广播消息）：
+
+
+  ![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_243_0.png)
+
+
+  图 8.14 – MVS 主屏幕
+
+
+  在接下来的操作序列中，我们必须通过发送一些文本并再次发送 `<transmit>` 消息（第 12 和 13 行）来导航到 **IMON/370** 应用程序。该应用程序是一个交互式监控程序，也显示有关系统的一些信息：
+
+
+  Press ''3'' to start IMON / 370 system monitor
+
+
+  # Set text on terminal session
+
+
+  Set text 3 on Cursor position on terminal session TerminalSession
+
+
+  # Send key to terminal session
+
+
+  Send key Transmit to terminal session TerminalSession
+
+
+  extract field ''CPU serial ''
+
+
+  # Get text from terminal session
+
+
+  Get text from Field with label ''CPU-SERIAL-'' of terminal session TerminalSession
+  and store it into TerminalText
+
+
+  # Set text on terminal session
+
+
+  Set text ''x'' on Cursor position on terminal session TerminalSession
+
+
+  # Send key to terminal session
+
+
+  Send key Transmit to terminal session TerminalSession
+
+
+  图 8.15 – 在 MVS 中启动程序并提取值
+
+
+  在第 15 行，我们在再次退出程序（第 16 和 17 行）之前，将 CPU-SERIAL 字段的值提取到一个 PAD 变量中。
+
+
+  为了正确完成处理，我们仍然需要注销终端会话：
+
+
+  图 8.16 – 使用 PAD 从终端会话注销
+
+
+  我们必须做的第一件事是从用户会话注销（第 19 和 20 行），然后通过发送相应消息后跟 `<transmit>` 来注销。最后，我们可以关闭终端会话（第 24
+  行）。
+
+
+  在本节中，我们看到了自动化大型机应用程序是可行的，而且并不复杂。PAD 提供了调用和运行大型机程序所需的所有要素。此外，已生成的结果或计算可以被读出并在其他地方进一步处理，因此实现了双向接口。
+
+
+  在下一节也就是最后一节中，我们将重点讨论当今大多数业务流程发生的领域：基于浏览器的应用程序。
+
+
+  ## 基于浏览器的业务应用程序
+
+
+  到目前为止，在本章中，我们讨论了安装在计算机本地的业务应用程序。尽管如今这类应用程序很多，但为浏览器开发业务应用程序也变得越来越流行和普遍。当然，这也与许多软件产品由主要制造商作为**软件即服务（SaaS）**开发和提供有关。这些产品包括例如
+  ServiceNow、Salesforce、SAP、Microsoft 等等。通常，这些软件产品还具有**应用程序编程接口（API）**，通过该接口可以访问所有功能和数据。在
+  Microsoft 生态系统中，我们有作为 Power Platform 一部分的 Power Automate，其中可以使用不断增长的连接器集合，例如，与上述系统建立数据连接并与之交互。
+
+
+  但有时，无法使用 API，必须通过界面输入数据。这正是 PAD 可以发挥作用的地方。针对这种用例，可以推导出一种适用于所有基于浏览器的业务应用程序的模式：
+
+
+  - PAD 中没有针对这些应用程序的默认操作；相反，可以使用来自**浏览器自动化**操作组的操作
+
+  - 必须为流程映射创建 UI 元素，并与界面交互
+
+  - 要与应用程序交互（输入数据、读取信息等），可以使用**Web 数据提取**和**Web 表单填充**操作子组中的操作
+
+
+  在深入探讨示例之前，让我们了解一下可用于浏览器自动化的各种操作。
+
+
+  浏览器自动化操作组：
+
+
+  - **启动新浏览器/关闭 Web 浏览器**：PAD 提供了标准操作，用于打开新实例或连接到 Internet Explorer、Firefox、Chrome
+  或 Microsoft Edge 的正在运行的实例。这些操作还允许你清除浏览器缓存、清除 Cookie，并在给定超时时间内等待给定网页加载。系统会创建一个名为
+  `Browser` 的变量，供其他操作引用。**关闭 Web 浏览器**操作则没有任何意外之处。
+
+
+  - **创建新标签页/转到网页**：此操作需要一个正在运行的浏览器实例，它可以用来创建带有特定 URL 的新标签页，或用于导航。**转到网页**操作还可以使用浏览器导航进行**后退**、**前进**甚至**刷新**。
+
+  - **点击链接/下载链接**：前一个操作可能是此类场景中最常用的操作之一。要使用它，必须选择一个 UI 元素。然后，可以选择不同的点击类型（简单的左键单击，但还有右键单击、中键单击、双击，以及左/右和按下/弹起的单独类型）。要将文件下载到特定文件夹，可以使用后一个操作。
+
+  - **在网页上运行 JavaScript 函数**：此操作允许你在网页上执行自行编写的 JavaScript 函数。任何 JavaScript 函数都可以注入到此处。一个示例是使用它向下滚动网页以填写或提取更多数据。
+
+  - **将鼠标悬停在元素上**：有时，当鼠标悬停在某个元素上时，已经会显示有价值的信息——这正是此操作的设计目的。要使此操作生效，必须提供一个 UI 元素。
+
+  - **等待网页内容/如果网页包含**：这两个条件操作也使用 UI 元素。为了确保某个元素存在于网页上——例如，在按下按钮并且触发了某些处理之后——可以使用这些元素中断流的执行，直到某个元素在网页上出现（或消失）。第二个操作还可以检查网页上是否包含/不包含给定的文本。
+
+
+  除了这些常规操作，还有 **Web 表单填充** 和 **Web 数据提取** 子组。要将数据从 PAD 传输到 Web 应用程序，我们有一些操作可以聚焦并填充文本字段、设置复选框、单选按钮或下拉列表的值，以及按下网页上的按钮。这些操作都位于
+  **Web 表单填充** 子组中，并且同样使用 UI 元素。
+
+
+  **Web 数据提取** 子组包含一些操作，用于获取网页本身或元素的更多详细信息，以及一个需要更多解释的通用 **从网页提取数据** 操作。如果我们只是将这个操作拖入流程设计器，将无法定义任何有意义的新参数。相反，此操作应与
+  PAD 录制器结合使用。我们在*第 2 章*中了解过它，当时我们看到了一个如何从网页捕获数据列表的示例。
+
+
+  此操作功能相当强大，允许我们根据想要提取数据的网页结构，提取单个值、列表、行甚至完整的表格。我们可以将提取 Web 数据的一般过程描述如下：
+
+
+  1. 确定要操作的网页的 URL。
+
+  2. 启动 PAD 录制器，并逐步执行应执行的操作。录制器还会创建相应的 UI 元素，这些元素稍后必须执行。
+
+  3. 使用 Web 元素的上下文菜单来插入数据或捕获数据。单击只会选择 Web 元素并捕获此操作，但右键单击元素时，会有更多选项，尤其是用于数据提取的选项。
+
+  4. 观察录制操作列表。点击顺序不必完美，如果你不小心点击了不需要的元素，只需在录制器中删除它。
+
+  5. 完成后，检查生成的 UI 元素，并为它们指定有意义的名称。这样之后在相应的操作中更容易识别这些元素。
+
+  6. 测试你的流程并修改选择器。录制期间会捕获 Web 元素，但有时需要进一步调整。这可以通过在设计器外部编辑选择器来完成。
+
+
+
+
+
+  现在，是时候举一个如何使用浏览器自动化的小例子了。为此，我们将在 Dynamics 365 Sales 中插入一条新报价，Dynamics 365 Sales
+  是 Dynamics 365 的 CRM 模块之一。在此场景中，我们希望使用 Dynamics 365 Sales 模块创建报价，读取生成的报价编号，并将其存储在变量中以便进一步处理。
+
+
+  像其他基于 Web 的业务解决方案一样，Dynamics 365 有一些需要考虑的功能：
+
+
+  > > 用户要使用该应用程序，需要进行一般的设置和登录。如果你刚刚开始试用，一切都会在后台为你设置好。在下面的示例中，登录到工作站的用户也登录到了底层的 Azure
+  Active Directory 实例以及 Dynamics 365。这意味着浏览器窗口不会单独要求登录。系统登录可能需要单独考虑——例如，通过存储的凭据。
+
+
+  可选：在启动 PAD 之前先进行身份验证。这将确保你的自动化顺利运行。
+
+
+  > > 使用特定 URL 访问系统，并且该 URL 需要提供给 **Launch new Browser** 操作。对于 Dynamics 365，甚至可以使用特定业务操作的专用
+  URL，例如 **create account** 或 **edit contact**。在此示例中，我们将直接使用创建新报价的 URL。
+
+
+  在具备这些先决条件后，如下图所示的 PAD 流程可以立即录制。在这里，我们需要执行以下操作：
+
+
+  +   1. 创建一个新的流程并为其指定一个有意义的名称（例如，`Dynamics 365 Quote Creation`）。
+
+  +   2. 设计器出现后，按顶部按钮菜单中的录制按钮。
+
+  +   3. 执行创建报价所需的步骤。在我们的例子中，我们需要输入报价名称，选择价格表和客户，保存记录，并提取生成的报价标识符。
+
+  +   4. 美化生成的 UI 元素和变量，使其更易读。
+
+
+  在下图中，我们可以看到由此生成的流程左侧和改进后的流程右侧：
+
+
+  ![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_250_0.png)
+
+
+  图 8.17 – 在 Dynamics 365 中创建新报价
+
+
+  除了重命名 UI 元素和变量之外，在使用此应用程序时还有一件事需要注意。在第 3 行，我们使用一些文本填充报价名称。对于此操作，我们需要禁用使用物理按键填充文本的选项，而改用模拟输入，这通常在复杂的网页上是必需的：
+
+
+  ![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_251_0.png)
+
+
+  图 8.18 – 在复杂网页上使用模拟输入
+
+
+  对于其他所有 UI 元素，记录器做得非常好，并且流程可以可靠地重复执行。请注意，流程之后可以在设计器中通过进一步操作进行丰富。这是通常插入 **Wait for
+  web page content** 操作的程序。作为结果，Dynamics 365 中将创建一个新报价：
+
+
+  ![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_252_0.png)
+
+
+  图 8.19 – 由 PAD 创建的新报价
+
+
+  ## 本示例的说明
+
+
+  此时，我们可能会问自己，使用这种方法在 Dynamics 365 中执行操作是否有意义。这可能有几个原因：
+
+
+  +   - 目前没有其他人可以通过其他接口（例如云流）向我们提供这些数据
+
+  +   - 此流程可能只是子流程，其他系统必须在本地提供服务
+
+
+  此外，还应注意，由于篇幅限制，我们仅在此处映射了流程的一部分。当然，报价还包括报价项目，这自然必须予以考虑并相应处理。在真实场景中，报价名称、客户以及价格表等信息将通过变量提供。
+
+
+  像 Dynamics 365 这样的业务应用程序具有足够复杂的 HTML 结构。界面大多是底层框架执行渲染过程的结果。例如，在 Dynamics 365 中，使用
+  React 框架来实现此目的。然而，这也意味着 HTML 元素的选择器可能具有非常复杂的结构。因此，如果你有任何疑问，则需要一些手动工作来找到正确的元素。关于这一点将在第
+  12 章中提供更多信息。
+
+
+  这里介绍的想法和概念也适用于普通和公共网站。作为规则，这里可以找到更简单的结构，这些结构也更能被 **Web Data Extraction** 操作识别——例如，HTML
+  表格。
+
+
+  然而，这个例子已经很好地过渡到我们下一章，我们将在其中更仔细地研究 Power Platform 的功能，Dynamics 365 也位于 Power Platform
+  中。
+
+
+  ## 进一步阅读
+
+
+  要了解本章涵盖主题的更多信息，请查看以下资源：
+
+
+  +   - Innovation Commitment for SAP S/4HANA, clarity and choice on SAP Business
+  Suite 7: https://support.sap.com/en/release-upgrade-maintenance/maintenance-information/maintenance-strategy/s4hana-business-suite7.html
+
+  +   - *Introduction to SAP GUI-based RPA in Power Automate Desktop* (contains video)
+  – Power Automate | Microsoft Learn available at https://learn.microsoft.com/en-us/power-automate/guidance/rpa-sap-playbook/introduction
+
+  +   - Mainframe computer: https://en.wikipedia.org/wiki/Mainframe_computer
+
+  +   - MVS: https://en.wikipedia.org/wiki/MVS
+
+  +   - MVS 3.8j Tur(n)key 4 – System: https://wotho.ethz.ch/tk4-/
+
+  +   - *Browser automation actions reference* – Power Automate | Microsoft Learn
+  available at https://learn.microsoft.com/en-us/power-automate/desktop-flows/actions-reference/webaautomation
+
+  +   - *Install Power Automate browser extensions* – Power Automate | Microsoft Learn
+  available at https://learn.microsoft.com/en-us/power-automate/desktop-flows/install-browser-extensions
+
+  '
+- "## 利用云服务和 Power Platform\n\n在本章中，我们将介绍如何将 PAD 与 Power Platform 集成，并了解如何使用该技术弥合云世界与本地执行的\
+  \ UI 流程之间的差距。此外，我们将查看用于从 UI 流程操作 Microsoft SharePoint 的操作。\n\n最后，我们将使用 **Amazon\
+  \ Web Services (AWS)** 和 Microsoft Azure 的操作，以使用 **Infrastructure-as-a-Service (IaaS)**\
+  \ 服务来托管 UI 流程。我们将在本章中涵盖以下主题：\n\n+   - Power Platform 和相关服务\n+   - 使用 SharePoint\
+  \ 管理列表、文件和文件夹\n+   - 使用 IaaS 服务（Azure/AWS）\n\n## 技术要求\n\n本章展示了如何将桌面流程与 Microsoft\
+  \ 的 Power Platform 集成并使用它。此场景需要一个工作或学校账户，可用于创建 Dynamics 365 的试用版。本章中的示例使用 Dynamics\
+  \ 365 Sales 模块，可在几个步骤中设置（详细信息的链接包含在 *Further reading* 部分）。调用和操作 SaaS 服务的基本知识是先决条件。此外，还需要\
+  \ Power Automate 许可证，其中包括 UI 流程。这也可以是测试许可证。\n\n为了展示 Microsoft Azure 和 AWS 的功能，需要两个环境的试用。提供商为资源有限使用提供免费套餐，这对于我们的目的来说完全足够。\n\
+  \n此外，还需要对提供商及其服务有基本了解，以及如何创建简单的标准化虚拟机的知识。\n\n## Power Platform 和相关服务\n\n在 *Chapter\
+  \ 1* 中，我们了解到 Power Automate Desktop 是 Power Platform 的一部分。凭借这种直接关系，可以利用一个独特的优势，与\
+  \ Power Platform 家族的其他成员结合使用。在之前的示例中，我们看到 UI 流程基于特定用例连接到另一个应用程序，或使用浏览器自动化远程检索信息。通过使用\
+  \ Power Platform，此出站连接场景现在可以扩展为入站场景——例如，UI 流程可以从外部自动调用并执行其工作。在这方面，PAD 可以弥合云与本地网络之间的差距，从而确保互联的流程。\n\
+  \n为了更好地理解这一概念以及所有这些如何融入 Microsoft 生态系统，我想从高层次解释一下这意味着什么。下图显示了 Microsoft 云的概念结构：\n\
+  \n\n\n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_257_0.png)\n\n## Figure 9.1 – Power\
+  \ Platform environment(s) structure and elements\n\n如果任何客户想要使用 Microsoft 云服务，必须创建一个客户租户。在这里，我们会找到\
+  \ Azure 中可用的所有资源，也包括所谓的 环境。 这个术语与 Power Platform 功能相关，可以被视为一种服务于特定主题或目的的容器。租户中可以有多个环境，例如用于开发、测试，当然还有生产环境，也可以为\
+  \ HR 工作负载、内部服务管理或任何其他主题设置单独的环境。\n\n在每个环境中，我们可以找到 Power Platform 提供的不同工具，例如 Power\
+  \ Apps、Power BI、Power Automate 等等。此外，每个环境的访问权限也可以单独控制。前图显示了可在环境中提供的服务的选集。这也取决于公司已购买的具体许可和订阅。环境的全部工件都存储在\
+  \ Dataverse 仓库中。Power Automate 与本章的主题相关。让我们来看看将云流连接到 UI 流所需的内容。\n\n## Machine and\
+  \ Machine Runtime\n\n正如我们所知，UI 流是在本地机器上执行的，通常在公司的本地网络内。为了能够将 Microsoft 云和环境连接到该本地机器，Microsoft\
+  \ 提供了 **Power Automate Machine Runtime**。下图显示了组件之间的关系：\n\n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_258_0.png)\n\
+  \nFigure 9.2 — PAD and Power Platform\n\n它在 Windows Professional 和 Enterprise 上会自动安装，但在\
+  \ Windows Home Edition 上不会。**Power Automate Machine Runtime** 允许您在云环境和本地网络之间创建直接连接。要使用此组件，需要满足一些先决条件：\n\
+  \n- 此类连接由 Power Automate 版本 2.8.73.21119 或更高版本支持\n- 环境需要一个名为 **MicrosoftFlowExtensionCore**\
+  \ 的特定解决方案，版本为 1.2.4.1 或更高\n- 需要一个带有受管 RPA 的高级按用户计划，这是一种需要购买的特殊许可\n- 需要注册新机器的用户在环境中必须至少具有\
+  \ **Environment Maker** 或 **Desktop Flow Machine Owner** 用户角色\n\n安装运行时非常简单。具有适当权限的用户可以选择并在环境中注册本地机器。以下屏幕截图显示了一台已成功注册的机器：\n\
+  \n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_259_0.png)\n\nFigure 9.3 – Power Automate\
+  \ Machine runtime settings\n\n如果预计某台机器的负载很高，也可以定义一个机器组并将机器添加到其中。假设有几台机器可用于执行，执行可以分布在它们之间。创建机器组非常容易。可以通过\
+  \ Power Automate 门户或在 Power Automate Machine Runtime 中完成。只需分配一个名称和可选的描述。然后，该组是\n\
+  \n整体流程分为两个部分：云流和桌面流。\n\n桌面流提供以下功能，我们应该已经非常熟悉了：\n\n- 接收传入的值并启动开票程序\n- 远程控制输入开票数据的过程\n\
+  - 提取生成的发票 ID 并将其返回给云流\n\n接收和提供值通过 **Input / output variables** 来保证。为了将新发票输入到 Contoso\
+  \ Invoicing 应用程序中，我们需要提供一个账户名称、一个联系人名称和一个金额。在这里，我们又回到了关于变量的章节。如以下屏幕截图所示，流程中已定义了三个输入变量和一个输出变量：\n\
+  \n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_263_0.png)\n\nFigure 9.7 – Input/output\
+  \ variables for cloud communication\n\nFigure 9.8 – Power Automate cloud flow triggering\
+  \ a desktop flow\n\n不深入 Power Automate 的细节，这里有一些创建此类流程的提示：\n\n1. 一个流程始终需要一个触发器。这可以是记录的更改或新电子邮件。手动触发也是可能的。在任何情况下，都必须使用相应的连接器确定触发系统。有数百个连接器可用于各种系统，并且这个数字一直在不断增长。在我们的示例中，我们使用了\
+  \ Dataverse 的连接器，它是 Dynamics Sales 模块的基础，并由绿色符号表示。这也意味着，原则上，Power Automate 中可以使用任何其他系统——例如\
+  \ ServiceNow、Salesforce 或简单地是一个数据库。\n2. Power Automate 允许您通过循环和条件来控制流程，如图所示顶部的灰色框。在这里，我们检查记录是否具有某个状态，以便相应地分支。\n\
+  3. 在条件的 `Yes` 分支中，使用 Dataverse 连接器检索有关客户和联系人的额外信息，这对于生成发票是必要的。之后，调用桌面流（蓝色框）。\n4.\
+  \ 桌面流完成后，会为机会创建一个任务活动，其中包含生成的发票号码，以便销售代表也知道为销售交易记录创建了哪个发票号码。\n\n当云流最初创建时，会在后台为所使用的连接器设置适当的连接。这些包含指向它们后面的服务的凭据，这些凭据与连接器一起使用。因此，当首次使用时，必须为桌面流创建连接。要添加此步骤，可以使用两个现有步骤之间的\
+  \ *plus* 号或 Power Automate Designer 中的 + **New step** 按钮，如以下屏幕截图所示：\n\n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_266_0.png)\n\
+  \n## Figure 9.9 – Adding a new step to Power Automate\n\n接下来，可以选择要包含在流程中的系统。在此示例中，使用了\
+  \ **Microsoft Dataverse** 和 **Desktop flows** 连接器：\n\n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_267_0.png)\n\
+  \n## Figure 9.10 – The Desktop flows connector in Power Automate\n\n选择系统后，窗口下部会显示可用的操作。对于\
+  \ Power Automate Desktop，可用 **Run a desktop flow** 操作。然后会显示一个窗口，需要输入连接信息。在这里，您还可以选择要用于执行的机器/机器组：\n\
+  \n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_268_0.png)\n\nFigure 9.11 – Creating\
+  \ a connection for PAD\n\n之后，可以选择要在本次处理范围内执行的桌面流。这里定义了所谓的 **Run Mode**（见下一节），以及桌面流希望用于执行的全部输入变量（见下图）：\n\
+  \n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_269_0.png)\n\nFigure 9.12 – Configured\
+  \ Desktop Flow action and parameters\n\n然后可以使用整个云流中的动态值。在这种情况下，会传递账户名称、联系人姓名和相应数据集中的金额。生成的发票号码由桌面流返回；这也可在后续步骤中使用。在前图的下部，您可以看到此信息如何用于后续步骤，以为销售代表生成信息活动。\n\
+  \n## Unattended execution (Run mode)\n\n到目前为止，我们手动启动了 PAD 流程，并能够交互式地观察流程如何运行操作。在这里，系统上有一个用户已登录。这就是所谓的\
+  \ **attended execution**。相应地，**unattended execution** 在没有查看执行选项的情况下运行。这也意味着执行流程的机器上不能有活动用户会话。流程的无人值守执行只能由云流触发。这是因为我们提供了流程登录机器并启动流程所需的所有必要信息。在执行期间，会创建一个锁定的\
+  \ Windows 用户会话。执行完成后，该会话将被释放。\n\n要以无人值守模式运行前面的示例，只需在 Power Automate 连接器中进行相应的设置并退出本地\
+  \ Windows 会话即可。当然，如果在流程执行期间不希望有观众——例如因为正在处理敏感数据——这尤其有意义。\n\n正如我们在本节中所看到的，借助 Power\
+  \ Platform 中的连接器功能，可以无缝地将桌面流整合到更大的集成场景中，而无需编写一行代码。借助 PAD 的这些功能，本地应用程序不再孤立，可以将其功能和数据提供给业务，从而做出宝贵的贡献。\n\
+  \nMicrosoft 云中另一个非常受欢迎的服务是 SharePoint。我们将在下一节中查看其交互功能。\n\n## Managing lists, files,\
+  \ and folders with SharePoint\n\n\n\n\n\nMicrosoft SharePoint 仍然非常受欢迎，是 Microsoft\
+  \ 365 产品套件中用于管理团队页面、项目工作区、列表和文档库的平台。 通常，该平台还被用作文档管理系统，并作为 Microsoft Teams 管理文档的基础结构：\n\
+  \n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_271_0.png)\n\n图 9.13 – 标准 SharePoint\
+  \ 示例团队站点\n\n文档库包含许多有用的设置，例如版本控制、文档协作工作等。 因此，如果经常使用的系统如 SharePoint 也可以被 PAD 原生访问，则提供很大的优势。\
+  \ 桌面流创建者不再需要转向云流来处理 SharePoint。 因此，存储在 SharePoint 中的所有数据都将自动对更大的团队甚至整个公司可用。 在撰写本文时，SharePoint\
+  \ 的操作仍处于预览阶段。 让我们看看按类型分组的操作：\n\n- File:\n  - 从一个站点地址复制或移动文件到另一个站点地址\n  - 从二进制数据创建或更新（新）文件\n\
+  \  - 签入、签出或丢弃文件以防止他人覆盖更改\n  - 通过文件标识符获取元数据、删除文件并获取文件内容\n- Folder:\n  - 从一个站点地址复制或移动文件夹到另一个站点地址\n\
+  \  - **List folder and list root folder**: 返回给定文件夹或 SharePoint 根文件夹中包含的文件\n  - **Get\
+  \ folder metadata**: 返回有关文件夹的元数据信息\n  - **Extract folder**: 将 ZIP 文件的内容提取到文件夹\n\
+  - List:\n  - **Get lists, get all lists and libraries**: 返回给定 SharePoint 站点中的所有列表或列表和库\n\
+  \  - **Get list views**: 返回给定 SharePoint 列表中的所有视图\n\n文件和文件夹在这里应理解为与本地计算机上的方式相同。\
+  \ 列表和库代表一个上层容器，其中可以相应地包含文件和文件夹。 请注意，没有直接上传或下载文件的操作。 但这可以通过使用额外的 PAD 操作来实现，这就是本节示例中将看到的内容。\n\
+  \nSharePoint 操作可以同时使用在线版本和本地安装。 对于后者，必须通过数据网关建立连接。\n\n# Copy file (Preview)\n\n\
+  没有可用的有效连接引用。 修复无效的连接引用，使用现有引用，或创建新引用以使用连接器。 连接引用\n\n复制文件。 工作方式与 SharePoint 库中的“复制到”命令类似。\
+  \ 复制后返回有关新文件的信息。 更多信息\n\n## Select parameters\n\nCurrent Site Address:\n\nFile to\
+  \ Copy:\n\nDestination Site Address:\n\nOn error\n\nConnection references\n\n##\
+  \ Connection references\n\nAdd new connection reference\n\n## No Connection references\
+  \ available\n\n请尝试以下操作之一：\n\n1. 创建新的连接引用\n2. 确保为运行时所需桌面流服务端点未被阻止\n3. 检查您的互联网连接或运行\
+  \ Windows 互联网连接疑难解答\n\nRetry\n\n图 9.14 – 创建 SharePoint 连接和引用\n\n# Connections and\
+  \ connection references\n\n要在 PAD 中使用 SharePoint 操作，我们需要一个连接，以及一个连接引用。 两者都可以在 PAD\
+  \ 内部创建。 连接引用的概念由 Microsoft 引入，以从特定 API 或服务的特定连接中抽象出来，该连接在不同环境中可能不同。 此外，连接引用可以是解决方案的一部分（可传输的定制单元）。\
+  \ 所有这些只是背景信息，在 PAD 的上下文中不一定重要，除非我们进入企业领域。\n\n作为示例，我在 SharePoint 中创建了一个简单页面。 这已经包含列表，以及文档库。\
+  \ 单个操作对 SharePoint 用户来说应该很熟悉，并且在很大程度上不言自明。 只有与本地计算机数据连接的部分不被 SharePoint 操作单独覆盖。\
+  \ 因此，以下小示例展示了如何通过 PAD 将本地文件上传到 SharePoint（见下图）：\n\n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_276_0.png)\n\
+  \n图 9.15 – 通过 PAD 将文件上传到 SharePoint\n\n我们不想也不可能在我们的 PAD 机器上安装它们。\n\n- VM 可以随意启动和关闭。\
+  \ 这意味着如果某个应用程序每月仅需一次用于特定工作负载，例如，可以节省大量资源，并且机器只能在使用的时间内启动。\n\n因此，相应的 PAD 操作旨在控制虚拟机（启动、停止、重启）。\
+  \ 此外，可以使用虚拟磁盘进行工作，可以创建和删除。 创建后，磁盘需要附加。 请注意，我们没有创建或删除 VM 的操作。 因此，假设要在 VM 上运行的应用程序已经安装。\n\
+  \n下表显示了可在 PAD 中用于管理虚拟机和存储的操作：\n\n|  | AWS | Azure |\n|---|---|---|\n| Name of the\
+  \ offering | Elastic Compute Cloud (EC2) | Azure Virtual Machines |\n| PAD actions\
+  \ group | AWS and subgroups | Azure and subgroups |\n| Connection via | Create EC2\
+  \ session and end EC2 session | Create session and End session |\n| VM capabilities\
+  \ |  |  |\n| Start/Stop/Reboot | Start EC2 instance, Stop EC2 instance, Reboot EC2\
+  \ instance | Start virtual machine, Stop virtual machine, Shutdown virtual machine,\
+  \ Restart virtual machine |\n| Get list of machines | Get available EC2 instances\
+  \ | Get virtual machines |\n| Get description of machines | Describe instances |\
+  \ Describe virtual machine |\n| Snapshot capabilities |  |  |\n| Create/delete |\
+  \ Create Snapshot, Delete Snapshot | Create snapshot, Delete snapshot |\n| Describe\
+  \ | Describe snapshots | Get snapshots |\n| Disk storage capabilities |  |  |\n\
+  | Create/delete | Create volume, Delete volume | Create managed disk, Delete disk\
+  \ |\n| Attach/detach | Attach volume, Detach volume | Attach disk, Detach disk |\n\
+  | Get information on disks | Describe volumes | Get disks |\n\n表 9.1 – VM 操作比较\n\
+  \nAzure 操作已完成，可使用所谓的资源组（获取、创建、删除）的可能性。 这些提供了一个逻辑和主题容器，可以将 Azure 工件分配给它，以便轻松识别，例如，属于订单管理主题的所有资源。\n\
+  \n要使用每个提供商的操作，必须通过相应的会话操作建立连接。 两个提供商的连接设置方式不同。\n\n# AWS actions in use\n\nAWS 会话操作在以下屏幕截图中显示。\
+  \ 创建会话有两种方式：使用配置文件名和区域或使用\n\n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_281_0.png)\n\
+  \n图 9.17 – AWS 访问密钥和密钥\n\n单击 **Security credentials** 链接会打开 **Identity and Access\
+  \ Management** 页面。 在此页面稍下方有一个访问密钥部分。 在这里，您可以轻松生成新的访问密钥。 密码（或密钥）仅显示一次。 建议将此密码复制到其他位置。\
+  \ 根据所选区域，可能仍需为此参数进行条目。 可用服务端点及其条目的列表可在 *Further reading* 部分找到。 对于我们在此选择的 **Ireland**，字符串为\
+  \ `eu-west-1`。\n\n有了这三个条目，现在可以成功创建 EC2 会话，从而可以使用所有进一步操作。\n\n为了使以下演示 UI 流正常工作，我们还需要在\
+  \ EC2 中预配一台机器。 有大量指南说明如何在 EC2 中创建 VM。 测试帐户可用于创建 Linux 和 Windows VM，\n\n\n\nwhich\
+  \ are then managed via the console. For this flow, a simple Windows machine was\
+  \ created.\n\nThe UI flow shown in the following figure logs into AWS with the credentials\
+  \ (1), then calls the available EC2 instances and stores them in a variable (2).\n\
+  \nThe subsequent loop goes through all instances (3) and checks each one to see\
+  \ whether it is stopped or not (4). If stopped, a message box asks whether the machine\
+  \ should be started (5). This is what the flow looks like:\n\n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_282_0.png)\n\
+  \nFigure 9.18 – Working with AWS EC2 instances\n\n## Working with Azure actions\n\
+  \nIn the first section of this chapter, we saw that Azure is the foundation for\
+  \ all Microsoft Cloud services. To explain the concept of Azure without going too\
+  \ much into the details, take a look at the following diagram:\n\n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_283_0.png)\n\
+  \nFigure 9.19 – Azure relationship between different components\n\nThe tenant is\
+  \ equivalent to an organization or a company. Typically, the tenant contains an\
+  \ Azure Active Directory where we can define and register new applications that\
+  \ need to access resources within the tenant.\n\nA subscription is a financial boundary\
+  \ for any kind of resource. Because resources consume CPU and/or memory, there must\
+  \ be financial coverage of the consumption. There can be multiple subscriptions\
+  \ within a tenant.\n\nThe next level is a resource group, which usually relates\
+  \ to a specific purpose or topic. For example, it could be possible to create a\
+  \ resource group that contains all resources for automating a specific workload\
+  \ or application. These resources can be storage (disk or volume to persist data)\
+  \ or virtual machines and many more types of resources.\n\nFor PAD to be able to\
+  \ access resources in Azure, we need to register a new app within Azure Active Directory.\
+  \ This would have a new client ID as a result, which we can use for the corresponding\
+  \ field in the Actions Parameter dialog. Within this app registration, it is also\
+  \ possible to create a client secret, which is a fixed password to use for logging\
+  \ in with this client. In the Azure portal, go to Azure Active Directory | App registrations\
+  \ and create a new registration:\n\n![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_284_0.png)\n\
+  \nFigure 9.20 – Azure Active Directory – App registrations\n\nTogether with the\
+  \ Tenant ID (or Directory (tenant) ID in the preceding screenshot) and Subscription\
+  \ ID properties (needs to be looked up in the subscription), we have all the information\
+  \ for the Azure session to log on:\n\n### Create session\nCreates an Azure session\
+  \ using service principal More info\n\n### Select parameters\nClient ID :\n\nClient\
+  \ secret:\n\nTenant ID:\n\nSubscription ID:\n\nVariables produced AzureClient\n\n\
+  On error\n\nSave\n\nCancel\n\nFigure 9.21 – Creating a connection to Azure\n\n###\
+  \ Configuring additional security settings\n\nFor the Azure session to work, additional\
+  \ security-related steps must be taken. First, the app registration must be granted\
+  \ API permissions for Azure resources to access. These include permission for Azure\
+  \ Service Management and Azure Storage. Second, the app registration must be given\
+  \ additional role assignments at the subscription level. For this, go to the subscription\
+  \ management in the Azure portal, switch to the Access Control (IAM) area, select\
+  \ the Role Assignment tab, and use the +Add button to start the wizard. Select the\
+  \ Virtual Machine Contributor role and add the app registration that was previously\
+  \ created as a member of the role assignment.\n\nThe following example shows how\
+  \ to work with actions for Azure virtual machines and disks:\n\nthe background.\
+  \ Finally, the new disk is attached to the VM and is available directly in **Disk\
+  \ Management** as an unformatted drive.\n\nAs a consequence, other scenarios can\
+  \ be feasible. For example, it would be possible to fill a new disk with data from\
+  \ a snapshot or another storage account.\n\nFurthermore, the VM could also be equipped\
+  \ with an agent for virtual desktops so that UI elements can be identified and used\
+  \ in a flow.\n\nIn this section, we learned that we can use IaaS providers such\
+  \ as Microsoft or AWS via the native PAD actions to move workloads from on-premises\
+  \ machines to VMs and then control them through a locally executed UI flow.\n\n\
+  This can save resources, especially if an application is not used for automation\
+  \ daily or uses a lot of compute capacity (CPU/memory).\n\n## Summary\n\nThrough\
+  \ integration with Power Platform, PAD can close the gap between workflows in the\
+  \ cloud and the local network. We have seen that this can create a seamless overall\
+  \ concept for an automation solution, as the various components are very well integrated.\n\
+  \nAdditionally, we learned about native actions for using IaaS offerings from Microsoft\
+  \ and AWS, which allow us to outsource the execution of desktop programs or add\
+  \ more resources to our flow as needed.\n\nIn the next chapter, we’ll look at how\
+  \ we can incorporate artificial intelligence into a UI flow while learning about\
+  \ offerings from various vendors.\n\n## Further reading\n\nFurther information is\
+  \ listed here:\n\n- Sign up for a free Dynamics 365 Sales trial:\n  https://learn.microsoft.com/en-us/dynamics365/sales/sign-up-for-sales-trial\n\
+  - Power Platform environments overview:\n  https://learn.microsoft.com/en-us/power-platform/admin/environments-overview\n\
+  - Connection versus Connection references:\n  https://learn.microsoft.com/en-us/power-apps/maker/data-platform/create-connection-reference\n\
+  - Introduction to Amazon EC2:\n  https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html\n\
+  - Amazon Service endpoints:\n  https://docs.aws.amazon.com/general/latest/gr/rande.html\n\
+  - Get started with Amazon EC2 Windows instances:\n  https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/EC2_GetStarted.html\n\
+  - Register an application with the Microsoft identity platform:\n  https://learn.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app\n"
+- '## Leveraging Artificial Intelligence
+
+
+  The topic of **artificial intelligence (AI)** has been hotly debated for some time
+  and has gained further popularity with the advent of OpenAI and ChatGPT. In this
+  chapter, we want to shed light on what possibilities we have within PAD in this
+  regard and look at the following areas:
+
+
+  - An introduction to cognitive services
+
+  - Diving into the offerings of Microsoft, Google, and IBM
+
+  - Classification in the practical work with PADT
+
+
+  After reading this chapter, we will have a solid understanding of what AI means,
+  in which areas this technology helps optimize business processes, and how these
+  functionalities can be deployed and used with PAD.
+
+
+  ## Technical requirements
+
+
+  The services addressed in this chapter are accessed online by the respective providers.
+  This requires a corresponding subscription with the vendors, who all provide a test
+  period with certain credits free of charge. The process for starting a trial and
+  subsequent steps are different in each case and are highlighted in the corresponding
+  sections.
+
+
+  ## Introduction to cognitive services and artificial intelligence
+
+
+  The functionalities discussed in this chapter all deal with AI and **machine learning
+  (ML)**. Before we turn to the individual providers and their functionality, we will
+  first classify the topic in general and consider what benefits AI can bring to everyday
+  life and in the business context.
+
+
+  In general, it can be said that AI can help to recognize structures in text, image,
+  or sound information so that they become machine-readable. Cognitive services hereby
+  refer to a set of cloud-based **application programming interfaces (APIs)** and
+  tools provided by Microsoft, IBM, Google, and other vendors that enable developers
+  and creators to add advanced AI capabilities to their applications without needing
+  to have deep expertise in ML or data science. The actions offered in PAD by the
+  different vendors provide more or less the same functionalities, shown in the following
+  diagram. Only the naming of the services is slightly different in some cases.
+
+
+  ![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_290_0.png)
+
+
+  Figure 10.1 – An overview of cognitive services
+
+
+  Let’s take a slightly closer look at these capabilities and how they can be used
+  in a business context.
+
+
+  ## An overview of cognitive services
+
+
+  Cognitive services can also be described as a set of APIs and tools that use ML
+  algorithms to enable computers to perform tasks that normally require human-level
+  intelligence. These services are typically hosted in the cloud and can be accessed
+  through a REST API or **software development kit (SDK)**. The technology behind
+  cognitive services can be broken down into a few key components:
+
+
+
+  - **ML**：认知服务的核心是 ML，即人工智能的一个子领域，涉及训练计算机在数据中识别模式。认知服务使用的 ML 模型通常在大量标记数据上进行训练，并且随着接触新数据，其准确性会随时间推移而提高。最新的
+  ML 模型起步时就已使用 100 个数据集，并且仍在不断改进。
+
+  - **深度学习**：许多认知服务还使用深度学习，这是一种涉及训练具有多层的人工神经网络的 ML 类型。深度学习模型对于图像和语音识别以及**自然语言处理（NLP）**尤其有效。
+
+  - **NLP**：一些认知服务，例如语言翻译和文本转语音，使用 NLP 算法来分析和理解人类语言。NLP 涉及将文本解析为其组成部分，例如单词和句子，并使用统计模型来识别这些部分之间的模式和关系。**语言理解（LUIS）**例如，就是一种
+  NLP 服务，使开发人员能够构建聊天机器人和其他对话界面。
+
+  - **计算机视觉**：计算机视觉是人工智能的一个分支，涉及训练计算机从图像和视频中识别和解释视觉信息。使用计算机视觉的认知服务可以执行对象检测、人脸识别和图像分类任务。
+
+  - **云计算**：最后，认知服务通常托管在云中，这使得开发人员可以从世界任何地方访问它们。云计算还提供可扩展的按需计算资源，有助于降低成本并提高性能。
+
+
+  总体而言，认知服务由先进的 ML、深度学习、NLP 和计算机视觉算法的组合提供动力，并通过云计算技术实现访问。这些服务可以帮助自动化许多原本需要人类水平智能的任务，例如语音识别、语言翻译和图像分析。认知服务使人们更容易在应用程序中添加强大的
+  AI 功能，而无需具备 ML 或数据科学方面的广泛专业知识。
+
+
+  ## AI 在业务背景下的应用
+
+
+  但这些技能如何在业务背景下有意义地应用呢？以下是认知服务和图像分析在不同业务场景中如何使用的一些示例：
+
+
+  - **客户服务**：由认知服务驱动的聊天机器人可用于 24/7 提供客户服务，回答常见问题，帮助客户查找产品和服务，并解决简单问题。这些聊天机器人可以集成到网站、消息应用程序和社交媒体平台中。通过包含情感分析，此类聊天机器人可用于分析社交媒体平台和评论网站上的客户反馈和情绪。这可以帮助企业快速识别问题并加以解决，同时识别出表现优异的领域。认知服务可用于驱动可用于客户服务的语音助手。例如，客户可能会使用语音助手来跟踪订单、更新其账户信息或请求产品推荐。认知服务可用于根据通过电子邮件、聊天或社交媒体收到的客户咨询自动创建支持工单。这可以帮助客户服务团队更高效地管理工作量并及时响应客户。
+
+  - **电子商务**：认知服务可用于分析产品图像并根据客户偏好推荐类似产品（向上销售和交叉销售）。例如，客户可能会拍摄他们喜欢的连衣裙的照片，而电子商务网站可以使用图像识别来建议不同款式或颜色的类似连衣裙。认知服务可用于分析客户作为支持请求的一部分提交的产品图像。这可以帮助客户服务代表快速了解问题并提供更准确、更高效的支持。认知服务可用于检测电子商务中的欺诈活动，例如使用
+
+
+  - 所有请求都需要 API 密钥来授权请求
+
+  - 所有结果都附带一定的置信度以及作为响应的状态码
+
+
+  让我们来看看每个厂商在 PAD 中提供的 AI 功能。
+
+
+  ## 探索 Microsoft Cognitive Services
+
+
+  要使用 Microsoft Cognitive Services 的操作，我们需要拥有 Azure 订阅并配置一个名为 **Cognitive services
+  多服务账户** 的资源。在下面的屏幕截图中，您可以看到一个已配置好的服务：
+
+
+  ![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_294_0.png)
+
+
+  图 10.2 – Azure 中的 Microsoft Cognitive Services
+
+
+  设置此资源不需要复杂的设置。之后即可使用 Microsoft Cognitive 的操作。每个操作都期望一个 **订阅密钥**。然而，这并不是订阅本身的 ID，而是
+
+
+  包含一个段落列表，其中包含包含单词列表的文本行列表。
+
+
+  让我们来看一个在 **用户界面（UI）** 流程中如何使用计算机视觉中操作的示例。
+
+
+  ## 基于 AI 的图像排序
+
+
+  假设您举办了一场竞赛，从某个群组的所有发送者中选出每种物种最漂亮的宠物。现在，您收到了无数封包含大量图片的电子邮件，并将它们放在桌面上的一个文件夹中。我们现在可以使用
+  AI 按宠物类型对图像进行排序，并为每种宠物创建单独的文件夹。此 UI 流程如下所示：
+
+
+  ![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_297_0.png)
+
+
+  # 图 10.3 – 在 PAD 中使用计算机视觉
+
+
+  作为先决条件，我在桌面上创建了一个包含一些狗和猫的随机图片的基础文件夹。我创建了一个 `BaseFolder` 输入变量，其中包含该文件夹的位置。以下是此流程的作用：
+
+
+  - 第 1 步，创建图片集合并将其存储在 `Files` 变量中。
+
+  - 第 2 步开始循环以遍历图像列表。
+
+  - 在第 3 步和第 4 步中，我插入了 **描述图像** 和 **标记图像** 操作以作说明。
+
+
+  # 图 10.4 – 图像标签、描述和分析
+
+
+  请注意 `ImageDescription` 中的 **captions** 条目，**一只正在看摄像头的猫**，这向我们展示了 AI 的强大功能。让我们来看下一个厂商及其提供的操作。
+
+
+  ## Google cognitive
+
+
+  Google 的 AI 功能可通过 **Google Cloud Platform（GCP）** 访问。首先，您需要创建一个相应账户。提供商提供一定的配额，可用于试用服务。入口通过
+  [https://cloud.google.com](https://cloud.google.com) 进行，也可以在此处创建新账户。然后您将进入 Cloud
+  Console，您可以在其中搜索资源并创建新项目以使用这些 API。例如，您可以使用 **搜索** 框并查找术语 `sentiment`，它是 Cloud Natural
+  Language API 的一部分。每个 API 都需要单独启用。您可以通过屏幕左上角的汉堡菜单查看所有已启用的 API，如下图所示：
+
+
+  ![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_300_0.png)
+
+
+  图 10.5 – Google Cloud Console
+
+
+  激活 API 后，还必须创建凭据才能从外部调用此接口。这也适用于 PAD 中的操作，因为这些操作需要 API 密钥才能执行。对于每个服务，都有一个 **凭据**
+  部分，可用于创建 API 密钥（见下图）。
+
+
+  # 图 10.6 – 在 Google Cloud 中创建 API 密钥
+
+
+  之后，API 密钥将显示在窗口中，以便复制并粘贴到 PAD 的其中一个操作中。此过程必须针对要使用的每个 API 重复。在 PAD 中可以使用两个 API，Natural
+  Language 和 Vision：
+
+
+  - Natural Language：这使我们能够分析给定文本的情感（文本中的情绪）、实体（文本所涉及的内容）或语法（文本的结构方式）。
+
+  - Vision：这接收一张图像，可以检测不同的对象，例如标签（或对象）、地标、文本、徽标和图像属性。它还允许检测保存的搜索。
+
+
+  让我们来看一个非常简单的 UI 流程来演示这些结果。
+
+
+  ## PAD 中的情感分析
+
+
+
+
+
+
+  在此示例中，我们以一份包含内容的文本文档为例：
+
+
+  ![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_302_0.png)
+
+
+  图 10.7 – 用于 AI 分析的示例文本文件
+
+
+  我们现在可以创建一个流程并将 Analyze sentiment 和 Analyze entities 动作拖入设计器，并配备 API 密钥和此文件的路径。
+
+
+  ![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_302_1.png)
+
+
+  图 10.8 – 使用 Google Natural Language 动作
+
+
+  情感分析的结果如下所示（双击 JSONResponse1 变量）：
+
+
+  ![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_303_0.png)
+
+
+  图 10.9 – 情感分析的结果
+
+
+  我们可以看到，我们收到了文档整体情感的评分和强度。此外，每个句子也会单独进行情感评估。根据文档说明，约 0.0 的分数表示中性，以及强度值较低。这可以解释为略微积极的情感。
+
+
+  第二个 **Analyze entities** 动作的结果为我们提供了有关此文本内容的某些见解（见下图）：
+
+
+  ![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_303_1.png)
+
+
+  图 10.10 – 实体分析的结果
+
+
+  在这里，我通过在对话框中点击 **More** 链接展开了 `entities` 分支。我们可以看到人物姓名已被识别，甚至还链接到了维基百科，并且文本中还有其他实体。
+
+
+  所有这些功能单独来看可能一开始并不特别有帮助。然而，从更大的上下文来看，通过这些功能可以获得重要的、有帮助的见解和自动化。例如，通过提取这些信息并在之后进行智能连接，也可以创建更长文本的摘要。这不可避免地也导致公司创建非常大的语言模型，这些模型可以分析和理解文本并提供智能答案。这在
+  ChatGPT 等模型的不断增长的流行中可见一斑。
+
+
+  ## 使用 IBM cognitive
+
+
+  也许你们中的一些人还记得 1997 年的头条新闻，报道了一款名为 Deep Blue 的计算机程序，它在仅 19 步内就击败了当时世界国际象棋冠军加里·卡斯帕罗夫。
+  该程序运行在 IBM 建造的超级计算机上。击败世界国际象棋冠军是 AI 历史上的一个里程碑。如今，IBM 以 Watson 的名义提供其基于 AI 的解决方案。如本章前面所述，各提供商的功能存在重叠。IBM
+  提供的功能如下：
+
+
+  - **Visual recognition**：此动作组包含一个 **Classify image** 动作，允许我们提供一张图像
+
+  - **Language translator**：这使我们能够识别语言并翻译给定的文本
+
+  - **Document conversion**：这将给定的文档转换为另一种格式
+
+
+  **Tone analyzer** 动作组包含一个 **Analyze tone** 动作，该动作现已弃用，在此不再进一步考虑。如果已有对 IBM Cloud
+  的 AI 投资，这些产品也可以在 PAD 中可用的动作中使用。
+
+
+  与其它提供商一样，这里也需要一个 IBM Cloud 账户，通过该账户可以生成相应的 API 密钥。此信息也必须为 PAD 动作指定，以便执行请求。否则，其基本功能与迄今为止所示的提供商完全相同。
+
+
+  既然我们已经了解了不同提供商的功能，让我们来看看在何种上下文中使用这些功能是有意义的。
+
+
+  ## 对 PAD 的实际相关性
+
+
+  除启动本地应用程序并控制它之外，PAD 下提供的动作并不独属于 PAD。 这些动作调用的所有 API 都在云中，因此可供任何应用程序使用。
+
+
+  我们也在 PAD 中看到这些动作的原因是，它使我们能够在 UI 流程的上下文中直接访问，而无需添加更多云流程或其他技术。这使我们能够为 UI 流程构建一些智能。在选定的场景中，这些动作当然是有意义的，但通常，这种功能主要在云场景中使用。然而，在需要确定
+  PAD 中图像的内容或确定电子邮件中的情绪的情况下，这些动作的可用性当然非常有帮助。所有这些都依赖于预先构建和训练的 AI 模型。更适合业务的另一种使用 AI
+  的方式在下一节中描述。
+
+
+  ## 更多使用 AI 的方式
+
+
+  AI 及其能力在近年来越来越受欢迎，我们可以看到这种技术的应用不断增加。仅在 Power Platform 和 Dynamics 365 中，AI 就被用于许多地方，例如以下内容：
+
+
+  - **Conversational intelligence**：通过使用分析和数据科学从销售人员的通话录音中提取信息和见解，以主动指导销售人员。
+
+  - **Intelligent content suggestion**：可以根据之前的对话建议电子邮件回复。可以检测问题并建议可能的答案，这有助于销售人员快速高效。
+
+  - **Power Virtual Agent**：Power Platform 中的智能聊天机器人可以利用 LUIS 模型来理解聊天对话的含义并提供相应的回复。
+
+  - **Copilot for Power Automate**：这允许通过口头和自然语言描述创建 Power Automate（见 https://powerautomate.microsoft.com/en-us/blog/new-ways-to-innovate-with-ai-and-microsoft-power-automate/）。
+
+
+  然而，有一个场景我想在此简要讨论一下，这对于实际使用来说可能具有一定的相关性。日常业务中总会出现需要处理某些纸质表格的情况：
+
+
+  - 学校表格，要求家长勾选某些项目以表示同意或填写信息
+
+  - 来自供应商的订单确认或送货单，其中包含交易数据
+
+  - 医院或诊所的患者登记表格
+
+
+  基本机制始终相同，因为总是有特定的表格，数据始终输入在相同的位置。例如，Microsoft 和 Google 提供预制但尚未训练的模型来数字化并读取这些表格。Microsoft
+  Power Platform 包含这样一项服务，称为 AI Builder。在这里，我们可以找到预定义模型用于以下目的：
+
+
+  - 从 PDF 文档、身份证明文件、名片等中提取数据
+
+  - 将客户反馈或任何其他文本分类到预定义类别中
+
+  - 从文本中提取关键元素或文本中最相关的词语和短语
+
+
+  如果这些模型不足以满足需求，也可以创建自己的 AI 模型。模型配备训练和测试数据后，可以直接部署并在云流程中使用。因此，这项技术允许您使用自己的表格与 AI 结合并将其纳入流程中。
+
+
+  原则上，此类模型也可以通过标准的 HTTP 请求检索。在下一章中，我们将学习如何使用 PAD 使用此和其他 Web 协议。
+
+
+  ## 摘要
+
+
+  在本章中，我们研究了 AI 主题以及为 UI 流程添加智能的选项。我们了解到，这些选项通常在更大的上下文中发挥作用，并且在 PAD 中，我们今天也可以访问常见的模型。然而，如果我们发现需要在
+  UI 流程的一部分中访问此类功能，我们可以使用此处介绍的动作在 PAD 中实现，而无需考虑其他解决方案和技术。
+
+
+  ## 进一步阅读
+
+
+  - *Microsoft Computer Vision documentation:* https://learn.microsoft.com/en-gb/azure/cognitive-services/computer-vision/
+
+
+
+
+
+
+  - *卡斯帕罗夫对战深蓝：* https://en.wikipedia.org/wiki/Deep_Blue_versus_Kasparov,_1997,_Game_6
+
+  - *Google 自然语言 AI 文档：* https://cloud.google.com/natural-language
+
+  - *Google Vision AI 文档：* https://cloud.google.com/vision
+
+  '
+- '## 使用 API 和服务
+
+
+  到目前为止，我们使用 PAD 使没有 API 的应用程序能够通过其 **用户界面 (UI)** 与自动化流程一起使用。尽管这是 PAD 的主要用途，但我们也可以在
+  UI 流程的上下文中与 API 通信，以实现最佳的集成选项。这些可能性形成了闭环，使我们能够完全在 PAD 中实现完整的业务流程，而无需添加其他机制。因此，在本章中，我们将了解
+  PAD 可以直接通信的哪些 API 和协议，以及 PAD 可以处理的哪些基于 Web 的数据格式。我们将重点介绍以下几点：
+
+
+  - 管理本地 **Active Directory (AD)** 服务并访问本地数据库和电子邮件服务
+
+  - 利用使用 **超文本传输协议 (HTTP)** 和 **文件传输协议 (FTP)** 的 Web 服务以及处理 Web 格式（**Javascript 对象表示法
+  (JSON)**、**可扩展标记语言 (XML)** 和 **便携式文档格式 (PDF)**）
+
+  - 密码学和 CyberArk
+
+  - 内置数据功能 – 日期时间、文本、压缩和消息框
+
+
+  学习完本章后，我们将能够在 UI 流程中使用内部服务，例如数据库和 AD，以及任何 Web 服务，并处理各种数据格式。*第 12 章* 中将展示此处介绍的操作的示例流程。
+
+
+  ## 技术要求
+
+
+  在第一个示例中，我将使用本地安装的 SQL Server，并安装了 Microsoft 示例数据库 **AdventureWorks2019**。此外，我已在此服务器上设置了一个数据库用户，并授予其访问该数据库的权限。
+
+
+  ## 本地网络服务的使用和自动化
+
+
+  在许多大公司和小公司中，都使用基于 Windows 的本地网络，提供额外的 Microsoft 服务。首先，当然包括 AD，但也包括 Microsoft Exchange、SQL
+  Server 等。这些和其他服务被分配到 Office Server 产品线。
+
+
+  由于 PAD 非常适合自动化管理任务，因此为这些服务提供相应的操作也是显而易见的。与我们在 *第 7 章* 中了解的本地 Windows 服务不同，这些是本地网络上的网络服务，因此不在云中。因此，这里介绍的操作也仅用于本地安装的服务器产品。为了自动化相应的云服务，Microsoft
+  建议使用在线产品的相应连接器（Azure AD、Exchange Online 等）。越来越多的公司选择云技术的原因可能也在于此，因为 Microsoft Exchange
+  支持的服务器版本有些老旧（Microsoft Exchange Server 2010-2013 Service Pack 1）。虽然 AD 的操作允许有限的管理，但
+  Exchange 和数据库的操作只能用于使用这些服务，例如检索消息或执行 SQL 命令。让我们来看一下操作的细节。
+
+
+  ### 访问和管理本地 AD
+
+
+  AD 基于 **轻量级目录访问协议 (LDAP)**，该协议基于 X.500 标准中包含的更简单的子集。Microsoft AD 是本地 Windows 网络中管理网络对象（例如用户和组、计算机、打印机等）的中央系统。
+
+
+  ### AD 服务的背景信息
+
+
+  Microsoft AD 由诸如 **联合服务 (FS)**、**证书服务 (CS)** 以及 **域服务 (DS)** 等服务集组成。在各种 AD 服务中，这里指的是所谓的
+  DS，可以通过 PAD 操作与之交互。它们是 Windows 域网络的基础。
+
+
+  在使用 AD 和相应的 PAD 操作时，您通常会遇到以下术语：
+
+
+  - **对象**：这是 AD 内管理的每个项目的通用术语。每种不同的对象类型都有特定的属性。
+
+  - **用户**：此对象类型由用户登录名、名字和姓氏等属性组成，表示使用此用户帐户登录 Windows 域的某个人。
+
+  - **组**：由用户帐户、其他组或计算机帐户组成。
+
+  - **计算机**：这是域内计算机的相关信息。
+
+  - **组织单位 (OU)**：这些是逻辑容器，可以包含对象，也可以包含其他 OU。通常，OU 用于镜像组织结构。它们还允许委派管理控制。
+
+
+  AD 通过随 Windows Server 提供的管理工具进行管理。下面的屏幕截图显示了用于管理前面列表中描述的对象的 **Active Directory 用户和计算机**
+  控制台。
+
+
+  ![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_312_0.png)
+
+
+  图 11.1 – 使用服务器工具进行 AD 管理
+
+
+  另一个重要概念是区别名称。此名称由域名、位置和对象的名称组成。这些条目的组合必须是唯一的，这也是不能有两个具有完全相同名称的用户帐户的原因。区别名称是描述 AD
+  中对象的特殊语法。在前面的屏幕截图中，我们看到 Users 文件位置中名为 **powerautomate01** 的用户帐户。此条目的区别名称为
+
+
+  `CN=powerautomate01,CN=Users,DC=mlndw0rx,DC=virtual.`
+
+
+  ### 专业提示 – 在管理控制台中查看区别名称
+
+
+  前面显示的管理控制台还能够公开任何对象的区别名称。要查看此信息，您需要在控制台中打开 **高级功能** 选项，方法是单击 **查看** 菜单并选择 **高级功能**。这会在对象列表中显示一些额外条目，也会在对象的
+  **属性** 对话框中显示额外的选项卡。现在右键单击一个用户帐户并从上下文菜单中选择 **属性**。您将看到一个额外的选项卡，称为 **属性编辑器**。向下滚动列表，直到找到
+  `distinguishedName` 属性并双击它以查看条目。
+
+
+  ![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_313_0.png)
+
+
+  # 字符串属性编辑器
+
+
+  **属性：** distinguishedName
+
+
+  **值：** `CN=powerautomate01,CN=Users,DC=m1nd0rX,DC=virtual`
+
+
+  按钮：清除、确定、取消
+
+
+  图 11.2 – AD 中的 distinguishedName
+
+
+  文档中提供了 AD 操作的其他示例（请参阅进一步阅读部分）。现在，让我们利用这些知识来了解 PAD 在管理 AD 方面提供了哪些操作：
+
+
+  - **连接到服务器 / 关闭连接**：这通过提供目录的 LDAP 路径、完全限定的服务器名称（包括域信息）或甚至 IP 地址来建立与 AD 服务器的连接。还有一个选项可以提供用户名和密码，如果当前用户没有访问服务的权限。
+
+  - **创建 / 修改组**：**创建** 操作通过提供名称、位置、组范围（全局、本地或通用）和组类型（安全或分发）来创建组。`location` 属性指定组应作为区别名称创建的容器/文件夹。**修改**
+  操作允许您重命名或删除组，还可以向其中添加或删除用户。
+
+  - **获取组信息 / 获取组成员**：这为要获取信息的组提供区别名称。第一个操作返回该组的属性列表，第二个操作返回组成员列表。
+
+  - **创建 / 删除 / 移动 / 重命名对象**：此处的 AD 对象是 *计算机* 或 *OU*。同样，我们需要提供一个位置（区别名称）来执行这些操作。
+
+  - **创建 / 修改 / 解锁用户**：**创建** 操作也需要用户应创建的位置，以及常见的属性，例如名字、姓名缩写、姓氏、用户名和密码。它还允许您指定密码是否永不过期或用户帐户是否将被禁用（用户无法登录）。
+
+  - **获取用户信息 / 更新用户信息**：这为要检索或更新用户对象属性的用户提供区别名称。
+
+
+  提示 – 无需成员资格管理 AD
+
+
+
+
+
+
+  通常，工作站是 AD 的一部分，这意味着它们已加入该域，并且该域的用户可以登录。运行 PAD 的交互用户也可能是这样的用户。在这种情况下创建与 AD 的连接不应成为问题。如前所述，可以通过域控制器的
+  IP 地址和适当的用户凭据创建与 AD 的连接。在这种情况下，运行该 UI 流程的计算机不需要是该域的成员，并且可以通过 IP 地址建立连接。但是，要使用操作，例如创建用户，需要对域有一定的了解，以便提供可分辨名称的信息。
+
+
+  在 *第 8 章* 中，我们讨论了新入职员工进入公司因此需要 SAP 登录的场景。我们创建了一个 UI 流程，读取 Excel 列表并为每个条目创建一个 SAP
+  用户。作为附加任务，我们也可以以同样的方式在 AD 中创建用户。我鼓励你采用此示例并将此附加任务添加为子流程。如果没有 SAP 系统可用，也可以采用 *第 8
+  章* 中的 UI 流程并将 SAP 部分替换为 AD 部分。
+
+
+  尽管仍然存在许多本地 Windows 网络，但 PAD 包含对本地 AD 的管理操作这一事实表明了该软件的来源以及它在市场上存在的时间。除 AD 外，没有提供其他可以管理本地
+  Windows 网络服务的动作。尽管如此，使用以下服务也为 PAD 整体带来了巨大的价值。
+
+
+  ## 与数据库协作
+
+
+  **Database** 操作组仅包含三个操作（**Open SQL connection**、**Execute SQL statement** 和 **Close
+  SQL connection**），但这些操作打开了全方位的可能性，因为可以访问所有数据库以发出任何类型的 SQL 命令。迄今为止，重点一直放在没有任何 API
+  的系统上。然而，PAD 也能够集成具有 API 的系统，以便在 UI 流程中也可以完成需要调用 API 的任务。数据宇宙的关键在于将 **Open SQL connection**
+  操作拖到设计器上，连接字符串参数的右侧（见以下屏幕截图）。
+
+
+  ### Open SQL connection
+
+
+  Open a new connection to a database More info
+
+
+  Select parameters
+
+
+  Connection string:
+
+
+  Variables produced SQLConnection2
+
+
+  On error
+
+
+  Save
+
+
+  Cancel
+
+
+  Figure 11.3 – Open SQL connection
+
+
+  要使用数据库，我们需要提供连接字符串，单击上一张屏幕截图中显示的红色边框图标将打开一个向导来完成此操作。
+
+
+  ![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_317_0.png)
+
+
+  Figure 11.4 – Create a connection string
+
+
+  在我的示例中，我使用的是远程服务器上的 SQL Server 数据库，但如前面的屏幕截图所示，**Provider** 选项卡包含许多条目，可用于连接其他系统。在这里按下
+  **Next** 按钮会带我们进入 **Connection** 选项卡，其中需要根据上一屏幕选择的提供程序进行额外的输入。我输入了远程服务器名称和提供的凭据，这使我能够在该服务器上选择一个数据库。如果我现在按下
+  **OK** 按钮，连接字符串将为我生成并输入到相应的文本字段中，我也可以复制该条目并将其输入到敏感变量中。
+
+
+  通过这项简短的准备工作，我现在可以针对数据库执行任何 SQL 语句。请注意，如果相应用户没有必要的权限，语句可能无法成功执行。以下屏幕截图显示了 **Execute
+  SQL statement** 操作。查询结果将存储在变量中以供进一步处理。
+
+
+  ![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_318_0.png)
+
+
+  Figure 11.5 – Execute SQL statement
+
+
+  关于 SQL 语句可以做出以下评论：
+
+
+  - 非常频繁地，语句的质量对数据库的性能以及整个系统的性能至关重要。因此，如果可能，应避免使用诸如 `SELECT * FROM ...` 之类的查询。
+
+  - 当然，现在也可以将存储在变量中的先前流程步骤中的其他内容插入到语句中。
+
+
+  在下一个主要部分中，我们将看一个数据库如何集成到更大上下文中的示例。在此之前，让我们先看看此类别中的其他服务。
+
+
+  ## 使用本地 Exchange 和其他邮件服务
+
+
+  我们已在 *第 2 章* 和 *第 8 章* 中学习了如何使用本地安装的 Outlook 应用程序以及相应的 PAD 操作来接收、处理和发送电子邮件。除了这种可能性之外，PAD
+  还提供了其他操作组来处理电子邮件。这些操作组的行为与我们之前学到的非常相似，只是连接设置不同。这些操作组是 **Exchange Server** 和 **Email**。为了提供概述并了解这些操作组之间的差异，包括
+  **Outlook** 的操作组，让我们看一下下面的表格。
+
+
+  | Feature/Action group | Outlook | Exchange Server | Email |
+
+  |---|---|---|---|
+
+  | Connection through | Local Outlook client | Local/on-premises Exchange Server
+  deployment | Any **Internet Message Access Protocol (IMAP)** mailbox |
+
+  | Feature/Action group | Outlook | Exchange Server | Email |
+
+  | Connection capability | Any mailbox that is connected through Outlook, including
+  Outlook 365 | One personal or shared mailbox | Any IMAP server |
+
+  | Retrieve email messages | Yes | Yes | Yes |
+
+  | Send email messages | Yes | Yes | Yes |
+
+  | Process email messages | Yes | Yes | Yes |
+
+  | Save messages | Yes | No | No |
+
+  | Respond to messages | Yes | No | No |
+
+
+  Table 11.1 – A comparison between different email options in PAD
+
+
+  正如我们在此看到的，不同操作组之间有很多相似之处，也有一个主要区别。虽然 **Exchange Server** 和 **Email** 操作组通过网络请求执行操作，但
+  Outlook 操作针对的是本地安装的 Outlook 客户端的功能。这导致了以下后果：
+
+
+  - 使用 Outlook 时，会启动本地程序；例如，该程序也必须可用、已安装并已设置。
+
+  - 优点是操作可以用 Outlook 设置的所有邮箱使用，包括 Outlook 365、本地 Exchange Server 或任何其他邮箱。
+
+  - 出于同样的原因，使用 Outlook 操作也提供了更高级的选项，例如 **Save messages** 或 **Reply to a message**。
+
+  - 如果运行 UI 流程的计算机上未安装 Outlook，则必须使用其他操作组之一。
+
+  - 然而，这也有利于节省本地计算机资源，从而为其他任务提供资源。
+
+
+  对于电子邮件来说，最轻量的选项是使用 **Email** 操作组中的 **Retrieve email messages**、**Process email messages**
+  和 **Send email** 操作。连接到邮件服务器的创建必须在三个操作中分别定义，因此没有单独用于建立或关闭连接的操作。然而，这只需要一个操作，例如接收电子邮件。需要邮件服务器的地址，以及有效用户名和密码来使用操作。
+
+
+  如果你想使用访问本地 Exchange Server 的操作，请注意 Exchange Server 直到版本 **2013 Service Pack 1**
+  才受支持。
+
+
+  除了这里介绍的差异外，用于处理电子邮件的操作都以相同的方式工作。唯一需要决定的就是是否可以使用 Outlook 客户端以及是否应该使用。这一决定必须单独做出，我希望你能自行尝试进一步的电子邮件操作。
+
+
+  我们将在下一节学习 PAD 还可以使用哪些其他基于 Web 的协议和格式。
+
+
+  ## 与 Web 协议和格式协作
+
+
+  在上一节中，我们讨论了 LDAP 和 IMAP 等各种 Web 协议，并看到了 PAD 如何支持它们。接下来，我们将继续
+
+
+
+  to probably the most common and well-known protocols FTP and HTTP, before we take
+  a closer look at the different data formats for the web
+
+
+  ## FTP
+
+
+  Not so common nowadays, FTP was and still is a very efficient way to upload and
+  download folders and files to and from a server. PAD is also able to use this protocol
+  and access an FTP server. The following actions are provided within the FTP actions
+  group:
+
+
+  - **Open / Open secure / Close connection**: These are required to establish a connection
+  to the FTP server.
+
+  - **List directory / Change working directory**: Comparable to **DIR / CD command**
+  in Windows command prompt to list the content of the current directory or change
+  the current directory.
+
+  - **Create / Delete / Synchronize directory**: These actions do exactly what they
+  are named after. We will look at the synchronization action at the end of this list.
+
+  - **Upload / Download / Delete / Rename FTP file(s)**: These are self-explanatory
+  and simple to use.
+
+  - **Invoke FTP command**: Several FTP commands can be issued on the FTP server,
+  such as FEAT (list extended features) or STAT (returns information about a current
+  file transfer).
+
+
+  The certainly most interesting action here is the **Synchronize directory** action.
+  Instead of comparing remote files and directories with different other actions,
+  this one is really a big time-saver, but it can only work in one direction at a
+  time. It offers the following action parameters:
+
+
+  ## Synchronize directories
+
+
+  Synchronize the files and subdirectories of a given folder with a given remote FTP
+  directory More info
+
+
+  ## Select parameters
+
+
+  FTP connection: %FTPConnection%
+
+
+  Synchronization direction: Remote -> Local (Download)
+
+
+  Files to sync: All files
+
+
+  Local folder:
+
+
+  FTP directory: /
+
+
+  Delete if source is absent:
+
+
+  Include subdirectories:
+
+
+  Time difference in hours: 0
+
+
+  Time difference in minutes: 0
+
+
+  Time difference ahead:
+
+
+  Variables produced FilesAdded FilesModified FilesDeleted
+
+
+  On error
+
+
+  Save Cancel
+
+
+  # Figure 11.6 – Synchronize FTP directories with PAD
+
+
+  As you can see in the previous screenshot, this action provides all the setting
+  options that are required for directory synchronization. The option to
+
+  specify one or more filters for the files brings a lot of flexibility. The action
+  produces three result lists, which can be used in the following:
+
+
+  - `FilesAdded`
+
+  - `FilesModified`
+
+  - `FilesDeleted`
+
+
+  While FTP was primarily designed for file exchange, the following protocol is responsible
+  for the vast majority of internet traffic: HTTP.
+
+
+  ## HTTP
+
+
+  HTTP is the standard protocol on which most traffic on the internet is based. The
+  PAD actions in this group represent API calls that PAD can perform, as well as file
+  upload and download. Any API call works according to the request-response principle,
+  where different methods (verbs) are available to describe the desired action. The
+  most common methods used in such requests are the following:
+
+
+  - `GET`: This allows querying content via the URL
+
+  - `POST`: This is used for requests where the supplied contents are to be processed
+  in a target resource, for example, saving a data record or other transactions
+
+  - `PATCH`: This represents a request for the target address to update the partial
+  aspects transmitted
+
+
+  API services are very commonly used when companies want to provide their services
+  and data controllable electronically or interact with other services. Modern web
+  APIs thus represent the interface to the data and processes with which electronic
+  communication can take place. While many such services use standard methods (as
+  described previously) and are based on the **representational state transfer (REST)**
+  principle, some services use the **Simple Object Access Protocol (SOAP)** protocol.
+  SOAP
+
+  was created to establish a standard for communication between the client and server.
+  However, SOAP is (contrary to its name) more elaborate and complex to implement
+  and expects a predefined structure. This and other factors have led to a tendency
+  for new web services to be built based on the REST architecture. In PAD, of course,
+  we have corresponding actions for both versions that can be used for this, plus
+  another action:
+
+
+  - **Download from web:** Used if we want to download a specific text or a file from
+  a web server.
+
+  - **Invoke SOAP web service:** This is the action to use if we need to communicate
+  with a web service that is based on SOAP. This action also provides a little wizard
+  that helps to determine the values for the different parameters.
+
+  - **Invoke web service:** This action calls a RESTful web service.
+
+
+  PAD manages to hide the possible complexity in web service communication. Sometimes,
+  however, more advanced settings have to be made because, for example, certain settings,
+  such as authentication, are expected. Therefore, the two actions for web service
+  calls can also make advanced settings, which are stored in the **Advanced** area,
+  such as **Connection timeout, User agent, Encoding**, and more.
+
+
+  ## Working with web data formats
+
+
+  When applications communicate with each other via web services, this is also done
+  using a language. REST-based web services use JSON as a language here, which is
+  built-in to PAD. There is, for example, an action to convert a variable into JSON
+  and back.
+
+
+  ## Background information – custom object versus JSON object
+
+
+  Internally, PAD can handle JSON objects but prefers to use a so-called custom object.
+  This is a more flattened structure that is easier to handle in loops and contains
+  a list of attribute names and values. A JSON object, instead, can be of any complexity
+  with multiple levels of nesting structures.
+
+
+  It is possible to convert such a structure into a custom object. In this case, the
+  custom object contains this flattened structure with nested objects as values.
+
+
+  Another very well-known concept is markup languages. The two best-known representatives
+  here are **HyperText Markup Language (HTML)** and **XML**. HTML is used to represent
+  content and web pages, and XML is for the structured storage of data or configuration
+  information but also for communicating with web services. SOAP, as mentioned previously,
+  communicates via XML. The basic structure of a simple XML file is depicted in the
+  following diagram:
+
+
+  ![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_326_0.png)
+
+
+  Figure 11.7 – XML structure explained
+
+
+  There is also a special notation to describe the way to an element or a value within
+  an XML document. This is called XPath and looks like this: `/myfirstelement/subelement1`.
+  This would give us the value of `subelement1`, which is `value of the element`.
+  This is also referred to as an XPath query. PAD also includes actions to handle
+  XML:
+
+
+  - **Read / Write XML file**: This handles the XML file that should be used in the
+  UI flow.
+
+  - **Insert / Remove XML element**: This allows us to add a new element at a specific
+  position of the XML document, which is provided by an XPath expression. The XML
+  element to insert can also be a larger structure as long as there is only one root
+  element. To remove an element, an XPath expression has to be provided.
+
+
+  - **Get / set XML element value**: As can be seen in the previous example, an XPath
+  expression can also be used here to read or set the value of an element.
+
+  - **Get / set / remove XML element attribute**: These correspond to the operations
+  that can also be performed for the XML elements, only here with the attributes.
+
+  - **Execute XPath expression**: This provides an XPath expression to select or even
+  search for specific elements (nodes) or attributes. Please refer to the *Further
+  reading* section to find out more on this topic.
+
+
+  To further complete the list of data formats, of course, a specific document format
+  must be defined. Adobe PDF is the de facto standard for generating and exchanging
+  documents. These are characterized by many important features that are required
+  in the internet-based communication world:
+
+
+  - They can be read from almost any device and browser
+
+  - They are considered safe (do not contain viruses or malicious code)
+
+  - They cannot be modified or changed if the author does not allow it
+
+  - Their creation and consumption are free of charge
+
+
+  In particular, because in the context of business applications, we usually also
+  work with documents and PDFs, PAD has a set of actions that allow working with these
+  types of documents. These include the following:
+
+
+  - **Extract text / tables / images from PDF**: These actions extract content from
+  a PDF file. The images for example can be extracted and stored in a specific location
+  of the workstation.
+
+  - **Extract PDF file pages to new PDF file**: This action allows us to create a
+  new PDF document from the specific pages of another document.
+
+  - **Merge PDF files**: This takes a list of PDF documents and creates one combined
+  document.
+
+
+
+
+
+  请注意，没有任何操作可以从其他内容（例如 Word 文档或 Excel）创建新的 PDF 文档。此功能必须通过相应的应用程序本身提供。
+
+
+  最后但同样重要的是，我们还可以使用 PAD 原生压缩文件或文件夹，以及解压缩文件。**压缩**操作组包含用于此目的的两个操作。如果我们需要创建存档（ZIP 文件），可以提供以下参数：
+
+
+  ![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_328_0.png)
+
+
+  图 11.8 – 在 PAD 中创建 ZIP 存档
+
+
+  正如我们在这里看到的，我们不仅可以指定存档和要使用的文件，还可以指定压缩级别，以及如果需要，还可以指定存档密码，这将直接引导我们进入下一节，在下一节中我们将讨论其他安全机制。
+
+
+  当然，我们还需要 PAD 中的函数来处理数据、创建、转换和显示数据。其中一些功能也可以在变量操作组中找到，例如创建随机数以及处理列表和对象。然而，也经常出现需要处理日期值的情况，尤其是在业务环境中：
+
+
+  - 应为报价保存当前日期
+
+  - 发票的到期日应从现在起 2 周计算
+
+  - 应计算两个日期之间的间隔天数
+
+
+  为此，可以使用**日期时间**组中的操作。我们有以下操作：
+
+
+  - **添加到日期时间**：需要一个日期值和一个要添加的数字。**时间单位**字段允许我们确定要添加的值被解释为秒、分钟、小时、天、月还是年。
+
+  - **日期相减**：需要两个日期进行相减，并生成一个`时间差`变量。结果数字可以受第三个参数影响，该参数允许我们在天、小时、分钟和秒之间选择一个值。
+
+  - **获取当前日期和时间**：生成一个包含当前日期和时间的变量。可以使用不同的时区。
+
+
+  ## 处理文本的操作
+
+
+  除了日期和时间之外，操作文本值也非常重要。PAD 也为此提供了大量操作，这些操作位于**文本**操作组中。除了语言之外，你还可以选择具体要识别的内容：
+
+
+  - **转换操作**：文本转数字 / 数字转文本 / 文本转日期时间 / 日期时间转文本 / 替换
+
+  - **创建操作**：创建随机文本、识别文本中的实体，以及连接 / 拆分 / 向文本追加行
+
+  - **操作操作**：填充 / 裁剪 / 反转 / 更改大小写 / 转义文本以用于正则表达式
+
+  - **提取操作**：获取子文本 / 裁剪 / 解析
+
+
+  各个操作大多是不言自明的，Microsoft 文档提供了很好的相关信息。不过，我想仔细看看以下操作。
+
+
+  - 如果需要识别给定文本中的特定主题或事实，并且确切位置未知，则**识别文本中的实体**操作非常有用。除了语言之外，你还可以选择具体要识别的内容。条目范围从日期和时间到维度、温度、货币、电子邮件、URL、IP
+  地址、**全局唯一标识符（GUID）**等。想象一下，你需要从供应商的电子邮件回复中确定交货日期或电话号码。可以使用正则表达式来完成此任务，但这需要了解其工作原理。使用此操作更简单。它会生成一个结果变量，作为包含已识别术语的列表。在*第
+  2 章*中已经给出了一个合适的示例。
+
+  - 另一个有用的功能是**创建随机文本**，如下面的屏幕截图所示。如屏幕截图所示，可以设置许多参数来创建随机文本。此操作对于创建随机密码或加密密钥特别有用。
+
+
+  ### 创建随机文本
+
+
+  生成由随机字符组成的指定长度的文本。这对于生成密码很有用。更多信息
+
+
+  ### 选择参数
+
+
+  使用大写字母（A-Z）：
+
+
+  使用小写字母（a-z）：
+
+
+  使用数字（0-9）：
+
+
+  使用符号（ , . < > ? ! + - _ # $ ^ ）：
+
+
+  最小长度：
+
+
+  最大长度：
+
+
+  生成的变量 RandomText
+
+
+  保存 取消
+
+
+  图 11.9 – 创建随机文本操作属性
+
+
+  最后但同样重要的是，让我们看看位于“消息框”组中的操作。
+
+
+  ## 使用消息框的交互式流程
+
+
+  整本书中多次使用消息框。这些操作有助于使流程具有交互性。不仅可以在消息框中显示变量或文本，还可以请求用户输入、选择文件等。当然，这些输入可以而且应该在后续操作中使用。有用于显示消息和输入的对话框，以及从列表中选择日期或条目，以及选择文件或文件夹的对话框。
+
+
+  同样值得注意的是，可以选择创建自己的对话框。为此，必须将**显示自定义表单**操作拖到设计器上。会显示一个按钮，用于打开**自定义表单设计器**，如下所示：
+
+
+  ![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_333_0.png)
+
+
+  图 11.10 – 自定义表单设计器
+
+
+  此选项允许你创建具有多个输入和输出的对话框，因此可以适应特定情况。例如，对于更复杂的任务，应在流程开始时显示一个对话框，收集整个流程所需的所有输入和设置，并在执行期间应用它们。不过，更多内容将在下一章中介绍。
+
+
+  ## 总结
+
+
+  本章表明，PAD 可以集成和自动化没有 API 的应用程序。能够处理带接口的系统使 PAD 成为完整且自给自足的自动化工具，因为通常在自动化场景中，既需要集成旧版应用程序，也需要集成带接口的现代应用程序。本章介绍的操作使
+  PAD 能够执行原本由云流覆盖的所有任务，例如包含 Web 服务、传输和接收数据以及在 UI 流中进一步处理。这使得 PAD 非常适合作为中小型集成和自动化任务的唯一工具。然而，在某些情况下，这也可能变得复杂，例如，无法为
+  Web 应用程序使用专用连接器，而专用连接器可以隐藏很多复杂性。此外，在本地计算机上使用 PAD 几乎无法扩展。
+
+
+  在下一章中，我们将更详细地了解如何应对这些挑战，并看到一个示例，说明这里介绍的操作如何发挥作用。
+
+
+  ## 进一步阅读
+
+
+  - Power Automate Desktop AD 操作参考：https://learn.microsoft.com/en-us/power-automate/desktop-flows/actions-reference
+
+  - AD：https://en.wikipedia.org/wiki/Active_Directory
+
+  - PAD 自定义对象和 JSON：https://learn.microsoft.com/en-us/previous-versions/troubleshoot/winautomation/product-documentation/best-practices/variables/custom-objects
+
+  - XPath 语法：https://www.w3schools.com/xml/xpath_syntax.asp
+
+  - 文本操作参考：https://learn.microsoft.com/en-gb/power-automate/desktop-flows/actions-reference/text
+
+  '
+- '## PAD 企业最佳实践
+
+
+  前几章重点关注了 PAD 本身的详细功能。我们已经看到了许多以交互方式执行的**用户界面（UI）**流示例。然而，在大型企业中的部署通常看起来有所不同。在这里，UI
+  流通常是更大概念的一部分，其中安全性和扩展性等问题起着重要作用。本章重点介绍以下方面：
+
+
+  - 企业中的典型需求，包括开发方面、安装、可扩展性、安全性、治理和合规性，以及如何使用 PAD 解决这些需求
+
+  - Microsoft 针对超自动化和 Automation Kit 的最佳实践
+
+  - 使用 PAD 呈现企业自动化场景
+
+
+
+
+
+  ## 章节前提条件
+
+
+  在本章中，我们将学习 PAD 的功能，其中大部分仅在 Premium RPA 功能下可用。这需要相应的许可证，也在 *合规* 部分有更详细的描述。Microsoft
+  为这些功能提供 30 天试用期，适合尝试这些功能。
+
+
+  此外，在此类场景中通常会使用多台本地或虚拟 Windows 机器，例如用于测试负载均衡。更多信息请参阅 *安装和部署* 部分。
+
+
+  ## 企业中的典型需求
+
+
+  到目前为止，我们一直专注于 PAD 的功能，并查看了应执行特定任务的单个 UI 流程。这使我们能够查看某个业务流程的自动化选项，并使用 UI 流程实现它们。然而，在企业环境中，今天的许多组织通常都有额外的挑战，我们将对其进行详细研究。
+
+
+  ## 超自动化
+
+
+  自动化业务流程通常需要同时考虑传统技术和新技术。公司的应用环境往往非常多样化，从云和本地系统开始，到有 API 和无 API 的应用、现有的工作站和移动应用、用于大规模数据处理的应用等等。这可能还需要一套工具来连接和自动化所有这些应用，而且在大多数情况下，已经在使用各种工具。这里建立统一的方法通常需要使用能够处理
+  API、UI（RPA）和 AI 的技术。这个三元组合催生了 **超自动化** 这一术语，通过这个工具箱，可以实现比较以满足任何自动化需求，从而变得更高效、更具生产力。
+
+
+  ## 开发方面
+
+
+  正如我们所知，PAD UI 流程是使用相应的 Windows 应用程序开发的。我们也知道该应用程序始终连接到 Power Platform 环境。UI 流程在物理上存储在此处。对环境的访问通过用户进行控制。重要的是要考虑与
+  Power Automate Desktop 以及所有其他 Power Platform 组件一起使用的环境策略。除此之外，还应考虑以下方面：
+
+
+  - **使用通用数据模型：** 使用通用数据模型以确保所有工作流中数据的一致性和准确性。也许数据模型的大部分可以直接映射到 Dataverse，因为该存储库提供了企业级数据模型所需的许多功能。然而，PAD
+  还集成和自动化无法插入其中的应用程序。因此，有必要在业务流程中设计一个包含所有集成应用程序的概念性整体数据模型。
+
+  - **使用集中式容器：** 为了打包自动化项目所需的所有工件，建议使用集中式存储库来存储和管理工作流、数据和其他资源。在 Power Platform 世界中，这些存储库称为
+  **解决方案**。桌面流是解决方案感知的，这意味着它可以包含在解决方案中。然后，可以使用应用程序生命周期方法将解决方案导出并导入到另一个环境中。
+
+  - **利用应用程序生命周期管理（ALM），包括版本控制系统以及测试和验证流程：** 通常存在不同的阶段，在这些阶段中开发和运行应用程序和解决方案，例如 *开发*、*测试*
+  和 *生产*。ALM 技术允许以自动化的方式将此类解决方案从一个阶段传输到另一个阶段。使用版本控制系统来管理对工作流和其他资源所做的更改。此领域还包括使用 Git
+  等版本控制存储库以及测试流程，以确保解决方案在后续阶段也能正常工作。阅读更多
+
+
+  关于这些主题的信息请访问 https://learn.microsoft.com/en-us/power-platform/alm/。
+
+
+  下图说明了关于开发方法的最佳实践：
+
+
+  ![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_338_0.png)
+
+
+  图 12.1 – 使用 PAD 的企业开发方法
+
+
+  在 PAD 的特殊情况下，我们还需要考虑 UI 流程在物理或虚拟桌面上运行。这些机器需要在本地安装 PAD，并且可以在公司的本地网络中运行，也可以在 Azure
+  或其他任何提供虚拟机（VM）的云提供商中虚拟运行。这就是为什么也很重要要涵盖解决方案的这一部分，并确保为开发、生产和所有其他阶段维护 VM。我们将在下一节中查看我们在这里拥有的选项。
+
+
+  然而，考虑到所有这些，我们也不要忘记，本书中介绍的概念，例如子流程、异常处理等，有助于创建有意义且健壮的 UI 流程。
+
+
+  ## 安装和部署
+
+
+  PAD 应用程序是先决条件，必须安装在用于执行大型自动化场景的物理机器或 VM 上。不要忘记我们最终需要在该机器上安装一个传统应用程序。由于手动选项的可扩展性不佳，因此还有其他选项：
+
+
+  - 使用系统管理软件，如 Microsoft **System Center Configuration Manager (SCCM)** 或 Microsoft
+  Intune 来部署和配置本地机器
+
+  - 使用 Azure 或任何其他云提供商中的 VM 来为 PAD 和相应的管理工具提供虚拟环境
+
+
+  Microsoft 提供了使用其名为 **Desktop-as-a-Service (DaaS)** 的功能 **Azure Virtual Desktop**
+  来直接在 Power Platform 内管理 PAD 的 VM。已创建了一个入门套件，其中包含不同的流程和一个用于配置设置的附加应用（见以下屏幕截图）：
+
+
+  ![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_339_0.png)
+
+
+  图 12.2 – 入门套件配置应用
+
+
+  此选项需要在后台配置适当的机器时设置一些参数。然而，这也允许非常轻松地添加（扩展）或删除（缩减）额外的机器，这在负载高峰期非常有帮助。更多内容将在下一节中介绍。
+
+
+  ## Starter Kit 不是官方的 Microsoft 产品
+
+
+  应提及的是，Starter Kit 并不是 Power Platform 中的官方模块，应被理解为使用 Microsoft 技术实现自动配置和扩展的示例实现。所有实现工件都已发布在
+  GitHub 上。如果此产品出现问题，Microsoft 不提供任何支持，因为它不受官方支持。相反，鼓励客户为 GitHub 项目做出贡献并在那里提出问题。
+
+
+  部署的另一个方面是 UI 流程本身的部署。当用户创建并保存 UI 流程时，它会存储在给定环境的 Dataverse 存储库中。但是，默认情况下，其他用户无法查看或使用此流程。
+
+
+  有多种方式可以向另一用户提供对 UI 流程的访问权限。下图显示了这些选项：
+
+
+  ![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_340_0.png)
+
+
+  图 12.3 – 分享流程的方式
+
+
+  请注意，选项 1 和 2 会创建原始流程的副本。让我们看一下细节。
+
+
+  ## 使用文本文件
+
+
+  第一个选项是将流程及其操作复制到文本文件并与用户共享。为此，您需要执行以下步骤：
+
+
+  1. 打开一个 UI 流程。
+
+  2. 通过按 Ctrl + A 选择所有操作。
+
+  3. 通过按 Ctrl + C 将操作复制到剪贴板。
+
+  4. 打开一个新文本文档（例如使用记事本）。
+
+  5. 将剪贴板内容粘贴到文本文件中。
+
+  6. 保存文本文件。
+
+
+  我们现在可以将此文本文件与另一用户共享，该用户可以打开它，复制内容并将其粘贴到空白 UI 流程设计器窗口中。
+
+
+  ## 使用解决方案
+
+
+  如前所述，解决方案是可包含各种 Power Platform 工件的容器，因此可被视为完整的业务解决方案包。它们代表 Power Platform 中的一个非常重要的概念，并用于使用
+  ALM 技术将工件（如应用、流程等）从一个环境传输到下一个环境。要创建解决方案，请转到 Power Automate 门户中的解决方案菜单项，然后在菜单栏中单击
+  + New solution 按钮，如以下屏幕截图所示：
+
+
+
+
+  ![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_342_0.png)
+
+
+  图 12.4 – 在 Power Automate 中创建解决方案
+
+
+  右侧将出现一个对话框，要求你输入解决方案的数据。Microsoft 文档对解决方案的一般概念进行了非常详尽的说明，包括发布者、版本控制等内容。在本示例中，可以选择默认发布者来创建解决方案。随后，可以创建新的解决方案组件，或将现有组件添加到解决方案中。现在，我们可以使用**添加现有项**按钮来选择一个桌面流，并将其添加到解决方案中（请参见下图）：
+
+
+  ![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_342_1.png)
+
+
+  图 12.5 – 将现有桌面流添加到解决方案
+
+
+  系统会显示此环境中现有桌面流的列表，你可以将它们添加到该解决方案中。之后，会出现一个**导出解决方案**按钮，用于创建可下载的 ZIP 存档，以便与其他用户及其他环境共享。与前面的解决方案一样，导入此解决方案会创建
+  UI 流的副本。对原始流所做的更改不会应用到此副本；如果要将第一个环境中的更改更新到第二个环境中的流副本，还需要再次导出和导入解决方案。
+
+
+  ## 在 Power Platform 中管理和共享 UI 流
+
+
+  使 UI 流（以及其他任何构件）可供其他用户使用的最简单方法，是使用 **Power Automate** 门户中的**共享**功能。下图展示了该功能的位置：
+
+
+  ![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_343_0.png)
+
+
+  图 12.6 – Power Automate 门户中的共享功能
+
+
+  在左侧导航面板中，转到**我的流**，然后切换到**桌面流**选项卡。你将看到此环境中所有桌面流的列表。选择一个流后，可以点击相应行中的*共享*图标，或点击顶部按钮栏中的**共享**按钮，以打开共享对话框。此对话框允许你选择要与之共享流的其他用户。你还可以指定该用户只能查看和执行流（用户），还是也可以修改流（共同所有者）。如果有其他用户与您共享了流，这些流将显示在**与我共享**选项卡下。请注意，此处并不会创建副本。如果你授予另一位用户共同所有者权限，这一点尤其重要。如果要创建副本，可以使用顶部按钮栏中的**另存为**按钮。
+
+
+  另一种选择是将流分配给其他用户。这会将所有权移交给该用户。要实现这一点，我们需要在存储此 UI 流的环境中编辑 Dataverse 中相应的流。为简单起见，可以将
+  Dataverse 看作一个包含各种业务流程表的关系数据库。UI 流存储在名为 `Process` 的表中。相关文档（请参阅*延伸阅读*部分中的*管理桌面流*）详细说明了需要执行的步骤。如果流的创建者不应是实际执行用户，将
+  UI 流重新分配给其他所有者会非常有用，例如，因为执行用户需要特殊权限，或已经拥有并应执行其他流。
+
+
+  请注意，还可以使用 Web API 对 UI 流执行管理操作。与 Dataverse 中的其他构件一样，可以列出可用的桌面流、获取架构信息和状态、获取流输出，当然还可以触发流或取消
+  UI 流运行。这意味着，UI 流不仅可以通过 Power Automate 中相应的连接器调用，原则上也可以由任何程序或脚本调用。这为集成提供了各种新的可能性，也可能导致需要并行或高频率地执行一系列
+  UI 流。因此，下一节将讨论如何创建可扩展的 PAD 环境。
+
+
+  ## 可扩展性
+
+
+  对于面向企业的部署而言，处理平台的可扩展性是一个重要标准。这意味着必须能够将任何峰值负载分配到多个工作节点，并在必要时实现排队机制，以确保请求得到有序且可靠的处理。这可以通过一台或几台独立计算机实现，也可以通过负载均衡管理及相应的计算机管理实现，下面将对此进行详细介绍。对于这两种场景，我们都假设计算机已在
+  Power Platform 中注册，从而可以将其包含在云流中，并且旧版应用程序已安装在相应的计算机上。更多详细信息，请参阅第 9 章。
+
+
+  ### 单机方案
+
+
+  如果具备足够的**随机存取内存（RAM）**和处理器时间，就可以使用配置更高的工作站来安装 PAD 并执行处理任务。实际上，通过使用 Windows Server
+  2016、2019 或 2022，并以无人参与方式运行流，可以让多条流同时在同一台计算机上运行，从而降低基础设施成本。此场景可以如下图所示：
+
+
+  ![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_345_0.png)
+
+
+  图 12.7 – 单机概念下的可扩展性
+
+
+  不过，这也需要调整 UI 流，因为必须由不同用户运行这些流，才能在服务器上创建不同的用户会话。但该场景存在形成单点故障的风险。换句话说，如果计算机发生故障，则任何
+  UI 流都无法运行。
+
+
+  ### 计算机组和流队列
+
+
+  一种更动态的方法是使用计算机组，以及 Power Platform 直接提供的负载均衡概念。其概念如下图所示：
+
+
+  ![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_346_0.png)
+
+
+  图 12.8 – 计算机组和流队列
+
+
+  在此设置中，一台用于执行 UI 流的计算机会在 Power Platform 中注册，同时加入一个计算机组。在 PAD 对应的云流操作中，可以选择该计算机组作为执行环境，其余工作由平台处理。如果需要同时或连续快速地执行多个流，请求会先汇集到队列中。随后，平台决定将执行请求发送到哪台计算机，并均衡分配请求负载。如果其中一台计算机发生故障，一方面会导致容量暂时降低，但不会使整个处理系统完全崩溃。另一方面，可以非常轻松地向池中添加更多计算机，以增加总容量，而不会中断处理过程。通过自动部署装有
+  PAD 的工作站，以及以无提示方式注册计算机并将其无提示加入计算机组，即可实现这一点。
+
+
+  Microsoft 还提供了直接在平台中使用虚拟机（VM）执行 UI 流的选项，可以通过使用 Starter Kit 进行预配（另请参阅*安装和部署*部分）。借助该选项，还可以定义扩展策略，用于测量负载并预配或取消预配其他计算机。
+
+
+  ## 安全性
+
+
+  在自动化场景的各种安全要求中，本节将重点介绍两个与 PAD 相关且对企业使用十分重要的方面：**数据丢失防护（DLP）**策略和安全的凭据存储。
+
+
+  ### 使用策略保护数据
+
+
+  在每个集成和自动化场景中，数据都发挥着核心作用。同时，数据本身也是非常有价值且值得保护的资产，因此必须确保在任何情况下都不会发生无意的数据泄露。尤其是在 Power
+  Platform 这类环境中，几乎每位员工都可以通过低代码应用帮助优化流程，因此必须能够应用策略来防止不必要的数据流动。数据访问和数据提供（向接收方发送数据）通过连接器完成，我们已经在*第
+  9 章*中介绍过连接器。现在，我们可以使用 DLP 策略来定义流中哪些连接器可以彼此配合使用，哪些连接器不能组合使用。例如，这可以防止内部系统连接器与用于向外部提供数据的连接器出现在同一个流中，从而避免数据意外泄露到外部。DLP
+  策略在 **Power Platform 管理中心**中定义，如下图所示：
+
+
+
+
+  ![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_348_0.png)
+
+
+  Figure 12.9 – Definition of DLP policies
+
+
+  ## Note on DLP policies
+
+
+  At the time of writing, this feature is in preview, and the use of these capabilities
+  must be confirmed by an opt-in (announcement to Microsoft). Subsequently, the action
+  groups and also individual actions can be blocked or restricted so that UI flows
+  are disabled if a DLP policy is violated in the flow (prohibited connector or unauthorized
+  combination with another connector).
+
+
+  When the feature comes into general availability, it will only be available for
+  managed environments for which additional security mechanisms exist beyond that.
+  The Further reading section contains a link to get more information about managed
+  environments.
+
+
+  Apart from the actual data, there is also other information worth protecting, such
+  as access data and passwords. We will look at the possibilities for this in the
+  next section.
+
+
+  ## Secure credential storage
+
+
+  not been released yet. The *Further reading* section contains the link to the announcement
+  for this. It is strongly recommended to use this service for the storage of sensitive
+  information. Now let’s take a look at additional considerations for governance and
+  compliance.
+
+
+  ## Governance and compliance
+
+
+  In Microsoft’s documentation, there is a separate article on the topic of governance,
+  which describes in detail the settings for the Windows operating system (registry
+  settings) to restrict and monitor the functionality of PAD. We want to take the
+  topic of governance a bit further here and look at what options are available to
+  monitor UI flows and thus monitor the overall operations. Furthermore, on the topic
+  of compliance, we will take a look at licensing.
+
+
+  ## Monitoring flow execution
+
+
+  Two portals can be used to monitor the execution of flows: the **Power Automate**
+  portal and **Power Automate admin center.**
+
+
+  The **Power Automate** portal provides a more operational monitoring capability.
+  These functions are addressed to those who want to develop the flows, test them,
+  and also monitor their operational functionality. The first view provides various
+  charts, aggregated views, and filtering options (see the following screenshot):
+
+
+  ## Figure 12.11 – Monitoring PAD flows
+
+
+  The second view in the Power Automate portal provides a section for monitoring the
+  real-time execution of Power Automate Cloud and UI flows. This shows each execution
+  of the flows and their status: Queued, Running, Succeeded, or Failed. This makes
+  it very easy to monitor which flows are routed to which machine and which flows
+  fail.
+
+
+  The reports in Power Platform admin center are aimed more at administrators who
+  monitor the workload in the context of the environments. To do this, we need to
+  go to Power Platform admin center and go to the Analytics | Power Automate section
+  (see the following screenshot):
+
+
+  ![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_351_0.png)
+
+
+  ![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_352_0.png)
+
+
+  ## Figure 12.12 – Flow monitoring in Power Platform admin center
+
+
+  There are different tabs available to provide information about the runs, usage,
+  number of flows created and shared, and analysis of the connectors being used in
+  flows. Governance requirements about the monitoring of Power Automate can thus be
+  addressed very well. Another part is licensing, which we will look at in the following
+  section.
+
+
+  ## Licensing
+
+
+  In the course of the book, we have already learned about many functionalities of
+  PAD, most of which are available with the free version. This is especially true
+  for single use on a workstation, where flows are started manually and run interactively.
+  Requirements such as scaling, parallel execution, centralized management, and rolling
+  out flows are more typical for use in large enterprises and require the appropriate
+  licensing. There are several license types available for this purpose, which then
+  unlock a number of features and benefits and include the following features:
+
+
+  ![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_354_0.png)
+
+
+  ## Figure 12.13 – The Power Platform maturity model
+
+
+  This model can help determine the current state of automation capabilities and,
+  from there, take the next steps, if necessary, to achieve a better level of automation
+  and thus increase the company’s efficiency and productivity. In general, the idea
+  here is not to look at individual applications but to take a holistic view of automation
+  practices across an enterprise to embed them in an overall concept. For each individual
+  automation project, so-called *holistic enterprise automation techniques (HEAT)*
+  techniques can then be used to help design and roll out the solution in the context
+  of the organization and manage the overall life cycle of the solution.
+
+
+  Another important building block is to build a team that addresses the various aspects
+  of an automation solution and includes or builds experts to look at the solution
+  from any facet, such as business content, ALM, infrastructure, security, and governance,
+  as well as operational reporting and analytics. Another term for such a team is
+  **Center of Excellence (CoE)**, and in relation to automation projects, **Automation
+  Center of Excellence**.
+
+
+  In the meantime, many companies have also implemented these concepts in tools and
+  processes. Microsoft has embedded this information into a so-called Automation Kit
+  and, thus, a collection of applications and flows
+
+
+  based on Power Platform. This kit can be installed and configured as a solution
+  in an environment. The basic idea is to use the artifacts and apps installed there
+  to support an automation project from start to finish, including the following aspects:
+
+
+  - Definition of goals
+
+  - Review and release of the project
+
+  - Development and deployment
+
+  - Operational use and monitoring
+
+
+  This also supports different enterprise roles such as CVP, process owner, end user,
+  and others. The following diagram illustrates the life cycle of such a project:
+
+
+  ![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_355_0.png)
+
+
+  Figure 12.14 – Automation project life cycle
+
+
+  The fact that the kit can also be customized and that not all functions necessarily
+  have to be used makes it easy to get started and shows what is possible with this
+  technology. It is thus definitely worth a look and can bring added value and acceleration
+  to automation projects.
+
+
+  ## Enterprise automation scenarios with PAD
+
+
+  - The CRM system is implemented with Dynamics 365, and Power Platform with Power
+  Automate is also in use.
+
+  - The internal invoicing system is represented by Contoso Invoicing (a desktop application),
+  and the ERP system is accessible via a database (SQL Server).
+
+
+  At this point, we probably already have enough information to sketch an initial
+  idea for the overall process. This could look as follows:
+
+
+  ![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_357_0.png)
+
+
+  Figure 12.15 — Automation project scenario
+
+
+  Now, as always, there are several ways to implement this requirement, but there
+  is a lot to be said for using a UI flow for this:
+
+
+  - The processing should be started individually by a team leader, which can be enabled
+  via a shortcut on the desktop thanks to the advanced features.
+
+  - Outlook actions enable us to retrieve and process emails.
+
+  - We can extract the relevant information by using the text actions from *Chapter
+  11* (**Parse text** or **Recognize entities in text**). Of course, it would be beneficial
+  if the email were standardized, making it easier to identify the customer ID.
+
+  - The next step would be to call the Dynamics 365 web API, retrieve all opportunities
+  for the customer, and close these. An HTTP action will help us here to accomplish
+  this action (**Invoke web service**).
+
+  - From a design perspective, we can outsource the processing for the invoice program
+  to a separate cloud flow, which, in turn, includes the integration of the invoice
+  program using the Desktop Flow connector. For the invoice application, we can then
+  use the concepts for scaling that we learned about in this chapter.
+
+  - The ERP database will be updated by using the database actions, which we learned
+  about in *Chapter 11*.
+
+
+  So, we can divide the overall processing into the following sections as subflows:
+
+
+  - `GetEmailMessages`: This should retrieve all emails and create a list of customers
+  we need to feed into our systems.
+
+  - `CloseOpportunities`: For each customer, this subflow queries all open opportunities
+  in Dynamics 365 and closes them. This will automatically trigger a cloud flow that
+  listens to the **Opportunity Close** event and starts the processing with the invoicing
+  app.
+
+  - `UpdateERP`: This will also take the customer information and create new customer
+  records in the database.
+
+  - Subflow `NotifySeller`: This will send out a confirmation to the external seller.
+
+
+  You will notice during the projects that in many places, already known concepts
+  can be reused, as in this case, we have already covered the use of Outlook, information
+  extraction with text actions, as well as database queries in this book. So let’s
+  take a look at a topic that hasn’t been looked at in detail yet: using the **Invoke
+  web service** action to integrate Dynamics 365 from our UI flow.
+
+
+  ## Calling web services within PAD
+
+
+  Another very powerful tool within PAD is the **Invoke web service** action. Almost
+  all applications today provide web services as interfaces to trigger processes or
+  work with data, and so does Dynamics 365. However, in an
+
+
+
+  在企业环境中，这些 Web 服务通常受到未经授权访问的保护，并且必须执行某种形式的登录。这里一切都取决于服务，因为身份验证和授权有不同的选项。对于 Dynamics
+  365 以及 Microsoft 环境中的所有资源，我们通常使用所谓的服务主体登录，例如通过在 Azure **Active Directory (AD)**
+  中注册的实例进行登录，并使用相应的密码（客户端密钥）。我们已在 *第 9 章* 中学习过这种类型的登录，当时我们使用 Azure VM。Microsoft 和大多数其他提供商对此使用
+  OAuth 登录流程。此处理的目的是执行以下操作：
+
+
+  - 使用租户 ID、客户端 ID 和客户端密钥登录 Dynamics 365 并获取访问令牌，可用于访问后续服务
+
+  - 使用给定的客户查询 Dynamics 365 并检索所有开放的机会
+
+  - 通过调用 Dynamics 365 中的相应 Web 服务操作关闭每个机会
+
+
+  下面的屏幕截图显示了此子流程：
+
+
+  ## 图 12.16 – 调用 Dynamics 365 Web 服务
+
+
+  此流程执行以下操作：
+
+
+  - 1. 调用 Microsoft 服务的身份验证 URL，并使用所需参数检索访问令牌。此令牌存储在相应变量中，并转换为自定义对象以在后续操作中使用（第 1 行和第
+  2 行）。
+
+  - 2. 调用 Dynamics 365 Web 服务并使用查询参数检索给定账户名称的所有机会记录，该名称已由之前的子流程设置。其结果是该客户需要关闭的机会列表。该列表也转换为自定义对象（第
+  3 行和第 4 行）。
+
+  - 3. 在循环中，调用特定的 Dynamics 365 操作以关闭机会（第 5 行至第 7 行）。
+
+
+  请注意，我们在这里是从 UI 流程调用 SaaS 服务。在当前情况下，使用云流程来执行此操作将非常不方便。通信非常快速且稳定，是一项真正的生产力提升，因为否则这些记录必须手动关闭，这肯定会花费更多时间。
+
+
+  然而，正如前面提到的，可能有多个团队领导同时启动此流程。因此必须确保可能的负载峰值得到吸收。我们将在下一节中查看此设置。
+
+
+  ## 使用机器组和队列提供可扩展性和可靠性
+
+
+  桌面流程的执行通常比云流程慢。原因如下：
+
+
+  - 必须建立到远程机器的连接
+
+  - 可能需要启动遗留应用程序
+
+  - 实际处理、调用不同屏幕等必须进行
+
+
+  所有这些都需要时间，在此期间云流程可能被阻塞执行。而且在此过程中，没有其他流程能够在此机器上启动另一个进程。
+
+
+  Power Platform 中的排队和扩展选项可以解决这些问题。桌面流程的执行由队列管理，并且可以分发到机器组内的多台机器。
+
+
+  本章详细描述了这一概念。对于此处的设置，我创建了两台配备 PAD 的 Windows 11 机器，并且它们在同一个机器组中。
+
+
+  如果现在在另一台机器上执行此处描述的桌面流程，这将导致多个机会被非常快速地标记为已赢。速度快到甚至无法开始单独处理。
+
+
+  尽管如此，请求会被排队记录，并且平台会控制将下一个执行发送到哪台机器（请参阅本章中的 *机器组和流程队列* 部分）。下面的屏幕截图显示了已排队一些流程的机器组的
+  **运行队列** 选项卡：
+
+
+  ![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_362_0.png)
+
+
+  图 12.17 – Power Automate 中的运行队列
+
+
+  ## 摘要
+
+
+  本章介绍的概念建立在 Power Platform 工具的完整范围之上，以满足所有自动化需求。PAD 是这些概念中的一个构建块，并且无缝契合。使用 Power
+  Platform 还有一个优势，即所有工具的通用需求，例如监控和管理，以及遵守法律要求，可以在中央位置进行。
+
+
+  PAD 不断得到扩展和改进，并且已经提供众多功能，使其能够在大型公司中使用并支持自动化项目，正如我们在本章中所看到的。
+
+
+  预计 Power Platform 的更深层次集成将会发生，建立在本书中介绍的概念和功能之上。这为基于 Power Automate Desktop 的进一步自动化项目提供了非常坚实的基础。
+
+
+  ## 进一步阅读
+
+
+  - *Power Platform 自动化成熟度模型概述：* https://learn.microsoft.com/en-us/power-automate/guidance/automation-coe/automation-maturity-model-overview
+
+  - *HEAT：* https://learn.microsoft.com/en-us/power-automate/guidance/automation-coe/heat
+
+  - *管理 Windows 上的 Power Automate for Desktop 白皮书：* https://learn.microsoft.com/en-us/power-automate/guidance/automation-coe/manage-pad-on-windows
+
+  - *使用 API 使用桌面流程：* https://learn.microsoft.com/en-gb/power-automate/developer/desktop-flow-public-apis
+
+  - *管理桌面流程：* https://learn.microsoft.com/en-us/power-automate/desktop-flows/manage#share-desktop-flows
+
+  - *Power Automate Azure Virtual Desktop 集成入门套件简介：* https://learn.microsoft.com/en-us/power-automate/desktop-flows/avd-overview
+
+  - *数据丢失防护 (DLP) 策略（预览版）：* https://learn.microsoft.com/en-us/power-automate/desktop-flows/data-loss-prevention
+
+  - *托管环境概述：* https://learn.microsoft.com/en-us/power-platform/admin/managed-environment-overview
+
+  - *管理低代码智能自动化平台白皮书：* https://learn.microsoft.com/en-us/power-automate/guidance/automation-coe/automation-admin-gov
+
+  - *Power Automate 中的治理：* https://learn.microsoft.com/en-us/power-automate/desktop-flows/governance
+
+  - *在桌面流程连接中使用来自 Azure Key Vault 的凭据：* https://learn.microsoft.com/en-us/power-platform-release-plan/2022wave2/power-automate/planned-features
+
+  - *高级 RPA 功能：* https://learn.microsoft.com/en-us/power-automate/desktop-flows/premium-features
+
+  - *介绍 Power Platform 的自动化工具包：* https://powerautomate.microsoft.com/en-us/blog/introducing-the-automation-kit-for-power-platform/
+
+  '
+- "## 索引\n\n_由于本电子书版没有固定分页，下面的页码仅供参考，基于本书的印刷版进行了超链接。_\n\n## 符号\n\n% 记法 [108](108),\
+  \ [109](109)\n\n## A\n\naccounts, PAD [16](16), [17](17)\n\nMicrosoft 账户 [16](16)\n\
+  \n组织高级账户 [17](17)\n\n工作/学校账户 [16](16)\n\n操作 kebab 菜单选项 [52](52), [53](53)\n\n操作\n\
+  \nOutlook，自动化 [166](166)\n\n操作，用于处理文本\n\n转换操作 [251](251)\n\n创建随机文本 [251](251)\n\n\
+  创建操作 [251](251)\n\n提取操作 [251](251)\n\n操作操作 [251](251)\n\n识别文本中的实体操作 251\n\n高级加密标准\
+  \ (AES) 算法 249\n\n高级错误处理 84, 85\n\nAI Builder 6\n\n应用程序生命周期管理 (ALM) 6\n\n应用程序编程接口\
+  \ (API) 3, 186, 222\n\n人工智能 (AI) 221\n\n对话式智能 233\n\nPower Automate 的 Copilot 233\n\
+  \n智能内容建议 233\n\nPower Virtual Agent 233\n\n使用 233\n\n有人值守执行 206\n\n自动回复信处理\n\n示例\
+  \ 1, 2\n\n自动化\n\n选项 179\n\n自动化卓越中心 269\n\nAWS 操作 213-215\n\nAzure 操作\n\n使用 215-219\n\
+  \nAzure Active Directory (AAD) 16\n\nAzure Key Vault (AKV)\n\n凭据存储，安全 265\n\nAzure\
+  \ Virtual Desktop 258\n\n解决方案，使用 259, 260\n\n入门套件 258\n\n文本文件，使用 259\n\nUI 流程，在\
+  \ Power Platform 中管理 261, 262\n\nUI 流程，在 Power Platform 中共享 261, 262\n\n工作流 259\n\
+  \n## B\n\nbot 4\n\n断点 57\n\n使用 57, 58\n\n基于浏览器的业务应用程序 186-190\n\n示例 191, 192\n\n\
+  内置数据处理功能 250\n\n操作，用于处理文本 251\n\n日期时间操作 250\n\n\n\n\n+   交互式流程，带消息框 252\n+   业务流程流（BPF）\
+  \ 6, 7\n+   C\n+   卓越中心（CoE） 269\n+   证书服务（CS） 236\n+   云\n+   PAD，连接至 7\n+   PAD\
+  \ 流程，从中访问 198–206\n+   云计算 223\n+   云流程 7\n+   认知服务\n+   AI，在业务背景中 223\n+   概述 222,\
+  \ 223\n+   认知服务，业务场景\n+   客户服务 223\n+   电子商务 224\n+   合规性 265\n+   许可 267, 268\n\
+  +   计算机 236\n+   计算机外设\n剪贴板 155-157\n键盘 155-157\n鼠标 155-157\n操作 153, 154\n工作站 154,\
+  \ 155\n计算机视觉 223\n条件\nElse If 语句 72, 73\nElse 语句 66, 67\nIf 语句 64-67\n参考链接 71\n\
+  特殊 If 操作 74\n使用 63, 64\n带多个分支 74-76\n连接引用 210\n连接 210\n控制台 146\nContoso 发票 124\n\
+  自定义对象 106-108\nCyberArk 操作组 250\n\n桌面即服务（DaaS） [258](#)\n桌面流程 [7](#)\n桌面管理 [138](#),\
+  \ [139](#)\n区别名 [237](#)\n分布式用户管理\n使用 PAD [168](#), [169](#)\n文档库 [207](#)\n域服务（DS）\
+  \ [236](#)\n## E\n有效流程创建策略 [60](#)\n适应可用选项 [62](#)\n简单开始 [60](#)\n在循环前先处理单个项目 [60](#)\n\
+  任务拆分 [60](#)\n停用测试步骤 [61](#), [62](#)\nElse If 语句 [72](#), [73](#)\nElse 语句 [66](#),\
+  \ [67](#)\n电子邮件服务\n使用 [243](#), [244](#)\n企业资源规划（ERP） [167](#), [179](#)\n\n环境 8,\
+  \ 194\n错误处理 83, 84\nExcel 操作\n自动化 167\n## F\n联合服务（FS） 236\n文件\n使用 SharePoint 管理\
+  \ 207\n文件传输协议（FTP） 244, 245\n流程 63\n创建 22-29\n运行 29, 30\n流程控制操作 80-83\n示例 81\n流程变量\
+  \ 92-95\n文件夹\n使用 SharePoint 管理 208\nFor each 操作 80\nFTP 操作组\n操作 244\n\n## G\n全局唯一标识符（GUID）\
+  \ 251\n全局菜单选项 56\nGoogle Cloud Platform（GCP） 228\nURL 228\nGoogle 认知 228-230\n情感分析，在\
+  \ PAD 中 230-232\n治理 265\n监控流程执行 266, 267\n图形用户界面（GUI） 4\n组 236\n## H\nHEAT 技术 269\n\
+  超自动化 256\n超文本标记语言（HTML） 247\n超文本传输协议（HTTP） 246\nGET 方法 246\nPATCH 方法 246\nPOST 方法\
+  \ 246\n## I\n\n用于创建 PowerPoint 系统报告 157-163\n## L\n语言理解（LUIS） 223\nLaunch_Excel\
+  \ 子流程 172, 173\nLaunch_Outlook 子流程 172, 173\nLaunch_SAPGUI 子流程 170-172\n遗留应用程序集成\n\
+  示例 2, 3\n轻量级目录访问协议（LDAP） 236\n列表 101\n使用 SharePoint 管理 208\n本地 AD\n访问 236-239\n\
+  管理 236-239\n本地交换\n使用 243, 244\n本地网络服务\n自动化 236\n使用 236\n循环操作 76, 77\n循环条件 78-80\n\
+  用于处理重复性任务 76\n低代码/无代码 6\n## M\n机器学习（ML） 221, 222\n大型机 179\n大型机场景\n集成 179-185\n消息框\n\
+  用于交互式流程 252\nMicrosoft Access 数据库\n作为源系统 122-124\nMicrosoft 最佳实践\n用于超自动化 268, 269\n\
+  Microsoft 云\n概念结构 194\nMicrosoft 认知服务\n基于 AI 的图像排序 226-228\nBing 拼写检查 225\n计算机视觉\
+  \ 226\n探索 [225](225), [226](226)\n文本分析 [226](226)\nMicrosoftFlowExtensionCore [195](195)\n\
+  Microsoft Office\n自动化 [166](166)\nMicrosoft Power Platform [5](5)\nAI Builder [6](6)\n\
+  数据连接器 [6](6)\nDataverse [6](6)\nMicrosoft Store\nPAD，通过其安装 [20](20), [21](21)\n\
+  鼠标操作\n用于创建 PowerPoint 系统报告 [157](157)-[163](163)\n多重虚拟存储（MVS） [180](180)\n## N\n\
+  自然语言 API [230](230)\n自然语言处理（NLP） [222](222)\n## O\n对象 [106](106), [236](236)\nOn\
+  \ block error [86](86), [87](87)\n操作符选项\n包含 71\n不包含 71\n不以...结尾 71\n不以...开头 71\n\
+  以...结尾 71\n等于 70\n大于 70\n大于或等于 70\n为空 71\n不为空 71\n小于 70\n小于或等于 71\n不等于 70\n以...开头\
+  \ 71\n光学字符识别（OCR） 2, 155, 224\n功能 224\n订单管理 212\n订单到发票工作流\n拆解 125, 126\nExtractNewOrders\
+  \ 子流程 127-129\nGetNorthWindNewOrders 子流程 126, 127\nInvoiceOrders 子流程 129-132\nWriteBackInvoiceIDs\
+  \ 子流程 132-134\n组织单位（OU） 236\nOutlook\n使用操作自动化 166\n## P\nPAD 企业自动化场景 270-272\n使用机器组和队列提供可靠性\
+  \ 274\n使用机器组和队列提供可扩展性 274\n在 PAD 中调用 Web 服务 272, 273\nPAD 企业最佳实践\n要求 255\nPAD 企业，挑战\n\
+  合规性 265\n部署 257\n开发方面 256, 257\n治理 265\n超自动化 256\n+   安装 257\n+   可扩展性 262\n+  \
+  \ 安全性 263\n+   PAD 流程\n+   从云中访问 198–206\n+   参数对话框 54–56\n+   PATH 142\n+   平台即服务\
+  \ 211\n+   Power Apps 5\n+   Power Automate 6\n+   Power Automate 容器窗口 31\n+   控制台区域切换\
+  \ 33\n+   创建按钮 33\n+   UI 流程列表 31–33\n+   登录信息 33\n+   设置对话框 33\n+   Power Automate\
+  \ Desktop（PAD） 1, 194\n+   操作 232, 233\n+   功能 3, 4, 138, 139\n+   命令行会话 146, 147\n\
+  连接至云 7\n设计器窗口 33\n分布式用户管理 168, 169\n文件，通过 PAD 上传至 SharePoint 210, 211\n安装 17-19\n\
+  通过 Microsoft Store 安装 20, 21\n安装前提条件 15-17\n控制进程 139-142\n学校活动示例，使用 MS Office 8-14\n\
+  脚本编写 147-149\n控制服务 142-145\n系统操作 139-142\n用例 139\nPower Automate Machine 195-197\n\
+  Power Automate Machine Runtime 195-197\nPower BI 5\nPower Pages 6\nPower Platform\
+  \ 8, 194\n元素 194, 195\n结构 194, 195\nPowerPoint 系统报告\n使用键盘操作创建 [157-163](157-163)\n\
+  使用鼠标操作创建 [157-163](157-163)\nPower Virtual Agents [6](6)\n前提条件和限制 PAD\n参考链接 [16](16)\n\
+  安装 PAD 的前提条件\nMicrosoft 账户 [16](16), [17](17)\nWindows 操作系统 [16](16)\n进程 [4](4)\n\
+  自动化，考虑因素 [4](4)\n## R\n随机存取存储器（RAM） [262](262)\n记录器\n使用 [35-49](35-49)\n远程桌面（RDP）\
+  \ [114](114)\n重复性任务\n使用循环语句处理 [76](76)\n表述性状态转移（REST） [246](246)\n投资回报率（ROI） [4](4)\n\
+  机器人 4\n机器人流程自动化（RPA） 1, 16, 109\n历史 4, 5\n## S\nSAP\n用户数据处理 173-178\n使用 167\nSAP\
+  \ ERP 167\nSAPGUI 167\nSAP R/3 167\nSAP S/4HANA（高性能分析设备） 167\n可扩展性 262\n流程队列 263\n\
+  机器组 263\n使用单机方法 262\n安全性 263\n凭据存储，保护 265\n数据，使用策略保护 263, 264\n安全功能\n使用 249, 250\n\
+  Selenium 16\nSelenium IDE 16\nURL 16\n情感分析，PAD 230-232\n会话操作 212\nSharePoint\n使用其管理文件\
+  \ 207\n通过 PAD 上传文件至 210, 211\n使用其管理文件夹 208\n使用其管理列表 208\n简单对象访问协议（SOAP）协议 246\n\
+  单机方法 262\n软件即服务（SaaS） 186, 211\n软件开发工具包（SDK） 222, 265\n特殊 If 操作 74\n子流程 59\n创建 59\n\
+  使用 58\nSwitch-Case 构造 75\nSystem Center Configuration Manager（SCCM） 257\n## T\n\
+  文本数据类型 108\n触发供应商订单 181\ntry-catch 块 86\n## U\nUI 操作\n需求 119, 120\n工作 122\nUI 自动化\
+  \ 119\nUI 元素\n创建 109-113\n识别 109-113\nUI 流程 7\n无人值守执行 206\n更新库存 181\n用户 236\n用户界面（UI）\
+  \ 4\n## V\n变量 89-92\n创建 67\n\n\n\n\n\n- editing 68\n- flow variables 92-95\n- input\
+  \ and output variables 96-100\n- using 68, 69\n- variable types 100\n- custom object\
+  \ 106-108\n- data table 101-106\n- list data type 101\n- text data type 108\n- variable\
+  \ value viewer 90, 92\n- virtual machines (VMs) 257\n- Vision API 230\n- W\n  -\
+  \ web data formats\n    - working with 246-249\n  - web protocols\n    - File Transfer\
+  \ Protocol (FTP) 244, 245\n    - Hypertext Transfer Protocol (HTTP) 246\n  - web\
+  \ scraping 36\n  - WINDIR 142\n\n在 [packtpub.com](https://packtpub.com) 以及作为印刷书籍客户，您有权享受电子书版本的折扣。请联系我们\
+  \ [customercare@packtpub.com](mailto:customercare@packtpub.com) 了解更多详情。\n\n在 [www.packtpub.com](https://www.packtpub.com)，您还可以阅读一系列免费技术文章，订阅多种免费通讯，并获得\
+  \ Packt 书籍和电子书的独家折扣和优惠。\n\n## 您可能喜欢的其他书籍\n\n如果您喜欢这本书，您可能对 Packt 出版的以下其他书籍感兴趣：\n\n\
+  **EXPERT INSIGHT**\n\n**使用 Microsoft Power Automate 进行工作流自动化**\n\n使用业务流程自动化以最小的代码实现数字化转型\n\
+  \n**第二版**\n\nAaron Guilmette\n\nPackt\n\n**使用 Microsoft Power Automate 进行工作流自动化**\n\
+  \nAaron Guilmette\n\nISBN: 9781803237671\n\n- 学习 Power Automate 功能的基本构建块\n- 探索 Power\
+  \ Automate 中的连接器以自动化电子邮件工作流\n- 了解如何制作在云服务之间复制文件的流程\n- 为您的业务需求配置 Power Automate Desktop\
+  \ 流程\n- 在示例基础上构建以创建复杂的数据库和审批流程\n- 连接常见的业务应用程序，如 Outlook、Forms 和 Teams\n- 学习机器人流程自动化的入门概念\n\
+  - 了解如何使用 AI 情感分析\n\n## Packt 正在寻找像您这样的作者\n\n如果您有兴趣成为 Packt 的作者，请访问 authors.packtpub.com\
+  \ 并立即申请。我们已与数千名开发人员和技术专业人士合作，就像您一样，帮助他们与全球技术社区分享他们的见解。您可以提交通用申请，申请我们正在招聘作者的特定热门主题，或提交您自己的想法。\n\
+  \n## 分享您的想法\n\n现在您已经读完了 *使用 Power Automate Desktop 实现 RPA 民主化*，我们很想听听您的想法！如果您是在\
+  \ Amazon 购买的这本书，请点击此处直接前往该书在 Amazon 的评论页面并分享您的反馈，或在您购买的网站上留下评论。\n\n您的评论对我们和技术社区非常重要，将帮助我们确保提供优质的内容。\n\
+  \n## 下载本书的免费 PDF 副本\n\n感谢您购买本书！\n\n您喜欢随时随地阅读，但又无法随身携带印刷书籍吗？您购买的电子书与您选择的设备不兼容？\n\n\
+  不用担心，现在每本 Packt 书籍您都可以免费获得该书的 DRM 免费 PDF 版本。\n\n在任何地方、任何地点、在任何设备上阅读。直接从您喜爱的 technical\
+  \ 书籍中搜索、复制和粘贴代码到您的应用程序中。\n\n福利还不止于此，您还可以每天通过电子邮件获得独家访问折扣、通讯和精彩免费内容。\n\n按照以下简单步骤获取福利：\n\
+  \n1. 扫描二维码或访问以下链接：\n\n   ![](img/ce6bfe9c712dcd60fc2c4e058dc84e6a_392_0.png)\n\n\
+  \   https://packt.link/free-ebook/9781803245942\n\n"

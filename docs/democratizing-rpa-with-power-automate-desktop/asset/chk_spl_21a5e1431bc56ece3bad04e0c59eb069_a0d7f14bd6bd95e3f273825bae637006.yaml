@@ -1,0 +1,66 @@
+reviews:
+- 'no': 6
+  overturn_probability: 0.1
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 前言、序言等正文前内容统一划分为一章，## 前言 符合规则的前言起始特征
+  - 后续行 8-15 为前言概述段落，上下文支持分章
+  keep_split: true
+- 'no': 80
+  overturn_probability: 0.08
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 标题单独成行，长度小于30字，末尾无句号
+  - '后 1~3 行 82-84 为本章概述，且随后出现子节 ### 什么是 PAD，它能做什么？，符合章标题上下文特征'
+  keep_split: true
+- 'no': 343
+  overturn_probability: 0.12
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 标题单独成行，语义统领后续安装与创建首个流内容
+  - 后接 345-350 本章主题概述，符合章标题特征
+  keep_split: true
+- 'no': 995
+  overturn_probability: 0.78
+  alternative: 正文小标题
+  counter_evidence:
+  - 该标题位于第 343 章内部的流程控制讨论中，前后均为同一章节的连续论述，并非全书最高层级大章
+  - '标题后 997-1004 为本节主题列表而非新章概述，且前后无前言/总结式章节边界，格式上与同级小节 ## 从简单开始、## 分解整体任务 等一致'
+  - 原判断误将二级小节当作章标题，属于正文小标题误报
+  keep_split: false
+- 'no': 1376
+  overturn_probability: 0.05
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '# 级标题，语义概括性强，后接 1378-1384 章节主题说明'
+  - 前后章节边界清晰，符合新章特征
+  keep_split: true
+- 'no': 1761
+  overturn_probability: 0.82
+  alternative: 正文小标题
+  counter_evidence:
+  - '该标题处于 # 变量、UI 元素和图像 章节内部，后续 1764-1768 为本节目标描述而非新章概述'
+  - '标题层级为 ##，在 # 章下为二级小节，且前后内容连续讨论 UI 自动化操作，与上文变量、UI 元素主题衔接紧密'
+  - 原判断将章节内部小节误判为新章，属于正文小标题误报
+  keep_split: false
+- 'no': 2160
+  overturn_probability: 0.07
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 标题单独成行，后接 2162-2168 技术要求与主题概述，语义统领桌面与工作站自动化内容
+  - 与前一章 自动化标准业务应用程序 边界清晰
+  keep_split: true
+- 'no': 2583
+  overturn_probability: 0.09
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 标题单独成行，语义统领 Office/SAP/主机/浏览器自动化等后续内容
+  - 后接 2585-2592 本章涵盖主题列表，符合章标题上下文
+  keep_split: true
+- 'no': 2962
+  overturn_probability: 0.06
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 标题单独成行，后接 2964-2971 本章主题与技术要求概述
+  - 与前一章边界清晰，符合新章特征
+  keep_split: true

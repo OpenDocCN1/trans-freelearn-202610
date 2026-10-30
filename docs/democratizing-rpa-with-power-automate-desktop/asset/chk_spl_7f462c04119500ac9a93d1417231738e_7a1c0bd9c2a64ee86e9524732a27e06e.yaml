@@ -1,0 +1,39 @@
+reviews:
+- 'no': 2962
+  overturn_probability: 0.85
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题使用 ## 标记且后续在同一范围内密集出现多个同级 ## 小标题，如 2972 ## 技术要求、2980 ## Power Platform 和相关服务、2996
+    ## Machine and Machine Runtime，说明是章节内部二级/三级小节而非全书最高层级大章'
+  - 标题后紧跟概述段落但随后立即出现子列表 +   - Power Platform 和相关服务 等排版噪声，符合小节而非章标题的上下文特征
+  - '前文 2950 ## 进一步阅读 为上一章的进一步阅读收尾，2952 行即为该阅读的引导句，2950-2961 为上一章结尾块，2962 直接承接内容，缺乏‘第
+    X 章’编号且语义为具体主题而非统领整章的概括性标题'
+  keep_split: false
+- 'no': 3298
+  overturn_probability: 0.12
+  alternative: 正文小标题
+  counter_evidence:
+  - 标题单独成行且后 1~3 行为本章概述，3300 行起出现 Figure 10.x 编号序列，语义统领后续 AI 认知服务内容
+  - '虽为 ## 标记，但上下文已结束第 9 章的进一步阅读 3279-3297，且后续无同级 ## 密集出现，符合新章起始特征'
+  keep_split: true
+- 'no': 3497
+  overturn_probability: 0.08
+  alternative: 正文小标题
+  counter_evidence:
+  - 标题单独成行，后续 3499 行起为本章概述并出现 Figure 11.x 编号序列，语义统领 API/服务内容
+  - '前文 3485 ## 进一步阅读 为第 10 章结尾，3497 后出现 ## 技术要求、## 本地网络服务的使用和自动化 等章节内部结构，符合第 11 章起始'
+  keep_split: true
+- 'no': 3865
+  overturn_probability: 0.1
+  alternative: 正文小标题
+  counter_evidence:
+  - 标题单独成行，后续 3867 行起为企业最佳实践概述并出现 Figure 12.x 编号序列，语义统领后续企业部署内容
+  - '前文 3857 ## 进一步阅读 为第 11 章结尾，3865 后结构为章节级前提条件、超自动化等，符合第 12 章起始'
+  keep_split: true
+- 'no': 4189
+  overturn_probability: 0.05
+  alternative: 其他
+  counter_evidence:
+  - 文末索引标题单独成行，按规则文末索引应划分为一章
+  - 后续 4191 行起为索引说明及符号列表，符合索引章节特征
+  keep_split: true

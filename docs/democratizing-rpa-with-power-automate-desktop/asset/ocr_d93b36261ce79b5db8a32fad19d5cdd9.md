@@ -1,0 +1,11 @@
+# Automating Microsoft Office
+
+In the previous chapters of this book, we used almost all Office products in our examples. We used Excel and Outlook in the introductory example in *Chapter 1*, while in the last two chapters, we saw how Microsoft Access and PowerPoint can be used as part of UI automation. While the latter concept can be used in conjunction with mouse and keyboard actions to include any application, there are dedicated PAD actions for Outlook and Excel that can be used within flows. We’ll take a closer look at these action groups in this section.
+
+# Automating Outlook with actions
+
+Being able to integrate Outlook into PAD can be very helpful in many situations. As already seen in our example in *Chapter 1*, it is possible to receive many emails or attachments of the same nature, move them to a specific folder, save them, and even reply if necessary. Another scenario could be that you retrieve messages from a support address, for example, and use that information to trigger further internal processing, such as entering certain data into other systems. The example in this chapter will show you another use case. Here, new users must be regularly provided with information so that they can log on to an SAP system. Here, too, Outlook can be integrated directly into a flow and send this notification directly. The following actions are available in the corresponding *Outlook* actions group to help us with these tasks:
+
++   - **Launch/Close Outlook**: This action starts or ends an Outlook instance. A corresponding variable is created in the **launch** action, which can be used in the **close** action later to terminate the program.
++   - **Retrieve email messages**: This action can accept an email account and allows you to define filter parameters for the emails to be received. In addition, settings can be made for any attachments.
++   - **Send a message/Respond to a message**: These actions create a new message with all the required fields, such as email body, subject, and
