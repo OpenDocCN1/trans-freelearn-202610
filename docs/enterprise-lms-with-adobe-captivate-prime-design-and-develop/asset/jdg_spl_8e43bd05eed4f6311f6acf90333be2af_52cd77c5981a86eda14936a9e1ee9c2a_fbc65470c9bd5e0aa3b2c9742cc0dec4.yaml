@@ -1,0 +1,57 @@
+chapter_starts:
+- 'no': 6357
+  confidence: 0.95
+  final_reason: '判断方与复核方均维持划分。编号 9 的标题单独成行、无句号，语义上开启全新主题《配置和使用反馈》，后接概述与 ### 技术要求 等子节，符合最高层级大章特征。'
+  accepted_evidence:
+  - '标题为 ## 9 配置和使用反馈，数字编号+单独成行，符合最高层级大章特征'
+  - 标题后为新章概述段落，随后进入技术要求等子节，统领范围明显
+  - 复核方 keep_split=true，overturn_probability 0.18
+  rejected_evidence:
+  - '复核方指出 ## 级别与本章内大量 ## 节标题格式一致，易误判为节标题'
+  - '标题前 16 行即为 ## 摘要 的章节收尾，上下文转换间隔短'
+  need_human_review: false
+- 'no': 6973
+  confidence: 0.95
+  final_reason: 编号 10 的标题单独成行，语义上开启《Captivate Prime 中的报告》新篇章，与前一章 9 形成连续章节序列，复核方维持划分。
+  accepted_evidence:
+  - '标题为 ## 10 Captivate Prime 中的报告，数字编号章节标题，单独成行且无句号'
+  - 标题后为新章概述，符合章标题上下文特征
+  - 复核方 keep_split=true，overturn_probability 0.15
+  rejected_evidence:
+  - '复核方指出 ## 级别大量用于节标题，格式上与节标题相同'
+  - '标题前为 ## 摘要 收尾，后接概述句，符合节标题上下文模式'
+  need_human_review: false
+- 'no': 7793
+  confidence: 0.9
+  final_reason: 书中存在部分-章节模式，# 第 3 部分：提升学习者体验 为部分级标题，按规则部分标题亦应划分新章，且后接第 11 章等章节。
+  accepted_evidence:
+  - '标题为 # 第 3 部分：提升学习者体验，符合第 X 部分的书部分-章节模式'
+  - 单独成行，后接本部分介绍文字及章节列表
+  - 复核方 keep_split=true，overturn_probability 0.12
+  rejected_evidence:
+  - 复核方认为部分标题通常不作为独立章节计入章节序列
+  - '标题后紧跟本部分介绍性文字，随后才出现 ## 11 等章节标题，存在层级跳跃'
+  need_human_review: false
+- 'no': 7803
+  confidence: 0.95
+  final_reason: 编号 11 的标题单独成行，语义统领《徽章与游戏化》全文，后接技术要求与子节，符合最高层级大章划分。
+  accepted_evidence:
+  - '标题为 ## 11 徽章与游戏化，数字编号章节标题，单独成行且语义统领后续内容'
+  - 前文 7799 行已以列表形式预告第 11 章，上下文一致
+  - 复核方 keep_split=true，overturn_probability 0.14
+  rejected_evidence:
+  - '复核方指出格式与本部分内大量 ## 节标题一致'
+  - '标题后概述后直接进入 ### 技术要求，子节层级密集'
+  need_human_review: false
+- 'no': 8292
+  confidence: 0.95
+  final_reason: 编号 12 的标题单独成行，开启《启用和管理社交学习》新篇章，与前序章节序列连续，复核方维持划分。
+  accepted_evidence:
+  - '标题为 ## 12 启用和管理社交学习，数字编号章节标题，单独成行且为最高层级'
+  - '标题后为概述段落，随后进入 ### 技术要求 等子节'
+  - 复核方 keep_split=true，overturn_probability 0.16
+  rejected_evidence:
+  - '复核方指出 ## 级别与本章内众多节标题同级，格式上无法唯一区分章与节'
+  - '标题前为 ## 摘要 收尾，间隔仅 12 行，章节边界信号弱'
+  need_human_review: false
+rejected_lines: []

@@ -1,0 +1,61 @@
+
+- Most of the time, the same event triggers two messages being sent: one to the learner and another one to the learner's manager. You can customize both versions of the message using the two tabs available at the top of the **Template Preview** dialog.
+- You can also customize the same message in every language supported by Captivate Prime using the **Language** drop-down menu of the **Template Preview** dialog.
+
+These easy-to-use tools allow you to take full ownership of the emails that are sent from your Prime account. Remember that these messages are an important part of the experience you provide to your learners. So, be sure to pay proper attention to personalizing these messages.
+
+## Summary
+
+One of the challenges of a platform such as Captivate Prime is to keep learners actively engaged over long periods of time. This is especially true in today's over-connected world, where all of us are already surrounded by an increasing number of social media platforms, messaging applications, file sharing tools, video conferencing systems, and more in both our personal and professional lives.
+
+To meet this challenge, you learned that Captivate Prime sends emails whenever an event occurs on the platform. Almost every Captivate Prime event triggers the sending of two email messages: one to the relevant learner and one to the learner's manager. These emails are designed to extend the reach of Captivate Prime so that learners are always aware of what is happening on the LMS, and are constantly encouraged to log back in to interact with both the available learning content and their peers. Most organizations consider these emails as a critical part of the learner experience provided by their enterprise LMS. As a result, they spend a lot of time and attention on personalizing both the look and feel and the content of these messages.
+
+While this technique has proven to be effective, it is not without its own set of issues. Some learners may complain about the sheer number of emails they receive from the LMS. This is especially true for managers and other senior executives who receive even more messages than ordinary learners in their already overloaded inboxes. Hopefully, you learned about the tools available in Captivate Prime that allow you to disable **Optional Manager Emails** and to put a small set of selected individuals (usually, top managers and other senior executives) on the **Do Not Disturb** list. You can also customize the content of each message and even decide to enable or disable each message individually.
+
+You also reviewed the various types of announcements visible to learners when they are logged into the Prime account. These help you keep learners up to date about the latest events on the platform, promote new courses, announce the winners of a contest, and more. These notifications, mastheads, and recommendations can be targeted at specific audiences using the various user groups available in your Prime account.
+
+Such announcements and messages play a critical role in bringing your account to life and in fostering a true learning and sharing culture within the organization. This is an important aspect of the learning experience that is certainly worth spending the necessary time and attention on.
+
+But the learning experience provided by the corporate LMS is just one of many elements of the overall experience your organization provides to its employees, partners, suppliers, customers, and more. One of the landmark features of Adobe Captivate Prime is its ability to seamlessly integrate into any corporate environment and augment any existing experience with a training component. This is made possible by the many integrations available out of the box and by the Captivate Prime API, which enables its use as a headless LMS. This is what you will explore in the next and final chapter of this book.
+
+## 16 Exploring the Integration Admin Role
+
+Adobe Captivate Prime was designed from the ground up as a learner-centric enterprise LMS. The organizations that use Adobe Captivate Prime are businesses of various sizes, large enterprises, multinational corporations, national and international institutions, and so on. It turns out that most of these organizations already use a variety of other enterprise applications and systems to run their day-to-day operations. For most of these organizations, the ability to seamlessly integrate with their existing infrastructure is a key factor in deciding whether or not to invest in a solution such as Adobe Captivate Prime.
+
+That's why Adobe Captivate Prime contains an extensive array of tools and features designed to easily connect Captivate Prime to virtually any solution used in the enterprise. The ultimate goal of these features is to enable communication between Captivate Prime LMS and these external systems by exchanging all kinds of data. This can be user data, learning transcripts, course content from external vendors, various reports generated by your Prime account, and so on.
+
+Adobe knows that integrating a new platform into an existing environment usually requires more investment from the buyer, so Captivate Prime ships with a handful of connectors designed to help customers connect their Prime account to the most popular enterprise applications in no time and with minimal additional cost.
+
+In this chapter, you will first discover the connectors available out of the box in Adobe Captivate Prime. These can be used to connect Prime with enterprise solutions such as Salesforce, Power BI, Microsoft Active Directory, and Workday. If no connector is available for the systems used in your organization, you can leverage the Captivate Prime API to develop a custom solution.
+
+The Captivate Prime API is also what makes Captivate Prime a headless LMS. This means that developers can create a completely customized learner experience while still using the Adobe Captivate Prime administrator for any backend task.
+
+Finally, we will briefly discuss the Captivate Prime migration service, which facilitates the deployment of Captivate Prime within organizations by helping them migrate learner and training data from their existing LMS over to Adobe Captivate Prime.
+
+Configuring, monitoring, and securing these connectors and remote access is a task devoted to the integration admin role of Adobe Captivate Prime. This chapter is therefore entirely dedicated to exploring the various aspects of the integration admin role. To achieve this goal, this chapter contains the following main sections:
+- Data exchange between Captivate Prime and other systems
+- Exploring the available connectors
+- Developing applications with the Captivate Prime API
+- Discovering the migration process
+
+Thanks to these unique features, you will be able to seamlessly blend Captivate Prime into the existing IT infrastructure used in your organization regardless of the size or complexity of that environment.
+
+## Technical requirements
+
+To perform the exercises and experiments proposed in this chapter, you must meet the following technical requirements:
+- You must have integration admin access to a working Captivate Prime account, which can be a trial account.
+- A basic understanding of programming and application development is helpful but not required.
+
+You are now ready to discover yet another amazing set of capabilities provided by Adobe Captivate Prime LMS.
+
+## Data Exchange Between Captivate Prime and Other Systems
+
+All of the tools and features discussed in this chapter share a common goal: enabling the exchange of data between Adobe Captivate Prime and other IT solutions deployed within your organization. This section briefly discusses the various types of data that can be exported to and from Adobe Captivate Prime and examines some of the typical use cases in which such data exchange is useful.
+
+### Automated user import
+
+As discussed in Chapter 5, Managing Users, it is perfectly possible to define users directly within Captivate Prime. That being said, virtually every organization maintains a directory of users who have access to their IT infrastructure. Such a directory oversees user authentication and authorization, which is what makes it a key component of any corporate network:
+- **Authentication** answers the question "Who are you?". It is the reason why you use a username and a password when logging into a network, but other means of authentication are also possible, such as fingerprints, face recognition, and badges.
+- **Authorization** answers the question "What can you do?". Just because the system knows who you are, does not mean you have access to all areas of the network. Some users have administrative access and can do just about anything they want, while other users have limited access to certain network resources only.
+
+LDAP-compliant directory solutions, such as Microsoft Active Directory, Azure ADFS, OpenLDAP, and ApacheDS, are among the most popular enterprise directory solutions used by organizations of any size.

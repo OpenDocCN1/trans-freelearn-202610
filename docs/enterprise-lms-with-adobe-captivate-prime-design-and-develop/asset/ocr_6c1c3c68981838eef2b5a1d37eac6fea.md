@@ -1,0 +1,13 @@
+At its most basic level, Adobe Captivate Prime is a **Learning Management System (LMS)**. An LMS is a web application that's used for hosting, delivering, administrating, tracking, and reporting learning activities, among other things. The concept of LMS dates back to the middle of the 1990s and first appeared in the higher education sector. Since then, LMSes have evolved, integrating features such as collaborative learning, social learning, gamification, mobile learning, and more. They have contributed to the advent of new instructional design strategies (such as the flipped classroom) and have moved beyond the tight boundaries of the education sector to venture into corporate training. Nowadays, LMSes can be found in a very large variety of organizations. From educational institutions to large business corporations, from primary schools to government agencies, the LMS has become the central component of the learning and development strategy of a growing number of organizations.
+
+To understand the basic functionalities of an LMS, let's imagine a person (a student or an employee, for example) wanting to take a course:
+
++   - First, that person logs into the LMS and is identified by the system as a learner.
++   - The LMS presents that learner with a list of courses he/she is enrolled in.
++   - The learner chooses the course he/she wants to take and the LMS starts delivering the content. The learning material is usually made up of a list of course modules of different types. These can be video tutorials to watch, PDF files to read, quizzes to take, surveys to complete, assessments to upload, and more.
++   - As the learner progresses into his/her course, the LMS records every single interaction, such as the course modules that have been viewed, the time spent going through the modules, the outcome of the quizzes, the responses to the surveys, the submitted assignments, and more.
++   - Based on this data, the LMS can make some decisions automatically, such as granting the user access to the next module or redirecting the user to additional remediation material when appropriate. The LMS can also automatically deliver badges or certificates upon course completion.
+
+This makes for a great basic user experience. But the LMS is also useful for the teacher (also known as the coach, the instructor, and so on). So, let's imagine another person logging into the system. This time, the person is recognized as an instructor:
+
++   - The LMS presents a list of courses the person is an instructor of.

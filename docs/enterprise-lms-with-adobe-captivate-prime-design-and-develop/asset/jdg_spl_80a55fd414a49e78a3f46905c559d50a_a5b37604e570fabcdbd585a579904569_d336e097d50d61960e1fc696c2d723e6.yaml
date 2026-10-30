@@ -1,0 +1,42 @@
+chapter_starts:
+- 'no': 3407
+  confidence: 0.95
+  final_reason: 双方一致，标题单独成行且为部分标题，后续为概述段落，前文为上一章摘要，符合部分-章节模式分章条件
+  accepted_evidence:
+  - '标题单独成行且为 # 第 2 部分，符合部分-章节模式的最高层级划分'
+  - 后 1~3 行 3409 起为概述段落，语义统领后续第 5-10 章内容
+  - 前文 3397-3406 为上一章摘要，上下文符合章节边界
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 3420
+  confidence: 0.92
+  final_reason: 双方一致，编号大章标题单独成行，语义概括且上下文符合章节起始
+  accepted_evidence:
+  - '标题单独成行 ## 5 管理用户，长度 <30 且无句号'
+  - '后 1~3 行 3422 起为章节概述，之后出现 ### 创建内部和外部用户 等子节'
+  - 前文 3411-3418 为本部分目录，3419 为目录末尾，符合章节起始上下文
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 4522
+  confidence: 0.93
+  final_reason: 双方一致，编号大章标题单独成行，语义概括性强，后续为概述与子节
+  accepted_evidence:
+  - '标题单独成行 ## 6 将学习者注册到课程，语义概括性强'
+  - '后 1~3 行 4524 起为概述段落，之后出现 ### 技术要求 等子节'
+  - 前文 4518-4521 为上一章摘要，符合章节边界特征
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 5365
+  confidence: 0.93
+  final_reason: 双方一致，编号大章标题单独成行，无句号且统领后续学习者体验内容
+  accepted_evidence:
+  - '标题单独成行 ## 7 审阅学习者体验，无句号且长度合适'
+  - '后 1~3 行 5367 起为概述段落，之后出现 ## 浏览默认学习者体验 等子节'
+  - 前文 5363-5364 为上一章收尾，上下文符合章节起始
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 5878
+  reason: '复核方指出标题后 1~3 行并非概述段落，5879 为空行，5880 立即出现同名标题 ## 探索讲师角色，违反标题后应为概述段落的上下文特征；同一内容在
+    5878 与 5880 连续重复，疑似排版噪声而非独立章节，前文无总结性收尾，章节边界不清晰。判断方无有力反驳，采纳复核方结论。'
+  need_human_review: false

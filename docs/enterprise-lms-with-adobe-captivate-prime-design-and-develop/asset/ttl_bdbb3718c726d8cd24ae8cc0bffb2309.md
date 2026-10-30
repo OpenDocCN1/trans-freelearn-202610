@@ -1,0 +1,1 @@
+Adobe Captivate Prime 企业级 LMS：为您的员工、合作伙伴和客户设计并开发世界级学习体验

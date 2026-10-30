@@ -1,0 +1,32 @@
+chapter_starts:
+- 'no': 1088
+  confidence: 0.9
+  final_reason: 判断方与复核方一致，标题单独成行、无末尾标点、长度适中，后接章节概述段落，语义统领后续内容，符合最高层级大章特征
+  accepted_evidence:
+  - 标题单独成行，无末尾标点，长度适中，符合格式特征
+  - 后接‘现在您已经拥有一个可用的 Captivate Prime 账户...’的章节概述段落，语义统领后续内容
+  - 复核方 keep_split=true，确认格式与语义均符合
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 2586
+  confidence: 0.9
+  final_reason: 双方一致，标题单独成行、无标点、长度合适，后接统领性概述，覆盖技能与课程内容，符合第4章起始特征
+  accepted_evidence:
+  - 标题单独成行，无末尾标点，长度合适，符合最高层级大章特征
+  - 后接‘在上一章中，您已将自定义内容模块上传...’的统领性概述，语义覆盖后续技能与课程内容
+  - 复核方 keep_split=true，overturn_probability 0.1
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 5
+  reason: 复核方指出其为献辞正文段落，末尾省略号、长度远超30字，不符合标题单独成行短小概括的格式特征；前后为献辞正文与作者署名，属于前言正文而非独立标题行，上下文优先不分章
+  need_human_review: false
+- 'no': 110
+  reason: 标题‘# Section 1:’以冒号结尾且被拆分为两行，下一行‘发布学习内容’才是实际语义内容，属于排版断行噪声；标题后1~3行直接进入概述段落，未出现子章节列表，复核方认为不符合标题末尾无标点及单独成行规则
+  need_human_review: false
+- 'no': 122
+  reason: 标题末尾为问号‘？’，违反‘标题末尾绝无句号（。.？！）’的格式特征；后紧跟‘介绍 Adobe Captivate Prime’重复性副标题，语义不统领后续大段内容，疑似章节内小节而非最高层级大章
+  need_human_review: false
+- 'no': 1678
+  reason: 标题末尾为省略号‘...’含句号，违反标题末尾无标点规则；标题被截断为‘Managing the C...’明显为行宽截断或复制噪声，非完整标题，且英文标题混入中文正文上下文，疑似排版噪声
+  need_human_review: false

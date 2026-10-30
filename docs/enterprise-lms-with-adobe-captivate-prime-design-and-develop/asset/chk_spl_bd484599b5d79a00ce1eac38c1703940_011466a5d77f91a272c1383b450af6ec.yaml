@@ -1,0 +1,47 @@
+reviews:
+- 'no': 5
+  overturn_probability: 0.85
+  alternative: 献辞正文段落
+  counter_evidence:
+  - 行内容为完整献辞句子，末尾有省略号，长度远超30字，不符合标题单独成行、短小概括的格式特征
+  - 该行前后为正文献辞和作者署名‘- Damien Bruyndonckx’，属于前言正文而非独立标题行
+  - 标题通常无句号且单独成行，此行为段落正文，标题末尾绝无句号规则被违反
+  keep_split: false
+- 'no': 110
+  overturn_probability: 0.7
+  alternative: 部分标题排版断行
+  counter_evidence:
+  - 标题‘# Section 1:’以冒号结尾，含标点符号，不符合标题末尾无标点规则
+  - 标题被拆分为两行，下一行‘发布学习内容’才是实际语义内容，属于排版断行噪声
+  - 标题后1~3行直接进入‘首先，你将激活...’的概述段落，未出现子章节列表，语义上更像部分副标题
+  keep_split: false
+- 'no': 122
+  overturn_probability: 0.75
+  alternative: 正文小标题
+  counter_evidence:
+  - 标题末尾为问号‘？’，违反‘标题末尾绝无句号（。.？！）’的格式特征
+  - 标题后紧跟‘介绍 Adobe Captivate Prime’重复性副标题，语义不统领后续大段内容
+  - 编号‘1’后为问句形式，且后文1~3行即为概述段落并直接进入子节，疑似章节内小节而非最高层级大章
+  keep_split: false
+- 'no': 1088
+  overturn_probability: 0.15
+  alternative: 章节标题
+  counter_evidence:
+  - 标题单独成行，无末尾标点，长度适中，符合格式特征
+  - 后接‘现在您已经拥有一个可用的 Captivate Prime 账户...’的章节概述段落，语义统领后续内容
+  keep_split: true
+- 'no': 1678
+  overturn_probability: 0.8
+  alternative: 排版断行/截断标题
+  counter_evidence:
+  - 标题末尾为省略号‘...’，含句号，违反标题末尾无标点规则
+  - 标题被截断为‘Managing the C...’，明显为行宽截断或复制噪声，非完整标题
+  - 英文标题混入中文正文上下文，与前后章节语言不一致，疑似排版噪声
+  keep_split: false
+- 'no': 2586
+  overturn_probability: 0.1
+  alternative: 章节标题
+  counter_evidence:
+  - 标题单独成行，无末尾标点，长度合适，符合最高层级大章特征
+  - 后接‘在上一章中，您已将自定义内容模块上传...’的统领性概述，语义覆盖后续技能与课程内容
+  keep_split: true

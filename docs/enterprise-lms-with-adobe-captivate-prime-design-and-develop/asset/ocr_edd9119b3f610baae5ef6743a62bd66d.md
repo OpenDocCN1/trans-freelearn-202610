@@ -1,0 +1,3 @@
+This book is dedicated to the teachers and instructors who dedicate their entire lives to changing the lives of others through education. It is not so much the subjects they teach that are important, but the life lessons that their daily behavior and attitude convey. Eternal thanks to Jacques Baret, my fifth-grade teacher, and to Guy Deveaux, my eleventh- and twelfth-grade math teacher for teaching me the love of a job well done.
+
+- Damien Bruyndonckx

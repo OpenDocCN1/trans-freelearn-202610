@@ -1,0 +1,104 @@
+
+Today's digital citizen wants highly personalized experiences that can be consumed seamlessly on any device. Of course, the digital learning industry does not escape this fundamental trend observed everywhere on the internet. As a learner-centric LMS, Captivate Prime takes the learner experience very seriously and Adobe is committed to always providing the best possible training experience.
+
+That's why, in the December 2020 update, the Captivate Prime team introduced a brand new learner experience. This new user experience is called the *Immersive* experience, while the original learner experience (the one that has been around since the beginning of Prime) is called the *Classic* experience.
+
+The default experience used by any new Captivate Prime account is the *Immersive* experience. But, if you have been using Captivate Prime for a longer time, the older *Classic* experience is maintained until you explicitly make the switch to the new *Immersive* experience.
+
+You will now review both of these experiences and have a high-level overview of the options available for each of them.
+
+## Discovering the Classic learner experience
+
+You will begin with the *Classic* experience. Remember that this is the older experience provided by the original version of Captivate Prime. If you just activated your Prime trial account, the default learner experience is the new *Immersive* experience, so in order to review the *Classic* experience, you must first activate it.
+
+## Getting ready
+
+The best way to experiment with the options discussed in this section is to log in to your Prime account twice:
+
+- Once as an administrator
+- Once as a learner
+
+To be able to log in twice to the same platform, you can use two different browsers. You need to log in as an administrator using one browser and as a learner using the second browser. If you don't have access to multiple browsers, you can also open a *private* window (called an *Incognito* window in some browsers) and log in to your Prime account once in each private window of the same browser.
+
+Remember that in order to log in as a learner, you first need to log in as an administrator, then switch to the learner role using the following procedure:
+
+- 1. Use another browser or a new private window in the same browser to log in to your Captivate Prime account a second time.
+- 2. Once logged in as an administrator, click the user icon in the top right corner of the screen.
+- 3. Choose the Learner role.
+- 4. When Captivate Prime reloads, you are logged in as a learner.
+
+Make sure you have access to both the administrator and the learner experiences before moving on to the next section.
+
+## Activating the Classic experience
+
+To activate the Classic experience, use the browser window where you are logged in as an administrator and perform the following steps:
+
+- 1. Make sure you are on the administrator homepage of your Prime account.
+- 2. Click the Branding link located in the Configure section at the end of the left sidebar.
+- 3. Scroll down the Branding page until you see the Homepage Experience option.
+
+For new accounts, the default value of the Homepage Experience option is Immersive, as shown in the following screenshot.
+
+![](img/5ceaefa2a9a737206c59f0b54e1a07d0_61_0.png)
+
+Figure 2.6 – 新账户的默认 Homepage Experience 是 Immersive 体验
+
+If you use an older account, the Homepage Experience may already be set to Classic. In this case, you don’t have to perform the remaining actions of this section.
+
+- 4. Click the Edit link associated with the Homepage Experience option. It is situated on the right-hand side of the screen.
+- 5. Change the Homepage Experience from Immersive to Classic. Note that this immediately changes the options available further down the page.
+- 6. Click the Save button located in the bottom right corner of the page.
+
+Captivate Prime should display a quick message acknowledging that the new options have been successfully saved. You can now switch to the browser window where you are logged in as a learner.
+
+- 7. Refresh the browser window where you are logged in as a learner.
+
+After the window refreshes, the older Classic experience is displayed. It should be similar to the following screenshot.
+
+![](img/5ceaefa2a9a737206c59f0b54e1a07d0_62_0.png)
+
+Figure 2.7 – 屏幕上显示较旧的 Classic 体验
+
+Now that the Classic experience has been activated, let's take a closer look at it.
+
+## Browsing the Classic experience as a learner
+
+In this section, you will simply take a look at the Classic learner experience, so you need to use the browser window in which you are logged in as a learner. While browsing the Classic experience, keep in mind that your new Prime trial account is currently completely empty: no custom training material has been uploaded, no user has been defined, and no activity has taken place on your Prime account yet.
+
+Just like the admin experience, the learner homepage is divided into three main parts. The header across the top of the page, a sidebar on the left of the interface and the main content area in the middle:
+
+- 1. Before going any further, take some time to reduce the width of your browser window.
+
+You should notice that the Classic user experience does not properly resize when the width of the browser window changes. The Classic user experience is *not* responsive. This means that it is designed for the wider screens of desktop/laptop computers, but not for the narrow screens of tablets and smartphones. A native mobile application (iOS and Android) is available for learners wanting to take their Prime-hosted courses on their mobile device. Using the mobile app is covered in more details in *Chapter 7, Reviewing the Learner Experience.*
+
+- 2. Make sure you maximize your browser window before continuing.
+
+- 3. Click the hamburger icon (the icon with the three horizontal bars) located in the top left corner of the screen.
+
+This action extends the menu available in the left sidebar. Take a good note of the available items and their associated icons. Make sure you are on the **Home** page before moving on.
+
+- 4. Scroll the learner's homepage from top to bottom. Pay close attention to the various sections available.
+
+Each section is a widget that is designed to display specific information. Let's discuss the main widgets in more detail:
+
+**Welcome and announcements** – This is the first visible widget at the very top of the page. It currently displays a nice welcome message. This widget is meant to display various types of announcements created by the platform administrator. You will learn more about messaging and announcements in *Chapter 15, Working With Messages and Announcements.*
+
+**My Learning** - This widget displays some statistics and provides quick access to all pending activities of the logged-in learner. It is currently empty because the learner is not enrolled for any courses yet, but that will change very soon! There are several ways to enroll learners to courses. These will be discussed in detail in *Chapter 6, Enrolling Learners to Courses.*
+
+**Recommended Learning** – This widget displays the courses that the system recommends to the learner. These recommendations are based on learner data such as skills achieved, profile information, or peers’ achievements, and is powered by the **Adobe Sensei** artificial intelligence. You will learn more about the AI-powered feature of Prime in *Chapter 13, AI-Powered Recommendations for Learners.*
+
+**Learning Calendar** – This widget proposes a chronological view of all upcoming learning events such as submission deadlines, live or virtual classes in which the user is registered, and so on. Unfortunately, this calendar does not natively integrate with a learner's work/email calendar. Take some time to explore the other widgets present on the page.
+
+- 5. When ready, click the **Browse the Catalog** link at the bottom of the **My Learning** widget. You can also use the **Catalog** icon of the left sidebar (it is the third icon from the top).
+
+This action takes you to the default learning catalog. Notice that a handful of courses are already available in the catalog. These are the default courses available in any new Prime account. You can use them to test various aspects of the Prime platform without spending time creating and uploading your own content. Even though you can delete these default sample courses, make sure you keep them active for the remaining exercises of this book.
+
+Click any course card in order to view that course's content. You can also hover over the bottom area of a course card and click the **View Course** link. This action takes you to that course's homepage.
+
+- 6. Click the **Enroll** button located in the top right area of the page to enroll on that course.
+
+This action opens the course-taking experience called **fluidic player**. The Fluidic player is where the course content is actually delivered. You will learn more about fluidic player and the overall learner experience in *Chapter 7, Reviewing the Learner Experience*, but, for now, let's close the fluidic player and return to the learner homepage.
+
+- 7. Click the close icon located in the top right corner of the fluidic player. This takes you back to the course homepage.
+
+- 8. From there, click the **Home** icon at the top of the left sidebar. You can also click the account name or the logo in the top left corner of the screen.

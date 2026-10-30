@@ -1,0 +1,8 @@
+# 9
+Configuring and Using Feedback
+
+Thanks to the work done in the previous chapters, there is a lot of activity going on in your Captivate Prime account. Learners are taking courses and sending enrollment requests to their managers, managers are reviewing enrollment requests and enrolling their team members in courses, instructors are busy teaching classes and reviewing learners' submissions, authors are constantly updating modules and creating new courses, and so on. Everything seems to be going well in the best of all worlds.
+
+But is this really the case? Are learners enjoying the courses? Are they actually acquiring new skills? How effective is the learning? Are managers satisfied with the behavioral changes and productivity gains of their team members after training? Is the organization seeing any return on investment after implementing Adobe Captivate Prime LMS? The truth is... you don't know!
+
+As the enterprise LMS of choice, Adobe Captivate Prime understands that such insight is critical to your organization. That's why the Adobe Captivate Prime team has built extensive, state-of-the-art feedback and reporting capabilities into the platform. This allows stakeholders to measure the current state of learning in the organization, assess the effectiveness of the learning and development efforts, monitor the level of compliance within the organization, identify areas for improvement, continually reshape the organization's learning and development strategy, and assess return on investment.

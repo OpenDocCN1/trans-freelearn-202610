@@ -1,0 +1,7 @@
+Given the complexity of maintaining an up-to-date user directory, it makes little sense to duplicate all this data in Captivate Prime. That's why Captivate Prime provides a large number of connectors that allow you to integrate the LMS with any directory solution your organization uses.
+
+Captivate Prime is designed to authenticate users through an external **Single Sign-On (SSO)** provider. This can be the SSO provider of your organization or Adobe's own SSO solution, also known as Adobe ID. The only exception to this general rule is the possibility for external users to use a Captivate Prime ID to authenticate to the platform.
+
+Finally, Captivate Prime adopts a role-based approach to authorization. Six roles are automatically defined by Captivate Prime: **Administrator**, **Author**, **Integration Admin**, **Instructor**, **Manager**, and **Learner**. However, you can create your own custom roles to address a very wide range of complex use cases.
+
+Now that all of these ingredients are in place, it is possible to start enrolling learners in courses. Captivate Prime offers many options for this purpose, addressing numerous instructional design strategies and business requirements. This is what you will review in the next chapter.
