@@ -1,0 +1,22 @@
+reviews:
+- 'no': 6054
+  overturn_probability: 0.2
+  alternative: 若不分章，这一行最可能是章节编号的孤立占位行，真正的章标题在下一行（## Enhancing Productivity with Plugins）
+  counter_evidence:
+  - 该行只有'## 9'，没有标题文字，单独不构成有语义的章节标题，可能只是标题编号与正文标题分行的排版残留
+  - 紧随其后的6056行'## Enhancing Productivity with Plugins'才是完整的章标题，若6054已分章，会导致同一章节出现两个连续标题
+  keep_split: true
+- 'no': 6459
+  overturn_probability: 0.1
+  alternative: 若不分章，这行最可能是正文中某个小节的标题（但实际是章标题）
+  counter_evidence:
+  - 该行虽然格式像章标题，但前面6453行'下一章将进一步介绍如何提升 Revit 的性能'是过渡句，说明新章即将开始，并非误判
+  - 上下文没有更高层级的'第 X 部分'，所以'## 10 提升性能'只能解读为全书最高层级的大章标题，而不是子节
+  keep_split: true
+- 'no': 7126
+  overturn_probability: 0.15
+  alternative: 若不分章，这行最可能是书末索引的标题，属于后置辅助内容而非正文章节
+  counter_evidence:
+  - 索引通常不包含正文内容，只是关键词页码列表，语义上不具备正文章节的统领性
+  - 但规则明确要求'文末索引也划分为一章'，因此原判断符合规则，推翻理由不充分
+  keep_split: true

@@ -1,0 +1,3343 @@
+- "# 提升 BIM 项目的 Autodesk Revit 生产力：使用 Revit 工作流提高 BIM 项目生产力和效率的实用指南\n\nFabio Roberti:\n\
+  \nTo my wife Lucie and my daughters Evelyn and Hellen for their unbounded support\
+  \ and love while I was writing the book. Thank you to my parents for the love and\
+  \ education. I also would like to thank Packt Publishing for the opportunity to\
+  \ write this book.\n\nDecio Ferreira:\n\nFirst, I would like to dedicate this book\
+  \ to my wife Maria Joao Pinto and to my big \"A\" (Andre) and SMALL \"a\" (Afonso)\
+  \ for their support, guidance, inspiration and love – this is for YOU. No less important\
+  \ are all my friends, colleagues, students, readers, and followers for the continuous\
+  \ questions, feedback, ideas, problems, and shares that helped shaping my career.\
+  \ A special THANK YOU to my parents for everything that I am. And I would like to\
+  \ express my gratitude to the entire team at Packt Publishing for this opportunity\
+  \ and for their support and collaboration.\n\n## Contributors\n\n### About the authors\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_4_0.png)\n\n**Fabio Roberti**\n\n**Fabio\
+  \ Roberti** is a Regional Practice Technology Leader (EMEA) and Associate at HKS\
+  \ Architects, where he develops and implements the digital strategy to consolidate\
+  \ processes and workflows to enhance project deliverables.\n\nHe supports BIM processes\
+  \ in innovative ways to improve technology adoption with a thorough understanding\
+  \ of British Standards and the ISO 19650 framework and has many years of experience\
+  \ using Revit across all design stages.\n\nHe holds a Master's degree in Architecture,\
+  \ the Autodesk Revit Architecture Professional Certificate, and a BIM Level 2 Certificate\
+  \ from BRE Academy. Fabio has presented at multiple conferences, including Digital\
+  \ Construction Week and Autodesk University in London and Las Vegas.\n\nHis passions\
+  \ for digital technology and teaching others new skills helped him achieve his company's\
+  \ objectives and support many colleagues over the years. Besides BIM excellence,\
+  \ Fabio is interested in the rapidly advancing artificial intelligence sector, programming,\
+  \ and technologies that support superior construction deliverables.\n\nLinkedIn\
+  \ Profile: linkedin.com/in/froberti\n\nTwitter: @F_Roberti_\n\n![](img/1961add582dd4a589b2eac3dda140e38_5_0.png)\n\
+  \n**Decio Ferreira**\n\n**Decio Ferreira**, with over 20 years of professional experience\
+  \ as an Architect, is a BIM and Design Systems BIM Coordinator at Foster+Partners,\
+  \ where he is responsible alongside with his team for developing and implementing\
+  \ standards, methods, and procedures across the practice. He is a strong, committed\
+  \ individual who thrives when developing and researching BIM strategies, workflows,\
+  \ and approaches to improve what he believes to be the most important: collaboration.\n\
+  \nHe holds three BIM certifications: BIM Level 2 Fundamentals and BIM Level 2 BS1192-2\
+  \ Project Information Manager and Task Information Management, both from BRE Academy,\
+  \ and BS EN ISO 19650-3:2020 from BSI, both in London. In terms of software, he\
+  \ has worked with Revit since 2000 and holds Autodesk Revit Architectural, Structural\
+  \ and Mechanical Professional Certificates (since version 2011), along with an AutoCAD\
+  \ Professional Certificate (since version 2005), and is an Autodesk Certified trainer.\n\
+  \nHe lectures at several academic institutions as a guest lecturer and actively\
+  \ lectures at NossoBIM on the International Master BIM Manager program and also\
+  \ at Polytechnic Institute ISEP (Instituto Superior de Engenharia do Porto), providing\
+  \ a high level of expertise in the BIM software training field.\n\nDecio has presented\
+  \ at multiple conferences, including at Autodesk University in Las Vegas and Sao\
+  \ Paulo. Decio is passionate about photography, planes, and traveling, which allows\
+  \ him to contact, learn about, and understand new cultures and different lifestyles.\
+  \ For him, there is nothing more important than his family!\n\nLinkedIn Profile:\
+  \ `linkedin.com/in/deciosantosferreira`\n\nTwitter: `@decioferreira`\n\n### About\
+  \ the reviewer\n\nWith a strong focus on quality, **Nuno Araujo Nogueira** – a Portuguese\
+  \ architect, born in 1978 – has a keen interest in the science of building technology,\
+  \ including standards, workflows, and BIM strategies. A BIM manager with over 15\
+  \ years' experience managing projects in Portugal, Kuwait, and Egypt ranging up\
+  \ to $1Bn in value, and leading multicultural teams locally and remotely.\n\nAlthough\
+  \ his main working tool is currently Navisworks, he has been using Revit since 2007,\
+  \ which he uses exclusively to develop complete projects.\n\nCurrently, he is the\
+  \ PMC BIM manager at the largest archaeological museum in the world – the Grand\
+  \ Egyptian Museum. Previously, he was the Main Contractor BIM Manager of an iconic\
+  \ supertall building in Kuwait – the National Bank of Kuwait Headquarters.\n\n##\
+  \ 前言\n\nRevit 使建筑师、设计师、工程师、建模人员、**建筑信息模型 (BIM)** 协调员和 BIM 经理能够创建 BIM 模型并分析智能数据，以改进设计和施工。BIM\
+  \ 推动了工程和建筑行业的转型，在传统 2D CAD 流程的基础上提供了诸多优势，其方法论以信息为核心，提高了生产力。本书采用实践导向的方法来有效实施这一新方法论。\n\
+  \n本书以分步解释基本概念和实践例子的方式，首先讲解了 Revit 中的生产力原则和 BIM 项目的数据管理。随后，您将了解启动 BIM 项目所需的主要 BIM\
+  \ 文档，包括合同、**信息交换要求 (EIR)** 和 **BIM 执行计划 (BEP/BXP)**。之后，您将学习如何创建 Revit 模板、启动 Revit\
+  \ 项目，并探索 Revit 的核心功能以提高生产力。在打好基础后，您将学习 Revit 插件，并使用 Dynamo 进行可视化编程，使用 Power BI 分析\
+  \ BIM 信息。\n\n通过阅读本书，您将深入了解如何提高 Revit 中的生产力，并能够在项目中应用多种工作流来高效管理 BIM。\n\n## 本书适合谁阅读\n\
+  \n本书适合有兴趣学习 Revit 最佳实践的建筑师、设计师、工程师、建模人员、BIM 协调员和 BIM 经理。提高 BIM 项目中 Autodesk Revit\
+  \ 的生产力，将帮助您探索一种将信息管理和研究相结合的方法，以在 Revit 工作时获得高质量输入。\n\n本书也面向希望在 Revit 中优化日常工作、用更短时间产出更多成果的人们。这种实践性的效率提升方法配有实用的讲解，将让您的生产力实现阶跃式提升。\n\
+  \n## 本书涵盖内容\n\n第 1 章“Revit 生产力简介”解释了如何结合信息管理原则和最佳 Revit 实践来提高生产力。本章还提供了 Revit 的推荐设置和\
+  \ BIM 实施概述。\n\n第 2 章“项目数据管理”介绍了启动 BIM 项目时的关键数据，并概述了委任、BIM 文档、项目功能、资产管理以及制定启动 BIM\
+  \ 项目的行动计划。\n\n第 3 章“Revit 模板和标准”解释了如何创建 Revit 模板和管理图形标准。\n\n第 4 章“高效启动 Revit 项目”概述了\
+  \ Revit 坐标系，并解释了如何启动 Revit 项目和设置项目坐标。\n\n第 5 章“Revit 核心功能”解释了如何通过明细表管理、使用关键注释进行规格说明、设计选项、Revit\
+  \ 阶段、范围框、工作共享和出图最佳实践来提高 Revit 中的生产力。\n\n第 6 章“使用 Dynamo 进行可视化编程”提供了 Dynamo 的基础知识，并展示了掌握该应用程序以提高\
+  \ Revit 效率的重要性。\n\n第 7 章“使用 Power BI 进行仪表板分析”解释了从 Revit 导出数据并导入到 Power BI 以及使用 Power\
+  \ BI 分析数据的过程。\n\n第 8 章“与顾问协作”探讨了与顾问协作的策略，并提供了有关增强 Revit 协作的 Revit 工具信息，例如复制/监视、协调检查和共享视图。\n\
+  \n第 9 章“使用插件提高生产力”教授如何管理 Revit 插件，并发现最常用的 Revit 插件以提高项目中的生产力。\n\n第 10 章“提升性能”探讨了提高\
+  \ Revit 性能的其他信息，包括建模最佳实践、内容管理、优化 Revit 性能和 BIM 360 最佳实践。\n\n## 如何充分利用本书\n\n本书大部分章节要求您使用\
+  \ Revit 2021 或更高版本。本书中的信息适用于任何未来的 Revit 版本，因为其中解释的许多生产力原则并不基于特定 Revit 版本。\n\n某些章节还要求您使用以下软件：AutoCAD、Dynamo\
+  \ BIM、Microsoft Excel 和 Microsoft Power BI。\n\n各章按特定的生产力提升领域划分，您可以根据需要阅读本书。一旦开始阅读某一章，您会发现其组织方式便于您理解和实践所提供的内容。\n\
+  \n本书旨在通过实用的讲解为您提供提升效率的实践方法，这将使您的生产力实现阶跃式提升。\n\n阅读本书不需要任何先备知识或技能。不过，对 Revit 有基本了解会有所帮助。\n\
+  \n## 下载示例文件\n\n您可以从 GitHub 下载本书的示例文件：`https://github.com/PacktPublishing/-Increasing-Autodesk-Revit-Productivity-for-BIM-Projects`。如果有更新，会放在现有的\
+  \ GitHub 仓库中。\n\n我们还有其他来自丰富书籍和视频目录的代码包，可在 `https://github.com/PacktPublishing/`\
+  \ 获取。去看看吧！\n\n## 下载彩色图片\n\n我们还提供一份包含本书截图/图表彩色图片的 PDF 文件。您可以在此下载：`https://static.packt-cdn.com/downloads/9781800566804_ColorImages.pdf`。\n\
+  \n## 使用的约定\n\n本书通篇使用了许多文本约定。\n\n**文本中的代码：** 表示文本中的代码词、数据库表名、文件夹名称、文件名、文件扩展名、路径名、虚拟\
+  \ URL、用户输入和 Twitter 句柄。例如：“输入参数名称 `Area Percentage`。”\n\n**粗体：** 表示新术语、重要单词或屏幕上显示的单词。例如，菜单或对话框中的文字会以这种形式出现在文本中。例如：“在\
+  \ **排序/分组** 选项卡中，选择 **排序方式：标高**。”\n\n> **提示或重要说明**\n> \n> 以此形式显示。\n\n\n\n在阅读本书时，您会看到二维码，方便您访问相关网站。您可以使用移动设备的相机扫描二维码，打开网站链接或查看图片。\n\
+  \n二维码示例如下：\n\n![](img/1961add582dd4a589b2eac3dda140e38_16_0.png)\n\n## 联系我们\n\n\
+  我们始终欢迎读者的反馈。\n\n**一般反馈：** 如果您对本书的任何方面有疑问，请在邮件主题中注明书名，并发送邮件至 customercare@packtpub.com。\n\
+  \n**勘误：** 尽管我们已竭尽全力确保内容的准确性，但错误仍可能发生。如果您在本书中发现错误，我们将不胜感激，请访问 www.packtpub.com/support/errata，选择您的书籍，点击“勘误提交表”链接，并填写详细信息。\n\
+  \n**盗版：** 如果您在网上发现我们作品以任何形式出现的非法副本，我们将不胜感激，请提供位置地址或网站名称。请通过 copyright@packt.com\
+  \ 联系我们，并附上材料链接。\n\n**如果您有兴趣成为作者：** 如果您在某方面有专长，并且有兴趣撰写或参与编写一本书，请访问 authors.packtpub.com。\n\
+  \n## 评论\n\n请留下评论。在您阅读并使用本书后，何不在您购买本书的网站上留下评论呢？潜在读者可以看到并使用您的公正意见来做出购买决定，我们 Packt\
+  \ 可以了解您对我们产品的看法，我们的作者也能看到您对他们图书的反馈。谢谢！\n\n有关 Packt 的更多信息，请访问 packt.com。\n"
+- '## 第 1 部分：通过数据管理和模板提升 Revit 工作效率
+
+
+  本部分包含以下章节：
+
+
+  - *第 1 章，Revit 工作效率入门*
+
+  - *第 2 章，项目数据管理*
+
+  - *第 3 章，Revit 模板与标准*
+
+
+  在这些章节中，您将了解 Revit 工作效率的基本概念，以及如何以正确的信息和良好的 Revit 模板启动 Revit 项目的最佳实践。
+
+
+  将探讨以下主题：
+
+
+  - 结合信息管理原则与 Revit 最佳实践
+
+  - 推荐的 Revit 设置
+
+  - BIM 实施概述
+
+  - 启动 BIM 项目的关键数据
+
+  - 委任与 BIM 文档概述
+
+  - 制定启动 BIM 项目的行动计划
+
+  - 创建 Revit 模板
+
+  - 管理图形标准
+
+  '
+- "## 1 Revit 工作效率入门\n\n我们生活在信息时代（也称为数字时代），数字化转型正在通过鼓励人们快速采用新技术和新流程来改变企业和个人。\n\nRevit\
+  \ 是一种用于**建筑信息建模**（**BIM**）的创作软件工具；在这里，最有价值的资产是您添加到 Revit 模型中的信息。\n\n信息为王；然而，管理信息和知识才是力量！\n\
+  \n您可能已经熟悉 Revit，但信息管理原则与 Revit 最佳实践的结合可以形成强大的组合，从而提高您在 BIM 项目中的工作效率。\n\n本章将为您提供如何提高\
+  \ Revit 工作效率的知识，并提升您在处理从小型到大型 BIM 项目时的表现。\n\n我们还将解释为需要执行的任务选择正确工具的重要性，介绍 BIM 实施的最佳实践，并提供如何为公司制定培训方案的策略。\n\
+  \n在本章中，我们将涵盖以下主题：\n\n- 您应该了解的 Revit 工作效率知识\n- 选择正确的工具\n- Revit 实施概述\n- Revit 培训方案\n\
+  \n### 您应该了解的 Revit 工作效率知识\n\n在企业发展中，工作效率是衡量公司绩效的重要因素，而提高工作效率就是在预定的时间范围内更聪明地工作，以满足项目截止日期。\n\
+  \n定义工作效率并更好地理解在日常多任务处理和使用 Autodesk Revit 时如何衡量它是至关重要的。\n\n工作效率可以定义为一个流程，用于根据效率衡量产出，并将投入转化为产出。该流程适用于机器、工厂或个人，其结果可以帮助公司做出基于运营和投资的决策。\n\
+  \n您可以使用多种方法来衡量工作效率；基本公式是产出除以投入，即工作效率：\n\n产出 ÷ 投入 = 工作效率\n\n用于衡量工作效率的方法取决于您公司所处的行业，下面我们列举了几个示例。\n\
+  \n以下是一些工作效率衡量方法：\n\n- 时间管理\n- 员工完成的任务\n- 个人绩效\n- 产品制造比率\n\n我们将探讨时间管理方法，以提高使用 Revit\
+  \ 时的工作效率和绩效。您可以将这些原则应用于任何涉及数字生产的任务中。\n\n在提高工作效率方面，关键因素是在开始使用 Revit 之前，拥有高质量且精确的投入来生成您的模型和图纸。\n\
+  \n您可能在使用 Revit 完成特定任务时速度很快，但如果没有高质量的投入，您可能会面临返工的风险，这将降低整体工作效率。\n\n我们用于提高 Revit 工作效率的时间管理方法基于高质量的数字生产投入。该方法将使您在\
+  \ Revit 中更加高效，并成为能赶上每一个项目截止日期的团队合作者。\n\n该方法的第一步是研究高质量的投入。这些投入可以来自您的公司、同事、项目中的多家公司，以及最终的主要利益相关者——客户。\n\
+  \n一旦您确定了高质量的投入，就可以开始在 Revit 中工作，生成您的模型和图纸。以下示例将帮助我们演示这一流程。\n\n### 示例 1：设置 Revit\
+  \ 项目\n\n在此示例中，**BIM 执行计划（BEP）** 定义了质量投入。然而，设置项目所需的信息往往并不完全可用，您需要研究高质量投入。\n\n此示例的质量投入包括命名标准、项目标准、协作标准、测量策略、体量策略、软件版本、交换格式、信息需求等级、BIM\
+  \ 交付物、**通用数据环境（CDE）**、项目位置、坐标、标高和轴网。\n\n项目编号的变更是许多项目中常见的问题，而使用此方法，您需要在设置 Revit 文件之前向项目负责人索取此信息，并获得客户的确认。项目编号应在\
+  \ BEP 中明确规定并经客户批准，以避免在设计阶段和施工阶段发生任何变更。\n\n管理信息以更聪明地工作是该方法的基本组成部分，如果您将其与 Revit 最佳实践相结合，它将把您带到工作效率的下一个层次。\n\
+  \n项目编号的一个简单变更可能会影响多个不同领域同事的工作效率，例如文档管理员、信息经理以及商务和法律部门。\n\n请注意，先前图纸的旧信息将受到影响；由于项目编号变更，它将与新图纸失去关联。\n\
+  \n在此示例中，您可以看到在正确的时间拥有正确信息的重要性，并且这些信息需要由主要利益相关者或客户确认。\n\n### 示例 2：定义房间编号系统\n\n在此示例中，客户需要批准房间编号系统，该系统还需要与设施管理系统保持一致，以保证数据的持续流通。\n\
+  \n通过使用此方法，您可以降低房间编号系统将来被更改的可能性，这最终会提高您和团队的工作效率。\n\n如果您熟悉 Dynamo 这一 Revit 的可视化编程工具，您可能会建议使用\
+  \ Dynamo 快速重命名项目中的所有房间。是的，Dynamo 可以快速重命名房间。我们的方法遵循“第一次就做对”的原则，因此您无需返工，也无需使用 Dynamo\
+  \ 重命名房间，因为这在流程开始时就已经达成一致。\n\n在此示例中，您可以通过避免重复工作和浪费时间在那些项目初期就能轻松达成一致的任务上来提高工作效率。\n\
+  \n### 示例 3：培训与工作效率\n\n有些项目启动时，设计团队缺乏特定软件所需的知识，这会拖慢工作效率。\n\nRevit 培训对于提高工作效率至关重要，但提供或接受培训的时间需要合理安排。\n\
+  \n如果培训在项目开始前几天进行，设计师将受益匪浅，因为计算知识需要保持新鲜。否则，设计师在一段时间后只会记住要点。\n\n培训师需要了解项目何时开始的质量信息，以便确定提供培训的最佳时间框架。\n\
+  \n通过使用此流程，Revit 培训师会发现要求重新参加培训的请求减少，这将证明培训的有效性以及他们在提供培训方面的工作效率。\n\nRevit 是一款直观的软件，设计师可以快速学习基本命令，这有利于公司切换平台或为新员工提供培训的战略。\n\
+  \n\n\n\n\n以下图表显示了投资培训以实现快速项目实施的好处，并且它将反映实现**投资回报率 (ROI)** 所需时间量的减少。总体而言，这将导致 Revit\
+  \ 和 BIM 中团队生产力的提高：\n\n![](img/1961add582dd4a589b2eac3dda140e38_23_0.png)\n\n图 1.1\
+  \ – 培训投资\n\n另一个常见问题是团队成员没有时间参加 Revit 培训，或他们决定在实际项目中学习 Revit。此过程会让你产生这些团队成员已准备好在\
+  \ Revit 中工作的错误感觉，并且达到最佳生产力水平所需的时间会更长。\n\n在这种情况下，培训师需要提供短时段的培训，以提高他们的 Revit 知识并避免项目中的错误。\n\
+  \n在此示例中，在正确的时间提供培训可提高生产力并减少达到 ROI 的时间。\n\n## 示例 4：Revit 与 2D CAD – 生产力\n\nBIM 在**建筑、工程、施工、业主运营商\
+  \ (AECOO)** 行业中推动了变革，其中信息是提高生产力的方法核心，与传统的 2D CAD 流程相比可带来诸多益处。\n\nRevit 以信息为中心，它与传统\
+  \ 2D CAD 相比具有多项优势，我们可以轻松衡量生产力的显著提升。\n\nBIM 平台，例如 Revit，为我们提供了联合信息，这意味着可用于多种用途的高质量数据，这是我们使用高质量数据工作的方法的一部分。\n\
+  \n当然，这一切都取决于设计师使用正确的输入信息并精确地进行 3D 建模以优化分析效益。\n\n在此示例中，我们可以理解从 2D CAD 切换到 Revit 时生产力的提升，但高质量信息对于提高生产力至关重要。\n\
+  \n## 示例 5：在 Revit 中规划你的工作\n\n时间管理原则侧重于在开始任务之前规划工作的过程，无论你独自在 Revit 中工作还是在大型设计团队中工作，区别不大。\n\
+  \n如果你在建模前规划任务并搜索高质量信息以避免任何返工，你的生产力将会提高。\n\n在此过程中，你可以选择对任务影响大的活动，并考虑可以推迟的其他活动。\n\n\
+  以下图表显示了优先处理对项目影响大的任务的过程：\n\n![](img/1961add582dd4a589b2eac3dda140e38_25_0.png)\n\
+  \n图 1.2 – 工作量与影响\n\n对于此示例，我们将利用一个流程来创建门表，该表包含许多需要检查和收集高质量信息的活动。\n\n### 高影响\n\n执行以下操作：\n\
+  \n- 使用已获客户批准的门编号系统。\n- 列出防火门的等级。\n- 决定门表中将包含哪些字段。\n- 检查结构开口。\n- 检查门参数是否报告正确的数据。\n\
+  \n计划以下内容：\n\n- 检查门框尺寸是否正确。\n- 检查族名称是否与项目标准相同。\n\n### 低影响\n\n考虑以下内容：\n\n- 根据项目阶段，门材料可以是通用的。\n\
+  - 根据项目阶段，检查门公差。\n\n放弃以下内容：\n\n- 根据项目阶段和工作范围，团队成员可以推迟选择五金件套装。\n- 检查门板与地板之间的间隙。\n\n\
+  在此示例中，我们可以在 Revit 建模过程中使用时间管理原则来提高生产力并定义对项目影响大的优先级。\n\n遵循我们的方法论，带有高质量信息的时间管理流程将提供工作效率的飞跃。\n\
+  \n我们已完成示例，以定义研究的重要性并在执行任务前获取高质量信息。我们已学习如何避免仅基于即时可用数据进行操作，而这些数据可能不可靠或不完整。\n\nRevit\
+  \ 中还有其他技术因素可以帮助你提高生产力并使工作更高效。让我们在下一节中探索它们。\n\n## 计算机维护\n\n为了获得最佳的 Revit 性能，进行一些维护工作是必不可少的。我们建议你每两周执行以下步骤。\n\
+  \n### Revit 本地文件\n\n在工作共享环境中工作时，Revit 会在用户的计算机上的 **Documents** 文件夹中自动创建本地文件。此过程会使\
+  \ Revit 本地文件（即进行中的文件）成为 Revit 中央文件的副本，并在文件名中加上你的名字。\n\n此过程的目标是删除本地文件，以便为 C:\\ 驱动器提供更多空间，从而提高性能：\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_27_0.png)\n\n图 1.3 – Revit 本地文件\n\n这些文件和文件夹位置在\
+  \ Revit 选项下定义：\n\n1. 在左上角，单击 File | Options：\n\n![](img/1961add582dd4a589b2eac3dda140e38_27_1.png)\n\
+  \n图 1.4 – Revit 选项\n\n为了改进此过程，建议你创建一个名为 Revit_20XX_Local_Files 的文件夹（其中 20XX 为 Revit\
+  \ 版本），这样 Revit 文件就不会与 Documents 文件夹中位于的其他文件混合：\n\n```\nC:\\Users\\<username>\\Documents\\\
+  Revit_20XX_Local_Files\\\n```\n\n用户文件的默认路径：\n\nC:\\Users\\username\\Documents\\\
+  Revit_2021_Local_Files\n\n图 1.6 – Revit 本地文件的路径\n\n> **提示**\n> 位置可能会根据你设置的 Revit\
+  \ 选项而有所不同。此信息将保存在 Revit.ini 文件中，并用于未来的 Revit 会话。\n\n### 临时 Windows 文件\n\n用户使用的应用程序通常会经常创建临时文件。因此，用户应定期删除它们。\n\
+  \n在运行此过程之前，请确保所有 Revit 会话均已关闭。\n\n要访问此文件夹，请执行以下步骤：\n\n1. 打开 **Windows 资源管理器**。\n\
+  2. 在顶部栏地址中，输入 `%temp%` 并按 Enter：\n3. 选择所有文件并单击 **删除**。如果出现警告窗口，请忽略所有只读文件（这些文件正被应用程序使用，当前无法删除）。\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_29_0.png)\n\n图 1.7 – 临时 Windows 文件位置\n\
+  \n### 磁盘清理\n\n用户还应运行的另一项任务是 **磁盘清理** 工具。此工具还会删除不再需要的文件。\n\n要访问此工具，请执行以下步骤：\n\n1.\
+  \ 在 Windows 搜索栏中，输入 `disk cleanup`。\n2. 从列表中选择你需要的工具：\n\n![](img/1961add582dd4a589b2eac3dda140e38_30_0.png)\n\
+  \n图 1.8 – 磁盘清理\n\n3. 从列表中选择要删除的文件：\n\n![](img/1961add582dd4a589b2eac3dda140e38_31_0.png)\n\
+  \n图 1.9 – 清理系统文件\n\n4. 单击 **清理系统文件** 按钮开始删除过程。\n\n5. 过程完成后，单击 **确定**。\n\n### 重新启动\
+  \ Revit\n\n如果用户在执行高需求任务（例如导出、打印、渲染或升级模型）后遇到性能下降，Revit 应重新启动。\n\n这将允许删除内存和硬盘上缓存的所有数据。\n\
+  \n### 重新启动 Windows\n\n继我们之前提到的重新启动 Revit 的内容之后，对 Windows 也应做同样的处理。此建议取决于用户处理了多少应用程序。\n\
+  \n> 提示\n> 我们建议用户每天重新启动计算机，或至少每隔一天重新启动一次，以便系统清理、清除临时文件并自行更新。\n\n### 始终使用相同的 Revit\
+  \ 更新版本\n\nAutodesk 经常部署带有新功能和错误修复的新更新版本。\n\n确保在与其他团队成员一起进行项目工作时，每个人都使用相同的更新版本以避免任何潜在的软件问题，这一点至关重要。\n\
+  \n> 提示\n> 在同一 Revit 版本中 – 例如 Revit 2021 – 我们可以有不同的更新版本，例如以下：\n> Revit 2021.1.1 –\
+  \ 发布日期：2020 年 9 月 18 日\n> Revit 2021.1 – 发布日期：2020 年 7 月 22 日\n\n要确认你安装了哪个 Revit\
+  \ 更新版本，请启动 Revit。\n\nRevit 打开后，请按照以下分步指南操作：\n\n1. 在右上角，单击靠近 Help 菜单的小深色箭头：\n\n![](img/1961add582dd4a589b2eac3dda140e38_32_0.png)\n\
+  \n图 1.10 – 访问 Revit 帮助\n\n\n\n\n\n你可以在以下位置找到并下载最新更新：\n\n- Autodesk 管理账户门户：\n\n![](img/1961add582dd4a589b2eac3dda140e38_34_0.png)\n\
+  \n图 1.13 – Autodesk 管理账户门户\n\n- Autodesk 桌面应用：\n\n![](img/1961add582dd4a589b2eac3dda140e38_34_1.png)\n\
+  \n图 1.14 – Autodesk 桌面应用\n\n> 提示\n> 不建议在新版本发布后立即更新 Revit 版本。\n\n## Revit 的推荐设置\n\
+  \nRevit 在计算机资源使用方面要求很高。强烈建议将设置保持在尽可能低的需求水平。我们只会强调其中一些建议，但其他建议也可能适用，具体取决于所使用的专业领域，甚至取决于要执行的任务。\n\
+  \n以下内容可通过 Revit **选项按钮**访问：\n\n![](img/1961add582dd4a589b2eac3dda140e38_35_0.png)\n\
+  \n> 提示\n> 在浏览视图时、用户遇到图形相关问题时，或此功能与显卡不兼容时，应禁用此 *硬件加速* 功能。\n\n## 文件大小\n\nRevit 文件大小不仅取决于项目大小，还取决于许多其他因素，例如几何复杂性、导入的文件格式、导入族的数量以及任何警告。\n\
+  \n每周审核模型将有助于保持模型处于可工作且健康的状态，而不会影响或降低 Revit 性能。\n\n作为参考，并且取决于您计算机的规格，Revit 模型不应大于\
+  \ 300 MB。\n\n如果文件需要更大，用户必须决定是否应将其作为单个模型/卷保留，或是否应审查模型分离和模型卷分解。\n\n对于联合模型（即包含多个链接的文件），推荐的最大文件大小约为\
+  \ 500 MB。\n\n> 提示\n> 作为良好实践，应清理项目和族文件，以通过删除任何不需要或未使用的元素和设置来减小文件大小。\n\n## 族创建\n\n\
+  族创建是性能方面的重要话题之一，因为我们开发得越复杂（例如，包含多个公式、过度建模、嵌套族、阵列、空体或参数过度约束），文件就越大。\n\n创建族时，用户应注意以下几点：\n\
+  \n- 应使用标准族而不是模型就地族（尤其是在重复使用时）。\n- 嵌套族必须限制在一定层级 – 尽可能保持在一层嵌套。\n- **排除元素选项：** 用户应使用排除成员功能进行少量排除。\n\
+  - **设计选项：** 用户应避免在设计选项中使用组。\n- **标高约束：** 用户不应将元素约束到标高（例如，墙体的顶部约束）。\n- **系统族：** 用户应避免在组中使用系统族，因为它们被约束到特定标高。当复制到不同标高时，将保留第一个标高引用，任何进一步的编辑都会变得更加复杂（请记住，我们距离参考标高越远，性能就越低）。\n\
+  - **工作集：** 在工作共享项目中，创建包含来自不同工作集元素的组时，Revit 将忽略现有工作集，并在创建组时将所有元素包含在当前工作集中 – 此工作集无法编辑。\n\
+  - **链接：** 用户不应将 Revit 链接添加到组中，因为它将被复制，从而影响性能。\n\n## 就地族\n\n就地族是用户可以在项目上下文中创建的专用族。它们不应在项目中使用，因为它们会降低性能，而标准族（即可加载族）可以涵盖大多数情况：\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_39_0.png)\n\n图 1.18 – 模型就地族\n\n如果用户创建就地族以供多次使用，他们应使用标准族（可加载族）。这是因为如果就地族被复制，Revit\
+  \ 将把这些实例视为不同的族。这将多次重复族，从而影响性能：\n\n![](img/1961add582dd4a589b2eac3dda140e38_40_0.png)\n\
+  \n图 1.19 – 重复的就地族\n\n## 阵列\n\n使用阵列复制元素时，用户应决定元素是否应保持分组或不分组，因为这也会影响性能。组应保持关联尽可能少。否则，应取消分组：\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_40_1.png)\n\n图 1.20 – 在阵列工具中创建组\n\n##\
+  \ 约束\n\n使用 **约束** 会影响模型性能。它们应在项目中谨慎使用。\n\n约束可能包括以下内容：\n\n- 几何连接约束\n- 尺寸约束\n- 锁定对齐约束\n\
+  \n使用这些约束时，请记住几乎不可能看到它们的位置，因为它们可以在任何视图中放置。\n\nRevit 在 **视图控制** 栏下方有 **显示约束** 工具，可让您通过在视图顶部添加一种“筛选器”来检查尺寸和锁定对齐约束。使用该工具时，Revit\
+  \ 会在视图周围应用石榴石边框，所有约束都将以相同颜色突出显示：\n\n![](img/1961add582dd4a589b2eac3dda140e38_41_0.png)\n\
+  \n## 使用工作共享环境时\n\n工作共享是 Revit 中的一种工作方法，允许团队成员同时在同一模型上工作：\n\n![](img/1961add582dd4a589b2eac3dda140e38_42_0.png)\n\
+  \n图 1.22 – 工作共享环境\n\n在此工作方法中，Revit 需要使用工作集来适应此类环境。\n\nRevit 中与工作共享方法相关的有几个原生工具，需要深入理解，我们将在本书的后续章节中介绍它们。\n\
+  \n工作集在此工作方法中至关重要，因为用户可以保留对元素和/或视图的所有权。通常，用户将被分配到项目的特定区域，甚至是特定的功能区域进行工作。\n\n基于此管理元素或项目部分的流程，Revit\
+  \ 允许用户不仅在打开文件时，还在视图中工作时打开/关闭工作集。因此，如果我们关闭工作集，Revit 会变得更快，因为它在模型中工作时不需要处理所有信息。\n\n\
+  可以遵循建议，但我们认为沟通是成功的关键。重要的是让所有团队成员了解设计过程中发生的事情，以及它可能如何影响模型组织甚至工作集结构。\n\n> 提示\n> 有多种工具可用于增强团队协作和沟通，例如\
+  \ Skype、Microsoft Teams、Microsoft OneNote、Microsoft Planner、Slack 等。\n\n## 打开工作共享模型\n\
+  \n打开工作共享模型时，Revit 允许用户选择应打开哪些工作集。如果关闭不需要的工作集，Revit 将更快地打开文件，从而提高性能。已关闭的工作集将不可见，因此您可以仅保留所需的信息处于打开状态。\n\
+  \n要选择用户可以打开或关闭的工作集，请按照以下步骤操作：\n\n1. 转到文件菜单，选择打开，然后单击项目。\n2. 选择要打开的 Revit 中央模型。\n\
+  3. 在 **打开** 按钮右侧，单击下拉箭头并选择 **指定…**：\n\n![](img/1961add582dd4a589b2eac3dda140e38_44_0.png)\n\
+  \n图 1.23 – 指定要打开的工作集\n\n4. 弹出 **打开工作集** 窗口。通过选择特定工作集，可以通过单击 **打开** 和/或 **关闭** 按钮按需\
+  \ **打开/关闭** 它们：\n\n\n\n![](img/1961add582dd4a589b2eac3dda140e38_45_0.png)\n\n图 1.24\
+  \ – 打开工作集窗口\n\n5. 点击 **OK**，Revit 将仅打开工作集中元素的模型。\n\n> **提示**\n>\n> 此过程可以在不关闭文件的情况下随时撤销，只需在打开和关闭的工作集之间切换即可。\n\
+  \n不仅文件会打开得更快，而且在浏览模型、打开视图，甚至与中心模型同步时，一切都比加载所有模型和工作集时更快。\n\n作为良好实践，每当设计团队在多学科项目上工作时，强烈建议为每个链接使用单独的工作集，无论是\
+  \ Revit 链接还是 CAD 链接。通过此流程，在打开文件时更容易关闭任何不需要的链接。\n\n> **提示**\n>\n> 在工作共享环境中工作时，用户**不应**双击文件打开。用户必须始终使用\
+  \ **Open** 工具来创建本地文件。\n\n## 使用已打开的工作集\n\n如果在特定视图中不需要打开所有工作集，强烈建议将其关闭，因为这也会影响视图处理。工作集在模型中打开时，可以更改其可见性。\n\
+  \n> **提示**\n>\n> 用户只有在工作集在 Revit 会话中打开时才能更改工作集的可见性。如果工作集未加载（即未打开），则需要将其切换为 **Open**。之后，可以在特定视图中编辑工作集可见性。\n\
+  \n要选择用户可以在视图中更改可见性的工作集，请按照以下步骤操作：\n\n1. 打开要更改工作集可见性的视图。\n2. 在 **Properties** 下方，点击\
+  \ **Visibility/Graphics Overrides**（也可简称为 **VV** 或 **VG**）：\n\n   ![](img/1961add582dd4a589b2eac3dda140e38_47_0.png)\n\
+  \n   图 1.25 – 可见性/图形覆盖\n\n3. 在 **Worksets** 选项卡下，按需更改 **Visibility Setting**：\n\n\
+  \   ![](img/1961add582dd4a589b2eac3dda140e38_47_1.png)\n\n   图 1.26 – 在视图中控制工作集的可见性\n\
+  \n   可用三个选项：\n\n   - **Show**：此处工作集将在当前视图中可见。\n   - **Hide**：此处工作集将在当前视图中不可见。\n\
+  \   - **Use Global Settings (Visible)**：此处工作集可见性取决于工作集是否被定义为在所有视图中可见。\n\n4. 点击 **OK**。\n\
+  \n如果某个工作集在所有模型中都已关闭，可以从 **Visibility/Graphics Overrides** 窗口中确认这一点。星号 (*) 告诉您如何将工作集切换为\
+  \ **Open**：\n\n![](img/1961add582dd4a589b2eac3dda140e38_48_0.png)\n\n图 1.27 – 已关闭的工作集\n\
+  \n## Worksharing Monitor\n\n在工作共享环境中工作时，了解谁正在文件中工作至关重要。Worksharing Monitor 将告知您以下信息：\n\
+  \n- **谁打开了模型**：取决于同时在同一文件中工作的团队成员数量，这会影响模型的性能。\n- **谁正在同步**：这会告知您谁正在同步，您可以等待此人完成该过程。\n\
+  - **谁直接在中心文件中工作**：如果有人直接在中心文件中工作，该人员需要立即关闭文件且不保存。\n\n要访问 Worksharing Monitor 工具，请按照以下步骤操作：\n\
+  \n1. 在 **Collaborate** 下，点击 **Worksharing Monitor** 工具：\n\n   ![](img/1961add582dd4a589b2eac3dda140e38_49_0.png)\n\
+  \n   图 1.28 – Worksharing Monitor 工具\n\n2. 将打开一个新窗口，如以下屏幕截图所示：\n\n   ![](img/1961add582dd4a589b2eac3dda140e38_49_1.png)\n\
+  \n   图 1.29 – 使用 Worksharing Monitor 识别模型中的用户\n\n## Splash screen\n\n通过使用 2D 视图作为启动视图，您可以在打开模型时提高性能，因为\
+  \ Revit 不需要重新生成整个项目。起始视图工具可在 Manage | Starting View 下定义：\n\n![](img/1961add582dd4a589b2eac3dda140e38_50_0.png)\n\
+  \n图 1.30 – 起始视图工具\n\n> **提示**\n>\n> 在启动屏幕中，您可以获取项目信息、模型问题日期、模型坐标和免责声明说明。\n\n总之，我们学习了\
+  \ Revit 生产率和/或研究高质量信息的重要性。通过遵循 Revit 推荐的设置，您将提高项目的效率和生产率。\n\n在下一节中，我们将学习如何选择正确的硬件规格以提高\
+  \ Revit 的性能。\n\n## 选择合适的工具\n\n生产率的另一个令人兴奋的方面是选择合适的工具来执行特定任务的过程。\n\n在概念、设计和施工阶段，设计团队有多种应用程序可供选择。在选择工具之前，我们必须考虑团队经验和培训策略。\n\
+  \n必须强调的是，BIM 并不是 Revit，Revit 只是用于创建 BIM 模型的应用程序之一；BIM 流程中有多个应用程序。\n\n以下图表显示了市场上用于管理数据和模型的某些\
+  \ BIM 应用程序的复杂性：\n\n- BIM Authoring\n\n  ![](img/1961add582dd4a589b2eac3dda140e38_51_0.png)\n\
+  \n- 3D Visualisation & VR\n\n  ![](img/1961add582dd4a589b2eac3dda140e38_51_1.png)\n\
+  \n- 3D Model Viewer - Mobile\n\n  ![](img/1961add582dd4a589b2eac3dda140e38_51_2.png)\n\
+  \n- Clash Detection - Coordination\n\n  ![](img/1961add582dd4a589b2eac3dda140e38_51_3.png)\n\
+  \n- Productivity\n\n  ![](img/1961add582dd4a589b2eac3dda140e38_51_4.png)\n\n- Construction\
+  \ Sequencing\n\n  ![](img/1961add582dd4a589b2eac3dda140e38_51_5.png)\n\n- Costing\n\
+  \n  ![](img/1961add582dd4a589b2eac3dda140e38_51_6.png)\n\n- Facilities Management\n\
+  \n  ![](img/1961add582dd4a589b2eac3dda140e38_51_7.png)\n\n图 1.31 – 多个 BIM 应用程序\n\
+  \n根据项目规模，Revit 将需要更多计算机资源来管理更大的模型，了解如何选择正确的硬件至关重要。\n\n如果您没有正确的硬件或公司未为设计团队提供最佳基础设施，生产率会直接受到影响。\n\
+  \n根据项目要求，用户需要能够理解硬件规格并为 Revit 选择最佳工作站。\n\n### Revit 最佳工作站是什么？\n\n市场上有很多工作站选项，选择\
+  \ Autodesk Revit 的最佳工作站可能具有挑战性。\n\n计算机要求需要根据用户需求定义，例如模型复杂性、渲染选项以及与多个文件协作的能力。\n\n\
+  本指南将帮助您定义这些要求并为 Revit 选择最佳工作站。\n\n在研究中定义 Revit 工作站时，必须考虑以下五个关键点：\n\n- 桌面还是笔记本？\n\
+  - 快速处理器\n- 最佳显卡\n- 计算机内存（RAM）\n- 快速硬盘\n\n### 桌面还是笔记本？\n\n具有相似部件的台式机往往比笔记本更快，台式机的平均使用寿命更长。台式机部件的升级过程比笔记本更简单，可以延长多个组件的整体使用寿命。\n\
+  \n台式机通常易于定制，其好处是可以添加高端组件，例如显卡以提高可视化效果。在笔记本电脑中，升级选项更有限。\n\n另一方面，笔记本电脑具有便携性，非常适合会议和客户演示。\n\
+  \n### 快速处理器\n\nRevit 主要是一个单线程软件，这意味着更快的处理器对 Revit 性能更好。Revit 中有一些操作是多线程的，因此 Revit\
+  \ 可以在 Revit 2021 中使用多个处理器和多核处理器进行以下处理：\n\n- 以矢量方式打印以及导出 DWG 和 DWF 文件\n- 实时光线追踪\n\
+  \n\n\n\n\n- 墙体连接在平面图和剖面图中的表示\n- 将元素加载到内存中的过程以减少打开时间\n- 在透视 3D 视图中导航时轮廓边缘的计算\n- 打开视图或更新视图属性时的图形表示\n\
+  - 保存和打开文件\n- 点云数据的显示\n- 将 DWF 导出为单张图纸\n- 后台运行的 MEP 系统计算\n- 材料用户界面\n- 颜色填充计算\n- 在另一个进程中后台运行的结构连接几何\n\
+  \n目前，这些是最常见的处理器类型选项：\n\n- Intel Xeon\n- Intel (i) 系列 i5、i7、i9 和 i10\n- AMD Ryzen\n\
+  \n## 处理器 Intel Xeon\n\nIntel Xeon 主要用于商务工作站或服务器，其 CPU 通常比 Intel (i) 系列拥有更多核心。此外，与\
+  \ Intel (i) 系列如 i7 或 i9 相比，其时钟速度略低。\n\n它具有良好的耐用性和韧性，这使得该处理器成为建筑和工程公司同时使用多个应用程序的良好选择。通常，Intel\
+  \ Xeon 比 Intel (i) 系列更昂贵。\n\n## Intel (i) 系列 i3、i5、i7、i9 和 i10\n\nIntel (i) 系列通常更受个人电脑青睐，与\
+  \ Intel Xeon 相比，处理器成本更低。\n\nIntel (i) 系列的优点在于处理器每核心的时钟速度通常比 Intel Xeon 更快，因此对 Revit\
+  \ 的性能带来优势。\n\nRevit 的性能会随着每核心时钟速度高的处理器而提升，这意味着多核心处理器不一定会增强性能，因为 Revit 并非完全是多线程软件。\n\
+  \n## AMD Ryzen Threadripper 处理器\n\nAMD Ryzen Threadripper 处理器是一个降低成本的选择，它可以在 Revit\
+  \ 中提供良好的性能。按照之前的过程，您需要检查时钟速度和最高睿频速度。\n\n## 最高睿频频率 (GHz)\n\n目前，大多数公司在 Revit 工作站中使用\
+  \ Intel 技术，选择 Revit 最佳处理器的过程基于最高频率 (GHz)，即处理器速度。\n\n选择合适处理器时的关键点是检查最高频率 (GHz) 以最大化\
+  \ Revit 的性能。您需要考虑以下两个方面：\n\n- 处理器基础频率 (GHz)\n- 处理器最高睿频频率 (GHz)\n\n简单来说，处理器基础频率 (GHz)\
+  \ 是基础速度，而最高睿频频率 (GHz) 是处理器最高速度。\n\n例如，我们将分析 Intel® Core™ i9-10900X X-series 处理器。\n\
+  \n您可以在以下链接访问处理器规格。或者，您也可以使用手机摄像头扫描以下二维码。\n\n以下是链接：`https://intel.ly/2HhqjAV`\n\n\
+  以下是二维码：\n\n![](img/1961add582dd4a589b2eac3dda140e38_54_0.png)\n\nRevit 插件，如 Enscape、Twinmotion、Lumion\
+  \ 和 V-Ray，利用了 **图形处理单元 (GPU)** 渲染技术，这需要来自 NVIDIA 或 AMD 的强大的显卡。\n\n使用 GPU 可以降低渲染时间，插件如\
+  \ Enscape 可以快速提供出色的渲染质量（例如，少于 1 分钟）。\n\n您可以通过以下链接查看 Enscape 360° 图像示例：\n\n`https://bit.ly/35T3FYr`\n\
+  \n或者，您可以扫描此处的二维码：\n\n![](img/1961add582dd4a589b2eac3dda140e38_56_0.png)\n\n许多 Revit\
+  \ 工作站使用 NVIDIA 显卡，这些显卡分为两种类型：\n\n- NVIDIA Quadro 或 NVIDIA Quadro RTX\n- NVIDIA GeForce\
+  \ GTX 或 RTX\n\n通常，NVIDIA Quadro 系列基于韧性和耐用性，比 NVIDIA GeForce 系列更昂贵。\n\nNVIDIA RTX\
+  \ 技术是最新发展，它改进了实时光线追踪，并将在您的渲染中提供详细的灯光效果和更好的性能。\n\n在此网站上，您可以比较多张显卡并比较性价比：\n\n`https://gpu.userbenchmark.com/`\n\
+  \n为了获得最佳性能和效率，显卡应至少具有 4 GB 专用内存或 RAM。\n\n> **提示**\n> \n> 始终检查您是否使用显卡的最新可用驱动程序。\n\
+  \n## 计算机内存 (RAM)\n\n根据您的项目需求，我们建议轻度用户使用 16 GB 系统内存，普通用户使用 32 GB，大型项目和日常使用的用户使用 64\
+  \ GB。\n\n内存 (RAM) 的成本正在下降，如果您能负担 64 GB 内存 (RAM)，则建议使用。在中型和大型组织中，64 GB 是最低要求。\n\n\
+  计算机内存 (RAM) 会提高 Revit 的性能，因为它在内存中维护模型数据。\n\n> **提示**\n> \n> 建议您经常重新启动计算机和 Revit；这将刷新内存\
+  \ (RAM)。经常将 Revit 保持打开数天的用户会经历性能下降。\n\n## 快速硬盘\n\n**固态硬盘 (SSD)** 在 Revit 中提供更好的性能，并允许您的计算机启动、启动应用程序和加载文件比传统硬盘快得多。\n\
+  \n设计师经常使用多个应用程序，如 Revit、AutoCAD、Rhino、Navisworks 或 Adobe Suite，以及各种插件，这些可能占用硬盘中大量空间。\n\
+  \n推荐的 SSD 应至少为 500 GB。\n\n如果没有足够的空间来缓存 Revit 进程，将会出现较慢的性能。\n\n> **提示**\n> \n> 始终在硬盘中保留至少\
+  \ 30 GB 的可用空间。\n\n拥有正确的软件和硬件对于提高 Revit 中的性能至关重要，以上信息将使您能够选择最佳工作站以最大化 Revit 中的性能。\n\
+  \n在下一节中，我们将学习 BIM 实施的成功策略。\n\n## BIM 实施概述\n\nBIM 是一种许多公司已经实施的过程，但对成功策略有一个概述是有价值的。\n\
+  \nBIM 成熟度水平对于分析公司实施情况及其交付 BIM 项目的能力至关重要。\n\nBIM 实施并不止于几个项目，而是一个需要定期维护和持续发展的过程。\n\
+  \n持续发展将为提高组织的成熟度水平奠定基础，并涉及多个部门，如商业部门，它们将分析合同和任命。\n\n> **提示**\n> \n> 成功策略考虑到整体公司文化，并制定自上而下驱动的战略计划，并在实施\
+  \ BIM 的决策中涉及董事。\n\n成功的 BIM 实施共享以下 10 个关键步骤：\n\n- 1. 让董事以言行参与 BIM 实施的决策。实施始于自上而下！\n\
+  - 2. 创建一个人员小组来定义实施过程和整体 BIM 战略，该战略必须包括多个部门。\n- 3. 记住最终目标是更好的信息管理。\n- 4. 创建一个小型团队来开展第一个项目。\n\
+  - 5. 创建或调整您的公司标准以符合当地 BIM 规范和 ISO 标准。\n- 6. 定义您将使用的软件和支持。了解实施新技术所需的人力资源等投资。\n- 7.\
+  \ 培训和发展您的团队。培养一些人成为“专家”以帮助公司其他人。\n- 8. 随着时间的推移改进 BIM 流程，不要专注于技术。\n- 9. 设定切合实际的目标，因为\
+  \ BIM 的好处已得到充分记录；然而，您需要投入时间和精力来实现组织真正的潜力。\n- 10. 始终记住信息管理是 BIM 流程最重要的方面。\n\n在 BIM\
+  \ 实施期间，组织可以为未来发展创建特定领域并支持该过程以提高 BIM 成熟度水平。\n\n持续发展的领域包括以下内容：\n\n- 公司和行业标准、方法和程序\n\
+  - 培训\n- 数字资产管理 – Revit 族、AutoCAD 块和其他文件\n- 生产力和数据分析\n\n这四个领域应持续发展，以为您的组织带来创新并提高生产力。\n\
+  \n许多中型和大型公司内部拥有编程能力的人员，以提高生产力并定制工具以创建新的工作流程。\n\n如果您希望学习编程以应用于建筑和工程团队，我们推荐 Dynamo、Grasshopper、Python\
+  \ 和 C#。\n\n编程技能可以开启职业生涯的大门并扩展您的设计能力，使您领先于竞争对手。\n\n此外，在 BIM 实施过程中，您还需要关注另外七个要点：\n\
+  \n1. 创建一个 BEP 模板，您将用它来响应客户对 BIM 的要求。\n\n\n\n\n\n- 2. 根据所在地的框架（例如英国 BIM 框架）定义公司的\
+  \ BIM 标准交付成果。\n\n英国 BIM 框架的参考资料见：\n\n```\nhttps://ukbimframework.org/standards-guidance/\n\
+  ```\n\n使用手机摄像头扫描二维码，即可访问上述链接：\n\n![](img/1961add582dd4a589b2eac3dda140e38_60_0.png)\n\
+  \n- 3. 定义 BIM 项目的信息需求等级。\n\n信息需求等级列出了 BIM 构件的几何和数据要求，以及项目的前提条件。应根据这些要求的用途进行定义，从而为项目创造价值。\n\
+  \n在英国，PAS 1192-2:2013 中沿用的术语是模型定义等级/细节等级（LOD）/信息等级（LOI）。目前，英国采用的是 ISO 19650 系列中定义的信息需求等级。\n\
+  \n在美国，BIMForum 发布了开发等级（LOD）。\n\nBIMForum 网站链接如下：https://bimforum.org/LOD\n\n使用手机摄像头扫描以下二维码，即可访问上述链接：\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_60_1.png)\n\n- 4. 定义将在多个项目中作为标准使用的典型\
+  \ BIM 交付成果和模型用途。\n\n- 5. 编写内容，以便在投标过程中回答**资格预审问卷（PQQ）**，从而明确贵公司的经验水平和交付 BIM 项目的能力。\n\
+  \n- 6. BIM 会影响合同和委任，因此商务部门应了解项目的 BIM 要求。\n\n- 7. 将风格和展示标准与 BIM 创作工具（例如 Revit）保持一致。\n\
+  \n总而言之，BIM 实施是一个会影响 AECO 行业相关公司几乎所有部门的过程。\n\n在下一节中，我们将学习如何为公司制定 Revit 培训方案。\n\n\
+  ## BIM 与 Revit 培训方案\n\n公司会使用各种需要培训才能维持生产效率的应用程序和插件，因此制定战略性的培训方案至关重要。\n\n培训方案的战略目标包括：\n\
+  \n- 评估员工的知识水平。\n- 了解现有培训流程。\n- 确定培训障碍。\n- 制定培训预算。\n- 找出内部专家。\n- 建立衡量进度的流程。\n- 确定所需资源，例如计算机、培训室、培训材料、在线视频培训、公司标准等。\n\
+  \n下面详细探讨这些战略目标。\n\n## 评估员工知识水平\n\n评估员工的知识水平并确定其经验程度，有助于制定培训计划。可以使用多种工具创建调查问卷，例如\
+  \ SurveyMonkey、Google Forms、Microsoft Forms 等。\n\n可以根据以下因素跟踪软件使用经验：\n\n- 使用年限（少于\
+  \ 1 年、1 至 2 年、3 至 4 年，以及 5 年以上）。\n- 经验水平（无经验、基本了解或具备基础知识、初学者或经验有限、中级、高级和专家）。\n-\
+  \ 针对特定软件的问题。\n- 基于任务的问题。\n- 一对一面谈。\n\n## 了解现有培训流程\n\n我们需要了解当前的培训流程，以便检查其中的不足并寻找可能的改进方法。\n\
+  \n在调研过程中，我们可能会发现更好的培训课程跟踪和组织方式。\n\n## 确定培训障碍\n\n培训能否成功，取决于你如何减少培训障碍并为员工提供有效培训。\n\
+  \n以下列出了一些可能需要解决的障碍：\n\n- 管理变更：包括技术、预算、人员以及其他方面的变化。\n- 改变已形成的习惯：改变已经实施多年的流程可能会很有挑战性。\n\
+  - 培养 BIM/Revit 骨干：需要 Revit 骨干支持实施工作并帮助员工。\n- 造成当前工作流程中断：新工作流程应提高生产效率，并尽可能减少潜在干扰。\n\
+  - 调动员工积极性：培训师必须说明培训的价值和生产效率方面的优势。\n- 提供培训：语言障碍和地理限制可能会带来问题。\n- 选择合适的培训时间：在项目开始前接受培训对用户很有帮助，但要安排合适的时间可能并不容易。\n\
+  - 评估培训成效：跟踪培训效果并找出改进之处至关重要。\n\n## 制定培训预算\n\n向高级管理层说明培训的价值，以及需要投入资金的活动（例如在线视频培训和制作培训材料所需的时间）非常重要。\n\
+  \n## 找出内部专家\n\n内部专家会在实施过程中为员工提供支持并激励他们，是持续培训计划的重要组成部分。\n\n## 建立衡量进度的流程\n\n跟踪培训效果对于说明培训对组织的影响至关重要。培训后的技能评估有助于收集信息，而后续跟进则能帮助确定生产效率是否有所提升。\n\
+  \n## 确定所需资源\n\n确定所需资源有助于了解培训需要采购哪些资源，包括技术设备、培训室、培训材料、在线视频培训，以及制作或改进公司标准所需的时间。\n\n\
+  开始培训前，需要明确以下要点：\n\n**Revit 资料：**\n\n- 符合公司标准的 Revit 样板。\n- 公司 Revit 族。\n- 共享参数。\n\
+  - 培训中使用的 Revit 模型。\n- Revit 重要插件的工作流程。\n- 渲染材质库。\n\n**培训计划：**\n\n- 培训议程和材料。\n- 每次培训的课程数量。\n\
+  - 小组人数。\n- 培训级别，即从基础到专家级。\n\n## 培训形式\n\n- 课堂培训或在线培训。\n- 小组培训。\n- 一对一培训。\n- 按需培训。\n\
+  - 视频培训。\n- 持续支持。\n- 指导。\n\n## 定制培训\n\n成功的培训策略会根据各项目角色进行定制，例如董事、项目经理、BIM 经理/BIM 协调员和信息编制人员。\n\
+  \n请注意，项目角色与职位角色不同，因此建筑师可能会兼职承担建筑师和 BIM 协调员的工作。\n\n培训方案可分为四个部分：\n\n- **高级管理层和董事：**\
+  \ BIM 入门知识和核心原则应覆盖整个公司，包括高级管理层和董事。\n- **项目经理：** 项目经理将了解 Revit 工作流程概况，并学习 BIM 文档，包括\
+  \ BEP、**信息交换要求（EIR）**以及其他行业标准。\n- **BIM 经理/BIM 协调员：** BIM 经理和 BIM 协调员将接受深入的 Revit\
+  \ 培训，以及多种软件应用程序的培训，以便管理碰撞检测流程、资产管理数据和其他基于项目的要求。\n- **信息编制人员：** 信息编制人员包括将在 Revit\
+  \ 中进行建模的设计师、建筑师和工程师，因此需要接受深入的 Revit 培训。\n\n培训接近尾声时，培训师可以针对具体项目定制培训内容，进一步调动员工的参与积极性。\n\
+  \n项目专项培训非常实用，可以展示团队在项目启动后将面临的挑战，例如复杂的幕墙设计或精细复杂的项目计划。\n\n总而言之，本节内容为你制定培训方案并根据不同项目角色进行定制提供了基础。\n\
+  \n## 总结\n\n本章介绍了 BIM 模型中的信息是我们最宝贵的资产，而信息管理是提高 Revit 生产效率的重要流程。\n\n此外，我们现在了解了通过一种方法提升\
+  \ Revit 生产效率的重要性：在开始任务前，先调研并获取高质量的信息。同时，相关的时间管理技巧也能提高你使用 Revit 的效率。\n\n我们讲解了提升生产效率的\
+  \ Revit 关键技术因素，以及如何为 Revit 选择合适的工作站。最后，我们学习了成功实施 BIM 和为公司制定培训方案的策略。\n\n下一章将介绍项目数据管理，并学习启动\
+  \ Revit 项目所需的关键数据、委任概述、BIM 文档、项目职能、资产管理，以及制定 BIM/Revit 项目启动行动计划。\n\n\n\n\n"
+- "## 项目数据管理\n\n项目数据管理是使用 **建筑信息模型 (BIM)** 时效率和生产力的重要方面，因为作者软件以数据为中心。\n\n组织越来越多地使用基于数据分析的流程来推动其在多个领域的业务，以提高绩效和盈利能力。在使用\
+  \ Revit 管理模型和数据时，数据管理的原则是相似的。\n\n数据驱动的文化正在增长，越来越多的公司注意到分析数据对促进改进和在 **建筑、工程、施工、业主运营商\
+  \ (AECOO)** 行业中产生变革的业务决策的价值。\n\n公司使用 **数据管理计划 (DMP)** 来概述数据在项目完成期间和之后将如何使用。BIM 项目将通过创建类似的文件来支持项目开发，例如\
+  \ **交换信息要求 (EIR)**、**BIM 执行计划 (BEP)** 等。\n\n本章将提供与 BIM 项目相关的数据管理关键点的信息。我们将学习如何在考虑这些关键点的情况下成功启动\
+  \ Revit 项目。\n\n本章还将解释任命/合同的关键方面；BIM 项目中的项目职能；BIM 文档概述；**施工运营建筑信息交换 (COBie)** 的挑战；以及制定启动\
+  \ BIM 项目的行动计划。\n\n- **法律方面**：分析任命中的 BIM 要求并识别法律问题。\n- **数据策展**：定义数据验证流程，通常在 **通用数据环境\
+  \ (CDE)** 和数据互操作性中描述。\n- **数据存储和使用**：识别组织的内部和云数据存储以实现业务连续性。这还包括数据使用、协作和运营的程序。\n\n\
+  以下三个关键文件将提供启动 BIM 项目所需的关键数据：\n\n- 任命或合同\n- 交换信息要求 (EIR)\n- BIM 执行计划 (BEP)\n\nBIM\
+  \ 项目中还有其他可用文件，这些文件将在上述关键文件中引用。\n\n要启动 BIM 项目，还需要数字数据，例如勘测文件或遗留数据。\n\n## 任命或合同\n\n\
+  任命或合同将定义工作范围，进一步的细节包含在 BIM 责任矩阵中。\n\n检查任命时，识别可能增加项目风险或需要额外时间完成的特定 BIM 活动至关重要。这些活动需要与商业部门提出，以在必要时调整项目费用。\n\
+  \n常见的是看到提及 BIM ISO 阶段 2 的投标和任命，但未提供项目应如何交付的任何细节，这将增加项目风险。在客户未提供信息的情况下，牵头被任命方应创建一份具有标准交付成果的\
+  \ BEP。\n\n> **提示**\n> \n> 定义贵公司认为 BIM ISO 阶段 2 或根据当地框架（如英国 BIM 框架）的 BIM 最低交付成果。这对于未明确其\
+  \ BIM 要求的投标和任命非常有用。\n\n> **提示**\n> \n> BEP 是指导项目成功实施 BIM 的路线图。公司需要协作工作来制作 BEP，并以最终用户为出发点创建它。这是成功实施的基本原则。\n\
+  \n## BIM 执行计划 (BEP) – 合同前\n\n合同前 BEP 在投标过程中使用，以证明公司有能力根据 EIR 要求交付项目。\n\n合同前 BEP\
+  \ 应针对 EIR 要求作出回应，提供交付策略，并应包括协作流程、关键里程碑和 **项目实施计划 (PIP)**。\n\nPIP 是 BEP 的一部分，每个竞标项目的公司都应提供此计划以证明其交付\
+  \ BIM 项目的能力、经验和胜任力。\n\n## BIM 执行计划 (BEP) – 合同后\n\n合同授予后，将与所有被任命方协作创建合同后 BEP，以就项目中使用的标准、方法和程序达成一致，并响应客户的\
+  \ BIM 要求。\n\nBEP 通常分为四个领域，概述如下：\n\n**管理和商业要求**\n\n- BEP 简介和目的\n- 项目信息\n- 项目团队——职能和责任\n\
+  - BIM 项目标准\n- 对 EIR 映射和差异的响应\n- BIM 战略目标\n- 模型用途\n- BIM 交付成果\n- 协调会议\n- 项目里程碑\n\
+  - 主信息交付计划 (MIDP)\n- 安全要求\n- 健康与安全要求\n- BEP 中使用的术语和定义\n\n## 信息标准\n\n- 项目放样和坐标\n-\
+  \ 标高、网格和阶段\n- 体量和联合策略\n- 信息需求等级或 LOD\n- 文件、图纸和模型的命名约定\n- 修订约定\n- 图纸标准\n- 特定软件要求\n\
+  - 最佳实践\n\n## 信息生产、方法和程序\n\n- 协作策略\n- CDE 和交换流程\n- 建模范围和排除项\n- 审查和批准流程\n- 模型检查/验证\n\
+  - 碰撞检测流程和碰撞容差策略\n- 资产信息要求和验证流程\n- 勘测策略\n- 现有遗留数据\n\n## 附录\n\n- 主信息交付计划 (MIDP)\n\
+  - BIM 责任矩阵\n\n![](img/1961add582dd4a589b2eac3dda140e38_75_0.png)\n\n# 图 2.1 – OS\
+  \ 地图\n\n> **提示**\n> \n> OS 地图上的网格交点提供了设置 Revit 文件的最佳坐标点。另一种选择是使用勘测文件中的勘测站点。\n\n\
+  设计负责人通常会提供标高和网格以继续设置初始项目文件。\n\n总体目标是创建 Revit 主文件以分发给所有顾问，以便他们获取坐标并在正确位置启动项目。\n\n\
+  Revit 主文件包含项目坐标（包括真北和项目北）、标高和网格。该文件将与体量策略一起使用，以创建和设置所有后续 Revit 文件。\n\n一旦初始 Revit\
+  \ 文件设置完成，项目坐标应与其他平台（如 AutoCAD 和 Rhino）一起使用，以确保导出和导入数据的流程顺畅。\n\n在 *第 4 章，高效启动 Revit\
+  \ 项目* 中，我们将展示如何逐步设置 Revit 项目坐标并启动项目的指南。\n\n总之，我们了解了启动 BIM 项目所需的关键数据，以及如何分析主要 BIM\
+  \ 文档以降低风险。\n\n在下一节中，我们将介绍其他 BIM 文档并提供进一步的细节。\n\n## BIM 文档概述\n\n将 BIM 文档与项目策略保持一致对于提高效率至关重要，以便要求得到明确定义，从而提高生产力并降低成本。\n\
+  \n公司必须了解他们应为设计和施工团队提供哪些信息，并定义他们期望为资产管理接收哪些信息以支持建筑维护。\n\n我们理解客户在项目开始时很难有精确的 BIM 要求。但这必须改变，以改善\
+  \ AECOO 行业并确保项目团队在项目生命周期中拥有明确的要求。\n\n明确定义 BIM 文档具有明显的好处。其中一些在此概述：\n\n- 更快的 **投资回报率\
+  \ (ROI)**\n- 满足客户和项目标准\n- 确保客户和项目团队的 BIM 要求保持一致\n- 更好地沟通以交付项目\n- 改进 BIM 模型和数据的质量保证和质量控制\n\
+  \n我们将概述 AECOO 行业目前最常用的 BIM 文档。\n\n\n\n\n\n我们可以将BIM文档分为三类，如下所示：\n\n- 客户文档\n- 项目团队文档\n\
+  - 标准文档\n\n## 客户文档\n\n至关重要的是，要确立委托书或合同是主要的合同文件，其中应包含关于BIM需求的高层级信息，同时还应包含贵组织可能认为必要的BIM细节。\n\
+  \n客户和项目团队需要在项目基础上明确哪些BIM文档属于合同性文件，哪些属于非合同性文件。在项目中，BEP有时作为合同性文件，有时作为非合同性文件，这种情况很常见。\n\
+  \n如果EIR未被引用到委托书或合同中，它很可能不构成合同要求。\n\n公司BIM负责人、保险组织和商务部门应进行联络，以将这些文件定义为合同要求。\n\n下面我们将概述客户方的BIM文档，这些文档包括但不限于下文所列的要求。\n\
+  \n### 组织信息需求（OIR）\n\n这确立了客户在**组织层面上的资产管理系统**的信息需求，其中包括资产管理方面的战略决策和专业知识。该文档将用于生成AIR，并为创建PIR提供信息。\n\
+  \n### 资产信息需求（AIR）\n\nAIR**定义了资产管理与运营的具体项目需求**，并传达了组织信息需求（OIR）的目标。它有助于为编制交换信息需求（EIR）提供信息，并明确**资产信息模型（AIM）**。\n\
+  \n### 项目信息需求（PIR）\n\nPIR传达组织信息需求（OIR）中的信息，以**定义既有资产项目**。该文档将支持EIR的编制。\n\n### 交换信息需求（EIR）\n\
+  \nEIR**定义了在设计和施工阶段需要交付和采用的信息、标准和流程**。它应明确规定为满足项目信息需求（PIR）所需的信息。我们在上一节中已对此进行了详细说明。\n\
+  \n总而言之，客户部分列出的文档将支持项目团队编制BIM执行计划（BEP）并生成BIM模型。\n\n下图更详细地展示了各文档之间的关联，以及如何为项目团队提供足够的信息来生成BIM模型：\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_78_0.png)\n\n图2.2 – BIM文档关系图\n\n- 信息需求等级（用于定义详细程度和信息等级框架）\n\
+  - 确定哪些模型元素需要交付COBie成果\n- 项目阶段\n\n## BIM和IT能力评估\n\nBIM和IT能力评估用于评估交付BIM项目的能力、IT需求和网络安全需求等方面的问题。\n\
+  \n## 项目执行计划（PIP）\n\nPIP是Pre-BEP的一部分，每个参与项目投标的公司都应提供此计划，以展示其交付BIM项目的能力、经验和资质。\n\n\
+  ## BIM标准与指南\n\n标准与指南对于数字化AECOO行业的发展至关重要，它们有助于企业和政府确保项目的一致性。\n\n这种一致性可以提高AECOO行业多个领域的效率和生产力。它还有其他益处，例如降低成本、改善协作、协调以及数据交换。\n\
+  \n2019年1月，**英国标准欧洲规范（BS EN）** *ISO 19650-1*和*ISO 19650-2*的最终版本发布，以取代*BS 1192:2007+A2:2016*和**公开可用规范（PAS）**\
+  \ *1192-2:2013*。\n\n有关*BS EN ISO 19650*系列的更多信息，请访问此链接：\n\n```\nhttps://ukbimframework.org/standards-guidance/\n\
+  ```\n\n这是对应的**快速响应（QR）**码：\n\n![](img/1961add582dd4a589b2eac3dda140e38_80_0.png)\n\
+  \n我们无法详细介绍所有BIM标准，但可以将其分为三个层级，如下面的截图所示：\n\n![](img/1961add582dd4a589b2eac3dda140e38_81_0.png)\n\
+  \n图2.3 – BIM标准层次\n\n国家标准是针对特定国家的标准，例如英国标准、欧洲标准（**欧洲标准化委员会（CEN）/技术委员会（TC）442**）以及其他国家的标准。\n\
+  \n组织标准是由组织创建的特定指南，用于定义软件和图面表达方式，例如线宽、图题等。\n\n总而言之，我们了解了面向客户和项目团队的BIM文档，并对行业标准进行了概述。\n\
+  \n在下一节中，我们将了解BIM项目中的项目职能。\n\n## 项目职能\n\n*ISO 19650*系列标准已将*角色*一词替换为*职能*，但其含义相同，即定义特定个人或群体的职责。\n\
+  \n交换信息需求（EIR）和BIM执行计划（BEP）将定义项目职能以明确关键职责，这可以提高生产力，因为每个团队成员都会清楚需要执行的任务。\n\n需要重点指出的是，项目职能并非职位头衔，一个人可以承担并履行多个职能。\n\
+  \n编写EIR的委托方（客户）将主要定义信息管理职能。委托方可以提名本组织的人员或指定第三方公司来履行该职能。\n\n项目团队将在BEP中定义以下职能：\n\n\
+  - 任务团队经理\n- 任务信息经理\n- 信息作者\n- 接口经理\n\n在以下各节中，我们将介绍每个职能的主要职责。\n\n### 委托方（客户）\n\n\
+  委托方负有关键责任，即向设计团队提供高质量的信息，这包括：\n\n- 组织信息需求（OIR）\n- 资产信息需求（AIR）\n- 项目信息需求（PIR）\n-\
+  \ 交换信息需求（EIR）\n\n> **重要提示**\n> \n> 通用数据环境（CDE）和项目编号必须与委托方（客户）确认。\n\n### 任务团队经理\n\
+  \n任务团队经理将执行的活动包括但不限于以下内容：\n\n- 编制任务信息交付计划（TIDP）\n- 审查和批准其团队生成的信息\n- 定义适当的信息状态\n\
+  - 批准在通用数据环境（CDE）中发布的信息\n\n### 任务信息经理\n\n任务信息经理将执行的活动包括但不限于以下内容：\n\n- 审查交换信息需求（EIR）\n\
+  - 审查委托书并核查BIM要求\n- 创建BIM执行计划（BEP）\n- 确保任务团队能够依据项目标准、方法和程序生成信息\n- 实施项目协议和技术标准\n-\
+  \ 提供支持与培训\n- 审查资产信息需求（AIR）\n\n### 信息作者\n\n信息作者将执行的活动包括但不限于以下内容：\n\n- 使用BIM软件创建模型\n\
+  - 按照项目BEP生成或修改信息\n- 确保图形模型在空间上协调一致\n- 根据碰撞检测流程更新模型\n- 按照任务信息交付计划（TIDP）交付成果\n\n###\
+  \ 接口经理\n\n接口经理将执行的活动包括但不限于以下内容：\n\n- 管理空间协调以避免和解决碰撞\n- 生成碰撞报告\n- 整合BIM模型\n\n\n\n\
+  \n\n## 信息管理\n\n委托方（客户）将在其组织内部指定一名人员或指定第三方公司来承担信息管理职能。\n\n信息管理职能的活动清单在不同项目之间差异很大。\n\
+  \n在 *BS EN ISO 19650-2* 标准中，有 *附录 A*，它是一个信息管理责任的矩阵模板。\n\n## AEC UK BIM 协议\n\n2015\
+  \ 年发布的 **自动曝光控制 (AEC)**（英国）BIM 协议对于解释 AEC 行业广泛使用的实践职能仍然相关。\n\n本文件将活动分配给三个特定领域，概述如下：\n\
+  \n- 战略\n- 管理\n- 生产\n\n### 战略 – BIM 管理\n\n该角色代表公司范围内的 BIM 管理员，负责定义 BIM 实施的战略决策并提供培训支持。\n\
+  \n公司范围内的 BIM 管理员将执行包括但不限于以下活动：\n\n- 与 BIM 相关的公司目标\n- 技术和新流程的研究\n- 开发流程和新工作流程\n-\
+  \ 开发标准和协议\n- 负责 BIM 实施\n- 为技术和新流程提供培训\n- 分析或创建 BIM 文档（BEP 及其他）\n\n### 管理 – 协调\n\n\
+  该角色代表 BIM 协调员，将执行包括但不限于以下活动：\n\n- 为团队提供技术和新流程的培训\n- 分析或创建 BIM 文档（BEP 及其他）\n- 审核\
+  \ BIM 模型\n- 模型协调和冲突检测\n- 内容创建\n\n### 生产 – 建模/作者\n\n该角色代表建筑师、工程师、设计师和 BIM 建模师，他们在\
+  \ BIM 模型中生成信息。他们将执行包括但不限于以下活动：\n\n- 项目特定内容创建\n- 项目特定建模\n- 项目特定图纸制作\n\nAEC（英国）BIM\
+  \ 协议职能可在以下表格中看到：\n\n| Strategic - BIM Management | Management - Coordination | Production\
+  \ - Modelling |\n|---|---|---|\n| Corporate objectives related to BIM | Provide\
+  \ team training for technology and new processes | Project-specific content creation\
+  \ |\n| Research on technology and new processes | Analyze or create the BIM documentation\
+  \ (BEP and others) | Project-specific modelling |\n| Develop processes and new workflows\
+  \ | Audit BIM models | |\n| Develop standards and protocols | Model Coordination\
+  \ & clash detection | |\n| Responsible for the BIM implementation | Content creation\
+  \ | |\n| Training for technology and new processes | | |\n| Analyze or create the\
+  \ BIM documentation (BEP and others) | | |\n\nFigure 2.4 – AEC (UK) BIM Protocol\
+  \ functions\n\n必须强调的是，这些不是职位头衔，同一个人可以执行多个职能。\n\n总之，本节中的信息提供了 AEC 行业中常用的项目职能的详细信息，并在\
+  \ BEP 中得到充分定义。\n\n在下一节中，我们将了解资产管理以及它如何最大化建筑资产的价值。\n\n## 资产管理\n\n**资产管理** 是一种流程，旨在通过提供战略和运营服务来帮助建筑业主最大化其资产价值。\n\
+  \n建筑物和公用设施的使用寿命有限，而建筑物在施工阶段后的生命周期代表了房地产业主的最高成本。如果我们考虑 25 年的周期，预计运营、维护和修复建筑物的成本约占总拥有成本的\
+  \ 80%。\n\n这在以下图表中有所说明：\n\n![](img/1961add582dd4a589b2eac3dda140e38_86_0.png)\n\n\
+  Figure 2.5 – Total cost of ownership\n\n在建筑生命周期中资产管理的重要性很明显，但 AECOO 行业在提供可集成到资产管理和运营流程中的数字化和结构化数据方面仍有改进空间。\n\
+  \n如果在设计和施工阶段创建的数据能够完美地转移到资产管理数字平台，效率和生产率将提高。\n\n目前，我们在项目阶段之间以及 **运营/维护 (O&M)** 手册向设施管理数字系统的数据转移方面仍存在问题。主要问题是可用数据未结构化，部分信息以纸质或简单的\
+  \ **便携式文档格式 (PDF)** 文件形式存在。\n\n这种数据集成不足可能导致重大数据丢失，降低生产率并增加维护资产和管理数据的成本。\n\n管理数据的预期流程包括\
+  \ **通用数据环境 (CDE)** 并与设施管理数字系统完全集成，如以下图表所示：\n\n![](img/1961add582dd4a589b2eac3dda140e38_87_0.png)\n\
+  \nFigure 2.6 – Expected process for data integration\n\n通用数据环境将帮助在设计和施工阶段以 BIM 模型、图纸和产品数据的形式收集数据。此信息将与设施管理数字系统集成。\n\
+  \n当运营/维护手册（O&M）为数字化和结构化时，这些将被集成到设施管理数字系统中，从而完成理想流程。\n\n不幸的是，在许多项目中，数据集成仍然是碎片化的，导致数据丢失和效率低下。\n\
+  \n在设计阶段使用私有服务器交换数据，仅在施工阶段使用 CDE 的项目仍然很常见，这可能导致数据丢失。\n\n如果 CDE 与设施管理数字系统之间的集成未建立，也可能存在数据丢失的潜在风险，因为信息需要结构化以实现此过程。\n\
+  \n当 O&M 手册不是数字化的或没有结构化数据组织时，也可能发生数据丢失，如以下图表所示：\n\n### 可能的数据丢失\n\n![](img/1961add582dd4a589b2eac3dda140e38_88_0.png)\n\
+  \nFigure 2.7 – Possible data loss without data integration\n\n私人客户和英国政府共享类似的策略，通过利用\
+  \ COBie 作为 BIM 要求来改善这一流程。\n\n## COBie\n\n**建设运营建筑信息交换 (COBie)** 是一项国际标准，用于支持包括空间和设备在内的资产管理流程。它在完工后提供所需信息和来自施工团队的产品数据给运营团队。\n\
+  \n> Tip\n>\n> COBie 并未对典型的合同交付增加新的要求。它只是将现有交付物的格式更改为开放的国际标准格式。\n\nCOBie 是 **行业基础类\
+  \ (IFC)** 的子集，最常见的表示形式是电子表格。根据设施管理系统，导入数据的流程可能不同。\n\n## COBie 电子表格信息\n\nCOBie 电子表格包含有关设施的信息，例如楼层和空间；产品清单；保修的进一步细节；以及与资产管理流程相关的其他方面。\n\
+  \n每个项目上的每个设施都应提供一个 COBie 文件。也就是说，如果有多个设施，应提供额外的 COBie 文件。所有交付物应符合设施管理移交要求。\n\n典型的\
+  \ COBie 电子表格如下截图所示：\n\n![](img/1961add582dd4a589b2eac3dda140e38_89_0.png)\n\nFigure\
+  \ 2.8 – Typical COBie spreadsheet\n\nCOBie 的主要目标是在移交时向设施管理团队提供结构化数据，并提高管理建筑资产的效率。如果没有结构化数据，AECO\
+  \ 行业将无法在数据管理方面达到高效率，这可能会影响数字孪生技术的发展。\n\n项目业主或客户有责任定义资产管理和 COBie 要求，并且需要与设施管理团队的要求和能力保持一致。\n\
+  \n> **Tip**\n>\n> 在项目开始时与设施管理团队会面并参与其中，以核实资产管理和 COBie 要求至关重要。\n\n\n\n\n\n![](img/1961add582dd4a589b2eac3dda140e38_91_0.png)\n\
+  \nFigure 2.9 – COBie color-coded cells\n\n需要检查并填写的选项卡包括以下内容：\n\n- **Instruction**\n\
+  - **Contact**—提供相关联系数据\n\n## Requirements and Constraints\n\n这是在预期 **Royal Institute\
+  \ of British Architects (RIBA)** 第 2 或 3 阶段通常需要包含的数据。这些信息主要用于确保产生的设计和规范在功能和成本方面与委托方简报一致。\n\
+  \n需要填写的选项卡包括以下内容：\n\n- **Facility**—数据在 BIM 文件中手动填写\n- **Floor**—数据从楼层导出（从模型中提取）\n\
+  - **Space**—数据从空间导出（从模型中提取）\n- **Zone**—数据从区域导出（从模型中提取）\n\n## Outline Solution and\
+  \ lifecycle costs\n\n这是在预期 *RIBA Stage 4* 通常需要包含的数据。这些信息可用于确保整个项目在功能、成本和碳性能方面与委托方简报保持一致。\n\
+  \n在此阶段，模型可用于投标，因为我们可以通过计划表直接从模型中导出数据（门、窗、设备等）。\n\n需要填写的选项卡包括以下内容：\n\n- **Type**—数据从模型中提取\n\
+  - **Component**—数据从模型中提取\n- **System**—数据从模型中提取\n- **Connection**—数据从模型中提取\n- **Coordinate**—数据从模型中提取\n\
+  \n**Construction Industry Council (CIC)** 工作组指出，在此阶段收集的信息可能准确度为 75%-80%，容差为 ± 20-25%。\n\
+  \n## Construction information\n\n这是在预期 *RIBA Stage 5* 通常需要包含的数据。检查是为了确保上一阶段的设计和规范在功能、成本和碳性能方面与委托方简报一致。\n\
+  \n模型现已完全协调，可用于施工，并且可据此生成协调的技术施工图纸。\n\n与上一阶段相比，模型现在代表可建造的技术解决方案，所有承包商的输入已纳入模型。\n\n\
+  需要填写的选项卡包括以下内容：\n\n- **Type**\n- **Attribute**—类型、构件、系统、坐标、连接和文档属性的数据更新至施工级别（从模型中提取）\n\
+  \nCIC 工作组指出，在此阶段收集的信息可能准确度为 85%-90%。\n\n## Operations and Maintenance Information\n\
+  \n这是在预期 *RIBA Stage 6* 通常需要包含的数据。所有这些数据都与运营和管理信息相关。它与制造商和安装调试系统 的分包商提供的运营和详细功能信息相关。\n\
+  \n模型现在代表已建成的建筑，并包含所有分包商提供的信息。它包括有关已安装系统和设备的所有信息。\n\n需要填写的选项卡包括以下内容：\n\n- **Job**\n\
+  - **Resource**\n- **Spare**\n\n收集信息的准确度预计为 100%。\n\n## Post Occupancy Validation\
+  \ Information and Ongoing O&M\n\n此后 occupancy 信息的概念是审查和检查资产实际使用情况。此阶段应用于在所有系统和程序稳定运行后，用最终且最更新的运营数据集更新后\
+  \ occupancy 系统。\n\n模型现在代表正在使用的建筑，并包含来自管理团队和已实施系统的所有信息。\n\n## COBie concept\n\nCOBie\
+  \ 概念很简单，但交付 COBie 的流程并不总是直接的，因为它取决于 BIM 模型的质量。\n\n组织通常使用 Solibri 或 Autodesk COBie\
+  \ Extension for Revit 来生成 COBie 交付成果。Solibri Model Checker 的标志可见于此：\n\n![](img/1961add582dd4a589b2eac3dda140e38_93_0.png)\n\
+  \nFigure 2.10 – Solibri Model Checker\n\n您可以在此地址访问 Solibri 网站：`https://www.solibri.com/`。\n\
+  \n以下是此处的二维码：\n\n![](img/1961add582dd4a589b2eac3dda140e38_95_0.png)\n\nRevit COBie\
+  \ 扩展为每个 Revit 版本提供下载，例如 Revit 2021、2020 等。示例文件和培训材料也可免费在网站上获取。\n\n> **Note**\n>\
+  \ Revit COBie 扩展在从 Revit 中的模型组导出 COBie 数据时存在问题。\n\n为了增强关于资产管理的讨论，我们采访了 ActivePLAN\
+  \ 的 George Stevenson，他是资产管理流程方面的专家。\n\n## Interview with George Stevenson, Managing\
+  \ Director at ActivePLAN\n\nHi George, thank you for the interview.\n\n我们想听听您对资产管理以及该行业的未来的看法。\n\
+  \n**您能否介绍一下您自己和您的公司？**\n\n我是受 Xerox 培训的信息管理专家，于 1982 年进入建筑行业。最初，我参与为机电承包商开发估算和计划维护软件，随后发展到数据库驱动的\
+  \ CAD 和面向对象的建筑建模（Sonata 和 Reflex，后来成为 Revit）。我创立了英国首个项目外联网/CDE，BIW，现为 Oracle Aconex。\n\
+  \n现在，我是 ActivePLAN 的董事总经理，这是一家 20 人的软件和信息管理公司。我们是 Autodesk 开发商，但主要专注于创建基于网络的 BIM\
+  \ 应用，用于简报、信息需求，以及可在设计和施工过程中使用的应用，以为资产管理提供更好的信息。更多信息请参见 https://activeplan.co.uk/transforming-construction/。\n\
+  \n我们的许多客户都是资产所有者和 FM 承包商，因此我们开发了解决方案，将移交信息转换为填充不同 FM 应用，并提供持久的数字 O&M/AIM。\n\n我们还拥有解决方案，可将现有的\
+  \ O&M 转换为符合 BIM 的数据模型——通常为 2D。但如果他们选择投资点云和 3D 模型（也许是设备房），我们会通过与 Forge/BIM 360 和\
+  \ 3D Repo 的 API 集成将其包含在内。\n\n数据工程是我们工作的重要部分，我是现称 BuildingSmart 的创始成员之一，并担任 FM 工作组的英国主席。我们一直与\
+  \ BRE 合作开发数据字典应用，以创建和管理标准化数据集作为可重用数据模板。这构成了免费平台的基础，该平台正被产品制造商使用——Lexicon。\n\n多年来，我将\
+  \ 20% 的时间投入到改善行业的公益倡议中，目前有四个：\n\n- BIM4Housing—主席\n- BIM4HA/HACT Housing Asset Data\
+  \ Standards Working Group\n- Golden Thread Initiative—资产信息工作组主席\n- Constructing\
+  \ Excellence Collaborative Working Champions\n\n### 建筑师和工程师在施工前和施工后阶段交付资产信息需求的挑战是什么？\n\
+  \n资产信息需求很少以与其作者工具集成的形式提供（通常是 PDF 文档）。因此，这往往是手动流程。将需求作为元数据添加到 3D BIM 对象上并不理想，如果他们使用\
+  \ IFC 导出数据，则会出现问题，因为他们倾向于使用 2x3，即协调 MVD，而这并非为资产信息而设计。当人们从 Revit 转换为 IFC，导入到联合 IFC\
+  \ 模型中，然后再转换回 COBie 时，问题会更加严重——可能出现什么问题？正确使用时，直接从 Revit 使用 COBie 扩展进行原生输出似乎更可靠。\n\
+  \n\n\n\n在COBie中建立空间模型对于确保所有资产位置被自动记录至关重要。资产类型通常会在阶段3确定，即使之后发生更改，记录更改前的信息对于资产管理者而言也是宝贵的，因为他们可能需要用设计师最初推荐的产品来替换经过“价值工程”处理但已失效的产品。\n\
+  \n## 标准化的客户需求和标准化的产品数据如何提高资产信息交付过程的效率？\n\n这是基础性的。资产信息团队对水泵、风机盘管、门或外墙板的需求在不同行业（住宅、教育、零售、办公和医疗保健）中大体相同。显然，即使在这些行业内，关键程度也存在差异，客户需求需要反映每个项目中不同利益相关者群体的需求。\n\
+  \n然而，如果从一套经过同行评审的标准库出发，进行这些修改所需的工作量是微不足道的。通过以机器可读的格式标准化性能要求，使用后评估可以反映设计的有效性，或许还能反映对需求的修改。\n\
+  \n同样，制造商可以创建标准化的产品库，纳入客户要求的信息和性能水平，并使其产品更贴合客户需求。\n\n运营效率和环境绩效的成本可以被建模，从而创造更具可持续性的建筑。\n\
+  \n简而言之，即使在今天，也很少有建筑能够交付符合目的的资产信息，因为这仍然是一个人工过程，往往被留到时间和成本即将耗尽时才进行。通过从一开始就标准化信息，专职信息经理可以将时间投入到真正需要其技能的方面，而将资产信息的交付留给流程本身。\n\
+  \n## 您如何看待COBie的现状和未来发展？COBie是一个长期目标，还是未来可能被以不同方式构建数据的先进技术所取代？\n\n一切都可以改进，但当我们终于让人们理解数据在BIM中与几何体同等重要（甚至更重要）时，我对改变标准感到不安。\n\
+  \nCOBie是一种数据模式，其容纳能力远超目前的使用范围。它并不完美，但通过有效利用Attributes，我们可以实现95%的需求。\n\n这里需要明确资产团队“需要”的信息是什么意思。\n\
+  \n他们出于不同的原因使用不同的应用程序。例如：\n\n- **CMMS**——计算机化维护管理应用程序，主要用于生成定期/计划维护的工作指令。这通常仅包括O&M中10%的资产。\n\
+  - **服务台**——这些支持响应式维护，并且目前有使用CRM应用程序来实现此目的的趋势。\n- **H&S/O&M**——通常是已安装设备的竣工记录及相关文档。虽然要求随着任何变更而保持更新，但很少做到这一点。ActivePLAN将其作为数字O&M或**资产信息模型（AIM）**交付，其中包含所有内容，包括CMMS中的资产类型。\n\
+  - **调查与检查**——这些是需要非常聚焦的信息并能够将数据返回AIM的专业移动应用程序。\n- **生命周期管理**——通常在电子表格中完成。\n- **空间管理**——有时称为FM，包括房间预订，通常作为独立应用程序（或模块）与CMMS应用程序一起交付，例如IBM\
+  \ Maximo和IBM Tririga。\n- **BMS/数字孪生**——我将它们联系在一起，因为它们都是使用/应用AIM中协调资产数据的方式。\n\n完整的COBie数据模型或Excel工作簿应包含上述每个应用程序/用途所需的全部信息。然而，我们不应期望这些应用程序读取完整的COBie数据模型或工作簿——甚至确实开发一个IFC模块。\n\
+  \n即使是那些已经开发出处理COBie方法的大型CMMS应用程序，也会将其转换后导入自己的数据库。因此，将移交的COBie数据放入像ActivePLAN这样的资产信息模型中更有意义，该模型可以保存和管理所有必需的信息，并为不同的CMMS应用程序以及上述所有类型的应用程序生成定制输出。\n\
+  \n在“数据服务”的现代世界中，通过确保符合COBie数据模式，Web服务可以提供动态互操作性，使执行防火门检查/维护的承包商——例如——能够在其CMMS应用程序中记录故障，创建“工单”进行维修，并将该资产的状态变化反馈给AIM，以便在整个建筑的背景下评估相应的风险。\n\
+  \n我们与BRE正在开展的工作让我们了解了本体的使用，以及如何利用本体为确定需要收集什么以及如何使用这些数据提供背景。与我们合作的数据科学家乐于使用COBie作为数据交换机制——关键是为正确的目的获取正确的数据。\n\
+  \n一直有关于从模式中删除“Coordinates（坐标）”的讨论。这确实很可惜，因为资产信息需要“定位”，而不仅仅是引用到一个空间。如果在一个空间内有20个CCTV摄像头，在数据中保存*x/y/z*坐标（即不是单独的几何模型）至关重要。\n\
+  \n## 在建筑行业中，整合运营维护（O&M）和资产管理（AM）面临哪些挑战？\n\n我认为资产管理是整体流程，运营和维护是其子流程，同时还包括生命周期规划/更换、小型工程、空间管理、BMS。它们（现在和将来）都由许多应用程序支持，不同的利益相关者出于许多不同的原因使用这些应用程序。如果我们能够克服两个最大的障碍——数据质量（结构、内容、可靠性和时效性）和缺乏投资——这个问题就很容易解决。\n\
+  \n后者影响前者。\n\n当资金紧张时，FM通常是第一个被削减的对象。新开发项目的资金往往比安装新的供暖或空调系统的资金更容易获得。即使在PFI项目中，投资设施的重要性已得到充分认识，签订的合同也常常使FM几乎别无选择，只能偷工减料。\n\
+  \n即使到今天，也很少有项目能提供关于防火阀和防火封堵位置的可靠信息，那么FM应该如何预算和规划它们的检查、维护和更换呢？\n\n客户很少知道他们的建筑里有什么（在某些情况下，他们甚至不知道他们有多少栋建筑）。FM经常被要求对现有物业的维护进行招标，而关于他们将维护什么的数据却非常不完整。他们可能会委托进行调查（他们通常需要在全新的BIM交付建筑上这样做）。尽管如此，许多他们需要维护的项目对于调查人员来说并不容易看到和记录，因此不会被发现。\n\
+  \n## 数字孪生是运营维护（O&M）和资产管理整合的未来吗？\n\n数字孪生是一个被不同的人使用并具有不同含义的术语。我参加了2019年9月在伦敦ICE举行的数字孪生活动，一位来自一级方程式赛车的资深人士解释说，他们已经使用数字孪生20年了——他们过去称之为模拟。\n\
+  \n我认为这就是我们应该区分3D模型（即使是带有IoT传感器的模型）和真正的数字孪生的方式，后者能够模拟活动和场景，为更好的资产管理提供信息。\n\nBMS应用程序正变得越来越复杂，并且无疑是这个过程的一部分，人工智能也是如此。\n\
+  \n自2018年以来，我们一直在试验AI，以了解如何训练智能体来响应问题或事件。我的商业伙伴Tim Aikin在他的房子里到处安装了传感器，使用ActivePLAN\
+  \ AIM作为平台，为自己的数字孪生提供数据。\n\n我们还在试验图数据库，从住宅塔楼获取空间模型，将消防资产分配给系统和空间，并模拟单个资产故障对内部空间和人员的影响。我们的下一步是使用AI创建场景，模拟人们将如何响应事件，以及如何改善环境以使他们更安全。\n\
+  \n事实是，所有这些过程都依赖于不断更新的更好的资产信息，并且越多的人出于不同目的连接和使用这些信息，效果就越好。\n\n## Revit和BIM创作工具如何改进以促进资产管理交付过程？云端数据是BIM工具中资产管理的未来吗？\n\
+  \n所有应用程序都可以改进以促进这一过程，但我们需要理解，BIM是关于信息的，而不是关于创建信息的应用程序。将资产数据保存在一个主要用于创建3D模型的应用程序中是不明智的。\n\
+  \n数据最好在数据库中管理，而云端使这变得更加容易。\n\n可以赋予不同的利益相关者使用和更新信息元素的权利，理想情况下是从他们日常任务中使用的应用程序中进行——不仅仅是3D建模应用程序。\n\
+  \nRevit和其他创作应用程序支持API，因此无需将非几何数据添加到3D对象本身。与云服务的动态连接使用户在点击时感觉数据就在模型中。但实际上，它是在其他地方（通常是由对数据进行了质量保证的主题专家）进行管理（和创建）的。\n\
+  \n\n\nGeorge，非常感谢您接受采访。\n\n在结束本节之前，我们了解了资产管理在建筑生命周期中的重要性，以及结构化数据对于跨多个设施管理平台集成数据的关键作用。COBie提供了结构化数据，这些数据被用于私人客户和英国政府的战略中，以支持资产管理流程。\n\
+  \n在下一节中，我们将学习如何制定行动计划来启动BIM项目。\n\n## 制定行动计划以启动BIM项目\n\n行动计划帮助组织以既定的流程启动BIM项目，以管理项目数据并将目标变为现实，从而避免在设计、施工和建筑生命周期中出现问题。\n\
+  \n行动计划将提供一份待完成的任务清单，以实现管理项目数据的初步目标，并且可以提高启动项目时工作流程的效率。\n\n行动计划将包括以下任务，但不限于这些：\n\n\
+  - 定义管理项目数据的初始BIM目标\n- 列出为实现目标而需要完成的任务\n- 结合项目截止日期确定关键任务的优先级\n- 确定接收信息的初始项目截止日期\n\
+  - 定义完成任务所需的资源\n- 根据要求衡量和评估进度，并更新行动计划\n\n有效的行动计划可以帮助您保持正轨，正确设置BIM项目，并提高管理BIM数据的生产力。\n\
+  \n### 管理项目数据的行动计划\n\n该行动计划的主要目标是分析BIM合同要求、降低风险，并收集启动BIM项目所需的全部必要信息。\n\n有时，项目在BEP尚未完全定义的情况下启动，而且您的公司可能不是负责制定BEP的主导指定方。\n\
+  \n当BEP完成后，所有指定方都将遵循它来交付项目。\n\n### 列出任务以实现目标\n\n以下任务将有助于确定项目目标，并为建立BIM项目的初始流程提供支持：\n\
+  \n- 1. 分析BIM合同要求。\n- 2. 如果客户没有BIM要求，您的公司应在合同中定义标准的BIM交付成果。\n- 3. 与客户和资产管理团队沟通，澄清每一项BIM要求。\n\
+  - 4. 向客户索取以下文件：\n    - 组织信息要求（OIR）\n    - 资产信息要求（AIR）\n    - 交换信息要求（EIR）\n- 5. 索取并分析任何遗留文件和测量文件，以及地形测量图（Ordnance\
+  \ Survey maps）。\n- 6. 检查并验证收到的信息。\n- 7. 索取或制定BEP，并与其他组织协作。\n- 8. 索取或制定BIM责任矩阵。BIM责任矩阵需要根据设计/施工责任和委任书进行检查。\n\
+  - 9. 检查BIM和IT能力评估。\n- 10. 在项目开始时设置或索取主坐标文件，以定义正确的项目坐标。\n- 11. 安排启动会议，详细说明交付项目的所有商定条款。\n\
+  \n### 总结\n\n在本章中，我们了解了项目数据管理对于提高效率和生产率的重要性。\n\n我们解释了由客户明确BIM要求的好处，以及客户负责向项目团队提供哪些BIM文件。\n\
+  \n我们概述了面向客户、项目团队和行业标准的BIM文档。\n\n您还了解了BIM项目中涉及的项目职能、资产管理的重要性，以及如何制定行动计划来启动BIM项目。\n\
+  \n在下一章中，我们将介绍良好的Revit模板和制图标准如何提高生产率。\n"
+- "## Revit模板与标准\n\nRevit中的生产率与项目中使用的**Revit模板**质量直接相关，包括行业和组织标准。\n\nRevit模板有助于提高在Revit中工作的效率，您的公司将受益于跨项目的一致性。\n\
+  \n这些模板通过预定义标准节省了大量时间，因此Revit用户无需为每个新项目重新创建或调整Revit设置。\n\n随着行业标准的发展，Revit模板需要修订以纳入最新进展。\n\
+  \n2019年1月，BS EN ISO 19650-1和BS EN ISO 19650-2发布，取代了BS 1192:2007+A2:2016和PAS 1192-2:2013。这意味着Revit模板需要做出与新的ISO\
+  \ 19650系列相一致的更改。\n\nRevit模板可以针对多个专业创建，例如建筑、结构和MEP，也可以针对特定用途进行自定义，例如测量和其他用途。\n\n\
+  在本章中，您将学习如何创建Revit模板并管理其图形设置，以改进在Revit中创建的图纸。这将包括关于视图模板以及如何自定义标题栏的信息。\n\n在本章中，我们将介绍以下主题：\n\
+  \n- 如何创建Revit模板\n\n### 技术要求\n\n在本章中，您需要访问Autodesk Revit。用于描述所有这些练习的版本是Revit 2021，但您也可以使用其他版本进行学习。需要考虑以下重要事项：\n\
+  \n- 不同版本之间可能会略有差异。\n- 较旧版本的Revit无法打开较新版本的文件。\n\n本章使用的所有数据集都可以在本书的GitHub仓库中找到：https://github.com/PacktPublishing/-Increasing-Autodesk-Revit-Productivity-for-BIM-Projects。\n\
+  \n### 如何创建Revit模板\n\nRevit模板可确保项目的一致性并提高生产率。它们通过定义符合组织标准和行业标准的图形和技术设置来实现这一目标。\n\n\
+  Revit模板并非一成不变；随着我们根据新标准和工作流程进行调整，它将为持续发展而不断改进。\n\n您可能已经知道，Autodesk每年发布一个新Revit版本。然而，为多个版本更新Revit模板可能非常耗时。\n\
+  \n为了避免在不同Revit版本中创建和更新多个Revit模板，我们建议您在相同的Revit版本中保留模板几年；这可能在3到4年之间变化。我们还建议您每5年从头重新创建模板。\n\
+  \n为了解释这个过程，假设您的公司有一个Revit 2021版本的Revit模板。这个2021版本的Revit模板将使用3到4年，在此期间根据需要更新。\n\n\
+  当Autodesk发布Revit 2025时，您的公司将从头重新创建Revit模板，其中将包含过去5年的所有重大变化。\n\n在此工作流程中，您的公司将能够使用任何Revit版本（从Revit\
+  \ 2021起）。但是，当新项目启动时，Revit 2021模板将升级到特定的Revit版本。\n\n在**Revit选项**中，您可以更改**Revit模板路径**并根据需要进行更新：\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_109_0.png)\n\n![](img/1961add582dd4a589b2eac3dda140e38_109_1.png)\n\
+  \n图3.1 - 更改Revit模板路径\n\n在本书*第3章*的数据集中，您将找到一份需要在Revit模板上更新项的检查清单。该文件是`Revit_Template_Check_List.xlsx`：\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_110_0.png)\n\n您可以使用以下链接下载本书数据集的ZIP文件：\n\
+  \n```\nhttps://github.com/PacktPublishing/-Increasing-Autodesk-Revit-Productivity-for-BIM-Projects/blob/main/Chapter%203/Revit_Template_Check_List.xlsx\n\
+  ```\n\n在*技术要求*部分，您还可以找到本书的GitHub仓库链接，从中可以下载数据集。下载ZIP文件后，您需要解压该文件以访问本书的数据集文件。\n\n\
+  我们将按照`Revit_Template_Check_List.xlsx`文件来解释自定义Revit模板所需进行的更改。\n\nRevit模板检查清单分为以下领域：\n\
+  \n- 启动Revit模板\n- 常规设置\n- 视图和图纸\n\n\n\n\n\n## 开始 Revit 模板\n\n我们将通过使用随 Revit 安装时保存的现有\
+  \ `DefaultGBRENU.rte` 模板来开始一个新的 Revit 模板。模板有多种选项，我们接下来会进行说明。\n\n多语言的模板可以在这里找到：\n\
+  \n`C:\\ProgramData\\Autodesk\\RVT 2021\\Templates`\n\n公制英文模板可以在这里找到：\n\n`C:\\ProgramData\\\
+  Autodesk\\RVT 2021\\Templates\\English`\n\n英制英文模板可以在这里找到：\n\n`C:\\ProgramData\\\
+  Autodesk\\RVT 2021\\Templates\\English-Imperial`\n\n我们需要通过选择现有模板（`DefaultGBRENU.rte`）并选择\
+  \ **Save As** 来保存模板到不同文件夹并使用新名称，以此来开始一个 **New** 项目。这样我们就可以开始编辑文件了：\n\n![](img/1961add582dd4a589b2eac3dda140e38_111_0.png)\n\
+  \n图 3.3 – 打开 Revit 模板\n\n打开模板后，我们需要保存文件。要保存文件，请导航到 **File | Save As | Template**\
+  \ 并相应地重命名文件。\n\n创建新模板后，我们需要将其添加为创建新项目时的选项。要添加创建的新模板，请遵循本章前面解释的过程。\n\n我们的新模板将可用于开始新项目。现在，我们已准备好按要求开始配置模板文件。\n\
+  \n## 通用设置\n\nRevit 通用设置涵盖基本配置。它分为以下项目：\n\n- Browser Organization\n- Snaps\n- Project\
+  \ Information\n- Project parameters\n- Shared parameters\n- Global parameters\n\
+  - Project units\n- Family name conventions\n- Exporting **Industry Foundation Classes\
+  \ (IFC)** settings\n- IFC mapping for specific project parameters (assigned to objects)\n\
+  - Keynote settings\n- Worksets\n\n## Browser Organization\n\nBrowser Organization\
+  \ 工具对于提高 Revit 中的生产力至关重要。这是因为您可以优化组织视图和图纸的方式以适应您公司的流程。\n\n## 按视图类型组织视图\n\n使用视图类型来组织项目浏览器时，重要的是相应地重命名视图类型。\n\
+  \n要重命名视图，请从项目浏览器中选择一个视图并执行以下屏幕截图中的步骤来重命名视图类型：\n\n![](img/1961add582dd4a589b2eac3dda140e38_114_0.png)\n\
+  \n图 3.5 – 重命名视图类型\n\n在创建视图并重命名视图类型的过程中，我们建议您创建一个新的 **Browser Organization method**。\n\
+  \n为此，请按照以下步骤操作：\n\n1. 将鼠标悬停在项目浏览器的 **Views (all)** 上。然后，右键单击并选择 **Browser Organization**：\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_114_1.png)\n\n图 3.6 – Browser Organization\n\
+  \n2. 点击 **New** 并输入新名称，例如 `FD_View_Type`：\n\n图 3.7 – 为您的 Browser Organization 添加名称\n\
+  \n3. 点击 OK。\n\n点击 OK 后，会打开一个新窗口，要求您定义要使用的属性。这些属性分为两个不同的选项卡：\n\n- **Filtering:**\
+  \ 这允许对视图进行筛选。\n\n  Filter by: 在这里，选择 Sheet Name Equal to <None>。这将使视图在被放置到图纸中时不可见。\n\
+  \n图 3.8 – Browser Organization Properties – Filtering\n\n- **Grouping and Sorting:**\
+  \ 这允许根据您想要的属性对视图进行分组和排序。\n\n  **Group by:** 在这里，选择 **Type**。这将按 **View Type** 对视图进行分组。\n\
+  \n  **Sort by:** 在这里，选择 **Associated Level** 然后选择 **Descending**。这将根据楼层平面高度对平面视图进行排序：\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_116_0.png)\n\n图 3.9 – Browser Organization\
+  \ Properties – Grouping and Sorting\n\n4. 点击 **OK**。\n\n5. 确保已勾选 **FD_View_Type**\
+  \ 然后点击 **OK**。\n\n![](img/1961add582dd4a589b2eac3dda140e38_117_0.png)\n\n图 3.10\
+  \ – 创建新的视图 Browser Organization\n\n> **Tip**\n>\n> 建议您删除现有的 Browser Organization。任何其他组合都可根据需要创建。\n\
+  \n在本示例中，我们使用了视图类型，这有助于您识别视图被放置的位置：\n\n![](img/1961add582dd4a589b2eac3dda140e38_117_1.png)\n\
+  \n图 3.11 – 根据视图类型查看浏览器\n\n## 按项目参数组织视图\n\n在此过程中，我们需要创建一个新的 Browser Organization\
+  \ 类型，以便使用项目参数而不是视图类型来组织视图。\n\n请按照我们已演示的过程创建新的 Browser Organization 类型并将其命名为 **FD_General**：\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_118_0.png)\n\n图 3.12 – 基于项目参数的 Browser\
+  \ Organization 类型\n\n要使用项目参数组织项目浏览器，我们将开始为视图创建两个参数。\n\n### View Parameters\n\n-\
+  \ View Package\n- View Sub-Code\n\n1. 从功能区中，在 **Manage** 下，点击 **Project Parameters**：\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_119_0.png)\n\n图 3.13 – 创建新的项目参数\n\n2.\
+  \ 将弹出一个窗口，其中包含模板中已创建的所有参数：\n\n![](img/1961add582dd4a589b2eac3dda140e38_119_1.png)\n\
+  \n图 3.14 – 添加新的项目参数\n\n3. 点击 **Add…** 以打开新窗口。\n\n此窗口分为三个区域：\n\n- **Parameter Type:**\
+  \ 用户可以在此处指定参数是项目参数还是共享参数。\n- **Parameter Data:** 用户可以在此处指定将创建何种参数。\n- **Categories:**\
+  \ 用户可以在此处将此新参数分配给特定的 Revit 类别。\n\n4. 使用这些设置创建新的参数，View Package 和 View Sub-Code：\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_120_0.png)\n\n图 3.15 – 新的项目参数\n\n5. 现在，重复该过程以创建\
+  \ View Sub-Code 参数。对于此参数，无需选择 Schedules 类别。\n\n> **Tip**\n>\n> 如果出于某种原因需要更改参数属性，请在项目参数窗口下选择参数名称并点击\
+  \ Modify。请记住，在创建参数后无法更改某些属性；在这种情况下，需要删除参数并从头开始创建。如果已填写任何信息，它将从模板（或项目）中删除。\n\n6.\
+  \ 创建两个新参数后，我们可以配置 FD_General Browser Organization。\n\n在本示例中，我们将仅使用 Grouping and\
+  \ Sorting 选项卡：\n\n- **Grouping and Sorting:** 这允许根据所需属性对视图进行分组和排序。\n\n  **Group\
+  \ by:** 在这里，选择 View Package。这将根据在此参数下填写的内容对视图进行分组。\n\n  **Then by:** 在这里，选择 View\
+  \ Sub-Code。这将根据在此参数下填写的内容对视图进行分组。\n\n  **Sort by:** 在这里，选择 Associated Level 然后选择\
+  \ Descending。这将根据楼层平面高度对平面视图进行排序：\n\n![](img/1961add582dd4a589b2eac3dda140e38_121_0.png)\n\
+  \n图 3.16 – 编辑视图组织 – FD_General\n\n7. 点击 OK。\n\n8. 确保已勾选 FD_General 然后点击 OK。\n\n\
+  在本示例中，我们使用了 Browser Organization 将视图放置到由新参数 View Package 和 View Sub-Code 分组的组中。\n\
+  \n我们建议在模板中设置五个 View Package 选项。这些和不同的文件夹可以通过在创建视图时填写这两个参数来创建。这些包组织如下：\n\n- **00\
+  \ – Administration Views:** 这些视图与模板定义相关。\n- **01 – WIP Views:** 所有进行中的视图都应保存在此处。\n\
+  - **02 – Views Export:** 这些是需要导出为不同格式和用于不同用途的视图。\n- **03 – User Views:** 这些是由用户出于特定原因创建并保留的视图。\n\
+  - **04 – Sheet Views:** 这些是将被放置到图纸中的视图。\n\n项目浏览器将按以下屏幕截图进行组织：\n\n![](img/1961add582dd4a589b2eac3dda140e38_122_0.png)\n\
+  \n图 3.17 – 视图组织 – FD_General\n\n\n\n\n\n## 浏览器组织 – 图纸\n\n在图纸的浏览器组织中，我们需要创建两个新参数：\n\
+  \n- 图纸包\n- 图纸子代码\n\n我们可以使用前面演示过的流程，通过以下设置创建新的项目参数：\n\n![](img/1961add582dd4a589b2eac3dda140e38_124_0.png)\n\
+  \n图3.19 – 视图组织 – FD_General\n\n参数创建完成后，我们可以编辑图纸浏览器组织：\n\n图3.20 – 编辑图纸浏览器组织\n\n完成此设置后，我们可以将图纸移动到多个包中，如下所示：\n\
+  \n图3.21 – 将图纸移动到不同包的参数\n\n如前所述，理解项目浏览器的组织方式至关重要。这是因为每个项目和每家公司都有不同的浏览器组织。\n\n## 浏览器组织\
+  \ – 明细表\n\n在明细表的浏览器组织中，我们将使用已为视图包创建的参数。\n\n我们将能够将明细表移动到不同的包中，如下所示：\n\n![](img/1961add582dd4a589b2eac3dda140e38_126_0.png)\n\
+  \n图3.22 – 将明细表移动到不同包的参数\n\n总而言之，浏览器组织有助于组织视图、图纸和明细表；这既节省了时间，又提高了效率。\n\n## 捕捉\n\n\
+  在Revit中添加或编辑图元时，对象捕捉非常有用，因为它会显示捕捉点符号。\n\n首先，让我们访问该功能。在**管理**下，单击**捕捉**：\n\n图3.23\
+  \ – 捕捉\n\n将弹出一个新窗口，您可以根据特定工作流的要求更改设置：\n\n![](img/1961add582dd4a589b2eac3dda140e38_127_0.png)\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_127_1.png)\n\n图3.24 – 编辑捕捉设置\n\n**对象捕捉**设置允许用户启用和/或禁用特定的捕捉，以适应特定的工作流。此外，我们可以通过使用括号中的快捷键来提高工作效率，例如（**SE**）、（**SM**）、（**SC**）等。\n\
+  \n## 项目信息\n\n这些设置对于指定项目信息非常有用，例如：\n\n- 组织名称\n- 组织描述\n- 建筑名称\n- 作者\n- 能量设置\n- 路线分析设置\n\
+  - 项目发布日期\n- 项目状态\n- 客户名称\n- 项目地址\n- 项目名称\n- 项目编号\n\n可以通过单击**管理**，然后**项目信息**来访问此信息：\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_128_0.png)\n\n图3.25 – 项目信息\n\n将打开一个新窗口，我们可以在其中根据需要添加和编辑所有信息：\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_129_0.png)\n\n图3.26 – 项目信息参数\n\n可以根据需要通过创建新项目或共享参数来添加更多项目信息。\n\
+  \n在标题页、闪屏、标记等中需要包含附加参数。创建项目参数和共享参数的过程将在专门章节中说明：\n\n![](img/1961add582dd4a589b2eac3dda140e38_130_0.png)\n\
+  \n图3.27 – 附加项目信息参数\n\n建议始终将项目相关信息保存在“项目信息”下。通过保持信息的一致性，可以轻松找到所需的信息。\n\n## 项目参数\n\
+  \n项目参数是允许用户向项目中的特定Revit类别添加信息的参数。这些参数在明细表中可见，但不能用于标记（因为它们不与外部文件共享）。\n\n用户可以根据需要添加任意数量的项目参数，但应保持在最少数量。因为这会增加文件大小，并使得维护模型中的不必要数据变得更加困难。\n\
+  \n## 共享参数\n\n共享参数类似于项目参数。主要区别在于这些参数可用于多个族或项目。此外，它们可以被标记、列入明细表并作为ODBC导出。\n\n使用共享参数时，必须有一个外部文件（*.TXT文件）来承载此信息。\n\
+  \n每个项目都应有自己的共享参数文件（即*.TXT文件），可以在其中创建模板参数。这包括项目级别所需的任何附加共享参数。\n\n如果我们为Revit族创建共享参数，则需要确保该项目中也创建了该参数，以便其正常工作。\n\
+  \n创建共享参数的过程由三个不同的步骤组成：\n\n- 创建新的共享参数文件。\n- 在共享参数文件中创建参数组和参数。\n- 将共享参数文件添加到Revit文件中。\n\
+  \n## 创建新的共享参数文件和参数\n\n要创建共享参数文件，请按照以下步骤操作：\n\n- 1. 在“管理”选项卡中，单击“共享参数”：\n\n![](img/1961add582dd4a589b2eac3dda140e38_131_0.png)\n\
+  \n图3.28 – 创建共享参数文件\n\n在创建参数之前，用户需要先创建一个**参数组**，参数将创建在该参数组中。参数组将帮助您组织所有共享参数。创建参数组后，就可以创建参数。如果参数组已存在，请确保新参数创建在相应的组中：\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_133_0.png)\n\n图3.30 – 为共享参数创建新参数组\n\n\
+  3. 单击**新建**，输入参数**名称**，然后选择**规程**。选择**参数类型**，然后单击**确定**：\n\n![](img/1961add582dd4a589b2eac3dda140e38_134_0.png)\n\
+  \n图3.31 – 创建共享参数\n\n4. 添加新的共享参数需要多次单击，如下面的截图所示。导航到**管理 > 项目参数 > 添加 > 共享参数 > 选择**。然后，选择正确的类别，选择要添加的参数，并单击**确定**。按照下图中的编号操作：\n\
+  \n> **提示**\n> 您可以通过选择参数并单击“移动”将参数从一个组移动到另一个组。\n\n现在，创建共享参数的过程就完成了。\n\n## 全局参数\n\n\
+  全局参数是一种不分配给特定类别，但可用于不同类别中的多个对象的参数。\n\n例如，可以使用全局参数来控制所有窗台高度，使其保持一致。\n\n要访问全局参数，请执行以下步骤：\n\
+  \n- 1. 在功能区中，单击“管理”，然后再单击“全局参数”：\n\n![](img/1961add582dd4a589b2eac3dda140e38_136_0.png)\n\
+  \n图3.33 – 全局参数\n\n- 2. 在“全局参数”窗口底部，您可以根据需要创建、编辑和删除参数：\n\n![](img/1961add582dd4a589b2eac3dda140e38_137_0.png)\n\
+  \n图3.34 – 创建全局参数\n\n提示\n\n请注意，可以使用另一个**公式**或**特定值**。\n\n## 项目单位\n\n在Revit中工作时，您可以随时定义所使用的单位。更改此设置时，Revit将使用新定义的单位自动调整所有项目，而无需用户进行任何其他输入。\n\
+  \n项目单位按规程分组。更改规程后，将显示不同的单位类型。\n\n## 族命名约定\n\n关于命名约定，世界各地有许多可用的示例。我们建议族命名约定基于并符合*BS_8541-1_2012：建筑、工程和施工库对象——第1部分：标识与分类。操作规范。*\n\
+  \n为了在搜索内容时获得一致的结果，作为最佳实践，应遵循以下规则：\n\n- 命名应使用驼峰式大小写（即每个单词首字母大写）。\n- 不要使用空格。\n- 使用\
+  \ _（下划线）作为字段之间的分隔符。\n- 使用完整的单词（尽可能）。\n- 不要使用特殊字符，例如 , . ! \" £ $ % ^ & * ( ) { }\
+  \ [ ] + = < > ? | \\ / @ ' ~ # ¬ ` '。\n\n我们建议您按以下方式重命名族文件：\n\n**<Discipline>_<Type>_<Subtype>_<Description>**\n\
+  \n对于每个字段，我们有以下说明：\n\n- **<Discipline>**：标识负责开发内容的设计规程代码：**A**。\n- **<Type>**：指定有关对象用途的信息（不应与Revit族类别混淆）：**A_Annotation**。\n\
+  - **<Subtype>**：指定第二层信息，帮助您将一个族与另一个族区分开来：**A_Annotation_TitleBlock**。\n- **<Description>**：允许用户添加附加信息以区分子类型（可选）：**A_Annotation_TitleBlock_A1Metric**。\n\
+  \n要重命名Revit内容，我们可以通过两种不同的方式进行：\n\n- **通过插件（或Dynamo）**：这可以将所有现有Revit内容名称导出到Excel电子表格中。然后，我们可以在Excel中编辑它们，并将Excel电子表格导入回Revit（我们将在本书后面的章节中介绍一些可用于帮助完成此任务的插件）。\n\
+  \n\n\n\n\n- **手动方式：**右键单击并选择**重命名**：\n\n![](img/1961add582dd4a589b2eac3dda140e38_140_0.png)\n\
+  \n图 3.37 – 重命名族\n\n## 导出 IFC 设置\n\nIFC 文件格式是一种互操作文件格式，允许不同的 BIM 软件导入模型并用于协调。通过减少软件之间传输过程中的信息丢失，它可以在整个建筑生命周期中用于沟通、提高生产效率和保证质量。\n\
+  \n为了实现这种互操作性，buildingSMART 制定并维护了一系列标准。\n\nbuildingSMART 网站地址为 `https://bit.ly/2JGIz8u`。\n\
+  \n或者，您也可以参考以下二维码：\n\n![](img/1961add582dd4a589b2eac3dda140e38_140_1.png)\n\n在以 IFC\
+  \ 文件格式导出模型之前，需要将所有 Revit 族映射到特定的 IFC 类别和 IFC 类型。这样可以更好地理解在不同软件类型中应如何识别元素类型。\n\n\
+  要访问 IFC 导出映射配置，请执行以下步骤：\n\n1. 在**文件**菜单中，转到**导出**。在**选项**中，单击**IFC 选项**：\n\n![](img/1961add582dd4a589b2eac3dda140e38_141_0.png)\n\
+  \n图 3.38 – IFC 类别映射选项\n\n2. 在新窗口中，可以定义每个 Revit 类别将导出为哪些 IFC 类别：\n\n![](img/1961add582dd4a589b2eac3dda140e38_142_0.png)\n\
+  \n*图 3.39 – IFC 导出类别映射*\n\n导出为 IFC 时，必须了解应使用哪个 IFC 版本（**模型视图定义或 MVD**）。\n\n您可以通过\
+  \ buildingSMART 网站了解更多关于 IFC 规范数据库的信息：`https://bit.ly/2XcdqNk`。\n\n或者，您也可以使用以下二维码：\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_143_0.png)\n\n您可以通过 buildingSMART 网站了解更多关于\
+  \ MVD 数据库的信息：`https://bit.ly/2I00PKO`。\n\n或者，您也可以使用以下二维码：\n\n![](img/1961add582dd4a589b2eac3dda140e38_143_1.png)\n\
+  \n您可以通过 buildingSMART 网站了解更多关于 IFC 实施指南的信息：`https://bit.ly/38edqrt`。\n\n或者，您也可以使用以下二维码：\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_143_2.png)\n\n您可以通过 buildingSMART 网站了解更多关于软件实施的信息：`https://bit.ly/3oeoK7G`。\n\
+  \n或者，您也可以使用以下二维码：\n\n![](img/1961add582dd4a589b2eac3dda140e38_144_0.png)\n\n> **提示**\
+  \  \n> 使用 IFC 时，请确保使用最新版本的 IFC 导出器。\n\n## Keynote 设置\n\nKeynote 是一项功能，可根据分类系统对所有模型元素进行分类。该分类系统可以是内部分类系统（即由公司制定并基于内部标准），也可以是行业标准分类系统。您可以按照下图所示访问\
+  \ Keynote：\n\n![](img/1961add582dd4a589b2eac3dda140e38_144_1.png)\n\n图 3.40 – Keynote\n\
+  \n默认情况下，提供的 Keynote 分类系统基于 1995 年美国建筑规范学会（CSI）的 MasterFormat。\n\n使用 Keynote 是将模型元素与项目规范关联起来的一种简单高效的方法。这是因为相关信息会添加到元素中，而标记将显示这些信息。\n\
+  \n这些信息来源于外部 `.TXT` 文件，该文件包含一个键值和一段描述。默认情况下，该文件保存在 `%ALLUSERSPROFILE%\\Autodesk\\\
+  RVT 2021\\Libraries\\<local and language>`：\n\n![](img/1961add582dd4a589b2eac3dda140e38_145_0.png)\n\
+  \n图 3.41 – Keynote 文件结构\n\n通过**注释**选项卡中的**Keynoting 设置**，可以将新文件加载到项目中：\n\n![](img/1961add582dd4a589b2eac3dda140e38_145_1.png)\n\
+  \n图 3.42 – Keynoting 设置\n\nKeynote 有三种不同类型：\n\n- **元素 Keynote：**分配给整个模型元素的 Keynote。\n\
+  - **材质 Keynote：**分配给模型元素材质的 Keynote。\n- **用户 Keynote：**按用户分配的 Keynote。\n\n## 工作集\n\
+  \n在处理工作共享项目时（这是一种允许多个用户同时处理同一模型的建模方法），工作集至关重要，因为它们可以作为元素的集合。\n\n创建工作集后，可以打开或关闭工作集，以提高\
+  \ Revit 的性能。\n\n在 `Revit_Template_Check_List.xls` 文件中，可以找到项目中最常用的工作集列表：\n\n| 工作集\
+  \ | 描述 |\n|---|---|\n| Workset1 | 默认 Revit 工作集 |\n| Shared Levels and Grids | 默认\
+  \ Revit 工作集 |\n| ABC_CAD_Links | 用于添加 CAD 链接 |\n| ABC_Arch_Description_Link | 每个建筑文件都有一个单独的工作集\
+  \ |\n| ABC_MEP_Links | 用于添加 MEP 文件 |\n| ABC_STR_Links | 用于添加结构文件 |\n| ABC_Reference_Planes\
+  \ | 用于添加参照平面 |\n| ABC_Cladding - Exterior | 用于建模外部构件 |\n| ABC_Interiors | 用于建模内部构件\
+  \ |\n| ABC_Site | 用于建模场地构件 |\n| ABC_FF&E | FF&E = 家具、固定装置和设备 |\n| ABC_HVAC | MEP\
+  \ 工作集 |\n| ABC_Plumbing | MEP 工作集 |\n| ABC_Fire_Protection | MEP 工作集 |\n| ABC_Electrical\
+  \ | MEP 工作集 |\n| ABC_Steel | 结构工作集 |\n| ABC_Concrete | 结构工作集 |\n| ABC_Foundations\
+  \ | 结构工作集 |\n\n图 3.43 – Revit 模板检查清单\n\n只有在使用工作共享工具和环境时，才能在项目文件（RVT）中创建工作集；模板（RTE）中无法创建工作集。\n\
+  \n> **提示**  \n> 创建工作集应仅由负责项目的任务信息经理执行。\n\n## 视图和图纸\n\n关于视图命名规范，重要的是采用一种便于识别视图和图纸内容的命名规范。这将提高项目工作效率。\n\
+  \n如需快速搜索，可以在浏览器组织名称下方右键单击并选择“搜索”：\n\n![](img/1961add582dd4a589b2eac3dda140e38_147_0.png)\n\
+  \n图 3.44 – 在项目中搜索族的视图和图纸\n\n根据项目规模的不同，我们可能会拥有数百个视图，此时该选项就非常有用。\n\n## 视图名称\n\n视图重命名过程与前面提到的过程相同：\n\
+  \n- 通过插件（或 Dynamo）：使用外部插件\n- 手动方式：右键单击并选择“重命名”\n\n> **提示**  \n> 选择视图并按 F2，即可编辑视图名称（族名称和族类型名称也适用）。\n\
+  \n根据您组织项目浏览器的方式（即按参数或按视图类型），应尽可能对所有视图进行组织：\n\n![](img/1961add582dd4a589b2eac3dda140e38_148_0.png)\n\
+  \n图 3.45 – 命名视图\n\n如前所述，我们建议您为视图名称采用统一的命名规范。\n\n## 图纸名称\n\n与视图名称采用相同的策略，图纸名称应清晰说明其包含的内容。我们建议遵循适当的命名规范：\n\
+  \n所有这些参数都应为共享参数，并按照*共享参数*部分中所述的相同方式添加：\n\n![](img/1961add582dd4a589b2eac3dda140e38_150_0.png)\n\
+  \n图 3.47 – 启动画面\n\n## 定义起始视图\n\n可以通过执行以下步骤定义起始视图：\n\n1. 在功能区中，单击**管理**。\n2. 单击**起始视图**：\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_150_1.png)\n\n图 3.48 – 定义起始视图\n\n3. 选择要使用的视图，然后单击“确定”：\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_151_0.png)\n\n图 3.49 – 选择要用作起始视图的视图\n\
+  \n将二维视图设置为起始视图是一种良好实践，因为起始视图可以提高模型打开速度。这是因为 Revit 不需要更新任何三维视图。\n\n## 标题栏族\n\n标题栏遵循与启动画面相同的原则：\n\
+  \n- 需要包含与项目和图纸相关的重要信息。\n- 应按照前面介绍的相同原则添加共享参数。\n- 需要编辑一些特定于项目的信息。\n\n\n\n\n\n要从零创建标题栏，Revit\
+  \ 需要使用专门为此的 Revit 族模板，称为 **Title Blocks**。要创建它，请按照以下步骤操作：\n\n1. 转到 **File**，在 **New**\
+  \ 下方选择 **Title Block**：\n\n![](img/1961add582dd4a589b2eac3dda140e38_152_0.png)\n\
+  \nFigure 3.50 – Opening a title block family\n\n2. 在 New Title Block 窗口中，选择要作为起点使用的尺寸，然后单击\
+  \ **OK**：\n\n![](img/1961add582dd4a589b2eac3dda140e38_153_0.png)\n\nFigure 3.51\
+  \ – Selecting a title block family template\n\n现在你已打开族模板，请保存文件（遵循命名约定）并按需创建。你应该具有以下内容：\n\
+  \n- **Lines**：用于绘制所需的所有线条。\n- **Text**：用于编写每个区域的标题。\n- **Labels**：用于添加所有参数和共享参数（这些需要在共享参数文件中创建，如本章前面所述）以在项目中填充。\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_155_0.png)\n\nFigure 3.53 – Inserting\
+  \ a revision schedule into the title block\n\n我们建议你设置项目中修订的使用方式。还建议你使用 ISO 19650\
+  \ 修订系统：**P01.01。**\n\n要访问修订，请按照以下步骤操作：\n\n1. 在功能区中，单击 **View**。\n2. 单击 **Revisions**。\n\
+  \n**Sheet Issues/Revisions** 窗口将打开。从这里，你可以更改项目中使用的设置：\n\n![](img/1961add582dd4a589b2eac3dda140e38_155_1.png)\n\
+  \nFigure 3.54 – Revision information settings\n\n作为建议，修订编号应遵循 ISO 19650。\n\n# Schedules\n\
+  \nRevit 中的 Schedules 允许你创建模型中几乎所有实例类型的元素列表。这些 schedules 会根据模型中可以找到的信息自动更新。\n\n可以提取不同类型的\
+  \ schedules：\n\n- **Quantity schedules**：允许用户从模型中提取建筑元素的列表。\n- **Key schedules**：允许用户定义键，以便更一致地填充数量表。\n\
+  - **Graphical column schedules**：允许用户通过相交网格线创建柱表，包括其顶部和底部约束及偏移。\n- **Material takeoff**：允许用户从模型中导出分配给元素的材料信息。\n\
+  - **Sheet lists**：允许用户列出项目中的图纸清单。\n- **Note block schedules**：允许用户定义可使用 **Symbol**\
+  \ 工具添加到模型中的注释表。\n- **View lists**：允许用户列出项目中的视图。\n- **Revision schedules**：允许用户列出分配给图纸的修订。\n\
+  - **Panel schedules**：允许用户创建包含电气配电箱信息、连接到配电箱的电路及其对应负载的配电箱表。\n\n创建 schedules 的过程相当简单：\n\
+  \n1. 将鼠标悬停在 **Schedules/Quantities** 上，右键单击，然后单击要创建的 schedule 类型：\n\nFigure 3.55\
+  \ – Creating new schedules\n\n2. 创建 schedules 后，我们建议你根据 View Package 参数将其放入特定文件夹中：\n\
+  \nFigure 3.56 – Schedules organized per package\n\n![](img/1961add582dd4a589b2eac3dda140e38_157_0.png)\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_157_1.png)\n\n# Legends\n\n> **Tip**\n\
+  >\n> 在使用 schedules 时，按住 **Control** 键并移动鼠标滚轮，将会 **Zoom In** 和 **Zoom Out**。\n\n\
+  Legend 视图可以根据用户希望在项目中使用的不同方式具有多种用途。它们可用于列出模型组件或注释，或用作一般注释：\n\n![](img/1961add582dd4a589b2eac3dda140e38_158_0.png)\n\
+  \n我们可以有以下不同类型的 legend：\n\n- **Legend：** 允许用户创建典型图例，例如注释图例、线型图例和图案图例。\n- **Keynote\
+  \ legend：** 允许用户创建包含分配给项目或视图中元素或材料的全部注释和注释说明的表。\n\nLegends 可以放置到多个图纸中。\n\n# Graphic\
+  \ standards\n\n在本节中，我们将介绍可用于控制 Revit 中图形的主要设置。这是一个重要主题，因为它会影响所有施工图纸的生产率和一致性。\n\n\
+  我们将介绍以下内容：\n\n- Line patterns\n- Line styles\n- Line weights\n- Object styles\n\
+  - Fill patterns\n- Material library\n- View templates\n- Filters\n- Color fill legend\
+  \ schemes\n- Phases\n- Exporting to DWG\n- Arrowheads\n\n## Line patterns\n\n在 Revit\
+  \ 中，你可以创建线型。这些线型是通过组合破折号和点以及它们之间的空白空间创建的。破折号和空格可以具有特定尺寸。\n\n这些线型可以与颜色组合以定义线型（将在后面介绍）。\n\
+  \n按照以下步骤创建线型：\n\n1. 从功能区单击 **Manage**，在 **Additional Settings** 中单击 **Line Patterns**：\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_160_0.png)\n\nFigure 3.58 – The Line\
+  \ Patterns setting\n\n2. 打开 **Line Patterns** 窗口后，你可以创建、编辑、删除和重命名线型。我们建议你使用命名约定并仅创建最常用的线型：\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_161_0.png)\n\nFigure 3.59 – Line patterns\
+  \ available in the project\n\n线型只能使用破折号、空格和点创建。\n\n# Line styles\n\n线型是线型、线宽和颜色的组合。按照以下步骤创建线型：\n\
+  \n1. 从功能区单击 **Manage**。然后在 **Additional Settings** 中单击 **Line Styles**：\n\n![](img/1961add582dd4a589b2eac3dda140e38_162_0.png)\n\
+  \nFigure 3.60 – The Line Styles setting\n\n2. 打开 **Line Styles** 窗口后，你可以创建、编辑、删除和重命名线型。\n\
+  3. 在 **Category** 列中，你可以看到项目中所有可用线型的列表。其中一些线型带有 <>，表示该线型是系统（硬编码）线型，不能删除或重命名。其他线型可以创建、重命名和删除：\n\
+  \nFigure 3.61 – The line styles available in the project\n\n线型可用于项目级别的模型线或详图线。\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_165_0.png)\n\nFigure 3.63 – Line Weights\n\
+  \n- **Model Line Weights：** 可用于指定正交视图中 3D 元素的线宽；请注意，这取决于视图的比例。\n- **Perspective\
+  \ Line Weights：** 可用于指定透视视图中 3D 元素的线宽；请注意，这不取决于视图的比例。\n- **Annotation Line Weights：**\
+  \ 可用于指定正交视图中注释元素的线宽；请注意，这不取决于视图的比例。\n\n# Object styles\n\n如前所述，对象样式允许用户针对每个类别设置所有通用设置，关于线宽（剖切和投影）、线颜色、线型以及材料（如果元素未分配材料）：\n\
+  \n1. 从功能区单击 **Manage**，然后单击 **Object Styles**：\n\n![](img/1961add582dd4a589b2eac3dda140e38_166_0.png)\n\
+  \nFigure 3.64 – Object Styles\n\n2. 这些设置允许你控制 **Model Objects, Annotation Objects,\
+  \ Analytical Objects, and Imported Objects**：\n\n![](img/1961add582dd4a589b2eac3dda140e38_166_1.png)\n\
+  \nFigure 3.65 – The Object Styles settings\n\n\n\n\n\n- **模型对象：** 通过此功能，您可以配置项目中所有专业中的所有模型对象。\n\
+  - **标注对象：** 通过此功能，您可以配置项目中的所有标注元素。\n- **分析对象：** 通过此功能，您可以配置项目的全部分析元素（包括结构专业和区域）。\n\
+  - **导入对象：** 通过此功能，您可以配置项目中所有导入元素（即直接导入到项目或族中的元素）。\n\n## 填充图案\n\n填充图案可在 Revit 中用于定义对象的表面外观。\
+  \ 对于 3D 元素，它不仅可以定义表面的外观，还可以定义剖切区域的外观。 按以下步骤创建填充图案：\n\n- 1. 在功能区中，单击 **Manage**，然后单击\
+  \ **Fill Patterns**：\n\n![](img/1961add582dd4a589b2eac3dda140e38_167_0.png)\n\n\
+  图 3.66 – 填充图案\n\n图案可以通过从 AutoCAD 导入图案文件（PAT 文件）创建，也可以在 Revit 中直接创建基础图案。\n\n## 材料库\n\
+  \nRevit 中的材料不仅仅用于渲染；它们还控制元素在视图中的显示方式，并添加有关其属性的特定数据。\n\n从材料中，我们可以组合五种不同的资源：\n\n-\
+  \ **Identity**：可用于添加材料的技术信息。\n- **Graphical**：可用于控制在项目视图中查看的颜色和相应图案。\n- **Appearance**：可用于渲染视图、真实视图或光线追踪视图。\n\
+  - **Physical**：可用于结构分析。\n- **Thermal**：可用于能源分析。\n\n可以通过单击 **Manage**，在 **Materials**\
+  \ 下访问此信息：\n\n![](img/1961add582dd4a589b2eac3dda140e38_169_0.png)\n\n图 3.68 – 材料库\n\
+  \n将打开一个新窗口，我们可以在其中添加和编辑所需的所有信息：\n\n![](img/1961add582dd4a589b2eac3dda140e38_170_0.png)\n\
+  \n图 3.69 – 材料浏览器\n\n单击双箭头时，此窗口可以展开或折叠：\n\n![](img/1961add582dd4a589b2eac3dda140e38_171_0.png)\n\
+  \n图 3.70 – 材料浏览器\n\n作为良好实践，我们建议您执行以下操作：\n\n- 使用适当的命名约定来标识材料。\n- 在 **Identify** 资源下，使用适当的类别以便更轻松地筛选。\n\
+  - 在可能的情况下，根据材料名称重命名 **Physical** 和 **Thermal** 资源。\n- 为每个项目创建具有适当类别的材料库。\n\nTip\n\
+  Revit 材料可以与 Autodesk Inventor 和 Autodesk Civil 3D 共享。\n\n## 视图模板\n\n您可以将视图模板定义为可控制并分配给特定视图的视图属性集合，确保分配的视图使用相同的视图设置，并在施工文档集中保持一致性。\n\
+  \n在创建视图模板之前，我们建议您考虑视图在项目中的使用方式。 例如，它们可以按套件组织：\n\n- 场地平面图\n- 楼层平面图\n- 反射天花板平面图\n\
+  - 立面图\n\n可以按如下方式访问视图模板：\n\n- 1. 在功能区中，单击 **View**。 然后，单击 **View Templates** 和 **Manage\
+  \ View Templates**：\n\n![](img/1961add582dd4a589b2eac3dda140e38_172_0.png)\n\n图\
+  \ 3.71 – 管理视图模板\n\n您可以通过新窗口复制现有视图模板并重命名或删除现有模板。\n\n> **Tip**\n> \n> 创建视图模板的另一种工作流程是按要求配置视图。\
+  \ 然后，在项目浏览器中，将鼠标悬停在 **View Name** 上，右键单击，然后单击 **Create View Template from View…**\n\
+  \n为了更好地控制和组织，我们建议您在模板中定义最少的视图模板，并在项目要求和需要时创建更多模板。\n\n> Tip\n> 让尽可能多的设置由视图模板控制，将在所有图纸中保持一致性，并且也是更改任何设置的更简单方法。\n\
+  \n2. 下面的屏幕截图显示了模板中所有可用视图模板的列表：\n\n![](img/1961add582dd4a589b2eac3dda140e38_173_0.png)\n\
+  \n图 3.72 – 视图模板设置\n\n- 3. 创建视图模板后，您可以将其分配给视图或一组视图。 您可以通过选择并更改视图属性，在 **View Template**\
+  \ 参数下执行此操作：\n\n![](img/1961add582dd4a589b2eac3dda140e38_174_0.png)\n\n图 3.73 – 将视图模板应用于视图\n\
+  \n> **Tip**\n> \n> 当视图模板分配给视图时，不可能更改由视图模板控制的视图属性。 在 **Visibility** 栏下，您可以使用 **Temporary\
+  \ View Properties** 选项临时更改设置，并通过重置为分配的视图模板来将其重新定义为原样。\n\n## 筛选器\n\n筛选器不仅可用于覆盖图形表示，还可用于元素的可见性。\n\
+  \n可以通过执行以下步骤访问视图筛选器：\n\n- 1. 在功能区中，单击 View，然后单击 Filters：\n\n![](img/1961add582dd4a589b2eac3dda140e38_175_0.png)\n\
+  \n图 3.74 – 视图筛选器\n\n- 2. 从新窗口中，您可以创建两种不同的视图筛选器，如下所示：\n\n- Rule-based Filters：这些筛选器基于元素类别和参数。\n\
+  - Selection Filters：这些筛选器基于选择：\n\n![](img/1961add582dd4a589b2eac3dda140e38_175_1.png)\n\
+  \n图 3.75 – 视图筛选器设置\n\n这些视图筛选器可以添加到视图模板中，以便更好地控制项目的可见性和图形。\n\n## 颜色填充图例和方案\n\n颜色填充图例是基于可用模型数据以不同图形方式将颜色应用于房间、区域和空间的不同方法。\
+  \ 它们可以与用于填充模型元素的颜色代码图例一起放置在楼层平面图的任何位置。\n\n可以通过导航到 Annotate，在 Color Fill 面板下添加颜色填充图例：\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_176_0.png)\n\n图 3.76 – 添加颜色填充方案\n\nRevit\
+  \ 将放置颜色填充图例并激活颜色方案本身。 图例可以随时删除，并且颜色方案可以在属性下移除或添加：\n\n![](img/1961add582dd4a589b2eac3dda140e38_176_1.png)\n\
+  \n图 3.77 – 切换颜色方案可见性\n\n可以根据添加到房间属性的不同数据添加颜色编码。\n\n## 阶段\n\n阶段功能允许您处理翻新项目。 这意味着项目将在不同的项目阶段表示：翻新前后。\
+  \ 使用此工具，Revit 将跟踪阶段元素，这些元素为 **New, Demolished, Existing, and Temporary。**\n\n此功能只能应用于模型元素。\
+  \ 通过使用阶段筛选，我们可以对这四种状态的对象应用颜色编码：\n\n- **Existing：** 在视图阶段存在的元素。\n- **New：** 在视图阶段建模的元素。\n\
+  - **Demolished：** 在视图阶段拆除的现有元素（即 Phase Created 和 Phase Demolished 不同时）。\n- **Temporary：**\
+  \ 在同一阶段拆除的新元素（即 Phase Created 和 Phase Demolished 相同）。\n\n要访问阶段功能，请按照以下步骤操作：\n\n\
+  - 1. 在功能区中，单击 **Manage**，然后单击 **Phases：**\n\n![](img/1961add582dd4a589b2eac3dda140e38_177_0.png)\n\
+  \n图 3.78 – 阶段设置\n\n要访问导出过程，请按照以下步骤操作：\n\n- 1. 从左上角单击 File。 然后单击 Export、CAD Formats\
+  \ 和 DWG：\n\n![](img/1961add582dd4a589b2eac3dda140e38_181_0.png)\n\n图 3.83 – DWG\
+  \ 导出\n\n\n\n\n\n+   2. 要设置导出设置，请点击 …，如下所示：\n\n![](img/1961add582dd4a589b2eac3dda140e38_182_0.png)\n\
+  \n图 3.84 – DWG 导出设置\n\n+   3. 通过创建新的导出设置，可以收集所有设置并按需使用。我们建议您将最常用的设置保存在模板中：\n\n![](img/1961add582dd4a589b2eac3dda140e38_182_1.png)\n\
+  \n图 3.85 – 已保存的 DWG 导出设置\n\n4. 在编辑设置时，您还可以在导出过程之前设置一些配置；这些配置将与导出设置一起保存：\n\n![](img/1961add582dd4a589b2eac3dda140e38_183_0.png)\n\
+  \n图 3.86 – 已保存的 DWG 导出设置\n\n务必浏览所有这些选项卡并了解可用的设置：\n\n+   - **图层**：这允许用户将 Revit 类别映射到\
+  \ CAD 图层（基于任何命名约定）。\n+   - **线型**：这允许用户将 Revit 线型映射到 AutoCAD 线型。\n+   - **图案**：这允许用户将\
+  \ Revit 图案映射到 AutoCAD 填充。\n+   - **文字与字体**：这允许用户将文字映射到特定的 DWG 文字样式。\n+   - **颜色**：这允许用户选择想要使用的颜色映射系统。\n\
+  +   - **实体**：这允许用户将 3D 元素导出为实体或曲面。\n+   - **单位与坐标**：这允许用户选择将导出的单位以及导出时使用的坐标系统。\n\
+  +   - **常规**：这允许用户在导出前选择常规设置。\n\n就系统坐标而言，在导出图纸时，不可能基于任何系统坐标进行导出；也就是说，只有模型视图和 3D\
+  \ 模型用户才能选择使用的系统。\n\n## 箭头\n\n箭头可用于标注对象或使用引出线的对象，如标签、点高程、点坐标和文字。\n\n要访问箭头设置，请按以下步骤操作：\n\
+  \n+   1. 从功能区中点击 **管理**。然后，点击 **附加设置** 并点击 **箭头**：\n\n![](img/1961add582dd4a589b2eac3dda140e38_184_0.png)\n\
+  \n图 3.87 – 箭头设置\n\n2. 创建后，它们将可用于特定对象：\n\n![](img/1961add582dd4a589b2eac3dda140e38_185_0.png)\n\
+  \n图 3.88 – 箭头设置\n\n箭头可与标注和引出线一起使用，使用标签或甚至普通文字时均可。\n\n## 标注标准\n\n在本节中，我们将介绍 **标注标准**。正如我们在上一节提到的，这将影响所有施工图纸的生产率和一致性。\n\
+  \n这些设置在配置方面相对简单，包括以下内容：\n\n+   - 文字类型\n+   - 标注类型\n+   - 符号\n+   - 视图标题\n+   - 标签\n\
+  \n## 文字类型\n\n文字是一个必不可少的对象，因为它将在几乎所有图纸中使用。BS-ISO 3098-0:1998 定义了一系列文字高度，包括 1.8 mm、2.5\
+  \ mm、3.5 mm、5 mm、7 mm、10 mm、14 mm 和 20 mm。\n\n这些设置可通过在标注下点击文字类型访问：\n\n![](img/1961add582dd4a589b2eac3dda140e38_186_0.png)\n\
+  \n图 3.89 – 文字类型设置\n\n所有可用设置都与文字字体和颜色相关：\n\n![](img/1961add582dd4a589b2eac3dda140e38_186_1.png)\n\
+  \n图 3.90 – 类型属性\n\n请记住，无论视图中使用何种比例，文字高度在打印时都会保持不变。\n\n## 标注类型\n\n标注用于根据文字大小测量项目中的距离，并且如前所述，应遵循相同的标准尺寸。\n\
+  \n这些设置可通过在标注下点击标注访问：\n\n![](img/1961add582dd4a589b2eac3dda140e38_187_0.png)\n\n\
+  图 3.91 – 标注类型\n\n根据每个标注类型，可以创建新的标注类型：\n\n![](img/1961add582dd4a589b2eac3dda140e38_187_1.png)\n\
+  \n图 3.92 – 标注类型设置\n\n正如在文字类型部分提到的，所有标注设置在打印时都会保持不变，无论视图中使用何种比例。\n\n## 符号\n\n符号是项目中使用的任何标注元素的图形表示：\n\
+  \n### 标高符号\n\n### 标高符号\n\n### 标签符号\n\n![](img/1961add582dd4a589b2eac3dda140e38_188_0.png)\n\
+  \n### 剖面符号\n\n### 详图符号\n\n图 3.93 – 符号\n\n为了更好地了解项目中使用的符号，我们建议您提供一个包含所有使用符号的图例。\n\
+  \n## 视图标题\n\n视图标题用于提供从放置到图纸中的视图的标准信息。通常，这会提供视图名称、视图比例和详图编号：\n\n![](img/1961add582dd4a589b2eac3dda140e38_189_0.png)\n\
+  \n图 3.94 – 符号\n\n将视图放置到图纸中时，此标签将与视图名称和视图比例一起填充。\n\n## 标签\n\n标签是一个 2D 标注元素，用于在图纸中标识元素。这些标签是类别特定的，这意味着每个\
+  \ Revit 类别都可以有一个标签来从宿主元素中提取信息。\n\n这些元素可以从标注选项卡下的标签面板添加到项目中：\n\n![](img/1961add582dd4a589b2eac3dda140e38_189_1.png)\n\
+  \n图 3.95 – 来自不同 Revit 类别的标签\n\n添加标签时，您可以将其添加到 2D 视图和 3D 视图中。要将其添加到 3D 视图中，我们建议您先锁定\
+  \ 3D 视图。\n\n## 模型内容\n\n在开始项目之前，了解项目要求和项目 BIM 范围至关重要。所有这些信息对于使 BIM 生产与 BIM 范围以及绘图生产所需的图形结果保持一致至关重要。\n\
+  \n所有团队成员都应了解为需要建模的元素所需的信息水平。这些信息不仅是图形信息，也是非图形信息，因为两者都会影响 Revit 性能。\n\n一些团队成员倾向于开发复杂且过于详细的模型。这会对性能产生关键影响。\n\
+  \n可能影响性能的主要方面如下：\n\n+   - **链接文件：** 使用链接文件时，确保所有文件都已正确链接并且在极端需要时才使用。始终控制路径是否正确，因为当\
+  \ Revit 丢失路径时，也会影响性能。\n+   - **元素之间的多重约束和参数关系：** 在建模元素时使用约束是很常见的，例如锁定对齐、锁定尺寸和参数化阵列。所有这些操作都会影响性能，因为\
+  \ Revit 在每次更新之前都会始终检查约束。\n+   - **复杂几何体：** 在建模项目时，很常见的是过度建模元素或从不同软件导入元素（例如，从 Rhino\
+  \ 导入元素）将复杂几何体导入 Revit。在导入该几何体之前，请检查是否可以简化元素的形状。\n\n质量保证工作流程应成为项目的一部分，以保持模型性能。作为参考，以下是需要执行的几个检查：\n\
+  \n+   - 文件大小应低于 250 MB。\n+   - 所有链接的正确文件路径\n+   - 组的数量不过高（应避免使用系统族的组）。\n+   - 族内族的数量应减少到最低限度（如果同一族有多个实例，族内族应转换为可加载族）。\n\
+  +   - 如果模型是工作共享，请确保所有元素都在正确的作业集中（这将便于打开/关闭元素）。\n+   - 警告应保持在最低限度。\n\n## 系统族\n\n\
+  除非它们托管了标准族（可加载族），否则系统族不会对 Revit 性能产生太大影响。\n\n对于这些族，所有约束、公式和形状复杂性都不是很灵活，保持对象复杂度较低。\n\
+  \n要创建不同族类型，Revit 仅允许用户编辑硬编码参数。因此，不可能创建复杂的公式或参数，这通常会影响模型性能。\n\n## 标准族和可加载族\n\n标准族（或可加载族）是对\
+  \ Revit 性能影响最大的族。这是因为这些族高度可定制，即它们更复杂，并且在不同几何体部分之间的关系方面受到约束。\n\n例如，在使用挤出建模族时，如果使用扫掠、混合、扫掠混合甚至旋转，族会变得更重、更复杂，因为\
+  \ Revit 需要控制除尺寸之外的更多约束（形状始终恒定）。\n\n影响性能的另一个例子是当族包含非 Revit 元素时，例如从 Rhino、SAT 或 DWG\
+  \ 导入的 3D 几何体。我们应避免使用非原生几何体，或者如果需要使用，应尽可能保持其简单。\n\n作为参考，可加载族的平均大小应为 1 MB。如果更大，请确保它们是必要的并且需要使用。\n\
+  \n## 总结\n\n在本章中，我们学习了如何从头开始创建 Revit 模板，以及需要在模板中包含的主要设置，以提高项目级别的生产率。\n\n我们解释了如何组织视图、图纸、明细表以及模型中的所有信息，以便更快、更轻松地管理可用信息。这些设置相对重要且优先级很高；然而，这并不意味着这些是唯一需要添加到模板中的设置。\n\
+  \n您还学习了应建模的内容以及这对 Revit 性能和生产率的影响。\n\n\n\n\nRevit 坐标系用于理解如何管理多个元素，例如项目北、真北、测量点、项目基点和内部原点。\n\
+  \n本章还将解释在接收 Revit 测量模型和坐标系对齐的点云文件时需要考虑的重要方面。\n\n在本章中，我们将介绍以下主题：\n\n- Revit 坐标系概述\n\
+  - 坐标系的挑战\n- 启动 Revit 项目并设置项目坐标\n- 体量策略与场地上的多栋建筑\n\n## 技术要求\n\n在本章中，你需要使用 Autodesk\
+  \ Revit。描述所有这些练习所用的版本是 Revit 2021，但你也可以使用其他版本。务必考虑以下几点：\n\n- 不同版本之间可能略有差异。\n- 旧版本的\
+  \ Revit 无法打开新版本的文件。\n\n本章使用的所有数据集都可以在本书的 GitHub 仓库中找到：https://github.com/PacktPublishing/-Increasing-Autodesk-Revit-Productivity-for-BIM-Projects。\n\
+  \n## Revit 坐标系概述\n\n理解 Revit 坐标系将帮助我们正确设置 Revit 项目，并避免将来返工。因此，它应该能提高我们的效率。\n\nRevit\
+  \ 中有两个坐标系，如下所示：\n\n- **测量坐标系**：\n\n  测量坐标系使用一个称为**测量点**的 Revit 对象，以真实世界坐标系将项目定位在地球表面。我们可以从测量文件或**地形测量图（OS\
+  \ Maps）**中获取此信息：\n\n  ![](img/1961add582dd4a589b2eac3dda140e38_197_0.png)\n\n  图\
+  \ 4.1 – 测量点\n\n- **项目坐标系**：\n\n  项目坐标系使用一个称为**项目基点**的 Revit 对象，用于定位建筑物或场地附近的特定坐标点：\n\
+  \n  ![](img/1961add582dd4a589b2eac3dda140e38_197_1.png)\n\n  图 4.2 – 项目基点\n\n让我们在\
+  \ Revit 中找到测量点和项目基点：\n\n1. 新建一个 Revit 项目或打开一个现有项目。\n2. 在项目浏览器中打开**标高 1** 楼层平面。\n\
+  3. 在“视图”选项卡下，单击**可见性/图形**，或使用快捷键。如果你想使用快捷键，可以输入 VG 或 VV：\n\n   ![](img/1961add582dd4a589b2eac3dda140e38_197_2.png)\n\
+  \n   图 4.3 – 可见性/图形\n\n4. 展开“场地”类别，选择“测量点”选项，然后单击“确定”：\n\n   ![](img/1961add582dd4a589b2eac3dda140e38_198_0.png)\n\
+  \n   图 4.4 – 测量点和项目基点\n\n   你应该会看到**测量点**，如下所示：\n\n   ![](img/1961add582dd4a589b2eac3dda140e38_199_0.png)\n\
+  \n   图 4.5 – 测量点\n\n5. 重复*步骤 4*，然后选择**项目基点**，得到以下结果：\n\n   ![](img/1961add582dd4a589b2eac3dda140e38_199_1.png)\n\
+  \n   图 4.6 – 项目基点\n\n**测量点**和**项目基点**将用于在 Revit 中设置坐标系。现在，让我们找到**Revit 内部原点**，它是这方面的重要参考点。\n\
+  \n## Revit 内部原点\n\nRevit 内部原点帮助你识别 Revit 内部坐标系的起点，该起点位于 X=0、Y=0 和 Z=0 坐标处。\n\n我们应该将\
+  \ Revit 模型放置在靠近 Revit 内部原点的位置，因为模型几何图形需要位于距 Revit 内部原点最大距离（即 16 公里（10 英里）半径）之内。\n\
+  \n如果几何图形距离内部原点太远，Revit 的精度会降低，并会显示图形问题：\n\n![](img/1961add582dd4a589b2eac3dda140e38_200_0.png)\n\
+  \n图 4.7 – Revit 内部原点\n\n> **提示**\n> Revit 模型几何图形需要相对靠近 Revit 内部原点。\n\n从 Revit 2020.2\
+  \ 版本开始，我们可以轻松找到 Revit 内部原点并使其可见。为此，请执行以下步骤：\n\n1. 在项目浏览器中打开**标高 1** 楼层平面。\n2. 单击**可见性/图形**，或通过输入\
+  \ **VG** 或 **VV** 来使用快捷键：\n\n   ![](img/1961add582dd4a589b2eac3dda140e38_200_1.png)\n\
+  \n   图 4.8 – 可见性/图形\n\n在 2020.2 之前的版本中，**Revit 内部原点**是隐藏的，你只能通过以下步骤找到它：\n\n1. 打开**项目基点**。\n\
+  2. 取消固定**项目基点**：\n\n   ![](img/1961add582dd4a589b2eac3dda140e38_202_0.png)\n\n \
+  \  图 4.11 – 取消固定项目基点\n\n3. 右键单击**项目基点**，然后选择**移动到启动位置**选项：\n\n   ![](img/1961add582dd4a589b2eac3dda140e38_202_1.png)\n\
+  \n   图 4.12 – 移动到启动位置\n\n在*第 4 章*的数据集中，我们可以找到 OS MAP-Survey .dwg 文件：\n\n![](img/1961add582dd4a589b2eac3dda140e38_204_0.png)\n\
+  \n图 4.13 – 带坐标的场地\n\n以下截图显示了该场地的放大视图，其中显示了三个坐标：\n\n![](img/1961add582dd4a589b2eac3dda140e38_204_1.png)\n\
+  \n图 4.14 – 具有三个典型坐标的场地\n\n我们建议你始终将测量站点作为首选选项。\n\n第二个选项是地形测量图网格交点。\n\n我们不建议使用建筑坐标点和来自结构项目网格的坐标点。不建议使用这些点有两个原因：\n\
+  \n- 建筑坐标点没有四舍五入的数字，这可能导致软件精度问题（X=5514291.6539，Y=181598.9381）。软件可能会显示四舍五入后的数字（X=5514291.7，Y=181599.0），也许公司会开始使用（X=5514291.7，Y=181599.0）而不是正确的坐标。\n\
+  - 结构项目网格在开发过程中可能会更改这些位置。\n\n> **提示**\n> 设置 Revit 项目时，请优先选择测量站点或地形测量图网格交点。\n\n在下一节中，我们将学习如何使用此\
+  \ AutoCAD 文件设置 Revit 坐标。现在，让我们了解将文件链接和导入到 Revit 的过程。\n\n我们可以在 Revit 中链接或导入多种文件类型，如下所示：\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_205_0.png)\n\n图 4.15 – 将文件插入到 Revit\n\
+  \n1. 链接 Revit：链接 Revit 文件的扩展名为 *.RVT。\n2. 链接 IFC：工业基础类（IFC）是一种组件包含数据的模型。目前，IFC 由\
+  \ buildingSMART 开发，BIM 软件使用 IFC 格式交换模型和数据以实现互操作性。支持的文件扩展名为 *.IFC、*.ifcXML 和 *.ifcZIP。\n\
+  3. 链接 CAD：我们可以链接以下扩展名的文件：*.DWG、*.DXF、*.DGN、*.SAT 和 *.SKP。\n4. **点云**：点云是一种通常由测量公司提供的文件，用空间内的数千个点来表示现有建筑。我们可以链接\
+  \ *.RCP 和 *.RCS 文件。\n5. **协调模型**：在这里，我们可以通过 *.NWD 和 *.NWC 两种扩展名将 Navisworks 文件链接到\
+  \ Revit。Navisworks 用于碰撞检测、算量、模拟和 5D 分析。\n6. **管理链接**：在这里，我们可以管理文件，以执行**从...重新加载**、**重新加载**、**卸载**、**添加...**\
+  \ 和**移除**操作：\n\n   ![](img/1961add582dd4a589b2eac3dda140e38_206_0.png)\n\n   图 4.16\
+  \ – 管理链接\n\n7. **导入 CAD**：我们可以导入多种文件格式，例如 *.DWG、*.DXF、*.DGN、*.SAT、*.SKP 和 *.3DM。请记住，导入文件会降低\
+  \ Revit 性能，因此最佳做法是链接文件而不是导入它们。\n\n> **提示**\n> 在下一个 Revit 版本中，我们将能够链接 Rhino 文件，而不是导入它们。\n\
+  \n\n\nRevit 中最常见的链接或导入文件格式如下：\n\n- 原生 Revit 文件 (*.RVT)\n- AutoCAD 文件 (*.DWG)\n-\
+  \ IFC 文件 (*.IFC)\n- Rhino 文件 (*.3DM)\n- 点云文件 (*.RCP 和 *.RCS)\n\n假设您的项目团队正在使用这些格式中的任何一种。在这种情况下，我们需要进行规划，确保每个公司都能以正确的坐标系导入和导出文件，从而提高生产力并节省多个公司之间的时间。\n\
+  \n让我们概览一下每个应用程序的坐标系，以及将文件链接到 Revit 的最佳实践。\n\n## 原生 Revit 文件 (*.RVT)\n\n我们已经解释了 Revit\
+  \ 中的坐标系，因此现在将展示如何链接 Revit 文件的过程。您可以按照以下步骤操作：\n\n- 1. 单击“插入”选项卡中的“链接 Revit”：\n\n\
+  ![](img/1961add582dd4a589b2eac3dda140e38_207_0.png)\n\n图 4.17 – 链接 Revit 文件\n\n\
+  - 2. 选择用于放置链接的选项之一。最常用的选项是 **自动 - 通过共享坐标**、**自动 - 内部原点到内部原点** 和 **自动 - 项目基点到项目基点**：\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_208_0.png)\n\n图 4.18 – 链接 Revit 文件\n\n\
+  应避免使用其他选项，例如 **自动 - 中心到中心**、**手动 - 内部原点**、**手动 - 基点** 和 **手动 - 中心**。\n\n我们将在下一节中提供更多详细信息，重点介绍如何通过\
+  \ **自动 - 通过共享坐标** 进行链接。\n\n## AutoCAD 文件 (*.DWG)\n\n在链接 AutoCAD 文件的工作流程中，我们有几个选项，如下所示：\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_208_1.png)\n\n图 4.19 – 链接 AutoCAD 文件\n\
+  \n**手动 - 原点** 和 **手动 - 中心** 选项并不常用，因此我们将重点介绍另外三个选项：**自动 - 中心到中心**、**自动 - 原点到内部原点**\
+  \ 和 **自动 - 通过共享坐标**。\n\n**自动 - 中心到中心** 选项意味着 AutoCAD 几何中心将与 Revit 模型中心链接。只有在希望通过工作流程获取坐标时，此选项才用于链接\
+  \ DWG 文件。在下一节中，我们将更详细地解释获取坐标的工作流程。\n\n**自动 - 原点到内部原点** 选项意味着位于 X=0、Y=0 和 Z=0 坐标处的\
+  \ AutoCAD 原点将被定位到 Revit 内部原点。\n\n**自动 - 通过共享坐标** 选项意味着 AutoCAD 文件已从 Revit 文件接收共享坐标系，并且该文件将被定位到正确的位置。\n\
+  \n## IFC 文件 (*.IFC)\n\nIFC 文件用于不同 BIM 软件之间的互操作性；Revit 只有一种导入 IFC 文件的选项，这代表一个限制。如果能提供链接选项，例如\
+  \ **原点到内部原点** 和 **通过共享坐标**，将会很有帮助：\n\n![](img/1961add582dd4a589b2eac3dda140e38_209_0.png)\n\
+  \n图 4.20 – 链接 IFC 文件\n\nAutodesk 编写了 *Revit IFC 手册*，您可以在 https://bit.ly/38cqf0F\
+  \ 免费下载。\n\n或者，您可以使用以下二维码：\n\n![](img/1961add582dd4a589b2eac3dda140e38_210_0.png)\n\
+  \n如果您在将 IFC 文件链接到正确位置时遇到任何问题，我们建议您改用以下两个工作流程：\n\n- 1. 尝试在创建 IFC 文件的软件中修正或更改项目位置。如果无法做到，请使用以下工作流程。\n\
+  - 2. 创建 **Revit 容器文件** 并手动将 IFC 文件定位到正确的位置。一旦您使用 **通过共享坐标** 链接 Revit 容器文件，IFC 文件将显示在正确的位置：\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_210_1.png)\n\n图 4.21 – 使用 Revit 容器文件的过程\n\
+  \n这两个工作流程将帮助我们在 Revit 中定位 IFC 文件时处理问题。\n\n## Rhino 文件 (*.3DM)\n\n许多公司使用 Rhino 设计复杂几何体，并且需要将\
+  \ Rhino 设计插入 Revit 中，用于项目文档，并作为设计开发的一部分。\n\n与拥有两个坐标系的 Revit 不同，Rhino 只有一个坐标系：软件在\
+  \ X=0、Y=0 和 Z=0 处的内部原点。\n\n这意味着位于 (X=0、Y=0 和 Z=0) 处的 Rhino 原点需要位于 Revit 内部原点，以确保\
+  \ Rhino 模型处于正确的位置：\n\n![](img/1961add582dd4a589b2eac3dda140e38_211_0.png)\n\n图 4.22\
+  \ – 使用 Revit 容器文件的过程\n\n另一种可能的方案是使用 Rhino 中的脚本，在将模型几何体插入 Revit 之前旋转模型。\n\n需要记住的要点是，Rhino\
+  \ 几何体必须与 Revit 对齐，以避免手动移动文件。使用 Rhino 7 后，将 Rhino 几何体转换到 Revit 的过程得到了改进，而 Rhino.Inside\
+  \ 的工作流程也简化了这一过程。\n\n还有一些插件可用于帮助将 Rhino 几何体传输到 Revit：\n\n- BEAM: https://www.mksdtech.com/\n\
+  - Conveyor: https://provingground.io/tools/conveyor/\n- GeometryGym: https://geometrygym.wordpress.com/\n\
+  \n## 点云文件 (*.RCP 和 *.RCS)\n\n点云文件用于表示既有建筑，您可以对照点云文件验证 Revit 模型的现状。\n\n当测量公司为既有建筑创建\
+  \ Revit 文件时，我们需要要求他们包含点云坐标系。这将确保点云在 Revit 中以正确的位置链接，而无需手动移动它。\n\n在将 Revit 几何体与点云进行比较时，此过程可以节省时间并提高准确性。\n\
+  \n如果测量公司提供了带有特定点云坐标系的 Revit 文件，请按照以下过程操作：\n\n- 1. 单击“管理”选项卡。\n- 2. 单击“位置”。\n- 3.\
+  \ 单击“场地”。\n- 4. 选择测量公司提供的坐标系。\n- 5. 单击“设为当前”。\n- 6. 单击“确定”：\n\n![](img/1961add582dd4a589b2eac3dda140e38_212_0.png)\n\
+  \n图 4.23 – 点云坐标系\n\n此过程提高了生产力，因为我们将避免手动移动文件。\n\n当用户牢记坐标系的挑战时，就能做出更明智、更有依据的决策。因此，这将节省时间并提高效率。提升性能不仅与您的公司有关，因为支持其他组织对于取得更好的成果至关重要。\n\
+  \n总而言之，我们了解了 Revit 测量点、项目基点和 Revit 内部原点。我们还解释了从多个软件链接文件时坐标系的挑战。\n\n在下一节中，我们将学习如何启动\
+  \ Revit 项目并设置项目坐标系。\n\n## 启动 Revit 项目并设置项目坐标\n\n第 2 章“项目数据管理”描述了拥有精确的 BIM 需求对于管理项目数据和成功启动\
+  \ BIM 项目的重要性。因此，第一个过程是通过分析以下文档来启动 Revit 项目：\n\n- 委托或合同\n- 信息交换需求 (EIR)\n- 资产信息需求\
+  \ (AIR)\n- BIM 执行计划 (BEP)\n- BIM 责任矩阵\n\n我们承认，并非所有项目都会在项目开始时甚至项目期间提供上述文档。尽管如此，如果出现此问题，我们建议使用可用信息创建一个简单的\
+  \ BEP，并让客户和项目团队达成一致。\n\n第二个过程是使用正确的 Revit 模板来启动项目设置过程。您可以使用公司模板、第 3 章“Revit 模板和标准”中提供的模板，或\
+  \ Revit 自带的模板。\n\n\n\n\n2. 使用以下设置链接 OS Map - Survey.dwg AutoCAD 文件，并单击“打开”：\n\n\
+  \    - **颜色：黑白。**\n    - **导入单位：米。** AutoCAD 文件以米为单位，我们应始终选择**导入单位**以匹配 AutoCAD\
+  \ 单位。如果不确定 AutoCAD 文件单位，请在导入前打开文件并检查。\n    - **定位：自动 – 中心到中心：**\n\n    ![](img/1961add582dd4a589b2eac3dda140e38_217_0.png)\n\
+  \n    图 4.30 – 链接 CAD 文件\n\n> **提示**\n> 在此过程中，我们始终可以使用**定位：自动 - 中心到中心**，因为我们将在下一步中移动\
+  \ AutoCAD 文件。\n\n4. 在“管理”选项卡中，选择“坐标”并单击“获取坐标”。之后，单击 Revit 中链接的 AutoCAD 文件：\n\n \
+  \   ![](img/1961add582dd4a589b2eac3dda140e38_219_0.png)\n\n    图 4.33 – 从 AutoCAD\
+  \ 文件获取坐标\n\n您应该会看到此消息以及对测量点和项目基准点所做的任何更改：\n\n![](img/1961add582dd4a589b2eac3dda140e38_219_1.png)\n\
+  \n图 4.34 – 获取坐标成功\n\n> **提示**\n> 将 Revit 测量点保持在坐标 0,0,0，以支持其他工作流。\n\n7. 现在我们可以隐藏测量点，如下所示：\n\
+  \n    ![](img/1961add582dd4a589b2eac3dda140e38_221_0.png)\n\n    图 4.37 – 隐藏测量点\n\
+  \n8. 让我们使用“缩放匹配”来查看项目场地（或使用快捷键 ZF）。\n\n9. 单击“保存”。\n\n设置 Revit 坐标系的过程现已完成。\n\n作为一种良好实践，我们可以重命名场地坐标系。该名称应在所有顾问的所有\
+  \ Revit 文件中使用：\n\n![](img/1961add582dd4a589b2eac3dda140e38_221_1.png)\n\n图 4.38\
+  \ – 重命名场地坐标系\n\n我们建议使用此过程来设置所有 Revit 项目；链接 Revit 文件的方法将是**通过共享坐标**。\n\n有多种链接 Revit\
+  \ 文件的选项，但如果您始终使用**自动 - 通过共享坐标**，则所有项目都将以相同的方式设置。这将提高您的效率并减少潜在错误。\n\n## 真北和项目北\n\n\
+  现在，我们需要设置 Revit 的**真北**和**项目北**。\n\n- 真北是从测量文件或 OS 地图中获取的真实世界北方位置。\n- 项目北是我们希望旋转项目以方便在\
+  \ 90 度轴上使用墙体进行建模并最好地适合图纸的位置。\n\n我们可以在测量文件或 OS 地图中找到真北，如下面的屏幕截图所示：\n\n![](img/1961add582dd4a589b2eac3dda140e38_222_0.png)\n\
+  \n图 4.39 – 来自测量文件的真北\n\n现在，让我们学习如何选择最佳位置来旋转项目北。\n\n在此过程中，我们需要在测量文件中选择一条我们希望水平或垂直的线。我们将选择南立面中的线作为水平线。请参考下图中“要水平的线”：\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_223_0.png)\n\n图 4.40 – 选择一条线作为水平的测量文件\n\
+  \n现在，我们可以开始旋转项目北的过程，如下所示：\n\n1. 在**管理**选项卡中，选择**位置**，然后单击**旋转项目北**：\n\n    ![](img/1961add582dd4a589b2eac3dda140e38_224_0.png)\n\
+  \n    图 4.41 – 旋转项目北\n\n2. 我们应该看到以下选项。选择“对齐选定的线或平面”选项：\n\n    ![](img/1961add582dd4a589b2eac3dda140e38_225_0.png)\n\
+  \n    图 4.42 – “对齐选定的线或平面”选项\n\n3. 选择下图所示的线：\n\n    ![](img/1961add582dd4a589b2eac3dda140e38_225_1.png)\n\
+  \n    图 4.43 – 在测量文件中选择线\n\n在 Revit 平面视图中，在**属性**中，我们可以选择以下两个选项之一：\n\n![](img/1961add582dd4a589b2eac3dda140e38_227_0.png)\n\
+  \n图 4.46 – 在项目北和真北之间切换\n\n我们可以看到项目在这两个选项之间旋转。这两个选项仅出现在平面图、天花板平面图和面积平面图中。\n\n现在，让我们假设需要将**项目北**旋转到不同的位置。\n\
+  \n我们可以使用顺时针旋转 90° 或逆时针旋转 90° 的选项：\n\n![](img/1961add582dd4a589b2eac3dda140e38_228_0.png)\n\
+  \n图 4.47 – 顺时针旋转 90° 或逆时针旋转 90° 的选项\n\n我们可以根据需要使用这两个选项来旋转项目北，直到设置正确的位置。\n\n## AutoCAD\
+  \ 文件位置\n\n旋转项目北后尝试保存 Revit 文件时，您应该会收到以下消息：\n\n![](img/1961add582dd4a589b2eac3dda140e38_229_0.png)\n\
+  \n图 4.48 – AutoCAD 位置已更改\n\n单击**保存**。它会将新位置保存回链接并关闭 Revit 文件。此选项将更改 DWG 位置。\n\n\
+  当您重新打开 Revit 文件时，将不再看到此消息。\n\n## 以正确的方向导出到 AutoCAD\n\n根据项目阶段的不同，公司可能采用混合流程，同时使用\
+  \ Revit 和 AutoCAD。\n\n在这种情况下，我们需要从 Revit 导出包含正确方向项目的 DWG 文件。\n\n本节的主要目的是演示拥有正确坐标系文件的重要性，以提高项目中所有涉及公司的效率和生产力。\n\
+  \n我们可以按照以下步骤从 Revit 导出 DWG 文件：\n\n1. 单击**导出**以导出 DWG 文件：\n\n    ![](img/1961add582dd4a589b2eac3dda140e38_230_0.png)\n\
+  \n    图 4.49 – 导出 DWG 文件\n\n2. 我们需要在导出前检查 DWG 设置，然后为您的项目选择最佳选项：\n\n    - 选择 DWG\
+  \ 单位。\n    - 选择 DWG 坐标：\n\n    ![](img/1961add582dd4a589b2eac3dda140e38_231_0.png)\n\
+  \n    图 4.50 – 导出前的 DWG 选项\n\n> **提示**\n> 如果使用**内部原点**设置导出 DWG 文件，则 DWG 原点（X=0，Y=0，Z=0）坐标将位于\
+  \ *Revit 内部原点*的相同位置。\n\n我们将开始在 Revit 文件中添加标高和轴网，以完成项目设置。\n\n## 添加标高和轴网\n\n由于我们现在已经定义了项目坐标，下一步是向项目添加标高和轴网。\n\
+  \n在**建筑**选项卡中，我们可以找到添加**标高**和**轴网**的工具：\n\n![](img/1961add582dd4a589b2eac3dda140e38_231_1.png)\n\
+  \n图 4.51 – 添加标高和轴网\n\n1. 创建与场地平行的 Revit 剖面，并创建更多标高：\n\n    > **提示**\n    > 确保拉伸标高和轴网以覆盖整个建筑场地。\n\
+  \n    ![](img/1961add582dd4a589b2eac3dda140e38_232_0.png)\n\n    图 4.52 – 拉伸标高的区域\n\
+  \n2. 添加项目轴网，确保它们贯穿所有标高和建筑场地。\n\n现在，启动 Revit 项目并设置项目坐标、标高和轴网的过程已完成。因此，您可以使用“另存为”选项并附带“标高和轴网”描述来保存此文件。在项目环境中，此文件应与所有顾问共享，以便他们从中获取坐标来设置来自不同专业的其他\
+  \ Revit 模型。\n\n此过程将确保所有顾问在项目中都拥有具有正确坐标系统的文件。\n\n根据您的项目要求，我们需要了解制定体量策略并确保每个模型都链接到正确的位置。\n\
+  \n## 体量策略\n\n体量策略是将项目拆分为多个 3D 模型的过程，以方便多人同时工作并提高文件性能：\n\n![](img/1961add582dd4a589b2eac3dda140e38_233_0.png)\n\
+  \n图 4.53 – 典型的体量策略\n\n> **提示**\n> 请记住，Revit 文件的大小应保持在 300 MB 以下。如果您怀疑文件可能会变得更大，则需要考虑拆分模型。\n\
+  \n设置多个 Revit 模型的过程很简单，我们需要对之前创建的标高和轴网文件使用“另存为”选项，并将其用于其他建筑模型。\n\n通常，结构和机电团队需要链接最初由建筑师创建的标高和轴网文件。他们应使用以下选项链接该文件：\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_233_1.png)\n\n图 4.54 – 使用“自动 - 内部原点到内部原点”链接\n\
+  \n\n\n\n\n在此过程之后，结构和MEP团队需要从标高和轴网文件中获取坐标：\n\n![](img/1961add582dd4a589b2eac3dda140e38_234_0.png)\n\
+  \n图4.55 – 获取坐标\n\n完成后，结构和MEP团队将使其 Revit 模型与建筑师的坐标系对齐。\n\n现在，我们需要了解另一种项目变体，即场地上有多个建筑物，且它们具有不同的项目北和旋转点。\n\
+  \n## 场地上多个具有不同项目北的建筑物\n\n我们的场地上可能有多个具有不同项目北的建筑物，因此我们需要确保所有建筑物都与同一坐标系对齐。\n\n如果新建筑物靠近项目基点所在的主场地，我们可以按照以下步骤操作：\n\
+  \n- 1. 复制标高和轴网文件，或为项目团队索取场地文件。\n- 2. 确定新建筑物所需的项目位置。\n\n- 3. 按住并拖动链接到另一个位置：\n\n![](img/1961add582dd4a589b2eac3dda140e38_237_0.png)\n\
+  \n图4.59 – 按住并拖动链接到另一个位置\n\n假设这是新建筑物所需的位置。\n\n- 4. 现在，让我们在该建筑物中发布正确的坐标系。单击“发布坐标”，然后选择新建筑物：\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_237_1.png)\n\n图4.60 – 发布坐标\n\n- 5. 您将看到以下对话框。单击“确定”：\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_238_0.png)\n\n图4.61 – 发布坐标\n\n- 6. 单击**保存**，我们应该会看到一条新消息。在新消息中，单击**保存**：\n\
+  \n**将新位置保存回链接：**\n\n## 放大和缩小明细表\n\n在最新的 Revit 版本中，我们可以对明细表进行放大和缩小。\n\n如果打开任意 Revit\
+  \ 明细表，您可以使用 Ctrl + \"+\" 放大，使用 Ctrl + \"-\" 缩小明细表。不过，最实用的操作是按住 Ctrl 键并滚动鼠标滚轮来放大明细表。\n\
+  \n> 提示\n> 要恢复为 100% 缩放，只需按 Ctrl + 0。\n\n## 使用不同颜色高亮显示行\n\n在此工作流中，我们可以使用不同颜色高亮显示交替行。按照下图所示步骤操作：\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_245_0.png)\n\n图5.4 – 使用不同颜色高亮显示行\n\n\
+  在这里，我们可以看到带有交替颜色的行，这便于阅读明细表：\n\n![](img/1961add582dd4a589b2eac3dda140e38_245_1.png)\n\
+  \n图5.5 – 具有不同颜色的明细表行\n\n我们还可以通过单击**带状行**来开启此功能：\n\n![](img/1961add582dd4a589b2eac3dda140e38_246_0.png)\n\
+  \n图5.6 – 明细表 – 带状行\n\n## 在模型中高亮显示\n\n此工具可用于在模型中高亮显示特定的门、房间或其他 Revit 构件。我们需要选择一行，然后点击**在模型中高亮显示**：\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_246_1.png)\n\n图5.7 – 在模型中高亮显示\n\n## 将图像添加到族并在明细表中显示\n\
+  \n我们可以添加与 Revit 族关联的对象图像，并在明细表中显示它们。请按照以下步骤操作：\n\n- 1. 在项目中选择一个家具椅族，然后点击**编辑族**。\n\
+  - 2. 点击该框以选择图像文件（`*.JPG`）。我们必须使用**类型图像**参数：\n\n图5.8 – 类型图像参数\n\n- 3. 点击...，选择图像，然后点击确定。将该族重新载入项目。\n\
+  - 4. 将类型图像参数添加到明细表中：\n\n![](img/1961add582dd4a589b2eac3dda140e38_247_0.png)\n\n\
+  ![](img/1961add582dd4a589b2eac3dda140e38_247_1.png)\n\n图5.9 – 明细表中的类型图像参数\n\n- 5.\
+  \ 将家具明细表添加到图纸中；您将看到产品图像：\n\n![](img/1961add582dd4a589b2eac3dda140e38_247_2.png)\n\
+  \n图5.10 – 带有产品图像的家具明细表\n\n我们还可以使用**图像**参数来添加要在明细表中显示的图像：\n\n![](img/1961add582dd4a589b2eac3dda140e38_248_0.png)\n\
+  \n图5.11 – 使用图像参数\n\n这样，我们就可以控制 Revit 项目内部的图像，而不是 Revit 族内部的图像。\n\n## 明细表中的设计选项\n\
+  \n在此工作流中，我们可以在明细表中显示来自 Revit**设计选项**的对象数量。要使用此工作流，您的项目中必须具有**设计选项**，并选择要在明细表中显示的选项。\n\
+  \n打开 Revit 明细表，并按照以下步骤更改指定的**设计选项**：\n\n![](img/1961add582dd4a589b2eac3dda140e38_248_1.png)\n\
+  \n图5.12 – Revit 明细表中的设计选项\n\n## 用于现有和新阶段的明细表\n\n我们还可以为特定的 Revit 阶段创建明细表，例如**现有**或**新建**。\n\
+  \n我们可以打开明细表，并在属性中选择所需的 Revit 阶段：\n\n![](img/1961add582dd4a589b2eac3dda140e38_249_0.png)\n\
+  \n图5.13 – 明细表中的 Revit 阶段\n\n## 计算总计\n\n我们可以计算明细表中的总计，以查找建筑的总内部面积、特定楼层或总数量。\n\n要计算总计，请按照以下步骤操作：\n\
+  \n- 1. 让我们编辑房间明细表，并在**格式**选项卡中选择**面积**参数以计算总计：\n\n![](img/1961add582dd4a589b2eac3dda140e38_250_0.png)\n\
+  \n图5.14 – 计算总计\n\n- 2. 在**排序/分组**选项卡中，选择**排序方式：楼层**，并勾选**页脚**和**总计**选项：\n\n请按照以下步骤使用条件格式：\n\
+  \n- 1. 打开包含**面积**参数的房间明细表。\n- 2. 在**格式**选项卡中，选择**面积**参数，然后点击**条件格式…**：\n\n![](img/1961add582dd4a589b2eac3dda140e38_252_0.png)\n\
+  \n图5.16 – 条件格式…\n\n- 3. 选择**大于**选项，输入 100，选择**背景颜色**，然后点击**确定**。\n\n![](img/1961add582dd4a589b2eac3dda140e38_253_0.png)\n\
+  \n图5.17 – 条件格式选项\n\n我们将看到所有面积大于 100 m² 的区域以红色高亮显示：\n\n| A | B | C | D | E |\n|---|---|---|---|---|\n\
+  | 计数 | 楼层 | 名称 | 编号 | 面积 |\n| 1 | 01 - 入口层 | 前厅 | 101 | 39 m² |\n| 1 | 01 - 入口层\
+  \ | 大堂 | 102 | **324 m²** |\n| 1 | 01 - 入口层 | 自助餐厅 | 121 | **144 m²** |\n| 1 | 01\
+  \ - 入口层 | 备餐/洗碗间 | 122 | 22 m² |\n\n图5.18 – 使用条件格式高亮显示的区域\n\n## 计算字段\n\n我们可以在明细表中使用公式创建新参数，并计算百分比。\n\
+  \n请按照以下步骤计算总面积百分比：\n\n- 1. 创建一个包含以下字段的房间明细表：**计数、楼层、名称、编号**和**面积**。\n- 2. 点击**字段**旁边的**编辑...**，然后在下图中点击标记为**添加计算参数**的\
+  \ **fx**：\n- 3. 在参数名称中输入“面积百分比”，选择**百分比**，然后点击**确定**：\n\n![](img/1961add582dd4a589b2eac3dda140e38_254_0.png)\n\
+  \n图5.19 – 添加计算参数\n\n![](img/1961add582dd4a589b2eac3dda140e38_254_1.png)\n\n图5.20\
+  \ – 计算出的面积百分比\n\n4. 现在，让我们格式化“面积百分比”的单位，使其包含两位小数。在“格式”选项卡中，选择“字段格式”，将“舍入”更改为 2 位小数，然后点击“确定”：\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_255_0.png)\n\n图5.21 – 带有 2 位小数的字段格式\n\
+  \n我们将看到明细表中计算出的“面积百分比”：\n\n![](img/1961add582dd4a589b2eac3dda140e38_255_1.png)\n\
+  \n图5.22 – 以两位小数计算的面积百分比\n\n我们还可以使用计算字段添加公式并计算多个值，例如：\n\n- 每面积成本或计算总成本。\n- 将您的设计面积与客户对面积的要求进行比较。\n\
+  - 使用公式添加施工公差。\n- 计算每平方米的重量及其他功能。\n\n\n\n\n点击**关键注释设置**以查找文本文件（`*.txt`）的位置：\n\n![](img/1961add582dd4a589b2eac3dda140e38_257_0.png)\n\
+  \n图5.24 – Revit关键注释文本文件（`*.txt`）\n\n文件路径位于 `C:\\ProgramData\\Autodesk\\RVT2021\\\
+  Libraries\\UK\\RevitKeynotes_GBR.txt`。\n\n在**关键注释设置**中，我们还可以点击**浏览**来定位文本文件。\n\n\
+  关键注释文本文件需要复制到项目文件夹中，并根据需要重命名。通常，文件名描述中会包含*项目代码 + 项目名称 + 关键注释*。\n\n我们可以通过点击**视图**来可视化规范代码：\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_257_1.png)\n\n图5.25 – 可视化关键注释文本文件（`*.txt`）\n\
+  \n当项目过程中关键注释文件更新时，我们需要点击**重新加载**来重新加载关键注释文件。\n\n## 关键注释类型\n\n我们可以通过三种方式添加关键注释：\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_258_0.png)\n\n图5.26 – 关键注释选项\n\n让我们详细了解一下这些选项：\n\
+  \n-   **元素关键注释**\n\n我们可以将**元素关键注释**应用于构件族和系统族，包括墙体、楼板、屋顶以及其他Revit族。\n\n元素关键注释将使用**关键注释**类型参数，将规范代码作为关键注释文本添加：\n\
+  \n## 类型属性\n\n族：系统族：基本墙\n\n类型：外部 – 砌体上的保温层\n\n## 类型参数\n\n| 参数 | 值 |\n|---|---|\n\
+  | 传热系数 (U) | |\n| 热阻 (R) | |\n| 热质量 | |\n| 吸收率 | 0.100000 |\n| 粗糙度 | 1 |\n| 标识数据\
+  \ | |\n| 类型图像 | |\n| 关键注释 | |\n| 型号 | |\n| 制造商 | |\n\n这些属性有什么作用？\n\n在框中单击\n\n图5.27\
+  \ – 关键注释类型参数\n\n我们可以从关键注释列表中选择关键注释规范代码：\n\n![](img/1961add582dd4a589b2eac3dda140e38_260_0.png)\n\
+  \n图5.28 – 关键注释类型参数\n\n## 材质关键注释\n\n在材质关键注释中，我们可以像之前的方法一样，为材质而不是整个族添加规范：\n\n## 图5.29\
+  \ – 材质关键注释\n\n当我们想要为砖、石膏板、玻璃等单个材质添加规范时，此方法很有用。\n\n-   用户关键注释\n\n由于关键注释规范未与Revit构件关联，用户关键注释方法不经常使用。\n\
+  \n我们仍然可以使用关键注释规范列表向图纸添加注释，但它将失去与Revit构件的智能关联和连接。\n\n## 使用关键注释标注图纸\n\nRevit关键注释流程将提高我们标注图纸的效率，因为规范将与对象关联。如果我们更改关键注释文本，它将在所有视图和图纸中自动更新。在制作和标注图纸时，关键注释的智能性对于提高生产力至关重要。\n\
+  \n添加关键注释的过程很简单——我们可以采用上述三种方法之一，并选择一个Revit构件。按照以下步骤添加关键注释：\n\n-   1. 让我们点击**元素关键注释**，然后在平面视图中选择一面墙。\n\
+  -   2. 我们将看到一个问号符号。第二次点击以放置注释时，我们将能够选择规范的注释文本：\n\n![](img/1961add582dd4a589b2eac3dda140e38_262_0.png)\n\
+  \n图5.30 – 选择关键注释文本\n-   3. 点击**确定**后，我们将看到分配给墙体的关键注释：\n\n![](img/1961add582dd4a589b2eac3dda140e38_262_1.png)\n\
+  \n图5.31 – 分配给墙体的关键注释\n\n总之，我们学习了如何使用关键注释提高标注图纸的生产力和效率。在下一节中，我们将学习Revit设计选项的最佳实践。\n\
+  \n## 设计选项\n\nRevit的设计选项让您可以在同一个Revit文件中拥有多个设计方案。我们可以在设计选项之间切换，这有助于我们进行设计会议和客户演示。\n\
+  \n创建设计选项的过程相对简单，我们将重点介绍管理设计选项的最佳实践，以提高生产力和效率。我们可以在“管理”选项卡 | “设计选项”中找到设计选项工具：\n\n\
+  ![](img/1961add582dd4a589b2eac3dda140e38_263_0.png)\n\n图5.32 – 设计选项\n\n> 提示\n> 使用设计选项时，最好将“主体”和“被托管元素”放在同一个设计选项中；例如，墙（主体）和门（被托管元素）。\n\
+  \n让我们来了解在Revit中管理设计选项的最佳实践。\n\n## 命名设计选项\n\nRevit设计选项应根据公司标准进行命名，并避免使用“选项1”、“选项2”等默认命名约定。\n\
+  \n当我们为设计选项提供有意义的描述时，我们可以改善团队沟通，并帮助团队成员节省时间来确定需要选择或更新哪个设计选项。我们可以重命名**选项集**以及各个选项：\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_264_0.png)\n\n图5.33 – 重命名 – 设计选项\n\n\
+  ## 设计选项可见性\n\n当我们想要在Revit视图中显示特定的设计选项时，我们可以覆盖*主要选项*并显示另一个设计选项。此过程有助于我们打印或展示多个设计方案。\n\
+  \n通过使用Enscape Revit插件，我们可以非常快速地实时显示多个设计选项的渲染效果。\n\n要选择在视图中更改哪些设计选项的可见性，请按照以下步骤操作：\n\
+  \n-   1. 打开要更改其设计选项的视图。\n-   2. 在“属性”下，单击“可见性/图形覆盖”（我们可以使用VV或VG快捷键来执行此操作）：\n-  \
+  \ 3. 在“设计选项”选项卡下，选择所需的设计选项：\n\n![](img/1961add582dd4a589b2eac3dda140e38_265_0.png)\n\
+  \n图5.34 – 覆盖主要设计选项\n\n![](img/1961add582dd4a589b2eac3dda140e38_265_1.png)\n\n图5.35\
+  \ – 覆盖主要设计选项\n\n此过程将允许我们将**主要选项**更改为另一个**设计选项**，例如**扩展厨房区域**或**开放空间**，如上面的截图所示。\n\
+  \n值得一提的是，**<自动>**选项将显示主要选项。\n\n现在，让我们学习如何在处理**链接文件**时执行相同的操作。如果您有多个**链接文件**，并且想要更改设计选项，请按照以下步骤操作：\n\
+  \n-   1. 在**属性**下，单击**可见性/图形覆盖**（或键入VV或VG作为快捷方式）。\n-   2. 我们将看到一个名为**Revit链接**的新选项卡。单击**Revit链接**，然后选择**按宿主视图**：\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_266_0.png)\n\n图5.36 – 选择按宿主视图\n-   3.\
+  \ 在**基本**选项卡中，选择**自定义**：\n\n图5.37 – 选择自定义以启用此过程\n-   4. 在“设计选项”选项卡中，从下拉菜单中选择**<自定义>**，然后选择**<自动>**以更改链接文件中的所需设计选项：\n\
+  \n图5.38 – 更改链接文件中的设计选项\n\n## 明细表设计选项\n\n我们可以创建Revit明细表来显示设计选项中提供的数量。如果我们不更改这些设置，Revit将始终显示主要选项中的数量。\n\
+  \n要创建明细表并显示不同的设计选项，请打开Revit明细表，然后按照下图突出显示的步骤操作：\n\n![](img/1961add582dd4a589b2eac3dda140e38_268_0.png)\n\
+  \n图5.39 – 更改Revit明细表的设计选项\n\n## 空设计选项\n\n当我们不需要在主要选项中显示新几何图形时，可能需要创建一个空设计选项。在这种情况下，主要选项将为空，但其他设计选项将包含几何图形。\n\
+  \n## 使用设计选项提高性能\n\nRevit文件中的多个设计选项可能会降低性能，因此经常删除未使用的设计选项和视图至关重要。\n\n我们需要明智地考虑设计选项中包含的内容，以确保Revit获得良好的性能。如果设计选项是建筑的一大部分，我们可以考虑创建新的Revit文件来链接，而不是创建设计选项。\n\
+  \n在删除设计选项之前，我们建议您备份包含所有设计选项的Revit文件，以防项目团队将来需要恢复某个特定的设计选项。\n\n\n\n\n移除未使用的设计选项后，我们建议运行\
+  \ *Purge* 命令以删除未使用的族。这可以减小文件大小并提高性能。\n\n## 向顾问发布 Revit 模型\n\n当您向顾问发布 Revit 文件时，所有设计选项都需要被移除，以保持\
+  \ Revit 文件的优化性能。\n\n如果需要，我们可以根据项目团队的同意保留特定的设计选项。\n\n在本节中，我们学习了关于设计选项的最佳实践以提高生产力。在下一节中，我们将学习\
+  \ Revit 阶段。\n\n## Revit 阶段\n\nRevit 阶段是处理现有建筑的优秀功能，因为它允许我们区分来自不同阶段和阶段状态的元素，例如 **Existing**、**New**、**Demolished**\
+  \ 等。它也有助于我们控制其可见性。\n\n在 *Chapter 3, Revit Templates and Standards* 中，我们向您展示了如何为\
+  \ Revit 模板实现 Revit 阶段。在本节中，我们将介绍使用 Revit 阶段的最佳实践。\n\n根据项目规模，我们建议为 **Existing Phase**\
+  \ 创建一个 Revit 文件，为 **New Phase** 创建另一个 Revit 文件。虽然对于独栋住宅项目我们可能只使用一个包含两个阶段的 Revit\
+  \ 文件，但在中型和大型项目中，使用单独的文件为每个阶段可以提高生产力。\n\n## 仅包含现有阶段的 Revit 文件\n\n此 Revit 文件将仅包含现有建筑的测绘模型，并且仅用于\
+  \ **demolish objects**。\n\n我们可以使用 **Modify** 选项卡中的 **Demolish** 工具并按需选择对象：\n\n![](img/1961add582dd4a589b2eac3dda140e38_269_0.png)\n\
+  \n图 5.40 – The Demolish tool\n\n![](img/1961add582dd4a589b2eac3dda140e38_271_0.png)\n\
+  \n图 5.42 – Revit Phase Filters to be deleted\n\n我们可以通过根据项目需要重新创建新的阶段筛选器来提高生产力，从而促进易用性。阶段筛选器描述对于保持简单至关重要。\n\
+  \n我们建议以下命名约定：\n\nSequential number + description + graphic overrides description\n\
+  \n一些示例如下：\n\n- 01-Existing-By Category\n- 02-New-By Category\n- 03-Demolition-By\
+  \ Category\n- 04-Existing and New-By Category\n- 05-Existing and New-Overridden\n\
+  - 06-Existing and Demo-Overridden\n- 07-New and Demo-Overridden\n\n在阶段筛选器中，我们可以创建多种组合并控制阶段筛选器覆盖。\n\
+  \n图 5.43 – Revit Phase Filters with new naming conventions\n\n在阶段筛选器中，我们可以选择三个选项：By\
+  \ Category、Overridden 和 Not Displayed。\n\n当我们选择特定的阶段筛选器时，它将显示其 Graphic Overrides。\n\
+  \n图 5.44 – Phase Filters and Graphic Overrides tabs\n\n我们可以在 **Properties** 部分根据\
+  \ **View** 的需要更改 **Phase Filter** 和 **Phase**。这是一种快速更新任何未显示正确信息的视图的方法：\n\n![](img/1961add582dd4a589b2eac3dda140e38_273_0.png)\n\
+  \n图 5.45 – Changing the Phase Filters and Phase by View properties\n\n## 阶段 – 图形覆盖\n\
+  \n图形覆盖可以根据贵公司的标准进行更新，我们可以选择不同的颜色来表示每个阶段状态。以下阶段状态可用：\n\n- **Existing**\n- **Demolished**\n\
+  - **New**\n- **Temporary**\n\n以下屏幕截图显示了更改 **Graphic Overrides** 选项的选项：\n\n![](img/1961add582dd4a589b2eac3dda140e38_274_0.png)\n\
+  \n图 5.46 – Revit Phases – Graphic Overrides settings\n\n> **Tip**\n>\n> \"Demolished\"\
+  \ 是对象的阶段状态，而不是 Revit 项目阶段。\n\n在使用阶段和图形覆盖时，我们可能会注意到组件不在正确的阶段。为了解决这些问题，我们可以选择组件并在属性部分更改其阶段：\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_275_0.png)\n\n图 5.47 – Changing a Revit\
+  \ Phase\n\n## 从链接文件中显示多个阶段\n\n让我们学习如何在同一视图中显示来自链接文件的多个阶段。如果我们有多个链接文件并且想要显示各种阶段，则必须遵循以下步骤：\n\
+  \n- 1. 在 Properties 下，点击 Visibility/Graphics Overrides（我们可以在此处使用 VV 或 VG 快捷键）：\n\
+  \n  ![](img/1961add582dd4a589b2eac3dda140e38_276_0.png)\n\n  图 5.48 – Changing a\
+  \ Revit Phase\n\n- 2. 我们将看到一个名为 Revit Links 的新选项卡。点击 Revit Links，然后选择 By Host View：\n\
+  \n  ![](img/1961add582dd4a589b2eac3dda140e38_276_1.png)\n\n  图 5.49 – Changing a\
+  \ Revit Phase By Host View\n\n3. 在 Basic 选项卡中，选择 Custom 并从下拉菜单中选择所需的阶段或阶段筛选器：\n\n\
+  ![](img/1961add582dd4a589b2eac3dda140e38_277_0.png)\n\n图 5.50 – Changing the linked\
+  \ Revit Phase or Phase Filter\n\n在本节中，我们学习了如何管理 Revit 阶段以提高生产力。在下一节中，我们将学习范围框，它有助于控制多个视图的裁剪区域。\n\
+  \n## 使用范围框\n\n范围框可以通过将特定的裁剪区域应用于多个视图并控制楼层和网格的延伸来提高效率。\n\n范围框是在楼层或天花板平面视图中创建的，但在多个视图中可见，并且可以根据需要进行调整。\n\
+  \n要创建范围框，请从 View 选项卡中选择范围框工具：\n\n![](img/1961add582dd4a589b2eac3dda140e38_278_0.png)\n\
+  \n图 5.51 – Drafting the Scope Box in a plan view\n\n创建范围框后，我们可以从 **Properties**\
+  \ 中选择它以裁剪其视图：\n\n![](img/1961add582dd4a589b2eac3dda140e38_280_0.png)\n\n![](img/1961add582dd4a589b2eac3dda140e38_280_1.png)\n\
+  \n图 5.53 – Selecting and applying the Scope Box to a view\n\n现在，我们可以从 **Project\
+  \ Browser** 菜单中选择多个视图并应用相同的范围框：\n\n![](img/1961add582dd4a589b2eac3dda140e38_281_0.png)\n\
+  \n图 5.54 – Selecting and applying the Scope Box to multiple views\n\n如果我们需要编辑范围框区域，我们需要选择\
+  \ **None** 选项以使视图裁剪区域可编辑：\n\n> **Tip**\n>\n> 勾选 **Annotation Crop** 选项以隐藏范围框外的注释。\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_282_0.png)\n\n图 5.55 – Ticking the Annotation\
+  \ Crop option to hide annotations outside the Scope Box\n\n## 旋转范围框\n\n如果我们正在处理非水平或垂直的建筑翼，旋转范围框可以提高我们的生产力。旋转范围框后，我们可以使用水平和垂直轴在\
+  \ Revit 中绘图，这比绘制角度更容易。请按照以下步骤操作：\n\n- 1. 选择范围框。我们将看到范围框旋转符号，它位于右上角：\n\n  ![](img/1961add582dd4a589b2eac3dda140e38_285_0.png)\n\
+  \n  图 5.58 – Scope Box rotation symbol\n\n2. 使用 *Rotate* 工具按需旋转范围框。在以下图像中，我们可以看到范围框旋转符号在我们将范围框分配给视图之前位于\
+  \ **bottom left**。一旦我们将范围框分配给视图，视图将被旋转，使旋转符号位于 **top right**：\n\n![](img/1961add582dd4a589b2eac3dda140e38_286_0.png)\n\
+  \n图 5.59 – Before and after rotating the Scope Box\n\n在此工作流程中，我们可以看到在将范围框分配给视图后，视图将旋转以将旋转符号放置在\
+  \ **top right**。\n\n在本节中，我们学习了如何使用范围框来提高生产力。在下一节中，我们将学习 Revit 中的工作共享。\n\n2. 在 **Collaborate**\
+  \ 选项卡中，点击 **Collaborate**：\n\n![](img/1961add582dd4a589b2eac3dda140e38_288_0.png)\n\
+  \n图 5.61 – Collaborate tool\n\n3. 假设我们正在您自己的私有网络中工作，而不是使用 Autodesk BIM 360 云平台。选择\
+  \ **Within your network** 选项并点击 **OK**：\n\n![](img/1961add582dd4a589b2eac3dda140e38_288_1.png)\n\
+  \n图 5.62 – Collaborating within your network\n\n\n\n\n\n+   4. 在快速访问栏中单击“保存”：\n\n\
+  ![](img/1961add582dd4a589b2eac3dda140e38_289_0.png)\n\n图 5.63 – 保存\n\n+   5. 将出现一个新窗口。单击“是”：\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_289_1.png)\n\n图 5.64 – 启用工作共享\n\n6. 单击以下选项进行同步：\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_290_0.png)\n\n图 5.65 – 与中心同步\n\n7. 勾选“用户创建的工作集”选项并单击“确定”：\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_290_1.png)\n\n图 5.66 – 与中心同步\n\n现在我们已创建\
+  \ Revit 中心文件，应将其关闭。\n\n提示\n\n> 我们绝不应在中心文件中工作，因为这会导致工作共享出现问题，并且本地文件将停止工作。\n\n现在 Revit\
+  \ 本地文件已创建，我们可以在文件名中看到我们的用户名或 **Autodesk ID**：\n\n![](img/1961add582dd4a589b2eac3dda140e38_292_0.png)\n\
+  \n图 5.68 – Revit 用户名\n\n我们应重复此过程，每次想要在启用工作共享并使用中心文件的情况下处理项目时，都创建一个新的本地文件。\n\n创建本地文件后，我们可以在\
+  \ Revit 文件中工作，但需要根据需要 **同步** 以将工作保存回中心文件。同步有两种选项，如下图所示：\n\n![](img/1961add582dd4a589b2eac3dda140e38_292_1.png)\n\
+  \n图 5.69 – 同步到中心文件\n\n我们应每 30 分钟或每次对模型进行重大更改时 **同步** 一次。这将“放弃”您控制的对象，使其返回到中心文件，以便其他用户可以访问这些对象。\n\
+  \n## 工作共享的最佳实践\n\n以下工作共享最佳实践将帮助您避免问题并保持良好的 Revit 性能。\n\n创建工作集的过程很简单。请按照以下屏幕截图中显示的步骤操作：\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_294_0.png)\n\n图 5.71 – 创建工作集\n\n+   -\
+  \ 当您创建本地文件时，通过选择“指定...”选项来选择要关闭的工作集，将使 Revit 更快地打开文件：\n\n![](img/1961add582dd4a589b2eac3dda140e38_296_0.png)\n\
+  \n图 5.73 – 创建本地文件时关闭工作集\n\n我们可以通过使用“另存为”选项重新创建中心文件，使“指定...”选项成为默认选项：\n\n![](img/1961add582dd4a589b2eac3dda140e38_296_1.png)\n\
+  \n图 5.74 – 将“指定”选项设为默认\n\n+   - Revit 组件必须添加到正确的工作集中，这将提高生产力并有助于控制可见性和性能。\n\n+ \
+  \  - 为工作集保持良好的命名约定。\n\n+   - 标高和网格应位于“共享标高和网格”工作集上。\n\n+   - **工作共享显示设置** 选项使我们能够对工作集进行颜色编码：\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_299_0.png)\n\n图 5.79 – 对工作集进行颜色编码\n\n\
+  +   - 管理来自链接文件的工作集。在 **管理链接** 中，选择链接并单击 **管理工作集**：\n\n![](img/1961add582dd4a589b2eac3dda140e38_299_1.png)\n\
+  \n图 5.80 – 管理来自链接文件的工作集\n\n### 提示\n\n访问“管理工作集”的最快方法是进入项目浏览器，右键单击并选择“管理工作集”：\n\n\
+  ![](img/1961add582dd4a589b2eac3dda140e38_300_0.png)\n\n选择链接并右键单击\n\n图 5.81 – 选择管理工作集\n\
+  \n### 本地文件保存路径\n\n本地文件应保存在您本地计算机的本地硬盘上，而不是公司网络驱动器上：\n\n图 5.82 – Revit 本地文件路径\n\n\
+  我们建议创建一个专用文件夹来保存本地文件，例如 Revit_20XX_Local_Files（其中 20XX 为 Revit 版本），以便 Revit 文件不会与“文档”文件夹中位于的其他文件混在一起。\n\
+  \n用户文件的默认路径为 C:\\Users\\<username>\\Documents\\ Revit_20XX_Local_Files\\。\n\n###\
+  \ 用户名\n\nRevit **用户名** 用于标识您的本地文件。使用 **单点登录 (SSO)** 的 Autodesk 许可证会自动根据您的 Autodesk\
+  \ 配置文件定义此 **用户名**：\n\n![](img/1961add582dd4a589b2eac3dda140e38_302_0.png)\n\n图 5.83\
+  \ – 用户名\n\n### 工作共享监控\n\n**工作共享监控** 用于识别模型中的用户并选择最佳同步时间。这有助于节省时间，如果我们在等待其他用户完成此过程：\n\
+  \n+   我们可以在 **显示历史记录** 选项下找到我们的同步历史记录，这有助于我们识别上次同步模型的人及其评论：\n\n![](img/1961add582dd4a589b2eac3dda140e38_305_0.png)\n\
+  \n图 5.88 – 显示历史记录\n\n+   重新创建中心文件需要所有用户退出项目。这也可以应用于其他维护任务。\n\n+   要打开中心模型进行维护，请取消勾选\
+  \ **创建新的本地** 选项：\n\n![](img/1961add582dd4a589b2eac3dda140e38_305_1.png)\n\n图 5.89\
+  \ – 打开中心文件\n\n+   发布 Revit 模型有两种选项：单击 **打开** 并选择 **从中心分离** 或从 **加载项** 选项卡中选择 **传输模型(s)**\
+  \ 工具：\n\n![](img/1961add582dd4a589b2eac3dda140e38_305_2.png)\n\n图 5.90 – 发布中心文件\n\
+  \n### 本地文件\n\n以下几点对于管理本地文件至关重要：\n\n+   - 每次想要打开 Revit 文件时，我们都应创建一个新的本地文件。\n+   -\
+  \ 始终从本地文件工作。\n+   - 切勿打开旧的本地文件或使用 Revit 启动屏幕上的图标：\n\n![](img/1961add582dd4a589b2eac3dda140e38_306_0.png)\n\
+  \n图 5.91 – 最近文件 – Revit 启动屏幕\n\n+   - 频繁同步。我们建议每 30 分钟或每次对模型进行重大更改时进行一次。\n+   -\
+  \ 避免长时间保持本地文件打开且处于非活动状态。这可能会减慢团队的本地文件速度，并且同步时间会更长。如果您要去开会、午餐或晚上离开公司，请关闭本地文件。\n\n\
+  关闭本地文件前请同步本地文件。我们也可以先选择“放弃我的所有”然后再选择同步来节省时间：\n\n![](img/1961add582dd4a589b2eac3dda140e38_307_0.png)\n\
+  \n图 5.92 – 放弃我的所有\n\n如果我们想在不保存的情况下关闭文件，请选择“放弃所有元素和工作集”选项：\n\n![](img/1961add582dd4a589b2eac3dda140e38_307_1.png)\n\
+  \n图 5.93 – 放弃所有元素和工作集\n\n请遵循第 1 章《Revit 生产力简介》中的 Revit 推荐设置选项，以经济地建模并保持文件大小较小。\n\
+  \n+   用新版本替换顾问模型，新版本必须 **保持 Revit 文件名称相同** 以避免丢失覆盖设置。当您收到新文件时，文件名必须完全相同，且不能带有问题日期。文件名不得被修订。\n\
+  \n您可能会想，我们如何识别链接到我们模型的模型修订版？\n\n我们为每个修订版创建文件夹（P01、P02 等），并且当我们从这些文件夹链接 Revit 文件时，我们可以通过转到“管理链接”来检查文件路径中的修订版：\n\
+  \n### 文件夹\n\nP02 将出现在“已保存路径”中\n\n![](img/1961add582dd4a589b2eac3dda140e38_308_0.png)\n\
+  \n图 5.94 – 识别顾问模型\n\n### 升级中心文件\n\n在将 Revit 文件升级到新 Revit 版本之前，我们需要考虑以下几个因素：\n\n\
+  +   如果项目处于后期阶段或施工阶段，请考虑在同一版本中工作，不要升级。话虽如此，如果在 Autodesk 门户中无法下载所需版本，您可能需要向 Autodesk\
+  \ 申请许可以使用旧版本的 Revit。\n\n+   在升级之前，必须获得整个团队的同意。\n\n+   确保项目中可以使用的 Revit 插件可以在新 Revit\
+  \ 版本中工作。\n\n+   升级 Revit 分离副本以运行测试。如果测试运行没有问题，我们就可以升级主中心文件。选择“从中心分离”和“审核”选项：\n\n\
+  \n\n\n\n当我们有一份图纸清单时，项目团队或 BIM 协调员可以快速创建所有图纸，并赋予其正确的名称、编号、状态和其他信息。**这一过程对于提高交付图纸的生产率至关重要。**\
+  \ 我们可以自动化此过程，直接在 Revit 中创建多张图纸，或使用 Dynamo 和 Revit 插件来加快此过程。\n\n关键点在于明确将向设计团队交付的成果物，并为图纸制作分配团队成员的职责。\n\
+  \n一旦图纸已创建，项目团队或 BIM 协调员就可以使用 Revit 视图填充大部分图纸，即使这些视图尚未完成或非常基础。随着项目的推进，图纸将开始成形，项目经理可以打印图纸集以验证进度。\n\
+  \n这套初始图纸称为 **Cartoon Set**，它有助于规划项目交付物。Cartoon Set 提高了效率，因为我们可以确保图纸集包含交付所需的所有必要信息。\n\
+  \n随着项目的推进，Cartoon Set 将成为一套完整的图纸，这有助于我们顺利高效地满足截止日期。\n\n> **Tip**\n> 在截止日期前最后一刻创建多张图纸是个坏主意！\n\
+  \n## Work with a Good Revit Template\n\n图纸的生产效率将取决于 Revit 模板的质量，该模板将包括线宽、视图模板、标题图纸和其他\
+  \ Revit 设置。\n\n在 *Chapter 3, Revit Templates and Standards* 中，我们学习了如何创建和改进 Revit\
+  \ 模板。\n\n模板中包含的行业和组织标准将促进项目之间的统一，并使其与图形和技术标准保持一致。\n\n## Control Drawing Visibility\n\
+  \n我们可以通过多种方式控制图纸可见性，例如使用 **View Templates** 和其他技术，但一些流程可以帮助提高生产率，以便我们可以以 PDF 和 DWG\
+  \ 格式创建图纸。\n\n- 阴影会增加创建 PDF 文件所需的时间。如果不需要，请关闭阴影。\n- 检查链接文件是否对特定视图是必要的。如果我们卸载不必要的链接，Revit\
+  \ 的性能将提高。\n- 确保已安装最新的打印机驱动程序或插件以打印 PDF 文件。在 *Chapter 9, Enhancing Productivity with\
+  \ Plugins* 中，我们将了解更多关于 Revit 插件的信息。\n\n在本节中，我们了解了在 Revit 中制作图纸时可能影响生产率的三个因素。\n\n\
+  ## Summary\n\n在本章中，我们学习了 Revit 的核心功能和最佳实践，以提高使用施工规范的明细表和注释的工作效率。明细表工作流程分为基础和高级，以帮助涵盖管理明细表的必要流程。\n\
+  \n在 Revit 中，注释用于将施工规范分配给 Revit 组件，从而在注释图纸时提高生产率和一致性。\n\n我们随后解释了设计选项、阶段和范围框的最佳实践和工作流程，这有助于我们在使用\
+  \ Revit 进行日常活动时提高效率。我们还学习了工作共享的工作流程，以便我们可以与多个同时在同一文件中工作的用户协作。\n\n之后，我们介绍了在图纸制作期间提高生产率的三个主要因素，包括定义图纸清单、使用良好的\
+  \ Revit 模板以及控制图纸的可见性。\n\n在下一章中，我们将介绍 Dynamo 的视觉编程，并学习如何自动化 Revit 中的特定任务。\n"
+- '## Section 3:
+
+  Adding
+
+  Visualizations and
+
+  Dashboards to
+
+  Your Data
+
+
+  本节包含以下章节：
+
+
+  - *Chapter 6, Visual Programming with Dynamo*
+
+  - *Chapter 7, Dashboard Analyses with Power BI*
+
+
+  在这些章节中，您将获得使用 Dynamo 提高 Revit 生产率所需的基本知识，并学习如何使用 Revit 数据在 Power BI 中运行多次分析。
+
+
+  以下主题将被涵盖：
+
+
+  - Dynamo BIM 的基础知识
+
+  - 精通 Dynamo 以提高 Revit 效率的重要性
+
+  - 如何从 Revit 导出和导入数据到 Power BI
+
+  - 使用 Power BI 分析 Revit 数据
+
+  '
+- "## 6\nVisual Programming with Dynamo\n\n视觉编程使用户能够通过更改图形元素而不是文本编程来创建脚本，而文本编程是开发代码的典型过程。基本上，我们是在不编写代码的情况下创建算法：\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_315_0.png)\n\nFigure 6.1 – Dynamo graphical\
+  \ elements\n\n用户无需任何编程经验即可开始使用 Dynamo 等视觉编程应用程序并自动化 Revit 任务，但这需要投入学习和掌握新流程。\n\n\
+  Dynamo 是一款开源软件，可为 Revit、Civil 3D 和其他软件提供视觉编程。\n\nDynamo 的原理遵循三个基本流程：\n\n**INPUT\
+  \ + FUNCTIONS AND OPERATIONS + OUTPUT**\n\n我们将能够通过使用 Dynamo 自动化多个工作流程并快速完成重复性任务，从而提高\
+  \ Revit 中的生产率。\n\n本章将为您提供 Dynamo 的基本知识，并展示掌握该应用程序以提高 Revit 效率的重要性。\n\n本章还将为您介绍 Dynamo，展示最常用的\
+  \ Dynamo 包，并解释如何使用 Dynamo 进行某些工作流程。\n\n本章将涵盖以下主题：\n\n- Dynamo\n- Expanding Dynamo\n\
+  - Best practices\n\n## Technical requirements\n\n在本章中，您需要访问 Autodesk Revit。用于描述所有这些练习的版本是\
+  \ Revit 2021，但您可以使用其他版本进行跟进。需要注意以下几点：\n\n- 不同版本之间可能略有不同。\n- Revit 的旧版本无法打开较早版本的\
+  \ 文件。\n\n本章使用的所有数据集都可以在本书的 GitHub 仓库中找到，地址为\n`https://github.com/PacktPublishing/-Increasing-Autodesk-Revit-Productivity-for-BIM-Projects`。\n\
+  \n## Introducing Dynamo\n\n业务中的生产率是公司绩效的重要因素。提高生产率是在预定义的时间范围内更智能地工作以满足项目截止日期的过程。\n\
+  \n生产率方法如下：\n\n- 时间管理\n- 劳动力完成的任务\n- 个人绩效\n- 制造产品的比率\n\nDynamo 将通过提高您完成重复性任务的绩效以及处理复杂几何的能力来提高生产率。\n\
+  \nDynamo 是一个开源应用程序，可以作为独立的 *Sandbox* 使用，也可以与 Revit、Maya、Civil3D 或任何其他具有 **API**（**Application\
+  \ Programming Interface** 的缩写）可用的应用程序连接。\n\n它旨在通过自动化流程和工作流程来扩展 Revit 的功能。它不会为 Revit\
+  \ 添加新工具，但它将帮助自动化现有工具，以实现几乎无限的任务和建模流程。\n\n让我们开始从 Revit 访问 Dynamo：\n\n1. 打开一个新的 Revit\
+  \ 项目。\n2. 从 **Manage** 选项卡，前往 **Visual Programming** 面板。\n\n![](img/1961add582dd4a589b2eac3dda140e38_317_0.png)\n\
+  \nFigure 6.2 – Visual Programming panel\n\n3. 点击 **Dynamo.**\n\n点击后，**Dynamo** 窗口将出现：\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_318_0.png)\n\nFigure 6.3 – Dynamo canvas\n\
+  \n有关 Dynamo 的更多信息，请参阅以下链接：\n\n```\nhttps://bit.ly/3b9vxxa\n```\n\nQR code:\n\n![](img/1961add582dd4a589b2eac3dda140e38_318_1.png)\n\
+  \n\n\n\n# 使用Dynamo进行可视化编程\n\n> **提示**\n> \n> 可以通过从Dynamo启动页面单击**讨论论坛**来访问。\n\n还有一个字典，我们可以在其中找到与Dynamo相关的信息。随着社区不时更新，这个字典也在不断发展：\n\
+  \n```\nhttps://bit.ly/3cPuBgJ\n```\n\n二维码：\n\n![](img/1961add582dd4a589b2eac3dda140e38_320_0.png)\n\
+  \n> **提示**\n> \n> 可以通过从Dynamo启动页面单击**Dynamo字典**来访问。\n\n## 什么是可视化编程工具？\n\n可视化编程工具允许所有用户（程序员和非程序员）以更具交互性的方式使用该工具。这样，它通过制作图形（可视化脚本）来简化他们使用软件的方式。\n\
+  \n## 使用Dynamo\n\nDynamo与Revit软件协同工作，通常可以分三个阶段进行渐进式学习：\n\n- **专家：** 开发参数化和复杂模型。\n\
+  - **中级用户：** 执行QA/QC检查。\n- **初学者：** 管理Revit模型中的数据以导入和导出信息。\n\nDynamo中所有可用的节点按以下方式组织：\n\
+  \n- 库\n- 类别\n- 子类别\n\n![](img/1961add582dd4a589b2eac3dda140e38_322_0.png)\n\n图6.5\
+  \ – Dynamo库结构\n\n> 提示\n> 将鼠标悬停在子类别上时，Dynamo会弹出一个提示，其中包含该工具的说明。\n\n当用户想要将节点添加到画布时，他们通常使用搜索区域并输入与节点相关的名称：\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_323_0.png)\n\n图6.6 – 搜索节点\n\n当任何用户需要添加新节点时，可以（并且更快地）在画布上右键单击，然后在搜索区域中输入节点名称。\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_323_1.png)\n\n图6.7 – 通过上下文菜单搜索节点\n\n\
+  单击子类别后，节点将被添加到画布中。每个节点都有类似于以下的结构：\n\n![](img/1961add582dd4a589b2eac3dda140e38_324_0.png)\n\
+  \n图6.8 – 节点结构\n\n在开始使用Dynamo时，理解所有这些区域至关重要，因为它们将提供来自节点本身的重要信息。\n\n## 创建简单图形\n\n\
+  要在Dynamo中创建图形，我们需要通过从一个节点的输出端单击到下一个节点的输入端来从一个节点连接到另一个节点。在开发图形时，应该从左到右阅读。当我们执行它时，Dynamo也将遵循相同的顺序。\n\
+  \n要开始创建新图形，请执行以下步骤：\n\n1. 在Dynamo启动屏幕中，单击**新建**。\n2. 在画布中右键单击并搜索以下内容：\n   - **数字**\n\
+  \   - **点**\n   - **监视**\n\n3. 对于每个搜索结果，单击以下项：\n   - 数字滑块\n   - 按坐标\n   - 监视\n\n\
+  4. 从数字滑块节点，单击右侧箭头输出，然后再次单击任何点坐标的输入（X、Y或Z）：\n\n![](img/1961add582dd4a589b2eac3dda140e38_325_0.png)\n\
+  \n图6.9 – 连接节点\n\n5. 从Point.ByCoordinates节点到监视节点执行相同操作。\n\n默认情况下，Dynamo设置为在发生任何更改后自动运行，因此您将能够看到结果：\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_325_1.png)\n\n图6.10 – 连接节点\n\n通过更改要使用的坐标，或者添加更多滑块并将它们分配到不同的输入，结果将自动更新：\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_325_2.png)\n\n图6.11 – 更改脚本的运行方式\n\n作为良好实践，我们建议*始终*将其设置为手动。否则，每次更改时脚本都会自动运行。通过更改设置，只有当用户单击**运行**时，Dynamo才会执行脚本。\n\
+  \n总之，我们已经学习了如何知道安装了哪个Dynamo版本，以及如何使用安装软件时可用的节点开始创建简单图形。\n\n在下一节中，我们将学习如何安装和管理已安装的Dynamo包，并添加或识别现有的Python脚本。我们还将介绍如何使用Dynamo和Dynamo\
+  \ Player运行脚本。\n\n## 扩展Dynamo\n\n在使用Dynamo时，某些脚本需要使用**Python**计算语言进行进一步开发。使用Python是成为Dynamo专家的基本技能。\n\
+  \n由于Dynamo社区基于*开源*环境，许多用户将这些图形分享给所有其他用户，并且可以随时安装。这些包是特定于Dynamo版本的，这就是为什么务必始终跟踪所有可用和已安装的版本。\n\
+  \n不建议在项目中途更新它们，但如果确实有必要，只有在设计团队同意的情况下才更新。如果不进行这种控制，项目期间开发和使用的脚本可能会因为这些更新而不再工作。\n\
+  \n请记住，如果这是一个*开源*社区，则无法保证以前共享的这些包会为未来版本维护。\n\n高级用户会开发自己的脚本，因为这将消除对由第三方个人或公司开发的包的依赖。\n\
+  \n## Dynamo包\n\n需要做的最重要的活动之一就是安装和管理Dynamo包。\n\n使用Dynamo时，有大量的可用包列表。几乎不可能知道所有可用的包，即使知道，每天都有新的脚本和包被分享。\n\
+  \n要访问所有可用包的列表，请执行以下步骤：\n\n1. 打开Revit，在“管理”选项卡中，单击Dynamo：\n2. 从顶部菜单中，单击“包”，然后选择“管理包...”：\n\
+  3. 在新窗口中，单击“包管理器网站”按钮：\n\n![](img/1961add582dd4a589b2eac3dda140e38_327_0.png)\n\n\
+  ![](img/1961add582dd4a589b2eac3dda140e38_327_1.png)\n\n![](img/1961add582dd4a589b2eac3dda140e38_327_2.png)\n\
+  \n这将允许用户访问Dynamo包管理器。此网页显示所有可用的包、已执行的安装次数，以及有多少注册作者开发了脚本：\n\n![](img/1961add582dd4a589b2eac3dda140e38_328_0.png)\n\
+  \n图6.15 – Dynamo包管理器网页\n\n除了这些信息之外，还可以看到哪些是分享给社区的最新包、哪些包最近更新过、哪些包安装次数最多，以及哪些包被依赖得最多。\n\
+  \n这些包由社区成员分享，应该放心地在社区中消费和安装。有一个作者列表，我们可以从中看到谁获得最多投票、谁最活跃，以及谁安装了最多的包。\n\n您可以通过以下链接访问此信息：\n\
+  \n```\nhttps://bit.ly/3rUP1cm\n```\n\n二维码：\n\n![](img/1961add582dd4a589b2eac3dda140e38_329_0.png)\n\
+  \n## 安装包\n\n分享Dynamo脚本时，确保所有用户都安装了运行该脚本所需的相同包至关重要。这非常重要，因为任何用户都可以直接从Dynamo访问并安装可用的包。\n\
+  \n要安装包，请执行以下步骤：\n\n1. 打开Revit，在“管理”选项卡中，单击Dynamo。\n2. 从顶部菜单中，单击“包”，然后选择“搜索包...”：\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_329_1.png)\n\n图6.16 – 安装包\n\n3. 在新窗口中，在“搜索”下，单击要搜索的包名称\
+  \ – Rhythm。当输入包名称时，Dynamo会过滤可用的结果：\n\n![](img/1961add582dd4a589b2eac3dda140e38_330_0.png)\n\
+  \n图6.17 – 可用的在线包\n\n4. 要安装包，请单击左侧的箭头：\n\n![](img/1961add582dd4a589b2eac3dda140e38_330_1.png)\n\
+  \n图6.18 – 包安装\n\n\n\n\n\n提示\n\n单击软件包的描述即可访问软件包的历史记录，并在可用的情况下安装特定版本。\n\n5. 将弹出一个窗口以确认安装：\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_331_0.png)\n\n图 6.19 – 软件包安装\n\n如果已安装的软件包包含依赖项，例如\
+  \ Python 脚本或二进制文件，则会弹出警告，确认是否可以安装该软件包。\n\n重要说明\n\n由于 Python 脚本可能会影响您的计算机，请确保下载脚本的来源可信。\n\
+  \n根据所使用的 Dynamo 版本，用户尝试安装的软件包可能与当前的 Dynamo 版本不兼容：\n\n![](img/1961add582dd4a589b2eac3dda140e38_331_1.png)\n\
+  \n图 6.20 – 确认软件包安装\n\n软件包安装完成后，Dynamo 将显示相关信息：\n\n![](img/1961add582dd4a589b2eac3dda140e38_332_0.png)\n\
+  \n图 6.21 – 软件包已安装\n\n虽然可以安装任意数量的软件包，但建议将软件包数量保持在最低必要水平。请确保只安装可信的软件包，因为执行这些软件包时可能会损坏模型。\n\
+  \n以下是我们建议安装的一些优秀软件包：\n\n- Archilab.net\n- Clockwork\n- Lunchbox\n- Rhythm\n- Spring\
+  \ Nodes\n\n安装后，这些软件包将显示在“附加功能”库中：\n\n![](img/1961add582dd4a589b2eac3dda140e38_333_0.png)\n\
+  \n图 6.22 – 已安装并可用的新软件包\n\n使用 Dynamo 论坛可以帮助您了解更多可用的有趣软件包。\n\n## 管理已安装的软件包\n\n要管理所有已安装软件包的列表，请执行以下步骤：\n\
+  \n1. 打开 Revit，然后在**管理**选项卡中单击**Dynamo**：\n\n![](img/1961add582dd4a589b2eac3dda140e38_333_1.png)\n\
+  \n图 6.23 – 从 Revit 中打开 Dynamo\n\n2. 在顶部菜单中单击**软件包**，然后选择**管理软件包…**：\n\n![](img/1961add582dd4a589b2eac3dda140e38_334_0.png)\n\
+  \n图 6.24 – 管理已安装的软件包\n\n3. 要卸载软件包，请单击右侧的图标，然后选择**卸载…**：\n\n![](img/1961add582dd4a589b2eac3dda140e38_334_1.png)\n\
+  \n图 6.25 – 卸载软件包\n\n系统会弹出警告，提示卸载后需要关闭并重新启动 Dynamo：\n\n![](img/1961add582dd4a589b2eac3dda140e38_335_0.png)\n\
+  \n图 6.26 – 执行卸载前要求重新启动的消息\n\n系统还会显示另一条警告，要求用户确认是否应卸载该软件包。单击“是”后，该软件包将被卸载：\n\n![](img/1961add582dd4a589b2eac3dda140e38_335_1.png)\n\
+  \n图 6.27 – 确认卸载\n\n卸载软件包后，一些依赖已安装软件包的脚本将无法运行。\n\n## 使用 Python 扩展 Dynamo\n\nPython\
+  \ 是最流行的编程语言之一。由于它易于使用和学习，因此可以用于开发 Dynamo 脚本。\n\n如前所述，通过开发 Python 脚本，我们可以避免外部依赖项（无需软件包），并且脚本在项目中的执行速度更快、优化程度更高。\n\
+  \n建议根据项目对自动化的需求开发定制脚本。Python 可以连接到 Revit API——一组用于在软件的各个组件之间进行通信的方法——从而与 Revit 图元进行交互，因此这是可行的。\n\
+  \n总而言之，使用 Python 具有以下优势：\n\n- 不依赖其他 Dynamo 依赖项。\n- 在节点使用方面可以实现更好的结构化。\n- 对于要开发的任务，执行速度更快，目标也更加明确。\n\
+  \nDynamo 内置了 Python 编辑器。要访问该编辑器，请执行以下步骤：\n\n1. 搜索 Python 节点：\n\n![](img/1961add582dd4a589b2eac3dda140e38_336_0.png)\n\
+  \n图 6.28 – Python Script 节点\n\n2. 双击浅灰色区域以访问编辑器：\n\n![](img/1961add582dd4a589b2eac3dda140e38_336_1.png)\n\
+  \n图 6.29 – Python 编辑器\n\n添加所有脚本行后，单击“保存更改”，节点将自动记录并保存在 Dynamo 中：\n\n![](img/1961add582dd4a589b2eac3dda140e38_337_0.png)\n\
+  \n图 6.30 – Python 节点\n\n如需了解有关 Python 的更多信息，请参阅以下链接：\n\nhttps://bit.ly/3d9Bo5d\n\
+  \n二维码：\n\n![](img/1961add582dd4a589b2eac3dda140e38_337_1.png)\n\n如需了解有关 Revit API\
+  \ 的更多信息，请参阅以下链接：\n\n```text\nhttps://bit.ly/20x8EZL\n```\n\n二维码：\n\n![](img/1961add582dd4a589b2eac3dda140e38_338_0.png)\n\
+  \n## Dynamo 工作流\n\n开发图形需要一定的经验，但随着时间的推移，您可以逐步提升技能并提高使用 Dynamo 的生产力。运行图形之前，请确保运行的是正确的图形，并且已按要求安装所有软件包。\n\
+  \n运行脚本之前，请确认您了解所需的输入。这可能需要具备编辑图形的能力，以便根据所选输入添加必要内容。\n\n## 自动创建图纸\n\n在此分步过程中，我们将从\
+  \ Excel 文件导入一些数据，并使用这些数据创建图纸占位符。通过添加其他列并使用参数名称作为表头（区分大小写），可以添加所需的任何信息。\n\n要在 Revit\
+  \ 项目中使用 Dynamo 执行此工作流，请执行以下步骤：\n\n1. 打开 Revit，然后打开 `Project_Sample-Dynamo.rvt` 文件。\n\
+  2. 在“管理”选项卡下，单击 Dynamo。\n3. 在 Dynamo 窗口中，单击“文件”，然后选择“打开”。选择脚本 `AutomateSheetCreation-Dynamo.dyn`：\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_339_0.png)\n\n图 6.31 – 打开脚本\n\n打开后，确认脚本应以“手动”模式运行。\n\
+  \n如前所述，运行脚本时，可能需要先提供一些输入。在本练习中，我们将选择 Excel 文件。\n\n必须考虑以下事项：\n\n- 必须选择 Excel 文件，并且图纸编号应具有唯一性。\n\
+  - 必须注意图纸名称。\n- 需要忽略 Excel 文件的前几行，因为这些行是 Excel 表头（数据的第一行）。\n\n4. 单击“浏览”，然后选择 Excel\
+  \ 文件 `DrawingList.xlsx`。\n5. 确保图纸名称与节点中的名称一致。\n\n创建图纸时，所有信息都会相应填充：\n\n![](img/1961add582dd4a589b2eac3dda140e38_341_0.png)\n\
+  \n图 6.34 – 在 Revit 中创建的图纸\n\n## 如何使用 Dynamo Player\n\nDynamo Player 是一项便捷功能，允许用户无需打开\
+  \ Dynamo 即可更简单地运行 Dynamo 脚本。它可以配置为指定一个文件夹，其中包含供组织内所有用户使用的脚本列表。\n\n保持文件夹更新非常简单，并且可以确保所有用户使用相同的脚本。\n\
+  \n## 设置 Dynamo Player\n\n需要从 Revit 中打开 Dynamo Player，无需打开任何 Dynamo 实例。如有必要，可以从 Dynamo\
+  \ Player 中打开脚本。下面让我们完成此练习：\n\n1. 打开 Revit，然后打开 `Project_Sample-DynamoPlayer.rvt`\
+  \ 文件。\n\n2. 在“管理”选项卡下，单击 Dynamo Player：\n\n![](img/1961add582dd4a589b2eac3dda140e38_342_0.png)\n\
+  \n图 6.35 – 打开 Dynamo Player\n\n随后将打开一个新窗口，您可以在其中配置访问所有脚本的位置：\n\n![](img/1961add582dd4a589b2eac3dda140e38_342_1.png)\n\
+  \n图 6.36 – Dynamo Player\n\n在浮动窗口顶部，有三个图标，用户可以使用它们执行以下操作：\n\n- **浏览到文件夹**：此选项允许用户选择用于访问脚本的文件夹。\n\
+  - **查看当前文件夹**：此选项允许用户打开保存脚本的文件夹。\n\n\n\n\n- **刷新：** 此选项允许用户刷新文件夹中可用脚本的列表，这些脚本都会列在这里。\n\
+  \n我们可以访问文件夹中的所有可用脚本，该文件夹被定义为所有脚本应保存的中心文件夹：\n\n- **脚本列表：** 此选项允许用户通过单击**播放**图标来选择需要运行的脚本。\n\
+  \n单击**播放**图标后，脚本将被执行。如果脚本需要用户输入，Dynamo Player 会发出请求：\n\n![](img/1961add582dd4a589b2eac3dda140e38_343_0.png)\n\
+  \n图 6.37 – 使用 Dynamo Player 的用户输入\n\n我们建议将 Dynamo Player 作为运行脚本的主要工具，但要注意，有些脚本更适合高级用户，因为它们可能要求更高。\n\
+  \n在下一节中，我们将介绍创建图形时应遵循的最佳实践。\n\n### 最佳实践\n\n在构建图形时，将节点随意添加到各处是很常见的：\n\n![](img/1961add582dd4a589b2eac3dda140e38_346_0.png)\n\
+  \n图 6.41 – 混乱的 Dynamo 图形\n\n当图形变得更加复杂时，将难以阅读甚至难以维护。因此，用户在开发脚本时必须尽可能保持其条理性。当脚本在多个团队之间分发时，这一点就变得至关重要。\n\
+  \n作为最佳实践，我们建议如下：\n\n- 合理组织图形：\n  - a. 尽可能将图形按不同功能进行分组。\n  - b. 按从左到右的顺序排列脚本。\n \
+  \ - c. 当同时存在并行进程时，按垂直方向排列脚本：\n\n![](img/1961add582dd4a589b2eac3dda140e38_346_1.png)\n\
+  \n图 6.42 – 结构合理的 Dynamo 脚本\n\n- 为所有内容合理命名：\n  - a. 所有组都应使用清晰的标题命名，以表明该组的整体功能（使用较大字号，以便缩小时清晰可见）。\n\
+  \  - b. 所有代码块、自定义节点、Python 节点及其他有用对象都应采用具有信息量的适当命名，以帮助用户更好地理解整个图形。\n  - c. 为参数/代码块变量命名：\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_347_0.png)\n\n图 6.43 – 正确命名的组和节点\n\n\
+  - 根据所使用的类别对组使用颜色代码：\n  - a. 输入\n  - b. 控制\n  - c. 功能\n  - d. 输出\n\n![](img/1961add582dd4a589b2eac3dda140e38_347_1.png)\n\
+  \n图 6.44 – 组的颜色代码\n\n- 添加注释，按需添加所需数量：\n  - a. 如有必要，以面板或注释的形式添加。\n  - b. 需要时添加附加信息：\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_348_0.png)\n\n图 6.45 – 添加到图形中的注释\n\n\
+  所有这些额外信息将使脚本更易于阅读，因为它会标明哪些内容应当使用，以及哪些内容需要在使用脚本前理解。\n\n由于此脚本可能会被大量团队成员使用，并可能在项目和团队之间共享，因此添加一些有价值的信息至关重要，包括以下内容：\n\
+  \n- **标题**：这是脚本的总体功能。\n- **作者姓名**：如果出于某种原因脚本出现问题，需要修改或解释，你知道该找谁。\n- **描述**：此选项说明脚本将做什么。\n\
+  - **日期**：脚本的开发时间。\n- **依赖项**：此选项指示使用脚本需要哪些程序包，以及每个程序包的版本。\n\n```\nTITLE: Automate\
+  \ Sheet Creation\nAUTHOR'S NAME: Decio + Fabio\nDESCRIPTION: Graph will create sheet\
+  \ placeholders from an excel sheet\nDATE: Jan 2021\nDEPENDENCIES: Archilab 2021.25.21\n\
+  ```\n\n图 6.46 – 添加包含脚本重要信息的页眉\n\n图形完成后，应清晰且易于理解。制定这一标准将有助于在所有脚本中保持一致性：\n\n![](img/1961add582dd4a589b2eac3dda140e38_349_0.png)\n\
+  \n图 6.47 – 遵循标准的 Dynamo 脚本\n\n此外，当需要升级或进行任何维护时，也更易于找到需要更改和更新的内容。\n\n### 总结\n\n在本章中，我们了解了什么是\
+  \ Dynamo，以及用户如何使用 Dynamo 来提高性能和工作效率。\n\n我们了解到，Python 是最常见的编程语言之一，它可以与 Revit API\
+  \ 一起在 Dynamo 中使用。这种结合可以增强在 Revit 中可修改内容的范围。\n\n我们学习了如何使用 Dynamo Player 这一功能在项目中运行脚本。我们还探讨了如何设置一个可跨组织使用的文件夹，以共享可在多个项目中使用的常用脚本。\n\
+  \n我们还分享了开发 Dynamo 脚本时应遵循的最佳实践（这些实践可以扩展到所有需要特定可视化编程的软件，例如 *Grasshopper*）。\n\n在下一章中，我们将介绍如何使用\
+  \ Power BI 或其他软件（如 Excel）获取和管理仪表板。\n"
+- '## 7 使用 Power BI 进行仪表板分析
+
+
+  建筑行业的数据科学是一个新兴领域，在多个方面具有改善业务的巨大潜力，例如预测设计或施工问题、风险分析和优化建筑资产。
+
+
+  公司正在使用数据驱动的工作流来理解数据并提高业务决策的确定性。仪表板分析可以帮助我们以图形方式理解数据，并支持公司在项目环境中做出更好的决策。它提供了一种高效分析建筑数据的方法，而
+  BIM 软件是一种可用于多种分析的数据资源。
+
+
+  有许多应用程序可用于生成仪表板，但在本书中我们将使用 Microsoft Power BI。本章将介绍用于 Revit 的 Power BI，使您能够使用 Power
+  BI 进入更高级的工作流。
+
+
+  本章还将解释从 Revit 导出和导入数据到 Power BI 以及使用 Power BI 分析数据的过程。
+
+
+  本章将涵盖以下主题：
+
+
+  - 用于 Revit 的 Power BI 简介
+
+  - 从 Revit 到 Power BI 的数据导出与导入
+
+  - 使用 Power BI 分析 Revit 数据
+
+
+  ### 技术要求
+
+
+  在本章中，您需要能够访问 Autodesk Revit。用于描述所有这些练习的版本是 Revit 2021，但您也可以使用其他版本。需要注意的是：
+
+
+  - 不同版本之间可能存在细微差异。
+
+  - 较旧版本的 Revit 无法打开来自较新版本的文件。
+
+
+  本章使用的所有数据集都可以在本书的 GitHub 存储库中找到：
+
+  `https://github.com/PacktPublishing/Increasing-Autodesk-Revit-Productivity-for-BIM-Projects`.
+
+
+  ### 用于 Revit 的 Power BI 简介
+
+
+  Power BI 是由 Microsoft 开发的一款软件，拥有大量协同工作的软件服务、应用和连接器，可确保收集的数据能够通过不同的仪表板以一致、可视化且交互的方式展示。数据可以通过不同方式、从各种来源引入，并以不同方式进行分析。
+
+
+  由于 Microsoft Power BI 有不同的版本、工具和应用，我们将使用**免费版本**：*Microsoft Power BI Desktop*。
+
+
+  Microsoft Power BI 的所有不同版本都可以在以下链接中找到：
+
+
+  `https://bit.ly/3qVvi7U`
+
+
+  二维码：
+
+
+  ![](img/1961add582dd4a589b2eac3dda140e38_352_0.png)
+
+
+  ### 安装 Microsoft Power BI Desktop
+
+
+  获取该应用程序的过程非常简单直接。访问 Microsoft Power BI 网页，即可获取用户想要获取或订阅的软件和版本。
+
+
+  如前所述，我们建议获取 *Microsoft Power BI Desktop*：
+
+
+  ![](img/1961add582dd4a589b2eac3dda140e38_353_0.png)
+
+
+  可以通过以下两个链接进行下载：
+
+
+  - **下载**：此选项将允许 Microsoft Power BI Desktop 通过 Microsoft Store 在后台自动安装。
+
+  - **高级下载选项**：此选项允许用户选择想要使用的语言后，下载 Microsoft Power BI Desktop 安装程序。
+
+
+  使用第二个选项（下载安装程序）时，下载完成后，双击文件开始安装过程，并按步骤操作直至完成。
+
+
+  ### 启动 Microsoft Power BI
+
+
+  安装完成后，可以通过桌面上的快捷方式访问该软件，或者通过“开始”菜单并输入“Power BI Desktop”访问。
+
+
+
+
+
+  几秒钟后，Power BI Desktop 即可使用。启动屏幕上会显示一些选项和超链接，可用于访问上次使用的仪表板、通过从数据源导入数据来创建新的仪表板，甚至可访问一些网页来了解如何使用
+  Microsoft Power BI：
+
+
+  ![](img/1961add582dd4a589b2eac3dda140e38_354_0.png)
+
+
+  图7.2 – Microsoft Power BI 启动屏幕
+
+
+  从启动屏幕可以很容易看出，最重要的事情之一就是获取数据。通过单击“获取数据”，Power BI 将允许用户选择它将使用的数据类型：
+
+
+  ![](img/1961add582dd4a589b2eac3dda140e38_354_1.png)
+
+
+  图7.3 – 获取要分析的数据
+
+
+  ## 使用 Microsoft Power BI
+
+
+  让我们从整体上概览一下 Microsoft Power BI 界面，从中可以找到使用该软件时的主要功能。
+
+
+  本小节的目的不是详细解释 Microsoft Power BI Desktop，而是了解其主要界面。我们将进行一个总体概览，并在练习过程中定义一些工具和工作流。
+
+
+  在功能区中，我们有以下选项卡：
+
+
+  ![](img/1961add582dd4a589b2eac3dda140e38_356_0.png)
+
+
+  图7.5 – “开始”选项卡
+
+
+  - **文件**：此选项允许访问主要的文件管理命令（**打开、保存、导入、导出**等）。
+
+  - **开始**：此选项允许访问一些主要工具，尤其是从不同的文件类型或数据源中导入数据。它还包括其他允许对信息进行格式设置的工具。
+
+  - **插入**：此选项允许访问一些工具，使用户能够插入新的视觉对象、按钮、自定义形状，甚至文本和一些图像，这将有助于安排布局并使仪表板更易于理解。
+
+  - **建模**：此选项允许访问一些工具，使用户能够处理包含多个表的复杂数据集，因为这些表需要以某种方式关联。
+
+  - **视图**：此选项允许访问与视觉对象相关的工具，我们可以在其中找到一些预定义主题并直接在仪表板中使用。在这里，可以打开或关闭某些面板。
+
+  - **帮助**：此选项允许访问指向教程、培训和 Power BI 社区页面的一些有用链接。
+
+
+  在左侧，我们还有三个重要且有用的选项卡：
+
+
+  ![](img/1961add582dd4a589b2eac3dda140e38_357_0.png)
+
+
+  图7.6 – “报表”、“数据”和“模型”选项卡
+
+
+  - **报表：** 此选项允许访问报表和仪表板区域。
+
+  - **数据：** 此选项允许访问已导入到 Power BI 中的表。
+
+  - **模型：** 此选项允许访问可在数据之间关联不同表的区域。
+
+
+  在右侧，我们有以下内容：
+
+
+  ![](img/1961add582dd4a589b2eac3dda140e38_357_1.png)
+
+
+  图7.7 – “筛选器”、“可视化效果”和“字段”选项卡
+
+
+  在下一节中，我们将学习如何从 Revit 模型导出数据、将数据导入 Microsoft Power BI，并快速创建漂亮的仪表板。
+
+
+  ## 从 Revit 导出数据并导入到 Power BI
+
+
+  本章旨在从 BIM 模型中导出数据，将其导入回 Microsoft Power BI，并生成一个仪表板，以便我们可以根据提取的数据进行适当的分析。
+
+
+  为了完成这个主题，我们将使用 *第 7 章* 提供的数据集。
+
+
+  ### 将 Revit 连接到 Power BI：模型数据可视化简介
+
+
+  在 Revit 中，无需使用任何插件甚至 Dynamo 图形即可从模型导出数据，这非常简单。直接从 Revit 导出，基本上可以通过两个步骤完成：
+
+
+  1. 创建包含所有需要导出数据的明细表。
+
+  2. 将明细表导出为 TXT 文件。
+
+
+  如果使用 Dynamo 图形，也可以分两步完成：
+
+
+  1. 创建/打开一个 Dynamo 图形。
+
+  2. 将数据导出为 Excel 文件。
+
+
+  导出此数据后，可以使用 Excel 打开或导入到 Microsoft Power BI 中。
+
+
+  ### 在 Revit 中创建明细表
+
+
+  在 Revit 中创建明细表很简单，由于明细表可用作数据源，我们可以提取与要列入明细表的对象相关的数据。几乎所有对象都可以提取，由于它们仍与模型连接，因此如果在模型中实施了任何设计更改，则在打开文件时，或者在
+  Microsoft Power BI 报表打开并刷新数据时，明细表都会更新。
+
+
+  为了解释这个过程，我们将创建一个房间明细表，并包含一些要提取的参数：
+
+
+  1. 打开 Revit，然后打开 `Project_Sample-Export Data.rvt` 文件。
+
+  2. 在**项目浏览器**下，右键单击并选择**新建明细表/数量**：
+
+
+  ![](img/1961add582dd4a589b2eac3dda140e38_360_0.png)
+
+
+  图7.9 – 在 Revit 中创建房间明细表
+
+
+  3. 在**类别**中，选择**房间**，然后单击**确定**：
+
+
+  ![](img/1961add582dd4a589b2eac3dda140e38_360_1.png)
+
+
+  图7.10 – 要提取的房间类别
+
+
+  4. 在“可用字段”下列出的参数中，选择并添加以下参数以包含在明细表中：标高、编号、名称、面积、体积、周长、注释和用途：
+
+
+  ![](img/1961add582dd4a589b2eac3dda140e38_361_0.png)
+
+
+  图7.11 – 要导出的房间参数
+
+
+  由于我们将处理数字，因此确保**面积**、**体积**和**周长**参数不在明细表中列出单位非常重要。要从中删除它们，请执行以下步骤：
+
+
+  1. 在**格式**选项卡中，选择**面积**参数，然后单击**字段格式…**。
+
+
+  ![](img/1961add582dd4a589b2eac3dda140e38_362_0.png)
+
+
+  图7.12 – 格式化“面积”参数
+
+
+  2. 在**格式**窗口中，取消选中**使用项目设置**选项，然后在**单位符号**下，选择**无**：
+
+
+  ![](img/1961add582dd4a589b2eac3dda140e38_362_1.png)
+
+
+  图7.13 – 面积单位
+
+
+  3. 对**体积**和**周长**参数执行相同的过程。
+
+
+  4. 在**外观**选项卡上，取消选中**数据前空行**选项，然后单击**确定**：
+
+
+  ![](img/1961add582dd4a589b2eac3dda140e38_363_0.png)
+
+
+  图7.14 – 从明细表中删除空行
+
+
+  Revit 将创建一个包含项目中所有信息的明细表：
+
+
+  <房间明细表>
+
+
+  | A | B | C | D | E | F | G | H |
+
+  |---|---|---|---|---|---|---|---|
+
+  | 标高 | 编号 | 名称 | 面积 | 体积 | 周长 | 注释 | 用途 |
+
+  | 标高 0 | 00.01 | 厨房 | 54.68 | 164.03 | 33590 | 别墅 | 社交区域 |
+
+  | 标高 0 | 00.02 | 外部区域 1 | 31.14 | 124.58 | 25904 | 阳台 | 阳台区域 |
+
+  | 标高 0 | 00.03 | 外部区域 2 | 28.04 | 112.18 | 24450 | 阳台 | 阳台区域 |
+
+  | 标高 0 | 00.04 | 餐厅 | 23.50 | 73.96 | 20313 |  | 社交区域 |
+
+  | 标高 0 | 00.05 | 门厅 | 71.92 | 228.25 | 45033 | 别墅 | 社交区域 |
+
+  | 标高 0 | 00.06 | 卫生间 1 | 14.45 | 43.82 | 16028 | 别墅 | 湿区 |
+
+  | 标高 0 | 00.07 | 露台区域 | 150.52 | 602.08 | 57559 | 外部 | 外部 |
+
+  | 标高 0 | 00.08 | 电视房 | 75.48 | 226.32 | 36047 | 别墅 | 社交区域 |
+
+  | 标高 0 | 00.09 | 客厅 | 97.71 | 365.15 | 50753 | 别墅 | 社交区域 |
+
+  | 标高 0 | 00.10 | 走廊 | 17.92 | 53.77 | 22076 | 别墅 | 社交区域 |
+
+  | 标高 0 | 00.11 | 储藏室 | 5.46 | 17.43 | 9657 | 别墅 | 社交区域 |
+
+  | 标高 0 | 00.12 | 游泳池 | 53.50 | 214.00 | 31400 | 外部 | 外部 |
+
+  | 标高 0 | 00.13 | 草坪区域 | 661.80 | 2626.45 | 272042 | 外部 | 外部 |
+
+  | 标高 0 | 00.14 | 车库 | 61.05 | 244.20 | 33100 | 外部 | 外部 |
+
+  | 标高 1 | 01.01 | 主卧室 | 33.41 | 106.90 | 30081 | 别墅 | 私人区域 |
+
+  | 标高 1 | 01.02 | 卫生间 3 | 21.19 | 63.56 | 19599 | 别墅 | 湿区 |
+
+  | 标高 1 | 01.03 | 卫生间 2 | 14.40 | 43.19 | 16455 | 别墅 | 湿区 |
+
+  | 标高 1 | 01.04 | 卧室 1 | 67.08 | 201.64 | 32497 | 别墅 | 私人区域 |
+
+  | 标高 1 | 01.05 | 卧室 2 | 41.27 | 123.80 | 25511 | 别墅 | 私人区域 |
+
+  | 标高 1 | 01.06 | 阅读室 | 20.91 | 66.90 | 19223 | 别墅 | 私人区域 |
+
+  | 标高 1 | 01.07 | 办公室 | 48.17 | 144.50 | 30173 | 别墅 | 私人区域 |
+
+  | 标高 1 | 01.08 | 走廊 | 48.01 | 153.63 | 42609 | 别墅 | 私人区域 |
+
+
+  图7.15 – 包含 BIM 模型中所有房间的 Revit 明细表
+
+
+
+
+  > 提示
+
+  > 如果“面积”、“体积”和“周长”参数仍显示单位，请在“格式”属性下单击“编辑”，然后按前述步骤删除面积单位。
+
+
+  现在我们已经提取了数据，下面将该数据导出到 TXT 文件。
+
+
+  ## 从 Revit 导出数据
+
+
+  从 Revit 导出数据简单明了。我们将使用内置功能来完成此操作，但如前所述，也可以使用 Dynamo 或任何其他可用插件来提取数据（其中一些将在第 9 章中列出）。与
+  Power BI 一样，可以从 TXT 文件导入数据。我们将使用以下选项：
+
+
+  - 1. 在“文件”菜单下，单击“导出|报告|明细表”：
+
+
+  ![](img/1961add582dd4a589b2eac3dda140e38_364_0.png)
+
+
+  图 7.16 – 从 Revit 导出明细表
+
+
+  - 2. 根据需要重命名文件，然后单击“保存”。
+
+
+  导出文件时，了解一些选项非常重要：
+
+
+  - 不应包含标题，因为 Microsoft Power BI 中不需要标题。
+
+  - 表头应保持未分组。
+
+  - 导入 Microsoft Power BI 时应记住输出分隔符：
+
+
+  ![](img/1961add582dd4a589b2eac3dda140e38_365_0.png)
+
+
+  图 7.17 – 导出明细表选项
+
+
+  - 3. 单击“确定”。
+
+
+  如果打开 TXT 文件，可以看到所有已导出的数据，并准备好导入 Microsoft Power BI：
+
+
+  ![](img/1961add582dd4a589b2eac3dda140e38_365_1.png)
+
+
+  图 7.18 – 从 BIM 模型导出的数据
+
+
+  让我们切换到 Microsoft Power BI，开始导入导出的数据。
+
+
+  ## 将数据导入 Microsoft Power BI
+
+
+  导出所有所需数据后，我们将把它导入 Microsoft Power BI。该过程非常简单。
+
+
+  如果您因某种原因无法执行导出过程，我们提供了一个可用的共享文件：07.01_Room Schedule.txt：
+
+
+  - 1. 首先打开 Microsoft Power BI。
+
+
+  - 2. 在“主页”选项卡中，单击“获取数据”图标下方的箭头，然后选择“文本/CSV”：
+
+
+  ![](img/1961add582dd4a589b2eac3dda140e38_366_0.png)
+
+
+  图 7.19 – 导入到 Microsoft Power BI 的数据
+
+
+  - 3. 选择 07.01_Room Schedule.txt 文件，然后单击“打开”。
+
+
+  - 4. 在新窗口中，单击 **加载** 以导入所有数据：
+
+
+  ![](img/1961add582dd4a589b2eac3dda140e38_367_0.png)
+
+
+  *图 7.20 – 正在将数据加载到 Microsoft Power BI*
+
+
+  几秒钟后，所有数据将可用并准备好使用。可以通过访问右侧的 **字段** 面板来确认：
+
+
+  ![](img/1961add582dd4a589b2eac3dda140e38_367_1.png)
+
+
+  *图 7.21 – Microsoft Power BI 中可用的字段*
+
+
+  - 6. 确保 Number 为“文本”类型，因为我们不需要对此列执行求和：
+
+
+  ![](img/1961add582dd4a589b2eac3dda140e38_369_0.png)
+
+
+  图 7.24 – 将数据类型切换为文本
+
+
+  更改此属性并返回“报表”选项卡后，可以确认 Number 不再带有 Σ 符号：
+
+
+  ![](img/1961add582dd4a589b2eac3dda140e38_369_1.png)
+
+
+  图 7.25 – 对字段下的 Σ 符号求和
+
+
+  现在我们可以开始创建仪表板了。
+
+
+  ## 使用从 Revit 导入的数据创建快速仪表板
+
+
+  创建仪表板时，可能需要添加一些图像、形状甚至文本，以便更好地传达仪表板信息。这些选项与 Microsoft 软件（如 Word、Excel 和 PowerPoint）中的其他选项类似。这些选项位于
+  **插入** 选项卡下：
+
+
+  ![](img/1961add582dd4a589b2eac3dda140e38_370_0.png)
+
+
+  图 7.26 – 插入选项卡
+
+
+  我们可以在页面顶部添加一个文本框并插入图像，使仪表板更具吸引力：
+
+
+  **豪华别墅**
+
+
+  ![](img/1961add582dd4a589b2eac3dda140e38_370_1.png)
+
+
+  图 7.27 – 插入仪表板的文本和图像
+
+
+  另一个重要设置是页面大小，我们将在其中创建仪表板。通过访问 **可视化** 选项卡，在 **格式** 选项下，可以访问 **页面大小**：
+
+
+  ![](img/1961add582dd4a589b2eac3dda140e38_371_0.png)
+
+
+  图 7.28 – 更改页面大小
+
+
+  > **提示**
+
+  > *页面大小很重要，必须根据仪表板是用于打印还是仅通过 Power BI 访问来定义。如果要进行演示，我们建议使用 **自定义** 选项，并根据屏幕分辨率定义像素数。*
+
+
+  如果您因某种原因无法按照前面的步骤操作，我们提供了一个可用的共享文件：`07.02_Data Imported.pbix`：
+
+
+  - 1. 打开 `07.02_Data Imported.pbix` 文件。
+
+
+  - 2. 在 **可视化** 选项卡中，单击 **表**：
+
+
+  ![](img/1961add582dd4a589b2eac3dda140e38_372_0.png)
+
+
+  图 7.29 – 向报表添加表
+
+
+  - 3. 要向表中添加数据，请选择该表，然后在 **字段** 下勾选 **Number**、**Name**、**Area**、**Volume**、**Perimeter**、**Occupancy**
+  和 **Comments**。
+
+
+  向表中添加数据时，可能需要调整 **表头** 和 **数据** 的大小和/或字体类型。
+
+
+  - 4. 保持选中 **表**，然后在 **格式** 下展开 **列标题**，并将文本大小更改为 14pt。
+
+
+  - 5. 展开“值”，并将文本大小更改为 12pt：
+
+
+  ![](img/1961add582dd4a589b2eac3dda140e38_373_0.png)
+
+
+  图 7.30 – 设置列标题和数据值的文本大小和字体格式
+
+
+  我们已完成整个页面，由于其中包含项目的所有值，我们可以将此表重命名为 Overall。
+
+
+  - 6. 双击页面名称，并将其重命名为 Overall：
+
+
+  ![](img/1961add582dd4a589b2eac3dda140e38_373_1.png)
+
+
+  图 7.31 – 重命名后的页面
+
+
+  由于此页面包含总体信息，让我们为项目的每个楼层创建一个页面，并根据相应楼层筛选数据。
+
+
+  ## 为每个楼层创建新页面
+
+
+  如果您因某种原因无法按照前面的步骤操作，我们提供了一个可用的共享文件：07.03_Overall Table.pbix。
+
+
+  要创建新页面，请执行以下步骤：
+
+
+  - 1. 打开 07.03_Overall Table.pbix 文件。
+
+  - 2. 按下 + 图标。
+
+  - 3. 双击页面名称并将其重命名为 Level 0。
+
+  - 4. 在“格式”选项下，将页面大小更改为 Letter：
+
+
+  ![](img/1961add582dd4a589b2eac3dda140e38_374_0.png)
+
+
+  图 7.32 – 创建的新页面：Level 0
+
+
+  - 5. 在 Overall 页面中，按住 Ctrl 键的同时选择标题和表，然后按 Ctrl+C。
+
+  - 6. 在新的 Level 0 页面上，单击 Ctrl+V。
+
+  - 7. 重命名标题以添加楼层名称：豪华别墅 - Level 0。
+
+
+  现在我们有包含总体信息的同一张表，需要筛选这些数据，仅获取对应 Level 0 的数据。
+
+
+  - 8. 若要从“字段”中按楼层筛选此页面，请选择 Level 并将其拖到“此页面上的筛选器”下的“筛选器”选项卡中。
+
+  - 9. 勾选 Level 0：
+
+
+  ![](img/1961add582dd4a589b2eac3dda140e38_374_1.png)
+
+
+  图 7.33 – 筛选 Level 0 的数据
+
+
+  在完成此页面筛选后，我们建议添加更多可视化效果，并尝试了解信息的呈现方式：树状图和饼图：
+
+
+  **豪华别墅 - Level 0**
+
+
+  ![](img/1961add582dd4a589b2eac3dda140e38_375_0.png)
+
+
+  | Number | Name | Area | Volume | Perimeter | Occupancy | Comments |
+
+  |---|---|---|---|---|---|---|
+
+  | 00.08 | 大厅 | 4,31 | 12,92 | 86,23 | 社交区域 | 别墅 |
+
+  | 00.12 | 储藏室 | 5,46 | 17,43 | 96,57 | 社交区域 | 别墅 |
+
+  | 00.06 | 卫生间 1 | 9,43 | 28,47 | 123,65 | 潮湿区域 | 别墅 |
+
+  | 00.11 | 走廊 | 17,92 | 53,77 | 220,76 | 社交区域 | 别墅 |
+
+  | 00.04 | 餐厅 | 23,50 | 73,96 | 203,13 | 社交区域 | 别墅 |
+
+  | 00.03 | 外部区域 2 | 28,04 | 112,18 | 244,50 | 阳台区域 | 阳台 |
+
+  | 00.02 | 外部区域 1 | 31,14 | 124,56 | 259,04 | 阳台区域 | 阳台 |
+
+  | 00.13 | 游泳池 | 53,50 | 214,00 | 314,00 | 外部 | 外部 |
+
+  | 00.01 | 厨房 | 54,68 | 164,03 | 335,90 | 社交区域 | 别墅 |
+
+  | 00.15 | 车库 | 61,05 | 244,20 | 331,00 | 外部 | 外部 |
+
+  | 00.05 | 大厅 | 71,92 | 228,25 | 450,33 | 社交区域 | 别墅 |
+
+  | 00.09 | 电视室 | 75,48 | 226,32 | 360,47 | 社交区域 | 别墅 |
+
+  | 00.10 | 起居室 | 97,71 | 365,15 | 507,53 | 社交区域 | 别墅 |
+
+  | 00.07 | 露台区域 | 150,52 | 602,08 | 57,59 | 外部 | 外部 |
+
+  | 00.14 | 草地 | 661,80 | 2.626,45 | 2.720,42 | 外部 | 外部 |
+
+  | 总计 |  | 1.346,46 | 5.093,77 | 6.829,12 |  |  |
+
+
+  图 7.34 – Level 0 分析数据
+
+
+
+
+
+  为了完成我们的仪表板，我们应该对 Level 1 也做同样的操作：
+
+
+  ### Luxury Villa - Level 1
+
+
+  ![](img/1961add582dd4a589b2eac3dda140e38_376_0.png)
+
+
+  | Number | Name | Area | Volume | Perimeter | Occupancy | Comments |
+
+  |---|---|---|---|---|---|---|
+
+  | 01.01 | Master Bedroom | 33,41 | 106,90 | 30081 | Private Area | Villa |
+
+  | 01.02 | WC 3 | 21,19 | 63,56 | 19599 | Wet Area | Villa |
+
+  | 01.03 | WC 2 | 14,40 | 43,19 | 16455 | Wet Area | Villa |
+
+  | 01.04 | Bedroom 1 | 67,08 | 201,64 | 32497 | Private Area | Villa |
+
+  | 01.05 | Bedroom 2 | 41,27 | 123,80 | 25511 | Private Area | Villa |
+
+  | 01.06 | Reading Room | 20,91 | 66,90 | 19223 | Private Area | Villa |
+
+  | 01.07 | Office | 48,17 | 144,50 | 30173 | Private Area | Villa |
+
+  | 01.08 | Corridor | 48,01 | 153,63 | 42609 | Private Area | Villa |
+
+  | Total |  | 294,44 | 904,12 | 216148 |  |  |
+
+
+  Figure 7.35 – Level 1 analytics data
+
+
+  现在我们已经结束了本节，我们学习了如何从 Revit 项目中创建和导出数据，以及如何将数据导入 Microsoft Power BI。我们还解释了如何轻松创建报告。
+
+
+  在下一节中，我们将学习如何在 Microsoft Power BI 中分析数据。
+
+
+  ## Analyzing Revit data with Power BI
+
+
+  在从 BIM 模型导出的数据导入并创建可视化后，可以根据需要检查的内容分析所有数据。这种分析可以扩展到包括其他方面，例如相关材料、整体面积，甚至监控 Revit
+  模型的性能。为此，可能需要使用 Dynamo 图表将所需信息导出到 Excel 文件。
+
+
+  我们现在将通过一些使用 Microsoft Power BI 的工作流程，并了解这些分析如何进行。
+
+
+  ### Analyzing Revit data with useful workflows in Power BI
+
+
+  使用 Microsoft Power BI 分析 BIM 项目的数据没有限制。我们将为您提供一些进行此类分析的思路。
+
+
+  ### Normal analyses
+
+
+  Microsoft Power BI 允许通过点击数据的任何部分进行交互式分析。这将使 Microsoft Power BI 突出显示与所选内容相关的所有数据。
+
+
+  由于是交互式的，可以直接选择数据，所有仪表板都将更新。
+
+
+  我们将使用共享文件：07.04_Both Levels.pbix。
+
+
+  要创建新页面，请执行以下步骤：
+
+
+  1. 打开 07.04_Both Levels.pbix 文件。
+
+  2. 进入 Level 0 页面。
+
+  3. 在 Area by Occupancy 仪表板中，点击 Wet Area：
+
+
+  ![](img/1961add582dd4a589b2eac3dda140e38_377_0.png)
+
+
+  Figure 7.36 – Wet Area data selected
+
+
+  4. 要重置之前的分析，请点击仪表板或表格的同一区域。
+
+  5. 要选择多个区域或行，请按住 Ctrl 键并选择需要选择的数据：
+
+
+  ### Luxury Villa - Level 0
+
+
+  ![](img/1961add582dd4a589b2eac3dda140e38_378_0.png)
+
+
+  | Number | Name | Area | Volume | Perimeter | Occupancy | Comments |
+
+  |---|---|---|---|---|---|---|
+
+  | 00.01 | Kitchen | 54,68 | 164,03 | 33590 | Social Area | Villa |
+
+  | 00.02 | External Area 1 | 31,14 | 124,56 | 25904 | Balcony Area | Balcony |
+
+  | 00.03 | External Area 2 | 28,04 | 112,18 | 24450 | Balcony Area | Balcony |
+
+  | 00.04 | Dining Room | 23,50 | 73,96 | 20313 | Social Area | Villa |
+
+  | 00.05 | Hall | 71,02 | 228,25 | 45033 | Social Area | Villa |
+
+  | 00.06 | WC 1 | 14,45 | 43,62 | 16028 | Wet Area | Villa |
+
+  | 00.07 | Deck Area | 150,52 | 602,08 | 57559 | Exterior | Exterior |
+
+  | 00.08 | TV Room | 75,48 | 226,32 | 36047 | Social Area | Villa |
+
+  | 00.09 | Living Room | 97,71 | 365,15 | 50753 | Social Area | Villa |
+
+  | 00.10 | Corridor | 17,92 | 53,77 | 22076 | Social Area | Villa |
+
+  | 00.11 | Storage | 5,46 | 17,43 | 9657 | Social Area | Villa |
+
+  | 00.12 | Pool | 53,50 | 214,00 | 31400 | Exterior | Exterior |
+
+  | 00.13 | Grass Area | 661,80 | 2.626,45 | 272042 | Exterior | Exterior |
+
+  | 00.14 | Garage | 61,05 | 244,20 | 33100 | Exterior | Exterior |
+
+  | Total |  | 1.347,17 | 5.096,00 | 677952 |  |  |
+
+
+  Figure 7.37 – Multi-data selected
+
+
+  根据我们使用的可视化类型，结果会有所不同。我们强烈建议浏览所有不同的可视化类型。如果需要，可以安装不同的工具包，正如我们在下一个子主题中将要演示的那样。
+
+
+  ### Different visuals
+
+
+  在 Microsoft Power BI 中工作时，可以使用和组合不同类型的可视化。然而，通过安装不同的可视化，可以进一步扩展这种能力。
+
+
+  有一些工具包可以获取，它将简化 Revit 模型与 Microsoft Power BI 连接的过程。其中之一是 Tracer，它基本上是一个插件，允许数据信息直接从
+  Revit 导出到 Microsoft Power BI。
+
+
+  如需了解更多信息，请访问以下链接：
+
+
+  ```
+
+  https://bit.ly/3r2ruWX
+
+  ```
+
+
+  QR code:
+
+
+  ![](img/1961add582dd4a589b2eac3dda140e38_379_0.png)
+
+
+  **Synoptic Panel** 是一种不同的可视化，可以使用，并且是免费的。可以通过以下链接访问：`https://bit.ly/2O7bGE0`
+
+
+  QR code:
+
+
+  ![](img/1961add582dd4a589b2eac3dda140e38_379_1.png)
+
+
+  下载后，我们可以通过 Microsoft Power BI 中的 **Visualization** 面板访问它：
+
+
+  ### Tip
+
+
+  安装程序未共享，因为该工具可能随时更新。最新版本始终可以通过遵循之前的链接并按照获取安装程序的步骤来访问。
+
+
+  1. 打开 Microsoft Power BI。
+
+  2. 从 **Visualizations** 面板中，点击省略号，然后点击 **Import a visual from a file**：
+
+
+  ![](img/1961add582dd4a589b2eac3dda140e38_380_0.png)
+
+
+  Figure 7.38 – Adding more visuals to Microsoft Power BI
+
+
+  3. 导入之前下载的文件后，您将收到一条消息，告知可视化已导入：
+
+
+  ![](img/1961add582dd4a589b2eac3dda140e38_380_1.png)
+
+
+  Figure 7.39 – Confirmation of an imported custom visual
+
+
+  导入过程完成后，新的可视化可以通过 **Visualizations** 面板访问：
+
+
+  ![](img/1961add582dd4a589b2eac3dda140e38_381_0.png)
+
+
+  Figure 7.40 – Synoptic visual imported
+
+
+  要使用示意可视化，您需要为每个需要使用的视图类型创建一个视图（平面图、立面图、剖面图等）。当选择其中一个可用数据项时，它将突出显示在与其链接的相应视图中。
+
+  要创建每个视图，我们首先需要创建一个图像，并在通过以下链接定义区域后：
+
+
+  ```
+
+  https://bit.ly/3bMMIBJ
+
+  ```
+
+
+  QR code:
+
+
+  ![](img/1961add582dd4a589b2eac3dda140e38_381_1.png)
+
+
+  ### Microsoft Power BI gallery
+
+
+  通过访问 Microsoft Power BI 库，可以更好地了解使用该软件可以做什么以及如何改进这些分析。
+
+
+  按照此链接前往画廊：
+
+
+  ```
+
+  https://bit.ly/3svmevq
+
+  ```
+
+
+  QR code:
+
+
+  ![](img/1961add582dd4a589b2eac3dda140e38_383_0.png)
+
+
+  作为示例，这里是如何使用 BIM 数据呈现仪表板的示例：
+
+
+  ```
+
+  https://bit.ly/3kvX6Sk
+
+  ```
+
+
+  QR code:
+
+
+  ![](img/1961add582dd4a589b2eac3dda140e38_383_1.png)
+
+
+  为了结束本节，我们学习了如何分析和创建不同类型的仪表板，这将帮助我们更好地理解我们需要分析的数据。我们还分享了一些不同可视化的示例，可作为参考。
+
+  '
+- '## Section 4: Collaborating with Consultants and Plugins and Improving Revit Performance
+
+
+  在本节中，有以下章节：
+
+
+  - *Chapter 8, Collaborating With Consultants*
+
+  - *Chapter 9, Enhancing Productivity with Plugins*
+
+  - *Chapter 10, Improving Performance*
+
+
+  在这些章节中，您将了解如何与顾问协作，使用最佳 Revit 插件提高性能，以及 Revit 的最佳实践以提高效率。
+
+
+  将涵盖以下主题：
+
+
+  - 与顾问协作的策略
+
+  - 使用 Copy/Monitor、Coordination Review 和 Shared Views 进行 Revit 协作
+
+  - 如何管理 Revit 插件并使用最常用的 Revit 插件来提高项目中的生产力
+
+  - 最佳建模实践、内容管理、优化 Revit 性能和 BIM 360 最佳实践
+
+
+
+
+
+  '
+- '# 8
+
+
+  # 与顾问合作
+
+
+  与顾问合作是信息管理和BIM工作流的重要组成部分，但我们需要确保有效协作，从而在多个组织间提升绩效。
+
+
+  那些提倡协作的公司会共享知识和最佳实践，以实现项目目标。成功的协作建立在信任、尊重以及清晰沟通和明确信息交换流程之上的积极参与。
+
+
+  在前面的章节中，我们已经完成了协作的某些方面。
+
+
+  第2章《项目数据管理》解释了项目数据管理和BIM文档，这涉及公司间的协作。
+
+
+  第4章《高效启动Revit项目》讨论了让顾问提供的模型采用相同坐标系，以便在正确位置导入和导出模型，从而提升效率和生产力。
+
+
+  第5章《Revit核心功能》介绍了工作共享的最佳实践，以实现Revit协作，以及管理来自团队和顾问文件的工作集的过程。
+
+
+  本章将概述协作策略，并提供有关增强Revit协作的Revit工具信息，例如“复制/监视”、“协调审查”和“共享视图”。
+
+
+  我们想听听您对与顾问协作策略的看法。
+
+
+  能否请你介绍一下你自己和你的公司？
+
+
+  **Ricardo:**
+
+
+  自2013年以来，我担任芬兰Sweco公司的技术总监。Sweco规划并设计未来的可持续城市和社区。Sweco拥有约17,500名员工，主要在欧洲市场运营。
+
+
+  **Marzia:**
+
+
+  我是Marzia Bolpagni，MACE国际BIM主管兼副总监。MACE是一家全球性公司，我们的宗旨是拓展雄心的边界，因此我们开发、咨询、建造、运营，这就是MACE的四大引擎。具体来说，我在MACE的咨询部门以及数字-BIM小组工作。
+
+
+  **May:**
+
+
+  我是国际工程公司Buro Happold的商业与法律主管：城市与数字。在这个职位上，我领导商业与法律团队，为Buro Happold全球的城市与数字业务提供支持。在数字方面，这包括与业务部门紧密合作，为Buro
+  Happold内部的团队提供法律支持和建议，提供数字和BIM服务，并协助开发新的建筑技术和数字数据产品、服务及全球业务产品。每天都不一样，我喜欢利用自己的知识和经验帮助公司改进流程，并处理由建筑技术和数字化引发的法律和商业问题——无论是BIM、模块化建筑、软件还是其他方面。
+
+
+  在日常工作之外，我多年来一直深度参与BIM文档的开发并撰写相关论文。我定期在全球会议上就BIM和建筑技术的法律与合同问题发表演讲，并撰写相关论文和文章。我是BIM4Legal的主席，稍后我会进一步说明。我还是国际4D施工组的核心团队成员，是ISO19650过渡指南、ISO19650指南、英国数字建设中心的国家数字孪生路线图和数字孪生工具包工作组的成员。我也是英国BIM联盟的大使。我曾带领团队编写了2018年JCT《BIM实践指南》和符合ISO19650的信息协议，并参与咨询/评论了多份其他BIM指导文件。
+
+
+  Buro Happold是一家由工程师、顾问和咨询师组成的全球性实践机构。通过整合思维和一个真正跨学科、相互关联、充满热情专家的社区，我们为客户和社区创造变革性的成果。Buro
+  Happold致力于提供优雅的解决方案，为我们所处的社区和环境留下积极、持久的遗产（例如，参见 *《2020年全球可持续发展报告》* – Buro Happold
+  – https://bit.ly/2RZNGV4）。我们重视人类福祉，拥抱共同责任，并理解可持续的未来是我们工作经济和社会影响的内在组成部分。Buro Happold以其前瞻性和技术先进的理念而闻名，例如，多年来在所有项目内部实施BIM，并完全符合ISO19650新的信息管理要求。我们理解，技术正在为客户的利益革新建筑业，这需要敏捷的思维来提供最相关的服务和交付成果。Buro
+  Happold的数字思想领袖之一Alain Waha曾表示，Buro Happold正与客户一起“创造未来”，例如通过与建筑创新中心的合作；我们的计算工程方法使我们能够将设计流程与构成施工过程或最终资产的技术相集成，甚至可以优化场外施工的设计。重要的是，我们与供应链合作，走向完全数字化施工，因为协作是成功数字化和BIM的关键部分。为了进一步扩大在这一关键数字领域的参与，Buro
+  Happold最近发布了其首个数字产品“工作场所分析”，并继续推进其开源的协作模型平台BHOM（https://bit.ly/3sXDZDF），该平台使顾问能够在模型协作中克服互操作性的实际问题。
+
+
+  # 您对与顾问建立牢固合作关系有什么建议？
+
+
+  **Ricardo:**
+
+
+  我认为牢固的关系源于信任。我注意到，如果我们清楚需要做什么，并了解完成事情需要付出什么，我们就能在所有项目利益相关者之间建立信任。
+
+
+  我与客户使用敏捷方法论合作，这对我们的业务流程帮助很大，因为客户始终充分参与项目的决策。
+
+
+  客户和其他利益相关者参与项目的这种包容性在他们之间建立了更紧密的联系，并创造了一个信任的环境，使得与该团队完成的多个项目都非常成功。
+
+
+  **Marzia:**
+
+
+  要建立牢固的协作关系，我们需要考虑培养软技能，这些技能有助于沟通、创造协作环境、使人们有信心创新和犯错，并让他们参与支持领导层所定义战略的具体任务。
+
+
+  当我们谈论协作时，合同协议是促进项目相关团队协作环境的重要因素。
+
+
+  我正在写一本关于工业4.0的书，它不仅涉及技术层面，还讨论了培养软技能、数字领导力以及确保人们感受到自己是团队一员的方法论。这本书名为 *《面向建筑环境的工业4.0：方法论、技术与技能》*，计划于2021年由Springer出版。
+
+
+  **May:**
+
+
+  首先，必须有正确的心态。建筑行业传统上具有很强的对抗性和风险规避性，合同往往试图将风险和责任转嫁给对方。Latham和Egan报告指出了向更具协作性文化转变的迫切需要，正如标题恰如其分的Farmer报告《现代化，还是死亡》一样。实现这种协作心态绝对需要组织内部正确的风气和原则。然而，要实现这种协作心态并真正建立合作关系，以下关键步骤也可能有所帮助：
+
+
+  -   合同文件应具有协作意图，并包含各方必须遵守的协作程序，例如定期讨论和信息交换（有义务协作将使各方在遵守这些步骤时意识到，这确实是一种更高效、更好的互动方式）。
+
+  -   在各方之间实施和执行确保定期、公开的信息交换、讨论和互助的流程，以支持和建立牢固的协作关系。
+
+  -   与其他参与方发展牢固、定期或重复的工作关系也会有所帮助，因为与刚刚认识的人相比，与那些反复合作过的人更容易建立起密切、协作的关系。
+
+  -   使用技术和数字化流程，使协作更容易、更有效。例如，BIM建模、通过云平台交换信息，以及以易于所有人查看和理解的格式交换数据。
+
+
+
+
+
+
+  ## 你如何看待在供应链分段且技能多样化时协作中的困难？
+
+
+  ## Ricardo：
+
+
+  在这种分段供应链环境中，沟通和知识共享存在问题。它降低了项目的成功率，并经常导致项目延期和超预算。提供培训方案以提高技术和协作技能至关重要。
+
+
+  ## Marzia：
+
+
+  这是个好问题。即使在英国多年前就有了数字化 mandate，我们的行业仍在数字化之旅中，因此行业在全球的成熟度水平差异很大。
+
+
+  在选择合作伙伴时，检查其能力至关重要，而不仅仅依赖他们的简历和承诺。有时，无法选择合作伙伴，但检查他们的能力、他们的工作方式以及他们在特定情况下的行为，是选择团队的一种方式。另一点是提供培训并了解他们的局限性和需求，因为每个公司都有不同的流程。定义清晰的信息需求和供应链中每个参与者的不同信息需求等级也很重要，以促进协作。在这种情况下，很清楚需要什么来满足他们的需求并能够运行多个分析和流程。可使用标准
+  EN 17412-1 来定义信息需求等级框架。
+
+
+  ## May：
+
+
+  可以说，技能的多样性本应促进协作，因为各方需要依赖他人的技能或知识并共同工作以实现完整的设计或完成的项目。然而，行业确实非常分散，而且如前所述，传统上相当对立。然而，已经出现了明显的转变和向更协作的工作方式的推进，这得益于政府的
+  mandate 和出版物——例如，英国政府《2011年建筑战略》中的 mandate 以及英国政府《2020年建筑游戏规则手册》中的明确理念和原则。我们仍有很长的路要走，因为行业内有些人可能不愿拥抱与过去几十年的惯常工作方式相比似乎激进的协作转变，而且促进和加速协作所需的数字工具也未被行业内一些人所采用。虽然因此协作要真正成为常规业务还需要时间，但它需要行业内人员的承诺和支持来推广和鼓励协作方式的工作，并采取积极措施来实现这一点。
+
+
+  由于保险政策的性质，完全协作也变得困难，因为当问题出现时，各方可能因担心使保单失效而不愿完全坦诚。**综合项目保险 (IPI)** 正被英国政府尝试，以期克服此类协作的困难和障碍。
+
+
+  ## 公司如何促进有效的协作？
+
+
+  ## Ricardo：
+
+
+  推广任何事情最好的方式是通过展示成功案例。这是我在 Sweco 引入多种工作方式的方式，即使它们听起来对我展示的人来说很陌生。通过展示过去的例子来说服人总是更容易。
+
+
+  ## Marzia：
+
+
+  协作合同将是促进有效协作的第一步，但从公司中挑选合适的团队成员也很重要。这个过程不仅关乎技术技能，还关乎行为和软技能，这一点非常重要。在 MACE，我们有名为“成功行为”的指标，因为我们评估的不仅是我们技术上的表现，还包括我们的行为、互动以及与他人的合作方式。从战略和领导力的角度来看，将这些行为纳入公司的专业评估中进行评估也很重要。
+
+
+  在项目中，定义清晰的信息需求很重要，特别是定义 ISO 19650 系列中所述的信息需求等级。我是关于信息需求等级框架的标准 EN 17412-1 的主要作者，该框架取代了“LOD”概念。在项目早期阶段就明确定义需求并自动将交付成果与初始需求进行比较，效果非常好。
+
+
+  此外，使用数字工具可以帮助公司协作。但定期进行跟进和会议以了解人们的感受也很重要。非正式的谈话可以营造一个协作的环境，让人们不害怕犯错或在问题出现时发声；相反，他们会感到得到支持，能够借助正确的技术工具和培训完成工作。
+
+
+  ## May：
+
+
+  它必须嵌入组织的文化和理念中。我非常自豪 Buro Happold 认真对待协作，无论是与客户、合作者和分包顾问的外部协作，还是团队和办公室之间的内部协作。流程、工具和文档提供了良好的框架，使这种协作能够以简单和统一的方式进行。组织在思想和行动上的明确承诺，反过来会鼓励组织内部的人采用这种方法。
+
+
+  ## 你对增强协作工作的合同类型的看法是什么？
+
+
+  ## Ricardo：
+
+
+  这里在芬兰（可能在其他国家），我们有一些不同类型的合同：联盟合同。这些合同有时用于大型项目，其背后的想法是增强项目中的协作。在此过程中，所有利益相关者共同承担项目的风险和收益。
+
+
+  ## Marzia：
+
+
+  对我来说，这是增强协作工作的首要原因，也是我 2012 年硕士论文的主题，关于使用建筑信息模型的公共采购。我分析了不同国家的不同采购方法，包括传统和协作方法。在美国，有
+  **综合项目交付 (IPD)**；在澳大利亚，有更多项目联盟合同；在英国，政府战略定义了三种增强协作的采购方法：**成本主导采购 (CLP)**、**综合项目保险
+  (IPI)** 和两阶段开放账簿。此外，Prof. David Mosey 领导的工作也非常相关，FAC-1 框架可用于联盟合同以促进协作方法。不幸的是，我必须说，我们并没有像我们希望的那样多使用它们，因为改变合同采购流程存在许多障碍。如果我们想充分利用数字流程的好处，我们需要在这方面改进。
+
+
+  ## May：
+
+
+  合同的设立有助于并重要地鼓励和要求协作，包括包含要求各方之间实施协作的流程，以及以促进协作的方式规定各方的权利和义务。寻求将所有风险和责任转移给另一方，或包含鼓励保护性或对抗性行为的条款的合同，将对建立协作氛围的尝试产生不利影响。要求各方以“相互信任和合作”或类似方式工作的条款可确保各方从一开始就怀有正确的意图，并有望从此积极进展。具有协作工作方式的合同，例如
+  BIM，通常会包含或纳入对协作流程或技术文档的引用，例如 BIM 执行计划，该计划由所有各方共同商定并持续共同更新。这些文档反过来导致各方密切合作，朝着比传统孤岛更协作的工作方式发展。
+
+
+  ## 定义协作战略的关键点是什么？
+
+
+  ## Ricardo：
+
+
+  我认为你需要为任何战略制定愿景和使命。然后你需要定义短期和长期目标，并在它们之间设定里程碑，以衡量你是否朝着正确的方向前进。如果没有，你就知道在哪里改进。衡量过程是成功实施的关键。
+
+
+  ## Marzia：
+
+
+  定义协作战略的关键点是选择正确的合同类型，因为最终，协作合同将支持承包商和多个参与者的早期参与，以及职责的明确定义。从保险角度来看，公司将共享优势和劣势，因为它们在同一条“船”上，因此合同对于促进协作方法至关重要，在这种方法中，交付团队和客户共享相同的目标。
+
+
+  除此之外，选择具有正确态度的合适人员，定义信息需求，并经常检查人们履行其职能所需的内容，有助于协作。数字工具可以促进协作，但我们需要良好的基础和领导者来推动项目协作。人的因素是关键。
+
+
+  ## May：
+
+
+  关键点可能因组织和项目而异，以适合具体情况和要求；然而，一些关键点包括：
+
+
+  - 在合同文件中具有协作条款和要求
+
+  - 内部和外部实施和执行协作流程
+
+  - 使用数字和其他工具以促进更轻松、更安全的协作
+
+
+  Ricardo、Marzia 和 May，感谢你们的访谈。
+
+
+  现在，让我们了解实现内部团队和顾问之间协作的 enabling 技术。
+
+
+  ## 使用 Revit 进行协作的技术
+
+
+  协作技术使员工能够在云端或本地协作处理多种文件类型，这在使用大型团队和各种顾问时至关重要。
+
+
+
+
+
+
+  你的公司 IT 基础设施必须定义你将如何与内部团队和顾问协作。 有多种选择可用，网络安全应是首要优先事项。
+
+
+  *在第 5 章《Revit 核心功能》中* 我们学习了 **Revit 工作共享** 以及如何在你的内部场所和 IT 网络中为协作创建中心文件和本地文件：
+
+
+  ![](img/1961add582dd4a589b2eac3dda140e38_396_0.png)
+
+
+  图 8.1 – 在你的 IT 网络内部的工作共享流程
+
+
+  当你需要在公司 IT 网络 *之外* 协作时，例如在家工作或与顾问在 Revit 中协作时，你需要不同的解决方案来启用 Revit 同步流程。
+
+
+  目前，启用此流程主要有三个选项：
+
+
+  - Virtual Desktop Infrastructure (VDI)
+
+  - Autodesk BIM 360 and Autodesk Construction Cloud
+
+  - Revit Server
+
+
+  ## Virtual Desktop Infrastructure (VDI)
+
+
+  VDI 使用户能够连接到虚拟机（虚拟桌面实例），所有处理都在主机服务器上进行。 用户可以从任何位置或设备访问这些虚拟机。
+
+
+  虚拟化图形应用程序，例如 Revit、AutoCAD、Rhino 和 Enscape 具有挑战性，因为它们依赖于处理能力和良好的显卡性能。 你还需要检查你的插件是否在
+  VDI 环境中工作。
+
+
+  此解决方案可能代表大量的投资，因为它可能涉及购买硬件和软件来实现 VDI，但它将支持多个应用程序，而不仅仅是 Revit。
+
+
+  VDI 解决方案变得越来越受欢迎，并且对公司来说更易于访问。 下图显示了简化的 VDI 系统，用户可以访问虚拟机以在 Revit 和其他软件中工作：
+
+
+  ![](img/1961add582dd4a589b2eac3dda140e38_397_0.png)
+
+
+  图 8.2 – VDI 系统
+
+
+  ## Autodesk BIM 360 and Autodesk Construction Cloud
+
+
+  Autodesk 提供了一个云平台，具有多种服务来增强内部团队和顾问之间的协作。
+
+
+  Autodesk BIM 360 和 Autodesk Construction Cloud 使用户能够在云中工作和协作，并能够同步 Revit 模型。
+
+
+  Autodesk 为设计创作、协作、协调、量化、项目管理、设施管理和其他服务提供云服务。
+
+
+  ## Copy/Monitor and Coordination Review
+
+
+  **Copy/Monitor** 命令使 Revit 能够从链接文件中复制元素并监控这些元素是否发生变化。
+
+
+  我们可以使用 Copy/Monitor 用于以下 Revit 类别：
+
+
+  - Levels
+
+  - Grids
+
+  - Columns
+
+  - Walls
+
+  - Floors
+
+  - Openings
+
+  - Multiple MEP fixtures categories
+
+
+  使用 Copy/Monitor 的主要 Revit 类别是 levels 和 grids。 其他类别不常使用，因为我们预计设计会发生变化；因此，不建议监控这些元素。
+
+
+  Copy/Monitor 有三个主要功能：
+
+
+  - 识别 levels 和 grids 被不当更改时出现的错误
+
+  - 确保 levels 和 grids 的项目协调更好
+
+  - 增加创建/复制 levels 和 grids 的生产力
+
+
+  我们通常通过创建 levels 和 grids 开始一个 Revit 项目，并且通常此任务分配给设计负责人或项目 BIM 负责人。 一旦 Revit 文件使用正确的坐标、levels
+  和 grids 创建，它就会发送给其他公司或顾问以复制 levels 和 grids 并开始他们的文件。
+
+
+  假设你是设计负责人，并且你的项目有多个 Revit 模型，例如幕墙、室内和场地模型。 在这种情况下，你可以在各个模型中复制/监控 levels 和 grids。
+
+
+  让我们在以下步骤中学习如何对 levels 和 grids 使用 Copy/Monitor（假设我们是顾问，并且我们已从设计负责人或 BIM 顾问处收到带有 levels
+  和 grids 的 Revit 文件以进行复制和协调）：
+
+
+  1. 在本章的数据集中，我们可以找到以下文件。 打开 Consultant File.rvt Revit 文件：
+
+
+  ![](img/1961add582dd4a589b2eac3dda140e38_401_0.png)
+
+
+  图 8.5 – 本章的数据集
+
+
+  2. 打开 Floor Plan – Level 0。
+
+
+  3. 在 Insert 选项卡中，单击 Link Revit 以链接 FD_Design-BIM Lead file with Levels and Grids.rvt
+  文件：
+
+
+  ![](img/1961add582dd4a589b2eac3dda140e38_401_1.png)
+
+
+  图 8.6 – Link Revit
+
+
+  4. 选择 FD_Design-BIM Lead file with Levels and Grids.rvt 文件并使用 Auto - Internal Origin
+  to Internal Origin 定位：
+
+
+  ![](img/1961add582dd4a589b2eac3dda140e38_401_2.png)
+
+
+  图 8.7 – 链接 Revit 文件的流程
+
+
+  9. 在选项栏中，勾选 **Multiple** 选项：
+
+
+  ![](img/1961add582dd4a589b2eac3dda140e38_403_0.png)
+
+
+  图 8.11 – Copy/Monitor 工具 – 选择 Multiple
+
+
+  10. 打开一个选择框以选择所有 levels：
+
+
+  ![](img/1961add582dd4a589b2eac3dda140e38_403_1.png)
+
+
+  图 8.12 – 选择框以选择所有 levels
+
+
+  11. 在选项栏中单击 **Finish**：
+
+
+  ![](img/1961add582dd4a589b2eac3dda140e38_404_0.png)
+
+
+  图 8.13 – 在选项栏中单击 Finish
+
+
+  12. 在 **Copy/Monitor** 选项卡中，单击 **Finish**：
+
+
+  ![](img/1961add582dd4a589b2eac3dda140e38_404_1.png)
+
+
+  图 8.14 – 在 Copy/Monitor 选项卡中单击 Finish
+
+
+  我们会看到所有 levels 已在我们的模型中创建。
+
+
+  流程已完成，但让我们学习此工作流程的另外两个细节：
+
+
+  - 在 **Options** 中，我们可以定义 Revit 在复制 levels 和 grids 时的行为。 我们可以更改偏移 level、添加后缀/前缀，并选择不同的族类型：
+
+
+  ![](img/1961add582dd4a589b2eac3dda140e38_404_2.png)
+
+
+  图 8.15 – Copy/Monitor 命令的选项
+
+
+  当你选择一个已启用 Copy/Monitor 的对象时，你会看到一个符号以指示该对象已被监控，并且有一个 Stop Monitoring 选项：
+
+
+  ![](img/1961add582dd4a589b2eac3dda140e38_405_0.png)
+
+
+  图 8.16 – Stop Monitoring 选项
+
+
+  现在，让我们重复相同的流程，使用以下步骤复制/监控 grids：
+
+
+  1. 打开 Floor Plan – Level 0。
+
+
+  2. 重复上一个任务中的步骤 6 到 9。
+
+
+  3. 打开一个选择框以选择所有 grids：
+
+
+  ![](img/1961add582dd4a589b2eac3dda140e38_405_1.png)
+
+
+  图 8.17 – 选择所有 grids
+
+
+  4. 在选项栏中单击 Finish：
+
+
+  ![](img/1961add582dd4a589b2eac3dda140e38_406_0.png)
+
+
+  图 8.18 – 单击 Finish
+
+
+  5. 在 Copy/Monitor 选项卡中，单击 Finish：
+
+
+  ![](img/1961add582dd4a589b2eac3dda140e38_406_1.png)
+
+
+  图 8.19 – 单击 Finish
+
+
+  所有 grids 现在已在我们的模型中创建。
+
+
+  现在，我们可能想要为我们刚刚创建的那些 levels 创建楼层平面图。 按照以下步骤为所有 levels 制作楼层平面图：
+
+
+  图 8.20 – 为 levels 创建楼层平面图
+
+
+  我们可以看到所有楼层平面图已创建：
+
+
+  图 8.21 – 已创建的楼层平面图
+
+
+  5. 在打开 Revit 文件的过程中，我们会看到以下消息，指示我们需要检查 Coordination Review。 单击 OK，文件将继续打开：
+
+
+  ![](img/1961add582dd4a589b2eac3dda140e38_409_0.png)
+
+
+  图 8.23 – 链接实例需要 Coordination Review
+
+
+  6. 在 Collaborate 选项卡中，单击 Coordination Review 并单击 Select Link：
+
+
+  ![](img/1961add582dd4a589b2eac3dda140e38_409_1.png)
+
+
+  图 8.24 – Coordination Review – 问题描述
+
+
+  Coordination Review 工具使我们能够轻松跟踪 level 和 grid 更改，并提高生产力以控制来自链接文件的元素。 在下一节中，我们将学习关于共享视图的内容。
+
+
+  ## Shared Views
+
+
+  Shared Views 是 Revit 2021.1 的新功能，你可以使用它与设计团队和顾问共享 3D 视图以供审阅和评论。
+
+
+  Shared Views 工具仅适用于拥有 Revit 订阅许可证的用户，并且不适用于维护许可证和 Revit 试用版。 此工具非常适合与非 Revit 用户例如项目经理和总监一起使用，以便通过网络浏览器快速可视化模型。
+
+
+  按照以下步骤学习有关共享视图的内容：
+
+
+  1. 打开一个 Revit 文件并进入 3D 视图。 此工具仅在 3D 视图中工作，并且你必须登录到你的 Autodesk 帐户才能使用此工具。
+
+
+  2. 在 Collaborate 选项卡中，选择 Shared Views：
+
+
+  ![](img/1961add582dd4a589b2eac3dda140e38_411_0.png)
+
+
+  图 8.27 – Coordination Review
+
+
+
+
+
+
+  3. 一个新窗口将会出现，我们可以点击 New Shared View：
+
+
+  ![](img/1961add582dd4a589b2eac3dda140e38_412_0.png)
+
+
+  图 8.28 – New Shared View
+
+
+  4. 输入共享视图名称并点击 Share：
+
+
+  ![](img/1961add582dd4a589b2eac3dda140e38_412_1.png)
+
+
+  图 8.29 – Shared view name
+
+
+  5. Revit 将模型上传到 Autodesk Viewer，处理完成后，我们可以选择以下两种选项：
+
+
+  - View in the Browser
+
+  - **Copy the link:** 你可以将此链接与顾问分享：
+
+
+  ![](img/1961add582dd4a589b2eac3dda140e38_413_0.png)
+
+
+  图 8.30 – Option to share the view with consultants
+
+
+  6. 点击 **View in the Browser.**
+
+
+  7. 模型在浏览器中打开后，我们有多项工具可以导航模型并添加注释。点击 **Comments** 来添加你视图的描述：
+
+
+  ![](img/1961add582dd4a589b2eac3dda140e38_413_1.png)
+
+
+  图 8.31 – Multiple tools to manage shared views
+
+
+  8. 在 Revit 中，点击高亮的图标将注释加载回 Revit。你将能够在 Revit 内部看到注释：
+
+
+  Click to load comments
+
+
+  ![](img/1961add582dd4a589b2eac3dda140e38_413_2.png)
+
+
+  图 8.32 – Loading comments from shared views
+
+
+  总之，我们学习了共享视图以及与顾问协作的能力。在下一节中，我们将学习设计协调和冲突管理。
+
+
+  ## Design coordination and clash management
+
+
+  设计协调和冲突管理是顾问协作中解决设计和模型问题的关键方面。BEP 将定义冲突检测流程和公差，以根据项目设计阶段优化结果。运行冲突检测流程的主要工具是 Autodesk
+  的 **Navisworks** 和 Nemetschek 的 **Solibri**。
+
+
+  Autodesk 拥有一个用于运行冲突检测流程和解决模型问题的云平台。它是 Autodesk Construction Cloud 的一部分，目前称为 BIM
+  360 Coordinate。
+
+
+  冲突检测流程可分为两种类型：
+
+
+  - Clash avoidance
+
+  - Clash detection
+
+
+  让我们详细了解它们。
+
+
+  ## Clash avoidance
+
+
+  Clash avoidance 是识别为建筑、结构和 MEP 专业分配的空间区域之间冲突的过程。下面的图表显示了为定义 MEP 区域而创建的体积，并在冲突避免流程中使用它。
+
+
+  我们也可以在冲突避免流程中使用较大的冲突公差。
+
+
+  这种主动流程可以从设计的早期阶段运行，并确保每个专业在特定区域内创建元素。当设计团队进入冲突检测流程时，它将减少冲突数量：
+
+
+  ![](img/1961add582dd4a589b2eac3dda140e38_415_0.png)
+
+
+  图 8.33 – Volume to define the MEP zone
+
+
+  ## Clash detection
+
+
+  Clash detection 是在施工前阶段识别两个或多个元素之间冲突的过程。我们比较建筑类别来运行冲突检测流程，例如结构梁与风管和管道。
+
+
+  此流程并不能防止冲突，但它是一个纠正性流程：
+
+
+  ![](img/1961add582dd4a589b2eac3dda140e38_415_1.png)
+
+
+  图 8.34 – Clash detection between two elements
+
+
+  ## Clash management
+
+
+  Clash management 是一个协作流程，设计团队和顾问交换模型以协调和解决多个设计问题。顾问之间的沟通对于理解建模和解决设计问题的优先级至关重要。
+
+
+  ### Good communication will reduce the number of clashes
+
+
+  首先，让我们确定项目协调的常见挑战。以下是典型问题：
+
+
+  - 通过电子邮件沟通冲突和问题是无组织的。
+
+  - 沟通不畅，缺乏透明度来解决设计问题。
+
+  - 问题解决方案没有可追踪的历史记录。
+
+  - 在冲突检测软件中识别模型问题可能耗时。
+
+  - 没有明确的责任来解决模型问题。
+
+  - 与设计问题相关的风险管理不足。
+
+  - 非协作团队在解决模型问题方面更困难。
+
+
+  出于这些原因，许多公司使用具有高级功能的其他软件来管理冲突和设计问题。
+
+
+  如前所述，运行冲突检测流程的主要工具是 Autodesk 的 Navisworks 和 Nemetschek 的 Solibri。识别冲突后，我们可以将冲突上传到冲突管理软件。
+
+
+  以下列表并非详尽无遗，但此软件可与 Navisworks 和 Solibri 配合用于冲突管理：
+
+
+  - **Revizto:** https://revizto.com/en/
+
+  - **BIM Track:** https://bimtrack.co/
+
+  - **BIMcollab:** https://www.bimcollab.com/en
+
+  - **Autodesk BIM 360 Coordinate:** https://bit.ly/3u24Os0
+
+  - **Fuzor:** https://www.kallotech.com
+
+
+  此冲突管理软件有助于 *提高管理冲突的效率* 并 *增强团队沟通* 以解决设计问题。
+
+
+  此软件不仅可以管理两个模型元素之间的冲突，还可以管理多种类型的设计问题。以下列表显示了可通过使用此软件跟踪的典型问题：
+
+
+  - 添加并交换关于设计的评论。
+
+  - 为设计问题添加解决方案。
+
+  - 添加变更请求。
+
+  - 检查数据验证。
+
+  - 可视化并对模型元素之间典型的冲突问题进行评论。
+
+  - 识别需要更换的构件。
+
+  - 识别施工中的缺陷。
+
+  - 识别建模错误。
+
+  - 添加关于设计和财务问题的一般性问题。
+
+
+  使用冲突管理软件时，我们需要意识到潜在的商业和法律问题。以下问题需要得到解答，以确保我们做出正确的决策：
+
+
+  - 谁提供许可证？
+
+  - 设计团队需要多少许可证？
+
+  - 谁管理用户和角色的软件权限？
+
+  - 谁负责实施和培训设计团队？
+
+  - 我们是否有合同协议以保证在施工期间和施工后完全访问上传到冲突管理软件的数据？
+
+  - 我们能否从此云软件下载数据以在我们的私有服务器上保留副本？
+
+
+  在使用冲突管理软件之前，这些问题是必须提出的重要要点。
+
+
+  总之，冲突管理软件对于提高管理冲突和设计问题的生产力至关重要。它还将跟踪项目历史并提高责任性。
+
+  '
+- "## 9\n\n## Enhancing Productivity with Plugins\n\nRevit 插件可以通过提供新功能来提高生产力，并扩展当前的\
+  \ Revit 工具。第三方插件可在完整版 Revit 中运行，但不幸的是，Revit LT 版本不支持它们。\n\n插件实施简单，无需编程技能即可开发或使用特定应用程序。安装过程很直接，我们将学习如何管理\
+  \ Revit 插件以避免潜在冲突和 Revit 性能下降。\n\n我们将学习如何启用和禁用 Revit 插件以测试性能或插件导致 Revit 项目崩溃时。 我们可以在\
+  \ Revit Autodesk App Store 找到许多令人兴奋的插件，以从多个领域和专业提高生产力。我们也可以直接从开发商网站找到插件，本章将介绍这些插件。\n\
+  \n有许多免费插件可用，但一些付费插件也能提供极佳的性价比。\n\n本章将提供有关最常用的 Revit 插件的信息，以提高项目中的生产力。插件分为类别，包括生产力和可视化。\n\
+  \n本章将涵盖以下主题：\n\n- Managing Revit plugins\n- Revit plugins\n\n## Managing Revit plugins\n\
+  \nAutodesk 努力每年通过新版本改进 Revit，但第三方插件对于提高生产力和运行基本功能（如批量打印 PDF 文件）是必要的。\n\n我们可以从 Revit\
+  \ Autodesk App Store 下载插件，或直接从开发商网站下载。\n\nRevit Autodesk App Store 可在 https://bit.ly/3uleRbQ\
+  \ 找到。\n\n二维码如下：\n\n![](img/1961add582dd4a589b2eac3dda140e38_420_0.png)\n\n\n\n\n\
+  \n在 Revit Autodesk 应用商店中，我们可以找到一个按特定功能组织插件的菜单：\n\n![](img/1961add582dd4a589b2eac3dda140e38_422_0.png)\n\
+  \n*图 9.2 – Revit Autodesk 应用商店菜单*\n\n我们也可以通过点击 Revit 屏幕右上角的图标来访问 Revit Autodesk\
+  \ 应用商店：\n\n![](img/1961add582dd4a589b2eac3dda140e38_422_1.png)\n\n*图 9.3 – 访问 Revit\
+  \ Autodesk 应用商店的图标*\n\n在 Revit Autodesk 应用商店中，我们可以找到免费和付费插件。\n\n在安装插件之前，请与 IT 部门和您的技术负责人确认该插件是否适合您的工作流程，以及您是否可以下载或请求将其安装到您的系统上。\n\
+  \n在将项目从一个版本升级到另一个版本之前，我们也需要检查以确保使用的所有插件在新版本中都已可用，以避免对当前工作流程产生任何影响。\n\n您还需要检查插件是否与您当前使用的\
+  \ Revit 版本兼容，并查看其是否最近已更新。点击 Revit 插件即可找到有关发布日期、上次更新日期和兼容 Revit 版本的信息：\n\n![](img/1961add582dd4a589b2eac3dda140e38_423_0.png)\n\
+  \n*图 9.4 – 有关 Revit 插件的信息*\n\n> **提示**\n> 建议在安装插件之前关闭 Revit。\n\n当我们安装插件后打开 Revit\
+  \ 时，会出现以下消息。必须选择 **始终加载** 选项以避免出现问题：\n\n![](img/1961add582dd4a589b2eac3dda140e38_424_0.png)\n\
+  \n*图 9.5 – 始终加载 Revit 插件的选项*\n\n如果我们选择 **不加载**，将会产生两个问题：\n\n- 该应用仍会安装在您的 PC 上，占用硬盘上的宝贵空间。\n\
+  - 如果我们决定使用该插件，则首先需要卸载然后重新安装该插件。\n\n## 让我们学习有关安全性的知识！\n\n就安全性而言，我们应优先考虑使用微软提供的证书签名且来自受信任发布者的应用。\n\
+  \n在下图中，我们可以看到未签名和已签名插件之间的比较。我们可以识别插件是否已使用证书签名。\n\n启动 Revit 时，安装后会出现以下窗口。请参考指向差异的箭头：\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_425_0.png)\n\n*图 9.6 – 未签名和已签名插件*\n\n\
+  如果插件未签名，我们应检查开发商是否是一家受信任的公司。\n\n## 删除 Revit 插件\n\n插件会减慢 Revit 的启动速度，但这种减慢是微不足道的，因此我们无需担心。\n\
+  \n另一方面，插件可能会与其他插件冲突或影响 Revit 中的特定功能，从而减慢速度并可能导致项目崩溃。\n\n如果您遇到问题，可以从 Windows | 控制面板\
+  \ 中删除插件并在没有该插件的情况下测试 Revit：\n\n![](img/1961add582dd4a589b2eac3dda140e38_426_0.png)\n\
+  \n*图 9.7 – Windows 控制面板中删除插件的选项*\n\n如果插件删除不成功，或插件未出现在待删除列表中，我们需要手动卸载插件。\n\n手动删除插件可能具有挑战性，因为您需要在\
+  \ C:\\ 硬盘的多个位置找到它们。\n\n我们可以在以下路径找到已安装的 Revit 插件：\n\n- C:\\ProgramData\\Autodesk\\\
+  Revit\\Addins\\\n- C:\\Users\\%Username%\\AppData\\Roaming\\Autodesk\\Revit\\Addins\\\
+  \n- C:\\ProgramData\\Autodesk\\ApplicationPlugins\n- C:\\Program Files\\Autodesk\\\
+  Revit 2021\\AddIns\n\n> **注意**\n> 您可能需要根据 Revit 版本选择文件夹。\n\n一旦找到所需的插件，我们可以选择并删除文件以从\
+  \ Revit 中移除。\n\n如果您希望在没有插件的情况下测试 Revit，可以将插件文件移动到另一个文件夹并重新启动 Revit。测试后，您可以将插件移回同一文件夹。\n\
+  \n> **提示**\n> 使用 Stantec 提供的免费插件来禁用 Revit 插件。\n\nStantec 提供了一个 *很棒的、免费的应用*，可快速启用和禁用\
+  \ Revit 插件。\n\n我们可以在以下链接找到下载和说明：\n\n```\nhttps://bit.ly/3qDb9Ii\n```\n\n二维码如下：\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_427_0.png)\n\n该应用将允许您选择多个插件以启用或禁用它们：\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_427_1.png)\n\n*图 9.8 – Stantec 免费应用以启用和禁用插件*\n\
+  \n## 创建 Revit 插件\n\nAutodesk 允许用户创建 Revit 插件。如果您的组织中有精通 C# 和 VB.NET 编程的人员，他们可以访问\
+  \ Revit 应用程序编程接口 (API) 来根据您的需求创建 Revit 插件。\n\n我们可以在网上找到多个资源，但以下链接是 Autodesk 关于如何创建第一个\
+  \ Revit 插件的教程：\n\n```\nhttps://autode.sk/3aqYcvC\n```\n\n二维码如下：\n\n![](img/1961add582dd4a589b2eac3dda140e38_428_0.png)\n\
+  \n总之，我们已经学习了管理 Revit 插件的流程。在下一节中，我们将学习提高生产力、可视化和分析的最佳 Revit 插件。\n\n## Revit 插件\n\
+  \nAutodesk 应用商店中有许多 Revit 插件，我们将重点介绍一些最佳插件，以提高在 Revit 中工作时的生产力并创建新的工作流程。\n\n我们将插件分为两个类别：\n\
+  \n- 生产力\n- 可视化\n\n## 生产力插件\n\n我们将对每个插件进行简短描述，以解释它如何使您在 Revit 中的日常活动受益。插件来自 Autodesk\
+  \ 应用商店和开发商。我们建议您下载插件进行测试和进一步学习：\n\n- **DiRoots 插件：** DiRoots 提供了一系列优秀的免费 Revit 插件，并且可以根据您的需求创建自定义插件。*ProSheets*\
+  \ 插件可以按正确的命名约定批量打印 PDF 文件。\n\n  插件链接如下： https://bit.ly/3pB88Xp：\n\n  ![](img/1961add582dd4a589b2eac3dda140e38_429_0.png)\n\
+  \n  ProSheets\n\n  免费 \U0001F381 新更新\n\n  轻松将视图/图纸导出为 PDF、DWG、DGN、DWF、NWC、IFC 和\
+  \ IMG（JPEG、PNG、TIFF 等）。\n\n  *图 9.9 – 来自 DiRoots 的 Revit 插件*\n\n- **RTV Tools**：RTV\
+  \ Tools 有一个名为 *RTV Xporter* 的插件，可按正确的命名约定批量打印 PDF 文件。此工具在使用 Adobe Acrobat DC 和 PDF\
+  \ Creator 的 PDF 驱动程序时效果更好。\n\n  插件链接如下： https://bit.ly/3dsI1jb。\n\n- **Xrev Transmit**：Xrev\
+  \ Transmit 可以同时打印和导出多种格式，包括 DWF、DWG、DGN、DXF 和 PDF。\n\n  插件链接如下： https://bit.ly/2MbCFxB。\n\
+  \n- **Bonus Tools**：Bonus Tools 是同一产品中超过 140 个 Revit 插件的集合，对于在 Revit 中节省日常活动时间非常有用。我们可以复制带视图的图纸、列出就地族、在发布文件前删除视图和图纸等等。\n\
+  \n  产品链接如下： https://bit.ly/2M7kU2g。\n\n  各插件描述链接如下： https://bit.ly/3brnrwL。\n\n\
+  - **pyRevit**：pyRevit 是一个出色的 Revit 插件集合，我们可以在其中制作图案、创建多张图纸、管理注释、跨项目复制图纸并使用许多其他功能。它还使您能够创建\
+  \ Revit 插件并在组织内共享它们。\n\n  下载链接如下： https://bit.ly/3bo6vYe。\n\n  核心插件的 YouTube 链接如下：\
+  \ https://bit.ly/2NsLd3z。\n\n- **RushForth Tools：** RushForth Tools 是项目设置、控制参数、将\
+  \ Excel 表导入 Revit 等功能的插件集合。\n\n  插件链接如下： `https://bit.ly/2NMWOdy`。\n\n- **AGACAD：**\
+  \ AGACAD 提供多个免费和付费插件，以提高预制设计、木材和金属建筑设计的生产力。\n\n  BIM 解决方案链接如下： `https://bit.ly/2NQE3pW`。\n\
+  \n  Revit 工具链接如下： `https://bit.ly/37C1HgR`。\n\n- **Ideate BIMLink：** Ideate BIMLink\
+  \ 使 Revit 用户能够以速度和准确性从 BIM 模型导出和导入大量数据到 Excel。Ideate 网站还提供其他插件以提高生产力。\n\n  网站链接如下：\
+  \ `https://bit.ly/2MdsZCI`。\n\n- **ArchSmarter Toolbox：** ArchSmarter Toolbox 是一个免费的\
+  \ Revit 插件，具有多种功能，例如删除视图、对齐视图、替换字体、批量重命名和制作图纸。\n\n  插件链接如下： `https://bit.ly/2M9SXXE`。\n\
+  \n- **COINS Auto-Section Box：** COINS Auto-Section Box 工具使您能够在所选元素周围创建 Revit 剖面框，并并排比较平面和\
+  \ 3D 视图。它是一款免费工具，在设计 MEP 服务时提供出色的流程。\n\n  工具链接如下： `https://bit.ly/3ujG66w`。\n\n\
+  - **CAD Link Opener：** CAD Link Opener 是一个免费插件，可在从 Revit 打开 DWG 链接时节省时间。用户选择 DWG\
+  \ 链接，它将使用 AutoCAD 打开。\n\n  插件链接如下： `https://bit.ly/3bvf4AF`。\n\n- **Isolate Warnings：**\
+  \ Isolate Warnings 是一个免费插件，用于创建 3D 视图以隔离并突出显示具有警告的模型元素。\n\n  工具链接如下： `https://bit.ly/3k9W3Y7`。\n\
+  \n- **Layers Manager：** Layers Manager 是一个免费插件，可自动创建系统族的共享参数，我们可以使用它来标记并显示有关材料和厚度的信息。\n\
+  \n  插件链接如下： `https://bit.ly/2NhCxgB`。\n\n  如何使用 Layers Manager 的链接如下： `https://bit.ly/2ZyqnSU`。\n\
+  \n\n\n\n\n- **Align：**Align 是一款免费插件，可通过对齐和整理模型元素（包括注释、标签和文本）来节省时间。它对于 MEP 模型元素和注释非常有用：\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_431_0.png)\n\n图 9.10 – Align Revit 插件\n\
+  \n插件链接如下：`https://bit.ly/37BXGTj`。\n\n- **Room Finishing：**Room Finishing 是一款免费插件，可自动沿任意建筑房间的四周创建踢脚线或完成地面。\n\
+  \n插件链接如下：`https://bit.ly/3aFd4Xh`。\n\n- **Guardian：**Guardian 采用了一种有趣的理念：在将 Revit\
+  \ 数据问题引入模型之前，尝试先解决这些问题。它是一款主动式工具，用于识别传入的属性；之后，我们可以将任意属性映射到现有项目属性中，或将其移除。\n\n工具链接如下：`https://bit.ly/3dzUaTh`。\n\
+  \n- **Master Purger：**Master Purger 是一款免费插件，可移除未放置的视图、图例、明细表、未放置的房间、未放置的空间、未使用的裁剪框以及导入或链接的\
+  \ CAD 文件。\n\n插件链接如下：`https://bit.ly/2NhFkGB`。\n\n- **Kinship：**Kinship 是一款出色的 Revit\
+  \ 族管理插件。它可以轻松维护族库，并能自动将 Revit 族上传到云端，从而快速、便捷地在多个项目之间共享族。\n\n插件链接如下：`https://kinship.io`。\n\
+  \n- **Autodesk Navisworks NWC Export Utility：**Autodesk Navisworks NWC Export Utility\
+  \ 是一款免费插件，可将 NWC 文件从 Revit 导出，以便在 Navisworks 中进行碰撞检测。\n\n插件链接如下：`https://bit.ly/3yhLKIg`。\n\
+  \n- **IFC Exporter：**Revit 原生支持导出 IFC 文件，但 IFC Exporter 插件提供了更多功能。每个 Revit 版本都有对应的\
+  \ IFC Exporter 版本，您可以在 Revit Autodesk App Store 中搜索这些版本。\n\n- **Autodesk BIM Interoperability\
+  \ Tools：**Autodesk BIM Interoperability Tools 是一组免费的插件，可帮助设计师为模型元素应用分类（例如 Uniclass\
+  \ 2015）、从 Revit 导出 COBie，以及执行其他操作：\n\n![](img/1961add582dd4a589b2eac3dda140e38_432_0.png)\n\
+  \n图 9.11 – Autodesk BIM Interoperability Tools\n\n工具链接如下：`https://bit.ly/2MdR6Be.`\n\
+  \n- **BEAM：**BEAM 是一款支持 Rhino 与 Revit 互操作的插件。无需掌握大量编程知识，我们就可以在两个平台之间移动几何图形：\n\n\
+  ![](img/1961add582dd4a589b2eac3dda140e38_432_1.png)\n\n图 9.12 – 用于实现 Rhino 与 Revit\
+  \ 互操作的 BEAM 插件\n\n插件链接如下：https://bit.ly/3umSEtJ。\n\n- **iSync**：iSync 是一款可自动放弃借用、保存和同步\
+  \ Revit 模型的插件。对于使用 Revit 的大型团队而言，这一过程非常有益，因为它支持自动放弃借用，而无需执行同步操作。\n\n插件链接如下：https://bit.ly/3skZKgN。\n\
+  \n- **Family Editor Interface：**Family Editor Interface 是一款免费插件，可通过交互方式创建或编辑族内容。\n\
+  \n插件链接如下：https://bit.ly/2NQtD9t。\n\n- **Scan Terrain：**Scan Terrain 可根据激光扫描的点云创建\
+  \ Revit 地形表面。\n\n插件链接如下：https://bit.ly/37Cupy9。\n\n- **Export Schedule：**Export\
+  \ Schedule 是一款免费插件，可将 Revit 明细表导出为 Excel 文件，并保留正确的字体样式、列宽、合并的列标题和背景颜色。\n\n插件链接如下：https://bit.ly/3shIlFM。\n\
+  \n- **TransferSingle：**TransferSingle 是一款支持在多个项目之间为选定对象传递标准的插件。我们可以复制选定的图元、视图、打印设置、剖面框、工作集和图例。\n\
+  \n插件链接如下：https://bit.ly/3bpGpUB。\n\n- **External Access Links Manager：**External\
+  \ Access Links Manager 是一款免费插件，用户无需打开项目文件并重新设置链接路径，即可查看其中的 Revit 链接。\n\n插件链接如下：https://bit.ly/3dAKLeu。\n\
+  \n- **Unhide Elements in View：**Unhide Elements in View 是一款免费插件，可快速识别当前视图中所有隐藏的图元并取消隐藏。\n\
+  \n插件链接如下：https://bit.ly/3aEnnup。\n\n- **Twinmotion：**Twinmotion 是一款出色的软件，可用于制作高质量图像、漫游视频、全景图和\
+  \ 360° VR 体验。Revit 插件会将模型导出到 Twinmotion 中，在那里我们可以应用材质并改进渲染效果。\n\n插件链接如下：`https://bit.ly/2OX26UB`。\n\
+  \nTwinmotion 由 Unreal Engine 提供支持。对于高级用户而言，Unreal Engine 提供了开发尖端体验的多种可能性。\n\n- **Lumion：**Lumion\
+  \ 可以更快地渲染视频和全景图。它易于使用，Revit 插件会将模型导出到 Lumion 中，在那里我们可以应用材质、添加人物并增强可视化效果。\n\n插件链接如下：`https://lumion.com`。\n\
+  \n- **V-Ray for Revit：**V-Ray for Revit 提供实时可视化功能，并与 Revit 实现无缝集成。V-Ray 支持使用两种渲染引擎，我们可以选择\
+  \ GPU、CPU 或混合渲染流程。我们可以使用多种自然光和人工照明类型来模拟准确的照明效果。\n\n工具链接如下：`https://bit.ly/2ZDk0xu`。\n\
+  \n- **VIM：**VIM 采用了令人兴奋的技术，可在非常大型的 BIM 模型中快速导航，例如体育场馆和复杂的建筑塔楼，并查看其中的所有结构和 MEP 服务。它还提供云端多用户协作功能。\n\
+  \n工具链接如下：`https://www.vimaec.com`。\n\n- **AUGmentecture：**AUGmentecture 是一款插件，可在移动设备上以**增强现实（AR）**格式查看\
+  \ 3D 模型。\n\n插件链接如下：`https://bit.ly/2NQAkIA`。\n\n- **Shapespark：**Shapespark 采用创新的在线漫游流程，有助于进行设计审批。它是一款出色的沟通和营销工具，可创建交互式应用程序，客户还可以通过\
+  \ Web 浏览器更改材质。\n\n它还提供了在 Web 浏览器中进行**3D 会议**的功能，主要包括：\n\n1. 共享屏幕，并在墙面屏幕上播放视频。\n\
+  2. 更改地板材质或访问 Web 链接。\n3. 用户之间通过视频和音频进行互动。\n4. 显示您的摄像头画面：\n\n![](img/1961add582dd4a589b2eac3dda140e38_436_0.png)\n\
+  \n图 9.14 – Shapespark 3D 会议\n\nShapespark 还可以创建交互式在线应用程序，用户或客户可以轻松浏览房间，以进行设计审查或审批，也可以将其用作营销工具。\n\
+  \n我们可以通过以下链接，在 Web 浏览器或手机上查看用于设计审批的交互式演示：\n\n```\nhttps://bit.ly/3dUBNss\n```\n\n\
+  二维码如下：\n\n![](img/1961add582dd4a589b2eac3dda140e38_436_1.png)\n\n右上方有一个菜单，可用于选择不同区域；我们可以使用鼠标或手机上的手指在房间中导航：\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_437_0.png)\n\n图 9.15 – Shapespark 在移动手机上的交互式选项\n\
+  \n单击相应符号即可更改场景材质：\n\n![](img/1961add582dd4a589b2eac3dda140e38_437_1.png)\n\n图 9.16\
+  \ – 在 Shapespark 中更改材质\n\n演示文稿署名如下：www.vazproducoes.com。\n\n如需进一步了解 Shapespark，请参阅公司网站：\n\
+  \nhttps://www.shapespark.com\n\n总而言之，我们了解了多种管理 Revit 插件的流程，以避免出现问题并提升性能。我们还列出了一些最实用的\
+  \ Revit 插件，用于提高日常任务和可视化工作的生产效率。\n\n## 总结\n\n在本章中，我们了解到 Revit 插件仅适用于完整版本的 Revit，并且易于在日常任务中实施和使用。\n\
+  \n我们介绍了如何管理 Revit 插件，以完成以下任务：\n\n- 通过 Revit Autodesk App Store 访问插件\n- 安装流程\n- 检查插件的安全性\n\
+  - 移除插件\n- 为 Revit 测试启用和禁用插件\n- 了解插件的创建方式\n\n插件通过新增功能增强了 Revit 的能力，可以节省大量时间。\n\n\
+  我们还了解了一些出色的插件，它们被广泛用于提高生产效率和性能、实现 BIM 模型可视化，或创建精彩的渲染图和视频。我们可以从 Revit Autodesk App\
+  \ Store 和开发者网站下载大量免费和付费插件。\n\n下一章将进一步介绍如何提升 Revit 的性能。\n\n\n\n\n"
+- "## 10 提升性能\n\n承接自 *第1章 Revit 生产力简介* 以来我们所描述的内容，我们希望以同样的主题结束这段旅程：通过分享在 BIM 项目中使用\
+  \ Revit 工作时的最佳实践，来提升生产力和性能。\n\n在所有章节提供的综合知识基础上，我们现在完成了我们的目标——改变你在 Revit 中执行日常任务时的生产力。\n\
+  \n本章将提供额外的最佳实践，以提升 Revit 的性能并提高你在执行日常任务时的生产力。\n\n我们将解释管理 CAD 导入以及视图和图纸的最佳实践，以及其他提升生产力的任务。\n\
+  \n本章还将提供有关 Revit 内容管理的信息以及优化 Revit 性能的额外任务，包括检查警告和审核 Revit 文件。\n\n![Figure 10.1\
+  \ – Import CAD](img/1961add582dd4a589b2eac3dda140e38_441_0.png)\n\n**Tip**\n\n我们可能需要\
+  \ Revit 插件或 Dynamo 脚本来查找导入的 CAD 文件。\n\n应使用以下建议以避免降低 Revit 中的性能：\n\n- 在工作共享环境中工作时，确保所有导入/链接的\
+  \ CAD 文件都放置在正确的 workset 中。\n- 应避免导入 CAD 文件。\n- 链接 CAD 文件应限制在最低限度。\n- 在导入或链接 CAD\
+  \ 文件之前，确保其已清理并清除，并且仅显示项目所需的內容。\n- 不建议使用大于 10 MB 的 CAD 文件。\n- 确保你保留真正需要的链接 CAD 文件。\n\
+  - 确保所有文件都有正确的链接（找不到的链接会使打开、保存和同步文件花费更长时间）。在“管理链接”中，我们可以找到链接状态。\n- 在使用导入和/或链接的 CAD\
+  \ 文件时，务必在 AutoCAD 中使用 Zoom Extents，以确保我们没有模型远处的元素（如果发生这种情况，应编辑 CAD 文件以删除不必要的元素）。\n\
+  - 在导入和/或链接 CAD 文件之前，请确保文件中的所有对象都使用 Linetype 和 Colour 作为 ByLayer，这样可以从 Revit 编辑这些属性。\n\
+  - 根据项目情况，我们建议创建一个 Revit 模型来链接所有需要的 CAD 文件。\n- 我们绝不应在 Revit 项目中炸开 DWG 文件。\n- 当在 CAD\
+  \ 软件中以 **Index Colours** 设置 CAD 元素时，在导入过程中定义线宽是可能的。**Line Weight** 设置应在导入和/或链接之前通过点击\
+  \ **Import Line Weights** 选项进行定义：\n\n  ![Figure 10.2 – Import Line Weights settings](img/1961add582dd4a589b2eac3dda140e38_442_0.png)\n\
+  \n- 链接 DWG 时，尽可能使用 **Current view only**。将 DWG 导入 Revit 时，可以将其作为 3D 元素（在 3D 中可见）或\
+  \ 2D 元素（导入或链接时仅在当前视图中可见）。通过选择此选项，链接文件将被展平到当前视图，并且对整体模型的影响会更小：\n\n  ![Figure 10.3\
+  \ – Linking CAD format options](img/1961add582dd4a589b2eac3dda140e38_442_1.png)\n\
+  \n- CAD 导入用于创建构件细节的 Detail Components。当创建 **Detail Items** 族时，不可能链接 CAD 文件，我们只能导入\
+  \ CAD 文件。如前所述，我们可以在导入 DWG 文件之前控制线宽：\n\n  ![Figure 10.4 – Importing CAD files into\
+  \ detail item families](img/1961add582dd4a589b2eac3dda140e38_442_2.png)\n\n### 关闭隐藏窗口\n\
+  \n打开太多视图会影响性能。建议保持打开的视图数量最少。可以通过访问视图选项卡并点击 **Close Inactive** 来关闭视图：\n\n![Figure\
+  \ 10.6 – Closing inactive views](img/1961add582dd4a589b2eac3dda140e38_444_0.png)\n\
+  \n### 删除不必要的视图和图纸\n\n通过删除不必要的视图和图纸，将改善文件大小和性能。\n\n如果 Revit 文件有太多图纸且整体文件大小无法减小，我们可能需要将模型拆分为两个卷，并将模型上的图纸数量分开以减小文件大小。\n\
+  \n### 远裁剪剖面和立面\n\n在处理剖面或立面时，**Far Clipping** 区域应根据需要最小化。这将提高性能，因为视图中被其他元素隐藏的几何图形在重新生成视图时不会受到影响。\n\
+  \n此选项可以通过两种不同的方式控制：\n\n- 在楼层平面图上进行剖面或立面时，通过控制剖面或立面符号被选中时的深度：\n\n  ![Figure 10.7\
+  \ – Section view depth controllers](img/1961add582dd4a589b2eac3dda140e38_444_1.png)\n\
+  \n- 在剖面视图中，我们可以访问属性，更改 Far Clipping 设置，并定义精确的 Far Clip Offset 值：\n\n  ![](img/1961add582dd4a589b2eac3dda140e38_445_0.png)\n\
+  \n### 在楼层平面图上查看范围\n\n与 Far Clipping 类似，在楼层平面图上有一个参数可以控制视图深度：View Range。\n\nView\
+  \ Range 控制视图深度，影响将显示多少元素，从而影响性能：\n\n![](img/1961add582dd4a589b2eac3dda140e38_445_1.png)\n\
+  \n通过点击 << Show 按钮，可以查看所有可配置的参数：\n\n![Figure 10.10 – View Range options](img/1961add582dd4a589b2eac3dda140e38_446_0.png)\n\
+  \n### 3D 视图中的剖面框\n\n在 3D 视图中工作时，剖面框将减少显示区域，从而提高性能。\n\n要激活它，在属性调色板中勾选 Section Box\
+  \ 参数，剖面框将变得可见：\n\n![Figure 10.11 – Section box](img/1961add582dd4a589b2eac3dda140e38_446_1.png)\n\
+  \n选择后，可以使用箭头更改剖面框形状以裁剪不需要的部分：\n\n![Figure 10.12 – Manipulating a section box](img/1961add582dd4a589b2eac3dda140e38_447_0.png)\n\
+  \n> **Tip**\n>\n> 如果 **Section Box** 不可见，请确保该类别是可见的。\n\n一种快速创建与特定视图对齐的剖面框的方法是右键单击视图立方体，并在\
+  \ **Orient to View** 下选择要对齐的视图并制作 3D 视图：\n\n![Figure 10.13 – Aligning a 3D view\
+  \ to a specific view](img/1961add582dd4a589b2eac3dda140e38_447_1.png)\n\n选择特定视图后，我们需要旋转\
+  \ 3D 视图以可视化剖面框。\n\n另一种快速在特定区域或对象上创建剖面框的方法是使用 **Selection Box** 工具：\n\n1. 进入一个视图并选择要在\
+  \ 3D 视图中看到的元素。\n2. 在 **Modify** 选项卡中，点击 **Selection Box**（快捷键 BX）：\n\n   ![Figure\
+  \ 10.14 – The Selection Box feature](img/1961add582dd4a589b2eac3dda140e38_448_0.png)\n\
+  \n3. Revit 创建一个 3D 视图，其中选中的元素位于剖面框中：\n\n   ![Figure 10.15 – 3D view with a section\
+  \ box defined](img/1961add582dd4a589b2eac3dda140e38_448_1.png)\n\n### 开启/关闭不需要的类别\n\
+  \n在特定视图中关闭不需要的类别将提高在打开或进行任何更新时重新生成视图的速度。建议访问 **Visibility/Graphics Overrides** 参数（快捷键\
+  \ VV 或 VG）并将其切换为关闭：\n\n![Figure 10.16 – Visibility/Graphics Overrides from a view](img/1961add582dd4a589b2eac3dda140e38_449_0.png)\n\
+  \n当我们需要控制多个视图的相同可见性和图形时，建议使用视图模板。\n\n视图模板可以通过访问 **Properties** 调色板并更改 **View Template**\
+  \ 设置来分配给特定视图：\n\n![Figure 10.17 – Defining a view template to the view](img/1961add582dd4a589b2eac3dda140e38_449_1.png)\n\
+  \n> **Tip**\n>\n> 视图模板可以通过访问 **View** 选项卡 | **View Templates** 来控制。\n\n不建议在视图中隐藏单个元素。通过这种方式进行操作将很难找到这些元素。用户应始终在视图模板中使用筛选器来隐藏它们，如果可能的话。\n\
+  \n当我们分配了视图模板时，可以使用 **Temporary View Properties** 选项，因为这将允许用户在不移除已分配的视图模板的情况下更改可见性/图形设置，然后将其恢复到之前定义的状态。\n\
+  \n\n\n\n\n让我们按以下步骤来更好地理解其工作原理：\n\n- 1. 打开一个已指定视图模板的视图。\n- 2. 在“视图控制”栏中，单击“临时视图属性”，然后选择“启用临时视图属性”：\n\
+  - 3. 视图周围将出现一个紫色矩形框，表示“临时视图属性”已启用：\n- 4. 根据需要访问所有视图属性。\n- 5. 如需恢复原状，请在“临时视图属性”选项下，单击“恢复视图属性”。\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_450_0.png)\n\n图 10.18 – 启用临时视图属性\n\n\
+  ![](img/1961add582dd4a589b2eac3dda140e38_450_1.png)\n\n图 10.19 – 临时视图属性已启用\n\n##\
+  \ 图形显示选项\n\n建模时，为视图指定的详细程度会影响性能，因为 Revit 可能需要显示/隐藏更多细节以呈现视图，从而需要更多资源来重新生成任何更改或更新：\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_451_0.png)\n\n图 10.20 – 指定给视图的详细程度\n\n\
+  建议在建模时使用“粗略”视图。\n\n提示\n此设置可能已指定给某个视图模板，在这种情况下，更改选项将被禁用。\n\n阴影设置也应考虑同样的原则；如果不需要，应将其关闭：\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_451_1.png)\n\n图 10.21 – 打开/关闭阴影\n\n与“视图显示设置”相关的另一个重要设置是指定的视觉样式，越简单越好：\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_451_2.png)\n\n图 10.22 – 视觉样式定义\n\n##\
+  \ 光栅图像\n\n光栅图像会影响 Revit 的性能，我们可以通过两种方式找到它们：\n\n- - 在“插入”选项卡中，使用“链接图像”或“导入图像”选项：\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_452_0.png)\n\n图 10.23 – 插入或链接光栅图像\n\n\
+  - - 在 Revit 中渲染视图并将视图保存到浏览器中时：\n\n![](img/1961add582dd4a589b2eac3dda140e38_452_1.png)\n\
+  \n图 10.24 – 将渲染结果以图像形式保存到项目浏览器\n\n无论使用上述哪种方式导入光栅图像，都应考虑以下建议：\n\n- - 只保留所需的图像，删除其他图像。\n\
+  - - 确保图像具有适中的分辨率（应考虑使用更小、更简化的图像）。\n\n通过访问“插入”选项卡下的“管理链接”，可以控制链接的内容：\n\n![](img/1961add582dd4a589b2eac3dda140e38_453_0.png)\n\
+  \n图 10.25 – 管理链接 – 图像\n\n## 将启动视图设置为二维视图\n\n打开模型时，建议将较简单的视图定义为启动画面，这样可以使打开过程更轻松、更快速。\n\
+  \n启动视图可以在“管理”选项卡的“管理项目”下定义；单击“启动视图”：\n\n![](img/1961add582dd4a589b2eac3dda140e38_453_1.png)\n\
+  \n图 10.26 – 定义启动视图\n\nRevit 将显示模型中所有可用视图的列表。选择为启动画面创建的二维视图，该视图包含有关项目的信息：\n\n![](img/1961add582dd4a589b2eac3dda140e38_454_0.png)\n\
+  \n图 10.27 – 选择启动视图\n\n建议使用一个可以显示相关项目信息的视图，例如：\n\n- - 项目名称\n- - 客户名称\n- - 设计顾问名称\n\
+  - - 设计专业\n- - 项目信息管理员\n- - 任务信息管理员\n- - 合适的代码与说明\n\n这将使所有用户都能了解项目的概况。\n\n## 建模\n\
+  \n在前几章中，我们已经了解了在 Revit 中提高工作效率和性能的许多方面。建模时，用户需要注意许多因素，我们重点强调了以下几个对性能和生产力影响最大的因素。\n\
+  \n## 删除未使用的设计选项\n\n在设计过程中，开发多个*设计选项*是相当常见的。这些设计选项可以位于特定区域、整个幕墙或其他重要的项目区域。\n\n许多设计选项会影响\
+  \ Revit 的性能，并使文件变慢。我们建议采取以下任务来避免性能下降：\n\n- - 考虑使用单独的文件来设计不同的设计选项；如果该选项代表项目中的大片区域，这一点尤为重要。\n\
+  - - 不同的设计选项可以放置在不同的工作集中。\n- - 如果设计选项在项目中仍处于活动状态，请保留它们。\n- - 与顾问交换模型时，请确保删除设计选项，或仅保留所需的选项。\n\
+  - - 删除设计选项时，确保删除与该选项相关的所有视图。\n\n作为良好实践，需要检查和管控设计选项。\n\n## 清理\n\n清理模型对于将文件大小降至最低至关重要。作为参考，单个模型的最大体积应约为\
+  \ 250 MB/300 MB。\n\n运行清理命令后，Revit 将删除未使用的内容。要访问该命令，请执行以下步骤。\n\n- 1. 在**管理**下，单击**清理未使用项**：\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_455_0.png)\n\n图 10.28 – 清理未使用项\n\n- 2.\
+  \ 单击**全部不勾选**。\n\n3. 在清理列表中，展开需要清理的类别，勾选需要删除的族和/或实例：\n\n![](img/1961add582dd4a589b2eac3dda140e38_456_0.png)\n\
+  \n图 10.29 – 要删除的图元\n\n4. 单击“确定”开始清理项目中的这些项目。\n\n此命令可能需要执行多次才能完全清理项目。\n\n## 模型线\n\
+  \n模型线是出现在三维空间中的线，在所有视图中都可见。应避免使用这些线，因为它们可能被误用在图纸上。当需要这些线时，建议使用详图线（仅在当前视图中可见）。\n\n\
+  如果模型线需要转换为详图线（反之亦然），Revit 提供了相应的工具。选择**模型线**后，在**修改**工具下，您会看到一个名为**转换线**的功能：\n\n\
+  ![](img/1961add582dd4a589b2eac3dda140e38_457_0.png)\n\n图 10.30 – 转换线\n\n根据您选择的线，Revit\
+  \ 将在**模型线**和**详图线**之间切换。\n\n总而言之，我们学习了 CAD 导入、视图和图纸管理的最佳实践，以及建模过程中提高性能的其他流程。\n\n\
+  在下一节中，我们将学习与 Revit 内容创建相关的最佳实践。\n\n## Revit 内容管理\n\n在开发或使用族时，应考虑若干建议，以保持 Revit 模型体积较小并提高性能。\n\
+  \n在*第 1 章“Revit 中的生产力简介”*中，我们提供了族创建的建议，但这里还有其他的建议需要强调。\n\n虽然我们应该遵循这些建议，但在项目过程中有时我们并不能\
+  \ 100% 遵循。如果不是，我们应该以适度的方式使用它们。\n\n## 第三方族\n\n供应商提供的 Revit 族可能包含大量公式和许多几何细节。\n\n\
+  较大的族文件以及项目中放置的多个实例将影响性能，并导致 Revit 变慢。\n\n以下截图显示了一个包含许多公式和参数的 Revit 族：\n\n![](img/1961add582dd4a589b2eac3dda140e38_458_0.png)\n\
+  \n图 10.31 – 族中使用的公式\n\n除了这个问题，它可能还导入了不同 CAD 格式且包含过多细节的内容，这些细节在特定项目阶段是不必要的，其中一些细节甚至在图纸中都不可见。\n\
+  \n## 过度建模的族\n\n这是一个普遍存在的问题，因为供应商开发的族带有过多的大多数设计阶段都用不到的细节，例如螺钉和螺栓。\n\n以下截图显示了一个对大多数设计阶段来说包含不必要细节的族：\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_459_0.png)\n\n图 10.32 – 过度建模的天窗\n\n通常，它们被过度建模，需要简化族，因为单个文件可能达到\
+  \ 5 MB、10 MB 甚至 50 MB（取决于公式、CAD 导入、详图绘制和嵌套族）。\n\n回顾*第 1 章“Revit 中的生产力简介”*，Revit\
+  \ 族应遵循以下文件大小：\n\n- - Revit 族文件大小为 250 KB 到 500 KB，表示文件大小合适。\n- - Revit 族文件大小超过 1\
+  \ MB（1,000 KB），应审查是否可能减小大小。\n- - Revit 族文件大小超过 2 MB（2,000 KB），绝对应审查。\n- - 嵌套族文件的大小往往更大，因此我们需要检查较大的族文件。不建议超过两级的嵌套族。\n\
+  \n## 导入到族中的 CAD 格式\n\n所有导入内容都应减少到最少，因为它们会直接影响性能。其中一些几何体可以使用网格或制造软件（如 **Inventor**\
+  \ 或 **SolidWorks**）创建（这些模型通常过度详细，因为它们包含制造所需的所有信息）。\n\n\n\n\n\n## 避免复杂的形体建模\n\n由“融合”“扫掠”和“融合扫掠”命令创建的复杂几何图形可能会影响项目性能和族文件大小。如有可能，请适度使用它们。\n\
+  \n## 定义图元可见性设置\n\n创建族时，始终建议在几何图形上定义可见性设置，避免族在特定视图中被过度建模。这可以通过指定“粗略”“中等”和“精细”三级细节来实现：\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_460_0.png)\n\n在此窗口中，还可以在任意三维视图类型上设置所有这些细节级别：平面视图、RCP（天花板反射平面）、立面视图、剖面视图和三维视图。\n\
+  \n## 族的弯曲测试\n\n在开发 Revit 族时，强烈建议在将族载入项目之前始终进行弯曲测试。通过这种方式，用户将确保添加到几何图形中的所有参数都能按预期行为运行，并且不会导致族破坏：\n\
+  \n完成族的弯曲测试后，用户可以将预览可见性设置为关闭，或者直接保存并关闭族。\n\n总而言之，我们了解了 Revit 内容管理的最佳实践，以及通过保持文件较小来维持\
+  \ Revit 性能的基本要点。\n\n在下一节中，我们将学习自定义 Revit 快捷键以及其他优化 Revit 性能的主题。\n\n## 优化 Revit 性能\n\
+  \n尽管项目变得越来越复杂，但技术的进步速度并未同步跟上，因此我们必须采取相应措施来提升性能。\n\n在本节中，我们将学习优化 Revit 性能的其他方面，包括以下内容：\n\
+  \n- 键盘快捷键\n- 警告\n- 压缩 Revit 文件\n- 审计 Revit 文件\n- 禁用 Revit 插件\n\n## 键盘快捷键\n\n使用键盘快捷键可以加快用户的工作效率，因为可以为最常用的命令自定义特定的快捷键。同一个工具可以有多个快捷键。\n\
+  \n## 添加快捷键\n\n让我们通过以下步骤了解如何创建新快捷键：\n\n1. 在“视图”选项卡的“用户界面”下，单击“键盘快捷键”：\n\n![](img/1961add582dd4a589b2eac3dda140e38_463_0.png)\n\
+  \n> **提示**\n> \n> 可以通过输入 KS 来访问**键盘快捷键**窗口。\n\n2. 使用**搜索**栏和**过滤器**下拉菜单，选择要为其指定新快捷键的命令。\n\
+  \n3. 在“按新键”下，添加快捷键并单击“指定”：\n\n![](img/1961add582dd4a589b2eac3dda140e38_464_0.png)\n\
+  \n图 10.37 – 键盘快捷键指定\n\n4. 指定完所有需要的快捷键后，单击“确定”。\n\n当为特定工具指定快捷键后，将鼠标悬停在功能区的每个工具上时，会弹出一个工具提示，显示已指定的快捷键：\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_464_1.png)\n\n图 10.38 – 键盘快捷键工具提示\n\n\
+  ## 移除快捷键\n\n移除快捷键的过程与此前介绍的类似。要移除任何快捷键，请执行以下步骤：\n\n1. 选择要移除的快捷键。\n2. 选择**移除**：\n\n\
+  ![](img/1961add582dd4a589b2eac3dda140e38_465_0.png)\n\n图 10.39 – 移除键盘快捷键\n\n## 导入/导出快捷键\n\
+  \n当为工具指定不同的快捷键时，建议导出这些设置，以确保它们可以在任何其他计算机上使用，甚至可以在未来版本的 Revit 中导入。\n\n在上一个截图中，我们可以单击**导入...**或**导出...**按钮，导入或导出包含所有快捷键的\
+  \ .xml 文件。\n\n创建快捷键后，.xml 文件将保存在 C:\\ProgramData\\Autodesk\\RVT 2021\\UserDataCache\
+  \ 文件夹下。\n\n## 警告\n\n在 Revit 中工作时，常见的现象是出现多种类型的 Revit 警告。其中一些可以忽略，但另一些更可能导致性能问题，应尽可能修复。\n\
+  \n一个好的策略是按优先级对 Revit 警告进行分类，并确定应首先解决哪些警告。\n\n我们可以按以下术语对 Revit 警告进行分类：\n\n- 高优先级\n\
+  - 中优先级\n- 低优先级\n\n## 高优先级\n\n这将包括以下警告：\n\n- 在同一位置存在相同实例，这意味着我们有族相互重叠。\n- 一个或多个梯段的实际梯段宽度小于楼梯类型中指定的最小梯段宽度。\n\
+  - 楼梯的实际踏板深度小于楼梯类型中指定的最小踏板深度。\n- 多个房间位于同一封闭区域内。\n- 图元具有重复的类型标记值。\n- 导入的几何图形延伸超过 20\
+  \ 英里（33 公里）。\n\n## 中优先级\n\n这将包括以下警告：\n\n- 高亮显示的墙相互重叠。当 Revit 查找房间边界时，其中一堵墙可能会被忽略。\n\
+  - 插入与连接的墙冲突。\n- 房间未处于正确封闭的区域中。\n- 房间标记位于其房间之外。\n\n## 低优先级\n\n这将包括以下警告：\n\n- 墙和房间分隔线重叠。\n\
+  - 房间分隔线相互重叠。\n- 草图线略微偏离轴线，可能会导致不精确。\n- 线略微偏离轴线，可能会导致不精确。\n- 高亮显示的图元已连接但未相交。\n\n\
+  警告与模型开发过程中可能发生的某些操作或建模问题相关。例如，如果在现有房间分隔线上方再建模一条，Revit 会弹出警告通知用户：\n\n![](img/1961add582dd4a589b2eac3dda140e38_467_0.png)\n\
+  \n图 10.40 – Revit 警告\n\n要访问模型中的所有警告，请按照以下步骤操作：\n\n1. 在**管理**选项卡上，单击**警告**：\n\n![](img/1961add582dd4a589b2eac3dda140e38_467_1.png)\n\
+  \n图 10.41 – 保存在模型中的警告\n\n2. 展开警告，可以确认模型中有多少警告：\n\n![](img/1961add582dd4a589b2eac3dda140e38_468_0.png)\n\
+  \n图 10.42 – 保存在模型中的警告数量\n\n3. 选择警告后，可以选择以下选项：\n\n- **显示**：允许 Revit 打开视图以显示与警告相关的问题\n\
+  - **更多信息**：允许用户获取有关警告的更多信息\n- **删除已勾选项...**：允许用户删除与问题相关的所选图元\n- **导出...**：使用户能够将所有警告列表导出到\
+  \ Excel 电子表格\n\n通过访问“警告”窗口，除了删除其中一个警告图元外，无法自动修复警告。为此，用户需要关闭窗口，然后根据要求手动解决警告。\n\n\
+  4. 单击“关闭”关闭窗口。\n\n在警告对话框中，我们可以找到可用于查找警告的对象 ID：\n\n![](img/1961add582dd4a589b2eac3dda140e38_469_0.png)\n\
+  \n图 10.43 – 按 ID 选择图元\n\n应定期检查并修复警告。\n\n## 压缩 Revit 文件\n\n保存 Revit 模型时，可以压缩文件以减小大小，因为这会重新写入整个文件。它会尝试删除旧的过时部分，从而减小文件大小。\n\
+  \n请按照以下步骤压缩文件：\n\n1. 转到“文件”并选择“另存为”。\n2. 在“另存为”下，单击“项目”：\n\n![](img/1961add582dd4a589b2eac3dda140e38_469_1.png)\n\
+  \n图 10.44 – 保存 Revit 项目\n\n3. 单击**选项...**。\n4. 在**文件保存选项**下，勾选**压缩文件**：\n\n![](img/1961add582dd4a589b2eac3dda140e38_470_0.png)\n\
+  \n图 10.45 – 压缩文件选项\n\n5. 单击**确定**。\n6. 单击**保存**。\n\n如果我们在工作共享环境中（中心文件和本地文件）处理 Revit\
+  \ 文件，也可以压缩 Revit 文件。在同步过程中，我们可以压缩文件：\n\n![](img/1961add582dd4a589b2eac3dda140e38_471_0.png)\n\
+  \n图 10.46 – 压缩文件选项\n\n## 审计 Revit 文件\n\n审计功能可以维护 Revit 模型的健康状况，因为它会尝试修复模型中的某些问题。它将扫描、检测并修复模型中损坏的图元或信息。此审计过程也可用于族。\n\
+  \n我们建议每周对模型进行一次审计。如果我们将 Revit 模型升级到新版本的 Revit，则应运行审计过程。\n\n审计过程是静默的，用户不会获得有关已执行操作的任何反馈或报告。要启动该过程，请按照以下步骤操作：\n\
+  \n1. 确保需要审计的模型已关闭。\n\n> **提示**\n> 如果模型位于工作共享环境中，建议指示所有用户关闭该模型。\n\n\n\n\n2. 转到“文件”并单击“打开”：\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_472_0.png)\n\n图 10.47 – 打开 Revit 模型\n\
+  \n3. 选择要打开的文件。\n\n4. 勾选“审核”选项。系统会弹出一条审核警告，提示我们该操作可能需要很长时间：\n\n![](img/1961add582dd4a589b2eac3dda140e38_473_0.png)\n\
+  \n图 10.48 – 审核 Revit 模型\n\n5. 单击**“是”**以确认并继续。\n6. 单击**“打开”**。\n\nRevit 开始打开模型，根据文件的大小和复杂程度，此过程可能需要一些时间。\n\
+  \n## 在 Revit 中禁用插件\n\n在完成所有用于提升性能的操作后，值得检查一下 Revit 插件是否影响了性能。\n\n在第 9 章*使用插件提高工作效率*中，我们解释了如何管理\
+  \ Revit 插件，以便出于测试目的安装和卸载它们。\n\n如果需要禁用插件，请参阅第 9 章*使用插件提高工作效率*，我们在该章中介绍了手动或使用插件停用它们的过程。\n\
+  \n建议只使用由 Autodesk 认证的公司开发的插件。\n\n## BIM 360 最佳实践\n\nBIM 360 是由 Autodesk 开发的基于云的设计协作平台，允许项目团队和所有利益相关者使用通用平台开发项目。\n\
+  \nBIM 360 是 Autodesk Construction Cloud 的一部分，包含多个具有不同功能的模块。Autodesk Construction\
+  \ Cloud 是一系列应用程序的集合，可在所有设计、施工和运营阶段实现卓越的协作与协调。\n\n它集成了以下七个不同的模块：\n\n- **文档管理**：允许在实时且可访问的平台上共享、查看和管理所有施工图纸、文档和模型，确保所有文档始终可供所有设计团队访问并保持更新。\n\
+  - **施工管理**：允许捕获和共享施工现场的情况，并与项目中的所有利益相关者一起查看和管理这些情况。\n- **协作**：允许用户使用集成的问题管理工作流自动执行冲突检测流程，并与所有团队成员共享所有问题。\n\
+  - **协作专业版**（以前称为**设计**）：允许用户直接使用存储在云端（*文档管理*）中的 Revit（云协作）、Civil 3D 和 Plant 3D 模型，并通过创建可供项目中任何利益相关者接受的交换包来自动共享这些模型。\n\
+  - **布局**：允许用户共享可在施工现场使用的项目信息，从而提高准确性、节省时间、加快执行速度、提高质量并减少错误。\n- **运维**：允许用户将 BIM\
+  \ 资产数据与模型连接，以实现更好、更全面的设施管理。\n- **计划**：允许用户使用精益施工原则制定并共享生产计划。\n\n用户应考虑以下一些最佳实践：\n\
+  \n- **互联网连接**应至少具有 5 Mbps（最低）至 15 Mbps（性能）的带宽，用于上传和下载。\n- 针对特定目的（查看、协调、图纸修订等），在\
+  \ BIM 360 中设置要共享的适当视图，并在**“发布设置”**下定义要发布的视图。只需选择应发布的视图和图纸（如果视图过多，发布模型时会花费更多时间，因为\
+  \ BIM 360 需要创建视图）。\n- 正确设置项目中心对于建立清晰易懂的工作流程至关重要。强烈建议按照 ISO 19650 进行设置，定义 WIP 区域、共享区域、已发布区域和归档区域。\n\
+  - 应使用 Autodesk Desktop Connector 来链接非云端共享模型。（请注意，发布模型时，BIM 360 会将来自 Desktop Connector\
+  \ 或任何本地服务器的所有链接推送到云端。）\n- 发布模型之前，请确保没有不必要的链接。\n- 交换包时，请确保采用适当的命名约定来重命名该包。它应包含 ISO\
+  \ 19650 中引用的合适代码。\n\n总而言之，我们学习了如何管理快捷键、控制 Revit 警告、压缩 Revit 文件、审核模型文件以及禁用 Revit\
+  \ 插件以提高性能。\n\n我们还解释了 BIM 360 平台是什么，并分享了使用 BIM 360 时的一系列最佳实践。\n\n## 总结\n\n在本章中，你学习了\
+  \ Revit 建模最佳实践，包括管理 CAD 导入、管理视图和图纸，以及通过其他任务来提高工作效率，并学习了管理设计选项、清理过程和模型线。\n\n我们解释了如何管理\
+  \ Revit 内容并执行其他任务以提高工作效率。我们还学习了额外的技巧，通过查看警告、压缩 Revit 文件以及审核 Revit 文件来优化 Revit 性能。\n\
+  \n你了解了 Autodesk BIM 360 服务，它是 Autodesk Construction Cloud 的一部分，后者包含多个应用程序，用于在所有设计、施工和运营阶段进行协作与协调。\n\
+  \n在最后一章中，我们为使用 Revit 提高 BIM 项目生产力和效率的工作流程主题画上了句号。我们希望你现在都更好地理解了在 Revit 中应该做什么、检查什么和修复什么，以优化日常工作，从而在更短的时间内完成更多工作。\n\
+  \n这个主题并未就此结束。你的学习还将继续，这取决于你的项目经验，以及 Revit 和 BIM 技术在未来几年的发展。\n\n![](img/1961add582dd4a589b2eac3dda140e38_477_0.png)\n\
+  \nPackt.com\n\n订阅我们的在线数字图书馆，即可全面访问超过 7,000 本图书和视频，以及行业领先的工具，帮助你规划个人发展并推动职业发展。如需更多信息，请访问我们的网站。\n\
+  \n## 为什么要订阅？\n\n- 通过来自 4,000 多位行业专业人士的实用电子书和视频，减少学习时间，增加编码时间。\n- 通过专为你打造的技能计划提升学习效果。\n\
+  - 每月获得一本免费电子书或一个免费视频。\n- 内容完全可搜索，便于快速访问关键信息。\n- 可复制粘贴、打印和收藏内容。\n\n你是否知道，Packt 为每本已出版的图书提供电子书版本，包含\
+  \ PDF 和 ePub 文件？你可以在 packt.com 升级到电子书版本，作为纸质书客户，你有权享受电子书折扣。请通过 customercare@packtpub.com\
+  \ 与我们联系以了解更多详情。\n\n在 www.packt.com，你还可以阅读一系列免费技术文章、订阅各种免费新闻通讯，并获得 Packt 纸质书和电子书的专属折扣和优惠。\n\
+  \n![](img/1961add582dd4a589b2eac3dda140e38_479_0.png)\n\n## Autodesk AutoCAD 2021\
+  \ 和 AutoCAD LT 2021 实用指南\n\nYasser Shoukry、Jaiprakash Pandey\n\nISBN: 978-1-78980-915-2\n\
+  \n- 使用 AutoCAD 的基本功能、导航和组件理解 CAD 基础知识。\n- 使用实体编辑工具从基本形状开始创建复杂的 3D 实体对象。\n- 使用块等可重用对象进行工作，并通过\
+  \ xRef 进行协作。\n- 探索外部参照和动态块等高级功能。\n- 探索外部参照和动态块等高级功能。\n- 在 AutoCAD 中使用图纸空间布局，为 2D\
+  \ 和 3D 模型创建专业的出图。\n- 将你的 2D 图纸转换为 3D 模型。\n\n## Packt 正在寻找像你一样的作者\n\n如果你有兴趣成为 Packt\
+  \ 的作者，请访问 authors.packtpub.com 并立即申请。我们与成千上万像你一样的开发人员和技术专业人士合作，帮助他们与全球技术社区分享见解。你可以进行一般申请，申请我们正在招募作者的特定热门主题，或者提交你自己的创意。\n\
+  \n## 留下评论 – 让其他读者了解你的想法\n\n请在你购买本书的网站上留下评论，与其他人分享你对本书的看法。如果你从亚马逊购买了这本书，请在这本书的亚马逊页面上给我们留下诚实的评论。这一点至关重要，这样其他潜在读者在做出购买决定时可以看到并参考你公正的意见，我们也能了解客户对我们产品的看法，我们的作者也能看到你对他们与\
+  \ Packt 合作创作的这本书的反馈。这只需要你几分钟的时间，但对其他潜在客户、我们的作者和 Packt 来说都很有价值。谢谢！\n\n\n\n"
+- "## 索引\n\n## 符号\n\n3D 会议 419\n\n## A\n\n行动计划\n  建立，开始 BIM 项目 87\n  项目数据管理 87\n项目数据管理的行动计划\n\
+  \  关于 87\n  重要任务和截止日期，优先排序 89\n  进度，衡量 89\n  项目截止日期，定义 89\n  所需资源，定义 89\n  项目目标的任务，列出\
+  \ 88, 89\n高级工作流程，进度管理\n计算字段 237, 239\n条件格式 235, 237\nAGACAD 414\n对齐 415\n应用程序编程接口\
+  \ (API) 301, 411\n\n建筑工程建设业主运营商 (AECOO) 8\nArchSmarter 工具箱 414\n资产信息需求 (AIR) 61\n\
+  资产管理\n  关于 70-72\n  使用 COBie 72\nAUGmentechture 419\n增强现实 (AR) 419\nAutoCAD 文件\n\
+  \  位置 213\n  设置 Revit 坐标 189, 190\nAutodesk BIM 360 381, 382\nAutodesk BIM 互操作性工具\
+  \ 416\nAutodesk Construction Cloud 381, 382\nAutodesk Navisworks NWC\n  导出实用工具 415\n\
+  自动曝光控制\n  (AEC) (UK) BIM 协议\n  关于 68\n  管理 69\n  生产 69, 70\n  战略 68\n\n## B\n\n\
+  基础工作流程，进度管理\n  交替行，高亮 229\n  进度表中的设计选项 232\n  编辑工具 228\n  冻结标题工具 228\n  在模型中高亮 230\n\
+  \  添加对象的图像 230, 231\n  Revit 阶段 232\n  计算总计 234, 235\n  缩放 IN 和 OUT 229\nBEAM\n\
+  \  关于 416\n  参考链接 195\nBIM360\n  最佳实践 458\nBIM 360，模块\n  Build 458\n  Collaborate\
+  \ 458\n  Collaborate Pro 458\n  文档管理 458\n  Layout 458\n  Ops 458\n  Plan 458\n\
+  BIM 文档\n  客户文件 61\n  概述 60\n  项目团队文件 63\n  标准和指南 64, 65\nBIM 执行计划 (BEP) 5, 372\n\
+  BIM 实施\n  概述 42-45\n  步骤 42\nBIM 项目\n  关键数据要求 52, 53\n奖励工具 413\n\n浏览器组织\n  关于 96\n\
+  \  表单 108-110\n  进度表 110\n  视图 97\n  按视图类型组织视图 98-107\n建筑信息模型 (BIM)\n  与 Revit 培训方案\
+  \ 45\n\n## C\n\nC# 411\nCAD 链接打开器 414\n卡通集 294\n碰撞检测流程\n  关于 399\n  碰撞避免 398\n碰撞管理\
+  \ 400, 401\n客户文件，BIM 文档\n  关于 61\n  资产信息需求 (AIR) 61\n  交换信息需求 (EIR) 62, 63\n  组织信息需求\
+  \ (OIR) 61\n  项目信息需求 (PIR) 62\nCOINS 自动剖面框 414\n协作\n  策略 372\n  使用 Revit 的技术 379,\
+  \ 380\n通用数据环境 (CDE) 5\n计算机维护，Revit 生产力\n  磁盘清理工具 14, 15\n  本地文件 10-12\n  重新启动 15\n\
+  临时 Windows 文件 13\nWindows，重新启动 16\n定义 Revit 工作站的注意事项\n计算机内存 (RAM) 41\n台式机或笔记本电脑\
+  \ 36\n快速处理器 36-39\n显卡 39, 40\n硬盘 41\n建设运营建筑信息交换 (COBie)\n关于 72\n概念 77-79\n数据要求 74-76\n\
+  电子表格信息 73\n传送带\n参考链接 195\n坐标\n发布到 Revit 文件 220-222\n协调审查 392-395\n复制/监控命令\n使用 384-392\n\
+  BIM 项目的关键数据要求\n关于 52, 53\n任命或合同 53, 54\nBIM 执行计划 (BEP) 55\nBIM 执行计划 (BEP)-\n合同后\
+  \ 57\nBIM 执行计划 (BEP)-\n合同前 56\n数字数据 58, 60\n交换信息需求 (EIR) 54, 55\n\n## D\n\n仪表板\n\
+  创建，使用从 Revit 导入的数据 354-357\n数据\n从 Revit 导出 348, 349\n从 Revit 导出到\nMicrosoft Power\
+  \ BI 343\n从 Revit 导入到\nMicrosoft Power BI 343\n导入到 Microsoft\nPower BI 350-353\n\
+  数据管理计划 (DMP)\n原则 52, 53\n设计协调\n使用 398\n设计选项\n创建 247\n管理，最佳实践 247-253\nDiRoots 插件\
+  \ 412\n磁盘清理工具 14\n绘图 152\n绘图生产\n提高生产力 293\nDWG 文件\n从 Revit 导出 213, 214\nDynamo\n\
+  关于 300\n扩展 310\n使用 Python 扩展 319-321\n创建新脚本 305-308\n概述 301-304\n参考链接 302\n自动化表单创建\
+  \ 322-325\n创建简单图形 308, 310\n阶段 304\n使用 304\nDynamo 图形\n最佳实践 330-333\nDynamo 包\n\
+  关于 310-312\n\n## E\n\nEnscape 418\n交换信息需求 (EIR) 62\n导出进度表 417\n外部访问链接管理器 417\n\n\
+  ## F\n\n提高绘图生产生产力的因素\n绘图清单，规划 293\n绘图可见性，控制 294, 296\nRevit 模板，使用 294\n族编辑器界面 417\n\
+  \n## G\n\nGeometryGym\n  参考链接 195\n图形处理单元 (GPU) 40\nGuardian 415\n\n## I\n\nIdeate\
+  \ BIMLink 414\nIFC 导出器 415\n\nIFC 文件 (*.IFC) 193, 194\n导入文件，Revit\n  关于 191\nAutoCAD\
+  \ 文件 (*.DWG) 192\nIFC 文件 (*.IFC) 193, 194\n原生 Revit 文件 (*.RVT) 191, 192\n点云文件 (*.RCP\
+  \ 和\n  *.RCS) 195-197\nRhino 文件 (*.3DM) 194, 195\n行业基础类 (IFC) 189\n隔离警告 414\niSync\
+  \ 417\n\n## K\n\n题注\n  添加 242\n  用其注释图纸 245, 246\n  元素题注 242\n  材料题注 244, 245\n\
+  \  类型 242\n  用于分配项目规范 240, 241\n  用户题注 245\n题注类型\n  元素题注 130\n  材料题注 130\n  用户题注\
+  \ 130\nKinship 415\n\n## L\n\n图层管理器 414\n信息水平 (LOI) 44\n信息需求水平 (LOD) 44\n模型定义水平\
+  \ 44\nLumion 419\n\n## M\n\n主信息交付计划 (MIDP) 63\n主清除器 415\nMicrosoft Power BI\n  关于\
+  \ 338, 339\n  数据，从 Revit 导出 343\n  数据，从 Revit 导入 343\n  数据，导入到 350-353\n  不同可视化\
+  \ 363-366\n  常规分析 361, 362\n  连接到 Revit 343\n  使用 Microsoft Power BI 分析 Revit 数据\
+  \ 360\n  使用 Microsoft Power BI 工作流程分析 Revit 数据 361\n  用于 Revit 的使用 336\n  工作流程 342\n\
+  \  使用 340-342\nMicrosoft Power BI Desktop\n  安装 337\nMicrosoft Power BI 库\n  关于\
+  \ 367\n  参考链接 367\n模型 152\n模型视图定义 (MVD) 126\n\n## N\n\n原生 Revit 文件 (*.RVT) 191,\
+  \ 192\nNavisworks 398\n\n## O\n\n打开的工作集\n  工作 30, 32\nOrdnance Survey 地图网格\n  交点\
+  \ 189\nOrdnance Survey 地图 (OS Maps) 181\n\n组织信息需求 (OIR) 61\n\n## P\n\n每层一页\n  创建\
+  \ 357-360\n点云文件 (*.RCP 和 *.RCS) 195-197\n预资格问卷 (PQQ) 45\n生产力插件 412-417\n项目基点\n \
+  \ 查找 181-183\n项目坐标系统 181\n项目功能\n  关于 65\n  任命方 (客户) 66\n  自动曝光控制\n  (AEC) (UK) BIM\
+  \ 协议 68\n  信息作者 67\n  信息管理 68\n  接口经理 67\n  任务信息经理 67\n  任务团队经理 66\n项目实施计划 (PIP)\
+  \ 56\n项目信息需求 (PIR) 62\n项目北向\n  场地上多个建筑 218-220\n  旋转 208-210\n  旋转到不同位置 211, 212\n\
+  \  设置 206\npyRevit 413\nPython\n  关于 310\n  优点 320\n  使用 Python 扩展 Dynamo 319-322\n\
+  \  参考链接 321\n\n## R\n\n投资回报率 (ROI) 7\nRevit\n  数组 24\n  连接到 Microsoft Power BI 343\n\
+  \  约束 25\n  仪表板，使用数据导入创建 354-357\n  数据，从 导出 348, 349\n  数据，导出到 Microsoft\n    Power\
+  \ BI 343\n  数据，导入到 Microsoft\n    Power BI 343\n  DWG 文件，从 导出 213, 214\n  族创建 21,\
+  \ 22\n  文件大小 21\n  原位族 23, 24\n  使用 Microsoft Power BI 336\n  模型组 22, 23\n  插件，禁用\
+  \ 457\n  推荐设置 19, 20\n  进度表，创建 343-348\n  启动画面 34\n  工作，规划 8-10\n  使用工作共享环境 26\n\
+  \  工作站，选择 36\nRevit Autodesk 应用商店 405-408\nRevit 中央文件\n  创建 271-275\nRevit 内容管理\n\
+  \  关于 441\n  CAD 格式，导入到族 443\n  避免复杂形状建模 444\n  定义元素可见性设置 444\n族，灵活 444, 446\n过度建模族\
+  \ 442\n第三方族 441\nRevit 坐标\n  设置 200-205\n  使用 AutoCAD 文件设置 189, 190\nRevit 坐标系统\n\
+  \  关于 180\n  挑战 187-189\n  项目坐标系统 181\n  测量坐标系统 181\nRevit 数据\n  使用 Microsoft Power\
+  \ BI 分析 360\n  使用 Microsoft Power BI 中的工作流程分析 361\nRevit 文件\n  审核 455-457\n  紧凑\
+  \ 453, 454\n  坐标，发布到 220, 222\nRevit 文件，带现有阶段\n  与新阶段链接 254\nRevit 组\n  关于 22\n\
+  \  参照对象 22\n  设计选项 23\n  排除元素选项 23\n  托管元素 22\n  水平约束 23\n  链接 23\n  镜像和旋转 22\n\
+  \  嵌套组 22\n  工作集 23\nRevit 内部原点 183-186\nRevit 本地文件\n  创建 275, 276\n\n\n\n\nRevit\
+  \ 建模最佳实践\n  约 424, 438\n  CAD 导入最佳实践 424-426\n  模型线 440\n  清理 439, 440\n  未使用的设计选项，删除\
+  \ 439\nRevit 建模最佳实践，视图\n  与图纸管理\n  关于 427\n  远裁剪剖面和立面 428\n  图形显示选项 435\n  隐藏窗口，关闭\
+  \ 428\n  栅格图像 436, 437\n  剖面框，操作\n    在 3D 视图中 430-432\n  起始视图，设为 2D\n    视图 437,\
+  \ 438\n  不必要的视图和\n    图纸，删除 428\n  不需要的类别，打开/关闭\n    433, 434\n  视图范围，在楼层平面图上 429\n\
+  Revit 阶段\n  关于 253\n  Demolish 工具，使用 253\n  过滤器 254-256\n  图形覆盖 258, 259\n  多个阶段，从\n\
+  \    链接文件显示 260, 261\nRevit 插件\n  关于 412\n  类别 412\n  创建 411, 412\n  管理 404\n  移除\
+  \ 409-411\n  安全 408, 409\n\nRevit 插件，类别\n  生产力插件 412-417\n  可视化插件 418-422\nRevit\
+  \ 生产力\n  定义 4\n  改进 10\n  信息，收集 4\n  方法论 4\n  方法论，时间管理 4, 5\n  选择合适的工具 34, 35\n\
+  \  与 2D CAD 对比 8\n  与培训对比 6, 7\nRevit 项目\n  坐标，设置 200\n  创建 199\n  轴网，添加 215, 216\n\
+  \  标高，添加 215, 216\n  项目北向，旋转 208-211\n  项目北向，设置 206\n  设置 5, 200\n  开始 198\n  真北，旋转\
+  \ 207\n  真北，设置 206\n  体量策略，开发 217, 218\nRevit 服务器 382, 383\nRevit 性能优化\n  关于 446\n\
+  \  高优先级警告 450\n  键盘快捷键，添加 446-448\n  键盘快捷键，导出 449\n  键盘快捷键，导入 449\n  键盘快捷键，移除 449\n\
+  \  低优先级警告 451, 452\n  中优先级警告 450\n  警告 449\n\n## Revit 模板\n\n标注标准 169\n创建 92-94\n\
+  常规设置 96\n图形标准 143\n模型内容 174\n开始 95\n视图和图纸 131\n\n## Revit 模板，标注标准\n\n关于 169\n尺寸类型\
+  \ 171\n符号 172\n标签 173\n文字类型 170\n视图标题 173\n\n## Revit 模板，常规设置\n\n关于 96\n浏览器组织 96\n\
+  族名称规范 123\n全局参数 120\nIFC 设置，导出 124-128\n注释设置 128-130\n项目信息 112-114\n项目参数 114\n项目单位\
+  \ 121\n共享参数文件，创建 115-120\n共享参数 115-120\n捕捉 110, 112\n工作集 130\n\n## Revit 模板，图形和标准\n\
+  \n关于 143\n填充图案 151, 152\n线型图案 143, 145\n线样式 146, 147\n线宽 148, 149\n对象样式 150, 151\n\
+  \n## Revit 模板，模型内容\n\n关于 174\n可加载族 175\n影响性能的方面 174\n标准族 175\n系统族 175\n\n## Revit\
+  \ 模板，视图和图纸\n\n关于 131\n箭头 168, 169\n颜色填充图例和方案 159\n导出，到 DWG 164-168\n过滤器 158, 159\n\
+  图例 142\n图例，类型 142\n材质库 153-155\n阶段 160-164\n修订表 138, 139\n明细表 140\n明细表，创建 140, 141\n\
+  明细表，类型 140\n图纸名称 132, 133\n启动画面 133-135\n标题栏族 135, 137, 138\n视图名称 131\n视图模板 156,\
+  \ 157\n\n## Revit 培训方案\n\n领域 48\n创建 45\n\n## Revit 更新发布\n\n确认 16, 17\n使用 16\n\n\
+  Rhino 文件 (*.3DM) 194, 195\n\nRoom Finishing 插件 415\n\n## 房间编号系统\n\n定义 6\n\n## S\n\
+  \nRTV Tools 413\nRTV Xporter 413\nRushForth Tools 414\n\nSynoptic Panel\n关于 363\n\
+  参考链接 363\n\nScan Terrain 417\n明细表管理\n关于 226, 227\n高级工作流程 235\n基础工作流程 227\n明细表\n\
+  在 Revit 中创建 343-348\n范围框\n旋转 266-270\n使用 261-266\nShapespark 419\n共享视图\n关于 395\n\
+  使用 395-397\nSolibri 398\n固态硬盘 (SSD) 41\n战略目标，Revit 培训方案\n当前培训流程，识别 46\n内部专家，识别 47\n\
+  进度衡量流程，识别 47\n资源，识别 47\n员工知识，评估 46\n培训预算，定义 47\n培训定制 48, 49\n培训障碍，确定 46, 47\n测绘坐标系统\
+  \ 181\n测绘点\n查找 181-183\nSurvey Station Point 189\n\n## T\n\n任务信息交付计划 (TIDP) 63\n\
+  团队文档，BIM 文档\n关于 63\nBIM 责任矩阵 63\nIT 能力评估 64\n主信息交付计划 (MIDP) 63\n合同后 63\n合同前 63\n\
+  项目实施计划 (PIP) 64\n任务信息交付计划 (TIDP) 63\n标题栏 136\nTransferSingle 417\n真北\n旋转 207\n设置\
+  \ 206\nTwinmotion 419\n\n## U\n\nUnhide Elements in View 417\n\n## V\n\nVB.NET 411\n\
+  VIM 419\n虚拟桌面基础架构 (VDI) 380\n虚拟现实 (VR) 418\n\n可视化插件 418-422\n\n可视化模型数据 343\n\n可视化编程工具\
+  \ 304\n\n体量策略 217\n\nV-Ray for Revit 419\n\nRevit 本地文件，创建 275, 276\n\n工作共享环境\n\n\
+  使用 26\n\n工作共享模型\n\n打开 27-29\n\nWorksharing Monitor\n\n关于 33\n\n访问 33\n\n## W\n\n\
+  工作集\n\n关于 277\n\n优点 277\n\n创建 278\n\n管理，最佳实践 279-285\n\n工作共享\n\n关于 271\n\n最佳实践 276-279,\
+  \ 286-293\n\nRevit 中央文件，创建 271-275\n\n## X\n\nXrev Transmit 413\n"

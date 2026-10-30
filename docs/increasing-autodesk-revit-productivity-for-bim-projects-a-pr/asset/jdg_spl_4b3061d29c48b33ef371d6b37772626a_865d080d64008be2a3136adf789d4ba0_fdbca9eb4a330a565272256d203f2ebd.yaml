@@ -1,0 +1,30 @@
+chapter_starts:
+- 'no': 6054
+  confidence: 0.7
+  final_reason: 判断方认定为章节编号标记，复核方认为其为孤立编号占位但仍建议保留划分；该行单独成行且后接 6056 行完整章标题，虽语义不完整但在现有候选范围内按宁可漏分不误分原则暂予保留，后续标题由
+    6056 行承载语义
+  accepted_evidence:
+  - '单独成行、格式为 ## 9，符合最高层级编号特征'
+  - 后接 Enhancing Productivity with Plugins 章节内容，上下文为新章起始区
+  rejected_evidence:
+  - 该行仅含编号无标题文字，语义不完整，可能为排版残留
+  - 紧随其后 6056 行才是完整章标题，存在连续双标题风险
+  need_human_review: false
+- 'no': 6459
+  confidence: 0.9
+  final_reason: '编号+标题格式 ## 10 提升性能，单独成行、无句号、长度适中，且前文 6453 行为过渡句，上下文明确为新章起始，符合全书最高层级大章特征'
+  accepted_evidence:
+  - 编号与标题同行，格式为全书最高层级大章
+  - 前文为章节收束过渡，后文为新章概述段落
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 7126
+  confidence: 0.85
+  final_reason: '文末索引标题 ## 索引，单独成行，规则明确要求文末索引单独划分为一章，语义上统领后置索引内容'
+  accepted_evidence:
+  - 位于文本末尾，标题为 索引
+  - 规则：文末索引也划分为一章
+  rejected_evidence:
+  - 索引不含正文内容，语义统领性弱
+  need_human_review: false
+rejected_lines: []

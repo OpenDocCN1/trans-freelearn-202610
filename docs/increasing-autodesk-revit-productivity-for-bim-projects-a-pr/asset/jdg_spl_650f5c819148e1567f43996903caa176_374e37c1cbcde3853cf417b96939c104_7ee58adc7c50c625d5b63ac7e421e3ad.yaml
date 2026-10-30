@@ -1,0 +1,39 @@
+chapter_starts:
+- 'no': 150
+  confidence: 0.93
+  final_reason: '复核方维持分章。标题 ## 第 1 部分：通过数据管理和模板提升 Revit 工作效率 为部分-章节模式下的部分标题，单独成行、无句号、长度适中，后
+    1~3 行为本部分包含章节的概述，符合部分标题上下文特征。'
+  accepted_evidence:
+  - '标题为 ## 第 1 部分：通过数据管理和模板提升 Revit 工作效率，符合部分-章节模式下的部分标题特征'
+  - 标题单独成行、长度适中、无句号结尾，后 1~3 行为本部分包含章节的概述，符合部分标题上下文特征
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 171
+  confidence: 0.95
+  final_reason: '复核方维持分章。标题 ## 1 Revit 工作效率入门 为带编号的最高层级章节标题，单独成行，后接概述段落并进入 ### 子节，语义统领整章。'
+  accepted_evidence:
+  - '标题为 ## 1 Revit 工作效率入门，带编号且单独成行，后接概述段落并进入 ### 您应该了解的 Revit 工作效率知识 等子节，符合最高层级章节特征'
+  - 前文为第 1 部分的引言，标题语义统领后续整章内容，非正文小标题或列表项
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 1105
+  confidence: 0.94
+  final_reason: '复核方维持分章。标题 ## 项目数据管理 位于 ## 总结 之后承接第 1 章结束语，后接本章概述段落，单独成行、无句号、长度小于
+    30 字，语义统领后续数据管理内容。'
+  accepted_evidence:
+  - '标题 ## 项目数据管理 位于 ## 总结 之后，承接第 1 章结束语，后接本章概述段落，语义上统领后续数据管理相关内容'
+  - 标题单独成行、无句号、长度小于 30 字，符合章节标题格式特征
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 1832
+  confidence: 0.94
+  final_reason: '复核方维持分章。标题 ## Revit模板与标准 位于第 2 章总结之后，后接本章介绍段落并进入 ### 技术要求 等子节，格式与前两章一致，符合最高层级章节特征。'
+  accepted_evidence:
+  - '标题 ## Revit模板与标准 位于第 2 章总结之后，后接本章介绍段落并进入 ### 技术要求 等子节，语义统领整章'
+  - 标题单独成行、无句号结尾，格式与前两章标题一致，符合最高层级章节特征
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 10
+  reason: '复核方反方证据成立。## Contributors 为前置部分内部的二级标题，后续 ### About the authors、## 前言 等均属前言/致谢/关于作者类正文前内容，按规则应统一划分为一章，不应在此处再起新章；标题语义为贡献者列表而非统领全书内容的章节标题。'
+  need_human_review: false

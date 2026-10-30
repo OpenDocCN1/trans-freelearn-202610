@@ -1,0 +1,41 @@
+reviews:
+- 'no': 10
+  overturn_probability: 0.85
+  alternative: 正文小标题
+  counter_evidence:
+  - '## Contributors 为前置部分内部的二级标题，后续 ### About the authors、## 前言、## 本书适合谁阅读 等均属前言/致谢/关于作者类正文前内容，按规则应统一划分为一章，不应在此处再起新章'
+  - '标题格式为 ## 且后接空行与作者介绍段落，语义为贡献者列表而非统领后续全书内容的章节标题，符合正文小标题特征'
+  - 前置部分的首个可分章位置应在正文前内容整体起始处，而非 Contributors 这一内部小节
+  keep_split: false
+- 'no': 150
+  overturn_probability: 0.12
+  alternative: 部分标题
+  counter_evidence:
+  - '标题为 ## 第 1 部分：通过数据管理和模板提升 Revit 工作效率，符合部分-章节模式下的部分标题特征'
+  - 标题单独成行、长度适中、无句号结尾，后 1~3 行为本部分包含章节的概述，符合部分标题上下文特征
+  - 即使存在误报倾向，部分标题按规则应划分新章，维持分章合理
+  keep_split: true
+- 'no': 171
+  overturn_probability: 0.18
+  alternative: 章节标题
+  counter_evidence:
+  - '标题为 ## 1 Revit 工作效率入门，带编号且单独成行，后接概述段落并进入 ### 您应该了解的 Revit 工作效率知识 等子节，符合最高层级章节特征'
+  - 前文为第 1 部分的引言，标题语义统领后续整章内容，非正文小标题或列表项
+  - 编号连贯且与后续第 2 章、第 3 章形成序列，维持分章合理
+  keep_split: true
+- 'no': 1105
+  overturn_probability: 0.22
+  alternative: 章节标题
+  counter_evidence:
+  - '标题 ## 项目数据管理 位于 ## 总结 之后，承接第 1 章结束语，后接本章概述段落，语义上统领后续数据管理相关内容'
+  - 标题单独成行、无句号、长度小于 30 字，符合章节标题格式特征
+  - 与前文第 1 章、第 1 部分形成层级递进，非正文小标题或排版噪声，维持分章合理
+  keep_split: true
+- 'no': 1832
+  overturn_probability: 0.2
+  alternative: 章节标题
+  counter_evidence:
+  - '标题 ## Revit模板与标准 位于第 2 章总结之后，后接本章介绍段落并进入 ### 技术要求 等子节，语义统领整章'
+  - 标题单独成行、无句号结尾，格式与前两章标题一致，符合最高层级章节特征
+  - 非引文、列表项或页眉页脚等需排除特征，维持分章合理
+  keep_split: true
