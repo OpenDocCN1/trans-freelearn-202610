@@ -1,0 +1,204 @@
+
+
+## 兼容版本
+
+最好提到 Data Migration Tool 与以下 Magento 版本兼容：
+
+- Magento Community Edition:
+  - Version 1.6.x
+  - Version 1.7.x
+  - Version 1.8.x
+  - Version 1.9.x
+- Magento Enterprise Edition:
+  - Version 1.11.x
+  - Version 1.12.x
+  - Version 1.13.x
+  - Version 1.14.x
+
+## 迁移流程
+
+在使用 Data Migration Tool 之前，您应遵循以下步骤：
+
+1. Set up an empty Magento 2 instance: The instance should meet the requirements described in Chapter 2, Installation and the cron jobs shouldn't be enabled.
+
+![](img/de3034a92496a32462134266292a51dd_65_0.png)
+
+2. **Prepare your Magento 1.x instance**: From this point, make sure you don't modify the catalog, such as Products or Categories, until everything is migrated to Magento 2. Also, disable all the cron jobs and create a database backup before moving forward. It's also required to put the store into maintenance mode during the migration process. In the following image, you can see that we created a database backup using the command line:
+
+![](img/de3034a92496a32462134266292a51dd_66_0.png)
+
+3. Ensure that you are using PHP 7 to ensure the best performance of the Data Migration Tool:
+
+![](img/de3034a92496a32462134266292a51dd_67_0.png)
+
+4. Install the Data Migration Tool in your Magento 2 directory by following these instructions:
+
+   1. Go to the Magento 2 directory using the Terminal:
+
+```shell
+~/Projects $ cd Playground/magento2-migration.dev
+~/Projects/Playground/magento2-migration.dev $ ls
+CHANGELOG.md          Gruntfile.js.sample   LICENSE_APL.txt   composer.json   index.php   package.json.sample   pub   var
+CONTRIBUTING.md       ISSUE_TEMPLATE.md     app               composer.lock   lib         php.ini.sample        setup   vendor
+COPYING.txt           LICENSE.txt           bin               dev             nginx.conf.sample     phpserver   update
+~/Projects/Playground/magento2-migration.dev $ 
+```
+
+   2. Check the latest release version of the Data Migration Tool at https://github.com/magento/data-migration-tool/releases:
+
+![](img/de3034a92496a32462134266292a51dd_69_0.png)
+
+   3. Run the following commands in the Terminal:
+
+```
+composer config repositories.data-migration-tool git https://github.com/magento/data-migration-tool
+composer require magento/data-migration-tool:2.1.3
+```
+
+Please note that the second command includes the latest version of the Data Migration Tool at the end (2.1.3). Make sure you update that command to match the latest release version from Github.
+
+## Migration
+
+The second command will require authentication from `repo.magento.com`. You can get these credentials from your Magento account by following these steps:
+
+1. Go to `http://magento.com` and click on **MY ACCOUNT** at the top-right of the screen:
+
+![](img/de3034a92496a32462134266292a51dd_70_0.png)
+
+2. If you have a Magento account, log in using your username and password. If not, create your account by clicking on the Register button on the right:
+
+![](img/de3034a92496a32462134266292a51dd_71_0.png)
+
+4. Click on the Magento 2 tab and then Create A New Access Key:
+
+![](img/de3034a92496a32462134266292a51dd_73_0.png)
+
+Now that you have your Access Keys, you can finish the Data Migration Tool installation by adding your credentials after running the command:
+
+![](img/de3034a92496a32462134266292a51dd_74_0.png)
+
+5. Configure the Data Migration Tool: After the installation, you will find the directory that contains the mapping and configuration files in the following locations in the Magento 2 directory:
+
+- Migration from Magento 1 Community Edition to Magento 2 Community Edition:
+  - `vendor/magento/data-migration-tool/etc/ce-to-ce`
+- Migration from Magento 1 Community Edition to Magento 2 Enterprise Edition:
+  - `vendor/magento/data-migration-tool/etc/ce-to-ee`
+- Migration from Magento 1 Enterprise Edition to Magento 2 Enterprise Edition:
+  - `vendor/magento/data-migration-tool/etc/ee-to-ee`
+
+You can see the content of each of those directories in the following screenshot:
+
+![](img/de3034a92496a32462134266292a51dd_75_0.png)
+
+Before running the migration process, you should create `config.xml` with all the database connection details for the migration.
+
+Depending on the type of migration (ce to ce, ce to ee, or ee to ee), you should add `config.xml` to the specific location that we previously described.
+
+For this migration, I have prepared a Magento 1 Community Edition with a sample data instance:
+
+![](img/de3034a92496a32462134266292a51dd_76_0.png)
+
+This migration will be from Magento 1 Community Edition to Magento 2 Community Edition, so the location for the configuration file will be `vendor/magento/data-migration-tool/etc/ce-to-ce/<Magento 1 version>/config.xml`.
+
+In the location, the `<Magento 1 version>` is the version number of your Magento 1 store. The installed Magento 1 version in this example is `1.9.2.4`, so the following command should be run to go to the right directory: `cd vendor/magento/data-migration-tool/etc/ce-to-ce/1.9.2.4`
+
+There is a sample configuration file in that directory, so you should go to the directory and run the following command to duplicate it: `cp config.xml.dist config.xml`
+
+Here, you can see all the commands to go to the right directory and duplicate the configuration file, including a preview of that file:
+
+```shell
+~/Projects/Playground/magento2-migration.dev $ cd vendor/magento/data-migration-tool/etc/ce-to-ce/1.9.2.4
+~/Projects/Playground/magento2-migration.dev/vendor/magento/data-migration-tool/etc/ce-to-ce/1.9.2.4 $ ls
+config.xml.dist  map.xml.dist
+~/Projects/Playground/magento2-migration.dev/vendor/magento/data-migration-tool/etc/ce-to-ce/1.9.2.4 $ ls -lat
+total 144
+drwxr-xr-x 4 gabriel staff  1136 Dec 27 16:25 .
+drwxr-xr-x 35 gabriel staff 11920 Dec 17 16:25 ..
+-rw-r--r-- 1 gabriel staff  7002 Dec 19 11:38 config.xml.dist
+-rw-r--r-- 1 gabriel staff  63779 Dec 19 11:38 map.xml.dist
+~/Projects/Playground/magento2-migration.dev/vendor/magento/data-migration-tool/etc/ce-to-ce/1.9.2.4 $ cp config.xml.dist config.xml
+~/Projects/Playground/magento2-migration.dev/vendor/magento/data-migration-tool/etc/ce-to-ce/1.9.2.4 $ cat config.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="../../config.xsd">
+    <steps mode="settings">
+        <step title="Settings Step">
+            <integrity>Migration\Step\Settings\Integrity</integrity>
+            <data>Migration\Step\Settings\Data</data>
+        </step>
+        <step title="Stores Step">
+            <integrity>Migration\Step\Stores\Integrity</integrity>
+            <data>Migration\Step\Stores\Data</data>
+            <volume>Migration\Step\Stores\Volume</volume>
+        </step>
+    </steps>
+    <steps mode="data">
+        <step title="Data Integrity Step">
+            <integrity>Migration\Step\DataIntegrity\Integrity</integrity>
+        </step>
+        <step title="EAV Step">
+            <integrity>Migration\Step\Eav\Integrity</integrity>
+            <data>Migration\Step\Eav\Data</data>
+            <volume>Migration\Step\Eav\Volume</volume>
+        </step>
+    </steps>
+</config>
+```
+
+Open config.xml in your favorite editor and locate the `<source>` tag:
+
+```xml
+<source>
+    <step title="Customer Attributes Step">
+        <delta>Migration/Step/Customer/Delta</delta>
+        <volume>Migration/Step/Customer/Volume</volume>
+    </step>
+    <step title="Map Step">
+        <delta>Migration/Step/Map/Delta</delta>
+        <volume>Migration/Step/Map/Volume</volume>
+    </step>
+    <step title="Log Step">
+        <delta>Migration/Step/Log/Delta</delta>
+        <volume>Migration/Step/Log/Volume</volume>
+    </step>
+    <step title="OrderGrids Step">
+        <delta>Migration/Step/OrderGrids/Delta</delta>
+        <volume>Migration/Step/OrderGrids/Volume</volume>
+    </step>
+    <step title="SalesIncrement Step">
+        <delta>Migration/Step/SalesIncrement/Delta</delta>
+        <volume>Migration/Step/SalesIncrement/Volume</volume>
+    </step>
+</source>
+<destination>
+    <database host="localhost" name="magento1" user="root"/>
+</destination>
+<destination>
+    <database host="localhost" name="magento2" user="root"/>
+</destination>
+<options>
+    <map_file>etc/ce-to-ce/1.9.2.4/map.xml.dist</map_file>
+    <eav_map_file>etc/ce-to-ce/1.9.2.4/eav_map.xml.dist</eav_map_file>
+    <eav_document_groups_file>etc/ce-to-ce/1.9.2.4/eav_document_groups.xml.dist</eav_document_groups_file>
+    <eav_attribute_groups_file>etc/ce-to-ce/1.9.2.4/eav_attribute_groups.xml.dist</eav_attribute_groups_file>
+    <log_map_file>etc/ce-to-ce/1.9.2.4/log_map.xml.dist</log_map_file>
+    <log_document_groups_file>etc/ce-to-ce/1.9.2.4/log_document_groups.xml.dist</log_document_groups_file>
+    <settings_map_file>etc/ce-to-ce/1.9.2.4/settings.xml.dist</settings_map_file>
+    <customer_map_file>etc/ce-to-ce/1.9.2.4/customer.xml.dist</customer_map_file>
+    <customer_document_groups_file>etc/ce-to-ce/1.9.2.4/customer_document_groups.xml.dist</customer_document_groups_file>
+    <customer_attribute_groups_file>etc/ce-to-ce/1.9.2.4/customer_attribute_groups.xml.dist</customer_attribute_groups_file>
+    <delta_document_groups_file>etc/ce-to-ce/1.9.2.4/delta.xml.dist</delta_document_groups_file>
+    <order_grids_document_groups_file>etc/ce-to-ce/1.9.2.4/order_grids_document_groups.xml.dist</order_grids_document_groups_file>
+    <map_document_groups_file>etc/ce-to-ce/1.9.2.4/map_document_groups.xml.dist</map_document_groups_file>
+    <class_map_file>etc/ce-to-ce/1.9.2.4/class_map.xml.dist</class_map_file>
+    <tier_price_map_file>etc/ce-to-ce/1.9.2.4/tier_price.xml.dist</tier_price_map_file>
+</options>
+```
+
+Customize the node to match the information in the Magento 1 and Magento 2 databases. Take into account that you should add the following to each of the database tags to specify the database password: `password="<database password>"` Now, locate the `<crypt_key />` tag.
+

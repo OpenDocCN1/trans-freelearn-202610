@@ -1,0 +1,58 @@
+reviews:
+- 'no': 7
+  overturn_probability: 0.2
+  alternative: 书前“致谢”部分的二级标题，属于前置内容区块
+  counter_evidence:
+  - 它是二级标题（##），不是全书最高层级的一级标题，可能只是前置内容的小节
+  - 若按“统一划分为一章”理解，致谢、前言等应合并为一个前置章节，'## 致谢'作为该章节起点尚可，但并不是典型的独立章标题
+  keep_split: true
+- 'no': 60
+  overturn_probability: 0.7
+  alternative: 前置章节内的子标题，属于从“## 致谢”开始的书前内容的一部分
+  counter_evidence:
+  - “## 前言”是二级标题，且位于同一个书前内容区块内，不应单独成章
+  - 规则要求前言、致谢等正文之前的内容统一划分为一章，因此“前言”应并入前置章节，而非另起一章
+  keep_split: false
+- 'no': 146
+  overturn_probability: 0.05
+  alternative: 正文第一章的顶级标题
+  counter_evidence:
+  - 虽然是最高层级标题，但编号格式为“1”而非“第1章”，可能被某些解析器视为普通标题
+  - 但结合上下文，它是正文开始的第一章，分章合理
+  keep_split: true
+- 'no': 306
+  overturn_probability: 0.05
+  alternative: 正文第二章的顶级标题
+  counter_evidence:
+  - 与第一章类似，编号为“2”，但它的下一行“## Installation”是二级标题，可能让人误以为“# 2 安装 Magento”是章标题，实际确实是章标题
+  keep_split: true
+- 'no': 1768
+  overturn_probability: 0.1
+  alternative: 正文第六个顶级章节标题
+  counter_evidence:
+  - 序号从第2章直接跳到第6章，中间缺少第3、4、5章的一级标题，可能这些章以二级标题形式存在（如“## 创建您的第一个产品”），但规则允许序号跳跃时仍分章
+  keep_split: true
+- 'no': 2245
+  overturn_probability: 0.05
+  alternative: 正文第七章的顶级标题
+  counter_evidence:
+  - 标题“# 7 类别”与前面第6章格式一致，但内容较短，可能是章节标题，也符合规则
+  keep_split: true
+- 'no': 2417
+  overturn_probability: 0.1
+  alternative: 正文第八章的顶级标题
+  counter_evidence:
+  - 标题为英文且包含逗号，长度约30字符，可能被误认为子标题；但“# 8.”是最高层级编号，应为章标题
+  keep_split: true
+- 'no': 2575
+  overturn_probability: 0.05
+  alternative: 正文第九章的顶级标题
+  counter_evidence:
+  - 紧接着下一行是“## 管理范围和区域设置”，与章标题几乎相同，可能是章节内的重复标题，但“# 9”仍明确是章标题
+  keep_split: true
+- 'no': 2680
+  overturn_probability: 0.02
+  alternative: 正文第十章的系统配置章节标题
+  counter_evidence:
+  - 无重大反证，但为满足审查要求，指出它可能只是正文中一个以“# 10”开头的普通标题，但结合全书结构，它是章标题
+  keep_split: true

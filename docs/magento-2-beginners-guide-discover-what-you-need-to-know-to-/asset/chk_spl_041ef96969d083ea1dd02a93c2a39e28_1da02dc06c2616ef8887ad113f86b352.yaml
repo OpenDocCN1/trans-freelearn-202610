@@ -1,0 +1,85 @@
+reviews:
+- 'no': 3177
+  overturn_probability: 0.1
+  alternative: 排版转换中重复生成的标题，或章首页的残留标记
+  counter_evidence:
+  - 该行后紧跟一个同名的二级标题“## 客户管理”，形成重复标题，不能排除该行只是目录、页眉或转换噪声。
+  - 若该行是真正的章标题，通常不应紧接着出现同名的另一标题，这种重复模式暗示原始文档可能存在格式丢失。
+  keep_split: true
+- 'no': 3279
+  overturn_probability: 0.2
+  alternative: 正文中的二级小节标题，或真正的章标题在下一行
+  counter_evidence:
+  - 该行使用“##”二级标题格式，而前后章（11、13）均使用“#”一级标题，级别不一致，可能是文档转换错误，未必是最高层级章标题。
+  - 紧接着的下一行“# 管理员用户和角色”是一级标题且无编号，可能才是真正的章标题，该行可能只是带序号的重复标题。
+  keep_split: true
+- 'no': 3367
+  overturn_probability: 0.05
+  alternative: 正文中的一级小节标题或大分区标题
+  counter_evidence:
+  - 该行采用“# 13 税费”而不是“第13章”或“13.”的典型章序号形式，单从文本格式上不能完全排除它是文档中的一级小节标题。
+  - 不过其后紧接“在本章中，我们将介绍以下主题：”是强信号，反方证据较弱。
+  keep_split: true
+- 'no': 3461
+  overturn_probability: 0.05
+  alternative: 正文中的一级小节标题或大分区标题
+  counter_evidence:
+  - 标题为“# 14 目录和购物车价格规则”，缺少“章”字，仅靠数字序号和上下文才判定为章标题，严格看也可视为一级标题下的分区。
+  - 前一行是第13章总结，边界清晰，但若转换时丢失“第X章”字样，也存在误判可能。
+  keep_split: true
+- 'no': 3616
+  overturn_probability: 0.1
+  alternative: 章首页的重复标题或页眉残留
+  counter_evidence:
+  - 该行后紧跟“## 处理付款”，与第11章的重复模式相同，可能是同一章标题被重复解析所致。
+  - 这种重复可能意味着真正的章节起始在下一行，而该行只是页眉或目录残留。
+  keep_split: true
+- 'no': 3756
+  overturn_probability: 0.02
+  alternative: 正文中的一级小节标题
+  counter_evidence:
+  - 该行“# 16 配置配送”没有“章”字，从纯格式上无法与大型分区标题区分。
+  - 但前有章末总结、后有本章概述，编号连续，反方证据极弱。
+  keep_split: true
+- 'no': 3919
+  overturn_probability: 0.02
+  alternative: 正文中的一级小节标题
+  counter_evidence:
+  - 标题“# 17 订单履行”同样缺少“章”字，仅凭数字和上下文确认。
+  - 上下文边界非常明确，几乎不存在推翻空间。
+  keep_split: true
+- 'no': 4167
+  overturn_probability: 0.15
+  alternative: 章首页的重复标题，真正章节起始可能在下一行
+  counter_evidence:
+  - 紧接着的“# 交易性电子邮件和通讯”是无编号的同名一级标题，可能该行只是目录或页眉，而真正的章标题在4169行。
+  - 该章内部小节标题多为英文，而章标题为中文，可能是翻译或转换过程中产生的重复。
+  keep_split: true
+- 'no': 4341
+  overturn_probability: 0.2
+  alternative: 正文中的三级小节标题，或转换中丢失级别符号的章标题
+  counter_evidence:
+  - 该行使用“###”三级标题，而前后章（18、21）均使用“#”一级标题，标题级别明显不一致，可能只是文档转换错误，也可能原本就是低声级小节。
+  - 虽然其后有“本章我们将介绍以下概念：”，但如果严格按Markdown层级，三级标题不应当被视为最高层级章。
+  keep_split: true
+- 'no': 4426
+  overturn_probability: 0.2
+  alternative: 正文中的三级小节标题，或转换中丢失级别符号的章标题
+  counter_evidence:
+  - 与“### 19 报告”相同，该行用三级标题承载章序号，与全书其他章的一级标题格式不一致，格式证据不支持分章。
+  - 若只看Markdown层级，它更接近子章节，而非最高层级章节。
+  keep_split: true
+- 'no': 4614
+  overturn_probability: 0.02
+  alternative: 正文中的一级小节标题
+  counter_evidence:
+  - “# 21 商店维护”没有“章”字，从形式上看也可作为大分区标题。
+  - 但前有总结、后有概述，且与前后章标题风格一致，反方证据非常薄弱。
+  keep_split: true
+- 'no': 4905
+  overturn_probability: 0.1
+  alternative: 书末索引的标记，不是正文章节
+  counter_evidence:
+  - 该行“### 索引”位于全书末尾，后面全部是指向页码的索引条目，按书籍结构应属于附属部分而非正文章节。
+  - 但处理规则明确要求“文末索引也划分为一章”，因此从分章角度仍应维持。
+  keep_split: true
