@@ -1,0 +1,45 @@
+reviews:
+- 'no': 6086
+  overturn_probability: 0.12
+  alternative: 正文小标题
+  counter_evidence:
+  - 标题为 '## 10 创建 JSF 数据表'，带数字但无‘第 X 章’字样，且后续 6175 行出现同名无数字子标题 '## 创建 JSF 数据表'，存在章节内重复标题的排版噪声
+  - 前一章以 '## 摘要' 6082 行结束，编号 10 的出现缺乏前序 1-9 的连贯上下文，无法完全排除为大章内一级小节的误判
+  keep_split: true
+- 'no': 6744
+  overturn_probability: 0.1
+  alternative: 正文小标题
+  counter_evidence:
+  - 标题 '## 11 创建 JSF 面板网格' 后紧跟 6746 行同名无数字标题 '## 创建 JSF 面板网格'，符合正文小标题的重复命名模式
+  - 标题后 1~3 行为概述，但随后直接进入 '## 创建 JSF 面板网格' 等同级小节，层级关系更像章节内部的二级划分而非全书最高层级大章
+  keep_split: true
+- 'no': 7193
+  overturn_probability: 0.15
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题 ''## 12 使用 JasperReports 创建报告'' 格式为 Markdown ##，与后续大量 ''## 设置环境''、''## 生成
+    PDF 报告'' 等同级小标题混用，易被误判为章节标题'
+  - 标题末尾无句号且长度<30 符合格式，但全书最高层级大章通常使用‘第 X 章’表述，纯数字+中文标题更易为节标题
+  keep_split: true
+- 'no': 7697
+  overturn_probability: 0.13
+  alternative: 正文小标题
+  counter_evidence:
+  - 标题 '## 13 使用 Apache POI 创建电子表格' 后 7700 行出现同名无数字标题 '## 使用 Apache POI 创建电子表格'，呈现标题重复的排版特征
+  - 上下文为代码与配置说明密集区，标题后概述段落较短且迅速进入 '## 设置环境' 等操作性小节，语义统领性不足
+  keep_split: true
+- 'no': 8055
+  overturn_probability: 0.11
+  alternative: 正文小标题
+  counter_evidence:
+  - 标题 '## 14 创建 Oracle ADF 业务组件' 前一章以 '## 摘要' 8051 行结束，编号跳跃且无‘章’字，编号特征与‘第 X 章’规范不完全一致
+  - 后续出现 '## 创建业务组件'、'## 配置 BC4J 项目' 等同级小标题，整体结构更符合大章内多小节的划分
+  keep_split: true
+- 'no': 8397
+  overturn_probability: 0.14
+  alternative: 正文小标题
+  counter_evidence:
+  - 标题 '## 15 Hibernate' 仅为数字+英文词，长度极短且无‘章’标识，易被误认为正文中的专题小标题
+  - 标题后紧跟 'Hibernate 是一个开源的、基于 JDBC 的对象/关系持久化和查询服务' 的概述，但随后 '## Hibernate 与 JDBC'
+    等子节直接展开，层级上更接近节而非最高层级大章
+  keep_split: true

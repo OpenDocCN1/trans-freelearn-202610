@@ -1,0 +1,74 @@
+chapter_starts:
+- 'no': 6086
+  confidence: 0.88
+  final_reason: '编号标题单独成行，后接概述段落，前章以 ## 摘要 6082 结束；后续出现同名无编号子节 ## 创建 JSF 数据表 6175，符合最高层级章节后接首节的排版模式。复核方提出的无‘第
+    X 章’字样及同名子标题的反证不足以推翻，keep_split 为 true。'
+  accepted_evidence:
+  - '标题单独成行，格式为 ## 10 创建 JSF 数据表，末尾无句号，长度<30'
+  - 后 1~3 行 6088-6090 为概述段落，介绍 JSF 与 JDBC 关联及本章内容
+  - '前一章以 ## 摘要 6082 结束，形成章间边界；后续 6175 行出现同名无编号子节，构成章节-首节结构'
+  rejected_evidence:
+  - 标题未使用‘第 X 章’字样
+  - '后续存在同名无编号子标题 ## 创建 JSF 数据表，易被误认为正文小标题'
+  need_human_review: false
+- 'no': 6744
+  confidence: 0.9
+  final_reason: '编号标题 ## 11 创建 JSF 面板网格 单独成行，后接概述，前章以 ## 摘要 6740 结束；6746 行出现同名无编号子节
+    ## 创建 JSF 面板网格，层级关系符合大章划分。复核方反证关于重复命名未改变最高层级判断。'
+  accepted_evidence:
+  - 标题单独成行，编号 11，末尾无句号
+  - 后 1~3 行 6746-6750 为面板网格概述，语义统领后续内容
+  - '前章以 ## 摘要 6740 结束，形成清晰章界'
+  rejected_evidence:
+  - 标题后紧跟同名无编号子标题，可能被视为正文小标题重复
+  - 全书最高层级通常使用‘第 X 章’表述
+  need_human_review: false
+- 'no': 7193
+  confidence: 0.85
+  final_reason: '编号标题 ## 12 使用 JasperReports 创建报告 单独成行，前章以 ## 摘要 7190 结束，后接 JasperReports
+    概述；后续出现 ## 设置环境、## 生成 PDF 报告 等子节，符合大章结构。复核方关于 Markdown ## 混用及无‘章’字的反证不成立。'
+  accepted_evidence:
+  - 标题单独成行，编号 12，长度<30，无句号
+  - 后 1~3 行 7195-7198 为 JasperReports 概述，统领后续内容
+  - '前章以 ## 摘要 7190 结束，形成章间边界'
+  rejected_evidence:
+  - '格式为 Markdown ## 与后续小标题混用'
+  - 标题无‘第 X 章’标识，易误判为节标题
+  need_human_review: false
+- 'no': 7697
+  confidence: 0.87
+  final_reason: '编号标题 ## 13 使用 Apache POI 创建电子表格 单独成行，前章以 ## 摘要 7691 结束，后接 Apache
+    POI 概述；7700 行出现同名无编号子节，构成章节-首节模式。复核方重复标题的反证未推翻大章判断。'
+  accepted_evidence:
+  - 标题单独成行，编号 13，末尾无句号
+  - 后 1~3 行 7699-7702 为 Apache POI 概述，语义统领
+  - '前章以 ## 摘要 7691 结束'
+  rejected_evidence:
+  - '7700 行出现同名无编号标题 ## 使用 Apache POI 创建电子表格'
+  - 概述段落较短后迅速进入操作性小节
+  need_human_review: false
+- 'no': 8055
+  confidence: 0.89
+  final_reason: '编号标题 ## 14 创建 Oracle ADF 业务组件 单独成行，前章以 ## 摘要 8051 结束，后接 ADF 概述；后续出现
+    ## 配置 BC4J 项目、## 创建业务组件 等子节，符合最高层级章节。复核方关于编号跳跃及无‘章’字的反证不足。'
+  accepted_evidence:
+  - 标题单独成行，编号 14，长度<30，无句号
+  - 后 1~3 行 8057-8060 为 ADF 业务组件概述
+  - '前章以 ## 摘要 8051 结束，形成章界'
+  rejected_evidence:
+  - 标题无‘第 X 章’字样，编号特征不完全一致
+  - '后续出现多个同级 ## 小标题'
+  need_human_review: false
+- 'no': 8397
+  confidence: 0.86
+  final_reason: '编号标题 ## 15 Hibernate 单独成行，前章以 ## 摘要 8393 结束，后接 Hibernate 概述；8407
+    行出现 ## Hibernate 与 JDBC 等子节，层级符合大章。复核方关于仅数字+英文词及无‘章’标识的反证未改变判断。'
+  accepted_evidence:
+  - 标题单独成行，编号 15，末尾无句号
+  - 后 1~3 行 8399-8401 为 Hibernate 概述，统领后续内容
+  - '前章以 ## 摘要 8393 结束'
+  rejected_evidence:
+  - 标题仅为数字+英文词，无‘章’标识，易被视为专题小标题
+  - '标题后迅速进入 ## Hibernate 与 JDBC 等子节'
+  need_human_review: false
+rejected_lines: []

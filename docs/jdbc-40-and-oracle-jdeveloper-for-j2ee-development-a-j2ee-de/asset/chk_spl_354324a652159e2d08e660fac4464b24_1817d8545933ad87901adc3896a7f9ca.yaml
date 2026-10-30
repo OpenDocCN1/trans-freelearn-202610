@@ -1,0 +1,49 @@
+reviews:
+- 'no': 2
+  overturn_probability: 0.55
+  alternative: 前言/致谢段落
+  counter_evidence:
+  - 标题后紧跟贡献者表格而非概述段落，格式更像前置信息块而非统领性章节
+  - '后续仍有 ## 关于作者、## 关于审阅者、## 索引、## 前言 等多个前置小标题，按规则前言、序言、致谢、关于作者等正文之前的内容应统一划分为一章，不应在此单独起章'
+  - 标题语义为致谢，缺乏对后续内容的统领性，且层级与正文章节标题混用，易被误判为正文小标题
+  keep_split: false
+- 'no': 139
+  overturn_probability: 0.08
+  alternative: 正文小标题
+  counter_evidence:
+  - 编号特征明显，单独成行，标题末无标点，长度小于30字
+  - '后1~3行为概述段落，后续进入 ### DriverManager 类 等子节，符合章节上下文特征'
+  - 与前文前置内容有明显断层，是全书最高层级第1章的合理起点
+  keep_split: true
+- 'no': 1203
+  overturn_probability: 0.75
+  alternative: 排版断行/翻译重复标题
+  counter_evidence:
+  - '下一行 no 1205 即出现相同编号的中文标题 ## 2 在 Oracle JDeveloper 中配置 JDBC，构成双语重复'
+  - 全书第3、4、5章标题均为中文，此英文标题孤立出现，更像是排版噪声或翻译残留
+  - 标题后无独立概述段落，直接被中文同编号标题接续，不具备独立章节的语义统领性
+  keep_split: false
+- 'no': 1771
+  overturn_probability: 0.05
+  alternative: 正文小标题
+  counter_evidence:
+  - 编号特征为第3章，单独成行，标题末无标点
+  - '后文为 JSTL SQL 标签概述段落，后续进入子节 ## JSTL SQL 和核心标签概述，符合章节上下文'
+  - 语义统领后续JSTL内容，与第1、2章结构一致
+  keep_split: true
+- 'no': 2131
+  overturn_probability: 0.05
+  alternative: 正文小标题
+  counter_evidence:
+  - 编号特征为第4章，单独成行，标题末无标点
+  - 后文为 JBoss 4.0 介绍概述，后续进入子节，从 JDeveloper 部署 Web 应用程序到 JBoss 等
+  - 语义统领JBoss配置内容，符合最高层级章节特征
+  keep_split: true
+- 'no': 2628
+  overturn_probability: 0.05
+  alternative: 正文小标题
+  counter_evidence:
+  - 编号特征为第5章，单独成行，标题末无标点
+  - 后文为 WebLogic Server 数据源概述，后续进入设置环境、创建数据源等子节
+  - 语义统领WebLogic配置内容，符合最高层级章节特征
+  keep_split: true

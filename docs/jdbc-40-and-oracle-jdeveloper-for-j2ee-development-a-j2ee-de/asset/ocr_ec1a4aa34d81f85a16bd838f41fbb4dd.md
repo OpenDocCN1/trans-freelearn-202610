@@ -1,0 +1,9 @@
+# 14
+Creating Oracle ADF
+Business Components
+
+Oracle **Application Development Framework** (ADF) is a J2EE framework that simplifies J2EE development and Oracle JDeveloper provides a declarative development environment for it. The **Business Components for Java** (BC4J) layer of the ADF is a JDBC-based programming framework for developing database-centric business services in Java. ADF Business Components use JDBC to query the database. A Business Components application consists of entity objects, view objects, and application module and additionally associations and view links. ADF Business Components may be used with different view layers like JavaServer pages, UIX, and Swing.
+
+The Entity Object in ADF Business Components performs all the database interaction and validation and is also where the business logic gets defined. Entity Objects are based on database tables and map table columns to attributes in Java. Entity Objects encapsulate business logic, define validation rules, and also cache data. Typically, View Objects consist of SQL queries to present a subset of the business data (view) modeled by the entity objects. View Objects may or may not be based on Entity Objects.
+
+View Objects provide a client with row sets of data, which may be modified, by the client; View Objects are basically row set iterators that allow programs to navigate over a collection of data. One Entity Object can be accessed from different View Objects. Multiple instances of a View Object can be used in an application. The ADF Business Components View Objects are exposed to the view layer through an Application Module, which represents the logical data model and manages data transactions. The business components associations represent the associations between entity objects, and the view links represent the links between the queries in different view objects. Associations and view links are not required features of a business components applications.

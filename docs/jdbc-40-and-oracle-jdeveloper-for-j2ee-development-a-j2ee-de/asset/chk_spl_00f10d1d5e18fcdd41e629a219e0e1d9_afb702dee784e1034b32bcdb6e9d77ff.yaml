@@ -1,0 +1,32 @@
+reviews:
+- 'no': 8878
+  overturn_probability: 0.85
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题使用 Markdown ## 层级，在本段落中与后续 ## 删除数据 等同级出现，构成同一教程内的连续操作小节，而非全书最高层级大章'
+  - 标题后 1~3 行是操作性概述段落‘接下来，我们将使用 Hibernate Java 应用程序更新表值...’，随后直接跟代码块，无子节编号 X.Y，也无上一章总结/习题的结束特征
+  - 前后文均为 Hibernate HQL 查询/更新的连续示例，未出现‘第 X 章’类编号或部分-章节的断层，语义上仅统领本小节的更新步骤
+  keep_split: false
+- 'no': 8925
+  overturn_probability: 0.85
+  alternative: 正文小标题
+  counter_evidence:
+  - '与 8878 相同模式的 Markdown ## 小标题，位于‘更新数据库表’小节之后，仍在同一 CRUD 教程流程内'
+  - 标题前无章节结束的总结/习题，标题后紧跟‘接下来，使用 Hibernate API 删除表行...’的说明性段落及代码示例，符合正文小标题而非新章的上下文
+  - 全书未见‘第 X 章’编号，## 删除数据 长度短、描述具体操作，典型为章节内部分点
+  keep_split: false
+- 'no': 9148
+  overturn_probability: 0.7
+  alternative: 正文小标题
+  counter_evidence:
+  - '## 摘要 出现在代码输出示例之后、## 索引之前，仍在 Hibernate 使用示例的同一主题范围内，内容为对 ORM 概念的简要概括，是章节小结而非新章开端'
+  - 后接段落‘无数据库持久化和查询服务的对象/关系映射需要 JDBC API...’为总结性陈述，无新章节的统领性介绍和后续子节展开
+  - 无章节编号，且前后文主题未发生跨领域切换，更符合正文内的‘摘要’小节
+  keep_split: false
+- 'no': 9152
+  overturn_probability: 0.08
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '标题格式与前文 ## 小标题一致，存在被误判为普通小标题的风险'
+  - '但按规则文末索引应划分为一章，且标题后紧跟 ### A、### B 等字母子目，结构明确为书末索引，语义和位置均支持作为独立章节起始'
+  keep_split: true

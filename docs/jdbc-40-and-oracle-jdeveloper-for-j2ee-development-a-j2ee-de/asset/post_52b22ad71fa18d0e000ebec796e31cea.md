@@ -1,0 +1,42 @@
+
+- **Connection pooling implementation:** A pool of `Connection` objects is available, from which connections are assigned to the different client sessions. A connection pooling manager implements the connection pooling. When a client session does not require a connection, the connection is returned to the connection pool and becomes available to other clients. Thus, the overheads of opening, initiating, and closing connections are reduced.
+- **Distributed transaction implementation:** Distributed transaction implementation produces a `Connection` object that is mostly used for distributed transactions and is always connection pooled. A transaction manager implements the distributed transactions.
+
+An advantage of using a data source is that code accessing a data source does not have to be modified when an application is migrated to a different application server. Only the data source properties need to be modified. A JDBC driver that is accessed with a `DataSource` does not register itself with a `DriverManager`. A `DataSource` object is created using a JNDI lookup and subsequently a `Connection` object is created from the `DataSource` object. For example, if a data source JNDI name is `jdbc/OracleDS` a `DataSource` object may be created using JNDI lookup. First, create an `InitialContext` object and subsequently create a `DataSource` object using the `InitialContext` lookup method. From the `DataSource` object create a `Connection` object using the `getConnection()` method:
+
+```
+InitialContext ctx=new InitialContext();
+DataSource ds=ctx.lookup("jdbc/OracleDS");
+Connection conn=ds.getConnection();
+```
+
+The JNDI naming service, which we used to create a `DataSource` object is provided by J2EE application servers such as the Oracle Application Server Containers for J2EE (OC4J) embedded in the JDeveloper IDE.
+
+A connection in a pool of connections is represented by the `PooledConnection` interface, not the `Connection` interface. The connection pool manager, typically the application server, maintains a pool of `PooledConnection` objects. When an application requests a connection using the `DataSource.getConnection()` method, as we did using the `jdbc/OracleDS` data source example, the connection pool manager returns a `Connection` object, which is actually a handle to an object that implements the `PooledConnection` interface. A `ConnectionPoolDataSource` object, which is typically registered with a JNDI naming service, represents a collection of `PooledConnection` objects. The JDBC driver provides an implementation of the `ConnectionPoolDataSource`, which is used by the application server to build and manage a connection pool. When an application requests a connection, if a suitable `PooledConnection` object is available in the connection pool, the connection pool manager returns a handle to the `PooledConnection` object as a `Connection` object. If a suitable PooledConnection object is not available, the connection pool manager invokes the getPooledConnection() method of the ConnectionPoolDataSource to create a new PooledConnection object. For example, if connectionPoolDataSource is a ConnectionPoolDataSource object a new PooledConnection gets created as follows:
+
+```
+PooledConnection
+pooledConnection=connectionPoolDataSource.getPooledConnection();
+```
+
+The application does not have to invoke the getPooledConnection() method though; the connection pool manager invokes the getPooledConnection() method and the JDBC driver implementing the ConnectionPoolDataSource creates a new PooledConnection, and returns a handle to it. The connection pool manager returns a Connection object, which is a handle to a PooledConnection object, to the application requesting a connection. When an application closes a Connection object using the close() method, as follows, the connection does not actually get closed.
+
+```
+conn.close();
+```
+
+The connection handle gets deactivated when an application closes a Connection object with the close() method. The connection pool manager does the deactivation. When an application closes a Connection object with the close() method any client info properties that were set using the setClientInfo method are cleared. The connection pool manager is registered with a PooledConnection object using the addConnectionEventListener() method. When a connection is closed the connection pool manager is notified and the connection pool manager deactivates the handle to the PooledConnection object, and returns the PooledConnection object to the connection pool to be used by another application. The connection pool manager is also notified if a connection has an error. A PooledConnection object is not closed until the connection pool is being reinitialized, the server is shutdown, or a connection becomes unusable.
+
+In addition to connections being pooled, PreparedStatement objects are also pooled by default if the database supports statement pooling. It can be discovered if a database supports statement pooling using the supportsStatementPooling() method of the DatabaseMetaData interface. The PreparedStatement pooling is also managed by the connection pool manager. To be notified of PreparedStatement events such as a PreparedStatement getting closed or a PreparedStatement becoming unusable, a connection pool manager is registered with a PooledConnection manager using the addStatementEventListener() method. A connection pool manager deregisters a PooledConnection object using the removeStatementEventListener() method. Methods addStatementEventListener and removeStatementEventListener are new methods in the PooledConnection interface in JDBC 4.0. Pooling of Statement objects is another new feature in JDBC 4.0. The Statement interface has two new methods in JDBC 4.0 for Statement pooling: isPoolable() and setPoolable().
+
+The isPoolable method checks if a Statement object is poolable and the setPoolable method sets the Statement object to poolable. When an application closes a PreparedStatement object using the close() method the PreparedStatement object is not actually closed. The PreparedStatement object is returned to the pool of PreparedStatements. When the connection pool manager closes a PooledConnection object by invoking the close() method of PooledConnection all the associated statements also get closed. Pooling of PreparedStatements provides significant optimization, but if a large number of statements are left open, it may not be an optimal use of resources. Thus, the following procedure is followed to obtain a connection in an application server using a data source:
+
+- 1. Create a data source with a JNDI name binding to the JNDI naming service.
+- 2. Create an InitialContext object and look up the JNDI name of the data source using the lookup method to create a DataSource object. If the JDBC driver implements the DataSource as a connection pool, a connection pool becomes available.
+- 3. Request a connection from the connection pool. The connection pool manager checks if a suitable PooledConnection object is available. If a suitable PooledConnection object is available, the connection pool manager returns a handle to the PooledConnection object as a Connection object to the application requesting a connection.
+- 4. If a PooledConnection object is not available the connection pool manager invokes the getPooledConnection() method of the ConnectionPoolDataSource, which is implemented by the JDBC driver.
+- 5. The JDBC driver implementing the ConnectionPoolDataSource creates a PooledConnection object and returns a handle to it.
+- 6. The connection pool manager returns a handle to the PooledConnection object as a Connection object to the application requesting a connection.
+- 7. When an application closes a connection, the connection pool manager deactivates the handle to the PooledConnection object and returns the PooledConnection object to the connection pool.
+
+ConnectionPoolDataSource provides some configuration properties to configure a connection pool. The configuration pool properties are not set by the JDBC client, but are implemented or augmented by the connection pool. The properties can be set in a data source configuration. Therefore, it is not for the application itself to change the settings, but for the administrator of the pool, who also happens to be the developer sometimes, to do so. Connection pool properties supported by ConnectionPoolDataSource are discussed in following table:

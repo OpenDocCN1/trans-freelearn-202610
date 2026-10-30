@@ -1,0 +1,3 @@
+The business components application is connected to the database and the **Local** window is displayed. The **Local** window has an application module node and a view objects instance results nodes. **CatalogView1** is the view object instance for the updatable view object **CatalogView** and **CatalogView1_1** is the view object instance for the read-only view object **CatalogView1**. Double-click on the updatable view object instance **CatalogView1** node to display the results of the view object query.
+
+![](bbox=[0.175, 0.255, 0.825, 0.63])

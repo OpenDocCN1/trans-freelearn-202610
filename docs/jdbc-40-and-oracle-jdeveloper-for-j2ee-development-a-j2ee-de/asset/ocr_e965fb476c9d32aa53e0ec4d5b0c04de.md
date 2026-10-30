@@ -1,0 +1,3 @@
+In the **Create a data source** window, specify a data source name and a **JNDI name**. J2EE connector authentication data entries are used to login to a database, by a JDBC data source. Connector authentication data entries define the database access credentials. Click on **create a new J2C authentication alias** link to create a Component-managed authentication alias.
+
+![](bbox=[0.17, 0.23, 0.82, 0.57])
