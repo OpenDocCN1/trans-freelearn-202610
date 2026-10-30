@@ -1,0 +1,74 @@
+chapter_starts:
+- 'no': 3
+  confidence: 0.85
+  final_reason: 前置内容统一归一章，Contributors 为正文前前置区首个标题行，复核方反证不足，仍作为该前置章的起始点采纳
+  accepted_evidence:
+  - '# Contributors 为前置区标题，位于书名后且在前言之前'
+  - 复核方 keep_split=true，overturn_probability 0.15
+  rejected_evidence:
+  - 仅为英文单词无编号且后接多个同级前置标题
+  need_human_review: false
+- 'no': 139
+  confidence: 0.9
+  final_reason: 第 1 部分为部分-章节模式下的部分标题，需划分新章；标题虽跨行但第 139 行为部分标识的起始，语义统领后续内容
+  accepted_evidence:
+  - 出现“第 1 部分：”部分层级标题
+  - 后接部分简介 142-148 行，符合部分页结构
+  rejected_evidence:
+  - 标题以冒号结尾语义不完整，疑似断行
+  need_human_review: false
+- 'no': 150
+  confidence: 0.88
+  final_reason: 编号 1 与下一行标题“机器学习基础”构成第 1 章，编号行单独成行且后接统领性标题，符合最高层级章特征
+  accepted_evidence:
+  - 编号 1 后紧跟标题行 151 机器学习基础
+  - 复核方 keep_split=true
+  rejected_evidence:
+  - 仅数字无章名，疑似编号残行
+  need_human_review: false
+- 'no': 576
+  confidence: 0.8
+  final_reason: 编号 2 为第 2 章起始标记，后接 578 行完整章名，虽存在空行但仍为最高层级章编号，采纳为分章点
+  accepted_evidence:
+  - 编号 2 后接 AWS Application Services for AI/ML 章名
+  - 复核方 keep_split=true
+  rejected_evidence:
+  - 孤立编号，真实标题可能在 578 行
+  need_human_review: false
+- 'no': 1465
+  confidence: 0.9
+  final_reason: 第 2 部分为部分层级标题，需划分新章；与第 1 部分结构一致，跨行标题的起始行
+  accepted_evidence:
+  - 出现“第 2 部分：”部分标题
+  - 后接部分名 数据工程和探索性数据分析
+  rejected_evidence:
+  - 标题以冒号结尾未完成
+  need_human_review: false
+- 'no': 1476
+  confidence: 0.88
+  final_reason: 编号 3 与下一行标题数据准备和转换构成第 3 章，符合最高层级章编号特征
+  accepted_evidence:
+  - 编号 3 后紧跟标题行 1477 数据准备和转换
+  - 复核方 keep_split=true
+  rejected_evidence:
+  - 仅数字无章名，疑似断行残留
+  need_human_review: false
+- 'no': 2468
+  confidence: 0.8
+  final_reason: 编号 4 为第 4 章起始标记，后接 2469 行完整章名理解和可视化数据，采纳为分章点
+  accepted_evidence:
+  - '编号 4 后接 ## 理解和可视化数据'
+  - 复核方 keep_split=true
+  rejected_evidence:
+  - 编号与标题分离，真实标题在 2469 行
+  need_human_review: false
+- 'no': 2797
+  confidence: 0.8
+  final_reason: 编号 5 为第 5 章起始标记，后接 2799 行完整章名 AWS 数据存储服务，采纳为分章点
+  accepted_evidence:
+  - '编号 5 后接 ## AWS 数据存储服务'
+  - 复核方 keep_split=true
+  rejected_evidence:
+  - 仅数字无语义，疑似排版噪声
+  need_human_review: false
+rejected_lines: []
