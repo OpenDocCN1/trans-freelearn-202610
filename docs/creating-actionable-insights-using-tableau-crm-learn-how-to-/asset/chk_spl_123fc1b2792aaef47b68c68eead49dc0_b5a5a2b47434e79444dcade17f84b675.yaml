@@ -1,0 +1,67 @@
+reviews:
+- 'no': 2
+  overturn_probability: 0.15
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '# 贡献者 与 # 关于作者 # 前言 均属正文前置的贡献者/作者信息，按规则应统一划为前言一章，单独切分会破坏统一性'
+  - 该行单独成行且无编号，语义上为前置信息块的起始，维持分章可接受
+  keep_split: true
+- 'no': 22
+  overturn_probability: 0.05
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '标题为 # 第 1 部分，符合部分-章节模式的最高层级划分'
+  - 后接概述段落并列出第1章、第2章，语义统领后续内容
+  keep_split: true
+- 'no': 445
+  overturn_probability: 0.85
+  alternative: 正文小标题
+  counter_evidence:
+  - '行号为 ## 在 TCRM 中开发你的第一个 OOTB Analytics 应用，使用二级标题标记，非全书最高层级章标题'
+  - 前文已在第 1 部分下出现第 1 章内容，且该标题后紧跟什么是 Tableau 客户关系管理 Analytics 应用？等正文说明，无章序号且长度>30字
+  - 上下文为第1部分第2章的内部小节，与规则中应排除的正文段落小标题特征一致
+  keep_split: false
+- 'no': 869
+  overturn_probability: 0.05
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '标题为 # 第 2 部分，符合部分-章节模式的最高层级划分'
+  - 后接本节说明并列出第3-7章，语义统领后续内容
+  keep_split: true
+- 'no': 881
+  overturn_probability: 0.1
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '标题为 ## 3 连接您的数据源，虽为二级标题但在第2部分下作为第3章的起始，上下文明确为新章的引入段落'
+  - 后1~3行为本章目标说明，符合章标题上下文特征
+  keep_split: true
+- 'no': 1210
+  overturn_probability: 0.1
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '标题为 ## 4 在 TCRM 中构建数据配方，位于第2部分序列中，作为第4章起始'
+  - 后接本章将介绍以下主题列表，语义统领性强
+  keep_split: true
+- 'no': 1662
+  overturn_probability: 0.9
+  alternative: 正文小标题
+  counter_evidence:
+  - '行号为 ## 深入了解数据连接，使用二级标题标记，非最高层级章标题'
+  - 前文第4章问题刚结束，该标题后紧跟理解各种类型的连接等正文内容，无章序号且为第4章内部的深入小节
+  - 格式特征为二级标题且长度适中，符合应排除的正文小标题特征
+  keep_split: false
+- 'no': 2297
+  overturn_probability: 0.8
+  alternative: 正文小标题
+  counter_evidence:
+  - '行号为 ## Lenses – TCRM 的调查记者，使用二级标题标记'
+  - 上下文为第6章内部的章节介绍，后续为创建、编辑和克隆镜头等子节，非全书最高层级章标题
+  - 无编号且标题末尾无句号但为小节统领语，非章标题
+  keep_split: false
+- 'no': 2802
+  overturn_probability: 0.05
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '标题为 ## 7 Tableau CRM 中的安全，位于第2部分序列中作为第7章起始'
+  - 后接到本章结束时你将了解等章目标说明，语义统领性强
+  keep_split: true

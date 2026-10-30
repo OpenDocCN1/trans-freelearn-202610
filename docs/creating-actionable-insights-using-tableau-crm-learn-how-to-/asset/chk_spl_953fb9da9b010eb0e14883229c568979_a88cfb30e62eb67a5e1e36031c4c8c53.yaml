@@ -1,0 +1,50 @@
+reviews:
+- 'no': 3159
+  overturn_probability: 0.05
+  alternative: 书籍目录条目或部分分隔页
+  counter_evidence:
+  - 该行出现在上一章问题列表之后，可能是书中的部分分隔页而非真正的正文起始；但部分标题按规则仍应分章。
+  - 后文列出的章节为8-11章，但实际后续还出现了第12章，存在目录残留或结构错位的可能。
+  keep_split: true
+- 'no': 3170
+  overturn_probability: 0.05
+  alternative: 目录中的章节条目
+  counter_evidence:
+  - 标题中的数字'8'可能被误读为列表序号，但结合'##'标记和后续引言，它显然是章节标题。
+  - 该行之前是上一章的问题列表，章节标题出现在问题之后是正常书籍结构，但目录也可能包含同样文字。
+  keep_split: true
+- 'no': 3696
+  overturn_probability: 0.05
+  alternative: 目录中的章节条目
+  counter_evidence:
+  - 与第8章类似，数字编号可能来自目录提取，但后文有直接引言和主题列表，说明是新章开始。
+  - 虽然'##'是二级标题，但全书章标题均使用该级别，不能因层级符号而否定其章标题性质。
+  keep_split: true
+- 'no': 4533
+  overturn_probability: 0.15
+  alternative: 正文中的疑问句小标题
+  counter_evidence:
+  - 标题以问号结尾，不符合'标题末尾无标点'的格式特征，可能是正文中的疑问句；但编号'10'明确指向章标题。
+  - 该行后接大段引言和主题列表，与前后文衔接紧密，不像独立疑问句。
+  keep_split: true
+- 'no': 5008
+  overturn_probability: 0.3
+  alternative: 排版断行产生的标题碎片
+  counter_evidence:
+  - 标题被拆分成三个连续的'##'行，可能是PDF转换时断行导致的，每行都不是完整标题；但三行合并后语义完整，确实是下一章标题。
+  - 该位置之前是第10章内容，之后是第11章引言，即使断行，新章确实从这里开始。
+  keep_split: true
+- 'no': 5485
+  overturn_probability: 0.7
+  alternative: 章内的重要小节标题（非章标题）
+  counter_evidence:
+  - 在它之前已经出现了'### 技术要求'，而该元素通常紧跟在章标题之后，说明真正章标题可能缺失，5485更像是章内子标题。
+  - 该标题仅涵盖'记录操作'，但后续内容还包含'为什么要嵌入仪表板'等其他主题，不具有统领整章的概括性。
+  keep_split: false
+- 'no': 5663
+  overturn_probability: 0.1
+  alternative: 文末附录标题
+  counter_evidence:
+  - 它没有编号，且'问题与答案'可能只是附录，不一定是正文章节；但按规则文末索引/问答类内容应统一分章。
+  - 该行后直接列出各章问答，结构上与文末索引相同，因此分章判断合理。
+  keep_split: true

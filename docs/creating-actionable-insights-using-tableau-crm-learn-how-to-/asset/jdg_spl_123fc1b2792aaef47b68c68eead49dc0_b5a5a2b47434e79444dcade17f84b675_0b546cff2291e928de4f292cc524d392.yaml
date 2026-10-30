@@ -1,0 +1,75 @@
+chapter_starts:
+- 'no': 2
+  confidence: 0.95
+  final_reason: 正文之前的贡献者、关于作者、前言等应统一划分为一章；# 贡献者是此前置部分的起始行，双方均同意分章。
+  accepted_evidence:
+  - 行2 '# 贡献者' 单独成行
+  - 贡献者/关于作者/前言等前置内容按规定统一成章
+  rejected_evidence:
+  - 复核方仅提示前置内容宜整体成章，未否定从行2开始分章
+  need_human_review: false
+- 'no': 22
+  confidence: 0.95
+  final_reason: ‘# 第 1 部分’ 为部分-章节模式的最高层级部分标题，部分标题出现即划分新章。
+  accepted_evidence:
+  - 行22 '# 第 1 部分：Tableau CRM 入门'
+  - 后接本节说明及第1、2章列表，语义统领后续内容
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 445
+  confidence: 0.9
+  final_reason: 位于第1章问题之后，标题内容与第1部分开头的第2章章名一致；虽然写作‘##’，但本书章标题在提取中普遍为‘##’，不能据此判定为正文小标题。
+  accepted_evidence:
+  - 行445标题与第29行列出的‘第 2 章，在 TCRM 中开发您的第一个 OOTB Analytics 应用’对应
+  - 前为第1章问题，后接章首概述与主题列表
+  rejected_evidence:
+  - 复核方以‘二级标题’为由反对，但该反证不适用于本书的标题层级实际情况
+  need_human_review: false
+- 'no': 869
+  confidence: 0.95
+  final_reason: ‘# 第 2 部分’ 为部分-章节模式的部分标题，划分新章。
+  accepted_evidence:
+  - 行869 '# 第 2 部分：在 TCRM 中构建数据集'
+  - 后接本节说明及第3-7章列表，语义统领后续内容
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 881
+  confidence: 0.95
+  final_reason: ‘## 3 连接您的数据源’ 为第3章章标题，编号连贯，前接第2部分说明，后接本章目标，双方一致。
+  accepted_evidence:
+  - 行881 带编号3，对应第875行‘第 3 章，连接您的数据源’
+  - 后接章首引入与主题列表
+  rejected_evidence:
+  - '复核方提示为二级标题，但在本提取中章标题均为 ## 级别'
+  need_human_review: false
+- 'no': 1210
+  confidence: 0.95
+  final_reason: ‘## 4 在 TCRM 中构建数据配方’ 为第4章章标题，编号连贯，前接第3章问题，后接章首引入，双方一致。
+  accepted_evidence:
+  - 行1210 带编号4，对应第876行‘第 4 章，构建数据配方’
+  - 后接本章主题列表与正文
+  rejected_evidence:
+  - 复核方提示为二级标题，不影响其为章标题
+  need_human_review: false
+- 'no': 1662
+  confidence: 0.85
+  final_reason: 位于第4章‘问题’之后，无既有章节标题，其后内容为连接与ETL深入讲解，对应第5章内容；语义切换明显，分章成立。
+  accepted_evidence:
+  - 行1662 单独成行、无句号，概括后续连接/ETL深入内容
+  - 前为第4章问题，后接‘在*第4章*中…更深入地探讨’的章首写法
+  rejected_evidence:
+  - 复核方认为无编号且为二级标题，但第5章标题在文本中未保留编号，上下文明确进入新章
+  need_human_review: false
+- 'no': 2802
+  confidence: 0.95
+  final_reason: ‘## 7 Tableau CRM 中的安全’ 为第7章章标题，编号连贯，后接章首目标说明，双方一致。
+  accepted_evidence:
+  - 行2802 带编号7，对应第879行‘第 7 章，Tableau CRM 中的安全’
+  - 后接‘到本章结束时你将了解…’等章首概述
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 2297
+  reason: 复核方反证成立：该行虽以‘##’开头，但其前已出现第6章引言列表（行2280-2285），且该行标题正是列表中的第一个主题‘Lenses – TCRM
+    的调查记者’，说明它是章内小节而非全书最高层级章标题；判断方无有力反驳。
+  need_human_review: false
