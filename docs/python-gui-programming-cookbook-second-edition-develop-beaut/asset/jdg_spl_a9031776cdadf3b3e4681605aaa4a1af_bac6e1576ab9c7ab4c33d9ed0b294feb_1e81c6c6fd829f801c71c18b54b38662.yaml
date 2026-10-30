@@ -1,0 +1,24 @@
+chapter_starts:
+- 'no': 4784
+  confidence: 0.85
+  final_reason: 判断方认定为全书最高层级大章，复核方虽提出“##”在本文件多为小节标记且标题格式不规范的反方证据，但 overturn_probability
+    0.15 且 keep_split=true，上下文紧接章导言与菜谱列表，语义具有统领性，采纳分章。
+  accepted_evidence:
+  - 编号标题“## 7 通过 GUI 将数据存储到 MySQL 数据库”，单独成行且后文为本章导言与菜谱列表
+  - 复核方 keep_split=true，overturn_probability 低
+  rejected_evidence:
+  - 复核方指出“##”多为二级小节标记、格式非“第 X 章”
+  - 复核方认为可能为正文小标题或排版噪声
+  need_human_review: false
+- 'no': 5835
+  confidence: 0.65
+  final_reason: 判断方认定“# 8”为全书最高层级大章起始，复核方提出孤立数字、缺少语义概括、与后文“## Internationalization
+    and Testing”分离的反方证据，overturn_probability 0.3 且 keep_split=true。按宁可漏分不可误分原则保留但置信度下调，后续标题实为章节名。
+  accepted_evidence:
+  - 行号 5835 为“# 8”，单独成行，位于第 7 章末尾之后
+  - 复核方 keep_split=true
+  rejected_evidence:
+  - 标题仅为“# 8”，无文字说明，不符合章标题语义概括性
+  - 紧邻后文第 5837 行才是“## Internationalization and Testing”，更可能为页码/章号残留
+  need_human_review: false
+rejected_lines: []

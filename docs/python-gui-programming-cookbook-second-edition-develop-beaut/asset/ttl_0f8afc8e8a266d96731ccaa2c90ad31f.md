@@ -1,0 +1,1 @@
+Python GUI编程秘籍（第二版）：使用Python编程语言开发美观且强大的GUI

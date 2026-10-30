@@ -1,0 +1,62 @@
+chapter_starts:
+- 'no': 6
+  confidence: 0.95
+  final_reason: 双方一致：制作人员属于前言、序言、致谢等正文之前的内容，按规则统一划分为一章。
+  accepted_evidence:
+  - 判断方：正文之前的内容统一划分为一章
+  - 行6后为制作人员列表，属于书籍前置部分
+  rejected_evidence:
+  - 复核方给出0.15的低否决概率，最终keep_split=true
+  need_human_review: false
+- 'no': 232
+  confidence: 0.92
+  final_reason: 行232后紧跟'在本章中...'章概述，且位于前言/本书涵盖内容之后，是第1章真正的起点；复核方将其误判为章内食谱小标题，但该行之前并无任何第1章正文，反证不成立。
+  accepted_evidence:
+  - 行234：'在本章中，我们将使用 Python 3.6 及以上版本开始创建出色的 GUI'，典型章概述
+  - 后文列出多个该章食谱主题，是章级统领性标题
+  - 判断方：第一章标题，无编号但具有统领性
+  - 行109的本书涵盖内容中也明确指出第1章为'创建 GUI 表单并添加控件'
+  rejected_evidence:
+  - 复核方：误认为它是第1章内的食谱小标题，但行232之前尚无第1章正文
+  - 复核方：以##格式和长度>30字为由，不足以否定其章标题地位
+  need_human_review: false
+- 'no': 1003
+  confidence: 0.93
+  final_reason: 采纳复核方反证：行1001仅为章号'## 2'，真正的章名是行1003'## Layout Management'，且行1005为章概述，因此分章点修正为1003。
+  accepted_evidence:
+  - '复核方：真正的章名在下一行 ## Layout Management'
+  - 行1005：'在本章中，我们将使用 Python 3.6 及以上版本来布局我们的 GUI'
+  - 行1001 '## 2' 无独立语义
+  rejected_evidence:
+  - 判断方原将1001作为分章点，但编号行不宜单独作为章节起点
+  need_human_review: false
+- 'no': 1775
+  confidence: 0.93
+  final_reason: 采纳复核方反证：行1773仅为章号'# 3'，真正的第三章标题是行1775'# 外观与风格自定义'，且行1777为章概述，因此分章点修正为1775。
+  accepted_evidence:
+  - '复核方：真正的第三章标题在行1775 # 外观与风格自定义'
+  - 行1777：'在本章中，我们将使用 Python 3.6 及以上版本自定义我们的 GUI'
+  - 行1773 '# 3' 无独立语义
+  rejected_evidence:
+  - 判断方原将1773作为分章点，但编号行不宜单独作为章节起点
+  need_human_review: false
+- 'no': 2510
+  confidence: 0.93
+  final_reason: 采纳复核方反证：行2508仅为章号'## 4'，真实章名在行2510'## 数据和类'，且行2512为章概述，因此分章点修正为2510。
+  accepted_evidence:
+  - '复核方：真实章名在下一行 ## 数据和类'
+  - 行2512：'在本章中，我们将使用 Python 3.6 及以上版本的数据和 OOP 类'
+  - 行2508 '## 4' 无独立语义
+  rejected_evidence:
+  - 判断方原将2508作为分章点，但编号行不宜单独作为章节起点
+  need_human_review: false
+rejected_lines:
+- 'no': 1001
+  reason: 复核方指出该行仅为章号'## 2'，无章名且不具统领性；真正的章标题是行1003'## Layout Management'，编号行不应单独作为分章点。
+  need_human_review: false
+- 'no': 1773
+  reason: 复核方指出该行仅为章号'# 3'，真正的章标题是行1775'# 外观与风格自定义'，编号行不应单独作为分章点。
+  need_human_review: false
+- 'no': 2508
+  reason: 复核方指出该行仅为章号'## 4'，真正的章标题是行2510'## 数据和类'，编号行不应单独作为分章点。
+  need_human_review: false

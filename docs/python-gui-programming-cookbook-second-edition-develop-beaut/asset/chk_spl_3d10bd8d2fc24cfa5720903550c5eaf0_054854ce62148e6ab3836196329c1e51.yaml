@@ -1,0 +1,39 @@
+reviews:
+- 'no': 6
+  overturn_probability: 0.15
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 制作人员属于前言、序言、致谢、关于作者等正文之前的内容，按规则应统一划分为一章，前后均为制作人员信息列表
+  keep_split: true
+- 'no': 232
+  overturn_probability: 0.95
+  alternative: 正文小标题
+  counter_evidence:
+  - '行内容为 ## 创建 GUI 表单并添加控件，是第1章内的食谱小标题，后接本章概述段落而非新章概述'
+  - '格式为二级标题 ##，长度>30字且为具体操作主题，不符合全书最高层级大章特征'
+  - '上下文紧跟在 ## 前言、## 本书涵盖内容之后，属于第一章内部的配方标题'
+  keep_split: false
+- 'no': 1001
+  overturn_probability: 0.9
+  alternative: 排版断行/编号噪声
+  counter_evidence:
+  - '行内容仅为 ## 2，单独的编号无章名，真正的章名在下一行 ## Layout Management'
+  - 标题末尾无句号但长度极短且无统领性语义，符合排版噪声而非章节标题
+  - 后1~3行才是章名和概述段落，编号行不应单独作为分章点
+  keep_split: false
+- 'no': 1773
+  overturn_probability: 0.92
+  alternative: 正文小标题
+  counter_evidence:
+  - '行内容为 ## 布局管理，是第2章内部的二级标题，后续内容仍为第2章食谱'
+  - '真正的第三章标题在行1775 # 外观与风格自定义，且前后无编号跳跃的章级特征'
+  - 原判断理由称后接章名外观与风格自定义，但实际该行本身即为布局管理小节
+  keep_split: false
+- 'no': 2508
+  overturn_probability: 0.9
+  alternative: 排版断行/编号噪声
+  counter_evidence:
+  - '行内容仅为 ## 4，单独编号无章名，真实章名在下一行 ## 数据和类'
+  - 与1001相同模式，编号行不应作为章节起点
+  - 标题后1~3行才是章概述，编号行属于排版断行
+  keep_split: false
