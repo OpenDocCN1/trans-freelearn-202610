@@ -1,0 +1,49 @@
+chapter_starts:
+- 'no': 3598
+  confidence: 0.95
+  final_reason: '一级部分标题 # 第 10 部分：云，符合部分-章节模式的最高层级标识，后接章节概述性引言，判断方与复核方均支持分章'
+  accepted_evidence:
+  - '标题为 # 第 10 部分：云，为最高层级部分标题'
+  - 后接‘在上一章中，我们深入探讨了社会工程学…现在是时候了解云的工作原理’等概述
+  - 复核方 overturn_probability 0.05 keep_split true
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 3990
+  confidence: 0.95
+  final_reason: '一级部分标题 # 第 11 部分：美国的情况如何？为最高层级部分标题，后接‘在这一最终章节中…’及本章主题概述，判断方与复核方均支持分章'
+  accepted_evidence:
+  - '标题为 # 第 11 部分：美国的情况如何？'
+  - 后接‘在这一最终章节中，我们将进入美国隐私的世界’及‘本章将涵盖以下主题：’
+  - 复核方 overturn_probability 0.05 keep_split true
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 4247
+  confidence: 0.95
+  final_reason: '一级标题 # 附录，文末附录按规则统一划分为一章，格式与语义均符合'
+  accepted_evidence:
+  - '标题为 # 附录，单独成行'
+  - 后接附录内容
+  - 复核方 overturn_probability 0.02 keep_split true
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 4515
+  confidence: 0.95
+  final_reason: '一级标题 # 索引，文末索引应单独划分为一章，双方一致'
+  accepted_evidence:
+  - '标题为 # 索引，单独成行'
+  - 后直接进入索引条目
+  - 复核方 overturn_probability 0.02 keep_split true
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 3392
+  reason: '复核方指出标题‘社会工程学、密码指导和政策’包含三主题，但后续 3394-3401 概述与目录仅涉及社会工程学，语义不匹配；后续子节为 ###
+    起点、OSINT 等节级结构，属正文小标题而非最高层级大章'
+  need_human_review: false
+- 'no': 3600
+  reason: '标题 ## 云 与前一行 # 第 10 部分：云 语义重复，仅间隔空白；标题后先出现引用块而非标准概述，后续为 ### 云是如何出现的？等子节，属节级标题/排版噪声'
+  need_human_review: false
+- 'no': 3992
+  reason: '标题 ## 美国的情况如何？ 与前一行 # 第 11 部分：美国的情况如何？ 完全重复；正文 3994 指向部分标题，后续结构为 ## 美国隐私现状
+    等节级标题，属排版重复的节标题'
+  need_human_review: false

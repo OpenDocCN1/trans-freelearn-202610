@@ -1,0 +1,83 @@
+reviews:
+- 'no': 6
+  overturn_probability: 0.85
+  alternative: 致谢/前言正文
+  counter_evidence:
+  - 行尾带句号“。”，不符合“标题末尾绝无句号” 的格式特征
+  - 内容为致谢 dedication 段落而非独立标题行，后接签名“– Walter Rocchi”，属于正文排版噪声
+  - 前言、致谢等前置内容应统一划分为一章，但章起始不应以一句带标点的致谢句子作为标题
+  keep_split: false
+- 'no': 111
+  overturn_probability: 0.08
+  alternative: 部分标题
+  counter_evidence:
+  - 标题为“# 第 1 部分：从基础开始”，为全书最高层级部分标题，单独成行
+  - 后 1~3 行为部分概述段落，随后出现章节列表，符合上下文特征
+  - 书存在部分-章节模式，部分标题应划分新章
+  keep_split: true
+- 'no': 119
+  overturn_probability: 0.25
+  alternative: 章节标题
+  counter_evidence:
+  - 标题缺少显式“第 1 章”编号，仅靠语义匹配部分列表中的章节名判断
+  - 前文 117 行已在部分介绍中列出“第 1 章，ISO27001 – 定义与安全概念”，存在重复提示
+  - 标题后紧跟“我撰写本书的目的是...”等章节导语，语义上可作为章节起始
+  keep_split: true
+- 'no': 477
+  overturn_probability: 0.05
+  alternative: 部分标题
+  counter_evidence:
+  - 标题为“# 第 2 部分：深入荒野”，最高层级部分标题，单独成行
+  - 后接部分概述及章节列表，符合部分标题上下文特征
+  keep_split: true
+- 'no': 488
+  overturn_probability: 0.18
+  alternative: 章节标题
+  counter_evidence:
+  - 标题“## 强制性要求”缺少显式“第 2 章”编号，依赖部分列表 483 行的映射
+  - 标题单独成行且后接章节导语，语义上统领后续内容
+  keep_split: true
+- 'no': 816
+  overturn_probability: 0.35
+  alternative: 章节标题
+  counter_evidence:
+  - 标题为英文“Data Protection”，与全书中文语境不一致，可能为排版噪声或二级小标题
+  - 缺少“第 3 章”编号，虽单独成行但语言不一致增加误判风险
+  - 前文 815 行为“## 摘要”，后接章节导语，整体仍符合章节起始语义
+  keep_split: true
+- 'no': 1165
+  overturn_probability: 0.92
+  alternative: 章节标题但行号错误
+  counter_evidence:
+  - 原判断指向行号 1165，但该行号在文本中并非“安全规划与风险管理”标题，实际标题位于 1465 行
+  - 行号错位导致证据链断裂，无法验证上下文支持
+  - 若按正确行号 1465，标题“## 安全规划与风险管理”虽无显式编号但语义匹配第 5 章
+  keep_split: false
+- 'no': 1715
+  overturn_probability: 0.06
+  alternative: 部分标题
+  counter_evidence:
+  - 标题为“# 第 3 部分：摆脱混乱”，最高层级部分标题，单独成行
+  - 后接部分概述及章节列表，符合部分划分规则
+  keep_split: true
+- 'no': 1727
+  overturn_probability: 0.2
+  alternative: 章节标题
+  counter_evidence:
+  - 标题“## 定义 ISO 27001 强制性要求”缺少显式“第 6 章”编号，依赖 1720 行列表映射
+  - 标题单独成行且后接章节导语，语义上可统领后续内容
+  keep_split: true
+- 'no': 2182
+  overturn_probability: 0.22
+  alternative: 章节标题
+  counter_evidence:
+  - 标题“## 风险管理、控制措施和政策”与 1721 行列表“第 7 章，风险管理、控制和政策”语义基本一致但表述略有差异
+  - 缺少显式编号，存在正文小标题误判风险
+  keep_split: true
+- 'no': 2787
+  overturn_probability: 0.15
+  alternative: 章节标题
+  counter_evidence:
+  - 标题被截断显示为“准备政策和程序以避免内部风险”，与 1722 行列表“第 8 章，准备政策和程序以避免内部风险”语义匹配
+  - 单独成行且后接章节导语，符合章节起始特征
+  keep_split: true

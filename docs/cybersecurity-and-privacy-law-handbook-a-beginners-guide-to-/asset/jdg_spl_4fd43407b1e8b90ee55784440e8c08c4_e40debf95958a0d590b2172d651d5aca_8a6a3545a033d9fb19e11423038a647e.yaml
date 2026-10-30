@@ -1,0 +1,95 @@
+chapter_starts:
+- 'no': 111
+  confidence: 0.95
+  final_reason: 双方一致，最高层级部分标题，单独成行，后接部分概述与章节列表，符合部分-章节模式
+  accepted_evidence:
+  - '标题为 # 第 1 部分：从基础开始，单独成行'
+  - 后 1~3 行为部分概述，随后出现章节列表
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 119
+  confidence: 0.9
+  final_reason: 标题单独成行，语义统领后续内容，与第 1 部分列表中第 1 章对应
+  accepted_evidence:
+  - '标题 ## ISO27001 – 定义与安全概念 单独成行'
+  - 后接“我撰写本书的目的是...”等章节导语
+  rejected_evidence:
+  - 缺少显式“第 1 章”编号，依赖部分列表映射
+  need_human_review: false
+- 'no': 477
+  confidence: 0.95
+  final_reason: 最高层级部分标题，单独成行，后接概述与章节列表
+  accepted_evidence:
+  - '标题为 # 第 2 部分：深入荒野，单独成行'
+  - 后接部分概述及章节列表
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 488
+  confidence: 0.9
+  final_reason: 章节标题单独成行，后接章节导语，语义与第 2 部分列表中第 2 章映射一致
+  accepted_evidence:
+  - '标题 ## 强制性要求 单独成行'
+  - 后接章节导语
+  rejected_evidence:
+  - 缺少显式“第 2 章”编号
+  need_human_review: false
+- 'no': 816
+  confidence: 0.7
+  final_reason: 标题单独成行，语义对应第 3 章 Data Protection，虽为英文但在上下文中为章节起始
+  accepted_evidence:
+  - '标题 ## Data Protection 单独成行'
+  - 后接章节导语
+  rejected_evidence:
+  - 语言与全书中文语境不一致，缺少显式编号
+  need_human_review: false
+- 'no': 1465
+  confidence: 0.9
+  final_reason: 复核方指出原行号错误，实际第 5 章标题位于本行，标题单独成行且语义统领后续内容
+  accepted_evidence:
+  - '行 1465 为 ## 安全规划与风险管理，单独成行'
+  - 后接章节导语，语义匹配第 5 章
+  rejected_evidence:
+  - 原判断行号 1165 与标题不符，证据链断裂
+  need_human_review: false
+- 'no': 1715
+  confidence: 0.95
+  final_reason: 最高层级部分标题，单独成行，后接概述与章节列表
+  accepted_evidence:
+  - '标题为 # 第 3 部分：摆脱混乱，单独成行'
+  - 后接部分概述及章节列表
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 1727
+  confidence: 0.9
+  final_reason: 章节标题单独成行，语义与第 3 部分列表中第 6 章映射一致
+  accepted_evidence:
+  - '标题 ## 定义 ISO 27001 强制性要求 单独成行'
+  - 后接章节导语
+  rejected_evidence:
+  - 缺少显式“第 6 章”编号
+  need_human_review: false
+- 'no': 2182
+  confidence: 0.85
+  final_reason: 章节标题单独成行，语义与第 7 章列表基本一致，可作为章节起始
+  accepted_evidence:
+  - '标题 ## 风险管理、控制措施和政策 单独成行'
+  - 后接章节导语
+  rejected_evidence:
+  - 缺少显式编号，表述与列表略有差异
+  need_human_review: false
+- 'no': 2787
+  confidence: 0.85
+  final_reason: 标题单独成行，语义与第 8 章列表匹配，后接章节导语
+  accepted_evidence:
+  - '标题 ## 准备政策和程序以避免内部风险 单独成行'
+  - 后接章节导语
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 6
+  reason: 复核方指出其为致谢 dedication 段落而非独立标题行，行尾带句号不符合标题格式特征，后接签名属于正文排版噪声，不应作为前置内容章节起始
+  need_human_review: false
+- 'no': 1165
+  reason: 原判断将行号 1165 认定为第 5 章安全规划与风险管理，但该行号在文本中并非该标题，实际标题位于 1465 行，行号错位导致证据链断裂，无法确认其作为第
+    5 章的依据
+  need_human_review: true
