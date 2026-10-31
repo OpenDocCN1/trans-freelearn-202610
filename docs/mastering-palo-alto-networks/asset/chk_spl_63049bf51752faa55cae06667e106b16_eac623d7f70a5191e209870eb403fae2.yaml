@@ -1,0 +1,31 @@
+reviews:
+- 'no': 0
+  overturn_probability: 0.75
+  alternative: 书名/封面标题
+  counter_evidence:
+  - 标题后无概述段落，直接为空白后接 '# 目录' 等前置内容
+  - 书名语义为全书名称而非统领后续内容的章节标题，书名通常不作为章节划分依据
+  - 前置内容统一章节更合理从目录开始，书名属于封面排版噪声
+  keep_split: false
+- 'no': 28
+  overturn_probability: 0.08
+  alternative: 章节标题
+  counter_evidence:
+  - 标题后第一行为空白，概述段落延迟到第3行，上下文衔接略松
+  - 标题格式为 '# 1 了解核心技术'，编号写法与后续 '# 第 2 章' 不完全统一
+  keep_split: true
+- 'no': 277
+  overturn_probability: 0.05
+  alternative: 章节标题
+  counter_evidence:
+  - 标题后紧跟空白行，概述段落在第2行后才出现，上下文特征略弱
+  - 标题末尾无句号且单独成行，符合格式特征
+  keep_split: true
+- 'no': 1657
+  overturn_probability: 0.85
+  alternative: 排版重复标题/格式噪声
+  counter_evidence:
+  - '标题后1行内即出现另一个同义 # 标题 ''# 构建强大的策略''，不符合标题后1~3行为概述段落的上下文特征'
+  - 标题后无概述段落，直接被另一个标题打断，语义上被后续标题覆盖
+  - 与后续实际内容标题语义重复，疑似PDF转换产生的重复页眉/重复标题噪声
+  keep_split: false
