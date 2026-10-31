@@ -1,0 +1,203 @@
+
+Furthermore, `integer!`, `float!`, and `percent!` are all `number!` types. Types such as `scalar!` or `number!` are called `typeset!` values, they are sets of types. However, `any-type!` is the `typeset!` value that contains all other types.
+
+`none!` is the type of the `none` value, which is like `null` or `nil` in other languages, meaning that there is no value. For example, when you try to get the fifth item from a series with three items, the result is `none`:
+
+```
+pick [1 2 3] 5   ;== none
+```
+
+From the diagram, you can see that blocks, as well as strings, are series. The `series!` typeset is used to manage lists of all kinds of types—strings, files, email accounts, data in network ports, values returned from database systems, graphic screen layouts, and so on. Red consistently applies the same concepts and methods to interact with them, as we shall see in [Chapter 5](#35fe4037-dd49-406f-b90b-217052b1d33f.xhtml), *Working with Series and Blocks*, and beyond. So you only have to learn a single set of skills to be proficient in Red!
+
+# Evaluating expressions and blocks
+
+Before getting into real programming, we need to see how we can work with Boolean values and numbers. Red is different from other programming languages, in that it does not impose the usual mathematical evaluation order, so we will take some time to investigate that. Furthermore, we will learn how `do` and `reduce` are used to evaluate.
+
+## Some basic operations
+
+What can we do with logical values and strings, and how do we compare values and variables? Let's look at this in the following sections.
+
+### Working with Boolean values
+
+You can work with Boolean values using the usual `and`, `or`, `xor`, and `not` operations.
+
+Often you need to use parentheses around the conditions to make it clear for the compiler, for example, `if (4 < 5) and (6 < 7) [print "ok"] ;== ok`.
+
+However, `complement` is like `not` for Boolean, but it gives a bitwise opposite value for other types.
+
+⇒ Now answer question 6 from the *Questions* section.
+
+How do you compare two values? For example, `n: 13` and `m: 42`:
+
+* Use `=` (or `equal?` as an infix operator) to see if the values are the same (just like in mathematics!):
+
+```
+        ;-- see Chapter03/evaluation.red:
+        n = m            ;== false
+        13 = 13.0        ;== true
+        equal? 13 13.0   ;== true
+        "red" = "Red"    ;== true
+```
+
+* Use `<>` (or `not-equal?`) to see if the values are different:
+
+```
+        n <> m       ;== true
+```
+
+* Use `==` (or `strict-equal?`) to see if the values are the same *and* have the same datatype. For strings, they must also have the same case, as shown in the last example:
+
+```
+        13 == 13           ;== true
+        13 == 13.0         ;== false
+        "red" == "Red"     ;== false 
+```
+
+* Use `=?` (or `same?`) to see if the values have the same identity, that is, they point to the same memory location:
+
+```
+        13 =? 13     ;== true
+        a: 14        ;== 14
+        b: a         ;== 14
+        a = b        ;== true
+        a == b       ;== true
+        a =? b       ;== true
+```
+
+Besides these, there are the usual `<`, `<=`, `>`, and `>=` operators and corresponding functions.
+
+⇒ Now answer questions 7-9 from the *Questions* section.
+
+Here are two words you'll see very commonly used in Red to evaluate a block with `logic!` values:
+
+* `all`, which is only `true` when all values in a block are `true`, for example, using `n` and `m` as previously:
+
+```
+      all [n = 13  m = 42]  ;== true
+      all [n = 12  m = 42]  ;== none
+```
+
+* `any`, which is `true` when at least one value in a block is true, for example, `any [n = 12 m = 42] ;== true`
+
+Evaluation of the values in the block proceeds from left to right, and stops at the first `false` (for `all`) or the first `true` (for `any`).
+
+### Working with numbers
+
+The operations on numbers (`+`, `-`, `*`, `/`) can take two forms:
+
+* The *infix* notation: `n * m`
+
+* A more *functional* word notation, first the function, then the arguments: `multiply n m`
+
+You can calculate the remainder of a division with `%` or `//` (`remainder` or `modulo`). Common logarithmic and trigonometric functions are available, together with functions to calculate the maximum and minimum of two numbers (`max` and `min`). Logical functions such as `even?`, `positive?`, or `zero?` test common conditions in calculations, and a versatile `round` function is available:
+
+```
+round 2.35        ;== 2.0
+round 2.5         ;== 3.0
+round/to pi 0.001 ;== 3.142 ; rounds to 0.001
+```
+
+Here we see a first example, `/to`, of a so-called *refinement*. It is a kind of flag that is appended to the action or function to modify its behavior. You can look them up in the console with the `?` command.
+
+Integers can also be represented as a hexadecimal number with `h` as a suffix. For example, `32` and `20h` are the same number. Convert a decimal integer to hexadecimal with `to-hex`, for example:
+
+```
+to-hex 32             ;== #00000020
+to-integer #00000020  ;== 32
+```
+
+If a number is too big for the 32-bit integer range, it is automatically converted to `float!`.
+
+⇒ Now answer question 10 from the *Questions* section.
+
+# Making random objects
+
+The `random` function can work on any value of a simple type to return a random value of that type, for example:
+
+```
+random 100        ;== 71
+random 2.71       ;== 2.027808184808962
+random "house"    ;== "hsuoe"
+random 2018-02-13 ;== 23-Mar-1968
+```
+
+This command also has a few refinements:
+
+* To pick a random value from a series, use `/only`:
+
+```
+      random/only ["one" "two" "three" "four"]   ;== "three"
+```
+
+* `/seed` restarts the random generator to obtain new random values between runs of the same code; the current time is a good seed. The following code uses this and then prints nine random numbers in a loop:
+
+```
+      random/seed now/time 
+      loop 9 [
+          r: random 10 
+          prin r prin space
+      ]                   ;1st run: == 4 5 3 5 7 9 3 10 10
+                          ;2nd run: == 10 8 10 2 3 1 4 2 1
+```
+
+# Order of evaluation
+
+You will know from other programming languages that a strict, so-called *precedence order* is followed to determine the order that operations are evaluated in expressions. Sometimes, you need to consult the precedence table to be sure, or use parentheses to indicate the evaluation order.
+
+In Red, you can and should also use parentheses for the same reason, but otherwise expressions are *evaluated from left to right*, as shown here:
+
+```
+1 + 2 * 3   ;== 9     ; other languages would return 7!
+1 + (2 * 3) ;== 7     ; use ( ) to get that result in Red
+```
+
+Another way to enforce the common evaluation order is to put the expression inside a block and use the `math` function:
+
+```
+math [1 + 2 * 3]    ;== 7
+```
+
+To get a better feeling for this, let's examine a more complicated expression:
+
+```
+print 10 + sine 30 + 60     ;== 11.0
+```
+
+This is evaluated as follows:
+
+```
+print (10 + sine 30 + 60)     (1.)
+print (10 + (sine 30 + 60))   (2.)
+print (10 + (sine (30 + 60))) (3.)
+print (10 + (sine (90)))      (4.)
+```
+
+Let's understand each step:
+
+1. `print` accepts one argument
+
+2. The arguments for the left `+` are found to the left and right side of it:
+
+   * The first argument for `+` is `10`
+
+   * The second argument is a function called `sine`
+
+3. `sine` takes one argument, which is another addition of two numbers, so the input to `sine` is `90`—`sine 90` gives `1.0`
+
+4. So the result is `11.0`
+
+You could also view it like this:
+
+```
+print
+   10
+   +
+   sine
+      30
+      +
+      60
+```
+
+So, from left to right, look at the function and determine how many arguments it needs. The argument(s) themselves can contain functions that must be evaluated first using the same rule, and going from right to left. When several things have to be evaluated one after another, Red always *returns the last value*.
+
+⇒ Now answer question 11 from the *Questions* section.

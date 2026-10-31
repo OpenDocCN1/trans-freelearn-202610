@@ -1,0 +1,38 @@
+reviews:
+- 'no': 22
+  overturn_probability: 0.78
+  alternative: 正文小标题
+  counter_evidence:
+  - '前文已存在 # 为什么订阅？、# PacktPub.com 等出版推广块，# 前言 处于同一前置信息块内，后续紧跟 # 贡献者、# 作者简介、# 审阅者简介
+    等同级 H1，显示为前置章节内的子标题而非新章起点'
+  - 前言类内容按规则应与致谢、关于作者等统一划分为一章，章节起点应更靠前，# 前言 只是该统一前置块内的一个小标题
+  - '书中 # 前言 文本在第 325 行再次出现且后接本书介绍性段落，表明提取存在重复/排版噪声，原判断易将前置子标题误报为章节'
+  keep_split: false
+- 'no': 446
+  overturn_probability: 0.12
+  alternative: 正文小标题
+  counter_evidence:
+  - '前一 H1 # 评论 仍属出版信息尾部，标题层级跳变可能引发误判'
+  - 标题无编号，需依赖语义判断，存在与前置 H1 混淆的风险
+  keep_split: true
+- 'no': 617
+  overturn_probability: 0.08
+  alternative: 正文小标题
+  counter_evidence:
+  - 标题后概述为英文 Now we are going to set the stage…，语言切换可能被视为排版噪声
+  - 前文为上一章摘要/问题，上下文边界清晰但标题格式与前置 H1 相同，易产生误报
+  keep_split: true
+- 'no': 1003
+  overturn_probability: 0.1
+  alternative: 正文小标题
+  counter_evidence:
+  - '书中大量出现 # 使用块和括号、# 注释 等同级 H1，H1 密度高易将章节标题误判为正文小标题'
+  - 标题后虽有章节导语，但前后均有大量重复的模板段落，存在排版重复噪声
+  keep_split: true
+- 'no': 2777
+  overturn_probability: 0.14
+  alternative: 正文小标题
+  counter_evidence:
+  - 标题后概述为中文‘在本章中，你将学习…’，与前几章概述句式高度相似，依赖语义的判断存在误报倾向
+  - 前文为上一章问题列表，边界虽明显但 H1 连续出现，易将章节标题与前置小标题混淆
+  keep_split: true

@@ -1,0 +1,25 @@
+chapter_starts:
+- 'no': 3505
+  confidence: 0.95
+  final_reason: 判断方与复核方均支持分章，标题单独成行、长度<30且无末尾标点，前为# 问题章节末尾，后1~3行为本章概述并列出主题，随后进入子节，符合最高层级章节起始特征
+  accepted_evidence:
+  - 标题单独成行且无末尾标点，长度<30
+  - 前文为# 问题章节末尾，后1~3行为本章概述并列出主题列表
+  - 复核方 keep_split true，overturn_probability 0.15
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 5946
+  confidence: 0.92
+  final_reason: 标题单独成行、格式符合，前为问题章节末尾，后接对Red处理文件和文件夹的概述性段落，复核方支持分章
+  accepted_evidence:
+  - 标题单独成行长度<30无标点
+  - 前为# 问题章节，后接对Red处理文件和文件夹的概述
+  - 复核方 keep_split true，overturn_probability 0.2
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 4421
+  reason: 复核方指出同一标题'# 使用函数和对象'在4553行及之后多次重复出现，属复制粘贴噪声；标题后概述后5行内即出现'恭喜！你现在能够使用 Red
+    的基本数据结构...'等上章摘要内容，与新章起始应为概述段落的上下文特征不符，文件4421~4737区间存在大量重复摘要与问题块，overturn_probability
+    0.85，优先采纳复核方反驳，宁可漏分不可误分故不分章
+  need_human_review: false

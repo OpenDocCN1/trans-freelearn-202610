@@ -1,0 +1,46 @@
+chapter_starts:
+- 'no': 446
+  confidence: 0.93
+  final_reason: 判断方与复核方均认可为新章起点，标题单独成行，后接章节概述‘在本章中，我们将了解 Red 的主要特征…’，语义统领性强，上下文为上一章结束
+  accepted_evidence:
+  - 标题单独成行，后1~3行出现‘在本章中，我们将了解 Red 的主要特征，更具体地说，是 Red 与其他编程语言相比的突出之处’的章节概述
+  - 后续出现子节，语义统领性强
+  rejected_evidence:
+  - '前一 H1 # 评论 仍属出版信息尾部，标题层级跳变可能引发误判'
+  - 标题无编号，需依赖语义判断，存在与前置 H1 混淆的风险
+  need_human_review: false
+- 'no': 617
+  confidence: 0.94
+  final_reason: 标题单独成行，后接英文概述段落，前文为上一章总结/问题，符合新章起始上下文，复核方认可
+  accepted_evidence:
+  - 标题单独成行，后接‘Now we are going to set the stage for our future R…’的概述段落
+  - 前文为上一章摘要/问题，上下文边界清晰
+  rejected_evidence:
+  - 标题后概述为英文 Now we are going to set the stage…，语言切换可能被视为排版噪声
+  - 标题格式与前置 H1 相同，易产生误报
+  need_human_review: false
+- 'no': 1003
+  confidence: 0.93
+  final_reason: 标题单独成行，后接中文章节导语‘在本章中，我们将了解 Red 程序的基本构建块…’，语义统领性强，复核方认可
+  accepted_evidence:
+  - 标题单独成行，后接‘在本章中，我们将了解 Red 程序的基本构建块——单词和值。我们讨论 Red 中可用的不同类型…’的章节导语
+  - 标题无标点且长度<30
+  rejected_evidence:
+  - '书中大量出现 # 使用块和括号、# 注释 等同级 H1，H1 密度高易将章节标题误判为正文小标题'
+  - 前后均有大量重复的模板段落，存在排版重复噪声
+  need_human_review: false
+- 'no': 2777
+  confidence: 0.9
+  final_reason: 标题单独成行，后接章节概述，前文为上一章问题列表，具备统领性，复核方认可
+  accepted_evidence:
+  - 标题单独成行，后接‘在本章中，你将学习如何通过添加条件、选择和循环结构来创建更复杂的代码’的概述
+  - 前文为上一章摘要/问题，边界明显
+  rejected_evidence:
+  - 标题后概述为中文‘在本章中，你将学习…’，与前几章概述句式高度相似，依赖语义的判断存在误报倾向
+  - 前文为上一章问题列表，边界虽明显但 H1 连续出现，易将章节标题与前置小标题混淆
+  need_human_review: false
+rejected_lines:
+- 'no': 22
+  reason: '复核方指出该标题处于出版推广与前置信息块内，后续紧跟 # 贡献者、# 作者简介、# 审阅者简介 等同级 H1，实为前置块内子标题而非新章起点；前言类内容应与致谢、关于作者等统一划分为一章，章节起点应更靠前；且第325行重复出现
+    # 前言 存在排版噪声，判断方证据不足'
+  need_human_review: false
