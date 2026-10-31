@@ -1,0 +1,83 @@
+chapter_starts:
+- 'no': 3080
+  confidence: 0.95
+  final_reason: 编号为 6 的最高层级章节标题，单独成行，后接本章概述，且前文有章节过渡
+  accepted_evidence:
+  - 标题后 1~3 行为本章概述段落，符合章节上下文特征
+  - 前文第 5 章结尾有'在下一章中，我们将探讨在集成更改时出现冲突的处理方法'的过渡
+  - 标题单独成行、长度小于 30 字、末尾无句号，语义统领后续合并冲突内容
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 3464
+  confidence: 0.97
+  final_reason: 第 3 部分标题，书为部分-章节模式，部分标题应分章
+  accepted_evidence:
+  - 标题为 '# 第 3 部分：掌握 Git 命令和工具'，书存在部分-章节模式，部分标题应分章
+  - 后文为'在本部分中，我们介绍 Git 中的关键工具和命令...'的概述段落
+  - 后续章节 7、8 等均隶属于本部分，层级关系清晰
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 3472
+  confidence: 0.95
+  final_reason: 编号为 7 的章节标题，单独成行，后接第 7 章介绍，编号与全书章节序列一致
+  accepted_evidence:
+  - 标题为 '## 7 Git 历史记录和回滚提交'，后文第 3474 行明确写'欢迎来到 *第 7 章*'
+  - '标题单独成行，后接章节介绍段落，后续出现 ### 级子节'
+  - 编号特征与全书最高层级章节一致
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 4300
+  confidence: 0.97
+  final_reason: 第 4 部分标题，部分-章节模式下部分标题应分章
+  accepted_evidence:
+  - 标题为 '# 第 4 部分：高级 GitHub 功能'，为部分标题
+  - 后文为本部分概述，后续章节 9、10 等隶属此部分
+  - 部分-章节模式下部分标题应分章
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 4312
+  confidence: 0.95
+  final_reason: 编号为 9 的章节标题，单独成行，后接章节介绍，语义统领后续 Actions 内容
+  accepted_evidence:
+  - '标题为 ''## 9 利用 GitHub Actions 进行自动化''，后文第 4314 行为 ### 级同名子节'
+  - 后文为章节介绍，语义统领后续 Actions 内容
+  - 编号与全书章节序列连贯
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 5325
+  confidence: 0.97
+  final_reason: 第 5 部分标题，部分-章节模式下应分章
+  accepted_evidence:
+  - 标题为 '# 第 5 部分：个性化你的 GitHub 体验'，为部分标题
+  - 后文为本部分概述，后续章节 12、13 隶属此部分
+  - 部分-章节模式下应分章
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 5332
+  confidence: 0.95
+  final_reason: 编号为 12 的章节标题，单独成行，后接第 12 章介绍，编号连贯
+  accepted_evidence:
+  - '标题为 ''## 12 打造你的 GitHub 个人资料''，后文第 5334 行为 ### 级同名子节'
+  - 后文为章节介绍，语义统领个人资料相关内容
+  - 编号与章节序列连贯
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 5651
+  confidence: 0.95
+  final_reason: 编号为 13 的章节标题，单独成行，后续为 Copilot 系统性介绍，符合章节统领性
+  accepted_evidence:
+  - 标题为 '## 13 GitHub Copilot 助力代码创建'，后文为章节介绍段落
+  - 标题单独成行、长度合适、末尾无句号
+  - 后续内容为 Copilot 系统性介绍，符合章节统领性
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 3915
+  reason: 复核方指出编号标题 '## 8 有用的工具和 Git 命令' 后紧跟第 3917 行完全相同的无编号标题，构成即时重复，章节介绍出现在重复标题之后，编号标题疑似排版噪声/目录残留，不应作为独立章节起点
+  need_human_review: false
+- 'no': 4627
+  reason: 复核方指出编号标题后紧跟第 4628 行完全相同的无编号标题 '## 增强 GitHub 安全措施'，章节介绍在重复标题之后，编号标题与正文标题即时重复，疑似格式残留而非独立章节起点
+  need_human_review: false
+- 'no': 4991
+  reason: 复核方指出编号标题后紧跟第 4993 行完全相同的无编号标题 '## 与开源社区互动'，章节介绍出现在重复标题之后，编号标题更像是目录或格式噪声，不符合干净章节特征
+  need_human_review: false

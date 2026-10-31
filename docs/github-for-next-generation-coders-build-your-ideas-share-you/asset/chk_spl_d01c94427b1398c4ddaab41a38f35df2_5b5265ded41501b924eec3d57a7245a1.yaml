@@ -1,0 +1,89 @@
+reviews:
+- 'no': 3080
+  overturn_probability: 0.15
+  alternative: 正文小标题
+  counter_evidence:
+  - 标题后 1~3 行为本章概述段落，符合章节上下文特征
+  - 前文第 5 章结尾有'在下一章中，我们将探讨在集成更改时出现冲突的处理方法'的过渡
+  - 标题单独成行、长度小于 30 字、末尾无句号，语义统领后续合并冲突内容
+  keep_split: true
+- 'no': 3464
+  overturn_probability: 0.05
+  alternative: 正文小标题
+  counter_evidence:
+  - 标题为 '# 第 3 部分：掌握 Git 命令和工具'，书存在部分-章节模式，部分标题应分章
+  - 后文为'在本部分中，我们介绍 Git 中的关键工具和命令...'的概述段落
+  - 后续章节 7、8 等均隶属于本部分，层级关系清晰
+  keep_split: true
+- 'no': 3472
+  overturn_probability: 0.1
+  alternative: 正文小标题
+  counter_evidence:
+  - 标题为 '## 7 Git 历史记录和回滚提交'，后文第 3474 行明确写'欢迎来到 *第 7 章*'
+  - '标题单独成行，后接章节介绍段落，后续出现 ### 级子节'
+  - 编号特征与全书最高层级章节一致
+  keep_split: true
+- 'no': 3915
+  overturn_probability: 0.8
+  alternative: 排版重复/目录噪声
+  counter_evidence:
+  - 第 3917 行紧接着出现完全相同的无编号标题 '## 有用的工具和 Git 命令'，构成即时重复
+  - 章节介绍'欢迎来到第 8 章，我们将深入 Git 和 GitHub 的世界...'出现在重复标题之后，真正的章节锚点更可能是无编号的重复标题
+  - 编号标题与正文标题重复，符合排版噪声/目录残留特征，而非独立章节标题
+  keep_split: false
+- 'no': 4300
+  overturn_probability: 0.05
+  alternative: 正文小标题
+  counter_evidence:
+  - 标题为 '# 第 4 部分：高级 GitHub 功能'，为部分标题
+  - 后文为本部分概述，后续章节 9、10 等隶属此部分
+  - 部分-章节模式下部分标题应分章
+  keep_split: true
+- 'no': 4312
+  overturn_probability: 0.12
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题为 ''## 9 利用 GitHub Actions 进行自动化''，后文第 4314 行为 ### 级同名子节'
+  - 后文为章节介绍，语义统领后续 Actions 内容
+  - 编号与全书章节序列连贯
+  keep_split: true
+- 'no': 4627
+  overturn_probability: 0.78
+  alternative: 排版重复/目录噪声
+  counter_evidence:
+  - 第 4628 行紧接着出现完全相同的无编号标题 '## 增强 GitHub 安全措施'
+  - 章节介绍'在本激动人心的章节中，我们将深入探讨...'出现在重复标题之后
+  - 编号标题与正文标题即时重复，疑似格式残留而非独立章节起点
+  keep_split: false
+- 'no': 4991
+  overturn_probability: 0.75
+  alternative: 排版重复/目录噪声
+  counter_evidence:
+  - 第 4993 行紧接着出现完全相同的无编号标题 '## 与开源社区互动'
+  - 章节介绍出现在重复标题之后，编号标题更像是目录或格式噪声
+  - 标题即时重复不符合'标题单独成行且后接概述'的干净章节特征
+  keep_split: false
+- 'no': 5325
+  overturn_probability: 0.05
+  alternative: 正文小标题
+  counter_evidence:
+  - 标题为 '# 第 5 部分：个性化你的 GitHub 体验'，为部分标题
+  - 后文为本部分概述，后续章节 12、13 隶属此部分
+  - 部分-章节模式下应分章
+  keep_split: true
+- 'no': 5332
+  overturn_probability: 0.1
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题为 ''## 12 打造你的 GitHub 个人资料''，后文第 5334 行为 ### 级同名子节'
+  - 后文为章节介绍，语义统领个人资料相关内容
+  - 编号与章节序列连贯
+  keep_split: true
+- 'no': 5651
+  overturn_probability: 0.12
+  alternative: 正文小标题
+  counter_evidence:
+  - 标题为 '## 13 GitHub Copilot 助力代码创建'，后文为章节介绍段落
+  - 标题单独成行、长度合适、末尾无句号
+  - 后续内容为 Copilot 系统性介绍，符合章节统领性
+  keep_split: true
