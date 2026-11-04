@@ -1,0 +1,45 @@
+reviews:
+- 'no': 3052
+  overturn_probability: 0.08
+  alternative: 正文小标题
+  counter_evidence:
+  - 标题长度偏长且为中英混排，接近二级标题的特征
+  - 前后章节编号连续性依赖于后续内容，单独看缺乏明确的总结收尾上下文
+  keep_split: true
+- 'no': 3513
+  overturn_probability: 0.88
+  alternative: 排版断行
+  counter_evidence:
+  - '标题后1行即出现同名无编号标题 ## Effective Defense Tactics and Data Protection，说明该行是重复标题/格式残留而非独立章节起始'
+  - 标题后1~3行并非概述段落而是另一级标题，不符合章节标题上下文特征：标题后通常是概述段落且随后出现子节
+  - 标题长度明显超过30字，且后接重复标题，符合误报的排版噪声特征
+  keep_split: false
+- 'no': 4423
+  overturn_probability: 0.9
+  alternative: 排版断行
+  counter_evidence:
+  - '标题后1行即出现同名无编号标题 ## AI Applications in Cyber Threat Analytics，构成重复标题'
+  - 标题后无概述段落，直接进入重复标题，不满足章节标题后1~3行为概述段落的上下文特征
+  - 编号标题与无编号标题连续出现，典型为导出/排版产生的重复噪声，而非最高层级大章
+  keep_split: false
+- 'no': 4746
+  overturn_probability: 0.12
+  alternative: 正文小标题
+  counter_evidence:
+  - 标题包含英文且长度较长，易被误判为二级小标题
+  - 章节编号从10跳至后续11，编号连续性依赖于整体结构，单独看缺乏部分-章节模式的明确标识
+  keep_split: true
+- 'no': 5493
+  overturn_probability: 0.2
+  alternative: 正文小标题
+  counter_evidence:
+  - 部分标题使用中文而后续章节使用英文，格式不一致可能为排版噪声
+  - 标题后紧跟描述性段落而非标准的学习目标列表，语义统领性较弱
+  keep_split: true
+- 'no': 5505
+  overturn_probability: 0.1
+  alternative: 正文小标题
+  counter_evidence:
+  - 标题包含冒号，常见于小节命名
+  - 标题长度较长，接近正文小标题的表述习惯
+  keep_split: true

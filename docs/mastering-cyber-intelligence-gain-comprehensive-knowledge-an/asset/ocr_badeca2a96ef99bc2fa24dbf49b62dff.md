@@ -1,0 +1,12 @@
+The statement is simplistically explained in the following points:
+
++   - **Risk:** We need to identify the possible consequences of acquiring unsecured third-party software. Those consequences can include *business disruption*, *identity theft* or *loss of private data*, *financial loss*, *reputation damage*, or even *loss of life*. For example, a bank that uses Apache and **Oracle SQL** as web and database servers needs to know that any security vulnerability in one of the applications can be catastrophic for the business.
++   - **Threat:** We need to understand the *intent*, *capability*, and *opportunity* that threat actors present. For example, *cybercriminals* might come with *financial motivation* or *state-sponsored actors* with *espionage incentives*. We perform an effective adversary profiling (actors and their motivation).
++   - **Vulnerability:** We need to identify the vulnerabilities that may come with third-party applications. The vulnerabilities include *human errors*, *broken processes*, *software bugs*, *ineffective input validations*, and *hardware bugs*. For a web application, the OWASP standard can be used to highlight vulnerabilities.
++   - **Asset:** We need to identify the assets (all resources) that threat actors may target. The latter could be servers, end stations, software applications, or data. An excellent exercise to perform here is to identify the *attack surfaces* and the *costs of potential exploitation*.
+
+CTI provides a better overview of threats, vulnerabilities, and assets through effective threat modeling. The risk assessment analyst can use CTI data, reports, and analysis to discuss the third-party application's security posture with the specific vendor. Thus, threat modeling facilitates security risk assessment.
+
+The benefits of using threat intelligence in third-party security risk management include the following:
+
++   - **Automatic extraction of threats, vulnerabilities, and assets:** Without the automatic extraction of threat intelligence, we have to perform three different tasks to get the three elements of the risk assessment statement (one task for each element). The organization needs to dedicate resources for such tasks. A complete audit must be done to extract the assets. CTI allows the company to view threats, actors, assets, and vulnerability profiles in depth.

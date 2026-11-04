@@ -1,0 +1,38 @@
+chapter_starts:
+- 'no': 6266
+  confidence: 0.9
+  final_reason: 判断方与复核方均倾向采纳，标题为最高层级编号章节，后接本章学习目标与主题介绍，符合章标题上下文特征
+  accepted_evidence:
+  - '标题单独成行，格式为 ## 13 Threat Intelligence Metrics, Indicators of C...'
+  - 标题后1~3行为概述段落 '在执行威胁情报计划时，必须有一套标准来确定其对整体系统安全和业务的贡献...'
+  - '前一章以 ## Summary 结束，形成清晰章节边界'
+  rejected_evidence:
+  - 标题文本被截断显示 Indicators of C...，存在提取噪声可能
+  need_human_review: false
+- 'no': 6683
+  confidence: 0.9
+  final_reason: '双方基本一致，标题为 ## 14 威胁情报报告与传播，单独成行无标点，后接章节概述，语义统领性强'
+  accepted_evidence:
+  - '标题单独成行，格式为 ## 14 威胁情报报告与传播'
+  - 标题后为概述段落 '有效和成功的 **网络威胁情报 (CTI)** 的秘诀在于其共享、安全领域的协作...'
+  - '前一章以 ## Summary 结束，章节边界清晰'
+  rejected_evidence:
+  - 概述段落包含加粗标记 **网络威胁情报 (CTI)**，格式上接近正文强调
+  need_human_review: false
+- 'no': 7772
+  confidence: 0.9
+  final_reason: 文末索引按规则应单独划分为一章，复核方虽指出结构为索引目录但规则明确文末索引分章
+  accepted_evidence:
+  - '标题为 ## Index，位于文本末尾'
+  - 规则要求文末索引单独划分为一章
+  rejected_evidence:
+  - '标题后直接进入子索引 ### A，无1~3行概述段落，结构更接近索引目录'
+  need_human_review: false
+rejected_lines:
+- 'no': 5955
+  reason: 复核方反证成立，标题后1~3行并非概述段落而是紧接着重复标题5957 '## SIEM 解决方案和情报驱动的 SOC'，5955与5957语义重复构成编号标记+重复标题的排版噪声，章节实际正文从5957后开始
+  need_human_review: false
+- 'no': 7259
+  reason: 复核方反证成立，标题后紧跟重复标题7261 '## Threat Intelligence Sharing and Cyber Activity
+    ...'，后者才是实际内容起始，7259与7261标题语义重复仅编号差异，构成排版断行，无概述段落
+  need_human_review: false

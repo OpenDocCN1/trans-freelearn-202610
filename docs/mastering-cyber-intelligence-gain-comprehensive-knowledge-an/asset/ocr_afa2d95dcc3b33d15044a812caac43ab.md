@@ -1,0 +1,14 @@
+# Planning and initial assessment
+
+Write down the *objectives* of the assessment. Highlight *what the output will be used for*. You must determine the *scope of the assessment*. The result of *threat modeling* is the best input for a vulnerability assessment because we assume that critical assets (and data) and potential risks have been identified. If threat modeling has not been performed (which is not recommended), you should identify all critical assets (data, applications, servers, and so on) and define risks for each of them. During this stage, you determine parameters such as the *duration* of the assessment, the *starting time*, the *relevant parties* involved, the *risk tolerance level*, and the *business impact*.
+
+# Methodology and baseline definition
+
+The organization selects the appropriate *methodology* for the assessment. Depending on the objectives, the organization can use a black-box, white-box, or gray-box methodology. The methodology facilitates the *gathering of information* about the system. The assessor needs to know if system information will be provided or whether they should perform *reconnaissance* independently. If information will be provided, the assessor needs to understand what information will be available. The last step at this stage is to select the appropriate *vulnerability assessment tool (or scanner)*. The first and second steps of the assessment process must be well documented.
+
+# Performing a vulnerability scan
+
+The assessors must highlight *compliance requirements* to ensure that the scanning process is effective. This phase can be executed in two ways: **manually** or **automatically**. An automated process is recommended; however, the organization can perform both and benchmark the results. For an automated process that uses a tool, it is essential to ensure that the *correct policies* are used where necessary. Those policies must apply to internal and external system components, as outlined here:
+
++   - **Internal vulnerability scan**: You perform a scan on critical assets of the system internally. In this case, an organization can use scanners installed on the network endpoint to perform the assessment. This type of scan is essential in identifying vulnerabilities that employees, human error, or malicious actors with access to the system can exploit.
++   - **External vulnerability scan**: You perform the scan on critical public assets— those assets that can be used as attack surfaces from outside the organization. This type of scan is executed using a public network (internet), and it helps your organization become aware of weaknesses before the whole world does.

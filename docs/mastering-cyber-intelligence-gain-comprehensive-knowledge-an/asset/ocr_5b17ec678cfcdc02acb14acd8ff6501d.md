@@ -1,0 +1,13 @@
+# Who this book is for
+
+This book is for organizations that have basic security monitoring and intend to adopt cyber threat intelligence from scratch but do not know where to start, have good security infrastructure and intend to integrate threat intelligence in the security stack for optimal security posture, or have a good threat intelligence program and intend to enhance TTP prioritization, defense techniques, and threat tracking.
+
+It is also useful for security professionals who want to learn and master cyber threat intelligence and help organizations in developing CTI strategies, possess theoretical knowledge and want to add some practical CTI skills, or want to enhance their career by preparing for professional CTI certifications such as the SANS FOR578 CTI and the EC-Council CTIA – this book is the perfect start as it covers most of the topics in those courses' curriculums.
+
+# What this book covers
+
+Chapter 1, *Cyber Threat Intelligence Life Cycle*, discusses the steps involved in a CTI program implementation which include planning, objective, and direction; data collection; data processing; analysis and production; dissemination; and feedback. It provides a high-level overview of each step with some examples to help you understand what needs to be done. The chapter highlights the benefits of threat intelligence and its role in the defense against modern, sophisticated attacks such as APTs. It equips you with the knowledge required to plan and set directions for your program.
+
+Chapter 2, *Requirements and Intelligence Team Implementation*, discusses threat intelligence requirement generation and task prioritization. It shows you how to generate sound intelligence requirements for your program by using advanced methods used in the military and warfare. As part of the planning phase of the CTI life cycle, the chapter discusses the team layout and how to acquire the right skill set to kick off your program. And finally, through the chapter, you learn how CTI relates to other units of the security stack.
+
+Chapter 3, *Cyber Threat Intelligence Frameworks*, introduces the different frameworks that you, as a CTI analyst, can use for your threat intelligence program. It highlights their benefits and discusses the three most popular threat intelligence frameworks – the Cyber Kill Chain, MITRE ATT&CK, and the Diamond Model of intrusion analysis frameworks. Using examples, the chapter also shows how each framework applies to threat and intrusion analyses.

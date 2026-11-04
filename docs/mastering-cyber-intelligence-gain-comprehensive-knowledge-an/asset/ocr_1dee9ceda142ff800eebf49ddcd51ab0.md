@@ -1,0 +1,13 @@
+After extracting the information, you can search for patterns in the monitoring data to check for the presence of any indicators linked to the reported Poison Ivy trojan.
+
+For more information about Poison Ivy, refer to its **FireEye** analysis report:
+https://bit.ly/3EbX4Zw.
+
++   - **Integration:** The clean data from the TIP (data after normalization and enrichment) must be usable by other organization security tools. Tools such as **security information and event management (SIEM)** tools, ticket systems, firewalls, and IPSs must use the TIP-processed data to enforce the monitoring of cyber activities, enabling the processed data's stream to other systems must be automated. Hence, the TIP needs to support and maintain that data flow. For example, integrating the SIEM and log management can allow a CTI analyst to automatically detect prohibited IP addresses and domains.
++   - **Analysis and sharing:** A TIP must automate the analysis of threat indicators and identify relationships between them to generate mitigation steps. Its function is to automatically uncover actors' **tactics, techniques, and procedures (TTPs)** and to extract hidden patterns in the data. The information is displayed as reports, dashboards, alarms, and more. The data analysis results must be presented or visualized in a human-friendly manner. The TIP must also facilitate the sharing of the analysis results and minimize the response time to threats and security breaches. Hence, it is essential to integrate the TIP analysis with tools such as incident response and real-time alarm systems.
+
+TIPs are essential to alleviate manual work and reduce the room for errors in intelligence analysis. There are several TIPs in the industry, both commercial and open source. Each vendor provides its TIP with different functionalities and capabilities, which can be critical for organizations when selecting a TIP. However, four main parameters can be used by organizations in their selection of a TIP: the *level of data access*, the *integration power* (how easy it is to integrate with other tools), the *reporting capability*, and the *pricing*. One of the big dilemmas for an organization that wants to invest in CTI is to decide whether it should invest in commercial intelligence platforms, also known as **paid threat intelligence (PTI)**, or rely on **open threat intelligence (OTI)** and **shared threat intelligence (STI)**.
+
+On top of the main TIP functionalities, we introduce the strategy map for threat intelligence to help set the right goals and choose the right intelligence approach.
+
+The next subsections look at the three types of threat intelligence services and platforms.

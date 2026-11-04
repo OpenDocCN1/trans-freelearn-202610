@@ -1,0 +1,39 @@
+reviews:
+- 'no': 5955
+  overturn_probability: 0.85
+  alternative: 排版断行
+  counter_evidence:
+  - 标题后1~3行并非概述段落，而是紧接着另一条##标题5957 '## SIEM 解决方案和情报驱动的 SOC'，不符合章节标题后接概述段落的上下文特征
+  - 5955与5957语义重复仅编号差异，构成编号标记+重复标题的排版模式，片段内无正文内容
+  - 章节实际正文从5957后的段落开始，5955单独构成的片段过短且无统领性内容
+  keep_split: false
+- 'no': 6266
+  overturn_probability: 0.2
+  alternative: 正文小标题
+  counter_evidence:
+  - 标题文本被截断显示 'Indicators of C...'，完整语义无法确认，存在提取噪声可能
+  - 标题后虽有段落但前一章以## Summary结束，章节边界依赖编号连贯性，误报风险仍存在
+  keep_split: true
+- 'no': 6683
+  overturn_probability: 0.15
+  alternative: 正文小标题
+  counter_evidence:
+  - 标题后概述段落包含加粗标记**网络威胁情报 (CTI)**，格式上接近正文强调而非纯标题
+  - 前一章Summary与本章间隔较短，标题长度虽符合但语义统领性需依赖后续内容验证
+  keep_split: true
+- 'no': 7259
+  overturn_probability: 0.88
+  alternative: 排版断行
+  counter_evidence:
+  - 标题后1~3行并非概述，而是紧接着另一条##标题7261 '## Threat Intelligence Sharing and Cyber Activity
+    ...'，后者才是实际内容起始
+  - 7259与7261标题语义重复仅编号差异，构成编号标记+重复标题的排版噪声
+  - 该行构成的片段仅含编号标题与空行，无概述段落，不符合章节标题上下文特征
+  keep_split: false
+- 'no': 7772
+  overturn_probability: 0.25
+  alternative: 页眉页脚
+  counter_evidence:
+  - 标题后直接进入子索引### A，无1~3行概述段落，结构更接近索引目录而非正文章节
+  - 标题为'## Index'，虽按规则文末索引应分章，但内容形态为索引条目列表，非统领性章节
+  keep_split: true

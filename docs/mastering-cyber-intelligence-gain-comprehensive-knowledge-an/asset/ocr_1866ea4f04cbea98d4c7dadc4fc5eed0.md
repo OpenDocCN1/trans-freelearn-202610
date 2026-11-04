@@ -1,0 +1,11 @@
++   - **Perform analytics**: The analyst can use the Cyber Kill Chain to analyze the attack (understand how it happened, at which step it was stopped, and how it was stopped). In this case, the intelligence team analyzes the attack using each stage of the kill chain. The intelligence project produces a lot of data, which is helpful only when mined correctly. The kill chain can help analysts break the analysis into small sections that map to its stages. This ensures that every aspect of the adversary attack life cycle is addressed when conducting analytical tasks.
++   - **Identify and track adversary groups**: The Cyber Kill Chain can be applied to the intelligence product to help the organization group adversaries together based on their attack structures. When adversaries attack, the organization will be able to classify their groups based on the TTPs used. So, over time, analyzing multiple Cyber Kill Chain attacks introduces similarities and overlapping indicators that can be used by the CTI team to identify and categorize adversaries quickly. This is a big step in apprehending and predicting the threat actors' objectives.
+
+Lockheed Martin’s Cyber Kill Chain should be integrated into intelligence products to provide a more significant threat and attack landscape and make the defense system resilient. In this subsection, we have learned how the Cyber Kill Chain could improve the intelligence project. As an analyst, it is essential to understand how the framework can be used to help us select a good model. In the next subsection, we will look at the benefits of the Cyber Kill Chain.
+
+# Benefits of the Cyber Kill Chain framework
+
+The Lockheed Cyber Kill Chain provides several benefits in cyberspace. The span of the framework goes beyond its technical capabilities – it can be used to predict threats independently of the source. Let’s look at some of the benefits of the Cyber Kill Chain model:
+
++   - It monitors cyber attacks throughout their life cycles, helping organizations detect and counter attacks at any stage, making the defense system effective and flexible.
++   - It maps all cyber threats to several kill chain phases, which helps us understand the adversary’s behavior. By mapping actions to the intelligence framework, the analysts can situate each attack in time and develop the right methods to contain them.

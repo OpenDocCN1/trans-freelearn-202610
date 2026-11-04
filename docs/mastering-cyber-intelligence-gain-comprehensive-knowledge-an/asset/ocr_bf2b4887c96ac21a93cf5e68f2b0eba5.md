@@ -1,0 +1,12 @@
+Internal data sources can be used for threat intelligence to a certain extent. They are rich and represent the complete insight of activities happening in the system. However, using the internal TI data only provides two possible disadvantages: *reactive intelligence* and a *partial view of the threat landscape*, as follows:
+
++   - **Reactive intelligence**: Using internal sources, intelligence is built based on observed events and flows from the internal network. The CTI team builds intelligence as more observations are stored and processed by the TIP or SIEM. Therefore, the system is not provisioned to uncover *unknown* or *global* threats that it has not seen yet (attackers can leverage this loophole to orchestrate new attacks). It reacts to threats that it knows.
++   - **Partial view of the threat landscape**: By limiting the intelligence to system data, the CTI team only gets a glimpse of threats that have been used against the system. However, it could be that there are more threats that other organizations of the same profile have registered. Attackers can leverage this disadvantage to compromise your organization using known TTPs that haven't been covered by your intelligence yet.
+
+It is essential to mix internal data with external data sources to generate a more reliable, reactive, and preventive intelligence. In the next section, we will look at external data sources and how they enrich the organization's threat intelligence program.
+
+# External threat intelligence sources
+
+External TI sources involve data collected outside the organization. This data comes from different providers and origins such as communities, forums, governments, other law enforcement, search engines, the dark web, and security magazines. All this data can be acquired freely (OSINT and STI) or through paid subscriptions (PIT). The most popular external threat data includes the following:
+
++   - **TI data feeds**: These are streams of data coming from one or more sources. Those sources can include feeds related to malware data, customer telemetry, human intelligence, SSL/TLS certificates, internet scans and crawls, **Indicators of Compromise (IoC)**, and counterintelligence (honeypots, DNS monitoring, and more). There are two types of TI feeds: subscribed TI feeds (which require monetary or simple user subscriptions) and open source TI feeds. Communities and companies provide this data.

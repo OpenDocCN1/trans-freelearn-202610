@@ -1,0 +1,48 @@
+chapter_starts:
+- 'no': 3052
+  confidence: 0.95
+  final_reason: 判断方与复核方均倾向保留，标题含章节编号 7、单独成行，后续为章节概述与学习目标，符合最高层级章标题的编号、格式、语义与上下文特征
+  accepted_evidence:
+  - '标题为 ## 7 Threat Intelligence Data Sources，含最高层级编号且单独成行'
+  - 后续 3054 起为情报来源概述及学习目标，符合章节起始后 1~3 行概述段落特征
+  - 复核方 overturn_probability 0.08，keep_split true
+  rejected_evidence:
+  - 复核方提及标题长度偏长且中英混排，但未构成否定章节层级的有效反证
+  need_human_review: false
+- 'no': 4746
+  confidence: 0.93
+  final_reason: 双方均支持保留，标题含章节编号 10、单独成行，后续为章节目标与内容概述，符合最高层级章标题特征
+  accepted_evidence:
+  - '标题为 ## 10 威胁建模与分析 – 实际用例，含编号且单独成行'
+  - 后续 4748 起为章节目标说明及学习要点，语义统领性强
+  - 复核方 overturn_probability 0.12，keep_split true
+  rejected_evidence:
+  - 复核方提示标题含英文且较长易误判，但编号与上下文足以排除
+  need_human_review: false
+- 'no': 5493
+  confidence: 0.9
+  final_reason: 书为部分-章节模式，部分标题应划分新章；标题单独成行且统领后续章节列表，复核方低 overturn 概率支持保留
+  accepted_evidence:
+  - '标题为 # 第 3 部分：将网络威胁情报策略集成到业务流程，符合部分标题格式'
+  - 后续 5495 起为本部分范围说明并列出第 11-15 章，语义统领性明确
+  - 复核方 overturn_probability 0.2，keep_split true
+  rejected_evidence:
+  - 复核方提及中英文格式不一致及描述性段落，但部分划分规则优先
+  need_human_review: false
+- 'no': 5505
+  confidence: 0.95
+  final_reason: 标题含章节编号 11、单独成行，后续为章节介绍与技术要求，符合最高层级章标题特征，复核方支持保留
+  accepted_evidence:
+  - '标题为 ## 11 可用性安全：威胁情报作为流程的一部分，含编号且单独成行'
+  - 后续 5507 起为章节导语及学习目标，上下文符合章节起始
+  - 复核方 overturn_probability 0.1，keep_split true
+  rejected_evidence:
+  - 复核方提及标题含冒号且较长，但未否定其最高层级属性
+  need_human_review: false
+rejected_lines:
+- 'no': 3513
+  reason: '复核方反证成立：标题后 1 行即出现同名无编号标题 ## Effective Defense Tactics and Data Protection，构成重复标题/排版断行噪声；标题后无概述段落，不符合章节标题上下文特征，误报代价高'
+  need_human_review: false
+- 'no': 4423
+  reason: '复核方反证成立：标题后 1 行即出现同名无编号重复标题 ## AI Applications in Cyber Threat Analytics，属导出排版重复噪声；无概述段落，直接进入重复标题，不满足最高层级大章上下文特征'
+  need_human_review: false

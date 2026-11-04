@@ -1,0 +1,13 @@
+When performing threat modeling on a designed or under-development system, an analyst must identify the mainstream user tasks and the given system authority. It is essential to understand how the system grants access and what information can be accessed. Easy-task security hardening can be achieved by ensuring that the least authority is given to the most straightforward task. It allows validation of risks that might occur should an adversary gain access to the system.
+
+# User consent and system response to information access
+
+System response to users' actions is critical in modeling the overall security. Well-designed systems (where usability and security are balanced) must know when to allow users and what steps trigger access. The user should understand the authority given to them when accessing information. The system must behave securely after the user gets access to the system. User consent and system response can be used for embedded intelligence by integrating common adversary TTP countermeasures in the design process. Let's see how user consent and system response can project usable security:
+
++   - **Tactic:** Execution (TA0002) (refer to the MITRE ATT&CK framework).
++   - **Technique:** Malicious file execution (T1204.002).
++   - **Procedure:** AppleJeus – https://us-cert.cisa.gov/ncas/alerts/aa21-048a. North Korea's cryptocurrency malware was initially discovered in 2018. Lazarus Group has utilized AppleJeus to compromise several industries, including telecom, finance, and the governments of several countries around the globe. *The user needs to execute an MSI installer to run the malware.*
++   - **User consent:** Design the system to warn users about the security issues of running files from unknown sources. The user must understand the risks taken if they choose to execute the file. A clear message visible to the user must be used with the preferred option noticeably highlighted (that is, not to continue with the action).
++   - **System response:** Sometimes, users do not always do the right thing. Therefore, the system response works as another security layer. You must implement the system to scan files received from untrusted parties or external sources, warn the user, and discard (or delete) the files, and then prevent the execution of programs concealed in other files.
+
+User consent and system response must be part of the design. When associated with good TTPs analysis, they provide a usable and secure environment for users.

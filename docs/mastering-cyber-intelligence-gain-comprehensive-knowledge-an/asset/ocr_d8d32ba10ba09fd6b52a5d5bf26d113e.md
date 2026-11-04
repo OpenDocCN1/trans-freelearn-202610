@@ -1,0 +1,14 @@
+The CoA can also help identify gaps in the security posture – it pinpoints system areas that might need enhancement. The IGL preference and the indicators (and TTPs) should drive your selection of CoA.
+
+The PoP is the padlock of the adversaries' ability to compromise your system. CTI analysts need to use it for IOC mapping. As a CTI analyst, you should not just focus on tracking IP addresses, hashes, and domain names to scan the network; but you should do your best to deny adversaries access at the top levels of the pyramid. Your target must deny TTPs or attacks themselves. In the next section, we will talk about IOAs.
+
+# Understanding IOAs
+
+Determined adversaries can discover vulnerabilities in software applications and code used in the target system. Zero-day exploits and other malware-free attacks present less or no evidence in the monitoring tools or logs; hence, it becomes difficult for monitoring tools to capture their presence. The question is, *How can your organization know that it is under attack when there is no IOC alert?*
+
+IOAs focus on proactive security by detecting the adversary's *intent*. Contrary to IOCs that represent pieces of evidence of an attack or breach, IOAs relate to the steps and actions that an adversary must undertake to compromise a system. While there are so many explanations of IOAs, the most straightforward understanding is that *IOAs are real-time indicators that sit at the tactics and techniques level of the TTPs*. Instead of focusing on the procedures used by the adversaries, you focus on the *adversary's behavior*. Behavioral IOCs are close to IOAs, focusing more on strange system conduct. Let's look at a use case.
+
+The most standard attack structure includes the following phases:
+
++   1. **Reconnaissance**: The adversary learns and collects information about the target. Examples of IOCs for reconnaissance are IP addresses that actively scan a network or an IP address that constantly searches for your organization's information in different search engines and databases. Another IOC would be an HTTP/S user-agent string in web metadata. Examples of IOAs for reconnaissance include active scanning (large quantities of ICMP messages from a single source) and phishing (similar emails sent to collect information).
++   2. **Initial access**: The adversary tries to access the target system. An example of IOCs at this step involves phishing email metadata (such as IP addresses, domain names, hashes, SMTP details, URLs, and attachments). An example of an IOA would be the initial access tactic and phishing techniques (mysterious and suspicious emails received by most executives).

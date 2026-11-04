@@ -1,0 +1,13 @@
+# Using the STIX standard for threat response management
+
+After the CTI analyzes and reports threat activities, the internal technical and strategic teams must decide on the *action* (that is, how to respond to the threat). Depending on the level of threat penetration, a response to an attack can be reactive or preventive. *Reactive* is when the attack has been consumed. In this case, the **incident response (IR)** team is responsible for responding to the incident. The IR analyst makes detailed analyses to determine whether any damage has been inflicted or malicious software has been installed in the system. *Preventive* is when the system can automatically or manually detect threats and apply appropriate courses of action before the attack is consumed. For example, in a phishing attack, a preventive measure could be auto-scanning all attachments (and discarding any potentially malicious links or attachments) or verifying email addresses before forwarding messages to an inbox. Incident response is vital because it determines the capacity of the company to respond to discovered threats. The STIX standard can be used for threat response by (1) using the STIX indicator object to represent and identify specific indicators (for example, malicious links, malicious attachments) with the STIX language. And (2) using the **STIX Relationship Object (SRO)** to detect and respond to threats that other organizations have already identified.
+
+# Threat intelligence information sharing
+
+CTI is not an isolated or secretive program. Its success is determined by the intelligence community's ability to share threat information (with the common goal of stopping cyber attacks). For complementarity, CTI analysts should share some of their intelligence results with the community using a language that can easily be understood – this is where standards and frameworks come into play. However, what information should be shared depends on the CTI team and the organization's policies. STIX allows the CTI community to share threat indicators in XML or JSON formats.
+
+> **Tip**
+> 
+> CTI analysts should make use of communities such as **Information Sharing and Analysis Centers (ISACs)** for threat intelligence dissemination and sharing. ISACs make best practices and threat data accessible to organizations. In *Chapter 7, Threat Intelligence Data Sources*, we explore ISACs.
+
+STIX addresses security use cases by exploring the relationship between standard components of CTI operations known as **STIX Domain Objects (SDOs)**. It does so in a structured, effective, and consistent way. We will now examine the STIX SDOs of the STIX v1 architecture:
