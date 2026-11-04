@@ -1,0 +1,10 @@
+# Direct modeling
+
+Fusion 360 has several pieces of functionality that are only accessible when you are in Direct modeling mode. Some of this functionality is specific to working with mesh bodies. Some of it is related to working with Solid and Surface bodies and some of it is related to working with components within an assembly.
+
+Let's start by covering the Mesh-specific functionality. The first mesh functionality specific to direct modeling is **CREATE FACE GROUP**, located under the **MESH** tab | the **PREPARE** panel. Using **CREATE FACE GROUP**, you can select individual triangles or a group of them and assign them to a new face group. The creation of face groups is crucial in order to select them downstream during additive manufacturing workflows for support structure creation or when attempting to convert mesh bodies into solid objects. Even though Fusion 360 has tools for generating face groups automatically, having manual control over creating face groups is an important piece of functionality when dealing with complex inserted meshes. You can use this functionality as a part of direct modeling.
+
+> **Important note**
+> In parametric modeling, you will need to utilize the **DIRECT EDIT** feature to be able to create face groups manually. All the mesh-specific functionality we are highlighting in this subsection can be accessed by introducing the same direct edit feature within parametric modeling.
+
+The next mesh-specific functionality for direct modeling is **ERASE AND FILL**. This command is located under the **MODIFY** panel and allows you to remove and replace one or more faces on your mesh body to manually fill holes and repair regions. When using this command, I also recommend turning on **MESH SELECTION PALETTE** so you can utilize different selection types, such as the paintbrush or free-form selection. If you're using the paint selection, you can also control the brush size. The **Mesh Palette** is accessible from the **SELECT** panel, as shown in *Figure 2.14*.

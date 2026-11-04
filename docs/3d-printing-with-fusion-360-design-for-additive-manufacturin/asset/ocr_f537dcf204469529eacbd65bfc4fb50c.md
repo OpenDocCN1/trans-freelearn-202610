@@ -1,0 +1,9 @@
+you can always come back to it by selecting Automatic Orientation1 within the browser, right-clicking on it, and selecting Orientation Results. The results of an orientation study include a drop-down list ranking the orientation outcomes. By selecting the arrow key next to Rank, we can observe the results of the calculated support areas, support volume, bounding-box volume, overall height, and center-of-gravity height, as was previously outlined. The highest-ranking outcome, Rank 1, is the recommended orientation to print the target component on this FFF 3D printer.
+
+![](bbox=[0.11, 0.21, 0.81, 0.51])
+
+Figure 8.13 – Orientation results for an automatic orientation study
+
+After selecting the desired orientation result using the Rank dropdown, we can click the OK button, and our component will rotate from its initial position to the orientation we have selected.
+
+In this section, we mainly focused on conducting an automatic orientation operation and choosing the orientation result from a list of outcomes. However, it would also be beneficial to highlight the impact of this orientation on our selected component. To showcase the effect of this orientation, we can add a support structure to our component using the SOLID VOLUME SUPPORT command within the ADDITIVE tab, in the SUPPORTS panel. After selecting our component within the GEOMETRY tab of the dialog and clicking OK, Fusion 360 creates support structures for surfaces that have an overhang angle of less than 45 degrees. The outcome of the support generation action can be seen in Figure 8.14, along with the SOLID VOLUME SUPPORT dialog. The support structures Fusion 360 creates are displayed as blue objects on the canvas. We can see that this orientation produces a minimal support structure for our component so that it can be 3D printed using our FFF printer.

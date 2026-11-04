@@ -1,0 +1,47 @@
+chapter_starts:
+- 'no': 3649
+  confidence: 0.95
+  final_reason: 判断方与复核方一致，标题编号一体单独成行，后接第11章引言，符合最高层级章节特征
+  accepted_evidence:
+  - 标题为 '## 11 切片模型和模拟刀具路径' 编号与标题一体，单独成行且无句号
+  - 后1~3行为 '欢迎阅读第11章' 的概述段落，符合章节起始上下文特征
+  - 长度小于30字且具有统领性，可作为最高层级章节
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 3850
+  confidence: 0.95
+  final_reason: 双方一致，部分标题单独成行，统领后续多章，符合部分-章节模式需划分新章
+  accepted_evidence:
+  - 标题为 '# Part 4:' 为部分级标题，单独成行
+  - 后续紧接第12章内容，书中存在部分-章节模式
+  - 语义统领后续多章内容
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 4211
+  confidence: 0.9
+  final_reason: 双方一致，标题单独成行后接第13章概述，符合章节起始上下文特征
+  accepted_evidence:
+  - 标题 '## 模拟 MPBF 工艺' 单独成行，无句号，长度适中
+  - 后接 '欢迎阅读 *第 13 章*' 的概述段落，语义统领后续内容
+  - 上下文无子节编号干扰，符合最高层级章节特征
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 4723
+  confidence: 0.95
+  final_reason: 双方一致，文末索引标题单独成行，按规则文末索引应单独划分为一章
+  accepted_evidence:
+  - 标题 '# 索引' 位于文末，单独成行
+  - 后续为符号、A、B、C 等索引条目，语义明确
+  - 按规则文末索引应单独划分为一章
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 3364
+  reason: 复核方反证成立，前一行3362为 '## 10' 章节编号，与本行构成同一章节头部，单独划分本行会割裂编号与标题配对，章节起始语义指向编号行
+  need_human_review: false
+- 'no': 3865
+  reason: 复核方反证成立，前一行3863为 '## 12' 章节编号，本行标题紧随其后构成同一头部，单独划分会割裂编号与标题配对，标题为编号的补充而非独立章节起点
+  need_human_review: false
+- 'no': 4487
+  reason: 复核方反证成立，前一行4485为 '## Automating Repetitive Tasks' 英文章节标题，本行中文标题紧随其后疑似翻译重复/副标题，非独立章节起点，欢迎段落与英文标题对应
+  need_human_review: false

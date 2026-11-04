@@ -1,0 +1,5 @@
+![](bbox=[0.22, 0.09, 0.76, 0.62])
+
+Figure 12.13 – Advanced options for support generation within the Geometry tab
+
+The **General** tab within the **POLYLINE SUPPORT** dialogue allows you to control the polyline type with a drop-down list, as shown in *Figure 12.14*. There are three polyline types you can select. The default selection is **Structure with hole patterns**, as indicated with callout 1. For this polyline type, you can control **Polyline Properties** and **Connections** with their designated tabs, as shown at the top left of *Figure 12.14*. If you set the polyline type to **Surface**, as shown with callout 2 in the same figure, the **Polyline Properties** tab and the **Connections** tab will disappear. The same is also true when setting the polyline type to **Solid**, as indicated with callout 3.

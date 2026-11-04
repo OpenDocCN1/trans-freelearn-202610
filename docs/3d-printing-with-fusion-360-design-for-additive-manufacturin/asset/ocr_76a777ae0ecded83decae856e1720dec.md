@@ -1,0 +1,9 @@
+In this chapter, we will only highlight the Faceted and Prismatic options. The Organic option will be highlighted in more detail in Chapter 3 after we generate an organic mesh body using the simulation capabilities of Fusion 360.
+
+The **FACETED** method for converting mesh bodies into solid bodies will simply change the body type from mesh into solid. In Figure 2.41, we can see the steps we need to take to convert a mesh body into a faceted solid body. Once the conversion is complete, we can select any of the planar faces on the solid body and delete them using either the keyboard *Delete* key or the delete command, which we can access by right-clicking or from our shortcuts, which we can reach by pressing *S* on the keyboard to search for them. Figure 2.41 also shows how we can quickly convert all the planar faces of a given object into clean surfaces and later use those surfaces for solid modeling operations, such as adding additional bodies or creating holes. However, the faceted option is not capable of automatically converting nonplanar shapes into clean surfaces. To accomplish that, you will need the second option, which is **PRISMATIC**.
+
+![](bbox=[0.12, 0.35, 0.87, 0.67])
+
+Figure 2.41 – Convert Mesh bodies into faceted solid bodies and delete planar faces
+
+In order to use the prismatic method to convert mesh bodies into solid bodies, Fusion 360 has one key prerequisite. You will need to define face groups prior to using the prismatic conversion. Fusion 360 offers automatic face group detection under the **MESH** tab | the **PREPARE** panel. Using the Fast or the Accurate method, and if necessary, editing the settings of these methods, you can have Fusion 360 display each face group with a unique color by utilizing the Display mesh face groups command, located under the **INSPECT** panel. The Accurate method often gives the best outcome, as shown in Figure 2.42.

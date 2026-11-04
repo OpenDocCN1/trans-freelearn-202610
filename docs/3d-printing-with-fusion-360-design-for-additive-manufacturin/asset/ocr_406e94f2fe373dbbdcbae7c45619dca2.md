@@ -1,0 +1,9 @@
+![](bbox=[0.11, 0.08, 0.85, 0.42])
+
+Figure 12.28 – Inserting a 3MF file into a Fusion document to visualize setter support outcomes
+
+Using the Move command located in the Modify tab, you can select Meshbody2 and move it to the Z-axis. Figure 12.28 shows the outcome of this move operation, as highlighted by callout 4 in the timeline. As you can see, our bracket component fits neatly within the setter support and can be removed from the Z-axis without any blocker. If we put this part and the setter support into the sintering oven together, the binder will evaporate from the part and the support and these parts will shrink together uniformly. The setter support will support the component during this sintering process so that it does not sag or permanently deform during the sintering phase.
+
+# Summary
+
+In this chapter, we learned all about metal additive manufacturing. We started this chapter by highlighting all the additive manufacturing technologies you can utilize to create metal parts. We demonstrated how to use fused filament fabrication printers from UltiMaker and Raise3D and metal filaments from companies such as BASF to 3D print metal parts that require debinding and sintering. We also showcased how you can use any FFF 3D printer with customized extruders and specialized metal filaments from companies such as The Virtual Foundry to 3D print with metal filaments. Each of these solutions requires the 3D-printed part to be further processed by debinding and sintering. We then highlighted how to create metal parts using directed energy deposition technology utilizing printers such as the Meltio M450 printer available within Fusion 360's machine library.

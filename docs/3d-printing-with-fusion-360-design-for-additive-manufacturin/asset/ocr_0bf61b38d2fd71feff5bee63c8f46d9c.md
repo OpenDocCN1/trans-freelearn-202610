@@ -1,0 +1,7 @@
+# Summary
+
+In this chapter, we have created organic and lightweight models using Automated Modeling. Automated Modeling gave us six design alternatives to choose from and, once we chose one of them, we were able to modify its volume and create an organic and lightweight design alternative. Next, we designed a starting shape and used Shape Optimization to lightweight that target shape based on loads and boundary conditions.
+
+However, neither of those methods created shapes based on stress results. In order to make sure that our chosen design alternative could withstand stresses that occur during operating loading conditions, we conducted a static stress study. Our initial simulations pointed out that our material choice was way too strong for our needs. After changing our material from a metal to a plastic, we realized that our design would still perform well for its intended use. However, we also identified a stress concentration zone and conducted one final design change to eliminate the stress concentration in order to minimize potential future failure points.
+
+Using a similar workflow, you can be sure to create lightweight and compliant designs that not only can withstand operating conditions but will have a long life in the field. In the next chapter, we will focus on how to further lightweight designs using various hollowing and latticing methods to reduce material and energy consumption.

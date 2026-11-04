@@ -1,0 +1,5 @@
+We also highlighted how to create bar supports for SLA/DLP printing. We showcased the similarities between bar supports for FFF and resin-based printers as well as the unique properties of bar supports for SLA /DLP printers, such as tree structures, grouping, and bracing. We also saw how to create base plate supports in order to achieve a strong adhesion to the build plate.
+
+Using the techniques you have learned in this chapter, you can experiment with your specific printer, material, and print settings in order to create support structures that are just as strong as necessary to successfully print a given part, while minimizing material usage and the post-processing time required to remove the printed support structures.
+
+In the next chapter, we will further explore how to slice our models and generate an additive toolpath, along with how to simulate that toolpath layer by layer in order to better understand the effects of our model orientation, our slicing settings, and our support structures.

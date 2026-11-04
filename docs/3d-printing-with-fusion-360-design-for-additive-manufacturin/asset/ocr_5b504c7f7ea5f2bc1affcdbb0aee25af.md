@@ -1,0 +1,15 @@
+If you are using Fusion 360 alongside your EOS Metal 3D printers, you will need to have a license to software called EOSPrint from your machine manufacturer to submit jobs to your printer. Fusion 360 can be used to create additive setups with your EOS metal printers. You can select your print settings from Fusion’s print setting library, which aligns with all the print settings supplied by EOS. You can add support structures and slice your models in Fusion as well. However, to create the additive toolpath specific to your EOS hardware, you will need to have a license for EOSPrint.
+
+If you have Fusion 360 and EOSPrint software installed and licensed on your computer, you can generate the additive toolpath and even inquire about the estimated build time for your additive setup. You can connect to your specific printer and submit a print job directly to the printer itself. To activate this functionality, you will also need to download and install EOSPRINT for Autodesk Fusion 360. You can locate this app on the Autodesk App Store at https://apps.autodesk.com/FUSION/en/Detail/Index?id=8154614516617688086.
+
+In this section, we highlighted how to generate an orientation study and select a part position and orientation for a successful metal additive print using MPBF printers. We also went over how to create support structures for this additive manufacturing technology.
+
+In the next section, we will discuss how to create setter supports, which are used during the sintering process after printing parts using metal binder jetting technologies.
+
+# Setter supports for a successful sintering process
+
+MPBF is one of the most adopted technologies for creating metal parts using additive manufacturing. However, recently, there have been several machine vendors entering the metal binder jetting field. Desktop Metal has been a leader in this field for many years. HP also recently entered the metal binder jetting field by releasing a new printer named Metal Jet S100. Markforged, which is a company known for making 3D printers that can print using the continuous fiber reinforcement method, also started offering its Digital Metal PX 100 series of printers to serve the metal binder jetting field. Alongside these well-known brands are also some new entries into the field, such as Sinterjet M60 from Sintertek.
+
+As manufacturers start adopting metal binder jet technology in their workflows, we need to highlight how you can create additive setups using Fusion 360 and prepare your prints for these printers. For the most part, creating an additive setup for a binder jetting technology is no different than the additive setup we create for SLS printers. The most important aspect of an additive setup for a binder jet printer is orienting and arranging our parts within the build volume. Such a setup with four components with an HP Metal Jet S100 printer is shown in Figure 12.24.
+
+Some 3D printers (for example, Digital Metal PX100) require us to scale all our models up before slicing. Other printers (for example, HP Metal Jet S100) can automatically handle the scaling of parts onboard the printer.
