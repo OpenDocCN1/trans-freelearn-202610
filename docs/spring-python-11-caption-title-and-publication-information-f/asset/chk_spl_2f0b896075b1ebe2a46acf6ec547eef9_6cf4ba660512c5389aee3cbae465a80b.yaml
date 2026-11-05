@@ -1,0 +1,49 @@
+reviews:
+- 'no': 2
+  overturn_probability: 0.85
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题层级为 ##，非最高层级 # 的大章标题'
+  - 后接 **Author** / **Editorial Team Leader** 等元数据列表，非 1~3 行概述段落
+  - 前言、致谢、关于作者等正文之前内容应统一划分为一章，## Credits 为该前置块内的子节，不应单独分章
+  keep_split: false
+- 'no': 192
+  overturn_probability: 0.08
+  alternative: 章节标题
+  counter_evidence:
+  - '标题为 # 1 使用 Spring Python 入门，符合编号特征且单独成行无句号'
+  - 长度合适且语义统领后续内容，后 1~3 行即为概述段落
+  - 前文为前置元数据块，上下文符合新大章开始
+  keep_split: true
+- 'no': 684
+  overturn_probability: 0.9
+  alternative: 重复标题/排版噪声
+  counter_evidence:
+  - '前一行 682 已出现编号章节标题 # 2 Spring Python 的核心——控制反转，章节已在 682 开始'
+  - '本行 # Spring Python 的核心——控制反转 无编号且与前一标题语义完全重复'
+  - 标题后紧跟正文段落而非新概述，实为同一章节的重复排版标题
+  keep_split: false
+- 'no': 1386
+  overturn_probability: 0.92
+  alternative: 重复标题/排版噪声
+  counter_evidence:
+  - '前一行 1384 已有编号标题 # 3 Adding Services to APIs，章节已在 1384 开始'
+  - '本行 # Adding Services to APIs 无编号，与 1384 语义重复'
+  - 上下文无新的概述段落，实为同一章节的重复标题
+  keep_split: false
+- 'no': 2020
+  overturn_probability: 0.92
+  alternative: 重复标题/排版噪声
+  counter_evidence:
+  - '前一行 2018 已有编号标题 # 4 轻松编写 SQL 查询，章节已在 2018 开始'
+  - '本行 # 轻松编写 SQL 查询 无编号，与 2018 重复'
+  - 后接 '使用 Spring Python' 副标题，非独立章节概述
+  keep_split: false
+- 'no': 2500
+  overturn_probability: 0.92
+  alternative: 重复标题/排版噪声
+  counter_evidence:
+  - '前一行 2498 已有编号标题 # 5 使用事务为数据访问添加完整性，章节已在 2498 开始'
+  - '本行 # 使用事务为数据访问添加完整性 无编号，与 2498 语义重复'
+  - 上下文直接进入正文说明，非新大章的概述段落
+  keep_split: false

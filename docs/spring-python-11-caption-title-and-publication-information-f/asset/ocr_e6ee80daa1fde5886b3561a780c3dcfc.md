@@ -1,0 +1,10 @@
+# 6
+
+# Securing your Application
+with Spring Python
+
+With the rise of the web over the last ten years, many companies have adopted e-commerce solutions to support their business models. Retail, sales, banking, financial, and other industries have adopted the web as a key means to generate revenue. This has triggered a security crisis, since early web applications had little to no security, and the ways to exploit systems were vast. This doesn't involve a small corner of the market, but potentially compromises a huge segment of the market. It is no wonder that companies hire security consultants to come up with the means to protect their already built e-commerce sites.
+
+Software development teams are starting to realize that security needs to be coded into their applications sooner rather than later. However, competitive deadlines and getting products to market sooner rather than later can cause security requirements to get pushed to the back of the line. Many web applications that hit the market have security implemented as more of an after thought. Part of this is due to the fact that coding effective security protocols is hard. **Acegi Security**, a Java framework based on the Spring Framework, was initially released in 2003. Its pluggable architecture and non-intrusive nature took the Java world by storm. By providing support for many security protocols including database, LDAP, OpenID, X.509, **Central Authentication Service (CAS)**, Kerberos, **Java Authentication and Authorization Service (JAAS)**, along with many others, it has become widely used in many industries, and in both the private and public sector.
+
+Spring Python's pythonic implementation of this powerful architecture provides the same mechanisms to secure applications of all types simply and effectively to the Python community. Spring Python Security currently supports web application security. There are future plans to support method-level security just like Spring Security.

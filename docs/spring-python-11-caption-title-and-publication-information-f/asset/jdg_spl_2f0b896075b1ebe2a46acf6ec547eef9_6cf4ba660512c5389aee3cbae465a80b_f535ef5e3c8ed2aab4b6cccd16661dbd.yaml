@@ -1,0 +1,29 @@
+chapter_starts:
+- 'no': 192
+  confidence: 0.95
+  final_reason: 双方一致认可为最高层级编号章节标题，单独成行无句号，语义统领后续内容，后1~3行为概述段落，上下文符合新大章开始
+  accepted_evidence:
+  - '判断方：编号特征 # 1 使用 Spring Python 入门，单独成行无句号，长度合适，后1~3行为概述段落，符合最高层级大章'
+  - '复核方：overturn_probability 0.08，keep_split true，标题为 # 1 使用 Spring Python 入门，符合编号特征且单独成行无句号，长度合适且语义统领后续内容，前文为前置元数据块，上下文符合新大章开始'
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 2
+  reason: '复核方指出标题层级为 ## 非最高层级 # 的大章标题，后接 **Author** / **Editorial Team Leader** 等元数据列表非1~3行概述段落，前言、致谢、关于作者等正文之前内容应统一划分为一章，##
+    Credits 为该前置块内的子节，不应单独分章；判断方证据不足'
+  need_human_review: false
+- 'no': 684
+  reason: '复核方指出前一行682已出现编号章节标题 # 2 Spring Python 的核心——控制反转，章节已在682开始，本行 # Spring
+    Python 的核心——控制反转 无编号且与前一标题语义完全重复，标题后紧跟正文段落而非新概述，实为同一章节的重复排版标题；判断方误判为新章'
+  need_human_review: false
+- 'no': 1386
+  reason: '复核方指出前一行1384已有编号标题 # 3 Adding Services to APIs，章节已在1384开始，本行 # Adding Services
+    to APIs 无编号，与1384语义重复，上下文无新的概述段落，实为同一章节的重复标题；判断方误判为新章'
+  need_human_review: false
+- 'no': 2020
+  reason: '复核方指出前一行2018已有编号标题 # 4 轻松编写 SQL 查询，章节已在2018开始，本行 # 轻松编写 SQL 查询 无编号，与2018重复，后接
+    ''使用 Spring Python'' 副标题非独立章节概述；判断方误判为新章'
+  need_human_review: false
+- 'no': 2500
+  reason: '复核方指出前一行2498已有编号标题 # 5 使用事务为数据访问添加完整性，章节已在2498开始，本行 # 使用事务为数据访问添加完整性 无编号，与2498语义重复，上下文直接进入正文说明非新大章概述段落；判断方误判为新章'
+  need_human_review: false

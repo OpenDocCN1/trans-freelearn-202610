@@ -1,0 +1,25 @@
+reviews:
+- 'no': 3168
+  overturn_probability: 0.08
+  alternative: 正文小标题
+  counter_evidence:
+  - 标题包含中英文混合且长度接近阈值，格式上与正文小标题难以区分
+  - 前文 3164 已明确提示下一章内容，存在因过渡句误判为章节起始的可能
+  keep_split: true
+- 'no': 4650
+  overturn_probability: 0.88
+  alternative: 排版噪声/重复标题
+  counter_evidence:
+  - '编号标题后 2 行即出现完全相同内容的无编号一级标题 # 使用 Spring Python 的远程处理跨节点扩展应用程序，实际正文 4654 从该无编号标题后才开始'
+  - 连续出现两个一级标题不符合正常章节排版，编号标题更像是目录残留或转换产生的重复标题
+  - 标题长度较长且与后续重复标题语义完全重合，缺乏独立统领性
+  keep_split: false
+- 'no': 5036
+  overturn_probability: 0.87
+  alternative: 排版噪声/重复标题
+  counter_evidence:
+  - '编号标题 # 8 案例研究 I—将 Spring Python 与您的 Web 应用程序集成 后紧跟空白行及完全相同内容的无编号一级标题 # 案例研究 I—将
+    Spring Python 与您的 Web 应用程序集成'
+  - 正文 5040 从无编号标题后才开始，编号标题与实际内容起始存在 2 行间隔，符合重复/页眉页脚噪声特征
+  - 标题过长且带破折号，格式上更接近转换产生的重复标题而非独立最高层级大章
+  keep_split: false

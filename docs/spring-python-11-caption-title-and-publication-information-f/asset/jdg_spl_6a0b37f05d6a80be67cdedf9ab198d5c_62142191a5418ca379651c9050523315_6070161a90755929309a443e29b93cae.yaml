@@ -1,0 +1,20 @@
+chapter_starts:
+- 'no': 3168
+  confidence: 0.93
+  final_reason: 判断方与复核方均支持分章。标题以 '# 6 ' 开头单独成行，符合最高层级大章编号特征，后续 3170 起为全新章节引言，语义统领安全模块内容。复核方
+    overturn_probability 仅 0.08 且 keep_split 为 true，反方证据不足。
+  accepted_evidence:
+  - 标题以 '# 6 ' 开头单独成行，符合最高层级大章编号特征
+  - 后文从 3170 起为全新章节引言，语义统领 Spring Python 保护应用程序内容
+  - 复核方 keep_split true，overturn_probability 0.08
+  rejected_evidence:
+  - 标题包含中英文混合且长度接近阈值，格式上与正文小标题难以区分
+  - 前文 3164 已提示下一章内容，存在过渡句误判可能
+  need_human_review: false
+rejected_lines:
+- 'no': 4650
+  reason: 复核方指出编号标题后 2 行即出现完全相同内容的无编号一级标题，实际正文 4654 从无编号标题后才开始，编号标题为排版噪声/重复标题。判断方无有力反驳，宁可漏分。
+  need_human_review: false
+- 'no': 5036
+  reason: 复核方指出编号标题 '# 8 ' 后紧跟完全相同内容的无编号一级标题，正文 5040 从无编号标题后才开始，编号标题符合重复/转换噪声特征。判断方无有力反驳，采纳复核方反证。
+  need_human_review: false

@@ -1,0 +1,23 @@
+chapter_starts:
+- 'no': 6359
+  confidence: 0.95
+  final_reason: '双方一致采纳，顶层 # 章节标题，编号连贯且后接概述，复核方反证不足'
+  accepted_evidence:
+  - 判断方：顶层章节标题，格式为 '# 9 Creating Skeleton Apps with Coily'，单独成行，编号为 9，符合最高层级大章特征，后接概述段落
+  - 复核方 keep_split=true，overturn_probability=0.07
+  rejected_evidence:
+  - 复核方指出标题后仅空一行即进入正文概述，上下文衔接紧密可被误认为章节过渡
+  - 标题长度接近30字上限，格式上与部分二级标题相似
+  need_human_review: false
+- 'no': 6495
+  confidence: 0.95
+  final_reason: '双方一致采纳，顶层 # 章节标题，编号 10 与第9章连贯，后接概述段落，符合最高层级大章特征'
+  accepted_evidence:
+  - 判断方：顶层章节标题，格式为 '# 10 案例研究 II—将 Spring Python 与您的 Java 应用程序集成'，单独成行，编号为 10，符合最高层级大章特征，后接概述段落
+  - 复核方 keep_split=true，overturn_probability=0.06
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 7083
+  reason: '复核方反证成立：标题使用 ## 二级标记，与全书 # 章节标记不一致，后续紧跟 ## 符号、## A、## B 等同级子标题构成索引内部层级，标题后无概述段落直接进入符号列表，不具备章节统领性；按宁可漏分不可误分原则不分章'
+  need_human_review: false

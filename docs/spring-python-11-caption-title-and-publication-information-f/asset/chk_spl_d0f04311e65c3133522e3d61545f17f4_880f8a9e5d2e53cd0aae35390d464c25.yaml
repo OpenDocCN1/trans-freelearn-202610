@@ -1,0 +1,23 @@
+reviews:
+- 'no': 6359
+  overturn_probability: 0.07
+  alternative: 章节标题
+  counter_evidence:
+  - 标题后仅空一行即进入正文概述，上下文衔接紧密，可被误认为章节过渡而非独立分章点
+  - 标题长度接近30字上限，格式上与部分二级标题相似
+  keep_split: true
+- 'no': 6495
+  overturn_probability: 0.06
+  alternative: 章节标题
+  counter_evidence:
+  - '标题使用 # 顶层标记且编号为 10，与第9章编号连贯，后接概述段落，符合章标题特征'
+  - 若不分章会破坏全书最高层级章节的连贯性
+  keep_split: true
+- 'no': 7083
+  overturn_probability: 0.88
+  alternative: 索引分区标题
+  counter_evidence:
+  - '标题使用 ## 二级标记，与全书章节 # 标记不一致，后续紧跟 ## 符号、## A、## B 等同级子标题，构成索引内部层级'
+  - 标题后无概述段落，直接进入符号列表，不具备章节统领性
+  - 索引条目为列表式排版噪声，不符合章标题语义特征
+  keep_split: false
