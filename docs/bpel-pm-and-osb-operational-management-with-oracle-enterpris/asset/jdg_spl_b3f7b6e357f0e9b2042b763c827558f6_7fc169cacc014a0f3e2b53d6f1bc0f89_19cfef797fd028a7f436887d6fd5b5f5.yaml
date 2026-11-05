@@ -1,0 +1,74 @@
+chapter_starts:
+- 'no': 2
+  confidence: 0.85
+  final_reason: 致谢属于前言、序言、关于作者等正文之前材料，按规则统一划分为一章，取首个前言类标题作为起始，复核方确认可接受
+  accepted_evidence:
+  - '标题为 ## 致谢，属于致谢类前言材料'
+  - 复核方指出符合前言、致谢、关于作者等正文之前内容统一划分为一章的规则，首个前言类标题作为起始可接受
+  rejected_evidence:
+  - 标题后紧跟作者信息列表而非概述段落
+  need_human_review: false
+- 'no': 351
+  confidence: 0.95
+  final_reason: 标题‘## 1 Grid Control、BPEL 和 OSB 概述’单独成行，含编号1，末尾无标点，长度<30，后1~3行即为概述段落，符合最高层级章标题特征
+  accepted_evidence:
+  - 标题单独成行含编号‘1’
+  - 末尾无标点，长度小于30字
+  - 后接概述段落‘硬件、软件和应用程序组件的管理很重要…’
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 1248
+  confidence: 0.95
+  final_reason: 标题‘## 7 BPEL 部署自动化’编号与标题同行，单独成行，末尾无标点，后接概述段落，符合最高层级章标题
+  accepted_evidence:
+  - 标题单独成行，编号与标题同行
+  - 后接概述段落‘在大多数中大型企业中，应用程序开发人员编写代码…’
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 1442
+  confidence: 0.95
+  final_reason: 标题‘## 8 BPEL 配置管理’编号与标题同行，单独成行，后接配置管理概述段落，语义统领后续内容
+  accepted_evidence:
+  - 标题单独成行，编号与标题同行
+  - 后接概述段落‘在企业中管理软件和硬件资产的配置很重要…’
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 2984
+  confidence: 0.95
+  final_reason: 标题‘## 14 WebLogic 和 OSB 配置管理’编号与标题同行，单独成行，后接中间件配置概述段落，符合最高层级章标题特征
+  accepted_evidence:
+  - 标题单独成行，编号与标题同行
+  - 后接概述段落‘管理中间件环境的配置对于中小型和大型企业来说是一个困难的命题…’
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 463
+  reason: 复核方指出前一行‘## 2’单独成行，章节编号与标题被拆分，标题本身缺少编号特征，属排版断行噪声，不应作为独立分章点
+  need_human_review: false
+- 'no': 568
+  reason: 前一行‘## 3’单独成行，标题‘## BPEL 流程监控’与编号分离，标题缺少‘第 X 章’或‘Y.’等编号特征，属跨行标题拆分
+  need_human_review: false
+- 'no': 716
+  reason: 前一行‘## 4’单独成行，编号与标题‘## BPEL 基础设施管理’分离，标题单独出现时无编号，格式上为跨行标题，应排除
+  need_human_review: false
+- 'no': 879
+  reason: 前一行‘## 5’单独成行，标题‘## BPEL 服务级别管理’缺少编号，标题与编号拆分导致不满足单行标题要求，属排版断行噪声
+  need_human_review: false
+- 'no': 1148
+  reason: 前一行‘## 6’单独成行，标题‘## BPEL 服务仪表板’无编号，标题被拆分，格式不符合章标题单行特征
+  need_human_review: false
+- 'no': 1803
+  reason: 前一行‘## 9’单独成行，标题‘## SOA Suite 克隆’与编号分离，标题缺少编号特征，属跨行标题拆分
+  need_human_review: false
+- 'no': 2277
+  reason: 前一行‘## 10’单独成行，标题‘## Web 应用监控’无编号，编号与标题拆分构成排版断行
+  need_human_review: false
+- 'no': 2517
+  reason: 前一行‘## 11’单独成行，标题‘## WebLogic 和 OSB 目标的发现’缺少编号，标题被拆分，不满足单行章标题格式
+  need_human_review: false
+- 'no': 2610
+  reason: 前一行‘## 12’单独成行，标题‘## OSB 部署自动化’与编号分离，属排版断行噪声
+  need_human_review: false
+- 'no': 2819
+  reason: 前一行‘## 13’单独成行，标题‘## OSB 代理和业务服务监控’无编号，编号与标题跨行，格式不符
+  need_human_review: false

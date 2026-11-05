@@ -1,0 +1,110 @@
+reviews:
+- 'no': 2
+  overturn_probability: 0.15
+  alternative: 前言类章节标题
+  counter_evidence:
+  - 标题后紧跟作者信息列表而非概述段落
+  - 但符合前言、致谢、关于作者等正文之前内容统一划分为一章的规则，首个前言类标题作为起始可接受
+  keep_split: true
+- 'no': 351
+  overturn_probability: 0.05
+  alternative: 章节标题
+  counter_evidence:
+  - 标题单独成行，含编号‘1’，末尾无标点，长度<30
+  - 后1~3行即为概述段落‘硬件、软件和应用程序组件的管理很重要…’，符合最高层级章标题特征
+  keep_split: true
+- 'no': 463
+  overturn_probability: 0.92
+  alternative: 排版断行
+  counter_evidence:
+  - 标题‘## 发现 BPEL PM’前一行‘## 2’单独成行，章节编号与标题被拆分，不符合真正的章标题通常单独成行的格式特征
+  - 标题本身缺少编号特征，无法独立识别为最高层级章节
+  - 编号行与标题行构成排版断行噪声，应视为同一标题的拆分而非独立分章点
+  keep_split: false
+- 'no': 568
+  overturn_probability: 0.92
+  alternative: 排版断行
+  counter_evidence:
+  - 前一行‘## 3’单独成行，标题‘## BPEL 流程监控’与编号分离
+  - 标题缺少‘第 X 章’或‘Y.’等编号特征
+  - 标题被拆分到两行，属于排版断行而非完整章标题
+  keep_split: false
+- 'no': 716
+  overturn_probability: 0.92
+  alternative: 排版断行
+  counter_evidence:
+  - 前一行‘## 4’单独成行，编号与标题‘## BPEL 基础设施管理’分离
+  - 标题单独出现时无编号，语义上无法确认最高层级
+  - 格式上为跨行标题，应排除
+  keep_split: false
+- 'no': 879
+  overturn_probability: 0.92
+  alternative: 排版断行
+  counter_evidence:
+  - 前一行‘## 5’单独成行，标题‘## BPEL 服务级别管理’缺少编号
+  - 标题与编号拆分导致不满足单行标题要求
+  - 属于排版断行噪声
+  keep_split: false
+- 'no': 1148
+  overturn_probability: 0.92
+  alternative: 排版断行
+  counter_evidence:
+  - 前一行‘## 6’单独成行，标题‘## BPEL 服务仪表板’无编号
+  - 标题被拆分，格式不符合章标题单行特征
+  keep_split: false
+- 'no': 1248
+  overturn_probability: 0.08
+  alternative: 章节标题
+  counter_evidence:
+  - 标题‘## 7 BPEL 部署自动化’编号与标题同行，单独成行，末尾无标点
+  - 后接概述段落‘在大多数中大型企业中…’，符合最高层级章标题
+  keep_split: true
+- 'no': 1442
+  overturn_probability: 0.08
+  alternative: 章节标题
+  counter_evidence:
+  - 标题‘## 8 BPEL 配置管理’编号与标题同行，单独成行
+  - 后接配置管理概述段落，语义统领后续内容
+  keep_split: true
+- 'no': 1803
+  overturn_probability: 0.9
+  alternative: 排版断行
+  counter_evidence:
+  - 前一行‘## 9’单独成行，标题‘## SOA Suite 克隆’与编号分离
+  - 标题缺少编号特征，属跨行标题拆分
+  keep_split: false
+- 'no': 2277
+  overturn_probability: 0.9
+  alternative: 排版断行
+  counter_evidence:
+  - 前一行‘## 10’单独成行，标题‘## Web 应用监控’无编号
+  - 编号与标题拆分构成排版断行
+  keep_split: false
+- 'no': 2517
+  overturn_probability: 0.9
+  alternative: 排版断行
+  counter_evidence:
+  - 前一行‘## 11’单独成行，标题‘## WebLogic 和 OSB 目标的发现’缺少编号
+  - 标题被拆分，不满足单行章标题格式
+  keep_split: false
+- 'no': 2610
+  overturn_probability: 0.9
+  alternative: 排版断行
+  counter_evidence:
+  - 前一行‘## 12’单独成行，标题‘## OSB 部署自动化’与编号分离
+  - 属排版断行噪声
+  keep_split: false
+- 'no': 2819
+  overturn_probability: 0.9
+  alternative: 排版断行
+  counter_evidence:
+  - 前一行‘## 13’单独成行，标题‘## OSB 代理和业务服务监控’无编号
+  - 编号与标题跨行，格式不符
+  keep_split: false
+- 'no': 2984
+  overturn_probability: 0.07
+  alternative: 章节标题
+  counter_evidence:
+  - 标题‘## 14 WebLogic 和 OSB 配置管理’编号与标题同行，单独成行
+  - 后接中间件配置概述段落，符合最高层级章标题特征
+  keep_split: true

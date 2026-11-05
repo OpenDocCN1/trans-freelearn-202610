@@ -1,0 +1,7 @@
+# Summary
+
+Discovery is the first step to managing a target in the enterprise. Discovering and managing multiple targets from a single console is a powerful way to ramp up on new projects, while maintaining a standardized management platform. This avoids hiring new administrators for new projects that increase the number of managed targets.
+
+In this chapter, we looked at how to discover WebLogic Server and OSB targets. In particular, we discussed the mandatory discovery process to locate and identify the WebLogic and OSB components. There are several challenges associated with managing multiple components in the data center. Grid Control provides a single interface to discover and manage these disparate components. In the exercises, we walked through simple steps to discover WebLogic and OSB components. Finally, we viewed the key monitoring areas on the OSB target home page.
+
+The WebLogic server discovery is mandatory, and OSB is discovered automatically as a result. These are mandatory steps to enable subsequent management tasks on WebLogic or OSB. The next few chapters will walkthrough hands-on exercises to set up and perform additional management tasks for the discovered targets.

@@ -1,0 +1,13 @@
+# III: WebLogic and Oracle Service Bus Management
+
+Chapter 11, Discovery of WebLogic and OSB targets, talks about managing multiple WebLogic domains and OSB instances from a single console, as it is a frequent problem for the middleware administrator. Middleware administrators can use a single console to manage all their installations, perform complex management tasks, and dive into their respective WebLogic or OSB console to perform administrative activities. All of this enables the administrator to standardize management tasks, and hence the behavior of WebLogic and OSB servers, leading to increased uptime.
+
+Chapter 12, OSB Deployment Automation, discusses that deployment of OSB projects and resources to multiple domains can be cumbersome and time consuming. This chapter walks through typical deployment scenarios and how they can be automated using the deployment procedure framework. This enables infrastructure teams to standardize deployments, as well as to track and manage artifacts centrally.
+
+Chapter 13, OSB Proxy and Business Service Monitoring, walks the reader through Oracle Service Bus services that provide a versatile frontend plumbing layer to standardize messages from various sources and differing formats. Any performance bottleneck directly relates to a slowdown in critical backend business processes. This chapter also covers the monitoring capabilities for OSB proxy and business services. These provide the administrator with visibility into the runtime behavior, and take proactive steps to maintain a high-performing environment.
+
+Chapter 14, WebLogic and OSB Configuration Management, describes that configuration changes are a major cause of downtimes in production environments. This chapter also covers WebLogic and OSB configuration tracking, viewing changes, and comparing and saving configurations. This enables administrators to resolve problems quickly and standardize a set of configurations across the enterprise.
+
+# What you need for this book
+
+The target product versions used throughout this book are installed on Oracle Enterprise Linux platform and share an Oracle database 10.2.0.2 as the common repository. For the first two sections, Oracle SOA Suite is used as the target. SOA Suite 10.1.3.x is installed in a single node environment on Oracle Application Server 10.1.3.x. The popular SOA Order Booking application is used throughout the book to illustrate various features. Oracle Service Bus 10gR3 installed on WebLogic Server 10gR3 is used as the target for the third section. The Mortgage Broker application is used to illustrate various features.

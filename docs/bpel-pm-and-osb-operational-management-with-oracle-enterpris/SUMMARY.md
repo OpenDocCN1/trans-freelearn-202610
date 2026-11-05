@@ -1,0 +1,8 @@
++   [Oracle Enterprise Manager 10g Grid Control BPEL PM 和 OSB 运维管理：集中管理多个 BPEL 和 OSB 环境的操作任务](README.md)
++   [Oracle Enterprise Manager 10g Grid Control BPEL PM 和 OSB 运维管理：集中管理多个 BPEL 和 OSB 环境的操作任务](bpel-pm-and-osb-operational-management-with-oracle-enterpris_0.md)
++   [致谢](bpel-pm-and-osb-operational-management-with-oracle-enterpris_1.md)
++   [1 Grid Control、BPEL 和 OSB 概述](bpel-pm-and-osb-operational-management-with-oracle-enterpris_2.md)
++   [7 BPEL 部署自动化](bpel-pm-and-osb-operational-management-with-oracle-enterpris_3.md)
++   [8 BPEL 配置管理](bpel-pm-and-osb-operational-management-with-oracle-enterpris_4.md)
++   [14 WebLogic 和 OSB 配置管理](bpel-pm-and-osb-operational-management-with-oracle-enterpris_5.md)
++   [Index](bpel-pm-and-osb-operational-management-with-oracle-enterpris_6.md)
