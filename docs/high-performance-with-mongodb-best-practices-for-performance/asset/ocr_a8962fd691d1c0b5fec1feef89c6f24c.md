@@ -1,0 +1,14 @@
+This is where the principle of *data that's used together should be stored together* comes in. It might sound simple at first glance, but it's powerful when you understand its implications. Here's how it plays out in practice:
+
++   - **Embed data that is always retrieved together**: This reduces the number of round trips to the database and keeps reads efficient. For example, embedding order line items within an order document makes sense if they are usually accessed together.
++   - **Separate infrequently accessed data**: Keep large but rarely used fields out of the main document. This helps prevent overhead if most queries don't need them. Storing large attributes that are only occasionally needed in a document increases disk I/O and wastes RAM. For example, storing a full-size image of a user in the primary user document isn't efficient if only a small thumbnail is displayed on most user pages.
+
+The worst mistake would probably be to treat MongoDB like a relational database, normalizing data across multiple collections and then joining it back together for every query. On the other hand, over embedding can also be suboptimal if it bloats your documents to an extreme extent. You will end up needing significantly more cache, **input/output operations per second (IOPS)**, and network bandwidth than if you structured the data more in line with your application needs.
+
+# Read and write trade-offs
+
+When designing your schema, you may face conflicting requirements between optimizing for reads versus writes. This is not unique to MongoDB, but the document model gives you more options for resolving these conflicts. Here are a few common factors to consider when balancing read and write performance in your schema design:
+
++   - **Indexing**: Indexes speed up reads but add overhead to writes and use other resources. Adding multiple indexes to a collection can dramatically improve query performance but will add cost to write operations. It is a classic trade-off, but one worth making if the indexes are correctly designed for your application.
++   - **Strict service level agreements (SLAs)**: Prioritize operations with the strictest latency requirements. Sometimes you optimize for writes and other times for reads, rarely both equally. For instance, an order processing system may prioritize fast writes, while a reporting system may optimize for read efficiency.
++   - **Reducing I/O**: Work to minimize the amount of data reads and writes. Every data block you access has a cost. If you can eliminate unnecessary reads or writes, all operations become cheaper and faster.

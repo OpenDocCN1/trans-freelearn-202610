@@ -1,0 +1,41 @@
+chapter_starts:
+- 'no': 6053
+  confidence: 0.92
+  final_reason: '一级标题 # 13 操作系统和系统资源，编号明确且单独成行，后接同名二级标题 ## 操作系统和系统资源及概述段落，符合最高层级章起始的编号、格式、语义与上下文特征。复核方
+    overturn_probability 仅 0.08 且 keep_split true，排版上的同名二级标题与概述位置延迟不构成章边界否定。'
+  accepted_evidence:
+  - '一级标题 # 13 操作系统和系统资源，编号明确，单独成行'
+  - '后接 ## 操作系统和系统资源 及概述段落，符合章起始上下文模式'
+  - 复核方 keep_split true，overturn_probability 0.08
+  rejected_evidence:
+  - 标题后紧跟同名二级标题可能为排版噪声
+  - 概述段落实际出现在二级标题之后，位置略有延迟
+  need_human_review: false
+- 'no': 6476
+  confidence: 0.95
+  final_reason: '一级标题 # 14 Monitoring and Observability，编号连续，前文为上一章总结与下一章提示，后接同名二级标题
+    ## Monitoring and Observability 及概述段落，完全符合最高层级大章起始特征。复核方 keep_split true，overturn_probability
+    0.05。'
+  accepted_evidence:
+  - '顶级 # 且编号连续 # 14，符合全书最高层级大章编号特征'
+  - 标题后紧跟同名二级标题及概述段落，符合章起始上下文模式
+  - 复核方 keep_split true，overturn_probability 0.05
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 7144
+  confidence: 0.95
+  final_reason: '一级标题 # 15 Debugging Performance Issues，编号明确单独成行，前文有下一章提示句，后接同名二级标题
+    ## Debugging Performance Issues 及概述段落，语义统领后续内容，符合章边界。复核方 keep_split true，overturn_probability
+    0.05。'
+  accepted_evidence:
+  - '顶级 # 且编号连续 # 15，前文有下一章提示，后文为总结过渡'
+  - 标题后紧跟同名二级标题及概述段落，语义统领后续内容
+  - 复核方 keep_split true，overturn_probability 0.05
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 7722
+  reason: '复核方反证成立且 overturn_probability 0.85。标题层级为 ## 非顶级 #，属 # 15 Debugging Performance
+    Issues 章的附属尾部；标题后无概述段落，直接进入 ### 符号 子标题，符合索引条目结构而非独立统领性章节。前文已有 ## 后记、## 关键要点 等尾部内容，##
+    索引 属于附录索引。按宁可漏分不可误分原则，不予分章。'
+  need_human_review: false

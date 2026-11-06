@@ -1,0 +1,30 @@
+reviews:
+- 'no': 6053
+  overturn_probability: 0.08
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题后紧跟同名二级标题 ## 操作系统和系统资源，出现重复命名可能为排版噪声'
+  - '# 标题后1行为空，概述段落实际出现在二级标题之后，章起始的概述位置略有延迟'
+  keep_split: true
+- 'no': 6476
+  overturn_probability: 0.05
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题为顶级 # 且编号连续 # 14，符合全书最高层级大章编号特征'
+  - '标题后紧跟同名二级标题 ## Monitoring and Observability 及概述段落，符合章起始上下文模式'
+  keep_split: true
+- 'no': 7144
+  overturn_probability: 0.05
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题为顶级 # 且编号连续 # 15，前文有下一章提示句，后文为总结过渡，符合章边界'
+  - '标题后紧跟同名二级标题 ## Debugging Performance Issues 及概述段落，语义统领后续内容'
+  keep_split: true
+- 'no': 7722
+  overturn_probability: 0.85
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题层级为 ## 非顶级 #，与前文 # 15 Debugging Performance Issues 同属一章的附属尾部部分'
+  - '标题后无概述段落，直接进入 ### 符号 子标题，符合索引条目结构而非章节概述'
+  - '前文已出现 ## 后记、## 关键要点 等尾部内容，## 索引 属于附录索引而非独立统领性章节'
+  keep_split: false

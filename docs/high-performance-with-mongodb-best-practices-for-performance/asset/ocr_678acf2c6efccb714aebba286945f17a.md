@@ -1,0 +1,5 @@
+Also, design with sharding in mind. In a sharded environment, understanding how aggregation stages distribute across shards can make or break performance. For best results, filter on the shard key early to target only specific shards, minimize the number of shards involved, and be aware of which stages force a merge (that is, stop parallel execution). Finally, monitor and measure performance. Keep experimenting, keep measuring, and keep refining your approach. The most elegant pipeline isn’t necessarily the one with the fewest stages; it’s the one that balances readability, maintainability, and performance to deliver insights accurately and efficiently.
+
+With your data processing optimized, it’s time to turn our attention to the pathways that carry your data.
+
+The next chapter explores replication, read preference, and write concern, which are essential for maintaining data availability, consistency, and performance across distributed systems.

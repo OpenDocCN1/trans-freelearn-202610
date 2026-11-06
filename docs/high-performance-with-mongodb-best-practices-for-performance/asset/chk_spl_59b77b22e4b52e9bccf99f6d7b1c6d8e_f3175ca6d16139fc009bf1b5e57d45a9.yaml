@@ -1,0 +1,51 @@
+reviews:
+- 'no': 18
+  overturn_probability: 0.78
+  alternative: 前置部分的二级小标题
+  counter_evidence:
+  - '## 致谢 为二级 Markdown 标题，非全书最高层级章标题；真正的章标题通常为 # 级别且单独成行'
+  - 前言、序言、致谢、关于作者等正文之前的内容应统一划分为一章，致谢只是该前置章节内部的子标题，不应作为独立分章点
+  - '致谢前已有致词 6-16 行属于同一前置内容，分章点过晚导致前置内容碎片化，且后续 ## 贡献者、### 关于作者、## 前言 等仍属同一前置块'
+  keep_split: false
+- 'no': 198
+  overturn_probability: 0.08
+  alternative: 章节副标题/重复标题
+  counter_evidence:
+  - '标题后 2 行即出现同名二级标题 ## 系统与 MongoDB 架构，存在标题重复的排版噪声可能'
+  - '编号 # 1 符合最高层级特征，但重复标题易被误判为小节而非真正章起'
+  keep_split: true
+- 'no': 740
+  overturn_probability: 0.05
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题 # 2 为性能设计的模式设计 符合编号特征，但后续立即出现 ### 了解模式设计的核心理念 等深层小标题，结构上易被误判'
+  - 标题末尾无标点、单独成行且后接概述段落，章特征成立
+  keep_split: true
+- 'no': 1533
+  overturn_probability: 0.04
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题 # 3 索引 后紧跟 ## 索引 重复标题，可能为排版重复导致误判'
+  - 编号特征明确、单独成行、后接章节概述，符合最高层级大章判断
+  keep_split: true
+- 'no': 2017
+  overturn_probability: 0.04
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题 # 4 聚合 后紧跟 ## 聚合 重复标题，存在排版噪声'
+  - 编号特征明确、语义统领后续聚合管道内容，章特征成立
+  keep_split: true
+- 'no': 2437
+  overturn_probability: 0.06
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题为英文 # 5 Replication，编号特征存在但语言与前文中文标题风格不一致，可能为排版异常'
+  - 单独成行、编号明确、后接章节概述，仍符合最高层级大章划分
+  keep_split: true
+- 'no': 2849
+  overturn_probability: 0.06
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题为英文 # 6 Sharding，编号特征存在但与前文中文标题风格不一致，可能为排版异常'
+  - 单独成行、编号明确、语义统领分片架构内容，章特征成立
+  keep_split: true

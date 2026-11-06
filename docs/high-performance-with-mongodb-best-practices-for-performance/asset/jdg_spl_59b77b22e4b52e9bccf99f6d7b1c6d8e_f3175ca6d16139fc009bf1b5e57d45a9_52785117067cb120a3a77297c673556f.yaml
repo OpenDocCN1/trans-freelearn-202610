@@ -1,0 +1,65 @@
+chapter_starts:
+- 'no': 198
+  confidence: 0.98
+  final_reason: 编号特征明确的最高层级大章，单独成行且后接概述段落，复核方提出的重复标题噪声不足以否定章起始
+  accepted_evidence:
+  - '标题为 # 1 系统与 MongoDB 架构，符合全书最高层级编号特征'
+  - 单独成行，末尾无标点，长度小于30字
+  - 后接概述段落，语义统领后续系统与 MongoDB 架构内容
+  rejected_evidence:
+  - '复核方指出标题后2行出现同名二级标题 ## 系统与 MongoDB 架构，存在排版噪声'
+  need_human_review: false
+- 'no': 740
+  confidence: 0.98
+  final_reason: 编号特征明确的最高层级大章，单独成行且语义统领后续模式设计内容，复核方未提供有效反驳
+  accepted_evidence:
+  - '标题为 # 2 为性能设计的模式设计，编号明确'
+  - 单独成行，末尾无标点
+  - 后接章节概述，语义具有统领性
+  rejected_evidence:
+  - '复核方提及后续出现 ### 了解模式设计的核心理念 等深层小标题易误判'
+  need_human_review: false
+- 'no': 1533
+  confidence: 0.98
+  final_reason: 编号特征明确的最高层级大章，单独成行且后接章节概述，重复标题为常见排版噪声
+  accepted_evidence:
+  - '标题为 # 3 索引，编号明确'
+  - 单独成行，末尾无标点
+  - 后接章节概述，语义统领索引内容
+  rejected_evidence:
+  - '复核方指出后紧跟 ## 索引重复标题，可能为排版重复'
+  need_human_review: false
+- 'no': 2017
+  confidence: 0.98
+  final_reason: 编号特征明确的最高层级大章，单独成行且语义统领聚合管道内容，重复标题不构成反驳
+  accepted_evidence:
+  - '标题为 # 4 聚合，编号明确'
+  - 单独成行，末尾无标点
+  - 后接章节概述，语义具有统领性
+  rejected_evidence:
+  - '复核方指出后紧跟 ## 聚合 重复标题，存在排版噪声'
+  need_human_review: false
+- 'no': 2437
+  confidence: 0.97
+  final_reason: 编号特征明确的最高层级大章，单独成行且后接章节概述，语言风格差异不影响章划分
+  accepted_evidence:
+  - '标题为 # 5 Replication，编号明确'
+  - 单独成行，末尾无标点
+  - 后接章节概述，语义统领复制内容
+  rejected_evidence:
+  - 复核方提及标题为英文与前文中文风格不一致，可能为排版异常
+  need_human_review: false
+- 'no': 2849
+  confidence: 0.97
+  final_reason: 编号特征明确的最高层级大章，单独成行且语义统领分片架构内容，语言风格差异不构成反驳
+  accepted_evidence:
+  - '标题为 # 6 Sharding，编号明确'
+  - 单独成行，末尾无标点
+  - 语义统领分片架构后续内容
+  rejected_evidence:
+  - 复核方提及标题为英文与前文中文风格不一致，可能为排版异常
+  need_human_review: false
+rejected_lines:
+- 'no': 18
+  reason: 复核方反方证据成立：## 致谢 为二级 Markdown 标题，非全书最高层级章标题；前置致词 6-16 行已属同一前置块，分章点过晚导致前置内容碎片化，前言、序言、致谢、关于作者等正文之前内容应统一划分为一章，不应在此拆分
+  need_human_review: false

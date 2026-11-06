@@ -1,0 +1,13 @@
+One common mistake is failing to retry a transaction after encountering a TransientTransactionError, which is often recoverable with a simple retry. On the flip side, retrying too aggressively, without any delay or backoff, can make the situation worse by increasing contention. Another issue is retrying indefinitely without setting a maximum number of attempts, which can lead to wasted resources and stuck processes. Developers also sometimes mishandle UnknownTransactionCommitResult, retrying the entire transaction rather than just the commitTransaction command.
+
+These kinds of mistakes can have serious consequences. Poorly managed retries can overload the server during high-traffic periods. Also, if retry logic isn’t idempotent or properly scoped, the same operation could be applied more than once.
+
+To avoid these pitfalls, the best approach is to use the Callback API, which automatically retries transactions safely under the hood. If you’re using the Core API, make sure to implement retry logic with exponential backoff and jitter to avoid overwhelming the system while still allowing recoverable failures to succeed on a later attempt.
+
+# Insufficient monitoring of transaction metrics
+
+As the saying goes, “if you don’t measure it, you can’t improve it!” Failing to monitor transaction performance is a recipe for invisible problems turning into production outages.
+
+To stay on top of transaction health, it’s important to track key metrics such as the number of active transactions and total transactions started, committed, and aborted. Monitoring transaction latency, that is, how long transactions take to complete, helps identify slowdowns. Additionally, keeping an eye on WiredTiger cache pressure and eviction rates gives insight into cache utilization. Lock-related metrics such as wait times and acquisition counts reveal whether transactions are being delayed by contention. Finally, tracking error rates, specifically how often transactions abort or require retries compared to total transactions, helps pinpoint instability.
+
+For effective monitoring, set up dashboards in MongoDB Atlas or your preferred system to visualize these metrics. Create alerts for unusual trends such as spikes in abort rates or increasing transaction durations. Logging transaction execution details alongside database metrics can help correlate issues. Regularly reviewing these transaction patterns allows for ongoing optimization and early detection of potential problems.

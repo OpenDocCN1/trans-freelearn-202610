@@ -1,0 +1,11 @@
+For example, filtering documents early with $match can dramatically reduce the amount of data that subsequent stages need to process. Using indexes effectively is also crucial. Just like with regular queries, a pipeline that can use an index to quickly find the documents it needs will be far more performant than one that has to scan the entire collection.
+
+As we’ll see in the next section, MongoDB’s query optimizer does a lot to improve performance automatically, but understanding the principles behind these optimizations will help you write better pipelines.
+
+# Aggregation pipeline flow
+
+After parsing the pipeline, MongoDB’s query optimizer analyzes it and tries to make it as efficient as possible. It may reorder stages to improve performance (making sure it won’t change the results), combine compatible operations, push filters closer to the data to use available indexes effectively, and create an optimal execution plan based on your pipeline structure. It also analyzes which fields from original documents your pipeline is using to limit the amount of data it brings into the pipeline from the collection.
+
+Under the hood, MongoDB sends batches of documents through the pipeline in a streaming fashion. Each stage receives a batch of documents from the previous stage, applies its transformation, and passes the results to the next stage. This design minimizes memory usage and allows for efficient processing of large datasets.
+
+However, not every stage can pass each batch to the next stage because some stages need to see all the input coming to it, before any of it can be passed on. Think of $sort, which doesn’t know what the highest or lowest value is until it’s seen the last document, or $group, which cannot know each grouping is complete till it has seen every document. You’ll hear those stages referred to as blocking stages, as opposed to streaming stages. Streaming stages can keep each batch of documents streaming when their own work is done, but blocking stages must receive all the documents before any documents can be passed on to the next stage.

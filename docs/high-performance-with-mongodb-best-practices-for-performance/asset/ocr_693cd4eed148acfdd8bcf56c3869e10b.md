@@ -1,0 +1,11 @@
+# About the reviewers
+
+**Keith Smith** is a systems and storage expert with decades of experience in operating systems and data infrastructure. Based in the U.S., he has contributed to innovations at companies like Sun Microsystems, NetApp, and MongoDB. Keith started his career designing real-time UNIX systems and went on to build extensible operating systems at Harvard, where he earned his PhD. His work has spanned object-based storage, metadata catalogs, and file system architectures. Since 2020, he has led storage engine development at MongoDB. Keith is passionate about scalable systems and continues to push the boundaries of data storage technology.
+
+**John Page** is a full-stack engineer who joined MongoDB in 2013. Since then, he has held senior technical roles focused on customer success across all phases of the development lifecycle. Before MongoDB, he spent 18 years building document database systems for law enforcement and the U.S. military. Trained as a geologist, John can find silicon in the wild, build a computer from raw components, and write everything from operating systems and databases to front ends and documentation.
+
+**James Kovacs** is a director of engineering in Database Experience at MongoDB. He focuses on client libraries, object-document mappers, framework integrations, and AI/ML. He has over 25 years of professional software engineering experience, having worked in a wide variety of companies and industries over that time. When not in front of a keyboard, you can find him playing board games/TTRPGs, cooking tasty vegan meals in the kitchen, or at the dojo teaching karate.
+
+**Stephanie Eristoff** is a software engineer on the Storage Execution team at MongoDB, which she joined in 2024. She brings experience in performance testing of time-series collections and indexes and has also contributed to the Performance and Query Execution teams. Outside of work, Stephanie enjoys baking, running, and biking.
+
+**Katya Kamenieva** is a product manager at MongoDB, where she has been driving improvements to the aggregation framework, change streams, and other features since 2019. Her work focuses on enhancing how users interact with data in MongoDB. Outside of work, she’s a mom to two young daughters and finds mindfulness through quiet moments, a good cup of coffee, yoga, and watercolor painting.
