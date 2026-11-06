@@ -1,0 +1,7 @@
+# About the Reviewers
+
+**Ian McAlpine**'s first introduction to computers was his school's Research Machines RML-380Z and his Physics teacher's Compukit UK101. This was followed by a Sinclair ZX81 and then a BBC Micro Model A, which he still has. This interest resulted in a MEng in Electronic Systems Engineering from Aston University and an MSc in Information Technology from the University of Liverpool. Ian is currently a product expert in the BI & Analytics Competency Centre, at SAP Labs, in Vancouver, Canada.
+
+The introduction of Raspberry Pi not only rekindled his desire to *tinker* but also provided an opportunity to give back to the community. Consequently, Ian was a very active volunteer working on The MagPi, a monthly magazine for Raspberry Pi, which you can read online or download for free from `https://www.raspberrypi.org/magpi`. He also holds an amateur radio license (callsign VE7FTO) and is a communications volunteer for his local community Emergency Management Office. He was a technical reviewer for the *Raspberry Pi Cookbook for Python Programmers* and *Raspberry Pi Projects for Kids* books, both published by *Packt Publishing*.
+
+I would like to thank my darling wife, Louise, and my awesome kids Emily and Molly for allowing me to disappear into my "office"... and for training our dog to fetch me!

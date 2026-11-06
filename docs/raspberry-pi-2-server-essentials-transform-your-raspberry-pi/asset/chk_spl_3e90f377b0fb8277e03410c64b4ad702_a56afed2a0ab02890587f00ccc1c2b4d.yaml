@@ -1,0 +1,30 @@
+reviews:
+- 'no': 2977
+  overturn_probability: 0.12
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题使用 ## 标记，与文中其他小标题如 ## 能用多久？、## 总结 格式完全相同，无法仅凭标记区分最高层级大章'
+  - '标题后紧跟概述段落，但随后立即出现 ### 开始、### 刷写 IoT 等更细分的子标题，说明 ## 在本部分中也承担主要小节功能'
+  keep_split: true
+- 'no': 3255
+  overturn_probability: 0.1
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题为 ## 11 运行自己的 ownCloud，编号与前文 ## 10 Windows IoT Core 连续，易被误认为同一部分下的序列小节'
+  - '前文 ## 总结 已收尾，但本标题后内容直接以英文段落开头，语义衔接平滑，缺乏典型的章首独立概述段落'
+  keep_split: true
+- 'no': 3549
+  overturn_probability: 0.1
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题 ## 12 物联网 – 云中的传感器 包含破折号，长度接近30字上限，格式上与普通小标题无异'
+  - '前文 ## 摘要 仅为简短收尾，后文立即进入主题介绍，未出现后1~3行标准的章首概述段落'
+  keep_split: true
+- 'no': 3792
+  overturn_probability: 0.68
+  alternative: 索引总标题/排版标题
+  counter_evidence:
+  - 'Index 后紧跟 ## Symbols、## A、## B 等同级 ## 标题，说明 Index 下仍有层级结构，不符合独立章节的单一概述特征'
+  - 索引内容为词条+页码列表，属于排版噪声/页码残留范畴，按排除特征不应单独分章
+  - '文末索引在本书中以多级 ## 子标题呈现，若在 ## Index 处分章会导致索引内部的子标题被误判为新章'
+  keep_split: false
