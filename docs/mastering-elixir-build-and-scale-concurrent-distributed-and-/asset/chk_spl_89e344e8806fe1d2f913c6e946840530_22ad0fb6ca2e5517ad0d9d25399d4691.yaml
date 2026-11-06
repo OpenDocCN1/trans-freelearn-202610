@@ -1,0 +1,23 @@
+reviews:
+- 'no': 178
+  overturn_probability: 0.88
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题层级为 ## 而非全书大章常用的 #，与后续 # 1 为即将开始的旅程做准备、# 2 Elixir 项目的内部结构 的层级不一致'
+  - '在文件顺序中该行出现在 # 第 11 章：监视你的进程 之后，结构上倒序，表明并非新的章节起点而是前言内部的节'
+  - '后接 ## 本书适合谁、## 本书涵盖内容 等同级 ## 小标题，构成前言节群而非统领全书的章节，后 1~3 行亦为前言概述而非章节开篇'
+  keep_split: false
+- 'no': 284
+  overturn_probability: 0.12
+  alternative: 章节标题
+  counter_evidence:
+  - 标题单独成行、编号为 1、无句号且长度小于30字，符合全书最高层级大章格式特征
+  - 后 1~3 行为概述段落‘欢迎踏上这段不可思议的旅程！...’并随后进入‘在本章中，我们将涵盖以下主题：’的主题列表，符合章节上下文特征
+  keep_split: true
+- 'no': 2206
+  overturn_probability: 0.1
+  alternative: 章节标题
+  counter_evidence:
+  - '标题为 # 2 Elixir 项目的内部结构，单独成行无句号，长度小于30字，符合最高层级大章格式'
+  - 后接概述段落‘在上一章查看了构建块之后...’并进入本章主题介绍，符合章节上下文特征
+  keep_split: true

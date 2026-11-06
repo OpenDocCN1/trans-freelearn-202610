@@ -1,0 +1,31 @@
+chapter_starts:
+- 'no': 3234
+  confidence: 0.9
+  final_reason: 判断方与复核方均倾向分章。标题以 '# 3' 开头单独成行，为全书最高层级编号，语义统领后续进程并发与容错内容。复核方虽提出间隔短、后接叙述等疑点，但
+    overturn_probability 仅 0.1 且 keep_split 为 true，采纳分章。
+  accepted_evidence:
+  - 标题以 '# 3' 开头单独成行，符合最高层级编号特征
+  - 语义为'进程 – 并发和容错的基石'，可统领后续 BEAM、进程创建、消息传递等内容
+  - 复核方 keep_split true，认为分章成立
+  rejected_evidence:
+  - 标题后 1~3 行直接进入叙述性段落，未先出现典型概述总起
+  - '前一章以 ## 摘要 结束，距此约 15 行，章节边界间隔较短'
+  - 标题含破折号，语义偏描述性
+  need_human_review: false
+- 'no': 4153
+  confidence: 0.88
+  final_reason: 标题以 '# 4' 开头单独成行，语义统领 Erlang/OTP 相关内容，为全书最高层级章节。复核方提出承接性叙述、编号表述不一致等疑点，但
+    overturn_probability 0.12 且 keep_split 为 true，优先保留分章。
+  accepted_evidence:
+  - 标题以 '# 4' 开头单独成行，格式符合最高层级章节
+  - 标题后内容为 GenServer、Agent、Task、ETS、Registry 等 OTP 构造，语义覆盖一致
+  - 复核方 keep_split true
+  rejected_evidence:
+  - 标题后第一句为承接性叙述'正如我们在上一章中所看到的...'，缺乏独立开篇概括
+  - 编号格式为 '# 4' 而非 '第 4 章'，与部分表述风格不一致
+  - '前后均以 ## 摘要 标记，边界模糊'
+  need_human_review: false
+rejected_lines:
+- 'no': 5655
+  reason: 复核方反证成立。标题 '# 5 按需驱动处理' 后下一行即为 '## Demand-Driven Processing' 英文子标题，形成中文一级标题+英文二级标题的双语堆叠，无独立概述段落，直接进入子标题，上下文连续性被打断。误分风险高，宁可漏分，不采纳为章节起点。
+  need_human_review: false

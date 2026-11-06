@@ -1,0 +1,11 @@
+As we can see, for the `get_content` function, the shell process only resumed after returning us the content we asked for, whereas for the `refresh` function, it returned right away. Note that we now have functions in the `CacheWorker` module that run in different processes. This is a common pattern in Elixir and Erlang applications, as there's no particular relationship between modules and processes. The functions present in a module can be called by any process.
+
+We've now covered how to build stateful server processes that know how to handle a certain type of requests and may run for a long time. Let's now look at how we can link and monitor processes, a core component of fault tolerance in Elixir.
+
+# Detecting errors by linking and monitoring processes
+
+So far, we've focused mostly on the concurrency aspect of processes. However, processes are also used to create fault-tolerant and reliable systems that can continue to operate even in the presence of errors.
+
+To have fault-tolerant applications, you must first recognize the existence of failures, most of them being unexpected. These failures range from one of our dependencies being down (such as a database) to having hardware failures. Moreover, if you're running a distributed system, you can experience other issues, such as a remote machine becoming unavailable, or being in the presence of a network partition. Regardless of the cause, these failures must be detected, so that we can limit their impact and hopefully recover from it without human intervention.
+
+It's virtually impossible to anticipate all the possible scenarios that may grind your application to a halt. It's far more efficient to accept that anything can fail, and design your system to react to it. When a certain component in your application does fail, you shouldn't need to take action on all the components of the system–the components that are completely unrelated to the failing component should resume their work, making the application provide as much service as possible to its clients. These are the characteristics of reliable and self-healing systems–they are able to recover from unforeseen errors as soon as possible.

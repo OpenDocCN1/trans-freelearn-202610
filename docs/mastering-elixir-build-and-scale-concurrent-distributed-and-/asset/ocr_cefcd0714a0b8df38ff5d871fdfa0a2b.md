@@ -1,0 +1,14 @@
+```
+19:39:11.208 [debug] #PID<0.102.0>: Starting the Encryption module...
+iex> send(pid(0, 102, 0), "some message")
+#PID<0.102.0>: Encryption module received a message: some message
+"some message"
+```
+
+First of all, we compile the needed files to run this example. In previous examples we omitted this, as they were using a single file. Since this example is a bit more complex, we're explicitly compiling them. Then, we call the `start_link/0` function from our supervisor, which will start the supervisor itself and its single child, as we can observe from the debug messages. After that, we send a message to our encryption module, just to verify that it's working. In this case, it's just printing whatever we send to the terminal. Now that we're sure our worker process is running, we kill it using the `Process.exit/2` function. We could also simulate a runtime error in our worker by putting `raise` somewhere in its code, but this approach makes the example more explicit. After killing the process, we can see a debug message stating that the `Encryption` module is starting again. This is the supervisor in action! It detected the crash of its child and started a new process in its place. Lastly, we issue a request to the new `Encryption` process, just to demonstrate that it's fully functional.
+
+It's important to point out that if a child is constantly crashing, a supervisor won't keep restarting it forever—it relies on the maximum *restart frequency*. As we stated in the beginning of the previous section, the rationale for having supervisors is that there is a certain type of bugs that only happen under some circumstances. Restarting the process makes it start from scratch, with a clean state. If the process keeps on restarting, the issue is probably not caused by some intricate state. By default, a supervisor allows for three restarts in a five-second interval. If this limit is exceeded, the supervisor will terminate itself, along with all of its children. Having the supervisor terminate itself in these conditions is very important, as it allows the error to propagate in a supervision tree, as we'll see in the last section of this chapter. The number of errors in a timeframe and the time frame itself can be configured when starting the supervisor by passing the `:max_restarts` and `:max_seconds` options, respectively.
+
+# Streamlined child specs
+
+Elixir 1.5 introduced streamlined child specs, which allow the child specifications to be defined in modules. Instead of relying on the `worker` and `supervisor` functions from the `Supervisor.Spec` module, supervisors now receive a list of modules as children, and will call the `child_spec/1` function on each child module. This allows the child module to control how they are run under a supervisor.

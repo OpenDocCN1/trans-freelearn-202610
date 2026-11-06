@@ -1,0 +1,15 @@
+reviews:
+- 'no': 9492
+  overturn_probability: 0.08
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题前紧接 ## 总结 的章节收尾段落，上下文仍在上一章的总结语境中，标题更像章节内部的过渡性小标题而非全书最高层级大章的起始'
+  - 标题后第一行为空行，随后直接进入解释性正文，缺乏典型的章首概述段落且与前后正文的语义衔接紧密，易被误判为正文小标题
+  keep_split: true
+- 'no': 11711
+  overturn_probability: 0.07
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题前为 ## Summary 的总结段落，上下文为上一章的结束语，标题可能被视为同一主题的延续性专题小标题而非独立大章'
+  - 标题包含英文书名及破折号，格式上更接近正文中的专题小标题，单独成行且无句号的特征与正文小标题重叠，易产生误报
+  keep_split: true
