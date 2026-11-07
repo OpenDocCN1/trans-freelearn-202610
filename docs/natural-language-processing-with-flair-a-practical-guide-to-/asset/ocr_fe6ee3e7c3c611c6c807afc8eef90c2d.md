@@ -1,0 +1,15 @@
+But before diving straight into the ins and outs of trading bots, let's make sure that we have all the technical requirements taken care of.
+
+# Technical requirements
+
+All of the Python libraries used in this chapter are direct dependencies of Flair version 0.11 and require no special setup, assuming Flair is already installed on your machine. Code examples covered in this chapter are found in this book's official GitHub repository in the following Jupyter notebook: https://github.com/PacktPublishing/Natural-Language-Processing-with-Flair/tree/main/Chapter10.
+
+# Understanding the trading strategy
+
+For this hands-on exercise, we'll be implementing an interesting trading strategy that leverages several parts of the Flair NLP framework. The strategy is by no means the best and optimal trading strategy or one that is guaranteed to get you rich. It is, however, a strategy that clearly shows how Flair can be used to solve real-world problems with ease.
+
+The strategy will help us make decisions about trading stock. There are many sources of information based on which one can make their trading decisions. A particularly interesting type of trading strategy leverages NLP to process recent news content. The underlying assumption of these trading strategies is that news articles that discuss a certain company hold important information about events that are likely to affect the company's stock price. Automated NLP strategies have a number of advantages compared to humans when it comes to investing. The advantages mostly boil down to the speed and scale of transactions that machines are capable of doing. A good NLP trading bot can analyze thousands of words of text and make a trading decision in a fraction of the time a human would.
+
+Typical NLP trading bots, however, struggle with the problem of word sense disambiguation. Humans have historically been great at deciphering ambiguous word meanings using context. But recent advancements in NLP, such as Flair's contextual string embeddings used on downstream NLP tasks, bring machines one step closer. Take this statement, for example: *Amazon deforestation fuelled by greed.*
+
+The preceding news article title, to a human, clearly talks about the Amazon rainforest and how it's being affected by deforestation. However, to a naive NLP trading bot, this can easily sound like an article that discusses the Amazon tech company. We can encounter the same type of problems when attempting to trade with companies named after real-world entities or objects, such as Apple, Tesla, Visa, and Shell. A good trading bot should therefore be able to use context to figure out the true meaning of a word in order to determine whether a news article talks about a certain company. Flair's contextually aware NER tagger based around the contextual string embeddings will help us do just that.

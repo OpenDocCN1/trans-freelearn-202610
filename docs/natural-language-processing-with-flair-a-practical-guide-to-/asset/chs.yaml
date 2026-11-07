@@ -1,0 +1,2078 @@
+- '# FLAIR 自然语言处理：理解和解决 NLP 问题的实用指南
+
+
+
+
+
+  致我的女朋友和我的家人，他们在撰写本书的整个过程中给予了我支持。特别感谢 Flair 的原创作者 Prof. Dr. Alan Akbik 提供的帮助，以及将该框架公之于众。
+
+
+  - Tadej Magajna
+
+
+  ## 贡献者
+
+
+  ## 关于作者
+
+
+  Tadej Magajna 曾是首席机器学习工程师、数据科学家，现在是微软的软件工程师。他目前在一支负责语言模型训练和为键盘（如 Microsoft SwiftKey）构建语言包的团队工作。他拥有计算机科学硕士学位。他
+  15 岁时在一家当地媒体公司担任网页开发人员开始职业生涯，并逐步转向更复杂的问题。他曾处理过 NLP 市场研究、公共交通巴士和火车运力预测等问题，最后在目前的岗位上从事语言模型训练。目前，他居住在斯洛文尼亚的家乡卢布尔雅那。
+
+
+  ## 关于审阅者
+
+
+  在学习工程和物理之后，**Pascal Tartarin** 在欧洲和亚太地区的化工和医疗器械行业担任过多个高级管理职位（销售、市场营销和研发）。作为终身学习者，他后来在数据科学和
+  NLP 方面发展了自己的专业知识。在过去 6 年中，他基于 ML、深度学习、NLP 以及最近的知识图谱（Neo4j）构建了业务领域（预测、CRM）的应用。
+
+
+  **Amardeep Kumar** 在自然语言处理和机器学习系统方面具有扎实经验。他在 NLP 和软件开发的不同技术栈方面拥有 2 年的行业经验。Amardeep
+  定期以开发者、导师和评审的身份为 Google Summer of Code 项目贡献开源软件开发。他已为顶级 NLP 会议（如 ACL 和 EMNLP）发表研究论文。
+
+
+  ## 索引
+
+
+  ## 你可能喜欢的其他书籍
+
+
+  ## 前言
+
+
+  自然语言处理（NLP）目前是人工智能领域增长最快的子领域之一，其中 NLP 框架的新进展或变更每天都在发生。初入该领域的人会发现很难知道从哪里开始，哪些想法已经过时，哪些仍然相关，哪些即将成为最先进的技术。同样，拥有扎实的
+  NLP 理论背景并希望获得 NLP 实践经验的人也会发现，很难在开源社区目前提供的众多不同选项中选择合适的 NLP 库或框架。作为一个在专业工作和个人项目中都使用过
+  Flair 的人，我很难推荐其他任何框架，它像 Flair 一样直观、相关且集成了大量即用型、最先进的模型。
+
+
+  关于 Flair 最有趣的事情可能并不是它的简洁性、性能或易用性。相反，这与 Flair 最初的设计方式有关。首次发布从未打算作为一个功能齐全的 NLP 框架。Flair（v0.1）的首次发布，本质上只是一个工具，作为
+  Flair 嵌入的实际实现——这一底层概念赋予了 Flair 序列标注模型惊人的性能。直到后来的 Flair 版本，库才引入了 Transformer 模型、文本分类模型以及你通常期望从成熟
+  NLP 框架中获得的其他工具。
+
+
+  任何旨在构建实际 NLP 解决方案的人都需要在这两者之间取得平衡：在学习更多 NLP 理论上花费时间，以及在选择合适的工程方法上投入精力。本书将帮助您在这两者之间找到合适的平衡。它将为您提供恰到好处的理论基础，帮助您理解底层
+  NLP 概念，同时帮助您获得足够的工程知识和经验，以便熟练使用 Flair。
+
+
+  ## 本书适合谁
+
+
+  本书适合任何渴望通过目前最适合初学者、同时功能强大的 Python NLP 库之一来学习 NLP 的人。读者包括软件工程学生、开发人员、数据科学家，以及任何正在转型进入
+  NLP 并对使用 Flair 解决问题的实用方法感兴趣的人。然而，本书不推荐给希望深入了解 NLP 数学原理的读者。建议具备 Python 初级知识以充分利用本书。
+
+
+  本书也是希望开始为开源社区做出贡献的任何人的一个机会。您可以修复错误、创建新教程、扩展文档、通过构建预训练模型来添加对新语言的支持，或简单地在 GitHub 上开新
+  issue，提出改进 Flair 的建议。通过阅读本书并完成练习所获得的知识，将极大地帮助您成为一名活跃的 Flair 贡献者。
+
+
+  ## 本书涵盖内容
+
+
+  - *第 1 章，Flair 简介，* 提供 NLP 及其基本问题和技术的快速概述。随后本章介绍 Flair 并展示如何设置本地环境。
+
+  - *第 2 章，Flair 基础类型，* 介绍 Flair 的基本语法、典型类和方法。
+
+  - *第 3 章，Flair 中的嵌入，* 解释词嵌入和文档嵌入背后的概念及其在 NLP 中的作用。它描述了 Flair 中可用的所有不同类型的嵌入。
+
+  - *第 4 章，序列标注，* 描述序列标注及其子类型，例如命名实体识别和词性标注。本章还演示了如何在 Flair 中使用预训练的序列标注器。
+
+  - *第 5 章，训练序列标注模型，* 解释如何在 Flair 中训练、保存和使用自定义序列标注模型。
+
+  - *第 6 章，Flair 中的超参数优化，* 展示了在模型训练中使用正确超参数的重要性。它介绍了 Python 中的超参数优化工具，并解释了如何在 Flair
+  中执行超参数优化。
+
+  - *第 7 章，训练自己的嵌入，* 解释如何在 Flair 中训练自定义嵌入以及如何利用不同的评估技术来衡量成功。
+
+  - 第 8 章，Flair 中的文本分类，介绍文本分类问题。本章演示了如何使用预训练模型以及如何训练自定义分类器。它还介绍了一种名为 TARS 的新型文本分类方法。
+
+  - 第 9 章，在生产环境中部署和使用模型，讨论了在生产环境中部署和使用 NLP 模型的挑战。本章演示了如何设置自定义最小可行产品 NLP 服务以及如何在 Hugging
+  Face 模型集线器上托管 Flair 模型。
+
+  - 第 10 章，动手练习 – 使用 Flair 构建交易机器人，通过构建交易机器人作为动手练习来解决一个实际问题。
+
+
+  ## 如何充分利用本书
+
+
+  要运行本书中的代码，您需要 Python 3.6 或更高版本的 Python 环境。强烈建议您将代码作为 Jupyter notebook 会话的一部分运行，这将使您更容易尝试原始代码的不同变体。为了绕过本地设置，您也可以在托管的
+  Jupyter notebook 环境中运行代码，例如 Google Colab。您还需要以下 Python 包：
+
+
+  | 本书运行代码所需的 Python 包 | 操作系统要求 |
+
+  |---|---|
+
+  | Flair 0.11 | Windows、macOS 或 Linux |
+
+  | Flask 2.0.3 | Windows、macOS 或 Linux |
+
+
+  有关如何设置本地环境和安装 Python 包的详细说明，可以在第 1 章，Flair 简介 中找到。
+
+
+  如果您使用的是本书的数字版，我们建议您自己输入代码或从本书的 GitHub 仓库访问代码（链接在下一节提供）。这样做将有助于避免与复制和粘贴代码相关的任何潜在错误。
+
+
+  ## 下载示例代码文件
+
+
+  您可以从 GitHub 在 https://github.com/PacktPublishing/Natural-Language-Processing-with-Flair/
+  下载本书的示例代码文件。如果代码有更新，它将在 GitHub 仓库中更新。
+
+
+  我们还有来自我们丰富的图书和视频目录的其他代码包，可在 https://github.com/PacktPublishing/ 获取。敬请查看！
+
+
+  ## 下载彩色图片
+
+
+  我们还提供了一份 PDF 文件，其中包含本书中使用的屏幕截图和图表的彩色图像。您可以在此处下载：https://static.packt-cdn.com/downloads/9781801072311_ColorImages.pdf。
+
+
+  ## 使用的约定
+
+
+  本书中使用了多种文本约定。
+
+
+  代码中的代码：表示文本中的代码词、变量名、类名、对象方法和属性。
+
+
+  代码块如下所示：
+
+
+  ```
+
+  from flair.data import Sentence
+
+  from flair.tokenization import SpaceTokenizer
+
+
+  tokenizer = SpaceTokenizer()
+
+  s = Sentence(''Some nice text.'', use_tokenizer=tokenizer)
+
+
+  print(s)
+
+  ```
+
+
+  当我们希望引起您对代码块中特定部分的注意时，相关行或项目以粗体显示：
+
+
+  ```
+
+  from flair.data import Sentence
+
+
+  sentence = Sentence(''A short sentence'')
+
+  sentence.get_token(1).add_label(''manual-pos'', ''DT'')
+
+
+  print(sentence)
+
+  ```
+
+
+  任何命令行输入或输出均如下所示：
+
+
+  ```
+
+  $ python3 --version
+
+  $ pip3 install flair==0.11
+
+  ```
+
+
+  **关键字**：表示一个新术语、一个重要的名称或一个非常重要的概念；例如，**Hugging Face** 转换器模型。
+
+
+
+
+  **提示或重要说明**
+
+  如下所示。
+
+
+  ## 联系我们
+
+
+  读者的反馈总是受欢迎的。
+
+
+  **一般反馈：** 如果您对本书的任何方面有疑问，请发送电子邮件至 `customercare@packtpub.com`，并在邮件主题中提及书名。
+
+
+  **勘误：** 虽然我们已尽一切努力确保内容的准确性，但错误难免。如果您在本書中发现错误，我们将不胜感激您向我们报告。请访问 `www.packtpub.com/support/errata`
+  并填写表格。
+
+
+  **盗版：** 如果您在互联网上发现我们作品的任何形式的非法复制，我们将不胜感激您提供位置地址或网站名称。请通过 `copyright@packt.com` 联系我们，并提供相关材料的链接。
+
+
+  **如果您有兴趣成为作者：** 如果您在某个主题上具有专业知识，并且有兴趣撰写或为一本书做出贡献，请访问 `authors.packtpub.com`。
+
+
+  ## 分享您的想法
+
+
+  阅读完 *Natural Language Processing with Flair* 后，我们很想听听您的想法！请点击此处直接前往本书在亚马逊的评论页面并分享您的反馈。
+
+
+  您的评论对我们和技术社区都很重要，有助于确保我们提供优质内容。
+
+  '
+- '# 第一部分：
+
+  理解
+
+  和解决 NLP
+
+  使用 Flair
+
+
+  在本部分，您将学习 NLP 的基础知识并了解 Flair 框架的概览。您将设置环境、安装 Flair 并探索其基本功能。您将学习如何从嵌入中提取知识并在 Flair
+  中使用预训练的序列标注模型。
+
+
+  本部分包含以下章节：
+
+
+  - 第 1 章，*Flair 简介*
+
+  - 第 2 章，*Flair 基础类型*
+
+  - 第 3 章，*Flair 中的嵌入*
+
+  - 第 4 章，*序列标注*
+
+
+  ## 1'
+- "Flair 简介\n\nThere are few **Natural Language Processing** (**NLP**) frameworks\
+  \ out there as easy to learn and as easy to work with as **Flair**。Packed with pre-trained\
+  \ models, excellent documentation, and readable syntax, it provides a gentle learning\
+  \ curve for NLP researchers who are not necessarily skilled in coding; software\
+  \ engineers with poor theoretical foundations; students and graduates; as well as\
+  \ individuals with no prior knowledge simply interested in the topic. But before\
+  \ diving straight into coding, some background about the motivation behind Flair,\
+  \ the basic NLP concepts, and the different approaches to how you can set up your\
+  \ local environment may help you on your journey toward becoming a Flair NLP expert.\n\
+  \n在 Flair 的官方 GitHub README 中，该框架被描述为：\n\n> \"用于最先进自然语言处理的非常简单的框架\"\n\n此描述会引起一些注意。NLP\
+  \ 研究人员会立即有兴趣了解该框架在哪些具体任务中实现了最先进的结果。工程师会被 *非常简单* 的标签所吸引，但会想知道需要哪些步骤才能开始使用以及可以在哪些环境中使用。那些不了解\
+  \ NLP 的人会想知道他们是否能够掌握理解 Flair 试图解决的问题所需的知识。\n\n在本章中，我们将通过以下部分来回答所有这些问题，涵盖基本 NLP 概念和术语，提供\
+  \ Flair 的概览，并设置我们的开发环境：\n\n- NLP 简介\n- 什么是 Flair？\n- 准备工作\n\n## 技术要求\n\n开始之前，您需要一个配备\
+  \ Python 3.6+ 的开发环境。有关安装 Python 的特定于平台的说明可在 https://docs.python-guide.org/starting/installation/\
+  \ 找到。\n\n您不需要配备 GPU 的开发机器，但拥有一个将显著加快本书后面描述的一些训练相关练习的速度。\n\n您需要访问命令行。在 Linux 和 macOS\
+  \ 上，只需启动终端应用程序。在 Windows 上，按 Windows + R 打开运行框，输入 cmd 然后单击确定。\n\nFlair 的官方 GitHub\
+  \ 仓库可通过以下链接访问：https://github.com/flairNLP/flair。本章中我们将安装 Flair 0.11 版本。\n\n本章涵盖的代码示例可在本书的官方\
+  \ GitHub 仓库中的以下 Jupyter 笔记本中找到：https://github.com/PacktPublishing/Natural-Language-Processing-with-Flair/tree/main/Chapter01。\n\
+  \n## NLP 简介\n\n在深入了解 Flair 的功能及其如何利用其功能之前，我们将进行 NLP 的简要介绍，为不熟悉 Flair 解决的所有 NLP 技术和任务的读者提供一些背景信息。NLP\
+  \ 是人工智能、语言学和软件工程的一个分支，有助于机器理解人类语言。当我们人类阅读一个句子时，我们的大脑会立即理解许多看似微不足道的问题，例如以下内容：\n\n\
+  - 该句子是否使用我能理解的语言书写？\n- 如何将句子拆分为单词？\n- 单词之间的关系是什么？\n- 各单词的含义是什么？\n- 这是一个问题还是一个答案？\n\
+  - 单词被分配到哪些词性类别？\n- 句子的抽象含义是什么？\n\n人类大脑擅长共同且通常无缝地解决这些问题，使我们意识不到仅仅通过阅读句子就理解了所有这些内容。\n\
+  \n即使现在，机器在同时解决所有这些问题方面仍然不如人类。因此，为了教会机器理解人类语言，我们必须将自然语言的理解拆分为一组更小、机器可理解的任务，以便逐一回答这些问题。\n\
+  \n在本节中，您将找到一些重要 NLP 任务的列表，重点介绍 Flair 支持的任务。\n\n## 分词\n\n**分词**是将句子或文档分解为称为 **词元**\
+  \ 的有意义单元的过程。词元可以是段落、句子、搭配或仅仅是一个单词。\n\n例如，词分词器会将句子 *Learning to use Flair* 拆分为词元列表\
+  \ `[\"Learning\", \"to\", \"use\", \"Flair\"]`。\n\n分词必须遵守特定语言的规则，并且很少是微不足道的任务。例如，对于无空格语言，词边界不以空格定义，很难确定一个词何时结束下一个词何时开始。明确定义的词元边界是大多数旨在处理单词、搭配或句子的\
+  \ NLP 任务的先决条件，包括本章中解释的以下任务。\n\n## 文本向量化\n\n**文本向量化**是将单词、句子或文档从其书面形式转换为机器可理解的数值表示的过程。\n\
+  \n文本向量化最简单的形式之一是 **独热编码**。它将单词映射到长度等于词典中单词数量的二进制向量。向量中的所有元素均为 0，除了表示该单词的元素设置为 1——因此得名\
+  \ *one-hot*。\n\n例如，取以下词典：\n\n- Cat\n- Dog\n- Goat\n\n单词 **cat** 将是我们词典中的第一个单词，其独热编码为\
+  \ `[1, 0, 0]`。单词 **dog** 将是我们词典中的第二个单词，其独热编码为 `[0, 1, 0]`。单词 **goat** 将是我们词典中的第三个也是最后一个单词，其独热编码为\
+  \ `[0, 0, 1]`。\n\n然而，这种方法存在高维度的問題，因为向量的长度随词典中单词数量线性增长。它也不捕获单词的任何语义含义。为了应对这一问题，大多数现代最先进的方法使用称为词或文档嵌入的表示。每个嵌入通常是一个由实数组成的固定长度向量。虽然这些数字乍一看对人类来说难以理解，但在某些情况下，一些向量维度可能代表单词的某些抽象属性——例如，词嵌入向量的一个维度可以表示单词的总体（积极或消极）情感。给定两个或多个嵌入，我们可以使用称为\
+  \ **余弦相似度** 的距离度量来计算它们之间的相似性或距离。在包括 **Flair** 在内的许多现代 NLP 解决方案中，嵌入被用作更高级别 NLP 任务（如命名实体识别）的底层输入表示。\n\
+  \n早期词嵌入方法的主要问题之一是多义词（多义词）仅限于单一且恒定的嵌入表示。**Flair** 中解决此问题的方法之一是使用上下文字符串嵌入，其中单词由其周围文本进行上下文化，这意味着在不同的周围文本下它们将具有不同的表示。\n\
+  \n## 命名实体识别\n\n**命名实体识别**（NER）是一种 NLP 任务或技术，用于在文本中识别命名实体并为其标记相应的类别。命名实体类别包括但不限于\
+  \ *地点*、*人名*、*品牌*、*时间表达* 和 *货币值*。\n\n\n\n下图说明了使用彩色背景和与单词关联的标签的 NER：\n\n![](img/c56c48b8fd18a11ab705352d618ed976_25_0.png)\n\
+  \n图 1.1 – NER 标注的可视化\n\n在前面的示例中，我们可以看到识别并标注了三个实体。第一个和第三个标签特别有趣，因为它们都代表同一个词 Berkeley，但第一个明显指的是一个组织，而第三个指的是一个地理位置。人脑在根据上下文区分不同实体类型方面表现出色，并且几乎可以无缝地做到这一点，而机器在几十年里一直为此苦苦挣扎。上下文字符串嵌入的最新进展，Flair\
+  \ 的核心部分，在解决这一问题上取得了巨大飞跃。\n\n## 词义消歧\n\n词义消歧（WSD）是一种 NLP 技术，关注于识别具有多种含义的给定词的预期词义。\n\
+  \n例如，来看给定的句子：\n\n*George 试图返回柏林归还他的帽子。*\n\nWSD 的目标是识别单词 return 第一次使用时的词义，指归还某物的行为，以及第二次\
+  \ return 的词义，指返回同一地点的行为。\n\n## 词性标注\n\n词性标注（POS）是一种与 WSD 和 NER 密切相关的技术，旨在将单词标注为对应特定词性的类别，例如名词、动词、形容词、副词等。\n\
+  \n![](img/c56c48b8fd18a11ab705352d618ed976_25_1.png)\n\n图 1.2 – POS 标注的可视化\n\n实际的\
+  \ POS 标注器提供的标签信息远不止将单词与名词/动词/形容词类别关联。例如，宾州树库项目语料库，是最广泛使用的 NER 语料库之一，区分了 36 种不同的\
+  \ POS 标签类型。\n\n## 切分\n\n另一种与 POS 标注密切相关的 NLP 技术是 **chunking**。与 **parts of speech\
+  \ (POS)** 不同，后者识别单个 POS，在切分中我们识别完整的短语，例如名词短语。在 *图 1.2* 中，短语 *A lovely day* 可以被视为一个\
+  \ chunk，因为它是一个名词短语，并且在与其他词的关系中，其作用方式与名词相同。\n\n## 词干提取和词形还原\n\n**Stemming** 和 **lemmatization**\
+  \ 是 NLP 中使用的两种密切相关的文本规范化技术，用于将词还原为其共同的基础形式。例如，单词 *play* 是单词 *playing*、*played* 和\
+  \ *plays* 的基本词。\n\n两种技术中更简单的一种，**stemming**，只是通过截断单词的末尾或开头来实现这一点。这种简单的解决方案通常有效，但并非万无一失。例如，单词\
+  \ *ladies* 永远无法仅通过词干提取转变为单词 *lady*。因此我们需要一种理解单词的 POS 类别并考虑其上下文的技术。这种技术称为 *词形还原*。词形还原的过程可以用以下示例来演示。\n\
+  \n取以下句子：\n\n```\nthis meeting was exhausting\n```\n\n词形还原将前一句还原为以下内容：\n\n```\nthis\
+  \ meeting be exhaust\n```\n\n它将单词 *was* 还原为 *be*，并将单词 *exhausting* 还原为 *exhaust*。另请注意，单词\
+  \ *meeting* 用作名词，因此映射到相同的单词 *meeting*，而如果单词 *meeting* 用作动词，则会被还原为 *meet*。\n\n一个流行且易于使用的用于使用\
+  \ Python 执行词形还原的库是 **spaCy**。其模型在大型语料库上训练，能够区分不同的 POS，从而取得令人印象深刻的结果。\n\n## 文本分类\n\
+  \n文本分类是一种 NLP 技术，用于将文本或文档分配给一个或多个类别或文档类型。文本分类的实际用途包括垃圾邮件过滤、语言识别、情感分析以及根据语法进行编程语言识别。\n\
+  \n在介绍了基本 NLP 概念和术语之后，我们现在可以继续了解 Flair 是什么以及它如何以最先进的结果解决 NLP 任务。\n\n## 介绍 Flair\n\
+  \nFlair 是一个功能强大的 NLP 框架，以 Python 包的形式发布。它提供了一个简单、友好、易于使用的界面，适合各种背景的人使用，包括编程知识很少的人。它在\
+  \ MIT 许可证下发布，这是最宽松的自由软件许可证之一。\n\nFlair 作为 NLP 框架具有多种工具和用途。它可以按以下方式定义：\n\n- *它是一个用于\
+  \ NLP 研究的 NLP 框架，用于生成在多种 NLP 任务中实现最先进结果的模型，例如跨多种语言和数据集的 POS 标注、NER 和 chunking。*\
+  \ 在 Flair 的 GitHub 仓库中，您可以找到逐步说明，了解如何重现这些结果。\n- *它是一个用于训练、验证和分发 NER、POS 标注、chunking、词义消歧和文本分类模型的工具。*\
+  \ 它具有有助于简化训练和验证过程的工具，例如自动语料库下载工具，以及有助于模型调优的工具，例如超参数优化工具。它支持日益增长的语言数量。\n- *它是一个用于下载和使用最先进的预训练模型的工具。*\
+  \ 模型可以无缝下载，这意味着它们将在您第一次使用时自动下载并保留供将来使用。\n- *它是所提出的最先进的 Flair 嵌入的平台。* Flair 在许多 NLP\
+  \ 任务中取得的最先进结果在很大程度上可归因于其提出的 Flair 上下文字符串嵌入，论文 *用于序列标注的上下文字符串嵌入* 中有更详细的描述。作者将其称为\
+  \ Flair 的“秘密酱料”。\n- *它是一个用于处理生物医学数据的 NLP 框架。* Flair 的一个特殊部分专门用于处理生物医学数据，并提供了一套实现最先进结果的预训练模型，以及一些语料库和关于如何训练自定义生物医学标注模型的全面文档。\n\
+  - *它是对 NLP 的一个很好的实践介绍。* Flair 的详尽在线文档、简单界面、对大量语言的包容性支持以及能够在非 GPU 设备上执行大量任务的能力，都使其成为希望通过实践动手实验学习\
+  \ NLP 的人的绝佳切入点。\n\n## 设置开发环境\n\n现在您已经对框架提供的功能有了基本了解，并且对基本 NLP 概念也有了了解，您现在准备好进入下一步，为\
+  \ Flair 设置开发环境。\n\n要能够按照本节中的说明操作，请首先确保您的设备上已安装 Python 3.6+，如 技术要求 部分所述。\n\n## 创建虚拟环境\n\
+  \n在 Python 中，通常建议在虚拟环境中安装包，这样您当前正在处理的项目依赖项不会影响您的全局 Python 依赖项或将来可能处理的其他项目。\n\n我们将使用\
+  \ venv 工具，它是 Python 标准库的一部分，无需安装。要创建虚拟环境，只需创建一个新目录，进入其中，然后运行以下命令：\n\n```\n$ python3\
+  \ -m venv learning-flair\n```\n\n然后，要在 Linux 或 macOS 上激活虚拟环境，请运行以下命令：\n\n```\n$\
+  \ source learning-flair/bin/activate\n```\n\n如果您运行的是 Windows，请运行以下命令：\n\n```\n$\
+  \ learning-flair\\Scripts\\activate.bat\n```\n\n您的命令行应以 (learning-flair) $ 为前缀，您的虚拟环境现已激活。\n\
+  \n## 在虚拟环境中安装已发布的 Flair 版本\n\n您现在应该准备好使用以下单个命令安装 Flair 版本 0.11：\n\n```\n(learning-flair)\
+  \ $ pip install flair==0.11\n```\n\n安装现在应该开始，并且根据您的互联网连接速度，大约一分钟内即可完成。\n\n\n\n你可以通过运行以下命令来验证安装情况，该命令将显示包含其版本的包属性列表：\n\
+  \n```\n(learning-flair) $ pip show flair\nName: flair\nVersion: 0.11\nSummary: A\
+  \ very simple framework for state-of-the-art NLP\nHome-page: https://github.com/flairNLP/flair\n\
+  ...\n```\n\n如上所示的命令输出表明该包已成功安装在你的虚拟环境中。\n\n## 直接从 GitHub 仓库安装（可选）\n\n在某些情况下，我们希望在\
+  \ Flair 中使用的功能可能已经在 GitHub 上的某个分支中实现，但这些更改可能尚未作为发布在 PyPI 上的 Python 包的一部分发布。我们可以直接从\
+  \ Git 仓库分支安装具有这些功能的 Flair。\n\n例如，这里是如何从 master 分支安装 Flair：\n\n```\n(learning-flair)\
+  \ $ git clone https://github.com/flairNLP/flair.git\n(learning-flair) $ cd flair\n\
+  (learning-flair) $ git checkout master\n(learning-flair) $ pip install .\n```\n\n\
+  > **重要提示**\n> 从未经过审查的分支安装代码可能会引入不可靠或不安全的代码。在从开发分支安装 Flair 时，请确保你安装的代码来自可信来源。另请注意，Flair\
+  \ 的未来版本（大于 0.11 的版本）可能与本书中提供的代码片段不兼容。\n\n将术语 master 替换为任何其他分支名称，即可从你选择的分支安装包。\n\n\
+  ## 使用 Flair 运行代码\n\n使用 Flair Python 包的代码与运行任何其他类型的 Python 代码没有区别。\n\n本书中代码片段的推荐运行方式是将其作为代码单元在\
+  \ Jupyter notebook 中执行，你可以按如下方式安装和运行它：\n\n```\n(learning-flair) $ pip install notebook\n\
+  (learning-flair) $ jupyter notebook\n```\n\n然后你可以创建一个新的 Python 3 笔记本并运行你的第一个 Flair\
+  \ 脚本来验证包是否成功导入：\n\n```\nimport flair\nprint(flair.__version__)\n```\n\n执行后，前面的代码应打印出你当前使用的\
+  \ Flair 版本，表明 Flair 包已成功导入，你已准备好开始。\n\n## 摘要\n\n在本章中，你熟悉了基本 NLP 术语和任务。随着你学习 Flair，你经常会遇到诸如\
+  \ tokenization、NER 和 POS 等术语，本章获得的知识将帮助你理解它们的含义。\n\n你现在也了解了 Flair 在 NLP 领域中的位置，它解决的问题以及它擅长的领域。最后，你学会了如何从\
+  \ PyPI 包或 Git 分支在虚拟环境中安装 Flair。你现在准备好开始使用 Flair 编程了！\n\n在下一章中，我们将介绍 Flair 的基本语法和基本对象，即所谓的\
+  \ base types。\n\n## 2\n\n## Flair 基础类型\n\n对于任何 NLP 框架来说，一个良好的起点是熟悉代码中频繁使用的基本对象和方法。在\
+  \ Flair 中，第一步是熟悉其 **base types**。这些是用于定义句子或文本片段并通过分词形成 token 的基本对象。\n\nNLP 当今面临的主要挑战之一是对代表性不足语言的支持。大多数最先进的预建\
+  \ NLP 模型通常仅针对部分使用最广泛的语言构建，而未能为地球上约 7,000 种其他语言提供支持。虽然 Flair 以其出色的语言覆盖范围和多语言嵌入工作而脱颖而出，但在\
+  \ *语料库可用性*、*分词方法* 和 *预建序列标注模型* 等领域，它仍远未支持所有可能的语言。对于 Flair 目前不支持特殊分词规则的语言形成 token，你需要实现自己的分词器。幸运的是，在\
+  \ Flair 中这样做再简单不过了。\n\n在本章中，你将学习 `Sentence` 对象，它用于表示句子或文本片段，以及 `Token` 基础类型，它用于表示分词后的句子中的单词。你将学习如何实现自定义分词器以及如何使用它们。你还将了解\
+  \ Flair 中的 `Corpus` 对象以及如何使用其辅助函数加载和交互语料库和数据集。\n\n本章涵盖以下主题：\n\n- Sentence and Token\
+  \ 对象\n- 使用自定义分词器\n- Corpus 对象\n\n## 技术要求\n\n对于本章，你需要安装了 **Flair version 0.11** 的\
+  \ **Python** 环境以及稳定的互联网连接，因为我们将下载语料库。\n\n本章中的代码示例可以在本书的官方 GitHub 仓库中找到，具体在以下 Jupyter\
+  \ notebook 中：https://github.com/PacktPublishing/Natural-Language-Processing-with-Flair/tree/main/Chapter02。\n\
+  \n## Sentence 和 Token 对象\n\n**Sentence** 和 **Token** 对象可以被视为 **Flair** 语法中最常见的对象。前者用于表示句子或任何其他文本片段，例如段落。它们本质上是\
+  \ Token 对象的列表及其对应的标签分配。\n\n如果你想知道对象、类和方法是什么意思，这只是说明你对 **面向对象编程 (OOP)** 并不是特别熟悉。幸运的是，**OOP**\
+  \ 在 Python 中非常容易掌握。在 **OOP** 中，存储和/或处理数据的代码片段被组织成称为类的蓝图。类的一个例子可以是 Word 类，它可以存储和处理单个单词。OOP\
+  \ 中的类可以包含几个称为方法的过程。Word 类方法的一个例子可以是 get_length()，它只会返回单词的长度。类还可以包含一种特殊类型的方法，称为构造函数，在类被实例化时会被调用。实例化类的结果是一个对象。例如，调用\
+  \ word_1 = Word('potato') 会调用构造函数并将 'potato' 作为第一个参数值，返回一个 Word 对象并将其存储为 word_1。然后我们可以使用这个变量来调用该对象的方法，例如\
+  \ word_1.get_length()。\n\n这篇关于 OOP 的简要介绍应该能让你获得足够的理解，以便直接深入 Flair arguably 最基础的实体——Sentence\
+  \ 类。\n\n## 了解 Sentence 类\n\nSentence 类构造函数接受以下参数：\n\n- text: 原始字符串（句子）或字符串 token（单词）列表。\n\
+  - use_tokenizer: 要使用的分词器。如果为 True，则使用 SegTokTokenizer。如果为 False，则改用 SpaceTokenizer。如果提供了\
+  \ Tokenizer 对象，则将使用它作为自定义分词器。\n- language_code: 用于某些嵌入的语言代码（可选）。\n- start_position:\
+  \ 句子在文档中的起始字符偏移量（可选）。\n\n例如，让我们创建一个简单的 Sentence 对象并检查其字符串表示行为：\n\n```\nfrom flair.data\
+  \ import Sentence\n\nsentence = Sentence('Some nice text.')\nprint(sentence, len(sentence))\n\
+  ```\n\n前面的脚本应打印出以下内容：\n\n```\nSentence: \"Some nice text .\" 4\n```\n\n前面的输出表明句子已被拆分为四个\
+  \ token，其中一个是句号。单独的 . token 是未提供 use_tokenizer 参数的直接结果，如果留空，则默认为使用 SegTokTokenizer。\n\
+  \n## 了解 Token 类\n\nToken 类表示分词句子中单个实体，例如单词。\n\n每个 token 可以有零个、一个或多个标签。例如，Flair 允许对同一个\
+  \ Sentence 对象同时进行 POS 标注和 NER。这意味着单个 token 理论上可以同时具有命名实体标签和词性标签。\n\nToken 对象的对应文本可以通过引用其\
+  \ Token.text 属性轻松获得。\n\n我们现在对这两种基础类型的工作方式有了模糊的了解。但要完全理解基础类型的工作方式，我们需要更深入地研究 Flair\
+  \ 中的分词技术。\n\n\n\n## Flair 中的分词\n\n根据你的需求和所用语言的类型，你可以从 Flair 中提供的以下任何分词器中选择：\n\n\
+  - `SpaceTokenizer()`: 一个简单的分词器，按空格字符分割文本。请注意，此分词器仅按空格字符 (\" \") 分割。它不会按包含在 Python\
+  \ 的 `string.whitespace` 中的字符分割，该字符常用于分割或格式化文本的方法中。空白字符（连同空格字符）还包括换行符和制表符，而 `SpaceTokenizer`\
+  \ 不会考虑这些。\n- `SpacyTokenizer(model)`: 使用一个名为 **spaCy** 的常用 NLP 库的分词器。它接受一个名为 `model`\
+  \ 的参数，该参数可以是表示 **spaCy** 模型（例如，`en_core_web_sm`）的字符串，也可以是 spaCy `Language` 对象。\n\
+  - `SciSpacyTokenizer()`: 使用 spaCy 的 **`en_core_sci_sm`** 模型的分词器，并扩展了诸如 `(, )` 和\
+  \ `-.` 等特殊字符。这些用作额外的词元分隔符。\n- `SegtokTokenizer()`: 使用 Flair 依赖项 **segtok** 的分词器，该依赖项专注于分割（印欧语系）文本。\n\
+  - `JapaneseTokenizer(tokenizer, sudachi_mode)`: 使用 **konoha** 库的分词器类，并为日语提供多种分词器选择。`tokenizer`\
+  \ 参数可以是 `mecab`、`janome` 或 `sudachi`。\n\n现在我们对 Flair 中可用的分词器有了很好的了解，让我们尝试使用非默认分词器使用\
+  \ Sentence 对象：\n\n```python\nfrom flair.data import Sentence\nfrom flair.tokenization\
+  \ import SpaceTokenizer\n\ntokenizer = SpaceTokenizer()\ns = Sentence('Some nice\
+  \ text.', use_tokenizer=tokenizer)\n\n### 使用魔术方法 __str__ 获取字符串表示\nprint(s, len(s))\n\
+  ```\n\n上述脚本使用 SpaceTokenizer，应该打印出以下内容：\n\n```\nSentence: \"Some nice text.\" 3\n\
+  ```\n\n这与 SegtokTokenizer 不同，由于仅按空格字符分割，它将 text. 字符串视为单个词元。\n\n在下一节中，我们将了解如何从 Sentence\
+  \ 和 Token 对象中提取信息以及如何为其添加标签。\n\n## Sentence 和 Token 对象辅助方法\n\nSentence 对象有几个有用的方法和属性。最直接的一个，也是我们在前面的示例中已经使用过的，是\
+  \ __str__ 魔法方法的实现，它返回对象的字符串表示形式，例如在尝试打印它时。\n\n为了能够完全理解 Sentence 对象的字符串表示格式，我们需要为至少一个词元添加标签。为此，我们将使用\
+  \ get_token(n) 方法获取第 n 个词元的 Token 对象，然后使用 add_label(label_type, value) 方法为词元分配标签：\n\
+  \n```python\nfrom flair.data import Sentence\n\nsentence = Sentence('A short sentence')\n\
+  sentence.get_token(1).add_label('manual-pos', 'DT')\nprint(sentence)\n```\n\n上述脚本将打印出以下内容：\n\
+  \n```\nSentence: \"A short sentence\" → [\"A\"/DT]\n```\n\n打印字符串的第一部分显示整个句子在其原始形式，而句子的第二部分显示带有相应标签的词元。在此代码示例中，我们手动标记了第一个词元以测试对象的字符串表示，而在\
+  \ Flair 中，词元通常会由序列标注器进行标记。\n\n类似的 Sentence 对象字符串表示也可以通过调用 to_tagged_string() 方法直接获得。\n\
+  \n> **重要提示**\n> get_token(n) 方法使用基于 1 的索引，这意味着 n=1 将检索第一个词元，而 n=0 将返回 None。使用 get_token(n)\
+  \ 的基于 0 的索引替代方案是使用索引运算符。例如，要获取名为 sentence 的 Sentence 对象的第一个词元，我们可以简单地调用 sentence[0]。\n\
+  \n标记化的 Sentence 对象中的词元也可以通过使用其 __iter__() 魔法函数获得，这使我们可以通过简单地迭代对象来获取所有词元。我们例如可以通过使用\
+  \ for 循环来做到这一点。\n\n让我们使用前一个脚本中的相同 sentence 变量运行以下脚本：\n\n```python\nfor token in\
+  \ sentence:\n    print(token)\n```\n\n脚本将打印出以下内容：\n\n```\nToken[0]: \"A\" → DT (1.0)\n\
+  Token[1]: \"short\"\nToken[2]: \"sentence\"\n```\n\n这使我们能够清楚地了解原始字符串是如何被分词的。\n\n\
+  在使用 Sentence 对象时，了解使用 len() 方法的行为很重要。它将返回词元数量，而不是原始字符串的长度。这意味着使用前一个脚本中的变量调用 len(sentence)\
+  \ 将返回 3。如果您希望获取实际句子（即原始文本）的长度，则需要运行 len(sentence.to_original_text())。\n\n如果这里描述的任何分词器都不适合你，Flair\
+  \ 也能满足你的需求。你需要做的只是实现自己的自定义分词器并将其传递给 Flair。让我们学习如何操作。\n\n## 使用自定义分词器\n\n虽然 Flair\
+  \ 随附了支持最常用语言的多个分词器，但你可能正在处理一种使用目前未被 Flair 覆盖的分词规则的语言。幸运的是，Flair 提供了一个简单的接口，允许我们实现自己的分词器或使用第三方库。\n\
+  \n### 使用 TokenizerWrapper 类\n\nTokenizerWrapper 类为构建自定义分词器提供了一个简单的接口。要构建一个，你只需通过传递\
+  \ tokenizer_func 参数来实例化该类。该参数是一个函数，它接收整个句子文本作为输入并返回一个词元字符串列表。\n\n作为练习，让我们尝试实现一个将文本拆分为字符的自定义分词器。此分词器将把每个字符视为一个词元：\n\
+  \n```python\nfrom flair.data import Token\nfrom flair.tokenization import TokenizerWrapper\n\
+  \ndef char_splitter(sentence):\n    return list(sentence)\n\nchar_tokenizer = TokenizerWrapper(char_splitter)\n\
+  ```\n\n在前面的代码中，我们实现了 space_splitter 函数，它只是将句子拆分为字符列表。最后，我们通过使用新的函数实例化 TokenizerWrapper\
+  \ 类来创建新的分词器对象。\n\n现在，我们可以通过使用 Sentence 对象并打印生成的词元来测试我们的分词器：\n\n```python\nfrom flair.data\
+  \ import Sentence\n\ntext = \"Good day.\"\nsentence = Sentence(text, use_tokenizer=char_tokenizer)\n\
+  \nfor token in sentence:\n    print(token)\n```\n\n结果脚本将打印出以下内容：\n\n```text\nToken[0]:\
+  \ \"G\"\nToken[1]: \"o\"\nToken[2]: \"o\"\nToken[3]: \"d\"\nToken[4]: \" \"\nToken[5]:\
+  \ \"d\"\nToken[6]: \"a\"\nToken[7]: \"y\"\nToken[8]: \".\"\n```\n\n打印的文本表明我们的分词器按预期执行并且与\
+  \ Sentence 对象兼容。\n\n> **关于分词器的重要提示**\n> 语言的分词规则通常很复杂并且包含许多边缘情况。因此，强烈建议使用来自成熟 NLP\
+  \ 包的第三方分词器，而不是自己实现。\n\n现在我们已经介绍了分词以及 Sentence 和 Token 基础类型，是时候继续深入了解 Corpus 对象了。\n\
+  \n## 理解 Corpus 对象\n\nCorpus 对象是 Flair 中在内存中存储语料库的主要对象。每个 Corpus 都是三个数据集的集合，这些数据集的行为类似于\
+  \ Sentence 对象列表。可以通过以下属性访问这些数据集：\n\n- **train** 属性，其中包含将用于训练模型的数据集。\n- **test**\
+  \ 属性，其中包含独立于 train 数据集的数据集。它用于模型验证。\n- **dev** 属性，其中包含用于超参数调优的数据集。\n\n这三个数据集理想情况下包含来自相同数据源的数据并遵循相同的概率分布。\n\
+  \n可以通过加载 Flair 的其中一个准备好的数据集来获得示例语料库对象：\n\n```python\nfrom flair import datasets\n\
+  \ncorpus = datasets.UD_ENGLISH()\n```\n\n可以通过简单地打印对象来获得语料库摘要：\n\n```python\nprint(corpus)\n\
+  ```\n\n这应该打印出以下内容：\n\n```\nCorpus: 12543 train + 2002 dev + 2077 test sentences\n\
+  ```\n\n语料库的训练数据集可以通过简单调用 train 属性获得：\n\n```\ntrain_dataset = corpus.train\n```\n\
+  \n然后，可以使用索引运算符获取数据集的第 n 个句子。例如，可以使用以下代码获取第 101 个句子：\n\n```\nsentence = train_dataset\
+  \ [100]\n```\n\n```\nprint(sentence)\n```\n\n前述脚本将打印出训练数据集中第 101 个句子。\n\n该对象还附带了多个辅助方法。其中最广泛使用的是\
+  \ downsample(percentage) 方法，它可以减小语料库的大小，其中 percentage 是介于 0 和 1 之间的值，用于确定新语料库的大小。\n\
+  \n> 注意\n> downsample(percentage) 方法会修改并返回原始的 Corpus 对象。这意味着多次调用它会多次对语料库进行下采样。\n\n\
+  例如，如果我们想将语料库下采样到 1%，我们将使用以下代码：\n\n```\ncorpus.downsample(0.01)\n```\n\n```\nprint(corpus)\n\
+  ```\n\n这将打印出以下内容：\n\n```\nCorpus: 125 train + 20 dev + 21 test sentences\n```\n\n\
+  这是原始语料库大小的 1%。\n\nFlair 附带了多种技术和 Corpus 对象的实例，允许我们从 CSV 文件加载数据并读取自己的序列标注数据集。它提供了大量准备好的数据集，这些数据集将在本书后面更详细地介绍。\n\
+  \n## 摘要\n\n在本章中，我们介绍了 Flair 的基础类型，例如 `Sentence` 和 `Token` 对象，解释了如何初始化和使用它们，并尝试了一些基本辅助方法。这应该使我们在转向更复杂主题时能够更轻松地处理、转换和理解\
+  \ Flair 中的数据。我们还介绍了在 Flair 中使用自定义分词器并实现了我们自己的基于字符的分词器。最后，我们初步了解了 Flair 的数据集和 `Corpus`\
+  \ 对象可以做什么。我们学习了如何加载语料库和数据集，评估其大小，提取和读取单个句子，以及对整个数据集进行下采样。\n\n我们现在对语法、基本对象和辅助方法足够熟悉，可以继续学习\
+  \ Flair 最强大的 NLP 技术——序列标注。我们将在下一章介绍这一点。\n\n## 3\n\n## Embeddings in Flair\n\nEmbeddings\
+  \ 是 **Natural Language Processing (NLP)** 任务中 **Flair** 的核心概念。理解不同嵌入的工作原理、可用的类型以及在何种情况下使用何种类型，对于成为一名熟练的\
+  \ Flair 用户非常重要。\n\n虽然该框架提供了大量不同类型的嵌入，但其中一种是绝对必不可少的，并在实现 Flair 在 NLP 任务上的出色性能中发挥着关键作用。这种称为\
+  \ Flair 嵌入的嵌入类型，被主要作者称为 *the secret sauce of Flair*。理解 Flair 嵌入的来龙去脉将帮助你更好地理解 Flair\
+  \ 在众多 NLP 任务中取得成功的背后原因，并在训练自定义模型时帮助你选择合适的嵌入。\n\n在本章中，我们将学习不同类型的嵌入、它们的工作原理，以及如何在\
+  \ Flair 中使用各个嵌入技术来生成词、句子和文档嵌入。阅读本章后，你将对在何种情况下使用何种嵌入有更深入的理解。我们将演示如何使用词嵌入上的算术运算来理解词语的含义和关系，使用\
+  \ “king is to man as queen is to woman” 这一类比。我们将学习如何通过堆叠嵌入将多个现有嵌入组合成新的嵌入类型。我们还将介绍文档嵌入以及如何使用它们为整个文档生成嵌入。\n\
+  \n该框架提供了一系列可以分为多个类别的嵌入：*classic word embeddings*、*Flair embeddings*、*stacked embeddings*、*document\
+  \ embeddings* 和 *other embeddings*。这些类别在以下主题中介绍：\n\n- 理解词嵌入\n- Flair 嵌入\n- 堆叠嵌入\n\
+  - 文档嵌入\n- Flair 中的其他嵌入\n\n### 技术要求\n\n本章使用的所有 Python 库都是 Flair 0.11 版本的直接 Flair\
+  \ 依赖项，只要机器上已安装 Flair，就无需特殊设置。本章介绍的代码示例可在本书官方 GitHub 仓库的以下 Jupyter 笔记本中找到：https://github.com/PacktPublishing/Natural-Language-Processing-with-Flair/tree/main/Chapter03。\n\
+  \n### 理解词嵌入\n\n**Word embeddings** 是词语的机器可解释表示，使得语义相似的词对的嵌入会相似，而语义不相似的词的嵌入会截然不同。\n\
+  \n在第一章中，我们介绍了嵌入的基础知识，我们将嵌入松散地定义为特定字符、词语、句子、段落或文本文档的向量表示。这些向量通常由数百或数千个实数组成。向量中的每个位置称为一个维度。\n\
+  \n到目前为止，你可能想知道我们如何判断两个词嵌入是否相似或不同。有几种指标，例如余弦相似度、欧几里得距离和 Jaccard 距离，试图量化这一点。**Cosine\
+  \ similarity** 通常是最常用的方法。\n\n### 余弦相似度\n\n给定两个嵌入向量 A 和 B，余弦相似度定义如下：\n\n$similarity(\\\
+  mathbf{A},\\mathbf{B}) = \\frac{\\mathbf{A}\\cdot\\mathbf{B}}{\\|\\mathbf{A}\\|\\\
+  |\\mathbf{B}\\|} = \\frac{\\sum_{i=1}^n A_i B_i}{\\sqrt{\\sum_{i=1}^n A_i^2}\\sqrt{\\\
+  sum_{i=1}^n B_i^2}}$\n\n这里，分子的上部分是两个向量的点积，分母的下部分是每个向量的幅度的乘积。\n\n resulting 相似度分数的值介于\
+  \ -1 和 1 之间。-1 的值表示向量完全相反。0 的值表示向量正交，意味着没有相关性。1 的值表示向量相似。\n\n例如，如果我们比较代表两位客户音乐品味的两个嵌入向量，其中他们对不同歌曲进行了评分，我们将得到以下结果：\n\
+  \n- *similarity*(**A**, **B**) = 1；表示客户对完全相同的歌曲给出了完全相同的评分。\n- *similarity*(**A**,\
+  \ **B**) = −1；表示客户对同一首歌曲的评分方式相反。\n- *similarity*(**A**, **B**) = 0；表示客户音乐品味之间没有相关性，意味着他们可能在某些歌曲上达成一致，但在其他歌曲上不一致。\n\
+  \n你现在应该对嵌入在 NLP 中的作用和价值有了高层次的理解。现在是时候将理论付诸实践，并通过 Flair 获得处理嵌入的实践经验了。\n\n### “king\
+  \ – man ≈ queen – woman” 类比\n\n设计良好且训练充分、维度足够高的嵌入不仅代表或唯一标识某个词或句子，还包含有关词的含义及其语义属性的抽象信息。令人惊讶的是，我们可以使用词向量的算术运算来形成新词。这意味着理论上，如果我们将两个词向量相加，应该会得到一个新词，其含义是这两个词含义的总和。同样，如果我们从一个嵌入向量中减去另一个嵌入向量，我们会得到一个包含第一个词含义减去第二个词含义的新嵌入。这就引出了\
+  \ king – man ≈ queen – woman 类比。\n\n如果我们取词 *king* 的词嵌入并从该嵌入向量中减去词 *man*，我们应该会得到一个代表某种性别中性君主的词嵌入。同样，如果我们取词\
+  \ *queen* 的词嵌入并从中减去词 *woman*，我们也应该得到一个性别中性君主词的表示。\n\n利用前述假设，我们可以得出以下等式：\n\n*king\
+  \ − man ≈ queen − woman*\n\n**Important note**\n请注意我们使用了 *approximately equal to*\
+  \ 符号。这意味着即使该说法成立，两个嵌入也只会近似相等。其主要原因在于词嵌入并不是词的完美表示，并且受其维度、训练偏差和训练数据的完整性的限制。两个词对之间的关系也极不可能完全相同。\n\
+  \n这个类比所说的是，词 *king* 与 *man* 之间的关系与词 *queen* 与 *woman* 之间的关系非常相似。换句话说，我们可以说：\n\n\
+  *king is to man as queen is to woman*\n\n理论上，我们应该能够将这一概念应用于任何共享相似匹配关系的两个词对。为了进一步验证这一假设，让我们用词占位符\
+  \ *A*、*B*、*C* 和 *D* 替换我们的君主、*man* 和 *woman*：\n\n*A − B ≈ C − D*\n\n这使我们能够转换该等式以计算\
+  \ *D*：\n\n*D ≈ B + C − A*\n\n换句话说，假设我们有以下陈述：\n\n*A is to B as C is to D*\n\n我们现在可以根据词\
+  \ A、B 和 C 的词嵌入来计算词 D 的词嵌入。一旦我们得到词 D 的词嵌入，找到其对应的词就很简单了。我们只需搜索整个词汇表的词嵌入并找到匹配最接近的词。\n\
+  \n现在是时候用 Flair 来测试我们的类比求解器了。\n\n## 实现\n\n我们将实现一个算法，给定词 A、B 和 C，计算词 D，使得 A 比 B 如同\
+  \ C 比 D 的类比成立。例如，给定输入 King is to man as queen is to...，算法将返回 woman。该算法包含以下步骤：\n\n\
+  - 1. 选择并实例化我们在 Flair 中使用的嵌入类\n- 2. 获取词 A、B 和 C 的词嵌入\n- 3. 使用 D = B + C − A 公式计算词\
+  \ D 的近似词嵌入\n- 4. 获取 Flair 中所有英语词的词嵌入\n- 5. 找到最匹配的词\n\n### 选择并初始化嵌入类\n\n选择嵌入类型时，重要的是我们选择一种非上下文相关的技术，因为我们将独立于可能出现的上下文来计算新词。\n\
+  \n因此我们将使用 crawl ID 选择一组经典的随机词嵌入。crawl 嵌入是在网络爬虫数据上训练的英语词嵌入。嵌入对象可以通过运行以下代码简单初始化：\n\
+  \n```\nfrom flair.embeddings import WordEmbeddings\nfasttext = WordEmbeddings('crawl')\n\
+  ```\n\n首次执行此代码时，Flair 将下载嵌入模型，这会占用一些空间，并且完全下载可能需要几分钟。\n\n为了避免我们再次下载模型，Flair 在下次使用时会确保使用本地存储的版本。\n\
+  \n一旦嵌入对象加载完成，我们可以将其保留在内存中并重复使用并传递给后续的辅助函数以节省执行时间。\n\n### 获取词 A、B 和 C 的词嵌入并计算词嵌入\
+  \ D\n\n正如我们在前几章学到的，我们可以通过先将词包装在 `Sentence` 对象中来在 Flair 中嵌入词。例如，给定一个如前所述定义的 `fasttext`\
+  \ 对象，我们的 `Sentence` 对象可以用 `sentence = Sentence('word')` 定义。然后，我们可以通过运行 `fasttext.embed(sentence)`\
+  \ 来嵌入 `Sentence` 对象中的词。我们还可以通过调用 `sentence[0].embedding` 来获取句子中第一个词的词嵌入。这将返回一个 **PyTorch**\
+  \ `torch.Tensor` 对象。它可以通过调用 `sentence[0].embedding.tolist()` 转换为向量分量的列表。\n\n有了这些知识，我们可以实现一个\
+  \ `compute_embedding_for_D(A, B, C, embedding)` 函数，该函数接收我们的三个词（A、B 和 C）以及一个嵌入对象，并返回计算得到的词\
+  \ D 的词嵌入向量。\n\n该方法的实现如下：\n\n```python\nfrom flair.data import Sentence\n\ndef compute_embedding_for_D(A,\
+  \ B, C, embedding):\n    wordsABC_sentence = Sentence(' '.join([A, B, C]))\n   \
+  \ embedding.embed(wordsABC_sentence)\n\n    A_embedded = wordsABC_sentence[0].embedding\n\
+  \    B_embedded = wordsABC_sentence[1].embedding\n    C_embedded = wordsABC_sentence[2].embedding\n\
+  \n    D_embedding = B_embedded + C_embedded - A_embedded\n\n    return D_embedding.tolist()\n\
+  ```\n\n在此辅助函数的第一部分中，我们定义了 `wordsABC_sentence` 对象，其中包含一个包含我们三个输入词 A、B 和 C 的以空格分隔的字符串。然后我们继续嵌入该句子中的所有词并提取我们三个输入词的词嵌入，从而获得名为\
+  \ `A_embedded`、`B_embedded` 和 `C_embedded` 的词嵌入。使用我们的 $D = B + C - A$ 公式和 Python\
+  \ 的算术运算符，我们然后简单地计算 `D_embedding` 并将其作为列表返回。\n\n要测试我们的方法，我们可以运行以下代码：\n\n```python\n\
+  from flair.embeddings import WordEmbeddings\nfasttext = WordEmbeddings('crawl')\n\
+  D = compute_embedding_for_D('king', 'man', 'queen', fasttext)\nprint(D)\n```\n\n\
+  这应该打印出我们的 D 词嵌入——一个长数字列表，看起来像这样：\n\n```\n[0.13569998741149902, -0.3856000006198883,\
+  \ -0.102299957203865,\n-0.13539999723434448, -0.01410001516342163,\n-0.04699999839067459,\
+  \ ...]\n```\n\n鉴于我们的 King is to man as queen is to woman 类比， resulting embedding\
+  \ 应该与词 woman 的词嵌入相似。为了验证这一点，我们需要先计算英语词汇表的词嵌入，然后找到最匹配的词。\n\n### 在 Flair 中获取所有英语词的词嵌入\n\
+  \n为了获得在英语中在合理程度上可以预期的词列表，我们将从一个大型英语语料库中提取词汇表。这样，我们将获得一套几乎完整的常用英语词，同时去掉英语中很少使用的词，而我们极不可能遇到这些词，从而减少搜索空间并加快代码运行速度。\n\
+  \n然后我们将把这些词作为包含词汇表以空格分隔的列表的单个句子的一部分进行嵌入。这只能在使用非上下文词嵌入时完成。如果我们使用上下文字符串嵌入，则必须为每个词单独定义一个\
+  \ Sentence 对象。\n\n我们将把解决方案实现为 get_embedded_english_vocab(embedding) 函数，该函数接收嵌入对象并返回一个\
+  \ Sentence 对象，其中包含我们的整个词汇表作为标记以及相应的词嵌入：\n\n```python\nfrom flair import datasets\n\
+  from flair.data import Sentence\n\ndef get_embedded_english_vocab(embedding):\n\
+  \    dataset = datasets.UD_ENGLISH()\n    vocab_list = dataset.make_vocab_dictionary().get_items()\n\
+  ```\n\n```\nvocab = Sentence(' '.join(vocab_list))\nembedding.embed(vocab)\nreturn\
+  \ vocab\n```\n\nget_embedded_english_vocab(embedding) 函数使用 Flair 的 UD_ENGLISH 英语通用依存树库数据集。它将数据集的整个词汇表连接成一个以空格分隔的字符串，然后将其标记化并作为\
+  \ Sentence 对象的一部分进行嵌入。\n\n可以通过运行以下代码来测试前述函数：\n\n```\nfrom flair.embeddings import\
+  \ WordEmbeddings\nfasttext = WordEmbeddings('crawl')\nprint(get_embedded_english_vocab(fasttext)[6].embedding)\n\
+  ```\n\n在这里，我们初始化一个词嵌入类并将其传递给 get_embedded_english_vocab 函数。然后该片段最终将打印出我们词汇表中第七个词的词嵌入。\n\
+  \n鉴于我们现在可以访问英语中可以合理预期的所有词的词嵌入，我们现在可以计算最接近我们计算得到的 D 词嵌入的词。\n\n### 找到最匹配的词\n\n一旦我们计算出\
+  \ D 词嵌入，我们最终需要找到词嵌入所代表的词。因为词嵌入极不可能与词汇表中的词完全匹配，所以我们需要使用某种相似度度量来找到最匹配的词。我们将使用余弦相似度。为了找到最匹配的词，我们只需计算\
+  \ D 与词汇表中每个词之间的余弦相似度，并选择相似度分数最高的词。这将实现为 find_closest_matching_word(D, vocab, ABC)，其中\
+  \ D 是我们计算得到的词嵌入，vocab 是我们嵌入的词汇表，ABC 是词 A、B 和 C 的列表：\n\n```python\nfrom sklearn.metrics.pairwise\
+  \ import cosine_similarity as sim\ndef find_closest_matching_word(D, vocab, ABC):\n\
+  \    max_match = -1\n```\n\n```\nfor word in vocab:\n    match = sim([D], [word.embedding.tolist()])[0][0]\n\
+  \    if match > max_match and word.text not in ABC:\n        max_match = match\n\
+  \        closest_matching_word = word.text\nreturn closest_matching_word\n```\n\n\
+  前述代码简单地遍历我们的 vocab 对象并计算 D 词嵌入与 vocab 对象中每个词之间的相似度。然后我们选择并返回 closest_matching_word，即我们类比求解器的解决方案。\n\
+  \n> 提示\n> 虽然我们使用算术运算来解决类比的想法在理论上是有意义的，但在实践中结果往往不如你预期的那么合理。经常发生的情况是，新计算的词嵌入实际上最接近我们原始词中的一个。当然，我们希望\
+  \ D 是一个新词，而不是原始词 A、B 或 C 中的一个。当这种情况发生时，我们可以简单地忽略最匹配的词并选择第二、第三或第四最匹配的词。我们通过在前述 if\
+  \ 语句中检查 word.text not in ABC 来实现这一点，从而避免结果是原始词之一并增加产生合理结果的机会。\n\n在实现了类比求解器所需的所有逻辑后，我们现在可以编写一个简单的辅助函数，将所有函数集成在一起并打印出类比谜题的解决方案：\n\
+  \n```python\ndef A_is_to_B_as_C_is_to(A, B, C):\n    fasttext = WordEmbeddings('crawl')\n\
+  \    result = compute_embedding_for_D(A, B, C, fasttext)\n    vocab = get_embedded_english_vocab(fasttext)\n\
+  \    D = find_closest_matching_word(result, vocab, {A, B, C})\n    \n    print(f'{A}\
+  \ is to {B} as {C} is to {D}')\n```\n\n\n\n## 速度优化\n\n请注意，在前面的函数中，我们只实例化了一次 WordEmbeddings\
+  \ 对象，然后直接将其传递给我们的函数。这提高了求解器的性能。我们还可以做许多其他优化，主要是关于我们如何找到最匹配的词。不是使用 for 循环遍历词汇表并为每个词计算余弦相似度，我们本可以将整个词汇表传递给\
+  \ cosine_similarity 方法，该方法允许一次计算多个嵌入对的相似度。\n\n现在是时候尝试我们的解决方案了！\n\n## 尝试类比求解器\n\n\
+  我们现在可以尝试几个示例，看看我们的类比求解器在实际中的表现如何：\n\n- `A_is_to_B_as_C_is_to(\"king\", \"man\",\
+  \ \"queen\")` 结果如下：\n  ```\n  king is to man as queen is to woman\n  ```\n- `A_is_to_B_as_C_is_to(\"\
+  do\", \"did\", \"go\")` 结果如下：\n  ```\n  do is to did as go is to went\n  ```\n-\
+  \ `A_is_to_B_as_C_is_to(\"bread\", \"baker\", \"meat\")` 结果如下：\n  ```\n  bread is\
+  \ to baker as meat is to butcher\n  ```\n- `A_is_to_B_as_C_is_to(\"London\", \"\
+  England\", \"Ljubljana\")` 结果如下：\n  ```\n  London is to England as Ljubljana is\
+  \ to Slovenia\n  ```\n- `A_is_to_B_as_C_is_to(\"life\", \"death\", \"beginning\"\
+  )` 结果如下：\n  ```\n  life is to death as beginning is to ending\n  ```\n- `A_is_to_B_as_C_is_to(\"\
+  big\", \"bigger\", \"small\")` 结果如下：\n  ```\n  big is to bigger as small is to smaller\n\
+  \  ```\n- `A_is_to_B_as_C_is_to(\"man\", \"actor\", \"woman\")` 结果如下：\n  ```\n \
+  \ man is to actor as woman is to actress\n  ```\n\n前面的代码展示了一些求解器表现惊人良好的示例。然而，公平地说，我们采用了一个小技巧，确保预测的词永远不会是原来的三个词之一，如果没有这个技巧，通常就会出现这种情况。\n\
+  \n在本次练习中，我们获得了使用 Flair 进行实践的经验，并加深了对词嵌入的理解和知识。\n\n我们现在将介绍 Flair 支持的各种不同的嵌入类型。\n\n\
+  ## Flair 中的经典词嵌入\n\nFlair 中最简单的仍包含词语义信息的嵌入类型称为 **经典词嵌入**。这些嵌入是预训练的、无上下文的，并且不需要预处理。无上下文的特性意味着一个词始终映射到一个预计算的嵌入，而与上下文无关。要使用它们，我们只需通过传入所选嵌入的\
+  \ ID 来实例化一个 `WordEmbeddings` 类。然后，我们只需将文本封装到一个 `Sentence` 对象中，并在我们的 `WordEmbeddings`\
+  \ 类上调用 `embed(sentence)` 方法。\n\n让我们使用 FastText \"crawl\" 嵌入为几个随机词获取嵌入：\n\n```\n\
+  from flair.data import Sentence\nfrom flair.embeddings import WordEmbeddings\n\n\
+  embedding = WordEmbeddings('crawl')\nsentence = Sentence(\"one two three one\")\n\
+  embedding.embed(sentence)\n\nfor token in sentence:\n    print(token.embedding)\n\
+  ```\n\n前面的代码将打印出词 one、two、three 和 one 的嵌入。请注意，我们打印了 one 词元两次。因为 `WordEmbeddings`\
+  \ 类是无上下文的，所以第一个和第四个词元的嵌入是相同的。\n\n我们可以用一个简单的检查来验证这一点：\n\n```\ntoken1 = sentence[0]\n\
+  token4 = sentence[3]\nprint(token1.embedding.tolist() == token4.embedding.tolist())\n\
+  ```\n\n前面的代码将打印出 True，表明同一个词的两个嵌入是等价的。\n\n> **注意**\n> 首次加载嵌入时，Flair 会下载嵌入模型并将其存储在本地。后续调用将使用本地存储的版本。\n\
+  \nFlair 目前支持以下类型的经典词嵌入：\n\n- GloVe 嵌入：\n  - ID: `glove` (英语)\n- Komninos 嵌入：\n \
+  \ - ID: `extvec` (英语)\n- Twitter 嵌入：\n  - ID: `twitter` (英语)\n- Turian 嵌入（小型）：\n\
+  \  - ID: `turian` (英语)\n- 基于网络爬取的 FastText 嵌入：\n  - ID: `crawl` (英语)\n- 基于新闻和维基百科数据的\
+  \ FastText 嵌入：\n  - ID: `ar` (阿拉伯语), `bg` (保加利亚语), `ca` (加泰罗尼亚语), `cz` (捷克语), `da`\
+  \ (丹麦语), `de` (德语), `es` (西班牙语), `en` (英语), `eu` (巴斯克语), `fa` (波斯语), `fi` (芬兰语),\
+  \ `fr` (法语), `he` (希伯来语), `hi` (印地语), `hr` (克罗地亚语), `id` (印度尼西亚语), `it` (意大利语),\
+  \ `ja` (日语), `ko` (韩语), `nl` (荷兰语), `no` (挪威语), `pl` (波兰语), `pt` (葡萄牙语), `ro` (罗马尼亚语),\
+  \ `ru` (俄语), `si` (斯洛文尼亚语), `sk` (斯洛伐克语), `sr` (塞尔维亚语), `sv` (瑞典语), `tr` (土耳其语),\
+  \ `zh` (中文)\n\n你现在应该对如何使用 Flair 的经典词嵌入方法在多种语言中生成简单的词嵌入有了良好的理解。我们现在有了基础和理解，可以继续进入一个稍微复杂但也更有趣的话题，这个话题被认为是\
+  \ Flair 卓越序列标注性能背后的原因，即 Flair 的所谓秘密武器 – Flair 嵌入。\n\n## Flair 嵌入\n\n**Flair 嵌入**\
+  \ 是一种特殊的上下文字符串嵌入，它将词建模为字符序列。它们是 Flair 卓越序列标注性能背后的原因，也是引入 Flair NLP 框架的本质动机。由 Flair\
+  \ 的原创者撰写的 *Contextual String Embeddings for Sequence Labeling* 论文，一篇有趣且易读的文章，精彩地解释了\
+  \ Flair 嵌入的内部工作原理。但要从 NLP 工程师的角度把握 Flair 嵌入，我们只需要理解其两个属性：上下文相关性和字符级序列建模。\n\n###\
+  \ 理解 Flair 嵌入的上下文相关性\n\n上下文字符串嵌入背后的思想是，每个词嵌入应不仅由其句法-语义含义定义，还应由其出现的上下文定义。这意味着每个词在每种出现的上下文中都会有不同的嵌入。\n\
+  \n每个预训练的 Flair 模型都提供一个 **正向** 版本和一个 **反向** 版本。假设你正在处理一种语言，就像这本书一样，使用从左到右的书写方式。正向版本会考虑词之前的上下文——在左侧。反向版本则相反。它会考虑词之后的上下文——在词的右侧。\n\
+  \n如果这是真的，那么在两个不同句子的开头出现的两个相同词应该具有相同的正向嵌入，因为它们的上下文为空。让我们来测试一下：\n\n```\nfrom flair.data\
+  \ import Sentence\nfrom flair.embeddings import FlairEmbeddings\n\nembedding = FlairEmbeddings('news-forward')\n\
+  s1 = Sentence(\"nice shirt\")\ns2 = Sentence(\"nice pants\")\n\nembedding.embed(s1)\n\
+  ```\n```\nembedding.embed(s2)\n\nprint(s1[0].embedding.tolist() == s2[0].embedding.tolist())\n\
+  ```\n\n在前面的代码中，我们实例化了 news-forward Flair 嵌入，并计算了 nice shirt 上下文中词 nice 的嵌入，以及 nice\
+  \ pants 上下文中词 nice 的嵌入。因为我们使用的是正向模型，它只考虑词之前出现的上下文。此外，因为我们的词在其在句子中的位置左侧没有上下文，所以两个嵌入是相同的，代码假设它们是相同的，确实打印出了\
+  \ True。\n\n现在让我们在我们关注的词之前加上一些上下文。相同词的不同上下文应该导致两个不同的嵌入：\n\n```\ns1 = Sentence(\"\
+  very nice shirt\")\ns2 = Sentence(\"pretty nice pants\")\n\nembedding.embed(s1)\n\
+  embedding.embed(s2)\n\nprint(s1[1].embedding.tolist() == s2[1].embedding.tolist())\n\
+  ```\n\n在前面的代码中，我们定义了两个句子，它们对词 nice 具有不同的前置上下文，并且因为我们使用的是 news-forward 嵌入模型，所以词 nice\
+  \ 的两个嵌入应该是不同的。我们在最后一行验证了这一点，该行假设词 nice 的两个嵌入是等价的。该操作的结果为 False。这表明正向类型的 Flair 嵌入确实考虑了词左侧的上下文。\n\
+  \n### Flair 嵌入中的字符级序列建模\n\nFlair 嵌入中使用字符级序列建模有很多好处，但其最容易观察到的优势是它能异常好地处理 **词汇表外 (OOV)**\
+  \ 词。一些词嵌入技术，例如 **GloVe**，对 OOV 词不提供支持，并为词汇表中不存在的词返回零向量。OOV 支持不仅为从未出现在原始训练集中的词提供良好的性能，还为拼写错误的词提供支持。\n\
+  \n\n\nFlair 的优秀 OOV 词性能可以在以下实验中观察到。我们将为一个正确拼写的词获取一个嵌入，例如词 `potato`。然后，我们将获取其拼写错误版本的嵌入，例如词\
+  \ `potatoo`。然后我们将使用余弦相似度来计算这两个词在语义上的相似程度。我们的假设是，一个好的嵌入模型能够识别出第二个词与第一个词非常相似。余弦相似度大于\
+  \ 0.8 可以合理地被视为相似嵌入的指标：\n\n```\nfrom sklearn.metrics.pairwise import cosine_similarity\
+  \ as sim\n\ns1 = Sentence(\"eating potato\")\ns2 = Sentence(\"eating potatoo\")\n\
+  \nembedding = FlairEmbeddings('news-forward')\nembedding.embed(s1)\nembedding.embed(s2)\n\
+  e1 = s1[1].embedding.tolist()\ne2 = s2[1].embedding.tolist()\n\nprint(sim([e1],\
+  \ [e2]))\n```\n\n前述代码打印出 `eating potato` 上下文中词 `potato` 与 `eating potatoo` 上下文中词\
+  \ `potatoo` 之间的余弦相似度。打印出的相似度分数为 0.865，表明这两个词嵌入之间存在强关联。\n\n## 池化 Flair 嵌入\n为了获得更好的性能，您还可以使用\
+  \ `PooledFlairEmbeddings`。它使用完全相同的语法接口并支持与 `FlairEmbeddings` 相同的模型集合，但通常能提供轻微的性能提升。请注意，`PooledFlairEmbeddings`\
+  \ 需要大量内存，这意味着性能的边际提升可能并不总是值得额外的内存消耗。\n\n## 可用的 Flair 嵌入\n框架中支持的 Flair 嵌入集合不断变化，到您阅读本书时，完整的列表很可能已经过时。但通常，您很可能在以下某一类别中找到所需的嵌入：\n\
+  - 在 10 亿词语料库上训练的英语 Flair 嵌入：\n  - ID: `news-DIRECTION`\n- 在 Wikipedia、Opus 或其他大型语料库上训练的\
+  \ Flair 嵌入：\n  - ID: `LANGUAGE_CODE-DIRECTION`。\n  - 例如，对于德语 Flair 嵌入的前向版本，使用 `de-forward`。\n\
+  - 在生物医学 PubMed 摘要上训练的 Flair 嵌入：\n  - ID: `pubmed-DIRECTION`\n- 支持 300 多种语言的多语言 Flair\
+  \ 嵌入：\n  - ID: `multi-DIRECTION`\n\n请注意，使用嵌入 ID 时，术语 `DIRECTION` 需要替换为 `backward`\
+  \ 或 `forward`。\n\n若要获取支持的 Flair 嵌入的完整且最新的列表，您应查阅 Flair 的官方文档 at https://github.com/flairNLP/flair/blob/master/resources/docs/embeddings/FLAIR_EMBEDDINGS.md。\n\
+  \n在前面的练习中，我们介绍了 Flair 嵌入的基本用法。但您可能问过自己：如何使用 Flair 嵌入以利用出现在词前后完整上下文的方式？这些问题以及许多其他问题将在下一节中得到解答。\n\
+  \n## 堆叠嵌入\n**堆叠嵌入** 是一种元嵌入类型，允许我们通过组合两个或多个嵌入来形成新的嵌入。这些元嵌入，正如名称所示，只是将多个嵌入堆叠在一起。它们非常适合组合\
+  \ Flair 嵌入的前向和后向版本。它们还可以用于添加其他嵌入类型，例如将上下文字符串嵌入与经典词嵌入混合。事实上，这正是 Flair 建议的组合类型，并且通常能产生最先进的结果。\n\
+  \n要使用堆叠嵌入，只需实例化一个 StackedEmbeddings 类，并传入一个嵌入对象列表。然后您就可以以与在 Flair 中使用任何其他嵌入完全相同的方式使用此元嵌入。\n\
+  \n让我们在 Flair 推荐的最佳性能嵌入集合上尝试一下。我们将堆叠 glove 词嵌入与 news-forward 和 news-backward Flair\
+  \ 嵌入：\n\n```python\nfrom flair.embeddings import FlairEmbeddings, WordEmbeddings\n\
+  from flair.embeddings import StackedEmbeddings\n\nglove = WordEmbeddings('glove')\n\
+  news_fw = FlairEmbeddings('news-forward')\nnews_bw = FlairEmbeddings('news-backward')\n\
+  \ncombined_embeddings_list = [glove, news_fw, news_bw]\n\nstack = StackedEmbeddings(combined_embeddings_list)\n\
+  ```\n\n然后您可以在 Sentence 对象上运行 stack.embed(sentence)，就像使用 Flair 中的任何其他嵌入类型一样。\n\n\
+  我们现在已经介绍了 Flair 中的主要词嵌入类型。现在是时候提升一个层次，学习如何计算的不仅是词的嵌入，还有整个文档的嵌入。\n\n## 文档嵌入\n文档嵌入与词嵌入类似，唯一的区别是，我们不是为每个词获取一个嵌入，而是为整个文档获取一个嵌入。\n\
+  \n在 Flair 中，文档可以在 Sentence 对象内部定义。不是通过 sentence[n].embedding 访问嵌入（这将返回第 n 个词的嵌入），我们只需运行\
+  \ sentence.embedding 或 sentence.get_embedding()。\n\nFlair 目前支持以下嵌入类型：\n- TransformerDocumentEmbeddings,\
+  \ 使用预训练的 Hugging Face transformers 的文档嵌入类。\n- DocumentPoolEmbeddings, 一个元文档嵌入类，接收词嵌入对象，计算每个词的嵌入，并返回所有词嵌入的平均值。\n\
+  - DocumentRNNEmbeddings, 一个元文档嵌入类，接收词嵌入对象，在整个文档上训练循环神经网络，并将最终状态作为该文档的嵌入返回。\n- SentenceTransformerDocumentEmbeddings,\
+  \ 使用外部 sentence-transformers 库的文档嵌入类。该库需要单独安装。\n\nFlair 建议在文档分类任务中使用 TransformerDocumentEmbeddings\
+  \ 类。让我们尝试一下：\n\n```\nfrom flair.data import Sentence\nfrom flair.embeddings import\
+  \ TransformerDocumentEmbeddings\n\nembedding = TransformerDocumentEmbeddings('bert-base-uncased')\n\
+  \nsentence = Sentence('Example sentence .')\nembedding.embed(sentence)\n\nprint(sentence.embedding)\n\
+  ```\n\n前述代码将打印出代表我们句子的单个嵌入。\n\n请注意，在前述代码示例中，我们将 bert-base-uncased 嵌入 ID 传递给了 TransformerDocumentEmbeddings\
+  \ 类。这是我们决定使用的变换器模型名称。您可以从 Hugging Face transformer 模型库中选择任何其他兼容模型。\n\n## Flair 中的其他嵌入\n\
+  在本章中，我们介绍了 Flair 最先进性能背后的大多数嵌入类型和技术，尽管本书中仍有许多其他嵌入类型未作解释。\n\n包括以下内容：\n- ELMoEmbeddings:\
+  \ 使用双向 LSTM 的上下文嵌入\n- OneHotEmbeddings: 每个词都是 one-hot 向量的嵌入\n- BytePairEmbeddings:\
+  \ 在子词级别预计算的嵌入\n- `TransformerWordEmbeddings`: 使用基于变换器架构的嵌入\n- `CharacterEmbeddings`:\
+  \ 每次初始化类时随机设置的字符级嵌入\n\n虽然这些嵌入的内部工作原理超出了本书的范围，即使不完全理解它们的工作原理，您现在也应该能够像使用 Flair 中的任何其他嵌入对象一样使用它们，因为它们都共享相同的接口。\n\
+  \n## 总结\n在本章中，我们介绍了 Flair 中的嵌入。它们是所有 NLP 任务的核心概念。我们通过动手实践练习了解了嵌入的行为方式、其作用以及如何在 Flair\
+  \ 中使用它们。\n\n我们实现了一个 NLP 类比求解器，可以使用算术运算和词嵌入之间的关系预测类比中的最后一个词。通过这样做，我们不仅复习了如何在实践中使用\
+  \ Flair 的基本类型，还说明了词嵌入是什么以及如何从中推导出含义。然后我们还介绍了 Flair 中的所有嵌入类型。我们首先介绍了经典词嵌入，然后是 Flair\
+  \ 嵌入。\n\n使用元嵌入方法，我们使用了堆叠嵌入并将多个嵌入组合成新的嵌入——这是一种在 Flair 中实现最先进结果的技术。然后我们获得了在 Flair\
+  \ 中形成文档嵌入的实践经验，并以超出本书范围的嵌入类型列表结束了本章。\n\n在下一章中，我们将学习 Flair 如何利用这些嵌入来生成 NLP 中性能最佳的序列标注器之一。\n\
+  \n\n\n## 4\n## 序列标注\n\n**序列标注** (或 **序列标记**) 指的是一组 **自然语言处理** (**NLP**) 任务，它们为文本的词元或其他单元分配标签或标记。当标签为命名实体时，我们就是在处理\
+  \ **命名实体识别** (**NER**) 。当标签为词性时，此任务称为 **词性** (**PoS**) 标注。与以无监督方式训练的嵌入不同，序列标注器使用监督训练技术进行训练，使其更容易评估和比较。\n\
+  \n**序列标注** 是 **Flair** 真正大放异彩的领域。**Flair** 利用 **Flair** 嵌入的巧妙设计（在上一章中解释），在许多不同的序列标注任务和语言中实现最先进的结果。\n\
+  \n在本章中，我们将简要解释 **Flair** 中序列标注器的工作原理。这将使我们在介绍 **NER**、**PoS** 标注、分块以及 **Flair**\
+  \ 中找到的其他序列标注技术时，能够充分理解其内部工作原理。这些部分获得的知识将帮助您了解 **Flair** 解决的序列标注任务范围以及可供您使用的预训练模型。我们随后将展示在\
+  \ **NLP** 中通常用于衡量和比较序列标注器性能的指标。\n\n我们将在以下部分介绍 Flair 中的序列标注：\n\n- 理解 Flair 中序列标注的工作原理\n\
+  - Flair 中的命名实体识别\n- Flair 中的词性标注\n- Flair 中的其他序列标注器\n- 序列标注指标\n\n### 技术要求\n\n对于本章，您需要一个安装了\
+  \ Flair 版本 0.11 的 **Python** 环境。\n\n本章涵盖的代码示例可在本书官方 GitHub 仓库的以下 **Jupyter Notebook**\
+  \ 中找到：\n\n```\nhttps://github.com/PacktPublishing/Natural-Language-Processing-with-Flair/tree/main/Chapter04.\n\
+  ```\n\n### 在 Flair 中理解序列标注\n\n在直接深入了解如何在 Flair 中使用序列标注器之前，让我们先简要解释序列标注（也称为序列标记）的工作原理。从工程角度来看，序列标注器是一个工具，它接收文本作为输入并返回一系列分配，其中每个分配包含一个标签名称和一个跨度，指示标注的文本单元（通常是单词）的开始和结束位置。\n\
+  \nFlair 中序列标注的架构和设计可以用下图最好地解释：\n\n![](img/c56c48b8fd18a11ab705352d618ed976_62_0.png)\n\
+  \n图 4.1 - Flair 中序列标注的概述\n\n上图显示了由两个组件组成的序列标注架构：语言模型（黄色）和序列标注（标记）模型（蓝色）。双向字符语言模型接收原始文本作为输入，并为每个单词计算上下文嵌入（r_George,\
+  \ r_Washington, r_was, r_born）。然后将它们传递给 BiLSTM-CRF 序列标注器。这种特殊的标注器是一种新颖的序列标注方法，它使用双向\
+  \ LSTM（BiLSTM）循环神经网络模型与条件随机场（CRF）——一种组合算法相结合。它输出与各个单词对应的标签的概率分布。然后为每个单词选择最可能的标签（如前图所示的顶行所示）。例如，在前图中，单词\
+  \ Washington 被标记为 E-PER，其中 PER 表示该词与人相关，E 标记了双词命名实体块的结尾。单词通常还会被标记为特殊标签 O（意为其他），用于不被视为命名实体或不属于任何定义类别的命名实体的单词。\n\
+  \n上图用最常见的序列标注应用之一——NER 说明了序列标注器的设计。让我们在下一节学习如何在 Flair 中使用它。\n\n### 在 Flair 中进行命名实体识别\n\
+  \nNER 是一种特殊的序列标注任务，用于识别和标记命名实体。命名实体是现实世界中的对象，例如人、地点或组织。可能的不同命名实体的集合没有严格定义，可能因模型而异。Flair\
+  \ 附带丰富的预训练 NER 模型，以及训练自定义模型的工具。在本节中，我们将重点介绍预训练模型，以及如何解释和理解其输出。\n\n为了很好地理解 Flair\
+  \ 中 NER 标注的工作原理，让我们作为练习的一部分来尝试一下。我们将从标记一个明显是命名实体的单个单词开始。\n\n```\nfrom flair.data\
+  \ import Sentence\nfrom flair.models import SequenceTagger\n\ntagger = SequenceTagger.load('ner')\n\
+  sentence = Sentence('Berlin')\ntagger.predict(sentence)\n\nprint(sentence.to_tagged_string())\n\
+  ```\n\n在前面的脚本中，我们通过调用 SequenceTagger.load('ner') 将 Flair 的默认英文 NER 标注器加载到内存中。然后我们用单个单词\
+  \ Berlin 标记了一句话。最后，我们打印出了标记后的句子。输出如下：\n\n```\nSentence: \"Berlin\" → [\"Berlin\"\
+  /LOC]\n```\n\n第一次使用 ner 标注器时，您还会看到下载进度条以及模型托管在 HuggingFace ModelHub 上的通知。\n\n前面的\
+  \ NER 标注代码片段打印出：\"Berlin\"/LOC。这表明标注器认为在给定上下文（或缺乏上下文）中，单词 Berlin 是一个地点，因为它被标记为 LOC。\n\
+  \nNER 类别集会因模型而异，即使在 Flair 内部也是如此，但大多数 NER 标注器会使用以下类别对实体进行分类：\n\n- 人\n- 地点\n- 组织\n\
+  - 杂项\n\n让我们看另一个例子，这是介绍 Flair 给 NLP 世界的论文中使用的例子。它展示了一个案例，其中 Flair 出色的词义消歧性能真正大放异彩：\n\
+  \n```\ntagger = SequenceTagger.load('ner')\ntext = 'George Washington was born in\
+  \ Washington.'\nsentence = Sentence(text)\ntagger.predict(sentence)\n\nprint(sentence.to_tagged_string())\n\
+  ```\n\n前面的脚本将打印：\n\n```\nSentence: \"George Washington was born in Washington .\"\
+  \ → [\"George Washington\"/PER, \"Washington\"/LOC]\n```\n\n上述输出清楚地显示了 Flair 如何区分作为地点的\
+  \ Washington（标记为 LOC）和作为人的 Washington（标记为 PER）。\n\n### Flair 中的 NER 标注器类型\n\nFlair\
+  \ 的预训练 NER 模型分为单语或多语 NER 模型。\n\n**单语 NER 模型** 是在单一语言上训练的。它们经过调优以实现该单一语言的最佳性能，同时不提供对任何其他语言的支持。\n\
+  \n最值得注意的预训练单语 NER 标注器如下：\n\n- 在 Conll-03 数据集上训练的英文（4 类）NER 标注器。\n  ID: ner.\n- 在\
+  \ Conll-03 数据集上训练的英文（4 类）NER 标注器，尺寸减小，速度提高，但准确率降低。\n  ID: ner-fast.\n- 在 Conll-03\
+  \ 数据集上训练的英文（4 类）NER 标注器，准确率提高，但速度降低且尺寸增加。\n  ID: ner-large.\n- 在 Ontonotes 数据集上训练的英文（18\
+  \ 类）NER 标注器。\n  ID: ner-ontonotes.\n- 在 Conll-03 数据集上训练的德文（4 类）NER 标注器。\n  ID: de-ner.\n\
+  - 在 WikiNER 数据集上训练的法文（4 类）NER 标注器。\n  ID: fr-ner.\n- 在 Conll-03 数据集上训练的西班牙文（4 类）NER\
+  \ 标注器。\n  ID: es-ner-large.\n\n与前面的单语模型不同，Flair 还支持多语 NER 模型。它们在每种特定语言上的准确率确实明显较低，但带来的好处是可以让我们使用单一模型处理多种语言。Flair\
+  \ 的多语 NER 模型在英语、德语、荷兰语和西班牙语上训练。这些模型可以使用 ner-multi 和 ner-multi-fast ID 加载。\n\n您现在应该很好地了解如何在\
+  \ Flair 中使用 NER 标注器并解释其结果。我们现在可以继续介绍标注器，它们不是标记命名实体，而是标记词性。\n\n\n\n## Flair 中的词性标注\n\
+  \nPoS 标注器负责为词元标注/标记其对应的词性。简化的词性类别集合包括名词、动词、形容词和副词。然而，Flair 中的大多数标注器使用更大、更具描述性的标签集。例如，Penn\
+  \ 标签集包含 36 种不同的标签。\n\n标注过程和 PoS 标注语法与 Flair 中的 NER 或任何其他标注任务没有区别。加载 PoS 标注器时唯一的差别在于选择与我们所选\
+  \ PoS 标注器相对应的正确标注器 ID。\n\n让我们使用 pos 标注器 ID 来尝试 Flair 中的默认英语 PoS 标注器：\n\n```python\n\
+  from flair.data import Sentence\nfrom flair.models import SequenceTagger\n\ntagger\
+  \ = SequenceTagger.load('pos')\nsentence = Sentence('Making a living')\ntagger.predict(sentence)\n\
+  \nprint(sentence.to_tagged_string())\n```\n\n在前面的脚本中，我们加载了 Flair 的默认英语 pos 标注器并对一个示例句子进行了标注。然后我们打印出了\
+  \ resulting 标注句子。输出结果以及首次使用标注器时的下载条如下：\n\n```\nSentence: \"Making a living\" → [\"\
+  Making\"/VBG, \"a\"/DT, \"living\"/NN]\n```\n\n从前面的输出中，我们可以看到我们的句子，由 Making、a 和\
+  \ living 词元组成，被分别标注为 VBG、DT 和 NN 标签。这意味着单词 Making 被标注为现在分词的动词，单词 a 被标注为限定词，单词 living\
+  \ 被标注为单数名词。这表明标注器很好地处理了词义消歧，因为单词 living 根据上下文可以是动词也可以是名词。\n\n为了充分理解 Flair 中英语 PoS\
+  \ 标注器产生的每个单独标签的含义，我们需要参考 Penn 标签集的文档。\n\n## 词性标注标签集\n\n前面脚本中的 PoS 标注器使用 **Penn Treebank\
+  \ Project PoS tag set**。它是一个标准化的标签集，包含 36 种不同的 PoS 标签。它允许研究人员使用一个标准，以便在不同标注器之间比较结果。它最初用于标注\
+  \ **The Penn Treebank Project** 中的语料库，但今天已在许多不同的数据集中使用。\n\nPenn 标签集包含以下 36 个标签：\n\
+  \n- CC: 并列连词\n- CD: 基数词\n- DT: 限定词\n- EX: 存在性 there\n- FW: 外来词\n- IN: 介词或从属连词\n\
+  - JJ: 形容词\n- JJR: 形容词，比较级\n- JJS: 形容词，最高级\n- LS: 列表项标记\n- MD: 情态动词\n- NN: 名词，单数或不可数\n\
+  - NNS: 名词，复数\n- NNP: 专有名词，单数\n- NNPS: 专有名词，复数\n- PDT: 前限定词\n- POS: 所有格结尾\n- PRP:\
+  \ 人称代词\n- PRP$: 所有格代词\n- RB: 副词\n- RBR: 副词，比较级\n- RBS: 副词，最高级\n- RP: 小品词\n- SYM:\
+  \ 符号\n- TO: To\n- UH: 感叹词\n- VB: 动词，原形\n- VBD: 动词，过去时\n- VBG: 动词，动名词或现在分词\n- VBN:\
+  \ 动词，过去分词\n- VBP: 动词，非第三人称单数现在时\n- VBZ: 动词，第三人称单数现在时\n- WDT: 疑问词限定词\n- WP: 疑问词代词\n\
+  - WP$: 所有格疑问词代词\n- WRB: 疑问词副词\n\n大多数英语 PoS 标注器可能会使用此标签集或其略有修改的版本。然而，与 NER 标注不同，NER\
+  \ 类别通常在多种语言中使用，Penn 集标签非常特定于英语，不能有效地直接用于许多非英语语言。解决此问题的方法是通用 PoS 标签集。它定义了一个简化的通用标签集，可在多种语言中使用。\n\
+  \n通用 PoS 标签集定义了以下 PoS 标签：\n\n- VERB: 动词（所有时态和语气）\n- NOUN: 名词（普通名词和专有名词）\n- PRON:\
+  \ 代词\n- ADJ: 形容词\n- ADV: 副词\n- ADP: 介词（介词和后置词）\n- CONJ: 连词\n- DET: 限定词\n- NUM: 基数词\n\
+  - PRT: 小品词或其他功能词\n- X: 其他：外来词、拼写错误、缩写\n- .: 标点符号\n\n前面的标签不那么特定于英语，可在多种语言中使用。它们用于\
+  \ Flair 的多语言 PoS 标注器（将在下一节中详细介绍）。\n\n## Flair 中的 PoS 标注器类型\n\nFlair 提供了多个预训练的 PoS\
+  \ 标注器。就像 NER 标注器一样，Flair 的 PoS 标注器可分为单语言或多语言标注器。\n\nFlair 中的单语言预训练 PoS 标注器在单一语言上训练，并且经常使用特定于语言的标签集。\n\
+  \n一些常用的标注器描述如下：\n\n- 在 `Ontonotes` 数据集上训练的英语 PoS 标注器，使用 Penn 标签集。\n  ID: `pos`\n\
+  - 英语 PoS 标注器的更快、更轻但准确率较低的版本，在 `Ontonotes` 数据集上训练，使用 Penn 标签集。\n  ID: `pos-fast`\n\
+  - 使用通用 POS 标签集训练的英语 PoS 标注器。\n  ID: `upos`\n- 使用通用 POS 标签集的 `upos` 标注器的更快、更轻但准确率较低的版本。\n\
+  \  ID: `upos-fast`\n- 在 `UD German - HDT` 数据集上训练的德语 PoS 标注器。\n  ID: `de-pos`\n\n\
+  前面的标注器在它们所训练的语言上会达到最佳性能，但在任何其他语言上都不会表现良好。为了处理多语言语料库，Flair 提供了一组多语言 PoS 标注器。它们在 12\
+  \ 种语言上训练：英语、德语、法语、意大利语、荷兰语、波兰语、西班牙语、瑞典语、丹麦语、挪威语、芬兰语和捷克语。要加载它们，只需使用 `pos-multi` 或\
+  \ `pos-multi-fast` 标注器 ID 即可。\n\n## Flair 中的其他标注任务\n\n虽然 PoS 和 NER 标注是最常用的两种序列标注任务，但\
+  \ Flair 支持许多其他任务。这在 Flair 中成为可能，因为其序列标注架构并非针对特定的序列标注任务而设计。它可以处理任何任务，只要训练语料库和标注以与\
+  \ Flair 兼容的格式存储即可。\n\nFlair 预训练模型解决的其他序列标注任务包括分块、语义框架检测，以及生物医学文本中的否定和推测标注等领域特定标注器。\n\
+  \nFlair 官方文档中提到的每个序列标注器都附带一个准确率分数。根据你感兴趣的序列标注器，用于计算的指标可能不同。为了充分理解这些分数的含义，我们需要了解用于计算它们的指标。我们将在下一节中介绍这一点。\n\
+  \n## 序列标注指标\n\n在比较一个序列标注器与另一个时，我们不能简单地手动尝试并随意猜测哪个表现更好。它们的性能需要使用相同的数据集进行评估，并使用相同的预定义指标计算。序列标注中最常用的指标是准确率和\
+  \ F1 分数。\n\n## 序列标注任务的准确率测量\n\n准确率是一个介于 0 到 1 之间的度量，简单地计算正确标注词元的比例。\n\n假设 `correctly_tagged_tokens`\
+  \ 是正确标注词元的数量，`all_tokens` 是所有词元的总数量，准确率可以定义为：\n\naccuracy = correctly_tagged_tokens\
+  \ / all_tokens\n\n前面的公式简单且提供易于解释的结果，但在处理不平衡数据集（类别/标签名称代表不均等的数据集）时，该指标可能会具有误导性。这在\
+  \ NER 中尤其明显，其中大多数词元属于单一类别。例如，准确率为 85% 的 NER 标注器听起来相当不错。但当我们查看 NER 数据集中标签的分布时，会注意到大多数词元都被标记为\
+  \ O（其他）标签，表示非命名实体。假设语料库中 85% 为非命名实体，一个将所有词元都标记为 O 的模型默认即可达到 85% 的准确率。为了解决这个问题，我们可以使用另一种称为宏观\
+  \ F1 分数的指标。\n\n\n\n## 衡量序列标注任务的 F1 分数\n\nF1 分数是另外两个指标称为 *精确率* 和 *召回率* 的调和平均值。其取值范围从\
+  \ 0（最差可能分数）到 1（最佳可能分数）。\n\n在序列标注中，*精确率* 定义为学习系统找到的命名实体中正确的百分比。其定义如下：\n\n$$precision\
+  \ = \\frac{tp}{tp + fp}$$\n\n*召回率* 是语料中存在的命名实体被系统识别出的百分比。其定义为：\n\n$$recall = \\\
+  frac{tp}{tp + fn}$$\n\n以下适用：\n\n- **真阳性** (*tp*)：被正确标注为特定标签的 token 数量。例如，如果某个 token\
+  \ 在训练数据中被标注为名词，而我们的标注器也将其标注为名词标签，则视为真阳性。\n- **假阳性** (*fp*)：被错误标注为特定标签的 token 数量。例如，如果某个\
+  \ token 在训练数据中被标注为动词，但我们的标注器却将其标注为名词标签。\n- **假阴性** (*fn*)：本应被标注为特定标签但未被标注的 token\
+  \ 数量。例如，如果某个 token 在训练数据中被标注为名词，但我们的标注器却将其标注为动词标签。\n\nF1 分数随后被定义为精确率和召回率的调和平均值。\n\
+  \n$$F1 = 2 \\cdot \\frac{precision \\cdot recall}{precision + recall}$$\n\n因此计算\
+  \ F1 分数的过程涉及以下步骤：\n\n- 统计真阳性、假阳性和假阴性\n- 使用上述公式计算 *精确率* 和 *召回率*\n- 将 F1 分数计算为 *精确率*\
+  \ 和 *召回率* 的调和平均值\n\n如果我们分别计算每个标签（例如每个命名实体）的 F1 分数，然后对所有 F1 分数取平均，就得到宏观 F1 分数。该指标考虑了语料中标签表示不均的情况。\n\
+  \n如果我们将所有标签的总真阳性、假阴性和假阳性合并计算 F1 分数，就得到 *微观 F1 分数*。该指标在单标签问题（标注器中一个 token 最多只能分配一个标签）中的值与准确率相同。\n\
+  \n下次评估报告的序列标注器结果时，请注意 F1 分数指的是微观还是宏观变体。Flair 结果中（在未明确指定时）最常使用的变体是微观 F1 分数。\n\n##\
+  \ 摘要\n\n通过本章获得的知识，我们不仅能够使用 Flair 中提供的许多预训练序列标注器，还能够解释和理解其输出。\n\n在本章中，我们从不同角度介绍了\
+  \ Flair 中的序列标注。我们涉及了 Flair 提出的序列标注器的设计和架构。然后我们介绍了 NER 的动机和理论，以及可在 Flair 中找到的预训练\
+  \ NER 标注器。我们对词性标注也做了同样的处理，其中我们介绍了最著名的标签集，例如宾州标签集和通用词性标签集，然后介绍了 Flair 中找到的重要预训练词性标注器。最后我们研究了用于评估序列标注器最常用的两个指标，并强调了区分微观和宏观\
+  \ F1 分数的重要性。\n\n在下一章中，我们将研究如何使用 Flair 来训练、存储和重用您自己的序列标注模型。\n"
+- '# 第 2 部分：深入 Flair – 训练自定义模型
+
+
+  在本部分，您将学习如何使用 Flair 训练自定义序列标注模型、嵌入和分类器，评估其性能，并通过超参数优化实现最佳结果。
+
+
+  本部分包含以下章节：
+
+
+  - 第 5 章，训练序列标注模型
+
+  - 第 6 章，Flair 中的超参数优化
+
+  - 第 7 章，训练自己的嵌入
+
+  - 第 8 章，Flair 中的文本分类
+
+  '
+- "## 5 训练序列标注模型\n\n在本书中，迄今为止我们已经介绍了一些 Flair 开箱即用的功能和模型。预训练序列标注器、嵌入和其他模型的集合乍一看似乎足够大，以至于我们永远不需要\
+  \ Flair 中已有的东西之外的任何东西。但如果您从事 **自然语言处理 (NLP)** 工作足够长的时间，您很可能会遇到一个问题，其通用性不足以用预训练模型解决。面对此类问题，我们通常需要自行训练模型。此过程涉及获取训练数据、预处理它，可能手动标注它，最后使用\
+  \ NLP 框架训练模型。但由于 Flair 提供了大量标注语料库，您可能只需要执行最后一步，即模型训练——本章的重点。\n\n我们将从解释何时以及为何需要训练自定义模型开始本章。接下来，我们将介绍训练序列标注模型的硬件要求，并展示在云中训练模型的免费和付费方法。\n\
+  \n然后我们将简要介绍神经模型训练的过程。之后，我们将查看控制训练的指标和参数。我们将在一个动手练习中介绍实际的模型训练语法，在该练习中我们训练一个英语词性标注器。最后，我们将学习一些评估模型质量和运行可视化的基本方法，这将帮助我们判断模型是否足够好，或者是否应该继续训练或从头开始。\n\
+  \n在本章中，我们将作为以下部分的一部分介绍上述主题：\n\n- 训练自定义模型的动机\n- 了解训练模型的硬件要求\n- 处理训练和评估参数\n- 训练自定义序列标注模型\n\
+  - 知道何时停止并重试\n\n## 技术要求\n\n本章使用的所有 Python 库都是 Flair 0.11 的直接依赖项，在假设 Flair 已安装在您的机器上的情况下无需特殊设置。本章介绍的代码示例可在本书的官方\
+  \ GitHub 仓库中的以下 Jupyter notebook 找到：https://github.com/PacktPublishing/Natural-Language-Processing-with-Flair/tree/main/Chapter05。\n\
+  \n在启用 GPU 的机器上运行本章介绍的代码不是强制性的，但建议这样做，因为它将加快训练过程并允许您训练更高质量的模型。\n\n## 训练自定义模型的动机\n\
+  \n在本书中，我们迄今为止讨论了 Flair 开箱即用的功能和模型。然而，如果您从事 NLP 工作足够长的时间，您很可能会遇到一个序列标注问题，其复杂性或特殊性足以导致没有可用的预训练模型。这可能发生在以下任一情况下：\n\
+  \n- *您解决的问题是领域特定的*：诸如 **命名实体识别 (NER)** 或 **词性 (PoS)** 标注器之类的序列标注器通常是在大型通用语料库上训练的，这些语料库旨在代表语言的一般用法。但如果我们的问题是领域特定的，那么我们很可能需要一个使用领域特定语料库训练的、具有领域特定标签的自定义标注器。\n\
+  - *存在预训练模型但性能不足*：Flair 中提供的每个模型以及用于训练的方法通常都会由其他贡献者审查，但完全有可能您自己构建更好的模型。机会随着您转向不太流行的语言而增加，因为它们的性能不会得到同等优化。也可能发生预训练模型在\
+  \ F1 分数或准确率方面总体表现更好，但在您真正关心的那个特定标签的标注上却有所不足。\n\n\n\n\n- *你正在使用的语言使用范围较窄且不被框架支持：*\
+  \ 当谈到 NLP 的进步时，最新的、最先进的解决方案通常是为英语或流行的西方语言构建的。 只有当一种技术获得流行和认可后，模型才会开始为代表性不足的语言构建。\
+  \ 如果你正在使用一种罕见的语言，很可能你需要训练自己的标注器。\n- *你想为 Flair 和开源社区做出贡献：* 最后，你可能并不真的需要为特定语言构建特定标注器。\
+  \ 你可能只是想为 Flair 做出贡献。 鉴于目前仍有大量语言未被 Flair 的预训练模型支持，你只需挑选一种代表性不足的语言并亲自动手即可。\n\n无论你训练自定义序列标注器的动机是什么，达到目标的过程都是一样的。\
+  \ 首先，让我们确保我们拥有合适的模型训练工具，通过在下一节中了解硬件要求来实现。\n\n## 了解训练模型的硬件要求\n\nFlair 序列标注模型本质上是一种特殊的神经网络类型。\
+  \ 你可能听说过，为了对神经网络进行推理（即使用）或训练，你需要一台配备高性能 **图形处理单元 (GPU)** 的机器。 训练神经网络需要计算大量数学运算（主要是矩阵乘法）。\
+  \ 与 CPU 相比，这些运算在 GPU 上可以更好地并行化，从而显著加快训练过程。 但这并不意味着没有 GPU 就无法进行任何训练或推理。 你是否真正需要 GPU，完全取决于你正在训练的神经网络的大小以及你愿意等待训练完成的时间（小时、天甚至数十年）。\
+  \ 如果你只是刚开始接触神经网络，并且正在尝试训练只有少数层和几个节点的微小网络，那么即使使用一台没有专用 GPU 的稍旧 PC 也应该完全没问题。\n\n不幸的是，Flair\
+  \ 中的大多数模型在合理的时间内用 CPU 训练起来会太庞大。 在 CPU 上进行推理是完全可行的，单个样本可以在几秒钟内完成标注，但以生产出良好模型为目标在\
+  \ CPU 上进行训练可能需要数周甚至数月。 事实上，即使是普通的 GPU 训练一个序列标注模型也可能需要从一天到数天不等。\n\n现在很清楚，要训练出效果良好的\
+  \ Flair 模型需要一台配备 GPU 的机器。 但购买 GPU 并安装到 PC 上并不是你唯一的选项。 你可以从以下任一选项中选择：\n\n- *免费的 Jupyter\
+  \ notebook 环境，例如 Google Colaboratory：* **Google Colaboratory**（也称为 **Colab**）是一个免费的\
+  \ Jupyter notebook 环境，你可以在其中运行配备 GPU 的 Python 会话。 该环境还提供相当数量的 RAM 和良好的 CPU 性能。 但它也有其局限性。\
+  \ 你只能运行最长 12 小时的会话。 这意味着如果你训练模型超过 12 小时且在此之前未能保存它，你的工作将会丢失。 幸运的是，Flair 提供了一种名为 **检查点**\
+  \ 的特殊解决方案，可使模型训练器在每个 epoch 后存储模型快照。 即使会话在 12 小时后过期，训练也可以从上一个成功的 epoch 恢复。 我们建议将\
+  \ Colab 会话连接到 Google Drive，以便你的模型自动保存到云端。\n- *免费的云计算积分：* 当你首次注册云服务提供商（如 Microsoft\
+  \ Azure）时，你将获得一定数量的积分。 Azure 允许你使用这些积分启动配备 GPU 的 **虚拟机 (VMs)**，在这些虚拟机上你可以轻松运行 Flair。\
+  \ 缺点是最终你会用完免费积分，这将使你转向下一个选项。\n- *付费云服务：* 有大量付费云服务提供预设的 Jupyter notebook 环境或非常基础的配备\
+  \ GPU 的 VM。 付费云服务的优势在于你的会话不受时间限制。 另一个很棒的优点是，如果你发现正在使用的环境资源不足，你可以简单地将其替换为更强大的机器。\n\
+  - *构建自己的深度学习机器。* 构建自己的设备最大的好处是，一旦你支付了硬件的初始成本，你就可以尽情训练任意多的神经网络，时间长短由你决定。 这种方法的缺点是你的硬件最终会过时，你很快会发现自己的机器不再足够强大。\
+  \ 那时唯一的解决方案就是通过购买新硬件来升级。\n- *在 CPU 上训练模型用于学习和实验。* 这个最后的选项适用于任何只想体验模型训练的人。 由于在 CPU\
+  \ 上进行模型训练很慢，你需要在更小的语料上进行更少的 epoch 训练。 一种允许这样做的方法是降采样。 当你对数据集进行降采样（例如通过调用 `dataset.downsample(0.001)`），你将只得到原始数据集的一小部分，这可能小到足以在\
+  \ CPU 上运行。 这意味着你生产的模型不太可能达到良好的效果。 但你仍然可以一窥模型训练的流程，并在获得更强大的配置后具备进行实际操作的知识和经验。\n\n\
+  虽然前述某些选项可以让你训练最先进的模型，而某些仅足以用于学习和实验，但所有选项都足以跟随即将到来的动手部分，了解如何在 Flair 中训练序列标注模型。 但在我们这样做之前，我们需要对基本数学、指标、参数和深度学习术语有一定的了解。\n\
+  \n## 使用训练和评估的参数\n\nFlair 可以说是目前最简单的 NLP 框架之一。 但要生产出性能良好的标注器，我们仍需要对底层概念和传递给 Flair\
+  \ 的参数有一定程度的理解。\n\n首先，让我们快速解释一下模型训练到底是什么。\n\n## 了解神经模型训练\n\n神经网络是机器学习的一个特殊子集。 它们松散地基于生物神经网络，如人类大脑。\
+  \ 神经网络通常包括网络架构及其权重和偏置。\n\n网络架构定义了网络的设计。 它包括从层数、输入和输出节点的数量到所使用单元类型等一切内容。 这些属性被称为超参数。\
+  \ 在单次模型训练会话中它们保持不变。\n\n然后是权重和偏置——它们是模型训练的最终结果。 模型训练的过程本质上是计算最优权重的过程。 训练首先通过随机值初始化所有权重和偏置开始。\
+  \ 然后我们多次重复以下步骤：\n\n- 1. 模型被输入一批训练数据样本，我们可以为其计算输出。 对于序列标注模型而言，输出是标记标签。\n- 2. 然后将输出（预测标签）与目标值（实际标签）进行比较，并使用损失函数（也称为\
+  \ `objective` 函数）进行评估。 它告诉我们预测与真实情况有多接近。\n\n模型训练器的目标是找到能产生尽可能小损失的权重。 损失为零将是理想的损失。\
+  \ 这意味着所有预测都与训练数据中的目标值一致。\n- 3. 一旦计算出单个训练批次的损失，网络就会使用一种称为反向传播的技术调整权重，以期改进模型。\n- 4.\
+  \ 然后我们将下一批训练数据输入模型并从 *步骤 1* 开始重复该过程，直到用完所有训练数据。\n\n前述所有训练数据被用于训练的步骤序列称为 **轮次**。\
+  \ 但由于对模型权重所做的更改非常小，一次数据遍历通常是不够的。 我们通常会为此重复训练过程许多个 epoch，直到损失函数收敛并停止改善。 最佳 epoch\
+  \ 数在很大程度上取决于数据类型和数量、标签数量以及使用的超参数。 在每个 epoch 结束时，我们还使用准确率或 F1 分数等性能指标在测试数据集上评估模型。\n\
+  \n训练完成后，存储在内存中的权重通常会被写入文件，以便在我们想要对模型进行推理或继续训练时加载。\n\n本节描述的过程可能看起来复杂且令人不知所措。 但幸运的是，所有这些都已作为框架的一部分实现并自动化。\
+  \ 因此，对于希望构建序列标注器的人来说，没有完全理解神经网络训练背后的底层逻辑并不是致命问题。 重要的是理解传递给 Flair 中模型训练类和方法中的参数和值的目的和含义。\n\
+  \n让我们逐一介绍这些参数。\n\n\n\n## Flair 模型训练中使用的参数和术语\n\n以下是你在 Flair 中训练模型时将会遇到的一些常见超参数、参数和通用机器学习概念：\n\
+  \n- **Learning rate:** 它可能是模型训练中最重要的参数。正确设置该值至关重要。如果学习率设置过低，模型将需要大量的 epoch，且微小的增量会导致学习进展缓慢。另一方面，较低的学习率可能导致我们的模型陷入局部最小值（一个看似最佳的解，但通过探索更多选项可能得到改进）。如果学习率过高，它会使优化器过于激进地调整权重，导致权重修正出现超调。它会使损失在不同\
+  \ epoch 间大幅波动，无法收敛到最小值。因此，选择合适的学习率至关重要。\n- **Max epochs:** 这是一个设置，用于确定训练器在完成前对训练数据进行多少次遍历。该设置线性影响训练时间。当设置过高时，训练可能需要比我们准备等待的时间更长。当设置过低时，训练器会在找到最优权重之前就结束。\n\
+  - **Loss:** 这是衡量我们的模型与真实标签相比表现如何的指标。该值通常在多个样本上取平均。模型训练的目标是最小化损失。如果损失值为零，则意味着我们的模型预测了所有标签都正确。损失通常绘制在图表上以说明学习进度和趋势。看到损失值下降通常表示模型正在学习，但也可能意味着它只是过拟合了训练数据。\n\
+  - **Mini batch size:** 在训练模型时，我们不太可能一次性将整个训练集喂给模型。相反，由于内存限制，我们可能会选择将训练集拆分为更小的批次。然后我们可以将每个批次的数据单独喂给模型。决定单个批次中学习样本数量的大小称为\
+  \ **mini-batch size**。\n- **Patience:** 这是在停止之前要训练的坏 epoch 数（目标函数无改善的 epoch）。\n\
+  - **Hidden size:** 在深度学习中，这指的是隐藏层的数量或隐藏 **Recurrent Neural Network (RNN)** 状态的数量。该设置作为参数提供给\
+  \ tagger 类以及一些嵌入类，例如 **FlairEmbeddings**。\n- **Checkpoints:** 这些是通常在每个 epoch 结束时完成的模型临时快照。如果我们认为训练会话可能会被中断，检查点会很有用，这样可以避免我们不得不从头开始。我们只需在新的训练会话开始时加载检查点，即可从会话中断前的断点继续。\n\
+  \n前述列表中解释的术语涵盖了包括 Flair 在内的许多机器学习框架中出现的概念。对它们在模型训练中的作用有一个大致的了解意味着你已准备好进行实际操作。你现在已准备好在\
+  \ Flair 中训练序列标注模型。让我们直接开始吧。\n\n## 训练自定义序列标注模型\n\n在本节中，我们将研究在 Flair 中训练自定义序列标注模型所涉及的过程、语法、对象和方法。如果你阅读了本章的前几节并理解了内容，你很幸运。一旦你理解了神经网络的底层概念，拥有一个配备\
+  \ GPU 的设备，并且熟悉最常见的参数，实际的训练过程其实相当直接。\n\n该过程可以分解为以下步骤：\n\n- 1. Loading a tagged corpus\n\
+  - 2. Loading the tag dictionary\n- 3. Building the embedding stack\n- 4. Initializing\
+  \ the `SequenceTagger` object\n- 5. Training the model\n\n这些步骤每一步只需要几行代码。为了更好地理解代码，让我们将其作为训练词性标注器的实际示例的一部分来讲解。例如，让我们假装\
+  \ Flair 中没有预训练的英语标注器，并尝试从头开始训练英语词性标注器。\n\n我们将遵循 Flair GitHub 仓库文档中提供的 Flair 推荐训练步骤的改编版本。\n\
+  \n### 加载标注语料库\n\n尝试在 Flair 中加载标注语料库时，我们需要执行以下操作：\n\n- 1. 我们首先需要验证这样的语料库是否存在以及它具体叫什么名字。这些信息可以在\
+  \ Flair 的 GitHub 页面上的官方文档中找到，网址为 https://github.com/flairNLP/flair/blob/master/resources/docs/TUTORIAL_6_CORPUS.md。\n\
+  \n例如，英语的默认语料库称为 UD_ENGLISH。它可以用一个函数调用加载：\n\n```\nfrom flair.data import Corpus\n\
+  from flair.datasets import UD_ENGLISH\n\ncorpus = UD_ENGLISH()\n```\n\n如果首次执行，这将从互联网存储中下载模型，可能需要几分钟。\n\
+  \n模型随后将被存储以供将来使用，这意味着下次你运行同一命令时，它将从磁盘加载模型并在几秒内执行。\n\n- 2. 由于我们的语料库包含各种不同的标签和标注，我们需要决定标注器的目标，以便过滤掉所有无关的标签。我们将通过将使用的标注器类型存储到一个变量中来实现这一点。该变量稍后将被传递给不同的方法：\n\
+  \n```\ntag_type = 'pos'\n```\n\ntag_type 变量设置为 pos 表示我们正在处理词性标注。\n\n- 3. 最后，我们需要决定是追求最先进的模型，还是仅仅想尝试\
+  \ Flair 以获得训练模型的经验，而不期望得到好的结果。如果你属于后者类别，只需对数据集进行下采样即可大幅减少训练时间。例如，我们可以将数据集减少到其原始大小的\
+  \ 1%，并通过运行以下命令将训练时间从数小时减少到数分钟：\n\n```\nimport random\n\nrandom.seed(123)  # ensure\
+  \ we get same split every time\ncorpus.downsample(0.01)\n```\n\n这将使我们即使在 CPU 上也能训练标注器。请注意，在前面的脚本中，除了对语料库进行下采样外，我们还导入了\
+  \ random 库并设置了随机生成器种子。我们对数据集进行下采样，以便更快地完成此练习，而不必等待模型训练很长时间。当在少量数据上训练神经模型时，我们并不总是能得到预期结果，训练过程可能不稳定。这意味着如果你选择数据集的略有不同的子集，结果可能完全不同。为了解决这个问题，我们使用了\
+  \ random.seed() 方法，这确保了 Flair 的随机子集选择方法每次都表现一致。\n\n我们的语料库现在已准备就绪。让我们继续下一个数据加载和预处理步骤。\n\
+  \n### 加载标签字典\n\n标签词典只是一个所有可能标签的集合。对于词性，这包括动词、形容词、名词和感叹词等类别。它还包括一些特殊标签，例如 unk 标签，表示我们无法为其计算经典词嵌入的未知词。\n\
+  \n可以通过运行以下代码块获取标签词典：\n\n```\ntag_dictionary = corpus.make_label_dictionary(tag_type)\n\
+  print(tag_dictionary)\n```\n\n前面的代码段将打印出以下结果：\n\n```\nDictionary with 50 tags: <unk>,\
+  \ O, DT, NN, VBZ, RB, NNP, CD, ., WP, PRP, JJ, '', '', IN, CC, NNS, ,, VBP, MD,\
+  \ VB, TO, POS, WRB, VBD, VBG, NNPS, VBN, HYPH, -LRB-\n```\n\n前面的输出显示我们处理的是 50 个不同的词性标签，其中一些（例如\
+  \ unk 标签）具有特殊含义，并不代表词性。\n\n我们现在可以进入下一节，在那里你将从第 3 章《Flair 中的嵌入》中获得的知识会大有裨益。\n\n###\
+  \ 构建嵌入堆栈\n\n构建嵌入堆栈的能力是 Flair 的一大特色，通常有助于其取得最先进的结果。堆栈可以通过简单地将 Flair 支持的嵌入对象列表传递给\
+  \ StackedEmbeddings 类构造函数来构建。\n\n\n\n在本文示例中，我们将构建一个非上下文英语 FastText 嵌入（使用语言代码如 en\
+  \ 时的默认嵌入）、上下文英语前向 Flair 嵌入和上下文英语后向 Flair 嵌入的堆叠。可以通过运行以下代码块来实现：\n\n```\nfrom flair.embeddings\
+  \ import (WordEmbeddings,\n                              StackedEmbeddings,\n  \
+  \                            FlairEmbeddings)\n\nembedding_types = [\n    WordEmbeddings('en'),\n\
+  \    FlairEmbeddings('news-forward'),\n    FlairEmbeddings('news-backward'),\n]\n\
+  \nembeddings = StackedEmbeddings(embeddings=embedding_types)\n```\n\nFlair 在加载语料库时一样，会下载托管在网络上的嵌入对象并将其存储以供将来使用。此步骤可能需要几分钟时间。\n\
+  \n我们现在可以进入实际训练前的最后两个准备步骤。\n\n## 初始化 SequenceTagger 对象\n\n我们将使用之前在第 4 章《序列标注》中用于加载预训练模型的同一个\
+  \ SequenceTagger 类，但这次用于定义全新的模型。如果你还记得的话，我们曾使用 SequenceTagger.load() 的静态调用来从预训练模型创建\
+  \ tagger 对象。在这里，我们将通过传入定义模型的属性直接初始化该类。这些属性定义了从模型架构、循环单元类型、隐藏 RNN 状态的数量到模型预测的可能标签集合的一切。\n\
+  \nSequenceTagger 类的必需参数如下：\n\n- hidden_size: 这定义了 RNN 中隐藏状态的数量。常用的起始值是 256，但最佳值完全取决于你要解决的问题。\n\
+  - embeddings: 嵌入类需要是 TokenEmbeddings 类的一个实例。它可以是 CharacterEmbeddings、FlairEmbeddings、WordEmbeddings，或我们在示例中使用的类\
+  \ – StackedEmbeddings。\n- `tag_dictionary`: 包含我们在上一节中使用 `corpus.make_label_dictionary()`\
+  \ 方法生成的所有可能标签的字典。\n- `tag_type`: 表示我们正在训练的标注器类型的字符串。对于 PoS 标注，使用 `pos`，对于 NER，请确保使用\
+  \ `ner`。\n\n要为本次练习中训练的新模型初始化一个 SequenceTagger 对象，请运行以下代码块：\n\n```python\nfrom flair.models\
+  \ import SequenceTagger\n\ntagger = SequenceTagger(hidden_size=256,\n          \
+  \              embeddings=embeddings,\n                        tag_dictionary=tag_dictionary,\n\
+  \                        tag_type=tag_type)\n```\n\n这里，`embeddings`、`tag_dictionary`\
+  \ 和 `tag_type` 是在前面的项目符号列表中定义的变量。\n\n就这样！前面的代码执行时间不应超过一秒。我们现在创建了一个英语 PoS 序列标注器，完全能够对英语文本进行\
+  \ PoS 标注。\n\n如果前一段话让你皱起了眉头，你并不孤单。序列标注模型在训练时应该消耗不少资源和时间——没有序列标注模型应该在不到一秒钟内产生，对吧？嗯……并非完全如此。一个好的序列标注模型需要大量的资源和时间来生成。但一个糟糕的模型却不必如此！我们用这段代码生成的是一个完整且完全可用的序列标注模型，其权重是随机初始化的。这意味着模型完全能够对文本进行标注；只是结果的准确性与随机猜测一样好。\n\
+  \n在下面的示例中，我们将使用权重随机初始化的 tagger 来标注一些文本：\n\n```python\nfrom flair.data import Sentence\n\
+  \nsentence = Sentence('Hello world')\ntagger.predict(sentence)\nprint(sentence)\n\
+  ```\n\n此代码块将输出类似以下内容：\n\n```\nSentence: \"Hello world\" → [\"Hello\"/RB, \"world\"\
+  /VB]\n```\n\n这里，单词 Hello 和 world 被标注为 RB 和 VB，暗示第一个词是副词，第二个词是动词。这显然是错误的。如果你自己运行这两个代码片段，你很可能会得到不同的结果。这是因为我们新生成的模型的权重是随机初始化的。除非你极其幸运，否则你的结果也将是错误的。\n\
+  \n为了让我们的模型产生良好的结果，我们需要调整模型权重，使其尽可能准确地产生结果。这是通过模型训练完成的。让我们来弄清楚。\n\n## 训练模型\n\n我们现在已经将标注好的语料库加载到内存中，嵌入已定义，并且\
+  \ SequenceTagger 对象已创建。我们现在准备开始训练。\n\n训练过程首先涉及创建 ModelTrainer 对象，然后调用其 train() 方法。\n\
+  \nModelTrainer 需要以下必需参数：\n\n- `model`: 一个 Flair 模型类 – 例如一个 `SequenceTagger` 对象\n\
+  - `corpus`: 一个 `Corpus` 对象\n\n了解了所有这些信息后，我们现在可以通过执行以下代码行来初始化 ModelTrainer 对象：\n\n\
+  ```\nfrom flair.trainers import ModelTrainer\n\ntrainer = ModelTrainer(tagger, corpus)\n\
+  ```\n\n这就剩下序列标注模型训练的最后一步——调用 train() 方法。它接收的参数数量非常多，但以下是一些你可能会觉得有用的参数：\n\n- `base_path`:\
+  \ 模型将被存储的路径。如果目录或其子目录不存在，它们将被创建。\n- `learning_rate`: 初始学习率。默认为 0.1。\n- `mini_batch_size`:\
+  \ 训练期间的迷你批次大小。默认为 32。\n- `max_epochs`: 训练结束前的轮次数。`150` 是一个不错的起始值。\n- `patience`:\
+  \ 在终止之前没有改进的轮次数。默认为 3。\n- `train_with_dev`: 是否同时使用 dev 和 train 数据集进行训练。dev 数据集（有时也称为验证数据集）用于调整超参数。如果不进行超参数调优，可以改用该数据集进行训练。这允许你在更多数据上训练模型。\n\
+  - `checkpoint`: 如果为 True，Flair 将在每个 epoch 结束时在 `base_dir` 中存储名为 `checkpoint.pt`\
+  \ 的模型快照，以便在训练中断时可以恢复。\n- `write_weights`: 如果为 True，Flair 将把权重写入名为 `weights.txt`\
+  \ 的文件。\n- `optimizer`: 一个 **PyTorch** 优化器类。默认使用随机梯度下降。\n- `epoch`: 如果继续中断的训练运行，则使用的起始轮次。\n\
+  - `use_tensorboard`: 如果为 `True`，则输出 **TensorBoard** 信息。\n- `tensorboard_log_dir`:\
+  \ TensorBoard 数据可能存储的目录。\n- `metrics_for_tensorboard`: TensorBoard 的自定义可选指标。\n\n\
+  ## 那 TensorBoard 是什么？\n\nTensorBoard 是一个用于检查和理解神经网络训练运行的网页工具。它绘制所有训练数据，如损失、准确率以及许多其他指标，并允许我们轻松监控训练过程。该工具最初是为与\
+  \ **TensorFlow** 深度学习框架集成而构建的，但此后已集成到许多其他工具中。其中一个集成 TensorBoard 的工具是 **PyTorch**——为\
+  \ Flair 提供动力的底层深度学习框架。这就是为什么将 TensorBoard 与 Flair 挂钩很容易，只需通过将 `Tensorboard` 参数设置为\
+  \ `True` 并将正在运行的 **Tensorboard** 实例的日志目录传递给 `ModelTrainer` 构造函数即可启用它。\n\n我们现在终于可以开始实际训练我们的模型了：\n\
+  \n```\ntrainer.train('tagger',\n    learning_rate=0.1,\n    mini_batch_size=32,\n\
+  \    max_epochs=150,\n    train_with_dev=True)\n```\n\n这将启动训练过程并最多运行 150 个 epoch。它会将模型结果存储在\
+  \ tagger 目录中，该目录将在你运行训练脚本的目录内部创建。\n\n如果一切正确，训练器应恢复第一个 epoch。当前两个 epoch 完成后，输出应类似于以下内容：\n\
+  \n```\n-------------------------------------------------------------\nepoch 1 -\
+  \ iter 1/4 - loss 65.13372040 - lr: 0.100000\nepoch 1 - iter 2/4 - loss 69.70247269\
+  \ - lr: 0.100000\nepoch 1 - iter 3/4 - loss 71.33122508 - lr: 0.100000\nepoch 1\
+  \ - iter 4/4 - loss 69.54229164 - lr: 0.100000\n-------------------------------------------------------------\n\
+  EPOCH 1 done: loss 69.5423 - lr 0.100000\nDEV : loss 47.70802688598633 - score 0.0654\n\
+  BAD EPOCHS (no improvement): 0\n-------------------------------------------------------------\n\
+  epoch 2 - iter 1/4 - loss 53.46533203 - lr: 0.100000\nepoch 2 - iter 2/4 - loss\
+  \ 59.09352493 - lr: 0.100000\nepoch 2 - iter 3/4 - loss 58.95171865 - lr: 0.100000\n\
+  epoch 2 - iter 4/4 - loss 59.12093544 - lr: 0.100000\n-------------------------------------------------------------\n\
+  EPOCH 2 done: loss 59.1209 - lr 0.100000\nDEV : loss 41.87521743774414 - score 0.1115\n\
+  BAD EPOCHS (no improvement): 0\n```\n\n\n\nThe first and probably most important\
+  \ thing to monitor during training is the trend of how a loss value is changing.\
+  \ A decrease in loss usually means the model is learning. From the previous output,\
+  \ we can see that the first epoch finished with a loss of 69.5423, and the second\
+  \ epoch finished with a loss of 59.1209. This indicates that the model is learning!\
+  \ The output also indicates that our accuracy score increased from 0.0654 to 0.1115.\n\
+  \nIf you remember, earlier in this section, we mentioned that the sequence tagger\
+  \ objects are initialized with random weights. This means that when you run the\
+  \ same exact code twice, the values will be slightly different.\n\nTraining, unless\
+  \ interrupted, will now continue to pass through a number of epochs until it does\
+  \ max_epochs, or until the trainer fails to improve the model for patience consecutive\
+  \ epochs.\n\nOn an average GPU, training a downsampled English dataset should finish\
+  \ within a few minutes. When it does, Flair will report the final results of the\
+  \ best model tested on the test dataset. The results should look something like\
+  \ this:\n\n```\nResults:\n- F-score (micro): 0.8878\n- F-score (macro): 0.702\n\
+  - Accuracy (incl. no class): 0.8878\n```\n\nAfter these results, we should also\
+  \ see results reported for each tag individually.\n\nTraining is now complete. We\
+  \ can now try to tag the same pair of words (hello world) sentence on our newly\
+  \ trained model to see whether the results are now any better:\n\n```\ntagger.predict(sentence)\n\
+  print(sentence)\n```\n\nThis code will, if you followed the steps correctly, print\
+  \ out the following:\n\n```\nSentence: \"Hello world\" -> [\"Hello\"/UH, \"world\"\
+  /NN]\n```\n\nThe UH tag in the output stands for interjection and NN for noun. This\
+  \ means that our trained tagger labeled our example sentence correctly!\n\n> **Important\
+  \ Note**\n> 在不太可能的情况下，如果你运行了这段代码并且结果与预期不同，这只是因为你在太小的数据集上运行了标注器。要获得与前面输出相同的结果，请确保在下采样程度较低的数据集上重新开始训练过程。\n\
+  \nIn the preceding code snippet, we tagged text by referring to the `tagger` variable,\
+  \ which holds the model stored in memory. But on top of storing our trained model\
+  \ in memory, Flair also stored it in the filesystem so that it can be loaded and\
+  \ used at a later point.\n\n## 理解训练输出文件\n\nAfter a successful training session,\
+  \ Flair will have written a number of training output files to a directory defined\
+  \ by the `base_dir` parameter. They, aside from the actual model, hold important\
+  \ information about training.\n\nHere is a list of files to expect in `base_dir`\
+  \ after a training run:\n\n- `final-model.pt`: The actual model. This can also be\
+  \ called `best-model.pt` when using dev data for hyperparameter tuning.\n- `loss.tsv`:\
+  \ A tab-separated document containing information about the training loss for each\
+  \ epoch.\n- `training.log`: A complete log of standard output written out during\
+  \ training.\n- `test.tsv`: A tab-separated document containing tokens, their real\
+  \ tags, and their predicted tags. This document allows you to do token-level analysis,\
+  \ verifying which tokens were predicted correctly and which weren't.\n- `weights.txt`:\
+  \ Model weights. This file will only be populated only if `write_weights` was set\
+  \ to `True` during training.\n\nWith our trained model now stored in the filesystem,\
+  \ we can now test loading the model from a file in a fresh Python session.\n\n##\
+  \ 加载和使用自定义 Flair 模型\n\nIn the final stages of model training, Flair will write a\
+  \ file called `final-model.pt` to a path defined by the `base_dir` argument of our\
+  \ `ModelTrainer`. Loading this model into Flair is as easy as passing it as the\
+  \ first argument to the `SequenceTagger.load` method.\n\nAssuming tagger is our\
+  \ base_dir and our Python session's current working directory is the same as the\
+  \ one we were in when doing training, the model can be loaded by running the following:\n\
+  \n```\nfrom flair.models import SequenceTagger\n\ntagger = SequenceTagger.load('tagger/final-model.pt')\n\
+  ```\n\nWe can then test the tagger out by running the following:\n\n```\nfrom flair.data\
+  \ import Sentence\n\nsentence = Sentence(\"Hello world\")\ntagger.predict(sentence)\n\
+  print(sentence)\n```\n\nThis, as expected, produces the same output as the model\
+  \ we tested right after training:\n\n```\nSentence: \"Hello world\" => [\"Hello\"\
+  /UH, \"world\"/NN]\n```\n\nThis shows that the words hello and world were, yet again,\
+  \ correctly tagged with interjection and noun tags respectively.\n\n## Resuming\
+  \ interrupted training sessions\n\nWhile our model training example that used a\
+  \ severely downsampled dataset seems like a fairly straightforward process, the\
+  \ reality is different. Real training sessions on bigger datasets take a significantly\
+  \ longer amount of time to train, and the chance of unexpected interruptions therefore\
+  \ increases. Interrupts can happen when the machine runs out of resources because\
+  \ some dependency of the machine timed out, or simply because of a technical issue.\n\
+  \nWhen a model training interrupt happens, all data that is stored in memory, including\
+  \ our trained weights, are lost.\n\nRegardless of what really happened, the fact\
+  \ is, an interrupt happened and the memory-stored data is lost. Luckily, Flair has\
+  \ a good way around this called checkpoints. They are essentially a snapshot of\
+  \ the model that is stored after each epoch, regardless of whether the epoch improved\
+  \ the model or not. This checkpoint is stored in the base_dir directory with the\
+  \ filename of checkpoint.pt.\n\nTo make use of the checkpoint feature in Flair,\
+  \ we need to pass the checkpoint=True parameter value to the trainer.train() method\
+  \ when training. But the feature does come at a cost. Writing checkpoints essentially\
+  \ means writing model weights to the disk after each epoch, and that takes time.\
+  \ This means that using checkpoints is likely to slow down the model training process\
+  \ a bit. However, when doing serious model training for longer periods of time,\
+  \ this overhead is almost always worth it.\n\nAssuming our base_dir is tagger and\
+  \ we have a corpus object-loaded memory, we can simply resume training from the\
+  \ last successful epoch by running the following:\n\n```\nfrom flair.trainers import\
+  \ ModelTrainer\n\nchkpoint_path = 'tagger/checkpoint.pt'\ntrainer = ModelTrainer.load_checkpoint(chkpoint_path,\
+  \ corpus)\n\ntrainer.train(...)\n```\n\nHere, the arguments passed to trainer.train()\
+  \ should be no different from the parameters we used for the initial training session\
+  \ that got interrupted, where we also used the checkpoint=True model trainer parameter\
+  \ value.\n\nThe preceding exercise and explanations should help us train a tagger\
+  \ for just about any language included in Flair's corpora set. But it's entirely\
+  \ possible that the parameters we choose will not yield good results. There are\
+  \ many clues in the model training output we can look out for that will tell us\
+  \ whether training is progressing well or whether we should restart with a different\
+  \ approach.\n\n## Knowing when to stop and try again\n\nThe question \"Is my model\
+  \ good enough?\" is a whole subfield of machine learning on its own and can't fully\
+  \ be explained in a single chapter. Nevertheless, there's still some practical advice\
+  \ we all can follow to help us determine whether it's worth restarting training\
+  \ with different parameters, different model types, or even new data.\n\nThe two\
+  \ basic techniques for measuring success during and after training are as follows:\n\
+  \n- 1. Monitoring loss\n- 2. Assessing and comparing performance metrics\n\n## Monitoring\
+  \ loss\n\nThe first and most important thing you should look out for during training\
+  \ is whether the model is learning in an expected way. This is done by monitoring\
+  \ training output metrics such as loss. A typical training session follows the following\
+  \ pattern. In the initial stage of training, our weights are randomized, and loss\
+  \ will be huge (remember how bad our model with random weights was?). Then, even\
+  \ after one or two epochs, we will see a significant improvement in loss and model\
+  \ performance. Finally, as we progress towards two- or three-digit epoch numbers,\
+  \ the improvement will get smaller and smaller. Ideally, the loss should start to\
+  \ plateau and converge towards a certain value. That way, assuming we didn't hit\
+  \ a local minimum, we can be confident that, given the parameters we chose, the\
+  \ model trainer did a good job. If we fail to see a convergence toward a certain\
+  \ value before training finishes, this may mean we finished training too soon and\
+  \ may need to run it for a couple more epochs.\n\nThese training debug values such\
+  \ as loss will be printed out during training. But these values, shown as raw numbers,\
+  \ are sometimes very hard to make sense of. Just by looking at the numbers, it's\
+  \ hard to see what the general trend is, whether the numbers are converging toward\
+  \ a certain value, or whether they are jumping all over the place. This is much\
+  \ easier to comprehend when metrics such as training loss are visualized.\n\n##\
+  \ Plotting training loss\n\nFlair offers a simple tool that allows us to visually\
+  \ inspect metrics such as training loss and accuracy and store the output as an\
+  \ image.\n\nAssuming we ran a training session from the same directory as our current\
+  \ Python session and used base_dir called tagger, we can plot the training loss\
+  \ by running the following:\n\n```python\nfrom flair.visual.training_curves import\
+  \ Plotter\nplotter = Plotter()\nplotter.plot_training_curves('tagger/loss.tsv')\n\
+  ```\n\nThis will store the plot as tagger/training.png and, if you are running this\
+  \ code snippet inside a Jupyter notebook, display the plot in the notebook itself.\n\
+  \n\n\n## 评估和比较性能指标\n\n最终决定我们的标注器好坏的指标，是评估模型在训练数据上的性能指标。在词性标注（PoS tagging）的情况下，这很可能就是\
+  \ F1 分数。但这个数值本身并不能说明太多。例如，在前面的练习中，我们获得了 0.88 的 F1 分数。如果我们使用了具有代表性的数据集，这个数字本身确实能让我们对模型在现实世界中的表现有一个大致的了解，但它在帮助评估我们的标注器是否值得满意，或是否比其他标注器更好方面作用不大。\n\
+  \n评估模型性能最客观的方法之一是将其与相关研究或实验中公布的最先进结果进行比较。这样，如果我们获得了更大的 F1 分数，我们就可以声称（在评估所使用的测试数据的前提下）我们的模型确实实现了更好的性能。然而，在不同研究或实验之间比较结果时，我们需要绝对确定所有实验都使用了相同的训练和测试数据。否则，我们本质上就是在拿苹果和橘子比较。例如，如果一项研究使用的是词汇量小、语言非常重复且简单的语料库，而另一项研究则关注某些高度专业化且晦涩的语言用法且词汇丰富，那么可以合理假设在前者类型的数据集上训练的标注器会取得更好的结果。因此，只比较在相同数据上训练的标注器的性能至关重要。\n\
+  \n## 摘要\n\n本章中我们涵盖的代码示例、解释和练习是对 Flair 中训练序列标注模型的一个快速介绍，并且应该能让你有信心准备、训练、验证和使用解决现实世界问题的\
+  \ Flair 模型。\n\n此外，你现在应该能够判断模型训练是否成功，或者是否应该使用不同的参数重新启动。我们了解到，有大量参数控制着序列标注模型的训练以及训练过程。其中包括学习率、epoch\
+  \ 数量、优化器类型、隐藏 RNN 层数，以及很可能影响我们模型性能的许多其他参数。在之前的示例中，我们通常选择 Flair 在大多数代码示例中使用的默认参数，但不能保证默认参数是我们问题的最优参数。事实上，这极不可能。这会让你疑惑到底应该使用哪些参数。\n\
+  \n幸运的是，Flair 为此问题提供了解决方案——一种特殊技术，它尝试使用不同的参数组合进行模型训练。然后它在称为开发集或验证集的特殊数据集上衡量性能。这种技术称为超参数调优。让我们在下一章学习如何在\
+  \ Flair 中实现它。\n"
+- "## 6 Flair 中的超参数优化\n\n理解序列标注的概念并对其工作原理有一个基本的了解通常不是一个大问题。不那么直接的是理解控制模型训练的所有参数并选择能产生期望结果的值。一种称为\
+  \ **超参数优化**（也称为 **超参数调优**）的特殊技术可以帮助我们实现这一点。\n\n我们将首先提供超参数调优是什么、为什么有用以及有哪些不同的优化方法的总体概述。然后我们将深入探讨如何使用\
+  \ **Hyperopt** 库在 Python 中进行调优。我们将以一个动手练习结束本章，在该练习中我们将在 Flair 中为 **词性（POS）** 标注器找到最优超参数。\n\
+  \n在本章中，我们将作为以下部分的一部分介绍 Flair 中的超参数优化：\n\n- 理解超参数调优\n- Python 中的超参数调优\n- Flair 中的超参数优化\n\
+  \n## 技术要求\n\n本章使用的所有 Python 库都是 Flair 0.11 版本的直接依赖项，前提是你的机器上已安装 Flair，无需特殊设置。本章涵盖的代码示例可在本书的官方\
+  \ GitHub 仓库中的以下 Jupyter 笔记本中找到：https://github.com/PacktPublishing/Natural-Language-Processing-with-Flair/tree/main/Chapter06。\n\
+  \n## 理解超参数调优\n\n当第一次面对长长的模型训练参数列表及其可能取值时，你可能会认为为了成功训练模型，你需要一种特殊超能力来帮助你为正确场景选择正确的参数。这并不一定是真的。虽然经验可能帮助你缩小可能超参数的范围，但通常没有可靠的方法事先确定最佳超参数。\n\
+  \n让我们想象最简单的场景——一个序列标注模型训练器接收单个参数——比如学习率。这通常是一个介于 0（不包括）和 1 之间的值。为了创建一个可能的超参数值集合，我们只需将范围离散化为\
+  \ 10 个可能的超参数值：`[0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]`。然后我们可以通过训练 10\
+  \ 个不同的模型来执行最简单的超参数优化类型——每个模型都使用不同的学习率值进行训练。我们评估每个模型的性能，并将表现最好的模型声明为具有最优学习率值的模型。\n\
+  \n这种超参数调优类型称为 **网格搜索**，在 https://en.wikipedia.org/wiki/Hyperparameter_optimization#Grid_search\
+  \ 有更详细的描述。它是一种穷举搜索算法，意味着它尝试整个搜索空间。我们之前的示例说明了在非常简化的问题下超参数调优的过程。不幸的是，现实世界的超参数选择通常没有那么宽容，原因如下：\n\
+  \n- 固定数量的（在我们的示例中为 10 个）不同的学习率值可能不足以找到最优学习率。\n- 离散均匀分布（可能值离散且等间距的分布）并不总是最佳的。\n-\
+  \ 我们很快就会遇到维度灾难。大多数现实世界的模型训练器控制的训练不仅仅是单个超参数。这就是事情变得复杂的地方。在我们只有一个超参数的简化示例中，我们有 10\
+  \ 个可能的选项的搜索空间。让我们想象一个有两个此类超参数的问题。可能的超参数组合数量将为 10²。给定三个此类超参数，可能的组合数量将为 10³。这清楚地表明了指数增长，可能很快就会失控。这个问题被称为维度灾难，因为每增加一个参数，我们就增加了一个需要探索的维度。\n\
+  \n幸运的是，有更复杂的优化方法可以帮助我们缓解这些问题。\n\n> **重要说明**\n> 在进行超参数调优评估时，最好使用一个与最终模型将使用的数据完全不同的数据集。该数据集称为开发集（也称为验证集）。将用于超参数调优的数据与用于训练和评估的数据分开有助于我们避免过拟合，否则会导致选择会过拟合测试数据集的超参数。\n\
+  \n总之，NLP 中的超参数调优只是一个过程，它接收搜索空间、优化方法和目标函数。然后它使用优化（搜索）方法使用多种不同的超参数选项组合训练模型，并返回导致最佳性能模型的超参数集合。\n\
+  \n## 优化方法\n\n超参数调优利用以下一些常用的优化方法：\n\n- 网格搜索\n- 随机搜索\n- 贝叶斯优化\n- 进化算法\n\n让我们详细了解每种方法。\n\
+  \n\n\n## 网格搜索\n\n这是一种穷举搜索（意味着它会探索整个搜索空间），简单地遍历预定义参数选项的所有可能组合。它明显受维度灾难的影响。网格搜索的优点是它可以完全并行化。\n\
+  \n## 随机搜索\n\n一种非穷举搜索算法，简单地采样随机超参数值并评估每个组合。它重复此过程指定次数的步骤并返回导致最佳模型的一组超参数值。\n\n## 贝叶斯优化\n\
+  \n一种使用贝叶斯定理执行搜索以找到最佳超参数集的技术。它构建一个概率模型，将超参数值映射到 `objective`（损失）函数。\n\n贝叶斯优化的一个特殊变体是\
+  \ **Tree-structured Parzen Estimator** (**TPE**)。它常用于流行的 Python 超参数优化 `hyperopt`\
+  \ 库中。该库的源代码和文档可以在 `https://github.com/hyperopt/hyperopt` 找到。\n\n## 进化算法\n\n超参数优化方法的另一种思路是进化算法方法。该算法遵循以下步骤：\n\
+  \n- 1. 生成一组随机选择的超参数值。\n- 2. 为种群中的每个个体成员训练并评估模型。\n- 3. 用新形成的个体替换得分最低的个体，这些个体是表现良好的个体的突变或交叉变体（意味着多个个体的组合）。\n\
+  - 4. 跳到步骤 2 并重复，直到获得期望的分数、看不到改进或达到迭代限制。\n\n我们现在对超参数调优的工作原理有了基本了解。但如果想象手动实现，所有这些新想法和概念听起来可能有点令人生畏。幸运的是，有很多方法可以利用\
+  \ Python 中现成的库来实现这一点。\n\n## Python 中的超参数调优\n\n让我们感受一下超参数调优在实践中是什么样的。我们将使用最流行的 Python\
+  \ 超参数优化库之一 Hyperopt。首先，让我们对如何在实践中使用它有一个大致的了解。\n\nHyperopt 是一个 Python 库，提供易于使用的 API，需要以下三个对象：\n\
+  \n- 搜索空间\n- 目标函数\n- 优化方法\n\n让我们详细查看每个要求：\n\n- **搜索空间** 只是优化器将在其中搜索不同超参数选项的空间。库提供以下参数表达式：\n\
+  \  - **分类参数** – 参数值纯粹是分类的，甚至可以是非标量（它们不需要是数字）。它们通过 `hyperopt.hp.choice` 方法提供。\n \
+  \ - **整数参数** – 通过诸如 `hyperopt.hp.quniform` 或 `hyperopt.hp.qlognormal` 等方法获得的整数值参数。\n\
+  \  - **浮点参数** – 通过诸如 `hyperopt.hp.normal`（从正态分布采样）和 `hyperopt.hp.uniform`（从均匀分布采样）等方法获得的十进制浮点数。\n\
+  - **目标函数** 确定特定超参数值组合的性能如何。在深度学习中，这通常是损失函数。\n- **优化方法** 是在搜索空间内执行搜索的算法。hyperopt\
+  \ 中的选项有：随机搜索（`hyperopt.rand.suggest`）、TPEs（`hyperopt.tpe.suggest`）和 Adaptive TPEs（`hyperopt.atpe.suggest`）。\n\
+  \n前述三个概念实际上就是 Hyperopt 为您找到最佳超参数所需的一切。让我们将其作为 Python 中的动手练习付诸实践。\n\n## Python 中超参数调优动手实践\n\
+  \n为了说明超参数调优在其最简单形式中的工作原理，我们将提出一个非常简单的人工问题。我们将使用仅依赖于该单个超参数的简单目标函数来优化单个超参数，并且我们已经知道其最优（最小）值。让我们选择这个简单的二次函数：\n\
+  \n$f(x) = x^2 + 1$\n\n![](img/c56c48b8fd18a11ab705352d618ed976_102_0.png)\n\n图 6.1\
+  \ – $x^2 + 1$ 函数\n\n很明显 $x^2 + 1$ 的最小值是 $x = 0$ 时的 1。这现在使我们能够在 Python 中定义目标函数：\n\
+  \n```\ndef objective(value):\n    return value ** 2\n```\n\n然后我们可以为单个超参数定义搜索空间。为了保持简单，我们将选择均匀分布并采样一个我们知道最小值所在的范围，例如\
+  \ -100 到 100：\n\n```\nfrom hyperopt import hp\n```\n\n```\n### 为单个超参数定义搜索空间\nspace\
+  \ = hp.uniform('param1', -100, 100)\n```\n\n前面的代码片段将在您之前安装了 Flair 的情况下成功执行。如果没有，请确保在运行之前在控制台中运行\
+  \ pip3 install flair==0.11。\n\n最后，我们现在可以选择优化方法：\n\n```\nfrom hyperopt import tpe\n\
+  \n### Tree of Parzen Estimators (TPE) 算法\noptimization_method = tpe.suggest\n```\n\
+  \n定义了所有三个必需对象后，我们可以启动优化过程并打印结果：\n\n```\nfrom hyperopt import fmin\n\n### 在 1000\
+  \ 次评估中最小化目标函数\nbest_params = fmin(objective,\n                space,\n         \
+  \       algo=optimization_method,\n                max_evals=1000)\n\n### 打印最佳超参数值\n\
+  print(best_params)\n```\n\n前面的代码片段打印出以下内容：\n\n```\n{'param1': 0.01084844145467706}\n\
+  ```\n\n这表明，根据 Hyperopt，我们目标函数的最佳值是 0.01084844145467706。该值非常接近我们已知的实际最佳值 0。获得的值也比随机搜索的预期最佳值更接近实际最佳值（0）。这意味着\
+  \ TPE 在优化我们的目标函数方面做得很好。\n\n## Flair 中的超参数优化\n\n我们现在对超参数调优的工作原理有了高层次的理解。当然，在现实世界中，超参数并不是用于寻找简单二次函数的最小值。让我们了解一下它们在\
+  \ Flair 中用于训练序列标注模型的方式。\n\n正如我们在 *第 5 章，训练序列标注模型* 中学到的，模型训练的成功往往取决于大量正确设置的超参数。这就产生了找到能产生最佳性能的超参数值集的需求。我们可以使用超参数优化来实现这一点。幸运的是，Flair\
+  \ 开箱即用地提供超参数调优。让我们学习如何操作。\n\nFlair 中的超参数优化本质上是 Hyperopt 的一个包装器，我们在上一节中简要介绍了它。该包装器的额外优势是它已经将一些序列标注特定信息馈送到\
+  \ Hyperopt，因此我们不必这样做。在简陋的 Hyperopt 编码练习中，我们必须提供所有三个对象：搜索空间、优化方法和目标函数。但在 Flair 中，我们只需要定义搜索空间，框架就会完成其余工作。\n\
+  \n## Flair 中超参数调优动手实践\n\nFlair 中的超参数优化最好通过代码来解释。因此让我们做一个简单的编码练习，我们训练一个英语 PoS 标注器并使用\
+  \ Flair 的超参数优化功能找到最佳模型的隐藏层大小和学习率。\n\n我们将通过以下步骤实现这一点：\n\n- 1. 加载语料库\n- 2. 定义搜索空间\n\
+  - 3. 定义 `SequenceTaggerParamSelector` 对象\n- 4. 启动优化过程\n\n我们首先，就像在 *第 5 章，训练序列标注模型*\
+  \ 中的序列标注练习一样，需要将英语 Corpus 对象加载到内存中。它包含一个带标签的英语语料库，分为测试、训练和开发数据集：\n\n```\nfrom flair.data\
+  \ import Corpus\nfrom flair.datasets import UD_ENGLISH\n\ncorpus = UD_ENGLISH()\n\
+  ```\n\n\n\n```\ntag_type = 'pos'\n### 将语料库下采样到原始大小的 1%\ncorpus.downsample(0.01)\n\
+  ```\n\n在前面的代码片段中，我们将英语语料库加载到 corpus 变量中，将标签类型定义为 PoS 标注，然后将语料库下采样到原始大小的 1%，以加快演示目的的训练过程。\n\
+  \n然后我们可以使用 hp.choice 参数表达式定义搜索空间：\n\n```\nfrom flair.embeddings import WordEmbeddings\n\
+  from flair.hyperparameter.param_selection import \\\n    SearchSpace, Parameter\n\
+  from hyperopt import hp\n\nsearch_space = SearchSpace()\nsearch_space.add(Parameter.HIDDEN_SIZE,\n\
+  \                 hp.choice,\n                 options=[128, 256])\nsearch_space.add(Parameter.LEARNING_RATE,\n\
+  \                 hp.choice,\n                 options=[0.05, 0.1, 0.15, 0.2])\n\
+  search_space.add(Parameter.EMBEDDINGS,\n                 hp.choice,\n          \
+  \       options=([WordEmbeddings('en')]))\n```\n\n前面的代码片段定义了我们的搜索空间，由三个超参数组成。我们决定为学习率和模型的隐藏层大小想出一些可能有用的值。尽管使用诸如\
+  \ hyperopt.hp.quniform 和 hyperopt.hp.uniform 之类的参数表达式可能会产生更好的结果，但它们也会大大增加搜索空间的大小。我们的搜索空间现在非常小。只有八种可能的超参数组合（两个乘以四个，因为有两个隐藏层大小参数选项和四个学习率选项）。\n\
+  \n> **重要说明**\n> 在进行超参数优化时，Flair 中的某些超参数是强制性的。这包括 `Parameter.EMBEDDINGS` 和 `Parameter.LEARNING_RATE`\
+  \ 参数。如果您不想优化这些参数，只需为这些超参数的搜索空间传递一个选项即可。\n\n我们现在准备定义我们的 SequenceTaggerParamSelector\
+  \ 对象：\n\n```\nfrom flair.hyperparameter.param_selection import \\\n    SequenceTaggerParamSelector\n\
+  \nparam_selector = SequenceTaggerParamSelector(corpus,\n                       \
+  \                       tag_type,\n                                            \
+  \  'paramopt')\n```\n\n这使用我们加载的语料库、我们定义的 PoS 标签类型以及 `paramopt` 文件夹名称（相对于运行代码的目录）定义了我们的超参数优化对象，超参数调优结果将写入该文件夹。\n\
+  \n我们现在只需通过传入搜索空间和要执行的评估次数来启动优化过程。在我们的例子中，搜索空间是离散的，数字选项明确定义为 8。然而，在大多数情况下，使用非离散参数值时，可能的超参数组合数量是无限的，评估次数需要通过经验来选择：\n\
+  \n```\nparam_selector.optimize(search_space, max_evals=8)\n```\n\n前面的代码将使用 8 种不同的超参数组合训练\
+  \ 8 个不同的序列标注器。它将使用 loss 作为 `objective` 函数并在开发数据集上进行评估。它将为每次运行训练 50 个 epoch。Flair\
+  \ 对 Hyperopt 的实现使用 TPE 优化器。在普通 CPU 上，执行时间大约在 10 到 30 分钟之间。\n\n超参数优化完成后，结果将写入 `paramopt/param_selection.txt`。该文件包含每次评估运行的详细信息以及以下摘要：\n\
+  \n```\nbest parameter combination\n    embeddings: 0\nhidden_size: 1\nlearning_rate:\
+  \ 3\n```\n\n前面的摘要表明，最佳隐藏层大小是第二个选项（因为摘要显示为 1，我们使用零索引，这意味着 1 指的是第二个选项）：256。最佳学习率是第四个选项\
+  \ – 0.2。对于嵌入，当然，因为我们只有一个选项可供选择，因此第一个也是唯一一个选项被选为最佳。\n\n这是否意味着我们应该始终将隐藏层大小用作 256，并将\
+  \ 0.2 作为英语的最佳学习率？简短的回答是否定的。最佳超参数值将取决于使用的数据、试图解决的问题以及用于解决该问题的技术。还记得前面我们加载语料库并将其从\
+  \ 100% 减少到原始大小的 1% 的代码片段吗？通过这样做，我们大大提高了模型训练的速度，这使我们能够更快地进行超参数优化，但与此同时，我们也将模型集中在非常小且可能有偏的数据子集上。要对英语数据集进行适当的超参数调优，我们需要在\
+  \ 100% 语料库大小下进行，并考虑更多超参数选项。这将大大增加我们的搜索空间和执行时间，但也会提高我们模型的性能。这些发现导致了以下结论。\n\n## 摘要\n\
+  \n超参数调优是一种非常有用的技术，可用于寻找最佳超参数，不仅在序列标注中，而且在机器学习的许多领域中。然而，它是有代价的；它非常昂贵。从本质上讲，它会执行训练和评估过程数十次、数百次甚至数千次。但在现实世界中，探索每个可能有用的超参数值可能需要数月时间来执行，并且搜索空间通常会缩小到一组有限的可能有用的选项。因此，超参数调优是一个需要一定专业知识和经验的过程，这将帮助您在探索（尝试不同尚未探索的选项）和利用（将参数值缩小到通常似乎有效的那些）之间实现正确的权衡。\n\
+  \n作为本章的一部分，我们学习了为什么超参数调优有用、何时使用它以及如何使用它。我们学习了如何在 Python 中以最纯粹的形式使用超参数调优库，以及如何通过\
+  \ Flair 调优序列标注模型。\n\n在下一章中，我们将介绍超参数调优证明有用的又一个 NLP 问题 – 训练嵌入。\n"
+- "## 7 训练自己的嵌入\n\nFlair 序列标注器之所以能取得如此出色的性能，主要是归功于其秘密武器 – Flair 嵌入。它们的上下文设计、基于字符的事实以及在反向-前向配置中使用的[content]\n\
+  ```\ntag_type = 'pos'\n### 将语料库下采样到原始大小的 1%\ncorpus.downsample(0.01)\n```\n\n在前面的代码片段中，我们将英语语料库加载到\
+  \ corpus 变量中，将标签类型定义为 PoS 标注，然后将语料库下采样到原始大小的 1%，以加快演示目的的训练过程。\n\n然后我们可以使用 hp.choice\
+  \ 参数表达式定义搜索空间：\n\n```\nfrom flair.embeddings import WordEmbeddings\nfrom flair.hyperparameter.param_selection\
+  \ import \\\n    SearchSpace, Parameter\nfrom hyperopt import hp\n\nsearch_space\
+  \ = SearchSpace()\nsearch_space.add(Parameter.HIDDEN_SIZE,\n                 hp.choice,\n\
+  \                 options=[128, 256])\nsearch_space.add(Parameter.LEARNING_RATE,\n\
+  \                 hp.choice,\n                 options=[0.05, 0.1, 0.15, 0.2])\n\
+  search_space.add(Parameter.EMBEDDINGS,\n                 hp.choice,\n          \
+  \       options=([WordEmbeddings('en')]))\n```\n\n前面的代码片段定义了我们的搜索空间，由三个超参数组成。我们决定为学习率和模型的隐藏层大小想出一些可能有用的值。尽管使用诸如\
+  \ hyperopt.hp.quniform 和 hyperopt.hp.uniform 之类的参数表达式可能会产生更好的结果，但它们也会大大增加搜索空间的大小。我们的搜索空间现在非常小。只有八种可能的超参数组合（两个乘以四个，因为有两个隐藏层大小参数选项和四个学习率选项）。\n\
+  \n> **重要说明**\n> 在进行超参数优化时，Flair 中的某些超参数是强制性的。这包括 `Parameter.EMBEDDINGS` 和 `Parameter.LEARNING_RATE`\
+  \ 参数。如果您不想优化这些参数，只需为这些超参数的搜索空间传递一个选项即可。\n\n我们现在准备定义我们的 SequenceTaggerParamSelector\
+  \ 对象：\n\n```\nfrom flair.hyperparameter.param_selection import \\\n    SequenceTaggerParamSelector\n\
+  \nparam_selector = SequenceTaggerParamSelector(corpus,\n                       \
+  \                       tag_type,\n                                            \
+  \  'paramopt')\n```\n\n这使用我们加载的语料库、我们定义的 PoS 标签类型以及 `paramopt` 文件夹名称（相对于运行代码的目录）定义了我们的超参数优化对象，超参数调优结果将写入该文件夹。\n\
+  \n我们现在只需通过传入搜索空间和要执行的评估次数来启动优化过程。在我们的例子中，搜索空间是离散的，数字选项明确定义为 8。然而，在大多数情况下，使用非离散参数值时，可能的超参数组合数量是无限的，评估次数需要通过经验来选择：\n\
+  \n```\nparam_selector.optimize(search_space, max_evals=8)\n```\n\n前面的代码将使用 8 种不同的超参数组合训练\
+  \ 8 个不同的序列标注器。它将使用 loss 作为 `objective` 函数并在开发数据集上进行评估。它将为每次运行训练 50 个 epoch。Flair\
+  \ 对 Hyperopt 的实现使用 TPE 优化器。在普通 CPU 上，执行时间大约在 10 到 30 分钟之间。\n\n超参数优化完成后，结果将写入 `paramopt/param_selection.txt`。该文件包含每次评估运行的详细信息以及以下摘要：\n\
+  \n```\nbest parameter combination\n    embeddings: 0\nhidden_size: 1\nlearning_rate:\
+  \ 3\n```\n\n前面的摘要表明，最佳隐藏层大小是第二个选项（因为摘要显示为 1，我们使用零索引，这意味着 1 指的是第二个选项）：256。最佳学习率是第四个选项\
+  \ – 0.2。对于嵌入，当然，因为我们只有一个选项可供选择，因此第一个也是唯一一个选项被选为最佳。\n\n这是否意味着我们应该始终将隐藏层大小用作 256，并将\
+  \ 0.2 作为英语的最佳学习率？简短的回答是否定的。最佳超参数值将取决于使用的数据、试图解决的问题以及用于解决该问题的技术。还记得前面我们加载语料库并将其从\
+  \ 100% 减少到原始大小的 1% 的代码片段吗？通过这样做，我们大大提高了模型训练的速度，这使我们能够更快地进行超参数优化，但与此同时，我们也将模型集中在非常小且可能有偏的数据子集上。要对英语数据集进行适当的超参数调优，我们需要在\
+  \ 100% 语料库大小下进行，并考虑更多超参数选项。这将大大增加我们的搜索空间和执行时间，但也会提高我们模型的性能。这些发现导致了以下结论。\n\n## 摘要\n\
+  \n超参数调优是一种非常有用的技术，可用于寻找最佳超参数，不仅在序列标注中，而且在机器学习的许多领域中。然而，它是有代价的；它非常昂贵。从本质上讲，它会执行训练和评估过程数十次、数百次甚至数千次。但在现实世界中，探索每个可能有用的超参数值可能需要数月时间来执行，并且搜索空间通常会缩小到一组有限的可能有用的选项。因此，超参数调优是一个需要一定专业知识和经验的过程，这将帮助您在探索（尝试不同尚未探索的选项）和利用（将参数值缩小到通常似乎有效的那些）之间实现正确的权衡。\n\
+  \n作为本章的一部分，我们学习了为什么超参数调优有用、何时使用它以及如何使用它。我们学习了如何在 Python 中以最纯粹的形式使用超参数调优库，以及如何通过\
+  \ Flair 调优序列标注模型。\n\n在下一章中，我们将介绍超参数调优证明有用的又一个 NLP 问题 – 训练嵌入。\n\n## 7 训练自己的嵌入\n\n\
+  Flair 序列标注器之所以能取得如此出色的性能，主要是归功于其秘密武器 – Flair 嵌入。它们的上下文设计、基于字符的事实以及在反向-前向配置中使用的[content]\n\
+  ```\ntag_type = 'pos'\n### 将语料库下采样到原始大小的 1%\ncorpus.downsample(0.01)\n```\n\n在前面的代码片段中，我们将英语语料库加载到\
+  \ corpus 变量中，将标签类型定义为 PoS 标注，然后将语料库下采样到原始大小的 1%，以加快演示目的的训练过程。\n\n然后我们可以使用 hp.choice\
+  \ 参数表达式定义搜索空间：\n\n```\nfrom flair.embeddings import WordEmbeddings\nfrom flair.hyperparameter.param_selection\
+  \ import \\\n    SearchSpace, Parameter\nfrom hyperopt import hp\n\nsearch_space\
+  \ = SearchSpace()\nsearch_space.add(Parameter.HIDDEN_SIZE,\n                 hp.choice,\n\
+  \                 options=[128, 256])\nsearch_space.add(Parameter.LEARNING_RATE,\n\
+  \                 hp.choice,\n                 options=[0.05, 0.1, 0.15, 0.2])\n\
+  search_space.add(Parameter.EMBEDDINGS,\n                 hp.choice,\n          \
+  \       options=([WordEmbeddings('en')]))\n```\n\n前面的代码片段定义了我们的搜索空间，由三个超参数组成。我们决定为学习率和模型的隐藏层大小想出一些可能有用的值。尽管使用诸如\
+  \ hyperopt.hp.quniform 和 hyperopt.hp.uniform 之类的参数表达式可能会产生更好的结果，但它们也会大大增加搜索空间的大小。我们的搜索空间现在非常小。只有八种可能的超参数组合（两个乘以四个，因为有两个隐藏层大小参数选项和四个学习率选项）。\n\
+  \n> **重要说明**\n> 在进行超参数优化时，Flair 中的某些超参数是强制性的。这包括 `Parameter.EMBEDDINGS` 和 `Parameter.LEARNING_RATE`\
+  \ 参数。如果您不想优化这些参数，只需为这些超参数的搜索空间传递一个选项即可。\n\n我们现在准备定义我们的 SequenceTaggerParamSelector\
+  \ 对象：\n\n```\nfrom flair.hyperparameter.param_selection import \\\n    SequenceTaggerParamSelector\n\
+  \nparam_selector = SequenceTaggerParamSelector(corpus,\n                       \
+  \                       tag_type,\n                                            \
+  \  'paramopt')\n```\n\n这使用我们加载的语料库、我们定义的 PoS 标签类型以及 `paramopt` 文件夹名称（相对于运行代码的目录）定义了我们的超参数优化对象，超参数调优结果将写入该文件夹。\n\
+  \n我们现在只需通过传入搜索空间和要执行的评估次数来启动优化过程。在我们的例子中，搜索空间是离散的，数字选项明确定义为 8。然而，在大多数情况下，使用非离散参数值时，可能的超参数组合数量是无限的，评估次数需要通过经验来选择：\n\
+  \n```\nparam_selector.optimize(search_space, max_evals=8)\n```\n\n前面的代码将使用 8 种不同的超参数组合训练\
+  \ 8 个不同的序列标注器。它将使用 loss 作为 `objective` 函数并在开发数据集上进行评估。它将为每次运行训练 50 个 epoch。Flair\
+  \ 对 Hyperopt 的实现使用 TPE 优化器。在普通 CPU 上，执行时间大约在 10 到 30 分钟之间。\n\n超参数优化完成后，结果将写入 `paramopt/param_selection.txt`。该文件包含每次评估运行的详细信息以及以下摘要：\n\
+  \n```\nbest parameter combination\n    embeddings: 0\nhidden_size: 1\nlearning_rate:\
+  \ 3\n```\n\n前面的摘要表明，最佳隐藏层大小是第二个选项（因为摘要显示为 1，我们使用零索引，这意味着 1 指的是第二个选项）：256。最佳学习率是第四个选项\
+  \ – 0.2。对于嵌入，当然，因为我们只有一个选项可供选择，因此第一个也是唯一一个选项被选为最佳。\n\n这是否意味着我们应该始终将隐藏层大小用作 256，并将\
+  \ 0.2 作为英语的最佳学习率？简短的回答是否定的。最佳超参数值将取决于使用的数据、试图解决的问题以及用于解决该问题的技术。还记得前面我们加载语料库并将其从\
+  \ 100% 减少到原始大小的 1% 的代码片段吗？通过这样做，我们大大提高了模型训练的速度，这使我们能够更快地进行超参数优化，但与此同时，我们也将模型集中在非常小且可能有偏的数据子集上。要对英语数据集进行适当的超参数调优，我们需要在\
+  \ 100% 语料库大小下进行，并考虑更多超参数选项。这将大大增加我们的搜索空间和执行时间，但也会提高我们模型的性能。这些发现导致了以下结论。\n\n## 摘要\n\
+  \n超参数调优是一种非常有用的技术，可用于寻找最佳超参数，不仅在序列标注中，而且在机器学习的许多领域中。然而，它是有代价的；它非常昂贵。从本质上讲，它会执行训练和评估过程数十次、数百次甚至数千次。但在现实世界中，探索每个可能有用的超参数值可能需要数月时间来执行，并且搜索空间通常会缩小到一组有限的可能有用的选项。因此，超参数调优是一个需要一定专业知识和经验的过程，这将帮助您在探索（尝试不同尚未探索的选项）和利用（将参数值缩小到通常似乎有效的那些）之间实现正确的权衡。\n\
+  \n作为本章的一部分，我们学习了为什么超参数调优有用、何时使用它以及如何使用它。我们学习了如何在 Python 中以最纯粹的形式使用超参数调优库，以及如何通过\
+  \ Flair 调优序列标注模型。\n\n在下一章中，我们将介绍超参数调优证明有用的又一个 NLP 问题 – 训练嵌入。\n\n## 7 训练自己的嵌入\n\n\
+  Flair 序列标注器之所以能取得如此出色的性能，主要是归功于其秘密武器 – Flair 嵌入。它们的上下文设计、基于字符的事实以及在反向-前向配置中使用的[content]\n\
+  ```\ntag_type = 'pos'\n### 将语料库下采样到原始大小的 1%\ncorpus.downsample(0.01)\n```\n\n在前面的代码片段中，我们将英语语料库加载到\
+  \ corpus 变量中，将标签类型定义为 PoS 标注，然后将语料库下采样到原始大小的 1%，以加快演示目的的训练过程。\n\n然后我们可以使用 hp.choice\
+  \ 参数表达式定义搜索空间：\n\n```\nfrom flair.embeddings import WordEmbeddings\nfrom flair.hyperparameter.param_selection\
+  \ import \\\n    SearchSpace, Parameter\nfrom hyperopt import hp\n\nsearch_space\
+  \ = SearchSpace()\nsearch_space.add(Parameter.HIDDEN_SIZE,\n                 hp.choice,\n\
+  \                 options=[128, 256])\nsearch_space.add(Parameter.LEARNING_RATE,\n\
+  \                 hp.choice,\n                 options=[0.05, 0.1, 0.15, 0.2])\n\
+  search_space.add(Parameter.EMBEDDINGS,\n                 hp.choice,\n          \
+  \       options=([WordEmbeddings('en')]))\n```\n\n前面的代码片段定义了我们的搜索空间，由三个超参数组成。我们决定为学习率和模型的隐藏层大小想出一些可能有用的值。尽管使用诸如\
+  \ hyperopt.hp.quniform 和 hyperopt.hp.uniform 之类的参数表达式可能会产生更好的结果，但它们也会大大增加搜索空间的大小。我们的搜索空间现在非常小。只有八种可能的超参数组合（两个乘以四个，因为有两个隐藏层大小参数选项和四个学习率选项）。\n\
+  \n> **重要说明**\n> 在进行超参数优化时，Flair 中的某些超参数是强制性的。这包括 `Parameter.EMBEDDINGS` 和 `Parameter.LEARNING_RATE`\
+  \ 参数。如果您不想优化这些参数，只需为这些超参数的搜索空间传递一个选项即可。\n\n我们现在准备定义我们的 SequenceTaggerParamSelector\
+  \ 对象：\n\n```\nfrom flair.hyperparameter.param_selection import \\\n    SequenceTaggerParamSelector\n\
+  \nparam_selector = SequenceTaggerParamSelector(corpus,\n                       \
+  \                       tag_type,\n                                            \
+  \  'paramopt')\n```\n\n这使用我们加载的语料库、我们定义的 PoS 标签类型以及 `paramopt` 文件夹名称（相对于运行代码的目录）定义了我们的超参数优化对象，超参数调优结果将写入该文件夹。\n\
+  \n我们现在只需通过传入搜索空间和要执行的评估次数来启动优化过程。在我们的例子中，搜索空间是离散的，数字选项明确定义为 8。然而，在大多数情况下，使用非离散参数值时，可能的超参数组合数量是无限的，评估次数需要通过经验来选择：\n\
+  \n```\nparam_selector.optimize(search_space, max_evals=8)\n```\n\n前面的代码将使用 8 种不同的超参数组合训练\
+  \ 8 个不同的序列标注器。它将使用 loss 作为 `objective` 函数并在开发数据集上进行评估。它将为每次运行训练 50 个 epoch。Flair\
+  \ 对 Hyperopt 的实现使用 TPE 优化器。在普通 CPU 上，执行时间大约在 10 到 30 分钟之间。\n\n超参数优化完成后，结果将写入 `paramopt/param_selection.txt`。该文件包含每次评估运行的详细信息以及以下摘要：\n\
+  \n```\nbest parameter combination\n    embeddings: 0\nhidden_size: 1\nlearning_rate:\
+  \ 3\n```\n\n前面的摘要表明，最佳隐藏层大小是第二个选项（因为摘要显示为 1，我们使用零索引，这意味着 1 指的是第二个选项）：256。最佳学习率是第四个选项\
+  \ – 0.2。对于嵌入，当然，因为我们只有一个选项可供选择，因此第一个也是唯一一个选项被选为最佳。\n\n这是否意味着我们应该始终将隐藏层大小用作 256，并将\
+  \ 0.2 作为英语的最佳学习率？简短的回答是否定的。最佳超参数值将取决于使用的数据、试图解决的问题以及用于解决该问题的技术。还记得前面我们加载语料库并将其从\
+  \ 100% 减少到原始大小的 1% 的代码片段吗？通过这样做，我们大大提高了模型训练的速度，这使我们能够更快地进行超参数优化，但与此同时，我们也将模型集中在非常小且可能有偏的数据子集上。要对英语数据集进行适当的超参数调优，我们需要在\
+  \ 100% 语料库大小下进行，并考虑更多超参数选项。这将大大增加我们的搜索空间和执行时间，但也会提高我们模型的性能。这些发现导致了以下结论。\n\n## 摘要\n\
+  \n超参数调优是一种非常有用的技术，可用于寻找最佳超参数，不仅在序列标注中，而且在机器学习的许多领域中。然而，它是有代价的；它非常昂贵。从本质上讲，它会执行训练和评估过程数十次、数百次甚至数千次。但在现实世界中，探索每个可能有用的超参数值可能需要数月时间来执行，并且搜索空间通常会缩小到一组有限的可能有用的选项。因此，超参数调优是一个需要一定专业知识和经验的过程，这将帮助您在探索（尝试不同尚未探索的选项）和利用（将参数值缩小到通常似乎有效的那些）之间实现正确的权衡。\n\
+  \n作为本章的一部分，我们学习了为什么超参数调优有用、何时使用它以及如何使用它。我们学习了如何在 Python 中以最纯粹的形式使用超参数调优库，以及如何通过\
+  \ Flair 调优序列标注模型。\n\n在下一章中，我们将介绍超参数调优证明有用的又一个 NLP 问题 – 训练嵌入。\n\n## 7 训练自己的嵌入\n\n\
+  Flair 序列标注器之所以能取得如此出色的性能，主要是归功于其秘密武器 – Flair 嵌入。它们的上下文设计、基于字符的事实以及在反向-前向配置中使用的[content]\n\
+  ```\ntag_type = 'pos'\n### 将语料库下采样到原始大小的 1%\ncorpus.downsample(0.01)\n```\n\n在前面的代码片段中，我们将英语语料库加载到\
+  \ corpus 变量中，将标签类型定义为 PoS 标注，然后将语料库下采样到原始大小的 1%，以加快演示目的的训练过程。\n\n然后我们可以使用 hp.choice\
+  \ 参数表达式定义搜索空间：\n\n```\nfrom flair.embeddings import WordEmbeddings\nfrom flair.hyperparameter.param_selection\
+  \ import \\\n    SearchSpace, Parameter\nfrom hyperopt import hp\n\nsearch_space\
+  \ = SearchSpace()\nsearch_space.add(Parameter.HIDDEN_SIZE,\n                 hp.choice,\n\
+  \                 options=[128, 256])\nsearch_space.add(Parameter.LEARNING_RATE,\n\
+  \                 hp.choice,\n                 options=[0.05, 0.1, 0.15, 0.2])\n\
+  search_space.add(Parameter.EMBEDDINGS,\n                 hp.choice,\n          \
+  \       options=([WordEmbeddings('en')]))\n```\n\n前面的代码片段定义了我们的搜索空间，由三个超参数组成。我们决定为学习率和模型的隐藏层大小想出一些可能有用的值。尽管使用诸如\
+  \ hyperopt.hp.quniform 和 hyperopt.hp.uniform 之类的参数表达式可能会产生更好的结果，但它们也会大大增加搜索空间的大小。我们的搜索空间现在非常小。只有八种可能的超参数组合（两个乘以四个，因为有两个隐藏层大小参数选项和四个学习率选项）。\n\
+  \n> **重要说明**\n> 在进行超参数优化时，Flair 中的某些超参数是强制性的。这包括 `Parameter.EMBEDDINGS` 和 `Parameter.LEARNING_RATE`\
+  \ 参数。如果您不想优化这些参数，只需为这些超参数的搜索空间传递一个选项即可。\n\n我们现在准备定义我们的 SequenceTaggerParamSelector\
+  \ 对象：\n\n```\nfrom flair.hyperparameter.param_selection import \\\n    SequenceTaggerParamSelector\n\
+  \nparam_selector = SequenceTaggerParamSelector(corpus,\n                       \
+  \                       tag_type,\n                                            \
+  \  'paramopt')\n```\n\n这使用我们加载的语料库、我们定义的 PoS 标签类型以及 `paramopt` 文件夹名称（相对于运行代码的目录）定义了我们的超参数优化对象，超参数调优结果将写入该文件夹。\n\
+  \n我们现在只需通过传入搜索空间和要执行的评估次数来启动优化过程。在我们的例子中，搜索空间是离散的，数字选项明确定义为 8。然而，在大多数情况下，使用非离散参数值时，可能的超参数组合数量是无限的，评估次数需要通过经验来选择：\n\
+  \n```\nparam_selector.optimize(search_space, max_evals=8)\n```\n\n前面的代码将使用 8 种不同的超参数组合训练\
+  \ 8 个不同的序列标注器。它将使用 loss 作为 `objective` 函数并在开发数据集上进行评估。它将为每次运行训练 50 个 epoch。Flair\
+  \ 对 Hyperopt 的实现使用 TPE 优化器。在普通 CPU 上，执行时间大约在 10 到 30 分钟之间。\n\n超参数优化完成后，结果将写入 `paramopt/param_selection.txt`。该文件包含每次评估运行的详细信息以及以下摘要：\n\
+  \n```\nbest parameter combination\n    embeddings: 0\nhidden_size: 1\nlearning_rate:\
+  \ 3\n```\n\n前面的摘要表明，最佳隐藏层大小是第二个选项（因为摘要显示为 1，我们使用零索引，这意味着 1 指的是第二个选项）：256。最佳学习率是第四个选项\
+  \ – 0.2。对于嵌入，当然，因为我们只有一个选项可供选择，因此第一个也是唯一一个选项被选为最佳。\n\n这是否意味着我们应该始终将隐藏层大小用作 256，并将\
+  \ 0.2 作为英语的最佳学习率？简短的回答是否定的。最佳超参数值将取决于使用的数据、试图解决的问题以及用于解决该问题的技术。还记得前面我们加载语料库并将其从\
+  \ 100% 减少到原始大小的 1% 的代码片段吗？通过这样做，我们大大提高了模型训练的速度，这使我们能够更快地进行超参数优化，但与此同时，我们也将模型集中在非常小且可能有偏的数据子集上。要对英语数据集进行适当的超参数调优，我们需要在\
+  \ 100% 语料库大小下进行，并考虑更多超参数选项。这将大大增加我们的搜索空间和执行时间，但也会提高我们模型的性能。这些发现导致了以下结论。\n\n## 摘要\n\
+  \n超参数调优是一种非常有用的技术，可用于寻找最佳超参数，不仅在序列标注中，而且在机器学习的许多领域中。然而，它是有代价的；它非常昂贵。从本质上讲，它会执行训练和评估过程数十次、数百次甚至数千次。但在现实世界中，探索每个可能有用的超参数值可能需要数月时间来执行，并且搜索空间通常会缩小到一组有限的可能有用的选项。因此，超参数调优是一个需要一定专业知识和经验的过程，这将帮助您在探索（尝试不同尚未探索的选项）和利用（将参数值缩小到通常似乎有效的那些）之间实现正确的权衡。\n\
+  \n作为本章的一部分，我们学习了为什么超参数调优有用、何时使用它以及如何使用它。我们学习了如何在 Python 中以最纯粹的形式使用超参数调优库，以及如何通过\
+  \ Flair 调优序列标注模型。\n\n在下一章中，我们将介绍超参数调优证明有用的又一个 NLP 问题 – 训练嵌入。\n\n## 7 训练自己的嵌入\n\n\
+  Flair 序列标注器之所以能取得如此出色的性能，主要是归功于其秘密武器 – Flair 嵌入。它们的上下文设计、基于字符的事实以及在反向-前向配置中使用的[content]\n\
+  ```\ntag_type = 'pos'\n### 将语料库下采样到原始大小的 1%\ncorpus.downsample(0.01)\n```\n\n在前面的代码片段中，我们将英语语料库加载到\
+  \ corpus 变量，将标签类型定义为 PoS 标注，然后将语料库下采样到原始大小的 1%，以加快演示训练。\n\n然后我们可以使用 hp.choice 参数表达式定义搜索空间：\n\
+  \n```\nfrom flair.embeddings import WordEmbeddings\nfrom flair.hyperparameter.param_selection\
+  \ import \\\n    SearchSpace, Parameter\nfrom hyperopt import hp\n\nsearch_space\
+  \ = SearchSpace()\nsearch_space.add(Parameter.HIDDEN_SIZE,\n                 hp.choice,\n\
+  \                 options=[128, 256])\nsearch_space.add(Parameter.LEARNING_RATE,\n\
+  \                 hp.choice,\n                 options=[0.05, 0.1, 0.15, 0.2])\n\
+  search_space.add(Parameter.EMBEDDINGS,\n                 hp.choice,\n          \
+  \       options=([WordEmbeddings('en')]))\n```\n\n前面的代码片段定义了搜索空间，包含三个超参数。我们为学习率和模型隐藏层大小选择了一些可能有用的值。虽然使用\
+  \ hyperopt.hp.quniform 和 hyperopt.hp.uniform 可能效果更好，但会大幅增加搜索空间。当前搜索空间很小，只有八种组合，即两个隐藏层选项乘以四个学习率选项。\n\
+  \n> **重要说明**\n> 进行超参数优化时，Flair 中的某些超参数是强制性的，包括 `Parameter.EMBEDDINGS` 和 `Parameter.LEARNING_RATE`\
+  \ 参数。若不想优化这些参数，只需为这些超参数的搜索空间传递单个选项即可。\n\n我们现在准备定义 SequenceTaggerParamSelector 对象：\n\
+  \n```\nfrom flair.hyperparameter.param_selection import \\\n    SequenceTaggerParamSelector\n\
+  \nparam_selector = SequenceTaggerParamSelector(corpus,\n                       \
+  \                       tag_type,\n                                            \
+  \  'paramopt')\n```\n\n这使用加载的语料库、定义的 PoS 标签类型以及 `paramopt` 文件夹名称定义了超参数优化对象，调优结果将写入该文件夹。\n\
+  \n我们只需传入搜索空间和评估次数即可开始优化。在本例中搜索空间离散，次数明确为 8。但在大多数非离散参数情况下，可能的组合数无限，评估次数需经验选择：\n\n\
+  ```\nparam_selector.optimize(search_space, max_evals=8)\n```\n\n前面的代码将用 8 种超参数组合训练\
+  \ 8 个序列标注器。以 loss 作为 `objective` 函数在开发集上评估，每个运行训练 50 个 epoch。Flair 的 Hyperopt 实现使用\
+  \ TPE 优化器。在普通 CPU 上执行约需 10 到 30 分钟。\n\n优化完成后，结果写入 `paramopt/param_selection.txt`。文件包含每次评估的细节及以下摘要：\n\
+  \n```\nbest parameter combination\n    embeddings: 0\nhidden_size: 1\nlearning_rate:\
+  \ 3\n```\n\n摘要表明最佳隐藏层大小为第二个选项，即 256；最佳学习率为第四个选项 0.2。嵌入因只有一个选项而被选中。\n\n这是否意味着英语中应始终使用隐藏层大小\
+  \ 256 和学习率 0.2？简短回答是否。最优超参数取决于数据、问题和技术。前面我们将语料库从 100% 降到 1%，虽加快训练和优化，但也使模型聚焦于很小且可能有偏的子集。对英语数据集进行恰当调优需在\
+  \ 100% 语料库上进行并考虑更多选项，这会大幅增加搜索空间和时间，但也能提升性能。由此得出以下结论。\n\n## 摘要\n\n超参数调优是寻找最优超参数的有用技术，不仅适用于序列标注，也适用于机器学习的许多领域。但代价高昂，本质上需重复训练和评估数十、数百甚至数千次。现实中探索所有可能值可能需数月，搜索空间通常被限制为有限的有用选项。因此超参数调优需要一定专业知识和经验，以在探索和利用之间取得正确平衡。\n\
+  \n本章我们学习了超参数调优为何有用、何时使用、如何使用，以及如何在 Python 中以纯形式使用调优库并通过 Flair 调优序列标注模型。\n\n下一章将介绍超参数调优同样有用的另一个\
+  \ NLP 问题 – 训练嵌入。\n\n## 7 训练自己的嵌入\n\nFlair 序列标注器出色性能主要归功于其秘密武器 – Flair 嵌入。其上下文设计、基于字符以及反向-前向配置的使用，使其非常适合序列标注任务。但到目前为止，本书尚未重点介绍这些嵌入的实际训练方法。\n\
+  \n上一章介绍模型训练和词嵌入时，我们仅使用了 Flair Python 包提供的预训练嵌入。但在许多 NLP 问题中，预训练嵌入可能不足。\n\n使用 flair\
+  \ 时，您可能需要处理 Flair 预训练嵌入尚未覆盖的语言，或需要针对特定语料库训练的嵌入。此时可使用 Flair 的内置类训练自己的 Flair 嵌入，后续用于训练序列标注器或解决其他下游\
+  \ NLP 任务。\n\n我们将先解释为何以及在何种情况下训练自定义嵌入有用。介绍 Flair 嵌入的工作原理及其在下游序列标注任务上的出色表现。然后聚焦词嵌入的评估方法。最后通过在世界上最小语言上的动手练习训练自己的嵌入。\n\
+  \n本章将涵盖训练 Flair 词嵌入的以下部分：\n\n- 理解自定义 Flair 嵌入的原理和原因\n- 评估词嵌入\n- 在世界上最小的语言上训练 Flair\
+  \ 嵌入\n\n## 技术要求\n\n本章练习需要 Flair 版本 0.11 以及 `requests` Python 包已安装在开发机器上。\n\n本章代码示例可在本书官方\
+  \ GitHub 仓库的以下 Jupyter 笔记本中找到：`https://github.com/PacktPublishing/Natural-Language-Processing-with-Flair/tree/main/Chapter07.`\n\
+  \n## 理解自定义 Flair 嵌入的原理和原因\n\n词嵌入在序列标注模型性能中起着重要甚至必不可少的作用。嵌入的细节在 *第 3 章，Flair 中的嵌入*\
+  \ 中介绍。但本章需了解嵌入本质上是词表示，通常以实值向量形式存在。这些向量可作为下游任务的输入，如 **词性** (**PoS**) 标注和 **命名实体识别**\
+  \ (**NER**)。首先简要介绍 Flair 如何生成嵌入及训练方式。\n\n## 为什么训练嵌入很少真正意味着训练嵌入\n\n术语 **训练嵌入** 常令人困惑，可追溯到旧方法，当时训练嵌入的结果是一组词嵌入。在\
+  \ Flair 的训练方式下该术语意义不大，尤其嵌入是上下文且基于字符。对于传统嵌入如 **GloVe**，训练后可为字典中每个词记住一个嵌入。此时不完全理解\
+  \ Flair 嵌入设计的人可能会问：\n\n*鉴于 Flair 的嵌入是上下文的，这是否意味着训练嵌入的过程会导致为字典中每个词在每个可能上下文中预先计算一个嵌入？*\n\
+  \n\n\n答案是否定的。 对于基于词的、非上下文词嵌入，可能的嵌入数量确实受限于词典中的词数。 但是，由于 Flair 嵌入可以对任何给定上下文中的几乎任何字符序列（不一定是已知词）进行建模，因此可能的嵌入数量是难以想象的庞大。\
+  \ 这是由于以下原因：\n\n- Flair 嵌入是上下文相关的，这意味着同一个词放在不同的上下文中会产生不同的嵌入。\n- Flair 嵌入是在没有明确的词概念的情况下训练的。\
+  \ 词被建模为字符序列。\n\n当我们谈论训练 Flair 嵌入时，我们实际上并不是在谈论预先计算嵌入本身。 相反，我们是在谈论训练语言模型。 让我们进一步了解这一点。\n\
+  \n## Flair 嵌入背后的思想\n\n训练 Flair 嵌入实际上是一个训练语言模型的过程。 Flair 嵌入模型本质上是语言模型，它们根据某些上下文（\
+  \ surrounding text）预测下一个字符。 Flair 使用基于长短期记忆（LSTM）循环神经网络节点的语言模型。 这些节点能够处理序列数据。\n\n\
+  > **什么是语言模型？**\n> 简单来说，语言模型是一种对文本字符串的概率分布进行建模的工具。 它通常根据某些上下文（前文）为每个可能的字符、词或词序列分配一个概率。\
+  \ 直到深度学习的出现，流行的语言模型类型是统计 n-gram 模型； 但是，更近期的基于神经网络的方法 consistently outperform n-gram\
+  \ 模型。 经典 n-gram 模型仍然有一些优势。 与大多数神经模型不同，n-gram 模型不需要太多数据，并且在大小方面可以非常轻量。\n\n基于字符的语言模型将输入文本作为字符序列接收，并被训练以预测下一个字符。\
+  \ 然后模型被训练以学习根据过去的字符预测可能下一个字符的概率分布。\n\n*那么，预测下一个字符与词嵌入有什么关系？*\n\n训练好的 Flair 语言模型本质上是生成词嵌入的模型。\
+  \ 首先，我们将整个上下文（围绕我们词的文本），包括我们想要计算嵌入的词，作为输入传递给模型。 然后，我们不关注预测的字符，而是关注 LSTM 单元的一个特殊值，称为隐藏状态。\
+  \ 我们提取词中最后一个字符之后的隐藏状态，这就是我们的词嵌入。\n\n很明显，上下文会影响某些词的语义。 但是，你可能会想，是文本在词 *之前* 影响词的含义，还是词\
+  \ *之后* 的文本影响其含义。 答案是两者兼有。\n\n## 前向-后向嵌入堆栈\n\nFlair 嵌入中一个精妙的设计概念是它们使用后向-前向嵌入堆栈的方式，这有助于它们实现出色的性能。\n\
+  \n**前向模型** 考虑词之前的整个上下文以及词本身。 它捕捉了受词前文本影响的词的语义含义。 但是，该模型实际上并没有考虑到我们试图计算嵌入的词之后的全部词。\
+  \ 为了实现这一点，我们需要构建一个反向工作的模型。 我们需要构建一个 **后向模型**。\n\n后向模型以相反的方向处理词。 对于英语而言，这意味着从右到左。\
+  \ 它考虑词之后的全部上下文加上词本身。 该模型捕捉了受词后文本影响的词的语义含义。\n\n一旦两个模型都训练完成，我们就可以计算前向嵌入和后向嵌入。 然后我们通常将它们结合起来形成一个新的嵌入，我们称之为\
+  \ **嵌入堆栈**。\n\n## Flair 嵌入的语料库\n\n训练任何类型的机器学习模型都需要数据。 幸运的是，训练嵌入是一个无监督学习任务。 用于训练的数据是未标记的。\
+  \ 这意味着任何包含有意义构造词的文本都可能被用作我们语料库的一部分。 重要的是我们使用足够大的语料库。\n\n还有版权问题。 目前仍有一个持续的法律问题，即语料库的版权相关权利是否也适用于语言模型本身，以及在什么条件下适用。\
+  \ 例如，如果分发原始语料库需要署名，那么对在同一语料库上训练的语言模型是否也适用相同的署名要求？ 这个问题的答案取决于许多因素，但目前没有一种明确的答案方式适用于所有类型的场景。\
+  \ 但是，仍然有一些通用规则适用。 如果你在家用个人电脑学习 NLP，如果你在任何公开可用的文本上训练模型，你不太可能惹上麻烦。 然而，这些实际豁免在商业环境中并不适用。\
+  \ 随着你向大型科技公司靠拢，版权法的执行会变得越来越严格。\n\n## 训练 Flair 嵌入的词典\n\nFlair 嵌入训练最好的事情之一是为语言模型准备词典所需的努力，或缺乏努力。\
+  \ 对于大多数传统的基于词的语言模型，你需要为给定语言制定一个完整的词列表。\n\n幸运的是，Flair 嵌入是基于字符的。 这意味着语言模型的输入不是词，而是字符序列。\
+  \ 我们无需担心制定完整的词列表。 相反，我们只需要列出我们语言中使用的所有可能字符。 这意味着如果我们处理的是使用拉丁字母的语言，我们的词典只会包含少数几项。\
+  \ Flair 还提供了带有预定义常用词典的类，例如 Latin。\n\nFlair 的预训练嵌入在许多语言的许多下游 NLP 任务上取得了最先进的结果。 但是，在训练新的嵌入模型时，性能将取决于许多因素，并非我们训练的每个嵌入模型都会表现良好。\
+  \ 我们需要找到方法来判断我们新训练的嵌入是否达到标准。\n\n## 评估词嵌入\n\n在上一节中，我们介绍了使用语言模型的 Flair 嵌入的设计。 训练这些语言模型的过程与任何其他类型的深度学习训练并没有太大不同。\
+  \ 但是，性能良好的语言模型并不一定意味着能产生下游任务优秀结果的好嵌入。\n\n相反，我们通常需要依赖以下两种评估词嵌入的方法：\n\n- **内在评估**\
+  \ 旨在测试嵌入词表示的质量，而不依赖于任何自然语言处理任务。 这是通过衡量词之间的语义关系来完成的。 最简单的内在嵌入评估类型是词相似度。 它 simply\
+  \ 使用相似度指标，例如余弦距离，来衡量词嵌入之间的相似度，并将其与人类感知的语义相似度进行比较。 例如，词 *开始* 和 *起始* 在语义上非常相似。 如果我们的嵌入训练良好，那么我们期望这两个词在余弦距离上彼此接近。\n\
+  \n其他类型的内在评估方法利用词之间的类比关系，类似于我们在 *国王对男人如同女王对女人* 类比练习中学习词嵌入的方式，该练习在 *第 3 章，Flair 中的嵌入*\
+  \ 中。\n\n- **外在评估** 旨在通过将词嵌入用于下游 NLP 任务（例如 PoS 标注、NER 或分块）来测试词嵌入的质量。 我们将嵌入作为输入提供给\
+  \ NLP 模型。 然后我们评估 NLP 模型的质量，并假设其性能的改善/退化可以归因于我们嵌入的性能。 Flair 拥有训练序列标注模型的所有工具，并为常用语言提供标记数据集。\
+  \ 如果你发现自己正在训练 Flair 嵌入，很可能你计划将它们用作下游序列标注 NLP 任务的输入。 这通常使外在评估成为一个直接的选择。\n\n让我们现在进入本章的下一部分，在那里我们训练自己的嵌入，并稍后使用此处描述的技术之一进行评估。\n\
+  \n## 在世界上最小的语言上训练 Flair 嵌入\n\nFlair 包为训练 Flair 嵌入提供了一个简单、直接的 API。 该过程涉及训练任何语言模型所需的所有必要步骤。\
+  \ 步骤包括以下内容：\n\n- 准备词典\n- 准备语料库\n- 定义语言模型\n- 训练语言模型\n\n让我们通过一个实践动手练习来介绍训练 Flair 嵌入的过程。\n\
+  \n对大多数语言进行嵌入训练并不是一个快速的过程。 一台 decent 的配备 GPU 的机器需要超过一周的训练时间才能产生与英语或类似语言上已发表的最先进 Flair\
+  \ 结果相当的结果。 大多数预训练的 Flair 嵌入，例如 en 英语嵌入模型，产生长度为 2,048 的嵌入。\n\n我们需要 2,048 维向量部分原因是像英语这样的语言在词典中有大量词，并且它们的语义会根据使用的上下文而变化。\
+  \ 但是，如果我们在本次练习中，在一种非常小的语言上训练嵌入会怎样？ 如果我们在一种如此小的语言上训练嵌入，以至于我们甚至可以在没有专用图形处理单元（GPU）的机器上完成它会怎样？\n\
+  \n\n\n作为本次练习的一部分，我们将为世界上最小的语言——**托基·波纳**训练 Flair 上下文词嵌入。\n\n托基·波纳是一种人造（自创）语言，以其极小的词汇量而闻名。该语言的原始版本仅有约\
+  \ 120 个词。该语言围绕极简主义的概念创建，旨在简化思想和交流。它只有九个辅音和五个元音，且托基·波纳词的发音与世界上大多数语言兼容。\n\n现在让我们为托基·波纳训练一个微小的\
+  \ Flair 嵌入模型。\n\n## 准备词典\n\n在训练经典词嵌入时，为一种语言定义完整词典的过程往往繁琐且耗费精力。对于 Flair 嵌入来说并非如此。\n\
+  \n这是因为 Flair 嵌入建模的是字符，而不是词。这意味着为了定义词典，我们不需要所有可能词的完整列表。我们只需要所有可能字符的列表即可。\n\n在托基·波纳语言中，仅使用了以下\
+  \ 14 个字符：`ptksmnljwaeiou`。这些字符是拉丁字符集的子集。Flair 预编译的拉丁词典只需运行以下代码即可加载：\n\n```\nfrom\
+  \ flair.data import Dictionary\n\ndictionary = Dictionary.load('chars')\n```\n\n\
+  但是，需要知道的是，该字符集包含许多在托基·波纳中从未使用的字符。这意味着语言模型需要更长时间的训练才能学会某些在词典中定义的字符是无意义的。\n\n相反，如果我们想保持词典最小化，仅包含我们语言中使用的字母，我们可以通过使用\
+  \ Dictionary.add_item(c) 方法手动构建自己的 Dictionary 类：\n\n```\nfrom flair.data import\
+  \ Dictionary\n\ndictionary = Dictionary()\ntoki_pona_symbols = 'ptksmnljwaeiou'\n\
+  toki_pona_symbols += toki_pona_symbols.upper()\n\nfor c in toki_pona_symbols + '?.\
+  \ ':\n    dictionary.add_item(c)\n```\n\n在之前的代码片段中，我们定义了一个词典，其中包含托基·波纳中使用的所有可能字符的大写和小写形式，以及空格和两个标点符号。Dictionary\
+  \ 类还会自动添加一个特殊的 <unk> 符号，用于标记未知字符。\n\n## 准备语料库\n\n如果没有数据，我们的嵌入模型就无法学习任何东西。训练嵌入模型的一般规则是数据越多越好。实际上，这意味着一个好的嵌入模型需要超过一百万句句子。但就本次练习而言，并且由于我们处理的是大约只有\
+  \ 120 个词的语言，我们可以选择一个小得多的语料库。我们将选择一个公开可用的托基·波纳 1,000 句语料集合，可通过以下地址获取：https://raw.githubusercontent.com/tadejmagajna/TokiponaCorpus/master/bot4/corpus.txt。\n\
+  \n然后我们将把语料库拆分为训练集、测试集和验证集，并将语料库目录传递给 TextCorpus 类的构造函数。\n\n让我们先下载语料库并将其拆分为测试集、训练集和验证集：\n\
+  \n```python\nimport requests\n\nurl = \"https://raw.githubusercontent.com/tadejmagajna/TokiponaCorpus/master/bot4/corpus.txt\"\
+  \nresponse = requests.get(url)\n\nsentences = response.text.splitlines()\none_tenth_corp_len\
+  \ = int(len(sentences)/10)\n\ntest, valid, train = (\n    sentences[:one_tenth_corp_len],\n\
+  \    sentences[one_tenth_corp_len:one_tenth_corp_len*2],\n    sentences[one_tenth_corp_len*2:])\n\
+  ```\n\n前面的代码片段首先从 GitHub 下载整个语料库。然后按换行符拆分句子，并将语料库的前 10% 载入 test，将另外 10% 载入 valid，剩余的\
+  \ 80% 载入 train。\n\n另外值得一提的是，在实践中，数据集拆分几乎总是使用辅助 NLP 框架函数来完成。这些辅助函数可以确保数据集被正确打乱，以便数据在各集合之间得到良好分布。但在这个代码示例中，我们可以假设数据已经分布良好，这意味着我们可以简单地将句子列表切片为三个部分。\n\
+  \n> **重要说明**\n> 运行前面的代码片段，您需要安装本地 Python 3 以及 Flair 版本 0.11 和 requests 包。requests\
+  \ 包可通过运行 `pip3 install requests` 安装。\n\n现在语料库已存储在内存中（如果处理的是包含数百万句子的语料库则不可能）。在初始化\
+  \ `TextCorpus` 类之前，我们需要将语料库集合存储在本地目录中，该目录按以下文件夹和文件组织语料库：\n\n- 包含验证集的 `valid.txt`\
+  \ 文件\n- 包含测试集的 `test.txt` 文件\n- 包含训练集的 `train/` 文件夹，训练集被拆分为编号文件，命名模式如下：`train_split_1`、`train_split_2`、`train_split_3`，以此类推\n\
+  \n我们通过运行以下代码将语料库组织成前面定义的结构：\n\n```python\nfrom tempfile import TemporaryDirectory\n\
+  from os.path import join\nfrom os import mkdir\n\ndataset_dir_obj = TemporaryDirectory()\n\
+  dataset_dir = dataset_dir_obj.name\ntrain_dir = join(dataset_dir, 'train')\nmkdir(train_dir)\n\
+  \nwith open(join(dataset_dir, \"test.txt\"), \"w\") as file:\n    file.write(' '.join(test))\n\
+  \nwith open(join(dataset_dir, \"valid.txt\"), \"w\") as file:\n    file.write('\
+  \ '.join(valid))\n\nwith open(join(train_dir, \"train_split_1\"), \"w\") as file:\n\
+  \    file.write(' '.join(train))\n```\n\n在前述代码片段的第一部分中，我们使用 tempfile 库创建一个临时目录，在其中存储我们的语料库。在\
+  \ Python 中使用临时目录是个好主意，因为该库提供了在完成后轻松清理的接口。\n\n在前述代码片段的第二部分中，我们随后将 test、valid 和 train\
+  \ 语料库集合分别写入 train.txt、test.txt 和 train_split_1 文件。整个语料库现在存储在 dataset_dir 目录中。\n\n\
+  现在语料库已正确组织，我们可以初始化 TextCorpus 类：\n\n```\nfrom flair.trainers.language_model_trainer\
+  \ import TextCorpus\n\ncorpus = TextCorpus(dataset_dir,\n                    dictionary,\n\
+  \                    forward=True,\n                    character_level=True)\n\
+  ```\n\n前面的代码片段初始化 TextCorpus 类，我们提供数据集目录和词典，并明确告诉构造函数我们正在为前向模型准备语料库（该模型会考虑词及其之前的上下文）。\n\
+  \n## 训练语言模型\n\n现在我们可以定义并训练我们的语言模型：\n\n```\nfrom flair.models import LanguageModel\n\
+  from flair.trainers.language_model_trainer import (\n    LanguageModelTrainer)\n\
+  \nlanguage_model = LanguageModel(dictionary,\n                               is_forward_lm=True,\n\
+  \                               hidden_size=64,\n                              \
+  \ nlayers=1)\n\ntrainer = LanguageModelTrainer(language_model, corpus)\ntrainer.train('forward_model_directory',\n\
+  \    sequence_length=25,\n    mini_batch_size=10,\n    max_epochs=100)\n```\n\n\
+  在前述代码片段的第一部分中，我们通过告知它我们正在构建一个具有单层和隐藏大小为 64 的前向模型来初始化 LanguageModel 类。hidden_size\
+  \ 是一个重要参数，定义了 LSTM 节点隐藏层的大小，这实际上定义了我们的嵌入向量的维度。hidden_size 通常需要设置得高得多，例如 2,048。但由于我们是在大约只有\
+  \ 120 个词的语言上训练模型，并且这只是练习的一部分，因此可以使用低维嵌入。\n\n在前一个片段的第二部分中，我们通过初始化 LanguageModelTrainer\
+  \ 类并告知其使用序列长度 25 并运行 100 个 epoch 来开始模型训练过程。这里选择的参数 purposely 远低于在生产环境中训练大型嵌入模型时所使用的参数。实际上，使用比这更长的序列长度并进行更多\
+  \ epoch 是个好主意。\n\n然后我们通过调用 LanguageModelTrainer.train() 开始训练，其中指定了训练后模型的输出目录，在我们的例子中是\
+  \ forward_model_directory/。该目录将相对于我们运行此代码的目录创建。\n\n如果一切做对，模型训练应该开始，Flair 应该开始向标准输出打印一些调试文本和指标值：\n\
+  \n```\nms/batch  5.88 | loss  0.77 | ppl    2.15\nEpoch    97: reducing learning\
+  \ rate of group 0 to 1.2207e-03.\nbest loss so far  0.98\n('\\n ni li sike. mi pini\
+  \ e ma mije? kala ni li sin e pan lawa\nen kena t\n---------------------------------------------------------------\n\
+  end of split 1/1 | epoch  97 | time:  1.75s | valid loss 0.99\n---------------------------------------------------------------\n\
+  Epoch time: 1.92\nread text file with 1 lines\n```\n\n\n\n前面的输出提供了有价值的信息。它告诉我们当前正在处理的\
+  \ epoch（本例中为 epoch 97），训练损失是多少（本例中为 0.77），验证损失是多少（本例中为 0.99），并且打印出了由我们的语言模型生成的一些文本：ni\
+  \ li sike. mi pini e ma mije? kala ni li sin e pan lawa en kena t.\n\n在最初几个 epoch\
+  \ 中，你会注意到我们的语言模型产生的是一堆胡言乱语。大多数词都是词汇表外的词，输出完全随机。但随着训练的进行，你会注意到损失在下降，生成的文本开始看起来像 Toki\
+  \ Pona.\n\n在普通机器上，用 CPU 训练这 100 个 epoch 不应超过 10 分钟。训练完成后，Flair 会打印出最终的验证损失和困惑度：\n\
+  \n```\nTEST: valid loss 0.92 | valid ppl 2.52\n```\n\n就这样！\n\n我们的 Flair 嵌入模型现在已经训练完成。我们可以开始生成一些嵌入。但在这样做之前，我们可以先稍微玩一下语言模型，并使用\
+  \ generate_text() 方法生成一些文本：\n\n```\nt = language_model.generate_text(number_of_characters=40)[0]\n\
+  print(t)\n```\n\n这将打印出语言模型生成的 40 个字符（由于权重随机初始化，每次训练的结果都会不同）：\n\n```\nsike ni li\
+  \ pona mute. soweli ni li pana\n```\n\n虽然这些 Toki Pona 语句对人类来说意义不大，但至少我们可以欣慰的是，生成的词都是真正的\
+  \ Toki Pona 词，词的结构似乎遵循某种逻辑模式。还请注意，我们只生成了 40 个字符，这意味着最后一个词可能会被截断。如果你自己训练模型，你的随机初始化模型权重会不同，模型产生的文本几乎肯定会与所示示例不同。\n\
+  \n## 使用自定义嵌入进行下游任务\n\n训练 Flair 嵌入模型的主要目的并不是玩弄生成的文本和打印嵌入向量。很可能，我们训练嵌入是为了在下游 NLP 任务中使用它们。\n\
+  \n幸运的是，加载自定义训练的 Flair 嵌入的语法与加载任何其他预训练 Flair 嵌入模型相同。我们只需将模型路径传递给构造函数即可。\n\n如果传递给\
+  \ LanguageModelTrainer 类的输出路径是 forward_model_directory/，我们将在 forward_model_directory/best-lm.pt\
+  \ 找到训练好的模型。\n\n然后我们可以通过运行以下代码实例化一个 FlairEmbeddings 对象：\n\n```\nfrom flair.embeddings\
+  \ import FlairEmbeddings\nfw = FlairEmbeddings('forward_model_directory/best-lm.pt')\n\
+  ```\n\n前面的代码片段将我们的自定义嵌入模型加载到 fw 变量中。\n\n请注意，在本练习中，我们只训练了前向嵌入模型，它考虑的是词之前的上下文。为了获得更好的性能，你现在可能希望使用\
+  \ forward 和 is_forward_lm 参数设为 False 重复整个嵌入训练过程，这将改为训练反向模型。然后你可以将嵌入模型堆叠在一起形成一个 StackedEmbeddings\
+  \ 对象，这是第 5 章 Training Sequence Labeling Models 中深入介绍的过程的一部分。\n\n你现在可以在任何使用词嵌入的 Flair\
+  \ 下游 NLP 任务中使用此模型。这样做还可以让你通过评估使用这些自定义嵌入的标注器的性能来对嵌入模型进行外部评估。\n\n但训练标注器需要很长时间。因此，在这样做之前，你可能只想做一个合理性检查，以验证我们的嵌入是否至少包含一些有用的信息。\n\
+  \n## 对自定义 Flair 嵌入进行内在评估\n\n在我们进行冗长的序列标注模型训练过程以验证我们的嵌入是否有意义之前，我们可以改做一个非常简单的内在评估作为合理性检查。\n\
+  \n我们可以做的一个简单的内在检查是为几个同义词计算嵌入，然后使用相似度指标判断 resulting 嵌入是否相似。同样，我们可以为语义上不相似的词计算嵌入并检查它们的嵌入是否也不相似。为了简化操作，我们将对不相似的词使用一个词汇表外（OOV）词。因此，我们的测试将验证两个相似词的嵌入是否比一个词典词和一个\
+  \ OOV 词的嵌入更接近（以余弦距离衡量）。\n\n对于相似词，我们将选择 lukin 和 oko。虽然不是真正的同义词，但在 Toki Pona 中它们的含义都与视觉和眼睛有关。我们将为这两个词和另一个\
+  \ OOV 词生成嵌入，然后测量这些嵌入之间的相似度。如果我们的嵌入质量不错，lukin 和 oko 在相似度指标上应该得分很高，而 OOV 词则不期望与前两者相似。\n\
+  \n让我们使用我们的自定义嵌入模型为这三个词全部计算嵌入：\n\n```\nfrom flair.embeddings import FlairEmbeddings\n\
+  from flair.data import Sentence\n\nsynonym_1 = Sentence('lukin')\nsynonym_2 = Sentence('oko')\n\
+  rand_word = Sentence('oovword')\n\nfw = FlairEmbeddings('forward_model_directory/best-lm.pt')\n\
+  fw.embed(synonym_1)\nfw.embed(synonym_2)\nfw.embed(rand_word)\n\nembedding_syn_1\
+  \ = synonym_1[0].embedding.tolist()\nembedding_syn_2 = synonym_2[0].embedding.tolist()\n\
+  embedding_rnd_wrd = rand_word[0].embedding.tolist()\n```\n\n在前述代码片段的第一部分，我们只是为词\
+  \ lukin、oko 和 oovword（随机 OOV 词）初始化 Sentence 类。\n\n然后我们可以使用余弦相似度指标来衡量这三个嵌入之间的相似度：\n\
+  \n```\nfrom sklearn.metrics.pairwise import cosine_similarity as sim\n\ns_synonym\
+  \ = sim([embedding_syn_1], [embedding_syn_2])[0][0]\ns_rand_1 = sim([embedding_syn_1],\
+  \ [embedding_rnd_wrd])[0][0]\ns_rand_2 = sim([embedding_syn_2], [embedding_rnd_wrd])[0][0]\n\
+  ```\n\n前面的片段计算了三个词对之间的相似度，并将 lukin 和 oko（同义词）之间的相似度存储到 s_synonym 中。它还计算了 lukin 与\
+  \ oovword 之间，以及 oko 与 oovword 之间的相似度。\n\n让我们看看我们的假设是否正确：\n\n```\nprint(s_synonym\
+  \ , s_rand_1 , s_rand_2)\n```\n\n如果你的嵌入训练得不错，前面的代码片段将打印出类似以下内容：\n\n```\n0.6111595281781783\
+  \ 0.2691232575537895 0.18826418665007352\n```\n\n太好了！\n\n事实证明我们的假设得到了支持。相似词在相似度得分上得分很高（打印出的第一个数字），而不相关的词（打印出的第二个和第三个数字）得分较低。请注意，我们从这些结果中唯一可以得出的结论是我们的嵌入中存储了一些程度的\
+  \ Toki Pona 信息，但我们不应就这些嵌入在下游 NLP 任务中的有用性做出任何结论。要正确训练 Flair 嵌入以供实际使用，我们需要在更大的数据集上训练，使用更高的嵌入维度，训练更多\
+  \ epoch，并使用更长的序列长度。\n\n## 总结\n\n训练自定义嵌入是 Flair 中较为复杂的功能之一。它需要所有有助于我们选择正确参数并正确准备数据的知识和理解，以便利用训练较大语言嵌入所需的大量计算能力。它也是一个关键概念，必须正确理解和执行，因为\
+  \ Flair 的几乎所有其他功能都以某种方式依赖于嵌入。\n\n在本章中，我们介绍了训练自定义 Flair 词嵌入的动机，并概述了嵌入设计。我们通过为世界上最小的语言\
+  \ – Toki Pona 训练前向词嵌入，介绍了训练这些嵌入所需的语法。\n\n到目前为止，我们将嵌入呈现为可作为下游 NLP 序列标注任务输入的东西。但嵌入也可以用于其他\
+  \ NLP 应用，例如文本分类。让我们在下一章学习关于那方面的内容。\n\n\n"
+- "## 8 Flair 中的文本分类\n\n在涵盖了超参数调优、嵌入和序列标注模型训练等复杂主题之后，我们现在准备转向自然语言处理（NLP）中一个稍微更直接、更容易理解的部分。在本章中，我们将介绍**文本**（也称为**文档**）**分类**。虽然\
+  \ Flair 的传统优势在于**序列标注**，但该库提供的解决方案利用了 Flair 嵌入以及其他第三方解决方案，使其在文本分类中也能取得不错的结果。其优势之一在于训练的简易性，另一优势则在于零样本和少样本分类器——这些分类器几乎不需要或不需要训练数据。\n\
+  \n我们将首先介绍文本分类是什么、它可用于什么、如何训练以及如何评估成功。随后我们将介绍 Flair 在文本分类方面能提供什么，并介绍不同类型的文本分类器。我们将通过动手练习训练我们自己的分类器。最后，我们将探索一种几乎不需要或不需要训练数据的文本分类新方法。\n\
+  \n我们将作为以下内容的一部分学习文本分类以及如何在 Flair 中训练和使用文本分类器：\n\n- 理解文本分类\n- Flair 中的文本分类\n- 在 Flair\
+  \ 中训练文本分类器\n- 使用几乎不需要训练示例的文本分类器\n\n让我们开始吧！\n\n## 技术要求\n\n本章使用的所有 Python 库都是 Flair\
+  \ 0.11 版本的直接依赖项，只要机器上已安装 Flair，就无需特殊设置。本章涵盖的代码示例可在本书官方 GitHub 仓库的以下 Jupyter 笔记本中找到：https://github.com/PacktPublishing/Natural-Language-Processing-with-Flair/tree/main/Chapter08。\n\
+  \n你可以使用 CPU 运行本章的大部分代码并训练大部分模型。然而，最后一个练习确实需要配备 GPU 的机器。\n\n## 理解文本分类\n\n文本或文档分类仅仅是将一个或多个标签（通常称为类别）分配给一段文本（通常称为文档）的过程。文本分类器是一种机器学习模型，它接收文本作为输入并计算一组类别上的概率分布。\n\
+  \n文本分类有许多实际应用，并被积极用于解决以下问题：\n\n- **主题分类** – 将主题分配给文档的过程\n- **垃圾邮件检测** – 检测不需要的电子邮件的过程\n\
+  - **情感分析** – 将文本情感分类为积极和消极\n- **仇恨言论检测** – 在文本中识别仇恨言论\n- **语言识别** – 确定文档使用何种语言书写\n\
+  \n以下是文本分类在现实世界中的一个例子：\n\n![](img/c56c48b8fd18a11ab705352d618ed976_126_0.png)\n\n\
+  图 8.1 – 垃圾邮件检测\n\n关于文档的分类方式，我们知道三种不同的文本分类类型：\n\n- **二元分类** – 在二元分类中只有一个可能的类别。每个文档要么属于该类别，要么不属于该类别。\n\
+  - **多类分类** – 仅将众多可能类别中的一个分配给文档。\n- **多标签多类分类** – 一个文档可以同时属于多个类别。\n\n现在应该很清楚，文本分类虽然是一个概念上相当简单的概念，但仍是\
+  \ NLP 的重要组成部分。但在我们直接深入 Flair 中如何对文本进行分类之前，让我们先快速了解一下文本分类器通常是如何训练的。\n\n## 训练文本分类器\n\
+  \n文档或文本分类是一种监督式机器学习形式。这意味着机器学习模型在充当地面真实的标记数据上进行训练。例如，对于垃圾邮件检测分类器，每个文档将被标记为 *spam*\
+  \ 或 *not-spam*。\n\n文本分类中没有规则定义可以定义多少个类别以及如何定义类别来解决特定问题。可能的类别集合通常是人为构建的，以便以最优方式解决某个业务问题。因此，文本分类与其他形式的监督式机器学习不同，因为通常除了标记数据本身之外没有客观的地面真实。例如，对于词性标注，地面真实，即词语应该如何被标注的解决方案，是由语法定义的，并且对于句子中每个词应该被分类为什么词性有一个明确的答案。但在文本分类中，类别通常是抽象的高层次概念，没有明确的定义或边界。因此，类别分配通常是主观的。例如，在情感分析中，我们需要将句子分类为\
+  \ *positive* 和 *negative*。然而，不同的人对某些句子是积极还是消极会有不同的看法。因此，对于分类问题，通常除了标记数据本身之外没有地面真实。这也是文本分类器容易受到标注偏差影响的原因之一。这意味着如果我们训练文本中的类别标签包含偏差，无论我们如何训练模型，我们的预测都会有偏差。\n\
+  \n检测和缓解偏差是一个复杂的问题，超出了 NLP 的范围，更不用说本书的范围了。在这里，我们计划介绍模型的训练方法，以及更重要的是，训练后如何以及依据什么进行评估。\n\
+  \n训练文本分类器的过程与训练序列标注器并没有太大区别。我们从一个具有随机初始化权重的深度学习模型开始，然后以适应训练数据的方式训练模型。当然，为了避免过拟合，我们不希望模型过度拟合训练数据。这就是为什么在测试数据集上评估模型很重要。为了评估模型并确定其是否按预期工作，我们使用以下其中一种指标。\n\
+  \n## 单标签和多标签文本分类的指标\n\n可以应用于包括文本分类在内的许多分类问题的最简单、最易于理解的指标是 **准确率**。准确率仅仅是被正确分类的数据的比例。它可以使用以下公式计算：\n\
+  \n$$\\frac{correctlyClassified}{(incorrectlyClassified + correctlyClassified)}$$\n\
+  \n这里，`correctlyClassified` 是被分配正确标签的示例数量，而 `incorrectlyClassified` 是被分配错误标签的示例数量。虽然该指标的结果在\
+  \ 0 到 1 之间，但可以乘以 100 并以百分比（%）值表示。\n\n对于具有平衡类别分布（训练数据中每个类别的示例数量相同）的文本分类问题以及单类分类问题，该指标通常已经足够好。但当我们开始处理多标签（为每个训练示例分配多个类别）分类或不平衡数据集时，我们可能会进一步考虑其他指标，例如\
+  \ **F1score**。\n\nF1 分数已在 *第 4 章，序列标注* 中得到充分解释，并且在那里适用于序列标注的相同 F1 分数概念也适用于此处的文本分类。该分数是另两个指标\
+  \ **精确率** 和 **召回率** 的调和平均值。其范围从 0（最差分数）到 1（最佳分数）。\n\n为了充分理解 F1 分数在分类方面的含义，我们需要单独评估每个类别标签。对于每个预测标签，我们检查它是否是所讨论的标签（意味着正例）还是不是（意味着负例）。然后我们计算以下指标。\n\
+  \n在分类中，`precision` 是被标记为正例的示例中真正为正例的比例：\n\n$$precision = \\frac{tp}{tp + fp}$$\n\
+  \n而 `recall` 是真正为正例的示例中被正确分类的比例：\n\n$$recall = \\frac{tp}{tp + fn}$$\n\n其中：\n\n\
+  - **真正例 (TP)**：被预测为正例且实际为正例的样本数量\n- **假阳性 (FP)**：被预测为正例但实际为负例的样本数量\n- **假阴性 (FN)**：被预测为负例但实际为正例的样本数量\n\
+  \nF1 分数随后被定义为精确率和召回率的调和平均数：\n\n$F1 = 2 \\cdot \\frac{precision \\cdot recall}{precision\
+  \ + recall}$\n\n计算 F1 分数的过程与序列标注中使用的方法相同，涉及以下步骤：\n\n- 1. 统计真正例、假阳性和假阴性\n- 2. 使用上述公式计算精确率和召回率\n\
+  - 3. 将 F1 分数计算为精确率和召回率的调和平均数\n\n如果我们分别对每个类别标签计算 F1 分数，然后对所有 F1 分数取平均，就得到 **宏 F1\
+  \ 分数**。该指标考虑了我们数据集中类别分布不平衡的情况。\n\n如果我们对所有类别一起计算 F1 分数，将总的真正例、假阴性和假阳性合并计算，就得到 **微\
+  \ F1 分数**。在单标签分类中，该指标的值与准确率相同。\n\n让我们看看这一理论在实践中如何表现，使用最简单但功能强大的 NLP 库之一。\n\n## Flair\
+  \ 中的文本分类\n\nFlair 提供了使用预训练模型以及训练自定义文本分类器的简单接口。虽然 Flair 的秘诀——前向和后向 Flair 嵌入——并不是文本分类任务的最佳工具，但\
+  \ Flair 可以利用其他第三方方法来实现文本分类的出色性能。\n\n让我们先学习如何训练和使用 Flair 的预训练模型。\n\n### 使用预训练的 Flair\
+  \ 文本分类模型\n\nFlair 中可用的预训练文本分类模型集合相当小，很可能你想要的模型并不在其中。即使如此，以下语法仍然很有价值，因为加载和使用 Flair\
+  \ 预训练模型的 API 与加载和使用自定义训练模型的 API 相同。我们将在下一节中训练这些模型。\n\nFlair 目前提供以下稳定的预训练模型：\n\n\
+  - sentiment – 用于将英文文本分类为正面和负面的情感分析模型\n- sentiment-fast – sentiment 文本分类模型的一个略小版本，推理速度更快\n\
+  - de-offensive-language – 用于将德语文本标记为冒犯性或非冒犯性的文本分类模型——例如，模型会将包含粗俗用语的句子标记为冒犯性\n\n\
+  了解 Flair 中当前可用的文本分类模型名称后，我们现在可以使用以下语法加载和使用模型：\n\n```\nfrom flair.models import TextClassifier\n\
+  from flair.data import Sentence\n\nclassifier = TextClassifier.load(\"sentiment\"\
+  )\nsentence = Sentence(\"Flair is pretty cool!\")\nclassifier.predict(sentence)\n\
+  \nprint(sentence.labels)\n```\n\n前面的代码片段首先使用 TextClassifier.load() 函数通过传入 sentiment\
+  \ 模型名称来加载分类器。第一次加载此模型时，Flair 会从其 Web 服务器将其下载到我们的本地机器上。这些模型随后将被缓存到磁盘以供将来使用。\n\n然后我们使用一个明确传达积极信息的句子初始化\
+  \ Sentence 类。接下来，我们将使用 TextClassifier.predict() 方法生成预测并将其存储为 Sentence 对象的部分内容。\n\
+  \n最后，我们只需打印出对象即可预测类别标签概率。它产生以下输出：\n\n```\n['Sentence: \"Flair is pretty cool !\"\
+  /'POSITIVE' (0.9991)]\n```\n\n前面的消息显示，我们的 Flair is pretty cool! 句子被分配了单个 POSITIVE\
+  \ 类别标签。该消息还表明我们的模型对其决策有 99.9% 的信心。\n\n我们可以用一个极其负面的句子尝试完全相反的情况：\n\n```\nsentence\
+  \ = Sentence(\"I don't get enough sleep.\")\nclassifier.predict(sentence)\nprint(sentence.labels)\n\
+  ```\n\n这会打印出以下内容：\n\n```\n['Sentence: \"I don't get enough sleep .\"/'NEGATIVE'\
+  \ (0.9911)]\n```\n\n这表明我们的模型有 99.1% 的把握认为前一条消息具有负面含义。\n\n就是这样！几行代码我们就可以进行文本分类。Flair\
+  \ 预训练文本分类模型的缺点是可供选择的模型实在少得可怜。幸运的是，Flair 提供了易于使用的接口来训练新的自定义模型，我们可以训练任意多个！让我们先学习如何利用\
+  \ Flair 中执行文本分类所需的底层技术——文档嵌入——来学习如何做到这一点。\n\n## Flair 中的文档嵌入\n\n与词嵌入是 Flair 中生成序列标注模型的关键部分的方式相同，许多文本分类模型也利用了类似的概念——文档嵌入。\n\
+  \n文档嵌入本质上是文档的向量表示。术语文档 simply 指的是一串词。这些文档的长度可以从单个词到整本书或语料库不等。\n\nFlair 提供了一套不同类型的文档嵌入，如以下小节所述。\n\
+  \n### DocumentPoolEmbeddings\n\n这是最简单的文档嵌入类型。它是一段代码，为文档中的每个词计算词嵌入并返回平均值。例如，如果我们有一个包含两个词的文档，第一个词的嵌入为\
+  \ [1, 2]，第二个词的嵌入为 [3, 0]，那么 DocumentPoolEmbeddings 嵌入将为 [2, 1]。除了计算平均嵌入（称为平均池化）之外，这种类型的文档嵌入还可以使用其他池化方式，例如最小池化（意味着对每个嵌入维度取最小值）和最大池化（意味着对每个嵌入维度取最大值）。要使用\
+  \ DocumentPoolEmbeddings，你只需要训练好的词嵌入。文档嵌入本身不需要训练，这是一个巨大的优势！\n\n```python\nfrom flair.data\
+  \ import Sentence\nfrom flair.embeddings import (DocumentPoolEmbeddings,\n     \
+  \                          WordEmbeddings)\n\nglove = WordEmbeddings('glove')\n\
+  document_embeddings = DocumentPoolEmbeddings([glove])\nsentence = Sentence('two\
+  \ words')\nglove.embed(sentence)\n\nprint((sentence[0].embedding + sentence[1].embedding)\
+  \ / 2)\n```\n\n在前面的代码片段中，我们自己实现了使用平均池化的文档嵌入。我们只需加载一个词嵌入对象并为两个词（词 two 和词 words）计算词嵌入。然后我们将两个词嵌入相加并将结果嵌入除以二——从而对两个嵌入取平均或执行平均池化。我们可以使用\
+  \ DocumentPoolEmbeddings 类完成完全相同的事情：\n\n```python\ndocument_embeddings = DocumentPoolEmbeddings([glove])\n\
+  document_embeddings.embed(sentence)\n\nprint(sentence.embedding)\n```\n\n前面的代码片段使用\
+  \ DocumentPoolEmbeddings 类为我们的文档计算嵌入。打印出嵌入的输出显示，结果与我们之前通过对两个词嵌入向量取平均计算出的嵌入相同。\n\n\
+  但是使用 DocumentPoolEmbeddings 的便利性是有代价的——它们通常不能像以下嵌入方法那样提供良好的性能。\n\n### DocumentRNNEmbeddings\n\
+  \nDocumentRNNEmbeddings 是一种特殊的文档嵌入类型，由 Flair 实现，使用循环神经网络形成文档向量表示。\n\n它通常比 DocumentPoolEmbeddings\
+  \ 产生更好的性能，并且以相同的方式接收词嵌入对象作为输入。然而，开箱即用的 DocumentRNNEmbeddings 是无用的——新初始化的嵌入对象本质上是一个具有随机权重的未训练神经网络模型。该模型需要训练后才有用。\n\
+  \n但与其被训练另一种嵌入类型分散注意力，不如探索 Flair 中另一种文档嵌入，它既是预训练的，又能产生出色的性能。\n\n### TransformerDocumentEmbeddings\n\
+  \n解决任何问题的良好方法是不要重新发明轮子，而是利用已经有效的工作技术。近年来取得巨大进展的一种特殊 NLP 模型是 transformers。Flair 提供了一个包装类，能够直接从预训练的\
+  \ Transformer 为整个文档计算嵌入。\n\nTransformerDocumentEmbeddings 的使用方式与 Flair 中任何其他嵌入类相同——它可用于使用\
+  \ .embed(sentence) 方法嵌入句子。让我们使用 roberta-base Transformer 模型尝试此嵌入：\n\n```\nfrom flair.embeddings\
+  \ import TransformerDocumentEmbeddings\n\nembedding = TransformerDocumentEmbeddings('roberta-base')\n\
+  sentence = Sentence('two words')\n\nembedding.embed(sentence)\n\nprint(sentence.embedding)\n\
+  ```\n\n\n\nThe preceding code snippet will print out a 768-dimensional vector representation\
+  \ of our sentence. The class uses **Hugging Face** transformers and thus allows\
+  \ us to use a wide variety of models, which are fetched directly from the publicly\
+  \ available Hugging Face Models Hub. We will cover a lot more about Hugging Face\
+  \ and learn how to publish our own models on the Models Hub in Chapter 10, *动手练习\
+  \ – 使用 Flair 构建交易机器人*.\n\nThere is a number of transformer-based pre-trained embedding\
+  \ models that are used by the `TransformerDocumentEmbeddings` class. The most notable\
+  \ examples are the following:\n\n- `bert-base-uncased`\n- `roberta-base`\n- `distilbert-base-uncased`\n\
+  - `xlnet-base-cased`\n\nWe have now covered an essential underlying NLP concept\
+  \ that fuels Flair text classifiers. We're now ready to dive deeper and explore\
+  \ how Flair text classifiers are designed.\n\n## Flair 中的文本分类器\n\nMost text classifiers\
+  \ in Flair utilize the `TextClassifier` class. It is responsible for providing the\
+  \ tools for defining and using text classifiers in Flair. Unlike many other concepts\
+  \ in Flair, it is a surprisingly simple design. `TextClassifier` is a model that\
+  \ utilizes a single linear neural network layer, taking the document embeddings\
+  \ as input and returning the class labels as output.\n\nLet's learn how to train\
+  \ text classifiers in Flair as part of a hands-on exercise. Let's build our own\
+  \ sentiment analysis text classifier!\n\n## Training a text classifier in Flair\n\
+  \nIn this section, we will be training a sentiment analysis text classification\
+  \ model capable of labeling text as *正面* or *负面*. Text classifier training follows\
+  \ a sequence of steps very similar to how sequence labeling models are trained.\n\
+  \nThe steps required to train text classifiers in Flair include the following:\n\
+  \n- 1. Loading a tagged corpus and computing the label dictionary map\n- 2. Loading\
+  \ and preparing the document embeddings\n- 3. Initializing the `TextClassifier`\
+  \ class\n- 4. Training the model\n\nThe process, given what we covered as part of\
+  \ sequence labeling model training, should look very familiar – and indeed it is.\
+  \ Let's start by loading the data required to train the classifier.\n\n### 加载标注语料库\n\
+  \nTraining text classification models requires a set of text documents (typically,\
+  \ sentences or paragraphs) where each document is associated with one or more classification\
+  \ labels. To train our sentiment analysis text classification model, we will be\
+  \ using the famous **互联网电影数据库 (IMDb)** dataset, which contains 50,000 movie reviews\
+  \ from IMDB, where each review is labeled as either positive or negative. References\
+  \ to this dataset are already baked into Flair, so loading the dataset couldn't\
+  \ be easier:\n\n```\nfrom flair.data import Corpus\nfrom flair.datasets import IMDB\n\
+  import _locale\n\n### 针对罕见的 Windows 仅有的 Flair 编码错误的解决方法\n_locale._getdefaultlocale\
+  \ = lambda *_: ['en_US', 'utf8']\n\ncorpus = IMDB()\ncorpus.downsample(0.05)\nlbl_type\
+  \ = 'sentiment'\nlabel_dict = corpus.make_label_dictionary(label_type=lbl_type)\n\
+  ```\n\nThe preceding code snippet loads the IMDB dataset into memory. It also creates\
+  \ the `label_dict` object, which is a dictionary containing all possible class labels.\
+  \ This will be required later when we build the classifier.\n\n> **重要说明**\n> \n\
+  > In this code example, we utilized the `downsample()` method. The method downsamples\
+  \ the dataset. It reduces the number of items in our dataset, and by doing that,\
+  \ we also reduce the amount of data our model will be able to learn from. As a result,\
+  \ the model is likely to perform worse. This method should, unless there really\
+  \ is too much data, only be used for learning and demonstration purposes. We used\
+  \ a downsample rate of 0.05, meaning we only keep 5% of the original data.\n\nLet's\
+  \ now move on to loading the document embeddings into memory.\n\n### 加载和准备文档嵌入\n\
+  \nIn the previous section, we covered all the different types of document embeddings\
+  \ that we can use in Flair. To keep this exercise simple, we will use DocumentPoolEmbeddings.\
+  \ They require no training prior to training the classification model itself:\n\n\
+  ```\nfrom flair.embeddings import (DocumentPoolEmbeddings,\n                   \
+  \           WordEmbeddings)\n\nglove = WordEmbeddings('glove')\ndocument_embeddings\
+  \ = DocumentPoolEmbeddings([glove])\n```\n\nIn the preceding code snippet, we used\
+  \ GloVe embeddings. We passed them to the DocumentPoolEmbeddings class, which, if\
+  \ you remember the previous section well, simply computes an average of all the\
+  \ word embeddings in the document.\n\nWith document embeddings out of the way, we\
+  \ can now define our text classification model.\n\n### 初始化 TextClassifier 类\n\n\
+  This is the point where all the variables defined in the previous sections come\
+  \ together as part of a newly initialized object – TextClassifier:\n\n```\nfrom\
+  \ flair.models import TextClassifier\n\nclassifier = TextClassifier(document_embeddings,\n\
+  \                            label_dictionary=label_dict,\n                    \
+  \        label_type=lbl_type)\n```\n\nIn the preceding code snippet, we define our\
+  \ text classifier object, which initializes as a fully functioning classifier with\
+  \ randomized weights. Classifiers such as TextClassifier need to know the total\
+  \ number of classes in advance, as it affects the neural network architecture –\
+  \ hence the need to provide label_dict. We also need to pass in the document embeddings\
+  \ class at the point of defining the model so that the model knows the embedding\
+  \ length, which defines the number of input nodes. Finally, we also pass in the\
+  \ lbl_type variable, which is used at a later point.\n\nOur model is actually a\
+  \ fully functional text classification model now. The tiny problem is that its weights\
+  \ are randomly initialized, which means that the output it produces will be useless.\
+  \ To make our model useful, we need to train it.\n\n### 训练模型\n\nTraining the text\
+  \ classifier model involves two simple steps:\n\n- 1. Defining the model trainer\
+  \ class by passing in the classifier model and the corpus\n- 2. Setting off the\
+  \ training process passing in the required training hyperparameters\n\nThe following\
+  \ classification model training syntax is very similar to how we trained sequence\
+  \ labeling models in the previous chapters:\n\n```python\nfrom flair.trainers import\
+  \ ModelTrainer\n\ntrainer = ModelTrainer(classifier, corpus)\n\ntrainer.train('classifier',\n\
+  \    learning_rate=0.1,\n    mini_batch_size=32,\n    max_epochs=40)\n```\n\nThe\
+  \ preceding code snippet sets off the training process where we pass in a number\
+  \ of training-related hyperparameters, all of which were explained in detail in\
+  \ Chapter 5, Training Sequence Labeling Models. The training process will now run\
+  \ for 40 epochs or until the model stops improving and will store the final model\
+  \ in the classifier directory.\n\n> **重要说明**\n> \n> In the preceding exercise, we\
+  \ used the `DocumentPoolEmbeddings` document embeddings. However, if you ever plan\
+  \ to use `TransformerDocumentEmbeddings` (which is almost guaranteed to offer better\
+  \ performance), you should use the `ModelTrainer.fine_tune()` method instead of\
+  \ `ModelTrainer.train()`, which presets some of the training hyperparameters to\
+  \ aid fine-tuning transformers.\n\nTraining should take about 30 minutes on an average\
+  \ CPU. When done, we'll be ready to test the new classifier out.\n\nUpon completion,\
+  \ the model trainer will print out a bunch of metrics. The simplest and most telling\
+  \ metric to look out for is the test_score metric. It shows the classification accuracy\
+  \ of the test dataset. In our case, test_score was 0.672, although be aware that\
+  \ yours will be slightly different due to the randomly initialized weights.\n\n\
+  ## Loading and using custom text classifiers\n\nAfter training the text classification\
+  \ model, the resulting classifier will already be stored in memory as part of the\
+  \ classifier variable. It is possible, however, that your Python session exited\
+  \ after training. If so, you'll need to load the model into memory with the following:\n\
+  \n```\nfrom flair.models import TextClassifier\nclassifier = TextClassifier.load('classifier/best-model.pt')\n\
+  ```\n\nWe can now generate predictions on some made-up text input:\n\n```\nfrom\
+  \ flair.data import Sentence\nsentence = Sentence(\"great\")\nclassifier.predict(sentence)\n\
+  print(sentence.labels)\n```\n\nThe preceding code snippet tests our sentiment analysis\
+  \ classifier on the most trivial problem we could think of. We are classifying a\
+  \ single word, great, which, we can all agree, is unambiguously positive. The code\
+  \ snippet will print out the predicted class along with the prediction probability:\n\
+  \n```\n['Sentence: \"great\"/'POSITIVE' (0.9999)]\n```\n\nThis indicates that the\
+  \ model is 99.9% positive that the label is... well, POSITIVE.\n\nBut be aware that\
+  \ the model was initialized on random weights and trained on a significantly downsampled\
+  \ dataset. The results will, therefore, likely be a little different every time\
+  \ you run this code.\n\nWe can give another simple example a go using the exact\
+  \ opposite. We can test whether our classifier behaves as expected when given an\
+  \ unambiguously negative message:\n\n```\nsentence = Sentence(\"bad\")\nclassifier.predict(sentence)\n\
+  print(sentence.labels)\n```\n\n\n\n你不需要是情感分析专家就能判断单词 bad 应该标记为 NEGATIVE，我们的模型也是如此。它输出如下：\n\
+  \n```\n[ 'Sentence: \"bad\" / 'NEGATIVE' (0.9998) ]\n```\n\n这表明模型有 99.9% 的把握认为单词\
+  \ bad 是负面的，虽然这并不特别令人震惊。\n\n我们应该在稍微复杂一点的示例上测试我们的模型：\n\n```\nsentence = Sentence(\"\
+  Not quite my cup of tea\")\nclassifier.predict(sentence)\nprint(sentence.labels)\n\
+  ```\n\n前面的代码示例提出了一个更复杂的情感分析问题，因为它试图为一份文档预测标签，而该文档不一定包含任何本身为正面或负面的词。\n\n我们对前面句子的预测如下：\n\
+  \n```\n[ 'Sentence: \"Not quite my cup of tea\" / 'POSITIVE' (0.7513) ]\n```\n\n\
+  显然不正确。前一句明显带有负面含义。很可能当你自己运行代码并且权重初始化不同时，结果会有所不同，但预测置信度（在我们的例子中为 75%）会始终保持较低。\n\n\
+  我们可以采取几个步骤来提高分类器的预测质量。最明显的选择可能是简单地减少对语料库的下采样并花更多时间进行训练。这是一个有效的选择，但不太可能在很大程度上帮助我们提高预测质量。在这种情况下，提高分类准确性的最大瓶颈是文档嵌入的选择。我们在练习中使用了\
+  \ DocumentPoolEmbeddings。它使用起来快速简单，但只能做到这一点。当以获得良好结果为目标训练文本分类模型时，你应该改用 TransformerDocumentEmbeddings。\n\
+  \n在前面的文本分类练习中，我们使用了一种称为 `downsampling` 的方法来减小语料库的大小，这显著加快了训练过程，但也显著影响了我们的预测质量。为了提高分类质量，我们可以简单地减少对语料库的下采样。最初，我们丢弃了\
+  \ 95% 的数据集。为了获得更好的预测质量，我们可以只丢弃 80%，也许只有 50%，或者也许根本不丢弃任何数据。但到这一点，我们就会撞上砖墙。我们无法通过在更多数据上训练来改进分类器，因为根本没有更多数据。在我们的例子中，作为练习的一部分，我们能够利用数百人时的工作成果，人们逐条手工标注了整个数据集。但在现实世界中，你试图解决的问题很可能不会有标记数据集等着你利用。更糟糕的是，标记数据成本高昂。昂贵到有时，手工标注数据甚至不值得付出努力，构建模型所需的资源会超过收益。\n\
+  \n但如果有一种方法可以在不需要依赖许多或任何训练示例的情况下训练分类器怎么办？实际上有办法。它被称为 **任务感知句子表示 (TARS)**。让我们学习如何将其用于\
+  \ Flair。\n\n## 需要很少或不需要训练数据的文本分类器的工作\n\n在前几章提到 Flair 及其优势时，我们主要关注解决序列标注任务的各种强大方法。然而在谈论文本分类时，Flair\
+  \ 通常被呈现为一个不错的文本分类工具，尽管与其实序列标注能力相比没有什么特别之处。这确实是事实——直到现在。Flair 最近引入了一种名为 TARS 的新颖文本分类方法。该概念在\
+  \ *任务感知句子表示用于通用文本分类* 论文中有深入描述，可在 `https://aclanthology.org/2020.coling-main.285/`\
+  \ 获取，值得一读。\n\nFlair 中的基于 Transformer 的文本分类器利用 Transformer 模型顶部的特殊线性层来生成类别概率分布。这种方法存在两个问题：第一，当向问题中引入新的类别标签，或尝试使用不同的类别标签（这在现实世界的机器学习中经常发生）时，我们基本上需要丢弃该线性层并从头开始训练。第二，这种方法中，模型仅基于训练示例与手工标注类别标签之间的联系来学习类别的含义。它不会从类别标签词背后的语义含义中提取任何知识。例如，在上一节的练习中，我们使用\
+  \ IMDB 数据集并使用 `NEGATIVE` 和 `POSITIVE` 类别标签执行了情感分析。在经典的文本分类方法中，类别标签只是类别的唯一标识符，没有语义含义。如果我们调整标记语料库并将\
+  \ NEGATIVE 重命名为 CLASS_1，将 POSITIVE 重命名为 CLASS_2，结果将完全相同。TARS 通过一种新颖的文本分类技术克服了这两个问题，该技术使用\
+  \ Transformer 模型本身并利用 Transformer 中的类别标签词语义信息。\n\n这使得 TARS 能够仅借助少量训练示例（少样本分类）进行文本分类，有时甚至完全不需要训练示例（零样本分类）。TARS\
+  \ 在小规模训练数据上优于之前的方法。最重要的是，它已在 Flair 中完全实现并可直接使用。\n\n让我们尝试使用 TARS 进行少样本和零样本文本分类！\n\
+  \n## 使用 TARS 进行零样本分类\n\n使用 TARS 进行零样本分类利用预训练 Transformer 内部捕获的类别标签词的语义信息，而无需使用任何训练数据。\n\
+  \n在 Flair 中使用 TARS 进行零样本文本分类再简单不过了。你需要遵循以下三个步骤：\n\n- 1. 为正确的语言加载预训练的 TARS 模型。\n\
+  - 2. 定义类别（希望 TARS Transformer 模型知道的）。\n- 3. 使用 `predict_zero_shot()` 方法生成预测。\n\n\
+  前面的步骤听起来可能很费力，或者至少需要一定程度的编码。实际上，每个步骤只是一行代码。\n\n### 为正确的语言加载预训练的 TARS 模型\n\n在对不需要任何训练数据抱有希望之前，我们首先需要确保有可供使用的模型适用于正确的语言。在\
+  \ Flair 中，截至 0.11 版本，只有一个模型可用。它是一个英语模型，名为 **tars-base**。\n\n让我们看看 tars-base 的零样本文本分类如何处理情感分析。\n\
+  \n我们通过调用 `TARSClassifier.load()` 函数来加载 TARS 模型：\n\n```\nfrom flair.models import\
+  \ TARSClassifier\n\ntars = TARSClassifier.load('tars-base')\n```\n\n这将下载 TARS 模型并将其存储在内存中，同时也将其存储到磁盘以供将来使用。我们现在可以定义类别标签。\n\
+  \n### 定义类别\n\nTARS 模型的类别标签只是一个字符串列表。因此我们可以将情感分析类别定义如下：\n\n```\nclasses = [\"positive\"\
+  , \"negative\"]\n```\n\n就这样——不需要训练或训练示例！让我们生成一些预测。\n\n### 使用 TARS 生成零样本预测\n\n让我们使用与测试基于\
+  \ DocumentPoolEmbeddings 并利用 GloVe 嵌入的分类器相同的输入来测试我们的 TARS 模型。我们将看看 tars-base 是否也能正确分类这个单字句子\
+  \ great：\n\n```\nfrom flair.data import Sentence\n\nsentence = Sentence(\"great\"\
+  )\ntars.predict_zero_shot(sentence, classes)\n\nprint(sentence)\n```\n\n我们使用 predict_zero_shot()\
+  \ 方法生成预测。前面的代码片段将打印出以下内容：\n\n```\nSentence: \"great\" → positive (0.9691)\n```\n\
+  \n这表明预测的标签为 positive，置信度为 96.9%。\n\n在零训练数据的情况下，这已经相当令人印象深刻了！让我们看看使用一个带有负面含义的单字句子是否也能取得同样的成功结果：\n\
+  \n```\nsentence = Sentence(\"bad\")\ntars.predict_zero_shot(sentence, classes)\n\
+  \nprint(sentence)\n```\n\n\n\n这会打印出以下内容：\n\n```\nSentence: \"bad\" → negative (0.9037)\n\
+  ```\n\n这清楚地表明单词 bad 与负面情感相关——或者更准确地说，与类别标签词 negative 的语义相关。\n\n最后，我们可以在之前文本分类器并不太确定的\
+  \ Not quite my cup of tea 句子上测试我们的零样本分类器：\n\n```\nsentence = Sentence(\"Not quite\
+  \ my cup of tea\")\ntars.predict_zero_shot(sentence, classes)\nprint(sentence)\n\
+  ```\n\n这会打印出以下内容：\n\n```\nSentence: \"Not quite my cup of tea\" → negative (0.9859)\n\
+  ```\n\n耶！我们有一个明显的赢家。tars-base 明确地以 98.6% 的置信度预测句子 Not quite my cup of tea 为 negative——或者更准确地说，将该句子与单词\
+  \ negative 的语义含义关联起来。当然，要确定我们的分类器确实比基本的 DocumentPoolEmbeddings 分类器表现更好，我们需要进行某种评估。但与其这样做，让我们探索如何使用少样本学习进一步改进我们的分类模型。\n\
+  \n## 使用 TARS 进行少样本分类\n\nTARS 模型允许我们仅使用少量标注示例来训练一个能够提供出色性能的文本分类器。\n\n让我们通过解决上一节中处理的相同问题——对\
+  \ IMDB 数据集进行情感分析，来探索 TARS 少样本学习。\n\n训练 TARS 模型与我们训练 DocumentPoolEmbeddings 分类器时几乎没有区别。它涉及以下步骤：\n\
+  \n- 1. 加载标注语料库并计算标签字典映射\n- 2. 加载 TARS 模型并设置任务\n- 3. 训练模型\n\n### 加载标注语料库\n\n让我们开始加载数据集。但请记住，我们需要的数据会比预期少得多得多。\n\
+  \n我们将以与上一节相同的方式加载 IMDB 语料库。但这次，我们会对其进行更大幅度的降采样。毕竟，我们正在进行少样本学习。如果这些说法属实，我们应该能够仅使用几个训练示例就获得出色的性能。\n\
+  \n让我们加载数据集并将其降采样到原始大小的 1%：\n\n```\nfrom flair.data import Corpus\nfrom flair.datasets\
+  \ import IMDB\nimport _locale\n\n### 针对罕见的 Windows 仅有的 Flair 编码错误的解决方法\n_locale.getdefaultlocale\
+  \ = lambda *_: ['en_US', 'utf8']\n\ncorpus = IMDB()\ncorpus.downsample(0.01)\nlbl_type\
+  \ = 'sentiment'\nlabel_dict = corpus.make_label_dictionary(label_type=lbl_type)\n\
+  ```\n\n通过前面的代码片段，我们加载了 IMDB 数据集，该数据集最初包含来自 IMDB 的 50,000 条电影评论。每条评论都标记为 POSITIVE\
+  \ 或 NEGATIVE 标签。然后我们将语料库降采样到原始大小的 1%——仅剩 500 条评论。然后我们计算标签字典，这在不久后会派上用场。\n\n### 加载\
+  \ TARS 模型并设置任务\n\n我们现在将以与零样本学习示例相同的方式加载 TARS 模型。但这次，我们需要告诉模型它将被重新训练，目标是预测两个特定的标签。我们将通过使用\
+  \ add_and_switch_to_new_task() 方法来实现这一点：\n\n```\nfrom flair.models import TARSClassifier\n\
+  from flair.data import Sentence\n\ntars = TARSClassifier().load('tars-base')\n```\n\
+  \n```\ntars.add_and_switch_to_new_task(\n    task_name=\"sentiment_analysis\",\n\
+  \    label_dictionary=label_dict,\n    label_type=lbl_type)\n```\n\n与之前相同，我们加载 tars-base\
+  \ 模型。但这次，我们传入了一些额外信息，告诉模型它将执行特定任务。它将把文本分类为 label_dict 变量中定义的部分类别。\n\n我们现在准备训练实际模型。\n\
+  \n### 训练少样本 TARS 模型\n\n本身而言，训练少样本模型并不比在 Flair 中训练任何其他模型更复杂。唯一显著的区别是所需的计算能力。在本书之前的练习中，你可以用\
+  \ CPU 进行模型训练，而唯一牺牲的是由于 epoch 较少或模型尺寸较小而导致的模型性能略有下降。但在这里，我们处理的是一个完整尺寸的 Transformer\
+  \ 模型，几乎没有办法减少所需的计算能力。\n\n你需要一台配备 GPU 的机器或 Google Colab GPU 运行时才能成功运行以下代码。\n\n此时本书中的以下训练语法应该看起来非常熟悉：\n\
+  \n```\nfrom flair.trainers import ModelTrainer\n\ntrainer = ModelTrainer(tars, corpus)\n\
+  trainer.train(base_path='few-shot-tars',\n            learning_rate=0.02,\n    \
+  \        mini_batch_size=16,\n            mini_batch_chunk_size=4,\n           \
+  \ max_epochs=6)\n```\n\n在前面的代码片段中，我们指示模型训练器将我们的 TARS 模型训练六个 epoch（在训练生产模型时，此数字应设置得更高）。我们还将批量大小和批量块大小设置为非常低的值，以增加机器能够处理它的可能性。\n\
+  \n这现在将开始训练，在平均 GPU 实例上大约需要 30 分钟。完成后，模型将存储在 few-shot-tars/best-model.pt 中，相对于你运行代码的位置。在\
+  \ Google Colab 中，你可以通过将代码指向其位置 few-shot-tars/best-model.pt 作为同一运行时的部分来无问题地访问模型。但是，如果你重新启动\
+  \ Colab 笔记本运行时，模型将会消失。\n\n### 使用自定义少样本 TARS 模型\n\n训练完成后，训练好的模型将存储在内存中。但如果由于某种原因你的\
+  \ Python 会话崩溃，你可以通过运行以下命令从磁盘加载模型：\n\n```\ntars = TARSClassifier().load('few-shot-tars/best-model.pt')\n\
+  ```\n\n很好。我们现在可以生成一些预测。让我们使用该模型并为其提供与之前训练的模型完全相同的输入，观察是否有任何改进。\n\n让我们从最基本的例子开始。让我们用单词\
+  \ great 进行预测：\n\n```\nfrom flair.data import Sentence\n\nsentence = Sentence(\"\
+  great\")\ntars.predict_zero_shot(sentence, classes)\n\nprint(sentence)\n```\n\n\
+  这会打印出以下内容：\n\n```\nSentence: \"great\" → positive (0.9991)\n```\n\n99.9% 的确定性！这明显优于零样本模型得到的\
+  \ 96.9%。\n\n让我们再试一个简单的例子——单词 bad：\n\n```\nsentence = Sentence(\"bad\")\ntars.predict(sentence)\n\
+  \nprint(sentence)\n```\n\n这会打印出以下内容：\n\n```\nSentence: \"bad\" → NEGATIVE (0.946)\n\
+  ```\n\n不错！这又是零样本模型的又一次改进。现在，让我们尝试稍微复杂一点的句子：\n\n```\nsentence = Sentence(\"Not quite\
+  \ my cup of tea\")\ntars.predict(sentence)\n\nprint(sentence)\n```\n\n这会打印出以下内容：\n\
+  \n```\nSentence: \"Not quite my cup of tea\" → NEGATIVE (0.9921)\n```\n\n这是迄今为止最好的结果！\n\
+  \n> **重要说明**\n> 在我们的练习中，我们经常通过比较仅基于几个示例的结果来评估模型性能。这只是为了说明我们的新模型在一般情况下的表现。要得出哪个模型表现最好的结论性答案，你应该始终使用适当的评估技术并在相同数据上评估模型。\n\
+  \n我们的 TARS 少样本模型在仅使用原始数据集的 1% 并且仅训练六个 epoch 的情况下，实现了与之前模型相当或更好的性能。真是令人惊叹！\n\n凭借这一卓越的、最先进的\
+  \ NLP 技术，我们结束了文本分类主题的讨论。\n\n## 总结\n\n本章提供了 Flair 中文本分类方法的概述。我们首先介绍了为动手文本分类任务奠定基础的一些基础知识和理论。我们从探索经典文本分类技术开始，并在\
+  \ IMDB 数据集上训练了我们自己的模型。后来，我们了解了 TARS 分类器，并见证了它们惊人的少样本和零样本分类能力。\n\n这不仅结束了本书的文本分类部分；它还结束了探索\
+  \ Flair 能做什么的整个部分。我们现在拥有了序列标注、词嵌入、Flair 的预训练模型集合、训练我们自己的序列标注模型、超参数调优等方面的知识和经验，以及更多、更多的内容。\n\
+  \n\n\n\n没有什么能阻止我们把一些代码组合起来并在现实世界中部署一个 NLP 模型……好吧，除了我们不太确定如何将这些模型作为生产级服务的一部分进行部署、托管或维护之外。我们将在下一章学习关于这方面的内容。\n"
+- '# 第 3 部分：使用 Flair 进行实际应用
+
+
+  在本部分中，您将学习如何在生产环境中部署和使用 Flair 模型。您将通过一系列实践练习，使用本书中获得的所有知识来解决现实世界的问题。
+
+
+  本部分包含以下章节：
+
+
+  - 第 9 章，在生产环境中部署和使用模型
+
+  - 第 10 章，动手练习 – 使用 Flair 构建交易机器人
+
+  '
+- "## 9 在生产环境中部署和使用模型\n\n当 **自然语言处理** (**NLP**) 研究人员和科学家致力于改进某个 NLP 模型时，他们通常会花费大量时间来改进模型某个非常具体的部分或方面。工作完成后，结果会被收集并作为学术论文的一部分发表。然而，如果你计划将\
+  \ NLP 用于实际目的，无论是作为商业解决方案还是作为个人项目的一部分，经过良好训练的模型通常只是你旅程的开始。\n\n在本章的第一部分，我们计划介绍在使用\
+  \ NLP 模型进行生产时通常遇到的典型问题，如何克服这些问题，以及如何使我们的模型公开可用。然后我们将通过构建自托管 NLP 解决方案从底层解决这个问题。我们将讨论可用于自托管的工具和库，以及你应该或不应该选择自托管的原因。最后，我们将介绍各种托管的\
+  \ NLP 机器学习即服务解决方案，以及如何以及何时使用它们。我们将以一个动手练习作为总结，在该练习中我们使用 **Hugging Face 加速推理 API**\
+  \ 将 Flair 模型部署到生产环境。\n\n在本章中，我们将讨论如何解决这些问题并轻松地将自己的 Flair 模型部署到生产环境，具体内容如下：\n\n-\
+  \ 生产环境中 NLP 模型的技術考量\n- 自托管 Flair 模型\n- 使用托管服务部署和使用 Flair 模型\n\n### 技术要求\n\n运行本章代码，您需要使用\
+  \ Flair 版本 0.11 的常规本地 Python 环境。您还需要一个额外的 Python 库，名为 Flask 版本 2.0.3。本章涵盖的代码示例可在本书官方\
+  \ GitHub 仓库的以下 Jupyter 笔记本中找到：https://github.com/PacktPublishing/Natural-Language-Processing-with-Flair/tree/main/Chapter09。\n\
+  \n### 生产环境中 NLP 模型的技術考量\n\n部署机器学习（尤其是 NLP）模型与部署其他软件解决方案的不同之处在于一个关键领域——运行服务所需的资源。从理论上讲，为简单的移动或\
+  \ Web 应用托管通用服务，可以由任何现代设备（如 PC 或手机）完成。只有当你开始扩展服务以满足更多受众时，才需要投入额外的思考、努力和资源来使其更具可扩展性。在提供机器学习模型服务时，事情往往从一开始就变得复杂。我们处理的模型非常庞大，以至于典型的\
+  \ Web 服务器有时甚至无法将模型加载到内存中。每个请求都会消耗大量资源，但我们需要在按需、实时并面向大量受众的情况下提供请求。但该怎么做呢？\n\n将本章主题与本书迄今为止所涵盖的内容进行比较时，您会注意到将模型部署到生产环境是一个全新的问题，需要略微不同的技能集。我们在前几章中所做的工作专注于数据的理解和处理，以及利用不同的机器学习和自然语言处理技术来实现特定目标。这些知识现在相关性较低。我们现在关心的是以能够尽可能快地、尽可能可靠地、尽可能少地使用资源的方式部署和维护\
+  \ NLP 服务。简单，对吧？\n\n实现这一目标所需的技能集通常与设计和训练 NLP 模型所需的技能集如此不同，以至于通常会交给完全不同的人——软件或 MLOps（机器学习、DevOps\
+  \ 和数据工程相结合的领域）工程师。Packt 出版了一本名为 Engineering MLOps 的优秀书籍，您可以在其中了解更多关于这个有趣的工程领域的信息。但虽然将\
+  \ ML 模型部署到生产环境需要非常特定的技能集，但它本身并不是一个不可能的过程，任何遵循这些步骤的人都可以做到。\n\n在做出有关部署 NLP 模型的任何决定之前，您需要先问自己以下问题：\n\
+  \n- 推理（生成预测的过程）将在客户端还是服务端进行？\n- 服务需要可扩展吗？\n- 你是想通过这项工作来学习，还是仅仅实现一个目标？\n- 你的模型能否部署在托管服务上？\n\
+  \n所有这些决定在确定 NLP 模型部署的位置和方式方面都起着重要作用。让我们详细研究每个要点。\n\n### 客户端与服务端推理\n\n可能与部署 NLP 模型相关最重要的、同时也是最容易回答的问题是，它们是存储在客户端机器上并在本地执行推理，还是模型存储在服务器或托管云服务上并远程执行推理。\n\
+  \n当机器学习推理在客户端机器（如手机、笔记本电脑、PC 或电子书阅读器）上本地执行时，我们称之为客户端推理。\n\n当机器学习推理在服务器或托管云服务上远程执行时，我们称之为服务端推理。\n\
+  \n这两种方法各有利弊，选择哪一种几乎总是取决于你试图用 NLP 模型解决的问题，因为此时你已经知道模型解决的是什么 NLP 问题；这意味着该决策通常非常直接。\n\
+  \n因为机器学习模型通常很大且需要大量资源，ML 社区中普遍存在一种误解，即所有机器学习推理都需要在大型的 GPU 配备机器上在服务端完成。\n\n毫无疑问，鉴于\
+  \ Transformer 和其他 NLP 模型规模的近期增长，使用机器学习模型本地化的时代已经结束？我的手机或笔记本电脑永远无法处理生产级的机器学习模型，对吧？\n\
+  \n尽管前一句听起来很合理，但它无可否认且完全是错误的。如果你正在使用电子设备阅读本书，那么你使用的机器很可能装满了机器学习模型。\n\n现代电子设备使用本地存储的机器学习模型来解决多种不同的任务：\n\
+  \n- *手机、笔记本电脑和 PC 上的面部识别*：现代电子设备使用针对低性能设备优化的计算机视觉模型来即时执行面部识别，无需网络连接。如果只有在互联网连接正常时才能解锁手机或笔记本电脑，那将是相当不幸的。\n\
+  - *手机上的指纹识别*：指纹识别是另一种强调速度的解锁设备方法。用户期望指纹在毫秒内被识别。除了速度之外，存储指纹识别模型在本地的另一个主要原因是隐私。大多数用户如果意识到他们的指纹数据被传输到位于地球另一端的大型科技公司拥有的服务器上，即使公司的意图完全无害，也会感到震惊。低延迟和隐私对于指纹识别至关重要，这就是为什么制造商几乎总是选择客户端推理。\n\
+  - *虚拟键盘的输入预测*：低延迟和隐私超过预测质量的另一个领域是虚拟键盘。软件键盘会下载并本地存储输入预测模型，这使用户即使在地下火车等离线环境中也能利用输入预测。\n\
+  - *自动驾驶汽车*：自动驾驶汽车使用多种机器学习模型，使其能够对车辆导航做出决策。\n- *手机上的 AI 相机应用*：现代手机相机应用利用专门的机器学习算法，根据环境选择正确的相机设置，然后使用基于机器学习的图像处理软件对图像进行后处理。模型需要快速、响应迅速且始终可用——这非常适合本地推理。\n\
+  \n\n\n列表还在继续，这清楚地表明目前存在对专为本地推理设计的专用低资源机器学习模型的需求。完全有可能未来趋势会更偏向服务器端，但本地模型不太可能完全消失。这仅仅是因为支配理论最小信号延迟的物理定律。例如，即使在理论上最好的情况下，我们开发出将推理时间接近于零的服务器端机器学习服务，并构建以真空中光速传输信号的网络基础设施，从巴黎的设备向纽约的服务器发送推理请求并返回所需的时间仍将为\
+  \ 54 毫秒（光在真空中从巴黎到纽约再返回所需的时间）。因此，即使是服务器端推理在理论上最好的情况，对于自动驾驶汽车等某些应用来说仍然太慢。\n\n服务器端推理和客户端推理显然各有一套优势和缺点，在仓促做出决定之前，权衡利弊非常重要。\n\
+  \n### 使用本地推理的优势：\n- *隐私：* 对了解网络协议和通信有多安全的普通工程师来说，自己的面部照片或指纹扫描通过互联网传输的想法并不令人反感或害怕。然而，对于非技术人员来说，这意味着灾难。当高度个人化或生物识别数据通过互联网传输的消息引起媒体关注时，对公司的影响将是巨大的。无论公司是否开发了最安全的算法，甚至可能比本地推理更安全，媒体和对此感到震惊的人都不会在意，损害已经造成。因此，在处理个人和生物识别数据时，必须仔细考虑这些数据将如何以及在何处传输和存储。完全避免这一问题的最好方法是根本不传输数据，而是改用本地推理。\n\
+  - *无网络延迟：* 强大的服务器和超级计算机有可能比普通手机更快地进行推理，但如果我们选择远程推理路线，我们的请求和结果需要在互联网上传输，会产生网络延迟。通过完全不进行网络通信——即使用本地推理——我们可以完全消除网络延迟。\n\
+  - *维护：* 为低资源设备优化模型很困难。但一旦做对，并构建出可在各种设备上运行的模型并成功部署，你的工作就完成了。使用本地推理时，没有需要维护的服务，也没有需要监控的网络峰值——只需坐下来放松即可。\n\
+  - *成本节约：* 听起来很苛刻，但这是事实。当公司使用客户端推理而不是服务器端推理时，生成机器学习模型结果所需的所有计算都将在客户设备上完成。这些计算会使用电力。而电费是由……客户支付的。\n\
+  - *按设计扩展：* 当我们使用服务器端推理从 1 个用户扩展到 10 个用户时，所需的计算能力将增加十倍。使用本地推理则不同。推理默认是分布式的。我们为每个用户都有一台专用的机器学习推理机器——他们自己的设备。无论是单个用户在其机器上进行推理，还是十亿用户，都无关紧要。这引出了一个有趣的结论——*本地推理按设计实现扩展。*\n\
+  \n### 使用本地推理的缺点：\n- *兼顾资源和性能限制：* 你计划部署的模型很可能需要在计算能力各不相同的多种设备上运行。你应该部署一个非常简单、功能受限的模型，让它能在所有设备上运行但性能不佳吗？你应该只在高端设备上部署模型，直接告诉低端设备用户无法使用该功能吗？还是应该为每种设备类型构建不同的模型——一些用于低端设备，一些用于高端设备？如果你选择本地推理路线，这些都是你需要回答的问题，而答案将取决于业务需求和要求。\n\
+  - *因尺寸和资源限制导致预测质量受损：* 本地推理模型需要很小。它们需要能够装入手机等设备并存储在其非常有限的内存中。这意味着模型在参数数量方面将受到极大限制。为了优化本地推理模型，你可能需要大幅减小其尺寸。这无疑会对预测质量造成巨大打击。\n\
+  - *模型更新的版本地狱：* 如果你将模型托管在远程服务上，要用更新、改进的版本更新模型，只需在远程服务上将旧模型替换为新模型即可。然而，使用本地推理，事情变得复杂。为了使模型更新成为可能，你首先需要实现一个管理更新的系统。然后你需要将新模型发布给拥有互联网连接并选择接收更新的所有设备，但你也需要考虑到仍有一部分用户由于没有互联网连接或拒绝接受更新而永远不会更新。因此，你的用户群将使用各种不同版本的模型，你需要全部支持它们。\n\
+  \n相反，使用服务器端推理的优势列表也很长：\n- *服务器端应用可以使用开箱即用的机器学习即服务解决方案：* 如果你选择服务器端推理，一个全新的现成解决方案世界将为你敞开，这些解决方案可能只需几次点击就能将你的模型从文件部署到生产服务。如果你计划在服务器端进行推理，可以使用大量托管服务，而对于本地推理，你至少在一定程度上需要重新造轮子。\n\
+  - *你可以使用最先进的模型：* 当前最先进的 NLP 模型具有大量的参数，我们短期内无法期望它们中的任何一个能装入手机等设备。要在生产中使用最先进的 NLP\
+  \ 模型，你只能求助于服务器端推理。\n- *更新简单且全面：* 与本地推理不同，要在服务器端更新模型，只需在一个点上将旧模型替换为新模型即可。一旦这样做，从那时起进行的所有推理都将使用新模型生成的结果。\n\
+  \n在本节开头，我们提到在客户端推理或服务器端推理之间做出选择通常是一个简单的问题要回答。归根结底，无非是想要拥有巨大的高性能模型但伴随网络延迟，还是想要完全没有网络延迟但模型质量受损。\n\
+  \n服务器端推理方法简化了 NLP 模型部署的许多方面，但也提出了许多新的问题。让我们在下一节中讨论这些问题。\n\n## 何时使用托管服务，何时自行托管服务器端模型\n\
+  \n另一个对你如何管理 NLP 服务产生巨大影响的重要决策，归结为你是否选择托管服务还是决定自行托管。\n\n如果我们决定自行托管模型，这意味着我们将负责设置服务器基础设施，构建交付\
+  \ NLP 结果的端点软件，构建对模型进行推理的软件，在用户群增长时扩展系统，以及更多、更多。我们本质上将手动负责整个机器学习生命周期。\n\n\n\n相反地，托管或完全托管的服务是一种商业解决方案，可为其中大部分任务提供支持。完全托管的机器学习服务提供开箱即用的以下支持：\n\
+  \n- *受管基础设施：* 在部署 NLP 服务时，最终模型很可能存放在数据中心某处的特定机器上。为了让我们的用户使用我们的服务，他们需要通过域名或 IP 地址访问这台机器的方式。要搭建自助式\
+  \ NLP 服务，需要部署基础设施以确保正确的请求到达正确的服务器，从而将结果返回给用户。所有这些决策在托管服务中都已为我们处理好。\n- *托管端点：* 从工程角度来看，机器学习模型是一个二进制文件，可以加载到内存中，并通过机器学习库执行推理。然而，由于我们采用的是服务端推理方法，这意味着如果用户需要从\
+  \ NLP 模型获得预测，他们需要通过互联网发送请求。该请求需要到达服务，服务需要解释请求并以适当的结果作出响应。因此，客户端和服务之间需要达成一致的通信方式。一种流行的解决方案是使用名为\
+  \ **REST** 的通信协议，它允许通过使用 **HTTP** 或 **HTTPS** 协议的 **REST API** 进行通信。但机器学习端点不仅仅负责客户端-服务器通信、解析请求、执行推理并将结果返回给用户。它们还有许多其他职责。它们需要返回适当的错误消息，如果出现问题（例如输入文本超过长度限制）。如果用户没有访问权限，它们需要返回适当的错误消息。它们需要能够同时处理大量请求并适当排队。它们需要执行诸如缓存之类的优化任务。\n\
+  \n在构建生产级 NLP 服务时，你需要考虑这些问题并自行实施解决方案。托管服务会处理所有这些问题。\n\n但值得一提的是，托管服务只能做到一定程度。虽然自托管很麻烦，但它允许你实现任何想要的功能并添加任何你能想到的特性。使用托管服务时，你仅限于使用服务提供的功能。\n\
+  \n- *扩展：* 完全托管 ML 服务的最大卖点之一是可扩展性的承诺。它解决了自托管最大的问题之一，即陷入不可扩展的基础设施。例如，假设你在单台虚拟机上实现了一个简单的\
+  \ ML 端点。该解决方案易于实现，并且对少数日常用户效果很好。但当你开始获得更多用户时，服务开始返回延迟结果，过多的流量迟早会导致服务拒绝。应用程序然后需要被修改以能够处理中等数量的日常用户。到该解决方案实施时，你将因服务不可用而失去大量客户。当能够处理中等流量量的解决方案实施后，你可能会意识到用户数量增长过快，整个解决方案需要再次重新实现以使其具备高流量处理能力。\n\
+  \n完全托管的 ML 服务声称可以解决所有这些问题。它们宣传其服务默认可扩展。这意味着如果你的服务对 1 个日常用户效果很好，理论上对 100 万个日常用户也应同样有效。这使你能够将时间和资源花费在更有用的工作上。\n\
+  - *部署模型和版本控制：* 大多数完全托管的 ML 服务都附带一套用于部署 ML 模型的工具和功能。在某些情况下，使用它们就像上传 ML 模型二进制文件并点击\
+  \ **deploy** 一样简单。\n- *监控：* 如果你决定自托管，你不可避免地还需要构建或设置监控工具。这些工具提供有关有多少用户使用该服务的洞察，并帮助你决定是否应该扩展。几乎所有托管服务都开箱即用提供此功能。\n\
+  - *Freemium 定价计划和低设置成本：* 大多数完全托管的 ML 服务具有接近零的设置成本，并且采用按需付费的定价计划。此外，一些服务提供 Freemium\
+  \ 服务，其中前 *N* 个每日/每月请求是免费的。与自托管相比，这些服务的定价通常具有竞争力且价格实惠。只有当公司发展到相当大的规模（例如成为大型企业）时，完全托管服务才会变得比雇佣专门负责自托管的团队更不经济。\n\
+  \n## 重要说明\n\n完全托管的 ML 服务还提供完整的 ML 生命周期工具，其中包括数据标注、数据预处理、模型训练、部署和验证。这些功能在设计上在它们能做什么方面有限，并且通常仅支持有限的\
+  \ NLP 任务集，例如文本分类，但可能不适用于序列标注等任务或专门训练 Flair 模型。\n\n由于很少有流行的托管 ML 服务提供对 Flair 可以构建的所有类型模型整个\
+  \ ML 生命周期的支持，我们计划仅关注将你的 NLP 模型部署到生产所需的步骤。设置用于维护和模型更新的自动化管道所需的步骤将被省略，因为它们与一个更通用的领域相关，称为\
+  \ MLOps。\n\n前面的项目符号列表显示了许多明显有利于完全托管服务的要点。这就引出了一个问题，为什么不在每次都使用托管服务而不是自托管？\n\n对前面问题的一般回答是：如果可以，你应该这样做。然而，在某些情况下，自托管可能是一个更合理的选择。如果你符合以下情况，可以决定自托管：\n\
+  \n- 你想从低级工程角度了解如何设置 ML 服务。\n- 你拥有足够大的用户群，以至于使用托管 ML 服务变得不经济。\n- 你正在使用的 ML 库、框架或任务不受托管服务支持。\n\
+  \n除非你属于前面项目符号列表中描述的任何类别，否则你很可能最好直接使用完全托管的服务。\n\n有了这些，让我们来看看你可以用哪些服务来部署 Flair 模型。\n\
+  \n## Managed services for Flair models\n\n用于托管 ML 模型的托管服务通常是由大型科技云平台或提供 ML 即服务的专业\
+  \ ML 公司的商业解决方案提供的。\n\n然而，可以与 Flair 一起使用的服务列表不断变化，用于交互和管理这些服务的用户界面也是如此。这意味着一个专注于如何与特定托管\
+  \ ML 服务的 UI 或 API 交互的分步指南很可能在一年内就会过时。\n\n不过你并不无计可施！有一个例外。有一种特定的服务与 Flair 紧密集成，并且很可能在未来几年内得到支持。它被称为\
+  \ **Hugging Face Models Hub**。它是一个托管大量 ML 模型的存储库，同时还提供在网络浏览器中测试它们、查看如何训练它们的说明以及将其作为服务部署的工具。\n\
+  \n稍后，我们将看看如何训练、托管和使用作为 Hugging Face Accelerated Inference API 服务一部分部署的 Flair 模型。\n\
+  \n但在结束本节之前，让我们回顾一下本节中涵盖的所有建议、提示和技巧。\n\n## 模型部署决策流程图\n\n为了让 Flair 模型部署决策更容易，我们准备了一个流程图，帮助你决定将\
+  \ Flair 模型部署到生产环境的正确路径。\n\n根据你的业务需求、资源和抱负，你将有以下三种部署 Flair 模型的选项：\n\n- 客户端部署与本地推理\n\
+  - 完全托管的 ML 即服务解决方案\n- 自托管\n\n\n\n\n下面的流程图将使你更容易在前述三种方法之间做出选择：\n\n![](img/c56c48b8fd18a11ab705352d618ed976_162_0.png)\n\
+  \n图 9.1 – NLP 模型部署决策流程图\n\n根据你的具体情况，你最终会使用三种机器学习部署类型之一。请记住，所提出的决策过程纯粹基于良好的实践和主观建议。每个人的情况都不同，你应始终使用自己的或其他专家的判断。\n\
+  \n无论你选择哪种机器学习部署路线，了解每种可能选项至少达到一定程度都是很有用的。\n\n让我们在以下动手练习中探索自助式服务和使用托管机器学习解决方案。\n\n\
+  ## 自助式 Flair 模型\n\n无论你决定自助服务还是使用完全托管的服务，对 NLP 模型部署推理在生产环境中如何工作有基本的了解始终是有用的。\n\n\
+  由于在生产环境中部署 NLP 模型更像是一项软件工程壮举而非 NLP 挑战，因此通用的软件工程规则适用——其中最主要的一条是，*不要重复造轮子。*\n\n虽然自行实现\
+  \ NLP 模型服务框架完全可行，但这样做需要大量的时间。很可能即使你竭尽全力实现一个解决方案，也无法构建出比由数百名不同贡献者打造的现有开源解决方案更好的产品。\n\
+  \n用于自助式 NLP 模型的工具和包种类繁多，但有一个特定包因其对 **PyTorch** 包的支持（Flair 建立在 PyTorch 之上）以及对 Hugging\
+  \ Face 模型的支持而脱颖而出。该包名为 **TorchServe。**\n\n## 使用 TorchServe 自助式服务 Flair 模型\n\nPyTorch\
+  \ 是一个流行的开源机器学习框架。Flair 本身是一个 NLP 框架，建立在 PyTorch 之上，并利用其工具来设计、训练和存储神经模型。\n\n由于 Flair\
+  \ 模型本质上是 PyTorch 模型，像 TorchServe 这样的工具似乎非常契合。让我们通过查看其设计图来了解 TorchServe 的工作原理：\n\n\
+  ![](img/c56c48b8fd18a11ab705352d618ed976_163_0.png)\n\n单台物理或虚拟机\n\n图 9.2 – TorchServe\
+  \ 设计\n\n前述设计示意图展示了 TorchServe 框架的各个部分，如其官方文档 https://github.com/pytorch/serve 中所述。\n\
+  \n让我们来看一下主要组件：\n\n- **前端：**负责处理请求的组件。它接收用户的请求作为输入，对其进行解析，并将其传递给后端，后端返回模型输出，然后对输出进行处理、格式化并发送回用户。\n\
+  - **推理端点：**前端的特定部分，可通过特定地址访问，负责处理请求并返回结果。\n- **推理 API：**允许并定义客户端与前端之间通信的 API。\n\
+  - **模型存储：**包含模型的目录。\n- **后端：**一个线程组件，包含负责执行推理的模型处理器。\n- **管理 API：**一个专用 API，面向应用程序所有者，允许我们配置服务。\n\
+  \n使用 TorchServe 服务一次的事件流程如下。客户端首先使用推理 API 向前端发送请求。请求包含一个负载，其中包含将提供给 NLP 模型的输入。如果框架太忙而无法处理请求，则请求会被批处理（排队）。如果不忙，则请求会被传递到端点，在那里进行解析，并将负载传递给模型处理器。模型处理器对加载的\
+  \ NLP 模型执行推理并将输出返回给端点。端点准备并格式化输出（通常使用 JSON 格式）并将其返回给用户。\n\n前述对 TorchServe 设计的介绍提供了其工作原理以及如何用于服务\
+  \ NLP 模型的高层次概述。TorchServe 的设置和安装过程可能非常依赖平台，并非几行代码就能轻松涵盖的内容。设置 TorchServe 的整个过程在\
+  \ GitHub 上的官方文档中得到了精彩的描述。\n\n但不要因为本书不会深入介绍 TorchServe 而感到沮丧。在接下来的部分中，我们将实现我们自己的用于服务\
+  \ Flair 模型的概念验证工具。\n\n## Flair 的概念验证自助服务工具\n\n实现一个可靠、可扩展、安全且生产级的 NLP 自助服务工具是一个复杂的过程，需要数周甚至数月的精心思考和准备。在大多数情况下，与其自己实现解决方案，使用现有的开源工具如\
+  \ TorchServe 会更好。\n\n但有时，我们只是想构建一个概念验证。这是一个简单的工具，展示我们的模型能做什么，并使服务至少可供少数用户/客户使用。\n\
+  \n为了了解这一点，让我们构建一个简单的服务，使用 Flair 的最先进的英语命名实体识别（NER）标注器执行命名实体识别。\n\n该解决方案可按照以下步骤实现：\n\
+  \n- 1. 安装所需的库\n- 2. 定义序列标注函数\n- 3. 定义端点\n- 4. 启动服务\n\n让我们逐步实现该解决方案。\n\n## 安装所需库\n\
+  \n除了 Flair 之外，这个概念验证工具还需要一个额外的库，该库不是 Python 标准库的一部分预装的；它也不是 Flair 的传递依赖（必需库的要求）。该库称为\
+  \ Flask。它是一个轻量级的 Python 框架，用于设置端点，是一个完美的原型工具。\n\n我们将通过运行以下命令安装版本 2.0.3：\n\n```\n\
+  pip install flask==2.0.3\n```\n\n这将安装 Flask 2.0.3 版本，确保你的代码行为一致。\n\n## 定义序列标注函数\n\
+  \n接下来，我们需要定义一个函数，对某些输入文本执行命名实体识别。我们将使用 Flair 默认的最先进的 NER 标注模型，该模型使用 ner 模型键：\n\n\
+  ```\nfrom flair.data import Sentence\nfrom flair.models import SequenceTagger\n\n\
+  tagger = SequenceTagger.load('ner')\n\ndef tag_text(input_text):\n    sentence =\
+  \ Sentence(input_text)\n    tagger.predict(sentence)\n\n    return sentence.to_tagged_string()\n\
+  ```\n\n在前面的代码片段中，我们使用本书中多次使用的标准序列标注语法定义了 tag_text(input_text) 函数。该函数接收文本作为输入并返回标注后的文本作为输出。例如，对于输入文本\
+  \ in New York，它将返回输入字符串的标注版本 – \"in New York\" → [\"New York\"/LOC]。\n\n前面的代码围绕我们如何定义\
+  \ tagger 对象展开。它在标注函数外部全局定义，确保模型只加载一次，可用于任意数量的请求。请注意，这种方法会导致生产级解决方案出现问题，其中多个进程尝试使用同一个\
+  \ Flair 模型对象。\n\n我们现在准备定义我们的端点。\n\n## 定义端点\n\n该端点负责在特定地址可用以接收请求，解析请求，将其传递给 tag_text()\
+  \ 函数，准备结果并将其传回用户：\n\n```python\nfrom flask import Flask, jsonify, request\n\napp\
+  \ = Flask(__name__)\napp.config['JSON_AS_ASCII'] = False\n\n@app.route('/ner-service')\n\
+  def query_example():\n    text = request.args.get('input', '')\n\n    tagged_text\
+  \ = tag_text(text).replace('\"', '\\'')\n\n    return jsonify({\"result\": tagged_text})\n\
+  ```\n\n前面的代码片段首先定义了 Web 服务的 app 对象。下面的函数是 Web 端点的定义。我们通过在函数定义前加上 @app.route('/ner-service')\
+  \ 装饰器来定义端点。这确保端点可在 /ner-service 地址访问。\n\n\n\n我们然后直接从 URL 中获取输入文本，作为 `input` 查询字符串参数的一部分。这意味着如果用户向\
+  \ `/ner-service?input=in+New+York` 发送 GET 请求，`text` 变量的值将是 *in New York*。\n\n> **重要提示**\n\
+  > 使用 GET 查询字符串参数作为接收客户端文本输入的方式几乎总是一个坏主意。我们在此代码示例中使用 GET 是因为仅使用 Web 浏览器进行调试很容易。对于生产级服务，您应该改用\
+  \ POST。\n\n该端点将输入文本传递给我们的 `tag_text()` 函数并以 **JSON** 格式返回结果，这使得结果既可被软件轻松解析，也可被人类阅读。\n\
+  \n就这样！现在，我们只需要启动服务。\n\n## 启动服务\n\n然后可以通过运行以下命令启动服务：\n\n```\napp.run(debug=False,\
+  \ port=9002)\n```\n\n该代码将使用端口 `9002` 启动一个 Web 服务，并将在 `/ner-service` 地址注册一个先前定义的端点。请注意，前述命令将一直运行，直到我们的\
+  \ Web 服务崩溃为止。如果您需要停止服务，只需终止代码片段的执行即可。\n\n现在我们可以通过将浏览器指向我们自己的机器的本地 IP 地址 `127.0.0.1`\
+  \ 来测试我们出色的 NER 标注 Web 服务。\n\n让我们首先在不提供任何输入文本的情况下访问我们的端点，将 Web 浏览器指向 `http://127.0.0.1:9002/ner-service`。\n\
+  \n我们的服务返回以下内容：\n\n```\n{\"result\":\"\"}\n```\n\n这表明返回的标注文本为空字符串。鉴于未提供输入，这是有意义的。现在，让我们使用一些实际输入进行测试，访问\
+  \ `http://127.0.0.1:9002/ner-service?input=Never+been+to+Lima`。\n\n我们期望前述请求的响应是一个字符串，其中单词\
+  \ Lima 被标记为地点。让我们看看：\n\n```\n{\"result\":\"Sentence: 'Never been to Lima' → ['Lima'/LOC]\"\
+  }\n```\n\n耶！看起来我们的 NER 标注服务按预期工作。您现在可以在 Web 服务器上启动此服务，或将您自己的开发机器的 IP 地址公开——从而使服务面向全世界可用。\n\
+  \n但在这样做之前，请记住，我们的概念验证解决方案有一长串缺点和问题，如果服务用于商业用途，这些问题将会出现。缺点包括：没有输入清理、没有请求授权、没有缓存、没有多线程可用性或线程安全、输出难以解析、没有日志或监控……等等。这清楚地表明此类代码只能用于原型设计。对于生产级代码，使用开箱即用的解决方案（如\
+  \ TorchServe）几乎总是有意义的。\n\n更好的办法是，您可以完全避免编写代码——通过使用托管服务。让我们在下一节学习如何做到这一点。\n\n## 使用托管服务部署和使用\
+  \ Flair 模型\n\n与自托管不同，自托管需要手动处理机器学习生命周期的大多数方面，而托管和完全托管的机器学习服务则推销完整的开箱即用机器学习即服务解决方案的理念。\n\
+  \n这些服务大多数提供关于服务可用性（服务保证正常工作的百分比）和可扩展性（无需每次用户群增长时都重构整个基础设施即可扩展的能力）的保证。一些服务还提供称为机器学习模型运营化（MLOps）管理的整个机器学习生命周期的管理。但一些托管服务可能难以提供对\
+  \ Flair 能够解决的所有功能和任务的支持。这适用于几乎所有流行的机器学习即服务解决方案，只有一个例外——Hugging Face Models Hub。\n\
+  \n## Hugging Face 模型库\n\nHugging Face 是一家以自然语言处理为导向的公司，拥有庞大的开源社区。该公司在发布其 transformers\
+  \ 库后变得广受欢迎（更多信息可参见 https://huggingface.co/）。他们还提供 Hugging Face Models Hub，这是一个 NLP\
+  \ 模型和数据集的集合，其中大多数是公开的，意味着它们可以免费下载供任何人使用。此外，托管在 Hugging Face Models Hub 上的模型可以使用\
+  \ Accelerated Inference API。这是一项具有 Freemium 定价计划的托管 NLP 服务。该服务起初是免费的，只有当更多用户开始使用时才会开始收费。模型还可以在浏览器中使用浏览器小部件进行测试，这允许您在浏览器内输入文本并观察模型行为。\n\
+  \n最好的是，Hugging Face Models Hub 完全支持 flair 模型。一旦您将模型上传到 Hugging Face Models Hub，模型将为：\n\
+  \n- 可通过 Accelerated Inference API 作为 NLP 服务使用\n- 可作为 Flair 中的预训练模型使用\n\n让我们作为一次动手练习的一部分学习如何同时做到这两点，该练习包括以下内容：\n\
+  \n- 1. 训练一个模拟 Flair 模型\n- 2. 将模拟模型上传到 Hugging Face Models Hub\n- 3. 将模型作为 Accelerated\
+  \ Inference API 的一部分使用\n- 4. 在 Flair 中使用公共模型\n\n立即开始吧。\n\n## 训练模拟 Flair 模型\n\n专注于部署和托管模型的练习首先需要一个实际模型。因为本次练习的目标是学习部署\
+  \ Flair 模型，模型的实际质量并不重要。事实上，如果我们有一个极小的模型会更好，因为这会显著减少模型上传时间并让我们更快地完成本次练习。\n\n因此，让我们训练\
+  \ Flair 中可以产生的最小序列标注模型。该模型在标注文本方面会很糟糕，但对于本次练习来说这并不重要。\n\n首先，让我们加载一个语料库并显著对其进行下采样以减少训练时间：\n\
+  \n```python\nfrom flair.datasets import UD_ENGLISH\n\ncorpus = UD_ENGLISH().downsample(0.001)\n\
+  \nlbl_type = 'upos'\nlabel_dict = corpus.make_label_dictionary(label_type=lbl_type)\n\
+  ```\n\n然后，让我们选择我们的嵌入。我们将选择 CharacterEmbeddings。它在正确标注文本方面会很糟糕，但它会产生一个微小的模型，而这正是本次练习中我们真正关心的：\n\
+  \n```python\nfrom flair.embeddings import CharacterEmbeddings\n\n### 使用轻量级嵌入以获得一个微小但无用的模型\n\
+  embedding = CharacterEmbeddings()\n```\n\n然后，我们将以最快的方式定义并训练我们的序列标注模型——仅一个 epoch——以得到一个具有一维隐藏大小的微小序列标注器：\n\
+  \n```python\nimport shutil\nfrom flair.models import SequenceTagger\nfrom flair.trainers\
+  \ import ModelTrainer\n\n### 使用一维隐藏大小以生成微小模型\ntagger = SequenceTagger(embeddings=embedding,\n\
+  \                        tag_dictionary=label_dict,\n                        tag_type=lbl_type,\n\
+  \                        hidden_size=1)\n\ntrainer = ModelTrainer(tagger, corpus)\n\
+  \n### 仅训练一个 epoch，因为此处质量无关紧要\ntrainer.train('tiny_model', max_epochs=1)\nshutil.copy2('tiny_model/final-model.pt',\n\
+  \             'tiny_model/pytorch_model.bin')\n```\n\n前述代码将输出一个大约 100 KB 大小且标注文本很糟糕的微小序列标注模型——正好适合我们的练习。模型将以\
+  \ `final-model.pt` 的名称保存在相对于运行此代码位置的 `tiny_model` 目录中。因为模型稍后将被上传到 Hugging Face Models\
+  \ Hub，在那里它需要命名为 `pytorch_model.bin`，因此前述代码片段还创建了 `final-model.pt` 文件的副本，命名为 `pytorch_model.bin`。\n\
+  \n现在我们有了模型。是时候将其上传到 Hugging Face Models Hub 了。\n\n## 将模型上传到 Hugging Face Models\
+  \ Hub\n\n将模型上传到 Hugging Face Models Hub 的详细说明可在官方文档 https://huggingface.co/docs/hub/adding-a-model\
+  \ 中找到。\n\n有三种方法可以将模型上传到 Hugging Face Models Hub：\n\n- 使用 `huggingface-cli` 命令行界面工具\n\
+  - 使用 `huggingface_hub` Python 库\n- 使用 Hugging Face Web 界面\n\n为了保持一致性并由于其易用性，我们将介绍使用\
+  \ Web 界面的过程。\n\n## 注册 Hugging Face\n\n要为 Hugging Face Models Hub 做出贡献，您首先需要一个账户。只需作为常规注册流程的一部分进行注册即可。\n\
+  \n在填写一个特定的表单项时请格外小心——您的用户名。用户名极其重要，因为它将定义模型通过 Accelerated Inference API 可用的地址，以及在\
+  \ Flair 中使用此模型的公共版本时的模型键。\n\n我们将选择一个随机用户名 `flairbook`，但请记住您的用户名需要是唯一的。\n\n完成注册流程后，请务必使用发送到您电子邮件地址的链接验证电子邮件地址。\n\
+  \n## 创建新的模型仓库\n\n注册并验证电子邮件地址后，访问 Hugging Face 主页并点击 **New > Model**。\n\n\n\nA Hugging\
+  \ Face model repository is a store of all binary files, documentation, metadata,\
+  \ license files, and any other files relating to a certain model. It uses **Git**\
+  \ and **Git Large File Storage (LFS)** to store the files. You can use it just like\
+  \ using any other Git software repository.\n\nWe'll create a new model repository\
+  \ and give it a random name, `flairmodel`. The user interface shows the model will\
+  \ be available via the `<username>/<reponame>` format, which in our case is `flairbook/flairmodel`.\n\
+  \nMake sure to mark the model as public.\n\n## 上传相关模型文件\n\nAfter creating the repository,\
+  \ we will be redirected to the model home page. From the home page, we have the\
+  \ option to clone the repository to our local filesystem or to edit and upload the\
+  \ repository files through the web user interface. As part of this exercise, we'll\
+  \ be using the browser interface to upload files. But keep in mind that for a large\
+  \ model, using Git is highly recommended. We'll need to upload two files:\n\n- 名称为\
+  \ `pytorch_model.bin` 的模型二进制文件\n- 名称为 `README.md` 的模型卡片\n\nThe model binary is our\
+  \ trained model and is stored at `tiny_model/pytorch_model.bin`. We will need to\
+  \ upload this file to the `root` of our Hugging Face repository. Using the web interface,\
+  \ this can be done by clicking the **Files and versions** tab and then clicking\
+  \ **Add file > upload file** to navigate to a form, where you can drag and drop\
+  \ the model binary. After dragging and dropping the file, click **Commit changes**,\
+  \ which will do the same as adding and pushing this file through Git.\n\nThe model\
+  \ card can now also be added by clicking on the **Model card** tab and clicking\
+  \ **Create model card**. This file is a model description file that contains metadata\
+  \ (information that tells Hugging Face about what type of model this is) and description\
+  \ (information that tells humans about what type of model this is).\n\nLet's create\
+  \ a model card with the following content:\n\n```\n---\ntags:\n- flair\n- token-classification\n\
+  widget:\n- text: \"does this work\"\n---\n## 测试模型 README\nSome test README description\n\
+  ```\n\nThe top part of the preceding snippet, wrapped in the --- symbols, contains\
+  \ metadata that tells Hugging Face that this is a sequence tagging model trained\
+  \ by Flair. It also defines some default placeholder text for the browser widget.\
+  \ The bottom part of the snippet simply defines the part of the snippet visible\
+  \ to humans and acts as a description.\n\nMake sure to click **Commit new file**,\
+  \ which will save the model card as README.md and make the description visible on\
+  \ the **Model card** tab.\n\nWe're now ready to test our model.\n\n## 将模型作为 Accelerated\
+  \ Inference API 的一部分使用\n\nAt this point, your Hugging Face model repository should\
+  \ contain these two files:\n\n- `pytorch_model.bin`\n- `README.md`\n\nThe latter\
+  \ will tell Hugging Face that we're dealing with a sequence tagging model trained\
+  \ by Flair, and the former is the actual model binary that the hub will use.\n\n\
+  If we did everything right, the model will, by default, be available on the Accelerated\
+  \ Inference API. Best of all, it can be tested using the browser widget with no\
+  \ code required.\n\nIf you navigate to the **Model card** tab, you will see the\
+  \ widget on the right-hand side, where you can input some random text. Click **Compute**\
+  \ to perform inference and produce some results, as shown in the following screenshot:\n\
+  \n![](img/c56c48b8fd18a11ab705352d618ed976_173_0.png)\n\nFigure 9.3 – The Hugging\
+  \ Face Models Hub widget producing test results\n\nA working widget returning some\
+  \ tagged text will indicate that we did everything correctly so far. We can now\
+  \ use the same model as part of the Accelerated Inference API through code.\n\n\
+  > **重要说明**\n> When using the widget immediately after uploading the model, the widget\
+  \ may come back with an error message saying, `Pipeline is not defined for model\
+  \ flairbook/flairmodel`. If this happens, simply wait about 10 minutes and try again.\n\
+  \nTo use the API, we'll first need to create a token. This token is our means of\
+  \ telling Hugging Face who we are so that they can track how many requests we've\
+  \ made so far and bill us accordingly. The token can be generated by going to the\
+  \ user profile page on Hugging Face and clicking Edit profile and Access Tokens.\
+  \ We then generate a new token with a random name and read access. When the token\
+  \ is generated, it's important to copy it to a clipboard or store it somewhere safe.\n\
+  \nWe're now ready to use the Accelerated Inference API. Let's run some code that\
+  \ uses our newly created Flair sequence tagging service:\n\n```python\nimport requests\n\
+  \nAPI_URL = \"https://api-inference.huggingface.co/models/flairbook/flairmodel\"\
+  \nh = {\"Authorization\": \"Bearer <TOKEN>\"}\n\ndef query(payload):\n    response\
+  \ = requests.post(API_URL, headers=h, json=payload)\n    return response.json()\n\
+  \nprint(query({\"inputs\": \"abc def\"}))\n```\n\nIn the preceding code snippet,\
+  \ make sure to replace <TOKEN> with the Hugging Face token you just recently generated,\
+  \ flairbook with your Hugging Face username, and flairmodel with your model repository\
+  \ name.\n\n> **重要说明**\n> Just like with the widget, you may see an error when using\
+  \ the Accelerated Inference API immediately after uploading the model. The API may\
+  \ come back with an error message saying, `the model is currently loading.` If this\
+  \ happens, make sure to wait and try again in a few minutes.\n\nThe code snippet\
+  \ will send input text abc def to the API and receive tagged text formatted as a\
+  \ Python dictionary. The output will be different for each model trained and will\
+  \ look similar to the following:\n\n```\n[{'entity_group': 'PRON', 'word': 'abc',\
+  \ 'start': 0, 'end': 3, 'score': 0.24}, {'entity_group': 'ADP', 'word': 'def', 'start':\
+  \ 4, 'end': 7, 'score': 0.13}]\n```\n\nThe output indicates that the first token\
+  \ was tagged as PRON and the second as ADP.\n\nOur API appears to work! We now have\
+  \ an allowance of a certain number of free requests that we can use for development\
+  \ or even in production on a very small user base. As the number of requests grow,\
+  \ we'll need to update to a paid plan – but our code won't need to change one bit!\n\
+  \nOur API is now live and available for public use as part of the Accelerated Inference\
+  \ API. But uploading a public Flair model to Hugging Face doesn't only achieve that.\
+  \ There is another great benefit from uploading the model to the Hugging Face Models\
+  \ Hub – the ability to use the model in Flair from anywhere.\n\n## 在 Flair 中使用公共的\
+  \ Hugging Face Models Hub 模型\n\nWhen we successfully upload a Flair model – for\
+  \ example, a sequence tagger – to the Hugging Face Models Hub, the model not only\
+  \ becomes available as part of the Accelerated Inference API, it also becomes available\
+  \ for public use from within Flair. Anyone can now use our model in Flair by simply\
+  \ referring to it using the right key.\n\nThe key used for loading Hugging Face\
+  \ Models Hub models in Flair uses the <username>/<reponame> format, where username\
+  \ is our Hugging Face username and reponame is the name of our model repository.\
+  \ In our case, this results in flairbook/flairmodel.\n\nIt means that anyone can\
+  \ use our sequence tagger in Flair by loading it the same way any other pre-trained\
+  \ model is loaded:\n\n```\nfrom flair.data import Sentence\nfrom flair.models import\
+  \ SequenceTagger\n\ntagger = SequenceTagger.load('flairbook/flairmodel')\n\nsentence\
+  \ = Sentence('abc')\ntagger.predict(sentence)\n\nprint(sentence.to_tagged_string())\n\
+  ```\n\nMake sure to replace flairbook with your Hugging Face username and flairmodel\
+  \ with your model repository name when running the preceding code snippet. It will\
+  \ download our public model from Hugging Face and use it to perform sequence tagging\
+  \ on the abc input. It will print out something similar to the following:\n\n```\n\
+  Sentence: \"abc\" → [\"abc\"/NUM]\n```\n\nThis indicates that our sequence tagger\
+  \ works even as a publicly hosted model. Anyone can use it now – either as a fully\
+  \ managed NLP service or as a hosted pre-trained model. Do note that because we\
+  \ trained a mock model that isn't supposed to generate any meaningful results, the\
+  \ generated predictions will be different for each trained model.\n\nIt's now clear\
+  \ that hosting and deploying NLP services and models on platforms that are well\
+  \ integrated, such as the Hugging Face Models Hub, is truly as easy as advertised.\n\
+  \n## 摘要\n\nThroughout this book, we have covered several concepts, features, and\
+  \ ways of using Flair to solve NLP problems. We started with the base types and\
+  \ used the pre-trained Flair models. We explained the idea of sequence tagging and\
+  \ embeddings, including their role in the downstream NLP tasks. We learned how to\
+  \ train our own sequence tagging models and even train our own embeddings. We now\
+  \ know how to train models using the optimal training parameters by utilizing the\
+  \ Flair hyperparameter optimization tools. We also learned about text classifiers,\
+  \ including the few-shot and zero-shot Task-Aware Sentences (TARS) classifier, which\
+  \ delivers excellent performance, utilizing only a few training examples.\n\nFinally,\
+  \ in this chapter, we learned about ways of deploying Flair models to production.\
+  \ We now not only know how to use Flair to build NLP models, but also how to make\
+  \ them widely available by deploying them to production.\n\nIn the upcoming chapter,\
+  \ we plan to combine all the knowledge and skills learned throughout this book and\
+  \ solve a real-world NLP problem with Flair through a hands-on exercise.\n\n\n\n"
+- "## 10 动手练习 – 使用 Flair 构建交易机器人\n\n在本章中，我们将通过一个动手编程练习，利用 Flair 的多个预训练模型来构建一个实际应用。我们将构建一个简单的交易机器人，它使用\
+  \ Flair 的命名实体识别（NER）和情感分析工具来做出交易决策。该交易策略包括将当天的新闻标题作为输入，并使用 NER 来判断新闻文章是否在讨论我们感兴趣的公司。然后我们将运行情感分析，帮助我们决定是否持有、买入或卖出该公司的股票。\n\
+  \n在第一部分，我们将通过解释基于新闻情感的交易方法的动机来介绍我们的交易策略的细节。然后，我们将使用 Flair 实现一个交易机器人。我们计划用一份 Flair\
+  \ 编程速查表收尾，其中包含 Flair 中最常用的类列表。我们将在以下部分涵盖所有这些内容：\n\n-   了解交易策略\n-   实现 Flair 交易机器人\n\
+  -   Flair 编程速查表\n\n但在直接深入交易机器人的细节之前，让我们确保所有技术要求都已得到满足。\n\n## 技术要求\n\n本章使用的所有 Python\
+  \ 库都是 Flair 0.11 版本的直接依赖项，前提是 Flair 已安装在您的机器上，无需特殊设置。本章涵盖的代码示例可在本书官方 GitHub 仓库的以下\
+  \ Jupyter 笔记本中找到：https://github.com/PacktPublishing/Natural-Language-Processing-with-Flair/tree/main/Chapter10.\n\
+  \n## 了解交易策略\n\n对于本次动手练习，我们将实现一种有趣的交易策略，该策略利用了 Flair NLP 框架的多个部分。该策略绝不是最佳、最优的交易策略，也不是保证让你致富的策略。然而，它确实清晰地展示了\
+  \ Flair 如何轻松解决现实世界问题。\n\n该策略将帮助我们做出股票交易决策。人们可以根据许多信息来源做出交易决策。一种特别有趣的交易策略类型利用 NLP\
+  \ 处理最新的新闻内容。这些交易策略的基本假设是，讨论某家公司的新闻文章包含有关可能影响公司股价事件的重要信息。与人类相比，自动化的 NLP 策略在投资方面具有诸多优势。这些优势主要归结于机器能够完成的交易速度和规模。一个好的\
+  \ NLP 交易机器人可以在人类所需时间的一小部分内分析数千字的文本并做出交易决策。\n\n然而，典型的 NLP 交易机器人在词义消歧问题上存在困难。人类历史上擅长利用上下文解读模糊的词义。但\
+  \ NLP 的最新进展，例如 Flair 在下游 NLP 任务中使用的上下文字符串嵌入，使机器更进一步。例如，考虑以下陈述：*亚马逊森林砍伐由贪婪助长。*\n\n\
+  前面的新闻标题对人类来说，显然是在谈论亚马逊雨林以及它如何受到森林砍伐的影响。然而，对一个天真的 NLP 交易机器人来说，这很容易听起来像是一篇讨论亚马逊科技公司的文章。当我们尝试交易以真实实体或物体命名的公司时，例如\
+  \ Apple、Tesla、Visa 和 Shell，我们会遇到相同类型的问题。因此，一个好的交易机器人应该能够利用上下文来弄清一个词的真正含义，以确定新闻文章是否在谈论某家特定公司。基于上下文字符串嵌入的\
+  \ Flair 上下文感知 NER 标注器将帮助我们做到这一点。\n\n我们的 Flair 股票交易策略遵循以下步骤序列：\n\n-   1. 查找可能包含有助于我们做出交易决策的有用信息的新闻文章。\n\
+  -   2. 对新闻文章标题使用 Flair 的 NER 来确定新闻文章是否在谈论我们感兴趣的公司。\n-   3. 执行情感分析以确定新闻文章的情感。\n-\
+  \   4. 如果情感分析结果为正面，则买入股票。如果结果为负面，则卖出。\n-   5. 返回 *步骤 1*。\n\n该策略最好用流程图来说明：\n\n![](img/c56c48b8fd18a11ab705352d618ed976_179_0.png)\n\
+  \n图 10.1 – Flair 交易机器人策略流程图\n\n前面的流程图显示了我们的交易策略在原则上是多么简单。而且由于我们计划使用 Flair 来实现它，它肯定会如此。\n\
+  \n让我们在下一节学习如何实现该策略。\n\n## 实现 Flair 交易机器人\n\n交易策略由三个主要逻辑独立的组件组成：\n\n-   新闻文章获取组件\n\
+  -   NER 组件\n-   情感分析组件\n\n第一个组件，即新闻获取，是非常特定于领域的代码。所使用的数据源很大程度上取决于我们感兴趣交易的公司类型。没有通用的新闻来源适用于所有股票。因此，我们计划将新闻获取部分移出我们的策略，并设计成新闻文本仅作为输入提供给我们的机器人。\n\
+  \n我们的交易策略组件经常会访问相同的共享变量，例如我们感兴趣的公司名称。因此，使用面向对象的设计并将我们的策略作为 Python 类的一部分来实现是有意义的。我们将我们的交易策略类命名为\
+  \ FlairTrader。类的构造函数方法将接收公司名称（我们想要交易的公司名称）并将其存储在内存中，同时存储一个 NER 标注器对象和一个情感分析分类器对象，后者将分别由命名实体识别和情感分析组件后续使用：\n\
+  \n```python\nfrom flair.data import Sentence\nfrom flair.models import SequenceTagger\n\
+  from flair.models import TextClassifier\n\nclass FlairTrader:\n    def __init__(self,\
+  \ company_name):\n        self.company_name = company_name\n        self.tagger\
+  \ = SequenceTagger.load('ner')\n        self.classifier = TextClassifier.load('en-sentiment')\n\
+  ```\n\n在前面的代码片段中，我们简单地定义了 FlairTrader 类及其构造函数（在类实例化时被调用的一种方法）__init__。然后我们设置了三个类属性——名为\
+  \ company_name 的公司名称变量、名为 tagger 的 Flair 默认英语 NER 标注器对象，以及名为 classifier 的 Flair\
+  \ 英语情感分析分类器对象。\n\nFlair 目前仅支持英语情感分析模型。对于英语以外的语言，您需要使用 Hugging Face 等提供更广泛语言支持的其他\
+  \ NLP 库。然而，Flair 确实支持多种语言的各种 NER 标注器。例如，您可以在前面的代码片段中将 ner 替换为 fr-ner 以使用法语 NER 标注。\n\
+  \n现在是实现命名实体识别组件的时候了。它的唯一目的是，给定一些输入文本，确定该文本是否与我们想要投资的公司相关。它将通过查找名为 ORG 的命名实体标签来实现这一目标，该标签表示我们公司名称所使用的上下文指的是一个组织——即我们实际的公司。在相反的场景中，例如，当\
+  \ Amazon 指的是亚马逊雨林而不是公司时，标签将为 LOC——表示位置：\n\n```python\ndef _references_company(self,\
+  \ text):\n    sentence = Sentence(text)\n    self.tagger.predict(sentence)\n\n \
+  \   for entity in sentence.get_spans('ner'):\n        if (entity.get_label('ner').value\
+  \ == \"ORG\" and\n            entity.text == self.company_name):\n            return\
+  \ True\n\n    return False\n```\n\n前面的代码片段以新闻文章标题或文本作为输入，并使用 Flair 的默认英语 NER 标注器对其进行标注。然后它查找与我们的\
+  \ company_name 匹配的词元，并检查是否有任何词元被标记为 ORG。如果是，该方法返回 True，表示文本确实引用了我们的公司。如果不是，该方法返回\
+  \ False。\n\n请注意，方法名称前面加上了 __。这在 Python 中通常用于私有类方法，这些方法仅由同一类的其他方法使用，而不打算从类外部直接调用。\n\
+  \n> **重要说明**\n> 前面的代码片段是一个类方法，这意味着代码不应作为独立代码片段——它属于 FlairTrader 类定义内部。这也是整个代码块缩进四个字符的原因。\n\
+  \n\n\n我们现在可以测试命名实体识别组件的性能如何：\n\n-   我们首先需要实例化 FlairTrader 对象。我们将使用 amazon 作为我们想要投资的公司名称进行测试。这仅仅是因为\
+  \ Amazon 可能与亚马逊雨林或亚马逊河等地理位置混淆。我们可以通过运行以下代码来定义 FlairTrader 对象：\n\n```python\nft =\
+  \ FlairTrader(\"amazon\")\n```\n\n-   这现在允许我们通过运行以下内容来测试 NER 组件：\n\n```python\n\
+  print(ft._references_company(\"amazon river is deadly\"))\n```\n\n前面的代码块打印出 False。理所当然，它表明在给定上下文中，单词\
+  \ amazon 与亚马逊公司无关。让我们再试一个例子：\n\n```python\nprint(ft._references_company(\"amazon\
+  \ is underpaying staff\"))\n```\n\n前面的代码块打印出 True。Flair 正确地判断出前一句确实与亚马逊公司相关。再试一个：\n\
+  \n```python\nprint(ft._references_company(\"amazon deforestation is bad\"))\n```\n\
+  \n这个前面的代码块不出所料打印出 False。\n\n在前面的代码中，我们可以清楚地看到，我们的命名实体识别组件在区分引用亚马逊河或亚马逊雨林的文本与讨论亚马逊科技公司的文本方面表现出色。\n\
+  \n-   我们现在可以实现情感分析组件，其职责正如名称所示，进行情感分析并判断我们是否应该买入、卖出或持有。该方法将被优化，以便只有当我们认为输入文本与我们想要交易的公司相关时才会执行情感分析。如果不相关，它将返回\
+  \ hold（意味着我们既不买也不卖股票）：\n\n```python\ndef buy_or_sell(self, text):\n    if self._references_company(text):\n\
+  \        sentence = Sentence(text)\n        self.classifier.predict(sentence)\n\
+  ```\n\n```python\nif sentence.labels[0].value == \"POSITIVE\":\n    return \"buy\"\
+  \nelif sentence.labels[0].value == \"NEGATIVE\":\n    return \"sell\"\nelse:\n \
+  \   return \"hold\"\n```\n\n该组件是一个名为 buy_or_sell(self, text) 的类方法。它接收文本作为输入，如果文本与我们的公司相关，则执行情感分析。如果情感分析分类器认为文本为正面，我们就买入。如果文本为负面，我们就卖出。如果文本与我们的公司不相关，我们就持有。这里需要注意的是，我们完全忽略了分类器的概率。有时分类器对其结果有\
+  \ 100% 的把握，有时它只是在做 51% 的猜测。好的策略会利用这些信息并使用一定的概率阈值。\n\n> **Important Note**\n> Make\
+  \ sure to add the preceding method to the FlairTrader class definition and not define\
+  \ it as a standalone piece of code.\n\n我们的交易策略类现在已完成！\n\n我们现在可以通过使用另一个公司名称，例如 Apple\
+  \ 来尝试它：\n\n```python\nft = FlairTrader(\"apple\")\n```\n\n让我们看看我们的交易策略表现如何：\n\n\
+  ```python\nprint(ft.buy_or_sell(\"this year's apple harvest\"))\n```\n\n前面的代码块打印出\
+  \ hold，这是有道理的。文本谈论的是苹果作为水果，而不是 Apple 公司，这意味着我们没有获得关于做出什么交易决策的信息。\n\n现在，让我们试一个正面情感的例子：\n\
+  \n```python\nprint(ft.buy_or_sell(\"apple stock is doing great\"))\n```\n\n前面的代码块不出所料打印出\
+  \ buy。\n\n我们现在可以尝试一个稍微不那么直接的正面例子：\n\n```python\nprint(ft.buy_or_sell(\"apple shows\
+  \ steady growth\"))\n```\n\n该代码块也打印出 buy。它表明 Flair 能够捕捉到文本中更微妙的正面信号。\n\n下面这个代码块，值得庆幸的是，打印出\
+  \ sell：\n\n```python\nprint(ft.buy_or_sell(\"apple is being sued by the EU\"))\n\
+  ```\n\n前面的例子展示了我们的交易策略在买入、卖出或持有股票的决策方面有多好。它在输入文本上表现尤其出色，例如新闻文章标题，其中英语单词通常大写，无法从大写推断含义。\n\
+  \n在合适的每日新闻文章源下，FlairTrader 类为我们提供了一个出色的交易机器人基础，可在现实世界中使用。但在把全部积蓄投入这个交易机器人之前，你应该意识到现实世界的股票交易通常比看起来更复杂。好的交易机器人通常依赖于多种不同的指标，很少依赖单一的事实来源，例如新闻文章情感。一种方便的测试交易策略而无需投入真钱的方法是使用回测，其中策略在数月或数年的历史交易数据上进行测试，这让我们在投入真实资金之前对交易策略在现实世界中的预期有一个大致的了解。如果你想深入研究使用\
+  \ Python 等语言进行交易的领域，你应该尝试 Packt 出版的优秀技术书籍《Python for Finance》。\n\n但无论你的机器人在现实世界中是盈利还是亏损，实现过程清楚地展示了使用\
+  \ Flair 如何让我们仅用几行简单的代码就能构建智能且功能强大的应用程序。\n\n## Flair 编程速查表\n\n在结束之前，我们应该快速回顾一下本书中使用的最重要的\
+  \ Flair 类：\n\n| Class | Description |\n|---|---|\n| Sentence | 用于存储文本的类，可以是单个单词、句子或整个段落。也包含与该对象所属\
+  \ token 关联的潜在标签。 |\n| Token | 表示 token 及其对应标签和嵌入的类。 |\n| SpaceTokenizer | 仅基于空格字符的\
+  \ tokenizer。 |\n| WordEmbeddings | 静态词级嵌入。 |\n| FlairEmbeddings | 最先进的 Flair 嵌入。\
+  \ |\n| StackedEmbeddings | 用于生成一个或多个嵌入的堆叠的类。 |\n| TransformerDocumentEmbeddings\
+  \ | 基于 Transformer 的文档嵌入。 |\n| SequenceTagger | 用于加载序列标注器并执行序列标注的类。 |\n| Corpus\
+  \ | 用于存储数据集并执行简单操作的类。 |\n| ModelTrainer | 负责在 Flair 中训练模型的类。 |\n| SequenceTaggerParamSelector\
+  \ | 超参数选择类。 |\n| LanguageModel | 用于定义和存储语言模型的类。 |\n| LanguageModelTrainer | 负责训练语言模型的类，语言模型最常用于生成嵌入。\
+  \ |\n| TextClassifier | 用于加载和使用文本分类模型的工具集。 |\n| TARSClassifier | 用于零样本和少样本文本分类的类。\
+  \ |\n\n这个常用的 Flair 类和命令的简短概述希望能作为本书中使用的最重要的 Flair 命令的易于记忆的列表。\n\n## 总结\n\n这个简单有趣的动手练习结束了我们对最先进的\
+  \ NLP 库 Flair 的探索之旅。本书开始时，我们从一些动机开始，随后介绍了 Flair 基础类型，这些类型奠定了 Flair 中不同对象通常如何相互交互的基础。然后我们介绍了词嵌入和文档嵌入，它们是\
+  \ Flair 的重要组成部分，也是其标注器在序列标注任务上实现最先进性能的主要原因之一。这使我们能够进入序列标注本身，在那里我们了解了 Flair 中所有不同类型的序列标注器。然而，我们并不局限于仅重用预训练模型；我们在下一章中很快学会了如何训练自己的序列标注器。这让我们被漫长的训练超参数列表所淹没，我们必须找到一种利用机器学习帮助我们找到最佳参数集的方法。我们通过掌握超参数调优并学习如何在\
+  \ Flair 中进行它来实现这一点。\n\n\n\n不久之后，我们深入到了本书最复杂的话题，即训练我们自己的嵌入向量。其后是 Flair 中稍显轻松的文本分类主题，该主题也是探索\
+  \ Flair 功能和能力的最后一章。然后我们将重点转向 Flair 在现实世界中的适用性，通过学习如何在生产环境中部署 NLP 模型，最后通过实现一个简单的\
+  \ Flair 交易机器人结束了本书。\n\n尽管本书在相当高的层面上涵盖了大多数 Flair 功能，但您应注意，Flair 是一个不断发展的开源项目，拥有超过\
+  \ 170 名贡献者。它不断发展和改进，每月都会添加新功能。因此，这些最后的结语不应标志着您 Flair 之旅的结束。而应标志着一个新的开始。一个您对自己的 NLP\
+  \ 能力充满信心，并准备好通过 Flair 让它们变为现实的旅程的开始。\n"
+- "## 索引\n\n### A\n\n准确率\n  关于 110\n  测量，用于序列\n    标注任务 52\n客户端推理\n  与服务器端推理对比 135-139\n\
+  条件随机场 (CRF) 45\n构造函数 14\nCorpus 对象 20, 21\n余弦相似度 6, 25\n自定义嵌入\n  在下游任务中使用 102, 103\n\
+  自定义少样本 TARS 模型\n  使用 128, 129\n自定义 Flair 嵌入\n  关于 92\n  内在评估，执行 103-105\n自定义 Flair\
+  \ 模型\n  加载 73, 74\n  使用 73, 74\n自定义模型\n  训练，动机 58, 59\n自定义序列标注模型\n  嵌入堆栈，构建 66,\
+  \ 67\nSequenceTagger 对象，\n  初始化 67-69\n标签词典，加载 66\n标注语料库，加载 65, 66\n训练 64\n\n###\
+  \ B\n\n回测 166\n反向模型 94\n贝叶斯优化 82\n双向 LSTM (BiLSTM) 45\nBiLSTM-CRF 序列标注器 45\n二分类\
+  \ 109\nBIOES 标注方案 45\n\n### C\n\n切块 8\n类 14, 108\n经典词嵌入\n  关于 33\n  在 Flair 中 33-35\n\
+  类标签\n  定义 124\n自定义文本分类器\n  加载 120-122\n  使用 120-122\n自定义分词器\n  使用 18\n\n### D\n\n\
+  数据集，属性\n  dev 20\n  test 20\n  train 20\n开发环境\n  设置 10\n文档嵌入\n  关于 39, 40\n  在 Flair\
+  \ 中 113\n  加载 118\n  准备 118\nDocumentPoolEmbeddings 114, 115\nDocumentRNNEmbeddings\
+  \ 64, 115, 116\n\n### E\n\n嵌入堆栈 94\n轮次 62\n进化算法 82\n外在嵌入评估 96\n\n### F\n\nF1 分数\n\
+  \  关于 110\n  测量，用于序列\n    标注任务 53\n假阴性 (fn) 53, 111\n假阳性 (fp) 53, 111\n少样本分类\n \
+  \ 使用 TARS 125\n少样本 TARS 模型\n  训练 127\nFlair\n  关于 9, 14, 43\n  经典词嵌入 33-35\n  文档嵌入\
+  \ 113\n  超参数调优 86-89\n  命名实体识别 (NER) 45\n  NER 标注器 47\n  词性标注 (PoS) 48\n  PoS 标注器\
+  \ 51\n  序列标注 44, 45\n  标注任务 52\n  文本分类 111\n  文本分类器，训练 116, 117\n  分词器 16\n  用于文本分类，使用\
+  \ 122, 123\nFlair 代码\n  运行 12\nFlair 编程速查表 166, 167\nFlair 嵌入\n  关于 35, 38, 92,\
+  \ 93\n  字符级序列\n    建模 36, 37\n  概念 93\n  上下文相关性 35, 36\n  语料库 94\n  前向-后向嵌入堆栈 94\n\
+  \  Pooled Flair 嵌入 37\n  训练，用于 Toki Pona 96\nFlair 嵌入，为 Toki Pona 训练\n  语料库，准备 98-100\n\
+  \  自定义嵌入，在\n    下游任务中使用 102, 103\n  词典，准备 97\n\n### G\n\n### H\n\n### I\n\n内在评估，执行于\n\
+  \  自定义 Flair 嵌入 103, 104\n语言模型，训练 100-102\nFlair 嵌入，类型\n  关于 40, 41\n  DocumentPoolEmbeddings\
+  \ 39\n  DocumentRNNEmbeddings 40\n  SentenceTransformer\n    DocumentEmbeddings\
+  \ 40\n  TransformerDocumentEmbeddings 39\nFlair 嵌入训练\n  词典 95\nFlair 功能\n  从 GitHub\
+  \ 仓库安装 11\nFlair 模型\n  部署，使用托管服务 143\n  部署决策\n    流程图 143, 144\n  概念验证自助工具 146,\
+  \ 147\n  公共 Hugging Face 模型\n    Hub 157, 158\n  使用 150\nFlair 模型训练\n  参数，使用 63,\
+  \ 64\n  术语，使用 63, 64\nFlair 已发布版本\n  在虚拟环境中安装 10\nFlair 交易机器人\n  实现 162-166\nFlask\
+  \ 147\n前向-后向嵌入堆栈 94\n前向模型 94\nGitHub 仓库\n  用于安装 Flair 功能 11\nGloVe 36, 92\nGloVe\
+  \ 嵌入 118\nGoogle Colaboratory (Colab) 60\n图形处理单元 (GPU) 59, 96\n网格搜索\n  关于 80, 82\n\
+  \  参考链接 80\n隐藏状态 93\nHugging Face 163\nHugging Face 模型 Hub\n  关于 46, 143, 151\n\
+  \  模拟 Flair 模型，训练 151-153\n  模型，上传 153\n  模型，作为加速的一部分使用\n    推理 API 155-157\n  URL\
+  \ 151\nHyperopt\n  关于 83\n  目标函数 83\n  优化方法 83\n  参考链接 82\n  搜索空间 83\n超参数 61\n超参数调优\n\
+  \  关于 80, 81\n  在 Flair 中 86-89\n  在 Python 中 83-85\n  优化方法 81\n互联网电影数据库 (IMDB)\
+  \ 117\n中断的训练会话\n  恢复 74, 75\n内在嵌入评估 95\n内在评估\n  执行，于自定义 Flair\n    嵌入 103, 104\n\
+  mini-batch 大小 63\n模型\n  训练 69-73\n单语 NER 模型 47\n单语预训练 PoS 标注器 51\n多类分类 109\n多标签多类分类\
+  \ 109\n多标签文本分类\n  指标 110, 111\n\n### K\n\nking – man ≈ queen – woman\n  关于 25-27\n\
+  \  最接近匹配词，查找 30-32\n  嵌入类，初始化 27\n  嵌入类，选择 27\n  英文词的嵌入，\n    在 Flair 中获取 29, 30\n\
+  \  词的嵌入，计算 28, 29\n  词的嵌入，获取 28, 29\n  实验，使用类比\n    求解器 32, 33\n  实现 27\n\n### L\n\
+  \n语言模型 93\n词形还原 8\n长短期记忆 (LSTM) 93\n\n### M\n\n机器学习模型\n  运营化 (MLOps) 150\nmacro\
+  \ F1 分数 111\n托管服务\n  使用 150\n  使用，场景 139-142\n  使用，部署 Flair 模型 143\nmicro F1 分数\
+  \ 54, 111\n\n### N\n\n命名实体 45\n命名实体识别 (NER)\n  关于 6, 7, 43, 58, 92\n  在 Flair 中\
+  \ 45\n自然语言处理 (NLP)\n  关于 4, 5, 43\n  切块 8\n  词形还原 8\n  命名实体识别 (NER) 6, 7\n  词性标注\
+  \ (PoS) 7\n  词干提取 8\n  文本分类 8\n  文本向量化 5, 6\n  分词 5\n  词义消歧 (WSD) 7\nNER 类别 46\n\
+  NER 标注器\n  在 Flair 中 47\nNER 标注方案 45\n神经模型训练 61, 62\nNLP 模型\n  技术考虑 134, 135\n\n\
+  ### O\n\n面向对象编程 (OOP) 14\none-hot 编码 5\n优化方法，\n  超参数调优\n  贝叶斯优化 82\n  进化算法 82\n\
+  \  网格搜索 82\n  随机搜索 82\n词表外 (OOV) 36, 103\n\n### P\n\n词性 (PoS) 58,92\n词性 (PoS) 标注\n\
+  \  关于 7,43\n  在 Flair 中 48\n  标签集 49,50\nPenn 标签集 48-50\nPenn Treebank 项目 PoS 标签集\
+  \ 49\n性能指标\n  评估 77\n  比较 77\nPooled Flair 嵌入 37\nPoS 标注器\n  关于 48,49\n  在 Flair\
+  \ 中 51\n精确率 53,110\n预训练 Flair 文本分类模型\n  使用 112,113\n预训练单语 NER 标注器 47\n预训练 TARS 模型\n\
+  \  加载，用于正确语言 123,124\n概念验证自助\n  工具，Flair 模型\n端点，定义 148,149\n所需库，安装 147\n序列标注函数，\n\
+  \  定义 147,148\n服务，启动 149,150\n公共 Hugging Face 模型 Hub\n  使用，在 Flair 模型中 157,158\n\
+  Python\n  超参数调优 83-85\nPyTorch 28\n\n### R\n\n随机搜索 82\n召回率 53,110\n循环神经网络 (RNN)\
+  \ 64\n\n### S\n\n搜索空间 83\n搜索空间，参数表达式\n  分类参数 83\n  浮点参数 83\n  整数参数 83\nFlair 的秘诀\
+  \ 35\nsegtok 16\n自助服务器端模型\n  使用，场景 139-142\n自助 Flair 模型\n  关于 144\n  TorchServe，使用\
+  \ 145,146\nSentence 类 15\nSentence 对象\n  关于 14\n  辅助方法 17,18\n序列标注指标\n  关于 52\n\
+  \  准确率 52\n  F1 分数 53\n\n\n\n\n- 序列标注任务\n- 精度，52 处测量\n- F1 分数，53 处测量\n- SequenceTagger\
+  \ 对象\n- 初始化 67-69\n- 序列标注\n- 关于 43\n- 在 Flair 中 44, 45\n- 服务器端推理\n- 与客户端推理相比 135-139\n\
+  - 单文本分类\n- 指标 110, 111\n- spaCy 16\n- 堆叠嵌入 38\n- 词干提取 8\n\n### T\n\n- 标签词典\n- 加载\
+  \ 66\n- 已标记语料库\n- 加载 117, 126\n- 标注任务\n- 在 Flair 中 52\n- 任务感知表示\n- 句子 (TARS)\n-\
+  \ 关于 122\n- 用于，少样本分类 125\n- 用于，生成零样本\n- 预测 124, 125\n- 用于，零样本文本分类 123\n- tars-base\
+  \ 123\n- TARS 模型\n- 加载 126\n- 任务\n- 设置 126\n\n- TensorBoard 70\n- TensorFlow 70\n\
+  - 文本分类\n- 关于 8, 108\n- 在 Flair 中 111-123\n- 用法 108\n- 文本分类，类型\n- 二分类 109\n- 多类分类\
+  \ 109\n- 多标签多类分类 109\n- TextClassifier 类\n- 初始化 118\n- 文本分类器模型\n- 训练 119\n- 文本分类器\n\
+  - 在 Flair 中 116\n- 训练 109\n- 训练，在 Flair 中 116, 117\n- 文本向量化 5, 6\n- 宾夕法尼亚树库项目 49\n\
+  - 词元 5\n- Token 类 15\n- 分词\n- 关于 5\n- 在 Flair 中 16\n- TokenizerWrapper 类\n- 使用 19,\
+  \ 20\n- Token 对象\n- 关于 14\n- 辅助方法 17, 18\n- Toki Pona 97\n- TorchServe\n- 关于 145\n\
+  - 使用，用于自托管 Flair\n- 模型 145, 146\n\n交易策略\n\n关于 160-162\n\n组件 162\n\n训练嵌入 92\n\n训练损失\n\
+  \n绘图 76\n\n训练模型\n\n硬件需求 59-61\n\n训练输出文件 73\n\n训练会话\n\n损失，监控 76\n\n树结构帕森\n估计器 (TPE)\
+  \ 82\n\n真正例 (tp) 53,111\n\n### U\n\n通用 PoS 标签集 50\n\n### V\n\n虚拟环境\n\n创建 10\n\n\
+  Flair 发布版本，安装 10\n\n虚拟机 (VMs) 60\n\n### W\n\n词嵌入 24\n\n词嵌入，评估方法\n\n外部评估 96\n\n内部评估\
+  \ 95\n\n词义消歧 (WSD) 7\n\n### Z\n\n零样本预测\n\n生成，使用 TARS 124,125\n\n零样本文本分类\n\n使用 TARS\
+  \ 123\n\n![](img/c56c48b8fd18a11ab705352d618ed976_195_0.png)\n\nPackt.com\n\n订阅我们的在线数字图书馆，即可完全访问超过\
+  \ 7,000 本书籍和视频，以及行业领先的工具，帮助您规划个人发展并推进职业生涯。更多信息，请访问我们的网站。\n\n## 为什么订阅？\n\n- 花更少时间学习，花更多时间编码，使用来自\
+  \ 4,000 多名行业专业人士的实用电子书和视频\n- 使用专为你打造的技能计划提升学习效果\n- 每月获得一本免费电子书或视频\n- 全文可搜索，便于快速获取重要信息\n\
+  - 复制粘贴、打印和书签收藏内容\n\n您知道 Packt 为每本出版的书籍提供电子书版本，支持 PDF 和 ePub 格式吗？您可以在 packt.com 升级到电子书版本，作为印刷书籍客户，您有权享受电子书的折扣。更多详情请联系我们\
+  \ customercare@packtpub.com。\n\n在 www.packt.com，您还可以阅读一系列免费技术文章，订阅各类免费通讯，并获得 Packt\
+  \ 书籍和电子书的独家折扣和优惠。\n\n## 您可能喜欢的其他书籍\n\n如果您喜欢这本书，您可能也会对 Packt 出版的其他书籍感兴趣：\n\n![](img/c56c48b8fd18a11ab705352d618ed976_196_0.png)\n\
+  \n## Mastering spaCy\n\nDuygu Altinok\n\nISBN: 978-1-80056-335-3\n\n- 安装 spaCy，轻松入门并编写第一个\
+  \ Python 脚本\n- 了解 spaCy 的核心语言学操作\n- 了解如何将基于规则的组件与 spaCy 统计模型结合\n- 精通命名实体和关键词提取\n\
+  - 使用 spaCy 构建自己的机器学习管道\n- 应用您所学的一切知识，使用 spaCy 设计聊天机器人\n\n![](img/c56c48b8fd18a11ab705352d618ed976_197_0.png)\n\
+  \n## Distributed Machine Learning with Python\n\nBy Guanhua Wang\n\nISBN: 978-1-80181-569-7\n\
+  \n- 部署分布式模型训练和服务管道\n- 掌握 TensorFlow 和 PyTorch 的高级功能\n- 缓解并行模型训练和服务期间的系统瓶颈\n- 在经典并行范式之上发现最新技术\n\
+  - 探索 Megatron-LM 和 Mesh-TensorFlow 的高级功能\n- 使用 NVLink、NVSwitch 和 GPU 等最先进硬件\n\n\
+  ## Packt 正在寻找像您这样的作者\n\n如果您有兴趣成为 Packt 的作者，请访问 authors.packtpub.com 并立即申请。我们已与数千名开发者和技术专业人士合作，就像您一样，帮助他们与全球技术社区分享见解。您可以提交通用申请、申请我们正在招聘作者的特定热门主题，或提交您自己的想法。\n\
+  \n## 分享您的想法\n\n现在您已完成 *使用 Flair 进行自然语言处理*，我们很想听听您的想法！如果您在 Amazon 购买了本书，请点击此处直接前往该书的\
+  \ Amazon 评论页面分享您的反馈，或在您购买的网站上留下评论。\n\n您的评论对我们和技术社区非常重要，将帮助我们确保提供优质的内容。\n\n"

@@ -1,0 +1,76 @@
+chapter_starts:
+- 'no': 136
+  confidence: 0.9
+  final_reason: 书为部分-章节模式，部分标题应分章。首行 '# 第一部分：' 为部分标题起始，复核方 keep_split=true，虽跨行且带冒号但仍为最高层级划分点。
+  accepted_evidence:
+  - 部分-章节模式下部分标题应分章
+  - 复核方 keep_split=true，overturn_probability=0.2
+  - 后续 141-143 行为部分概述段落
+  rejected_evidence:
+  - 标题以冒号结尾
+  - 完整标题跨 136-139 四行，单行不完整
+  need_human_review: false
+- 'no': 151
+  confidence: 0.65
+  final_reason: 章节编号在 150 行 '## 1'，标题 'Flair 简介' 单独成行无标点长度<30，后续为章节概述。复核方虽指出标题与编号分行，仍
+    keep_split=true，采纳为第1章起始。
+  accepted_evidence:
+  - 标题单独成行，无句号，长度<30
+  - 后续 153-162 行为章节概述，语义统领
+  - 复核方 keep_split=true
+  rejected_evidence:
+  - 标题与编号分行，格式与第5/6/7章不一致
+  - 前一行 150 为 '## 1'，完整标识依赖前行
+  need_human_review: false
+- 'no': 1478
+  confidence: 0.9
+  final_reason: 第2部分标题，符合部分-章节模式。编号与部分标题同行，后续为部分概述，复核方 keep_split=true。
+  accepted_evidence:
+  - '''# 第 2 部分：'' 为最高层级部分标题'
+  - 后续 1480-1482 行为部分概述
+  - 复核方 keep_split=true，overturn_probability=0.1
+  rejected_evidence:
+  - 标题以冒号结尾
+  - 部分标题实际跨多行显示
+  need_human_review: false
+- 'no': 1489
+  confidence: 0.95
+  final_reason: 编号与标题同行 '## 5 训练序列标注模型'，格式规范，标题末无标点，长度<30，后续1~3行为概述，语义统领。
+  accepted_evidence:
+  - 编号+标题单行，无标点
+  - 后续 1491-1493 行为章节概述
+  - 复核方 keep_split=true，overturn_probability=0.05
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 1965
+  confidence: 0.95
+  final_reason: 编号与标题同行 '## 6 Flair 中的超参数优化'，符合最高层级章节特征，后续为章节介绍。
+  accepted_evidence:
+  - 格式为编号+标题单行，无标点
+  - 后续 1967-1969 行为章节概述
+  - 复核方 keep_split=true，overturn_probability=0.05
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 2226
+  confidence: 0.95
+  final_reason: 编号与标题同行 '## 7 训练自己的嵌入'，长度<30，标题末无标点，后续为章节概述，语义统领。
+  accepted_evidence:
+  - 编号+标题单行，格式规范
+  - 后续 2228-2230 行为章节概述
+  - 复核方 keep_split=true，overturn_probability=0.05
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 5
+  reason: 行内容为致谢正文段落，完整句子末尾带标点，长度远超标题常规，复核方指出为正文段落而非标题，致谢类前言内容应以书名/标题起始而非段落中间分章。
+  need_human_review: false
+- 'no': 405
+  reason: '行 ''## Flair 基础类型'' 带有 ## 标记，章节号 ''## 2'' 在 403 行，格式更符合章节内二级标题。复核方 overturn_probability=0.9，判定为正文小标题/章节内标题，不应作为最高层级章节起始。'
+  need_human_review: false
+- 'no': 690
+  reason: '行 ''## Embeddings in Flair'' 带有 ## 标记，章节号 ''## 3'' 在 688 行，标题为英文与前后风格不一致，复核方
+    overturn_probability=0.9，判定为正文小标题，不应分章。'
+  need_human_review: false
+- 'no': 1178
+  reason: '行 ''## 序列标注'' 带有 ## 标记，章节号 ''## 4'' 在 1177 行，标题后直接给出定义句，未出现典型章节概述，复核方 overturn_probability=0.9，判定为章节内标题，不应分章。'
+  need_human_review: false

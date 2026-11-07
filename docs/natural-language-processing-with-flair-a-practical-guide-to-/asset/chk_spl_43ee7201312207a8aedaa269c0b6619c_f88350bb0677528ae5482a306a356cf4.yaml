@@ -1,0 +1,36 @@
+reviews:
+- 'no': 3001
+  overturn_probability: 0.18
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题使用 ## 层级，与后续 ## 技术要求、## 理解文本分类 等同级，存在被误判为章节内二级标题的可能'
+  - '标题前仅有 ## 总结 的总结段落和少量空行，章间分隔的页码/目录提示缺失，排版噪声可能导致误报'
+  keep_split: true
+- 'no': 3678
+  overturn_probability: 0.05
+  alternative: 部分标题
+  counter_evidence:
+  - '标题为 # 第 3 部分：使用 Flair 进行实际应用，符合部分-章节模式的最高层级划分规则'
+  - 标题后紧跟概述段落并统领后续多章内容，语义上具有部分级统领性
+  keep_split: true
+- 'no': 3687
+  overturn_probability: 0.12
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题为 ## 9 在生产环境中部署和使用模型，编号连续且后接概述段落，符合章节起始的上下文特征'
+  - '后续内容包含 ## 技术要求 等子节，层级关系清晰，支持为最高层级大章'
+  keep_split: true
+- 'no': 4244
+  overturn_probability: 0.1
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题为 ## 10 动手练习 – 使用 Flair 构建交易机器人，编号连续且语义独立，统领后续动手练习内容'
+  - 标题后紧跟介绍段落并随后出现子节列表，符合章节起始的 1~3 行概述模式
+  keep_split: true
+- 'no': 4471
+  overturn_probability: 0.08
+  alternative: 索引标题
+  counter_evidence:
+  - '文末 ## 索引 为标准索引标题，规则明确要求文末索引单独划分为一章'
+  - 标题后紧跟索引条目 A、B、C 等，内容与正文明显分离，排版上为独立区块
+  keep_split: true

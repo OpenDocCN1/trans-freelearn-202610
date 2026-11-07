@@ -1,0 +1,54 @@
+chapter_starts:
+- 'no': 3001
+  confidence: 0.95
+  final_reason: '编号特征为全书最高层级大章 8，单独成行无句号，长度符合，语义统领后续文本分类全部内容，后 1~3 行为概述段落且随后出现子节。复核方虽提示
+    ## 层级与子节相同，但 overturn_probability 0.18 且 keep_split=true，上下文支持章节起始。'
+  accepted_evidence:
+  - '标题格式 ## 8 Flair 中的文本分类，编号连续且单独成行'
+  - 标题末尾无句号，长度小于30字
+  - 后接概述段落并统领后续 技术要求、理解文本分类 等内容
+  - 复核方 keep_split=true，认为章间分隔特征成立
+  rejected_evidence:
+  - '复核方反方提示标题使用 ## 与后续子节同级，可能被误判为章节内二级标题'
+  need_human_review: false
+- 'no': 3678
+  confidence: 0.95
+  final_reason: 书中存在部分-章节模式，# 第 3 部分：使用 Flair 进行实际应用 为部分标题，规则要求部分与章均划分新章。标题单独成行，语义统领后续第9、10章内容，复核方
+    overturn_probability 0.05 且 keep_split=true。
+  accepted_evidence:
+  - '标题为 # 第 3 部分，符合部分-章节模式最高层级'
+  - 标题后紧跟概述段落并统领多章
+  - 复核方确认符合部分级统领性
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 3687
+  confidence: 0.95
+  final_reason: '编号特征为第 9 章，格式 ## 9 在生产环境中部署和使用模型，单独成行无句号，语义统领部署相关内容，后接概述段落及子节。复核方
+    overturn_probability 0.12 且 keep_split=true。'
+  accepted_evidence:
+  - 编号连续，标题单独成行
+  - '后接概述段落，后续出现 ## 技术要求 等子节'
+  - 复核方认为上下文特征符合章节起始
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 4244
+  confidence: 0.95
+  final_reason: '编号特征为第 10 章，格式 ## 10 动手练习 – 使用 Flair 构建交易机器人，单独成行无句号，语义独立统领动手练习内容，后接介绍段落。复核方
+    overturn_probability 0.1 且 keep_split=true。'
+  accepted_evidence:
+  - 编号连续且语义独立
+  - 标题后紧跟介绍段落并随后出现子节列表
+  - 复核方确认符合 1~3 行概述模式
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 4471
+  confidence: 0.9
+  final_reason: '文末 ## 索引 为标准索引标题，规则明确要求文末索引单独划分为一章。标题单独成行，后接索引条目 A、B、C 等，与正文明显分离。复核方
+    overturn_probability 0.08 且 keep_split=true。'
+  accepted_evidence:
+  - '位于文末，标题为 ## 索引'
+  - 后接索引条目，内容与正文分离
+  - 规则要求文末索引单独成章
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines: []

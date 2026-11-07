@@ -1,0 +1,75 @@
+reviews:
+- 'no': 5
+  overturn_probability: 0.75
+  alternative: 致谢段落/正文段落
+  counter_evidence:
+  - 行内容为完整句子，末尾带标点且长度远超标题常规<30字
+  - 行无标题标记，仅为正文段落，前面的书名在第0行
+  - 前言致谢类内容应以标题或书名起始，而非段落中间开始分章
+  keep_split: false
+- 'no': 136
+  overturn_probability: 0.2
+  alternative: 部分标题（跨行）
+  counter_evidence:
+  - 标题以冒号结尾，带标点，不符合标题末尾绝无句号的典型特征
+  - 完整部分标题实际跨4行 136-139，单行 '# 第一部分：' 不完整
+  keep_split: true
+- 'no': 151
+  overturn_probability: 0.35
+  alternative: 章节标题副行
+  counter_evidence:
+  - 前一行150为 '## 1'，标题被拆分为两行，单行 'Flair 简介' 缺少编号
+  - 行无标题标记，依赖前行才能构成完整章节标识，格式与第2、3、4章不一致
+  keep_split: true
+- 'no': 405
+  overturn_probability: 0.9
+  alternative: 正文小标题/章节内二级标题
+  counter_evidence:
+  - 行带有 '##' 标记，而章节号 '## 2' 在403行，真正的最高层级应以编号行起始
+  - 本行格式与章节内小节一致，后续内容直接进入章节正文而非章节概述
+  - 与第1章标题无 '##' 的格式不一致，疑似解析错误导致标题行被误判
+  keep_split: false
+- 'no': 690
+  overturn_probability: 0.9
+  alternative: 正文小标题
+  counter_evidence:
+  - 章节号 '## 3' 在688行，本行 '## Embeddings in Flair' 带有 '##' 更符合小节
+  - 标题为英文，与前后中文章节标题风格不一致，疑似格式错误
+  - 标题后紧跟正文描述，非典型的章节概述段落
+  keep_split: false
+- 'no': 1178
+  overturn_probability: 0.9
+  alternative: 正文小标题
+  counter_evidence:
+  - 章节号 '## 4' 在1177行，本行 '## 序列标注' 带有 '##' 应为章节内标题
+  - 标题后直接给出定义句，未出现1~3行概述段落
+  - 与第5章起 '## 5 训练序列标注模型' 的编号+标题单行格式不符
+  keep_split: false
+- 'no': 1478
+  overturn_probability: 0.1
+  alternative: 部分标题
+  counter_evidence:
+  - 标题以冒号结尾，带标点
+  - 部分标题实际跨多行显示
+  keep_split: true
+- 'no': 1489
+  overturn_probability: 0.05
+  alternative: 章节标题
+  counter_evidence:
+  - 编号与标题在同一行，符合最高层级章节特征
+  - 标题后1~3行为概述段落，语义统领后续内容
+  keep_split: true
+- 'no': 1965
+  overturn_probability: 0.05
+  alternative: 章节标题
+  counter_evidence:
+  - 格式为 '## 6 Flair 中的超参数优化'，编号+标题单行，无标点
+  - 后续内容为章节介绍，符合章节语义特征
+  keep_split: true
+- 'no': 2226
+  overturn_probability: 0.05
+  alternative: 章节标题
+  counter_evidence:
+  - 格式为 '## 7 训练自己的嵌入'，编号+标题单行，长度<30字
+  - 后续内容为章节概述，语义统领
+  keep_split: true
