@@ -1,0 +1,89 @@
+reviews:
+- 'no': 35
+  overturn_probability: 0.85
+  alternative: 正文小标题
+  counter_evidence:
+  - 前言、致谢、关于作者、贡献者等属于同一前文块，规则要求统一划分为一章，不应在此内部再分章
+  - '该行之前已有 ## 贡献者、## 关于作者、## 关于审阅者、## 在 Discord 上加入我们的社区 等同级标题，说明仍在前文块内部'
+  - 标题后直接进入前言正文，无独立章节概述，符合块内小标题特征
+  keep_split: false
+- 'no': 54
+  overturn_probability: 0.75
+  alternative: 其他
+  counter_evidence:
+  - '标题后紧跟 ## 12 动态绘画简介 且随后出现目录表格行 | 技术要求 | 275 | ...，属于目录页排版而非正文章节起始'
+  - 文件顺序中第4部分出现在第1部分之前，疑似目录提取顺序错乱
+  - 标题后1~3行并非概述段落而是子标题，缺少章节统领性语义
+  keep_split: false
+- 'no': 56
+  overturn_probability: 0.92
+  alternative: 其他
+  counter_evidence:
+  - '标题 ## 12 动态绘画简介 后1行为空，紧接着是表格行 | 技术要求 | 275 | 使用画笔 | 303 |，为目录页码表格'
+  - 章节标题后应为概述段落而非目录表格，上下文符合目录项特征
+  - 编号章节在目录中常见，实际正文章节标题后应有1~3行概述
+  keep_split: false
+- 'no': 66
+  overturn_probability: 0.92
+  alternative: 其他
+  counter_evidence:
+  - '标题 ## 13 创建画笔效果 后直接为表格行 | 技术要求 | 315 | ...，无概述段落'
+  - 上下文与56号相同，处于目录表格区，属于目录项而非章节起始
+  keep_split: false
+- 'no': 73
+  overturn_probability: 0.92
+  alternative: 其他
+  counter_evidence:
+  - '标题 ## 14 创建雨滴效果 后紧跟表格行 | 技术要求 | 341 | ...，为目录页排版'
+  - 缺少章节统领性概述，符合目录项误报特征
+  keep_split: false
+- 'no': 81
+  overturn_probability: 0.88
+  alternative: 其他
+  counter_evidence:
+  - '标题 ## 15 创建燃烧效果 后紧跟 技术要求 363 等无标点列表项，格式为目录条目'
+  - 上下文仍在目录区，未出现概述段落
+  keep_split: false
+- 'no': 95
+  overturn_probability: 0.8
+  alternative: 其他
+  counter_evidence:
+  - '## 索引 383 出现在目录页中，后续紧跟 ## 您可能喜欢的其他书籍 390 等目录条目'
+  - 文末索引应位于全书末尾而非目录区，此处为目录项误报
+  keep_split: false
+- 'no': 232
+  overturn_probability: 0.15
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题 # 第 1 部分：使用 Mantaflow 进行火焰、烟雾和流体模拟 后紧跟概述段落 为了开始我们学习 Blender 模拟的旅程...'
+  - 文件存在大量重复块，首现位置仍符合部分-章节模式的最高层级划分
+  - 若不分章则会丢失明确的部分层级边界
+  keep_split: true
+- 'no': 244
+  overturn_probability: 0.25
+  alternative: 正文小标题
+  counter_evidence:
+  - 标题缺少显式 第 X 章 编号，前文已列出 - 第 1 章，Mantaflow 简介，可能为章节内小节
+  - 标题后内容为概述段落，语义上可作为章节起始，误报风险低
+  keep_split: true
+- 'no': 1611
+  overturn_probability: 0.2
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题 ## 了解域、流和效应器 后紧跟 现在我们已经涵盖了 Mantaflow 的基础知识...在本章中...，符合章节概述特征'
+  - '前文为 ## 加入我们的 Discord 社区 等附属内容，边界清晰'
+  keep_split: true
+- 'no': 2301
+  overturn_probability: 0.18
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题 ## 创建逼真的篝火模拟 后紧跟 是时候检验我们刚刚学到的技能了。在本章中，我们将创建一个逼真的篝火模拟...'
+  - 符合章节标题后1~3行概述的上下文特征
+  keep_split: true
+- 'no': 2659
+  overturn_probability: 0.18
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题 ## 使用 Mantaflow 创建瀑布 后紧跟 如果你曾经尝试创建逼真的液体模拟...，为章节概述'
+  - 语义统领后续内容，符合章标题特征
+  keep_split: true

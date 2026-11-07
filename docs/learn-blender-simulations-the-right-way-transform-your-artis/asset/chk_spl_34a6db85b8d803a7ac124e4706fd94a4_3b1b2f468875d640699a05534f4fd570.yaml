@@ -1,0 +1,32 @@
+reviews:
+- 'no': 6280
+  overturn_probability: 0.88
+  alternative: 章节副标题/编号后的标题
+  counter_evidence:
+  - 前一行 6278 为章节编号 '## 13'，已构成最高层级章节起始，6280 与其紧密相邻且语义绑定
+  - 标题后内容为本章概述而非新章概述，且前文 6268 为上一章总结，章节边界已在 6278 完成
+  - 同书中 7046 '## 15' 与 7048 '## 创建燃烧效果' 呈现相同编号-标题模式，说明标题不应单独分章
+  keep_split: false
+- 'no': 6705
+  overturn_probability: 0.25
+  alternative: 章节标题
+  counter_evidence:
+  - 标题后 1~3 行为本章项目概述，符合章节起始上下文特征
+  - 前文 6697 为上一章总结 '## 总结'，后文进入 '本章将涵盖以下主题' 等章节级目录
+  - 无编号但语义统领后续雨滴效果全部内容，符合无序号章节判断
+  keep_split: true
+- 'no': 7048
+  overturn_probability: 0.92
+  alternative: 章节副标题
+  counter_evidence:
+  - 前一行 7046 为章节编号 '## 15'，已满足编号特征的最高层级章节起始
+  - 7048 与 7046 构成编号-标题配对，标题单独成行但非独立章节起点
+  - 同类模式在 6278/6280 处已出现，说明该书采用编号+标题的章节标记方式
+  keep_split: false
+- 'no': 7360
+  overturn_probability: 0.1
+  alternative: 索引标题
+  counter_evidence:
+  - 位于文末，内容为 '## Index' 后接字母索引条目，符合文末索引划分规则
+  - 前文 7359 为上一章总结，后文为索引条目，无正文段落干扰
+  keep_split: true

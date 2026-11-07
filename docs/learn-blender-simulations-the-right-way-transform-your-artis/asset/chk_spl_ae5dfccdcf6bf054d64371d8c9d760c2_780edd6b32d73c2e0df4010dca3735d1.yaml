@@ -1,0 +1,68 @@
+reviews:
+- 'no': 3025
+  overturn_probability: 0.08
+  alternative: 章节标题
+  counter_evidence:
+  - '标题使用 ## 标记与正文小标题格式相同，存在误判风险；标题长度较短且无序号，需依赖语义判断'
+  keep_split: true
+- 'no': 3352
+  overturn_probability: 0.02
+  alternative: 章节标题
+  counter_evidence:
+  - 部分标题单独成行且为第 X 部分模式，按规则应划分新章；但标题包含冒号可能被误认为正文小标题
+  keep_split: true
+- 'no': 3363
+  overturn_probability: 0.05
+  alternative: 章节标题
+  counter_evidence:
+  - 标题后紧跟定义性概述且图号从6.1开始，符合新章特征；但标题与前文列出的章节清单重复，易被视为清单项
+  keep_split: true
+- 'no': 3750
+  overturn_probability: 0.06
+  alternative: 章节标题
+  counter_evidence:
+  - 前文有'在下一章中...'的过渡句且后文图号从7.14起跳，语义统领；标题单独成行但与前文 Discord 社区段落间隔较近
+  keep_split: true
+- 'no': 3999
+  overturn_probability: 0.05
+  alternative: 章节标题
+  counter_evidence:
+  - 标题后为布料模拟总述且图号从8.1开始，符合新章上下文；标题无序号，依赖语义判断存在误报可能
+  keep_split: true
+- 'no': 4414
+  overturn_probability: 0.06
+  alternative: 章节标题
+  counter_evidence:
+  - 标题后为旗帜模拟总述且图号从9.1开始，前文有总结段落；标题单独成行但与前文 Discord 段落间隔仅数行
+  keep_split: true
+- 'no': 4769
+  overturn_probability: 0.92
+  alternative: 页眉页脚/排版噪声
+  counter_evidence:
+  - 同一标题'# 第三部分：深入刚体'在4765、4769、4772连续三次出现，中间仅空行，明显为排版重复或页眉页脚残留；4765后内容已开始介绍刚体模拟，4769后无新语义引入
+  keep_split: false
+- 'no': 4781
+  overturn_probability: 0.05
+  alternative: 章节标题
+  counter_evidence:
+  - '标题后为刚体模拟总述且图号从10.1开始，符合新章特征；标题使用 ## 与正文小标题格式相同'
+  keep_split: true
+- 'no': 5233
+  overturn_probability: 0.75
+  alternative: 排版断行
+  counter_evidence:
+  - 前一行5231已出现'## 11'作为章节编号，当前行标题与编号分离且语言为英文，与前后中文章节不一致；疑似原标题'## 11 Creating a Rigid
+    Body Physics Course'被错误拆分为两行，导致重复标题
+  keep_split: false
+- 'no': 5595
+  overturn_probability: 0.02
+  alternative: 章节标题
+  counter_evidence:
+  - 部分标题单独成行且为第 X 部分模式，按规则应划分新章；标题包含冒号可能被误认为正文小标题
+  keep_split: true
+- 'no': 5608
+  overturn_probability: 0.06
+  alternative: 章节标题
+  counter_evidence:
+  - '标题后为动态绘画总述且图号从12.1开始，符合新章上下文；标题使用 ## 与正文小标题格式相同且前一行出现''## 12''编号'
+  keep_split: true

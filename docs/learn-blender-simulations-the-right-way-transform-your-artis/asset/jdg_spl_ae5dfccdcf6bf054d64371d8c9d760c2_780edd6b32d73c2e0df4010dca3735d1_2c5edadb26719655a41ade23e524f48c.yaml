@@ -1,0 +1,93 @@
+chapter_starts:
+- 'no': 3025
+  confidence: 0.95
+  final_reason: 双方一致采纳，标题单独成行且语义统领后续爆炸章节，前文为本章总结，后续图号从5.1开始，符合新章起始
+  accepted_evidence:
+  - 标题单独成行
+  - 语义统领后续内容
+  - 前文为本章总结
+  - 图号从5.1开始
+  rejected_evidence:
+  - '标题使用 ## 标记与正文小标题格式相同，存在误判风险'
+  need_human_review: false
+- 'no': 3352
+  confidence: 0.98
+  final_reason: 第2部分标题，单独成行，书为部分-章节模式，部分标题应划分新章
+  accepted_evidence:
+  - 部分标题单独成行且为第 X 部分模式
+  - 按规则应划分新章
+  rejected_evidence:
+  - 标题包含冒号可能被误认为正文小标题
+  need_human_review: false
+- 'no': 3363
+  confidence: 0.95
+  final_reason: 标题单独成行，语义统领软体内容，后续图号从6.1开始，为新章节
+  accepted_evidence:
+  - 标题后紧跟定义性概述
+  - 图号从6.1开始，符合新章特征
+  rejected_evidence:
+  - 标题与前文列出的章节清单重复，易被视为清单项
+  need_human_review: false
+- 'no': 3750
+  confidence: 0.93
+  final_reason: 标题单独成行，语义为软体障碍赛道教程，后续图号从7.14开始，符合章节起始
+  accepted_evidence:
+  - 前文有在下一章中过渡句
+  - 后文图号从7.14起跳，语义统领
+  rejected_evidence:
+  - 标题单独成行但与前文 Discord 社区段落间隔较近
+  need_human_review: false
+- 'no': 3999
+  confidence: 0.95
+  final_reason: 标题单独成行，语义统领布料模拟，后续图号从8.1开始，为新章节
+  accepted_evidence:
+  - 标题后为布料模拟总述
+  - 图号从8.1开始，符合新章上下文
+  rejected_evidence:
+  - 标题无序号，依赖语义判断存在误报可能
+  need_human_review: false
+- 'no': 4414
+  confidence: 0.94
+  final_reason: 标题单独成行，语义为创建逼真旗帜，后续图号从9.1开始，符合章节起始
+  accepted_evidence:
+  - 标题后为旗帜模拟总述
+  - 图号从9.1开始
+  - 前文有总结段落
+  rejected_evidence:
+  - 标题单独成行但与前文 Discord 段落间隔仅数行
+  need_human_review: false
+- 'no': 4781
+  confidence: 0.95
+  final_reason: 标题单独成行，语义统领刚体内容，后续图号从10.1开始，为新章节
+  accepted_evidence:
+  - 标题后为刚体模拟总述
+  - 图号从10.1开始，符合新章特征
+  rejected_evidence:
+  - '标题使用 ## 与正文小标题格式相同'
+  need_human_review: false
+- 'no': 5595
+  confidence: 0.98
+  final_reason: 第4部分标题，单独成行，部分-章节模式应划分新章
+  accepted_evidence:
+  - 部分标题单独成行且为第 X 部分模式
+  - 按规则应划分新章
+  rejected_evidence:
+  - 标题包含冒号可能被误认为正文小标题
+  need_human_review: false
+- 'no': 5608
+  confidence: 0.95
+  final_reason: 标题单独成行，语义统领动态绘画，后续图号从12.1开始，为新章节
+  accepted_evidence:
+  - 标题后为动态绘画总述
+  - 图号从12.1开始，符合新章上下文
+  rejected_evidence:
+  - '标题使用 ## 与正文小标题格式相同且前一行出现 ## 12 编号'
+  need_human_review: false
+rejected_lines:
+- 'no': 4769
+  reason: 复核方指出同一标题'# 第三部分：深入刚体'在4765、4769、4772连续三次出现，明显为排版重复或页眉页脚残留，4765后内容已开始介绍刚体模拟，4769后无新语义引入，不应分章
+  need_human_review: false
+- 'no': 5233
+  reason: 复核方指出前一行5231已出现'## 11'作为章节编号，当前行标题与编号分离且语言不一致，疑似原标题'## 11 Creating a Rigid
+    Body Physics Course'被错误拆分为两行，属于排版断行，不应单独分章
+  need_human_review: false

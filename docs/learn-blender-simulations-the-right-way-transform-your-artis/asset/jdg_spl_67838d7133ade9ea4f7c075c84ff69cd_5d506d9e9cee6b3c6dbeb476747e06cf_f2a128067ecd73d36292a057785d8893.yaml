@@ -1,0 +1,67 @@
+chapter_starts:
+- 'no': 232
+  confidence: 0.95
+  final_reason: 部分标题单独成行无句号，后接概述段落，符合部分-章节模式的最高层级划分，复核方保留
+  accepted_evidence:
+  - '标题 # 第 1 部分：使用 Mantaflow 进行火焰、烟雾和流体模拟 后紧跟概述段落 为了开始我们学习 Blender 模拟的旅程...'
+  - 文件首现位置仍为明确的部分层级边界
+  rejected_evidence:
+  - 复核方提出正文小标题疑虑但证据不足，标题语义和排版均符合部分划分
+  need_human_review: false
+- 'no': 244
+  confidence: 0.9
+  final_reason: 章节标题单独成行，后接概述段落，语义统领后续内容，对应目录第 1 章 Mantaflow 简介
+  accepted_evidence:
+  - '标题 ## Mantaflow 简介 后为概述段落 在过去五年中，Blender 的流行度呈惊人增长...'
+  - 前文部分介绍中列出 - 第 1 章，Mantaflow 简介
+  rejected_evidence:
+  - 复核方认为缺少显式编号可能为小节，但上下文为章节起始
+  need_human_review: false
+- 'no': 1611
+  confidence: 0.9
+  final_reason: 章节标题单独成行，后 1~3 行为本章概述，边界清晰，符合章标题特征
+  accepted_evidence:
+  - '标题 ## 了解域、流和效应器 后紧跟 现在我们已经涵盖了 Mantaflow 的基础知识...在本章中...'
+  - '前文为 ## 加入我们的 Discord 社区 等附属内容'
+  rejected_evidence:
+  - 复核方提出小标题可能但概述特征成立
+  need_human_review: false
+- 'no': 2301
+  confidence: 0.9
+  final_reason: 章节标题单独成行，后接概述段落，语义统领后续内容，符合章标题特征
+  accepted_evidence:
+  - '标题 ## 创建逼真的篝火模拟 后紧跟 是时候检验我们刚刚学到的技能了。在本章中，我们将创建一个逼真的篝火模拟...'
+  rejected_evidence:
+  - 复核方无有效反驳
+  need_human_review: false
+- 'no': 2659
+  confidence: 0.9
+  final_reason: 章节标题单独成行，后接概述段落，语义统领后续内容，符合章标题特征
+  accepted_evidence:
+  - '标题 ## 使用 Mantaflow 创建瀑布 后紧跟 如果你曾经尝试创建逼真的液体模拟...'
+  - 标题后为章节概述而非目录表格
+  rejected_evidence:
+  - 复核方无有效反驳
+  need_human_review: false
+rejected_lines:
+- 'no': 35
+  reason: '复核方指出前言、致谢、关于作者等属于同一前文块，规则要求统一划分为一章，不应在此内部再分章；该行之前已有 ## 贡献者、## 关于作者 等同级标题，仍在前文块内部'
+  need_human_review: false
+- 'no': 54
+  reason: '复核方指出标题后紧跟 ## 12 动态绘画简介 及目录表格行 | 技术要求 | 275 | ...，属于目录页排版而非正文章节起始，文件顺序错乱，缺少概述段落'
+  need_human_review: false
+- 'no': 56
+  reason: '复核方指出标题 ## 12 动态绘画简介 后为目录表格行，无概述段落，上下文为目录项而非章节起始'
+  need_human_review: false
+- 'no': 66
+  reason: '复核方指出标题 ## 13 创建画笔效果 后直接为表格行，无概述段落，处于目录表格区'
+  need_human_review: false
+- 'no': 73
+  reason: '复核方指出标题 ## 14 创建雨滴效果 后紧跟表格行，为目录页排版，缺少章节统领性概述'
+  need_human_review: false
+- 'no': 81
+  reason: '复核方指出标题 ## 15 创建燃烧效果 后紧跟 技术要求 363 等列表项，格式为目录条目，未出现概述段落'
+  need_human_review: false
+- 'no': 95
+  reason: '复核方指出 ## 索引 383 出现在目录页中，后续紧跟 ## 您可能喜欢的其他书籍 390 等目录条目，非文末索引'
+  need_human_review: false

@@ -1,0 +1,45 @@
+chapter_starts:
+- 'no': 6278
+  confidence: 0.95
+  final_reason: 复核方反证成立，## 13 为最高层级编号，构成章节起始，6280 为其副标题
+  accepted_evidence:
+  - 前一行 6278 为章节编号 '## 13'，已构成最高层级章节起始
+  - 标题后内容为本章概述而非新章概述，且前文 6268 为上一章总结，章节边界已在 6278 完成
+  - 同书中 7046 '## 15' 与 7048 '## 创建燃烧效果' 呈现相同编号-标题模式
+  rejected_evidence:
+  - 判断方将 6280 '## Creating a Paintbrush Effect' 视为独立章标题
+  need_human_review: false
+- 'no': 6705
+  confidence: 0.9
+  final_reason: 双方均认可为无编号章节标题，语义统领后续雨滴效果内容，上下文符合章节起始
+  accepted_evidence:
+  - 标题后 1~3 行为本章项目概述，符合章节起始上下文特征
+  - 前文 6697 为上一章总结 '## 总结'，后文进入 '本章将涵盖以下主题' 等章节级目录
+  - 无编号但语义统领后续雨滴效果全部内容，符合无序号章节判断
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 7046
+  confidence: 0.95
+  final_reason: 复核方反证成立，## 15 为最高层级编号，构成章节起始，7048 为其副标题
+  accepted_evidence:
+  - 前一行 7046 为章节编号 '## 15'，已满足编号特征的最高层级章节起始
+  - 7048 与 7046 构成编号-标题配对，标题单独成行但非独立章节起点
+  - 同类模式在 6278/6280 处已出现，说明该书采用编号+标题的章节标记方式
+  rejected_evidence:
+  - 判断方将 7048 '## 创建燃烧效果' 视为独立章标题
+  need_human_review: false
+- 'no': 7360
+  confidence: 0.95
+  final_reason: 文末索引标题，规则明确文末索引单独划分为一章，双方一致
+  accepted_evidence:
+  - 位于文末，内容为 '## Index' 后接字母索引条目，符合文末索引划分规则
+  - 前文 7359 为上一章总结，后文为索引条目，无正文段落干扰
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 6280
+  reason: 复核方指出其为编号 6278 后的副标题，真实章节起始已在 6278，标题与编号紧密绑定不应单独分章
+  need_human_review: false
+- 'no': 7048
+  reason: 复核方指出其为编号 7046 后的副标题，真实章节起始已在 7046，标题与编号紧密绑定不应单独分章
+  need_human_review: false
