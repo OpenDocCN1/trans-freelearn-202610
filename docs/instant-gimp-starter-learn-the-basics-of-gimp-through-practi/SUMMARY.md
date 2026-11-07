@@ -1,0 +1,5 @@
++   [GIMP 即时入门：通过实践示例学习 GIMP 基础](README.md)
++   [GIMP 即时入门：通过实践示例学习 GIMP 基础](instant-gimp-starter-learn-the-basics-of-gimp-through-practi_0.md)
++   [即时 GIMP 入门](instant-gimp-starter-learn-the-basics-of-gimp-through-practi_1.md)
++   [你会想了解的 Top 5 功能](instant-gimp-starter-learn-the-basics-of-gimp-through-practi_2.md)
++   [你应该认识的人和地方](instant-gimp-starter-learn-the-basics-of-gimp-through-practi_3.md)

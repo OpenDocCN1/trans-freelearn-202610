@@ -1,0 +1,38 @@
+reviews:
+- 'no': 5
+  overturn_probability: 0.75
+  alternative: 前言小节/致谢子标题
+  counter_evidence:
+  - 标题后1~3行不是概述段落，而是**作者**、**审阅者**等字段列表，不符合章标题上下文特征
+  - 该标题属于前置致谢、关于作者、关于审阅者等连续前言块的一部分，与后续## 关于作者、## 关于审阅者等同级，若分章会将应统一的前言块拆分
+  - 标题语义仅覆盖致谢信息，无法统领后续www.packtpub.com等推广页，缺乏章节统领性
+  keep_split: false
+- 'no': 75
+  overturn_probability: 0.15
+  alternative: 正文章节
+  counter_evidence:
+  - 标题后紧跟欢迎概述并列出本书部分，符合章标题后1~3行概述段落的特征
+  - 后续接### 那么，GIMP 是什么？、### 安装等子节，层级关系合理，语义可统领后续内容
+  keep_split: true
+- 'no': 246
+  overturn_probability: 0.1
+  alternative: 正文章节
+  counter_evidence:
+  - 标题后明确出现‘在本章中，我们实际上将学习如何像艺术家一样工作’的概述句
+  - 后续下辖### 绘制海报、### 绘制信息图等子节，符合章标题上下文特征
+  keep_split: true
+- 'no': 627
+  overturn_probability: 0.2
+  alternative: 正文章节/参考章节
+  counter_evidence:
+  - 标题后为‘如果你需要 GIMP 的帮助，这里有一些人 and 地方会证明非常宝贵’的概述
+  - 后续接### 官方网站、### 文章和教程、### 社区等子节，语义独立且可统领
+  keep_split: true
+- 'no': 684
+  overturn_probability: 0.85
+  alternative: 页眉页脚/排版噪声/出版广告
+  counter_evidence:
+  - 标题含方括号[PACKT]格式异常且在文档中重复出现，疑似页眉页脚或排版噪声
+  - 标题后内容为感谢购买、出版信息及多本无关图书广告，非本书正文语义，缺乏统领性
+  - 该块属于出版商后记广告，与正文无关，不应作为章节划分
+  keep_split: false

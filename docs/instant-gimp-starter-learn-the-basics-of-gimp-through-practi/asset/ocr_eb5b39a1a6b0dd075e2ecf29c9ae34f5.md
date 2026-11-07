@@ -1,0 +1,5 @@
+# About the Author
+
+**Fazreil Amreen**, unless asked, does not reveal his name. It is his nature to present his work in order to introduce himself. He is a citizen of a beautiful country, Malaysia and appreciates most aspects of life with joy and laughter. To avoid living a stereotypical, boring life, he holds on to this motto, "making it big", wherever he goes. Being a video game player, since the 8-bit era, he enjoys challenging virtual life, where nothing can stop him (which would be his motto in virtual life).
+
+He loves trying out new things, especially those that require creativity. He does the same at work, and this lets him to get to know about the latest tools to aid the software engineering process, which is why they call him a Software Configuration Management Engineer. He loves open source software, and uses it as far as possible, even to help others. He wants to make some video game of his own if it is a rewarding end. Follow him on twitter at @fab52.
