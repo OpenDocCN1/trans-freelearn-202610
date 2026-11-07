@@ -1,0 +1,7 @@
+# Appendix C - attached diagrams
+
+Along with the reports, it is great to include any diagrams that may have been developed by you or the team members within the organization to help support this test. This may help the company recreate testing scenarios as well as potentially just document something that they have never documented before. I have seen many penetration tests create documentation such as organization charts, data flow diagrams, or business process flow diagrams that the company has never documented before or at least a hard copy of it. A PCI data flow diagram I created earlier in the labs as part of the penetration test.
+
+# About your company
+
+This section is all about marketing your brand. You want to put a small amount of information about your company as well as what services it provides. Whoever performed the penetration test should have a small text blog about their professional experience as well as any certifications they may have. This will help anyone who reads the report understand who performed the tests and why they were qualified to do so. Always put your contact information as well in case anyone needs contact you in future for anything else, as well as any company certifications that may be held. It really should read like a 30-second commercial.

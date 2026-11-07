@@ -1,0 +1,50 @@
+reviews:
+- 'no': 5
+  overturn_probability: 0.75
+  alternative: 前置材料小标题/致谢章节
+  counter_evidence:
+  - 致谢后紧跟贡献者表格，随后连续出现 关于作者、关于审阅者、www.PacktPub.com 等多个前置小标题，说明致谢只是前置材料内部的子节而非统领性章标题
+  - 规则要求前言、序言、致谢、关于作者等正文之前内容统一划分为一章，不应在此处单独以致谢为章起始
+  keep_split: false
+- 'no': 232
+  overturn_probability: 0.85
+  alternative: 章节描述性标题，实际章标记在前一行
+  counter_evidence:
+  - '前一行 230 为 ## 1，符合编号特征的最高层级章标记'
+  - 232 行标题紧跟编号后出现，后接概述段落，语义上是该编号章的描述性名称而非独立章起始
+  keep_split: false
+- 'no': 431
+  overturn_probability: 0.85
+  alternative: 章节描述性标题
+  counter_evidence:
+  - '前一行 429 为 ## 2，是编号章标记'
+  - Information Gathering 紧随编号后出现，后接概述段落，符合章内标题的上下文
+  keep_split: false
+- 'no': 1349
+  overturn_probability: 0.85
+  alternative: 章节描述性标题
+  counter_evidence:
+  - '前一行 1347 为 ## 3，是编号章标记'
+  - 标题 设置和维护命令与控制服务器 紧跟编号后，后接概述段落，是该编号章的描述性名称
+  keep_split: false
+- 'no': 1884
+  overturn_probability: 0.2
+  alternative: 章节标题
+  counter_evidence:
+  - 标题长度偏长且含中英文混合，格式上略显噪声
+  - 但编号与标题同行且后接概述段落，仍符合最高层级章的编号、格式与语义特征
+  keep_split: true
+- 'no': 2339
+  overturn_probability: 0.1
+  alternative: 章节标题
+  counter_evidence:
+  - 标题单独成行、末尾无标点、长度小于30字
+  - 后1~3行为概述段落且后续为子节，语义统领性强
+  keep_split: true
+- 'no': 2919
+  overturn_probability: 0.85
+  alternative: 章节描述性标题
+  counter_evidence:
+  - '前一行 2917 为 ## 6，是编号章标记'
+  - 基于密码的攻击 紧随编号后出现，是该编号章的描述性名称而非独立章起始
+  keep_split: false

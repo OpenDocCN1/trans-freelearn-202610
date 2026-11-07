@@ -1,0 +1,75 @@
+chapter_starts:
+- 'no': 230
+  confidence: 0.95
+  final_reason: '编号标记 ## 1 为最高层级章起始，紧跟描述性标题 ## 规划与准备及概述段落，符合章特征；判断方误选描述标题'
+  accepted_evidence:
+  - '编号特征 ## 1 符合最高层级大章标记'
+  - '单独成行且后接描述性标题 ## 规划与准备及概述段落'
+  - 复核方指出 232 为描述性名称而非独立章起始
+  rejected_evidence:
+  - 判断方将 232 误认为第1章标题
+  need_human_review: false
+- 'no': 429
+  confidence: 0.95
+  final_reason: '编号标记 ## 2 为最高层级章起始，紧跟描述性标题 Information Gathering，符合章上下文'
+  accepted_evidence:
+  - '编号特征 ## 2 符合最高层级'
+  - '后接 ## Information Gathering 描述性标题及概述段落'
+  - 复核方指出 431 紧随编号后为章内描述性标题
+  rejected_evidence:
+  - 判断方将 431 误认为第2章标题
+  need_human_review: false
+- 'no': 1347
+  confidence: 0.95
+  final_reason: '编号标记 ## 3 为最高层级章起始，紧跟描述性标题 设置和维护命令与控制服务器'
+  accepted_evidence:
+  - '编号特征 ## 3 符合最高层级'
+  - '后接描述性标题 ## 设置和维护命令与控制服务器及概述'
+  - 复核方指出 1349 为该编号章的描述性名称
+  rejected_evidence:
+  - 判断方将 1349 误认为第3章标题
+  need_human_review: false
+- 'no': 1884
+  confidence: 0.92
+  final_reason: '编号与标题同行 ## 4 Vulnerability Scanning and Metasploit，单独成行后接概述段落，符合最高层级章特征'
+  accepted_evidence:
+  - 标题含编号 4 且单独成行，末尾无标点
+  - 后接概述段落且后续为子节，语义统领性强
+  - 复核方 keep_split true
+  rejected_evidence:
+  - 标题长度偏长且含中英文混合的轻微噪声
+  need_human_review: false
+- 'no': 2339
+  confidence: 0.95
+  final_reason: '标题 ## 5 流量嗅探与欺骗单独成行，长度合规，后接概述段落且后续为子节，语义统领性强'
+  accepted_evidence:
+  - 标题单独成行、末尾无标点、长度小于30字
+  - 后1~3行为概述段落且后续为子节
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 2917
+  confidence: 0.9
+  final_reason: '编号标记 ## 6 为最高层级章起始，紧跟描述性标题 基于密码的攻击'
+  accepted_evidence:
+  - '编号特征 ## 6 符合最高层级'
+  - '后接描述性标题 ## 基于密码的攻击及概述段落'
+  - 复核方指出 2919 为该编号章的描述性名称
+  rejected_evidence:
+  - 判断方将 2919 误认为第6章标题
+  need_human_review: false
+rejected_lines:
+- 'no': 5
+  reason: 复核方指出致谢后紧跟贡献者表格及多个前置小标题，致谢仅为前置材料内部子节；规则要求前言、序言、致谢、关于作者等正文之前内容统一划分为一章，不应以致谢单独分章
+  need_human_review: false
+- 'no': 232
+  reason: '紧跟编号 ## 1 后，为该编号章的描述性名称而非独立章起始，应以编号行 230 作为章起始'
+  need_human_review: false
+- 'no': 431
+  reason: '紧跟编号 ## 2 后，为该编号章的描述性名称 Information Gathering，非独立章起始'
+  need_human_review: false
+- 'no': 1349
+  reason: '紧跟编号 ## 3 后，为该编号章的描述性名称，非独立章起始'
+  need_human_review: false
+- 'no': 2919
+  reason: '紧跟编号 ## 6 后，为该编号章的描述性名称 基于密码的攻击，非独立章起始'
+  need_human_review: false

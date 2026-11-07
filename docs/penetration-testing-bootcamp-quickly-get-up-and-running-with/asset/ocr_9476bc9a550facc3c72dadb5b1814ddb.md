@@ -1,0 +1,3 @@
+Finally, I finished off the chapter by talking about social engineering experiments that are probably the easiest way to crack a password, that is, letting the user give it to you themselves.
+
+In the next chapter, I will talk about and display attacks on the infrastructure. This will include wired, wireless, and Bluetooth-based attacks, as well as the various utilities used to perform them effectively.

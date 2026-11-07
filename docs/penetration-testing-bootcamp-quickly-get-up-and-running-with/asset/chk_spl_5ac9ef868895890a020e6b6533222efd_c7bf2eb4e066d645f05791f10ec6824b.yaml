@@ -1,0 +1,41 @@
+reviews:
+- 'no': 3321
+  overturn_probability: 0.92
+  alternative: 章节编号后的标题补充行，实际分章点应为前一行的编号
+  counter_evidence:
+  - 前一行 3319 为 '## 7'，明显为章节编号，与本行构成编号+标题的成对结构
+  - 本行标题长度较长且紧跟编号行，不符合单独成行的最高层级章节独立性
+  - 后续概述段落实际归属编号 7 的章节，标题行更像是章节名称的补充而非独立分章点
+  keep_split: false
+- 'no': 4015
+  overturn_probability: 0.92
+  alternative: 章节编号后的标题补充行
+  counter_evidence:
+  - 前一行 4014 为 '## 8'，为章节编号
+  - 本行 '## Web 应用程序攻击' 与编号行构成同一章节的标题组合
+  - 上下文中编号行才是最高层级分章标记，本行不应单独分章
+  keep_split: false
+- 'no': 4719
+  overturn_probability: 0.9
+  alternative: 章节编号后的标题补充行
+  counter_evidence:
+  - 前一行 4717 为 '## 9'，为章节编号
+  - 本行标题与编号分离，实际分章点应在编号行
+  - 标题后概述段落属于第9章内容，标题行是编号的配套名称
+  keep_split: false
+- 'no': 4988
+  overturn_probability: 0.15
+  alternative: 章节标题
+  counter_evidence:
+  - 标题含编号 '10' 与名称同行，符合最高层级大章编号特征
+  - 单独成行、无标点、长度适中，后续为概述段落
+  - 与前后章节编号模式一致，应维持分章
+  keep_split: true
+- 'no': 5352
+  overturn_probability: 0.2
+  alternative: 文末索引标题
+  counter_evidence:
+  - 位于文档末尾，内容为索引条目列表
+  - 规则明确文末索引应单独划分为一章
+  - 标题单独成行、无标点，符合索引章节特征
+  keep_split: true

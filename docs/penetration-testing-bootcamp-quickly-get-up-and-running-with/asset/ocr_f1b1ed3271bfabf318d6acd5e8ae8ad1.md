@@ -1,0 +1,11 @@
+# Where to look for information – checking out the toolbox!
+
+Now that we have discussed why the information gathering phase is so important, let's jump into some of the tools to gain various types of information. The first thing you may notice very quickly is that there are a lot of tools and methods to gain increased intelligence from the environment. The second thing is that there is a lot of overlap of these tools and their respective function and outputs. This is a good thing, as with experience, every penetration tester will come to learn the tools they like to use the most, the ones they find the most beneficial, and the ones they want to avoid.
+
+The following tools are the ones that I have used in my lab environment and in the real world to discover more information about what exactly is on the network I am running the penetration test on.
+
+# Search engines as an information source
+
+Search engines provide us with the means to answer any questions that we may have. Tools such as Google, Yahoo! or Bing have given us the ability to find the answer to any question, anytime we want. But these tools are very powerful as well for giving us information about the company or the environment that we plan to run the penetration test against. With various searches, you can look at various images of the environments that can help you lay out any physical security tests. You can also find any Google dorks who may have exposed some sensitive information about the environment. Google dorking is very popular in the information gathering phase.
+
+Similar to Google, Shodan has emerged as the go-to search engine for any Internet connected devices. This search engine has great possibilities for exposing and divulging all sorts of information about an environment. Browsing the site can give you information on webcams that are connected to the Internet, search engine results of known vulnerable devices, C2C servers, botnets...the sky's the limit. Save yourself some time and stress, and utilize these tools to help understand the environment. You may quickly find out that the environment already has some large security issues before you even start to scan it.

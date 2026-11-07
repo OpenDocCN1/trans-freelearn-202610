@@ -1,0 +1,59 @@
+chapter_starts:
+- 'no': 3319
+  confidence: 0.93
+  final_reason: '复核方反证成立，编号行 ## 7 为最高层级分章标记，标题行 3321 为其补充名称，上下文概述归属编号章节'
+  accepted_evidence:
+  - 前一行 3319 为 '## 7'，明显为章节编号
+  - 编号行单独成行，后续 1~3 行 3323 起为概述段落且后接子节
+  - 与第 8、9 章编号模式一致，编号行才是分章点
+  rejected_evidence:
+  - 判断方将 3321 标题行视为独立章节
+  need_human_review: false
+- 'no': 4014
+  confidence: 0.93
+  final_reason: '复核方反证成立，编号行 ## 8 为最高层级分章标记，标题行 4015 为其补充名称'
+  accepted_evidence:
+  - 前一行 4014 为 '## 8'，为章节编号
+  - 编号行单独成行，后续为概述段落，标题行与编号构成同一章节
+  - 上下文中编号行才是最高层级分章标记
+  rejected_evidence:
+  - 判断方将 4015 '## Web 应用程序攻击' 单独分章
+  need_human_review: false
+- 'no': 4717
+  confidence: 0.92
+  final_reason: '复核方反证成立，编号行 ## 9 为最高层级分章标记，标题行 4719 为其补充名称'
+  accepted_evidence:
+  - 前一行 4717 为 '## 9'，为章节编号
+  - 标题行与编号分离，实际分章点应在编号行
+  - 标题后概述段落属于第 9 章内容
+  rejected_evidence:
+  - 判断方将 4719 标题行视为独立章节
+  need_human_review: false
+- 'no': 4988
+  confidence: 0.95
+  final_reason: 编号与标题同行，符合最高层级大章编号特征，单独成行无标点，后续为概述段落，复核方认可维持分章
+  accepted_evidence:
+  - 标题含编号 '10' 与名称同行，符合最高层级大章编号特征
+  - 单独成行、无标点、长度适中，后续为概述段落
+  - 与前后章节编号模式一致
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 5352
+  confidence: 0.9
+  final_reason: 文末索引标题，规则明确文末索引应单独划分为一章，标题单独成行无标点
+  accepted_evidence:
+  - 位于文档末尾，内容为索引条目列表
+  - 规则明确文末索引应单独划分为一章
+  - 标题单独成行、无标点，符合索引章节特征
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 3321
+  reason: 复核方指出其为编号 3319 后的标题补充行，实际分章点应为前一行编号，标题长度较长且紧跟编号，不符合独立最高层级章节独立性
+  need_human_review: false
+- 'no': 4015
+  reason: 复核方指出其为编号 4014 后的标题补充行，与编号行构成同一章节，上下文中编号行才是最高层级分章标记
+  need_human_review: false
+- 'no': 4719
+  reason: 复核方指出其为编号 4717 后的标题补充行，实际分章点应在编号行，标题行是编号的配套名称
+  need_human_review: false
