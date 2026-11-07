@@ -1,0 +1,31 @@
+reviews:
+- 'no': 6366
+  overturn_probability: 0.12
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '标题后紧跟同名 ## MySQL 服务器管理，出现编号行与标题行的重复排版，容易被误认为噪声'
+  - '前一节以 ## 摘要 结束，上下文过渡自然，单独编号行可能只是章节编号的残留'
+  keep_split: true
+- 'no': 6658
+  overturn_probability: 0.78
+  alternative: 附录子节 / 正文小标题
+  counter_evidence:
+  - '标题层级为 ##，而前一章 # 18 MySQL 服务器管理 使用 #，层级不一致，不符合只划分最高层级大章的规则'
+  - '标题后 1~3 行虽为概述，但随后紧跟 ## 早期事件、## 项目重启 等子标题，说明其为包含子节的父节而非顶层章'
+  - 无附录字母编号，仅靠语义‘本附录详细介绍了’判断易误报为章节，实际为正文小标题
+  keep_split: false
+- 'no': 6755
+  overturn_probability: 0.18
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - '标题后立即出现同名 ## 故障排除和支持，存在编号行与标题行重复的排版特征'
+  - '但编号为 # B 符合附录最高层级特征，且后接概述段落，仍满足大章起始语义'
+  keep_split: true
+- 'no': 7031
+  overturn_probability: 0.72
+  alternative: 目录性附录子节 / 正文小标题
+  counter_evidence:
+  - '标题层级为 ## 索引，非顶层 #，与前后 # 18、# B 等章节层级不一致'
+  - '索引后仍有 ## 感谢购买、## Packt 开源项目版税 等内容，索引并非文末最终部分，不符合文末索引划分为一章的前提'
+  - 索引条目直接以字母 A、ALTER ROUTINE 开头，无 1~3 行概述段落，不符合章节起始上下文特征
+  keep_split: false

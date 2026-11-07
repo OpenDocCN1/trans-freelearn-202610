@@ -1,0 +1,9 @@
+The **Home** link from the left panel is used to display this page. It shows the phpMyAdmin and MySQL versions, the MySQL server name, and the logged-in user. We also see that this user does not have the privileges to create a database. We see some links that relate to MySQL or phpMyAdmin itself. The **Log out** link might not be there if the user did not log in, as indicated by the configuration file's $cfg['Servers'][$i]['auth_type'] parameter being set to config.
+
+In this example, a normal user is allowed to change his/her password from the interface. To disallow this password change, we set $cfg['ShowChgPassword'] to FALSE. Privileged users have more options on the homepage. They can always create databases and have more links to manage the server as a whole — for example the **Privileges** link (more on this in Chapter 18). Another setting, $cfg['ShowPhpInfo'], can be set to TRUE if we want to see the **Show PHP Information** link on the homepage.
+
+# Database view
+
+phpMyAdmin goes into this view (shown in the screenshot that follows) every time we click on a database name from the left frame, or if the USE command followed by a database name is typed in a SQL box.
+
+This is where we can see an overview of the database — the existing tables, a link to create a table, the tabs to the Database view subpages, and some special operations we might do on this database to generate documentation and statistics. There is a checkbox beside each table to make global operations on that table (covered in Chapter 10). The table is chosen by using the checkbox or by clicking anywhere on the row's background. We can also see each table's size, if $cfg['ShowStats'] is set to TRUE. This parameter also controls the display of table-specific statistics in the Table view.

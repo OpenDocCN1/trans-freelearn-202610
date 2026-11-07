@@ -1,0 +1,29 @@
+chapter_starts:
+- 'no': 6366
+  confidence: 0.95
+  final_reason: '顶层大章标题 ''# 18 MySQL 服务器管理''，编号明确、单独成行，标题后紧跟概述段落，后续为 ## 子节，符合最高层级大章起始特征。复核方
+    overturn_probability 低且 keep_split 为 true。'
+  accepted_evidence:
+  - 判断方：顶层章节标题，编号明确，单独成行，标题后紧跟概述段落，后续为子节，符合大章起始特征
+  - 复核方 keep_split true，overturn_probability 0.12，认为编号行与标题行重复排版不影响大章判定
+  rejected_evidence:
+  - '复核方提示标题后紧跟同名 ## MySQL 服务器管理 存在重复排版可能为噪声，但编号特征和层级仍支持大章'
+  need_human_review: false
+- 'no': 6755
+  confidence: 0.95
+  final_reason: 附录最高层级标题 '# B 故障排除和支持'，以字母编号标识，单独成行，后接概述段落，为全书最高层级章节。复核方认可。
+  accepted_evidence:
+  - '判断方：顶层附录标题 # B，单独成行，后接概述段落，为全书最高层级章节'
+  - 复核方 keep_split true，overturn_probability 0.18，编号符合附录最高层级特征
+  rejected_evidence:
+  - '复核方指出标题后立即出现同名 ## 故障排除和支持 存在重复排版，但仍满足大章起始语义'
+  need_human_review: false
+rejected_lines:
+- 'no': 6658
+  reason: '标题层级为 ##，非最高层级 #，与前一章 # 18 层级不一致；后接 ## 早期事件、## 项目重启 等子标题，为包含子节的父节而非顶层章。复核方
+    overturn_probability 0.78，判定为附录子节/正文小标题，优先采纳复核反证。'
+  need_human_review: false
+- 'no': 7031
+  reason: '标题层级为 ## 索引，非顶层 #，与前后 # 18、# B 等章节层级不一致；索引后仍有 ## 感谢购买、## Packt 开源项目版税 等内容，非文末最终索引，不符合文末索引划分为一章的前提，且无
+    1~3 行概述段落。复核方反证成立。'
+  need_human_review: false
