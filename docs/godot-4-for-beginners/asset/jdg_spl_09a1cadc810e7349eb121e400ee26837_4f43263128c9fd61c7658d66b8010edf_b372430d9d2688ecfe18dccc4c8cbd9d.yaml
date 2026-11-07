@@ -1,0 +1,51 @@
+chapter_starts:
+- 'no': 0
+  confidence: 0.7
+  final_reason: 判断方认为书名页为前言、序言、致谢等前置内容的统一章节起点，复核方虽指出为封面书名但仍 keep_split，综合采纳前置内容统一划分为一章的处理
+  accepted_evidence:
+  - '书名后接献词第5行及 ## 前言 第9行等前置内容，符合前言、序言、致谢、关于作者等正文之前内容统一划分为一章的规则'
+  - 复核方 keep_split true
+  rejected_evidence:
+  - 行内容为书名 '# 初学者的 Godot 4'，属于封面/书名页而非章节标题
+  - '前置内容实际从献词第5行及第9行 ## 前言 开始，标题页后直接为空行无章节概述'
+  need_human_review: false
+- 'no': 199
+  confidence: 0.95
+  final_reason: 双方一致，# 第 1 部分 为部分-章节模式的部分起始，语义统领后续第一部分概述及章节目录
+  accepted_evidence:
+  - 一级标题 '# 第 1 部分' 符合部分-章节模式的部分起始特征
+  - 后续为第一部分概述及章节目录，语义统领性强
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 2198
+  confidence: 0.95
+  final_reason: 双方一致，# 第 2 部分 为部分-章节模式的第二部分起始，后续为第二部分概述及章节列表
+  accepted_evidence:
+  - 一级标题 '# 第 2 部分' 符合部分-章节模式的部分起始
+  - 后续为第二部分概述及章节列表，语义统领性明确
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 2209
+  confidence: 0.95
+  final_reason: 编号与标题同行，语义完整且统领后续内容，后1~3行为章节概述，符合大章特征
+  accepted_evidence:
+  - 编号与标题同行 '## 5 理解向量'，语义完整且统领后续内容
+  - 后1~3行即为章节概述，符合大章特征
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 212
+  reason: 复核方指出标题仅为数字 '1'，无概括性语义，无法覆盖后续内容；紧邻下一行即为具名章节标题 '## 开始使用 Godot！'，编号与标题分离为排版产物，不应单独分章
+  need_human_review: false
+- 'no': 727
+  reason: 标题仅为数字 '2'，语义缺失；真实章节标题为下一行 '## Exploring the Godot Engine Interface'，编号单独成行属排版断行，不应单独分章
+  need_human_review: false
+- 'no': 1121
+  reason: 标题仅为数字 '3'，无统领语义；下一行 '## 3D 简介' 才是具名章节标题且后接章节概述，编号单独成行属于排版断行而非最高层级大章标题
+  need_human_review: false
+- 'no': 1483
+  reason: 标题仅为数字 '4'，语义空洞；真实章节标题为下一行 '## Scripting with GDScript'，章节介绍在其后，编号标记不应作为独立章节分割点
+  need_human_review: false
+- 'no': 2551
+  reason: 标题仅为数字 '6'，无概括语义；真实章节标题为下一行 '## 在 Godot 中创建 2D 小游戏 — 第 1 部分'，概述在其后，编号单独成行属于排版标记，不应分章
+  need_human_review: false

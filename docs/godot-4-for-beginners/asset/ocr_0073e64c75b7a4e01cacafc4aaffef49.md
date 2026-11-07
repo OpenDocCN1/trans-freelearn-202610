@@ -1,0 +1,11 @@
+# Preface
+
+Hello and welcome to Godot 4 for Beginners! My name is Robert Henning, and I was once a Godot beginner myself, so I know how it feels to be searching for resources to help you learn how to make games with the Godot Engine. It was specifically because of the lack of good Godot resources for beginners that I wrote this book.
+
+This book takes a hands-on, step-by-step approach to teaching game development, beginning with the basics of downloading and installing the Godot 4 game engine and gradually building your knowledge through a series of progressively more complex topics. Each chapter is designed to be practical and interactive, allowing you to immediately apply what you've learned through real-world examples and projects. The book is structured to ensure that even those with no prior programming or game development experience can follow along and succeed.
+
+Throughout this book, you will get familiar with the Godot 4 interface and the tools it provides, while also learning the foundational game development philosophy behind Godot's unique system of nodes, scenes, signals, and scripts. You will use GDScript, Godot's scripting language, and explore both 2D and 3D workflows. Along the way, you'll build character controllers, design interactive elements such as enemies and hazards, implement scoring systems and collectibles, and discover how to polish your projects for a more professional finish. The book also guides you through the fundamentals of game design, helping you understand not only how to build a game but also how to craft a fun and engaging experience.
+
+By the end of this book, you will have a solid understanding of the Godot 4 game engine and its interface and be able to create both 2D and 3D games, manipulate lighting, script with GDScript, and implement key game elements such as players, enemies, and collectibles. You will also be skilled in designing and constructing engaging game levels, tracking scores, and managing game-over states, empowering you to bring your own game ideas to life.
+
+Now it's your turn to get started. With curiosity, patience, and practice, you will be building your very own games before you know it. Let's begin your journey into game development!

@@ -1,0 +1,49 @@
+reviews:
+- 'no': 3048
+  overturn_probability: 0.9
+  alternative: 其他
+  counter_evidence:
+  - '紧跟在章节编号 ## 7 之后仅隔一个空行，章节分章点已在 3046 行出现'
+  - 标题行与编号行构成同一章节头部，后续 3050 行起即为章节概述，语义连续
+  - 标题包含‘第 2 部分’且长度偏长，更像章节编号后的正式名称而非独立新章起点
+  keep_split: false
+- 'no': 3825
+  overturn_probability: 0.08
+  alternative: 其他
+  counter_evidence:
+  - '标题为 # 第 3 部分，符合部分-章节模式的分章规则'
+  - 前文 3821 行为上一章结束提示，后文 3827 行起为新部分概述
+  - 一级标题单独成行，语义统领后续多章，维持分章合理
+  keep_split: true
+- 'no': 3842
+  overturn_probability: 0.9
+  alternative: 其他
+  counter_evidence:
+  - '紧随章节编号 ## 8 之后仅隔空行，章节已在 3840 行开始'
+  - 标题行与编号行属于同一章节头部，后续 3844 行即为章节概述
+  - 若在此分章会与编号行重复分章，违背最高层级大章唯一起点原则
+  keep_split: false
+- 'no': 4562
+  overturn_probability: 0.9
+  alternative: 其他
+  counter_evidence:
+  - '紧随章节编号 ## 9 之后仅隔空行，章节起点应为 4560 行'
+  - 标题行‘在 Godot 中创建 3D 小游戏 — 第 2 部分’为编号后的章节正式名称
+  - 后续 4564 行起为章节概述，与编号行语义连续，不构成独立新章
+  keep_split: false
+- 'no': 5187
+  overturn_probability: 0.85
+  alternative: 其他
+  counter_evidence:
+  - '紧随章节编号 ## 10 之后仅隔空行，章节分章点已在 5185 行'
+  - 标题行与编号行构成同一章节头部，后续 5189 行即为章节引言
+  - 单独将标题行作为分章点会导致同一章节被拆分为编号与标题两次
+  keep_split: false
+- 'no': 5918
+  overturn_probability: 0.85
+  alternative: 其他
+  counter_evidence:
+  - '紧随章节编号 ## 11 之后仅隔空行，章节已在 5916 行开始'
+  - 标题行‘Understanding Game Design’为编号后的章节名称，非独立分章点
+  - 后续 5920 行起为章节概述，上下文不支持在此另起新章
+  keep_split: false
