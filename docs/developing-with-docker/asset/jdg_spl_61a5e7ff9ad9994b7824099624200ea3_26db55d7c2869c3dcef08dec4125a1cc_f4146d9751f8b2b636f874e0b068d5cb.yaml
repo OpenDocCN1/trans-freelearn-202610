@@ -1,0 +1,48 @@
+chapter_starts:
+- 'no': 3042
+  confidence: 0.92
+  final_reason: 复核方证据成立，一级标题 '# 7' 为最高层级章节标记，判断方误选二级标题；按规则只划分全书最高层级大章
+  accepted_evidence:
+  - 前一行 3042 为一级标题 '# 7'，符合最高层级章节标记
+  - 规则要求只划分全书最高层级大章，二级标题属于子节不分章
+  rejected_evidence:
+  - 判断方认为 '## 7 运行容器' 为章节起点
+  need_human_review: false
+- 'no': 3807
+  confidence: 0.93
+  final_reason: 复核方证据成立，一级标题 '# 8' 为最高层级章节标记，判断方选中的二级标题 '## 8 Publishing Images' 属于章节内部标题
+  accepted_evidence:
+  - 前一行 3807 为一级标题 '# 8'，是最高层级章节标记
+  - 规则要求只划分全书最高层级大章，二级标题不满足分章条件
+  rejected_evidence:
+  - 判断方认为 '## 8 Publishing Images' 为章节起点
+  need_human_review: false
+- 'no': 4137
+  confidence: 0.93
+  final_reason: 复核方证据成立，一级标题 '# 9' 为最高层级章节标记，判断方选中的二级标题 '## 9 Using Docker in Development'
+    为章节内部节标题
+  accepted_evidence:
+  - 前一行 4137 为一级标题 '# 9'，符合最高层级章节编号
+  - 后续内容为章节引言和子节列表，上下文符合最高层级章节
+  rejected_evidence:
+  - 判断方认为 '## 9 Using Docker in Development' 为章节起点
+  need_human_review: false
+- 'no': 4881
+  confidence: 0.85
+  final_reason: 文末索引标题，规则要求文末索引单独划分为一章，复核方确认保留
+  accepted_evidence:
+  - 规则明确文末索引应单独划分为一章
+  - '标题后接 ### A 等索引条目列表，内容为索引条目而非正文叙述'
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 3044
+  reason: 复核方指出其为二级标题 '## 7 运行容器'，编号重复且位于章节内部，真正的最高层级章节起点为 3042，按规则二级标题不应分章
+  need_human_review: false
+- 'no': 3809
+  reason: 复核方指出其为二级标题 '## 8 Publishing Images'，格式与正文内部节标题一致，最高层级章节起点应为 3807
+  need_human_review: false
+- 'no': 4139
+  reason: 复核方指出其为二级标题 '## 9 Using Docker in Development'，编号与一级标题重复，属于章节内部节标题，最高层级章节起点应为
+    4137
+  need_human_review: false

@@ -1,0 +1,33 @@
+reviews:
+- 'no': 3044
+  overturn_probability: 0.92
+  alternative: 正文小标题/子节标题
+  counter_evidence:
+  - 前一行 3042 为一级标题 '# 7'，符合最高层级章节标记，真正的章节起点应在此而非二级标题
+  - 该行使用 '##' 二级标题格式，编号重复且位于章节内部，后续内容为章节概述而非新章起始
+  - 按规则只划分全书最高层级大章，二级标题属于子节，不应作为分章点
+  keep_split: false
+- 'no': 3809
+  overturn_probability: 0.93
+  alternative: 正文小标题/子节标题
+  counter_evidence:
+  - 前一行 3807 为一级标题 '# 8'，是最高层级章节标记，章节起点应为 3807
+  - '''## 8 Publishing Images'' 为二级标题，格式与正文内部节标题一致，标题后紧跟概述段落属于节内内容'
+  - 规则要求只划分全书最高层级大章，二级标题不满足分章条件
+  keep_split: false
+- 'no': 4139
+  overturn_probability: 0.93
+  alternative: 正文小标题/子节标题
+  counter_evidence:
+  - 前一行 4137 为一级标题 '# 9'，符合最高层级章节编号，真正的章节起点在此
+  - '''## 9 Using Docker in Development'' 为二级标题，编号与一级标题重复，属于章节内部的节标题'
+  - 后续内容为章节引言和子节列表，上下文特征符合子节而非新章
+  keep_split: false
+- 'no': 4881
+  overturn_probability: 0.18
+  alternative: 正文小标题/附录标题
+  counter_evidence:
+  - 标题使用 '##' 二级格式，与正文小标题格式一致，易被误判为普通节标题
+  - 位于文末且后接 '### A' 等索引条目列表，内容为索引条目而非正文叙述
+  - 规则明确文末索引应单独划分为一章，语义上具有统领全文索引的概括性
+  keep_split: true

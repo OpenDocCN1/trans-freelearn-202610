@@ -1,0 +1,7 @@
+The build command, if parsed and processed successfully, results in a new image that you can start using `docker run`, just like any other image, taken, for example, from Docker Hub. The output after executing the `docker build` command will be the ID of the new Docker image. It will also be present if you list your images using the command you already know: `docker images`, as shown in the following screenshot:
+
+![](bbox=[0.1, 0.2, 0.9, 0.52])
+
+# Summary
+
+Docker provides a small but very flexible set of instructions for creating images using Dockerfiles. We have illustrated all the commands, their syntax, and their usage techniques in order to effectively create Docker images. Instructions have a rather simple syntax and are very well documented in the official Docker documentation. Creating your own images will not be very tricky. However, you will need to stick some best practices and guidelines, recommended by Docker. First of all, you should keep in mind that the containers created by your images should be ephemeral, that is, they should be able to be stopped, destroyed, and recreated with absolute minimum configuration. The images should be clean as far as possible, so starting from an empty build context, adding only what is necessary and using a .dockerignore is a way to go. Also, the YAGNI (You ain't gonna need it) principle, known from clean-code development practices has a very important meaning when it comes to creating Dockerfiles.

@@ -1,0 +1,5 @@
+The same note as for native Docker for Windows applies also for Docker for Mac: Kitematic is no longer part of the installation package. However, it's still compatible with Docker for Mac—you just need to download it separately and put it into the `/Applications` folder.
+
+If you work on an older Mac or an older Mac OS, you will need the Docker Toolbox. However, you will need at least Mac OS 10.8 *Mountain Lion* to install the Docker Toolbox. The Docker Toolbox package, the same as in Windows, contains all the tools to get you started. It contains Docker Client, Machine, Compose, Kinematic, and VirtualBox. Head straight to the Docker Toolbox website at https://www.docker.com/products/docker-toolbox and download the Mac OS version. Docker Toolbox for Mac is wrapped into a pkg package, so you need to run it, instead of just moving it into the `/Applications` folder. Similar to the Windows version, you would like to give it permission to report usage statistics to improve the future releases. After the installation, the **Quick Start** page will give you the choice to quickly execute the Terminal or the Kitematic tool:
+
+![](bbox=[0.1, 0.39, 0.89, 0.84])
