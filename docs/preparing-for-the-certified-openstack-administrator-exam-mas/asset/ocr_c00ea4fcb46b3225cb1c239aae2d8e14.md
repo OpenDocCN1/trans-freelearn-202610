@@ -1,0 +1,12 @@
++   - **Proprietary**: The infrastructure code in this model is closed source. This includes software such as *VMware VCenter* powered by Microsoft Windows Server. If a bug is discovered while working with the software, it must be filed with the vendor. Because one monolithic organization controls access to the code, bug fixes can take weeks or months to be patched.
++   - **Traditional software development**: In an Enterprise Virtualization cloud, the software developer continues to develop the applications in the same manner they developed applications on physical machines. This is sometimes referred to as the *monolithic* approach. Although the web server or database may reside on different virtual machines, the application's functions are combined into a single program from a single platform. This differs drastically from the cloudy development approach explained in the next section.
+
+# Amazon - not just a place for books
+
+In March of 2006, Michael Arrington—founder of Silicon Valley news blog *TechCrunch*—had an exciting announcement:
+
+> *Amazon Web Service is launching a new web service tonight called S3 – which stands for “Simple Storage Service”. It is a storage service backend for developers that offers “a highly scalable, reliable, and low-latency data storage infrastructure at very low costs... This is game changing.”*
+
+Arrington was right. At this time, Amazon Web Services had yet to release the catalog of services we all know today. **Simple Storage Service (S3)** provided users with the ability to create an account, enter their credit card number, and have access to upload files to AWS's hosted infrastructure within seconds. One benefit stood out above all: unlimited storage space.
+
+At the time, hosting companies offered **virtual private servers (VPS)**, allowing one to rent a server and use it for backup or file storage. The problems with these solutions was the space limitation on a particular server, not to mention the responsibility of the customer to maintain the health and security of the operating system. While a VPS may have charged users with monthly or yearly flat rates, S3 billed the user for what they used, much like a household electricity bill. The software developer now had the power to avoid the purchase of additional physical servers and storage arrays.

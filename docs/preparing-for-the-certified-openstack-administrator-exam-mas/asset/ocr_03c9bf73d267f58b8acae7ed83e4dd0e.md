@@ -1,0 +1,10 @@
+# Swift concepts
+
++   - **Account**: Swift uses the term "account" to refer to an OpenStack project.
++     Remember: in the OpenStack world, accounts, tenants, and projects all mean the same thing!
++   - **Container**: A "bucket" for static files (also known as **objects**). A user must create a container to upload an object into a Swift account. All containers are owned by the account (or project) to which the user was scoped when they created them. By default, all objects uploaded into a container are private.
++   - **Objects**: Objects are files that one uploads into a container. These are usually static files, such as pictures, movies, documents, or logs.
++   - **Object expiration**: One can set an object to expire at a specific time. Once an object is expired, it will no longer be accessible and is deleted from the Swift cluster. One great use case for object expiration is temporary registration codes or keys that are valid for a short time.
++   - **ACL (access control list)**: By default, a Swift container is private and not accessible to other users or projects. By default, a user with the admin or swiftoperator role can set ACLs at the container level and support lists for read and write access.
++   - **Static website hosting**: Rather than using a traditional web server such as Apache or Nginx to host a website, Swift can host static website files, such as HTML, CSS, and client-side JavaScript. By setting the web-index header on a container to the public URL of the container, it will navigate to a specified file, such as an `index.html`. One can then update their DNS to point to the URL of the publicly accessible Swift container.
++   - **Object versioning**: Versioning allows a user to upload multiple versions of a specific file. The user simply creates an alternate container for storing the versions. As the user uploads a file with the same name to a Swift container, the previous version gets posted to the alternate container. One can easily retrieve and restore to a previous version. If a `DELETE` request is sent to the object, the latest version gets deleted, and the previous version restored in its place.

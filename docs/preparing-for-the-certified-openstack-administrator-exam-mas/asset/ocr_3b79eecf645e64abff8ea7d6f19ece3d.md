@@ -1,0 +1,13 @@
+# A brief history of the cloud
+
+It's impossible to go anywhere these days without hearing about cloud computing. If you currently work in the technology world, I'm sure you've been at a gathering with family or friends when someone finally asks you, "so... what IS the cloud?" Even to the most technically savvy, it is a difficult question to answer. "Cloud" is often used as a buzzword, describing computing or storage infrastructure that can be accessed by many users from any location. To provide the right context, let's take a moment to dive into a brief history of the cloud. If you've heard this story before, feel free to skip ahead!
+
+# The plight of the software developer
+
+*The application.* Whether we are swiping through colorful icons on our smartphone home screens or logging on to our laptop's operating system, the app is everywhere. In fact, the term is used so frequently that it's difficult to give app a proper definition.
+
+So, rather than attempt to define what apps are, we can surely define what they do: solve problems. Apps can provide solutions to some of our most critical business headaches, saving and making money for organizations (and individuals). But more importantly, they often present users with unrealized needs. Think about how many people consider Twitter, Facebook, and LinkedIn on their smartphone to be a necessity to their daily lives.
+
+We typically call the minds behind applications **software developers**. But life for the software developer wasn't so easy 20 years ago. A developer would hack away on their home or office desktop, perfecting and testing their code into the late hours of the night. When the time for them to share their work with the world, they would need a physical computing device with CPU, disk, and memory. The computer would likely require internet access so it could reach a greater population. And in order to make that happen, a software developer would typically rely on a group of system engineers to call up a hardware vendor and get this machine shipped to the office or data center.
+
+After going through the grueling process of getting the machine unboxed, racked, stacked, and wired up, system engineers would then need to configure the operating system, install the necessary programs and frameworks, and ensure the software developer could connect to the machine from their desktop. Consider some of the technical practices at this time: high availability and fault tolerance, although widely discussed, were not commonly enforced.

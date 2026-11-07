@@ -1,0 +1,12 @@
+In 2006, AWS launched one of their first services: Amazon Simple Storage Service, or S3 for short. Amazon advertised S3 as "highly scalable, reliable and low-latency data storage infrastructure at very low costs." But what did this mean? Well, let's break down a few points to show why there was so much hype around S3 at that time:
+
++   - Unlike popular hosting providers at that time, a user could pay for what they actually used, as they used it (as long as they had a credit card on file). This was much like an electricity or utility bill.
++   - The user could store their files via a web API, allowing them to integrate programmatic uploading and downloading into their web application code (consider a photo album web application: super powerful!).
++   - It was incredibly cheap! Users could store thousand of objects for a few dollars a month.
++   - All objects were written to three different failure domains, so you were covered in the event of a server failure in an AWS data center.
+
+Now, some of the most popular applications in the world use S3. Dropbox is a frontend that uses S3 to store your files, and Pinterest and Tumblr use S3 to host images!
+
+In August 2009, Rackspace was inspired by Amazon S3 and began working on their very own object-storage service called Cloud Files (still available today). This project became what we know as OpenStack Swift, the open source scalable redundant storage system with a RESTful API. Like S3, Swift presents users with an object-storage service that makes storage appear limitless. It also features a lot of cool extras, such as static website hosting, object versioning, access control lists (ACLs), and object expiration.
+
+Behind the scenes, OpenStack Swift writes the objects to multiple disk drives spread through servers in the datacenter. Swift's software (written in Python like other OpenStack services), is responsible for ensuring data replication and integrity across the cluster. Should a server or hard drive fail, Swift replicates its contents from other active nodes to new locations in the cluster. Storage clusters scale horizontally simply by adding new servers. Because OpenStack uses software logic to ensure data replication and distribution across different devices, inexpensive commodity hard drives and servers can be used.

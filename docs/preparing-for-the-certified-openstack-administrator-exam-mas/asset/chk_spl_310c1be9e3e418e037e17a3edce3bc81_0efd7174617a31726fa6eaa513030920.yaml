@@ -1,0 +1,36 @@
+reviews:
+- 'no': 4147
+  overturn_probability: 0.05
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题后第2行即出现同名二级标题 ## Cinder Block-Storage Service，存在标题重复冗余现象，易被误判为节内小标题'
+  - 标题为中英文混合且长度接近阈值，后续1~3行虽为概述但与紧跟的二级标题语义重叠
+  keep_split: true
+- 'no': 4689
+  overturn_probability: 0.04
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题后紧跟 ## Swift 对象存储服务 同名二级标题，结构上像是章节内重复的节标题'
+  - 前后有多行空行，排版上易被视为段落断行而非严格的章节起始
+  keep_split: true
+- 'no': 5159
+  overturn_probability: 0.05
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题后立即出现 ## Heat 编排服务 同名二级标题，标题层级冗余'
+  - '标题后概述段落极短，后续直接进入 ### 关于 Heat 等三级内容，统领性不足'
+  keep_split: true
+- 'no': 5611
+  overturn_probability: 0.06
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题后直接进入 ### Debugging the CLI 等三级标题，层级跳跃大，不符合典型章节后接二级节的模式'
+  - '标题为纯中文且仅为数字+空格+词，格式上与正文中大量 ## 小标题相似'
+  keep_split: true
+- 'no': 5858
+  overturn_probability: 0.07
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题后紧跟 ## 项目范围 等二级标题，整体结构更像章节内的目录式小标题群'
+  - 标题长度很短且为纯中文，在误报倾向下易被当作正文小标题而非最高层级大章
+  keep_split: true
