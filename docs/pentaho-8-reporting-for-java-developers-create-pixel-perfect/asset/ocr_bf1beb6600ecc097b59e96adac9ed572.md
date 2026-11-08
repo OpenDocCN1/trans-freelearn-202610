@@ -1,0 +1,5 @@
+# Introducing data sources
+
+We have already introduced the importance of data sources in report development. Indeed, data sources are the very first step in report development, using both the Report Designer and the Pentaho Reporting SDK. In short, data sources are used by Pentaho Reporting to define the dataset available in a report, using a table representation made of fields and rows. Each field is defined by a name and a type (that is, string, integer, and so on), and a row is a collection of values related to the fields. Fields and rows are the real content of a Pentaho report and they can be used for viewing results, making charts, calculating formulas, the definition of parameters and user inputs, and a lot of other things.
+
+Even if the result of a data source is always a table, the types of sources can vary significantly. We can have relational DBMSs, NoSQL databases, different engines (like OLAP, Pentaho Data Integration, and so on), or even different formats of static data structures like XML, metadata, and others. In the following section, you will learn where your data sources can be managed, using the Pentaho Report Designer.

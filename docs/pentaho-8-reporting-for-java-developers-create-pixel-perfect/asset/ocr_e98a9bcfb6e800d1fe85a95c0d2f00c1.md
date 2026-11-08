@@ -1,0 +1,3 @@
+![](bbox=[0.12, 0.09, 0.88, 0.5])
+
+As the last example, edit the chart element again and change the chart type from XY line chart to XY area chart (from the upper panel, select the icon representing the target chart type). In the property panel, set the stacked property (in the options group) to false, then press the OK button and preview the resulting report by pressing the eye (👁) icon. The following screenshot shows what the preview looks like for your first XY area chart:

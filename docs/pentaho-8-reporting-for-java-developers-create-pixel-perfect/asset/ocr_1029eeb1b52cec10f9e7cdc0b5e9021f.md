@@ -1,0 +1,5 @@
+In the following sections, you can read about the specific composition of each relevant file or folder. If a file (or a folder) is not covered or described enough, don't worry; take a look at an existing `.prpt` bundle file to understand its composition. The XML format is self-explanatory and the tags are verbose enough to be clear to the developers.
+
+![](bbox=[0.14, 0.31, 0.21, 0.36])
+
+*The description of the anatomy of a `.prpt` bundle file is relevant for two main reasons: firstly, so you can deeply understand the definition of the `.prpt` format, and secondly, so you can manually modify the `.prpt` bundle file without using Pentaho Report Designer. Of course, we are not saying that you should manually write a `.prpt` bundle file, but it's clear that by knowing the format in detail, you will have full control of your Pentaho reports.*

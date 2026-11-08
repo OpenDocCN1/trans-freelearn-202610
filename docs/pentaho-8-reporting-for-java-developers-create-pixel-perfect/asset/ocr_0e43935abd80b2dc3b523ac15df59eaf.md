@@ -1,0 +1,1 @@
+ing started with Report Designer. Use the Group element properties in the report explorer to control and customize this feature in your future advanced developments.

@@ -1,0 +1,3 @@
+# DataFactory serialization
+
+In addition to these core interfaces, the Data API also defines interfaces and base implementations for serializing and de-serializing `DataFactory` implementations. This makes it possible for a user to define a data source in a client tool, and have that information available to the reporting engine during execution of the report on the server. The related interfaces for this portion of the API are `DataFactoryReadHandler` and `DataFactoryWriteHandler`.

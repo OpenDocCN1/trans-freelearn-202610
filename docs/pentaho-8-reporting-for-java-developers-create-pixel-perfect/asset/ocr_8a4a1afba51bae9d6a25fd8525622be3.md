@@ -1,0 +1,3 @@
+# DenormalizedMDXDataFactory
+
+`DenormalizedMDXDataFactory` maps all the axes of the OLAP result set to `TableModel`, in a denormalized or flattened fashion. The column headers display the dimensional metadata selected in the axes, as well as the selected measure metadata. For instance, if a year was selected from the time dimension, in the column header you would see the level name `[Time].[Year]`. `DenormalizedMDXDataFactory` is often used with crosstabs and will be used again in Chapter 13, *Internationalization, sub-reports and cross-tabs using Java.*

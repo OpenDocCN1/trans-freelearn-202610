@@ -1,0 +1,7 @@
+# Pentaho Report Designer nightly build
+
+In the previous chapters, you learnt everything about Pentaho Reporting 8.0 in its stable release. Stable releases can be downloaded as described in Chapter 2, *Getting Started with Report Designer*, but being an open source project, Pentaho Reporting's source code is available on a public repository hosted on GitHub. For future reference, the Pentaho Reporting's project is stored at https://github.com/pentaho/pentaho-reporting.
+
+In the public repository, you can find all the libraries, source code, and everything that is required to understand how Pentaho Reporting works and is developed. Looking at the repository, there are several branches, as usual. The master branch hosts the daily commits of the Pentaho team. Of course, the source code cannot be guaranteed to be stable, but it's definitely the most recent version of the software.
+
+In this section, you are going to learn how to download the latest version of the source code and how to build it, creating the so called nightly build. Using the Pentaho Reporting nightly build can be relevant for two main reasons: if you want to see the latest features in advance, without waiting for the stable release; and if you want to fork it, adding (or customizing) the official source code.

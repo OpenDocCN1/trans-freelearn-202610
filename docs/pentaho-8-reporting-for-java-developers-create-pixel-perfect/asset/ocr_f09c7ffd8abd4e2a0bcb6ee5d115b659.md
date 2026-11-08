@@ -1,0 +1,3 @@
+# Table of contents and index elements
+
+There are two special types of subreports not explained yet: table of contents and index. The **table of content (TOC)** feature allows you to generate a TOC based on the groups you have mapped inside the report or to specify the subreports you want included in your TOC. The index feature allows you to generate an index based on the fields (or groups) in your report. When the index is generated, it displays the instances and page numbers in which the field name appears.

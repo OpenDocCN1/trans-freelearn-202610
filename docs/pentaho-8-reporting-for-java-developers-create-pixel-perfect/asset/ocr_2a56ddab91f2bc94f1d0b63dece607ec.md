@@ -1,0 +1,5 @@
+# XY bar chart, XY line chart, and XY area chart examples
+
+As an example, even if it's not perfect for this case, let's reuse the same data source introduced for the bar chart. Starting from an empty report, change the orientation to landscape and set the chart element as described in the previous examples.
+
+By double-clicking on the chart element, the chart edit window will be shown. Select the XY bar chart icon from the upper panel and set the x-value-columns property to BUYPRICE, the y-value-columns property to QUANTITYINSTOCK, and the series-by-field property to PRODUCTLINE, directly in the dataset panel. In the property panel, set the stacked property (in the Options group) to true, then press the OK button and preview the resulting report by pressing the eye (👁) icon. The following screenshot shows what the preview looks like for your first XY bar chart:

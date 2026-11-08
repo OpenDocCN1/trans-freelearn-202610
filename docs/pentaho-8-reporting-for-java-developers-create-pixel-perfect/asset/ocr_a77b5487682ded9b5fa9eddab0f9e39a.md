@@ -1,0 +1,8 @@
+parsing of the XML file, and all client-side state managements.
+
++   - **LibPixie:** This is a WMF-file reading library, originally written by David R. Harris as converter for the Pixie-image viewer. Pixie was long time dead and has now been resurrected as WMF-reader and image producer for Java 1.2.2 or higher. Pixie lacks the support for most bitmap-formats, but everything else works fine.
++   - **LibRepository:** This abstracts the input and output of hierarchical storage systems, such as file systems, that Pentaho Reporting interacts with. This makes it possible for a custom storage system, such as FTP, to be implemented and to be mapped to the API, giving Pentaho Reporting access to the system.
++   - **LibSerializer:** This provides helper methods for serializing non-serializable objects. This is necessary so that the Reporting Engine can serialize standard Java classes that don't implement Java's serializable interface.
++   - **LibSparkline:** This is a library developed to render sparkline graphs. Sparklines are small-scale bar or line charts that are inserted into text to provide visualized information along with the textual description.
++   - **LibSwing:** This is a common helper class storage for design-time elements, so that they don't have to move into the engine project, where they potentially bloat up the project due to third-party dependencies or a large amount of code.
++   - **LibXml:** This provides utility classes for **Simple API for XML (SAX)** parsing and XML writing, based on Java's **Java API for XML Parsing (JAXP)** API. This library assures the speedy loading and validation of Pentaho Reporting XML template files.

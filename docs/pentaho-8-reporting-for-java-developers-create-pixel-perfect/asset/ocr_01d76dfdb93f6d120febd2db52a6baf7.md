@@ -1,0 +1,3 @@
+# Cross tab using Java
+
+In Chapter 10, *Subreports and Cross Tabs*, you learnt all about cross tabulation (or cross tab), allowing you to view dimensional data in a Pentaho report. In this section in particular, you will reach the same level of expertise from a Java perspective. In the following sections, you will go through the basics of Pentaho cross tab and then you will move on to understand a fully working example of source code, available in the GitHub repository.

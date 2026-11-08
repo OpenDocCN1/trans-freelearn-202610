@@ -1,0 +1,3 @@
+![](bbox=[0.14, 0.13, 0.21, 0.18])
+
+As an exercise, start from `report_02.prpt` as developed in Chapter 4, Creating a Report with Report Designer, and modify the font family of the entire report (so in `Master Report`) to `Purisa`. To see the final result, you can check the `report_07.prpt` file stored in the `Chapter 05 - Design and layout in Report Designer/my_reports` folder of the GitHub repository.

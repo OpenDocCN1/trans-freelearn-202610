@@ -1,0 +1,5 @@
+# Subreports in Pentaho Report Designer
+
+Subreports in Pentaho Reporting may be included in any band of a report, except for the page header and page footer bands. Subreports receive a DataRow of parameters, determined by the current state of their parent report when rendering the subreport. These parameters may be used when executing a subreport query or referenced directly in the subreport. Within subreports, you define named queries that may reference the DataRow of parameters passed in, allowing a subreport to query only the currently scoped data and not the entire data set available to the parent report.
+
+Subreports may be of any length, may be included in other subreports in a nested fashion, and may also be presented alongside one another in their parent report. When spanning multiple pages, special considerations must be made, including how to handle the master report's page header, page footer, and group headers. This chapter will cover all these topics in the following examples.

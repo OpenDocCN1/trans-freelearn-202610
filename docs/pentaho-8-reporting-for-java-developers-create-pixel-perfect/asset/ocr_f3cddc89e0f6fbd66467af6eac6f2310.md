@@ -1,0 +1,3 @@
+Select an item from the Business Domains menu and the Business Models menu, and then add one or more of Categories/Columns to Selected Columns and/or Conditions and/or Order By to define your query. When done, click on OK to confirm the definition.
+
+As you saw for the JDBC data source, the Max Preview Rows and the Preview buttons enable you to check that everything is working as expected, showing a bunch of data results as a data table.

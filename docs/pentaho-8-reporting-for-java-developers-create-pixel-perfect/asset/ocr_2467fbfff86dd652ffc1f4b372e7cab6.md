@@ -1,0 +1,3 @@
+# Java API for building reports
+
+Pentaho Reporting comes with a well-documented Java API for building reports from the ground up, so developers can stick with the Java programming language when customizing existing report templates or building reports from scratch. This Java API allows the developers to create and modify the various sections of a report, including the various header, footer, group, and detail bands, along with creating and modifying objects within each section of a report.

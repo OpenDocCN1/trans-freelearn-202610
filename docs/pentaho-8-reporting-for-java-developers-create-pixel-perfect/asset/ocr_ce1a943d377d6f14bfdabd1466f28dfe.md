@@ -1,0 +1,3 @@
+# Internationalization and localization using Java
+
+As you learnt in Chapter 9, *Internationalization and Localization*, as with all modern software, Pentaho Reporting is developed following all the best practices and patterns to support internationalization, so that it can be adapted to various languages and regions without engineering changes. In this section in particular, you will reach the same level of expertise, but from a Java perspective. In the following sections, you will go through the basics of Pentaho report localization from a Java perspective; then you will move on to understand how to test localization, and finally, you will see a fully working example of some source code, available in the well known GitHub repository.

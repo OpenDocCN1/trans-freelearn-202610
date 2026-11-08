@@ -1,0 +1,5 @@
+![](bbox=[0.18, 0.09, 0.82, 0.63])
+
+Before leaving this feature, let's share some practical considerations on the relation between the developed report and the final format (or formats). As you can see in the previous example with report_02.prpt, Pentaho Reporting Engine is really powerful and is able to generate the best version of the report in all the available formats. As you can imagine, this has some obvious limitations. If you take a look at the Microsoft Excel version, the rendering is not perfect and is probably not suitable for a release in production. Right or wrong, this is a regular behavior on complex layouts and this is something you should always consider in your future developments.
+
+*If you have to develop a report that will be released in formats with lin capabilities, like Microsoft Excel, CSV, or Text, always remember to ke*

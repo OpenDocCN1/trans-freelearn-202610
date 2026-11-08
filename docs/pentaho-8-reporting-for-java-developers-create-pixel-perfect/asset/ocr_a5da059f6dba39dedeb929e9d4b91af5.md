@@ -1,0 +1,11 @@
+# Introducing the included examples
+
+There are five interesting examples included in the Pentaho Reporting SDK. The examples are described in the PDF guide, together with an overview introducing the interaction with the Reporting Engine. All the source code described in the PDF guide is available in the sample folder, and the names of the files are strictly connected with the examples. Following are brief descriptions of each example for reference:
+
++   - `sample0`: The base class. The `AbstractReportGenerator` class is extended by `sample1` and `sample2`. It contains the basic logic that creates a report, leaving the details of input and output to the classes that extend it.
++   - `sample1`: Static report definition, JDBC input, PDF output. The simplest embedding scenario produces a static report (no user input regarding data source or query), with JDBC input from the Pentaho-supplied `SampleData` HyperSQL schema, and produces a PDF on the local filesystem.
++   - `sample2`: Static report definition, JDBC input, HTML output. This example produces a static report (no user input regarding data source or query), with JDBC input from the Pentaho-supplied `SampleData` HyperSQL schema, and produces an HTML file on the local filesystem.
++   - `sample3`: Dynamically generated, JDBC input, Swing output. `Sample3.java` generates the same report as created in `sample1.java`, but it uses a Swing helper class defined in the Reporting Engine to render the report in a Swing preview window.
++   - `sample4`: Dynamically generated, JDBC input, Java servlet output. `Sample4.java` is `HttpServlet` which generates an HTML report similar to `sample2`. This example assumes you have a Java application server, such as Tomcat or JBoss, installed, configured, running, and accessible to you.
+
+Feel free to read the content of the PDF guide and the description of the five examples in detail, before continuing to read the content of the following paragraphs. It would be great if you could test the examples in your environment. As mentioned in the previous section, we will continue introducing a different approach using Apache Maven.
