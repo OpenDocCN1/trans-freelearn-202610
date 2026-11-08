@@ -1,0 +1,5 @@
+# Observe some more data filtration
+
+Keep all the measures selected in the Measures pane (as depicted in the previous figure), and select Q1 under 2013 in the Date pane. When you do not select any state, the result will resemble the output shown in the first column in the following screenshot. The result shows all cities, stores, managers, and products from all states. In the second column, you put a filter on the California state. When you choose this state, the remaining panes are filtered to display city, store, manager, and product related to California only. Similarly, the third and fourth columns display appropriate data for Nevada and Oregon states, respectively. This demonstrates the auto-filtration process of SAP Analytics Cloud, which is executed based on the source data.
+
+![](bbox=[0.2, 0.37, 0.8, 0.74])

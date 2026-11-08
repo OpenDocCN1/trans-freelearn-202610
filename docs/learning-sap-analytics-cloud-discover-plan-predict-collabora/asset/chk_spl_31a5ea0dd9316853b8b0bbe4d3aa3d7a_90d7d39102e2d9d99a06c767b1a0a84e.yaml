@@ -1,0 +1,29 @@
+reviews:
+- 'no': 3138
+  overturn_probability: 0.08
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题使用 # 标记单独成行，长度短且无句号，排版上与正文内部的小标题高度相似，易产生误报'
+  - 标题前仅隔一个空行与上一章总结段落相邻，上下文转折依赖语义判断，缺乏明确的序号特征
+  keep_split: true
+- 'no': 3802
+  overturn_probability: 0.07
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题为 # 协作，单独成行且无序号，语义概括性强但与前后段落的衔接仅靠空行区分，易被误认为正文小标题'
+  - 标题后 1~3 行为介绍性概述，格式上与章节标题相似，但也符合正文小标题后的说明段落模式
+  keep_split: true
+- 'no': 4151
+  overturn_probability: 0.09
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题 # 数字董事会 前一行为本章总结与下一章预告，边界依赖语义，标题本身无序号'
+  - 标题后直接进入功能介绍段落，排版上与正文小标题后的说明段落难以区分
+  keep_split: true
+- 'no': 4419
+  overturn_probability: 0.06
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题 # 系统管理 单独成行且无句号，长度符合章节特征，但也符合正文小标题的排版习惯'
+  - 标题前为上一章的收束句‘让我们进入最后一章’，标题后即为内容介绍，上下文支持章节划分但证据主要依赖语义
+  keep_split: true

@@ -1,0 +1,13 @@
++   - **The Teams folder (B)**: The Teams option grants the access of your story to a specified team and stores your story in the Teams folder.
++   - **The Private files (C)**: The Private files are those files that are not shared with other users. The same rule applies to folders.
++   - **Search box (D)**: You can find any content in the folders or subfolder by entering the keyword in the search box.
++   - **Create (E)**: If you have appropriate permission, then the Files page also lets you create a Story and a Boardroom Agenda through the Create icon.
++   - **New folder (F)**: Click on the New Folder icon to create new folders in the interface.
++   - **Edit (G)**: Clicking on the Edit icon delivers another window in which you can modify the name and description of the selected file.
++   - **Manage (H)**: The Manage option comes with a small menu. If you want to move the selected object to another location, select the Move To option from this menu. Mark files as favorites by selecting the star icon in the Favorite column. Or, you can select multiple files and select Add To Favorites from the Manage menu. The concept of sharing and the Sharing Settings options in this menu will be discussed in a while.
++   - **Copy To (I)**: Choosing the Copy To option in the toolbar makes an exact copy of the selected object in the selected folder.
++   - **Delete (J)**: Get rid of unwanted files or folders using the Delete icon on the toolbar. Depending on the access rights that have been defined for a file, the Delete option may be active when you select one or more files.
++   - **Upload file (K)**: Use the Upload file icon on the toolbar to upload files from your own computer to SAP Analytics Cloud. Note that, at the time of writing this, you can upload PDF, text, and MS Office files, up to a maximum size of 250 MB.
++   - **Filter (L)**: Select the filter icon on the toolbar to display certain file types. To further refine the list, select Created by me or Shared with me from the adjacent list.
++   - **Sharing Files (M)**: Files and folders that are not shared with other users are shown as Not Shared on the Files page. You can share these objects with other users by clicking on the Share option in the Manage menu. For further details, refer to the *Sharing a Story With Colleagues and Granting Access Privileges* section in this chapter.
++   - **Change Share Settings (N)**: By choosing the option Sharing Settings in the Manager menu, you see the same dialog box as you saw in the *Sharing a Story With Colleagues and Granting Access Privileges* section earlier in this chapter. Using the options provided in this dialog box, you can grant or revoke access permissions for a file or folder to and from other people or teams.

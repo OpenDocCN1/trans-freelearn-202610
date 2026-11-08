@@ -1,0 +1,12 @@
+# Visualization
+
+Following are the important aspects of Visualization that are important for our discussion:
+
++   - **Stories**: After creating a model, you create stories to explore your model data. A story consists of one or more pages to present model data using objects such as charts, geomaps, tables, text, shapes, and images. To create a new story, you go to Create | Story from the main menu. You are asked to select one option from the provided four options that determine how you want to start your story. Usually, you start by adding a canvas page, where you put objects manually. For further details, see Chapter 4, *Creating Stories Using Charts*.
++   - **Charts**: SAP Analytics Cloud comes with a variety of charts, so choose the best chart type to present your analysis. You can add multiple types of charts to a single story page. You will learn how to add charts to your story pages in Chapter 4 to 6.
++   - **Geomap**: The models that include latitude and longitude information can be used in stories to visualize data in geomaps. By adding multiple layers of different types of data in geomaps, we can show different geographic features and points of interest enabling us to perform sophisticated geographic analysis. You will create geomaps in Chapter 6, *Analyzing Data Using Geo Maps and Other Objects*.
++   - **Table**: A table is a spreadsheet-like object that can be used to view and analyze text data. You can add this object to either canvas or grid pages in stories. Tables and grids are discussed in Chapter 7, *Working with Tables and Grids*.
++   - **Static and dynamic text**: You can add static and dynamic text to your story pages. Static text is normally used to display page titles, while dynamic text automatically updates page headings based on the values from the source input control or filter. You will add these two types of texts to your story page in Chapter 5, *Extending Stories with KPI, Filters and other Handy Objects*.
++   - **Images and shapes**: You can add images (such as your company logo) to your story page by uploading them from your computer. In addition to images, you can also add shapes, such as line, square, or circle, to your page. These topics are covered in Chapter 5, *Extending Stories with KPI, Filters and other Handy Objects*.
+
+When you create a story, a new story with a default name appears on your screen, as illustrated in the following split screenshots:

@@ -1,0 +1,35 @@
+chapter_starts:
+- 'no': 1247
+  confidence: 0.85
+  final_reason: 复核方保留采纳。标题单独成行无句号，后1~3行为概述段落并统领后续故事图表创建内容，形式符合最高层级章节特征，语言不一致为排版噪声不构成否决。
+  accepted_evidence:
+  - 标题单独成行且无句号，长度符合章标题特征
+  - 标题后1~3行为概述段落，后续为子节，语义具有统领性
+  - 复核方 keep_split=true，overturn_probability 仅0.2
+  rejected_evidence:
+  - 标题为英文与前后中文正文不一致，可能为排版转换噪声
+  need_human_review: false
+- 'no': 2655
+  confidence: 0.9
+  final_reason: '双方基本一致。标题以 # 开头单独成行，后接概述段落并引出本章主题，后续为子节，符合最高层级章节特征；与目录重复的疑虑不影响正文中的章节边界。'
+  accepted_evidence:
+  - '标题以 # 开头单独成行，标题末尾无句号'
+  - 后1~3行为概述段落并引出本章主题，后续为子节
+  - 复核方 keep_split=true，overturn_probability 0.15
+  rejected_evidence:
+  - 标题与目录中 '# 6. 使用地理地图和其他对象分析数据' 重复，可能为目录残留
+  need_human_review: false
+rejected_lines:
+- 'no': 162
+  reason: '复核方反证成立。前言、致谢、关于作者等前置内容应统一为一章，前文已出现 ## 鸣谢、## 关于作者 等；且上下文从系统管理正文突变到前言，抽取顺序错乱，非真实章节边界。'
+  need_human_review: false
+- 'no': 609
+  reason: '复核方反证成立。标题层级为 ## 无编号特征，正文中最高层级章节多用 #；标题后为‘本章将涵盖以下主题’式节内概述，后续紧跟度量维度等子节，语义更接近节而非全书大章。'
+  need_human_review: false
+- 'no': 986
+  reason: '复核方反证成立。标题层级为 ## 且无编号，符合子层级节格式；前文为‘在下一章中，您将学习第二种模型类型’的过渡，标题后为本章延续说明，统领性不足，更像节标题。'
+  need_human_review: false
+- 'no': 2038
+  reason: '复核方反证成立。标题层级为 ## 且文本被截断为‘Extending Stories with KPI, Filters, and Other
+    ...’，长度超限；前文为过渡句，标题后为概述性段落，更符合节而非最高层级大章。'
+  need_human_review: false

@@ -1,0 +1,43 @@
+reviews:
+- 'no': 162
+  overturn_probability: 0.85
+  alternative: 前言小标题/前置内容
+  counter_evidence:
+  - '前言、致谢、关于作者等应统一为一章，前文已出现 ## 鸣谢、## 关于作者、## 关于审阅者 等前置小标题，前言不应在此单独起章'
+  - 该行前文为系统管理章节的权限、监控等正文内容，上下文从系统管理突变到前言，抽取顺序错乱，非真实章节边界
+  keep_split: false
+- 'no': 609
+  overturn_probability: 0.75
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题层级为 ##，而正文中真实最高层级章节多使用 #，且标题无“第 X 章”编号特征'
+  - 标题后为“本章将涵盖以下主题”式的节内概述，后续紧跟度量维度等子节，语义更接近节而非全书大章
+  keep_split: false
+- 'no': 986
+  overturn_probability: 0.7
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题层级为 ## 且无编号，符合子层级节的格式特征'
+  - 前文为“在下一章中，您将学习第二种模型类型...”的过渡，标题后为本章延续说明，统领性不足，更像节标题
+  keep_split: false
+- 'no': 1247
+  overturn_probability: 0.2
+  alternative: 章节标题
+  counter_evidence:
+  - 标题为英文与前后中文正文不一致，可能为排版转换噪声
+  - 标题后 1~3 行为概述段落且后续为子节，形式上符合章节特征，但语言不一致降低置信度
+  keep_split: true
+- 'no': 2038
+  overturn_probability: 0.8
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题层级为 ##，长度超限且文本被截断为“Extending Stories with KPI, Filters, and Other ...”'
+  - 前文为“在下一章中，您将学习一些更重要的技术...”的过渡，标题后为概述性段落，更符合节而非最高层级大章
+  keep_split: false
+- 'no': 2655
+  overturn_probability: 0.15
+  alternative: 章节标题
+  counter_evidence:
+  - 标题与目录中“# 6. 使用地理地图和其他对象分析数据”重复，可能为目录残留与正文重复
+  - 标题后为概述段落并引出本章主题，形式上符合章节特征
+  keep_split: true

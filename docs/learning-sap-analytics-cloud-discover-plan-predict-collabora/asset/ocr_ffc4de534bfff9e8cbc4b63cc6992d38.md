@@ -1,0 +1,7 @@
+# Account dimension
+
+The Account dimension (B) is the main dimension of the model. The Account dimension defines the set of account members and the format of the account data. Each column that you mapped as a measure (Quantity Sold, Sales Revenue, Gross Margin, Discount, and Original Sales Price in the current scenario) will appear as members in the Account dimension. Models can have only one Account dimension. Unlike private dimensions, which have their values in different columns, data of the Account dimension members is not visible in the modeler. As you can see in the following illustration, the data you imported for some key-figure-based columns (Sales Revenue, Gross Margin, Discount, Original Sales Price, and Quantity Sold) is not visible:
+
+![](bbox=[0.15, 0.32, 0.85, 0.48])
+
+In addition to the basic columns of ID, Description, and Account Type, a set of technical properties is automatically created when the dimension is first set up. You can hide these columns using the Technical Properties button on the toolbar, but they cannot be deleted. List boxes are available for most of the attributes of the account dimension to help you enter data. For example, you can set the Currency value for the four monetary columns to display a currency symbol after the numerical values. By default, Aggregation Type for all these account members is set to SUM, so you do not need to explicitly select this aggregation method here.

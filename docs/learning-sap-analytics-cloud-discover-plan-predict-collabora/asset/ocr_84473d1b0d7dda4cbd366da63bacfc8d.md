@@ -1,0 +1,9 @@
+# Setting visibility filters
+
+In the previous chapters, you went through many techniques to filter the results delivered by your page objects. In those exercises, you applied conventional filtering options to control the display of dimension members. In this section, we will go through another type of filter called **visibility filter**. The main difference between a conventional filter and the visibility filter is that when you apply a conventional filter, the filtered-out members vanish from the scene and do not take part in the calculation, whereas if you apply the visibility filter to some dimension members, they also vanish from the page objects, but they still participate in the calculation. Let's go through an example to elaborate this concept. First, you will add a conventional filter, and then you will apply a visibility filter to observe the difference between the two.
+
+Currently, the value of Net Revenue being displayed in the table object is 320.84 million (A), as illustrated in the following screenshot. Follow the instructions to first create a conventional filter:
+
+![](bbox=[0.22, 0.42, 0.78, 0.67])
+
+46. Select the table, and click on the Manage Filter icon (B) representing the Location dimension. In the Selected filters for Location dialog box, place check marks in the Exclude selected members option (C) and Oregon state (D) boxes to exclude this state’s data from the table. Once you click on OK to get back to the page, you will notice that the Oregon state’s data no longer exists in the table, as depicted in the lower view of the following screenshot. Due to this exclusion, the total value of the Net Revenue measure (E) is also affected.

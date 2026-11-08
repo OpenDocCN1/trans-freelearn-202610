@@ -1,0 +1,13 @@
+# Preface
+
+SAP Analytics Cloud is a business intelligence, planning, and predictive cloud-based application that helps users blend data from different sources, create compelling data visualizations, run ad hoc reporting, and more. This book will demonstrate how SAP Analytics Cloud can help transform the way you discover, plan, predict, collaborate, visualize, and extend all in one solution. You will begin by being introduced to the SAP Analytics Cloud environment. From here, you will learn about the different models and understand the different capabilities with SAP Analytics Cloud, such as Predictive Analysis, BI, and Planning. Going further, you will learn how to create geomaps, charts, tables, and other objects. Using SAP Analytics Cloud, you will learn how to connect to SAP and non-SAP data sources. You will also learn how to analyze and blend small and big data on premise and in the cloud.
+
+The book starts with the basics of SAP Analytics Cloud and exposes almost every significant feature that is necessary for a beginner. Packed with illustrations short descriptions, the book provides a unique learning experience.
+
+Your exploration journey starts with the most basic introduction to SAP Analytics Cloud. In this introduction, you are briefed about the segments of the product, such as model, stories, Digital Boardroom. Then you are acquainted with the interface of the product (Home screen, Main Menu, and more). You then go to the hands-on side of the book, which starts with model creation. Next, you are guided on how to utilize a model to prepare different types of stories (reports) with the help of charts, tables, geomaps, and more. In the final chapters of this book, you will learn about Digital Boardroom, collaboration, and administration.
+
+These are the objectives of this book:
+
++   - The first is self learning. The easy-to-follow visual instructions provided in this book help business users and report developers to create simple and complex stories quickly, all by themselves.
++   - The main objective of this book is to equip you with a solid understanding of what SAP Analytics Cloud contains so that you can effectively utilize the product.
++   - After completing the exercises provided in this book, you will have a clear understanding of the SAP Analytics Cloud platform. You will be able to create data models using different data sources, including Excel and text files, and will be in a position to present professional analyses using different types of charts, tables, and geomaps. You can share your stories with other team members or compile them in the SAP Digital Boardroom agenda for presentation to major stakeholders.
