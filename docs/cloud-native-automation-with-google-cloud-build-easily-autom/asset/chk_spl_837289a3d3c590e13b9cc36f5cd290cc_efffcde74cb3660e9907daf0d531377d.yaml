@@ -1,0 +1,45 @@
+reviews:
+- 'no': 3243
+  overturn_probability: 0.12
+  alternative: 若不分章，这行最可能是什么：正文小标题
+  counter_evidence:
+  - 标题单独成行，后1~3行为章节概述段落，后续出现### 子节，符合最高层级章节起始特征
+  - 前文为上一章### 摘要及‘在下一章中，我们将深入探讨在 Google Kubernetes Engine’的过渡
+  keep_split: true
+- 'no': 4343
+  overturn_probability: 0.1
+  alternative: 若不分章，这行最可能是什么：正文小标题
+  counter_evidence:
+  - 标题单独成行，前文为第8章摘要及‘接下来，我们将把重点转移到…’的章节过渡
+  - 后文直接给出本章主题介绍及### 子节，语义具有统领性
+  keep_split: true
+- 'no': 4945
+  overturn_probability: 0.85
+  alternative: 若不分章，这行最可能是什么：章节内一级小标题
+  counter_evidence:
+  - 前一行 4943 为 '# 10' 章节编号标记，按编号特征真正的章起始应为编号行
+  - '本行 ## 在编号后出现，层级与前两章的章标题一致但语境更符合章内首节'
+  - 后文‘到目前为止，本书已描述了…本章将涵盖以下主题’为节级概述而非全书层级章概述
+  keep_split: false
+- 'no': 5547
+  overturn_probability: 0.05
+  alternative: 若不分章，这行最可能是什么：正文小标题
+  counter_evidence:
+  - 标题为 '# 第四部分：展望未来'，为部分级标题，书中存在部分-章节模式，部分标题需划分新章
+  - 后文为部分介绍及章节目录列表，符合部分起始特征
+  keep_split: true
+- 'no': 5555
+  overturn_probability: 0.8
+  alternative: 若不分章，这行最可能是什么：节标题
+  counter_evidence:
+  - '标题层级为 ###，而前两章标题均为 ##，层级过深不符合全书最高层级大章特征'
+  - '后文紧跟同级 ### 使用 Cloud Deploy 实现持续交付，显示为部分下的节级结构'
+  - 目录中‘第 11 章，Cloud Build 的展望’虽文字对应，但抽取层级偏移，疑似为节标题误判
+  keep_split: false
+- 'no': 5768
+  overturn_probability: 0.05
+  alternative: 若不分章，这行最可能是什么：正文小标题
+  counter_evidence:
+  - 标题为 '## 索引'，位于文末，按规则文末索引需单独划分为一章
+  - 后文为索引条目列表，无正文段落，符合索引章节特征
+  keep_split: true

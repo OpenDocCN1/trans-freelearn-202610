@@ -1,0 +1,41 @@
+chapter_starts:
+- 'no': 3243
+  confidence: 0.95
+  final_reason: 双方一致，标题单独成行且语义统领，后文为章节概述及子节，符合最高层级章节起始
+  accepted_evidence:
+  - 标题单独成行，后1~3行为章节概述段落，后续出现### 子节，符合最高层级章节起始特征
+  - 前文为上一章### 摘要及‘在下一章中，我们将深入探讨在 Google Kubernetes Engine’的过渡
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 4343
+  confidence: 0.95
+  final_reason: 双方一致，标题单独成行，前文为章节过渡，后文为本章主题介绍及子节，语义具有统领性
+  accepted_evidence:
+  - 标题单独成行，前文为第8章摘要及‘接下来，我们将把重点转移到…’的章节过渡
+  - 后文直接给出本章主题介绍及### 子节，语义具有统领性
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 5547
+  confidence: 0.95
+  final_reason: 部分级标题，书中存在部分-章节模式，按规则部分标题需划分新章
+  accepted_evidence:
+  - 标题为 '# 第四部分：展望未来'，为部分级标题，书中存在部分-章节模式，部分标题需划分新章
+  - 后文为部分介绍及章节目录列表，符合部分起始特征
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 5768
+  confidence: 0.95
+  final_reason: 文末索引，按规则文末索引需单独划分为一章
+  accepted_evidence:
+  - 标题为 '## 索引'，位于文末，按规则文末索引需单独划分为一章
+  - 后文为索引条目列表，无正文段落，符合索引章节特征
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 4945
+  reason: 复核方指出前一行 4943 为 '# 10' 章节编号标记，按编号特征真正的章起始应为编号行，本行在编号后出现层级与前两章一致但语境更符合章内首节，后文‘到目前为止，本书已描述了…本章将涵盖以下主题’为节级概述而非全书层级章概述，证据成立不分章
+  need_human_review: false
+- 'no': 5555
+  reason: '标题层级为 ###，而前两章标题均为 ##，层级过深不符合全书最高层级大章特征，后文紧跟同级 ### 节结构，目录中‘第 11 章，Cloud
+    Build 的展望’虽文字对应但抽取层级偏移，疑似节标题误判'
+  need_human_review: false

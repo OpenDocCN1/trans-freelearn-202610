@@ -1,0 +1,84 @@
+chapter_starts:
+- 'no': 0
+  confidence: 0.85
+  final_reason: 前言、序言、致谢、关于作者等正文之前的内容统一划分为一章，文档起始即为前文起始，判断方提出前文统一分章
+  accepted_evidence:
+  - 判断方：前言、贡献者、关于作者等正文之前内容统一划分为一章
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 153
+  confidence: 0.95
+  final_reason: 双方一致，# 第 1 部分：基础知识 为最高层级部分标题，单独成行，后接本部分包含章节列表，语义统领后续章节
+  accepted_evidence:
+  - 判断方：第 1 部分标题，最高层级部分划分，单独成行且语义统领后续章节
+  - '复核方：标题为 # 第 1 部分：基础知识，最高层级部分标题，单独成行，后接本部分包含章节列表，符合部分-章节模式'
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 163
+  confidence: 0.95
+  final_reason: 双方一致，## 介绍 Google Cloud Build 为第 1 章标题，单独成行、无句号、后接概述段落，与目录第 1 章对应
+  accepted_evidence:
+  - 判断方：第 1 章对应标题介绍 Google Cloud Build，单独成行、无句号、后接概述段落
+  - 复核方：标题单独成行、无句号、长度合适，前文部分介绍明确列出 第 1 章，介绍 Google Cloud Build，与标题语义一致
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 351
+  confidence: 0.95
+  final_reason: 双方一致，## 配置 Cloud Build 工作器 为第 2 章标题，单独成行、无标点，语义统领后续工作器配置内容
+  accepted_evidence:
+  - 判断方：第 2 章标题配置 Cloud Build 工作器，单独成行且语义统领后续内容
+  - 复核方：标题单独成行、无标点，语义统领后续工作器配置内容，与章节列表中第 2 章对应
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 1104
+  confidence: 0.95
+  final_reason: 双方一致，# 第 2 部分：拆解构建 为最高层级部分标题，单独成行，后接本部分包含章节列表
+  accepted_evidence:
+  - 判断方：第 2 部分标题，最高层级部分划分，单独成行
+  - 复核方：# 第 2 部分：拆解构建 为最高层级部分标题，单独成行，后接本部分包含章节列表
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 1114
+  confidence: 0.95
+  final_reason: 双方一致，## 构建配置和架构 为第 4 章标题，单独成行、无标点，语义概括构建配置与架构，后接概述
+  accepted_evidence:
+  - 判断方：第 4 章标题构建配置和架构，单独成行、无句号、语义统领
+  - 复核方：标题单独成行、无标点，语义概括构建配置与架构，与目录第 4 章对应，后接概述段落
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 1808
+  confidence: 0.95
+  final_reason: 双方一致，## 触发构建 为第 5 章标题，单独成行、无标点，语义统领触发构建内容
+  accepted_evidence:
+  - 判断方：第 5 章标题触发构建，单独成行且后接概述段落
+  - 复核方：标题单独成行、无标点，语义统领触发构建内容，与目录第 5 章对应
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 2194
+  confidence: 0.95
+  final_reason: 双方一致，## 管理环境安全 为第 6 章标题，单独成行、无标点，语义统领环境安全内容
+  accepted_evidence:
+  - 判断方：第 6 章标题管理环境安全，单独成行、无句号、语义统领
+  - 复核方：标题单独成行、无标点，语义统领环境安全内容，与目录第 6 章对应
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 2442
+  confidence: 0.95
+  final_reason: 双方一致，# 第 3 部分：安全与部署 为最高层级部分标题，单独成行，语义统领后续章节
+  accepted_evidence:
+  - 判断方：第 3 部分标题，最高层级部分划分，单独成行
+  - 复核方：# 第 3 部分：安全与部署 为最高层级部分标题，单独成行，语义统领后续章节
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 13
+  reason: '复核方反证成立：## 贡献者 位于致谢、关于作者、关于审阅者、前言等前文区块内部，后续紧跟 ### 关于作者 等同级前文小标题，规则要求前言、序言、致谢、关于作者等正文之前的内容统一划分为一章，不应在此处再细分章节，且为二级标题非最高层级章节'
+  need_human_review: false
+- 'no': 700
+  reason: 复核方反证成立：标题末尾带问号，违反‘标题末尾绝无句号（。.？！）’的格式特征，且标题文字‘开始使用 – 我可以获得哪些构建信息？’与目录中‘入门
+    – 我可以获得哪些构建信息？’不完全一致，作为章节标题出现问号通常为小节提问式标题
+  need_human_review: false
+- 'no': 2454
+  reason: '复核方反证成立：### 使用 Terraform 和 Cloud Build 自动化部署 为三级标题，与此前章节 ## 二级标题层级不一致，标题无‘第
+    7 章’编号，紧邻部分介绍后直接出现三级标题，更符合小节而非最高层级章节'
+  need_human_review: false

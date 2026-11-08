@@ -1,0 +1,14 @@
++   - Allowing teams to focus on other business-critical activities
++   - Feedback for continuous improvement of the pipeline
+
+The value of automation can help an organization in many aspects. While metrics can be manually gathered, they can be most effective when aggregated in an automated pipeline. Decisions can be made to determine the most effective changes to a build pipeline. The metrics gathered from frameworks in place, such as GitOps, can also help feed into improving the end-to-end pipeline, not just the automation of source code compilation. Continuous improvement becomes more achievable when an organization can use metrics for data-driven decisions.
+
+# Before there was the cloud
+
+There are a variety of tools on the market, ranging from open source to closed source and self-managed to hosted offerings, supporting build pipelines. Availability of the pipeline solution is critical in ensuring that code is built in a timely manner; otherwise, it may impact the productivity of multiple teams. Organizations may have separate teams that are responsible for maintaining the solution that executes the build pipeline.
+
+# Making sure there are enough resources
+
+For self-managed solutions, the maintenance includes the underlying infrastructure, OS, tools, and libraries that make up the pipeline infrastructure. Scale is also a factor for build pipelines; depending on the complexity, organizations may have multiple concurrent builds occurring at the same time. Build pipelines need at least compute, memory, and disk to execute, typically referred to as workers within the build platform. A build pipeline may consist of multiple jobs, steps, or tasks to complete a particular pipeline to be executed. The workers are assigned tasks to complete from the build platform. Workers need to be made available so that they can be assigned tasks and such tasks are executed. Similar to capacity planning and sizing needs for applications, enough compute, memory, storage, or any other resource for workers must be planned out.
+
+There must be enough hardware to handle builds at the peak. Peak is an important topic because in a data center scenario, hardware resources can be somewhat finite because it takes time to acquire and set up the hardware. Technologies such as virtualization have given us the ability to overprovision compute resources, but at some point, physical hardware becomes the bottleneck for growth if our build needs become more demanding. While an organization needs to size for peak, that also means that builds are not always running constantly at peak to make full use of the allocated resources. Virtualization, as mentioned previously, may help us with other workloads consuming compute during off-peak time, but this may require significant coordination efforts throughout the organization. We may be left with underutilized and wasted resources.

@@ -1,0 +1,2284 @@
+- ''
+- "# Google Cloud Build 云原生自动化：在完全托管、可扩展且安全的平台中轻松自动化任务\n\n\n\n\n为我在这其中的美好，Margaux\
+  \ 和 Benjamin，以及你们帮助我贡献的诗句。\n\n- Anthony\n\n致我的妻子 Lien-ting 和孩子 Mason 与 Madison，感谢你们的支持和耐心，让这一切成为现实。\n\
+  \n- Kent\n\n## 贡献者\n\n### 关于作者\n\n**Anthony Bushong** 是 Google 的高级开发者关系工程师。曾任 Kubernetes\
+  \ 和 GKE 的现场工程师和实践负责人，他曾与公司合作在 Cloud Build 中为其 Kubernetes 基础设施实施自动化——从 1.3 版开始！他现在专注于将这些经验提炼成多种技术内容形式——目标都是为了教导和赋能人们，无论其背景或经验如何。\n\
+  \n*我想感谢我的妈妈、爸爸、奶奶、家人和朋友——没有你们，我什么都不是。我还要感谢那些在这个行业中给我机会的人，认识到我所取得的许多成就都建立在你们的信任和教导之上——尤其是\
+  \ Diane Anderson 和 Andrew Milo。*\n\n**Kent Hua** 是一名专注于应用现代化的全球解决方案经理。他在帮助客户现代化企业应用方面拥有多年经验，涵盖本地和公有云上的业务和技术挑战。多年以来，他帮助组织将单体应用分解并在\
+  \ Kubernetes 上运行的容器中实施微服务模式。在支持这些组织的过程中，他发现文化和流程自动化是其现代化之旅中的关键要素。\n\n*我想感谢我的父母、家人、朋友和同事，他们造就了今天的我。通过我们的互动和经历，几乎每天都有新的学习。*\n\
+  \n### 关于审阅者\n\n**Marcelo Costa** 是一位技术爱好者，过去十年在软件和数据领域花费了相当多的时间。在公司工作和个人项目之间，他使用过多种技术和业务领域，始终寻找具有挑战性的问题来解决。\n\
+  \n他是云计算 **Google Developer Expert (GDE)**，喜欢通过文章、教程和开源代码与他人分享知识来帮助社区。他目前在数据领域的爱沙尼亚初创公司\
+  \ Alvin 担任创始工程师。\n\n**Damith Karunaratne** 是 Google Cloud 的产品经理组，专注于推动持续集成和软件供应链安全工作。在加入\
+  \ Google 之前，Damith 花了十多年时间帮助各种规模的公司解决复杂的软件挑战，包括领导各种 CI/CD 和 DevOps 计划。\n\nDamith\
+  \ 在 McMaster University 获得理学学士学位，主修计算机科学。\n\n## 前言\n\n本书首先讨论托管服务的价值以及它们如何帮助组织专注于手头的业务问题。构建流水线在组织中至关重要，因为它们有助于在代码部署到生产环境之前构建、测试和验证代码。\n\
+  \n我们随后直接进入 Cloud Build：基础知识、配置选项、计算选项、构建执行、构建触发和构建安全。\n\n本书的剩余章节以 Cloud Build 在自动化场景中的实际示例作为结尾。虽然\
+  \ Cloud Build 可以帮助软件构建生命周期，但它也可以协调向诸如无服务器和 Kubernetes 之类的运行时交付。\n\n## 本书适合谁\n\n\
+  本书面向管理云环境并希望在完全托管、可扩展且安全的平台中自动化工作流程的云工程师和 DevOps 工程师。假定您了解云基础知识、软件交付和容器化基础知识。\n\n\
+  ## 本书涵盖内容\n\n第 1 章，介绍 Google Cloud Build。建立无服务器和托管服务的基础，重点关注使用 Cloud Build 的软件构建生命周期。\n\
+  \n第 2 章，配置 Cloud Build 工作器。这是一个托管服务，但我们仍然需要计算资源，本章讨论可用的计算选项。\n\n第 3 章，入门 – 我可以获得哪些构建信息？启动第一个构建并发现构建开始后可用的信息，以帮助您了解成功情况或调试问题。\n\
+  \n第 4 章，构建配置和架构。您可以快速开始使用 Cloud Build，但了解配置选项可以帮助您节省时间。\n\n第 5 章，触发构建。这是自动化的关键组件：当源文件发生某些变化时做出反应，或从现有自动化工具触发。\n\
+  \n第 6 章，管理环境安全。这是一个托管服务，但仍然存在共享责任，确定谁可以执行流水线、流水线可以访问的内容以及如何安全地与其他服务集成。\n\n第 7 章，使用\
+  \ Terraform 和 Cloud Build 自动化部署。我们还可以利用 Cloud Build 自动化 Terraform 清单以构建基础设施。\n\n\
+  第 8 章，使用 Cloud Build 安全地向 GKE 交付软件。发现 Google Cloud 中用于安全容器交付到 Google Kubernetes\
+  \ Engine 的模式和功能。\n\n第 9 章，使用 Cloud Build 自动化无服务器。虽然是无服务器，但我们仍然需要自动化从源代码到运行中的东西的过程。\n\
+  \n第 10 章，在生产环境中运行 Cloud Build 的操作。在为生产环境准备 Cloud Build 时，可能需要做出额外的考虑，并与多个团队协作。\n\
+  \n第 11 章，Cloud Build 的未来展望。接下来是什么？例如，我们将了解 Cloud Deploy 如何在内部利用 Cloud Build。\n\n\
+  ## 如何充分利用本书\n\n您需要具备软件开发、软件交付和流水线的经验，才能充分利用本书和 Cloud Build。\n\n您需要访问一个 Google Cloud\
+  \ 账户。本书中的示例可以在 Google Cloud 的 Cloud Shell 中执行，其中包含本书中提到的大多数工具和二进制文件。如果需要外部资源，则会在各自的章节中注明。\n\
+  \n**如果您使用的是本书的数字版，我们建议您自己输入代码或从本书的 GitHub 仓库访问代码（链接在下一节中提供）。这样做可以帮助您避免因复制和粘贴代码而产生的潜在错误。**\n\
+  \n## 下载示例代码文件\n\n本书将利用各章节中提到的不同仓库中的示例。\n\n本书中的代码示例可以在 https://github.com/PacktPublishing/Cloud-Native-Automation-With-Google-Cloud-Build\
+  \ 找到。如果代码有更新，将在 GitHub 仓库中更新。\n\nPackt Publishing 还在 https://github.com/PacktPublishing/\
+  \ 上提供我们丰富的图书和视频目录中的其他代码包。快去看看吧！\n\n## 下载彩色图片\n\n我们还提供一份 PDF 文件，其中包含本书中使用的屏幕截图和图表的彩色图片。您可以在此处下载：https://packt.link/C5G3h。\n\
+  \n## 使用的约定\n\n本书在整个过程中使用了多种文本约定。\n\nCode in text: Indicates code words in text,\
+  \ database table names, folder names, filenames, file extensions, pathnames, dummy\
+  \ URLs, user input, and Twitter handles. Here is an example: “In this case, we will\
+  \ be creating a private pool of workers that have the e2-standard-2 machine type,\
+  \ with 100 GB of network-attached SSD, and located in us-west1.”\n\n代码块设置如下：\n\n\
+  ```\n```\n  # Docker Build\n  - name: 'gcr.io/cloud-builders/docker'\n    args:\
+  \ ['build', '-t',\n           'us-central1-docker.pkg.dev/${PROJECT_ID}/image-repo/myimage',\n\
+  \           '.']\n```\n\n当我们希望引起您对代码块中特定部分的注意时，相关行或项目会以粗体显示：\n\n```\n```\n...\n\
+  INFO[0002] No cached layer found for cmd RUN npm install\nINFO[0002] Unpacking rootfs\
+  \ as cmd COPY package*.json ./\nrequires it.\n...\nINFO[0019] Taking snapshot of\
+  \ files...\n```\n\n任何命令行输入或输出均按如下方式编写：\n\n```\n```\n$ project_id=$(gcloud config\
+  \ get-value project)\n$ vpc_name=packt-cloudbuild-sandbox-vpc\n```\n\n粗体：表示新术语、重要单词或屏幕上显示的单词。例如，菜单或对话框中的单词以粗体显示。以下是一个示例：“Select\
+  \ System info from the Administration panel.”\n\n提示或重要说明\n如下所示显示。\n\n## 联系我们\n\n\
+  我们始终欢迎读者的反馈。\n\n**一般反馈：** 如果您对本书的任何方面有疑问，请发送电子邮件至 `customercare@packtpub.com`，并在邮件主题中提及书名。\n\
+  \n**勘误：** 尽管我们已尽一切努力确保内容的准确性，但错误难免。如果您在本書中发现错误，我们将不胜感激您向我们报告。请访问 `www.packtpub.com/support/errata`\
+  \ 并填写表格。\n\n**盗版：** 如果您在互联网上发现我们作品的任何形式的非法复制品，我们将不胜感激您提供位置地址或网站名称。请通过 `copyright@packt.com`\
+  \ 联系我们，并附上材料的链接。\n\n**如果您有兴趣成为作者：** 如果您在某个主题方面有专业知识，并且有兴趣撰写或为一本书做出贡献，请访问 `authors.packtpub.com`。\n\
+  \n## 分享您的想法\n\n在您阅读了 *使用 Google Cloud Build 进行云原生自动化* 后，我们很乐意听取您的想法！请点击此处直接前往本书在\
+  \ Amazon 的评论页面并分享您的反馈。\n\n您的评论对我们和技术社区都很重要，并将帮助我们确保提供优质的内容。\n\n\n"
+- '# 第 1 部分：基础知识
+
+
+  本书的这一部分将向您介绍 Cloud Build。您将了解 Cloud Build 存在的上下文以及它为用户带来的价值、使用 Cloud Build 时的核心用户流程、构建运行的架构和环境，以及您检查和审查构建执行的方式。
+
+
+  本部分包含以下章节：
+
+
+  - 第 1 章，介绍 Google Cloud Build
+
+  - 第 2 章，配置 Cloud Build 工作器
+
+  - 第 3 章，入门 – 我可以获得哪些构建信息？
+
+  '
+- '## 介绍 Google Cloud Build
+
+
+  要正确介绍 Google Cloud Build 及其为用户提供的价值，了解自动化为 IT 组织在云基础设施配置和软件交付等常见工作流程中带来的价值非常重要。
+
+
+  自动化这些任务可能有助于提高组织的开发人员生产力；使用托管服务实现自动化可以在更低的运营成本下实现这种生产力，使个人和团队能够专注于手头的业务任务，而不是管理运行自动化的所有基础设施。处理
+  AI/ML 类型工作负载的自动化需求有所增加（https://cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning），这超出了典型的开发人员工作流程。本书将重点关注
+  Cloud Build 的开发人员自动化工作流程（即持续集成）方面。
+
+
+  在本章中，我们将通过此视角审视 Google Cloud Build，具体讨论以下内容：
+
+
+  - 自动化的价值
+
+  - 云出现之前
+
+  - 使用托管服务减少琐事
+
+  - 使用 Google Cloud Build 进行云原生自动化
+
+
+  ### 技术要求
+
+
+  - 数据中心和基础设施概念
+
+  - 公有云概念
+
+  - 软件构建概念
+
+
+  ## 自动化的价值
+
+
+  应用程序和服务的编译形式多种多样。代码最终成为打包的构件似乎很简单，但对于许多场景，构建可能包含许多复杂步骤和依赖项。创建和测试构件所涉及的步骤可能是手动的、自动化的，或两者结合形成构建流水线。以下图表展示了一个示例构建流水线，其中包含构建应用程序的关键活动：
+
+
+  ![](img/2fe9576240c146c49e3a21d5e7f6af00_18_0.png)
+
+
+  图 1.1 – 示例构建流水线
+
+
+  手动运行这些构建可能会导致粗心的错误，结果可能不一致或不可重复。在构建代码时，记录导致某事物正常工作而不是不工作的构建中甚至最小的更改非常重要。这就是使用源代码管理系统（SCM），例如
+  Git（https://git-scm.com），在我们整体流水线中变得至关重要的原因。如果更改实际上是本地更改的构建步骤的结果，无法重复这一点可能会导致挫败感和生产力损失。
+
+
+  这对于将工作移交给同事尤其相关。让同事理解和调整构建中的一组手动步骤并不是对同事时间的良好利用，而他们本可以专注于手头的代码。组织中每个成员的时间都很宝贵，最好让个人专注于提高生产力。这可能发生在生产事故期间，此时最好将时间花在尝试修复事故的根本原因上，而不是分析如何实际构建代码。根据事故的影响，每一秒都可能对组织产生货币影响。在从简单的开发移交到生产事故的情况下，构建的自动化对这种情况非常有益。
+
+
+  想象一下，如果开发人员可以完全专注于代码开发，而不是分析手动步骤或难以执行的构建。组织可能已具备自动化，但为了最大化生产力，它必须对开发人员无缝。这可以采用以下形式：
+
+
+  - 编码标准
+
+  - 样板代码
+
+  - 如何使用流水线的蓝图
+
+
+  上述参考点也可适用于软件开发的内循环和外循环自动化。开发的内循环通常由开发人员进行本地开发。一旦在内循环中完成代码，就会创建合并请求以添加到集成分支。一旦在集成分支中合并，这就是典型构建流水线开始的地方：外循环。提供标准形式的起点本身可能不是自动化；然而，它可以被烘焙到配置文件中。它可能只是起点，一个基础，也能为开发人员应用特定偏好提供一定的灵活性。
+
+
+  ![](img/2fe9576240c146c49e3a21d5e7f6af00_19_0.png)
+
+
+  图 1.2 – 示例内循环和外循环
+
+
+  围绕 Git 构建的工具和集成生态系统有助于推动版本控制的重要性，不仅限于源代码，还包括定义构建流水线的配置。GitOps（https://www.weave.works/blog/the-history-of-gitops）主要关注基础设施即代码（IaC），确保运行时环境以声明方式表示存储在
+  Git 中的配置。开发和运维团队中对 Git 工具的共同使用减少了入职的摩擦，这使得 GitOps 对于端到端自动化也至关重要。
+
+
+  自动化帮助该组织减少了端到端部署时间：https://cloud.google.com/customers/reeport/。
+
+
+  一旦自动化得到简化，拥有流水线的团队能够聚合指标，以便大规模确定改进领域。与每个开发人员手动执行构建相比，这是一项更易实现的工作。如前所述，组织的流水线也可能包含手动步骤。这些指标可以识别出可能自动化的手动步骤模式。减少手动步骤将提高流水线的效率，同时减少可能发生的潜在人为错误。可能存在无法自动化的手动步骤情况，但识别是关键，以便将来考虑或让团队专注于可以改进的其他步骤。
+
+
+  这可以减少开发人员的挫败感并提高团队整体生产力，这可以使组织受益如下：
+
+
+  - 更快交付功能
+
+  - 减少解决问题所需的时间
+
+  - 让团队专注于其他业务关键活动
+
+  - 为流水线的持续改进提供反馈
+
+
+  自动化的价值可以帮助组织在许多方面。虽然指标可以手动收集，但在自动化流水线中聚合时效果最明显。可以做出决策以确定对构建流水线最有效的更改。从 GitOps 等框架中收集的指标也可以帮助改进端到端流水线，而不仅仅是源代码编译的自动化。当组织可以使用指标进行数据驱动决策时，持续改进变得更容易实现。
+
+
+  ## 云出现之前
+
+
+  市场上有一系列工具，从开源到闭源，从自管理到托管服务，支持构建流水线。流水线解决方案的可用性对于确保代码及时构建至关重要；否则，它可能会影响多个团队的生产力。组织可能有单独的团队负责维护执行构建流水线的解决方案。
+
+
+  ### 确保资源充足
+
+
+  对于自管理解决方案，维护包括构成流水线基础设施的底层基础设施、操作系统、工具和库。规模也是构建流水线的因素；根据复杂性，组织可能同时进行多个并发构建。构建流水线至少需要计算、内存和磁盘来执行，通常在构建平台内称为工作器。构建流水线可能由多个作业、步骤或任务组成，以完成特定流水线的执行。工作器从构建平台分配任务以完成。工作器需要可用，以便分配任务并执行这些任务。与应用程序的容量规划和规模需求类似，必须为工作器规划足够的计算、内存、存储或任何其他资源。
+
+
+  必须有足够的硬件来处理高峰期的构建。高峰是一个重要话题，因为在数据中心场景中，硬件资源可能相当有限，因为获取和设置硬件需要时间。虚拟化等技术使我们能够过度配置计算资源，但在某些时候，如果我们的构建需求变得更苛刻，物理硬件将成为增长的瓶颈。虽然组织需要按高峰规模设计，但这也意味着构建并不总是持续在高峰运行以充分利用分配的资源。如前所述，虚拟化可能有助于在非高峰时段让其他工作负载消耗计算，但这可能需要在整个组织中进行大量协调工作。我们可能会剩下未充分利用和浪费的资源。
+
+
+
+
+
+  ![](img/2fe9576240c146c49e3a21d5e7f6af00_21_0.png)
+
+
+  图 1.3 – 为峰值利用率分配资源时未充分利用的资源
+
+
+  ## 谁需要管理这一切？
+
+
+  通常，一个团队会在组织内部维护和管理构建基础设施。该团队可能致力于确保环境可用、资源保持最新，并添加新功能以支持组织需求。需求可能来自各个方向，例如开发人员、运维人员、平台管理员和基础设施管理员。市场上的不同构建和流水线工具通过提供插件和扩展来扩展功能，从而在一定程度上促进了这一过程。例如，在撰写本书时，Jenkins
+  拥有社区贡献的 1,800 多个插件（https://plugins.jenkins.io/）。虽然数量相当可观，但这也意味着团队必须确保插件得到更新并跟上插件的生命周期。例如，如果插件不再维护，替代方案是什么？如果多个插件执行相似功能，应该选择哪一个？丰富的社区是有益的，因为热门插件会脱颖而出，可能获得更好的支持。
+
+
+  如前所述，生产力会受到影响，如果容量不足或构建基础设施配置不当，可能导致构建变慢。构建各不相同；对某些构建而言可能只需几秒钟，而对另一些构建而言可能需要数小时。对于耗时数小时或较长时间的构建，这意味着开发人员以及许多下游团队都在等待。仅仅因为构建成功提交，并不意味着它也会成功完成；它可能在构建的任何阶段失败，导致时间浪费。
+
+
+  负责管理构建基础设施的团队可能还负责向系统用户维护**服务等级协议 (SLA)**。解决方案的设计也可能由另一个团队完成。如前所述，如果构建未运行，可能存在成本，因为它会影响开发人员的生产力、延迟产品发布或延迟向系统推送关键补丁。在自行管理解决方案时需要考虑这一点。在云出现之前，这在很大程度上是行业的常态，在本地企业中，厂商开发了工具和平台来减轻基础设施管理的负担。**托管服务提供商
+  (MSPs)** 也提供了工具层来帮助组织管理计算资源，但组织仍需考虑正在启动或关闭的资源。
+
+
+  安全是一个需要考虑的关键因素，当组织需要在基础设施之上或整个堆栈之上管理自己的软件组件时。不仅是所构建代码本身的漏洞，基础构建系统也需要得到安全维护。在过去几年中，一个重大的漏洞在所有行业中被暴露（https://orangematter.solarwinds.com/2021/05/07/an-investigative-update-of-the-cyberattack/）。
+
+
+  最终，当公共云资源可用时，可以使用许多类似的模式——在这种情况下，是云提供商提供的用于处理计算基础设施的**基础设施即服务 (IaaS)** 方案。这些减轻了处理计算资源的负担，但与
+  MSPs 类似，工作者的概念仍需确定和管理。
+
+
+  无论基础设施是在其数据中心本地管理、在托管设施中管理，还是由 IaaS 提供商管理，组织都必须处理构建软件流水线平台。确保平台可用并且工作者有足够的容量完成相关任务至关重要。在许多组织中，这由专门管理基础设施的团队或身兼数职以确保构建平台正常运行的团队负责。
+
+
+  ## 使用托管服务减少琐事
+
+
+  在上一节中，我们讨论了维护用于构建应用程序和服务的平台所涉及的工作。确保环境始终正常运行所描述的许多活动可能涉及一些琐事。例如，Google 的 SRE 手册（https://sre.google/sre-book/eliminating-toil/）进一步深入探讨了可被视为琐事的
+  IT 任务要素。
+
+
+  如果我们能够避免琐事并知道提供商管理着基础构建基础设施，我们就能专注于更重要的事情，即推动我们业务的应用程序。这托管服务的目标之一，让提供商处理底层细节，提供成为团队间通用语言的一致语法，根据需要提供计算资源，并在服务未使用时不计费。
+
+
+  由于提供商维护着底层基础设施，并且能够在任何需要时为团队提供扩展能力，因此构建流水线中需要考虑的组件就少了一个。MSP 将负责确保有足够的工作者来执行构建流水线中的所有作业。然而，托管服务也可能被视为对特定厂商或云提供商的锁定形式。在大多数情况下，托管服务通常与提供商提供的服务具有最佳集成。在此基础上，添加额外功能会更加简化，但不限于以下内容：
+
+
+  - 触发机制
+
+  - 密钥管理
+
+  - 保护集成服务之间通信和数据传输的安全
+
+  - 可观测性
+
+
+  这些集成旨在节省时间，并参照本书的原始主题，让组织专注于手头的应用程序。尽管前一节中提到了重要主题，但在选择托管服务时，托管服务提供灵活性以及集成第三方特定功能的方式的重要性也很重要。
+
+
+  如前所述，如果组织选择自行管理构建解决方案，他们可能负责平台的可用性。在托管服务的情况下，提供商负责可用性，并可能与其服务的客户建立 SLA。客户必须自行判断所传达的
+  SLA 是否对业务可接受。
+
+
+  提供商提供的托管服务减少了保持构建平台正常运行所需的琐事量。它们使组织的团队能够专注于关键业务功能或创收活动。在本地部署的情况下，无需等待硬件采购或设置，可实现最大程度的业务灵活性。提供商将负责确保平台保持最新，并允许组织内快速发展的团队尝试更新的功能。
+
+
+  ## 使用 Google Cloud Build 实现云原生自动化
+
+
+  这就引出了 Cloud Build，这是一款 Google Cloud 提供的无服务器平台。这意味着团队无需负责维护、扩展工作者或确保平台的可用性。Cloud
+  Build 也是托管服务，因为 Google Cloud 负责确保服务对客户可用。这使组织能够纯粹专注于其应用程序代码和构建流水线配置。Google Cloud
+  负责根据需要扩展平台，计费按构建分钟计价（https://cloud.google.com/build/pricing）。
+
+
+  Cloud Build 利用了 Google Cloud 的固有安全性，其中 API 仅可由获得授权的个人和自动化系统访问。由于 Cloud Build 是一个无服务器平台，这将在整本书中成为一个常见主题。我们能够利用
+  Google Cloud 在安全、计算资源、集成以及用于访问平台的 API 和语言特定客户端 SDK 等方面的优势。
+
+
+  如前几节所述，工作者处理构建流水线中的步骤（或作业），而 Cloud Build 负责确保有工作者可用以完成整个流水线。Cloud Build 提供不同类型的
+  worker，称为默认池和私有池。在默认池中，worker 由 Google 主持，对最终用户不可见。构建运行时，它可以访问公共互联网，但无法访问私有托管资源。根据您需要的构建情况，这可能已足够。然而，如果在构建过程中需要访问私有网络上的资源，例如依赖项、本地化数据集、更高的并发限制、更多机器类型配置或与私有环境的集成测试，则选项将是私有
+
+
+  池。私有池允许通过 **Google 云平台 (GCP)** **虚拟私有云 (VPC)** 对等连接功能连接到私有网络。以下是默认池和私有池功能对比表：
+
+
+  | 功能 | 默认池 | 私有池 |
+
+  |---|---|---|
+
+  | 完全托管 | ✓ | ✓ |
+
+  | 按构建分钟计费 | ✓ | ✓ |
+
+  | 自动扩缩容，可缩至 0 | ✓ | ✓ |
+
+  | 访问公网 | ✓ | 可配置 |
+
+  | 通过 VPC 或共享 VPC 对等连接访问私有资源 | ⛔ | ✓ |
+
+  | VPC Service Controls 支持 | ⛔ | ✓ |
+
+  | 静态 IP 范围 | ⛔ | ✓ |
+
+  | 可禁用公网 IP | ⛔ | ✓ |
+
+  | 最大并发构建数 | 30 | 100+ |
+
+  | 机器类型 | 5 | 15 |
+
+  | 区域 | 全球 | 25 |
+
+
+  图 1.4 – 默认池与私有池功能对比
+
+
+  图中数据截至 2022-06-16 为最新（ https://cloud.google.com/build/docs/private-pools/private-pools-overview）。
+
+
+  Cloud Build 配置中的步骤通常保持不变，无论选择的池类型是默认池还是私有池。
+
+
+  在 Cloud Build 中，单个 worker 负责处理流水线中的所有步骤。worker 和机器类型（计算、内存和存储）可以配置，为每个构建过程提供灵活性，具体取决于关键程度。将构建过程暴露给资源更多的机器可能允许更快的构建，尤其是在机器资源被识别为较慢构建的瓶颈时。
+
+
+  这是 Cloud Build 中无服务器平台的一个显著优势，其中选项以配置选项的形式定义。Google Cloud 有责任根据有效配置中指定的内容提供资源。通过根据流水线要求为
+  worker 指定不同的机器类型，团队可以获得云的灵活性。
+
+
+  如果您还记得 Jenkins 的示例（在 *谁需要管理这一切？* 部分），它提供插件来添加集成或功能以完成流水线。在 Cloud Build 的情况下，每个单独的步骤都由一个名为
+  **云构建器** 的容器镜像组成。这提供了大量的灵活性，因为它允许使用 Google Cloud 提供的构建器、社区开发的构建器或自定义构建器，后者可以是在内部创建的容器镜像。这些自定义构建器可以是执行脚本或二进制文件的任何容器镜像，然后可作为构建步骤纳入。
+
+
+  组织可能会对代码的驻留位置施加不同的限制；例如，代码可能不驻留在开发人员的 workstation 上，只能驻留在组织维护的 SCM 系统上。Cloud Build
+  可以与私有托管的/非 GCP 解决方案集成，例如 GitHub Enterprise。通过使用私有池，构建的 worker 可以与私有网络内的资源交互。这非常重要，因为它使
+  Cloud Build 能够支持组织可能拥有的许多不同场景。
+
+
+  本章前面我们讨论了自动化的价值，其中包括构建步骤的自动化，以及构建本身如何被触发。触发构建可以基于使用 Cloud Scheduler 的 cron 调度（https://cloud.google.com/build/docs/automating-builds/create-scheduled-triggers）、通过
+  Cloud Pub/Sub 的异步消息（https://cloud.google.com/build/docs/automating-builds/create-pubsub-triggers）以及
+  webhooks，但通常由代码提交到 SCM 系统驱动。Webhooks 打开了许多其他选项的大门；例如，构建也可以通过现有工具的 API 或 CLI 调用触发。这使得与现有组件的集成和自动化成为可能。
+
+
+  ## GCP 服务集成
+
+
+  与现有组件的集成至关重要，但 Cloud Build 的另一个优势是其与 Google Cloud 服务的原生集成：
+
+
+  - **Artifact Registry** – 存储构建产物（即特定语言的、容器镜像）：https://cloud.google.com/artifact-registry/docs/configure-cloud-build.
+
+  - **Secret Manager** – 原生管理敏感信息：https://cloud.google.com/build/docs/securing-builds/use-secrets.
+
+  - **VPC Service Controls** – 用于防止数据外泄的机制，例如构建可以从何处触发，或要求仅使用私有池的策略：https://cloud.google.com/build/docs/private-pools/using-vpc-service-controls.
+
+  - **Binary Authorization**（预览版） – 在构建时使用提供的 attestor 对镜像进行签名证明：https://cloud.google.com/build/docs/securing-builds/use-provenance-and-binary-authorization.
+
+
+  如果您还记得前面提到过，Cloud Build worker 负责执行配置流水线中指定的步骤。该 worker 的身份由一个名为 **服务账号** 的 GCP
+  资源建立。Cloud Build 有一个默认的服务账号供其使用，或者也可以指定用户指定的服务账号。
+
+
+  本书重点关注 Cloud Build 的构建方面，使用 Cloud Build 时构建的资源并不总是需要部署。然而，Cloud Build 还提供了与指令和镜像的集成，以便将构建的容器镜像部署到
+  GCP 运行时平台，例如以下内容：
+
+
+  - Google Kubernetes Engine
+
+  - Anthos-enabled clusters
+
+  - Cloud Run
+
+  - App Engine
+
+  - Cloud Functions
+
+  - Firebase
+
+
+  组织能够使用 Cloud Build 进行代码构建和 IaC 自动化能力，以为其团队提供更多自主权。一个示例在此处说明：https://cloud.google.com/customers/loveholidays.
+
+
+  作为无服务器平台，了解构建发生的情况非常重要。审计日志和构建日志默认存储在 GCP 的 Cloud Logging 服务中。审计日志涵盖对 Cloud Build
+  服务的 API 调用，例如创建和取消。实际的构建日志默认存储在 Cloud Logging 和 Google 创建的 Cloud Storage 存储桶中。Cloud
+  Build 的日志可以配置为 GCP 内的您选择的存储位置（即仅 Google Cloud Storage、仅 Cloud Logging，或其他项目中的日志存储桶）。
+
+
+  Cloud Build 作为无服务器平台，也提供 SLA。与 GCP 服务一样，Cloud Build 的月度正常运行时间百分比为 99.95%（本书撰写时 –
+  https://cloud.google.com/build/sla）。这被记为服务等级目标（SLO）。请参阅上一个链接以获取有关 SLA 的更多详细信息。对于云提供商提供的服务，这是衡量服务可靠性的重要指标。如前一节所述，如果团队负责管理构建基础设施，他们也需要提供可靠性指标。构建的解决方案通常需要设计、实现和测试以满足提供的指标。在提供
+  SLA 的 GCP 及其适用服务中，GCP 作为服务提供商承担此责任。
+
+
+  组织已从必须管理自己的基础设施和自己的流水线软件中走了很远。服务提供商提供了一种方式，使基础设施在他们的数据中心中得到管理，从而卸载硬件、操作系统，有时甚至是构建流水线平台本身的管理。下一个迭代是无服务器，这就是我们一直在谈论的，其中只是一个为客户端使用的
+  API。定义您期望的配置并以您期望的机制和语言执行 API。
+
+
+  Cloud Build 是一个无服务器构建流水线平台，允许组织专注于手头的代码。Google Cloud 负责确保平台在需要时可用，并且为 worker 提供足够的计算资源。每个步骤以容器镜像表示，为处理流水线需求提供了最大的灵活性。
+
+
+  ### 摘要
+
+
+  到目前为止，我们已介绍构建流水线自动化如何使我们的生活更轻松，同时可能防止出错。元数据和指标可以帮助我们做出数据驱动的决策，使流水线更高效。构建平台需要有人管理，无论是
+  IT 团队、外包团队，还是云提供商管理的服务。如果由他人管理，可能让我们更专注于业务需求而非流水线平台需求。Cloud Build 是一个无服务器平台，通过使用容器镜像作为构建步骤为我们提供
+  worker 池的弹性和灵活性。
+
+
+  请继续关注后续章节，我们将深入探讨如何入门、Cloud Build 功能的更详细内容，并通过几个场景的示例进行演示。
+
+
+  在下一章中，我们将重点介绍如何设置 Cloud Build 环境。
+
+
+
+  '
+- "## 配置 Cloud Build 工作器\n\n在讨论了自动化在行业中的一些背景以及 **Cloud Build** 在其中的定位之后，让我们深入了解 Cloud\
+  \ Build 的实现细节。我们将从 Cloud Build 工作器开始——执行您构建的机器。\n\n构建可以自动化的内容和所能完成的工作多种多样。它们可以定义一系列步骤来测试源代码并将其翻译成可执行二进制文件。它们可以定义要创建、更新或拆除的若干云基础设施资源。它们可以从各种外部系统（如基于\
+  \ Git 的存储库或容器注册表）读取和写入。它们可以为数据处理或 **机器学习 (ML)** 管道定义工作流。\n\n编写 Cloud Build 构建时，每个步骤都在容器中运行，而该容器镜像可以由您构建并提供。如我们在上一章讨论的那样，运行构建步骤的这些容器镜像称为\
+  \ **构建器**。\n\n鉴于构建用例众多，了解如何配置这些构建运行的环境非常重要。这些构建对其执行环境可能有特定要求，包括以下内容：\n\n- 特定数量的\
+  \ **中央处理单元 (CPU)** 和内存资源\n- 与在私有网络上运行的资源建立网络连接\n- 由于合规或延迟需求，对特定区域的本地性要求\n\n此执行环境运行在由\
+  \ Google 完全管理的 **虚拟机 (VM)** 上，也称为 **工作池**。\n\n在本章中，我们将回顾 Cloud Build 的架构以及您可以配置工作器以执行构建的各种方式，并带走以下主题的知识：\n\
+  \n- Cloud Build 中工作池的配置方式\n- 在工作池上运行构建的前提条件\n- 使用默认池\n- 使用私有池\n\n### 技术要求\n\n- 数据中心和基础设施概念\n\
+  - 公有云概念\n- 软件构建概念\n- 网络概念\n\n### 如何在 Cloud Build 中配置工作池\n\n*托管服务* 一词在软件行业承担了大量工作，该术语对\
+  \ *托管* 的定义因服务而异。因此，在使用任何托管服务时，了解架构中提供商与您用户之间的边界非常重要。Cloud Build 也不例外！\n\n在 Cloud\
+  \ Build 中，工作器运行的架构取决于构建在哪个类型的工作池中执行。Cloud Build 中有两种类型的工作池，如下所述：\n\n- **默认池**，这是以完全托管的工作器运行构建的最简单方式\n\
+  - **私有池**，这些是完全托管的工作器，配置级别更高，包括与私有 **虚拟私有云 (VPC)** 网络的连接\n\n尽管 Cloud Build 支持各种类型的工作池，但关键是要指出，无论使用哪种类型的工作池，构建在\
+  \ Cloud Build 中运行的核心用户旅程旨在保持一致，无论是编写构建定义还是提交构建定义以供执行。在下面的图表中，我们可以看到 Cloud Build\
+  \ **应用程序编程接口 (API)** 应在所有工作池中保持一致：\n\n![](img/2fe9576240c146c49e3a21d5e7f6af00_31_0.png)\n\
+  \n图 2.1 – 构建可在 Cloud Build 上在各种工作池类型上运行，最小化到无需更改\n\n这意味着无论哪种类型的工作池执行您的构建，您指定构建外观的方式保持不变。我们将在后面的章节中深入回顾\
+  \ Cloud Build 的构建规范，但首先让我们讨论在 Google Cloud Platform (GCP) 环境中开始使用 Cloud Build 的最低要求。\n\
+  \n### 在工作池上运行构建的前提条件\n\n开始使用 Cloud Build 时，了解其资源层次结构在您的 Google Cloud 环境中如何工作非常重要。Cloud\
+  \ Build 以及我们将讨论的各种工作池都限定在项目范围内。\n\n您的 Google Cloud 项目将是包含您在使用 Cloud Build 时将利用的资源的顶级资源。在项目内，您可以利用身份和访问管理\
+  \ (IAM) 创建用户帐户和服务帐户，以便您和其他人访问项目内的各种资源。为了确保您能够继续使用 Cloud Build 和以下示例，请确保您在 IAM 中为您的用户关联以下角色：\n\
+  \n- Cloud Build 编辑器\n- 网络管理员\n- 日志管理员\n\n这些角色将使您能够在 Google Cloud 中使用 Cloud Build\
+  \ 及其集成的服务，如下所示：\n\n- Cloud Build，用于创建构建\n- VPC，用于某些工作池的网络连接\n- Cloud Logging，用于访问构建日志\n\
+  \n这仅推荐用于沙箱环境。在后面的章节中，我们将回顾如何在应用最小权限原则的同时为 Cloud Build 利用 IAM。\n\n使用 Cloud Build\
+  \ 时项目中使用的资源在下图中进行了总结：\n\n![](img/2fe9576240c146c49e3a21d5e7f6af00_32_0.png)\n\n\
+  图 2.2 – 使用 Cloud Build 时通常使用的项目范围服务\n\n在后面的章节中，我们将讨论如何将最小权限原则应用于 Cloud Build 及其相关服务，但现在，让我们继续前进。\n\
+  \n为了能够在 Google Cloud 免费层之外启动资源，您还需要将 **结算帐号** 与您的项目关联。此帐户可以与多个项目关联。Cloud Build 的费用可在\
+  \ https://cloud.google.com/build/pricing 找到。定价将根据使用的机器类型和工作池而有所不同；然而，这通常遵循 **美元\
+  \ (USD)** $/构建分钟的模式，符合这些资源根据运行构建的量动态启动和停止的预期。下图显示了项目与结算帐号之间的关系：\n\n![](img/2fe9576240c146c49e3a21d5e7f6af00_32_1.png)\n\
+  \n图 2.3 – 项目与结算帐号之间的关系\n\n一旦您解决了项目、IAM 和结算帐号的问题，您将需要在项目中启用 Cloud Build 和服务网络 API。\n\
+  \n对于本书中本例及所有后续示例，我们将使用 Cloud Shell，这是由 Google Cloud 提供的免费且临时的开发工作站。它运行一个 Debian\
+  \ 机器，已预装多个工具，包括 gcloud，即用于利用 Google Cloud 服务的 **命令行界面 (CLI)**。\n\n打开 Cloud Shell\
+  \ (https://shell.cloud.google.com/) 并通过运行以下命令并按照响应中的说明进行身份验证，使用 gcloud 进行身份验证：\n\
+  \n```\n$ gcloud auth login\n```\n\n身份验证后，运行以下命令以启用使用 Cloud Build 和为私有池工作器配置网络所需的\
+  \ API：\n\n```\n$ gcloud services enable cloudbuild.googleapis.com\nservicenetworking.googleapis.com\n\
+  ```\n\n在设置好 Google Cloud 项目后，让我们现在回顾工作池可以配置的各种方式！\n\n### 使用默认池\n\n在 2017 年的初始 **通用可用性\
+  \ (GA)** 发布时，Cloud Build 被设计为为用户在 Google Cloud 中构建容器镜像和其他工件（如 Go 可执行文件或 Java 归档）提供简单界面和完全托管的体验。\n\
+  \n> **注意**\n> Cloud Build 最初于 2017 年以 **容器构建器** 的名称推出，凸显了其简单且专注的目的，即为终端用户提供自动化构建的方式。\n\
+  \n从其诞生之日起，Cloud Build 旨在确保以下几点：\n\n- 用户可以通过与 Google 的 API 或 **用户界面 (UI)** 交互来创建构建和构建触发器。\n\
+  - 用户无需创建、修补、扩展或管理运行构建的工作器机器。\n- 用户将拥有预先构建的日志记录和监控集成以 introspect 构建。\n\nCloud Build\
+  \ 首先通过为用户提供 Cloud Build 中工作器的第一种模式来实现此体验：**默认池**。\n\n默认池的名称自然如此，因为它是 Cloud Build\
+  \ 为执行您的构建而配置工作器的默认方法。当向 Cloud Build 提交构建时，如果您未指定哪种类型\n\n如果工作池应执行你的构建，它将在默认池中运行。此池在你启用\
+  \ Cloud Build API 并具有执行构建的权限后即可使用。\n\n此模式在可利用 Cloud Build 的各种方式中提供了最简单的用户体验（UX）。请考虑以下流程图，说明用户创建要在默认池中的\
+  \ worker 上运行的构建时的情况：\n\n![](img/2fe9576240c146c49e3a21d5e7f6af00_34_0.png)\n\n图\
+  \ 2.4 – 使用默认池时用户所做的工作与 Google 所做的工作之间的划分\n\n用户主要关注其特定的构建步骤和要求，这确保他们的时间仅花费在希望实现的自动化上，而不会花费在管理将运行其构建的基础设施上。\n\
+  \nCloud Build 通过确保所有配置的基础设施都在 Google 拥有的环境中创建来实现此体验，在该环境中，Google 的工程师可以负责底层构建基础设施的配置、保护和管理。\n\
+  \nCloud Build 为每个构建配置一个专用 worker，其机器类型根据该构建的资源需求规范创建。如果未指定机器类型，则将使用默认机器类型，该类型使用一个虚拟\
+  \ CPU（vCPU）和 4 千兆字节（GB）的内存。\n\n> **注意**\n> \n> Cloud Build 在项目级别针对构建的众多维度设置了配额和限制。\n\
+  > \n> 最重要的限制之一是并发，即同时可以运行的构建数量。对于默认池，并发设置为给定项目中 30 个并发构建。对于私有池，你可以在给定的私有池中拥有多达 100\
+  \ 个并发构建，并且在给定项目中最多可拥有 10 个私有池。这意味着私有池在同时运行大量构建方面的并发限制要高得多。\n> \n> 这基于项目中设置的默认限制；你可以在此处找到配额、限制和可能的例外情况的完整列表：`https://cloud.google.com/build/quotas`。\n\
+  \n默认池将拥有与正在运行的构建数量一样多的 worker，确保每个构建都有一个隔离的环境来执行。如果同时运行许多具有资源需求的构建，单个默认池可能正在运行具有多种机器类型的\
+  \ worker。以下图表显示了默认池架构：\n\n![](img/2fe9576240c146c49e3a21d5e7f6af00_35_0.png)\n\n\
+  *按需在 Google 拥有的环境中配置\n\n图 2.5 – 默认池架构\n\n每个 worker 还配置了对公共互联网的出站访问。当你提交要在默认池中执行的构建时，可以配置以下内容：\n\
+  \n- 构建将使用的 CPU 和内存\n- 构建中所有构建步骤可用的存储\n\n你通过为 worker 指定机器类型来分配 CPU 和内存资源。每种机器类型都有预定的\
+  \ CPU 和内存量；你可以根据构建的计算需求在这些机器类型之间进行选择。截至发布时，默认池中可用的机器类型如下：\n\n| 机器类型 | vCPUs | 内存\
+  \ (GB) | 预热启动 | 默认 |\n|---|---|---|---|---|\n| E2-medium | 1 | 4 | 是 | 是 |\n| E2-highcpu-8\
+  \ | 8 | 8 | 否 | 否 |\n| E2-highcpu-32 | 32 | 32 | 否 | 否 |\n| N1-highcpu-8 | 8 | 8\
+  \ | 否 | 否 |\n| N1-highcpu-32 | 32 | 32 | 否 | 否 |\n\n表 2.1 – 默认池机器类型及其各自的资源\n\n至于存储，每个\
+  \ worker 默认具有 100 GB 的网络连接固态硬盘（SSD）存储。用户可以在其构建配置中指定多达额外的 1,000 GB 网络连接 SSD 存储，我们将在后续章节中介绍。\n\
+  \n> **注意**\n> \n> 这些 worker 无法访问你在私有 VPC 网络中机器上的资源。话虽如此，Cloud Build worker 确实使用指定的服务账号运行，可以授予其权限通过\
+  \ Google API 与项目中的资源交互，例如托管工件存储（如 Container Registry 和 Artifact Registry）。\n\n要在\
+  \ Cloud Build 默认池上开始运行构建，用户无需准备创建任何资源。相反，用户只需将构建定义提交给 Cloud Build，我们将在后续章节中介绍。\n\
+  \n现在，让我们继续介绍 Cloud Build 中私有池的概念。\n\n## 使用私有池\n\n私有池与默认池类似，因为它们是完全托管的 worker，位于\
+  \ Google 管理的环境中。私有池专为希望运行完全托管构建的、具有更复杂需求集的用户而设计，可帮助需要以下功能的用户：\n\n- 在私有 VPC 网络上运行资源，该网络必须从构建中访问\n\
+  - 关于机器类型的更多选择，例如高内存机器\n- 进一步保护其构建环境的网络边界\n\n与默认池不同，你可以在单个 Google Cloud 项目中拥有多个私有池。你创建空的私有池资源，其中包含私有池\
+  \ worker 应是什么样子的定义，包括其机器类型和应连接的网络等详细信息。然后，当安排构建在其上运行时，Google 将把这些私有池从零 worker 扩展。\n\
+  \n话虽如此，提交构建的最终用户的 workflow 保持一致，如下所示：\n\n![](img/2fe9576240c146c49e3a21d5e7f6af00_37_0.png)\n\
+  \n图 2.6 – 使用私有池时用户所做的工作与 Cloud Build 所做的工作之间的划分\n\n架构本身与默认池略有不同。如前所述，你可以在单个项目中拥有多个私有池，每个私有池具有各种配置。保持不变的是，构建被隔离到其运行的私有池中的单个\
+  \ worker 中。以下图表显示了私有池架构：\n\n![](img/2fe9576240c146c49e3a21d5e7f6af00_38_0.png)\n\
+  \n图 2.7 – 私有池架构\n\n私有池架构的一个独特特征是，私有池 worker 可以连接到你在 Google Cloud 项目中的 VPC 网络。这种网络连接是通过私有池的架构实现的，其中\
+  \ Google 拥有的环境利用所谓的 Service Producer 网络，在该网络中，这些 worker 被分配内部互联网协议（IP）地址。\n\n你可以使用\
+  \ Service Networking API 然后在该 Service Producer 网络与你自己的 VPC 之间创建对等连接，从而实现 worker\
+  \ 与你的私有 VPC 范围资源之间的网络连接，如下图所示：\n\n![](img/2fe9576240c146c49e3a21d5e7f6af00_39_0.png)\n\
+  \n图 2.8 – 私有池网络架构\n\n通过此网络功能，你不仅可以访问 VPC 内的资源，还可以访问可能驻留在本地并通过私有连接（如虚拟专用网络（VPN）隧道或\
+  \ Direct Interconnect）连接到 VPC 的源代码管理系统和工件注册表。\n\n除了可配置的网络外，私有池还允许用户指定其私有池和 worker\
+  \ 所在的特定 Google Cloud 区域。这与默认池形成对比，默认池在 worker 上执行，该 worker 可以根据资源可用性在全球多个区域运行。\n\
+  \n截至发布时，私有池可以在以下区域创建：\n\n- 亚洲：\n  - asia-east1（台湾）\n  - asia-east2（香港）\n  - asia-northeast1（东京）\n\
+  \  - asia-northeast2（大阪）\n  - asia-northeast3（首尔）\n  - asia-south1（孟买）\n  - asia-south2（德里）\n\
+  \  - asia-southeast1（新加坡）\n  - asia-southeast2（雅加达）\n- 澳大利亚：\n  - australia-southeast1（悉尼）\n\
+  \  - australia-southeast2（墨尔本）\n- 欧洲：\n  - europe-central2（华沙）\n  - europe-north1（芬兰）\n\
+  \  - europe-west1（比利时）\n  - europe-west2（伦敦）\n  - europe-west3（法兰克福）\n  - europe-west4（荷兰）\n\
+  \  - europe-west6（苏黎世）\n- 北美：\n  - northamerica-northeast1（魁北克）\n  - northamerica-northeast2（多伦多）\n\
+  \  - us-central1（爱荷华）\n  - us-east1（南卡罗来纳）\n  - us-east4（弗吉尼亚）\n  - us-west1（俄勒冈）\n\
+  \  - us-west2（洛杉矶）\n  - us-west3（盐湖城）\n  - us-west4（拉斯维加斯）\n- 南美：\n  - southamerica-east1（圣保罗）\n\
+  \  - southamerica-west1（圣地亚哥）\n\n私有池还扩展了可为 worker 指定的机器类型集合。可用机器类型如下所示：\n\n| 机器类型\
+  \ | vCPU | 内存 (GB) | 预热启动 | 默认 |\n|---|---|---|---|---|\n| E2-medium | 1 | 4 | 否\
+  \ | 是 |\n| E2-standard-2 | 2 | 8 | 否 | 否 |\n| E2-standard-4 | 4 | 16 | 否 | 否 |\n\
+  | E2-standard-8 | 8 | 32 | 否 | 否 |\n| E2-standard-16 | 16 | 64 | 否 | 否 |\n| E2-standard-32\
+  \ | 32 | 128 | 否 | 否 |\n| E2-highmem-2 | 2 | 16 | 否 | 否 |\n| E2-highmem-4 | 4 |\
+  \ 32 | 否 | 否 |\n| E2-highmem-8 | 8 | 64 | 否 | 否 |\n| E2-highmem-16 | 16 | 128 |\
+  \ 否 | 否 |\n| E2-highmem-32 | 32 | 256 | 否 | 否 |\n| E2-highcpu-2 | 2 | 2 | 否 | 否\
+  \ |\n| E2-highcpu-4 | 4 | 4 | 否 | 否 |\n| E2-highcpu-8 | 8 | 8 | 否 | 否 |\n| E2-highcpu-16\
+  \ | 16 | 16 | 否 | 否 |\n| E2-highcpu-32 | 32 | 32 | 否 | 否 |\n\n表 2.2 – 私有池机器类型及其各自资源\n\
+  \n虽然私有池保持了默认池提供的相同完全托管体验，但私有池必须在实际构建执行之前创建。让我们通过创建私有池来回顾如何实现这一点。\n\n首先，为了演示私有池提供的一些网络功能，我们应该创建一个沙箱\
+  \ VPC，以便与托管您私有池的 Google 拥有环境进行对等连接。以下是我们为实现此目的所需的代码：\n\n```\n$ project_id=$(gcloud\
+  \ config get-value project)\n\n$ vpc_name=packt-cloudbuild-sandbox-vpc\n\n$ vpc_range_name=packt-cloudbuild-sandbox-vpc-peering-range\n\
+  \n$ gcloud compute networks create $vpc_name --subnet-mode=custom\n```\n\n一旦 VPC\
+  \ 创建完成，接下来，创建一个不与 VPC 中任何 IP 空间重叠的 IP 范围，可用于私有池中工作器的内部 IP。\n\n在以下示例中，您将使用 192.168.0.0/16\
+  \ 空间，如 addresses 和 prefix-length 参数所定义。请注意，您的范围大小将决定此私有池中可以拥有的工作器数量：\n\n```\n$ gcloud\
+  \ compute addresses create packt-cloudbuild-sandbox-vpc-peering-range \\\n    --global\
+  \ \\\n    --purpose=VPC_PEERING \\\n    --addresses=192.168.0.0 \\\n    --prefix-length=16\
+  \ \\\n    --description=\"IP range for private pool workers\" \\\n    --network=$vpc_name\n\
+  ```\n\n最后，使用以下 gcloud 命令创建 VPC 对等连接；这将引用您希望将 VPC 与私有池工作器所在的服务生产者网络 VPC 进行对等连接：\n\
+  \n```\n$ gcloud services vpc-peerings connect \\\n    --service=servicenetworking.googleapis.com\
+  \ \\\n    --ranges=$vpc_range_name \\\n    --network=$vpc_name \\\n    --project=$project_id\n\
+  ```\n\n现在我们已经配置了私有池可以连接到的 VPC，让我们自己创建一个私有池。目前有几种方法可以实现，如下所述：\n\n- 通过 Cloud 控制台\n\
+  - 通过向 gcloud 传递基于 YAML Ain’t Markup Language (YAML) 的配置文件\n- 通过直接向 gcloud 传递配置\n\
+  \n私有池中可用的一些配置与您能够在默认池中配置的相似，具体如下：\n\n- 每个工作器的机器类型，尽管可用的机器类型更多\n- 每个工作器的网络附加 SSD，最多\
+  \ 1,000 GB\n\n然而，您还会注意到一些新的配置选项，如下所述：\n\n- 对等网络，用于指定私有池中的工作器将与之对等的 VPC\n- 区域，因为私有池及其中的工作器限定于单个区域\n\
+  - 公共出站，因为您可以指定私有池中的工作器是否具有公共 IP 地址\n\n现在让我们通过使用 gcloud 并直接传递配置来创建私有池，从而演示私有池的一些功能。在此情况下，我们将创建一群具有\
+  \ e2-standard-2 机器类型、100 GB 网络附加 SSD 且位于 us-west1 的工作器私有池。代码如下所示：\n\n```\n$ gcloud\
+  \ builds worker-pools create packt-cloudbuild-privatepool \\\n  --project=$project_id\
+  \ \\\n  --region=us-west1 \\\n  --peer-network=projects/$project_id/global/networks/$vpc_name\
+  \ \\\n  --worker-machine-type=e2-standard-2 \\\n  --worker-disk-size=100GB \\\n\
+  \  --no-public-egress\n```\n\n一旦私有池实际创建完成，我们可以在 Cloud 控制台中查看它，如以下屏幕截图所示：\n\n![](img/2fe9576240c146c49e3a21d5e7f6af00_43_0.png)\n\
+  \n图 2.9 – 在 Cloud 控制台中查看之前创建的私有池\n\n创建完成后，我们就可以开始在私有池定义的工作器上运行构建。\n\n### 摘要\n\n\
+  本章中，我们讨论了如何在您的 Google Cloud 项目中开始启用 Cloud Build，以及如何导航创建用于执行构建的工作器的多种方式。\n\n具体来说，我们回顾了默认池和私有池的架构。我们还讨论了创建私有池的用户要求。\n\
+  \n在下一章中，我们将继续回顾 Cloud Build 中构建的规范并运行您的第一个构建！\n\n## 开始使用 – 我可以获得哪些构建信息？\n\n作为一项托管服务，Cloud\
+  \ Build 允许个人和组织专注于构建管道中的步骤。尽管它是托管的，了解构建启动后会发生什么以及哪些资源可用于通过自动化方式或 **图形用户界面 (GUI)**（例如\
+  \ Google Cloud 控制台）通过日志跟踪状态和查看进度仍然是很有益的。\n\n本章将涵盖以下主题：\n\n- 如何访问您的构建资源\n- 构建提交和状态\n\
+  - 使用 **Google Cloud Platform (GCP)** 控制台\n- 构建操作\n\n### 技术要求\n\n- 软件构建概念和工具\n- GCP\
+  \ 控制台熟悉度\n\n### 如何访问您的构建资源\n\n为了创建可重复且一致的构建，构建期间使用的文件和资源应可引用。最快且最简单的方法是当使用 **源代码管理\
+  \ (SCM)** 工具时，可以通过不可变的提交标签引用它。这使我们基本上可以获得构建期间使用的文件的快照，因此如果需要再次运行，至少有一个恒定因素。\n\n\
+  Cloud Build 需要一种获取构建文件的方式，这可以来自 SCM 工具。但是，如果构建文件位于文件系统上并且构建是由 `gcloud` **命令行界面 (CLI)**\
+  \ 命令启动的怎么办？在这种情况下，`gcloud` 将打包指定文件夹中的文件，如果存在则包括子文件夹。文件被打包成 tarball（gzipped 归档）并上传到\
+  \ **Google Cloud Storage (GCS)**。然后 Cloud Build 将从 GCS 获取打包的文件并开始构建。\n\n`gcloud`\
+  \ 命令还通过 `.gcloudignore` 文件为用户提供了灵活性，该文件使用与 `gitignore` 相同的语法 (https://git-scm.com/docs/gitignore)。如果未创建\
+  \ `.gcloudignore` 文件，`gcloud` 可以根据顶级文件夹中的 `.gitignore` 文件生成一个。\n\n无论是通过可以提供文件快照的\
+  \ SCM，还是通过 `gcloud` 打包并上传到 GCS 的快照，我们始终会对每次运行的构建有一个参考点。如前所述，这对于追溯构建中包含的内容以进行审计和调试目的非常重要。Cloud\
+  \ Build `gcloud` 命令还允许用户在具有某些本地构建自动化时手动指定 gzipped 归档。\n\n### 构建提交和状态\n\n作为一项托管服务，Cloud\
+  \ Build 提供了多种启动构建的方法以实现最大灵活性。例如，它可以通过以下方式触发：\n\n- 手动\n- 通过其他工具自动\n- 发布到 **发布/订阅\
+  \ (Pub/Sub)** 的消息\n- 按计划\n- 推送到 SCM 系统的更改\n\n触发器是 Cloud Build 中启动构建管道的机制；例如，这可以是\
+  \ SCM 系统中源代码的更改或来自另一个系统的事件。触发器将在 *第 5 章，触发构建* 中更深入地介绍。\n\n> **注意**\n> 本章中的命令和输出仅用于说明性目的，以描述功能以及在适用情况下对输出的分析。其中一些命令可能需要在执行前配置先决条件。\n\
+  \n\n\n首先，我们从一个简单的 cloudbuild.yaml 文件开始，其中包含两个步骤，用于构建 Docker 镜像并将其推送到 Artifact Registry。以下示例是\
+  \ cloudbuild.yaml 文件的简化版本。片段可以在此处找到： https://github.com/GoogleCloudPlatform/cloud-build-samples/blob/main/basic-config/cloudbuild.yaml。请注意，GitHub\
+  \ 中的内容可能会随时间变化：\n\n```\n### Docker Build\n- name: 'gcr.io/cloud-builders/docker'\n\
+  \  args: ['build', '-t',\n    'us-central1-docker.pkg.dev/${PROJECT_ID}/image-repo/myimage',\n\
+  \    '.']\n\n### Docker Push\n- name: 'gcr.io/cloud-builders/docker'\n  args: ['push',\n\
+  \    'us-central1-docker.pkg.dev/${PROJECT_ID}/image-repo/myimage']\n```\n\n在本章中，我们将重点关注手动方法，因为其他自动化机制将在后续章节中介绍。为了开始，最快启动构建的方式是通过\
+  \ gcloud CLI 工具。Cloud Build 作为提供自动化平台的管理服务，能够抽象出构建执行所需管理资源和基础设施的需求。如第 2 章《Configuring\
+  \ Cloud Build Workers》中所述，私有池需要一些额外的配置，但配置中的步骤基本保持不变。以下命令将提交构建并包含当前路径及其子路径的内容：\n\
+  \n```\n$ gcloud builds submit\n```\n\n以下是上述命令的示例输出：\n\n```\n[1] Creating temporary\
+  \ tarball archive of 2 file(s) totalling 952 bytes before compression.\nUploading\
+  \ tarball of [..] to [gs://##project-id_redacted##_cloudbuild/source/1641339906.759161-f251af6f4c9745438a4730c3c6f94cd0.tgz]\n\
+  [2] Created [https://cloudbuild.googleapis.com/v1/projects/##project-id_redacted##/locations/global/builds/ca6fd20f-7da3-447e-a213-7b542f9edb5c].\n\
+  [3] Logs are available at [https://console.cloud.google.com/cloud-build/builds/ca6fd20f-7da3-447e-a213-7b542f9edb5c?project=##project-number_redacted##].\n\
+  ----------------------------------------------- REMOTE BUILD\nOUTPUT -----------------------------------------------\n\
+  starting build \"ca6fd20f-7da3-447e-a213-7b542f9edb5c\"\n\nFETCHSOURCE\n\n[4] Fetching\
+  \ storage object: gs://##project-id_redacted##_cloudbuild/source/1641339906.759161-f251af6f4c9745438a4730c3c6f94cd0.tgz#1641339907144359\n\
+  Copying gs://##project-id_redacted##_cloudbuild/\nsource/1641339906.759161-f251af6f4c9745438a4730c3c6f94cd0.tgz#1641339907144359...\n\
+  / [1 files][  695.0 B/  695.0 B]\nOperation completed over 1 objects/695.0 B.\n\
+  BUILD\n\n[5] Starting Step #0\n...\nStep #0: Successfully tagged us-central1-docker.pkg.dev/##project-id_redacted##/image-repo/myimage:latest\n\
+  Finished Step #0\nStarting Step #1\nStep #1: Already have image (with digest): gcr.io/cloud-builders/docker\n\
+  ...\nFinished Step #1\nPUSH\nDONE\n\n------------------------------------------------\n\
+  ------------------------------------------------\n\nID: ca6fd20f-7da3-447e-a213-7b542f9edb5c\n\
+  CREATE_TIME: 2022-01-04T23:45:07+00:00\nDURATION: 9S\nSOURCE: gs://##project-id_redacted##_cloudbuild/\n\
+  source/1641339906.759161-f251af6f4c9745438a4730c3c6f94cd0.tgz\nIMAGES: -\n[6] STATUS:\
+  \ SUCCESS\n```\n\n下面将更详细地说明前面的输出（请注意，前面的数字是为说明目的而添加的；它们不在命令输出中）：\n\n[1] 创建临时 tarball\
+  \ 归档然后上传到 GCS 的输出。这有两个目的，如下所述：\n\n- 允许 Cloud Build 服务获取构建文件\n- 为审计和调试提供构建文件的快照\n\
+  \n[2] Cloud Build **全局唯一标识符 (GUID)** 唯一标识构建，也会以链接形式生成，以便从 Google Cloud 控制台 UI 访问构建。\n\
+  \n[3] 一个链接，可从 Google Cloud 控制台 UI 访问构建日志。\n\n[4] Cloud Build 获取由 `gcloud` 上传到 GCS\
+  \ 的归档文件。\n\n[5] 构建从 `cloudbuild.yaml` 文件中指定的第一个步骤开始。\n\n[6] 构建的最终状态。\n\n手动使用 CLI\
+  \ 调用构建时，默认情况下是同步执行的，这意味着构建的输出会锁定在终端。终端提示符不会在构建成功完成或失败之前返回。如果用户选择退出构建（按 Ctrl + C），这也会取消构建。或者，您可以传入\
+  \ `--async` 选项以排队构建并将用户返回到提示符。以下命令将列出构建及其状态：\n\n```\n$ gcloud builds list\n```\n\
+  \n以下是上述命令的示例输出：\n\n```\nID: ca6fd20f-7da3-447e-a213-7b542f9edb5c\nCREATE_TIME: 2022-01-04T23:45:07+00:00\n\
+  DURATION: 9S\nSOURCE: gs://##project-id_redacted##_cloudbuild/\nsource/1641339906.759161-f251af6f4c9745438a4730c3c6f94cd0.tgz\n\
+  IMAGES: -\nSTATUS: SUCCESS\n\nID: 2522e42e-c31f-4b7a-98bc-404b441a5f2c\nCREATE_TIME:\
+  \ 2022-01-04T23:38:44+00:00\nDURATION: 1M50S\nSOURCE: gs://##project-id_redacted##_cloudbuild/\n\
+  source/1641339523.810603-97be6bc031b44b83bded5a6b0133e093.tgz\nIMAGES:  -\nSTATUS:\
+  \  FAILURE\n```\n\n前面的示例输出提供了项目中每个构建的简要摘要。使用构建提交或列表中的构建 ID，我们能够详细描述构建，如下所示：\n\n\
+  ```\n$ gcloud builds describe ca6fd20f-7da3-447e-a213-7b542f9edb5c\n```\n\n以下是上述命令的示例输出：\n\
+  \n```\ncreateTime: '2022-01-04T23:45:07.383980674Z'\nfinishTime: '2022-01-04T23:45:17.496050Z'\n\
+  id: ca6fd20f-7da3-447e-a213-7b542f9edb5c\nlogUrl: https://console.cloud.google.com/cloud-build/builds/ca6fd20f-7da3-447e-a213-7b542f9edb5c?project=##project-number_redacted##\n\
+  logsBucket: gs://##project-number_redacted##.cloudbuild-logs.googleusercontent.com\n\
+  name: projects/##project-number_redacted##/locations/global/builds/ca6fd20f-7da3-447e-a213-7b542f9edb5c\n\
+  ...\nstartTime: '2022-01-04T23:45:08.020795233Z'\nstatus: SUCCESS\nsteps:\n- args:\n\
+  \  - build\n  - -t\n  - us-central1-docker.pkg.dev/##project-id_redacted##/image-repo/myimage\n\
+  \  - .\nname: gcr.io/cloud-builders/docker\npullTiming:\n  endTime: '2022-01-04T23:45:13.814938454Z'\n\
+  \  startTime: '2022-01-04T23:45:13.811085177Z'\nstatus: SUCCESS\ntiming:\n  endTime:\
+  \ '2022-01-04T23:45:15.114544455Z'\n  startTime: '2022-01-04T23:45:13.811085177Z'\n\
+  ...\ntimeout: 600s\ntiming:\n  BUILD:\n    endTime: '2022-01-04T23:45:17.020766002Z'\n\
+  \    startTime: '2022-01-04T23:45:13.227178424Z'\n  FETCHSOURCE:\n    endTime: '2022-01-04T23:45:13.227099439Z'\n\
+  \    startTime: '2022-01-04T23:45:08.417349649Z'\n```\n\n构建描述的输出提供了有关构建的详细信息以及每个步骤的详细信息，例如开始和停止时间。作为\
+  \ gcloud 的一部分，输出可以以其他格式输出，例如 **JavaScript Object Notation (JSON)**，用于查询和汇总多个构建的输出。\n\
+  \n有多种方式与 Cloud Build 交互。前面的示例中使用 gcloud 的场景来与 Cloud Build 交互，但也有其他方法，如下所述：\n\n-\
+  \ **表述性状态转移 (REST) 应用程序编程接口 (API)** (https://cloud.google.com/build/docs/api/reference/rest)\n\
+  - 客户端库 (https://cloud.google.com/build/docs/api/reference/libraries)\n\n这有助于在尝试与现有工具、基础设施以及开发人员/操作员偏好集成时提供灵活性。Cloud\
+  \ Build 可以是 **端到端 (E2E)** 流水线，也可以仅在需要时参与特定步骤。\n\n定义不同 worker 平台上流水线步骤的标准模式的简便性是关键，使组织能够更专注于其业务应用程序和服务，而非自动化平台本身。一旦提交构建，快速获取构建状态并在必要时进行审计和故障排除也非常重要。对于推送\
+  \ Docker 镜像到 Artifact Registry 的构建，还提供了额外的审计元数据。该元数据称为构建出处，可包含源代码存储库、构建步骤和镜像路径。虽然它是元数据，但它还包含签名数据，可针对\
+  \ Cloud Build 公钥进行验证以确保完整性，这有助于确保元数据未被篡改。此内容将在后续章节中介绍。仅仅因为服务是托管的，并不意味着在需要集成或解决问题时它应该是一个黑盒。\n\
+  \n## 使用 GCP 控制台\n\n与 CLI 或 API 交互对于自动化非常重要，但对于某些场景，能够以组织良好的方式在 UI 上快速获得高层级摘要也同样重要。Cloud\
+  \ Build 还具有 UI 功能，可执行某些操作，而无需与 API 交互。\n\n\n\nCloud Build 摘要 **Dashboard** 部分提供以下信息：\n\
+  \n- 触发器的摘要\n- 各自触发器的最新构建\n- 按触发器筛选的构建历史\n- 构建的平均持续时间\n- 基于最近 20 次构建，通过和失败构建的百分比\n\
+  \n如果项目配置了大量触发器或希望显示某些项目，触发器列表也可以按以下方式筛选：\n\n- 触发器来源\n- 触发器名称\n- 触发器描述\n\n还可以为应显示在列表顶部的触发器放置图钉。对于每个触发器，如果构建配置包含批准或拒绝步骤，则也可以在特定触发器的最新构建的\
+  \ **Dashboard** 视图上执行此操作，如以下屏幕截图所示：\n\n![](img/2fe9576240c146c49e3a21d5e7f6af00_52_0.png)\n\
+  \n图 3.1 – 示例仪表板\n\n可以通过 **History** 部分访问每个构建的列表，其中可以自定义列以显示所需信息。筛选器也可以用于仅显示具有特定元数据的特定构建，如以下屏幕截图所示：\n\
+  \n![](img/2fe9576240c146c49e3a21d5e7f6af00_53_0.png)\n\n图 3.2 – 示例历史记录\n\n触发器是 Cloud\
+  \ Build 中自动化构建的关键组件。UI 的这一部分允许创建触发器并设置将由触发器使用的 SCM 仓库，如以下屏幕截图所示：\n\n![](img/2fe9576240c146c49e3a21d5e7f6af00_53_1.png)\n\
+  \n图 3.3 – 示例触发器\n\nCloud Build 支持许多 SCM 方案，从托管的公共仓库到私有仓库，例如 GitHub Enterprise。可以在以下屏幕截图中看到此示例：\n\
+  \n![](img/2fe9576240c146c49e3a21d5e7f6af00_53_2.png)\n\n图 3.4 – 示例触发器：管理仓库\n\nCloud\
+  \ Build 托管服务的其他设置允许进行权限设置和管理私有池。\n\n具体到权限，Cloud Build 使用默认服务账号，在此视图中，用户能够为特定云服务设置权限，范围从计算运行时到密钥存储。可以在以下屏幕截图中看到此示例：\n\
+  \n![](img/2fe9576240c146c49e3a21d5e7f6af00_54_0.png)\n\n图 3.5 – 示例设置：服务账号\n\n私有池的创建和详细信息也在\
+  \ UI 上提供，如以下屏幕截图所示：\n\n![](img/2fe9576240c146c49e3a21d5e7f6af00_54_1.png)\n\n图 3.6\
+  \ – 示例设置：工作池\n\nGCP 控制台 UI 为用户与 Cloud Build 托管服务交互提供了另一种方式。对于刚开始使用或仅有少量构建的用户，仅集成\
+  \ UI 可能是有意义的。然而，通过使用 CLI 和/或 API 集成，可以减少人为错误和重复。\n\n## 构建操作\n\n恭喜——我们已通过 CLI 提交了构建并在\
+  \ UI 中导航以获取更多详细信息！在操作上，构建启动后我们可能想要做的事情相当多。以下是一些想法：\n\n- 查看日志\n- 查看构建历史\n- 重新构建\n\
+  - 查看审计日志\n- 构建来源\n\n让我们开始了解如何访问已启动的构建的日志。我们将继续使用 gcloud 的示例。利用构建的 ID，我们也可以检索构建的日志，如下所示：\n\
+  \n```\n$ gcloud builds log ca6fd20f-7da3-447e-a213-7b542f9edb5c\n```\n\n以下是前述命令的示例输出：\n\
+  \n```\n--------------------------------------------- REMOTE BUILD\nOUTPUT -----------------------------------------------\n\
+  starting build \"ca6fd20f-7da3-447e-a213-7b542f9edb5c\"\n\nFETCHSOURCE\nFetching\
+  \ storage object: gs://##project-id_redacted##_cloudbuild/source/1641339906.759161-f251af6f4c9745438a4730c3c6f94cd0.tgz#1641339907144359\n\
+  Copying gs://##project-id_redacted##_cloudbuild/source/1641339906.759161-f251af6f4c9745438a4730c3c6f94cd0.tgz#1641339907144359...\n\
+  / [1 files][ 695.0 B/ 695.0 B]\nOperation completed over 1 objects/695.0 B.\nBUILD\n\
+  Starting Step #0\n```\n\n```\nStep #0: Already have image (with digest): gcr.io/cloud-builders/docker\n\
+  Step #0: Sending build context to Docker daemon  3.584kB\nStep #0: Step 1/2 : FROM\
+  \ alpine\nStep #0: latest: Pulling from library/alpine\nStep #0: Digest: sha256:21a3deaa0d32a8057914f36584b5288d2e5ecc984380bc0118285c70fa8c9300\n\
+  Step #0: Status: Downloaded newer image for alpine:latest\nStep #0:  c059bfaa849c\n\
+  Step #0: Step 2/2 : CMD [\"echo\", \"Hello World!\"]\nStep #0:  Running in 35337ee2efec\n\
+  Step #0: Removing intermediate container 35337ee2efec\nStep #0:  1071be434322\n\
+  Step #0: Successfully built 1071be434322\nStep #0: Successfully tagged us-central1-docker.pkg.dev/##project-id_redacted##/image-repo/myimage:latest\n\
+  Finished Step #0\nStarting Step #1\n...\nFinished Step #1\nPUSH\nDONE\n```\n\n构建中每个步骤的日志输出有助于了解构建期间发生的情况，也有助于在必要时进行调试。了解发生的情况，结合每个步骤花费时间的详细信息，也有助于推动流水线步骤的优化。如果构建使用\
+  \ --async 选项异步启动，我们可以使用 log 命令的 --stream 选项来实时查看日志输出。\n\n日志也可以通过 GCP 控制台 UI 中的 Cloud\
+  \ Build 从构建历史记录中查看。对于每个构建，我们可以看到完整构建的日志，如以下屏幕截图所示：\n\n![](img/2fe9576240c146c49e3a21d5e7f6af00_57_0.png)\n\
+  \n图 3.7 – 通过 GCP 控制台 UI 查看的示例整体构建日志输出：Cloud Build 视图\n\n可以通过选择单个构建步骤来访问构建中特定构建步骤的日志，如以下屏幕截图所示：\n\
+  \n![](img/2fe9576240c146c49e3a21d5e7f6af00_57_1.png)\n\n图 3.8 – 通过 GCP 控制台 UI 查看的示例单个构建步骤日志输出：Cloud\
+  \ Build 视图\n\n原始日志也可以通过 GCP 控制台 UI 的 Cloud Logging 服务查看。请注意，在以下屏幕截图中，每个日志条目都包含日志数据的\
+  \ textPayload，同时还包含将文本与构建关联的元数据（如 build_id）：\n\n![](img/2fe9576240c146c49e3a21d5e7f6af00_58_0.png)\n\
+  \n图 3.9 – 通过 GCP 控制台 UI 查看的示例整体构建日志输出：Cloud Logging 视图\n\n重新构建也可以通过 GCP 控制台 UI 进行；它基于特定的提交或源工件。启动重新构建将使用原始源工件创建一个具有新构建\
+  \ ID 的新构建。如果源工件导致构建失败，那么重新构建很可能仍会失败，因为它使用的是相同的资源。然而，如果构建在集成测试期间依赖于外部系统或构建的一部分的单独源文件，这可能会导致构建产生不同的行为。\n\
+  \n审计日志对于了解谁对构建执行了某些操作（如创建、批准、更新）以及谁访问了构建元数据也至关重要。审计日志可通过 Cloud Logging 服务获得。Cloud\
+  \ Logging 服务可在 GCP 控制台上使用，也可通过 API（例如 REST API；软件开发工具包 (SDK)；CLI）使用。以下是使用 CLI 通过\
+  \ gcloud 工具查看审计日志的示例：\n\n```\n$ gcloud logging read \"logName:cloudaudit.googleapis.com%2Factivity\
+  \ AND \\\nresource.type=build\"\n```\n\n以下是前述命令的示例输出：\n\n```\ninsertId: 166b01hd1dvc\n\
+  logName: projects/##project-id_redacted##/logs/cloudaudit.googleapis.com%2Factivity\n\
+  operation:\n  id: operations/build/##project-id_redacted##/\n    YzYwMzA2NTktMjVlZC00ZWQ2LTlKyzQtMmZjMWI5NzY4NmRj\n\
+  \  last: true\n  producer: cloudbuild.googleapis.com\nprotoPayload:\n  '@type':\
+  \ type.googleapis.com/google.cloud.audit.AuditLog\n  authenticationInfo:\n    principalEmail:\
+  \ ##email_redacted##\n  authorizationInfo:\n  - granted: true\n    permission: cloudbuild.builds.create\n\
+  \    resource: projects/00000041cd1ce997\n    resourceAttributes: {}\n  methodName:\
+  \ google.devtools.cloudbuild.v1.CloudBuild.CreateBuild\n  requestMetadata:\n   \
+  \ destinationAttributes: {}\n    requestAttributes: {}\n  resourceName: projects/##project-id_redacted##/builds\n\
+  \  serviceName: cloudbuild.googleapis.com\n  status: {}\nreceiveTimestamp: '2022-01-19T00:26:46.102748864Z'\n\
+  resource:\n  labels:\n    build_id: c6030659-25ed-4ed6-9dc4-2fc1b97686dc\n    build_trigger_id:\
+  \ ''\n    project_id: ##project-id_redacted##\n  type: build\nseverity: NOTICE\n\
+  timestamp: '2022-01-19T00:26:45.655472495Z'\n```\n\n\n\n虽然前面的文本是 CLI 的输出，但以下截图是可通过\
+  \ GCP 控制台 UI 访问的审计日志的表示：\n\n![](img/2fe9576240c146c49e3a21d5e7f6af00_60_0.png)\n\
+  \n图 3.10 – 通过 GCP 控制台的示例输出审计日志\n\n此审计日志可能具有信息价值，可为安全、运维和开发等不同团队提供谁（个人或自动化的服务账号）创建了构建的访问权限。您可以在以下链接查看\
+  \ Cloud Build 可用的已审计操作列表，以更深入地了解 Cloud Build 的使用情况：https://cloud.google.com/build/docs/securing-builds/audit-logs#audited_operations。有关审计构建信息的构建来源将在\
+  \ *第 6 章，管理环境安全* 中介绍。\n\nThe `gcloud logging read` command can also be used to view\
+  \ build logs as well as other GCP services.\n\n启动构建对于使用 Cloud Build 至关重要，但了解还可以执行哪些其他操作或可获得何种类型的数据同样重要。\n\
+  \n### 摘要\n\n在提供有效的配置清单以及一些 Cloud Build 设置后，执行构建管道可以相当直接。托管服务负责幕后的配置验证、资源配置和构建本身的执行。由于它是一个托管服务，信息会被提供出来以通过各种方式向用户提供状态，无论是通过\
+  \ GCP 控制台 UI 的视觉方式还是标准 API 集合。\n\n请继续关注下一章，我们将深入探讨 Cloud Build 的清单配置。\n"
+- '# 第 2 部分：拆解构建
+
+
+  在本书的这一部分，我们将深入编写和配置功能齐全的构建。您将了解构成构建配置的核心构建块、这些构建可以执行的各种方式，以及如何设计这些构建以遵循安全最佳实践运行。
+
+
+  本部分包含以下章节：
+
+
+  - *第 4 章，构建配置和架构*
+
+  - *第 5 章，触发构建*
+
+  - *第 6 章，管理环境安全*
+
+  '
+- "## 构建配置和架构\n\n我们已经讨论了您可以在 Cloud Build 中运行的构建的多样性。作为用户，您能够定义构成构建中每个构建步骤的任务。\n\n\
+  实现这一点的方式是根据特定于 Cloud Build 的声明式架构编写构建定义。此架构使您不仅可以定义各个构建步骤，还可以定义它们之间的顺序和关系，以及 Cloud\
+  \ Build 执行环境中的其他特定构建范围配置，例如超时或权限。\n\n在本章中，我们将回顾以下主题：\n\n- 定义构建步骤的最小配置\n- 调整构建步骤的默认配置\n\
+  - 定义各个构建步骤之间的关系\n- 配置构建范围规范\n\n### 定义构建步骤的最小配置\n\n在 Cloud Build 中，构建是您作为用户将处理的首要资源。通常，构建是通过根据\
+  \ Cloud Build 架构用 YAML 编写的配置文件定义的，尽管也支持 JSON。还有一些创建构建时不提供配置文件的例外情况，我们将在第 9 章《使用\
+  \ Cloud Build 自动化无服务器》中回顾。\n\n让我们回顾一下这些配置文件是什么样子的，从我们已经在一定程度上熟悉的构建开始。\n\n### 设置环境\n\
+  \n在上一章中，我们回顾了一个使用以下 `cloudbuild.yaml` 配置文件的简化版本的构建，该文件可在 https://github.com/GoogleCloudPlatform/cloud-build-samples/tree/main/basic-config\
+  \ 找到。\n\n此构建配置文件定义了三个按顺序执行的独立构建步骤：\n\n- 构建 Docker 容器镜像。\n- 将 Docker 容器镜像推送到 **Artifact\
+  \ Registry** (https://cloud.google.com/artifact-registry)。\n- 创建 **Compute Engine**\
+  \ (https://cloud.google.com/compute) VM 并将之前构建的容器镜像部署到新创建的 VM。\n\n此外，我们可以在此处查看构建的可视化表示：\n\
+  \n![](img/2fe9576240c146c49e3a21d5e7f6af00_66_0.png)\n\n图 4.1 – 一个简单的构建，构建容器，将其推送到注册表，并在新\
+  \ VM 上运行\n\nGoogle Cloud Platform 的 GitHub 仓库中的内容可能会随时间变化，因此让我们创建自己的副本，以便运行本章中的构建练习所需的文件。让我们利用\
+  \ **Cloud Shell** (`shell.cloud.google.com`)，这是 Google Cloud 提供的临时 Linux 工作站。\n\n\
+  强烈建议您在沙箱或测试 Google Cloud 项目中运行这些练习，因为您不仅可以完全控制运行练习，还可以轻松清理创建的任何资源。\n\n一旦在 Cloud\
+  \ Shell 中打开终端会话，请设置我们将传递给构建配置文件的环境变量：\n\n```\n$ PROJECT_ID=$(gcloud config get project)\n\
+  ```\n\n```\n$ SERVICE_ACCOUNT=packt-cloudbuild-chp4-sa\n```\n\n接下来，创建工作目录以存储本章构建练习的文件：\n\
+  \n```\n$ mkdir packt && cd packt && \\\nmkdir cloudbuild && cd cloudbuild && \\\n\
+  mkdir chapter4 && cd chapter4 && \\\nmkdir first-build && cd first-build\n```\n\n\
+  从上述构建创建第一个构建配置文件，该文件将构建容器镜像，将其推送到 Artifact Registry，并创建 VM 来运行容器镜像：\n\n```\n$ cat\
+  \ > cloudbuild.yaml <<EOF\nsteps:\n  - name: 'gcr.io/cloud-builders/docker'\n  \
+  \  args: ['build', '-t',\n           'us-central1-docker.pkg.dev/${PROJECT_ID}/my-docker-repo/myimage',\n\
+  \           '.']\n  - name: 'gcr.io/cloud-builders/docker'\n    args: ['push',\n\
+  \           'us-central1-docker.pkg.dev/${PROJECT_ID}/my-docker-repo/myimage']\n\
+  \  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'\n    entrypoint: 'gcloud'\n\
+  \    timeout: 240s\n    args: ['compute', 'instances',\n           'create-with-container',\
+  \ 'my-vm-name',\n           '--container-image',\n           'us-central1-docker.pkg.dev/${PROJECT_ID}/my-docker-repo/myimage']\n\
+  \    env:\n      - 'CLOUDSDK_COMPUTE_REGION=us-central1'\n      - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'\n\
+  serviceAccount: 'projects/${PROJECT_ID}/serviceAccounts/${SERVICE_ACCOUNT}@${PROJECT_ID}.iam.gserviceaccount.com'\n\
+  images: ['us-central1-docker.pkg.dev/${PROJECT_ID}/my-docker-repo/myimage']\noptions:\n\
+  \  logging: CLOUD_LOGGING_ONLY\n\nEOF\n```\n\n> **注意**\n> 在处理容器镜像时，最佳实践是使用 `images`\
+  \ 字段指定您正在创建的镜像。这可启用诸如构建来源等功能，我们将在 *第 6 章，管理环境安全* 中讨论。\n> \n> 对于在构建运行结束时推送容器镜像即可的简单构建，您可以省略构建此镜像的独立构建步骤，而只指定\
+  \ `images` 字段。这样将提示 Cloud Build 在构建运行结束时推送该字段中的镜像。\n> \n> 然而，在本示例中，由于我们正在创建运行新构建的容器镜像的\
+  \ VM，因此我们仍然保留独立的构建步骤。\n\n创建 Dockerfile 以用于在此构建中构建的容器镜像：\n\n```\n$ cat > Dockerfile\
+  \ <<EOF\nFROM alpine\nCMD [\"echo\", \"Hello World!\"]\nEOF\n```\n\n在本书前面，我们简要提到构建利用来自\
+  \ **Identity and Access Management (IAM)** 的 **Service Account** 来执行访问 Google Cloud\
+  \ API 的某些操作。对于本章，我们将创建一个临时服务账号：\n\n```\n$ gcloud iam service-accounts create packt-cloudbuild-chp4-sa\
+  \ \\\n--description=\"Temporary SA for chp 4 exercises\" \\\n--display-name=\"packt-cloudbuild-chp4-sa\"\
+  \n```\n\n\n\n现在，让我们为服务账号授予本章练习中构建执行所需的权限：\n\n```\n$ gcloud projects add-iam-policy-binding\
+  \ ${PROJECT_ID} \\\n  --member=\"serviceAccount:packt-cloudbuild-chp4-sa@${PROJECT_ID}.iam.gserviceaccount.com\"\
+  \ \\\n  --role=\"roles/iam.serviceAccountUser\" \\\n  --role=\"roles/cloudasset.owner\"\
+  \ \\\n  --role=\"roles/storage.admin\" \\\n  --role=\"roles/logging.logWriter\"\
+  \ \\\n  --role=\"roles/artifactregistry.admin\" \\\n  --role=\"roles/compute.admin\"\
+  \n```\n\n现在我们已经拥有本章所需的文件和权限。现在，让我们在 Artifact Registry 中为本章将使用的容器镜像创建一个仓库：\n\n```\n\
+  $ gcloud artifacts repositories create my-docker-repo \\\n  --repository-format=Docker\
+  \ \\\n  --location us-central1\n```\n\n现在，你可以启动我们的第一个构建练习：\n\n```\n$ gcloud builds\
+  \ submit . --region=us-central1\n```\n\n在我们回顾的概念基础上调整构建文件并重新运行构建的机会将会出现。然而，由于再次运行\
+  \ gcloud 创建 VM 会导致构建失败，因为 VM 已存在，因此在重新提交此构建到 Cloud Build 之前，请运行以下命令：\n\n```\n$ gcloud\
+  \ compute instances delete my-vm-name --zone=us-central1-a\n```\n\n完成此示例后，你可以使用以下命令删除所使用的服务账号：\n\
+  \n```\n$ gcloud iam service-accounts delete packt-cloudbuild-chp4-sa@${PROJECT_ID}.iam.gserviceaccount.com\n\
+  ```\n\n现在设置已完成，让我们深入了解构建配置文件。此构建中的每个构建步骤都在自己的容器中运行，并且给定构建的所有构建步骤都在同一个 Cloud Build\
+  \ worker 上执行。\n\n你的构建可能更复杂，包含的构建步骤比提供的示例更多，但构建步骤的定义方式与此示例保持一致。因此，让我们逐一拆解构建。\n\n\
+  ## 定义你的构建步骤容器镜像\n\n让我们从顶层字段 `steps` 开始。此字段涵盖构成构建的所有构建步骤。示例中的三个构建步骤均由 `steps` 字段下的段落定义。\n\
+  \n> **注意**\n> 在撰写本文时，单个构建中最多可以有 100 个构建步骤。你可以在 https://cloud.google.com/build/quotas#resource_limits\
+  \ 处找到最新的限制。\n\n在这些段落中的任何一个中，我们可以看到用户必须定义以指定单个构建步骤的字段。最少，我们需要定义以下两个字段：\n\n- `name`\n\
+  - `args`\n\n这里，`name` 是一个字段，引用将运行你的构建步骤的构建器镜像的具体镜像路径。当你指定容器镜像时，你的 Cloud Build worker\
+  \ 将拉取该容器镜像并使用 `docker run` 运行其实例。\n\n在前面的示例中，我们可以看到第一步和第二步都使用 `gcr.io/cloud-builders/docker`\
+  \ 镜像，而第三步使用 `gcr.io/google.com/cloudsdktool/cloud-sdk` 镜像。\n\n请注意，要在上一章运行此构建，你实际上不需要自己构建这些镜像。相反，这些镜像是\
+  \ Google 提供的托管的预构建容器镜像的一部分，其中包含 `docker` 或 `gcloud` 等常用工具。这些由 Google 提供的公开可用镜像称为\
+  \ **cloud builders**（https://cloud.google.com/build/docs/cloud-builders）。\n\n在撰写本文时，cloud\
+  \ builders 为以下工具提供预构建镜像：\n\n- 通用构建器，例如 `wget`、`curl` 和 `git`\n- 语言特定构建器，例如 `dotnet`、`go`、`mvn`、`javac`、`npm`\
+  \ 和 `yarn`\n- Google Cloud 特定构建器，例如 `gcloud`、`gsutil`、`gcs-fetcher` 和 `gke-deploy`\n\
+  - 容器和 Kubernetes 特定构建器，例如 `docker` 和 `kubectl`\n\n由于这些 cloud builders 由 Google 公开提供，你实际上可以导航到镜像路径并查看\
+  \ Google 已发布的该镜像的所有版本。例如，在浏览器中导航到 `gcr.io/cloud-builders/docker`：\n\n![](img/2fe9576240c146c49e3a21d5e7f6af00_71_0.png)\n\
+  \n图 4.2 – gcr.io/cloud-builders/docker 的 Google 发布容器镜像\n\n如果你想自定义这些容器镜像，可以查看提供的源代码（https://github.com/GoogleCloudPlatform/cloud-builders）并构建这些镜像的自己的变体。对于每个构建器，你可以找到一个\
+  \ Dockerfile 来定义 cloud builder 的容器镜像，以及一个 cloudbuild.yaml 文件来构建你自己的 cloud builder\
+  \ 版本。\n\n如果单个构建步骤的用例未被提供的 cloud builder 镜像之一覆盖，你也可以使用 Cloud Build 社区提供的构建器（https://github.com/GoogleCloudPlatform/cloud-builders-community）。\n\
+  \n这些数量远多于官方构建器，并且更新频率或所需维护的节奏各不相同，因为它们由社区拥有。一些更常用的社区贡献构建器包括以下内容：\n\n- 容器和 Kubernetes\
+  \ 构建器，例如 `helm`、`kustomize`、`ko` 和 `pack`\n- 基础设施即代码构建器，例如 `terraform`、`pulumi`\
+  \ 和 `terragrunt`\n- 移动开发构建器，例如 `firebase` 和 `flutter`\n\n与官方 cloud builders 类似，每个社区贡献的构建器都提供一个\
+  \ Dockerfile，定义构建器容器镜像，以及一个 cloudbuild.yaml 配置文件，实际使用 Cloud Build 构建构建器容器镜像。\n\n\
+  > **注意**\n> \n> 如果你希望构建 cloud builder 镜像的自己的变体或构建社区提供的构建器之一，你需要将这些镜像托管在自己的仓库中，例如\
+  \ Container Registry 或 Artifact Registry。你甚至可以使用 JFrog 的 Artifactory 等第三方制品库。\n\
+  > \n> 在这样做时，最佳实践是使用容器镜像标签明确指定你希望为构建步骤运行的容器的版本。\n> \n> 这将使你能够确保了解特定版本的容器镜像将如何运行你的构建。此外，它将确保你的构建不会因上游容器镜像的不可预见更改而中断。\n\
+  \n最后，你可以利用托管在 **Docker Hub** 上的公开可用容器镜像用于构建步骤。我们将在 *调整构建步骤的默认配置* 部分稍后使用托管在 Docker\
+  \ Hub 上的镜像向我们的示例添加一个构建步骤。\n\n现在我们已经回顾了如何使用 `name` 来定义构建步骤将使用的容器镜像，让我们谈谈如何使用 `id`\
+  \ 字段更明确地标识每个构建步骤。\n\n在我们现有的 `cloudbuild.yaml` 文件中，我们没有为每个构建步骤提供除其执行的构建器镜像之外的标识符。如果在构建中多次重复使用相同的构建器镜像，这对于调试构建或筛选构建日志可能存在问题。\n\
+  \n如果你导航到 `console.cloud.google.com/cloud-build/builds` 并访问你执行的构建，默认情况下，你会看到每个构建步骤都由其使用的构建器镜像标识：\n\
+  \n| 步骤 | 持续时间 |\n|---|---|\n| **构建摘要** 3 个步骤 | 00:01:49 |\n| 0: gcr.io/cloud-builders/docker\
+  \ build -t us-central1-docker.pkg.dev/agmsb-k8s/my-docker-repo/myima... | 00:00:02\
+  \ |\n| 1: gcr.io/cloud-builders/docker push us-central1-docker.pkg.dev/agmsb-k8s/my-docker-repo/myimage\
+  \ | 00:00:03 |\n| 2: gcr.io/google.com/cloudsdktool/cloud-sdk gcloud compute instances\
+  \ create-with-container my-vm-name --contai... | 00:01:36 |\n\n图 4.3 – 未为每个构建步骤定义\
+  \ ID 字段时的构建步骤\n\n利用 id 字段与 name 字段结合使用，我们可以为构建步骤单独提供一个对人类友好的标识符。运行带有构建步骤 ID 的相同构建将如下所示：\n\
+  \n```\nsteps:\n  - name: 'gcr.io/cloud-builders/docker'\n    id: 'Docker Build'\n\
+  \    args: ['build', '-t',\n        'us-central1-docker.pkg.dev/${PROJECT_ID}/my-docker-repo/myimage',\n\
+  \        '.']\n\n  - name: 'gcr.io/cloud-builders/docker'\n    id: 'Docker Push'\n\
+  \    args: ['push',\n        'us-central1-docker.pkg.dev/${PROJECT_ID}/my-docker-repo/myimage']\n\
+  \n  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'\n    id: 'Deploy container\
+  \ to VM'\n    entrypoint: 'gcloud'\n    timeout: 240s\n    args: ['compute', 'instances',\n\
+  \        'create-with-container', 'my-vm-name',\n        '--container-image',\n\
+  \        'us-central1-docker.pkg.dev/${PROJECT_ID}/my-docker-repo/myimage']\n  \
+  \  env:\n      - 'CLOUDSDK_COMPUTE_REGION=us-central1'\n      - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'\n\
+  ```\n\n如果你想亲自查看，欢迎使用不同的定义每个构建步骤 ID 的样式调整 cloudbuild.yaml 示例并重新运行构建。\n\n现在，你可以利用这些构建步骤\
+  \ ID 更轻松地识别每个步骤正在做什么。此外，你可以以实用方式使用它们，例如从 Cloud Logging 查询在多次构建运行中来自特定构建步骤的日志。\n\n\
+  \n\n您可以通过访问 console.cloud.google.com/logs 并在日志浏览器中输入查询，例如以下查询，来搜索与构建步骤 ID 关联的日志，并筛选出\
+  \ textPayload 中包含构建步骤 ID 的日志：\n\n```\nresource.type = \"build\"\ntextPayload =~\
+  \ \"Deploy container to VM\"\n```\n\n此外，在 Cloud Build 控制台中，您可以看到每个构建步骤现在都由其 id 字段引用：\n\
+  \n| 步骤 | 时长 |\n|---|---|\n| **构建摘要**\n3 个步骤 | 00:01:32 |\n| 0: Docker 构建\nbuild\
+  \ -t us-central1-docker.pkg.dev/agmsb-k8s/my-docker-repo/myima... | 00:00:01 |\n\
+  | 1: Docker 推送\npush us-central1-docker.pkg.dev/agmsb-k8s/my-docker-repo/myimage\
+  \ | 00:00:03 |\n| 2: 部署容器到 VM\ngcloud compute instances create-with-container my-vm-name\
+  \ --contai... | 00:01:20 |\n\n图 4.4 – 为每个构建步骤定义 ID 字段时的构建步骤\n\n使用 id 字段对于在需要以复杂模式运行的情况下定义构建步骤之间的关系也至关重要，例如按特定顺序运行多个构建步骤。我们将在“定义各个构建步骤之间的关系”部分稍后回顾此内容。\n\
+  \n现在我们已经回顾了如何在 name 字段中提供构建步骤将运行的镜像，以及如何使用 id 字段更好地标识构建步骤，让我们回顾 args 字段。\n\n## 定义构建步骤参数\n\
+  \n这里，args 是您提供给云构建器以在执行构建步骤任务时使用的参数的字段。\n\n请注意，args 可以使用多种样式用 YAML 编写：\n\n- 流式样式\
+  \ (https://yaml.org/spec/1.2.2/#flow-sequences)\n- 块式样式 (https://yaml.org/spec/1.2.2/#block-sequences)\n\
+  \n在我们的示例构建配置中，每个构建步骤的 args 字段均以流式样式定义：\n\n```\nargs: ['build',\n    '-t',\n    'us-central1-docker.pkg.dev/${PROJECT_ID}/my-docker-repo/myimage',\n\
+  \    '.']\n```\n\n对于较小的参数集，流式样式提供了一种简单且可读的方式来编写 args。您还可以为提高可读性而在流式样式中为每个项目换行。\n\
+  \n然而，对于更大、更复杂的参数集，使用块式样式可能更容易编写。以下是以块式样式编写的来自前一个示例的同一组 args 字段：\n\n```\nargs:\n\
+  \  - 'build'\n  - '-t'\n  - 'us-central1-docker.pkg.dev/${PROJECT_ID}/my-docker-repo/myimage'\n\
+  \  - '.'\n```\n\n随意使用不同样式定义 args 的 cloudbuild.yaml 示例进行调整并重新运行构建。\n\n> 注意\n> \n\
+  > 您为单个构建步骤提供的 args 最大数量为 100，且单个 args 字段中的字符总数上限为 4,000。\n\n无论您以何种方式编写参数，都有两种使用\
+  \ args 启动构建器执行任务的方法：\n\n- 如果云构建器提供入口点，则 args 中的值将用作该入口点的参数。\n- 如果云构建器未提供入口点，则 args\
+  \ 中的第一个值将用作云构建器的入口点，其余值用作参数。\n\n让我们查看我们第一个和第二个构建步骤的构建器镜像。如果我们查看源 Dockerfile (https://github.com/GoogleCloudPlatform/cloud-builders/tree/master/docker)，我们可以看到容器镜像已定义了\
+  \ ENTRYPOINT。由于 Google Cloud Platform 的 GitHub 仓库中的内容可能会随时间变化，我们还分享了以下 Dockerfile\
+  \ 的内容：\n\n```\nFROM gcr.io/gcp-runtimes/ubuntu_20_0_4\nARG DOCKER_VERSION=5:19.03.9~3-0~ubuntu-focal\n\
+  RUN apt-get -y update && \\\n    apt-get -y install \\\n    apt-transport-https\
+  \ \\\n    ca-certificates \\\n    curl \\\n    make \\\n    software-properties-common\
+  \ && \\\n    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add\
+  \ - && \\\n    apt-key fingerprint 0EBFCD88 && \\\n    add-apt-repository \\\n \
+  \   \"deb [arch=amd64] https://download.docker.com/linux/ubuntu \\\n    $(lsb_release\
+  \ -cs) \\\n    edge\" && \\\n    apt-get -y update && \\\n    apt-get -y install\
+  \ docker-ce=${DOCKER_VERSION} docker-ce-cli=${DOCKER_VERSION}\nENTRYPOINT [\"/usr/bin/docker\"\
+  ]\n```\n\n在 Dockerfile 的最后一行，我们看到 ENTRYPOINT 定义为 [\"/usr/bin/docker\"]，这意味着云构建器将执行\
+  \ Docker 二进制文件。由于情况如此，我们的第一个和第二个构建步骤提供参数以指示 Docker 构建容器镜像并将其推送到 Artifact Registry。\n\
+  \n然而，情况并非如此，第三个构建步骤我们使用 gcr.io/google.com/cloudsdktool/cloud-sdk 构建器。在此构建步骤中，我们实际上使用\
+  \ entrypoint 字段在我们的 cloudbuild.yaml 中定义入口点。这是因为用于构建构建器镜像的 Dockerfile 未定义入口点：\n\n\
+  ```\n- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'\n  entrypoint: 'gcloud'\n\
+  ```\n\n您可以在配置文件中使用 entrypoint 字段出于两个主要原因：\n\n- 如果构建器容器镜像未指定，则显式定义入口点\n- 覆盖构建器容器镜像中定义的\
+  \ ENTRYPOINT\n\n在配置文件中定义入口点的最常见用例之一是能够将 shell 定义为入口点，然后将任意命令传递给 shell。\n\n您可以按以下示例运行，其中使用块式\
+  \ YAML 并将 '-c' 作为第一个参数传递，然后将多行字符串管道传输以运行其余的任意命令。\n\n此示例采用 Python 3.9 的公共 Docker\
+  \ Hub 镜像并将其作为构建步骤运行，覆盖默认的 python3 CMD 以将入口点更改为 bash，同时在 shell 中运行一些命令：\n\n```\n\
+  $ cd .. && mkdir arbitrary-commands && cd arbitrary-commands\n$ cat > cloudbuild.yaml\
+  \ <<EOF\nsteps:\n  - name: 'python:3.9'\n    id: 'Arbitrary commands in bash'\n\
+  \    entrypoint: 'bash'\n    args:\n      - '-c'\n      - |\n        pwd\n     \
+  \   ls\n        whoami\nEOF\n$ gcloud builds submit . --region=us-central1\n```\n\
+  \n构建日志中的输出应与 args 中定义的任意命令相匹配：\n\n```\n/workspace\ncloudbuild.yaml\nroot\n```\n\n\
+  这在运行构建步骤时可以访问 shell 时增加了灵活性和可配置性。\n\n现在我们已经回顾了 name、id、args 和 entrypoint 作为构建步骤运行的核心功能，让我们深入了解配置这些构建步骤的额外方法。\n\
+  \n## 调整构建步骤的默认配置\n\n除了定义构建步骤的容器镜像和参数之外，您可能还需要自定义其他配置，以便以特定方式执行该步骤中的任务。\n\n这些可能是您希望在执行环境中设置的环境变量，使特定密钥可用于构建步骤，或在执行构建步骤的工作器上写入特定目录。\n\
+  \nbuild step 段具有涵盖以下情况的附加字段：\n\n- `env`\n- `secretEnv`\n- `timeout`\n- `dir`\n\n\
+  让我们从 env 字段开始 – 这提供了一种为执行任务的云构建器设置环境变量的方法。这提供了一种方式，让您提供多个可能希望传递到在构建步骤中运行任务的容器中的环境变量。\n\
+  \n> **注意**\n> \n> 有趣的是，`env` 和 `secretEnv` 不仅可以为单个构建步骤定义，还可以为构建中的所有构建步骤在全局级别定义。虽然我们将在\
+  \ *配置构建范围规范* 部分回顾全局配置，但对于任何敏感信息，建议您在单个构建步骤级别配置这些值。\n\n在我们示例的第三个构建步骤中，您可以看到我们定义 env\
+  \ 以包含两个不同的变量：\n\n- `CLOUDSDK_COMPUTE_REGION=us-central1`\n- `CLOUDSDK_COMPUTE_ZONE=us-central1-a`\n\
+  \n鉴于我们的入口点正在运行 gcloud CLI，提前定义这些环境变量使 gcloud 能够使用这些属性已定义来引导。具体来说，已定义这些属性后，构建步骤能够在\
+  \ us-central1-a 区域创建将运行容器镜像的 VM。\n\n这代表了定义环境变量的典型用例 – 为构建步骤能够执行其任务做好环境准备。\n\n如果我们想将凭据或密码投影到环境变量中，我们将改用\
+  \ secretEnv。我们将在第 8 章《使用 Cloud Build 保护向 GKE 的软件交付》中更详细地回顾这一点。\n\n\n\n不仅在我们的构建步骤段中看到了\
+  \ `env` 的定义，我们还看到了 `timeout` 的定义。这个字段相当直接；你定义一个时间段，如果构建步骤在此期间未完成，它将使整个构建失败。\n\n\
+  我们正在处理的示例中，创建 VM 的构建步骤的超时设置为 240 秒或 4 分钟。超时被定义为持续时间；如果未指定，默认单位为秒。然而，你可以通过小时 (h)\
+  \ 和分钟 (m) 指定额外的单位。\n\n此外，你可以将多个时间单位组合成一个超时值。例如，`timeout: 2h10m45s` 为 2 小时、10 分钟和\
+  \ 45 秒。\n\n> **Note**\n> 在发布时，构建的最大超时为 24 小时。\n\n如果存在已知依赖于调用不可靠外部系统或 API 的构建步骤，或者当你担心最小化成本时，超时在单个构建步骤级别很有用，因为构建按使用的\
+  \ vCPU 构建分钟计价——尤其是在使用更大的工作器时。\n\n与 `env` 和 `secretEnv` 类似，`timeout` 不仅可以为单个构建步骤定义，还可以为整个构建在全局级别定义，我们将在\
+  \ *Configuring build-wide specifications* 部分对此进行回顾。\n\n现在，让我们继续讨论 `dir` 字段。当构建执行时，默认情况下当前工作目录设置为\
+  \ `/workspace`。默认情况下，这由挂载在此路径的 Docker 卷支持，相同的卷提供给每个运行的构建步骤：\n\n![](img/2fe9576240c146c49e3a21d5e7f6af00_79_0.png)\n\
+  \n图 4.5 – 每个构建步骤都将访问挂载在 /workspace 的相同卷\n\n对于许多构建步骤，使用 `/workspace` 作为工作目录就足够了。然而，有些工具需要从特定的工作目录运行，也许是某些配置文件所在的位置，这些文件会传递给该工具。\n\
+  \n以下是此类工具的几个示例：\n\n- Skaffold (https://skaffold.dev/) 是一种 Kubernetes 持续开发工具，旨在让\
+  \ Kubernetes 用户在本地环境以及软件交付管道中运行。为此，用户必须从包含 `skaffold.yaml` 配置文件的同一目录中执行 `skaffold`\
+  \ 二进制文件。\n- Terraform (https://www.terraform.io/) 是一种基础设施即代码工具，旨在让用户使用一致的语言在多个基础设施提供商之间创建资源。通常，`terraform`\
+  \ CLI 应该从存在 `.tf` 配置文件的工作目录中执行，尽管它也支持传入 `--chdir` 作为参数，允许你更改工作目录。\n\n对于这些场景，用户可以利用\
+  \ `dir` 字段自动为特定构建步骤设置工作目录。使用 dir 有两个选项：\n\n- 相对路径\n- 绝对路径\n\n将 `dir` 指定为相对路径是更常见的用例。让我们创建一个构建，继续我们在之前的构建中所做的工作，并在新的\
+  \ `cloudbuild.yaml` 文件中运行几个构建步骤：\n\n```\n$ cd .. && mkdir generate-validate-terraform\
+  \ && cd generate-validate-terraform\n$ PROJECT_ID=$(gcloud config get project)\n\
+  $ ZONE=us-central1-a\n$ cat > cloudbuild.yaml <<EOF\nsteps:\n- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'\n\
+  \  id: 'Generate terraform for existing VMs'\n  entrypoint: 'sh'\n  args:\n  - '-c'\n\
+  \  - |\n    apt-get install google-cloud-sdk-config-connector\n    gcloud beta resource-config\
+  \ bulk-export \\\n    --resource-format=terraform \\\n    --resource-types=ComputeInstance\
+  \ \\\n    --project=$PROJECT_ID \\\n    --path=tf\n- name: 'hashicorp/terraform:1.0.0'\n\
+  \  id: 'Validate generated terraform'\n  entrypoint: 'sh'\n  args:\n  - '-c'\n \
+  \ - |\n    terraform init\n    terraform validate\ndir: 'tf/projects/agmsb-k8s/ComputeInstances/$ZONE'\n\
+  serviceAccount: 'projects/${PROJECT_ID}/\nserviceAccounts/${SERVICE_ACCOUNT}'\n\
+  EOF\n$ gcloud builds submit . --region=us-central1\n```\n\n此构建执行两件事：\n\n- 首先，我们利用\
+  \ **Cloud Asset Inventory** API 提供的功能，将我们刚刚创建的资源导出为有效的 Terraform 配置文件。具体来说，通过不定义\
+  \ `dir`，我们使用 `/workspace` 作为工作目录并创建一个名为 `tf` 的目录。\n- 其次，我们将工作目录更改为上一个构建步骤导出的 terraform\
+  \ 配置所在的位置：`tf/projects/$PROJECT_ID/ComputeInstances/$ZONE`。这是一个相对路径，因此我们期望该目录位于\
+  \ `workspace/` 下。从此目录运行构建步骤可以更轻松地在传递到 shell 的 `terraform` 命令中编写更简洁的命令。\n\n此外，此构建提供了我们可以在本章中讨论的概念的应用示例。以下是一些注意事项：\n\
+  \n- 我们在第一个步骤中使用了 Google 提供的镜像：`gcr.io/google.com/cloudsdktool/cloud-sdk`。然而，我们还必须将\
+  \ `sh` 定义为入口点，以便安装运行示例所需的包。这将是我们将构建固定到此构建器此特定版本或构建我们自己的自定义镜像以在构建之外执行此安装的绝佳机会。\n\
+  - 我们在 Docker Hub 上使用 Hashicorp 的注册表中的公共镜像来利用 `terraform`。这是一个很好的机会来指出 Google 会将\
+  \ Docker Hub 上最受欢迎的镜像镜像到 Container Registry。然而，如果拉取镜像太慢，我们也可以使用社区提供的 terraform 镜像构建我们自己的构建器。\n\
+  \n现在我们已经介绍了其他字段，可以配置以调整我们各个构建步骤，让我们继续了解如何在同一构建中的构建步骤之间协调任务。\n\n## 定义各个构建步骤之间的关系\n\
+  \n构建步骤很少独立存在，必须了解它们与其他构建步骤之间的关系。构建步骤可能需要写入后续构建步骤需要访问的文件。多个构建步骤可能需要并行运行，在开始其任务之前等待其他构建步骤完成，甚至启动单独的构建。\n\
+  \n让我们讨论两个可用于定义构建步骤之间这些关系的特定参数：\n\n- `volumes`\n- `waitFor`\n\nvolumes 是在 Cloud Build\
+  \ 工作器上在构建步骤之间持久化数据的方式。我们已经回顾了默认卷 workspace/，作为默认工作目录，也是构建步骤之间持久化文件的最简单位置。\n\n然而，如果你的工具需要将文件写入特定位置，或期望文件位于特定目录中，你也可以创建自己的卷并将其挂载以在你自己的自定义位置持久化文件。\n\
+  \n这可能的一个示例是在构建中使用 SSH 密钥时。诸如 git 之类的工具可能期望 SSH 密钥位于 /.ssh 中，该目录位于容器用于运行的用户的主目录下。\n\
+  \n指定你自己的专有卷以在构建步骤之间持久化数据看起来像这样：\n\n```\nsteps:\n  - name: 'gcr.io/cloud-builders/git'\n\
+  \    secretEnv: ['SSH_KEY']\n    entrypoint: 'bash'\n    args:\n      - -c\n   \
+  \   - |\n        echo \"$$SSH_KEY\" >> /root/.ssh/id_rsa\n        chmod 400 /root/.ssh/id_rsa\n\
+  \        cp known_hosts.github /root/.ssh/known_hosts\n    volumes:\n      - name:\
+  \ 'ssh'\n        path: /root/.ssh\n\n  # Clone the repository\n  - name: 'gcr.io/cloud-builders/git'\n\
+  args:\n- clone\n- --recurse-submodules\n- git@github.com:GIT_USERNAME/GIT_REPOSITORY\n\
+  volumes:\n- name: 'ssh'\n  path: /root/.ssh\n```\n\n这意味着你可以使用 ssh 卷或 workspace 卷在这两个构建步骤之间持久化数据。你可以在\
+  \ https://cloud.google.com/build/docs/access-github-from-build 找到此示例的完整教程。\n\n数据可能不是你希望在构建步骤之间编排的唯一内容；你可能还希望对它们的执行有更大的控制。\n\
+  \n这就是 waitFor 字段派上用场的地方。此字段允许你更改构建步骤的默认顺序执行。\n\nwaitFor 字段接受两种值：\n\n- **-**: 这意味着构建步骤将在构建执行时立即运行。\n\
+  - **id**: 这意味着构建步骤将等待具有指定 id 字段的构建步骤完成后再执行。你也可以指定多个 id 字段，如果你希望构建步骤等待多个构建步骤完成。\n\
+  \n这使我们能够创建更像图的步骤排序，我们可以在特定顺序中执行多个构建步骤，并在构建的各个阶段实现阻塞功能。\n\n在这里，我们使用每个构建步骤的 waitFor\
+  \ 字段使用了一个简单的扇入、扇出模式：\n\n![](img/2fe9576240c146c49e3a21d5e7f6af00_83_0.png)\n\n图\
+  \ 4.6 – 使用 waitFor 扇出到并发构建步骤然后扇入\n\n现在我们可以使用简单的 bash 构建器镜像执行此构建，以演示 Cloud Build\
+  \ 如何处理每个构建步骤中的 waitFor 字段。\n\n\n\n请注意，虽然这些步骤可以并行发生，但并不能保证。相反，被尊重的是构建步骤执行的顺序：\n\n\
+  ```\n$ cd .. && mkdir fan-out-fan-in && cd fan-out-fan-in\n$ cat > cloudbuild.yaml\
+  \ <<EOF\nsteps:\n\n- name: 'bash'\n  id: A\n  args:\n  - 'sleep'\n  - '10'\n  waitFor:\
+  \ ['-']\n\n- name: 'bash'\n  id: B\n  args:\n  - 'sleep'\n  - '20'\n  waitFor: ['A']\n\
+  \n- name: 'bash'\n  id: C\n  args:\n  - 'sleep'\n  - '20'\n  waitFor: ['A']\n\n\
+  - name: 'bash'\n  id: D\n  args:\n  - 'sleep'\n  - '30'\n  waitFor: ['B', 'C']\n\
+  EOF\n\n$ gcloud builds submit . --region=us-central1\n```\n\n在此示例中，步骤 A 会立即执行，而步骤\
+  \ B 和 C 都等待 A 完成执行。完成后，两者并行启动，而步骤 D 则在 B 和 C 都完成后才执行。\n\n此外，我们可以使用相同的功能来执行类似准备的步骤，例如从多个位置获取文件，以便后续的构建步骤可能需要执行任务。通过声明\
+  \ A-1、A-2 和 A-3 可以同时运行来移除阻塞功能，可能可以加快构建速度，并且还可以通过减少整体构建分钟数来帮助降低成本。然而，虽然这是可能的，但并不能保证它们都会并行运行：\n\
+  \n![](img/2fe9576240c146c49e3a21d5e7f6af00_85_0.png)\n\n图 4.7 – 使用 waitFor 同时并发并立即运行多个构建步骤\n\
+  \n在讨论了构建步骤之间共享数据以及编排构建步骤的顺序之后，让我们现在回顾一下不特定于任何一个构建步骤的全局配置。\n\n## 配置构建范围规范\n\n最后，有一些配置集可用于配置适用于所有构建步骤的全局设置。我们在前一章中已经讨论了一些：\n\
+  \n- `timeout`\n- `env`\n- `secretEnv`\n\n前述字段的行为与在单个构建步骤级别定义的对应字段相同；核心区别在于，现在全局定义它们会使它们可用于构建中的所有构建步骤。\n\
+  \n然而，当您使用 `secretEnv` 时，无论是在单个构建步骤级别还是全局级别，都必须指定一个额外的全局字段：\n\n- `availableSecrets`\n\
+  \n在此字段中，您声明希望在构建的某个阶段使用的 `availableSecrets`，以及它们的来源。建议您利用 **秘密管理器** 来存储将在构建中使用的敏感凭据；我们将在\
+  \ *第 8 章，使用 Cloud Build 将软件交付到 GKE 的安全性* 中详细回顾此内容。\n\n您可以在 https://cloud.google.com/build/docs/build-config-file-schema\
+  \ 上找到 Cloud Build 中构建的完整配置字段列表。发布时的完整架构如下所示：\n\n```\nsteps:\n  - name: string\n\
+  \    args: [string, string, ...]\n    env: [string, string, ...]\n    dir: string\n\
+  \    id: string\n    waitFor: [string, string, ...]\n    entrypoint: string\n  \
+  \  secretEnv: string\n    volumes: object(Volume)\n    timeout: string (Duration\
+  \ format)\n  - name: string\n    ...\n  - name: string\n    ...\ntimeout: string\
+  \ (Duration format)\nqueueTtl: string (Duration format)\nlogsBucket: string\noptions:\n\
+  \  env: [string, string, ...]\n  secretEnv: string\n  volumes: object(Volume)\n\
+  \  sourceProvenanceHash: enum(HashType)\n  machineType: enum(MachineType)\n  diskSizeGb:\
+  \ string (int64 format)\n  substitutionOption: enum(SubstitutionOption)\n  dynamicSubstitutions:\
+  \ boolean\n  logStreamingOption: enum(LogStreamingOption)\n  logging: enum(LoggingMode)\n\
+  ```\n\n```\npool: object(PoolOption)\nrequestedVerifyOption: enum(RequestedVerifyOption)\n\
+  substitutions: map (key: string, value: string)\ntags: [string, string, ...]\nserviceAccount:\
+  \ string\nsecrets: object(Secret)\navailableSecrets: object(Secrets)\nartifacts:\
+  \ object (Artifacts)\nimages:\n- [string, string, ...]\n```\n\n虽然我们没有回顾此架构中的每个字段，但我们将在\
+  \ *第 7、8、9 和 10 章* 中的实际应用中继续介绍剩余的配置。\n\n### 摘要\n\nCloud Build 配置架构提供了一种直观、灵活且集成的方法来定义构建步骤和构建。无论您只是想运行云构建器涵盖的简单常见任务，还是构建和运行自己的自定义构建步骤以用于复杂管道，Cloud\
+  \ Build 的配置都具有很强的可配置性。\n\n现在我们可以使用架构编写相当复杂的构建，让我们深入了解如何根据某些事件触发这些构建的执行，内容见 *第 5\
+  \ 章，触发构建*。\n"
+- "## 触发构建\n\n自动化中的关键部分之一是确定管道应如何启动。这是通过为每个管道设置触发器来配置的。在第 3 章 *入门 – 我可以获得哪些构建信息？*\
+  \ 中，我们介绍了如何使用 CLI 通过 `gcloud` 手动启动构建。Cloud Build 提供了多种触发构建的方式，无论是集成 **Google 云平台\
+  \ (GCP)** 提供的服务，还是外部机制例如 **Webhook**。在本章中，我们将了解 Cloud Build 提供的各种触发选项，同时介绍以下主题：\n\
+  \n- 触发器的结构\n- 与源代码管理 (SCM) 系统的集成\n- 定义您自己的触发器\n\n### 技术要求\n\n- 软件构建概念和工具\n- Git\
+  \ 仓库\n\n### 触发器的结构\n\nCloud Build 触发器至少需要一些信息才能正确配置。触发器需要以下数据点：\n\n- 名称\n- 区域\n\
+  - 事件触发器（默认为推送到分支）：\n  - 推送到分支\n  - 推送新标签\n  - 拉取请求\n- 其他机制\n  - 手动调用 – 通过 GCP 控制台或自动化方式（CLI、REST\
+  \ 或 SDK）触发\n  - Google Cloud Pub/Sub 消息\n  - Webhook 事件 – 即向指定 URL 发出的 HTTP POST\
+  \ 请求\n- 源仓库\n- 源分支/标签：\n  - 可以使用正则表达式来确定哪些分支/标签名称会触发事件。\n- Cloud Build 配置文件（默认为\
+  \ cloudbuild.yaml）：\n  - Dockerfile – 如果您想构建容器\n  - Buildpacks – 可以检测源代码语言并根据定义规范构建容器\n\
+  \n其他字段也可以在帮助自定义触发器方面发挥重要作用：\n\n- 变量 – 用于在构建配置中进行替换。这可以覆盖 Cloud Build 配置文件（yaml 或\
+  \ json）中预定义的变量。\n- 审批 – 将决定在构建开始前是否需要审批。这可以在 GCP UI 控制台中完成，也可以通过自动化方式完成。\n- 服务账号\
+  \ – 允许工作器使用包含针对构建的受限或特定权限的指定服务账号。\n\n触发器中的仓库至关重要，因为它需要构建中使用的资源的来源。在上一章中，我们能够通过 CLI\
+  \ 在没有仓库的情况下手动提交构建，因为我们引用了本地路径。CLI 为我们打包了路径及其内容，以便作为构建的一部分使用。\n\n![](img/2fe9576240c146c49e3a21d5e7f6af00_90_0.png)\n\
+  \n图 5.1 – 当构建通过 CLI 手动触发且源位于本地文件系统时的示例流程\n\n当触发器预先配置了 SCM 仓库时，构建将从集成仓库为该特定分支/标签和提交（如果可用）获取代码。\n\
+  \n![](img/2fe9576240c146c49e3a21d5e7f6af00_91_0.png)\n\n图 5.2 – 构建从配置的 SCM 获取仓库时的流程\n\
+  \n本章中的命令和输出用于说明性目的，以描述功能以及在适用情况下对输出的分析。其中一些命令可能需要在执行前配置先决条件。\n\n可以使用以下示例通过 CLI 为\
+  \ GitHub 创建触发器：\n\n```\n$ gcloud builds triggers create github \\\n  --name=${TRIGGER_NAME}\
+  \ \\\n  --repo-name=${REPO_NAME} \\\n  --repo-owner=${REPO_OWNER} \\\n  --branch-pattern=${REGEX}\
+  \ \\\n  --build-config=\"cloudbuild.yaml\"\n```\n\nCLI、REST 和 SDK 可用于创建、描述、更新和删除触发器。在前面的示例中，预计\
+  \ Cloud Build GitHub 应用已获得对指定 ${REPO_NAME} 的授权访问权限。\n\n我们刚刚介绍了触发器的灵活性，它允许进行不同程度的自定义。接下来，我们将深入研究与不同源代码管理平台的内置集成。\n\
+  \n\n\n## 与源代码管理平台的集成\n\n源代码仓库是触发器的关键组成部分，因为它依赖于仓库中的资源以及文件的快照，以便构建可以引用特定的一组源文件。Cloud\
+  \ Build 支持不断增长的 SCM 平台列表。以下是当前受支持的 SCM 平台列表以及它们与 Cloud Build 的集成方式（即触发器类型以及如何访问仓库）。\n\
+  \n| SCM 平台 | 触发器类型 | 访问方式 |\n|---|---|---|\n| Cloud Source Repositories | 原生 | 服务账号权限\
+  \ |\n| GitHub | 原生 | GitHub 身份验证和 Cloud Build GitHub 应用 |\n| GitHub Enterprise |\
+  \ 原生 | GitHub 应用和企业配置 |\n| GitLab | Webhook | Secret Manager 中的 SSH 密钥 |\n| GitLab\
+  \ Enterprise | 原生 | GitLab 身份验证和企业配置 |\n| Bitbucket Cloud | 原生 | Secret Manager\
+  \ 中的 SSH 密钥 |\n| Bitbucket Server | 原生 | Secret Manager 中的令牌和企业配置 |\n| Bitbucket\
+  \ Data Center | 原生 | Secret Manager 中的令牌和企业配置 |\n\n表 5.1 – SCM 平台触发器类型和访问配置\n\n\
+  如上所述，这些平台可能具有原生触发器或 Webhook 触发器配置。仓库的身份验证和授权也可能取决于平台。当需要管理机密资源时，原生的 Google Secret\
+  \ Manager 集成可用于帮助管理机密。对于 GitHub，通过 GitHub 应用，还可以在仓库中的提交上更新构建状态。\n\n一旦触发器配置为监听仓库分支或标签的特定正则表达式，匹配的提交将启动构建。\n\
+  \n以下命令导出现有触发器：\n\n```\n$ gcloud builds triggers export \\\n    packt-cloudbuild-trigger\
+  \ \\\n    --destination export.yaml\n```\n\n以下是生成的 export.yaml 配置的输出：\n\n```\nautodetect:\
+  \ true\ncreateTime: '2022-01-04T20:26:51.731858991Z'\ndescription: Invokes a build\
+  \ every time code is pushed to any branch\ngithub:\n  name: packt-cloudbuild\n \
+  \ owner: kenthua\n  push:\n    branch: ^main$\nid: 2aad99c0-2e3c-4a43-9b24-cbdaa12cbaf8\n\
+  name: packt-cloudbuild-trigger\ntags:\n- cloudbuild-sample-branch-trigger\n```\n\
+  \n代码已提交到触发器正在监听的分支：\n\n```\n$ git push origin main\n```\n\n推送的示例输出如下。注意提交哈希为 5023f77：\n\
+  \n```\nEnumerating objects: 5, done.\nCounting objects: 100% (5/5), done.\nDelta\
+  \ compression using up to 4 threads\nCompressing objects: 100% (3/3), done.\nWriting\
+  \ objects: 100% (3/3), 411 bytes | 411.00 KiB/s, done.\nTotal 3 (delta 1), reused\
+  \ 0 (delta 0)\nremote: Resolving deltas: 100% (1/1), completed with 1 local object.\n\
+  To github.com:kenthua/packt-cloudbuild.git\n  17ab064..5023f77  main -> main\n```\n\
+  \n根据前面的示例触发器，一旦代码推送到 main 分支，构建将被触发并拉取源代码。使用 CLI 列出构建历史记录会输出以下内容：\n\n```\n$ gcloud\
+  \ builds list\n```\n\n以下是正在进行的构建的截断列表。您可以按需查询状态并跟踪构建：\n\n```\nID: a50ec9b7-84a1-467e-b5ca-d89af472f783\n\
+  CREATE_TIME: 2022-02-10T01:48:44+00:00\nDURATION: 2M4S\nSOURCE: -\nIMAGES: -\nSTATUS:\
+  \ WORKING\n```\n\n以下命令检索指定构建的日志：\n\n```\n$ gcloud builds log a50ec9b7-84a1-467e-b5ca-d89af472f783\n\
+  ```\n\n以下是构建的截断日志输出：\n\n```\n----------------------------------------------- REMOTE\
+  \ BUILD\nOUTPUT -----------------------------------------------\nstarting build\
+  \ \"a50ec9b7-84a1-467e-b5ca-d89af472f783\"\n\nFETCHSOURCE\nhint: Using 'master'\
+  \ as the name for the initial branch. This\ndefault branch name\nhint: is subject\
+  \ to change. To configure the initial branch\nname to use in all\nhint: of your\
+  \ new repositories, which will suppress this\nwarning, call:\nhint:\nhint:   git\
+  \ config --global init.defaultBranch <name>\nhint:\nhint: Names commonly chosen\
+  \ instead of 'master' are 'main',\n 'trunk' and\nhint: 'development'. The just-created\
+  \ branch can be renamed via\nthis command:\nhint:\nhint:   git branch -m <name>\n\
+  Initialized empty Git repository in /workspace/.git/\nFrom https://github.com/kenthua/packt-cloudbuild\n\
+  * branch               5023f77a3913ac3c97ec0bacac7257fa29b60a5a  -> FETCH_HEAD\n\
+  HEAD is now at 5023f77 update cloud build manifest;\nBUILD\nStarting Step #0\n```\n\
+  \n请注意，它获取了提交哈希 5023f77，该哈希已推送到 SCM 仓库。Cloud Build 本身不具有构建资源，因为它是由 SCM 事件触发的，但构建仍需要从仓库获取提交才能继续构建。\n\
+  \n## 定义您自己的触发器\n\n预构建的集成对于快速入门非常有帮助。但是，它们并不是与 Cloud Build 集成的唯一方式。您可以利用其他机制，例如手动或\
+  \ Webhook 触发器，以便与当前尚未在 Cloud Build 中预构建的现有系统或平台集成。\n\n## Webhook 触发器\n\n我们将要运行的示例是一个\
+  \ Webhook 触发器，我们将使用 GitLab 作为示例。如本章前面所述，原生与 GitLab 产品的集成正在进行中。\n\n![](img/2fe9576240c146c49e3a21d5e7f6af00_95_0.png)\n\
+  \n图 5.3 – Webhook 触发器创建示例\n\n让我们分解 Webhook URL：\n\n- 域名：`cloudbuild.googleapis.com`\n\
+  - Google 项目 ID\n- 触发器名称：`packt-cloudbuild-gitlab-trigger`\n- 类型：webhook\n- 密钥：生成的\
+  \ API 密钥\n- 密钥：指定 **New** 时生成的密钥或现有密钥，例如密码\n\n在前面提到的示例 URL 中，我们有一个标准域名，由 Google\
+  \ 项目 ID 和触发器名称组成的上下文路径。保护 URL 的唯一元素是密钥和密钥。URL 预计使用 HTTP POST 方法，并可选择数据，可解析后在流水线中使用。\n\
+  \n## 高级\n\n## 替换变量\n\n替换允许使用不同的变量值重用 cloudbuild.yaml 文件。使用 bash 字符串操作组合变量和绑定，以访问\
+  \ Webhook 的 JSON 有效负载中的任意数据。了解更多\n\n![](img/2fe9576240c146c49e3a21d5e7f6af00_96_0.png)\n\
+  \n图 5.4 – 替换变量\n\n替换变量可用于允许常见流水线文件具有灵活性，并可传入变量以使流水线更灵活。在此情况下，我们使用替换变量来提取要在流水线中使用的\
+  \ GitLab 提交 ID。如前所述，对于 GitLab，响应包含仓库元数据，最重要的是提交 ID，可用于在流水线中检索特定提交（https://docs.gitlab.com/ee/user/project/integrations/webhook_events.html#push-events）。\n\
+  \n在 Webhook 配置中或尝试访问没有预构建集成的仓库时，Cloud Build 无法访问 cloudbuild.yaml 配置的仓库。在这种情况下，触发器必须内联流水线配置。这可以通过\
+  \ GCP 控制台 UI 编辑。如果使用 gcloud CLI，可以使用 --inline-config 开关添加，该开关引用文件系统中的 cloudbuild.yaml\
+  \ 配置。\n\n## 配置\n\n类型\n\nCloud Build 配置文件（yaml 或 json）\n\nDockerfile\n\nBuildpacks\n\
+  \n位置\n\n仓库\n选择上方的一个仓库\n\n内联\n编写内联 YAML\n\nOPEN EDITOR\n\n图 5.5 – 构建配置\n\n在前一图中选择\
+  \ **OPEN EDITOR** 将打开一个编辑器以指定流水线配置。以下屏幕截图是添加触发器时通过 GCP 控制台 UI 的内联 `cloudbuild.yaml`\
+  \ 的示例配置片段。\n\n## 编辑内联配置\n\n使用 YAML 语法编写构建配置文件。格式和注释不会被存储。\n\n```\nsteps:\n# first,\
+  \ setup SSH:\n# 1- save the SSH key from Secret Manager to a file\n# 2- add the\
+  \ host key to the known_hosts file\n- name: gcr.io/cloud-builders/git\n  args:\n\
+  \  - '-c'\n  - |\n    echo \"$GITLAB_SSH_KEY\" > /root/.ssh/id_rsa\n    chmod 400\
+  \ /root/.ssh/id_rsa\n    ssh-keyscan gitlab.com > /root/.ssh/known_hosts\n  entrypoint:\
+  \ bash\n  secretEnv:\n  - SSHKEY\n  volumes:\n  - name: ssh\n    path: /root/.ssh\n\
+  # second, clone the repository\n- name: gcr.io/cloud-builders/git\n  args:\n  -\
+  \ clone\n  - '-n'\n  - 'git@gitlab.com:.../packt-cloudbuild'\n  - .\n  volumes:\n\
+  \  - name: ssh\n    path: /root/.ssh\n# third, checkout the specific commit that\
+  \ invoked the build\n```\n\n图 5.6 – 内联构建配置编辑器\n\n![](img/2fe9576240c146c49e3a21d5e7f6af00_97_0.png)\n\
+  \n![](img/2fe9576240c146c49e3a21d5e7f6af00_97_1.png)\n\n\n\n前面的屏幕截图显示了 UI 编辑器中的管道配置。以下代码是\
+  \ cloudbuild.yaml 配置的完整示例：\n\n```\nsteps:\n[1] - name: gcr.io/cloud-builders/git\n\
+  \  args:\n    - '-c'\n    - |\n      echo \"$${GITLAB_SSH_KEY}\" > /root/.ssh/id_rsa\n\
+  \      chmod 400 /root/.ssh/id_rsa\n      ssh-keyscan gitlab.com > /root/.ssh/known_hosts\n\
+  \  entrypoint: bash\n  secretEnv:\n    - GITLAB_SSH_KEY\n  volumes:\n    - name:\
+  \ ssh\n      path: /root/.ssh\n[2] - name: gcr.io/cloud-builders/git\n  args:\n\
+  \    - clone\n    - '-n'\n    - 'git@gitlab.com:##redacted_repo_org##/packt-cloudbuild'\n\
+  \    - .\n  volumes:\n    - name: ssh\n      path: /root/.ssh\n[3] - name: gcr.io/cloud-builders/git\n\
+  \  args:\n    - checkout\n    - $_TO_SHA\n  - name: gcr.io/cloud-builders/docker\n\
+  \    args:\n      - build\n      - '-t'\n      - 'us-central1-docker.pkg.dev/${PROJECT_ID}/image-repo/myimage'\n\
+  \      - .\n```\n\n```yaml\n- name: gcr.io/cloud-builders/docker\n  args:\n    -\
+  \ push\n    - 'us-central1-docker.pkg.dev/${PROJECT_ID}/image-repo/myimage'\navailableSecrets:\n\
+  [4] secretManager:\n  - versionName: projects/##REDACTED-project_number/secrets/GITLAB_SSH_KEY/versions/1\n\
+  \    env: GITLAB_SSH_KEY\n```\n\n已添加突出显示的编号以供参考。我们将使用它们逐步介绍并描述每个步骤：\n\n- 1. 此步骤准备安全的\
+  \ Git 连接，并将 GitLab ssh 密钥变量 GITLAB_SSH_KEY 的内容存储在挂载的卷中。\n- 2. 使用存储在挂载卷中的密钥克隆指定的私有仓库。\n\
+  - 3. 通过使用 checkout 命令检索特定提交 SHA 的内容。SHA 从触发器配置中指定的 `$_TO_SHA` 替换变量中检索。如果您还记得，该变量引用自\
+  \ GitLab 触发的 webhook URL 的 HTTP POST 中来的 `${body.after}` 值。Cloud Build 解析 JSON 正文内容并使其可供管道使用。\n\
+  - 4. 检索存储在 Secret Manager 中的 GitLab ssh 密钥。指定了 secret 上下文路径以定位特定的 secret。然后将其关联到\
+  \ GITLAB_SSH_KEY 变量。\n\n此示例 cloudbuild.yaml 配置包含几个步骤来克隆并检出特定的提交标签。一旦仓库可由 Cloud Build\
+  \ 访问，我们就可以继续执行完成管道的步骤。\n\n## 手动触发器\n\n手动触发器可以通过多种机制调用，以扩展自定义集成的类型。具有适当凭据且对构建管道至关重要的现有系统工具可以使用\
+  \ gcloud CLI 或 REST API 与手动触发器集成。\n\n以下是以 gcloud 命令执行手动触发器的示例：\n\n```bash\n$ gcloud\
+  \ beta builds triggers run [trigger_name] \\\n--region global\n```\n\n另一个利用手动触发器的机制是当构建管道需要在特定时间或间隔执行时。Cloud\
+  \ Scheduler 与 Cloud Build 直接集成，以便在指定时间执行 Cloud Build 手动触发器。从 Cloud Build 手动触发器中，您可以按计划运行触发器，该计划可通过\
+  \ UI 创建：\n\n![](img/2fe9576240c146c49e3a21d5e7f6af00_100_0.png)\n\n图 5.7 – Cloud\
+  \ Scheduler 作业创建\n\n在向导中，您选择 Cloud Scheduler 用于调用触发器的服务账号。可以创建默认服务账号，也可以指定已设置适当权限的账号。\n\
+  \n![](img/2fe9576240c146c49e3a21d5e7f6af00_101_0.png)\n\n图 5.8 – Cloud Scheduler\
+  \ 集成\n\n前面的屏幕截图是 Cloud Build 手动触发器生成的 Cloud Scheduler 作业。请注意，Cloud Scheduler 使用\
+  \ Cloud Build REST API 来调用手动触发器。\n\n### 摘要\n\nCloud Build 提供了多种与现有系统工具和 SCM 平台集成的方式，以参与自动化构建管道。Cloud\
+  \ Build 触发器提供了执行构建管道的能力。这可以通过 SCM 事件（例如提交到分支）、外部因素（例如成为另一个系统工具 larger automation\
+  \ pipeline 的一部分）或在指定时间来实现。\n\n在本章中，我们展示了将 SSH 密钥存储在 Secret Manager 中以供构建管道使用的示例。在下一章中，我们将进一步探讨\
+  \ Cloud Build 的安全最佳实践。\n"
+- "## 管理环境安全\n\n在托管服务中，必须考虑保护资源的共同责任。提供商负责保护基础设施、管理其上运行的服务以及提供安全相关功能。消费者负责谁有权访问该服务以及保护托管服务之外的数据。\n\
+  \n在本章中，我们将介绍 Cloud Build 如何在与其它安全相关服务集成的同时提供安全性的以下主题：\n\n- 防御纵深\n- 最小权限原则\n- 访问敏感数据和密钥\n\
+  - 为容器镜像构建元数据\n- 保护网络边界\n\n## 防御纵深\n\n计算中的纵深防御概念由信息安全使用，以确保在每一层都部署安全结构以进行保护。Cloud\
+  \ Build 确保这些安全结构到位；一些示例在图 6.1 中注明：\n\n![](img/2fe9576240c146c49e3a21d5e7f6af00_104_0.png)\n\
+  \n虽然 Cloud Build 提供了此处提到的功能，但某些服务必须在管道中启用或利用。市场上还有其他安全相关解决方案可能与 Cloud Build 没有直接集成，但由于\
+  \ Cloud Build 对每个步骤中自定义容器镜像的支持，它们仍可用于管道步骤。例如，如果您的容器镜像具有正确的库和工具，您可能能够从 HashiCorp\
+  \ Vault 检索值。\n\n还有一些需要注意的其他示例，可能会导致管道共享敏感信息：\n\n- 输出并记录敏感信息的步骤\n- 使用不安全协议与其它系统通信的步骤\n\
+  - 在管道中使用未知或存在漏洞的容器镜像作为步骤\n- 在步骤之间将敏感信息存储在 Cloud Build 工作目录中\n\n纵深防御是整体安全策略的组成部分；因此，共同责任模型也适用。如前所述，Cloud\
+  \ Build 提供了许多用于保护管道的元素；然而，服务消费者也必须采取某些步骤和措施。\n\n## 最小权限原则\n\n最小权限原则是保护资源的另一个安全结构。其目标是仅提供完成工作所需的资源访问权限。如果管道不需要访问对象存储中的数据，则没有理由授予调用管道的参与者的访问权限。例如，组织在开发阶段可能对安全权限限制较少，但在生产阶段限制更严格。虽然这可能使启动变得更容易，但不一致可能会导致团队进入更高级别的环境时出现问题，造成不必要的故障排除任务。组织内部将安全左移的文化运动可能涉及对资源的最小特权访问概念。这因组织而异，因为不同的监管机构和行业可能有不同的要求。\n\
+  \n想象一下，如果恶意行为者获得访问权限或组织中的某人无意中使用了服务账号。图 6.2 以视觉形式描绘了该场景：他们将能够写入服务 A，影响数据的完整性，同时还能在不需要完成管道时访问或写入服务\
+  \ B 中的数据：\n\n![](img/2fe9576240c146c49e3a21d5e7f6af00_105_0.png)\n\n图 6.2 – 在不需要时授予额外访问权限\n\
+  \n在利用最小权限原则时，仅向特定管道必需的服务授予访问权限。图 6.3 描绘了尽管服务存在，但由于在管道中不需要而未授予访问权限。虽然这是在构建管道的上下文中，但可以应用于组织中所有服务的各个方面：\n\
+  \n![](img/2fe9576240c146c49e3a21d5e7f6af00_105_1.png)\n\n图 6.3 – 将对服务的访问限制为仅所需内容\n\
+  \n\n\nCloud Build 利用 **Google 云平台 (GCP)** 中的服务账号来识别将在流水线中用于连接其他 Google Cloud 服务的执行主体。服务账号可以分配给每个触发器，这使得相同的流水线配置，例如，可以根据触发构建的参数由不同的服务账号执行。如果你还记得，在\
+  \ *第 5 章，触发构建* 中，Cloud Build 提供了正则表达式模式来确定如何触发构建或不同的事件调用模式。这使我们能够在不同的 Git 分支、标签和拉取请求模式、webhook\
+  \ 以及手动调用上使用不同的服务账号。这些不同类型的触发机制已在 *第 5 章，触发构建* 中介绍过。\n\n组织可以创建具有不同角色权限和细粒度权限的服务账号，以定义成功完成流水线所需的最小权限。利用唯一的服务账号也有助于生命周期管理，并为管理员提供在定义的服务账号内监控使用模式的能力。\n\
+  \n通过最小权限原则限制对资源的访问可以降低组织的暴露风险，同时减少非预期资源被意外操作的可能性。\n\n## 访问敏感数据和密钥\n\n数据在构建流水线的各步骤之间至关重要；有时，流水线中使用的数据也可能是敏感的。在\
+  \ *第 5 章，触发构建* 中，我们将 GitLab 私有 SSH 密钥存储在 Secret Manager 中。该密钥在流水线中用于克隆私有仓库。敏感数据或密钥可以从各种来源检索。Cloud\
+  \ Build 与两个用于密钥的 GCP 服务集成：\n\n- Secret Manager\n- Cloud Key Management\n\n重要的是将密钥安全地保存在未在构建配置中指定的位置。这里的每个服务也会发出审计和数据访问日志，记录何时以及哪个主体尝试访问密钥或密钥。使用上述两种服务访问敏感密钥的操作在\
+  \ Cloud Build 中会被记录以供审计。\n\n## 密钥管理器\n\nCloud Build 的 Secret Manager 集成由 cloudbuild.yaml\
+  \ 中的一段配置引用。以下是上一章中的示例片段：\n\n```yaml\n- name: gcr.io/cloud-builders/git\n  args:\n\
+  \    - '-c'\n    - |\n      echo \"$$GITLAB_SSH_KEY\" > /root/.ssh/id_rsa\nchmod\
+  \ 400 /root/.ssh/id_rsa\nssh-keyscan gitlab.com > /root/.ssh/known_hosts\nentrypoint:\
+  \ bash\nsecretEnv:\n  - GITLAB_SSH_KEY\n...\navailableSecrets:\n  secretManager:\n\
+  \    - versionName: projects/282614098327/secrets/GITLAB_SSH_KEY/versions/1\n  \
+  \    env: GITLAB_SSH_KEY\n```\n\nsecretManager 键用于标识将使用 Secret Manager 服务。versionName\
+  \ 是要检索的密钥和版本的唯一标识符。然后密钥的值存储在环境变量 GITLAB_SSH_KEY 中，可在流水线的构建步骤中使用。在此构建步骤中，注意变量名 GITLAB_SSH_KEY\
+  \ 如何与 secretEnv 键关联，以便在 args 构建参数中利用它。\n\n在 Cloud Build 中指定 availableSecrets 并不会自动授予对指定密钥的访问权限。必须指定特定密钥的\
+  \ roles/secretmanager.secretAccessor 角色绑定——在此情况下，引用由 Cloud Build 触发器使用的服务账号。\n\n\
+  ![](img/2fe9576240c146c49e3a21d5e7f6af00_107_0.png)\n\n图 6.4 – 密钥如何由构建和构建步骤访问\n\n\
+  *图 6.4 描述了构建流水线如何与具有适当角色绑定的特定服务账号关联。然后构建可以从 Secret Manager 检索密钥，并使用 secretEnv 在构建步骤中使其可用。*\n\
+  \n## 云密钥管理\n\n如前所述，Cloud Build 还可以使用另一个 GCP 服务 Cloud Key Management 来访问敏感数据。以下是用于从\
+  \ Cloud Key Management 访问加密密钥以解密编码密钥的示例语法：\n\n```yaml\navailableSecrets:\n  inline:\n\
+  \  - kmsKeyName: projects/**PROJECT_ID_redacted**/locations/\n    global/keyRings/secret_key_ring/cryptoKeys/secret_key_name\n\
+  \    envMap:\n      MY_SECRET: '**ENCRYPTED_SECRET_encoded**'\n```\n\n与前一个示例中使用\
+  \ secretManager 引用不同，inline 键用于标识将使用 Cloud Key Management 服务。请注意此示例片段与 Secret Manager\
+  \ 场景相比的一些差异。在 Cloud Key Management 场景中，kmsKeyName 引用加密密钥的唯一标识符。Cloud Build 将使用此密钥解密指定为\
+  \ MY_SECRET 值 的文本。密钥的值存储在 cloudbuild.yaml 中，但以加密形式存储。\n\n与 Secret Manager 一样，Cloud\
+  \ Build 也需要通过 Cloud Key Management 服务获得密钥的权限。在 Cloud Key Management 的情况下，我们需要为 Cloud\
+  \ Build 触发器服务账号授予以下角色，roles/cloudkms.cryptoKeyDecrypter。\n\nCloud Build 提供了与多个 GCP\
+  \ 云服务集成的功能，用于访问敏感密钥和加密数据。敏感数据不应存储在构建配置或源代码管理 (SCM) 仓库中。\n\n> **注意**\n> 虽然我们提供了 Cloud\
+  \ Key Management 的说明，但建议使用 Secret Manager 来存储和检索 Cloud Build 的敏感信息。\n\n## 容器镜像的构建元数据\n\
+  \nCloud Build 会为容器镜像生成元数据，可用于识别构建详情、构建步骤、证明或仓库来源。SCM 仓库提交哈希和构建 ID 哈希可用于跟踪每个构建的仓库来源和步骤。Cloud\
+  \ Build 可以在构建时生成并签署证明，以允许组织强制执行仅 `built-by-cloud-build` 的构建可在运行时部署。我们将在以下各节中介绍每个概念。\n\
+  \n## 来源证明\n\nCloud Build 与 Artifact Registry 结合使用时，可以关联容器镜像的额外元数据以验证构建详情。在大多数情况下，具有\
+  \ SCM 和 Cloud Build 访问权限的人员可以使用元数据和日志验证用于触发特定构建的 SCM 仓库提交。作为组织可用的额外审计层，构建来源证明允许组织验证标识容器镜像来源和构建步骤的元数据未被篡改或操纵。此元数据以\
+  \ **软件工件供应链级别 (SLSA)** 框架 (`https://slsa.dev/provenance`) 定义的格式存储。Cloud Build 会生成此元数据并对其进行签名，以便组织在需要时验证其内容。在撰写本文时，Cloud\
+  \ Build 可达到 SLSA 2 级 (L2)，其定义为“构建服务的防篡改性” (`https://slsa.dev/spec/v0.1/levels#summary-of-levels`)，并使用具有内置集成的\
+  \ SCM 仓库的 Cloud Build 触发器。\n\n**注意**\n要使 Cloud Build 生成元数据，必须启用以下服务：Artifact Registry\
+  \ 和 Container Analysis。`cloudbuild.yaml` 配置还必须包含 `images` 字段。对于私有池以启用构建来源证明，必须将\
+  \ `requestedVerifyOption` 选项设置为 `VERIFIED`。\n\nArtifact Registry 提供了 API，可通过 `--show-provenance`\
+  \ 开关显示由 Cloud Build 生成的来源证明元数据。请参见此处示例命令：\n\n```\n$ gcloud artifacts docker images\
+  \ describe \\\nus-central1-docker.pkg.dev/**PROJECT_ID-redacted**/image-repo/\n\
+  myimage@sha256:e4637b83784b96cb...93349a8864cc9b8be1 \\\n--show-provenance\n```\n\
+  \n这里提供了一个截断的示例输出。请注意，数字是为说明目的添加的——它们不在命令输出中：\n\n```\nimage_summary:\n...\nprovenance_summary:\n\
+  \  provenance:\n  - build:\n...\n[1]     materials:\n        - uri: https://github.com/**REPO-redacted**/packt-cloudbuild/commit/497985408c6f656944dd8d2f2ffd42160c59334e\n\
+  ...\n```\n\n这是源材料的所在位置——在此情况下为仓库和特定提交：\n\n```\n[2]     subject:\n        - digest:\n\
+  \            sha256:\n e4637b83784b96cbdc aad40cde0622bd3c0e0bfe4cd4c993349a8864cc9b8\n\
+  \ be1\n            name: https://us-central1-docker.pkg.dev/**PROJECT_ID-redacted**/image-repo/myimage\n\
+  ...\n```\n\n请参阅以下容器镜像 SHA 和位置：\n\n```\n[3] envelope:\n        payload: eyJfdHlwZSI6Imh0dHBzOi...\n\
+  mZkNDIxNjBjNTkzMzRlIn1dfX0=\n        payloadType: application/vnd.in-toto+json\n\
+  \        signatures:\n        - keyid: projects/verified-builder/locations/global/keyRings/attestor/cryptoKeys/builtByGCB/cryptoKeyVersions/1\n\
+  \          sig: MEUCIQDkyICeKz0Assa6Dgj4ss-rsd0RJ2ZXJWmBI-6lycoV_wIgZnSaPYCRAGR0oBVYGx_3aofMJS0YifWLcNtwXQpmtQ0=\n\
+  ...\n```\n\n\n\n验证元数据内容未被篡改或操纵的关键组件，即编码信封、签名和公钥，如下所示：\n\n- `payload` - 遵循 SLSA 规范的构建元数据和构建步骤的\
+  \ JSON 格式\n- `keyid` - 用于验证签名的 `builtByGCB` 公钥的位置\n- `sig` - Cloud Build 为验证负载而生成的签名\n\
+  \n这可能是 Cloud Build 日志中已有的信息的重复，但它为组织提供了另一种审计机制，并确保容器镜像未被篡改或操纵。\n\n## 证明\n\nGCP 使用证明的形式，即数字文档，作为认证容器镜像的一种方式。证明可以添加到构建步骤中，以确保这些步骤是由指定的系统完成的。Cloud\
+  \ Build 可以生成一份证明，表明构建已在 Cloud Build 中完成，并且可以由容器运行时进行验证。\n\nBinary Authorization\
+  \ 是 GCP 中的一项服务，容器运行时（如 **Google Kubernetes Engine (GKE)** 和 Cloud Run）使用它来确定镜像是否可以部署。例如，GKE\
+  \ 可以因为镜像不是由 Cloud Build 构建而拒绝使用。组织可以生成证明，表明镜像已通过 QA。使用 Binary Authorization，组织只能允许通过\
+  \ QA 的容器镜像部署到运行时。可以将额外的证明作为为 Cloud Build 定义的构建步骤添加。\n\n当启用 Binary Authorization\
+  \ 时，Cloud Build 会创建一个证明者，然后使用它创建 `built-by-cloud-build` 证明，并使用 `builtByGCB` 加密密钥进行签名。在指定的容器镜像部署之前，受支持的容器运行时会对其进行验证。图\
+  \ 6.5 显示了 Cloud Build 如何自动为镜像签名 `built-by-cloud-build` 证明，以及在 QA 流水线中，如何配置的构建步骤也可以签名\
+  \ `validated-by-qa` 自定义证明：\n\n![](img/2fe9576240c146c49e3a21d5e7f6af00_112_0.png)\n\
+  \n图 6.5 – Cloud Build 签名证明\n\n在以下示例中，Binary Authorization 的 enforcementMode 设置为\
+  \ DRYRUN_AUDIT_LOG_ONLY，这意味着运行时会检查证明，但仅记录违规行为。如果 GKE（作为容器运行时）启用 Binary Authorization，当请求创建\
+  \ Pod 时，它不会被拒绝，但会记录以下内容：\n\n```\nimagepolicywebhook.image-policy.k8s.io/dry-run:\
+  \ \"true\"\nimagepolicywebhook.image-policy.k8s.io/overridden-verification-result:\
+  \ \"nginx\" : Image nginx denied by attestor projects/**PROJECT_ID-redacted**/attestors/built-by-cloud-build:\
+  \ Expected digest with sha256 scheme, but got tag or malformed digest\n```\n\n在前面的示例中，请求部署一个通用的\
+  \ nginx 容器镜像，但被 Binary Authorization 捕获并记录。Binary Authorization 可以设置为在构建过程的不同阶段（如\
+  \ QA）通过时要求多个证明。\n\n图 6.6 显示 Binary Authorization 在 GKE 的准入控制器中检查证明。如果所有必需的证明都存在且\
+  \ enforcementMode 为 ENFORCED_BLOCK_AND_AUDIT_LOG，则允许其进入集群。这会阻止容器镜像的准入，如果必需的证明不可用：\n\
+  \n![](img/2fe9576240c146c49e3a21d5e7f6af00_113_0.png)\n\n图 6.6 – GKE 容器运行时使用 Binary\
+  \ Authorization 来确定镜像是否可以被准入\n\nCloud Build 和支持 Binary Authorization 的 GCP 容器运行时的结合可以帮助提高组织的整体安全态势。拒绝未经过组织内部安全严格流程的容器镜像是可实施的额外防御层。Binary\
+  \ Authorization 也可以配置为在紧急情况下允许部署没有适当证明的镜像。该机制称为 breakglass，它将绕过验证。\n\nCloud Build\
+  \ 的数据在整个端到端流水线中具有多用途的审计和验证功能。特定的 GCP 服务可以利用元数据（如签名）来确定资源是否已在相应环境中完成所有必需步骤。\n\n##\
+  \ 保护网络边界\n\nCloud Build 可以利用名为 VPC Service Controls（https://cloud.google.com/vpc-service-controls）的\
+  \ GCP 安全机制来防止数据外泄。VPC Service Controls（VPC SC）允许组织设置策略，以定义访问 GCP 服务所需的用户信息、服务账号、IP地址和\
+  \ IP 子网。\n\n在 Cloud Build 的上下文中，只有使用私有池的构建（如 *第 2 章，配置 Cloud Build 工作器* 中所述）才能支持\
+  \ VPC SC。私有池实例可以利用此功能，因为它们与您的 VPC 相关联，即使它由 GCP 管理。组织还可以通过仅允许构建在组织策略中使用私有池来进一步限制\
+  \ Cloud Build。可以通过仅在各种 GCP 层级允许某些私有工作器池来应用进一步限制：\n\n- 组织\n- 文件夹\n- 项目\n\n通过利用这种细粒度的规则层级，我们在每个层级限制允许的工作器池。这通过根据所需资源限制某些团队使用池来进一步隔离。它还将拒绝使用默认池，这在组织要求构建在私有网络内运行时可能适用。\n\
+  \n当配置 VPC SC 边界时，只有获得授权的人员才能触发构建或调用 Cloud Build API，例如。在 *纵深防御* 部分的先前示例中，我们重点关注防止访问特定服务和数据的服务账号角色绑定。VPC\
+  \ SC 通过配置相关策略在网络层提供另一层保护。要创建初始 VPC SC 边界，我们将 Cloud Build 指定为边界内的受限服务。这意味着 Cloud\
+  \ Build 服务受到保护，并且边界的任何入站或出站流量都必须由入站或出站策略定义。\n\n> **注意**\n> \n> 刚开始的组织可能希望以 dry run\
+  \ 模式配置 VPC SC，以审计定义边界的影响。立即启用强制模式可能会导致构建失败。以 dry run 模式创建的任何边界都可以在无需重写策略的情况下转换为强制模式。\n\
+  \n例如，作为入站策略，我们可能希望允许触发器中定义的用户指定的服务账号访问 Cloud Build API。对于内循环场景，如果我们希望为特定开发人员提供触发构建的访问权限，我们可以通过创建访问级别策略来实现，该策略允许特定\
+  \ IP/CIDR 范围或国家/地区的特定开发人员，或使用符合特定策略的设备的开发人员。\n\n通过使用 VPC SC 和定义的服务边界，我们在 **身份和访问管理（IAM）**\
+  \ 和 VPC 网络层都限制了访问。服务边界可以扩展以允许来自其他连接网络的通信，用于从本地系统或特定开发人员机器触发构建和服务访问。\n\nVPC SC 为\
+  \ GCP 上的服务在网络层提供额外的安全层。在本章中，我们讨论了 Cloud Build 如何利用此 GCP 服务来保护构建的触发方式，但同时构建配置可以访问的资源也可以访问它们。\n\
+  \n### 摘要\n\nCloud Build 与各种 GCP 服务集成，为用户提供不同的安全功能。这些功能有助于为组织的纵深防御策略提供层级。Cloud Build\
+  \ 使在流水线中实施安全变得容易，但 GCP 服务与组织之间的共享责任模型对于确保端到端安全态势至关重要。\n\n在下一章中，我们将开始研究如何利用 Cloud\
+  \ Build 实现基础设施资源的自动化。\n\n\n"
+- "# 第 3 部分：安全与部署\n实际应用\n\n在本书的这一部分，我们将重点回顾 Cloud Build 在实际应用中的功能，包括针对 GKE 的安全 CI/CD、通过基础设施即代码管理云基础设施的安全发布、从本地源到\
+  \ Cloud Run 生产环境的构建工作流，以及在生产环境中运行时可利用的功能。你将带走可在自己的 Cloud Build 和 GCP 环境中逐步操作并实施的具体工作流。\n\
+  \n本部分包含以下章节：\n\n- 第 7 章，使用 Terraform 和 Cloud Build 自动化部署\n- 第 8 章，使用 Cloud Build\
+  \ 为 GKE 保护软件交付\n- 第 9 章，使用 Cloud Build 自动化无服务器\n- 第 10 章，在生产环境中运行 Cloud Build 的运维\n\
+  \n### 使用 Terraform 和 Cloud Build 自动化部署\n\n**Cloud Build** 的灵活性为自动化不仅仅是构建应用程序和服务的流水线提供了基础。Cloud\
+  \ Build 内在的功能，例如利用 Git 作为事实来源以及使用容器镜像驱动构建步骤的执行，有助于制定基础设施配置的自动化。其中一种模式是结合使用 Cloud\
+  \ Build 和 **Terraform** (https://www.terraform.io/)。在本章中，我们将通过一个示例介绍如何使用 Cloud Build\
+  \ 自动配置应用程序基础设施，使用 Terraform 的配置语言，即 **HashiCorp 配置语言 (HCL)** 和 **命令行界面 (CLI)**。\n\
+  \n本章将涵盖以下主题：\n\n- 将基础设施视为代码\n- 构建自定义构建器\n- 管理构建的最小权限原则\n- 人工介入与手动审批\n\n### 将基础设施视为代码\n\
+  \n将 **基础设施即代码 (IaC)** 是什么意思？基础设施可以通过多种方式配置，例如以命令式方式或手动执行一系列命令来启动环境。IaC 提供程序旨在使用一系列配置定义您希望如何设置环境或组件。如介绍中所述，使用\
+  \ Terraform 时，我们将使用其 HCL 来定义由 `terraform` CLI 工具解释的标准配置。此配置决定了提供程序的类型，例如插件，以与服务的\
+  \ API 交互并配置指定的内容。配置文件有助于定义您希望创建的资源，最好存储在 **源代码管理 (SCM)** 仓库中以进行版本控制管理。\n\n构建代码需要一套指令和成功编译和打包代码所需的定义前提条件。此配置在\
+  \ Cloud Build 配置中定义，同时包括每个步骤的支持容器镜像以及存储在 SCM 仓库中的配置依赖项。在处理基础设施时，特别是像 Google Cloud\
+  \ 这样的云提供商时，我们还将定义一个 Cloud Build 配置、用于执行 Terraform CLI 的支持容器镜像、Terraform 配置文件以及存储在\
+  \ SCM 仓库中的配置依赖项。\n\nCloud Build 可以使用其 CLI 工具帮助编排 Terraform 配置的执行和处理。Terraform 配置旨在是幂等的，这意味着在首次运行后使用相同配置重新运行\
+  \ Terraform 命令应导致零更改，前提是基础设施配置未在流水线之外更改。这允许 Cloud Build 触发器引用和 SCM 仓库多次执行，并且仅在配置更改时才更改基础设施。\n\
+  \n每个 Cloud Build 执行（即构建）都是无状态的。如果需要持久化状态，可以在构建步骤中将其保存到 Google Cloud Storage (GCS)\
+  \ 等服务中。否则，总体而言，构建中支持的工件可以存储在 Artifact Registry 等服务中。对于 Terraform，它还要求状态存储在外部，以便它知道已配置的配置。如果状态仅存储在运行中，Terraform\
+  \ 不会知道之前的执行情况。对于 Google Cloud，建议将此状态存储在启用了版本控制的 GCS 存储桶中。这允许状态得到维护、版本化、通过权限保护、静态加密，并且可选地使用加密密钥加密。可以在此处找到另一个示例教程：https://cloud.google.com/architecture/managing-infrastructure-as-code。\n\
+  \n本章中的示例侧重于使用 Terraform 配置 Google Cloud 计算和网络服务。值得注意的是，Terraform 资源也可用于配置 Cloud\
+  \ Build 组件，例如触发器和私有 worker 池。\n\n### 简单直接的 Terraform\n\n让我们开始通过在 GCS 中准备一个存储桶来存储我们的\
+  \ Terraform 状态。\n\n> 注意\n> 本章中的示例通过 GCP Cloud Shell 环境执行——您可以在终端中运行这些示例，但可能需要配置\
+  \ gcloud 和其他工具。\n\n设置您希望在此处创建存储桶的项目：\n\n```\n$ gcloud config set project ${PROJECT_ID}\n\
+  $ PROJECT_ID=$(gcloud config get-value project)\n```\n\n创建存储桶并启用版本控制：\n\n```\n$\
+  \ gsutil mb gs://${PROJECT_ID}\n$ gsutil versioning set on gs://${PROJECT_ID}\n\
+  ```\n\n> 注意\n> \n> 通过启用版本控制功能，我们要求 GCS 在保存新对象时保留对象的旧版本。存储桶名称还必须在整个 Google Cloud\
+  \ 中唯一，而不仅仅是在您的项目中。\n\nTerraform 状态（在 GCS 中管理）也不同于 Terraform 配置（例如 .tf 或 .tfvars），后者通常存储在\
+  \ SCM 中以进行版本控制。\n\n在我们设置好存储桶后，在开始使用 Cloud Build 自动化我们的基础设施流水线之前，让我们快速测试一下启动一个 Google\
+  \ Compute Engine (GCE) 虚拟机 (VM)。\n\n我们将从一些快速文件开始以启动 Terraform。\n\n> 注意\n> \n> 示例中包含在本书撰写期间有效的语法和版本。然而，可能需要根据\
+  \ Terraform CLI 工具和 Google Cloud 的 Terraform 提供程序的版本进行更改。\n> \n> 在此示例中，我们使用在上一个命令中存储的环境变量\
+  \ PROJECT_ID 来生成以下 backend.tf 文件。Terraform 不允许我们使用 Terraform 变量动态指定用于存储状态的后端存储桶。\n\
+  \n我们将引用在上一个命令中创建的存储桶，以告诉 terraform 在何处存储和检索状态：\n\n```\n$ mkdir ~/packt/cloudbuild-terraform;\
+  \ cd ~/packt/cloudbuild-terraform\ncat << EOF > backend.tf\nterraform {\n  backend\
+  \ \"gcs\" {\n    bucket     = \"${PROJECT_ID}\"\n    prefix     = \"tfstate\"\n\
+  \  }\n}\nEOF\n```\n\n指定与此配置兼容的 terraform 版本，以及 Google Cloud 提供程序版本：\n\n```\n$ cat\
+  \ << EOF > versions.tf\nterraform {\n  required_version = \">= 1.0.0, < 1.2.0\"\n\
+  \  required_providers {\n    google = {\n      source  = \"hashicorp/google\"\n\
+  \      version = \">= 3.68.0\"\n    }\n  }\n}\nprovider \"google\" {\n  project\
+  \ = var.project_id\n  region  = var.region\n  zone    = var.zone\n}\nEOF\n```\n\n\
+  设置 Google Cloud 提供程序和我们将要求 Terraform 启动的 GCE VM 实例所需的变量列表及其默认值。以下示例分为不同的部分：\n\n\
+  ```\n$ cat << EOF > variables.tf\nvariable \"project_id\" {\n  description = \"\
+  Unique identifier of the Google Cloud Project that is to be used\"\n  type     \
+  \   = string\n  default     = \"${PROJECT_ID}\"\n}\nvariable \"region\" {\n  description\
+  \ = \"Google Cloud Region in which regional GCP resources are provisioned\"\n  type\
+  \        = string\n  default     = \"us-west1\"\n}\nvariable \"zone\" {\n```\n\n\
+  \n\n```\ndescription = \"Google Cloud Zone in which regional GCP resources are provisioned\"\
+  \n  type      = string\n  default   = \"us-west1-a\"\n}\nEOF\n```\n\nNetwork-related\
+  \ variables, such as name and network range, will be used by the compute instance:\n\
+  \n```\n$ cat << EOF >> variables.tf\nvariable \"network_name\" {\n  description\
+  \ = \"The name of the network to be used when deploying resources\"\n  type    \
+  \    = string\n  default     = \"packt-network\"\n}\nvariable \"subnet_name\" {\n\
+  \  description = \"The name of the subnet to be used when deploying resources\"\n\
+  \  type        = string\n  default     = \"packt-subnet\"\n}\nvariable \"subnet_cidr\"\
+  \ {\n  description = \"The name of the subnet to be used when deploying resources\"\
+  \n  type        = string\n  default     = \"10.128.0.0/24\"\n}\nEOF\n```\n\n以下是定义机器类型、名称和操作系统（OS）镜像的计算相关变量：\n\
+  \n```\n$ cat << EOF >> variables.tf\nvariable \"instance_name\" {\n  description\
+  \ = \"The name of the GCE VM instance named to be provisioned\"\n  type        =\
+  \ string\n  default     = \"packt-instance\"\n}\nvariable \"instance_machine_type\"\
+  \ {\n    description = \"The machine type you want the GCE VM to use\"\n    type\
+  \        = string\n    default     = \"e2-medium\"\n}\nvariable \"instance_image\"\
+  \ {\n    description = \"The OS image you want the GCE VM boot disk to use\"\n \
+  \   type        = string\n    default     = \"rocky-linux-cloud/rocky-linux-8-v20220406\"\
+  \n}\nEOF\n```\n\n设置 GCE VM 实例使用的网络：\n\n```\n$ cat << EOF > vpc.tf\nresource \"google_compute_network\"\
+  \ \"packt_network\" {\n  name                         = \"vpc-network\"\n  auto_create_subnetworks\
+  \      = false\n}\nresource \"google_compute_subnet\" \"packt_subnet\" {\n  name\
+  \          = var.subnet_name\n  ip_cidr_range = var.subnet_cidr\n  region      \
+  \  = var.region\n  network       = google_compute_network.packt_network.name\n}\n\
+  EOF\n```\n\n启动 GCE VM 实例所需的最小配置如下：\n\n```\n$ cat << EOF > gce.tf\nresource \"google_compute_instance\"\
+  \ \"packt_instance\" {\n  name         = var.instance_name\n  machine_type = var.instance_machine_type\n\
+  \  boot_disk {\n    initialize_params {\n      image = var.instance_image\n}\n}\n\
+  \  network_interface {\n    subnetwork = google_compute_subnetwork.packt_subnet.name\n\
+  \  }\n}\nEOF\n```\n\n现在我们已经定义了所有 Terraform 配置文件，可以运行一些 Terraform 命令来测试并启动我们配置的 GCE\
+  \ 实例。我们首先使用 terraform init 命令来验证我们与后端以及配置中指定的必要模块的连接性：\n\n```\n$ terraform init\n\
+  ```\n\n以下是 init 命令的示例输出：\n\n```\nInitializing the backend...\nSuccessfully configured\
+  \ the backend \"gcs\"! Terraform will automatically\nuse this backend unless the\
+  \ backend configuration changes.\nInitializing provider plugins...\n- Reusing previous\
+  \ version of hashicorp/google from the dependency lock file\n- Installing hashicorp/google\
+  \ v4.16.0...\n- Installed hashicorp/google v4.16.0 (signed by HashiCorp)\nTerraform\
+  \ has been successfully initialized!\n```\n\n我们运行 terraform plan 命令来预览配置中指定的更改，并使用\
+  \ -out 开关将计划输出为 Terraform 推荐的方式。这将允许对 Terraform 将尝试在指定的 Google Cloud 项目上执行的操作进行验证和代码审查。开发人员和运维人员可以使用\
+  \ terraform show terraform.tfplan 来查看计划：\n\n```\n$ terraform plan -out terraform.tfplan\n\
+  ```\n\n以下是计划的示例输出：\n\n```\nTerraform used the selected providers to generate the\
+  \ following execution plan. Resource actions are indicated\nwith the following symbols:\n\
+  \  + create\n\nTerraform will perform the following actions:\n  # google_compute_instance.main\
+  \ will be created\n  + resource \"google_compute_instance\" \"main\" {\n      +\
+  \ can_ip_forward      = false\n      + cpu_platform        = (known after apply)\n\
+  ...\n          + node_affinities {\n              + key      = (known after apply)\n\
+  \              + operator = (known after apply)\n              + values   = (known\
+  \ after apply)\n          }\n      }\n  }\nPlan: 1 to add, 0 to change, 0 to destroy.\n\
+  ...\nSaved the plan to: terraform.tfplan\nTo perform exactly these actions, run\
+  \ the following command to apply:\n    terraform apply \"terraform.tfplan\"\n```\n\
+  \n而不是直接使用 terraform apply 来实施更改，我们现在有一个计划文件，可以在流水线中专门应用已批准的更改：\n\n```\n$ terraform\
+  \ apply terraform.tfplan\n```\n\n以下是 apply 函数的示例输出：\n\n```\ngoogle_compute_instance.main:\
+  \ Creating...\ngoogle_compute_instance.main: Still creating... [10s elapsed]\ngoogle_compute_instance.main:\
+  \ Creation complete after 11s\n[id=projects/**REDACTED_project_id**/zones/us-west1-a/\n\
+  instances/test-instance]\nApply complete! Resources: 1 added, 0 changed, 0 destroyed.\n\
+  ```\n\n现在我们已经手动测试了 Terraform 执行，可以将其添加到 Cloud Build 配置流水线以自动化此过程。在 Cloud Build 中，我们将执行前面描述的各个\
+  \ Terraform 命令步骤，每个步骤都表示为一个构建步骤。如果不取消配置（即销毁）先前创建的资源，Cloud Build 配置将不会进行任何更改，因为之前创建的\
+  \ Terraform 配置会被重复使用。运行以下命令以销毁已创建的资源：\n\n```\n$ terraform destroy --auto-approve\n\
+  ```\n\n在开始使用 Cloud Build 之前，我们需要授予 Cloud Build 默认服务账号网络和计算权限以创建我们的资源。之前的命令在终端中运行\
+  \ terraform 时使用了你的本地服务账号。当我们使用 Cloud Build 执行且未指定服务账号时，它将使用 Cloud Build 默认服务账号：\n\
+  \n![](img/2fe9576240c146c49e3a21d5e7f6af00_127_0.png)\n\n图 7.1 – Cloud Build 和 Terraform，一体化方法\n\
+  \n首先，我们需要检索 Google Cloud 项目编号，因为它用于构造 Cloud Build 默认服务账号 PROJECT_NUMBER@cloudbuild.gserviceaccount.com：\n\
+  \n```\n$ export PROJECT_NUMBER=$(gcloud projects list \\\n  --filter=\"$(gcloud\
+  \ config get-value project)\" \\\n  --format=\"value(PROJECT_NUMBER)\"\n)\n```\n\
+  \n为 Cloud Build 服务账号授予我们将创建的资源的管理权限：\n\n```\n$ gcloud projects add-iam-policy-binding\
+  \ ${PROJECT_ID} \\\n  --member=serviceAccount:${PROJECT_NUMBER}@cloudbuild.gserviceaccount.com\
+  \ \\\n  --role=roles/compute.networkAdmin\n```\n\n```bash\n$ gcloud projects add-iam-policy-binding\
+  \ ${PROJECT_ID} \\\n  --member=serviceAccount:${PROJECT_NUMBER}@cloudbuild.\ngserviceaccount.com\
+  \ \\\n  --role=roles/compute.instanceAdmin.v1\n```\n\n在此示例中，我们将使用 hashicorp/terraform:1.0.0\
+  \ 容器镜像来提供 terraform 可执行文件，从 terraform init 开始：\n\n```bash\n$ cat << EOF > cloudbuild.yaml\n\
+  timeout: 3600s\nsteps:\n- id: 'tf init'\n  name: 'hashicorp/terraform:1.0.0'\n \
+  \ env:\n  - \"TF_IN_AUTOMATION=true\"\n  entrypoint: 'sh'\n  args:\n  - '-c'\n \
+  \ - |\n    terraform init -input=false\nEOF\n```\n\n下一个构建步骤是 terraform plan，用于概述更改：\n\
+  \n```bash\n$ cat << EOF >> cloudbuild.yaml\n- id: 'tf plan'\n  name: 'hashicorp/terraform:1.0.0'\n\
+  \  env:\n  - \"TF_IN_AUTOMATION=true\"\n  entrypoint: 'sh'\n  args:\n  - '-c'\n\
+  \  - |\n    terraform plan -input=false -out terraform.tfplan\nEOF\n```\n\n最后一个构建步骤是\
+  \ terraform apply，用于应用已概述的更改：\n\n```\n$ cat << EOF >> cloudbuild.yaml\n- id: 'tf\
+  \ apply'\n  name: 'hashicorp/terraform:1.0.0'\n  env:\n  - \"TF_IN_AUTOMATION=true\"\
+  \n  entrypoint: 'sh'\n  args:\n  - '-c'\n  - |\n    terraform apply -input=false\
+  \ terraform.tfplan\nEOF\n```\n\n一旦我们拥有 Cloud Build 配置，就可以通过运行在前几章中用于提交构建的命令手动执行构建。将会使用默认的\
+  \ Cloud Build 服务账号：\n\n```\n$ gcloud builds submit --region us-west1\n```\n\n成功构建将产生以下截断输出，并显示\
+  \ SUCCESS 状态：\n\n```\n...\nStep #2 - \"tf apply\": Apply complete! Resources: 3\
+  \ added, 0 changed, 0 destroyed.\nFinished Step #2 - \"tf apply\"\nPUSH\nDONE\n\
+  ...\nSTATUS: SUCCESS\n```\n\n**注意**\n在自动化中，TF_IN_AUTOMATION 变量被设置为这样一些说明会被截断，并且不会呈现手动说明。例如，在设置该变量后自动执行\
+  \ terraform plan 后，以下语句不会输出到控制台：“To perform exactly these actions...”\n\n\n\n如果你还记得之前的内容，已提到\
+  \ Terraform 旨在实现幂等性，因此使用相同配置进行后续构建提交时，terraform plan 执行将产生以下输出：\n\n```\nStep #1\
+  \ - \"tf plan\": No changes. Your infrastructure matches the configuration.\nStep\
+  \ #1 - \"tf plan\":\nStep #1 - \"tf plan\": Your configuration already matches the\
+  \ changes detected above. If you'd like\nStep #1 - \"tf plan\": to update the Terraform\
+  \ state to match, create and apply a refresh-only plan.\n```\n\n对无变更的计划执行 tf apply\
+  \ 将产生以下结果：\n\n```\nStep #2 - \"tf apply\": Apply complete! Resources: 0 added, 0\
+  \ changed, 0 destroyed.\n```\n\n我们可以在此示例基础上做很多扩展，例如将创建的文件放入 SCM 仓库以进行版本控制和审计。你可以在\
+  \ https://github.com/PacktPublishing/Cloud-Native-Automation-With-Google-Cloud-Build/tree/main/chapter07/terraform\
+  \ 找到此示例——我们之前创建的文件位于 single 文件夹中。\n\n## 资源创建与构建步骤的分离\n\n在以下章节中，我们将查看 multiple 文件夹，在此文件夹中，我们在上一节的示例基础上进行扩展，将\
+  \ VPC 和子网的创建与 GCE VM 实例分离。这将允许以更分离和可控的方式进行资源管理。此配置和设置可在以下仓库的 multiple 文件夹中找到：https://github.com/PacktPublishing/Cloud-Native-Automation-With-Google-Cloud-Build/tree/main/chapter07/terraform。\n\
+  \n![](img/2fe9576240c146c49e3a21d5e7f6af00_131_0.png)\n\n图 7.2 – Cloud Build 和 Terraform（VPC\
+  \ 和计算资源供应作为独立管道）\n\n大多数示例保持不变，只是将特定的资源配置移至各自的 vpc 和 compute 文件夹中。在之前的示例中，它只需执行一次\
+  \ terraform init、plan 和 apply 命令三部曲——然而，当资源被分离后，terraform 命令三部曲将执行两次，每组资源配置执行一次。另一个不同之处是由于它们是分开执行的，我们需要使用\
+  \ Terraform 中提供的另一个功能，即 remote state。\n\nremote state 允许我们引用来自其他已应用 Terraform 配置的已供应资源，因此无需手动利用变量来引用资源，我们可以检索之前\
+  \ Terraform 执行的输出以链接到已创建的资源。当我们创建 GCE VM 实例时，我们需要访问资源将关联到的子网。\n\n请注意 gce.tf 配置的以下输出：\n\
+  \n```\nresource \"google_compute_instance\" \"packt_instance\" {\n  name       \
+  \    = var.instance_name\n  machine_type   = var.instance_machine_type\n  boot_disk\
+  \ {\n    initialize_params {\n      image = var.instance_image\n    }\n  }\n  network_interface\
+  \ {\n    subnetwork = data.terraform_remote_state.vpc.outputs.subnet_name\n  }\n\
+  }\n```\n\n该 subnetwork 引用了我们 VPC 配置中的 remote state。VPC Terraform 配置输出的 subnet_name\
+  \ 值将由我们的 GCE VM 使用。\n\n类似于 Terraform 后端配置，remote state 引用 VPC 后端指定的 GCS 存储桶和路径中的\
+  \ VPC 状态。\n\n```\ndata \"terraform_remote_state\" \"vpc\" {\n  backend = \"gcs\"\
+  \n  config = {\n    bucket  = \"${PROJECT_ID}\"\n    prefix  = \"tfstate/vpc\"\n\
+  \  }\n}\n```\n\n在管道中，使用文件夹来分离资源，因此 Cloud Build 步骤需要知道在哪里找到适当的 Terraform 配置——我们使用\
+  \ dir 标记来表示执行 terraform 命令的位置。\n\n```\n- id: 'tf init - vpc'\n  name: 'hashicorp/terraform:1.0.0'\n\
+  \  dir: chapter07/terraform/multiple/vpc\n  env:\n  - \"TF_IN_AUTOMATION=true\"\n\
+  \  entrypoint: 'sh'\n```\n\n让我们继续执行此 Cloud Build 基础设施管道。虽然配置已更改并添加了额外的构建步骤，但结果与本章前面构建的单实例相同。如果你想自己执行，在克隆仓库后，你需要替换一些变量：\n\
+  \n```\n$ gcloud config set project ${PROJECT_ID}\n$ PROJECT_ID=$(gcloud config get-value\
+  \ project)\n$ envsubst < chapter07/terraform/multiple/variables.tf_tmpl > multiple/variables.tf\n\
+  $ envsubst < chapter07/terraform/multiple/vpc/backend.tf_tmpl > multiple/vpc/backend.tf\n\
+  ```\n\n```\n$ envsubst < chapter07/terraform/multiple/compute/backend.tf_tmpl >\
+  \ multiple/compute/backend.tf\n$ envsubst < chapter07/terraform/multiple/compute/vpc-remote-state.tf_tmpl\
+  \ > multiple/compute/vpc-remote-state.tf\n```\n\n现在，我们可以提交 Cloud Build 配置：\n\n```\n\
+  $ gcloud builds submit --region us-west1 --config cloudbuild-multiple.yaml\n```\n\
+  \n请注意，与简单示例不同，Apply complete! Resources: 3 added，之前已部署的 VPC 资源和计算资源的创建步骤是分开的：\n\n\
+  ```\nStep #2 - \"tf apply - vpc\": Apply complete! Resources: 2 added, 0 changed,\
+  \ 0 destroyed.\nStep #2 - \"tf apply - vpc\":\nStep #2 - \"tf apply - vpc\": Outputs:\n\
+  Step #2 - \"tf apply - vpc\":\nStep #2 - \"tf apply - vpc\": subnet_name = \"packt-m-subnet\"\
+  \n...\nStep #5 - \"tf apply - compute\": Apply complete! Resources: 1 added, 0 changed,\
+  \ 0 destroyed.\nFinished Step #5 - \"tf apply - compute\"\n```\n\n就像之前的简单示例一样，反复执行\
+  \ multiple 示例时，尝试供应的每个资源都会输出以下内容：\n\n```\nApply complete! Resources: 0 added, 0\
+  \ changed, 0 destroyed.\n```\n\n> **注意**\n> 仓库中提供了相应的 cloudbuild-destroy.yaml 和\
+  \ cloudbuild-multiple-destroy.yaml 用于清理创建的资源。你需要对变量、后端和 remote state 进行调整以引用你的项目：\n\
+  > \n> $ gcloud builds submit --region us-west1 --config cloudbuild-multiple-destroy.yaml\n\
+  \n以下示例输出显示了先前创建的 multiple 示例中创建的已销毁资源：\n\n```\nStep #2 - \"tf apply - compute\"\
+  : Apply complete! Resources: 0 added, 0 changed, 1 destroyed.\n```\n\n```\n...\n\
+  Step #5 - \"tf apply - vpc\": Apply complete! Resources: 0 added, 0 changed, 2 destroyed.\n\
+  ```\n\n本书的主要重点是存储在 SCM 仓库中的源代码的编译。Cloud Build 的灵活性允许每个步骤使用容器镜像——在此案例中，我们使用 terraform\
+  \ 镜像通过多个构建步骤部署 Terraform 配置。到目前为止，我们在构建步骤中使用了预构建镜像并描述了自定义构建器的概念。我们将在下一节开始创建自己的自定义构建器。\n\
+  \n## 构建自定义构建器\n\nCloud Build 为每个构建步骤使用一个容器镜像，这提供了灵活性的本质上可以执行构建所需的任何二进制文件或命令。另一种模式是构建一个自定义构建器镜像，其中包含团队所需的所有必要构建二进制文件。这可以通过只使用一个镜像在构建步骤中使用，从而降低复杂性，同时也只有一个镜像需要维护。\n\
+  \n让我们从一个示例开始，其中你的构建需要访问一些 Google Cloud 资源，例如 gcloud 和 gsutil，但你仍希望为整体构建添加一些其他工具，例如\
+  \ terraform、kustomize 和 skaffold。虽然基础镜像提供了前两个，但我们必须为每个工具使用可用的社区构建器镜像（https://github.com/GoogleCloudPlatform/cloud-builders-community），为每个工具构建新的自定义镜像，或构建一个团队可以维护的包含后三个工具的单一镜像。\n\
+  \n我们从一个我们定义的 Dockerfile 开始，基于 alpine 的较小的 cloud-sdk 镜像，然后添加一些我们想要的工具，并进行一些清理：\n\n\
+  ```\n$ mkdir ~/packt/cloudbuild-custombuilder; cd ~/packt/cloudbuild-custombuilder\n\
+  $ gcloud config set project ${PROJECT_ID}\n$ PROJECT_ID=$(gcloud config get-value\
+  \ project)\n\n$ cat << EOF > Dockerfile\nFROM gcr.io/google.com/cloudsdktool/cloud-sdk:alpine\n\
+  ENV TERRAFORM_VERSION=1.1.0\nRUN echo \"INSTALL TERRAFORM v${TERRAFORM_VERSION}\"\
+  \ \\\n&& wget -q -O terraform.zip https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip\
+  \ \\\n&& unzip terraform.zip \\\n&& chmod +x terraform \\\n```\n\n\n\n```\n&& mv\
+  \ terraform /usr/local/bin \\\n&& rm -rf terraform.zip\nRUN gcloud components install\
+  \ \\\nkustomize \\\nskaffold \\\n&& rm -rf $(find google-cloud-sdk/ -regex \".*/__pycache__\"\
+  ) \\\n&& rm -rf google-cloud-sdk/.install/.backup\nEOF\n```\n\n以上仅为示例，但虽然我们主要将 Cloud\
+  \ Build 作为执行 Cloud Build 配置的机制，但它也可以构建前面章节中提到的容器镜像。根据你的环境，你可能需要额外的权限，以启用 Artifact\
+  \ Registry，并创建一个名为 core-image 的仓库：\n\n```\n$ gcloud builds submit --region us-west1\
+  \ --tag us-docker.pkg.dev/${PROJECT_ID}/core-image/builder:latest\n```\n\n我们可以在以下\
+  \ Cloud Build 配置文件中所述的方式使用构建镜像：\n\n```\n$ cat << EOF > cloudbuild.yaml\nsteps:\n\
+  - id: 'See what gcloud components are installed'\n  name: 'us-docker.pkg.dev/${PROJECT_ID}/core-image/builder:latest'\n\
+  \  entrypoint: 'sh'\n  args:\n  - '-c'\n  - |\n    gcloud components list --only-local-state\
+  \ --format \"value(id)\"\n- id: 'Check terraform version'\n  name: 'us-docker.pkg.dev/${PROJECT_ID}/core-image/builder:latest'\n\
+  \  entrypoint: 'sh'\n  args:\n  - '-c'\n  - |\n    terraform version\nEOF\n```\n\
+  \n手动提交上述配置的构建将安装 gcloud 组件并验证可用的 terraform 版本：\n\n```\n$ gcloud builds submit --region\
+  \ us-west1\n```\n\n以下是该镜像本地安装的 gcloud 组件以及 terraform 版本的示例输出：\n\n```\nStep #0 -\
+  \ \"See what gcloud components are installed\": Your\ncurrent Google Cloud CLI version\
+  \ is: 381.0.0\nStep #0 - \"See what gcloud components are installed\": kubectl\n\
+  Step #0 - \"See what gcloud components are installed\": bq\nStep #0 - \"See what\
+  \ gcloud components are installed\": core\nStep #0 - \"See what gcloud components\
+  \ are installed\": kustomize\n...\nStep #1 - \"Check terraform version\": Terraform\
+  \ v1.1.0\nStep #1 - \"Check terraform version\": on linux_amd64\n...\n```\n\n镜像的所有团队可能因组织而异，但理想情况下应由单一团队维护。在端到端构建中，需求、建议和反馈可能来自组织内的不同团队。当某些构建依赖于特定的工具版本和组合时，版本控制在维护自定义构建器镜像时也变得至关重要。这取决于什么适合组织，但不同团队需求的灵活性可以带来最佳结果。\n\
+  \n## 管理构建的最小权限原则\n\n在上一章中，我们介绍了构建管道的底层最小权限原则。虽然本章第一部分的示例使用了 Cloud Build 默认服务账号，这很方便，但根据我们想要运行的管道或自动化的类型，我们可能不希望提供一个能够同时操作网络和计算的服务账号。实现此目的的一种方法是分离我们的\
+  \ Cloud Build 管道配置——我们还可以最大限度地减少错误的影响或攻击面。\n\n如果尚未克隆仓库，请继续克隆它 (https://github.com/PacktPublishing/Cloud-Native-Automation-With-Google-Cloud-Build)：\n\
+  \n```\n$ git clone https://github.com/PacktPublishing/Cloud-Native-Automation-With-Google-Cloud-Build\n\
+  ```\n\n导航到本章的示例：\n\n```\n$ cd Cloud-Native-Automation-With-Google-Cloud-Build/chapter07/terraform\n\
+  ```\n\n在 Cloud Build 配置文件 cloudbuild-multiple-network.yaml 中，我们指定此构建要使用的特定 serviceAccount：\n\
+  \n```\n$ serviceAccount: 'projects/${PROJECT_ID}/serviceAccounts/${CLOUDBUILD_NETWORK}@${PROJECT_ID}.iam.gserviceaccount.com'\n\
+  ```\n\n我们首先需要准备同时用于 Cloud Build 和 Terraform 配置的变量：\n\n```\n$ gcloud config set project\
+  \ ${PROJECT_ID}\n$ export PROJECT_ID=$(gcloud config get-value project)\n$ export\
+  \ CLOUDBUILD_NETWORK=cloudbuild-network\n$ export CLOUDBUILD_COMPUTE=cloudbuild-compute\n\
+  ```\n\n创建我们的两个服务账号并分配将由各自 Terraform 配置使用的权限。创建将构建我们的 VPC 的账号：\n\n```\n$ gcloud iam\
+  \ service-accounts create ${CLOUDBUILD_NETWORK} \\\n  --display-name=\"Cloud Build\
+  \ Network Admin\"\n$ gcloud projects add-iam-policy-binding ${PROJECT_ID} \\\n \
+  \ --member=serviceAccount:${CLOUDBUILD_NETWORK}@${PROJECT_ID}.iam.gserviceaccount.com\
+  \ \\\n  --role=roles/compute.networkAdmin\n$ gcloud projects add-iam-policy-binding\
+  \ ${PROJECT_ID} \\\n  --member=serviceAccount:${CLOUDBUILD_NETWORK}@${PROJECT_ID}.iam.gserviceaccount.com\
+  \ \\\n  --role=roles/iam.serviceAccountUser\n$ gcloud projects add-iam-policy-binding\
+  \ ${PROJECT_ID} \\\n  --member=serviceAccount:${CLOUDBUILD_NETWORK}@${PROJECT_ID}.iam.gserviceaccount.com\
+  \ \\\n  --role=roles/logging.logWriter\n$ gcloud projects add-iam-policy-binding\
+  \ ${PROJECT_ID} \\\n  --member=serviceAccount:${CLOUDBUILD_NETWORK}@${PROJECT_ID}.iam.gserviceaccount.com\
+  \ \\\n  --role=roles/storage.objectAdmin\n```\n\n接下来，我们创建将配置我们的 GCE VM 实例的账号：\n\n\
+  ```\n$ gcloud iam service-accounts create ${CLOUDBUILD_COMPUTE} \\\n  --display-name=\"\
+  Cloud Build Compute Admin\"\n$ gcloud projects add-iam-policy-binding ${PROJECT_ID}\
+  \ \\\n  --member=serviceAccount:${CLOUDBUILD_COMPUTE}@${PROJECT_ID}.iam.gserviceaccount.com\
+  \ \\\n  --role=roles/compute.instanceAdmin.v1\n$ gcloud projects add-iam-policy-binding\
+  \ ${PROJECT_ID} \\\n  --member=serviceAccount:${CLOUDBUILD_COMPUTE}@${PROJECT_ID}.iam.gserviceaccount.com\
+  \ \\\n  --role=roles/iam.serviceAccountUser\n$ gcloud projects add-iam-policy-binding\
+  \ ${PROJECT_ID} \\\n  --member=serviceAccount:${CLOUDBUILD_COMPUTE}@${PROJECT_ID}.iam.gserviceaccount.com\
+  \ \\\n  --role=roles/logging.logWriter\n$ gcloud projects add-iam-policy-binding\
+  \ ${PROJECT_ID} \\\n  --member=serviceAccount:${CLOUDBUILD_COMPUTE}@${PROJECT_ID}.iam.gserviceaccount.com\
+  \ \\\n  --role=roles/storage.objectAdmin\n```\n\n权限可能需要几分钟才能传播——提交构建并查看以下内容：\n\n\
+  ```\nERROR: (gcloud.builds.submit) INVALID_ARGUMENT: could\nnot resolve source:\
+  \ googleapi: Error 403: cloudbuild-compute@**REDACTED_project_id**.iam.gserviceaccount.com\
+  \ does\nnot have storage.objects.get access to the Google Cloud Storage\nobject.,\
+  \ forbidden\n```\n\n我们需要在 Cloud Build 配置中替换一些变量。在此示例中，我们在配置中指定服务账号，因为我们将通过 CLI 手动提交它。如果你使用触发器，你也可以将服务账号作为触发器的一部分指定：\n\
+  \n```\n$ envsubst < cloudbuild-multiple-network.yaml_tmpl > cloudbuild-multiple-network.yaml\n\
+  $ envsubst < cloudbuild-multiple-compute.yaml_tmpl > cloudbuild-multiple-compute.yaml\n\
+  $ envsubst < cloudbuild-multiple-network-destroy.yaml_tmpl > cloudbuild-multiple-network-destroy.yaml\n\
+  $ envsubst < cloudbuild-multiple-compute-destroy.yaml_tmpl > cloudbuild-multiple-compute-destroy.yaml\n\
+  ```\n\n一旦变量被替换，我们就可以准备好提交构建配置了。就像在之前的场景中我们分别提交网络和计算构建一样，这里我们也会分别进行。主要区别在于此场景中我们使用的是具有执行任务所需权限的服务账号：\n\
+  \n```\n$ gcloud builds submit --region us-west1 --config cloudbuild-multiple-network.yaml\n\
+  ```\n\n> **Note**\n> \n> 因为我们使用的是用户指定的服务账号，并且使用 CLOUD_LOGGING_ONLY 指定它，所以我们将无法在终端中看到日志流。截至撰写本文时，使用\
+  \ gcloud beta，你可以在终端中流式传输日志。或者，gcloud 命令的输出是一个选项，可以点击 Logs are available at 链接打开控制台以通过\
+  \ UI 查看它。如果你在另一个终端窗口中打开，你可以使用 gcloud builds log YOUR_BUILD_ID 查看日志。\n\n由于每个服务账号都有特定的资源权限，如果你将\
+  \ cloudbuild-multiple-compute.yaml 配置中的 serviceAccount 替换为 cloudbuild-network 服务账号，它将没有创建计算实例的适当权限。我们将得到以下错误：\n\
+  \n```\nStep #2 - \"tf apply - compute\": google_compute_instance.packt_instance:\
+  \ Creating...\nStep #2 - \"tf apply - compute\": |\nStep #2 - \"tf apply - compute\"\
+  : | Error: Error creating instance: googleapi: Error 403: Required 'compute.instances.create'\
+  \ permission for 'projects/**REDACTED-project_id**/zones/us-west1-a/instances/packt-m-instance'\n\
+  Step #2 - \"tf apply - compute\": | More details:\nStep #2 - \"tf apply - compute\"\
+  : | Reason: forbidden,\nMessage: Required 'compute.instances.create' permission\
+  \ for 'projects/**REDACTED-project_id**/zones/us-west1-a/instances/packt-m-instance'\n\
+  Step #2 - \"tf apply - compute\": | Reason: forbidden,\nMessage: Required 'compute.disks.create'\
+  \ permission for 'projects/**REDACTED-project_id**/zones/us-west1-a/disks/packt-m-instance'\n\
+  ```\n\n利用最小权限原则有助于确定哪些账号能够操作其各自的资源，从而允许独立管理每个账号的生命周期。如前所述，它还可以通过将权限限制在特定资源上来减少攻击面。\n\
+  \n\n\n\n## 人工介入与手动审批\n\n与代码一样，在处理与基础设施相关的构建时，可能需要在构建开始前由人工介入并批准。通过像上一节那样将资源分离到不同的构建配置中，我们可以确定在构建流水线执行前哪些资源需要审批。\n\
+  \n> **注意**\n> 对于本节，我们将通过一个示例进行讲解——它并非 intended for you to copy and paste，因为您的设置和配置可能不同。\n\
+  \n在本示例中，我们将使用已连接到 GCP 项目的公开托管 GitHub 仓库。我们需要这样做，因为审批机制仅通过触发器可用。假设您已通过控制台（即 GitHub（Cloud\
+  \ Build GitHub 应用））或您选择的受支持 SCM 提供商连接了仓库，您可以使用以下 CLI 创建触发器。\n\n此示例可在 https://github.com/PacktPublishing/Cloud-Native-Automation-With-Google-Cloud-Build/tree/main/chapter07/terraform\
+  \ 使用 cloudbuild-multiple-network-approval.yaml Cloud Build 配置文件获得。以下是本节的示例命令。仓库作为起点提供，但您的\
+  \ fork 或仓库布局可能不同：\n\n```\n$ gcloud beta builds triggers create github \\\n  --name=packt-cloudbuild-terraform-approval\
+  \ \\\n  --repo-name= Cloud-Native-Automation-With-Google-Cloud-Build \\\n  --repo-owner=PacktPublishing\
+  \ \\\n  --branch-pattern='^main$' \\\n  --require-approval \\\n  --build-config=/chapter07/terraform/cloudbuild-multiple-network-approval.yaml\
+  \ \\\n  --service-account \"projects/**REDACTED-project_id**/serviceAccounts/cloudbuild-network@**REDACTED-project_id**.iam.gserviceaccount.com\"\
+  \n```\n\n正如前一章所述，控制台也可以用于创建触发器。\n\n一旦触发器创建完成，并且构建通过 SCM 提交或在 Cloud Build 中手动 **RUN**\
+  \ 触发，构建将处于等待状态，直到被批准或拒绝。请注意 GCP 控制台 UI 此截图中的 **APPROVE** 和 **REJECT** 选项：\n\n![](img/2fe9576240c146c49e3a21d5e7f6af00_141_0.png)\n\
+  \nFigure 7.3 – 等待审批的构建\n\n如果选择 **APPROVE** 选项，将提示用户进行审批确认。\n\n> **注意**\n> 要批准或拒绝构建，用户必须在其帐户上分配了\
+  \ **Cloud Build Approver** 角色。\n\n### 审批构建\n\n审批将导致此构建运行。了解更多\n\n可选消息\n\napproved,\
+  \ this resource is necessary\n\n在构建审批时添加可选消息以显示\n36 / 1000\n\nSHOW ADDITIONAL OPTIONS\n\
+  \nCANCEL   APPROVE\n\nFigure 7.4 – 审批对话框\n\n一旦在前述对话框中选择了 APPROVE 选项，构建将开始。这也可以使用\
+  \ gcloud CLI 执行。使用 CLI，用户需要知道要批准或拒绝的构建 ID：\n\n```\n$ gcloud alpha builds approve\
+  \ f3da4d17-d832-449a-b925-9ae95245f5b0 \\\n  --project=**REDACTED-project_id**\n\
+  ```\n\n使用 CLI 执行审批时的示例输出如下：\n\n```\nmetadata:\n  '@type': type.googleapis.com/google.devtools.cloudbuild.v1.BuildOperationMetadata\n\
+  \  ...\n    result:\n      approvalTime: '2022-04-14T23:45:41.598449Z'\n    ...\n\
+  \    decision: APPROVED\n  state: APPROVED\n```\n\n手动审批允许人工或服务介入以确定是否应执行构建。随着时间的推移，让系统验证并做出决定或最终完全移除审批要求可能变得更可行。其目的是为组织提供一定的灵活性。\n\
+  \n### 摘要\n\nCloud Build 不仅仅用于构建和编译服务和应用程序。该平台的灵活性，包括预构建的 cloud builders、自定义 cloud\
+  \ builders、用户指定的服务帐户和人工审批，可以帮助组织自动化任务。在本章中，利用 Terraform，我们能够使用 IaC 概念在 GCP 上配置资源。\n\
+  \n在下一章中，我们将深入探讨在 **Google Kubernetes Engine (GKE)** 中保护您的服务交付。\n"
+- "## 使用 Cloud Build 保护向 GKE 的软件交付\n\n近年来，软件供应链安全已成为行业关注的重点，众多入侵导致了对公司和用户造成严重后果。这种关注催生了更严格的软件交付安全实践，强调了验证所部署工件的信任以及应用最小权限原则（POLP）等实践的重要性。由于\
+  \ Cloud Build 是在 Google Cloud 中自动化软件交付的推荐机制，了解其安全功能和最佳实践非常重要。\n\n在本章中，我们将通过一个示例讲解如何利用\
+  \ Cloud Build 将一组应用程序部署到私有 Google Kubernetes Engine（GKE）集群，同时使用 Cloud Build 功能实施多项安全最佳实践。\n\
+  \n具体来说，本章将涵盖以下主题：\n\n- 创建构建基础设施和部署目标\n- 保护构建和部署基础设施\n- 将 POLP 应用于构建\n- 配置构建的发布管理\n\
+  - 启用构建工件的可验证信任\n\n### 创建构建基础设施和部署目标\n\n本示例中的部署目标是一个 GKE 集群。Cloud Build 将我们的软件交付流水线作为构建来实现，同时执行容器镜像的构建以及将\
+  \ Kubernetes 清单发布到 GKE 集群中运行容器镜像。\n\n在深入了解如何从 Cloud Build 保护向 GKE 的软件交付之前，我们应回顾与软件交付流程相关的\
+  \ Kubernetes 和 GKE 方面。\n\nKubernetes (https://kubernetes.io) 是一个流行的 **开源软件 (OSS)**\
+  \ 项目，由 **Cloud Native Computing Foundation (CNCF)** (https://www.cncf.io) 拥有，负责在众多机器上运行容器化应用程序。\n\
+  \n在高层次上，它通过软件实现，该软件充当控制平面，协调在注册到控制平面的服务器集上容器化应用程序的生命周期，这些服务器称为 **节点**。这些节点可以由多个容器化应用程序共享，也可以为特定应用程序隔离。此外，Kubernetes\
+  \ 还允许通过 Kubernetes 资源 **命名空间** 对应用程序进行逻辑分离。\n\n这些组件共同构成了一个 Kubernetes 集群，如下图所示：\n\
+  \n![](img/2fe9576240c146c49e3a21d5e7f6af00_146_0.png)\n\nFigure 8.1 – Kubernetes\
+  \ 集群的高级架构\n\n控制平面对于本章的示例至关重要，因为它是用户和自动化与集群交互的基础点。它提供了一个网络端点，公开 Kubernetes **应用程序编程接口\
+  \ (API)**，并运行执行诸如将容器化应用程序接收到集群中等功能的软件。\n\n这意味着控制平面的交互必须安全，我们必须利用 Cloud Build 的安全功能及其准入控制能力。\n\
+  \n如果您是 Kubernetes 新手并希望深入了解，建议访问官方文档 (https://kubernetes.io/docs) 了解其运行方式。\n\nGKE\
+  \ 是一个平台，Google 以服务形式向用户提供托管 Kubernetes 集群。GKE 提供的管理级别取决于您使用的集群模式。您可以从以下集群模式中选择：\n\
+  \n- **GKE Standard**，其中控制平面由 Google 完全管理，但您仍可控制节点配置和升级生命周期的某些方面\n- **GKE Autopilot**，其中控制平面和节点生命周期均由\
+  \ Google 完全管理\n\n在本示例中，您将使用 GKE 创建一个 GKE Standard 集群，这意味着控制平面将在 Google 拥有的环境中运行并由\
+  \ Google 完全管理：\n\n![](img/2fe9576240c146c49e3a21d5e7f6af00_147_0.png)\n\nFigure\
+  \ 8.2 – GKE Standard 集群的高级架构\n\n具体来说，您将创建一个私有 GKE Standard 集群。这是对 GKE 集群的配置，其中控制平面只能通过\
+  \ Google 管理的网络上的私有端点访问，该网络与您自己的 Google 虚拟私有云（VPC）对等。\n\n这意味着我们可以通过在 Cloud Build\
+  \ 中使用私有池来构建和部署到私有 GKE 集群，从而使 Cloud Build 和 GKE 的安全最佳实践保持一致。这可确保 Cloud Build 对 Kubernetes\
+  \ 控制平面的调用不会通过公共互联网传输，而是通过私有网络连接。\n\n### 启用基础 Google Cloud 服务\n\n要开始此示例并创建安全的构建基础设施，您必须首先确保在\
+  \ Google Cloud 项目中启用所有相关服务。\n\n\n\n强烈建议您在沙箱或测试 Google Cloud 项目中运行本章的示例，因为您不仅可以完全控制运行示例，还可以轻松清理创建的资源。\n\
+  \n您将通过在 Cloud Shell (shell.cloud.google.com) 中启动会话开始，该会话是 Google Cloud 提供的临时 Linux\
+  \ 工作站。\n\n使用以下命令从 GitHub 克隆示例存储库：\n\n```\n$ cd ~ && git clone https://github.com/agmsb/cloudbuild-gke.git\
+  \ && cd cloudbuild-gke/08\n```\n\n运行 gcloud 命令以配置 gcloud 使用适当的 Google Cloud 项目，如下所示，将\
+  \ <add-project-id> 替换为您要使用的 Google Cloud 项目：\n\n```\n$ gcloud config set project\
+  \ <add-project-id>\n```\n\n鉴于建议在沙箱 Google Cloud 项目中运行此示例，最好将项目所有者角色分配给您在身份和访问管理\
+  \ (IAM) 中的用户来完成。\n\n使用项目所有者角色，您可以使用以下命令启用此项目所需的服务：\n\n```\n$ gcloud services enable\
+  \ container.googleapis.com cloudbuild.googleapis.com artifactregistry.googleapis.com\
+  \ binaryauthorization.googleapis.com servicenetworking.googleapis.com containeranalysis.googleapis.com\n\
+  ```\n\n此命令将在您的项目中启用以下服务：\n\n-   GKE\n-   Cloud Build\n-   Artifact Registry\n- \
+  \  Binary Authorization\n-   Service Networking API\n-   Container Analysis API\n\
+  \n启用这些服务后，您现在可以开始设置本章示例的资源。\n\n## 为您的环境设置 VPC 网络\n\n我们将运行许多命令，这些命令需要为各种资源命名；为了方便您，默认名称已提供在可通过\
+  \ GitHub 存储库访问的文件中。\n\n建议您使用这些变量名称逐步完成此示例；完成后，您可以返回重用示例并将变量名称更改为更符合您用例含义的名称。\n\n\
+  通过以下方式将 bin/variables.sh 文件中的环境变量读入当前会话：\n\n```\n$ source bin/variables.sh\n```\n\
+  \n设置好正确的变量后，我们可以继续创建第一组资源，如下所示：\n\n-   为您的 GKE 集群提供 VPC\n-   您的完全托管私有池工作节点可以与其建立对等连接的\
+  \ VPC\n-   通过私有加密连接连接上述 VPC 的 Cloud **虚拟专用网络 (VPN)** 隧道\n\n更改到 vpc 目录，其中包含 main.tf\
+  \ 文件。此文件包含 Terraform 配置代码，用于创建上述资源。以下是您需要执行的代码：\n\n```\n$ cd infra/vpc\n```\n\n\
+  要使用 Terraform 配置代码，您需要在该目录中初始化 Terraform，方法是使用 terraform 命令行界面 (CLI) 运行以下命令。此命令最后在\
+  \ terraform 版本 1.2.7 上进行了测试：\n\n```\n$ terraform init\n```\n\n使用以下命令通过 terraform\
+  \ CLI 查看将要创建的所有资源：\n\n```\n$ terraform plan\n```\n\n要实现这些更改，请按如下方式运行 terraform apply。终端提示时您还需要输入“yes”；这允许您继续在\
+  \ main.tf 中预配资源：\n\n```\n$ terraform apply\n```\n\n完成此操作需要几分钟时间。创建完示例的 VPC 网络资源后，我们可以继续创建\
+  \ GKE 集群。\n\n## 设置您的私有 GKE 集群\n\n由于 GKE 是一种托管的 Kubernetes 服务，因此在集群创建时通过传递的参数启用了众多即用型功能。\n\
+  \n作为提醒，如果您在上一节工作后丢失了上下文，请运行以下命令导航到正确的目录并获取正确的环境变量。\n\n将此处显示的 <add-project-id> 替换为您正在使用的项目：\n\
+  \n```\n$ gcloud config set project <add-project-id>\n```\n\n按如下方式导航到您正在工作的目录：\n\n\
+  ```\n$ cd ~/cloudbuild-gke/08\n```\n\n通过运行以下命令获取所需的环境变量：\n\n```\n$ source bin/variables.sh\n\
+  ```\n\n现在，我们可以创建 GKE 集群。运行以下命令开始集群创建。请注意，这会消耗 Google Compute Engine (GCE) 和 Persistent\
+  \ Disk 的配额，创建一个总共包含六个节点的集群，每个节点具有 20 GB 的 Persistent Disk：\n\n```\n$ gcloud container\
+  \ clusters create $CLUSTER_NAME \\\n  --project=$PROJECT_ID \\\n  --cluster-version=$CLUSTER_VERSION\
+  \ \\\n  --enable-ip-alias \\\n  --network=$CLUSTER_VPC_NAME \\\n  --subnetwork=$CLUSTER_SUBNET_NAME\
+  \ \\\n  --cluster-secondary-range-name=pod \\\n  --services-secondary-range-name=svc\
+  \ \\\n  --region=$REGION \\\n  --num-nodes=2 \\\n  --disk-size=20 \\\n  --enable-private-nodes\
+  \ \\\n  --enable-private-endpoint \\\n  --master-ipv4-cidr=$CLUSTER_CONTROL_PLANE_CIDR\
+  \ \\\n  --workload-pool=$PROJECT_ID.svc.id.goog \\\n  --enable-binauthz\n```\n\n\
+  此集群配置中有几件事值得注意。首先，我们能够通过 --enable-private-nodes、--enable-private-endpoint 和 --master-ipv4-cidr\
+  \ 参数将集群锁定为仅私有网络。\n\nThe --enable-private-nodes 参数确保 GKE 集群中运行的节点没有公共互联网协议 (IP) 地址。这默认阻止节点从\
+  \ Docker Hub 等位置提取任何公开托管的容器镜像。通过以这种方式配置集群，您隐式地拒绝这些镜像在集群中运行——这是确保集群运行已知且受信任软件的良好开端。\n\
+  \n本章后面，在 *在构建中启用工件的可验证信任* 部分，我们将回顾如何使用我们指定的最后一个参数 `--enable-binauthz` 显式确保您运行已知且受信任的软件。\n\
+  \n鉴于此配置，这也意味着我们无法通过公共 IP 地址从 Container Registry 或 Artifact Registry 中提取。为了仍然确保我们的集群可以运行托管在\
+  \ Google Cloud 注册表中的容器，我们需要 Private Services Access。这是在 Google Cloud 中的一项功能，使 Google\
+  \ 和第三方能够通过私有 IP 地址而不是公共端点提供可访问的服务。\n\n默认情况下，这对于 GKE 私有集群是启用的；但是，如果您希望使用共享 VPC 重现此示例，则需要手动启用\
+  \ Private Services Access。您可以在此处找到有关如何执行此操作的更多信息： https://cloud.google.com/vpc/docs/private-google-access.\n\
+  \n`--enable-private-endpoint` 参数确保我们仅通过私有 IP 地址使 GKE 控制平面可用。这意味着人类和自动化的 API 调用都不会经过公共互联网。这些\
+  \ API 调用可能包含敏感信息，会泄露有关您软件的详细信息，例如容器镜像名称、环境变量或密钥。因此，确保这些调用私下进行非常重要。\n\n最后，`--master-ipv4-cidr=$CLUSTER_CONTROL_PLANE_CIDR`\
+  \ 定义了 Google 将用于分配私有 IP 地址以供您与控制平面交互的范围。这是因为控制平面实际上由 Google 拥有和运行；它与节点交互的方式是通过与您的\
+  \ VPC 创建的对等连接，而您的 GKE 节点和其他创建的资源就位于该 VPC 中。\n\n虽然此对等连接在集群创建时会自动为您创建，但我们实际上需要更新此对等连接以执行以下操作：\n\
+  \n-   导出自定义路由以连接到私有池。\n-   拒绝为公共 IP 目标交换路由。\n\n运行以下命令以提取自动创建的对等连接的名称，并根据上述要点对其进行更新：\n\
+  \n```\n$ export GKE_PEERING_NAME=$(gcloud container clusters describe\n$CLUSTER_NAME\
+  \ \\\n    --region=$REGION \\\n    --format='value(privateClusterConfig.peeringName)')\n\
+  $ gcloud compute networks peerings update $GKE_PEERING_NAME \\\n\n```\n--network=$CLUSTER_VPC_NAME\
+  \ \\\n--export-custom-routes \\\n--no-export-subnet-routes-with-public-ip\n```\n\
+  \n让我们回顾一下 GKE 集群的当前架构，现在我们已经创建了用于 GKE 私有集群的 VPC 以及集群本身。你可以在这里查看：\n\n![](img/2fe9576240c146c49e3a21d5e7f6af00_152_0.png)\n\
+  \n图 8.3 – 已创建的私有 GKE 集群的高级架构\n\n总结一下，你所创建的关键方面包括以下内容：\n\n- 确保对 GKE 控制平面的访问仅通过私有连接可用。\n\
+  - 节点无法从公共镜像仓库拉取容器镜像。\n- 节点通过私有内部 IP 地址拉取容器镜像。\n\n完成此项后，让我们继续使用 Cloud Build 私有池创建安全的构建和部署基础设施。\n\
+  \n## 保护构建和部署基础设施\n\n在 Cloud Build 中保护软件交付流程时，重要的是从运行构建本身的底层基础设施开始。如果遭到入侵，攻击者可以访问敏感信息，例如你的源代码、构建可能访问的机密信息，以及构建所交互的部署目标。\n\
+  \n*本章示例中的底层基础设施*具体指以下内容：\n\n- 执行 Cloud Build 构建的私有池工作器\n- VPC 网络，将工作器连接到 Artifact\
+  \ Registry 和 GKE 等系统\n- 执行构建步骤的最小化或受管容器镜像\n\n我们将首先为示例创建一个私有池。\n\n## 使用安全最佳实践创建私有池\n\
+  \n在第 2 章《配置 Cloud Build 工作器》中已介绍过，私有池是 Cloud Build 工作器的特定模式，其功能与默认池不同，包括 VPC 连接性和更大的机器类型可用性，同时仍完全托管在\
+  \ Google 拥有的环境中。\n\n在本示例中，我们将使用私有池运行四个构建，具体如下：\n\n- 团队 A，构建 1—为 Python 应用构建容器镜像。\n\
+  - 团队 A，构建 2—将容器镜像部署到 GKE。\n- 团队 B，构建 1—为 Python 应用构建容器镜像。\n- 团队 B，构建 2—将容器镜像部署到\
+  \ GKE。\n\n这模拟了这样一种场景：两个不同的团队都将工作负载部署到同一个 Kubernetes 集群，该集群通过使用 Kubernetes 命名空间隔离集群中的应用程序而配置为简单的多租户，如下图所示：\n\
+  \n![](img/2fe9576240c146c49e3a21d5e7f6af00_153_0.png)\n\n图 8.4 – 本章软件交付工作流的高级架构\n\
+  \n在运行构建之前，我们必须创建私有池并将其设置好以与我们的 GKE 集群通信，同时牢记以下目标：\n\n- 创建安全的 worker 在私有池中运行构建。\n\
+  - 安全地访问 GKE 控制平面。\n- 通过允许列表限制对 GKE 控制平面的访问。\n- 保护 Cloud Build 和 GKE 通信的网络边界。\n\n\
+  作为提醒，如果你在处理上一节后丢失了上下文，请运行以下命令导航到正确的目录并加载适当的环境变量。\n\n将此处显示的 <add-project-id> 替换为你正在使用的项目：\n\
+  \n```\n$ gcloud config set project <add-project-id>\n```\n\n按如下方式导航到你正在工作的目录：\n\n\
+  ```\n$ cd ~/cloudbuild-gke/08\n```\n\n按如下方式加载所需的环境变量：\n\n```\n$ source bin/variables.sh\n\
+  ```\n\n牢记第一个目标，你将创建一个 Cloud Build 私有池，并确保我们可用的安全配置得到利用。但在创建私有池之前，我们必须创建以下几个额外的网络资源：\n\
+  \n- 私有池工作器的私有 IP 范围\n- VPC 对等，以便将我们之前创建的 VPC 与 Service Networking API (https://cloud.google.com/service-infrastructure/docs/enabling-private-services-access)\
+  \ 进行对等，使其能够连接到私有池工作器\n\n要为私有池创建 IP 范围，请运行以下命令：\n\n```\n$ gcloud compute addresses\
+  \ create $PRIVATE_POOL_IP_RANGE_NAME \\\n  --global \\\n  --addresses=$PRIVATE_POOL_IP_RANGE\
+  \ \\\n  --purpose=VPC_PEERING \\\n  --prefix-length=$PRIVATE_POOL_IP_RANGE_SIZE\
+  \ \\\n  --network=$PRIVATE_POOL_VPC_NAME\n```\n\n要与我们之前创建的 VPC 创建对等连接，请运行以下命令：\n\
+  \n```\n$ gcloud services vpc-peerings connect \\\n  --service=servicenetworking.googleapis.com\
+  \ \\\n  --ranges=$PRIVATE_POOL_IP_RANGE_NAME \\\n  --network=$PRIVATE_POOL_VPC_NAME\
+  \ \\\n  --project=$PROJECT_ID\n$ gcloud compute networks peerings update servicenetworking-googleapis-com\
+  \ \\\n  --network=$PRIVATE_POOL_VPC_NAME \\\n  --export-custom-routes \\\n  --no-export-subnet-routes-with-public-ip\n\
+  ```\n\n我们使用两个值得注意的配置创建了对等连接：--export-custom-routes 和 --no-export-subnet-routes-with-public-ip。这些配置分别允许我们在私有池和私有\
+  \ GKE 控制平面之间导出路由，同时防止任何带有公共 IP 地址的路由被导出。\n\n在对等连接正确设置后，我们将通过以下方式完成网络配置，发布我们的私有池和\
+  \ GKE 控制平面 IP 地址：\n\n```\n$ gcloud compute routers update-bgp-peer ${PRIVATE_POOL_ROUTER}\
+  \ \\\n  --peer-name=$PRIVATE_POOL_ROUTER_PEER_0 \\\n  --region=${REGION} \\\n  --advertisement-mode=CUSTOM\
+  \ \\\n  --set-advertisement-ranges=${PRIVATE_POOL_IP_RANGE}/${PRIVATE_POOL_IP_RANGE_SIZE}\n\
+  \n$ gcloud compute routers update-bgp-peer ${PRIVATE_POOL_ROUTER} \\\n  --peer-name=$PRIVATE_POOL_ROUTER_PEER_1\
+  \ \\\n  --region=${REGION} \\\n  --advertisement-mode=CUSTOM \\\n  --set-advertisement-ranges=${PRIVATE_POOL_IP_RANGE}/${PRIVATE_POOL_IP_RANGE_SIZE}\n\
+  \n$ gcloud compute routers update-bgp-peer ${CLUSTER_ROUTER} \\\n  --peer-name=${CLUSTER_ROUTER_PEER_0}\
+  \ \\\n  --region=${REGION} \\\n  --advertisement-mode=CUSTOM \\\n  --set-advertisement-ranges=$CLUSTER_CONTROL_PLANE_CIDR\n\
+  \n$ gcloud compute routers update-bgp-peer ${CLUSTER_ROUTER} \\\n    --peer-name=${CLUSTER_ROUTER_PEER_1}\
+  \ \\\n    --region=${REGION} \\\n    --advertisement-mode=CUSTOM \\\n    --set-advertisement-ranges=$CLUSTER_CONTROL_PLANE_CIDR\n\
+  ```\n\n现在，我们可以继续创建私有池。要创建你的私有池，请先加载所需的环境变量，并在 infra/ 目录下创建名为 private-pool.yaml 的私有池配置文件，如下所示：\n\
+  \n```\n$ cat > infra/private-pool.yaml <<EOF\nprivatePoolV1Config:\n  networkConfig:\n\
+  \    # egressOption: NO_PUBLIC_EGRESS\n    peeredNetwork: projects/$PROJECT_ID/global/\n\
+  networks/$PRIVATE_POOL_VPC_NAME\n  workerConfig:\n    machineType: e2-standard-2\n\
+  \    diskSizeGb: 100\nEOF\n```\n\n在此配置文件中，与安全相关的最重要部分位于 networkConfig 部分。私有池由于完全由\
+  \ Google 管理，其运行方式类似于 GKE 控制平面，即通过 VPC 对等获得对你 VPC 中资源的访问权限。你可以在下图中看到对此的说明：\n\n![](img/2fe9576240c146c49e3a21d5e7f6af00_157_0.png)\n\
+  \n图 8.5 – 你 VPC 与私有池运行的 VPC 之间的网络架构\n\n让我们回顾一下 `egressOption` 和 `peeredNetwork`\
+  \ 字段以及它们对我们私有池的含义，如下所示：\n\n- 将 `egressOption` 设置为 `NO_PUBLIC_EGRESS` 会从私有池中的工作器中移除公共\
+  \ IP 地址。\n- 将 `peeredNetwork` 设置为与我们的 GKE 集群 VPC 分开的独立 VPC 是必需的。这是因为缺乏传递式对等功能。\n\
+  \n如果我们从私有池中移除公共 IP 地址，这意味着我们还可以拒绝工作器基础设施访问公共互联网以及可能具有恶意或易受攻击的工件。这有助于减少软件交付管道可能被入侵的攻击面。\n\
+  \n> **注意**\n> \n> 对于本示例，我们将在私有池配置中省略 `NO_PUBLIC_EGRESS` 选项，因为我们将连接到的源代码仓库将是 `GitHub.com`。这是为了简化并避免任何许可需求。\n\
+  > \n> 在安全的软件交付设置中，你理想情况下会将此参数与私有 **源代码管理 (SCM)** 系统（如 GitHub Enterprise）一起使用，私有池可以通过私有连接访问该系统。\n\
+  \n\n\n\n现在，使用上一条命令中创建的配置文件创建一个私有池，如下所示：\n\n```bash\n$ gcloud builds worker-pools\
+  \ create $PRIVATE_POOL_NAME\n--config-from-file infra/private-pool.yaml --region\
+  \ $REGION\n```\n\n然而，对许多人来说，仅使构建系统与 GKE 控制平面之间的通信保持私有是不够的。如果攻击者能够在具有该 VPN 访问权限的\
+  \ VPC 中创建资源，他们仍可能与你的私有 GKE 控制平面进行交互。\n\n让我们回顾一下如何从网络边界内的其他资源保护控制平面。\n\n## 保护对私有\
+  \ GKE 控制平面的访问\n\n作为提醒，如果你在处理上一节后丢失了上下文，请运行以下命令以导航到正确的目录并加载正确的环境变量。\n\n将此处显示的 <add-project-id>\
+  \ 替换为你正在使用的项目：\n\n```bash\n$ gcloud config set project <add-project-id>\n```\n\n\
+  按如下方式导航到你正在工作的目录：\n\n```bash\n$ cd ~/cloudbuild-gke/08\n```\n\n按如下方式加载所需环境变量：\n\n\
+  ```bash\n$ source bin/variables.sh\n```\n\n建议使用 GKE 中的 GKE 控制平面访问功能的授权网络配置允许列表（https://cloud.google.com/kubernetes-engine/docs/how-to/authorized-networks），如下图所示：\n\
+  \n![](img/2fe9576240c146c49e3a21d5e7f6af00_159_0.png)\n\n图 8.6 – 确保用户来自已知且受信任的网络身份\n\
+  \n这将使你能够通过拒绝不在特定允许列表上的网络身份发来的任何流量来限制对控制平面的访问。这也意味着你必须向 GKE 提供应被授权调用控制平面的网络范围。你可以通过运行以下命令来实现：\n\
+  \n```bash\n$ gcloud container clusters update $CLUSTER_NAME \\\n  --enable-master-authorized-networks\
+  \ \\\n  --region=$REGION \\\n  --master-authorized-networks=$PRIVATE_POOL_IP_RANGE/$PRIVATE_POOL_IP_RANGE_SIZE\n\
+  ```\n\n这现在意味着你只能利用此私有池中的 Cloud Build 工作器与你的 GKE 控制平面交互。如果你想使用 Compute Engine 虚拟机（VM）创建一个私有工作站或堡垒主机，你还需要将其私有\
+  \ IP 地址添加到允许列表中，以便使用 kubectl 与 GKE 控制平面交互。\n\n在工作器、集群和网络配置设置完成后，是时候开始评估我们的构建在此环境中运行的权限了。\n\
+  \n## 将 POLP 应用于构建\n\n当构建运行并与其他 Google Cloud 资源交互时，默认情况下它们会使用 Cloud Build 服务账号作为其身份，并为其分配权限。\n\
+  \n然而，这并不能使构建或用户应用 POLP；如果有一个 GCP 服务账号被多个执行不同任务或与不同资源交互的构建使用，那么使用该服务账号的所有构建都会过度授权。\n\
+  \nCloud Build 支持按构建或按触发器的服务账号；这使你能够有意地并根据 POLP 创建每个服务账号。\n\n这一原则确保每个构建拥有的权限不超过其成功执行所需的最小权限；这是通过特定用途的\
+  \ GCP 服务账号实现的。\n\n## 创建特定于构建的 IAM 服务账号\n\n让我们首先创建两个 GCP 服务账号，每个模拟的团队一个。\n\n作为提醒，如果你在处理上一节后丢失了上下文，请运行以下命令以导航到正确的目录并加载正确的环境变量。\n\
+  \n将此处显示的 <add-project-id> 替换为你正在使用的项目：\n\n```bash\n$ gcloud config set project <add-project-id>\n\
+  ```\n\n按如下方式导航到你正在工作的目录：\n\n```bash\n$ cd ~/cloudbuild-gke/08\n```\n\n按如下方式加载所需环境变量：\n\
+  \n```bash\n$ source bin/variables.sh\n```\n\n现在，创建第一个服务账号。它将与团队 A 相关联，并将与负责构建容器镜像并将其推送到\
+  \ Artifact Registry 中团队 A 仓库的构建相关联。以下是你需要执行的代码：\n\n```bash\n$ gcloud iam service-accounts\
+  \ create $GCP_SA_NAME_01 \\\n  --display-name=$GCP_SA_NAME_01\n```\n\n该服务账号所需的权限是能够向\
+  \ Artifact Registry 中的特定仓库写入容器镜像。这符合 POLP，因为我们不想授予对 Artifact Registry 中所有仓库的访问权限，特别是如果我们有其他团队构建和存储与团队\
+  \ A 无关的镜像。以下截图中展示了其表示：\n\n![](img/2fe9576240c146c49e3a21d5e7f6af00_161_0.png)\n\n\
+  图 8.7 – 仅对特定 Artifact Registry 仓库具有权限的按构建服务账号\n\n让我们在 Artifact Registry 中创建一个仓库，并附带一个角色绑定，该绑定将使服务账号获得对\
+  \ Artifact Registry 中团队 A 的单个命名仓库的权限，如下所示：\n\n```bash\n$ gcloud artifacts repositories\
+  \ create $REPOSITORY_A \\\n  --repository-format=docker \\\n  --location=$REGION\n\
+  \n$ gcloud artifacts repositories add-iam-policy-binding team-a-repository\\\n \
+  \ --location us-west1 --member=$GCP_SA_NAME_01 --role=roles/artifactregistry.writer\n\
+  ```\n\n现在让我们重复相同的过程，只是针对团队 B 用于构建和推送容器镜像到其在 Artifact Registry 中自己的仓库的特定服务账号，如下所示：\n\
+  \n```bash\n$ gcloud iam service-accounts create $GCP_SA_NAME_02 \\\n  --display-name=$GCP_SA_NAME_02\n\
+  \n$ gcloud artifacts repositories create $REPOSITORY_B \\\n  --repository-format=docker\
+  \ \\\n  --location=$REGION\n\n$ gcloud artifacts repositories add-iam-policy-binding\
+  \ team-b-repository\\\n  --location us-west1 --member=$GCP_SA_NAME_02 --role=roles/artifactregistry.writer\n\
+  ```\n\n我们还必须授予服务账号日志访问权限，以便将构建日志写入 Cloud Logging，使用以下两个命令：\n\n```bash\n$ gcloud\
+  \ projects add-iam-policy-binding ${PROJECT_ID} \\\n--member=\"serviceAccount:${GCP_SA_NAME_01}@${PROJECT_ID}.iam.gserviceaccount.com\"\
+  \ \\\n--role=roles/logging.logWriter\n$ gcloud projects add-iam-policy-binding ${PROJECT_ID}\
+  \ \\\n--member=\"serviceAccount:${GCP_SA_NAME_02}@${PROJECT_ID}.iam.gserviceaccount.com\"\
+  \ \\\n--role=roles/logging.logWriter\n```\n\n完成此操作后，我们将继续配置 GKE 集群侧服务账号的最小权限。与我们在\
+  \ Artifact Registry 中所做的一样，我们将对集群访问应用 POLP。\n\n## 构建服务账号的自定义 IAM 角色\n\n由于团队 A 和团队\
+  \ B 在你的 GKE 集群中将拥有自己的命名空间，我们只希望他们的服务账号对这些命名空间具有权限，而不是整个 GKE 集群，如下图所示：\n\n![](img/2fe9576240c146c49e3a21d5e7f6af00_162_0.png)\n\
+  \n为此，我们必须在你的 GKE 集群中创建命名空间，为团队 A 和团队 B 的构建服务账号创建自定义 IAM 角色，并利用 Kubernetes 基于角色的访问控制（RBAC）以在\
+  \ GKE 集群内拥有最小权限。\n\n为了区分名称非常相似的资源，请参阅下图：\n\n![](img/2fe9576240c146c49e3a21d5e7f6af00_163_0.png)\n\
+  \n图 8.9 – 用于获取凭据的 GCP 服务账号；用于其他所有事物的 Kubernetes 服务账号\n\n首先创建每个服务账号将用于获取 GKE 集群凭据的自定义角色，如下所示：\n\
+  \n```bash\n$ cat << EOF > infra/minimal-gke-role.yaml\ntitle: minimal-gke\ndescription:\
+  \ Gets credentials only, RBAC for authz.\nstage: GA\nincludedPermissions:\n- container.apiServices.get\n\
+  - container.apiServices.list\n- container.clusters.get\n- container.clusters.getCredentials\n\
+  EOF\n$ gcloud iam roles create minimal-gke-role --project=$PROJECT_ID \\\n  --file=infra/minimal-gke-role.yaml\n\
+  ```\n\n现在，将该自定义角色绑定到将用于部署 Team A 和 Team B 各自容器化应用程序到 GKE 集群的每个构建的每个服务帐户，如下所示：\n\n\
+  ```\n$ gcloud projects add-iam-policy-binding ${PROJECT_ID} \\\n--member=\"serviceAccount:${GCP_SA_NAME_01}@${PROJECT_ID}.iam.gserviceaccount.com\"\
+  \ \\\n--role=projects/${PROJECT_ID}/roles/minimal_gke_role\n$ gcloud projects add-iam-policy-binding\
+  \ ${PROJECT_ID} \\\n--member=\"serviceAccount:${GCP_SA_NAME_02}@${PROJECT_ID}.iam.gserviceaccount.com\"\
+  \ \\\n--role=projects/${PROJECT_ID}/roles/minimal_gke_role\n```\n\n在为 GCP 服务帐户设置了用于从\
+  \ GKE 集群获取凭据的自定义角色后，我们现在必须设置 Kubernetes 资源。运行以下命令以在集群中创建命名空间和 Kubernetes 服务帐户：\n\
+  \n```\n$ gcloud projects add-iam-policy-binding ${PROJECT_ID} \\\n--member=\"serviceAccount:${GCP_SA_GCB_DEFAULT}\"\
+  \ \\\n--role=roles/container.admin\n$ cat << EOF > infra/bootstrap-cluster.yaml\n\
+  steps:\n  - name: gcr.io/cloud-builders/gcloud\n    id: Bootstrap GKE cluster\n\
+  \    entrypoint: bash\n    args:\n      - '-c'\n      - |\n        gcloud container\
+  \ clusters get-credentials cluster\n        --region $REGION --project $PROJECT_ID\n\
+  \        kubectl create ns $NAMESPACE_01\n        kubectl create ns $NAMESPACE_02\n\
+  \        kubectl create role team-a-admin\n        --verb=get,list,watch,create,update,patch,delete\n\
+  \        --resource=deployments.apps,services --namespace=$NAMESPACE_01\n      \
+  \  kubectl create role team-b-admin\n        --verb=get,list,watch,create,update,patch,delete\n\
+  \        --resource=deployments.apps,services --namespace=$NAMESPACE_02\n      \
+  \  kubectl create rolebinding team-a-gcp-sa-binding\n        --role=team-a-admin\
+  \ --user=${GCP_SA_NAME_01}@${PROJECT_ID}.iam.gserviceaccount.com --namespace=$NAMESPACE_01\n\
+  kubectl create rolebinding team-b-gcp-sa-binding\n--role=team-b-admin --user=${GCP_SA_NAME_02}@${PROJECT_ID}.iam.gserviceaccount.com\
+  \ --namespace=$NAMESPACE_02\noptions:\n    workerPool: 'projects/$PROJECT_NUM/locations/$REGION/workerPools/$PRIVATE_POOL_NAME'\n\
+  EOF\n$ gcloud builds submit . --config=infra/bootstrap-cluster.yaml\n```\n\n现在让我们验证\
+  \ GKE 和 Kubernetes 资源是否已相应设置。我们将创建一个测试构建，在其中尝试从我们创建的每个团队命名空间获取 Kubernetes 部署。\n\n\
+  运行以下命令以创建并运行 Team A 的测试构建。构建应失败，但日志应显示该服务帐户能够获取 team-a 命名空间的资源，同时无法获取 team-b 命名空间的资源：\n\
+  \n```\n$ cat << EOF > bin/test-build-a.yaml\nsteps:\n  - name: gcr.io/cloud-builders/gcloud\n\
+  \    id: Test GCP SA for Team A\n    entrypoint: bash\n    args:\n      - '-c'\n\
+  \      - |\n        gcloud container clusters get-credentials $CLUSTER_NAME\n  \
+  \      --region $REGION --project $PROJECT_ID\n        kubectl get deployments -n\
+  \ $NAMESPACE_01\n        kubectl get deployments -n $NAMESPACE_02\nserviceAccount:\
+  \ 'projects/$PROJECT_ID/serviceAccounts/${GCP_SA_NAME_01}@${PROJECT_ID}.iam.gserviceaccount.com'\n\
+  options:\n    workerPool: 'projects/$PROJECT_NUM/locations/$REGION/workerPools/private-pool'\n\
+  \    logging: CLOUD_LOGGING_ONLY\nEOF\n\n$ gcloud builds submit . --config=bin/test-build-a.yaml\n\
+  ```\n\n您 Cloud Build 日志中的输出应类似于以下内容：\n\n```\n>2022-07-01T15:02:23.226364190Z No\
+  \ resources found in team-a namespace.\n\n>2022-07-01T15:02:23.625289198Z Error\
+  \ from server (Forbidden): deployments.apps is forbidden: User \"build-01-sa@agmsb-lab.iam.gserviceaccount.com\"\
+  \ cannot list resource \"deployments\" in API group \"apps\" in the namespace \"\
+  team-b\": requires one of [\"container.deployments.list\"] permission(s).\n```\n\
+  \n如果您愿意，也可以使用 Team B 服务帐户进行测试。\n\n在现在已保护构建基础设施并确保构建运行的权限保持最小化之后，是时候开始设置构建执行了。\n\n\
+  ## 配置构建的发布管理\n\n在第 5 章《触发构建》中，我们介绍了构建触发器；在本文示例中，我们将使用与 GitHub.com 的触发器，尽管理论上此工作流可以应用于\
+  \ GitHub Enterprise 等其他集成。\n\n本示例中的工作流将按以下步骤顺序进行：\n\n- 1. 开发者在功能分支上工作。\n- 2. 开发者将代码更改推送到该功能分支上的\
+  \ GitHub 仓库。\n- 3. 开发者向主分支打开拉取请求（PR），触发第一次构建。\n- 4. Cloud Build 运行测试并为应用程序构建容器镜像。\n\
+  - 5. GitHub 仓库所有者合并 PR，触发第二次构建。\n- 6. Cloud Build 运行并将容器镜像部署到私有 GKE 集群。\n\n该工作流对\
+  \ Team A 和 Team B 保持相同。为了开始逐步了解此工作流，请先设置 GitHub.com 以与 Cloud Build 集成。\n\n## 将 SCM\
+  \ 与 Cloud Build 集成\n\n运行此示例需要 GitHub.com 帐户。您可以开始在浏览器中登录您的 GitHub 帐户（https://www.github.com）。如果您没有，可以在此免费注册（https://docs.github.com/en/get-started/signing-up-for-github/signing-up-for-a-new-github-account）。\n\
+  \n您还需要在 Cloud Shell 中使用内置的 gh 命令行实用程序进行身份验证，我们将使用它来自动创建 Team A 和 Team B 的仓库。\n\n\
+  作为提醒，如果您在处理上一节后丢失了上下文，请运行以下命令以导航到正确的目录并加载适当的环境变量。\n\n将 <add-project-id> 替换为，如图所示，您正在使用的项目：\n\
+  \n```\n$ gcloud config set project <add-project-id>\n```\n\n按如下方式导航到您正在工作的目录：\n\n\
+  ```\n$ cd ~/cloudbuild-gke/08\n```\n\n按如下方式加载所需的环境变量：\n\n```\n$ source bin/variables.sh\n\
+  ```\n\n现在，运行以下命令以逐步完成 GitHub 身份验证流程并按照收到的提示操作：\n\n```\n$ gh auth login\n```\n\n\
+  首先在 GitHub.com 上创建并推送两个仓库，一个用于 Team A，一个用于 Team B。我们将使用预建的仓库模板，其中包含 Team A 和 Team\
+  \ B 的各自文件。\n\n使用以下命令创建并克隆 Team A 仓库：\n\n```\n$ cd bin\n$ gh repo create $GH_A --public\n\
+  $ gh repo clone $GH_A && cd $GH_A\n```\n\n通过运行以下命令使用 Team A 的仓库模板为该空仓库播种：\n\n```\n\
+  $ cp -r ../../repo_templates/team_a/. .\n```\n\n现在，按如下方式提交更改并将其推送到上游仓库：\n\n```\n\
+  $ git add .\n$ git commit -m \"Copy over example repo.\"\n$ git push --set-upstream\
+  \ origin HEAD\n```\n\n我们将对 Team B 重复这些步骤，使用以下命令创建并克隆 Team B 仓库：\n\n```\n$ cd ..\n\
+  $ gh repo create $GH_B --public\n$ gh repo clone $GH_B && cd $GH_B\n```\n\n通过运行以下命令使用\
+  \ Team B 的仓库模板为该空仓库播种：\n\n```\n$ cp -r ../../repo_templates/team_b/. .\n```\n\n\
+  现在，按如下方式提交更改并将其推送到上游仓库：\n\n```\n$ git add .\n$ git commit -m \"Copy over example\
+  \ repo.\"\n$ git push --set-upstream origin HEAD\n```\n\n在我们设置触发器以从这些仓库的事件启动构建之前，我们需要安装\
+  \ Cloud Build 的 GitHub 应用以与 GitHub.com 集成（https://cloud.google.com/build/docs/automating-builds/build-repos-from-github#installing_gcb_app）。\n\
+  \n> **注意**\n> 在本示例中，我们使用基于 GitHub.com 的集成与 Cloud Build，以简化操作并避免任何许可要求。\n> 在更现实的示例中，您希望使用私有\
+  \ SCM 系统（如 GitHub Enterprise）设置集成，Cloud Build 将与之具有私有连接。\n> 要查看如何设置此类集成，请在此处查看文档：https://cloud.google.com/build/docs/automating-builds/build-repos-from-github-enterprise。\n\
+  \n现在，按如下方式为 Team A 创建两个触发器：\n\n```\n$ gcloud beta builds triggers create github\
+  \ \\\n  --name=team-a-build \\\n  --region=$REGION \\\n  --repo-name=$GH_A \\\n\
+  \  --repo-owner=$GH_USERNAME \\\n  --pull-request-pattern=master --build-config=build-a.yaml\
+  \ \\\n  --service-account=projects/$PROJECT_ID/\n```\n\n```\nserviceAccounts/${GCP_SA_NAME_01}@${PROJECT_ID}.iam.gserviceaccount.com\n\
+  $ gcloud beta builds triggers create github \\\n  --name=team-a-deploy \\\n  --region=$REGION\
+  \ \\\n  --repo-name=$GH_A \\\n  --repo-owner=$GH_USERNAME \\\n  --branch-pattern=master\
+  \ --build-config=deploy-a.yaml \\\n  --service-account=projects/$PROJECT_ID/serviceAccounts/${GCP_SA_NAME_01}@${PROJECT_ID}.iam.gserviceaccount.com\
+  \ \\\n  --require-approval\n```\n\n让我们回顾一下这两个触发器之间的一些差异。\n\n在创建的第一个触发器中，我们利用了 Cloud\
+  \ Build 通过使用 --pull-request-pattern 参数来触发 PR 的支持。通过指定 main，这意味着在针对 master 分支打开 PR\
+  \ 时将运行构建。\n\n在创建的第二个触发器中，我们改用 --branch-pattern 来触发 master 分支的任何更改。\n\n现在，创建 Team\
+  \ B 的触发器，其模式将与 Team A 的触发器相同，如下所示：\n\n```\n$ gcloud beta builds triggers create\
+  \ github \\\n  --name=team-b-build \\\n  --region=$REGION \\\n  --repo-name=$GH_B\
+  \ \\\n  --repo-owner=$GH_USERNAME \\\n  --pull-request-pattern=master --build-config=build-b.yaml\
+  \ \\\n  --service-account=projects/$PROJECT_ID/serviceAccounts/${GCP_SA_NAME_02}@${PROJECT_ID}.iam.gserviceaccount.com\n\
+  $ gcloud beta builds triggers create github \\\n  --name=team-b-deploy \\\n  --region=$REGION\
+  \ \\\n  --repo-name=$GH_B\\\n  --repo-owner=$GH_USERNAME \\\n  --branch-pattern=master\
+  \ --build-config=deploy-b.yaml \\\n  --service-account=projects/$PROJECT_ID/serviceAccounts/${GCP_SA_NAME_02}@${PROJECT_ID}.iam.gserviceaccount.com\
+  \ \\\n  --require-approval\n```\n\n触发器创建完成后，我们现在可以回顾如何对这些构建进行门控，确保在构建实际运行之前可以进行额外的人工审查。\n\
+  \n## 使用手动审批对构建进行门控\n\n这引出了您可能注意到的每个团队的两个触发器之间的最后一个差异——添加了 -require-approval 标志，该标志引入了构建的显式和手动审批方法。\n\
+  \n这为具有 Cloud Build Approver 明确 IAM 权限的管理员提供了批准需要审批的构建的基础。如果没有此批准，构建将处于等待状态且不会执行。\n\
+  \n对于此示例工作流，我们在 Team A 和 Team B 的第二个触发器前面放置手动审批，从而在模拟生产环境发布之前提供一个门控。\n\n如果您访问 Cloud\
+  \ Build 控制台，您将看到等待审批的构建的以下选项：\n\n![](img/2fe9576240c146c49e3a21d5e7f6af00_170_0.png)\n\
+  \n图 8.10 – 查看单个构建审批请求\n\n实际批准构建时，此操作不仅会被记录在 Cloud Audit Logging 中以了解谁在何时执行了哪个发布，而且还使\
+  \ Cloud Build Approver 能够提供理由和元数据来为批准构建的决定辩护，如以下屏幕截图所示：\n\n## 批准构建\n\n批准将导致此构建运行。了解更多信息\n\
+  \n此触发器有 8 个较旧的构建正在等待审批。这是最新的一项。\n\n添加一条可选消息以与构建的审批一起显示 0 / 1000\n\n显示附加选项\n\n取消\
+  \   批准\n\n图 8.11 – 从 Cloud Build 控制台查看构建审批对话框\n\n这允许设置多个门控，既有隐式的也有显式的，以便人工审查决定代码和工件是否会被提升到不同的环境中，包括生产环境。\n\
+  \n现在，让我们从头到尾运行此示例，通过分别触发我们为 Team A 和 Team B 描述的全部四个构建。\n\n## 通过构建触发器执行构建\n\n首先为这些触发器中的每个触发器创建\
+  \ Cloud Build 配置文件。\n\n作为提醒，如果您在处理上一节后丢失了上下文，请运行以下命令以导航到正确的目录并加载适当的环境变量。\n\n将此处显示的\
+  \ <add-project-id> 替换为您正在使用的项目：\n\n```\n$ gcloud config set project <add-project-id>\n\
+  ```\n\n按如下方式导航到您正在工作的目录：\n\n```\n$ cd ~/cloudbuild-gke/08\n```\n\n按如下方式加载所需的环境变量：\n\
+  \n```\n$ source bin/variables.sh\n```\n\n首先创建用于构建 Team A 和 Team B 容器镜像的构建文件。这些构建将负责构建容器镜像并分别将其推送到\
+  \ Artifact Registry 中的 Team A 和 Team B 仓库。以下是您需要执行的代码：\n\n```\n$ cat << EOF > bin/$GH_A/build-a.yaml\n\
+  steps:\n  - name: gcr.io/cloud-builders/docker\n    id: Build container image\n\
+  \    args: ['build', '-t', '${REGION}-docker.pkg.dev/${PROJECT_ID}/${REPOSITORY_A}/team-a-app:v1',\
+  \  '.']\nimages: [${REGION}-docker.pkg.dev/${PROJECT_ID}/${REPOSITORY_A}/team-a-app:v1]\n\
+  serviceAccount: 'projects/${PROJECT_ID}/serviceAccounts/${GCP_SA_NAME_01}@${PROJECT_ID}.iam.gserviceaccount.com'\n\
+  options:\n  requestedVerifyOption: VERIFIED\n  workerPool: 'projects/${PROJECT_NUM}/locations/${REGION}/workerPools/${PRIVATE_POOL_NAME}'\n\
+  \  logging: CLOUD_LOGGING_ONLY\nimages: [${REGION}-docker.pkg.dev/${PROJECT_ID}/${REPOSITORY_A}/team-a-app:v1]\n\
+  EOF\n\n$ cat << EOF > bin/build-b.yaml\nsteps:\n  - name: gcr.io/cloud-builders/docker\n\
+  \    id: Build container image\n    args: ['build', '-t', '${REGION}-docker.pkg.dev/${PROJECT_ID}/${REPOSITORY_B}/team-b-app:v1',\
+  \  '.']\nimages: [${REGION}-docker.pkg.dev/${PROJECT_ID}/${REPOSITORY_B}/team-b-app:v1]\n\
+  serviceAccount: 'projects/${PROJECT_ID}/serviceAccounts/${GCP_SA_NAME_02}@${PROJECT_ID}.iam.gserviceaccount.com'\n\
+  options:\n  requestedVerifyOption: VERIFIED\n  workerPool: 'projects/$PROJECT_NUM/locations/$REGION/workerPools/$PRIVATE_POOL_NAME'\n\
+  \  logging: CLOUD_LOGGING_ONLY\nimages: [${REGION}-docker.pkg.dev/$PROJECT_ID/$REPOSITORY_B/team-b-app:v1]\n\
+  EOF\n```\n\n接下来，按如下方式创建用于将 Team A 和 Team B 的应用程序部署到 GKE 集群中各自命名空间的构建文件：\n\n```\n\
+  $ cat << EOF > bin/$GH_A/deploy-a.yaml\nsteps:\n- name: gcr.io/cloud-builders/gke-deploy\n\
+  \  id: Prep k8s manifests\n  args:\n  - 'prepare'\n  - '--filename=k8s.yaml'\n \
+  \ - '--image=${REGION}-docker.pkg.dev/$PROJECT_ID/$REPOSITORY_A/team-a-app:v1'\n\
+  \  - '--version=v1'\n- name: gcr.io/google.com/cloudsdktool/cloud-sdk\n  id: Get\
+  \ kubeconfig and apply manifests\n  entrypoint: sh\n  args:\n  - '-c'\n  - |\n \
+  \   gcloud container clusters get-credentials $CLUSTER_NAME --region $REGION --project\
+  \ $PROJECT_ID\n    kubectl apply -f output/expanded/aggregated-resources.yaml -n\
+  \ $NAMESPACE_01\nserviceAccount: 'projects/${PROJECT_ID}/serviceAccounts/${GCP_SA_NAME_01}@${PROJECT_ID}.iam.gserviceaccount.com'\n\
+  options:\n  workerPool: 'projects/$PROJECT_NUM/locations/$REGION/workerPools/$PRIVATE_POOL_NAME'\n\
+  \  logging: CLOUD_LOGGING_ONLY\nEOF\n\n$ cat << EOF > bin/$GH_B/deploy-b.yaml\n\
+  steps:\n  - name: gcr.io/cloud-builders/gke-deploy\n    id: Prep k8s manifests\n\
+  \    args:\n      - 'prepare'\n      - '--filename=k8s.yaml'\n      - '--image=${REGION}-docker.pkg.dev/${PROJECT_ID}/${REPOSITORY_A}/team-b-app:v1'\n\
+  \      - '--version=v1'\n  - name: gcr.io/google.com/cloudsdktool/cloud-sdk\n  \
+  \  id: Get kubeconfig and apply manifests\n    entrypoint: sh\n    args:\n     \
+  \ - '-c'\n      - |\n        gcloud container clusters get-credentials $CLUSTER_NAME\
+  \ --region $REGION --project $PROJECT_ID\n        kubectl apply -f output/expanded/aggregated-resources.yaml\
+  \ -n $NAMESPACE_02\nserviceAccount: 'projects/${PROJECT_ID}/serviceAccounts/${GCP_SA_NAME_02}@${PROJECT_ID}.iam.gserviceaccount.com'\n\
+  options:\n  workerPool: 'projects/$PROJECT_NUM/locations/$REGION/workerPools/$PRIVATE_POOL_NAME'\n\
+  \  logging: CLOUD_LOGGING_ONLY\nEOF\n```\n\n为每个团队的仓库准备好构建文件后，让我们现在将这些更改推送到上游。我们将创建一个测试分支并将其推送到\
+  \ GitHub.com 上的远程仓库，如下所示：\n\n```\n$ cd bin/$GH_A\n$ git branch test\n$ git checkout\
+  \ test\n$ git add .\n$ git commit -m \"Add Cloud Build YAML files.\"\n$ git push\
+  \ --set-upstream origin HEAD\n$ cd ../$GH_B\n$ git branch test\n```\n\n\n\n```\n\
+  $ git checkout test\n$ git add .\n$ git commit -m \"Add Cloud Build YAML files.\"\
+  \n$ git push --set-upstream origin HEAD\n$ cd ../..\n```\n\n我们现在可以访问 `GitHub.com`\
+  \ 的网页 **用户界面 (UI)**，在其中我们将被提示在每个仓库中分别创建 PR，以合并添加到测试分支的更改。\n\n打开每个仓库的 PR 后，我们将看到第一对触发器启动。它们应分别构建\
+  \ Team A 和 Team B 的容器镜像。通过指定 `images` 字段，我们还确保它们将由 Cloud Build 推送，并自动生成构建来源，如 *第\
+  \ 6 章、环境安全管理* 中所述。\n\n现在，我们可以合并每个仓库的 PR，这将启动我们的第二对触发器。这些构建各运行两个步骤：首先，通过为每个容器镜像插入摘要来准备\
+  \ Kubernetes 清单，其次，将这些清单应用到 GKE 集群。\n\n由于需要审批，您必须在构建启动前批准每个构建。批准构建并成功完成后，导航到侧边栏中\
+  \ GKE 菜单中的 **工作负载**。我们现在可以看到 `team-a-app` 和 `team-b-app` 已成功部署。您也可以导航到侧边栏中 GKE 菜单中的\
+  \ **服务和入口**，以访问面向您各自应用请求的负载均衡器端点。\n\n## 从构建中启用工件的可验证信任\n\n最后，在通过 Cloud Build 将软件从源代码安全地交付到\
+  \ GKE 时，您希望确保能够验证在集群中运行的软件工件确实是在受信任的环境中构建的——在这种情况下，是您的 Cloud Build 工作器。\n\nCloud\
+  \ Build 提供自动构建来源 (`https://cloud.google.com/build/docs/securing-builds/view-build-provenance`)，它使\
+  \ Cloud Build 能够为其构建的每个容器镜像生成签名元数据，证明该工件源自 Cloud Build 中的构建，而不是通过 **场外 (OOB)** 的恶意行为者。\n\
+  \n## 使用构建来源构建镜像\n\n最后，在通过 Cloud Build 将软件从源代码安全地交付到 GKE 时，您希望确保能够验证在集群中运行的软件工件确实是在受信任的环境中构建的——在这种情况下，是您的\
+  \ Cloud Build 工作器。您可以在此处看到此过程的说明：\n\n![](img/2fe9576240c146c49e3a21d5e7f6af00_176_0.png)\n\
+  \n图 8.12 – 构建来源提供证明工件来源的加密签名元数据\n\n我们可以通过运行以下命令查看此元数据：\n\n```\n$ gcloud artifacts\
+  \ docker images describe \\\n$REGION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY_A/team-a-app:v1\
+  \ \\\n  --show-provenance\n```\n\n现在，我们将看看如何在部署过程中使用此元数据。\n\n## 利用 Binary Authorization\
+  \ 进行准入控制\n\n有了从 Cloud Build 角度生成的此元数据，我们现在可以通过启用 Binary Authorization 并创建策略来保护目标环境，这些策略将拒绝运行没有由\
+  \ Cloud Build 生成的构建来源的容器镜像。\n\n这使您能够生成对 Cloud Build 的可验证信任，并在 GKE 或 Cloud Run 中在运行时验证该信任。该过程在以下图表中说明：\n\
+  \n![](img/2fe9576240c146c49e3a21d5e7f6af00_176_1.png)\n\n图 8.13 – 利用证明自动将工件准入或拒绝到生产\
+  \ GKE 集群\n\n在此示例中，我们将通过导入策略来启用 Binary Authorization，该策略要求来自 built-by-cloud-build\
+  \ 证明者的证明，该证明者在运行生成构建来源的构建时会自动为您生成。\n\n运行以下命令创建所需的策略：\n\n```\n$ cat << EOF > infra/policy.yaml\n\
+  globalPolicyEvaluationMode: ENABLE\ndefaultAdmissionRule:\n    evaluationMode: REQUIRE_ATTESTATION\n\
+  \    enforcementMode: ENFORCED_BLOCK_AND_AUDIT_LOG\n    requireAttestationsBy:\n\
+  \    - projects/${PROJECT_ID}/attestors/${ATTESTOR_ID}\nEOF\n```\n\n运行以下命令导入所需的策略：\n\
+  \n```\n$ gcloud container binauthz policy import infra/policy.yaml\n```\n\n启用此策略后，我们现在可确保只有由\
+  \ Cloud Build 构建并具有构建来源的镜像才会在部署时被准入到我们的集群。\n\n让我们通过尝试部署一个 OOB 容器镜像来测试这一点，该镜像在 Cloud\
+  \ Shell 中本地构建，而不是通过 Cloud Build 中的工作器构建。\n\n我们将通过将一个未由 Cloud Build 构建的现有示例容器拉取到我们的项目中来实现此目的。在\
+  \ Cloud Shell 中配置 Docker 以从 Artifact Registry 拉取镜像，并像这样从 google-samples 拉取 hello-app\
+  \ 镜像：\n\n```\n$ gcloud auth configure-docker $REGION-docker.pkg.dev\n\n$ docker\
+  \ pull us-docker.pkg.dev/google-samples/containers/gke/hello-app:1.0\n```\n\n然后，将容器镜像标记为\
+  \ out-of-band-app 并推送到 Artifact Registry 中 Team A 的仓库，如下所示：\n\n```\n$ docker tag\
+  \ us-docker.pkg.dev/google-samples/containers/gke/hello-app:1.0 $REGION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY_A/out-of-band-app:tag1\n\
+  ```\n\n```\n$ docker push $REGION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY_A/out-of-band-app:tag1\n\
+  ```\n\n现在，让我们使用 Cloud Build 中的构建创建 Kubernetes 清单并将其应用到我们的集群，如下所示：\n\n```\n$ cd bin\n\
+  $ mkdir out-of-band && cd out-of-band\n\n$ DIGEST=$(gcloud artifacts docker images\
+  \ describe $REGION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY_A/out-of-band-app:tag1\
+  \ --format=\"json\" | jq '.image_summary.\"digest\"' | cut -d \"\\\"\" -f 2)\n\n\
+  $ cat << EOF > k8s.yaml\napiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name:\
+  \ out-of-band-app\nspec:\n  selector:\n    matchLabels:\n      app: out-of-band\n\
+  \  replicas: 1\n  template:\n    metadata:\n      labels:\n        app: out-of-band\n\
+  \    spec:\n      containers:\n      - name: app\n        image: $REGION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY_A/out-of-band@$DIGEST\n\
+  \        imagePullPolicy: Always\nEOF\n\n$ cat << EOF > cloudbuild.yaml\nsteps:\n\
+  - name: gcr.io/google.com/cloudsdktool/cloud-sdk\n  id: Get kubeconfig and apply\
+  \ manifest of out of band app\n  entrypoint: sh\n  args:\n    - '-c'\n    - |\n\
+  \        gcloud container clusters get-credentials $CLUSTER_NAME --region $REGION\
+  \ --project $PROJECT_ID\n        kubectl apply -f k8s.yaml -n $NAMESPACE_01\n  serviceAccount:\
+  \ 'projects/${PROJECT_ID}/serviceAccounts/${GCP_SA_NAME_01}@${PROJECT_ID}.iam.gserviceaccount.com'\n\
+  \  options:\n    workerPool: 'projects/$PROJECT_NUM/locations/$REGION/workerPools/$PRIVATE_POOL_NAME'\n\
+  \    logging: CLOUD_LOGGING_ONLY\nEOF\n$ gcloud builds submit . --config=cloudbuild.yaml\n\
+  ```\n\n当在您的 GKE 集群中导航到 out-of-band-app 时，您应该会看到类似于此处的错误：\n\n![](img/2fe9576240c146c49e3a21d5e7f6af00_179_0.png)\n\
+  \n图 8.14 – 显示 out-of-band-app 没有所需证明的错误\n\nBinary Authorization 具有灵活性和可扩展性；您还可以基于自定义证明和元数据创建策略，或利用与安全扫描的集成，并基于与工件内容相关联的漏洞级别创建策略。\n\
+  \n使用 Binary Authorization 创建符合您要求和组织策略的策略是最佳实践——您可以在此处找到更多策略和用例示例：https://cloud.google.com/container-analysis/docs/ods-cloudbuild#build_your_container.\n\
+  \n### 摘要\n\n在本章中，我们回顾了如何为共享 GKE 集群的多个团队在 Cloud Build 中设置安全的软件交付管道。我们使用私有连接和具有最小权限的每个构建\
+  \ GCP 服务账户设置了安全的基础设施。我们引入了带有人机回路审查的 Cloud Build 审批，同时确保我们只将受信任且经过验证的容器镜像准入到我们的 GKE\
+  \ 集群。\n\n这些功能和实践使您能够开始实施更安全的软件交付管道到 GKE，这是 Google Cloud 中最受欢迎的运行时之一。\n\n接下来，我们将把重点转移到使用\
+  \ Cloud Build 通过更以开发者为中心、无服务器的平台——Cloud Run 来自动化工作流。\n\n\n"
+- "## 使用 Cloud Build 自动化无服务器\n\n无服务器平台通常专注于开发者体验，力求在尽可能少的运维开销下让开发者专注于代码。在 Google Cloud\
+  \ 中，Cloud Functions 和 Cloud Run 等平台力求提供无缝的开发者体验，将部署生产就绪代码所需的运维工作降至最低。\n\n尽管如此，这些平台并未忽视某些运维任务的需求，而是提供了简单而强大的抽象，供开发者在生产环境中管理代码使用。这些任务可能包括将代码构建为制品、推出代码新版本、水平扩展代码、通过私有网络连接服务等。\n\
+  \nCloud Build 通常用于编排此类活动。凭借与 Google 无服务器产品原生的集成，Cloud Build 帮助开发者完成这些任务，同时仍忠于无服务器的愿景——专注于代码，而非运维。\n\
+  \n在本章中，我们将涵盖以下主题：\n- 了解 Cloud Functions 和 Cloud Run\n- 无需配置即可构建容器\n- 为 Cloud Run\
+  \ 和 Cloud Functions 自动化任务\n\n### 了解 Cloud Functions 和 Cloud Run\n\n我们将首先回顾本章范围内的“无服务器”平台\
+  \ Cloud Functions 和 Cloud Run。在了解开发者在各自平台上的职责后，我们再介绍如何使用 Cloud Build 来管理这些职责。\n\n\
+  ### Cloud Functions\n\n当希望以尽可能少的运维开销运行代码时，**Cloud Functions** 是大多数开发者首先选择的起点。在该平台上，开发者可以选择\
+  \ Cloud Functions 支持的语言运行时并编写小块代码。开发者随后可以将代码部署到 Cloud Functions，并在生产环境中运行，而无需执行以下操作：\n\
+  - 将代码构建为制品\n- 构建运行代码的容器\n- 创建运行代码的基础设施\n- 管理运行和扩展代码的基础设施\n- 设置代码实例的连接性\n- 为运行中的代码配置日志记录和监控\n\
+  \n相反，开发者可以专注于编写代码，并使用单个 `gcloud` 命令部署到 Cloud Functions：\n\n```\n$ gcloud functions\
+  \ deploy function-name --source .\n```\n\nCloud Functions 支持来自包括 **Python**、**Node.js**、**Go**\
+  \ 和 **Java** 在内的语言的特定版本运行时。你可以在此处找到当前支持版本的完整列表：https://cloud.google.com/functions/docs/writing.\n\
+  \n使用 Cloud Functions 最常见的模式是编写事件驱动的函数，即它们响应特定事件的发生而执行。这可能是数据库的更改、云资源的创建，或对 Webhook\
+  \ 的响应。\n\n### Cloud Run\n\n**Cloud Run** 旨在为那些已经或将对在容器中运行代码感兴趣，但仍希望开销尽可能少的开发者提供友好的平台。\n\
+  \n一旦开发者拥有容器，他们就可以使用单个 `gcloud` 命令将其部署到 Cloud Run：\n\n```\n$ gcloud run deploy my-backend\
+  \ --image=us-docker.pkg.dev/project-name/container-image\n```\n\n在容器中运行代码的需求或必要性可能来自多项要求：\n\
+  - 开发者希望确保从开发到生产的多個执行环境中行为一致。\n- 企业中的开发者可能需要为代码轻松迁移到不同平台（如 Kubernetes）做好准备。\n- 开发者可能将代码部署到多个位置，需要统一的打包标准来部署该代码。\n\
+  \n对于这些开发者，他们可能首先需要自行构建容器，然后将其带到运维最少的“无服务器”平台。Cloud Run 提供了这样的平台，允许开发者使用容器作为部署机制，同时仍受益于\
+  \ Cloud Run 管理以下任务：\n- 创建运行代码的基础设施\n- 管理运行和扩展代码的基础设施\n- 设置代码实例的连接性\n- 为运行中的代码配置日志记录和监控\n\
+  \nCloud Run 还允许开发者在“服务”和“作业”之间做出区分。Cloud Run 服务允许通过 HTTPS 端点访问的长期运行服务，而 Cloud Run\
+  \ 作业允许运行至完成的服务，可并行运行实例执行工作，并为每个实例分配一个索引，开发者可利用该索引分配工作。\n\n最后，Cloud Run 允许开发者使服务遵循\
+  \ Knative API。\n\nKnative 是一个开源项目，使运营者能够在 Kubernetes 集群之上托管自己的自管理无服务器平台。由于 Cloud\
+  \ Run 遵循 Knative API 规范，当用户部署 Cloud Run 服务时，他们还将获得可用于将同一容器部署到任何地方运行的 Kubernetes\
+  \ 集群的配置。\n\n这使得 Cloud Run 不仅是一个无服务器容器平台，而且可以扩展到 Google Cloud 之外的环境，且几乎无需或不需要配置更改。\n\
+  \n### Cloud Functions 第二代\n\n有一个较新的 Cloud Functions 版本，名为 Cloud Functions 2nd gen（https://cloud.google.com/functions/docs/2nd-gen/overview），于\
+  \ 2022 年发布。在本章剩余部分，我们将主要与此版本交互。Cloud Functions 2nd gen 的关键变化之一是它构建于 Cloud Run 之上。\n\
+  \n这意味着 Cloud Functions 在 Cloud Run 之上提供了一个抽象层，满足构建容器并部署到 Cloud Run 的要求，使不熟悉容器的用户仍可使用该平台。它保持了前一版\
+  \ Cloud Functions 建立的开发者契约：编写代码，让平台处理其余部分。\n\n与第一个版本一致，部署 Cloud Functions 2nd gen\
+  \ 也可以通过单个命令完成：\n\n```\n$ gcloud functions deploy function-name --gen2 --source .\n\
+  ```\n\n此次重平台化在内部带来了多项改进：\n- 更长的代码执行超时时间\n- 支持对单个代码实例的并发请求\n- 支持在代码修订版本之间拆分流量\n-\
+  \ 支持更大类型的实例\n\nCloud Functions 2nd gen 还与 Google Cloud 的 Eventarc（https://cloud.google.com/eventarc/docs）集成，后者是一种托管事件传递服务，提供了数十种开箱即用的来自\
+  \ Google Cloud 资源的事件支持。\n\n### 比较 Cloud Functions 和 Cloud Run\n\n由于 Cloud Functions\
+  \ 2nd gen 构建为 Cloud Run 之上的抽象层，应注意使用场景可能存在重叠。虽然本章不讨论何时使用其中一个的完整讨论，但应注意一般而言，Cloud\
+  \ Functions 通常执行单一任务，对事件做出某种处理响应。此外，虽然 Cloud Functions 2nd gen 在内部使用 Cloud Run，但你无法自定义其创建和部署的容器。相反，你受限于提供的运行时，并在这些约束内工作。\n\
+  \n另一方面，Cloud Run 是一个功能完善的容器即服务平台。这意味着你可以将任何内容构建到容器镜像中并在 Cloud Run 上运行——从 Web 服务到单体应用程序！\n\
+  \n接下来，让我们回顾开发者如何简化标准包——容器——的生产，该容器由 Cloud Run 和 Cloud Functions 2nd gen 使用。这种简化有助于在认知上最小化开销，减少个人工作站资源的占用，并避免导致信息孤岛的本地优化。\n\
+  \n### 无需构建配置即可构建容器\n\n如果在无服务器上构建的使命是让开发者尽可能轻松地运行软件，那么考虑可以减少认知负担的领域就很重要——尤其是那些不独特或不特定于为其业务提供独特价值的领域。\n\
+  \n\n\n## Dockerfile\n\n对于已经为其应用程序使用过容器的开发者，他们可以将 Dockerfile 带来到 Cloud Build，并且无需编写任何构建配置即可立即运行构建：\n\
+  \n```\n$ gcloud builds submit --tag REGION-docker.pkg.dev/PROJECT_ID/REPO/IMAGE_NAME\n\
+  ```\n\n使用 gcloud 时，它可以检测到当存在 Dockerfile 但缺少构建配置时，你的意图是提交一个单步构建，该构建运行 Docker 并构建你的容器镜像。\n\
+  \n然而，如果你没有编写高效且结构良好的 Dockerfiles 的先前经验和历史，你可能希望不仅利用无需编写构建配置的优势，还避免从零开始优化 Dockerfile。\n\
+  \n## Language-specific tooling\n\n heavily 使用单一语言（如 Java 或 Go）的开发者可能会改用语言特定的工具，这些工具抽象掉了编写任何\
+  \ Dockerfile 或构建的需求，而是 a) 为你处理这些，b) 包含针对你的应用程序语言和运行时的特定优化。\n\n虽然这里的示例并不详尽，让我们回顾一些有助于开发者构建容器且与\
+  \ Cloud Build 等平台兼容的语言特定工具的示例。\n\n对于 Java 开发者，通常使用 Maven 或 Gradle 等工具将项目构建为 JAR\
+  \ 文件。没有语言特定的工具，开发者就需要经历编写 Dockerfile 的过程——这意味着确保他们选择正确的基镜像、适当排序图层等等。\n\n![](img/2fe9576240c146c49e3a21d5e7f6af00_185_0.png)\n\
+  \nFigure 9.1 – 没有语言特定工具的 Java 开发者的常见工作流程\n\nGoogle 已开源一个名为 **Jib** 的项目，它可以直接从 Java\
+  \ 项目构建并生成容器镜像，而无需开发者处理 Dockerfile。它还已作为 Maven 和 Gradle 的插件发布。\n\n![](img/2fe9576240c146c49e3a21d5e7f6af00_186_0.png)\n\
+  \nFigure 9.2 – 使用 Jib 简化构建容器的工作流程\n\nJava 开发者随后可以在 Cloud Build 中将 Jib 与 Maven 或\
+  \ Gradle 一起作为构建步骤运行，从而将构建需求从本地资源中卸载。一旦在云中使用 Jib 运行构建，他们还可以开始利用与其他 Google Cloud 服务（如\
+  \ **Cloud Storage**）的集成来缓存构建文件。\n\n![](img/2fe9576240c146c49e3a21d5e7f6af00_186_1.png)\n\
+  \nFigure 9.3 – 将 Jib 作为 Cloud Build 步骤运行并使用 Cloud Storage 作为构建缓存\n\n对于 Go 开发者，Google\
+  \ 开源了一个类似的项目 **Ko**。Ko 为 Jib 提供了类似的优势，通过让拥有 Go 应用程序的人直接使用 Ko 来生成标准且一致的容器镜像，而无需编写\
+  \ Dockerfile。\n\n尽管如此，Cloud Run 和 Cloud Functions 2<sup>nd</sup> 代并未原生公开使用语言特定工具来构建底层容器镜像的使用。让我们现在回顾\
+  \ Cloud Run 和 Cloud Functions 2<sup>nd</sup> 代如何抽象掉容器镜像的构建过程：buildpacks。\n\n## Buildpacks\n\
+  \n在 Google Cloud 中，Cloud Functions 和 Cloud Run 等无服务器产品都结合 Cloud Build 使用 Google\
+  \ 支持的 **Cloud Native Buildpacks** (https://buildpacks.io) 来为开发者提供此体验。\n\nCloud Functions\
+  \ 和 Cloud Run 都旨在抽象掉使用 buildpacks 构建容器镜像的过程，但仍然有必要回顾其底层原理以及它们如何与 Google Cloud Build\
+  \ 交互。\n\nCloud Native Buildpacks 是一个开源项目，旨在为开发者提供一种简化的方式，直接从源代码构建容器，而无需开发者自行定义容器。\n\
+  \n其实现方式是提供可执行文件来检查你的源代码，并据此规划和执行容器镜像的创建。\n\nBuildpacks 使用两个主要阶段构建容器镜像：\n\n- Detect\n\
+  - Build\n\n这些阶段发生在名为 **builder** 的资源中。Google 的 builder 以托管在 **Container Registry**\
+  \ 中的容器镜像形式提供。你可以通过运行以下命令找到并检查此容器镜像：\n\n```\n$ docker pull gcr.io/buildpacks/builder\n\
+  ```\n\nGoogle 的 builder 容器镜像打包了可构建 Go、Python、Java 和 .NET 应用程序的 buildpacks。你可以在此处找到最新的运行时支持\
+  \ here (https://github.com/GoogleCloudPlatform/buildpacks#general-builder-and-buildpacks)。\n\
+  \n这些 buildpacks 将使用 detect 可执行文件在你的源代码上运行 detect 阶段。在 detect 阶段，buildpack 将确定你的应用程序是否具有构建所需的先决条件——在\
+  \ Python 中，我们可以认为是 requirements.txt 文件；这些先决条件会根据你的运行时而有所不同。\n\n如果满足这些先决条件，则构建阶段将开始。构建阶段将使用构建基镜像构建你的应用程序，然后将输出内容复制到所谓的运行基镜像中，以完成托管你的应用程序的镜像的创建。\n\
+  \n![](img/2fe9576240c146c49e3a21d5e7f6af00_188_0.png)\n\nFigure 9.4 – 使用 builder\
+  \ 与 buildpacks 直接从源构建容器镜像的工作流程\n\n> **Note**\n> 如果你需要自定义此过程中使用的 builder 或运行镜像，可以按照此处的过程进行：https://github.com/GoogleCloudPlatform/buildpacks#extending-the-run-image。\n\
+  > 这通常是需要将自己的系统级软件包安装到这些镜像中的用户所必需的。\n\n此过程由一个抽象掉该过程的平台封装；最常见的消费方式之一是通过 pack CLI。此工具使你能够直接从应用程序目录快速运行并启动两个阶段来构建容器镜像。\n\
+  \n要在本地使用 pack 与 Google 的 builder 容器镜像，你可以从应用程序源代码目录运行以下命令：\n\n```\n$ pack build\
+  \ my-app --builder gcr.io/buildpacks/builder\n```\n\n运行 pack 会在运行它的机器上调用 Docker\
+  \ daemon，使用它来执行 builder 容器。许多开发者经常面临安全限制——有时还有资源限制——这些限制阻止他们在本地运行 Docker。因此，Google\
+  \ Cloud Build 提供了在 Cloud Build 工作器上使用 buildpack builder 构建容器镜像的原生功能。\n\n要使用 Cloud\
+  \ Build 对使用 buildpacks 构建容器镜像的原生支持，请从源代码目录运行以下命令：\n\n```\n$ gcloud builds submit\
+  \ --pack image=gcr.io/$PROJECT_ID/my-app\n```\n\n运行此命令将在 Cloud Build 中启动构建，以构建、标记并将你的容器镜像推送到\
+  \ Container Registry。\n\n![](img/2fe9576240c146c49e3a21d5e7f6af00_189_0.png)\n\n\
+  Figure 9.5 – 使用 Cloud Build 使用 builder 与 buildpacks 直接从源构建容器镜像的工作流程\n\n此构建需要访问公共互联网来拉取\
+  \ builder，因此请记住，如果你使用的是私有池，必须在项目的 Container Registry 或 Artifact Registry 中自行托管 builder\
+  \ 镜像。\n\n对于希望建立标准化镜像并将自定义或专用工具打包到生成的最终容器镜像中的 DevOps 或安全团队，你也可以遵循相同的流程。\n\n构建和托管你自己的\
+  \ builder 允许你通过使用 Google 提供的 builder 镜像作为基础镜像然后添加自己的软件包，为开发者提供标准但定制的镜像，类似于以下示例：\n\
+  \n```\n# For demonstration purposes only, to run this build would require setup\
+  \ beyond the scope of its inclusion\nFROM gcr.io/buildpacks/builder:v1\nUSER root\n\
+  RUN apt-get update && apt-get install -y --no-install-recommends \\\n    subversion\
+  \ && \\\n    apt-get clean && \\\n```\n\n```\nrm -rf /var/lib/apt/lists/*\nUSER\
+  \ cnb\n```\n\n使用 Cloud Build，您可以通过在提交构建时将其设置在 builder 标志中来提供自定义构建器镜像，示例如下：\n\n```\n\
+  $ gcloud builds submit --pack builder=gcr.io/$PROJECT_ID/my-builder image=gcr.io/$PROJECT_ID/my-app\n\
+  ```\n\n通过此模式，我们兼得两者之利：\n\n- 开发人员可以更专注于编写代码，因为此方法不需要任何 Dockerfile 或 Cloud Build 配置。\n\
+  - 运营和安全团队可以建立最佳实践和标准，要么使用 buildpacks 团队提供的开箱即用方案，要么在其基础上使用自己的定制工具构建。\n\n现在我们已经回顾了\
+  \ buildpacks 的基础知识，让我们深入了解 Cloud Run 和 Cloud Functions 如何使用 Cloud Build 来自动化 buildpacks\
+  \ 的使用——以及许多其他任务。\n\n## 用于 Cloud Run 和 Cloud Functions 的任务自动化\n\n本章的这一部分，我们将回顾与 Cloud\
+  \ Run 和 Cloud Functions 相关的众多任务，您可以使用 Cloud Build 对其进行自动化。\n\n## 部署服务和作业到 Cloud\
+  \ Run\n\n第一个，也可能是最简单的可自动化任务是构建和部署容器镜像。本书前面在第 4 章《Build Configuration and Schema》和第\
+  \ 7 章《Automating Deployment with Terraform and Cloud Build》中，我们已回顾了使用 Google Cloud\
+  \ API 的多种方法，具体如下：\n\n- gcloud\n- Terraform\n\n两者都封装了 API，使开发人员能够使用 Google Cloud\
+  \ API 管理资源，包括 Cloud Run 服务和作业。\n\n从开发者体验角度来看，在考虑如何从 Cloud Build 与 Cloud Run 交互时，优先使用\
+  \ gcloud，因为对于希望将运营开销降至最低的开发者来说，它更容易理解。Terraform 使用一种类似 JSON 的语言编写，称为 HashiCorp 配置语言（HCL），它有自己的语法，开发者必须学习（https://www.terraform.io/language/syntax/configuration）。\n\
+  \n> **Note**\n> 需要注意的是，许多企业和组织确实要求其开发人员使用 Terraform 创建所有云资源，以实现一致性和可重用性。\n\n首先，让我们回顾一个简单的构建，它模仿了本书前面回顾过的构建配置，具体在第\
+  \ 3 章《Getting Started – Which Build Information Is Available to Me?》和第 4 章《Build\
+  \ Configuration and Schema》中：\n\n```\n# For demonstration purposes only, to run\
+  \ this build would\nrequire setup beyond the scope of its inclusion\nsteps:\n# Build\
+  \ the container image\n- name: 'gcr.io/cloud-builders/docker'\n  args: ['build',\
+  \ '-t', 'gcr.io/PROJECT_ID/IMAGE', '.']\n# Push the container image to Container\
+  \ Registry\n- name: 'gcr.io/cloud-builders/docker'\n  args: ['push', 'gcr.io/PROJECT_ID/IMAGE']\n\
+  # Deploy container image to Cloud Run\n- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'\n\
+  \  entrypoint: gcloud\n  args: ['run', 'deploy', 'SERVICE-NAME', '--image', 'gcr.io/PROJECT_ID/IMAGE',\
+  \ '--region', 'REGION']\nimages:\n- gcr.io/PROJECT_ID/IMAGE\n```\n\n这里的核心区别是第三个构建步骤，其中使用\
+  \ gcloud 将容器镜像部署到 Cloud Run。虽然这相当直接，但它提供了一个有用的机会来强调所使用的特定构建器，即 cloud-sdk 镜像。\n\n\
+  在第 4 章《Build Configuration and Schema》中，我们讨论了 Cloud Builders 的概念，即由 Cloud Build\
+  \ 团队为构建步骤提供的容器镜像。在 Cloud Builders 项目中，已经有一个用于 gcloud 的镜像。然而，在此示例中，我们使用的是官方 Cloud\
+  \ SDK 团队提供的 cloud-sdk 镜像。\n\n你可以使用非常相似的构建来启动 Cloud Run 作业：\n\n```\n# For demonstration\
+  \ purposes only, to run this build would\nrequire setup beyond the scope of its\
+  \ inclusion\nsteps:\n# Build the container image\n- name: 'gcr.io/cloud-builders/docker'\n\
+  \  args: ['build', '-t', 'gcr.io/PROJECT_ID/IMAGE', '.']\n# Push the container image\
+  \ to Container Registry\n- name: 'gcr.io/cloud-builders/docker'\n  args: ['push',\
+  \ 'gcr.io/PROJECT_ID/IMAGE']\n# Deploy container image to Cloud Run\n- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'\n\
+  \  entrypoint: gcloud\n  args: ['beta', 'run', 'jobs', 'create', 'JOB-NAME', '--image',\
+  \ 'gcr.io/PROJECT_ID/IMAGE', '--region', 'REGION']\nimages:\n- gcr.io/PROJECT_ID/IMAGE\n\
+  ```\n\n虽然知道 gcloud 构建步骤足以部署 Cloud Run 服务和作业是有用的，但 Cloud Run 的资源中内置了多个生命周期功能。这些功能要么在底层原生使用\
+  \ Cloud Build，要么可以使用与前面所示类似的构建进行自动化。\n\n## 部署到 Cloud Functions\n\n对于 Cloud Functions，您可以使用相同的\
+  \ cloud-sdk 镜像来使用 gcloud 调用 gcloud functions deploy 命令：\n\n```\n# For demonstration\
+  \ purposes only, to run this build would require setup beyond the scope of its inclusion\n\
+  steps:\n- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'\n  args:\n  - 'gcloud'\n\
+  \  - 'functions'\n  - 'deploy'\n  - 'FUNCTION_NAME'\n  - '--gen2'\n  - '--region=FUNCTION_REGION'\n\
+  \  - '--source=.'\n  - '--trigger-http'\n  - '--runtime=RUNTIME'\n```\n\n使用前一个命令部署代码时，Cloud\
+  \ Functions 在底层实际上会“编译”为两件事：\n\n- Cloud Functions 在 Cloud Build 中启动一个单步构建，在 Cloud\
+  \ Build 的默认 worker 上运行 pack CLI。\n- Cloud Functions 获取构建的镜像并自动化 Cloud Functions\
+  \ 及其底层 Cloud Run 资源的部署。\n\n> **Note**\n> 您还可以使用 `--build-worker-pool` 标志在使用 gcloud\
+  \ functions deploy 时指定 Cloud Build 中的特定 worker 池来构建函数代码的后端容器镜像。\n\n如果您正在处理全新工作负载，建议您采用\
+  \ Cloud Functions 2ⁿᵈ gen 而非第一代 Cloud Functions。\n\n## 从源代码直接部署到运行在 Cloud Run 中的容器\n\
+  \n我们现在已经讨论了 buildpacks 的工作原理以及如何使用 Cloud Build API 调用 buildpacks 来构建容器镜像。我们还回顾了\
+  \ Cloud Functions 如何将其部署方法中原生集成 buildpacks。\n\nCloud Run 也在其资源中公开了 buildpacks 的使用，允许开发人员直接使用这些\
+  \ API 不仅运行其代码，还可以在没有任何 Dockerfile 或 YAML 配置的情况下自动构建其容器。\n\n以下示例命令显示了一个额外的标志，引用了源目录的位置：\n\
+  \n```\n$ gcloud run deploy my-app --source .\n```\n\n与 Cloud Functions 2nd gen 类似，带有\
+  \ --source 标志的此命令同样会“编译”为两个 gcloud 命令：\n\n- 创建并执行一个构建，在 Cloud Build 的默认 worker 上运行\
+  \ pack CLI 以构建容器镜像并将其推送到 Container Registry\n- 运行 gcloud run deploy，将 image 字段设置为前一步刚构建的容器镜像\n\
+  \n这使开发人员能够快速测试其应用程序在 Cloud Run 中打包在容器镜像中运行。\n\n> **Note**\n> \n> 在出版时，与 Cloud Functions\
+  \ 2ⁿᵈ gen 不同，通过 Cloud Run 启动的所有构建都将安排并在默认池中的 worker 上执行。\n\n然而，正如我们在前几章中所讨论的，更可能的是，您将实现带有触发器的构建以自动化上述步骤的执行。\n\
+  \n要在 Cloud Run 的上下文中配置此项，您需要在创建服务时查看 Cloud Run UI 控制台——选择 **从源代码库持续部署新版本** 然后 **使用\
+  \ Cloud Build 设置**：\n\n![](img/2fe9576240c146c49e3a21d5e7f6af00_194_0.png)\n\n图\
+  \ 9.6 – 创建一个直接从已连接源代码库部署的服务\n\n然后，您可以定义要使用的源代码库，定义使用正则表达式想要触发新构建的分支或分支，并选择 Google\
+  \ Cloud Buildpacks 作为 Cloud Build 在构建容器镜像时要使用的机制。\n\n> **Note**\n> \n> 为了完成此步骤，您需要将诸如\
+  \ GitHub、GitHub Enterprise 或 Bitbucket 等源代码库连接到 Cloud Build。您可以在 Cloud Build 文档（https://cloud.google.com/build/docs/）中找到设置此项的最新说明。\n\
+  \n\n\n\n## 设置 Cloud Build\n\n借助 Cloud Build 提供的持续部署，对源代码仓库的更改会自动构建为 Container Registry\
+  \ 中的容器镜像并部署到 Cloud Run。\n\n您的代码应监听 $PORT 上的 HTTP 请求。您的仓库必须包含 Dockerfile 或 Go、Node.js、Python、Java、.NET\
+  \ Core 或 Ruby 的源代码，以便构建为容器镜像。\n\n### 源代码仓库\n\n### 构建配置\n\n分支 *\n^main$\n使用正则表达式匹配特定分支\
+  \ 了解更多\n\n匹配分支：main\n\n构建类型\nDockerfile\nGo, Node.js, Python, Java, .NET Core 或\
+  \ Ruby via Google Cloud Buildpacks\n构建上下文目录 *\n/\n该目录将用作 Buildpack 构建上下文。\n入口点\n\
+  启动服务器的命令，留空以使用默认行为？\n保存\n\n图 9.7 – 在 Cloud 控制台中为 Cloud Run 服务启用使用 buildpacks 的构建\n\
+  \n通过此设置，您源代码仓库中指定分支的更改现在将触发 Cloud Run 设置的相同构建。虽然不是必须的，但如果您想查看构建或构建日志，可以导航到 Cloud\
+  \ Build 控制台。\n\n![](img/2fe9576240c146c49e3a21d5e7f6af00_196_0.png)\n\n图 9.8 – Cloud\
+  \ Run 在 Cloud Build 中自动创建的三步构建\n\n话虽如此，Cloud Run 还会在 Cloud Run 控制台中直接展示整个服务的构建历史以及每个修订版本的构建日志。\n\
+  \n![](img/2fe9576240c146c49e3a21d5e7f6af00_196_1.png)\n\n图 9.9 – Cloud Run 控制台中可用的构建历史\n\
+  \n### 主容器（端口 8080，1 CPU，512MiB 内存）\n\n| 属性 | 值 |\n|---|---|\n| 镜像 URL | us.gcr.io/agmsb-lab/source-to-cloudrun/new-new@sh...\
+  \ |\n| 端口 | 8080 |\n| 构建 | Cloud Build (logs) |\n| 源 | https://github.com/agmsb/source-to-cloudrun/comm...\
+  \ |\n| 命令和参数 | (container entrypoint) |\n| CPU 限制 | 1 |\n| 内存限制 | 512MiB |\n\n图\
+  \ 9.10 – Cloud Run 控制台中可用的构建日志\n\nCloud Run 在其即用型源到生产功能之下使用 Cloud Build。通过将 Cloud\
+  \ Build 的功能原生地编织到 Cloud Run 资源中，开发人员能够实现无服务器平台所承诺的易用性。\n\n话虽如此，刚刚回顾的方法提供了一种有主见的部署模型，可自动化蓝绿部署的逐步过程。\n\
+  \n蓝绿部署是一种方法，其中部署了应用程序的两个版本，并且 1-100% 的流量从旧的“蓝色”版本切换到新的“绿色”版本：\n\n### 修订版本 管理流量\n\
+  \n| 名称 | 流量 | 已部署 | 修订版本 URL（标签） | 操作 |\n|---|---|---|---|---|\n| new-new-00006-pim\
+  \ | 100% (to latest) | 38 分钟前 | green | |\n| new-new-00005-rig | 0% | 41 分钟前 | blue\
+  \ | |\n\n然而，Cloud Run 为开发人员带来的亮点之一是对声明式更复杂发布模式的支持。\n\n让我们现在讨论如何使用 Cloud Build 来自动化这些内置于\
+  \ Cloud Run API 中的发布模式。\n\n## Cloud Run 服务修订版本的渐进式发布\n\nCloud Run 使开发人员能够直接从其 API\
+  \ 自动化其容器各种修订版本之间的流量整形。使用 gcloud 时，您可以使用特定标志的集合来控制修订版本之间的流量转移。\n\n使用 gcloud run deploy\
+  \ 部署 Cloud Run 服务的新修订版本时，您可以指定以下标志：\n\n- `--no-traffic`\n  这确保您刚刚部署的修订版本在部署时不会接收任何流量。\n\
+  \n部署后，您可以运行 gcloud run services update-traffic 命令来精细控制服务：\n\n- `--to-revisions`\n\
+  \  使用此标志允许您明确指定发送到服务命名修订版本的流量百分比。\n- `--to-latest`\n  使用此标志将把所有流量转移到服务的最新修订版本。\n\
+  \n虽然您也可以手动运行这些命令，但让我们回顾一下如何将此功能与 Cloud Build 中的源代码管理和触发器集成。\n\n使用 --no-traffic 标志指定您的新修订版本将可用并与您的\
+  \ Cloud Run 服务关联，但默认情况下不会向其发送流量。\n\n以下示例构建步骤使用此标志：\n\n```\n# For demonstration purposes\
+  \ only, to run this build would\nrequire setup beyond the scope of its inclusion\n\
+  steps:\n- id: Rollout version with no traffic\n  name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'\n\
+  \  args:\n  - 'gcloud'\n  - 'run'\n  - 'deploy'\n  - 'SERVICE_NAME'\n  - '--image'\n\
+  \  - 'gcr.io/PROJECT_ID/IMAGE_NAME:IMAGE_TAG'\n  - '--region'\n```\n```\n- 'REGION'\n\
+  - '--platform'\n- 'managed'\n- '--no-traffic'\n```\n\n这有效地允许蓝绿部署模型，您可以控制切换发生的时间——因为两个修订版本同时与\
+  \ Cloud Run 服务关联。\n\n这还有额外的好处，即不会产生 VM 或 Kubernetes 集群中蓝绿部署模型通常会产生的额外成本，因为 Cloud\
+  \ Run 仅按计算分钟计费——如果我们的新修订版本不提供流量，则不产生费用。\n\n新修订版本现在已部署，您可以开始实施流量的渐进式发布。--to-revisions\
+  \ 标志允许您明确命名修订版本或指定 LATEST 并定义要定向到该命名修订版本的流量百分比。\n\n以下示例构建步骤使用此标志：\n\n```\n# For\
+  \ demonstration purposes only, to run this build would require setup beyond the\
+  \ scope of its inclusion\nsteps:\n- id: Send 20% of traffic to latest version\n\
+  \  name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'\n  args:\n  - 'gcloud'\n  -\
+  \ 'run'\n  - 'services'\n  - 'update-traffic'\n  - 'SERVICE_NAME'\n  - '--to-revisions'\n\
+  \  - 'LATEST=20'\n  - '--region'\n  - 'us-central1'\n```\n\n将此付诸实践被认为是一种金丝雀部署方法，其中您将生产流量的子集发送到新的或“金丝雀”修订版本。在本例中，为生产流量的\
+  \ 20%。\n\n在此期间，您的金丝雀和之前的“稳定”版本共存，通常您会利用这段时间进行金丝雀分析。在金丝雀分析期间，您可以将金丝雀修订版本与稳定修订版本进行比较，观察诸如延迟等指标，以判断金丝雀修订版本是否可以提升以接收所有流量。\n\
+  \n当您准备做出此判断时，--to-latest 标志允许您明确将所有生产流量发送到最新修订版本，从而有效地将该修订版本提升到生产环境。\n\n以下示例构建步骤使用此标志：\n\
+  \n```\n# For demonstration purposes only, to run this build would\nrequire setup\
+  \ beyond the scope of its inclusion\nsteps:\n- id: Send 100% of traffic to latest\
+  \ version\n  name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'\n  args:\n  - 'gcloud'\n\
+  \  - 'run'\n  - 'services'\n  - 'update-traffic'\n  - 'SERVICE_NAME'\n  - '--to-latest'\n\
+  \  - '--region'\n  - 'us-central1'\n```\n\n此模型也扩展到 Cloud Functions 第二代。虽然 Cloud\
+  \ Functions 第二代抽象掉了用户与 Cloud Run 需要做的许多工作，但流量管理仍然通过 Cloud Run API 进行。\n\n使用 Cloud\
+  \ Build 来编排此操作可以使您手动触发这些相应流程，或根据源代码仓库的更改触发。\n\n流量管理并不是 Cloud Run 和 Cloud Build 可以利用的唯一复杂部署模式。现在让我们回顾一下在部署到\
+  \ Cloud Run 时如何实施安全最佳实践。\n\n## 使用 Binary Authorization 保护生产环境\n\n鉴于 Cloud Run 允许开发人员理论上部署他们想要的任何容器镜像，管理员如何防止开发人员部署任意镜像，更糟糕的是防止恶意行为者部署有害或恶意镜像？\n\
+  \n与我们在第 8 章中为 GKE 回顾的内容类似，使用 Cloud Build Binary Authorization 保护软件交付到 GKE 的功能也适用于\
+  \ Cloud Run 开发人员。\n\n这是执行容器镜像部署时准入控制的功能，拒绝违反云或安全管理员预定义策略的容器镜像。\n\n\n\n虽然可以在 Cloud\
+  \ Run 服务级别启用二进制授权，但建议在更高级别（如组织、文件夹或项目）强制要求 Cloud Run 服务启用二进制授权。\n\n![](img/2fe9576240c146c49e3a21d5e7f6af00_201_0.png)\n\
+  \n图 9.12 – Cloud Run 服务资源的层级结构\n\n如果仅在每个服务的基础上设置，任何拥有 Cloud Run 权限的开发者都可以同样轻松地从其服务中移除二进制授权。\n\
+  \n您可以在组织、文件夹或项目级别通过以下 gcloud 命令启用此功能，将相应的资源 ID 添加到 --organization、--folder 或 --project\
+  \ 标志中：\n\n```\n$ gcloud resource-manager org-policies allow run.allowedBinaryAuthorizationPolicies\
+  \ default\n```\n\n设置完成后，您现在可以使用 gcloud run deploy 创建 Cloud Run 服务，同时传递 --binary-authorization=default\
+  \ 标志。\n\n与第 8 章《使用 Cloud Build 保护交付到 GKE 的软件》中所述的示例类似，您现在可以通过运行以下命令来更新您的准入策略：\n\n\
+  ```\n$ gcloud container binauthz policy export > /tmp/policy.yaml\n```\n\n这将获取启用了二进制授权的默认准入策略。您可以通过在策略文件下的\
+  \ defaultAdmissionRule 中添加如下块来编辑此策略文件：\n\n```\n...\nrequireAttestationsBy:\n- projects/PROJECT_ID/attestors/built-by-cloud-build\n\
+  ...\n```\n\n这是上一章中包含的相同证明，它只会准入由 Cloud Build 签名的证明的镜像，从而证明在 Cloud Run 中运行的容器镜像具有可信的构建来源。\n\
+  \n策略文件更新后，您现在可以将策略重新导入到二进制授权中：\n\n```\n$ gcloud container binauthz policy import\
+  \ /tmp/policy.yaml\n```\n\n在部署时违反策略时，Cloud Run 现在将返回类似于以下屏幕截图的错误消息：\n\n![](img/2fe9576240c146c49e3a21d5e7f6af00_202_0.png)\n\
+  \n图 9.13 – 部署时违反二进制授权策略\n\n您也可以创建自己的证明者来为容器镜像签名证明，并通过遵循相同的流程让二进制授权强制执行这些证明！\n\n\
+  ### 摘要\n\n本章中，我们回顾了 Cloud Run 和 Cloud Functions 在 Google Cloud 中的工作原理，以及它们如何原生集成\
+  \ Cloud Build，使无服务器部署更简单，并使开发人员能够尽可能多地专注于代码。\n\n我们还回顾了开发人员如何使用 Cloud Build 来自动化和扩展\
+  \ Cloud Run 和 Cloud Functions API 提供的原生功能。\n\n在更深入了解 Cloud Build 如何与基础设施即代码、Kubernetes\
+  \ 集群和无服务器平台协同工作后，我们现在将转向 Cloud Build 实践，这些实践可以帮助您在任何用例中大规模地在生产环境中运行构建。\n\n## 10\n\
+  \n## 在生产环境中运行 Cloud Build 操作\n\n到目前为止，本书已描述了托管服务的价值、如何使用 Cloud Build、描述了 Cloud Build\
+  \ 的功能，并提供了 Cloud Build 实际操作的端到端示例。在本章中，我们将重点介绍特定的 Cloud Build 功能并介绍新概念，以帮助您在生产环境中利用\
+  \ Cloud Build。本章的主题将帮助您优化 Cloud Build 的使用及其构建的可观察性。\n\n本章将涵盖以下主题：\n\n- 在生产环境中执行\n\
+  - 生产环境中需要考虑的配置\n- 加快构建速度\n\n### 在生产环境中执行\n\n作为托管服务，Cloud Build 通过指定导致管道的构建步骤来使用，无论是构建代码还是操作基础设施组件。它不会区分环境；在开发环境中运行的管道与在生产环境中运行的管道被同等对待。两者都将具有相同的\
+  \ Cloud Build **服务等级协议 (SLA)** 99.95% (https://cloud.google.com/build/sla)。环境之间的差异可能包括但不限于以下内容：\n\
+  \n- 配置中构建步骤的独特性\n- 项目中定义的不同的计算资源（默认或私有池）\n- 定义的安全边界（身份、角色绑定、权限和网络资源）\n\n对于所引用的这些标准，重要的是决定将托管构建管道的项目（们）。这可能是构建管道负责的内容以及组织中负责与管道交互的成员角色的因素。\n\
+  \n组织会决定最适合自己的模式；然而，最常见的模式是将生产环境与被视为非生产环境的资源分开托管。然而，管道往往模糊了非生产和生产资源之间的界限。例如，可能有一组中立的项目仅用于管道。当集成管道负责生成供下游环境使用的容器镜像时，它必须能够访问共享的容器注册表（例如\
+  \ Artifact Registry），以便将构建的镜像推送到其中。镜像一旦首次构建，最好实践是在从开发到测试再到生产的所有下游环境中继续使用相同的镜像。如果它需要与部署到其他环境的工具通信，它也需要获得与该工具通信的权限。镜像还可以用特定的证明签名，证明它已通过每个相应环境的每个管道。\n\
+  \n一旦项目类型确定了 Cloud Build 服务管道的执行位置，就必须确保可以分配足够的资源。这要求您了解 Cloud Build 服务的配额和限制 (https://cloud.google.com/build/quotas)。截至撰写本文时，以下是\
+  \ Cloud Build 服务的配额。请参阅上述链接以获取最新信息：\n\n| 资源 | 描述 | 默认限制 | 可以增加 | 范围 |\n|---|---|---|---|---|\n\
+  | 私有池 | 私有池数量 | 2 到 10 | 是。 | 按区域 |\n| 构建触发器 | 构建触发器数量 | 300 | 是。 | 按区域 |\n| CPU\
+  \ | 区域私有池中运行的并发 CPU 数量 | 0 * 到 2,400 | 是。当此配额已满时，对额外 CPU 的请求将被排队并串行处理。 | 按区域 |\n\
+  | CPU | 区域默认池中运行的并发 CPU 数量 | 5 到 100 | 否。如果您需要超过 100 个并发 CPU，请使用私有池。 | 按区域 |\n|\
+  \ 请求 | 全局默认池中运行的并发构建数量 | 10 到 30 | 否。如果您想运行超过 30 个并发构建，请考虑使用私有池。 |  |\n\n表 10.1\
+  \ – Cloud Build 服务的配额\n\n从上表中需要牢记的一个重要因素是您需要在每个相应项目中运行多少个并发构建。例如，开发和集成管道运行的项目可能比生产环境所需的管道更活跃，反之亦然，具体取决于您的环境。这强调了利用私有池为您的管道提供的重要性和灵活性。私有池允许以下操作：\n\
+  \n- 您可以为构建指定更多机器类型\n- 您可以拥有更多并发构建 – 即 30+\n- 您可以访问 VPC 连接的资源\n- 您可以拥有网络灵活性\n\n确定如何组织\
+  \ Cloud Build 管道、利用的功能以及识别依赖资源是规划过程中的重要考虑因素。\n\n### 从不同项目利用 Cloud Build 服务\n\n如果目标是在多个团队或环境中利用\
+  \ Cloud Build 服务，共享同一个 Google Cloud 项目将需要额外的考虑。在第 6 章《管理环境安全》中，我们讨论了最小权限原则，我们在其中为每个配置的触发器定义了特定的\
+  \ Cloud Build 用户指定服务账号。当团队共享项目时，您可能拥有托管在不同项目的服务账号。如果是这种情况，可能需要为服务账号在 Cloud Build\
+  \ 管道将执行的项目中使用提供额外的权限。\n\n以下内容仅用于示例和说明目的，因为您的环境中可能配置了不同的存储库。\n\n设置将在本示例其余命令中使用的适当变量，因为您的值将根据环境而有所不同。GCS\
+  \ 存储桶应是唯一的：\n\n```\n$ SA_NAME=build-dev\n$ DEV_PROJECT=dev-project\n```\n\n\n\n\
+  ```\n$ BUILD_PROJECT=build-project\n$ ARTIFACT_REGISTRY_IMAGE_REPO=image-repo\n\
+  $ GCS_BUCKET=packt-cloudbuild-dev-bucket\n$ GIT_REPO=packt-cloudbuild\n$ GIT_OWNER=user\n\
+  ```\n\n> **注意**\n> 在以下示例中，dev-project 必须禁用 iam.disableCrossProjectServiceAccountUsage\
+  \ 组织策略。组织策略在组织级别配置，但可以根据约束类型应用于文件夹和单个项目。约束可能有所不同，但决定了可以执行的操作，超出 IAM 权限所定义的范围，后者决定谁可以执行什么。\n\
+  \n以下图表显示了此示例将创建的内容，以及构建与用户指定的服务帐户之间的关系：\n\n![](img/2fe9576240c146c49e3a21d5e7f6af00_206_0.png)\n\
+  \n图 10.1 – 在单独项目中的用户指定服务帐户\n\n上述图表显示了两个项目之间的关系以及每个项目相关的权限，以便在另一个项目中利用用户指定的服务帐户。\n\
+  \n创建服务帐户以用作 Cloud Build 管道的用户指定服务帐户：\n\n```\n$ gcloud iam service-accounts create\
+  \ ${SA_NAME} \\\n  --description=\"Build Dev Service Account\" \\\n  --project ${DEV_PROJECT}\n\
+  ```\n\n服务帐户需要服务帐户用户权限，以便 Cloud Build 服务代理可以在将使用 Cloud Build 服务的项目中使用它：\n\n```\n\
+  $ gcloud projects add-iam-policy-binding ${DEV_PROJECT} \\\n  --member=serviceAccount:${SA_NAME}@${DEV_PROJECT}.iam.gserviceaccount.com\
+  \ \\\n  --role=roles/iam.serviceAccountUser\n```\n\n将利用 Cloud Build 服务的 Google Cloud\
+  \ 项目的项目编号是必需的，以便可以执行服务帐户模拟。我们设置 Cloud Build 服务代理的权限，使其能够创建服务帐户令牌，以代表托管在我们开发项目上的服务帐户执行命令：\n\
+  \n```\n$ export BUILD_PROJECT_NUMBER=$(gcloud projects list \\\n  --filter=\"${BUILD_PROJECT}\"\
+  \ \\\n  --format=\"value(PROJECT_NUMBER)\"\n)\n$ gcloud projects add-iam-policy-binding\
+  \ ${DEV_PROJECT} \\\n  --member=\"serviceAccount:service-${BUILD_PROJECT_NUMBER}@gcp-sa-cloudbuild.iam.gserviceaccount.com\"\
+  \ \\\n  --role=\"roles/iam.serviceAccountTokenCreator\"\n```\n\n尽管服务帐户位于开发项目上，但我们授予服务帐户向将使用\
+  \ Cloud Build 服务的构建项目写入日志的权限：\n\n```\n$ gcloud projects add-iam-policy-binding ${BUILD_PROJECT}\
+  \ \\\n  --member=serviceAccount:${SA_NAME}@${DEV_PROJECT}.iam.gserviceaccount.com\
+  \ \\\n  --role=roles/logging.logWriter\n```\n\n由于我们使用的是用户指定的服务帐户，因此需要使用我们的 `cloudbuild.yaml`\
+  \ 配置进行配置以仅记录日志。以下代码显示了 `cloudbuild.yaml` 文件的一部分。本章后面我们将介绍一个场景，其中日志存储在 **Google Cloud\
+  \ Storage (GCS)** 存储桶中：\n\n```\n...\noptions:\n  logging: CLOUD_LOGGING_ONLY\n...\n\
+  ```\n\n触发器是在构建项目上创建的，但用户指定的服务帐户是我们开发项目中创建的那个：\n\n```\n$ gcloud beta builds triggers\
+  \ create github \\\n  --repo-name=${GIT_REPO} \\\n  --repo-owner=${GIT_OWNER} \\\
+  \n  --branch-pattern=^main$ \\\n  --name=pipeline-trigger \\\n  --build-config=cloudbuild.yaml\
+  \ \\\n  --project=${BUILD_PROJECT} \\\n  --service-account=projects/${DEV_PROJECT}/serviceAccounts/${SA_NAME}@${DEV_PROJECT}.iam.gserviceaccount.com\n\
+  ```\n\n在此示例中，我们将容器镜像推送到 Artifact Registry 的镜像存储库，该存储库也托管在同一个 Cloud Build 项目上。写入镜像存储库需要权限：\n\
+  \n```\n$ gcloud artifacts repositories add-iam-policy-binding ${ARTIFACT_REGISTRY_IMAGE_REPO}\
+  \ \\\n  --location=us-central1 \\\n  --member=serviceAccount:${SA_NAME}@${DEV_PROJECT}.iam.gserviceaccount.com\
+  \ \\\n  --role=roles/artifactregistry.writer \\\n  --project ${BUILD_PROJECT}\n\
+  ```\n\n这是前述示例中触发构建的构建详细信息的示例输出。构建执行的 Project ID 在 `build-project` 中，服务帐户来自 `dev-project`。我们可以通过描述构建来获取此信息：\n\
+  \n```\n$ gcloud builds describe 2ddd7e2e-1b75-49e2-b3a9-4781ad509f18 --project build-project\n\
+  ```\n\n以下是运行前述命令的输出，其中标识了正在使用的用户指定服务帐户：\n\n```\nid: 2ddd7e2e-1b75-49e2-b3a9-4781ad509f18\n\
+  ...\nprojectId: build-project\n...\nserviceAccount: projects/dev-project/serviceAccounts/build-dev@dev-project.iam.gserviceaccount.com\n\
+  ```\n\n由于构建在构建项目中运行，并且在存储库有提交时会自动触发，很可能出现开发人员或特定团队成员仅有权访问特定项目的情况——在本例中为 dev-project。在前面的示例中，我们将日志写入\
+  \ build-project，但我们可以设置一个接收器并将日志从 build-project 转发到 dev-project（https://cloud.google.com/logging/docs/export/configure_export_v2#supported-destinations）。\n\
+  \n另一种方法是将日志写入由 dev-project 管理和托管的 GCS 存储桶。构建日志数据由 build-project 创建并存储在 dev-project\
+  \ 中以供进一步分析：\n\n![](img/2fe9576240c146c49e3a21d5e7f6af00_209_0.png)\n\n图 10.2 – 记录到另一个项目中的\
+  \ GCS 存储桶\n\n上述图表显示了构建如何写入 GCS 存储桶，以及用户指定服务帐户在存储桶级别所需的特定权限。\n\n首先，让我们在 dev-project\
+  \ 中创建存储桶：\n\n```bash\n$ gsutil mb -p ${DEV_PROJECT} \\\n    gs://${GCS_BUCKET}\n\
+  ```\n\n为了允许 Cloud Build 服务使用我们的用户指定服务帐户写入 GCS 存储桶，我们需要为我们的服务帐户授予必要的权限：\n\n```bash\n\
+  $ gsutil iam ch \\\n    serviceAccount:${SA_NAME}@${DEV_PROJECT}.iam.gserviceaccount.com:roles/storage.admin\
+  \ \\\n    gs://${GCS_BUCKET}\n```\n\n我们还需要在 cloudbuild.yaml 文件中告诉 Cloud Build 我们希望将日志存储在\
+  \ GCS 存储桶中：\n\n```yaml\n...\nlogsBucket: \"gs://${REPLACE_WITH_YOUR_GCS_BUCKET_NAME}\"\
+  \noptions:\n  logging: GCS_ONLY\n...\n```\n\n成功运行构建后，我们可以看到日志现在可在我们的存储桶中使用。我们可以在示例输出中看到这一点：\n\
+  \n```bash\n$ gsutil ls gs://${GCS_BUCKET}\ngs://packt-cloudbuild-dev-bucket/log-44045da7-3a03-4f9d-8aa0-f9599e3efd47.txt\n\
+  ```\n\n> **注意**\n> 如果未正确设置 Cloud Build 记录到 GCS 存储桶的权限，构建将无法正常执行。在这种情况下，您可能会收到来自\
+  \ Cloud Build 服务的以下错误：\n> \n> ```\n> generic::invalid_argument: invalid bucket \"\
+  packt-cloudbuild-dev-bucket\"; builder service account does not have access to the\
+  \ bucket\n> ```\n\n利用不同的项目时，可能需要在不同的项目中存储日志数据。本节中的示例展示了如何实现这一点。\n\n## 进一步保护构建触发器\n\
+  \n在 *第 6 章，管理环境安全* 中，我们讨论了 **虚拟私有云服务控制** (VPC-SC) 作为一种机制，有助于防止 GCP 服务（包括 Cloud Build）的数据外泄。Cloud\
+  \ Build 中提供的另一种机制可防止来自外部源的触发器以保护构建环境，即通过组织策略。通过设置此约束，我们可以指定哪些域可以执行功能或拒绝特定域。\n\n\
+  到目前为止，我们的示例都是通过 github.com 触发的。现在，我们将拒绝来自 github.com 的触发器。为此定义，我们必须设置约束并指定权限：\n\n\
+  ```\nname: projects/**REDACTED_project_number**/policies/cloudbuild.allowedIntegrations\n\
+  spec:\n  inheritFromParent: false\n  rules:\n    - values:\n        deniedValues:\n\
+  \          github.com\n```\n\n我们将拒绝源自 github.com 的触发器。请注意我们将强制执行的约束——即 cloudbuild.allowedIntegrations。一旦强制执行，前一节中的触发器将不再能够执行并创建构建。以下\
+  \ Cloud Logging 输出片段显示了构建无法触发和执行的原因：\n\n```\nstatus: {\ncode: 9\nmessage: \"Constraint\
+  \ \\\"constraints/cloudbuild.allowedIntegrations\\\" violated for \\\"**REDACTED_project_id**\\\
+  \" attempting to process an event from \\\"github.com\\\"\"\n}\n```\n\n这提供了另一种帮助保护构建的功能。\n\
+  \n## 通知\n\n当您最初设置构建或手动触发构建时，您可能会在逐步测试构建配置时与构建交互并监视构建。您会知道构建何时失败或成功。然而，当构建基于外部事件（如对\
+  \ **源代码管理 (SCM)** 仓库的提交）自动触发时，这并不是典型的使用模式。组织有不同类型的机制来通知开发人员和运营团队构建的状态。这些机制可以从发布有关构建消息的系统各不相同\n\
+  \n在聊天基础设施、电子邮件通知或自定义基础设施中提供状态，以便团队消化构建事件状态。\n\n根据所需的详细程度，组织最终可能会跟踪以下内容：\n\n- Git\
+  \ 提交到存储库分支\n- 分支之间的合并\n- 触发的构建流水线状态（例如，成功、失败、待处理等）\n- 构建成功率\n\n这有助于为组织提供其构建的健康状况和频率的洞察，以便用于优化或识别组织内的瓶颈。\n\
+  \nCloud Build 通过在特定主题上发布消息使用 Cloud Pub/Sub (https://cloud.google.com/pubsub)。虽然这些消息可以通过使用\
+  \ Cloud Pub/Sub 客户端订阅主题来使用，但 Cloud Build 包含一个 Cloud Build notifier (https://cloud.google.com/build/docs/configuring-notifications/notifiers)\
+  \ 客户端，该客户端也可以订阅主题、消费消息并将消息推送到受支持的平台。Cloud Build notifier 客户端是基于容器的镜像，在 Cloud Run\
+  \ (https://cloud.google.com/run) 上运行，后者是一个根据使用情况自动扩缩容的管理型无服务器平台。下表显示了可用的通知器支持的平台：\n\
+  \n| 通知器 | 描述 |\n|---|---|\n| bigquery | 将构建数据写入 BigQuery 表 |\n| googlechat | 使用\
+  \ Google Chat webhook 将消息发布到 Google Chat 空间 |\n| http | 向另一个 HTTP 端点发送 JSON 负载 |\n\
+  | slack | 使用 Slack webhook 将消息发布到 Slack 频道 |\n| smtp | 通过 SMTP 服务器发送电子邮件 |\n\n表\
+  \ 10.2 – Cloud Build 通知器平台\n\n上表显示了撰写本文时可用的通知器。如果您使用的是此处未列出的平台，可以使用提供的示例 (https://cloud.google.com/build/docs/configuring-notifications/create-notifier)\
+  \ 开发通知器。\n\n## 从日志中获取更多价值\n\n日志为调试和验证构建的进度提供了重要细节。\n\n日志的输出通常需要个人查看日志才能理解输出内容。\n\
+  \n在聚合具有大量流水线运行的构建时，查看日志可能不可行。\n\n在上一节中，我们讨论了通知作为聚合构建流水线事件状态的一种方式，以了解流水线的健康状况。\n\n\
+  如果我们想知道在构建步骤期间某些日志条目被输出了多少次怎么办？\n\n我们可以用它来识别某些模式并帮助自动化或审批。\n\n如果相同的日志输出累积到指定的阈值，我们也可以发出警报。\n\
+  \n基于日志的指标可以通过 Cloud Logging 功能实现。\n\n例如，假设在构建 Node.js 应用程序时，我们想跟踪弃用警告出现的次数。\n\n\
+  在此示例中，Node.js bookshelf 应用程序 (https://github.com/GoogleCloudPlatform/nodejs-getting-started/tree/main/bookshelf)\
+  \ 正在构建并输出以下 Cloud Build 日志输出：\n\n```\n...\nStep 4/6 : RUN npm install\nRunning in\
+  \ 30f414a77c43\nnpm WARN deprecated ...\n...\n```\n\n我们希望能够跟踪在构建期间此输出出现的次数。\n\n\
+  由于这是一个 Node.js 警告，构建仍会成功，但我们想知道它发生的次数；如果超过某个阈值，我们可能需要采取行动。\n\n构建现在可能成功，但还能成功多久才开始失败？\n\
+  \n让我们为此输出创建一个基于日志的计数器指标：\n\n```\n$ gcloud logging metrics create npm_dep_warning\
+  \ \\\n  --description \"NPM Deprecation Warnings\" \\\n  --log-filter \"resource.type=build\
+  \ AND npm WARN deprecated\"\n```\n\n计数器指标在日志过滤器的评估返回新条目时每次递增 1。\n\n计数可以通过 Cloud\
+  \ Monitoring Metrics Explorer 面板查看。\n\n更多详细信息可在文档 (https://cloud.google.com/monitoring/charts/metrics-selector)\
+  \ 中找到。\n\n以下屏幕截图显示，在 10 分钟内，基于日志的指标已统计出我们的 npm WARN deprecated 日志条目出现了两次：\n\n###\
+  \ 指标资源管理器\n\n![](img/2fe9576240c146c49e3a21d5e7f6af00_214_0.png)\n\n图 10.3 – Cloud\
+  \ Monitoring 指标资源管理器 NPM_DEP_WARNING\n\n我们可以基于最合理的任何阈值发出警报。\n\n在以下示例中，我们有一个警报策略，如果在滚动的\
+  \ 10 分钟窗口内发生五次，则会触发。\n\n有关如何创建警报的更多详细信息可在文档中找到，可通过 **用户界面 (UI)** 或 API (https://cloud.google.com/monitoring/alerts/using-alerting-ui)\
+  \ 创建。\n\n以下示例警报策略将在警告阈值超过 5 的计数时创建事件：\n\n### Cloud Build npm 弃用警告\n\n### 条件\n\n\
+  策略违反条件为满足任意条件\n\n![](img/2fe9576240c146c49e3a21d5e7f6af00_215_0.png)\n\n图 10.4 –\
+  \ Cloud Monitoring 警报策略 Cloud Build npm 弃用警告\n\n从 **警报** 面板，我们可以看到已提出事件以及可能需要采取的措施。Cloud\
+  \ Monitoring 通知渠道包括用于 Cloud Mobile App、Cloud Pub/Sub、Email、SMS、PagerDuty、Slack 和\
+  \ webhooks 等工具的各种预构建集成：\n\n### 事件\n\n![](img/2fe9576240c146c49e3a21d5e7f6af00_215_1.png)\n\
+  \n图 10.5 – Cloud Monitoring 警报事件\n\n虽然此示例包括跟踪条目在日志中出现的次数，但我们也可以跟踪相反的情况——即在指定期间内某事物未出现的次数。\n\
+  \n基于日志的指标还支持另一种称为分布指标的指标，可测量条目之间的延迟或持续时间，以识别构建中的瓶颈。\n\nCloud Logging 和 Cloud Monitoring\
+  \ 提供的计数器和分布指标的组合可以帮助推断出超出默认构建统计信息之外的更多详细信息。\n\n在生产环境中执行需要超出仅运行流水线的额外考虑。\n\n重要的是测试并为每个构建确定最佳机器类型，以获得可接受的构建时间和相关成本。\n\
+  \n私有池提供更多机器类型选择，同时提供额外的网络和安全功能。\n\n根据组织的 Google Cloud 项目架构、团队角色和用户角色，可能需要考虑对不同项目的访问权限。\n\
+  \n充分利用日志并从日志和通知中推导出模式对于 Cloud Build 在后台平稳运行至关重要。\n\n## 生产环境中需要考虑的配置\n\n在 *第 4 章，构建配置和架构*\
+  \ 中，我们介绍了可用于自定义 Cloud Build 如何执行构建的几个配置选项。\n\n在生产环境中，有一些配置突出显示，应配置以优化生产环境中的构建。\n\
+  \n我们在上一节中讨论了 Cloud Build 请求限制，其取决于所选池的类型。\n\n无论池的类型如何，我们都可以优先考虑或确定某些构建流水线如果排队时间过长应失败。\n\
+  \n要配置此设置，我们将在构建配置中使用 `queueTtl` 语法。\n\n一旦构建进入队列，计时器就会开始。\n\n如果在 `queueTtl` 配置中指定的持续时间之前无法执行，它将被取消，从队列中移除，并赋予\
+  \ `EXPIRED` 状态。\n\n这可以帮助为构建提供一定的优先级。\n\n如果队列中太多，构建将积压，关键任务可能会延迟，从而影响生产力。\n\n解决此问题的一种方法可以是增加私有池中的计算资源数量，或从默认池切换到私有池。\n\
+  \n组织可能有定义的预算或某些构建可以在构建较不繁忙时稍后重新排队。\n\n## 使构建更具动态性\n\n变量可用于 Cloud Build 的配置中，使流水线更具动态性和可重用性。\n\
+  \n在 *第 5 章，触发构建* 中，我们介绍了使用变量执行带有提交 SHA 的 Git checkout 以及从 secret 存储 Git SSH 密钥。\n\
+  \n提交 SHA 值在配置时未知，并且可能对每次触发的构建发生变化。\n\nSSH 密钥最好在外部管理，以便存储在具有更安全 secret 的平台上。\n\n\
+  Cloud Build 包含一些可在构建中使用的默认元数据相关变量，例如 `${PROJECT_ID}` 和 `${BRANCH_NAME}` 以触发 Git\
+  \ 仓库。\n\n默认变量提供元数据，但用户定义的变量可以允许额外的元数据，以及驱动构建流水线内的行为。\n\n您可能希望利用变量来定义构建的环境，例如 `${__ENV}`。\n\
+  \n这可用于构建配置中，将特定元数据作为构建或运行时配置的一部分进行设置。\n\n为了使构建步骤或流水线更灵活，您可以在变量中使用变量。\n\nCloud Build\
+  \ 通过使用名为 `dynamic_substitutions` 的配置选项启用此功能。\n\n\n\n动态替换在构建触发器上自动启用，但手动调用的构建需要在构建配置中将此设置设为\
+  \ true。\n\n让我们通过一个 Docker 构建的示例来说明。这里，我们希望使用用户定义的变量来自定义容器镜像仓库、名称和标签。我们还希望使用动态替换来构建完整的镜像\
+  \ URL。\n\n我们将继续使用 Node.js 书架应用程序 (https://github.com/GoogleCloudPlatform/nodejs-getting-started/tree/main/bookshelf)\
+  \ 作为此示例。以下代码来自 cloudbuild.yaml 配置文件，该文件用于构建容器镜像：\n\n```yaml\nsteps:\n- name: gcr.io/cloud-builders/docker\n\
+  \  args:\n  - \"build\"\n  - \"-t\"\n  - \"${IMAGE_URL}:${BUILD_ID}\"\n  - \"-t\"\
+  \n  - \"${IMAGE_URL}:${TAG_VERSION}\"\n  - \".\"\nsubstitutions:\n_IMAGE_URL: \"\
+  ${IMAGE_BASE}/${IMAGE_NAME}\"\n_IMAGE_BASE: \"us-central1-docker.pkg.dev/${PROJECT_ID}/image-repo\"\
+  \n_IMAGE_NAME: \"nodejs-bookshelf\"\n_TAG_VERSION: \"dev\"\noptions:\n  dynamic_substitutions:\
+  \ true\nimages:\n- ${IMAGE_URL}:${BUILD_ID}\n- ${IMAGE_URL}:${TAG_VERSION}\n```\n\
+  \n动态替换设置已配置，因为示例构建是手动调用的。${IMAGE_BASE} 变量包含仓库信息并动态注入 ${PROJECT_ID}。${IMAGE_URL}\
+  \ 用于构建步骤，是 ${IMAGE_BASE} 和 ${IMAGE_NAME} 的组合。这将允许我们在需要时替换仓库信息以及镜像名称；否则，将使用配置中定义的默认值。\n\
+  \n在构建步骤中，请注意容器镜像标签被追加，其中之一是 ${BUILD_ID}。这来自 Cloud Build 元数据。还有 ${TAG_VERSION}，它是一个变量。\n\
+  \n如果是手动调用，只需执行简单的 gcloud builds submit 即可。如果是通过触发器触发，则不需要 dynamic_substitutions\
+  \ 选项，并且可以在触发器中根据需要自定义变量。构建完成后，Artifact Registry 中包含镜像和我们配置的标签：\n\n```\n$ gcloud\
+  \ artifacts docker images list us-central1-docker.pkg.dev/**REDACTED_project_id**/image-repo/nodejs-bookshelf\
+  \ --include-tags\n```\n\n以下是在运行上述命令后的输出：\n\n```\nIMAGE: us-central1-docker.pkg.dev/**REDACTED_project_id**/image-repo/nodejs-bookshelf\n\
+  DIGEST:\nsha256:aa4ba108423771db58502095fbc8a70a7f54fbb56fdd09b38bbcf78a7a39bcc5\n\
+  TAGS: 36e3094e-be72-41ee-8f02-874dc429764e, dev\n```\n\n利用变量和动态变量可以帮助我们创建更灵活的流水线，并允许团队在不修改构建配置的情况下根据需要调整值。\n\
+  \n## 与密钥管理相关的 Cloud Build 变更\n\n在第 6 章《管理环境安全》中，我们介绍了在使用两种不同的 GCP 服务时使用密钥：Secret\
+  \ Manager 和 Cloud Key Management Service（KMS）。虽然 Secret Manager 是推荐方式，但 Cloud KMS\
+  \ 也可以用于声明密钥。推荐的方式是在 Cloud Build 配置中使用 availableSecrets 语法。availableSecrets 语法可用于声明\
+  \ Secret Manager 和 Cloud KMS 资源。\n\n以下为之前的声明方法：\n\n```\n...\nsecret:\n  - kmsKeyName:\
+  \ projects/**PROJECT_ID_redacted**/locations/global/keyRings/secret_key_ring/cryptoKeys/secret_key_name\n\
+  \    envMap:\n      MY_SECRET: '**ENCRYPTED_SECRET_encoded**'\n...\n```\n\n以下为推荐的声明方法，如第\
+  \ 6 章《管理环境安全》所述：\n\n```\n...\navailableSecrets:\n  inline:\n    - kmsKeyName: projects/**PROJECT_ID_redacted**/locations/global/keyRings/secret_key_ring/cryptoKeys/secret_key_name\n\
+  \      envMap:\n        MY_SECRET: '**ENCRYPTED_SECRET_encoded**'\n...\n```\n\n\
+  availableSecrets 语法提供了一种持续定义密钥的方式，可与多个 Google Cloud 服务一起使用。\n\nCloud Build 中的配置参数可以帮助组织为生产环境做好准备。虽然私有池允许进行更多并发构建，但管理构建生命周期仍然很重要。例如，在构建排队时间过长时设置过期时间是一个好习惯。变量替换提供了更灵活和动态的构建流水线，有助于确定构建的行为和输出。Secret\
+  \ Manager 与 Cloud Build 的集成引入了一种新的语法，可同时用于 Secret Manager 和 Cloud KMS。\n\n## 加快构建速度\n\
+  \n无论您是刚刚开始还是已经使用 Cloud Build 一段时间，寻求减少构建所需时间的方法始终是好的。以下是一个示例列表：\n\n- 指定具有更多资源的 machineType，例如\
+  \ standard、highmem 和 highcpu（在第 2 章《配置 Cloud Build 工作器》中介绍）\n- 使用 waitFor 并行化步骤（在第\
+  \ 4 章《构建配置和架构》中介绍）\n- 每个构建步骤使用更精简的构建器容器镜像\n- 缓存中间镜像层以供后续构建使用\n\n优化 Docker 镜像的技术（https://docs.docker.com/develop/dev-best-practices/）也适用于\
+  \ Cloud Build 构建器镜像。镜像越小，Cloud Build 工作器拉取镜像并开始执行步骤所需的时间就越少。用于构建应用程序代码的依赖项和运行时执行应用程序所需的库可能不同，因此应将它们隔离为不同的镜像。删除不必要的文件、包缓存和临时文件对于减小容器镜像大小也至关重要。\n\
+  \n**Caching** 是另一种可以减少涉及构建 Docker 容器镜像的流水线时间的机制。Cloud Build 支持使用 **Kaniko**（https://github.com/GoogleContainerTools/kaniko）作为构建容器镜像的工具，而不是传统的\
+  \ Docker 二进制文件。Kaniko 允许您为 Dockerfile 中的中间步骤分配唯一键。这些键用于识别容器镜像构建步骤是否因更改而需要重新执行或利用缓存，从而有助于提高容器镜像构建的性能。\n\
+  \n在此示例中，我们将在容器镜像中使用 Node.js 书架应用程序（https://github.com/GoogleCloudPlatform/nodejs-getting-started）。\n\
+  \n以下是我们将在此示例中使用的示例 Dockerfile（https://cloud.google.com/build/docs/kaniko-cache#example_using_kaniko_cache_in_a_nodejs_build）：\n\
+  \n```\nFROM node:8\nWORKDIR /usr/src/app\nCOPY package*.json ./\nRUN npm install\n\
+  COPY . .\nCMD [ \"npm\", \"start\" ]\n```\n\n而不是使用典型的 docker build -t image，我们将使用\
+  \ Kaniko executor 在此示例 cloudbuild.yaml 文件中指定缓存详细信息：\n\n```\nsteps:\n- name: 'gcr.io/kaniko-project/executor:latest'\n\
+  \  args:\n  - --destination=us-central1-docker.pkg.dev/${PROJECT_ID}/image-repo/nodejs-bookshelf\n\
+  \  - --cache=true\n  - --cache-ttl=1h\n```\n\nKaniko executor 用于构建 Node.js 应用程序。缓存层不可用，并拍摄快照：\n\
+  \n```\n...\nINFO[0002] No cached layer found for cmd RUN npm install\nINFO[0002]\
+  \ Unpacking rootfs as cmd COPY package*.json ./ requires it.\n...\nINFO[0019] Taking\
+  \ snapshot of files...\n```\n\n```\n...\nINFO[0019] RUN npm install\nINFO[0019]\
+  \ Taking snapshot of full filesystem...\n...\nDURATION: 1M\n```\n\n在后续无更改的运行中，构建时间减少到几乎一半——从\
+  \ 1 分钟减少到 31 秒。缓存层被找到并在镜像构建中使用：\n\n```\n...\nINFO[0001] Checking for cached layer\
+  \ us-central1-docker.pkg.dev/**REDACTED_project_id**/image-repo/nodejs-bookshelf/\n\
+  cache:5bf2e0a45d0c8dd3109fa3ff73a1ebc195c64b476951c28bf25065c25250cd4...\nINFO[0001]\
+  \ Using caching version of cmd: RUN npm install\nINFO[0001] Unpacking rootfs as\
+  \ cmd COPY package*.json ./ requires it.\n...\nINFO[0015] RUN npm install\nINFO[0015]\
+  \ Found cached layer, extracting to filesystem\n...\nDURATION: 31S\n```\n\n在此示例中，Artifact\
+  \ Registry 用于存储容器镜像，Kaniko 创建 nodejs-bookshelf/cache 以供后续构建使用。我们可以使用 gcloud 命令列出我们的镜像：\n\
+  \n```\n$ gcloud artifacts docker images list us-central1-docker.pkg.dev/**REDACTED_project_id**/image-repo\
+  \ --include-tags\n```\n\n以下输出显示了 Artifact Registry 中的镜像，其中包含构建的容器镜像，以及 Kaniko 创建的缓存层：\n\
+  \n```\n...\nIMAGE: us-central1-docker.pkg.dev/**REDACTED_project_id**/image-repo/nodejs-bookshelf\n\
+  DIGEST:\nsha256:6c31e49a502904fa73a466547876d38d3b6ed39c81a95c9050a2747d167d1b2f\n\
+  TAGS: latest\n..\n```\n\nIMAGE: us-central1-docker.pkg.dev/**REDACTED_project_id**/\n\
+  image-repo/nodejs-bookshelf/cache\nDIGEST:\nsha256:687201b973469a84dee8eb5519f9bebf630cd2e8a5599d2579760250\n\
+  520672b9\nTAGS:\n5bf2e0a45d0dc8dd3109fa3ff73a1ebc195c64b476951c28bf25065c25250\n\
+  cd4\n\n前述输出中列出的缓存镜像的镜像标签有助于 Kaniko 识别是否需要重建特定的容器镜像层。\n\n可以采取并应考虑多种路径以总体减少构建时间，这有助于提高生产力。应整合工具以帮助促进整体流水线时间的减少。本节中，我们参考了\
+  \ Kaniko，但代码构建也可以通过 Bazel (https://bazel.build/) 得到改进。Bazel 是一个开源的构建和测试工具，带有云构建器镜像\
+  \ (https://github.com/GoogleCloudPlatform/cloud-builders/tree/master/bazel)。\n\n\
+  ### 摘要\n\nCloud Build 不区分环境（例如开发、非生产和生产），但应考虑配置和推荐实践以最大化其所有功能。在本章中，我们涵盖了从优化、可观测性、安全性和模式等主题，以帮助在您的组织中采用\
+  \ Cloud Build。每个主题都可以纳入您的构建配置中以满足您的需求。\n\n在下一章中，我们将提供 Cloud Build 的前瞻性视角，并展望即将到来的内容。\n"
+- "# 第四部分：展望未来\n\n在本书的最后一部分，我们将聚焦于尾声，涵盖 Cloud Build 作为自动化平台的未来发展方向、其与 Cloud Deploy\
+  \ 的集成，以及利用 Tekton 在混合云环境中运行 Cloud Build。\n\n本部分包含以下章节：\n\n- 第 11 章，Cloud Build 的展望\n\
+  \n### Cloud Build 的展望\n\n到目前为止，我们已经回顾了 Cloud Build 的基础、其常见用例以及在实践中应用 Cloud Build\
+  \ 的模式。\n\n然而，Cloud Build —— 无论是在出版时还是此后 —— 仍在不断扩展其功能，并与 Google Cloud 生态系统的其他部分更深入地集成。\n\
+  \n一个例子包括创建用于执行这些流水线的 API，该 API 使用 Cloud Build 来执行有主见的 CI/CD 流水线。\n\n在本章中，我们将回顾与\
+  \ Cloud Build 有关的一些展望领域，具体涵盖以下主题：\n\n- 使用 Cloud Deploy 实现持续交付\n\n### 使用 Cloud Deploy\
+  \ 实现持续交付\n\n之前，在第 8 章《使用 Cloud Build 保护向 GKE 的软件交付》中，我们回顾了如何使用 Cloud Build 将应用程序的新版本发布到\
+  \ Google Kubernetes Engine。当使用 Cloud Build 定义这些发布时，Cloud Build 中几乎没有内置的主见 —— 最终，用户负责定义每个构建步骤，将构建步骤连接成完整的构建，并可能为每个构建定义定制的构建触发器。\n\
+  \n用户需要考虑的关键问题之一是如何在环境之间推广应用程序。环境及其各自的功能可以包括以下示例：\n\n- **开发：** 应用程序可以在其中运行的开发环境，开发人员可以在此测试其应用对集群中超出其所有权的其他服务的依赖。与在本地\
+  \ Kubernetes 集群中将所有其他依赖项拉取到本地环境不同，他们可以改为部署到此环境：\n\n![](img/2fe9576240c146c49e3a21d5e7f6af00_226_0.png)\n\
+  \n图 11.1 – 部署到开发环境\n\n- **暂存：** 暂存环境通常与最终在生产中运行的环境几乎相同。理想情况下，错误和问题已在更早阶段的环境中被识别\
+  \ —— 不仅是开发环境，还有可能是一个专门的 QA 或测试环境，其中更复杂的测试套件（如集成测试）已经通过。在此环境中，您可能希望执行更接近最终用户体验的测试，例如冒烟测试。您还可能希望在此类环境中实施混沌工程，以尝试在堆栈的各个组件随机中断时测试整个系统的弹性：\n\
+  \n![](img/2fe9576240c146c49e3a21d5e7f6af00_226_1.png)\n\n图 11.2 – 将发布版提升到暂存环境\n\n\
+  - **生产：** 最后，您的应用程序最终会进入生产环境，在那里为最终用户提供服务。发布到生产环境本身可能并不简单，因为在部署到生产环境时，您可能会实施多种方法来创建应用的新版本以及如何将流量转移到该新版本：\n\
+  \n![](img/2fe9576240c146c49e3a21d5e7f6af00_227_0.png)\n\n图 11.3 – 将发布版提升到生产环境\n\n\
+  要成功地将应用程序推广以遍历这些各种环境，仅靠 Cloud Build 自己定义所有这些内容可能具有挑战性。此外，如果开发人员自行定义构建来实现此目的，组织中可能会出现漂移和孤岛的风险。\n\
+  \n因此，为了简化用户这一日益关键的过程，Google 发布了 **Cloud Deploy** —— 一种有主见的运行模板化 CI/CD 流水线的模型，旨在将应用程序发布到代表软件交付周期不同阶段的多个目标环境中。在出版时，Cloud\
+  \ Deploy 专注于为将应用程序部署到 **Google Kubernetes Engine (GKE)** 和 Anthos 集群的用户提供此用例。\n\n\
+  Cloud Deploy 提供了一种使用其 API 在幕后在 Cloud Build 工作器上编排软件发布的模型。与要求用户在途中定义每个构建步骤不同，Cloud\
+  \ Deploy 暴露了允许声明式流水线的资源，抽象掉了 Cloud Build 资源复杂的底层编排。\n\n在 Cloud Deploy 中，用户不是与构建和构建步骤交互，而是与\
+  \ Kubernetes 和 Cloud Deploy 特定资源的组合交互。从 Kubernetes 角度来看，用户将编写与 Kubernetes API 资源一致的配置，无需任何更改。\n\
+  \n然而，要告诉 Cloud Deploy 读取哪些 Kubernetes 配置，您将编写一个 Skaffold 配置。Skaffold 是一个开源工具，它封装了\
+  \ kubectl 等工具、helm 或 kustomize 等清单渲染工具，以及 buildpacks 等构建工具，以便将 Kubernetes 配置部署到集群。\n\
+  \n以下是一个 skaffold.yaml 文件的示例，它定义了 Skaffold 配置文件，将环境映射到将部署到它们各自的 Kubernetes 配置：\n\n\
+  ```\n# For demonstration purposes only, to run this build would require setup beyond\
+  \ the scope of its inclusion\napiVersion: skaffold/v2beta16\nkind: Config\nprofiles:\n\
+  \  - name: dev\n    deploy:\n      kubectl:\n        manifests:\n          - config/dev.yaml\n\
+  \  - name: staging\n    deploy:\n      kubectl:\n        manifests:\n          -\
+  \ config/staging.yaml\n  - name: dev\n    deploy:\n      kubectl:\n        manifests:\n\
+  \          - config/prod.yaml\n```\n\n用户随后开始使用 Cloud Deploy 特定资源来定义 DeliveryPipeline\
+  \ 资源。连同前面提到的 skaffold.yaml 文件，这些资源定义了将 Kubernetes 配置交付到多个环境的模板。\n\nDeliveryPipeline\
+  \ 资源可能类似于以下 YAML 配置：\n\n```\n# For demonstration purposes only, to run this build\
+  \ would require setup beyond the scope of its inclusion\napiVersion: deploy.cloud.google.com/v1\n\
+  kind: DeliveryPipeline\nmetadata:\n```\n\n```\n```yaml\nname: app\ndescription:\
+  \ deploys to dev, staging, and prod\nserialPipeline:\n  stages:\n  - targetId: dev\n\
+  \    profiles:\n    - dev\n  - targetId: staging\n    profiles:\n    - staging\n\
+  \  - targetId: prod\n    profiles:\n    - prod\n```\n```\n\n请注意，DeliveryPipeline\
+  \ 概述了将部署 skaffold.yaml 文件中定义的清单的目标集群。它还概述了清单将应用于每个环境的顺序，代表了更改通过 dev、staging 和 prod\
+  \ 等环境的进展。\n\n最后，请注意每个目标还引用了一个配置文件 —— 该配置文件与 skaffold.yaml 配置文件中定义的配置文件和它们对应的特定清单保持一致。这使用户能够执行诸如在不同环境之间切换配置或环境变量等操作。\n\
+  \n用户必须随后创建 Target 资源，引用各自的 GKE 集群及其完全限定资源名称。以下 Target 资源映射到 DeliveryPipeline 资源中定义的\
+  \ dev、staging 和 prod 环境：\n\n```\n```yaml\n# For demonstration purposes only, to\
+  \ run this build would require setup beyond the scope of its inclusion\napiVersion:\
+  \ deploy.cloud.google.com/v1\nkind: Target\nmetadata:\n  name: dev\ndescription:\
+  \ development cluster\ngke:\n  cluster: projects/PROJECT_ID/locations/us-central1/clusters/\n\
+  dev\n---\napiVersion: deploy.cloud.google.com/v1\nkind: Target\n```\n```\n\n\n\n\
+  ```\nmetadata:\n  name: staging\ndescription: staging cluster\ngke:\n  cluster:\
+  \ projects/PROJECT_ID/locations/us-central1/clusters/\n  staging\n---\napiVersion:\
+  \ deploy.cloud.google.com/v1\nkind: Target\nmetadata:\n  name: prod\ndescription:\
+  \ prod cluster\ngke:\n  cluster: projects/PROJECT_ID/locations/us-central1/clusters/\n\
+  \  prod\n```\n\n现在用户已定义各自的目标后，他们就可以开始使用其 DeliveryPipeline 模板来创建单个 Release——该 Release\
+  \ 引用 DeliveryPipeline 模板并同时接收 skaffold.yaml 配置文件。\n\n以下命令展示了用户如何通过 Release 资源将应用程序的新版本部署到所需目标以启动部署：\n\
+  \n```\n$ gcloud deploy releases create release-01 \\\n  --project=PROJECT_ID \\\n\
+  \  --region=us-central1 \\\n  --delivery-pipeline=my-demo-app-1 \\\n  --images=app-01=gcr.io/PROJECT_ID/image:imagetag\n\
+  ```\n\n此资源会为每个 Target 编译成一个 Rollout。\n\n这与仅通过 Cloud Build 执行相比存在明显差异。Cloud Deploy\
+  \ 使您能够将工件通过每个 Rollout 逐步推广，同时在将该工件部署到每个 Target 环境时提供便捷的回滚机制：\n\n![](img/2fe9576240c146c49e3a21d5e7f6af00_231_0.png)\n\
+  \n图 11.4 – 创建 Release 时的关系结构\n\n在介绍了 Cloud Deploy 的基本用法后，让我们现在回顾一下 Cloud Deploy\
+  \ 如何使用 Cloud Build 实现其功能。\n\n## Cloud Build 与 Cloud Deploy 之间的关系\n\nCloud Deploy\
+  \ 中给定 Release 的每个 Rollout 都将 Skaffold 作为单个构建步骤运行，以将适当资源部署到各自的目标环境。\n\n![](img/2fe9576240c146c49e3a21d5e7f6af00_231_1.png)\n\
+  \n图 11.5 – Release 和 Rollouts 执行时的关系结构\n\n用户无需导航到 Cloud Build——然而，为了监控和了解其发布的阶段，Cloud\
+  \ Deploy 控制台提供管道可视化，将此信息呈现给用户：\n\n![](img/2fe9576240c146c49e3a21d5e7f6af00_232_0.png)\n\
+  \n图 11.6 – Cloud Deploy 中的管道可视化\n\n您可以使用管道可视化导航到每个 rollout，并回滚或推广发布以启动下一个 rollout。\n\
+  \n由于对目标的每个 rollout 都是其自己的 Cloud Build 构建，您还可以提供在 rollout 到目标之前要求审批的功能。对于生产等环境，用户可能希望实施双人审批和发布，这非常有用。\n\
+  \n启动发布也可以设置在其自己的 Cloud Build 构建步骤中，如以下配置所示：\n\n```yaml\n...\n- name: gcr.io/google.com/cloudsdktool/cloud-sdk\n\
+  \  entrypoint: gcloud\n  args:\n    [\n      \"deploy\", \"releases\", \"create\"\
+  , \"release-${SHORT_SHA}\",\n      \"--delivery-pipeline\", \"PIPELINE\",\n    \
+  \  \"--region\", \"us-central1\",\n      \"--annotations\", \"commitId=${SHORT_SHA}\"\
+  ,\n      \"--images\", \"app-01=gcr.io/PROJECT_ID/image:${COMMIT_SHA}\"\n    ]\n\
+  ...\n```\n\n此构建步骤可以单独运行，也可以在其中前面的构建步骤执行 CI 并构建将通过 Cloud Deploy 发布容器镜像的构建中附加。\n\n\
+  ![](img/2fe9576240c146c49e3a21d5e7f6af00_233_0.png)\n\n图 11.7 – 使用 Cloud Build 启动发布时的关系结构\n\
+  \nCloud Deploy 于 2022 年 1 月发布至通用可用性，是一个有明确观点的资源集合的典型示例，它编排了 Cloud Build 可以执行的工作。它提供了一种独特的方式来实现模式，同时也呈现了可能复杂但相关的任务的可视化。\n\
+  \nCloud Deploy 也反映了常见模式——用户运行多个 GKE 环境和集群。这扩展到用户运行存在于 Google Cloud 以及其他地方的 Kubernetes\
+  \ 集群，例如他们自己的数据中心或托管环境。\n\n### 摘要\n\n展望 Cloud Build 的下一步，我们可以欣赏抽象如何满足不同角色和用户概念。我们回顾了\
+  \ Cloud Deploy 如何提供抽象，在 Cloud Build 的构建和审批等功能之上简化 GKE 的 CI/CD 管道编写。Cloud Build 将继续扩展其支持用例和模式的数量，增强我们在本书中回顾的功能，以及在此章中特别回顾的新焦点领域。\n"
+- "## 索引\n\n### A\n\n应用\n  部署到开发环境 211\n  部署到暂存环境 212\n  发布到生产环境 213\n工件仓库\n  关于 11,\
+  \ 106\n  URL 52\nBazel\n  URL 208\n二进制授权\n  关于 186\n  启用以进行准入控制 162-165\n  使用...保护生产环境\
+  \ 186-188\nbuilder 173\n构建基础设施\n  创建 131\n  启用基础 Google Cloud 服务 133, 134\n  应用最小权限原则\
+  \ (POLP) 146\n设置私有 GKE 集群 135-138\n\n保护私有 GKE 控制平面访问 144, 145\n使用安全最佳实践创建私有池 139-144\n\
+  保护 138, 139\n设置 VPC 网络 134, 135\n构建操作 41-46\nbuildpacks 214\n构建管道\n  安全 8\n  管理团队\
+  \ 7, 8\n构建来源\n  使用...构建镜像 161\n构建资源\n  访问 31, 32\n特定构建的 IAM 服务账号\n  创建 146, 147\n\
+  在 worker 池上的构建\n  运行前提 17-19\n构建步骤\n  定义参数 60-63\n  定义容器镜像 56-60\n  调整默认配置 64-67\n\
+  \  设置环境 52-55\n  定义最小配置 51\n  定义关系 68-71\n  从...分离资源创建 116-120\n\n### C\n\n构建提交\n\
+  \  状态 32-37\n全局构建规范\n  配置 71-73\n\n缓存 206\n客户端库\n  参考链接 37\nCloud Asset Inventory\
+  \ API 67\nCloud Build\n  关于 19\n  目标 19\n  与源代码管理平台集成 78-80\n  价格参考链接 9\n  与 Cloud\
+  \ Deploy 的关系 217-219\n  配置 worker 池 16\ncloud builder\n  关于 10\n  URL 56\n生产环境中的\
+  \ Cloud Build\n  使构建动态化 202\n  加速构建 205-208\n  保护构建触发器 197\n  密钥管理中的变更 204, 205\n\
+  利用不同项目的 Cloud Build 服务 191-196\n配置 202\n使用动态替换 203, 204\n执行 189-191\n通知 197, 198\n\
+  从日志中获取价值 198-202\nCloud Build notifier\n  URL 198\nCloud Build 服务等级协议 (SLA)\n  参考链接\
+  \ 189\n\ncloudbuild.yaml 文件\n  参考链接 33\nCloud Deploy\n  关于 213\n  使用...实现持续交付 211-213\n\
+  Cloud Functions\n  关于 167, 168\n  支持的语言 168\n  与 Cloud Run 对比 170\nCloud Functions\
+  \ 第二代\n  关于 169\n  参考链接 169\nCloud Key Management Service (KMS) 204\nCloud Logging\n\
+  \  关于 59\n  URL 60\n云原生自动化\n  使用 Google Cloud Build 9, 10\nCloud Native Buildpacks\n\
+  \  URL 173\nCloud Native Computing Foundation (CNCF)\n  URL 132\nCloud Pub/Sub\n\
+  \  URL 198\nCloud Run\n  关于 167-169\n  优势 169\n  URL 198\nCloud Scheduler\n  参考链接\
+  \ 11\nCloud Shell\n  URL 19\nCloud Storage 172\n云虚拟专用网络 (VPN) 隧道 135\n命令行界面 (CLI)\
+  \ 19\n\n### D\n\n### E\n\n### G\n\n### H\n\n### I\n\nCompute Engine\nURL 52\nContainer\
+  \ Builder 19\nContainer Registry 173\n无需构建配置构建容器\nbuildpacks 173-176\nDockerfile\
+  \ 171\n使用特定语言工具 171, 172\n持续交付\n使用 Cloud Deploy 实现 211\n自定义构建器\n构建 120-122\n自定义\
+  \ IAM 角色\n用于构建服务账号 148-152\n网络攻击调查更新\n参考链接 8\n默认池\n关于 16\n架构 21, 22\n机器类型 22\n使用\
+  \ 19-22\nDirect Interconnect 25\nDocker Hub 58\n端到端 (E2E) 管道 37\nEventarc\n关于 170\n\
+  参考链接 170\ngcloud 命令 32\n\nGCP 控制台\n使用 37-41\nGCP 服务集成 11-13\nGitHub 账号\nURL 152\n\
+  gitignore\n参考链接 32\nGKE 集群\n创建 131-133\n全局唯一标识符 (GUID) 35\nGo 168\nGoogle Cloud\
+  \ 106\nGoogle Cloud Build\n使用...实现云原生自动化 9, 10\nGoogle Cloud Platform (GCP) 9\n\
+  Google Cloud Storage (GCS) 32, 106\nGoogle Compute Engine (GCE) 136\nGoogle Kubernetes\
+  \ Engine (GKE)\n关于 132, 213\nGKE Autopilot 133\nGKE Standard 133\nGoogle Secret\
+  \ Manager 78\nGoogle 虚拟私有云 (VPC) 133\nGradle 171\nHashiCorp 配置语言 (HCL)\n关于 105\n\
+  语法参考链接 176\n人工审批 126-129\n身份和访问管理 (IAM) 17, 54, 134\n基础设施即服务 (IaaS) 8\n\n\n\n基础设施即代码\
+  \ (IaC)\n  配置 105, 106\n互联网协议 (IP) 地址 136\n\n手动触发 85-87\nMaven 171\n元数据，用于容器镜像\n\
+  \  证明 99\n\n## J\n\nJava 168\nJavaScript 对象表示法 (JSON) 37\nJenkins\n  参考链接 7\nJib\
+  \ 172\n\n## N\n\n网络边界\n  安全保护 99, 100\nNode.js 168\n\n## K\n\nKaniko\n  参考链接 206\n\
+  Knative 169\nKo 172\nKubernetes\n  关于 132\n  组件 132\n  高级架构 132\n  命名空间 132\n  节点\
+  \ 132\n  URL 132\n\n## P\n\n定价，Cloud Build\n  参考链接 18\n最小权限原则 (POLP)\n  关于 17\n\
+  \  应用于构建 146\n  管理，用于构建 122-125\n私有池\n  关于 16\n  架构 24\n  机器类型 26, 27\n  网络架构 24,\
+  \ 25\n  使用 23-29\n私有池概述\n  参考链接 10\n项目\n  与计费账户的关系 18\n拉取请求 (PR) 152\nPython 168\n\
+  \n## L\n\nLogs Explorer 60\nloveholidays，Cloud Build\n  参考链接 12\n\n## M\n\n受管服务\n\
+  \  关于 16\n  用于减少繁琐工作 8, 9\n受管服务提供商 (MSPs) 7\n\n## Q\n\n配额，Cloud Build\n  参考链接 21\n\
+  \n## R\n\n- 构建的发布管理\n  - Binary Authorization，用于准入控制的启用 162-165\n  - 通过构建触发器执行构建\
+  \ 157-161\n  - 使用手动批准对构建进行门控 156, 157\n  - 配置 152\n  - 使用构建溯源构建镜像 161\n  - 与 Cloud\
+  \ Build 的 SCM 集成 152-156\n  - 从构建中启用受信任的软件工件 161\n- 资源创建\n  - 从构建步骤中分离 116-120\n\
+  - REST API\n  - 参考链接 37\n- 基于角色的访问控制 (RBAC) 149\n\n## S\n\n- Secret Manager\n  -\
+  \ 关于 72, 85, 204\n  - 参考链接 11\n- 服务账号 11\n- 服务等级协议 (SLA) 7\n- 服务等级目标 (SLO) 12\n\
+  - Service Networking API 24\n- Service Producer 网络 24\n- Skaffold\n  - 关于 66\n \
+  \ - URL 66\n- skaffold.yaml 文件 214-216\n- 软件开发工具包 (SDK) 44\n- 源代码管理平台\n  - 与 Cloud\
+  \ Build 集成 78-80\n- 源代码控制管理 (SCM) 工具 31\n\n## T\n\n- Cloud Run 和 Cloud Functions\
+  \ 的任务自动化\n  - 在 Cloud Run 中运行容器 179-183\n  - 部署到 Cloud Functions 178, 179\n  - 部署到\
+  \ Cloud Run 的作业 176, 177\n  - 执行 176\n  - 使用 Binary Authorization 保护生产环境 186-188\n\
+  \  - Cloud Run 服务修订版的渐进式发布 184-186\n  - 部署到 Cloud Run 的服务 176, 177\n- Terraform\n\
+  \  - 关于 66\n  - 状态存储 106-116\n  - URL 66, 105\n- 繁琐工作\n  - 使用受管服务减少 8, 9\n  - 用于消除的参考链接\
+  \ 8\n- 触发器\n  - 关于 32\n  - 结构 77\n  - 定义 81\n  - 手动触发 85-87\n  - webhook 触发器 81\n\
+  - 受信任的软件工件\n  - 从构建中启用 161\n\n## V\n\n- 虚拟私有云服务控制 (VPC SC)\n  - 关于 99, 197\n  -\
+  \ 配置 100\n  - URL 99\n- 虚拟私有云 (VPC) 10\n- 虚拟专用网络 (VPN) 隧道 25\n\nVPC 服务控制\n- 关于 11\n\
+  - 参考链接 11\n\n## W\n\n- webhook 触发器 81-85\n- 工作器池\n  - 在 Cloud Build 中配置 16\n  -\
+  \ 默认池 16\n  - 私有池 16\n\n![](img/2fe9576240c146c49e3a21d5e7f6af00_241_0.png)\n\n\
+  Packt.com\n\n订阅我们的在线数字图书馆，即可完全访问超过 7,000 本图书和视频，以及行业领先的工具，帮助您规划个人发展并推进职业生涯。更多信息，请访问我们的网站。\n\
+  \n## 为什么订阅？\n\n- 使用来自 4,000 多名行业专业人士的实用电子书和视频，减少学习时间，增加编码时间\n- 使用专为你打造的技能计划提升学习效果\n\
+  - 每月免费获得一本电子书或视频\n- 完全可搜索，便于快速获取重要信息\n- 复制、粘贴、打印和书签保存内容\n\n您知道吗？Packt 为每本出版的图书提供电子书版本，可用\
+  \ PDF 和 ePub 文件。您可以在 packt.com 将图书升级为电子书版本，并且作为印刷图书客户，您有权享受电子书的折扣。欲了解更多详情，请联系我们\
+  \ customercare@packtpub.com。\n\n在 www.packt.com，您还可以阅读一系列免费技术文章，订阅多种免费通讯，并享受 Packt\
+  \ 图书和电子书的独家折扣和优惠。\n\n## 您可能感兴趣的其他图书\n\n如果您喜欢这本书，您可能对 Packt 出版的其他这些图书感兴趣：\n\n![](img/2fe9576240c146c49e3a21d5e7f6af00_242_0.png)\n\
+  \n## 构建 Google Cloud 基础的终极指南\n\nPatrick Haggerty\n\nISBN: 978-1-80324-085-5\n\n\
+  - 在 Google Cloud 中创建组织资源层级\n- 配置用户访问权限、权限和关键 Google Cloud Platform (GCP) 安全组\n-\
+  \ 构建经过深思熟虑、可扩展且安全的虚拟网络\n- 了解最新的日志记录和监控最佳实践\n- 利用 Terraform 基础设施即代码自动化消除繁琐工作\n- 使用\
+  \ IAM 策略绑定和组织策略限制访问\n- 实施 Google 的安全基础蓝图\n\n![](img/2fe9576240c146c49e3a21d5e7f6af00_243_0.png)\n\
+  \n## 面向 DevOps 工程师的 Google Cloud\n\nSandeep Madamanchi\n\nISBN: 978-1-83921-801-9\n\
+  \n- 对用户旅程进行分类并探索衡量 SLIs 的不同方法\n- 探索用于监控面向用户系统的四个黄金信号\n- 了解心理安全以及其他 SRE 文化实践\n- 使用构建触发器和手动调用创建容器\n\
+  - 深入研究 Kubernetes 工作负载和潜在部署策略\n- 通过私有集群、Binary Authorization 和 Shielded GKE 节点保护\
+  \ GKE 集群\n- 掌握监控、指标资源管理器、正常运行时间检查和警报\n- 了解日志如何通过 Cloud Logging API 摄取\n\n## Packt\
+  \ 正在寻找像您这样的作者\n\n如果您有兴趣成为 Packt 的作者，请访问 `authors.packtpub.com` 并立即申请。我们已与数千名开发人员和技术专业人士合作，就像您一样，帮助他们与全球技术社区分享见解。您可以提交通用申请、申请我们正在招聘作者的特定热门主题，或提交您自己的想法。\n\
+  \n## 分享您的想法\n\n现在您已完成 *Cloud-Native Automation with Google Cloud Build*，我们很想听听您的想法！如果您在\
+  \ Amazon 购买了本书，请点击此处直接前往该书的 Amazon 评论页面分享您的反馈或在您购买的网站上留下评论。\n\n您的评论对我们和技术社区非常重要，将帮助我们确保提供优质的内容。\n"

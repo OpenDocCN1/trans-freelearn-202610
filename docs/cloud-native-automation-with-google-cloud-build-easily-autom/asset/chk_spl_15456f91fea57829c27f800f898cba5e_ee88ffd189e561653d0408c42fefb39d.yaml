@@ -1,0 +1,85 @@
+reviews:
+- 'no': 13
+  overturn_probability: 0.9
+  alternative: 正文小标题
+  counter_evidence:
+  - '该标题位于致谢、贡献者、关于作者、关于审阅者、前言等前文区块内部，后续紧跟 ### 关于作者、### 关于审阅者、## 前言 等同级前文小标题'
+  - 规则要求前言、序言、致谢、关于作者等正文之前的内容统一划分为一章，不应在此处再细分章节
+  - 标题无章节编号，为二级标题，属于前文内部的节标题而非最高层级章节
+  keep_split: false
+- 'no': 153
+  overturn_probability: 0.05
+  alternative: 章节标题
+  counter_evidence:
+  - '标题为 # 第 1 部分：基础知识，最高层级部分标题，单独成行'
+  - 后接本部分包含章节列表，语义统领后续章节
+  - 符合部分-章节模式的分章规则
+  keep_split: true
+- 'no': 163
+  overturn_probability: 0.1
+  alternative: 章节标题
+  counter_evidence:
+  - 标题单独成行、无句号、长度合适
+  - 前文部分介绍明确列出 第 1 章，介绍 Google Cloud Build，与标题语义一致
+  - 后接概述段落，符合章节特征
+  keep_split: true
+- 'no': 351
+  overturn_probability: 0.05
+  alternative: 章节标题
+  counter_evidence:
+  - 标题单独成行、无标点，语义统领后续工作器配置内容
+  - 与章节列表中第 2 章对应
+  - 上下文为上一章结尾后新起章节
+  keep_split: true
+- 'no': 700
+  overturn_probability: 0.75
+  alternative: 正文小标题
+  counter_evidence:
+  - 标题末尾带问号，违反‘标题末尾绝无句号（。.？！）’的格式特征
+  - 标题文字‘开始使用 – 我可以获得哪些构建信息？’与目录中‘入门 – 我可以获得哪些构建信息？’不完全一致
+  - 作为章节标题出现问号通常为小节提问式标题
+  keep_split: false
+- 'no': 1104
+  overturn_probability: 0.05
+  alternative: 章节标题
+  counter_evidence:
+  - '# 第 2 部分：拆解构建 为最高层级部分标题，单独成行'
+  - 后接本部分包含章节列表，语义统领后续内容
+  keep_split: true
+- 'no': 1114
+  overturn_probability: 0.05
+  alternative: 章节标题
+  counter_evidence:
+  - 标题单独成行、无标点，语义概括构建配置与架构
+  - 与目录第 4 章对应
+  - 后接概述段落
+  keep_split: true
+- 'no': 1808
+  overturn_probability: 0.05
+  alternative: 章节标题
+  counter_evidence:
+  - 标题单独成行、无标点，语义统领触发构建内容
+  - 与目录第 5 章对应
+  keep_split: true
+- 'no': 2194
+  overturn_probability: 0.05
+  alternative: 章节标题
+  counter_evidence:
+  - 标题单独成行、无标点，语义统领环境安全内容
+  - 与目录第 6 章对应
+  keep_split: true
+- 'no': 2442
+  overturn_probability: 0.05
+  alternative: 章节标题
+  counter_evidence:
+  - '# 第 3 部分：安全与部署 为最高层级部分标题'
+  - 单独成行，语义统领后续章节
+  keep_split: true
+- 'no': 2454
+  overturn_probability: 0.8
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题使用 ### 三级标题，与此前章节 ## 二级标题层级不一致'
+  - 标题无‘第 7 章’编号，虽语义匹配但层级暗示为节标题
+  - 紧邻部分介绍后直接出现三级标题，更符合小节而非最高层级章节
+  keep_split: false
