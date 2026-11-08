@@ -1,0 +1,25 @@
+chapter_starts:
+- 'no': 5
+  confidence: 0.75
+  final_reason: 前置内容统一划分为一章，## 鸣谢为正文前首个前置标题，后续关于作者、致谢、关于审阅者、前言等均属正文之前内容，复核方 keep_split
+    true，保留统一划分
+  accepted_evidence:
+  - '前置内容统一为一章，首个前置标题 ## 鸣谢，之后为关于作者、致谢、关于审阅者、前言等正文之前内容'
+  - 复核方 keep_split true，认为统一划分更合理，单独以此行起章易导致前置内容被过度拆分
+  rejected_evidence:
+  - '标题层级为 ##，为第二级小标题而非全书最高层级章标题'
+  need_human_review: false
+rejected_lines:
+- 'no': 160
+  reason: 复核方指出行161紧接着重复完全相同的标题 '# 1 认识 Artisteer'，无间隔内容，符合页眉/转换重复特征；标题后第163行即直接进入正文叙述，未出现章节概述段落，上下文不符章标题特征，优先采纳复核反证
+  need_human_review: false
+- 'no': 544
+  reason: 复核方指出行546紧接着重复完全相同的标题 '# 2 模板逐步讲解'，连续重复表明为排版残留页眉噪声；与后续大量内容重复的模式一致，符合PDF转换产生的页眉噪声，判断方证据不足
+  need_human_review: false
+- 'no': 1431
+  reason: 复核方指出标题在行号1492、1515、1538等处多次重复出现，伴随元注释 'Wait need complete translation'
+    等非正文内容，显示文件损坏/页眉重复；标题后段落被截断且出现 '[ /content]' 等标记，非正常章节概述，误报风险高
+  need_human_review: false
+- 'no': 2374
+  reason: 复核方指出标题 '# 4 个技巧和窍门' 在后续文本中多次重复出现，伴随大量重复段落及 '[content]' 等占位标记，符合转换噪声特征；上下文非正常正文流，宁可漏分不可误分
+  need_human_review: false

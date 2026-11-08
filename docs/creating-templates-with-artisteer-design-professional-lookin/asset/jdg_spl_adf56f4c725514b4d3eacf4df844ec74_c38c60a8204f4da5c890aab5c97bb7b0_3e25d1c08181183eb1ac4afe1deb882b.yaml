@@ -1,0 +1,21 @@
+chapter_starts:
+- 'no': 4107
+  confidence: 0.93
+  final_reason: 规则明确文末索引应划分为一章，标题## 索引单独成行且后接索引条目，复核方认可保留且 overturn_probability 低，虽无概述段落但索引属规则特例
+  accepted_evidence:
+  - 规则：文末索引也划分为一章
+  - 标题## 索引单独成行，后续为### 符号、### A 等索引条目
+  - 复核方 keep_split=true，overturn_probability 0.18
+  rejected_evidence:
+  - 复核方指出标题后无1~3行概述段落直接进入三级标题
+  - '前文4101 ## 摘要与索引间隔极短'
+  need_human_review: false
+rejected_lines:
+- 'no': 2998
+  reason: 复核方反证成立：同一标题## 4 个技巧和窍门在2998、3050、3102、3154、3206等处重复出现，不应为唯一最高层级章节起点；标题后1~3行非统领性概述而是截断文本，随后紧跟###
+    幻灯片中的图片链接等三级小标题，符合节/小标题层级，判断方证据不足
+  need_human_review: false
+- 'no': 4588
+  reason: 复核方反证成立：标题## 感谢您的购买后仅一行内容即被## 关于 Packt Publishing打断，无规则要求的1~3行概述段落；后记区域包含感谢您的购买、关于
+    Packt Publishing、为 Packt 撰稿等多个连续二级标题，应统一处理而非单独切分，overturn_probability 0.72，宁可漏分不可误分
+  need_human_review: false

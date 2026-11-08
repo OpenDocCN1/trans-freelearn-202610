@@ -1,0 +1,7 @@
+# About the Author
+
+**Jakub Sanecki** is an experienced web developer and programmer, with over 11 years of experience. He was born in 1977 in Poland. In 2001, right before graduation (he graduated in company management) he founded Fregata — a company where he works until today, and took up his true passion, information technology. Starting with providing services related to a popular ERP system, the company evolved in the direction of programming services and custom software development. With the increasing popularity of the Internet, it concentrated on web applications' and websites' development. Author of many web and desktop applications, Jakub works as an independent IT consultant and freelancer, realizing projects of various size and complexity, for companies of various sizes. He also provides training courses related to IT and web technologies and the techniques to use them in the company environment. For some years he worked as a university teacher, teaching web and desktop programming.
+
+Fregata is an authorized reseller of Extensoft. You can visit www.szablonik.net, as it provides support and additional information about this software tool.
+
+Privately, a husband and father of two children, Jakub lives with his family in Sosnowiec (in Poland), spending little moments of free time playing piano or reading books.

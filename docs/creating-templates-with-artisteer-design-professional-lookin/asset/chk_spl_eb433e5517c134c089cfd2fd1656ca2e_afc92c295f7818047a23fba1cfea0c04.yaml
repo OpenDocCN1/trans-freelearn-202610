@@ -1,0 +1,36 @@
+reviews:
+- 'no': 5
+  overturn_probability: 0.25
+  alternative: 前置小标题
+  counter_evidence:
+  - '标题层级为 ##，为第二级小标题而非全书最高层级章标题'
+  - 前后均为前置内容，统一划分为一章更合理，单独以此行起章易导致前置内容被过度拆分
+  keep_split: true
+- 'no': 160
+  overturn_probability: 0.8
+  alternative: 页眉页脚/排版噪声
+  counter_evidence:
+  - 行号161紧接着重复完全相同的标题 '# 1 认识 Artisteer'，无间隔内容，符合页眉/转换重复特征
+  - 标题后第163行即直接进入正文叙述，未出现章节概述段落，上下文不符章标题的后1~3行概述特征
+  keep_split: false
+- 'no': 544
+  overturn_probability: 0.8
+  alternative: 页眉页脚/排版噪声
+  counter_evidence:
+  - 行号546紧接着重复完全相同的标题 '# 2 模板逐步讲解'，连续重复表明为排版残留而非真实章节起始
+  - 重复出现与后续大量内容重复的模式一致，符合PDF转换产生的页眉噪声
+  keep_split: false
+- 'no': 1431
+  overturn_probability: 0.75
+  alternative: 页眉页脚/排版噪声
+  counter_evidence:
+  - 后续文本中该标题在行号1492、1515、1538等处多次重复出现，伴随元注释 'Wait need complete translation' 等非正文内容，显示文件损坏/页眉重复
+  - 标题后紧跟的段落被截断且出现 '[ /content]' 等标记，非正常章节概述
+  keep_split: false
+- 'no': 2374
+  overturn_probability: 0.7
+  alternative: 页眉页脚/排版噪声
+  counter_evidence:
+  - 标题 '# 4 个技巧和窍门' 在后续文本中多次重复出现，伴随大量重复段落，符合转换噪声特征
+  - 上下文出现 '[content]' 等占位标记及重复的章节说明，非正常正文流
+  keep_split: false
