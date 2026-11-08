@@ -1,0 +1,19 @@
+chapter_starts:
+- 'no': 6540
+  confidence: 0.95
+  final_reason: '编号特征 ''# 9 组合'' 符合最高层级大章，单独成行、标题末尾无标点、长度小于30字，前文为 ## 摘要 结束的上一章收尾，后续为本章概述。复核方
+    overturn_probability 0.08 且 keep_split true，采纳分章。'
+  accepted_evidence:
+  - 编号特征匹配 '# 9 组合'，单独成行，标题末尾无标点，长度小于30字，后续为章节概述且前文为上一章摘要，符合最高层级大章起始
+  - 复核方 overturn_probability 0.08，keep_split true
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 7140
+  reason: 复核方指出标题后 1~3 行内未出现概述段落，而是紧跟另一个同级标题 '# A Real-Time Server'，标题语义重复疑似排版噪声/重复标题，overturn_probability
+    0.88 且 keep_split false，判断方无有力反驳，不分章。
+  need_human_review: false
+- 'no': 8073
+  reason: 复核方指出标题后立即出现 '# 实时客户端'，无概述段落，编号标题 '# 11 实时客户端' 与随后无编号标题重复，符合排版断行/重复标题误报模式，overturn_probability
+    0.9 且 keep_split false，判断方无有力反驳，不分章。
+  need_human_review: false

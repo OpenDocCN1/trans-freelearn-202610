@@ -1,0 +1,20 @@
+chapter_starts:
+- 'no': 5731
+  confidence: 0.93
+  final_reason: 双方一致认可为一级章节标题，格式语义符合最高层级大章特征，上下文为新章起始
+  accepted_evidence:
+  - 标题单独成行、无句号、语义统领性强，后1~3行即为本章引言段落，前文为上一章总结
+  - 以 '# 8 关于操作符的更多内容' 形式出现，编号特征明确且与前后章节序列连贯
+  - 复核方 overturn_probability 0.12，keep_split true
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 3127
+  reason: 复核方指出其为行 3125 '# 5 世界变化太快 - 处理背压的操作符' 的去编号重复标题，构成即时重复排版噪声，章节起始点实为 3125，非独立大章
+  need_human_review: false
+- 'no': 4320
+  reason: 复核方指出其为行 4318 '# 6 太多来源 - 组合 Observables' 的去编号重复标题，排版/转换噪声，不应再划分新章
+  need_human_review: false
+- 'no': 4911
+  reason: 复核方指出其为行 4909 '# 7 有问题 - 测试和处理错误' 的去编号重复标题，连续重复的一级标题不符合最高层级大章唯一性，属重复标题噪声
+  need_human_review: false

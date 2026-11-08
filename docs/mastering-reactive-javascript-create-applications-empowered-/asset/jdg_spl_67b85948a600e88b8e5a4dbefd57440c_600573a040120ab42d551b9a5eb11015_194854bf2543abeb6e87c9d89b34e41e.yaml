@@ -1,0 +1,25 @@
+chapter_starts:
+- 'no': 9892
+  confidence: 0.95
+  final_reason: 文末索引标题单独成行，后续为字母条目列表，符合文末索引单独划分为一章的规则，复核方维持不推翻
+  accepted_evidence:
+  - '标题 ## 索引 单独成行，无标点且长度极短'
+  - 9894 行起为 A、B、C 等索引条目，无概述段落，格式为索引列表
+  - 规则明确文末索引应单独划分为一章
+  - 复核方 overturn_probability 0.1 且 keep_split true
+  rejected_evidence:
+  - 复核方提出的 Markdown 二级标题与正文小标题层级一致的风险，未构成实质反证
+  need_human_review: false
+rejected_lines:
+- 'no': 9341
+  reason: '复核方指出标题后 9345 行使用‘在本节中’自指，前文 9339 行为过渡句而非章节结束，后续 9432 行同级 ## 标题紧随其后，属正文小标题而非最高层级章节，判断方证据不足'
+  need_human_review: false
+- 'no': 9432
+  reason: 标题后 9442 行出现‘在本节中’，内容为‘使用 RxJS 改进交互’下的具体技术点，属于子节；同级二级标题排版特征与正文小标题一致，复核方反证成立
+  need_human_review: false
+- 'no': 9599
+  reason: 标题为操作性子节，9601 起内容仍在网页聊天应用实现流程的延续中，未出现章节级概述，前后无章节结束特征，复核方反证成立
+  need_human_review: false
+- 'no': 9884
+  reason: 标题后 9886 行首句为‘在本章中，我们使用函数式响应式编程创建了项目的最后一部分’，明确为章节总结；摘要为章节内部收尾，不应另起新章
+  need_human_review: false

@@ -1,0 +1,22 @@
+reviews:
+- 'no': 6540
+  overturn_probability: 0.08
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题前为 ## 摘要 段落，虽符合章节结束但编号仅为 ''# 9 组合''，与后续英文章节编号风格不一致，易被误判为大节'
+  - '标题后 1~3 行虽为概述，但前文已密集出现多个 ## 级小标题，存在误报为正文小标题的可能'
+  keep_split: true
+- 'no': 7140
+  overturn_probability: 0.88
+  alternative: 排版噪声/重复标题
+  counter_evidence:
+  - 标题后 1~3 行内未出现概述段落，而是紧跟另一个同级标题 '# A Real-Time Server'，违反‘标题后 1~3 行通常是概述段落’的上下文特征
+  - 标题与下一行标题语义重复，疑似目录标记或格式重复，非独立的最高层级章节起始
+  keep_split: false
+- 'no': 8073
+  overturn_probability: 0.9
+  alternative: 排版噪声/重复标题
+  counter_evidence:
+  - 标题后立即出现 '# 实时客户端'，无概述段落，标题后 1~3 行应为概述而非另一个顶级标题
+  - 前后文为第 10 章摘要与本章学习目标，编号标题 '# 11 实时客户端' 与随后出现的无编号标题重复，符合排版断行/重复标题的误报模式
+  keep_split: false

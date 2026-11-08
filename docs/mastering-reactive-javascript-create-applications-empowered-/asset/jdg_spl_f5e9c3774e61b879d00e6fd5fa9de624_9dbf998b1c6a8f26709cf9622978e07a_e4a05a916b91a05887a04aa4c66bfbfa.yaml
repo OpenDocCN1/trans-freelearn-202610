@@ -1,0 +1,38 @@
+chapter_starts:
+- 'no': 209
+  confidence: 0.85
+  final_reason: 带序号的最高层级标题单独成行，后1~3行为概述段落，语义统领全章。标题末尾问号为格式瑕疵，复核方认为不足以否定章节属性。
+  accepted_evidence:
+  - '编号 # 1 单独成行'
+  - 后1~3行为概述段落，后续进入子节
+  - 语义具有统领性，符合最高层级大章特征
+  rejected_evidence:
+  - 标题末尾带问号‘？’违反‘标题末尾绝无句号’的格式特征
+  need_human_review: false
+- 'no': 1431
+  confidence: 0.9
+  final_reason: 带序号的最高层级标题单独成行，后接概述段落。1433行无序号重复为排版噪声，不影响1431的章节起点判定。
+  accepted_evidence:
+  - '编号 # 3 单独成行'
+  - 后接空白行后开始概述段落
+  - 语义统领后续内容
+  rejected_evidence:
+  - 1433行紧跟完全相同的无序号标题，存在排版重复嫌疑
+  need_human_review: false
+- 'no': 2771
+  confidence: 0.9
+  final_reason: 带序号的最高层级标题单独成行，后接章节概述。2773行无序号重复为典型的双语/重复排版，仍为最高层级大章。
+  accepted_evidence:
+  - '编号 # 4 单独成行'
+  - 后接章节概述段落
+  - 语义统领后续内容
+  rejected_evidence:
+  - 2773行紧跟完全相同的无序号标题，为重复排版
+  need_human_review: false
+rejected_lines:
+- 'no': 0
+  reason: 行内容为全书书名页，长度远超章节标题特征，且第1-4行为空白，第5行才开始鸣谢等前置内容。书名页不应作为章节起点，前言章节更合理从前置内容开始，误报风险高。
+  need_human_review: false
+- 'no': 509
+  reason: 为章节标题的中文重复翻译，前一行508已为带序号的英文章节标题‘# 2 Reacting for the First Time’。509之后510、511再次出现英中重复，构成双语标题组，509并非章节首行。
+  need_human_review: false
