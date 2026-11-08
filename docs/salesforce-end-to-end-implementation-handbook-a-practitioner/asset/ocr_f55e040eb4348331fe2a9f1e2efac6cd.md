@@ -1,0 +1,11 @@
+implementation partner. Perhaps when presenting your Salesforce project’s business case to senior leadership, you don’t gain approval for the budget requested, or the business case does not live up to the criteria for your company’s investment board. If this is the case, be sure to capture the reasons, so you know what to improve or modify. Then, go back to Chapter 2, Defining the Nature of Your Salesforce Project, to redefine the scope, considering dependencies between the capabilities.
+
+Once you have gone through that iteration, continue through the cycle – the chapters in the pre-development phase – update your RAID log and business case, and present again.
+
+# Summary
+
+In this chapter, you have summarized your Salesforce project in a business case containing a financial forecast based on the estimated revenue and cost impact of your Salesforce project. You have determined your partner model and target Salesforce CoE operating model and presented your business case to senior leadership to secure funding for your Salesforce project and have engaged with Salesforce to get a quote for your required licenses, and finally, you engaged with implementation partners, went through the process of selecting one, and contracted with your chosen implementation partner. Concurrently with selecting your implementation partner, you began establishing your Salesforce CoE by allocating resources – internal and external.
+
+Up until now, you have created a vision for your Salesforce project – the why – as well as the nature of it – the what. You have determined how to deliver your Salesforce project – the how – and now you have forecasted how much your Salesforce project will cost and the financial impact it will have on your company by increasing revenue and reducing operational costs.
+
+You have now completed all of the activities in the pre-development phase of your Salesforce implementation. Continue to the next chapter, which covers common issues to avoid in the pre-development phase and provides a checklist to evaluate the state of your Salesforce project.

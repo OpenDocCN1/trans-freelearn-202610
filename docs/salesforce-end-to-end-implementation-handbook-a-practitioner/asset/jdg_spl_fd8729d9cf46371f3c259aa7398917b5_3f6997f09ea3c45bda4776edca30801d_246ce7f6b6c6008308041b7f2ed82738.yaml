@@ -1,0 +1,79 @@
+chapter_starts:
+- 'no': 3616
+  confidence: 0.97
+  final_reason: 部分标题，复核支持，上下文为新部分起始
+  accepted_evidence:
+  - 标题为‘第 3 部分：推广阶段’，符合部分-章节模式的最高层级划分
+  - 标题后紧跟部分介绍与章节目录，上下文为新部分起始
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 3626
+  confidence: 0.91
+  final_reason: 章节标题，复核支持，目录对应且后接章节概述
+  accepted_evidence:
+  - 标题后明确出现‘在本章中，我们将涵盖以下主要主题’的章节概述句式
+  - 目录中已列出‘第 9 章，部署发布并将数据迁移到生产环境’，标题与目录一致
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 3910
+  confidence: 0.91
+  final_reason: 章节标题，复核支持，位于上一章摘要后且后接章节引言
+  accepted_evidence:
+  - 位于第 9 章摘要后
+  - 标题后出现‘在本章中，我们将重点关注准备您的变更管理计划模板’的章节级引言
+  - 标题语义统领后续变更管理、培训与支持内容
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 4250
+  confidence: 0.9
+  final_reason: 章节标题，复核支持，前文摘要明确指向下一章
+  accepted_evidence:
+  - 前文摘要明确‘在下一章中，我们将讨论在推出 Salesforce 解决方案时可能遇到的典型问题’
+  - 标题后直接进入鱼骨图与根本原因分析，符合章节起始的统领性结构
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 4483
+  confidence: 0.97
+  final_reason: 部分标题，复核支持，应作为新章划分
+  accepted_evidence:
+  - 标题为‘第 4 部分：持续改进阶段’，为部分标题
+  - 标题后为部分介绍与章节目录，上下文为新部分起始
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 4493
+  confidence: 0.92
+  final_reason: 章节标题，复核支持，目录对应且后接章节概述
+  accepted_evidence:
+  - 目录中列出‘第 12 章，演进你的 Salesforce Org 和 DevOps 能力’，标题与目录一致
+  - 标题后出现‘在本章中，我们将介绍以下主要主题’的章节概述
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 5051
+  confidence: 0.91
+  final_reason: 章节标题，复核支持，前文摘要指向下一章
+  accepted_evidence:
+  - 前文摘要已提示‘在下一章中，我们将介绍管理并利用您的 Customer360 数据’
+  - 标题后为章节级内容，统领数据管理和治理主题
+  rejected_evidence:
+  - 标题长度较长且含中英混合
+  need_human_review: false
+- 'no': 5356
+  confidence: 0.9
+  final_reason: 章节标题，复核支持，符合章节级统领
+  accepted_evidence:
+  - 前文摘要明确‘在下一章中，我们将讨论您在 Salesforce 项目持续改进阶段可能遇到的典型问题’
+  - 标题后进入常见问题与根本原因分析，符合章节级统领
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 5724
+  confidence: 0.96
+  final_reason: 文末索引，按规则应单独划分为一章
+  accepted_evidence:
+  - 文末索引标题，按规则文末索引应单独划分为一章
+  - 标题单独成行且为全书末尾的索引部分
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 3487
+  reason: 复核方指出标题后首段为回顾性过渡句而非典型章节概述，标题下内容密度与章节内专题小节一致，语义仍紧贴‘开发阶段’同一主题；结合宁可漏分不可误分原则，采纳复核方反驳，暂不分章
+  need_human_review: false
