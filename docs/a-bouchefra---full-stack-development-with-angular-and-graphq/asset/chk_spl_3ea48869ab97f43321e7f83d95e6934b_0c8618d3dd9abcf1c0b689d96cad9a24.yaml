@@ -1,0 +1,37 @@
+reviews:
+- 'no': 0
+  overturn_probability: 0.85
+  alternative: 标题页/封面
+  counter_evidence:
+  - 该行是书名页标题，包含作者名和书名，标题末尾出现句号，章节标题通常不以作者名开头且标题末尾绝无句号
+  - 前置致谢、贡献者、关于作者等前言材料实际从第6行开始，标题页不应计入前言统一章节
+  - 标题行后为多行空行，缺乏章节概述段落，上下文不支持作为章节起始
+  keep_split: false
+- 'no': 141
+  overturn_probability: 0.12
+  alternative: 部分标题
+  counter_evidence:
+  - 标题包含冒号，格式上与正文小标题相似，易被误判为排版噪声
+  - 部分标题后紧跟概述段落，语义上更像章节介绍而非独立最高层级章节
+  keep_split: true
+- 'no': 153
+  overturn_probability: 0.18
+  alternative: 章节标题
+  counter_evidence:
+  - 编号仅为数字1，未使用‘第 X 章’标准格式，可能被误认为节标题
+  - 标题前有‘本节包含以下章节’的列表，可能被视为目录而非章节起始
+  keep_split: true
+- 'no': 506
+  overturn_probability: 0.15
+  alternative: 章节标题
+  counter_evidence:
+  - 标题长度较长且包含多个技术名词，可能被误判为正文小标题
+  - 标题后直接接概述段落，缺乏明确的‘第 X 章’编号特征
+  keep_split: true
+- 'no': 1567
+  overturn_probability: 0.1
+  alternative: 章节标题
+  counter_evidence:
+  - 标题为‘## 3’简略编号，可能被误认为子节
+  - 标题后紧跟英文混合内容，可能被误判为排版断行
+  keep_split: true

@@ -1,0 +1,47 @@
+chapter_starts:
+- 'no': 141
+  confidence: 0.95
+  final_reason: 部分标题单独成行，语义统领后续章节，符合部分-章节模式的最高层级划分标准，复核方维持采纳
+  accepted_evidence:
+  - 标题 '# 第 1 部分：设置开发环境、GraphQL 服务器和数据库' 单独成行，无句号，长度合理
+  - 后 1~3 行为概述段落，随后列出本部分包含的章节
+  - 复核方 keep_split true，overturn_probability 0.12
+  rejected_evidence:
+  - 标题含冒号，格式上与正文小标题相似
+  need_human_review: false
+- 'no': 153
+  confidence: 0.85
+  final_reason: '编号为 1 的章节标题单独成行，后接本章概述及 ### 子节，虽格式非标准‘第 X 章’但语义明确为最高层级章节'
+  accepted_evidence:
+  - 标题 '## 1 应用程序架构和开发环境' 单独成行，标题末尾无句号
+  - '后接概述段落并随后出现 ### 技术要求 等子节'
+  - 复核方 keep_split true，overturn_probability 0.18
+  rejected_evidence:
+  - 编号仅为数字 1，未使用‘第 X 章’标准格式
+  - 前文有‘本节包含以下章节’列表，易被误认为目录
+  need_human_review: false
+- 'no': 506
+  confidence: 0.9
+  final_reason: 章节标题单独成行，语义为第 2 章内容，后接本章概述，符合最高层级划分
+  accepted_evidence:
+  - 标题 '## 2 使用 Node.js、Express.js 和 Apollo 设置 GraphQL' 单独成行，无句号
+  - 后接‘在上一章中...’的概述段落
+  - 复核方 keep_split true，overturn_probability 0.15
+  rejected_evidence:
+  - 标题长度较长且包含多个技术名词，可能被误判为正文小标题
+  need_human_review: false
+- 'no': 1567
+  confidence: 0.9
+  final_reason: 章节标题单独成行，语义为第 3 章，后接本章概述，符合最高层级划分
+  accepted_evidence:
+  - 标题 '## 3 连接数据库与 TypeORM' 单独成行，无句号
+  - 后接‘In the last chapter...’的概述段落
+  - 复核方 keep_split true，overturn_probability 0.1
+  rejected_evidence:
+  - 标题为简略编号，可能被误认为子节
+  - 标题后紧跟英文混合内容
+  need_human_review: false
+rejected_lines:
+- 'no': 0
+  reason: 复核方指出该行为标题页/封面，非章节起始，前言材料实际从第6行开始，标题行后为多行空行缺乏概述段落，且标题特征不符合章标题规则，误报风险高
+  need_human_review: false
