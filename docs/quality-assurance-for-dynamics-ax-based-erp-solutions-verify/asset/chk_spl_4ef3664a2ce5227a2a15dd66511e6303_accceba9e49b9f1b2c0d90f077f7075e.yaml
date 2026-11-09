@@ -1,0 +1,71 @@
+reviews:
+- 'no': 5
+  overturn_probability: 0.25
+  alternative: 前言部分小节
+  counter_evidence:
+  - '该标题后紧跟表格和另一小节 ## 关于作者，间隔仅11行，显示为前言内部结构'
+  - '前言、致谢、关于作者等应统一为一章，单独以 ## 鸣谢起章易导致前言被拆分'
+  keep_split: true
+- 'no': 125
+  overturn_probability: 0.05
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题为编号章节 ## 1 Dynamics AX 简介，单独成行无句号，长度符合章特征'
+  - '后1~3行为概述段落，随后出现 ### 子节，符合上下文章特征'
+  keep_split: true
+- 'no': 514
+  overturn_probability: 0.05
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题为编号章节 ## 2 Quality in Dynamics AX-Based ERP Solutions，单独成行'
+  - '后接概述段落并进入 ### Quality Definition for Dynamics AX 子节，语义统领性强'
+  keep_split: true
+- 'no': 767
+  overturn_probability: 0.85
+  alternative: 排版重复标题
+  counter_evidence:
+  - '标题后1行即出现同级标题 ## 最佳实践—技术，构成重复标题噪声'
+  - 章节正文“完成本章后，您将了解...”始于第二标题后，首个标题更像是目录残留或排版断行
+  keep_split: false
+- 'no': 1365
+  overturn_probability: 0.05
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题为编号章节 ## 4 最佳实践—GUI，单独成行无句号'
+  - 后接概述段落并进入 GUI 相关子节，语义概括性强
+  keep_split: true
+- 'no': 1816
+  overturn_probability: 0.05
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题为编号章节 ## 5 最佳实践——值得信赖的计算，单独成行'
+  - 后接可信计算定义段落，符合章的统领性
+  keep_split: true
+- 'no': 2052
+  overturn_probability: 0.8
+  alternative: 排版重复标题
+  counter_evidence:
+  - '标题后立即出现同级标题 ## 6 测试，形成双语重复标题'
+  - 实际正文在第二标题后才开始，首个英文标题为排版噪声
+  keep_split: false
+- 'no': 2560
+  overturn_probability: 0.05
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题为编号章节 ## 7 测试生命周期，单独成行'
+  - 后接测试生命周期概述并进入子节，符合章特征
+  keep_split: true
+- 'no': 2759
+  overturn_probability: 0.05
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题为编号章节 ## 8 缺陷管理系统，单独成行无句号'
+  - 后接缺陷定义段落，语义统领后续内容
+  keep_split: true
+- 'no': 2943
+  overturn_probability: 0.05
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题为编号章节 ## 9 Dynamics AX 工具，单独成行'
+  - 为全书最后一章，后接工具概述段落，符合章特征
+  keep_split: true

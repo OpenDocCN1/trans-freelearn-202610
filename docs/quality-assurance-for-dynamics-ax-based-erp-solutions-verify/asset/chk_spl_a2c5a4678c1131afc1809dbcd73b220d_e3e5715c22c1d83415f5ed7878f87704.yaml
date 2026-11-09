@@ -1,0 +1,52 @@
+reviews:
+- 'no': 2952
+  overturn_probability: 0.25
+  alternative: 正文小标题
+  counter_evidence:
+  - 标题前紧接列表项 '- 用于基准测试的基准套件'，可能为同一章节的列表延续而非章节起始
+  - 标题后内容直接进入工具功能描述，未出现章节级概述段落，语义更接近工具内小节
+  keep_split: true
+- 'no': 3068
+  overturn_probability: 0.2
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题后紧跟子节 ### 比较类型，层级关系清晰，但 ## 与前文 ## 代码分析器间隔较短，可能为同一工具大章下的子章节'
+  - 标题末尾无标点且单独成行，但后续概述段落仅 1 行，统领性不足
+  keep_split: true
+- 'no': 3131
+  overturn_probability: 0.15
+  alternative: 正文小标题
+  counter_evidence:
+  - 标题后内容为工具用途罗列，语义与前文比较工具差异大但仍属工具类主题，可能为同一大章下的子节
+  - '后续大量 ### 子节表明其内部结构更细，## 可能为二级标题而非最高层级章'
+  keep_split: true
+- 'no': 3190
+  overturn_probability: 0.75
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题出现在 ### 遍历表单 之后，层级从 ### 回升至 ##，但语义仍属代码分析器表单系列，未脱离前文主题'
+  - 标题后仅为 Totals 表单说明，无独立章节概述段落，且后续 3208 标题紧接，疑似同一主题下的连续小标题
+  - 标题为具体表单集合名称，长度短且无统领性，符合正文小标题特征
+  keep_split: false
+- 'no': 3208
+  overturn_probability: 0.7
+  alternative: 正文小标题
+  counter_evidence:
+  - 紧接 Totals Forms 之后，仍在代码分析器主题下，标题后仅为单一表单功能描述，无子节展开
+  - 标题为具体表单名称 Profile Summary Form，语义具体而非概括性章节标题
+  - 前后文均无总结收尾或新主题引入，排版上为表单系列的连续小标题
+  keep_split: false
+- 'no': 3214
+  overturn_probability: 0.3
+  alternative: 正文小标题
+  counter_evidence:
+  - 标题为英文工具名，后续内容为工具介绍，可能为工具章节下的子节而非独立大章
+  - 与前文代码分析器主题关联弱但仍属工具类，可能为同一大章下的子标题，层级判断存疑
+  keep_split: true
+- 'no': 3226
+  overturn_probability: 0.1
+  alternative: 其他
+  counter_evidence:
+  - 索引标题后直接为字母条目 A、Access Control List 等，符合索引格式，但索引可能为附录而非正文章节
+  - 前文为 Summary 总结段落，索引出现突兀，可能为排版噪声
+  keep_split: true
