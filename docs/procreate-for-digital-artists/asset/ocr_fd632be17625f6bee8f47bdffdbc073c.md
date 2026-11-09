@@ -1,0 +1,14 @@
+You can use the following steps to draw soothing grass:
+
++   1. Firstly, draw a base for the grass using a green color on a light brown color base.
++   2. Decide on the light source placement and paint a shadow on the area that is hidden from the light source.
++   3. Add highlights using a light green color and shadows with darker color tones.
++   4. Lastly, add some additional details such as small flowers and reflected light.
+
+# Understanding the technique
+
+Start with a base; draw a base for the grass using a green color on a light brown color base. This will give you a foundation to draw upon and provide you with directions to draw the grass (STEP 1 in Figure 2.4). Then, decide where the light source is placed as it will help you determine where to add shadows. Shadows can be added to areas that are hidden from the light source (STEP 2). Proper shading can give your grass a more three-dimensional look and add charm to the color. Use a light green color for highlights and darker color tones to enhance the shadows (STEP 3). If you find blending the colors difficult, you can use blending modes such as Soft Light for highlights and Multiply for shadows for a smoother workflow. This contrast will help in making the grass look more realistic and vibrant. Finally, add some details such as little flowers, bright yellow for highlights, dark green for shadows, and a teal color for reflected light on the grass (STEP 4). Grass can sometimes appear to have blue or teal tones because it reflects the color of the sky. Adding these colors to your drawing can make the grass look more realistic and natural. These small details can make a significant difference in the overall look of your grass drawing. To make it easier to add small details during the detailing process, you can adjust the brush sizes accordingly.
+
+# Learning how to draw a flower field scene
+
+Flowers have delicate textures that can be challenging to draw. Drawing flower field scenery requires a deep understanding of petal textures and how they appear from different perspectives. This is to ensure we can create a realistic flower drawing. It is important to remember that realistic does not mean perfect; it means that we get to draw an object that looks almost identical to a real-life object. To get better at drawing flowers, we can take pictures of flowers and observe them. Play around with the lighting and discover how external circumstances such as weather can create a different texture and appearance of the flowers. This method will surely help us in drawing flowers, but it may take time for us to master it. In this walkthrough, I will share the quickest way to draw flowers using specific tools in Procreate.
