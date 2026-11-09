@@ -1,0 +1,1 @@
+To gain comprehensive insights, consider creating different reports for each of your packages by filtering on the **sfLma__Package__c** field. You can then compile these reports into a unified dashboard, giving you a combined view of usage across all your packages:

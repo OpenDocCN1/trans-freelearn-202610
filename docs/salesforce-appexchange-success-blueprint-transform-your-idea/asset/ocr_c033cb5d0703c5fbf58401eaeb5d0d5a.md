@@ -1,0 +1,9 @@
+One of the key features of Salesforce is its cloud computing platform. Now, I know what you’re thinking—“Cloud computing? Isn’t that just where all the data goes when you delete it?” But fear not, dear reader, for cloud computing is much more than that. It allows businesses to access computing resources and software applications over the internet, rather than having to install and manage them on their own physical servers. This enables businesses to reduce IT costs, increase scalability, and improve flexibility and accessibility. Plus, it sounds much cooler than saying “I store everything on a USB drive.”
+
+But what sets Salesforce apart from other cloud-based platforms is its multi-tenant architecture. In this setup, multiple customers share the same underlying infrastructure, much like living in an eco-friendly apartment building. Each customer’s data and resources are securely isolated, just like having separate rooms and personal belongings in an apartment. This approach enables Salesforce to optimize resource utilization and easily scale its platform to cater to the diverse needs of its users, all while maintaining stringent data security and privacy protocols.
+
+And let’s not forget about AppExchange—the marketplace for third-party applications and solutions that integrate with Salesforce.
+
+# AppExchange
+
+If you’ve secured a copy of this book, chances are you’re no stranger to AppExchange and already have aspirations of crafting an app on this platform. But, for the slight possibility that this tome landed in your hands courtesy of a Christmas surprise from your tech-savvy grandma who thought you could use a new hobby, allow me to elaborate on what AppExchange

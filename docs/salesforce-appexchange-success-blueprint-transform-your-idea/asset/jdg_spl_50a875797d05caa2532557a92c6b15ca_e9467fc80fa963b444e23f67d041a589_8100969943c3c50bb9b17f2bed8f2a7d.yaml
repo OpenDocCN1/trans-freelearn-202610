@@ -1,0 +1,76 @@
+chapter_starts:
+- 'no': 3700
+  confidence: 0.95
+  final_reason: 部分标题“第 3 部分：交付价值”，书为部分-章节模式，按规则部分标题必须分章。后接部分导语及章节清单，复核方 overturn_probability
+    0.12 且 keep_split true。
+  accepted_evidence:
+  - 判断方：部分标题为第3部分起始，后接部分导语及章节清单
+  - 复核方 keep_split true，overturn_probability 0.12
+  rejected_evidence:
+  - 复核方指出后1~3行为部分介绍性叙述、列出本部分章节清单，语义更接近部分引言
+  need_human_review: false
+- 'no': 3714
+  confidence: 0.85
+  final_reason: 对应第3部分第7章 Release Management 的中文章节标题“发布管理”。位于部分导语后，语义统领后续发布管理全章内容，后续出现多级子节。复核方虽提示标题后首行为图片、概述起步较慢，但
+    keep_split true。
+  accepted_evidence:
+  - 判断方：章节标题发布管理，位于第3部分导语后，后续为概述段落并展开子节
+  - 复核方 keep_split true，overturn_probability 0.18
+  rejected_evidence:
+  - 复核方：标题后第一行为图片占位符，紧接着比喻性开场白，概述段落起步较慢
+  - 复核方：标题长度极短无编号，易被误判为章节内一级小标题
+  need_human_review: false
+- 'no': 4212
+  confidence: 0.88
+  final_reason: 对应第3部分第8章 Onboarding New Customers 的章节标题“新客户入驻”。前文为上一章总结与进一步阅读，后接概述性开场并展开多级子节，语义统领全章。
+  accepted_evidence:
+  - 判断方：章节标题新客户入驻，前文为总结，后接概述段落并展开多级子节
+  - 复核方 keep_split true，overturn_probability 0.15
+  rejected_evidence:
+  - 复核方：标题后紧跟图片与口语化开场，概述性较弱
+  - 复核方：后续子节均为同级##标题，层级关系易混淆
+  need_human_review: false
+- 'no': 4704
+  confidence: 0.7
+  final_reason: 对应第3部分第9章 Operational Excellence。标题为英文与前后中文不一致且后接图片过渡，复核方 overturn_probability
+    0.35 较高，但仍为部分内最高层级章节入口，语义统领后续流程、支持等主题，暂采纳保留。
+  accepted_evidence:
+  - 判断方：章节标题 Operational Excellence，前文为总结段落，后接概述性介绍并展开子主题
+  - 复核方 keep_split true
+  rejected_evidence:
+  - 复核方：标题为英文与前后中文正文语言不一致，排版噪声嫌疑
+  - 复核方：标题后直接为图片与过渡性叙述，后续子节多为英文，更像章节内主题块
+  need_human_review: false
+- 'no': 5169
+  confidence: 0.95
+  final_reason: 部分标题“第 4 部分：为成功而扩展”，符合部分-章节模式的新的部分起始，后接部分导语及章节预告，复核方 overturn_probability
+    0.1 且 keep_split true。
+  accepted_evidence:
+  - 判断方：部分标题第4部分起始，后接部分导语及章节预告
+  - 复核方 keep_split true，overturn_probability 0.1
+  rejected_evidence:
+  - 复核方：后接内容为章节清单而非章节概述
+  need_human_review: false
+- 'no': 5181
+  confidence: 0.85
+  final_reason: 对应第4部分第10章，利用分析和洞察。位于第4部分导语后，明确对应章节，后接概述段落并分多节展开。复核方提示概述延迟但 keep_split
+    true。
+  accepted_evidence:
+  - 判断方：章节标题利用分析和洞察，位于第4部分导语后，对应第10章
+  - 复核方 keep_split true，overturn_probability 0.2
+  rejected_evidence:
+  - 复核方：标题后为图片与比喻性开场，概述段落延迟出现
+  - 复核方：标题无编号且与部分导语衔接紧密，易被误认为引言小标题
+  need_human_review: false
+- 'no': 5623
+  confidence: 0.85
+  final_reason: 对应第4部分第11章，管理技术债务。前文为上一章总结，后接定义性概述并展开多子节，语义统领全章。复核方 overturn_probability
+    0.22 但 keep_split true。
+  accepted_evidence:
+  - 判断方：章节标题管理技术债务，前文为总结，后接概述性定义段落并展开多子节
+  - 复核方 keep_split true，overturn_probability 0.22
+  rejected_evidence:
+  - 复核方：标题后为图片与类比性定义段落，语义统领性较弱
+  - 复核方：前文为##总结，标题后直接进入概念解释，后续子节层级密集，易误判为章节内一级小标题
+  need_human_review: false
+rejected_lines: []

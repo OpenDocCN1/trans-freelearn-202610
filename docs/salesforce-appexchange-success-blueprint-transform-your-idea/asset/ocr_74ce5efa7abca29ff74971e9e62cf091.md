@@ -1,0 +1,8 @@
+# Examples of applications that are not a good fit for the Salesforce platform
+
+While Salesforce offers a range of tools and features for building custom applications, some application types may not align with the Salesforce platform’s strengths or limitations. Here are some examples:
+
++   - **Gaming applications:** The Salesforce platform is primarily designed for business applications and may not be the best fit for gaming applications that require high-performance graphics and processing capabilities.
++   - **Resource-intensive applications:** The Salesforce platform may not be suitable for applications that require extensive computing resources or real-time processing, such as complex **machine learning (ML)** or data analysis applications. AppExchange products should not attempt to carry out this processing on-platform but rather integrate with systems better positioned to handle complex processing use cases. Just so you know, in the Salesforce ecosystem, there are other options available. For instance, Heroku provides a robust platform specifically designed to handle resource-intensive computing tasks. Additionally, Salesforce offers its own proprietary AI solutions that are capable of effectively addressing advanced data processing needs.
++   - **Standalone desktop applications:** The Salesforce platform is cloud-based and primarily designed for web-based applications. Standalone desktop applications that require offline functionality may not be a good fit for the Salesforce platform.
++   - **Custom hardware applications:** Applications that require custom hardware or integration with physical devices may not be a good fit for

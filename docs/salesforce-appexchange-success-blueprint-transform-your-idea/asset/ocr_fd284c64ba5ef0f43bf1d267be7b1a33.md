@@ -1,0 +1,9 @@
+# AppExchange chat
+
+One particularly interesting feature of the AMP is the AppExchange Chat. This can be enabled directly on your AppExchange listing, providing a new avenue for real-time engagement. In our increasingly digital-centric business landscape, establishing immediate connections with prospects has become more vital than ever. With AppExchange Chat, companies can instantly engage with potential customers the moment they show interest, whether it’s to address immediate inquiries or to set up a meeting. This tool is not just about live interactions; if a representative isn’t available, the system switches to an automated chat to ensure no prospect goes unattended. Historical data underscores its effectiveness: according to Salesforce, 6% of AppExchange Chat interactions lead to combined human and bot dialogues, 11% transform into new leads, and 5% result in scheduled meetings. For those businesses securing a minimum of 500 listing visits per month, integrating AppExchange Chat can be a strategic move to optimize lead conversion and elevate ROI.
+
+# Maximize your AMP return on investment
+
+It might seem curious that we didn’t dive into the AMP in our chapter dedicated to AppExchange Listing. The reason is simple yet strategic. AMP is a robust tool, but its efficacy is maximized when deployed at the right moment in your product’s journey. Before even contemplating the benefits of AMP, ISVs need to ensure the foundational elements are firmly in place.
+
+AMP can supercharge your efforts, but only when applied to the right problem. Consider the following scenarios to understand where your current

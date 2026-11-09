@@ -1,0 +1,4 @@
+|  |  |  |
+|---|---|---|
+| Use case | Ideal for scenarios where you have different versions of your app for different industries or when you have add-on modules that not every customer might need. | This approach is ideal for beta testing features or for gradually introducing new features to your customers. It also allows for control over usage allowance allocations and the disabling of features in a freemium or tiered-access model. |
+|  | Requires more development and testing effort as you’re essentially building a new (albeit smaller) app. | Easier to implement as you’re just controlling access to existing features. |

@@ -1,0 +1,8 @@
+While SIs are essential for implementing solutions tailored to specific business needs for Salesforce customers, PDOs are the go-to partners for AppExchange product development. The Key differentiators are:
+
++   - **Understanding of business models**: SIs excel in Salesforce pricing for end customers, while PDOs have in-depth knowledge of the business models available for ISV partners. They focus on creating engaging solutions that end users willingly pay for—products that drive success in the marketplace.
++   - **Visibility of Org**: SIs build solutions within specific Orgs, but PDOs need to create solutions that can seamlessly integrate into any Org. This flexibility is vital for products distributed on the AppExchange.
++   - **Project duration**: SIs typically follow project-based development, while PDOs focus on building a product that can evolve and grow throughout its lifetime. This ensures ongoing improvements and adaptability.
++   - **Expertise in app packaging**: PDOs possess specific expertise in app packaging for the AppExchange, utilizing technologies such as 2GP, **LMA**, **COA**, **FMA**, among others. Understanding what can and cannot be packaged, conducting security reviews, and having package-building proficiency are critical aspects where many SIs often fail. This knowledge plays a vital role in creating a successful product for AppExchange.
+
+Salesforce places significant importance on evaluating PDOs to ensure they possess the necessary skills and expertise to support ISV partners effectively. PDOs report their projects to Salesforce, providing valuable insights into their capabilities and achievements. This section sheds light on how

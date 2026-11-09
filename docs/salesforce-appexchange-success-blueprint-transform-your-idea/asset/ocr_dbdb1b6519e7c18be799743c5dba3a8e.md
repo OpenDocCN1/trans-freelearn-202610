@@ -1,0 +1,5 @@
+development background, business-oriented mindset and exceptional people management skills. These experienced technology leaders can guide your early-stage company to align its tech strategy with business objectives. The fCTO can become a catalyst for success in the competitive world of AppExchange companies, ensuring that technology is a powerful enabler of business growth.
+
+Don’t get me wrong, a full-time CTO is vital for your long-term success. Many ISVs focus on innovation within their products and miss out on genuine innovation opportunities. But if you’re tight on budget and can’t afford a full-time CTO right now, a fractional CTO with a solid AppExchange background is definitely better than an empty spot on your executive team.
+
+# Artificial Intelligence (AI): opportunities and challenges

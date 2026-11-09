@@ -1,0 +1,27 @@
+chapter_starts:
+- 'no': 5982
+  confidence: 0.85
+  final_reason: '标题单独成行、格式符合，语义上开启新部分并后接概述段落 5986 及多个 ### 子节。复核方 overturn_probability
+    仅 0.18 且 keep_split=true，反方证据不足以推翻，保留分章。'
+  accepted_evidence:
+  - 标题单独成行、长度<30且无末尾标点
+  - '后接概述段落 5986 并随后出现 ### 创新或停滞 / 与 Salesforce 协作 等子节'
+  - 复核方 keep_split=true，overturn_probability 0.18
+  rejected_evidence:
+  - '复核方指出 5963 ## 总结、5975 ## 进一步阅读 与 5982 均为 ## 且短距离连续出现，更像章节内部二级节划分'
+  - 开场致辞式段落‘亲爱的开拓者们…’被认为更像新部分引言
+  need_human_review: false
+- 'no': 6435
+  confidence: 0.98
+  final_reason: 文末索引标题，单独成行，后续为字母列表式索引条目。按规则文末索引应单独划分为一章，双方一致。
+  accepted_evidence:
+  - 标题单独成行且内容为文末索引
+  - 后续内容为索引条目排版，语义与正文章节明显分离
+  - 复核方 keep_split=true，overturn_probability 0.05
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 6404
+  reason: '复核方反方证据成立。标题后 1~3 行仅为连续正文段落 6406 起，未出现子节结构；语义为‘让我们收尾’的过渡性收束，缺乏统领后续内容的概括性。前文
+    6396 ## 总结 已为本章总结，6404 位于同一结语区块内，误分风险高，判定为正文小标题不分章。'
+  need_human_review: false

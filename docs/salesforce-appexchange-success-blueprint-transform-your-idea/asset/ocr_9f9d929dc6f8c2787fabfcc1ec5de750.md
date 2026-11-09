@@ -1,0 +1,7 @@
+Regularly analyze your app’s performance and usage data to identify trends or patterns that may indicate the need for pricing adjustments. If you notice a high churn rate among users who have signed up for the highest pricing tier, this could be a sign that the value delivered at that price point is not meeting customer expectations, prompting you to re-evaluate the features and pricing of that tier. You are going to learn how to do this in Chapter 10.
+
+Finally, establish a regular schedule for reviewing and revising your pricing plan, such as quarterly or semi-annually. This helps ensure that your pricing remains relevant, competitive, and aligned with your business objectives. For Salesforce, while they don’t alter their prices frequently, they showcase innovation in their approach; new features might be launched as free additions in a new release or initially as paid features that may later become free.
+
+By regularly reviewing and revising your pricing plan, you can ensure that it remains aligned with your customers’ needs, the competitive landscape, and your business strategy. This proactive approach to pricing management will help you capture the maximum value from your app, ensure fair pricing for your customers, and contribute to your app’s long-term success in the Salesforce AppExchange ecosystem.
+
+# Summary

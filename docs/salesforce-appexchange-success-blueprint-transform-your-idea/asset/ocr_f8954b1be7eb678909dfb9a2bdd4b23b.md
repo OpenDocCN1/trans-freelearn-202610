@@ -1,0 +1,8 @@
+Just imagine the AppExchange marketplace as a high-tech, spaceport showroom, where your slick and shiny spaceship (your app) is ready for a quick journey around the nearest nebula. Except here, the shiny spaceship isn’t just for admiring from afar—it’s for them to hop in and pilot through the cosmos of their specific needs!
+
+Essentially, a test drive org is a read-only org you set up. This org is a shared playground for your prospects to explore your application without altering any records. Given its nature, your app should be optimized to showcase results within these boundaries. Let’s see how to set up this experience:
+
++   1. **Enable test drives**: Begin by logging in to the Partner Community, find the listing where you want to offer a test drive, click on it to open the AppExchange publishing console, select the **Trials** tab, and check **Offer a Test Drive**.
++   2. **Create a test drive org**: Click **Create Test Drive** and fill in the details, making sure to associate the package containing your app. Salesforce will create an org and send you login credentials for both administrator and evaluation users.
++   3. **Configure the test drive org**: Log in as the administrator to add sample data and perform other setup tasks. Then, log in as the evaluation user to define a password.
++   4. **Connect the test drive org to your AppExchange listing**: Return to the **Trials** tab in the publishing console, click **Connect Organization**, enter the login credentials for the evaluation user, click **Submit**, and then finally, **Save**.

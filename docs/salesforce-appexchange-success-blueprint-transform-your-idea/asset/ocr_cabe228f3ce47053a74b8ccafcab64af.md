@@ -1,0 +1,8 @@
+Remember the words of Peter Drucker, “You can’t manage what you can’t measure.” Now, let’s delve deeper and explore some commonly used KPIs that shed light on your company’s success and performance.
+
++   - **Monthly Recurring Revenue (MRR)/Annual Recurring Revenue (ARR)**: These metrics are crucial for any SaaS business, including AppExchange products. They provide insights into earnings trends and future revenue predictions. MRR can be further broken down into different components, such as new sales, expansion, and churned MRR, providing a detailed view of revenue changes.
++   - **Customer Acquisition Cost (CAC)**: CAC represents the cost of acquiring a new customer. It’s calculated by dividing the total sales and marketing costs by the number of new customers. By tracking CAC, businesses can evaluate the efficiency of their marketing strategies and make necessary adjustments.
++   - **CAC payback period**: This metric measures the time it takes for the revenue from a customer to cover the cost of acquiring them. It’s crucial for early-stage SaaS businesses to ensure profitability and sustainability.
++   - **Churn rate**: This measures the number of customers that stop using your product. Understanding churn rate helps identify issues with product-market fit, service quality, and more.
++   - **Burn Multiple**: This metric evaluates how much a startup is spending to generate each incremental dollar of ARR growth. A lower Burn Multiple indicates more efficient growth.
++   - **Gross margin**: Gross margin measures the difference between revenue and the cost of goods sold (COGS), indicating the profitability of a
