@@ -1,0 +1,27 @@
+chapter_starts:
+- 'no': 6314
+  confidence: 0.9
+  final_reason: 编号章标题且前后章节边界清晰，复核方虽指出子标题紧随但未否定章级属性，采纳分章
+  accepted_evidence:
+  - '标题格式 ## 9 Microsoft Dynamics AX 单独成行无标点，长度<30字，符合章标题格式特征'
+  - '前文 6308 ## 摘要 / 6310-6313 为上一章结尾与摘要，后文 6318 起为本章概述，上下文符合章边界'
+  - 编号 9 与后续 10 形成连贯章序，属全书最高层级大章
+  rejected_evidence:
+  - '标题后第1行为空第2行为同名子标题 ### Microsoft Dynamics AX'
+  - '全书正文小节均使用 ## 标记'
+  need_human_review: false
+- 'no': 6897
+  confidence: 0.9
+  final_reason: '编号章标题 ## 10 集成 BizTalk Server 和 Salesforce.com，前后为上一章摘要与本章概述，章序连贯，复核方反证不足，采纳分章'
+  accepted_evidence:
+  - 标题单独成行无标点，长度符合，编号 10 明确为最高层级大章
+  - '前文 6891 ## 摘要 / 6891-6896 为第9章结尾，后文 6899 起为本章概述段落'
+  - 与 6314 形成 9→10 的连贯章序
+  rejected_evidence:
+  - '章节标记仅为 ## 10 ... 与正文小节标记形式一致'
+  - 编号特征与格式特征重叠误报风险
+  need_human_review: false
+rejected_lines:
+- 'no': 7621
+  reason: '复核方反证成立：## 索引 后紧跟同级标题 ## 符号、## A，子标题未降级，无概述段落，直接进入条目式索引列表，内容为排版分区而非统领性正文；宁可漏分不误分，不分章'
+  need_human_review: false

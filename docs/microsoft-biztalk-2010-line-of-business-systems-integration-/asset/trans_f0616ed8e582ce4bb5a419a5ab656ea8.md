@@ -1,0 +1,167 @@
+
+- 构建 BizTalk 应用程序 – 发送 IDOC 183
+- 测试 BizTalk 应用程序 192
+- 自定义 IDOCs 193
+- 从 SAP 接收自定义 IDOC 195
+- 测试 BizTalk 应用程序—接收自定义 IDOC 200
+- 接收平面文件 IDOCs 205
+- 摘要 207
+## 第 5 章：WCF SAP 适配器 RFC 和 BAPIs 209
+- SAP RFC 和 BAPI 概述 209
+- RFCs 210
+- BAPIs 211
+- RFCs/BAPIs vs. IDOCs 211
+- 同步与异步 211
+- 是否存在开箱即用的接口？ 212
+- 你是否试图将多个事件/进程串联起来？ 212
+- 工作流 212
+- 架构生成 212
+- 外发操作 212
+- 入站操作 214
+- 调用托管在 BizTalk 中的 RFC/tRFC 214
+- 自定义对象 215
+- 事务 216
+- 自定义与开箱即用 RFC/BAPIs 217
+- 构建 BizTalk 应用程序—RFC 演练 218
+- 测试 BizTalk 应用程序—RFC 演练 229
+- 构建 BizTalk 应用程序—BAPI 演练 231
+- 测试 BizTalk 应用程序—BAPI 演练 249
+- 提示、陷阱和故障排除 251
+- 摘要 252
+## 第 6 章：BizTalk 与 Windows Azure 平台 AppFabric 的集成 253
+- Windows Azure AppFabric 是什么？ 254
+- AppFabric 访问控制 254
+- 问题场景 254
+- 解决方案 255
+- 服务总线 256
+- 问题场景 256
+- 解决方案 256
+- 向 BizTalk Server 发布 Service Bus 消息 257
+- 场景描述 257
+- 构建 BizTalk 解决方案组件 259
+- 定义消息架构 259
+- 暴露服务终结点 261
+- 构建访问控制服务组件 264
+- 构建令牌验证器 WCF 行为 269
+- 配置 BizTalk 服务以验证声明 276
+- 构建服务消费者 277
+- 创建 Service Bus 访问控制权限 281
+- 重新配置 BizTalk 解决方案以使用 Service Bus 绑定 283
+- 重新配置服务消费者以使用 Service Bus 绑定 286
+- 向 Service Bus 发布 BizTalk Server 消息 288
+- 场景描述 288
+- 解决方案设计 288
+- 构建访问控制服务组件 289
+- 构建 BizTalk 解决方案组件 290
+- 配置 BizTalk 解决方案以使用 Service Bus 绑定 294
+- 摘要 296
+## 第 7 章：与 SharePoint 2010 集成 297
+- SharePoint 与 BizTalk 集成：为什么 SharePoint 与 BizTalk 更好 299
+- 捕获设备更换图像 299
+- 车辆维护列表 300
+- 现场事件报告 300
+- 了解 SharePoint 和 BizTalk 集成的组件 301
+- Windows SharePoint Services 适配器 Web 服务的安装 303
+- FinalizeDocuments 308
+- GetDocuments 309
+- IsAlive 309
+- PutDocuments 309
+- Windows SharePoint Services 适配器配置 309
+- 接收适配器 310
+- 适配器 Web 服务端口 310
+- 归档文件位置 URL 311
+- 批大小 311
+- 命名空间别名 311
+- 轮询间隔 311
+- SharePoint 站点 URL 311
+- 视图名称 312
+- 发送适配器 312
+- 适配器 Web 服务端口 313
+- SharePoint 站点 URL 313
+- 命名空间别名 313
+- Microsoft Office 集成 314
+- 模板文档库 314
+- 模板命名空间列 314
+- SharePoint 列 314
+- 其他注意事项 315
+- 上下文属性 315
+- Windows SharePoint Services 适配器是一个单向适配器 315
+- 从 SharePoint 接收文档 316
+- 构建 InfoPath 表单和 SharePoint 表单库 317
+- 创建 SharePoint 视图 325
+- 创建 SharePoint 归档库 327
+- 构建应用程序 329
+- 测试应用程序 336
+- 向 SharePoint 发送文档 338
+- 创建 SharePoint 表单库 338
+- 构建 BizTalk 应用程序 348
+- 测试应用程序 354
+- 摘要 357
+## 第 8 章：与 SharePoint 2010 Web 服务集成 359
+- SharePoint 列表概述 360
+- SharePoint 的列表 Web 服务 360
+- 消费 SharePoint 列表场景演练 364
+- 创建自定义 SharePoint 列表 365
+- 自定义列表 GUIDs 368
+- 构建 BizTalk 应用程序 370
+- 为 SharePoint Web 服务生成架构 370
+- 编排初始化 377
+- 映射 SharePoint 请求 378
+- SharePoint 的非结构化响应 387
+- ERP 平面文件 392
+- 部署和配置 BizTalk 解决方案 395
+- 测试 BizTalk 应用程序 403
+- 与 SharePoint 集成的其他方式 405
+- SharePoint 客户端对象模型 405
+- SharePoint REST 服务 406
+- 业务连接服务 (BCS) 406
+- 确定合适的解决方案 407
+- 摘要 407
+## 第 9 章：Microsoft Dynamics AX 409
+- Dynamics AX 是什么？ 410
+- 与 AX 集成的 方法 410
+- 安装适配器和 .NET Business Connector 411
+- 为 BizTalk 适配器配置 Dynamics AX 2009 应用程序集成框架 412
+- 同步演练示例—汇率 420
+- Dynamics AX 架构 421
+- Dynamics AX 查询消息 428
+- Dynamics AX 创建消息 429
+- 编排设置 430
+- 端口配置 434
+- 异步演练示例—Dynamics AX 消息流出 439
+- 消息设置 440
+- 编排设置 442
+- 端口配置 444
+- Dynamics AX 中的批处理设置 449
+- 使用 .NET 业务连接器 452
+- 其他开发和配置说明 454
+- 开发 454
+- 配置 455
+- 维护 455
+- 摘要 456
+## 第 10 章：集成 BizTalk Server 和 Salesforce.com 457
+- Salesforce.com 是什么？ 458
+- 为什么要集成 Salesforce.com 和 BizTalk Server？ 458
+- 从 BizTalk Server 与 Salesforce.com 通信 459
+- 配置基础 BizTalk 组件 461
+- 自定义 Salesforce.com 数据实体 463
+- 在 BizTalk Server 中消费 Salesforce.com WSDL 466
+- 配置 BizTalk 消息端口以调用 Salesforce.com 473
+- 测试应用程序 475
+- 从 Salesforce.com 与 BizTalk Server 通信 476
+- 从 Salesforce.com 向 BizTalk Server 发送外发消息 477
+- 使用外发消息配置 Salesforce.com 工作流 478
+- 构建外发消息的 BizTalk 接收方 482
+- 从 Salesforce.com 触发外发消息 486
+- 从 Salesforce.com 查询 BizTalk Server 489
+- 构建云启用 REST 服务代理 489
+- 构建消费云服务的 Visualforce 页面 493
+- 摘要 502
+- 索引 505
+## 前言
+
+Microsoft BizTalk 是一种集成服务器解决方案，允许企业连接不同的系统。在当今并购频繁的商业环境中，越来越多的企业被迫使用 BizTalk Server 2010 等集成代理在业务系统之间交换数据。在集成这些系统时经常被忽视的是，为了有效集成它们，ERP 和 CRM 系统所要求的先决知识。这些知识不再被锁在昂贵顾问的脑海中。通过本书培养业务系统集成方面的宝贵技能，在组织内获得竞争优势。
+
+本书将通过实际场景向您展示如何将 BizTalk 与业务系统集成。每章将介绍一个业务系统，介绍一些先决知识并演示如何将 BizTalk 与该业务系统集成，然后基于实际经验提供指导，进一步提升您的 BizTalk 知识。
+
+本书将使您掌握如何将 BizTalk 与业务系统集成。本书首先强调 WCF-LOB 适配器的技术基础以及与流行 WCF-LOB 适配器相关的常见步骤和重要属性。然后您将了解如何使用基于 WCF 的 SQL Server 适配器与 Microsoft SQL Server 集成的概述。本书随后深入探讨诸如与 Dynamics CRM 集成、使用 IDOC 构建 BizTalk/SAP 集成解决方案、IDOC 与 RFC/BAPI 之间的差异，以及通过 Windows Azure AppFabric Service Bus 进行 WCF 集成等主题。

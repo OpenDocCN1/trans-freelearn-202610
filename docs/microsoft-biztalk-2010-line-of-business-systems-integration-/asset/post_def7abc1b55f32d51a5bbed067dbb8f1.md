@@ -1,0 +1,24 @@
+
+![](img/23d1402649b6528b085cd6b900a2c9c3_535_0.png)
+
+## SOA Patterns with BizTalk Server 2009
+
+ISBN: 978-1-847195-00-5      Paperback: 400 pages
+
+Implement SOA strategies for Microsoft BizTalk Server solutions with this book and eBook
+
+- 1. Discusses core principles of SOA and shows them applied to BizTalk solutions
+- 2. The most thorough examination of BizTalk and WCF integration in any available book
+- 3. Leading insight into the new WCF SQL Server Adapter, UDDI Services version 3, and ESB Guidance 2.0
+
+![](img/23d1402649b6528b085cd6b900a2c9c3_535_1.png)
+
+## Applied Architecture Patterns on the Microsoft Platform
+
+ISBN: 978-1-849680-54-7      Paperback: 544 pages
+
+An in-depth scenario-driven approach to architecting systems using Microsoft technologies with this book and eBook
+
+- 1. Provides an architectural methodology for choosing Microsoft application platform technologies to meet the requirements of your solution
+- 2. Considers solutions for messaging, workflow, data processing, and performance scenarios
+- 3. Written by a distinguished team of specialists in the Microsoft space

@@ -1,0 +1,24 @@
+reviews:
+- 'no': 6314
+  overturn_probability: 0.18
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题后第1行为空，第2行即为同名子标题 ### Microsoft Dynamics AX，标题后未直接出现1~3行的概述段落，上下文衔接异常'
+  - '全书正文小节均使用 ## 标记，章节与小节使用相同层级标记，依赖编号区分易产生误报'
+  keep_split: true
+- 'no': 6897
+  overturn_probability: 0.12
+  alternative: 正文小标题
+  counter_evidence:
+  - '章节标记仅为 ''## 10 集成 BizTalk Server 和 Salesforce.com''，无''第 X 章''等明确章级用语，且与正文小节的
+    ## 标记形式一致'
+  - '标题后虽有概述段落，但前后章节均以 ## 开头且层级混杂，编号特征与格式特征重叠，误报风险存在'
+  keep_split: true
+- 'no': 7621
+  overturn_probability: 0.85
+  alternative: 索引分区标题/排版分区
+  counter_evidence:
+  - '## 索引 后紧跟同级标题 ## 符号、## A，子标题未降级为 ###，不符合章节-子节的层级关系'
+  - 标题后无概述段落，直接进入条目式索引列表，内容为符号、条目排版噪声而非统领性正文
+  - 索引条目为列表项式排版，符合排版分区特征而非最高层级大章
+  keep_split: false

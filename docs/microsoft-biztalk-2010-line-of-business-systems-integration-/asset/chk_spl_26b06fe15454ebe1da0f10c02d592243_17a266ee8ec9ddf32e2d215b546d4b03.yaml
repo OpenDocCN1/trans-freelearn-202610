@@ -1,0 +1,30 @@
+reviews:
+- 'no': 3404
+  overturn_probability: 0.12
+  alternative: 章节标题
+  counter_evidence:
+  - '标题编号为 5 且单独成行，前文为 ## Summary 结束上章，后文为本章概述段落，符合新章特征'
+  - 标题长度适中且无标点，语义统领后续 RFC/BAPI 内容
+  keep_split: true
+- 'no': 3895
+  overturn_probability: 0.88
+  alternative: 页眉/排版噪声
+  counter_evidence:
+  - 同一标题在 3915、3935、3955、3976、3996 等处重复出现，伴随相同段落重复，典型页眉重复特征
+  - 标题行被截断为 'Biz...'，末尾省略号且长度异常，疑似转换截断
+  - 标题后内容与前页高度重复，非正常章节展开
+  keep_split: false
+- 'no': 4872
+  overturn_probability: 0.1
+  alternative: 章节标题
+  counter_evidence:
+  - '标题编号为 7，单独成行，前文为 ## 摘要 结束上章，后文为 SharePoint 平台介绍及本章主题列表'
+  - 标题语义统领后续 SharePoint 2010 集成内容，符合最高层级章节
+  keep_split: true
+- 'no': 5660
+  overturn_probability: 0.45
+  alternative: 正文小标题/排版断行
+  counter_evidence:
+  - '标题后紧跟 ### 与 SharePoint 集成 相同主题子标题，且下一行 ''2010 Web 服务'' 像是标题续行，标题不完整'
+  - 章节编号 8 与前一章主题高度重叠，后续直接进入子标题而非典型章节概述段落
+  keep_split: true

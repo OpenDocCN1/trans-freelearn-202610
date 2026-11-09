@@ -1,0 +1,9 @@
+Next, we'll create the messages for the XML that we'll send and receive from Dynamics AX to create an exchange rate. Add a message **msgAXCreateExchnageRatesRequest**, which will be a multi-part message type of **ExchangeRatesService_create_Request**, and **msgAXCreateExchnageRatesResponse** that will be a multi-part message type **ExchangeRatesService_create_Response.**
+
+Finally, we'll need to create two messages, **msgExchangeRatesUSDCAD** and **msgExchangeRatesCADUSD**, which will have the message type of the canonical schema **ExchangeRates**. These messages will contain the exchange rates for USD to CAD and for CAD to USD respectively. We'll create these two messages just to simplify our orchestration for this example. In practice, if you're going to deal with several exchange rates, you will need to add logic to the orchestration to loop through the list rates that you're interested in and have only one message of type **ExchangeRates** resent several times.
+
+As we talked about earlier in the chapter, we'll need to know the Dynamics AX company name in order to populate the metadata in our message sent to AX with the correct source and destination endpoint. For this example, we'll hard code these two company names with **daxCADCompany** and **daxUSDCompany** variables of type System.String. We'll add a variable, **needToLoadFxRateUSD**, of type System.Boolean that we'll use in our orchestration. Also, we'll hard code the variable **serviceAccountName** with the Active Directory service account that our BizTalk host instance is running under. Finally, we need a variable named **xpathQueryCADResultsExpression** of type System.String that we'll use to determine our query response message. The following is an orchestration view on the messages and variables:
+
+![](bbox=[0.355, 0.555, 0.645, 0.765])
+
+Now, we'll need to add a logical receive port and two logical send ports in our orchestration.

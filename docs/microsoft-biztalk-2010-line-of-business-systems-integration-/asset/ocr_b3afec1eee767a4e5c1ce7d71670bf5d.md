@@ -1,0 +1,11 @@
+# RFCs
+
+RFC stands for Remote Function Call and is the standard SAP interface when exchanging data across SAP systems or between non-SAP systems and SAP systems. You can think of an RFC much like a C# method, the difference being SAP provides an interface that allows for communication with SAP systems. There are three different types of RFCs:
+
+| RFC Type | Description |
+|---|---|
+| Synchronous RFC | As the name implies, this type of RFC utilizes request-response connectivity when exchanging information between SAP and SAP systems or SAP and Non-SAP systems. This is probably the most popular type of RFC due to the popularity of Request-Response requirements. |
+| Transactional RFC (tRFC) | "Transactional RFCs (tRFCs) are RFCs that are invoked as part of a logical unit of work (LUW). On an SAP system, a LUW contains all of the steps necessary to complete a business or programming task. A tRFC represents a way of invoking an RFC; it is not a unique SAP artifact." This RFC was previously known as an Asynchronous RFC and for a good reason. Once the request is sent from a client, SAP will process this data and associate a unique Transaction ID. This ID and corresponding data will be stored in SAP, which allows a disconnected client to receive the information when it comes back online. This ID is also used when calling the RfcConfirmTransID operation, which will confirm the tRFC call and allows SAP to remove the current entry from its database. tRFCs guarantee that all Logical Units of Work (LUW) will be executed but cannot guarantee the order of transactions will be maintained throughout execution. Also note, there is a performance hit when using this method. |
+| Queued RFC (qRFC) | If you need to guarantee that several transactions, either inbound or outbound, are executed in order then qRFC provides in order, once only delivery. Much like other ordered delivery scenarios, there is a performance hit when using this method. Note: qRFC client functionality has been deprecated from BizTalk as of Microsoft BizTalk Adapter 3.0. For further information related to qRFC, please refer to this link: http://msdn.microsoft.com/en-us/library/cc185531(BTS.10).aspx |
+
+The scope of this book focuses on Synchronous RFCs. For more information on tRFCs, please refer to MSDN: http://msdn.microsoft.com/en-us/library/cc185268(v=BTS.10).aspx

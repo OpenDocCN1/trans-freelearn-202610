@@ -1,0 +1,7 @@
+In the inbound scenario, ASDK-based adapter either monitors or listens for a notification from the target LOB system for particular events and generates a message containing event-specific data for the hosting application. We go into more details later in this and subsequent chapters.
+
+![](bbox=[0.22, 0.22, 0.78, 0.44])
+
+# ASDK-based Adapters vs. WCF services
+
+One of the frequently asked questions in relation to the new adapters is what is the reasoning behind introducing the ASDK technology? What's wrong with good old fashioned WCF-services that have been used for years to provide access to LOB applications and are perfectly consumable from virtually all applications? Why did Microsoft re-invent the wheel? Well, these are absolutely valid questions and here is the answer. There is nothing wrong with the WCF-services; they are as good as they have always been, but there is one big "but" – only if the LOB application is relatively static. Imagine the situation where your LOB application is evolving and you, as a developer, have to expose new metadata to the client applications? You either have to update existing contracts, or implement new ones with subsequent configuration steps applied to both the host and WCF-service. This has been a major pain for the development teams working on the LOB side.

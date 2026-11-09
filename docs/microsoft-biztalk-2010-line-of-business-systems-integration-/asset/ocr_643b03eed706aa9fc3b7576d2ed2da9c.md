@@ -1,0 +1,5 @@
+Next, we need to select the operations that we want to use in our application and add them to the list of desired operations. In the Select a category tree click the Echo Category node, then in the Available categories and operations panel, select EchoString and click the Add button. This action adds EchoString to the list of desired operations at the bottom of the screen. The last step is to help the Consume Adapter Service add-in to generate descriptive file names by setting the file name prefix at the bottom of the screen to EchoOutbound.
+
+![](bbox=[0.26, 0.3, 0.74, 0.69])
+
+Finally, click OK to close the Consume Adapter Service Wizard window and return to Visual Studio, where we see two new files added to our BizTalk project. One file is the XSD schema for the EchoString operation, the other is an XML binding file. After deploying the application, you will import this file using the BizTalk Admin Console to create a physical WCF-Custom send port configured to perform the EchoString operation.
