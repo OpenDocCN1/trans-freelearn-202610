@@ -1,0 +1,7 @@
+If your dataset is designed with an academic purpose in mind, for example, if it is a research dataset, you might consider hosting your own hackathon during the workshops or poster sessions of an academic conference. This is an excellent way to get people engaged in manipulating your data, and at the very least, you may get some good feedback from the people at the conference for ways to improve your data, or what datasets they think you should build next.
+
+# Summary
+
+In this chapter, we looked at a wide variety of possibilities to share our cleaned data. We discussed various solutions and tradeoffs for different ways of packaging and distributing our data. We also reviewed the basics of providing documentation, including the most important things that your users need to know and how to communicate those items in a documentation file. We noticed that licenses and terms of use nearly always appear in documentation, but what do they mean and how should you choose one for your data? We reviewed some common terms of use for data projects, as well as the most common licensing schemes: Creative Commons, and ODbL. Finally, we brainstormed some ways for you to publicize your data, including data meta-collections, the Open Data Stack Exchange site, and data-centric hackathons.
+
+At this point in the book, you have seen a complete beginning-to-end overview of data cleaning. The next two chapters consist of longer, more detailed projects that will give you some more practical exposure to data cleaning tasks using the skills we learned earlier in the book.

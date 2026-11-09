@@ -1,0 +1,69 @@
+chapter_starts:
+- 'no': 2972
+  confidence: 0.95
+  final_reason: 判断方与复核方均认定为全书最高层级大章。标题 '# 第5章：从网络收集和清洗数据' 编号特征、单独成行、无句号、长度符合，后续为章节概述。复核方提出的副标题排版和前瞻引用属于排版噪声，不构成推翻证据。
+  accepted_evidence:
+  - 标题匹配 '# 第5章：从网络收集和清洗数据'，编号特征为全书最高层级大章
+  - 单独成行且无句号，后续为章节概述
+  - 复核方 keep_split=true，overturn_probability 0.07
+  rejected_evidence:
+  - 标题后紧跟两行短语 '收集和清理数据' '来自网络' 疑似副标题排版
+  - 前文 2970 行已前瞻性提及第5章
+  need_human_review: false
+- 'no': 3642
+  confidence: 0.95
+  final_reason: 双方一致为最高层级章节标题。标题 '# 第6章：在 PDF 文件中清洗数据' 符合编号、格式、语义统领特征。复核方指出的引言衔接紧密和格式接近小标题不足以否定分章。
+  accepted_evidence:
+  - 标题匹配 '# 第6章：在 PDF 文件中清洗数据'，编号特征为全书最高层级大章
+  - 单独成行且无句号，后续为章节引言
+  - 复核方 keep_split=true，overturn_probability 0.06
+  rejected_evidence:
+  - 标题后 3644 行直接进入引言段落无明显空行分隔
+  - 与前文 3634 行语义衔接紧密
+  need_human_review: false
+- 'no': 3909
+  confidence: 0.94
+  final_reason: 判断方与复核方均维持分章。标题 '# 第7章：RDBMS 清洗技术' 为全书最高层级，单独成行。复核方提到的二级标题紧跟和中英文混用属于章节内结构，不影响最高层级判定。
+  accepted_evidence:
+  - 标题匹配 '# 第7章：RDBMS 清洗技术'，编号特征为全书最高层级大章
+  - 单独成行且无句号，后续为章节概述
+  - 复核方 keep_split=true，overturn_probability 0.08
+  rejected_evidence:
+  - 标题后 3911 行紧跟二级标题 '## RDBMS 清理技术' 出现双重标题结构
+  - 标题中英文混用 RDBMS
+  need_human_review: false
+- 'no': 4556
+  confidence: 0.92
+  final_reason: 双方认定为章节起始。标题 '# 第8章：共享干净数据的最佳实践' 符合最高层级编号与格式。复核方指出的内容重复和孤立 '## 8'
+    为提取噪声，标题本身仍为有效分章点。
+  accepted_evidence:
+  - 标题匹配 '# 第8章：共享干净数据的最佳实践'，编号特征为全书最高层级大章
+  - 单独成行且无句号，后续为章节引言
+  - 复核方 keep_split=true，overturn_probability 0.18
+  rejected_evidence:
+  - 4556 之后内容在 4592 行起几乎完全重复
+  - 标题后紧跟相同主题二级标题且 4590 行出现孤立 '## 8' 排版噪声
+  need_human_review: false
+- 'no': 4831
+  confidence: 0.95
+  final_reason: 双方一致维持分章。标题 '# 第9章：Stack Overflow 项目' 为最高层级大章，编号、格式均符合。复核方提出的标题重复与概述缺失不足以推翻。
+  accepted_evidence:
+  - 标题匹配 '# 第9章：Stack Overflow 项目'，编号特征为全书最高层级大章
+  - 单独成行且无句号，后续为项目介绍
+  - 复核方 keep_split=true，overturn_probability 0.05
+  rejected_evidence:
+  - 标题后 4833 行紧跟二级标题 '## Stack Overflow 项目' 标题重复
+  - 标题后内容直接进入项目介绍无 1~3 行概述段落
+  need_human_review: false
+- 'no': 5641
+  confidence: 0.95
+  final_reason: 双方一致认定为章节起始。标题 '# 第10章：Twitter 项目' 符合最高层级编号、单独成行、无句号。复核方指出的引言缺乏与前瞻引用噪声不影响判定。
+  accepted_evidence:
+  - 标题匹配 '# 第10章：Twitter 项目'，编号特征为全书最高层级大章
+  - 单独成行且无句号，后续为项目引言
+  - 复核方 keep_split=true，overturn_probability 0.06
+  rejected_evidence:
+  - 标题后 5643 行直接为项目背景叙述缺乏独立章节引言概述
+  - 前文 5639 行已前瞻性提及下一章
+  need_human_review: false
+rejected_lines: []

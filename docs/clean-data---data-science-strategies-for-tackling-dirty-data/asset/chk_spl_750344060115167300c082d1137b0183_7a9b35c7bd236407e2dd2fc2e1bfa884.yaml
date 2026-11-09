@@ -1,0 +1,43 @@
+reviews:
+- 'no': 2972
+  overturn_probability: 0.07
+  alternative: 章节标题
+  counter_evidence:
+  - 标题后紧跟两行短语 '收集和清理数据' '来自网络'，疑似章节封面副标题排版而非正文起始
+  - 前文 2970 行已前瞻性提及 '在第 5 章《从 Web 收集和清理数据》中'，存在重复指涉的排版噪声
+  keep_split: true
+- 'no': 3642
+  overturn_probability: 0.06
+  alternative: 章节标题
+  counter_evidence:
+  - 标题后 3644 行直接进入引言段落，无明显空行分隔，格式上与正文小标题接近
+  - 标题与前文 3634 行的 '在本章中，我们发现了...' 语义衔接紧密，可能被误判为段落过渡
+  keep_split: true
+- 'no': 3909
+  overturn_probability: 0.08
+  alternative: 章节标题
+  counter_evidence:
+  - 标题后 3911 行紧跟二级标题 '## RDBMS 清理技术'，出现双重标题结构，易被视为章节内小节
+  - 标题中英文混用 RDBMS，可能为正文术语强调而非最高层级分章
+  keep_split: true
+- 'no': 4556
+  overturn_probability: 0.18
+  alternative: 章节标题
+  counter_evidence:
+  - 4556 之后的内容在 4592 行起几乎完全重复出现，疑似提取重复导致标题位置误判
+  - 标题后紧跟相同主题的二级标题 '## 分享干净数据的最佳实践'，且 4590 行出现孤立 '## 8' 排版噪声
+  keep_split: true
+- 'no': 4831
+  overturn_probability: 0.05
+  alternative: 章节标题
+  counter_evidence:
+  - 标题后 4833 行紧跟二级标题 '## Stack Overflow 项目'，标题重复，易被视为正文小标题
+  - 标题后内容直接进入项目介绍，无 1~3 行概述段落的典型章节特征
+  keep_split: true
+- 'no': 5641
+  overturn_probability: 0.06
+  alternative: 章节标题
+  counter_evidence:
+  - 标题后 5643 行直接为项目背景叙述，缺乏独立的章节引言概述段落
+  - 前文 5639 行已前瞻性提及 '在下一章中，我们将收集和清理...'，存在前瞻引用噪声
+  keep_split: true

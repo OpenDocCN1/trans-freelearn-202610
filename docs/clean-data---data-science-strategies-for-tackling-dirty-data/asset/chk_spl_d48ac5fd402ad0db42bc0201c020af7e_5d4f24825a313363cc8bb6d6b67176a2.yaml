@@ -1,0 +1,52 @@
+reviews:
+- 'no': 0
+  overturn_probability: 0.65
+  alternative: 书名/标题页
+  counter_evidence:
+  - 该行仅为书名 '# 干净数据 - 数据科学应对脏数据的策略'，无章节编号且不具备统领后续内容的语义
+  - 紧随其后的是空行及 '## 鸣谢' 等前置子标题，标题页与前置内容在排版上可分离
+  - 按规则前置内容应从首个实质性前置标题开始划分，书名页更接近封面而非章节起始
+  keep_split: false
+- 'no': 233
+  overturn_probability: 0.95
+  alternative: 目录条目/排版噪声
+  counter_evidence:
+  - 行内容为 '## 索引 239'，包含页码 239，符合目录条目格式而非正文章节标题
+  - 上下文为目录区段：上行为 '摘要 236'，下行为 '## 前言'，均为目录项
+  - 实际文末索引应位于正文之后，而此处出现在目录区段中且后接前言，位置与文末索引矛盾
+  keep_split: false
+- 'no': 376
+  overturn_probability: 0.05
+  alternative: 第1章章节标题
+  counter_evidence:
+  - 标题含编号特征 '第1章'，单独成行，末尾无标点，长度<30
+  - 后1~3行为概述段落，语义具有统领性，符合章节判断规则
+  keep_split: true
+- 'no': 578
+  overturn_probability: 0.03
+  alternative: 第2章章节标题
+  counter_evidence:
+  - 标题含编号特征 '第2章'，单独成行，格式特征符合
+  - 后接概述段落，语义统领后续内容
+  keep_split: true
+- 'no': 1746
+  overturn_probability: 0.05
+  alternative: 第3章章节标题
+  counter_evidence:
+  - 标题含编号特征 '第3章'，单独成行，后接概述段落
+  - 虽标题含英文，但编号明确且语义统领性强
+  keep_split: true
+- 'no': 2139
+  overturn_probability: 0.04
+  alternative: 第4章章节标题
+  counter_evidence:
+  - 标题含编号特征 '第4章'，单独成行，末尾无标点
+  - 后接概述段落，符合章节上下文特征
+  keep_split: true
+- 'no': 2972
+  overturn_probability: 0.06
+  alternative: 第5章章节标题
+  counter_evidence:
+  - 标题含编号特征 '第5章'，单独成行，语义统领后续内容
+  - 后接章节概述，符合章节判断规则
+  keep_split: true

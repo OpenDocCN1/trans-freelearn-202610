@@ -1,0 +1,48 @@
+chapter_starts:
+- 'no': 376
+  confidence: 0.9
+  final_reason: 编号特征‘第1章’，单独成行，末尾无标点，后1~3行为概述段落，语义统领性强，双方一致采纳
+  accepted_evidence:
+  - 判断方指出为第1章标题，编号特征‘第 X 章’，单独成行，后接概述段落
+  - 复核方确认标题含编号特征‘第1章’，单独成行，末尾无标点，后接概述，符合章节判断规则
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 578
+  confidence: 0.95
+  final_reason: 编号特征‘第2章’明显，单独成行，格式特征符合，后接概述段落，语义统领后续内容
+  accepted_evidence:
+  - 判断方指出第2章标题，编号特征明显，单独成行，标题末无标点，长度<30
+  - 复核方确认编号特征、单独成行、后接概述段落，语义统领
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 1746
+  confidence: 0.85
+  final_reason: 编号特征‘第3章’，单独成行，后接概述段落，具有统领性，复核方确认
+  accepted_evidence:
+  - 判断方指出第3章标题，单独成行，后接概述段落，具有统领性
+  - 复核方确认标题含编号特征‘第3章’，单独成行，后接概述，虽含英文但编号明确
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 2139
+  confidence: 0.95
+  final_reason: 编号特征‘第4章’，单独成行，末尾无标点，后接概述段落，符合章节上下文
+  accepted_evidence:
+  - 判断方指出第4章标题，编号特征‘第 X 章’，单独成行，后接概述段落
+  - 复核方确认编号特征、单独成行、末尾无标点，后接概述，符合章节判断规则
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 2972
+  confidence: 0.9
+  final_reason: 编号特征‘第5章’，单独成行，语义统领后续内容，后接章节概述
+  accepted_evidence:
+  - 判断方指出第5章标题，编号特征明显，单独成行，后接章节概述内容
+  - 复核方确认编号特征、单独成行、语义统领，后接概述，符合章节判断规则
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 0
+  reason: 复核方指出该行为书名页‘# 干净数据 - 数据科学应对脏数据的策略’，无章节编号且不具备统领后续内容的语义，紧随空行及‘## 鸣谢’等前置子标题，标题页更接近封面而非章节起始，判断方证据不足
+  need_human_review: false
+- 'no': 233
+  reason: 复核方指出行内容为‘## 索引 239’含页码239，符合目录条目格式而非正文章节标题，上下文为目录区段，上行为‘摘要 236’下行为‘## 前言’，位置与文末索引矛盾，判断方误判
+  need_human_review: false
