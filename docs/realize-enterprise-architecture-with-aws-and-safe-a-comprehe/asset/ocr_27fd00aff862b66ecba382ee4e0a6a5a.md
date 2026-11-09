@@ -1,0 +1,16 @@
++   - An organization's transformation focuses on reinventing its operating model—how it orchestrates efforts to provide value to customers and align with its strategic goals. Utilizing agile methods to rapidly iterate and evolve while organizing your teams around products and value streams will help you become more responsive and customer-centric.
++   - Business model transformation entails reimagining your product/service offering and revenue model through new value propositions. You may be able to take advantage of this to reach new customer segments. Using AWS reduces **time-to-market (TTM)** by 37%, increases code deployment frequency by 32%, and reduces time to deploy new code by 38%, according to the *Cloud Value Benchmarking report.*
+
+Capabilities facilitate the utilization of resources (people, technology, and any other tangible or intangible assets) by an organization to accomplish a specific goal. Using AWS CAF capabilities, you can improve your ability to leverage the cloud effectively to drive digital transformation. The **Cloud Native Computing Foundation (CNCF)** groups its capabilities into six categories—**Business**, **People**, **Governance**, **Platform**, **Security**, and **Operations.**
+
+Your cloud transformation journey is composed of a set of capabilities owned or managed by different functionally related stakeholders, as discussed next.
+
+# AWS CAF perspectives and foundational capabilities
+
+Your cloud investments will be more successful if you keep your business goals in mind. CEOs, **chief financial officers (CFOs)**, **chief operating officers (COOs)**, CIOs, and CTOs comprise this group. Here are some approaches to take:
+
++   - Bringing a people perspective to the cloud journey accelerates our strategy to help organizations move more rapidly to the continuous growth of a learning culture. CIOs, COOs, CTOs, directors of the cloud, and senior leaders across functions and departments are usual stakeholders.
++   - A governance perspective helps you maximize benefits and minimize risks associated with your cloud initiatives. **Chief transformation officers** (also known as **CTOs**, along with chief technology officers), CIOs, CTOs, CFOs, **chief data officers (CDOs)**, and **chief risk officers (CROs)** are typical stakeholders.
++   - Building an enterprise-grade, scalable, hybrid cloud platform, modernizing existing workloads, and implementing cloud-native solutions are only a few benefits of a platform perspective. Typical stakeholders are CTOs, engineers, and technology leaders.
++   - Your cloud workloads and data are more secure when you take a security perspective. Stakeholders in security management include **chief information security officers (CISOs)**, **chief compliance officers (CCOs)**, internal auditing specialists, and security engineers and architects.
++   - By understanding operations, you can ensure your cloud services are delivered to a level that meets business requirements. A number of stakeholders participate in this process, such as IT service managers, infrastructure and operation leaders, and site reliability engineers.

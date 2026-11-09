@@ -1,0 +1,49 @@
+reviews:
+- 'no': 3094
+  overturn_probability: 0.75
+  alternative: 正文小标题/章节内二级标题
+  counter_evidence:
+  - 标题长度明显超过30字规则，TOGAF Framework in Action with AWS 约33字符，格式特征偏离真正的章标题
+  - 标题为英文而前后上下文均为中文论述，语义上更像章节内的专题小标题而非最高层级章名
+  - 标题后1~3行直接进入具体论述‘与传统的瀑布流程相比...’，缺少章标题后应有的概述段落，上下文更像节内承接
+  keep_split: false
+- 'no': 4357
+  overturn_probability: 0.05
+  alternative: 部分标题
+  counter_evidence:
+  - '标题为 # 第 3 部分 – SAFe 在企业架构与云中，单独成行且为最高层级部分标题'
+  - 后接部分导语‘随着本书进入后半部分...’，符合部分-章节模式的最高层级分章特征
+  - 前文已结束前一部分内容，序号与后续章节列表对应
+  keep_split: true
+- 'no': 4373
+  overturn_probability: 0.1
+  alternative: 章节标题
+  counter_evidence:
+  - 文中4369-4371明确列出‘第 7 章，将敏捷框架与企业架构对齐并扩展’，与本行完全对应
+  - 标题单独成行，后1~3行为概述并进入子节，符合章节起始语义与上下文特征
+  - 标题长度适中、无句号，格式符合章标题规范
+  keep_split: true
+- 'no': 4768
+  overturn_probability: 0.1
+  alternative: 章节标题
+  counter_evidence:
+  - 对应文中列出的‘第 8 章，SAFe 在 AWS 云迁移中的实施’，标题单独成行
+  - 后接主题介绍与子节列表，标题后1~3行为概述段落，符合章节起始上下文
+  - 在部分-章节模式下为最高层级章节
+  keep_split: true
+- 'no': 5380
+  overturn_probability: 0.05
+  alternative: 部分标题
+  counter_evidence:
+  - '标题为 # 第 4 部分 – 建立 EA，单独成行，为最高层级部分标题'
+  - 后接部分介绍‘在本书的结尾，我们将把全部重点放在 EA 使能和就绪度上...’，符合分章点
+  - 与后续章节列表衔接一致
+  keep_split: true
+- 'no': 5396
+  overturn_probability: 0.1
+  alternative: 章节标题
+  counter_evidence:
+  - 对应文中列出的‘第 9 章，建立企业架构实践’，标题单独成行且与列表一致
+  - 后接章节概述‘公司的增长前景成功取决于其数字化转型...’，符合章标题后概述特征
+  - 格式、长度、语义均符合最高层级章节起始
+  keep_split: true

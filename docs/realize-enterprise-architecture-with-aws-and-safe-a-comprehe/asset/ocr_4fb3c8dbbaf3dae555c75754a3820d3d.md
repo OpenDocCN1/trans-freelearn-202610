@@ -1,0 +1,17 @@
+# *Improving customer experience, digitizing processes, and achieving operational excellence*
+
+Customer experience is tightly interwoven with digital capabilities. Companies with a state-of-the-art, modern setup and streamlined IT infrastructure are likely to offer a better customer experience.
+
+Consumers face an overwhelming number of options when it comes to products and services and the platforms where they can purchase them. A company’s digital experience must be extraordinary to engage and win over a visitor. The relationship with the customer doesn’t end when they make a purchase; customers remain in an organization’s database.
+
+Companies can use data to inform and entertain customers on topics related to their products of interest. Keeping customers engaged after a sale by leveraging digital capabilities to offer communications, such as email newsletters, online surveys, and product review opportunities, can enhance customer experiences and improve sales. It’s important to always be mindful that an unhappy customer can easily damage a company’s reputation through social media and can conveniently switch to another provider.
+
+Customer experience is the highest priority when building a business strategy, but operational excellence, implementation, the execution of initiatives, and increased productivity are the next priorities. In cases where an employee is managing a complex query, dealing with a frustrated customer, or handling a large returned order, having the tools and processes to take the best approach can make or break a brand’s reputation.
+
+# *Mapping the current IT environment to create a better future strategy*
+
+Every company has technology applications that departments rely on to maintain smooth day-to-day operations. Every aspect of an organization is dependent on network technology, so creating a comprehensive inventory of applications is one important way to assess capabilities and plan for future strategic initiatives. Multiple frameworks and tools can be used to assess, maintain, and analyze this inventory, while considering factors including application life cycles, costs, deployments, exchange flows, and impacts on the business.
+
+IT specialists and other stakeholders must be able to access this data and understand it for better decision-making. One way to support better decisions is to design the inventory to be as comprehensive as possible, including roles, processes, locations, business capabilities, vendors, and other key factors.
+
+Operational gaps can be filled using these inventory maps that reflect the business capabilities of the organization. This is the data used by enterprise architects to conduct objective and subjective analyses via automated questionnaires for stakeholders, who provide information to help assess the value, technical efficiency, and business fit of the applications they use. By the end of these analyzing exercises, enterprise architects are able to list all the applications that are consuming an organization’s resources and rank them according to their importance and value, consolidating scores and cross-referencing KPIs. The result helps determine which resources have been the most fruitful in the past, what should be included in the future strategy, and how the IT team should approach applications that are in use.

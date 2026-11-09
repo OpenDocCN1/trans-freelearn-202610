@@ -1,0 +1,15 @@
+# AWS Database Migration Service
+
+Database migrations to AWS are made easy with AWS Database Migration Service (AWS DMS). In this way, applications that rely on the source database do not experience any downtime during migration. Data can be migrated from and to the most popular commercial and open source databases using AWS Database Migration Service.
+
+In addition to homogeneous migrations, which include MySQL to MySQL, AWS Database Migration Service also supports migrations between different databases such as Oracle and Microsoft SQL Server to Amazon Aurora. AWS Database Migration Service works with any supported source and any supported target to continually replicate your data with low latency. Amazon Simple Storage Service (Amazon S3) allows you to replicate data from multiple sources to build an agile data lake solution that is highly available and scalable. Data can be streamed into Amazon Redshift to create a petabyte-scale data warehouse. Transfer your databases safely and securely to AWS. There is no downtime during the migration, as the source database is functional throughout.
+
+# CloudEndure migration
+
+A 90-day free trial of this lifting and shifting solution is available. With CloudEndure Migration, your applications are rehosted on AWS using an agent-based tool. Lift-and-shift migrations can be done without disrupting the business with self-service capabilities and automated processes. The CloudEndure Agent should be installed on the source machine. Applications and data are replicated to AWS’s staging area by the Agent. The CloudEndure Agent performs asynchronous, block-level data replication of your source and target environments, so changes from your source environment to the target staging areas can be tracked and migrated without causing any downtime or performance issues.
+
+A self-service web-based console is available on CloudEndure’s website for configuring your target environment, checking for compatibility issues, and validating that your apps run smoothly on AWS before you move over. You can rewrite, re-architect, and restructure your applications after you host them on AWS and use the services. Other tools for migrating data include AWS Snowball, AWS Snowball Edge, AWS Snowmobile, AWS DataSync, and AWS Transfer for SFTP.
+
+# Adopting an agile approach with epics
+
+The concept of an epic refers to a large body of work that can be broken down into smaller stories, which Jira sometimes refers to as issues. Multiple teams can work together on multiple projects, and multiple boards can be used to track multiple epics at once. Usually, a set of sprints precedes an epic. The user stories of an epic will be added and removed as the team learns more about it through development and customer feedback. Essentially, agile epics adopt a flexible scope based on customer feedback and team cadence.

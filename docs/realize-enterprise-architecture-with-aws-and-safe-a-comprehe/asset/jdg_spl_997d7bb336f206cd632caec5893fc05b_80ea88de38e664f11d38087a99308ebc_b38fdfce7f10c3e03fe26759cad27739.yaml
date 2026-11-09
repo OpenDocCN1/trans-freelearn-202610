@@ -1,0 +1,69 @@
+chapter_starts:
+- 'no': 74
+  confidence: 0.95
+  final_reason: 双方一致，标题为第1部分，单独成行，语义统领后续内容，符合部分-章节模式需分章
+  accepted_evidence:
+  - 标题单独成行、无句号、长度合适，语义统领后续第一部分全部内容
+  - 书中存在 第 X 部分 模式，按规则部分和章均应分章
+  - 前后上下文为前言结束与正文部分开始，符合部分标题的上下文特征
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 95
+  confidence: 0.9
+  final_reason: 与目录第1章《构建企业IT架构的核心基础》对应，单独成行且后接概述段落，格式语义均符合
+  accepted_evidence:
+  - 标题单独成行，后1~3行即为概述段落，符合章标题上下文特征
+  - 与目录 第 1 章《构建企业 IT 架构的核心基础》语义对应
+  - 格式上无句号、长度<30字，符合章标题格式特征
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 785
+  confidence: 0.9
+  final_reason: 与目录第2章《定义核心基础以及如何做对》对应，单独成行，语义统领后续内容
+  accepted_evidence:
+  - 标题单独成行，后接概述段落，语义统领后续内容
+  - 与目录 第 2 章《定义核心基础以及如何做对》完全对应
+  - 前后为上一章结尾与新章开始，符合章边界上下文
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 1302
+  confidence: 0.9
+  final_reason: 与目录第3章《将企业架构应用于 AWS 云》对应，单独成行，后接概述
+  accepted_evidence:
+  - 标题单独成行，后接概述句，语义概括后续 AWS 云相关内容
+  - 与目录 第 3 章《将企业架构应用于 AWS 云》对应
+  - 格式符合章标题：无句号、单独成行、长度合适
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 1930
+  confidence: 0.95
+  final_reason: Part 2 为最高层级部分标题，单独成行，语义统领后续框架内容
+  accepted_evidence:
+  - Part 2 为最高层级部分标题，单独成行，语义统领后续框架内容
+  - 书中已确立部分-章节模式，部分标题应分章
+  - 前后为第3章结束与新部分开始，上下文支持分章
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 1949
+  confidence: 0.9
+  final_reason: 与目录第4章《企业架构的可用框架》对应，单独成行，语义具有统领性
+  accepted_evidence:
+  - 标题单独成行，后接本章主题概述，符合章标题上下文
+  - 与目录 第 4 章《企业架构的可用框架》对应
+  - 格式无句号、长度合适，语义具有统领性
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 2605
+  confidence: 0.9
+  final_reason: 与目录第5章《AWS 指导性框架》对应，单独成行，语义统领后续内容
+  accepted_evidence:
+  - 标题单独成行，后接概述段落，语义统领 AWS 指导性框架内容
+  - 与目录 第 5 章《AWS 指导性框架》对应
+  - 格式符合章标题特征，前后为章边界
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 5
+  reason: '复核方指出该行为献词/致谢正文段落，非标题行，末尾带分号且文本被截断，格式不符合章标题特征：带标点、长度远超30字、非独立标题；前言类统一章节应以标题如
+    ## 前言 起始，而非献词段落作为分章点，判断方无有力反驳'
+  need_human_review: false

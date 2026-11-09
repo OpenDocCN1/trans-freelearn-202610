@@ -1,0 +1,15 @@
+# Cloud migration strategy
+
+There are millions of customers using AWS, from startups to government agencies. Business processes must be digitalized and optimized, legacy workloads must be migrated and modernized, and business models must be reinvented. A cloud-powered transformation makes their operations more efficient, reduces risks, and lowers their costs. Additionally, they improve employee morale and customer satisfaction, as well as their agility. The cloud can be effectively leveraged for digital transformation, but only if you have a set of foundational organizational capabilities (your cloud-readiness). By identifying these capabilities and offering prescriptive guidance, the AWS Cloud Transformation Accelerator helps thousands of organizations across the globe accelerate their cloud transformation endeavors.
+
+Once you understand the reasons for migrating to a cloud environment, you can develop a cloud migration strategy. In cloud computing, data centers don't need to be maintained, scalability is improved, resilience is improved, and teams can collaborate remotely. When you use AWS, you can modernize your technology, as well as access end-to-end support for mobile capabilities, cloud architecture, design, and development. A Well-Architected Framework for AWS allows you to optimize how your applications are developed, maintained, and upgraded.
+
+By facilitating communication among principal engineers about specific topics through training sessions, lunchtime discussions, or other mechanisms, your organization can address topics across teams. You can identify and prioritize opportunities for transformation using the Amazon Cloud Architecture Framework. Assessing and improving your cloud readiness, and iteratively improving your roadmap as you transform your organization, will ultimately increase your organization's agility.
+
+# Phases of the architecture development method
+
+As TOGAF is mostly used by VLEs, an ADM will suffice for smaller firms. Iteration during requirements phases is common in agile projects. In most cases, business requirements are elicited and clarified beforehand without you having to define them and understand them clearly. ADM has 10 phases, as outlined here. The TOGAF documentation on Open Group's website provides a complete overview of TOGAF's approach and descriptions of each phase, identifying its objectives, inputs, steps, and outcomes.
+
+# Preliminary phase – framework and principles
+
+An organization's preliminary phase is concerned with defining where, what, why, who, and how the architecture is done within that particular enterprise. It addresses the enterprise definition and helps you identify key drivers and elements. It also allows you to determine the requirements for the architecture and define the architectural principles that will perform any architecture work. Defining the framework and the relationships between management frameworks, as well as determining the maturity of the enterprise architecture, are also covered.
