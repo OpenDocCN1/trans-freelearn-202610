@@ -1,0 +1,43 @@
+reviews:
+- 'no': 6106
+  overturn_probability: 0.08
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题使用 ## 层级，与后续 ## 19.1 等子节层级写法相近，存在层级混淆的可能'
+  - 标题后 1~3 行直接进入叙述性正文，未出现典型的章节概述段落
+  keep_split: true
+- 'no': 6510
+  overturn_probability: 0.07
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题格式与 19.x 子节使用相同 ## 层级，易被误认为二级小标题'
+  - 标题前后均为空行，缺乏明显的章节分隔符或目录式编号特征
+  keep_split: true
+- 'no': 6663
+  overturn_probability: 0.09
+  alternative: 正文小标题
+  counter_evidence:
+  - 标题后紧跟空行即进入正文说明，未出现 1~3 行概述段落再接子节的典型上下文
+  - 标题长度偏长且包含英文缩写 SCS，语义上更接近专题小标题
+  keep_split: true
+- 'no': 7176
+  overturn_probability: 0.15
+  alternative: 排版断行/重复标题
+  counter_evidence:
+  - '标题后 2 行即出现无编号的重复标题 ## Web 查看内容文件，疑似排版噪声或标题重复'
+  - 编号 22 与前文 21.8 摘要衔接紧密，重复出现标题削弱其作为独立最高层级章节的唯一性
+  keep_split: true
+- 'no': 7357
+  overturn_probability: 0.06
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题使用 ## 层级，与后续 ## 23.1、23.2 等子节层级一致，易被误判为二级标题'
+  - 标题后直接进入概念性介绍段落，未出现章节级总结或习题等前置收尾特征
+  keep_split: true
+- 'no': 7946
+  overturn_probability: 0.1
+  alternative: 正文小标题
+  counter_evidence:
+  - 标题文字较长且包含多个概念，使用 WDK 进行配置和自定义，语义更偏向专题小标题
+  - 标题后紧跟空行即进入背景叙述，缺乏典型的章节概述段落结构
+  keep_split: true

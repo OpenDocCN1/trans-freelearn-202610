@@ -1,0 +1,39 @@
+chapter_starts:
+- 'no': 3126
+  confidence: 0.95
+  final_reason: 双方一致，编号章标题格式语义均符合，上下文衔接成立
+  accepted_evidence:
+  - 标题后1~3行为概述段落‘在上一章中，我们为新闻文章对象创建了自定义对象类型...’
+  - 前文为第11章摘要结束，符合章节衔接
+  - 编号特征、单独成行、末尾无标点、长度符合
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 3772
+  confidence: 0.95
+  final_reason: 复核确认，编号章标题单独成行且后接概述段落，前文为第13章摘要
+  accepted_evidence:
+  - 标题后紧跟概述段落‘在上一章为我们的新闻文章示例创建了模板文件后，我们已准备好继续为该模板设计规则文件...’
+  - 前文为第13章摘要，编号连贯，格式符合
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 4063
+  confidence: 0.95
+  final_reason: 复核确认，编号章标题单独成行，后1~3行为概述段落，前文为第14章摘要结束
+  accepted_evidence:
+  - 标题后1~3行为概述段落‘我们在前几章中创建了模板文件并将其与 Rules 文件关联起来...’
+  - 前文为第14章摘要结束，单独成行且末尾无标点
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 3585
+  reason: 复核方指出标题后1~3行内无概述段落，下一非空行为同级重复标题‘## 使用 Web Publisher 模板文件工作’，实际概述出现在重复标题之后，上下文不符，优先采纳复核
+  need_human_review: false
+- 'no': 4560
+  reason: 标题后下一非空行为重复标题‘## 文件夹映射’，1~3行内无概述段落，实际概述段落出现在重复标题之后，不符合章节标题上下文特征
+  need_human_review: false
+- 'no': 5080
+  reason: 标题后紧跟同级重复标题‘## 使用指令文件’，无概述段落，概述段落出现在第二个标题之后，上下文不符
+  need_human_review: false
+- 'no': 5573
+  reason: 标题后下一非空行为重复标题‘## Automatic Property Extraction (APE)’，概述段落延迟出现，标题后未直接接概述，不符合章节标题上下文特征
+  need_human_review: false

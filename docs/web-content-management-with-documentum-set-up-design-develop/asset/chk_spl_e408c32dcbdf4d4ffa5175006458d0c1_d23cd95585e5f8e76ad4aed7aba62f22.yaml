@@ -1,0 +1,55 @@
+reviews:
+- 'no': 3126
+  overturn_probability: 0.05
+  alternative: 章节标题
+  counter_evidence:
+  - 标题后1~3行为概述段落‘在上一章中，我们为新闻文章对象创建了自定义对象类型...’
+  - 前文为第11章摘要结束，符合章节衔接
+  - 编号特征、单独成行、末尾无标点、长度符合
+  keep_split: true
+- 'no': 3585
+  overturn_probability: 0.92
+  alternative: 排版断行
+  counter_evidence:
+  - 标题后1~3行内无概述段落，下一非空行是同级标题‘## 使用 Web Publisher 模板文件工作’
+  - 实际概述段落‘一旦您创建了自定义对象类型并将其作为可接受的对象类型包含在自定义生命周期中...’出现在重复标题之后
+  - 标题后未出现概述段落，违反上下文特征
+  keep_split: false
+- 'no': 3772
+  overturn_probability: 0.04
+  alternative: 章节标题
+  counter_evidence:
+  - 标题后紧跟概述段落‘在上一章为我们的新闻文章示例创建了模板文件后，我们已准备好继续为该模板设计规则文件...’
+  - 前文为第13章摘要，编号连贯，格式符合
+  keep_split: true
+- 'no': 4063
+  overturn_probability: 0.04
+  alternative: 章节标题
+  counter_evidence:
+  - 标题后1~3行为概述段落‘我们在前几章中创建了模板文件并将其与 Rules 文件关联起来...’
+  - 前文为第14章摘要结束，单独成行且末尾无标点
+  keep_split: true
+- 'no': 4560
+  overturn_probability: 0.9
+  alternative: 排版断行
+  counter_evidence:
+  - 标题后下一非空行是重复的同级标题‘## 文件夹映射’，1~3行内无概述段落
+  - 实际概述段落‘所有内容贡献者在为其网站创建内容时都会面临一个共同问题...’出现在重复标题之后
+  - 标题后接标题而非概述，不符合章节标题上下文特征
+  keep_split: false
+- 'no': 5080
+  overturn_probability: 0.9
+  alternative: 排版断行
+  counter_evidence:
+  - 标题后紧跟同级标题‘## 使用指令文件’，无概述段落
+  - 概述段落‘在运行中的 Documentum 中最常见的问题之一是模板的更改...’出现在第二个标题之后
+  - 标题后1~3行未出现概述段落
+  keep_split: false
+- 'no': 5573
+  overturn_probability: 0.9
+  alternative: 排版断行
+  counter_evidence:
+  - 标题后下一非空行是重复标题‘## Automatic Property Extraction (APE)’
+  - 概述段落‘Automatic property extraction (or APE in short) is...’出现在重复标题之后
+  - 标题后未直接接概述段落，上下文不符
+  keep_split: false

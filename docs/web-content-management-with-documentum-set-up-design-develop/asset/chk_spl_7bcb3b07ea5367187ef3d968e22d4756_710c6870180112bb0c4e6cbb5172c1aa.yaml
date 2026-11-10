@@ -1,0 +1,36 @@
+reviews:
+- 'no': 9333
+  overturn_probability: 0.88
+  alternative: 其他
+  counter_evidence:
+  - '标题后 1 行即为同级标题 ## Documentum 部署（9335），未出现章节标题后应有的概述段落，违背上下文特征：标题后 1~3 行通常是概述段落。'
+  - '与 26 章呈现完全相同的‘编号标题 + 无编号重复标题’排版模式，9333 后直接接另一个 ## 标题，疑似转换产生的重复标题噪声而非独立章节起点。'
+  keep_split: false
+- 'no': 9710
+  overturn_probability: 0.88
+  alternative: 其他
+  counter_evidence:
+  - '标题后紧跟同级标题 ## 使用 DQL 和 API 命令（9711），无概述段落间隔，标题后不应直接是同级标题。'
+  - '编号标题 ## 26 使用 DQL 和 API 命令 与下一行无编号标题内容完全重复，符合排版重复/章节编号标记特征，而非真正的章节起始语义。'
+  keep_split: false
+- 'no': 10324
+  overturn_probability: 0.75
+  alternative: 其他
+  counter_evidence:
+  - '## A 后立即出现同级标题 ## 常见问题和答案（10325），未间隔正文概述，违背章节标题后接概述段落的上下文特征。'
+  - '单独的字母标记 ## A 更像是附录编号标记，实际附录标题在下一行，连续两个 ## 标题不符合‘标题单独成行后接正文’的格式特征。'
+  keep_split: false
+- 'no': 10769
+  overturn_probability: 0.75
+  alternative: 其他
+  counter_evidence:
+  - '## B 后紧跟同级标题 ## 新功能和增强功能（Release 5.3）（10770），标题后无概述段落，直接进入另一标题。'
+  - 字母附录标记与实际标题分离的重复模式与 A 附录一致，## B 更像是编号标记而非可独立分章的语义标题。
+  keep_split: false
+- 'no': 10993
+  overturn_probability: 0.15
+  alternative: 其他
+  counter_evidence:
+  - '标题 ## Index 后紧跟索引条目内容，如 10995 ‘$’，无正文段落过渡，虽符合文末索引位置，但标题极短且为纯英文，可能被误判为页眉页脚类排版噪声。'
+  - 索引章节通常应与正文分离，但本处索引条目格式异常，存在被误识别为排版标记的风险。
+  keep_split: true
