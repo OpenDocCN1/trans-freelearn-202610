@@ -1,0 +1,10 @@
++   - You can preview the range of movement in the **Muscle Group Preview** section by adjusting the sliders (1). You can preview the range of movement per muscle in the **Per-Muscle Settings** section. You can also adjust the range here by unfolding a given muscle foldout and using the slider (2). In the **Additional Settings** section, you can adjust more options of your avatar. These are mainly responsible for the *flexibility* of your rig. You can set how much a bone can be stretched during animation for instance.
++   - The **Translation DoF** option enables animating bones transition in your **Humanoid** rig. It is turned off by default, meaning that only rotation of the bones is used in animation.
++   - In the **Rig** tab in the **model import settings**, you can find some additional options:
++     - **Avatar Definition**: This option is responsible for creating a new avatar or copying the avatar from another model. The second option is useful for storing animations in multiple files. It will be discussed further in the *Using animations from multiple assets* recipe.
++     - **Optimize Game Objects**: This option lets you hide all bones from the **Hierarchy** view. The number of game objects in the game has an impact on the performance. You can still choose a number of bones that will be displayed in the **Hierarchy**. It is useful for having exposing weapon slots and similar gameplay-related bones while hiding others.
++     - **Root node**: This option is visible only for **Generic** rigs. It lets you choose the bone responsible for root motion calculation. We will discuss it further in `Chapter 4, Character Movement`.
+
+# Creating and assigning an Animator Controller
+
+**Animator Controllers** are state machines (graphs) responsible for controlling the flow of animations of any animated object in the game. The same Animator Controller asset can be used by multiple objects or characters. Unity will create an independent runtime copy of the asset for each animated object it is assigned to.

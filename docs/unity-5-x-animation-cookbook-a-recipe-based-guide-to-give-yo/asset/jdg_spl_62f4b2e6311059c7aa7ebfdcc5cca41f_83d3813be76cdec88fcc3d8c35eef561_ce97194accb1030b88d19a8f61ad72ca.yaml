@@ -1,0 +1,46 @@
+chapter_starts:
+- 'no': 5
+  confidence: 0.8
+  final_reason: 致谢属于前言、序言、关于作者等正文之前的前置块，统一作为前置章节起始。复核方 overturn_probability 0.2 且
+    keep_split true，虽指出后接表格而非概述段落，但未构成推翻。
+  accepted_evidence:
+  - 判断方：致谢属于前言、序言类前置内容，按规则应与前言等统一划分为一章，此处为前置章节起始
+  - 复核方 keep_split true，overturn_probability 0.2
+  rejected_evidence:
+  - 复核方指出致谢后紧跟贡献者表格而非概述段落，更像信息页而非统领性章节
+  need_human_review: false
+- 'no': 206
+  confidence: 0.95
+  final_reason: '标题为 ## 1 使用动画，含最高层级编号，单独成行无句号，后1~3行即为本章概述段落，语义统领后续内容，双方一致。'
+  accepted_evidence:
+  - 判断方：标题含最高层级编号，后1~3行即为本章概述段落，符合章节格式与语义特征
+  - 复核方 keep_split true，overturn_probability 0.05，确认编号、排版、概述均符合
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 757
+  confidence: 0.8
+  final_reason: '标题为 ## 2，符合全书最高层级编号特征，后接本章介绍概述。复核方虽提出语义不足，但认为编号行作为章节起点与1、5章模式一致，keep_split
+    true。'
+  accepted_evidence:
+  - 判断方：编号特征明显，后续即出现本章介绍概述，为第二章起始
+  - 复核方 keep_split true，overturn_probability 0.15，认为编号行作为章节起点在本书排版中与1、5章模式一致
+  rejected_evidence:
+  - '复核方指出标题仅为 ## 2，虽无语义但符合编号特征'
+  need_human_review: false
+- 'no': 2805
+  confidence: 0.95
+  final_reason: '标题含编号 ## 5 角色动作和表情，单独成行无句号长度<30，后接本章解释概述，明确为第五章起始，双方一致。'
+  accepted_evidence:
+  - 判断方：标题含编号，后接本章解释概述，明确为第五章起始
+  - 复核方 keep_split true，overturn_probability 0.05，确认编号、排版、概述均符合
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 1647
+  reason: '复核方指出标题 ## 2D 和用户界面动画 前紧邻 ## 3 编号行，编号与标题被拆分为两行，最高层级起点应为编号行。当前仅分标题行会把编号行遗漏，采纳复核方反证，overturn_probability
+    0.78，keep_split false。'
+  need_human_review: false
+- 'no': 2113
+  reason: '复核方指出标题 ## 角色移动 前紧邻 ## 4 编号行，编号与标题分离，全书最高层级大章起点应归于编号行。单独分章会遗漏编号行，采纳复核方反证，overturn_probability
+    0.8，keep_split false。'
+  need_human_review: false

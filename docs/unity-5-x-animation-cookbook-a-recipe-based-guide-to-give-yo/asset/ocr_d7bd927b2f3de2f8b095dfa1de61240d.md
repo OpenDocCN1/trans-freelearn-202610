@@ -1,0 +1,13 @@
++   - **Kinematic Rigid body**: To animate a game object with a **Rigidbody** component attached, you need to set the **Kinematic** checkbox to true. It completely disables the physics of the Rigid Body. You can still animate the object with **Kinematic** set to false, but physics will still have an impact on the movement (the object will not be able to penetrate other objects, it will rotate on collisions, and so on).
++   - **Animate Physics option**: Set in the **Update Mode** parameter of the **Rigidbody** component. This option makes the Rigid body to be animated in the physics loop (you can think of it as the `FixedUpdate()` function equivalent). It prevents the Rigid Bodies colliding with this object to jitter and behave in strange ways.
++   - **Animation in world space**: Our platform is animated in world coordinates. This means that the animation sets the object's position regarding the scene's 0x, 0y, 0z point. It does not matter where the object is placed in the scene; after playing the animation, it will be placed in the positions stored in the animation's key frames. We will discuss local space animation in the *Animating object's local position – creating automatic doors* recipe.
++   - **Moving platform as a parent to the character**: We are setting the platform as the parent to the in-game character, which collides with it. Rigid bodies parented to other **Transforms** try to move with them in game. This is the easiest and rather bulletproof way of making our character move with/relative to the platform game object. And because the platform moves with the **Update Mode** set to **Animate Physics**, no jittering will occur. Instead of parenting the character to the platform, you could also experiment with creating a physical material with appropriate friction, or write your own custom solution that would add the platform's speed to the character's speed.
+
+# There's more...
+
+In the provided example, we created our own script for moving the character using a **Rigidbody** component. You can find the script in the `Shared scripts` directory. It is called `SimpleMove.cs`. To make your character move:
+
++   1. Add a collider component (we use a **Sphere Collider** in the example) and a **Rigidbody** component to it.
++   2. Create a zero friction `Physics Material` and assign it to the collider component.
++   3. Set the **Rigidbody** component **Constraints** to **Freeze Rotation** in the X, Y, and Z axes.
++   4. Create an empty game object, position it around 0.2 units above the character's feet, and parent it to the character. Name it `GroundCheck` for clarity.

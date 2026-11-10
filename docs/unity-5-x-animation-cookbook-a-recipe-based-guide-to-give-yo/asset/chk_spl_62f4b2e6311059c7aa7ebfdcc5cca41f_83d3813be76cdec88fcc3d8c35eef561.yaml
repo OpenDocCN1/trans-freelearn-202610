@@ -1,0 +1,43 @@
+reviews:
+- 'no': 5
+  overturn_probability: 0.2
+  alternative: 前置致谢信息页
+  counter_evidence:
+  - 致谢后紧跟贡献者表格而非概述段落，更像信息页而非统领性章节
+  - 前言、序言、致谢、关于作者等正文之前内容应统一为一章，单独在此处分章会把前置块拆开
+  keep_split: true
+- 'no': 206
+  overturn_probability: 0.05
+  alternative: 正文小标题
+  counter_evidence:
+  - 标题为‘## 1 使用动画’含最高层级编号，单独成行且无句号
+  - 后1~3行即为‘本章解释了在 Unity 中使用动画的基本知识，并涵盖以下主题：’的概述段落，语义统领后续内容
+  keep_split: true
+- 'no': 757
+  overturn_probability: 0.15
+  alternative: 章节编号行
+  counter_evidence:
+  - 标题仅为‘## 2’，虽无语义但符合全书最高层级编号特征
+  - 后接‘### 使用 Animation View’及本章介绍概述，编号行作为章节起点在本书排版中与1、5章的编号+标题模式一致
+  keep_split: true
+- 'no': 1647
+  overturn_probability: 0.78
+  alternative: 章节标题行，真实起点应为前置编号行
+  counter_evidence:
+  - 标题‘## 2D 和用户界面动画’前紧邻‘## 3’编号行，编号与标题被拆分为两行，最高层级起点应为编号行
+  - 单独的标题行虽有语义且后接概述，但按编号特征应划分‘## 3’而非标题行，当前判断把编号与标题分离导致起点后移
+  keep_split: false
+- 'no': 2113
+  overturn_probability: 0.8
+  alternative: 章节标题行，真实起点应为前置编号行
+  counter_evidence:
+  - 标题‘## 角色移动’前紧邻‘## 4’编号行，编号与标题分离
+  - 全书最高层级大章的编号特征为‘## 4’，标题行单独分章会把编号行遗漏，上下文概述虽在标题后出现但起点应归于编号行
+  keep_split: false
+- 'no': 2805
+  overturn_probability: 0.05
+  alternative: 正文小标题
+  counter_evidence:
+  - 标题含编号‘## 5 角色动作和表情’，单独成行无句号，长度<30字
+  - 后接‘本章解释了角色动作和表情动画的使用方法，并涵盖了以下教程：’的统领性概述，符合章节格式与语义特征
+  keep_split: true
