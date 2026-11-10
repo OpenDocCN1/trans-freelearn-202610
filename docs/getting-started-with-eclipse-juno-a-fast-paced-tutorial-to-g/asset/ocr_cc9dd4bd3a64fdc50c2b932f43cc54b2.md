@@ -1,0 +1,13 @@
+# Creating a Java class
+
+To create a new Java class, right-click on the project in the Package Explorer view and navigate to **New** | **Class**. You will be presented with the **New Java Class** window, where you will input information about your class. You can change the class's superclass, and add interfaces that it implements, as well as add stubs for abstract methods inherited from interfaces and abstract superclasses, add constructors from superclasses, and add the main method.
+
+To create your class inside a package, simply enter its name in the appropriate field, or click on the **Browse** button beside it and select the package. If you input a package name that doesn't exist, Eclipse will create it for you. New packages can also be created by right-clicking on the project in the Package Explorer and navigating to **New** | **Package**. Right-clicking on a package instead of a project in the Project Explorer and navigating to **New** | **Class** will cause the class to be created inside that package.
+
+# Creating working sets
+
+Working sets provide a way to organize your workspace's projects into subsets. When you have too many projects in your workspace, it gets hard to find the project you're looking for in the **Package Explorer** view. Projects you are not currently working on, for example, can be kept in separate working sets. They won't get in the way of your current work but will be there in case you need them.
+
+To create a new working set, open the Package Explorer's view menu (white triangle in the top-right corner of the view), and choose **Select Working Set**. Click on **New** and select the type of projects that the working set will contain (**Java**, in this case). On the next page, insert the name of the working set, and choose which projects it will contain. Once the working set is created, choose the **Selected Working Sets** option, and mark your working set. Click on **OK**, and the Package Explorer will only display the projects inside the working set you've just created.
+
+Once your working sets are created, they are listed in the Package Explorer's view menu. Selecting one of them will make it the only working set visible in the Package Explorer. To view more than one working set at once, choose the **Select Working Set** option and mark the ones you want to show. To view the whole workspace again, choose **Deselect Workspace** in the view menu. You can also view all the working sets with their nested projects by selecting working sets as the top-level element of the **Package Explorer** view. To do this, navigate to **Top Level Elements** | **Working Sets** in the view menu.

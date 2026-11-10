@@ -1,0 +1,9 @@
+Now, however, it is enabled by default. If you want to disable it, navigate to **Preferences | General | Workspace**, and deselect **Refresh on access**. Unless you have a very strong reason to do so, you should keep it enabled.
+
+Part of the **Debug** perspective has been moved to the main menu bar. To be more specific, the common debug control commands (that is, `Resume`, `Stop`, and so on) have been moved to the main menu bar (as shown in the following screenshot). If you do not like it this way, you can customize it. Navigate to **Window | Customize Perspective....** Here, you can either add more debugging commands or remove them from the main menu bar altogether.
+
+> If you are feeling a little bit nostalgic and want everything as it used to be, that is, without the debugging command all over the place, that old look can be restored. To do so, first toggle the **Show Debug Toolbar** option in the **Debug** view's menu, and then disable the Debug toolbar from the **Customize Perspective** dialog. Also, if you want to return to the classic look (preserving the new features), you can navigate to **Preferences | General | Appearance** and select **Classic** from **Theme**.
+
+Eclipse Juno ships with improved launch configuration support. From now on, if you'll create a launch configuration with the same name as that of an existing launch configuration, the type of conflicting launch configuration will be shown in the error message. The following screenshot shows the error message that you will get when trying to create a launch configuration with the same name as a previous one. (You will learn how to create launch configurations for your Java projects in the next chapter.)
+
+![](bbox=[0.175, 0.545, 0.825, 0.82])

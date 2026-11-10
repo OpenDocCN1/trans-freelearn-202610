@@ -1,0 +1,30 @@
+reviews:
+- 'no': 3463
+  overturn_probability: 0.08
+  alternative: 正文小标题
+  counter_evidence:
+  - 标题后第一非空行虽为概述句，但概述句与正文小标题的语义边界模糊，无法100%排除误报
+  - 编号写法为 '# 7' 带空格，与常规 '# 7' 格式略有差异，存在排版噪声可能
+  keep_split: true
+- 'no': 4020
+  overturn_probability: 0.07
+  alternative: 正文小标题
+  counter_evidence:
+  - 标题后直接进入叙述性段落，未在后1~3行内明确出现子节标记
+  - 前一章结尾为总结句，虽符合上下文特征，但标题层级与正文小标题的区分度不高
+  keep_split: true
+- 'no': 4603
+  overturn_probability: 0.88
+  alternative: 排版断行/其他
+  counter_evidence:
+  - 标题后1行内即出现同义重复的另一级1标题 '# Eclipse 丰富客户端平台'，无概述段落间隔，违背'标题后1~3行通常是概述段落'的上下文特征
+  - 实际章节内容从4607行'在上一章中，我们谈到了...'开始，语义起始点在4605行的无编号标题处，4603疑似编号残留或重复标题
+  - 前后文显示上一章以'在下一章中我们将了解...'收尾，章节转折点应落在4605而非4603
+  keep_split: false
+- 'no': 5849
+  overturn_probability: 0.25
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题层级为 ## 而非全书大章常用的 #，与前述第7/8/9章的层级不一致'
+  - '索引内部立即出现 ### 符号等二级结构，更像目录式小标题而非独立大章'
+  keep_split: true

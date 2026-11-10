@@ -1,0 +1,40 @@
+chapter_starts:
+- 'no': 3463
+  confidence: 0.93
+  final_reason: 判断方与复核方均支持为第7章。编号一级标题单独成行、无句号、长度符合，语义统领后续 Web 开发内容，复核方 overturn_probability
+    0.08 且 keep_split true。
+  accepted_evidence:
+  - 一级标题 '# 7 使用 Eclipse WTP 进行 Web 开发' 单独成行，标题无句号且长度符合
+  - 标题后为概述段落，语义统领后续 Web 开发内容，为全书最高层级大章
+  - 复核方 keep_split true，overturn_probability 0.08
+  rejected_evidence:
+  - 编号写法带空格的排版噪声
+  - 概述句与正文小标题语义边界模糊
+  need_human_review: false
+- 'no': 4020
+  confidence: 0.93
+  final_reason: 编号一级标题单独成行，语义统领 Eclipse 插件开发内容，复核方 overturn_probability 0.07 且 keep_split
+    true，维持分章。
+  accepted_evidence:
+  - 一级标题 '# 8 Eclipse 开发' 单独成行，标题无句号
+  - 前一章以总结句结束，标题后进入新主题叙述，符合上下文转折
+  - 复核方 keep_split true，overturn_probability 0.07
+  rejected_evidence:
+  - 标题后直接进入叙述性段落，未在后1~3行内明确出现子节标记
+  - 标题层级与正文小标题区分度不高
+  need_human_review: false
+- 'no': 5849
+  confidence: 0.8
+  final_reason: 文末索引按规则应单独划分为一章。标题单独成行位于全书末尾，复核方虽提出层级异议但仍 keep_split true，宁可保留。
+  accepted_evidence:
+  - 规则明确文末索引也划分为一章
+  - 标题 '## 索引' 单独成行且位于全书末尾
+  - 复核方 keep_split true
+  rejected_evidence:
+  - '标题层级为 ## 而非全书大章常用的 #，与第7/8/9章层级不一致'
+  - '索引内部立即出现 ### 等二级结构，更像目录式小标题'
+  need_human_review: false
+rejected_lines:
+- 'no': 4603
+  reason: 复核方反证成立且 overturn_probability 0.88。标题后1行即出现同义重复标题 '# Eclipse 丰富客户端平台'，无概述段落间隔，语义起始点实际在4605，4603疑似编号残留或排版重复。优先采纳复核方意见，不分章。
+  need_human_review: false

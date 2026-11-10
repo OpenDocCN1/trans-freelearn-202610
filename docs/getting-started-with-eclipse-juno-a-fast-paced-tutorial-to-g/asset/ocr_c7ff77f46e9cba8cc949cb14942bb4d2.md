@@ -1,0 +1,11 @@
+# Understanding a Rich Client Platform
+
+Before plunging into the Eclipse RCP, let's define what a Rich Client Platform is. In the context of client/server architecture, the client application is responsible for getting requests from the user and sending them to a machine that will service the requests, accessing databases and internal systems. The popularization of the Internet and improvements in speed and stability has led many companies to switch their client applications from desktop to Internet-based ones. This switch conveys a number of benefits, such as ease of deployment and updates, because any modification can be deployed to all clients by simply modifying the code of the application in the web server. Therefore, there are less hardware and software requirements for the client side, among others benefits. However, poor user experience due to network latency and downtime caused by connection issues, which even though rare, can be crucial for business, kept alive the interest in desktop-based applications.
+
+Developing one of these client applications from scratch, however, is an expensive and time-consuming task. A number of different aspects must be thought of, such as portability, modularity, and update methods. That's where a Rich Client Platform comes in. It offers all of these features for developers to build their own client applications without having to worry about the different aspects for every type of client application they work on. Since client applications' user interfaces don't differ much from each other, most of them are basically composed of forms with data-input elements, such as text fields and combo boxes. An RCP should also provide reusable widgets that can easily be added to the applications.
+
+Eclipse is not exactly a client application from a client/server architecture perspective. It contains all of these desirable features, and they are made available through the Eclipse RCP for developers interested in taking advantage of them for their own client applications.
+
+# The Eclipse Rich Client Platform
+
+Now that we know what a rich client platform is, let's see in more detail what features the Eclipse RCP provides.

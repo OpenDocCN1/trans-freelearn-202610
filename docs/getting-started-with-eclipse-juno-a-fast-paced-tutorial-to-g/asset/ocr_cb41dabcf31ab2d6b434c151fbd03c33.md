@@ -1,0 +1,11 @@
+# Understanding servlets
+
+Servlets are Java programs that run within a web server environment. More specifically, servlets are Java programs that conform to the servlet API. Two packages make up most of the functionalities of the servlet API, namely, `javax.servlet` and `javax.servlet.http`. The former encompasses the most general servlet APIs. The latter contains the API for handling HTTP requests. `javax.servlet.http` has a number of classes and interfaces whose main goal is to implement HTTP functionality. One of the most important classes in the package `javax.servlet.http` is the abstract class `HttpServlet`. Servlets inherit their HTTP-related methods from this class. Custom-developed servlets override one or more methods defined in `HttpServlet`. These methods receive an object as a parameter that contains data about the underlying request and an object that they use to write the response. We will go into details about these methods and their parameters later on in the chapter.
+
+![](bbox=[0.225, 0.4, 0.275, 0.44])
+
+> It is common to write servlets that are HTTP-related. In principle, however, it is possible to implement servlets that are geared towards other client-server protocols. Throughout this chapter we are only going to implement HTTP-based servlets.
+
+# Understanding JavaServer Page
+
+Put simply, JavaServer Pages are technology geared towards facilitating the development of web pages that contain dynamic content. Differently from an HTML page whose content stays pretty much the same, a JSP changes its content based on a number of things as, for instance, the information previously provided by the user. JSPs consist of HTML or XML (**eXtensible Markup Language**) content embedded with tags and Java scriptlets. JSPs can be seen as a more convenient approach for embedding dynamic elements into HTML than servlets. In fact, at run time, JSPs are translated into servlets. Moreover, aimed at increasing performance, servlet containers cache the compiled servlets.

@@ -1,0 +1,5 @@
+Click on **Next** twice so that you can get to the following window. Then unselect the **doPost** option; we will not override this method for this servlet. While you are at it, also unselect the **Constructors from superclass** option; we do not need a constructor either. Lastly, hit **Finish**:
+
+![](bbox=[0.23, 0.22, 0.77, 0.63])
+
+Eclipse will generate a servlet containing an empty `doGet` method. Although the generated code does do much, we do not need to type everything from scratch now. Let's start changing our generated servlet by modifying the `doGet` method, as shown in the following code. Note that we are performing the same operations shown in the previous example. First, we set the content type to `text/html`. Second, we fetched the output stream in order to write our HTML content to the output.

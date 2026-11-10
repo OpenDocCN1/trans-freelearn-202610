@@ -1,0 +1,13 @@
+![](bbox=[0.21, 0.18, 0.27, 0.24])
+
+There is a known issue with the built-in decompression utility shipped with the current versions of Windows. Therefore, you had better use another decompression utility when decompressing Eclipse. If you are a Windows user looking for a more robust decompression utility, give 7-Zip a try (http://www.7-zip.org/download.html). In addition, some people have reported that Eclipse has a problem with directory paths that contain spaces in their names. So if possible, try to avoid extracting Eclipse in a directory path containing spaces in its name.
+
+To start Eclipse, double-click on the file containing Eclipse's icon (the file is named `eclipse.exe` on Windows and `eclipse` on Linux and Mac systems). Eclipse will prompt you to select a workspace. Within this context and in Eclipse's parlance, a workspace is the directory wherein your Eclipse projects will be placed. You had better create a new directory and name it `eclipse_workspace` (or something along the line) and point Eclipse to the location of your recently created directory. However, it bears mentioning that you can use any directory as an Eclipse workspace. It is also possible to enter the directory name directly in the workspace prompt, and Eclipse will take care of creating it for you.
+
+After installing Eclipse, you are already able to beef it up by adding plugins of your choice. To do so, navigate to **Help | Install new software....** We will cover plugins' installation in later chapters. For the time being, you just need to keep in mind that Eclipse can be extended right off the bat.
+
+In the next section, we will highlight some of the changes that Eclipse has undergone. Of course, a lot has changed. However, let's not get bogged down with technical details. So in the next section, we will concentrate on describing only the most important and useful improvements (you will have to trust us on this one). If you are one of those people who crave completeness, you will be glad to know that we will also mention where you can get the complete list of improvements.
+
+# Eclipse Juno – new and noteworthy
+
+Two flavors of Eclipse Juno have been included in this release: 4.2 and 3.8. The basic difference between these two flavors is that 4.2 is built on top of the e4 (Eclipse 4) platform and has undergone a lot of GUI changes, but 3.8 is based on Version 3 of the platform. It is also fair to say that the 3.8 release focuses on stability and bug fixes, whereas Eclipse Juno 4.2 emphasizes the introduction of new features.

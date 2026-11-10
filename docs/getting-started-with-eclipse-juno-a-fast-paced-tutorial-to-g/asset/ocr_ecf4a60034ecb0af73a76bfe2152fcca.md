@@ -1,0 +1,7 @@
+# Eclipse Development
+
+The plugins tab allows you to select the plugins that will be loaded in the runtime workbench, both from your Workspace and from your development environment. This can be useful to test your workspace projects individually without having to close them, or to remove the unrelated plugins from the development environment to save your machine's resources. The following screenshot displays the Plugins tab of the **Run Configurations** menu:
+
+![](bbox=[0.17, 0.25, 0.83, 0.57])
+
+In the **Configuration** tab, you can set the `config.ini` file that you want to use for the runtime workbench instance, as well as modify the configuration area. The **Tracing** tab allows you to enable tracing for each plugin. Tracing is an interesting feature that allows you to turn on or off debug messages during runtime. This can be particularly useful if you are providing support for an Eclipse-based application installed in the client's environment. You can simply require the client to enable tracing for your plugin instead of sending him or her a debug version of the plugin with debug messages enabled. We won't cover tracing on this book. The **Environment** and **Common** tabs are just the same as in a regular Java application.
