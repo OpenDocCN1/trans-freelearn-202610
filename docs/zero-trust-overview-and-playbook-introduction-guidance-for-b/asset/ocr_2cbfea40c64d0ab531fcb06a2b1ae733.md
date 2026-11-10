@@ -1,0 +1,11 @@
++   - **AI will generate a lot of content**: AI can generate a high volume of content, so we will see a flood of AI-generated text, pictures, videos, websites, and more. This content will likely vary widely in quality, utility, and accuracy. This will resemble the explosive growth of email resulting from the low cost of sending emails, including everything from high-value messages to junk (spam) email and everything in between (newsletters, marketing, group email, and more).
++   - **Security implication**: This explosion of convincing and personalized content of questionable value will require mitigations such as user education and specialized products to measure the quality, accuracy, and utility of content.
++   - **AI will generate a lot of confusion**: As AI usage grows, people will get confused by content created by AI such as convincing “deepfake” impersonations of people in video, voice, and email conversations. Additionally, many people will misunderstand what AI technology can and can’t do because they don’t have a good reference point – the current AI technology is very different than how AI has been portrayed in movies and TV shows for decades. Some people will be overly excited and exuberant about using the technology while others will be overly fearful and cautious with this technology – each extreme can create unnecessary risk.
++   - **Security implication**: Organizations should urgently focus on education, managing expectations, security/financial processes and controls, and setting clear policies.
++   - **AI increases the need for data-centric security**: AI models need good data, dramatically increasing the focus on data security and data quality. Every organization’s internal data quickly increased in value because AI models need human-generated data and the internet is already flooded with AI-generated content.
+
+AI models trained on AI-generated data result in very low-quality results (similar to how a photocopy of a photocopy is of lower quality), a dynamic called **model collapse**. *Figure 5.1 illustrates model collapse by showing the difference between training an AI model on human-generated data versus AI-generated data:*
+
+![](bbox=[0.12, 0.63, 0.86, 0.78])
+
+Figure 5.1 – Illustration of model collapse for models trained on AI-generated data

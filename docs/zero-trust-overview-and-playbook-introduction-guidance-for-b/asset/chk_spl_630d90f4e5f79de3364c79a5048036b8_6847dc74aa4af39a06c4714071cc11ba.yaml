@@ -1,0 +1,36 @@
+reviews:
+- 'no': 3017
+  overturn_probability: 0.82
+  alternative: 排版噪声/重复内容
+  counter_evidence:
+  - '标题 ## 零信任成功的样子 及后续段落在文件中多次重复出现，如 3087、3157、3227 等，表明为复制粘贴导致的重复块而非真正的章节起始'
+  - 标题前 2952-3016 已出现与标题后 3022 起完全相同的正文段落，标题实际落在已开始的章节内容中部，违背‘标题前为上一章结尾、标题后为概述’的上下文特征
+  keep_split: false
+- 'no': 4457
+  overturn_probability: 0.18
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 标题为英文而前后正文为中文，存在语言不一致的排版噪声嫌疑
+  - 必须提供反方证据：标题后紧跟引文块而非典型的概述段落，格式上更接近章节内二级标题
+  keep_split: true
+- 'no': 5036
+  overturn_probability: 0.12
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 必须提供反方证据：标题为英文且与前后中文正文风格差异较大，易被误判为正文小标题
+  - 标题后引文与概述段落交错，上下文特征不够典型
+  keep_split: true
+- 'no': 5318
+  overturn_probability: 0.78
+  alternative: 正文小标题
+  counter_evidence:
+  - '行号 5316 为 ## 10，与文中‘第 10 章，零信任剧本角色’的章节编号对应，5318 的标题紧随编号后出现，符合章节副标题排版'
+  - '两个 ## 级别标题连续出现，5318 更像是章节内的标题而非最高层级章节起始，标题后直接进入引言而非独立概述段落'
+  keep_split: false
+- 'no': 5872
+  overturn_probability: 0.05
+  alternative: 若不分章，这行最可能是什么
+  counter_evidence:
+  - 必须提供反方证据：索引标题单独成行且位于文末，虽符合规则但仍需注意是否为页眉页脚残留
+  - 标题长度与格式符合章节特征，反方证据较弱
+  keep_split: true

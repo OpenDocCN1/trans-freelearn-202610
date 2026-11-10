@@ -1,0 +1,43 @@
+chapter_starts:
+- 'no': 4457
+  confidence: 0.85
+  final_reason: 判断方认定为第8章起始，复核方 overturn_probability 0.18 且 keep_split true。标题与文中提及的
+    Chapter 8, Adoption with the Three-Pillar Model 对应，单独成行后接概述段落，语言不一致的疑点不足以否定。
+  accepted_evidence:
+  - '标题为 ## Adoption with the Three-Pillar Model，文本中明确提及 Chapter 8, Adoption with
+    the Three-Pillar Model'
+  - 标题单独成行、末尾无标点，长度符合章标题特征，后接引言概述段落
+  rejected_evidence:
+  - 标题为英文而前后正文为中文，存在语言不一致的排版噪声嫌疑
+  - 标题后紧跟引文块而非典型的概述段落，格式上更接近章节内二级标题
+  need_human_review: false
+- 'no': 5036
+  confidence: 0.88
+  final_reason: '判断方与复核方均倾向采纳。标题 ## The Zero Trust Six-Stage Plan 与文中第 9 章，Zero Trust
+    六阶段计划对应，单独成行无句号，后续为章节概述，英文风格差异不足以推翻。'
+  accepted_evidence:
+  - '标题 ## The Zero Trust Six-Stage Plan 对应文中明确的第 9 章，Zero Trust 六阶段计划'
+  - 标题单独成行、末尾无标点，后续为章节概述段落
+  rejected_evidence:
+  - 标题为英文且与前后中文正文风格差异较大，易被误判为正文小标题
+  - 标题后引文与概述段落交错，上下文特征不够典型
+  need_human_review: false
+- 'no': 5872
+  confidence: 0.95
+  final_reason: 文末索引标题单独成行，符合规则文末索引应单独划分为一章。复核方 overturn_probability 0.05，keep_split
+    true，反方证据弱。
+  accepted_evidence:
+  - '标题为 ## 索引，位于文末'
+  - 按规则文末索引应单独划分为一章，标题单独成行符合章划分要求
+  rejected_evidence:
+  - 需注意是否为页眉页脚残留
+  need_human_review: false
+rejected_lines:
+- 'no': 3017
+  reason: '复核方指出标题 ## 零信任成功的样子 在文件中多次重复出现，如 3087、3157、3227 等，且标题前 2952-3016 与标题后 3022
+    起正文完全重复，标题实际落在已开始章节中部，违背标题前为上一章结尾、标题后为概述的上下文特征，属复制粘贴导致的排版噪声。'
+  need_human_review: false
+- 'no': 5318
+  reason: '复核方指出行号 5316 为 ## 10 与文中第 10 章，零信任剧本角色的章节编号对应，5318 的标题紧随编号后出现，两个 ## 级别标题连续出现，5318
+    更像是章节副标题而非最高层级章节起始，标题后直接进入引言而非独立概述段落。'
+  need_human_review: false

@@ -1,0 +1,57 @@
+reviews:
+- 'no': 14
+  overturn_probability: 0.85
+  alternative: 正文小标题
+  counter_evidence:
+  - 前言前已有献词、书名等前置内容，说明前置部分已开始，分章点应更早；## 前言只是前置部分的内部二级标题，后续贡献者、关于作者、关于审阅者、索引等同属前置内容，应统一归为一章而非在此单独分章
+  - '标题为二级标题 ##，在上下文中为前置部分的内部小标题，符合正文小标题特征而非全书最高层级大章'
+  keep_split: false
+- 'no': 210
+  overturn_probability: 0.08
+  alternative: 章节标题
+  counter_evidence:
+  - 标题单独成行无末尾标点，长度合适，与文中列出的第1章‘零信任 – 这就是方法’一致，后1~3行为概述段落
+  - '标题层级为 # 与后续章节 ## 不完全一致，存在格式噪声的可能，但语义和上下文仍强指向章标题'
+  keep_split: true
+- 'no': 420
+  overturn_probability: 0.25
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题为二级标题 ##，且标题‘阅读 Zero Trust 剧本系列’与文中列出的第2章‘阅读零信任手册系列’表述不完全一致，存在中英文混用'
+  - '标题后紧跟 ### 阅读策略 等三级标题，显示其下仍有子结构，更像章节内部划分而非最高层级大章'
+  keep_split: true
+- 'no': 595
+  overturn_probability: 0.05
+  alternative: 章节标题
+  counter_evidence:
+  - 标题单独成行无标点，长度<30，与文中列出的第3章‘零信任是当今世界的安全’语义一致，后续为章节概述
+  - '标题层级为 ## 与前后章节保持一致，符合章标题格式特征'
+  keep_split: true
+- 'no': 959
+  overturn_probability: 0.05
+  alternative: 章节标题
+  counter_evidence:
+  - 标题单独成行无标点，长度合适，与文中列出的第4章‘标准零信任能力’一致，后续为主题概述
+  - 上下文前为第3章摘要，后为第4章内容，符合章节边界特征
+  keep_split: true
+- 'no': 1407
+  overturn_probability: 0.06
+  alternative: 章节标题
+  counter_evidence:
+  - 标题单独成行无标点，与文中列出的第5章‘人工智能 (AI) 与零信任’语义对应，后续为章节概述
+  - 标题为英文表述，与中文目录为对应翻译，存在语言不一致的噪声但不影响章级判断
+  keep_split: true
+- 'no': 1705
+  overturn_probability: 0.07
+  alternative: 章节标题
+  counter_evidence:
+  - 标题单独成行无标点，与文中列出的第6章‘如何规划、规模化和启动零信任’一致，后续为主题概述
+  - 该标题在文本中多次重复出现，后续重复可能为排版噪声，但首次出现仍符合章标题特征
+  keep_split: true
+- 'no': 2667
+  overturn_probability: 0.06
+  alternative: 章节标题
+  counter_evidence:
+  - 标题单独成行无标点，与文中列出的第7章‘零信任成功的样子’一致，后续为成功要素介绍
+  - 标题后为引语和概述段落，符合章节起始上下文特征
+  keep_split: true

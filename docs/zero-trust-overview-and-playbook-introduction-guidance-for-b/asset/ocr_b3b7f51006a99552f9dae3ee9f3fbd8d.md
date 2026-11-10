@@ -1,0 +1,15 @@
+*Without security posture management, an organization's approach to preventing attacks will be ad hoc, disconnected, and ineffective.*
+
+*This leads to increased business damage from many incidents that would be prevented by posture management (or would have a less serious impact).*
+
++   - **Asset-centric security operations** (**ACSOs**) enable the organization to find and remove attackers who have successfully gained unauthorized access to the organization's business assets. **Security operations** (sometimes called **SecOps**, **Security Operations Center**, or **SOC**) reduce organizational risk by limiting the time that adversaries have access to business assets, which is sometimes referred to as attacker “dwell time.”
+
+As with security posture management, Security Operations is a large and complex discipline. SecOps must detect, respond, and help recover from attacks across the breadth of the technical estate described in the previous posture management section. ASCOs include capabilities for incident management (sometimes broken into *Triage/Tier 1* and *Investigation/Tier 2* capabilities), incident management, threat hunting, detection engineering, TI, red and purple teaming, and more. Security operations also partners closely with technology operations teams to continuously improve detections and rapidly restore affected services to full capacity (for example, during recovery from a ransomware or other destructive attack).
+
+*Focus on assets, not networks.* The asset-centric approach to SecOps in Zero Trust uses asset-specific technical detections and is aware of higher-value business assets to prioritize detections and responses on those assets. This contrasts with traditional detection and response approaches that focus on defending a *network* perimeter primarily (or solely) using *network* technology. As NIST SP 800-207 states, “*Perimeter-based network security has also been shown to be insufficient since once attackers breach the perimeter, further lateral movement is unhindered.*”
+
+Some organizations are already moving beyond this (largely ineffective) network-centric approach by adopting advanced identity, cloud, and endpoint capabilities—ASCOs continue that change and build on it.
+
+ASCOs prioritize the use of asset-specific threat detection such as EDR and *extended detection and response (XDR)* tools that provide high-quality (low false-positive) detections of common attacks. *Security orchestration automation and response (SOAR)* technology that automates common tasks is also a critical enabler to reduce wasted repetitive effort and errors. ASCO includes traditional *security information and event management (SIEM)* and related security data lake capabilities, but these are enhanced by technologies that help process massive amounts of data, including *machine learning (ML, a form of AI)* and behavior analytics (often called *user and entity behavior analytics* or *UEBA*).
+
+The Zero Trust approach to SecOps also focuses on integrating TI from security operations into more of the organization's processes to inform architecture, engineering,
