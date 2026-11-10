@@ -1,0 +1,33 @@
+reviews:
+- 'no': 5461
+  overturn_probability: 0.97
+  alternative: 栏目名
+  counter_evidence:
+  - 行内容为 '## 日常工程'，并非审查员理由中所述的 '第 8 部分'
+  - 实际部分标题 '## 第 8 部分' 位于下一行 5462，行号错位
+  - 该行是杂志固定栏目名，后续直接进入部分标题和作者信息，无统领性概述段落
+  keep_split: false
+- 'no': 5699
+  overturn_probability: 0.96
+  alternative: 作者名
+  counter_evidence:
+  - 行内容为 '## 西蒙·蒙克'，为作者署名而非部分标题
+  - 实际 '## 第 10 部分' 位于 5698 行，审查员行号偏移一位
+  - 作者信息属于正文前置元数据，不应作为章节划分依据
+  keep_split: false
+- 'no': 5944
+  overturn_probability: 0.96
+  alternative: 作者名
+  counter_evidence:
+  - 行内容为 '## SIMON MONK'，为作者署名
+  - 实际 '## 第11部分' 位于 5943 行，审查员行号偏移一位
+  - 作者名后接正文描述，不具备部分-章节的统领语义
+  keep_split: false
+- 'no': 3172
+  overturn_probability: 0.85
+  alternative: 排版重复/页眉
+  counter_evidence:
+  - 相同标题 '## 到目前为止最好的树莓派 Zero 项目' 及后续两行概述在 3245 行完全重复出现
+  - 子项目 '### Xbox 控制器 Pi Zero' 等在 3253 行再次出现，整段内容被重复提取
+  - 重复出现的标题更符合页眉/提取噪声，而非唯一的章节起点
+  keep_split: false

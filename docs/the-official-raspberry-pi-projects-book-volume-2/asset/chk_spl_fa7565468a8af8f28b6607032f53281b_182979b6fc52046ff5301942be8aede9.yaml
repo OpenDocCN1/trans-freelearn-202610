@@ -1,0 +1,80 @@
+reviews:
+- 'no': 5
+  overturn_probability: 0.3
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题层级为 ## 与后续正文章节同级，但内容为欢迎致辞，属于前言类文字而非具有统领全章的概括性标题'
+  - '后接段落为作者致辞而非章节概述，前几行无上一章总结，下一级标题 ## 开始使用树莓派 更符合正文起始'
+  keep_split: true
+- 'no': 594
+  overturn_probability: 0.45
+  alternative: 正文小标题
+  counter_evidence:
+  - '编号 01 出现在项目列表之后，后文 605 行出现上层标题 ## 10 个令人惊叹的新年项目，表明 01 更可能是该上层章节的子项目'
+  - '标题后紧跟 ### DOT SILVERMAN 作者子标题，结构更像项目条目而非全书最高层级大章'
+  keep_split: true
+- 'no': 630
+  overturn_probability: 0.45
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题为 ## 02 电子轮椅，编号形式与子层级项目一致，后接 ### PHIL CASE 作者子标题'
+  - '上下文仍处于 ## 10 个令人惊叹的新年项目 的项目组内，缺乏独立章节的统领性概述'
+  keep_split: true
+- 'no': 648
+  overturn_probability: 0.45
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题为 ## 03 TECHFUGEES，编号项目形式，后接 ### MIKE BUTCHER 子标题'
+  - 前后文无章节级总结过渡，更像是项目列表中的单个条目
+  keep_split: true
+- 'no': 671
+  overturn_probability: 0.45
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题为 ## 04 Raspberry Pi 存钱罐，编号项目形式，后接 ### ALEX STRANDBERG 子标题'
+  - 与前后项目标题同级，整体应归属于上层项目合集而非独立大章
+  keep_split: true
+- 'no': 692
+  overturn_probability: 0.45
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题为 ## 05 PiBrick 阅读器，编号项目形式，后接 ### JOHN COLE 子标题'
+  - 标题长度短且语义具体，符合项目条目而非统领性章节
+  keep_split: true
+- 'no': 713
+  overturn_probability: 0.45
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题为 ## 06 Tweety Pi 鸟箱，编号项目形式，后接 ### SAM WEBSTER 子标题'
+  - 上下文为连续项目序列，缺乏章节级概述段落
+  keep_split: true
+- 'no': 724
+  overturn_probability: 0.45
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题为 ## 07 太阳能供电 Raspberry Pi，编号项目形式，后接 ### KOFF 子标题'
+  - 与前后项目同属同一项目合集，单独分章会导致过度拆分
+  keep_split: true
+- 'no': 742
+  overturn_probability: 0.45
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题为 ## 08 壁挂式 Google 日历 Raspberry Pi，编号项目形式，后接 ### ALEX PINE 子标题'
+  - 标题后 1~3 行为项目描述而非章节概述，结构为项目条目
+  keep_split: true
+- 'no': 766
+  overturn_probability: 0.95
+  alternative: 排版断行
+  counter_evidence:
+  - 行内容仅为 '## 09'，无语义标题，后续行 767 为实际标题 '## INBOX ZERO TAUNTER'，显示标题被拆分为编号行与标题行
+  - 标题单独为编号不符合语义特征，长度过短且无统领性内容，末尾无句号但语义缺失
+  - 前后文表明编号与标题应为同一章节，单独拆分导致重复分章与误报
+  keep_split: false
+- 'no': 775
+  overturn_probability: 0.95
+  alternative: 排版断行
+  counter_evidence:
+  - 行内容仅为 '## 10'，无语义标题，后续行 776 为实际标题 '## RASPBERRY PERSONAL ASSISTANT'，标题被拆分
+  - 编号行单独成章不符合格式特征与语义特征，属于排版噪声
+  - 原判断置信度仅 0.6，且后续标题才是完整章节名称
+  keep_split: false

@@ -1,0 +1,49 @@
+reviews:
+- 'no': 8856
+  overturn_probability: 0.82
+  alternative: 正文小标题
+  counter_evidence:
+  - 前文 8850-8852 为一本图书的评论，8854 为评分，8856 直接接续下一栏目，上下文为连续书评列表，无章节结束的总结/习题等标志
+  - '标题后仅一句概述，随后即进入 ### 清洁数据 等书名子项，符合子节而非章级结构'
+  - '全篇同类 ## 栏目反复出现，构成栏目分类而非全书最高层级章节'
+  keep_split: false
+- 'no': 8923
+  overturn_probability: 0.85
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题后概述‘秋季开始时，Packt 推出了十多本与树莓派相关的书目。这三本正热销……’后直接列出 ### 树莓派 LED 蓝图 等书目，结构与前一栏目完全相同'
+  - 无‘第 X 章’编号特征，且前后均为书评条目，缺乏章级总结
+  - 标题‘树莓派畅销书’为主题分类，属正文内部小标题
+  keep_split: false
+- 'no': 9024
+  overturn_probability: 0.83
+  alternative: 正文小标题
+  counter_evidence:
+  - 前文 9011-9022 为 Ruby 游戏编程书评，9024 后仍为连续书目列表，无章节转折
+  - '标题后概述句后紧跟 ### 使用 Python 进行计算入门 等子项，符合子节模式'
+  - 与 8856、8923 等栏目样式一致，构成同一书评板块的细分
+  keep_split: false
+- 'no': 9085
+  overturn_probability: 0.8
+  alternative: 正文小标题
+  counter_evidence:
+  - 标题后概述为对 Erlang 语言的介绍，随后为多本 Erlang 相关图书条目，属于专题分类
+  - 无章节编号，且前后文均为书评，无总结/习题等章尾特征
+  - 标题‘树莓派 Erlang 畅销书’为栏目式小标题
+  keep_split: false
+- 'no': 9190
+  overturn_probability: 0.78
+  alternative: 正文小标题
+  counter_evidence:
+  - 标题后进入‘决心：发明那个 Pi 扩展板！’等以‘决心：’开头的子项，层级明显低于章
+  - 内容为按新年决心分类的图书推荐，属列表式栏目
+  - 标题后无统领性长段落，后续仍是重复的作者/出版社/价格条目
+  keep_split: false
+- 'no': 9261
+  overturn_probability: 0.92
+  alternative: 其他
+  counter_evidence:
+  - 内容转为订阅推广、App 下载、价格优惠等营销信息，与前文书评无关
+  - 标题‘随时随地阅读我们’后无正文概述，直接进入‘## 节省 25%’等广告模块
+  - 属文末商业附录，非正文章节，规则中仅索引应划分为章
+  keep_split: false
