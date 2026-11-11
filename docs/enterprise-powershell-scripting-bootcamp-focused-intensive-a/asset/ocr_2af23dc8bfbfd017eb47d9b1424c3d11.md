@@ -1,0 +1,7 @@
+The output of this is shown in the following screenshot:
+
+![](bbox=[0.2, 0.11, 0.85, 0.43])
+
+This example displays how to output the current non-built-in users on a system. You start by defining an array named $users. You then leverage the get-wmi object with the argument of the win32_process class and place the result in $processes. You then create a foreach loop and loop through each $process in the $processes variable. You proceed to gather the iterative process owner using the $process.GetOwner() method and place the .User property in the $procuser variable. You then declare a switch statement evaluating the $process.GetOwner().User property. The first evaluations are for built-in accounts. If the accounts are NETWORK SERVICE, LOCAL SERVICE, SYSTEM, or $null, it will set $continue to "Skip User". If it doesn't match any of these built-in users, it will leverage the default value, which sets the $continue variable to "Report User".
+
+After exiting the switch statement, you evaluate the $continue variable with an If statement, and proceed if the value is equal to "Report User". This step will add the $procuser variable to the $users array. After the foreach loop completes, you will have a large number of users listed for each non-built-in user. To trim the list to individual or unique users, you pipe the $users variable to Get-Unique cmdlet. The result is a list of the unique nonbuilt-in users on the system. The system the example was run on has three users: DWM-1, bblawat, and LocalJoe.
