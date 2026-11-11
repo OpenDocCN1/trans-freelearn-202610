@@ -1,0 +1,25 @@
+reviews:
+- 'no': 3722
+  overturn_probability: 0.8
+  alternative: 排版断行
+  counter_evidence:
+  - 标题仅为数字 '4'，无语义概括性，无法统领后续内容
+  - '标题后1~3行无概述段落，直接为空行后接 ## 你自己的视频点唱机 二级标题'
+  - '前文以 ## 摘要 及总结段落结束，实际章节内容从下一二级标题开始，编号行更像是排版编号标签'
+  keep_split: false
+- 'no': 4690
+  overturn_probability: 0.8
+  alternative: 排版断行
+  counter_evidence:
+  - 标题仅为数字 '5'，无语义概括性，不符合章标题统领性要求
+  - '标题后1~3行无概述段落，直接为空行后接 ## 通过 SMS 的交通事件 二级标题'
+  - '前一章以 ## 摘要 及总结段落结束，章节实际入口应为后续有意义的二级标题，编号行为排版噪声'
+  keep_split: false
+- 'no': 5668
+  overturn_probability: 0.35
+  alternative: 正文小标题
+  counter_evidence:
+  - '标题后1~3行仍无典型概述段落，直接接 ## Project Overview 二级标题，上下文特征不完全符合章标题'
+  - 全书前两处编号仅为数字 '4'/'5'，此处突然出现 '# 6 London Tube Photos' 格式不一致，疑似转换不一致的排版残留
+  - 即使保留分章，语义上更合理的章标题应为后续的项目概述内容，当前行仍偏向编号标签
+  keep_split: true

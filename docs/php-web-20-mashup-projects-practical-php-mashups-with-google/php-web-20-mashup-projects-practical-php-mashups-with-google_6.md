@@ -1,0 +1,436 @@
+## Index
+
+### Symbols
+
+**411Sync.com API**
+about 179
+format 182
+mobile search keyword, creating 180-183
+mobile search keyword, naming 181
+XML data, HTTP location 182, 183
+
+### A
+
+**Amazon API**
+about 61
+ECS 62
+ECS REST service 63
+**application project, Amazon.com**
+Amazon API 61
+mashup 65
+overview 13
+protocols used 14
+REST 38
+REST in PHP 39
+XML-RPC 14
+XML-RPC in PHP 21
+XML-RPC response, processing 31
+**Astrolocious.us**
+as mashups 8
+**Atom 136**
+
+### B
+
+**绑定元素 95**
+**body element**
+about 98
+document binding 99
+RPC binding 99
+
+### C
+
+**California Highway Patrol (CHP) Incident page**
+about 183
+frames 184
+pull-down menu, creating 185
+
+### D
+
+**data report through SMS, CHP project**
+411Sync.com API 179
+CHP Incident page 183
+deploying 200, 201
+mashing up 190
+overview 163
+screen-scraping, using PHP 164
+testing 200, 201
+**data types, XML-RPC**
+base64-encoded binary 18
+boolean 17
+date/time 18
+double 17
+integer 17
+scalar values 16
+string 16
+**definitions element 84**
+
+### E
+
+**ECS, Amazon API**
+about 62
+customer information, retrieving 63
+products information 62
+products, searching 62
+restaurant information 63
+seller information, retrieving 63
+shopping carts 63
+XSL support 63
+**ECS REST request**
+about 63
+service location 63-65
+**envelope element 97**
+
+### F
+
+**fault element 100**
+**Flickr Services API**
+about 243
+Google Maps, integrating with 206
+photo, retrieving 247, 248
+search, executing 244
+service results, interpreting 245, 246
+
+### G
+
+**Google Maps API**
+about 235
+events 240
+Flickr, integrating with 206
+geocoding 236-239
+InfoWindow box 240-243
+map, creating 235, 236
+markers 239
+
+### H
+
+**header element 98**
+
+### I
+
+**Internet UPC Database API**
+about 58
+array keys 60
+lookupEAN 59
+lookupUPC 59
+
+### J
+
+**JavaScript Object Notation. See JSON**
+**JSON**
+about 231
+JavaScript objects 231, 232
+properties, accessing 233
+response, serializing 234
+structure 232, 233
+
+### L
+
+**Last.fm**
+Audioscrobbler Web Services API 141, 142
+overview 140
+**London Tube project**
+application sequence 207
+Flickr Services API 243
+Google Maps and Flickr Services, integrating 206
+Google Maps API 235
+information, finding 205, 206
+JSON 231
+mashing up 249
+overview 203
+planning 204, 205
+protocols used 203
+RDF 207-209
+RDF API for PHP 221
+SPARQL 210
+XMLHttpRequest object 224
+
+### M
+
+**mashup, Amazon API project**
+about 65
+Amazon cart, creating 75-78
+Amazon XML responses, handling 70
+ECS lookup response 70-74
+working 66-69
+**mashup, California Highway Patrol project**
+about 190
+application components 190
+CHP DOM parser class 193-198
+deploying 200, 201
+DOM parser class 191, 192
+feed page, creating 199
+incident class 191
+testing 200, 201
+**mashup, London Tube project**
+about 249
+AJAX response, parsing 273-278
+database, building 249
+database, populating 249
+database population script 254-260
+database schema, creating 250
+file, examining 249, 250
+Flickr with AJAX 267-277
+lines query 253
+lines to stations query 253, 254
+main JavaScript, modifying 269
+main user interface 262-266
+race conditions 271, 272
+SPARQL queries, building 251
+stations query 252, 253
+TubeSource database interface class 261, 262
+XMLHttpRequest, making 269, 270
+XMLHttpRequest proxy, creating 267, 268
+**mashup, video jukebox project**
+about 153
+architecture 153
+content page 156-158
+main page 154
+navigation page 154-156
+using 158-161
+**mashups**
+about 7
+Astrolocious.us 8
+creating 11
+examples 7
+reason for growth 9
+resources 12
+Web 2.0 9
+Wii Seeker Site 7
+**message element**
+about 91
+document binding 92
+RPC binding 91
+
+### P
+
+**parsing**
+about 167
+PEAR using 142
+**PEAR for parsing**
+about 142
+choosing criteria 143
+File_XSPF 144-146
+package, installing 143
+package usage 143
+Services_YouTube 147, 148
+XML_RSS 149-152
+**PHP and SAX**
+about 48
+callback functions, setting up 51, 52
+callback functions, working of 52-54
+SAX Parser class, creating 54-58
+SAX Parser class, examining 55, 56
+SAX Parser class, testing 57, 58
+XML functions, using 50, 51
+**portType element 93**
+**projects**
+application project, Amazon.com 13
+data report through SMS, CHP project 163
+London Tube project 203
+search engine, building 81
+video jukebox project 125
+
+### R
+
+**RDF**
+about 207
+for PHP 221-224
+triples 208
+**Representational State Transfer. See REST**
+**REST. See also REST in PHP**
+about 38
+advantages 38
+AJAX 39
+**REST in PHP. See also REST**
+request, making 40
+response, processing 47
+working with 39
+**REST request**
+GET request 40, 41
+GET request functions 42, 43
+initiating, sockets used 41, 42
+making 40
+Parser class 43-45
+Parser class, testing 45-47
+POST request 40, 41
+POST request functions 42, 43
+**REST response**
+PHP and SAX 48
+processing 47, 48
+**RSS**
+about 129
+Atom 136
+formats 129
+RSS 1.1 130
+RSS 2.0 132-134
+version difference 134
+versions 129
+**RSS 1.1**
+channel child elements 131
+file structure 130
+item child elements 132
+**RSS 2.0**
+channel child elements 134, 135
+file structure 132
+item child elements 135
+
+### S
+
+**SAX. See PHP and SAX**
+**screen-scraping with PHP**
+about 164
+DOM functions, parsing with 167-178
+legal issues 164
+technical issues 164
+**search engine project**
+mashing up 119-123
+Microsoft Live Search Web Service 112
+Microsoft Live Search Web Service, using 112-115
+overview 81
+PHP SoapClient 101
+protocols 82
+SOAP, protocols 82
+Yahoo! Search Web Service 116
+Yahoo! Search Web Service, using 116-118
+Yahoo! Search Web Service location 116
+**service element 96**
+**SOAP**
+about 82
+advantages over XML-RPC 82
+disadvantages 82
+WSDL with XSD 83
+**SoapClient**
+about 101
+calls, making 105-107
+instantiating 103-105
+non-WSDL mode, instantiating 104
+parameters, creating 102, 103
+SOAP errors handling, SoapFault used 108
+SOAP operations calling, non-WSDL mode 108
+SOAP operations calling, WSDL mode 107
+SOAP response, handling 108-112
+successful results, handling 109-112
+WSDL mode, instantiating 104
+**SOAP message 97**
+**SOAP response**
+error handling, SoapFault 108
+handling 108
+successful results, handling 109-112
+**SPARQL**
+about 210
+features 221
+query structure 211, 212
+query subject, analyzing 210, 211
+WHERE clause 213-221
+
+### T
+
+**types element**
+about 85
+arrays 90
+complex type 88
+simple type 86
+
+### U
+
+**UPC Database API. See Internet UPC Database API**
+
+### V
+
+**video jukebox project**
+Last.fm overview 140
+mashing up 153
+overview 125
+PEAR for parsing 142
+protocols used 125
+RSS 129
+XSPF 126
+YouTube overview 136
+
+### W
+
+**Web 2.0**
+about 9
+characteristics 9
+importance of data 9
+user communities 10, 11
+**Wii Seeker Site**
+as mashups 7
+**WSDL 82**
+binding element 95
+body element 98
+definitions element 84
+envelope element 97
+fault element 100
+header element 98
+message element 91
+portType element 93
+service element 96
+SOAP message 97
+structure 84
+types element 85
+XSD 83
+
+### X
+
+**XML-RPC. See also XML-RPC in PHP**
+about 14
+arrays 18
+data types 16
+integer 17
+parameters 16
+procedure call 14
+request 15
+response 20, 21
+structs 19
+structure 14
+**XML-RPC in PHP. See also XML-RPC**
+arrays, passing 27
+calling, sockets used 29-31
+data serializing, encode request used 22
+multiple parameter request 26
+request, making 22
+single parameter request 23-26
+struct, passing 27-29
+working with 21
+**XML-RPC request**
+arrays, passing 27
+base64, single parameter 25
+data serializing, encode request used 22
+date/time, single parameter 25
+double data type, single parameter 24
+making 22
+multiple parameter 26
+single parameter 23, 24
+struct, passing 27-29
+XML-RPC calling, sockets used 29-31
+**XML-RPC response**
+Parser class, creating 32, 33
+Parser class, testing 33-35
+processing 31, 32
+XML-RPC handling, PEAR used 35-38
+**XMLHttpRequest object**
+about 224
+AJAX, debugging 231
+callback, creating 228-231
+callback, using 228-231
+creating 226
+HTTP request, making 227, 228
+overview 226
+using 226
+**XSD 82**
+**XSPF**
+about 126
+playlist child elements 127, 128
+playlist structure 126, 127
+track child elements 128, 129
+
+### Y
+
+**YouTube**
+developer API 138
+developer methods 138
+features 136, 137
+overview 136
+response with REST 139
+XML-RPC call 138

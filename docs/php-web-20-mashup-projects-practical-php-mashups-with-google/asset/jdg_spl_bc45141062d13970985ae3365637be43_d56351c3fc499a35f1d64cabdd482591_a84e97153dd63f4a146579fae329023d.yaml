@@ -1,0 +1,21 @@
+chapter_starts:
+- 'no': 5668
+  confidence: 0.7
+  final_reason: '标题为 ''# 6 London Tube Photos''，单独成行且包含编号与语义概括，位于上一章 ## 摘要 之后，复核方虽提出格式与上下文不足的疑虑但仍
+    keep_split=true，综合判断可作为新章起点'
+  accepted_evidence:
+  - 一级标题格式 '# 6 London Tube Photos' 单独成行、无标点、长度符合
+  - '位于上一章 ## 摘要 及总结段落之后'
+  - 标题包含语义概括 'London Tube Photos' 能统领后续 Project Overview 等内容
+  - 复核方 overturn_probability 0.35 且 keep_split=true
+  rejected_evidence:
+  - '标题后 1~3 行无典型概述段落，直接为空行后接 ## Project Overview 二级标题'
+  - 与前两处仅为数字 '# 4'/'# 5' 的编号格式不一致，存在排版转换不一致的疑虑
+  need_human_review: false
+rejected_lines:
+- 'no': 3722
+  reason: '复核方反证成立：标题仅为数字 ''4'' 无语义概括性，后 1~3 行无概述直接接 ## 你自己的视频点唱机，前文以 ## 摘要 结束，编号行更像是排版编号标签而非章标题'
+  need_human_review: false
+- 'no': 4690
+  reason: '复核方反证成立：标题仅为数字 ''5'' 无语义概括性，不符合章标题统领性要求，后续无概述段落直接接 ## 通过 SMS 的交通事件，编号行为排版噪声'
+  need_human_review: false

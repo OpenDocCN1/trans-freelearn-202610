@@ -1,0 +1,54 @@
+chapter_starts:
+- 'no': 8132
+  confidence: 0.9
+  final_reason: 文末总结章节，标题单独成行且语义统领全书收尾，复核方认可，符合章节特征
+  accepted_evidence:
+  - '标题 ## Summary 单独成行，无句号，长度<30'
+  - '位于文末且后接 ## Index，内容为全书技术回顾概述'
+  - 复核方 overturn_probability 0.15，keep_split true
+  rejected_evidence:
+  - '标题后 6 行即出现 ## Index 间隔较短'
+  - 内容篇幅较短
+  need_human_review: false
+- 'no': 8138
+  confidence: 0.95
+  final_reason: 文末索引，按规则文末索引应单独划分为一章，标题单独成行
+  accepted_evidence:
+  - '标题 ## Index 位于文末'
+  - 后续内容为索引条目列表
+  - 复核方 overturn_probability 0.05，keep_split true
+  rejected_evidence:
+  - 标题格式与正文小标题相同存在误报可能
+  need_human_review: false
+rejected_lines:
+- 'no': 6006
+  reason: '复核方指出后续 57 行内出现多个同级 ## 标题 ## 排序、限制和偏移 6063、## UNION 和 DISTINCT 6102、##
+    更多 SPARQL 功能 6159，层级密集；标题后直接进入技术说明，前文 ### 小节衔接紧密，缺乏章节级概述过渡，应为正文小标题'
+  need_human_review: false
+- 'no': 6168
+  reason: '前后被同级 ## 标题包围，前一标题 6159 ## 更多 SPARQL 功能、后一标题 6264 ## XMLHttpRequest 对象
+    间隔仅 96 行，内容为具体 API 实现细节，语义上属于 SPARQL/RDF 相关大章节的子主题而非独立最高层级章节'
+  need_human_review: false
+- 'no': 6264
+  reason: '同一标题 ## XMLHttpRequest 对象 在 6332、6400、6468、6536、6604 共重复出现 6 次，明显为复制粘贴错误或排版噪声，标题后内容重复，违背章节唯一性原则'
+  need_human_review: false
+- 'no': 6775
+  reason: '4 行后即出现同级 ## JavaScript Objects Review 6779，间隔过短；后续 6817 ## JSON 结构、6862
+    ## 访问 JSON 属性、6882 ## 序列化 JSON 响应 均为同级 ##，构成明确子节体系，6775 为父标题而非独立章节'
+  need_human_review: false
+- 'no': 6910
+  reason: '12 行后即出现同级 ## 创建地图 6922，说明为父标题；后续 6953 ## 地理编码、6991 ## 标记、7017 ## 事件、7038
+    ## 信息窗口框 均为同级 ##，语义上为 Google Maps API 的子主题'
+  need_human_review: false
+- 'no': 7102
+  reason: '10 行后即出现同级 ## 执行搜索 7112，层级过密；后续 7136 ## 解析服务结果、7216 ## 检索照片或照片页面 均为同级 ##，构成
+    Flickr 服务的子节体系'
+  need_human_review: false
+- 'no': 7267
+  reason: '7 行后即出现同级 ## 构建和填充数据库 7274，间隔过短缺乏章节级概述；后续 7277、7316、7330、7422 等大量同级 ##
+    标题密集出现，更像是章节内的主标题而非全书最高层级章节'
+  need_human_review: false
+- 'no': 8120
+  reason: '位于 ## Mashing Up 7267 章节内部，12 行后即出现 ## Summary 8132，层级上为子节；标题后内容为项目演示结果展示，非独立章节概述，语义上为
+    Mashing Up 的收尾小节'
+  need_human_review: false

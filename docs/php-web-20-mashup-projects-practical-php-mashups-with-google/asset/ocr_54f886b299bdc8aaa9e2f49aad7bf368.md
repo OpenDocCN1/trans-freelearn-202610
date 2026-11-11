@@ -1,0 +1,9 @@
+Our next selection, Atmosphere by Joy Division, was more successful. In this case, someone upload Atmosphere's music video. Pressing on the Play button will start playing the video without leaving our mashup.
+
+The great thing about this mashup is the user-driven nature of YouTube. You can't be sure of what will be returned In Atmosphere's case, we saw the official music video that someone uploaded. In many other cases, we get to see rare live performances that someone recorded with a camcorder and uploaded. Sometimes we'll see some creative minds who made their own music video and set it to the music that we queried. Other times, the video may have nothing to do with the song at all, except that it plays in the background. For example, when I submitted The Clash's classic Death or Glory, the only video that was returned was a tribute slideshow of, of all people, Harry Potter star Daniel Radcliffe that someone created.
+
+# Summary
+
+In this mashup, we used two different web APIs – one from video repository site YouTube, and the XML feeds from social music site Last.fm. We took a look at three different XML-based file formats from those two sites: XSPF for song playlists, RSS for publishing frequently updated information, and YouTube's custom XML format. We created a mashup that took the songs in two Last.fm feeds and queried YouTube to retrieve videos based on the song.
+
+If we were to create our own XML-based parsers to parse the three formats, this would have taken much more time than it actually did. We found that the PHP Extension and Application Repository, PEAR, already had parsers we could use; one for each of the three formats. Using these PEAR packages, we were able to create an object-oriented abstraction of these formats, which allowed us to easily finish our application.

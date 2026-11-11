@@ -1,0 +1,2 @@
+Once upon a time, a diviner told me that I would meet an angel on Earth in the month of February. This book is dedicated to that February angel and love of my life, Anneliese Strunk.
+You have brought more happiness, inspiration, and joy to my life than I could ever have imagined.

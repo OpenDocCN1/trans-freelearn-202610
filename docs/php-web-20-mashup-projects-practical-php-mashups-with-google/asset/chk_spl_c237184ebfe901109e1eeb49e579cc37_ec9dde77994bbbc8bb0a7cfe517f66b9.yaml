@@ -1,0 +1,74 @@
+reviews:
+- 'no': 6006
+  overturn_probability: 0.75
+  alternative: 正文小标题
+  counter_evidence:
+  - '后续 57 行后即出现同级 ## 标题 ''## 排序、限制和偏移'' 6063、''## UNION 和 DISTINCT'' 6102、''## 更多
+    SPARQL 功能'' 6159，层级密集，说明 6006 只是章节内的二级标题而非最高层级章节'
+  - '标题后直接进入技术说明段落，前文 5913 起的 ### 小节衔接紧密，缺乏章节间的总结过渡和概述段落'
+  keep_split: false
+- 'no': 6168
+  overturn_probability: 0.7
+  alternative: 正文小标题
+  counter_evidence:
+  - '前后均被同级 ## 标题包围，前一标题 6159 ''## 更多 SPARQL 功能''、后一标题 6264 ''## XMLHttpRequest 对象''
+    间隔仅 96 行，缺乏章节隔离'
+  - 内容为具体 API 实现细节，语义上属于 SPARQL/RDF 相关大章节的子主题，而非独立最高层级章节
+  keep_split: false
+- 'no': 6264
+  overturn_probability: 0.95
+  alternative: 排版噪声/重复标题
+  counter_evidence:
+  - 同一标题 '## XMLHttpRequest 对象' 在 6332、6400、6468、6536、6604 共重复出现 6 次，明显为复制粘贴错误或排版噪声
+  - 标题后内容重复，无法作为唯一章节起始，违背章节唯一性原则
+  keep_split: false
+- 'no': 6775
+  overturn_probability: 0.8
+  alternative: 正文小标题
+  counter_evidence:
+  - '4 行后即出现同级 ## ''## JavaScript Objects Review'' 6779，间隔过短，不符合章节级间距'
+  - '后续 6817 ''## JSON 结构''、6862 ''## 访问 JSON 属性''、6882 ''## 序列化 JSON 响应'' 均为同级 ##，构成明确的子节体系，6775
+    为父标题'
+  keep_split: false
+- 'no': 6910
+  overturn_probability: 0.8
+  alternative: 正文小标题
+  counter_evidence:
+  - '12 行后即出现同级 ## ''## 创建地图'' 6922，说明 6910 为父标题而非独立章节'
+  - '后续 6953 ''## 地理编码''、6991 ''## 标记''、7017 ''## 事件''、7038 ''## 信息窗口框'' 均为同级 ##，语义上为
+    API 的子主题'
+  keep_split: false
+- 'no': 7102
+  overturn_probability: 0.75
+  alternative: 正文小标题
+  counter_evidence:
+  - '10 行后即出现同级 ## ''## 执行搜索'' 7112，层级过密'
+  - '后续 7136 ''## 解析服务结果''、7216 ''## 检索照片或照片页面'' 均为同级 ##，构成 Flickr 服务的子节'
+  keep_split: false
+- 'no': 7267
+  overturn_probability: 0.65
+  alternative: 正文小标题
+  counter_evidence:
+  - '7 行后即出现同级 ## ''## 构建和填充数据库'' 7274，间隔过短，缺乏章节级概述'
+  - '后续 7277、7316、7330、7422 等大量同级 ## 标题密集出现，7267 更像是章节内的主标题而非全书最高层级章节'
+  keep_split: false
+- 'no': 8120
+  overturn_probability: 0.8
+  alternative: 正文小标题
+  counter_evidence:
+  - '位于 ''## Mashing Up'' 7267 章节内部，12 行后即出现 ## Summary 8132，层级上为子节'
+  - 标题后内容为项目演示结果展示，非独立章节概述，语义上为 Mashing Up 的收尾小节
+  keep_split: false
+- 'no': 8132
+  overturn_probability: 0.15
+  alternative: 章节标题
+  counter_evidence:
+  - '标题后 6 行即出现 ## Index，间隔较短，存在被误判为同级小标题的风险'
+  - 内容篇幅极短，缺乏典型的章节级概述段落
+  keep_split: true
+- 'no': 8138
+  overturn_probability: 0.05
+  alternative: 索引
+  counter_evidence:
+  - 文末索引位置符合规则，但标题格式与正文小标题相同，存在误报可能
+  keep_split: true

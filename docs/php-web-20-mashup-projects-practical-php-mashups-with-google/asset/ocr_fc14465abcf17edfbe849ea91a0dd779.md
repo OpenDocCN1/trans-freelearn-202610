@@ -1,0 +1,15 @@
+Luckily, these days of tedium are long past. There are two key differences that have made it much easier to screen scrape today than it was years ago.
+
+First, it is more common to have a website that is generated through programs than hand-coded sites. Customer relationship management systems, document management systems, bulletin board forums, and plain database web applications are just some of the examples from where we may want to extract data. Not only is there more data out there, but having programs generate the pages theoretically reduces the chance of human coding errors. Less coding errors mean scraping programs have to worry less about inconsistencies.
+
+The second thing that has changed is the widespread adoption of the Document Object Model. In the first chapter, we used a SAX-based parser to parse an XML document. We touched on the difference between SAX-based parsers and DOM-based parsers. The key difference being that a SAX-based parsers parse as it is reading the data, while a DOM-based parser loads the document into memory before taking any action. When we look at the data source later, we will see that the CHP site is a good candidate for a DOM-based parser, which is what we will use. Before we start actually mucking around with a DOM-based parser, we should know what a Document Object Model even is.
+
+A DOM is an official W3C specification that describes an object model representation of an XML document. Whatever is holding the model knows all of the elements in a document, and their relation to each other, like parent, child, and siblings. Simply holding the document in memory is not enough; whatever loads the document also provides hooks for a developer to access data in the document. The DOM is a programmatic way to access parts of an XML document.
+
+A practical, specific example is how a web browser sees an HTML document. The browser knows there is a root element named HTML. There are two child elements named HEAD and BODY. Within the BODY, there may be elements such as P and TABLE. In TABLE, there are TR and TD. The browser knows that some TD elements are siblings of each other, and which specific TR element is a TD element's parent. The browser knows how each piece of a web page relates to every other piece.
+
+![](bbox=[0.21, 0.68, 0.26, 0.73])
+
+> All of the elements, values, and attributes in a document are often referred to as a DOM tree, because when diagrammed out visually, elements and their parents and children often look like branches in a tree.
+
+A DOM-based parser works in a similar way. It loads the entire XML document in memory, and through different commands, you can extract values or navigate to another part of the document. All operations are done against the document in memory. You can also create nodes and insert them into the model.
