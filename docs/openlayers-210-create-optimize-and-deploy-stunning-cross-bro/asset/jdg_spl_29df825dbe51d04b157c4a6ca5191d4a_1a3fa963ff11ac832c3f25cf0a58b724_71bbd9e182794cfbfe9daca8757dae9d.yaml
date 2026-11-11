@@ -1,0 +1,21 @@
+chapter_starts:
+- 'no': 6755
+  confidence: 0.95
+  final_reason: 双方一致，H1 章节标题排版与语义均符合最高层级大章特征
+  accepted_evidence:
+  - 标题单独成行、含章节编号 10、末尾无句号、长度小于30字，语义统领后续矢量图层样式内容
+  - 标题后 1~3 行为章节引言概述，前文 6751~6753 为上一章结尾总结，上下文符合大章起止特征
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 8366
+  confidence: 0.9
+  final_reason: 文末索引标题，规则要求文末索引单独划分为一章，特征符合
+  accepted_evidence:
+  - 位于全文末尾，标题 '# 索引' 单独成行，后续为索引条目列表
+  - 规则明确要求文末索引划分为一章，标题无句号、长度极短、语义为全书收尾
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 7758
+  reason: 复核方指出其为排版断行/章节标题续行，前一行 7756 '# 11' 已构成章节编号标记，本行 '# 创建 Web 地图应用' 与之构成同一章节头，单独分章会导致编号与标题分离且重复起章
+  need_human_review: false

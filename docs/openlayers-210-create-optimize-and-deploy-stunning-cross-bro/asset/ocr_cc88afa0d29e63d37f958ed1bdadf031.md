@@ -1,0 +1,7 @@
+# About the Author
+
+**Erik Hazzard** is a web developer—designer, Open Source advocate, and VI user. He loves to learn, teach, and occasionally blogs on his website at http://vasir.net/. As a professional web developer of five years, Erik specializes in Python and JavaScript, using open source software whenever possible. When he's not developing web applications, he's often developing or designing video games.
+
+He works at FREAC (Florida Resources and Environmental Analysis Center), a great place with great people that does all kinds of GIS and web development work.
+
+I'd like to thank the developers of OpenLayers, who continually do a fantastic job of developing the best web-mapping framework. I'd like to also thank my friends and mentors Ian Johnson and David Arthur for giving me the confidence and support I needed to get into web development. I'd like to thank Georgianna Strode and Stephen Hodge for their guidance, advice, and providing me with the opportunity to become a better web developer. I could not have written this book without the help of the great team at Packt; I hope every author can be as lucky as me to have such an excellent group of people to work with. I'd like to thank my parents for their never ending support. Lastly, I'd like to thank my love, Alisen, for her understanding and taking the time to help me make sure that the book is as easy to read as possible.

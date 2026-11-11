@@ -1,0 +1,57 @@
+reviews:
+- 'no': 0
+  overturn_probability: 0.75
+  alternative: 书名/封面标题
+  counter_evidence:
+  - 标题末尾包含冒号‘：’，不符合章标题末尾无标点规则
+  - 标题长度明显超过30字且为书名式描述，非概括性章节标题
+  - 后续内容为致谢、关于作者等前言，前言章节的实际起始应为## 致谢而非书名
+  keep_split: false
+- 'no': 241
+  overturn_probability: 0.9
+  alternative: 章节副标题/编号后的标题行
+  counter_evidence:
+  - 前一行239为‘# 1’章节编号，符合最高层级大章编号特征，真正的章节起点应为编号行
+  - 标题行与编号行构成编号+标题的成对结构，单独划分标题行会导致章节起始位置偏移
+  - 标题行后1~3行为概述段落，但编号行才是章节的语义起点
+  keep_split: false
+- 'no': 790
+  overturn_probability: 0.9
+  alternative: 章节副标题/编号后的标题行
+  counter_evidence:
+  - 前一行788为‘# 2’章节编号，符合最高层级大章编号特征
+  - 编号行与标题行成对出现，单独划分标题行不符合编号特征
+  - 上下文中编号行才是最高层级大章标记，标题行是其补充说明
+  keep_split: false
+- 'no': 1141
+  overturn_probability: 0.9
+  alternative: 章节副标题/编号后的标题行
+  counter_evidence:
+  - 前一行1139为‘# 3’章节编号
+  - 标题行‘# OpenLayers 中的“图层”’与编号行构成完整章节标识
+  - 单独划分标题行会割裂编号与标题的对应关系，章节起点应为编号行
+  keep_split: false
+- 'no': 2001
+  overturn_probability: 0.9
+  alternative: 章节副标题/编号后的标题行
+  counter_evidence:
+  - 前一行1999为‘# 4’章节编号
+  - 编号行才是最高层级大章的标记，标题行是其补充说明
+  - 上下文中编号后紧跟标题，符合编号+标题的排版模式
+  keep_split: false
+- 'no': 2329
+  overturn_probability: 0.9
+  alternative: 章节副标题/编号后的标题行
+  counter_evidence:
+  - 前一行2327为‘# 5’章节编号
+  - 标题行与编号行成对，单独划分标题行会导致章节起点错误
+  - 编号特征优先于语义概括，最高层级大章应以编号行划分
+  keep_split: false
+- 'no': 2995
+  overturn_probability: 0.1
+  alternative: 章节标题
+  counter_evidence:
+  - 标题行包含序号‘6’与标题‘控制控件’于同一行，符合编号特征
+  - 标题单独成行、无末尾标点、长度小于30字
+  - 后接概述段落，语义统领全章，符合章标题格式与上下文特征
+  keep_split: true
