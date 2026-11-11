@@ -1,0 +1,19 @@
+chapter_starts:
+- 'no': 4543
+  confidence: 0.9
+  final_reason: 文末索引按规则应单独成章，标题 '# 索引' 单独成行位于文档末尾，复核方 keep_split 为 true 且 overturn_probability
+    仅 0.15，采纳分章
+  accepted_evidence:
+  - 标题 '# 索引' 单独成行，位于文末
+  - 规则明确文末索引划分为一章
+  - 复核方 keep_split true，overturn_probability 0.15
+  rejected_evidence:
+  - 索引后紧跟字母分类及条目列表，无传统概述段落
+  need_human_review: false
+rejected_lines:
+- 'no': 3278
+  reason: 复核方反证成立：标题后 1~3 行并非概述而是直接重复二级标题 '## 身份验证控件和成员资格提供程序'，标题与二级标题文本完全重复，疑似编号排版噪声；依据上下文优先及宁可漏分原则不分章
+  need_human_review: false
+- 'no': 3775
+  reason: 复核方反证成立：标题后立即是同名二级标题 '## 如何操作、技巧和窍门'，无概述段落，呈现编号+标题重复排版模式；优先采纳复核意见，不分章
+  need_human_review: false

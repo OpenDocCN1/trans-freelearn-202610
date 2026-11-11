@@ -1,0 +1,36 @@
+# # Correcting Basic.aspx
+
+Notice that the `Basic.aspx` file has a few problems. Some elements are highlighted
+by IntelliSense "squiggles", and if we attempt to build the website, a number of errors
+will prevent a successful build. Let's correct the `Basic.aspx` template file.
+
++   1. In the `CodeFile` attribute of the `Page` directive on line one, replace
++   `CodeFile="~/Basic.aspx.cs"` with `CodeFile="basic.aspx.cs"`
+
+> The MCMS Web Application New Item template doesn't
+> recognize that our new template file has been created in
+> a subdirectory, and therefore the `CodeFile` attribute is
+> incorrect. New templates in the web root are not affected.
+
++   2. From the **Build** menu, choose **Build Web Site**. Notice that the website now
++   builds, but still includes a number of errors.
+
++   3. Correct the `DOCTYPE`. On line 19, replace
++   `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">` with
++   `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
++   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">`.
+
++   4. Correct the `<html>` element. On line 20, replace
++   `<html>` with `<html xmlns="http://www.w3.org/1999/xhtml">`.
+
++   5. Delete the comments on lines 4 through 17.
+
+> The comments within an inline ASP script block (`<% %>`)
+> are unnecessary.
+
++   6. Delete the `<meta>` tags on lines 10 through 13.
++   `<meta name="GENERATOR" content="Microsoft Visual Studio .NET 8.0">
++   <meta name="CODE_LANGUAGE" content="C#">
++   <meta name="vs_defaultClientScript" content="JavaScript">
++   <meta name="vs_targetSchema"
++   content="http://schemas.microsoft.com/intellisense/ie5">`

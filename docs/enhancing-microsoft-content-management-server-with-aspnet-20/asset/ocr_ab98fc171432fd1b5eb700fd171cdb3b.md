@@ -1,0 +1,15 @@
+complicated work arrangement between developers and designers. In addition, CSS was limited to defining the appearance of controls. For example, you couldn’t use it to define the columns that make up a grid or the nodes of a tree.
+
+Another limitation of CSS was the varying levels of support the different browsers had for style sheets. The situation gets more complex when older browsers or alternative web devices such as personal digital assistants and mobile phones are added to the picture. For a website to appear consistent across all browser types and versions, complicated workarounds had to be implemented.
+
+ASP.NET 2.0 takes the idea behind CSS a step further by introducing the concept of themes. A theme acts as a central location for storing information about the site’s design. You could store CSS files in a theme. ASP.NET automatically generates links to all CSS files for all pages that reference the theme.
+
+Besides managing CSS files, themes also store entire sets of images and other design files required by the site. In addition, you could define multiple themes within a single site. If you switched the site’s theme, the site will automatically pick up the images and other supporting files used by the selected theme. In this way, you could customize the look and feel of a site for various devices or browsers.
+
+Themes may also contain skins. Think of skins as an outer covering of server controls—somewhat like a pillow case. When you slip a new casing over a pillow, you change its design but underneath, the pillow remains essentially the same. In the same way, skins can be applied to ASP.NET server controls. Skins address the design requirements of complex server controls by combining the style definitions of entire controls into a single file as opposed to having multiple style sheets. With skins, you could apply styles and set the properties of complex controls such as Calendars and DataGrids with minimal effort. You could even define elements such as the columns that make up the grid or the nodes of a tree within a skin—a task that was not possible with CSS.
+
+Another nice aspect of themes is that they reside in the web application’s directory. You could have multiple web applications, each with its own unique themes. In this way, you could go ahead and apply a theme to postings and not worry about affecting the look and feel of say, pages in other web applications like the MCMS dialogs.
+
+# Creating a Theme
+
+Let’s start by creating a theme for the TropicalGreen site. We will name the theme Sunny and use it to apply a new design on our website. In ASP.NET 2.0, themes used by a single project are stored directly below the project’s application folder in a special folder named App_Themes. You can create as many themes (or sub folders) as your site requires.

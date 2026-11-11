@@ -1,0 +1,18 @@
+> The export-template wizard automatically includes the contents of the 'CMS' virtual directory as part of the template; this step removes these files from the template.
+
++   15. Save and close MyTemplate.vstemplate.
++   16. Select all files in the MCMS SP2 Web Application folder.
++   17. Right-click the selection and click Send To, followed by Compressed (zipped) Folder.
++   18. Rename the ZIP file MCMS SP2 Web Application.zip.
++   19. Right-click the MCMS SP2 Web Application.zip file and click Cut.
++   20. Navigate to the My Documents\Visual Studio 2005\Templates\ ProjectTemplates folder.
++   21. From the Edit menu choose Paste.
++   22. Delete the My Documents\Visual Studio 2005\My Exported Templates\ MCMS SP2 Web Application folder.
++   23. Open a Visual Studio 2005 command prompt.
++   24. Execute the command devenv /setup and close the command prompt.
+
+We have corrected the MCMS item and project templates which shipped with SP2, and are ready to create a simple test MCMS application based on our custom templates.
+
++   1. Open Visual Studio 2005.
++   2. From the File menu, choose New, followed by Web Site...
++   3. In the New Web Site dialog, select the MCMS SP2 Web Application item, select HTTP in the Location combo box, enter http://localhost/mcmssp2 in the textbox, and click OK.
