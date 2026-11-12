@@ -1,0 +1,41 @@
+reviews:
+- 'no': 6453
+  overturn_probability: 0.07
+  alternative: 正文之前的部分卷首语/大卷标识（结构性分隔标记）
+  counter_evidence:
+  - 虽符合“第 X 部分”规则，但其使用一级标题（#）而非本书章标题惯用的二级标题（##），可能仅为文档卷首或元数据分隔，而非可独立划分的正文章节
+  - 部分标题本身不承载具体章节内容，若将其作为章节起点，可能导致“部分”与“章”重复计算，造成章节层级混乱
+  keep_split: true
+- 'no': 6465
+  overturn_probability: 0.28
+  alternative: 第 4 部分下的无序号章标题/大节主标题
+  counter_evidence:
+  - 缺少数字章序号（如“第 9 章”或“9.”），与后续带编号的章标题（“## 10 ...”、“## 13 ...”）格式不一致，可能是排版遗漏而非最高层级章节
+  - 紧邻部分标题，可能仅是部分下的引言性主标题，语义统领性不足以单独成章，更可能是部分内的章组标题
+  keep_split: true
+- 'no': 7442
+  overturn_probability: 0.05
+  alternative: 第 10 章标题
+  counter_evidence:
+  - 虽然编号“10”与格式规范，但仍需警惕其可能为子层级标题误写（如“10.x”漏失小数点），若后续紧跟“10.1”等子节，则该行本身应从属更高层级而非独立章
+  keep_split: true
+- 'no': 7873
+  overturn_probability: 0.42
+  alternative: 无序号大节标题/第 10 章延续内容的主题分区
+  counter_evidence:
+  - 无显式章序号（无“第 11 章”或“11.”），与带编号章标题格式不一致，可能是第 10 章内部的大节或主题聚合标题
+  - 前文为第 10 章的技能检查与总结，该行紧随其后，可能被误认为是新章，实则可能是第 10 章附录或收尾主题区块
+  keep_split: true
+- 'no': 8282
+  overturn_probability: 0.2
+  alternative: 英文章标题/第 12 章英文副标题
+  counter_evidence:
+  - 英文标题夹杂在中文章节之间，可能是跨语言排版残留、翻译对照或章节英文副标题，而非独立中文章节
+  - 缺少中文章序号，语义统领性需依赖英文理解，可能属于上一章的英文扩展阅读块
+  keep_split: true
+- 'no': 8679
+  overturn_probability: 0.06
+  alternative: 第 13 章标题
+  counter_evidence:
+  - 若前文章序不连续（如中间缺章），该“13”编号可能为孤立标题或后期插入，不代表真实最高层级章节
+  keep_split: true

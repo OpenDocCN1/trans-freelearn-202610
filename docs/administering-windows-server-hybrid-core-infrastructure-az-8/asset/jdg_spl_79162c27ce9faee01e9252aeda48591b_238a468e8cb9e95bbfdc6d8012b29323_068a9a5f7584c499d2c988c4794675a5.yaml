@@ -1,0 +1,31 @@
+chapter_starts:
+- 'no': 9627
+  confidence: 0.9
+  final_reason: 规则明确规定‘第 X 部分’属于部分-章节模式，遇到部分标题应划分新章；该行单独成行，后接‘考试准备’及概述段落，符合部分标题特征
+  accepted_evidence:
+  - 规则：存在‘第 X 部分’时，遇到部分标题要划分新章
+  - 行9627单独成行，行9628紧接‘考试准备’构成完整分区名
+  - 后接概述段落（9630-9633）和本部分包含的章节列表
+  rejected_evidence:
+  - 复核方认为其为宏观分组而非正文章节，但规则明确要求部分标题分章
+  need_human_review: false
+- 'no': 9636
+  confidence: 0.98
+  final_reason: 双方基本一致（复核方维持分章），明确的‘第 14 章’最高层级章标题，单独成行，无末句号，后接概述与测试内容
+  accepted_evidence:
+  - 判断方：明确章标题编号与格式特征
+  - 复核方：overturn_probability低，keep_split为true
+  - 行9636单独成行，后接概述段落（9638-9639）和测试问题
+  rejected_evidence:
+  - 复核方指出可能为二级标题或附录，但证据不足
+  need_human_review: false
+- 'no': 10044
+  confidence: 0.85
+  final_reason: 规则明确规定‘文末索引也划分为一章’，虽为三级标题但属专项例外；位于书末所有正文之后，后接索引列表
+  accepted_evidence:
+  - 规则：文末索引也划分为一章
+  - 行10044单独成行，位于书末，后接Symbols、A、B等索引条目
+  rejected_evidence:
+  - 复核方认为其为三级标题附录，不应作为独立正文章节，但规则专门对文末索引有例外规定
+  need_human_review: false
+rejected_lines: []

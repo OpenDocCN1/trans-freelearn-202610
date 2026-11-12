@@ -1,0 +1,65 @@
+reviews:
+- 'no': 1
+  overturn_probability: 1.0
+  alternative: 空行/排版分隔
+  counter_evidence:
+  - 该行内容为空字符串，无任何可见文本，不具备章标题的基本格式和语义特征
+  - 前后均为空行或致谢段落，不存在章节起始前的总结性上下文或后续的概述段落
+  - 无法满足标题单独成行且有实际内容的必要条件
+  keep_split: false
+- 'no': 2
+  overturn_probability: 1.0
+  alternative: 空行/排版分隔
+  counter_evidence:
+  - 该行为空行，无编号、无标题文本、无语义内容
+  - 与周围连续空行属于同一排版噪声，非章节边界
+  - 不存在'第 X 章'或'第 X 部分'等编号特征，无法作为章标题
+  keep_split: false
+- 'no': 3
+  overturn_probability: 1.0
+  alternative: 空行/排版分隔
+  counter_evidence:
+  - 行内容为空，无法构成任何章节标题
+  - 紧接其前后均为空白行，无章统领性段落或子节出现
+  - 属于排版换行噪声，应被过滤而非作为分章依据
+  keep_split: false
+- 'no': 4
+  overturn_probability: 1.0
+  alternative: 空行/排版分隔
+  counter_evidence:
+  - 空行无任何可见字符，不可能是章标题
+  - 与前后空行连续，属于文档前置部分的空白分隔
+  - 不存在任何编号或语义特征表明其为新章节开始
+  keep_split: false
+- 'no': 5
+  overturn_probability: 1.0
+  alternative: 空行/排版分隔
+  counter_evidence:
+  - 该行内容为空，不含标题文本
+  - 位于前言致谢段落之前，属于排版空白而非章节起点
+  - 无语义统领性，不能覆盖后续任何内容
+  keep_split: false
+- 'no': 6
+  overturn_probability: 1.0
+  alternative: 正文段落（致谢/前言正文）
+  counter_evidence:
+  - 行末带有句号，长度远超30字，违反章标题格式规则
+  - 内容为第一人称致谢语，属于前言材料正文，根据规则应并入前言章而非独立成章
+  - 前后均为空行，属于普通段落分隔，无章节正文跟随
+  keep_split: false
+- 'no': 7
+  overturn_probability: 1.0
+  alternative: 空行/排版分隔
+  counter_evidence:
+  - 该行为空行，无文本内容，无法作为章标题
+  - 与周围空行和致谢段落交替，属于排版噪声
+  - 不存在任何编号或语义特征表明其为新章节开始
+  keep_split: false
+- 'no': 8
+  overturn_probability: 0.98
+  alternative: 前言/前置材料中的二级小标题（贡献者说明）
+  counter_evidence:
+  - 使用'##'二级标题标记，属于前言/前置说明部分的内部小标题，非全书最高层级章标题
+  - 根据规则，前言、致谢、关于作者等正文之前的内容应统一划分为一章，不应再内部分章
+  - 其后紧跟的是关于作者等正文段落，而非新章节的正文概述或子节
+  keep_split: false

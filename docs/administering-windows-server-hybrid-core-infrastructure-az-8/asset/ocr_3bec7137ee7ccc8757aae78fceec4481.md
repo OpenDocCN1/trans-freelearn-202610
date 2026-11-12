@@ -1,0 +1,5 @@
+# About the reviewer
+
+**Peter De Tender** has more than 25 years of experience in architecting and deploying Microsoft solutions, starting with Windows NT4/Exchange5.5 in 1996. In early 2012, he started shifting to cloud technologies and quickly embraced Azure, working as a cloud architect and trainer. In September 2019, Peter joined Microsoft's prestigious Microsoft Technical Trainer team, providing Azure readiness workshops to their top customers and partners across the globe. Recently having relocated to Redmond, WA, Peter is continuing this role. Given his past status as Azure Hybrid MVP and his passion for the community, Peter is still actively involved in public speaking, technical writing, and mentoring and coaching. You can follow Peter on Twitter at @pdtit.
+
+*Thanks Steve, for trusting my love for Azure. Also, a big thanks to my wife for supporting me in realizing my dreams.*

@@ -1,0 +1,90 @@
+chapter_starts:
+- 'no': 0
+  confidence: 0.95
+  final_reason: 前言、致谢、关于作者等正文前材料统一划分为一章，起始于文档开头
+  accepted_evidence:
+  - 规则：前言、序言、致谢、关于作者等正文之前的内容，统一划分为一章
+  - 行0为书名，随后为致谢与前言正文，均属前置材料
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 172
+  confidence: 0.98
+  final_reason: 第1部分标题，部分-章节模式下的最高层级标题，单独成行、无句号、语义统领
+  accepted_evidence:
+  - 规则：存在“第 X 部分”时，遇到部分标题要划分新章
+  - 行172内容为“# 第 1 部分：混合标识”，符合编号与格式特征
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 183
+  confidence: 0.98
+  final_reason: 第1章标题，位于第1部分下，语义统领AD DS内容，后文为章节正文
+  accepted_evidence:
+  - 规则：无章序号时依靠语义判断，行183为章标题
+  - 上下文：前文为第1部分介绍，后文跟随AD DS章节正文与小节
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 1084
+  confidence: 0.98
+  final_reason: 第2章标题，语义统领Azure AD DS内容，后文为章节正文
+  accepted_evidence:
+  - 行1084为“## 实现和管理 Azure Active Directory 域服务”，单独成行、无句号、长度短
+  - 后文为Azure AD DS章节正文
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 1693
+  confidence: 0.98
+  final_reason: 第3章标题，语义统领组策略内容，后文为章节正文
+  accepted_evidence:
+  - 行1693为“## 使用组策略管理用户和计算机”，单独成行、无句号、长度短
+  - 后文为组策略章节正文
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 2219
+  confidence: 0.98
+  final_reason: 第4章标题，语义统领混合标识内容，后文为章节正文
+  accepted_evidence:
+  - 行2219为“## 实施和管理混合标识”，单独成行、无句号、长度短
+  - 后文为混合标识章节正文
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 2809
+  confidence: 0.98
+  final_reason: 第2部分标题，部分-章节模式下的最高层级标题
+  accepted_evidence:
+  - 规则：存在“第 X 部分”时，遇到部分标题要划分新章
+  - 行2809内容为“# 第 2 部分：混合网络”，符合编号与格式特征
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 2818
+  confidence: 0.98
+  final_reason: 第5章标题，位于第2部分下，语义统领本地网络基础设施内容
+  accepted_evidence:
+  - 行2818为“## 实施和管理本地网络基础设施”，单独成行、无句号、长度短
+  - 后文为本地网络基础设施章节正文
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 1
+  reason: 复核方证据成立：该行为空行，无章标题的基本格式和语义特征
+  need_human_review: false
+- 'no': 2
+  reason: 复核方证据成立：空行，属排版噪声，非章节边界
+  need_human_review: false
+- 'no': 3
+  reason: 复核方证据成立：空行，属排版噪声，非章节边界
+  need_human_review: false
+- 'no': 4
+  reason: 复核方证据成立：空行，属排版噪声，非章节边界
+  need_human_review: false
+- 'no': 5
+  reason: 复核方证据成立：空行，属排版噪声，非章节边界
+  need_human_review: false
+- 'no': 6
+  reason: 复核方证据成立：行末带句号、长度远超30字，为致谢正文段落，应并入前置材料章而非独立成章
+  need_human_review: false
+- 'no': 7
+  reason: 复核方证据成立：空行，属排版噪声，非章节边界
+  need_human_review: false
+- 'no': 8
+  reason: 复核方证据成立：## 贡献者为前置材料内部二级小标题，根据规则前言致谢等正文前材料统一为一章，不应内部分章
+  need_human_review: false
