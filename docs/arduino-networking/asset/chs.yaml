@@ -1,0 +1,1189 @@
+- ''
+- '# Arduino 网络
+
+
+
+
+
+
+  ![](img/b454031c864977fe997c5feb0b3f9b63_0_0.png)
+
+
+
+
+
+
+
+
+
+  ## 致谢
+
+
+  **作者**
+
+  马可·施瓦茨
+
+
+  **审稿人**
+
+  C. M. 巴纳斯
+
+  瑞安·邓恩
+
+  菲利普·梅休
+
+  汤姆·奥康纳
+
+  克里斯扬尼斯·里尼埃克斯
+
+
+  **委托编辑**
+
+  普拉米拉·巴兰
+
+
+  **获取编辑**
+
+  哈莎·巴尔瓦尼
+
+
+  **内容开发编辑**
+
+  苏米特·苏万特
+
+
+  **技术编辑**
+
+  库纳尔·阿尼尔·盖夸德
+
+  西迪·拉尼
+
+
+  **文稿编辑**
+
+  姆拉杜拉·黑格德
+
+  阿迪蒂·谢蒂
+
+
+  **项目协调员**
+
+  达努塔·琼斯
+
+
+  **校对员**
+
+  阿米沙·格林
+
+
+  **索引编制员**
+
+  雷卡·奈尔
+
+
+  **制作协调员**
+
+  梅尔温·迪萨
+
+
+  **封面工作**
+
+  梅尔温·迪萨
+
+
+  ## 关于作者
+
+
+  **马可·施瓦茨** 是电气工程师、企业家和博客作者。他拥有法国 SUPELEC 的电气工程与计算机科学硕士学位，以及瑞士 EPFL 的微工程硕士学位。
+
+
+  他在电气工程领域拥有超过 5 年的工作经验。他的兴趣集中在电子学、家庭自动化、Arduino 和 Raspberry Pi 平台、开源硬件项目以及 3D 打印方面。
+
+
+  他运营着多个关于 Arduino 的网站，包括 Open Home Automation 网站（http://www.openhomeautomation.net/），该网站致力于使用开源硬件构建家庭自动化系统。
+
+
+  他还撰写了另一本书《使用 Arduino 的家庭自动化》，由 Amazon Digital Services, Inc. 出版，这是一本自出版的 Kindle
+  电子书。他还撰写了一本关于如何使用 Arduino 构建物联网项目的书，名为《使用 Arduino Yun 的物联网》，由 Packt Publishing 出版。
+
+
+  ## 关于审稿人
+
+
+  **瑞安·邓恩** 是解决方案架构师，专注于 Web 技术和企业级部署。他目前居住在美国堪萨斯州南堪萨斯城。
+
+
+  他拥有堪萨斯州立大学的计算机科学学士学位和堪萨斯大学的工商管理硕士学位。他曾为多个组织工作，职业生涯涉及电子商务、数字营销、SEO、教育、安全和移动等多个行业。
+
+
+  他从事 Web 技术工作超过 10 年，在此期间，他始终对技术保持中立态度，从而积累了广泛的经验。作为解决方案架构师，他管理解决方案部署的各个方面，包括分析、网络架构、系统架构、创意设计和开发。
+
+
+  我有一个妻子 Crystal 和两个孩子。由于他们的支持，我得以追求自己对技术的热爱，并对他们的爱永远心怀感激。
+
+
+  **菲利普·梅休** 拥有北卡罗来纳州立大学的计算机科学理学学士学位。他是 Rextency Technologies LLC 的创始人兼管理负责人，该公司位于北卡罗来纳州斯泰茨维尔。他的主要专长在于软件应用性能测试和监控。
+
+
+  **汤姆·奥康纳** 是经验丰富的系统架构师和 DevOps 工程师。他居住在英国西米德兰兹。在过去 8 年里，他曾为从电子商务到视觉特效等多种公司工作，现在是他创立的公司的所有者，该公司为无线网络设计和安装提供系统咨询。
+
+
+  他在自己的网站上写技术博客，既提供教程文章，也分享他最近的工作进展。在过去 10 年中，他大部分时间在 Windows、Linux 和 Unix 系统上工作，积累了广泛的技能和经验，最近还具备设计和构建高性能计算机系统的经验。
+
+
+  他也是英国 DevOps 社区的活跃成员，以及 www.serverfault.com 的社区版主，在那里向广大受众展示他的专业知识和技能。
+
+
+  **克里斯扬尼斯·里尼埃克斯** 是数字交互媒体专业人士，从事涉及平面设计、动画、用户界面设计、投影映射、编程和电子学的项目工作。他的项目成果通常是网站、游戏、硬件原型或交互式装置。他还在创意编码和投影映射领域举办研讨会。他目前最有趣的项目之一是开发一个用于
+  Raspberry Pi 上投影映射的 openframeworks 插件——ofxPiMapper。
+
+
+  他还是赫尔辛基媒体实验室（阿尔托大学艺术、设计与建筑学院）的硕士生，目前正在撰写与 ofxPiMapper 投影映射软件项目相关的硕士论文。
+
+
+  克里斯扬尼斯与同事 Irina Spicaka 共同经营一家名为 CodeBark 的小型数字媒体公司（www.codebark.com）。他们还共同开发了一个名为
+  Creative Coding for Live Audio and Visuals（www.cc4av.info）的平台，该平台作为与电子视听文化相关的各种活动和研讨会的占位平台。
+
+
+  他还在与柏林 Fab Lab 合作，在柏林时大部分时间都在那里度过。
+
+
+  《Cinder – 创意编码入门》由 Packt Publishing 出版，是他参与的第一本书。这是 Cinder 的入门指南，Cinder 是一个 C++
+  创意编码框架（类似于 openFrameworks），包含教程，帮助您尽快、尽可能轻松地上手 Cinder。
+
+
+
+
+
+
+  ## 支持文件、电子书、折扣优惠等
+
+
+  你可以访问 www.PacktPub.com 获取与本书相关的支持文件和下载资源。
+
+
+  你知道吗？Packt 为每本出版的图书都提供电子书版本，附有 PDF 和 ePub 文件。你可以在 www.PacktPub.com 升级到电子书版本，作为印刷书籍客户，你有权享受电子书副本的折扣。如需了解更多详情，请联系我们
+  <service@packtpub.com>。
+
+
+  在 www.PacktPub.com，你还可以阅读一系列免费技术文章，订阅多种免费通讯，并获取 Packt 图书和电子书的独家折扣与优惠。
+
+
+  ![](img/b454031c864977fe997c5feb0b3f9b63_20_0.png)
+
+
+  http://PacktLib.PacktPub.com
+
+
+  你是否需要立即解决 IT 问题？PacktLib 是 Packt 的在线数字图书馆。在这里，你可以访问、阅读并搜索 Packt 的整个图书库。
+
+
+  ### 为什么要订阅？
+
+
+  - 可在 Packt 出版的每本书中全文搜索
+
+  - 复制粘贴、打印和收藏内容
+
+  - 按需获取，可通过 Web 浏览器访问
+
+
+  ## Packt 账户持有者的免费访问权限
+
+
+  如果你在 www.PacktPub.com 拥有 Packt 账户，可以立即使用此账户访问 PacktLib，并查看九本完全免费的图书。只需使用你的登录凭证即可立即访问。
+
+
+  ## 前言
+
+
+  Arduino 是一个用于快速创建精彩电子项目的出色平台。使用 Arduino 平台，即使是非专家也可以将传感器、执行器和显示器连接在一起，构建为日常生活提供即时应用的复杂项目。
+
+
+  但是，当这些项目被连接起来时，效果会更好，也就是说，它们具有与其他设备通信的方式，而不一定是与其他 Arduino 板通信。有许多方法可以将 Arduino 项目彼此连接，并连接到计算机等其他设备：WiFi、XBee、Bluetooth
+  和 Ethernet。本书将完全专注于如何使用这项最新技术来创建连接 Arduino 项目的精彩项目。
+
+
+  与无线解决方案相比，使用 Ethernet 有几个优势：速度快、成本低，并且你可以在互联网上找到大量相关帮助。对我来说，最重要的是 Arduino 的 Ethernet
+  库文档非常完善，并且随 Arduino 软件内置。它的硬件对应物 Arduino Ethernet 扩展板也制作精良，并得到 Arduino 社区的良好支持。
+
+
+  在本书中，我们将通过六个精彩的项目来了解如何使用 Ethernet 扩展板和 Ethernet 库。我们将从最基础的内容开始，了解如何将 Ethernet 扩展板连接到你的本地网络和
+  Web。然后，我们将从 Ethernet 扩展板向你本地网络上的服务器发送数据。最后，我们将通过构建几个直接连接到 Web 的项目，将 Ethernet 扩展板集成到“物联网”框架中。
+
+
+  ## 本书内容概述
+
+
+  第 1 章“探索 Arduino Ethernet 扩展板”介绍了 Arduino Ethernet 扩展板，向你展示如何设置好一切，以便你在下一章轻松构建更多精彩的应用。我们将把
+  Ethernet 扩展板连接到你的路由器，并确保它可以访问 Web。
+
+
+  第 2 章“将数据发送到 Web 服务器”解释了如何将温湿度传感器连接到 Arduino 开发板，并使用 Ethernet 扩展板将这些数据持续发送到运行在你计算机上的
+  Web 服务器。我们还将在 Web 服务器上实时绘制这些数据，以便你可以在浏览器中可视化查看。
+
+
+  第 3 章“数据记录站”使用与上一章相同的硬件，但我们将使 Arduino Ethernet 更加独立。我们将把开发板测量的数据本地记录到 SD 卡上，并创建一个在
+  Ethernet 扩展板上运行的 Web 服务器，以便你本地网络中的任何设备都可以访问它。
+
+
+  第 4 章“从任何位置控制对象”介绍了如何将继电器模块连接到我们的 Arduino 和 Ethernet 扩展板硬件，以便它可以通过网络进行控制。我们将首先从本地网络内部控制此继电器模块，然后使用专用服务来实现从任何位置控制此继电器。作为示例，我们还将把一盏灯连接到此继电器模块。
+
+
+  第 5 章“与 Xively 结合的物联网”继续介绍云端连接项目，通过将 Ethernet 扩展板与名为 Xively 的云服务进行接口连接。使用此服务，我们将能够将项目测量的数据发送到
+  Web，并从世界任何地方实时在 Xively 网站上监控它。
+
+
+  第 6 章“在 Google Docs 中记录数据”使用 Web 服务 Temboo 将 Ethernet 扩展板与更多 Web 服务（如 Google Docs
+  或 Gmail）进行接口连接。例如，我们将使用 Arduino 开发板进行测量，并自动将这些结果记录到 Google Docs 电子表格中，该表格可以从世界任何地方访问。
+
+
+  ## 本书所需内容
+
+
+  要完成本书中的所有项目，你需要多种硬件和软件组件。当然，你也可以只阅读项目描述来学习。但是，我强烈建议你亲自动手做这些项目，以真正了解如何使用 Arduino
+  Ethernet 扩展板来构建精彩的网络应用。
+
+
+  所需硬件组件在每章开头有详细说明。但是，所有项目中你真正需要的是一块 Arduino 开发板。
+
+
+  本书的所有项目均基于 Arduino Uno 开发板：
+
+
+  http://arduino.cc/en/Main/arduinoBoardUno
+
+
+  对于本书的所有项目，你还需要 Arduino Ethernet 扩展板：
+
+
+  http://arduino.cc/en/Main/ArduinoBoardEthernet
+
+
+  在软件方面，有一些软件我们将在本书的所有章节中使用。我们在所有章节中使用的第一个软件是你需要安装的 Arduino IDE。你可以从以下网址下载：
+
+
+  http://arduino.cc/en/main/software
+
+
+  Ethernet 库本身包含在 Arduino IDE 中，因此你不需要自己安装。还有几个外部库你需要，但这些库会在相关章节中详细说明。
+
+
+  你还需要在计算机上运行一个 Web 服务器来完成其中一些项目。我建议使用集成了 Web 服务器和数据库，并为你处理所有细节的软件。
+
+
+  如果你使用 Windows，我建议使用 EasyPHP：
+
+
+  http://www.easyphp.org/
+
+
+  如果你使用 OS X，我建议使用 MAMP：
+
+
+  http://www.mamp.info/
+
+
+  对于 Linux，你可以按照以下链接中提供的说明安装 Web 服务器：
+
+
+  http://doc.ubuntu-fr.org/lamp
+
+
+  请确保此时服务器正在运行；我们将在本书的多个项目中使用它。
+
+
+  ## 适合阅读本书的人群
+
+
+  本书适合所有愿意使用 Ethernet 扩展板构建精彩联网 Arduino 项目的人。你实际上不需要事先了解 Arduino 平台，因为所有项目都将以清晰的说明逐步解释。你也不需要任何
+  Ethernet 技术方面的预先知识。你只需要明白，本书中的项目只是电子和编程的基础知识。
+
+
+  本书也适合想要深入了解 Arduino 平台的电子爱好者。通过执行本书中的项目，你将学习使用 Arduino Ethernet 扩展板的许多可能方法。你还将学习如何将传感器和执行器连接到
+  Arduino，并在本地网络内控制它们。
+
+
+  最后，本书也适合那些愿意使用 Arduino Ethernet 扩展板深入了解物联网框架的人。本书的最后几章专门用于构建连接到云服务且可从世界任何地方访问的项目，只需通过
+  Ethernet 将你的 Arduino 项目连接到互联网路由器即可。
+
+
+
+
+
+
+  ## 约定
+
+
+  在本书中，您将看到多种文本样式，用于区分不同类型的信息。以下是这些样式的一些示例及其含义说明。
+
+
+  正文中的代码词汇、数据库表名、文件夹名、文件名、文件扩展名、路径名、虚拟 URL、用户输入和 Twitter 账号按以下格式显示：“在草图（sketch）的 setup()
+  函数中，我们将尝试使用 DHCP 获取 IP 地址。”
+
+
+  代码块按以下方式设置：
+
+
+  ```
+
+  String log_time = String(day()) + "/" +
+
+  String(month()) + "/" + String(year()) + " " +
+
+  String(hour()) + ":" + String(minute()) + ":" +
+
+  String(second));
+
+  ```
+
+
+  任何命令行输入或输出按以下方式书写：
+
+
+  ```
+
+  # 192.168.1.103/digital/7/1
+
+  ```
+
+
+  新术语和重要词汇以粗体显示。您在屏幕上、菜单或对话框中等处看到的词汇，在文中会以如下形式出现：“如果您使用的是 Windows，可以在控制面板的“网络设置”中找到所需的信息。”
+
+
+  ## 注意
+
+
+  警告、重要说明或其他附加信息将以方框形式出现，如下所示。
+
+
+  ## 提示
+
+
+  技巧和窍门将按以下形式出现。
+
+
+  ## 读者反馈
+
+
+  我们始终欢迎读者反馈。请告诉我们您对本书的看法——您喜欢或不喜欢的地方。读者反馈对我们开发能让您真正受益的书籍至关重要。
+
+
+  如需发送一般性反馈，只需向 <feedback@packtpub.com> 发送电子邮件，并在邮件主题中注明书名。
+
+
+  如果您在某个主题上有专业知识，并且有兴趣编写或参与编写书籍，请参阅我们位于 www.packtpub.com/authors 的作者指南。
+
+
+  ## 客户支持
+
+
+  既然您是 Packt 书籍的自豪拥有者，我们有多种资源可帮助您充分利用购买的书籍。
+
+
+  ## 下载示例代码
+
+
+  您可以从 http://www.packtpub.com 的帐户中下载所有已购买 Packt 图书的示例代码文件。如果您在其他地方购买了本书，可以访问 http://www.packtpub.com/support
+  并注册，以便将文件直接发送到您的电子邮箱。
+
+
+  本书项目的所有最新代码也可在以下地址找到：
+
+
+  https://github.com/openhomeautomation/arduino-networking/
+
+
+  ## 勘误
+
+
+  虽然我们已竭力确保内容的准确性，但错误难免会发生。如果您在我们的某本书中发现错误（可能是文本或代码中的错误），我们将不胜感激如果您能向我们报告。这样做可以帮助其他读者避免沮丧，并协助我们改进本书的后续版本。如果您发现任何勘误，请访问
+  http://www.packtpub.com/support，选择您的书，单击 **勘误提交表单** 链接，并输入勘误详细信息。一旦您的勘误得到验证，您的提交将被接受，勘误将上传到我们的网站，或添加到该书名下勘误部分的任何现有勘误列表中。
+
+
+  ## 盗版
+
+
+  互联网上的版权材料盗版是各类媒体面临的持续问题。在 Packt，我们非常重视版权和许可的保护。如果您在互联网上以任何形式发现我们作品的非法副本，请立即向我们提供位置地址或网站名称，以便我们采取补救措施。
+
+
+  请通过 <copyright@packtpub.com> 与我们联系，并提供涉嫌盗版材料的链接。
+
+
+  感谢您帮助保护我们的作者，并帮助我们为您提供有价值的内容。
+
+
+  ## 问题
+
+
+  如果您在书籍的任何方面遇到问题，可以通过 <questions@packtpub.com> 联系我们，我们将竭尽全力予以解决。
+
+  '
+- "# 第 1 章 探索 Arduino 以太网扩展板\n\n在本书的第一章中，我们将只关注基础知识并开始使用 Arduino 以太网扩展板。为了在本书后续章节中构建更复杂的项目，我们首先需要确定扩展板运行正常，并且可以连接到我们的局域网和互联网。\n\
+  \n为确保这一点，我们将首先组装硬件，然后构建一个简单的 Arduino 草图，它将连接到互联网，抓取一个测试网页，并在 Arduino 串行监视器中显示出来。\n\
+  \n本章的主要要点如下：\n\n- 首先，我们会确保您拥有所有必需的硬件和软件组件。我们还将组装扩展板和 Arduino Uno 开发板，并通过路由器将所有设备连接到局域网。\n\
+  - 然后，我们将编写草图，将扩展板连接到局域网以及互联网，该草图将抓取一个测试页面以确保您的连接正常工作。\n- 最后，我们将测试该草图，并在 Arduino\
+  \ 串行监视器中监控以太网扩展板的状态。通过对扩展板的首次测试，我们将能够判断扩展板是否已正确连接到互联网。\n\n## 硬件和软件要求\n\n对于这个第一个项目，您不需要太多硬件。您只需要一块\
+  \ Arduino Uno 开发板，当然，还需要 Arduino 以太网扩展板。其他板子（例如 Arduino Mega）也可以用于本书第一章的项目，但对于本书后续章节的项目，您可能会遇到困难。因此，我建议您在本书的所有项目中都使用\
+  \ Arduino Uno 开发板。\n\n在实际将扩展板与开发板组装之前，请务必记下扩展板的 MAC 地址（印在扩展板背面）。在项目后期编写第一个草图时，我们会用到它。\n\
+  \n这是组装好的开发板和以太网扩展板的图片：\n\n![](img/b454031c864977fe997c5feb0b3f9b63_42_0.png)\n\n\
+  您还需要一根 USB B 转 USB A 电缆将 Arduino 开发板连接到计算机，以及一根以太网电缆将扩展板连接到路由器。\n\n在软件方面，您只需要 Arduino\
+  \ IDE，可在以下地址找到：\n\nhttp://arduino.cc/en/main/software\n\n以太网库已包含在 Arduino 软件中，因此您无需安装任何其他组件。\n\
+  \n## 硬件配置\n\n本章的硬件配置非常简单。到此为止，您应该已经将 Arduino 以太网扩展板连接到了 Arduino Uno 开发板。如果不是，请立即操作。\n\
+  \n然后您只需插入两根电缆：计算机与 Arduino Uno 开发板之间的 USB 电缆，以及以太网电缆。只需将 USB 电缆连接到计算机的一个端口即可。\n\n\
+  对于以太网电缆，您有几种选择。最简单（也是我推荐）的做法是，将以太网电缆直接从扩展板连接到家庭的主路由器。通常，您家中会有一个 Wi-Fi 路由器，用于为计算机和其他设备启用\
+  \ Wi-Fi 连接。该路由器还应有一些以太网端口，您可以将以太网扩展板连接到其中。这种方案的优点是，您的扩展板将自动获取 IP 地址，并自动获得互联网访问权限。这假设您的路由器已配置为\
+  \ DHCP；请进入路由器设置启用 DHCP。由于此过程因路由器品牌而异，请参阅路由器文档，了解如何在您的特定路由器上执行此操作。\n\n如果您没有路由器，可以直接将以太网电缆连接到计算机。我不推荐这种替代方案，因为将计算机配置为连接到扩展板并与扩展板共享互联网连接非常复杂，并且还取决于您的操作系统。\n\
+  \n如果您确实无法使用路由器，但可以使用 Wi-Fi 网络，我建议购买带有以太网端口的小型 Wi-Fi 路由器之一。它可以连接到范围内的任何 Wi-Fi 网络，并通过以太网自动与其他设备共享连接。\n\
+  \n例如，如下图所示，我推荐 TP-Link MR3020 路由器：\n\n![](img/b454031c864977fe997c5feb0b3f9b63_43_0.png)\n\
+  \n这是本章任务中组装硬件的图片，带有 USB\n\n\n电缆和插在项目中的以太网电缆：\n\n![](img/b454031c864977fe997c5feb0b3f9b63_44_0.png)\n\
+  \n如果所有连线都正确，你应该会看到以太网扩展板上的 ON LED 已经点亮，以及以太网端口附近的 LINK LED 也已点亮。\n\n## 测试您的连接\n\n\
+  既然硬件已经准备就绪，我们可以编写第一个草图来测试以太网扩展板及其与网络的连接。请注意，本节中展示的代码片段仅是代码中最重要的部分，完整代码可以在本书的 GitHub\
+  \ 仓库中找到。\n\n要使用该扩展板，请通过包含以下必需库来启动 Arduino 草图：\n\n```\n#include <SPI.h>\n#include\
+  \ <Ethernet.h>\n```\n\n### 提示\n\n### 下载示例代码\n\n您可以从 http://www.packtpub.com 上的个人账户下载已购买的所有\
+  \ Packt 图书的示例代码文件。如果您在其他地方购买了此书，可以访问 http://www.packtpub.com/support 并注册，以便文件直接发送到您的邮箱。\n\
+  \n然后，我们需要定义以太网扩展板的 MAC 地址。该地址位于扩展板背面，您应该已经记录下来了。您需要以以下格式输入：\n\n```\nbyte mac[] =\
+  \ { 0x90, 0xA2, 0xDA, 0x0E, 0xFE, 0x40 };\n```\n\n我们还需要定义要连接到哪里来测试连接。您可以使用任何想要的网页，甚至可以在\
+  \ Google 上进行搜索，但对于这个第一个测试，我想使用一个简单的页面。\n\n我找到了一个带有简单测试页面的网站，我们将在稍后的草图中发出请求时尝试获取该页面。如果您有在线的\
+  \ Web 服务器（例如托管在某个地方的博客），也可以设置自己的页面。\n\n网站地址存储在一个 char 变量中：\n\n```\nchar server[]\
+  \ = \"www.brainjar.com\";\n```\n\n请注意，您也可以在此处使用其他页面，例如 http://www.example.com/hello。\n\
+  \n然后，以太网扩展板将自动获取该网站的 IP 地址。\n\n要为以太网扩展板本身获取 IP 地址，我们将使用 DHCP 从连接的路由器中自动获取一个。但是，如果\
+  \ DHCP 失败，我们需要为扩展板分配一个默认地址。\n\n这存储在一个 IPAddress 变量中。请注意，您可以在此变量中放置任何想要的内容。至于这个第一个项目，我们确实需要\
+  \ DHCP 工作以连接到网络。但是，指定一个与路由器相同子网中的 IP 地址是一个良好的实践，这样扩展板至少可以连接到您的局域网。例如，我的计算机 IP 地址是\
+  \ 192.168.1.100，因此我为扩展板指定了一个类似的 IP 地址：\n\n```\nIPAddress ip(192, 168, 1, 50);\n\
+  ```\n\n现在，我们可以使用以下代码创建以太网客户端实例：\n\n```\nEthernetClient client;\n```\n\n现在，在草图的 setup()\
+  \ 函数中，我们将尝试使用 DHCP 获取 IP 地址。如果您已连接到路由器，它不应该失败。但是，如果它确实失败了，我们将自动为扩展板设置默认 IP 地址：\n\
+  \n```\nif (Ethernet.begin(mac) == 0) {\n  Serial.println(\"Failed to configure Ethernet\
+  \ using DHCP\");\n  Ethernet.begin(mac, ip);\n}\n```\n\n然后，我们将出于调试目的在串行端口上打印 IP\
+  \ 地址：\n\n```\nSerial.begin(115200);\nSerial.print(\"IP address: \");\nSerial.println(Ethernet.localIP());\n\
+  ```\n\n现在，在草图的 loop() 函数中，我们将实际连接到服务器。它首先调用 connect 函数并检查我们是否确实已连接。如果是这种情况，我们会将其打印到串行监视器上以供调试：\n\
+  \n```\nif (client.connect(server, 80)) {\n  if (client.connected()) {\n    Serial.println(\"\
+  connected\");\n```\n\n既然我们已连接，可以为要访问的测试页面设置 GET 请求：\n\n```\nclient.println(\"GET\
+  \ /java/host/test.html HTTP/1.1\");\nclient.println(\"Host: www.brainjar.com\");\n\
+  client.println(\"Connection: close\");\nclient.println();\n```\n\n发送请求后，我们将读取从服务器返回的数据，以检查一切是否顺利。我们还会将此数据打印到串行监视器上：\n\
+  \n```\nwhile (client.connected()) {\n  while (client.available()) {\n    char c\
+  \ = client.read();\n    Serial.print(c);\n  }\n}\n```\n\n最后，当我们确定客户端不再连接时，我们将在串行监视器上打印信息，并对以太网客户端调用\
+  \ close() 函数：\n\n```\nif (!client.connected()) {\n  Serial.println();\n  Serial.println(\"\
+  disconnecting.\")\n  client.stop();\n}\n```\n\n最后，我们不想连续执行此操作，而只是每五秒重复一次。\n这是通过\
+  \ delay() 函数完成的：\n\n```\ndelay(5000);\n```\n\n现在是时候测试该草图了。\n\n### 注意\n\n本章的完整代码可以在本书的\
+  \ GitHub 仓库中找到：\nhttps://github.com/openhomeautomation/arduino-networking/tree/master/chapter1\n\
+  \n确保以太网电缆已插入扩展板和路由器，并将草图上传到 Arduino 板。现在，您还可以打开串行监视器，并选择正确的串行速度（本章 Arduino 草图为 115200）；您应该首先看到的是板子的\
+  \ IP 地址：\n\nIP 地址: 192.168.1.103\n\n然后，Arduino 板应该连接到服务器：\n\n正在连接...\n\n如果成功，输出将显示它确实已连接：\n\
+  \n已连接\n\n现在，Arduino 板将向服务器发送 GET 请求以获取测试页面的内容。如果请求成功，服务器将以 HTTP 200 OK 状态响应，并附带页面内容：\n\
+  \n```\nHTTP/1.1 200 OK\nContent-Length: 308\nContent-Type: text/html\nLast-Modified:\
+  \ Tue, 27 May 2003 15:17:04 GMT\nAccept-Ranges: bytes\nETag: \"6291ea76324c31:5897\"\
+  \nServer: Microsoft-IIS/6.0\nX-Powered-By: ASP.NET\nDate: Thu, 15 May 2014 17:35:40\
+  \ GMT\nConnection: close\n```\n\n在这个长响应中，您应该会看到许多 HTML 标签，例如 <html> 和 <head> 标签。在响应中，您还应该在\
+  \ <p> 标签内获得页面内容，如下所示：\n\n```\n<p>This is a very simple HTML file.</p>\n```\n\n如果您能看到这个，恭喜！您的以太网扩展板工作正常！最后，Arduino\
+  \ 板还会显示以太网扩展板已从远程服务器断开连接：\n\n断开连接\n\n如果一切正常，这意味着您的以太网扩展板工作正常，并且可以毫无问题地连接到您的局域网和网络。\n\
+  \n如果有些东西没有按预期工作，有几件事您可以检查。首先，确保所有连接都正确，并且以太网电缆正确插在扩展板和路由器之间。\n\n如果草图开头 DHCP 失败且您的扩展板无法获取\
+  \ IP 地址，请检查路由器的配置面板中是否已启用 DHCP 且对 MAC 地址没有限制。\n\n最后，如果 Arduino 板无法连接到远程服务器，首先通过在浏览器中手动输入测试页面的\
+  \ URL 来检查服务器本身是否正常工作。\n\n## 总结\n\n在本书的第一章中，我们使用 Arduino 以太网扩展板构建了第一个项目，仅为了检查扩展板是否工作正常以及是否能连接到您的局域网和互联网。我们只确认以太网扩展板确实可以连接到互联网，但这已经让您了解了使用以太网扩展板可以做的一切。您了解到使用以太网扩展板发送请求是多么容易，这是我们在本书后面将用于从以太网扩展板向远程服务器发送数据的内容。\n\
+  \n以下是第一章的主要收获：\n\n- 首先，我们确保所有硬件都已正确设置，并且扩展板已通过以太网电缆连接到您的路由器。\n- 然后，我们构建了本书的第一个草图，仅为了测试以太网扩展板确实可以连接到局域网和网络。为此，我们构建了一个连接到网络并从远程服务器获取测试页面的草图。\n\
+  - 最后，我们将代码上传到开发板，并通过在 Arduino 串行监视器中监控连接状态来检查一切是否正常。\n- 我们还定义了一些策略，以防草图无法工作且扩展板无法连接到网络时该怎么办。\n\
+  \n在本书的下一章中，我们将使用以太网扩展板构建第一个应用程序。我们还将使用以太网客户端，但这次是为了连接到运行在我们自己计算机上的服务器，并发送来自温湿度传感器的测量数据。\n\
+  \n\n\n"
+- "# 第 2 章 将数据发送到 Web 服务器\n\n在上一章中，我们确保您的 Arduino 以太网扩展板可以实际连接到本地网络和 Web。在本章中，我们将在此基础上开展工作，并使用以太网扩展板构建我们的第一个应用程序。\n\
+  \n我们将通过测量数字传感器的数据并将这些数据发送到 Web 服务器，更详细地了解以太网客户端的工作原理。在本章中，这个 Web 服务器将是运行在您自己计算机上的服务器。\n\
+  \n本章的主要收获如下：\n\n- 首先，我们将选择温湿度传感器，本书后面也会使用到该传感器。我们还将安装本章所需的不同软件组件，尤其是用于在计算机上绘制数据的库。\n\
+  - 然后，我们将构建 Arduino 代码，以执行测量并将这些测量数据发送到运行在您计算机上的 Web 服务器。\n- 之后，我们将开始构建服务器端代码。在第一部分，我们将构建负责将接收到的数据简单记录到本地数据库的代码。\n\
+  - 最后，我们将数据库与实时绘图库对接，以便可以看到来自以太网扩展板并记录在数据库中的测量数据。\n\n## 硬件和软件要求\n\n在硬件方面，您当然需要 Arduino\
+  \ Uno 开发板和 Arduino 以太网扩展板。\n\n您还需要一个传感器来测量一些数据。由于本书是关于如何使用以太网扩展板，而不是关于如何从传感器测量数据，因此您可以选择任何自己喜欢的传感器。\n\
+  \n我使用了 DHT11 传感器，这是一个数字温湿度传感器。我为本章和本书的许多章节选择了这种传感器，因为它非常便宜且易于与 Arduino 对接。除了 DHT11\
+  \ 传感器，您还需要一个 4.7k 欧姆电阻。\n\n您也可以使用其他类型的传感器。您可以使用模拟传感器，其返回的信号取决于测量的数据。例如，TMP36 传感器是一个模拟温度传感器，返回与环境温度成正比的电压。\n\
+  \n您在此处可以使用的其他类型传感器是基于 SPI 或 I2C 协议的传感器，这些是易于与 Arduino 一起使用的数字通信协议。例如，您可以使用 BMP085\
+  \ 或 BMP180 传感器，它们具有 I2C 接口，您还可以测量大气压力和环境湿度。\n\n您还需要一个面包板和一些跳线，以在传感器和以太网扩展板之间建立连接。\n\
+  \n以下是本章使用的所有元件列表：\n\n- [Arduino Uno](https://www.adafruit.com/products/50)\n- [Arduino\
+  \ 以太网扩展板](https://www.adafruit.com/products/201)\n- [DHT11 传感器](https://www.adafruit.com/products/386)\n\
+  - [面包板](https://www.adafruit.com/product/64)\n- [跳线](https://www.adafruit.com/product/758)\n\
+  \n在软件方面，您首先需要的是用于与之前选择的传感器对接的库。由于我为这个项目选择了 DHT11 传感器，您需要下载并安装 DHT 库：\n\nhttps://github.com/adafruit/DHT-sensor-library\n\
+  \n要安装 Arduino 库，只需将下载文件的内容解压到主 Arduino 文件夹的 /libraries 文件夹中（如果该文件夹不存在，则创建它）。\n\n\
+  您还需要一个用于绘制数据库中存储数据的库。我使用了 flot 库，它非常易于使用并允许对传入数据进行实时可视化。此库包含在本章的代码中，但如果您想了解有关该库的更多信息，可以访问\
+  \ http://www.flotcharts.org/。\n\n关于数据库本身，此项目使用 SQLite，这是一个轻量级且易于使用的数据库。它非常适合此类项目，因为它不需要在计算机上运行数据库服务器。\n\
+  \n它在许多操作系统（如 OS X 或 Linux）上预装，但如果不是这种情况，请访问其网站下载并安装它：\nhttp://www.sqlite.org/\n\n\
+  如果您使用的是 Linux，最好的选择是使用 Linux 发行版的包管理器安装 SQLite。\n\n请注意，除了 SQLite 之外，还可以使用其他关系型数据库，例如\
+  \ MySQL。许多 Web 服务器也附带 MySQL 服务器，您只需对本章代码进行小幅修改即可使用 MySQL 数据库。您也可以使用非关系型数据库，例如 MongoDB\
+  \ (http://www.mongodb.org/)，但这将需要对代码进行更多修改。\n\n最后，为了使此项目正常工作，您还需要有一个正在运行的 Web 服务器。您可以在本书的前言中找有关如何设置\
+  \ Web 服务器的更多信息。如果您还没有安装 Web 服务器，可以访问以下链接获取一个：\n\n- Windows: EasyPHP (http://www.easyphp.org/)\
+  \ 或 WAMP (http://www.wampserver.com/en/)\n- OS X: MAMP (http://www.mamp.info/)\n\
+  - Linux: LAMP (https://help.ubuntu.com/community/ApacheMySQLPHP)\n\n## 硬件配置\n\n\
+  现在是时候为这个项目设置硬件了。此时，如果您按照第一章进行了操作，您应该已经将 Arduino 以太网扩展板插入 Arduino 开发板，并使用一根以太网线将以太网扩展板与\
+  \ Internet 路由器连接起来。如果还没有，请这样做。\n\n在这个项目中，您需要连接的唯一东西是 DHT11 传感器和电阻。您可以通过查看以下原理图来概览需要建立的不同连接：\n\
+  \n![](img/b454031c864977fe997c5feb0b3f9b63_56_0.png)\n\n首先，将 DHT11 传感器插入面包板。然后，使用\
+  \ 4.7k 欧姆电阻连接传感器的引脚 1 和 2。\n\n接下来是电源。将传感器的引脚 1 连接到 Arduino 5 V，将引脚 4 连接到 Arduino\
+  \ GND。最后，将 DHT 传感器的引脚 2 连接到 Arduino 引脚 7。\n\n最终效果应该如下所示：\n\n![](img/b454031c864977fe997c5feb0b3f9b63_57_0.png)\n\
+  \n如果您的项目看起来相同，恭喜您，您可以进入下一部分，我们将在其中构建此项目的 Arduino 草图。\n\n## 将数据发送到服务器\n\n现在是时候使用\
+  \ Arduino 以太网扩展板构建我们第一个应用程序的草图了。但首先，我们还需要一项数据：您计算机的本地 IP 地址。在 Arduino 草图中，我们将指定\
+  \ Arduino 以太网扩展板需要将数据发送到的位置。\n\n查找 IP 地址很容易，但这取决于您的操作系统。如果您使用的是 OS X，可以在 **网络偏好设置**\
+  \ 中找到 IP 地址。\n\n![](img/b454031c864977fe997c5feb0b3f9b63_59_0.png)\n\n如果您使用的是 Windows，所需信息可在\
+  \ **控制面板** 的 **网络设置** 下找到：\n\n![](img/b454031c864977fe997c5feb0b3f9b63_59_1.png)\n\
+  \n在 Windows 下的另一种方法是转到 **开始**，然后 **运行**，并键入 cmd。然后，在控制台中，键入 ipconfig 并按 Enter。将显示您计算机的\
+  \ IP 地址。\n\n如果您使用的是 Linux 或 OS X，只需打开终端并键入：\n\n```\nifconfig\n```\n\n此命令应在终端窗口中打印您的\
+  \ IP 地址。它通常是 eth0 或 en0 之类的内容。以下是我在我的机器上看到的内容：\n\n```\nen0: flags=8863<UP,BROADCAST,SMART,RUNNING,SIMPLEX,MULTICAST>\
+  \ mtu 1500\n    ether b8:f6:b1:12:c4:d7\n    inet6 fe80::baf6:b1ff:fe12:c4d7%en0\
+  \ prefixlen 64 scopeid 0x4\n    inet 192.168.1.100 netmask 0xffffff00 broadcast\
+  \ 192.168.1.255\n    nd6 options=1<PERFORMNUD>\n    media: autoselect\n    status:\
+  \ active\n```\n\n某些 Linux 发行版已转向名为 ip 的另一个工具。要使用它，只需打开终端并键入：\n\n### ip addr\n\n\
+  这也将显示您计算机的 IP 地址。\n\n我们现在准备构建 Arduino 草图。首先，我们需要包含所需的库：\n\n```\n#include <SPI.h>\n\
+  #include <Ethernet.h>\n#include \"DHT.h\"\n```\n\n插入您以太网扩展板的 MAC 地址，您可以在扩展板背面找到它：\n\
+  \n```\nbyte mac[] = { 0x90, 0xA2, 0xDA, 0x0E, 0xFE, 0x40 };\n```\n\n您还需要定义连接 DHT\
+  \ 传感器的引脚，以及您使用的传感器类型：\n\n```\n#define DHTPIN 7\n#define DHTTYPE DHT11\n```\n\n请注意，测试此项目不需要将传感器连接到\
+  \ Arduino 开发板。您可以简单地发送任何变量的内容作为测试，或使用 Arduino 的 random() 函数生成随机数据测量值。\n\n首先，我们将为以太网扩展板定义一个默认\
+  \ IP 地址。草图不应使用此地址，因为我们将尝试使用 DHCP 进行连接，但如果 DHCP 失败，我们需要这个默认 IP 地址。我建议使用与您计算机 IP 地址相同\
+  \ IP 域中的地址：\n\n```\nIPAddress ip(192,168,1,50);\n```\n\n然后，我们可以定义服务器的 IP 地址，在这里就是您的计算机。您需要在此处输入之前获得的\
+  \ IP 地址：\n\n```\nIPAddress server(192,168,1,100);\n```\n\n然后，我们可以创建以太网客户端的实例：\n\n\
+  ```\nEthernetClient client;\n```\n\n我们还可以创建 DHT 库的实例：\n\n```\nDHT dht(DHTPIN, DHTTYPE);\n\
+  ```\n\n现在，在草图的 setup() 函数中，我们首先尝试使用 DHCP 为以太网扩展板自动获取 IP 地址。这是通过以下代码片段完成的：\n\n```\n\
+  Serial.begin(115200);\nif (Ethernet.begin(mac) == 0) {\n Serial.println(\"Failed\
+  \ to configure Ethernet using DHCP\");\n Ethernet.begin(mac, ip);\n}\n```\n\n完成此步骤后，我们在串行端口上打印\
+  \ IP 地址：\n\n\n\nSerial.print(\"IP address: \");\nSerial.println(Ethernet.localIP());\n\
+  \n在草图的 loop() 函数中，第一步是从 DHT11 传感器获取测量值：\n\n```\nfloat h = dht.readHumidity();\n\
+  float t = dht.readTemperature();\n```\n\n将这些测量值转换为字符串：\n\n```\nString temp = String((int)\
+  \ t);\nString hum = String((int) h);\n```\n\n出于调试目的，我们也会在串口上打印这些值。在测试草图时，我们稍后会检查这些值是否正确：\n\
+  \n```\nSerial.println(\"Temperature: \" + temp);\nSerial.println(\"Humidity: \"\
+  \ + hum);\n```\n\n现在，我们将实际将数据发送到服务器。暂时不必担心服务器端代码的作用，稍后我们会处理。首先，我们需要连接到运行在你电脑上的服务器：\n\
+  \n```\nif (client.connect(server, 80)) {\n if (client.connected()) {\n Serial.println(\"\
+  connected\");\n}\n}\n```\n\n如果成功，我们可以发送请求。如同第 1 章《发现 Arduino 以太网扩展板》中所述，我们将使用标准\
+  \ GET 请求，并将温度和湿度测量值作为参数传递。此时，你还需要输入你电脑的 IP 地址。所有这些都通过以下代码片段完成：\n\n```\nclient.println(\"\
+  GET /datalogger/datalogger.php?temp=\" + temp + \"&hum=\" + hum + \" HTTP/1.1\"\
+  );\n client.println(\"Host: 192.168.1.100\");\n client.println(\"Connection: close\"\
+  );\n client.println();\n```\n\n你可以看到代码调用了名为 datalogger.php 的文件，我们将在下一节中对其进行检查。\n\
+  \n然后，在发出请求后，我们可以读取服务器的响应：\n\n```\nwhile (client.connected()) {\n while (client.available())\
+  \ {\n char c = client.read();\n Serial.print(c);\n }\n}\n```\n\n接下来，如果客户端不再连接到服务器，我们可以关闭连接：\n\
+  \n```\nif (!client.connected()) {\n Serial.println();\n Serial.println(\"disconnecting.\"\
+  );\n client.stop();\n}\n```\n\n```\ndelay(1000);\n```\n\n### 注意\n\n本节的所有代码都可以在此章节的\
+  \ GitHub 仓库中找到：\n\nhttps://github.com/openhomeautomation/arduino-networking/tree/master/chapter2\n\
+  \n现在，如果我们只是将代码上传到 Arduino 开发板，不会发生什么大事，因为我们在服务器端没有做任何事情。Arduino 开发板会发出请求，但由于请求文件在服务器上不存在，服务器将返回错误代码。\n\
+  \n因此，首先我们需要在服务器上构建一个文件来处理开发板发来的请求，并将数据记录到某个地方。接下来我们要做的正是此事。\n\n## 将传入数据记录到数据库\n\n\
+  在本节中，我们将使用 PHP 构建项目的服务器端部分。如果你是 PHP 的完全初学者，我推荐以下资源来学习该语言的基础知识：\n\n[PHP 语言基础教程](http://php.net/manual/en/tutorial.php)\n\
+  \n首先，我们将查看 datalogger.php 文件的内容。该文件将处理来自 Arduino 以太网扩展板的请求，在数据库中记录数据，并返回一条简单的消息。请注意，该文件必须位于你\
+  \ Web 服务器上的名为 datalogger 的文件夹中。我们将查看代码的重要部分。要获取本节的完整代码，请参阅本章的 GitHub 仓库。请注意，所有 PHP\
+  \ 代码都应位于 <?php ... ?> 标签之间。\n\n该文件首先接收来自 Arduino 以太网扩展板发送的 GET 请求中的数据：\n\n```\n\
+  $temperature = intval($_GET[\"temp\"]);\n$humidity = intval($_GET[\"hum\"]);\n```\n\
+  \n我们还实例化与 SQLite 数据库的连接：\n\n```\n$db = new SQLite3('database.db');\n```\n\n然后，如果数据库文件是全新的，我们需要为数据库赋予一些结构。如果你不熟悉\
+  \ SQL 命令，我邀请你访问以下链接：\n\n[SQL 命令参考](http://www.cs.utexas.edu/~mitra/csFall2013/cs329/lectures/sql.html)\n\
+  \n我们将在数据库中创建四个不同的列：一个由 SQLite 自动递增的唯一 ID，一个用于记录测量时间的时间戳，以及温度和湿度数据。这是通过以下代码片段完成的：\n\
+  \n```\n$db->exec('CREATE TABLE IF NOT EXISTS measurements (id INTEGER PRIMARY KEY,\n\
+  timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL, temperature\nINTEGER, humidity\
+  \ INTEGER);');\n```\n\n请注意，如果你使用更多传感器（例如，如果你也在测量环境光照度），可以在此处添加更多字段。只需向列表中添加一个新字段，例如：pressure\
+  \ INTEGER。\n\n现在，我们可以将数据作为新行插入数据库。由于 SQLite 会自动添加 ID 和时间戳字段，我们只需插有关温度和湿度的数据：\n\n\
+  ```\n$db->exec(\"INSERT INTO measurements (temperature, humidity) VALUES\n('$temperature',\
+  \ '$humidity')\");\n```\n\n如果你需要向数据库中插入更多数据，例如，如果你有另一项需要记录的测量值，可以简单地扩展此命令以将更多数据插入\
+  \ SQLite 数据库。\n\n### 提示\n\n这段简单的代码说明将数据插入 SQLite 数据库是多么容易。然而，它使我们的服务器暴露于一种名为 SQL\
+  \ 注入的安全问题中。由于我们的项目仅用于你自己的本地网络，这里这并非真正的问题。然而，如果你计划将项目部署到网上，我建议修改代码以解决此安全问题。以下链接将为你提供关于此问题的更多信息\
+  \ [SQL 注入](http://www.tutorialspoint.com/sqlite/sqlite_injection.htm)。\n\n最后，我们用一条简单的消息回复\
+  \ Arduino 开发板：\n\n```\necho \"Data received\";\n```\n\n现在，我们尚未真正讨论数据库本身。本章代码中包含一个名为\
+  \ database.db 的示例文件，但我建议你直接删除它并尝试创建自己的数据库。你可以直接在终端中进入存放所有项目文件的目录并输入：\n\n```\nsqlite3\
+  \ database.db\n```\n\n### 提示\n\n如果你使用 Windows，我建议将 Console 用作终端。你可以通过以下链接获取它 [Console\
+  \ 终端](http://sourceforge.net/projects/console/)。\n\n此命令将创建你的数据库文件。你可以再次通过输入以下命令退出数据库文件：\n\
+  \n```\n.exit\n```\n\n请注意，如果你在 Linux 下，可能需要更改数据库及包含项目的文件夹的权限。为此，请通过终端进入项目文件夹并输入：\n\
+  \n```\nchmod 777 database.db\n```\n\n现在是时候对项目进行首次测试了。请确保服务器的所有文件都位于 Web 服务器上名为 datalogger\
+  \ 的文件夹中。你现在可以将 Arduino 草图上传到开发板并打开串行监视器。你首先应该看到草图正在连接到你的网络并接收 IP 地址，如下所示：\n\n```\n\
+  IP address: 192.168.1.103\n```\n\n然后，它应该进入 loop() 函数的第一次迭代，并打印出温度和湿度测量值：\n\n```\n\
+  Temperature: 21\nHumidity: 37\n```\n\n此步骤之后，你应该看到草图已连接到你的服务器，并且服务器正在返回标准 200 OK\
+  \ 响应：\n\n```\nconnected\nHTTP/1.1 200 OK\n```\n\n```\nDate: Mon, 19 May 2014 08:09:57\
+  \ GMT\nServer: Apache/2.2.23 (Unix) mod_ssl/2.2.23 OpenSSL/0.9.8y DAV/2 PHP/5.4.10\n\
+  X-Powered-By: PHP/5.4.10\nContent-Length: 13\nConnection: close\nContent-Type: text/html\n\
+  ```\n\n此外，在该响应的末尾，你应该看到我们在 PHP 文件中定义的确认消息：\n\n```\nData received\ndisconnecting.\n\
+  ```\n\n如果你看到了这些消息，恭喜！这意味着你的 Arduino 以太网扩展板已成功与运行在你电脑上的 Web 服务器进行通信，并确实在记录一些数据。\n\
+  \n如果情况并非如此，请首先检查硬件连接。确保 DHT11 传感器已正确连接到 Arduino 开发板，并且以太网电缆已插入扩展板和你的 Internet 路由器。不要犹豫，重新学习第\
+  \ 1 章《发现 Arduino 以太网扩展板》，以确保你的以太网扩展板正常工作。\n\n此外，请确保 Web 服务器在你的电脑上处于活动状态，并且项目的所有文件（尤其是\
+  \ `datalogger.php` 文件）都位于 Web 服务器文件夹内名为 `datalogger` 的文件夹中。你可以独立于 Arduino 以太网扩展板进行此测试。只需打开你喜欢的\
+  \ Web 浏览器，并输入：\n\n```\nlocalhost/folder_of_the_project/datalogger.php?temp=20&hum=40\n\
+  ```\n\n这将在数据库中记录一些虚拟数据，因此你可以确信 Web 服务器正常运行。\n\n我们现在要检查服务器端是否正确记录了数据。而且我们将一举两得，因为这段代码还将在下一节中用于绘制数据。\n\
+  \n要检查数据是否正确记录，你可以简单地创建一个名为 `readout.php` 的文件，它将从数据库读取数据、对其格式化并打印格式化后的数据，以便你查看。首先，我们需要访问\
+  \ SQLite 数据库：\n\n```\n$db = new SQLite3('database.db');\n```\n\n然后，我们需要向数据库发出查询，以便它返回我们想要的数据。在此请求中，我们将获取名为\
+  \ measurements 的表中的所有字段。这是通过以下代码片段完成的：\n\n```\n$results = $db->query('SELECT id,\
+  \ timestamp, temperature, humidity FROM measurements');\n```\n\n现在，我们需要使用 PHP 来解析包含查询所有结果的变量。我们只需为此使用一个\
+  \ while 语句：\n\n```\nwhile($row = $results->fetchArray())\n{\n\n\n\n$dataset[] =\
+  \ array(strtotime($row['timestamp']) *\n1000,$row['temperature']);\n}\n```\n\n请注意，在解析结果的过程中，我们将数据格式化到另一个变量中，以便我们用来绘制数据的脚本可以使用它。我们还转换了时间戳列，以便绘图脚本可以使用它。在本示例中，我们只会显示并随后绘制温度，这就是为什么我们只从数据库中取出这两个变量。当然，你也可以对湿度做同样的操作。\n\
+  \n最后，我们以 JSON 格式打印出格式化的数据：\n\n```\necho json_encode($dataset);\n```\n\n现在，我们可以测试这个读取文件。只需打开终端，进入文件所在的文件夹，然后输入：\n\
+  \n```\nphp readout.php\n```\n\n这应该会绘出到目前为止所做的所有记录：\n\n```\n[[1400486855000, 20],\
+  \ [1400486868000, 20], [1400486879000, 21],\n[1400486890000, 21], [1400486901000,\
+  \ 21], [1400486912000, 21],\n[1400486922000, 22], [1400486933000, 23], [1400486944000,\
+  \ 23]]\n```\n\n你在终端窗口中看到的是记录的温度原始数据。它由多个包含两个元素的小数组组成，这两个元素分别是时间戳和记录的温度。如果你想了解该 PHP\
+  \ 脚本返回的 JSON 格式的更多信息，可以访问 http://json.org/。\n\n如果你能看到这些原始数据被显示出来，说明来自 Arduino 板的数据已被正确记录在你的计算机上。\n\
+  \n## 显示结果\n\n我们现在将使用数据库中记录的数据，并在图表上显示它以便更方便。为完成此任务，我们将使用一个名为 flot 的 JavaScript 库，它已经包含在本章的代码中。该库提供了在网页上绘制数据的出色功能，还允许你实时绘制数据，因此你会看到随着更多数据的输入，图表会自动更新。\n\
+  \n一切都将发生在一个名为 plot.html 的 HTML 文件中。这里我们只会查看代码中最重要的部分。请参阅本章的 GitHub 仓库以获取完整文件。在该文件中，你首先需要包含\
+  \ flot 库所需的文件：\n\n```\n<script src=\"flot/jquery.js\"></script>\n<script src=\"\
+  flot/jquery.flot.js\"></script>\n<script src=\"flot/jquery.flot.time.js\"></script>\n\
+  ```\n\n你还需要 HTML 页面中一个用于承载图表的元素。可以使用以下代码片段实现：\n\n```\n<div id=\"placeholder\" style=\"\
+  width:800px; height:450px;\"></div>\n```\n\n我们还为图表定义一些选项。由于现在是 JavaScript，我们必须将此代码写在\
+  \ <script>...</script> 标签内。如果你想先了解更多 JavaScript 知识，我推荐这个出色的交互式教程：\n\nhttp://www.codecademy.com/en/tracks/javascript\n\
+  \n因为我们将时间戳作为 x 轴，所以需要指定该轴的数据是特定时间，并且我们想要显示小时、分钟和秒：\n\n```\nvar options = {\n xaxis:\
+  \ {\n mode: \"time\",\n timeformat: \"%H:%M:%S\"\n }\n};\n```\n\n我们还需要每次调用脚本来绘制数据时接收数据。这是通过向之前创建的\
+  \ PHP 文件发送 AJAX 调用来完成的：\n\n```\n$.ajax({\n url: \"readout.php\",\n type: \"GET\"\
+  ,\n dataType: \"json\",\n success: onDataReceived\n});\n```\n\n请注意，此代码必须放在 JavaScript\
+  \ 代码的 update() 函数内。你可以这样定义这个函数：\n\n```\nfunction update() {\n```\n\n你可以看到，这个 AJAX\
+  \ 调用如果成功，会调用另一个 JavaScript 函数。这个函数实际上会将数据作为参数，并使用我们之前定义的选项来绘制它：\n\n```\nfunction\
+  \ onDataReceived(series) {\n    var data = [];\n    data.push(series);\n    $.plot(\"\
+  #placeholder\", data, options);\n}\n```\n\n所有这些代码都包含在 update() 函数中，并且该函数会被连续调用（每\
+  \ 10 毫秒一次），以便每当有新数据点输入时，图表始终保持更新：\n\n```\nsetTimeout(update, 10);\n```\n\n最后，在脚本末尾，我们调用一次这个函数来启动图表：\n\
+  \n```\nupdate();\n```\n\n现在是时候测试我们刚刚创建的页面了。将 datalogger 文件夹中的所有文件放在你的 Web 服务器上，并确保草图仍然加载在\
+  \ Arduino 板上。\n\n为了演示目的，我在此处重置了测量数据库，但你当然也可以只保留传感器已经执行的测量数据。\n\n打开 plot.html 文件。这是前两个测量点之后我得到的结果：\n\
+  \n![](img/b454031c864977fe997c5feb0b3f9b63_70_0.png)\n\n为了说明传感器在图表上的行为，我用手指捏住了它，并在稍后松开。如预期，温度先是上升，过了一段时间后又下降。以下截图是网页上的结果：\n\
+  \n![](img/b454031c864977fe997c5feb0b3f9b63_71_0.png)\n\n如果此时仍然不工作，你可以检查很多事项。首先，再次确保前几节的代码能正常工作，并且\
+  \ Arduino Ethernet 扩展板已正确将数据发送到服务器。另外，检查所有代码文件是否都位于 Web 服务器上的同一文件夹内。并确保你在浏览器中通过\
+  \ localhost URL 访问 plot.html。\n\n然后，打开 JavaScript 控制台来检查一切是否正常。你通常会在 Web 浏览器的开发者工具中找到控制台。例如，在\
+  \ Chrome 中，你会在“查看 | 开发者”菜单中找到控制台：\n\n![](img/b454031c864977fe997c5feb0b3f9b63_72_0.png)\n\
+  \n在这个控制台中，你可以看到页面上的 JavaScript 代码是否有任何错误，这通常会让你很好地了解页面上发生了什么以及你需要修复什么。\n\n## 总结\n\
+  \n在这本书的第二章中，我们基于 Arduino Ethernet 扩展板和 Ethernet 客户端类构建了第一个应用程序。我们在 Arduino 板上进行了一些基本测量，将这些测量数据发送到本地\
+  \ Web 服务器，最后在图表上实时显示了这些数据。\n\n为了继续深入学习本章，我邀请你仔细重复本章的所有步骤，以真正理解 Arduino Ethernet\
+  \ 扩展板如何与运行在你计算机上的 PHP 代码进行通信。你还可以向项目中添加更多传感器，并将这些数据记录在数据库中。此外，你还可以尝试在不同的图表上同时绘制多个变量。\n\
+  \n以下是本章的主要要点：\n\n- 首先，我们将数字温湿度传感器连接到 Arduino 板，以便可以使用 Ethernet 扩展板将测量数据发送到本地 Web\
+  \ 服务器。我们还安装了一些有用的软件组件，例如用于在网页上绘制数据的库。\n- 然后，我们构建了一个 Arduino 草图，将数据直接发送到运行在你计算机上的\
+  \ Web 服务器。\n- 随后，我们开始构建服务器端代码，编写负责将数据记录到本地数据库的文件。我们还使用 Arduino Ethernet 扩展板测试了这段代码，并确保数据已正确传输到服务器并记录在数据库中。\n\
+  - 最后，我们使用名为 flot 的 JavaScript 库构建了一个网页，在 Web 服务器上接收到数据时自动绘制数据。\n\n在下一章中，我们将做类似的事情，但采用完全不同的方法：而不是在\
+  \ Arduino 板上运行客户端并在本地 Web 服务器上传输数据，我们将直接在 Arduino 板上运行服务器。Arduino 项目将在网页上持续显示测量数据，并将数据本地记录在\
+  \ SD 卡上。\n"
+- "# 第 3 章 数据记录站\n\n在本章中，我们将创建与第 2 章“将数据发送到 Web 服务器”中所做的非常相似的东西，即从传感器测量数据、存储数据，并将其发送回\
+  \ Web 服务器以便绘图。\n\n然而，事物仅在外观上会相似。我们将不再使用在 Arduino 板上运行并将数据发送到服务器的 Ethernet 客户端，而是要使\
+  \ Arduino 板更加独立。在本章的第一部分，我们将使用 Ethernet 扩展板集成的 MicroSD 卡读卡器在本地记录数据。\n\n然后，我们将直接在\
+  \ Arduino 板上创建一个服务器。板子将像往常一样测量数据，但服务器将为传入的客户端提供数据。最后，我们将使用我们在第 2 章“将数据发送到 Web 服务器”中使用的代码的修改版本，在你的计算机上绘制测量数据。\n\
+  \n以下是本章的主要要点：\n\n- 首先，我们将构建此项目的硬件，包括温湿度传感器和用于记录测量数据的 SD 卡。\n- 然后，我们将创建项目的第一部分，并自动将数据记录到插在\
+  \ Ethernet 扩展板内部的 SD 卡上。此时，我们将使用 Ethernet 扩展板的 Internet 连接，从网络时间协议（NTP）时间服务器自动获取当前时间。\n\
+  - 最后，我们将构建一个 Web 服务器并在 Arduino 板上运行它。然后，你只需在 Web 浏览器中输入板子的地址，即可访问板子测量的数据。我们还将修改上一章的代码，从\
+  \ Arduino 板获取测量数据，并在浏览器中实时绘制它们。\n\n\n\n\n\n## 硬件和软件要求\n\n在硬件方面，你当然需要Arduino Ethernet扩展板和一个Arduino开发板，例如Arduino\
+  \ Uno。\n\n你还需要一个传感器来测量一些数据。由于本书是关于如何使用Ethernet扩展板，而不是如何从传感器测量，你实际上可以选择任何你喜欢的传感器。\n\
+  \n我使用了DHT11传感器，这是一个数字温湿度传感器。我为本章和书中许多章节选择了这个传感器，因为它非常便宜且易于与Arduino接口。除了DHT11传感器，你还需要一个4.7k欧姆电阻。\n\
+  \n要记录数据，你需要一张可以插入Ethernet扩展板的MicroSD卡。我没有特定的品牌推荐，但我使用了一张SanDisk MicroSD卡，配合普通SD适配器（对我很有效），所以你也可以将其插入电脑以检查数据是否正确记录。另外，请确保SD卡使用FAT32格式格式化。\n\
+  \n你还需要一块面包板和一些跳线来在传感器和Ethernet扩展板之间建立连接。\n\n以下是本章使用的所有元件列表：\n\n- Arduino Uno (https://www.adafruit.com/products/50)\n\
+  - Arduino Ethernet扩展板 (https://www.adafruit.com/products/201)\n- DHT11传感器 (https://www.adafruit.com/products/386)\n\
+  - MicroSD卡 (http://www.amazon.com/SanDisk-Micro-SDHC-Memory-Adapter/dp/B0052MHQM6)\n\
+  - 面包板 (https://www.adafruit.com/product/64)\n- 跳线 (https://www.adafruit.com/product/758)\n\
+  \n在软件方面，你首先需要的是用于与之前选择的传感器接口的库。我为这个项目选择了DHT11传感器。你需要从 https://github.com/adafruit/DHT-sensor-library\
+  \ 下载并安装DHT库。\n\n安装Arduino库非常简单，只需将下载文件的内容解压到主Arduino文件夹的libraries文件夹中（如果尚未创建，则创建该文件夹）。\n\
+  \n## 硬件配置\n\n现在是时候为本项目设置硬件了。到此为止，如果你跟随本书的前几章操作，你应该已经将Arduino Ethernet扩展板插入Arduino开发板，并用一根以太网线将扩展板和互联网路由器连接起来。如果还没有，请务必这样做。\n\
+  \n在本项目中，你需要连接的只有DHT11传感器和电阻。你可以通过查看下面的原理图来了解需要进行的不同连接概览：\n\n![](img/b454031c864977fe997c5feb0b3f9b63_78_0.png)\n\
+  \n首先，将DHT11传感器插入面包板。然后，使用4.7k欧姆电阻连接传感器的引脚1和2。\n\n接下来是电源。将传感器的引脚1连接到Arduino 5V，引脚4连接到Arduino\
+  \ GND。最后，将DHT传感器的引脚2连接到Arduino引脚7。\n\n最终，它应该看起来像下面的图片：\n\n![](img/b454031c864977fe997c5feb0b3f9b63_79_0.png)\n\
+  \n最后，只需将SD卡插入Ethernet扩展板上的SD卡插槽即可。\n\n## 在SD卡上记录数据\n\n让我们从本章的第一个主题开始——使用Ethernet扩展板集成的SD卡插槽在SD卡上记录数据。我们将在Arduino开发板上进行一些测量，并将每次测量记录到SD卡上的一个简单文本文件中。\n\
+  \n然而，与第2章“将数据发送到Web服务器”的项目相比，我们实际上并不知道测量进行时的日期。在前一章中，我们只是使用了计算机的日期，但这里我们没有这些信息。要在Arduino开发板上获取时间，我们将采用另一种策略。我们将使用Ethernet扩展板连接到NTP时间服务器，在Arduino草图启动时获取一次时间，然后使用Time库从那里开始跟踪时间。\n\
+  \n要了解有关Time库的更多信息，可以访问Arduino网站上的以下页面：\nhttp://playground.arduino.cc/Code/Time\n\
+  \n在SD卡上记录数据的过程首先是按如下方式包含正确的库：\n\n```\n#include \"DHT.h\"\n#include <SD.h>\n#include\
+  \ <Time.h>\n#include <Ethernet.h>\n#include <EthernetUdp.h>\n#include <SPI.h>\n\
+  ```\n\n我们还需要定义传感器类型以及传感器连接的引脚。这是通过以下代码行完成的：\n\n```\n#define DHTPIN 7\n#define DHTTYPE\
+  \ DHT11\n```\n\n要定义Ethernet扩展板的MAC地址，请使用以下代码行：\n\n```\nbyte mac[] = { 0x90, 0xA2,\
+  \ 0xDA, 0x0E, 0xFE, 0x40 };\n```\n\n要使用SD卡，你还需要定义chipSelect引脚，即Ethernet扩展板上的引脚4。这是通过以下行完成的：\n\
+  \n```\nconst int chipSelect = 4;\n```\n\n现在，我们来处理NTP服务器。实际上，你可以使用多个NTP服务器（你可以查看Time库附带的TimeNTP示例中许多这些服务器的IP地址）。你也可以在此设置时区。要了解可以使用哪个NTP服务器以及设置哪个时区的更多信息，可以查看示例TimeNTP草图。此草图作为Time库内的一个示例提供。对于本项目，我使用了第一个可用服务器，时区编号为1，如下面的代码所示：\n\
+  \n```\nIPAddress timeServer(132, 163, 4, 101);\nconst int timeZone = 1;\n```\n\n\
+  要连接到此服务器，我们还需要定义一个Ethernet客户端。这一次，我们将使用一种与之前不同的协议，即UDP。UDP与TCP不同——它简单得多且更轻量。但是，它不能保证数据被正确传送，而TCP可以。你实际上不需要关心该协议的细节，因为Time库会处理一切。你可以保留默认的UDP端口，如下面的代码所示：\n\
+  \n```\nEthernetUDP Udp;\nunsigned int localPort = 8888;\n```\n\n你还需要按如下方式创建DHT传感器的实例：\n\
+  \n```\nDHT dht(DHTPIN, DHTTYPE);\n```\n\n现在，在草图的setup()函数中，你需要定义以下负责为Ethernet扩展板获取IP地址的代码：\n\
+  \n```\nSerial.begin(9600);\nif (Ethernet.begin(mac) == 0) {\n// no point in carrying\
+  \ on, so do nothing forevermore:\nwhile (1) {\nSerial.println(\"Failed to configure\
+  \ Ethernet using DHCP\");\ndelay(10000);\n}\n}\n```\n\n之后，我们将尝试初始化SD卡，如下面的代码所示：\n\
+  \n```\nSerial.print(\"Initializing SD card...\");\npinMode(10, OUTPUT);\n```\n\n\
+  如果成功，我们将在串口打印一条消息，如下面的代码所示：\n\n```\nif (!SD.begin(chipSelect)) {\nSerial.println(\"\
+  Card failed, or not present\");\n// don't do anything more:\nreturn;\n}\nSerial.println(\"\
+  card initialized.\");\n```\n\n我们还将按如下方式启动DHT传感器：\n\n```\ndht.begin();\n```\n\n最后，仍在setup()函数中，我们将打印Ethernet扩展板的IP地址并创建与NTP服务器的连接。请注意，此处我们正在调用一个名为getNtpTime的函数，该函数在草图的后面部分定义。由于这是Time库提供的函数，我们不会深入了解该函数的细节。以下是此部分的代码：\n\
+  \n```\nSerial.print(\"IP number assigned by DHCP is \");\nSerial.println(Ethernet.localIP());\n\
+  Udp.begin(localPort);\nSerial.println(\"waiting for sync\");\nsetSyncProvider(getNtpTime);\n\
+  ```\n\n现在，在草图的loop()函数中，我们将首先使用以下代码从传感器测量温度和湿度：\n\n```\nfloat h = dht.readHumidity();\n\
+  float t = dht.readTemperature();\n```\n\n其次，我们将按如下方式将这些测量值转换为字符串：\n\n```\nString\
+  \ temp = String((int) t);\nString hum = String((int) h);\n```\n\n我们现在将使用Time库构建一个包含测量日期和时间的字符串。该库包含用于获取当前时间、日期或月份的函数，例如，这些值是根据最初调用NTP服务器计算得出的。例如，调用day()函数将返回当前日期。以下代码片段返回包含日期和时间的字符串：\n\
+  \n```\nString log_time = String(day()) + \"/\" +\nString(month()) + \"/\" + String(year())\
+  \ + \" \" +\nString(hour()) + \":\" + String(minute()) + \":\" +\nString(second());\n\
+  ```\n\n然后，我们使用逗号作为不同字符串之间的分隔符，将此字符串与温度和湿度测量值组装起来，如下面的代码行所示：\n\n```\nString dataString\
+  \ = log_time + \",\" + temp + \",\" + hum;\n```\n\n我们现在将把这些数据写入SD卡。我们首先需要使用以下行打开卡以写入数据：\n\
+  \n```\nFile dataFile = SD.open(\"datalog.txt\", FILE_WRITE);\n```\n\n如果成功，我们将把dataString变量的内容写入名为datalog.txt的文件，如下面的代码所示：\n\
+  \n```\nif (dataFile) {\ndataFile.println(dataString);\ndataFile.close();\nSerial.println(dataString);\n\
+  } else {\nSerial.println(\"error opening datalog.txt\");\n}\n```\n\n最后，我们将每10秒重复一次该操作，但你当然可以使用以下行修改此延迟：\n\
+  \n```\ndelay(10000);\n```\n\n### 注意\n\n\n\n\n本节的所有代码都可以在本章的 GitHub 仓库中找到 https://github.com/openhomeautomation/arduino-networking/tree/master/chapter3。\n\
+  \n现在是时候测试这个草图了。请确保以太网电缆已插入以太网扩展板和您的互联网路由器，且 SD 卡已插入以太网扩展板的 SD 卡插槽。您现在可以将草图上传到开发板并打开串行监视器。您首先应该看到以下内容：\n\
+  \n```\nInitializing SD card...card initialized.\n```\n\n然后，您应该看到您的以太网扩展板有一个 IP 地址，如以下行所示：\n\
+  \n```\nIP number assigned by DHCP is 192.168.1.103\n```\n\n您应该看到该扩展板正在与 NTP 服务器同步时间，如以下输出所示：\n\
+  \n```\nwaiting for sync\nTransmit NTP Request\nReceive NTP Response\n```\n\n之后，您应该看到第一次测量如下：\n\
+  \n```\n21/5/2014 9:32:13,22,38\n```\n\n在草图中设置的延迟之后，您将看到带有相应日期和时间的第二次测量。为确保草图正确将数据写入\
+  \ SD 卡，您可以让它运行一段时间，然后将以太网扩展板从电源上断开。之后，取出 SD 卡，并通过适配器在计算机上读取它。您应该看到以下截图：\n\n![](img/b454031c864977fe997c5feb0b3f9b63_84_0.png)\n\
+  \n如您所见，所有测量值都已正确记录在 SD 卡上，我们可以清楚地看到两次测量之间的间隔为 10 秒。\n\n## 在 Arduino 上创建 Web 服务器\n\
+  \n在本章的其余部分，我们将采用另一种方法。我们仍将使带有以太网扩展板的 Arduino 作为独立系统工作，但这次我们甚至要在 Arduino 开发板上创建一个\
+  \ Web 服务器。这实际上类似于我们在第 2 章“将数据发送到 Web 服务器”中看到的项目，但这次是 Arduino 开发板本身在测量时显示数据。\n\n\
+  此部分的草图首先包括正确的库，如以下代码所示：\n\n```cpp\n#include \"DHT.h\"\n#include <Ethernet.h>\n#include\
+  \ <SPI.h>\n```\n\n请按以下方式定义引脚和传感器类型：\n\n```cpp\n#define DHTPIN 7\n#define DHTTYPE\
+  \ DHT11\n```\n\n同样，您还需要像往常一样定义以太网扩展板的 MAC 地址，如以下代码行所示：\n\n```cpp\nbyte mac[] = {\
+  \ 0x90, 0xA2, 0xDA, 0x0E, 0xFE, 0x40 };\n```\n\n我们还将定义一个默认 IP 地址，以防 DHCP 失败，如以下行所示：\n\
+  \n```cpp\nIPAddress ip(192,168,1,50);\n```\n\n新功能就在这里。到目前为止，我们只使用 EthernetClient\
+  \ 类来定义将连接到远程服务器的客户端。但是在这里，因为我们想要在 Arduino 开发板上直接创建一个服务器，所以我们将使用 EthernetServer 类，如以下代码行所示：\n\
+  \n```cpp\nEthernetServer server(80);\n```\n\n您可以为服务器使用端口 80，因为这样从 Web 浏览器访问服务器会更加容易。\n\
+  \n我们也不应忘记创建 DHT 传感器的实例。这是使用以下行完成的：\n\n```cpp\nDHT dht(DHTPIN, DHTTYPE);\n```\n\n\
+  现在，在草图的 setup() 函数中，我们将尝试使用 DHCP 为以太网扩展板获取 IP 地址，使用以下代码：\n\n```cpp\nif (Ethernet.begin(mac)\
+  \ == 0) {\n    Serial.println(\"Failed to configure Ethernet using DHCP\");\n  \
+  \  Ethernet.begin(mac, ip);\n}\n```\n\n仍然在 setup() 函数中，我们还必须启动以太网服务器，并使用以下代码打印服务器的\
+  \ IP 地址：\n\n```cpp\nserver.begin();\nSerial.print(\"Server is at \");\nSerial.println(Ethernet.localIP());\n\
+  ```\n\n最后，我们将按以下方式启动 DHT 传感器：\n\n```cpp\ndht.begin();\n```\n\n现在，在草图的 loop() 部分中，我们将执行温度和湿度测量，如以下代码所示：\n\
+  \n```cpp\nfloat h = dht.readHumidity();\nfloat t = dht.readTemperature();\n```\n\
+  \n使用以下代码将测量值转换为字符串：\n\n```cpp\nString temp = String((int) t);\nString hum = String((int)\
+  \ h);\n```\n\n然后，我们需要处理到达 Arduino 开发板的连接，例如来自 Web 浏览器的连接。为此，每次服务器可用时，我们实际上都将创建一个\
+  \ EthernetClient 类的实例。由于这是我们在本书前面章节中已经见过的类，这已经是我们熟悉的操作了。\n\n如果检测到连接，我们将创建此客户端，并将其打印到串行端口以供调试，如以下代码所示：\n\
+  \n```cpp\nEthernetClient client = server.available();\nif (client) {\n    Serial.println(\"\
+  New client\");\n}\n```\n\n下一部分有些技术性。我们需要读取来自客户端的请求，但也需要检测请求结束的时刻，以便我们可以关闭连接。这是通过始终检查当前行是否为空白来处理的。然后，第一步是使用以下代码片段逐个字符地读取来自客户端的请求：\n\
+  \n```cpp\nboolean currentLineIsBlank = true;\nwhile (client.connected()) {\n   \
+  \ // Read data\n    if (client.available()) {\n        char c = client.read();\n\
+  \        Serial.write(c);\n    }\n}\n```\n\n请注意，传入的请求也会打印到串行端口以供调试。现在，如果我们检测到换行符且当前行是空白，则表示请求已结束，如以下行所示：\n\
+  \n```cpp\nif (c == '\\n' && currentLineIsBlank) {\n```\n\n因此，我们可以回复客户端。我们将首先发送一个标准\
+  \ HTTP 头，指出一切正常，并且我们希望每 5 秒自动刷新页面一次，如以下代码所示：\n\n```cpp\nclient.println(\"HTTP/1.1\
+  \ 200 OK\");\nclient.println(\"Content-Type: text/html\");\nclient.println(\"Connection:\
+  \ close\");\nclient.println(\"Refresh: 5\"); // Refresh the page automatically every\
+  \ 5 sec\nclient.println();\nclient.println(\"<!DOCTYPE HTML>\");\nclient.println(\"\
+  <html>\");\n```\n\n然后，我们将使用以下代码在页面上打印测量数据：\n\n```cpp\nclient.print(\"Temperature:\
+  \ \");\nclient.print(temp);\nclient.print(\"<br />\");\nclient.print(\"Humidity:\
+  \ \");\nclient.print(hum);\nclient.println(\"<br/>\");\nclient.println(\"</html>\"\
+  );\n```\n\n以下其余代码用于检测是否到达了请求的末尾：\n\n```cpp\nif (c == '\\n') {\n // Starting a new\
+  \ line\n currentLineIsBlank = true;\n} else if (c != '\\r') {\n // you've gotten\
+  \ a character on the current line\n currentLineIsBlank = false;\n}\n```\n\n最后，我们将给浏览器一个小延迟以接收响应，然后关闭连接，如以下代码所示：\n\
+  \n```cpp\n// Give the web browser time to receive the data\ndelay(1);\n\n// Close\
+  \ the connection:\nclient.stop();\nSerial.println(\"Client disconnected\");\n```\n\
+  \n### 注意\n\n本节的所有代码都可以在本章的 GitHub 仓库中找到 https://github.com/openhomeautomation/arduino-networking/tree/master/chapter3。\n\
+  \n现在是时候测试我们在本节中编写的代码了。再次，请确保以太网电缆已插入以太网扩展板和您的路由器。然后，您可以将代码上传到开发板，并打开串行监视器。您首先应该看到运行在\
+  \ Arduino 开发板上的 Web 服务器的 IP 地址，如下所示：\n\n```\nServer is at 192.168.1.103\n```\n\n\
+  之后，草图将什么也不做，只等待任何传入的连接。要建立连接，只需打开 Web 浏览器并输入开发板的 IP 地址。您应该立即在 Arduino 串行监视器中看到浏览器的\
+  \ GET 请求被打印出来，如以下输出所示：\n\n```\nNew client\nGET / HTTP/1.1\nHost: 192.168.1.103\n\
+  Connection: keep-alive\nCache-Control: max-age=0\nAccept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8\n\
+  User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3)\nAppleWebKit/537.36 (KHTML,\
+  \ like Gecko) Chrome/34.0.1847.137 Safari/537.36\nReferer: http://192.168.1.103/\n\
+  Accept-Encoding: gzip,deflate,sdch\nAccept-Language: fr-FR,fr;q=0.8,en-US;q=0.6,en;q=0.4,de;q=0.2\n\
+  ```\n\n如您所见，这里有大量文本，具体取决于您的浏览器。但是，重要的是请求的第一行，这意味着这是对我们 Arduino 开发板的 GET 请求。\n\n\
+  最后，在 Arduino 回复服务器后，连接会关闭并显示以下消息：\n\n```\nClient disconnected\n```\n\n在您的浏览器中，您还应该直接看到数据正在打印在\
+  \ Arduino 开发板创建的页面上，如以下截图所示：\n\n![](img/b454031c864977fe997c5feb0b3f9b63_90_0.png)\n\
+  \n如果您可以看到这个，恭喜，您刚刚创建了在 Arduino 开发板上运行的自己的 Web 服务器。如果您看不到页面，首先请确保 Arduino 有一个 IP\
+  \ 地址，并且它可以连接到您的局域网。为此，请再次重复第 1 章“发现 Arduino 以太网扩展板”的说明。\n\n还请确保您在浏览器中正确输入了开发板的 IP\
+  \ 地址。您还可以检查串行监视器，确保您没有收到来自 DHT 传感器的任何错误消息，因为这会影响 Web 服务器的行为。\n\n\n\n\n## 在本地绘制数据\n\
+  \n为结束本章，我们将学习如何绘制Arduino板测量的数据。为此，我们将稍微修改Arduino草图，然后使用前一章中的部分代码直接在网页浏览器中绘制数据。\n\
+  \n首先，我们将修改Arduino草图，使其以更有用的格式返回数据；在此示例中，即JSON格式。我们将用打印JSON格式数据的简单代码取代负责打印测量值的代码。这可通过以下代码片段完成：\n\
+  \n```\nclient.println(\"HTTP/1.1 200 OK\");\nclient.println(\"Content-Type: application/json\"\
+  );\nclient.println(\"Connection: close\");\nclient.println();\nclient.print(\"{\\\
+  \"temperature\\\": \");\nclient.print(temp);\nclient.print(\", \\\"humidity\\\"\
+  : \");\nclient.print(hum);\nclient.println(\"}\");\n```\n\n现在可以快速测试此项目。再次将代码上传到Arduino板，打开网页浏览器，访问之前使用过的相同IP地址。您应该在页面上看到打印的以下行：\n\
+  \n```\n{\"temperature\": 24, \"humidity\": 36}\n```\n\n现在，我们还需要构建服务器端代码来绘制数据。该代码与前一章的代码非常相似，因此我将只详细说明两个项目之间的差异。在前一章中，是板子试图连接运行在您计算机上的服务器，datalogger.php文件处理请求。在本章中，我们将采取相反的方式，从运行在您计算机上的Web服务器调用板子。为此，我们将使用名为cURL的PHP模块向给定URL发送GET请求；在此示例中，即Arduino板的URL。\n\
+  \n我们首先要做的是修改datalogger.php文件并添加Arduino板的URL，如以下代码行所示：\n\n```\n$url = 'http://192.168.1.103';\n\
+  ```\n\n启动cURL调用，如以下代码行所示：\n\n```\n$curl = curl_init();\n```\n\n我们还需要设置cURL调用的选项。我们希望调用返回来自Arduino\
+  \ Web服务器的数据，并且希望URL为我们之前定义的URL。这可通过以下代码完成：\n\n```\ncurl_setopt_array($curl, array(\n\
+  \    CURLOPT_RETURNTRANSFER => 1,\n    CURLOPT_URL => $url,\n));\n```\n\n现在可以执行命令，如以下代码行所示：\n\
+  \n```\n$resp = curl_exec($curl);\n```\n\n关闭cURL调用，如下所示：\n\n```\ncurl_close($curl);\n\
+  ```\n\n我们在一个包含字符串形式数据的变量中得到响应。为了在PHP中打开它，我们需要先将其转换为JSON格式，然后提取温度和湿度字段。这可通过以下代码片段完成：\n\
+  \n```\n$json = json_decode($resp, true);\n$temperature = intval($json[\"temperature\"\
+  ]);\n$humidity = intval($json[\"humidity\"]);\n```\n\n文件的其余部分与我们在前一章中开发的代码完全相同。\n\
+  \n现在，我们还需要在plot.html文件中做一小处修改。在前一章中，由于Arduino板不断向服务器发送数据，数据会自动记录到数据库中。在此，我们需要在服务器端进行调用。这可通过在从数据库读取数据的代码之前添加以下小段代码来完成：\n\
+  \n```\n$.ajax({\n  url: \"datalogger.php\",\n  type: \"GET\",\n});\n```\n\n这意味着，就在从数据库读取数据以进行绘制之前，我们正在调用Arduino板以获取温度和湿度测量值。\n\
+  \n### 注意\n\n本节的所有代码均可在本章的GitHub仓库中找到，网址为 https://github.com/openhomeautomation/arduino-networking/tree/master/chapter3。\n\
+  \n现在可以测试本章的这部分内容。请注意，GitHub仓库中的代码包含示例数据库，因此您可以立即测试该项目，但我建议在测试项目前删除该文件，以便在测试代码时绘制您自己的测量数据。\n\
+  \n您只需将绘制部分的所有代码放入Web服务器根目录下的一个文件夹中。然后，通过Web服务器上的localhost URL打开plot.html文件。您应能立即看到数据正在网页浏览器中被绘制。过一段时间，您应能看到类似于以下图表的图形：\n\
+  \n![](img/b454031c864977fe997c5feb0b3f9b63_94_0.png)\n\n如果您在浏览器中看到此图表，恭喜！这意味着您可以从运行在Arduino板上的Web服务器执行远程测量。\n\
+  \n如果不是这样，您可以检查几件事。首先要检查的是确保Arduino板正确以JSON格式显示数据。为此，您可以在浏览器中直接输入板子的地址。然后，检查您的Web服务器是否正在计算机上运行，并且您是否已将项目中的所有文件放在Web服务器主文件夹中的一个仓库里。最后，确保您是在浏览器中通过localhost\
+  \ URL访问HTML文件，而不是在文件资源管理器中点击它。\n\n## 摘要\n\n让我们总结一下本章所做的工作。我们使用Arduino创建了一个独立的测量站，它能自动测量并以某种方式提供数据。首先，我们将数据本地记录到SD卡中，然后使用运行在Arduino板上的Web服务器提供这些数据。\n\
+  \n本章的主要要点如下：\n\n- 1. 首先，我们构建了本章所需的硬件，并将SD卡插入以太网扩展板。\n- 2. 然后，在项目的第一部分中，我们将测量的数据记录到SD卡，并使用远程时间服务器自动获取测量时间。\n\
+  - 3. 最后，我们构建了一个新的Arduino草图，在Arduino板上运行Web服务器。然后我们修改了前一章的绘图代码，使其可以调用Arduino板上的服务器来获取并绘制测量数据。\n\
+  \n当然，有很多方法可以改进此项目。您可以向项目添加更多传感器，并将这些额外数据记录到SD卡中，或使用Arduino Web服务器将其提供在网页上。您还可以在家里甚至室外放置许多这样的板子，并让您的计算机定期轮询所有这些Arduino服务器以获取它们的测量值。\n\
+  \n在下一章中，我们将再次使用Arduino以太网扩展板创建独立系统的理念。我们将连接一个继电器到Arduino板，因此您可以远程开关灯。该项目分为两个版本。首先，我们将制作一个草图，通过网页浏览器远程控制继电器。在本章的第二部分，我们将使用一个特殊库，以便继电器可以从世界任何地方进行控制。\n"
+- "# 第 4 章 从任何地方控制对象\n\n在本章中，我们将做一些与其他章节不同的事情。到目前为止，我们所做的是在Arduino板上测量一些数据，并使用以太网扩展板将这些数据传回网络。在本章中，我们将控制一个设备，而不是测量数据。\n\
+  \n为此，我们将使用连接到带有以太网扩展板的Arduino板的继电器，并远程控制该继电器。我们还将连接一组电源线到该继电器，以便您可以直接将灯插入它并远程控制它。\n\
+  \n在本章的第一部分，我们将在本地网络内远程控制此继电器。在本章的第二部分，我们将使用专用Web服务从世界任何地方控制此继电器。\n\n以下是本章的主要要点：\n\
+  \n- 首先，我们将了解如何为本项目选择不同的组件，包括继电器和连接设备（如灯）到继电器的电缆。\n- 然后，我们将组装不同的硬件组件，将继电器连接到Arduino板，并将电源线连接到继电器。\n\
+  - 之后，我们将编写一个Arduino草图来测试继电器是否工作正常以及是否已正确连接到电路。\n- 当我们确定继电器正常工作时，我们将使用以太网扩展板和继电器编写一个应用程序。我们将编写一个草图通过以太网控制继电器，然后构建一个接口，从您的Web服务器控制继电器。\n\
+  - 最后，在本章的最后一节中，我们将使用专用Web服务从世界任何地方控制继电器。我们还将调整我们刚刚创建的接口，以便从任何地方控制继电器。\n\n\n\n\n\n\
+  ## 硬件和软件要求\n\n让我们先看看这个项目需要什么。与其他章节一样，你需要一块 Arduino 开发板和 Arduino Ethernet 扩展板。\n\n\
+  你还需要一个继电器模块。我强烈建议使用集成在电路板上的继电器，电路板上包含所有必需的元件。这样可以避免你在面包板上自行搭建继电器模块，而且也更安全。事实上，以错误的方式布线继电器和其他元件没有任何风险。只需确保你选择的继电器兼容\
+  \ 5 V 输入电压电平即可。此外，你还需要确保继电器模块能够处理本项目中将要使用的设备的功率。例如，我使用的是一盏 30 W 的灯，而继电器能够处理超过 1000\
+  \ W 的功率，只是为了保险起见。我选择了 Pololu 的 5 V 继电器模块，如图所示：\n\n![](img/b454031c864977fe997c5feb0b3f9b63_99_0.png)\n\
+  \n你可以直接使用继电器，并使用我们将在本项目中开发的代码来控制它，但使用继电器的目的是将设备连接到它。对于本项目，我选择将灯连接到继电器，但按照本章的说明，你将能够连接任何使用标准电源插头的设备。\n\
+  \n为此，我使用了一组电源线，一根带有母插座，另一根带有公插座，如下图所示：\n\n![](img/b454031c864977fe997c5feb0b3f9b63_100_0.png)\n\
+  \n公插头将用于将继电器连接到墙上的主电源插头，而母插座将用于连接要控制的设备到继电器。\n\n### 注意\n\n将电线连接到主电源时，务必非常小心。确保不要触碰继电器的任何裸露部分，并且确保电缆本身没有裸露的铜线。另外，在组装项目时，最后再将插头连接到电源。\n\
+  \n现在让我们来看看本项目的软件要求。像往常一样，你需要安装 Arduino IDE，并在计算机上运行一个 Web 服务器。\n\n在本章的第二部分，我们将使用一个名为\
+  \ Teleduino 的服务来从任何地方控制 Ethernet 扩展板。要使用此服务，你需要获取一个 API 密钥，并将其插入 Arduino 草图中。\n\n\
+  你可以通过访问以下地址获取密钥：\n\nhttps://www.teleduino.org/tools/request-key\n\n你将被带到以下页面，你可以在那里获取你的密钥：\n\
+  \n## 请求密钥\n\n密钥用于唯一标识你的 Teleduino 设备。\n\n密钥将在几分钟内生成并发送到你的电子邮件。\n\n**你的隐私受到保护，你的电子邮件地址不会转发给第三方。**\n\
+  \n请填写下面的表格以请求密钥。如果你需要为多个设备申请多个密钥，可以使用相同的电子邮件地址多次填写该表格。\n\n- 名：\n- 姓：\n- 电子邮件地址：\n\
+  - 你是人类吗？（输入 \"yes\"）：\n- 我接受 Teleduino 服务条款\n- 提交请求\n\n你还需要为本章安装几个 Arduino 库。\n\n\
+  你需要的第一个库是 Arduino 的 aREST 库，你可以在以下链接中找到它：\n\nhttps://github.com/marcoschwartz/aREST\n\
+  \n最后，你还需要下载并安装 Teleduino 库，你可以在此处找到它：\n\nhttps://www.teleduino.org/downloads/\n\n\
+  安装给定库，只需将文件夹解压到你的 Arduino/libraries 文件夹中（如果该文件夹不存在，则创建它）。\n\n## 硬件配置\n\n现在让我们看看如何连接项目的不同组件。与本书其他章节一样，你需要将\
+  \ Ethernet 扩展板插入 Arduino 开发板。你还需要在 Ethernet 扩展板和路由器之间连接一根以太网电缆。\n\n然后，你需要连接继电器模块。继电器模块有三个输入引脚：VCC、GND\
+  \ 和一个通常称为 SIG 的信号引脚。你需要将 VCC 引脚连接到 Arduino 5 V，GND 连接到 Arduino GND，最后将信号引脚连接到 Arduino\
+  \ 引脚 7（一个数字引脚）。下图显示了此时的系统：\n\n![](img/b454031c864977fe997c5feb0b3f9b63_102_0.png)\n\
+  \n然后，你需要将电源线连接到继电器模块。继电器模块基本上有三个输出引脚：COM（公共引脚）、NC（常闭引脚）和 NO（常开引脚）。\n\n我们希望将继电器的\
+  \ COM 引脚连接到电源插头的一根电线上，NC 不连接，NO 连接到电源插头的另一根电线。下图总结了此阶段的连接：\n\n![](img/b454031c864977fe997c5feb0b3f9b63_103_0.png)\n\
+  \n首先，将母电源插头的一个引脚连接到 **COM** 引脚。然后，将公电源插头的一个引脚连接到 **NO** 引脚。最后，将剩余的两根电缆连接在一起，例如，使用典型的电气螺丝端子。\n\
+  \n完成此操作后，你可以连接要控制继电器的设备。将灯连接到母电源插座中，然后将公电源插头连接到墙上的电源插头。下图表示此时的系统，未连接要控制的设备：\n\n\
+  ![](img/b454031c864977fe997c5feb0b3f9b63_103_1.png)\n\n如果你的情况类似，恭喜！你已完成本章的硬件连接。\n\
+  \n## 测试继电器\n\n我们现在将构建一个非常简单的草图来测试刚刚完成的硬件连接。该草图将简单地每秒切换继电器的开和关。\n\n```\nconst int\
+  \ relay_pin = 7;\n```\n\n然后，我们将此引脚设置为输出：\n\n```\npinMode(relay_pin, OUTPUT);\n```\n\
+  \n然后，在草图的 loop() 函数中，我们将继电器设置为 HIGH 状态：\n\n```\ndigitalWrite(relay_pin, HIGH);\n\
+  ```\n\n我们等待 5 秒：\n\n```\ndelay(5000);\n```\n\n然后，我们再次将继电器引脚切换到 LOW 状态：\n\n```\n\
+  digitalWrite(relay_pin, LOW);\n```\n\n然后我们再次等待 5 秒：\n\n```\ndelay(5000);\n```\n\n\
+  ### 注意\n\n本节的代码可以在本章的 GitHub 仓库中找到：https://github.com/openhomeautomation/arduino-networking/tree/master/chapter4。\n\
+  \n现在你可以将代码上传到 Arduino 开发板。你应该能听到继电器每秒切换一次开和关。例如，如果你将灯连接到项目，你也应该看到它每秒切换一次开和关。\n\n\
+  ## 远程控制继电器\n\n现在，我们将使用刚刚组装的系统构建第一个有趣的应用程序。我们将构建一个 Arduino 草图，以便从本地网络中的任何位置控制继电器。例如，如果你的计算机通过\
+  \ Wi-Fi 连接到路由器，而 Ethernet 扩展板连接到同一个路由器，你将能够通过计算机控制继电器。本节这种方法的优势是，即使你的互联网连接中断，你仍然可以控制继电器。\n\
+  \n```cpp\n#include <SPI.h>\n#include <Ethernet.h>\n#include <aREST.h>\n```\n\n我们设置开发板的\
+  \ MAC 地址：\n\n```cpp\nbyte mac[] = { 0x90, 0xA2, 0xDA, 0x0E, 0xFE, 0x40 };\n```\n\
+  \n我们还为开发板定义了一个默认 IP 地址，如果 DHCP 失败将使用该地址：\n\n```cpp\nIPAddress ip(192, 168, 1, 150);\n\
+  ```\n\n然后我们创建一个 aREST 库的实例，它将处理发送到开发板的请求：\n\n```cpp\naREST rest = aREST();\n```\n\
+  \n你还需要创建一个以太网服务器实例：\n\n```cpp\nEthernetServer server(80);\n```\n\n在草图的 setup() 函数中，我们使用\
+  \ DHCP 获取 IP 地址，如以下代码片段所示：\n\n```cpp\nif (Ethernet.begin(mac) == 0) {\n  Serial.println(\"\
+  Failed to configure Ethernet using DHCP\");\n  Ethernet.begin(mac, ip);\n}\n```\n\
+  \n使用以下代码在串行监视器上打印 IP 地址：\n\n```cpp\nserver.begin();\nSerial.print(\"Server is at\
+  \ \");\nSerial.println(Ethernet.localIP());\n```\n\n最后，在草图的 loop() 函数中，我们检查是否有传入客户端，并使用\
+  \ aREST 实例处理这些客户端：\n\n```cpp\nEthernetClient client = server.available();\nrest.handle(client);\n\
+  ```\n\n### 注意\n\n本节的代码可以在本章的 GitHub 仓库中找到：https://github.com/openhomeautomation/arduino-networking/tree/master/chapter4。\n\
+  \n\n\n\nhttps://github.com/openhomeautomation/arduino-networking/tree/master/chapter4.\n\
+  \n现在可以将代码上传到 Arduino 开发板并打开串口监视器。你应该会看到开发板的 IP 地址被打印出来：\n\n```\nServer is at 192.168.1.103\n\
+  ```\n\n现在可以打开 Web 浏览器并开始输入命令。aREST 库允许你通过以太网直接控制 Arduino 开发板的所有引脚。你可以在 https://github.com/marcoschwartz/aREST\
+  \ 上找到该库的完整文档。例如，我们首先需要将 7 号引脚设置为输出。可以使用以下命令：\n\n```\nhttp://192.168.1.103/mode/7/o\n\
+  ```\n\n浏览器中将出现以下消息：\n\n```\nPin D7 set to output\n```\n\n现在，要将引脚设置为 HIGH 状态，只需输入：\n\
+  \n```\nhttp://192.168.1.103/digital/7/1\n```\n\n浏览器中将收到确认：\n\n```\nPin D7 set to\
+  \ 1\n```\n\n输入命令时，你还应该能听到继电器在两种状态之间切换。\n\n现在，我们将构建服务器端界面，以便从计算机控制继电器，而无需在浏览器中手动输入命令。\n\
+  \n该界面基于 HTML、JavaScript 和 PHP。在 HTML 文件中，基本上有两个按钮：一个用于打开继电器，一个用于关闭继电器。以下是其中一个按钮的代码：\n\
+  \n```\n<button class=\"btn btn-block btn-lg btn-primary\" type=\"button\" id=\"\
+  1\" onClick=\"buttonClick(this.id)\">On</button>\n```\n\n你可以看到该按钮调用了一个在 JavaScript\
+  \ 文件中定义的函数。现在让我们来看看这个文件。页面加载时要做的第一件事是将继电器引脚设置为输出，这与我们在浏览器中直接输入命令时所做的一样。可以使用以下代码片段：\n\
+  \n```\nwindow.onload = function() {\n  $.get( \"command.php\", {command: \"/mode/7/o\"\
+  } );\n}\n```\n\n你可以看到我们正在调用一个名为 command.php 的文件。我们稍后会看到该文件的详细内容。之前我们看到，每次单击按钮时，都会调用一个名为\
+  \ buttonClick 的函数。以下函数也定义在 JavaScript 文件中：\n\n```\nfunction buttonClick(clicked_id){\n\
+  ```\n\n根据单击的是哪个按钮，我们将相应的命令发送到 Arduino 开发板。例如，对于 **开启** 按钮，我们将继电器引脚置为 HIGH 状态，如以下代码所示：\n\
+  \n```\nif (clicked_id == \"1\"){\n    $.get( \"command.php\", {command: \"/digital/7/1\"\
+  } );\n}\n```\n\n最后，我们需要查看实际将命令发送到开发板的 PHP 文件。首先需要获取 JavaScript 文件发送的命令并将其存储在变量中：\n\
+  \n```\n$command = $_GET['command'];\n```\n\n然后，我们需要设置要发送命令的 URL。要向开发板发送命令，我们将使用名为\
+  \ curl 的 PHP 模块，它将执行与我们刚才从网页浏览器中所做的完全相同的操作。\n\n此时，你需要修改 PHP 文件中定义的 IP 地址，并将其替换为开发板的\
+  \ IP 地址。以下代码片段正是如此：\n\n```\n$service_url = 'http://192.168.1.103' . $command;\n\
+  $curl = curl_init($service_url);\n```\n\n然后，我们可以使用以下代码片段实际执行 cURL 调用：\n\n```\ncurl_setopt($curl,\
+  \ CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4 );\ncurl_setopt($curl, CURLOPT_CONNECTTIMEOUT,\
+  \ 0.5);\n$curl_response = curl_exec($curl);\ncurl_close($curl);\n```\n\n### 注意\n\
+  \n本节的代码可以在本章的 GitHub 仓库中找到，地址为 [https://github.com/openhomeautomation/arduino-networking/tree/master/chapter4.](https://github.com/openhomeautomation/arduino-networking/tree/master/chapter4.)\n\
+  \n我们现在可以测试界面了。确保将此界面的所有文件都存储在 Web 服务器文件夹根目录下的一个文件夹中，并且确保 Web 服务器正在运行。然后，通过浏览器中的\
+  \ localhost 路径访问该文件夹并打开 HTML 文件。你应该会看到以下截图：\n\n![](img/b454031c864977fe997c5feb0b3f9b63_110_0.png)\n\
+  \n尝试单击其中一个按钮：你应该能听到继电器根据你单击的按钮立即切换。\n\n### 注意\n\n当你在浏览器中加载界面时，继电器引脚也会自动设置为输出。\n\n\
+  ## 从任何地方控制继电器\n\n在本章的最后一部分，我们将采用另一种方法。到目前为止，我们的 Arduino 开发板上运行着一个服务器，可以接收本地网络上任何设备的命令。但是，如果你想从世界上任何地方控制设备，这并不方便。例如，当你不在家时，你想在家中按固定间隔激活一盏灯。\n\
+  \n为此，我们将使用 Teleduino 服务，它允许你做到这一点。Arduino 以太网扩展板将始终连接到此服务，因此如果你有 Internet 连接，可以从世界上任何地方向开发板传输命令。我们将为\
+  \ Arduino 开发板构建一个新的草图，然后相应地调整界面，以便你可以直接从 Web 浏览器控制来自世界上任何地方的继电器。\n\n首先需要包含所需的库：\n\
+  \n```\n#include <EEPROM.h>\n#include <Servo.h>\n#include <Wire.h>\n#include <Teduino328.h>\n\
+  #include <SPI.h>\n#include <Ethernet.h>\n```\n\n然后需要定义以太网扩展板的 MAC 地址：\n\n```\nbyte\
+  \ mac[] = { 0x90, 0xA2, 0xDA, 0x0E, 0xFE, 0x40 };\n```\n\n然后，为 Teleduino 服务定义许多参数。由于我们将使用\
+  \ DHCP 获取 IP 地址，因此不需要更改以下代码中的任何内容：\n\n```\nIPAddress deviceIp(192, 168, 1, 100);\
+  \ // Only if useDhcp is false\nIPAddress gatewayIp(192, 168, 1, 1); // Only if useDhcp\
+  \ is false\nIPAddress dnsIp(192, 168, 1, 1); // Only if useDhcp is false\nIPAddress\
+  \ subnet(255, 255, 255, 0); // Only if useDhcp is false\nIPAddress serverIp(173,\
+  \ 230, 152, 173); // Only if useDns is false\nchar serverName[] = \"us01.proxy.teduino.org\"\
+  ; // Only if useDns is true\nunsigned int serverPort = 5353; // Can be set to either\
+  \ 53 or 5353\nbyte statusLedPin = 8;\n```\n\n我们还需要输入你在本章开头获得的密钥。但是，你需要将此密钥转换为正确的格式，以便可以将其插入到\
+  \ Arduino 草图中。\n\n你可以通过访问以下 URL 来完成此操作：\n\nhttps://www.teduino.org/tools/arduino-sketch-key\n\
+  \n将提示你在新窗口中插入密钥，如以下截图所示：\n\n## Arduino 草图密钥\n\n此工具用于生成可以复制/粘贴到 Arduino 草图中的代码。\n\
+  \n输入有效密钥以生成代码。\n\n然后可以将结果复制并粘贴到 Arduino 草图中：\n\n```\nbyte key[] = { 0x64, 0x26,\
+  \ 0xFF, 0xC9,\n                      0x20, 0x4D, 0xF1, 0xCF,\n                 \
+  \     0xAE, 0x42, 0xD4, 0x1A,\n                      0xED, 0x6C, 0xB0, 0xB7 };\n\
+  \n```\n\n还需要定义以下变量，以便 Teleduino 服务可以工作：\n\n```\nbyte data[257];\nbyte dataLength;\n\
+  byte hexStage;\nunsigned long lastInstruction = 0;\nunsigned long lastRefresh =\
+  \ 0;\nbyte stage = 0;\n\n```\n\n最后，定义一个以太网客户端：\n\n```\nEthernetClient Client;\n\
+  ```\n\n草图的其余部分来自 Teleduino 示例，此处不详细说明。\n\n### 注意\n\n本节的代码可以在本章的 GitHub 仓库中找到，网址为\
+  \ https://github.com/openhomeautomation/arduino-networking/tree/master/chapter4。\n\
+  \n现在是时候对这个草图进行首次测试了。将草图上传到 Arduino 开发板，然后打开 Web 浏览器。现在可以直接向开发板发送命令。首先，我们将像之前一样将继电器引脚设置为输出。可以使用以下命令（你需要在\
+  \ k 参数中插入自己的密钥）：\n\n```\nhttp://us01.proxy.teleduino.org/api/1.0/328.php?k=yourKey\n\
+  &r=definePinMode&pin=7&mode=1\n\n```\n\n浏览器中将显示一条确认消息。现在可以使用以下命令将继电器引脚切换到 HIGH 状态：\n\
+  \n```\nhttp://us01.proxy.teleduino.org/api/1.0/328.php?\nk=yourKey&r=setDigitalOutput&pin=7&output=1\n\
+  \n```\n\n\n\n\n这样一来，你应该能听到继电器的咔嗒声，表示命令已正确发送。你还会在浏览器中看到一条确认消息。\n\n现在，我们将修改界面，以便你可以使用\
+  \ Web 浏览器从任何地方控制继电器。在 JavaScript 文件中，你需要定义你的 Teleduino API 密钥：\n\n```javascript\n\
+  var key = \"yourAPIKey\";\n```\n\n然后，我们需要修改命令参数以符合 Teleduino API，并同时提及密钥，如以下代码所示：\n\
+  \n```javascript\nwindow.onload = function() {\n  $.get( \"command.php\", {\n   \
+  \ key: key, command: \"definePinMode&pin=7&mode=1\"} );\n}\n```\n\n另外，我们还需要为按钮点击时调用的函数修改命令参数并提及密钥：\n\
+  \n```javascript\nif (clicked_id == \"1\"){\n  $.get( \"command.php\", {\n    key:\
+  \ key, command: \"setDigitalOutput&pin=7&output=1\"} );\n}\n```\n\n在 PHP 文件中，我们现在需要获取两个参数，即来自\
+  \ Teleduino 的命令和 API 密钥：\n\n```php\n$key = $_GET['key'];\n$command = $_GET['command'];\n\
+  ```\n\n我们还需要修改服务 URL，如以下代码所示：\n\n```php\n$service_url = 'http://us01.proxy.teleduino.org/api/1.0/328.php?k='\
+  \ . $key . '&r=' . $command;\n$curl = curl_init($service_url);\n```\n\n其余文件与上一节中所示完全相同。\n\
+  \n### 注意\n\n本节的代码可以在本章的 GitHub 仓库中找到，网址为 https://github.com/openhomeautomation/arduino-networking/tree/master/chapter4。\n\
+  \n你现在可以将此修改后界面的所有文件放在 Web 服务器根目录下的一个文件夹中。同时，请确保 Web 服务器仍在运行。你可以打开 HTML 文件，应该会看到与之前完全相同的界面。\n\
+  \n你现在可以尝试点击按钮，应该会立即听到继电器切换的声音。相对于本章上一节的优势在于，此界面现在可以从任何地方工作。你可以身处世界的一部分，而你的以太网扩展板在世界的另一部分，它仍然可以工作。\n\
+  \n## 摘要\n\n在本章中，我们将继电器与 Arduino 板和以太网扩展板连接起来，以便远程控制。为此，我们采用了两种不同的方法，各有优缺点。首先，我们保持本地化，并从本地网络内控制继电器。此解决方案的优点在于，即使你的互联网连接中断，项目仍可正常工作。\n\
+  \n然后，我们使用专用 Web 服务从任何地方控制继电器。这显然是后一种方法的优势；但是，如果你的以太网扩展板未连接到互联网，则无法工作。\n\n本章的主要收获如下：\n\
+  \n- 首先，我们为项目选择了不同的组件，并将它们组装起来，以便可以从 Arduino 板控制设备（例如台灯）。\n- 然后，我们编写了第一个草图来测试项目，只需简单地打开和关闭继电器。\n\
+  - 随后，我们基于刚刚组装好的硬件构建了第一个应用程序。我们使用了一个专用库，以便 Arduino 板能够通过以太网扩展板从网络接收命令。我们还构建了一个简单的基于\
+  \ Web 的界面，以便你可以从在计算机上运行的图形界面控制继电器。\n- 最后，我们使用名为 Teleduino 的 Web 服务从世界任何地方控制继电器。我们还修改了图形界面，以便可以从任何地方控制继电器。\n\
+  \n在下一章中，我们将采用另一种方法，使用以太网扩展板将 Arduino 项目连接到物联网。我们将在 Arduino 板上进行一些测量，并将这些数据直接发送到云服务。使用此服务，我们将能够实时监控来自板子的测量数据，无论身在世界哪个地方。\n"
+- "# 第 5 章 使用 Xively 实现物联网\n\n在本书的前几章中，当使用以太网扩展板在 Arduino 板上进行测量时，我们主要保持本地化。例如，我们将一些测量数据发送回计算机上的数据库，并在那里显示测量结果。\n\
+  \n在本章中，我们将采取不同的方法。我们将把以太网扩展板集成到物联网视角中。这意味着，我们将不再在本地网络内本地记录测量数据，而是自动将测量数据发送到名为 Xively\
+  \ 的云服务。Xively 网站的目的是存储来自你设备的数据，并在其网站上显示这些数据。这样，你的数据将随时可用，并可以从任何地方访问。\n\n本章的主要收获如下：\n\
+  \n- 首先，我们将围绕以太网扩展板和 DHT11 温湿度传感器构建本项目的硬件。\n- 然后，我们将在 Xively 网站上创建一个帐户。我们还将配置此帐户，以便可以使用\
+  \ Arduino 以太网扩展板将测量数据发送到该帐户。\n- 当帐户正确设置后，我们将使用帐户信息（例如 Xively API 密钥）来构建本项目的 Arduino\
+  \ 草图。\n- 最后，我们将草图上传到 Arduino 板并进行测试。我们将检查数据是否已正确发送到 Arduino 板，并在浏览器中实时可视化记录的数据。\n\
+  \n## 硬件和软件要求\n\n在硬件方面，你当然需要 Arduino 以太网扩展板和一个 Arduino 板（例如 Arduino Uno）。\n\n你还需要一个传感器来测量一些数据。由于本书主要介绍如何使用以太网扩展板，而非如何从传感器进行测量，你可以选择任何传感器。\n\
+  \n我选择了 DHT11 传感器，这是一种数字温湿度传感器。我选择这个传感器是因为它非常便宜且易于与 Arduino 连接。除了 DHT11 传感器外，你还需要一个\
+  \ 4.7k 欧姆电阻。\n\n你还需要一个面包板和一些跳线，以便在传感器和以太网扩展板之间建立连接。\n\n在软件方面，你首先需要的是用于与之前选择的传感器进行连接的库。由于我为本项目选择了\
+  \ DHT11 传感器，你需要从 https://github.com/adafruit/DHT-sensor-library 下载并安装 DHT 库。\n\n\
+  要安装 Arduino 库，只需将下载文件的内容解压到主 Arduino 文件夹的 libraries 文件夹中（如果该文件夹不存在，则创建它）。\n\n##\
+  \ 硬件配置\n\n现在是时候为本项目设置硬件了。到此为止，如果你遵循了前面的某一章，你应该已经将 Arduino 以太网扩展板插入 Arduino 板，并用一根以太网线将以太网扩展板连接到互联网路由器。如果还没有，请务必这样做。\n\
+  \n在本项目中，你需要连接的唯一东西是 DHT11 传感器和电阻。你可以通过查看以下示意图来了解需要建立的不同连接的概览：\n\n![](img/b454031c864977fe997c5feb0b3f9b63_121_0.png)\n\
+  \n首先，将 DHT11 传感器插入面包板。然后，使用 4.7k 欧姆电阻连接传感器的引脚 1 和 2。\n\n接下来是电源供应。将传感器的引脚 1 连接到 Arduino\
+  \ 5 V，将引脚 4 连接到 Arduino GND。最后，将 DHT 传感器的引脚 2 连接到 Arduino 引脚 7。\n\n最终，它应该看起来如下图所示：\n\
+  \n![](img/b454031c864977fe997c5feb0b3f9b63_122_0.png)\n\n你现在已完成本项目的硬件配置，可以进入下一步，即在\
+  \ Xively 上创建帐户。\n\n\n\n\n\n## 创建您的 Xively 账户\n\n使用 Xively 服务首先要做的就是创建并配置一个 Xively\
+  \ 账户。您需要在 Xively 上创建一个账户，以便我们可以向其服务发送数据。Xively 基本上是一个面向联网对象（例如我们的 Ethernet 扩展板）的在线平台。该服务会自动存储我们发送的数据。它还会以图表形式显示测量数据，图表会在数据传入时实时更新。\n\
+  \n第一步是前往其网站上的 Xively 注册页面 https://xively.com/signup/。您将来到一个可以输入个人信息的页面：\n\n![](img/b454031c864977fe997c5feb0b3f9b63_124_0.png)\n\
+  \n然后，您需要创建一个设备，这是 Xively 网站上的一个虚拟实体。该设备将接收测量数据。创建新设备时，您需要为设备输入名称：\n\n## 添加设备\n\n\
+  Xively 开发者工作台将帮助您让设备、应用程序和服务通过 Xively 相互通信。第一步是创建开发设备。首先提供一些基本信息：\n\n**设备名称**\n\
+  天气站\n\n**设备描述** 可选\n告诉我们更多关于此设备的信息\n\n**隐私** 您拥有您的数据，我们帮助您共享它。更多信息\n\n- 私有设备\n \
+  \ 您使用 API 密钥来选择是否以及如何共享设备的数据。\n\n- 公共设备\n  您同意在 CC0 1.0 通用许可下共享设备的数据。设备的数据会被主要搜索引擎索引，其\
+  \ Feed 页面可公开查看。\n\n添加设备   取消\n\n然后，您可以向设备添加通道。Xively 上的通道就像数据库中的变量或一行；它是将从 Arduino\
+  \ 板接收特定测量值的实体。您可以通过单击以下屏幕截图中显示的按钮，在设备页面上创建新通道：\n\n![](img/b454031c864977fe997c5feb0b3f9b63_126_0.png)\n\
+  \n您需要为通道输入一些名称。对于此项目，您必须创建两个通道：一个名为 Temperature，一个名为 Humidity。\n\n然后，您需要获取一些关于账户的信息，这些信息都位于设备页面上。\n\
+  \n第一个是 feed ID，用于标识此特定设备。您可以在页面的以下部分中找到它：\n\n![](img/b454031c864977fe997c5feb0b3f9b63_126_1.png)\n\
+  \n然后，您需要获取 API 密钥，它特定于您的账户。您也可以在设备页面上找到它，如以下屏幕截图所示：\n\n## API 密钥\n\n### 自动生成的 Weather\
+  \ station 2 设备密钥，用于 feed 1860877001\n\nGjD85fJqnsufHuToN7Itv9b8w1T3hENXrDiWPbsuPx1OCUKb\n\
+  \n权限 READ,UPDATE,CREATE,DELETE\n\n私有访问\n\n### API 密钥\n\n- 添加密钥\n\n您需要将这两个密钥输入到本章将要构建的\
+  \ Arduino 草图中，因此请随时准备好。\n\n## 向 Xively 发送数据\n\n我们现在将为本项目构建 Arduino 草图。目标是在 Arduino\
+  \ 板上测量数据，连接到 Xively 服务器，并发送数据。\n\n第一步是包含以下所需库：\n\n```\n#include <SPI.h>\n#include\
+  \ <Ethernet.h>\n#include \"DHT.h\"\n```\n\n输入您的板的 MAC 地址：\n\n```\nbyte mac[] = {\
+  \ 0x90, 0xA2, 0xDA, 0x0E, 0xFE, 0x40 };\n```\n\n然后我们可以按如下方式定义 DHT 传感器的引脚和类型：\n\n\
+  ```\n#define DHTPIN 7\n#define DHTTYPE DHT11\n```\n\n创建传感器实例，如以下行所示：\n\n```\nDHT\
+  \ dht(DHTPIN, DHTTYPE);\n```\n\n创建以太网客户端实例：\n\n```\nEthernetClient client;\n```\n\
+  \n我们还为板子定义一个默认 IP 地址：\n\n```\nIPAddress ip(192,168,1,50);\n```\n\n在草图中，我们还设置了要通过\
+  \ Ethernet 扩展板连接的受保护 Xively 服务器的地址：\n\n```\nIPAddress server(216,52,233,120);\n\
+  ```\n\n现在，我们需要稍微修改草图以输入您 Xively 账户的相关信息。您需要在此处输入上一节中获取的 API 密钥和 feed ID。使用以下代码，您可以定义\
+  \ API 密钥和 feed ID：\n\n```\n#define WEBSITE \"api.xively.com\"\n#define API_key \"\
+  yourAPIKey\"\n#define feedID \"yourFeedID\"\n```\n\n在草图的 setup() 函数中，我们现在可以使用 DHCP\
+  \ 为草图获取 IP 地址，如以下代码所示：\n\n```\n// Start the Ethernet connection\nif (Ethernet.begin(mac)\
+  \ == 0) {\nSerial.println(\"Failed to configure Ethernet using DHCP\");\nEthernet.begin(mac,\
+  \ ip);\n}\n```\n\n为调试目的，我们在串行监视器上打印此 IP 地址：\n\n```\nSerial.print(\"IP address: \"\
+  );\nSerial.println(Ethernet.localIP());\n```\n\n现在，在草图的 loop() 函数中，我们将使用 DHT 传感器进行测量，为\
+  \ Xively 格式化数据，并将数据发送到 Xively 服务器。\n\n第一步是进行测量。通过以下代码行完成：\n\n```\nfloat humidity\
+  \ = dht.readHumidity();\nfloat temperature = dht.readTemperature();\n```\n\n然后我们需要格式化这些测量数据，以便\
+  \ Xively 服务器可以理解。确实，Xively 定义了接收数据的特定格式。所有格式均定义在 https://xively.com/dev/docs/api/communicating/data_formats/。\n\
+  \n在我们的情况中，我们需要根据 Xively 规范将数据放入 JSON 字符串中。这通过以下代码片段完成：\n\n```\nint length = 0;\n\
+  String data = \"\";\ndata = data + \"\\\\n\" + \"{\\\\\"version\\\\\":\\\\\"1.0.0\\\
+  \\\",\\\\\"datastreams\\\\\" : [ {\\\\\"id\\\\\" : \\\\\"Temperature\\\\\",\\\\\"\
+  current_value\\\\\" : \\\\\"\" + String((int)temperature) + \"\\\\\"},\" + \"{\\\
+  \\\"id\\\\\" : \\\\\"Humidity\\\\\",\\\\\"current_value\\\\\" : \\\\\"\" + String((int)humidity)\
+  \ + \"\\\\\"}]}\";\nSerial.println(data);\nlength = data.length();\n```\n\n您会注意到，我们还会获取将发送到\
+  \ Xively 服务器所需的字符串长度。此外，我们在引号前使用反斜杠，以指示我们要传输引号而不是字符串的结束。\n\n然后，我们将实际连接到 Xively 服务器并发送数据。这是通过使用\
+  \ PUT 请求并将 JSON 文件发送到 Xively 服务器完成的。在请求标头中，我们定义 Xively 设备的 feed ID，并传输您的 Xively\
+  \ API 密钥。\n\n我们还需要将之前定义的数据放入请求正文中发送。这是通过以下代码片段完成：\n\n```\nif (client.connect(server,\
+  \ 80)) {\n    if (client.connected()) {\n    Serial.println(\"connected\");\n  \
+  \  client.println(\"PUT /v2/feeds/\" + String(feedID) + \".json HTTP/1.1\");\n \
+  \   client.println(\"Host: api.xively.com\");\n    client.println(\"X-ApiKey: \"\
+  \ + String(API_key));\n    client.println(\"Content-Length: \" + String(length));\n\
+  \    client.print(\"Connection: close\");\n    client.println();\n    client.print(data);\n\
+  \    client.println();\n    } else {\n    Serial.println(F(\"Connection failed\"\
+  ));\n    return;\n    }\n}\n```\n\n然后，在发送数据后，我们读取来自服务器的返回数据，并使用以下代码片段将答案打印到串行监视器以供调试：\n\
+  \n```\nwhile (client.connected()) {\nwhile (client.available()) {\nchar c = client.read();\n\
+  Serial.print(c);\n}\n}\n```\n\n最后，完成后，我们停止连接。这是通过以下代码完成：\n\n```\nif (!client.connected())\
+  \ {\nSerial.println();\nSerial.println(\"disconnecting.\");\nclient.stop();\n}\n\
+  ```\n\n我们使用以下行每 10 秒重复整个过程：\n\n```\ndelay(10000);\n```\n\n### 注意\n\n本章的所有代码都可以在本章的\
+  \ GitHub 仓库中找到 https://github.com/openhomeautomation/arduino-networking/tree/master/chapter5。\n\
+  \n现在是时候测试草图并将数据上传到 Xively 了。此时您可以将草图上传到 Xively，并在 Arduino IDE 中打开串行监视器。您应该会看到板子的\
+  \ IP 地址被打印出来，并且草图已连接到 Xively 服务器：\n\n**IP 地址: 192.168.1.104\n正在连接...**\n\n您还应该看到数据为\
+  \ Xively 格式化的方式：\n\n```\n{ \"version\": \"1.0.0\", \"datastreams\" : [ { \"id\"\
+  \ : \"Temperature\", \"current_value\" : \"24\"},{\"id\" : \"Humidity\", \"current_value\"\
+  \ : \"37\"}]}\n```\n\n过了一会儿，您应该会看到来自 Xively 的返回响应。如果数据已正确发送到 Xively 服务器，您应该在串行监视器上看到打印出的\
+  \ 200 OK 代码：\n\n```\nHTTP/1.1 200 OK\nDate: Wed, 21 May 2014 15:02:49 GMT\nContent-Type:\
+  \ application/json; charset=utf-8\nContent-Length: 0\nConnection: close\nX-Request-Id:\
+  \ e44becaa5231354568262013fa713d9f099ffc83\nCache-Control: max-age=0\nVary: Accept-Encoding\n\
+  ```\n\n这意味着数据已被 Xively 服务器正确接收，并以可理解的格式。\n\n如果不是这种情况，您可以检查几件事。首先，确保\n\n\n\n## 可视化记录的数据\n\
+  \n我们现在要可视化使用 Xively 记录的数据。你可以再次访问 Xively 网站上的设备页面。你应该能看到不同通道中已记录了一些数据，如以下截图所示：\n\
+  \n| 通道 | 几秒前最后更新 | 图表 |\n|---|---|---|\n| 湿度 | 35 % | |\n| 温度 | 23 °C | |\n| + 添加通道\
+  \ | | |\n\n点击其中任一通道，你也可以以图形方式显示数据。例如，以下截图显示了几次测量后的温度通道：\n\n![](img/b454031c864977fe997c5feb0b3f9b63_135_0.png)\n\
+  \n过一段时间后，温度测量将有更多数据点，如以下截图所示：\n\n![](img/b454031c864977fe997c5feb0b3f9b63_135_1.png)\n\
+  \n湿度测量亦可如此操作；以下截图显示了湿度测量：\n\n![](img/b454031c864977fe997c5feb0b3f9b63_136_0.png)\n\
+  \n请注意，点击时间图标可以更改时间轴并显示更长或更短的时间范围。\n\n如果未看到任何数据显示，你需要返回 Arduino IDE，并确保来自 Xively\
+  \ 服务器的响应是一条 200 OK 消息，就像我们在上一节中看到的那样。\n\n## 摘要\n\n让我们总结本章所做的工作。我们使用 Ethernet 扩展板搭建了一个物联网项目，因为我们将\
+  \ Ethernet 扩展板直接连接到云服务。我们在 Arduino 开发板上测量数据，并将数据发送到云服务 Xively，以便可以从任何位置访问和显示。\n\n\
+  该解决方案的优势在于，记录在 Xively 上的数据可以从任何位置访问，而不仅仅是你的本地网络。你还可以使用数据和 Xively 基于数据创建自动触发器。例如，你可以根据记录的数据向另一个网站发送请求。你还可以将设备记录的数据与同事或朋友共享，以便他们也能实时监控你的项目正在记录的内容。\n\
+  \n当然，该解决方案的缺点之一是，如果你的互联网连接中断，整个项目将完全无法工作。\n\n以下是本章的主要要点：\n\n- 我们首先搭建了该项目的硬件，包括 Ethernet\
+  \ 扩展板和 DHT11 传感器，用于测量温度和湿度。\n- 然后，我们访问了 Xively 网站并在那里创建了一个帐户。我们还在 Xively 界面上设置了一个设备，并创建了通道，以便数据可以记录在\
+  \ Xively 网站上。最后，我们还获取了 feed ID 和 API 密钥，以便 Arduino 草图知道将数据发送到哪里。\n- 然后，我们为该项目设计了\
+  \ Arduino 草图。Arduino 草图负责测量数据，根据 Xively 指南对其进行格式化，并将其发送到 Xively。我们测试了该草图，并确保 Xively\
+  \ 接受了数据。\n- 最后，我们再次访问 Xively 网站来可视化数据。我们学习了如何以图形方式可视化这些数据，并看到了数据实时到达。\n\n在下一章中，我们将继续构建物联网应用程序。我们将使用另一个名为\
+  \ **Temboo** 的 web 服务，这是一个可以与 Gmail 或 Google Docs 等其他服务对接的平台。我们将使用此服务直接在 Google\
+  \ Docs 电子表格上记录数据，并根据记录的数据发送自动电子邮件。\n"
+- "# 第 6 章 在 Google Docs 中记录数据\n\n在本章中，我们将继续使用 Arduino Ethernet 扩展板构建物联网应用程序。这一次，我们将使用名为\
+  \ Temboo 的 web 服务来构建一些有用且有趣的应用程序。Temboo 与我们在上一章中使用的 Xively 不同。它本身不是云平台，但可以用于将我们的\
+  \ Arduino 项目与多个其他应用程序和服务对接。你可以将 Temboo 视为 Ethernet 扩展板与广泛 web 服务之间的桥梁，例如电子邮件服务、短信服务或存储服务。\n\
+  \n例如，在本章中，我们将了解如何通过 Temboo 将你的 Arduino 项目与你的 Google 帐户对接。我们将使用此功能自动将测量数据记录到 Google\
+  \ Docs 电子表格中。\n\n该解决方案的优势在于，你可以从任何位置访问 Google Docs 电子表格，从而在世界任何地方监控数据，而你的 Ethernet\
+  \ 扩展板正在从家中发送数据。我们还将根据测量数据使用 Gmail 发送自动电子邮件警报。\n\n以下是本章的主要要点：\n\n- 首先，我们将使用 Ethernet\
+  \ 扩展板和 DHT11 传感器配置该项目的硬件部分。我们还将下载并安装项目所需的库，包括 Temboo Arduino 库。\n- 然后，我们将设置本章所需的不同帐户。首先，我们将设置你的\
+  \ Google 帐户并创建一个用于记录数据的电子表格。我们还将设置一个 Temboo 帐户，并将其配置为使用 Arduino Ethernet 扩展板。\n\
+  - 一旦所有帐户都设置完毕，我们将构建该项目的第一个应用程序——自动将测量数据记录到 Google Docs 电子表格中。你将能够在电子表格中实时查看记录的测量数据，并看到数据自动实时绘图。\n\
+  - 最后，我们将设置 Arduino 系统，以在给定测量值超过阈值时自动发送电子邮件。\n\n## 硬件和软件要求\n\n在硬件方面，你当然需要 Arduino\
+  \ Ethernet 扩展板和一个 Arduino 开发板，例如 Arduino Uno。\n\n你还需要一个传感器来测量一些数据。由于本书讲的是如何使用 Ethernet\
+  \ 扩展板，而不是如何从传感器测量，你可以选择任何你喜欢的传感器。\n\n我使用了 DHT11 传感器，这是一种数字温度和湿度传感器。我为本章和书中许多章节选择了这个传感器，因为它非常便宜且易于与\
+  \ Arduino 对接。除了 DHT11 传感器，你还需要一个 4.7k 欧姆电阻。\n\n你还需要一个面包板和一些跳线，以在传感器和 Ethernet 扩展板之间创建连接。\n\
+  \n在软件方面，你首先需要的是用于对接你之前选择的传感器的库。由于我为本项目选择了 DHT11 传感器，你需要从 https://github.com/adafruit/DHT-sensor-library\
+  \ 下载并安装 DHT 库才能使用它。\n\n你还需要从 https://www.temboo.com/arduino/others/library-installation\
+  \ 下载并安装 Arduino Temboo 库。\n\n要安装 Arduino 库，只需将下载文件的内容解压到主 Arduino 文件夹的库文件夹中（如果不存在，则创建该文件夹）。\n\
+  \n## 硬件配置\n\n现在是时候为本项目设置硬件了。此时，如果你按照之前某一章的操作，你应该已经将 Arduino Ethernet 扩展板插到 Arduino\
+  \ 开发板上，有一根以太网线连接到 Ethernet 扩展板，以及你的互联网路由器。如果还没有，请先这样做。\n\n在本项目中，你需要连接的唯一东西是 DHT11\
+  \ 传感器和电阻。你可以通过查看以下原理图来了解需要进行的不同连接：\n\n![](img/b454031c864977fe997c5feb0b3f9b63_142_0.png)\n\
+  \n首先，将 DHT11 传感器插到面包板上。然后，使用 4.7k 欧姆电阻连接传感器的引脚 1 和 2。\n\n现在，我们将连接电源。将传感器的引脚 1 连接到\
+  \ Arduino 5V，将引脚 4 连接到 Arduino GND。最后，将 DHT 传感器的引脚 2 连接到 Arduino 引脚 7。\n\n最后，连接应该如以下截图所示：\n\
+  \n\n\n![](img/b454031c864977fe997c5feb0b3f9b63_143_0.png)\n\n本项目的硬件配置现已完成，您可以进入下一步，即为此项目设置\
+  \ Google 账号。\n\n## 设置您的 Google 账号\n\n为此项目，您需要拥有一个 Google 账号。如果您已经在使用 Gmail 或 YouTube\
+  \ 等服务，则说明您已拥有 Google 账号，并可立即使用 Google 文档。如果不是这种情况，您可以在以下地址创建账号：\n\n[https://docs.google.com](https://docs.google.com)\n\
+  \n创建账号后，您即可创建第一个电子表格。为此，只需点击 **创建** 按钮并选择 **电子表格**。您需要为电子表格输入一个名称，这一点非常重要，因为您稍后需要将此名称提供给\
+  \ Temboo。我将我的表格简单地命名为 Ethernet。\n\n然后，您需要为将接收数据的列命名。我们将测量温度和湿度，并为每次测量添加时间戳。您需要在第一行中输入这些内容，如以下截图所示：\n\
+  \n| | A | B | C |\n|---|---|---|---|\n| 1 | 时间戳 | 温度 | 湿度 |\n| 2 | | | |\n| 3 |\
+  \ | | |\n| 4 | | | |\n\n当您拥有如上所示的 Google 电子表格时，即表示此部分设置已完成，您可以进入下一部分。\n\n## 创建您的\
+  \ Temboo 账号\n\n下一步是在 Temboo 上创建账号。为此，只需访问以下地址：\n\nhttps://www.temboo.com/\n\n您将看到一个要求输入电子邮件地址的页面。\n\
+  \n![](img/b454031c864977fe997c5feb0b3f9b63_147_0.png)\n\n创建账号后，您将被带到 Temboo 主页。此阶段您会有许多选择，但我们要找的是\
+  \ **设备**，如以下截图所示：\n\n![](img/b454031c864977fe997c5feb0b3f9b63_147_1.png)\n\n在设备页面中，Temboo\
+  \ 提供了一个名为 **设备编码器** 的工具。当我们使用 Arduino Yun 等平台，或者在本例中使用 Arduino Ethernet 扩展板时，该工具旨在为我们生成大部分代码。\n\
+  \n只需点击正确的选项，该选项对应 Ethernet 扩展板等其他 Arduino 设备，如以下截图所示：\n\n## 设备编码器\n\n## 无需编写代码即可编程硬件\n\
+  \n几分钟内设置连接设备。我们全新的设备编码器工具可让您使用带有传感器的 Arduino 在多种场景下触发 Choreo 调用。\n\n安装 Temboo 的新\
+  \ Arduino 库以运行设备编码器。了解如何。\n\n## Arduino Yún\n\nArduino 第一款带有 Linux 架构和 Wi-Fi 兼容性的开发板，内置了\
+  \ Temboo 的强大功能。\n\n## 其他 Arduino 开发板\n\n- Internet Shield\n将其他 Arduino 及 Arduino\
+  \ 兼容开发板与 Temboo 的强大功能相结合。\n\n然后，您将被要求选择要使用的传感器类型。当然，Temboo 无法列出此类项目可能使用的每一种传感器。因此，DHT11\
+  \ 传感器不在可能设备列表中。但是，我们将通过重写部分生成的代码来解决这个问题。暂时，只需选择 **通用传感器**。然后在下一个菜单中，选择 **电子表格**。\n\
+  \n随后，您将进入一个新菜单，可在其中配置您的设备。由于这是您第一次配置设备，系统将要求您为以太网扩展板创建新的 Temboo 凭据。Temboo 凭据是一组存储在\
+  \ Temboo 服务器上的参数，以便您在后续开发应用程序时无需再次输入它们。\n\n在凭据框中输入您的 Arduino 开发板和以太网扩展板的详细信息，如以下截图所示：\n\
+  \n![](img/b454031c864977fe997c5feb0b3f9b63_149_0.png)\n\n然后，就像您选择使用电子表格一样，您还需要输入您的\
+  \ Google 账号凭据。我们将使用它来访问 Google 文档，并在本章的最后部分用于与 Gmail 进行交互。\n\n在以下截图所示的框中输入您的所有 Google\
+  \ 账号信息：\n\n![](img/b454031c864977fe997c5feb0b3f9b63_150_0.png)\n\n对于我的 Google 账号凭据名称，我使用了\
+  \ Ethernet@gmail。\n\n请注意，如果您已启用 Google 两步验证方法，则需要在此处提供专用应用密码。这是出于安全考虑，以防 Temboo\
+  \ 受到攻击时，您的 Google 账号不会被泄露。您可以在 https://support.google.com/accounts/answer/185833?hl=en\
+  \ 查找有关专用应用密码的更多信息。\n\n您也可以选择此时不输入 Google 信息。但是，在这种情况下，您将需要在 Arduino 草图中输入这些信息，并对该草图进行轻微修改。要了解更多信息，您可以访问\
+  \ https://www.temboo.com/arduino/yun/update-google-spreadsheet。\n\n您还需要为先前准备好的电子表格提供一个名称。只需在正确的框中输入此名称，如以下截图所示：\n\
+  \n![](img/b454031c864977fe997c5feb0b3f9b63_150_1.png)\n\n例如，我将我的电子表格命名为 Ethernet：\n\
+  \n![](img/b454031c864977fe997c5feb0b3f9b63_151_0.png)\n\n之后，您需要选择要用于向电子表格记录数据的设备。这就是您选择之前创建的凭据的地方，如以下截图所示：\n\
+  \n![](img/b454031c864977fe997c5feb0b3f9b63_151_1.png)\n\n您还需要为刚创建的项目命名，以便您的 Arduino\
+  \ 草图稍后知道将数据发送到哪里。我将我的项目命名为 arduinoTemperatureSpreadsheet。如果您决定使用另一个名称，稍后需要在代码中进行小修改。\n\
+  \n完成后，系统将提示您下载一个包含两个 Arduino 代码文件的压缩文件。下载它，解压缩，然后查看它。它将如以下截图所示：\n\n![](img/b454031c864977fe997c5feb0b3f9b63_151_2.png)\n\
+  \n应该有一个 Arduino 文件和另一个名为 TembooAccount.h 的文件。最后一个文件是最重要的，因为它包含您的项目凭据。在项目的其余部分中，您需要使用此文件来替代项目\
+  \ GitHub 仓库中包含的文件。\n\n## 在电子表格中记录数据\n\n在 Temboo 网站上完成设备配置后，我们从 Temboo 下载了一堆文件。但是，下载的\
+  \ Arduino 文件是针对通用传感器的。在本节中，我们将根据自己的需求调整此文件，并了解代码的工作原理。\n\n### 注意\n\n您需要将自己的 TembooAccount.h\
+  \ 文件放在与 Arduino 文件相同的文件夹中，以便代码可以工作。\n\n本节的主要 Arduino 草图首先包含所有使项目能够与 Temboo 协同工作所需的库。请注意，我们还将插入\
+  \ DHT 库。在代码中添加以下库：\n\n```\n#include <SPI.h>\n#include <Dhcp.h>\n#include <Dns.h>\n\
+  #include <Ethernet.h>\n#include <EthernetClient.h>\n#include <Temboo.h>\n#include\
+  \ \"TembooAccount.h\"\n#include \"DHT.h\"\n```\n\n我们还定义了连接 DHT 传感器的引脚以及传感器的类型：\n\
+  \n```\n#define DHTPIN 7\n#define DHTTYPE DHT11\n```\n\n然后，我们将创建传感器的实例：\n\n```\n\
+  DHTdht(DHTPIN, DHTTYPE);\n```\n\n我们还分配了以太网扩展板的 MAC 地址。请注意，这里并未明确分配，而是直接从您的 Temboo\
+  \ 账号文件中获取信息。MAC 地址通过以下行分配：\n\n```\nbyte ethernetMACAddress[] = ETHERNET_SHIELD_MAC;\n\
+  ```\n\n我们还将按以下方式创建一个以太网客户端实例：\n\n```\nEthernetClient client;\n```\n\n现在，在草图的 setup()\
+  \ 函数中，我们将通过 DHCP 为以太网扩展板获取 IP 地址，如以下代码所示：\n\n```\nSerial.print(\"DHCP:\");\nif (Ethernet.begin(ethernetMACAddress)\
+  \ == 0) {\n Serial.println(\"FAIL\");\n while(true);\n}\nSerial.println(\"OK\");\n\
+  delay(5000);\n```\n\n\n\n\n\n启动 DHT 传感器，使用以下代码行：\n\n```\ndht.begin();\n```\n\n然后，在\
+  \ loop() 函数中，我们将从 DHT 传感器测量温度和湿度，并使用以下代码片段将测量值转换为字符串：\n\n```\nfloat h = dht.readHumidity();\n\
+  float t = dht.readTemperature();\n```\n\n```\nint temperature = (int)t;\nint humidity\
+  \ = (int)h;\n```\n\n```\nSerial.println(\"Temperature: \" + String(temperature));\n\
+  Serial.println(\"Humidity: \" + String(humidity));\n```\n\n测量完成后，我们将调用以下函数，该函数将实际连接到网络并将数据记录到我们的\
+  \ Google 电子表格中。稍后我们将了解这个由 Temboo 自动生成的函数的详细信息：\n\n```\nrunAppendRow(temperature,\
+  \ humidity);\n```\n\n最后，我们还将在每次测量之间插入一些延迟。我建议使用较大的延迟（我选择每分钟记录一次数据，仅用于演示目的），因为你可以调用\
+  \ Temboo 的次数是有限的。延迟通过以下代码行插入：\n\n```\ndelay(60000);\n```\n\n你可以在以下链接查看不同的计划和定价：\n\
+  \nhttps://www.temboo.com/about/plans\n\n例如，在免费计划中，你每月限制为 1,000 次调用，这意味着你大约每 44 分钟可以记录一次测量值。在第一个付费计划中，你大约每\
+  \ 5 分钟可以记录一个数据点。在开发应用程序时，请牢记这些限制。\n\n现在让我们看看 runAppendRow() 函数的详细信息。它首先声明我们要使用的\
+  \ Choreo 类型。Choreo 是 Temboo 服务上库的等效项。例如，我们将声明我们要使用特定的库，将数据插入 Google 电子表格中的一行：\n\n\
+  ```\nTembooChoreo AppendRowChoreo(client);\n```\n\n我们将设置关于你的账户的不同信息，例如账户名称和你的应用密钥。所有这些都已在你之前下载的\
+  \ Temboo 账户文件中定义，因此你不需要再定义任何内容：\n\n```\nAppendRowChoreo.setAccountName(TEMBOO_ACCOUNT);\n\
+  AppendRowChoreo.setAppKeyName(TEMBOO_APP_KEY_NAME);\nAppendRowChoreo.setAppKey(TEMBOO_APP_KEY);\n\
+  ```\n\n然后，你需要以某种方式指定数据应记录的位置。再次，所有工作都由 Temboo 完成：所有信息都保存在 Temboo 端，保存在你之前设置的 Google\
+  \ 账户凭据中。如果你为此示例使用了与我相同的名称，那么你不需要修改以下代码行中的任何内容：\n\n```\nAppendRowChoreo.setSavedInputs(\"\
+  arduinoTemperatureSpreadsheet\");\n```\n\n请注意，克服 Temboo 调用限制的新方法也是在每次调用 Temboo API\
+  \ 时传输多个数据点，例如，每次调用追加多行。你可以作为练习相应地修改代码。\n\n现在，我们需要格式化数据，以便它可以在 Google 电子表格中正确记录。你想在给定行中插入的内容是时间戳、温度和湿度。对于时间戳，我们将简单地使用自设备通电以来经过的时间，使用\
+  \ millis() 函数。\n\n数据本身将包含在一个字符串变量中，其中每个列的值将用逗号分隔，如以下代码所示：\n\n```\nString RowDataValue\
+  \ = String(millis()) + \",\" + String(temperature) + \",\" + String(humidity);\n\
+  AppendRowChoreo.addInput(\"RowData\", RowDataValue);\n```\n\n我们还需要设置要使用的 Choreo，使用以下代码行：\n\
+  \n```\nAppendRowChoreo.setChoreo(\"/Library/Google/Spreadsheets/AppendRow\");\n\
+  ```\n\n然后，我们终于可以执行 Choreo，并使用以下代码行将结果存储在名为 returnCode 的变量中：\n\n```\nunsigned int\
+  \ returnCode = AppendRowChoreo.run();\n```\n\n如果执行 Choreo 后该代码等于 0，则表示一切正常，我们将使用以下代码片段在串行监视器中打印相应消息，以供调试：\n\
+  \n```\nif (returnCode == 0) {\n    Serial.println(\"Done!\\n\");\n} else {\n   \
+  \ // A non-zero return code means there was an error\n    // Read and print the\
+  \ error message\n    while (AppendRowChoreo.available()) {\n        char c = AppendRowChoreo.read();\n\
+  \        Serial.print(c);\n    }\n    Serial.println();\n}\n```\n\n如果不是这种情况，我们将在串行监视器中打印相应的错误消息。最后，我们使用以下代码行关闭\
+  \ Choreo：\n\n```\nAppendRowChoreo.close();\n```\n\n### 注意\n\n你可以在本章的 GitHub 仓库中找到本节的所有代码，网址为\
+  \ https://github.com/openhomeautomation/arduino-networking/tree/master/chapter6。\n\
+  \n即使你决定直接从 GitHub 仓库获取代码，请注意，你需要使用自己的 Temboo 账户文件，或在 GitHub 上提供的 Temboo 账户文件中输入正确信息。\n\
+  \n我们现在可以测试项目。将代码上传到 Arduino 开发板，转到 Google 文档，打开项目的电子表格。稍后，你应该会看到第一组测量值被记录在电子表格中，如以下屏幕截图所示：\n\
+  \n| | A | B | C |\n|---|---|---|---|\n| 1 | **时间戳** | **温度** | **湿度** |\n| 2 | 10122\
+  \ | 23 | 35 |\n| 3 | 28654 | 23 | 35 |\n\n你还可以使用 Google 文档的集成绘图功能在图表上显示测量值。你只需选择与数据对应的列（在本章开发的示例中为\
+  \ A、B 和 C），然后单击工具栏中的 **插入图表** 按钮。系统将提示你选择要绘制的图表类型。我只是选择了折线图，将所有数据绘制在单个图表上。图表将类似于以下屏幕截图：\n\
+  \n![](img/b454031c864977fe997c5feb0b3f9b63_156_0.png)\n\n由于一切都是动态的，你应该看到随着新测量值的输入，图表会实时更新。请注意，由于这是\
+  \ Google 文档上的电子表格，无论你身处世界何处都可以访问，只需登录你的 Google 账户即可。\n\n## 发送自动电子邮件\n\n在本章的最后部分，我们将基于已完成的工作构建，但稍微更改应用程序。这次，我们将使用以太网扩展板和\
+  \ Temboo，在达到条件时自动发送电子邮件。作为示例，我们将在测量温度上设置一个条件。每当温度达到给定值时，我们将向你选择的地址发送一封电子邮件，例如，你的专业电子邮件，以便你在工作时保持更新。\n\
+  \n它再次从 Temboo 网站上的 Device Coder 开始，网址为 https://www.temboo.com/library/Library/Devices/Arduino/Others/。\n\
+  \n单击 **通用传感器**，然后单击 **电子邮件**。这次你不需要输入那么多信息。你的 Gmail 账户应该已在上一部分中设置，Device Coder 应该会自动选择你的以太网扩展板。\n\
+  \n你只需输入目标电子邮件（例如，你的专业电子邮件地址或家庭成员的电子邮件地址）和电子邮件的 **主题** 字段。现在不用担心电子邮件正文的值；我们稍后会更改它：\n\
+  \n![](img/b454031c864977fe997c5feb0b3f9b63_159_0.png)\n\n完成后，单击 **生成**。与上一部分一样，系统将提示你为这个项目输入一个名称，以便\
+  \ Temboo 知道将电子邮件发送到哪里。我将我的命名为 arduinoTemperatureEmail，但如果你决定使用另一个名称，以后只需更改代码中的一行即可。\n\
+  \n你现在可以下载生成的代码，我们将对其稍作修改。与上一部分一样，我们将修改 Arduino 代码，但重要的是你要获取自己的 TembooAccount.h 文件，其中包含你在\
+  \ Temboo 上的自己的账户信息。\n\nArduino 草图与上一部分的类似，因此我将只讨论主要更改。\n\n在草图的 loop() 函数中，你需要设置\
+  \ Temboo 将发送电子邮件的限制。为演示目的，我将限制设置为 23，如以下代码所示：\n\n\n\n```\nif (temperature > 23)\
+  \ {\n    Serial.println(\"\\nTriggered! Calling /Library/Google/Gmail/SendEmail...\"\
+  );\n\n    // Send email\n    runSendEmail(temperature);\n}\n```\n\n你可以看到，每当温度超过该限制时，就会通过\
+  \ Temboo 发送一封电子邮件警报。我们稍后将详细介绍此函数。我在每次测量之间还插入了 1 分钟的延迟，因此如果跨越阈值，我们不会持续发送电子邮件：\n\n\
+  ```\ndelay(60000);\n```\n\n现在让我们来看看 runSendEmail() 函数的详细信息。该函数负责创建用于发送电子邮件的正确 Choreo，设置电子邮件正文，并通过\
+  \ Temboo 发送。\n\n它首先通过以下行创建用于发送电子邮件的正确 Choreo：\n\n```\nTembooChoreoSendEmailChoreo(client);\n\
+  ```\n\n我们还定义了与你的账户相关的不同信息，这些信息在你刚刚从 Temboo 下载的 Temboo 账户文件中定义：\n\n```\nSendEmailChoreo.setAccountName(TEMBOO_ACCOUNT);\n\
+  SendEmailChoreo.setAppKeyName(TEMBOO_APP_KEY_NAME);\nSendEmailChoreo.setAppKey(TEMBOO_APP_KEY);\n\
+  ```\n\n接下来，你需要在此处输入你刚刚在 Temboo 上创建的电子邮件项目的名称。如果你使用与我相同的名称，则无需修改以下行中的任何内容：\n\n```\n\
+  SendEmailChoreo.setSavedInputs(\"arduinoTemperatureEmail\");\n```\n\n我们现在将构建电子邮件正文，它将存储在字符串变量中。我们只是使用一条通用消息，将测量温度的值附加其中，并将所有内容存储在一个字符串中。最后，我们将把以下行添加为用于发送电子邮件的\
+  \ Choreo 的输入：\n\n```\nString MessageBodyValue = String(\"Alert! The current sensor\
+  \ value is: \") +\nString(sensorValue);\nSendEmailChoreo.addInput(\"MessageBody\"\
+  , MessageBodyValue);\n```\n\n在执行 Choreo 之前，我们定义使用以下行从 Gmail 使用 SendEmailChoreo：\n\
+  \n```\nSendEmailChoreo.setChoreo(\"/Library/Google/Gmail/SendEmail\");\n```\n\n\
+  我们最终可以执行 Choreo 并将结果存储在变量中：\n\n```\nunsigned int returnCode = SendEmailChoreo.run();\n\
+  ```\n\n与上一节一样，如果结果为 0，则表示一切正常。如果不是这种情况，我们将使用以下代码片段在串行端口上打印错误消息以进行调试：\n\n```\nif\
+  \ (returnCode == 0) {\n  Serial.println(\"Done!\\n\");\n} else {\n  // A non-zero\
+  \ return code means there was an error\n  // Read and print the error message\n\
+  \  while (SendEmailChoreo.available()) {\n    char c = SendEmailChoreo.read();\n\
+  \    Serial.print(c);\n  }\n  Serial.println();\n}\n```\n\n最后，我们将使用以下行关闭 Choreo：\n\
+  \n```\nSendEmailChoreo.close();\n```\n\n## 注释\n\n你可以在本章的 GitHub 仓库中找到本节的所有代码：https://github.com/openhomeautomation/arduino-networking/tree/MASTER/chapter6。\n\
+  \n你现在可以测试草图了。首先要确保你的 Temboo 账户文件与 Arduino 草图在同一文件夹中。然后，将草图上传到 Arduino 开发板并打开串行监视器。你首先应该看到的将是一切正常的确认消息：\n\
+  \n```\n**DHCP: OK**\n**Setup complete**\n```\n\n接着，你应该在串行监视器上看到首次测量结果：\n\n```\n\
+  **Temperature: 21**\n**Humidity: 39**\n```\n\n根据温度值，你可能需要捏住传感器来触发电子邮件警报。请记住，在本章示例中，我们将温度设置为\
+  \ 23 度。过一会儿，如果温度达到阈值，你应该看到以下消息：\n\n```\n**Triggered! Calling /Library/Google/Gmail/SendEmail...**\n\
+  ```\n\n过一会儿，应该出现以下确认消息：\n\n```\n**Done!**\n```\n\n你现在可以关闭串行监视器，去检查你在 Temboo 上设置的电子邮件账户。你应该已经收到一条带有你在\
+  \ Temboo 上设置的标题的消息，你还会收到正文，该正文指示你在草图中设置的通用消息以及测得的温度。\n\n## 摘要\n\n在本章中，我们使用网络服务 Temboo\
+  \ 创建了另一个物联网项目。基于 Temboo，我们构建了两个令人兴奋的应用程序。第一个是将测量值自动记录到 Google Docs 电子表格中。与我们在上一章中采用的方法相比，这里的优势很明显，即\
+  \ Google Docs 是创建和共享电子表格的广泛使用的标准。你只需使用网页浏览器就可以随时随地访问数据，还可以绘制数据图表，并轻松与朋友和家人共享。\n\n\
+  我们还构建了一个令人兴奋的应用程序，通过 Temboo 将我们的项目与 Gmail 对接。我们构建了一个基于测量数据的自动电子邮件警报系统。\n\n让我们看看本章的主要收获是什么。首先，我们构建了项目的硬件，在\
+  \ Arduino 以太网扩展板上安装了 DHT11 温湿度传感器。\n\n接着，我们设置了项目所需的不同账户。我们首先在 Google Docs 上创建了一个电子表格，并正确配置它，以便它可以与\
+  \ Temboo 协同工作。然后，我们还创建了一个 Temboo 账户并对其进行配置，以便你的以太网扩展板可以将数据发送到 Temboo 并将测量值记录到 Google\
+  \ Docs。\n\n设置阶段完成后，我们构建了该项目的第一个应用程序，该应用程序包括将数据直接记录到 Google Docs 电子表格中。我们还使用 Google\
+  \ Docs 的绘图功能显示了这些数据。\n\n最后，我们再次使用 Temboo 创建了一个自动电子邮件警报系统，当测量值达到特定阈值时，它会自动向你选择的地址发送一封电子邮件。\n\
+  \n由于本书即将结束，让我们来看看我们了解了关于 Arduino 以太网扩展板的哪些内容，以及可以用它创建哪些令人兴奋的应用程序。\n\n本书的第一部分主要关于在以太网扩展板上运行\
+  \ Web 客户端。我们首先尝试了扩展板，看看它是否能连接到互联网并获取页面内容。然后，我们构建了第一个测量系统，其中以太网扩展板连接到运行在你计算机上的服务器以记录一些数据。\n\
+  \n在本书的第二部分，我们通过在 Arduino 开发板上直接运行 Web 服务器，为 Arduino 以太网扩展板赋予了更多自主权。我们再次制作了测量项目，但这次是在开发板上运行\
+  \ Web 服务器，并将数据记录到插入扩展板的 SD 卡中。我们还将继电器连接到 Arduino 开发板，并通过以太网对其进行控制。\n\n最后，我们使用 Xively\
+  \ 和 Temboo 平台构建了两个物联网项目。在这两个项目中，我们都使用以太网扩展板将数据发送到 Web，以便这些数据可以从世界任何地方访问并以图形方式显示。\n\
+  \n为本书画上句号，我希望你在不同章节中找到的所有信息都能激发你构建更多令人兴奋的应用程序的意愿。Arduino 以太网扩展板是使用 Arduino 构建精彩联网应用程序的最佳方式之一，而你用本书所学概念能做的事情也没有任何限制。\n"
+- "## 索引\n\n### A\n\n- 账户，Google\n  - 设置 / Setting up your Google Account\n- 账户，Temboo\n\
+  \  - 创建 / Creating your Temboo account\n- 应用程序，使用 Arduino 开发板构建\n  - 硬件要求 / Hardware\
+  \ and software requirements\n  - 软件要求 / Hardware and software requirements\n  -\
+  \ 硬件配置 / Hardware configuration\n- 应用程序，使用 Arduino 以太网扩展板构建\n  - 硬件要求 / Hardware\
+  \ and software requirements\n  - 软件要求 / Hardware and software requirements\n  -\
+  \ 硬件配置 / Hardware configuration\n- Arduino 开发板\n  - 在 Arduino 上创建 Web 服务器 / Creating\
+  \ a web server on Arduino\n- Arduino 以太网扩展板\n  - URL / 硬件和软件要求, 硬件和软件要求\n- Arduino\
+  \ IDE\n  - URL / 硬件和软件要求\n- Arduino 库\n  - 安装 / 硬件和软件要求\n- Arduino Temboo 库\n  -\
+  \ URL / 硬件和软件要求\n  - 安装 / 硬件和软件要求\n- Arduino Uno\n  - URL / 硬件和软件要求, 硬件和软件要求\n-\
+  \ 自动电子邮件\n  - 发送 / Sending automated e-mails\n\n\n\n\n\n### B\n- 面包板\n  - URL /\
+  \ 硬件和软件要求，硬件和软件要求\n\n### C\n- COM引脚，继电器 / 硬件配置\n- 连接，Arduino Ethernet Shield\n \
+  \ - 测试 / 测试您的连接\n\n### D\n- 数据\n  - 发送，到服务器 / 将数据发送到服务器\n  - 记录，在SD卡上 / 在SD卡上记录数据\n\
+  \  - 绘图 / 在本地绘制数据\n  - 发送，到Xively / 将数据发送到Xively\n  - 记录，在Google Docs电子表格中 / 在电子表格中记录数据\n\
+  - 数据库\n  - 传入数据，记录到 / 在数据库中记录传入数据\n- delay()函数 / 测试您的连接\n- Device Coder，Temboo /\
+  \ 创建您的Temboo帐户\n  - URL / 发送自动电子邮件\n- DHT11传感器 Arduino Ethernet Shield\n  - URL\
+  \ / 硬件和软件要求，硬件和软件要求\n- DHT库\n  - URL / 硬件和软件要求，硬件和软件要求，硬件和软件要求\n\n### E\n- 电子邮件\n\
+  \  - 发送 / 发送自动电子邮件\n- EasyPHP\n  - URL / 硬件和软件要求\n\n### F\n- flot库\n  - URL / 硬件和软件要求\n\
+  \n### G\n- GND引脚，继电器 / 硬件配置\n- Google帐户\n  - 设置 / 设置您的Google帐户\n- Google Docs\n\
+  \  - URL / 设置您的Google帐户\n- Google Docs电子表格\n  - 数据，记录 / 在电子表格中记录数据\n\n### H\n- 硬件配置\n\
+  \  - 用于数据，在Google Docs中记录 / 硬件配置\n- 硬件配置，Arduino Ethernet Shield / 硬件配置\n- 硬件配置，物联网项目\
+  \ / 硬件配置\n- 硬件要求，Arduino Ethernet shield / 硬件和软件要求\n- 硬件必需条件\n  - 应用程序，使用Arduino\
+  \ Ethernet shield构建 / 硬件和软件要求\n  - 用于构建，使用Arduino板的应用程序 / 硬件和软件要求\n  - 用于远程控制对象\
+  \ / 硬件和软件要求\n  - 用于物联网项目 / 硬件和软件要求\n  - 用于数据，在Google Docs中记录 / 硬件和软件要求\n\n### I\n\
+  - 输入引脚，继电器\n  - VCC引脚 / 硬件配置\n  - GND引脚 / 硬件配置\n  - SIG引脚 / 硬件配置\n- 物联网项目\n  - 硬件必需条件\
+  \ / 硬件和软件要求\n  - 软件必需条件 / 硬件和软件要求\n\n### J\n- JSON格式\n  - URL / 在数据库中记录传入数据\n- 跳线\n\
+  \  - URL / 硬件和软件要求，硬件和软件要求\n\n### L\n- LAMP\n  - URL / 硬件和软件要求\n- LINK LED / 硬件配置\n\
+  \n### M\n- MAMP\n  - URL / 硬件和软件要求\n- MicroSD卡\n  - URL / 硬件和软件要求\n- MongoDB\n \
+  \ - URL / 硬件和软件要求\n\n### N\n- NC引脚，继电器 / 硬件配置\n- NO引脚，继电器 / 硬件配置\n\n### O\n- 输出引脚，继电器\n\
+  \  - COM引脚 / 硬件配置\n  - NC引脚 / 硬件配置\n  - NO引脚 / 硬件配置\n\n### P\n- PHP\n  - 用于，构建服务器端应用程序\
+  \ / 在数据库中记录传入数据\n\n### R\n- 记录的数据\n  - 可视化 / [可视化记录的数据](#)\n\n- 继电器\n  - 测试 / [测试继电器](#)\n\
+  \  - 控制，远程 / [远程控制继电器](#)\n  - 控制，从远程位置 / [从任何位置控制继电器](#)\n\n- 远程对象，控制\n  - 硬件必需条件\
+  \ / [硬件和软件要求](#)\n  - 软件必需条件 / [硬件和软件要求](#)\n  - 硬件配置 / [硬件配置](#)\n\n- 结果\n  - 显示\
+  \ / [显示结果](#)\n\n- runAppendRow()函数 / [在电子表格中记录数据](#)\n\n### S\n- SD卡\n  - 数据，记录在\
+  \ / 在SD卡上记录数据\n- 服务器\n  - 数据，发送到 / 将数据发送到服务器\n- SIG引脚，继电器 / 硬件配置\n- 草图\n  - 编写，用于测试Arduino\
+  \ Ethernet Shield连接 / 测试您的连接\n- 软件要求，Arduino Ethernet shield / 硬件和软件要求\n- 软件必需条件\n\
+  \  - 用于构建应用程序，使用Arduino Ethernet shield / 硬件和软件要求\n  - 用于构建，使用Arduino板的应用程序 / 硬件和软件要求\n\
+  \  - 用于远程控制对象 / 硬件和软件要求\n  - 用于物联网项目 / 硬件和软件要求\n  - 用于数据，在Google Docs中记录 / 硬件和软件要求\n\
+  - SQLite\n  - URL / 硬件和软件要求\n\n### T\n- Teleduino库\n  - URL / 硬件和软件要求\n- Teleduino服务\n\
+  \  - URL / 从任何位置控制继电器\n- Temboo\n  - 帐户，创建 / 创建您的Temboo帐户\n- Temboo帐户\n  - 创建 /\
+  \ 创建您的Temboo帐户\n  - URL / 创建您的Temboo帐户\n- TembooAccount.h文件 / 创建您的Temboo帐户\n- Time库\n\
+  \  - URL / 在SD卡上记录数据\n\n### U\n- update()函数 / 显示结果\n\n### V\n- VCC引脚，继电器 / 硬件配置\n\
+  \n### W\n- WAMP\n  - URL / 硬件和软件要求\n- Web服务器\n  - 创建，在Arduino板上 / 在Arduino上创建Web服务器\n\
+  \n### X\n- Xively\n  - 数据，发送到 / [将数据发送到Xively]()\n- Xively帐户\n  - 创建 / [创建您的Xively帐户]()\n\
+  \  - URL，用于注册 / [创建您的Xively帐户]()\n\n"
