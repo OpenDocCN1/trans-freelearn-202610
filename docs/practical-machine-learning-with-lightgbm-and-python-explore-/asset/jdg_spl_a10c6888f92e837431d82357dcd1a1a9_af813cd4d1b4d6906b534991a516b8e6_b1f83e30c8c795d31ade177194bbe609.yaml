@@ -1,0 +1,73 @@
+chapter_starts:
+- 'no': 3440
+  confidence: 0.92
+  final_reason: 前文第3438行明确预告“下一章将讨论 AutoML 框架 FLAML”，该行独立成行、无结束标点、长度<30字，后文第3442行即为章节正文；虽为
+    Markdown 二级标题，但在本书部分-章节模式中实为章级标题，语义统领后续内容
+  accepted_evidence:
+  - 前文第3438行有明确“下一章”预告
+  - 独立成行，无结束标点，长度约20字
+  - 后文第3442行开始章节正文
+  rejected_evidence:
+  - 复核方指出其为“##”二级标题，与3430行“## 总结”同级，可能为节标题
+  need_human_review: false
+- 'no': 3749
+  confidence: 0.98
+  final_reason: 明确匹配“第 X 部分”规则，部分标题必须划分新章；独立成行，一级标题，无结束标点；后文有实质性部分介绍及章节列表，非空章
+  accepted_evidence:
+  - 符合“第 X 部分”特征
+  - 独立成行，无结束标点
+  - 后文第3752-3759行有部分介绍及章节预告列表
+  rejected_evidence:
+  - 复核方担心可能为空章或仅为扉页
+  need_human_review: false
+- 'no': 3761
+  confidence: 0.93
+  final_reason: 对应前文第3756行列表中的“第 8 章”，虽无“第 X 章”前缀但后文第3763行以“本章”开头，语义上为章级标题
+  accepted_evidence:
+  - 前文第3756行列表明确列出“第 8 章，使用 LightGBM 的机器学习管道和 MLOps”
+  - 独立成行，无结束标点
+  - 后文第3763行即为本章正文开头
+  rejected_evidence:
+  - 复核方指出缺少“第 X 章”编号，可能为第 3 部分下的节标题
+  need_human_review: false
+- 'no': 4275
+  confidence: 0.9
+  final_reason: 英文章标题但排版规范，独立成行、无结束标点，后文第4281行以“本章”开头，前文第5139行预告下一章，说明此处为第 9 章章节起始
+  accepted_evidence:
+  - 独立成行，无结束标点
+  - 后文第4281行即为本章正文开头
+  - 前文第5139行预告下一章，间接印证此处为章节边界
+  rejected_evidence:
+  - 复核方指出为英文标题，可能为页眉残留或双语排版中的英文行
+  need_human_review: false
+- 'no': 5147
+  confidence: 0.94
+  final_reason: 前文第5139行明确预告“下一章将介绍…PostgresML”，该行独立成行、无结束标点，后文第5149-5158行有章节介绍及主题列表，语义统领
+    PostgresML 章节
+  accepted_evidence:
+  - 前文第5139行有明确“下一章”预告
+  - 独立成行，无结束标点
+  - 后文有章节介绍及主题列表
+  rejected_evidence:
+  - 复核方指出无章号，可能为当前章小节
+  need_human_review: false
+- 'no': 5557
+  confidence: 0.93
+  final_reason: 前文第5551行明确预告下一章内容，该行独立成行、无结束标点，后文第5559-5565行有章节介绍及主题列表，应视为章标题
+  accepted_evidence:
+  - 前文第5551行有明确“下一章”预告
+  - 独立成行，无结束标点
+  - 后文有章节介绍及主题列表
+  rejected_evidence:
+  - 复核方指出无“第 X 章”编号，可能为第 11 章内大节
+  need_human_review: false
+- 'no': 5840
+  confidence: 0.98
+  final_reason: 规则明确：文末索引划分为一章；该行独立成行，位于文末，为索引标题
+  accepted_evidence:
+  - 规则明确文末索引划分为一章
+  - 独立成行，位于文末
+  rejected_evidence:
+  - 复核方担心索引属附录性质，划分过碎
+  need_human_review: false
+rejected_lines: []

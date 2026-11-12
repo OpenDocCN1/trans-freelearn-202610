@@ -1,0 +1,49 @@
+chapter_starts:
+- 'no': 0
+  confidence: 0.9
+  final_reason: 规则特例：前言、致谢等正文前材料统一划分为一章，行0为图书封面/书名，属正文前元数据起始，应作为前言章起始
+  accepted_evidence:
+  - 规则规定前言材料统一划分为一章
+  - 行0为图书标题及正文前元数据
+  rejected_evidence:
+  - 复核方指出行0为长标题，不符合章标题格式特征
+  need_human_review: false
+- 'no': 195
+  confidence: 0.95
+  final_reason: 显式部分标题“第 1 部分：梯度提升和 LightGBM 基础”，符合部分-章节模式，规则要求遇到部分标题划分新章
+  accepted_evidence:
+  - 双方一致识别为部分标题
+  - 单独成行，#一级标题，无结束标点
+  - 规则：存在第X部分时，遇到部分标题要划分新章
+  rejected_evidence:
+  - 复核方称其为部分概述/目录性说明页
+  need_human_review: false
+- 'no': 2227
+  confidence: 0.95
+  final_reason: 显式部分标题“第二部分：使用 LightGBM 进行实用机器学习”，符合部分-章节模式，规则要求遇到部分标题划分新章
+  accepted_evidence:
+  - 双方一致识别为部分标题
+  - 单独成行，#一级标题，无结束标点
+  - 规则：部分标题要划分新章
+  rejected_evidence:
+  - 复核方称其为部分概述/目录性说明页
+  need_human_review: false
+rejected_lines:
+- 'no': 206
+  reason: 为二级标题(##)，无“第 X 章”或最高层级编号，复核方证据成立，属部分下子节而非独立大章，不应分章
+  need_human_review: false
+- 'no': 762
+  reason: 为二级标题(##)，无最高层级章编号，紧接上一章参考文献，复核方证据成立，不应作为独立大章分章
+  need_human_review: false
+- 'no': 1141
+  reason: 为二级标题(##)，无章序号，复核方证据成立，语义更像章内导论而非独立大章
+  need_human_review: false
+- 'no': 1750
+  reason: 为二级标题(##)，无最高层级编号，复核方证据成立，不应分章
+  need_human_review: false
+- 'no': 2237
+  reason: 为二级标题(##)，无“第 X 章”编号，复核方证据成立，属第二部分下子节
+  need_human_review: false
+- 'no': 2645
+  reason: 为二级标题(##)，无章序号，复核方证据成立，不应作为独立大章分章
+  need_human_review: false

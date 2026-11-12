@@ -1,0 +1,51 @@
+reviews:
+- 'no': 3440
+  overturn_probability: 0.3
+  alternative: 章内节标题（二级标题，属于当前章的一部分）
+  counter_evidence:
+  - 标题使用 Markdown 二级标题符号“##”，而非一级标题或带章号的“第 X 章”，格式上属于子层级，可能只是当前章下的一个节。
+  - 前文第 3430 行也有“## 总结”，与 3440 行同级，说明 3440 可能只是同一章内的另一节，而非全新章节。
+  keep_split: true
+- 'no': 3749
+  overturn_probability: 0.05
+  alternative: 部分卷标题/部分扉页（但按规则仍应划分新章）
+  counter_evidence:
+  - 它可能只是部分分隔页或扉页，不包含实质正文内容，单独划分章节可能导致空章。
+  - 后文紧随的第 3750 行“### 使用 LightGBM 学习”为三级标题，说明第 3749 行可能仅是部分封面，真正正文起始于第 3761 行。
+  keep_split: true
+- 'no': 3761
+  overturn_probability: 0.3
+  alternative: 章内二级节标题（属于第 3 部分下的第 8 节）
+  counter_evidence:
+  - 标题为“##”二级标题，缺少“第 X 章”编号，可能只是第 3 部分下的一个节标题，而非全书最高层级章节。
+  - 前文第 3754-3759 行已列出包含章号的完整标题清单，第 3761 行去掉了“第 8 章”前缀，可能只是对清单中第 8 章的重复展开。
+  keep_split: true
+- 'no': 4275
+  overturn_probability: 0.35
+  alternative: 英文章节标题/页眉残留（缺少中文章号）
+  counter_evidence:
+  - 标题为英文且无章号，格式为“##”，可能是第 9 章内的小节标题或英文页眉残留，不具备中文章标题的规范格式。
+  - 紧随其后的第 4277 行“LightGBM 与 AWS SageMaker 的 MLOps”为无标记重复中文标题，说明第 4275 行可能只是双语排版中的英文标题行，正文实质从第
+    4281 行“本章将研究…”才开始。
+  keep_split: true
+- 'no': 5147
+  overturn_probability: 0.2
+  alternative: 章内二级节标题
+  counter_evidence:
+  - 标题为“##”二级标题，无章号，可能是第 9 章或第 10 章下的一个节，而非独立最高层级章节。
+  - 前文第 5139 行“下一章将介绍…”为预告性文字，并不一定对应第 5147 行，第 5147 行也可能只是当前章末尾附录中的一个小节标题。
+  keep_split: true
+- 'no': 5557
+  overturn_probability: 0.2
+  alternative: 章内二级节标题
+  counter_evidence:
+  - 标题为“##”，无“第 X 章”编号，可能是第 11 章内的一个大节标题，而非全书最高层级章节。
+  - 后文第 5561-5564 行列出“本章涵盖的主题”，说明第 5557 行虽为章标题，但缺少章号编号，格式上仍属子层级。
+  keep_split: true
+- 'no': 5840
+  overturn_probability: 0.15
+  alternative: 文末索引页标题（附录性质）
+  counter_evidence:
+  - “Index”为英文索引标题，且使用“##”二级标题格式，可能只是附录或后记的一部分索引页，不具备章节统领性。
+  - 索引通常为参考工具书，不包含正文内容，强行划分为一章可能导致章节划分过碎，不符合“统领性”语义特征。
+  keep_split: true

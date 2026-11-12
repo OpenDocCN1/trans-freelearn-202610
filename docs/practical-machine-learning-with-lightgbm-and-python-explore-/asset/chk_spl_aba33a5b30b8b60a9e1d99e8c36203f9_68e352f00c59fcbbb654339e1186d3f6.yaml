@@ -1,0 +1,64 @@
+reviews:
+- 'no': 0
+  overturn_probability: 0.95
+  alternative: 书名/封面标题/元数据
+  counter_evidence:
+  - 该行是图书封面主标题，包含长副标题，长度远超30字，不符合章标题格式特征。
+  - 该行后无章节概述段落，紧随其后的是空行与致谢页，不具备统领后续正文内容的语义。
+  keep_split: false
+- 'no': 195
+  overturn_probability: 0.8
+  alternative: 部分说明/部分概述/章节组引言
+  counter_evidence:
+  - 该行虽为一级标题，但后文紧跟部分内容介绍段落与章节列表（行201-204），更像是部分章的引言页而非独立章节。
+  - 列表项明确列出了该部分包含的后续章节，说明本行是对后续章节的罗列说明，而非章节正文起始。
+  keep_split: false
+- 'no': 206
+  overturn_probability: 0.75
+  alternative: 章内小标题/第一节标题
+  counter_evidence:
+  - 该行为二级标题(##)，缺少"第 1 章"等最高层级章序号，不符合只划分全书最高层级大章的编号特征。
+  - 紧接部分概述与章节列表之后，语义上更可能是第1部分下的首节，而非独立成章。
+  keep_split: false
+- 'no': 762
+  overturn_probability: 0.7
+  alternative: 章内小标题/第二节标题
+  counter_evidence:
+  - 该行为二级标题(##)，无显式章序号；前一章参考文献位于行757-760，该行紧随其后可能为第1章内延续小节。
+  - 标题使用破折号连接两个概念（装袋与提升），更像是章内专题小节而非统领全章的概括性大章标题。
+  keep_split: false
+- 'no': 1141
+  overturn_probability: 0.7
+  alternative: 章内小标题/第三节标题
+  counter_evidence:
+  - 该行为二级标题(##)，无章序号，无法确认为全书最高层级章节。
+  - 标题含"概览"一词，语义上更像是章内导论或小节主题，而非独立大章。
+  keep_split: false
+- 'no': 1750
+  overturn_probability: 0.65
+  alternative: 章内小标题/第四节标题
+  counter_evidence:
+  - 该行为二级标题(##)，标题较长且包含多个工具对比，语义上更像某章内的专题小节。
+  - 后文虽有章节引言，但缺少显式最高层级标记，可能为第二部分或第四章下的子节。
+  keep_split: false
+- 'no': 2227
+  overturn_probability: 0.8
+  alternative: 部分说明/部分概述/章节组引言
+  counter_evidence:
+  - 与第1部分标题同为部分概述，后文紧跟内容简介与章节列表（行2233-2236），属于目录性说明页。
+  - 将其单独分章会导致"第二部分"占用章节编号，但实际内容是对后续多章的概述，不符合章标题统领单一章节正文的要求。
+  keep_split: false
+- 'no': 2237
+  overturn_probability: 0.6
+  alternative: 章内小标题/第五节标题
+  counter_evidence:
+  - 该行为二级标题(##)，无"第 5 章"显式编号，可能是第二部分下的首节。
+  - 后文直接是章节引言与技术要求，结构虽类似章开头，但缺少最高层级标记，不应单独作为全书最高层级章节。
+  keep_split: false
+- 'no': 2645
+  overturn_probability: 0.6
+  alternative: 章内小标题/第六节标题
+  counter_evidence:
+  - 该行为二级标题(##)，无章序号，标题长度较长。
+  - 位于第二部分中，可能是该部分下的第3章子节，缺少显式最高层级章标记，不应独立分章。
+  keep_split: false

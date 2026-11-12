@@ -1,0 +1,17 @@
+# AWS
+
+AWS is one of the leading players in the global cloud computing marketplace. AWS offers many cloud-based products and services, including databases, machine learning (ML), analytics, networking, storage, developer tools, and enterprise applications. The idea behind AWS is to offer businesses an affordable and scalable solution to their computing needs, regardless of their size or industry.
+
+A key advantage of AWS is elasticity, meaning servers and services can be stopped and started quickly and at will, scaling from zero machines to thousands. The elasticity of the services goes hand in hand with its primary pricing model of pay-as-you-go, meaning customers only pay for the services and resources they use without any upfront costs or long-term contracts. This elasticity and pricing allow businesses to scale computing needs as needed, on an ad hoc and granular level, and then only pay for what they use. This approach has transformed how businesses scale IT resources and applications, enabling them to react quickly to changing business needs without incurring the heavy costs traditionally associated with hardware and software procurement and maintenance.
+
+Another advantage is the global reach of AWS. AWS services are available in many regions across the globe. Regions are geographically separated, and each region is further divided into availability zones. The region-zone setup allows users to create globally distributed and redundant infrastructure to maximize resiliency and architect for disaster recovery. The regional data centers also allow users to create servers and services close to end users, minimizing latency.
+
+# Core services
+
+The core AWS services provide computing, networking, and storage capability. AWS's compute services include Amazon Elastic Compute Cloud (EC2), which offers configurable virtual machines to customers, and AWS Lambda, a serverless compute platform that allows you to run code without the need to provision and manage servers. In ML, both EC2 instances and Lambda functions are often used to train and validate or serve models via API endpoints. The elastic nature of EC2 servers allows ML engineers to scale up training servers to many thousands, which can significantly speed up training or parameter-tuning tasks.
+
+AWS's storage and database services, such as Amazon Simple Storage Service (S3) and Amazon RDS (Relational Database Service), offer reliable, scalable, and secure data storage solutions. These services manage storage infrastructure and offer high-level features such as backups, patch management, and vertical and horizontal scaling. S3 is a widely used service for data engineering and ML. S3 offers low-cost, highly redundant secure storage that scales beyond exabytes.
+
+AWS also offers data warehousing solutions with Amazon Redshift. Large enterprises frequently use Redshift as a warehouse or the basis of a data lake, meaning it's often a data source for ML solutions.
+
+AWS also offers networking services to help businesses meet complex networking and isolation needs. AWS Direct Connect allows customers to set up a dedicated network connection from a customer's site to the AWS cloud. Routing and name servers can be managed with Amazon Route 53, a flexible and scalable Domain Name System (DNS) service.
