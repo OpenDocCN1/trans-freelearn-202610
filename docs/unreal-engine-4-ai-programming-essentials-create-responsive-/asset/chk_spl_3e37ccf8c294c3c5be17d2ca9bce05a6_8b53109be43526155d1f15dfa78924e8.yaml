@@ -1,0 +1,78 @@
+reviews:
+- 'no': 0
+  overturn_probability: 0.25
+  alternative: 书名/封面标题（书籍元数据）
+  counter_evidence:
+  - 这是以#开头的书籍整体标题，长度超过30字且含冒号和省略号，更像封面元数据而非章节标题
+  - 正文之前的内容虽可统一为一章，但书名行本身不具备统领后续特定章节内容的语义，不应作为章标题分割
+  keep_split: true
+- 'no': 188
+  overturn_probability: 0.1
+  alternative: 第一章标题（未编号导论）
+  counter_evidence:
+  - 该行无最高层级序号（如“第1章”或“1. ”），仅为“## 游戏 AI 简介”，严格按编号特征可能不应作为最高层级大章分割
+  - 前文已有大量前言材料，此处可能只是前言延续而非新章
+  keep_split: true
+- 'no': 347
+  overturn_probability: 0.1
+  alternative: 第2章标题
+  counter_evidence:
+  - 序号为“2 ”而非“第 2 章”，且前文第一章（no:188）无数字序号，序号体系不连贯
+  - 可能为子章节或部分标题被误判为最高层级章
+  keep_split: true
+- 'no': 642
+  overturn_probability: 0.15
+  alternative: 第3章标题（无序号）
+  counter_evidence:
+  - 该行无任何序号，仅凭语义判断，可能是正文中大段内容的段落小标题
+  - 前文第2章有序号，本章突然无序号，编号特征不符合最高层级大章
+  keep_split: true
+- 'no': 850
+  overturn_probability: 0.3
+  alternative: 英文章标题/排版噪声
+  counter_evidence:
+  - 全书其余章标题均为中文，此行突兀出现英文标题，可能是代码注释、图片说明或OCR残留
+  - 纯英文标题不符合中文图书章节命名习惯，更像排版噪声而非正式章标题
+  keep_split: true
+- 'no': 1111
+  overturn_probability: 0.15
+  alternative: 第5章标题
+  counter_evidence:
+  - 序号“5”与前文出现的章序号存在跳跃（中文部分无“3”“4”的对应中文章标题），序号体系不连贯
+  - 可能为非章节性的大节标题而非最高层级章
+  keep_split: true
+- 'no': 1431
+  overturn_probability: 0.7
+  alternative: 正文小标题/讨论性标题
+  counter_evidence:
+  - 标题末尾有问号“？”，直接违反“标题末尾绝无句号（。.？！”）的格式规则
+  - 问号结尾更像正文内部的疑问式小标题或讨论点，而非正式章节标题
+  keep_split: false
+- 'no': 1657
+  overturn_probability: 0.2
+  alternative: 第7章标题（无序号）
+  counter_evidence:
+  - 无序号，且前文第5章（no:1111）后直接出现此标题，序号跳跃
+  - 可能为正文中的大节标题而非最高层级章
+  keep_split: true
+- 'no': 1988
+  overturn_probability: 0.25
+  alternative: 第8章标题/正文大节标题
+  counter_evidence:
+  - 标题过长且包含多个动词短语“巡逻、追击和攻击”，更像是正文中某个大节的描述性标题
+  - 无序号，仅凭语义判断，可能是段落小标题被误判
+  keep_split: true
+- 'no': 2355
+  overturn_probability: 0.3
+  alternative: 书末总结章/正文反思性小节
+  counter_evidence:
+  - 标题末尾有问号“？”，违反格式规则
+  - “我们学到了什么？”更像是正文中的反思性小节标题，而非独立章节
+  keep_split: true
+- 'no': 2510
+  overturn_probability: 0.25
+  alternative: 索引附录标题/正文小标题
+  counter_evidence:
+  - 使用###三级标题，与全书章标题的##二级标题层级不一致
+  - “索引”本身是字母表索引列表，不具备统领后续正文内容的语义，更像附录材料
+  keep_split: true

@@ -1,0 +1,11 @@
+# # Path Finding
+
+We will break the operation of Path Finding into different components that all work cohesively. The first component is NavMesh, which represents the traversable path. This isn't the only Navigable Mesh generation component, but this is also the most commonly used representation of the Navigable Mesh. Another component is NavMeshModifiers, which can serve different purposes. A few examples are as follows:
+
++   * **Influence Mapping**: This allows you to feed the AI input information based on their location on NavMesh
++   * **Null Paths**: These simply allow you to cut out areas of NavMesh
++   * **Allowed Paths**: These simply allow you to block any AI that isn't allowed to navigate this area of NavMesh
+
+# # The A* algorithm
+
+At the core of the Path Finding system is an algorithm that calculates the shortest navigable path between two points on NavMesh. Dijkstra's algorithm is named after the computer scientist Edsger Dijkstra, who originally created it in 1956 and later published it in 1959 to find the shortest paths between two points. There are a few path finding algorithms worth mentioning, but the most commonly used in gaming is a variant of Dijkstra's algorithm. The variant is called the A* algorithm. A* works by having a list of traversable points. Then, from the start position, we want to search for the shortest path in each available direction. We can determine this by heuristic values. These values will tell us how much it costs to traverse to the next point based on some predefined rules. In A*, we traverse from a point to another point to reduce the exploration cost. The big difference between the two algorithms is the fact in A* that you have a heuristic value, which affects your pathing decisions. Heuristic values are obstacles to the predictive cost to travel to the next possible point. When the path is generated, we want the lowest heuristic value. So this means that by setting the heuristic values to 0, the algorithm is the same as Dijkstra's. Dijkstra's algorithm scans more nodes, usually making it less efficient because it doesn't predict the cost of traversing paths.

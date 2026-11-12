@@ -1,0 +1,101 @@
+chapter_starts:
+- 'no': 0
+  confidence: 0.9
+  final_reason: 规则明确规定前言、致谢等正文之前的内容统一划分为一章；no:0为书名/封面元数据，属正文前范畴，故作为第1章起始。
+  accepted_evidence:
+  - 判断方：正文之前的书名及前言材料，按规则统一划分为一章
+  - 规则：前言、序言、致谢、关于作者等正文之前的内容，统一划分为一章
+  rejected_evidence:
+  - 复核方：书名行长度超30字且含冒号省略号，更像封面元数据而非章标题
+  need_human_review: false
+- 'no': 188
+  confidence: 0.95
+  final_reason: 正文第一章标题，独立成行、无终止标点，后接章节概述与子节，语义统领后续内容；复核方“无序号”的反对不足以推翻语义判断。
+  accepted_evidence:
+  - 判断方：一级章标题，独立成行、无结束标点，后接章节概述与子节
+  - 上下文：前文0-187均为前言材料，本行是正文第一章
+  rejected_evidence:
+  - 复核方：无最高层级序号，可能是前言延续
+  need_human_review: false
+- 'no': 347
+  confidence: 0.98
+  final_reason: 符合“Y. ”最高层级编号格式，独立成行，后接本章涵盖内容；前一章无序号不影响其作为第2章的判定。
+  accepted_evidence:
+  - 判断方：带最高层级序号“2 ”的章标题，独立成行，后接本章涵盖内容
+  - 上下文：第2章，紧接第1章
+  rejected_evidence:
+  - 复核方：序号体系不连贯，前文第一章无数字序号
+  need_human_review: false
+- 'no': 642
+  confidence: 0.9
+  final_reason: 虽无数字序号，但作为第3章语义明确，独立成行、无终止标点，后接概述与子内容，前文第2章于附近结束，上下文连贯。
+  accepted_evidence:
+  - 判断方：章标题，独立成行、无结束标点，语义统领后续概率技术内容
+  - 上下文：第2章结束于附近，本行开启新章
+  rejected_evidence:
+  - 复核方：无序号，可能是段落小标题
+  need_human_review: false
+- 'no': 850
+  confidence: 0.85
+  final_reason: 独立成行、无终止标点，后接“本章将涵盖的主题”列表，语义明显为第4章起始；英文标题虽突兀但非排版噪声，书中多处出现英文术语。
+  accepted_evidence:
+  - 判断方：英文章标题，独立成行，后接章节涵盖主题列表
+  - 上下文：第4章，紧接第3章
+  rejected_evidence:
+  - 复核方：全书其余为中文，可能是OCR残留或排版噪声
+  need_human_review: false
+- 'no': 1111
+  confidence: 0.98
+  final_reason: 符合“5 ”最高层级编号格式，独立成行，后接行为树内容，序号5对应书中第5章；前文章节显示不一致不影响本行作为最高层级章的判定。
+  accepted_evidence:
+  - 判断方：带最高层级序号“5 ”的章标题，独立成行，后接行为树内容
+  - 上下文：第5章
+  rejected_evidence:
+  - 复核方：序号跳跃，中文部分无3、4对应标题
+  need_human_review: false
+- 'no': 1431
+  confidence: 0.8
+  final_reason: 虽以问号结尾，但上下文优先：单独成行、后接章节概述、前文第5章于附近结束，且书中目录明确将其列为第6章，问号为该书章标题惯例而非小标题特征。
+  accepted_evidence:
+  - 判断方：章标题，格式与语义明显为新章起始
+  - 上下文：第6章，书中目录（no:103）明确记载
+  rejected_evidence:
+  - 复核方：标题末尾有问号，违反格式规则
+  need_human_review: false
+- 'no': 1657
+  confidence: 0.9
+  final_reason: 虽无数字序号，但作为第7章语义明确，独立成行、无终止标点，后接群体行为等高级移动内容，上下文连贯。
+  accepted_evidence:
+  - 判断方：章标题，独立成行，后接群体行为等高级移动内容
+  - 上下文：第7章
+  rejected_evidence:
+  - 复核方：无序号，可能是正文大节标题
+  need_human_review: false
+- 'no': 1988
+  confidence: 0.9
+  final_reason: 独立成行、无终止标点，长度小于30字，语义概括巡逻追击攻击实战，作为第8章起始；复核方“过长”证据不成立。
+  accepted_evidence:
+  - 判断方：章标题，独立成行，后接AI组件结合实战内容
+  - 上下文：第8章
+  rejected_evidence:
+  - 复核方：标题过长且含多个动词短语，像大节描述性标题
+  need_human_review: false
+- 'no': 2355
+  confidence: 0.8
+  final_reason: 书末总结章，语义概括全书，虽以问号结尾但属章标题惯例，独立成行、后接章节回顾，复核方“反思性小节”证据不足。
+  accepted_evidence:
+  - 判断方：书末总结章，语义概括全书，虽有问号但属章标题
+  - 上下文：第9章
+  rejected_evidence:
+  - 复核方：标题末尾有问号，违反格式规则，像反思性小节
+  need_human_review: false
+- 'no': 2510
+  confidence: 0.85
+  final_reason: 规则明确文末索引划分为一章，虽为###级标题但符合例外规定，后接字母索引列表，无需合并入前一章。
+  accepted_evidence:
+  - 判断方：文末索引标题，按规则单独划分为一章
+  - 规则：文末索引也划分为一章
+  rejected_evidence:
+  - 复核方：###三级标题层级不一致，索引不具备统领后续正文语义
+  need_human_review: false
+rejected_lines: []
