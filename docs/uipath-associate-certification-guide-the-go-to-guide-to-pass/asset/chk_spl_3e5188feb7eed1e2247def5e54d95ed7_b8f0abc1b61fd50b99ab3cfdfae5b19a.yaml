@@ -1,0 +1,71 @@
+reviews:
+- 'no': 45
+  overturn_probability: 0.8
+  alternative: 正文前材料段落（前言/前言材料章的正文内容）
+  counter_evidence:
+  - 该行为二级标题（##），非全书最高层级章标题；
+  - 同页存在“## 关于作者”“## 关于审稿人”等同级标题，若前言独立成章则判断标准不一致；
+  - 规则规定前言、致谢、关于作者等正文前材料应“统一划分为一章”，应与第0-44行的献词、关于作者等合并为同一前言材料章，而不应在第45行单独切分。
+  keep_split: false
+- 'no': 163
+  overturn_probability: 0.05
+  alternative: 第1部分概览段落（若不分章，可并入第1章）
+  counter_evidence:
+  - 部分标题有时仅作篇幅概览，不包含独立正文，若后续内容直接为第1章，部分标题可与首章合并处理。
+  keep_split: true
+- 'no': 174
+  overturn_probability: 0.2
+  alternative: 第一章正文段落/章内导读（若不分章，属于第1章开头）
+  counter_evidence:
+  - 该行为二级标题（##），编号仅为“1 ”而非“第 1 章”；
+  - 在“# 第 1 部分”之后，该行更可能是部分下的第一节编号而非最高层级章节；
+  - 下方紧接着章内主题列表（186-191行），更像章内导读。
+  keep_split: true
+- 'no': 456
+  overturn_probability: 0.2
+  alternative: 第二章正文段落（若不分章，属于第2章开头）
+  counter_evidence:
+  - 同为二级标题，编号为“2 ”而非“第 2 章”；
+  - 与第1章标题格式一致，但缺少显式章序语义，可能被误认为部分内的章节编号。
+  keep_split: true
+- 'no': 770
+  overturn_probability: 0.2
+  alternative: 第三章正文段落/章内概览（若不分章，属于第3章开头）
+  counter_evidence:
+  - 标题为“## 3 介绍 UiPath Orchestrator”，虽有数字编号，但与前文“第 X 章”表述不一致；
+  - 位于第3章正文之前，可能为章内概览节。
+  keep_split: true
+- 'no': 1284
+  overturn_probability: 0.35
+  alternative: 第3章延伸章节或第4章正文段落（若不分章，属于第3章后续内容或第4章开头）
+  counter_evidence:
+  - '该标题完全缺少数字章序号，与前文“## 1 / ## 2 / ## 3”格式不一致；'
+  - 其语义“在 UiPath 生态系统中创建、部署和执行 RPA 进程”紧承第3章 Orchestrator 内容，可能是第3章的延伸实战章节而非独立第4章。
+  keep_split: true
+- 'no': 1808
+  overturn_probability: 0.05
+  alternative: 第2部分概览段落（若不分章，可并入第5章）
+  counter_evidence:
+  - 部分标题通常不包含实质正文，若后续直接为第5章，部分标题可与第5章合并。
+  keep_split: true
+- 'no': 1823
+  overturn_probability: 0.15
+  alternative: 第五章正文段落（若不分章，属于第5章开头）
+  counter_evidence:
+  - 二级标题，编号“5 ”而非“第 5 章”；
+  - 位于“# 第 2 部分”之后，可能为部分下的章节编号而非全书最高层级章。
+  keep_split: true
+- 'no': 2207
+  overturn_probability: 0.4
+  alternative: 第六章引言节或控制流专题小节（若不分章，属于第6章内子节）
+  counter_evidence:
+  - 标题为英文且无数字编号，与前后中文章节格式不一致；
+  - 其下方出现多个同级别“##”标题（如“## 序列示例”“## 什么是流程图？”），说明2207可能只是控制流专题的引言节而非独立第6章。
+  keep_split: true
+- 'no': 2732
+  overturn_probability: 0.15
+  alternative: 第七章正文段落（若不分章，属于第7章开头）
+  counter_evidence:
+  - 二级标题，编号“7 ”而非“第 7 章”；
+  - 在“# 第 2 部分”下，可能为部分章节编号而非独立最高层级章。
+  keep_split: true

@@ -1,0 +1,43 @@
+reviews:
+- 'no': 6608
+  overturn_probability: 1.0
+  alternative: 空行/排版断行
+  counter_evidence:
+  - 该行内容为空，不包含任何可读文本，不满足章标题最基本的语义要求
+  - 章标题必须独立承载标题语义并统领后续正文，空行仅属段落间距或排版噪声
+  keep_split: false
+- 'no': 7325
+  overturn_probability: 0.9
+  alternative: 章标题名部分（与上一行“## 15”共同构成第15章完整标题）
+  counter_evidence:
+  - 行7323“## 15”与行7325“## 发票处理 - 执行者”相邻且均为二级标题，明显是同一章标题被折行拆分
+  - 章节起始应以章号行为准或两行合并视为同一标题，行7325单独看仅为章名补充，缺乏独立分章依据
+  keep_split: false
+- 'no': 7921
+  overturn_probability: 0.15
+  alternative: 正文章节标题（第16章）
+  counter_evidence:
+  - 标题仅以数字“16”开头，未使用“第 16 章”或“16. ”等规范最高层级章号格式
+  - 采用“##”二级标题而非一级标题“#”，可能对应下层级标题而非全书最高层级章节
+  keep_split: true
+- 'no': 8097
+  overturn_probability: 0.35
+  alternative: 附录/练习部分小标题
+  counter_evidence:
+  - 无章号，且“模拟考试 1”属于书末练习或测试板块，语义更接近附录性质而非正文章节
+  - 前文仅为第16章的过渡语，本行更可能是第16章下属的模拟练习部分，不应独立为最高层级章节
+  keep_split: false
+- 'no': 8313
+  overturn_probability: 0.25
+  alternative: 正文章节标题（第18章）
+  counter_evidence:
+  - 章号“18”与前文第16章及模拟考试1无章号形成明显编号跳跃，章号体系混乱
+  - “模拟考试 2”同属考试练习内容，与模拟考试1同性质，不宜单独设为正文章节
+  keep_split: true
+- 'no': 8510
+  overturn_probability: 0.1
+  alternative: 文末附录章节
+  counter_evidence:
+  - “附录”作为正文之后的补充材料，语义属于辅助索引性质而非正文章节
+  - 无章号，且前文已为模拟考试2，该行可能仅为书末索引目录起始，不应独立占用章节编号
+  keep_split: true

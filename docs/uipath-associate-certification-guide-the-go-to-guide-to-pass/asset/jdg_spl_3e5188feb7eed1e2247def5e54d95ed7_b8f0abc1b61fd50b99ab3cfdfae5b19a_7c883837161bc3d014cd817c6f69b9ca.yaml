@@ -1,0 +1,81 @@
+chapter_starts:
+- 'no': 0
+  confidence: 0.95
+  final_reason: 规则：前言、致谢、关于作者等正文前材料统一划分为一章，自文档起始行0开始，不应在行45单独切分
+  accepted_evidence:
+  - 行0为书名封面，行6-15为献词，行17贡献者，行19关于作者，行29关于审稿人，行45前言，均属正文前材料
+  rejected_evidence:
+  - 复核方指出行45不应单独切分，应与0-44及后续前言材料合并
+  need_human_review: false
+- 'no': 163
+  confidence: 1.0
+  final_reason: 部分标题“第 1 部分”，符合部分-章节模式，单独成行，应划分新章
+  accepted_evidence:
+  - 行163为“# 第 1 部分：RPA 的重要性”，单独成行
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 174
+  confidence: 0.95
+  final_reason: 第1章标题，对应章节概览中的“第 1 章”，单独成行，语义统领后续内容
+  accepted_evidence:
+  - 行174标题“1 自动化之旅与识别合适的业务流程”，与行62章节概览一致
+  rejected_evidence:
+  - 复核方称其为二级标题，但部分-章节模式下章可用数字编号
+  need_human_review: false
+- 'no': 456
+  confidence: 0.95
+  final_reason: 第2章标题，对应章节概览“第 2 章”，单独成行，语义清晰
+  accepted_evidence:
+  - 行456标题“2 UiPath 生态系统”，与行64章节概览一致
+  rejected_evidence:
+  - 复核方称编号格式不一致，但属同一章格式
+  need_human_review: false
+- 'no': 770
+  confidence: 0.95
+  final_reason: 第3章标题，对应章节概览“第 3 章”，单独成行，语义清晰
+  accepted_evidence:
+  - 行770标题“3 介绍 UiPath Orchestrator”，与行66章节概览语义对应
+  rejected_evidence:
+  - 复核方称可能为章内概览，但后文为第3章正文
+  need_human_review: false
+- 'no': 1284
+  confidence: 0.9
+  final_reason: 无数字编号但语义明确对应第4章“在 UiPath 生态系统中创建、部署和执行 RPA 流程”，单独成行
+  accepted_evidence:
+  - 行1284标题与行68第4章描述高度一致
+  rejected_evidence:
+  - 复核方称缺少章序号，但规则允许语义判断
+  need_human_review: false
+- 'no': 1808
+  confidence: 1.0
+  final_reason: 部分标题“第 2 部分”，符合部分-章节模式，单独成行，应划分新章
+  accepted_evidence:
+  - 行1808为“# 第 2 部分：UiPath Studio”
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 1823
+  confidence: 0.95
+  final_reason: 第5章标题，对应章节概览“第 5 章”，单独成行，语义清晰
+  accepted_evidence:
+  - 行1823标题“5 了解变量和参数”，与行70章节概览一致
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 2207
+  confidence: 0.9
+  final_reason: 第6章标题，英文标题对应“了解不同的控制流”，单独成行，语义统领后续控制流内容
+  accepted_evidence:
+  - 行2207标题“Understanding Different Control Flows”，与行72第6章描述对应
+  rejected_evidence:
+  - 复核方称下方有同级标题，但属排版层级不严谨，不影响行2207作为章起始
+  need_human_review: false
+- 'no': 2732
+  confidence: 0.95
+  final_reason: 第7章标题，对应章节概览“第 7 章”，单独成行，语义清晰
+  accepted_evidence:
+  - 行2732标题“7 使用 UiPath 操作数据”，与行74章节概览语义对应
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 45
+  reason: 规则规定前言等正文前材料统一划分为一章，行45“## 前言”属于前言材料章内部，不应单独切分为新章
+  need_human_review: false
