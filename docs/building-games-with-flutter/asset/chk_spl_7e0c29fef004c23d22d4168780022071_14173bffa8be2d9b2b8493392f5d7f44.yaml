@@ -1,0 +1,73 @@
+reviews:
+- 'no': 1
+  overturn_probability: 0.8
+  alternative: 书名/扉页/封面标题
+  counter_evidence:
+  - 该行仅为图书主标题（# Flutter 游戏构建指南），属书名页元数据，不具备章标题应有的统领后续正文的语义功能；
+  - 规则中“前言等正文之前内容统一划分为一章”指向实质性前置材料（如前言、致谢），其合理起点应为“## 前言”而非书名行本身；
+  - 若将书名行单独分章，会导致该章几乎不含正文，违背章标题需独立成行并覆盖后续内容的原则。
+  keep_split: false
+- 'no': 2
+  overturn_probability: 0.15
+  alternative: 部分标题（第 1 部分）
+  counter_evidence:
+  - 部分标题在部分-章节模式下虽需分章，但本行内容极简，紧随其后的是章节列表而非正文，可能仅为逻辑分组的分隔页；
+  - 若该部分标题页不包含独立正文且仅起目录性引导作用，分章会造成章节粒度过细。
+  keep_split: true
+- 'no': 3
+  overturn_probability: 0.1
+  alternative: 第 1 章标题
+  counter_evidence:
+  - 标题后紧接“欢迎阅读...”等引言性段落，可能被误认为章节前言而非正文起始；
+  - 但其编号连贯、格式规范且后有子节与正文，误报可能性仍然较低。
+  keep_split: true
+- 'no': 4
+  overturn_probability: 0.12
+  alternative: 第 2 章标题
+  counter_evidence:
+  - 标题编号“第2章”与前文“第 1 章”在空格使用上不一致，虽不影响语义但增加了格式特征的不确定性；
+  - 该标题前为第 1 章末尾的摘要与问题，符合章节间界限特征，但若前一章内容极短，本行可能只是子章节引导。
+  keep_split: true
+- 'no': 5
+  overturn_probability: 0.08
+  alternative: 第 3 章标题
+  counter_evidence:
+  - 标题前为第 2 章末尾摘要与问题，后接游戏设计正文，表面符合章标题上下文特征；
+  - 但需警惕其可能只是第 1 部分下的延续性子章节，而非独立最高层级章节。
+  keep_split: true
+- 'no': 6
+  overturn_probability: 0.2
+  alternative: 第 2 部分标题
+  counter_evidence:
+  - 第2部分：图形与声音
+  - 虽符合部分标题格式，但其前文第 3 章结束后直接出现，中间无明显空白或章节间隔，可能属于连续内容的逻辑分组而非独立物理章节；
+  - 部分标题下仅列出子章节清单，未直接接正文，分章的必要性不如章标题强。
+  keep_split: true
+- 'no': 7
+  overturn_probability: 0.1
+  alternative: 第 4 章标题
+  counter_evidence:
+  - 标题“第4章：绘制和动画化图形”紧随第 2 部分标题，属部分下首章，分章表面正确；
+  - 但其前文为部分介绍性段落，若审查员误将部分介绍当作独立章节，则本行分章可能与部分标题重复。
+  keep_split: true
+- 'no': 8
+  overturn_probability: 0.08
+  alternative: 第 5 章标题
+  counter_evidence:
+  - 标题格式与前文章节一致，后接技术要求与正文，语义统领输入控制内容；
+  - 但本章标题前为第 4 章末尾摘要，若第 4 章内容不足以构成独立章节，本行可能只是继续前文而非新章。
+  keep_split: true
+- 'no': 9
+  overturn_probability: 0.07
+  alternative: 第 6 章标题
+  counter_evidence:
+  - 标题独立成行，无末尾标点，后接音频相关技术要求与正文，表面符合章标题所有规则；
+  - 反证不足，但需注意若音频章节内容极短，可能更适合合并至上一章。
+  keep_split: true
+- 'no': 10
+  overturn_probability: 0.15
+  alternative: 第 7 章标题
+  counter_evidence:
+  - 标题“第 7 章：设计您自己的关卡”位于文本后半部，后接关卡设计正文，符合章标题语义；
+  - 但考虑到本文本在该标题后即截断，无法确认是否有后续章节，若本章内容极短且无后续，可能只是附录性章节，不过仍应分章。
+  keep_split: true

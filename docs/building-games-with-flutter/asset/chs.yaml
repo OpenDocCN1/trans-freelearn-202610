@@ -1,0 +1,1748 @@
+- '# Flutter 游戏构建指南'
+- ''
+- ''
+- ''
+- ''
+- ''
+- '## 前言'
+- ''
+- 凭借其强大的工具和快速实现能力，Flutter 提供了一种构建可扩展跨平台应用的新方式。在本书中，您将学习如何在现有知识基础上构建，并使用 Flutter 作为创建游戏的基础。
+- ''
+- "本游戏开发书籍采用从零开始构建完整游戏的实践方法。您将了解如何使用 Flame 库入门并构建一个简单的动画示例来测试 Flame。然后，您将发现如何在 Flutter\
+  \ 游戏中组织和加载图片和音频。随着深入，您将了解游戏循环并将其设置为快速高效的处理。本书还指导您使用 Tiled 创建地图，向玩家可以与之交互的地图中添加精灵，并了解如何使用瓦片地图碰撞为玩家创建可行走的路径。最后，您将学习如何使用人工智能\
+  \ (AI) 使敌人更加智能。\n\n读完本书，您将有信心使用 Flutter 构建有趣的跨平台游戏。\n\n## 本书适合谁阅读\n\n如果您是一名希望将 Flutter\
+  \ 编程技能应用于游戏开发的 Flutter 开发人员，那么本书适合您。具备基本的 Dart 知识将有助于理解所涵盖的概念。\n\n## 本书内容概要\n\n\
+  第 1 章，Flutter 游戏入门，解释了为何使用 Flutter/Dart 进行游戏编程。您将了解 Flutter 和 Dart 为何能实现跨平台游戏的快速开发，并掌握游戏编程涉及的关键概念。\n\
+  \n第 2 章，使用 Flame 引擎，概述了本书中用于构建游戏的 Flame 引擎。\n\n第 3 章，构建游戏设计，介绍了我们将要构建的游戏及其设计。我们将在整本书中构建的游戏是“淘金热”，我们将了解如何规划游戏的内容和屏幕以制定游戏计划。\n\
+  \n第 4 章，绘制和动画化图形，详细介绍了如何在屏幕上绘制和动画化图形。您将了解什么是精灵，如何在屏幕上移动它们，学习如何为精灵制作逼真的动画，并了解如何检测屏幕上的精灵何时相互碰撞。\n\
+  \n第 5 章，使用输入移动图形，详细介绍了如何使用触摸事件和屏幕按钮移动图形。通过绘制屏幕摇杆，我们展示了如何根据用户对摇杆的控制在屏幕上移动精灵，并了解如何使用触摸屏移动精灵。\n\
+  \n第 6 章，播放音效和音乐，详细介绍了如何响应游戏事件播放音乐和声音。\n\n第 7 章，设计自己的关卡，解释了如何创建游戏关卡并在它们之间导航。\n\n\
+  第 8 章，为 Web 和桌面缩放游戏，详细介绍了如何通过为不同屏幕分辨率缩放图形，使同一游戏在不同平台上运行，以及由于手机缺乏物理按键，计算机与手机之间的导航可能有何不同。\n\
+  \n第 9 章，实现高级图形效果，解释了如何使用强大的粒子和图层效果增强游戏图形。\n\n第 10 章，使用 AI 制作智能敌人，介绍了使用 AI 为游戏添加智能。您将了解如何使用\
+  \ AI 让敌人在玩家靠近时追击玩家，从而表现得更加智能，以及如何让玩家在导航地图时避开障碍物。\n\n第 11 章，完成游戏，向您展示了如何向游戏添加额外屏幕并在它们之间导航。它还解释了您还可以学习什么以及在哪里寻求帮助。\n\
+  \n## 如何充分利用本书\n\n您需要具备一些 Flutter 和 Dart 知识，但无需游戏开发知识。本书不教授 Flutter 或 Dart。\n\n假设您对自己选择的开发工具（例如\
+  \ Visual Studio Code）有良好的了解。\n\n| 涵盖的软件/硬件 | 操作系统要求 |\n|---|---|\n| Flutter v3.0.0\
+  \ | Windows、macOS 或 Linux |\n| Flame v1.0.0 | |\n| Dart v2.17.0 | |\n\n如果您使用的是本书的数字版，我们建议您亲自输入代码或从本书的\
+  \ GitHub 仓库中获取代码（下一节中提供了链接）。这样做可以帮助您避免与复制和粘贴代码相关的潜在错误。\n\n本书的代码是使用 Visual Studio\
+  \ Code 开发的，但同样适用于 Android Studio 和其他编辑器。\n\n## 下载示例代码文件\n\n您可以从 GitHub 下载本书的示例代码文件：https://github.com/PacktPublishing/Building-Games-with-Flutter。如果代码有更新，将在\
+  \ GitHub 仓库中更新。\n\n我们还提供来自丰富图书和视频目录的其他代码包，可在 https://github.com/PacktPublishing/\
+  \ 上查看。请查看！\n\n## 下载彩色图片\n\n我们还提供一个包含本书中使用的截图和图表彩色图像的 PDF 文件。您可以在此处下载：https://static.packt-cdn.com/downloads/9781801816984_ColorImages.pdf\n\
+  \n## 本书使用的约定\n\n本书中使用了多种文本约定。\n\n### 文本中的代码\n\n表示文本中的代码词、数据库表名、文件夹名、文件名、文件扩展名、路径名、虚拟\
+  \ URL、用户输入和 Twitter 账号。示例：“现在，您已完成 pubspec.yaml 文件的更新，请保存更改。”\n\n代码块设置如下：\n\n```\n\
+  void main() async {\nfinal goldRush = GoldRush();\nWidgetsFlutterBinding.ensureInitialized();\n\
+  await Flame.device.fullScreen();\nawait Flame.device.setPortrait();\nrunApp(\nGameWidget(game:\
+  \ goldRush)\n);\n}\n```\n\n当我们希望引起您对代码块特定部分的注意时，相关行或项目将以粗体显示：\n\n```\ncd build/web/\n\
+  python3 -m http.server 8000 &\n```\n\n任何命令行输入或输出均按以下方式编写：\n\n```\nflutter pub get\n\
+  ```\n\n### 粗体\n\n表示新术语、重要单词或屏幕上可见的单词。例如，菜单或对话框中的单词以 **粗体** 显示。示例：当游戏中的玩家死亡并返回游戏菜单时，将显示\
+  \ **“游戏结束!!”** 屏幕。\n\n### 提示或重要说明\n\n显示如下。\n\n## 联系我们\n\n我们始终欢迎读者的反馈。\n\n### 一般反馈\n\
+  \n如果您对本书的任何方面有疑问，请发送电子邮件至 **customercare@packtpub.com**，并在邮件主题中注明书名。\n\n### 勘误\n\
+  \n尽管我们已尽全力确保内容的准确性，但错误难免发生。如果您在本书中发现错误，我们将不胜感激若能将其报告给我们。请访问 [www.packtpub.com/support/errata](www.packtpub.com/support/errata)\
+  \ 并填写表格。\n\n### 盗版\n\n如果您在互联网上以任何形式发现我们作品的非法副本，我们将不胜感激若能向我们提供位置地址或网站名称。请使用指向材料的链接联系我们：[copyright@packt.com](copyright@packt.com)。\n\
+  \n### 如果您有兴趣成为作者\n\n如果您在某个主题上有专业知识，并有兴趣编写或参与编写图书，请访问 [authors.packtpub.com](authors.packtpub.com)。\n\
+  \n\n\n\n\n## 第 1 部分：游戏基础\n\n本部分将向您介绍 Flutter 和 Flame 游戏引擎，以及本书中将构建的游戏（通过描述游戏设计来介绍）。\n\
+  \n本部分包含以下章节：\n\n- 第 1 章，Flutter 游戏入门\n- 第 2 章，使用 Flame 引擎\n- 第 3 章，构建游戏设计\n\n##\
+  \ 第 1 章：Flutter 游戏入门\n\n欢迎阅读《使用 Flutter 构建游戏》！\n\n我们将向您展示如何使用 Google 的 **Flutter**\
+  \ 框架来构建可在移动端和 Web 平台上运行的可扩展游戏。Flutter 最初看起来可能是构建游戏的一个奇怪选择，因为存在更成熟的游戏开发框架，例如 Unity\
+  \ 或 Unreal Engine，但其中许多工具非常复杂，难以学习，并且需要很长时间才能开始使用它们制作游戏。\n\n在您现有的 Flutter 和 **Dart**\
+  \ 知识基础上，我们将带您完成构建可在所有支持平台上运行的 2D 游戏所需的步骤。从基础开始，我们将在此知识基础上逐步深入更高级的游戏主题。读完本书后，您将能够制作包含以下内容的\
+  \ 2D 游戏：\n\n- 在屏幕上动画化图形\n- 播放音效和音乐\n- 使用键盘、摇杆或手势控制玩家\n- 检测图形碰撞\n- 创建游戏关卡地图并在其中导航\n\
+  - 设计游戏\n- 在不同平台上缩放游戏\n- 高级图形效果\n- 智能敌人\n\n我们将通过示例介绍核心概念，并在此基础上逐章构建，最终打造一个可在不同设备上运行的完整游戏。每一章都将包含代码示例，帮助您学习游戏开发的基础模块，并提供代码、图像和声音资源来构建我们的完整游戏。该游戏涉及玩家在地图上导航，躲避敌人，同时尽可能多地收集金币。\n\
+  \n在本章中，我们希望深入了解 Flutter 和 Dart 以及它们具有哪些特性，使其成为游戏开发的绝佳选择。这将让您了解为什么 Flutter 和 Dart\
+  \ 可以用于在许多平台上运行快速、流畅的游戏。\n\n在本章中，我们将介绍以下主题：\n\n- 使用 Flutter\n- 使用 Dart\n- 总结本书\n\
+  - 创建简单示例动画\n\n我们有很多内容要讲，那就开始吧！\n\n### 技术要求\n\n在本章中，您应该已设置好代码编辑器，并安装了最新版本的 Flutter\
+  \ 和 Dart。本书基于 Flutter v3.0.0、Dart 2.17.0 和 Flame v1.0.0。\n\n本书的所有源代码均可从 Git 仓库下载：https://github.com/PacktPublishing/Building-Games-with-Flutter.git。\n\
+  \n本章特有的源代码可在此处找到：https://github.com/PacktPublishing/Building-Games-with-Flutter/tree/main/chapter01。\n\
+  \n### 使用 Flutter\n\n您可能之前使用过 Flutter 来构建应用程序或网站，并可能在疑惑 Flutter 是否足够好用于制作出色的游戏。Flutter\
+  \ 是游戏编程的绝佳选择，原因如下：\n\n- Flutter 具有非常快的渲染时间，且可在多个平台上扩展。\n- Flutter 游戏旨在以每秒 60 帧 (FPS)\
+  \ 的速度绘制以实现流畅动画，或者在支持更高刷新率的设备上以 120 FPS 绘制。\n- Flutter 代码使用单一代码库来简化维护，并使代码能够在许多设备上运行。\n\
+  - Flutter 核心使用 C++ 编写，这使游戏以原生速度运行。\n- Flutter 是开源的，因此成本效益高（企业喜欢 Flutter，因为他们不必像使用某些其他框架那样为昂贵的许可证付费）。\n\
+  \n与其他框架不同，Flutter 不使用原生组件，而是绘制自己的组件，所有组件均使用闪电般快速的 Skia 图形引擎绘制。Skia 是一个开源图形库，可在各种硬件和软件平台上运行，它抽象掉了每个平台上不同的特定于平台的图形\
+  \ API。这些 API 提供绘制形状、文本和图像的功能。\n\n现在我们已经解释了 Flutter，让我们深入了解 Flutter 使用的语言 Dart。\n\
+  \n### 使用 Dart\n\n在本节中，我们将讨论 Dart 及其使其非常适合游戏开发的语言特性。我们将讨论 Dart 如何编译，以及它如何使用线程和垃圾回收。我们还将讨论一些出色的特性，例如热重载如何帮助我们快速开发代码。\n\
+  \n### 编译类型\n\n计算机编程语言可以是静态或动态的。静态语言会在运行前编译为机器码，例如 C++。动态语言由解释器执行，因此在运行前不需要编译（例如\
+  \ JavaScript）。\n\n随着编程语言的发展，虚拟机被发明出来，这使得将语言移植到新硬件平台变得更加容易。代码被转换为字节码，然后在虚拟机上运行。Java\
+  \ 是一种使用字节码的语言示例。\n\n虚拟机在软件中模拟硬件，并可以移植到不同的硬件平台上运行，从而使代码可移植。\n\n随着编译器技术的发展，**即时编译器**（**JIT**）被发明出来，通过即时编译代码来提高在虚拟机上运行的代码的性能。\n\
+  \n将程序在运行前编译为机器码被称为**预编译**（**AOT**）编译。Dart 的独特之处在于它同时支持 JIT 和 AOT 编译类型，这为开发人员提供了巨大的优势。开发人员可以分发使用\
+  \ AOT 编译的应用程序以获得最大速度和性能，这有助于游戏流畅运行。\n\n当以 JIT 编译模式运行时，Flutter 和 Dart 有一个称为**有状态热重载**（stateful\
+  \ hot reload）的惊人功能，可以缩短开发时间。\n\n### 热重载\n\nFlutter 使用 JIT 编译器，让您在不到一秒钟的时间内重新加载并运行代码。这样您可以更改代码并立即在模拟器或\
+  \ Web 浏览器中看到更改，同时保留游戏的内部状态。\n\n这对游戏开发非常有帮助，因为您可以修改代码并立即看到更改效果，极大地加快了开发速度。这就像用代码作画！\n\
+  \n例如，您可能将图形重新定位几个像素或更改颜色。在传统开发中，您需要重新构建代码（可能需要很多分钟）才能看到更改，但在 Flutter 中，这是即时的。\n\n\
+  ### 原生桥接\n\n例如 JavaScript 这样的动态语言通过桥与平台上的原生代码通信，这非常缓慢。它们这样做是为了绘制其运行平台的原生组件等操作。\n\
+  \n**原生桥接**用于为所有代码提供动态代码和原生代码之间的接口，发送**用户界面（UI）**组件的状态信息。\n\n在 Flutter 中，情况并非如此，Skia\
+  \ 在画布上绘制所有组件（并使它们看起来和感觉像原生组件），因此它绕过了对原生桥接的需求。\n\n这一点非常重要，因为如果使用原生桥接，您还需要在绘制之前传递\
+  \ UI 组件的状态，这会减慢一切速度，并可能导致 UI 跳过帧，而不是保持动画流畅。\n\n### 垃圾回收\n\nDart 使用先进的垃圾回收系统，可以快速处理内存中的短生命周期对象。\n\
+  \n由于 Flutter 每帧都会重新构建 widget 树，因此它会丢弃旧对象并重新创建新对象。在 Java 等语言中，这会引起问题，但 Dart 针对此进行了优化，可以非常快速地处理。\n\
+  \n大多数语言都需要使用锁来访问共享内存，但 Dart 大多数时候可以在不使用锁的情况下执行垃圾回收。这种快速的垃圾回收带来了非常流畅的图形性能，极大地增强了我们的游戏。\n\
+  \n### 线程控制\n\n由于线程的实现方式，开发人员在 Dart 中对代码执行有更多控制权。因为 Dart 通常不需要像大多数其他语言那样使用锁来访问共享内存，所以我们对代码执行有更多控制权。\n\
+  \n没有锁，我们就避免了一种称为竞态条件的调用，当单独的线程想要访问共享资源（在此例中为内存）但无法访问时会发生这种情况，因为另一个线程已锁定访问权限，必须先释放锁，其他线程才能访问它。\n\
+  \n在本节中，我们讨论了 Dart 语言的特性如何帮助我们编写快速游戏。在下一节中，我们将总结您在本书中将学到的内容。\n\n### 总结本书\n\n在以下小节中，让我们开始看看每一章将探讨什么。\n\
+  \n### Flame\n\n在下一章（第 2 章，使用 Flame 引擎）中，我们将介绍如何使用 Flame 引擎库设置游戏循环的基础知识，以及如何组织资源以实现高效加载。\n\
+  \n### 设计游戏\n\n\n\n\n\n提前规划非常重要，这样在游戏开发过程中，你就有蓝图可供参考。\n\n在 *第3章，构建游戏设计* 中，我们将讨论如何规划和设计游戏，我会在全书中持续引用这个示例。\n\
+  \n### 图形\n\n除了文本游戏，所有游戏都有图形。在决定是否购买或游玩你的游戏时，图形是人们首先看到的内容，因此如果你想出售游戏，让图形看起来漂亮至关重要。\n\
+  \n在 *第4章，绘制和动画化图形* 中，我们将向你展示如何在屏幕上绘制图形，以及如何为其添加动画使其看起来真实。我们还会展示如何检测图形之间的碰撞，例如子弹击中敌人，这可用于触发另一个动画，例如敌人爆炸。\n\
+  \n### 输入\n\n所有游戏都需要某种输入，无论是触摸屏幕、按键还是移动虚拟摇杆来控制角色。\n\n在 *第5章，使用输入移动图形* 中，我们将解释控制角色的多种方法，使输入和动画同步，并感觉流畅且响应迅速。\n\
+  \n### 声音\n\n音效和音乐在游戏中扮演着重要角色，以增强玩家的体验。背景音乐在任何游戏中也起着重要作用；在游戏过程中，音乐可以改变以突出游戏中的重要内容，或改变游戏的氛围。\n\
+  \n在 *第6章，播放音效和音乐* 中，我们将讨论如何响应游戏事件同步播放音效，例如当子弹与敌人碰撞时播放爆炸音效。\n\n### 关卡设计\n\n大多数游戏并非在单屏上进行，需要精心考虑每个关卡的设计方式。\n\
+  \n在第7章，设计你自己的关卡中，我们将解释如何加载当前关卡所需的图形、声音和关卡数据，以确保不会遇到内存或性能问题，这在为移动电话等低端设备开发游戏时可能是一个真正的问题。\n\
+  \n我们还将解释如何制作大于物理屏幕的地图，以及如何在屏幕上导航你的玩家，并在玩家移动时滚动地图。\n\n### 跨平台游戏\n\n使用 Flutter 和 Dart\
+  \ 的关键优势之一是其跨平台功能，可使游戏在多种设备上运行。我们将在第8章，为 Web 和桌面端缩放游戏中更详细地讨论此主题。\n\n### 高级图形效果\n\n\
+  如前所述，图形是用户首先看到的内容，因此必须看起来令人印象深刻。\n\n在第9章，实现高级图形效果中，我们讨论高级图形效果以及可以采取什么措施让你的游戏看起来惊艳。\n\
+  \n我们将使用粒子效果来增强现有图形，使游戏真正脱颖而出。\n\n我们还将讨论如何利用图形层在屏幕上有大量动画时更高效地绘制图形。\n\n### 游戏 AI\n\
+  \n当游戏更加逼真时会更有趣，我们可以通过 **人工智能（AI）** 来实现这一点。\n\n在第10章，使用 AI 制作智能敌人中，我们将向你展示如何制作能够从一个位置移动到另一个位置、避开障碍物，并在看到你时追赶你的敌人。\n\
+  \n### 完成游戏\n\n在第11章，完成游戏中，我们将讨论完成游戏所需的一些内容。这将包括大多数游戏都有的其他屏幕，例如用于品牌展示的启动屏幕和用于游戏选项（例如控制音乐音量）的设置屏幕。\n\
+  \n我们将讨论如何在应用商店出售你的游戏，以及如何通过应用内购买增加游戏销量。\n\n最后，到本书这里为止，我们将教你游戏编程的基础知识，但你还有更多可以学习的内容。我们将讨论如果你想制作更高级的游戏，还应该学习什么，以及在制作游戏时遇到困难可以去哪里寻求帮助。\n\
+  \n现在我们已对全书将要涵盖的章节做了概述，在下一节中，我们将通过一个简单的动画示例，向你展示在 Flutter 中开始游戏编程是多么容易。\n\n### 创建一个简单的示例动画\n\
+  \n下面是一个你可以运行的代码示例，展示如何轻松地绘制和动画化一个简单的形状。\n\n要运行此示例，请执行以下步骤：\n\n- 1. 首先，通过运行以下命令在命令行中创建一个新项目：\n\
+  \n```\nflutter create goldrush\n```\n\n- 2. 在代码编辑器中打开 Flutter 创建的 `goldrush` 文件夹，然后打开\
+  \ `pubspec.yaml` 文件。\n\n- 3. 将 description 更新为以下内容：\n\n```\ndescription: Flutter\
+  \ game from Building Games with Flutter\n```\n\n- 4. 将环境 SDK 更新为以下内容：\n\n```\nsdk:\
+  \ \">=2.17.0 <3.0.0\"\n```\n\n这是撰写本书时的最新 SDK 版本，支持 Flutter 和 Dart 的最新功能。\n\n- 5.\
+  \ 在 dependencies 部分，我们需要添加一个名为 Flame 的库（我们将在下一章中详细介绍）：\n\n```\ncupertino_icons:\
+  \ ^1.0.2\nflame: 1.0.0\n```\n\nFlame 是一个很棒的库，为我们提供了使用 Flutter 和 Dart 构建游戏所需的大量功能。\n\
+  \n- 6. 现在我们已完成对 `pubspec.yaml` 文件的更新，请保存更改。\n\n- 7. 保存更改后，你的代码编辑器应该会下载新的依赖项。如果没有更新，你可以在项目所在目录的命令行中手动运行以下命令：\n\
+  \n```\nflutter pub get\n```\n\n- 8. 接下来，打开 lib/main.dart 文件并删除所有样板代码。\n\n- 9. 然后，我们需要设置此示例所需的导入：\n\
+  \n```\nimport 'dart:ui';\nimport 'package:flame/flame.dart';\nimport 'package:flame/palette.dart';\n\
+  import 'package:flutter/material.dart';\nimport 'package:flame/game.dart';\n```\n\
+  \n- 10. 在这之下，我们需要添加 main 函数来初始化游戏和屏幕：\n\n```\nvoid main() async {\nfinal goldRush\
+  \ = GoldRush();\nWidgetsFlutterBinding.ensureInitialized();\nawait Flame.device.fullScreen();\n\
+  await Flame.device.setPortrait();\nrunApp(\nGameWidget(game: goldRush)\n);\n}\n\
+  ```\n\n在这里，我们设置了 `GoldRush` 游戏对象（我们将在下一节定义），并告诉 Flame 我们希望以全屏和竖屏模式运行游戏。\n我们还运行了应用，传递了\
+  \ `GameWidget`。\n\n- 11. 接下来，让我们设置游戏小部件以及游戏中将使用的一些变量：\n\n```\nclass GoldRush with\
+  \ Loadable, Game {\nstatic const int squareSpeed = 250;\nstatic final squarePaint\
+  \ =\nBasicPalette.green.paint();\nstatic final squareWidth = 100.0, squareHeight\
+  \ =\n100.0;\nlate Rect squarePos;\nint squareDirection = 1;\nlate double screenWidth,\
+  \ screenHeight, centerX,\ncenterY;\n}\n```\n\n### 让我们分解一下这里所做的操作：\n\n- 在这里，我们将正方形的动画速度设置为\
+  \ 250；你可以将其调整为更高的数字来加快动画速度，或调整为更低的数字来减慢动画速度。\n- 我们将方框的颜色设置为绿色。\n- 方框的宽度和高度设置为固定的\
+  \ 100 像素大小。\n- 因为我们将调整方框的位置，所以我们使用 `Rect` 表示正方形位置，它将在 `onLoad` 中初始化，一旦我们计算出屏幕中心作为起始位置。\n\
+  - 我们将方向设置为正值，这将增加 `x` 值并将方框向右移动。\n- 最后，我们设置了屏幕宽度和高度以及屏幕中心的变量。\n\n- 12. 在 `onLoad`\
+  \ 函数中，我们将根据屏幕尺寸计算方框的中心起始位置：\n\n```\n@override\nFuture<void> onLoad() async {\n \
+  \ super.onLoad();\n  screenWidth =\n      MediaQueryData.fromWindow(window).size.width;\n\
+  \  screenHeight =\n      MediaQueryData.fromWindow(window).size.height;\n  centerX\
+  \ = (screenWidth / 2) - (squareWidth / 2);\n  centerY = (screenHeight / 2) - (squareHeight\
+  \ / 2);\n  squarePos = Rect.fromLTWH(centerX, centerY,\n      squareWidth, squareHeight);\n\
+  }\n```\n\n- 13. 接下来，我们将定义 render 函数，它在屏幕上方框当前位置绘制方框：\n\n\n\n```\n@override\nvoid\
+  \ render(Canvas canvas) {\n  canvas.drawRect(squarePos, squarePaint);\n}\n```\n\n\
+  - 14. 接下来，根据正方形的速度和方向，再加上自上一帧以来经过的时间，每帧更新正方形的位置。\n\n然后，如果正方形的位置已到达屏幕边缘，我们可以翻转正方形的方向：\n\
+  \n```\n@override\nvoid update(double deltaTime) {\n  squarePos = squarePos.translate(squareSpeed\
+  \ * squareDirection * deltaTime, 0);\n  if (squareDirection == 1 && squarePos.right\
+  \ > screenWidth) {\n    squareDirection = -1;\n  } else if (squareDirection == -1\
+  \ && squarePos.left < 0) {\n    squareDirection = 1;\n  }\n}\n```\n\n- 15. 现在，我们可以运行示例，看到我们简单的绿色正方形从左向右动画，当碰到屏幕边缘时反转方向。\n\
+  \n现在，我们已经完成了一个简单的动画示例，展示入门有多么容易，并让你体会使用Flutter进行游戏编程的感觉。\n\n请随意修改代码，比如更改正方形的颜色或在不同位置添加更多正方形。在下一章中，我们将深入研究这段代码。\n\
+  \n### 摘要\n\n本章解释了为什么Flutter和Dart非常适合多平台游戏开发。我们解释了书中各部分将重点关注的游戏构建块。最后，我们向你展示了一个可供尝试的简单代码示例。\n\
+  \n在下一章中，我们将开始使用Flame，这是与Flutter配合使用以添加与游戏编程相关功能的游戏引擎库。\n\n### 问题\n\n- 1. Flutter绘制的最小恒定帧率是多少？\n\
+  - 2. Flutter使用的图形引擎名称是什么？\n- 3. 我们可以用Flutter支持哪些平台？\n- 4. 什么是Skia，它用于什么？\n- 5. Dart支持哪些类型的编译，为什么它们有好处？\n\
+  - 6. 为什么有状态热重载对快速游戏开发有好处？\n- 7. Dart的垃圾回收为什么对游戏中使用的平滑动画有好处？\n\n## 第2章：使用Flame引擎\n\
+  \n**Flame**是一个作为库添加到你的Flutter项目中的游戏引擎。它为我们提供模块，允许构建游戏。这些包括对图像和精灵、动画、音频、碰撞检测的支持，以及更高级的2D物理和瓦片地图模块。\n\
+  \n在本章中，我们将重点介绍如何开始使用Flame并了解游戏引擎的基础知识，包括其资源、游戏循环和组件。了解所有这些很重要，这样你才能很好地理解该库以及所有内容如何组合在一起以使用Flame制作游戏。\n\
+  \n一旦你熟悉Flame的基础知识，就可以在本书后面学习更高级的主题。\n\n在本章中，我们将涵盖以下主题：\n\n- 组织游戏中的资源\n- 添加游戏循环\n\
+  - 使用组件\n\n### 技术要求\n\n要查看本章中提到的源代码，可以在 https://github.com/PacktPublishing/Building-Games-with-Flutter/tree/main/chapter02\
+  \ 下载。\n\nFlame项目发展非常迅速，因此有关任何更改或新功能，请参阅 https://flame-engine.org/docs/#/ 上的最新文档。撰写本文时，最新版本为1.0.0，已与Flutter\
+  \ v3.0.0及更高版本集成。\n\n要将最新版本安装到你的项目中，请将以下内容添加到你的 `pubspec.yaml` 文件中：\n\n```\ndependencies:\n\
+  flame: 1.0.0\n```\n\n保存文件后，依赖项将被下载，Flame模块将变得可用。如果你遵循了上一章末尾的示例，那么你已经完成了此设置，请确保已这样做。\n\
+  \nFlame的最新版本始终可以在 https://pub.dev/packages/flame/install 的 `pub` 存储库中找到。\n\n###\
+  \ 组织游戏中的资源\n\n你的游戏将包含许多资源，例如图像、音频、字体、地图和游戏数据。\n\n与Flutter一样，Flame支持资源的异步加载和缓存。但是，它还在此功能基础上构建了针对图像和音频的有用功能，以帮助有效地使用和管理这些资源。例如，如果你有一个包含许多动画帧的精灵表，你可以非常轻松地加载它们并将其拆分为单独的精灵。这在第4章“绘制和动画化图形”中有更深入的介绍。\n\
+  \n你的所有资源都放在Flutter的 `assets` 文件夹下。我推荐以下文件夹结构来保持一切井井有条：\n\n```\nassets\n--- audio\n\
+  -------- music\n----------- music_menu.mp3\n-------- sounds\n------------- sound_shoot.mp3\n\
+  -- images\n-------- sprites\n----------- sprite_player.png\n----------- sprite_enemy.png\n\
+  -- fonts\n-------- font_highscore.ttf\n-- maps\n-------- map_level.tmx\n```\n\n\
+  如果存储在 `assets` 文件夹内，Flutter和Flame允许你按喜好组织资源。\n\n在你的 `pubspec.yaml` 文件中，前面的资源应该如下所示：\n\
+  \n```\nflutter:\n- assets/audio/music/music_menu.mp3\n- assets/audio/sound/sound_shoot.mp3\n\
+  - assets/images/sprites/player.png\n- assets/images/sprites/enemy.png\n- assets/fonts/font_highscore.ttf\n\
+  - assets/maps/map_level.tmx\n```\n\n我建议在资源类型前加前缀，以便非常清楚地知道资源是什么。例如，你可能有一个播放器声音和一个播放器精灵，所以将它们命名为\
+  \ `sound_player.mp3` 和 `sprite_player.png` 可以更清楚地表明它们代表的内容。\n\n此外，你应该在游戏或关卡开始时预先加载当前屏幕或关卡的任何游戏资源。Flame有一个\
+  \ `onLoad()` 函数可用于覆盖此操作，我们将在下一节中进一步讨论。\n\nFlame有一些辅助函数来加载不同的资源类型：\n\n```\nawait\
+  \ Flame.images.load('player.png');\nawait FlameAudio.audioCache.load('explosion.mp3');\n\
+  ```\n\n这里，`load` 函数将资源加载到Flutter的内部内存缓存中以便更快地访问。另外，使用async/await很重要，因为资源是异步加载的，因此我们需要等待资源加载完成后再继续。\n\
+  \n现在我们了解了如何将资源添加到游戏中，让我们来谈谈Flame如何根据当前游戏状态不断重绘屏幕。\n\n### 添加游戏循环\n\n**游戏循环**控制游戏状态的任何更新，然后在屏幕上绘制图形以反映当前游戏状态。\n\
+  \n例如，玩家可能会将他们控制的角色向右移动，这将在游戏状态更新期间增加玩家精灵的 _x_ 位置。既然游戏状态已更改，玩家将在新位置绘制。\n\n在更复杂的游戏中，数百个敌方精灵也可能在移动。因此，这些精灵的状态也需要计算。\n\
+  \n这在一个循环中继续，当前屏幕上的任何内容都会被更新并重绘。每次重绘称为 **游戏帧**。\n\n每秒绘制的帧数反映了游戏的流畅程度。在Flutter中，应用和游戏以每秒60\
+  \ **帧（FPS）** 重绘，以允许非常流畅的重绘。\n\n在Flame中，有两个我们可以重写的函数来控制游戏状态的更新和绘制：\n\n```\nvoid update\
+  \ (double deltaTime)\nvoid render (Canvas canvas)\n```\n\n让我们更详细地看看这些函数。\n\n###\
+  \ 更新\n\n在 `update` 函数中，传递了一个名为 `deltaTime` 的参数，它告诉我们自上一帧绘制以来经过的时间。我们需要这个值来确保我们的精灵在不同设备上以一致的速度运行。设备的运行速度取决于处理能力，因此如果我们忽略delta值并仅以最大速度运行所有内容\n\
+  \n\n\n### 渲染\n\n`render` 函数具有一个 Canvas 对象参数，它是一个我们绘图的空白画布。`canvas` 类具有许多函数，可直接在画布上绘制形状和图像，如下所示：\n\
+  \n```\ncanvas.drawRect(squarePos, squarePaint);\n```\n\n在此，我们使用精灵的位置和绘制对象的颜色来在画布上绘制矩形，以应用绘图样式。绘制对象代表类似于\
+  \ Web 中 CSS 的样式，通过将样式应用于正方形。在此示例中，位置是通过固定量手动更新的；但是，在 [第 5 章，使用输入移动图形] 中，我们将详细介绍如何根据用户输入来控制位置。\n\
+  \n在 Flame 中，我们通过扩展某个基类来实现游戏循环，该基类会自动持续调用我们的 `update` 和 `render` 函数。在来自 [第 1 章，Flutter\
+  \ 游戏入门] 的第一个示例中，我们使用了 `Game` 混入。这使我们能够覆盖 `update` 和 `render` 函数。这让我们对整个过程有很多控制权，但一旦开始绘制和更新大量精灵，就会变得非常繁琐。然后，当你开始添加输入控件和碰撞检测时，一切都会很快变得难以维护和跟踪。\n\
+  \n幸运的是，Flame 提供了类来帮助处理这些问题，随着游戏的增长，我们将在下一节中进一步讨论。\n\n### 使用组件\n\n与任何不断增长的代码库一样，拥有一个结构很重要。这样，随着我们为游戏添加更多功能，代码就易于维护。\n\
+  \n目前，我们的代码包含一个在屏幕上呈现和更新正方形的简单示例，使用 `Game` 混入来覆盖这些函数。使用 `Game` 混入让我们对代码有很大的控制权，但随着游戏的增长，我们将不得不编写大量额外代码来支持游戏。当你对\
+  \ Flame 和游戏编程更加熟悉并需要这种控制级别时，这很好。但是，开始时，最好从 `FlameGame` 类扩展。\n\n组件为我们提供了一种结构化的方式来组织游戏，随着游戏复杂性的增加。\n\
+  \n### FlameGame\n\n`FlameGame` 类基于 `Game` 混入，并添加了许多有用功能，以帮助我们管理随着游戏增长而增加的复杂性。这包括以下内容：\n\
+  \n- Flame 组件系统\n- 碰撞检测跟踪\n- `render` 和 `update` 的默认实现\n\nFlame 组件系统允许我们将游戏的一部分拆分为组件（类），这些组件表示游戏中的实体，例如玩家。例如，我们可以拥有一个\
+  \ `SpriteComponent` 组件来封装与玩家精灵相关的所有内容，以管理玩家碰撞到的任何对象的绘制和更新，或任何其他专门与玩家相关的状态。\n\n`FlameGame`\
+  \ 类维护游戏中所有组件的列表，并且可以根据需要动态地将这些组件添加到游戏中；例如，我们可能会将多个敌人 `SpriteComponent` 组件添加到游戏中，然后在玩家消灭敌人时将它们从游戏中移除。然后，`FlameGame`\
+  \ 类将遍历这些组件，指示每个组件更新并呈现自身。\n\nFlame 组件系统有多种不同类型的组件，可帮助管理游戏的不同部分。以下是一些最常见组件的列表：\n\n\
+  - `SpriteComponent`: 用于管理游戏中的任何精灵\n- `JoystickComponent`: 用于管理输入的虚拟摇杆\n- `TextComponent`:\
+  \ 我们在屏幕上绘制的文本，例如得分\n- `ParticleComponent`: 粒子图形效果\n\n组件系统的完整层次结构可在 https://docs.flame-engine.org/1.0.0/components.html\
+  \ 查看。\n\n正如你从 Flame 网站顶部的组件图中所见，有许多组件用于处理不同的事情，但大多数有趣的组件都继承自 `PositionComponent`。\n\
+  \n`PositionComponent` 组件代表屏幕上的一个对象，该对象具有用于跟踪组件位置、大小和角度方向的变量。\n\n`SpriteComponent`\
+  \ 继承自 `PositionComponent`，因此它默认获得这些变量，因为我们将需要定位和设置精灵的大小。\n\n然后它添加了一些更特定于精灵的额外变量，例如\
+  \ `renderFlipX` 和 `renderFlipY` 变量，用于反转绘制到画布上的任何内容。如果你有一个角色从左向右行走的图像，这很有用；通过将 `renderFlipX`\
+  \ 设置为 `true`，它将反向绘制精灵图像，使其看起来像是从右向左行走。\n\n添加到 `FlameGame` 类中的任何组件也可以进行碰撞检测跟踪，一旦我们设置了组件的边界框。设置好此功能后，我们将在我们覆盖的\
+  \ `onCollision` 函数中获得一个回调。这告诉我们我们的组件与哪些组件发生了碰撞。这使得原本相当难以跟踪的事情变得简单得多。我们将稍后更深入地讨论碰撞检测。\n\
+  \n### 将我们的代码转换为使用组件\n\n在本节中，我们将把之前的代码转换为使用组件，以提高代码的可读性和可维护性。为此，请执行以下步骤：\n\n- 在我们的\
+  \ `lib` 目录下创建一个名为 `components` 的新目录来存储组件。你可以在 Visual Studio Code 中通过右键单击 `lib` 文件夹并选择\
+  \ **新建文件夹** 来执行此操作。或者，你可以在 `lib` 目录的命令行中执行此操作：\n\n```\nmkdir components\n```\n\n\
+  - 在新的 `components` 目录中，创建一个名为 `player.dart` 的新文件，我们将在其中添加新的玩家组件代码。\n\n- 打开文件，让我们开始定义我们的玩家\
+  \ `PositionComponent`。在文件顶部，从 Flame 库导入组件包：\n\n```\nimport 'dart:ui';\nimport 'package:flame/components.dart';\n\
+  import 'package:flame/geometry.dart';\nimport 'package:flame/palette.dart';\nimport\
+  \ 'package:flutter/material.dart';\n```\n\n- 接下来，我们通过覆盖 `update` 和 `render` 函数来定义\
+  \ `Player` 类的轮廓：\n\n```\nclass Player extends PositionComponent {\n  @override\n\
+  \  void update(double deltaTime) {\n```\n\n\n\n\n\n```\nsuper.update(deltaTime);\n\
+  }\n@override\nvoid render(Canvas canvas) {\n    super.render(canvas);\n}\n}\n```\n\
+  \n- 5. 重写组件的一个要求是，我们必须为 update 和 render 函数都使用 super 调用基类。\n\n在 update 和 render 函数中，让我们将\
+  \ GoldRush 游戏类中的代码复制到 Player 类中，放在对基类的 super 调用之后：\n\n```\n@override\nvoid update(double\
+  \ deltaTime) {\n  super.update(deltaTime);\n  squarePos = squarePos.translate(squareSpeed\
+  \ *\n      squareDirection * deltaTime, 0);\n  if (squareDirection == 1 &&\n   \
+  \   squarePos.right > screenWidth) {\n    squareDirection = -1;\n  } else if (squareDirection\
+  \ == -1 &&\n      squarePos.left < 0) {\n    squareDirection = 1;\n  }\n}\n@override\n\
+  void render(Canvas canvas) {\n  super.render(canvas);\n  canvas.drawRect(squarePos,\
+  \ squarePaint);\n}\n```\n\n- 6. 在你的代码编辑器中，square 变量现在可能会被高亮显示为红色；这是因为我们尚未在这个类中定义这些变量。因此，要做到这一点，让我们从\
+  \ GoldRush 类中移动它们，并将以下内容添加到 Player 类的顶部：\n\n```\nstatic const int squareSpeed =\
+  \ 250;\nstatic final squarePaint =\n    BasicPalette.green.paint();\nstatic final\
+  \ squareWidth = 100.0,\n    squareHeight = 100.0;\nlate Rect squarePos;\nint squareDirection\
+  \ = 1;\nlate double screenWidth, screenHeight, centerX,\n    centerY;\n```\n\n-\
+  \ 7. 要计算初始 square 位置、屏幕尺寸和屏幕中心，让我们将 `onLoad` 函数从 `GoldRush` 类移动到我们的 `Player` 组件内部，放在定义变量的位置下方：\n\
+  \n```\n@override\nFuture<void> onLoad() async {\n  super.onLoad();\n\n  screenWidth\
+  \ =\n      MediaQueryData.fromWindow(window).size.width;\n  screenHeight =\n   \
+  \   MediaQueryData.fromWindow(window).size.height;\n  centerX = (screenWidth / 2)\
+  \ - (squareWidth / 2);\n  centerY = (screenHeight / 2) - (squareHeight / 2);\n \
+  \ squarePos = Rect.fromLTWH(centerX, centerY,\n      squareWidth, squareHeight);\n\
+  }\n```\n\n- 8. 现在，在 `GoldRush` 类中，你可以移除已移动到 `Player` 类的变量以及 `render`、`update` 和\
+  \ `onLoad` 函数。\n\n- 9. 接下来，让我们修改类定义，使用 `FlameGame` 类而不是 `Game` mixin：\n\n```\nclass\
+  \ GoldRush extends FlameGame {\n```\n\n- 10. 在 `GoldRush` 类的导入中，你可以清理此类中不再需要的用于\
+  \ `palette` 和 UI 的任何导入。\n\n现在我们将把 `Player` 组件添加到我们的 `FlameGame` 类中，以便它可以跟踪此组件用于绘制和更新目的。让我们将\
+  \ `Player` 组件添加到 `GoldRush` 的 `onLoad` 函数中：\n\n```\n@override\nFuture<void> onLoad()\
+  \ async {\n  super.onLoad();\n  add(Player());\n}\n```\n\n- 11. 然后，更新导入以添加 `Player`\
+  \ 组件：\n\n```\nimport 'components/player.dart';\n```\n\n- 12. 现在，如果你运行游戏，你会看到一切如常运行，绿色正方形从左向右动画并弹回两侧。\n\
+  \n因为我们将 `Player` 组件添加到了 `onLoad` 函数中，`FlameGame` 类现在正在跟踪该组件并调用其自身的 `onLoad` 函数来初始化精灵。然后，它会持续调用精灵的\
+  \ `update` 和 `render` 函数来为正方形制作动画。\n\n如前所述，使用 `FlameGame` 类的另一个绝佳功能是，一旦我们初始化了组件的边界框，就会为每个已注册组件提供碰撞检测跟踪。那么，让我们接下来做这件事。\n\
+  \n- 13. 在 `GoldRush` 类中，首先，我们按如下方式添加 `HasCollidables` mixin：\n\n```\nclass GoldRush\
+  \ extends FlameGame with HasCollidables {\n```\n\n这告诉 `FlameGame` 类开始跟踪我们想要跟踪的任何可碰撞对象。\n\
+  \n- 14. 在 `onLoad` 函数中，我们现在要添加一种特殊的可碰撞对象类型，叫做 `ScreenCollidable`，我们想要检查它。如果我们将 `ScreenCollidable`\
+  \ 添加到要跟踪的可碰撞组件列表中，每当我们的弹跳正方形碰到屏幕边缘时，都会收到通知：\n\n```\n@override\nFuture<void> onLoad()\
+  \ async {\n  super.onLoad();\n  add(Player());\n  add(ScreenCollidable());\n}\n\
+  ```\n\n- 15. 此外，让我们导入 `package:flame/components.dart`，`ScreenCollidable` 就在那里，如下所示：\n\
+  \n```\nimport 'package:flame/components.dart';\n```\n\n- 16. 现在，在我们的 `Player` 类中，在定义类的那一行，我们需要添加\
+  \ `HasHitboxes` 和 `Collidable` mixins：\n\n```\nclass Player extends PositionComponent\
+  \ with\n    HasHitboxes, Collidable {\n```\n\n这将允许我们在与屏幕边缘发生碰撞时，在 `onCollision`\
+  \ 函数中接收回调，我们将在下一步实现该函数。\n\n- 17. 通过添加以下内容来实现 `onCollision` 函数：\n\n```\n@override\n\
+  void onCollision(Set<Vector2> points,\n    Collidable other) {\n  if (other is ScreenCollidable)\
+  \ {\n    if (squareDirection == 1) {\n      squareDirection = -1;\n    } else {\n\
+  \      squareDirection = 1;\n    }\n  }\n}\n```\n\n在这里，当我们收到 `onCollision` 回调以告知我们与哪个组件发生了碰撞时，我们检查是否与\
+  \ `ScreenCollidable` 发生了碰撞，如果是，我们只需翻转正方形正在移动的方向。\n\n- 18. 既然我们现在使用内置的碰撞跟踪系统，就必须正确设置精灵的位置以便设置边界框，因此我们将使用从\
+  \ `PositionComponent` 组件继承的内置 position 变量。\n\n首先，你可以删除或注释掉 `squarePos` 矩形，因为我们不再需要它：\n\
+  \n```\n// late Rect squarePos;\n```\n\n- 19. 然后，在 onLoad 函数中，删除或注释掉以下行：\n\n```\n\
+  // squarePos = Rect.fromLTWH(centerX, centerY,\n//     squareWidth, squareHeight);\n\
+  ```\n\n- 20. 在此下方，我们将设置内部变量 `position` 和 `size`：\n\n```\nposition = Vector2(centerX,\
+  \ centerY);\nsize = Vector2(squareWidth, squareHeight);\n```\n\n在这里，我们基于现有变量设置位置和大小，这些变量用于计算屏幕中心，并为宽度和高度提供固定值。\n\
+  \n- 21. 接下来，我们需要为 `Hitbox` mixin 添加一个形状，否则它将无法检测到与任何东西的碰撞。根据你的精灵形状以及你希望用于碰撞检测的精灵点，你可以使用几种内置形状。最常见的是，你的精灵将是矩形/正方形，因此你可以使用\
+  \ `HitboxRectangle` 作为形状。但是，如果你的精灵是一个球，你会改用 `HitboxCircle`。你也可以创建自定义形状，但在大多数情况下，这是不必要的。\n\
+  \n我们的形状是一个正方形，所以让我们在刚刚设置好位置和大小的地方添加用于碰撞跟踪的形状，如下所示：\n\n```\naddHitbox(HitboxRectangle());\n\
+  ```\n\n- 22. 我们的 `onLoad` 函数现在应该如下所示：\n\n```\n@override\nFuture<void> onLoad() async\
+  \ {\n  super.onLoad();\n\n  screenWidth =\n      MediaQueryData.fromWindow(window).size.width;\n\
+  \  screenHeight =\n      MediaQueryData.fromWindow(window).size.height;\n  centerX\
+  \ = (screenWidth / 2) - (squareWidth / 2);\n  centerY = (screenHeight / 2) - (squareHeight\
+  \ / 2);\n  position = Vector2(centerX, centerY);\n  size = Vector2(squareWidth,\
+  \ squareHeight);\n  addHitbox(HitboxRectangle());\n}\n```\n\n- 23. 既然我们已移除了 squarePos\
+  \ 矩形，就需要更新 render 和 update 函数以使用内部 position 值：\n\n```\n@override\nvoid render(Canvas\
+  \ canvas) {\n  super.render(canvas);\n  renderHitboxes(canvas, paint: squarePaint);\n\
+  }\n```\n\n因为我们已经设置了一个形状相同并使用 PositionComponent 组件的位置和大小的 HitBox mixin，所以可以使用名为 renderHitboxes\
+  \ 的内置函数来绘制我们的形状。请注意，我们传入了 squarePaint 对象以保持外观一致。\n\n在 update 函数中，我们可以移除大量代码，因为更新位置现在变得简单得多，而方向变化已经由碰撞跟踪处理：\n\
+  \n```\n@override\nvoid update(double deltaTime) {\n  super.update(deltaTime);\n\
+  \  position.x +=\n      squareSpeed * squareDirection * deltaTime;\n}\n```\n\n现在我们的代码看起来更好了，Player\
+  \ 类正在处理更新其位置和渲染，以及处理任何碰撞。\n\n\n\n\n\n### 摘要\n\n在本章中，您了解了 Flame，这是一个用于使用 Flutter\
+  \ 构建游戏的出色库。此外，您还学习了如何设置 Flame 并组织资源。我们介绍了游戏循环，以及 `render` 和 `update` 函数为什么重要。最后，我们介绍了组件，并将现有代码转换为使用组件，以便随着游戏扩展而获得更有序的结构。\n\
+  \n在下一章中，我们将讨论如何使用设计模板来设计游戏，我们将为自己的游戏：金矿热！使用该模板。\n\n### 问题\n\n- 1. 传递给 `update` 函数的\
+  \ `deltaTime` 值代表什么？\n- 2. Flame 组件系统如何有益于您的代码？\n- 3. 检测与方形精灵碰撞时应使用什么形状？\n\n## 第\
+  \ 3 章：构建游戏设计\n\n现在我们已经讨论了 Flame 并展示了一些基本动画，我们想讨论一下在本书剩余部分中将要构建的游戏。\n\n该游戏将命名为 Gold\
+  \ Rush，并具有以下目标：\n\n- 避免受到僵尸和骷髅的攻击。\n- 探索地图，在死亡前收集尽可能多的金币。\n\n这将是一个简单的游戏，但通过添加大多数游戏中包含的许多常见功能，它将教您很多技能，包括以下内容：\n\
+  \n- 绘制精灵图形\n- 检测精灵之间的碰撞\n- 使用虚拟摇杆、触摸或键盘控制玩家\n- 播放音乐和音效\n- 绘制并移动比屏幕更大的地图\n- 绘制粒子和阴影等高级图形效果\n\
+  - 创建智能敌人\n- 在障碍物周围导航\n- 在游戏画面之间导航\n\n我们将逐一介绍这些主题，逐步构建出一个完整的游戏。在本章中，我们将介绍以下主题：\n\n\
+  - 规划游戏\n\n### 规划游戏\n\n让我们首先为我们的游戏定义一个概要，我们可以使用它来推广游戏，并向玩家简要说明他们为什么可能想玩这个游戏。以下是概要：\n\
+  \n_In Gold Rush, you play as an explorer who must travel across the land in search\
+  \ of wealth by collecting any gold coins you can find. Beware, though: the path\
+  \ ahead won't be easy. You must avoid the zombies and skeletons that roam the land\
+  \ in search of your blood!_\n\n一个简洁明了的摘要，告诉玩家游戏的目标是什么，以及他们必须做什么才能成功（收集尽可能多的金币），同时避免输掉游戏（通过避免被僵尸和骷髅攻击）。\n\
+  \n在大多数游戏中，您有一个代表您自己的主角。在我们的游戏中，这是 George。\n\n![](img/a63c3fccbe888cd4d04006b5e1b6c273_43_0.png)\n\
+  \n图 3.1 – 我们的主角，George\n\nGeorge 将由玩家通过触摸屏幕上的位置、控制屏幕上的摇杆或使用物理键盘上的按键来控制，在游戏地图中移动。\n\
+  \nGeorge 可以奔跑以试图逃离追逐他的敌人。他的健康值以百分比计算，初始为 100%，每次被僵尸或骷髅抓住时减少 25%。一旦 George 的健康值达到\
+  \ 0，游戏就结束了。\n\n游戏中有两种类型的敌人——僵尸和骷髅。\n\n![](img/a63c3fccbe888cd4d04006b5e1b6c273_44_0.png)\n\
+  \n图 3.2 – 我们的游戏敌人，僵尸和骷髅\n\n当 George 附近且在敌人的视线范围内时，敌人会追逐他。当他们抓住 George 时，他们会在撞击时爆炸并死亡，使\
+  \ George 的健康值减少 25%。\n\nGeorge 将冒被僵尸和骷髅杀死的风险，因为他可以通过避开敌人并收集散布在地图周围的金币而变得非常富有。\n\n\
+  ![](img/a63c3fccbe888cd4d04006b5e1b6c273_44_1.png)\n\n图 3.3 – George 收集以变得更富有的金币\n\
+  \n每次 George 收集一个旋转的金币时，他的得分增加 20 分。\n\nGeorge 有一个广阔的游戏世界可供探索，随着他的探索，游戏世界将在屏幕上滚动。\n\
+  \n![](img/a63c3fccbe888cd4d04006b5e1b6c273_44_2.png)\n\n图 3.4 – George 可以探索的游戏世界\n\
+  \n游戏世界大部分是草地，但有 George 可以遵循的路径。地图被水包围，George 无法越过水域。有一个中央钻石区域，是地图的焦点，并作为装饰被水包围。\n\
+  \n游戏世界由使用 **Tiled** 应用程序制作的地图块组成，这使我们能够有效地重复使用较小的地图块来制作较大的地图。以下图像用于创建我们的游戏世界地图（可在\
+  \ https://opengameart.org 获得），最初由 Luis Zuno 创建：\n\n![](img/a63c3fccbe888cd4d04006b5e1b6c273_45_0.png)\n\
+  \n图 3.5 – 用于创建我们游戏世界地图的地图块图\n\n游戏将使用音乐和音效来增强游戏体验。游戏进行时会播放背景音乐，其音量可以在游戏设置中更改。\n\n\
+  游戏过程中将使用三种音效：\n\n- George 移动 – George 移动时会持续播放的奔跑声。\n- 敌人死亡 – 每次敌人攻击 George 时，它会死亡并发出此声音。\n\
+  - 金币 – 每次 George 收集一枚金币时，此声音将播放。\n\n如果游戏在移动设备上被放入后台，声音将停止播放。\n\n现在我们已经讨论了游戏内容，让我们讨论一下游戏画面的设计以及如何在它们之间导航。\n\
+  \n### 设计游戏画面\n\n现在我们已经讨论了游戏的元素，让我们讨论一下游戏中将使用的画面以及玩家将如何在它们之间导航。\n\n以下是一个基本大纲，用于说明游戏画面的流程：\n\
+  \n![](img/a63c3fccbe888cd4d04006b5e1b6c273_46_0.png)\n\n图 3.6 – Gold Rush 游戏画面流程\n\
+  \n在这里，我们可以看到玩家在开始时会看到游戏菜单，他们可以在其中开始游戏、进入设置画面或退出游戏。\n\n如果他们选择 **开始游戏**，游戏将加载并开始运行。\n\
+  \n如果他们选择 **设置**，他们可以调整音乐，然后返回游戏菜单。\n\n当玩家在游戏中死亡时，将显示 **游戏结束!!** 画面，然后他们可以返回游戏菜单。\n\
+  \n让我们来看看这些画面的最终设计和外观。\n\n以下屏幕截图显示了游戏菜单画面：\n\n![](img/a63c3fccbe888cd4d04006b5e1b6c273_47_0.png)\n\
+  \n图 3.7 – Gold Rush 的游戏菜单画面\n\n以下是 **设置** 画面的外观：\n\n![](img/a63c3fccbe888cd4d04006b5e1b6c273_48_0.png)\n\
+  \n图 3.8 – Gold Rush 的设置画面\n\n图 3.9 显示了游戏结束时的画面：\n\n![](img/a63c3fccbe888cd4d04006b5e1b6c273_48_1.png)\n\
+  \n图 3.9 – Gold Rush 的 **游戏结束!!** 画面\n\n以下屏幕截图显示了 Gold Rush 中的 George、敌人、地图和虚拟控件：\n\
+  \n![](img/a63c3fccbe888cd4d04006b5e1b6c273_49_0.png)\n\n图 3.10 – 显示 George、敌人、地图和虚拟控件的游戏画面\n\
+  \n在本节中，我们介绍了游戏画面的外观以及如何在它们之间导航。\n\n### 摘要\n\n在本章中，我们讨论了游戏的目标以及精灵和画面的外观。\n\n在规划游戏时，尝试像本章中讨论的那样制定一份游戏设计文档，因为它将是您打算构建的游戏的有用蓝图，可在游戏开发过程中参考。\n\
+  \n尝试思考您想要添加的内容，即使您还不知道它最终的样子。如果您还没有决定使用哪些精灵，甚至可以画简单的火柴人来表示精灵。\n\n在下一章中，我们将开始构建游戏，从绘制和动画制作精灵开始。\n\
+  \n### 问题\n\n- 1. 为您的游戏编写概要是个好主意吗？\n- 2. 当敌人攻击 George 时，他会损失多少生命值？\n- 3. George 收集一枚金币能获得多少分？\n\
+  - 4. 地图上的水有什么用途？\n\n\n\n\n\n## 第2部分：图形与声音\n\n在本书的这一部分中，我们将演示如何使用Flame库的媒体功能来动画化图形并播放声音。我们还将讨论如何根据玩家输入来动画化图形。最后，我们将讨论关卡设计以及如何将游戏扩展到多个平台。\n\
+  \n本部分包含以下章节：\n\n- 第4章，绘制和动画化图形\n- 第5章，使用输入移动图形\n- 第6章，播放音效和音乐\n- 第7章，设计您自己的关卡\n\
+  - 第8章，为Web和桌面扩展游戏\n\n## 第4章：绘制和动画化图形\n\n在本章中，我们将超越绘制简单形状，讨论如何绘制和动画化大多数游戏中常见的像素图形。这将使我们的游戏看起来好得多，并随着角色在屏幕周围动画化而让游戏栩栩如生。\n\
+  \n在游戏编程中，绘制到屏幕上的图形或图像称为精灵，它可以是从单个非动画图像、带有多个动画帧的玩家角色，甚至是绘制在屏幕上其他图形后面的背景图像等任何东西。\n\
+  \n我们将首先展示如何加载和绘制一个简单的精灵来代替我们的方形，然后动画化精灵以显示移动。接下来，我们将在屏幕上移动精灵，动画将根据精灵当前移动的方向而变化。\n\
+  \n最后，我们将创建一个敌人精灵，让玩家精灵与其碰撞，在此基础上扩展我们的碰撞检测知识。\n\n因此，我们将涵盖以下主题：\n\n- 在屏幕上绘制\n- 使用精灵动画\n\
+  - 在屏幕上移动精灵\n- 与其他精灵碰撞\n\n让我们通过设置本章将使用的资源来开始。\n\n### 技术要求\n\n要查看本章的源代码，可以从 https://github.com/PacktPublishing/Building-Games-with-Flutter/tree/main/chapter04\
+  \ 下载。\n\n本章还需要下载一些图片用于动画。\n\n另外，我使用了从以下链接下载的精灵表：\n\n- 对于我们的玩家角色，我们将使用位于 https://github.com/PacktPublishing/Building-Games-with-Flutter/blob/main/chapter04/assets/images/george.png\
+  \ 的精灵表图片。\n- 对于敌人，我们将使用位于 https://github.com/PacktPublishing/Building-Games-with-Flutter/blob/main/chapter04/assets/images/zombie_n_skeleton.png\
+  \ 的精灵表图片。\n\n现在，我们将按照以下步骤将图片添加到游戏中：\n\n1. 打开文件管理器，进入项目的 `goldrush` 文件夹。\n2. 在 `goldrush`\
+  \ 文件夹中创建一个名为 `assets` 的文件夹。\n3. 进入 `assets` 文件夹，再创建一个名为 `images` 的文件夹。\n4. 将我们下载的两张图片移动到\
+  \ `images` 文件夹中。\n\n如果一切设置正确，您的目录结构将如下所示：\n\n```\ngoldrush\n--- assets\n----- images\n\
+  --------- george.png\n--------- zombie_n_skeleton.png\n```\n\n5. 接下来，打开项目文件夹中的 `pubspec.yaml`\
+  \ 文件。\n6. 通过删除此行开头的 `#` 符号来取消 `assets` 行的注释：\n\n```\n### assets:\n```\n\n7. 接下来，在\
+  \ `asset` 行下方添加以下几行（注意缺少 #）：\n\n```\nassets:\n  - assets/images/george.png\n  -\
+  \ assets/images/zombie_n_skeleton.png\n```\n\n8. 如果您现在保存 `pubspec.yaml` 文件，它将检查文件中的更改以确认设置正确。如果没有发生这种情况，您可以从终端手动运行以下命令：\n\
+  \n```\nflutter pub get\n```\n\n在本节中，我们下载并设置了本章将使用的精灵。\n\n在下一节中，我们将看到如何加载包含多个动画帧的精灵表并将精灵绘制到屏幕上。\n\
+  \n### 在屏幕上绘制\n\n既然我们已经熟悉在上一章中介绍的在屏幕上绘制基本形状，我们将扩展知识并开始绘制在游戏中更常见的精灵。\n\n让我们为我们的角色George创建一个新的\
+  \ `SpriteComponent` 并加载精灵表：\n\n1. 在 `components` 文件夹中，创建一个名为 `george.dart` 的新文件。\n\
+  2. 打开文件，在文件顶部添加以下导入：\n\n```\nimport 'package:flame/components.dart';\nimport 'package:flame/flame.dart';\n\
+  import 'package:flame/sprite.dart';\nimport 'package:flutter/material.dart';\nimport\
+  \ 'dart:ui';\n```\n\n3. 创建一个名为 George 的类，它扩展 `SpriteComponent`：\n\n```\nclass George\
+  \ extends SpriteComponent {\n}\n```\n\n4. 在类顶部，让我们为精灵、屏幕尺寸和精灵大小定义一些变量：\n\n```\n\
+  late double screenWidth, screenHeight, centerX,\ncenterY;\nlate double georgeSizeWidth\
+  \ = 48.0, georgeSizeHeight\n= 48.0;\n```\n\n由于精灵表的大小为 192 x 192 像素，包含四行和四列，这意味着每个单独的帧宽度和高度为\
+  \ `192 / 4 = 48` 像素，这正是我们将 `georgeSizeWidth` 和 `georgeSizeHeight` 的值设置为的内容。\n\n\
+  5. 接下来，我们将重写 `onLoad` 函数，设置屏幕变量，加载精灵表，并设置精灵的位置和大小：\n\n```\n@override\nFuture<void>\
+  \ onLoad() async {\nsuper.onLoad();\nscreenWidth =\nMediaQueryData.fromWindow(window).size.width;\n\
+  screenHeight =\nMediaQueryData.fromWindow(window).size.height;\ncenterX =\n(screenWidth\
+  \ / 2) - (georgeSizeWidth / 2);\ncenterY =\n(screenHeight / 2) - (georgeSizeHeight\
+  \ / 2);\nvar spriteImages =\nawait Flame.images.load('george.png');\nfinal spriteSheet\
+  \ = SpriteSheet(image:\n```\n\n```\nspriteImages, srcSize: Vector2(georgeSizeWidth,\n\
+  georgeSizeHeight));\nsprite = spriteSheet.getSprite(0, 0);\nposition = Vector2(centerX,\
+  \ centerY);\nsize = Vector2(georgeSizeWidth, georgeSizeHeight);\n}\n```\n\n在这里，我们使用\
+  \ Flame 辅助类来加载精灵表图片并设置精灵。\n\n目前，我们将获取第一个精灵帧并只显示该帧。我们获取的第一帧在精灵表中的位置是 0, 0：\n\n![](img/a63c3fccbe888cd4d04006b5e1b6c273_56_0.png)\n\
+  \n图 4.1 – 位于 0, 0 的精灵\n\n6. 现在，让我们切换到 `main.dart` 文件，以便可以添加 George 组件并在屏幕上看到它。在\
+  \ `onLoad` 函数中，我们可以删除添加 `Player` 和 `ScreenCollidable` 组件的行，并添加 `George` 组件，如下所示：\n\
+  \n```\n@override\nFuture<void> onLoad() async {\nsuper.onLoad();\nadd(George());\n\
+  }\n```\n\n7. 我们现在可以删除用于显示绿色方块的 `Player` 和 `ScreenCollidable` 组件的以下导入，我们在第2章“使用Flame引擎”中使用过它：\n\
+  \n```\nimport 'components/player.dart';\nimport 'package:flame/components.dart';\n\
+  ```\n\n8. 并且，由于我们不再使用 `Player` 组件，我们还可以删除包含 `Player` 组件的 `player.dart` 文件，该文件已不再需要。\n\
+  \n9. 由于我们已添加 `George` 组件，需要在文件顶部与其他导入一起添加该类的导入：\n\n```\nimport 'package:goldrush/components/george.dart';\n\
+  ```\n\n如果您现在运行游戏，将看到一个显示George在黑色背景上的单帧。\n\n然而，在黑色背景上很难看清，因此让我们创建一个 `Background`\
+  \ 组件并更改背景颜色，它将在George之前绘制，以便我们可以更清楚地看到精灵。\n\n10. 在 `components` 文件夹中，创建一个名为 `background.dart`\
+  \ 的新文件。打开文件并输入以下导入和代码：\n\n```\nimport 'package:flame/components.dart';\nimport 'package:flame/palette.dart';\n\
+  import 'package:flutter/material.dart';\nimport 'dart:ui';\nclass Background extends\
+  \ PositionComponent {\n static final backgroundPaint =\n BasicPalette.white.paint();\n\
+  \ late double screenWidth, screenHeight;\n @override\n Future<void> onLoad() async\
+  \ {\n super.onLoad();\n screenWidth = MediaQueryData.fromWindow(window).size.width;\n\
+  \ screenHeight =\n MediaQueryData.fromWindow(window).size.height;\n position = Vector2(0,\
+  \ 0);\n size = Vector2(screenWidth, screenHeight);\n }\n @override\n void render(Canvas\
+  \ canvas) {\n```\n\n\n\n```\nsuper.render(canvas);\ncanvas.drawRect(Rect.fromPoints(position.toOffset(),\n\
+  size.toOffset()), backgroundPaint);\n}\n}\n```\n\n在 `onLoad` 函数中，我们将 `backgroundPaint`\
+  \ 设置为白色，以使 George 精灵更加可见。我们还将位置设置为 0, 0，将大小设置为屏幕的完整宽度和高度，因此当我们在 render 函数中绘制白色时，它将覆盖整个屏幕。\n\
+  \n### 11. 回到 `main.dart` 文件，让我们在文件顶部添加 `import`，并将 `Background` 组件添加到 `onLoad` 函数中：\n\
+  \n```\nimport 'components/background.dart';\n\n@override\nFuture<void> onLoad()\
+  \ async {\n  super.onLoad();\n  add(Background());\n  add(George());\n}\n```\n\n\
+  请注意，我们在 `George` 组件之前添加 `Background` 组件，以便它先被绘制。\n\n如果运行此代码，您现在将看到 George 在白色背景上绘制，这更容易看到：\n\
+  \n![](img/a63c3fccbe888cd4d04006b5e1b6c273_59_0.png)\n\n图 4.2 – 白色背景上的 George\n\n\
+  在下一节中，我们将讨论如何为 George 制作动画，而不是仅显示单帧。\n\n### 使用精灵动画\n\n让我们修改 `George` 类，使其播放动画序列而不是仅显示单帧，具体操作是更改类：\n\
+  \n- 1. 首先，将类定义更改为继承自 `SpriteAnimationComponent`，而不是 `SpriteComponent`：\n\n```\n\
+  class George extends SpriteAnimationComponent {\n```\n\n- 2. 因为我们将在 SpriteAnimationComponent\
+  \ 中设置动画，可以删除对 georgeSprite 的引用，因为这将由类管理。因此，让我们删除或注释掉以下行：\n\n```\n// late Sprite\
+  \ georgeSprite;\n// georgeSprite = spriteSheet.getSprite(0, 0);\n```\n\n现在您也可以删除或注释\
+  \ render 函数，因为绘制将由类管理：\n\n```\n// @override\n// void render(Canvas canvas) {\n//\
+  \   super.render(canvas);\n//   georgeSprite.render(canvas);\n// }\n```\n\n- 3.\
+  \ 要从我们设置的精灵表中创建动画，SpriteSheet 类有一个 createAnimation 辅助函数，允许我们设置动画应从哪一行创建。如果您仔细查看我们的\
+  \ george.png 文件，会发现我们的动画位于列中，而不是行中。在撰写本文时，Flame createAnimation 库的当前版本适用于行而非列，因此我们将使用\
+  \ Dart 扩展向 SpriteSheet 类添加一个也适用于列的 createAnimation 变体。在 george.dart 中 SpriteAnimationComponent\
+  \ 的类定义之后，添加以下内容：\n\n```\nextension CreateAnimationByColumn on SpriteSheet {\n  SpriteAnimation\
+  \ createAnimationByColumn({\n    required int column,\n    required double stepTime,\n\
+  \    bool loop = true,\n    int from = 0,\n    int? to,\n  }) {\n    to ??= columns;\n\
+  \    final spriteList = List<int>.generate(to - from,\n    (i) => from + i)\n  \
+  \          .map((e => getSprite(e, column))\n            .toList();\n        return\
+  \ SpriteAnimation.spriteList(\n        spriteList,\n        stepTime: stepTime,\n\
+  \        loop: loop,\n        );\n        }\n        }\n```\n\n此扩展将基于列创建精灵列表，然后从精灵列表创建\
+  \ `SpriteAnimation`。\n\n- 4. 现在，我们可以使用精灵列表创建动画，并将其分配给我们的 `SpriteAnimationComponent`\
+  \ animation 字段。在 `onLoad` 函数的末尾，添加以下代码：\n\n```\nanimation = spriteSheet.createAnimationByColumn(\n\
+  \ column: 0, stepTime: 0.2);\n```\n\n在这里，我们调用新的 `createAnimationByColumn` 扩展函数，为第一列动画传递\
+  \ `0`，并将 `stepTime` 动画速度设置为 `0.2`，这使动画看起来像正常的步行速度。\n\n现在，我们通过绘制多个帧来扩展精灵，以创建动画。\n\
+  \n在下一节中，我们将为 George 的每个方向设置动画，并在屏幕上移动他，每隔几秒钟更改方向，并更改动画以匹配他移动的方向。\n\n### 在屏幕上移动精灵\n\
+  \n既然 George 精灵已经可以动画，我们将在此基础上继续，根据行进方向更改动画：\n\n- 1. 让我们在 `George` 类顶部添加一些变量，以存储动画和方向信息：\n\
+  \n```\nlate SpriteAnimation georgeDownAnimation,\n georgeLeftAnimation, georgeUpAnimation,\n\
+  \ georgeRightAnimation;\n double elapsedTime = 0.0;\n double georgeSpeed = 40.0;\n\
+  \ int currentDirection = down;\n static const int down = 0, left = 1, up = 2,\n\
+  \ right = 3;\n```\n\n- 2. 在 `onLoad` 函数下方，定义一个名为 `changeDirection` 的新函数，我们将每 3 秒调用一次，以随机更改\
+  \ George 的方向：\n\n```\nvoid changeDirection() {\n Random random = Random();\n int\
+  \ newDirection = random.nextInt(4);\n switch (newDirection) {\n case down:\n animation\
+  \ = georgeDownAnimation;\n break;\n case left:\n animation = georgeLeftAnimation;\n\
+  \ break;\n case up:\n animation = georgeUpAnimation;\n break;\n case right:\n animation\
+  \ = georgeRightAnimation;\n break;\n }\n currentDirection = newDirection;\n}\n```\n\
+  \n在这里，我们生成 0 到 3 之间的随机数，映射到我们的列。然后，我们将 `animation` 类字段设置为使用动画，我们将稍后初始化这些动画。最后，我们将当前方向设置为新方向，以后可以用它来移动精灵。\n\
+  \n- 3. 在 `onLoad` 函数底部，删除设置类字段 animation 的行，因为我们现在在 `changeDirection` 函数中执行此操作，并用以下行替换它以初始化动画：\n\
+  \n```\ngeorgeDownAnimation =\nspriteSheet.createAnimationByColumn(column: 0,\nstepTime:\
+  \ 0.2);\ngeorgeLeftAnimation =\nspriteSheet.createAnimationByColumn(column: 1,\n\
+  stepTime: 0.2);\ngeorgeUpAnimation =\nspriteSheet.createAnimationByColumn(column:\
+  \ 2,\nstepTime: 0.2);\ngeorgeRightAnimation =\nspriteSheet.createAnimationByColumn(column:\
+  \ 3,\nstepTime: 0.2);\nchangeDirection();\n```\n\n- 4. 现在我们已经设置好动画，让我们添加一个 `update`\
+  \ 函数，每 3 秒更改一次方向，并使精灵沿动画面向的相同方向移动。在 `changeDirection` 函数下方，添加以下 `update` 函数代码：\n\
+  \n```\n@override\nvoid update(double deltaTime) {\n super.update(deltaTime);\n elapsedTime\
+  \ += deltaTime;\n if (elapsedTime > 3.0) {\n changeDirection();\n elapsedTime =\
+  \ 0.0;\n }\n switch (currentDirection) {\n case down:\n position.y += georgeSpeed\
+  \ * deltaTime;\n break;\n case left:\n position.x -= georgeSpeed * deltaTime;\n\
+  \ break;\n case up:\n position.y -= georgeSpeed * deltaTime;\n break;\n case right:\n\
+  \ position.x += georgeSpeed * deltaTime;\n break;\n }\n}\n```\n\n- 5. 最后，让我们通过在文件顶部添加以下行来修复\
+  \ `Random` 类的 import：\n\n```\nimport 'dart:math';\n```\n\n如果您现在运行代码，将看到 George 移动\
+  \ 3 秒钟，然后随机更改方向，如果随机数与前 3 秒相同，则偶尔会继续沿同一方向移动。如果运行一段时间，您可能会看到 George 从屏幕一侧消失，因为我们目前没有检测他是否与屏幕边缘发生碰撞。\n\
+  \n在下一节中，我们将让 George 在碰到屏幕边缘时反转方向，并添加在屏幕上移动的僵尸和骷髅，如果 George 与它们碰撞，它们就会死亡。\n\n###\
+  \ 与其他精灵碰撞\n\n让我们修复上一节末尾看到的 George 离开屏幕边缘的问题，如果他碰到屏幕边缘则反转方向。为此，请执行以下步骤：\n\n- 1. 在\
+  \ `main.dart` 的 `onLoad` 函数中，让我们在函数底部添加 `ScreenCollidable` 组件，以便我们可以检测 George 与屏幕边缘之间的碰撞：\n\
+  \n```\nadd(ScreenCollidable());\n```\n\n- 2. 在 `george.dart` 文件中，更改类定义以添加 `HasHitBoxes`\
+  \ 和 `Collidable` 混入：\n\n```\nclass George extends SpriteAnimationComponent with\n\
+  HasHitBoxes, Collidable {\n```\n\n- 3. 在 `onLoad` 函数底部，添加 `HitboxRectangle` 形状用于碰撞检测：\n\
+  \n\n\n```\naddHitbox(HitboxRectangle());\n```\n\n- 4. 在文件顶部添加以下 import 以解析对 HitboxRectangle\
+  \ 的引用：\n\n```dart\nimport 'package:flame/geometry.dart';\n```\n\n- 5. 在此类文件底部，在\
+  \ update 函数定义之后，添加以下 onCollision 函数定义：\n\n```dart\n@override\nvoid onCollision(Set<Vector2>\
+  \ points,\n    Collidable other) {\n  if (other is ScreenCollidable) {\n    switch\
+  \ (currentDirection) {\n      case down:\n        currentDirection = up;\n     \
+  \   animation = georgeUpAnimation;\n        break;\n      case left:\n        currentDirection\
+  \ = right;\n        animation = georgeRightAnimation;\n        break;\n      case\
+  \ up:\n        currentDirection = down;\n        animation = georgeDownAnimation;\n\
+  \        break;\n      case right:\n        currentDirection = left;\n        animation\
+  \ = georgeLeftAnimation;\n        break;\n    }\n    elapsedTime = 0.0;\n  }\n}\n\
+  ```\n\n在这里，如果 George 与屏幕边缘发生碰撞，我们会翻转 currentDirection 和 animation；例如，如果 George 正在向右移动，他现在将向左移动，动画将变为\
+  \ georgeLeftAnimation。我们还将 elapsedTime 重置为 0.0，以便我们的 3 秒计数器重新开始。\n\n如果你现在运行游戏，你会看到过一段时间后，当\
+  \ George 碰到屏幕侧边时，他会翻转方向并且动画会更新。\n你可以更改 `georgeSpeed` 变量的值来加快此过程（如果你喜欢）。\n\n接下来，让我们向游戏中添加僵尸和骷髅！\n\
+  \n如果你查看僵尸和骷髅的精灵图表，你会注意到两者都在同一个精灵图表中，两者都按行和列组织，并且每行都有一个僵尸和一个骷髅。因此，在构建动画时，我们必须指定 `from`\
+  \ 和 `to` 字段，以指示精灵图表的哪部分构成动画。\n\n例如，对于使僵尸向左行走的动画，它位于第 1 行，从第 0 列到第 2 列。精灵图像宽 192\
+  \ 像素，高 256 像素，水平方向包含六帧，垂直方向包含四帧，因此计算精灵大小的方法如下：\n\n```\n192 / 6 = 32\n256 / 4 = 64\n\
+  ```\n\n因此，我们的精灵大小为宽 32 像素，高 64 像素：\n\n![](img/a63c3fccbe888cd4d04006b5e1b6c273_66_0.png)\n\
+  \n图 4.3 – 敌人精灵，显示每帧的大小\n\n如果我们为僵尸和骷髅创建一个类，代码将非常类似于 `George` 类，因为我们需要加载精灵、将它们组织成动画、根据方向更新动画，并且如果碰到屏幕边缘则翻转方向。\n\
+  \n为了避免大量不必要的代码重复，我们将为所有精灵创建一个基类来实现此通用功能。然后，单独的类将更小，以保持代码简洁且易于阅读。\n\n首先，我们将 `George`\
+  \ 类中的大量代码移动到一个新的基类中，我们将其命名为 `Character`。在此过程中，我们将使变量名更具通用性，例如将 `georgeSpeed` 重命名为\
+  \ `speed`，并添加一个构造函数来传递位置、大小和速度等值，以使其更具灵活性。\n\n- 6. 在 `components` 文件夹中，创建一个名为 `character.dart`\
+  \ 的新文件，并添加以下类定义：\n\n```dart\nimport 'dart:math';\nimport 'package:flame/components.dart';\n\
+  import 'package:flame/sprite.dart';\nclass Character extends SpriteAnimationComponent\
+  \ with\nHasHitboxes, Collidable {\n}\n```\n\n- 7. 接下来，我们添加一个构造函数来传递位置、大小和速度，以及一些用于动画和方向信息的变量：\n\
+  \n```dart\nCharacter({required Vector2 position,\nrequired Vector2 size, required\
+  \ double speed}) {\nthis.position = position;\nthis.size = size;\nthis.speed = speed;\n\
+  }\n\nlate SpriteAnimation downAnimation, leftAnimation,\nupAnimation, rightAnimation;\n\
+  late double speed;\ndouble elapsedTime = 0.0;\nint currentDirection = down;\nstatic\
+  \ const int down = 0, left = 1, up = 2,\nright = 3;\n```\n\n如你所见，此基类中的变量命名现在更具通用性。\n\
+  \n- 8. 接下来，我们将三个函数（changeDirection、update 和 onCollision）从 George 类迁移到 Character\
+  \ 类中。\n\n首先，我们将添加 changeDirection 函数：\n\n```dart\nvoid changeDirection() {\nRandom\
+  \ random = new Random();\nint newDirection = random.nextInt(4);\nswitch (newDirection)\
+  \ {\ncase down:\n    animation = downAnimation;\n    break;\ncase left:\n    animation\
+  \ = leftAnimation;\n    break;\ncase up:\n    animation = upAnimation;\n    break;\n\
+  case right:\n    animation = rightAnimation;\n    break;\n}\ncurrentDirection =\
+  \ newDirection;\n}\n```\n\n现在我们已经添加了 changeDirection，让我们添加 update 函数：\n\n```dart\n\
+  @override\nvoid update(double deltaTime) {\nsuper.update(deltaTime);\nelapsedTime\
+  \ += deltaTime;\nif (elapsedTime > 3.0) {\n    changeDirection();\n    elapsedTime\
+  \ = 0.0;\n}\nswitch (currentDirection) {\ncase down:\n    position.y += speed *\
+  \ deltaTime;\n    break;\ncase left:\n    position.x -= speed * deltaTime;\n   \
+  \ break;\ncase up:\n    position.y -= speed * deltaTime;\n    break;\ncase right:\n\
+  \    position.x += speed * deltaTime;\n    break;\n}\n}\n```\n\n接下来，让我们添加 onCollision\
+  \ 函数：\n\n```dart\n@override\nvoid onCollision(Set<Vector2> points,\n    Collidable\
+  \ other) {\n    if (other is ScreenCollidable) {\n    switch (currentDirection)\
+  \ {\n    case down:\n    currentDirection = up;\n    animation = upAnimation;\n\
+  \    break;\n    case left:\n    currentDirection = right;\n    animation = rightAnimation;\n\
+  \    break;\n    case up:\n    currentDirection = down;\n    animation = downAnimation;\n\
+  \    break;\n    case right:\n    currentDirection = left;\n    animation = leftAnimation;\n\
+  \    break;\n    }\n    elapsedTime = 0.0;\n    }\n}\n}\n```\n\n从这三个函数可以看出，它们与 `George`\
+  \ 类中的功能相同，但我们现在将变量命名得更具通用性，这对于基类来说更好。\n\n因为我们为 `George` 类创建了一个按列创建动画的扩展函数，我们也将其带到\
+  \ `character.dart` 文件中。该函数将可供我们所有精灵使用，以便我们可以按列或按行创建动画。\n\n在 `Character` 基类的类定义之后，以及\
+  \ `character.dart` 文件的底部，添加 `createAnimationByColumn` 的扩展代码：\n\n```dart\nextension\
+  \ CreateAnimationByColumn on SpriteSheet {\n  SpriteAnimation createAnimationByColumn({\n\
+  \    required int column,\n    required double stepTime,\n    bool loop = true,\n\
+  \    int from = 0,\n    int? to,\n  }) {\n    to ??= columns;\n    final spriteList\
+  \ =\n        List<int>.generate(to - from, (i) => from + i)\n        .map((e) =>\
+  \ getSprite(e, column))\n        .toList();\n    return SpriteAnimation.spriteList(\n\
+  \      spriteList,\n      stepTime: stepTime,\n      loop: loop,\n    );\n  }\n\
+  }\n```\n\n现在我们已设置好 `Character` 基础组件，这使得 `George` 类简单得多。\n\n- 9. 在 `George` 类中，删除所有代码并替换为以下内容：\n\
+  \n```dart\nimport 'package:flame/components.dart';\nimport 'package:flame/flame.dart';\n\
+  import 'package:flame/geometry.dart';\nimport 'package:flame/sprite.dart';\nimport\
+  \ 'package:goldrush/components/character.dart';\nclass George extends Character\
+  \ {\n  George({\n    required Vector2 position,\n    required Vector2 size, required\
+  \ double speed}):\n      super(position: position, size: size,\n      speed: speed);\n\
+  \  @override\n  Future<void> onLoad() async {\n    super.onLoad();\n    var spriteImages\
+  \ =\n    await Flame.images.load('george.png');\n    final spriteSheet = SpriteSheet(image:\n\
+  \    spriteImages, srcSize: Vector2(width, height));\n    downAnimation =\n    spriteSheet.createAnimationByColumn(column:\
+  \ 0,\n    stepTime: 0.2);\n    leftAnimation =\n    spriteSheet.createAnimationByColumn(column:\
+  \ 1,\n    stepTime: 0.2);\n    upAnimation =\n    spriteSheet.createAnimationByColumn(column:\
+  \ 2,\n    stepTime: 0.2);\n    rightAnimation =\n    spriteSheet.createAnimationByColumn(column:\
+  \ 3,\n    stepTime: 0.2);\n    changeDirection();\n    addHitbox(HitboxRectangle());\n\
+  \  }\n}\n```\n\n如你所见，我们只需要加载精灵图表并设置动画即可。代码量大大减少，现在它从基类继承了方向、移动和碰撞代码，因此更加简洁。\n\n\
+  - 10. 现在，让我们为僵尸设置一个类。在 `components` 文件夹中，创建一个名为 `zombie.dart` 的新文件并添加以下代码：\n\n```dart\n\
+  import 'package:flame/components.dart';\nimport 'package:flame/flame.dart';\nimport\
+  \ 'package:flame/geometry.dart';\nimport 'package:flame/sprite.dart';\nimport 'package:goldrush/components/character.dart';\n\
+  class Zombie extends Character {\n  Zombie({required Vector2 position, required\
+  \ Vector2 size, required double speed}) : super(position: position, size: size,\
+  \ speed: speed);\n\n  @override\n  Future<void> onLoad() async {\n    super.onLoad();\n\
+  \    var spriteImages = await\n```\n\n\n\n\n\n```\nFlame.images.load('zombie_n_skeleton.png');\n\
+  final spriteSheet = SpriteSheet(image:\nspriteImages, srcSize: size);\ndownAnimation\
+  \ = spriteSheet.createAnimation(\nrow: 0, stepTime: 0.2, from: 0, to: 2);\nleftAnimation\
+  \ = spriteSheet.createAnimation(\nrow: 1, stepTime: 0.2, from: 0, to: 2);\nupAnimation\
+  \ = spriteSheet.createAnimation(\nrow: 3, stepTime: 0.2, from: 0, to: 2);\nrightAnimation\
+  \ = spriteSheet.createAnimation(\nrow: 2, stepTime: 0.2, from: 0, to: 2);\nchangeDirection();\n\
+  \naddHitbox(HitboxRectangle());\n}\n}\n```\n\n同样，代码量很小，只是在 onLoad 函数中设置动画。由于它继承自\
+  \ Character 类，因此获得了与 George 相同的所有代码。\n\n这里的主要区别在于，我们使用精灵表自带的 createAnimation 函数，而不是我们的扩展函数，因为这个精灵表是按行排列而不是按列。对于僵尸，动画帧位于第\
+  \ 0 列到第 2 列，因此我们在 createAnimation 调用中也添加了这些参数。\n\n- 11. 现在，让我们设置骷髅敌人。在 components\
+  \ 文件夹中，创建一个名为 skeleton.dart 的新文件，并添加以下代码：\n\n```\nimport 'package:flame/components.dart';\n\
+  import 'package:flame/flame.dart';\nimport 'package:flame/geometry.dart';\nimport\
+  \ 'package:flame/sprite.dart';\nimport 'package:goldrush/components/character.dart';\n\
+  class Skeleton extends Character {\nSkeleton({required Vector2 position, required\n\
+  Vector2 size, required double speed}) : super(\nposition: position, size: size,\
+  \ speed: speed);\n@override\nFuture<void> onLoad() async {\nsuper.onLoad();\nvar\
+  \ spriteImages = await\nFlame.images.load('zombie_n_skeleton.png');\nfinal spriteSheet\
+  \ = SpriteSheet(\n image: spriteImages, srcSize: size);\n downAnimation = spriteSheet.createAnimation(\n\
+  \ row: 0, stepTime: 0.2, from: 3, to: 5);\n leftAnimation = spriteSheet.createAnimation(\n\
+  \ row: 1, stepTime: 0.2, from: 3, to: 5);\n upAnimation = spriteSheet.createAnimation(\n\
+  \ row: 3, stepTime: 0.2, from: 3, to: 5);\n rightAnimation = spriteSheet.createAnimation(\n\
+  \ row: 2, stepTime: 0.2, from: 3, to: 5);\n changeDirection();\n\n addHitbox(HitboxRectangle());\n\
+  \ }\n}\n```\n\n与僵尸代码一样，它简洁且从 `Character` 组件继承了大部分功能。由于精灵表图像的设置方式，我们将 `from` 和 `to`\
+  \ 字段分别设置为 3 到 5，以获取骷髅的正确动画帧。\n\n现在我们已经设置好了僵尸和骷髅，让我们向 `George` 类添加一些额外的碰撞代码，以便每当\
+  \ `George` 精灵与僵尸或骷髅碰撞时，就会从屏幕上删除敌人，就像敌人被消灭了一样。\n\n- 12. 在 `George` 类的底部，添加以下 `onCollision`\
+  \ 函数：\n\n```\n@Override\nvoid onCollision(Set<Vector2> points,\nCollidable other)\
+  \ {\nsuper.onCollision(points, other);\nif (other is Zombie || other is Skeleton)\
+  \ {\nother.removeFromParent();\n}\n}\n```\n\n- 13. 接下来，在 `George` 文件顶部添加 `Zombie`\
+  \ 和 `Skeleton` 类的导入语句：\n\n```\nimport 'package:goldrush/components/skeleton.dart';\n\
+  import 'package:goldrush/components/zombie.dart';\n```\n\n- 14. 最后，让我们将刚才添加到 George\
+  \ 文件中的相同导入语句添加到 main.dart 文件中。然后，在 onLoad 函数中，让我们添加以下代码来添加一些僵尸和骷髅，并更新 George 以传递位置、大小和速度：\n\
+  \n```\nadd(George(position: Vector2(200, 400),\nsize: Vector2(48.0, 48.0), speed:\
+  \ 40.0));\nadd(Zombie(position: Vector2(100, 200), size:\nVector2(32.0, 64.0), speed:\
+  \ 20.0));\nadd(Zombie(position: Vector2(300, 200), size:\nVector2(32.0, 64.0), speed:\
+  \ 20.0));\nadd(Skeleton(position: Vector2(100, 600), size:\nVector2(32.0, 64.0),\
+  \ speed: 60.0));\nadd(Skeleton(position: Vector2(300, 600), size:\nVector2(32.0,\
+  \ 64.0), speed: 60.0));\n```\n\n如果现在运行代码，你会看到一些僵尸、骷髅和 George 在四处游荡，每隔几秒钟随机改变方向，并且在碰到边缘时也会改变方向。如果\
+  \ George 与敌人碰撞，敌人将从屏幕上移除。\n\n以下是游戏目前的样子：\n\n![](img/a63c3fccbe888cd4d04006b5e1b6c273_75_0.png)\n\
+  \n图 4.4 – George 和敌人精灵\n\n在本节中，我们向游戏添加了敌人精灵和碰撞代码，以检测 George 何时与敌人碰撞。我们将移动和动画更改的通用代码提取到名为\
+  \ `Character` 的基类中，然后使用它构建了精灵类。\n\n### 总结\n\n在本章中，我们向你展示了如何从精灵表加载图形并提取和播放动画。然后，我们向你展示了如何移动精灵并更改动画以匹配移动方向。最后，我们向你展示了如何独立动画多个精灵，并检测它们何时相互碰撞或与屏幕边缘碰撞。\n\
+  \n在下一章中，我们将通过学习如何使用虚拟摇杆和按钮控制玩家角色来增加更多交互性。我们还将探讨其他输入控制方法，包括检测屏幕上的触摸事件并使用它们来控制玩家角色。\n\
+  \n### 问题\n\n- 1. 什么是精灵？\n- 2. 初始化动画的代码应该使用哪些函数？\n- 3. 使用 `SpriteAnimationComponent`\
+  \ 有哪些好处？\n- 4. 应该在 `createAnimation` 函数中设置哪些参数来指定精灵表中的范围？\n- 5. 为所有精灵创建基类有什么好处？\n\
+  \n## 第 5 章：使用输入移动图形\n\n在本章中，我们将控制自己的角色，并使用虚拟摇杆和触摸事件在屏幕上移动他们，以便玩家可以选择将角色移动到哪里。\n\n\
+  我们将首先探讨如何绘制屏幕上的控件，使其表现得像 PlayStation 控制器上的摇杆，并带有用于攻击和跳跃等操作的动作按钮。接下来，我们将虚拟控件与我们的\
+  \ George 精灵连接，并让他在屏幕上移动。最后，我们将讨论虚拟控件的替代方案或补充方案，即通过触摸事件（例如点击屏幕并将 George 移动到点击位置）来控制\
+  \ George。\n\n因此，我们将涵盖以下主题：\n\n- 绘制屏幕上的控件\n- 使用屏幕上的控件移动我们的角色\n- 使用触摸移动我们的角色\n\n###\
+  \ 技术要求\n\n要查看本章的源代码，可以从 https://github.com/PacktPublishing/Building-Games-with-Flutter/tree/main/chapter05\
+  \ 下载。\n\n你可以在在线文档 https://docs.flame-engine.org/1.0.0/gesture-input.html 和 https://docs.flame-engine.org/1.0.0/other-inputs.html\
+  \ 中找到关于 Flame 输入的更多信息。\n\n在下一节中，我们将首先添加屏幕上的控件并将它们绘制在屏幕上。\n\n### 绘制屏幕上的控件\n\n在本节中，我们将向屏幕添加一个摇杆和一个按钮，以便控制角色，并添加一些文本来显示玩家的得分。这三个组件将构成我们的\
+  \ **抬头显示器** (**HUD**)，它是用户界面的一部分，显示绘制在游戏其他图形之上并保持固定位置的游戏信息。此类信息可能是玩家的生命值、剩余生命数量，或者在我们的例子中，就是游戏得分。\n\
+  \n我们将把 HUD 封装为一个单一组件，这使得显示或隐藏它更加容易。HUD 组件将包含 `JoyStickComponent`，用于控制 George 移动的方向；摇杆的工作原理是在你想要移动的方向拖动屏幕上的圆圈，使其在较大的圆圈内移动。HUD\
+  \ 还将包含 `HudButtonComponent`，这是一个屏幕上的按钮，玩家可以按下它来加倍 George 的行走速度，使他奔跑。\n\n我们将在下一节中连接\
+  \ HUD 组件，但现在，让我们先将它们绘制在屏幕上：\n\n- 1. 首先，在 components 文件夹内创建一个名为 `hud` 的文件夹来保存我们的组件。\n\
+  - 2. 在 `hud` 文件夹内，创建四个名为 `hud.dart`、`joystick.dart`、`run_button.dart` 和 `score_text.dart`\
+  \ 的文件。\n- 3. 在 `run_button.dart` 文件中，添加以下导入语句和类定义：\n\n```\nimport 'package:flame/components.dart';\n\
+  import 'package:flame/input.dart';\nimport 'package:flutter/material.dart';\nclass\
+  \ RunButton extends HudButtonComponent {\n}\n```\n\n\n\n\n\n- 4. 接下来，我们将在类定义中添加构造函数；这将包括我们需要通过调用\
+  \ `super` 传递给 `HudButtonComponent` 基类的值：\n\n```dart\nRunButton({\n  required button,\n\
+  \  buttonDown,\n  EdgeInsets? margin,\n  Vector2? position,\n  Vector2? size,\n\
+  \  Anchor anchor = Anchor.center,\n  onPressed,\n}) : super(\n  button: button,\n\
+  \  buttonDown: buttonDown,\n  margin: margin,\n  position: position,\n  size: size\
+  \ ?? button.size,\n  anchor: anchor,\n  onPressed: onPressed\n);\n```\n\n- 5. 在此构造函数下方，让我们添加一个布尔变量来跟踪该按钮是否被按下，默认值为\
+  \ `false`：\n\n```dart\nbool buttonPressed = false;\n```\n\n- 6. `HudButtonComponent`\
+  \ 有一个名为 `Tappable` 的 mixin，它允许我们检测屏幕上何时按下此按钮，并重写 `onTapUp`、`onTapDown` 和 `onTapCancel`\
+  \ 回调，我们将使用这些回调来更新 `buttonPressed` 布尔值。让我们在 `buttonPressed` 定义之后添加这些函数：\n\n```dart\n\
+  @override\nbool onTapDown(TapDownInfo info) {\n  super.onTapDown(info);\n  buttonPressed\
+  \ = true;\n  return true;\n}\n\n@override\nbool onTapUp(TapUpInfo info) {\n  super.onTapUp(info);\n\
+  \  buttonPressed = false;\n  return false;\n}\n\n@override\nbool onTapCancel() {\n\
+  \  super.onTapCancel();\n  buttonPressed = false;\n  return true;\n}\n```\n\n我们将在\
+  \ hud.dart 文件的 HUD 组件中使用 RunButton，但目前，让我们继续为我们的分数定义 TextComponent。\n\n- 7. 打开 score_text.dart\
+  \ 文件并添加以下导入和类定义：\n\n```dart\nimport 'package:flame/components.dart';\nimport 'package:flame/input.dart';\n\
+  import 'package:flame/palette.dart';\nimport 'package:flutter/cupertino.dart';\n\
+  class ScoreText extends HudMarginComponent {\n}\n```\n\n请注意，ScoreText 类继承自 HudMarginComponent\
+  \ 而非 TextComponent。这是因为我们希望在 TextComponent 周围放置带有边距的组件。我们将在此类内部创建 TextComponent，将其作为\
+  \ HudMarginComponent 的子组件添加，并通过构造函数将边距传递到该类中，我们将在下一步添加该构造函数。\n\n- 8. 在类中添加以下构造函数以将边距传递到该类：\n\
+  \n```dart\nScoreText({EdgeInsets? margin}) : super(margin: margin);\n```\n\n- 9.\
+  \ 在构造函数下方，添加用于分数和 TextComponent 子组件的以下变量：\n\n```dart\nint score = 0;\nString scoreText\
+  \ = \"Score: \";\nlate TextPaint _regularPaint;\nlate TextComponent scoreTextComponent;\n\
+  ```\n\n- 10. 在这些变量下方，让我们添加 `onLoad` 函数，该函数在组件首次使用时调用，用于设置 `TextComponent`：\n\n```dart\n\
+  @override\nFuture<void> onLoad() async {\n  super.onLoad();\n  TextStyle textStyle\
+  \ = TextStyle(color: BasicPalette.blue.color, fontSize: 30.0);\n  _regularPaint\
+  \ = TextPaint(style: textStyle);\n  scoreTextComponent = TextComponent(text: scoreText\
+  \ + score.toString(), textRenderer: _regularPaint);\n  add(scoreTextComponent);\n\
+  }\n```\n\n在此，我们将文本颜色设置为蓝色，并将 `scoreTextComponent` 作为子组件添加到 `ScoreText`。\n\n- 11.\
+  \ 最后，对于 `TextComponent`，我们希望公开一个用于更新分数的函数，每当 George 与某个敌方精灵碰撞时都会更新该分数。因此，让我们在 `onLoad`\
+  \ 函数下方添加 `setScore` 函数：\n\n```dart\nsetScore(int score) {\n  this.score += score;\n\
+  \  scoreTextComponent.text = scoreText + this.score.toString();\n}\n```\n\n- 12.\
+  \ 接下来，我们将添加一个简单的 `JoystickComponent` 用于控制 George 的移动。为此，打开 `joystick.dart` 文件并添加以下代码：\n\
+  \n```dart\nimport 'package:flame/components.dart';\nimport 'package:flutter/material.dart';\n\
+  class Joystick extends JoystickComponent {\n  Joystick({required PositionComponent\
+  \ knob, PositionComponent? background, EdgeInsets? margin}) : super(knob: knob,\
+  \ background: background, margin: margin);\n}\n```\n\n目前我们将保持简单，但值得将 JoystickComponent\
+  \ 放在其自己的文件中，以防您以后想要使用自定义图像而不是颜色来为摇杆设置更多样式。\n\n- 13. 现在我们有了摇杆、运行按钮和分数文本组件，让我们创建一个\
+  \ HUD 组件来处理这些组件的初始化。首先，打开 `hud.dart` 文件并添加以下导入和类定义：\n\n```dart\nimport 'package:flame/components.dart';\n\
+  import 'package:goldrush/components/hud/run_button.dart';\nimport 'package:goldrush/components/hud/score_text.dart';\n\
+  import 'package:goldrush/components/hud/joystick.dart';\nimport 'package:flame/palette.dart';\n\
+  import 'package:flutter/material.dart';\nclass HudComponent extends PositionComponent\
+  \ {\n}\n```\n\n在此，我们从 PositionComponent 继承，从而可以控制如何使用边距排列子组件。PositionComponent 是一个允许在其中定位组件的基类。\n\
+  \n- 14. 在 HudComponent 类顶部，让我们添加一个将 priority 设置为 20 的构造函数：\n\n```dart\nHudComponent()\
+  \ : super(priority: 20);\n```\n\npriority 用于指示组件绘制的顺序，默认值为 0。因此，将此设置为高于 0 将确保 HUD\
+  \ 绘制在其他所有内容之上。\n\n稍后，当我们开始使用比物理屏幕更大的地图时，角色和敌人将在地图上移动，但我们希望分数停留在屏幕左上角，而地图在周围滚动。\n\
+  \n- 15. 在此下方，我们现在定义用于保存子组件的变量：\n\n```dart\nlate Joystick joystick;\nlate RunButton\
+  \ runButton;\nlate ScoreText scoreText;\n```\n\n- 16. 现在，在 onLoad 函数中设置这些子组件：\n\n\
+  ```dart\n@override\nFuture<void> onLoad() async {\n  super.onLoad();\n  final joystickKnobPaint\
+  \ = BasicPalette.blue.withAlpha(200).paint();\n  final joystickBackgroundPaint =\
+  \ BasicPalette.blue.withAlpha(100).paint();\n  final buttonRunPaint = BasicPalette.red.withAlpha(200).paint();\n\
+  \  final buttonDownRunPaint = BasicPalette.red.withAlpha(100).paint();\n  joystick\
+  \ = Joystick(\n    knob: CircleComponent(radius: 20.0, paint: joystickKnobPaint),\n\
+  \    background: CircleComponent(radius: 40.0, paint: joystickBackgroundPaint),\n\
+  \    margin: const EdgeInsets.only(left: 40, bottom: 40),\n  );\n  runButton = RunButton(\n\
+  \    button: CircleComponent(radius: 25.0, paint: buttonRunPaint),\n    buttonDown:\
+  \ CircleComponent(radius: 25.0, paint: buttonDownRunPaint),\n    margin: const EdgeInsets.only(right:\
+  \ 20, bottom: 50),\n    onPressed: () => {}\n  );\n  scoreText = ScoreText(margin:\
+  \ const EdgeInsets.only(left: 40, top: 60));\n  add(joystick);\n  add(runButton);\n\
+  \  add(scoreText);\n  positionType = PositionType.viewport;\n}\n```\n\n在此，我们为组件的颜色设置了一些\
+  \ Paint 对象。\n\n接下来，我们设置摇杆，使用圆形作为旋钮和背景，并将边距设置在屏幕左下角，即摇杆将位于的位置。\n\n然后，我们以类似的方式设置运行按钮，其边距位于屏幕右下角，以便在摇杆的对面绘制它。\n\
+  \n然后，我们在屏幕左上角设置带有边距的分数文本。\n\n之后，我们添加 HUD 组件并将 `positionType` 设置为 `PositionType.viewport`。\n\
+  \n`PositionType` 确保此组件绘制在所有内容之上，即使游戏相机移动也是如此。\n\n请注意，对于运行按钮，它接受一个在按钮按下时调用的函数回调，但因为我们在运行按钮类中自行管理轻触处理，我们可以忽略此项并传递\
+  \ {} 代替。\n\n- 17. 让我们将我们的 `HudComponent` 添加到游戏中，以便可以看到我们的新组件。打开 `main.dart` 文件并将以下导入添加到文件顶部：\n\
+  \n```dart\nimport 'package:goldrush/components/hud/hud.dart';\n```\n\n- 18. 在 `onLoad`\
+  \ 函数顶部，让我们添加我们的 `HudComponent`：\n\n```dart\nadd(HudComponent());\n```\n\n- 19. 由于\
+  \ `HudComponent` 类包含可拖动（`Joystick`）和可轻触（`RunButton`）的组件，我们必须将 `HasDraggables` 和\
+  \ `HasTappables` mixin 传递给 `MyGame` 的类定义：\n\n```dart\nclass MyGame extends FlameGame\
+  \ with HasCollidables, HasDraggables, HasTappables {\n}\n\n\n\n\n\n如果您现在运行游戏，将看到新组件与现有游戏精灵一起显示：\n\
+  \n得分：0\n\n![](img/a63c3fccbe888cd4d04006b5e1b6c273_86_0.png)\n\n图 5.1 – 带 HUD 控件的游戏\n\
+  \n在本节中，我们学习了如何将摇杆、按钮和分数添加到游戏中，并将它们定位在屏幕上。\n\n在下一节中，我们将把摇杆与乔治的移动连接起来，并在按下运行按钮时让他跑得更快。当乔治与敌人碰撞时，我们还会将分数增加\
+  \ 10 分。\n\n### 使用屏幕控件移动我们的角色\n\n在本节中，我们将首先将乔治的移动与摇杆连接起来。\n\n目前，`George` 类从基类 `Character`\
+  \ 继承其移动逻辑，该基类与 `Skeleton` 和 `Zombie` 类共享。由于乔治的移动代码与敌人精灵不同，让我们重构代码以允许敌人精灵的移动代码。我们将现有的移动代码移入\
+  \ `EnemyCharacter` 类，该类将成为敌人精灵的新基类，并从 `Character` 类中删除此代码。\n\n让我们开始吧：\n\n- 1. 在\
+  \ `components` 文件夹中，创建一个名为 `character_enemy.dart` 的文件。\n- 2. 打开文件，并添加位于 https://github.com/PacktPublishing/Building-Games-with-Flutter/blob/main/chapter05/lib/components/character_enemy.dart\
+  \ 的代码。\n\n在此代码中，`EnemyCharacter` 类扩展了我们的 `Character` 类，我们已从 `Character` 类直接复制了 `onCollision`、`update`\
+  \ 和 `changeDirection` 函数。\n\n- 3. 在 `EnemyCharacter` 类的 `changeDirection` 函数中，您需要更新\
+  \ `switch case` 块，以在方向前加上 Character 基类。完成后，该块将如下所示：\n\n```\nswitch (newDirection)\
+  \ {\n  case Character.down:\n    animation = downAnimation;\n    break;\n  case\
+  \ Character.left:\n    animation = leftAnimation;\n    break;\n  case Character.up:\n\
+  \    animation = upAnimation;\n    break;\n  case Character.right:\n    animation\
+  \ = rightAnimation;\n    break;\n}\n```\n\n- 4. 打开 zombie.dart 和 skeleton.dart 文件，在两者中，不再从\
+  \ Character 继承，而是将类定义更改为从 EnemyCharacter 继承。\n- 5. 删除之前对 character.dart 的导入，并用以下内容替换：\n\
+  \n```\nimport 'character_enemy.dart';\n```\n\n- 6. 打开 character.dart 类，删除我们现在已在\
+  \ EnemyCharacter 类中拥有的 onCollision、update 和 changeDirection 函数。您现在也可以删除 math 包的导入。\n\
+  - 7. 打开 george.dart 文件，删除 onLoad 函数中的 changeDirection 行。\n- 8. 如果您现在运行游戏，会发现 George\
+  \ 不可见，因为我们尚未更新他并设置他的动画。让我们通过在 george.dart 文件的 onLoad 函数中添加以下代码来修复这个问题：\n\n```\n\
+  animation = downAnimation;\nplaying = false;\n```\n\n- 9. 接下来，我们将设置一些用于 `walkingSpeed`\
+  \ 和 `runningSpeed` 的变量，这些变量在按下运行按钮时会切换。在 `George` 类的顶部，构造函数下方，添加以下变量：\n\n```\nlate\
+  \ double walkingSpeed, runningSpeed;\n```\n\n- 10. 然后，在 `onLoad` 函数的顶部，让我们将 `walkingSpeed`\
+  \ 设置为精灵移动的默认速度，并将 `runningSpeed` 设置为两倍速度：\n\n```\nwalkingSpeed = speed;\nrunningSpeed\
+  \ = speed * 2;\n```\n\n- 11. 因为我们想要读取摇杆和运行按钮的状态，所以需要获取 `HudComponent` 的引用。因此，让我们通过构造函数传递\
+  \ HUD，并将 HUD 存储在一个变量中：\n\n```\nfinal HudComponent hud;\n```\n\n- 12. 然后，更新构造函数以传递\
+  \ HUD，以便我们可以在此类中访问 HUD 的值：\n\n```\nGeorge({required this.hud, required Vector2 position,\n\
+  required Vector2 size, required double speed}) :\nsuper(position: position, size:\
+  \ size, speed: speed);\n```\n\n- 13. 接下来，我们需要添加 `HudComponent` 的导入：\n\n```\nimport\
+  \ 'package:goldrush/components/hud/hud.dart';\n```\n\n- 14. 现在，我们将在 `onCollision`\
+  \ 函数下方添加 `update` 函数，并将运行按钮连接到 `speed` 变量：\n\n```\n@override\nvoid update(double\
+  \ dt) {\nsuper.update(dt);\nspeed = hud.runButton.buttonPressed ?\nrunningSpeed\
+  \ : walkingSpeed;\n}\n```\n\n如果按下运行按钮，速度将是 `runningSpeed`；否则，速度将是 `walkingSpeed`。\n\
+  \n- 15. 在设置行走和跑步速度的那行之后，让我们添加将摇杆与角色移动关联的代码，并根据摇杆方向设置角色的方向和动画：\n\n```\nif (!hud.joystick.delta.isZero())\
+  \ {\nposition.add(hud.joystick.relativeDelta * speed\n* dt);\nplaying = true;\n\n\
+  switch (hud.joystick.direction) {\ncase JoystickDirection.up:\ncase JoystickDirection.upRight:\n\
+  case JoystickDirection.upLeft:\nanimation = upAnimation;\ncurrentDirection = Character.up;\n\
+  break;\ncase JoystickDirection.down:\ncase JoystickDirection.downRight:\ncase JoystickDirection.downLeft:\n\
+  animation = downAnimation;\ncurrentDirection = Character.down;\nbreak;\ncase JoystickDirection.left:\n\
+  animation = leftAnimation;\ncurrentDirection = Character.left;\nbreak;\ncase JoystickDirection.right:\n\
+  animation = rightAnimation;\ncurrentDirection = Character.right;\nbreak;\ncase JoystickDirection.idle:\n\
+  animation = null;\nbreak;\n}\n} else {\nif (playing) {\nstopAnimations();\n}\n}\n\
+  ```\n\n这里，如果摇杆读数为 0，角色不移动，但如果大于 0，角色正在移动。如果摇杆在移动，我们根据摇杆的值、当前速度和 `deltaTime` 更新位置。然后，根据摇杆方向，我们设置正确的方向和动画。如果没有摇杆移动，我们检查动画是否正在播放：如果是，我们将调用\
+  \ `stopAnimations`（我们将在下一节定义）。\n\n- 16. 在类的底部，我们将创建一个名为 `stopAnimations` 的新函数，代码如下：\n\
+  \n```\nvoid stopAnimations() {\n animation?.currentIndex = 0;\n playing = false;\n\
+  }\n```\n\n`stopAnimations` 函数通过将变量设置为 `false` 来停止动画播放，并将当前动画索引设置为 `0`；这会将动画的第一帧绘制为静态图像。这让我们有这样的印象：在使用摇杆时会对角色进行动画处理，而在停止使用摇杆时角色\
+  \ George 保持静止。\n\n- 17. 让我们每次击杀敌人时增加 10 分。在 `onCollision` 函数中，按如下方式更新函数以增加分数：\n\n\
+  ```\nif (other is Zombie || other is Skeleton) {\n other.removeFromParent();\n hud.scoreText.setScore(10);\n\
+  }\n```\n\n- 18. 最后，打开 `main.dart` 文件并更新 `onLoad` 函数，以便我们将 `HudComponent` 创建为其自身变量。这用于存储作为参数传递给\
+  \ `George` 类的 HUD 值：\n\n```\n@override\nFuture<void> onLoad() async {\n var hud\
+  \ = HudComponent();\n add(Background());\n add (George(hud: hud, position: Vector2(200,\
+  \ 400),\nsize: Vector2(48.0, 48.0), speed: 40.0));\nadd (Zombie(position: Vector2(100,\
+  \ 200),\nsize: Vector2(32.0, 64.0), speed: 20.0));\nadd (Zombie(position: Vector2(300,\
+  \ 200),\nsize: Vector2(32.0, 64.0), speed: 20.0));\nadd (Skeleton(position: Vector2(100,\
+  \ 600),\nsize: Vector2(32.0, 64.0), speed: 60.0));\nadd (Skeleton(position: Vector2(300,\
+  \ 600),\nsize: Vector2(32.0, 64.0), speed: 60.0));\nadd(ScreenCollidable ());\n\
+  add(hud);\n}\n```\n\n如果您现在运行应用，将能够用摇杆控制 George，并在与敌人碰撞时更快地追踪并击杀他们。如果您在控制摇杆的同时按住运行按钮，您将看到\
+  \ George 以跑步速度移动。\n\n在本节中，我们添加了包含摇杆、运行按钮和分数文本的 HUD，并将其连接到游戏中以控制 George 的移动，并在 George\
+  \ 击杀敌人时更新分数。\n\n在下一节中，我们将向您展示一种替代方案来控制 George，而不使用摇杆控件，即通过检测屏幕上的触摸事件，然后将 George\
+  \ 移动到该位置。\n\n### 使用触摸移动我们的角色\n\n既然我们已让 George 使用摇杆移动，让我们来看看通过屏幕触摸事件移动角色的替代方法，这在游戏中非常流行。随着现代移动设备拥有非常灵敏的高分辨率屏幕，我们可以使用触摸事件或手势将角色从当前位置移动到屏幕上被点击的位置。使用三角函数，我们可以计算原点和目标位置之间的角度，并使用该角度沿正确方向移动\
+  \ George，并播放与方向匹配的正确动画。\n\n我们已经通过 HasTappables mixin 检测运行按钮的点击事件。因此，为了检测屏幕上的触摸，我们需要添加\
+  \ Tappable\n\n\n\n将 mixin 添加到 `Background` 类并覆盖 `onTapUp` 以获取可用于计算移动的 `x` 和 `y`\
+  \ 位置。\n\n因为我们需要知道 `George` 类内部的这个坐标，所以需要将 `George` 类的引用传入 `Background` 类，以便在玩家触摸屏幕时传递点击事件。\n\
+  \n要开始，让我们修改 `Background` 类：\n\n- 1. 打开 `background.dart` 文件。在类顶部添加以下构造函数和变量，用于保存对\
+  \ `George` 类的引用。我们将使用它在玩家触摸屏幕时将事件传回 `George` 类，并调用 `George` 类上的名为 `moveToLocation`\
+  \ 的函数，传递点击事件：\n\n```\nBackground(this.george);\nfinal George george;\n```\n\n- 2.\
+  \ 使用以下 import 解析对 `George` 类的引用：\n\n```\nimport 'george.dart';\n```\n\n- 3. 通过添加\
+  \ `Tappable` mixin 更改 `Background` 类定义：\n\n```\nclass Background extends PositionComponent\
+  \ with Tappable {\n```\n\n- 4. 在类底部添加以下代码以覆盖 `onTapUp` 函数，并将 `TapUpInfo` 事件传递到 `George`\
+  \ 类：\n\n```\n@override\nbool onTapUp(TapUpInfo info) {\n  george.moveToLocation(info);\n\
+  \  return true;\n}\n```\n\n目前，`moveToLocation` 函数在 `George` 类中不存在，但我们将在更新 `George`\
+  \ 类时稍后添加它。因为我们将使用触摸事件，所以从该函数返回 `true` 以指示触摸事件已被处理。\n\n- 5. 添加以下 import 以解析 `TapUpInfo`\
+  \ 引用：\n\n```\nimport 'package:flame/input.dart';\n```\n\n- 6. 在 `main.dart` 文件的\
+  \ `onLoad` 函数中，让我们将 `George` 类变成一个变量，然后我们可以将其传递给 `Background` 类构造函数。为此，请将 `onLoad`\
+  \ 函数的前几行更改如下：\n\n```\n@override\nFuture<void> onLoad() async {\n  var hud = HudComponent();\n\
+  \  var george = George(hud: hud, position:\n    Vector2(200, 400), size: Vector2(48.0,\
+  \ 48.0),\n    speed: 40.0);\n  add(Background(george));\n  add (george);\n}\n```\n\
+  \n请注意，这里只展示了 `onLoad` 函数的顶部部分以显示更改的行，但添加敌人、HUD 和 `ScreenCollidable` 的其余行保持不变。\n\n\
+  在对 `George` 类进行最终更改之前，让我们创建一个数学工具类来存储一个函数，用于获取 George 位置与玩家触摸屏幕位置之间的角度。\n\n- 7.\
+  \ 在 `lib` 文件夹中，创建一个名为 `utils` 的新文件夹，并在该文件夹中创建一个名为 `math_utils.dart` 的新文件。\n\n- 8.\
+  \ 打开新的 `math_utils.dart` 文件并为 `getAngle` 函数添加以下代码：\n\n```\nimport 'dart:math';\n\
+  import 'package:flame/components.dart';\n\ndouble getAngle(Vector2 origin, Vector2\
+  \ target) {\n  double dx = target.x - origin.x;\n  double dy = -(target.y - origin.y);\n\
+  \  double angleInRadians = atan2(dy, dx);\n  if (angleInRadians < 0) {\n    angleInRadians\
+  \ = angleInRadians.abs();\n  } else {\n    angleInRadians = 2 * pi - angleInRadians;\n\
+  \  }\n  return angleInRadians * radians2Degrees;\n}\n```\n\n我们不会详细介绍 `getAngle`\
+  \ 函数的工作原理，但它使用了大多数高中数学课中涵盖的基本三角学。`getAngle` 函数将返回 0 到 360 之间的角度，0 度朝向右侧，90 度朝向下方，180\
+  \ 度朝向左侧，270 度朝向上方。\n\n- 9. 打开 `george.dart` 文件并为数学工具类添加以下 imports：\n\n```\nimport\
+  \ 'package:goldrush/utils/math_utils.dart';\n```\n\n- 10. 在 `George` 类中，在构造函数之后，让我们添加几个用于\
+  \ `targetLocation` 向量的变量以及一个用于跟踪是否通过触摸移动的变量：\n\n```\nlate Vector2 targetLocation;\n\
+  bool movingToTouchedLocation = false;\n```\n\n- 11. 现在，让我们在 `Background` 组件中添加前面引用的\
+  \ `moveToLocation` 函数，将 `targetLocation` 设置为传递的触摸事件，并将 `movingToTouchedLocation`\
+  \ 设置为 true：\n\n```\nvoid moveToLocation(TapUpInfo info) {\n    targetLocation =\
+  \ info.eventPosition.game;\n    movingToTouchedLocation = true;\n}\n```\n\n精灵具有一个默认在\
+  \ Flame 中位于精灵左上角的锚点，因此如果我们在屏幕上触摸，精灵将被移动，并且精灵的左上角将与屏幕上的触摸点对齐。将精灵围绕其中心而不是左上角居中会更自然，因此让我们将锚点更新为中心。\n\
+  \n- 12. 在 `onLoad` 函数底部且在添加命中框之前，添加以下代码以将锚点设置在精灵中心。\n\n```\nanchor = Anchor.center;\n\
+  addHitbox(HitboxRectangle());\n```\n\n- 13. 最后，我们将向 `update` 函数添加代码，将 George 移动到触摸位置。在\
+  \ `update` 函数中，查找包含以下代码的 `else` 块：\n\n```\nif (playing) {\nstopAnimations();\n}\n\
+  ```\n\n将其替换为以下代码块：\n\n```\nif (movingToTouchedLocation) {\n} else {\nif (playing)\
+  \ {\nstopAnimations();\n}\n}\n```\n\n- 14. 在 `if` 代码块内部，添加以下代码以设置新的锚点位置：\n\n```\n\
+  position += (targetLocation - position).normalized()\n* (speed * dt);\n```\n\n此代码根据\
+  \ `targetLocation` 与当前 `position` 之间的差异更新 George 的位置，同时考虑当前 `speed` 和自上次调用更新以来的时间，以确保移动平滑。\n\
+  \n- 15. 当我们到达触摸位置时，我们希望停止任何正在播放的动画并将 `movingToTouchedLocation` 设置为 `false`。\n\n\
+  因为我们基于可能存在舍入误差的分数来移动角色，所以我们允许一个小阈值来决定 George 是否足够接近触摸位置，如果是，我们停止动画。所以，让我们继续在这个代码块内部并添加阈值检查：\n\
+  \n```\ndouble threshold = 1.0;\nvar difference = targetLocation - position;\nif\
+  \ (difference.x.abs() < threshold &&\n    difference.y.abs() < threshold) {\n  \
+  \  stopAnimations();\n    movingToTouchedLocation = false;\n    return;\n}\n```\n\
+  \n- 16. 最后，我们将使用之前创建的 getAngle 函数，并使用角度来决定 George 正在朝哪个方向移动以及哪个动画最接近。例如，我们只有四个动画\
+  \ – 上、下、左、右 – 因此我们将通过将方向分成四个 90 度象限来近似方向，如下图所示：\n\n![](img/a63c3fccbe888cd4d04006b5e1b6c273_98_0.png)\n\
+  \n图 5.2 – 移动方向的象限映射\n\n根据我们的图表，如果我们在 45 度到 135 度之间移动，我们大约在向下移动，因此可以将方向设置为下并使用 downAnimation\
+  \ 正确地为精灵设置动画。请记住，0 度指向东，我们需要两个检查来向右移动，即 315 到 360 度和 0 到 45 度之间。所以，让我们为这个逻辑添加代码，继续在同一代码块中：\n\
+  \n```\nplaying = true;\nvar angle = getAngle(position, targetLocation);\nif ((angle\
+  \ > 315 && angle < 360) || (angle > 0 && angle < 45)) { // Moving right\nanimation\
+  \ = rightAnimation;\ncurrentDirection = Character.right;\n}\n// Moving down\nelse\
+  \ if (angle > 45 && angle < 135) {\nanimation = downAnimation;\ncurrentDirection\
+  \ = Character.down;\n}\n// Moving left\nelse if (angle > 135 && angle < 225) {\n\
+  animation = leftAnimation;\ncurrentDirection = Character.left;\n}\n// Moving up\n\
+  else if (angle > 225 && angle < 315) {\nanimation = upAnimation;\ncurrentDirection\
+  \ = Character.up;\n}\n```\n\n现在，如果你运行代码，可以通过触摸屏幕上的任何位置来控制 George，他会移动到那里。如果你愿意，也可以使用操纵杆。无论你更喜欢哪种移动方式，按住运行按钮仍然会让\
+  \ George 跑得更快。还要注意，如果你使用触摸来移动角色，然后切换到操纵杆控制，它将中断由触摸引起的移动，允许你手动控制 George 的移动。\n\n\
+  ### 摘要\n\n本章涵盖了大量内容，游戏真的开始成形了。我们学习了如何使用操纵杆和运行按钮为游戏创建屏幕控件，以及如何在屏幕上添加分数文本。然后，我们学习了一种替代方法来控制\
+  \ George，即允许你触摸屏幕将他移动到触摸位置。\n\n不过，游戏目前有点安静。在大多数游戏中，音乐配乐和音效用于营造氛围并使游戏生动起来。在下一章中，我们将为游戏添加一些音乐和声音以进一步增强它。\n\
+  \n\n\n\n\n### 问题\n\n- 1. 什么是 HUD，它在我们的游戏中有什么用途？\n- 2. 我们使用哪个 mixin 来将组件转换为检测何时被触摸？\n\
+  - 3. 我们使用哪个组件在屏幕上绘制文本？\n- 4. 你认为 `JoystickComponent` 为什么需要 `HasDraggables` mixin？\n\
+  \n## 第 6 章：播放音效和音乐\n\n在本章中，我们将通过添加音效和音乐来让我们的游戏栩栩如生，从而增强游戏体验。音频是任何游戏非常重要的一部分；它可以提醒您游戏中发生的关键事件，或营造氛围。想象一下，在游戏中穿过森林，听到附近的河流或树林中鸟儿的歌唱。如果声音与您在该森林中预期听到的声音相符，就会使整个游戏更具沉浸感。\n\
+  \n不过，如果玩家将游戏放入后台（例如查看电子邮件），我们需要停止音乐或声音播放，并且当他们返回游戏时声音应恢复播放，否则持续的声音可能会让玩家感到烦恼。为处理此问题，我们将介绍如何监听这些生命周期事件，以确保音频正确暂停和恢复。\n\
+  \n音频还会占用内存，我们将讨论 Flame 如何使用音频缓存来加载和保存这些音频资源，以便我们在游戏中需要时随时播放。通常，音效会被多次播放，因此我们需要能够轻松访问它们，并在需要时反复播放。\n\
+  \n因此，在本章中，我们将涵盖以下主题：\n\n- 播放背景音乐\n- 播放音效\n- 控制音量\n\n### 技术要求\n\n要查看本章的源代码，您可以从 https://github.com/PacktPublishing/Building-Games-with-Flutter/tree/main/chapter06\
+  \ 下载。\n\n您可以在在线文档 https://docs.flame-engine.org/1.0.0/audio.html 中找有关 Flame 音频的更多信息。\n\
+  \n要开始在游戏中播放声音和音乐，我们必须下载资源文件并将它们添加到我们的 `pubspec.yaml` 文件中。我们可以在优秀的免费网站 https://freesound.org\
+  \ 上找到要添加的所有声音文件。\n\n我们想要添加的音效和音乐如下：\n\n- 贯穿整个游戏的背景音乐\n- 敌人死亡时的音效\n- George 移动时的音效\n\
+  \n以下是我在浏览网站时找到的一些资源，但请随意浏览网站并找到您可能更喜欢的其他声音：\n\n- 背景音乐 – https://github.com/PacktPublishing/Building-Games-with-Flutter/blob/main/chapter06/assets/audio/music/music.mp3\n\
+  - George 移动 – https://github.com/PacktPublishing/Building-Games-with-Flutter/blob/main/chapter06/assets/audio/sounds/running.wav\n\
+  - 敌人死亡 – https://github.com/PacktPublishing/Building-Games-with-Flutter/blob/main/chapter06/assets/audio/sounds/enemy_dies.wav\n\
+  \n在以下步骤中，我们将下载一些声音用于我们的游戏：\n\n- 1. 下载提到的音乐和音效，或在网站上找一些您自己的。\n- 2. 将音乐文件重命名为 `music.mp3`，将\
+  \ George 的移动声音重命名为 `running.wav`，将敌人死亡声音重命名为 `enemy_dies.wav`。\n- 3. 打开 `assets`\
+  \ 文件夹并创建一个名为 `audio` 的新文件夹。\n- 4. 在 `audio` 文件夹中，创建一个名为 `music` 的文件夹和一个名为 `sounds`\
+  \ 的文件夹。\n- 5. 在 `music` 文件夹中，添加 `music.mp3` 文件。\n- 6. 在 `sounds` 文件夹中，添加 `enemy_dies.wav`\
+  \ 和 `running.wav` 文件。\n- 7. 接下来，打开 `pubspec.yaml` 文件，并在我们现有的精灵图像资源下方添加以下资源：\n\n\
+  ```yaml\n- assets/audio/music/music.mp3\n- assets/audio/sounds/enemy_dies.wav\n\
+  - assets/audio/sounds/running.wav\n```\n\n- 8. 在我们添加 Flame 库的那行下方，我们将添加一行 Flame\
+  \ 音频库，因此您的依赖项现在应该如下所示：\n\n```yaml\nflame: 1.0.0\nflame_audio: ^1.0.0\n```\n\n- 9.\
+  \ 保存此文件，`pub get` 将更新以验证新资源并下载 Flame 音频库。\n\n现在我们已将音频文件设置为资源，让我们将它们添加到游戏中。\n\n###\
+  \ 播放背景音乐\n\n在本节中，我们将添加音乐播放功能，该功能将在游戏开始时加载，并在我们玩游戏时继续播放。Flame 音频库有一个名为 `Bgm`（背景音乐）的静态类，它将音乐添加到音频缓存中，并在应用程序进入后台或返回前台时暂停和恢复音乐。我们可以直接在\
+  \ `Bgm` 类中获得此功能，因此只需很少的代码即可加载和播放音乐。正如您将在下一节关于播放音效的内容中看到的，我们需要做更多工作来确保音效在进入后台时暂停和恢复。不幸的是，Flame\
+  \ 库目前的工作方式就是这样，但希望未来版本的库会对此进行改进。\n\n要将音乐播放添加到代码中，请执行以下操作：\n\n- 1. 打开 `main.dart`\
+  \ 文件并导入 Flame 音频库：\n\n```dart\nimport 'package:flame_audio/flame_audio.dart';\n\
+  ```\n\n- 2. 在 `onLoad` 函数的顶部，添加以下代码以初始化库、将音乐加载到音频缓存中并播放背景音乐：\n\n```dart\nFlameAudio.bgm.initialize();\n\
+  await FlameAudio.bgm.load('music/music.mp3');\nawait FlameAudio.bgm.play('music/music.mp3');\n\
+  ```\n\n- 3. 在 `MyGame` 类中，在 `onLoad` 函数下方添加以下代码，该代码在游戏关闭时停止播放音乐并清除音频缓存：\n\n```dart\n\
+  @override\nvoid onRemove() {\n  FlameAudio.bgm.stop();\n  FlameAudio.bgm.clearAll();\n\
+  \  super.onRemove();\n}\n```\n\n如果您现在运行游戏，将能听到我们的音乐在播放。如果在移动设备上将应用放入后台，您会注意到音乐停止播放，并且当您将游戏带回前台时，音乐会恢复播放。如果您通过关闭应用来完全退出游戏，也会注意到音乐停止。\n\
+  \n在 `onRemove` 函数中执行这些步骤很重要，以便避免内存泄漏。在下一节中，当我们移动 George 以及敌人死亡时，我们将向游戏添加音效。\n\n\
+  ### 播放音效\n\n如前一节所述，播放音效时，我们需要处理音效的暂停和恢复，如果应用被放入后台（例如查看手机上的其他内容）时音效仍在播放，因为库目前不处理这种情况。\n\
+  \n我们将首先更新 `Character` 类，它是我们所有精灵的顶级基类，以添加 `onPaused` 和 `onResumed` 回调，所有精灵都可以使用这些回调。\n\
+  \n然后，我们将监听游戏中的生命周期变化事件，如果调用这些事件，我们将遍历所有精灵并传递这些事件。\n\n最后，由于音效与 George 相关，我们将更新 `George`\
+  \ 类来播放声音，并在需要时暂停和恢复这些音效。让我们开始吧：\n\n- 1. 打开 `character.dart` 文件。在 `Character` 类的底部，添加以下函数定义：\n\
+  \n```dart\nvoid onPaused() {}\nvoid onResumed() {}\n```\n\n请注意，我们将保留这些函数为空，因为我们将在\
+  \ `George` 类中重写它们。\n\n- 2. 打开 `main.dart` 文件，在我们最近添加的 `onRemove` 函数下方，添加以下代码以监听和处理生命周期事件：\n\
+  \n```dart\n@override\nvoid lifecycleStateChange(AppLifecycleState state) {\n   \
+  \ switch(state) {\n        case AppLifecycleState.paused:\n            children.forEach((component)\
+  \ {\n                if (component is Character) {\n                    component.onPaused();\n\
+  \                }\n            });\n            break;\n        case AppLifecycleState.resumed:\n\
+  \            children.forEach((component) {\n                if (component is Character)\
+  \ {\n                    component.onResumed();\n                }\n           \
+  \ });\n            break;\n        case AppLifecycleState.inactive:\n        case\
+  \ AppLifecycleState.detached:\n            break;\n    }\n}\n```\n\n在我们重写的 `lifecycleStateChange`\
+  \ 函数中，我们传递一个 `AppLifecycleState` 事件，它可以是 `paused`、`resumed`、`inactive` 或 `detached`\
+  \ 事件。由于我们只关心暂停和恢复状态，因此这些是我们在此函数中处理的唯一事件。\n\nFlame 在名为 `children` 的变量中跟踪我们添加到游戏中的所有子组件，这是一个我们可以遍历的数据集。请不要忘记，`HudComponent`\
+  \ 和 `ScreenCollidable` 也是将包含在此数据集中的组件，因此在遍历数据时，我们必须检查类是否为 `Character` 类型，并忽略其他组件类型。\n\
+  \n然后，我们可以通过 `onPaused` 和 `onResumed` 回调安全地传递暂停和恢复事件，因为我们知道这些回调可供任何使用 `Character`\
+  \ 作为基类的类使用，例如我们的敌人精灵或 George 精灵。\n\n- 3. 为 `Character` 类添加以下导入：\n\n```dart\nimport\
+  \ 'package:goldrush/components/character.dart';\n```\n\n- 4. 打开 `george.dart` 文件并添加以下导入：\n\
+  \n```dart\nimport 'package:flame_audio/flame_audio.dart';\nimport 'package:audioplayers/audioplayers.dart';\n\
+  ```\n\n\n\n\n\n- 5. 我们将播放的两个音效分别是敌人与乔治碰撞时，以及乔治通过摇杆或触摸行走或奔跑时。如果你播放过我们下载的声音，会注意到敌人死亡音效很短，而奔跑音效要长得多。挑战在于，如果乔治移动的时间超过了音效时长，我们需要通过循环播放来保持声音持续。\n\
+  \n另外，如前文所述，如果游戏被放到后台，我们需要暂停声音，并在用户返回游戏时从同一点恢复播放。因此，我们需要存储播放长循环音频（来自奔跑音效）时返回的 AudioPlayer\
+  \ 引用，这意味着我们可以控制其播放。\n\n让我们在已打开的乔治类顶部创建几个变量，用于跟踪用户是否在移动以及访问音频播放器状态：\n\n```\nbool\
+  \ isMoving = false;\nlate AudioPlayer audioPlayerRunning;\n```\n\n- 6. 在 onLoad\
+  \ 函数底部，让我们将音效加载到音频缓存中：\n\n```\nawait FlameAudio.audioCache.loadAll(\n['sounds/enemy_dies.wav',\
+  \ 'sounds/running.wav']);\n```\n\n我们在这行使用 await 来等待所有音效文件加载到缓存中。\n\n- 7. 在 onCollision\
+  \ 函数底部（在检查 other 是否为僵尸或骷髅并设置分数的代码块之后），添加以下代码以在与敌人碰撞时播放敌人死亡音效：\n\n```\nFlameAudio.play('sounds/enemy_dies.wav');\n\
+  ```\n\n- 8. 在 `George` 类底部，让我们添加两个函数，用于在应用放入后台时暂停和恢复 `AudioPlayer`：\n\n```\n@override\n\
+  void onPaused() {\n  if (isMoving) {\n    audioPlayerRunning.pause();\n  }\n}\n\
+  @override\nvoid onResumed() async {\n  if (isMoving) {\n    audioPlayerRunning.resume();\n\
+  \  }\n}\n```\n\n- 9. 在 `update` 函数中，我们需要做一些更改来播放长循环音频并对其进行控制。在 `update` 函数顶部的代码块中（我们已经在检查摇杆是否移动），在设置\
+  \ `playing = true;` 的位置添加以下代码，使其如下所示：\n\n```\nplaying = true;\nmovingToTouchedLocation\
+  \ = false;\nif (!isMoving) {\n  isMoving = true;\n  audioPlayerRunning = await FlameAudio.loopLongAudio('sounds/running.wav');\n\
+  }\n```\n\n- 10. 由于我们正在等待长循环音频，需要将函数签名更改为异步。使用以下更改：\n\n```\n@override\nvoid update(double\
+  \ dt) async {\n```\n\n- 11. 在 `else` 块中，在检查 `movingToTouchedLocation` 是否为 `true`\
+  \ 的代码块里，我们将添加与摇杆检查中相同的代码，以启动音频播放并将 `isMoving` 标志设置为 true：\n\n```\n} else {\n   \
+  \ if (movingToTouchedLocation) {\n        if (!isMoving) {\n            isMoving\
+  \ = true;\n            audioPlayerRunning = await FlameAudio.loopLongAudio('sounds/running.wav');\n\
+  \        }\n    }\n}\n```\n\n因为我们在两个位置都添加了代码，所以无论玩家是使用摇杆还是触摸控制乔治，奔跑声音都会开始播放。\n\n\
+  - 12. 在此 `update` 函数中更下方的位置（我们调用了 `stopAnimations` 并将 `movingToTouchedLocation`\
+  \ 设置为 `false` 然后 `return`），让我们停止音频并将 `isMoving` 设置为 `false`：\n\n```\nstopAnimations();\n\
+  audioPlayerRunning.stop();\nisMoving = false;\nmovingToTouchedLocation = false;\n\
+  ```\n\n此代码位于检查阈值并决定乔治是否足够接近触摸位置从而停止移动的代码块中。\n\n- 13. 在 `update` 函数底部的最终 `else` 块中，我们将添加与触摸位置检查中相同的\
+  \ `isMoving` 检查。这样，当用户停止移动摇杆时，奔跑音效就会停止，因此摇杆和触摸都得到了覆盖。\n\n函数底部的 `else` 块现在应如下所示：\n\
+  \n```\n} else {\n    if (playing) {\n        stopAnimations();\n    }\n    if (isMoving)\
+  \ {\n        isMoving = false;\n        audioPlayerRunning.stop();\n    }\n}\n```\n\
+  \n在本节中，我们为乔治的奔跑和与敌人碰撞添加了音效。我们还添加了正确的处理方式，当乔治停止移动或游戏被移至后台时停止长循环奔跑音效。\n\n如果你现在运行游戏，你会听到背景音乐在播放，但由于音乐也在播放，音效可能很难同时听清。这是因为音效和音乐具有相同的默认音量，导致很难同时清晰地听到两者。\n\
+  \n在下一节中，我们将调整音效和音乐的音量以解决此问题，使音效更容易听到。\n\n### 控制音量\n\n修复音乐和音效的音量非常简单，只需做一些小的更改。让我们来看看：\n\
+  \n- 1. 打开 main.dart 文件。在 onLoad 函数中，在我们添加播放背景音乐的调用处，将此行更改为传递 volume 参数：\n\n```\n\
+  await FlameAudio.bgm.play('music/music.mp3',\nvolume: 0.1);\n```\n\n这里我们将音乐音量设置为\
+  \ 0.1，保持较低音量以便更好地听到音效。volume 参数可以是 0.0 到 1.0 之间的任何值（0.0 会完全静音音乐或音效，而 1.0 则以最大音量播放声音）。\n\
+  \n- 2. 打开 george.dart 文件，让我们更新播放每个音效的调用以使用 volume 参数。在 onCollision 函数中，像这样更新敌人死亡音效：\n\
+  \n```\nFlameAudio.play('sounds/enemy_dies.wav', volume: 1.0);\n```\n\n- 3. 在 update\
+  \ 函数中，更改播放奔跑音效的两处调用，并在两处都添加 volume 参数：\n\n```\naudioPlayerRunning = await FlameAudio.loopLongAudio(\n\
+  'sounds/running.wav', volume: 1.0);\n```\n\n如果你现在运行游戏，你将能够在音乐之上听到音效。\n\n### 总结\n\
+  \n在本章中，我们引入了音乐和音效来让游戏变得更好。我们处理了播放，并在应用处于后台时暂停声音，当玩家返回游戏时恢复声音，通过处理生命周期事件。\n\n在下一章中，我们将超越物理屏幕的限制，学习如何制作使用可滚动地图的关卡，当我们在地图上移动时可以滚动地图。\n\
+  \n### 问题\n\n- 1. 我们使用哪个库来为游戏添加音频？\n- 2. 将音频加载到音频缓存中有什么好处？\n- 3. 为什么在组件从游戏中移除后需要清除音频缓冲区？\n\
+  - 4. 当游戏被置于后台时，我们需要处理哪些生命周期变更状态？\n- 5. 我们使用哪个类来保存对较长音效的引用？\n- 6. 如何更改音乐或音效的默认音量？\n\
+  \n## 第 7 章：设计您自己的关卡\n\n到目前为止，我们的游戏已将设备屏幕的物理限制作为乔治和敌人精灵的边界。在本章中，我们将向您展示如何制作比屏幕更大的游戏关卡，以及如何使用相机滚动关卡以显示关卡的一部分。\n\
+  \n我们将向您展示如何添加动态对象或精灵，以及如何在这些更大的关卡上处理碰撞。这是一种非常常见的技术，被大多数类型的游戏所使用，包括诸如 Sonic 之类的平台游戏，以及诸如\
+  \ Ultima 或 Zelda 之类的 2D 角色扮演游戏。\n\n我们将涵盖以下主题：\n\n- Tiled 简介\n- 加载地块图\n- 将动态对象添加到地图\n\
+  - 理解地图导航\n- 检测地块碰撞\n\n### 技术要求\n\n要查看本章的源代码，您可以从 https://github.com/PacktPublishing/Building-Games-with-Flutter/tree/main/chapter07\
+  \ 下载，按照以下步骤操作：\n\n- 1. 从 https://github.com/PacktPublishing/Building-Games-with-Flutter/blob/main/chapter07/assets/images/tiles.png\
+  \ 下载 `tiles.png` 文件，并将其移动到 `assets/images` 本地项目文件夹中。\n\n\n\n\n\n- 2. 从 https://github.com/PacktPublishing/Building-Games-with-Flutter/blob/main/chapter07/assets/tiles/tiles.tmx\
+  \ 下载 `tiles.tmx` 文件。\n\n从 https://github.com/PacktPublishing/Building-Games-with-Flutter/blob/main/chapter07/assets/tiles/tiles.tsx\
+  \ 下载 `tiles.tsx` 文件。\n\n然后，创建该文件夹后，将两个文件移入 `assets/tiles` 本地项目文件夹中。\n\n- 3. 打开 `pubspec.yaml`\
+  \ 文件并添加以下库依赖项：\n\n```\nflame_tiled: ^1.0.0\n```\n\n- 4. 在同一文件的 `assets` 部分中，让我们添加刚才下载的图块资源：\n\
+  \n```\n- assets/tiles/tiles.tmx\n- assets/tiles/tiles.tsx\n- assets/images/tiles.png\n\
+  ```\n\n- 5. 保存文件并允许 `pub get` 下载此依赖项并验证资源：\n\n```\nflutter pub get\n```\n\n现在我们已经下载了所需的图块地图文件和依赖项，让我们来了解一下用于创建图块地图的软件。\n\
+  \n### Tiled 简介\n\nTiled 是一款免费、开源、易于使用且灵活的关卡编辑器，可以从 [Tiled 地图编辑器](https://www.mapeditor.org/)\
+  \ 下载。\n\n![](img/a63c3fccbe888cd4d04006b5e1b6c273_114_0.png)\n\n图 7.1 – 使用 Tiled\
+  \ 地图编辑器编辑地图\n\n使用 Tiled 创建的关卡称为图块地图。图块地图在 2D 游戏开发中非常常见，因为它们允许我们使用固定大小的图块创建大型地图或关卡。\n\
+  \n图块地图类似于精灵图，我们之前在第 4 章“绘制和动画图形”中用过它。数据存储在一张大图像中，我们将需要的部分提取为更小的组件。\n\n这是一种创建大于物理屏幕尺寸地图的高性能且内存高效的方法。如果你尝试使用一张非常大的图像来实现这一点，该图像需要加载到内存中，这可能导致游戏崩溃或运行非常缓慢。\n\
+  \n让我们来看一个图块地图中某些图形的示例及其用法。以下示例来自网站 https://opengameart.org/content/tilecraft-tile-set-ground#，由用户\
+  \ GrumpyDiamond 制作。\n\n如以下屏幕截图所示，它包含不同类型的地形，我们可以使用这些地形来创建更大的地图：\n\n![](img/a63c3fccbe888cd4d04006b5e1b6c273_115_0.png)\n\
+  \n图 7.2 – 包含各种地形的图像\n\n有时，图块地图图像还包含可在地图上使用的建筑物或树木，但在此示例中，我们看到用于制作水、草地、路径和一些植物的图块。\n\
+  \n然后我们可以加载此图像，并将每个图像部分拆分为更小的图块，这些图块随后可用于创建更大的地图，如以下屏幕截图所示：\n\n![](img/a63c3fccbe888cd4d04006b5e1b6c273_115_1.png)\n\
+  \n图 7.3 – 使用地形图像创建更大的地图\n\n请注意，在图 7.3 中，通过重复使用较小的图块图像来构建更大的内容，创建了一个更大的水域区域。\n\n\
+  Tiled 工具使创建图块地图变得非常容易，包括图像编辑等工具，允许你随意在地图上使用图块进行绘制。你可以从 Tiled 以多种格式导出地图，但 XML 和 JSON\
+  \ 是最常见的。\n\nTiled 是一个易于上手的工具，但也具有超出本书范围的高级功能，因此我们不会在此深入探讨它。相反，我们将提供现成的图块地图供我们的游戏使用，以便你可以直接使用它们，但我确实建议在你想为自己的游戏创建图块地图时花一些时间使用\
+  \ Tiled。\n\n当你从 Tiled 导出地图时，它包含大量关于地图和图块大小的信息，但地图数据部分表示为二维数组，可能如下所示：\n\n```\n[\n\
+  [1, 1, 1, 1, 1, 1, 1, 1],\n[1, 2, 2, 2, 2, 2, 2, 1],\n[1, 2, 3, 3, 3, 3, 2, 1],\n\
+  [1, 2, 2, 2, 2, 2, 2, 1],\n[1, 1, 1, 1, 1, 1, 1, 1]\n]\n```\n\n上述代码块中的二维数组宽 8 个图块，高\
+  \ 5 个图块。数组中的 1 可能代表某些山脉的图块 ID，2 可能代表一条路径，3 可能代表水。因此，在此示例中，地图中央有一个围绕湖泊的小径，外围环绕着山脉。\n\
+  \n在游戏中，我们会加载此数据并遍历数组，根据每个图块的图块 ID 绘制每个可见图块。我们将从左上角 0, 0 开始绘制图块，然后逐行遍历图块数据，依次绘制每个图块。\n\
+  \n现在我们已经了解了图块地图，将在下一节中将我们自己的图块地图添加到游戏中。\n\n### 加载图块地图\n\n在 *技术要求* 部分，我们添加了图块地图文件和\
+  \ `flame_tiled` 库，该库用于加载和显示图块地图。\n\n每个图块为 32 x 32 像素，地图宽 50 个图块，高 50 个图块，因此我们的总地图尺寸为\
+  \ 1,600 x 1,600 像素，即宽度和高度均为 50 * 32。\n\n如果你想查看图块地图在 Tiled 中的外观，可以在 Tiled 中打开 `tiles.tmx`\
+  \ 文件，但以下是加载和绘制我们的图块地图时的屏幕截图：\n\n![](img/a63c3fccbe888cd4d04006b5e1b6c273_117_0.png)\n\
+  \n图 7.4 – 淘金热图块地图\n\n该地图很简单，边缘有水，小径通向地图中心，地图的其他地方则长满了草地。\n\n我们将以此为基础，向地图添加对象和敌人，并为水域添加碰撞检测，以防止乔治或敌人移出地图边缘。\n\
+  \n让我们从加载并显示图块地图开始：\n\n- 1. 打开 `main.dart` 文件。在 `onLoad` 函数中，我们将添加以下代码以将图块地图加载到 `TiledComponent`\
+  \ 并使其成为游戏组件。让我们在以下代码块中添加此内容，我们之前在此处为 `Background` 组件添加了代码：\n\n```\nadd(Background(george))\
+  \ ;\nfinal tiledMap = await\n    TiledComponent.load('tiles.tmx', Vector2.all(32));\n\
+  add(tiledMap) ;\n```\n\n- 2. 在文件顶部添加以下导入语句：\n\n```\nimport 'package:flame_tiled/flame_tiled.dart';\n\
+  ```\n\n如果你现在运行游戏，将看到刚才加载的图块地图以及乔治和一些敌人。你只会看到一些敌人，因为有些敌人会绘制在屏幕外。你需要将模拟器从竖屏切换到横屏才能正确查看地图。\n\
+  \n在下一节中，我们将删除硬编码的敌人，并开始使用地图层将敌人动态添加到地图中。\n\n### 向地图添加动态对象\n\n到目前为止，在游戏中，我们已经添加了几个每种敌人，但现在我们将向你展示敌人和其他对象如何动态添加到游戏中。\n\
+  \n这在游戏中非常常见，因为你可能希望某些宝藏或敌人在地图上的特定位置生成。Tiled 有一个称为“层”的功能，可以很好地帮助我们实现这一点。最常见的两种层是图块层和对象层。我们在之前的章节\
+  \ *加载图块地图* 中已经使用图块层显示了地图。对象层允许我们定义将绘制在地图顶部的对象。\n\n在以下屏幕截图中，我们展示了在 Tiled 中打开的图块地图，你可以看到我们有两个名为\
+  \ **敌人** 和 **地图** 的层。**地图** 层是我们的图块层，**敌人** 层显示了一个对象层。我们将使用这个 **敌人** 层为敌人定义生成点：\n\
+  \n![](img/a63c3fccbe888cd4d04006b5e1b6c273_119_0.png)\n\n图 7.5 – 显示图块层和对象层的我们的图块地图\n\
+  \n我们最初在地图上放置了 12 个敌人，每个象限 3 个敌人。敌人将像在 *加载图块地图* 章节中提到的那样四处游荡。当我们在游戏中加载它们时，我们将从图块地图对象层\
+  \ **敌人** 中读取它们的位置。那么，让我们接下来将它们添加到游戏中：\n\n- 1. 打开 main.dart 文件，删除我们之前在 onLoad 函数中添加敌人的四行代码：\n\
+  \n```\nadd (Zombie(position: Vector2(100, 200),\nsize: Vector2(32.0, 64.0), speed:\
+  \ 20.0));\nadd (Zombie(position: Vector2(300, 200),\nsize: Vector2(32.0, 64.0),\
+  \ speed: 20.0));\nadd (Skeleton(position: Vector2(100, 600)),\nsize: Vector2(32.0,\
+  \ 64.0), speed: 60.0));\nadd (Skeleton(position: Vector2(300, 600)),\nsize: Vector2(32.0,\
+  \ 64.0), speed: 60.0));\n```\n\n- 2. 添加以下代码以替换刚才删除的代码：\n\n```\nfinal enemies =\n\
+  tiledMap.tileMap.getObjectGroupFromLayer('Enemies');\nenemies.objects.asMap().forEach((index,\
+  \ position) {\nif (index % 2 == 0) {\nadd(Skeleton(position: Vector2(position.x,\n\
+  position.y), size: Vector2(32.0, 64.0),\nspeed: 60.0));\n} else {\nadd (Zombie(position:\
+  \ Vector2(position.x,\nposition.y), size: Vector2(32.0, 64.0), speed:\n20.0));\n\
+  }\n});\n```\n\n这段代码用于从图块地图读取对象层并遍历数据，数据中包含 12 个敌人，因此我们在周围放置 6 个骷髅和 6 个僵尸。\n\n如果你现在运行游戏，将看到我们有一些敌人。但是，目前你会看到较少的敌人，因为它们分布在地图各处。目前，我们只显示地图的左上角，但在学习如何在“了解地图导航”章节中在地图周围移动之前，让我们向地图添加一些其他对象。\n\
+  \n如果你还记得本书前面提到的，在第 1 章“开始使用 Flutter 游戏”中，游戏的最终目标是收集金币来增加你的得分，但我们游戏中目前还没有金币。那么，让我们来解决这个问题\n\
+  \n\n\n通过引入新的动画硬币精灵，并将它们随机放置在地图上的各个位置。当然，如果我们想要，可以将这些作为对象层添加到瓦片地图中，但既然我们已经了解了如何使用敌人添加固定对象，让我们使硬币的位置随机化，以使游戏更有趣。\n\
+  \n- 3. 从 https://github.com/PacktPublishing/Building-Games-with-Flutter/tree/main/chapter07/assets/images/coins.png\
+  \ 下载硬币图片，并将图片保存到我们的 `assets/images` 项目文件夹中。\n\n- 4. 从 https://github.com/PacktPublishing/Building-Games-with-Flutter/tree/main/chapter07/assets/audio/sounds/coin.wav\
+  \ 下载硬币音频文件，并将音频文件保存到我们的 `assets/audio/sounds` 项目文件夹中。\n\n- 5. 打开 `pubspec.yaml`\
+  \ 文件，并在资源列表中添加以下行：\n\n```\n- assets/images/coins.png\n- assets/audio/sounds/coin.wav\n\
+  ```\n\n- 6. 保存文件并允许 `pub get` 验证资源：\n\n```\nflutter pub get\n```\n\n- 7. 在 `component`\
+  \ 文件夹中创建一个名为 `coin.dart` 的文件并打开它。然后为 `Coin` 类添加以下类定义，它加载硬币图片，创建动画，并设置硬币上的碰撞检测：\n\
+  \n```\nimport 'package:flame/components.dart';\nimport 'package:flame/flame.dart';\n\
+  import 'package:flame/geometry.dart';\nimport 'package:flame/sprite.dart';\nclass\
+  \ Coin extends SpriteAnimationComponent with\nHasHitboxes, Collidable {\n Coin({required\
+  \ Vector2 position, required Vector2\n size}) : super(position: position, size:\
+  \ size);\n @override\n Future<void> onLoad() async {\n super.onLoad();\n\n var spriteImages\
+  \ =\n     await Flame.images.load('coins.png');\n final spriteSheet =\n     SpriteSheet(image:\
+  \ spriteImages, srcSize: size);\n animation = spriteSheet.createAnimation(row: 0,\n\
+  \     stepTime: 0.1, from: 0, to: 7);\n\n addHitbox(HitboxRectangle());\n }\n }\n\
+  ```\n\n- 8. 打开 main.dart 文件，并在文件顶部添加以下导入：\n\n```\nimport 'package:goldrush/components/coin.dart';\n\
+  import 'dart:math';\n```\n\n- 9. 在 onLoad 函数中，在添加敌人之后添加以下代码；这将把硬币添加到地图中：\n\n```\n\
+  Random random =\n    Random(DateTime.now().millisecondsSinceEpoch);\nfor (int i\
+  \ = 0; i < 50; i++) {\n    int randomX = random.nextInt(48) + 1;\n    int randomY\
+  \ = random.nextInt(48) + 1;\n    double posCoinX = (randomX * 32) + 5;\n    double\
+  \ posCoinY = (randomY * 32) + 5;\n    add(Coin(position: Vector2(posCoinX, posCoinY),\n\
+  \        size: Vector2(20, 20)));\n}\n```\n\n该代码使用当前时钟时间作为种子创建随机数生成器以初始化随机数，这将使数字真正随机。\n\
+  \n如果您想要生成更可预测的数字序列，可以每次传递相同的固定整数。在希望创建一组始终相同但看似随机的关卡数据的游戏中，这可能很有用。\n\n接下来，我们生成 `1`\
+  \ 到 `48` 之间的数字，因为我们不想在水瓷砖上绘制硬币。稍后，我们将向水瓷砖添加碰撞检测，以防止玩家或敌人在水上行走。通过生成这些范围内的数字，它将为我们提供与地图数组数据相关的地图位置。\n\
+  \n然后我们取这些数字并将其乘以 `32`（即地图瓷砖的大小），再加上 `5` 以获取 `posCoinX` 和 `posCoinY` 值，即硬币以像素为单位的位置。\n\
+  \n然后我们使用这些值在地图上的这个位置添加一个新的硬币组件。\n\n请注意，我们在一个循环中完成所有这些操作，该循环向地图添加了 50 个硬币，其中一些目前在屏幕外，直到我们添加地图导航。\n\
+  \n- 10. 既然我们已经将硬币添加到地图，让我们继续并更新 `George` 类，以便 George 可以收集硬币。\n\n- 11. 打开 `george.dart`\
+  \ 文件，并在文件顶部添加以下导入：\n\n```\nimport 'package:goldrush/components/coin.dart';\n```\n\
+  \n- 12. 在 `onLoad` 函数的底部，更新将音频文件加载到音频缓存的行，以加载 `coin.wav` 音频文件：\n\n```\nawait FlameAudio.audioCache.loadAll(\n\
+  ['sounds/enemy_dies.wav', 'sounds/running.wav',\n'sounds/coin.wav']);\n```\n\n-\
+  \ 13. 最后，在 `onCollision` 函数的底部，让我们添加一个与硬币碰撞的检查——如果我们与硬币碰撞，它将从游戏中移除硬币，将我们的得分增加 20，并播放硬币音频：\n\
+  \n```\nif (other is Coin) {\nother.removeFromParent();\nhud.scoreText.setScore(20);\n\
+  }\nFlameAudio.play('sounds/coin.wav', volume: 1.0);\n}\n```\n\n如果您现在运行游戏，将看到地图上的旋转硬币，并可以稍微移动\
+  \ George 来收集硬币。但是，您会注意到我们仍然局限于地图的左上角，即使尝试超出这个左上角移动也是如此。\n\n在下一节中，我们将摆脱 George 和敌人的这一限制，允许他们通过向游戏地图添加导航来在地图上移动！\n\
+  \n### 了解地图导航\n\n既然我们已加载瓦片地图，并动态将敌人和硬币添加到地图中，我们可以修复导航，以便在地图上四处走动。但在此之前，让我们谈谈相机以及我们如何在游戏中使用它们。\n\
+  \n相机允许我们改变屏幕上看到的内容，当地图大于物理屏幕时这非常有用。我们可以利用此功能执行以下操作：\n\n  - 缩放相机以显示更多或更少的地图。\n  -\
+  \ 显示与 George 当前在地图上的位置不同的地图部分。\n  - 使用动画移动到地图的不同部分，以实现平滑过渡。\n  - 将相机位置链接到跟随 George，这样当\
+  \ George 在地图上移动时，相机会更新并使 George 保持可见，而地图会围绕他的位置移动。\n\n大多数游戏使用这些方法的组合，但我们最感兴趣的是最后一点，因为我们希望相机在\
+  \ George 移动时跟随他。\n\n### 重要提示\n\n如果您有兴趣了解其他要点，请在 Flame 文档中查找相机内容。相机文档可在 https://docs.flame-engine.org/main/camera_and_viewport.html\
+  \ 中找到。\n\n让我们开始修复导航：\n\n- 1. 打开 `main.dart` 文件，并在 `onLoad` 函数的底部添加以下代码：\n\n```\n\
+  camera.speed = 1;\ncamera.followComponent(george, worldBounds:\n  Rect.fromLTWH(0,\
+  \ 0, 1600, 1600));\n```\n\n在此，我们设置相机速度，将相机设置为跟随 George，并将世界边界设置为 1,600 x 1,600，即\
+  \ 50 个瓦片的宽度和高度乘以每个瓦片的像素大小（32）。\n\n如果您现在运行此代码并在地图上导航，可能会注意到几个问题：\n\n- a. 敌人不会移动超过原始屏幕尺寸。\n\
+  - b. 您只能在原始屏幕尺寸内触摸移动。\n\n让我们逐个修复这些问题。\n\n- 2. 敌人无法在地图上移动的原因是它们与在屏幕为固定大小时添加的 `ScreenCollidable`\
+  \ 发生碰撞。由于我们将在下一节中处理此碰撞，我们可以只删除 `onLoad` 函数底部添加 `ScreenCollidable` 文件的那一行：\n\n```\n\
+  add(ScreenCollidable());\n```\n\n- 3. 您只能在物理屏幕边界内触摸的原因是触摸事件在 `Background` 类中捕获，且\
+  \ `Background` 类的大小目前基于屏幕的物理尺寸。\n\n另外，现在我们正在绘制地图，背景仅用于检测并将触摸事件传递给 George，因此我们可以从\
+  \ Background 类中删除大部分绘制代码。打开 background.dart 文件，更改类中的所有代码并添加精简后的代码，如下所示：\n\n```\n\
+  import 'package:flame/components.dart';\nimport 'package:flame/input.dart';\nimport\
+  \ 'george.dart';\nclass Background extends PositionComponent with\n  Tappable {\n\
+  \  Background(this.george);\n  final George george;\n  @override\n  Future<void>\
+  \ onLoad() async {\n    super.onLoad();\n    position = Vector2(0, 0);\n    size\
+  \ = Vector2(1600, 1600);\n  }\n  @override\n  bool onTapUp(TapUpInfo info) {\n \
+  \   george.moveToLocation(info);\n    return true;\n  }\n}\n```\n\n除了精简此类中的代码外，主要更改是在\
+  \ onLoad 函数底部，我们将大小设置为 1,600 x 1,600，即地图大小，而不是我们之前在第 5 章“使用输入移动图形”的“绘制屏幕控件”部分中使用的屏幕大小。\n\
+  \n如果您现在运行游戏，将看到这些问题已修复，我们可以四处导航并收集硬币。不幸的是，现在我们已移除 ScreenCollidable，George 和敌人可以走出屏幕边缘。\n\
+  \n在下一节中，我们将通过将地图周围的水设为可碰撞对象来修复此问题，以便在移动时进行检查，\n\n\n\ndetecting whether we collide\
+  \ with the water and preventing George or the enemies from moving over it.\n\n###\
+  \ 检测方块碰撞\n\n到目前为止，在我们的游戏中，我们使用组件级碰撞检测来检测 George 与金币和敌人之间的碰撞。当你使用地图关卡时，通常会在地图上添加其他作为障碍物的对象，例如水、建筑物或树木。当玩家在包含这些物品的地图上导航时，我们要确保\
+  \ George 和敌人都不会穿过这些物体。\n\n在 *了解地图导航* 部分，我们删除了 `ScreenCollidable` 组件以允许敌人在地图上自由移动，但现在敌人和\
+  \ George 都可能走出地图。\n\n在本节中，我们将添加一个围绕地图的水障碍。我们将检查碰撞，以防止 George 和敌人离开地图。我们将从对象层读取水在地图上的位置，并创建新的\
+  \ `Water` 组件。我们将使这些组件可碰撞并将它们添加到游戏中，这样 Flame 就会检查与水的碰撞，我们就可以阻止 George 或敌人在水面上移动。\n\
+  \n这带来了一些有趣的挑战，因为在我们之前的碰撞检查中，当 George 与敌人或金币碰撞时，我们只需将其移除，而 George 可以继续向他旅行的方向移动，但现在我们必须在碰撞水时阻止移动。在深入探讨之前，我们先多谈谈\
+  \ Flame 检查碰撞时发生了什么。\n\n### 了解碰撞\n\n当我们将组件设置为可碰撞时，我们在对象周围添加了一个形状。然后，Flame 可以使用这些形状来计算一个形状是否与另一个形状相交，如果发生这种情况，则触发碰撞检测。\n\
+  \n随着游戏的发展，我们不断添加更多可碰撞的物品，此过程的问题是每在游戏中添加一个可碰撞物品，就需要进行一次碰撞检查。碰撞检查越多，处理器处理背后所有数学所需的努力就越大。最终，如果碰撞检查太多，游戏性能会下降，你会注意到游戏开始变慢。\n\
+  \n让我们来看看迄今为止游戏中的一些数学，以便了解这一点：\n\n- 游戏中有 12 个敌人，6 个僵尸和 6 个骷髅。\n- 游戏中有 50 枚金币。\n-\
+  \ 我们将在地图边缘添加边界，由于每条边都有 50 个方块，地图周围有 4 条边，因此可能会有大约 200 个水组件。\n- 我们还有我们的玩家 George。\n\
+  \n游戏中共有 263 个可碰撞对象。目前，这些可碰撞对象中的每一个都需要与游戏中其他所有可碰撞对象进行碰撞检查。因此，那就是 263 * 263 = 69,169\
+  \ 次碰撞检查。这将近 70,000 次碰撞检查，而且每帧都在发生！\n\n这是一个令人生畏的碰撞检查数量，我们的游戏竟然还能运行，真是令人惊讶！\n\n想看看，这些检查中大部分完全是浪费，因为金币彼此之间无法碰撞，它们都分布在地图各处，并且不会移动。我们将要添加的水对象也是如此。此外，水对象也不能与金币碰撞，因为它们位于不同的位置。\n\
+  \n幸运的是，Flame 提供了一个很好的解决方案，允许我们在可碰撞组件上设置 `collidableType`，以告诉 Flame 是否应该针对该对象执行检查。\n\
+  \n三种可碰撞类型如下：\n\n- Active：活动可碰撞对象会与活动或被动类型的其他可碰撞对象发生碰撞。如果未为所有可碰撞对象设置值，这是默认的可碰撞类型。\n\
+  - Passive：被动可碰撞对象会与活动类型的其他可碰撞对象发生碰撞，但不会与其他被动可碰撞对象发生碰撞。\n- Inactive：非活动可碰撞对象不会与其他可碰撞对象发生碰撞。\n\
+  \n为了减少碰撞检查的数量，我们的方案是将 `Water` 和 `Coin` 对象设置为被动，并让 George 和敌人对象保持默认的活动状态。\n\n###\
+  \ 实现碰撞\n\n让我们先向游戏中添加 `Water` 对象：\n\n1. 在项目的 `component` 文件夹中，创建一个名为 `water.dart`\
+  \ 的新文件并添加以下代码：\n\n```dart\nimport 'package:flame/components.dart';\nimport 'package:flame/geometry.dart';\n\
+  class Water extends PositionComponent with\n    HasHitboxes, Collidable {\n  Water({required\
+  \ Vector2 position, required Vector2 size, required this.id}) : super(position:\
+  \ position, size: size);\n\n  int id;\n  @override\n  Future<void> onLoad() async\
+  \ {\n    super.onLoad();\n\n    collidableType = CollidableType.passive;\n\n   \
+  \ addHitbox(HitboxRectangle());\n  }\n}\n```\n\n这里，我们定义了 `Water` 对象，它是一个具有位置和大小的矩形区域。\n\
+  \n在 `onLoad` 函数中，我们将 `collidableType` 设置为 `CollidableType.passive` 类型，并添加一个命中框用于\
+  \ `George` 与 `Water` 以及敌人与 `Water` 之间的碰撞检查。\n\n2. 打开 `main.dart` 文件，在 `onLoad` 函数底部，在我们添加金币的位置下方添加以下代码：\n\
+  \n```dart\nfinal water =\n    tiledMap.tileMap.getObjectGroupFromLayer('Water');\n\
+  water.objects.forEach((rect) {\n  add(Water(position: Vector2(rect.x, rect.y), size:\n\
+  \      Vector2(rect.width, rect.height), id: rect.id));\n});\n```\n\n这里，我们将 `water`\
+  \ 对象作为对象组从地图中获取，并遍历这些对象，使用其中的 x、y、width 和 height 值来创建并将 `Water` 组件添加到游戏中。\n\n如果在\
+  \ Tiled 中打开地图，你可以看到 `Water` 对象层由四个简单的矩形组成，这减少了碰撞检查的次数。我们并不真正关心与哪个单独的水方块发生碰撞，因此只需检查四条边即可。\n\
+  \n3. 在同一文件的顶部，为 `Water` 组件添加以下导入：\n\n```dart\nimport 'package:goldrush/components/water.dart';\n\
+  ```\n\n4. 打开 `coin.dart` 文件，向 `onLoad` 函数添加以下代码以将 `collidableType` 设置为被动：\n\n```dart\n\
+  super.onLoad();\ncollidableType = CollidableType.passive;\n```\n\n5. 我们先更改敌人的碰撞，因为这是一个非常快速的更改。打开\
+  \ `character_enemy.dart` 文件，在 onCollision 函数顶部，使用以下代码将对象检查更改为使用 Water 对象而不是 `ScreenCollidable`：\n\
+  \n```dart\nif (other is Water) {\n```\n\n6. 接下来，我们需要在此文件顶部添加 Water 类的导入：\n\n```dart\n\
+  import 'package:goldrush/components/water.dart';\n```\n\n接下来，Flame 具有 debugMode，我们可以将其设置为\
+  \ true 以查看可碰撞框的边界框（显示检测区域边界限制的框），这对于调试碰撞检测很有用。让我们添加它。\n\n7. 打开 main.dart 文件，在 onLoad\
+  \ 函数顶部添加以下行：\n\n```dart\ndebugMode = true;\n```\n\n如果现在运行游戏，你将看到边界框，并且可能会发现一个问题。\n\
+  \nSkeleton 和 Zombie 精灵在精灵顶部有大量空白区域，这意味着如果 George 与这些精灵顶部碰撞，由于图像中的额外空间，碰撞会比预期更早发生。为了解决这个问题，我们可以向\
+  \ HitboxRectangle 传递两个值：relation 和 relativeOffset。\n\nrelation 值定义了水平和垂直边长与边界框大小之间的关系，而\
+  \ relativeOffset 值是你的形状相对于其大小从 (-1,-1) 到 (1,1) 的位置。\n\n为了修复敌人精灵类顶部的空间问题，请打开 zombie.dart\
+  \ 和 skeleton.dart 文件，并在两个类的 onLoad 函数底部，将添加命中框的行更改为以下代码：\n\n\n\n```dart\naddHitbox(HitboxRectangle(relation:\
+  \ Vector2(1.0, 0.7))..relativeOffset = Vector2(0.0, 0.3));\n```\n\n如果你现在运行游戏，你会发现边界框与精灵的大小紧密对齐，这将使我们在碰撞检测中获得更好的效果。\n\
+  \n- 8. 我们还可以调整用于 George 的精灵，以进一步改进 George 精灵的边界框。打开 `george.dart` 文件，在 `onLoad`\
+  \ 函数底部，将添加碰撞框的行更改为以下代码：\n\n```dart\naddHitbox(HitboxRectangle(relation: Vector2(0.7,\
+  \ 0.7))..relativeOffset = Vector2(0.0, 0.1));\n```\n\n请注意，这些值与我们用于敌方精灵的值不同。\n\n\
+  - 9. 现在我们已经完成了对边界框的调整，可以从 `main.dart` 文件中删除 `debugMode` 行了。\n\n- 10. 让我们继续在 `George`\
+  \ 类中添加最终的碰撞检查。\n\n在 `George` 类顶部（我们先前在其中定义类变量的地方），添加以下两个新变量，我们将使用这些变量来跟踪是否已与 `Water`\
+  \ 组件发生碰撞，以及碰撞时的行进方向：\n\n```dart\nint collisionDirection = Character.down;\nbool\
+  \ hasCollided = false;\n```\n\n我们将 `collisionDirection` 设置为 `down`，因为 George 开始游戏时面向下方。\n\
+  \n- 11. 接下来，让我们添加 `Water` 对象的导入，我们将在碰撞检查中使用它。在文件顶部的其他导入处，添加以下导入：\n\n```dart\nimport\
+  \ 'package:goldrush/components/water.dart';\n```\n\n- 12. 在 `onCollision` 函数底部，让我们添加以下代码，以便在检测到与\
+  \ `Water` 边界发生碰撞时设置碰撞变量：\n\n```dart\nif (other is Water) {\n  if (!hasCollided)\
+  \ {\n    if (movingToTouchedLocation) {\n      movingToTouchedLocation = false;\n\
+  \    } else {\n      hasCollided = true;\n      collisionDirection = currentDirection;\n\
+  \    }\n  }\n}\n```\n\n我们将在接下来的几个步骤中使用这些值，以防止在与水发生碰撞时移动 George。但也要注意在上述代码中，如果已检测到碰撞且我们正在移动到触摸位置，我们现在将\
+  \ `movingToTouchedLocation` 设置为 `false`，以防止 George 继续尝试移动。\n\n- 13. 当碰撞结束时，我们还希望将\
+  \ `hasCollided` 变量重新设置为 `false`，幸运的是 Flame 有一个名为 `onCollisionEnd` 的函数，我们可以重写它，当对象停止碰撞时会调用它：\n\
+  \n```dart\n@override\nvoid onCollisionEnd(Collidable other) {\n  hasCollided = false;\n\
+  }\n```\n\n- 14. 接下来，我们将创建一个函数来处理所有移动代码，并且仅在未发生碰撞时才允许移动。因为我们以不同的方式计算触摸位置的移动，我们将根据是否正在移动到触摸位置，或者玩家是否使用摇杆控制移动来拆分代码：\n\
+  \n```dart\nvoid movePlayer(double delta) {\n  if (!(hasCollided && collisionDirection\
+  \ == currentDirection)) {\n    if (movingToTouchedLocation) {\n      position.add((targetLocation\
+  \ - position).normalized() * (speed * delta));\n    } else {\n      switch (currentDirection)\
+  \ {\n        case Character.left:\n          position.add(Vector2(delta * -speed,\
+  \ 0));\n          break;\n        case Character.right:\n          position.add(Vector2(delta\
+  \ * speed, 0));\n          break;\n        case Character.up:\n          position.add(Vector2(0,\
+  \ delta * -speed));\n          break;\n        case Character.down:\n          position.add(Vector2(0,\
+  \ delta * speed));\n          break;\n      }\n    }\n  }\n}\n```\n\n- 15. 让我们更新\
+  \ `update` 函数，并替换两个用于触摸和摇杆控制更改精灵位置的地方。\n\n使用 `movePlayer(dt);` 替换以下行：\n\n```dart\n\
+  position.add(hud.joystick.relativeDelta * speed * dt);\n```\n\n同样，使用 `movePlayer(dt);`\
+  \ 替换以下行：\n\n```dart\nposition += (targetLocation - position).normalized() * (speed\
+  \ * dt);\n```\n\n如果你现在运行应用并使用摇杆或触摸移动，你会发现你无法超出屏幕范围，因为我们现在会与水发生碰撞，并阻止玩家在水面上移动或超出屏幕边界。\n\
+  \n### 总结\n\n在本章中，我们了解了关于地图块的所有内容，如何创建它们以及添加动态对象，以及如何在其中导航，同时避免与碰撞对象发生碰撞。\n\n迄今为止，我们一直在为移动端构建游戏，但\
+  \ Flutter 也支持其他平台。在下一章中，我们将向你展示如何为网页和桌面构建应用，将游戏转换为支持更大的可用屏幕区域，并添加额外控件以使用键盘移动 George。\n\
+  \n### 问题\n\n- 1. Tiled 应用程序用于什么？\n- 2. 为什么应该使用地图块而不是一张大图来制作地图？\n- 3. 地图块内部的地图数据是如何存储的？\n\
+  - 4. 我们可以在地图块上使用哪些不同类型的图层？\n- 5. 我们如何使用相机来调整地图，以便在导航地图时保持精灵对焦？\n- 6. 我们如何使用地图块添加可碰撞对象？\n\
+  - 7. 三种可碰撞类型是什么？为什么需要它们？\n"
+- "## 第 8 章：为网页和桌面端缩放游戏\n\n在本书迄今所涉及的内容中，我们一直专注于为具有小型固定屏幕尺寸的移动设备构建游戏。当然，Flutter 的优势之一是它是一个跨平台框架，适用于移动端、网页和桌面端。\n\
+  \n但是，在构建将在网站上运行的游戏时，会出现移动端不会遇到的问题。如果你不启动任何移动模拟器，而是在 Visual Studio Code 中选择 Chrome\
+  \ 浏览器作为目标平台并运行游戏，你会注意到地图和 UI 绘制不正确，没有背景音乐，且触摸事件无法正常工作。\n\n在本章中，我们将转换游戏，使其在网页和桌面端正常工作，并确保修复这些问题。在处理调整大小的问题时，我们需要根据新的屏幕尺寸重新绘制地图并重新定位所有组件。有些屏幕分辨率非常高，且大于我们的物理地图尺寸\
+  \ 1,600 x 1,600，这意味着我们需要确保游戏在这些较大的屏幕上依然表现良好。\n\n在本章中，我们将涵盖以下主题：\n\n- 为网页和桌面端构建游戏\n\
+  - 设置背景音乐\n- 设置 Flutter Web 构建参数\n- 使用键事件导航\n\n### 技术要求\n\n要查看本章的源代码，可以从 https://github.com/PacktPublishing/Building-Games-with-Flutter/tree/main/chapter08\
+  \ 下载。\n\n### 为网页和桌面端构建游戏\n\n如简介中所述，如果在 Google Chrome 中启动我们的游戏，你会注意到地图和 UI 绘制不正确，且位置错误。那么这里发生了什么呢？\n\
+  \n调整屏幕大小时不断变化的较大屏幕尺寸会使我们的游戏困惑，游戏当前认为尺寸是固定的，并且组件的初始位置是相对于我们固定的屏幕尺寸设置的。由于这种困惑，图形可能看起来奇怪，我们先前正常工作的触摸事件现在也可能因为这个新的屏幕尺寸而混乱。\n\
+  \n解决办法是让游戏在屏幕调整大小时通知我们，然后我们使用新的屏幕尺寸重新计算所有组件的位置。为了使这更加简单，我们将在数学上计算游戏的边界，以便我们知道地图的顶部、左侧、右侧和底部相对于新屏幕尺寸的位置，然后根据这个边界调整组件。\n\
+  \n以下图片显示了通过修复当前用户界面问题希望达到的效果：\n\n![](img/a63c3fccbe888cd4d04006b5e1b6c273_138_0.png)\n\
+  \nFigure 8.1 – 修复用户界面问题后的网页版游戏\n\n在图 8.1 中，你可以看到当屏幕宽度大于地图宽度时，地图块组件会为空白区域绘制黑色边框。由于屏幕宽度大于地图宽度，我们在两侧看到了这些黑色边框，但高度情况并非如此。屏幕高度小于地图高度，因此顶部和底部不会绘制黑色边框。这可能会根据你的屏幕尺寸在你的屏幕上有所不同。\n\
+  \n上图中的红色矩形显示了我们想要计算的边界，以便我们可以将其他所有内容相对于它进行调整。在本节中，我们将做到这一点。\n\n### 设置新的屏幕边界\n\n\
+  既然我们知道需要计算的边界，那么让我们继续将其添加到代码中：\n\n- 1. 打开 `maths_utils.dart` 文件并添加以下函数：\n\n\n\n\
+  Rect getGameScreenBounds(Vector2 canvasSize) {\n}\n\n- 2. 在 `getGameScreenBounds`\
+  \ 函数顶部，添加以下代码:\n\n```\ndouble left = 0, right = 0, top = 0, bottom = 0;\nif (canvasSize.x\
+  \ > 1600) {\n    left = (canvasSize.x - 1600) / 2;\n}\nif (canvasSize.y > 1600)\
+  \ {\n    top = (canvasSize.y - 1600) / 2;\n}\n```\n\n在这里，我们最初定义一些变量来存储我们的 `left`、`right`、`top`\
+  \ 和 `bottom` 值。\n\n如果屏幕的宽度或高度小于地图大小（1,600 x 1,600），我们将默认值设置为 `0`、`0`，并且仅当屏幕的宽度或高度大于地图大小时才更新默认值。\n\
+  \n我们将 `canvasSize` 传入函数，它是当前屏幕大小，并减去 `1600` 以获取两个值之间的总差值。然后我们将总差值除以 `2`，因为我们希望确保任何调整都会将地图居中于可用空间。\n\
+  \n我们将在游戏开始时调用此函数，并且每当玩家通过调整窗口大小来更改屏幕大小时，我们将根据这个新屏幕大小调整所有组件，使其看起来正确。\n\n- 3. 让我们在\
+  \ `getGameScreenBounds` 函数中继续，接下来设置我们的 `right` 和 `top` 变量:\n\n```\nif (canvasSize.x\
+  \ < 1600) {\n    right = canvasSize.x;\n} else {\n    right = left + 1600;\n}\n\
+  if (canvasSize.y < 1600) {\n    bottom = canvasSize.y;\n} else {\n    bottom = top\
+  \ + 1600;\n}\nreturn Rect.fromLTRB(left, top, right, bottom);\n```\n\n在这里，我们检查屏幕的宽度是否小于\
+  \ 1600，如果是，则将右值设置为屏幕的宽度。否则，要获得右值，我们将左值和地图的宽度（1600）相加。\n\n然后我们使用屏幕的高度对底部值进行相同的计算。\n\
+  \n接下来，我们创建一个矩形来存储我们的值，并从函数中返回它。\n\n### 重要提示\n\n所有值都基于绝对像素值，以帮助我们计算组件的位置，尤其是 HUD，它必须紧密对齐到角落。\n\
+  \n- 4. 最后，我们在文件顶部添加以下导入，以解决此函数中使用的 Vector2 和 Rect 类的引用:\n\n```\nimport 'package:flame/extensions.dart';\n\
+  ```\n\n现在我们已经理清了计算屏幕调整大小时边界的数学方法，让我们开始将此应用到我们的组件上。\n\n### 修复精灵\n\n我们将从 George 和敌人开始，它们的顶层基类是\
+  \ Character。因此，让我们在该类中监听游戏调整大小事件:\n\n- 1. 打开 character.dart 文件，并将以下变量添加到 Character\
+  \ 类中以跟踪精灵的原始位置:\n\n```\nlate Vector2 originalPosition;\n```\n\n- 2. 接下来，让我们添加代码来监听游戏调整大小事件，通过重写\
+  \ Component 类（所有精灵都继承自该类）的一部分 onGameResize 函数。然后我们根据 `originalPosition` 和当前游戏屏幕边界调整当前位置，如下所示:\n\
+  \n```\n@override\nvoid onGameResize(Vector2 canvasSize) {\n super.onGameResize(canvasSize);\n\
+  \ Rect gameScreenBounds =\n getGameScreenBounds(canvasSize);\n position = Vector2(originalPosition.x\
+  \ +\n gameScreenBounds.left, originalPosition.y +\n gameScreenBounds.top);\n}\n\
+  ```\n\n- 3. 现在我们有了处理调整大小的代码，让我们在文件顶部添加导入:\n\n```\nimport 'package:goldrush/utils/math_utils.dart';\n\
+  import 'package:flame/extensions.dart';\n```\n\n有了 `Character` 基类调整大小的处理，修复 George\
+  \ 和敌人就非常容易了。我们只需要在构造函数中存储原始位置，当屏幕调整大小时，精灵将通过其对 `onGameResize` 的回调正确移动，该回调在其 `Character`\
+  \ 基类中处理。\n\n- 4. 因此，打开 `george.dart` 文件，将构造函数更改为此:\n\n```\nGeorge({required this.hud,\
+  \ required Vector2 position,\n required Vector2 size, required double speed}) :\n\
+  \ super(position: position, size: size, speed:\n speed) {\n originalPosition = position;\n\
+  }\n```\n\n- 5. 接下来，打开 `skeleton.dart` 文件，将构造函数更改为此:\n\n```\nSkeleton({required Vector2\
+  \ position, required Vector2\n size, required double speed}) : super(position:\n\
+  \ position, size: size, speed: speed) {\n originalPosition = position;\n}\n```\n\
+  \n- 6. 然后，打开 `zombie.dart` 文件，将构造函数更改为此:\n\n```\nZombie({required Vector2 position,\
+  \ required Vector2 size, required double speed}): super(position: position, size:\
+  \ size, speed: speed) {\n originalPosition = position;\n}\n```\n\n现在我们已经修复了主要精灵，让我们修复\
+  \ `Coin` 和 `Water` 组件。\n\n### 修复 coin 和 water 组件\n\n要开始修复 water 和 coin 组件，请执行以下步骤:\n\
+  \n- 1. 打开 `coin.dart` 文件，更改 `Coin` 类构造函数，并像这样添加一个用于原始位置的变量:\n\n```\nCoin({required\
+  \ Vector2 position, required Vector2 size}):\n originalPosition = position,\n super(position:\
+  \ position, size: size);\nlate Vector2 originalPosition;\n```\n\n- 2. 将以下 `onGameResize`\
+  \ 函数添加到 `Coin` 类:\n\n```\n@override\nvoid onGameResize(Vector2 canvasSize) {\n super.onGameResize(canvasSize);\n\
+  \ Rect gameScreenBounds =\n getGameScreenBounds(canvasSize);\n position = Vector2(originalPosition.x\
+  \ +\n gameScreenBounds.left, originalPosition.y +\n gameScreenBounds.top);\n}\n\
+  ```\n\n- 3. 最后，对于 `Coin` 类，让我们在文件顶部添加导入:\n\n```\nimport 'dart:ui';\nimport 'package:goldrush/utils/math_utils.dart';\n\
+  ```\n\n我们添加到 `Coin` 类的代码与我们添加到 `Character` 类的代码类似，在构造函数中存储 `originalPosition`，然后在游戏调整大小时，将此值与新屏幕大小一起用于计算新位置。\n\
+  \n让我们对 `Water` 类做同样的事情。\n\n- 4. 打开 `water.dart` 文件，更改 `Water` 类构造函数，并像这样添加一个用于原始位置的变量:\n\
+  \n```\nWater({required Vector2 position, required Vector2 size, required this.id})\
+  \ :\n originalPosition = position,\n super(position: position, size: size);\nlate\
+  \ Vector2 originalPosition;\n```\n\n- 5. 将以下 `onGameResize` 函数添加到 `Water` 类:\n\n\
+  ```\n@override\nvoid onGameResize(Vector2 canvasSize) {\n super.onGameResize(canvasSize);\n\
+  \ Rect gameScreenBounds =\n getGameScreenBounds(canvasSize);\n position = Vector2(originalPosition.x\
+  \ +\n gameScreenBounds.left, originalPosition.y +\n gameScreenBounds.top);\n}\n\
+  ```\n\n- 6. 最后，对于 `Water` 类，让我们在文件顶部添加导入:\n\n```\nimport 'package:goldrush/utils/math_utils.dart';\n\
+  import 'dart:ui';\n```\n\n现在我们已经修复了精灵，让我们修复背景和瓦片地图。\n\n### 修复背景和瓦片地图\n\n对于我们的瓦片地图，我们目前使用\
+  \ `TiledComponent`，它本身扩展自 `Component` 类。这是所有其他组件的基类，而这个类本身没有位置。这对跟踪瓦片地图的游戏边界来说是个问题。因此，解决方法是将我们的\
+  \ `TiledComponent` 包装在另一个类中，我们将其命名为 `TileMapComponent`。\n\n`TileMapComponent` 本身是一个位置组件，我们将使\
+  \ `TiledComponent` 成为新 `TileMapComponent` 类的子级。通过这样做，我们可以在屏幕调整大小时自由定位这个新类。\n\n所以，让我们继续并添加这个新的包装器类:\n\
+  \n- 1. 在 `components` 文件夹中，创建一个名为 `tilemap.dart` 的新文件并添加以下代码:\n\n```\nimport 'package:flame/components.dart';\n\
+  import 'package:flame_tiled/flame_tiled.dart';\nimport 'package:flutter/material.dart';\n\
+  import 'package:goldrush/utils/math_utils.dart';\nclass TileMapComponent extends\
+  \ PositionComponent {\n  TileMapComponent(this.tiledComponent) {\n    add(tiledComponent);\n\
+  \  }\n  TiledComponent tiledComponent;\n  @override\n  void onGameResize(Vector2\
+  \ canvasSize) {\n    super.onGameResize(canvasSize);\n    Rect gameScreenBounds\
+  \ =\n      getGameScreenBounds(canvasSize);\n    if (canvasSize.x > 1600) {\n  \
+  \    double xAdjust = (canvasSize.x - 1600) / 2;\n      position = Vector2(gameScreenBounds.left\
+  \ +\n        xAdjust, gameScreenBounds.top);\n    } else {\n      position = Vector2(gameScreenBounds.left,\n\
+  \        gameScreenBounds.top);\n    }\n    size = Vector2(1600, 1600);\n  }\n}\n\
+  ```\n\n\n\n\n在这个新类中，我们通过构造函数获取 `TiledComponent` 并将其添加为子组件，因此它将与本类位于相同的位置。然后，在 `onGameResize`\
+  \ 函数中，我们正在调整该组件的位置，并将其大小固定为地图大小 1600 x 1600。\n\n接下来是 `Background` 类，在这个类中，我们想要删除\
+  \ `position` 和 `size` 设置——目前这些设置发生在 `onLoad` 函数中——通过删除此函数，然后在 `onGameResize` 函数中设置\
+  \ `position` 和 `size`。\n\n- 2. 打开 `background.dart` 文件，完全删除 `onLoad` 函数，并添加以下代码：\n\
+  \n```\n@override\nvoid onGameResize(Vector2 canvasSize) {\n  super.onGameResize(canvasSize);\n\
+  \  Rect gameScreenBounds =\n      getGameScreenBounds(canvasSize);\n  if (canvasSize.x\
+  \ > 1600) {\n    double xAdjust = (canvasSize.x - 1600) / 2;\n    position = Vector2(gameScreenBounds.left\
+  \ +\n        xAdjust, gameScreenBounds.top);\n  } else {\n    position = Vector2(gameScreenBounds.left,\n\
+  \        gameScreenBounds.top);\n  }\n  size = Vector2(1600, 1600);\n}\n```\n\n\
+  与我们刚刚添加的 `TileMapComponent` 对象一样，这会在调整大小后，根据新的屏幕大小设置 `position` 和 `size`。\n\n###\
+  \ 重要提示\n\n请注意，当组件首次创建时，`onGameResize` 总会被调用，之后每次屏幕调整大小时也会再次调用。因此，我们不再需要在 `onLoad`\
+  \ 中做任何事情。\n\n- 3. 接下来，让我们添加导入语句：\n\n```\nimport 'package:goldrush/utils/math_utils.dart';\n\
+  import 'dart:ui';\n```\n\n- 4. 最后，对于 `Background` 类，我们将更改构造函数以提高组件的 `priority`，以确保当前能够捕获触摸事件。请将构造函数更改为以下内容：\n\
+  \n```\nBackground(this.george) : super(priority: 20);\n```\n\n在下一节中，我们将讨论如何修复 HUD\
+  \ 组件。\n\n### 修复 HUD 组件\n\n现在让我们继续修复 HUD 组件。\n\n目前，在我们的 HUD 中，我们使用边距根据屏幕角落调整摇杆、运行按钮和分数文本的位置。目前\
+  \ Flame 库在游戏屏幕调整大小时存在一些已知问题，这会导致此功能无法正常工作。\n\n因此，我们将重写 HUD 的部分内容，使用 position 而不是边距，然后我们可以应用常用的计算方式，即获取游戏屏幕边界，并在屏幕调整大小时调整\
+  \ HUD 组件的位置。\n\n与 *修复背景和瓦片地图* 部分第 2 步中使用 `Background` 类的情况类似，我们将删除 `onLoad` 功能，并在\
+  \ `onGameResize` 函数中处理调整大小操作。我们还将把这个函数分为两部分。当 `onGameResize` 第一次被调用时，我们需要创建 HUD\
+  \ 组件并将其作为子组件添加，根据屏幕大小调整它们的位置。之后每次调用 `onGameResize` 时，我们将只更新 HUD 组件的新位置。\n\n为了跟踪这一点，我们将创建一个名为\
+  \ `isInitialised` 的变量来跟踪是否已经设置好 HUD 组件，并根据该情况调用正确的代码：\n\n- 1. 打开 `hud.dart` 文件并在类顶部添加\
+  \ `isInitialised` 变量：\n\n```\nbool isInitialised = false;\n```\n\n- 2. 删除 `onLoad`\
+  \ 函数并添加以下代码：\n\n```\n@override\nvoid onGameResize(Vector2 canvasSize) {\n super.onGameResize(canvasSize);\n\
+  \ Rect gameScreenBounds =\n getGameScreenBounds(canvasSize);\n if(!isInitialised)\
+  \ {\n } else {\n }\n}\n```\n\n- 3. 在第一个检查 `isInitialised` 是否为 false 的 `if` 代码块中，添加以下代码：\n\
+  \n```\nfinal joystickKnobPaint =\n BasicPalette.blue.withAlpha(200).paint();\n final\
+  \ joystickBackgroundPaint =\n BasicPalette.blue.withAlpha(100).paint();\n final\
+  \ buttonRunPaint =\n BasicPalette.red.withAlpha(200).paint();\n final buttonDownRunPaint\
+  \ =\n BasicPalette.red.withAlpha(100).paint();\n joystick = Joystick(\n knob: CircleComponent(radius:\
+  \ 20.0, paint:\n joystickKnobPaint),\n background: CircleComponent(radius: 40.0,\
+  \ paint:\n joystickBackgroundPaint),\n position: Vector2(gameScreenBounds.left +\
+  \ 100,\n gameScreenBounds.bottom - 80),\n );\n runButton = RunButton(\n button:\
+  \ CircleComponent(radius: 25.0, paint:\n buttonRunPaint),\n buttonDown: CircleComponent(radius:\
+  \ 25.0, paint:\n buttonDownRunPaint),\n position: Vector2(gameScreenBounds.right\
+  \ - 80,\n gameScreenBounds.bottom - 80),\n onPressed: () => {}\n);\nscoreText =\
+  \ ScoreText(position: Vector2(\n  gameScreenBounds.left + 80, gameScreenBounds.top\
+  \ +\n  60));\nadd(joystick);\nadd(runButton);\nadd(scoreText);\npositionType = PositionType.viewport;\n\
+  isInitialised = true;\n```\n\n这段代码的大部分内容与我们之前的 onLoad 函数类似。然后我们使用 position 而不是边距设置\
+  \ HUD 组件并将其作为子组件添加。接着将 isInitialised 变量设置为 true，这样我们就不会在每次调整游戏大小运行这段代码并不断添加更多组件。\n\
+  \n此时你可能会注意到子组件显示错误，因为它们当前没有 position 值，但我们很快就会修复它。\n\n- 4. 在 else 块中，请添加以下代码，这将更新在\
+  \ if 块中创建的组件的位置：\n\n```\njoystick.position = Vector2(gameScreenBounds.left +\n \
+  \ 80, gameScreenBounds.bottom - 80);\nrunButton.position = Vector2(gameScreenBounds.right\
+  \ -\n  80, gameScreenBounds.bottom - 80);\nscoreText.position = Vector2(gameScreenBounds.left\
+  \ +\n  80, gameScreenBounds.top + 60);\n```\n\n- 5. 最后，对于 HudComponent 类，让我们在文件顶部添加导入语句：\n\
+  \n```\nimport 'package:goldrush/utils/math_utils.dart';\n```\n\n接下来，让我们修复 Joystick\
+  \ 和 ScoreText 类，使其使用 positions 而不是 margin。请注意，RunButton 类的构造函数中已经有了 position 值，因此我们不需要更新\
+  \ RunButton 类。\n\n- 6. 打开 joystick.dart 文件并将构造函数更改为以下内容：\n\n```\nJoystick({\n  required\
+  \ PositionComponent knob,\n  PositionComponent? background,\n  Vector2? position\n\
+  }) :\n  super(knob: knob, background: background,\n  position: position);\n```\n\
+  \n- 7. 我们现在还可以删除未使用的导入语句：\n\n```\nimport 'package:flutter/material.dart';\n```\n\
+  \n- 8. 打开 score_text.dart 文件并将构造函数更改为以下内容：\n\n```\nScoreText({Vector2? position})\
+  \ : super(position:\n  position);\n```\n\n现在让我们将重点转移到通过对 main.dart 文件进行更改来整合所有这些组件更改，以使用新的游戏屏幕边界。\n\
+  \n- 9. 打开 main.dart 文件并在文件顶部添加以下导入语句：\n\n```\nimport 'package:goldrush/components/tilemap.dart';\n\
+  import 'package:goldrush/utils/math_utils.dart';\n```\n\n在 onLoad 函数中，我们希望通过计算游戏屏幕边界，并利用此结果与预期位置结合，在调整屏幕大小时调整位置，从而为每个组件设置\
+  \ originalPosition 变量。\n\n- 10. 继续在 main.dart 文件中，让我们在基类中调用 onLoad 的下方添加获取游戏屏幕边界的代码：\n\
+  \n```\n@override\nFuture<void> onLoad() async {\n  super.onLoad();\n  Rect gameScreenBounds\
+  \ =\n  getGameScreenBounds(canvasSize);\n```\n\n- 11. 接下来，让我们更新创建 `George` 类的地方，传递\
+  \ `position`。我们还将更改 `George` 组件的 `priority`，以修复仅在网页上出现的加载问题：\n\n```\nvar george\
+  \ = George(hud: hud, position:\n    Vector2(gameScreenBounds.left + 300,\n     \
+  \   gameScreenBounds.top + 300), size: Vector2(48.0,\n        48.0), speed: 40.0);\n\
+  add(george);\nchildren.changePriority(george, 15);\n```\n\n- 12. 在我们创建和加载 `TiledComponent`\
+  \ 数据的地方，现在需要用我们的新 `TileMapComponent` 对其进行包装：\n\n```\nfinal tiledMap = await\n  \
+  \  TiledComponent.load('tiles.tmx', Vector2.all(32));\nadd(TileMapComponent(tiledMap));\n\
+  ```\n\n- 13. 接下来，让我们更改 `Skeleton` 和 `Zombie` 类的位置：\n\n```\nif (index % 2 == 0) {\n\
+  \    add(Skeleton(position: Vector2(position.x +\n        gameScreenBounds.left,\
+  \ position.y +\n        gameScreenBounds.top), size: Vector2(32.0,\n        64.0),\
+  \ speed: 60.0));\n} else {\n    add(Zombie(position: Vector2(position.x +\n    \
+  \    gameScreenBounds.left, position.y +\n        gameScreenBounds.top), size: Vector2(32.0,\n\
+  \        64.0), speed: 20.0));\n}\n```\n\n- 14. 接下来，让我们使用新的 `position` 修复 `Coin`\
+  \ 类：\n\n```\ndouble posCoinX = (randomX * 32) + 5 +\n    gameScreenBounds.left;\n\
+  double posCoinY = (randomY * 32) + 5 +\n    gameScreenBounds.top;\n```\n\n- 15.\
+  \ 接下来，让我们修复 `Water` 类的 `position`：\n\n\nadd(Water(position: Vector2(rect.x +\ngameScreenBounds.left,\
+  \ rect.y +\ngameScreenBounds.top), size: Vector2(rect.width,\nrect.height), id:\
+  \ rect.id));\n\n- 16. 最后，针对用户界面问题，让我们更新摄像机，使其在跟随乔治时考虑新的游戏屏幕边界：\n\n```\ncamera.followComponent(george,\
+  \ worldBounds:\nRect.fromLTWH(gameScreenBounds.left,\ngameScreenBounds.top, 1600,\
+  \ 1600));\n```\n\n如果您之前未为 Web 设置过应用，可能需要在项目文件夹中运行以下命令以为项目创建 Web 文件夹：`flutter create`。\n\
+  \n**注意**\n\n所有这些更改将原地修改现有行，并在需要时使用新的游戏屏幕边界及初始位置。\n\n既然我们已经修复了用户界面问题，让我们来看看为什么音乐无法在后台播放。\n\
+  \n### 设置背景音乐\n\nChrome、Safari 和 Firefox 等现代浏览器会阻止网站在后台播放音频，直到用户与页面交互，以确保这确实是用户想要的。网站经常打开弹出式网站，用广告烦扰用户。因此，开发这些浏览器的公司添加了诸如阻止后台音频等措施，以便用户对这些烦人的弹出窗口有更多控制权。\n\
+  \n浏览器特别不希望在首次加载页面时尝试播放背景音乐，而我们正是试图在游戏的 `onLoad` 函数中启动音乐来实现这一点。为了临时修复我们的游戏，我们可以点击网站地址左侧的锁图标，并在\
+  \ Chrome 中启用任何声音权限。然后刷新页面，您将再次听到背景音乐。\n\n![](img/a63c3fccbe888cd4d04006b5e1b6c273_152_0.png)\n\
+  \n图 8.2 – Chrome 浏览器中的音频权限\n\n这对开发来说没问题，但对于可能访问您网站的玩家来说显然不太理想。在最后一章，*第 11 章，完成游戏*中，我们将向游戏添加一些设置屏幕，并允许玩家基于用户界面交互来打开背景音乐。这将允许用户根据玩家的偏好打开或关闭音乐。\n\
+  \n在下一节中，我们将讨论可用于提升 Flutter Web 性能的构建参数。\n\n### 设置 Flutter Web 构建参数\n\n如果您现在使用 Chrome\
+  \ 作为设备运行游戏，您会发现可以调整浏览器窗口大小，页面会随之调整大小，组件也会根据此进行更新，尽管在运行游戏时性能不佳。那么，让我们讨论如何为发布编译代码，并通过\
+  \ Web 服务器部署以获得更好的性能。\n\n构建 Web 发布版本时，我们必须向 `flutter build web` 命令传递一个参数，以指示我们要从以下两个选项中选择的\
+  \ Web 渲染器：\n\n- html：如果您优先考虑下载大小而非性能，请选择此 Web 渲染器。\n- canvasKit：如果您优先考虑性能和跨平台的像素级一致性，请选择此\
+  \ Web 渲染器。\n\n我们将使用 `canvaskit`，因为如今性能比下载大小更重要，但请注意，`html` 作为一个选项始终可用，以防您需要它：\n\n\
+  - 1. 让我们运行将创建我们发布构建的命令。\n\n在项目文件夹中打开命令行终端并键入以下内容：\n\n```\nflutter build web --release\
+  \ --web-renderer canvaskit\n```\n\n编译完成后，它将把 Web 代码保存在 `build/web` 文件夹中。\n\n- 2.\
+  \ 接下来，让我们从 `build/web` 文件夹运行 Web 服务器：\n\n```\ncd build/web/\npython3 -m http.server\
+  \ 8000 &\n```\n\n在此，我们移动到 Web 代码所在的文件夹并运行 Web 服务器。\n\n我们使用的是 Python 语言免费提供的内置 Web\
+  \ 服务器。\n\n如果您未安装 Python，请在运行此命令前上网从 https://www.python.org/downloads/ 安装它。\n\n如果您有自己的\
+  \ Web 主机，也可以将 build/web 文件夹的内容上传到您的 Web 主机。\n\n- 3. 在 Web 服务器运行我们的游戏时，打开任何浏览器，并在浏览器地址栏中输入\
+  \ http://localhost:8000/。\n\n游戏将加载，您将看到它在浏览器中运行。您还会注意到，它加载和运行的速度比通过 Chrome 设备运行要快得多。\n\
+  \n在 Web 上玩完游戏后，您应该关闭 Web 服务器。因为 Web 服务器在后台运行，我们需要先将其带到前台才能将其关闭。\n\n- 4. 在终端中，按 Enter\
+  \ 键开始新行，然后键入以下内容以将 Web 服务器带到前台：\n\n```\nfg\n```\n\n- 5. 接下来，按 Ctrl + C 键停止 Web 服务器。\n\
+  \n如果您在添加要测试的新代码片段时需要启动和停止 Web 服务器，请注意以下几点：\n\n- 您应始终从项目文件夹编译发布构建。\n- 您应始终从 build/web\
+  \ 文件夹运行 Web 服务器。\n\n在本节中，我们解决了动态大小用户界面的问题，并讨论了后台音频问题的替代方案。我们还讨论了如何为 Web 创建发布构建，并在\
+  \ Web 服务器上对其进行了测试。\n\n在下一节中，我们将讨论如何使用物理按键进行导航。\n\n### 使用按键事件导航\n\n我们的游戏已经允许玩家角色通过摇杆或触摸事件来控制，但对于网站来说，使用键盘控制角色是更常见的方法。\n\
+  \n在本节中，我们将添加键盘控制作为另一种选项，那么让我们开始吧。\n\n要在游戏中监听键盘事件，我们首先必须告诉游戏，我们的一些组件将监听键盘事件：\n\n\
+  - 1. 打开 `main.dart` 文件并修改类定义，以包含 `HasKeyboardHandlerComponents` 混入：\n\n```\nclass\
+  \ GoldRush extends FlameGame with HasCollidables, HasDraggables, HasTappables, HasKeyboardHandlerComponents\
+  \ {\n```\n\n- 2. 在同一文件顶部添加以下输入导入：\n\n```\nimport 'package:flame/input.dart';\n```\n\
+  \n- 3. 打开 `george.dart` 文件（我们将在其中监听键盘事件）并修改类定义以添加 `KeyboardHandler` 混入：\n\n```\n\
+  class George extends Character with KeyboardHandler {\n```\n\n- 4. 在同一文件顶部添加以下导入：\n\
+  \n```\nimport 'package:flutter/services.dart';\n```\n\n- 5. 接下来，让我们添加一些变量来存储按键状态：\n\
+  \n```\nbool keyLeftPressed = false, keyRightPressed = false, keyUpPressed = false,\
+  \ keyDownPressed = false, keyRunningPressed = false;\n```\n\n在我们的游戏中，我们将使用以下按键映射：\n\
+  \n- a. 左 = A 键\n- b. 右 = D 键\n- c. 上 = W 键\n- d. 下 = S 键\n- e. 奔跑 = R 键\n\n- 6.\
+  \ 将以下函数覆盖到 George 类中，以监听按键事件，并在按下任何按键时正确设置步骤 5 中设置的变量：\n\n```\n@override\nbool onKeyEvent(RawKeyEvent\
+  \ event, Set<LogicalKeyboardKey> keysPressed) {\n  if (event.data.keyLabel.toLowerCase().contains('a'))\
+  \ {\n    keyLeftPressed = (event is RawKeyDownEvent);\n  }\n  if (event.data.keyLabel.toLowerCase().contains('d'))\
+  \ {\n    keyRightPressed = (event is RawKeyDownEvent);\n  }\n  if (event.data.keyLabel.toLowerCase().contains('w'))\
+  \ {\n    keyUpPressed = (event is RawKeyDownEvent);\n  }\n  if (event.data.keyLabel.toLowerCase().contains('s'))\
+  \ {\n    keyDownPressed = (event is RawKeyDownEvent);\n  }\n  if (event.data.keyLabel.toLowerCase().contains('r'))\
+  \ {\n    keyRunningPressed = (event is RawKeyDownEvent);\n  }\n  return true;\n\
+  }\n```\n\n在此，我们检查按键事件数据的键标签是否等于我们映射的字母，然后在按下按键时设置相应的变量。\n\n请注意，我们将数据转换为小写，以防玩家按下了键盘上的大写锁定键，这将生成一个按键事件\
+  \ S 而不是 s。\n\n- 7. 添加以下导入以解析按键类：\n\n\n\n```\nImport 'package:flutter/services.dart';\n\
+  ```\n\n- 8. 在 update 函数的顶部，位于对 `super.update(dt);` 的调用下方，让我们根据运行按钮是否被按下或 r 键是否被按下来更改速度值。此外，如果步骤\
+  \ 5 中的任何变量设置为 true，我们将创建一个布尔值来跟踪我们是否正在使用按键移动：\n\n```\nspeed = (hud.runButton.buttonPressed\
+  \ ||\nkeyRunningPressed) ? runningSpeed : walkingSpeed;\nfinal bool isMovingByKeys\
+  \ = keyLeftPressed ||\nkeyRightPressed || keyUpPressed || keyDownPressed;\n```\n\
+  \n- 9. 在此下方，在 update 函数中，我们有一个检查——如果摇杆不为零，意味着它正在被使用。此检查如下：\n\n```\nif (!hud.joystick.delta.isZero())\
+  \ {\n```\n\n让我们在该 if 块末尾为按键移动添加一个 else if 子句，并添加以下代码，该代码将位于 if 块和 else 块之间：\n\n\
+  ```\n} else if (isMovingByKeys) {\nmovePlayer(dt);\nplaying = true;\nmovingToTouchedLocation\
+  \ = false;\nif (!isMoving) {\nisMoving = true;\naudioPlayerRunning = await FlameAudio.loopLongAudio('sounds/running.wav',\
+  \ volume: 1.0);\n}\n\nif (keyUpPressed && (keyLeftPressed || keyRightPressed)) {\n\
+  animation = upAnimation;\ncurrentDirection = Character.up;\n} else if (keyDownPressed\
+  \ && (keyLeftPressed || keyRightPressed)) {\nanimation = downAnimation;\ncurrentDirection\
+  \ = Character.down;\n} else if (keyLeftPressed) {\nanimation = leftAnimation;\n\
+  currentDirection = Character.left;\n} else if (keyRightPressed) {\nanimation = rightAnimation;\n\
+  currentDirection = Character.right;\n} else if (keyUpPressed) {\nanimation = upAnimation;\n\
+  currentDirection = Character.up;\n} else if (keyDownPressed) {\nanimation = downAnimation;\n\
+  currentDirection = Character.down;\n} else {\nanimation = null;\n}\n```\n\n这段代码的工作方式与摇杆处理移动的方式相同，即尝试移动我们的玩家，前提是它不与水发生碰撞，并播放行走脚步声。\n\
+  \n然后根据按下的键正确设置 `animation` 和 `currentDirection` 变量。\n\n- 10. 在 `stopAnimations`\
+  \ 函数中，当动画停止时，让我们重置移动键：\n\n```\nvoid stopAnimations() {\nanimation?.currentIndex\
+  \ = 0;\nplaying = false;\nkeyLeftPressed = false;\nkeyRightPressed = false;\nkeyUpPressed\
+  \ = false;\nkeyDownPressed = false;\n}\n```\n\n如果您现在在 Chrome 设备上运行游戏，就可以使用键盘上的按键控制\
+  \ George 了。\n\n### 摘要\n\n在本章中，我们通过修复调整浏览器窗口大小时的用户界面问题，并允许通过键盘控制移动，将游戏转换为可在网页上运行。\n\
+  \n在接下来的几章中，我们将开始着手游戏开发中更高级的主题，从下一章开始实现高级图形效果。\n\n我们将使用粒子效果在杀死敌人时让它们爆炸，并使用图层为我们的精灵创建酷炫的阴影效果。\n\
+  \n### 问题\n\n- 1. 网页首次加载时，为什么音乐不会在后台播放？\n\n- 2. 调整游戏窗口大小为什么会导致我们的图形绘制错误？\n\n- 3.\
+  \ 为什么我们需要将 `TiledComponent` 包装在另一个类中来修复其用户界面问题？\n\n- 4. 构建网页发布版本时有哪些 Web 渲染器可用？\n\
+  \n- 5. 我们需要使用哪个 mixin 来监听键盘事件？\n"
+- '## 第 3 部分：高级游戏编程
+
+
+  本部分介绍高级游戏编程技术，以使您的游戏更具精致感和真实感。
+
+
+  我们将讨论高级图形效果，使您的游戏脱颖而出，同时还将介绍如何为游戏构建不同的屏幕。我们还将讨论如何让敌人通过追逐玩家和绕过障碍物来表现得智能。
+
+
+  本部分包含以下章节：
+
+
+  - 第 9 章，实现高级图形效果
+
+  - 第 10 章，使用 AI 制作智能敌人
+
+  - 第 11 章，完善游戏
+
+  '
+- "## 第 9 章：实现高级图形效果\n\n到目前为止，在本书中，我们已使用图形来为精灵组件制作动画并绘制瓦片地图，但我们可以做更多工作来改进游戏的视觉效果。\n\
+  \n在本章中，我们将讨论如何使用粒子和阴影来改进我们的游戏。我们将使用粒子效果，使硬币和敌人在碰撞时爆炸，并使用图层为我们的精灵添加阴影效果。这些是改进游戏视觉效果的简单而高效的方法，运行速度非常快，不会过度影响帧率，因此值得用来改进我们的游戏。\n\
+  \n本章将涵盖以下主题：\n\n- 什么是粒子效果？\n- 使用粒子制作动画\n- 使用图层创建阴影\n\n### 技术要求\n\n要查看本章的源代码，您可以从\
+  \ https://github.com/PacktPublishing/Building-Games-with-Flutter/tree/main/chapter09\
+  \ 下载。\n\n### 什么是粒子效果？\n\n粒子效果是为我们的游戏创建火焰、烟雾、爆炸和魔法效果等动态效果的简便方法。粒子具有多种可更改的属性，包括以下内容：\n\
+  \n- 粒子存活多长时间\n- 新粒子创建的频率\n- 创建粒子的位置\n- 行进的角度、距离和速度\n- 粒子应具有的颜色\n- 物理学如何影响粒子\n\n\
+  粒子效果的一个好例子是烟花。烟花会爆炸出各种颜色，并以不同的速度和角度行进，短时间后在天空中消失。\n\nFlame 支持多种类型的粒子效果，您可以在 https://examples.flame-engine.org/#/Rendering_Particles\
+  \ 中查看示例。这些内容在 Flame 文档 https://docs.flame-engine.org/1.0.0/particles.html 中有更详细的讨论，但这里我们先总结一些不同的粒子类型供您参考：\n\
+  \n- `MovingParticle` – 在粒子生命周期内在两点之间移动子粒子\n- `AcceleratedParticle` – 对粒子应用基于物理的基本效果，例如重力或速度阻尼\n\
+  - `CircleParticle` – 绘制不同大小的圆\n- `SpriteParticle` – 在粒子中使用精灵图像\n- `ComputedParticle`\
+  \ – 用于对粒子进行更高级的控制，可能需要计算值来影响粒子\n\n在我们的游戏中，我们希望硬币向外爆炸的同时逐渐淡出 alpha 值。我们将这些粒子设为黄色，以匹配硬币颜色。对于敌人，我们将重复使用爆炸效果，但将粒子设为红色，使其看起来像血。\n\
+  \n我们将使用前面不同粒子类型列表中的 `ComputedParticle`，因为我们希望将爆炸粒子分成 12 片。这些片段将从中心以递增的 30 度角向外移动，我们将使用基本三角函数进行计算。粒子将根据这些值生成和计算，并在基于粒子进度逐渐淡出时调整不透明度。\n\
+  \n请记住，粒子具有我们可以设置的生命周期。因此，当粒子接近其生命周期末尾时，我们将使其淡出。\n\n实际绘制将是一个简单的圆形，其位置、角度和不透明度均已计算。\n\
+  \n让我们在下一节中开始编写粒子代码。\n\n### 使用粒子制作动画\n\n在本节中，我们将向您展示如何创建出色的粒子效果并为其制作动画。首先，我们将在 `utils`\
+  \ 文件夹中创建一个新文件来存储我们的效果，以便从任何位置使用：\n\n- 1. 在 `utils` 文件夹中，创建一个名为 `effects.dart` 的新文件并打开该文件。\n\
+  \n- 2. 添加以下代码以创建爆炸粒子：\n\n```\nParticle explodingParticle(Vector2 origin,\nMaterialColor\
+  \ color) {\ndouble distanceToMove = 15.0;\nreturn Particle.generate(\nlifespan:\
+  \ 0.8,\ncount: 12,\ngenerator: (i) {\ndouble angle = i * 30;\ndouble xx =\norigin.x\
+  \ + (distanceToMove * cos(angle));\ndouble yy =\norigin.x + (distanceToMove * sin(angle));\n\
+  Vector2 destination = Vector2(xx, yy);\nreturn ComputedParticle(renderer: (Canvas\
+  \ canvas, Particle particle) {\n```\n\n\n\n```dart\nPaint paint = Paint()..color\
+  \ = color.withOpacity(1.0 - particle.progress);\ncanvas.drawCircle(Offset.zero,\
+  \ 1.5, paint);\n})).moving(from: origin, to: destination);\n});\n}\n```\n\n这里，我们有\
+  \ `explodingParticle` 函数，它返回 `ComputedParticle`。该函数接受一个原点位置，用于指定粒子效果应从哪里开始，以及应用于粒子的颜色。\n\
+  \n我们希望粒子移动短距离 `15.0`，我们使用这个距离基于从原点出发的行进角度计算其目标位置。粒子在其生命周期内将到达的最终目标是通过三角函数计算得出的。\n\
+  \n我们以 30 度角度生成 12 个粒子，总共 `12 * 30 = 360` 度，以覆盖所有向外的方向。生命周期设置为略低于一秒，即 `0.8`，因此爆炸发生迅速并逐渐消失。\n\
+  \n最后，这被包装在 `MovingParticle` 中，它在粒子的生命周期内将粒子在原点和目标之间移动。\n\n在 `lifespan` 时间到期后，粒子将从游戏中移除，因此我们不需要手动监控这一点，Flame\
+  \ 会通过从游戏中移除过期粒子来为我们处理此事。\n\n- 3. 在 `effects.dart` 文件顶部，为粒子效果添加以下导入：\n\n```dart\n\
+  import 'package:flame/game.dart';\nimport 'package:flame/particles.dart';\nimport\
+  \ 'package:flutter/material.dart';\nimport 'dart:math';\n```\n\n让我们继续在 `George`\
+  \ 类中创建粒子效果，当我们的玩家与硬币或敌人碰撞时。\n\n- 4. 打开 `george.dart` 文件并添加以下导入：\n\n```dart\nimport\
+  \ 'package:goldrush/utils/effects.dart';\nimport 'package:goldrush/main.dart';\n\
+  import 'package:flutter/material.dart';\n```\n\n- 5. 在 `George` 类定义中，我们需要获取 `GoldRush`\
+  \ 类的引用。之所以需要，是因为当我们创建粒子时，我们需要基于世界坐标设置原点位置。那么，让我们更新该代码：\n\n```dart\nclass George\
+  \ extends Character with KeyboardHandler, HasGameRef<GoldRush> {\n```\n\n- 6. 在\
+  \ `onCollision` 函数中，让我们通过我们在上一个代码块中刚刚添加的 `gameRef` 引用将粒子添加到游戏中，在这里我们检查碰撞对象是 `Zombie`\
+  \ 还是 `Skeleton`：\n\n```dart\nif (other is Zombie || other is Skeleton) {\n  gameRef.add(ParticleComponent(explodingParticle(other.position,\
+  \ Colors.red)));\n}\n```\n\n- 7. 接下来，让我们在检查是否与 `Coin` 对象碰撞时执行相同操作：\n\n```dart\n\
+  if (other is Coin) {\n  gameRef.add(ParticleComponent(explodingParticle(other.position,\
+  \ Colors.yellow)));\n}\n```\n\n如果你现在运行游戏，你会看到当我们与硬币碰撞时，硬币会爆炸成黄色粒子，当我们与敌人碰撞时，敌人会爆炸成红色粒子。\n\
+  \n现在游戏中有一些漂亮的粒子效果了，让我们继续在下一节中使用层添加一些阴影。\n\n### 使用层创建阴影\n\n层是 Flame 的一项功能，允许我们将想要一起绘制的内容分组，或者绘制一个不怎么变化的预渲染图形。在你的游戏中，你可能有一个背景，它是由一组精灵或图像绘制一次的，然后它被用作静态图像作为背景，并在其上绘制其他移动的精灵。\n\
+  \n如果背景不变化，不断重新创建它是低效的。因此，你可以创建一次并将其存储为层，然后在渲染其他游戏图形之前绘制该层。\n\n在 Flame 中，有两种类型的层：\n\
+  \n- PreRenderedLayer – 用于静态图像\n\n- DynamicLayer – 用于移动的内容\n\n`PreRenderedLayer`\
+  \ 由于其静态性质，适合用于背景。\n\n你也可能想在层中更改某些内容并重新生成层，然后将生成的图像缓存在层中。例如，你可能希望在游戏中创建一个天气效果，其中雨滴在层上更新并重新绘制，然后将此层绘制在游戏世界之上，以营造下雨或下雪的印象。对于此类效果，`DynamicLayer`\
+  \ 更合适。\n\nFlame 还提供了一种称为层处理器的东西，允许我们为整个层添加效果。当前唯一支持的层处理器称为 `ShadowProcessor`，它为整个层应用阴影。当然，你也可以通过扩展\
+  \ `LayerProcessor` 类来创建自己的处理器，如果你想创建其他处理器的话。\n\n我们可以将 `ShadowProcessor` 与我们的精灵结合使用，在每个精灵后面创建阴影，使它们在游戏中真正突出。这是通过在应用阴影处理器后将我们的精灵绘制到一个层中来实现的。\n\
+  \n让我们通过创建我们的层类来开始：\n\n- 1. 打开 `effects.dart` 文件，在 `Animating with particles` 部分的\
+  \ `Step 2` 中我们之前添加的 `explodingParticle` 函数下方，为我们的层添加以下类定义：\n\n```dart\nclass ShadowLayer\
+  \ extends DynamicLayer {\n  final Function renderFunction;\n  ShadowLayer(this.renderFunction)\
+  \ {\n    preProcessors.add(ShadowProcessor(color: Colors.black, offset: const Offset(4,\
+  \ 4)));\n  }\n\n  @override\n  void drawLayer() {\n    renderFunction(canvas);\n\
+  \  }\n}\n```\n\n这里，我们创建一个名为 `ShadowLayer` 的类，它是一个 `DynamicLayer`。在构造函数中，我们将阴影处理器添加到预处理器列表中，以便在绘制精灵之前应用阴影效果。请注意，这是预处理器列表，因此如果你创建自己的处理器，可以将多个效果添加到你的层中。此外，还有一个后处理器列表可用，如果你需要，它会在绘制精灵之后添加效果。\n\
+  \n我们将阴影设置为黑色，并在精灵绘制位置偏移 4, 4 像素处绘制，以营造精灵后面的阴影效果。\n\n在构造函数中，我们传递一个函数引用，然后在调用 `drawLayer()`\
+  \ 时使用它。我们这样做是因为我们想要保持对超类渲染函数的引用，以便将绘制委托给层。因此，我们的精灵会绘制到层上，阴影会应用到上面，然后我们调用超类将层绘制到游戏中，基于我们当前正在渲染的动画帧。\n\
+  \n正因为如此，当我们在渲染函数中渲染精灵时，我们将渲染到 `ShadowLayer` 中，而不会在那里调用超类，否则会绘制两次，这既低效也不必要。\n\n-\
+  \ 2. 现在，在文件顶部，让我们添加层包的导入：\n\n```dart\nimport 'package:flame/layers.dart';\n```\n\
+  \n接下来，让我们先设置 `Coin` 类，并为所有硬币添加阴影，这样我们就可以在实践中看到这种委托渲染是如何工作的。\n\n- 3. 打开 `coin.dart`\
+  \ 文件并在文件顶部添加以下导入：\n\n```dart\nimport 'package:goldrush/utils/effects.dart';\n```\n\
+  \n- 4. 在 `Coin` 类中，在存储 `originalPosition` 的位置下方添加一个变量来存储 `ShadowLayer`：\n\n```dart\n\
+  late Vector2 originalPosition;\nlate ShadowLayer shadowLayer;\n```\n\n- 5. 为 `ShadowLayer`\
+  \ 添加以下导入：\n\n```dart\nimport 'package:goldrush/utils/effects.dart';\n```\n\n- 6.\
+  \ 在 `onLoad` 函数底部，添加以下行以初始化阴影层：\n\n```dart\nshadowLayer = ShadowLayer(super.render);\n\
+  ```\n\n在这里，我们可以看到我们正在将函数引用传递给超类渲染函数。\n\n- 7. 在 `Coin` 类底部，添加以下 render 函数重写，它将绘制委托给\
+  \ `shadowLayer`：\n\n```dart\n@override\nvoid render(Canvas canvas) {\n  shadowLayer.render(canvas);\n\
+  }\n```\n\n如果你现在运行游戏，你会看到游戏中所有硬币后面都有我们的阴影效果。\n\n![](img/a63c3fccbe888cd4d04006b5e1b6c273_169_0.png)\n\
+  \n### 图 9.1 – 精灵上的阴影效果\n\n让我们继续，将相同的效果应用到我们的敌人精灵和玩家精灵 George 上。\n\n我们将此添加到 `Character`\
+  \ 类，它是 George 和敌人的基类，以减少重复代码。\n\n- 8. 打开 `character.dart` 文件并添加层包的以下导入：\n\n```dart\n\
+  import 'package:goldrush/utils/effects.dart';\n```\n\n- 9. 在 `Character` 类中，在存储\
+  \ `originalPosition` 的位置下方添加一个变量来存储 `ShadowLayer`：\n\n```dart\nlate Vector2 originalPosition;\n\
+  late ShadowLayer shadowLayer;\n```\n\n- 10. 将以下 `onLoad` 函数添加到 `Character` 类以初始化阴影层：\n\
+  \n\n\n```\n@override\nFuture<void> onLoad() async {\n super.onLoad();\n shadowLayer\
+  \ = ShadowLayer(super.render);\n}\n```\n\n- 11. 最后，将 render 函数添加到 Character 类中，以将绘制委托给\
+  \ shadowLayer：\n\n```\n@override\nvoid render(Canvas canvas) {\n shadowLayer.render(canvas);\n\
+  }\n```\n\n请注意，您可能会看到关于调用超类 render 函数的消息，但我们希望避免这种情况，因为它将从我们的阴影层内部调用，因此此处省略了。\n\n\
+  如果您现在运行游戏，会发现我们的玩家和敌人身后都有可爱的阴影效果，这真的让它们在背景中显得格外突出！\n\n### 摘要\n\n在本章中，我们学习了如何将高级图形效果应用到游戏中，使游戏看起来好得多。我们添加了粒子效果，使硬币和敌人在碰撞时爆炸，并在玩家、敌人和硬币身后添加了一些漂亮的阴影效果。\n\
+  \n在下一章中，我们将讨论如何通过为玩家和敌人添加游戏人工智能（AI），使它们看起来更智能。\n\n我们将改变敌人的行为——不再是我们攻击他们，而是他们攻击我们！当乔治靠近他们时，敌人会追击他，并且当他们撞到我们时仍然会爆炸，但我们将为乔治添加一个生命值，如果我们与爆炸的敌人碰撞，该值会减少。此外，敌人只有在面朝乔治、能看见乔治且在一定距离内时才会追击。\n\
+  \n此外，我们将向游戏中添加一些更多障碍物，并向您展示如何使用路径查找，确保乔治在通过触摸屏幕移动时会在游戏世界中绕过障碍物。\n\n### 问题\n\n- 1.\
+  \ 粒子效果有哪些共同属性？\n- 2. 为什么需要通过设置生命期将粒子从游戏中移除？\n- 3. Flame 支持哪些粒子示例？\n- 4. Flame 支持哪些不同类型的层？\n\
+  - 5. 为什么需要将超类的渲染委托给层类？\n"
+- "## 第 10 章：使用 AI 制作智能敌人\n\n游戏现在进展得很顺利，但还没有真正的挑战。我们收集硬币或杀死敌人，但这一切都非常可预测且容易。\n\n在本章中，我们将通过为玩家乔治添加生命值，并让敌人追击我们（每被一个敌人撞到就减少我们的生命值）来使游戏更具挑战性。如果生命值降至零，我们就输掉游戏。因此，目标是在躲避敌人的同时收集硬币。\n\
+  \n为了使敌人看起来更智能，我们将使用非常简单的 **人工智能（AI）** 算法，让敌人检测乔治是否在附近，当他们能看到他时，他们的移动会从随机移动改变为朝乔治方向移动以攻击他。\n\
+  \n然后，我们将在地图上添加一些额外的水作为障碍物，并讨论如何从起点移动到终点，避开水并绕行以到达目的地。\n\n本章将涵盖以下主题：\n\n- 让敌人追击玩家\n\
+  - 使用路径查找绕过障碍物\n\n### 技术要求\n\n要查看本章的源代码，可以从 https://github.com/PacktPublishing/Building-Games-with-Flutter/tree/main/chapter10\
+  \ 下载。\n\n以下步骤将向 `pubspec` 文件添加一个库以协助路径查找，并添加一些新的和更新的资源：\n\n- 1. 在本章中，我们将使用更新版本的地图文件，因此请下载这些更新的地图文件并将它们放在\
+  \ `assets/tiles` 文件夹中，覆盖现有文件：\n  https://github.com/PacktPublishing/Building-Games-with-Flutter/blob/main/chapter10/assets/tiles/tiles.tmx\n\
+  \  https://github.com/PacktPublishing/Building-Games-with-Flutter/blob/main/chapter10/assets/tiles/tiles.tsx\n\
+  \n- 2. 打开 `pubspec.yaml` 文件并添加以下依赖项：\n\n```\na_star_algorithm: ^0.3.0\n```\n\n-\
+  \ 3. 在本章中，我们将使用角色乔治的精灵表的修改版本，因此让我们更新它。\n\n从以下 URL 下载 `george.png` 图像，\nhttps://raw.githubusercontent.com/PacktPublishing/Building-Games-with-Flutter/main/chapter10/assets/images/george.png，并覆盖\
+  \ `assets/images` 文件夹中的文件。请注意，由于我们已在 `pubspec.yaml` 文件中为 `george.png` 引用，因此无需对其进行进一步处理。\n\
+  \n- 4. 保存文件并允许 `pub get` 下载此依赖项并验证资源：\n\n```\nflutter pub get\n```\n\n### 让敌人追击玩家\n\
+  \n让敌人追击玩家主要有两个需要克服的挑战，让玩家相信敌人表现出智能并正在追捕他们。具体如下：\n\n- 首先，玩家离敌人足够近，以便敌人能看见或听到他们。你不希望敌人在地图另一边时就开始追击玩家，否则效果会丧失且不可信。\n\
+  - 第二是，敌人开始追击时面朝玩家。如果敌人正朝相反方向行走，玩家可能能够悄悄绕过他们而不被敌人注意到。因此，当敌人甚至没有面朝玩家时，我们不会让他们追击。\n\
+  \n为了克服这些挑战，我们将在每次更新时跟踪玩家和敌人之间的距离，每秒更新 60 次。如果它们之间的距离低于某个值，并且玩家与敌人之间的角度表明敌人面朝玩家，那么我们将开始让敌人追击玩家。如果玩家能逃离敌人，敌人将恢复到正常的移动模式。我们还将更改敌人的速度，使正常移动速度在追击时变为原来的三倍。\n\
+  \n让我们开始让敌人追击玩家：\n\n- 1. 打开 `character_enemy.dart` 文件，在类定义之外，添加以下枚举以定义我们是正在四处走动还是追击玩家：\n\
+  \n```\nenum EnemyMovementType {\n  WALKING,\n  CHASING\n}\n```\n\n- 2. 在 EnemyCharacter\
+  \ 类中，在构造函数下方，添加以下变量：\n\n```\nCharacter playerToTrack;\nEnemyMovementType enemyMovementType\
+  \ =\n    EnemyMovementType.WALKING;\nstatic const DISTANCE_TO_TRACK = 150.0;\ndouble\
+  \ walkingSpeed, chasingSpeed;\n```\n\n在此，我们创建用于跟踪要追击角色的变量，并将敌人移动类型默认设置为行走。我们设置了一个常量用于距离检查，以检测敌人是否靠近玩家，并创建一些值来维持行走和追击速度。\n\
+  \n- 3. 将构造函数更改为以下代码，以设置我们在 *步骤 2* 中创建的一些值：\n\n```\nEnemyCharacter({required Character\
+  \ player, required Vector2 position, required Vector2 size, required double speed}):\n\
+  playerToTrack = player,\nwalkingSpeed = speed,\nchasingSpeed = speed * 2,\nsuper(position:\
+  \ position, size: size, speed: speed);\n```\n\n在此，我们将追击速度设置为行走速度的两倍。\n\n- 4. 让我们导入\
+  \ `math_utils.dart` 文件，以便可以使用 `getAngle` 函数来确定此敌人是否面朝玩家：\n\n```\nimport 'package:goldrush/utils/math_utils.dart';\n\
+  ```\n\n- 5. 接下来，让我们创建一个名为 `isPlayerNearAndVisible` 的函数，以检查玩家是否在附近且敌人面朝玩家方向可见：\n\n\
+  ```\nbool isPlayerNearAndVisible() {\nbool isPlayerNear = position.distanceTo(\n\
+  playerToTrack.position) < DISTANCE_TO_TRACK;\nbool isEnemyFacingPlayer = false;\n\
+  var angle =\ngetAngle(position, playerToTrack.position);\nif ((angle > 315 && angle\
+  \ < 360) || (angle > 0 &&\nangle < 45) ) { // Facing right\nisEnemyFacingPlayer\
+  \ = currentDirection ==\nCharacter.right;\n} else if (angle > 45 && angle < 135)\
+  \ {\n// Facing down\nisEnemyFacingPlayer = currentDirection ==\n```\n\n\n\n\n\n\
+  Character.down;\n} else if (angle > 135 && angle < 225) {\n  // Facing left\n  isEnemyFacingPlayer\
+  \ = currentDirection ==\n    Character.left;\n} else if (angle > 225 && angle <\
+  \ 315) {\n  // Facing up\n  isEnemyFacingPlayer = currentDirection ==\n    Character.up;\n\
+  }\nreturn isPlayerNear && isEnemyFacingPlayer;\n}\n\n在 `isPlayerNearAndVisible`\
+  \ 函数中，我们首先从敌人位置测量到玩家的距离，检查是否小于我们的 `DISTANCE_TO_TRACK` 值，然后根据需要将 `isPlayerNear` 值设置为\
+  \ `true`。\n\n接下来，我们使用 `getAngle` 函数获取敌人与玩家之间的角度，然后使用它来检查我们面对的角度是否与我们面对的 `currentDirection`\
+  \ 匹配。如果匹配，则敌人正面对玩家，我们根据需要设置 `isEnemyFacingPlayer` 标志。\n\n如果两个值都为 `true`，我们将从该函数返回\
+  \ `true`，以指示敌人足够近且能看到玩家，我们将在接下来的 `update` 函数中使用它，将 `enemyMovementType` 从步行更改为追逐。\n\
+  \n- 6. 让我们重写 `EnemyCharacter` 类中的 `update` 函数。首先，删除现有的 `update` 函数，并用 GitHub 上的代码替换它：https://github.com/PacktPublishing/Building-Games-with-Flutter/blob/main/chapter10/lib/components/character_enemy.dart。\n\
+  \n让我们逐一查看我们对此函数所做的更改。\n\n如果敌人处于默认步行状态，之前的 `update` 代码现在位于 `switch/case` 块中。我们首先调用在\
+  \ `步骤 4` 中创建的 `isPlayerNearAndVisible` 函数，如果玩家在附近且可见，则将当前速度设置为 `chasingSpeed`，否则设置为\
+  \ `walkingSpeed`。\n\n如果 `enemyMovementType` 为 `WALKING`，敌人将像以前一样四处走动，但当为 `CHASING`\
+  \ 时，敌人将以提高的速度直接朝玩家奔跑。\n\n- 7. 现在，让我们更新 `Skeleton` 和 `Zombie` 类，使其获取玩家类 `George`\
+  \ 的引用（`George` 继承自 `Character` 类），并将此引用传递给 `EnemyCharacter` 基类。\n\n打开 `skeleton.dart`\
+  \ 文件，并按如下方式更改构造函数：\n\n```\nSkeleton({required Character player, required Vector2\
+  \ position, required Vector2 size, required double speed}) : super(player: player,\
+  \ position: position, size: size, speed: speed) {\n```\n\n- 8. 打开 `zombie.dart`\
+  \ 文件，并按如下方式更改构造函数：\n\n```\nZombie({required Character player, required Vector2 position,\
+  \ required Vector2 size, required double speed}) : super(player: player, position:\
+  \ position, size: size, speed: speed) {\n```\n\n- 9. 添加以下导入以解析构造函数中对 `Character`\
+  \ 的引用：\n\n```\nimport 'package:goldrush/components/character.dart';\n```\n\n- 10.\
+  \ 现在，让我们通过将玩家引用传递给敌人类来将所有内容整合在一起。\n\n打开 `main.dart` 文件，并按如下方式更改添加敌人处的代码：\n\n```\n\
+  if (index % 2 == 0) {\nadd(Skeleton(player: george, position:\nVector2(position.x\
+  \ + gameScreenBounds.left,\nposition.y + gameScreenBounds.top), size:\nVector2(32.0,\
+  \ 64.0), speed: 20.0));\n} else {\nadd (Zombie(player: george, position:\nVector2(position.x\
+  \ + gameScreenBounds.left,\nposition.y + gameScreenBounds.top), size:\nVector2(32.0,\
+  \ 64.0), speed: 20.0));\n}\n```\n\n- 11. 此外，由于我们之前更改了 George 的图像，我们需要在 main.dart\
+  \ 的 onLoad 函数中创建 George 时将新大小更新为 32, 32：\n\n```\nvar george = George(barrierOffsets:\
+  \ barrierOffsets,\nhud: hud, position: Vector2(gameScreenBounds.left +\n300, gameScreenBounds.top\
+  \ + 300), size:\nVector2(32.0, 32.0), speed: 40.0));\n```\n\n如果现在运行游戏并在敌人面对 George\
+  \ 时将 George 移动到敌人附近，您将看到敌人追赶 George。如果敌人捕捉到 George，您将看到敌人碰撞并爆炸，如第 9 章“实现高级图形效果”中“使用粒子进行动画”部分之前讨论的那样。\n\
+  \n现在让我们更改此设置，为 George 设置 100% 的健康值，每次敌人攻击 George 时将减少 25%，且不会增加我们的分数。在下一章中，我们将添加一些用户界面屏幕，当\
+  \ George 的健康值达到 0 时会显示“游戏结束”，但目前我们只需让机制正常工作。\n\n- 12. 在 hud 文件夹中，创建一个名为 health_text.dart\
+  \ 的新文件，并在此处添加代码：https://github.com/PacktPublishing/Building-Games-with-Flutter/blob/main/chapter10/lib/components/hud/health_text.dart。\n\
+  \n此代码块会非常眼熟，因为它与 ScoreText 组件相同，只是将所有对 score 的引用都更改为 health。\n\n- 13. 打开 hud.dart\
+  \ 文件并添加以下导入：\n\n```\nimport 'package:goldrush/components/hud/health_text.dart';\n\
+  ```\n\n- 14. 在 `HudComponent` 类顶部，添加以下变量以显示 `HealthText` 值：\n\n```\nlate HealthText\
+  \ healthText;\n```\n\n- 15. 在 `onGameResize` 函数中，在 `if` 块底部，按如下方式更改代码以初始化 `healthText`\
+  \ 值并将其添加到 HUD：\n\n```\nscoreText = ScoreText(position: Vector2(\n gameScreenBounds.left\
+  \ + 80, gameScreenBounds.top +\n 60));\nhealthText = HealthText(position: Vector2(\n\
+  \ gameScreenBounds.right - 80, gameScreenBounds.top +\n 60));\nadd(joystick);\n\
+  add(runButton);\nadd(scoreText);\nadd(healthText);\n```\n\n- 16. 在同一函数的 `else` 块底部，添加以下行以更新\
+  \ `healthText` 位置：\n\n```\njoystick.position = Vector2(gameScreenBounds.left +\n\
+  \ 80, gameScreenBounds.bottom - 80);\nrunButton.position = Vector2(gameScreenBounds.right\
+  \ -\n 80, gameScreenBounds.bottom - 80);\nscoreText.position = Vector2(gameScreenBounds.left\
+  \ +\n 80, gameScreenBounds.top + 60);\nhealthText.position = Vector2(gameScreenBounds.right\
+  \ -\n 80, gameScreenBounds.top + 60);\n```\n\n- 17. 打开 `george.dart` 文件，并在顶部的变量部分添加以下代码：\n\
+  \n```\nint health = 100;\n```\n\n- 18. 在 `onCollision` 函数中，让我们更改 `if` 块以检查是否击中了\
+  \ `Zombie` 或 `Skeleton`，使代码如下所示：\n\n```\nif (other is Zombie || other is Skeleton)\
+  \ {\n  gameRef.add(ParticleComponent(explodingParticle(\n    other.position, Colors.red)));\n\
+  \  other.removeFromParent();\n  if (health > 0) {\n    health -= 25;\n    hud.healthText.setHealth(health);\n\
+  \  } else {\n    // TODO: Show game over screen here\n  }\n  FlameAudio.play('sounds/enemy_dies.wav',\
+  \ volume:\n    1.0);\n}\n```\n\n如果现在运行代码，您将在右上角看到健康值，每次与敌人碰撞时都会减少，如下图所示：\n\n![](img/a63c3fccbe888cd4d04006b5e1b6c273_181_0.png)\n\
+  \n### 图 10.1 – 被敌人击中时健康分数降低\n\n在下一节中，我们将在地图上添加一些水障碍物，并讨论如何绕过它们。我们还将讨论如何增强敌人的 AI，这意味着如果它们被水障碍物挡住而看不到您，则不会追赶您。\n\
+  \n### 使用路径查找绕过障碍物\n\n在本节中，我们将讨论当道路上有障碍物时如何将角色从 A 点移动到 B 点。解决这个问题的方法有很多种，但在游戏开发中我们将使用的一种常见方法称为\
+  \ A* 算法。\n\n该算法是在 2D 网格上计算路线的一种高效方式。请记住，瓦片图是一个 2D 网格，它使用地块 ID 来表示地图上绘制的内容。我们向算法提供起始位置（George\
+  \ 的当前位置）和结束位置（我们在屏幕上点击的位置）的网格坐标，以及沿途任何障碍物的网格坐标列表。然后，算法将返回一个表示路径的网格偏移量列表，我们可以遵循该路径导航到触摸位置，同时避开所有障碍物！\n\
+  \n我们面临的初始挑战是，当我们移动 George 时，使用像素来表示位置，但该算法使用网格坐标。例如，如果 George 在地图的左上角（忽略水），他的像素坐标可能是\
+  \ 48, 48，但他的网格坐标将是 1, 1。\n\n让我们首先创建一个新文件，其中包含一些辅助函数，允许我们在 George 的世界坐标（像素）和网格坐标之间进行转换：\n\
+  \n- 1. 首先，在 utils 文件夹中创建并打开一个名为 map_utils.dart 的新文件，然后添加以下代码：\n\n```\nimport 'package:flame/components.dart';\n\
+  import 'package:flutter/material.dart';\nconst int TILE_SIZE = 32;\nOffset worldToGridOffset(Vector2\
+  \ mapLocation) {\n    double x =\n    (mapLocation.x / TILE_SIZE).floor().toDouble();\n\
+  \    double y =\n    (mapLocation.y / TILE_SIZE).floor().toDouble();\n    return\
+  \ Offset(x, y);\n}\n```\n\n\n\n\n\n```dart\nVector2 gridOffsetToWorld(Offset gridOffset)\
+  \ {\n    double x = (gridOffset.dx * TILE_SIZE);\n    double y = (gridOffset.dy\
+  \ * TILE_SIZE);\n    return Vector2(x, y);\n}\n```\n\n这里，我们有两个用于在世界坐标和网格坐标之间进行转换的函数，同时考虑到我们的瓦片大小为\
+  \ 32 x 32。\n\n接下来，我们将更新 `George` 类，以便在移动到触摸位置时更新我们的代码，首先使用 A* 算法计算路径，然后沿路径导航，并在导航过程中改变面朝方向。\n\
+  \n- 2. 打开 `george.dart` 文件并向文件中添加以下导入：\n\n```\nimport 'package:goldrush/utils/map_utils.dart';\n\
+  import 'package:a_star_algorithm/a_star_algorithm.dart';\n```\n\n- 3. 接下来，在类顶部添加以下变量，以跟踪障碍物偏移位置、到目标的路径以及当前路径步骤：\n\
+  \n```\nList<Offset> barrierOffsets;\nList<Offset> pathToTargetLocation = [];\nint\
+  \ currentPathStep = -1;\n```\n\n- 4. 现在，让我们更新构造函数以传入 `barrierOffsets`：\n\n```\n\
+  George({required this.barrierOffsets, required this.hud, required Vector2 position,\
+  \ required Vector2 size, required double speed}) : super(\n    position: position,\
+  \ size: size, speed: speed) {\n```\n\n- 5. 接下来，让我们更新 `moveToLocation` 函数以设置新变量：\n\
+  \n```\nvoid moveToLocation(TapUpInfo info) {\n    pathToTargetLocation = AStar(\n\
+  \    rows: 50,\n    columns: 50,\n    start: worldToGridOffset(position),\n    end:\
+  \ worldToGridOffset(info.eventPosition.game),\n    withDiagonal: true,\n    barriers:\
+  \ barrierOffsets\n).findThePath().toList();\ntargetLocation = info.eventPosition.game;\n\
+  faceCorrectDirection();\n```\n\n由于 `pathToTargetLocation[0]` 与当前位置相同，我们将 `currentPathStep`\
+  \ 设置为下一步，即 1：\n\n```\ncurrentPathStep = 1;\ntargetLocation = gridOffsetToWorld(\n\
+  \    pathToTargetLocation[currentPathStep]);\ntargetLocation.add(Vector2(16, 16));\n\
+  movingToTouchedLocation = true;\n}\n```\n\n这里，我们将 A* 算法的结果存储在 `pathToTargetLocation`\
+  \ 变量中。\n\n我们传入行数和列数，与我们的地图大小相同，即 `50 x 50`。我们将 `withDiagonal` 值设置为允许路径走捷径，这样看起来更自然。你可以在运行此代码时尝试将此值设置为\
+  \ `false`，以查看差异并决定你的偏好。我们传入 `barrierOffsets`，它将通过构造函数传入。最后，我们将乔治的位置和触摸位置转换为网格偏移坐标。结果将是一条避开水障碍物到达该位置的路径。\n\
+  \n如果你将我们在本章“_技术要求_”部分下载的更新地图加载到 Tiled 应用程序中，你会发现我们在地图中心放置了水障碍物，可以用来测试路径导航是否正常工作。\n\
+  \n在获取 A* 结果后，我们将 `targetLocation` 设置为触摸位置，然后调用一个我们即将定义的新函数，名为 `faceCorrectDirection`。这个新函数确保当乔治开始导航到目标位置的路径时，面朝方向正确。\n\
+  \n接下来，我们将 currentPathStep 设置为从 1 开始，而不是从列表的位置 0 开始。这是因为，当我们得到算法结果时，它会将我们当前位置插入位置\
+  \ 0，而由于我们已经在该位置，因此不需要移动过去！\n\n然后，我们根据 currentPathStep 处的偏移量设置 targetLocation，并将其转换回世界坐标以供我们移动。请记住，我们需要使用网格坐标才能让算法工作，但我们需要世界坐标来以实际像素进行移动。最后，我们向\
+  \ targetLocation 添加一个向量 16, 16。\n\n这是因为，当转换为世界坐标时，我们是基于瓦片的左上角，但我们希望根据瓦片中心来移动乔治，因此我们向向量的\
+  \ x 和 y 值添加 16, 16，即瓦片大小 32 的一半。\n\n最后，在此函数中，我们将 movingToTouchedLocation 设置为 true，这将使乔治在\
+  \ update 函数中开始向 targetLocation 移动。\n\n- 6. 接下来，我们需要更改 update 函数以沿路径行走。此函数允许我们通过在每个路径步骤之间行走来更改下一个路径步骤，直到到达路径的最终点。\n\
+  \n在上一步中，我们引用了一个名为 faceCorrectDirection 的新函数，当我们更改 update 函数时也会再次使用它，所以让我们先创建它。\n\
+  \n在 update 函数下方，创建一个名为 faceCorrectDirection 的新函数并添加以下代码：\n\n```\nvoid faceCorrectDirection()\
+  \ {\n    var angle = getAngle(position, targetLocation);\n    if ((angle > 315 &&\
+  \ angle < 360) || (angle > 0 &&\n    angle < 45) ) { // Facing right\n    animation\
+  \ = rightAnimation;\n    currentDirection = Character.right;\n}\nelse if (angle\
+  \ > 45 && angle < 135) {\n    // Facing down\n    animation = downAnimation;\n \
+  \   currentDirection = Character.down;\n    }\n    else if (angle > 135 && angle\
+  \ < 225) {\n        // Facing left\n        animation = leftAnimation;\n       \
+  \ currentDirection = Character.left;\n    }\n    else if (angle > 225 && angle <\
+  \ 315) {\n        // Facing up\n        animation = upAnimation;\n        currentDirection\
+  \ = Character.up;\n    }\n}\n```\n\n- 7. 最后在此步骤中，我们将更改 `update` 函数，以便在每个路径步骤采取后更改\
+  \ `targetLocation`，直到到达我们的触摸位置。\n\n由于 `update` 函数现在相当大，我们将完全重构此函数，以便更轻松地管理代码。\n\n\
+  我们将为每种移动类型创建三个新函数，`moveByJoystick`、`moveByKeyboard` 和 `moveByTouch`。我们将 `update`\
+  \ 函数的相关部分移入前两个函数，但对于第三个函数，我们将进行重写，因为我们现在正在绕过障碍物使用路径。\n\n在 `update` 函数下方，添加以下三个空函数存根以开始：\n\
+  \n```\nvoid moveByJoystick(double dt) async {}\nvoid moveByKeyboard(double dt) async\
+  \ {}\nvoid moveByTouch(double dt) async {}\n```\n\n- 8. 接下来，将代码（可从 https://github.com/PacktPublishing/Building-Games-with-Flutter/blob/main/chapter10/lib/components/george.dart\
+  \ 获取）从 `update` 函数添加到 `moveByJoystick` 函数。\n\n- 9. 接下来，将以下代码从 `update` 函数添加到 `moveByKeyboard`\
+  \ 函数：\n\n```\nmovePlayer(dt);\nplaying = true;\nmovingToTouchedLocation = false;\n\
+  if (!isMoving) {\nisMoving = true;\naudioPlayerRunning = await FlameAudio.loopLongAudio(\n\
+  'sounds/running.wav', volume: 1.0);\n}\nif (keyUpPressed && (keyLeftPressed ||\n\
+  keyRightPressed)) {\nanimation = upAnimation;\ncurrentDirection = Character.up;\n\
+  } else if (keyDownPressed && (keyLeftPressed ||\nkeyRightPressed)) {\nanimation\
+  \ = downAnimation;\ncurrentDirection = Character.down;\n} else if (keyLeftPressed)\
+  \ {\nanimation = leftAnimation;\ncurrentDirection = Character.left;\n} else if (keyRightPressed)\
+  \ {\nanimation = rightAnimation;\ncurrentDirection = Character.right;\n} else if\
+  \ (keyUpPressed) {\nanimation = upAnimation;\ncurrentDirection = Character.up;\n\
+  } else if (keyDownPressed) {\nanimation = downAnimation;\ncurrentDirection = Character.down;\n\
+  } else {\nanimation = null;\n}\n```\n\n- 10. 接下来，将以下代码从 update 函数添加到 moveByTouch\
+  \ 函数：\n\n```\nif (!isMoving) {\nisMoving = true;\naudioPlayerRunning = await FlameAudio.loopLongAudio(\n\
+  'sounds/running.wav', volume: 1.0);\n}\nmovePlayer(dt);\ndouble threshold = 2.0;\n\
+  var difference = targetLocation - position;\nif (difference.x.abs() < threshold\
+  \ &&\ndifference.y.abs() < threshold) {\nif (currentPathStep < pathToTargetLocation.length\
+  \ - 1) {\n    currentPathStep++;\n    targetLocation = gridOffsetToWorld(\n    \
+  \    pathToTargetLocation[currentPathStep]);\n    targetLocation.add(Vector2(16,\
+  \ 16));\n} else {\n    stopAnimations();\n    audioPlayerRunning.stop();\n    isMoving\
+  \ = false;\n    movingToTouchedLocation = false;\n    return;\n}\n}\nplaying = true;\n\
+  if (currentPathStep <= pathToTargetLocation.length) {\n    faceCorrectDirection();\n\
+  }\n}\n```\n\n在 `moveByTouch` 函数中，我们更改了一些内容——所以让我们逐一了解与前面章节讨论过的之前触摸代码不同的部分。\n\n我们仍然检查移动玩家后的位置是否在阈值内，但我们将\
+  \ `threshold` 增加到了 `2.0`，这有助于触摸移动，尤其是在角色奔跑时。如果我们到达了 `targetLocation`，我们会检查是否有更多步骤，如果还有更多步骤，则增加\
+  \ `currentPathStep`，然后将 `targetLocation` 更新为新的路径位置。再次，由于路径中的每个偏移量都与网格单元的左上角相关，我们向目标位置添加\
+  \ `16,16` 以使其居中。如果没有更多步骤，我们停止动画和声音。\n\n在每个步骤更改时，我们调整角色面朝的方向，以确保角色面朝前往下一个路径步骤的方向。\n\
+  \n- 11. 现在我们已经定义了三个移动函数，让我们重写简化的 `update` 函数。用以下使用我们新移动函数的新代码完全替换当前的 `update` 函数：\n\
+  \n\n\n@override\nvoid update(double dt) async {\n    super.update(dt);\n    speed\
+  \ = (hud.runButton.buttonPressed ||\n    keyRunningPressed ? runningSpeed : walkingSpeed);\n\
+  \    final bool isMovingByKeys = keyLeftPressed ||\n    keyRightPressed || keyUpPressed\
+  \ || keyDownPressed;\n    if (!hud.joystick.delta.isZero()) {\n    moveByJoystick(dt);\n\
+  \    } else if (isMovingByKeys) {\n    moveByKeyboard(dt);\n    } else {\n    if\
+  \ (movingToTouchedLocation) {\n    moveByTouch(dt);\n    } else {\n    if (playing)\
+  \ {\n    stopAnimations();\n    }\n    if (isMoving) {\n    isMoving = false;\n\
+  \    audioPlayerRunning.stop();\n    }\n    }\n}\n}\n\n现在我们已经完成了对 `George` 类的更新，让我们进入主类以连接所有内容。\n\
+  \n- 12. 打开 `main.dart` 文件，添加地图工具函数的以下导入：\n\n```\nimport 'package:goldrush/utils/map_utils.dart';\n\
+  ```\n\n- 13. 在 `onLoad` 函数中，在加载并播放背景音乐下方，添加以下代码以初始化水屏障，然后通过构造函数将这些内容传递给 `George`\
+  \ 类，以便用于路径查找：\n\n```\nFlameAudio.bgm.initialize();\nawait FlameAudio.bgm.load('music/music.mp3');\n\
+  await FlameAudio.bgm.play('music/music.mp3', volume: 0.1);\n\nfinal tiledMap = await\
+  \ TiledComponent.load(\n'tiles.tmx', Vector2.all(32));\nadd(TileMapComponent(tiledMap));\n\
+  List<Offset> barrierOffsets = [];\nfinal water =\n    tiledMap.tileMap.getObjectGroupFromLayer('Water');\n\
+  water.objects.forEach((rect) {\nif (rect.width == 32 && rect.height == 32) {\nbarrierOffsets.add(worldToGridOffset(Vector2(\n\
+  rect.x, rect.y)));\n}\nadd(Water(position: Vector2(rect.x +\ngameScreenBounds.left,\
+  \ rect.y +\ngameScreenBounds.top), size: Vector2(rect.width,\nrect.height), id:\
+  \ rect.id));\n});\nvar hud = HudComponent();\nvar george = George(barrierOffsets:\
+  \ barrierOffsets,\nhud: hud, position: Vector2(gameScreenBounds.left +\n300, gameScreenBounds.top\
+  \ + 300), size:\nVector2(32.0, 32.0), speed: 40.0);\nadd(george);\nchildren.changePriority(george,\
+  \ 15);\n```\n\n请注意，我们已移动了初始化瓦片地图和水对象的代码，这意味着您可以在此函数中删除对此的其他引用。\n\n如果您现在运行游戏，并使用触摸在水屏障内移动到地图中心，您将看到乔治绕着水屏障走向他的位置！\n\
+  \n### 摘要\n\n在本章中，我们通过让角色和敌人看起来更聪明来改进它们。敌人现在会在靠近玩家且在视线范围内时追击乔治，而乔治现在可以在避开障碍物的同时在地图上移动。\n\
+  \n在最后一章中，我们将向游戏添加一些新屏幕，以将所有内容连接在一起。\n\n### 问题\n\n- 1. 我们可以调用什么函数来测量两个位置之间的距离，以检测敌人是否靠近玩家？\n\
+  - 2. 我们在游戏中用于路径查找的算法名称是什么？\n- 3. 如何在世界坐标和网格坐标之间转换？\n- 4. 为什么要在路径查找算法中将 `withDiagonal`\
+  \ 设置为 `true`？\n- 5. 为什么在路径查找的每个步骤中都必须调整我们面对的方向？\n"
+- "## 第 11 章：完成游戏\n\n游戏看起来很棒，几乎完成了，但我们希望在本章中解决一些悬而未决的问题，以完成它。目前，我们只有主游戏屏幕；然而，游戏通常包含许多屏幕，例如菜单屏幕或设置屏幕。\n\
+  \n在本章中，我们将添加更多屏幕，并向您展示如何在它们之间导航。我们将使用标准 Flutter 小部件创建这些屏幕，并向您展示如何将 Flutter 和 Flame\
+  \ 混合使用。具体来说，在我们的设置屏幕中，我们将添加一个控制音乐音量的选项，并持久保存用户的音乐音量偏好，然后在游戏中使用此设置。\n\n在完成游戏代码后，我们将讨论开发游戏时需要考虑的其他一些事项，例如如何从游戏中赚钱，在继续学习游戏开发时还有什么值得学习，以及在开发游戏时遇到困难去哪里寻求帮助。\n\
+  \n本章将涵盖以下主题：\n\n- 完成游戏\n- 游戏变现\n- 我还应该学什么？\n- 在哪里寻求帮助？\n\n### 技术要求\n\n要查看本章的源代码，可以从\
+  \ https://github.com/PacktPublishing/Building-Games-with-Flutter/tree/main/chapter11\
+  \ 下载。\n\n在本章中，我们将保存用户的音乐音量偏好，因此让我们在游戏中添加用于持久保存此值的库：\n\n- 1. 打开 `pubspec.yaml` 文件，添加以下依赖项：\n\
+  \n```\nshared_preferences: ^2.0.15\n```\n\n- 2. 保存文件，并允许 `pub get` 下载此依赖项并验证资产：\n\
+  \n```\nflutter pub get\n```\n\n在下一节中，我们将讨论需要添加到游戏中的最终代码，以完成所有工作，包括游戏屏幕和导航。\n\n###\
+  \ 完成游戏\n\n在本节中，我们将添加三个新屏幕，并在它们之间进行导航。\n\n这些屏幕如下：\n\n- **菜单屏幕**：玩家将看到的第一个屏幕，包含玩游戏、查看设置或退出游戏的选项。\n\
+  - **设置屏幕**：设置允许我们通过 `Slider` 小部件更改音乐音量，或返回菜单屏幕。\n- **游戏结束屏幕**：当玩家的生命值为 0 时，我们将显示此屏幕，并允许他们返回菜单屏幕重新开始游戏。\n\
+  \n这三个屏幕将使用标准 Flutter 小部件；我们将使用 Flutter 导航路由在这些屏幕之间导航，并使用我们的游戏小部件来运行游戏。\n\n让我们通过添加每个屏幕来开始吧。\n\
+  \n### 添加菜单屏幕\n\n在本节中，我们将添加一个菜单屏幕，以帮助我们在游戏的各个屏幕之间导航，步骤如下：\n\n- 1. 在项目的 `lib` 目录中，创建一个名为\
+  \ `widgets` 的新文件夹，用于存放我们的新小部件屏幕。\n- 2. 在 `widgets` 文件夹中创建三个新文件，分别名为 `screen_menu.dart`、`screen_settings.dart`\
+  \ 和 `screen_gameover.dart`。\n- 3. 打开 `screen_menu.dart` 文件，添加以下代码：\n\n```\nimport\
+  \ 'package:flutter/material.dart';\nimport 'package:flutter/services.dart';\nclass\
+  \ MenuScreen extends StatelessWidget {\n  const MenuScreen({Key? key}) : super(key:\
+  \ key);\n  @override\n  Widget build(BuildContext context) {\n    return Scaffold(\n\
+  \      backgroundColor: Colors.black,\n      body: Center(\n        child: Column(\n\
+  \          mainAxisAlignment: MainAxisAlignment.center,\n          crossAxisAlignment:\n\
+  \          CrossAxisAlignment.center,\n          children: [\n            getGameTitle(),\n\
+  \            getGameMenu(context)\n          ]\n        )\n      ),\n    );\n  }\n\
+  }\nWidget getGameTitle() {}\nWidget getGameMenu(BuildContext context) {}\n```\n\n\
+  在这里，我们添加一个名为 `MenuScreen` 的类，它是 `StatelessWidget`，并设置布局的基本结构，在顶部有一个标题，以及菜单中可以点击的几个菜单项。\n\
+  \n- 4. 让我们扩展 `getGameTitle` 函数，以返回标题的 `Text` 小部件：\n\n```\nWidget getGameTitle()\
+  \ {\n  return Text('Gold Rush', style: TextStyle(color:\n  Colors.yellow, fontSize:\
+  \ 64.0));\n}\n```\n\n- 5. 接下来，我们将扩展 `getGameMenu` 函数，添加 **开始游戏**、**设置** 和 **退出游戏**\
+  \ 菜单选项；它们将是包装在 `GestureDetector` 小部件中的 `Text` 小部件，以便可以点击。\n\n对于前两个选项，我们将使用导航路由移动到新屏幕，并将使用\
+  \ `SystemNavigator` 函数退出游戏：\n\n```\nWidget getGameMenu(BuildContext context) {\n\
+  \  return Padding(\n    padding: const EdgeInsets.all(40.0),\n    child: Column(children:\
+  \ [\n    Padding(\n      padding: const EdgeInsets.all(8.0),\n      child: GestureDetector(\n\
+  \        onTap: () {\n          Navigator.pushNamedAndRemoveUntil(context,\n   \
+  \       \"/game\", (r) => false);\n        },\n        child: Text('Play Game',\
+  \ style: TextStyle(\n            color: Colors.blue, fontSize: 32.0))),\n      ),\n\
+  \      Padding(\n        padding: const EdgeInsets.all(8.0),\n        child: GestureDetector(\n\
+  \          onTap: () {\n            Navigator.pushNamedAndRemoveUntil(context,\n\
+  \            \"/settings\", (r) => false);\n          },\n          child: Text('Settings',\
+  \ style: TextStyle(\n              color: Colors.blue, fontSize: 32.0))),\n    \
+  \  ),\n      Padding(\n        padding: const EdgeInsets.all(8.0),\n        child:\
+  \ GestureDetector(\n          onTap: () { SystemNavigator.pop(); },\n          child:\
+  \ Text('Exit Game', style: TextStyle(\n```\n\n\n\ncolor: Colors.red, fontSize: 32.0))),\n\
+  \                ),\n            )),\n        );\n    }\n```\n\nHere, we have a\
+  \ simple widget that draws the menu, which is a simple column of menu items in the\
+  \ middle, with a title at the top and an exit option below the menu items. Clicking\
+  \ on these options tells the navigator to change to a different page.\n\nHere, you\
+  \ can see how the menu screen should look:\n\n![](img/a63c3fccbe888cd4d04006b5e1b6c273_196_0.png)\n\
+  \nFigure 11.1 – The game menu screen, allowing you to play the game or view the\
+  \ settings\n\nNext, let's continue for now with the settings screen.\n\n### 添加设置屏幕\n\
+  \nIn this section, we will add a settings screen to allow us to choose the volume\
+  \ of the background music by following these steps:\n\n- 1. Open the `screen_settings.dart`\
+  \ file and add the code from here: https://github.com/PacktPublishing/Building-Games-with-Flutter/blob/main/chapter11/lib/widgets/screen_settings.dart.\n\
+  \nIn this code block, we will set up `StatefulWidget` this time, as we want to keep\
+  \ track of the music volume value and persist this for using the `SharedPreferences`\
+  \ library we added earlier in the _Technical requirements_ section.\n\nWe store\
+  \ the current music volume in a variable called `musicVolume`. In the `initState`\
+  \ function, we try and read this value from the shared preferences and set it to\
+  \ 25% as a default if this has not been previously set.\n\nLet's continue and build\
+  \ the UI for the settings screen by completing the empty functions.\n\n- 2. Here\
+  \ is the code for the `getSettingsTitle` function:\n\n```\nWidget getSettingsTitle()\
+  \ {\n  return Padding(\n    padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),\n \
+  \   child: Text('Settings', style: TextStyle(color:\n      Colors.yellow, fontSize:\
+  \ 64.0)),\n  );\n}\n```\n\nHere, we return a `Text` widget for our title, which\
+  \ is styled in yellow and has a font size of 64.\n\n- 3. The following is the code\
+  \ for the `getMusicVolumeLabel` function:\n\n```\nWidget getMusicVolumeLabel() {\n\
+  \  return Text('Music Volume', style: TextStyle(color:\n    Colors.blue, fontSize:\
+  \ 32.0));\n}\n```\n\nHere, we return a `Text` widget for our volume label, which\
+  \ is styled in blue and has a font size of 32.\n\nThe following is the code for\
+  \ the `getVolumeSlider` function:\n\n```\nWidget getVolumeSlider() {\n  return SizedBox(\n\
+  \    width: 250.0,\n    child: Slider(\n      value: musicVolume,\n      min: 0.0,\n\
+  \      max: 100.0,\n      label: '${musicVolume.round()}',\n      divisions: 4,\n\
+  \      onChanged: (double newMusicVolume) {\n        SharedPreferences.getInstance().then((prefs)\n\
+  \          => prefs.setDouble('musicVolume',\n          newMusicVolume));\n    \
+  \    setState(() => musicVolume = newMusicVolume);\n      }),\n  );\n}\n```\n\n\
+  Here, we return a Slider widget wrapped around a fixed SizedBox widget that has\
+  \ values for the music volume between 0 and 100. Whenever the slider value is changed,\
+  \ we set the musicVolume value in the widget and save this to the shared preferences.\n\
+  \n- 4. The following is the code for the getBackLabel function:\n\n```\nWidget getBackLabel()\
+  \ {\n  return GestureDetector(\n    onTap: () { Navigator.pushNamedAndRemoveUntil(\n\
+  \      context, \"/\", (r) => false); },\n    child: Text('Back', style: TextStyle(color:\n\
+  \      Colors.red, fontSize: 32.0))\n  );\n}\n```\n\nHere, we return a Text label\
+  \ to go back to the main menu and use Navigator to return the player to the top-level\
+  \ route if this is clicked.\n\nThe following screenshot shows our settings screen\
+  \ along with a slider to set the music volume:\n\n![](img/a63c3fccbe888cd4d04006b5e1b6c273_199_0.png)\n\
+  \nFigure 11.2 – The Settings screen with the adjustable music volume\n\nNow that\
+  \ the settings screen is complete, let's work on our final screen, which is the\
+  \ game over screen.\n\n### 添加游戏结束屏幕\n\nIn this section, we will add a game over\
+  \ screen to let the user know the game has ended. To do this, open the `screen_gameover.dart`\
+  \ file and add the code from here: https://github.com/PacktPublishing/Building-Games-with-Flutter/blob/main/chapter11/lib/widgets/screen_gameover.dart.\n\
+  \nIn this code block, we show a simple screen to indicate that the game is over\
+  \ and a link to go back to the menu, where the user can play again, change the settings,\
+  \ or quit the game.\n\nHere is the game over screen that is shown when George dies:\n\
+  \n![](img/a63c3fccbe888cd4d04006b5e1b6c273_200_0.png)\n\nFigure 11.3 – The game\
+  \ over screen when George dies\n\nNow that we have our three extra screens, let's\
+  \ tie these together with navigation routes and music volume.\n\n### 使用导航路由和音乐音量编译所有屏幕\n\
+  \nIn this section, we will tie all the navigation together and also adjust the music\
+  \ volume, based on the settings menu choice. To do this, we will follow these steps:\n\
+  \n- 1. Open the main.dart file and import the screens and shared preference library:\n\
+  \n```\nimport 'package:goldrush/widgets/screen_gameover.dart';\nimport 'package:goldrush/widgets/screen_menu.dart';\n\
+  import 'package:goldrush/widgets/screen_settings.dart';\nimport 'package:shared_preferences/shared_preferences.dart';\n\
+  ```\n\n- 2. Let's rewrite the main function to use routes. Replace the existing\
+  \ main function with the following:\n\n```\nvoid main() async {\n  WidgetsFlutterBinding.ensureInitialized();\n\
+  \  await Flame.device.fullScreen();\n  await Flame.device.setLandscape();\n  runApp(\n\
+  \    MaterialApp(\n      debugShowCheckedModeBanner: false,\n      title: 'Gold\
+  \ Rush',\n      initialRoute: '/',\n      routes: {\n        '/': (context) => MenuScreen(),\n\
+  \        '/settings': (context) => SettingsScreen(),\n        '/gameover': (context)\
+  \ => GameOverScreen(),\n        '/game': (context) => GameWidget(game: GoldRush()),\n\
+  \      },\n    ),\n  );\n}\n```\n\nHere, we set the screen up as full-screen landscape\
+  \ as we did before in Chapter 7, Designing Your Own Levels, but now we have four\
+  \ navigation routes defaulting, with the initial route pointing to the menu screen.\n\
+  \n- 3. In the onLoad function of the GoldRush class, let's read the musicVolume\
+  \ value from shared preferences and set up the playback of the music with this value.\
+  \ Note that if the player has not gone into the settings and changed this value,\
+  \ the volume will default to 25%.\n\nReturning to where the background audio is\
+  \ initialized, add the following code:\n\n```\nvar musicVolume;\nawait SharedPreferences.getInstance()\n\
+  \  .then((prefs) => prefs.getDouble('musicVolume') ?? 25.0)\n  .then((savedMusicVolume)\
+  \ => musicVolume = savedMusicVolume);\n```\n\n- 4. Next, change the line that starts\
+  \ playing the music to the following:\n\n```\nawait FlameAudio.bgm.play('music/music.mp3',\
+  \ volume: (musicVolume / 100));\n```\n\n- 5. During the testing of the navigation,\
+  \ a bug was found where the enemies and coins were invisible when playing the game\
+  \ for the first time. This is due to the z-order priority being incorrect, which\
+  \ makes the map draw on top of the sprites. So, let's fix that now by setting the\
+  \ priority higher.\n\nIn the same `onLoad` function, change the initialization of\
+  \ the `Skeleton`, like this:\n\n```\nvar skeleton = Skeleton(player: george, position:\n\
+  \  Vector2(position.x + gameScreenBounds.left,\n  position.y + gameScreenBounds.top),\
+  \ size:\n  Vector2(32.0, 64.0), speed: 20.0);\nchildren.changePriority(skeleton,\
+  \ 15);\nadd(skeleton);\n```\n\n- 6. Next, update the `Zombie` initialization, like\
+  \ this:\n\n```\nvar zombie = Zombie(player: george, position:\n  Vector2(position.x\
+  \ + gameScreenBounds.left,\n  position.y + gameScreenBounds.top), size:\n  Vector2(32.0,\
+  \ 64.0), speed: 20.0);\nchildren.changePriority(zombie, 15);\nadd(zombie);\n```\n\
+  \n- 7. And finally, for the sprites, update the `Coin` initialization, like this:\n\
+  \n```\nvar coin = Coin(position: Vector2(posCoinX, posCoinY),\n  size: Vector2(20,\
+  \ 20));\nchildren.changePriority(coin, 15);\nadd(coin);\n```\n\n- 8. Now that we\
+  \ are done updating the navigation and music playback, let's fix one last thing.\n\
+  \nWhen George's health gets to 0, we want to trigger the navigation to show the\
+  \ game over screen. Open the `george.dart` file and, in the `onCollision` function,\
+  \ change the health check code block to the following:\n\n```\nif (health > 0) {\n\
+  \  health -= 25;\n  hud.healthText.setHealth(health);\n}\nif (health == 0) {\n \
+  \ Navigator.pushNamedAndRemoveUntil(gameRef.buildContext, \"/gameover\", (r) =>\
+  \ false);\n}\n```\n\nThis will replace the previous else clause, where we had a\
+  \ to-do action to show the game over screen.\n\nWe have now the complete code for\
+  \ the game! If you run the game now, you can see the simple screens and navigate\
+  \ around them, and you can adjust the music volume from off to full volume.\n\n\
+  When you have built your own game, it would be great to sell the game, and who knows\
+  \ – you may make the next successful blockbuster game, such as Angry Birds, and\
+  \ become very rich! In the next section, we will discuss exactly that – how to make\
+  \ money from your game.\n\n### 游戏变现\n\nOnce you have developed your own game, you\
+  \ may want to try to make some money from the game. There are a few ways to do this,\
+  \ depending on the platforms you wish to support. But in this section, we will focus\
+  \ on the three most common ways so that you can decide what is best for you, as\
+  \ there are pros and cons to each way.\n\nThe three main ways to monetize your game\
+  \ are as follows:\n\n- Adverts\n- In-app purchases\n- Purchase\n\nIn the following\
+  \ subsections, we will discuss each of these options.\n\n\n\n\n\n### 广告\n\n有众多广告提供商，每个都为\
+  \ Flutter 提供自己的库。移动端推荐使用 Google 自家的 Mobile Ads SDK，Google 为此提供了官方库。这很容易集成，你可以通过在游戏中向玩家展示广告来赚钱。\n\
+  \n请注意，过度使用广告会惹恼玩家，因此请尽量考虑用户在游戏中的体验，以便在两者之间取得平衡。\n\n让我们来看看在游戏中使用广告的优缺点：\n\n#### 优点：\n\
+  \n- 易于集成。\n- 来自持续收入流的重复收入。\n\n#### 缺点：\n\n- 对用户来说可能很烦人。\n- 广告带来的收入相当低。\n\n现在，让我们来看看另一种变现选项：应用内购买。\n\
+  \n### 应用内购买\n\n应用内购买可以是从游戏中赚钱的好方法。通常，对于这类游戏，你会将其免费提供，然后在游戏中收取小额微支付，这些支付通过 Google\
+  \ Play 或 Apple 的 App Store 进行。你购买的虚拟物品仅存在于该游戏中。例如，在我们的游戏中，你可以购买额外生命值或更好的武器，以换取真实货币。\n\
+  \n请注意，一些使用应用内购买的现有游戏以“付费获胜”而闻名，即愿意付费购买游戏中最佳物品的用户可以轻松获胜。这具有争议性，尤其是在多人游戏中，你可以购买游戏中的成功。\n\
+  \n从开发者的角度来看，虚拟物品提供了一种有趣的变现方式。这是因为游戏资产是虚拟的，可以多次出售给不同的玩家，并提供可靠的、可重复的收入流。\n\n让我们来看看在游戏中使用应用内购买的优缺点：\n\
+  \n#### 优点：\n\n- 你可以将同一虚拟物品出售给许多不同的用户。\n\n#### 缺点：\n\n- 在移动开发者门户中设置可能比较繁琐。\n- 如果过度使用，会让用户感到烦躁。\n\
+  \n现在我们已经讨论了应用内购买的优缺点，让我们来看看最后一种选项：一次性购买。\n\n### 一次性购买\n\n一次性购买也是变现应用的另一个有效选项。你可以为游戏设定一个固定价格，用户只需支付一次。\n\
+  \n请注意，玩家倾向于希望在游戏中看到更新的内容，例如新关卡。因此，如果你仅从固定价格中获利，那么除了更新内容可能带来的新销售外，你将免费维护游戏。\n\n让我们来看看在游戏中使用购买的优缺点。\n\
+  \n#### 优点：\n\n- 无需麻烦，你只需设置一次价格。\n\n#### 缺点：\n\n- 没有来自现有客户的重复收入。\n\n如果你想进一步了解变现游戏的方法，请查看\
+  \ https://flutter.dev/monetization，其中有更详细的说明。\n\n在本节中，我们讨论了变现游戏的方法。在下一节中，我们将讨论还有什么值得学习，以扩展你的游戏开发知识。\n\
+  \n### 我还应该学什么？\n\n现在你已经掌握了使用 Flame 进行游戏开发的基础知识，让我们来看看你还可以学习哪些更高级但非常有用的主题，以扩展你的游戏开发知识。\n\
+  \n### Forge2d\n\n许多游戏使用高级物理来使游戏更加逼真，例如使用重力来影响精灵的跳跃和下落，或者计算《愤怒的小鸟》中下落的鸟的轨迹。\n\n有一个名为\
+  \ Forge2d 的非常好的物理引擎可用，它基于著名的 Box2d 引擎，如果你想让游戏更加逼真，值得研究。\n\n你可以在 https://docs.flame-engine.org/1.0.0/forge2d.html\
+  \ 上找到开始所需的一切。\n\n### Nakama\n\n单人游戏可以很有趣，但当你和朋友一起玩时，游戏会上升到一个全新的水平。多人游戏开发是一个从零开始非常复杂的主题，但它是一个值得学习的有用主题，可以大大改善你的游戏。幸运的是，Flutter\
+  \ 有一个好的库来处理构建多人游戏所需的所有复杂内容，并且与 Flame 配合良好。\n\n该库称为 **Nakama**，在 https://heroic-labs.com/docs/nakama/getting-started/\
+  \ 中讨论，而针对该库的 Flutter 库位于 https://github.com/obrunsmann/flutter_nakama。\n\nNakama\
+  \ 有许多功能。以下是它可以做的一些事情：\n\n- 不同玩家之间的多人游戏\n- 玩家之间的实时聊天\n- 用于跟踪谁分数最高的排行榜\n- 带有登录的用户账户\n\
+  \nNakama 覆盖了比我们在此讨论的更多多人游戏功能，因此建议你查看他们的网站（https://heroic-labs.com/docs/nakama/getting-started/）以获取更多信息。\n\
+  \n### Rive\n\n**Rive** 是一个跨平台动画工具，允许你导出动画并使用特定于每个平台的库进行播放。如果你熟悉旧的 Flash 动画，这很相似。\n\
+  \n你可以在 https://rive.app/ 上阅读更多关于 Rive 的信息。针对 Rive 的 Flame 库可以在 https://pub.dev/packages/flame_rive\
+  \ 上找到。\n\n### 我应该做什么游戏？\n\nFlame 适合所有类型的 2D 游戏，所以你可以做任何你喜欢的游戏。困难在于，有些类型的游戏比其他类型更难编码。\n\
+  \n如果你计划制作角色扮演游戏，这些游戏非常流行，请注意，这些是非常复杂的游戏，因为它们通常模拟现实世界的机制，并要求你为游戏构建大量内容。\n\n从简单的游戏开始，例如井字棋，然后逐步过渡到推箱子或打破砖块等游戏，再过渡到玛丽奥等平台游戏。\n\
+  \n有一篇很棒的文章在 https://gamefromscratch.com/just-starting-out-what-games-should-i-make/，可以给你更多关于做什么游戏以及按什么顺序制作它们的想法。\n\
+  \n在下一节中，我们将讨论当你在使用 Flutter/Flame 时卡住了去哪里寻求帮助。\n\n### 去哪里寻求帮助？\n\n在制作游戏的过程中，有时你会卡住。你可能不知道如何实现某个功能，或者\
+  \ Flame 库或 Flutter SDK 可能存在错误。\n\n我在此整理了一份优秀资源列表，如果你卡住了可以寻求帮助：\n\n- Flame Discord\
+  \ (https://discord.gg/5unKpdQD78)：在这里，你可以向 Flame 开发团队提问，并获得关于如何使用 Flame 的出色建议。\n\
+  \n我们特别想感谢 Flame Discord 服务器上的 Spydon、Erick 和 Wolfen，在我编写本书期间他们提供的所有帮助。\n\n- Stack\
+  \ Overflow：监控 Flame Discord 的同样的人也监控 Stack Overflow，你也可以在那里发帖提问。请确保为你的问题添加 #flame\
+  \ 标签。\n- Flame 文档：Flame 文档可以在 https://pub.dev/documentation/flame/latest/ 上找到，你可以在\
+  \ https://github.com/flame-engine/flame/tree/main/examples 和 https://github.com/flame-engine/awesome-flame#articles--tutorials\
+  \ 上找到许多 Flame 的示例和教程。\n- Flutter 社区页面：如需更一般的 Flutter 帮助，请查看 https://flutter.dev/community\
+  \ 上的 Flutter 社区页面，你可以在那里找到 Flutter Discord 和 Slack 频道的链接。\n\n在本节中，我们讨论了当你在使用 Flame\
+  \ 或 Flutter 时卡住了去哪里寻求帮助。\n\n### 总结\n\n在本章中，我们学习了如何将游戏小部件与其他 Flutter 小部件混合，并在屏幕之间导航以完成我们的游戏。我们还给了玩家在设置屏幕上更改音乐音量的选项。\n\
+  \n我们讨论了变现游戏的选项以及接下来学习什么来改善你的游戏开发知识。最后，我们回顾了如果你在游戏中卡住了去哪里寻求帮助。\n\n本书涵盖了很多内容，你现在拥有了使用\
+  \ Flutter 和 Flame 构建各种 2D 游戏的知识。祝你的游戏开发之旅好运。我期待看到你创作的游戏。\n\n### 问题\n\n\n\n\n- 1.\
+  \ 我们应该使用什么库来持久化存储简单数据（例如音乐音量）？\n- 2. 为游戏变现有哪些选项？\n- 3. 用于切换屏幕的 Flutter 类是哪个？\n-\
+  \ 4. 通过应用内购买变现的主要好处是什么？\n\n## 您可能还喜欢的其他图书\n\n如果您喜欢这本书，可能对 Packt 的这些其他书籍感兴趣：\n\n\
+  ![](img/a63c3fccbe888cd4d04006b5e1b6c273_211_0.png)\n\n### Flutter for Beginners\
+  \ – Second Edition\n\nThomas Bailey, Alessandro Biessek\n\nISBN: 978-1-80056-599-9\n\
+  \n- 探索 Flutter 框架的核心概念及其在跨平台开发中的应用\n- 了解 Dart 编程语言的基础知识\n- 使用 Flutter 小部件并学习有状态和无状态小部件的概念\n\
+  - 使用动画小部件和高级动画技术为应用添加动画\n- 掌握完整的开发生命周期，包括测试和调试\n- 探索向移动应用商店和 Web 发布应用的流程\n\n###\
+  \ Flutter Cookbook\n\nOver 100 proven techniques and solutions for app development\
+  \ with Flutter 2.2 and Dart\n\nSimone Alessandria | Brian Kayfitz\n\n### Flutter\
+  \ Cookbook\n\nSimone Alessandria, Brian Kayfitz\n\n- 使用 Dart 编程定制您的 Flutter 应用\n\
+  - 了解如何像 Dart 程序员一样开发和思考\n- 利用 Firebase 机器学习功能创建智能应用\n- 创建可应用于任何类型应用的可复用架构\n- 使用\
+  \ Web 服务并在本地持久化存储数据\n- 在用户看到问题之前对其进行调试和解决\n- 使用 Future 和 Stream 进行异步编程\n- 使用 Streams\
+  \ 和 BLoC 模式管理应用状态\n\n### Packt is searching for authors like you\n\n如果您有兴趣成为 Packt\
+  \ 的作者，请立即访问 authors.packtpub.com 并申请。我们已与数千名像你一样的开发者和技术专业人士合作，帮助他们将见解分享给全球技术社区。您可以提交通用申请、申请我们正在招募作者的特定热门话题，或提交自己的构思。\n\
+  \n### Chapter 1\n\n- 1. Flutter 绘制的最小恒定帧率为每秒 60 帧。\n- 2. Flutter 使用的图形引擎是 Skia。\n\
+  - 3. Flutter 支持 Android、iPhone、Mac、Linux、Windows 和 Web。\n- 4. Skia 是一个开源图形引擎，提供用于绘制形状、文本和图像的图形\
+  \ API。\n- 5. Dart 支持即时编译和预先编译。即时编译在调试时提供状态热重载等出色功能，而预先编译在游戏发布时提供高性能。\n- 6. 状态热重载允许你修改代码、重新加载，并立即看到变化（这就像用代码作画！）。\n\
+  - 7. Dart 对短生命周期对象使用快速垃圾回收，使 Dart 能够以每秒 60 帧的速度重建小部件树，从而实现流畅的动画。\n\n### Chapter\
+  \ 2\n\n- 1. `deltaTime` 是帧之间经过的时间。用于确保在处理能力不同的设备上帧率保持恒定。\n- 2. Flame 组件系统允许我们为游戏构建灵活的架构，随着游戏规模扩大，这一点至关重要。\n\
+  - 3. `HitboxRectangle` 用于检测方形或矩形等形状。\n\n### Chapter 3\n\n- 1. 概要对游戏目标进行高层次总结，用于吸引玩家游玩。\n\
+  - 2. 当敌人攻击 George 时，他的生命值将减少 25%。\n- 3. 每收集一枚金币，George 的得分将增加 20 分。\n- 4. 水用于定义\
+  \ George 或敌人无法穿越的边界。\n\n### Chapter 4\n\n- 1. 精灵是可以是静态的也可以是动画的图形或图像资源。\n- 2. 函数\
+  \ `createAnimationByColumn` 或 `createAnimationByRow` 返回精灵动画列表。\n- 3. `SpriteAnimationComponent`\
+  \ 减少了我们需要编写的额外代码量，因为动画在设计上已内置于组件中。\n- 4. 使用 `to` 和 `from` 参数指定范围，以表示开始和结束的动画帧。\n\
+  - 5. 基类允许我们设置精灵将共享的通用行为。\n\n### Chapter 5\n\n- 1. HUD 是抬头显示器（Heads-Up Display）。它代表我们想要绘制在游戏之上的用户界面，显示得分和生命值等内容。\n\
+  - 2. 要检测触摸，我们使用 `Tappable` 混入。\n- 3. `TextComponent` 用于在屏幕上绘制文本。\n- 4. 摇杆有一个内部控制，需要将其拖动到外部控制以注册摇杆方向的值。\n\
+  \n### Chapter 6\n\n- 1. 我们使用 `flame_audio` 库为游戏添加音频。\n- 2. 将音频预先加载到内存缓存中可以提高游戏性能，因为我们通常会在游戏中多次播放相同的音效。\n\
+  - 3. 我们需要清除缓冲区，以防止持有资源并导致内存泄漏，这可能会使游戏崩溃。\n- 4. 当游戏进入后台时，我们需要监听暂停事件；当游戏重新获得焦点时，需要监听恢复事件。\n\
+  - 5. 我们需要存储返回的 `AudioPlayer` 的引用（用于较长的音效），以便在游戏暂停或恢复时控制声音。\n- 6. 我们使用传递给 `FlameAudio`\
+  \ 的 `play` 函数的 `volume` 参数。\n\n### Chapter 7\n\n- 1. Tiled 应用程序允许我们创建比游戏物理屏幕大得多的瓦片地图，使用由小瓦片组成的瓦片集来表示草地或水等事物。\n\
+  - 2. 瓦片地图会复用每个瓦片，这意味着它们占用的内存远少于存储一张大图。\n- 3. 瓦片地图数据存储在二维数组中，以表示地图的宽度和高度。\n- 4. 我们可以使用瓦片图层来表示瓦片，使用对象图层来表示我们想要绘制在地图之上的对象。\n\
+  - 5. 为了在精灵移动时调整地图，我们使用相机，并设置 `followComponent` 函数，指定移动时想要聚焦的组件。\n- 6. 我们可以将可碰撞对象作为对象图层添加到瓦片地图中，然后通过瓦片地图的\
+  \ `getObjectGroupFromLayer` 函数读取对象，从这些对象创建组件。\n- 7. 可碰撞对象可以是活动、被动或非活动状态。我们使用这些状态来减少可碰撞对象之间的碰撞检查次数，从而帮助提升游戏性能。\n\
+  \n### Chapter 8\n\n- 1. Web 浏览器在首次加载时需要启用音频权限，以防止网站用烦人的噪音打扰用户。\n- 2. 我们的游戏根据屏幕尺寸设置了初始大小。如果尺寸发生变化，则需要重新计算一切，否则摇杆等内容可能无法正确定位。\n\
+  - 3. 默认的 `TiledComponent` 不需要位置和大小。但为了修复调整大小时的问题，我们需要能够重新计算这些值。因此，我们将组件包装在 `PositionComponent`\
+  \ 中，以获取位置和大小值。\n- 4. 我们可以使用 `canvaskit` 来优先考虑性能，或使用 `html` 来优先考虑下载大小。\n- 5. 我们使用\
+  \ `KeyboardHandler` 混入来监听按键事件。\n\n### Chapter 9\n\n- 1. `lifespan` 和 `count` 是使用粒子时常见的设置属性，分别表示粒子应显示的时长和应显示的数量。\n\
+  - 2. 粒子会非常快速地创建大量对象并可能占用大量内存，因此一旦粒子不再使用，我们需要释放内存。\n- 3. `MovingParticle`、`CircleParticle`\
+  \ 和 `ComputedParticle` 是 Flame 支持的粒子示例。\n- 4. Flame 支持用于静态图像的 `PreRenderedLayer`\
+  \ 和用于动画图像的 `DynamicLayer`。\n- 5. 我们需要将超类的渲染委托给图层类，以便图层处理器可以生成阴影图像。\n\n\n\n\n###\
+  \ Chapter 10\n\n- 1. 我们可以使用 `distanceTo` 函数来测量两个位置向量之间的距离。\n\n- 2. 我们在《淘金热》中用于路径查找的算法称为\
+  \ `A*`（`A Star`）。\n\n- 3. 我们可以将 `x` 或 `y` 位置乘以或除以瓦片大小，以在世界坐标和网格坐标之间进行转换。\n\n- 4.\
+  \ 将 `withDiagonal` 设置为 true 可为我们的角色提供更自然的移动，否则角色将以直角移动，看起来像机器人！\n\n- 5. 每次更改方向时，我们都必须匹配正确的动画，否则会出现精灵似乎向后行走等问题。\n\
+  \n### Chapter 11\n\n- 1. 要持久化简单数据，我们使用 `shared_preferences` 库。\n\n- 2. 要为游戏变现，我们可以使用广告、应用内购买或固定费用购买。\n\
+  \n- 3. `Navigator` 类用于在 Flutter 中更改屏幕。\n\n- 4. 通过应用内购买，您可以将同一数字资产转售给许多人，以获得可重复的收入流。\n\
+  \n### 为何订阅？\n\n- 通过来自 4,000 多名行业专家的实用电子书和视频，花更少的时间学习，花更多的时间编码。\n\n- 通过专为您量身定制的技能规划，改善您的学习体验。\n\
+  \n- 每月获取一本免费电子书或视频。\n\n- 支持全文搜索，轻松获取重要信息。\n\n- 可复制粘贴、打印和收藏内容。\n\n你知道吗，Packt 为每本出版的图书提供电子书版本，并提供\
+  \ PDF 和 ePub 文件？您可以在 [packt.com](packt.com) 升级到电子书版本，作为印刷图书客户，您有权享受电子书副本的折扣。如需更多详情，请通过\
+  \ [customercare@packtpub.com](customercare@packtpub.com) 联系我们。\n\n在 [www.packt.com](www.packt.com)，您还可以阅读一系列免费技术文章，订阅多种免费通讯，并获取\
+  \ Packt 图书和电子书的独家折扣和优惠。\n\n"
