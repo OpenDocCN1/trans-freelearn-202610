@@ -1,0 +1,61 @@
+chapter_starts:
+- 'no': 0
+  confidence: 0.9
+  final_reason: 前置材料（书名、关于作者、前言等）统一划分为一章，以文件开头行作为前置章起始。
+  accepted_evidence:
+  - 行0为图书标题，位于所有正文章节之前
+  - 规则要求前言/关于作者等正文前内容统一为一章
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 184
+  confidence: 0.99
+  final_reason: 双方一致 + 一级标题、单独成行、无结束标点、长度适中，语义统领后续内容，为正文第一章。
+  accepted_evidence:
+  - '# 使用响应式设计、Bootstrap 和 D3.js 入门'
+  - 后文接章节概述与正文
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 790
+  confidence: 0.95
+  final_reason: 双方维持分章，一级标题独立成行、无标点、语义统领，为正文第二章。
+  accepted_evidence:
+  - '# 浏览器中的矢量图形与 SVG'
+  rejected_evidence:
+  - 复核方认为语义聚焦可能为专题，但证据不足
+  need_human_review: false
+- 'no': 944
+  confidence: 0.95
+  final_reason: 双方维持分章，一级标题独立成行、无标点，为正文第三章。
+  accepted_evidence:
+  - '# 使用 D3.js 和 SVG 创建柱状图'
+  rejected_evidence:
+  - 复核方认为偏向操作指南，但证据不足
+  need_human_review: false
+- 'no': 1806
+  confidence: 0.95
+  final_reason: 双方维持分章，一级标题独立成行、无标点，为正文第四章。
+  accepted_evidence:
+  - '# 加载、过滤和分组数据'
+  rejected_evidence:
+  - 复核方认为缺乏抽象度，但证据不足
+  need_human_review: false
+- 'no': 2376
+  confidence: 0.95
+  final_reason: 双方维持分章，一级标题独立成行、无标点，为正文第五章。
+  accepted_evidence:
+  - '# 使图表具有响应式'
+  rejected_evidence:
+  - 复核方认为动词短语可能为小标题，但证据不足
+  need_human_review: false
+- 'no': 2991
+  confidence: 0.95
+  final_reason: 双方维持分章，一级标题独立成行、无标点，为正文第六章。
+  accepted_evidence:
+  - '# 构建响应式交互'
+  rejected_evidence:
+  - 复核方认为缺乏名词性章题特征，但证据不足
+  need_human_review: false
+rejected_lines:
+- 'no': 8
+  reason: 复核方证据成立：##关于作者为二级标题，非最高层级章标题；且前置内容应统一为一章，不应在此拆分。
+  need_human_review: false

@@ -1,0 +1,2176 @@
+- ''
+- '# 响应式数据可视化入门指南：Web响应式可视化构建指南
+
+
+
+
+
+
+  ![](img/72559bd4713b2b89631dcca187d7e2db_0_0.png)
+
+
+  ## 关于作者
+
+
+  **Christoph Körner** 是初创公司 GESIM 的首席技术官兼首席开发人员，是一位充满热情的软件工程师、Web 爱好者，也是 JavaScript
+  社区的活跃成员，拥有超过 5 年开发面向客户的 Web 应用程序的经验。他是 *使用 D3 和 AngularJS 进行数据可视化* 的作者，目前正在维也纳技术学院攻读视觉计算硕士学位。
+
+
+  我要感谢我亲密的朋友 Firat Özdemir 和 Vidor Kanalas，感谢他们持续的支持与帮助，也要感谢我的老板兼同事 Dietmar Wiegand，感谢他支持我的所有想法和梦想。我也要感谢我的女朋友
+  Laura Andrea Rojas Padilla，她一直激励、鼓舞和支持我，以及 Packt Publishing 的整个团队，感谢他们在过去 6 个月里相信我并指导我。
+
+
+  ## 关于审稿人
+
+
+  Sébastien Fragnaud 是一名在 Metamarkets 工作的前端工程师。他从精美的模型中创建出精美的 UI。在此之前，他曾为几家不同的公司工作，但他的关注点始终如一：以有意义的方式呈现数据。
+
+
+  他非常喜爱可复用代码，是 n3-charts 的作者，这是一个 JavaScript 库，为在 AngularJS 应用程序中操作图表提供了一种简便的方法。
+
+
+  ## 电子书、折扣优惠等
+
+
+  你知道吗？Packt 为每本出版的图书都提供电子书版本，可下载 PDF 和 ePub 文件。您可以在 www.PacktPub.com 升级为电子书版本，作为纸质图书客户，您有权获得电子书副本的折扣。如需更多详情，请联系
+  customercare@packtpub.com。
+
+
+  在 www.PacktPub.com，您还可以阅读一系列免费的技术文章，订阅多种免费新闻通讯，并获取 Packt 图书和电子书的独家折扣和优惠。
+
+
+  ![](img/72559bd4713b2b89631dcca187d7e2db_7_0.png)
+
+
+  https://www2.packtpub.com/books/subscription/packtlib
+
+
+  您需要即时解决 IT 问题吗？PacktLib 是 Packt 的在线数字图书馆。在这里，您可以搜索、访问和阅读 Packt 的整个图书馆。
+
+
+  ### 为什么订阅？
+
+
+  - 可在 Packt 出版的每本书中全文搜索
+
+  - 复制、粘贴、打印和加书签内容
+
+  - 按需通过 Web 浏览器访问
+
+
+  # 前言
+
+
+  数据可视化是理解复杂信息和数据的最佳方式。
+
+  人类大脑能够轻松感知视觉信息；它可以建立联系，并且相比于没有可视化的情况，更容易理解完整的过程。
+
+
+  每当用户通过查看数据可视化而轻松理解复杂系统，而不是阅读解释性文本和原始数据时，我都会对来自用户的正面反馈感到欣喜。借助 Web 和现代浏览器的力量，我可以将这些可视化分享给每个人，并使其具有交互性和动画效果。
+
+
+  为了实现跨浏览器的交互式可视化，我不愿在性能、调试、质量和交互性方面做任何妥协，这引导我选择了 SVG。在决定使用 SVG 后，我寻找一个用于 SVG 转换的框架，该框架既能提供对其所有底层标准的原始访问，又能提供一组丰富的可视化功能
+  — d3.js 库提供了所有这些功能。
+
+
+  D3.js 是一个可视化工具包，它便于生成和操作基于 Web 的矢量图形，并完全访问底层 SVG 标准。此外，动画和交互式可视化改变了用户对 Web 应用程序的感知方式，D3.js
+  提供了开箱即用的一切所需，让可视化具有交互性。
+
+
+  虽然在过去几年中这一直有效，但我意识到用户越来越多地使用移动设备访问可视化，主要是通过智能手机和平板电脑。在大多数平板电脑上，可视化效果看起来不错，但交互功能不再起作用。智能手机用户在尝试缩放浏览器时也遇到了这种情况，但它不知何故干扰了可视化的缩放，反而随机切换交互功能。对我来说，这是解决问题所需的信号。
+
+
+  随着响应式 Web 设计的兴起，已经有很多创建适应用户设备、屏幕尺寸和分辨率的跨浏览器和跨平台应用程序的想法。除此之外，现代浏览器已经提供了稳健的 CSS 和
+  JavaScript 功能，以实现各种 Web 应用程序的响应式设计。
+
+
+  对我而言，唯一合乎逻辑的步骤是组合丰富的工具来创建响应式应用程序，并将相同的理念引入数据可视化。我希望我的可视化能够适应用户的设备、屏幕尺寸和分辨率，同时为鼠标和触摸手势提供跨平台交互性。在本书中，我将与你分享我在响应式数据可视化方面的知识、经验和最佳实践。
+
+
+  ## 本书内容概览
+
+
+  第 1 章，使用响应式设计、Bootstrap 和 D3.js 入门，将带你掌握当今用于创建响应式应用程序的概念、技术和框架。
+
+
+  第 2 章，使用 D3.js 和 SVG 创建柱状图，将帮助你入门 `D3.js` 及其概念。本章结束时，你将学会如何绘制点、形状和简单的柱状图。
+
+
+  第 3 章，加载、筛选和分组数据，将指导你从现实世界的数据中获取最大信息。
+
+
+  第 4 章，使用 Bootstrap 和媒体查询使图表具有响应性，将介绍使可视化具有响应性并将其适应用户设备所需的所有步骤。
+
+
+  第 5 章，构建响应式交互，将教你如何为可视化添加真正的响应式交互，这也使它们在用户设备上非常好用。
+
+
+  第 6 章，设计过渡和动画，将教你如何通过添加精美的过渡或自定义动画，使可视化看起来更具吸引力。
+
+
+  第 7 章，使用 GeoJSON 创建地图和制图可视化，将帮助你入门地理数据处理，然后在制图可视化中可视化这些数据。
+
+
+  第 8 章，测试响应式可视化，将向你展示如何手动和自动测试响应式可视化，并涵盖单元测试和端到端测试。
+
+
+  第 9 章，解决跨浏览器问题，将帮助你在处理响应式可视化的跨浏览器兼容性问题时避免最常见的陷阱。
+
+
+  ## 本书所需内容
+
+
+  开始使用所需的第一件事是 Web 浏览器和文本编辑器，例如 Sublime Text 或 Atom。然后，你需要安装 node.js（http://nodejs.org/）–
+  它已包含 npm 包管理器 – 以及 bower 包管理器（http://bower.io/）。我将在相应章节中指导你安装所需的软件包。
+
+
+  对于需要从本地硬盘加载数据的示例，我建议你安装 `http-server` 模块（https://www.npmjs.com/package/http-server），以便从本地
+  Web 服务器运行所有示例。仅在安装工具和库时需要 Internet 连接，运行示例时不需要。
+
+
+  ## 本书适用人群
+
+
+  本书面向数据科学家、开发人员和有动力的初学者，旨在使用矢量图形实现自定义响应式数据可视化。无论你是已了解浏览器中 SVG 和矢量图形的基础知识，还是从未使用过任何可视化库，你都能掌握
+  D3 的数据驱动技术。无论哪种情况，本书都能让你尽快上手，并且如果你已经使用过 D3，也会向你提出挑战。
+
+
+  ## 约定
+
+
+  在本书中，你会发现一些文本样式，用于区分不同类型的信息。以下是这些样式的一些示例及其含义的说明。
+
+
+  文本中的代码词、数据库表名、文件夹名、文件名、文件扩展名、路径名、虚拟 URL、用户输入和 Twitter 账号显示如下："我们可以使用 d3.text 函数并自行解析数据集。"
+
+
+  代码块显示如下：
+
+
+  ```
+
+  var lines = data.split(/\n/g)
+
+  .map(function(line) {
+
+  return line.split(/[-"]/g) ;
+
+  }) ;
+
+  ```
+
+
+
+
+
+
+  当我们希望将您的注意力引向代码块的特定部分时，相关行或项目将以粗体显示：
+
+
+  ```
+
+  // Parsing strings to numbers
+
+  var i = parseInt("5.0", 10);
+
+  var f = parseFloat("3.8");
+
+  ```
+
+
+  ```
+
+  // Short notation
+
+  var s = "932.2";
+
+  var j = +s;
+
+  ```
+
+
+  任何命令行输入或输出均按以下格式编写：
+
+
+  ```
+
+  bower install d3
+
+  ```
+
+
+  新术语和重要单词以粗体显示。您在屏幕上看到的单词，例如在菜单或对话框中，在文本中以此形式出现："正如我们在下图中所见，测试通过且 Karma 显示绿色成功状态。"
+
+
+  > 警告或重要说明将以类似此框的形式出现。
+
+
+  > 技巧和窍门将以此形式出现。
+
+
+  ## 读者反馈
+
+
+  我们始终欢迎读者反馈。请告诉我们您对本书的看法——您喜欢或不喜欢什么。读者反馈对我们很重要，因为它帮助我们开发出您能从中获得最大收益的书籍。
+
+
+  如需发送一般反馈，只需发送电子邮件至 feedback@packtpub.com，并在邮件主题中注明书名。
+
+
+  如果您在某个主题方面有专长，并有兴趣撰写或参与编写图书，请参阅我们的作者指南 www.packtpub.com/authors。
+
+
+  ## 客户支持
+
+
+  既然您是 Packt 图书的自豪拥有者，我们有许多资源可以帮助您充分利用您的购买。
+
+
+  ## 下载示例代码
+
+
+  您可以从 http://www.packtpub.com 的帐户中下载本书的示例代码文件。如果您在其他地方购买了本书，可以访问 http://www.packtpub.com/support
+  并注册，以便文件直接发送到您的电子邮箱。
+
+
+  您可以按照以下步骤下载代码文件：
+
+
+  - 1. 使用您的电子邮件地址和密码登录或注册我们的网站。
+
+  - 2. 将鼠标指针悬停在顶部的支持选项卡上。
+
+  - 3. 单击"代码下载和勘误"。
+
+  - 4. 在搜索框中输入书名。
+
+  - 5. 选择您要下载代码文件的图书。
+
+  - 6. 从下拉菜单中选择您购买本书的地点。
+
+  - 7. 单击"代码下载"。
+
+
+  文件下载完成后，请确保使用以下最新版本解压或提取文件夹：
+
+
+  - WinRAR / 7-Zip（适用于 Windows）
+
+  - Zipeg / iZip / UnRarX（适用于 Mac）
+
+  - 7-Zip / PeaZip（适用于 Linux）
+
+
+  ## 下载本书的彩色图片
+
+
+  我们还为您提供一个 PDF 文件，其中包含本书中使用的屏幕截图/图表的彩色图片。彩色图片将帮助您更好地理解输出中的变化。您可以从 https://www.packtpub.com/sites/default/files/downloads/LearningResponsiveDataVisualization_ColoredImages.pdf
+  下载此文件。
+
+
+  ## 勘误
+
+
+  虽然我们已竭力确保内容的准确性，但错误难免发生。如果您在我们的某本书中发现错误——也许是文本或代码中的错误——我们将不胜感激，如果您能向我们报告。这样做可以避免其他读者感到沮丧，并帮助我们改进本书的后续版本。如果您发现任何勘误，请访问
+  http://www.packtpub.com/submit-errata，选择您的书，单击"勘误提交表单链接"，并输入您的勘误详细信息。一旦您的勘误得到验证，您的提交将被接受，勘误将上传到我们的网站，或添加到该书名下"勘误"部分的现有勘误列表中。
+
+
+  要查看先前提交的勘误，请访问 https://www.packtpub.com/books/content/support，并在搜索字段中输入书名。所需信息将出现在"勘误"部分下。
+
+
+  ## 盗版
+
+
+  互联网上受版权保护材料的盗版是跨所有媒体的持续问题。在 Packt，我们非常重视版权和许可的保护。如果您在互联网上以任何形式发现我们作品的非法副本，请立即向我们提供位置地址或网站名称，以便我们可以采取补救措施。
+
+
+  请通过 copyright@packtpub.com 联系我们，并提供涉嫌盗版材料的链接。
+
+
+  我们感谢您在保护我们的作者以及我们向您提供有价值内容方面的帮助。
+
+
+  ## 问题
+
+
+  如果您对本书的任何方面有疑问，可以通过 questions@packtpub.com 联系我们，我们会尽力解决该问题。
+
+  '
+- "# 使用响应式设计、Bootstrap 和 D3.js 入门\n\n理解数据的最佳方法是对其进行可视化，并使用交互式可视化进行探索。在本书中，我们将使用最新的技术和\
+  \ Web 技术构建此类交互式可视化（实际上是许多可视化）。为了使信息在所有设备上都可访问，我们将使可视化具有响应性。然而，在开始之前，我们需要了解这实际上意味着什么。我们还希望重用一些现有框架，不仅要出色地完成工作，还要高效地工作。\n\
+  \n本章将介绍我们在全书中将使用的方法、技术和框架，并帮助您理解我们使用它们来创建数据可视化的原因以及它们如何协同工作。\n\n在本章中，您将学习以下内容：\n\
+  \n- 响应式设计究竟是什么，以及如何将其应用于创建适用于所有不同屏幕尺寸和分辨率的可视化\n- 什么是媒体查询，以及如何使用它为各种设备设计可视化\n- 我们为什么以及如何使用\
+  \ Bootstrap 在现有组件上构建可视化\n- 我们为什么在 Web 上使用矢量图形，例如 SVG\n- 我们为什么使用 D3.js 进行数据操作和图形创作\n\
+  \n首先，您将了解响应式设计以及如何使用它为各种屏幕尺寸和分辨率设计可视化。然后，我们将讨论一些关键技术的重要性，例如 CSS3（尤其是媒体查询）和 HTML5（尤其是视口\
+  \ meta 标签）。\n\n在下一章中，我们将了解流行的 CSS 和 HTML 框架 Bootstrap。如果您从未听说过它，请不要担心；它帮助我们在现有且经过充分验证的组件（例如网格和\
+  \ LESS 媒体查询）上构建应用程序。\n\n在本章的最后一节中，您将了解浏览器中的可缩放矢量图形（SVG）；您将了解为什么以及何时使用矢量图形进行可视化是非常好的选择。然后，我们将简要介绍\
+  \ D3.js，这是一个用于数据转换和图形生成的多功能 JavaScript 库。在本章结束时，您将了解为什么 SVG 是为 Web 设计交互式响应式可视化的绝佳选择。\n\
+  \n## 什么是响应式设计？\n\n响应式设计是一种用于设计能够根据用户设备调整其外观和行为的应用程序的方法。它使应用程序在所有不同设备上都看起来和感觉良好，并且通常使它们在所有设备上都可用。\n\
+  \n响应式设计的一个重要范式是在整个应用程序中使用相对尺寸，而不是固定宽度、高度、边距、内边距和字体大小，以使设计适应各种类型的设备。\n\n对于 Web 浏览器，响应式设计是通过\
+  \ CSS3 和 HTML5 功能实现的，例如媒体查询、视口 meta 标签和新的尺寸单位。\n\n## 使用媒体查询的条件 CSS\n\n媒体查询在 CSS3\
+  \ 中引入，作为媒体类型的更灵活的扩展。它们允许开发人员仅在语句（所谓的查询）与某个 CSS 属性（所谓的媒体特性）和媒体类型匹配时应用条件 CSS 样式。典型的媒体查询具有以下结构：\n\
+  \n```\n@media [Media Type [and|not|only]] (Media Feature) {\n   ...\n}\n```\n\n\
+  以下是可用作媒体特性的属性的一小部分：\n\n- width、min-width 和 max-width\n- height、min-height 和 max-height\n\
+  - device-width、min-device-width 和 max-device-width\n- device-height、min-device-height\
+  \ 和 max-device-height\n- resolution、min-resolution 和 max-resolution\n\n媒体特性和类型的完整列表可在\
+  \ MDN 上找到 https://developer.mozilla.org/de/docs/Web/CSS/Media_Queries/Using_media_queries。\n\
+  \n在响应式设计中，我们主要关心查询 min-width 或 max-width 属性，以便为宽度不同的设备应用不同的样式。\n\n让我们看一个示例，其中我们可以根据浏览器窗口的最小宽度应用不同的背景颜色：\n\
+  \n```\ndiv {\n  background-color: blue;\n}\n\n@media screen and (min-width: 992px)\
+  \ {\n  div {\n    background-color: red;\n  }\n}\n```\n\n在前面的示例中，只要浏览器窗口的宽度大于或等于\
+  \ 992 像素，页面中所有 div 元素的背景颜色都为红色（参见下图）：\n\n![](img/72559bd4713b2b89631dcca187d7e2db_22_0.png)\n\
+  \n浏览器窗口宽度大于 992 像素\n\n\n\n\n\n一旦窗口宽度小于 992 px，div 元素的背景色就会变为蓝色（见下图）：\n\n![](img/72559bd4713b2b89631dcca187d7e2db_23_0.png)\n\
+  \n宽度小于 992px 的浏览器窗口\n\n如下图所示，媒体查询受所有主流浏览器以及从版本 9 开始的 Internet Explorer 支持：\n\n![](img/72559bd4713b2b89631dcca187d7e2db_23_1.png)\n\
+  \n跨浏览器兼容性媒体查询来自 http://caniuse.com/#feat=css-mediaqueries\n\n## 理解断点\n\n在响应式设计中，当某个布局和媒体查询生效时，我们称之为一个\
+  \ **状态**，而我们称从一个状态过渡到另一个状态为 **断点**。\n\n让我们看一个示例。首先，我们为以下设备定义一些屏幕尺寸：\n\n- 小于 768px\
+  \ 用于手机\n- 768px-992px 用于平板电脑\n- 992px-1200px 用于台式机\n- 大于等于 1200px 用于大型设备和电视\n\n\
+  ## 为这些设备尺寸使用媒体查询创建 CSS 代码片段：\n\n```\n/* phones, default no query */\n/* tablets\
+  \ */\n@media (min-width: 768px) { ... }\n/* desktops */\n@media (min-width: 992px)\
+  \ { ...}\n/* large devices */\n@media (min-width: 1200px) { ... }\n```\n\n在上述代码中，我们定义了四个状态，这些状态之间有三个断点，每个状态对应一个典型的屏幕尺寸和设备类型。\n\
+  \n我们还可以通过在查看响应式网页时缩小浏览器窗口来观察这些断点；我们会观察到设计在某个浏览器窗口宽度时如何“断裂”。在下图中，断点被可视化为虚线，显示了一个状态转变为另一个状态的时刻：\n\
+  \n![](img/72559bd4713b2b89631dcca187d7e2db_24_0.png)\n\n响应式设计中的断点\n\n我们在查看下图中的 Google\
+  \ Plus 网页时也可以观察到同样的效果。在前两张图中，浏览器窗口大小在变化，但三列布局保持不变。在第三张图中，设计断裂为仅包含两列的新布局：\n\n![](img/72559bd4713b2b89631dcca187d7e2db_24_1.png)\n\
+  \nGoogle Plus 页面的断点\n\n### 拥有正确的视口\n\n跨越移动和桌面设备，存在大量不同的像素密度和屏幕分辨率。分辨率更高的显示器会将页面渲染得比分辨率较低的显示器小得多；这立即导致可读性问题。为防止这种效果并将更大的页面适配到更小的屏幕，引入了一个虚拟窗口——即所谓的视口（网页的可见区域）。这使得网站能够以正确的像素分辨率渲染并缩放到整个设备宽度以实现最大可访问性；但是，开发者无法控制这个特定于设备的设置。后来，在\
+  \ HTML5 中，引入了视口 meta 标签，以便开发者能够完全控制这些视口设置。\n\n今天，针对移动设备优化的应用程序通常在网页的 head 部分定义以下视口标签，以便正常渲染网站并将内容缩放到设备宽度：\n\
+  \n```\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n\
+  ```\n\n> 有关所有有效视口选项的更多信息，请参阅 MDN 上的 https://developer.mozilla.org/en-US/docs/Mozilla/Mobile/Viewport_meta_tag。\n\
+  \n### 相对单位 – %, REM, 和 EM\n\n在处理响应式设计时，使用相对单位来根据父元素描述元素的尺寸始终是个好主意。因此，当父容器改变大小时，所有子元素都会相应调整其尺寸。\n\
+  \n用于相对尺寸的最流行单位是 %，它基于下一个绝对定位的父元素的某个百分比来定义尺寸。\n\n但是，还有更有用的单位来描述相对尺寸；例如，以下两个单位基于 font-size：\n\
+  \n- em：相对于元素的字体大小\n- rem：相对于根元素的字体大小\n\n这些单位有一个很大的优点；它们会受到浏览器字体大小设置变化的影响。一个简单的例子是，当用户增大浏览器字体大小时，内边距的自适应调整。\n\
+  \n> 关于所有不同 CSS 单位的简短总结和解释，请参阅 MDN 上的 https://developer.mozilla.org/de/docs/Web/CSS/length。\n\
+  \n### 移动设备优先设计\n\n响应式应用程序应该在大量设备（具有大量不同的屏幕尺寸和分辨率）上看起来和感觉都很棒（或者至少能正常工作）；它们通常既在移动设备上运行，也在大屏电视上运行。因此，在项目开始时，每个开发者都必须选择一种设计响应式应用的方法来掌握这种过渡；一般来说，我们区分以下方法：\n\
+  \n- 移动设备优先\n- 桌面设备优先\n\n在桌面设备优先方法中，我们首先为桌面设备和鼠标输入进行设计，然后调整并缩小设计以适应移动设备和触控交互。这通常会导致\
+  \ Web 应用程序在移动设备上的功能受限，因为屏幕尺寸小得多且缺乏触控支持。\n\n在移动设备优先方法中，我们首先为移动设备和触控交互进行设计，然后调整并放大设计以适应更大的设备和鼠标交互。这种方法确保移动设备支持完整的功能集，甚至可以在桌面客户端上使用。\n\
+  \n这两种方法如今都同样正确、被接受且流行。唯一的例外是，由于近年来访问 Web 的移动设备数量增加，移动设备优先成为一个热门词汇。在整本书中，我们将选择移动设备优先的方法，并针对移动设备和触控支持进行设计。但是，我们当然会扩展可视化效果以支持鼠标输入和更大的屏幕。这就是响应式设计的全部内容。\n\
+  \n### Bootstrap – 一个流行的移动设备优先 CSS 框架\n\n如果我们想要创建响应式移动设备优先 Web 应用程序，通常不希望从零开始并重新实现常见的模式和组件；我们更愿意重用一些经过良好测试的现有组件。\n\
+  \nBootstrap 是一个由前 Twitter 员工构建的非常流行的 HTML 和 CSS 框架，用于轻松、快速和现代的前端开发；它提供了大量的响应式 CSS\
+  \ 和 LESS 布局，以及庞大的 HTML 和 JavaScript 组件集合。得益于其 MIT 许可证，它可以用于开源和商业软件。\n\n当前稳定版本 3.3.5\
+  \ 包含具有以下功能的 LESS 样式：\n\n- 容器和栅格（静态和流式）\n- 响应式辅助类（在不同断点上隐藏和显示元素）\n- LESS mixin 和变量声明\n\
+  - 常见组件（如表单、输入字段和表格）的样式\n- 图标、HTML 和 JavaScript 组件\n\n> 功能完整列表可在 Bootstrap 网站 http://getbootstrap.com/\
+  \ 上找到。\n\n全新的 4 版本（目前处于 alpha 阶段）将附带 SASS 布局以及许多其他出色的功能和改进：\n\n> GitHub 上还有一个针对\
+  \ SASS 预编译器的官方分支，地址为 https://github.com/twbs/bootstrap-sass。\n\n- 所有单位都使用 rem 和\
+  \ em\n- 添加了新的 xl 栅格层级\n- 可选的 flexbox 支持\n- 提供了 Reboot 模块以重置默认浏览器样式\n\n> 新功能完整列表可在\
+  \ Bootstrap 博客 http://blog.getbootstrap.com/2015/08/19/bootstrap-4-alpha/ 上找到。\n\
+  \n在整本书中，除非另有说明，我们将对所有示例和解释使用 Bootstrap 3.3.5 版本（带 LESS）。在适当的时候，我们还会提供关于最新版本的一些提示。\n\
+  \n### 引入 Bootstrap\n\n确保已安装 Bower 包管理器；可以通过在终端中运行以下命令来完成：\n\n```\nnpm install -g\
+  \ bower\n```\n\n关于 Bower 包管理器的更多信息可以在其网站 http://bower.io/ 上找到。\n\n在整本书中，我们将仅使用 Bootstrap\
+  \ 的 CSS 组件，因此只需要将 bootstrap.css 文件引入项目。有多种方法可以做到这一点：\n\n- 使用名为 bower 的包管理器（推荐）——首先，通过在终端中运行以下命令获取库：bower\
+  \ install bootstrap#3.3.5。然后，在网页的 head 部分从 bower_components/ 目录链接压缩的 CSS 文件：<link\
+  \ rel=\"stylesheet\" href=\"bower_components/bootstrap/dist/css/bootstrap.min.css\"\
+  >。\n\n- 使用内容分发网络（CDN），例如 MaxCDN（这在开发期间需要活动的 Internet 连接）。只需在网页的 head 部分包含来自 CDN\
+  \ 的压缩 CSS 文件：<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css\"\
+  >。\n\n- 手动，从 GitHub (https://github.com/twbs/bootstrap/releases) 下载 3.3.5 版本并将其解压到\
+  \ libs/ 目录。然后，在网页的 head 部分从 libs/ 目录链接压缩的 CSS 文件：<link rel=\"stylesheet\" href=\"\
+  libs/bootstrap/dist/css/bootstrap.min.css\">。\n\n我强烈建议使用 bower 包管理器来管理您的前端依赖项（或类似的工具，例如\
+  \ npm 或 component）。但是，在本书的示例中，出于简单性考虑，我们将直接从 MaxCDN 链接 Bootstrap；因此，本书源代码中的所有示例都需要活动的\
+  \ Internet 连接。\n\n### 查找其他资源\n\nBootstrap 的终极资源是可在 http://getbootstrap.com/getting-started/\
+  \ 上找到的文档。在此，您还可以找到使用 Bootstrap 框架的示例和模板。\n\n\n\n\n\n有关更多详细信息和示例，我建议阅读 Istvan Novak\
+  \ 所著的《Unraveling Bootstrap 3.3》一书。\n\n## 了解网格布局\n\n在应用程序或可视化中组织元素的常用组件是网格布局。特别是对于响应式设计，我们主要关注根据客户端屏幕分辨率调整列数的网格布局。下图展示了一个响应式网格布局示例，在桌面设备上每行有三列，在移动设备上每行有一列：\n\
+  \n![](img/72559bd4713b2b89631dcca187d7e2db_29_0.png)\n\n然后我们区分两种不同的响应式网格，它们会根据客户端屏幕分辨率调整列数：\n\
+  \n- 每个断点具有固定宽度的常规网格（参见下图左侧）\n- 始终缩放至当前断点全宽度的流式网格（参见下图右侧）\n\n![](img/72559bd4713b2b89631dcca187d7e2db_29_1.png)\n\
+  \n实际上，自己构建网格系统非常简单；首先我们来看看如何创建流式网格布局，之后，我们将更好地理解如何使用 Bootstrap 组件快速且正确地完成工作。\n\n\
+  如果将网格视为（灵活的）表格布局，我们需要两个基本组件：行和列。一种常用的方法是使用 12 列网格，将行宽度划分为 12 列，并定义列组合，这些组合加起来等于\
+  \ 12 的全宽。下图说明了其中一些组合：12 个宽度为 1 的列、6 个宽度为 2 的列、4 个宽度为 3 的列，依此类推。其他加起来等于 12 的组合也被允许，例如\
+  \ 2、6 和 4，或者 1、10 和 1，以及更多。\n\n![](img/72559bd4713b2b89631dcca187d7e2db_30_0.png)\n\
+  \n具有 12 列的网格布局\n\n让我们开始构建 .row 类，该类延伸至父元素的全宽：\n\n```\n.row {\n    position: relative;\n\
+  \    width: 100%;\n}\n```\n\n接下来，我们想要创建列类 .col-1、.col-2、... 和 .col-12，这些类定义列相对于行宽度的百分比宽度。我们使用\
+  \ float 属性定义文本换行，并为单元格添加填充。float 属性表示块元素不应出现在原始流中，而应“浮动”在左侧。这样，我们可以将元素排列在同一行，而不是将其放入正常文本流中：\n\
+  \n```\n[class*=\"col-\"] {\n    float: left;\n    padding: 1em;\n}\n.col-1 {\nwidth:\
+  \ 8.33333333%;\n}\n.col-2 {\nwidth: 16.66666667%;\n}\n.col-3 {\nwidth: 25%;\n}\n\
+  .col-4 {\nwidth: 33.33333333%;\n}\n.col-5 {\nwidth: 41.66666667%;\n}\n.col-6 {\n\
+  width: 50%;\n}\n.col-7 {\nwidth: 58.33333333%;\n}\n.col-8 {\nwidth: 66.66666667%;\n\
+  }\n.col-9 {\nwidth: 75%;\n}\n.col-10 {\nwidth: 83.33333333%;\n}\n.col-11 {\nwidth:\
+  \ 91.66666667%;\n}\n.col-12 {\nwidth: 100%;\n}\n```\n\n在前面的代码中，我们可以看到可以使用名为 [class*=\"\
+  col-\"] 的通配符属性选择器一次性选择所有列（即所有包含 col- 字母的类）。宽度必须根据列类型定义。\n\n前一示例中唯一的问题是，默认情况下（box-sizing:\
+  \ content-box），列的填充大小会与 width 属性相加以确定元素的计算宽度。所有元素的总宽度加上填充大小将超出父元素 100% 的宽度。使用 box-sizing:\
+  \ border-box 属性，我们可以禁用此行为，使元素的计算宽度等于 width 属性：\n\n```\n[class*=\"col-\"] {\n  -webkit-box-sizing:\
+  \ border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box;\n}\n```\n\
+  \n最后，我们需要在每个行之后清除列的文本换行属性。我们可以通过在每个 .row 类之后添加一个 clearfix 伪元素来实现：\n\n```\n.row:after\
+  \ {\n  content: \" \";\n  display: block;\n  clear: both;\n}\n```\n\n这已经是基本网格系统的一个不错实现。让我们测试此布局并创建一个包含以下内容的\
+  \ HTML 页面：\n\n```\n<div class=\"row\">\n  <div class=\"col-1\">.col-1</div>\n  <div\
+  \ class=\"col-1\">.col-1</div>\n  <div class=\"col-1\">.col-1</div>\n  <div class=\"\
+  col-1\">.col-1</div>\n  <div class=\"col-1\">.col-1</div>\n  <div class=\"col-1\"\
+  >.col-1</div>\n  <div class=\"col-1\">.col-1</div>\n  <div class=\"col-1\">.col-1</div>\n\
+  \  <div class=\"col-1\">.col-1</div>\n  <div class=\"col-1\">.col-1</div>\n  <div\
+  \ class=\"col-1\">.col-1</div>\n  <div class=\"col-1\">.col-1</div>\n  <div class=\"\
+  col-1\">.col-1</div>\n</div>\n<div class=\"row\">\n  <div class=\"col-2\">.col-2</div>\n\
+  \  <div class=\"col-2\">.col-2</div>\n  <div class=\"col-2\">.col-2</div>\n  <div\
+  \ class=\"col-2\">.col-2</div>\n  <div class=\"col-2\">.col-2</div>\n  <div class=\"\
+  col-2\">.col-2</div>\n  <div class=\"col-2\">.col-2</div>\n</div>\n<div class=\"\
+  row\">\n<div class=\"col-3\">.col-3</div>\n<div class=\"col-3\">.col-3</div>\n<div\
+  \ class=\"col-3\">.col-3</div>\n<div class=\"col-3\">.col-3</div>\n</div>\n<div\
+  \ class=\"row\">\n<div class=\"col-4\">.col-4</div>\n<div class=\"col-4\">.col-4</div>\n\
+  <div class=\"col-4\">.col-4</div>\n</div>\n<div class=\"row\">\n<div class=\"col-6\"\
+  >.col-6</div>\n<div class=\"col-6\">.col-6</div>\n</div>\n<div class=\"row\">\n\
+  <div class=\"col-12\">.col-12</div>\n</div>\n```\n\n如果添加一些颜色（完整示例可在书籍的代码文件中找到）并在浏览器中打开\
+  \ HTML 页面，我们将得到类似于下图的布局：\n\n![](img/72559bd4713b2b89631dcca187d7e2db_33_0.png)\n\
+  \n简单网格布局的浏览器输出\n\n让我们来看看 Bootstrap 提供的响应式网格系统，它与我们刚刚创建的非常相似。Bootstrap 为四种设备类型（即所谓的网格等级）定义了媒体查询，以及响应式断点对应的典型视口宽度（像素）：\n\
+  \n- 超小型设备（xs，如手机）的默认设置\n- 小型设备（sm，如平板电脑和横向模式的手机）的 ≥768px\n- 中型设备（md，如台式机）的 ≥992px\n\
+  - 大型设备（lg，如大型台式机和电视）的 ≥1200px\n\n> 在 Bootstrap 4 中，断点现在使用 em 单位定义：\n> - 超小型设备的默认设置\n\
+  > - 小型设备的 ≥34em\n> - 中型设备的 ≥48em\n> - 大型设备的 ≥62em\n> - 超大型设备的 ≥75em\n\n网格需要三个不同的组件：\n\
+  \n- 它需要一个带有 `.container` 类（用于固定宽度）或 `.container-fluid` 类（用于流式容器）的 `container` 元素\n\
+  - 它需要一个带有 `.row` 类的 `row` 元素\n- 它需要一个或多个 `column` 元素：\n  - `.col-xs-1, .col-xs-2,\
+  \ ..., .col-xs-12`\n  - `.col-sm-1, .col-sm-2, ..., .col-sm-12`\n  - `.col-md-1,\
+  \ .col-md-2, ..., .col-md-12`\n  - `.col-lg-1, .col-lg-2, ..., .col-lg-12`\n\n>\
+  \ Bootstrap 4 为超大型设备添加了另一个 `.col-xl-*` 类。\n\n让我们来看一些代码。首先，我们需要将 Bootstrap CSS 添加到网页的标题中：\n\
+  \n```\n<!DOCTYPE html>\n<html>\n<head>\n<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/bootstrap/3.3.5/css/bootstrap.min.css\"\
+  >\n<title>Simple Grid System</title>\n...\n</head>\n<body>\n...\n</body>\n</html>\n\
+  ```\n\n现在，我们可以根据前面的示例添加网格布局，但这一次，我们需要将其包装在流式容器中：\n\n```\n<div class=\"container-fluid\"\
+  >\n<div class=\"row\">\n<div class=\"col-lg-1\">.col-lg-1</div>\n<div class=\"col-lg-1\"\
+  >.col-lg-1</div>\n...\n</div>\n<div class=\"row\">\n...\n</div>\n</div>\n```\n\n\
+  如果打开网页并查看浏览器输出，我们将看到类似于下图的示例：\n\n![](img/72559bd4713b2b89631dcca187d7e2db_35_0.png)\n\
+  \n使用 Bootstrap 的网格布局浏览器输出\n\n我们注意到，上图与本节开头创建的网格布局非常相似。代码中唯一的微小区别是用于包装行的 `.container`\
+  \ 元素以及 `.col-lg-*` 类的使用。然而，Bootstrap 的网格是响应式的，列会根据断点和浏览器宽度进行排列。如果将浏览器窗口大小减小到小于 1200px，我们会看到网格跳转到不同的布局。我们可以在下图中看到此效果：\n\
+  \n![](img/72559bd4713b2b89631dcca187d7e2db_36_0.png)\n\n浏览器窗口大小小于 1200px 时的网格布局浏览器输出\n\
+  \n原因是浏览器窗口不再处于超大型设备（大于 1200px）的状态，而是跳转到了较小的状态。因此，`col-lg-*` 列不再应用，它们显示为行的全宽度。现在我们可以开始定义某些列组合，以创建灵活的响应式网格：\n\
+  \n```\n<div class=\"container-fluid\">\n    <div class=\"row\">\n        <div class=\"\
+  col-lg-3 col-md-6 col-sm-12\"></div>\n        <div class=\"col-lg-3 col-md-6 col-sm-12\"\
+  ></div>\n        <div class=\"col-lg-3 col-md-6 col-sm-12\"></div>\n        <div\
+  \ class=\"col-lg-3 col-md-6 col-sm-12\"></div>\n```\n\n\n\n\n\n<div class=\"col-lg-3\
+  \ col-md-6 col-sm-12\"></div>\n</div>\n<div class=\"row\">\n...\n</div>\n</div>\n\
+  \n## 在不同屏幕分辨率下隐藏元素\n\nBootstrap 还提供了非常实用且响应式的实用工具类，用于在特定浏览器宽度下隐藏元素。这些类根据媒体查询断点命名：\n\
+  \n- .hidden-xs\n- .hidden-sm\n- .hidden-md\n- .hidden-lg\n\n在手机竖屏模式下隐藏元素只需为元素添加一个类；让我们看看下面的示例：\n\
+  \n```\n<ul class=\"nav\">\n    <li><a href=\"#menu\">Menu</a></li>\n    <li class=\"\
+  hidden-xs\"><a href=\"#link\">Link</a></li>\n</ul>\n```\n\n在特定浏览器宽度下显示元素的类，根据元素的\
+  \ CSS display 属性，在每个断点中都有三种不同的变体：\n\n- .visible-*-block\n- .visible-*-inline\n-\
+  \ .visible-*-inline-block\n\n> 之所以需要这些额外的类型，是因为当显示模式从 none 变为 block 时，会出现不想要的换行和行为。因此，Bootstrap\
+  \ 强制用户通过类名指定显示属性。\n\n对于这三种块，所有断点类都可用：\n\n- .visible-xs-*\n- .visible-sm-*\n- .visible-md-*\n\
+  - .visible-lg-*\n\n仅在特定设备宽度下显示元素也非常简单：\n\n```\n<ul class=\"nav\">\n  <li><a href=\"\
+  #menu\">Menu</a></li>\n  <li class=\"visible-xs-block\"><a href=\"#link\">Link</a></li>\n\
+  </ul>\n```\n\n> Bootstrap 4 仅在所有断点上提供 .hidden-*-down 和 .hidden-*-up 类来隐藏特定设备类型的元素。\n\
+  \n## 在 LESS 中使用 Bootstrap 的媒体查询\n\nBootstrap 的样式表是用 LESS 编写的，我们可以轻松使用预定义的断点和媒体查询。\n\
+  \n> LESS 是一种类似于 CSS 的预处理器语言，用于编写支持嵌套、变量、函数、混入等功能的样式表。LESS 文件在开发过程中通过 LESS 编译器编译为\
+  \ CSS 文件。如果你从未听说过 LESS，现在正是通过 http://lesscss.org/ 了解它的好时机。\n\n请确保已安装 LESS 编译器；可以通过在终端中运行以下命令来完成：\n\
+  \n```\nnpm install -g less\n```\n\n首先，我们创建一个 style.less 文件，并在文件开头导入 Bootstrap 的\
+  \ variables.less 文件。这样我们就可以在整个文件中复用 Bootstrap 为颜色、尺寸和配置所做的声明：\n\n```\n/* style.less\
+  \ */\n@import \"bower_components/bootstrap/less/variables.less\";\n```\n\n现在，我们可以在\
+  \ LESS 文件中使用 Bootstrap 的媒体查询断点。让我们为所有 div 容器添加一些特定于设备的内边距：\n\n```\n/* Extra small\
+  \ devices */\n/* No media query since this is the default in Bootstrap */\ndiv {\n\
+  \tpadding: 4em;\n}\n\n/* Small devices */\n@media (min-width: @screen-sm-min) {\n\
+  \tdiv {\n\t\tpadding: 8em;\n\t}\n}\n\n/* Medium devices */\n@media (min-width: @screen-md-min)\
+  \ {\n\tdiv {\n\t\tpadding: 16em;\n\t}\n}\n\n/* Large devices */\n@media (min-width:\
+  \ @screen-lg-min) {\n\tdiv {\n\t\tpadding: 24em;\n\t}\n}\n```\n\n现在，我们使用 LESS 编译器，通过在终端中运行以下命令将样式表编译为\
+  \ CSS：\n\n```\nlessc style.less style.css\n```\n\n生成的 CSS 类似于此：\n\n```\n/* Extra\
+  \ small devices */\n/* No media query since this is the default in Bootstrap */\n\
+  div {\n\tpadding: 4em;\n}\n/* Small devices */\n@media (min-width: 768px) {\n\t\
+  div {\n\t\tpadding: 8em;\n\t}\n}\n/* Medium devices */\n@media (min-width: 992px)\
+  \ {\n    div {\n        padding: 16em;\n    }\n}\n/* Large devices */\n@media (min-width:\
+  \ 1200px) {\n    div {\n        padding: 24em;\n    }\n}\n```\n\n完美！这意味着我们现在可以在\
+  \ LESS 样式中使用预定义的断点了。\n\n有时，将样式限制在一小组设备上也是必要的。因此，也可以在 LESS 中使用 max-width 媒体查询。同样，以下代码片段取自\
+  \ Bootstrap 文档 http://getbootstrap.com/css/#grid-media-queries：\n\n```\n@media (max-width:\
+  \ @screen-xs-max) { ... }\n@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max)\
+  \ {\n... }\n@media (min-width: @screen-md-min) and (max-width: @screen-md-max) {\n\
+  ... }\n@media (min-width: @screen-lg-min) { ... }\n```\n\n当我们想为单一设备类型定义样式，而不是为所有屏幕宽度大于或等于定义值的设备定义样式时，这会很有用。\n"
+- "# 浏览器中的矢量图形与 SVG\n\n现在，是时候创建我们的第一个可视化了。在 HTML5 中，我们有大量选项可以直接在浏览器中创建图形：\n\n- Canvas\
+  \ API（例如使用 Paper.js、Processing.js 等）\n- WebGL API（例如使用 Three.js、Pixi.js 等）\n- SVG\
+  \ 规范（例如使用 RaphaëlJS、D3.js 等）\n\n为了更好地了解哪种技术最适合我们实现响应式可视化的目的，我们需要仔细审视并讨论它们的优缺点。\n\
+  \n## 使用 Canvas 实现光栅/像素图形\n\nCanvas 是一种用于在浏览器中创建光栅图形（通常称为像素图形）的 JavaScript API。正如我们在下图中所见，它得到所有主要浏览器以及从第\
+  \ 9 版开始的 Internet Explorer 的支持：\n\n> > 你可以在 MDN 上找到关于 Canvas API 的详细信息：https://developer.mozilla.org/en/docs/Web/API/Canvas_API。\n\
+  \n![](img/72559bd4713b2b89631dcca187d7e2db_41_0.png)\n\n像素图形是一种包含特定分辨率下图像中每个像素颜色所有信息的图像。假设我们有一个\
+  \ 8 x 8 像素的图像，这 64 个像素中的每一个都包含其颜色信息；我们在此图像中绘制一个圆：\n\n```html\n<canvas id=\"canvas\"\
+  ></canvas>\n<script>\n  var canvas = document.getElementById(\"canvas\");\n  var\
+  \ ctx = canvas.getContext(\"2d\");\n  var centerX = 10, centerY = 10, radius = 10;\n\
+  \  ctx.beginPath();\n  ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);\n\
+  \  ctx.fillStyle = \"red\";\n  ctx.fill();\n</script>\n```\n\n在下图中，可以看到所谓的光栅化过程如何定义圆形哪些像素被着色（蓝色区域的像素）以及哪些像素保持透明（白色区域的像素）：\n\
+  \n![](img/72559bd4713b2b89631dcca187d7e2db_42_0.png)\n\n8 x 8 像素圆形的光栅化\n\n![](img/72559bd4713b2b89631dcca187d7e2db_42_1.png)\n\
+  \n如果以高分辨率显示此图像（参见左侧的下图），我们会看到边缘清晰的小圆。另一方面，如果放大图像，我们会看到一个非常像素化的 8 x 8 像素图像（参见右侧的下图）；这种效果直接由依赖分辨率的光栅化过程引起：\n\
+  \n像素图形，左侧：高分辨率，右侧：放大\n\n这种效果使得使用像素图形进行响应式设计变得非常困难；我们必须始终针对当前分辨率和屏幕大小生成并重新加载可视化。\n\
+  \n另一个缺点是，最终图像由像素组成，这使得很难将事件监听器（如 mouseover 或 click 事件）附加到图像的某些组件上。原因是图像中未编码形状或组件，仅包含每个像素的颜色值。\n\
+  \n## 使用 WebGL 实现硬件加速的像素图形\n\nWebGL 是一种基于 OpenGL ES 2 的 JavaScript API，用于在浏览器中创建硬件加速的\
+  \ 3D 像素图形。这种技术非常强大，可通过所谓的着色器访问客户端的 GPU；最终可视化通过 Canvas 元素在浏览器中公开。然而，如下图所示，浏览器支持情况并不理想；移动设备仅部分支持该\
+  \ API，Internet Explorer 仅从第 11 版开始支持。\n\n> > 你可以在 MDN 上找到关于 WebGL API 的更详细信息：https://developer.mozilla.org/en/docs/Web/API/WebGL_API。\n\
+  \n![](img/72559bd4713b2b89631dcca187d7e2db_43_0.png)\n\n来自 http://caniuse.com/#feat=webgl\
+  \ 的 WebGL 跨浏览器兼容性\n\n由于 WebGL 使用 Canvas 元素，它并未解决我们在 Canvas 部分讨论过的像素图形的任何局限性。因此，我们将接着探讨另一种图像表示形式。\n\
+  \n## 使用 SVG 实现矢量图形\n\nSVG 是一种用于创建和组合矢量图形的 XML 规范。得益于 HTML5，这些图形可以简单地嵌入 HTML 页面，由浏览器在每种屏幕分辨率下呈现并以完美清晰的方式显示。如下图所示，跨浏览器兼容性在所有主要浏览器以及从第\
+  \ 9 版开始的 Internet Explorer 中都非常好：\n\n\n\n| IE | Edge | Firefox | Chrome | Safari\
+  \ | Opera | iOS Safari | Opera Mini | Android Browser | Chrome for Android |\n|---|---|---|---|---|---|---|---|---|---|\n\
+  | | | | | | | | | | |\n\nSVG 的跨浏览器兼容性（来自 http://caniuse.com/#feat=svg）\n\n矢量图形是图像，其中关于图像的所有信息都被编码为图像元素的几何形状（如矩形、圆形、椭圆、路径和文本）的数值表达式。浏览器始终使用这些信息以尽可能最佳的分辨率绘制和渲染图形。在下图中，我们可以看到一个高分辨率的圆形矢量图，而右侧是图像的缩放视图。可以清楚地看到，缩放后的图像显示边缘完美清晰；这种无损缩放效果源于浏览器的分辨率相关渲染。\n\
+  \n> 您可以在 W3 网站上找到有关 SVG 规范的详细信息：http://www.w3.org/Graphics/SVG/.\n\n![](img/72559bd4713b2b89631dcca187d7e2db_44_0.png)\n\
+  \n矢量图，左：高分辨率，右：缩放\n\n更多优势源于这样一个事实：可视化的元素只是简单地嵌入到 HTML 页面中。现在，我们可以轻松地在图形的每个组件上附加原生\
+  \ JavaScript 事件监听器，例如 `mouseover` 或 `click` 事件，并使用 CSS 对其进行样式设置，与应用程序的其余部分一起。\n\n\
+  另一个巨大的好处是，我们可以直接查看 Web 浏览器的开发者控制台，随意操作并调试可视化。我们可以单击图像的每个元素以查看其附加的事件处理程序，并可以实时修改\
+  \ CSS 样式。任何处理过 OpenGL 或 WebGL 调试的人都会同意，在开发 Web 可视化时，这是一种你不能错过的便利。\n\n现在，我们已经有很多理由支持使用\
+  \ SVG 进行响应式跨浏览器可视化：\n\n- 调试简单，因为图形的源代码只是简单地嵌入到 HTML 文档中\n- 所有屏幕分辨率下渲染清晰，因为浏览器根据客户端的屏幕分辨率渲染图形\n\
+  - 所有主流浏览器均具备跨浏览器兼容性\n- 使用 CSS 对可视化进行样式设置\n- 原生 JavaScript 事件处理程序可以附加到图像的所有元素\n-\
+  \ 在开发者工具中调试和实时编辑可视化\n\n## 使用 D3.js 创建图形\n\nD3.js（Data-Driven Documents 的缩写）是由 Mike\
+  \ Bostock 和斯坦福可视化小组的其他成员构建的 JavaScript 库，用于 DOM 操作、数据转换和图形创建。它使用类似 jQuery 的数据驱动方法，并利用现代浏览器和基础\
+  \ Web 标准（如 HTML、CSS 和 SVG）的所有功能。\n\nD3.js 是开源的，并托管在 GitHub（https://github.com/mbostock/d3）上，采用略作修改的\
+  \ BSD 3 条款许可证；因此，它可以在开源和商业产品中使用，无需发布任何修改。GitHub 本身使用 D3.js 来可视化存储库的贡献历史。\n\n在本书中，我们将使用稳定版本\
+  \ 3.5.6，但大多数示例也应适用于不同的次要版本。\n\n## 引入 D3.js\n\n将 D3.js 引入项目有多种方式：\n\n- 使用名为 bower\
+  \ 的包管理器（推荐），通过在终端中运行 bower install d3#3.5.6 命令获取库。然后，在网页的 head 部分引用 bower_components/\
+  \ 目录中的压缩 CSS 文件：<link rel=\"stylesheet\" href=\"bower_components/d3/d3.min.css\"\
+  >。\n\n- 使用 CDN，例如 cdnjs（开发期间需要活跃的互联网连接），在网页的 head 部分引用 CDN 中的压缩 CSS 文件：<link rel=\"\
+  stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js\"\
+  >。\n\n- 从 GitHub（https://github.com/mbostock/d3/releases）手动下载 3.5.6 版本并解压到 libs/\
+  \ 目录。然后，在网页的 head 部分引用 libs/ 目录中的压缩 CSS 文件 <link rel=\"stylesheet\" href=\"libs/d3/d3.min.css\"\
+  >。\n\n我强烈建议使用名为 bower 的包管理器来管理前端依赖项。但是，在本书的示例中，我们将出于简单性直接从 cdnjs 链接 D3.js；因此，本书源中的所有示例都需要活跃的互联网连接。\n\
+  \n## 查找其他资源\n\nD3.js 的终极资源是 GitHub 项目的 WIKI 页面，可在 https://github.com/mbostock/d3/wiki\
+  \ 找到。在这里，您还将找到示例和 API 的详细描述。\n\n另一个绝佳的示例资源是 Mike Bostock 的页面 http://bl.ocks.org/mbostock\
+  \ 和他的博客 http://bost.ocks.org/mike/。\n\n有关更多详细信息和示例，我建议阅读 Pablo Navarro Castillo\
+  \ 编写的 Mastering D3.js 一书。\n\n## 总结\n\n在本章中，我们简要介绍了响应式设计、媒体查询和视口设置。您了解了相对单位以及用于响应式应用程序的移动优先设计方法。\n\
+  \n随后，我们介绍了 Bootstrap 并亲自实现了一个简单的栅格系统。这帮助我们了解了 Bootstrap 中响应式流式栅格的工作原理。我们看到了内置的响应式实用程序以及\
+  \ LESS 中的媒体查询。\n\n在本书的最后一部分，我们通过比较 Canvas、WebGL 和 SVG 在响应式设计中的优势，讨论了位图和矢量图形之间的区别。我们认识到\
+  \ SVG 非常适合实现响应式可视化。最后，我们简要介绍了 D3.js。\n\n在下一章中，我们将开始使用 D3.js，并使用数据连接、动态属性和简单变换实现一个简单的图形。\n\
+  \n## 下载示例代码\n\n您可以从 http://www.packtpub.com 的帐户中下载本书的示例代码文件。如果您在其他地方购买了本书，可以访问 http://www.packtpub.com/support\
+  \ 并注册，以便文件直接通过电子邮件发送给您。\n\n您可以按照以下步骤下载代码文件：\n\n![](img/72559bd4713b2b89631dcca187d7e2db_47_0.png)\n\
+  \n- 使用您的电子邮件地址和密码登录或注册我们的网站。\n- 将鼠标指针悬停在顶部的 SUPPORT 选项卡上。\n- 单击 Code Downloads &\
+  \ Errata。\n- 在搜索框中输入书名。\n- 选择要下载代码文件的图书。\n- 从下拉菜单中选择购买本书的渠道。\n- 单击 Code Download。\n\
+  \n文件下载完成后，请确保使用最新版本的以下工具解压或提取文件夹：\n\n- 适用于 Windows 的 WinRAR / 7-Zip\n- 适用于 Mac 的\
+  \ Zipeg / iZip / UnRarX\n- 适用于 Linux 的 7-Zip / PeaZip\n"
+- "# 使用 D3.js 和 SVG 创建柱状图\n\n在本章中，您将学习如何创建柱状图，包括合适的轴和比例尺——这需要一些 D3 的基础知识，我们也将在此介绍。您将学习以下内容：\n\
+  \n- 如何使用 D3 选择和转换 DOM 元素\n- 如何将 D3 与 SVG 元素一起使用\n- 如何使用数据驱动方法创建可视化\n- 如何使用数据绑定和数据连接\n\
+  - 如何使用动态属性\n- 如何绘制线条、区域和弧\n- 如何使用比例尺\n- 如何绘制轴\n- 如何创建柱状图\n\n首先，我们将从 HTML 元素的一些简单\
+  \ DOM 选择和转换开始，并继续使用 D3 创建 SVG 元素。我们还将看到如何将数据绑定到 DOM 以及使用数据连接和动态属性应用数据驱动转换。\n\n在第二部分中，我们将看到\
+  \ D3 中一个内置的 SVG 抽象——所谓的生成器函数——尤其是线条、区域和弧生成器。与手动修改 SVG 路径元素的 d 属性相比，这些抽象极大地简化了形状的处理。\n\
+  \n\n\n\n\n在下一节中，你将学习如何使用轴生成器创建坐标轴。我们需要沿坐标轴对数据集中的数据点进行缩放；因此，我们还将探讨比例尺。你将了解线性比例尺、用于非数值数据的序数比例尺，以及用于时间序列数据的时间比例尺。\n\
+  \n在最后一节中，我们将运用所有所学知识，创建一个包含条形（当然）、坐标轴、比例尺和标签的简单柱状图。\n\n## D3.js 入门\n\n在本章中，我们将使用\
+  \ D3.js 和 SVG 创建第一个柱状图；不过，为了达到这一目标，我们需要先了解一些基础知识。这些基本概念非常重要，因为它们将赋予你为脑海中几乎所有事物创建可视化的自由。你了解和掌握的越多，就能用\
+  \ D3 做出越多“疯狂”的事情。\n\nD3.js 是一个用于数据驱动的 DOM 操作的强大 JavaScript 库，包含用于操作 SVG 元素的预定义抽象、转换和辅助工具。这使其成为使用\
+  \ Web 标准和现代浏览器完整功能编写交互式数据可视化组件的绝佳库。\n\n如果你觉得这个定义充满了花哨的流行词，请不要担心，因为在本节中，我们将逐一讲解它们。你将完全理解它们的含义，以及为什么\
+  \ D3 和 SVG 组合在一起能够创建可视化效果。\n\n## 选择和操作 DOM 元素\n\nD3 允许我们在 DOM 树中选择、追加、插入和删除元素。如果你之前使用过其他\
+  \ JavaScript 框架（例如 jQuery），这些函数会让你感到非常熟悉。\n\n让我们看一些示例，了解 D3 中的工作原理。我们在 HTML 中定义了一个简单的购物清单，包含几个需要购买的项目：\n\
+  \n```\n<ul>\n<li>Ham</li>\n<li>Cheese</li>\n<li>Butter</li>\n<li>Bread</li>\n</ul>\n\
+  ```\n\n要在 DOM 树中选择元素，D3 提供了 `d3.select(selector)` 和 `d3.selectAll(selector)` 方法，它们返回一个\
+  \ **选择集** 对象。第一个函数的选择集包含一个只有一个元素的数组，而第二个函数的选择集包含一个含有多个元素的数组；两个函数都以 CSS3 选择器字符串作为参数（例如，`#id`、`.class`、`tagName`、`:pseudo`\
+  \ 等）。\n\n> 有关选择集的更多信息，请参阅 D3 Github 页面 https://github.com/mbostock/d3/wiki/Selections。有关\
+  \ CSS3 选择器的更多信息，请参阅 MDN https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Getting_started/Selectors。\n\
+  \n在底层，D3 使用原生的 `document.querySelector(selector)` 和 `document.querySelectorAll(selector)`\
+  \ 函数：\n\n> 有关这些函数的更多信息，请参阅 MDN https://developer.mozilla.org/en/docs/Web/API/Document/querySelector\
+  \ 和 https://developer.mozilla.org/en/docs/Web/API/Document/querySelectorAll。\n\n\
+  ```\nvar $ul = d3.select('ul');\nvar $li = d3.selectAll('li');\n```\n\n在前面的代码中，我们为\
+  \ ul 元素创建了 $ul 选择集，并创建了包含所有 li 元素的 $li 选择集。\n\n> 在本书中，我们将使用这种约定，为选择集添加 $ 前缀；这样可以让你更容易识别选择集。\n\
+  \n一旦有了选择集，我们就可以向 DOM 添加更多元素。一种可能性是使用 `selection.append(tagName)` 方法在选择集末尾追加一个新的\
+  \ DOM 节点；我们需要通过标签名指定要追加的元素类型（例如，`div`、`p`、`span`、`li`、`ul` 等）：\n\n```\nvar $li1\
+  \ = $ul.append('li');\n$li1.text('Milk');\n```\n\n在前面的代码中，我们可以看到 `selection.append(tagName)`\
+  \ 方法返回一个包含刚刚创建的元素的选择集。然后我们使用 `selection.text(content)` 方法将节点的内部文本设置为 'Milk'。我们还可以使用\
+  \ `selection.insert(tagName, selector)` 方法在某个位置之前插入元素：\n\n```\nvar $el2 = $ul.insert('li',\
+  \ ':last-child');\n$el2.text('Beer');\n```\n\n在前面的代码中，我们将带有 Eggs 文本的 li 元素插入到名为\
+  \ $ul 的列表选择集的最后一个子元素之前。如果要从 DOM 中删除元素，可以调用 `selection.remove()` 方法：\n\n```\n$ul.select(':first-child').remove();\n\
+  ```\n\n我们通过调用 `selection.remove()` 函数来删除列表的第一个子元素。然而，我们发现可以直接在 `selection.select()`\
+  \ 方法返回的对象上调用函数，而不是创建一个包含该元素的新变量。这种技术称为 **函数链式调用**，在使用 D3 时经常被采用。我们还可以链式调用前面示例中的\
+  \ `selection.insert()` 和 `selection.append()` 函数，并直接在返回的选择集上应用 `selection.text()`\
+  \ 方法。\n\n我们可能只想给最后一个元素加删除线，而不是删除它。`selection.attr(name, value)` 函数允许我们修改所选元素的任何属性：\n\
+  \n```\n$ul.select(':first-child')\n.attr('class', 'strike-through');\n```\n\n在前面的代码中，我们使用了\
+  \ `selection.attr(name, value)` 方法来访问 class 属性并将其设置为 strike-through。如果我们现在在标题中定义一个类样式，会看到第一个元素的文本中有一条贯穿线\n\
+  \n```\n<style>\n.strike-through {\ntext-decoration: line-through;\n}\n</style>\n\
+  ```\n\n另外，我们还可以使用 `selection.classed(className, hasClass)` 方法为选择集添加或删除类：\n\n```\n\
+  $ul.select(':first-child')\n.classed('strike-through', true);\n```\n\n在前面的代码中，我们发现只提到了一个类，当你想要切换某个类并保持其他类不变时，这非常方便。\n\
+  \n> 在底层，D3 使用原生的 element.setAttribute(name, value) 和 element.setAttributeNS(namespace,\
+  \ name, value) 函数来访问 HTML 和 SVG 属性。这使得 D3 非常强大，因为它直接使用底层的 Web 标准，而不是在其之上实现一个抽象层。\n\
+  \n## 操作 SVG 元素\n\n到目前为止，我们只使用 D3 来操作 HTML 节点；如果将此功能与 jQuery 相比，你并没有学到任何新东西或花哨的东西。好消息是，我们还可以将所有\
+  \ D3 函数应用于 SVG 元素，因为这些元素同样嵌入在 DOM 树中。\n\n让我们创建一个包含我们元素的小型 SVG 场景；我们还可以为 svg 元素添加一些样式以提高可见性：\n\
+  \n```\n<style>\nsvg {\n\tborder: 1px dashed black;\n\tbackground-color: #efefef;\n\
+  }\n</style>\n<svg width=\"800\" height=\"400\"></svg>\n```\n\n现在，我们可以再次使用 selection.append()\
+  \ 和 selection.attr() 函数向场景添加元素并定义其属性。与前面的示例类似，我们也会将函数链式调用在一起，而不是为新元素创建变量：\n\n```\n\
+  // Select the SVG element\nvar $svg = d3.select('svg');\n\n// Append a new circle\
+  \ element\n$svg.append('circle')\n\t.attr({\n\tcx: 75,\n\tcy: 75,\n\tr: 50,\n\t\
+  fill: 'red'\n\t});\n```\n\n在前面的示例中，我们可以与操作 HTML 元素时完全相同的方式来选择和操作 SVG 元素。我们还观察到 selection.attr()\
+  \ 函数接受一个包含多个 name: value 对的对象。在使用 SVG 元素时，这非常方便，因为我们经常需要一次定义多个属性。下图显示了此示例在浏览器中的输出：\n\
+  \n![](img/72559bd4713b2b89631dcca187d7e2db_53_0.png)\n\n带有一个圆形的简单 SVG 场景\n\n## 数据驱动的转换\n\
+  \n在前一节中，我们看到 SVG 元素的开箱即用处理使 D3 比 jQuery 等框架更适合创建可视化效果。但这并不是两个框架之间的唯一区别。D3 最重要、也最独特的功能之一是数据连接（data\
+  \ joining）。数据连接是 D3 的核心概念，对大多数人来说，这是学习 D3 时最难理解的地方。然而，它只是数据绑定的扩展，同时也考虑了当前的选择集。你很快就会发现，这是一个非常合乎逻辑而非神秘的功能。\n\
+  \n## 数据绑定与动态属性\n\nD3 代表数据驱动的文档；但什么是数据驱动方法？数据驱动意味着可视化是通过数据本身隐式定义的，而不是通过显式遍历数据。\n\n\
+  \n\n\n让我们看一个使用显式循环在场景中绘制多个圆圈的示例。\n我们使用与上一个示例相同的 SVG 场景：\n\n```\n// Explicit for\
+  \ loop\nfor (var i=0;i<5;i++){\n$svg.append('circle')\n.attr({\ncx: 125 * (i + 1),\n\
+  cy: 75,\nr: 50,\nfill: 'red'\n});\n}\n```\n\n在前面的示例中，我们使用显式循环遍历五个数字来绘制五个项目。下图显示了前面示例在\
+  \ Web 浏览器中的输出：\n\n![](img/72559bd4713b2b89631dcca187d7e2db_54_0.png)\n\n显然，如果我们处理的是数据集（可能是从应用程序日志中提取的示例），我们不想使用\
+  \ for() 循环，而是想直接使用 forEach() 循环遍历数据数组。让我们创建一个包含 (0, 5) 范围内整数的伪数据数组（包含 0，但不再包含 5），使用\
+  \ d3.range(stop) 函数：\n\n```\n// Create a pseudo dataset\nvar data = d3.range(5);\n\
+  ```\n\n```\n// Explicit forEach loop\ndata.forEach(function(d, i) {\n$svg.append('circle')\n\
+  .attr({\ncx: 125 * (d + 1),\ncy: 75,\nr: 50,\nfill: 'red'\n});\n});\n```\n\n前面的代码已经比原始的\
+  \ for() 循环简洁了一些。我们观察到回调函数有两个属性——d 和 i。通常，d 是数组中当前元素的引用，i 是数组中当前元素的索引。太棒了！让我们添加最后一步，将循环转换为数据驱动的实现：\n\
+  \n```\n// Create a pseudo dataset\nvar data = d3.range(5);\n\n// Data-driven approach\n\
+  $svg.selectAll('circle')\n.data(data)\n.enter()\n.append('circle')\n.attr({\ncy:\
+  \ 75,\nr: 50,\nfill: 'red'\n})\n\n.attr('cx', function(d, i) { return 125 * (d +\
+  \ 1) });\n```\n\n首先，我想请您注意 .data(data) 方法；此函数用于将数据数组绑定到 Selection。我们将在接下来的章节中更详细地讨论此函数和前面的\
+  \ .enter() 函数。我要指出的第二行是 .attr('cx', function(d, i) { ... }); 这就是所谓的动态属性——一种将由绑定数据数组动态计算的属性，其中\
+  \ d 和 i 参数的用法与前面 forEach 回调中完全相同。\n\n让我们总结一下数据驱动的方法。我们将数据数组绑定到 DOM 元素的选择集，并使用动态属性根据绑定的数据定义元素的属性。因此，我们不再需要遍历数据集。但是，前面的示例比这要复杂一点，原因是数据连接。\n\
+  \n## 数据连接 – 下一级的数据绑定\n\n正如我们在前面的示例中所见，`selection.data(data)` 函数将数据集绑定到选择集——至少这是我们迄今为止所涵盖的内容。更准确地说，该函数不仅仅如此；它在选择集和数据集之间创建了一个连接。在下图中，我们可以看到数据连接的样子：\n\
+  \n![](img/72559bd4713b2b89631dcca187d7e2db_56_0.png)\n\n我们可以通过简单比较数据集（前面图中的红色圆圈）与\
+  \ DOM 元素的选择集（前面图中的蓝色圆圈）来思考数据连接。在将数据集的元素与选择集中的元素进行比较后，我们得到三组可能的元素：\n\n- 进入集：这些元素存在于数据集中，但不存在于选择集中，因此我们要创建它们\n\
+  - 更新集：这些元素既存在于数据集中，也存在于选择集中，因此我们要更新它们\n- 退出集：这些元素存在于选择集中，但不存在于数据集中，因此我们要删除它们\n\n\
+  为了更好地理解此过程，我们将通过一些代码来演示。我们将再次使用与前面示例相同的 HTML 设置。首先，我们创建一个数据集并将其与选择集连接：\n\n```\n\
+  // Create a dataset\nvar data = d3.range(3);\n\n// Create a data join\nvar $circles\
+  \ = $svg.selectAll('circle')\n.data(data);\n```\n\n在前面的示例中，我们首先在 [0, 3) 范围内创建一个数据集。然后，我们创建所有\
+  \ `circle` 元素的选择集并将其与数据集连接。在这种情况下，场景中没有 `circle` 元素，因此选择集为空。这意味着进入集将包含所有三个数据集元素；更新集和退出集将为空。\n\
+  \n> 在本书中，我们将使用将数据连接前缀为两个 $ 符号的约定；这将使您更容易发现连接并将其与选择集区分开来。\n\n我们现在可以使用 `join.enter()`\
+  \ 函数来返回进入集（数据数组）的元素并将其添加到 DOM 中：\n\n```\n// Get the enter set\n$$circles.enter()\n\
+  .append('circle')\n.attr({cy: 75, r: 50})\n.attr('cx', function(d, i) { return 125\
+  \ * (d + 1) });\n```\n\n调用 `join.enter()` 函数会将元素从进入集中移除并添加到更新集中。想象一下，进入集是一个数组，存储了当前选择集中不存在的数据集中的所有值。调用\
+  \ `.enter()` 后，通常希望将元素添加到 DOM 中。这就是 D3 自动假设这一点并将进入集中的所有值移动到更新集中的原因。现在，调用 `.enter()`\
+  \ 后，进入集变为空，更新集包含进入集中的所有值。我们可以将数据连接用作选择集来检索更新集：\n\n```\n// Modify the update set\n\
+  $$circles.attr('fill', 'blue');\n```\n\n前面的代码会将所有圆圈都着色为蓝色，因为数据集中的所有元素现在都存在于 HTML\
+  \ 元素的选择集中。\n\n最后，我们将从数据集中删除一个元素，并再次将数据与选择集连接；然后，我们可以通过调用 `join.exit()` 函数来访问退出集，从而从选择集中删除该元素：\n\
+  \n```\n// Remove an element from the dataset\ndata.splice(0, 1);\n\n// Create a\
+  \ data join\n$$circles = $svg.selectAll('circle')\n.data(data);\n\n// Get the exit\
+  \ set\n$$circles.exit()\n.remove();\n```\n\n在前面的代码中，我们可以看到，只需将数据集再次与选择集连接即可获得更新的集合。这非常强大，因为我们可以使用一个函数来定义元素在屏幕上应该如何绘制。要更新元素，我们将使用更新后的数据集再次调用该函数；我们只需要定义新元素、现有元素和删除元素的处理方式即可。\n\
+  \n为了总结数据连接部分，我将列出我们用于访问数据连接三个集合的三个函数：\n\n- 进入集：selection.data(data).enter()\n- 更新集：selection.data(data)\n\
+  - 退出集：selection.data(data).exit()\n\n下图可视化了前两个步骤。我们从图左侧的空选择集开始；场景中尚无圆圈。然后，我们将数据集连接到这个空选择集；我们得到一个包含三个元素的进入集。对于进入集中的每个元素，我们在场景中创建一个圆圈，并使用\
+  \ cx 属性的动态属性配置其位置。\n\n如果我们现在要更新圆圈，可以直接将数据连接用作选择集。这将返回一个包含所有三个圆圈的更新集。\n\n| 选择集 |\
+  \ 数据 | 进入 | 选择集 | 数据 | 更新 | 选择集 | 选择集 |\n|---|---|---|---|---|---|---|---|\n| |\
+  \ 0 | → | | 0 | → | 圆圈 | 圆圈 |\n| | 1 | → | | 1 | → | 圆圈 | 圆圈 |\n| | 2 | → | | 2\
+  \ | → | 圆圈 | 圆圈 |\n\n数据连接：进入集和更新集\n\n在下图中，我们从数据集中删除一个元素，查看更新集和退出集中会发生什么。在前一个操作后，我们的选择集包含了三个圆圈元素。如果从数据集中删除最后一个元素，更新集将只包含两个元素。选择集的最后一个元素现在将处于退出集中，并在下一步中从选择集中删除：\n\
+  \n![](img/72559bd4713b2b89631dcca187d7e2db_59_0.png)\n\n## 使用更新模式\n\n要了解应该使用哪个集合来更新特定元素有点困难。因此，我们可以使用所谓的\
+  \ **更新模式**，它定义了元素可以更新的顺序。\n\n让我们创建一个函数来说明此模式：\n\n```\nfunction draw(data) {\n  //\
+  \ Create a data join\n  var $$circles = $$svg.selectAll('circle')\n    .data(data);\n\
+  \n  // Only previously existing elements\n  $$circles.attr('fill', 'blue');\n\n\
+  \  // Only new elements\n  $$circles.enter()\n    .append('circle');\n\n  // All\
+  \ elements\n  $$circles.attr('fill', 'red');\n\n  // Only removed elements\n  $$circles.exit()\n\
+  \    .remove();\n}\n```\n\n\n\n\n\n## 为元素定义标识符\n\n如果我们多次使用不同的数据参数执行前面的函数，就可以恰当地定义以下元素的处理方式：\n\
+  \n- 仅旧（先前存在的）元素\n- 仅新元素\n- 所有元素\n- 仅删除的元素\n\n> 在 Mike Bostock 的 Bl.ocks 页面上有三个关于更新模式的绝佳示例。我建议您查看所有三个示例，并尝试理解示例中到底发生了什么：\n\
+  >\n> - http://bl.ocks.org/mbostock/3808218\n> - http://bl.ocks.org/mbostock/3808221\n\
+  > - http://bl.ocks.org/mbostock/3808234\n\n如果我们查看 selection.data(data, keyFn) 方法的\
+  \ API 文档，可以看到该函数接受第二个名为 keyFn 的参数。使用此 keyFn 参数，可以定义一个访问器函数，以在数据连接中标识数组的元素。\n\n让我们看一个示例，其中我们使用在上一节中实现的\
+  \ draw(data) 函数：\n\n```\n// Create 4 elements\ndraw([0, 1, 2, 3]);\n// Update 4\
+  \ elements\ndraw([1, 2, 3, 4]);\n```\n\n如果我们不定义 keyFn 参数，D3 会使用数据数组的索引作为元素的标识符。在前面的示例中，函数首先创建四个圆；在第二步中，它更新这四个圆。不过，如果仔细观察，会发现部分数据是相同的，只是向左移动了。因此，我们更希望的行为是：0\
+  \ 从选择集中移除，[1, 2, 3] 保持不变，4 被添加到选择集中。我们可以使用数组值作为标识符，而非数组索引，来实现这一行为。让我们定义一个自定义 keyFn，它返回数组元素作为标识符。\n\
+  \n```\nvar $$circles = $svg.selectAll('circle')\n.data(data, function(d, i){ return\
+  \ d; });\n```\n\n在前面的示例中，我们以与动态属性中使用的回调函数相同的方式定义标识符函数。\n\n## 使用 D3 绘制形状\n\nD3 是创建\
+  \ Web 可视化的优秀库，因为它在处理 SVG 元素时包含许多有用的抽象。在本节中，我们将介绍一些用于绘制形状的 SVG 抽象。这些绘制形状的抽象在 D3 中称为生成器；在创建可视化时，我们将主要使用线条、区域和弧形生成器。\n\
+  \n> 所有 SVG 形状抽象都可以在 D3 的 GitHub 页面上找到 https://github.com/mbostock/d3/wiki/API-Reference#d3svg-svg。\n\
+  \n### 绘制线条和曲线\n\n如果您曾使用过 SVG 路径元素和 d 属性来创建自定义形状或贝塞尔曲线，那么您就知道这并不像应该的那样容易。那些从未使用过\
+  \ SVG 路径元素的人只需要知道，您将需要学习一种特殊语法来定义和连接贝塞尔曲线的控制点。\n\n> 您可以在 MDN 上找到有关 d 属性的更多信息 https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d。\n\
+  \n幸运的是，D3 提供了一个出色的抽象来绘制线条。让我们看一个简单的示例。首先，让我们创建一个包含一些点的 x 和 y 坐标的数据集：\n\n```\nvar\
+  \ data = [\n    [100, 100], [200, 350], [300, 50],\n    [400, 200], [500, 250],\
+  \ [600, 40], [700, 100]\n];\n```\n\n现在，我们想要创建一个线条生成器，它将数据点的第一个元素作为 x 坐标，第二个值作为 y\
+  \ 坐标：\n\n```\nvar line = d3.svg.line()\n    .x(function(d, i) { return d[0]; })\n\
+  \    .y(function(d, i) { return d[1]; });\n```\n\n完美！这就是我们的线条生成器。其优势在于我们只需定义线条生成器的结构，即在数据集中哪里可以找到\
+  \ x 和 y 坐标，然后就可以绘制任何遵循相同结构的数据集。让我们绘制线条；我们需要使用 selection.datum() 方法将特定数据绑定到选择集。与之前讨论的数据连接不同，此函数不会计算连接，而仅返回一个选择集。然后，我们可以将线条生成器应用于路径的\
+  \ d 属性，它将隐式查找绑定的数据并创建适当的 d 字符串：\n\n```\n$svg.datum(data)\n.append(\"path\")\n.attr(\"\
+  d\", line);\n```\n\n![](img/72559bd4713b2b89631dcca187d7e2db_62_0.png)\n\n简单线条生成器的输出\n\
+  \n在上一个示例中，您学习了如何创建仅将数据集中的点连接在一起的简单线条生成器。现在，我们可以轻松地在线条生成器上定义插值方法，以绘制平滑线条：\n\n```\n\
+  var line = d3.svg.line()\n.x(function(d, i) { return d[0]; })\n.y(function(d, i)\
+  \ { return d[1]; })\n.interpolate('cardinal');\n```\n\n在前面的示例中，我们使用了 `cardinal`\
+  \ 插值，这是一种类似于贝塞尔曲线中使用的插值技术。如果我们观察下图中的结果线条，可以看到数据点之间的线条现在已经插值：\n\n![](img/72559bd4713b2b89631dcca187d7e2db_63_0.png)\n\
+  \n插值线条的输出\n\n插值的平滑度可以通过 `.tension(value)` 函数控制。在下图中，我们可以看到张力为 1（即锯齿状内线）到张力为 0.5（即平滑外线）的区别：\n\
+  \n![](img/72559bd4713b2b89631dcca187d7e2db_63_1.png)\n\n具有不同张力值的线条\n\n### 绘制曲线之间的区域\n\
+  \n与线条生成器类似，D3 还提供了一个区域生成器，允许我们使用 2 个 y 坐标：y0 和 y1。首先，让我们创建一个数据集，其中数据点的第一个元素包含 x\
+  \ 值，第二个元素为第一个 y 坐标，第三个元素为第二个 y 坐标：\n\n```\nvar data = [\n\t[100, 100, 100], [200,\
+  \ 350, 200], [300, 50, 50],\n\t[400, 200, 350], [500, 250, 375], [600, 40, 100],\
+  \ [700, 100, 100]\n];\n```\n\n现在，我们可以创建一个与前一个示例类似的区域生成器：\n\n```\nvar area = d3.svg.area()\n\
+  \t.x(function(d, i) { return d[0]; })\n\t.y0(function(d, i) { return d[1]; })\n\t\
+  .y1(function(d, i) { return d[2]; })\n\t.interpolate('cardinal');\n```\n\n最后，我们将区域生成器应用于路径元素的\
+  \ d 属性：\n\n```\n$svg.datum(data)\n\t.append(\"path\")\n\t.attr(\"d\", area);\n```\n\
+  \n![](img/72559bd4713b2b89631dcca187d7e2db_64_0.png)\n\n区域生成器的输出\n\n### 绘制弧形\n\n\
+  可视化中常用的第三种复杂形状是弧形。D3 还为此提供了一个生成器函数，以便轻松使用极坐标绘制弧形。同样，如果您以前在 SVG 中处理过弧形，那么得知这个生成器您可能会非常高兴。\n\
+  \n让我们创建一个弧形生成器：\n\n```\nvar arc = d3.svg.arc()\n.innerRadius(40)\n.outerRadius(100)\n\
+  .startAngle(0)\n.endAngle(Math.PI);\n```\n\n在前面的代码中，我们可以看到可以定义弧形的内半径和外半径以及起始角度和结束角度（弧度）。与前一个示例类似，我们现在可以为路径元素生成\
+  \ d 属性：\n\n```\n$svg.append(\"path\")\n.attr(\"d\", arc)\n.attr(\"transform\", \"\
+  translate(200, 200)\");\n```\n\n在前一个示例中，我们观察到需要将弧形稍微平移才能使其可见。示例在 Web 浏览器中的输出如下图所示：\n\
+  \n![](img/72559bd4713b2b89631dcca187d7e2db_65_0.png)\n\n弧形生成器的输出\n\nD3 在生成器函数上提供了更多有用的方法，例如\
+  \ arc.centroid() 方法。该函数返回弧形的中心，非常适合与弧形一起显示标签。\n\n## 创建比例尺和坐标轴\n\nD3 常被误认为是图表库，但这并不完全正确。D3\
+  \ 提供了大量内置函数，以便轻松创建交互式图表；然而，它并不是图表库。这些典型的内置图表辅助工具之一是密切相关的比例尺和坐标轴生成器。您将在本节中了解它们。\n\
+  \n在本节结束时，我们希望能够绘制如下图所示的简单坐标轴。因此，我们需要将数据集缩放到特定的像素范围（使用比例尺），并为坐标轴创建所有 SVG 元素（使用坐标轴生成器）：\n\
+  \n![](img/72559bd4713b2b89631dcca187d7e2db_66_0.png)\n\nD3 中的坐标轴\n\n### 使用比例尺将数据值映射到像素范围\n\
+  \n在处理图形和可视化时，比例尺的概念非常重要。将值从某个定义域缩放到某个像素范围是一项常见任务。我们需要它们来创建坐标轴上的刻度值，并需要它们将数据点缩放到图表区域。\n\
+  \n下图更好地说明了这一问题。假设我们想要将数据集中某个值域（例如仅正值）映射到图表中的某个像素范围（例如从 20px 到 460px）。比例尺在 D3 中正好提供了这种功能：\n\
+  \n![](img/72559bd4713b2b89631dcca187d7e2db_66_1.png)\n\nD3 中的比例尺\n\n\n\n\n我要再次强调\
+  \ D3 中的命名约定。当我们谈论数据集的某个范围时，使用 domain 这个术语；当我们谈论某个像素范围时，使用 range 这个术语。每当我们想要应用线性变换（如上图所示）时，我们都会说\
+  \ *线性* 标尺。\n\n## 用于线性映射的线性标尺\n\n让我们来看看最简单的映射——线性变换，并根据上图创建一个：\n\n```\nvar scale\
+  \ = d3.scale.linear()\n.domain([0, 52])\n.range([20, 460]);\n```\n\n在前面的代码中，我们可以看到可以使用\
+  \ `d3.scale.linear()` 函数创建一个标识标尺（将 domain [0, 1] 映射到 range [0, 1]），然后为该标尺指定一个 domain\
+  \ 和一个 range。\n\n让我们看看这个标尺对象是如何工作的；实际上，我们可以直接将其作为函数调用，它将把数据集中的任何值缩放到像素范围。让我们试一下，使用这个标尺映射整个数据集：\n\
+  \n```\nconsole.log([0, 3, 9, 24, 45, 52].map(scale));\n```\n\n如果我们在开发者工具控制台中检查输出，会得到类似以下的数组：\n\
+  \n```\n[20, 45.38461538461539, 96.15384615384615, 223.0769230769231,\n400.7692307692308,\
+  \ 460]\n```\n\n从前面函数的输出可以看到，输入数组中的每个值都通过标尺函数被转换到了新的像素范围。\n\n## 用于非数值数据映射的序数标尺\n\n\
+  通常，我们需要处理非数值——即所谓的序数数据；如果我们观察一个柱状图，通常会有属于某个标签而非特定 x 值的值。在这种情况下，使用序数标尺将这些非数值映射到像素范围是非常合适的。\n\
+  \n首先，让我们创建一个简单的：\n\n```\nvar data = ['Bread', 'Eggs', 'Milk', 'Beer'];\nvar scale\
+  \ = d3.scale.ordinal()\n.domain(data)\n.range([0, 1, 2, 3]);\n```\n\n在前面的示例中，我们首先创建一个数据集，并将其定义为序数标尺的\
+  \ domain。第二步，我们定义数据值应投影到的 range。如果我们映射整个数据集，结果等于我们定义的 range：\n\n```\nconsole.log(data.map(scale));\n\
+  // [ 0, 1, 2, 3 ]\n```\n\n如果我们想要为离散点定义一个连续的像素范围，可以改用 .rangePoints() 方法。让我们看一个示例：\n\
+  \n```\nvar scale = d3.scale.ordinal()\n  .domain(data)\n  .rangePoints([0, 10]);\n\
+  \nconsole.log(data.map(scale));\n// [ 0, 3.333333333333335, 6.666666666666667, 10\
+  \ ]\n```\n\n此外，我们还可以定义一个考虑柱状图结构的 range——即 .rangeBands() 方法。这个函数考虑了这样一个事实：我们需要将柱子向左移动一个柱宽的一半，以匹配刻度值。\n\
+  \n```\nvar scale = d3.scale.ordinal()\n  .domain(data)\n  .rangeBands([0, 10]);\n\
+  \nconsole.log(data.map(scale));\n// [ 0, 2.5, 5, 7.5 ]\n```\n\n## 用于时间序列数据映射的时间标尺\n\
+  \n最后，处理时间序列数据时，还有一种标尺，它将 JavaScript Date 对象映射到像素范围。让我们看一个示例；首先，我们定义一个 Date 对象数组：\n\
+  \n```\nvar data = [\n  new Date(2015, 8, 1),\n  new Date(2015, 8, 2),\n  new Date(2015,\
+  \ 8, 3),\n  new Date(2015, 8, 4)\n];\n```\n\n现在，我们可以定义标尺；我们将使用 d3.extent(data) 函数来返回数据的\
+  \ [min, max] 值：\n\n```\nvar scale = d3.time.scale()\n.domain(d3.extent(data))\n\
+  .range([20, 460]);\n```\n\n如果我们将数据集映射到新范围，我们会得到落在 [20, 460] 范围内的值：\n\n```\nconsole.log(data.map(scale));\n\
+  // [20, 166.666666666666, 313.333333333333, 460]\n```\n\n## 创建坐标轴\n\n在 D3 中创建坐标轴时，我们希望使用标尺提供的功能将数据集映射到一系列像素。在下图中，我们可以看到来自开发者工具的示例以及坐标轴最终效果的样子：\n\
+  \n![](img/72559bd4713b2b89631dcca187d7e2db_69_0.png)\n\n开发者工具中选定的 D3 坐标轴\n\n首先，我们需要为坐标轴定义一个处理映射的标尺：\n\
+  \n```\nvar scale = d3.scale.linear()\n.domain([0, 10])\n.range([20, 380]);\n```\n\
+  \n现在，我们可以创建一个坐标轴生成器，它的工作方式与之前提到的生成器非常相似：\n\n```\nvar axis = d3.svg.axis()\n.scale(scale);\n\
+  ```\n\n最后，我们可以通过将生成器函数传递到我们想要创建坐标轴的任何（空）选择的 .call() 方法来绘制坐标轴：\n\n```\nd3.select('svg')\n\
+  .call(axis);\n```\n\n就这样，没有魔法，没有困难。\n\n> D3 在处理坐标轴时拥有大量内置功能。绝对值得查看 https://github.com/mbostock/d3/wiki/SVG-Axes\
+  \ 维基页面中的相应部分。\n\n## 一个简单的柱状图\n\n恭喜，你已经掌握了构建第一个柱状图所需的所有知识；而这正是我们将在本节中做的。在下图中，我们将创建一个带有坐标轴、标尺、柱子和标签的柱状图。\n\
+  \n![](img/72559bd4713b2b89631dcca187d7e2db_70_0.png)\n\n一个简单的柱状图\n\n让我们从一个简单的设置开始——一个从\
+  \ bower 组件目录加载 D3 库的空白 HTML 页面。此外，我们在头部中为路径元素定义了 crispEdges 渲染：\n\n```\n<!DOCTYPE\
+  \ html>\n<html>\n<head>\n<title>Bar Chart</title>\n<script src=\"bower_components/d3/d3.min.js\"\
+  ></script>\n<style>\n.axis path, .axis line {\n    fill: none;\n    stroke: #999;\n\
+  \    shape-rendering: crispEdges;\n}\n.data rect {\nstroke: red;\nfill: rgba(255,\
+  \ 0, 0, 0.5);\n}\n</style>\n</head>\n<body>\n<script>\n// Our code goes here\n</script>\n\
+  </body>\n</html>\n```\n\n现在，我们可以开始在 script 元素中编写 JavaScript 并初始化图表尺寸和数据：\n\n```\n\
+  // Define the dimensions\nvar width = 800;\nvar height= 400;\n\n// Define the inner\
+  \ margins\nvar pad = 75;\n\n// Define the data\nvar data = [\n{y: 10, label: 'Milk'},\n\
+  {y: 15, label: 'Ham'},\n{y: 18, label: 'Beer'},\n{y: 24, label: 'Eggs'},\n{y: 6,\
+  \ label: 'Bread'}\n];\n```\n\n下一步，我们可以创建 svg 元素并正确设置其尺寸：\n\n```\nvar $svg = d3.select('body')\n\
+  .append('svg')\n.attr({\nwidth: width,\nheight: height\n});\n```\n\n与前面的示例一样，$svg\
+  \ 变量再次引用带有 svg 根元素的选择集。让我们为数据和坐标轴创建一个容器：\n\n```\nvar $axesGroup = $svg.append('g').attr('class',\
+  \ 'axis');\nvar $dataGroup = $svg.append('g').attr('class', 'data');\n```\n\n现在，我们回头看一下数据集，并为\
+  \ x 值定义一个名为 xKey 的访问器函数，为 y 值定义一个名为 yKey 的访问器函数。当我们需要在数据集中访问这些值时，这些函数将很有用：\n\n```\n\
+  var xKey = function(d){ return d.label; };\nvar yKey = function(d){ return d.y;\
+  \ };\n```\n\n有了这两个函数，我们可以通过简单调用 data.map(xKey) 或 data.map(yKey) 轻松将数据集映射到仅包含 x 或\
+  \ y 值的数组。让我们为 x 轴创建一个标尺。这个标尺将标签（序数值）映射到图表的水平像素范围：\n\n```\nvar xScale = d3.scale.ordinal()\n\
+  \    .domain(data.map(xKey))\n    .rangeRoundBands([pad, width - pad], 0.1);\n```\n\
+  \n在前面的代码中，我们使用数据集的 x 值作为 domain，并使用 .rangeRoundBands() 方法将其投影到名为 [pad, width - pad]\
+  \ 的非重叠带中的 range。现在，我们可以继续为 y 轴创建一个标尺；这将是一个简单的线性标尺：\n\n```\nvar yScale = d3.scale.linear()\n\
+  \    .domain([0, d3.max(data, yKey)])\n    .range([height - pad, pad]);\n```\n\n\
+  这个标尺比前面的序数标尺简单一些；我们只是将 [0, max] 作为 domain 进行映射，其中 max 是数据集中最大的 y 值。然后，我们将其投影到 [height\
+  \ - pad, pad] 的像素范围。有人可能会奇怪，为什么我们改变了 y 标尺 range 值的顺序。这是因为 SVG 中坐标系统的方向：y 坐标轴上的 0\
+  \ 位于顶部，而在我们的图表中，0 值应该映射到底部。\n\n让我们继续创建坐标轴生成器；我们需要一个用于 x 轴，另一个用于 y 轴。在 x 轴中，我们可以通过在\
+  \ .ticks() 方法中指定来定义刻度数量。它应该等于数据集中的元素数量。y 轴应该垂直方向定位，刻度值位于左侧。我们可以使用 .orient() 方法来指定这一点：\n\
+  \n```\nvar xAxis = d3.svg.axis()\n    .scale(xScale)\n\n\n.ticks(data.length);\n\
+  \n```\nvar yAxis = d3.svg.axis()\n  .scale(yScale)\n  .orient('left');\n```\n\n\
+  创建坐标轴生成器后，我们就可以绘制坐标轴了。只需将坐标轴生成器传递给空容器选择集上的 `.call()` 方法即可。我们还需要将坐标轴移动到图表中的适当位置。x\
+  \ 轴应位于底部，y 轴应位于左侧：\n\n```\n$axesGroup.append('g')\n  .attr('class', 'x axis')\n\
+  \  .attr('transform', 'translate(0, ' + (height - pad) + ')')\n  .call(xAxis);\n\
+  ```\n\n```\n$axesGroup.append('g')\n  .attr('class', 'y axis')\n  .attr('transform',\
+  \ 'translate(' + pad + ')')\n  .call(yAxis);\n```\n\n让我们在浏览器中查看前面代码的输出；我们将能够看到坐标轴：\n\
+  \n![](img/72559bd4713b2b89631dcca187d7e2db_73_0.png)\n\n图表的坐标轴\n\n前面的图显示，目前为止一切看起来都很好。太棒了，我们快完成了。最后，我们可以开始在图表中绘制柱状图了。在开始绘制柱状图之前，我们需要定义柱状图的宽度，即最大宽度除以柱状图的数量：\n\
+  \n```\nvar barWidth = (width - 2*pad) / (data.length + 1);\n```\n\n现在，我们可以使用数据集的\
+  \ x 值作为标识符来创建柱状图的数据连接：\n\n```\nvar $bars = $dataGroup.selectAll('rect')\n.data(data,\
+  \ xKey);\n```\n\n我们可以继续为 enter 集合中的所有元素创建 rect 节点：\n\n```\n$bars.enter()\n.append('rect');\n\
+  ```\n\n接下来，我们只需对数据集的值使用缩放函数，即可将矩形移动到图表中的适当位置：\n\n```\n$bars\n.attr('x', function(d)\
+  \ { return xScale(d.label); })\n.attr('y', function(d) { return yScale(d.y); })\n\
+  .attr('height', function(d) { return yScale(0) - yScale(d.y); })\n.attr('width',\
+  \ barWidth);\n```\n\n请注意，由于 SVG 坐标系统，我们需要通过从上到下绘制来定义柱状图的 y 值和高度。最后，为了完整性，我们还添加数据连接的最后一步，并移除\
+  \ exit 集合中的所有元素：\n\n```\n$bars.exit()\n.remove();\n```\n\n在此示例中，我们永远不会从图表中移除柱状图，但将前面几行代码包含到你的代码中是一种良好的实践。一旦你将代码放入函数并多次调用它，这将非常有用。\n\
+  \n让我们对图表做一点调整，以更好地贴合响应式可视化主题。一般来说，每当我们定义静态像素值时，结果在某些设备上都会显示效果不佳。那么，我们可以更改什么呢？嗯，永远不要使用显式静态像素值，而应使用从父元素提取的相对值。\n\
+  \n如果我们遵循此策略，可以使用 body 元素的宽度作为图表宽度。所有其他值（高度和填充）都可以相对于图表宽度来定义：\n\n```\nvar $body =\
+  \ d3.select('body');\n\n// Define the dimensions\nvar width = $body[0][0].clientWidth;\n\
+  var height = width * 0.5;\n\n// Define the padding\nvar pad = width * 0.1;\n```\n\
+  \n如果我们用这些新计算出的尺寸替换旧尺寸，图表在每个打开网页的设备上都会显示效果良好。太棒了！我对你在本章中取得的进展感到非常高兴；你可以为自己感到非常自豪。你已经构建了你的第一个（几乎）响应式柱状图！\n\
+  \n## 摘要\n\n在本章中，你学习了如何选择 DOM 元素，并使用数据连接和动态属性进行数据驱动的转换。我们还了解了如何使用形状和坐标轴生成器函数来快速创建常见形状，例如线条或区域。\n\
+  \n在本章结束时，我们构建了第一个简单的（几乎）响应式柱状图。柱状图在页面加载时已适应浏览器窗口的宽度，但在更改浏览器尺寸时不会重新计算。\n\n在下一章中，我们将探讨加载、过滤和分组数据。这非常重要，因为我们几乎总是需要以特定格式（例如\
+  \ CSV）加载远程数据，然后在之后对其进行处理、过滤或分组，以便进行可视化。\n"
+- "# 加载、过滤和分组数据\n\n在上一章中，你学习了如何绘制简单的柱状图。在本章中，你将学习如何使用此图表从远程位置加载、解析和显示真实数据。在本章中，你将学习以下内容：\n\
+  \n- 为什么需要预处理我们的数据\n- 如何过滤异常值\n- 如何将数据映射到另一种表示形式\n- 如何聚合信息\n- 如何使用 D3 加载数据\n- 如何使用正则表达式解析字符串\n\
+  - 如何解析日期字符串\n- 如何格式化数字\n- 如何分组平面数据\n\n首先，我们将从一些始终必要的基本预处理步骤开始。我们将使用 `filter` 函数从数据集中过滤异常值和意外值；我们还将使用\
+  \ map 函数来访问数组元素的内部属性。\n\n然后，你将了解 reduce 函数以及它们如何帮助从数据中聚合和提取信息。我们将实现自己的简单 reduce\
+  \ 函数，还将查看 D3 中提供的 reduce 函数。\n\n接下来，你将学习如何从远程位置加载数据。剧透警告，使用 D3 这将非常容易。但是，我们需要确保加载的数据可以被\
+  \ JavaScript 理解，因此，我们有时需要解析文件。你将学习使用正则表达式将字符串分割成块，这些块可以通过 JavaScript 作为数组来访问。\n\n\
+  然后，我们将探讨解析和格式化日期、时间和数值。这非常重要，因为当我们处理文本文件中的日期时，它们始终表示为字符串，而不是 JavaScript 对象。\n\n\
+  在最后一部分，你将了解分组平面数据结构，例如包含层次信息的 CSV，将其转换为嵌套的 JavaScript 对象。结合前一部分，我们将能够从数据集中提取任何想要的信息，并在图表中绘制出来。\n\
+  \n### 预处理数据\n\n在本章中，你将了解预处理，以及它在处理现实世界数据时是一个重要步骤。如果我们想要设计一个能够处理不同远程数据源的可靠可视化，我们需要确保预先处理数据。数据集可能包含异常值、可能存在噪声、可能具有不同的表示形式、可能包含嵌套对象、可能是平面的，等等。你可以看到这个列表非常长。\n\
+  \n因此，每当我们处理真实数据时，都需要在将其用于可视化之前对其进行处理；此步骤称为预处理。\n\n### 过滤数据以移除异常值\n\n作为第一个预处理步骤，我们将探讨过滤器。过滤器是数组运算符，返回包含原始元素子集的数组。在下图中，我们看到了此类操作的示例：\n\
+  \n![](img/72559bd4713b2b89631dcca187d7e2db_77_0.png)\n\n让我们尝试一个示例。我们从远程数据源加载以下数组：\n\
+  \n```\nvar data = [\n {x: 1, y: 6},\n {x: 2, y: undefined},\n {x: 3, y: 4},\n {x:\
+  \ 4, y: 2},\n {x: undefined, y: 3},\n {x: 5, y: 3},\n {x: 6, y: 7},\n ];\n```\n\n\
+  我们看到前面的数据集包含一些未定义的值。每当我们处理真实数据时，都应该预期某些数据值未定义或格式不正确。如果我们想要从数组中移除这些值，可以使用 array.filter(filterFn)\
+  \ 运算符。名为 filterFn 的过滤函数将针对数据集中的每个元素进行求值，并且需要返回 true 或 false。在这里，false 表示该元素不会出现在返回的数组中。让我们编写一个只返回有效对象的过滤函数：\n\
+  \n```\nvar filtered = data.filter(function(d, i){\n if (d.x !== undefined && d.y\
+  \ !== undefined) {\n return true;\n }\n return false;\n});\n```\n\n在前面的代码中，我们看到一个典型的过滤函数，如果\
+  \ d.x 和 d.y 已定义则返回 true，否则返回 false。但是，我们可以更优雅地编写此函数，直接返回 if 表达式：\n\n```\nvar filtered\
+  \ = data.filter(function(d, i){\n return d.x !== undefined && d.y !== undefined;\n\
+  });\n```\n\n> 处理数值时要小心隐式类型强制转换。如果你改为写 d.x && d.y，则会将数值隐式转换为布尔值。当你将数值 0 转换为布尔值时，猜猜会得到什么类型的布尔值？没错，你会得到\
+  \ false。\n\n\n\n\n\n这看起来更短更简洁了，太棒了！现在，我们还可以创建一个筛选器，只返回 y 值大于某个特定数值的数据点，如下例所示：\n\n\
+  ```\nvar filtered = data.filter(function(d, i) {\n  return d.y > 5;\n});\n```\n\n\
+  ## 将数据映射以访问内部属性\n\n你想要可视化的值经常以某种方式嵌套在数组对象中，隐藏在内部。你可以通过将整个数组映射为不同的数组表示形式，轻松访问这些数据。此映射操作在下图中可视化：\n\
+  \n![](img/72559bd4713b2b89631dcca187d7e2db_79_0.png)\n\n将一个数据集映射到不同的表示\n\n让我们看一个示例数据集，我们希望从数据点中提取计数：\n\
+  \n```\nvar data = [\n  {x: 1, inner: {count: 5}},\n  {x: 2, inner: {count: 4}},\n\
+  \  {x: 3, inner: {count: 1}},\n  {x: 4, inner: {count: 8}},\n  {x: 5, inner: {count:\
+  \ 3}},\n  {x: 6, inner: {count: 5}}\n];\n```\n\n在前面的数据集中，我们看到信息嵌套在 inner 对象的 count\
+  \ 属性中。我们可以使用带有名为 mapFn 的映射函数的 array.map(mapFn) 方法，为新数组表示中的每个元素返回元素：\n\n```\nvar\
+  \ mapped = data.map(function(d, i){\n return {\n x: d.x, y: d.inner.count\n }\n\
+  \ });\n```\n\n映射后的数组现在包含带有 x 和 y 属性的对象，你可以像前一章所学的那样使用它们来生成可视化。虽然这看起来非常简单，但许多人在正确应用\
+  \ map 函数方面存在问题。\n\n## 聚合数据以提取有价值的信息\n\n数据可视化中另一个重要的预处理步骤是聚合数据集的值。其一般想法是 reduce 函数。在下图中，我们可以看到\
+  \ reduce 函数的示意图；它是一个数组操作，为多个元素返回一个单一值。\n\n![](img/72559bd4713b2b89631dcca187d7e2db_80_0.png)\n\
+  \n将数据集缩减为一个值\n\nReduce 函数帮助我们聚合想要可视化的值。让我们看一个简单的示例，我们希望显示 inner 对象中的计数：\n\n```\n\
+  var data = [\n    {x: 1, inner: [5, 1, 1]},\n    {x: 2, inner: [2, 1, 1]},\n   \
+  \ {x: 3, inner: [5, 3, 2]},\n    {x: 4, inner: [3, 5, 4]},\n    {x: 5, inner: [4,\
+  \ 1, 2]},\n    {x: 6, inner: [5, 3, 1]}\n];\n```\n\n在前面的数据集中，我们希望聚合 inner 属性的值以便可视化它们；我们想使用聚合的总和。现在我们可以结合\
+  \ map 操作和 array.reduce(reduceFn, startValue) 将数据集转换为良好的表示形式。缩减函数 reduceFn 是一个带有四个参数的函数：previous、current、arr\
+  \ 和 index，它为下一个元素返回一个值。我们还可以分配一个 startValue 来表示数组中第一个元素的 previous 属性。让我们看一个非常简单的缩减函数，即简单的求和：\n\
+  \n```\nfunction sum(a, b) {\n    return a + b;\n}\n```\n\n现在，我们可以使用 reduce 函数对 inner\
+  \ 属性中的所有值求和：\n\n```\nvar reduced = data.map(function(d, i) {\n    return {\n   \
+  \     x: d.x, y: d.inner.reduce(sum, 0)\n    }\n});\n```\n\n同样，生成的数组由带有 x 和 y 属性的对象组成，但\
+  \ y 属性现在包含所有 inner 值的总和。\n\n我们还可以嵌套 map 和 reduce 操作，以聚合更多嵌套数据。让我们看一个嵌套数据集的示例：\n\n\
+  ```\nvar data = [\n    {x: 1, inner: [{count: 5}, {count: 1}, {count: 1}, ...]},\n\
+  \    {x: 2, inner: [{count: 2}, {count: 1}, {count: 1}, ...]},\n    {x: 3, inner:\
+  \ [{count: 5}, {count: 3}, {count: 2}, ...]},\n    {x: 4, inner: [{count: 3}, {count:\
+  \ 5}, {count: 4}, ...]},\n    {x: 5, inner: [{count: 4}, {count: 1}, {count: 2},\
+  \ ...]},\n    {x: 6, inner: [{count: 5}, {count: 3}, {count: 1}, ...]}\n];\n```\n\
+  \n现在，我们需要将 `inner` 值映射为一个数组，然后就可以被 reduce 函数使用：\n\n```\nvar reduced = data.map(function(d,\
+  \ i){\n    return {\n        x: d.x, y: d.inner\n            .map(function(d){\n\
+  \                return d.count;\n            }).reduce(sum, 0)\n    }\n});\n```\n\
+  \n在前面的代码中，我们首先使用一个 map 返回 count 属性的元素；然后我们在返回的数组上应用 reduce 函数。你已经可以看到，通过嵌套预处理函数，我们可以从数据集中聚合和提取大量数据。\n\
+  \n### D3.js 中的 Reduce 函数\n\n你可能已经想知道，D3 自带许多方便的 reduce 函数，可以应用于数组。但是，使用 d3 函数时，你始终需要将数组作为参数传递。在所有\
+  \ d3 reduce 函数中，你可以使用 `accessor` 函数，它在执行 reduce 操作之前传递给一个 map 操作。这与前面的示例完全相同。\n\n\
+  我们可以使用以下任一方法提取数据集的极值：\n\n- d3.min(arr, accessor),\n- d3.max(arr, accessor)\n- d3.extent(arr,\
+  \ accessor)\n\n让我们看最后一个示例：\n\n```\nvar data = [\n    {x: 1, inner: {count: 5}},\n\
+  \    {x: 2, inner: {count: 4}},\n    {x: 3, inner: {count: 1}},\n    {x: 4, inner:\
+  \ {count: 8}},\n    {x: 5, inner: {count: 3}},\n    {x: 6, inner: {count: 5}}\n\
+  ];\nvar extent = d3.extent(data, function(d, i){\n    return d.x;\n});\n```\n\n\
+  前面的代码中的 extent 函数返回名为 [min, max] 的数组，包含数据集中最小和最大的 x 值。\n\n要从数据集中提取其他统计信息，我们可以使用以下内容：\n\
+  \n- d3.mean(arr, accessor),\n- d3.median(arr, accessor),\n- d3.variance(arr, accessor)\n\
+  - d3.deviation(arr, accessor)\n\n> filter、map 和 reduce 函数起源于函数式编程，因为它们作用于输入数组，独立于状态或上下文对其进行转换，并在最后输出一个新数组。与简单循环相比，使用\
+  \ reduce 函数的好处在于你在局部作用域中执行代码，而在循环中，你仍然在同一作用域中并维护状态。\n> 关于性能，filter、map 和 reduce\
+  \ 函数通常比自定义循环的替代方案快不了多少。这主要取决于 JavaScript 引擎及其优化这些函数的方式。但是，正如我之前所说，它们允许开发人员编写更优雅、更简洁的代码，因为它们在独立于状态的分离作用域中工作。如果这引起了你的兴趣，你肯定应该了解更多关于函数式编程的内容！\n\
+  \n### 加载和解析远程数据\n\n在本节中，我们希望可视化真实数据，而不是示例数据集；因此，我们需要了解如何从远程位置加载数据。在 JavaScript 中，你可以使用原生\
+  \ XMLHttpRequest (XHR) 对象在应用程序中获取数据。D3 不仅为原生 XHR 调用实现了一个包装器，还为加载不同数据类型并自动解析它们实现了包装器。\n\
+  \n以下是 D3 中一些高级包装器的列表：\n\n- d3.text(url[, mimeType[, callback]]): 从 URL 加载带有 mimeType\
+  \ 的纯文本文件；数据作为字符串传递给回调，在回调中必须手动完成解析\n- d3.json(url[, callback]): 从 URL 加载并解析 JSON\
+  \ 文件；数据作为对象传递给回调\n- d3.xml(url[, mimeType[, callback]]): 从 URL 加载并解析 XML 文件，数据作为对象传递给回调\n\
+  - d3.html(url[, callback]): 从 URL 加载并解析 HTML 文件；数据作为对象传递给回调\n- d3.csv(url[, accessor[,\
+  \ callback]]): 从 URL 加载并解析 CSV（逗号分隔）文件；数据作为对象传递给回调，并可使用 accessor 函数自动映射\n- d3.tsv(url[,\
+  \ accessor[, callback]]): 从 URL 加载并解析 TSV（制表符分隔）文件；数据作为对象传递给回调，并可使用 accessor 函数自动映射\n\
+  \n当所有数据加载完毕后，会调用回调函数；数据将作为参数提供给回调函数。\n\n> 如果我们尝试从本地机器加载数据，很可能会收到 **跨域请求** 错误。这是现代浏览器的一项安全策略，用于防止将本地数据加载到浏览器中。但是，我们可以使用静态文件服务器，例如名为\
+  \ `http-server` 的 node 包或名为 `python -m SimpleHTTPServer 8000` 的 python 命令。\n>\n\
+  > 如果你不想启动 Web 服务器来避免这个安全问题，也可以在浏览器设置或启动时禁用它：\n> - 在 Firefox 中，在地址栏输入 `about:config`\
+  \ 并将 `security.fileuri.strict_origin_policy` 设置为 `false`\n> - 在 Chrome 和 Chromium\
+  \ 中，关闭所有打开的实例，然后启动名为 `chrome.exe --allow-file-access-from-files` 或 `chromium-browser\
+  \ --allow-file-access-from-files` 的新会话\n\n我们可以看到，借助内置的数据加载函数，使用 D3 加载远程数据非常简单。让我们看一个示例；我们将加载一个\
+  \ CSV 文件：\n\n```\n// data source: Mike Bostock\nvar url = 'https://gist.githubusercontent.com/mbostock/32.../data.csv';\n\
+  d3.csv(url, function(data) {\n    draw(data);\n});\n```\n\n在前面的代码中，我们使用了一个 draw\
+  \ 函数，它包含了我们在前一章中开发的柱状图的代码。你也可以查看所有代码示例的源代码，以查看完整的函数。\n\n\n\n\n\nThe CSV file contains\
+  \ a few lines similar to the following code:\n\n```\nkey,value,date\nGroup1,37,04/23/12\n\
+  Group2,12,04/23/12\nGroup3,46,04/23/12\nGroup1,32,04/24/12\nGroup2,19,04/24/12\n\
+  ```\n\nIf we run the previous code, the resulting chart looks like the following\
+  \ figure:\n\n![](img/72559bd4713b2b89631dcca187d7e2db_85_0.png)\n\nBar chart with\
+  \ remote data\n\nIn the preceding chart, we see quite some errors that happen when\
+  \ we simply try to plot a dataset as it is. There exist multiple data points per\
+  \ day — one for each group—but we are only plotting one. This is an amazing example,\
+  \ why, even in very small and trivial datasets we need some kind of preprocessing\
+  \ for the data.\n\nLet's, for example, filter out only the data for the key called\
+  \ Group1. To do so, we only have to use a small filter function on the data:\n\n\
+  ```\nd3.csv(url, function(data) {\n  draw(data.filter(function(d) {\n      return\
+  \ d.key == 'Group1';\n  }));\n});\n```\n\nIn the preceding example, we use a filter\
+  \ that returns `true` if the `key` property matches `'Group1'`. In the following\
+  \ figure, we can see the result of the example:\n\n![](img/72559bd4713b2b89631dcca187d7e2db_86_0.png)\n\
+  \nPlotting data from Group 1\n\nThis already looks very interesting and much better\
+  \ than the previous example. However, we are only plotting the data from the first\
+  \ group. We will learn how to aggregate the data from all groups in the last sections\
+  \ of this chapter.\n\nAnother interesting observation from the previous figure is\
+  \ that we simply plot the raw date values as we read them from the remote location.\
+  \ We use them as strings, which makes them very uncomfortable to work with. Here\
+  \ is where parsing date values comes in quite handy.\n\n## Parsing any string data\n\
+  \nData visualizations often display data from multiple sources; therefore, we cannot\
+  \ guarantee that the datasets will always be in a CSV, TSV, or even JSON format.\
+  \ To load and parse raw data, for example, unformatted log data, we can use the\
+  \ `d3.text` function and parse the dataset on our own.\n\nLet's look at a typical\
+  \ access log entry from a web server. It contains timestamps and user agents of\
+  \ the visitors of a website:\n\n```\n66.249.64.129 - - [22/Nov/2014:01:56:01 +0100]\
+  \ \"GET / HTTP/1.1\" 302\n487 \"-\" \"Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)\"\
+  \n```\n\nThere are some questions that come into one's mind if he/she wants to plot\
+  \ the preceding data. How should one aggregate the data? Do we want to sum all visitors\
+  \ per minute, per hour, or per day, or do we just want to sum the visitors by browser\
+  \ or by country of origin? Once we've parsed the data into a readable format, we\
+  \ can easily do all of the preceding things (you will learn this in the last section\
+  \ of the chapter). However, we first need to parse the string into a format that\
+  \ JavaScript can use.\n\n### Splitting strings using Regular Expressions\n\nThe\
+  \ first step in processing a string is always splitting it into smaller chunks of\
+  \ words. If the log entries have been created by a program, they usually have some\
+  \ kind of structure but very often a very strange one.\n\nIf we take a closer look\
+  \ at the entries in the log file, we can see that single log entries are separated\
+  \ by a newline character called \\n. Well, we actually don't see the character,\
+  \ but we can see the line breaks only at the end of the complete log entry.\n\n\
+  We also observe that the - and \" characters are some sort of separators between\
+  \ the logical parts of the entry. To split the string properly, we always have to\
+  \ find these separators. Now, we can use Regular Expressions and the string.split(expr)\
+  \ function to split the string into an array of smaller chunks. In the following\
+  \ figure, we can see this operation visualized:\n\n![](img/72559bd4713b2b89631dcca187d7e2db_87_0.png)\n\
+  \nLet's see this in action and split the log file into an array of log entries:\n\
+  \n```\nvar lines = data.split(/\\n/g);\n```\n\nNow, we can use the map function\
+  \ to access the inner elements of the line array and split them into logical chunks:\n\
+  \n```\nvar lines = data.split(/\\n/g)\n.map(function(line) {\nreturn line.split(/[-\"\
+  ]/g);\n});\n```\n\nIn the preceding code, we use the two Regular Expressions called\
+  \ /\\n/g and /[-\"]/g. In the first one, we simply look for matches of the \\n character,\
+  \ and in the second one, we look for either the - or \" character. In both cases,\
+  \ we use the greedy flag to search the whole string rather than stopping at the\
+  \ first occurrence.\n\n> More information about Regular Expressions in JavaScript\
+  \ can be found on MDN at https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/RegExp.\n\
+  > Usually, it is very tricky to get Regular Expressions to work properly. I recommend\
+  \ using a tool such as https://regex101.com/ to evaluate your expression before\
+  \ you throw them into your code.\n\nThe following figure visualizes how we are processing\
+  \ the string. The first split happens from the blue to the red layer. Then, we use\
+  \ map to split all of the elements from the red to the green layer. This all happens\
+  \ in the previous four lines of the code:\n\n![](img/72559bd4713b2b89631dcca187d7e2db_88_0.png)\n\
+  \nSplitting nested strings into arrays\n\nYou can already see that by nesting multiple\
+  \ split functions, you can split the string into an array of substrings that contain\
+  \ your information. In the next step, we need to parse date time values from different\
+  \ string representation into the JavaScript representation.\n\n### Parsing dates\
+  \ from strings\n\nAs we saw already in the example of the log data, we will often\
+  \ have to deal with time series data in a specific string format. To transform,\
+  \ compare, and display Dates properly throughout the visualization, we have to first\
+  \ parse the string to a valid JavaScript Date object. Fortunately, D3 includes a\
+  \ powerful datetime parser to convert datetime strings into Date objects and vice\
+  \ versa.\n\nTo create such a formatter, we have to use the d3.time.format() function,\
+  \ which returns a formatter. We can then either use the formatter as a function\
+  \ to format Date objects or use the .parse() method to parse the datetime strings.\
+  \ Let's take a look at an example:\n\n```\n// Create a formatter\nvar formatter\
+  \ = d3.time.format('%Y-%m-%d');\n// Parse a string to a Date object\nformatter.parse(\"\
+  2015-01-01\");\n// Thu Jan 01 2015 00:00:00 GMT+0100 (CET)\n```\n\nAs we've already\
+  \ discussed, we can also use the formatter function to convert Date objects into\
+  \ strings in order to style and format them:\n\n```\n// Create a formatter\nvar\
+  \ formatter = d3.time.format('%Y-%m-%d');\n// Format a Date object to a string\n\
+  formatter(new Date(2015, 0, 1));\n// \"2015-01-01\"\n```\n\n> To make yourself familiar\
+  \ with the native Date object, you can take a look at the Mozilla Developer website\
+  \ at https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Date.\n\
+  \nAs we can observe in the preceding code example, D3 uses formatter specifiers\
+  \ to define the format of the datetime string. Here, you can find a list of specifiers\
+  \ that can be used to for declaring the datetime format, which I took from my previous\
+  \ book Data Visualization with D3 and AngularJS by Packt Publishing:\n\n- %a: Abbreviated\
+  \ weekday name\n- %A: Full weekday name\n- %b: Abbreviated month name\n- %B: Full\
+  \ month name\n- %c: Date time format %a %b %e %H:%M:%S %Y\n- %d: Zero-padded day\
+  \ of month [01, 31]\n- %e: Space-padded day of month [ 1, 31]\n- %H: Hour in 24-hour\
+  \ format [00, 23]\n- %h: Hour in 12-hour format [01, 12]\n- %j: Zero-padded day\
+  \ of the year [001, 366]\n- %m: Zero-padded month [01, 12]\n- %M: Zero-padded minute\
+  \ [00, 59]\n- %L: Zero-padded milliseconds [000, 999]\n- %p: AM or PM\n- %S: Zero-padded\
+  \ second [00, 61]\n- %U: Zero-padded week number of the year (Sunday as first day\
+  \ of the week) [00, 53]\n- %w: Weekday (starting with Sunday) [0, 6]\n- %W: Zero-padded\
+  \ week number of the year (Monday as first day of the week) [00, 53]\n- %x: Date\
+  \ format %m/%d/%y\n- %X: Time format %H:%M:%S\n- %y: Zero-padded year without century\
+  \ [00, 99]\n- %Y: Year with century\n- %Z: Time zone offset (for example -0700)\n\
+  - %%: The literal character %\n\n> You can find more information about datetime\
+  \ specifiers on the D3 Github page at https://github.com/mbostock/d3/wiki/Time-Formatting.\n\
+  \n\n\n\n\n## 解析和格式化数值\n\n我们不仅需要处理日期和时间字符串，还需要处理数值。对于整数和浮点数值，可以使用原生函数解析字符串，并使用 D3\
+  \ 数字格式化程序对其进行格式化和样式设置。\n\n整数和浮点数可以通过 `parseInt()` 和 `parseFloat()` 函数轻松解析。不过，有时使用简短的\
+  \ `+` 符号将字符串转换为数值也很方便。\n\n```\n// Parsing strings to numbers\nvar i = parseInt(\"\
+  5.0\", 10);\nvar f = parseFloat(\"3.8\");\n```\n\n```\n// Short notation\nvar s\
+  \ = \"932.2\";\nvar j = +s;\n```\n\n在前面的代码中，我们看到使用原生函数和简短的 `+` 符号将字符串转换为数字非常方便。我们还观察到，大多数情况下，我们会在\
+  \ `parseInt` 函数中使用基数 10。\n\n在 D3 中，将数值格式化为字符串与将日期值格式化为字符串非常相似。不过，D3 只能将数字格式化为字符串；对于字符串到数字的转换，可以使用我们刚才讨论过的原生函数。同样，我们需要先使用\
+  \ `d3.format(specifier)` 函数创建一个格式化程序；然后，可以将格式化程序作为函数来格式化数字。让我们来看一个示例：\n\n```\n//\
+  \ Create a formatter\nvar formatter = d3.format('.2f');\n```\n\n```\n// Format a\
+  \ number object to a string\nformatter(3.12e-1);\n// \"0.31\"\n```\n\nspecifier\
+  \ 参数再次定义我们要生成的格式化字符串值的结构。它可以采用以下形式组成：\n\n```\n[fill] [align] [sign] [symbol] [0]\
+  \ [width] [, ] [.precision] [type]\n```\n\n这些选项中的每一个都允许您自定义生成字符串的不同属性。这里，我只想提供所有可能类型说明符的列表，该列表也摘录自我之前由\
+  \ Packt Publishing 出版的书籍《使用 D3 和 AngularJS 进行数据可视化》：\n\n- e: 指数\n- g: 通用\n- f: 定点\n\
+  - d: 整数\n- r: 如果指定精度则四舍五入到精度\n- %: 百分比\n- p: 如果指定精度则四舍五入到精度的百分比\n- b: 二进制\n- o:\
+  \ 八进制\n- x: 十六进制\n- X: 带大写字母的十六进制\n- c: Unicode 字符\n- s: 带 SI 后缀并四舍五入\n\n让我们来看一些使用不同类型说明符的示例：\n\
+  \n```\nconsole.log(d3.format('e')(0.3123)); // \"3.123e-1\"\nconsole.log(d3.format('g')(31.223e3));\
+  \ // \"31223\"\nconsole.log(d3.format('f')(31.23)); // \"31\"\nconsole.log(d3.format('d')(124));\
+  \ // \"124\"\nconsole.log(d3.format('%')(0.23)); // \"23%\"\nconsole.log(d3.format('p')(0.2314));\
+  \ // \"23.14%\"\nconsole.log(d3.format('b')(23)); // \"10111\"\nconsole.log(d3.format('s')(31.223e3));\
+  \ // \"31.223k\"\n```\n\n> 您可以在 D3 的 GitHub 页面上找有关数字说明符的更多信息：https://github.com/mbostock/d3/wiki/Formatting。\n\
+  \n### 分组数据\n\n当我们在互联网上找到数据资源时，大多数时候它具有扁平的数据结构，就像逗号分隔的列表一样。但是，它通常包含层次结构数据。在 D3 中，通过创建数据集的嵌套树结构，可以非常轻松地将数据分组在一起。为了实现这一点，我们可以使用\
+  \ d3.nest() 运算符。该运算符创建一个 nest 对象，可以通过 .key() 方法进一步定义分组键，并通过 .sortKey() 方法定义排序函数。这些函数也可以重复使用，以在扁平数据结构中创建多个嵌套层。让我们来看看数据集：\n\
+  \n```\nvar values = [\n  {\n    date: \"04/23/12\",\n    key: \"Group1\",\n    value:\
+  \ \"37\"\n  },\n  {\n    date: \"04/23/12\",\n    key: \"Group2\",\n    value: \"\
+  12\"\n  },\n  {\n    date: \"04/23/12\",\n    key: \"Group3\",\n    value: \"46\"\
+  \n  }, ...\n];\n```\n\n首先，我们创建一个 nest 函数，然后相应地对数据进行分组：\n\n```\nvar nest = d3.nest()\n\
+  \  .key(function(d, i){\n    return d.date;\n  });\n```\n\n现在，nest 实现了一个 .entries(data)\
+  \ 方法，它可以将数据集作为输入并返回扁平数据结构的分组结果。如果你好奇，可以查看将前面的 nest 函数应用于我们的数据集的输出。\n\n```\nconsole.log(nest.entries(data));\n\
+  ```\n\n前面的代码在浏览器的开发者工具中显示了类似下图的结果：\n\n![](img/72559bd4713b2b89631dcca187d7e2db_94_0.png)\n\
+  \n数据集上应用的 nest 函数\n\n> 您可以在 D3 的 GitHub 页面上找有关 nest 的更多信息：https://github.com/mbostock/d3/wiki/Arrays#d3_nest。\n\
+  \n作为合乎逻辑的下一步，我们现在可以应用 map 和 reduce 函数来计数对象、出现次数和值，并将它们映射到更简单的结构中。将前面的层次结构对象映射到包含\
+  \ {x, y} 元素的数组中（其中 y 是每个对象的所有值之和）将是一个很好的练习。\n\n让我们将此 nest 函数与 reduce 函数结合使用来绘制类似于前面示例的图表。不过，我们现在希望按天对条目进行分组，并对所有组进行求和。\n\
+  \n我们可以通过映射 values 数组中元素的 value 属性并对值求和来继续这样做。我们使用 +string 简写符号将 value 属性转换为数值：\n\
+  \n```\ndraw(nest.entries(data).map(function(d) {\n  return {\n    date: d.key,\n\
+  \    value: d.values.map(function(d) {\n      return +d.value;\n    })\n  }.reduce(sum,\
+  \ 0)\n}));\n```\n\n在前面的代码中，我们首先在原始数据集上应用 nest 函数。然后，我们使用 map 函数将下一个处理步骤应用到嵌套组的每个组上。在内部处理步骤中，我们将值数组映射到数字数组，并通过\
+  \ reduce 函数对其求和。我们可以使用 d3.sum(arr, accessor) 方法以更优雅的方式编写此代码，该方法结合了 map 和 reduce\
+  \ 步骤。结果代码如下：\n\n```\ndraw(nest.entries(data).map(function(d) {\n  return {\n   \
+  \ date: d.key,\n    value: d3.sum(d.values, function(d) {\n      return +d.value;\n\
+  \    })\n  }\n}));\n```\n\n太棒了，这看起来更清晰，而且非常易读。现在，我们可以在下图中看到浏览器的结果：\n\n![](img/72559bd4713b2b89631dcca187d7e2db_95_0.png)\n\
+  \n分组和聚合的值\n\n## 摘要\n\n在本章中，您学习了数据预处理，以便将其显示为可视化内容。我们了解了如何过滤意外数据、如何将数据映射到不同的表示形式，以及如何聚合数据。\n\
+  \n我们了解了从远程资源加载数据以及通过正则表达式进行自定义解析。我们了解了如何将字符串拆分为可用于进一步处理的元素数组。最后，您学习了如何使用 D3 将扁平数据分组为嵌套对象。这帮助我们最终从远程数据集中提取出所有所需的信息。\n\
+  \n在下一章中，我们将采用先前生成的图表并使其具有响应式。您将了解图表响应式的确切含义，以及如何使用 Bootstrap 实现这一点。\n"
+- "# 使图表具有响应式\n使用 Bootstrap 和媒体查询\n\n在上一章中，您学习了有关从真实来源加载、解析、过滤和分组数据的所有内容。这为我们提供了使用\
+  \ Bootstrap 和媒体查询在某些真实数据上设计响应式图表所需的一切。在本章中，您将学习以下内容：\n\n- 在浏览器中学习绝对单位和相对单位\n- 了解响应式图表的真正含义\n\
+  - 使用百分比值绘制图表\n- 使用 `viewBox` 和 `preserveAspectRatio` 属性缩放图表\n- 使用 JavaScript 事件监听器调整图表\n\
+  - 学习调整数据的分辨率\n- 使用 Bootstrap 的媒体查询\n- 了解如何在 CSS、LESS 和 JavaScript 中使用媒体查询\n- 学习\
+  \ Bootstrap 栅格系统的用法\n\n首先，我们将讨论现代浏览器中可用的最重要的绝对单位和相对单位。您将学习绝对像素、相对百分比、em、rem 以及更多内容之间的区别。\n\
+  \n\n\n\n\n在下一章中，我们将了解图表实现响应式真正需要什么。将宽度适配到父元素是这些要求之一，你将学习三种不同的实现方式。本节结束后，你将知道何时使用百分比数值、视口缩放或事件监听器。我们还将了解适配数据分辨率——响应式图表的另一个重要属性。\n\
+  \n在下一节中，我们将探索媒体查询以及如何使用它们来创建依赖于视口的响应式图表。我们将利用Bootstrap针对最常见设备分辨率的媒体查询定义，通过CSS或LESS将其集成到我们的响应式图表中。最后，我们还将了解如何将媒体查询包含在JavaScript中。\n\
+  \n在本书的最后一节中，我们将了解Bootstrap的栅格系统，并学习如何将其与图表无缝集成。这不仅能提供极大的灵活性，还能更轻松地将多个图表组合成一个大型仪表板应用程序。\n\
+  \n## 浏览器中的单位和长度\n\n创建响应式设计、网站或图形，在很大程度上取决于浏览器可以解释的单位和长度。我们可以使用相对于父容器的百分比数值，轻松创建填满容器整个宽度的元素；而使用绝对数值达到相同效果可能非常棘手。因此，掌握响应式图形也意味着了解浏览器中所有可用的绝对单位和相对单位。\n\
+  \n### 绝对长度单位\n\n在网页设计和开发中，最方便且最流行的方式是使用绝对单位（通常是像素）来定义和测量长度及尺寸。这样做的原因是，设计师和开发人员通常希望指定对象的精确尺寸。名为`px`的像素单位是一种基于物理测量的视觉单位，用于在大约一臂长的距离从设备读取；然而，所有现代浏览器也允许基于物理单位定义长度。下表列出了最常见的绝对单位及其相互关系：\n\
+  \n- cm: 厘米 (1 cm = 96 px/2.54)\n- mm: 毫米 (1 mm = 1/10 厘米)\n- in: 英寸 (1 in = 2.54\
+  \ cm = 96 px)\n- pt: 磅 (1 pt = 1/72 英寸)\n- px: 像素 (1 px = 1/96 英寸)\n\n> 关于像素单位起源和含义的更多信息，请参阅CSS3规范：http://www.w3.org/TR/css3-values/#viewport-relative-lengths。\n\
+  \n### 相对长度单位\n\n除了绝对长度外，相对长度表示为父元素宽度或高度的百分比。将此作为一种常见技术来设置网页动态元素的样式。传统上，%单位一直是出于上述原因的首选单位。然而，随着CSS3的出现，几种额外的相对单位也进入了浏览器，用于定义相对于元素字体大小的长度。\n\
+  \n以下是CSS3规范中指定的某些相对长度单位，不久将在现代浏览器中可用：\n\n- %: 绝对容器宽度/高度的百分比\n- em: 元素字体大小的倍数因子\n\
+  - rem: 根元素字体大小的倍数因子\n- vw: 视口宽度的1%\n- vh: 视口高度的1%\n- vmin: 视口较小尺寸的1%（vw或vh之一）\n\
+  - vmax: 视口较大尺寸的1%（vw或vh之一）\n\n作为Web开发者，我清楚我们无法真正利用即将支持的技术；但我想指出一种未来对Web开发者将发挥重要作用的单位：rem单位。rem单位根据根节点（本例中为html节点）的字体大小来定义元素的长度，而不是根据当前元素（例如em）的字体大小。\n\
+  \n如果使用rem单位来定义布局的长度和间距，它非常强大，因为当用户增大浏览器字体大小时（例如为了可读性），布局也能随之适应。我想提一下，Bootstrap 4将使用em和rem单位替换媒体查询中的所有绝对像素单位，主要正是出于这个原因。\n\
+  \n如果查看下图，我们还可以看到rem单位已在所有主流浏览器中得到支持。我建议你开始使用rem单位替换布局和间距中的所有绝对像素单位：\n\n| IE | Edge\
+  \ * | Firefox | Chrome | Safari | Opera | iOS Safari * | Opera Mini * | Android\
+  \ Browser * | Chrome for Android |\n|---|---|---|---|---|---|---|---|---|---|\n\
+  | | | | | | | | | | |\n\nrem单位的跨浏览器兼容性（来源：http://caniuse.com/#feat=rem）\n\n然而，百分比单位并未过时；在合适的时候我们仍可以使用它们。稍后我们将使用它们来绘制基于父元素尺寸的SVG元素。\n\
+  \n### 分辨率单位\n\n为了总结相对和绝对单位部分，我想提一下，我们还可以使用不同单位的分辨率。这些分辨率单位可以与min-resolution或max-resolution属性一起在媒体查询中使用：\n\
+  \n- dpi: 每英寸点数\n- dpcm: 每厘米点数\n- dppx: 每px单位点数\n\n### 数学表达式\n\n在CSS中处理有理数或表达式时，我们常常会遇到问题；想象一下定义一个每列宽度为33%的三列栅格，或者需要在CSS文件中计算一个简单表达式。CSS3为此提供了一个简单的解决方案。\n\
+  \ncalc(exp)计算名为exp的数学表达式，该表达式可以由长度、数值以及称为+、-、/和*的运算符组成。\n\n请注意，+和-运算符必须周围带有空白字符。否则，它们会被解释为第二个数字的符号而非运算符。另外两个运算符*和/不需要空白字符，但我建议你为保持一致性而添加它们。\n\
+  \n我们可以在以下代码片段中使用这些表达式：\n\n```\n.col-4 {\n  width: calc(100% / 3);\n}\n\n.col-sp-2\
+  \ {\n  width: calc(50% - 2em);\n}\n```\n\n前面的示例看起来很棒；然而，如下图所示，我们需要了解浏览器兼容性的限制：\n\
+  \n![](img/72559bd4713b2b89631dcca187d7e2db_102_0.png)\n\ncalc()表达式的跨浏览器兼容性（来源：http://caniuse.com/#feat=calc）\n\
+  \n## 响应式图表\n\n既然我们已经了解了绝对单位和相对单位的一些基础知识，就可以开始定义、设计和实现响应式图表了。响应式图表是一种能够自动调整其外观和感觉以适应用户设备分辨率的图表；因此，响应式图表需要适配以下属性：\n\
+  \n- 尺寸（宽度和高度）\n- 数据点的分辨率\n- 交互和交互区域\n\n适配尺寸是最明显的事情。图表应始终缩放并适应其父元素的宽度。在上一节中，你学习了相对长度和绝对长度，因此可能认为仅为图表尺寸使用相对数值就足够了。然而，实现此目的有多种方式，各有优劣；在本节中，我们将讨论其中三种。\n\
+  \n适配数据分辨率不那么明显，而且常常被忽视。数据点分辨率（每像素的数据点数量）应随之调整，以便在高分辨率设备上看到更多点，在低分辨率屏幕上看到更少点。在本节中，我们将看到，这只能通过使用JavaScript事件监听器并手动重绘/更新整个图表来实现。\n\
+  \n适配交互和交互区域不仅对使用不同屏幕分辨率很重要，对使用不同设备也很重要。我们与电视的交互方式与与计算机的不同，在台式机和手机上使用的输入设备也不同。然而，图表应允许适合特定设备和屏幕分辨率的交互和交互区域。你将在下一章中了解更多有关响应式交互的内容。\n\
+  \n### 在SVG中使用相对长度\n\n将图表尺寸适配到其父容器的第一种也是最明显的解决方案，是为长度和坐标使用相对数值。这意味着我们只需用相对数值定义一次图表，浏览器将负责在父容器尺寸变化时重新计算所有数值。无需手动重绘图表。\n\
+  \n让我们来看看上一章中的柱状图示例。你可以在本书附带的本章代码示例中找到完整源代码。\n\n首先，我们将添加一些CSS样式，将SVG元素缩放至父容器的全宽：\n\
+  \n```\n.chart {\n height: 16rem;\n position: relative;\n}\n.chart > svg {\n width:\
+  \ 100%;\n height: 100%;\n}\n```\n\n\n\n\n\n接下来，我们将所有比例尺修改为在 [0, 100] 范围内工作，并从两侧减去填充：\n\
+  \n```\nvar xScale = d3.scale.ordinal()\n    .domain(flatData.map(xKey))\n    .rangeBands([padding,\
+  \ 100 - 2*padding]);\n```\n\n```\nvar yScale = d3.scale.linear()\n    .domain([0,\
+  \ d3.max(flatData, yKey)])\n    .range([100 - 2*padding, padding]);\n```\n\n最后，我们可以像之前一样绘制图表，只需在属性末尾添加百分比符号（%）来指示使用百分比单位：\n\
+  \n```\nbars\n    .attr('x', function(d) { return (xScale(d.x) + i*barWidth) + '%';\
+  \ })\n    .attr('y', function(d) { return yScale(d.y) + '%'; })\n    .attr('height',\
+  \ function(d) { return (yScale(0) - yScale(d.y)) + '%'; })\n    .attr('width', barWidth\
+  \ + '%')\n    .attr('fill', colors(data.key));\n```\n\n你可以观察到，绘制柱状图的代码只做了轻微修改。现在它对坐标和属性使用百分比值。然而，这个小改变的效果非常巨大。在下图中，我们可以看到浏览器窗口中图表的结果：\n\
+  \n![](img/72559bd4713b2b89631dcca187d7e2db_104_0.png)\n\n使用相对长度的柱状图\n\n如果我们现在增大浏览器窗口大小，柱状图会很好地缩放以适应父容器的全宽。我们可以在下图中看到缩放后的图表：\n\
+  \n![](img/72559bd4713b2b89631dcca187d7e2db_105_0.png)\n\n使用相对长度缩放的柱状图\n\n如果你现在还不觉得令人印象深刻，那你最好觉得。在我看来，这很棒，因为它将重新计算\
+  \ SVG 元素尺寸的所有繁重工作都交给了浏览器。我们不需要关心它们，而这种原生计算为我们提供了最大性能。\n\n之前的示例展示了如何使用百分比值创建简单的柱状图。然而，迄今为止尚未解释的是为什么我们没有向图表添加任何轴和标签。嗯，尽管我们可以利用浏览器的原生重新缩放功能，但我们也需要面对这种技术的局限性：相对值仅允许在标准属性中使用，例如\
+  \ width、height、x、y、cx、cy，但不允许在 SVG 路径或 transform 函数中使用。\n\n## 关于使用相对长度的结论\n\n虽然这听起来是一个绝佳的解决方案（并且确实对于某些用例非常棒），但它有两个主要缺点：\n\
+  \n- 百分比值不被 SVG `transform` 属性和 `path` 元素中的 `d` 属性接受，仅允许在标准属性中使用\n- 由于浏览器会自动重新计算所有值，我们无法调整图表数据的分辨率\n\
+  \n第一点是最大的缺点，这意味着我们只能使用 `width`、`height`、`x`、`y`、`cx`、`cy` 等标准属性来定位元素。然而，我们仍然可以绘制一个无需\
+  \ JavaScript 事件监听器即可根据父元素自适应缩放的柱状图。与第一点相比，第二点不再起重要作用，可以通过额外的 JavaScript 事件监听器来规避，但我相信你已经明白我的意思。\n\
+  \n## 缩放视口\n\nSVG 有一些强大的功能，例如 viewBox 和 preserveAspectRatio 属性，允许将整个图形自动重新缩放到 SVG\
+  \ 视口。使用这两个属性，我们可以在定义的区域内使用绝对值绘制图表，自动将该区域缩放到父容器，并定义原始尺寸长宽比的处理方式。\n\n让我们从头开始。我们将 SVG\
+  \ 元素的可见区域称为 SVG 视口；通常，我们默认看到标准坐标系。viewBox 属性允许我们将坐标系的某个区域缩放到视口的尺寸。我们通过在坐标系中用左上角和右下角点定义的矩形来指定该区域。\n\
+  \n我将通过修改柱状图示例来演示这一点。首先，让我们使用一些绝对尺寸，例如 400x300。在我们的例子中，我们将通过固定宽度和长宽比因子来定义它：\n\n```\n\
+  var width = 400;\nvar aspectRatio = 4.0 / 3.0;\nvar height = width / aspectRatio;\n\
+  ```\n\n我们还保留了之前示例中的 CSS 代码，该代码将 SVG 元素缩放到父容器的全宽。\n\n现在，我们可以使用这些绝对尺寸绘制完整的图表，最后添加\
+  \ viewBox 属性将图表缩放到视口：\n\n```\nvar $svg = d3.select(chart).append('svg')\n  .attr('viewBox',\
+  \ '0 0 ' + width + ' ' + height)\n```\n\n仅此而已。现在，让我们假设我们在一个尺寸与创建图表时所用尺寸大致相同的元素中绘制图表。我们可以在下图中看到这样的结果：\n\
+  \n![](img/72559bd4713b2b89631dcca187d7e2db_107_0.png)\n\n将柱状图缩放到视口\n\n我们观察到图表看起来非常不错，并且完美地缩放到全宽，同时自动保持长宽比。但在此，我们已经可以猜到这个解决方案的一些缺点：\n\
+  \n- 长宽比是固定的\n- 图表应具有相似的初始坐标，例如包含元素的坐标\n\n第一点应该有点清楚；我们定义了一个长宽比，这就是为什么图表即使在不同元素上重新绘制时也会保持相同的长宽比。然而，第二点对于此实现至关重要。让我们看看下面最初使用\
+  \ 800 x 600 比例创建的图表：\n\n![](img/72559bd4713b2b89631dcca187d7e2db_108_0.png)\n\n\
+  将大图表缩放到小视口\n\n我们可以立即看到，图表被缩小以适应容器的尺寸，因此字体和轴变得无法阅读，因为刻度太小。当我们使用 800 x 600 作为初始比例时，会发生相反的情况。我们可以在下图中看到效果，其中刻度现在大到重叠：\n\
+  \n![](img/72559bd4713b2b89631dcca187d7e2db_108_1.png)\n\n将小图表缩放到大视口\n\n我们在前一个图表中观察到，由于向视口放大，轴和轴刻度被缩放过度。再次注意，对于这种技术，有必要在有用的坐标范围内绘制图表。\n\
+  \n### 防止描边缩放\n\n我们可以添加简单选项来防止通过 viewBox 属性引起的转换导致描边缩放。为此，我们需要将以下 CSS 片段添加到图表：\n\n\
+  ```\n.chart path, .chart line, .chart text {\n    vector-effect: non-scaling-stroke;\n\
+  }\n```\n\nvector-effect 属性（仅允许 none、inherit 和 non-scaling-stroke 值）是可以精确实现此目的的属性。然而，我真的不明白为什么没有更多支持的值，例如防止字体缩放等等。\n\
+  \n下图展示了一个缩小的柱状图示例，其中描边宽度保持不变：\n\n![](img/72559bd4713b2b89631dcca187d7e2db_109_0.png)\n\
+  \n带有重叠轴刻度的图表\n\n好的，现在，让我们再看看这个示例并思考主要缺点——固定的长宽比。通常，用户会调整网页大小以查看更多/更少信息。在这里，例如，轴刻度重叠是因为刻度标签太长或图表宽度太小。但是，如果我们调整窗口大小，图表将放大，输出将类似于下图。它只是在两个维度上缩放并保持长宽比。我们观察到，无法更好地安排数据沿较长的\
+  \ x 轴，以增强图表的可见性并避免轴上标签的重叠：\n\n![](img/72559bd4713b2b89631dcca187d7e2db_110_0.png)\n\
+  \n带有重叠轴刻度的缩放图表\n\n我们观察到，图像只是简单地缩放，而不改变长宽比和数据的表示。因此，由于简单的缩放，刻度标签在较大的图表上重叠。\n\n###\
+  \ 保持长宽比\n\n如果我们打算修改缩放图像的长宽比，可以这样做。我们可以额外将 `preserveAspectRatio` 属性设置为 `none` 或某些其他值，以使用不同于\
+  \ xMidYMid 默认值的其他长宽比缩放图像：\n\n```\nvar $svg = d3.select(chart).append('svg')\n.attr('viewBox',\
+  \ '0 0 ' + width + ' ' + height)\n.attr('preserveAspectRatio', 'none');\n```\n\n\
+  \n\n\n\n例如，使用无宽高比可以将图像缩放到视口中，而不保留宽高比，如下图所示：\n\n![](img/72559bd4713b2b89631dcca187d7e2db_111_0.png)\n\
+  \n使用 preserveAspectRatio none 缩放的图表\n\n默认情况下，浏览器使用 xMidYMid 设置来缩放图表到最大居中尺寸，同时可能保留原始图表的宽高比：\n\
+  \n![](img/72559bd4713b2b89631dcca187d7e2db_111_1.png)\n\n使用 preserveAspectRatio\
+  \ xMidYMid（默认）缩放的图表\n\n## 使用视口缩放的结论\n\n虽然这对于某些用例来说是一个很好的解决方案，但它有两个主要缺点：\n\n- 整个图表始终会被缩放；我们只能防止描边缩放\n\
+  - 由于浏览器会自动重新计算所有值，我们无法调整图表数据的分辨率\n\n另外，第一点是主要缺点。将图表缩放到视口在某些情况下很棒：然而，它不够灵活，尤其是因为我们也会缩放字体，而且我们需要保留宽高比；因此，我们无法将图表缩放到任意尺寸。此外，我们必须非常小心地使用初始尺寸，使其不太大也不太小，以免将细线缩放得太大或将细节缩放得太小。\n\
+  \n与第一点相比，第二点不再起重要作用，可以通过一些额外的 JavaScript 事件监听器来规避。\n\n### 使用 JavaScript resize 事件\n\
+  \n最后一个选项是使用 JavaScript 事件处理程序，并在父容器尺寸发生变化时手动重绘图表。使用此技术，我们可以始终测量父容器的宽度（以绝对单位），并使用此长度相应地更新和重绘图表。这为我们在数据分辨率方面提供了极大的灵活性，并且在需要时我们也可以将图表适应到不同的宽高比。\n\
+  \n### 原生 resize 事件\n\n理论上，这个解决方案听起来很棒；我们只需监听父容器或 SVG 容器（如果它使用 100% 的宽度）的 resize\
+  \ 事件，然后在元素尺寸发生变化时重绘图表。然而，div 或 svg 元素上并不存在原生的 resize 事件；现代浏览器仅在 window 元素上支持 resize\
+  \ 事件。因此，它仅在浏览器窗口尺寸发生变化时触发。这也意味着，一旦我们从页面中移除了图表，就需要清理监听器。\n\n尽管这是一个限制，但在大多数情况下，我们仍然可以使用\
+  \ window resize 事件将图表适应到其父容器；我们只需牢记这一点。\n\n让我们始终使用父容器的绝对尺寸来绘制和重绘图表；我们需要在 redraw\
+  \ 函数中定义以下内容：\n\n```\nvar width = chart.clientWidth;\nvar height = width / aspectRatio;\n\
+  ```\n\n现在，我们可以向 window 元素添加 resize 事件监听器，并在窗口尺寸发生变化时调用 redraw 函数：\n\n```\nwindow.addEventListener('resize',\
+  \ function(event) {\n    redraw();\n});\n```\n\n这个解决方案的好处是，我们可以在 redraw 函数中做任何我们想做的事情，例如修改宽高比、调整轴标签或修改显示元素的数量。\n\
+  \n下图显示了之前图表的缩放版本；我们观察到这次，轴刻度很好地适应了，不再重叠。此外，轴刻度现在占据了所有可用空间：\n\n![](img/72559bd4713b2b89631dcca187d7e2db_113_0.png)\n\
+  \n带有调整后轴刻度的缩放图表\n\n## 调整数据分辨率\n\n然而，还有一个问题可以通过这种手动重绘的方式很好地解决：数据分辨率的问题。小图表应该显示多少数据，大图表应该显示多少数据？\n\
+  \n![](img/72559bd4713b2b89631dcca187d7e2db_114_0.png)\n\n高数据分辨率的小图表\n\n我想你会同意，在前面的图中，对于图形的大小来说，我们显示了太多数据。这很糟糕，并使图表变得无用。此外，我们在重绘过程中确实应该根据小视口调整数据的分辨率。\n\
+  \n让我们实现一个函数，它只返回数组中每个 i-第个元素：\n\n```\nfunction adaptResolution(data, resolution)\
+  \ {\n    resolution = resolution ? Math.ceil(resolution) : 1;\n    return data.filter(function(d,\
+  \ i) {\n        return i % resolution == 0;\n    });\n}\n```\n\n太好了，让我们定义一个与宽度相关的数据分辨率并相应地过滤数据：\n\
+  \n```\nvar pixelsPerData = 20;\nvar resolution = pixelsPerData * (flatData.length)\
+  \ / width;\n```\n\n在前面的代码中，我们观察到现在可以定义一个数据点应具有的最小像素数量，并通过调用以下内容相应地移除数据值的数量：\n\n\
+  ```\nvar flatDataRes = adaptResolution(flatData, resolution);\n```\n\n下图显示了一个包含少量值的小图表，即使非常小，也完全可读：\n\
+  \n![](img/72559bd4713b2b89631dcca187d7e2db_115_0.png)\n\n具有适当数据分辨率的小图表\n\n在下一个图中，我们可以看到基于相同数据绘制的相同图表，使用了更大的容器。我们立即观察到数据分辨率相应地调整，使图表看起来很不错：\n\
+  \n![](img/72559bd4713b2b89631dcca187d7e2db_115_1.png)\n\n具有适当数据分辨率的大图表\n\n## 使用\
+  \ resize 事件的结论\n\n这是最灵活的解决方案，因此在许多情况下，它是首选方案。但是，您需要意识到使用此解决方案也存在某些缺点：\n\n- 没有简单的方法来监听父容器的\
+  \ resize 事件\n- 我们需要添加事件监听器\n- 我们需要确保事件监听器被正确移除\n- 我们需要手动重绘图表\n\n## 使用 Bootstrap\
+  \ 的媒体查询\n\n如我们在第一章中所讨论的，Bootstrap 是一个很棒的库，可以帮助您快速开始新项目。它不仅包含大量有用的 HTML 组件，还包含标准化和标准化的\
+  \ CSS 样式。其中一种是针对四种典型设备类型（Bootstrap 4 中为五种类型）实现的媒体查询。在本节中，我们将了解如何在我们的样式和脚本中使用这些媒体查询。Bootstrap\
+  \ 的一个伟之处在于，它成功地为 Web 开发人员标准化了典型设备尺寸；因此，初学者可以直接使用它们，而不必反复思考哪个像素宽度可能是平板电脑最常见的宽度。\n\
+  \n### CSS 中的媒体查询\n\n使用 Bootstrap 媒体查询的最快方法是直接从编译后的源代码中复制它们。这些查询如下所示：\n\n```\n/*\
+  \ Extra small devices (phones, etc. less than 768px) */\n/* No media query since\
+  \ this is the default in Bootstrap */\n\n/* Small devices (tablets, etc.) */\n@media\
+  \ (min-width: 768px) { ... }\n\n/* Medium devices (desktops, 992px and up) */\n\
+  @media (min-width: 992px) { ... }\n\n/* Large devices (large desktops, 1200px and\
+  \ up) */\n@media (min-width: 1200px) { ... }\n```\n\n我们可以轻松地将这些查询添加到我们的 CSS 样式中，并为我们的可视化定义某些属性和样式，例如四个预定义宽度、宽高比、间距等，以使图表的外观适应用户的设备类型。Bootstrap\
+  \ 4 目前处于 alpha 阶段；但是，您可以在 CSS 中开始使用预定义的设备类型。我强烈主张使用 Bootstrap 4 的原因是它转向使用 em 单位而不是像素：\n\
+  \n```\n// Extra small devices (portrait phones, etc.)\n// No media query since this\
+  \ is the default in Bootstrap\n```\n\n```\n// Small devices (landscape phones, etc.)\n\
+  @media (min-width: 34em) { ... }\n```\n\n```\n// Medium devices (tablets, etc.)\n\
+  @media (min-width: 48em) { ... }\n```\n\n```\n// Large devices (desktops, etc.)\n\
+  @media (min-width: 62em) { ... }\n```\n\n```\n// Extra large devices (large desktops,\
+  \ etc.)\n@media (min-width: 75em) { ... }\n```\n\n再次强调，这的巨大好处是，当用户增加浏览器的字体大小以增强可读性时，布局可以进行调整。\n\
+  \n### LESS/SASS 中的媒体查询\n\n在 Bootstrap 3 中，您可以将媒体查询 mixin 包含到 LESS 文件中，然后将其编译为普通\
+  \ CSS。\n\n要使用这些 mixin，您必须创建一个 LESS 文件而不是 CSS 文件，并导入 Bootstrap 的 variables.less 文件。在此文件中，Bootstrap\
+  \ 定义了其所有尺寸、颜色和其他变量。让我们创建 style.less 文件并导入 variables.less：\n\n```\n// style.less\n\
+  @import \"bower_components/bootstrap/less/variables.less\";\n```\n\n完美，就是这样。现在，我们可以开始在\
+  \ LESS 文件中使用 Bootstrap 的设备类型了：\n\n```\n/* Extra small devices (phones, etc. less\
+  \ than 768px) */\n/* No media query since this is the default in Bootstrap */\n\
+  ```\n\n```\n/* Small devices (tablets, etc.) */\n@media (min-width: @screen-sm-min)\
+  \ { ... }\n```\n\n```\n/* Medium devices (desktops, etc. */\n```\n\n\n\n\n\n@media\
+  \ (min-width: @screen-md-min) { ... }\n\n/* Large devices (large desktops, etc.)\
+  \ */\n@media (min-width: @screen-lg-min) { ... }\n\n最后，我们需要使用 LESS 编译器将我们的 `style.less`\
+  \ 文件转换为普通 CSS。为此，我们从终端运行以下命令：\n\n```\nlessc styles.less styles.css\n```\n\n正如我们所见，该命令需要安装名为\
+  \ `lessc` 的 LESS 编译器。如果您的系统上尚未安装，请继续安装它：\n\n```\nnpm install -g less\n```\n\n> 如果您是\
+  \ LESS 新手，我建议您阅读 http://lesscss.org/ 上的 LESS 文档。一旦您了解了 LESS，也可以查看非常相似的 SASS 格式，该格式受\
+  \ Bootstrap 4 青睐。您可以在 http://sass-lang.com/ 上找到 SASS 文档。\n\n我们可以通过以下 mixin 在 SASS\
+  \ 文件中使用 Bootstrap 4 媒体查询：\n\n```\n@include media-breakpoint-up(xs) { ... }\n@include\
+  \ media-breakpoint-up(sm) { ... }\n@include media-breakpoint-up(md) { ... }\n@include\
+  \ media-breakpoint-up(lg) { ... }\n@include media-breakpoint-up(xl) { ... }\n```\n\
+  \n依我看来，将 Bootstrap 的 LESS/SASS mixin 包含在可视化样式中是最清晰的解决方案，因为您始终从最新的 Bootstrap 源代码编译\
+  \ CSS，且无需将 CSS 复制到项目中。\n\n## JavaScript 中的媒体查询\n\n使用 Bootstrap 媒体查询使可视化适应用户设备的另一个绝佳可能性是直接在\
+  \ JavaScript 中使用它们。原生 `window.matchMedia (mediaQuery)` 函数为您提供了对 JavaScript 的同样控制，就像媒体查询对\
+  \ CSS 所做的那样。\n\n以下是使用它的示例：\n\n```\nif (window.matchMedia(\"(min-width: 1200px)\"\
+  ).matches) {\n /* the viewport is at least 1200 pixels wide */\n} else {\n /* the\
+  \ viewport is less than 1200 pixels wide */\n}\n```\n\n在前面的代码中，我们可以看到这个函数非常易于使用，并为我们的可视化增加了近乎无限的自定义可能性。\n\
+  \n![](img/72559bd4713b2b89631dcca187d7e2db_119_0.png)\n\n但是，除了直接使用 matchMedia 函数外，我们还可以在原生\
+  \ API 调用周围使用一个封装器。我可以推荐 Nick Williams 的 enquire.js 库，它允许您为视口变化声明事件监听器。可以通过包管理器 bower\
+  \ 运行以下命令从终端安装它：\n\n```\nbower install enquire\n```\n\n然后，我们需要将 enquire.js 添加到网站并使用：\n\
+  \n```\nenquire.register(\"screen and (min-width:1200px)\", {\n\n// triggers when\
+  \ the media query matches.\nmatch : function() {\n/* the viewport is at least 1200\
+  \ pixels wide */\n},\n\n// optional; triggers when the media query transitions\n\
+  unmatch : function() {\n/* the viewport is less than 1200 pixels wide */\n\n},\n\
+  ```\n\n在前面的代码中，我们可以看到，现在可以以几乎与监听 resize 事件相同的方式添加 match 和 unmatch 监听器，只是它更加灵活。\n\
+  \n![](img/72559bd4713b2b89631dcca187d7e2db_119_1.png)\n\n如果我们想使用 Bootstrap 设备类型，可以轻松使用\
+  \ enquire.js 根据需要实现它们，并为每种设备类型触发事件。但是，我更喜欢非常灵活地使用简单的封装器。\n\n### 使用 Bootstrap 的栅格系统\n\
+  \n使图表响应式并与 Bootstrap 完美协作的另一个绝佳且快速的方法是将其集成到 Bootstrap 的栅格系统中。然而，最佳且最清晰的集成方式是关注点分离，使可视化尽可能通用和自适应。\n\
+  \n让我们使用带有自定义 resize 事件的柱状图示例，并将其集成到简单的栅格布局中。像往常一样，您可以在代码示例中找到该示例的完整源代码：\n\n```\n\
+  <div class=\"container\">\n <div class=\"row\">\n <div class=\"col-md-8\">\n <div\
+  \ class=\"chart\" data-url=\"...\" ...>\n </div>\n </div>\n <div class=\"col-md-4\"\
+  >\n <h2>My Dashboard</h2>\n <p>This is a simple dashboard</p>\n </div>\n </div>\n\
+  \ <div class=\"row\">\n <div class=\"col-md-4\">\n <div class=\"chart\" data-url=\"\
+  ...\" ...>\n </div>\n </div>\n <div class=\"col-md-4\">\n <div class=\"chart\" data-url=\"\
+  ...\" ...>\n </div>\n </div>\n <div class=\"col-md-4\">\n <div class=\"chart\" data-url=\"\
+  ...\" ...>\n </div>\n </div>\n </div>\n </div>\n <div class=\"row\">\n <div class=\"\
+  col-md-6\">\n <div class=\"chart\" data-url=\"...\" ...>\n </div>\n </div>\n <div\
+  \ class=\"col-md-6\">\n <div class=\"chart\" data-url=\"...\" ...>\n </div>\n </div>\n\
+  \ </div>\n </div>\n```\n\n我们观察到，通过利用父容器的宽度，可以简单地将图表添加为栅格列中的 `div` 元素。这是首选的集成方式，两个组件可以很好地协同工作，但互不依赖。\n\
+  \n在下图中，我们可以看到刚刚构建的简单仪表板的截图。我们观察到，可视化已经很好地适应了我们的栅格布局，这使得将它们组合在一起变得容易：\n\n![](img/72559bd4713b2b89631dcca187d7e2db_121_0.png)\n\
+  \n使用 Bootstrap 栅格布局的简单仪表板\n\n## 摘要\n\n在本章中，您了解了在浏览器中定义长度的绝对单位和相对单位的基本知识。请记住，rem\
+  \ 单位起着重要作用，因为它允许布局在用户增加网站字体大小时进行调整。\n\n然后，您了解了如何使用相对单位、视口和 resize 事件根据当前容器大小调整图表大小和数据分辨率。\n\
+  \n在前面的部分中，您了解了如何在 CSS、LESS 和 JavaScript 中使用 Bootstrap 媒体查询。最后，我们还了解了如何将图表与 Bootstrap\
+  \ 的栅格系统集成。\n\n在下一章中，我们将继续实现响应式图表，并深入探讨为各种设备和屏幕分辨率创建响应式交互。\n"
+- "# 构建响应式交互\n\n在上一章中，您学习了如何使图表响应式；这意味着在各种设备上都能 _看起来_ 很好。在本章中，我们将探讨响应式交互；这意味着在各种设备上都能\
+  \ _感觉_ 很好。在本章中，您将学习以下内容：\n\n- 探索 D3 事件系统\n- 使用原生事件和 D3 事件系统\n- 理解响应式交互\n- 实现交互目标\n\
+  - 计算数据集中最近的元素\n- 了解触摸事件\n- 回顾鼠标事件\n- 实现简单的缩放行为\n- 应用复杂的轴缩放\n\n首先，我们将探讨 JavaScript\
+  \ 中的事件，并理解如何使用事件监听器来分离和集成不同的组件。我们还将看到内部 D3 事件系统并学习如何使用它。事件系统有助于使代码更清晰，并使执行路径更易于跟踪。\n\
+  \n然后，我们将探讨响应式事件和交互。我们将看到在不同设备上处理交互的四种不同方式。最重要的规则是，在小屏幕上不要使用非常小的交互目标。\n\n然后，我们将概览原生鼠标和触摸事件及其执行顺序；这将帮助您在设计响应式交互时避免常见陷阱，并充分理解何时需要阻止事件传播默认动作。\n\
+  \n在本章的最后一部分中，我们将探讨常见的交互技术，例如缩放和平移。我们将比较简单的放大缩放与更复杂的 x 轴和 y 轴缩放，以了解两者之间的区别。\n\n##\
+  \ 使用事件系统\n\n在我们日常的许多系统和编程语言中，不同实例之间的交互由事件和事件监听器（也称为事件处理程序或回调）处理。通常，应用程序或系统的一部分会触发某个事件，而另一部分——监听此事件的部分——会执行指定事件的事件监听器。\n\
+  \n让我们考虑一个 JavaScript 中的简单示例。每当浏览器发生 resize 事件时，我们都想调用 resize 函数。因此，我们必须创建一个事件监听器，它等待（监听）浏览器窗口的\
+  \ `resize` 事件，并在事件发生时执行 `resize()` 事件监听器。该函数如下：\n\n```\nwindow.addEventListener('resize',\
+  \ function(event) {\n    resize();\n});\n```\n\n这看起来很简单，而且非常容易理解。我们只需要知道哪些元素（在哪些浏览器中）存在哪些事件。您在之前的章节中已经了解到，除了\
+  \ `window` 元素外，没有其他 DOM 元素会触发 `resize` 事件。这意味着，通常可以在元素上触发的事件列表是标准化且明确定义的。\n\n##\
+  \ D3.js 中的自定义事件\n\n事件系统有助于使用标准化事件集成分离的组件。在处理可视化时，这非常方便。您通常会在可视化中发现大量可重用的组件和部分，它们应该紧密集成，同时又可重用。\n\
+  \n\n\n\n\n以轴为例。在简单的 2D 图表中，你需要两个轴；不过，在 3D 图表或带有两个 y 轴的 2D 图表中，你需要三个轴。当用户缩放图表时，轴的比例会发生变化，以显示数据集更精细的域。同时，显示的数据点也会随之更新。使用事件时，我们可以在所有组件中监听缩放事件并相应地进行更新。最棒的是，无论你的图表中有两个、三个还是没有轴，它都能正常工作。这意味着任意数量的元素（无元素或多个元素）可以自动监听事件，并在发生特定事件时更新，而触发事件的元素不需要知道它们。事件系统可以帮助你构建干净、模块化且解耦的组件，这些组件之间没有直接依赖关系。这就是为什么我强烈建议你使用一个事件系统，甚至可以使用\
+  \ D3 的事件系统。\n\n考虑到这一点，我鼓励你在可视化中使用事件系统和自定义事件，以标准化可视化中的交互，保持所有功能解耦但集成。在 D3 中创建自定义事件非常简单，因为它提供了所有必要的功能。\n\
+  \n让我们看一个简单的示例；这里，我们希望在用户点击柱状图中的柱子时传播 `dataClick` 事件。首先，我们需要创建一个所谓的 `dispatcher`，它知道某个组件的所有事件。在我们的例子中，我们将为整个图表使用一个单一的\
+  \ dispatcher：\n\n```\n// Create dispatcher\nvar dispatch = d3.dispatch(\"dataClick\"\
+  );\n```\n\ndispatcher 是可以触发事件的代码片段。在前面的代码中，我们初始化一个可以触发 `dataClick` 事件的 dispatcher。除了触发事件，dispatcher\
+  \ 还被其他组件用来监听事件。\n\n接下来，我们创建一个事件监听器，每当事件发生时就会执行它。这段代码通常放在我们希望与图表分离的可重用组件中（轴、网格、图例、缩略图等）：\n\
+  \n```\n// Register an event listener\ndispatch.on(\"dataClick\", function(args)\
+  \ {\n  console.log(\"Data clicked\", args);\n});\n```\n\n在前面的代码中，我们可以看到只需要访问 dispatch\
+  \ 对象即可注册事件监听器。监听事件的方法通常被称为 `on`，其签名为 `.on(eventName, eventHandler)`。我们监听 `dataClick`\
+  \ 事件并注册一个事件处理程序（也称为回调或事件监听器），该处理程序将参数记录到控制台。请注意，我们始终需要确保组件为其他组件提供注册事件处理程序的方法，从而可以访问\
+  \ dispatch 对象。\n\n最后，我们可以通过在 dispatcher 对象上直接调用事件作为函数来触发事件：\n\n```\n// Dispatch\
+  \ event\ndispatch.dataClick({foo: 'bar'});\n```\n\n在前面的代码中，我们可以看到可以随事件一起发送一些数据。触发事件后，该事件的所有事件监听器都将以事件数据作为参数执行。\n\
+  \n再次强调，D3 的事件系统非常适合为你的可视化创建基于事件的架构，我强烈建议你这样做。这使得在应用程序中追踪函数调用、创建可重用且解耦的组件以及标准化不同组件之间的通信变得容易得多。\n\
+  \n> 要了解有关 D3 事件系统的更多信息，请访问项目的 Github 页面 https://github.com/mbostock/d3/wiki/Internals#events。\n\
+  \n## 响应式事件\n\n让可视化在移动设备上既好看又好用，不仅意味着让它们看起来美观，还意味着让它们手感良好，甚至能够正常工作。只有当你不仅能用鼠标，还能用指尖完成所有交互时，交互式可视化才会感觉良好。在上一章中你了解到，在低分辨率设备上显示过多数据是不好的，因为人们无法再真正区分数据点，这会导致性能和可用性差。为移动设备降低数据分辨率的另一个好理由是，它会自动增大数据点上的交互区域。\n\
+  \n## 交互区域\n\n虽然后我们可以使用鼠标指针或数字笔以像素精度进行绘制，但要使用指尖成功交互，我们需要 7 mm 到 9.5 mm 的目标区域。这个区域远大于桌面优化应用中大多数按钮、数据点和元素；因此，与这些应用的交互大多数时候都是不令人满意的。我们必须牢记，如果希望用户与可视化中的数据点进行交互，那么可视化中数据点的交互区域必须足够大。一般来说，有三种方法可以实现这一点：\n\
+  \n- 创建更大的目标——因此，更大的数据点\n- 在数据点上方创建大的不可见交互目标\n- 始终与手指位置最近的数据点进行交互\n\n让数据点足够大以便用指尖交互是一个好的经验法则；然而，在许多情况下，将它们缩放到\
+  \ 9.5 mm 的半径根本不可能。\n\n第一个方法有些显而易见；我们增加可视化中所有元素的大小。虽然后这可能会产生更大的交互目标，但也可能导致丑陋的放大问题、重叠的数据样本等。但是，当可视化中有足够空间时，这是一个足够好的解决方案。\n\
+  \n为了最大限度地减少可视化中的放大错误和重叠，我们只是使用重叠的不可见交互目标。虽然后这解决了丑陋重叠 artifacts 的问题，但它没有解决交互目标重叠的问题。当两个目标重叠时，触摸事件始终会由创建最晚的元素接收，没有简单的方法来更改此行为。\n\
+  \n解决大交互区域问题没有正确的方法；我个人更喜欢第三种方法：与手指位置最近的数据点进行交互。每当用户触摸可视化时，我们会查找手指位置最近的数据点。我们甚至可以将此技术与围绕数据的不可见交互区域的第二种方法结合起来。我们可以估计手指与数据点中心之间的距离是否小于\
+  \ 9.5 mm（或其他阈值）。这种方法防止了数据点和交互区域的重叠 artifacts；这是一个很好的权衡，但稍微复杂一些且计算开销更大。\n\n# 创建交互目标\n\
+  \n让我们来看看这些方法并实现它们！\n\n最快的解决方案是创建比原始数据点大得多的交互目标，覆盖在原始元素上，并且是透明的。这种方法不需要太多更改，因为你可以在元素上使用标准的\
+  \ `click` 事件处理程序，在开发者工具中查看元素（与之前一样），并通过使其可见来检查交互目标。\n\n要实现这一点，你只需创建大小为 9.5 mm 且\
+  \ `opacity` 为 0 的圆形。在这里，你附加点击监听器。你可以在随本书提供的代码中找到一个示例。示例的截图与以下部分提供的截图相同。\n\n然而，在某些情况下，尤其是当你处理许多数据点时，你不想用交互元素弄乱你的容器。因此，我们想看看不同且更灵活的解决方案。\n\
+  \n## 计算最近的数据点\n\n为了成功应用最近点技术，我们需要从触摸位置计算最近的数据点。让我们思考一下，要从 `svg` 元素上的 `click` 事件监听器中获取最近的元素，我们需要应用哪些步骤：\n\
+  \n```\n$svg.on('click', function(){\n// Get the relative position\nvar pos = d3.mouse(this);\n\
+  // Computation goes here\n});\n```\n\n如前面的代码所示，我们使用带有 `this` 参数的 `d3.mouse` 函数获取手指或鼠标相对于\
+  \ `svg` 元素的位置（`this` 引用当前的 `svg` 元素）。这会计算并返回手指或鼠标相对于参考元素的相对位置。我们使用 `d3.mouse` 函数而不是\
+  \ `d3.touch` 或 `d3.touches` 函数，以表明我们只对单个点击位置（用手指）感兴趣，而不是多指触摸手势。\n\n> 要了解有关 `d3.event`、`d3.mouse`\
+  \ 和 `d3.touches` 的更多信息，请访问项目的 Github 页面 `https://github.com/mbostock/d3/wiki/Selections#d3_mouse`。\n\
+  \n\n\n\n接下来，我们需要将点击位置的坐标（像素范围内的一个值）转换为数据集的域；这通常通过使用 D3 中的反向比例尺运算符来完成：\n\n```\nvar\
+  \ xValue = xScale.invert(pos[0]);\n```\n\n在前面的代码中，我们重复使用了在第 2 章《使用 D3.js 和 SVG 创建柱状图》中创建的\
+  \ xScale 对象，以便将像素值映射到数据集 x 值域中的一个值。现在，我们需要找到点击位置的值与数据集中 x 值数组相交的索引。我们可以通过从数组开头（左侧）或结尾（右侧）迭代数组并将值与数组值进行比较来获得它。我们还可以使用\
+  \ d3.bisector 创建一个正好做到这一点的 bisect 函数：\n\n```\n// Create a left bisector\nvar bisect\
+  \ = d3.bisector(xKey).left;\n// Get the index where the intersection occurs\nvar\
+  \ index = bisect(data, xValue);\n```\n\n在前面的函数中，我们重复使用了来自第 2 章《使用 D3.js 和 SVG 创建柱状图》中的\
+  \ xKey 函数和 data 对象\n\n> 你可以在项目的 Github 页面 https://github.com/mbostock/d3/wiki/Arrays#d3_bisector\
+  \ 上找到有关双分查找器的更多信息。\n\n最后，我们只需检查索引是否存在（因为非裁剪比例尺的默认比例设置），并比较当前值或前一个值哪个更接近点击位置：\n\n\
+  ```\nif (index == 0 || index > data.length) {\nreturn;\n}\nvar d0 = data[index -\
+  \ 1];\nvar d1 = data[index];\n// get the nearest value\nvar d = xValue - xKey(d0)\
+  \ > xKey(d1) - xValue ? d1 : d0;\n```\n\n最后，d 包含数据集中与我们的点击位置最接近的条目。在最后一步中，我们检查数据点是否比某个阈值更近：\n\
+  \n```\nfunction distance(x0, x1, y0, y1, r) {\nr = r || 0;\nreturn Math.sqrt(Math.pow(x0+r-x1,\
+  \ 2) + Math.pow(y0+r-y1, 2));\n}\n```\n\n```\nvar yValue = yScale.invert(pos[1]);\n\
+  var k = distance(xKey(d), xValue, yKey(d), yValue);\n// if k less than 9.5mm\nif\
+  \ (k < 9.6/2.54*9.5) {\n  // Mark data point as active\n}\n```\n\n在前面的代码中，我们定义了一个返回二维欧几里得距离的\
+  \ distance 函数，并将其应用于点击位置和最近数据点的中心点；我们比较了距离是否小于 9.5 毫米（96/2.54 = 1 厘米，9.6/2.54 =\
+  \ 1 毫米）。\n\n在前面的示例中，我们看到根据我们的定义，这能给出准确的结果。但是，请记住，当用户点击数据点时，会进行一次计算（数组迭代/搜索）；根据数据量和数据集的大小，这可能导致卡顿的用户体验。在这种情况下，我们必须直接在数据点上使用简单的点击事件监听器。\n\
+  \n让我们来看一个带有一个数据系列的简单散点图，在其中可以看到前面的代码在实际中的效果。在下图中，我们看到了这样的图表：\n\n![](img/72559bd4713b2b89631dcca187d7e2db_131_0.png)\n\
+  \n带有一个系列的散点图\n\n你可以在随书提供的代码示例中找到这个示例。如果你现在在图表上数据点旁边点击，该点将自动被选中。我们可以在下图中看到选中的元素；每当我们点击距离某个点\
+  \ 9.5 毫米以内的位置时，x 轴上最近的点将被选中：\n\n![](img/72559bd4713b2b89631dcca187d7e2db_132_0.png)\n\
+  \n带有高亮元素的散点图\n\n下图突出显示了交互区域：\n\n![](img/72559bd4713b2b89631dcca187d7e2db_132_1.png)\n\
+  \n带有高亮交互区域的散点图\n\n之前的解决方案效果很好，通常用于选择最近的元素；但是，它有一个重大缺点。它仅在 x 轴上计算最近距离，这意味着它无法区分在\
+  \ y 轴上更接近的元素。最大的问题是处理多个系列或具有相同 x 值的更多数据点，例如下图所示：\n\n![](img/72559bd4713b2b89631dcca187d7e2db_133_0.png)\n\
+  \n带有多个系列的散点图\n\n我们可以使用一个非常简单的方法来解决这个问题：计算每个数据点到点击位置在像素范围内的距离，并选择其中最小的一个。让我们实现此功能，并在\
+  \ svg 元素上创建点击事件监听器：\n\n```\n$svg.on('click', function() {\n  // Get the relative\
+  \ position\n  var pos = d3.mouse(this);\n\n  // Computation goes here\n});\n```\n\
+  \n现在，我们可以将数据数组转换为相对于点击位置的距离数组；我们使用前面示例中的 distance 函数：\n\n```\nvar distances = flatData.map(function(d)\
+  \ {\n  var x = xScale(xKey(d));\n  var y = yScale(yKey(d));\n  return distance(x,\
+  \ pos[0], y, pos[1]);\n});\n```\n\n现在我们可以从数据集中选择最小距离和匹配的元素。\n\n```\nvar k = d3.min(distances);\n\
+  var index = distances.indexOf(k);\nvar d = data[index];\n// if k less than 9.5mm\n\
+  if (k <= 9.6/2.54*9.5) {\n// Mark data point as active\n}\n```\n\n如果我们查看结果，可以看到这个解决方案完美地处理了所有系列中的所有最近元素。在下图中，我们可以看到最近的元素被正确选中；我鼓励你也尝试代码中的示例：\n\
+  \n![](img/72559bd4713b2b89631dcca187d7e2db_134_0.png)\n\n带有高亮元素的散点图\n\n让我们再次显示 9.5\
+  \ 毫米的交互区域；我们可以在下图中看到结果：\n\n![](img/72559bd4713b2b89631dcca187d7e2db_135_0.png)\n\
+  \n带有高亮交互区域的散点图\n\n虽然这个解决方案适用于各种数据、比例尺和坐标轴，但由于距离是在像素范围内测量的，我们需要意识到计算每个数据点到点击位置的距离。根据数据点的数量，处理大型数据集时这可能会导致性能问题。一如既往，这两个示例的混合在这里将是一个很好的解决方案。\n\
+  \n在性能与兼容性平衡的解决方案中，我们在点击位置周围绘制一个矩形，并使用双分查找器返回该矩形中的所有元素。然后，我们在该矩形中的所有元素上使用 distance\
+  \ 函数来获取最近的一个。使用这种框方法，我们只需计算部分距离，而不是计算每个数据集中每个点的距离。使用双分查找器对数据集进行切片也比计算所有距离快得多。\n\n\
+  ## 触摸事件\n\n让我们看看 JavaScript 中的原生事件 API。以下是按正确执行顺序排列的最常见触摸事件列表：\n\n- touchstart：指尖触碰屏幕\n\
+  - touchmove：指尖在屏幕上移动\n- touchend：指尖停止触碰屏幕\n- touchcancel：触摸事件被取消\n\n仅凭这个列表，我们可能不明白为什么我们的可视化对触摸输入仍然工作得很好，尽管我们在代码中从未定义过任何\
+  \ touchstart 事件。如果我们查看本书的代码，大部分看到的是点击事件，但它们是如何被触摸触发的呢？\n\n列表中我们看不到的一种行为叫做模拟处理，它由浏览器自动完成。浏览器仅仅继续将触摸事件作为模拟的鼠标事件进行传播。这意味着屏幕上的每次触摸都会导致完整的触摸执行链以及完整的鼠标执行链；因此，一次触摸会生成一个点击事件。\n\
+  \n我们将在最后一章中仔细查看此执行链、默认处理和传播，你将在其中学习如何处理跨浏览器兼容性问题以及同时针对触摸和鼠标进行优化。让我们继续介绍鼠标事件。\n\n\
+  有关触摸事件的更多信息可以在 MDN 上找到，网址为 https://developer.mozilla.org/en-US/docs/Web/API/Touch_events。\n\
+  \n## 鼠标事件\n\n鼠标事件稍微难处理一些，因为我们不仅需要知道事件的名称，还需要知道正确的执行顺序（乍一看似乎有些任意）。以下是用户在屏幕上双击元素时最常见的鼠标事件列表，按其执行顺序排列：\n\
+  \n- mouseenter：鼠标光标进入元素\n- mouseover：鼠标光标悬停在元素上\n- mousemove：鼠标在元素上移动\n- mousedown：鼠标按钮被按下\n\
+  - mouseup：鼠标按钮被释放\n- click：元素被点击\n\n\n\n\n- dblclick: 元素被双击\n- mouseleave: 鼠标光标正在离开元素\n\
+  \n正如我们所见，简单的鼠标单击也会触发 mouseenter、mouseover 和 mouseleave 事件。每当您处理事件和执行顺序时，我建议您记住或返回此列表并检查执行链。请不要忘记，您始终可以使用\
+  \ event.preventDefault() 和 event.stopPropagation() 停止传播并阻止默认事件处理。\n\n> 有关鼠标事件的更多信息，可以在\
+  \ MDN 上找到 https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent。\n\n## 平移和缩放\n\
+  \n除了单击可视化中的数据点、条形和元素外，常见的交互还有缩放和平移。这有助于用户从较小的视图切换到数据的更详细视图。考虑到您迄今所学的一切，在缩放时提高数据分辨率也是合理的。用户缩放可视化的程度越高，数据分辨率就越高。\n\
+  \n与上一章类似，实现它们的方法有多种。我们将查看不同的可能性，并通过缩放以下图片中的图表来进行比较：\n\n![](img/72559bd4713b2b89631dcca187d7e2db_137_0.png)\n\
+  \n网格布局中的简单条形图\n\n### 简单缩放\n\n让我们先从非常简单的缩放开始。在许多情况下，尤其是当我们使用没有轴的数据表示时，我们希望为用户提供一种简单放大可视化视图的方式。\n\
+  \n要实现此效果，我们可以使用 SVG 的原生 transform 函数，例如 scale 和 translate，并将它们应用到包含所有可缩放组件的容器元素上。我们已经可以看到，只要这些组件放在容器内，可缩放组件甚至不参与这种技术。这就是该方法的巨大优势所在——它非常容易添加到可视化中，并且非常容易实现。\n\
+  \n让我们使用更多 D3 函数来逐步讲解。首先，我们需要确保所有数据都分组在可视化容器中。因此，我们向图表添加一个简单容器：\n\n```javascript\n\
+  var $svg = d3.select(chart).append('svg');\nvar $vis = $svg.append('g').attr('class',\
+  \ 'vis-container');\nvar $axesGroup = $vis.append('g').attr('class', 'axis-container');\n\
+  var $dataGroup = $vis.append('g').attr('class', 'data-container');\n```\n\n接下来，我们初始化默认缩放因子和平移分量。我们可以使用名为\
+  \ d3.behavior.zoom() 的内置函数来创建缩放生成器：\n\n```javascript\nvar translate = [0,0];\nvar\
+  \ scale = 1;\nvar zoom = d3.behavior.zoom()\n  .on(\"zoom\", function() {\n    translate\
+  \ = d3.event.translate;\n    scale = d3.event.scale;\n    $vis.attr(\"transform\"\
+  ,\n      \"translate(\" + translate + \")scale(\" + scale + \")\");\n  });\n```\n\
+  \n在前面的示例中，我们创建了一个名为 zoom 的缩放生成器函数，它实现了一个缩放事件监听器函数。当发生缩放或平移时，我们只需根据缩放或平移运动来缩放可视化容器并对其进行平移。最后，我们将缩放生成器应用到一个元素上：\n\
+  \n```javascript\n$svg.call(zoom);\n```\n\n在我们的例子中，我们总是希望将缩放生成器放在 svg 元素上。就这样，只需几行代码就能实现缩放和平移——令人印象深刻。它还能处理捏合缩放操作以及使用鼠标滚轮缩放和平移（通过鼠标和手指）。\n\
+  \n让我们查看前面代码的输出；下图显示了使用所提技术缩放的条形图：\n\n![](img/72559bd4713b2b89631dcca187d7e2db_139_0.png)\n\
+  \n使用简单缩放的缩放条形图\n\n我们已经可以看出使用此简单函数的缺点：缩应用于整个可视化，其工作方式类似于图形缩放。这在许多情况下非常有帮助，但当我们处理图表时，沿轴缩放数据会更有帮助。\n\
+  \n### 轴缩放\n\n我们可以设置 d3.behavior.zoom 函数的更多选项，并通过修改缩放事件监听器来更改其行为。我们可以告诉内置缩放函数使用缩放对象进行缩放，并且它应该自行处理所有内容。\n\
+  \n在这种情况下，我们将 xScale 和 yScale 作为参数添加到 .x() 和 .y() 方法中。因此，每次调用 draw 函数时，算法都会覆盖两个函数的内置缩放范围：\n\
+  \n```javascript\nvar zoom = d3.behavior.zoom()\n.x(xScale)\n.y(yScale)\n.on(\"zoom\"\
+  , function() {\n// Event listeners goes here\n});\n$svg.call(zoom);\n```\n\n最后，添加一个事件处理程序。在此示例中，我们希望更新轴和数据：\n\
+  \n```javascript\n$xAxis.call(xAxis);\n$yAxis.call(yAxis);\nnestDataRes.forEach(function(data,\
+  \ i){\n var $bars = $dataGroup.selectAll('rect.g-' + i)\n .data(data.values, xKey);\n\
+  \n$bars\n .attr('x', function(d) { return xScale(d.x) + i*barWidth; })\n .attr('y',\
+  \ function(d) { return yScale(d.y); })\n .attr('height', function(d) { return (yScale(0)\
+  \ - yScale(d.y)); })\n .attr('width', barWidth)\n .attr('fill', colors(data.key));\n\
+  });\n```\n\n缩放后的条形图\n\n## 总结\n\n在本章中，您学习了原生事件、事件监听器和事件系统。我们看到，内部 D3 事件系统非常易于使用，我强烈建议您在可视化工具中使用它。它有助于使代码更有条理，并跟随代码中的执行路径。\n\
+  \n然后，您学习了交互目标以及如何使用平分法和所有元素相对于点击位置的距离来计算最近元素。\n\n在上一节中，我们实现了缩放和平移等常见交互技术。使用 D3，这些功能可以非常轻松地实现。在下一章中，您将学习如何创建过渡和动画。\n"
+- "# 设计过渡和动画\n\n在前几章中，您学习了响应式可视化和交互的所有内容。现在，我们希望使用过渡和动画使它们变得美观并栩栩如生。在本章中，您将涵盖以下内容：\n\
+  \n- 了解为何在 Web 动画中使用 JavaScript\n- 使用 D3 定时器实现简单动画\n- 了解插值函数及其在 D3 中的使用方法\n- 了解缓动函数及其使用方法\n\
+  - 理解贝塞尔曲线的概念\n- 实现属性和路径过渡\n- 了解形状补间的主要问题\n\n在第一节中，您将了解用于为 DOM 元素设置动画的不同 Web 标准，并学习如何比较它们在为可视化设置动画时的优缺点。这将帮助您理解为何我们使用\
+  \ D3 的内置动画和过渡，而非 SMIL 或 CSS 动画。\n\n在第二节中，我们将介绍 D3 动画的主要概念——定时器、插值和缓动。我们将发现，使用 D3\
+  \ 抽象来实现自定义动画非常方便；然而，对于简单的过渡来说，它过于复杂。\n\n在下一节中，我们将看到使用 D3 进行过渡实际上非常简单。我们只需了解过渡是什么以及如何从过渡构建动画即可。\n\
+  \n最后，您将在最后一节中了解形状补间。这是一项相当困难的任务，目前还没有用于形状补间的灵活开源库。您将了解形状补间中的问题和难点以及解决它所需的所有必要信息（也许可以据此开发一个开源\
+  \ D3 插件，随便说说）。\n\n## 是否存在 Web 动画标准？\n\nD3 的一个优点是它直接使用底层标准，例如 SVG 和 CSS，而不是通过 API\
+  \ 将其抽象化。这使开发人员可以访问 SVG 和 Web 本身中可用的所有功能。说到动画，有人可能会问 Web 动画标准是什么。\n\n在本节中，我们将了解当前存在于\
+  \ Web 上用于为 SVG 元素设置动画的不同方式和技术。这将帮助您为应用程序和用例选择合适的技术。\n\n## 使用 SMIL 为 SVG 设置动画\n\n\
+  同步多媒体集成语言（SMIL）是 Web 上交互式多媒体内容的规范。SMIL 动画是一种使用直接嵌入 DOM 树的 XML 语法为 DOM 元素设置动画的规范。正因如此，它非常适合为\
+  \ SVG 可视化设置动画。\n\nSVG 的 SMIL 动画可以使用以下元素构建：\n\n- `<animate>`：随时间为单个属性/属性设置动画\n- `<set>`：在指定持续时间内设置属性/属性，在动画中设置非数值属性值时很有用\n\
+  - `<animateMotion>`：沿运动路径为元素设置动画\n- `<animateColor>`：随时间为颜色设置动画\n- `<animateTransform>`：为\
+  \ SVG 元素的 transform 属性设置动画\n\n要为 SVG 元素设置动画，我们只需将 SMIL 动画标签放入要为其设置动画的元素中（或使用 `xlink:href`\
+  \ 属性指定目标）。让我们看一个简单示例。如果要沿 x 坐标为矩形设置动画，可以使用：\n\n```svg\n<svg width=\"800\" height=\"\
+  400\">\n<rect x=\"50\" y=\"50\" width=\"100\" height=\"100\">\n<animate attributeName=\"\
+  x\" from=\"50\" to=\"650\" dur=\"1s\" />\n</rect>\n</svg>\n```\n\n\n\n\n\n在前面的代码中，我们通过在\
+  \ rect 元素内放置一个 animate 标签，并通过 attributeName 属性定义应进行动画的属性，来对矩形的 x 属性制作动画。您可以在 code\
+  \ 文件夹中找到此示例的 animate 演示。\n\n与使用 from 和 to 属性不同，通过定义 values 属性，SMIL 也可以正确地对字符串进行插值。这对于为\
+  \ SVG 路径的 path 元素制作动画非常有用，其中控制点编码为字符串。使用此技术，我们也可以制作形状动画，如下图所示：\n\n![](img/72559bd4713b2b89631dcca187d7e2db_144_0.png)\n\
+  \n形状动画\n\n下面是一个简单示例，我们对 path 的形状制作动画：\n\n```\n<svg width=\"800\" height=\"600\"\
+  >\n<path>\n<animate\n attributeName=\"d\"\n dur=\"3000ms\"\n repeatCount=\"indefinite\"\
+  \n values=\"m 7.3867404,14.177924 -0.7836793,-0.735313\n-1.050013,0.228716 0.457154,-0.972548\
+  \ -0.5419939,-0.927944\n1.066216,0.134245 0.7150424,-0.802217 0.2018038,1.055516\n\
+  0.9839143,0.432147 -0.9414944,0.518099 z;\n M 7.3867404,14.177924 6.476792,13.939795\
+  \ 5.5530481,13.671327\n5.497234,12.698779 l -0.029026,-0.927944 0.8847042,-0.331372\n\
+  0.8965542,-0.3366 0.7068801,0.866112 0.478838,0.621551\n-0.5390117,0.802204 z;\"\
+  \ />\n</path>\n</svg>\n```\n\n在前面的代码中，我们仅将两个元素路径都添加到 values 属性中，就将一个星形转换为一个六边形。请注意，在此简单情况下，动画效果良好，因为我们对两种形状都使用相同数量的控制点。我们将在后面关于形状补间的章节中更详细地讨论这一点。\n\
+  \n> > 您可以在 W3C 网站上找到完整的 SMIL 规范，网址为 http://www.w3.org/TR/REC-smil/，以及关于 SMIL Animations\
+  \ 的章节，网址为 http://www.w3.org/TR/2001/REC-smil-animation-20010904/。SMIL SVG Animations\
+  \ 的规范可在 http://www.w3.org/TR/SVG/animate.html 找到。\n\n虽然 SMIL 动画提供了一个极佳的界面来描述（甚至复杂的）SVG\
+  \ 动画，但不要过于兴奋。下图显示，Internet Explorer 和 Edge 不支持 SMIL Animations：\n\n![](img/72559bd4713b2b89631dcca187d7e2db_145_0.png)\n\
+  \nSMIL Animations 的跨浏览器兼容性\n\n尽管 Microsoft 产品中缺乏 SMIL 支持使其在许多项目中不是一个好的选择，但该图中还隐藏着一个更糟糕的消息。在\
+  \ Chrome 中，SMIL 动画自版本 45 起被标记为弃用，这意味着它们可能在任何后续版本中被移除。Chrome 团队停止支持 SMIL 动画的决定，旨在确立和加强\
+  \ JavaScript 和 CSS 作为 DOM 动画的 Web 标准。因此，在涉及动画和过渡时，开发人员也应优先选择 Web 标准，例如 CSS 和 JavaScript。\n\
+  \n## 使用 CSS 为 HTML 制作动画\n\n近年来，CSS 已成为为 DOM 元素制作动画的事实上的标准。它主要用于随时间转换 HTML 元素，但也可用于为\
+  \ SVG 元素的属性制作动画。\n\nCSS 中的动画通过 @keyframes 关键字定义。让我们创建一个与之前类似的示例，其中我们希望将矩形从左向右移动：\n\
+  \n```\n<style>\n@keyframes move {\n  from {x: 50;}\n  to {x: 650;}\n}\n\nrect {\n\
+  \  animation-name: move;\n  animation-duration: 1s;\n}\n</style>\n<svg width=\"\
+  800\" height=\"400\">\n<rect x=\"50\" y=\"50\" width=\"100\" height=\"100\"></rect>\n\
+  </svg>\n```\n\n前面的代码与上一节中的第一个示例完全相同。我们观察到，此示例中的动画代码现在已与可视化代码分离，这使得动画代码更具可重用性（如同\
+  \ CSS 样式）。但这也使得编写更加困难。定义关键帧，然后声明由这些关键帧组成的动画，并不十分直观。\n\n![](img/72559bd4713b2b89631dcca187d7e2db_146_0.png)\n\
+  \nCSS Animations 的跨浏览器兼容性\n\n虽然 CSS 动画是为 HTML 元素制作动画和转换的不错选择，但它们在为 SVG 创建复杂的动画可视化方面限制了我们。在涉及路径插值和形状补间时，我们最好选择\
+  \ JavaScript 方案。\n\n## 使用 JavaScript 为任何事物制作动画\n\nJavaScript 动画是为 DOM 元素制作动画的最佳且最标准的方式吗？嗯，不完全是。它们允许各种动画：自定义路径插值等等，但它们必须显式修改\
+  \ DOM。\n\n让我们尝试与之前相同的示例，其中我们对矩形的 x 位置制作动画。因此，我们在 JavaScript 中创建了一个名为 animate() 的小辅助函数：\n\
+  \n```\n<svg width=\"800\" height=\"600\">\n<rect x=\"50\" y=\"60\" width=\"100\"\
+  \ height=\"100\"></rect>\n</svg>\n<script>\nvar rects = document.getElementsByTagName('rect');\n\
+  \nanimate(rects[0], 'x', 50, 650);\n\nfunction animate(elem, attributeName, startValue,\
+  \ endValue) {\nvar timeStep = 1;\nvar valueStep = 5;\n\nvar intervalId = setInterval(function()\
+  \ {\nvar value = parseFloat(elem.getAttribute(attributeName));\nelem.setAttribute(attributeName,\
+  \ value + valueStep);\n\nif (value >= endValue) {\nelem.setAttribute(attributeName,\
+  \ startValue);\nclearInterval(intervalId);\n}\n}, timeStep);\n}\n</script>\n```\n\
+  \n在前面的代码中，我们与前一个示例做完全相同的事情。我们对矩形的 x 位置制作动画，将其移动到右侧。但是，正如您所看到的，我们必须自己编写所有内容，包括时间间隔的处理。我们可以使用浏览器的最高帧率，通过原生\
+  \ window.requestAnimationFrame(callback) 计时器来改进前面示例的性能。但是，每当我们自己处理计时器时，就必须格外注意正确地启动、暂停和停止它们。\n\
+  \n等等，有没有一种叫做 Web 动画 API 的东西，能让前面的代码变得容易得多？没错，正是如此；最后，我们理解了为什么 Chrome 浏览器中弃用了 SMIL。W3C\
+  \ 正在制定一个原生 Web 动画 API 的规范，该 API 原生支持动画并为动画提供易于使用的界面。该规范仍处于草稿阶段，但现在就对它感到兴奋也是个好时机，因为它将为动画带来简洁的界面，并为您的\
+  \ JavaScript 动画带来不错的性能提升。\n\n让我们看看使用 Web 动画 API 的前面示例：\n\n```\n<svg width=\"800\"\
+  \ height=\"600\">\n<rect x=\"50\" y=\"60\" width=\"100\" height=\"100\"></rect>\n\
+  </svg>\n<script>\nvar rects = document.getElementsByTagName('rect');\nrects[0].animate([\n\
+  \  { x: 50 },\n  { x: 650 }\n], {\n  duration: 1000,\n  fill: 'none'\n});\n</script>\n\
+  ```\n\n在前面的代码中，我们可以看到，我们在 JavaScript 中直接获得了优美的声明式动画方式，并配合类似 CSS 的原生支持。这将在未来几年成为制作动画的标准方式；然而，如果我们看看现状（如下图所示），情况就不那么乐观了。如前所述，该规范仍处于草稿阶段，因此浏览器支持仍然相当糟糕。这意味着目前我们必须使用\
+  \ JavaScript 计时器的抽象来制作动画，但我们应该把这个出色的 API 记在心里：\n\n| IE | Edge | Firefox | Chrome\
+  \ | Safari | Opera | iOS Safari | Opera Mini | Android Browser | Chrome for Android\
+  \ |\n| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---:\
+  \ |\n| | | | | | | | | | |\n| | | | | | | | | | |\n| | | | | | | | | | |\n| | |\
+  \ | | | | | | | |\n| | | | | | | | | | |\n\nWeb 动画 API 的跨浏览器兼容性\n\n\n\n\n\n> Web\
+  \ 动画的完整规范及其当前状态可在 Github 上找到 https://w3c.github.io/web-animations/。关于 Web 动画的优秀教程可在\
+  \ Daniel Wilson 的博客上找到 http://danielcwilson.com/tags/web-animations-api/.\n\n如果没有\
+  \ Web Animations API，我们就不得不自己实现时序控制（这不是个好主意），或者依赖不同库中的动画抽象。jQuery、AngularJS、GreenSock\
+  \ 等等——它们都提供了在 JavaScript 中为 DOM 元素制作动画的抽象，但我们将为此使用 D3。它还为定时器、动画和过渡提供了强大的抽象，能够与库的其余部分无缝集成。在接下来的章节中，我们将看到这些内容的实际应用。\n\
+  \n## 使用 JavaScript 创建动画\n\n在讨论 JavaScript 或 D3 中的动画之前，我们需要确定什么定义了动画。动画是对一个或多个元素进行的一系列带时序的变换，以创建运动效果。\n\
+  \n## D3 中的定时器和间隔\n\n动画是带时序的过渡；因此，我们需要跟踪动画中的时间。如果我们要处理大量元素，就不得不手动跟踪大量定时器。幸运的是，D3\
+  \ 通过 d3.timer(tickFn[, delay[, time]]) 方法为定时器和间隔函数提供了抽象。这个定时器函数会在相对延迟后或在绝对日期时间重复调用\
+  \ tickFn，直到其返回 true。\n\n让我们使用 D3 定时器编写前面的 JavaScript 动画示例：\n\n```\n<svg width=\"\
+  800\" height=\"600\">\n<rect x=\"50\" y=\"60\" width=\"100\" height=\"100\"/></rect>\n\
+  </svg>\n<script>\nvar rect = d3.select('rect:nth-of-type(1)');\n\nanimate(rect,\
+  \ 'x', 50, 650);\n\nfunction animate(elem, attributeName, startValue, endValue)\
+  \ {\nvar valueStep = 5;\n\nd3.timer(function(time) {\nvar value = parseFloat(elem.attr(attributeName));\n\
+  elem.attr(attributeName, value + valueStep);\n\nif (value >= endValue) {\n    elem.attr(attributeName,\
+  \ startValue);\n    return true;\n    });\n}\n</script>\n```\n\n在前面的代码中，我们只看到了与前一个示例的非常小的变化。最明显的一点是，我们现在处理的是\
+  \ D3 选择集而不是原生的 HTMLNode 对象；这意味着我们可以使用 `.attr()` 设置器和获取器方法。但是，请注意，我们用 `d3.timer`\
+  \ 方法替换了 `setInterval` 函数，这不仅消除了对 `intervalId` 变量的需求来跟踪定时器，还能以最快可能的帧率自动运行（底层使用 `requestAnimationFrame()`）。我们还可以在\
+  \ `callback` 函数内部访问 `time` 变量，它存储了动画开始以来的毫秒数。请查看随书提供的代码，以找到这些动画的可执行示例。\n\n在前面的代码中，我们将\
+  \ `valueStep` 值逐步增加到 `rect` 元素的当前 `x` 属性上。这意味着我们正在对该值进行某种手动（线性）插值。使用 D3 的定时器，我们现在可以轻松地将前面的示例扩展为也使用\
+  \ D3 的插值而不是手动插值。\n\n> 你可以在项目的 Github 页面上找到关于 D3 定时器的信息 https://github.com/mbostock/d3/wiki/Transitions#timers.\n\
+  \n## 使用 D3 插值属性\n\n如前面的示例所示，编写数值的线性插值并不真的困难，即使我们希望此插值持续特定的时间。如果我们想插值非数值，例如颜色值、路径元素\
+  \ `d` 属性中的坐标，或者如果我们想实现非线性插值（我们将在下一节关于缓动的内容中看到），事情就会变得棘手。\n\n让我们做一个简单的示例，用 D3 插值器替换手动插值；我们可以使用名为\
+  \ d3.interpolateNumber(a, b) 的内部函数，在两个名为 a 和 b 的数字之间创建数值插值器：\n\n```\n<svg width=\"\
+  800\" height=\"600\">\n<rect x=\"50\" y=\"60\" width=\"100\" height=\"100\"></rect>\n\
+  </svg>\n<script>\nvar rect = d3.select('rect:nth-of-type(1)');\n\nanimate(rect,\
+  \ 'x', 50, 650);\n\nfunction animate(elem, attributeName, startValue, endValue)\
+  \ {\n  var duration = 1000;\n  var interpolate = d3.interpolateNumber(startValue,\
+  \ endValue);\n\n  d3.timer(function(time) {\n    elem.attr(attributeName, interpolate(time/duration));\n\
+  \n    if (time >= duration) {\n      elem.attr(attributeName, startValue);\n   \
+  \   return true;\n    }\n  });\n}\n</script>\n```\n\n在前面的代码中，我们观察到 valueStep 变量现在消失了；相反，我们使用\
+  \ d3.interpolateNumber 函数生成的名为 interpolate(t) 的插值器函数。它是一个参数函数，接受名为 t 的参数，范围为 [0,\
+  \ 1]，用于描述插值的状态。在这里，0 对应初始位置，1 对应最终位置。\n\nD3 提供以下插值生成器：\n\n- d3.interpolateNumber：为两个数值创建插值函数\n\
+  - d3.interpolateRound：为两个数值创建插值函数，将结果四舍五入到最接近的整数\n- d3.interpolateString：为字符串中嵌入的数字创建插值函数\n\
+  - d3.interpolateRgb、d3.interpolateHsl、d3.interpolateLab、d3.interpolateHcl：为特定颜色空间创建插值函数\n\
+  - d3.interpolateArray：为两个数组中具有相同索引的值创建插值函数\n- d3.interpolateObject：为两个对象中具有相同键的属性创建插值函数\n\
+  - d3.interpolateTransform：为两个仿射变换创建插值函数，例如 translate、rotate 和 scale\n- d3.interpolateZoom：为两个视图创建平滑插值函数，优化用于平滑缩放和平移\n\
+  \n根据属性值，如果使用 D3 过渡，D3 会选择合适的插值函数——前提是它对应前面列表中的一种类型。你甚至可以通过将插值器添加到 d3.interpolators\
+  \ 数组来添加自定义插值函数。\n\n> > 你可以在项目的 Github 页面上找到关于 D3 插值的更多信息 https://github.com/mbostock/d3/wiki/Transitions#interpolation.\n\
+  \n## 缓动 – 随时间变化的动画进度\n\n到目前为止，我们一直假设自己在进行线性插值，这意味着动画随时间线性进行。让我们看下面的图，其中我们将圆的位置从起始值\
+  \ 0.0 动画化到结束值 1.0。如果动画持续一秒，我们每 0.2 秒拍摄一次快照，我们会看到以下过渡：\n\n![](img/72559bd4713b2b89631dcca187d7e2db_152_0.png)\n\
+  \n带有线性缓动的简单动画\n\n我们使用术语 *缓动* 来描述动画过程与动画时间之间的关系；在前面的图中，我们谈到了 *线性缓动*。\n\n如果我们观察现实世界中的运动，很少看到线性缓动；原因在于运动和力始终受到阻尼或加速（由重力引起）。如果我们想创建物理上逼真的动画，我们还必须给动画添加阻尼或加速。我们通过修改动画的缓动函数来做到这一点。\n\
+  \n下图显示了一个线性缓动函数；因此，它表示线性动画随时间的进度。\n\n![](img/72559bd4713b2b89631dcca187d7e2db_153_0.png)\n\
+  \n线性缓动函数（来源：http://cubic-bezier.com/#0,0,1,1）\n\n通过修改缓动函数，我们可以修改动画进度以创建更符合物理规律的动画。我们可以在动画结束时加快进度以模拟加速，或减慢进度以模拟阻尼。\n\
+  \n> 关于 CSS 和 JavaScript 缓动函数的有用信息可在 http://easings.net/ 上找到。\n\n接下来是可能会让你感到有点棘手的部分。要修改缓动函数，我们通常使用\
+  \ 贝塞尔曲线。嗯，我们也可以使用一些二次方程或抛物线，输出将完全相同。但是，贝塞尔曲线是可以由控制点构建的平滑曲线。如果你不在乎这个，可以安全地跳过下一节，继续学习其他缓动函数；但是，贝塞尔曲线的概念出现的频率会比你预想的更高，因此浏览本节不会有什么坏处。\n\
+  \n\n\n\n\n## 贝塞尔曲线\n\n目标是轻松创建和处理与随时间变化的某个进度对应的多项式函数。创建线性函数（例如前面示例中使用的线性缓动函数）很直接；你在高中数学中学过这一点。然而，当我们考虑二次或三次函数（次数为\
+  \ 2 或 3）时，情况就变得复杂得多。创建描述所需形状的函数不再那么直接了。\n\n让我们来看三次多项式函数的方程：\n\n```\nf(x) = a \\\
+  cdot x^3 + b \\cdot x^2 + c \\cdot x + d\n```\n\n现在，我要求你找到 a、b、c 和 d 参数，使多项式函数经过\
+  \ (0,0) 点并向 (1,1) 点加速。这与下图中函数的进度类似：\n\n![](img/72559bd4713b2b89631dcca187d7e2db_154_0.png)\n\
+  \n三次缓动函数（来源：http://cubic-bezier.com/#.5,0,1,.5）\n\n你很快就会发现，尽管为前面的图形创建函数并非不可能，但使用简单的多项式函数会非常棘手且不直观。原因在于，系数\
+  \ a、b、c 或 d 的变化会导致所描述函数出现不可预测的变化。\n\n幸运的是，名为 de Casteljau 和 Bézier 的聪明人士开发了贝塞尔曲线的概念——一种通过所谓的控制点来描述多项式函数的数学模型。贝塞尔曲线是参数多项式函数，由范围在\
+  \ [0, 1] 之间的参数 t 和一定数量的控制点（三次多项式为四个控制点）来描述。所得函数是控制点之间的插值，在 t=0 时，函数与第一个控制点匹配；在 t=1\
+  \ 时，函数与最后一个控制点匹配。\n\n贝塞尔曲线的通用方程表示如下：\n\n```\nf (t) = \\sum_{i=0}^{n} B_{i,n} (t)\
+  \ \\cdot P_i\n```\n\n此处，B 是伯恩斯坦多项式：\n\n```\nB_{i,n} (t) = \\binom{n}{i} t^i (1-t)^{n-i}\n\
+  ```\n\n前面提到的三次多项式函数现在可以写成参数化贝塞尔曲线：\n\n```\nf (t) = (1-t)^3 \\cdot P_0 + 3t(1-t)^2\
+  \ \\cdot P_1 + 3t^2 (1-t) \\cdot P_2 + t^3 \\cdot P_3\n```\n\n此处，P0、P1、P2 和 P3 是曲线的控制点。现在，我们只需将控制点移动到所需位置并定义多项式的曲率，即可创建所需的缓动函数。在前面的三次多项式图中，我们可以看到起点和终点固定在\
+  \ (0,0) 和 (1,1)，其余两个控制点分别为青色和品红色，用于定义缓动函数的进度。\n\n在下图中，我们可以看到，只需定义控制点即可轻松调整三次多项式函数。我们还观察到，曲线经过起点和终点，并在控制点之间平滑插值。我们还可以看到，所得函数（蓝色）仅仅是控制点之间的插值：\n\
+  \n![](img/72559bd4713b2b89631dcca187d7e2db_156_0.png)\n\n控制点之间插值的贝塞尔曲线\n\n现在，我们拥有了知识和工具，只需定义控制点并使用贝塞尔曲线，即可编写能够想到的所有可能的缓动函数。来自\
+  \ http://cubic-bezier.com/ 的交互式工具允许你轻松创建自定义贝塞尔曲线和缓动效果。\n\n> 如果你要查找的是缓动函数的实现而不是贝塞尔曲线，请参阅\
+  \ Dan Rogers 在 Github 上的 jQuery 缓动插件：https://github.com/danro/jquery-easing/blob/master/jquery.easing.js。\n\
+  \n## D3 中的缓动函数\n\nD3 支持多种开箱即用的缓动函数，有助于使你的动画和过渡更加逼真。我们可以使用 `d3.ease(type)` 函数创建缓动函数。此处，`type`\
+  \ 是以下缓动类型之一：\n\n- `linear`: 这是线性缓动函数\n- `quad`: 这是二次缓动函数\n- `cubic`: 这是三次缓动函数\n\
+  - `sin`: 这是正弦缓动函数\n- `exp`: 这是指数缓动函数\n- `circle`: 这是四分之一圆缓动函数\n- `bounce`: 这是带有弹跳效果的缓动函数\n\
+  \n默认情况下，缓动函数使用名为 `in` 的缓动模式；这意味着缓动运动是指元素滑入目标。缓动模式也可以通过在缓动函数名称后附加以下模式之一来修改：\n\n-\
+  \ in: 元素滑入目标\n- out: 元素从源滑出\n- in-out: 元素从源滑出并滑入目标\n- out-in: in-out 的反向缓动\n\n默认缓动函数是\
+  \ `cubic-in-out`，对应于缓慢滑出和滑入的动画。让我们来看一个简单的示例：\n\n```\n<svg width=\"800\" height=\"\
+  600\">\n<rect x=\"50\" y=\"60\" width=\"100\" height=\"100\"></rect>\n</svg>\n<script>\n\
+  var rect = d3.select('rect:nth-of-type(1)');\n\nanimate(rect, 'x', 50, 650);\n\n\
+  function animate(elem, attributeName, startValue, endValue) {\nvar duration = 1000;\n\
+  var interpolate = d3.interpolateNumber(startValue, endValue);\nvar ease = d3.ease('cubic-in-out');\n\
+  \nd3.timer(function(time) {\nvar t = ease(time/duration);\nelem.attr(attributeName,\
+  \ interpolate(t));\n\nif (t >= 1) {\nelem.attr(attributeName, startValue);\nreturn\
+  \ true;\n}\n});\n}\n</script>\n```\n\n在前面的代码中，我们通过调用 `d3.ease('cubic-in-out')` 方法创建缓动函数。现在，我们可以使用该函数根据缓动类型创建和修改插值函数的\
+  \ `t` 参数。\n\n下图显示了多种缓动类型的概览和比较；你可以在随本书附带的代码中找到动画示例：\n\n![](img/72559bd4713b2b89631dcca187d7e2db_158_0.png)\n\
+  \n> 你可以在项目的 Github 页面上找到更多关于 D3 缓动函数的信息：https://github.com/mbostock/d3/wiki/Transitions#d3_ease。Katsumi\
+  \ Takano 的 Blocks 上有一个出色的 D3 缓动函数展示：http://bl.ocks.org/hunzy/9929724。\n\n## 过渡\n\
+  \n到目前为止，你已经了解了许多关于动画、计时器、插值和缓动的知识，但在 D3 中制作简单动画真的需要所有这些内容吗？不需要；幸运的是，只要我们使用简单的过渡，就不需要。过渡是从起始状态到结束状态的动画。这个术语通常用于泛指动画，反之亦然，但我想强调，过渡是一种仅由两个状态定义的简单动画；此处，这两个状态之间的插值会自动从这些状态生成。\n\
+  \nD3 提供了非常强大的过渡创建支持。我们所要做的就是提供起始状态，在选择集上调用 .transition() 方法，最后提供结束状态，D3 将处理其余部分。.transition()\
+  \ 方法将返回一个与选择集非常相似且拥有其大部分方法的对象。此外，它还提供了 .duration(duration)、.delay(delay) 和 .easing(easingType)\
+  \ 函数，用于定义过渡的持续时间、延迟时间和缓动类型。\n\n太好了，让我们看一个使用过渡而不是自定义动画的示例：\n\n```\n<svg width=\"\
+  800\" height=\"600\">\n<rect x=\"50\" y=\"60\" width=\"100\" height=\"100\"></rect>\n\
+  </svg>\n<script>\nvar rect = d3.select('rect:nth-of-type(1)');\n\nanimate(rect,\
+  \ 'x', 50, 650);\n\nfunction animate(elem, attributeName, startValue, endValue)\
+  \ {\n  elem\n  .attr(attributeName, startValue)\n  .transition()\n  .duration(1000)\n\
+  \  .attr(attributeName, endValue);\n}\n</script>\n```\n\n在前面的代码中，我们可以看到在 D3 中将动画实现为简单过渡是多么容易。根据\
+  \ startValue 和 endValue 属性，D3 会尝试确定需要使用哪种插值方法来创建动画。\n\n让我们来看看柱状图组件的代码；以下是更新柱状图尺寸时最重要的部分代码片段：\n\
+  \n```\n$$bars\n.attr('x', function(d) { return xScale(d.x) + i*barWidth; })\n.attr('y',\
+  \ function(d) { return yScale(d.y); })\n.attr('height', function(d) { return (yScale(0)\
+  \ - yScale(d.y)); })\n.attr('width', barWidth)\n.attr('fill', colors(data.key));\n\
+  ```\n\n让我们做一个小调整，使柱状图带有平滑动画自动更新。使用过渡，我们只需定义起始状态和结束状态：\n\n```\n$$bars\n.attr('x',\
+  \ function(d) { return xScale(d.x) + i*barWidth; })\n.attr('y', function(d) { return\
+  \ yScale(0); })\n```\n\n\n\n.attr('height', 0)\n.attr('width', barWidth)\n.attr('fill',\
+  \ colors(data.key));\n\n```\n$bars\n.transition()\n.attr('y', function(d) { return\
+  \ yScale(d.y); })\n.attr('height', function(d) { return (yScale(0)) - yScale(d.y);\
+  \ });\n```\n\n搞定。在前面的代码中，我们将柱状图的默认高度设置为 0，其 y 值在值范围中设置为 0。然后，我们只需对这两个值进行动画处理，就能创建出流畅的动画。在下图中，我们可以看到图表如何更新，柱子仿佛在流畅的动画中生长：\n\
+  \n![](img/72559bd4713b2b89631dcca187d7e2db_160_0.png)\n\n带有更新过渡的图表\n\n在默认过渡时长 250\
+  \ ms 结束后，图表如下所示——所有柱子均达到最终高度。您可以在源代码中找到带动画的示例：\n\n![](img/72559bd4713b2b89631dcca187d7e2db_160_1.png)\n\
+  \n更新过渡后的图表\n\n## 路径过渡变得简单\n\n如果使用 D3 的路径生成器，为形状创建动画也非常简单。我们可以将起始状态定义为一个生成器，将结束状态定义为另一个用于过渡的生成器，D3\
+  \ 会为我们处理其余工作。让我们看一个示例：\n\n```\n<svg width=\"800\" height=\"600\">\n<path class=\"\
+  area\" />\n</svg>\n\n<script>\n\nvar $path = d3.select('.area');\nvar points = [\n\
+  \t[0, 0], [100, 10], [200, 250],\n\t[300, 375], [400, 340], [500, 135],\n\t[600,\
+  \ 360], [700, 280], [800, 480]\n];\n\nvar area0 = d3.svg.area()\n\t.y0(600)\n\t\
+  .y1(600)\n\t.x(function(d) { return d[0]; })\n\t.tension(1.0)\n\t.interpolate('cardinal');\n\
+  \nvar area1 = d3.svg.area()\n\t.y0(600)\n\t.y1(function(d) { return 600 - d[1];\
+  \ })\n\t.x(function(d) { return d[0]; })\n\t.interpolate('cardinal')\n\t.tension(0.6);\n\
+  \n$path.datum(points)\n\t.attr('d', area0)\n\t.transition()\n\t.duration(1000)\n\
+  \t.attr('d', area1);\n\n</script>\n```\n\n在前面的示例中，我们定义了一个路径 SVG 元素和一个 JavaScript\
+  \ 中的坐标数组。然后，我们创建了名为 `area0` 和 `area1` 的区域生成器。现在，我们可以使用第一个区域生成器 `area0` 作为起始状态、将\
+  \ `area1` 作为结束状态，在两个相似形状之间创建动画。下图显示了区域在最初几毫秒后的快照：\n\n![](img/72559bd4713b2b89631dcca187d7e2db_162_0.png)\n\
+  \n带有更新过渡的区域\n\n最后，区域将平滑动画到下图所示的形状；我们所要做的就是定义起始状态和结束状态：\n\n![](img/72559bd4713b2b89631dcca187d7e2db_162_1.png)\n\
+  \n更新过渡后的区域\n\n我要强调的是，前面的动画之所以看起来不错，仅仅是因为两个形状相似。它们具有相同数量的点。如果点的数量不同，内置字符串插值将无法产生优美的结果，而是会因插值问题而产生一些丑陋的伪影（我们将在本章的最后一节讨论此问题）。\n\
+  \n## 用于自定义插值的属性和样式缓动\n\n每当内置插值不适用时，我们始终可以为状态过渡使用自定义插值函数。这些自定义插值函数称为 _缓动_，可以通过 `.tween()`、`.attrTween()`\
+  \ 和 `.styleTween()` 方法使用。\n\n后两个函数在您想要为特定属性或样式应用自定义插值函数时非常有用，而 `.tween()` 函数则允许您创建更通用的缓动工厂。缓动是一个必须返回形式为\
+  \ `function(t) { ... }` 的插值函数的函数。\n\n让我们看一个简单的示例，在其中创建自定义缓动以生成类似黑客帝国的字符动画：\n\n```\n\
+  <svg width=\"800\" height=\"600\">\n<text x=\"10\" y=\"50\"></text>\n</svg>\n\n\
+  <script>\nvar textTween = function(value) {\n    var l = value.length;\n    var\
+  \ randomString = function(length) {\n        if (length === 0) {\n            return\
+  \ \"\";\n        }\n        // generates a random string\n        // @src: http://stackoverflow.com/a/10727155\n\
+  \        return Math.round((Math.pow(36, length + 1) - Math.random() *\nMath.pow(36,\
+  \ length))).toString(36).slice(1);\n    }\n    return function() {\n        return\
+  \ function(t) {\n            var i = Math.floor(t * 1);\n            var s = value.substr(0,\
+  \ i) + randomString(l - i);\n            this.textContent = s;\n        }\n    };\n\
+  };\n\nd3.select('text')\n    .transition()\n    .duration(2500)\n    .ease('linear')\n\
+  \    .tween('text', textTween('Welcome to the matrix...'));\n</script>\n```\n\n\
+  在前面的代码中，我们设置了一个 SVG `text` 元素，并创建了一个带有自定义缓动函数的过渡，该函数由 `textTween()` 调用返回。如前所述，缓动函数必须返回一个插值函数。在我们的插值函数中，我们创建了一个名为\
+  \ `i` 的索引变量，它包含名为 `value` 的字符串在当前参数 `t`（范围为 [0, 1]）处的索引。索引从 `0` 开始，一直到 `value` 的总长度。然后，我们用随机字符串填充其余字符。最后，我们将结果写入原始\
+  \ HTML 节点元素的 `textContent` 属性，该属性可以通过 `this` 关键字访问。我们还可以观察到，我们使用了 `linear` 缓动而不是默认的\
+  \ `cubic-in` 缓动，以使每个字符的动画时长相等。编写缓动时可以使用前一节中看到的所有过渡函数，这真是太好了。\n\n> 有关用法的更多信息，请参阅\
+  \ Github 上的 D3 文档：https://github.com/mbostock/d3/wiki/Transitions#attrTween。\n\n\
+  ## 链式过渡\n\n如果我们要构建一系列过渡，可以将过渡链接在一起。使用 D3，将自定义动画创建为一系列链式过渡，比使用计时器和插值器创建自定义动画要容易得多。\n\
+  \n在过渡对象上（而不是在选择集上）使用 `.transition()` 方法，我们会创建一个新的链式过渡，它会在前一个过渡停止后自动开始。更准确地说，它会覆盖过渡的延迟值，使其在前一个过渡停止后开始。\n\
+  \n让我们看一个简单的示例：\n\n```\n<svg width=\"800\" height=\"600\">\n<rect width=\"100\" height=\"\
+  100\" />\n</svg>\n\n<script>\nd3.select('rect')\n  .attr('x', 10)\n  .attr('y',\
+  \ 10)\n  .attr('fill', 'steelblue')\n  .transition()\n  .duration(1000)\n  .attr('fill',\
+  \ 'red')\n  .attr('x', 500)\n  .transition()\n  .duration(2500)\n  .attr('fill',\
+  \ 'green')\n  .attr('y', 500)\n  .transition()\n  .duration(5000)\n  .attr('fill',\
+  \ 'steelblue')\n  .attr('x', 10)\n  .attr('y', 10);\n</script>\n```\n\n前面的动画效果很好，每个状态都会依次执行动画。但是，我们需要注意，每个状态中仅覆盖了内部延迟属性，因此除非我们跟踪前一个过渡的时长，否则实际上无法使用\
+  \ `.delay()` 方法。\n\n每当一个过渡完成时，D3 都会触发 end 事件；我们可以使用此事件来控制动画状态。下面是使用 end 事件的示例：\n\
+  \n```\nd3.select('rect')\n.attr('x', 10)\n.attr('y', 10)\n.attr('fill', 'steelblue')\n\
+  .transition()\n.duration(1000)\n.attr('fill', 'red')\n.attr('x', 500)\n.each('end',\
+  \ function() {\nd3.select(this)\n.transition()\n.duration(2500)\n.attr('fill', 'green')\n\
+  .attr('y', 500)\n.each('end', function() {\nd3.select(this)\n.transition()\n.duration(5000)\n\
+  .attr('fill', 'steelblue')\n.attr('x', 10)\n.attr('y', 10);\n});\n});\n```\n\n前面的示例效果更好，因为每当旧的过渡停止时就会启动新的过渡。但是，嵌套的回调树看起来非常糟糕，并且在生产代码中可能带来潜在错误。\n\
+  \n迈向完全可链式过渡的一步是为 D3 添加一个小扩展，以允许基于 Promise 的状态过渡。Promise 是对未来值的异步表示，并有一个非常好的特性——它们可以链接在一起形成扁平结构，而不是嵌套的树状结构。\n\
+  \n以下是用于基于 Promise 的过渡的辅助函数，它使用 ES6 Promise polyfill 以在所有浏览器中工作（有关 polyfill 及其用途的更多信息，可参阅本书的最后一章）：\n\
+  \n```\nfunction add$transition(selection) {\n    selection.$transition = function(animationFn)\
+  \ {\n        var getPromiseTransition = function() {\n            return new Promise(function(resolve,\
+  \ reject) {\n                selection.transition()\n                .call(animationFn)\n\
+  \                .each(\"end\", function() {\n                    resolve(selection);\n\
+  \                });\n            });\n        };\n\n        if (selection.$progress\
+  \ == undefined) {\n            selection.$progress = getPromiseTransition();\n \
+  \       }\n        else {\n            selection.$progress = selection.$progress\n\
+  \            .then(function() {\n                return getPromiseTransition();\n\
+  \            });\n        }\n\n        return selection;\n    }\n}\n```\n\n让我们逐一讲解前面的代码。首先，我们向\
+  \ D3 选择集添加一个新的 `.transition(animationFn)` 方法，以便创建基于 Promise 的异步过渡。接下来，我们来到检查选择集上是否已存在\
+  \ `$progress` 属性的那一行；该属性始终存储最新的 Promise。如果不存在，我们使用新的过渡 Promise 对其进行初始化；否则，我们从 `.then()`\
+  \ 方法返回一个新的过渡 Promise，该方法会在 Promise 解析后执行。然后，我们用 `.then()` 方法返回的结果（即最新的 Promise）覆盖\
+  \ `$progress` 属性。\n\n\n\n\n\ngetPromiseTransition() 函数在当前选择集上创建一个新的过渡对象，并在触发 end\
+  \ 事件时解析。在 animationFn 中应用的所有过渡都应用于此状态。现在，我们可以按之前的示例编写如下：\n\n```\nvar $rect = d3.select('rect');\n\
+  ```\n\n```\n$rect\n.attr('x', 10)\n.attr('y', 10)\n.attr('fill', 'steelblue')\n\
+  .call(add$transition);\n```\n\n```\n$rect\n.$transition(function(s) {\n    s.duration(1000)\n\
+  \    .attr('fill', 'red')\n    .attr('x', 500);\n})\n.$transition(function(s) {\n\
+  \    s.duration(2500)\n    .attr('fill', 'green')\n    .attr('y', 500);\n})\n.$transition(function(s)\
+  \ {\n    s.duration(5000)\n    .attr('fill', 'steelblue')\n    .attr('x', 10)\n\
+  \    .attr('y', 10);\n});\n```\n\n这太棒了。我们现在拥有完全功能且封装的可链式过渡。不过，请注意，这只是事件链与 Promise\
+  \ 结合以创建真正状态驱动动画的一个示例。可能还有更优雅的实现方式。\n\n> 您可以在 MDN 上找到有关 ES6 Promise 的更多信息：https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise。\n\
+  \n## 形状补间\n\n形状补间是过渡的圣杯。我想让您记住 2011 年 Mike Bostock（D3 的作者）发布的 D3 Show Reel，可在 http://bl.ocks.org/mbostock/1256572\
+  \ 上找到。在此演示中，他通过将图表转换为不同的表现形式，展示了 D3 令人惊叹的形状补间功能。\n\n虽然形状补间看起来非常简单直观，但几乎从来都不容易创建。为什么呢？因为\
+  \ SMIL 和 D3 等工具使用简单的字符串插值函数，它会提取字符串中的数值并将其插值到结束状态。一旦结束状态字符串与起始状态不同——可能包含不同数量的点、控制点或路径命令——生成的过渡看起来就不会平滑。回到\
+  \ D3 Show Reel，我们看到的大多数过渡都是相似形状（控制点数量相同的形状）之间的形状补间。\n\n这一点在对任意形状进行补间以及编写可复用补间函数时尤其适用。如果您只是想从一个特定形状快速原型化到另一个形状，也可以为您的情况设计一个快速而粗糙的解决方案。\n\
+  \n不幸的是，目前没有任何开源的形状补间库/d3 插件能够处理各种形状。这样的插件需要掌握以下任务：\n\n- 将 `rect`、`ellipse`、`polygon`\
+  \ 等所有形状元素转换为路径元素；只有路径元素才能无缝插值\n- 将形状的所有线段转换为三次贝塞尔曲线；有了这些曲线，我们就能创建任意形状\n- 细分起始/结束路径中的线段，使两个形状的控制点数量相同；只有点数相同的形状才能无缝插值\n\
+  - 将起始形状的点对齐到结束形状中最近的点，使过渡看起来更平滑\n- 使用任何字符串插值方法（例如 `d3.interpolate`）对两个形状的字符串进行插值\n\
+  - 优化在 16ms 内运行的函数，以达到 60FPS 的良好效果\n\n如果您有兴趣开发这样的插件，请告知我。\n\n解决形状补间问题还有另一种不错的方法。Christophe\
+  \ Viau 没有编写一个在幕后完成所有工作的插值函数，而是想出了为所谓的超公式形状编写 D3 插件的主意。这些是复杂形状，可以使用超公式（超椭圆公式的更通用版本）和六个参数来构建。这些形状的特性在于它们全部由完全相同数量的线段构成，因此非常适合平滑插值。在下图中，我们可以看到一些可由此公式构建并用于平滑补间的形状：\n\
+  \n![](img/72559bd4713b2b89631dcca187d7e2db_169_0.png)\n\n由超公式构建的形状（来源：http://bl.ocks.org/mbostock/1020902）\n\
+  \n> 您可以在 Github 上找到 D3 Superformula 插件：https://github.com/d3/d3-plugins/tree/master/superformula，以及\
+  \ Mike Bostock 的 Blocks 上的示例：http://bl.ocks.org/mbostock/1020902。\n\n## 摘要\n\n在第一部分中，您了解了动画的\
+  \ Web 标准。虽然 SMIL 非常酷且强大，但我们应该开始使用 CSS，尤其是 JavaScript 动画。SMIL 动画在 Chrome 中已弃用，Web\
+  \ Animation（JavaScript）API 的规范正在制定中。\n\n在接下来的部分中，您了解了 D3 计时器如何抽象原生 setInterval 函数，以及如何使用和构建自定义插值和缓动函数。最后，我们了解了如何通过过渡在\
+  \ D3 中构建精美的动画。过渡是在两个预定义状态（起始状态和结束状态）之间的自动动画。通过链式过渡，我们可以再次创建动画。\n\n在最后一部分中，您了解了形状补间以及在自定义形状上使用它的问题。字符串插值函数很“笨”，因此仅适用于相似形状（控制点数量相同的形状）。我们需要转换和细分形状才能进行正确的形状补间。\n\
+  \n在第 7 章“使用 GeoJSON 创建地图和地图可视化”中，您将了解地图可视化和地理数据（如 GeoJSON）。我们还将运用迄今为止所学的所有技术。\n"
+- "# 使用 GeoJSON 创建地图和地图可视化\n\n在上一章中，您了解了过渡和动画；现在，考虑在地理可视化上对要素进行动画，因为我们将研究地图可视化和 GeoJSON。在本章中，您将学习以下内容：\n\
+  \n- 了解地图可视化的不同挑战\n- 了解几何坐标系\n- 了解 GeoJSON 格式\n- 了解 GeoJSON 的问题和 TopoJSON 的优势\n-\
+  \ 了解 3D 到 2D 的投影\n- 熟悉地图可视化的有用工具\n- 创建颜色刻度\n- 绘制 GeoJSON 要素\n- 一次加载多个资源\n- 绘制地理网格\n\
+  - 实现不同类型的地理可视化\n\n在第一部分中，我们将探讨地图可视化的生态系统，并了解处理此类可视化时出现的不同挑战和问题。首先，我们将研究地理坐标系，然后考虑如何将地球投影到\
+  \ 2D 平面上。\n\n在下一部分中，我们将探讨可以在地图上绘制哪种数据以及如何在浏览器中使用这些地理数据。自然，我们将更详细地研究 GeoJSON 及地理要素的表示。然后，我们将讨论\
+  \ GeoJSON 的问题以及如何使用 TopoJSON 解决这些问题。\n\n在以下部分中，您将熟悉多种对地图可视化有用的工具和技术。我们将实现颜色刻度，使用地理形状生成器从\
+  \ GeoJSON 要素生成路径，并研究 `queue.js` 模块以一次加载多个资源。\n\n最后，我们将创建不同类型的地图可视化，例如符号地图和分级色调地图。我相信您会喜欢这部分，因为您将能够运用之前学到的所有技术在地图上创建精美的可视化。\n\
+  \n## 地图可视化概览\n\n目标是使用 `d3.js` 在交互式和响应式可视化中显示地图数据，类似于以下示例：\n\n![](img/72559bd4713b2b89631dcca187d7e2db_171_0.png)\n\
+  \n美国的分级色调地图（来源：http://bl.ocks.org/mbostock/4060606）\n\n然而，这并非像绘制简单条形图那样直接的工作。构建地图可视化时需要考虑许多事项，本节将向您介绍这些不同的步骤和技术。让我们立即开始，从条形图的各个组件入手，并了解它们如何与地图可视化相比较。这将为我们解决问题提供足够的知识。\n\
+  \n\n\n\n\n## 地理坐标系\n\n当我们绘制柱状图时，通常先绘制坐标系——精确来说是笛卡尔坐标系——通常表示为坐标轴。该坐标系定义了如何找到绘制柱状图所需的坐标；它显示了我们可以沿其移动的\
+  \ x 和 y 方向。坐标轴的第二个重要方面是它们定义了图表的比例：数据集中的点需要多接近才能在图表中绘制为像素值。\n\n当我们将轴的概念转换为制图可视化时，我们需要思考用于表示地理点的坐标系。表示世界上某个位置（因此也包括地图上的位置）的标准方法是使用纬度、经度和高度。一般来说，我们不会考虑地球上点的海拔高度，因此只使用前两者进行地理可视化。\n\
+  \n纬度和经度均以角度为单位进行测量。纬度从赤道开始测量，范围为 [90°N; 90°S]（称为平行圈的分段），经度从本初子午线开始测量，范围为 [180°W;\
+  \ 180°E]（称为子午线的分段）。下图比较了这两种测量，并显示了等纬度和等经度的圆。由等纬度和等经度形成的网格也称为纬线网：\n\n![](img/72559bd4713b2b89631dcca187d7e2db_172_0.png)\n\
+  \n纬度和经度的比较\n\n## 将球体投影到平面地图\n\n现在，我们知道如何精确识别世界表面上的任何点。但是当涉及到在平面地图上可视化这些点时，会出现另一个问题。如果我们想要显示世界（或其部分）的\
+  \ 2D 表示，我们就必须将 3D 球体投影到 2D 平面上。好消息是这可以做到；然而，坏消息是这不可能不扭曲表示。\n\n上小学时，我总是对学校地图册中南极洲的巨大尺寸印象深刻，它看起来类似于下图。然而，几年后，当我第一次听说地理投影以及\
+  \ 3D 世界如何映射到书本的 2D 页面时，我对这个大陆的想象得到了纠正：\n\n![](img/72559bd4713b2b89631dcca187d7e2db_173_0.png)\n\
+  \n2D 世界地图（来源 wikimedia.org）\n\n我年轻时产生误解的原因是，我没有意识到将世界投影到 2D 地图时会发生扭曲。在下图中，我们看到南极洲与其他大洲相比的真实大小。作为结论，我们可以说，当将球体投影到平面上时，某些属性，例如面积相等、角度相等、距离等，可能会丢失：\n\
+  \n![](img/72559bd4713b2b89631dcca187d7e2db_174_0.png)\n\n3D 世界地图（来源 wikimedia.org）\n\
+  \n## 哪些数据可以在地图上显示？\n\n使用柱状图、折线图、散点图和饼图，我们可以显示各种 1D、2D 和 3D 数据。这些维度可以编码为数值、时间、分类值等，并可以表示为坐标轴上的维度、数据点的大小以及颜色。然而，在处理地理可视化时，我们大多会处理\
+  \ 2D 数据，其中一个维度表示地图上的位置，而剩余维度表示一个值（可以是数值或序数），根据某个颜色标尺以颜色表示。\n\n有多种方式来编码位置：\n\n- ID\
+  \ 值可以表示大洲、国家、州、城市等\n- 纬度和经度坐标可以表示地图上的一个点\n- 多边形的坐标可以表示地图上的一个区域\n\n为了在地图上的这个特定位置表示值维度，我们通常使用调色板，并根据预定义的颜色范围对数据点进行着色。然而，你应该意识到，使用调色板显示数值在某种程度上是含糊的，因为我们对颜色变化的感知与对大小变化的感知不同。此外，设计师可以通过选择特定的调色板来控制用户的感知。例如，在下图中，我们看到三种不同的可视化，它们都使用不同的调色板显示相同的数据。而左侧和右侧的可视化看起来非常相似，并给用户提供相似的数据理解，中间的可视化则给出了完全不同且矛盾的数据图像。这只需通过反转左侧可视化的调色板来实现。同样，颜色步骤的量化也可能产生巨大影响。在一个示例中，我们可以生成非常平滑的渐变；但使用不同的量化，我们可以在量化之间创建可见的边界：\n\
+  \n![](img/72559bd4713b2b89631dcca187d7e2db_175_0.png)\n\n使用不同调色板显示相同数据\n\n由设计师选择与数据相匹配的调色板，以可视化希望用户看到和理解的方面。\n\
+  \n## 我们可以开始了吗？\n\n现在，你将很好地了解绘制制图可视化所需的部分和组件。在接下来的章节中，我们将深入细节并使用 D3 实现一些可视化。\n\n\
+  到目前为止，我们尚未讨论的唯一部分是哪里可以获取地理可视化的数据，以及数据以何种格式编码。我们将在下一部分立即讨论这个问题。\n\n## 拓扑和地理特征的数据表示\n\
+  \n地理数据通常存储在地理信息系统（GIS）数据库和程序中。这些通常是用于设计、存储、操作、分析和显示制图数据的工具。下图显示了世界的不同方面如何抽象为图层并在该系统中管理：\n\
+  \n![](img/72559bd4713b2b89631dcca187d7e2db_176_0.png)\n\n典型的 GIS 抽象\n\n这些系统中的大多数都提供一个接口来单独访问或下载这些图层——即制图数据、统计数据或其他地理数据——以指定的\
+  \ GIS 格式。存在各种不同的基于像素和矢量的 GIS 格式；然而，我们将研究两个基于 JSON 的矢量格式：GeoJSON 和 TopoJSON。\n\n\
+  如果你正在寻找地理数据集，我建议你访问 http://www.data.gov/、http://geocommons.com/ 以及 Robin Wilson\
+  \ 页面上的广泛列表 http://freegisdata.rtwilson.com/。\n\n## GeoJSON – 地理特征的一种格式\n\nJSON 是\
+  \ JavaScript 的绝佳数据格式，并且与 D3 配合良好。\n因此，使用 JSON 格式来存储地理数据是自然而然的选择，而这正是 GeoJSON 所做的。\n\
+  \nGeoJSON 是一种非常灵活的格式，可以编码从几何图形、特征到特征集合的任何内容。让我们直接进入并查看一个典型的 GeoJSON 文件：\n\n```\n\
+  {\n    \"type\": \"FeatureCollection\",\n    \"features\": [\n    {\n    \"type\"\
+  : \"Feature\",\n    \"geometry\": {\n    \"type\": \"Point\", \"coordinates\": [102.0,\
+  \ 0.5]\n    },\n    \"properties\": {\n    \"prop0\": \"value0\",\n    \"prop1\"\
+  : {\"count\": 3}\n    }\n    }, {\n    \"type\": \"Feature\",\n    \"geometry\"\
+  : {\n    \"type\": \"LineString\",\n    \"coordinates\": [\n    [102.0, 0.0], [103.0,\
+  \ 1.0], [104.0, 0.0], [105.0, 1.0]\n    ]\n    },\n    \"properties\": {\n    \"\
+  prop0\": \"value1\",\n    \"prop1\": {\"count\": 2}\n    }\n    }, {\n    \"type\"\
+  : \"Feature\",\n    \"geometry\": {\n    \"type\": \"Polygon\",\n    \"coordinates\"\
+  : [\n    [ [100.0, 0.0], [101.0, 0.0], [101.0, 1.0],\n    [100.0, 1.0], [100.0,\
+  \ 0.0] ]\n    ]\n    },\n    \"properties\": {\n    \"prop0\": \"value2\",\n   \
+  \   \"prop1\": {\"count\": 1}\n    }\n    }\n    ]\n    }\n}\n```\n\n在前面的代码中，我们可以看到一个特征集合，其中每个特征包含几何图形、一些属性和类型。在\
+  \ GeoJSON 中，特征集合由带有属性和特定几何图形的特征组成，而几何图形是由几个基本元素构建的，例如点、线和多边形。\n\nGeoJSON 中的一些有效类型如下：\n\
+  \n- Point\n- MultiPoint\n- LineString\n- MultiLineString\n- Polygon\n- MultiPolygon\n\
+  - GeometryCollection\n- Feature\n- FeatureCollection\n\n每当我们处理自定义数据时，都会将 FeatureCollection\
+  \ 用作特征数组。然而，其他类型也是可能的。\n\n> 你可以在 http://geojson.org/geojson-spec.html 上找到完整的 GeoJSON\
+  \ 规范。\n\n我们可以使用 d3.json 函数加载 GeoJSON，就像加载普通 JSON 文件一样。让我们看一个示例：\n\n```\nd3.json(\"\
+  data/default.json\", function(error, data) {\n  if (error) throw error;\n\n  console.log(data.features);\n\
+  });\n\n\n\n\n在前面的代码中，数据现在包含了我们在前一个示例中看到的完全相同的对象。现在，我们只需从数据中提取相关信息。我们使用 map 函数获取所需的属性：\n\
+  \n```\nd3.json(\"data/default.json\", function(error, data) {\n  if (error) throw\
+  \ error;\n  var labels = data.features.map(function(d) {\n    return d.properties.prop0;\n\
+  \  });\n  var values = data.features.map(function(d) {\n    return d.properties.prop1.count;\n\
+  \  });\n});\n```\n\n在前面的代码中，我们使用 map 来转换和提取相关属性，例如来自要素集合的 `properties` 属性中的 `values`\
+  \ 和 `labels`。请注意，properties 对象的结构不是标准化的，取决于你的 API 的数据结构。在我们的例子中，它包含 `prop0` 和 `prop1`\
+  \ 属性，但也可能包含其他属性。如果某个属性包含嵌套对象，我们也可以使用 `reduce` 函数来聚合这些值。\n\n需要知道的是，我们始终需要从 properties\
+  \ 对象中提取值才能对其进行可视化。\n\n## TopoJSON – 用于 Web 可视化的 GeoJSON\n\nTopoJSON 是一种针对压缩 GeoJSON\
+  \ 拓扑数据进行优化的格式，由 `d3.js` 的主要作者 Mike Bostock 指定并开发。它的开发目的是减少大型 GeoJSON 文件的大小，从而加速\
+  \ Web 可视化。\n\n如前一节所示，GeoJSON 格式将拓扑存储为多边形点列表；然而，任何内陆边界通常属于多个国家或州。因此，将州的边界框编码为多边形点会导致（大量）冗余信息。根据\
+  \ Mike Bostock 的说法，TopoJSON 文件比原始 GeoJSON 文件小 80%：\n\n![](img/72559bd4713b2b89631dcca187d7e2db_180_0.png)\n\
+  \n以 TopoJSON 表示的多边形和边界（来源 https://github.com/mbostock/topojson/wiki）\n\nTopoJSON\
+  \ 包含一个服务器 API，负责将 GeoJSON 文件转换为 TopoJSON 格式，该 API 作为 node.js 的命令行工具提供，还有一个客户端 API，用于在浏览器中将\
+  \ TopoJSON 文件转换回 GeoJSON。\n\n> 你可以在项目的 Github 页面上找到有关 TopoJSON 的更多信息，网址为 https://github.com/mbostock/topojson/wiki/API-Reference。\n\
+  \n## 通过服务器 API 将 GeoJSON 转换为 TopoJSON\n\n你可以通过名为 npm 的包管理器安装 TopoJSON 服务器 API；只需在命令行中运行以下内容：\n\
+  \n```\nnpm install topojson\n```\n\n最后，当你安装好工具后，可以使用以下语法将名为 input_geo.json 的 GeoJSON\
+  \ 文件转换为名为 output_topo.json 的 TopoJSON 文件：\n\n```\ntopojson -o output_topo.json input_geo.json\n\
+  ```\n\n> 你可以在项目的 Github 页面上找到命令行工具的完整参考，网址为 https://github.com/mbostock/topojson/wiki/Command-Line-Reference。\n\
+  \n## 通过客户端 API 将 TopoJSON 转换为 GeoJSON\n\n一旦你将 GeoJSON 文件转换为小型 TopoJSON 文件，你还需要在浏览器中将其转换回来。因此，我们必须使用客户端\
+  \ API，它可以通过 `bower`（推荐）或 `npm` 安装，或者直接从 `http://d3js.org/topojson.v1.min.js` 加载。\n\
+  \n在浏览器中，我们只需在头部包含该脚本：\n\n```\n<script src=\"bower_components/topojson/topojson.js\"\
+  ></script>\n```\n\n然后，我们就可以使用 topojson 对象了。\n\n我们可以通过调用以下内容来访问原始 GeoJSON 文件中的要素和网格：\n\
+  \n- `topojson.feature(topology, object)`\n- `topojson.mesh(topology, object, [filter])`\n\
+  \n现在，我们可以从拓扑文件的大幅减小中获益，而不会丢失有关要素或网格的信息。我建议你始终以这种方式处理输入文件，使它们保持小巧和紧凑；TopoJSON 是实现此目标的绝佳方式。\n\
+  \n## 映射和投影\n\n正如我们在本章第一节中已经看到的，将 3D 世界映射到 2D 平面有多种可能的方法；而在所有这些方法中，都会丢失一些信息。\n\n\
+  让我们做一个小脑力实验。想想你将球体表面映射到平面上需要做什么。首先，你需要在表面某处挖一个孔。然后，你可以拉伸表面，直到它适应平面。但是，我们现在在挖孔的确切位置引入了一个拓扑违规。我们很容易看出，如果你从地图左侧移出，理论上应该从右侧重新进入；但在我们的\
+  \ 2D 表示中，我们丢失了这个属性，两侧不再相连。第二个问题是，当我们将表面拉伸到平面时，也引入了失真。现在，地图顶部和底部区域似乎变大了；我们无法保持面积的相等性。如果你回到第一节查看\
+  \ 2D 世界地图图，你可以实际看到这些确切的问题。\n\n有人可能会有个绝妙的主意，将整个 3D 球体复制到平面上——就像第一节中 3D 世界地图图所示。然而，这里我们只能看到球体的一面；因此，我们丢失了关于另一面的所有信息。\n\
+  \n将球体映射到平面的这种方式称为投影。D3 提供了各种内置投影，适用于各种映射，可在 d3.geo 命名空间下使用。\n\n> 你可以在 Mike Bostock\
+  \ 的博客上找到有关地图的更多信息，网址为 http://bost.ocks.org/mike/map/。\n\n## 等距圆柱投影\n\n还记得我们刚才做的脑力实验吗？要在\
+  \ D3 中创建这样一个简单的投影，我们可以使用 d3.geo.equirectangular() 函数，它既不保存距离也不保存面积。它是最基本的投影，因为纬线和经线只是简单地映射到欧几里得空间中的纬线和法线。我们可以在下图中看到之前讨论过的失真效果：\n\
+  \n![](img/72559bd4713b2b89631dcca187d7e2db_182_0.png)\n\n由于不保存面积、角度或距离，它很少用于可视化地理特征。但是，它有时用于将像素值进行栅格重投影到其他表示中。\n\
+  \n## 正射投影\n\n现在，我们继续之前的脑力实验。让我们转向将 3D 投影到 2D 平面，称为正射投影。正如我们在下图中看到的，使用正射投影时，我们会丢失关于球体一侧的信息：\n\
+  \n![](img/72559bd4713b2b89631dcca187d7e2db_183_0.png)\n\n正射投影\n\n我们可以在 D3 中使用 `d3.geo.orthographic()`\
+  \ 函数创建正射投影。\n\n## Albers 投影\n\nAlbers 投影将球体映射到等面积圆锥上，其中纬线间距更紧密，南北端和经线间距相等。这种投影常用于在地图上显示东西距离较大的区域的地理特征面积；换句话说，它常用于美国的分级色调图：\n\
+  \n![](img/72559bd4713b2b89631dcca187d7e2db_184_0.png)\n\nAlbers 投影\n\n在 D3 中，我们可以通过以下函数创建\
+  \ Albers 投影：\n\n```\nvar projection = d3.geo.conicEqualArea();\n```\n\n为了将投影调整到感兴趣的区域，我们可以使用\
+  \ `projection.parallels([parallels])` 方法指定投影的 Albers 标准纬线。名为 `parallels` 的参数应为两个以度为单位的纬度值的数组，定义感兴趣区域的下限和上限；对于美国，这将是\
+  \ `[29.5, 45.5]`。D3 还提供 `d3.geo.albers()` 投影，这是一个带有美国预设的 Albers 投影。\n\n在顶部，D3 提供另一个特定于美国的预设，即\
+  \ `d3.geo.albersUsa()` 投影，如下图所示。我们可以看到，除了以美国为中心的常规投影外，它还显示了阿拉斯加和夏威夷，从而涵盖了美国的所有 50\
+  \ 个州。请注意，阿拉斯加的大小按 0.35 的比例缩放，以便在地图上显示：\n\n![](img/72559bd4713b2b89631dcca187d7e2db_185_0.png)\n\
+  \nAlbers USA 投影\n\n## 球面墨卡托投影\n\n墨卡托投影在局部保存角度，这有个不错的特性：地图上每个点的相对角度是正确的；而且局部比例在任何方向上都保持不变。然而，如下图所示，它在世界范围内引入了巨大的失真：\n\
+  \n\n![](img/72559bd4713b2b89631dcca187d7e2db_186_0.png)\n\nThe Mercator projection\n\
+  \n由于其局部特性，墨卡托投影常被瓦片地图库使用，例如 Google Maps 和 Leaflet。然而，由于长度失真，不应将其用于分区统计地图。\n\n在 D3\
+  \ 中，通过调用 `d3.geo.mercator()` 函数来创建墨卡托投影。\n\n## Azimuthal Equidistant projection\n\
+  \n等距方位投影将投影中心周围的圆映射到 2D 地图上的圆，从而保持从投影中心向方位方向的距离：\n\n![](img/72559bd4713b2b89631dcca187d7e2db_187_0.png)\n\
+  \nThe Azimuthal Equidistant projection\n\n该投影可以通过调用 `d3.geo.azimuthalEquidistant()`\
+  \ 函数生成。在需要显示相对于某个参考点距离的可视化中，它非常有用。\n\n> 在 Github 上可以找到更多投影及详细信息：https://github.com/mbostock/d3/wiki/Geo-Projections。\n\
+  \n## Helpful tools for creating maps in D3\n\n绘制地图需要结合 GIS、GeoJSON、投影等方面的知识和深刻理解，以及制作地图的技术和技能。在本节中，我们将介绍几个有助于使用\
+  \ D3 生成交互式地图的选定工具。\n\n### Color scales\n\n如前一节所述，作者选择的颜色和色标会对读者感知可视化产生巨大影响。因此，我想展示如何在\
+  \ D3 中高效地创建色标。\n\n比例尺可以使用插值将某个值域的值映射到一组不同的值。我们通常使用它来为轴创建比例尺。然而，轴将值域映射到像素范围。在我们的例子中，我们想将这些比例尺应用于颜色，以将值域映射到颜色范围。我们可以使用这些颜色插值函数来实现这一点：\n\
+  \n- d3.interpolateRgb：RGB 和 HEX 值，例如 #00FF00\n- d3.interpolateHsl：HSL 值，例如 hsl(120,\
+  \ 100%, 50%)\n- d3.interpolateLab：LAB 值\n- d3.interpolateHcl：HCL 值\n\n让我们看一个简单示例，将\
+  \ 0 到 5 的值域映射到从橙色到红色的颜色范围：\n\n```\nvar color = d3.scale.linear()\n.interpolate(d3.interpolateRgb)\n\
+  .domain([0, 5])\n.range(['#FFCC66', '#FF0000']);\n\ncolor(0); // > '#FFCC66'\ncolor(5);\
+  \ // > '#FF0000'\n```\n\n在前面的代码中，我们可以简单地使用 `d3.interpolateRgb` 插值函数来为颜色使用比例尺。\n\n\
+  除了线性比例尺，我们还可以使用其他比例尺，例如 `d3.scale.log()` 对数比例尺或 `d3.scale.pow()` 指数比例尺。如果处理序数值，也可以使用非数字序数比例尺：\n\
+  \n```\nvar color = d3.scale.ordinal()\n.domain(['foo', 'bar', 'baz'])\n.range(['red',\
+  \ 'blue', 'green']);\n```\n\n在前面的代码中，我们只能将 foo、bar 和 baz 等精确值映射到预定义颜色。如果要与 CSS 一起使用预定义颜色类，应研究量化比例尺，例如\
+  \ `d3.scale.quantize()` 和 `d3.scale.threshold()`。\n\n如果有兴趣创建漂亮的色标，可以参考 Color Brewer\
+  \ 库：http://colorbrewer2.org/。\n\n如果希望在可视化旁边显示色标，可以使用 John Goodall 开发的出色的 d3 色标插件：https://github.com/jgoodall/d3-colorlegend。\n\
+  \n### The geographic shape generator\n\n你已经了解了 GeoJSON 格式支持的不同类型，每种类型定义一种特定几何。在处理这些\
+  \ GeoJSON 要素时，我们常遇到的问题是使用某个预定义投影将这些形状绘制到地图上。不过，我应该给 Mike Bostock 送花，感谢他开发了地理形状生成器，可通过\
+  \ `d3.geo.path()` 访问。\n\nD3 地理形状生成器使在地图上绘制 GeoJSON 要素变得非常简单。它可以绘制任何受支持的 GeoJSON\
+  \ 类型，并根据预定义投影将几何输出为 SVG 路径元素的字符串。\n\n让我们看看如何使用此生成器：\n\n```\nvar projection = d3.geo.albersUsa();\n\
+  var path = d3.geo.path()\n    .projection(projection);\nsvg.append(\"path\")\n \
+  \     .datum({type: \"FeatureCollection\", features: features})\n      .attr(\"\
+  d\", path);\n```\n\n在前面的代码中，我们为带有虚拟要素数组的 FeatureCollection 对象生成了路径。请注意，这正是 GeoJSON\
+  \ 格式，使绘制 GeoJSON 要素变得极其简单。\n\n### Graticule – grids on maps\n\n理解地图和投影的重要工具是制图可视化中的网格。网格之所以重要，是因为与笛卡尔坐标系不同，纬线和经线网格不再等间距或相互正交。因此，经纬网包含关于当前投影和地理坐标系的大量有用可视化信息。\n\
+  \n让我们看看如何创建这样的经纬网。D3 提供 `d3.geo.graticule()` 函数，用于为地理坐标系生成网格。我们只需将其插入地理形状生成器并稍微设置样式即可：\n\
+  \n```\nvar width = 960,\n    height = 960;\n\nvar projection = d3.geo.orthographic()\n\
+  \    .scale(width * 0.25)\n    .translate([width / 2, height / 2])\n    .clipAngle(90)\n\
+  \    .precision(.1);\nvar path = d3.geo.path()\n    .projection(projection);\nvar\
+  \ graticule = d3.geo.graticule();\nvar svg = d3.select(\"body\").append(\"svg\"\
+  )\n    .attr(\"width\", width)\n    .attr(\"height\", height);\nsvg.append(\"path\"\
+  )\n    .datum(graticule)\n    .attr(\"class\", \"graticule\")\n    .attr(\"d\",\
+  \ path);\n```\n\n在前面的代码中，我们创建一个正射投影并将其插入地理路径生成器。最后，我们创建一个经纬网并将其应用于生成器。生成的网格在下图中显示：\n\
+  \n![](img/72559bd4713b2b89631dcca187d7e2db_190_0.png)\n\nA Graticule of the Orthographic\
+  \ projection\n\n### Loading multiple resources\n\n如前一节所述，除了包含要显示数据的文件外，我们始终需要加载背景地图的几何数据。这有些挑战，因为现在必须等待这（至少）两个文件加载完成后才能绘制可视化。\n\
+  \n理想情况下，我们希望并行加载两个资源，并在所有资源可用后执行回调函数。幸运的是，Mike Bostock 在过去几年中非常活跃，编写了实现此功能的实用工具\
+  \ Queue.js。\n\n可以使用 bower 安装 Queue.js，并从命令行运行以下命令，或从 CDN 加载 Queue.js：\n\n```\nbower\
+  \ install queue-async\n```\n\n现在，我们可以创建一个队列，并使用 `.defer()` 函数注册加载所有资源的函数。我们将一个函数作为第一个参数传递，Queue.js\
+  \ 会自动将所有其他参数传递给该函数。最后，我们调用 `.await()` 方法，在所有资源加载完成后执行回调并收集所有值。让我们看一个示例：\n\n```\n\
+  queue()\n.defer(d3.text, \"path/to/file/file1.txt\")\n.defer(d3.json, \"path/to/file/file2.json\"\
+  )\n.defer(d3.csv, \"path/to/file/file3.csv\")\n.await(function(err, file1, file2,\
+  \ file3) {\n console.log(file1, file2, file3);\n});\n```\n\n在前面的代码中，我们可以看到一次性处理多个资源是多么容易——非常简单，多亏了\
+  \ Mike Bostock。\n\n> 关于 queue.js 的更多信息可以在项目的 Github 页面上找到：https://github.com/mbostock/queue。\n\
+  \n## Types of geographic visualization\n\n根据要显示的值和数量，我们可以从各种可最佳表示数据的可视化中进行选择。通常，我们会在折线图、柱状图、面积图（普通或堆叠）、饼图、散点图等之间进行选择。\n\
+  \n很容易理解，制图可视化也是如此。除了选择能够恰当表示数据的投影类型外，我们还可以在不同的可视化类型之间进行选择。本节概述了最常见的制图可视化类型。\n\n\
+  好了，理论就讲到这儿了——让我们来画些地图吧！\n\n### Symbol maps\n\n我们的第一张地图将是下图所示的简单符号地图。我们想要显示美国记录的过去\
+  \ 30 天内的所有地震；数据集来自 http://earthquake.usgs.gov/：\n\n![](img/72559bd4713b2b89631dcca187d7e2db_192_0.png)\n\
+  \nA simple Symbol map\n\n如上图所示，我们希望根据每个地震的震级显示大小和颜色不同的点。让我们开始使用 d3、TopoJSON、Queue.js\
+  \ 和一个简单的响应式 SVG 容器设置一个简单模板：\n\n```\n<!DOCTYPE HTML>\n<html>\n<head>\n<script src=\"\
+  bower_components/d3/d3.min.js\"></script>\n```\n\n\n\n```html\n<script src=\"bower_components/topojson/topojson.js\"\
+  ></script>\n<script src=\"bower_components/queue-async/queue.min.js\"></script>\n\
+  <style></style>\n</head>\n<body>\n\n<script>\n\nvar padding = 10,\n  body = d3.select(\"\
+  body\"),\n  width = body.node().clientWidth - padding,\n  aspectRatio = 16.0 / 9.0,\n\
+  \  height = width / aspectRatio;\n\nvar svg = d3.select(\"body\").append(\"svg\"\
+  )\n  .attr(\"width\", width)\n  .attr(\"height\", height);\n\n// The visualization\
+  \ code goes here\n</script>\n</body>\n</html>\n```\n\n在前面的代码中，我们使用`clientWidth`属性获取浏览器窗口的大小，并为地图定义16/9的宽高比。我们还将在其他示例中使用此设置。\n\
+  \n首先，我们需要创建一个投影并绘制地图；我们将平移和缩放投影，以在容器的全宽上显示地图（请注意，不同投影中的缩放解释不同）：\n\n```\nvar projection\
+  \ = d3.geo.albersUsa()\n  .scale(width)\n  .translate([width / 2, height / 2]);\n\
+  ```\n\n接下来，我们也可以使用投影创建路径生成器：\n\n```\nvar path = d3.geo.path()\n  .projection(projection);\n\
+  ```\n\n让我们使用从橙色到红色的简单线性颜色刻度：\n\n```\nvar color = d3.scale.linear()\n  .interpolate(d3.interpolateRgb)\n\
+  \  .domain([0.1, 5])\n  .range(['#FFCC66', '#FF0000']);\n```\n\n太好了，让我们加载地图和数据，然后绘制地图。为此，我们将使用Mike\
+  \ Bostock在 https://gist.github.com/mbostock/4090848 提供的美国地图的TopoJSON格式：\n\n```\n\
+  queue()\n.defer(d3.json, \"data/us.json\")\n.defer(d3.json, \"data/earthquakes.json\"\
+  )\n.await(ready);\n```\n\n一旦资源可用，ready函数就会被调用。让我们实现它：\n\n```\nfunction ready(error,\
+  \ us, earthquakes) {\n  if (error) throw error;\n\n  svg.append(\"g\")\n    .attr(\"\
+  class\", \"counties\")\n    .selectAll(\"path\")\n    .data(topojson.feature(us,\
+  \ us.objects.counties).features)\n    .enter().append(\"path\")\n    .attr(\"d\"\
+  , path);\n\n  svg.append(\"path\")\n    .datum(topojson.mesh(us, us.objects.states))\n\
+  \    .attr(\"class\", \"states\")\n    .attr(\"d\", path);\n}\n```\n\n在前面的代码中，延迟函数的所有数据都按调用函数的顺序作为参数传递。美国地图以TopoJSON格式存储。因此，我们需要将其转换回有效的GeoJSON。我们使用topojson.feature()或topojson.mesh()函数来实现这一点。首先，我们将为us.objects.counties集合中的每个县绘制一个路径。接下来，我们将为us.objects.states集合中的所有州绘制一个单一网格。\n\
+  \n最后，我们只缺少点；让我们绘制它们：\n\n```\nsvg.append(\"g\")\n  .attr(\"class\", \"data\")\n \
+  \ .selectAll('circle')\n  .data(earthquakes.features)\n  .enter().append('circle')\n\
+  \  .attr('r', function(d) {\n    return Math.abs(d.properties.mag);\n  })\n  .attr('fill',\
+  \ function(d) {\n    return color(Math.abs(d.properties.mag));\n  })\n  .attr('transform',\
+  \ function(d) {\n    var pos = projection([d.geometry.coordinates[0], d.geometry.coordinates[1]]);\n\
+  \    if (pos) {\n        return \"translate(\" + pos + \")\";\n    }\n  });\n```\n\
+  \n地震数据格式为GeoJSON，并可在earthquake.features对象中使用。我们为集合中的每个元素绘制一个圆，并调整形状的半径大小和颜色。最后，我们进行一些错误检查，并将圆形转换到地图上的正确位置。我们使用投影函数来实现这一点。就这样，最终结果在前面的图中显示。\n\
+  \n## 分区染色地图\n\n在下一个地图中，我们希望显示美国每个县的失业率；该数据集显示按县ID排序的每个县的失业率，数据来自Mike Bostock的 https://gist.github.com/mbostock/4060606。地图结果如下图所示：\n\
+  \n![](img/72559bd4713b2b89631dcca187d7e2db_195_0.png)\n\n一个简单的分区染色地图\n\n如上图所示，我们希望根据失业率为每个县着色。我们使用与前面示例相同的模板（相同的尺寸和投影）。\n\
+  \n让我们创建一个颜色刻度并加载地图和数据；此步骤与前面的示例非常相似：\n\n```\nvar color = d3.scale.linear()\n.domain([0,\
+  \ .15])\n.interpolate(d3.interpolateRgb)\n.range([\"#FF7948\",\"#B93200\"]);\nqueue()\n\
+  .defer(d3.json, \"data/us.json\")\n.defer(d3.csv, \"data/unemployment.csv\")\n.await(ready);\n\
+  ```\n\n现在，我们可以绘制地图：\n\n```\nfunction ready(error, us, unemployment) {\n if (error)\
+  \ throw error;\n var data = {};\n unemployment.forEach(function(d) {\n data[d.id]\
+  \ = +d.rate;\n });\n svg.append(\"g\")\n .attr(\"class\", \"counties\")\n .selectAll(\"\
+  path\")\n .data(topojson.feature(us, us.objects.counties).features)\n .enter().append(\"\
+  path\")\n .attr(\"fill\", function(d) { return color(data[d.id]); })\n .attr(\"\
+  d\", path);\n svg.append(\"path\")\n .datum(topojson.mesh(us, us.objects.states))\n\
+  \ .attr(\"class\", \"states\")\n .attr(\"d\", path);\n}\n```\n\n在前面的代码中，我们首先将失业率数组转换为一个对象，该对象按县ID作为属性存储失业率。然后，我们绘制各县并根据失业率填充颜色。\n\
+  \n## 摘要\n\n在本章中，您学习了使用D3绘制地图可视化所需的所有必要知识。您了解了地理坐标系、经纬网和颜色刻度。\n\nGeoJSON是编码几何要素的重要格式；它可以存储不同类型的几何体和值。但是，它也存储了大量冗余信息；这时TopoJSON就派上用场了。\n\
+  \n最后，我们开始绘制不同的地图可视化，例如符号地图和分区染色地图。\n\n在下一章中，您将学习关于测试响应式可视化的内容。\n"
+- "# 测试响应式可视化\n\n在上一章中，您学习了如何使用D3.js、投影和地图创建精彩的地图可视化。现在，是时候研究响应式可视化的测试策略了。在本节中，您将学习以下内容：\n\
+  \n- 了解常见的测试策略\n- 理解单元测试和集成测试的区别\n- 了解可视化中手动测试的重要性\n- 了解如何设置手动测试环境\n- 设置单元测试和集成测试环境\n\
+  - 在本地计算机上使用Karma运行单元测试\n- 使用TravisCI和Sauce Labs运行集成测试\n- 理解不同策略如何协同工作\n- 构建符合预算的测试策略\n\
+  \n在第一节中，您将了解测试、测试策略和不同类型的测试。您将了解手动测试和自动化测试之间的区别，以及为什么在工作流中拥有出色的手动测试工具至关重要。\n\n在下一节中，我们将更深入地了解这些手动测试和调试工具。我们将了解如何使用Browsersync、Browserstack、设备模式等工具来增强您的本地开发环境。\n\
+  \n然后，我们将讨论自动化测试，这是编写可维护代码的重要组成部分。我们不仅将探讨使用Karma进行的本地单元测试，还将探讨使用Protractor、Selenium、Travis\
+  \ CI和Sauce Labs进行的集成测试。\n\n最后，我们将总结当您关心测试和代码质量时，一个出色的开发环境应该是什么样子。\n\n## 测试可视化指南\n\
+  \n在本章结束时，您将对响应式可视化的测试策略有清晰的认识；您将了解测试的成本和收益；并且您将能够使用当今可用的最佳工具实施手动和自动化测试。\n\n如果您是软件开发的新手，您可能听说过测试和测试策略，以及许多开发者声称自己痴迷于测试。但是，理解软件开发中的测试驱动开发与手动测试和调试之间的差异，以便比较这些策略的成本和收益，非常重要。如果您已经每天编写测试并对单元测试和集成测试有清晰的策略，您可以跳过本简介并直接跳转到下一节。对于其他人，我向您保证，您将学到一些关于测试的精彩见解和信息，所以请继续！\n\
+  \n在测试交互式可视化时，我们身处一个相当困难的领域。一方面，我们编写代码，因此需要确保代码的所有功能都完全按预期工作。另一方面，我们生成的可视化在所有不同设备、操作系统和浏览器中看起来和感觉都应该相同——这只能通过手动评估。目标是结合手动测试和自动化工具的优点，以最大限度地提高生产力和可维护性，并最大限度地减少代码中的错误数量。\n\
+  \n> 在本章中，我将提到可能需要付费订阅的工具和服务。我的意图不是向您销售这些服务之一的订阅，而是根据我的经验，介绍用于手动和自动化跨浏览器测试的最佳工具。\n\
+  \n\n\n\n\n## 为什么我应该关心测试？\n\n测试你的代码对于编写出色、无错误且易于维护的软件至关重要。然而，过早编写大量自动化测试会减慢开发速度并影响生产力。因此，我们需要在编写代码、调试和测试之间找到良好的平衡点。\n\
+  \n测试极大地提高了代码的可维护性。例如，单元测试可以为开发者提供文档，而且这些文档还可以被执行。每当开发者修改代码或重构代码时，都可以运行测试来查看函数是否仍然按预期工作。这使得代码重构变得更加容易和安全。因此，编写测试对于构建可维护的软件至关重要，并且在维护应用程序时可以节省时间和成本。\n\
+  \n测试的目标是确保函数在重构和修改后仍然按预期工作。因此，你的测试应该涵盖所有可能输入参数的组合，并测试所有可能的输出值。通过编写良好的测试，你可以相当确定你的应用程序运行正常。但是，请牢记以下几点：\n\
+  \n- 测试永远无法证明没有错误；它只能保证对于给定的测试用例，软件表现符合预期\n- 即使你的软件经过非常充分的测试且所有测试都通过，也可能发生错误\n- 测试通常在测试环境中进行；请确保你的测试环境尽可能与生产环境相似，尤其是对于集成测试和系统测试\n\
+  \n我想强调，开发者应该关注测试质量而非数量。测试质量无法衡量，而数量可以，通过计算实际执行了多少行代码来衡量——这被称为测试覆盖率。如果测试执行了每一个`if`条件，遍历了每一个`for`循环，并到达了每一个`return`语句，那么测试覆盖率为100%。这导致了一个误解：高测试覆盖率（理想情况下为100%）是最重要的目标。\n\
+  \n但是，请记住100%的测试覆盖率并不能保证无错误的代码。实际上，它仅仅意味着100%的代码已被执行。它甚至不会告诉我们关于测试质量的任何信息。80%到90%的测试覆盖率配合有意义且良好的测试，应被视为良好的平衡点。\n\
+  \n有人可能会问，好的测试与坏的测试相比是什么样子。好的测试是能够发现错误或意外行为的测试（这两者实际上是同一回事）。好的测试试图打破软件，发现意外行为，并测试输入参数的所有可能边界情况。编写测试的人不应该对软件温柔友善，而最好是尝试打破它，因为测试的目的是打破软件。坏的测试仅针对其典型范围内的参数和预期输出来测试软件的行为。\n\
+  \n## 测试的不同类型\n\n我已经通过谈论不同的策略让你感到困惑了，所以让我们把它们弄清楚，并看看不同的测试策略。\n\n### 手动测试\n\n当我谈到手动测试时，我的意思是在笔记本电脑或手机上打开应用程序，并在里面随意点击。\n\
+  \n如果我们处于软件开发领域，手动测试是绝对不行的。你永远不会依赖手动测试，而总是更喜欢自动化测试，因为它们比手动测试更可靠、可重复且速度快得多。\n\n但是，在UX/UI设计和图形领域，手动测试是快速发现错误的唯一可靠方法——但为什么是这样呢？这是因为在处理图形时，人类更擅长发现视觉错误或交互元素的卡顿。从每个可视化、过渡或动画的开头就编写自动化测试会更加繁琐和耗时。因此，在处理响应式设计或图形时，手动测试你的可视化是开发流程中必要的一个步骤。手动测试有助于快速识别错误并提高生产力。\n\
+  \n手动测试响应式应用程序的最简单方法是设置两个Chrome窗口——一个用于测试桌面版本，一个用于测试移动版本（启用移动设备模式）。你始终需要在每个窗口中测试你的应用程序，并在更改时重新加载应用程序。\n\
+  \n有人可以通过在本地开发系统中添加Android、iOS或Windows Phone模拟器来增强这种设置；甚至可能在真实硬件上测试应用程序。为了优化手动测试工作流，请向所有设备添加实时重载或浏览器同步功能，以避免在所有设备上手动重新加载。你还可以将云端远程设备农场中的远程设备添加到本地设置中，这样你的应用程序将在某些真实硬件上运行并通过浏览器控制。关于手动测试的部分将帮助你逐步设置这种环境，并详细讨论上述所有选项。\n\
+  \n### 自动化测试\n\n当我谈到自动化测试时，我的意思是一个测试脚本，它在没有手动交互的情况下运行多个测试。自动化测试的结果要么是通过（绿色），要么是失败（红色），当_所有测试通过_或_一个（或多个）测试失败_时。理想情况下，人们会在对本地文件进行更改后运行此脚本，以便快速发现功能错误。如果测试脚本很慢，也可以在将更改提交到代码仓库后自动运行它。\n\
+  \n在软件开发领域，自动化测试始终是首选的测试方式，因为它是测试代码可靠且可重复的方式。通常，我们将自动化测试分为三种策略：\n\n- 单元测试：测试单个单元（函数），通常称为规格说明书（specs）\n\
+  - 集成测试：测试单元（多个函数）的集成，通常称为端到端（e2e）测试\n- 系统测试：测试整个系统\n\n我们可以得出结论，每种策略都应该在不同阶段和不同约束下应用，这是由于测试设置的复杂性和测试的运行时间。通常，单元测试非常快，可以在源文件每次更改后在本地运行。集成测试和系统测试通常很慢，应该在远程测试环境中运行，例如，在每次提交到源代码仓库后。\n\
+  \n可视化中有许多组件可以以自动化的方式进行测试，例如比例尺、映射函数、reducer、元素绘制等，无论是在本地系统还是远程测试环境中。因此，我将在自动化测试部分向你介绍单元测试和集成测试的世界，我们将为可视化组件实现一个典型的自动化测试策略。\n\
+  \n在本书中，我们只处理可视化组件；因此，我们将只探讨单元测试和集成测试。它们将在以下部分中描述。\n\n### 半自动化测试\n\n有些测试会自动执行；但是确定它们是否通过或失败无法由程序完成。起初听起来有点可怕，但可以通过一个例子更好地描述。\n\
+  \n让我们考虑一个简单的地图可视化。你向可视化添加一个经纬网格，以便用户更容易感知地图中的距离。你的测试脚本生成应用程序的截图，并将其与前一版本的截图进行比较；更准确地说，它计算两张截图之间的绝对差异。这种技术称为**视觉回归测试**。\n\
+  \n脚本如何判断网格是故意添加的，还是代码更改导致的错误？它根本无法做到。脚本自动运行；但是，它需要人工交互才能通过测试；这就是我们所谓的半自动化测试。有时，（小的）可视化更改是故意的，有时它们可能由错误引起。无法自动决定哪个更改是预期的。\n\
+  \n在良好的数据可视化设置中，我们将生成一组截图，并在开发者每次向源代码仓库提交更改时，向开发者提供带有前一版本绝对差异的图片。为了方便专注于最重要的更改，脚本可以只向开发者显示像素变化超过一定阈值的图片。\n\
+  \n### 单元测试\n\n单元测试（或specs）旨在测试代码中最小单元的正确性；因此，它们为代码中所有单元提供了可执行的文档。虽然关于代码中最小单元是什么有争议，但在我看来，最小单元是一个单独的函数。\n\
+  \n在数据可视化中，使用函数式方法设计组件是一种好的技术，这样每个函数接收输入、修改它并返回输出。一个好策略是为所有这些函数编写测试。\n\n单元测试只应影响被测试单元的代码，不需要任何其他单元，因此除了被测试单元外，所有内容都应该模拟。模拟是专门为测试创建的对象的副本，（同步）返回预定义结果。让我们想想我们其中一个函数中的`XMLHttpRequest`。我们可以简单地创建一个模拟，为此请求同步返回预定义结果。好处很明显。速度更快，因为我们不需要创建真实的请求。它也是可重复的，并且不依赖于`XHR`的真实结果。\n\
+  \n这使我们来到关于单元测试的第二条最重要的陈述：它们应该在源代码每次更改后在本地运行，因此必须非常快速。因此，我们大多数时候在本地开发环境中使用无头浏览器（没有图形）运行单元测试，例如**PhantomJS**。\n\
+  \n### 集成测试\n\n集成测试（或e2e）旨在从用户与组件交互的角度测试组件的集成。这意味着它们在真实浏览器中测试多个组件之间的交互，以进行用户交互。\n\
+  \n\n\n\n\n数据可视化的一个好策略是测试每种交互可能性，例如绘制、点击、悬停、缩放、过滤等等。与单元测试相比，我们需要一个真实浏览器（带有鼠标、触摸、滚动等）和多个组件来进行集成测试。因此，测试套件运行速度会比单元测试的慢得多。\n\
+  \n一个良好的工作流是在本地开发环境提交更改到仓库之前运行集成测试，以及在开发环境每次向仓库推送更改时都运行。\n\n### 持续集成\n\n如果你有一种设置，其中对仓库的更改会在测试环境中触发测试，我们称之为所谓的\
+  \ _持续集成_。如果你曾在 Github 上使用过代码，你一定一定注意到某些仓库 Readme 文件上的这些小小的 \"Build passing\" 徽章。这很可能是来自名为\
+  \ TravisCI 的服务的构建/测试状态文件，该服务可以与 Github 紧密集成。然而，也有其他提供类似功能和徽章的服务。\n\n除了 TravisCI，还有一个名为\
+  \ Codeship 的出色持续集成服务。它为你的测试环境提供了更多选项，你甚至可以并行运行测试。\n\n一个良好的数据可视化设置总是使用持续集成。设置起来非常简单，你可以立即查看所有分支的测试状态。\n\
+  \n### 测试驱动开发 (TDD)\n\n在过去十年中，TDD 在软件工程师中变得非常流行。这是一种在编写实际代码之前先实现测试的技术。这种方法的目的是在实现函数之前先思考其目的。\n\
+  \nTDD 大大提高了代码质量，因为开发人员在实现之前被迫考虑每个函数的确切目的。这对于编写具有明确范围和目的的组件的优秀开发人员来说非常有效。\n\n然而，在数据可视化中，大部分工作是迭代和通过探索完成的；我们添加坐标轴、刻度、颜色，调整尺寸，移动图例，等等。这更像是用代码以编程方式设计图形。我主张，为可视化使用\
+  \ TDD 是适得其反的，因为你会在尝试可视化时浪费大量时间重写测试。\n\n## 手动测试和调试\n\n让我们从手动测试开始，在开发机器上本地调试响应式应用程序。为此，我创建了一个小型仪表板应用程序，如下面的屏幕截图所示。这张图片是我桌面电脑上\
+  \ Chrome 窗口的屏幕截图：\n\n![](img/72559bd4713b2b89631dcca187d7e2db_205_0.png)\n\n带有可视化组件的仪表板应用程序\n\
+  \n### 在本地进行测试和调试\n\n在本地运行设备有一个很大的好处：速度非常快，你可以快速看到可视化效果。你可以控制设备；它要么在你手中，要么在你的本地机器上运行。下图显示了典型的本地开发设置：\n\
+  \n![](img/72559bd4713b2b89631dcca187d7e2db_206_0.png)\n\n本地开发设置\n\n### 在 Chrome\
+  \ 桌面浏览器中更改设备模式\n\n快速以不同屏幕分辨率测试应用程序的最快捷、最方便的方法是使用 Chrome 开发者工具中的设备模式设置。你可以先打开开发者工具（按\
+  \ F12），然后单击左上角的微型手机图标来打开它。在下图中，你可以看到开发者工具带有一个蓝色的小型手机，这意味着设备模式已启用：\n\n![](img/72559bd4713b2b89631dcca187d7e2db_207_0.png)\n\
+  \nChrome 中的开发者工具\n\n一旦我们激活设备模式，浏览器窗口的背景就会变成灰色网格，并且只显示移动设备典型分辨率中的框架。在下面的屏幕截图中，我们可以看到\
+  \ iPad 预设的活动设备模式：\n\n![](img/72559bd4713b2b89631dcca187d7e2db_208_0.png)\n\n带有 iPad\
+  \ 设备模式设置的仪表板应用程序\n\n很容易理解为什么这种测试方式非常优雅；它非常快，我们可以留在本地环境中并使用一直使用的所有调试工具。但是，我们应该意识到，设备模式只调整窗口以适应目标设备的屏幕尺寸和分辨率，但不模拟浏览器。因此，设备模式只能让我们测试不同的屏幕分辨率，而不能测试跨浏览器兼容性。\n\
+  \n> 你可以在 Chrome 开发者网站上找到更多关于设备模式的信息，网址为 https://developer.chrome.com/devtools/docs/device-mode。\n\
+  \n### 模拟移动设备\n\n接下来，我们可以论证，我们不仅想要模拟目标设备的浏览器屏幕，还要模拟设备本身并使用设备模拟器。那些已经为 Android 或 iOS\
+  \ 开发软件的人可能已经安装了官方模拟器。在系统级别进行模拟可以在测试跨浏览器兼容性时获得更准确的结果，因为模拟了运行目标系统真实移动浏览器的系统架构。\n\n\
+  然而，使用模拟器有一些缺点。最重要的是，目前没有办法在不使用虚拟机或双启动的情况下在同一操作系统上安装 Android、iOS 和 Windows 模拟器；其次，使用模拟器极其缓慢。坦白说，我没有测试过最新版本的官方模拟器；但上次我使用它们时，根本太慢，无法日常工作。\n\
+  \n启动模拟器需要很多时间，运行它们占用主机 PC 太多资源。但是，如果你的目标平台是例如 Android，并且你已经安装了 Android 环境，那么这可能是一个不错的选择。\n\
+  \n> 你可以在 Android 网站上找到更多关于 Android 模拟器的资源，网址为 http://tools.android.com/tech-docs/emulator。如果你使用\
+  \ Android 并寻找更快的模拟器，应该看看 Genymotion，网址为 https://www.genymotion.com。\n\n### 使用 Browsersync\
+  \ 同步真实设备\n\n我更喜欢在真实设备上测试我的代码，我的办公室里就有：三台 Android 手机、一台 Android 平板电脑和一台 Windows 手机。这些\
+  \ Android 手机都安装了不同的主要版本的 Android。\n\n在这些设备上打开相同的可视化并进行测试是一件麻烦事。这会花费太多时间。幸运的是，有一个名为\
+  \ Browsersync 的惊人工具，它可以让你将当前页面同步到所有连接的设备，推送 URL，自动重新加载页面，并镜像点击和滚动。我真的不知道开发人员没有这样的工具怎么能保持高效。\n\
+  \n它只需要在你的主机计算机（即你的本地开发桌面机器）上安装，通过从命令行运行以下代码：\n\n```\nnpm install -g browser-sync\n\
+  ```\n\n这会安装该工具并使 `browser-sync` 命令全局可用。通过运行以下命令，你启动一个开发服务器，该服务器提供目录中的所有静态文件并监控所有\
+  \ JavaScript 文件的更改：\n\n```\nbrowser-sync start --server --files \"*.js\"\n```\n\n\
+  当发生更改时，Browsersync 通过 **Web 套接字** 和热重载将这些更改推送到所有连接的客户端。它适用于所有带有网页浏览器的移动设备，甚至适用于我的旧\
+  \ Windows Phone。\n\n运行 `start` 命令时，Browsersync 会显示两个不同的域：一个用于连接到开发服务器，另一个用于连接到 Browsersync\
+  \ UI。连接到主机只需使用移动设备打开这个 URL。下面的屏幕截图显示了使用 Android 手机打开的仪表板应用程序：\n\n![](img/72559bd4713b2b89631dcca187d7e2db_210_0.png)\n\
+  \nAndroid 手机上的仪表板应用程序\n\n\n\n\n\n你实际上在图片中看不到，但当在应用程序中滚动时，所有连接的设备也会滚动到相同的位置。下面的截图显示了在\
+  \ Android 平板电脑上运行的同一应用程序：\n\n![](img/72559bd4713b2b89631dcca187d7e2db_211_0.png)\n\
+  \nAndroid 平板电脑上的仪表板应用程序\n\n如果你有几台备用的目标设备，使用 Browsersync 是在真实设备上快速测试可视化效果的一种非常方便的方法。\n\
+  \n> 你可以在 https://www.browsersync.io/ 网站上找到更多有关 Browsersync 的信息。\n\n## 远程调试响应式应用程序\n\
+  \n如果你买不起真实设备，也不想在本地机器上运行模拟器，也可以决定从云端设备实验室访问你想要的所有设备。这结合了快速访问、低成本和丰富的设备类型：\n\n![](img/72559bd4713b2b89631dcca187d7e2db_212_0.png)\n\
+  \n如果你在测试 Web 应用程序，应该试试浏览器设备实验室 Browserstack。它让你直接在自己的浏览器中访问大量不同的浏览器和设备。在 Automate\
+  \ 模式下运行测试稍显昂贵，但在所谓的 live 模式下使用却非常出色。这让你可以通过本地浏览器运行并控制设备上的浏览器（参见下面的截图，显示 Safari 运行在\
+  \ Mac 上并通过 Ubuntu 控制）。\n\n结合前面讨论的 Browsersync，你还可以像下图所示，使用运行在 Mac 上的 Safari 浏览器实例打开本地\
+  \ URL。请记住，打开本地 URL 需要一个额外的浏览器插件来通过本地网络隧道传输流量。不过，这给你提供了与之前完全相同的功能：URL 推送、点击镜像、自动重新加载等等。它与大量远程设备、操作系统和浏览器结合在一起，是一种致命的组合。\n\
+  \n![](img/72559bd4713b2b89631dcca187d7e2db_213_0.png)\n\n运行在 Mavericks 上的最新版 Safari\n\
+  \n在下一个截图中，你可以看到 iPhone 6 Plus 上运行的 iOS 浏览器，它同样通过运行在 Ubuntu 上的 Chromium 浏览器进行控制。在不同设备上进行测试和调试非常简单。你甚至可以在远程设备上打开开发者工具。这对于移动设备尤其方便，因为通常你无法轻松打开开发者工具并调试应用程序。\n\
+  \n![](img/72559bd4713b2b89631dcca187d7e2db_214_0.png)\n\n运行在 iPhone 6 Plus 上的最新版\
+  \ Safari\n\n在 Browserstack 上进行测试和调试并不便宜，但这对每个开发者来说都是一大好处。能够直接且立即访问大量不同的浏览器和设备令人难以置信。你可以通过本地网络隧道并访问本地开发服务器，这一点简直太棒了。\n\
+  \n> 你可以在 Browserstack 网站 https://www.browserstack.com/local-testing 上找到更多有关 Browserstack\
+  \ 和本地测试的信息。\n\n## 半自动化可视化回归测试\n\n不幸的是，由于测试和结果的歧义性与可定制性，目前尚无通用的可视化回归测试策略。要建立一个使用\
+  \ GitHub 和 TravisCI 的优秀工作流，需要进行一些手动脚本编写和调整。\n\n如果你想将其纳入工作流，我建议研究一下 PhantomCSS 和\
+  \ BackstopJS（基于 Phantom 的一层抽象）。这些工具可以轻松集成到你的测试策略中，以从可视化的先前版本创建回归图像。\n\n## 自动化测试与持续集成\n\
+  \n如前所述，在许多情况下，我们都可以并且应该为响应式可视化运行测试。在任何可以编写自动化测试的情况下，我们都更倾向于使用自动化测试而不是手动测试。我们偏好自动化测试的原因很简单：为了使其可重复。\n\
+  \n一旦拥有自动化测试，我们就可以在每次将更改推送到仓库时运行它们。如果它们足够快，我们甚至可以在每次对本地源文件进行更改时运行它们。这能立即反馈代码的功能性，并提供快速反馈。调试更容易，识别和查找\
+  \ bug 也更容易，这会自动让你更高效，使开发更有效。\n\n## 在本地机器上运行测试\n\n最后，我们可以开始编写一些测试并自动运行它们。我们将从单元测试开始，之后再讨论集成测试。\n\
+  \n## 使用 Karma 运行单元测试\n\n作为编写和运行单元测试的第一个工具，我们需要一个可以收集所有测试、设置测试环境并在 Web 浏览器实例中启动测试的工具。这些就是所谓测试运行器的任务。在本书中，我们将使用由\
+  \ Angular 团队开发的 Karma 测试运行器。\n\nKarma 非常易于配置和使用，并且可以很好地集成到你的 Gulp 和 Grunt 构建配置中。可以通过以下命令安装：\n\
+  \n```\nnpm install karma --save-dev\n```\n\n该命令还会将 Karma 添加到当前的开发依赖项中。安装 Karma 后，可以使用以下命令设置配置：\n\
+  \n```\nkarma init karma.conf.js\n```\n\n在本书中，我选择了名为 Mocha 的测试框架、Require.js 和名为 PhantomJS\
+  \ 的浏览器来运行测试；你将得到类似下图的输出：\n\n![](img/72559bd4713b2b89631dcca187d7e2db_216_0.png)\n\
+  \n## 安装和配置 Karma\n\n请确保通过运行以下命令安装了 Mocha、Chai、Require.js 和 PhantomJS：\n\n```\nnpm\
+  \ install phantomjs mocha chai karma-chai requirejs --save-dev\n```\n\n最后，我们可以将\
+  \ `chai` 和 `app.js` 添加到我们的 JavaScript 代码的配置中（你可以查看源代码），并通过命令行运行以下命令启动 Karma：\n\n\
+  ```\nkarma start\n```\n\n如果我们正确配置了 Karma，它将启动一个 PhantomJS 实例并运行所有测试。但是，如果我们还没有任何测试，将会出现如下图所示的\
+  \ `in` 错误。太好了，现在是编写我们的第一个单元测试的时候了：\n\n![](img/72559bd4713b2b89631dcca187d7e2db_217_0.png)\n\
+  \n运行 Karma\n\n我们有一个很不错的小函数，可以为我们展平嵌套数组。这是 app.spec.js 单元测试的一个完美示例；让我们编写一个简单的测试：\n\
+  \n```javascript\nvar expect = chai.expect;\n\ndescribe('app', function() {\n  describe('#flatten()',\
+  \ function () {\n    it('should flatten a nested array', function () {\n      var\
+  \ nestedArray = [['foo'], ['bar']];\n\n      var computed = flatten(nestedArray);\n\
+  \      var expected = ['foo', 'bar'];\n\n      expect(computed).to.eql(expected);\n\
+  \    });\n  });\n});\n```\n\n在前面的代码中，我们将组件的所有测试都包装在 describe 块中。在这个块内部，我们将 flatten\
+  \ 函数的所有测试都包装在 describe 块中。最后，我们编写第一个测试来针对标准用例进行测试。\n\n编写优秀且富有表现力的测试有很多方法和断言库；不过，我发现将所有测试都减少到绝对最小非常有用。首先，我们为\
+  \ nestedArray 变量开始一个初始化阶段。接着，我们进入转换阶段，使用待测函数转换输入。我总是将输出存储在 computed 变量中。最后，我使用 expected\
+  \ 变量声明预期值。然后，我使用 expect(computed).to.eql(expected) 或 expect(computed).to.equal(expected)。前者测试元素级相等性，后者测试类型相等性。\n\
+  \n如下图所示，测试通过，Karma 显示绿色的 SUCCESS 状态：\n\n![](img/72559bd4713b2b89631dcca187d7e2db_218_0.png)\n\
+  \n在 Karma 中通过所有测试\n\n现在是回到测试并使其失败的好时机。如果在空数组上调用该函数会发生什么？如果数组嵌套很深呢？你已经能看出我们要往哪里走；我们的目标是破坏代码。\n\
+  \n> 关于 Karma 测试运行器及其配置的更多信息，可以在 GitHub 上找到 https://karma-runner.github.io/。关于 Mocha\
+  \ 测试框架的更多信息，可以在 Mocha 网站 https://mochajs.org/ 上找到。如果你想了解更多有关 Chai 断言库的信息，请查看 http://chaijs.com/。\n\
+  \n## 使用 Protractor 和 Selenium 进行集成测试\n\n集成测试要求待测系统中的所有组件都能像用户正在与组件交互一样工作。因此，我们需要使用一个不同的测试运行器，它能够启动、停止和连接到浏览器，打开\
+  \ URL，处理异步代码，并提取有关元素的信息。\n\n在本书中，我们还将使用 AngularJS 团队的集成测试工具：Protractor。它基于 Webdriver\
+  \ 和 Selenium，因此在与不同浏览器和实例交互时非常强大。\n\n我们可以通过在命令行中运行以下命令来安装 Protractor：\n\n```\nnpm\
+  \ install -g protractor\n```\n\n安装 Protractor 后，我们还需要安装 Webdriver。可以通过运行以下命令来完成：\n\
+  \n```\nwebdriver-manager update\n```\n\n\n\n\n\n使用 Protractor 运行集成测试时，我们总是需要事先运行\
+  \ Webdriver。因此可以通过以下方式启动它：\n\n```\nwebdriver-manager start\n```\n\n如果一切安装正确，您将看到类似下图的输出：\n\
+  \n![](img/72559bd4713b2b89631dcca187d7e2db_219_0.png)\n\n后台运行的 Selenium\n\n现在，我们可以创建一个名为\
+  \ protractor.conf.js 的简单配置文件和第一个测试 app.e2e.js。查看源代码以获取正确的设置：\n\n```\ndescribe('dashboard',\
+  \ function() {\nbeforeEach(function() {\n// Don't wait for Angular\nreturn browser.ignoreSynchronization\
+  \ = true;\n});\n\nit('load choropleths', function() {\nbrowser.get('B05166_08_Dashboard.html');\n\
+  \nvar maps = element.all(by.css('.choropleth'));\n\nvar result = maps.count();\n\
+  var expected = 1;\n\nexpect(result).toEqual(expected);\n});\n});\n```\n\n在前面的代码中，我们再次将所有测试包装在\
+  \ describe 块中。然后，我们添加一小段代码来告诉 Protractor 不要等待 AngularJS。最后，我们编写一个访问 Browsersync\
+  \ 开发服务器的测试。如果我们启动测试，它将运行并希望像下图一样没有错误地完成：\n\n```\nckoeerner@koerner-ThinkPad-W550s:~/Dropbox/msc-private/Projekte/Responsive\
+  \ Data Visualizations with Bootstrap and D3.js/chapter09/codes$ protractor protractor-conf.js\n\
+  [11:27:24] I/direct - Using the selenium server at http://localhost:4444/wd/hub\n\
+  [launcher] Running 1 instances of WebDriver\nStarted\n..\n1 spec, 0 failures\nFinished\
+  \ in 1.605 seconds\n[launcher] 0 instance(s) of WebDriver still running\n[launcher]\
+  \ chrome #01 passed\nckoeerner@koerner-ThinkPad-W550s:~/Dropbox/msc-private/Projekte/Responsive\
+  \ Data Visualizations with Bootstrap and D3.js/chapter09/codes$\n```\n\nProtractor\
+  \ 中所有测试均通过\n\n现在是创建包含单个可视化组件以及该组件测试的集成测试文件的好时机。尝试添加滚动、悬停和点击来打破可视化。\n\n> 可以在 Angular\
+  \ 网站 https://angular.github.io/protractor 上找到有关 Protractor、其配置和 API 的更多信息。\n\n##\
+  \ 在云中运行您的测试\n\n现在进入高级部分；您可以编写一个脚本，通过 TravisCI 在每次推送时运行完整的集成测试。查看 https://docs.travis-ci.com/user/languages/javascript-with-nodejs\
+  \ 中的步骤，以开始使用 Travis 和 JavaScript。\n\n但是，您不需要在 Travis 的虚拟机中运行浏览器，可以添加诸如 Browserstack\
+  \ 之类的服务，在云中使用多种设备和分辨率运行测试。\n\n我想提到另一个很棒的自动化设备测试服务，它是 Browserstack 的绝佳替代品，并且对开源项目免费——Sauce\
+  \ Labs。\n\n> 可以在 Sauce Labs 的网站 https://saucelabs.com/ 上找到更多信息。\n\n## 可视化的测试策略\n\
+  \n现在，我们有足够的信息来为响应式可视化构建一个稳固的测试策略。请注意，这是基于我个人经验的一个非常主观的设置，请随意用您喜欢的层或工具替换任何部分。但是，请为您的工作流程保留总体思路。\n\
+  \n首先，开发时我们将使用台式机上的 Chrome 浏览器。我们既可以使用普通的桌面窗口，也可以在设备模式下切换到移动视图。这取决于目标屏幕大小和分辨率。个人而言，我更喜欢在桌面\
+  \ Chrome 中工作，并在移动设备上调试和测试。\n\n开发期间，我们需要定期进行一些手动测试，以确保可视化看起来和感觉良好。在本地为不同操作系统运行模拟器很麻烦；这就是为什么我更喜欢通过\
+  \ Browsersync 将真实的移动手机和平板电脑同步到当前的 Chrome 窗口。如果您无法访问真实设备，也可以在本地项目中使用 Browserstack。\n\
+  \n对于单元测试，在开始进行更改之前，我们需要启动一个 Karma 单元运行器。它将监视源文件的更改，启动 PhantomJS 实例，并在保存文件时运行完整的测试套件。\n\
+  \n一旦我们将提交推送到 GitHub，TravisCI 就会在本地自动运行所有单元测试，并使用 Sauce Labs 在不同的移动设备上运行集成测试。这还将为视觉回归测试创建不同的图像，并将其显示给开发人员。\n\
+  \n最后，当所有测试都通过且开发人员接受视觉回归的不同图像时，功能或修复可以合并到 master 分支中。\n\n## 总结\n\n本章对不同测试策略用于测试响应式可视化组件提供了扎实的概述。在第一部分，我们讨论了测试策略、测试的成本和收益以及本地、远程、手动和自动测试之间的区别。\n\
+  \n然后，我们将了解不同的测试策略以及如何将它们实现为可视化。我们涵盖了使用 Browsersync 和 Browserstack 进行的手动测试，以及使用 TravisCI、Karma、Protractor\
+  \ 和 Selenium 进行的自动化测试。最后，我们将为可视化组件构建完美的测试策略。\n\n在下一章中，您将学习在创建 SVG 中的响应式可视化时检测和解决跨浏览器问题。\n"
+- "# 解决跨浏览器问题\n\n在上一章中，您了解了在不同浏览器中测试自定义响应式可视化的所有内容。我们必须这样做，因为在不同的设备、操作系统和浏览器中，我们的应用程序的外观和功能可能会有所不同。在本章中，我们将解决这些跨浏览器问题。您将学习以下内容：\n\
+  \n- 了解跨浏览器兼容可视化的主要挑战\n- 使用 Modernizr 检测用户浏览器的功能支持\n- 了解 Polyfills、Shims 和 Wrappers\n\
+  - 了解 D3 的兼容性\n- 实现跨浏览器响应式设计\n- 了解 matchMedia polyfill\n- 使用 Respond.js 对 min-width\
+  \ 和 max-width 进行 Polyfill\n- 使用 Enquire.js 在 JavaScript 中实现媒体查询\n- 了解 SVG 功能的兼容性\n\
+  - 了解鼠标和触摸事件的兼容性\n- 了解触摸事件的执行链\n- 构建触摸友好的可视化\n\n首先，我们将研究常见的跨浏览器兼容性问题并找到解决方法。从针对 Internet\
+  \ Explorer 的简单条件注释开始，我们将逐步深入到使用 Modernizr 在 JavaScript 和 CSS 中进行复杂的功能检测。您将了解解决跨浏览器问题的常见概念，例如\
+  \ Polyfills、Shims 和 Wrappers。\n\n在第二部分，您将了解跨浏览器兼容的媒体查询并理解 CSS polyfill 的问题。然后，我们将使用\
+  \ Respond.js（一个 min-width max-width polyfill）和 Enquire.js（一个用于在 JavaScript 中组织媒体查询的库）来研究此问题的不同解决方案。\n\
+  \n接下来，我们将查看不包含在 1.1 规范中的特殊 SVG 功能的支持，例如动画、滤镜和裁剪路径。\n\n在最后一部分，您将学习如何在同时支持鼠标和触摸输入的设备上正确处理触摸和鼠标输入。我们将看到一些常见的陷阱、触摸事件，以及如何为您的应用程序同时支持触摸和鼠标事件。\n\
+  \n## 跨浏览器兼容性问题的解决方案\n\n开发 Web 应用程序的真正挑战不在于实现很棒的功能、动画或过渡效果，而在于为所有目标设备、操作系统和浏览器提供一流的用户体验和兼容性。在本章中，我们将尝试解决最常见的兼容性问题，并使您的可视化跨浏览器兼容。\n\
+  \n### 针对 Internet Explorer 的条件注释\n\n解决兼容性问题的每个 Web 开发人员工具箱中一个很棒的工具是 HTML 的条件注释。这些是可以包含有效\
+  \ HTML 代码的 HTML 注释，由 Internet Explorer 解释和执行。等等，一个仅在 Internet Explorer 中可用的酷功能？嗯，事实证明，这些条件\
+  \ HTML 注释在现代 Web 浏览器中不是必需的，因为这些浏览器更愿意实现适当的标准而不是专有功能。\n\n因此，条件注释是针对 Internet Explorer\
+  \ 的迷茫开发人员根据浏览器版本加载资源的绝佳方式。让我们看一个简单的示例，我们仅为版本小于或等于 9 的 Internet Explorer 加载兼容性脚本：\n\
+  \n```\n<!doctype HTML>\n<html>\n<head>\n\t<title>Conditional Comments</title>\n\t\
+  <!--[if lte IE 9]>\n\t<script src=\"compatibility_script.js\"></script>\n\t<![ENDIF]-->\n\
+  ```\n\n\n\n\n\n<script src=\"some_script.js\"></script>\n</head>\n<body>\n</body>\n\
+  </html>\n\n在前面的示例中，我们可以看到 `<!--[if lte IE 9]>...<![endif]-->` 表示一个有效的 HTML 注释，它在\
+  \ Internet Explorer 中会转换为条件 HTML 节点。\n\n该语法仅允许 `<!--[if ... ]>` 和 `<![endif]-->`\
+  \ 关键字以及少量表达式、条件和运算符。以下运算符可用于识别浏览器版本：\n\n- ! 非运算符，例如，[if !IE]\n- lt 小于运算符，例如，[if\
+  \ lt IE 5.5]\n- lte 小于或等于运算符，例如，[if lte IE 6]\n- gt 大于运算符，例如，[if gt IE 5]\n- gte\
+  \ 大于或等于运算符，例如，[if gte IE 7]\n- ( ) 子表达式运算符，例如，[if !(IE 7)]\n- & 和运算符，例如，[(gt IE\
+  \ 5)&(lt IE 7)]\n- | 或运算符，例如，[(IE 6)|(IE 7)]\n\n![](img/72559bd4713b2b89631dcca187d7e2db_224_0.png)\n\
+  \n## 使用 Modernizr 检测原生功能\n\n设计响应式应用程序的关键挑战是将应用程序正确地适配到用户设备的外形因素（屏幕尺寸和分辨率）。了解外形因素并利用原生工具（例如媒体查询）有助于创建非常响应式的应用程序。只要原生实现可用，我们就希望使用它们；只要可以使用\
+  \ CSS 而不是 JavaScript 来实现某个功能，我们就希望这样做以获得重要的性能提升。因此，如果我们希望不仅支持最新的浏览器，就需要能够检测原生功能是否可用。\n\
+  \n有人可能会问，如何在用户的浏览器上检测某个特定功能。一种简单的方法是检查 API 是否可用，这与以下示例类似。我们检查名为 Array.prototype.every\
+  \ 的原生函数是否可用：\n\n```\nif ('every' in Array.prototype) {\n    console.log('Array.prototype.every\
+  \ is available');\n}\n```\n\n前面的代码可以轻松地推广到针对不同对象和 API 函数进行测试。但是，如果我们想知道浏览器中是否可用\
+  \ in 关键字呢？或者是否支持箭头函数呢？这的工作方式略有不同；我们必须在 try-catch 块中计算表达式。以下是测试当前是否可用箭头函数的示例：\n\n\
+  ```\nfunction hasArrow() {\n    try {\n        eval('() =>{}');\n    } catch (err)\
+  \ {\n        return false;\n    }\n    return true;\n}\n```\n\n使用此技术，我们可以将其扩展到大量不同的功能和\
+  \ API，并检查这些功能是否可用。但是，我们非常懒惰，不想全部实现它们。幸运的是，有一个名为 Modernizr 的优秀库可以为我们完成所有这些工作，并额外提供一种易于使用的基于类的方法来在\
+  \ CSS 中进行功能检测。\n\n首先，我们将安装 Modernizr；然而，这并非一个简单的过程。没有全局的 Modernizr.js 文件可让您检查目标浏览器中可用的每个功能。此外，您必须自己构建（精简版）Modernizr。听起来复杂，但实际并非如此。首先，使用\
+  \ npm 通过以下命令全局安装 Modernizr（您可能需要 sudo 权限）：\n\n```\nnpm install -g modernizr\n```\n\
+  \n现在，我们可以创建 modernizr-config.json 文件，用于存储项目的 Modernizr 配置。我们为 SVG 功能设置了配置文件；不过，随时可以向配置中添加更多功能（通过链接\
+  \ https://modernizr.com/download 查看可用选项，并单击 BUILD 创建配置文件。\n\n![](img/72559bd4713b2b89631dcca187d7e2db_226_0.png)\n\
+  \nModernizr 网站\n\n我们为基本的 Canvas 和 SVG 支持以及其他 SVG 功能创建配置文件：\n\n```\n{\n    \"minify\"\
+  : true,\n    \"options\": [\n        \"setClasses\"\n    ],\n    \"feature-detects\"\
+  : [\n        \"test/canvas\",\n        \"test/svg\",\n        \"test/svg/asimg\"\
+  ,\n        \"test/svg/clippaths\",\n        \"test/svg/filters\",\n        \"test/svg/foreignobject\"\
+  ,\n        \"test/svg/inline\",\n        \"test/svg/smil\"\n    ]\n}\n```\n\n最后，我们可以使用以下命令构建自定义的\
+  \ Modernizr 功能检测脚本：\n\n```\nmodernizr -c modernizr-config.json\n```\n\n您也可以使用 -d\
+  \ scripts/modernizr.min.js 标志将 Modernizr 脚本的安装目标更改到 scripts 文件夹。让我们创建一个包含此脚本的 HTML\
+  \ 文档：\n\n```\n<!DOCTYPE HTML>\n<html>\n<head>\n    <title>Feature Detection using\
+  \ Modernizr</title>\n    <script src=\"scripts/modernizr.min.js\"></script>\n</head>\n\
+  <body>\n\n<script>\n/* here we go */</script>\n\n</body>\n</html>\n```\n\n前面的代码展示了如何将\
+  \ Modernizr 脚本包含到页面中。请注意，除了使用 Modernizr 的命令行工具和配置文件外，您还可以为喜欢的任务运行器（例如 Gulp 或 Grunt）使用插件，或者直接从\
+  \ Modernizr 网站下载自定义构建版本。\n\n## 在 JavaScript 中使用 Modernizr\n\n让我们尝试 Modernizr 的 JavaScript\
+  \ API；它将所有可用功能直接作为属性暴露在全局 Modernizr 对象上。检查 SMIL 支持就像以下代码片段一样简单：\n\n```\nif (Modernizr.smil)\
+  \ {\n    console.log('SMIL is available');\n}\n```\n\n太棒了；我们现在可以轻松地在 JavaScript\
+  \ 中检查所有功能是否可用，并轻松地将应用程序和功能适配到用户的目标浏览器。\n\n> 可用功能的完整列表在 Modernizr 网站上提供，网址为 https://modernizr.com/docs/#features。\n\
+  \n## 在 CSS 中使用 Modernizr\n\n在 JavaScript 中使用 Modernizr 非常适合根据目标浏览器的功能调整函数和脚本。但是，当我们处理的是\
+  \ HTML 元素而非 JavaScript 时，我们可能希望使用 CSS 类根据浏览器的可用功能来显示和隐藏 DOM 元素。\n\n在前面的示例中，我们向配置文件添加了一个名为\
+  \ setClasses 的选项。该选项会为每个受支持和不受支持的功能向 HTML 根节点添加类。我们可以通过查看以下图中显示的演示页面的 DOM 树来观察这一点：\n\
+  \n```\n<html class=\"canvas svg svgasimg svgclippaths svgfilters svgforeignobject\
+  \ inlinesvg smil\">\n<head></head>\n<body>\n<script></script>\n</body>\n</html>\n\
+  ```\n\n使用 Modernizr 的网站的 DOM 树\n\n在前面的示例中，我们只看到了根 HTML 节点上命名为受支持功能的类。不受支持的功能会导致带有名为\
+  \ no- 前缀的类，例如 no-canvas、no-svg 等等。现在，我们可以向可视化添加 CSS 样式，以显示和使用可用功能或隐藏不受支持的功能：\n\n\
+  ```\n.no-svg .chart {\n  display: none;\n}\n\n.no-svg .sorry-for-not-using-a-modern-browser\
+  \ {\n  display: block;\n}\n```\n\n在前面的片段中，我们从页面中删除图表，并向用户显示一条错误消息，要求其更新到现代浏览器。但是，通常我们并不想简单地为不兼容浏览器的用户禁用某个功能。此外，我们希望将缺失的功能添加到用户的浏览器中，以便他/她可以获得类似于使用最新浏览器的用户体验。请在以下部分中了解更多相关信息。\n\
+  \n我们将更频繁地使用 Modernizr 基于类的功能检测来为应用程序设置样式，而不仅仅是检测 SVG 或 Canvas 支持。想想这样一个场景：您想使用 CSS3\
+  \ 动画为可视化的某些部分添加动画。优势显而易见：您将拥有 CSS 中原生动画的功能，而不是在 JavaScript 中使用手动计时器和 DOM 转换。\n\n\
+  因此，我们可以在配置文件中包含 CSS3 特定的动画选项，例如 `cssanimations`、`csstransforms`、`csstransforms3d`、`preserve3d`\
+  \ 等，并检查这些功能的可用性。现在，我们可以在 CSS 中创建原生动画，并在不支持 CSS 过渡时创建回退解决方案：\n\n```\n@keyframes fadeIn\
+  \ {\n    from {opacity: 0.0;}\n    to {opacity: 1.0;}\n}\n```\n\n```\n.cssanimations\
+  \ .chart {\n    animation-name: fadeIn;\n    animation-duration: 4s;\n}\n```\n\n\
+  作为 JavaScript 回退解决方案，我们添加以下脚本：\n\n```\n<script>\nd3.selectAll('.no-cssanimations\
+  \ .chart')\n    .transition()\n    .duration(4000)\n    .style('opacity', 1.0);\n\
+  </script>\n```\n\n当然，我们也可以使用略显更明确的 Modernizr JavaScript 语法：\n\n```\n<script>\nif\
+  \ (!Modernizr.csstransitions) {\n    d3.selectAll('.chart')\n    .transition()\n\
+  \    .duration(4000)\n    .style('opacity', 1.0);\n}\n</script>\n```\n\n现在，我们可以通过适配目标浏览器的功能，为可视化在用户体验、兼容性和性能之间提供一种折中方案。请注意，这种折中方案是有代价的——应用程序中存在多个冗余代码片段，需要进行测试和维护。\n\
+  \n## 原生功能的自定义实现\n\n如果目标平台或设备上不可用原生功能，开发者有三种选择：\n\n- 删除使用原生功能的那段代码\n\n\n\n\n\n- 放弃对不支持原生功能的浏览器的支持\n\
+  - 使用原生功能的自定义实现\n\n完全不使用该功能显而易见，并且大多数情况下不是首选方式。开发人员希望利用现代浏览器及其功能来提供更好的性能和最佳功能。\n\n\
+  仅因为缺少一小段原生代码就排除某些浏览器也是令人沮丧的。别误会，我不是在说支持 IE7。新的原生功能通常首先以前缀（例如 moz、webkit、ms 等）形式在某个\
+  \ JavaScript 引擎中出现，然后才在所有现代浏览器中无前缀提供。这个过程通常需要几年时间，并且不能保证所有功能都会在所有引擎中实现。\n\n## Polyfill\
+  \ – 实现缺失的功能\n\n我们希望在包含原生功能的同时，不破坏应用程序对旧版浏览器和不同 JavaScript 引擎的向后兼容性。可以通过在 JavaScript\
+  \ 中自己实现原生功能，并在原生功能不可用时将其用作回退解决方案来实现——这也就是所谓的 Polyfill。\n\n需要注意的是，当然，用 JavaScript\
+  \ 对不同原生功能进行 Polyfill 存在很大差异。通过实现 forEach、indexOf、map 等数组方法来提供 ECMAScript 5 兼容性的\
+  \ Polyfill，比为完整的 SVG 1.1 规范或 CSS Media Query 规范编写 Polyfill 要容易得多。\n\nPolyfill 通常是一个函数，用于为不支持该功能的\
+  \ JavaScript 引擎实现原生功能。如果我们谈论支持整个 API（如前面提到的 SVG 或 Media Query 规范），我们通常谈论的是抽象层而不是\
+  \ Polyfill。下面是一个示例（略微过时）：Internet Explorer 8 及更低版本不支持 SVG 规范，而支持其自己的矢量标记语言（VML）。要在这些浏览器中使用矢量图形，必须使用一个抽象层，该层提供一致的\
+  \ API，并根据用户的浏览器生成 SVG 或 VML；RaphaëlJS 就是 SVG 的此类抽象层。\n\n> 可以在 Github 上的 Modernizr\
+  \ 项目 WIKI 中找到流行 Polyfill 列表，网址为 https://github.com/Modernizr/Modernizr/wiki/HTML5-Cross-Browser-Polyfills。\n\
+  \n## Shims – 拦截 API 调用\n\n如果您在互联网上查找关于跨浏览器兼容性的资源，将会遇到许多不同的术语，它们都以类似的方式使用。Shim 是这些术语之一，常与\
+  \ Polyfill 一起使用。\n\nShim 是一段代码的通用表达，用于拦截原生 API 调用（例如函数），以提供该函数的修改后行为。这种行为范围从实现函数、修改参数列表和调整返回值，到您所能想到的任何内容。因此，Polyfill\
+  \ 是实现旧版浏览器缺失功能的 Shim。\n\n## Wrappers – 抽象 API\n\n我需要再次为提及 IE8 而道歉——当 SVG 变得重要时，这个话题非常流行。为\
+  \ IE8 对 SVG API 进行 Polyfill 简直是疯狂，并且经常会导致不兼容。因此，在两个 API 之上实现一个 Wrapper 要好得多。\n\n\
+  Wrapper 抽象了 API（例如 SVG）的行为，并为开发者提供更高级别的 API。目标是能够更改 Wrapper 的底层技术，例如输出 VML 而不是 SVG，从而在不修改开发者\
+  \ API 的情况下创建跨浏览器矢量图形。\n\n## D3 的兼容性\n\n有人可能会问 D3 作为库的兼容性如何；然而，这个问题没有简单的答案。D3 是一个用于\
+  \ DOM 转换的库，旨在使用 CSS、HTML 和 SVG 等底层技术。它只是一个支持框架，让您访问原生 API 和功能。当然，用户不必在 D3 中使用 SVG，也可以同样使用\
+  \ Canvas。用户可以只使用地图投影、事件系统或缩放。因此，在谈论 D3 的跨浏览器兼容性时，我们必须更加概括。\n\n> D3 的许多内部功能（例如缩放、计时器、颜色、插值等）可作为额外的包在\
+  \ Github 上获得，网址为 `https://github.com/d3`。当您只需要应用程序中 D3 功能的某个部分时，这非常方便。\n\n如果您使用\
+  \ D3，必须检查应用程序中使用的底层技术的兼容性。如果使用 D3 操作 SVG，必须检查 SVG 兼容性；如果使用 SMIL，则检查 SMIL 兼容性；如果使用\
+  \ Canvas，以此类推。您应该明白我的意思。\n\n如果您只想使用 D3 的单个部分，并且对内部核心的兼容性感到好奇，那么必须检查 ES5 数组函数的兼容性。下面的截图显示了\
+  \ ES5 的一般跨浏览器支持。可以看出，IE8 是问题制造者：\n\n![](img/72559bd4713b2b89631dcca187d7e2db_232_0.png)\n\
+  \nES5 的跨浏览器兼容性（来源：http://caniuse.com/#feat=es5）\n\n在 IE8 和 IE7（老天保佑！）中使用 D3 功能推荐的\
+  \ Polyfill 是 `Aight` 库，它主要包含 ES5 数组函数和 API。该库可通过 `https://github.com/shawnbot/aight`\
+  \ 在 Github 上找到。\n\n## 跨浏览器 Media Queries\n\n在创建跨浏览器响应式可视化时，很可能需要处理 Media Query 的支持、度量和单位问题。后两者可以使用\
+  \ Modernizr（`cssvhunit`、`cssvmaxunit`、`cssvminunit`、`cssvwunit` 等）和回退解决方案轻松检测和修复。\n\
+  \n但是，在 Media Query 支持不可用时修复它相当棘手。为什么呢？如果检测 Media Queries 的可用性很简单（使用 Modernizr），那么对其进行\
+  \ Polyfill 则非常麻烦。主要原因是 Media Queries 通常出现在 CSS 样式中，而不是 JavaScript 代码中。到目前为止，您只了解到\
+  \ JavaScript 函数和 API 可以使用 JavaScript 进行 Polyfill。因此，如果我们想要 CSS 的 Polyfill（必须用 JavaScript\
+  \ 编写），则必须始终解析完整的 CSS 文档以扩展其功能。这意味着，我们不能依靠原生样式性能，而必须使用 JavaScript 解析 CSS，应用所有已知样式，并修复新选择器、属性、样式等，然后再应用它们。这通常会导致次优解决方案（性能方面）。\n\
+  \n## Window.matchMedia() 及其 Polyfill\n\nCSS Media Queries 的 JavaScript 对应物是 window.matchMedia()\
+  \ 函数。如果该函数可用，则支持 CSS Media Queries；如果不可用，我们必须为该函数提供 Polyfill，并使用 JavaScript Polyfill\
+  \ 修复 CSS 样式。\n\n在下面的截图中，可以看到不同浏览器中 matchMedia 函数的支持情况。可以识别出导致问题的 IE9 和 Opera Mini\
+  \ 8。因此，如果应用程序支持这两个版本，则需要包含 matchMedia 的 Polyfill。\n\n![](img/72559bd4713b2b89631dcca187d7e2db_233_0.png)\n\
+  \nmatchMedia 的跨浏览器兼容性（来源：http://caniuse.com/#feat=matchmedia）\n\n可以通过下载最新源代码或使用\
+  \ bower 包管理器并从终端运行以下命令来安装 matchMedia Polyfill：\n\n```\nbower install matchmedia\n\
+  ```\n\n让我们回顾第 1 章（使用响应式设计、Bootstrap 和 D3.js 入门）中的以下示例。使用 matchMedia 函数，可以在 JavaScript\
+  \ 中仅对某些设备类型应用代码：\n\n```\nif (matchMedia('screen and (max-width: 480px)').matches)\
+  \ {\n    // user is on a smartphone\n}\n```\n\n但是，当我们查看样式表时，通常会找到以 CSS 编写的样式，例如以下代码片段：\n\
+  \n```\n@media screen and (max-width: 480px) {\n    body {\n        /* user is on\
+  \ a smartphone */\n    }\n}\n```\n\n如前一章所发现的，现在需要使用 matchMedia Polyfill 将 Media\
+  \ Query 功能添加到 CSS 样式中。以下部分将完全做到这一点。\n\n\n\n\n\n## Min-width 和 max-width 支持（通过 Respond.js）\n\
+  \n我们知道如何为 CSS 填充 Media Queries 的 polyfill；我们需要使用 JavaScript 加载 CSS 样式，解析它们，找到 Queries，将它们通过\
+  \ matchMedia polyfill 传递，然后相应地为所有受影响的 DOM 元素应用样式。这就是 Respond.js 库所做的，但仅针对 min-width\
+  \ 和 max-width 查询，这些查询被视为响应式应用的最低限度功能集。Respond.js 由 Scott Jehl 编写和维护，可在 Github 上找到\
+  \ https://github.com/scottjehl/Respond。以下是 Respond.js 测试运行器的截图，它可以在任何浏览器中运行并测试功能：\n\
+  \n![](img/72559bd4713b2b89631dcca187d7e2db_234_0.png)\n\n浏览器中的 Respond.js 测试套件\n\
+  \n您可以通过下载最新源代码或使用 bower 包管理器来安装 Respond.js，并在终端中运行以下命令：\n\n```\nbower install respond\n\
+  ```\n\n## 使用 Enquire.js 在 JavaScript 中实现 Media Queries\n\n太棒了！现在，我们可以设置 Respond.js\
+  \ 来自动 polyfill Media Queries（伴随所有性能限制）。我们只需在所有包含的样式之后引入 Respond.js；它不会查找内联、导入或在其引入后链接的样式。以下是使用\
+  \ Respond.js 的最小布局示例：\n\n```\n<!doctype HTML>\n<html>\n<head>\n<title>Media Queries\
+  \ using Respond.js</title>\n<link rel=\"stylesheet\" href=\"styles/responsive.css\"\
+  >\n<!--[if lte IE 9]>\n<script src=\"bower_components/respond/dest/respond.min.js\"\
+  ></script>\n<![endif]-->\n</head>\n<body>\n\n</body>\n</html>\n```\n\n在前面的代码中，我们将\
+  \ Respond.js 包装在条件 HTML 注释中，以便仅在版本小于或等于 9 的 Internet Explorer 中加载。这不会影响所有其他浏览器中的代码，并且仅为\
+  \ Internet Explorer 加载 polyfill。\n\n使用 Media Queries 是根据目标浏览器的分辨率定义响应式应用尺寸的好方法。但是，每当我们想要提供跨浏览器兼容性时，CSS\
+  \ 文件必须通过 JavaScript 重新加载和解析。与其进行这种繁琐的资源重新加载，不如将响应式样式直接移动到 JavaScript 中。\n\n当我们在\
+  \ JavaScript 中实现响应式样式时，我们需要在 Media Query 匹配时运行函数，并在不同 Query 匹配时运行清理函数。因此，我们希望有一个舒适的解决方案来完成此操作，而不是直接使用原生\
+  \ matchMedia 查询。Nick Williams 的 Enquire.js 库提供了这样一个接口，用于注册 Media Queries、回调函数和清理函数。源代码可在\
+  \ Github 上找到 https://github.com/WickyNilliams/enquire.js。\n\n![](img/72559bd4713b2b89631dcca187d7e2db_236_0.png)\n\
+  \nEnquire.js 网站\n\n您可以通过下载最新源代码或使用 bower 包管理器来安装 Enquire.js，并在终端中运行以下命令：\n\n```\n\
+  bower install enquire\n```\n\n现在，我们可以开始在 JavaScript 中而不是 CSS 中定义响应式样式了。这样做的优点是，结合\
+  \ matchMedia polyfill，在 Internet Explorer 上兼容性不需要其他依赖项。我们只需在 JavaScript 中直接提供响应式样式，这意味着无需加载和解析\
+  \ CSS 文件。\n\n让我们创建一个小示例，使用 Enquire.js 在移动设备上隐藏菜单：\n\n```html\n<!doctype HTML>\n\
+  <html>\n  <head>\n    <title>Media Queries using Enquire.js</title>\n    <script\
+  \ src=\"bower_components/matchMedia/matchMedia.js\"></script>\n    <script src=\"\
+  bower_components/enquire/dist/enquire.min.js\"></script>\n    <script>\n    enquire.register(\"\
+  screen and (max-width: 480px)\", {\n        match: function() {\n            //\
+  \ Enter smartphone mode\n            document.querySelector('.menu').style.display\
+  \ = 'none';\n        },\n        unmatch: function() {\n            // Leave smartphone\
+  \ mode\n            document.querySelector('.menu').style.display = 'block';\n \
+  \       }\n    });\n    </script>\n  </head>\n  <body>\n    <div class=\"menu\"\
+  >\n      <ul>\n        <li><a href=\"#\">test</a></li>\n        <li><a href=\"#\"\
+  >test</a></li>\n        <li><a href=\"#\">test</a></li>\n      </ul>\n    </div>\n\
+  \  </body>\n</html>\n```\n\n在前面的代码中，我们使用 match 和 unmatch 函数来执行回调，并对名为 screen and\
+  \ (max-width: 480px) 的 Media Query 使用了清理函数。这使我们能够完全控制响应式应用，它仅使用 JavaScript，因此具有完全的跨浏览器兼容性（前提是包含\
+  \ matchMedia polyfill）。\n\n## 跨浏览器 SVG 功能\n\n我们在前面的章节中已经看到，SVG 仅受 Internet Explorer\
+  \ 9 及更高版本支持。为 Internet Explorer 的旧版本提供完全的跨浏览器兼容性并非不可能，但具有挑战性。理论上，您可以使用包装器（例如 Raphael.js）将\
+  \ D3 的输出转换为有效的 VML；然而，这很棘手、困难，而且性能表现不佳。在这种情况下，最好根本不为这个问题使用 D3，因为它不会带来额外的好处。\n\n\
+  每当我们谈论 SVG 支持时，我们指的是基本 SVG 支持，即 SVG 1.1 规范。然而，还有更多有趣的功能可以在您的应用程序中使用，其中一些功能具有不同的兼容性。让我们来看看这些功能。\n\
+  \n### SVG 动画\n\n我们在前面的章节中已经讨论过 SMIL 动画；然而，我们想再次提及它。尽管在当前浏览器中兼容性看起来还不错（暂时忽略微软浏览器），但我们需要意识到\
+  \ SMIL 将来将不再受支持。\n\n如果您打算实现 SMIL 动画（因为它们简单且酷），您还应该为 Internet Explorer、Edge 和 Opera\
+  \ Mini 提供 JavaScript 降级解决方案：\n\n![](img/72559bd4713b2b89631dcca187d7e2db_238_0.png)\n\
+  \nSMIL 动画（来源：http://caniuse.com/#feat=svg-smil）\n\n如果您计划使用 CSS 沿着 SVG 路径动画化元素（所谓的运动路径），请注意许多浏览器也不支持此功能：\n\
+  \n![](img/72559bd4713b2b89631dcca187d7e2db_238_1.png)\n\nCSS 运动路径（来源：http://caniuse.com/#feat=css-motion-paths）\n\
+  \n如果您仍想沿运动路径动画化元素，应该使用非原生的 JavaScript 方法。有一个很棒的 JavaScript 函数，它返回自定义路径上的某个点，并给出路径上的参数长度；这个函数称为\
+  \ `getPointAtLength()`。\n\n> 有关 SVG 函数 getPointAtLength 的更多信息，请参阅 W3C 的 https://www.w3.org/TR/SVG/paths.html。使用此函数实现路径动画的示例可在\
+  \ http://bl.ocks.org/KoGor/8162640 找到。\n\n## 使用 SVG 滤镜\n\n如果您计划在 SVG 中使用滤镜，例如混合、模糊、湍流等，可以放心使用。SVG\
+  \ 元素上的滤镜在大多数浏览器中受支持，Internet Explorer 9 除外：\n\n![](img/72559bd4713b2b89631dcca187d7e2db_239_0.png)\n\
+  \nSVG 滤镜（来源：http://caniuse.com/#feat=svg-filters）\n\n与许多其他 SVG 功能一样，它们也通过 CSS 引入\
+  \ HTML 元素。然而，这无法解决我们在 Internet Explorer 9 中使用的问题，只会带来更多限制。\n\n![](img/72559bd4713b2b89631dcca187d7e2db_239_1.png)\n\
+  \nCSS 滤镜（来源：http://caniuse.com/#feat=css-filters）\n\n要支持 Internet Explorer 9 中的图像滤镜，我建议使用功能检测和已弃用的旧版\
+  \ DX 滤镜。\n\n> 有关 DX 滤镜的更多信息，请参阅 MSDN 的 https://msdn.microsoft.com/library/ms532853.aspx。\n\
+  \n### 在 SVG 中剪辑元素\n\nSVG 允许开发者创建可重用作为其他元素剪辑路径的元素。虽然这是一个很棒的功能，我经常在可视化中使用它（我喜欢剪辑路径），但并非所有浏览器都支持它。下图显示了使用\
+  \ url(#id) 语法的 CSS 属性用于剪辑蒙版的兼容性：\n\n| IE | Edge | Firefox | Chrome | Safari | Opera\
+  \ | iOS Safari | Opera Mini | Android Browser | Chrome for Android |\n|---|---|---|---|---|---|---|---|---|---|\n\
+  | | | | | | | | | | |\n\nCSS clip-path 属性（来源：http://caniuse.com/#feat=css-clip-path）\n\
+  \n剪辑路径（和填充模式）的另一个缺点是这种语法；元素必须通过 URL、ID 和 # 符号才能访问。我可以想象许多场景，其中元素无法通过 URL 和符号访问——例如，使用哈希进行路由的单页应用程序。然而，目前没有有用的解决方案，我们需要依赖没有剪辑蒙版的可视化。\n\
+  \n## 轻松处理触摸和鼠标事件\n\n至今，我们一直试图为移动设备以及 PC 或电视屏幕上的用户提供触摸和鼠标事件。使用 D3 时，我们将触摸事件视为鼠标单击事件，只是交互半径不同。然而，用户很可能同时拥有触摸（或多点触控）和鼠标作为输入设备。在本节中，我们解决开发者在为用户提供两种输入类型时遇到的问题。\n\
+  \n### 鼠标和触摸事件\n\n为什么我们可以使用鼠标单击事件来检测触摸屏上的手指触摸？为了回答这个问题，我们将查看目标 DOM 元素上的鼠标事件执行链，并进入触摸设备。我们将它们合并为一个执行链，用于在触摸设备上用手指触摸目标元素。以下是将被传播的事件列表：\n\
+  \n- touchstart: 指尖接触屏幕\n- touchmove: 指尖在屏幕上移动\n\n\n\n\n\n- touchend: 手指停止触摸屏幕\n\
+  - mouseenter: 鼠标光标正进入元素\n- mouseover: 鼠标光标正悬停在元素上方\n- mousemove: 鼠标在元素上移动\n- mousedown:\
+  \ 鼠标按钮被按下\n- mouseup: 鼠标按钮被释放\n- click: 元素被点击\n- mouseleave: 鼠标光标正离开元素\n\n查看前面的列表后，很多事情都变得清晰了。在开发响应式应用程序时，处理交互设计时，前面的列表将是你最好的助手。\n\
+  \n我们首先注意到，用手指轻触也会传播 click 事件。这解释了为什么我们可以使用简单的 `click` 监听器来检测触摸和鼠标输入。这很有用，它将为鼠标交互设计的基本\
+  \ click 功能也可用于触摸交互。但是，在实现触摸支持时，请确保调整交互目标。\n\n观察执行链的第二个最重要的洞察与第一个直接相关。每当我们同时支持触摸和鼠标事件时，就需要确保触摸事件不会在执行链中作为鼠标事件传播。我们将在下一节中看到这如何工作。\n\
+  \n另一个有趣的洞察可能从观察事件链中并不明显。我们观察到，开头有 `touchmove` 事件，而 `mousemove` 事件在若干事件之后触发。虽然这对单指点击成立，但对于手指在屏幕上移动的触摸手势则不成立。不幸的是，当手指移动并触发\
+  \ `touchmove` 事件时，不会传播任何 `mousemove` 事件。这意味着，仅基于 `mousemove` 事件设计的 UI 由于这种行为，在触摸设备上无法正常工作。\n\
+  \n### 打破事件执行链\n\n如前所述，如果在支持触摸输入的浏览器上操作，触摸事件也会作为鼠标事件传播。浏览器的这种行为称为鼠标模拟处理，并在每个触摸事件上默认启用。虽然这是一件好事，因为即使未实现触摸事件，它也使鼠标\
+  \ UI 可在触摸设备上使用，但当我们实际使用触摸事件时，它会降低性能。\n\n我们有很多理由希望拦截浏览器触发的事件链和默认操作——为了提高性能（正如我们刚才所说），为了在可视化中使用相同手势时禁用滚动，以及为了完全控制事件链。\n\
+  \nJavaScript 提供了一个函数，用于在保持执行链和传播事件的同时禁用浏览器的默认行为；此函数称为 `event.preventDefault()`。单击复选框切换其状态的默认行为，以及使用鼠标滚轮滚动页面的默认行为。每当我们想要阻止这些默认操作时，我们都会使用前面的函数。\n\
+  \n还有另一个函数，它不会影响事件的默认操作，但会停止事件的执行链；此函数称为 `event.stopPropagation()`。每当我们想要停止事件传播时，我们都会使用这个函数。\n\
+  \n如果要停止特定事件的所有事件监听器，也可以使用 `event.stopImmediatePropagation()`。这将停止特定事件的所有自定义事件监听器。\n\
+  \n> 有关 preventDefault、stopPropagation 和 stopImmediatePropagation 的更多信息，请参阅 MDN 上的\
+  \ https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault、https://developer.mozilla.org/en-US/docs/Web/API/Event/stopPropagation\
+  \ 和 https://developer.mozilla.org/en-US/docs/Web/API/Event/stopImmediatePropagation。\n\
+  \n### D3 中的触摸事件\n\n我们之前看到，touchmove 事件不会传播 mousemove 事件。虽然这两个事件看起来相同（一个用于鼠标，一个用于触摸），但有一个小的差异。理解这一差异对于明白为什么我们不应该简单地使用相同的回调处理程序来监听这两个事件并执行相同的函数非常重要。\n\
+  \n为了理解这些事件之间的差异，我们只需考虑它们的目的。在台式计算机上，用户经常移动鼠标光标以到达屏幕上的某个元素。因此，`mousemove` 事件针对光标下方最近的元素，例如，鼠标正在移过一个元素。\n\
+  \n然而，touchmove 事件是在特定元素上故意发生的，可以看作是拖动（使用鼠标点击并移动）事件。用户的目标是移动特定元素。出于这个意图，touchmove\
+  \ 事件针对的是开始时被触摸的元素和也接收了 touchstart 事件的元素。虽然这似乎是 mousemove 事件规范中一个微小的差异，但它对如何实现事件监听器有重大影响。\n\
+  \n让我们看一个使用 D3 实现合适触摸界面的小示例。我们在屏幕上绘制一个全尺寸画布，然后在画布上处理触摸事件；这可以成为一个小型绘图应用程序的开始：\n\n\
+  ```\n<svg class=\"drawing\">\n\n</svg>\n<script>\n$canvas = d3.select( '.drawing'\
+  \ )\n    .attr( 'width', document.body.clientWidth)\n    .attr( 'height', document.body.clientHeight\
+  \ );\n\n$canvas.on( \"touchstart\", touchstart );\n\nfunction touchstart () {\n\
+  \    console.log( 'Touch started' );\n    d3.event.preventDefault();\n    d3.select(\
+  \ d3.event.target )\n        .on( \"touchmove\", touchmove)\n        .on( \"touchend\"\
+  , touchend );\n}\n\nfunction touchmove () {\n    console.log( 'Touch moving' );\n\
+  \    d3.event.preventDefault();\n}\n\nfunction touchend () {\n    console.log( 'Touch\
+  \ ending' );\n}\n</script>\n```\n\n在前面的应用程序中，我们将 touchmove 和 touchend 事件直接注册在 touchstart\
+  \ 事件的目标上。这是一个很好的技巧，因此我们不必担心这些事件的静态目标。在下面的截图中，我们可以看到如何在 Chrome 中模拟触摸事件来测试这个小示例应用程序：\n\
+  \n![](img/72559bd4713b2b89631dcca187d7e2db_244_0.png)\n\nChrome 中模拟的触摸事件\n\n但是，使用\
+  \ D3 时，我们需要确保事件不会传播通过完整的执行链并导致鼠标模拟。正如我们已经看到的，使用 D3 时，事件存储在全局 d3.event 对象中。您仍然可以使用\
+  \ d3.event.preventDefault() 和 d3.event.stopPropagation() 函数来停止事件的执行链并阻止默认操作。\n\n\
+  ### 关于检测触摸设备的说明\n\n在本章的第一节中，我们了解了特性检测和 Modernizr。我们可以简单地发展这些思想，并认为检测支持触摸的设备应该相当容易，并可能为触摸设备提供与台式设备不同的用户体验。\n\
+  \n虽然检测触摸支持相当容易和直接，但没有办法检测触摸设备。我们可以检查 touchstart 事件是否可用，如果工作正常，我们可以检查设备宽度，等等。归根结底，这不重要，因为不再存在经典的仅触摸和仅鼠标设备。有连接鼠标的\
+  \ Android 平板电脑、兼具触摸和鼠标的二合一设备、兼具触摸和轨迹球的笔记本电脑；列表还在继续。您会很快意识到，将这些设备分类为触摸和非触摸没有任何意义。\n\
+  \n因此，我的建议是，不要为触摸实现一个功能，为鼠标交互实现另一个功能，而是实现一种既可以用鼠标又可以用触摸（甚至手写笔）的交互。\n\n### 触摸的悬停状态\n\
+  \n我们会很快意识到，在处理触摸和鼠标支持时，应用程序状态需要进行调整。这些状态中一个非常常见的情况是悬停状态，可以通过将鼠标指针悬停在元素上来实现。下图显示了可视化中悬停状态的典型应用；它通过在数据点上悬停来揭示当前位置的更多信息：\n\
+  \n![](img/72559bd4713b2b89631dcca187d7e2db_245_0.png)\n\n悬停交互\n\n虽然这是当前鼠标指针位置的一个绝佳用途，但这种状态在仅触摸设备上通常不存在。因此，我们需要修改这种行为，以便即使触摸设备也可以访问此信息。我们之前读到过，检测触摸设备是不可能的，因此，我们不能简单地为触摸设备添加一个按钮，而应该重新思考交互。\n\
+  \n在前面的示例中，我们可以实现一个可以从轴拖动到图表中的光标。这可能不是悬停状态的完美替代品，但它让我们走上新的交互模型的正确轨道。我们现在可以争辩说，图表上的悬停事件（或简单的轻触）会在该位置（或最近的数据点）显示一个光标。实际上，这与之前的交互完全相同；然而，我们现在还必须考虑如何将光标从可视化中移除——也许是将其移回轴上。希望你明白我的意思；重新思考交互，我的意思正是如此——思考悬停状态（或轻触）在哪里仍然有效，并通过从头到尾为触摸设备实现和优化交互来增强新的交互。\n\
+  \n\n\n\n\n如果你想同时支持触摸和鼠标事件，最好彻底放弃悬停功能，改用其他交互方式。之所以我们经常在这样做时遇到问题，是因为 `:hover` 状态是一个有效的\
+  \ CSS 选择器，因此可以通过 CSS 而非 JavaScript 实现许多不错的功能。\n\n不过，如果你舍不得放弃悬停状态，可以在每个悬停状态中添加聚焦状态（这也是一个有效的\
+  \ CSS 选择器）。这样可以确保在触摸设备上轻触一次会显示鼠标光标在悬停状态下的信息。以下示例展示了悬停（左侧）与悬停 + 聚焦（右侧）状态之间的区别；我鼓励你使用触摸设备打开它并尝试（本书提供了源代码）：\n\
+  \n![](img/72559bd4713b2b89631dcca187d7e2db_246_0.png)\n\n在触摸设备上使用悬停和聚焦\n\n> > 请注意，在某些浏览器中，点击也会触发悬停状态（不过这与\
+  \ JavaScript 事件执行链不同）；因此，在触摸设备上的某些浏览器中，悬停状态只需轻触即可生效\n\n## 指针事件 – 结合鼠标、触摸和手写笔\n\n\
+  浏览器厂商意识到，仅在触摸事件上模拟鼠标事件不足以解决多种交互设备的问题。因此，W3C 在所有指针输入设备之上提出了一种抽象层，并编写了指针事件规范。\n\n\
+  这个想法很简单，如下图所示，所有指针输入设备不应单独处理（通过独立事件），而应合并为一个名为 Pointer 的单一输入设备。开发者随后即可实现对指针事件的支持，从而自动为所有类型的指针设备提供出色的\
+  \ UI。\n\n![](img/72559bd4713b2b89631dcca187d7e2db_247_0.png)\n\n指针事件（来源：https://www.w3.org/TR/pointerevents/)\n\
+  \n虽然这听起来很棒，也是朝着多种指针输入设备迈出的一大步，但浏览器厂商并不热衷于实现此规范。查看跨浏览器兼容性图表（如下图）可知，该规范目前尚不可用：\n\n\
+  | IE | Edge | Firefox | Chrome | Safari | Opera | iOS Safari * | Opera Mini * |\
+  \ Android * 浏览器 | Chrome for Android |\n|---|---|---|---|---|---|---|---|---|---|\n\
+  | | | | | | | | | | |\n| | | | | | | | | | |\n| | | | | | | | | | |\n| | | | | |\
+  \ | | | | |\n| | | | | | | | | | |\n\n指针事件的跨浏览器兼容性（来源：http://caniuse.com/#feat=pointer）\n\
+  \n现在你可能会感到失望，并问我为何要提起这个指针事件的事情来逗你，但我相信未来的浏览器将支持这种针对指针设备的抽象。不过，请注意，随着 Apple 的 ForceTouch\
+  \ 的出现，将会涌现新的交互可能性，这些可能性可能需要单独处理。在为提升用户体验而在独立设备类型上支持这些功能的同时，请将 Web 视为面向用户友好、易访问和多平台应用程序的共同场所。\n\
+  \n有关指针事件的更多信息，可在 MDN 上找到：https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent，以及\
+  \ W3C 网站：https://www.w3.org/TR/pointerevents/。\n\n### 为元素禁用指针事件\n\n为完整起见，我也想提一下\
+  \ `pointer-events` CSS 属性，不要将其与之前讨论的指针事件混淆。此属性可用于在 DOM 元素上禁用指针事件（即鼠标、触摸等）。虽然这已是\
+  \ SVG 规范的一部分，但现在 HTML 也支持了。以下图显示了完整的跨浏览器兼容性：\n\n![](img/72559bd4713b2b89631dcca187d7e2db_248_0.png)\n\
+  \npointer-events 属性的跨浏览器兼容性（来源：http://caniuse.com/#feat=pointer-events）\n\n每当你希望阻止元素接收事件时，`pointer-events`\
+  \ 属性都非常有用，例如遮罩层或部分重叠的元素，或者当你希望确保在触摸设备上正确的元素接收事件时。\n\n### 让我们看一个带有重叠圆形的简单示例：\n\n\
+  ```\n<style>\ncircle.focus:hover, circle.focus:focus {\n  fill: rgba(0, 0, 255,\
+  \ 0.5);\n}\n\n.all-events {\n  pointer-events: auto;\n}\n\n.no-events {\n  pointer-events:\
+  \ none;\n}\n</style>\n<svg class=\"drawing\">\n<circle class=\"focus\" r=\"35.9\"\
+  \ cx=\"50\" cy=\"75\" />\n<circle class=\"all-events\" r=\"35.9\" cx=\"50\" cy=\"\
+  50\" />\n<circle class=\"focus\" r=\"35.9\" cx=\"150\" cy=\"75\" />\n<circle class=\"\
+  no-events\" r=\"35.9\" cx=\"150\" cy=\"50\" />\n</svg>\n```\n\n在前面的代码中，我们将第一个重叠的\
+  \ `circle` 元素设置为正确接收所有事件，而第二个不接收任何事件。在生成的应用程序中，我们现在可以轻松点击第二个底层圆形，而第一个由于重叠元素的原因很难点击。以下是此示例的截图：\n\
+  \n![](img/72559bd4713b2b89631dcca187d7e2db_249_0.png)\n\nPointer-events 属性\n\n##\
+  \ 总结\n\n在本章中，你学习了如何使用最佳工具解决最常见的跨浏览器问题。借助 Modernizr，我们可以构建一个轻量级脚本，用于检测 CSS 和 JavaScript\
+  \ 中支持的浏览器功能。在必要时，我们可以提供 Polyfill 或使用封装器。\n\n使用 D3 创建 SVG 可视化时，需要了解受支持的 SVG 规范的限制。因此，在处理过滤器、动画和剪辑路径时，需要格外小心。\n\
+  \n你学习了如何创建在所有浏览器上都能运行的响应式可视化。使用 Media Queries 时需要记住的一个关键点是 matchMedia Polyfill，它通常被其他工具用于为原生\
+  \ JavaScript 函数提供 Polyfill。Respond.js 是简单 CSS Media Queries 的绝佳 Polyfill，而 Enquire.JS\
+  \ 鼓励你将 Media Queries 移至 JavaScript。\n\n最后，我们讨论了不同的鼠标和触摸相关问题，以及构建兼容鼠标和触摸的跨浏览器应用程序的解决方案。现在，你已准备好使用目前最出色的可视化库之一\
+  \ D3 实现出色的响应式可视化。\n\n希望你喜欢这本书；能与你分享我的一些热情和专业知识，对我来说是一种乐趣。如果你对这本书满意，或有任何问题、意见或反馈，请在\
+  \ Twitter 上联系我 @ChrisiKrnr。祝编程愉快！\n"
+- "# 索引\n\n## A\n\nAlbers 投影 165, 166\n\nAndroid 模拟器\n- URL 190\n\nanimate\n- 关于 124\n\
+  - HTML, CSS 使用 126\n- JavaScript 使用 128-130\n- SVG, SMIL 使用 124-126\n\nanimations\n\
+  - 属性插值，D3 使用 131-133\n- 贝塞尔曲线 135\n- 创建，JavaScript 使用 130\n- 缓动函数，在 D3 中 137-139\n\
+  - 随时间变化的进度 133, 134\n- D3 中的定时器和间隔 130, 131\n\narcs\n- 绘制 46\n\nareas\n- 绘制，曲线之间\
+  \ 45\n\nattributes\n- 插值，D3 使用 131, 132\n\n自动化测试 196\n\naxis\n- 创建 47, 50\n- URL\
+  \ 51\n\naxis 缩放 120\n\nAzimuthal Equidistant 投影 168\n\n## B\n\nBackstopJS 196\n\n\
+  柱状图 51-55\n\nBézier Curves\n- 关于 135-136\n- URL 137\n\nbisectors\n- URL 111\n\n\
+  Bootstrap\n- 关于 2, 7, 8\n- 查找其他资源 9\n- 元素，在不同屏幕分辨率上隐藏 18\n- 网格布局 10-17\n- 包括 9\n\
+  - 在 LESS 中使用 Media Queries 19-21\n- URL 8, 9\n\nBootstrap 的 Media Queries\n- 关于\
+  \ 97\n- 使用网格系统 101, 102\n- 在 CSS 中 97, 98\n- 在 JavaScript 中 99, 100\n- 在 LESS/SASS\
+  \ 中 98, 99\n- URL 21\n\nBower\n- URL 9\n\n断点 4, 5\n\nBrowserStack\n- 关于 179, 193\n\
+  - URL 195\n\nBrowserSync\n- 关于 179\n- URL 193\n- 用于，同步真实设备 190-193\n\n## C\n\n笛卡尔坐标系\
+  \ 153\n\n地图可视化\n- 关于 152\n- 数据，在地图上显示 155, 156\n- 地理坐标系 153\n- 球体，投影到平面地图 154\n\n\
+  Chai 断言库\n- URL 199\n\n分级统计图 176, 177\n\nChrome 桌面浏览器\n- 更改设备模式 188, 189\n- 启用移动设备\
+  \ 190\n\n云\n- 运行测试 201\n\nCodeship 185\n\nColor Brewer 库\n- URL 170\n\n命令行工具\n-\
+  \ URL 161\n\n条件注释\n- 参考链接 205\n\n条件 CSS\n- 使用 Media Queries 2-4\n\n内容分发网络 (CDN)\
+  \ 9\n\n持续集成 185, 196\n\n跨浏览器兼容性问题\n- 解决方案 204\n\n跨浏览器 Media Queries\n- 关于 213\n\
+  - max-width，通过 Respond.js 215, 216\n- min-width，通过 Respond.js 215, 216\n- 在 JavaScript\
+  \ 中与 Enquire.js 一起使用 216-218\n- Window.matchMedia() 函数 214\n\n跨浏览器 SVG 功能\n- 关于\
+  \ 218, 219\n- 动画 219\n- 元素，剪辑 221\n- SVG 滤镜，使用 220\n\n跨域请求错误 65\n\nCSS\n- Bootstrap\
+  \ 的 Media Queries 97, 98\n- 使用 Modernizr 209, 210\n\nCSS3\n- URL 81\n\nCSS3 选择器\n\
+  - URL 31\n\n曲线\n- 绘制 42-44\n\n自定义实现，原生功能\n- 关于 210, 211\n- Polyfill 211\n- Shim\
+  \ 212\n- 封装器 212\n\n## D\n\nD3\n- 兼容性 212, 213\n- 文档，URL 145\n- 缓动函数 137, 139\n\
+  - 插值，URL 133\n- 参考链接 212\n- 定时器和间隔 130; 131\n- 定时器，URL 131\n- 触摸事件 223-225\n\nd3.event\n\
+  - URL 110\n\nD3 GitHub 页面\n- URL 73, 75\n\nD3.js\n- 关于 30\n- 自定义事件 106\n- 数据绑定 34-36\n\
+  - 数据驱动的转换 34\n- 数据连接 37-39\n- 操作 DOM 元素 30-32\n- 选择 DOM 元素 30-32\n- 动态属性 34-36\n\
+  - 创建图形 26\n- 高级封装器 64\n- 为元素定义标识符 41\n- 包含 27\n- reduce 函数 63, 64\n- 绘制形状 42\n-\
+  \ 操作 SVG 元素 33\n- 使用更新模式 40, 41\n- URL 27\n\nd3.mouse\n- URL 110\n\nD3 秀集\n- URL\
+  \ 149\n\nD3 Superformula 插件\n- URL 150\n\nd3.touches\n- URL 110\n\ndata\n- 聚合，以提取有价值的信息\
+  \ 61-63\n\n\n\n\n\n- 过滤，用于移除离群值 58, 59\n- 分组 74-76\n- 连接 37-39\n- 映射，用于访问内部属性 60,\
+  \ 61\n- 预处理 58\n- reduce 函数，在 D3.js 中 63, 64\n- 值，使用比例尺映射到像素范围 47, 48\n\n- 地理信息系统\
+  \ (GIS) 157\n- 地理可视化\n  - 分级统计图 176, 177\n  - 符号地图 173-176\n  - 类型 172, 173\n\n\
+  - Date 对象\n  - URL 70\n\n- GeoJSON\n  - 关于 158\n  - 用于 Web 可视化 160, 161\n  - 转换为\
+  \ TopoJSON，通过服务器 API 161\n  - 类型 159, 160\n  - URL 159\n\n- 日期时间格式说明符\n  - URL 71\n\
+  \n- GitHub\n  - 参考链接 213\n  - URL 130, 168\n\n- d 属性\n  - URL 42\n\n- 图形\n  - 使用\
+  \ D3.js 创建 26\n  - 网格布局 10-17\n\n- 调试\n  - 本地调试 187\n\n- 设备模式\n  - URL 189\n\n-\
+  \ DOM 元素\n  - 操作 30, 31\n  - 选择 30-32\n\n- DX 筛选器\n  - 参考链接 220\n\n## H\n\n- 硬件加速像素图形\n\
+  \  - 使用 WebGL 24\n\n- HTML\n  - 动画，使用 CSS 126, 128\n\n## E\n\n- 缓动函数\n  - URL 134,\
+  \ 139\n\n## I\n\n- Enquire.js\n  - 参考链接 216\n\n- 集成测试\n  - 关于 183, 185\n  - 使用 Protractor\
+  \ 和 Selenium 199-201\n\n- 等距圆柱投影 163\n\n- Internet Explorer\n  - 条件注释 204, 205\n\
+  \n- ES6 Promise\n  - URL 148\n\n## J\n\n- event.preventDefault() 函数 223\n\n- JavaScript\n\
+  \  - Bootstrap 的媒体查询 99, 100\n  - 媒体查询，结合 Enquire.js 使用 216-218\n  - Modernizr，使用\
+  \ 208\n  - 用于动画 128-130\n\n- 事件系统\n  - 交互区域 109\n  - 交互目标，创建 110\n  - 鼠标事件 117\n\
+  \  - 最近数据点，计算 110-116\n  - 响应式事件 108\n  - 触摸事件 117\n  - URL 108\n  - 使用 106\n\n\
+  - JavaScript resize 事件\n  - 结论 97\n  - 数据分辨率，自适应 95, 96\n  - 原生 resize 事件 93, 94\n\
+  \  - 使用 93\n\n## G\n\n- Genymotion\n  - URL 190\n\n## K\n\n- Karma\n  - 测试运行器，URL\
+  \ 199\n  - 用于运行单元测试 196-199\n\n## L\n\n- 长度\n  - 在浏览器中 80\n- LESS 编译器\n  - URL 19,\
+  \ 99\n- LESS/SASS\n  - Bootstrap 的媒体查询 98, 99\n- 线条\n  - 绘制 42-44\n\n## M\n\n- 地图\n\
+  \  - URL 163\n- 地图创建，工具\n  - 关于 168\n  - 颜色比例尺 169, 170\n  - 地理形状生成器 170\n  - 地图上的网格\
+  \ 170, 171\n  - 多资源，加载 172\n- matchMedia 函数\n  - URL 100\n- 数学表达式 82, 83\n- MDN\n\
+  \  - URL 31\n- MDP\n  - URL 118\n- Mike Bostock 的页面\n  - URL 27\n- Mocha 测试框架\n\
+  \  - URL 199\n- Modernizr\n  - 参考链接 206, 208\n  - 用于检测原生功能 205-208\n  - 在 CSS 中使用\
+  \ 209, 210\n  - 在 JavaScript 中使用 208\n- 鼠标事件\n  - 关于 117-222\n  - 点击 222\n  - 事件执行链，中断\
+  \ 222, 223\n  - 处理 221\n- mousedown 222\n- mouseenter 222\n- mouseleave 222\n- mousemove\
+  \ 222\n- mouseover 222\n- mouseup 222\n\n## N\n\n- 最近数据点\n  - 计算 110-116\n- 数值\n\
+  \  - 格式化 72\n  - 解析 72, 73\n\n## O\n\n- 正射投影 164\n\n## P\n\n- 平移 118\n- 路径运动\n \
+  \ - 参考链接 220\n- PhantomJS 184\n- 指针事件\n  - 关于 227-229\n  - 禁用，针对元素 229, 230\n  -\
+  \ 参考链接 229\n  - 用于结合鼠标和手写笔 228, 229\n  - 用于结合鼠标和触摸 227-229\n- Polyfill\n  - 关于 211\n\
+  \  - 缺失功能，实现 211\n  - 参考链接 211\n- preventDefault\n  - 参考链接 223\n- 投影\n  - 关于 162\n\
+  \  - 艾尔伯斯投影 165, 166\n  - 方位等距投影 168\n  - 等距圆柱投影 163\n  - 正射投影 164\n  - 球面墨卡托投影\
+  \ 166\n- Protractor\n  - URL 201\n\n## Q\n\n- Queue.js\n  - URL 172\n\n## R\n\n\
+  - 栅格/像素图形\n  - 使用 canvas 22, 23\n- 真实设备\n  - 同步，使用 Browsersync 190\n- 正则表达式\n  -\
+  \ 在 JavaScript 中，URL 69\n- 相对长度\n  - 结论 86\n  - 在 SVG 中使用 84-86\n- 远程数据\n  - 任何字符串数据，解析\
+  \ 67, 68\n  - 日期，从字符串解析 70, 71\n  - 加载 64-67\n  - 数值，格式化 72, 73\n  - 数值，解析 72, 73\n\
+  \  - 解析 64-67\n  - 字符串分割，正则表达式\n    - 使用 68-70\n- require.js\n  - URL 100\n- Respond.js\n\
+  \  - 通过 实现 max-width 支持 215\n  - 通过 实现 min-width 支持 215\n  - 参考链接 215\n- 响应式应用\n\
+  \  - 远程调试 193-195\n- 响应式图表\n  - 关于 83\n  - 使用 JavaScript resize 事件 93\n  - 相对长度，结论\
+  \ 86\n  - 在 SVG 中使用相对长度 84-86\n  - 视口，缩放 87-90\n- 响应式设计\n  - %, REM 和 EM 6, 7\n\
+  \  - 关于 2\n  - 断点 4, 5\n  - 条件 CSS，使用媒体查询 2-4\n  - 移动设备，设计 7\n  - 视口 6\n- 响应式事件\
+  \ 108\n\n## S\n\n- SASS 格式\n  - URL 99\n- SASS 预编译器\n  - URL 8\n- Sauce Labs\n \
+  \ - URL 201\n- 比例尺\n  - 创建 47\n  - 数据值，映射到像素范围 47, 48\n  - 线性比例尺，用于线性映射 48\n  -\
+  \ 序数比例尺，用于映射非数值数据 48, 49\n  - 时间比例尺，用于映射时间序列数据 49\n- 选择集\n  - URL 31\n- 半自动化测试 183\n\
+  - 形状，绘制\n  - 关于 42\n  - 绘制弧形 46\n  - 绘制曲线之间的区域 45\n  - 绘制线条和曲线 42-44\n- 形状补间 149\n\
+  - Shim\n  - 关于 212\n  - 拦截 API 调用 212\n- SMIL 动画\n  - URL 126\n- 解决跨浏览器兼容性问题的方案\n\
+  \  - 针对 Internet Explorer 的条件注释 204, 205\n  - D3 兼容性 212, 213\n  - 原生功能，自定义实现 210,\
+  \ 211\n  - 使用 Modernizr 检测原生功能 205-208\n- 球体\n  - 在平面地图上投影 154\n- 球面墨卡托投影 166\n\
+  - stopImmediatePropagation\n  - 参考链接 223\n- stopPropagation\n  - 参考链接 223\n\n- SVG\
+  \ (可缩放矢量图形)\n  - 关于 2\n  - 动画，使用同步多媒体集成语言 (SMIL) 124-126\n  - 裁剪元素 221\n  - 使用滤镜\
+  \ 220\n  - 矢量图形 24-26\n  - 形状抽象，URL 42\n- SVG 动画\n  - 关于 219\n  - 参考链接 220\n- SVG\
+  \ 元素\n  - 数据绑定和动态属性 35, 36\n  - 数据驱动的转换 34\n  - 操作 33\n  - 符号地图 173-175\n- 同步多媒体集成语言\
+  \ (SMIL)\n  - 用于为 SVG 制作动画 124-126\n- 系统测试 183\n\n## T\n\n- 测试驱动开发 (TDD) 185\n-\
+  \ 测试\n  - 关于 180\n  - 与调试 187\n  - 自动化测试 196\n  - 自动化测试 183\n  - 持续集成 185\n  - 在云中运行\
+  \ 201\n  - 集成测试，使用 Protractor 和 Selenium 199-201\n  - 集成测试 184\n  - 手动测试 186\n \
+  \ - 手动测试 182\n  - 需求 181\n  - 在本地机器上 196\n  - 半自动化测试 183\n  - 可视化的策略 202\n  - 类型\
+  \ 182\n  - 单元测试 184\n  - 单元测试运行，使用 Karma 196-199\n  - 可视化 180\n- TopoJSON\n  - 关于\
+  \ 160, 161\n  - 转换为 GeoJSON，通过客户端 API 162\n  - URL 161, 162, 175\n  - 通过服务器 API\
+  \ 161\n- 触摸设备\n  - 检测 225\n- 触摸事件\n  - 关于 117, 221, 222\n  - 事件执行链，中断 222, 223\n\
+  \  - 处理 221\n  - 悬停状态 226, 227\n  - 在 D3 中 223-225\n  - touchmove 221, 222\n  -\
+  \ touchstart 221\n- 过渡\n  - 关于 139-141\n  - 属性和样式补间，用于自定义插值 143, 145\n  - 链式 145-148\n\
+  \  - 路径过渡 142, 143\n- TravisCI\n  - 关于 185\n  - URL 201\n\n## U\n\n- 单位\n  - 用于绝对长度\
+  \ 80\n  - 用于相对长度 81, 82\n  - 用于分辨率 82\n  - 在浏览器中 80\n  - 数学表达式 82, 83\n- 单元测试 183,\
+  \ 184\n- 更新模式\n  - URL 41\n  - 使用 40, 41\n\n## V\n\n- 矢量标记语言 (VML) 211\n- 矢量图形\n\
+  \  - 硬件加速像素图形，使用 WebGL 24\n  - 在浏览器中，使用 SVG 21\n  - 栅格/像素图形，使用 Canvas 22, 23\n \
+  \ - 使用 SVG 24-26\n- 视口 6\n\n## W\n\n- W3C\n  - URL 126\n- WebSockets 191\n- window.matchMedia()\
+  \ 函数\n  - 关于 214\n  - Polyfill 214\n- 包装器\n  - 抽象 API 212\n\n## X\n\n- XMLHttpRequest\
+  \ (XHR) 对象 64\n\n## Z\n\n- 缩放\n  - 关于 118\n  - 轴缩放 120\n  - 示例缩放 119, 120\n  - URL\
+  \ 122\n\nCPSIA 信息可在 www.ICGtesting.com 获得\n\n美国印刷\n\nBVOW09147050616\n\n45084IBV00007B/75/P\n\
+  \n9 781785 883781\n\n## 学习响应式数据可视化\n\n![](img/72559bd4713b2b89631dcca187d7e2db_263_0.png)\n\
+  \n使用 D3.js 和响应式设计原则，您不仅能够实现在所有设备和屏幕分辨率下看起来和感觉都很棒的可视化，还能通过使用 Bootstrap（开发响应式 Web\
+  \ 应用程序最流行的框架）来提高生产力并缩短开发时间。\n\n## 从本书中您将学到\n\n- 熟悉数据可视化的响应式设计\n- 了解 D3.js 的主要概念以创建交互式可视化\n\
+  - 发挥 Bootstrap 的强大功能，为所有屏幕分辨率创建惊艳且响应式的可视化\n\n本书教授可缩放矢量图形 (SVG)、D3.js 和 Bootstrap\
+  \ 的基础知识，同时侧重于响应式设计和移动优先可视化；读者将首先了解 Bootstrap 并学习如何将其用于创建响应式应用程序，然后在 D3.js 中实现一个基本柱状图。您将学习在\
+  \ JavaScript 中加载、解析和过滤数据，然后深入使用媒体查询、适用于移动端和桌面端设备的响应式交互以及过渡来创建响应式可视化，使可视化栩栩如生。在接下来的章节中，我们将使用\
+  \ GeoJSON 构建一个完全响应式的交互式地图来显示地理数据，并使用 Protractor 设置集成测试，以通过 Browserstack 等移动 API\
+  \ 网关在真实设备上测试应用程序。\n\n- 为移动优先应用程序实现触摸和鼠标交互\n\n您将通过发现移动优先应用程序的注意事项并学习如何掌握跨浏览器复杂性来结束旅程。\n\
+  \n- 设计在竖屏和横屏下都令人印象深刻的过渡和动画\n\n## 本书面向的读者\n\n本书面向希望使其可视化适用于较小屏幕尺寸的 Web 开发者和数据科学专业人士。需要具备一些\
+  \ JavaScript 和数据可视化的基础知识。\n\n- 使用 GeoJSON 和 D3.js 构建响应式世界地图\n\n$44.99 美元\n£28.99\
+  \ 英镑\n\n![](img/72559bd4713b2b89631dcca187d7e2db_263_1.png)\n\n价格不包含适用的当地销售税或增值税\n\
+  \nISBN 978-1-78588-37...\n\n"
