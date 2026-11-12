@@ -1,0 +1,13 @@
+# Soft skills
+
+In this section, we will talk about the character attributes of an exceptional data architect. There are many others that may not be listed here but these are some of the key personality attributes that a good data architect should have:
+
++   - **Problem-solving**: A multitude of data issues are faced by data architects. Therefore, they must be able to apply a beginner's mindset in order to solve these problems. Communication skills including active listening and clear articulation of the problem and what the approach would be to resolve them are also characteristics that help in shaping a successful data architect. Knowing how to solve problems using systems thinking is also a very valuable skill to have. In a nutshell, systems thinking is the understanding that individual parts in a system behave differently compared to their behavior when they are by themselves. Utilizing systems thinking, along with the ability to model systems in a way that they have enough detail and convey the intent of the modeler, is a key advantage to have when solving problems.
+
++   - **Storytelling**: This is an essential skill that makes it easy to communicate with different technical and non-technical stakeholders. The ability to communicate to audiences using stories and metaphors that make the subject matter easy to understand for a non-technical audience can help to build rapport with stakeholders quickly.
+
++   - **Objectivity**: The ability to think and act objectively while keeping emotions in check and out of the decision-making process is an important skill for a data architect. Often, you will be interacting with other technical resources that may prefer one solution over another. The ability to objectively analyze each option and make a recommendation after considering each option will earn your stakeholders' respect and trust.
+
++   - **Strategic thinking**: Data is not something that is around for a month or two, but rather one of the most critical assets of a business and it needs to be treated as such. This requires understanding current and future business needs and the direction an organization is taking. It also involves anticipating the future trends of the industry and its best practices.
+
++   - **Adaptable**: A data architect should be flexible; they should be able to adapt to changes and operate in a fast-paced environment. Many organizations do not have the discipline and the necessary governance processes in place, resulting in a very chaotic environment from a data perspective. The data architect must be able to sift through that, understand what's required, and deliver on what will add value to the business.

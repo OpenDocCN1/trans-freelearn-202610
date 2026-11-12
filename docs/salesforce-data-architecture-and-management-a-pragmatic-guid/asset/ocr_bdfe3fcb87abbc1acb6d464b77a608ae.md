@@ -1,0 +1,11 @@
+# The benefits of data architecture
+
+Having discussed the importance of data architecture, let's look at some of the benefits it offers:
+
++   It sets the stage for discussion and easy communication with different stakeholders: Creating a data architect diagram can facilitate discussions with solution architects and Business Analysts (BAs). It also facilitates getting approval from security teams that are concerned with how data is utilized and the boundaries it’s going to cross; for example, a multi-national organization that has multiple legacy Customer Relationship Management (CRM) systems will want to address how data is going to move and be stored across continents in consideration of compliance with the General Data Protection Regulation (GDPR).
+
++   It plays a vital role in driving non-functional requirements (NFRs): NFRs are related to the quality of the system being designed, such as performance, usability, and maintainability. Considering maintainability, for example, if the architecture is well defined, we will be able to enhance our application with relative ease compared to when the architecture has major flaws and in certain situations may require a complete redesign of the application, which is a costly and time-consuming endeavor.
+
++   It enables change management: Change is inevitable. Now more than ever, internal and external forces are driving change at a rapid pace. Internally, enhancement requests, new business processes, and technological changes drive this change, whereas externally, raw market forces such as competition, geopolitical changes, and regulatory policies can drive this change. Having a well-defined data architecture that is properly documented and uses commonly understood language and standards enables stakeholders to respond to change quickly.
+
++   It enables fast ramp-ups: Part of the change that we discussed in the last point also applies to changes in resourcing, meaning people in the company come and go. Having a good architecture established can be very helpful in training new personnel. Take the example of a new hire who joins the support team of an AppExchange partner that sells a popular recruitment app. Having the data model and reviewing it with the new hire can cut short the time needed to ramp up the resource to provide quality support to their customers.

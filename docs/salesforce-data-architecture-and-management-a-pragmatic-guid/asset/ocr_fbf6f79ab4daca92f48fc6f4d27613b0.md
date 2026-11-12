@@ -1,0 +1,13 @@
+# # Multi-org scenario
+
+A common scenario that is played out in organizations using Salesforce is the use of multiple Salesforce orgs, which can contribute to an incomplete view of the customer and other data. Multi-org scenarios can be the result of mergers and acquisitions, or with very large organizations that have many sales and marketing teams, and it makes sense to have distinct Salesforce orgs. This is not the place to discuss when a multi-org strategy makes sense, but the decision to go with multiple orgs shouldn't be taken lightly. Please refer to a blog post from Salesforce that goes into more detail on this topic: https://developer.salesforce.com/blogs/developer-relations/2014/10/enterprise-architecture-multi-org-strategy.html.
+
+As seen earlier, not having optimal visibility of customer data results in missed opportunities, both in terms of sales and service. In terms of sales, it could be customer contact by different sales reps in the organization that are using the disconnected orgs and, similarly, when providing services, the disparate orgs don't facilitate a full view of the customer, oftentimes leading to the customer receiving conflicting information from service agents.
+
+In an MDM scenario, multiple orgs can be piped into the MDM system, so it can handle the records from different systems, clean them, and push them back into the source systems if it's a co-existence-type MDM implementation, which we will look at later. It goes without saying that in the absence of MDM, processes and tools must still be implemented to ensure that data is not just moved from one org to the next, but it is ensured that it is clean data.
+
+However, in cases where there is no MDM in the system landscape, the issues we discussed in this section materialize, and a solution is required for smooth business operations. In the next few sections, we will review some strategies on how this challenge stemming from a multi-org scenario can be managed while delivering consolidated data that's required for reporting and analytics. It must, however, be understood that although this discussion is taking place in the context of master data management, it must not be seen as tied to master data only. In a multi-org scenario, you would still want to ensure that not only your master data but also transactional data is properly managed.
+
+# ## The main reporting org
+
+This approach requires designating a Salesforce org as the main reporting org, where data from source orgs is rolled up for analytical purposes. Figure 4.1 depicts this approach diagrammatically:

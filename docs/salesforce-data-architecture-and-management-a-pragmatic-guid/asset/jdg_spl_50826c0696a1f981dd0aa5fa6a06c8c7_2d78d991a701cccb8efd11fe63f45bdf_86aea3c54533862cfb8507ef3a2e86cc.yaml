@@ -1,0 +1,80 @@
+chapter_starts:
+- 'no': 146
+  confidence: 0.95
+  final_reason: 规则明确部分-章节模式下遇到“第 X 部分”标题应划分新章，复核方反对证据不足
+  accepted_evidence:
+  - 标题为“# 第 1 部分：数据架构与数据管理基础”，单独成行
+  - 规则规定部分标题与章标题都要划分新章
+  rejected_evidence:
+  - 复核方称部分标题不承载独立正文，可能造成章节碎片化
+  need_human_review: false
+- 'no': 156
+  confidence: 0.85
+  final_reason: 语义与目录中“第 1 章”对应，单独成行且后接正文概述，复核方反对证据不足
+  accepted_evidence:
+  - 对应目录行152“第 1 章，数据架构师——角色与职责”
+  - 标题后紧跟章节介绍段落及###子节
+  rejected_evidence:
+  - 复核方称无显式章序号，##层级可能为部分子标题
+  need_human_review: false
+- 'no': 497
+  confidence: 0.9
+  final_reason: 对应目录中第2章，单独成行且后接正文，编号“2”虽无“第”字但语义明确，复核方反对证据不足
+  accepted_evidence:
+  - 对应目录行53“第 2 章“理解 Salesforce 对象与数据建模””
+  - 位于第1章Questions和Further reading之后，章节边界明显
+  rejected_evidence:
+  - 复核方称编号格式非标准，可能是部分内相对序号
+  need_human_review: false
+- 'no': 1308
+  confidence: 0.85
+  final_reason: 对应目录中第3章，位于第2章结尾之后，语义明确，复核方反对证据不足
+  accepted_evidence:
+  - 对应目录行55“第 3 章“理解数据管理””
+  - 单独成行，后接第3章正文内容
+  rejected_evidence:
+  - 复核方称无章序号，可能为第2章内大节
+  need_human_review: false
+- 'no': 2100
+  confidence: 0.9
+  final_reason: 部分-章节模式下的第2部分标题，规则要求划分新章；与no:2101为双语同一标题，仅保留一行避免重复
+  accepted_evidence:
+  - '标题为“# Section 2: Salesforce Data Governance and Master...”'
+  - 规则规定部分标题应划分新章
+  rejected_evidence:
+  - 复核方称与no:2101为双语重复，应合并处理
+  need_human_review: false
+- 'no': 2119
+  confidence: 0.9
+  final_reason: 对应第2部分下的第4章，单独成行且后接正文；与no:2121为双语同一标题，仅保留一行
+  accepted_evidence:
+  - 对应目录行2112“Chapter 4, Making Sense of Master Data Management”
+  - 标题后紧跟双语介绍段落及章节内容
+  rejected_evidence:
+  - 复核方称与no:2121为双语重复，编号无“第”字可能为相对序号
+  need_human_review: false
+- 'no': 2716
+  confidence: 0.9
+  final_reason: 对应第2部分下的第5章，单独成行且后接正文，复核方反对证据不足
+  accepted_evidence:
+  - 对应目录行2114“Chapter 5, Implementing Data Governance”
+  - 位于第4章摘要和问题之后，章节边界明显
+  rejected_evidence:
+  - 复核方称编号格式不规范，可能是部分内相对序号
+  need_human_review: false
+rejected_lines:
+- 'no': 8
+  reason: 复核方证据成立，前置材料应统一为一章，行8仅为子项，不应单独分章
+  need_human_review: false
+- 'no': 25
+  reason: 复核方证据成立，该索引位于前置材料而非书末，不符合文末索引定义，且与其他前置材料小节并列，不应独立分章
+  need_human_review: false
+- 'no': 27
+  reason: 复核方证据成立，前言属于正文之前材料，应与其他前置材料统一划分为一章，不应单独作为独立章节
+  need_human_review: false
+- 'no': 2101
+  reason: 与no:2100为同一部分标题的中英文双语版本，分章会造成重复计数，已合并处理
+  need_human_review: false
+- 'no': 2121
+  reason: 与no:2119为同一章标题的中英文双语版本，已合并处理，避免重复分章
+  need_human_review: false

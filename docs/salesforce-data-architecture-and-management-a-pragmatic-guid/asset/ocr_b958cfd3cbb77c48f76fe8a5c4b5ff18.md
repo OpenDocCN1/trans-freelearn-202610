@@ -1,0 +1,13 @@
+# List views and reports
+
+List views and reports are usually the first places where users start noticing performance issues. This is because almost every user of the platform will either have reports, list views, or both, so they can focus on the work they need to do:
+
++   **Limit the number of fields:** The first thing I recommend is to educate your users to use fields on both list views and reports that they truly need. On many occasions, when creating reports, users pull fields on them to get a feel for what data is available but never get rid of them when saving the report. There is much less value in having reports with data that won't be used by users, and not only that, but it also impacts performance as well. The best strategy that I find works is to not just tell users what to do when creating reports but explain the rationale behind why it's important that this is done and how it can impact them down the road.
+
++   **Use filters:** Use filters as much as possible to narrow down the result set for reports. In the last chapter, when we discussed query plans and query costs, we discussed how a table scan is less efficient than using indexes. Try to use fields in your reports and list views as filters that are indexed to ensure performance.
+
+Also, using relative dates, rather than exact date values, will result in better performance. For example, using **LAST WEEK** in your list view to filter all the leads from last week will be more performant, all things being equal, than entering **From** and **To** dates.
+
+The use of **CONTAINS**, != is also discouraged as it prevents the Salesforce platform from using indexes and therefore negatively impacts performance. If you are unsure about how a report that you are creating for your users will perform, I sometimes find it helpful to write the query behind the report or list view and run it in the query plan. This can give you a sense of how your query will perform in the report or list.
+
++   **Unused reports:** Salesforce provides the ability to schedule reports and dashboards so users can automatically get the report or dashboard emailed to them. Ensure that you do a frequent cleanup of reports and dashboards that are scheduled. In one instance, a shared mailbox used by admins had multiple reports emailed that had been requested as one-time requests from executives, but they were never deleted from the platform.

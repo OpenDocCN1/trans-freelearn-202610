@@ -1,0 +1,15 @@
+As can be seen in the preceding table, values for **Hiring Manager**, **Hiring Manager Telephone**, and **Hiring Manager Location** are repeated for the first three records. This is data redundancy and undesirable in an optimally normalized database. It will also cause anomalies related to insertion, updating, and deletion, with a real risk of causing data loss. Let's look in more detail at these different anomalies and understand why they are undesirable in a normalized data model:
+
++   **Insertion anomaly**: Let's say in the preceding example that another job was posted for James Murthy, but a new recruiter didn't enter the hiring manager's telephone and location. Unless these fields are mandatory at the database level or application level, you will now have a row with two columns blank. Also notice, if James had 20 new postings, we would be repeating the last columns (Hiring Manager, Hiring Manager Telephone, and Hiring Manager Location) 20 times, which is a clear waste of resources.
+
++   **Update anomaly**: Assume that James Murthy leaves the company, and so now we will need to update 23 records with the new hiring manager and their details. If we miss any records, we will have data quality issues.
+
++   **Deletion anomaly**: If we were to delete records from the Job table after 7 years, we would lose not only the job detail data but also details pertaining to the hiring manager.
+
+We have looked at normalization and why it's used. Let's now spend some time understanding denormalization and why it's used in Salesforce.
+
+# Denormalization
+
+If you have worked in a relational database, you know that data redundancy is not desirable, and the normalization forms are used to ensure that databases are free of redundant data and anomalies that we discussed earlier. By way of contrast to that, **denormalization** is the process of improving the read performance over the write performance in a database. As we will see later, this is done by adding redundant data to the database in an organized manner to improve the read performance.
+
+As an example, an email for a customer is going to be stored once in a table and then, using what's called a **join**, it will be meshed up with rows from other tables. However, in Salesforce, the **Email** field is replicated across objects. This is intentional because Salesforce is optimized for read operations, so when you run a **Salesforce Object Query Language (SOQL)**, open a list view, or open a contact, these are querying the database. Designing for read operations primarily results in quick loading of the data, whereas normally, other databases are optimized for write operations. And because read operations on a 3NF database would require a lot of joins that are costly in terms of performance, Salesforce has a flat database structure.

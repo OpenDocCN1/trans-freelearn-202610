@@ -1,0 +1,14 @@
+**Hop**
+Hop is a networking term that refers to the number of network devices a packet has to pass through to reach the destination. These network devices can be routers, switches, repeaters, and so on.
+
+Each device receives the packet, processes the information in it, and then forwards it on to its destination. Each time a device does that, this takes time and can have an impact on the performance when millions of packets are transmitted. In Windows, you can use the `tracert` command in **Command Prompt** to see the number of hops. For example, from my laptop to `salesforce.com` is 9 hops.
+
+Keep in mind that a lower hop count doesn't necessarily mean a faster connection because other factors contribute to the connection speed as well.
+
++   - **Inefficient configuration or code**: Performance issues can also be caused by incorrectly configured applications or code that is sub-optimal. These can be a massive drain on system resources, thereby impacting performance. If a problem keeps happening in a specific Visualforce page or a Lightning component, you will want to review the code and ensure that it follows best practices. Another possibility is an incorrectly configured application. Earlier, we discussed the example of sharing rules. If there are too many sharing rules, that can slow down reports or data queries in general because every time a query is executed, the system has to run the sharing rules to ensure that the data security is protected in line with these rules.
+
++   - **AppExchange packages**: Many AppExchange packages add business value to your processes, but some of the packages also communicate back and forth with the ISV servers and can impact performance. For example, if you are using a digital signature solution and install the managed package, there may be bandwidth being utilized by the package, resulting in poor performance. Admins should frequently review and assess managed packages to ensure they are still useful and provide the value that they were initially installed for in the org.
+
++   - **Browsers**: The unsung heroes of the cloud world, browsers play a critical role in users’ experiences. As a browser is used over time, it accumulates a lot of data. This can include the browser accumulating a large number of cookies and caches resulting in an impact on performance. It is also recommended to have the browsers updated to the latest release, as browser vendors are continuously releasing new patches to fix not only security vulnerabilities but also to improve performance.
+
+Using browsers that are supported by Salesforce is another important factor. For example, an organization was using Internet Explorer 11 and kept running into issues and therefore, users started to use Google Chrome. The issue was that whenever users ran into problems with Salesforce or in general, corporate support teams would not provide support since Internet Explorer 11 was the supported corporate browser.

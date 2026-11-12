@@ -1,0 +1,13 @@
+These are all examples of what a current state assessment would help to flush out and get documented.
+
+# Challenges with data governance assessments
+
+There are some challenges with doing assessments attributable to a few factors. These are related to the depth of assessments, the type of organization being assessed, and, in general, the lack of a robust set of standards when it comes to assessing the organization, which introduces the risk of subjectivity.
+
+A common issue with assessments is that they are done as a result of a knee-jerk reaction. This is usually when a significant data-related incident happens, and the focus turns to data. These are usually short-lived and don’t create the necessary buy-in that is required for data governance initiatives. The sequence of events unfolds such that the assessment is done in the heat of the moment and then there is no meaningful action taken. That is why it is important to recognize data as a strategic asset so long-term investments can be made in data governance-type initiatives and the organization can fully reap data-related benefits.
+
+When doing an assessment, you would want to evaluate against defined metrics but when there are no metrics available, then that makes it challenging for an objective assessment. I would recommend exploring the organization’s industry and determining what other companies in the same industry are doing. Industry-focused associations can also provide data that can be used as a basis for metrics, such as the **National Automobile Dealers Association (NADA)**, which represents new car and truck dealerships, or the National Association of Realtors in the **United States (US)**. These types of associations collect data from their members for improving their services, advocacy, and other reasons and since data is becoming such a critical asset, they may also have data that can be used as a metric.
+
+Another challenge worth mentioning is performing an assessment using internal resources. This is not to cast a doubt on the skills and experience of internal teams, but blind spots are mostly discovered when an external party does an assessment. Another benefit of having an external assessor is that they’ll presumably have the experience and the skills necessary to perform such an assessment after having done it for multiple other clients and industries.
+
+Let’s look at the steps to go about doing an assessment.

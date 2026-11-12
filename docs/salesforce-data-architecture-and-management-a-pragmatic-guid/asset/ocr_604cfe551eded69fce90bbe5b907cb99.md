@@ -1,0 +1,13 @@
++   • **Benchmarking**: Businesses are interested in intelligence related to their competitors or just generally their industry. This can be a good way to justify the business case for data governance initiatives especially when you are not performing as well as your competitors or the industry that you operate in.
+
+Another reason why benchmarking can be important is to assess the performance of regional or country-wide units for the same business. Keep in mind that even in the same company, practices related to data governance will be different, especially in a decentralized operating model.
+
++   • **Acquisitions and mergers**: Maturity models also provide a tool to have objectivity in assessing another business that you may be acquiring or merging with. Data issues are a significant source of issues that, if very significant, can prevent companies from proceeding with mergers or acquisitions. When making these transactions, you can use the maturity models to not only assess but also get a high-level understanding of what you would need to do to integrate the two companies if that fits with your Mergers and Acquisitions (M&A) strategy.
+
++   • **Regulatory compliance**: Depending on the nature of the business, there might be certain regulatory constraints that the organization must comply with in terms of data governance and management. Maturity models provide a framework for regulatory bodies to assess organizations and require them to meet certain requirements in order to qualify or maintain compliance. They may not necessarily say that you need to be at a certain level. Suppose that the business must be at level 4 but provide guidance that makes the organization achieve that level.
+
++   • **Progress tracking**: A framework is also a way to report progress and communicate the roadmap to achieving mature data governance practices. Most maturity models have a numbering system that represents levels within the model and indicates the level of maturity, therefore making it easier to communicate the current state and vision for data governance.
+
+There are many capability maturity models, such as Oracle’s data governance maturity model, Garter, and then there are others from educational institutes such as Stanford University and Open Universiteit Nederland. You can read about these on the internet. There are many considerations and nuances to consider when choosing a maturity model and my recommendation is to consult with a data governance specialist who can guide you through this process.
+
+In the next section, we will discuss privacy regulations and the tools in Salesforce to stay compliant with privacy laws.

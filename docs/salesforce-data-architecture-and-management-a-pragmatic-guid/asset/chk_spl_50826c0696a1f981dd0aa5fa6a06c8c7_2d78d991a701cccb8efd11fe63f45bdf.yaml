@@ -1,0 +1,81 @@
+reviews:
+- 'no': 8
+  overturn_probability: 0.9
+  alternative: 正文前材料/贡献者介绍（版权页或前言材料的子项）
+  counter_evidence:
+  - Contributors与About the author、About the reviewers等属于同一类前言材料，按规则应“统一划分为一章”，而不应各自单独成章
+  - 该行后面紧跟具体人物简介段落（Ahsan Zafar...），不具备统领全书后续章节内容的语义特征
+  - 使用##二级标题而非一级标题，且位于书名大标题（no:0）之后，明显为前置材料的子项而非独立章节
+  keep_split: false
+- 'no': 25
+  overturn_probability: 0.75
+  alternative: 前置材料中的索引说明/书籍索引节（非文末真实索引）
+  counter_evidence:
+  - 该“索引”出现在“## 前言”（no:27）之前，位于书的前置材料区而非书末，不符合“文末索引”的定义
+  - 与no:23“您可能还喜欢的其他书籍”等并列，均为前言/封装材料的小节，而非独立索引章节
+  - 仅一个标题行且后无页码列表或索引条目，不足以构成独立索引章节
+  keep_split: false
+- 'no': 27
+  overturn_probability: 0.8
+  alternative: 正文前言材章的章节内容（前言章的一部分）
+  counter_evidence:
+  - 规则明确前言、序言、致谢、关于作者等正文之前内容应“统一划分为一章”，而非每个前言标题单独分章
+  - 前面no:8 Contributors、no:10 About the author等未分章，若no:27单独分章则违反前言材料统一成章的原则
+  - no:27后面紧接着是前言正文段落，它应作为前言材料章的起始，而非独立于前言材料之外的新章
+  keep_split: false
+- 'no': 146
+  overturn_probability: 0.3
+  alternative: 部分分隔页/部分引言（Part divider）
+  counter_evidence:
+  - 部分标题本身不承载独立正文，后面no:148-151只是部分概述和章节列表，无统领后续多章的实质性内容
+  - 若将所有部分标题都独立成章，会造成章节碎片化，部分标题更适合作为章节的容器标签而非实体章节
+  - no:146后面紧跟的是no:156才是真正的第1章正文，部分标题之间无独立段落
+  keep_split: true
+- 'no': 156
+  overturn_probability: 0.6
+  alternative: 第1章标题（但缺少显式章序号，可能仅为部分内章节大标题）
+  counter_evidence:
+  - 该行无“第 1 章”等显式最高层级编号，仅靠语义判断，符合误报高危特征
+  - 使用##二级标题而非一级标题，且位于“# 第 1 部分”之下，层级上可能仅为部分子标题
+  - no:156后面直接是正文段落，未立即出现“X.Y”形式子节（no:173才是###子节），上下文特征不够典型
+  keep_split: false
+- 'no': 497
+  overturn_probability: 0.5
+  alternative: 第2章标题（编号格式非标准）
+  counter_evidence:
+  - 编号为“2”而非“第 2 章”或“2.”，不完全符合最高层级编号特征，可能是部分内的子章编号
+  - no:497前面是第1章的Questions和Further reading，章节过渡自然，但“## 2”格式在书中并未统一使用（如第3章无编号）
+  - 若第1章no:156也无编号，则no:497的“2”只是相对序号，不足以作为独立分章依据
+  keep_split: true
+- 'no': 1308
+  overturn_probability: 0.4
+  alternative: 第3章标题（无编号，纯语义）
+  counter_evidence:
+  - 完全没有章序号（无“第 X 章”或数字），完全依赖语义判断，是误报高危对象
+  - no:1308前面是第2章的Questions和Further reading，章节边界不明显，可能只是第2章内的一个大节
+  - 后面子节采用###层级，no:1308自身为##层级，符合章内大标题特征而非全书章标题
+  keep_split: true
+- 'no': 2100
+  overturn_probability: 0.55
+  alternative: 第2部分标题（与no:2101中文行重复，为双语同一标题）
+  counter_evidence:
+  - no:2100英文“# Section 2...”与no:2101中文“# 第 2 部分...”为同一部分标题的双语版本，分别分章会造成重复计数
+  - 部分标题为分组标签，no:2104-2108仅为部分简介，不具备独立章节应有的完整正文结构
+  - 若按部分-章节模式，部分标题与章标题都分章，但双语重复行应合并处理
+  keep_split: true
+- 'no': 2119
+  overturn_probability: 0.6
+  alternative: 第4章标题（与no:2121中文行重复，为双语同一标题）
+  counter_evidence:
+  - no:2119英文与no:2121中文“## 4 梳理主数据管理”为同一章标题的双语版本，原判断未将两行合并视为同一章
+  - 编号“4”无“第”字，格式与no:497相同，可能只是第2部分内的相对章序号而非全书最高层级编号
+  - no:2119后面是双语介绍段落，正文开始于no:2148等，章标题特征不明显
+  keep_split: false
+- 'no': 2716
+  overturn_probability: 0.45
+  alternative: 第5章标题（编号格式不规范）
+  counter_evidence:
+  - 编号为“5”而非“第 5 章”，不符合最高层级章节编号规范，可能是第2部分内的相对序号
+  - no:2716前面是第4章的摘要和问题，过渡自然，但“## 5”格式在全书未统一（第3章无编号）
+  - 若全书采用“第 X 章”模式，此处应为“第 5 章”，当前格式可疑
+  keep_split: true

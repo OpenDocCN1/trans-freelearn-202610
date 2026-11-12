@@ -1,0 +1,11 @@
+# Preface
+
+Data is becoming more and more valuable to organizations as they realize its true potential and how it can help them to achieve their business objectives. The reason for this is that data can be turned into actionable intelligence that organizations can leverage to keep their internal and external customers happy while maintaining their competitive edge.
+
+The key here is actionable intelligence derived from data otherwise it takes up storage space and is an expense to the organization. The Salesforce Platform facilitates turning unactionable data into actionable intelligence, but for this to happen on an on going basis, the data architecture must be properly designed and allow scalability. Data modeling blunders include creating roll-up summary fields on an account record that have the year hard coded in them to show account revenue and require the roll-up summary filter to be updated every year. Blunders also include worse situations where a lookup relationship may have been used for an application, but a parent-child relationship was created, leading to a tightly coupled relationship. The sole reason for choosing this type of relationship would be due to it providing the roll-up summary field capability.
+
+In this book, we will start with the very basics of understanding what data architects are expected to do and how you can be a successful Salesforce data architect. You will then learn about data modeling and data management. Once we have the basics covered, we will delve into master data management, data governance, and how we can ensure performance for our applications.
+
+Data keeps on growing at a fast pace and knowing how to design solutions effectively involving large volumes of data is a crucial skill set. Therefore, we will extensively cover Large Data Volumes (LDVs) and what we can do as architects to effectively manage them while keeping scalability and Salesforce governor limits under consideration.
+
+I have included questions at the end of each chapter to ensure you have clearly understood the concepts discussed in the chapter. Moreover, there are extensive examples and diagrams throughout the chapters to ensure that a firm understanding of the concepts is developed.

@@ -1,0 +1,279 @@
+
+- cultural barriers 17
+- information overload barriers 17
+- language barriers 16
+- physical barriers 16
+- psychological barriers 16
+- semantic barriers 17
+- communication strategy
+- about 173
+- creating 174
+- with stakeholders 173
+- compound fields 58, 59
+- conceptual data model 29
+- Consistency 271
+- consolidation org 129, 130
+- constraints 30
+- Content Delivery Network (CDN) 235
+- Continuous Integration (CI) 102
+- Create, Read, Update, Delete (CRUD) 124
+- currency fields 61
+- Customer 360 8
+- Customer 360 Privacy Center 204
+- Customer Relationship Management (CRM)
+- about 9, 115, 160, 271, 311
+- strategy 146
+- custom objects 56
+
+### D
+- data
+- about 66, 67, 78
+- assessing 310
+- data architects
+- about 5
+- criteria 20, 21
+- experiences 21, 22
+- responsibilities 10, 11, 12
+- skills 13
+- soft skills 14
+- technical skills 13
+- data architecture
+- about 175
+- benefits 9, 10
+- consideration 8
+- creating 175, 176
+- importance 7, 8
+- data backup 94, 95
+- data backup, reasons
+- about 95
+- compliance and regulatory policies 98
+- data loss, via integration 99
+- data migrating 97
+- human errors 96
+- natural disasters 99
+- point-in-time recovery 99
+- quick recovery, from catastrophic events 97
+- Recycle Bin 96
+- reputational risk 98
+- Salesforce backing up 97
+- Salesforce data recovery service 96
+- Salesforce outages 97
+- threats 98
+- data backup, strategy
+- about 99, 100
+- costs 100
+- ease of use 101
+- performance 103, 104
+- security 100
+- service levels 101
+- solution comprehensiveness 102
+- databases
+- revisiting 270
+- data, best practices
+- about 92
+- contacts 93
+- inactive owners 92
+- leads and contacts 92
+- naming conventions 93, 94
+- orphaned contacts 93
+- record types 93
+- data conversion 310
+- Data Definition Language (DDL) 49
+- Data Export Service 109
+- data federation 145
+- data governance
+- about 157, 175
+- assessment, challenges 180
+- assessment, conducting 181
+- benefits 159
+- common metrics 182, 184
+- creating 175
+- current landscape, assessing 179, 180
+- current state, assessing 179
+- maturity models, need for 184, 185
+- need for 158, 159
+- versus data management 160, 161
+- data governance, benefits
+- analytics 160
+- brand trust 159
+- complexity, handling 160
+- data discovery 159
+- data security 159
+- integrations 160
+- resources, usage 160
+- data governance, key drivers
+- data quality 158
+- data security 159
+- data standardization 158
+- regulatory compliance 158
+- revenue growth, via process improvement 158
+- data governance, program
+- data quality 169, 170
+- keys 167, 168
+- principles 164-167
+- Data Import Wizard (DIW) 319, 320
+- data integration 311
+- data life cycle
+- about 73
+- archival 74
+- data creation 73
+- purge 74
+- Salesforce example 74
+- storage 73
+- usage 73
+- Data Loader 109
+- data management
+- about 68
+- benefits 68-70
+- challenges 70-72
+- versus data governance 160, 161
+- data management, aspects
+- cleansing 169
+- data profiling 169
+- match and merge 170
+- monitor 170
+- standardize 169
+- data management, best practices
+- about 78, 79
+- data 80
+- metadata 80
+- data management, operating models
+- about 76
+- centralized operating model 76
+- decentralized operating model 77
+- hybrid operating model 77
+- Data Manipulation Language (DML) operations 36
+- data migration
+- about 310
+- assessment, components 311-313
+
+### E
+- edges 274
+- effective communication
+- clarity 18
+- coherence 19
+- completeness 19
+- conciseness 18
+- concreteness 18
+- consideration 19, 20
+- courtesy 19
+- Einstein Analytics (EA) 300
+- Email Opt Out 202
+- encryption 193
+- Enterprise Architect (EA) 10
+- enterprise data governance 156
+- Enterprise Messaging Bus (EMS) 329
+- Enterprise Resource Planning (ERP) 69, 160, 271
+- European Union (EU) 186
+- Event-Driven Architecture (EDA) 328
+- Event Log File (ELF) browser app URL 224
+- execution phase, best practices
+- production run 318, 319
+- sandbox testing 317, 318
+- execution phase, data migration
+- about 316
+- best practices 316, 317
+- Experienced Page Time (EPT) 252
+- external objects
+- about 57, 296
+- benefits 298
+- external objects, benefits
+- about 297
+- data virtualization 297
+- ease setup 297
+- mobile data 298
+- read and write operations 297
+- real-time data 298
+- standard functionality 298
+- external objects, considerations
+- about 298, 299
+- limited custom fields 298
+- limited standard functionality 298
+- reporting considerations 299
+- Extract, Transform, Load (ETL) 282, 319
+
+### F
+- FallbackIndex table 54
+- fields metadata table 51
+- Field Trip 245
+- flat database 33
+- foreign keys 270
+- full-copy sandbox 318
+- full table scan 228-232
+- Full-Time Equivalents (FTEs) 77
+
+### G
+- General Data Protection Regulation (GDPR) 8, 9
+- about 186, 191
+- complying with 194-197
+- data subject, key rights 194
+- requirements 192, 193
+- terms 191
+- Golden Record
+- about 143
+- significance 144
+- Golden Record, detractors
+- about 145, 146
+- flaws, fixing 147, 148
+- Gramm-Leach-Bliley Act (GLBA) 187
+- granular locking 295
+- graph data stores 274
+- Graphical User Interface (GUI) 259
+
+### H
+- Hammer 55
+- hashing function 273
+- headless testing 259
+- Health Insurance Portability and Accountability Act (HIPAA) 194
+- hierarchical data 120
+- hierarchies, benefits
+- accurate reporting 123
+- product insights 123
+- revenue opportunities 122
+- HistoryTracking table 54
+- hop 218
+- human errors 96
+- hybrid operating model 77
+- Hypertext Transfer Protocol (HTTP) 262, 328
+
+### I
+- ID field 58
+- Independent Software Vendors (ISVs) 213
+- indexes 30
+- indexes pivot table 53
+- information security architect 6
+- Information Security (IS) 6
+- Information Systems (ISes) 145
+- Information Technology (IT) governance 157
+- Infrastructure as a Service (IaaS) 6
+- Isolation 271
+
+### J
+- Java Development Kit installation link 321
+- JavaScript Object Notation (JSON) 272
+- Java Software Development Kit (SDK) 321
+- join 32
+- JunctionIDList fields 61
+- Junction objects 41, 42
+
+### K
+- kernel 47
+- Key Performance Indicators (KPIs) 80, 131
+- key-value data stores 273
+
+### L
+- Large Data Volumes (LDVs)
+- about 276, 277
+- brownfield org 279, 280
+- data modeling 280-282
+- effects 277, 278
+- greenfield org 279, 280
+- integrating 279
+- iterate 283
+- migrating 279
+- multitenancy and search architecture 278, 279
+- operation timing 283
+- tooling 282
+- transformations 283
+- user involvement 284
+- user validation 284
