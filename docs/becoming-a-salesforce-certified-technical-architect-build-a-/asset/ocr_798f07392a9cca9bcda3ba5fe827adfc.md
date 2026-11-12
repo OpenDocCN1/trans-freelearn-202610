@@ -1,0 +1,15 @@
+This is how the process flows:
+
++   1. The user starts the mobile application (or visits the JavaScript-based SPA). Assume that this is the first time the user opens this application and assumes that the mobile application is designed to work with data coming from one source, which is the resource server.
++   2. The application checks for a valid access token or a refresh token. Considering that this is the first time the user launches the app, no tokens will be found. The mobile app starts the OAuth 2.0/OIDC user-agent flow. The passed parameters are very similar to those passed in the web server flow, except that the response_type parameter's value should be the token this time. By way of example, the full URI of the redirect could look like this: https://packt.link/k7vTsv.
+
+One other thing to notice here, besides the response_type value, is the fact that native mobile applications can register and use custom protocols such as myapp:// / and then define a callback such as myapp:// /callback. Due to the nature of the user-agent flow, and the fact that it is less secure than the web server flow, it normally does not return a refresh token.
+
+An exceptional case is when the client app uses a custom protocol in the redirect_uri value. In the preceding example, the flow can return an access token, a refresh token, and an ID token assuming the right scopes are used.
+
++   3. The authorization request is sent to the authorization server.
++   4. The authorization server checks for an existing and valid session token stored in a cookie associated with the server's domain. Assume that this token has not been found because this is the first time the user has logged in to the authorization server today.
++   5. The user is presented with a login screen served by the authorization server. The user enters their username and password (or authenticates in whatever way defined by the authorization server). If the server is configured to use 2FA or MFA, the other factors will be requested before the user is authenticated. Once that is complete, the user will be presented with a screen asking for approval to allow the client app to access specific scopes on the resource server. This will be a screen similar to Figure 4.11.
++   6. The user has authentication and an access token generated. A refresh token and an ID token will also be generated if the right scopes are used (assume so, which is a likely case for mobile applications, mainly because they normally want to provide a better user experience by not requiring the user to authenticate again the next time the application is opened). The endpoint would parse the response and extract the three tokens from it.
++   7. This is an optional (but strongly recommended) step in case an ID token is received. The client app validates the ID token by verifying its digital signature.
++   8. This is an optional step. The client app can use the information in the ID token to request the full profile details of the logged-in user.

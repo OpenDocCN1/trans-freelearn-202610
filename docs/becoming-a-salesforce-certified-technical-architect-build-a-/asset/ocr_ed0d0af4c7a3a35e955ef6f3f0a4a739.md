@@ -1,0 +1,7 @@
+# Summary
+
+The chapter started by covering some general concepts regarding IAM. You learned the importance of crafting a well-designed IAM strategy and how that could significantly impact the end user experience as well as overall system security and compliance. You then became familiar with some key IAM terms and definitions, including _identity_, _authentication_, _authorization_, _identity store_, and others. You then moved on to discover some of the most common IAM standards, including SAML, OAuth 2.0, OIDC, and Kerberos, along with the different types of tokens they generate or use, such as access tokens, refresh tokens, session tokens, and ID tokens.
+
+That all set the scene to dive deeper into some of the common and standard authentication flows. You read an in-depth review of nine different flows, including SAML IDP-initiated, SAML SP-initiated, OAuth web server, OAuth JWT, and others.
+
+That concludes this part of the book, where you discussed several common architectural concepts, including data, integration, security and cryptography, and IAM. In the next part, you will dive into more Salesforce-specific knowledge areas and go through some hands-on exercises that will help you to prepare for the CTA review board.

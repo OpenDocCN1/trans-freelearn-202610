@@ -1,0 +1,28 @@
+chapter_starts:
+- 'no': 9750
+  confidence: 0.95
+  final_reason: 双方一致 + H1 顶级附录分区标题，单独成行，无结束标点，语义概括附录内容，标志正文结束进入附录，符合书末附录独立划分为一章的规则
+  accepted_evidence:
+  - 标题“# Appendix”为 H1 且单独成行
+  - 无结尾标点，长度小于 30 字
+  - 标志正文结束进入附录部分
+  rejected_evidence:
+  - 复核方指出无章序号且其下紧跟 H2 子标题，但附录作为顶级书末分区不依赖章序号
+  need_human_review: false
+- 'no': 10197
+  confidence: 0.98
+  final_reason: 规则明确要求文末索引独立划分为一章，H1 单独成行，无结束标点，属书末工具性章节
+  accepted_evidence:
+  - 标题“# 索引”单独成行
+  - 规则：文末索引也划分为一章
+  rejected_evidence:
+  - 复核方指出索引为工具性条目而非正文章节，但规则已明确例外
+  need_human_review: false
+rejected_lines:
+- 'no': 9021
+  reason: 该行为 H2 标题（##），与章内“## 总结”（9011）及“## 继续分析需求并创建端到端解决方案”（9034）同层级，无章序号，且后文第
+    9023 行明确称“在本章中……你已在第 14 章……”，说明其仍位于第 15 章内部，属章内小标题而非新章起始；复核方反证成立，不应分章。
+  need_human_review: false
+- 'no': 9754
+  reason: 该行为 H2 标题（##），从属于前一行“# Appendix”（9750），语义范围仅限附录内的技巧与前进建议，不具备统领独立章节的广度，且与后续图表说明并列；复核方反证成立，不应分章。
+  need_human_review: false

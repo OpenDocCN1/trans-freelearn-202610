@@ -1,0 +1,14 @@
+I will explain all identified LDVs and how I am planning to mitigate them later.
+The meter readings will be stored in a custom denormalized object. This will significantly reduce the number of records needed to capture the monthly forecasted and actual consumption [point to the Meter_Reading__c object on your data model diagram].
+
+I will use a before-save flow to populate the next month's forecasted consumption once the actual consumption for the previous month is captured. For example, the flow will automatically populate the Feb_Forecasted__c field's value once the Jan_Actual__c field is updated.
+
+The Meter_Reading__c object will be linked to the Asset object using a master-detail relationship. This way, any user who has access to the Asset record will be able to view its related Meter_Reading__c. Customer Community users will get access to the assets related to the Account records they have access to; therefore, they will be able to view their relevant Meter_Reading__c records.
+
+I have assumed that invoices and payments are stored in the ERPs. I propose exposing them to customers in Salesforce using Salesforce Connect. MuleSoft connects to all the ERPs, retrieves the invoices, and aggregates and exposes them as an OData interface that Salesforce can subscribe to. I have added the following External Objects to my data model [point to the Payment__x, Invoice__x, Invoice__Header__x, and Invoice__Line_Item__x objects on your data model diagram].
+
+Invoice PDFs will be generated via a Batch MuleSoft job that runs every month, retrieves the invoice details from the ERPs, and passes them to the PDF Generator system to generate PDFs [point to Int-007 on your landscape diagram and your list of interfaces]. MuleSoft would then retrieve all files stored on the SFTP and transfer them to Salesforce [point to Int-008 on your landscape diagram and your list of interfaces]. We can use a specific file naming convention that includes the account ID. This will allow MuleSoft to attach the files to the correct Account record. The PDFs will be stored using Salesforce Files [point to the Content Document object on your data model diagram].
+
+Next, we have a requirement to create a critical incident in case of energy failure and assign it to the right maintenance partner based on the property's address. The critical incident will be another Case record type. I will use Case Assignment Rules to assign the critical incident case to the right partner user or queue, assuming we have a field that indicates the relevant case region.
+
+Once that is done, we need to identify all customers relevant to that particular region and send them all an SMS notification. This is a mass SMS send, a capability not available out of the box on the Salesforce Platform. Therefore, I will use Marketing Cloud to fulfill this requirement.
