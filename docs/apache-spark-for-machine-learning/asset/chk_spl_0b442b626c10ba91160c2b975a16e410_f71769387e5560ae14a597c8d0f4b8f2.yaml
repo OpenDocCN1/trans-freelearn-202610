@@ -1,0 +1,37 @@
+reviews:
+- 'no': 3235
+  overturn_probability: 0.05
+  alternative: 全书部分标题（Part 标题）或部分导语页
+  counter_evidence:
+  - 该行内容为“第 2 部分：监督学习”，属于部分层级而非章层级，若审查员混淆部分与章，可能误判。
+  - 前文行3231-3233为上一章总结与下一章预告，行3235可能仅作部分分隔页，不一定对应独立章节正文起始。
+  keep_split: true
+- 'no': 3246
+  overturn_probability: 0.2
+  alternative: 第2部分下第4章的章标题（二级标题）/部分内小节
+  counter_evidence:
+  - 该行无“第 4 章”等显式最高层级编号，仅为“## 构建回归系统”，可能是部分内子节而非全书最高层级章。
+  - 紧接行3241-3244的章节列表（“- 第 4 章，构建回归系统”）之后，行3246可能被误判为列表延续而非新章正文。
+  - 后文行3248-3250为章节概述，也可能是章内引言而非新章起始标志。
+  keep_split: true
+- 'no': 4107
+  overturn_probability: 0.2
+  alternative: 第2部分下第5章的章标题（二级标题）/正文小标题
+  counter_evidence:
+  - 该行无“第 5 章”等显式编号，仅为H2标题，可能被视为子章节而非独立章。
+  - 前文行4103-4105为上一章总结，行4107可能仅为承上启下的过渡标题。
+  keep_split: true
+- 'no': 5040
+  overturn_probability: 0.05
+  alternative: 全书部分标题（Part 标题）或部分导语页
+  counter_evidence:
+  - 该行内容为“第 3 部分：无监督学习”，属于部分层级而非章层级。
+  - 前文行5038-5039为上一章结尾，行5040可能只是部分分隔页。
+  keep_split: true
+- 'no': 5052
+  overturn_probability: 0.2
+  alternative: 第3部分下第6章的章标题（二级标题）/部分内小节
+  counter_evidence:
+  - 该行无“第 6 章”等显式编号，仅为H2标题，可能属于部分内子节。
+  - 紧接行5046-5050章节列表之后，行5052可能被误判为列表延续。
+  keep_split: true

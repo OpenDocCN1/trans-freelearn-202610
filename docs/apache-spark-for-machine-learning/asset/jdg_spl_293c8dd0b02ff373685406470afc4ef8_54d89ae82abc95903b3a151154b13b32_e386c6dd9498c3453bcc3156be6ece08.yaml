@@ -1,0 +1,53 @@
+chapter_starts:
+- 'no': 0
+  confidence: 0.99
+  final_reason: 书名/扉页，正文前书前内容起始；与行15前言等书前材料统一划为同一书前章。
+  accepted_evidence:
+  - 行0为图书标题，单独成行，属正文前书前材料
+  - 行0-14均为贡献者、关于作者、关于审稿人等书前内容
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 152
+  confidence: 0.98
+  final_reason: 部分标题“第 1 部分：简介与基础”，部分-章节模式下遇到部分标题必须划分新章。
+  accepted_evidence:
+  - 标题完全匹配“第 X 部分”模式
+  - 标题单独成行，无结束标点，长度小于30字
+  - 规则明确：存在“第 X 部分”时，遇到部分标题需划分新章
+  rejected_evidence:
+  - 复核方认为其为部分引言说明，但规则强制分章，不因后续内容短暂而取消
+  need_human_review: false
+- 'no': 164
+  confidence: 0.95
+  final_reason: 第1章标题“机器学习概念概述”，单独成行，无句号，长度<30，语义统领后续章节内容，后接子节。
+  accepted_evidence:
+  - 格式特征符合章标题：单独成行、无句号、长度<30
+  - 后接“### 技术要求”等子节，符合章标题后跟子节特征
+  - 位于“第 1 部分”之后，构成正文第一章
+  rejected_evidence:
+  - 复核方指出缺少显式“第 X 章”编号，但规则允许无编号章凭语义判断，且上下文特征明显
+  need_human_review: false
+- 'no': 660
+  confidence: 0.95
+  final_reason: 第2章标题“使用 Spark 进行数据处理”，单独成行，无句号，长度<30，紧接上一章总结，后接章节概述。
+  accepted_evidence:
+  - 格式与语义均符合章标题
+  - 前文为第1章总结过渡段落
+  - 后接本章主题列表与概述
+  rejected_evidence:
+  - 复核方疑似为第1章末尾过渡段落一部分，但行660独立成行且后文明确为新章内容，证据不足
+  need_human_review: false
+- 'no': 2012
+  confidence: 0.95
+  final_reason: 第3章标题“特征提取与转换”，单独成行，无句号，长度<30，紧接上一章总结与“下一章”预告，后接本章主题介绍。
+  accepted_evidence:
+  - 格式与语义均符合章标题
+  - 前文为第2章“总结”并明确“在下一章中，我们将学习特征重构”
+  - 后接本章主题介绍
+  rejected_evidence:
+  - 复核方认为可能合入第2章末尾，但行2012独立成行且标题语义明确，证据不足
+  need_human_review: false
+rejected_lines:
+- 'no': 15
+  reason: 复核方反方证据成立：前言、关于作者等正文之前的内容应统一划分为一章，行15不应单独分章，应并入行0起始的书前章。
+  need_human_review: false
