@@ -1,0 +1,17 @@
+reviews:
+- 'no': 6387
+  overturn_probability: 0.88
+  alternative: 章内二级标题/小节标题
+  counter_evidence:
+  - 该行使用 Markdown 二级标题符号“##”，而后文第 6 章（行 8033）使用一级标题“#”，层级不一致，表明 6387 属于章内小节而非独立最高层级章节；
+  - 6387 之后出现多个 “### 简介”“## 开始进行 Flex 应用程序开发”等子标题，说明其只是 GWT/Flex/Web Flow 主题下的父级小节；
+  - “在本章中，我们将介绍”中的“本章”可指代当前已进行的章节，该行仅为该章内关于 Web 应用开发技术的专题小标题。
+  keep_split: false
+- 'no': 8033
+  overturn_probability: 0.15
+  alternative: 图书第 6 章标题（最高层级大章，应保持分章）
+  counter_evidence:
+  - 标题仅为“# 6 …”而非“第 6 章”，若本书采用部分-章节模式，该行也可能是部分标题而非章标题；
+  - 片段未展示前文，无法确认第 1~5 章是否已出现，存在序号断裂或该行其实为卷首语/部分引言的可能性；
+  - 标题内容涵盖电子邮件、JMS、Spring Security、Solr、GAE 等多个相对独立主题，可能应进一步拆分为多个章节而非合并为一章。
+  keep_split: true

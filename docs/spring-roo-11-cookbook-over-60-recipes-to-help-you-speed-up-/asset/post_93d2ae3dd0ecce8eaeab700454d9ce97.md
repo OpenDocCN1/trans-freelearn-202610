@@ -1,0 +1,137 @@
+
+## contextConfigLocation initialization parameter
+
+The contextConfigLocation context initialization parameter identifies Spring's root web application context XML file(s), as shown here:
+
+```
+<context-param>
+<param-name>contextConfigLocation</param-name>
+<param-value>
+classpath*:META-INF/spring/applicationContext*.xml
+</param-value>
+</context-param>
+```
+
+The META-INF/spring/applicationContext.xml file contains bean definitions that are shared by all servlets and filters defined in the flight-app web application. These bean definitions are available to application contexts loaded by DispatcherServlet. As we saw in the Creating a Roo project recipe of Chapter 1, Getting Started with Spring Roo and in Setting up a JPA provider for your project recipe of Chapter 2, Persisting Objects Using JPA, an applicationContext.xml file contains bean definitions for configuring data sources, services, transactions, and so on, and needs to be shared across the web application.
+
+If you create additional application context XML files, which contain bean definitions that you want to share across the web application, then you can add them to the value of the contextConfigLocation parameter using commas or space separated values, as shown here:
+
+```
+<param-value>
+classpath*:META-INF/spring/applicationContext*.xml,
+META-INF/spring/mycontext.xml
+</param-value>
+```
+
+## ContextLoaderListener
+
+The root web application context, identified by the contextConfigLocation context initialization parameter, is loaded by the ContextLoaderListener, which implements javax.servlet.ServletContextListener, as shown here:
+
+```
+<listener>
+<listener-class>
+org.springframework.web.context.ContextLoaderListener
+</listener-class>
+</listener>
+```
+
+## DispatcherServlet
+
+The webmvc-config.xml file created by Roo identifies the web application context of the Roo-generated web application. The webmvc-config.xml file contains tile definitions, handler (or controller) definitions, handler mappings, view and exception resolution strategies, and so on. The DispatcherServlet of Spring is responsible for loading the webmvc-config.xml file and dispatching requests to appropriate handlers, resolving views, exceptions, and so on. In the web.xml of the flight-app, DispatcherServlet is configured to load webmvc-config.xml, as shown here:
+
+```
+<servlet>
+    <servlet-name>flight-app</servlet-name>
+    <servlet-class>
+        org.springframework.web.servlet.DispatcherServlet
+    </servlet-class>
+    <init-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            /WEB-INF/spring/webmvc-config.xml
+        </param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+</servlet>
+```
+
+As shown in the given code, the DispatcherServlet accepts the contextConfigLocation initialization parameter that identifies the Spring's web application context XML file. The scope of the application context loaded by the DispatcherServlet is limited to the requests that are mapped to the DispatcherServlet.
+
+If you want to modularize your application, then consider creating a different web application context for each module and configure a DispatcherServlet for each module in the web.xml file.
+
+## OpenEntityManagerInViewFilter
+
+As you might be lazy about loading JPA entities in your web application, Roo configures the OpenEntityManagerInViewFilter servlet filter in web.xml to bind the JPA EntityManager to the thread in which a request is handled, as shown here:
+
+```
+<filter>
+    <filter-name>
+        Spring OpenEntityManagerInViewFilter
+    </filter-name>
+    <filter-class>org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter
+    </filter-class>
+</filter>
+```
+
+The OpenEntityManagerInViewFilter assumes that the EntityManagerFactory for looking up the EntityManager instance is registered with the root web application context and has the name entityManagerFactory. If you change the id of the LocalContainerEntityManagerFactory bean defined in META-INF/spring/applicationContext.xml file, then add a entityManagerFactoryBeanName initialization parameter to the OpenEntityManagerInViewFilter definition in web.xml to inform it about the LocalContainerEntityManagerFactory bean.
+
+## HiddenHttpMethodFilter
+
+HTTP specification defines four methods: GET, POST, PUT, and DELETE, but HTML only supports GET and POST methods. As the semantics of different HTTP methods differ, in the REST approach it is recommended to use an appropriate HTTP method for sending an HTTP request. For instance, if you want to delete Flight instances from the database, then you should use the DELETE HTTP method and if you are updating Flight instances, then use a PUT HTTP method. The HTTP method with which the HTTP request was made is obtained using the getMethod() method of javax.servlet.HttpServletRequest.
+
+So, to perform PUT and DELETE operations in your web application, you can do a normal POST and along with it send an additional request parameter with the name _method whose value is either PUT or DELETE. Spring provides a HiddenHttpMethodFilter servlet filter, which reads the value of the _method parameter, creates an HttpServletRequest Wrapper and overrides the getMethod method of HttpServletRequest to return the value of the _method parameter—making it possible to perform PUT and DELETE HTTP operations in your web application.
+
+Spring Roo automatically configures HiddenHttpMethodFilter in the web.xml file generated for the web application, as shown here for the flight-app application:
+
+```
+<filter>
+<filter-name>HttpMethodFilter</filter-name>
+<filter-class>org.springframework.web.filter.HiddenHttpMethodFilter
+</filter-class>
+</filter>
+```
+
+The Spring Web MVC's form tag library provides built-in support for dealing with different HTTP methods. For instance, the following form tag will result in performing an HTTP POST and send an additional request parameter named _method whose value is PUT:
+
+```
+<form:form method="put">
+<input type="submit" value="Delete Flight"/>
+</form:form>
+```
+
+In the given code, the method attribute of the form tag identifies the value that needs to be set for the _method request parameter when the form is submitted.
+
+> As Roo-generated JSPX files make heavy use of custom tags installed in the SRC_MAIN_WEBAPP\WEB-INF\tags folder, you will mainly find usage of the Spring MVC's form tag library in these custom tags.
+
+## Exception pages
+
+By default, Roo configures exception pages for situations when unexpected exceptions occur or a resource is not found (HTTP status code 404), as shown here for unexpected exceptions:
+
+```
+<error-page>
+<exception-type>java.lang.Exception</exception-type>
+<location>/uncaughtException</location>
+</error-page>
+```
+
+As the Roo-generated application uses Apache Tiles 2 framework, the `<location>` element is not mapped to the actual HTML or JSPX view that is shown in response to the exception. Later in this recipe, we'll see how Spring's exception resolvers are used by Roo-generated web applications to resolve exceptions to logical views.
+
+Now that we have seen configurations that form part of the `web.xml` file generated by Roo for the `flight-app` application, let's now look at the web application context XML file: `webmvc-config.xml`, which is loaded by `DispatcherServlet`. The web application context, loaded by `DispatcherServlet`, is the place where request handlers, exception resolvers, theme and locale change interceptors, and so on, are registered.
+
+## Beans and configurations defined in webmvc-config.xml
+
+The `webmvc-config.xml` file contains configurations and bean definitions that are loaded by `DispatcherServlet`. Let's now look at the `webmvc-config.xml` file in detail:
+
+### Controller auto-detection
+
+In Roo-generated web applications, controllers are auto-detected using the `<component-scan>` element of Spring's `context` schema, as shown here:
+
+```
+<context:component-scan base-package="sample.roo.flightapp"
+use-default-filters="false">
+<context:include-filter expression="org.springframework.stereotype.Controller"
+type="annotation" />
+</context:component-scan>
+```
+
+The `base-package` attribute specifies a comma separated list of packages, which are scanned by Spring for classes annotated with `@Repository`, `@Component`, `@Controller`, and `@Service` annotations. The `use-default-filters` attribute specifies if auto-detection of classes annotated with `@Repository`, `@Component`, `@Controller`, and `@Service` are enabled or disabled. By default, auto-detection is enabled. The value `false` indicates that auto-detection of these annotated classes are disabled. As the web application context loaded by `DispatcherServlet` should contain controller or handler components, the `<include-filter>` element specifies that only classes annotated with `@Controller` annotation are auto-detected by Spring.

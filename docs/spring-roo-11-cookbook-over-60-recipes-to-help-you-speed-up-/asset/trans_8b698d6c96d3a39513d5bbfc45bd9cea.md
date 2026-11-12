@@ -1,0 +1,349 @@
+
+
+### M
+
+- 邮件消息
+  - 设置 292
+- MailSender 接口 290
+- 多对多关系
+  - 在实体之间创建 114-116
+- 多对一关系
+  - 在实体之间创建 106-110
+- mappedBy 属性值 188
+- 映射超类
+  - 创建 117-119
+- mappedSuperclass 参数 118
+- 映射属性 151
+- maven 插件 85
+- Maven 插件 20
+- Maven Assembly 插件
+  - URL 163
+- mavenCommand 24
+- Maven DataNucleus 插件 337, 338
+- Maven GAE 插件
+  - <execution> 元素 336
+  - <unpackVersion> 子元素 336
+  - 关于 332, 335
+  - gae.home 属性 336
+  - 目标 337
+  - 特定配置 336
+- Maven 插件
+  - AspectJ 编译器插件 22
+  - Eclipse 插件 22
+  - IDEA 插件 22
+  - Tomcat 和 Jetty 插件 22
+- MemberFindingUtils 工具类 404
+
+- menu.jspx 文件 167
+  - 关于 170
+  - 标签 170
+- MessageConverter 接口 306
+- messages.properties 167
+- 元数据创建触发器
+  - 注册 407
+  - 注销 407
+- metadataDependencyRegistry 406
+- MetadataDependencyRegistry 406
+- Metadataaltem 410
+- MetadataProvider 410
+- MetadataService 类 394, 401
+- META-INF/persistence.xml 文件 132
+- method 属性 157
+- 方法级安全性，Apache 目录服务器
+  - 配置 327
+- MimeMessage[] 对象 291
+- MobileInjectorWrapper 228
+- mobile.user.agent 属性 228
+- GWT 应用的移动版
+  - 访问 247, 248
+- 持久实体的模拟测试
+  - 创建 82, 83
+- modifiedDate 字段 99
+- modifyFlight(Flight obj) 方法 74
+- MutableFile 类 384
+- MvcViewFactoryCreator 280
+- mvn package 命令 93
+- myadvanced add 命令 408
+- MyadvancedCommands 类 398-400
+- MyadvancedMetadata 类 413
+- MyadvancedMetadataProvider 类 405-412
+- MyadvancedOperationsImpl 类 400-404
+- myOwnId 字段 108
+- mysimple 插件
+  - 部署 387
+  - 运行 387
+  - 在 Roo 项目中使用 387-389
+- MysimpleCommands 类 377, 378
+- MysimpleNameProperty 枚举类型 385
+- MysimpleOperations 378
+- MysimpleOperationsImpl 组件 382
+- MysimpleOperations 接口
+  - 关于 382
+  - boolean isInstallTagsCommandAvailable() 方法 382
+  - String getProperty(String) 方法 382
+  - void installTags() 方法 382
+- MysimplePropertyName 385
+
+### N
+
+- name 350
+- 非 OSGi JDBC 驱动程序
+  - 转换为 OSGi 兼容包 416-419
+- NumberValidator 274
+
+### O
+
+- 一对多关系
+  - 在实体之间创建 114-116
+- 一对一关系
+  - 在实体之间创建 106-110
+- onModuleLoad 方法 229
+- OpenEntityManagerInViewFilter 144
+- OSGi 命令
+  - 关于 395, 396
+  - osgi log 395
+  - osgi ps 395
+  - osgi scr info 396
+  - osgi scr list 395
+  - osgi obr start 命令 373, 374
+  - osgi obr url add 命令 373
+- 拥有的关系 345, 347
+
+### P
+
+- ParameterizableViewController 152
+- 父实体 350
+- PathResolver 类 384
+- 路径值
+  - ROOT 20
+  - SPRING_CONFIG_ROOT 20
+  - SRC_MAIN_JAVA 20
+  - SRC_MAIN_RESOURCES 20
+  - SRC_MAIN_WEBAPP 20
+  - SRC_TEST_JAVA 20
+  - SRC_TEST_RESOURCES 20
+- pattern 属性 315
+- perform assembly 命令 163
+- perform 命令 24
+- perform eclipse 命令 23, 165, 376
+- perform package 命令 92, 160
+- perform tests 命令 84
+- GAE 持久实体 338, 339
+- persistence setup 命令 48, 49, 88, 333, 381
+
+- persistence-unit 元素 51
+- 持久实体
+  - 控制自动生成的方法 68, 69
+  - 使用类参数 64
+  - 创建 57, 58
+  - 创建集成测试 70-76
+  - 添加 JSR 303 约束 65, 67
+  - 创建模拟测试 82, 83
+  - 添加表列信息 64
+  - 操作 59-63
+- 持久实体测试
+  - 执行 84, 85
+  - 操作 85
+
+- pgp automatic trust 命令 373
+- pgp trust Roo 命令 372
+- PhysicalTypeMetadata 对象 403
+- PhysicalTypeMetadataProvider 类 401
+- PlaceController 对象 230
+- PlaceControllerProvider 234
+- GWT 应用的位置
+  - 关于 242
+  - ProxyListPlace 242
+  - ProxyPlace 242
+- pom.xml 259, 260
+- pom.xml 文件 395
+- postPersistOrUpdate 方法 363, 366
+- preRemove 方法 363, 366
+- processSave 方法 273
+- project 命令 16
+  - 参数 19
+- ProjectOperations 类 402
+- Properties 文件插件 27, 28
+- properties list 命令
+  - 关于 26
+  - 参数 27
+- properties remove 命令 28
+- properties set 命令 28
+- ProxyListPlace 242
+- ProxyPlace 242
+- 公共 PGP 密钥 368
+- 推入重构
+
+### R
+
+- registerDependency 方法 406
+- ReloadableResourceBundleMessageSource 155
+- 远程类元数据标记 266
+- GWT 应用的远程日志记录
+  - 启用 249, 250
+- RemotingService 263
+- render 属性 171
+- RequestFactoryProvider 234
+- RequestToViewNameTranslator 153
+- ResourceBundleThemeSource 155
+- ResourceHttpRequestHandler 151
+- Roo。另请参阅 Spring Roo
+- Roo 插件
+  - 模板 391-394
+- Roo 命令
+  - 定义 379, 380
+  - 使不可用 381
+- Roo 生成的控制器
+  - 关于 156
+  - FlightController 156
+  - FlightDescriptionController 156
+- Roo 生成的文件
+  - Event.as 267
+  - Form.mxml 267
+  - View.mxml 267
+- Roo 生成的标识符定义
+  - 自定义 122-124
+- Roo 生成的 JSPX 文件 172
+- Roo 生成的视图
+  - 更改应用程序名称 168-170
+  - 将元素从用户管理模式切换到 Roo 管理模式 175
+  - 更改菜单选项 170, 171
+  - 修改 164-167
+- Roo 生成的 JSPX 文件 172-174
+  - 更改欢迎文本 168-170
+  - 操作 167
+  - z 属性的意义 171
+- Roo 生成的 Web 应用程序
+  - 国际化 197-199
+  - 添加静态视图 195, 197
+  - 添加或修改主题 200-205
+
+- Roo 项目
+  - 关于 13
+  - 传递参数 19, 20
+  - 创建 18
+  - 导入到 Eclipse 或 IntelliJ IDEA IDE 23, 24
+  - JMS 插件 302
+  - 接收 JMS 消息 298-301
+  - 发送 JMS 消息 298-301
+  - 设置 JPA 提供程序 48, 49
+  - 配置日志记录 24, 25
+  - 发送邮件 293
+  - 异步发送邮件 294
+  - 发送带附件的邮件 295, 297
+  - 发送在 JNDI 中配置了 JavaMail Session 的邮件 297
+  - 设置邮件消息 292
+  - 打包 92-95
+  - 设置 Roo 项目的电子邮件发送支持 291, 292
+  - 在嵌入式 Jetty 容器中运行 163
+  - 为 Solr 配置 357
+  - 操作 19
+- Roo 脚手架 GWT 应用程序
+  - 创建 331, 332
+  - 部署 333
+- Roo Shell 12
+- RooToString 注解 35
+- Web 控制器和视图的往返支持 176-180
+- GWT 应用程序的往返支持 248
+
+### S
+
+- say hello 命令 381
+- Scaffold 类 234
+- ScaffoldDesktopApp 子类 231
+- Scaffold.java 229
+- ScaffoldModule.java 233-235
+- script 命令
+  - 参数 45
+- 搜索功能
+  - 使用 Solr 向领域模型添加搜索功能 353-357
+- searchFlight 方法 105
+- searchMethod 366
+- search(SolrQuery query) 方法 363
+- search(String) 方法 364
+- secured-annotations 属性 327
+- Security 插件 310
+- security setup 命令 308
+- selenium test 命令 212
+- Selenium 测试脚本 215, 216
+- Web 控制器的 selenium 测试
+  - 创建 212-214
+  - 执行 212-214
+- Selenium 测试套件 216-218
+- sendMessage 方法 293
+- services-config.xml 255
+- Session 类 290
+- setAttribute 方法 394
+- setDestination 方法 86
+- setEmbedded 方法 77
+- setNumOfSeats 方法 86
+- setOrigin 方法 86
+- showAddress 方法 191
+- showAddressSection 属性 191
+- showAddressSection 模型属性值 191
+- showForm 方法 271
+- show 方法 184
+- simple 插件
+  - 关于 375
+  - 开发 374, 376
+  - MySimpleCommands 类 377
+  - 操作 376, 386
+- SimpleControllerHandlerAdapter 282
+- SimpleMailMessage 286
+- SimpleMailMessage[] 对象 291
+- SimpleMappingExceptionResolver 155
+- simpleSearchMethod 366
+- Solr
+  - 为 Roo 项目配置 357
+  - 使用以添加搜索功能 353-356
+- Solr 插件 353
+- Solr 文档
+  - 搜索 364, 365
+- Solr 索引
+  - 添加领域模型数据 358
+- SolrJ Java 客户端库
+  - 使用 353
+- Solr 服务器
+  - 下载 353
+- solrServer 属性 359
+- solrServer() 方法 359
+- solr setup 命令
+  - 关于 357
+  - 执行 357
+- Spring 8
+- Spring MVC 应用程序
+  - 部署 159-162
+  - 打包 159-162
+  - 使用 159-162
+- Spring MVC 控制器
+  - 为特定 JPA 实体创建 181-184
+  - 为 JPA 实体手动创建 186-193
+  - 从 JPA 实体生成 138-142
+- Spring 项目
+  - 移动 35
+- Spring Roo
+  - 关于 8
+  - 使用提取重构将其添加到项目中 425-427
+  - 开发高级插件 396, 398
+  - 高级 JPA 支持 97
+  - 从 Roo 脚本创建应用程序工件 44, 46
+  - 创建与多个数据库交互的应用程序 87-91
+  - 覆盖自动生成的控制器方法 185
+  - 优点 9
+  - 查看候选动态查找方法 98
+  - 命令 13
+  - 核心服务 12
+  - 生成数据库元数据 125-127
+  - 图形表示 9
+  - 向实体添加动态查找方法 101
+  - 从数据库创建实体 130
+  - Flex 应用程序开发 250-252
+  - 为插件开发设置 GnuPG 368, 369
+  - 从 JPA 实体脚手架 GWT 应用程序 222-226
+  - help 命令 14
+  - 执行 help 命令 14, 15
+  - hint 命令 13
+  - 执行 hint 命令 14, 15
+  - 安装可安装的插件 370-372
+  - 安装 10, 11
+
