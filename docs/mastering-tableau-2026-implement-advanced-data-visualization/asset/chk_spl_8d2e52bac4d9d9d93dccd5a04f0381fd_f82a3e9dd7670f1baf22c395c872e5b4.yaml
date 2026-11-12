@@ -1,0 +1,42 @@
+reviews:
+- 'no': 8
+  overturn_probability: 0.3
+  alternative: 前言章节内部的子标题或段落标识，属于统一前言材料的一部分而非独立章节起点
+  counter_evidence:
+  - 采用 '##' 二级标题而非正文章章的一级标题 '#'，层级明显低于后续第 1 章等正文标题
+  - line 0 图书主标题与 line 6 插图已属前言材料范畴，line 8 并非前言内容的真正起点，若拆分则前言章起点应更早或不予单独拆分
+  - 后续 front matter 如 '## 贡献者'(line 28)、'## 目录'(line 50)、'## 本书内容'(line 68) 均未被拆分，说明前言应统一为一章，line
+    8 仅为其中一节
+  keep_split: true
+- 'no': 211
+  overturn_probability: 0.05
+  alternative: 正文章节一级标题，章节标题
+  counter_evidence:
+  - line 70 目录中已明确写出“第 1 章“回顾基础””，与 line 211 标题文字高度对应，语义连贯
+  - line 211 之后紧接着 line 213 开始正文概述段落，符合章标题后 1~3 行是概述的上下文特征
+  - line 221 之后出现列表项作为本章内容预览，符合章开头结构
+  keep_split: true
+- 'no': 1075
+  overturn_probability: 0.05
+  alternative: 正文章节一级标题，章节标题
+  counter_evidence:
+  - line 1083-1088 明确列出本章讨论主题（准备数据集、浏览数据、清理混乱数据等），具有统领性
+  - line 1075 为 '# 清理您的数据' 一级标题，无句号，长度小于 30 字，符合格式特征
+  - line 1074 为空行，前文 line 1055-1060 为上一章摘要，符合章前末尾带有总结的上下文特征
+  keep_split: true
+- 'no': 1531
+  overturn_probability: 0.05
+  alternative: 正文章节一级标题，章节标题
+  counter_evidence:
+  - line 1537-1543 列出本章讨论主题（连接到数据、Prep GUI、数据质量等），语义明确且具有统领性
+  - line 1531 为 '# 使用 Tableau Prep Builder'，无句号，长度小于 30 字，格式符合一级章标题
+  - line 1529 '## 3' 极可能为页码残留或排版噪声，line 1531 才是真正的章标题起点
+  keep_split: true
+- 'no': 2316
+  overturn_probability: 0.05
+  alternative: 正文章节一级标题，章节标题
+  counter_evidence:
+  - line 2328-2336 列出本章讨论主题（关系简介、使用连接、理解联合等），具有统领性
+  - line 2316 为 '# 了解连接、混合和数据结构'，无句号，长度适中，格式符合一级章标题
+  - line 2314 为空行，前文 line 2300-2304 为上一章摘要，符合章前末尾带有总结的上下文特征
+  keep_split: true

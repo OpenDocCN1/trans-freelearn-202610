@@ -1,0 +1,5 @@
+At the time of writing, rules include: calculation length, calculation using multiple data sources, dashboard size not fixed, filter uses conditional logic, filter uses “only relevant values,” live data connections, multiple connections in a data source, nested calculations, non-materialized calculations, number of data sources, number of filters, number of layout containers, number of LOD calculations, number of views in a dashboard, number of workbook sheets, unused data sources, unused fields, uses data blending, uses date calculations, and uses grouping. I am sure, however, there are more rules to come, and it will become increasingly easy to have a high–performing dashboard. You can access the Workbook Optimizer feature by selecting Server | Run Optimizer:
+
+![](bbox=[0.16, 0.23, 0.89, 0.68])
+
+# Figure 12.22: Run Optimizer

@@ -1,0 +1,29 @@
+chapter_starts:
+- 'no': 3322
+  confidence: 0.9
+  final_reason: 一级标题单独成行，前文为第4章收尾（摘要、Discord社区），后文出现第5章图表编号（图5.x），语义明确为第5章起始，复核方无章序号的反证不成立。
+  accepted_evidence:
+  - 行为：# 表计算简介，单独成行，无末尾标点，长度小于30字，符合章标题格式
+  - 语义：行3306“## 摘要”、行3314“## 加入我们的 Discord 社区”属第4章收尾，行3322后文为第5章正文及图5.x
+  rejected_evidence:
+  - 复核方主张无章序号，可能为第4章内部大标题，但前后文章节边界及图5.x编号不支持该说法
+  need_human_review: false
+- 'no': 4607
+  confidence: 0.9
+  final_reason: 与前行“# 6”合构第6章完整标题，行4607作为标题文本单独成行，无末尾标点，后文为第6章正文介绍，不构成重复切分。
+  accepted_evidence:
+  - 行为：# 利用 OData、数据密化、大数据和 Google BigQuery，单独成行，无末尾标点
+  - 上下文：前行“# 6”为章号，后文为第6章正文介绍
+  rejected_evidence:
+  - 复核方担心与行4605章号行重复切分，但行4605未作为候选行提及，行4607应作为章标题文本行被锚定
+  need_human_review: false
+- 'no': 5053
+  confidence: 0.85
+  final_reason: 一级标题单独成行，前文为第6章收尾（摘要、Discord社区），后文为第7章LOD计算正文，语义统领新章内容，复核方反证不足。
+  accepted_evidence:
+  - 行为：# 练习 Level of Detail 计算，单独成行，无末尾标点，与第5章“# 表计算简介”格式一致
+  - 上下文：行5039“## 摘要”、行5045“## 加入我们的 Discord 社区”属第6章收尾，行5053后文为第7章正文
+  rejected_evidence:
+  - 复核方称无章序号且含“练习”字样可能为章内环节，但前后章节边界明显，且一级标题在本书中已用于章起始
+  need_human_review: false
+rejected_lines: []

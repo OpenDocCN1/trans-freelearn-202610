@@ -1,0 +1,16 @@
+Also, it is crucial to understand how Einstein Discovery fits into the 2026 Tableau ecosystem. Historically a standalone predictive tool, it is now a core component of Salesforce's Unified Processing Architecture. As of the 2025-2026 releases, Einstein Discovery and the new Agentforce agents share a common reasoning hub. This means the predictive power of Einstein Discovery is no longer an isolated feature; it fuels the autonomous decision-making of the broader platform.
+
+However, its primary function remains distinct:
+
++   - **Tableau Pulse is for monitoring**: It proactively alerts you to changes in your KPIs
++   - **Tableau Next / Agentforce is for autonomous action**: It can reason across contexts to resolve a customer issue or qualify a lead
++   - **Einstein Discovery is for prediction**: It provides the statistical models and what-if analysis capabilities that inform both human users and autonomous agents
+
+As Tableau developer, you will likely interact with Einstein Discovery in several keyways:
+
++   - **Automated Stories and model building**: Within Salesforce's CRM Analytics Studio (the evolution of Tableau CRM), you can create a Story. You select a dataset and define a goal, for example, Maximize Customer Lifetime Value or Predict Lead Conversion Probability. Einstein Discovery then automatically runs through thousands of variable combinations, identifies the most significant drivers, and presents its findings through a collection of auto-generated charts, statistical analyses, and natural language explanations. Once you've validated the insights, you deploy this analysis as a **predictive model** that can be used elsewhere.
++   - **Embedded predictions in dashboards (The extension)**: This is the most direct way to bring Einstein's power into your Tableau work. The Einstein Discovery Extension, available on the Tableau Exchange, allows you to connect live Tableau data to a deployed predictive model.
++     - **Configuration**: After adding the extension to a dashboard, you log into your Salesforce org, select your model, and map the fields from your Tableau data source to the fields the model expects.
++     - **Interaction**: Once configured, a user can click on any mark in a visualization; a specific customer, a product, a region, and the extension pane will instantly display a prediction for that selection. It will also show the top factors driving that prediction (e.g., High churn risk due to month-to-month contract) and, crucially, the recommended actions to improve the outcome (e.g., Offer an annual discount). This closes the loop between insight and action.
+
+You don't have to be in a live dashboard to benefit from Einstein Discovery. In Tableau Prep Builder, you can add a Prediction Step to your data flow. This allows you to connect to a deployed Einstein model and append predictions directly to your dataset as a new field. This is ideal for batch processing or preparing data for analysis where real-time interaction with an extension is not required.

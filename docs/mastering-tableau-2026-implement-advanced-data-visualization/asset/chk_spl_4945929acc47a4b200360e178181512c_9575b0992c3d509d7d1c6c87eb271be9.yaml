@@ -1,0 +1,33 @@
+reviews:
+- 'no': 9150
+  overturn_probability: 0.1
+  alternative: 正文二级标题或章内小标题（因缺少章序号）
+  counter_evidence:
+  - 该行缺少数字序号，不符合“第 X 章”或“Y. ”全书最高层级章标题格式；
+  - 紧邻前文存在“## 11”，该行可能只是章号后的标题补充，而非独立章节起点；
+  - 语义“利用高级分析”更像章内主题，而非统领后续内容的最高层级章名。
+  keep_split: true
+- 'no': 10000
+  overturn_probability: 0.1
+  alternative: 正文小标题或章节内主题标题（无章序号）
+  counter_evidence:
+  - 该行无章序号，与正文内“## xxx”小标题在格式上难以区分；
+  - 短标题（4字）可能为章内小节标题，而非新章；
+  - 前文为第 11 章总结，该行可能仅为第 11 章收尾后的过渡句。
+  keep_split: true
+- 'no': 10766
+  overturn_probability: 0.05
+  alternative: 部分标题或章节标题的一部分（章号与标题合并）
+  counter_evidence:
+  - 虽带序号“13”，但格式为“# 13 …”，可能属于部分-章节模式中的“部分”标题而非“章”标题；
+  - 标题与序号合并于同一行，不符合部分书籍章号单独成行的习惯，可能是排版噪声；
+  - 紧随其后的内容即为引言，也可能是章内导语而非新章开篇。
+  keep_split: true
+- 'no': 11356
+  overturn_probability: 0.1
+  alternative: 正文小标题或章内技术主题标题（无章序号）
+  counter_evidence:
+  - 缺少章序号，无法确认是否为全书最高层级章标题；
+  - “集成编程语言”语义偏向技术小节，可能为章内主题标题；
+  - 前文为第 13 章摘要，该行可能为第 13 章附录或后记。
+  keep_split: true
