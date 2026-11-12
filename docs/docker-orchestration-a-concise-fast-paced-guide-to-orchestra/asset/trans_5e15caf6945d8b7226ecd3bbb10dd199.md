@@ -1,0 +1,111 @@
+
+最后，name 选项提供 artifact 存档的名称。在此示例中，它是存档名称与构建引用名称，中间用连字符分隔。例如，如果项目名为 ci-demo 且正在构建 master 分支，则名称将为 ci-demo-master。artifact 存档文件将命名为 ci-demo-master.zip。
+
+## 使用 Docker Cloud 进行 CI
+
+Docker Hub 和 Docker Cloud 可在关联的 Git 仓库更新时自动更新镜像。如果 GitLab 对于此项工作来说过于复杂，这可以用于轻量级 CI。无论哪种情况，都可以编写自定义工具来针对测试套件运行新生成的镜像，也可以手动运行和测试它们。
+
+Docker Cloud, in particular, can be useful for testing images. It can auto build an image every time the project is updated in GitHub or Bitbucket. Once the image is built, it can be started as a service in a test cluster from the web interface.
+
+To start, click on the Repositories link and click on Create to create a new repository. Link the new repository to GitLab or Bitbucket by clicking on the appropriate icon at the bottom of the creation page. When everything is ready, click on Create:
+
+![](img/02bead9c8ff4515f78dac0eb33163961_244_0.png)
+
+### Enabling autobuilds
+
+Autobuilds can be created any time after a repository is created by selecting the repository from the **Repositories** page and clicking on the **Builds** tab. Configure the build settings and click on **Save** to save the settings or **Save and Build** to save and immediately build the project.
+
+![](img/02bead9c8ff4515f78dac0eb33163961_245_0.png)
+
+By default, a new build will be generated every time a commit is pushed to the `master` branch. Additional build rules can be created to fit the needs of the project. For example, whenever a new version tag is pushed to Git, Docker Cloud can build a new image that uses that version for the image label.
+
+### Testing the image
+
+Once a repository has an image, it can be deployed as a service in the following steps:
+
+- Click on the Launch Service button from the General tab and a new page will load with all of the deployment options. That page allows one to set nearly any option that is available with `docker run`.
+- When all of the settings are ready, click on Create & Deploy. Docker Cloud will run the service on any nodes that have been configured:
+
+![](img/02bead9c8ff4515f78dac0eb33163961_246_0.png)
+
+Once the service has started, the list of containers will be available in the Containers list or in the details of the service in the Services section.
+
+- To log in to the container's console, click on the container and go to the Terminal tab. The tests can be run from there:
+
+![](img/02bead9c8ff4515f78dac0eb33163961_247_0.png)
+
+### Summary
+
+This chapter showed how to use CI with Docker. It showed how to use GitLab to automatically build, test, release, and deploy new images. It also showed how to use Docker Cloud to automatically build images and run them for testing. In the next chapter, you will learn how to automate the infrastructure that the cluster runs on.
+
+## Why Stop at Containers? Automating Your Infrastructure
+
+The last nine chapters have talked a lot about automating Docker. That is what this book is about, after all. It is important to remember that there is more to a Docker cluster than just Docker. There is the registry, shared storage, overlay networks, and the actual orchestration tool, be it Swarm, Kubernetes, Mesos, or something else. There is one last, very important piece to the puzzle. The servers that all of that run on. Whether those servers are hardware or part of a public cloud, they too need to be managed. After all, what good is it if the Docker orchestration tool can quickly scale an image out if it takes hours to deploy a new Docker host?
+
+This chapter will look at strategies and tools that can be used to automate the server-side of a Docker cluster. It will start by examining the servers themselves, then move on to options for running those machines in the cluster. Finally, it will look at options for removing servers from the cluster.
+
+The following topics will be covered:
+
+- Using configuration management on the server
+- Configuring a server on boot with Cloud-Init
+- Using and building specialized server images
+- Deploying new servers on AWS and Azure
+- Using Terraform to orchestrate cloud servers
+- Deploying a new cluster with Docker Cloud
+- Removing servers from the cluster
+
+### Configuring Docker hosts
+
+In many ways, Docker abstracts the server away from the application. It no longer matters which Linux distribution a server is running. A Docker application can be based on any distribution available. Multiple applications can run on the same server and use different base images. Despite that, without the server, nothing runs.
+
+In Chapter 9, Using Continuous Integration to Build, Test, and Deploy Containers, we discussed the importance of having a consistent build process for Docker images because doing so provides consistency and reliability. The same is true for the servers those applications run on. If the servers are not consistent, it could cause problems for the containers running on them. This section will discuss different ways of ensuring that the server images are consistent.
+
+### Using configuration management
+
+Configuration management has been around on servers in many forms for decades. Sometimes it was as simple as mounting /usr from a remote server or using rcp, scp, or rsync to keep configurations in sync. Later, more powerful tools, such as CFEngine, Puppet, Chef, and Ansible, came along that managed everything from configuration files and installed applications, to managing local users and running services.
+
+Configuration management is an important and powerful tool for any orchestrated cluster. It can perform two important tasks for a server. First, it can set up a server from just the base operating system. It ensures that everything is installed, configured, and running. Second, it makes sure that everything that was installed, configured, and running remains so.
+
+First things first. Puppet needs to be installed on the host:
+
+![](img/02bead9c8ff4515f78dac0eb33163961_249_0.png)
+
+> Note that this is a manual step on an existing server.
+
+```
+$ sudo apt-get install puppet
+```
+
+Now that Puppet is installed, a manifest can be created to install Docker. The following sample installs Docker on an Ubuntu server and ensures that the `docker` service is running:
+
+```
+node default {
+ exec { 'install docker' :
+ command => "/usr/bin/wget -O - http://get.docker.com |
+ /bin/bash",
+ creates => '/etc/apt/sources.list.d/docker.list',
+ }
+}
+
+package { "docker-engine" :
+ ensure => "installed",
+ require => Exec['install docker']
+ }
+
+service { "docker" :
+ ensure => "running",
+ require => Package['docker-engine']
+ }
+}
+```
+
+This manifest defines a default node. This means that this manifest will be applied to any node that does not match a more specific node definition. Puppet best practice is to only use modules in node definitions. This example breaks that practice in favor of brevity and simplicity.
+
+The `exec` resource checks to see if `/etc/apt/sources.list.d/docker.list` exists, and if not, runs the install script from `get.docker.com`. The script will create `docker.list` and install Docker. This example uses the security nightmare of downloading the script and piping it directly to bash. In a production environment, the verified script should be added to the server as a puppet resource.
+
+The `package` resource ensures that the `docker-engine` package is installed. If, for some reason, `docker-engine` is uninstalled, Puppet will re-install it on the next run. The `require` option tells Puppet that the `install docker` resource must have happened first.
+
+Finally, the `service` resource ensures that the `docker` service is running. If the service is stopped, Puppet will attempt to restart it. This resource requires that the `docker-engine` package is installed before it tries to start the service.
+
+> There is a very useful module from Puppetlabs to manage Docker, images, and containers on a host. For more details, refer to https://forge.puppet.com/puppetlabs/docker_platform.
+

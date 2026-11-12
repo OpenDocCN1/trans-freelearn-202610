@@ -1,0 +1,31 @@
+chapter_starts:
+- 'no': 4006
+  confidence: 0.92
+  final_reason: 双方一致提及且保持分章；Markdown 一级标题，独立成行，无结束标点；语义统领（Mesosphere）；前文紧邻“## 摘要”章末总结，符合上下文特征。复核方证据（无编号、可能是小节）不足以推翻一级标题作为新章的判断。
+  accepted_evidence:
+  - Markdown 一级标题，独立成行
+  - 标题末尾无标点，长度合适
+  - 前文为“## 摘要”章末总结
+  - 后文为 Mesosphere 新主题介绍
+  rejected_evidence:
+  - 无“第 X 章”编号，仅凭语义判断
+  - 可能是文档层级跳跃而非新章
+  need_human_review: false
+- 'no': 4776
+  confidence: 0.92
+  final_reason: 双方一致提及且保持分章；Markdown 一级标题，独立成行，无结束标点；语义统领（Fleet 和 Cattle）；前文紧邻“##
+    Summary”章末总结，符合上下文特征。复核方证据（标题含破折号、与前文相关）不足以推翻。
+  accepted_evidence:
+  - Markdown 一级标题，独立成行
+  - 标题末尾无标点，长度小于 30 字
+  - 前文为“## Summary”章末总结
+  - 后文为新主题及本章主题列表
+  rejected_evidence:
+  - 标题含破折号及并列工具名，疑似延伸小结
+  - 与前文 Mesosphere 内容同属编排工具大类
+  need_human_review: false
+rejected_lines:
+- 'no': 5588
+  reason: 根据输入文本，该行内容为“本章将介绍可用于协助监控和故障排除的不同工具...”，属于章内正文段落，非章标题。真正的章标题“# 监控您的集群”位于
+    5584 行，但未被任一方提及，故不在裁决范围内。
+  need_human_review: false

@@ -1,0 +1,49 @@
+reviews:
+- 'no': 0
+  overturn_probability: 0.95
+  alternative: 图书封面/扉页标题（正文之前的书名页）
+  counter_evidence:
+  - 该行位于文档最开头，是图书总标题，不具备统领后续正文章节的语义功能；
+  - 规则明确将前言、致谢等正文之前内容统一划分为一章，书名页本身不应作为独立章节切分点；
+  - 后文真正正文第一章出现在 line 213“# Docker 编排入门”，与《本书内容概要》第 1 章对应，说明 line 0 不应单独成章。
+  keep_split: false
+- 'no': 213
+  overturn_probability: 0.15
+  alternative: 正文第一章标题（未显式标注章号）
+  counter_evidence:
+  - 该行仅使用“#”标记且无“第 X 章”或数字序号，与正文中大量二级标题（如“## 安装 Docker Engine”）共用相近 Markdown 层级，容易被误判为章；
+  - 标题后直接进入正文段落，未紧跟子节编号（X.Y），不完全符合章标题后应有子节的上下文特征；
+  - 前文 line 209-211 为“# 问题”支持性内容，line 213 可能只是前言之后的第一个大节而非全书最高层级章节。
+  keep_split: true
+- 'no': 795
+  overturn_probability: 0.15
+  alternative: 正文第二章标题
+  counter_evidence:
+  - 标题使用“#”而非“第 X 章”编号，格式上与正文内“##”三级标题仅差一级井号，缺乏明显章号标识；
+  - 前文 line 791-793 出现英文标题“# Building Multi-Container Applications with Docke...”，说明该中文标题可能是双语排版下的段落标题而非全书章节；
+  - 标题长度接近 20 字且包含“构建多容器应用程序”等功能描述，更像操作指南小节而非统领性章名。
+  keep_split: true
+- 'no': 1371
+  overturn_probability: 0.15
+  alternative: 正文第三章标题
+  counter_evidence:
+  - 标题中包含破折号“–”和多个并列名词，结构松散，更像章内内容概括而非正式章名；
+  - 前文 line 1364-1366 为“## 摘要”，说明该标题紧接章节摘要，但其本身可能只是上一章（Docker Compose）的延伸主题而非新章；
+  - 与《本书内容概要》第 3 章对应，但正文中未出现“第 3 章”显式序号，仅凭语义判断存在误报风险。
+  keep_split: true
+- 'no': 2146
+  overturn_probability: 0.2
+  alternative: 正文第四章标题（带数字序号）
+  counter_evidence:
+  - 序号“4 ”紧跟井号，格式疑似“4. ”或“4 ”，但后文标题如 line 2862 没有数字序号，编号不连贯，可能只是部分标题而非最高层级章；
+  - 标题长度为 13 字，未超过 30 字限制，但其前文 line 2145 为空行，后文 line 2148 为正文，缺少章标题后应有的“概述段落+子节”结构；
+  - 规则要求只划分全书最高层级大章，“4 ”若为“第 4 章”的简写则合规，但若为“Part 4”或子部分编号则不应分章。
+  keep_split: true
+- 'no': 2862
+  overturn_probability: 0.1
+  alternative: 正文第五章标题
+  counter_evidence:
+  - 该标题位于文档后半部分，前文 line 2858-2860 为“## 摘要”，说明它可能是上一章（Docker Swarm）结尾后的新章，也可能只是后续内容的段落标题；
+  - 标题末尾无标点，符合章标题格式，但缺少“第 X 章”或数字编号，仅凭“#”无法区分章与节；
+  - 后文 line 2864 开始直接介绍 Kubernetes 背景，没有先出现章序号或概述性段落，语义统领性不足。
+  keep_split: true

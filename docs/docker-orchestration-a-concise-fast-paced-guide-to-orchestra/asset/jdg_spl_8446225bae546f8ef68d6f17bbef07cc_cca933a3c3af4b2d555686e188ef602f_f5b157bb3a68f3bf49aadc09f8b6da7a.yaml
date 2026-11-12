@@ -1,0 +1,76 @@
+chapter_starts:
+- 'no': 0
+  confidence: 0.85
+  final_reason: 规则规定前言、致谢等正文之前内容统一划分为一章，行0为图书总标题/封面，属于前置材料章起始；复核方反对其作为独立正文章节，但不反对其作为前置材料章起始
+  accepted_evidence:
+  - 规则：前言、序言、致谢、关于作者等正文之前的内容，统一划分为一章
+  - 行0位于文档最开头，为图书总标题
+  rejected_evidence:
+  - 复核方：书名页不具备统领后续正文章节的语义功能
+  need_human_review: false
+- 'no': 213
+  confidence: 0.92
+  final_reason: '双方均倾向保持分章（复核方keep_split: true），与《本书内容概要》第1章对应，单独成行、无句末标点、语义统领，后文有子节（如##
+    安装 Docker Engine）'
+  accepted_evidence:
+  - 判断方：独立成行章标题，与概要第1章对应
+  - 复核方：未推翻分章，反方证据不足
+  rejected_evidence:
+  - 复核方：无显式章号，与二级标题共用#层级
+  need_human_review: false
+- 'no': 795
+  confidence: 0.9
+  final_reason: 双方均倾向保持分章，与《本书内容概要》第2章对应，单独成行、无句末标点、语义统领，后文有子节（如## Building an image
+    with Docker Engine）
+  accepted_evidence:
+  - 判断方：独立成行章标题，与概要第2章对应
+  - '复核方：keep_split: true，反方证据不足'
+  rejected_evidence:
+  - 复核方：#而非第X章，前文有英文标题，标题更像操作指南小节
+  need_human_review: false
+- 'no': 1371
+  confidence: 0.9
+  final_reason: 双方均倾向保持分章，与《本书内容概要》第3章对应，单独成行、无句末标点、语义统领，后文有子节（如## 创建 Docker 注册表）
+  accepted_evidence:
+  - 判断方：独立成行章标题，与概要第3章对应
+  - '复核方：keep_split: true，反方证据不足'
+  rejected_evidence:
+  - 复核方：包含破折号，结构松散，未出现第3章显式序号
+  need_human_review: false
+- 'no': 2146
+  confidence: 0.88
+  final_reason: 双方均倾向保持分章，带最高层级序号“4”，与《本书内容概要》第4章对应，单独成行、无句末标点，后文有子节（如## 设置 swarm）
+  accepted_evidence:
+  - 判断方：带最高层级序号，与概要第4章对应
+  - '复核方：keep_split: true，反方证据不足'
+  rejected_evidence:
+  - 复核方：编号不连贯，可能是部分标题而非最高层级章
+  need_human_review: false
+- 'no': 2862
+  confidence: 0.88
+  final_reason: 双方均倾向保持分章，与《本书内容概要》第5章对应，单独成行、无句末标点、语义统领，后文有子节（如## 了解 Kubernetes）
+  accepted_evidence:
+  - 判断方：独立成行章标题，与概要第5章对应
+  - '复核方：keep_split: true，反方证据不足'
+  rejected_evidence:
+  - 复核方：缺少第X章编号，前文有摘要，语义统领性不足
+  need_human_review: false
+rejected_lines:
+- 'no': 1
+  reason: 空行，不构成章标题
+  need_human_review: false
+- 'no': 2
+  reason: 致谢标题，属于正文之前前置材料，应并入第一章前置材料章，不单独分章
+  need_human_review: false
+- 'no': 3
+  reason: 空行，不构成章标题
+  need_human_review: false
+- 'no': 4
+  reason: 列表项（作者信息），属于前置材料细节，不构成章标题
+  need_human_review: false
+- 'no': 5
+  reason: 列表项（作者姓名），不构成章标题
+  need_human_review: false
+- 'no': 6
+  reason: 空行，不构成章标题
+  need_human_review: false
