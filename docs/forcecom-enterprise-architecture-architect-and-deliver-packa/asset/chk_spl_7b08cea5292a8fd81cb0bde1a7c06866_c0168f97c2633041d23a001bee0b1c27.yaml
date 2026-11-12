@@ -1,0 +1,147 @@
+reviews:
+- 'no': 5
+  overturn_probability: 0.96
+  alternative: 正文前致谢部分（前言材料）
+  counter_evidence:
+  - 使用二级标题“##”，而正文章节标题使用一级标题“#”，格式层级不符
+  - 致谢属于前言、序言等正文前材料，按规则应统一归入同一前言章，不应单独成章
+  - 后续内容为致谢人员名单列表，不具备章节概述或统领后续正文的语义
+  keep_split: false
+- 'no': 53
+  overturn_probability: 0.95
+  alternative: 正文前序言/前言部分
+  counter_evidence:
+  - “## 前言”为二级标题，正文第一章使用一级标题“#”，层级不一致
+  - 前言属于正文前材料，应与致谢、关于作者等统一划分为一章，而非拆分为独立章节
+  - 后文紧跟普通段落，而非章节概述或子节（X.Y）
+  keep_split: false
+- 'no': 76
+  overturn_probability: 0.95
+  alternative: 正文前关于作者介绍
+  counter_evidence:
+  - '## 关于作者'
+  - 属于图书前言材料中的作者简介小节，不构成独立章节
+  - 采用“##”二级标题，不符合正文章节标题的一级标题“#”格式
+  - 内容为作者个人简介段落，缺乏统领后续章节的语义
+  keep_split: false
+- 'no': 89
+  overturn_probability: 0.98
+  alternative: 正文前作者致谢部分（重复前言材料）
+  counter_evidence:
+  - 与第5行的“## 致谢”重复，均属前言材料，不应各自单独成章
+  - 前言、致谢等正文前内容按规则应统一划分为一章，不应拆分
+  - 内容为致谢正文段落，非章标题
+  keep_split: false
+- 'no': 97
+  overturn_probability: 0.95
+  alternative: 正文前关于审校人/审稿人介绍
+  counter_evidence:
+  - '## 关于审校人'
+  - 是前言材料中的介绍性小节，不具备章节地位
+  - 采用“##”二级标题，格式不符合正文章节标题
+  - 后续为审校人个人简介段落，无章节概述或子节
+  keep_split: false
+- 'no': 125
+  overturn_probability: 0.95
+  alternative: 出版社宣传/前言附录说明
+  counter_evidence:
+  - 内容为Packt出版社的电子书促销说明，属正文前附录或广告性材料
+  - 采用“##”二级标题，非正文章节标题格式
+  - 不具备统领后续正文章节的语义
+  keep_split: false
+- 'no': 153
+  overturn_probability: 0.95
+  alternative: 正文前作者前言/序言部分
+  counter_evidence:
+  - '## 前言'
+  - 再次出现，属正文前材料，应并入统一前言章而非单独成章
+  - 与第53行的“## 前言”性质相同，均不应作为独立章节
+  - 后续段落为作者述说，非章节正文
+  keep_split: false
+- 'no': 210
+  overturn_probability: 0.9
+  alternative: 正文前读者指南/适读人群说明
+  counter_evidence:
+  - '## 此书适合的读者'
+  - 属图书前言部分的说明性小节
+  - 采用“##”二级标题，格式不符合正文章节标题
+  - 内容为读者定位说明，不具备章节统领性
+  keep_split: false
+- 'no': 214
+  overturn_probability: 0.9
+  alternative: 正文前文本约定/排版说明
+  counter_evidence:
+  - '## 约定'
+  - 是出版社通用的前言附录说明
+  - 内容涉及代码样式、术语加粗等排版约定，属元数据性说明
+  - 非正文章节标题，不应分章
+  keep_split: false
+- 'no': 254
+  overturn_probability: 0.9
+  alternative: 正文前出版社读者反馈说明
+  counter_evidence:
+  - '## 读者反馈'
+  - 为Packt出版社常见的正文前/后附录性内容
+  - 采用“##”二级标题，非章标题格式
+  - 内容为邮箱反馈说明，不具备章节语义
+  keep_split: false
+- 'no': 262
+  overturn_probability: 0.9
+  alternative: 正文前客户支持说明
+  counter_evidence:
+  - '## 客户支持'
+  - 属出版社服务信息，非图书章节
+  - '## 二级标题格式，且内容为支持渠道说明'
+  - 不独立统领任何正文章节
+  keep_split: false
+- 'no': 266
+  overturn_probability: 0.9
+  alternative: 正文前示例代码下载说明
+  counter_evidence:
+  - '## 下载示例代码'
+  - 为出版社附录性说明
+  - '## 二级标题，内容为代码下载步骤和网址'
+  - 不应作为独立章节划分
+  keep_split: false
+- 'no': 344
+  overturn_probability: 0.03
+  alternative: 正文第一章标题（若不分章则为第一章正文标题）
+  counter_evidence:
+  - 标题未带数字编号，可能被误认为非正式小标题
+  - 标题上方存在多个空行，可能被误认为排版断行或页眉页脚残留
+  keep_split: true
+- 'no': 850
+  overturn_probability: 0.03
+  alternative: 正文第二章标题
+  counter_evidence:
+  - 标题缺少“第 X 章”显式编号，可能被误认为普通大标题
+  - 前一章末尾为摘要段落，与本标题相邻，可能被误判为同一章延续
+  keep_split: true
+- 'no': 1396
+  overturn_probability: 0.03
+  alternative: 正文第三章标题
+  counter_evidence:
+  - 标题未显式标注章序号，可能被误认为子章节标题
+  - 前文为上一章摘要，可能导致上下文判断失误
+  keep_split: true
+- 'no': 1848
+  overturn_probability: 0.03
+  alternative: 正文第四章标题
+  counter_evidence:
+  - 标题未带数字编号，可能被误认为正文小标题
+  - 与前文摘要段落仅隔空行，可能被误判为排版噪声
+  keep_split: true
+- 'no': 2238
+  overturn_probability: 0.03
+  alternative: 正文第五章标题
+  counter_evidence:
+  - 标题未显式标注章序号，可能被误认为子章节
+  - 前文为上一章总结，可能被误认为同一章结尾
+  keep_split: true
+- 'no': 2344
+  overturn_probability: 0.03
+  alternative: 正文第六章标题
+  counter_evidence:
+  - 标题未带数字编号，可能被误认为普通大标题
+  - 前文为上一章摘要，与本标题相邻，可能被误判为同一章延续
+  keep_split: true

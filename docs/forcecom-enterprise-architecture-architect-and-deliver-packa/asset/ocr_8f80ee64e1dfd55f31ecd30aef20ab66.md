@@ -1,0 +1,11 @@
+Note that these tools will also stress your **Apex Trigger** code for volumes, as they typically have the bulk mode enabled and insert records in chunks of 200 records. Thus, it is recommended that you test your triggers to at least this level of record volumes. Later chapters will present coding patterns to help ensure that code supports the bulk mode.
+
+# Options for replicating and archiving data
+
+Enterprise customers often have legacy and/or external systems that are still being used or that they wish to phase out in the future. As such, they may have requirements to replicate aspects of the data stored in the Salesforce platform to another. Likewise, in order to move unwanted data off the platform and manage their data storage costs, there is a need to archive data.
+
+The following lists some platform and API facilities that can help you and/or your customers build solutions to replicate or archive data. There are, of course, a number of **AppExchange** solutions listed that provide applications that use these APIs already:
+
++   • **Replication API**: This API exists in both the web service SOAP and Apex form. It allows you to develop a scheduled process to query the platform for any new, updated, or deleted records within a given time period for a specific object. The `getUpdated` and `getDeleted` API methods return only the IDs of the records, requiring you to use the conventional Salesforce APIs to query the remaining data for the replication. The frequency in which this API is called is important to avoid gaps. Refer to the Salesforce documentation for more details.
+
++   • **Outbound Messaging**: This feature offers a more real-time alternative to the replication API. An outbound message event can be configured using the standard workflow feature of the platform. This event, once configured against a given object, provides a **Web Service Definition Language (WSDL)** file that describes a web service endpoint to be called when records are created and updated. It is the responsibility of a web service developer to create the end point based on this definition. Note that there is no provision for deletion with this option.

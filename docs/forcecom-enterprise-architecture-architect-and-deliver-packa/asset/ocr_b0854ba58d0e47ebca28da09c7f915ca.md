@@ -1,0 +1,13 @@
++   - Platform Encryption: Customers that have purchased the Salesforce Shield add-on can enable 256-bit AES encryption for certain Standard fields and Custom fields of their choosing. It can be applied to E-mail, Phone, Text, Text Area, URL, Date and Date/Time fields. While the encryption level is higher this facility does come with some significant restrictions, these are covered in the next section.
+
+Encrypted field values are visible to those who have the **View Encrypted Data** permission, which is a facility that may not be something your requirements tolerate. This also includes users whom you grant the login access to, such as through subscriber support. Apex, Visualforce Page, Lightning Components and Validation Rule logic you package can see the unencrypted values, so extra care is needed by developers if you want to mask field values. If your only concern is compliance with encryption at rest, this may not be such an issue for you.
+
+# # Special considerations for Platform Encryption
+
+Salesforce recommend that you only consider this feature if government regulations for your market require it. When developing a packaged solution, your main consideration is what happens if a subscriber wishes to enable it on a Standard field you reference in your solution or on one of your packaged fields.
+
+> > For those that do want to promote support for this feature through their AppExchange listing, there is an indicator that can be applied to your listing by Salesforce to show prospective customers that you support Platform Encryption.
+
+When implementing the 256-bit encryption used by Platform Encryption, Salesforce opted for probabilistic encryption over deterministic encryption. Since the encryption is not deterministic (encrypted value is the same each time), it is not possible to index fields that have this level of encryption applied. This results in the most significant of restrictions to developers and platform functionality around querying the field.
+
+Without an index, the platform cannot provide a performant way to allow code to filter, group or order by encrypted fields in queries. If code attempts to do so at runtime, an exception will occur. Your package installation may be blocked if it detects queries inside Apex code that would not be compatible with this restriction. Conversely once your package is installed and the user attempts to enable encryption, this action may fail. Salesforce provides a report in both cases to inform the user which fields are problematic.

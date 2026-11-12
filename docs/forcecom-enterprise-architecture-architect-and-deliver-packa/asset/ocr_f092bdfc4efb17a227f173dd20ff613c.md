@@ -1,0 +1,13 @@
+Debugging still remains one of the most time-consuming aspects of developing on Force.com. Make sure that all developers are fully up-to-date with all the latest tools and approaches from Salesforce as well as your chosen IDE environment. Making effective use of the debug log filters can also save a lot of time sorting through a large debug log, as debug logs are capped at 2 MB. Often, developers resort to System.debug to gain the insight they need. Do ensure that these are removed before Security Review. Though genuine supporting debug entries can be discussed and permitted (it is recommended that you utilize the appropriate debug levels), ad hoc debug entries should be removed as a part of general practice anyway. Salesforce's interactive Apex Debugger is available through the Force.com IDE leveraging the Eclipse debugger UI. This can be enabled through conversations with Salesforce on certain orgs.
+
+# Developing with Source Control
+
+Now that we understand the general developer flow a bit more, let's take a deeper dive into using some of the tools and approaches that you can use.
+
+In this case, we will be using the following tools to populate and manage the content of our chosen Source Control repository, in this case, Git. To provide an easy means to explore the benefits of a more distributed solution, we will use GitHub as a hosted instance of Git (others are available, including broader developer flow features):
+
++   * **GitHub**: Ensure that you have a GitHub account. Public accounts are free, but you can also use a private account for the purposes of this chapter. Download the excellent GitHub GUI from either `https://desktop.github.com/`. This chapter will use the Mac edition, though not to the level that it will not be possible find and perform equivalent operations in the Windows edition; both clients are really easy to use!
++   
++   * **Apache Ant v1.9 or greater**: To determine if you have this already installed; type in `ant -version` at the terminal prompt to confirm. If not, you can download it from `http://ant.apache.org/`.
++   
++   * **Force.com Migration Toolkit**: This can be downloaded from `https://developer.salesforce.com/page/Tools`. The instructions in the read me file recommend that you copy the `ant-salesforce.jar` file into your Apache Ant installation folder. I do not recommend this and instead prefer to capture build tools like this in a `/lib` folder located within the source code. This makes it easier to upgrade for all developers in a seamless way, without having to perform the download each time.

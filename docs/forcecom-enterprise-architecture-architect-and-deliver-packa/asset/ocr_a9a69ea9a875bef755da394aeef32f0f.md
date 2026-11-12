@@ -1,0 +1,9 @@
+# Deterministic and non-deterministic governors
+
+When considering governors from a testing and support perspective, you should be aware of which governors are deterministic and which are not. For example, when profiling your application, this is being able to obtain the exact same results (such as the preceding results) from the debug logs from the repeated running of the exact same test. The following outlines examples of both types of governors:
+
++   - Examples of deterministic governors are the SOQL and DML governors. If you repeat the same test scenario (within your development or packaging orgs), you always get the same utilization of queries and updates to the database; thus, you can determine reliably if any changes in these need to be investigated.
+
++   - An example of a non-deterministic governor is the CPU time governor. The amount of time used between executions will vary based on the load at any given time on the Salesforce servers. Thus, it is hard to determine accurately whether changes in your application are truly affecting this or not. That being said, it can be a useful indicator depending on the variance you're seeing between builds of your software. However, keep in mind that the base line information you capture will become increasingly less accurate as time goes by, for example, between platform releases.
+
+In the CPU governor, the platform limits the length of time the execution context is allowed to spend executing the Apex code to 10 seconds for interactive context and 60 seconds for asynchronous context (for example, Batch Apex), though in practice the platform appears to exercise some tolerance. In contrast, the number of SOQL queries or DML statements is always constant when applied to a consistent test scenario.

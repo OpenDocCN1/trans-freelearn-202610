@@ -1,0 +1,13 @@
+# # Separation of Concerns
+
+As you can see there are a number of places Apex code is invoked by various platform features. Such places represent areas for valuable code to potentially hide. It is hidden because it is typically not easy or appropriate to reuse such logic as each of the areas mentioned in the previous table has its own subtle concerns with respect to security, state management, transactions, and other aspects such as error handling (for example, catching and communicating errors) as well as varying needs for bulkification.
+
+Throughout the rest of this chapter, we will review these requirements and distill them into a Separation of Concerns that allows a demarcation of responsibilities between the Apex code used to integrate with these platform features versus the code implementing your application business logic, such that the code can be shared between platform features today and in the future more readily. Wikipedia describes the benefits of Separation of Concerns as the following:
+
+> "The value of Separation of Concerns is simplifying development and maintenance of computer programs. When concerns are well separated, individual sections can be developed and updated independently. Of especial value is the ability to later improve or modify one section of code without having to know the details of other sections, and without having to make corresponding changes to those sections."
+
+# ## Apex code evolution
+
+Apex Triggers can lead to a more traditional pattern of if/then/else style coding resulting in a very procedural logic that is hard to maintain and follow. This is partly due to them not being classes and as such they don't naturally encourage breaking up the code into methods and separate classes. As we saw in the previous table, Apex Triggers are now not the only execution context for Apex; others do support Apex classes and the object-oriented programming (OOP) style, often leveraging system-defined Apex interfaces to allow the developer to integrate with the platform such as Batch Apex.
+
+Apex has come a long way since its early introduction as a means of writing more complex Validation Rules in Apex Triggers. These days, the general consensus in the community is to write as little code as possible directly in Apex Trigger, instead of delegating the logic to separate Apex classes. For a packaged application, there is no real compelling reason to have more than one Apex Trigger per object. Indeed, the Salesforce security review has been known to flag this even if the code is conditioned to run independently.
