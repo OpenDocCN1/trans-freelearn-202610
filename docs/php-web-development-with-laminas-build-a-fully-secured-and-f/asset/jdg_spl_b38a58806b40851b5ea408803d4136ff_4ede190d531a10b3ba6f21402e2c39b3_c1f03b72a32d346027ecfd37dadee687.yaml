@@ -1,0 +1,43 @@
+chapter_starts:
+- 'no': 6703
+  confidence: 0.92
+  final_reason: 语义明确（行6698显式提及“下一章”，行6705以“本章介绍了”开头），与书中其它章标题格式一致，符合部分-章节模式下章起始。复核方仅指出其为“##”二级标题且无显式章序号，但本书章标题普遍采用此格式，语义优先于编号特征。
+  accepted_evidence:
+  - 行6698显式提及“下一章”
+  - 行6705以“本章介绍了”开头，统领后续内容
+  - 格式与行7797、8689一致
+  rejected_evidence:
+  - 复核方指出其为“##”二级标题且无显式章序号
+  need_human_review: false
+- 'no': 7785
+  confidence: 0.96
+  final_reason: 显式部分标题“# 第 3 部分：”，符合部分-章节模式，遇到部分标题时应划分为新章。
+  accepted_evidence:
+  - 行7785为“# 第 3 部分：”，明确部分起始
+  - 规则规定遇到部分标题时应划分新章
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 7797
+  confidence: 0.95
+  final_reason: 第3部分下第11章标题，语义明确（行7799“本章介绍了产品购物篮的实现”），紧接部分介绍及章节列表。复核方担忧其为列表重复，但行7797为独立标题行，非列表项。
+  accepted_evidence:
+  - 行7799“本章介绍了产品购物篮的实现”
+  - 行7792-7795列表中明确对应“第 11 章”
+  - 格式与行6703、8689一致
+  rejected_evidence:
+  - 复核方担心其为列表中'第 11 章'条目的正文化重复
+  need_human_review: false
+- 'no': 8689
+  confidence: 0.94
+  final_reason: 第3部分下第12章标题，紧承第11章总结（行8676-8682），语义明确（行8691“本章致力于审查和改进...”）。缺少显式章序号不影响，因为本书章标题以语义为准。
+  accepted_evidence:
+  - 行8691“本章致力于审查和改进我们的 whatstore 应用程序”
+  - 前文行8676-8682为第11章摘要
+  - 格式与行6703、7797一致
+  rejected_evidence:
+  - 复核方指出缺少显式章序号
+  need_human_review: false
+rejected_lines:
+- 'no': 7786
+  reason: 为行7785“# 第 3 部分：”标题的续行，不构成独立章节起始
+  need_human_review: false

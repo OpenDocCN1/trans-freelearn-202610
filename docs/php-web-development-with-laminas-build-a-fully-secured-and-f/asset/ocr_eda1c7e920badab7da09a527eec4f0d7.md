@@ -1,0 +1,17 @@
+One of the speakers was selling a book with an analysis of five frameworks, including the three presented at that event. I bought it, read it, and conducted tests for those frameworks, implementing the same application with each one of them. Among the five frameworks analyzed, the one that had the best characteristics of minimal complexity, loose coupling, extensibility, and reusability was Zend Framework. It was largely configurable and did not prevent the use of components from other frameworks. At the time, the **PHP Framework Interoperability Group** (**PHP-FIG**) did not yet exist, but we needed tools that offered interoperability.
+
+# PHP Framework Interoperability Group
+
+In 2009, at PHP Conference Brazil, some PHP speakers gave a lecture called _PHP Frameworks_. It was a joking reference to a “war of frameworks.” Each one of the speakers defended their favorite framework and attacked the others. Maybe there was not exactly a war of frameworks, but the fact was that once you adopted a framework, it was difficult to use the components of others because each one followed its own patterns. This scenario began to change in the same year, 2009, when a group of PHP experts met in Chicago, USA, for establishing specifications of components for the PHP community. This group was first called PHP Standards Group. The first specification was about an autoloading standard – what helps the emergence of Composer. In 2011, the group changed its name to **PHP Framework Interoperability Group** (**PHP-FIG**). Since then, members of awesome PHP projects have met to discuss and write specifications called **PHP Standard Recommendations** (**PSRs**). Several frameworks and other PHP applications have adopted the specifications of PHP-FIG.
+
+# Zend Framework – the reference architecture for PHP applications
+
+Zend Framework allowed us to create a reference architecture for PHP applications that helped applications to evolve. An application can use internal components, which are within its structure and serve only it, or make use of reusable components, which are shared by several applications. A component can perform a task that extrapolates the responsibilities of the reference architecture pattern implementations or even replace the implementation of a layer (but using the same interface).
+
+To solve a given problem, the software architect must first look for an existing component that solves it. If it exists, but does not meet all the requirements, the possibility of extending it should be analyzed. Only as a last resort should a new component be created. In this case, the component is born as an internal component to meet a specific application. But the component architecture must be treated as generic so that it can be later published and improved so that it becomes a reusable component. Zend Framework had a structure concerned with these issues.
+
+The first stable release of Zend Framework was released before PHP 5.3, so ZF1 did not use namespaces. There was no Composer yet, so ZF1 had its own autoload implementation. But the one aspect that Zend Framework had present in its structure was, as I mentioned, the possibility to change. In fact, the unstable versions already brought configurable code like this:
+
+```
+Zend_Controller_Front::run('/path/to/controllers' );
+```

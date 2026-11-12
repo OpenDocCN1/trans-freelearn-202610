@@ -1,0 +1,82 @@
+chapter_starts:
+- 'no': 7
+  confidence: 0.95
+  final_reason: 正文前置材料，'## 前言'独立成行，符合前言/序言等正文前内容统一划为一章的规则
+  accepted_evidence:
+  - 规则明确：前言、序言、致谢、关于作者等正文之前的内容，统一划分为一章
+  - 行独立成行，无末尾标点，长度短于30字
+  - 位于图书标题页之后，属于前置材料簇的起始行
+  rejected_evidence:
+  - 复核方指出其与line 13/15/21/25同属前置材料簇，可能为内部小节或排版重复
+  need_human_review: false
+- 'no': 170
+  confidence: 0.95
+  final_reason: 部分-章节模式下的第1部分标题，规则要求部分标题独立划分新章
+  accepted_evidence:
+  - 全书存在'第 X 部分'模式（第1部分、第2部分），规则规定遇到部分标题应划分新章
+  - 行独立成行，使用一级标题'#'，无末尾标点，长度短于30字
+  - 后文紧跟本部分包含章节的清单，具有统领性
+  rejected_evidence:
+  - 复核方指出其一级标题格式与正文章标题'##'不一致，且下方列出子章清单更像部分导读/目录
+  need_human_review: false
+- 'no': 181
+  confidence: 0.95
+  final_reason: 第1章标题，独立成行，语义统领第1部分首章内容，后有章节概述
+  accepted_evidence:
+  - 第1部分目录（line 176）明确列出'第 1 章，介绍用于 PHP 应用程序的 Laminas'
+  - 行独立成行，无末尾标点，长度短于30字
+  - 后文有章节介绍段落（line 183等）及子主题列表
+  rejected_evidence:
+  - 复核方称若前置材料和第1部分合并，则该行仅为第一节，未必需独立成章
+  need_human_review: false
+- 'no': 344
+  confidence: 0.95
+  final_reason: 第2章标题，独立成行，语义统领，前有第1章摘要作为章节边界
+  accepted_evidence:
+  - 第1部分目录明确列出第2章
+  - 行独立成行，无末尾标点，长度短于30字
+  - 前文line 336-342为第1章摘要，line 344构成清晰章节边界
+  rejected_evidence:
+  - 复核方称与前文衔接紧密，可能为第1章内的实践环节而非新章
+  need_human_review: false
+- 'no': 701
+  confidence: 0.95
+  final_reason: 第3章标题，独立成行，语义统领，后有本章主题与TDD内容
+  accepted_evidence:
+  - 第1部分目录明确列出第3章
+  - 行独立成行，无末尾标点，长度短于30字
+  - 后文有本章主题介绍（line 703等）
+  rejected_evidence:
+  - 复核方称标题语义偏向操作指南，更像章内实验小节而非宏观章节
+  need_human_review: false
+- 'no': 1789
+  confidence: 0.95
+  final_reason: 第4章标题，独立成行，语义统领，后有ORM和MVC容器内容
+  accepted_evidence:
+  - 第1部分目录明确列出第4章
+  - 行独立成行，无末尾标点，长度短于30字
+  - 后文有章节内容概述（line 1791等）
+  rejected_evidence:
+  - 复核方称标题包含'对象关系映射'和'MVC 容器'等技术细节，字数较长且偏向具体技术点，更像正文小标题
+  need_human_review: false
+- 'no': 2913
+  confidence: 0.95
+  final_reason: 部分-章节模式下的第2部分标题，规则要求部分标题独立划分新章
+  accepted_evidence:
+  - 全书存在'第 X 部分'模式，规则规定遇到部分标题应划分新章
+  - 行独立成行，无末尾标点，长度短于30字
+  - 后文列出本部分包含章节的清单（line 2919等）
+  rejected_evidence:
+  - 复核方称与line 170同为'第 X 部分'格式，下文直接罗列章节，性质为部分导读，不应与章标题同等切分
+  need_human_review: false
+- 'no': 2926
+  confidence: 0.95
+  final_reason: 第5章标题，独立成行，语义统领，后有项目需求介绍
+  accepted_evidence:
+  - 第2部分目录（line 2919）明确列出'第 5 章，创建虚拟商店项目'
+  - 行独立成行，无末尾标点，长度短于30字
+  - 后文有第5章正文内容（line 2928等）
+  rejected_evidence:
+  - 复核方称标题下方直接进入项目需求列表，缺乏章节引言段落，可能为第2部分内的第一节而非独立第5章
+  need_human_review: false
+rejected_lines: []

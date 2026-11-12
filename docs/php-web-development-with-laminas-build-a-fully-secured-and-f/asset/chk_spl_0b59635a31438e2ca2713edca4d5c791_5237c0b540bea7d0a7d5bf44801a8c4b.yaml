@@ -1,0 +1,52 @@
+reviews:
+- 'no': 7
+  overturn_probability: 0.3
+  alternative: 正文前置材料中的推荐序/前言小节
+  counter_evidence:
+  - 该行位于图书标题页（line 0）之后，与 line 13 '## 贡献者'、line 15 '## 关于作者'、line 21 '## 关于审阅者' 同属前置材料簇，且
+    line 25 又出现重复的 '## 前言'，说明该标题更可能是前置部分内部小节或排版重复，而非独立章节起点。
+  - 其后紧跟作者简介与名人推荐语（line 9、line 11 为块引用），缺乏章标题应有的后续概述段落与子节结构。
+  keep_split: true
+- 'no': 170
+  overturn_probability: 0.25
+  alternative: 部分导读/部分目录页
+  counter_evidence:
+  - 该行使用一级标题 '#'，而本书正文章标题普遍为二级标题 '##'（如 line 181、344），格式上与章标题不一致。
+  - 标题下方直接列出 '- 第 1 章…' 等子章清单，更像部分导读或目录概览，而非独立章节正文起点。
+  keep_split: true
+- 'no': 181
+  overturn_probability: 0.1
+  alternative: 第1章正文标题（应保留分章）
+  counter_evidence:
+  - 若将前置材料（line 7–25）与第1部分（line 170）统一作为前置章，则 line 181 仅为该大章或部分下的第一节，未必需要再独立成章。
+  keep_split: true
+- 'no': 344
+  overturn_probability: 0.1
+  alternative: 第2章正文标题（应保留分章）
+  counter_evidence:
+  - 该行与前文第1章内容衔接紧密，前后缺乏章末总结、习题或明显分章空行等边界特征，可能为第1章内的实践环节而非新章。
+  keep_split: true
+- 'no': 701
+  overturn_probability: 0.1
+  alternative: 第3章正文标题（应保留分章）
+  counter_evidence:
+  - 标题语义偏向操作指南（'将 Laminas 用作带测试驱动开发的库'），且后文直接进入TDD测试步骤，更像章内实验小节而非宏观章节。
+  keep_split: true
+- 'no': 1789
+  overturn_probability: 0.15
+  alternative: 章内小标题
+  counter_evidence:
+  - 标题包含'对象关系映射'和'MVC 容器'等技术细节，字数较长且偏向具体技术点，更符合正文小标题特征，而非统领全章的章标题。
+  keep_split: true
+- 'no': 2913
+  overturn_probability: 0.25
+  alternative: 部分导读/部分目录页
+  counter_evidence:
+  - 与 line 170 同为'第 X 部分'格式，下文直接罗列本部分包含章节，性质为部分导读，不应与章标题同等切分。
+  keep_split: true
+- 'no': 2926
+  overturn_probability: 0.1
+  alternative: 第5章正文标题（应保留分章）
+  counter_evidence:
+  - 标题下方直接进入项目需求列表，缺乏章节引言段落，可能为第2部分内的第一节而非独立第5章。
+  keep_split: true
