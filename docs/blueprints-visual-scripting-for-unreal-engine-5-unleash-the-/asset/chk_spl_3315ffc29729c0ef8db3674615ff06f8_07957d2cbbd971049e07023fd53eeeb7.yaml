@@ -1,0 +1,25 @@
+reviews:
+- 'no': 8950
+  overturn_probability: 0.05
+  alternative: 若不分章，它是正文中最高层级章标题的排版标记（第20章标题），本质仍属章节起点
+  counter_evidence:
+  - 该行使用Markdown二级标题“##”，而非书末“# 尾声”、“# 测验答案”等一级标题，若全书正文章标题格式不一致，其可能被误判为子层级标题；它紧接在第19章测验之后，可被视为第19章末尾的章节过渡提示，而非必须独立成章的新起点
+  keep_split: true
+- 'no': 9260
+  overturn_probability: 0.8
+  alternative: 正文后结语/致谢性书末材料
+  counter_evidence:
+  - 尾声位于第20章摘要与测验之后，属于全书结束后的作者个人感言，不具备统领后续正文的章节功能，且其后并无新章内容可被其统领；规则仅明确规定正文前的前言及文末索引划为一章，未将正文后的尾声列入必须分章的范围
+  keep_split: false
+- 'no': 9309
+  overturn_probability: 0.98
+  alternative: 书末推广/广告附录材料
+  counter_evidence:
+  - 该行内容为向读者推荐其他图书，包含ISBN、作者简介及购买链接等营销信息，属于出版社推广材料而非图书正文章节；它不承担统领后续内容的功能，后续仅是其他图书的介绍列表
+  keep_split: false
+- 'no': 9371
+  overturn_probability: 0.85
+  alternative: 附录/参考答案索引材料
+  counter_evidence:
+  - 测验答案只是对前文第19章和第20章测验题目的答案对照，属于测验的附件而非独立章节；若将其分章，书末将出现测验、答案、推荐图书、关于作者等大量碎片化章节，违背章节应具有统领性、概括性的原则
+  keep_split: false

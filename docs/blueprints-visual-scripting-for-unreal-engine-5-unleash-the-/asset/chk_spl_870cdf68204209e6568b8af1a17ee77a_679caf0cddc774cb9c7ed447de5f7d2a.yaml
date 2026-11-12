@@ -1,0 +1,55 @@
+reviews:
+- 'no': 3556
+  overturn_probability: 0.1
+  alternative: 正文一级小标题 / 模块分隔标识
+  counter_evidence:
+  - 该行虽为“第 3 部分”格式，但位于前一章总结之后，可能仅是正文模块的分隔符，而非独立章节起始；其后直接跟部分介绍段落，未紧跟子章节，更像是一级正文标题。
+  keep_split: true
+- 'no': 3567
+  overturn_probability: 0.15
+  alternative: 正文小标题 / 章内引用标签
+  counter_evidence:
+  - 该标题可能是正文中对当前章节内容的再次强调或交叉引用标签，而非新章节的真正起始；若出现在列表或段落内部，应视为小标题而非章节标题。
+  keep_split: true
+- 'no': 4260
+  overturn_probability: 0.15
+  alternative: 正文小标题 / 章名重复提及
+  counter_evidence:
+  - 与第9章标题结构相同，可能为正文中章名的重复出现或小节标题，缺乏章首概述段落的直接支撑。
+  keep_split: true
+- 'no': 4820
+  overturn_probability: 0.15
+  alternative: 正文小标题 / 过渡段落标题
+  counter_evidence:
+  - 该行可能只是对“第 11 章”主题的重复陈述，出现在正文过渡段落中，而非独立章节起始行。
+  keep_split: true
+- 'no': 5315
+  overturn_probability: 0.15
+  alternative: 正文小标题 / 书末总结标题
+  counter_evidence:
+  - 作为最后一章标题，可能是书末总结部分的小标题，而非新的最高层级章节；其后内容偏向操作步骤而非章节概述。
+  keep_split: true
+- 'no': 5591
+  overturn_probability: 0.9
+  alternative: 排版噪声 / 中英文对照重复行 / 翻译注记
+  counter_evidence:
+  - 与紧随其后的 no 5593 构成同一标题的中英文对照，属于重复行，英文行可能为翻译注记，不应独立分章。
+  keep_split: false
+- 'no': 5593
+  overturn_probability: 0.1
+  alternative: 正文小标题（若被视为重复行）
+  counter_evidence:
+  - 与上一行 no 5591 重复，若上一行已被保留为部分标题，本行即为排版重复；相邻出现两个相同的一级部分标题不符合章节规范。
+  keep_split: true
+- 'no': 5619
+  overturn_probability: 0.9
+  alternative: 排版噪声 / 中英文对照重复行 / 翻译注记
+  counter_evidence:
+  - 与紧随其后的 no 5621 构成同一标题的中英文对照，属于重复行，英文行可能为翻译注记，不应独立分章。
+  keep_split: false
+- 'no': 5621
+  overturn_probability: 0.1
+  alternative: 正文小标题（若被视为重复行）
+  counter_evidence:
+  - 与上一行 no 5619 重复，若上一行视为噪声，本行应保留；反之若本行保留，则上一行应为噪声。两个相邻的中英文章标题不应分别分章。
+  keep_split: true

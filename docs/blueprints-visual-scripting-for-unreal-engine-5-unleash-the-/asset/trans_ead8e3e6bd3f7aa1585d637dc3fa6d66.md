@@ -1,0 +1,100 @@
+
+
+![](img/e1fd47ad71d32bbc4bf189d4cf9ed94d_242_0.png)
+
+Figure 7.35 – Decreasing Player Current Ammo
+
+- 3. Find the final node in the chain, **Play Sound at Location**. Drag a wire from the output execution pin of this node to empty grid space and add a **SET Player Current Ammo** node.
+- 4. Drag a wire from the **Player Current Ammo** input pin to empty space and create a **Subtract** node.
+- 5. Drag a wire from the top input pin of the **Subtract** node and add a **GET Player Current Ammo** node.
+- 6. In the bottom field of the **Subtract** node, enter a value of `1`. This sequence translates to the following: _after playing the firing sound, set the player's current ammo count to the existing ammo count minus one._
+- 7. Compile, save, and press **Play** to see your ammo counter decrease every time you fire a shot from your gun. Note that we are not preventing the player from shooting when they are out of ammo, and the ammo counter will continue to register negative numbers. We will fix it in _Chapter 8, Creating Constraints and Gameplay Objectives_.
+
+## Important Note
+
+The **SET Player Current Ammo** node and the subtract node of the previous screenshot can be replaced by the **Decrement Int** node, which subtracts `1` from the input variable and sets a new value in it. There is also the **Increment Int** node, which adds `1` to the input variable.
+
+## Increasing the targets eliminated counter
+
+Now, we want to increase our targets eliminated counter by `1` every time a target Cylinder is destroyed. These are the steps:
+
+- 1. In the Content Browser, access the `/Content/FirstPersonBP/Blueprints` folder and double-click on the `BP_CylinderTarget` Blueprint.
+- 2. We will add our new nodes close to the end of **Event Hit**, after all the nodes except **DestroyActor**. There must not be other nodes after a **DestroyActor** node whose **Target** is **self** because this node removes the current instance from the Level.
+- 3. Break the link between the **Spawn Emitter at Location** and **DestroyActor** nodes, and then move **DestroyActor** to the right to make room for the new Blueprint nodes.
+- 4. The goal is to create a series of nodes that will access the **Targets Eliminated** variable from the player character and increase it by one, before going on to destroy the Actor. The result will look like this:
+
+![](img/e1fd47ad71d32bbc4bf189d4cf9ed94d_243_0.png)
+
+Figure 7.36 — Increasing Targets Eliminated
+
+- 5. Right-click on any empty graph space and add a **Get Player Character** node.
+- 6. Drag a wire from the **Return Value** output pin of the **Get Player Character** node and add the **Cast To FirstPersonCharacter** node.
+- 7. Drag a wire from the **As First Person Character** pin and add a **GET Targets Eliminated** node.
+- 8. Drag a wire from the output of **Targets Eliminated** and add the **Increment Int** node, which will add 1 to the **Targets Eliminated** variable.
+- 9. Finally, connect the execution pins of the **Cast To FirstPersonCharacter**, **Increment Int**, and **DestroyActor** nodes, ensuring that **DestroyActor** is the final node in the chain.
+- 10. Compile, save, and play the game to see the **Targets Eliminated** counter on the screen increase every time you destroy a Cylinder target:
+
+![](img/e1fd47ad71d32bbc4bf189d4cf9ed94d_244_0.png)
+
+Figure 7.37 – Destroying the Cylinder target to increase the Targets Eliminated counter
+
+Now, the ammo and targets eliminated counters are being modified by events that occur within our game, and the updated values are displayed immediately in the HUD. The script to modify the health and stamina meters will be implemented in the next chapters.
+
+## Summary
+
+In this chapter, we enhanced the player experience by adding a HUD that tracks the player's interaction with the environment. In doing so, we developed another conduit through which we can communicate information to the player of our game. We now have the skeletal structure of a first-person shooter, including guns that shoot, targets that explode, and a UI that exposes the state of the world to the player. We have already come a long way from the initial test scene, which featured minimal player interaction.
+
+In the next chapter, we will begin transitioning from building the foundation of our game structure to constructing the design of our game. The core of any game is made up of the rules that the player must follow to create a fun experience. While the game, in its current form, features some basic rules that define how the targets react to being shot, the overall experience lacks a goal for the player to achieve. We will rectify this by establishing a `win` condition for the player, as well as providing additional constraints that make the experience holistic and consistent.
+
+## Quiz
+
+- 1. What is the name of the specialized type of Blueprint used to create a UI?
+  - a. UMG Blueprint
+  - b. Widget Blueprint
+
+- 2. The `Percent` property determines the fill position of a progress bar.
+  - a. True
+  - b. False
+
+- 3. The X and Y values of an element's position in a canvas are always relative to the top-left corner of the screen.
+  - a. True
+  - b. False
+
+- 4. We can bind a property of a Widget to a function to retrieve the updated value of a variable.
+  - a. True
+  - b. False
+
+- 5. To create an instance of a Widget Blueprint and show it on the screen, you need to use the `Create Widget` and `Add to Viewport` nodes.
+  - a. True
+  - b. False
+
+## Chapter 8: Creating Constraints and Gameplay Objectives
+
+In this chapter, we'll define a ruleset for our game, which will guide the player through the gameplay experience. We want to give the player the ability to start the game and immediately identify what they must do to win the game. In its most basic form, a game could be defined by the win condition and the steps the player can take to reach that win condition. Ideally, we want to ensure that each step the player takes toward that goal is fun.
+
+We'll begin by applying some constraints to the player to increase the level of difficulty. A game without a challenge quickly becomes boring, and we want to ensure that every mechanic in our game provides the player with an interesting choice or challenge. We'll then set up a goal for the player to achieve, along with the necessary adjustments to our enemy targets to make that goal challenging to reach.
+
+In this process, we'll work to accomplish the following:
+
+- Reducing stamina while the player is sprinting and regenerating it when the player is not sprinting
+- Preventing the player's gun from firing if they run out of ammo
+- Creating ammo pickups that allow the player to regain ammo
+- Defining a win condition based on the number of targets eliminated
+- Creating a menu that allows the player to replay or quit the game upon winning
+
+By the end of the chapter, we will have a game with constraints and goals that make the gameplay more interesting. We will learn how to create collectible objects and how to create a menu system.
+
+## Constraining player actions
+
+One important consideration to make when adding enhanced capabilities for the player is the impact that they have on both the challenge and feel of the game experience. Recall that we added the ability for the player to sprint in Chapter 6, Enhancing Player Abilities, by holding down the Shift key. As it currently stands, holding down the Shift key while moving provides a significant increase in the speed at which the player can move. Without constraints applied to this ability, such as an enforced waiting period between uses, there would be nothing discouraging the player from always holding down the Shift key as they move.
+
+This goes against the goal we set out to accomplish by adding a sprint functionality, which was to provide more options to the player. If an option is so attractive that the player feels compelled to always utilize it, then it doesn't increase the number of interesting choices available to the player. From the player's perspective, the result would be the same if we just increased the base speed of the player to the sprint speed.
+
+We can rectify this, and other issues currently faced by our game prototype, by adding constraints that limit a player's abilities, to increase decision making.
+
+## Draining and regenerating stamina
+
+To add a constraint to the sprinting ability of the player, we'll need to return to the player character Blueprint where we originally defined the ability. We need to create some variables that will keep track of whether the player is sprinting, how much stamina sprinting should cost, and the stamina recharge rate. We are going to create a custom event to drain the player's stamina at a consistent rate while they are sprinting and to recharge the stamina when they are not sprinting. Also, we will create other variables and macros to organize the script.
+
+These are the variables that we will create:
+
