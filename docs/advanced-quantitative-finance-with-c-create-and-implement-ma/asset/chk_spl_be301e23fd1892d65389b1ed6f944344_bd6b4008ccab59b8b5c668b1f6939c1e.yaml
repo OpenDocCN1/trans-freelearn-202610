@@ -1,0 +1,78 @@
+reviews:
+- 'no': 2
+  overturn_probability: 0.9
+  alternative: 前言/致谢等正文前材料中的一个小节（版权页或致谢部分）
+  counter_evidence:
+  - 同为前言材料的“## 关于作者”（行48）、“## 致谢”（行66）、“## 前言”（行100）等同级标题未被标记为分章，说明原审查员对前言部分处理不一致；若行2独立成章，则前言内容被不合理地拆分为多个微章。
+  - 该行紧接图书封面标题行（行0），属于封面/版权信息区域，而非正文章节起始。
+  keep_split: false
+- 'no': 180
+  overturn_probability: 0.6
+  alternative: 正文第一章标题或第一节标题
+  counter_evidence:
+  - 标题末尾带问号“？”，违反“真正的章标题末尾绝无句号（。.？！）”的格式规则。
+  - 正文中未出现“第 1 章”或“1.”等最高层级编号，且后文“## 2 数学模型”等亦无“第 X 章”前缀，说明“##”可能只是通用大标题而非严格章节边界。
+  keep_split: false
+- 'no': 306
+  overturn_probability: 0.5
+  alternative: 正文中的一级小标题或第二层级章节标题
+  counter_evidence:
+  - 使用“## 2 ”而非“第 2 章”或“2.”，不符合最高层级大章编号特征，可能只是第二章内部的第2节或一个带编号的一级小标题。
+  - 前文行180“## 什么是量化金融？”并未标记为“第 1 章”，若行306是最高层级章，则前文应有对应的“第 1 章”标记，编号体系不连贯。
+  keep_split: false
+- 'no': 746
+  overturn_probability: 0.55
+  alternative: 正文中的章标题或一级小标题（无编号章）
+  counter_evidence:
+  - 标题无任何章序号，仅为描述性短语，可能是某一部分下的节标题而非独立最高层级章。
+  - 与行1519“## 5 使用 C++ 的外汇衍生品”带数字编号对比，行746缺乏编号，说明编号体系混乱，可能非严格章节。
+  keep_split: false
+- 'no': 1260
+  overturn_probability: 0.5
+  alternative: 正文中的章标题或大节标题
+  counter_evidence:
+  - 标题较长且具体，更像某部分下的主题小节而全书最高层级章统领性标题。
+  - 目录虽对应第4章，但正文标题未出现“第 4 章”前缀，可能只是描述性标题行。
+  keep_split: false
+- 'no': 1519
+  overturn_probability: 0.45
+  alternative: 带编号的一级标题（第5节）而非最高层级章
+  counter_evidence:
+  - 虽含数字“5”，但未使用“第 5 章”格式，可能只是第X章下的第5节或带编号的小标题。
+  - 与其他章标题编号格式不一致（如行746、行1260无编号），说明“5”可能非章序号。
+  keep_split: false
+- 'no': 1884
+  overturn_probability: 0.5
+  alternative: 正文章标题或大节标题
+  counter_evidence:
+  - 无章序号，与带数字编号的行1519格式不一致，可能属于前一部分的延续或一级小标题。
+  - 标题语义具体（利率衍生品），可能是第X章下的专题节而非全书最高层级章。
+  keep_split: false
+- 'no': 2326
+  overturn_probability: 0.5
+  alternative: 正文章标题或大节标题
+  counter_evidence:
+  - 无章序号，可能是第6章或第X章下的信用衍生品专题小节。
+  - 紧接行1884利率衍生品，两者语义相近，可能属于同一大章下的不同节。
+  keep_split: false
+- 'no': 2683
+  overturn_probability: 0.75
+  alternative: 附录内容或正文末尾章节/参考资料小节
+  counter_evidence:
+  - 标题未明确标注“附录 A”，与目录中的“附录 A”对应关系不明确，可能只是正文最后一章或附录中的小节。
+  - 与行2731“## B 参考文献”格式相同，若行2683分章则行2731也应分章，否则附录部分被拆分。
+  keep_split: false
+- 'no': 2731
+  overturn_probability: 0.7
+  alternative: 参考书目列表或附录中的一节
+  counter_evidence:
+  - 标题仅为“B 参考文献”，未明确“附录 B”前缀，且参考文献通常不作为独立章节，而是附录或书末资料。
+  - 与行2778“## 索引”同为书末材料，若索引分章则参考文献亦可合并入附录章，无需单独分章。
+  keep_split: false
+- 'no': 2778
+  overturn_probability: 0.2
+  alternative: 文末索引/检索表
+  counter_evidence:
+  - 索引属于书末工具性查找表，不包含正文章节内容，强制分章会导致章节过于碎片化，虽规则提及但可合并至附录章。
+  - 索引通常按字母排列条目，缺乏统领性章节语义，更像是排版附录而非正文章节。
+  keep_split: true

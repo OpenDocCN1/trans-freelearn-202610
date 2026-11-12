@@ -1,0 +1,13 @@
+# # The Monte Carlo simulation method
+
+Monte Carlo simulation is named after the famous casino in the principality of Monaco. It is the most widely used numerical method to price financial derivatives in the industry because of its simplicity, flexibility, and extensibility.
+
+The basic idea of the method is to construct a simulation engine that will allow us to predict a number of possible ways (or trajectories) in which the underlying assets can evolve in the future. These trajectories can be thought of as potential economic or financial scenarios. With MC simulation, we attempt to answer questions such as "given the observed price of Vodafone stock today, what could be the likely prices of the stock each day for the next month?"
+
+As we cannot be certain of the future evolution of prices, our result needs to be based on probability, and, thus, we need large number of samples. Using the stochastic models that we saw in the previous chapter to simulate one possible trajectory, with MC simulation, we are going to simulate many possible trajectories and, for each, compute the payoff that the contract would have had if the prices had followed that specific path in future. Afterwards, we are going to take all these possible payoffs and compute their expected value, that is, the mean or average value. This will give us an estimate of how much this contract will be worth in the future.
+
+MC simulation then allows us to compute the fair price of a financial derivative as its expected discounted payoff. This concept stems from the financial principle of fair pricing, which states that the price that a contract should have if the sum of the cash flows that we expect to receive are the same as the sum of the cash flows that we expect to pay. For more details on MC simulation, you are invited to refer to Monte Carlo Methods in Financial Engineering.
+
+In order to have an intuition of why this is the case, consider the following simple example:
+
+Imagine that you have bought a plain vanilla European Call option contract at time t=0. This contract will give you a payoff of H(S_T) = max(S_T - K, 0) at maturity t=T. Because the value of the underlying at maturity is uncertain, that is, S_T is a random variable, the payoff function H(S_T) is also uncertain. We can write that the expected value of the payoff function H(S_T) is the expectation E[H(S_T)]. In addition, in a European Call contract, we pay a premium today in order to have the right to exercise the option or not at maturity t=T. How much should we pay for the premium for this contract today?

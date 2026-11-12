@@ -1,0 +1,102 @@
+chapter_starts:
+- 'no': 2
+  confidence: 0.9
+  final_reason: 规则明确前言、致谢等正文前材料统一划分为一章，行2作为前言部分首个实质性标题独立成行，可作为该章起点；复核方担忧拆分微章不成立，因判断方未对行48、66、100重复分章
+  accepted_evidence:
+  - 行2独立成行，属正文前致谢材料
+  - 规则规定前言等正文前内容统一划分为一章
+  rejected_evidence:
+  - 复核方称行2紧接封面标题属版权区域，但行0为书名，行2为首个前言实质内容，仍符合前言章起点
+  need_human_review: false
+- 'no': 180
+  confidence: 0.85
+  final_reason: 虽标题末尾有问号，但上下文证据确凿：目录明确对应“第1章 什么是量化金融？”，后接学科子节，前为前言结束，符合章标题语义与上下文特征；根据上下文优先于单行格式特征的裁决原则保留
+  accepted_evidence:
+  - 行180独立成行，无其他终止标点除问号外
+  - 目录行108明确对应第1章
+  - 后接“### 学科 1”等子节
+  rejected_evidence:
+  - 复核方指出末尾问号违反格式规则，但原则1规定上下文优先于单行特征
+  need_human_review: false
+- 'no': 306
+  confidence: 0.9
+  final_reason: 目录明确对应第2章，行306独立成行，前有上一章摘要，后接子节，语义统领；虽无“第2章”前缀，但规则允许无序号依语义判断，且“2”具编号特征
+  accepted_evidence:
+  - 目录行109对应第2章数学模型
+  - 行306独立成行，前为第1章摘要，后有“### 股票”等子节
+  rejected_evidence:
+  - 复核方质疑无“第2章”前缀，但目录已明确对应，且正文可能无统一章前缀
+  need_human_review: false
+- 'no': 746
+  confidence: 0.9
+  final_reason: 目录明确对应第3章，行746独立成行，前有第2章摘要，后接数值方法正文；虽无数字编号，但规则允许依语义判断无序号章标题
+  accepted_evidence:
+  - 目录行110对应第3章数值方法
+  - 行746独立成行，前为第2章摘要
+  rejected_evidence:
+  - 复核方质疑无编号，但行1519等有编号不代表无编号章无效，语义与上下文足够支持
+  need_human_review: false
+- 'no': 1260
+  confidence: 0.9
+  final_reason: 目录明确对应第4章，行1260独立成行，前有第3章摘要，后接股票衍生品正文，语义统领；长度小于30字，符合格式特征
+  accepted_evidence:
+  - 目录行111对应第4章
+  - 行1260独立成行，前为第3章摘要
+  rejected_evidence:
+  - 复核方称标题较长具体像小节，但长度<30字且与目录第4章明确对应
+  need_human_review: false
+- 'no': 1519
+  confidence: 0.92
+  final_reason: 目录明确对应第5章，标题带数字“5”具编号特征，独立成行，前有上章结尾，后接外汇衍生品正文
+  accepted_evidence:
+  - 目录行112对应第5章
+  - 标题含数字编号“5”
+  rejected_evidence:
+  - 复核方称可能是第X章下第5节，但目录明确为第5章，且与后续章节结构一致
+  need_human_review: false
+- 'no': 1884
+  confidence: 0.9
+  final_reason: 目录明确对应第6章，行1884独立成行，前有第5章摘要，后接利率衍生品正文；虽无编号，但语义与上下文支持
+  accepted_evidence:
+  - 目录行113对应第6章
+  - 行1884独立成行，前为第5章摘要
+  rejected_evidence:
+  - 复核方称无章序号可能是小节，但目录已明确对应第6章
+  need_human_review: false
+- 'no': 2326
+  confidence: 0.9
+  final_reason: 目录明确对应第7章，行2326独立成行，前有第6章摘要，后接信用衍生品正文；虽与行1884语义相近，但属不同资产类别独立章节
+  accepted_evidence:
+  - 目录行114对应第7章
+  - 行2326独立成行，前为第6章摘要
+  rejected_evidence:
+  - 复核方称可能属同一大章下小节，但目录明确分为第6章和第7章
+  need_human_review: false
+- 'no': 2683
+  confidence: 0.88
+  final_reason: 目录明确对应附录A，行2683独立成行，位于正文结束后，内容为数值库介绍；虽未标“附录A”前缀，但位置与语义符合附录特征，且与行2731处理一致
+  accepted_evidence:
+  - 目录行115对应附录A
+  - 行2683独立成行，位于第7章摘要之后
+  rejected_evidence:
+  - 复核方称未明确“附录A”，但目录已明确对应，且行2731同样处理
+  need_human_review: false
+- 'no': 2731
+  confidence: 0.9
+  final_reason: 目录明确对应附录B，标题含“B ”编号特征，独立成行，后接按章分列的参考文献内容；复核方质疑不足以推翻
+  accepted_evidence:
+  - 目录行116对应附录B
+  - 标题含编号“B ”
+  rejected_evidence:
+  - 复核方称参考文献通常不独立成章，但目录已列为附录B，且规则支持书末材料分章
+  need_human_review: false
+- 'no': 2778
+  confidence: 0.95
+  final_reason: 规则明确规定文末索引划分为一章，行2778“## 索引”独立成行，位于文末，符合要求；复核方keep_split=true且overturn_probability仅0.2，证据不足
+  accepted_evidence:
+  - 规则明确文末索引划分为一章
+  - 行2778独立成行
+  rejected_evidence:
+  - 复核方认为可合并至附录章，但规则有明确要求，且overturn_probability低
+  need_human_review: false
+rejected_lines: []

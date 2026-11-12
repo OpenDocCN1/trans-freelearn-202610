@@ -1,0 +1,3 @@
+# # Interest Rate Derivatives with C++
+
+This chapter illustrates the application of C++ to the pricing of interest rate derivatives. We will consider two examples: the pricing of a plain vanilla **Interest Rate Swap (IRS)** (basic example) and the pricing of a Cap (advanced example). We provide the full working C++ implementation for both. Both the examples are solved using one factor **Libor Market Model (LMM)** and Monte Carlo simulation. A simpler C implementation (without the OO features) can be found in the accompanying book website. The LMM is described in "The Market Model of Interest Rate Dynamics". An excellent description of the Monte Carlo simulation can be found in "Efficient Methods for Valuing Interest Rate Derivatives".
