@@ -1,0 +1,57 @@
+reviews:
+- 'no': 5952
+  overturn_probability: 0.99
+  alternative: 索引字母分隔符
+  counter_evidence:
+  - 该行内容为 '## F'，属于书末索引的字母导航标记，而非正文章节标题。
+  - 上下文（第5900-5951行及后续行）均为索引条目（如 '- 联邦信息处理标准 (FIPS) 268'），呈现典型的索引词条罗列结构。
+  - 书籍正文通常在索引之前已结束，此处为附录/索引区，不应划分为正文章节。
+  keep_split: false
+- 'no': 5989
+  overturn_probability: 0.99
+  alternative: 索引字母分隔符
+  counter_evidence:
+  - 该行内容为 '## G'，与前一个 '## F' 同属索引字母分组标记。
+  - 后续内容（第5991行起）为索引词条 '- 门控出口混合云拓扑 167' 等，无正文段落或子章节结构。
+  - 索引字母标记仅用于检索定位，不具备章节统领性语义。
+  keep_split: false
+- 'no': 6545
+  overturn_probability: 0.99
+  alternative: 索引字母分隔符
+  counter_evidence:
+  - '该行内容为 ''## W''，位于索引末尾字母序列中（前有 ## V，后有 ## Z）。'
+  - 后续紧跟多个空行及索引条目 '# Web 应用防火墙 (WAF)'，确认处于索引区而非正文。
+  - 索引区的字母标题层级为二级标题（##），但功能上仅为分组符，非章节实体。
+  keep_split: false
+- 'no': 6551
+  overturn_probability: 0.95
+  alternative: 索引条目（因OCR/排版误识别为一级标题）
+  counter_evidence:
+  - 该行 '# Web 应用防火墙 (WAF)' 以单井号开头，疑似索引条目因页码缺失或排版转换被误渲染为一级标题。
+  - 下两行（5953-5954）仅为页码 '181', '267'，这是典型的索引‘词条-页码’结构，而非章节内容。
+  - 同一区块下方还有 '# 优秀架构框架 (WAF)'、'# Wendy's 转型消费者体验' 等同类结构，批量出现，确认为索引条目而非章节。
+  keep_split: false
+- 'no': 6590
+  overturn_probability: 0.98
+  alternative: 书末营销/订阅推广页标题（版权页/后附内容）
+  counter_evidence:
+  - 内容 '## 为什么要订阅？' 明确指向出版社推广订阅服务，属于商业营销内容，非本书知识体系章节。
+  - 后续包含 'packtpub.com' 链接、订阅卖点列表、ISBN信息、其他书籍推荐、作者招募、免费PDF下载二维码等典型版权页/营销页元素。
+  - 正文索引已于 '## Z' (line 6578) 及分隔线 '---' (line 6582) 结束，此处为书籍物理结构末尾的附加页。
+  keep_split: false
+- 'no': 6602
+  overturn_probability: 0.98
+  alternative: 书末推荐书单标题（营销附录）
+  counter_evidence:
+  - 内容 '# 您可能喜欢的其他书籍' 直接表明为交叉推销板块。
+  - 后续包含具体书名、作者、ISBN、亚马逊链接图片、卖点列表，完全符合出版社营销页格式。
+  - 缺乏章节语义统领性，不覆盖任何正文知识内容。
+  keep_split: false
+- 'no': 6649
+  overturn_probability: 0.98
+  alternative: 书末福利/下载引导页标题（营销附录）
+  counter_evidence:
+  - 内容 '# 下载本书的免费 PDF 副本' 为获取电子版权益的引导标题。
+  - 后续包含扫码指引、购买凭证提交步骤、二维码图片链接、专属下载链接，属于售后服务/营销转化流程。
+  - 位于书籍最末尾，距离正文索引结束极远，物理结构上属于封底/扉页内容。
+  keep_split: false

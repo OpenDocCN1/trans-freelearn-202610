@@ -1,0 +1,58 @@
+reviews:
+- 'no': 3000
+  overturn_probability: 0.85
+  alternative: 正文一级大标题（非章级，可能是部分内的大节或专题标题）
+  counter_evidence:
+  - 该行使用一级标题（#），但全书后续明确章节（第7-11章）均使用二级标题（##）并带编号，说明##才是章级标记，#可能用于部分或大节。
+  - 同一标题层级（#）后续还出现“总结”“延伸阅读”（行3076、3084），这些通常是章末附录而非独立章节，说明#在本书中非专属章标题。
+  - 上一行（2998）以“现在让我们探讨一下……”作过渡，语气像是本章内新节的引入，而非新章开始。
+  keep_split: false
+- 'no': 3096
+  overturn_probability: 0.1
+  alternative: 章节标题（编号“7.”符合章级特征，虽为二级标题但属部分-章模式下的章标题）
+  counter_evidence:
+  - 标题含明确章序号“7.”，且后续内容包含多个案例研究（Airbnb、家乐福等），结构完整，符合章节语义。
+  - 全书采用部分-章模式（行3657有“第3部分”），按规则章标题也应分章，二级标题不影响判断。
+  keep_split: true
+- 'no': 3657
+  overturn_probability: 0.05
+  alternative: 部分标题（规则明确部分标题亦需分章）
+  counter_evidence:
+  - 标题为“第3部分”，明确标识部分层级，书籍采用部分-章模式，部分标题理应分章。
+  - 后续紧跟第8章（行3668），层级关系清晰。
+  keep_split: true
+- 'no': 3668
+  overturn_probability: 0.05
+  alternative: 章节标题（第3部分下的第8章）
+  counter_evidence:
+  - 标题以“8”开头，紧随“第3部分”，编号连贯，符合章级特征。
+  - 内容展开架构设计云就绪企业，包含多层子节（如云基础层、主要云服务商框架等），结构完整。
+  keep_split: true
+- 'no': 4184
+  overturn_probability: 0.05
+  alternative: 章节标题（明确标注“第9章”）
+  counter_evidence:
+  - 标题含“第9章”字样，无歧义为章标题。
+  - 后续包含数字化转型九个方面的详细论述，章节语义完整。
+  keep_split: true
+- 'no': 4574
+  overturn_probability: 0.05
+  alternative: 章节标题（第10章，虽省略“章”字但编号连贯）
+  counter_evidence:
+  - 编号“10”承接第9章，且标题“借助云引领和创新”概括后续创新实验室、新兴技术等内容。
+  - 结构上包含多个二级、三级子节，符合章节组织。
+  keep_split: true
+- 'no': 4905
+  overturn_probability: 0.05
+  alternative: 章节标题（第11章）
+  counter_evidence:
+  - 编号“11”连贯，标题“ESG与可持续发展”统领全章ESG定义、价值、报告、云赋能等内容。
+  - 以“总结”“延伸阅读”收尾，章节结构闭环。
+  keep_split: true
+- 'no': 5212
+  overturn_probability: 0.05
+  alternative: 文末索引标题（规则要求索引分章）
+  counter_evidence:
+  - 标题为“索引”，位于全文末尾，内容为术语页码列表，符合索引特征。
+  - 规则明确“文末索引也划分为一章”。
+  keep_split: true

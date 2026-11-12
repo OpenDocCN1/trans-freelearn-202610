@@ -1,0 +1,107 @@
+chapter_starts:
+- 'no': 0
+  confidence: 0.98
+  final_reason: 书籍起始行（书名），根据规则‘前言、序言、致谢、关于作者等正文之前的内容，统一划分为一章’，前置内容章节应从书籍最开始处分割。
+  accepted_evidence:
+  - 复核方指出前置内容应合并为一章且分割点应置于最前行
+  - 规则明确要求前置内容统一划分为一章
+  rejected_evidence:
+  - 判断方在第14行（前言）分割，会导致前置内容被拆分为两章
+  need_human_review: false
+- 'no': 112
+  confidence: 1.0
+  final_reason: 检测到『# 第 1 部分』标题，书籍采用部分-章节模式，规则明确‘遇到部分和章标题时，都要划分新章’。
+  accepted_evidence:
+  - 规则：部分-章节模式下部分标题为最高层级分章点
+  - 行首为『# 第 1 部分』，格式符合部分标题特征
+  rejected_evidence:
+  - 复核方认为部分标题不应触发章节级分割，会产生仅含简介的空章节
+  need_human_review: false
+- 'no': 122
+  confidence: 1.0
+  final_reason: 检测到『## 1 领导力、意志和思维方式』，目录（第118-120行）明确列为『第 1 章』，内容统领后续大量正文，符合章标题语义与编号连贯性。
+  accepted_evidence:
+  - 目录明确标注『第 1 章』
+  - '正文采用『## 数字 标题』形式，符合Markdown下『# 部分 / ## 章』的常见层级约定'
+  - 后续内容延续至第494行，篇幅符合章节规模
+  rejected_evidence:
+  - 复核方质疑缺少『章』字且为二级标题，疑为节级
+  need_human_review: false
+- 'no': 495
+  confidence: 1.0
+  final_reason: 检测到『## 2 云计算入门』，目录列为『第 2 章』，承接上一章结束（第494行），编号连贯，格式统一。
+  accepted_evidence:
+  - 目录标注『第 2 章』
+  - 编号连贯（1->2），格式与第1章一致
+  - 上一章有明确『摘要』与『延伸阅读』结尾
+  rejected_evidence:
+  - 复核方同前，质疑层级与『章』字缺失
+  need_human_review: false
+- 'no': 1051
+  confidence: 1.0
+  final_reason: 检测到『## 3 企业云采用面临的挑战』，目录列为『第 3 章』，第1部分第三篇章，编号连贯。
+  accepted_evidence:
+  - 目录标注『第 3 章』
+  - 编号连贯（2->3），格式统一
+  - 上一章（第2章）有明确『摘要』与『进一步阅读』结尾
+  rejected_evidence:
+  - 复核方同前，质疑层级与『章』字缺失
+  need_human_review: false
+- 'no': 1537
+  confidence: 1.0
+  final_reason: 检测到『# 第 2 部分：混合云和多云的成功实践』，部分标题，规则要求部分-章节模式下部分标题划分新章。
+  accepted_evidence:
+  - 规则：部分标题为最高层级分章点
+  - 行首为『# 第 2 部分』，格式符合
+  rejected_evidence:
+  - 复核方认为不应单独分章，会产生极短的部分简介章
+  need_human_review: false
+- 'no': 1545
+  confidence: 0.95
+  final_reason: 检测到『## 构建现代企业的基石』，目录（第1540行）明确列为『第 4 章』，紧随第2部分简介，内容统领后续至第1918行。
+  accepted_evidence:
+  - 目录标注『第 4 章』
+  - 语义上为第2部分首章，内容量大、结构完整
+  - 虽标题无显式编号，但结合目录与上下文语义判定为章
+  rejected_evidence:
+  - 复核方质疑正文标题缺失编号且为二级标题，分章证据链薄弱
+  need_human_review: false
+- 'no': 1919
+  confidence: 1.0
+  final_reason: 检测到『## 5 企业迈向云转型的旅程』，目录列为『第 5 章』，编号连贯（4->5），格式与第2、3章一致（含数字编号）。
+  accepted_evidence:
+  - 目录标注『第 5 章』
+  - 标题含显式数字编号『5』，格式统一
+  - 上一章（第4章）有明确『摘要』与『延伸阅读』结尾
+  rejected_evidence:
+  - 复核方质疑层级定位为部分内节点
+  need_human_review: false
+- 'no': 2451
+  confidence: 1.0
+  final_reason: 检测到『## 6 构建开放且灵活的云框架』，目录列为『第 6 章』，编号连贯（5->6），格式统一。
+  accepted_evidence:
+  - 目录标注『第 6 章』
+  - 标题含显式数字编号『6』，格式统一
+  - 上一章（第5章）有明确『总结』与『进一步阅读』结尾
+  rejected_evidence:
+  - 复核方质疑全书仅6章与常态不符，疑为部分-节结构
+  need_human_review: false
+rejected_lines:
+- 'no': 2
+  reason: 属于前置内容（献词）的一部分，已并入第0行起始的前置内容章节。
+  need_human_review: false
+- 'no': 14
+  reason: 判断方原分章点（前言），但根据规则前置内容应合并为一章，分割点前移至第0行，此行不再单独分章。
+  need_human_review: false
+- 'no': 26
+  reason: 属于前置内容（贡献者）的一部分，已并入第0行起始的前置内容章节。
+  need_human_review: false
+- 'no': 28
+  reason: 属于前置内容（关于作者）的一部分，已并入第0行起始的前置内容章节。
+  need_human_review: false
+- 'no': 34
+  reason: 属于前置内容（关于审阅者）的一部分，已并入第0行起始的前置内容章节。
+  need_human_review: false
+- 'no': 48
+  reason: 属于前置内容（作者前言）的一部分，已并入第0行起始的前置内容章节。
+  need_human_review: false
