@@ -1,0 +1,3 @@
+5. We are now going to run our sketch in an emulator. Click on the **Sketch | Run in Emulator** menu item. Processing now compiles the sketch to an Android app, creates a virtual device for the Android emulator, and then starts it. Since starting the Android emulator can take a while, especially when it's run for the first time, it's possible that you get a timeout error. In this case, simply repeat the step. After a while, you should see our sketch running in an emulator window like this:
+
+![](bbox=[0.193, 0.255, 0.806, 0.646])

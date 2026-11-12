@@ -1,0 +1,11 @@
+# Mission Accomplished
+
+For this mission, we created a virtual 3D object using a mathematical function that generates our vertices in a cylindrical coordinate system and then turns it into a physical object using a desktop 3D printer or an online printing service.
+
+In the first task, we created a closed, circular 2D shape using a function that takes an angle as input and calculates a radius for that angle. We converted this point from the polar to the Cartesian coordinate system and used it as a vertex for our shape. We then added a GUI using the controlP5 framework to enable the users of our sketch to change the parameters of our function.
+
+In the second task, we extruded the shape that we created along the z axis and created a three-dimensional cylindrical form. We changed to the so-called cylindrical coordinate system, which uses an angle, a radius, and a height to define its points. We extended our function to take the height as a second parameter and added four more sliders to our GUI to influence the created shape. We also implemented support for rotating the object using the mouse by adding two callback functions for mouse events. We calculated the rotational axis and angle using quaternions. This is a mathematical construct similar to complex numbers.
+
+In the third task, we added support for exporting our mesh as an STL file. This file format stores 3D meshes and can be used as an input for most 3D printers or 3D modelling tools. We added a `Triangle` class and a `TriangleSoup` class, which handle file creation. To make our object printable, we had to make sure that the object encloses a printable volume, so we added a second inner wall that's slightly smaller and closed the mesh by adding two triangle fans at the bottom and one mesh that connected the outer and the inner wall at the top.
+
+We finished off by using the exported STL file as an input for a desktop 3D printer. The control software uses this file to create the GCode instructions for a 3D printer that positions the printing head and controls the extrusion of the plastic filament. We also used the STL file to order our object from an online 3D printing service.
