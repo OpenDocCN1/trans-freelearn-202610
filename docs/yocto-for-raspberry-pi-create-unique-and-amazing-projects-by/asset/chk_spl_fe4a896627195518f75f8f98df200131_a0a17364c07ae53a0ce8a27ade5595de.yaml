@@ -1,0 +1,74 @@
+reviews:
+- 'no': 1
+  overturn_probability: 0.98
+  alternative: 书籍封面标题/书名页
+  counter_evidence:
+  - 这是图书的主标题或书名页片段，而非章节标题
+  - 内容以省略号结尾，不完整，不符合章标题语义完整性
+  - 规则仅划分全书最高层级大章，书名不属于章节范畴
+  - 其后紧跟空行和前言等前置材料，属于封面或扉页部分
+  keep_split: false
+- 'no': 2
+  overturn_probability: 0.97
+  alternative: 正文前的前置章节内容（前言）
+  counter_evidence:
+  - 规则明确规定前言等正文之前的内容统一划分为一章，不应单独分章
+  - 位于“第 1 章”之前，属于前置材料
+  - 缺少“第 X 章”或“X. ”等最高层级章序号
+  - 后续内容为列表项（- 本书内容等），表明这是前言部分的子条目而非独立章节正文
+  keep_split: false
+- 'no': 3
+  overturn_probability: 0.96
+  alternative: 正文前的前置章节内容（致谢）
+  counter_evidence:
+  - 致谢属于前置材料，应并入统一的前言/前置章节，不应单独成章
+  - 无最高层级章序号
+  - 后续内容为作者与编辑人员对照表格，属于致谢页排版而非章节统领内容
+  keep_split: false
+- 'no': 4
+  overturn_probability: 0.96
+  alternative: 正文前的前置章节内容（关于作者）
+  counter_evidence:
+  - 关于作者属于版权页或前置材料，不应单独成章
+  - 无章序号，且长度与内容特征均不符合最高层级章标题
+  - 后续是作者个人简介段落，属于作者介绍正文
+  keep_split: false
+- 'no': 5
+  overturn_probability: 0.96
+  alternative: 正文前的前置章节内容（关于评审者）
+  counter_evidence:
+  - 评审者信息属于前置材料，不应单独成章
+  - 无章序号
+  - 后续是多位评审者的个人简介段落，属于前置介绍内容
+  keep_split: false
+- 'no': 6
+  overturn_probability: 0.99
+  alternative: 出版社市场营销/推广内容
+  counter_evidence:
+  - 这是出版社 Packt 的自荐和折扣促销文案，不属于图书章节
+  - 无章序号，且内容明显为商业推广
+  - 位于前言与目录之间，属于前置辅助材料而非正文章节
+  keep_split: false
+- 'no': 7
+  overturn_probability: 0.99
+  alternative: 出版社订阅服务推广内容
+  counter_evidence:
+  - 这是关于 Packt 订阅服务的营销文案，不属于图书章节
+  - 无章序号
+  - 后续为列表项（- 可在 Packt 出版的每本书中全文搜索等），明显是产品功能介绍
+  keep_split: false
+- 'no': 8
+  overturn_probability: 0.97
+  alternative: 正文前的再次出现的前言/导读
+  counter_evidence:
+  - 即使是第二个“前言”，仍位于“第 1 章”之前，属于前置材料，应并入同一前置章
+  - 后续是书籍内容概述段落，而非章节正文
+  keep_split: false
+- 'no': 9
+  overturn_probability: 0.98
+  alternative: 章节概述/目录说明
+  counter_evidence:
+  - 这是对后续各章（第 1 章至第 12 章）内容的摘要列表，本身不是章节
+  - 无章序号
+  - 其后直接列出各章简介，属于目录性质内容，不构成独立章节
+  keep_split: false

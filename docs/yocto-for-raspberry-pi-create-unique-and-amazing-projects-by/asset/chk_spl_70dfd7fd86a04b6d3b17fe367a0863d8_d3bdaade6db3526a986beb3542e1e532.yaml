@@ -1,0 +1,29 @@
+reviews:
+- 'no': 3086
+  overturn_probability: 0.02
+  alternative: 正文小标题
+  counter_evidence:
+  - 行首带有 Markdown 一级标题符号 '#'，视觉上与正文中二级/三级小标题（如 '## 测试 Nunchuck 应用程序'）形式相似，可能被误判为普通段落内小标题
+  - 标题内容较长（约20字），包含具体项目名称“媒体中心”，语义上更像功能描述而非统领全章的抽象标题
+  keep_split: true
+- 'no': 3506
+  overturn_probability: 0.02
+  alternative: 正文小标题
+  counter_evidence:
+  - 标题包含技术术语 'LCD 触摸屏' 和 'Linux 内核'，更像技术文档中的小节标题而非书章标题
+  - 前文有大量代码块和命令行输出，该行可能只是代码块结束后的段落标题
+  keep_split: true
+- 'no': 4007
+  overturn_probability: 0.03
+  alternative: 正文小标题
+  counter_evidence:
+  - 标题使用 'BSP 层' 等专业术语，指向性较强，不具备跨章节的统领性
+  - 前文是第10章的总结段落，该行可能只是第10章末尾的收尾小标题
+  keep_split: true
+- 'no': 4477
+  overturn_probability: 0.03
+  alternative: 正文小标题
+  counter_evidence:
+  - 标题中包含破折号 '- '，结构类似副标题或分点，可能被视为正文内部的小标题
+  - 内容指向具体项目‘家庭自动化’，缺乏抽象化的章节概括性
+  keep_split: true

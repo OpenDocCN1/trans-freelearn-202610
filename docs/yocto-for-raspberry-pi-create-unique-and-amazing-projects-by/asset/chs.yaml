@@ -1,0 +1,1663 @@
+- '# Raspberry Pi 的 Yocto：通过 Yocto 与 Raspberry Pi 的强大组合，创建独特且惊人的项目
+
+  '
+- "## 前言\n\n- 本书内容\n- 本书所需\n- 适读人群\n- 约定\n- 读者反馈\n- 客户支持\n- 下载示例代码\n- 下载本书的彩色图片\n\
+  - 勘误表\n- 反盗版\n- 问题\n\n## 致谢\n\n| 作者 | 文案编辑 |\n| :--- | :--- |\n| Pierre-Jean TEXIER<br>Petter\
+  \ Mabacker | Madhusudan Uchil |\n| 评审人 | 项目协调员 |\n| Burt Ganz<br>Dave (Jing) Tian<br>Helmi\
+  \ ROMDHANI<br>Pierre FICHEUX | Judie Jose |\n| 委托编辑 | 校对员 |\n| Amarabha Banerjee\
+  \ | Safis Editing |\n| 获取编辑 | 索引编制人 |\n| Meeta Rajani | Hemangini Bari |\n| 内容开发编辑\
+  \ | 制作协调员 |\n| Rashmi Suvarna | Shantanu N. Zagade |\n| 技术编辑 | 封面制作 |\n| Mohit Hassija\
+  \ | Shantanu N. Zagade |\n\n\n\n\n\n## 关于作者\n\n**皮埃尔-让·泰西埃** 自 2014 年起一直是 Amplitude\
+  \ Systèmes（一家销售镱飞秒激光器的先驱公司）的嵌入式 Linux 工程师，在那里他使用 Yocto Project（meta-fsl-arm）维护一个名为\
+  \ i.MX6 的定制 SoC，该 SoC 由法国公司 EUKREA 制造。\n\n他毕业于波尔多的 ESTEI 学校，在那里学习了 3 年，成为一名嵌入式 Linux\
+  \ 工程师。\n\n他是自由软件世界和嵌入式世界的大力支持者。他的知识包括 C/C++、Yocto、Linux、Bash 和内核开发，但他也乐于尝试新事物并测试新技术。\n\
+  \n*首先，我想感谢我耐心的妻子在我的写作期间给予的支持。我也要感谢我的父母和我的兄弟；没有他们，这本书可能就不会问世。我也要感谢多年来我所有的导师——例如 西里尔·萨戈内罗、西尔万·勒埃纳夫、皮埃尔·博尔德莱、文森特·普埃约、法布里斯·博内、让-克洛德·佩雷西诺托\
+  \ 和 皮埃尔·奥布里。如果不向这些老师学习，我绝无可能做今天的工作。最后，我想感谢 Amplitude Systèmes 的首席执行官 埃里克·莫泰；Amplitude\
+  \ Systèmes 的电子团队负责人 卢卡·泰斯塔，感谢他的信任；以及 希特沙姆·乌德胡、亚历山大·加莫内、凯文·平托 和 纪尧姆·马希内，感谢他们在咖啡休息期间关于\
+  \ Raspberry Pi 的所有讨论。*\n\n**佩特尔·马贝克** 是一名专注于嵌入式 Linux 系统的高级软件开发人员。过去 8 年来，他一直专业从事嵌入式\
+  \ Linux 工作。目前，佩特尔在 爱立信 AB 担任 Scrum Master 和高级软件开发人员。此外，他的知识包括 C/C++、shell 脚本、Yocto\
+  \ Project（包括 BitBake 和 OpenEmbedded）、Scrum 和 Git。\n\n2013 年，佩特尔创办了小型企业 Technux，他将其作为爱立信工作之外的副项目运营。该企业的一些关注领域是开源嵌入式\
+  \ Linux 项目，例如 Yocto Project，以及涉及 Raspberry Pi 的不同项目。作为 Technux 工作的一部分，佩特尔担任 Yocto\
+  \ Project 的贡献者（包括 Raspberry Pi BSP 层，即 meta-raspberrypi）。\n\n*我要特别感谢我亲爱的家人，让我能在其他所有职责之外，花出所需时间来完成这本书。*\n\
+  \n## 关于评审者\n\n**伯特·扬兹** 自 1975 年在美国海军组装第一台微型计算机以来，一直与计算机系统打交道。从 20 世纪 80 年代初在 *nix\
+  \ 系统上开发设备驱动程序和低级接口开始，扬兹先生已编写复杂软件产品超过 30 年。他的专业知识涵盖从低级操作系统内部机制和设备驱动程序的设计与实现，到嵌入式和手持设备以及政府和企业级系统的复杂应用。\n\
+  \n他于 1988 年以优异成绩获得 弗兰克林皮尔斯学院 的 BSCS 学位，在 丹尼尔韦伯斯特学院 担任兼职教授 11 年，负责其基于晚间的继续教育项目，白天开发嵌入式和企业级软件。他的教学课程包括从计算机基础介绍到编程语言（C/C++/Java）、网络理论与网络编程、数据库理论与架构设计、人工智能系统等课程。在此期间，扬兹先生还撰写了杂志文章和其他技术评论，并参与了最早的几种\
+  \ Linux 发行版之一（Yggdrasil，1994 年）。\n\n扬兹先生曾作为首席架构师设计完整的嵌入式和企业级软件系统架构，并带领团队从新产品的需求和设计阶段一直到完成和交付给客户。他有\
+  \ x86、68xxx、PPC、ARM 和 SPARC 处理器的经验，并继续编写内核线程和 kmods、开放固件设备树、针对新硬件和专有硬件的驱动程序、FPGA\
+  \ I/P 核心接口、应用程序、库和引导管理器代码。您可以直接通过电子邮件 bhjanz@ccsneinc.com 或 burt.janz@gmail.com，或通过\
+  \ LinkedIn 联系他。\n\n**戴夫（Jing）田** 是佛罗里达大学计算机与信息科学与工程（CISE）系的博士生和安全研究员。他是 SENSEI 中心和佛罗里达网络安全研究所的创始成员。他的研究涉及系统安全、嵌入式系统、可信计算和编译器。他对\
+  \ Linux 内核黑客、编译器黑客和机器学习感兴趣。他还在人工智能和机器学习方向花了一年时间，并在俄勒冈大学讲授 Python 和操作系统课程。在此之前，他在\
+  \ 阿尔卡特-朗讯（原朗讯科技）研发部门的 Linux 控制平台（LCP）小组担任软件开发人员约 4 年。他拥有 中国的电子工程学士和硕士学位。您可以通过他的博客（http://davejingtian.org）和电子邮件（root@davejingtian.org）联系他。\n\
+  \n感谢作者们出色的工作，以及编辑们使本书臻美并给予我审阅这本优秀书籍的机会。\n\n**埃尔米·罗姆丹尼** 是一名嵌入式 HW/SW 工程师。他毕业于 突尼斯苏斯国家工程学校。他的主要工作是在\
+  \ Tunisian Embedded Systems，该公司专门从事嵌入式系统的研究、开发、原型设计和安装。他专注于嵌入式电信领域，特别是开发住宅网关的嵌入式软件。他经常使用嵌入式平台（Raspberry\
+  \ Pi 和 Arduino）、Linux、shell、Yocto、Python、C#（.Net）、Android、数据库（MySQL）、Web 服务和 Proteus\
+  \ Isis（PCB 设计）。\n\n欢迎通过 helmiromdhany@gmail.com 与他联系。\n\n我想感谢我的家人给予的支持、鼓励和爱，尤其是我的母亲\
+  \ Salha 和父亲 Mokhtar。\n\n**皮埃尔·菲略** 目前是 Open Wide Ingénierie 的首席技术官，这是一家专注于开源技术的软件服务公司。\n\
+  \n皮埃尔也是 EPITA（著名的法国计算机学校）GISTRE（实时和嵌入式系统计算机工程）专业的教师和经理。\n\n他还是四版《Linux Embarqué》的作者，这是由\
+  \ Eyrolles 出版的关于构建嵌入式 Linux 系统的法国参考书。\n\n## 电子书、折扣优惠及其他\n\n您是否知道 Packt 提供每本书出版的电子书版本，并提供\
+  \ PDF 和 ePub 文件？您可以在 [www.PacktPub.com](http://www.packtpub.com) 升级到电子书版本，作为印刷书客户，您有权获得电子书副本的折扣。如需更多详情，请通过\
+  \ customercare@packtpub.com 与我们联系。\n\n在 [www.PacktPub.com](http://www.packtpub.com)，您还可以阅读一系列免费技术文章，注册多种免费通讯，并获取\
+  \ Packt 书籍和电子书的独家折扣和优惠。\n\n![](img/76681dcfb8cd2bd107d0c06ab088f916_14_0.png)\n\n\
+  [https://www2.packtpub.com/books/subscription/packtlib](https://www2.packtpub.com/books/subscription/packtlib)\n\
+  \n您是否需要 IT 问题的即时解决方案？PacktLib 是 Packt 的在线数字图书馆。在这里，您可以搜索、访问和阅读 Packt 的整个图书库。\n\n\
+  ## 为何订阅？\n\n- 可在 Packt 出版的每本书中全文搜索\n- 复制粘贴、打印和收藏内容\n- 按需访问，可通过 Web 浏览器使用\n\n## 前言\n\
+  \n本书将从为 Raspberry Pi 创建定制镜像，到使用 Yocto Project 和 Raspberry Pi 作为基础实施小型家庭自动化项目，涵盖方方面面。\n\
+  \n本书将首先向您介绍 Yocto Project 并展示 Raspberry Pi 平台。掌握这些信息后，您将学习如何将 Yocto Project 与 Raspberry\
+  \ Pi 集成。在整本书中，您将学习从开发自定义应用程序到使用 Wii nunchuck 以及使用 Yocto Project 为 Raspberry Pi 配置\
+  \ LCD 触摸屏的所有内容。本书将以一章实践内容结束，该章将通过创建家庭自动化项目来总结您在整本书中学到的所有内容。\n\n\n\n\n\n## 本书内容概要\n\
+  \n第 1 章，认识 Yocto Project，介绍了 Yocto Project 的基本概念。将讨论 Yocto Project、OpenEmbedded\
+  \ Core、Poky 和 BitBake 的历史。\n\n第 2 章，为 Raspberry Pi 构建第一个 Poky 镜像，教你如何使用 Yocto Project\
+  \ 为 Raspberry Pi 创建第一个镜像以及如何运行它。\n\n第 3 章，使用 Hob 和 Toaster 进行构建，教你如何使用用户友好的界面 Hob\
+  \ 和 Toaster。\n\n第 4 章，理解 BitBake，为你提供对 BitBake 的更深入理解。\n\n第 5 章，在 Raspberry Pi 上创建、开发和部署，教你如何将自定义应用程序与\
+  \ Raspberry Pi 集成。这将包括学习如何生成用于交叉编译应用程序的 SDK。\n\n第 6 章，使用外部层，带你了解层的工作原理以及如何将外部层与\
+  \ Raspberry Pi 项目集成。\n\n第 7 章，在 Raspberry Pi 上部署自定义层，探讨如何使用 Yocto Project 提供的不同工具生成自定义层。\n\
+  \n第 8 章，深入探讨 Raspberry Pi 的外设和 Yocto 配方，教你如何通过 Yocto Project 处理 Raspberry Pi 的 SPI\
+  \ 和 I2C 总线。你还将学习如何为自定义应用程序创建自己的配方。\n\n第 9 章，在 Raspberry Pi 上制作媒体中心，介绍如何部署自定义应用程序以构建嵌入式媒体中心，例如可用于监控\
+  \ CPU 温度。该解决方案将需要 HTML5 和 Node.js 来设置远程监控温度所需的 Web 界面。\n\n第 10 章，玩转 LCD 触摸屏和 Linux\
+  \ 内核，介绍了 Linux 内核的一些基础知识以及如何配置它以支持各种 LCD 触摸屏。随后，本章解释了如何设置 Yocto Project，在 Raspberry\
+  \ Pi 上使用 LCD 触摸屏运行图形应用程序或窗口系统。\n\n第 11 章，为 Raspberry Pi BSP 层做出贡献，教你如何为 meta-raspberrypi\
+  \ 层做出贡献。\n\n第 12 章，家庭自动化项目 – 启动自定义镜像，是本书的最后一章，我们将在其中总结本书中所学的所有内容。这是通过创建一个家庭自动化项目来完成的。\n\
+  \n## 本书所需内容\n\n- 一台配备受支持主机系统的 Linux 工作站（请参阅 http://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html#detailed-supported-distros）\n\
+  - 主机系统所需的软件包（请参阅 http://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html#required-packages-for-the-host-development-system）\n\
+  - Git、tar 和 Python 的必需版本（请参阅 http://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html#required-git-tar-and-python-versions）\n\
+  \n## 本书适用人群\n\n本书面向希望了解 Yocto Project 的嵌入式软件学生、嵌入式 Linux 工程师以及精通 Raspberry Pi（或其他\
+  \ ARM 平台）的嵌入式系统爱好者。\n\n本书是熟练掌握并拓宽知识以便将其应用于嵌入式开发的理想方式。\n\n如果你在寻找一本能帮助你在 Raspberry\
+  \ Pi 和 Yocto Project 上进行开发的书籍，那么这本书就是你需要的那一本。\n\n## 约定\n\n在本书中，你会发现多种文本样式，用于区分不同种类的信息。以下是这些样式的一些示例及其含义解释。\n\
+  \n文本中的代码词、数据库表名、文件夹名、文件名、文件扩展名、路径名、虚拟 URL、用户输入和 Twitter 账号将显示为：“要运行任务，BitBake 将首先查找名为\
+  \ do_ <task name> 的环境变量，该变量将包含要执行的任务代码（使用 Python 或 shell）。”\n\n代码块设置如下：\n\n```\n\
+  # LAYER_CONF_VERSION is increased each time build/conf/bblayers.conf\n# changes\
+  \ incompatibly\nLCONF_VERSION = \"6\" BBPATH = \"${TOPDIR}\" BBFILES ?= \"\" BBLayers\
+  \ ?= \" \\\n/home/packet/RASPBERRYPI/poky/meta \\\n/home/packet/RASPBERRYPI/poky/meta-yocto\
+  \ \\\n/home/packet/RASPBERRYPI/poky/meta-yocto-bsp \\\n/BBLAYERS_NON_REMOVABLE ?=\
+  \ \" \\\n/home/packet/RASPBERRYPI/poky/meta \\\n/home/packet/RASPBERRYPI/poky/meta-yocto\
+  \ \\\n\"\n```\n\n任何命令行输入或输出都写为：\n\n```\n$ modprobe spidev\n```\n\n**新术语**和**重要单词**以粗体显示。你看到屏幕上的单词，例如，在菜单或对话框中，会出现在文本中，如：“添加一个层非常简单。我们只需单击\
+  \ **图层** 按钮。”\n\n### 注意\n\n警告或重要说明会以类似这样的框出现。\n\n### 技巧\n\n技巧和窍门会以这样的形式出现。\n\n##\
+  \ 读者反馈\n\n我们始终欢迎来自读者的反馈。请告诉我们你对本书的看法——你喜欢或不喜欢什么。读者反馈对我们很重要，因为这有助于我们开发你能真正受益的书籍。如需发送一般反馈，只需发送电子邮件至\
+  \ feedback@packtpub.com，并在消息主题中注明书名。如果你在某个主题方面有专长，并且有兴趣编写或参与编写书籍，请参阅我们的作者指南 www.packtpub.com/authors。\n\
+  \n## 客户支持\n\n既然你是 Packt 图书的自豪拥有者，我们有许多资源可以帮助你充分利用你的购买。\n\n## 下载示例代码\n\n你可以从你在 http://www.packtpub.com\
+  \ 上的账户下载本书的示例代码文件。如果你在其他地方购买了此书，可以访问 http://www.packtpub.com/support 并注册，以便文件直接发送到你的邮箱。\n\
+  \n你可以按照以下步骤下载代码文件：\n\n1. 使用你的电子邮件地址和密码登录或注册我们的网站。\n2. 将鼠标指针悬停在顶部的 SUPPORT 选项卡上。\n\
+  3. 单击代码下载与勘误。\n4. 在搜索框中输入书名。\n5. 选择你要下载代码文件的书籍。\n6. 从下拉菜单中选择你购买此书的地方。\n7. 单击代码下载。\n\
+  \n文件下载完成后，请确保使用最新版本的以下工具解压或提取文件夹：\n\n- WinRAR / 7-Zip for Windows\n- Zipeg / iZip\
+  \ / UnRarX for Mac\n- 7-Zip / PeaZip for Linux\n\n本书的代码包也托管在 GitHub 上，地址为 https://github.com/PacktPublishing/Yocto-for-Raspberry-Pi。我们还在丰富的图书和视频目录中提供了其他代码包，地址为\
+  \ https://github.com/PacktPublishing/。去看看吧！\n\n## 下载本书的彩色图片\n\n我们还为你提供了一个包含本书中使用的屏幕截图/图表彩色图片的\
+  \ PDF 文件。彩色图片将帮助你更好地理解输出中的变化。你可以从 https://www.packtpub.com/sites/default/files/downloads/YoctoforRaspberryPi_ColorImages.pdf\
+  \ 下载此文件。\n\n## 勘误\n\n虽然我们已尽一切努力确保内容的准确性，但错误仍难免发生。如果你在我们的某本书中发现错误——无论是文本中的错误还是代码中的错误——我们将不胜感激，如果你能将其报告给我们。这样做，你可以避免其他读者感到沮丧，并帮助我们改进本书的后续版本。如果你发现任何勘误，请访问\
+  \ http://www.packtpub.com/submit-errata，选择你的书籍，单击 **勘误提交表单** 链接，并输入你的勘误详细信息。一旦你的勘误得到验证，你的提交将被接受，勘误将上传到我们的网站，或添加到该书名下勘误部分的任何现有勘误列表中。\n\
+  \n要查看之前提交的勘误，请访问 https://www.packtpub.com/books/content/support 并在搜索字段中输入书名。所需信息将出现在\
+  \ **勘误** 部分下。\n\n\n\n\n\n## 盗版\n\n互联网上的受版权保护材料盗版是所有媒体领域持续存在的问题。在 Packt，我们非常重视对我们的版权和许可的保护。如果您在互联网上以任何形式发现我们作品的非法副本，请立即向我们提供位置地址或网站名称，以便我们可以采取补救措施。\n\
+  \n请通过 copyright@packtpub.com 联系我们，并提供涉嫌盗版材料的链接。\n\n感谢您帮助保护我们的作者，以及我们为您提供有价值内容的能力。\n\
+  \n## 问题\n\n如果您对本书的任何方面有问题，可以通过 questions@packtpub.com 联系我们，我们将竭尽力解决问题。\n\n# 第 1\
+  \ 章 认识 Yocto 项目\n\n在本章中，我们将了解 Yocto 项目及其主要原则。本书中使用的所有概念都将在这里介绍。我们将讨论 Yocto 项目的历史、构建系统、Poky、OpenEmbedded-Core、BitBake、元数据以及\
+  \ Yocto 项目工作流程。\n\n## Yocto 项目\n\nYocto 项目是一个涵盖相当广泛的嵌入式 Linux 技术的伞形项目。它不是一个 Linux\
+  \ 发行版，如 Yocto 项目网站所述：\n\n> \"Yocto 项目是一个开源协作项目，提供模板、工具和方法，帮助您为嵌入式产品创建基于 Linux 的定制系统，无论硬件架构如何。\"\
+  \n\n由 Linux 基金会赞助，Yocto 项目不仅仅是一个构建系统。它提供工具、流程、模板和方法，以便开发人员可以快速为嵌入式设备（树莓派、Beagleboard、Nitrogen6x、SAMA5D3、Olinuxino\
+  \ 等）或 QEMU 创建和部署产品。构成 Yocto 项目的两个主要组件是：\n\n- Poky：这是构建系统（参考发行版）。\n- BitBake：这是调度程序。它是一个基于\
+  \ Gentoo 发行版的工具。\n\n在 2010 年 11 月左右，Linux 基金会宣布这项工作将继续作为由 Linux 基金会赞助的项目，隶属于 Yocto\
+  \ 项目（由 Linux 基金会 Fellow Richard Purdie 担任架构师）。随后确立，Yocto 项目和 OpenEmbedded 将针对名为\
+  \ OE-Core 的核心元数据包集进行协调，结合 Poky 和 OpenEmbedded 的优点，并增加对其他组件的分层使用。\n\n## 了解构建系统\n\n\
+  如前所述，我们正处于 Yocto 项目的构建系统世界中。构建系统使您能够：\n\n- 编译或交叉编译应用程序\n- 打包应用程序\n- 测试输出二进制文件和生态系统兼容性\n\
+  - 部署生成的镜像\n\n要执行这些步骤，存在多种工具。其中一些如下：\n\n- Buildroot (http://buildroot.uclibc.org/)\n\
+  - LTIB (http://ltib.org/)\n- OpenWRT (https://openwrt.org/)\n- Yocto/OpenEmbedded\
+  \ (https://www.yoctoproject.org/)\n\n例如，Buildroot 是一组用于嵌入式系统自动生成的 makefile。它支持编译引导加载程序（例如\
+  \ U-Boot）、内核（zImage 或 bzImage），以及通过 BusyBox 和第三方应用程序进行的基本控制。Buildroot 可在各种架构上运行，例如\
+  \ ARM、x86 和 MIPS。欲了解更多信息，请参阅 https://buildroot.org/docs.html 上的英文完整文档。\n\n![](img/76681dcfb8cd2bd107d0c06ab088f916_30_0.png)\n\
+  \n> \"Buildroot 是由一家名为 Free Electrons 的法国公司部分维护的工具，该公司专注于嵌入式 Linux 开发。\"\n\n与本书中将探索的\
+  \ Yocto 项目相比，Buildroot 是一种更为简单的方法。Buildroot 更多致力于固件生成，而 Yocto/OpenEmbedded 则面向发行版。Buildroot\
+  \ 提供 700 个配方，而 Yocto 项目则提供超过 8000 个。\n\n## 核心组件\n\nYocto 项目的核心组件（其他可用工具为可选）如下：\n\
+  \n- BitBake\n- OpenEmbedded-Core\n- Poky\n- BSP 层（meta-raspberry、meta-fsl-arm、meta-ti、meta-intel、meta-sunxi\
+  \ 等）\n\n下图显示了本书中将发现的所有层。我们将通过各种示例学习所有工具，以便更好地理解。\n\n![](img/76681dcfb8cd2bd107d0c06ab088f916_32_0.png)\n\
+  \n## 什么是 Poky？\n\nPoky 是 *参考* Yocto 项目发行版。它包含 OpenEmbedded 的一些基本组件（称为构建系统）以及一组用于为多个目标创建嵌入式发行版的元数据。它与平台无关，并使用\
+  \ BitBake 工具（任务调度器）、OpenEmbedded-Core 和一组默认元数据进行交叉编译，如下图所示。它提供构建和组合成千上万个分布式开源项目的机制。\n\
+  \nPoky 构建系统有望在工业界成为参考，正如 Wind River、Intel、Montavista 和 Mentor Graphics 等行业领导者所证明的那样。\n\
+  \n![](img/76681dcfb8cd2bd107d0c06ab088f916_33_0.png)\n\n### 注意\n\nAngstrom (http://www.angstrom-distribution.org/)\
+  \ 是另一种基于 OpenEmbedded-Core 的发行版。您可以将 Angstrom 和 Poky 视为近亲，因为 Poky 也是基于 OpenEmbedded-Core。\n\
+  \n## 头号人物 - BitBake\n\nBitBake，构建引擎，是一个任务调度器（类似于 GNU Make），用于解析多个脚本（例如 shell 和 Python）。\n\
+  \n一旦环境构建完成，BitBake 将执行请求的任务。如果未提供任务，BitBake 将运行名为 build 的默认任务。\n\n要运行任务，BitBake\
+  \ 首先会查找名为 do_<task_name> 的环境变量，该变量将包含要执行的任务代码（Python 或 shell）。因此，要编译 Yocto 配方，请使用\
+  \ do_compile 变量中包含的代码。\n\n简而言之，根据配方（或元数据）中包含的信息，它会从互联网、本地目录或版本控制系统（例如 Git）下载项目源代码，然后按动态生成的依赖图确定的顺序进行构建。最后，它安装二进制文件，生成相应的软件包，并构建最终镜像，该镜像可以安装在目标设备上（对我们来说是树莓派）。\n\
+  \n下图显示了 BitBake 的工作原理：\n\n![](img/76681dcfb8cd2bd107d0c06ab088f916_34_0.png)\n\n\
+  ## OpenEmbedded-Core\n\nOpenEmbedded-Core 元数据集合（下图中的 meta）提供了 Poky 构建工具的引擎。它旨在提供核心功能（多个配方）。它支持六种不同的处理器架构（ARM、x86、x86-64、PowerPC、MIPS\
+  \ 和 MIPS64），仅支持 QEMU 模拟的机器。\n\n![](img/76681dcfb8cd2bd107d0c06ab088f916_35_0.png)\n\
+  \nOpenEmbedded-Core 的组织结构如下：\n\n- classes\n- conf\n- files\n- lib\n- recipes-bsp\n\
+  - recipes-connectivity\n- recipes-core\n- recipes-devtools\n- recipes-extended\n\
+  - recipes-gnome\n- recipes-graphics\n- recipes-kernel\n- recipes-lsb4\n- recipes-multimedia\n\
+  - recipes-qt\n- recipes-rt\n- recipes-sato\n- recipes-support\n- site\n- COPYING.GPLv2\n\
+  - COPYING.MIT\n- recipes.txt\n\n该层包含不同的配方，描述如何获取、配置、编译和打包应用程序及镜像。\n\n### 注意\n\n\
+  在本书的其余部分，我们将把此层与树莓派的 BSP 层 **meta-raspberrypi** 混合使用。\n\n## 探索元数据\n\n**元数据**由 Python\
+  \ 和 shell 脚本文本文件（.conf、.bb、.bbclass 和 .inc）混合组成，提供了一个极其灵活的系统。元数据既指构建指令本身，也指用于控制构建哪些内容以及影响如何构建的数据。元数据还包括用于指示使用哪些软件版本及其获取来源的命令和数据。Poky\
+  \ 使用它来扩展 OpenEmbedded-Core，并包含两个不同的层，它们是另一个元数据子集。详情如下：\n\n- **meta-yocto**：此层提供默认和受支持的发行版、可视化品牌以及元数据跟踪信息（维护者、上游状态等）\n\
+  - **meta-yocto-bsp**：此层在此基础上提供硬件参考板支持（BSP），用于 Poky\n\n我们将在第 4 章 _了解 BitBake 工具。_\
+  \ 中深入探讨元数据。\n\n\n\n\n\n## Yocto Project - 工作流\n\n以下图表从高层次展示了 Yocto Project 开发环境，以呈现交叉编译框架：\n\
+  \n![](img/76681dcfb8cd2bd107d0c06ab088f916_38_0.png)\n\n让我们来看看图中各组件代表的含义：\n\n- 用户配置：这是你可以用来控制构建过程的元数据。\n\
+  - 元数据层：这些是提供软件、机器和发行版元数据的各种层。\n- 源文件：这些包含上游版本、本地项目以及源代码管理（Git、SVN 等）。\n- 构建系统：这些是在\
+  \ BitBake 控制下的进程。此模块详细说明了 BitBake 如何获取源文件、应用补丁、完成编译、分析输出以生成软件包、创建和测试软件包、生成镜像以及生成交叉开发工具。\n\
+  - 软件包馈送：这些是包含输出软件包（RPM、DEB 或 IPK）的目录，随后用于构建系统生成的镜像或 SDK。这些馈送还可以使用 Web 服务器或其他方式复制和共享，以便在运行时扩展或更新设备上的现有镜像（前提是启用了运行时软件包管理）。\n\
+  - 镜像：这些是开发过程生成的镜像（构成操作系统的各个部分，例如内核镜像、引导加载程序和根文件系统）。\n- 应用程序开发 SDK：这些是与镜像一起生成或单独由\
+  \ BitBake 生成的交叉开发工具。\n\n## 摘要\n\n本章介绍了 Yocto Project 的工作原理、构成其核心的组件（如 Poky、OpenEmbedded-Core\
+  \ 和 BitBake）以及它们在 Yocto Project 中的协作方式。\n\n在下一章中，我们将通过不同的步骤来练习 Yocto Project 的工作流程，以下载、配置和准备\
+  \ Poky 构建环境，以便为树莓派生成我们的第一个 Poky 镜像。\n\n# 第 2 章 为树莓派构建我们的第一个 Poky 镜像\n\n在本章中，我们将尝试理解\
+  \ Poky 工作流程的基本概念。使用 Linux 命令行，我们将执行下载、配置和准备 Poky 树莓派环境以及生成可由目标设备使用的镜像所需的不同步骤。\n\n\
+  ## 为主机系统安装所需软件包\n\n主机系统配置所需的步骤取决于所使用的 Linux 发行版。事实上，建议使用由 Poky 维护和支持的 Linux 发行版之一。这样可以避免在设置主机系统时浪费时间和精力。目前，Yocto\
+  \ Project 支持以下发行版：\n\n- Ubuntu 12.04 (LTS)\n- Ubuntu 13.10\n- Ubuntu 14.04 (LTS)\n\
+  - Fedora release 19 (Schrödinger's Cat)\n- Fedora release 21\n- CentOS release 6.4\n\
+  - CentOS release 7.0\n- Debian GNU/Linux 7.0 (Wheezy)\n- Debian GNU/Linux 7.1 (Wheezy)\n\
+  - Debian GNU/Linux 7.2 (Wheezy)\n- Debian GNU/Linux 7.3 (Wheezy)\n- Debian GNU/Linux\
+  \ 7.4 (Wheezy)\n- Debian GNU/Linux 7.5 (Wheezy)\n- Debian GNU/Linux 7.6 (Wheezy)\n\
+  - openSUSE 12.2\n- openSUSE 12.3\n- openSUSE 13.1\n\n### 注意\n\n即使你的发行版未在此列出，也不意味着\
+  \ Poky 无法工作，但结果不作保证。在本书中，你将看到关于在 Ubuntu 发行版上使用 Poky 的说明。如果你想了解支持的 Linux 发行版的更多信息，可以访问此链接：http://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html。\n\
+  \n## Poky on Ubuntu\n\n以下列表按功能显示了在受支持的 Ubuntu 或 Debian Linux 发行版上 Poky 所需的软件包：\n\
+  \n- 下载工具：wget 和 git-core\n- 解压缩工具：unzip 和 tar\n- 编译工具：gcc-multilib、build-essential\
+  \ 和 chrpath\n- 字符串操作工具：sed 和 gawk\n- 文档管理工具：texinfo、xsltproc、docbook-utils、fop、dblatex\
+  \ 和 xmlto\n- 补丁管理工具：patch 和 diffstat\n\n总结一下，以下是在无头系统上输入的命令：\n\n```\n$ sudo apt-get\
+  \ install gawk wget git-core diffstat unzip\ntexinfo gcc-multilib build-essential\
+  \ chrpath\n```\n\n## Poky on Fedora\n\n如果你想在 Fedora 上使用 Poky，只需键入以下命令行：\n\n```\n\
+  $ sudo yum install gawk make wget tar bzip2 gzip python unzip\nperl patch diffutils\
+  \ diffstat git cpp gcc gcc-c++ glibc-devel\ntexinfo chrpath ccache perl-Data-Dumper\
+  \ perl-Text-ParseWords\nperl-Thread-Queue socat\n```\n\n## 下载 Poky 元数据\n\n安装完所有必要软件包后，现在可以下载\
+  \ Poky 的源代码了。这是通过 Git 工具完成的：\n\n```\n$ git clone git://git.yoctoproject.org/poky\
+  \ (branch master)\n```\n\n![](img/76681dcfb8cd2bd107d0c06ab088f916_44_0.png)\n\n\
+  ### 注意\n\n另一种方法是直接从此仓库下载 tar.bz2 文件：https://www.yoctoproject.org/downloads\n\n为避免所有危险和有问题的操作，强烈建议创建并切换到特定的本地分支：\n\
+  \n```\n$ cd poky\n$ git checkout daisy -b work_branch\n```\n\n## 下载树莓派 BSP 元数据\n\
+  \n此时，我们只有参考系统（Poky）的基础，而没有对 Broadcom BCM SoC 的支持。基本上，Poky 提出的 BSP 仅提供以下目标：\n\n```\n\
+  $ ls meta/conf/machine/*.conf\nbeaglebone.conf\nedgerouter.conf\ngenericipx86-64.conf\n\
+  genericipx86.conf\nmpc8315e-rdb.conf\n```\n\n此外，还有 OE-Core 提供的：\n\n```\n$ ls meta/conf/machine/*.conf\n\
+  qemuarm64.conf\nqemuarm.conf\nqemumips64.conf\nqemumips.conf\nqemuppc.conf\nqemux86-64.conf\n\
+  qemux86.conf\n```\n\n### 提示\n\n下载代码包的详细步骤在本书的前言中有说明。请查看。本书的代码包也托管在 GitHub 上：https://github.com/PacktPublishing/Yocto-for-Raspberry-Pi。我们还从丰富的图书和视频目录中提供其他代码包，可在\
+  \ https://github.com/PacktPublishing/ 上查看。去看看吧！\n\n为了为我们的目标生成兼容系统，我们将在这个阶段花费更多时间，并下载特定的层（BSP\
+  \ Layer）到树莓派：\n\n```\n$ git clone git://git.yoctoproject.org/meta-raspberrypi\n\
+  ```\n\n### 提示\n\n如果你想了解更多关于 git scm 的信息，可以访问官方网站：http://git-scm.com/\n\n- bitbake\n\
+  - documentation\n- meta\n- meta-oe\n- meta-raspberrypi\n- meta-selftest\n- meta-skeleton\n\
+  - meta-yocto\n- meta-yocto-bsp\n- rpi-build\n- scripts\n- LICENSE\n- oe-init-build-env\n\
+  - oe-init-build-env-memres\n- README\n- README.hardware\n\n现在，我们可以验证我们是否拥有平台的配置\
+  \ **元数据**（raspberrypi.conf 文件）：\n\n```\n$ ls meta-raspberrypi/conf/machine/*.conf\n\
+  raspberrypi.conf\n```\n\n以下截图显示了 meta-raspberrypi 文件夹：\n\n- classes\n- conf\n- files\n\
+  - recipes-bcm\n- recipes-bsp\n- recipes-core\n- recipes-devtools\n- recipes-graphics\n\
+  - recipes-kernel\n- recipes-multimedia\n- COPYING.MIT\n- README\n- rpi.patch\n\n\
+  本章和以下章节中展示的示例和代码使用的是 Yocto Project 版本 1.7 和 Poky 版本 12.0。作为参考，代号是 Dizzy。\n\n既然我们已经全新下载了环境，现在可以继续初始化环境，并通过各种配置文件配置我们的镜像。\n\
+  \n## oe-init-build-env 脚本\n\n如倒数第二张截图所示，Poky 目录包含一个名为 oe-init-build-env 的脚本。这是一个用于构建环境配置/初始化的脚本。它不是为了直接执行，而必须通过\
+  \ source 加载。它的工作（其中之一）是初始化若干环境变量，并将自身置于参数中指定的构建目录中。脚本必须按以下方式运行：\n\n```\n$ source\
+  \ oe-init-build-env [build-directory]\n```\n\n在这里，build-directory 是设置环境的目录名称的可选参数（例如，我们可以在单个\
+  \ Poky 源代码树中使用多个构建目录）。如果未指定，则默认为 build。build-directory 文件夹是我们执行构建的地方。但是，为了标准化步骤，我们将在整本书中使用以下命令来初始化环境：\n\
+  \n```\n$ source oe-init-build-env rpi-build\n### Shell environment set up for builds.\
+  \ ###\nYou can now run 'bitbake <target>'\nCommon targets are:\ncore-image-minimal\n\
+  core-image-sato\nmeta-toolchain\nadt-installer\nmeta-ide-support\nYou can also run\
+  \ generated qemu images with a command like\n'runqemu qemux86'\n```\n\n当我们初始化构建环境时，它会在\
+  \ rpi-build 内创建一个目录（conf 目录）。该文件夹包含两个重要文件：\n\n- local.conf：这包含用于配置 Bitbake 行为的参数。\n\
+  - bblayers.conf：这列出了 Bitbake 在其实现中考虑的不同层。\n- 列表分配给 BBLayers 变量。\n\n\n\n\n\n## 编辑\
+  \ local.conf 文件\n\nrpi-build/conf/local.conf 文件是一个可以配置构建过程各个方面的文件。正是通过此文件，我们可以选择目标机器（MACHINE\
+  \ 变量）、发行版（DISTRO 变量）、包类型（PACKAGE_CLASSES 变量）以及主机配置（例如 PARALLEL_MAKE）。我们需要从默认值中更改的最小变量集如下：\n\
+  \n```\nBB_NUMBER_THREADS ?= \"${@oe.utils.cpu_count()}\"\nPARALLEL_MAKE ?= \"-j\
+  \ ${@oe.utils.cpu_count()}\"\nMACHINE ?= \"raspberrypi\"\n```\n\nBB_NUMBER_THREADS\
+  \ 变量决定 BitBake 将并行执行的任务数量（这些是在 Yocto 下的任务；我们不一定在谈论编译）。默认情况下，在 build/conf/local.conf\
+  \ 中，该变量初始化为 ${@oe.utils.cpu_count()}，对应于主机系统上检测到的核心数量（/proc/cpuinfo）。\n\nPARALLEL_MAKE\
+  \ 变量对应于 make 的 -j 选项，用于指定 GNU Make 在编译任务中可以并行运行的进程数量。同样，可用核心数量定义了所使用的默认值。\n\nMACHINE\
+  \ 变量是我们确定要为 Raspberry Pi 构建的目标机器的地方（在 .conf 文件中定义；在我们的案例中，它是 raspberrypi.conf）。\n\
+  \n## 编辑 bblayers.conf 文件\n\n现在我们仍然需要将特定层添加到我们的目标中。这将使来自该层的配方可用于我们的构建。因此，我们应该编辑 build/conf/bblayers.conf\
+  \ 文件：\n\n```\n# LAYER_CONF_VERSION is increased each time build/conf\n#bblayers.conf\n\
+  # changes incompatibly\nLCONF_VERSION = \"6\" BBPATH = \"${TOPDIR}\" BBFILES ?=\
+  \ \"\"\nBBLAYERS ?= \" \\\n/home/packt/RASPBERRYPI/poky/meta \\\n/home/packt/RASPBERRYPI/poky/meta-yocto\
+  \ \\\n/home/packt/RASPBERRYPI/poky/meta-yocto-bsp \\\n\"BBLAYERS_NON_REMOVABLE ?=\
+  \ \" \\\n/home/packt/RASPBERRYPI/poky/meta \\\n/home/packt/RASPBERRYPI/poky/meta-yocto\
+  \ \\\n\"\n```\n\n添加以下行：\n\n```\n# LAYER_CONF_VERSION is increased each time build/conf\n\
+  #bblayers.conf\n# changes incompatibly\nLCONF_VERSION = \"6\" BBPATH = \"${TOPDIR}\"\
+  \ BBFILES ?= \"\"\nBBLAYERS ?= \" \\\n/home/packt/RASPBERRYPI/poky/meta \\\n/home/packt/RASPBERRYPI/poky/meta-yocto\
+  \ \\\n/home/packt/RASPBERRYPI/poky/meta-yocto-bsp \\\n/home/packt/RASPBERRYPI/poky/meta-raspberrypi\
+  \ \\\n\"BBLAYERS_NON_REMOVABLE ?= \" \\\n/home/packt/RASPBERRYPI/poky/meta \\\n\
+  /home/packt/RASPBERRYPI/poky/meta-yocto \\\n\"\n```\n\n当然，您需要根据自己的安装情况调整绝对路径（此处为\
+  \ /home/packt/RASPBERRYPI）。\n\n## 构建 Poky 镜像\n\n在开发的这个阶段，让我们来看看可用且经过认证适用于我们平台的镜像（.bb\
+  \ 文件）。\n\n## 镜像选择\n\nPoky 提供了几种预先设计的镜像配方，我们可以使用它们来构建自己的二进制镜像。我们可以通过从 poky 目录运行以下命令来查看可用镜像的列表：\n\
+  \n```\n$ ls meta*/recipes*/images/*.bb\n```\n\n所有配方提供的镜像本质上是已解包和配置的包集合，生成可用于实际硬件的文件系统（有关不同镜像的更多信息，您可以访问\
+  \ ( http://www.yoctoproject.org/docs/latest/mega-manual/mega-manual.html#ref-images\
+  \ ) ）。\n\n接下来，这是可用镜像的简要表示：\n\n![](img/76681dcfb8cd2bd107d0c06ab088f916_52_0.png)\n\
+  \n我们可以将 meta-raspberrypi 提议的层添加到所有这些层中：\n\n```\n$ ls meta-raspberrypi/recipes-core/images/*.bb\n\
+  rpi-basic-image.bb\nrpi-hwup-image.bb\nrpi-test-image.bb\n```\n\n- rpi-hwup-image.bb：这是一个基于\
+  \ core-image-minimal 的镜像。\n- rpi-basic-image.bb：这是一个基于 rpi-hwup-image.bb 并添加了一些功能（启动画面）的镜像。\n\
+  - rpi-test-image.bb：这是一个基于 rpi-basic-image.bb 并包含 meta-raspberrypi 中的一些包的镜像。\n\n\
+  在本章的其余部分，我们将从这三个配方中选择一个。请注意，这些文件（.bb）像所有其他文件一样描述配方。它们逻辑地组织，在这里，我们拥有用于为 Raspberry\
+  \ Pi 创建镜像的配方。\n\n## 运行 BitBake\n\n此时，我们需要启动 **BitBake**，即构建引擎，它将解析包含您作为参数传递的镜像的所有配方（在我们的第一个示例中，我们可以使用\
+  \ `rpi-basic-image`）：\n\n```\n$ bitbake rpi-basic-image\n```\n\n```\nLoading cache:\
+  \ 100%\n|###############################################################################|\n\
+  #################################################################################\n\
+  ###| ETA:  00:00:00\n########################################\nLoaded 1352 entries\
+  \ from dependency cache.\nNOTE: Resolving any missing task queue dependencies\n\
+  Build Configuration:\nBB_VERSION = \"1.25.0\"\nBUILD_SYS = \"x86_64-linux\"\nNATIVELSBSTRING\
+  \ = \"Ubuntu-14.04\"\nTARGET_SYS = \"arm-poky-linux-gnueabi\"\nMACHINE = \"raspberrypi\"\
+  \nDISTRO = \"poky\"\nDISTRO_VERSION = \"1.7\"\nTUNE_FEATURES = \"arm armv6 vfp\"\
+  \nTARGET_FPU = \"vfp\"\nmeta\nmeta-yocto\nmeta-yocto-bsp =\n\"master:08d3f44d784e06f461b7d83ae9262566f1cf09e4\"\
+  \nmeta-raspberrypi =\n\"master:6c6f44136f7e1c97bc45be118a48bd9b1fef1072\"\nNOTE:\
+  \ Preparing RunQueue\nNOTE: Executing SetScene Tasks\nNOTE: Executing RunQueue Tasks\n\
+  ```\n\n启动后，Bitbake 首先浏览环境提供的所有文件（`.bb`, `.bbclass`）并将信息存储在缓存中。\n\n虽然 Bitbake 的解析器是并行化的，但第一次执行总是会更长一些（只多几秒钟），因为它需要构建缓存。然而，后续执行将几乎是瞬间完成的，因为\
+  \ Bitbake 加载缓存。从前面的命令可以看到，在执行任务列表之前，Bitbake 显示了详细的版本跟踪（目标、版本、操作系统等等）。最后，Bitbake\
+  \ 开始执行任务并显示进度。\n\n根据您的设置，您可以去喝杯咖啡，甚至吃些披萨。通常，在此之后，如果一切顺利，您会很高兴地发现 `tmp/` 子目录的目录结构（`rpi-build`）通常已被填充。构建目录（`rpi-build`）在镜像创建后包含大约\
+  \ 20 GB 的数据。\n\n经过几个小时的构建后，我们可以为结果和我们目标的系统镜像的创建而欢欣鼓舞：\n\n```\n$ ls rpi-build/tmp/deploy/images/raspberrypi/*sdimg\n\
+  rpi-basic-image-raspberrypi.rpi-sdimg\n```\n\n正是这个文件将用于创建我们的可启动 SD 卡。\n\n## 创建 SD\
+  \ 卡\n\n现在您的环境已准备就绪，您可以使用以下命令创建 SD 卡（请记住将 /dev/sdX 改为正确的设备名称，并小心不要选择错误的设备名称而损坏硬盘）：\n\
+  \n```\n$ sudo dd if=rpi-basic-image-raspberrypi.rpi-sdimg of=/dev/sdX\nbs=1M\n```\n\
+  \n复制完成后，您可以使用以下命令检查操作是否成功（参见 mmcblk0）：\n\n```\n$ lsblk\nNAME        MAJ:MIN RM \
+  \  SIZE RO TYPE MOUNTPOINT\nmmcblk0     179:0    0   3,7G  0 disk\n├─mmcblk0p1 179:1\
+  \    0    20M  0 part\n/media/packt/raspberrypi\n└─mmcblk0p2 179:2    0   108M \
+  \ 0 part /media/packt/f075d6df-d8b8-4e85-a2e4-36f3d40035c3c\n```\n\n您还可以查看界面左侧：\n\
+  \n![](img/76681dcfb8cd2bd107d0c06ab088f916_56_0.png)\n\n## 在 Raspberry Pi 上启动镜像\n\
+  \n我们现在来到了本章无疑最令人期待的时刻：使用全新的 Poky 镜像启动我们的 Raspberry Pi 的时刻。\n\n您只需将 SD 卡插入插槽，将 HDMI\
+  \ 电缆连接到显示器，并连接电源（还建议使用鼠标和键盘来关闭设备，除非您计划直接拔掉电源并可能损坏引导分区）。\n\n连接电源后，您应该会看到 Raspberry\
+  \ Pi 启动画面：\n\n![](img/76681dcfb8cd2bd107d0c06ab088f916_57_0.png)\n\n### 注意\n\nYocto/Poky\
+  \ 发行版的登录用户是 root。\n\n\n\n\n\n## 摘要\n\n在本章中，我们学习了设置 Poky 并构建第一个镜像所需的步骤。我们在 Raspberry\
+  \ Pi 上运行了该镜像，从而很好地了解了可用功能。\n\n在下一章中，您将了解 Hob，它为 BitBake 提供了人性化的界面。我们将使用它来构建镜像并进一步自定义。之后，您将了解另一种工具\
+  \ Toaster，它是 BitBake 的 Web 界面。\n\n# 第 3 章 掌握使用 Hob 和 Toaster 的构建\n\n在本章中，我们将探讨 Yocto\
+  \ Project 中包含的两个强大工具。在本章的第一部分，我们将讨论 Hob，它是 BitBake 的图形界面。在第二部分，我们将使用 Toaster，这是一个\
+  \ Web 界面，使您可以使用简单的浏览器（例如 Firefox）跟进构建的高级部分。\n\n## Hob\n\n为了探索 Hob，我们将在本节中梳理其正常运行所需的不同基本步骤。\n\
+  \n## 为 Hob 准备环境\n\n与第 2 章《为 Raspberry Pi 构建我们的第一个 Poky 镜像》一样，第一步是初始化环境。回忆此命令：\n\n\
+  ```\n$ source oe-init-build-env rpi-build\n```\n\n启动命令后，终端将重定向到 rpi-build 目录。\n\n\
+  ## 运行 Hob\n\n现在我们已初始化构建所需的所有变量，可以使用以下命令启动 Hob 界面：\n\n```\n$ hob\n```\n\n运行此命令后，Hob\
+  \ 将尝试解析配置文件（local.conf 和 bblayers.conf），以查找可用于创建镜像的元数据。完成此步骤后，您将看到界面启动屏幕，如下所示：\n\
+  \n![](img/76681dcfb8cd2bd107d0c06ab088f916_62_0.png)\n\n现在，我们可以从 Hob 提供的列表中选择所需的机器。选择\
+  \ **raspberrypi** 机器。\n\n> **注意**\n> 您选择的机器选项对应于 `local.conf` 文件中的 `MACHINE` 变量。\n\
+  \n您将看到以下进度屏幕：\n\n### 选择机器\n\n您的选择是您正在为其构建镜像的目标机器的配置文件。\n\nraspberrypi\n\n图层 为机器、软件等添加支持。\n\
+  \n填充配方 停止\n\n添加层非常简单。我们只需单击 Layers 按钮，如本屏幕截图所示：\n\n### 镜像配置\n\n#### 选择机器\n\n您的选择是您正在为其构建镜像的目标机器的配置文件。\n\
+  \nraspberrypi\n\n图层 为机器、软件等添加支持。\n\n#### 选择镜像配方\n\n镜像配方是您想要的镜像类型的起点。您可以按原样构建它们，也可以编辑它们以满足您的需求。\n\
+  \n--选择一个镜像配方--\n\n+   # 图层\n+   不可移除 /home/pjtexier/Documents/RASPBERRYPI/BSP/poky/meta\n\
+  +   不可移除 /home/pjtexier/Documents/RASPBERRYPI/BSP/poky/meta-yocto\n+   /home/pjtexier/Documents/RASPBERRYPI/BSP/poky/meta-yocto-bsp\
+  \ [X]\n+   /home/pjtexier/Documents/RASPBERRYPI/BSP/poky/meta-oe/meta-multimedia\
+  \ [X]\n+   /home/pjtexier/Documents/RASPBERRYPI/BSP/poky/meta-raspberrypi [X]\n\
+  +   + 添加图层\n+   [取消] [OK]\n\n选择目标机器后，我们需要选择要创建的镜像。\n\n像在 <u>第 2 章</u>、《为 Raspberry\
+  \ Pi 构建我们的第一个 Poky 镜像》中一样，我们将为示例选择 **rpi-basic-image**：\n\n一个小镜像，仅足以允许设备启动。\n\n\
+  下一步（如果您想修改默认配置）是通过单击 Advanced configuration 选择高级配置选项，如以下两个屏幕截图所示。这些选项可能是镜像类型（例如\
+  \ cpio.gz、ext2.bz2 和 ext3.gz）或软件包格式（IPK、DEB 或 RPM）。\n\n#### 选择机器\n\n+   - raspberrypi\n\
+  \n![](img/76681dcfb8cd2bd107d0c06ab088f916_66_0.png)\n\n#### 选择镜像配方\n\n+   - rpi-basic-image\n\
+  \n一个小镜像，仅足以允许设备启动。\n\n![](img/76681dcfb8cd2bd107d0c06ab088f916_66_1.png)\n\n####\
+  \ 高级配置\n\n+   - btrfs\n+   - cpio\n+   - cpio.gz\n+   - cpio.lz4\n+   - cpio.lzma\n\
+  +   - cpio.xz\n+   - cramfs\n+   - elf\n+   - ext2\n+   - ext2.bz2\n+   - ext2.gz\n\
+  +   - ext2.lzma\n+   - ext3\n+   - ext3.gz\n+   - hddimg\n+   - iso\n+   - jffs2\n\
+  +   - jffs2.sum\n+   - squashfs\n+   - squashfs-lzo\n+   - squashfs-xz\n+   - tar\n\
+  +   - tar.bz2\n+   - tar.gz\n+   - tar.lz4\n+   - tar.xz\n+   - ubi\n+   - ubifs\n\
+  +   - vmdk\n\n+   - 镜像类型\n+   - 输出\n\n##### 软件包格式\n\n根文件系统软件包格式\n\n+   - ipk\n\n\
+  ##### 其他软件包格式\n\n+   - deb\n+   - rpm\n\n##### 镜像大小\n\n镜像基本大小（MB）\n\n+   - 64\n\n\
+  其他可用空间（MB）\n\n+   - 0\n\n##### 许可\n\n+   - 排除 GPLv3 软件包\n\n##### SDK\n\n+   - 填充\
+  \ SDK\n+   - x86_64\n\n+   - 取消\n+   - 保存\n\n+   - 编辑镜像配方\n+   - 构建镜像\n\n此时，我们可以通过单击\
+  \ **构建镜像** 按钮构建最终镜像。如果要修改镜像的配方，只需单击 **编辑镜像配方** 按钮。\n\n### 配置配方和软件包\n\n您可以在以下屏幕截图中查看\
+  \ Hob 中包含的配方列表：\n\n![](img/76681dcfb8cd2bd107d0c06ab088f916_68_0.png)\n\n如您所见，通过选择或取消选择它们，可以轻松添加或删除用于配置镜像的配方。如果单击配方名称，可以查看其版本和许可证等详细信息。下一步是单击\
+  \ **构建软件包** 按钮。完成此操作后，您将看到以下屏幕：\n\n![](img/76681dcfb8cd2bd107d0c06ab088f916_69_0.png)\n\
+  \n在这里，您将看到所选软件包的列表，并可以了解预计镜像大小的值（在右上角），并决定删除一些应用程序以生成更小的镜像。您还可以查看所选软件包的数量和大小。\n\n\
+  > **注意**\n> BitBake 将解析所选软件包的所有依赖项，包括任何所需的其他软件包。\n\n### 构建镜像\n\n正如您所想象的，最后一步是构建我们的镜像（通过单击\
+  \ **构建镜像**）。Hob 会跟踪构建进度，如本屏幕截图所示：\n\n![](img/76681dcfb8cd2bd107d0c06ab088f916_70_0.png)\n\
+  \n构建完成后，您将看到此屏幕：\n\n### 镜像详细信息\n\n您的镜像已就绪\n\n+   名称: rpi-basic-image-edited-20150221-135730-raspberrypi-20150221125730\n\
+  +   创建的文件: ext3, tar.bz2\n+   目录: /home/pjtexier/Documents/RASPBERRYPI/BSP/poky/rpi-build/tmp/deploy/images/raspberrypi\n\
+  +   机器: raspberrypi\n+   镜像配方: rpi-basic-image (edited)\n+   层:\n+   - /home/pjtexier/Documents/RASPBERRYPI/BSP/poky/meta\n\
+  +   - /home/pjtexier/Documents/RASPBERRYPI/BSP/poky/meta-yocto\n+   - /home/pjtexier/Documents/RASPBERRYPI/BSP/poky/meta-yocto-bsp\n\
+  +   - /home/pjtexier/Documents/RASPBERRYPI/BSP/poky/meta-oe/meta-multimedia\n+ \
+  \  - /home/pjtexier/Documents/RASPBERRYPI/BSP/poky/meta-raspberrypi\n+   包含的软件包:\
+  \ 1267\n+   总镜像大小: 16.1 MB\n\n在此屏幕上，Hob 显示构建摘要。可以转到生成文件的目录（rpi-build/tmp/deploy/images/raspberrypi/），您也可以查看构建过程的日志。\n\
+  \n之后，我们可以使用 Hob 镜像为 Raspberry Pi 创建可启动的 SD 卡：\n\n```\n$ sudo dd if=rpi-basic-image-edited-20150221-135730-raspberrypi.rpi-sdimg\
+  \ of=/dev/sdX bs=1M\n```\n\n此时，我们只需将 SD 卡插入 Raspberry Pi，开启开发板，然后开始使用它。\n\n\n\n\n\
+  \n## 探索 Toaster\n\nToaster 是 BitBake 的 Web 界面。Yocto 项目网站对此的描述如下：\n\n> \"Toaster\
+  \ 是 OpenEmbedded 构建系统的应用程序编程接口 (API) 和基于 Web 的界面，该系统使用 BitBake。目前，Toaster 收集并展示有关您构建的信息，您可以使用\
+  \ Web 浏览器进行导航和查询\"\n\n## 在主机系统上安装所需的软件包\n\n为了在首选的 Linux 发行版上正确使用 Toaster，您需要安装 Django\
+  \ 和 South：\n\n```\n$ sudo pip install django==1.6\n$ sudo pip install South==0.8.4\n\
+  ```\n\n### 注意\n\npip 命令使安装 Python 模块变得容易，就像在 Linux 发行版中安装软件包一样。\n\n## 运行 Toaster\n\
+  \n既然我们的系统已准备好使用 Toaster，我们只需使用以下命令来启动服务：\n\n```\n$ source toaster start\n```\n\n\
+  这将产生以下输出：\n\n```\nThe system will start. Syncing... Creating tables ... Installing\
+  \ custom SQL ... Installing indexes ... Installed 0 object(s) from 0 fixture(s)\
+  \ Synced: > django.contrib.staticfiles > django.contrib.humanize > south Not synced\
+  \ (use migrations): - orm - bldcontrol (use ./manage.py migrate to migrate these)\
+  \ Running migrations for orm: - Nothing to migrate. - Loading initial data for orm.\
+  \ Installed 0 object(s) from 0 fixture(s) Starting webserver Webserver address:\
+  \ http://0.0.0.0:8000/ Bitbake server address: 0.0.0.0, server port: 54693 Successful\
+  \ start.\n```\n\n我们现在可以通过 http://0.0.0.0:8000/ 访问我们的 Web 界面。\n\n## 运行 BitBake\n\n\
+  目前，Toaster 不支持通过界面进行配置（未来版本的 Toaster 将添加构建运行和构建自定义功能）。Toaster 收集并展示有关您构建的信息，您可以使用\
+  \ Web 浏览器进行导航和查询。因此，我们必须手动启动 BitBake 来监控构建进度。如 [第 2 章，为树莓派构建我们的第一个 Poky 镜像] 中所示，我们可以使用以下命令启动构建过程：\n\
+  \n```\n$ bitbake rpi-basic-image\n```\n\n构建过程将按以下方式进行：\n\n```\nLoading cache: 100%\n\
+  |###############################################################################\n\
+  ###############################################################################\n\
+  ###############################################################################\n\
+  | ETA:  00:00:00 Loaded 1352 entries from dependency cache. NOTE: Resolving any\
+  \ missing task queue dependencies Build Configuration: BB_VERSION        = \"1.25.0\"\
+  \nBUILD_SYS           = \"x86_64-linux\" NATIVELSBSTRING         = \"Ubuntu-14.04\"\
+  \ TARGET_SYS = \"arm-poky-linux-gnueabi\" MACHINE                       = \"raspberrypi\"\
+  \ DISTRO        = \"poky\" DISTRO_VERSION      = \"1.7\" TUNE_FEATURES         =\
+  \ \"arm armv6 vfp\" TARGET_FPU        = \"vfp\" meta                = meta-yocto\
+  \         meta-yocto-bsp        = \"master:08d3f44d784e06f461b7d83ae9262566f1cf09e4\"\
+  \ meta-raspberrypi     = \"master:6c6f44136f7e1c97bc45be118a48bd9b1fef1072\" NOTE:\
+  \ Preparing RunQueue NOTE: Executing SetScene Tasks NOTE: Executing RunQueue Tasks\n\
+  ```\n\n## 运行 Web 界面\n\n既然我们已启动 BitBake，可以监控该过程（构建过程）的进度，如以下屏幕截图所示。请注意，打开 Toaster\
+  \ 界面的最佳方法是导航至该界面（使用超链接）。\n\n![](img/76681dcfb8cd2bd107d0c06ab088f916_76_0.png)\n\
+  \nToaster 仍处于开发阶段；它很可能成为 Hob 的一个可靠替代品。的确，开发团队希望通过 Web 界面使 BitBake 完全可配置。\n\n## 摘要\n\
+  \n在本章中，我们了解了如何使用 Hob 和 Toaster 等用户友好的界面。我们了解了这些工具的不同功能（配置和功能）。值得注意的是，这些工具为开发团队提供了更好的灵活性。\n\
+  \n在下一章中，我们将了解 BitBake 在 Yocto 项目中发挥的主要作用。我们将发现使我们能够为镜像生成软件包的不同任务。\n\n# 第 4 章 了解\
+  \ BitBake\n\n在本章中，我们将首先探索 Poky 使用的元数据（基本概念）和配方（它们之间的依赖关系）。然后，我们将了解 BitBake 下载源代码的不同方式。我们将通过介绍\
+  \ BitBake 用于创建根文件系统镜像的任务来结束本章。\n\n## BitBake\n\n如前所述，在第 1 章 *了解 Yocto 项目* 中，**BitBake**\
+  \ 是一个任务调度程序（类似于 GNU Make），用于解析 shell 和 Python 脚本。解析的代码生成并运行任务（配置、编译等），这些任务本质上是根据代码依赖关系排序的步骤集合。\n\
+  \n以下是直接摘自 BitBake 用户手册的要点：\n\n- BitBake 根据提供的元数据执行任务，这些元数据构建了任务。元数据存储在配方（.bb）、配置（.conf）和类（.bbclass）文件中，并为\
+  \ BitBake 提供关于要运行哪些任务以及这些任务之间依赖关系的说明。\n- BitBake 包含一个获取库，用于从各种地方获取源代码，例如源代码控制系统或网站。\n\
+  - 要构建的每个单元（例如一段软件）的说明称为配方文件，并包含有关该单元的所有信息（依赖关系、源文件位置、校验和、描述等）。\n- BitBake 包含一个客户端/服务器抽象，可以从命令行使用或作为\
+  \ XMLRPC 服务使用，并且具有多种不同的用户界面。\n\n### 元数据\n\nBitBake 使用的元数据可以有几种不同的形式，如下所示：\n\n- 配置（.conf）文件\n\
+  - 配方（.bb 和 .bbappend 文件）\n- 类（.bbclass 文件）\n- 包含（.inc）文件\n\n### 配置\n\n以 .conf 扩展名表示的配置文件定义了管理项目构建过程的各种配置变量。这些文件分为几个区域，分别定义机器配置选项、发行版配置选项、编译器调优选项、常规通用配置选项和用户配置选项。\n\
+  \n### 类\n\n以 .bbclass 扩展名表示的类文件包含在元数据文件之间共享很有用的信息。BitBake 源代码树目前附带一个名为 base.bbclass\
+  \ 的类元数据文件。您可以在 classes 目录中找到此文件。base.bbclass 文件很特殊，因为它始终自动包含于所有配方和类中。此类包含标准基本任务的定义，例如获取、解包、配置（默认为空）、编译（运行任何现有\
+  \ makefile）、安装（默认为空）和打包（默认为空）。这些任务在项目开发过程中通常由其他类重写或扩展。\n\n### 配方\n\nBitBake 配方（以\
+  \ .bb 文件扩展名表示，例如 bcm2835_1.38.bb）是最基本的元数据文件。这些配方文件为 BitBake 提供以下信息：\n\n- 关于软件包的描述性信息\n\
+  - 配方的版本\n- 现有依赖项\n- 源代码所在位置\n- 源代码是否需要任何补丁\n- 如何编译源代码\n- 在目标机器上安装正在编译的软件包的位置\n\n\
+  ## 解析元数据\n\nBitBake 做的第一件事是解析基础配置元数据（.conf 文件）。基础配置元数据包括 `bblayers.conf` 文件（用于确定\
+  \ BitBake 需要识别哪些层）、所有必要的 `layer.conf` 文件（每个层一个）以及 `bitbake.conf`。数据本身具有多种类型：\n\n\
+  - 配方：包含有关特定软件片段的详细信息。\n- 类数据：提供常见构建信息的抽象（例如，如何构建 Linux 内核）。\n- 配置数据：提供特定于机器的设置、策略决策等。配置数据充当将一切联系在一起的粘合剂。\n\
+  \n`layer.conf` 文件用于构建 BBPATH 和 BBFILES 等关键变量。BBPATH 用于分别在 `conf/` 和 `class/` 目录下搜索配置文件和类文件。BBFILES\
+  \ 用于查找配方文件（.bb 和 .bbappend）。如果没有 `bblayers.conf` 文件，则假设用户已直接在环境中设置 BBPATH 和 BBFILES\
+  \ 变量。\n\n接下来，将使用刚刚构建的 BBPATH 变量搜索 `bitbake.conf` 文件。`bitbake.conf` 文件还可以使用 `include`\
+  \ 或 `require` 指令包含其他配置文件。\n\n\n\n\n\n## Preferences and providers\n\n## 首选项和提供者\n\
+  \nOnce BitBake has realized the \"parsing\" step (analyzing all the recipes), it\
+  \ must know how to build the target. It starts by looking through the PROVIDES variable\
+  \ set in the recipe files. The default PROVIDES value for a recipe is its name (PN).\n\
+  \n一旦 BitBake 完成“解析”步骤（分析所有配方），就必须知道如何构建目标。它首先会查看配方文件中设置的 PROVIDES 变量。配方的默认 PROVIDES\
+  \ 值为其名称（PN）。\n\n### Note\n\n### 注意\n\nPN represents the name of the recipe; PR,\
+  \ the revision of the recipe; and PV, the version of the recipe. For example, when\
+  \ using the recipe rpi-gpio_0.5.9.bb, here is what the values will be:\n\nPN 表示配方名称；PR\
+  \ 表示配方的修订版本；PV 表示配方的版本。例如，使用配方 rpi-gpio_0.5.9.bb 时，值如下：\n\n```\n${PN} = rpi-gpio\n\
+  ${PV} = 0.5.9\n```\n\nSometimes, a target might have multiple providers. A common\
+  \ example is virtual/kernel, which is provided by each kernel recipe (check out\
+  \ meta-raspberrypi/tree/master/recipes-kernel/linux for further information). Each\
+  \ machine often selects the best kernel provider by using a line similar to the\
+  \ following in the machine configuration file. If we look into this following file\
+  \ (meta-raspberrypi/conf/machine/include/rpi-default-providers.inc), we can see\
+  \ some variables:\n\n有时，目标可能有多个提供者。常见示例是 virtual/kernel，由每个内核配方 提供（有关更多信息，请查看 meta-raspberrypi/tree/master/recipes-kernel/linux）。每台机器通常在机器配置文件中使用类似于以下的一行来选择最佳内核提供者。如果我们查看以下文件（meta-raspberrypi/conf/machine/include/rpi-default-providers.inc），可以看到一些变量：\n\
+  \n```\n# RaspberryPi BSP default providers\nPREFERRED_PROVIDER_virtual/kernel =\
+  \ \"linux-raspberrypi\"\nPREFERRED_PROVIDER_u-boot = \"u-boot-rpi\"\n```\n\nIn this\
+  \ case, we have selected the required U-Boot version and kernel for our Raspberry\
+  \ Pi.\n\n在此示例中，我们为 Raspberry Pi 选择了所需的 U-Boot 版本和内核。\n\n## Dependencies\n\n## 依赖项\n\
+  \nIn order to satisfy dependencies, the recipes must declare what they need to have\
+  \ available during the build process.\n\n为满足依赖项，配方必须声明在构建过程中需要可用的内容。\n\nBitBake\
+  \ uses a special mechanism that allows us to list the build-time dependencies and\
+  \ then checks whether all of the rules are satisfied before the build step. For\
+  \ example, if you work with canutils (http://pengutronix.de/software/socket-can/download/canutils/),\
+  \ you have to set this following variable:\n\nBitBake 使用一种特殊机制，允许我们列出构建时依赖项，然后在构建步骤前检查所有规则是否满足。例如，如果您使用\
+  \ canutils（http://pengutronix.de/software/socket-can/download/canutils/），则必须设置以下变量：\n\
+  \n```\nDEPENDS = \"libsocketcan\"\n```\n\nIn this example, **CANUTILS** needs libsocketcan;\
+  \ therefore, BitBake will start by building the libsocketcan package (and installing\
+  \ the headers into rootfs) before building canutils and linking.\n\n在此示例中，**CANUTILS**\
+  \ 需要 libsocketcan；因此，BitBake 将在构建 canutils 并进行链接之前，先构建 libsocketcan 包（并将头文件安装到 rootfs）。\n\
+  \nWhen an application depends on something to run, it is called a runtime dependency\
+  \ (these are packages necessary on the target in order to guarantee proper functioning).\
+  \ In this case, we don't need to set the DEPENDS variable but the RDEPENDS variable\
+  \ in a recipe in order to inform BitBake.\n\n当应用程序运行时依赖于某物时，这称为运行时依赖项（这些是目标上保证正常运行所必需的包）。在这种情况下，我们不需要在配方中设置\
+  \ DEPENDS 变量，而是需要设置 RDEPENDS 变量，以告知 BitBake。\n\n## Fetching\n\n## 获取\n\nThe mechanism\
+  \ used by BitBake to fetch source code is internally called the **fetcher backend**.\
+  \ There are several fetcher backends supported, which can be configured to align\
+  \ user requirements and optimize source code fetching.\n\nBitBake 用于获取源代码的机制在内部称为\
+  \ **fetcher 后端**。支持多个 fetcher 后端，可配置以满足用户要求并优化源代码获取。\n\n![](img/76681dcfb8cd2bd107d0c06ab088f916_87_0.png)\n\
+  \nBitBake supports several protocols for remote file downloads. The most commonly\
+  \ used are http://, https://, and git://. When BitBake executes the do_fetch task\
+  \ in a recipe, it checks the contents of SRC_URI. We will discover, through the\
+  \ various fetchers, how to proceed based on our need.\n\nBitBake 支持多种用于远程文件下载的协议。最常用的是\
+  \ http://、https:// 和 git://。当 BitBake 在配方中执行 do_fetch 任务时，它会检查 SRC_URI 的内容。我们将通过各种\
+  \ fetcher 了解如何根据需求进行操作。\n\n### The local file fetcher\n\n### 本地文件 fetcher\n\nThe\
+  \ local file fetcher submodule handles URLs that begin with `file://`. The filename\
+  \ you specify within the URL can either be an absolute or relative path to a file.\
+  \ For example, with a file called `my_source_file.c`, we must write the `SRC_URI`\
+  \ attribute's content like this:\n\n本地文件 fetcher 子模块处理以 `file://` 开头的 URL。URL 中指定的文件名可以是文件的绝对路径或相对路径。例如，对于名为\
+  \ `my_source_file.c` 的文件，必须将 `SRC_URI` 属性的内容写成如下形式：\n\n```\nSRC_URI = \"file://my_source_file.c\"\
+  \n```\n\n### The HTTP fetcher\n\n### HTTP fetcher\n\nThe HTTP fetcher obtains files\
+  \ from web servers. Internally, the fetcher uses the wget utility.\n\nHTTP fetcher\
+  \ 从 Web 服务器获取文件。在内部，fetcher 使用 wget 实用程序。\n\nIn this example, we will use the bcm2835\
+  \ library. With this submodule, we will retrieve the tar.gz file of this library:\n\
+  \n在此示例中，我们将使用 bcm2835 库。使用此子模块，我们将检索该库的 tar.gz 文件：\n\n```\nSRC_URI = \"http://www.open.com.au/mikem/bcm2835/bcm2835-${PV}.tar.gz\"\
+  \n```\n\n### The Git fetcher\n\n### Git fetcher\n\nOne of the most commonly used\
+  \ source control management systems in use is Git. BitBake has solid support for\
+  \ it, and the Git backend is used when the do_fetch task is run and finds a git://\
+  \ URL at the SRC_URI variable. Here is an example featuring a utility developed\
+  \ by Christophe Blaess. It is a simple command-line tool to help with the use of\
+  \ Linux spidev devices.\n\nGit 是当前最常用的源代码管理系统之一。BitBake 对其提供强大支持，当运行 do_fetch 任务并在\
+  \ SRC_URI 变量中找到 git:// URL 时，将使用 Git 后端。以下示例展示了 Christophe Blaess 开发的一个实用程序。它是一个简单的命令行工具，可帮助使用\
+  \ Linux spidev 设备。\n\n```\nSRCREV = \"cc6a41fdcec60610703ba6db488c621c64952898\"\
+  \n```\n\nThis variable contains the reference to the commit that the version control\
+  \ system will use as a basis. In the case of Git, it is the commit hash.\n\n该变量包含版本控制系统将用作基础的提交引用。对于\
+  \ Git，它是提交哈希。\n\n```\nSRC_URI = \"git://github.com/cpb-/spi-tools.git;protocol=git\"\
+  \n```\n\n### Note\n\n### 注意\n\nWhen the SRCREV variable points to a hash not available\
+  \ in the master branch, we need to use the branch=<branch name> parameter, as follows:\
+  \ SRC_URI = \"git://myserver/myrepo.git;branch=mybranch\". In the cases when the\
+  \ hash used points to a tag that is not available in a branch, we need to use the\
+  \ nobranch=1 option, as follows: SRC_URI = \"git://myserver/myrepo.git;nobranch=1\"\
+  .\n\n当 SRCREV 变量指向 master 分支上不可用的哈希时，需要使用 branch=<branch name> 参数，如下所示：SRC_URI =\
+  \ \"git://myserver/myrepo.git;branch=mybranch\"。当所使用的哈希指向分支上不可用的标记时，需要使用 nobranch=1\
+  \ 选项，如下所示：SRC_URI = \"git://myserver/myrepo.git;nobranch=1\"。\n\nFor further information\
+  \ about the SRC_URI parameter's values, go to http://www.yoctoproject.org/docs/1.6/bitbake-user-manual/bitbake-user-manual.html#var-SRC_URI\
+  \ for some examples.\n\n有关 SRC_URI 参数值的更多信息，请访问 http://www.yoctoproject.org/docs/1.6/bitbake-user-manual/bitbake-user-manual.html#var-SRC_URI\
+  \ 查看示例。\n\n## Understanding BitBake's tasks\n\n## 了解 BitBake 任务\n\nThe bitbake command\
+  \ is the primary interface to the BitBake tool. This chapter presents the bitbake\
+  \ command syntax and provides several execution examples.\n\nbitbake 命令是 BitBake\
+  \ 工具的主要接口。本章介绍了 bitbake 命令语法，并提供了几个执行示例。\n\nFor example, if you want to build a\
+  \ specific recipe, run the following command:\n\n例如，如果要构建特定的配方，请运行以下命令：\n\n```\n\
+  $ bitbake <recipe>\n```\n\nBitBake runs a set of scheduled tasks. When we wish to\
+  \ run a specific task, we can use the following command:\n\nBitBake 运行一组计划任务。当我们希望运行特定任务时，可以使用以下命令：\n\
+  \n```\n$ bitbake <recipe> -c <task>\n```\n\nIf you want to clean a specific package\
+  \ (spi-tools, for example), you just have to run this:\n\n如果要清理特定包（例如 spi-tools），只需运行：\n\
+  \n```\n$ bitbake spi-tools -c clean\n```\n\nTo list the tasks defined for a recipe,\
+  \ we can use the following command:\n\n要列出配方定义的任务，可以使用以下命令：\n\n```\n$ bitbake <recipe>\
+  \ -c listtasks\n```\n\nHere is a description of BitBake tasks:\n\n以下是 BitBake 任务的描述：\n\
+  \n- **do_fetch**: The first step when building a recipe is fetching the required\
+  \ source. This is done using the fetching backend feature we discussed previously.\
+  \ It is important to point out that fetching source or a file does not mean it is\
+  \ a remote source. In fact, every file required during the recipe build must be\
+  \ fetched so that it is made available in the WORKDIR directory.\n\n- **do_fetch**:\
+  \ 构建配方的第一步是获取所需的源代码。这是使用我们之前讨论过的获取后端功能完成的。需要指出的是，获取源代码或文件并不意味着它是远程源。事实上，配方构建期间所需的每个文件都必须被获取，以便在\
+  \ WORKDIR 目录中可用。\n\n    All downloaded content is stored in the download folder\
+  \ (the DL_DIR variable), so all external source code is cached to avoid redownloading\
+  \ it every time we need the same source.\n\n    所有下载的内容都存储在下载文件夹（DL_DIR 变量）中，因此会缓存所有外部源代码，以避免每次需要相同源代码时重新下载。\n\
+  \n- **do_unpack**: The natural subsequent task after the do_fetch task is do_unpack.\
+  \ It is responsible for unpacking source code or checking the requested revision\
+  \ or branch in case the referenced source uses an SCM system.\n\n- **do_unpack**:\
+  \ do_fetch 任务后的自然后续任务是 do_unpack。它负责解包源代码，或者在引用的源代码使用 SCM 系统时检查请求的修订版本或分支。\n\n-\
+  \ **do_patch**: Once the source code has been properly unpacked, BitBake initiates\
+  \ the process of adapting it. This is done by the do_patch task. Every file fetched\
+  \ by do_fetch that has the .patch extension is assumed to be a patch to be applied.\
+  \ This task applies the list of required patches.\n\n- **do_patch**: 正确解包源代码后，BitBake\
+  \ 会启动适配过程。这是由 do_patch 任务完成的。do_fetch 获取的每个具有 .patch 扩展名的文件都被假定为要应用的补丁。此任务应用所需补丁列表。\n\
+  \n    The process of applying a patch uses the S variable, which points to the source\
+  \ code. The default value used for S is ${WORKDIR}/${PN}-${PV}, and it is used for\
+  \ the do_patch, do_configure, do_compile, and do_install tasks.\n\n    应用补丁的过程使用\
+  \ S 变量，该变量指向源代码。S 的默认值为 ${WORKDIR}/${PN}-${PV}，并用于 do_patch、do_configure、do_compile\
+  \ 和 do_install 任务。\n\n- **do_configure, do_compile, and do_install**: The do_configure,\
+  \ do_compile, and do_install tasks are performed in this order. Some recipes may\
+  \ omit one task or another. It is important to note that the environment variables\
+  \ defined in the tasks are different from one task to another.\n\n- **do_configure、do_compile\
+  \ 和 do_install**: 按此顺序执行 do_configure、do_compile 和 do_install 任务。某些配方可能会省略某个任务。需要注意的是，任务中定义的环境变量在不同任务之间有所不同。\n\
+  \nTasks vary a lot from one recipe to another. Poky provides a rich collection of\
+  \ predefined tasks in the classes, which ought to be used when possible. For example,\
+  \ when the Autotools class is inherited by a recipe, it provides a known implementation\
+  \ for the do_configure, do_compile, and do_install tasks.\n\n不同配方之间的任务差异很大。Poky\
+  \ 在类中提供了丰富的预定义任务集合，应尽可能使用。例如，当配方继承 Autotools 类时，它为 do_configure、do_compile 和 do_install\
+  \ 任务提供已知实现。\n\n- do_package: The do_package task splits the files installed by the\
+  \ recipe into logical components, such as debugging symbols, documentation, and\
+  \ libraries. The do_package task ensures that files are split up and packaged correctly.\n\
+  \n- do_package: do_package 任务将配方安装的文件拆分为逻辑组件，例如调试符号、文档和库。do_package 任务确保文件被正确拆分和打包。\n\
+  \nOne of the most common uses of Poky is the generation of the root filesystem.\
+  \ The rootfs image should be seen as a ready-to-use root filesystem for a target.\
+  \ The rootfs is basically a directory with the desired packages installed. The list\
+  \ of packages to be installed into rootfs is defined by a union of packages listed\
+  \ by IMAGE_INSTALL and the packages included by IMAGE_FEATURES.\n\nPoky 最常见的用途之一是生成根文件系统。rootfs\
+  \ 映像应被视为目标的可直接使用的根文件系统。rootfs 基本上是一个安装了所需包的目录。要安装到 rootfs 的包列表由 IMAGE_INSTALL 列出的包与\
+  \ IMAGE_FEATURES 包含的包的并集定义。\n\n### Note\n\n### 注意\n\nAfter do_rootfs has finished,\
+  \ the generated image file is placed in <build-dir>/tmp/deploy/image/raspberrypi/.\n\
+  \ndo_rootfs 完成后，生成的映像文件将放置在 <build-dir>/tmp/deploy/image/raspberrypi/ 中。\n\nWe will\
+  \ learn more about the process and its contents in Chapter 5, Creating, Developing,\
+  \ and Deploying on the Raspberry Pi.\n\n我们将在第 5 章“在 Raspberry Pi 上创建、开发和部署”中详细了解此过程及其内容。\n\
+  \n\n\n\n\n## 摘要\n\n在本章中，我们发现了 BitBake 的大部分功能。我们还学习了 BitBake 的工作原理，以便为我们的 Raspberry\
+  \ Pi 生成一些软件包。\n\n在下一章中，我们将学习如何在 Yocto Project 中进行开发。我们将编写配方、创建 SDK 等。\n\n# 第 5 章\
+  \ 在 Raspberry Pi 上创建、开发和部署\n\n在本章中，我们将介绍 Yocto/OE 的基本概念，以便将自定义应用程序与 Raspberry Pi\
+  \ 集成。我们将学习如何为交叉编译应用程序生成 SDK。我们还将讨论软件包管理。\n\n之后，我们将创建自己的应用程序和配方，以便通过 Yocto Project\
+  \ 将其部署到 Raspberry Pi 上。\n\n## 软件开发工具包（SDK）\n\nSDK 是一组我们可以在 **Yocto/OE** 之外使用的工具。这些工具通常包括编译器、链接器、调试器、库和外部头文件。这一组编译工具称为\
+  \ **工具链**。对于 Raspberry Pi（或其他嵌入式平台），工具链通常由交叉工具组成，这些工具在一种架构上执行，生成用于另一种架构的二进制文件。\n\
+  \n以下图示描绘了交叉编译过程：\n\n![](img/76681dcfb8cd2bd107d0c06ab088f916_95_0.png)\n\n**Yocto/OE**\
+  \ 构建系统可用于为目标系统生成交叉编译工具链和匹配的 sysroot 文件夹。\n\n### 注意\n\n**sysroot** 文件夹包含在构建配方过程中使用的共享库、头文件和实用程序。\n\
+  \n使用此构建系统，有几种方法可以生成符合我们 Raspberry Pi 平台的 SDK。\n\n## 通用 SDK - meta-toolchain\n\n\
+  meta-toolchain 配方将构建与 Raspberry Pi 平台匹配的工具链和一个基本 sysroot（通用 SDK，与我们的目标根文件系统不匹配）。但是，此工具链可用于构建\
+  \ U-Boot 引导加载程序、Linux 内核或不需要 sysroot 文件夹的简单应用程序等软件。我们可以使用以下命令生成此工具链：\n\n```\n$ source\
+  \ oe-init-build-env rpi-build\n$ bitbake meta-toolchain\n```\n\n构建完成后，我们可以这样安装它：\n\
+  \n```\n$ cd poky/rpi-build/tmp/deploy/sdk\n$ ./poky-eglibc-x86_64-meta-toolchain-qt5-armv6-vfp-toolchain-1.7.1.sh\n\
+  ```\n\n## image.bb -c populate_sdk\n\npopulate 任务是构建与 Raspberry Pi 平台匹配且带有与我们目标根文件系统匹配的\
+  \ sysroot 文件夹的工具链的最佳且推荐的方法。我们可以使用以下命令生成此工具链：\n\n```\n$ bitbake rpi-basic-image.bb\
+  \ -c populate_sdk\n```\n\n我们可以使用这些命令安装它：\n\n```\n$ cd tmp/deploy/sdk\n$ ./poky-eglibc-x86_64-meta-toolchain-qt-armv6-vfp-toolchain-1.7.1.sh\n\
+  ```\n\n以下图示是 populate 任务的摘要，直接摘自 Yocto Project 手册（http://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html#sdk-dev-environment）：\n\
+  \n![](img/76681dcfb8cd2bd107d0c06ab088f916_97_0.png)\n\n## Qt SDK - meta-toolchain-qt\n\
+  \nmeta-toolchain-qt 工具链只是 meta-toolchain 的扩展，包括对编译 Qt 应用程序（图形或非图形）的支持。我们可以使用以下命令生成此工具链：\n\
+  \n```\n$ bitbake meta-toolchain-qt\n```\n\n构建完成后，我们可以使用这些命令安装它：\n\n```\n$ cd tmp/deploy/sdk\n\
+  $ ./poky-eglibc-x86_64-meta-toolchain-qt-armv6-vfp-toolchain-1.7.1.sh\n```\n\n##\
+  \ Qt5 SDK - meta-toolchain-qt5\n\n此工具链只是 meta-toolchain-qt 的扩展，包括对编译 Qt5 应用程序的支持。我们可以使用以下命令生成它：\n\
+  \n```\n$ bitbake meta-toolchain-qt5\n```\n\n构建完成后，我们可以使用这些命令安装它：\n\n```\n$ cd tmp/deploy/sdk\n\
+  $ ./poky-eglibc-x86_64-meta-toolchain-qt5-armv6-vfp-toolchain-1.7.1.sh\n```\n\n\
+  SDK 可设计为在 32 位或 64 位 Linux 发行版上使用，这取决于生成 SDK 的主机架构。可以通过设置 SDKMACHINE 变量（在 conf/local.conf\
+  \ 中）来选择，该变量可以采用 i686 或 x86_64 作为值，例如：\n\n```\nSDKMACHINE? = \"X86_64\"\n```\n\n\
+  ## 交叉编译 - 示例\n\n为了验证我们工具链的正常运行，我们可以尝试编译一个应用程序。\n\n### SDK 环境配置\n\n首先要做的是为我们的工具链\
+  \ source 环境变量。使用以下任一命令：\n\n```\n$ source /opt/poky/1.7.1/environment-setup-armv6-vfp\
+  \ poky-linux-gnueabi\n$ . ./opt/poky/1.7.1/environment-setup-armv6-vfp poky-linux-gnueabi\n\
+  ```\n\n### 工具列表\n\n之后，我们的工具链位于系统 PATH 变量中，我们可以查看工具链中的所有工具：\n\n```\n$ arm-poky-linux-gnueabi-addr2line\
+  \ arm-poky-linux-gnueabi-elfedit arm-poky-linux-gnueabi-gcc-ranlib arm-poky-linux-gnueabi-ld.bfd\
+  \ arm-poky-linux-gnueabi-readelf\narm-poky-linux-gnueabi-ar arm-poky-linux-gnueabi-g++\
+  \ arm-poky-linux-gnueabi-gcov\narm-poky-linux-gnueabi-nm arm-poky-linux-gnueabi-size\n\
+  arm-poky-linux-gnueabi-as arm-poky-linux-gnueabi-gcc arm-poky-linux-gnueabi-gdb\n\
+  arm-poky-linux-gnueabi-objcopy arm-poky-linux-gnueabi-strings\narm-poky-linux-gnueabi-c++filt\
+  \ arm-poky-linux-gnueabi-gcc-ar arm-poky-linux-gnueabi-gprof arm-poky-linux-gnueabi-objdump\
+  \ arm-poky-linux-gnueabi-strip\narm-poky-linux-gnueabi-cpp arm-poky-linux-gnueabi-gcc-nm\
+  \ arm-poky-linux-gnueabi-ld arm-poky-linux-gnueabi-ranlib\n```\n\n我们可以找到我们的编译器（用于\
+  \ C++ 应用程序的 arm-poky-linux-gnueabi-gcc 或 arm-poky-linux-gnueabi-g++）、我们的调试器（arm-poky-linux-gnueabi-gdb）、一些二进制工具（GNU\
+  \ 二进制实用程序）等等。\n\n### 编译\n\n现在，我们可以使用外部工具链编译第一个应用程序：\n\n```\n$ ${CC} -o hello_world_pckt\
+  \ hello_world_pckt.c\n$ file hello_world_pckt: ELF 32-bit LSB executable, ARM, EABI5\n\
+  version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.32,\n\
+  BuildID[sha1]=1c2b88895d89b1868884295756214d609748f2c2, not stripped\n```\n\n##\
+  \ Raspberry Pi 和软件包管理器\n\nYocto Project 的基本构建块是软件包的生成；因此，可以将软件包管理器包含在我们的 Yocto 发行版中（例如，类似于\
+  \ Linux 发行版）。实际上，在生成映像后（参见第 2 章），它不包含软件包管理器，这意味着我们的映像不可更新（例如，类似于固件）。\n\n可以通过在 conf/local.conf\
+  \ 中添加以下变量，在我们的发行版中包含软件包管理器：\n\n```\nEXTRA_IMAGE_FEATURES += \"package-management\"\
+  \n```\n\n如果添加到配方文件（例如 rpi-basic-image.bb），请改用以下内容：\n\n```\nIMAGE_FEATURES += \"\
+  package-management\"\n```\n\n添加此内容后，我们现在有了一个带有软件包管理器的映像，它更灵活、可更新，更工业化。以下是如何使用 opkg\
+  \ 软件包管理器安装软件包：\n\n```\n$ opkg install package_name.ipk\n```\n\n## 软件包格式可用性\n\nBitBake（任务调度程序）支持以下软件包格式：\n\
+  \nRPM：最初由 Red Hat 使用，因其名称 Red Hat Package Manager（红帽软件包管理器）而得名，现在也被其他发行版使用（例如 openSUSE）。\n\
+  \nDEB：Debian 软件包格式由 Debian 及其衍生发行版（如 Ubuntu）使用。\n\nIPK：代表 Itsy Package Management\
+  \ System（最初来自 handhelds.org 项目）。它是一种为嵌入式系统（例如 Gumstix 平台：http://gumstix.org/add-software-packages.html）设计的轻量级软件包管理系统。OpenEmbedded-Core\
+  \ 以及因此的 Poky，使用 opkg 软件包管理器来支持 IPK 格式。\n\n### 注意\n\n如果您是 Android 爱好者，可以将其与 APK 软件包格式进行类比。\n\
+  \n## 选择软件包格式\n\n格式支持通过一组类（package_rpm、package_deb 和 package_ipk）提供。软件包格式的选择很大程度上取决于项目需求。需要考虑的因素包括：\n\
+  \n- 内存占用\n- 资源使用\n- 安装速度\n\n### 注意\n\n默认情况下，Poky 使用 RPM（Red Hat Package Manager）软件包格式。\n\
+  \n软件包格式的选择通过 conf/local.conf 文件中的 PACKAGE_CLASSES 变量完成。\n\n输入以下内容以包含 RPM 软件包格式：\n\
+  \n```\nPACKAGE_CLASSES ?= \"package_rpm\"\n```\n\n输入以下内容以包含 DEB 软件包格式：\n\n```\n\
+  PACKAGE_CLASSES ?= \"package_deb\"\n```\n\n输入以下内容以包含 IPK 软件包格式：\n\n```\nPACKAGE_CLASSES\
+  \ ?= \"package_ipk\"\n```\n\n### 注意\n\n可以指定多个软件包格式，但是，在构建映像时，BitBake 会根据 PACKAGE_CLASSES\
+  \ 变量中的第一个软件包格式进行搜索：PACKAGE_CLASSES ?= \"package_rpm package_deb package_ipk\"\n\n\
+  \n\n\n\n## 在目标设备上安装和更新软件包\n\n现在我们已经介绍了软件包格式，将了解如何将它们与树莓派集成。\n\n### RPM 软件包\n\n使用\
+  \ RPM 软件包，可以在将其复制到目标设备后，使用 RPM 或 SMART 实用工具在树莓派上安装软件包。\n\n### 手动安装\n\n要手动安装 RPM\
+  \ 软件包，请使用以下命令之一：\n\n```\n$ rpm -ivh package_name.rpm\n$ smart install package_name.rpm\n\
+  ```\n\n### 自动安装\n\n在开发和调试阶段，开发者无需处理许多 Linux 命令即可更新目标设备（树莓派）上的软件包（二进制文件），这可能很有价值。\n\
+  \n第一步是在我们的仓库中创建软件包索引（以便使用软件包馈送）：\n\n```\n$ source oe-init-build-env rpi-build\n\
+  $ bitbake package-index\n```\n\n之后，我们可以安装一个 Web 服务器（例如 lighttpd）：\n\n```\n$ sudo\
+  \ apt-get install lighttpd\n```\n\n默认情况下，/etc/lighttpd/lighttpd.conf 配置文件中指定的文档根目录是\
+  \ /var/www/：\n\n```\n$ tree /var/www/\n/var/www/\nhtml\namod.png\nformulaire.html\n\
+  index.html\nlogo.png\nplay_48.png\nindex.lighttpd.html\n1 directory, 6 files\n```\n\
+  \n因此，我们只需要一个指向我们的软件包馈送的符号链接：\n\n```\n$ mkdir /var/www/rpi-deploy\n$ ln -s rpi-build/tmp/deploy/rpm\
+  \ /var/www/rpi-deploy/rpm\n```\n\n此时，您需要重新启动 lighttpd 服务器：\n\n```\n$ sudo /etc/init.d/lighttpd\
+  \ restart\n```\n\n在树莓派上，我们需要告知 smart 我们想要使用的每个软件包数据库。例如，对于 rpi-deploy/rpm 中的 all\
+  \ 目录，我们需要执行此命令：\n\n```\n$ smart channel --add all type=rpm-md baseurl=http://<server-ip>/rpi-deploy/rpm/all\n\
+  ```\n\n现在我们的环境已准备就绪，可以使用以下命令从树莓派的根文件系统中查询和更新软件包：\n\n```\n$ smart update\n$ smart\
+  \ query <package_name>\n$ smart install <package_name>\n$ smart query -installed\n\
+  ```\n\n以下是从树莓派中删除软件包的示例（Monkey Web 服务器）：\n\n```\n$ smart remove monkey\nUpdating\
+  \ cache..\n########################################### [100%]\nComputing transaction...\n\
+  Removing packages (1):\nmonkey-1.5.4-r0@armv6-vfp\n479.4kB will be freed. Confirm\
+  \ changes? (Y/n): Y\nCommitting transaction...\nPreparing...\n###########################################\
+  \ [ 0%]\nStopping Monkey HTTP Server: stopped /usr/bin/monkey (pid 1448)\nmonkey\n\
+  Output from monkey:( 0%)\nwarning: /etc/monkey/sites/default saved as /etc/monkey/sites/default.rpmsave\n\
+  warning: /etc/monkey/plugins/logger/logger.conf saved as\n/etc/monkey/plugins/logger/logger.conf.rpmsave\n\
+  warning: /etc/monkey/plugins.load saved as /etc/monkey/plugins.load.rpmsave\n1:Removing\
+  \ monkey\n########################################### [100%]\nRemoving any system\
+  \ startup links for monkey ...\n/etc/rc0.d/K70monkey /etc/rc1.d/K70monkey /etc/rc2.d/S70monkey\
+  \ /etc/rc3.d/S70monkey\n/etc/rc4.d/S70monkey /etc/rc5.d/S70monkey /etc/rc6.d/K70monkey\
+  \ Saving cache...\n```\n\n### 注意\n\n有关 smart 实用工具的更多信息和用户手册，请访问 https://labix.org/smart/。\n\
+  \n### IPK 软件包\n\n使用 IPK 软件包，可以在将软件包复制到目标设备后，使用 OPKG 实用工具在树莓派上安装软件包。\n\n### 手动安装\n\
+  \n要手动安装 IPK 软件包，请使用此命令：\n\n```\n$ opkg install package_name.ipk\n```\n\n### 自动安装\n\
+  \n对于 IPK 软件包的管理，在我们的开发工作站上创建软件包仓库很容易。\n\n第一步是将以下变量添加到 conf/local.conf：\n\n```\n\
+  FEED_DEPLOYDIR_BASE_URI = http://<server-ip>:9999/ http://<server-ip>:9999/\n```\n\
+  \n因此，我们的镜像将包含指向基于 busybox（httpd）且监听端口 9999 的 Web 服务器上我们软件包仓库的所有引用。\n\n第二步是在我们的仓库上创建软件包索引：\n\
+  \n```\n$ source oe-init-build-env rpi-build\n$ bitbake package-index\n```\n\n除此之外，只需创建一个监听端口\
+  \ 9999 的 Web 服务器。基目录将是构建 IPK 软件包的目录。为了更方便地使用实用工具连接 busybox，请使用 [HTTP 守护进程](http://wiki.openwrt.org/doc/howto/http.httpd)。也可以使用\
+  \ Apache、Nginx 或 lighttpd。我们可以使用以下命令启动 httpd 服务器：\n\n```\n$ cd rpi-build/tmp/deploy/ipk\n\
+  $ busybox httpd -p 9999\n```\n\n要验证我们的软件包仓库服务器是否正常运行，只需在树莓派上输入 opkg update：\n\n\
+  ```\n$ opkg update\nDownloading http://192.168.132.1:9999/....\n```\n\n### 注意\n\n\
+  如需更多信息，请随时访问 [http://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#using-runtime-package-management](http://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#using-runtime-package-management)。\n\
+  \n## 我们的应用程序 - 简介\n\n现在我们已经了解了如何为平台生成 SDK 以及如何将软件包集成到 Yocto 镜像中，将通过一个示例，使用树莓派的通用输入输出（GPIO）引脚开发一个应用程序，然后创建一个配方以将我们的应用程序集成到最终镜像中。\n\
+  \n其思想是开发一个应用程序，通过 GPIO 引脚点亮一个 LED 并监控一个按钮。\n\n以下是使用 Fritzing (http://fritzing.org/home/)\
+  \ 制作的原理图：\n\n![](img/76681dcfb8cd2bd107d0c06ab088f916_110_0.png)\n\n因此，我们可以从 Linux\
+  \ 用户空间，通过树莓派的 GPIO 4（主连接器的引脚 7）点亮 LED 或监控按钮。\n\n我们可以测试以下 C 应用程序：\n\n```\nstatic\
+  \ int parse_opts(int argc, char *argv[])\nint long_index = 0;\nint opt;\nstatic\
+  \ struct option option[]\n{\"led\", required_argument, NULL, 'l'\n{\"help\", no_argument,\
+  \ NULL, 'h'\n{\"button\", no_argument, NULL, 'b'\n{\"version\", no_argument, NULL,\
+  \ 'v'\n{0, 0, 0, 0}\nwhile ((opt = getopt_long(argc, argv, \"lzbhv\", option, &long_index))\
+  \ >= 0)\nswitch(opt)\ncase 'h':\ndisplay_help(argv[0]);\nexit(EXIT_SUCCESS);\ncase\
+  \ 'v':\nfprintf(stderr, \"\\n%s - %s\\n\\n\", project, VERSION);\nexit(EXIT_SUCCESS);\n\
+  case 'l':\nprintf(\"Led Mode\\n\");\nprintf(\"Set gpio%d to %d\\n\",GPIO_PIN,atoi(optarg));\n\
+  // Set gpio4 to out mode\nset_out(GPIO_PIN,atoi(optarg));\nbreak;\ncase 'b':\nprintf(\"\
+  Button Mode\\n\");\n// Set gpio4 to in mode\nset_in(GPIO_PIN);\nwait_bp_state();\n\
+  break;\ndefault:\nfprintf(stderr,\"[ERROR] %s: Bad option. -h for help\\n\", argv[0]);\n\
+  exit(EXIT_FAILURE);\nreturn 0;\n```\n\n您可以从此书的代码包中下载它。\n\n我们可以尝试使用 SDK 编译我们的应用程序，并使用以下命令将其发送到树莓派：\n\
+  \n```\n$ source /opt/poky/1.7.1/environment-setup-armv6-vfp poky-linux-gnueabi\n\
+  $ ${CC} gpio_example.c -o gpio_example\n```\n\n### 我们的应用程序 - 创建配方\n\n既然我们的应用程序功能正常，我们可以创建配方。\n\
+  \n第一步是创建文件；例如，我们可以选择 gpio-packet_0.1.bb。\n\n- gpio-packet 表示软件包的名称（PN 变量）。\n- 0.1\
+  \ 表示配方的版本号（PV 变量）。\n- .bb 表示文件扩展名（Bitbake）。\n\n第二步是将源代码放置在本地仓库中，如下所示：\n\n```\n$\
+  \ mkdir gpio-packet\n$ cp /home/packet/gpio-example.c files/\n$ ls gpio-packet\n\
+  gpio-example.c\n```\n\n配方必须放在 gpio-packet 目录旁边，如下所示：\n\n```\n$ ls\ngpio-packet/\
+  \ gpio-packet.bb\n```\n\n之后，我们可以按如下内容填写配方：\n\n```\nDESCRIPTION = \"gpio example\"\
+  \nLICENSE=\"GPLv2\"\nLIC_FILES_CHKSUM = \"file://${COMMON_LICENSE_DIR}/GPL-2.0;md5=801f80980d171dd6425610833a22dbe6\"\
+  \n\nPR = \"r0\"\n\nSRC_URI = \"file://gpio_example.c\"\n\ndo_compile() {\n\t${CC}\
+  \ ${CFLAGS} ${LDFLAGS} ${WORKDIR}/gpio_example.c -o\n\tgpio_example\n}\n\ndo_install()\
+  \ {\n\tinstall -m 0755 -d ${D}${bindir}\n\tinstall -m 0755 ${S}/gpio_example ${D}${bindir}\n\
+  }\n```\n\n### 配方说明\n\n让我们来看看前面配方的各个部分。\n\nDESCRIPTION 包含应用程序的描述。生成软件包时会使用此信息，以便用户可以通过包管理器获取此信息。\n\
+  \nLICENSE 包含程序许可证（本示例中为 GPLv2）。\n\nLIC_FILES_CHKSUM 变量包含配方源代码中许可证文本的校验和。Poky 使用它来跟踪源代码文件中许可证文本的更改。\n\
+  \nPR 包含用于构建软件包的配方修订版。\n\nSRC_URI 确定所需的文件和源代码以及应从哪里获取这些源代码（在此例中，从 gpio-packet 文件夹获取）。\n\
+  \ndo_compile() 方法将生成我们将部署到树莓派的二进制文件。\n\ndo_install() 方法将以与在树莓派上安装相同的方式在树中安装我们的二进制文件（在此例中，二进制文件将放置在\
+  \ /usr/bin）。\n\n以下表格列出了 Bitbake 使用的一些路径：\n\n| base_bindir | /bin |\n| base_sbindir\
+  \ | /sbin |\n| base_libdir | /lib |\n| datadir | /usr/share |\n| sysconfdir | /etc\
+  \ |\n| servicedir | /srv |\n| bindir | /usr/bin |\n| sbindir | /usr/sbin |\n| libdir\
+  \ | /usr/lib |\n| includedir | /usr/include |\n\n现在我们已有配方，可以将其包含在镜像中。为此，我们必须将所有文件放入主树。我们将在\
+  \ meta-raspberrypi/recipes-devtools 中创建一个文件夹，如下所示：\n\n\n$ cd meta-raspberrypi/recipes-devtools\n\
+  $ mkdir gpio-packt-book\n\n为了让 BitBake 找到我们的配方，我们可以将不同的文件放入此文件夹，如下所示：\n\n```\n$\
+  \ cd gpio-packt-book\n$ mv /home/packet/gpio-packt.bb\n$ mv /home/packet/gpio-packt\n\
+  ```\n\n最后一步是将我们的配方与镜像集成。为此，我们可以将以下变量添加到 conf/local.conf 文件中：\n\n```\nIMAGE_INSTALL_append\
+  \ += \" gpio-packt\"\n```\n\n现在，我们可以启动 BitBake，然后在 Raspberry Pi 上测试我们的程序：\n\n```\n\
+  $ bitbake rpi-basic-image\n```\n\n以下命令将在 Raspberry Pi 上执行。\n\n你可以使用这些命令测试 LED：\n\
+  \n```\n$ gpio_example led=1 (set gpio4 to 1)\n$ gpio_example led=0 (set gpio4 to\
+  \ 0)\n```\n\n你可以使用这个命令测试按钮：\n\n```\n$ gpio_example --button\nButton was pressed!\n\
+  ```\n\n## 摘要\n\n在本章中，我们学习了如何为 Raspberry Pi 生成 SDK 以及如何管理软件包，并了解了如何在 Raspberry Pi\
+  \ 上部署自定义应用程序。\n\n在下一章中，你将了解层的概念，并发现如何在 Yocto 和 Raspberry Pi 的环境中集成另一个层。\n\n# 第 6\
+  \ 章 使用外部层\n\n在本章中，我们将了解外部层的基本概念，并理解层的类型及其构建方式（按优先级、名称等）。我们还将讨论 Qt5 和 Web 服务器层。\n\
+  \n之后，我们将把外部层集成到构建中，并在 Raspberry Pi 上进行测试。\n\n## 引入层\n\n层只是一组可用于 Yocto/OE-Core 之上的配方和/或配置。\n\
+  \n使用 Yocto/OE（Poky 参考系统）等环境的优势在于，该项目处理大量元数据（机器（Raspberry Pi）的定义文件 (.conf)、类和配方 (.bb）），涵盖了从简单应用程序（gpio-packt）到\
+  \ OpenGLES、EFL 或 Qt 等图形应用程序的所有内容。\n\n使用层的主要动机是更好地组织提供程序的长列表，同时确保用户只能选择所需或想要的提供程序。这也是提供可自定义源代码的一种方式，这些源代码可用于任何架构，或按用户需要的方式进行修改。\n\
+  \n另一个优势是，我们可以为每个项目选择所需的所有层（从最基本到最复杂）。我们可以修改它们以与我们的架构（Raspberry Pi 的 ARM）保持一致，但一个层可以在另一个架构（PowerPC）上重用，这在工业界是一个巨大的优势（更改架构时所需的精力很小）。\n\
+  \n此外，与其重新开发层，不如始终检查工作是否已由他人完成。下载提供我们需要的软件包的层并添加追加文件 (.bbappend) 花费的时间更少；如果需要进行一些修改，则必须从头开始制作。总之，层是在需要时添加的。\n\
+  \n你可以在以下链接中找到不同的可用层：\n\nhttp://layers.openembedded.org/layerindex/branch/master/layers/\n\
+  \n## 层的基本概念\n\n让我们深入了解层的基本概念：\n\n## 理论\n\n从技术角度来看，层具有一些属性。如下所示：\n\n- **名称**：这通常以字符串\
+  \ meta- 开头（为了更好地理解，这是强制性的）。\n- **优先级**：这是 BitBake 用来决定使用哪个配方以及 .bbappend 文件应合并顺序的值。这意味着，如果两个层包含相同的配方\
+  \ (.bb) 文件，则使用优先级较高的那个。\n\n### 注意\n\n例如，优先级值设置为 6 的层比优先级值设置为 5 的层更有可能使用其配方。\n\n\
+  此外，每个层都按其功能列在此页面上：\n\nhttp://layers.openembedded.org/layerindex/branch/master/layers/\n\
+  \n| meta-parallelia | 支持 Adapteva 的 Parallelia 开发板 | 机器 (BSP) | https://github.com/nathanrossi/meta-parallelia.git\
+  \ |\n| --- | --- | --- | --- |\n| meta-picosam9 | Picosam9 开发板支持 | 机器 (BSP) | https://gitorious.org/picopc-tools/meta-picosam9.git\
+  \ |\n| meta-qemu-bsps | 用于其他 QEMU 机器的层 | 机器 (BSP) | https://github.com/akuster/meta-qemu-bsps\
+  \ |\n| meta-raspberrypi | Raspberry Pi 开发板支持 | 机器 (BSP) | git://git.yoctoproject.org/meta-raspberrypi\
+  \ |\n| meta-renesas-rza1 | Renesas RZ/A1 平台的官方 BSP 层 | 机器 (BSP) | git://github.com/renesas-rz/meta-renesas-rza1\
+  \ |\n| meta-rockchip | Rockchip ARM 硬件支持 | 机器 (BSP) | git://github.com/linux-rockchip/meta-rockchip\
+  \ |\n| meta-romley | Intel Romley 平台 BSP | 机器 (BSP) | git://git.yoctoproject.org/meta-intel\
+  \ |\n| meta-samsung | 三星智能手机支持 | 机器 (BSP) | https://github.com/shr-distribution/meta-smartphone.git\
+  \ |\n| meta-sugarbay | Intel Sugar Bay 平台 BSP | 机器 (BSP) | git://git.yoctoproject.org/meta-intel\
+  \ |\n\n- **软件层**：此层提供可用于任何架构（x86_64、ARM、PPC、MIPS 等）的软件系列。例如，我们有 meta-java（用于 Java\
+  \ 支持）、meta-efl（用于 Enlightenment 环境）、meta-qt5（Qt 支持）、meta-webserver（提供构建 Web 服务器的支持）、meta-browser\
+  \ 等等。\n- **其他**：如果你的层不属于任何其他类别，可以选择此类型；但是，不应有太多其他类型的层——这可能表明目的不明确，或者你应该考虑拆分该层。\n\
+  - **机器 (BSP)**：这些是特定于机器的层（例如 meta-raspberrypi、meta-fsl-arm 和 meta-ti）。它们包含用于为机器配置软件包的机器配置文件和配方。\n\
+  - **发行版**：这些是向环境添加发行版的层（例如 meta-ivi 用于添加车载信息娱乐 (IVI) 支持、meta-angstrom 等等）。\n\n此时，我们知道层在\
+  \ Yocto 项目中是如何分布的。现在，我们将看到这些层是如何组成的。\n\n## 软件层\n\n以本示例为例，我们将以 meta-qt5 层为例。该层的目录树如下：\n\
+  \n```\npjtexier@amplitude:~ $ ls -l meta-qt5/\ntotal 28\ndrwxrwxr-x 2 pjtexier pjtexier\
+  \ 4096 avril 22 19:20 classes\ndrwxrwxr-x 3 pjtexier pjtexier 4096 avril 22 19:20\
+  \ conf\n-rw-rw-r-- 1 pjtexier pjtexier 1035 avril 22 19:20 COPYING.MIT\ndrwxrwxr-x\
+  \ 2 pjtexier pjtexier 4096 avril 22 19:20 licenses\n-rw-rw-r-- 1 pjtexier pjtexier\
+  \ 1189 avril 22 19:20 README\n-rwxrwxr-x 4 pjtexier pjtexier 4096 avril 22 19:20\
+  \ recipes-devtools\ndrwxrwxr-x 10 pjtexier pjtexier 4096 avril 22 19:20 recipes-qt\n\
+  ```\n\n## README 和 COPYING\n\n此目录中有两个重要文件，如下所示：\n\n- **README**：此文件主要指定依赖于目标层的外部层、任何配置说明、发送补丁的地址以及维护者的联系方式。\n\
+  \  - 此层依赖于以下内容：\n\n```\nURI: git://github.com/openembedded/oe-core.git\nbranch:\
+  \ master\nrevision: HEAD\n```\n\n```\nURI: git://github.com/openembedded/meta-oe.git\n\
+  layers: meta-ruby\nbranch: master\nrevision: HEAD\n```\n\n构建 qtdeclarative、qtquick、qtwebkit\
+  \ 等内容时，请确保在 qtbase 构建中启用所需的 PACKAGECONFIG 选项，详情请参见 qtbase.inc。将拉取请求发送到 openembedded-devel@lists.openembedded.org，主题中包含\
+  \ '[meta-qt5]'。\n\n发送单个补丁时，请使用类似：'git send-email -M -1 --to openembedded-devel@lists.openembedded.org\
+  \ --subject-prefix=meta-qt5][PATCH' 我们鼓励你在 GitHub 上 fork 镜像以共享补丁。这更适合由多个补丁组成的补丁集。当然，也接受\
+  \ gitorious、repo.or.cz 或自托管等其他服务，'git fetch <remote>' 在所有服务上都同样适用。我们推荐 GitHub，因为它免费、易于使用、已被证明可靠且拥有非常出色的\
+  \ Web 界面。https://github.com/meta-qt5/meta-qt5/\n\n主要层维护者：\nMartin 'JaMa' Jansa <martin.jansa@gmail.com>\n\
+  Otavio Salvador <otavio@ossystems.com.br>\n\n- **COPYING**：此文件包含许可信息（在此情况下为 MIT\
+  \ 许可证）。\n\n## classes 文件夹\n\nclasses 文件夹存放 .bbclass 文件。以下是示例 classes 文件夹：\n\n\n\
+  pjtexier@amplitude:~ $ ls -l classes/\ntotal 24\n-rw-rw-r-- 1 pjtexier pjtexier\
+  \ 1721 avril 22 19:20 cmake_qt5.bbclass\n-rw-rw-r-- 1 pjtexier pjtexier 2001 avril\
+  \ 22 19:20 populate_sdk_qt5.bbclass\n-rw-rw-r-- 1 pjtexier pjtexier 7633 avril 22\
+  \ 19:20 qmake5_base.bbclass\n-rw-rw-r-- 1 pjtexier pjtexier 219 avril 22 19:20 qmake5.bbclass\n\
+  -rw-rw-r-- 1 pjtexier pjtexier 1935 avril 22 19:20 qmake5_paths.bbclass\n```\n\n\
+  ## conf 文件夹\n\nconf 文件夹应提供配置（.conf）文件。此文件夹中的 layer.conf 文件包含一些重要变量，例如，关于优先级（BBFILE_PRIORITY）的变量：\n\
+  \n```\n# Define the priority for recipes (.bb files) from this layer,\n# choosing\
+  \ carefully how this layer interacts with all of the\n# other layers.\nBBFILE_PRIORITY_qt5-layer\
+  \ = \"7\"\n```\n\n要验证优先级值，我们可以使用以下命令：\n\n```\n$: bitbake-layers show-layers\n```\n\
+  \n## recipes-* 目录\n\nrecipes-* 目录包含一些配方。例如，在 meta-qt5 层中，我们有 recipes-qt，其中包含一些元数据（例如\
+  \ Qt5）。\n\n## 机器（BSP）层\n\n在本演示中，我们将以特定于我们硬件的 BSP 层为例：meta-raspberrypi BSP 层。此目录（文件夹）应包含类似于以下的文件列表：\n\
+  \n```\npjtexier@amplitude:~ $ ls -l meta-raspberrypi/\nclasses\nconf\ncustom-licenses\n\
+  recipes-bsp\nrecipes-core\nrecipes-devtools\nrecipes-graphics\nrecipes-kernel\n\
+  recipes-multimedia\nCOPYING.MIT\nREADME\n```\n\n使用 BSP 层时，有一些区别。首先是在 conf 文件夹中。现在，此目录中有一个新文件夹，名为\
+  \ machine。\n\n此文件夹包含一些用于处理我们特定硬件（例如树莓派和树莓派 2）的配置文件。例如，有一个重要文件（rpi-base.inc）位于：\n\
+  \n- machine\n  - * raspberry.conf (树莓派的配置文件)\n  - * raspberry2.conf (树莓派 2 的配置文件)\n\
+  - Include\n  - * rpi-base.inc\n\nrpi-base.inc 文件如下所示：\n\n```\ninclude conf/machine/include/rpi-default-settings.inc\n\
+  include conf/machine/include/rpi-default-versions.inc\ninclude conf/machine/include/rpi-default-providers.inc\n\
+  \nSOC_FAMILY = \"rpi\"\ninclude conf/machine/include/soc-family.inc\n\nIMAGE_FSTYPES\
+  \ ?= \"tar.bz2 ext3 rpi-sdimg\"\n\nSERIAL_CONSOLE = \"115200 ttyAMA0\"\n\nXSERVER\
+  \ = \" \\\\\nxserver-xorg \\\\\nxf86-input-evdev \\\\\nxf86-input-mouse \\\\\nxf86-input-keyboard\
+  \ \\\\\nxf86-video-fbdev \\\\\n\"\n# Really supported starting from linux-raspberrypi\
+  \ 3.18.y only\nKERNEL_DEVICETREE ?= \" \\\\\n    bcm2708-rpi-b.dtb \\\\\n    bcm2708-rpi-b-plus.dtb\
+  \ \\\\\n    bcm2709-rpi-2-b.dtb \\\\\n    \\\\\n    ds1307-rtc-overlay.dtb \\\\\n\
+  \    hifiberry-amp-overlay.dtb \\\\\n    hifiberry-dac-overlay.dtb \\\\\n    hifiberry-dacplus-overlay.dtb\
+  \ \\\\\n    hifiberry-digi-overlay.dtb \\\\\n    iqaudio-dac-overlay.dtb \\\\\n\
+  \    iqaudio-dacplus-overlay.dtb \\\\\n    lirc-rpi-overlay.dtb \\\\\n    pcf8523-rtc-overlay.dtb\
+  \ \\\\\n    pps-gpio-overlay.dtb \\\\\n    w1-gpio-overlay.dtb \\\\\n    w1-gpio-pullup-overlay.dtb\
+  \ \\\\\n    \"\nKERNEL_IMAGETYPE ?= \"Image\"\nMACHINE_FEATURES = \"kernel26 apm\
+  \ usbhost keyboard vfat ext2 screen touchscreen alsa bluetooth wifi sdio\"\n# Raspberry\
+  \ Pi has no hardware clock\nMACHINE_FEATURES_BACKFILL_CONSIDERED = \"rtc\"\nMACHINE_EXTRA_RRECOMMENDS\
+  \ += \" kernel-modules\"\n# Set Raspberrypi splash image\nSPLASH = \"psplash-raspberrypi\"\
+  \nIMAGE_BOOT_FILES ?= \"bcm2835-bootfiles/* ${KERNEL_IMAGETYPE};${SDIMG_KERNELIMAGE}\"\
+  \n```\n\n正是在此文件中，我们设置了一些基本变量，包括以下内容：\n\n- SERIAL_CONSOLE 指定串行控制台要连接的速度和设备。它作为控制台参数传递给内核，例如\
+  \ 115200 ttyAMA0。\n- IMAGE_FSTYPES 指定要创建的根文件系统镜像的格式。\n- KERNEL_IMAGETYPE 指定要构建的内核镜像类型（uImage\
+  \ 或 zImage）。\n\n### 注意\n\n如果要了解有关 BSP 层的更多信息，可以访问 [http://www.yoctoproject.org/docs/1.8/bsp-guide/bsp-guide.html](http://www.yoctoproject.org/docs/1.8/bsp-guide/bsp-guide.html)。\n\
+  \n## 将外部层添加到树莓派\n\n现在我们知道层的工作原理，可以将现有的外部层添加到我们的环境中。为此，我们将使用 meta-webserver (http://layers.openembedded.org/layerindex/branch/master/layer/meta-webserver/)\
+  \ 来包含著名的 Web 服务器 Monkey (http://monkey-project.com/)。\n\n众所周知，第一步是修改我们的 conf/bblayers.conf\
+  \ 文件以添加层的路径，如下所示：\n\n```\n# LAYER_CONF_VERSION is increased each time\nbuild/conf/bblayers.conf\n\
+  # changes incompatibly\nLCONF_VERSION = \"6\"\nBBPATH = \"${TOPDIR}\"\nBBFILES ?=\
+  \ \"\"\nBBLAYERS ?= \" \\\n/home/packt/RASPBERRYPI/poky/meta \\\n/home/packt/RASPBERRYPI/poky/meta-yocto\
+  \ \\\n/home/packt/RASPBERRYPI/poky/meta-yocto-bsp \\\n/home/packt/RASPBERRYPI/poky/meta-raspberrypi\
+  \ \\\n/home/packt/RASPBERRYPI/poky/meta-openembedded/meta-webserver \\\n\"\nBBLAYERS_NON_REMOVABLE\
+  \ ?= \" \\\n/home/packt/RASPBERRYPI/poky/meta \\\n/home/packt/RASPBERRYPI/poky/meta-yocto\
+  \ \\\n\"\n```\n\n现在我们已包含该层以便 BitBake 可以解析它，可以使用以下命令创建镜像：\n\n```\n$ bitbake rpi-basic-image\n\
+  ```\n\n编译/生成过程结束后，我们可以启动树莓派并验证其正常运行。这非常简单，因为我们只需启动喜爱的浏览器，并在地址栏中输入以下内容：\n\nhttp://ip_address_of_rpi/2001\n\
+  \n现在，我们在树莓派上有一个嵌入式 Web 服务器。可以使用简单的 Web 服务器（通过升级固件来提高速度）创建许多项目，包括 CGI、HTML5/JavaScript\
+  \ 应用程序、带有 mpeg-streamer 的应用程序等等）。\n\n## 总结\n\n在本章中，我们了解了 Poky 发行版中层的主要原理。我们学习了层的工作原理，如何将外部层集成到我们的树莓派项目中，以及如何生成自定义镜像。\n\
+  \n在下一章中，我们还将讨论层，但我们将创建自定义层以将其集成到树莓派的镜像中。\n\n# 第 7 章 在树莓派上部署自定义层\n\n在本章中，你将学习如何使用\
+  \ Yocto Project 提供的不同工具生成自定义层。首先，你将了解如何生成层；然后，你将向层集成配方。此外，为完成本章，我们将生成自定义镜像。阅读本章将使你能够更好地在\
+  \ Yocto Project 中组织源代码。\n\n## 使用 yocto-layer 脚本创建 meta-packt_rpi 层\n\n要创建我们的自定义层，可以使用两种不同的方法：\n\
+  \n- 手动：创建目录 (meta-*) 并创建层配置文件 (conf/layer.conf)\n- * 使用 Poky 环境提供的 yocto-layer 脚本\n\
+  \n为了获得灵活性并避免操作失误，我们将使用第二种方法。要使用它，我们最初必须 source 所有变量，以便通过我们的 shell 在 yocto-layer\
+  \ 脚本中获得访问权限，如以下命令所示：\n\n```\n$ source oe-init-build-env rpi-build\n```\n\n现在我们的环境已设置好，可以访问\
+  \ yocto-layer 脚本，因此可以开始创建层的过程。\n\n请注意，此脚本 (yocto-layer) 默认在当前目录中创建层。这就是为什么我们必须将其放在环境的根目录下：\n\
+  \n```\n$ cd /where/you/want/to/stored/your/layer\n```\n\n现在可以使用以下命令启动脚本：\n\n```\n\
+  $ yocto-layer create <layer_name> -o <dest_dir>\n```\n\n### 注意\n\n**meta- 字符串**会自动添加到层名称前面。\n\
+  \n在我们的示例中，我们将把层命名为 **meta-packt_rpi**。以下是命令：\n\n```\n$ yocto-layer create packt_rpi\n\
+  Please enter the layer priority you'd like to use for the layer: [default: 6]\n\
+  Would you like to have an example recipe created? (y/n) [default: n] y\nPlease enter\
+  \ the name you'd like to use for your example recipe: [default: example]\nexample-packt\n\
+  Would you like to have an example bbappend file created? (y/n) [default: n] y\n\
+  Please enter the name you'd like to use for your bbappend file: [default: example]\n\
+  example-packt\nPlease enter the version number you'd like to use for your bbappend\
+  \ file (this should match the recipe you're appending to): [default: 0.1]\nNew layer\
+  \ created in meta-packt_rpi.\nDon't forget to add it to your BBLAYERS (for details\
+  \ see meta-packt_rpi/README).\n```\n\n通过此脚本，我们生成了自己的层 meta-packt_rpi，该层中包含一个示例配方、一个\
+  \ bbappend 文件示例等等。我们生成的层示例如下命令所示：\n\n```\n$ tree meta-packt_rpi/\n```\n\n\n\n\n\
+  ## I. 将 packt_rpi 层添加到构建中\n\n如果我们想安装该层，只需将绝对路径集成到 bblayers.conf 文件中，就像 README 文件中所说的：\n\
+  \n要使用此层，需要让构建系统知道它。\n\n假设 packt_rpi 层位于 yocto 构建树的顶级目录，可以通过将 packt_rpi 层的位置添加到 bblayers.conf\
+  \ 中（以及其他所需的层）来将其添加到构建系统，例如：\n\n```\nBBLAYERS ?= \" \\\n    /path/to/yocto/meta \\\
+  \n    /path/to/yocto/meta-yocto \\\n    /path/to/yocto/meta-yocto-bsp \\\n    /path/to/yocto/meta-packt_rpi\
+  \ \\\n\"\n```\n\n我们可以将层添加到 bblayers.conf 文件中：\n\n```\n# LAYER_CONF_VERSION is increased\
+  \ each time  build/conf/bblayers.conf\n# changes incompatibly\nLCONF_VERSION = \"\
+  6\"\n\nBBPATH = \"${TOPDIR}\"\nBBFILES ?= \"\"\n\nBBLAYERS ?= \" \\\n/home/packet/RASPBERRYPI/poky/meta\
+  \ \\\n/home/packet/RASPBERRYPI/poky/meta-yocto \\\n/home/packet/RASPBERRYPI/poky/meta-yocto-bsp\
+  \ \\\n/home/packet/RASPBERRYPI/poky/meta-raspberrypi \\\n/home/packet/RASPBERRYPI/poky/meta-openembedded/meta-webserver\
+  \ \\\n/home/packet/RASPBERRYPI/poky/meta-packt_rpi \"\nBBLAYERS_NON_REMOVABLE ?=\
+  \ \" \\\n/home/packet/RASPBERRYPI/poky/meta \\\n/home/packet/RASPBERRYPI/poky/meta-yocto\
+  \ \\\n```\n\n在此之后，我们的层已完全集成到 Yocto Project 中，因此可以被 BitBake（元调度程序）解析。\n\n## 注\n\n\
+  如需更多信息，可阅读官方文档 http://www.yoctoproject.org/docs/1.8/dev-manual/dev-manual.html#yocto-project-layers\
+  \ 。\n\n## 将 gpio-packt 添加到 meta-packt_rpi\n\n为测试此层，我们将集成在 [第 5 章：在树莓派上创建、开发和部署](https://www.packtpub.com/)\
+  \ 中开发的应用程序（gpio-packt）。这样可以让我们逐步实现层，使其完全可重复用于各种项目。包含此配方后，您的层结构应如下所示：\n\n```\n$ tree\
+  \ meta-packt_rpi/\nmeta-packt_rpi/\n├── conf\n│   └── layer.conf\n├── COPYING.MIT\n\
+  ├── README\n├── recipes-custom\n│   └── gpio-packt\n│       ├── gpio-packt\n│  \
+  \     │   ├── gpio-example.c\n│       │   └── gpio-packt.bb\n├── recipes-example\n\
+  │   └── example\n│       ├── example-packt-0.1\n│       │   ├── example.patch\n\
+  │       │   └── helloworld.c\n│       └── example-packt_0.1.bb\n├── recipes-example-bbappend\n\
+  │   ├── example-bbappend\n│   ├── example-packt-0.1\n│   │   └── example.patch\n\
+  │   └── example-packt_0.1.bbappend\n```\n\n与任何其他额外软件包一样，构建系统需要知道您希望包含 gpio-packt。为此，请编辑\
+  \ /conf/local.conf 配置文件并在底部添加以下行：\n\n```\nIMAGE_INSTALL_append = \" gpio-packt\"\
+  \n```\n\n此行告诉构建系统在创建最终镜像时包含 gpio-packt 软件包。如果出于某种原因该变量已存在，只需在末尾追加 gpio-packt 软件包名称，如下所示：\n\
+  \n```\nIMAGE_INSTALL_append = \" app1 app2 gpio-packt\"\n```\n\n现在，如果我们想测试它，可以使用以下命令启动\
+  \ BitBake，然后在树莓派上测试我们的程序：\n\n```\n$ bitbake rpi-basic-image\n```\n\n## 修补 gpio-packt\n\
+  \n现在我们已经了解如何将配方（gpio-packt）集成到先前创建的层（meta-packt_rpi）中，将了解如何为 gpio-packt 配方创建补丁。\n\
+  \n## 生成补丁\n\n第一步是创建 .patch 文件。使用以下命令创建原始文件的备份：\n\n```\n$ cd meta-packt_rpi/recipes-custom/gpio-packt\n\
+  $ cp gpio-packt/gpio-example.c gpio-packt/gpio-example.orig\n```\n\n现在，可以修改我们的主源代码（gpio-example.c）：\n\
+  \n```\n$ sed -i 's/Button Mode/Button Mode!/' gpio-packt/gpio-example.c\n```\n\n\
+  我们已按需更改源文件；下一步是使用 diff 命令创建补丁文件：\n\n```\n$ diff -u gpio-packt/gpio-example.orig\
+  \ gpio-packt/gpio-example.c > gpio-packt/fix.patch\n```\n\n现在我们有了 .patch 文件，需要更新主源文件：\n\
+  \n```\n$ mv gpio-packt/gpio-example.orig gpio-packt/gpio-example.c\n```\n\n## 将补丁添加到配方文件\n\
+  \n请注意，即使我们已生成 .patch 文件，目前它仍然不可见，因为它已输入到 SRC_URI 变量中。以下是考虑补丁的完整配方，已更新：\n\n```\n\
+  DESCRIPTION = \"gpio example\"\nLICENSE=\"GPLv2\"\nLIC_FILES_CHKSUM = \"file://${COMMON_LICENSE_DIR}/GPL-2.0;md5=801f80980d171dd6425610833a22dbe6\"\
+  \nPR = \"r0\"\nSRC_URI = \"file://gpio_example.c \\\n           file://fix.patch\"\
+  \ndo_compile() {\n\t${CC} ${CFLAGS} ${LDFLAGS} ${WORKDIR}/gpio_example.c -o gpio_example\n\
+  }\ndo_install() {\n\tinstall -m 0755 -d ${D}${bindir}\n\tinstall -m 0755 ${S}/gpio_example\
+  \ ${D}${bindir}\n}\n```\n\n如果我们查看层的结构，将看到以下内容：\n\n```\n$ tree meta-packt_rpi/\n\
+  meta-packt_rpi/\n├── conf\n│   └── layer.conf\n├── COPYING.MIT\n├── README\n├──\
+  \ recipes-custom\n│   └── gpio-packt\n│       ├── gpio-packt\n│       │   ├── fix.patch\n\
+  │       │   ├── gpio-example.c\n│       └── gpio-packt.bb\n├── recipes-example\n\
+  │   └── example\n│       └── example-packt-0.1\n│           ├── example.patch\n\
+  │           ├── helloworld.c\n│           └── example-packt_0.1.bb\n├── recipes-example-bbappend\n\
+  │   └── example-bbappend\n│       ├── example-packt-0.1\n│       │   └── example.patch\n\
+  │       └── example-packt_0.1.bbappend\n```\n\n现在，可以使用以下命令启动 BitBake 来测试我们的新配方：\n\
+  \n```\n$ bitbake rpi-basic-image\n```\n\n## 创建 raspberry-packt-image.bb 镜像\n\n在本章中，我们的目标是创建一个可在任何环境中重复使用的层。我们将了解如何创建自己的镜像，以更多地依赖\
+  \ meta-raspberrypi BSP 层所提供的镜像。无需担心，因为要创建镜像，只需制作一个配方文件。\n\n## 创建环境\n\n为分离我们层的配方，我们将镜像配方放置在名为\
+  \ recipe-core 的层中，在那里将创建 raspberry-packt-image.bb 配方文件。创建后，我们的层结构如下：\n\n```\n$ tree\
+  \ meta-packt_rpi/\nmeta-packt_rpi/\n├── conf\n│   └── layer.conf\n├── COPYING.MIT\n\
+  ├── README\n├── recipes-core\n│   └── images\n│       └── raspberry-packt-image.bb\n\
+  ├── recipes-custom\n│   └── gpio-packt\n│       ├── gpio-packt\n│       │   ├──\
+  \ fix.patch\n│       │   ├── gpio-example.c\n│       │   └── gpio-packt.bb\n├──\
+  \ recipes-example\n│   └── example\n│       └── example-packt-0.1\n│           ├──\
+  \ example.patch\n│           ├── helloworld.c\n│           └── example-packt_0.1.bb\n\
+  ├── recipes-example-bbappend\n│   ├── example-bbappend\n│   │   └── example-packt-0.1\n\
+  │   │       └── example.patch\n│   └── example-packt_0.1.bbappend\n```\n\n## 修改配方文件\n\
+  \n为更好地管理我们的镜像，最好的方法就是从 meta-raspberrypi 层中包含的基本镜像学习。\n\n## 注\n\n您可以访问主 GitHub 仓库\
+  \ https://github.com/agherzan/meta-raspberrypi/blob/master/recipes-core/images/rpi-hwup-image.bb\
+  \ 。\n\n以下是一个基本示例——我们自己的镜像，符合树莓派标准，并包含我们自己的配方：\n\n```\n# Base this image on core-image-minimal\n\
+  include recipes-core/images/core-image-minimal.bb\nDESCRIPTION = \"Image for raspberry-pi\"\
+  \nIMAGE_FEATURES += \"ssh-server-dropbear splash\"\n# Include modules in rootfs\n\
+  IMAGE_INSTALL += \" \\\\\n kernel-modules \\\\\n gpio-packt\n\"\n```\n\nIMAGE_INSTALL\
+  \ 变量将生成根文件系统的相关软件包分组。如需更多信息，可参阅官方文档 http://www.yoctoproject.org/docs/1.8/ref-manual/ref-manual.html#var-IMAGE_INSTALL。\n\
+  \n- 另一个可能有趣的变量是 IMAGE_FEATURES，它允许您处理预定义软件包（dev、debug 等）。您可以通过阅读官方文档了解更多信息：\n\n\
+  - `allow-empty-password`：允许 Dropbear 和 OpenSSH 接受 root 登录以及密码字符串为空的账户的登录。\n\n- `dbg-pkgs`：为给定镜像中安装的所有软件包安装调试符号软件包。\n\
+  \n- `debug-tweaks`：使镜像适合开发（例如，允许无需密码的 root 登录并启用安装后日志记录）。有关更多信息，请参见本列表中的 'allow-empty-password'、'empty-root-password'\
+  \ 和 'post-install-logging' 功能。\n\n- `dev-pkgs`：为给定镜像中安装的所有软件包安装开发软件包（头文件和额外的库链接）。\n\
+  \n- `doc-pkgs`：为给定镜像中安装的所有软件包安装文档软件包。\n\n- `empty-root-password`：将 root 密码设置为空字符串，从而允许使用空密码登录。\n\
+  \n- `package-management`：安装包管理工具并保留包管理器数据库。\n\n- `post-install-logging`：在目标系统上首次启动镜像时，将安装后脚本运行记录到\
+  \ `/var/log/postinstall.log` 文件中。\n\n- `ptest-pkgs`：为所有启用 ptest 的配方安装 ptest 软件包。\n\
+  \n- `read-only-rootfs`：创建根文件系统为只读的镜像。有关更多信息，请参阅 Yocto Project 开发手册中的“创建只读根文件系统”部分。\n\
+  \n- `splash`：在启动期间启用显示启动画面。默认情况下，此画面由 `psplash` 提供，允许自定义。如果您希望使用替代启动画面软件包，可以在镜像配方或分发配置级别中将\
+  \ `SPLASH` 变量设置为不同的软件包名称（或名称）。\n\n- `staticdev-pkgs`：为给定镜像中安装的所有软件包安装静态开发软件包，即静态库（即\
+  \ `*.a` 文件）。\n\n\n\n\n- 例如，在我们的示例（raspberry-pack-image.bb）中，我们通过 IMAGE_FEATURES\
+  \ 使用了多个软件包，例如 splash 和 ssh-server-dropbear。\n\n我们还在 conf/local.conf 中使用了该变量（在第 5\
+  \ 章“在树莓派上创建、开发和部署”中），目的是添加 package-management 软件包（使用 EXTRA_IMAGE_FEATURES）。\n\n\
+  IMAGE_FEATURES 的另一个示例是，如果我们要使用 Eclipse IDE 的集成，则需要将以下软件包添加到 conf/local.conf 文件中：\n\
+  \n```\nIMAGE_FEATURES += \"eclipse-debug\"\n```\n\n## 部署 raspberry-pack-image.bb\
+  \ 镜像\n\n现在是时候测试我们的镜像并检查其运行情况了。为此，我们需要启动通常的 bitbake 命令，但这次要带一个参数：我们的镜像名称，raspberry-pack-image：\n\
+  \n```\n$ bitbake raspberry-pack-image\nLoading cache: 100%\n|###############################################################################|\n\
+  |###############################################################################|\n\
+  |###############################################################################|\n\
+  ####| ETA:  00:00:00\n```\n\n现在，我们拥有一个 100% 自定义的环境（层、配方和镜像）。\n\n### 注意\n\n请记住，要了解如何最好地处理\
+  \ meta-pack_rpi 层目录，可以访问 http://www.yoctoproject.org/docs/1.4.2/dev-manual/dev-manual.html#managing-layers\
+  \ 。\n\n## 摘要\n\n在本章中，我们学习了如何使用 yocto-layer 脚本生成自定义层。我们还学习了如何将配方集成到其中，最后，我们创建了一个自定义镜像并在树莓派上部署了它。\n\
+  \n在下一章中，我们将探索树莓派的所有外设。\n\n# 第 8 章 深入探讨树莓派的外设和 Yocto 配方\n\n在本章中，我们将学习如何通过 Yocto Project\
+  \ 处理树莓派的 SPI 和 i2c 总线。我们将了解如何为自定义应用程序编写自己的配方。\n\n## SPI 总线\n\n**串行外设接口 (SPI)** 协议在主设备和从设备之间实现同步串行链路。当仅使用一个从设备时，只需要三个信号（以及地线）。\n\
+  \n主设备生成一个 **SCLK**（串行时钟）时钟信号，并将其发送到从设备。在此时钟的某些沿上，从设备将使用指定信号 **MOSI**（主输出，从输入的缩写）读取数据，或使用名为\
+  \ **MISO**（主输入，从输出）的信号写入数据。根据硬件制造商的不同，用于描述这些信号有多种名称。建议使用 MISO/MOSI 表示法（最常见的一种），因为它消除了任何歧义：主设备的\
+  \ MOSI 引脚必须始终连接到从设备的 MOSI 引脚，MISO 引脚也是如此。\n\n如果要将多个从设备连接到同一主机，它们可以并联连接（所有 MISO 引脚连接在一起，所有\
+  \ MOSI 引脚亦然），但每个从设备都需要一个额外信号（**CS**，即片选信号），以选择在给定时间与哪个引脚建立通信。以下图中给出了一个示例：\n\n![](img/76681dcfb8cd2bd107d0c06ab088f916_142_0.png)\n\
+  \n在树莓派上尽情享受 SPI 协议的乐趣；我们将通过为我们的平台开发的一个实用程序进一步探索它。\n\n### 注意\n\n有关 SPI 协议的更多信息，您可以访问以下网站：https://en.wikipedia.org/wiki/Serial_Peripheral_Interface_Bus\n\
+  \n## spi-tools 项目\n\n例如，要从 shell 脚本快速与 SPI 设备建立连接，我们建议使用一位法国工程师（Christophe Blaess）最近开发的一个小型软件包，它简化了配置和双向通信。这是一个名为\
+  \ **spi-tools** 的免费项目。\n\n该项目分为两个工具：\n\n- **spi-config**：这允许您查看或编辑 SPI 端口的通信设置。以下是命令：\n\
+  \n```\n$ spi-config\n```\n\n- **spi-pipe**：这允许通过将标准输入和标准输出重定向到指定的 SPI 端口与设备进行全双工通信。命令如下：\n\
+  \n```\n$ spi-pipe\n```\n\n### 注意\n\n如果您想要更多信息，请查阅 GitHub 仓库中的 readme 文件：[https://github.com/cpb-/spi-tools](https://github.com/cpb-/spi-tools)\n\
+  \n## 在 meta-oe 层中包含\n\nspi-tools 的优势在于它自 2015 年 4 月起已完全集成到 Yocto/OE 环境中。事实上，它是 meta-oe\
+  \ 层的一部分。\n\n### 注意\n\n您可以在此处查看初始提交：[https://github.com/openembedded/meta-oe/commit/90b13eded76f7f7fa1a6715e67c32504e7788e96](https://github.com/openembedded/meta-oe/commit/90b13eded76f7f7fa1a6715e67c32504e7788e96)\n\
+  \n将此层引入我们的环境以使用这些实用程序很容易。在这里，我们看到了 Yocto Project 的另一个优势：灵活性。\n\n如果您想访问此配方的元数据索引，可以访问\
+  \ [http://layers.openembedded.org/layerindex/recipe/33576/](http://layers.openembedded.org/layerindex/recipe/33576/)。\n\
+  \n如您所料，集成 spi-tools 配方的第一步是修改我们的 conf/bblayers.conf 文件，以添加层的路径：\n\n```\n# changes\
+  \ incompatibly\nLCONF_VERSION = \"6\"\nBBPATH = \"${TOPDIR}\"\nBBFILES ?= \"\"\n\
+  BBLAYERS ?= \" \\\\\n/home/packt/RASPBERRYPI/poky/meta \\\\\n/home/packt/RASPBERRYPI/poky/meta-yocto\
+  \ \\\\\n/home/packt/RASPBERRYPI/poky/meta-yocto-bsp \\\\\n/home/packt/RASPBERRYPI/poky/meta-raspberrypi\
+  \ \\\\\n/home/packt/RASPBERRYPI/poky/meta-pack_rpi \\\\\n/home/packt/RASPBERRYPI/poky/meta-openembedded/meta-oe\
+  \ \\ \" \nBBLAYERS_NON_REMOVABLE ?= \" \\\\\n/home/packt/RASPBERRYPI/poky/meta \\\
+  \\\n/home/packt/RASPBERRYPI/poky/meta-yocto \\\n```\n\n### 注意\n\n您可以使用以下命令下载 meta-oe\
+  \ 层：\n\n```\n$ git clone https://github.com/openembedded/meta-openembedded.git\n\
+  ```\n\n现在我们层的路径已设置，BitBake 可以看到它，并且 spi-tools 可以与我们的根文件系统集成。为此，我们需要运行命令来创建二进制文件。\n\
+  \n## 构建 spi-tools\n\n为了生成软件包（ipk、rpm 或 dpkg），我们可以运行以下命令：\n\n```\n$ bitbake spitools\n\
+  Loading cache: 100%\n|###############################################################################|\n\
+  #################################################################################|\n\
+  ###| ETA:  00:00:00\nLoaded 2006 entries from dependency cache.\nNOTE: Resolving\
+  \ any missing task queue dependencies\nBuild Configuration:\nBB_VERSION        =\
+  \ \"1.27.1\"\nBUILD_SYS         = \"x86_64-linux\"\nNATIVELSBSTRING   = \"Ubuntu-14.04\"\
+  \nTARGET_SYS        = \"arm-poky-linux-gnueabi\"\nMACHINE           = \"raspberrypi\"\
+  \nDISTRO            = \"poky\"\nDISTRO_VERSION    = \"1.8+snapshot-20150729\"\n\
+  TUNE_FEATURES     = \"arm armv6 vfp arm1176jzfs callconvention-hard\"\nTARGET_FPU\
+  \        = \"vfp\"\nmeta\nmeta-yocto\nmeta-yocto-bsp    = \"master:19f77cf586fbee9e67d3698263402b717303c5ec\"\
+  \nmeta-raspberrypi  = \"master:7457bf182c8fd550ec877ecd786a3edd16e65495\"\nmeta-pack_rpi\
+  \   = \"master:19f77cf586fbee9e67d3698263402b717303c5ec\"\nmeta-oe           = \"\
+  master:f637fadb106a09a6f3dfba4181d06dc9b5e82ff5\"\nNOTE: Executing SetScene Tasks\n\
+  NOTE: Executing RunQueue Tasks\nCurrently 1 running tasks (373 of 381):\n0: spitools-git-r0\
+  \ do_configure (pid 3535)\n```\n\n或者，如果我们想将 spi-tools 集成到我们的镜像中，只需在镜像中添加以下行并运行 BitBake\
+  \ raspberry-pack-image：\n\n```\n# Base this image on core-image-minimal\ninclude\
+  \ recipes-core/images/core-image-minimal.bb\nDESCRIPTION = \"Image for raspberry-pi\"\
+  \nIMAGE_FEATURES += \"ssh-server-dropbear splash\"\n# Include modules in rootfs\n\
+  IMAGE_INSTALL += \" \\\n    kernel-modules \\\n    gpio-pact \\\n    spitools \\\
+  \n    \"\n```\n\n## 在树莓派上测试\n\n有了我们的镜像，我们现在可以运行 spi-tools 提供的实用程序。\n\n### spi-config\n\
+  \n要从用户空间访问 SPI 接口，内核为我们提供了 /dev 中的特殊文件作为入口点。这需要加载以下模块：\n\n```\n$ modprobe spidev\n\
+  ```\n\n集成此模块后，我们可以尝试启动 spi-config 实用程序：\n\n```\n$ spi-config\nspi-config: no device\
+  \ specified (use option -h for help)\n$ spi-config -h\nusage: ./spi-config options...\n\
+  options:\n-d --device= use the given spi-dev character device.\n-q --query print\
+  \ the current configuration.\n-m --mode=[0-3] use the selected spi mode.\n0: low\
+  \ idle level, sample on leading edge\n1: low idle level, sample on trailing edge\n\
+  2: high idle level, sample on leading edge\n3: high idle level, sample on trailing\
+  \ edge\n-l --lsb={0,1} LSB first (1) or MSB first (0)\n-b --bits=[7...] bits per\
+  \ word\n-s --speed= set the speed in Hz\n-h --help this screen\n-v --version display\
+  \ the version number\n```\n\n例如，如果我们想要查询 /dev/spidev0.0 接口，可以运行：\n\n```\n$ spi-config\
+  \ -d /dev/spidev0.0 -q\n/dev/spidev0.0: mode=0, lsb=0, bits=8, speed=500000\n```\n\
+  \n### 注意\n\n如果您想了解有关 spi-config 的更多详细信息，可以访问 https://github.com/cpb-/spi-tools/blob/master/src/spi-config.c。\n\
+  \n### spi-pipe\n\nspi-pipe 程序可以将其从标准输入接收到的数据发送到 SPI MOSI 线，同时将从 MISO SPI 线接收到的数据显示在其标准输出上。\n\
+  \n其通用操作原理如下：\n\n```\n$ <command-1> | spi-pipe [options] | <command-2>\n```\n\n例如，如果我们想将一些数据发送到另一个\
+  \ SPI 外设，可以使用以下命令：\n\n```\n$ printf \"HELLO from R-pi\" | spi-pipe -d /dev/spidev0.0\
+  \ | hexdump -C\n```\n\n\n## 注意\n\n请注意，管道中的三个成员并行运行，每个运行在单独的进程中，通过同步它们之间流动的数据来实现。\n\
+  \n## 结论\n\n最后，以下是这些工具可用于的各种应用的示例：\n\n- 与微控制器通信以从 ADC 检索数据\n- 与 SPI flash 通信\n- 与延迟线通信\n\
+  \n我们留给你思考其他类型的应用。\n\n## i2c 总线\n\ni2c 协议使我们可以连接一个主组件（通常是微处理器）和多个从设备。多个主设备可以共享同一总线，同一组件可以向主设备发送从设备状态，或者反之。但是，通信仅在主设备和一个从设备之间进行。还要注意，主设备可以同时向所有从设备发送命令（例如休眠或重置请求）。\n\
+  \n在电气层面，该协议使用在高电平和低电平之间交替的信号；最常见的值对是 (0, 5V) 和 (0, 3.3V)。SCL 时钟信号由主设备生成。串行数据 (SDA)\
+  \ 数据信号由主设备或从设置为高电平或低电平，具体取决于通信阶段。在 SCL 时钟高电平段的整个持续时间内，SDA 数据信号必须保持高电平或低电平，具体取决于它传输的是\
+  \ 1 还是 0。\n\n最后，如下图所示，由主设备产生的特定信号配置可以指示交换的开始或结束，称为 START 和 STOP 条件。这是针对时隙时钟的 SDA\
+  \ 信号的一种变体。\n\n![](img/76681dcfb8cd2bd107d0c06ab088f916_149_0.png)\n\n为了在我们的树莓派上测试\
+  \ i2c 接口，我们将开发一个应用程序，通过 i2c 总线从 Wii Nunchuck 检索数据。\n\n### Wii Nunchuck\n\n![](img/76681dcfb8cd2bd107d0c06ab088f916_150_0.png)\n\
+  \nNunchuck 具有一个 X/Y 摇杆、一个 X/Y/Z 加速度计和两个按钮（Z 和 C）。\n\n传感器数据通过 i2c 总线进行通信。\n\n###\
+  \ Nunchuck 连接器\n\n连接器包含四根线，其中两根是电源和地线。其他线用于 i2c 通信（SDA 和 SCL）。下图演示了原理：\n\n![](img/76681dcfb8cd2bd107d0c06ab088f916_151_0.png)\n\
+  \n### 注意\n\n如果您担心连接问题，可以在 https://www.sparkfun.com/products/9281 找到此控制器的适配器。\n\n\
+  #### 树莓派连接\n\n对于与我们的树莓派的连接，我们只需将其连接到主连接器 I2C1_SDA 和 I2C1_SCL，如该引脚图所示：\n\n![](img/76681dcfb8cd2bd107d0c06ab088f916_152_0.png)\n\
+  \n### Nunchuck 的协议\n\nWii Nunchuck 包含一个通过 i2c 总线通信的控制器。为了知道存储写入字节的位置，第一个字节必须是 8\
+  \ 位寄存器地址。换句话说，向 Nunchuck 进行的每个 write() 操作都需要一个寄存器地址字节，后跟数据字节。\n\n对于写操作，发送到 Nunchuck\
+  \ 的第一个字节告诉它从哪里开始（START 条件）。\n\n### 加密\n\nNunchuck 设计用于提供特定的加密链路。但是，可以通过以下过程禁用它：\n\
+  \n- 将 0x55 写入 Nunchuck 的 0xF0 寄存器\n- 暂停\n- 将 0x00 写入 Nunchuck 的 0xFB 寄存器\n\n| Write\
+  \ | Pause | Write | | |\n|---|---|---|---|---|\n| 0xF0 | 0x55 | - | 0xFB | 0x00\
+  \ |\n\n请注意，如果您拥有一个白色 Nunchuck，则过程会有所不同：\n\n- 将 0x00 写入 Nunchuck 的 0x40 寄存器\n\n|\
+  \ Write | |\n|---|---|\n| 0x40 | 0x00 |\n\n### 注意\n\n成功执行此操作后，所有数据均以未加密形式返回。\n\n\
+  ### 请求传感器数据\n\n我们使用 Nunchuck 的全部目的是读取其传感器数据。当请求时，它应返回六个字节的数据，格式如下：\n\n| Data byte\
+  \ receive | Address |\n|---|---|\n| Joystick X | 0x00 |\n| Joystick Y | 0x01 |\n\
+  | Accelerometer X (bit 9 to bit 2 for 10-bit resolution) | 0x02 |\n| Accelerometer\
+  \ Y (bit 9 to bit 2 for 10-bit resolution) | 0x03 |\n| Accelerometer Z (bit 9 to\
+  \ bit 2 for 10-bit resolution) | 0x04 |\n| Accel. Z bit 1, Accel. Z bit 0, Accel.\
+  \ Y bit 1, Accel. Y bit 0, Accel. X bit 1, Accel. X bit 0, C-button, Z-button |\
+  \ 0x05 |\n\n下表说明了消息序列：\n\n| Write | Pause | Read | | | | | |\n|---|---|---|---|---|---|---|---|\n\
+  | 0x00 | - | 1 | 2 | 3 | 4 | 5 | 6 |\n\n## 测试 i2c 连接\n\n您可以使用 i2cdetect 自动检测连接的设备。树莓派上未安装\
+  \ i2cdetect；使用它的最简单方法是通过我们的 raspberry-packt-image Yocto 镜像安装 i2c-tools 包，具体方法是添加\
+  \ i2c-tools，如下所示：\n\n```\n# Base this image on core-image-minimal\ninclude recipes-core/images/core-image-minimal.bb\n\
+  DESCRIPTION = \"Image for raspberry-pi\"\nIMAGE_FEATURES += \"ssh-server-dropbear\
+  \ splash\"\n# Include modules in rootfs\nIMAGE_INSTALL += \" \\\\\n    kernel-modules\
+  \ \\\\\n    gpio-packt \\\\\n    spitools \\\\\n    i2c-tools \\\\\n    \"\n```\n\
+  \n之后，我们可以启动 BitBake raspberry-packt-image 命令在树莓派上对其进行测试。\n\n为了检测 i2c 设备，我们只需在树莓派上启动以下命令：\n\
+  \n```\n$ modprobe i2c-dev\n$ i2cdetect 0\nWARNING! This program can confuse your\
+  \ I2C bus, cause data loss and worse!\nI will probe file /dev/i2c-0.\nI will probe\
+  \ address range 0x03-0x77.\nContinue? [Y/n] Y\n     0  1  2  3  4  5  6  7  8  9\
+  \  a  b  c  d  e  f\n00:          03 04 05 06 07 - - - - - - - - - - - -\n10: -\
+  \ - - - - - - - - - - - - - - - - - - - - - - -\n20: - - - - - - - - - - - - - -\
+  \ - - - - - - - - - -\n30: - - - - - - - - - - - - - - - - - - - - - - - -\n40:\
+  \ - - - - - - - - - - - - - - - - - - - - - - - -\n50: - - - 52 - - - - - - - -\
+  \ - - - - - - - - - - -\n60: - - - - - - - - - - - - - - - - - - - - - - - -\n70:\
+  \ - - - - - - - -\n```\n\n如果 Nunchuck 正常工作，它将在地址 0x52 处显示在显示中。\n\n### 注意\n\nNunchuck\
+  \ 使用 i2c 地址 0x52。如果您想了解有关树莓派上 i2c 接口的更多信息，可以访问 https://learn.adafruit.com/adafruits-raspberry-pi-lesson-4-gpio-setup/configuring-i2c。\n\
+  \n## 创建 Nunchuck 应用程序\n\n我们现在可以测试我们的 Nunchuck 应用程序（使用 C 语言开发）。您可以在随本书附带的代码包中找到它。\n\
+  \n我们可以使用以下命令测试使用 SDK 编译我们的应用程序，并将其发送到树莓派：\n\n```\n$ source /opt/poky/1.7.1/environment-setup-armv6-vfp\
+  \ poky-linux-gnueabi\n$ ${CC} nunchuck.c -o nunchuck_packt\n```\n\n## 与 meta-packt_rpi\
+  \ 集成\n\n现在，我们将准备环境，以便我们的所有开发都符合 Yocto 标准。\n\n这是我们为 Nunchuck 配方准备的自定义集成层：\n\n```\n\
+  $ tree meta-packt_rpi/\nmeta-packt_rpi/\n├── conf\n│   └── layer.conf\n├── COPYING.MIT\n\
+  ├── README\n├── recipes-core\n│   └── images\n│       └── raspberry-packt-image.bb\n\
+  ├── recipes-custom\n│   ├── gpio-packt\n│   │   ├── fix.patch\n│   │   ├── gpio_example.c\n\
+  │   │   └── gpio-packt_0.1.bb\n│   ├── nunchuck\n│   │   ├── nunchuck\n│   │   │\
+  \   └── nunchuck.c\n│   └── nunchuck_0.1.bb\n├── recipes-example\n│   └── example\n\
+  │       └── example-packt-0.1\n│           ├── example.patch\n│           ├── helloworld.c\n\
+  │           └── example-packt_0.1.bb\n├── recipes-example-bbappend\n└── example-bbappend\n\
+  \    └── example-packt-0.1\n        └── example.patch\n        example-packt_0.1.bbappend\n\
+  ```\n\nnunchuck_0.1.bb 文件将包含在我们的 rootfs 中实现 Nunchuck 二进制文件的配方。\n\n## 创建 Nunchuck\
+  \ 配方\n\n既然我们的应用程序功能正常，我们就可以创建配方，以便 BitBake 可以找到它。\n\n以下是使我们能够将 Nunchuck 应用程序集成到树莓派中的配方：\n\
+  \n```\nDESCRIPTION = \"nunchuck i2c example\"\nLICENSE=\"GPLv2\"\nLIC_FILES_CHKSUM\
+  \ = \"file://${COMMON_LICENSE_DIR}/GPL-2.0;md5=801f808980d171dd6425610833a22dbe6\"\
+  \nPR = \"r0\"\nSRC_URI = \"file://nunchuck.c\"\nS = \"${WORKDIR}\"\ndo_compile()\
+  \ {\n\t${CC} ${CFLAGS} ${LDFLAGS} ${WORKDIR}/nunchuck.c -o    nunchuck_packt\n}\n\
+  do_install() {\n\tinstall -m 0755 -d ${D}${bindir}\n\tinstall -m 0755 ${S}/nunchuck_packt\
+  \ ${D}${bindir}\n}\n```\n\n要将软件包集成到树莓派环境中，我们需要在 raspberry-packt-image 中添加以下行：\n\n\
+  ```\n# Base this image on core-image-minimal\ninclude recipes-core/images/core-image-minimal.bb\n\
+  DESCRIPTION = \"Image for raspberry-pi\"\nIMAGE_FEATURES += \"ssh-server-dropbear\
+  \ splash\"\n# Include modules in rootfs\nIMAGE_INSTALL += \" \\\\\n    kernel-modules\
+  \ \\\\\n    gpio-packt \\\\\n    i2c-tools \\\\\n    spitools \\\\\n    nunchuck\
+  \ \\\\\n    \"\n```\n\n\n\n\n## 测试 Nunchuck 应用程序\n\n现在，我们可以启动 BitBake 并在树莓派上测试我们的程序。使用此命令：\n\
+  \n```\n$ bitbake raspberry-packt-image\n```\n\n在树莓派上，启动以下命令：\n\n```\n$ nunchuck\n\
+  ```\n\n现在你可以与 Nunchuck 和 Video4Linux (V4L) 一起玩耍了。\n\n接下来，我们将了解如何将视频支持集成到我们的环境中。\n\
+  \n## V4L 介绍\n\nV4L 是 Linux 的视频 API。它已集成到 Linux 内核中。它是视频软件和视频设备之间的抽象层。它允许从数码摄像机、视频采集卡、TV\
+  \ 和广播调谐器、网络摄像头等设备捕获视频流和图片。\n\n例如，可以使用 OpenCV（通过 /dev/video 检索视频流）和 Qt 显示内容（使用帧缓冲区或\
+  \ X11）。\n\n## 视频支持\n\n要添加视频支持，我们只需查看 BSP 层（meta-raspberry-pi）的 readme 文件。很明显，我们可以轻松添加视频支持：\n\
+  \n### 2.F. 可选 - 使用 V4L2 驱动程序的视频摄像头支持\n\n将此变量设置为启用视频摄像头支持（需要 Linux 3.12.4+）\n\n```\n\
+  VIDEO_CAMERA = \"1\"\n```\n\nVIDEO_CAMERA 变量必须在 conf/local.conf 中设置。\n\n### v4l-utils\
+  \ 集成\n\n要控制连接到 /dev/videoX 的设备，有一组名为 v4l-utils 的实用工具。集成这些工具很容易，像往常一样，通过我们的构建系统（Yocto/OpenEmbedded）。\n\
+  \n要将 v4l-utils 包集成到树莓派环境中，我们必须将以下行添加到 raspberry-packt-image：\n\n```\n# Base this\
+  \ image on core-image-minimal\ninclude recipes-core/images/core-image-minimal.bb\n\
+  DESCRIPTION = \"Image for raspberry-pi\"\nIMAGE_FEATURES += \"ssh-server-dropbear\
+  \ splash\"\n# Include modules in rootfs\nIMAGE_INSTALL += \" \\\n\tkernel-modules\
+  \ \\\n\tgpio-packt \\\n\ti2c-tools \\\n\tspitools \\\n\tnunchuck \\\n\tv4l-utils\
+  \ \\\n\"\n```\n\n之后，我们只需启动以下命令：\n\n```\n$ bitbake raspberry-packt-image\nLoading\
+  \ cache: 100%\n|############################################################################|\n\
+  ###| ETA: 00:00:00\nLoaded 2057 entries from dependency cache.\nNOTE: Resolving\
+  \ any missing task queue dependencies\nBuild Configuration:\nBB_VERSION = \"1.27.1\"\
+  \nBUILD_SYS = \"x86_64-linux\"\nNATVELSBSTRING = \"Ubuntu-14.04\"\nTARGET_SYS =\
+  \ \"arm-poky-linux-gnueabi\"\nMACHINE = \"raspberrypi\"\nDISTRO = \"poky\"\nDISTRO_VERSION\
+  \ = \"1.8+snapshot-20150804\"\nTUNE_FEATURES = \"arm armv6 vfp arm1176jzfs callconvention-hard\"\
+  \nTARGET_FPU = \"vfp\"\nmeta\nmeta-yocto\nmeta-yocto-bsp = \"master:19f77cf586fbee9e67d3698263402b717303c5ec\"\
+  \nmeta-raspberrypi = \"master:7457bf182c8fd550ec877ecd786a3edd16e65495\"\nmeta-packt_rpi\
+  \ = \"master:19f77cf586fbee9e67d3698263402b717303c5ec\"\nmeta-oe\nmeta-multimedia\
+  \ = \"master:f637fadb106a09a6f3dfba4181d06dc9b5e82ff5\"\nNOTE: Preparing RunQueue\n\
+  NOTE: Executing SetScene Tasks\nNOTE: Executing RunQueue Tasks\nCurrently 1 running\
+  \ tasks (558 of 566):\n0: v4l-utils-1.6.2-r0 do_configure (pid 20717)\n```\n\n进程完成后，即可使用\
+  \ v4l-utils。\n\n### 注意\n\n如果你想了解 v4l-utils 的更多信息，可以访问 http://www.linux-projects.org/modules/sections/index.php?op=viewarticle&artid=16\
+  \ 。\n\n## 总结\n\n在本章中，我们学习了如何集成一个包来测试树莓派的 SPI 接口。我们还学习了如何创建 Wii Nunchuck 应用程序，并将其部署到\
+  \ Yocto Project 中。\n\n在下一章中，我们将了解如何将媒体中心与树莓派集成。\n"
+- "# 第 9 章 在树莓派上构建媒体中心\n\n在本章中，我们将学习如何部署自定义应用程序，以构建嵌入式媒体中心（面板控制温度、ADC、串行等）。\n\n我们将使用\
+  \ rpm 包、init 脚本、配方和 Web 开发等方面的内容。\n\n## 项目描述 – CPU 温度监控\n\n此项目的想法是创建一个 Web 界面，允许例如监控\
+  \ CPU 温度。\n\n为此，我们将使用 **HTML5** 和 **nodejs** 等技术。我们还将拥有树莓派上可用的实用工具，例如 **vcgencmd**。\n\
+  \n在此项目中，我们将使用诸如以下的技术方面：\n\n- Websocket\n- Justgage\n- Nodejs\n\n这里的想法不是解释这些技术，而是了解它们可以在\
+  \ Yocto Project 中使用。\n\n## 概述\n\n以下图表表示项目的结构：\n\n![](img/76681dcfb8cd2bd107d0c06ab088f916_167_0.png)\n\
+  \n## 硬件/软件要求\n\n此项目需要以下硬件和软件：\n\n- 一台树莓派\n- 一台宿主 PC\n- 一张 SD 卡\n- SSH/SCP\n\n##\
+  \ 创建主应用程序\n\n主项目包含多个文件。为了更好地展示，我们将只专注于两个文件：\n\n- server.js：这是将创建我们的 Web 服务器并将数据发送到\
+  \ HTML 网页的文件\n- index.html：这是将在 Web 浏览器中打开以显示接收到的数据的页面\n\n### server.js\n\nserver.js\
+  \ 文件在监听端口 3344 上创建一个服务器，并将负责创建一个包含树莓派 CPU 温度的套接字（rpi_temperature）。套接字函数使用（包括）vcgencmd\
+  \ 命令（[https://github.com/raspberrypi/firmware/blob/master/opt/vc/bin/vcgencmd](https://github.com/raspberrypi/firmware/blob/master/opt/vc/bin/vcgencmd)），允许我们监控\
+  \ CPU 温度，如下所示：\n\n```\nsetInterval(function()\n{\n    child = exec(\"vcgencmd measure_temp\
+  \ | awk -F:\", function\n    (error, stdout,\n    stderr)\n    {\n    if (error\
+  \ != null)\n    {\n    console.log('exec error: ' + error);\n    }\n    else\n \
+  \   {\n    var date = new Date().getTime();\n    var temp = parseFloat(stdout);\n\
+  \    socket.emit('rpi_temperature', date, temp);\n    }\n    }\n    }); 1000);\n\
+  ```\n\n### 注意\n\n有关 vcgencmd 的更多信息，可以访问以下页面：[http://elinux.org/RPI_vcgencmd_usage](http://elinux.org/RPI_vcgencmd_usage)\n\
+  \n### index.html\n\n以下是接收包含我们树莓派 CPU 温度的套接字（rpi_temperature）的函数示例：\n\n```\n$(document).ready(function(){\n\
+  \    socket.on('rpi_temperature', function (time, data) {\n        gg1.refresh($.trim(data));\n\
+  \        return false;\n    });\n});\n```\n\n## 创建 Yocto/OE 环境\n\n现在我们已经开发了主应用程序，剩下的就是将其与我们的\
+  \ Yocto RPI 环境集成。\n\n## 修改镜像\n\n第一步是将 nodejs 包（位于 meta-openembedded/meta-oe/recipes-devtools/nodejs）与树莓派环境集成。为此，我们必须将以下行添加到\
+  \ raspberry-packt-image：\n\n```\n# Base this image on core-image-minimal\ninclude\
+  \ recipes-core/images/core-image-minimal.bb\nDESCRIPTION = \"Image for raspberry-pi\"\
+  \nIMAGE_FEATURES += \"ssh-server-dropbear splash\"\n# Include modules in rootfs\n\
+  IMAGE_INSTALL += \" \\\\\n kernel-modules \\\\\n gpio-packt \\\\\n i2c-tools \\\\\
+  \n spitools \\\\\n nunchuck \\\\\n v4l-utils \\\\\n nodejs \\\\\n\"\n\n```\n\n我们现在已将\
+  \ nodejs 与我们的 Poky 发行版集成。\n\n## 创建配方文件\n\n第二步是创建配方文件；让我们将此配方命名为 webserver-packt_01.bb。\n\
+  \n其想法是在 recipes-custom 文件夹内具有以下架构：\n\n```\n$ tree webserver-packt/\nwebserver-packt/\n\
+  ├── webserver-packt\n│   └── server.tar.gz\n└── webserver-packt_01.bb\n```\n\n###\
+  \ 注意\n\nserver.tar.gz 压缩包包含主应用程序（nodejs + HTML5）。\n\n要创建此配方，我们将使用 recipetool 命令，如下所示：\n\
+  \n```\n$ source oe-init-build-env rpi-build\n$ recipetool create -d -o webserver-packt_0.1.bb\
+  \ ../meta-packt_rpi/recipes-custom/webserver-packt/webserver-packt/\n$ cp webserver-packt_0.1.bb\
+  \ ../meta-packt_rpi/recipes-custom/webserver-packt/\n```\n\n### 注意\n\nrecipetool\
+  \ 命令的完整文档在线位于 http://www.yoctoproject.org/docs/1.8/mega-manual/mega-manual.html#new-recipe-creating-the-base-recipe-using-recipetool\
+  \ 。\n\n现在我们只需将包含源代码的完整存档（server.tar.gz）复制到 ${datadir}（/usr/share/）；此步骤在 do_install()\
+  \ 块中执行，如下所示：\n\n```\nDESCRIPTION = \"Panel to monitor rpi temperature\"\nLICENSE\
+  \ = \"GPLv2\"\nLIC_FILES_CHKSUM =\n\"file://${COREBASE}/meta/COPYING.GPLv2;md5=751419260aa954499f7abaabaa882bbe\"\
+  \n\n# Package Release\nPR = \"r0\"\n\n# Use local tarball\nSRC_URI = \" \\\\\nfile://server.tar.gz\
+  \ \\\\\n\"\n\nRDEPENDS_${PN} += \"bash\"\n\n# Make sure our source directory (for\
+  \ the build) matches the directory structure in\nthe tarball\nS = \"${WORKDIR}\"\
+  \n\ndo_install() {\ninstall -d ${D}${datadir}/server-packt\n```\n\n\n\n\ncp -a ${S}/server\
+  \ ${D}${datadir}/server-packet\n}\n\n## 包文件\nFILES_${PN} += \"${datadir}/server-packet\"\
+  \n\n## 说明\n\n让我们来看看这些变量的作用：\n\n- RDEPENDS_{PN} 变量列出了构建包正常运行所需的运行时依赖项，这些依赖项必须安装。在我们的例子中，bash\
+  \ 对 nodejs 是必需的。\n- FILES_{PN} 变量包含放置到包中的目录或文件列表。在我们的例子中，server-packet 是必需的。\n\n\
+  我们现在已准备好可用的环境。如果我们要将应用程序部署到 Raspberry Pi 上，可以使用以下命令。\n\n主机命令如下：\n\n```\n$ bitbake\
+  \ webserver-packet\n$ scp tmp/deploy/rpm/arm1176jzfshf_vfp/webserver-packet-0.1-r0.arm1176jzfshf_vfp.rpm\
+  \ root@ip_address_of_rpi:/home/\n```\n\n以下是 Raspberry Pi 命令：\n\n```\n$ rpm -ivh\
+  \ webserver-packet-0.1-r0.arm1176jzfshf_vfp.rpm\n$ rm webserver-packet-0.1-r0.arm1176jzfshf_vfp.rpm\n\
+  $ node /usr/share/server-packet/server/server.js\n```\n\n## 自动启动 - init 文件\n\n如果我们想要一个独立的应用程序，那么在\
+  \ Raspberry Pi 启动序列期间自动启动我们的应用程序将很有趣。为此，我们将使用直接继承自 System V 的 init 脚本。\n\n第一步是在我们的结构中创建一个\
+  \ .init 文件。我们将此文件命名为 server.init。目录结构如下：\n\n```\n$ tree webserver-packt/\nwebserver-packt/\n\
+  ├── webserver-packt\n│   ├── server.init\n│   └── server.tar.gz\n└── webserver-packt_0.1.bb\n\
+  ```\n\n因此，该脚本将在安装后以及每次 Raspberry Pi 启动时自动启动应用程序。以下是来自 System V 的 init 脚本：\n\n```bash\n\
+  #!/bin/bash\n### BEGIN INIT INFO\n# Provides:          server.init\n# Required-Start:\
+  \    $remote_fs $syslog\n# Required-Stop:     $remote_fs $syslog\n# Default-Start:\
+  \     2 3 4 5\n# Default-Stop:      0 1 6\n# Short-Description: Start daemon at\
+  \ boot time\n# Description:       Enable service provided by daemon.\n### END INIT\
+  \ INFO\nDAEMON=node\nNAME=server.init\nDESC=\"Nodejs app\"\nARGS=\"/usr/share/server-packt/server/server.js\"\
+  \nset -e\nusage()\n{\n    echo \"---------------------------------------\"\n   \
+  \ echo \"Usage: $0 (stop|start|restart)\"\n    echo \"---------------------------------------\"\
+  \n}\nservice_start()\n{\n    echo -n \"starting $DESC: $NAME... \"\n    start-stop-daemon\
+  \ -S -x $DAEMON -- $ARGS &\n    echo \"done.\"\n}\necho \"\"\n\nservice_stop()\n\
+  {\n    echo -n \"stopping $DESC: $NAME... \"\n    start-stop-daemon -K -x $DAEMON\n\
+  \    echo \"done.\"\n}\n\ncase $1 in\n    stop)\n        service_stop\n        echo\
+  \ \"\"\n        ;;\n    start)\n        service_start\n        echo \"\"\n     \
+  \   ;;\n    restart)\n        service_stop\n        service_start\n        echo\
+  \ \"\"\n        ;;\n    *)\n        usage\n        ;;\nesac\nexit 0\n```\n\n## 说明\n\
+  \n让我们来看看代码的工作原理：\n\n- DAEMON 变量指定要启动的二进制文件 (/usr/bin/node)\n- NAME 变量指定脚本名称\n- DESC\
+  \ 变量包含关于 DAEMON (node) 的一些信息\n- ARGS 变量包含要传递给 DAEMON (node) 的参数\n\n如果要在 Raspberry\
+  \ Pi 上测试此脚本，请使用以下命令：\n\n```\n$ scp server.init root@ip_address_of_rpi:/etc/init.d\n\
+  $ cd /etc/init.d\n$ update-rc.d server.init defaults\n```\n\n此命令停止应用程序：\n\n```\n\
+  /etc/init.d/server.init stop\n```\n\n此命令重启应用程序：\n\n```\n/etc/init.d/server.init\
+  \ restart\n```\n\n## 自动启动 - 配方文件\n\n将我们的 init 文件添加到 webserver-packt.bb 配方中包括：\n\n\
+  - 将 server.init 文件添加到 SRC_URI。\n- 为我们的 init 脚本添加 do_install() 步骤。\n- 包含 update-rc.d。在\
+  \ Yocto 中添加此功能，需要在配方中添加 inherit update-rc.d。\n\n以下是更新后的 webserver-packt.bb：\n\n\
+  ```\nDESCRIPTION = \"Panel to monitor rpi temperature\"\nLICENSE = \"GPLv2\"\nLIC_FILES_CHKSUM\
+  \ =\n\"file://${COREBASE}/meta/COPYING.GPLv2;md5=751419260aa954499f7abaabaa882bbe\"\
+  \n\n# Package Release\nPR = \"r0\"\n\n# Use local tarball\nSRC_URI = \" \\\\\n file://server.tar.gz\
+  \ \\\\\n file://server.init \\\\\n \"\n\nRDEPENDS_${PN} += \"bash\"\n\n# Make sure\
+  \ our source directory (for the build) matches the directory structure in\nthe tarball\n\
+  S = \"${WORKDIR}\"\n\ndo_install() {\n   install -d ${D}${datadir}/server-packt\n\
+  \   cp -a ${S}/server ${D}${datadir}/server-packt\n\n   install -d ${D}${sysconfdir}/init.d/\n\
+  \   install -m 0755 ${WORKDIR}/server.init ${D}${sysconfdir}/init.d/server-packt-init\n\
+  }\n\n# Package files\nFILES_${PN} += \"${datadir}/server-packt\"\n\ninherit update-rc.d\n\
+  \nINITSCRIPT_NAME = \"server-packt-init\"\nINITSCRIPT_PARAMS = \"start 99 5 2 .\
+  \ stop 19 0 1 6 .\"\n```\n\n## 说明\n\n以下是对更新后的 webserver-packet.bb 文件的说明：\n\n- `INITSCRIPT_NAME`\
+  \ 变量表示初始化脚本的文件名，安装后位于 `/etc/init.d`。\n- `INITSCRIPT_PARAMS` 变量指定传递给 `update-rc.d`\
+  \ 的选项。在我们的例子中，脚本的运行级别为 99，在 init 级别 2 和 5 启动，在级别 0、1 和 6 停止。\n\n## 注意\n\n如果要了解 update-rc.d\
+  \ 的更多信息，可以访问 Yocto Project 的官方文档：http://www.yoctoproject.org/docs/1.8/mega-manual/mega-manual.html#ref-classes-update-rc.d\n\
+  \n## 部署 raspberry-pckt-image\n\n现在我们有了一个功能应用程序 (webserver-pckt)，可以将其添加到自定义镜像 raspberry-pack-image\
+  \ 中：\n\n```\n# Base this image on core-image-minimal\ninclude recipes-core/images/core-image-minimal.bb\n\
+  DESCRIPTION = \"Image for raspberry-pi\"\nIMAGE_FEATURES += \"ssh-server-dropbear\
+  \ splash\"\n# Include modules in rootfs\nIMAGE_INSTALL += \" \\\\\n kernel-modules\
+  \ \\\\\n gpio-pckt \\\\\n i2c-tools \\\\\n spitools \\\\\n nunchuck \\\\\n v4l-utils\
+  \ \\\\\n nodejs \\\\\n webserver-pckt \\\\\n \"\n```\n\n做完之后，我们可以开始创建镜像，然后将其挂载到\
+  \ SD 卡上：\n\n```\n$ bitbake raspberry-pckt-image\n```\n\n## 测试应用程序\n\n要在 Raspberry\
+  \ Pi 上测试应用程序，只需在您喜欢的浏览器中访问以下地址：\n\nhttp://raspberry-pi-ip-address:3344\n\n如果整个环境已正确配置，您应该看到以下页面：\n\
+  \n![](img/76681dcfb8cd2bd107d0c06ab088f916_181_0.png)\n\n## 本项目的未来\n\n我们探讨了服务器的基本思路，您应该能够对其进行改进，使其尽可能具备工业级水平。可以轻松想象以下应用：\n\
+  \n- 监控主板上存在的 ADC\n- 通过 HTML 页面向设备发送串行命令 (node-serial)\n- 监控 CAN-bus 设备 ( https://github.com/sebi2k1/node-can\
+  \ )\n\n最终项目可能类似于这样：\n\n![](img/76681dcfb8cd2bd107d0c06ab088f916_182_0.png)\n\n##\
+  \ 摘要\n\n在本章中，我们学习了如何创建 Web 界面、如何将其集成到现有环境中，以及如何将其部署到 Raspberry Pi 上。\n\n在下一章中，我们将学习\
+  \ Linux 内核的一些基础知识，以及如何配置内核以支持各种 LCD 触摸屏。本章还将介绍如何设置 Yocto 项目，以在使用 LCD 触摸屏的 Raspberry\
+  \ Pi 上运行图形应用程序或窗口系统。\n"
+- "# 第 10 章 使用 LCD 触摸屏和 Linux 内核\n\n在使用嵌入式 Linux 系统设置 LCD 触摸屏时，建议具备 Linux 内核及其配置的基础知识。在本章中，我们将学习\
+  \ Linux 内核的一些基础知识，以及如何使用交叉编译器下载、配置和编译它。在 Raspberry Pi 上运行基于 Linux 的系统时，目前的建议是使用\
+  \ Raspberry Pi Linux 内核而非主线 Linux 内核；我们将在本章中了解原因。\n\n在本章后面，我们将了解如何使用 Raspberry Pi\
+  \ 7 触摸屏和 PiTFT 2.8 触摸屏，启动基于 Yocto Project 并带有窗口系统的镜像。本章将以使用 Qt 应用程序框架为 Raspberry\
+  \ Pi 开发可通过触摸屏操作的图形应用程序的演示结束。\n\n\n\n\n\n## Linux 内核\n\nLinux 内核是 Linus Torvalds\
+  \ 在 1991 年创建的类 Unix 操作系统内核。它最初是为 32 位 x86 个人电脑开发的，但如今，Linux 还支持 ARM、PowerPC、MIPS\
+  \ 和 SPARC 等多种架构。Linux 内核是 Linux 发行版（如 Ubuntu、Debian 和 Fedora）的基本组成部分。\n\n在决定为项目选择哪个内核时，了解内核发布的工作方式很有帮助。根据您的需求，可以在\
+  \ **主线**、**开发中** 或 **稳定** 内核之间进行选择。如果您不从事内核开发，建议避免使用主线内核，因为它仍在开发中，被视为不稳定。内核在从主线树发布后立即被视为稳定版本。之后，内核将一直维护，直到下一个主线内核可用（通常需要\
+  \ 2-3 个月）。然而，内核可以被选为长期支持内核，这意味着它将维护较长一段时间（几年）。长期支持内核通常用于商业项目，因为这些项目需要稳定且受支持的基础，并且可以长时间移植重要的错误修复和安全修复。\n\
+  \n### 注意\n\n访问 [关于内核发布](https://www.kernel.org/releases.html) 了解更多详情。\n\n## Linux\
+  \ 内核与 Raspberry Pi Linux 内核\n\n目前推荐用于 Raspberry Pi 的内核是官方的 Raspberry Pi Linux 内核（https://github.com/raspberrypi/linux.git）。之所以需要为\
+  \ Raspberry Pi 使用特定的内核（而不是使用主线 Linux 内核），主要是因为 Raspberry Pi 需要专有固件/GPU 二进制 Blob。不过，2014\
+  \ 年，Broadcom 在三条款 BSD 许可下发布了 VideoCore IV 图形核心的完整文档，连同图形堆栈的完整源代码。这导致主线对 bcm2835（Raspberry\
+  \ Pi 使用的 SoC）的支持与 Raspberry Pi Linux 内核的支持之间的差距显著缩小。尽管如此，主线内核中仍有一些艰巨的工作要做，例如视频解码和摄像头支持。此外，一些重要的驱动程序，如\
+  \ rpi-ft5406（用于官方 Raspberry Pi 触摸屏），仍然不存在于主线 Linux 内核中。\n\n### 注意\n\n在 http://elinux.org/RPi_Upstreaming\
+  \ 上了解 Raspberry Pi 内核向主线内核合并的当前状态的更多信息。\n\n## 开始使用 Linux 内核\n\n在本章的这一部分中，我们将介绍如何下载、配置和编译自定义\
+  \ Linux 内核。\n\n可以从 kernel.org 下载不同主线版本的内核，可以是归档文件，也可以通过 GitHub。在示例中，我们将使用内核版本 4.1，因为它目前是\
+  \ meta-raspberrypi 的默认版本。您可以通过搜索 PREFERRED_VERSION_linux-raspberrypi 轻松找到 meta-raspberrypi\
+  \ 的默认版本，如下所示：\n\n```\n$ cd meta-raspberrypi\n$ git grep PREFERRED_VERSION_linux-raspberrypi\n\
+  conf/machine/include/rpi-default-versions.inc:PREFERRED_VERSION_linux-raspberrypi\n\
+  ?= \"4.1.1%\"\n```\n\n首先下载内核，然后切换到 4.1 分支：\n\n```\n$ cd /path/to/workdir\n$ git\
+  \ clone https://git.kernel.org/cgit/linux/kernel/git/stable/linux-stable.git/\n\
+  $ git checkout -b linux-4.1.y -t remotes/origin/linux-4.1.y\n```\n\n请记住，在为 Raspberry\
+  \ Pi 构建时，https://github.com/raspberrypi/linux.git 是受支持的内核仓库。使用方法如下：\n\n### 注意\n\n\
+  ```\n$ git clone https://github.com/raspberrypi/linux.git\n$ git checkout -b rpi-4.1.y\
+  \ -t remotes/origin/rpi-4.1.y\n```\n\n接下来，我们可以开始使用内核了。首先，我们需要决定使用什么配置；所有现有配置都位于内核源代码树的\
+  \ arch/*/configs/ 下。稍后，我们将了解如何对内核进行自定义，但目前，我们将先使用 ARM 平台的预定义配置。在主机上构建时，需要为 ARM 架构设置交叉编译器，在这里是\
+  \ bcm2835（正好是 Raspberry Pi 的 CPU 系列）。使用此命令：\n\n```\n$ make O=/path/to/output_dir\
+  \ CROSS_COMPILE=/path/to/arm-linux-gnueabi- ARCH=arm bcm2835_defconfig\nmake[1]:\
+  \ Entering directory '/path/to/output_dir'\n    HOSTCC  scripts/basic/fixdep\n \
+  \   GEN     ./Makefile\n    HOSTCC  scripts/kconfig/conf.o\n    SHIPPED scripts/kconfig/zconf.tab.c\n\
+  \    SHIPPED scripts/kconfig/zconf.lex.c\n    SHIPPED scripts/kconfig/zconf.hash.c\n\
+  \    HOSTCC  scripts/kconfig/zconf.tab.o\n    HOSTLD  scripts/kconfig/conf\n#\n\
+  # configuration written to .config\n#\n```\n\n```\nmake[1]: Leaving directory '/path/to/output_dir'\n\
+  ```\n\n该命令将确保所选配置、Makefile 以及指向原始源代码树的符号链接存储在输出目录中。使用输出目录不是强制性的；您可以直接在内核源代码树中构建。但是，强烈建议指定输出目录，以避免主内核树出现问题，并使其保持不受构建结果的影响。接下来，我们可以开始构建内核。如果在多核机器上构建，建议使用\
+  \ -j 标志以加快构建速度。\n\n```\n$ make O=/path/to/output_dir CROSS_COMPILE=/path/to/arm-linux-gnueabi-\
+  \ ARCH=arm -j4\nmake[1]: Entering directory '/path/to/output_dir'\n  GEN     ./Makefile\n\
+  \  scripts/kconfig/conf --silentoldconfig Kconfig\nmake[1]: Leaving directory '/path/to/output_dir'\n\
+  make[1]: Entering directory '/path/to/output_dir'\n  CHK     include/config/kernel.release\n\
+  \  GEN     ./Makefile\n  WRAP    arch/arm/include/generated/asm/bitsperlong.h\n\
+  \  WRAP    arch/arm/include/generated/asm/cputime.h\n  WRAP    arch/arm/include/generated/asm/current.h\n\
+  \  ...\n  OBJCOPY arch/arm/boot/zImage\n  Kernel: arch/arm/boot/zImage is ready\n\
+  make[1]: Leaving directory '/path/to/output_dir'\n```\n\n如果要更改内核的配置，可以使用名为 menuconfig\
+  \ 的预定义目标。它将为您提供一个菜单，其中包含内核所有可配置部分的条目。可以在菜单中搜索关键字以查找请求的配置选项；方法是键入 / 后跟关键字。在菜单中键入\
+  \ ? 将显示所选配置选项的简短说明。\n\n```\nmake O=/path/to/output_dir CROSS_COMPILE=/path/to/arm-linux-gnueabi-\
+  \ ARCH=arm menuconfig\n```\n\n以下是使用 menuconfig 的示例。M 符号表示驱动程序将作为单独的模块构建，可以按需由内核加载/卸载。\n\
+  \n![](img/76681dcfb8cd2bd107d0c06ab088f916_189_0.png)\n\n保存新配置后，可以按照本章前面描述的同样方式构建内核。\n\
+  \n## 在 Yocto 中配置内核\n\n使用 Yocto 时，可以使用 BitBake 来配置和编译内核。以下示例将向您展示如何在 Yocto 项目中执行这些步骤，以\
+  \ Raspberry Pi 内核为例：\n\n```\n$ cd /path/to/project\n$ bitbake linux-raspberrypi\
+  \ -c menuconfig\n```\n\n进行修改并保存新的 defconfig，然后运行此命令：\n\n```\n$ bitbake linux-raspberrypi\n\
+  ```\n\n如前几章所述，这些命令会在后台为您设置交叉编译器。在 Yocto 项目中，可以获取自定义的内核配置文件（.config）并将其放入内核配方中。然后，需要将其命名为\
+  \ defconfig，并在配方的 SRC_URI 变量中指向它。这将导致内核使用 defconfig 文件作为默认配置进行构建。还可以使用称为 fragments\
+  \ 的功能，可以在名为 <somename>.cfg 的文件中添加内核配置选项片段。添加到 SRC_URI 变量后，它将使用片段中的信息更新内核配置。对于 linux-raspberrypi（meta-raspberrypi\
+  \ 中的内核配方），不能使用 defconfig or\n\n\n\n片段，因为它直接从内核仓库（bcmrpi_defconfig 或 bcm2709_defconfig）获取内核配置并覆盖\
+  \ defconfig 文件。要更改 meta-raspberrypi 的内核配置选项，有几种可能性。第一个选项是为内核创建一个集成补丁，用于修改内核树中所选的\
+  \ defconfig 文件，然后通过内核配方应用该补丁，如下所示：\n\n```\ndiff --git a/recipes-kernel/linux/linux-raspberrypi_4.1.bb\
+  \ b/recipes-kernel/linux/linux-raspberrypi_4.1.bb\nindex 3a3cf40..bddf79b 100644\n\
+  --- a/recipes-kernel/linux/linux-raspberrypi_4.1.bb\n+++ b/recipes-kernel/linux/linux-raspberrypi_4.1.bb\n\
+  @@ -1,6 +1,8 @@\nLINUX_VERSION ?= \"4.1.10\"\n\nSRCREV = \"b74df9228c27f55361c065bc5dbfba88861cc771\"\
+  \n-SRC_URI = \"git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-4.1.y\"\
+  \n+SRC_URI = \"git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-4.1.y\
+  \ \\\n+    file://0001-bcmrpi_defconfig-add-debug.patch \\\n+    \"\n```\n\n另一个选项是使用\
+  \ meta-raspberrypi 中 linux.inc 的 kernel_configure_variable 函数，然后使用该函数前置内核配方的配置：\n\
+  \n```\ndiff --git a/recipes-kernel/linux/linux.inc b/recipes-kernel/linux/linux.inc\n\
+  index fae78b7..12eec7e 100644\n--- a/recipes-kernel/linux/linux.inc\n+++ b/recipes-kernel/linux/linux.inc\n\
+  @@ -107,6 +107,8 @@ do_configure_prepend() {\n       # Activate CONFIG_LEGACY_PTYS\n\
+  \       kernel_configure_variable LEGACY_PTYS y\n\n+      kernel_configure_variable\
+  \ TOUCHSCREEN_STMPE y\n+\n       # Keep this the last line\n       # Remove all\
+  \ modified configs and add the rest to .config\n       sed -e \"${CONF_SED_SCRIPT}\"\
+  \ < '${WORKDIR}/defconfig' > '${B}/.config'\n```\n\n## 使用 LCD 支持配置内核\n\n在将 LCD 显示器与树莓派一起使用时，您的内核必须满足某些要求，以确保显示器功能齐全。首先，您需要知道要使用的内核是否支持您的显示器。将旧内核版本与全新显示器配合使用通常会出现问题，因为为您的显示器所需的驱动程序在开发旧内核时尚不存在，而新驱动程序很少会被回移植到旧内核版本。这为您提供了两种选择。第一个是亲自尝试回移植所需驱动程序的艰苦工作。即使是经验丰富的内核开发人员，这也非常困难且往往难以实现，具体取决于需要回移植的内核有多旧。另一种更合适的解决方案是使用包含您的显示器驱动程序的较新内核版本。\n\
+  \n即使您的内核包含了运行显示器所需的所有组件，您也必须确保所有驱动程序都已启用。从内核版本 3.18 开始，树莓派官方支持一种称为设备树的机制，可用于简化内核的配置。\n\
+  \n在本小节中，我们将讨论以下主题：\n\n- 设备树：它是什么以及如何在树莓派上使用\n- 从内核角度配置触摸屏：如何在树莓派上配置内核以处理不同的触摸屏\n\
+  \n### 树莓派设备树\n\n一个 **设备树 (DT)** 是包含设备硬件描述的树形数据结构。DT 可以管理资源分配和处理模块加载，从而缓解驱动程序争夺系统资源的问题。对于\
+  \ ARM 架构，**设备树源 (DTS)** 文件存储在内核树的 `/arch/arm/boot/dts` 下。当内核构建时，DTS 文件会被编译成 **设备树二进制文件\
+  \ (DTBs)**。要使用 DT，固件和内核都必须支持它，因为引导加载程序将负责与内核一起加载 DTB（第三阶段引导加载程序 `start.elf` 将把设备树二进制文件传递给树莓派）。\n\
+  \n### 注意\n\n树莓派使用其 GPU (VideoCore IV) 来启动系统。它首先加载其一级引导加载程序。这样可以访问并运行二级引导加载程序 `bootcode.bin`（位于\
+  \ SD 卡上）。二级引导加载程序在 GPU 上执行，并将加载名为 `start.elf` 的三级引导加载程序。三级引导加载程序的主要职责是读取和解析配置，并将其传递给\
+  \ GPU 和内核，同时加载内核映像。`bootcode.bin` 和 `start.elf` 引导加载程序以及配置（例如 `cmdline.txt` 和 `config.txt`）位于\
+  \ SD 卡上。\n\n将 DTB 传递给不支持设备树的内核将阻止映像启动。为了以通用方式处理此问题，引导加载程序使用 `mkknlimg` 工具添加的尾块来检查内核是否支持\
+  \ DT。\n\n树莓派的设备树管理使用 `config.txt` 文件来完成。基础设备树位于 /boot 分区中，与 start.elf 并存，命名为 bcm*-rpi-b[-plus].dtb（A\
+  \ 和 A+ 型号兼容，应该使用 B 和 B+ 设备树）。以下示例展示了如何在 config.txt 中启用 i2c 接口、添加 HiFiBerry 支持，并确保加载树莓派\
+  \ B+ 的基础 DT：\n\n```\ndtparam=i2c=on\ndtoverlay=bcm2708-rpi-b-plus\ndtoverlay=hifiberry-dacplus\n\
+  ```\n\n使用最新固件时，加载程序会根据您的硬件尝试默认加载其中一个基础设备树，无需您在 config.txt 中指定。\n\n## 从内核角度配置触摸屏\n\
+  \n在本小节中，我们将介绍 PiTFT 2.8 触摸屏和树莓派 7 触摸屏所需的基本内核配置。\n\n首先，我们需要为基础配置选择应使用的配置。使用 meta-raspberrypi\
+  \ 时，在 local.conf 中将 MACHINE 变量指定为 raspberrypi 或 raspberrypi2 后，构建系统将自动处理此事。使用自定义内核时，我们需要知道哪个现有配置适合我们的树莓派型号。目前有三种选择：bcmrpi_defconfig（第一代树莓派）、bcm2709_defconfig（第二代树莓派）或\
+  \ bcm2835_defconfig（仅在较新内核版本中完全支持）。在我们的示例中，我们将使用树莓派 2。配置决定后，我们可以开始执行内核的基本配置，如下所示：\n\
+  \n```\n$ cd /path/to/rpi_kernel_repo\n$ mkdir -p /path/to/output_dir\n$ O=/path/to/output_dir\
+  \ CROSS_COMPILE=/path/to/arm-linux-gnueabi- ARCH=bcm2709_defconfig\n```\n\n使用 BitBake\
+  \ 和 meta-raspberrypi，您需要执行以下操作：\n\n```\n$ bitbake linux-raspberrypi -c configure\n\
+  ```\n\n### 注意\n\n对于自定义内核，config 将存储在 /path/to/kernel_output/.config。使用 Yocto 和 meta-raspberrypi\
+  \ 时，它将存储在 . /tmp/work/raspberrypi*-poky-linux-gnueabi/linux-raspberrypi/<kernel_version_and_revision>/linux-raspberrypi*-standard-build/.config。\n\
+  \n一旦基本配置就绪，我们可以检查它是否包含启动显示器所需的最基本配置。请注意，以下配置目前在树莓派配置中默认启用。\n\n对于 PiTFT 2.8，必须启用这些选项：\n\
+  \n```\nCONFIG_INPUT_TOUCHSCREEN=y\nCONFIG_OF_TOUCHSCREEN=y\nCONFIG_TOUCHSCREEN_STMPE=m\n\
+  CONFIG_FB_TFT_FBTFT_DEVICE=m\n```\n\n除了通用触摸屏支持配置外，我们还需要确保构建 stmpe 和 fbtft 设备。stmpe_ts\
+  \ 设备用于为 PiTFT 提供可用的触摸功能。fbtft 设备是一种用于小型 TFT LCD 显示器（例如 PiTFT）的帧缓冲区驱动程序。该设备支持 SPI\
+  \ 和 GPIO 的使用（PiTFT 显示器使用它们），并确保显示器已注册并被内核识别。除了这些选项外，还需要进行 SPI 和 i2c 的基本设置才能让一切运行起来。\n\
+  \n在本书中，我们将假设使用具有树莓派设备树支持的内核版本（内核 3.18+）。这意味着我们需要修改 config.txt 以确保所需部分通过设备树自动加载，如下所示：\n\
+  \n```\ndtparam=spi=on\ndtparam=i2c1=on\ndtparam=i2c_arm=on\ndtoverlay=pitft28r,\
+  \ rotate=90, speed=32000000, fps=20\n```\n\n对于官方树莓派 7，只需启用以下内容：\n\n```\nCONFIG_INPUT_TOUCHSCREEN=y\n\
+  CONFIG_OF_TOUCHSCREEN=y\nCONFIG_TOUCHSCREEN_RPI_FT5406=m\n```\n\n然后，在 config.txt\
+  \ 中启用 ft5406 overlay：\n\n```\ndtoverlay=rpi-ft5406\n```\n\n我们已了解内核与树莓派上某些常见触摸屏型号正常工作所需的基本配置。在下一节中，我们将学习如何使用\
+  \ Yocto Project 设置这些部分以及所需的用户空间设置。\n\n\n\n\n\n## 使用 Yocto Project 为 Raspberry Pi\
+  \ 配置 LCD 显示器\n\nRaspberry Pi 有多种不同的 LCD 显示屏可供选择。其中最流行的包括官方的 Raspberry Pi 7 触摸屏和\
+  \ PiTFT 显示屏（通常称为 PiTFT HAT，因为它们适合安装在 Raspberry Pi 上方）。目前，我们将重点介绍 Raspberry Pi 7\
+  \ 触摸屏和 PiTFT 型号。\n\n在本节中，我们将介绍如何启动标准的 Yocto Project 镜像，该镜像包含窗口系统和可用的触摸屏。\n\n###\
+  \ Raspberry Pi 7 触摸屏\n\n使用基于 Yocto Project 的镜像入门 Raspberry Pi 7 触摸屏需要进行多项配置。首先，我们需要确保使用的是\
+  \ 4.1+ 内核。从 meta-raspberrypi 的 **jethro** 版本开始，4.1 是默认版本。目前，meta-raspberrypi 对 Raspberry\
+  \ Pi 7 触摸屏的支持尚不完整，因此在启动镜像之前，我们需要进行一些小的修改。\n\n### 注意\n\nRaspberry Pi 7 触摸屏的构建说明可在\
+  \ https://www.adafruit.com/images/product-files/2718/2718build.jpg 上找到。该显示屏适用于 Raspberry\
+  \ Pi A/B 板；但是，显示屏背面的安装孔仅与 A+、B+ 以及 Raspberry Pi 2/3 对齐。\n\n```\n$ source /path/to/poky/oe-init-build-env\
+  \ my_project\n```\n\n如果使用 meta-raspberrypi 的默认设置，我们将拥有一个受支持的内核，其中所有必需的配置选项默认处于启用状态。为保险起见，您可以浏览本章的前面部分，以确保内核已正确配置以适用于您的显示屏。考虑到这一点，我们可以从创建新项目开始：\n\
+  \n```\n$ cat local/bblayers.conf\n# LAYER_CONF_VERSION is increased each time build/conf/bblayers.conf\n\
+  # changes incompatibly\nLCONF_VERSION = \"6\"\nBBPATH = \"${TOPDIR}\"\nBBFILES ?=\
+  \ \"\"\nBBLAYERS ?= \" \\\n/path/to/poky/meta \\\n/path/to/poky/meta-yocto \\\n\
+  /path/to/poky/meta-yocto-bsp \\\n/path/to/meta-raspberrypi \\\n/path/to/meta-openembedded/meta-oe\
+  \ \\\n/path/to/meta-openembedded/meta-multimedia \\\n\"\nBBLAYERS_NON_REMOVABLE\
+  \ ?= \" \\\n/path/to/poky/meta \\\n/path/to/poky/meta-yocto \\\n\"\n```\n\n### 注意\n\
+  \n如果您尚未为本书中的早期示例克隆 OpenEmbedded 层，可以使用以下命令完成：$ git clone git://git.openembedded.org/meta-openembedded\n\
+  \n我们还需要对 local.conf 进行一些修改：\n\n```\n$ echo \"MACHINE = \\\"raspberrypi\\\"\" >>\
+  \ conf/local.conf (Or MACHINE=raspberrypi2)\n$ echo \"LICENSE_FLAGS_WHITELIST =\
+  \ \\\"commercial\\\"\" >> conf/local.conf\n```\n\n完成此操作后，我们即可开始新构建。默认情况下，meta-raspberrypi\
+  \ 将确保例如为触摸屏设置输入设备以及相应的 udev 规则。这些设置将在构建期间无缝应用：\n\n```\n$ bitbake core-image-sato\n\
+  ```\n\n将新镜像写入 SD 卡后，我们还需要确保已加载触摸屏所需的所有驱动程序。这可以通过将此行添加到 SD 卡启动分区中 config.txt 文件的末尾来完成：\n\
+  \n```\n$ echo \"dtoverlay=rpi-ft5406\" >> /path/to/sdcard/boot/config.txt\n```\n\
+  \n现在，您已经准备就绪，可以使用 Raspberry Pi 7 触摸屏启动带有触摸支持的窗口系统了。\n\n![](img/76681dcfb8cd2bd107d0c06ab088f916_196_0.png)\n\
+  \n*运行 core-image-sato 的 Raspberry Pi 7 触摸屏*\n\n### PiTFT 2.8 电阻式触摸屏\n\nmeta-raspberrypi\
+  \ 中对 PiTFT 显示屏的原生支持是较新的功能。请查看 meta-raspberrypi 的 readme 文件中的“启用 PiTFT 支持”部分，以确认您的\
+  \ PiTFT 型号是否受支持。\n\n使用 Yocto Project，可以为任何现有（或自定义）Raspberry Pi 镜像配置 PiTFT 支持。该支持已作为\
+  \ `MACHINE_FEATURES` 添加到 meta-raspberrypi 中。`MACHINE_FEATURES` 变量是 Yocto Project\
+  \ 的标准功能，可用于为您要构建的目标添加硬件功能。Yocto Project 中存在一组预定义的 `MACHINE_FEATURES` 功能，其中包括 Wi-Fi、键盘、Alsa\
+  \ 和 Bluetooth 等。在 Raspberry Pi BSP 层中，其中一些功能默认处于启用状态：\n\n```\n$ grep \"MACHINE_FEATURES\
+  \ \" conf/machine/include/rpi-base.inc\nMACHINE_FEATURES += \"kernel26 apm usbhost\
+  \ keyboard vfat ext2 screen touchscreen\nalsa bluetooth wifi sdio\"\n```\n\nPiTFT\
+  \ 支持需要两个新的 `MACHINE_FEATURES` 功能：一个名为 `pitft` 的通用功能和一个特定于型号的版本。在本示例中，我们将使用 `pitft28r`，它对应于\
+  \ PiTFT 2.8 电阻式触摸屏。添加新 `MACHINE_FEATURES` 功能的最简单方法是将其添加到项目中的本地配置文件：\n\n```\n$ cd\
+  \ /path/to/my/rpi/project\n$ echo \"MACHINE_FEATURES += \"pitft pitft28r\"\" >>\
+  \ conf/local.conf\n```\n\n这将添加对运行控制台镜像或窗口系统镜像的支持。pitft 功能将在内部确保启用 SPI 和 i2c。它还将配置帧缓冲区以处理\
+  \ PiTFT 显示屏（从 /dev/fb0 更改为 /dev/fb1）。特定于型号的计算机功能（本示例中的 pitft28r）会将特定于型号的设备树叠加层添加到\
+  \ config.txt，为屏幕设置适当的配置（例如方向和速度），并确保加载触摸功能所需的 stmpe 模块。它还会为触摸屏添加一些默认校准数据。在设置好 `MACHINE_FEATURES`\
+  \ 功能后，我们可以构建镜像，将其加载到 SD 卡，然后启动：\n\n```\n$ bitbake core-image-sato\n```\n\n![](img/76681dcfb8cd2bd107d0c06ab088f916_197_0.png)\n\
+  \n*运行 core-image-sato 的 PiTFT 2.8 电阻式触摸屏*\n\n启动 Raspberry Pi 时，LCD 最初会变为白色。过一段时间，它应该会再次变为黑色，这意味着内核已识别屏幕。不久之后，您应该可以使用窗口系统了。“2.8”屏幕相当小，但可以使用虚拟键盘在终端中输入例如简单命令。触摸屏已为您使用默认值进行了校准，这些值适合您的屏幕和旋转方向。如果您认为默认校准不足，例如，如果您想更改显示方向（默认\
+  \ 90 度），可以使用例如 ts_calibrate 重新校准它。\n\n### 注意\n\n```\nts_calibrate is part of the\
+  \ tslib recipe in Poky. It's included by default when building core-image-sato,\
+  \ and it can easily be added to a custom image by specifying MACHINE_FEATURES +=\
+  \ \"touchscreen\"\n```\n\n### 在 LCD 显示器上开发应用程序并使用它们\n\n此时，我们已在 Raspberry Pi 上运行基于\
+  \ Yocto Project 且支持 PiTFT 显示屏的镜像。在本节中，我们将开发一个可用于我们花哨触摸屏的图形应用程序。在开发图形应用程序时，存在几种不同的框架。Qt\
+  \ 是嵌入式设备最著名的图形框架之一，并提供免费软件版本。在本节中，我们将介绍如何使用 Qt 和 EGLFS 为嵌入式 Linux 环境设置和开发图形应用程序。Qt\
+  \ 是一种跨平台应用程序框架，因此除了可以在各种类型的硬件上运行外，还可以在许多不同的软件平台（例如 X11、OS X、Windows 和 EGLFS）上使用。我们在示例中将使用的\
+  \ EGLFS，基本上是一种平台插件，用于在 EGL 和 OpenGL ES 之上运行 Qt 应用程序。事实上，它甚至不需要窗口系统（例如 X11）即可工作，这使其非常适合嵌入式\
+  \ Linux。\n\n### 使用 Qt 开发自定义应用程序\n\n使用 Yocto Project 开发基于 Qt 的应用程序时，我们需要在自己的层中设置\
+  \ Qt。开发图形应用程序有两种标准方法：针对导出的 SDK 构建应用程序，或为应用程序创建新的配方。在本示例中，我们将针对导出的 SDK 开发我们的应用程序。为了成功让新应用程序在目标上构建和运行，我们需要执行以下步骤。\n\
+  \n- 添加 Qt 所需的外部层\n- 导出包含 Qt 支持的 SDK\n- 创建 Qt 应用程序并针对导出的 SDK 构建它\n- 为目标设置带有 Qt 支持的镜像\n\
+  - 在官方 Raspberry Pi 7\" 触摸屏上运行 Qt 应用程序\n\n存在多种不同的 Qt 版本，其中 Qt5 是最新版本。在开发我们的新应用程序时，我们将使用\
+  \ meta-qt5 外部层。首先，我们需要下载 meta-qt5 并在项目中启用其使用：\n\n```\n$ git clone https://github.com/meta-qt5/meta-qt5.git\n\
+  ```\n\n将 meta-qt5 添加到 local/bblayers.conf：\n\n```\n$ cat local/bblayers.conf\n#\
+  \ LAYER_CONF_VERSION is increased each time build/conf/bblayers.conf\n# changes\
+  \ incompatibly\nLCONF_VERSION = \"6\"\n\nBBPATH = \"${TOPDIR}\"\nBBFILES ?= \"\"\
+  \n\nBBLAYERS ?= \" \\\n/path/to/poky/meta \\\n/path/to/poky/meta-yocto \\\n/path/to/poky/meta-yocto-bsp\
+  \ \\\n/path/to/meta-raspberrypi \\\n/path/to/meta-openembedded/meta-multimedia \\\
+  \n/path/to/meta-qt5 \\\n\"\nBBLAYERS_NON_REMOVABLE ?= \" \\\n/path/to/poky/meta\
+  \ \\\n/path/to/poky/meta-yocto \\\n\"\n```\n\n接下来，我们需要导出 SDK 并将其解压到首选位置：\n\n```\n\
+  $ bitbake meta-toolchain-qt5\n$ .tmp/deploy/sdk/poky-glibc-x86_64-meta-toolchain-qt5-cortexa7hf-vfp-vfpv4-neon-toolchain-2.0.1.sh\n\
+  ```\n\n路径可能会有所不同，具体取决于您使用的 Raspberry Pi 型号和 Yocto Project 版本。\n\n### 注意\n\n\n\n\n\
+  \n如果构建 meta-toolchain-qt5 失败，你可以尝试在不包含 X11 和 Wayland 包的情况下构建它。在使用 meta-raspberrypi\
+  \ 时，将 X11 和 Wayland 与 qt5 一起使用有时会出现问题。使用此命令：$ echo \"DISTRO_FEATURES_remove = \\\
+  \"x11 wayland\\\"\" >> conf/local.conf.\n\n如果构建仍有问题，请添加 meta-packt-qt5 层并重试。该层包含一些针对\
+  \ Raspberry Pi 上 qt5 的变通方案。有关更多信息，请参阅层中的 readme 文件。\n\n设置交叉编译器的环境：\n\n```\n$ cd\
+  \ /path/to/extracted_sdk\n$ source environment-setup-cortexa7hf-vfp-vfvp4-neon-poky-linux-gnueabi\n\
+  $ which qmake\n/path/to/extracted_sdk/sysroots/x86_64-pokysdk-linux/usr/bin/qt5/qmake\n\
+  ```\n\nSDK 就绪且交叉编译器设置完成后，我们就可以开始为 Raspberry Pi 构建第一个 Qt 应用程序了。第一个示例是一个基于 C++ 的简单\
+  \ Qt 应用程序，包含一些可点击的小部件。从命令行构建 Qt 应用程序时，可以使用 qmake 创建项目并生成 makefile，如下所示：\n\n```\n\
+  $ tar -zxf qt_packtpub_app.tar.gz\n$ cd qt_packtpub_app\n$ ls\nqt_packtpub_app.cpp\
+  \ window.cpp window.h\n$ qmake -project \"QT += widgets\"\n$ qmake\n$ make\n```\n\
+  \n```\n$ file qt_packtpub_app\nqt_packtpub_app: ELF 32-bit LSB executable, ARM,\
+  \ EABI5 version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux-armhf.so.3,\
+  \ for GNU/Linux 2.6.32, BuildID[sha1]=4fa5ba7143d8e7fd240da45a9143e9d285371d80,\
+  \ not stripped\n```\n\n应用程序准备就绪后，我们需要生成一个带有 Qt 支持的目标镜像，以便在测试新应用程序时使用。我们将以 rpi-basic-image\
+  \ 为基础，在其之上进行一些添加。为了在目标上运行 Qt 应用程序，我们需要添加一组软件包。为此，可以使用名为 packagegroup-qt5-toolchain-target\
+  \ 的预定义软件包组。当然，也可以手动指定所需的 Qt5 软件包以减少占用空间，例如。但在此示例中，我们将保持简单，并确保包含所需的所有内容。如前一章所述，EGLFS\
+  \ 无需任何窗口系统即可工作，因此我们可以删除 X11 和 Wayland 支持以减小镜像占用空间。所有这些操作都可以在 local.conf 中指定：\n\n\
+  ```\n$ echo \"IMAGE_INSTALL_append_pn-rpi-basic-image = \" packagegroup-qt5-toolchain-target\
+  \ qt5-opengles2-test\"\" >> conf/local.conf\n$ echo \"DISTRO_FEATURES_remove = \\\
+  \"x11 wayland\\\"\" >> conf/local.conf\n```\n\n配置项目后，我们可以构建基本镜像：\n\n```\n$ bitbake\
+  \ rpi-basic-image\n```\n\n别忘了添加 Raspberry Pi 7 触摸屏所需的设备树，如前一章所述：\n\n```\n$ echo\
+  \ \"dtoverlay=rpi-ft5406\" >> /path/to/sdcard/boot/config.txt\n```\n\n将新构建的应用程序传输到目标设备并运行它：\n\
+  \n```\n$ /path/to/qt_packtpub_app -platform eglfs\n```\n\n![](img/76681dcfb8cd2bd107d0c06ab088f916_202_0.png)\n\
+  \n> *在 Raspberry Pi 7 触摸屏上运行的 qt_packtpub_app 应用程序*\n\n如果在之前的步骤中仔细观察，你还会发现我们向镜像中添加了一个名为\
+  \ qt5-opengles2-test 的软件包。该软件包将生成一个基于 OpenGL 的 Qt 应用程序，我们可以使用它来演示触摸屏上的多触控操作：\n\n\
+  ```\n$ qt5-opengles2-test -platform eglfs\n```\n\n## 摘要\n\n在本章中，我们了解了 Linux 内核及其发布策略的基本知识，以及主线内核与官方\
+  \ Raspberry Pi Linux 内核之间的差异。我们还学习了如何使用交叉编译器配置和编译 Linux 内核。在更改 meta-raspberrypi\
+  \ 中的 defconfig 文件时，内核配方需要一些特殊处理，这与正常的 Yocto Project 流程不同。本章演示了如何做到这一点的两个示例。随后，我们还介绍了设置两个不同触摸屏所需的一些基本内核配置；这还包括关于设备树及其如何用于配置\
+  \ Raspberry Pi 的一些基本理解。\n\n本章还介绍了如何在 Raspberry Pi 上运行带有窗口系统的 Yocto 镜像的示例，使用了两种不同的触摸屏：Raspberry\
+  \ Pi 7 触摸屏和 PiTFT 2.8 电阻触摸屏。在本章的最后一节中，我们学习了如何使用 Raspberry Pi 和 Raspberry Pi 7 触摸屏运行使用\
+  \ Yocto Project 生成的 SDK 构建的 Qt 应用程序。\n\n在下一章中，我们将学习如何为 meta-raspberrypi 项目做贡献。\n"
+- "# 第 11 章 为 Raspberry Pi BSP 层做贡献\n\n在本章中，我们将学习如何向 meta-raspberrypi 层贡献自定义工具。将解释与该领域相关的常见术语，例如“开源”、“社区”和“上游”。我们还将学习\
+  \ Git 的基础知识，以及一些可与 sendmail 工具一起使用的更高级 Git 命令。\n\n## 开源\n\n**开源**可以描述为对普通公众开放的源代码。开源软件可以被任何人阅读、修改和重新分发。这意味着开发者可以在自己的项目中使用原始代码，而无需向代码所有者支付任何许可费。成功的开源项目通常由开发者社区构建而成，该社区协作并确保开源项目朝着预定的方向发展。\n\
+  \n### 提示\n\nLinux 内核和 OpenStack 是两个最著名的开源项目。Yocto Project 及其子项目是大型开源项目的其他示例，尤其是在嵌入式领域。\n\
+  \n开源社区通常至少包含一名 **维护者**。维护者是负责将补丁集成到项目并构建源代码的人。在集成部分，维护者通常扮演着重要角色，要么审查社区开发者提交的补丁，要么确保由其他有相应知识的人来完成。在\
+  \ Linux 内核等大型开源项目中，内核的不同部分有大量维护者。他们还为每个软件发布版本指定一名维护者，负责维护该版本，例如确保重要的 bug 修复被回移植。\n\
+  \n## 为开源项目做贡献\n\n开源项目在很大程度上取决于人们为项目回馈了什么，例如，如果他们在软件中发现故障，则提交错误报告，或帮助项目解决 bug 或开发新功能。开源项目背后的社区通常有限，没有资源独立完成所有工作。Linux\
+  \ 内核、OpenStack 和 Yocto Project 等大型项目背后都有大公司，分配资源来协助这些项目。原因显而易见：这些公司在商业产品中使用该项目，并且有必要确保产品取得良好进展。许多公司还使用该项目的自己的版本，并希望贡献功能和\
+  \ bug 修复，以降低集成成本。\n\n### 提示\n\n使用开源时，偶尔会使用上游这一术语。上游基本上可以概括为原始来源。“合并上游”这一短语意味着相关补丁应集成到项目的原始源代码中。\n\
+  \n## 探索 Git\n\nGit 是 Yocto Project 中使用的版本控制系统，包括 Raspberry Pi BSP 层（meta-raspberrypi）。因此，在考虑为\
+  \ Yocto Project 及其子项目做贡献之前，Git 是你需要掌握的核心部分。\n\n### 什么是 Git？\n\nGit 是一个分布式版本控制系统，自\
+  \ 2005 年以来一直存在，旨在以速度和效率处理项目，无论规模大小。它最初是为处理 Linux 内核的源代码而创建的。Git 是免费开源的，任何人都可以使用，无需支付任何许可费。Git\
+  \ 的设计高度适合开源项目中的工作方式。除了支持分布式开发之外，它还拥有易于使用的日志记录机制来记录谁做了什么、历史的加密身份验证以及创建分支的简便方法等功能。\n\
+  \n许多其他分布式版本控制系统（VCS，如 subversion、Bazaar 等）与 Git 之间的根本区别之一在于 Git 存储信息的方式。在 Git 中，数据可以被视为微型文件系统的快照。保存项目状态时，会对该状态拍摄快照并保存引用。\n\
+  \n### 提示\n\n基本的 Git 工作流程大致如下：\n\n- 你修改工作目录中的文件\n- 你暂存文件，将它们的快照添加到暂存区\n- 你执行提交，该操作将暂存区中的文件按当前状态永久存储到你的\
+  \ Git 目录中\n\n有关更多信息，请访问 https://git-scm.com/book/en/v2/Getting-Started-Git-Basics。\n\
+  \n\n\n\n## 使用 Git\n\nGit 中的项目称为仓库。大部分工作可以通过将主仓库克隆到你首选的工作目录中在本地完成。这就是 Git 通常被认为非常快速的原因之一，尤其是与许多操作都需要网络访问的其他版本控制系统相比。\n\
+  \n让我们来了解一些基本示例，这些示例将教你如何：\n\n- 将现有项目导入 Git 仓库\n- 创建你的第一个提交\n- 转换为共享仓库\n- 克隆共享仓库的本地版本\n\
+  - 创建工作分支\n- 将提交推送到你的共享仓库\n- 使用最新更改更新克隆的仓库\n\n当将现有项目导入新的 Git 仓库时，我们必须首先初始化一个空的 Git\
+  \ 仓库。这可以在我们项目的现有源代码树中轻松完成：\n\n```\n$ tar -zxf my_packt_project_ch_11_01.tar.gz\n\
+  $ cd my_packt_project\n$ git init\nInitialized empty Git repository in  /path/to/repo/my_packt_project/.git/\n\
+  ```\n\n初始化新 Git 仓库时，会创建一个名为 .git 的新目录。该目录包含有关新仓库的所有 Git 相关信息。其中，它包含主 Git 配置文件 config，该文件包含项目的\
+  \ Git 设置。该目录中另一个常用文件是 HEAD，它包含对当前分支的引用。\n\n创建空 Git 仓库后，我们可以继续将项目的所有内容添加到新仓库中。获取分支和仓库当前状态的有用命令是\
+  \ git status。当 Git 不了解某个文件时，它会显示在“未跟踪的文件”下，如下所示：\n\n```\n$ git status\nOn branch\
+  \ master\nInitial commit\nUntracked files:\n  (use \"git add <file>...\" to include\
+  \ in what will be committed)\nMakefile\nREADME\nmy_packt_project.c\nnothing added\
+  \ to commit but untracked files present (use \"git add\" to track)\n```\n\n我们可以使用单个命令添加所有文件和/或更改，但请注意，它也会添加构建输出。因此，使用\
+  \ git add --all 时，请确保先删除不需要的文件。然后，我们可以再次使用 git status 来检查是否列出了所有预期的文件：\n\n```\n\
+  $ git add --all\n$ git status\n```\n\n```\nOn branch master\nInitial commit\nChanges\
+  \ to be committed:\n(use \"git rm --cached <file>...\" to unstage)\nnew file:  \
+  \ Makefile\nnew file:   README\nnew file:   my_packt_project.c\n```\n\n在提交更改并创建第一个提交之前，我们需要设置一些基本的\
+  \ Git 配置。最起码，Git 要求你设置姓名和电子邮件：\n\n```\n$ git config user.email \"your_email@packtpub.com\"\
+  \n$ git config user.name \"Forename Surname\"\n```\n\n如果要为所有 Git 仓库设置全局电子邮件和姓名，可以指定\
+  \ --global 选项，如下所示：\n\n```\n$ git config --global user.email \"your_email@packtpub.com\"\
+  \n$ git config --global user.name \"Forename Surname\"\n```\n\n要验证设置，请键入：\n\n```\n\
+  $ git config user.email\nyour_email@packtpub.com\n$ git config user.name\nForename\
+  \ Surname\n```\n\n### 提示\n\n全局 Git 配置存储在 /home/$USER/.gitconfig 中，本地配置存储在 /path/to/git/repository/.git/config\
+  \ 中。默认情况下，本地仓库 Git 配置的更改将覆盖全局 Git 配置的更改。\n\n在 Git 中提交更改时，使用 git commit 命令。它记录对仓库的更改，从而可以使用为提交生成的唯一\
+  \ SHA-1 哈希来跟踪该提交。输入 git log [branch] 可以查看分支的历史概览。\n\n```\n$ git commit -m \"My initial\
+  \ commit\"\n[master (root-commit) f01bdf2] My initial commit\n3 files changed, 11\
+  \ insertions(+)\ncreate mode 100644 Makefile\ncreate mode 100644 README\ncreate\
+  \ mode 100644 my_packt_project.c\n$ git log\ncommit f01bdf29a2c9df1c2417542c5531f90e04c973a\n\
+  Author: Forename Surname <your_email@packtpub.com>\nDate:   Sun Jan 1 00:00:00 2016\
+  \ +0100\nMy initial commit\n```\n\n当多个开发人员在同一个项目上工作时，每个用户使用自己的仓库本地克隆。默认情况下，Git 会拒绝推送到非裸仓库的更改。我们将逐步了解一个简单的示例，该示例将：\n\
+  \n- 将我们的仓库转换为共享仓库\n- 克隆共享仓库\n\n共享仓库通常存储在服务器上，并且仓库必须创建为裸 Git 仓库。这可以通过在初始化 Git 仓库或克隆时使用\
+  \ `--bare` 标志来完成。由于我们在之前的示例中使用了非共享仓库，我们将使用 `git clone --bare` 将其转换为共享仓库，然后可以删除旧仓库，改为使用裸仓库的克隆继续工作。\n\
+  \n```\n$ cd /path/to/my/workdir\n$ git clone --bare /path/to/my_packt_project my_packt_project.git\n\
+  $ rm -rf /path/to/my_packt_project\n```\n\n### 提示\n\n裸仓库基本上是不包含工作目录的仓库。这将防止开发人员对仓库进行更改。根据命名约定，裸\
+  \ Git 仓库应命名为 `name_of_my_repo.git`。\n\n我们现在有了一个可供开发人员协作使用的裸仓库。接下来，我们继续克隆裸仓库的本地副本，可在开发新功能时使用。默认情况下，克隆仓库时你会处于名为\
+  \ `master` 的分支上。可以在 master 分支上完成所有工作；由于这只是本地克隆，不会破坏其他开发人员的任何内容。但强烈建议创建一个 **工作分支**\
+  \ 并在该分支中进行所有更改。这样，master 分支始终处于稳定且已知的状态。当你是高级 Git 用户时，可能会并行处理多个功能，并且可能希望通过 master\
+  \ 分支集成其他开发人员处理的新功能。换句话说，为所有功能创建单独的分支是一个好习惯。\n\n```\n$ git clone /path/to/my_packt_project.git\n\
+  Cloning into 'my_packt_project'\n$ cd my_packt_project\n```\n\n接下来，我们将创建一个名为 `my_new_feature`\
+  \ 的新分支，切换到它，并为项目开发一个微小的新功能。可以使用 `git branch` 列出所有可用的本地分支；如果在列出分支时添加 `-a` 标志，还会列出所有远程分支。\n\
+  \n### 提示\n\n远程分支是存在于已从中克隆的共享仓库中的分支。星号 (*) 帮助用户定位当前分支。\n\n```\n$ git branch\n* master\n\
+  $ git branch my_new_feature\n$ git checkout my_new_feature\nSwitched to branch 'my_new_feature'\n\
+  ```\n\n```\n$ git branch\nmaster\n* my_new_feature\n$ git branch -a\nmaster\n* my_new_feature\n\
+  remotes/origin/HEAD -> origin/master\nremotes/origin/master\n```\n\n我们现在处于新分支，是时候进行一些修改了。在此示例中，我们将向\
+  \ makefile 添加一个名为 clean 的新目标。请记住在提交更改之前使用 git add 将更改添加到索引中。如果要列出更改，请在添加文件之前使用 git\
+  \ diff。\n\n### 注意\n\n如果已经使用 git add 添加了文件，可以在提交更改之前使用 git diff --cached 检查更改。\n\n\
+  ```\n$ vim Makefile\n$ git diff\ndiff --git a/Makefile b/Makefile\nindex c6466e0..d986116\
+  \ 100644\n--- a/Makefile\n+++ b/Makefile\n@@ -1,2 +1,5 @@\nall:\n$(CC) my_packt_project.c\
+  \ -o my_packt_project\n+\n+clean:\n+rm -f my_packt_project\n$ git add Makefile\n\
+  $ git commit -m \"Makefile: Add a new target\"\n[my_new_feature 7c3d896] Makefile:\
+  \ Add a new target\n1 file changed, 3 insertions(+)\n```\n\n我们的最后一步是将新更改发送到共享仓库，使用新更改更新本地\
+  \ master，然后删除功能分支，因为它不再需要。当向共享仓库推送更改时，可以使用预定义的远程 origin；默认情况下，origin 指向我们克隆的仓库。推送更改时，需要指定要发送的修订版本以及目标分支。在大多数情况下，我们希望发送整个分支；如果是这样，可以使用\
+  \ HEAD 获取当前分支的所有更改，如下所示：\n\n```\n$ git push origin HEAD:master\nCounting objects:\
+  \ 5, done.\nDelta compression using up to 4 threads.\nCompressing objects: 100%\
+  \ (3/3), done.\nWriting objects: 100% (3/3), 383 bytes | 0 bytes/s, done.\nTotal\
+  \ 3 (delta 0), reused 0 (delta 0)\nTo /path/to/my_packt_project.git\nf01bdf2..7c3d896\
+  \  HEAD -> master\n$ git checkout master\nSwitched to branch 'master'\nYour branch\
+  \ is behind 'origin/master' by 1 commit, and can be fast-forwarded.\n(use \"git\
+  \ pull\" to update your local branch)\n\n\n\n\n```\n$ git pull\nUpdating f01bdf2..7c3d896\n\
+  Fast-forward\nMakefile | 3 +++\n1 file changed, 3 insertions(+)\n$ git branch -d\
+  \ my_new_feature\nDeleted branch my_new_feature (was 7c3d896).\n```\n\n### 注意\n\n\
+  如果您想了解 Git 基础知识的更多信息，请访问 [Git 文档](https://git-scm.com/doc)。\n\n## 为 Yocto 项目做出贡献\n\
+  \n许多开源项目（包括 Yocto 项目）都使用邮件列表。这些列表主要用于讨论项目以及公开审查为项目做出贡献的人员发送的补丁。\n\n由于 Yocto 项目是一个大型项目集的伞形项目，一个邮件列表不够用。例如，BitBake、OpenEmbedded-Core\
+  \ 和 Yocto 各有独立的列表，其中 Yocto 包含不同的外部层，例如 meta-raspberrypi 和 meta-qt5。向多个项目共用的列表发送电子邮件时，如果邮件是针对特定子项目的，则需要添加前缀（前缀的语法为\
+  \ `[layername] subject`）。以下屏幕截图展示了向 meta-raspberrypi 发送一系列补丁的示例：\n\n- [yocto] [meta-raspberrypi]\
+  \ PATCH 0/5] Various upgrade/fixes from Technux Petter Mabäckner\n  - [yocto] [meta-raspberrypi]\
+  \ PATCH 1/5] gitignore: Ignore .swp files Petter Mabäckner\n  - [yocto] [meta-raspberrypi]\
+  \ PATCH 2/5] linux-raspberrypi: Update 4.1 recipe to 4.1.15 Petter Mabäckner\n \
+  \ - [yocto] [meta-raspberrypi] PATCH 3/5] rpi-config: I2C support Petter Mabäckner\n\
+  \  - [yocto] [meta-raspberrypi] PATCH 4/5] pitft: Add basic support for PiTFT Petter\
+  \ Mabäckner\n    - [yocto] [meta-raspberrypi] PATCH 4/5] pitft: Add basic support\
+  \ for PiTFT Khem Raj\n      - [yocto] [meta-raspberrypi] PATCH 4/5] pitft: Add basic\
+  \ support for PiTFT Andrei Gherzan\n      - [yocto] [meta-raspberrypi] PATCH 4/5]\
+  \ pitft: Add basic support for PiTFT Petter Mabäckner\n      - [yocto] [meta-raspberrypi]\
+  \ PATCH 4/5] pitft: Add basic support for PiTFT Khem Raj\n      - [yocto] [meta-raspberrypi]\
+  \ PATCH 4/5] pitft: Add basic support for PiTFT Petter Mabäckner\n  - [yocto] [meta-raspberrypi]\
+  \ PATCH 5/5] pitft: Add PiTFT22 support Petter Mabäckner\n- [yocto] [meta-raspberrypi]\
+  \ PATCH 0/5] Various upgrade/fixes from Technux Petter Mabäckner\n\n可以通过订阅特定的邮件列表或阅读存档来轻松跟踪邮件列表。\n\
+  \n### 注意\n\n所有 Yocto 项目邮件列表均可在 https://www.yoctoproject.org/tools-resources/community/mailing-lists\
+  \ 上找到。\n\n### 为 meta-raspberrypi 做出贡献\n\n如果您已为 meta-raspberrypi 准备了想要与社区分享的修复程序或功能，则需要了解多个事项。\n\
+  \nmeta-raspberrypi 的当前维护者是 Andrei Gherzan。他对补丁有最终决定权，并会将补丁集成到 meta-raspberrypi 主层中。由于维护者非常忙碌，在将补丁发送到上游之前仔细测试补丁非常重要。对于贡献者来说，无论项目如何，最重要的是通过发送遵循请求指南的经过充分测试的补丁来建立声誉。这将显著增加补丁被项目集成的机会。\n\
+  \n为 meta-raspberrypi 做出贡献存在一些总体“规则”：\n\n- 与 meta-raspberrypi 相关的补丁应始终发送至 yocto@yoctoproject.org。\n\
+  - 使用 \"[meta-raspberrypi]\" 作为电子邮件的前缀\n- 遵循 OpenEmbedded 补丁指南\n- 遵循 meta-raspberrypi\
+  \ readme 说明\n\n本章后面将结合示例详细解释这一套规则。\n\n### 设置您的 Git 仓库\n\n在向上游发送任何内容之前，您需要设置一些基本内容。首先，应如前一章部分所述，为您的\
+  \ meta-raspberrypi Git 仓库设置姓名和电子邮件：\n\n```\n$ cd meta-raspberrypi\n$ git config\
+  \ user.email \"your_email@packtpub.com\"\n$ git config user.name \"Forename Surname\"\
+  \n```\n\n接下来，您应设置 git send-email 以便通过 SMTP 服务器使用 Git 发送补丁。维护者通常要求这样做，以确保补丁格式正确且易于集成。您需要手动配置服务器参数\
+  \ - 请参阅电子邮件提供商的文档或联系支持以找到正确参数。\n\n除了 Git，您还需要安装 send-email，这是 Git 在后台用于 git send-email\
+  \ 的软件。send-email 软件包在大多数发行版中都可用，但名称可能不同。以下是 Ubuntu 和 Fedora 上的设置方法：\n\n- Ubuntu:\
+  \ $ sudo apt-get install sendemail\n- Fedora: $ sudo yum install sendmail\n\n以下是配置\
+  \ sendemail 的示例：\n\n```\n$ cd meta-raspberrypi\n$ git config sendemail.smtpencryption\
+  \ tls\n$ git config sendemail.smtpserver smtp.packtpub.com\n$ git config sendemail.smtpuser\
+  \ your_email@packtpub.com\n$ git config sendemail.smtpserverport 587\n```\n\n###\
+  \ 创建您的提交\n\n现在，您准备好进行修改。在本小节中，我们将逐步介绍从实现更改到创建符合 meta-raspberrypi 补丁指南的提交的每个步骤。\n\
+  \n在工作分支（而非 master 分支）中创建更改是常识。在我们的示例中，我们将设置一个跟踪 master 分支的分支：\n\n```\n$ cd meta-raspberrypi\n\
+  $ git checkout -b my_work_branch -t origin/master\n```\n\n现在，使用您喜欢的编辑器编辑要更改的文件。修改完成后，需要将更改的文件添加到\
+  \ Git 暂存区；否则，Git 不会将您的更改添加到即将进行的提交中：\n\n```\n$ git add <files changed>\n```\n\n\
+  现在是时候按照 meta-raspberrypi 的 readme 和 OpenEmbedded 指南创建提交消息了。以下是指南中最重要的部分：\n\n![](img/76681dcfb8cd2bd107d0c06ab088f916_217_0.png)\n\
+  \n### 注意\n\n完整的 OpenEmbedded 指南可在 http://www.openembedded.org/wiki/Commit_Patch_Message_Guidelines\
+  \ 上找到。\n\n创建提交时，请记得对其签名（使用 -s）。签名是默认添加到提交消息末尾的一行文本。根据 Linux 内核文档，签名的原始用途如下：\n\n\
+  > \"为改进对谁做了什么的追踪（尤其是补丁可通过多个维护者层最终进入内核的情况），我们为在邮件中传递的补丁引入了“签名”程序。签名是在补丁说明末尾添加的一行简单文本，用于证明您编写了该补丁，或有权将其作为开源补丁传递。\"\
+  \n\n以下是使用方法：\n\n```\n$ git commit -s\nWrite your commit message\n```\n\n### 向社区发送更改\n\
+  \n项目的维护者希望专注于补丁的设计，并且通常假设发送到列表的补丁是功能正常的。因此，重要的是要确保您已验证补丁已针对 meta-raspberrypi 支持的相关映像进行构建和测试。\n\
+  \n当您的补丁符合预期并通过所有测试时，就可以将其发送到社区了。首先，我们需要生成补丁。生成补丁时，应遵循 meta-raspberrypi readme 中的建议。如果您有多个提交，将为每个提交生成一个补丁。还会生成一封求职信，并且始终命名为\
+  \ 0000-cover-letter.patch。求职信是可选的，但在同一系列中创建多个补丁时强烈建议创建。\n\n```\n$ git format-patch\
+  \ --cover-letter --subject-prefix='meta-raspberrypi][PATCH' origin\n```\n\n### 注意\n\
+  \n如果您只有一个补丁或不需要求职信，请删除 \"--cover-letter\"。\n\n如果您决定生成求职信，可以使用首选编辑器打开它。查找 *** SUBJECT\
+  \ HERE *** 和 *** BLURB HERE *** 行，并将其替换为有关补丁的适当信息。\n\n是最后一步了：将补丁发送到邮件列表！\n\n```\n\
+  $ git send-email --to yocto@yoctoproject.org <generated patches>\n```\n\n\n\n\n\n\
+  ### 后续工作\n\n到此刻，你的补丁应该已经发送到邮件列表，你可以稍作休息，等待反馈。如果你从邮件列表收到反馈，应当回复表示你会执行所请求的更改；如果你不同意，则回复说明不同意的“适当理由”。\n\
+  \n如果收到反馈，不要担心；这很正常。事实上，许多发送到邮件列表的更改在准备好集成到主层之前都需要更新。\n\n在向邮件列表发送补丁更新时，重要的是要指定补丁系列的版本号。这可以通过稍微修改最初生成补丁时使用的那一行来轻松完成（注意新的主题前缀）：\n\
+  \n```\n$ git format-patch --cover-letter --subject-prefix='meta-raspberrypi][PATCH\
+  \ v2' origin\n```\n\n### 注意\n\n如果你只有一个补丁或者不觉得需要，请删除 \"--cover-letter\"。\n\n如果你的补丁还需要再次更新，只需递增版本号并重试即可。当你的补丁到达\
+  \ meta-raspberrypi 层后，你就完成了，可以继续研究其他感兴趣的功能。\n\n### 实际示例 - 将自定义工具上游\n\n在本节中，我们将通过一个实际示例，讲解如何将自定义工具集成到\
+  \ meta-raspberrypi 中。我们选择的工具是 **con2fbmap**，这是一个用于设置和显示帧缓冲 TFT 设备（例如 PiTFT 显示屏）与控制台之间映射的命令行工具。\n\
+  \n首先，我们需要确定在层结构的哪个位置放置新的配方。在某些情况下，我们可以通过读取包的名称来猜测位置。omxplayer 配方就是一个例子。很容易看出它应该放在多媒体配方（recipes-multimedia）中。如果无法通过包名找到位置，可以检查是否存在类似的工具。在我们的示例中，meta-oe（OpenEmbedded\
+  \ 基础层）包含一个名为 **fbset** 的类似工具。它是一个用于修改帧缓冲设备的工具。如果我们找到 **fbset** 配方，可以看到它位于 recipes-support\
+  \ 目录中，我们可能也应该将自己的包放在该目录下。\n\n你可以在 https://github.com/openembedded/meta-openembedded/tree/master/meta-oe/recipes-support/fbset\
+  \ 处找到 fbset 工具，如下图所示：\n\n![](img/76681dcfb8cd2bd107d0c06ab088f916_221_0.png)\n\n\
+  在创建新配方时，你可以使用第 7 章“在树莓派上部署自定义层”中描述的工具，也可以从头开始创建。在本示例中，我们将从头开始创建。首先需要知道该工具使用哪种源（例如\
+  \ .tar.gz 或 Git）。在这种情况下，原始源是 Git，我们可以为 con2fbmap 创建一个基本配方，如下所示：\n\n```\n$ cd meta-raspberrypi\n\
+  $ mkdir -p recipes-support/con2fbmap\n$ cd recipes-support/con2fbmap\n$ touch con2fbmap_git.bb\n\
+  ```\n\n使用你喜欢的编辑器创建 BitBake 文件（.bb）的内容。在本书中，我们选择使用“已知状态”，并将 SRCREV 设置为 **f57bf6d28910ba665efab8a65085ba6d4c6162a5**。BitBake\
+  \ 文件中的其他信息（例如 LIC_FILES_CHKSUM）将基于此特定的 SRCREV 值。完整的 con2fbmap_git.bb 文件如下：\n\n```\n\
+  SUMMARY = \"Utility for swapping an fbft-based device\"\nDESCRIPTION = \"Simple\
+  \ utility for swapping an fbft-based device as \\\nthe console\"\nLICENSE = \"GPLv3\"\
+  \nLIC_FILES_CHKSUM = \"file://COPYING;md5=d32239bcb673463ab874e80d47fae504\"\nSECTION\
+  \ = \"console/utils\"\ninherit autotools\nSRC_URI = \"git://gitlab.com/pibox/con2fbmap.git;branch=master;protocol=https\"\
+  \nSRCREV = \"f57bf6d28910ba665efab8a65085ba6d4c6162a5\"\nS = \"${WORKDIR}/git\"\n\
+  ```\n\n请记住构建并验证新配方。当你对自己的更改满意时，可以继续创建新的 Git 提交。编写提交消息时，请务必遵循指南。\n\n```\n$ git add\
+  \ con2fbmap_git.bb\n$ git commit -s\ncon2fbmap: Add new recipe\nCurrently there\
+  \ is no easy way to manually switch between\nframebuffer devices and console during\
+  \ run-time.\nThis tool can be used when the system is up and running, to\nset and\
+  \ show mapping between framebuffer tft devices\n(such as PiTFT displays) and the\
+  \ consoles.\nSigned-off-by: Petter Mattson <petter@technux.se>\n# Please enter the\
+  \ commit message for your changes. Lines starting\n# with '#' will be ignored, and\
+  \ an empty message aborts the commit.\n```\n\n当你对提交消息满意后，就可以生成补丁了。由于本示例中所有更改都适合放在一个\
+  \ Git 提交中，我们可以跳过 --cover-letter 标志。\n\n```\n$ git format-patch --subject-prefix='meta-raspberrypi][PATCH'\
+  \ origin\n0001-con2fbmap-Add-new-recipe.patch\n```\n\n当工具在目标上构建并经过仔细测试后，我们可以将其发送到邮件列表：\n\
+  \n```\ngit send-email --to yocto@yoctoproject.org 0001-con2fbmap-Add-new-recipe.patch\n\
+  ```\n\n你现在已经学习了如何为主层做出贡献。在使用开源社区协作时，一个很好的建议是保持耐心。取决于项目所处的阶段，维护者和其他负责集成更改的人可能很忙，有时他们回复你的补丁需要时间。如果你长时间没有收到任何消息，不要害怕向列表中的人发送友好的提醒，请他们查看你的补丁。\n\
+  \n## 摘要\n\n在本章中，我们概述了开源软件以及如何参与开源项目。我们重点介绍了为开源做贡献的一些主要好处，例如降低产品的集成成本。我们还学习了 Git\
+  \ 的基础知识以及一些更高级的 Git 命令，这些命令可以与 sendmail 二进制文件配合使用，以便向开源社区发送补丁。最后，通过学习如何将自定义工具 con2fbmap\
+  \ 集成到 meta-raspberrypi 并将其提交给 Yocto Project 社区审查，我们完成了一个真实世界的演练。\n\n在下一章中，我们将通过创建一个家庭自动化项目来总结本书中所学的所有内容。\n"
+- "# 第 12 章 家庭自动化项目 - 启动自定义镜像\n\n物联网是当今非常热门的话题。在家中使用自动化来简化日常任务的重要性前所未有。树莓派由于体积小、价格低，且易于连接其他电子设备，是制作小型家庭自动化项目的绝佳选择。本章将引导你完成一个小型家庭自动化项目，该项目让你使用树莓派设置远程照明控制系统，并借助智能手机远程控制它。该项目需要使用前面章节所学的技能，因此本章也将充当你在本书中所学知识的总结。\n\
+  \n本章将首先介绍我们的家庭自动化项目以及所需材料。然后，它将深入讲解 Yocto 与我们项目的集成。本章的这一部分将解释如何设置树莓派使用的镜像：它将涵盖创建包含新镜像配方的新层以及添加/修改项目所需的包等内容。本章将以一个将所有内容整合在一起的章节结束。它将解释所有物理部件应如何连接，以及如何使用不同设备（例如智能手机或带有触摸屏的另一台树莓派）远程控制该设备。\n\
+  \n## 使用树莓派进行家庭自动化\n\n我们的家庭自动化项目将大致延续第 5 章“在树莓派上创建、开发和部署”中的“点亮 LED”示例。它将改进并发展该项目，创建一个最终用户可以使用智能手机（或其他带有\
+  \ Web 浏览器的设备）无线点亮灯具的项目。\n\n如下图所示，思路是使用 GPIO 引脚将单通道继电器模块连接到树莓派。然后，将灯具和外部电源连接到继电器模块，构建一个电路。连接完成后，就可以使用树莓派的\
+  \ GPIO 连接控制继电器模块（开/关）了。\n\n![](img/76681dcfb8cd2bd107d0c06ab088f916_225_0.png)\n\
+  \n一个支持远程照明的家庭自动化项目\n\n\n\n\n\n## 项目所需材料\n\n项目需要以下材料：\n\n- 一块 Raspberry Pi（任意型号均可）\n\
+  \n  Raspberry Pi Zero 要求您焊接 GPIO 引脚排，或将导线直接焊接到 GPIO 焊盘上\n\n- 跳线（需要三根）\n- 一个单通道 5V\
+  \ 继电器模块\n- 一盏灯（最好是您不介意剪开并切断其电缆的灯）\n- 一个外部电源（最好是 12V）\n\n### 注意\n\n警告：本项目需要具备基本的电路知识。如果您没有相关知识或经验，我们强烈建议不要使用高压电源。\n\
+  \n## 为项目搭建基础\n\n首先，我们应该为 Yocto Project 实现搭建基础。本节中使用的大部分技术在本书前面已有介绍，因此不再详细说明。在本章的这一部分中，我们将执行\
+  \ Yocto Project 实现的基本设置，该设置将用于家庭自动化项目。\n\n## 创建新图层\n\n我们将先创建一个新图层。新图层将作为我们家庭自动化项目的基础。目前，它只包含我们的镜像配方，但我们将在整个章节中向图层添加更多内容，直到拥有服务器所需的所有部分。如第\
+  \ 7 章《在 Raspberry Pi 上部署自定义图层》中所述，我们将使用 yocto-layer 来帮助设置图层结构。我们需要设置高优先级，以确保该图层中的内容优先于（例如）meta-raspberrypi\
+  \ 中的内容，如下所示：\n\n```\n$ /path/to/poky/scripts/yocto-layer create pkt-iot\nPlease\
+  \ enter the layer priority you'd like to use for the layer: [default: 6] 10\nWould\
+  \ you like to have an example recipe created? (y/n) [default: n]\nWould you like\
+  \ to have an example bbappend file created? (y/n) [default: n]\nNew layer created\
+  \ in meta-pkt-iot.\nDon't forget to add it to your BBLAYERS (for details see meta-pkt-iot/README).\n\
+  ```\n\n## 自定义镜像配方\n\n在本小节中，我们将改进自定义镜像配方的用法，这是我们在第 7 章《在 Raspberry Pi 上部署自定义图层》中学到的内容。\n\
+  \n首先创建您的镜像配方文件：\n\n```\n$ cd meta-pkt-iot\n$ mkdir -p recipes-core/images/\n$ touch\
+  \ recipes-core/images/pkt-iot-image.bb\n```\n\n接下来，我们将设置镜像的基本内容；请查看以下代码片段。在整个章节中，此镜像配方将不断扩展，直到我们最终获得符合我们目的的完整镜像。该镜像将基于\
+  \ rpi-basic-image。\n\n```\n$ cat recipes-core/images/pkt-iot-image.bb\n# Base this\
+  \ image on rpi-basic-image\ninclude recipes-core/images/rpi-basic-image.bb\nSPLASH\
+  \ = \"psplash-raspberrypi\"\nIMAGE_FEATURES += \"ssh-server-dropbear splash\"\n\
+  IMAGE_INSTALL_append = \" rpi-gpio\"\n```\n\n使用镜像配方时，存在名为 ROOTFS_PREPROCESS_COMMAND\
+  \ 和 ROOTFS_POSTPROCESS_COMMAND 的两个命令。它们可以作为最后手段，例如用于添加、删除或修改根文件系统中的内容。这两种方法可以在创建根文件系统之前（使用\
+  \ PREPROCESS 变体）或在根文件系统创建之后（使用 POSTPROCESS 方法）使用。使用方法是向变量指定一个函数列表。这些函数可以使用 ${IMAGE_ROOTFS}\
+  \ 以通用方式找到文件系统的路径。对于本项目，我们将使用此方法向 ROOTFS_POSTPROCESS_COMMAND 添加一个函数，以便为我们的镜像创建一个发布文件。将以下内容添加到\
+  \ pkt-iot-image.bb 的末尾：\n\n```\nROOTFS_POSTPROCESS_COMMAND += \" create_release_file\
+  \ ; \"\ncreate_release_file() {\nIMAGE_REL_FILE=\"${IMAGE_ROOTFS}${sysconfdir}/pkt-iot-release\"\
+  \n    echo \"pkt-iot release version 1.0\" > ${IMAGE_REL_FILE}\n    echo \"Image:\
+  \ ${IMAGE_NAME}\" >> ${IMAGE_REL_FILE}\n    echo \"Build date: ${DATETIME}\" >>\
+  \ ${IMAGE_REL_FILE}\n    chmod 0444 ${IMAGE_REL_FILE}\n}\n```\n\n请仔细注意 create_release_file\
+  \ 部分中 ROOTFS_POSTPROCESS_COMMAND 声明里的空白字符。\n\n## 构建和启动镜像\n\n我们现在有了一个包含基本镜像配方的新外部图层。到目前为止，我们尚未对图层进行任何测试。在开发过程中，定期测试您的更改始终是个好主意。我们将对我们的图层进行早期测试。为此，我们将创建一个新项目，在\
+  \ local.conf 中设置一些强制性和推荐的配置，并将外部图层添加到 bblayers.conf。这个项目将在整个章节中使用。\n\n```\n$ source\
+  \ /path/to/poky/oe-init-build-env pkt_project_chapter12\n```\n\n将 meta-raspberrypi\
+  \ 和 meta-oe 外部图层，连同我们新的 meta-pkt-iot 图层，添加到 bblayers.conf：\n\n```\nBBLAYERS ?= \"\
+  \ \\\n/path/to/poky/meta \\\n/path/to/poky/meta-poky \\\n/path/to/poky/meta-yocto-bsp\
+  \ \\\n/path/to/meta-raspberrypi \\\n/path/to/meta-openembedded/meta-oe \\\n/path/to/meta-pkt-iot\
+  \ \\\n\"\n```\n\n决定使用哪台机器并将其添加到 local.conf。在本示例中，我们将使用 raspberrypi2：\n\n```\n$ echo\
+  \ \"MACHINE = \\\"raspberrypi2\\\"\" >> conf/local.conf\n```\n\n接下来，我们将在项目中启用本地包修订（PR）服务器。如果检测到更改，PR\
+  \ 服务器会自动增加包的 PR 版本号。这将无需最终用户手动更新配方文件中的 PR 编号。在开发新配方时，此功能非常实用：\n\n```\n$ echo \"\
+  PRSERV_HOST = \\\"localhost:0\\\"\" >> conf/local.conf\n```\n\nBitBake 项目可能会占用大量磁盘空间。存在多种方法，可用于减少项目占用的磁盘空间总量及其总体构建时间。\n\
+  \n第一种方法是使用 rm_work。此功能将确保 BitBake 对已构建的包进行完全清理。默认情况下，所有已构建的包都会将源代码和工件保存在项目 ./tmp/work\
+  \ 下的包特定位置中。当为项目继承以下类时，这些内容将被擦除：\n\n```\n$ echo \"INHERIT += \\\"rm_work\\\"\" >>\
+  \ conf/local.conf\n```\n\n但是，排除开发期间频繁使用的包可能是个好主意，特别是如果解包它们需要很长时间。要实现此目的，可以使用 RM_WORK_EXCLUDE。\n\
+  \n项目的构建时间通常相当长，尤其是第一次，因为 BitBake 需要从头开始获取所有源代码并构建包。但在第一次构建完成后，您可以使用多种方法加速后续构建。这些方法也可用于设置类似的其他\
+  \ Yocto 项目，以减少构建时间和所需磁盘空间。\n\n第一种方法是使用共享状态（sstate）。默认情况下，sstate 缓存位于项目内。但是，通过在 local.conf\
+  \ 中使用 SSTATE_DIR 变量，共享状态可以位于项目外部，并被其他项目使用。下一种方法也如此，即指定 BitBake 在构建期间获取的所有包的下载位置。同样可以通过\
+  \ local.conf 中的 DL_DIR 变量进行配置。在本示例中，我们不会在项目外部使用共享状态或下载目录。原因是，在使用本地 PR 服务器时不推荐这样做。\n\
+  \n此时，您的 local.conf 文件应该类似于这样：\n\n```\n$ tail conf/local.conf\nPACKAGECONFIG_append_pn-nativesdk-qemu\
+  \ = \" sdl\"\n#ASSUME_PROVIDED += \"libsdl-native\"\n# CONF_VERSION is increased\
+  \ each time build/conf/ changes incompatibly and is used to\n# track the version\
+  \ of this file when it was generated. This can safely be ignored if\n# this doesn't\
+  \ mean anything to you.\nCONF_VERSION = \"1\"\nMACHINE = \"raspberrypi2\"\nPRSERV_HOST\
+  \ = \"localhost:0\"\nINHERIT += \"rm_work\"\n```\n\n当项目的初始配置就绪后，我们可以构建本章早先创建的镜像：\n\
+  \n```\n$ bitbake pkt-iot-image\nParsing recipes: 100%\n###############################################################################\n\
+  ###############################################################################|\
+  \ Time: 00:00:31\nParsing of 895 .bb files complete (0 cached, 895 parsed). 1325\
+  \ targets, 68 skipped,\n0 masked, 0 errors.\nNOTE: Resolving any missing task queue\
+  \ dependencies\n```\n\n让我们在目标设备上试用我们的新镜像。此时，镜像的行为应与普通 rpi-basic-image 镜像类似。不仅要构建我们的更改，还要在目标设备上测试它们，以确保万无一失。使用第\
+  \ 2 章《为 Raspberry Pi 构建我们的第一个 Poky 镜像》中描述的方法将镜像复制到 SD 卡（请记住将 /dev/sdX 改为正确的设备名称）：\n\
+  \n```\n$ sudo dd if=/path/to/pkt_project_chapter12/tmp/deploy/images/raspberrypi2/pkt-iot-image-raspberrypi2.rpi-sdimg\
+  \ of=/dev/sdX bs=1M\n```\n\n接下来，将 SD 卡插入 Raspberry Pi 并通电。该镜像与 rpi-basic-image 没有重大变化；不过，我们仍然可以轻松看到我们运行的是正确的镜像。如您所记得，我们在镜像配方中添加了一个后处理函数，用于添加一个发布文件。让我们检查它是否存在并查看其内容（使用\
+  \ root 登录，密码为空）：\n\n```\nPoky (Yocto Project Reference Distro) 2.0+snapshot-20160229\
+  \ raspberrypi2\n/dev/ttyAMA0\nraspberrypi2 login: root\nroot@raspberrypi2:~# ls\
+  \ /etc/*release*\n```\n\n\n\n\n\n```\n/etc/packt-iot-release\nroot@raspberrypi2:~#\
+  \ cat /etc/packt-iot-release\npackt-iot release version 1.0\nImage: packt-iot-image-raspberrypi2-20160304085812\n\
+  Build date: 20160304085812\nroot@raspberrypi2:~#\n```\n\n## 创建服务器端\n\n我们现在已准备好基础，可以继续实现项目特定部分。连接了电路和灯的树莓派将充当服务器。它将运行一个微型Web服务器，可以通过使用Web浏览器的任意客户端访问。\n\
+  \n对于服务器端，我们将调整并改进第9章“在树莓派上构建媒体中心”中使用的服务器示例，并将其与第5章“在树莓派上创建、开发和部署”中的gpio-packet配方的更新版本相结合。首先，我们需要添加本书前几章中使用的meta-packet_rpi层。我们已经确保我们新创建的层优先级高于meta-packet_rpi，但我们也将按依赖顺序在bblayers.conf中添加它。以下是本项目中将使用的完整bblayers.conf文件：\n\
+  \n```\n# LAYER_CONF_VERSION is increased each time build/conf/bblayers.conf\n# changes\
+  \ incompatibly\nPOKY_BBLAYERS_CONF_VERSION = \"1\"\nBBPATH = \"${TOPDIR}\"\nBBFILES\
+  \ ?= \"\"\nBBLAYERS ?= \" \\\n/path/to/poky/meta \\\n/path/to/poky/meta-poky \\\n\
+  /path/to/poky/meta-yocto-bsp \\\n/path/to/meta-raspberrypi \\\n/path/to/meta-openembedded/meta-oe\
+  \ \\\n/path/to/meta-packet_rpi \\\n/path/to/meta-packet-iot \\\n\"\nBBLAYERS_NON_REMOVABLE\
+  \ ?= \" \\\n/home/path/to/git/poky/meta \\\n/home/path/to/git/poky/meta-yocto \\\
+  \n\"\n```\n\n接下来，我们应对gpio-packet进行一些小修改，使其更适合我们的项目。这些更改将作为集成补丁进行。原始代码使用GPIO4，这是默认设置为高电平的引脚之一。我们将改用GPIO17，这是默认设置为低电平的引脚之一。\n\
+  \n要更改gpio_example代码以改用GPIO17，我们可以创建一个新的集成补丁，仅在应用meta-packet-iot层时更改行为。所需的小更改如下：\n\
+  \n```\n--- gpio_example.c.orig 2016-03-10 16:55:04.334832221 +0100\n+++ gpio_example.c\
+  \ 2016-03-10 16:54:13.400537071 +0100\n@@ -39,7 +39,7 @@\n/*****************************************************************************/\n\
+  #define LENGTH 128\n#define SYSFS_GPIO_DIR \"/sys/class/gpio/\"\n-#define GPIO_PIN\
+  \ 4\n+#define GPIO_PIN 17\n#define BUFFER_SIZE 255\n#define DEBUG 1\n```\n\n```\n\
+  #define \t\tVERSION \t\t1.00\n```\n\n可以使用diff命令生成补丁。这将产生gpio_example.c原始版本与更新版本之间的差异。\n\
+  \n```\n$ diff -Naur gpio_example.c.orig gpio_example.c > use_gpio17.patch\n```\n\
+  \n接下来，我们必须将补丁添加到meta-packt-iot。首先在meta-packt-iot中创建用于追加gpio_example的结构：\n\n```\n\
+  ./recipes-custom\n./recipes-custom/gpio-packt\n./recipes-custom/gpio-packt/gpio-packt\n\
+  ./recipes-custom/gpio-packt/gpio-packt/use_gpio17.patch\n./recipes-custom/gpio-packt/gpio-packt_0.1.bbappend\n\
+  ```\n\nbbappend的内容将非常小，仅用于应用补丁：\n\n```\nFILESEXTRAPATHS_prepend := \"${THISDIR}/${PN}:\"\
+  \nSRC_URI += \" \\\\\nfile://use_gpio17.patch;striplevel=0 \\\\\n\"\n```\n\n是时候开始使用Web服务器了。我们还需要对服务器部分进行一些项目修改。webserver-packt配方的大部分基本设置可以保持不变。但是，服务器JavaScript（server.js）和主网页（index.html）需要新的逻辑和内容。由于新内容不太适合添加到现有代码中，我们将为Web服务器创建一个新的bbappend文件，然后用适合此特定项目的新版本的index.html和server.js文件覆盖该包。首先在meta-packt-iot中创建如下所示的新结构（目前index.html、server.js和webserver-packt_0.1.bbappend可以为空）：\n\
+  \n```\n./recipes-custom\n./recipes-custom/webserver-packt\n./recipes-custom/webserver-packt/webserver-packt_0.1.bbappend\n\
+  ./recipes-custom/webserver-packt/webserver-packt\n./recipes-custom/webserver-packt/webserver-packt/index.html\n\
+  ./recipes-custom/webserver-packt/webserver-packt/server.js\n```\n\n新结构到位后，我们可以开始向bbappend文件添加内容：\n\
+  \n```\nDESCRIPTION = \"Remote lighting control\"\nFILESEXTRAPATHS_prepend := \"\
+  ${THISDIR}/${PN}:\"\nSRC_URI += \" \\\\\nfile://server.js \\\\\nfile://index.html\
+  \ \\\\\n\"\ndo_install_append() {\n\tinstall -d ${D}${datadir}/server-packt/server\n\
+  \tinstall -m 0755 ${WORKDIR}/index.html ${D}${datadir}/server-packt/server/public/index.html\n\
+  \tinstall -m 0755 ${WORKDIR}/server.js ${D}${datadir}/server-packt/server/server.js\n\
+  }\n```\n\nwebserver-packt_0.1.bbappend中的逻辑非常简单。它将我们新版本的index.html和server.js追加到SRC_URI变量，然后在安装阶段覆盖旧文件。\n\
+  \n让我们更深入地查看项目所需的代码修改。就像在第9章“在树莓派上构建媒体中心”的媒体中心示例中一样，我们将继续提供一个充当客户端的HTML文件。我们还将继续监听同一端口（3344）以避免混淆。服务器代码中的功能逻辑位于io.on()\
+  \ {...}函数内。在这里，我们将从客户端（index.html）接收消息并在服务器上执行它。在我们的示例中，要执行的命令是gpio_example --led=1或gpio_example\
+  \ --led=0，分别会使灯亮起和熄灭。server.js的完整代码如下：\n\n```\nvar express = require('express')\n\
+  \  , app = express()\n  , server = require('http').createServer(app)\n  , path =\
+  \ require('path'),\n  fs = require('fs'),\n  sys = require('util'),\n  exec = require('child_process').exec,\n\
+  \  child, child1;\nhttp://192.168.1.13:3344/light.html\nio = require('socket.io').listen(server),\n\
+  io.set('log level', 1); /* DEBUG MODE */\napp.use(express.static(path.join(__dirname,\
+  \ 'public')));\napp.get('/', function(req, res) {\n  res.sendFile(__dirname + '/public/index.html');\n\
+  });\nio.on('connection', function(socket) {\n  socket.on('light', function(msg)\
+  \ {\n    child = exec(msg, function (error, stdout, stderr) {\n      if (error !==\
+  \ null) {\n        console.log('exec error: ' + error);\n      }\n    });\n  });\n\
+  });\nserver.listen(3344, function() {\n  console.log('listening on *:3344');\n});\n\
+  ```\n\n要了解解决方案的整体情况，我们还需要查看客户端index.html。来自第9章“在树莓派上构建媒体中心”的网页的外观和感觉被保留，但CPU监控已被替换为一个绿色/红色按钮，用于打开或关闭灯。取决于按下哪个按钮，将使用socket.emit发送套接字消息。该消息包含打开或关闭灯所需的确切Unix命令：\n\
+  \n```\n<body>\n<nav class=\"navbar navbar-inverse navbar-fixed-top\" role=\"navigation\"\
+  >\n<div class=\"container-fluid\">\n<div class=\"navbar-header\">\n<button type=\"\
+  button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"\
+  #bs-example-navbar-collapse-1\">\n<span class=\"sr-only\">Toggle navigation</span>\n\
+  <span class=\"icon-bar\"></span>\n<span class=\"icon-bar\"></span>\n<span class=\"\
+  icon-bar\"></span>\n</button>\n<ul class=\"nav navbar-nav\">\n    <li class=\"active\"\
+  > <a href=\"index.html\">HOME</a> </li>\n</ul>\n</div>\n</div>\n</nav>\n<hr>\n<div\
+  \ class=\"container-fluid\">\n<div class=\"well well-lg text-center\">\n<h1><b>Raspberry-Pi</b></h1>\n\
+  <p><b>Remote lighting</b> control</p>\n<h4><span class=\"label label-info\"></span></h4>\n\
+  </div>\n<button class=\"button buttonON\" onclick=\"lighton()\">ON </button>\n<button\
+  \ class=\"button buttonOFF\" onclick=\"lightoff()\">OFF</button>\n<script src=\"\
+  //socket.io/socket.io.js\"></script>\n<script>\nvar socket = io.connect('http://'\
+  \ + location.host);\nfunction lighton()\n{\n    socket.emit('light', 'gpio_example\
+  \ --led=1');\n    return false;\n}\nfunction lightoff()\n{\n    socket.emit('light',\
+  \ 'gpio_example --led=0');\n    return false;\n}\n</script>\n</body>\n```\n\n如果在Web浏览器中查看index.html，它应该如下所示：\n\
+  \n\n\n## Raspberry-Pi 远程灯光控制\n\n### 在网页浏览器中显示的客户端（index.html）外观\n\n最后，我们绝不能忘记向我们的镜像添加\
+  \ gpio-packt 和 webserver-packt：\n\n```\n$ cat recipes-core/images/packt-iot-image.bb\n\
+  # Base this image on rpi-basic-image\ninclude recipes-core/images/rpi-basic-image.bb\n\
+  SPLASH = \"psplash-raspberrypi\"\nIMAGE_FEATURES += \"ssh-server-dropbear splash\"\
+  \nIMAGE_INSTALL_append = \" rpi-gpio gpio-packt webserver-packt\"\n```\n\n## 为您的镜像创建包列表\n\
+  \n您希望创建自定义镜像的原因之一是，您通常需要一组不同于现有镜像中使用的软件包。在使用 Yocto Project 时，可以使用一种包列表，以便最终用户更轻松地添加新软件包，并尽可能保持镜像配方的简单。本节将指导您如何在\
+  \ Yocto Project 中使用自定义包列表。\n\n## 设置自定义包列表\n\n首先，您需要添加一个名为 packagegroup-packt-iot.bb\
+  \ 的新 BitBake 文件 (.bb)：\n\n```\n$ mkdir recipes-core/images/packagegroups\n$ touch\
+  \ packagegroup-packt-iot.bb\n```\n\n典型的包列表如下所示：\n\n```\n$ cat packagegroup-packt-iot.bb\n\
+  DESCRIPTION = \"Package list for packt-iot-image\"\nLICENSE = \"MIT\"\ninherit packagegroup\n\
+  RDEPENDS_${PN} += \" \\\\\npkg1 \\\\\npkg2 \\\\\npkg3 \\\\\n\"\n```\n\n## 在 meta-packt-iot\
+  \ 中开始使用自定义包列表\n\n当我们的自定义包列表就位后，我们可以转移通过 IMAGE_INSTALL 添加的软件包。这将使包组看起来如下：\n\n```\n\
+  $ cat packagegroup-packt-iot.bb\nDESCRIPTION = \"Package list for packt-iot-image\"\
+  \nLICENSE = \"MIT\"\ninherit packagegroup\nRDEPENDS_${PN} += \" \\\\\nrpi-gpio \\\
+  \\\nnodejs \\\\\ngpio-packt \\\\\nwebserver-packt \\\\\n\"\n```\n\n最后，我们需要确保使用我们的新包列表；在本示例中，这将通过用包组配方替换\
+  \ IMAGE_INSTALL 中的内容来完成，如下所示：\n\n```\n# Base this image on rpi-basic-image\ninclude\
+  \ recipes-core/images/rpi-basic-image.bb\nSPLASH = \"psplash-raspberrypi\"\nIMAGE_FEATURES\
+  \ += \"ssh-server-dropbear splash\"\nIMAGE_INSTALL_append = \" packagegroup-packt-iot\"\
+  \n```\n\n### 注意\n\nYocto Project 文档包含有关 IMAGE_INSTALL 的以下信息：\"不建议从 /conf/local.conf\
+  \ 文件或从镜像配方中将 += 运算符与 IMAGE_INSTALL 一起使用，因为这可能会导致顺序问题。由于 core-image.bbclass 使用 ?=\
+  \ 运算符为 IMAGE_INSTALL 设置默认值，因此在 conf/local.conf 中对 IMAGE_INSTALL 使用 += 操作会导致意外行为。此外，从镜像配方中进行相同的操作可能成功也可能不成功，具体取决于具体情况。在这两种情况下，该行为都与大多数用户预期\
+  \ += 运算符的工作方式相反。\" 有关更多详细信息，请访问 http://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html#var-IMAGE_INSTALL。\n\
+  \n## 把所有内容整合起来\n\n到此，我们已经基本了解如何构建我们的项目，并且我们也拥有项目所需的所有软件。在本节中，我们将进行若干次迭代，直到达到使用远程设备控制台灯的最终目标。\n\
+  \n我们将分三步完成：\n\n- 1. 使用 Raspberry Pi 控制继电器。\n- 2. 使用 Raspberry Pi 控制台灯。\n- 3. 从智能手机开启/关闭台灯。\n\
+  \n在开发过程中，始终使用例如连接到电视的 HDMI 连接来启动 Raspberry Pi 是低效的，而且还需要单独的鼠标和键盘来控制 Pi。使用 HDMI 时，我们也无法跟踪早期引导过程。对于本项目，我们还希望无需将\
+  \ Raspberry Pi 放在电视附近即可对其进行故障排除。对于我们的项目，我们将使用 SSH 或串行连接，以缩短开发过程中的周转时间。\n\n## Raspberry\
+  \ Pi 的串行和 SSH 连接\n\n第一种方法是使用串行连接连接到 Raspberry Pi。实现此目的的最简单方法是使用 USB 转串行电缆。将 USB\
+  \ 连接到主机计算机。然后，如下图所示，将四根线缆连接到 Raspberry Pi 上的正确 GPIO 引脚：\n\n![](img/76681dcfb8cd2bd107d0c06ab088f916_242_0.png)\n\
+  \n连接到 Raspberry Pi GPIO 标头的 USB 转串行电缆\n\n下表将更详细地说明 GPIO 线应如何连接。另外，请查看第 8 章《深入了解\
+  \ Raspberry Pi 的外设和 Yocto 配方》中的 GPIO 标头图，以回顾 GPIO 标头中所有引脚的用途。\n\n| 线缆 | GPIO/引脚\
+  \ |\n|---|---|\n| 红色 | 5V |\n| 黑色 | GND |\n| 白色 | GPIO 14 (TXD) |\n| 绿色 | GPIO 15\
+  \ (RXD) |\n\n一旦物理连接设置完成，我们就可以继续准备主机环境。在此示例中，我们将使用 screen 包来设置控制台连接。\n\n在 Ubuntu\
+  \ 上设置 screen，请使用此命令：\n\n```\n$ sudo apt-get install screen\n```\n\n在 Fedora 上设置\
+  \ screen，请使用此命令：\n\n```\n$ sudo yum install screen\n```\n\n接下来，我们必须确保已将 USB 电缆插入\
+  \ Raspberry Pi（请记住不需要额外电源）。之后，我们可以打开一个终端窗口并键入以下命令，该命令将连接到 Raspberry Pi 控制台：\n\n\
+  ```\n$ sudo screen /dev/ttyUSB0 115200\n\n<snip>\n[   2.017380] [vc_sm_connected_init]:\
+  \ end - returning 0\n[   2.023899] uart-pl011 3f201000.uart: no DMA platform data\n\
+  [   2.034527] EXT4-fs (mmcblk0p2): INFO: recovery required on readonly filesystem\n\
+  [   2.041844] EXT4-fs (mmcblk0p2): write access will be enabled during recovery\n\
+  [   2.093584] EXT4-fs (mmcblk0p2): recovery complete\n[   2.103945] EXT4-fs (mmcblk0p2):\
+  \ mounted filesystem with ordered data mode.\nOpts: (null)\n[   2.112154] VFS: Mounted\
+  \ root (ext4 filesystem) readonly on device 179:2.\n[   2.122995] devtmpfs: mounted\n\
+  .\n.\n.\nStarting syslogd/klogd: done\nPoky (Yocto Project Reference Distro) 2.0+snapshot-20160229\
+  \ raspberrypi2\n/dev/ttyAMA0\nraspberrypi2 login: [   17.906610] random: nonblocking\
+  \ pool is initialized\nPoky (Yocto Project Reference Distro) 2.0+snapshot-20160229\
+  \ raspberrypi2\n/dev/ttyAMA0\nraspberrypi2 login:\n```\n\n如果已将网线连接到 Raspberry Pi，我们可以使用此方法获取开发板的\
+  \ IP 地址：\n\n```\nroot@raspberrypi2:~# ifconfig eth0 | grep \"inet addr\"\n```\n\n\
+  ```\ninet addr:192.168.1.13  Bcast:192.168.1.255  Mask:255.255.255.0\n```\n\n无需使用任何外部设备（例如鼠标、键盘或电视）即可快速访问\
+  \ Raspberry Pi 的另一种方法是使用 SSH。如果您的 Raspberry Pi 上运行了 SSH 守护进程且已连接到网络，则可以使用主机计算机通过\
+  \ SSH 访问它，命令类似于：\n\n```\n$ ssh root@192.168.1.13\nroot@raspberrypi:~#\n```\n\n现在，我们准备好将继电器和台灯连接到\
+  \ Raspberry Pi 了。\n\n## 使用 Raspberry Pi 控制继电器\n\n首先，我们将仅控制连接到 Raspberry Pi 的继电器。这将使用\
+  \ GPIO 引脚完成。首先，我们需要以正确的方式将继电器连接到 Raspberry Pi。下表显示了连接方案：\n\n| 电线（颜色） | GPIO 引脚 |\
+  \ 继电器引脚 |\n| :--- | :--- | :--- |\n| 红色 | 3.3V（引脚 1） | 电源/VCC（+） |\n| 黑色 | GND（引脚\
+  \ 6） | GND（-） |\n| 黄色 | GPIO 17（引脚 11） | IN（信号/S） |\n\n当此方案在物理上应用后，将如下图所示。请记住，不同型号之间的继电器引脚确切顺序可能有所不同。\n\
+  \n![](img/76681dcfb8cd2bd107d0c06ab088f916_246_0.png)\n\n使用 GPIO 17 进行信号传输的连接到单通道继电器模块的\
+  \ Raspberry Pi 2\n\n继电器连接完成后，我们可以继续下一步：打开或关闭连接到继电器的小 LED。大多数继电器都附带一个小 LED。如果您的继电器没有\
+  \ LED 指示灯，请勿担心；我们将研究一些从命令行检查 GPIO 引脚是否活动的方法。存在多种不同的方法来控制 Raspberry Pi 上的 GPIO 引脚；在本书中，我们将学习如何使用\
+  \ sysfs 和 RPi.GPIO 来控制 GPIO 引脚。\n\n我们将首先学习如何使用 sysfs 打开和关闭 LED。首先，我们需要导出 GPIO 引脚，从而使其从用户空间可见：\n\
+  \n```\n$ echo 17 > /sys/class/gpio/export\n```\n\n\n\n\n\n接下来，我们可以看到 /sys/class/gpio\
+  \ 下出现了一个包含一些文件的 gpio17 目录：\n\n```\n$ ls /sys/class/gpio17/\n```\n\n之后，我们需要为 GPIO\
+  \ 引脚设置方向（输入/输出）；在我们的示例中，我们希望 GPIO 作为输出引脚工作：\n\n```\n$ echo \"out\" > /sys/class/gpio/gpio17/direction\n\
+  ```\n\n最后，我们可以通过向 value 文件写入 1 来启用 GPIO 引脚，这将使 LED 亮起：\n\n```\n$ echo 1 > /sys/class/gpio/gpio17/value\n\
+  ```\n\n要关闭灯光，我们可以向 value 文件写入 0：\n\n```\n$ echo 0 > /sys/class/gpio/gpio17/value\n\
+  ```\n\n完成后，您需要取出口 GPIO 引脚：\n\n```\n$ echo 17 > /sys/class/gpio/unexport\n```\n\n\
+  现在，sysfs 中的 gpio17 目录已不存在。在我们的项目中，我们不会手动操作 sysfs 结构。相反，我们将使用本章前面添加到镜像中的 gpio-packet\
+  \ 配方，但在底层，它以类似刚才描述的方式使用 sysfs 结构。gpio-packet 配方生成一个名为 gpio_example 的二进制文件；它可以使用以下语法控制\
+  \ GPIO17：\n\n```\n$ gpio_example --led=1\n$ gpio_example --led=0\n```\n\n控制 GPIO\
+  \ 引脚的另一种方法是使用 RPi.GPIO，这是一个 Python 模块，它在后台使用直接寄存器访问来访问 GPIO。使用 RPi.GPIO 控制 GPIO17\
+  \ 要求您将以下内容添加到例如名为 ledon.py 的文件中：\n\n```\nimport RPi.GPIO as GPIO\nGPIO.setmode(GPIO.BCM)\n\
+  GPIO.setup(17, GPIO.OUT)\nGPIO.output(17, 1)\n```\n\n然后，我们可以运行脚本。关闭引脚可以通过在 GPIO.output()\
+  \ 函数中将 1 替换为 0 来轻松完成：\n\n```\n$ python ledon.py\n```\n\nRPi.GPIO 还可以使用物理 GPIO 标头引脚编号。在这种情况下，GPIO17\
+  \ 将位于引脚 11 上。要使用此模式，脚本必须按以下方式修改：\n\n```\nimport RPi.GPIO as GPIO\nGPIO.setmode(GPIO.BOARD)\n\
+  GPIO.setup(12, GPIO.OUT)\nGPIO.output(11, 1)\n```\n\n### 注意\n\n第 8 章《深入探索树莓派外设与\
+  \ Yocto 配方》中的 GPIO 标头图可用作理解和摆弄 GPIO 引脚的参考。\n\n## 使用树莓派控制台灯\n\n此时，我们可以从板子上本地控制继电器。接下来，是时候将台灯连接到我们的继电器模块了。\n\
+  \n### 注意\n\n警告：本项目需要基本的电气知识。如果您没有相关知识或经验，我们强烈建议不要使用高压电源。建议使用低压 12 伏电源。\n\n![](img/76681dcfb8cd2bd107d0c06ab088f916_249_0.png)\n\
+  \n一个单通道继电器模块\n\n在连接台灯之前，我们需要了解使用继电器模块的一些基础知识。仔细观察以下继电器；它在与插入 GPIO 跳线电缆相对的一侧包含 C、NC\
+  \ 和 NO 开口。这些插槽将用于将台灯连接到继电器。\n\n继电器上的 C 代表公共连接，我们将把外部电源的电源连接到这个端口。接下来，我们有 NC 和 NO，分别代表**常闭**和**常开**。在我们的项目中，我们将使用\
+  \ NO。这样做的原因是它将像开关一样工作。默认情况下，C 和 NO 之间没有接触，但当我们使用 GPIO 引脚的信号触发继电器时，我们将关闭继电器，这将打开电路。使用\
+  \ NC 而不是 NO 将会给你相反的行为。\n\n台灯和外部电源（出于安全考虑，强烈建议使用 12V）将按下图所示连接。请注意，如果台灯没有使用适配器，您可能需要打开电缆外壳以获取正负电线。黑色负电线可以直接从外部电源连接到台灯。正极必须从电源插入继电器上的\
+  \ C 插槽。最后，我们需要将台灯上的红色正极电缆连接到继电器上的 NO 插槽，以获得前面描述所需的行为。\n\n![](img/76681dcfb8cd2bd107d0c06ab088f916_250_0.png)\n\
+  \n当所有物理连接就绪后，我们可以再次使用 gpio_example 二进制文件来检查一切是否正常。此时，我们的树莓派可能难以移动，因此我们将使用 SSH 访问板子并打开和关闭灯光。\n\
+  \n```\n$ ssh root@192.168.x.x\nroot@raspberrypi2:~#\nroot@raspberrypi2:~# gpio_example\
+  \ --led=1\nroot@raspberrypi2:~# gpio_example --led=0\n```\n\n如果一切都按正确方式设置，您应该看到灯光亮起和熄灭。在下一小节中，我们将继续介绍如何使用智能手机远程控制灯光。\n\
+  \n## 从智能手机打开/关闭台灯\n\n我们的家居自动化项目已接近完成，但还有一件重要的事情：我们需要确保可以使用远程设备（例如智能手机）控制灯光。首先，我们需要检查板子上是否存在\
+  \ Web 服务器：\n\n```\n$ ps | grep server\n295 root 2732 server.init\n```\n\n如果服务器由于某种原因没有自动启动，我们可以尝试使用此命令手动启动它：\n\
+  \n```\n$ /etc/init.d/server-packt-init start\nstarting Nodejs app: server.init...\
+  \ done.\nroot@raspberrypi2:~#  info - socket.io started\nlistening on *:3344\n```\n\
+  \n如果我们直接在树莓派上对 Web 服务器进行了一些手动更改，可以使用此命令重启 Web 服务器：\n\n```\n$ /etc/init.d/packt-server\
+  \ restart\nstopping Nodejs app: server.init... stopped node (pid 295)\ndone.\nstarting\
+  \ Nodejs app: server.init... done.\n```\n\n现在，我们可以在智能手机上启动 Web 浏览器并访问 http://my_rpi_ipaddress:3344。您将看到本章前面打开\
+  \ index.html 时看到的同一页面。格式在智能手机上可能看起来略有不同，但红色和绿色按钮会在那里！尝试点击它们，您将看到灯光亮起和熄灭。\n\n![](img/76681dcfb8cd2bd107d0c06ab088f916_251_0.png)\n\
+  \n家居自动化项目最终结果的真实示例。\n\n此时，您的家居自动化项目已运行起来，您已经更接近无线连接的家庭了一步。希望本项目能为您提供许多使用树莓派设置其他有趣和富有创意的家居自动化项目的想法。\n\
+  \n## 额外 - 将带有 LCD 的树莓派用作客户端\n\n我们可以轻松使用另一个树莓派作为客户端，它将负责打开和关闭台灯。在本示例中，我们将使用小巧的 PiTFT\
+  \ 2.8 触摸屏来控制灯光。请注意，其他触摸屏当然也同样有效；重要的是镜像中包含 Web 浏览器：\n\n```\n$ source /path/to/poky/oe-init-build-env\
+  \ pitft28r_client_proj\n```\n\n像这样更新 bblayers.conf：\n\n```\n$ cat local/bblayers.conf\n\
+  # LAYER_CONF_VERSION is increased each time build/conf/bblayers.conf\n# changes\
+  \ incompatibly\nLCONF_VERSION = \"6\"\nBBPATH = \"${TOPDIR}\"\nBBFILES ?= \"\"\n\
+  BBLAYERS ?= \" \\\n  /path/to/poky/meta \\\n  /path/to/poky/meta-yocto \\\n  /path/to/poky/meta-yocto-bsp\
+  \ \\\n  /path/to/meta-raspberrypi \\\n  /path/to/meta-openembedded/meta-oe \\\n\
+  \  /path/to/meta-openembedded/meta-multimedia \\\n  \"\nBBLAYERS_NON_REMOVABLE ?=\
+  \ \" \\\n  /path/to/poky/meta \\\n  /path/to/poky/meta-yocto \\\"\n```\n\n然后，更新\
+  \ local.conf：\n\n```\n$ echo \"MACHINE = \\\"raspberrypi2\\\"\" >> conf/local.conf\n\
+  $ echo \"MACHINE_FEATURES += \\\"pitft pitft28r\\\"\" >> conf/local.conf\n$ echo\
+  \ \"LICENSE_FLAGS_WHITELIST = \\\"commercial\\\"\" >> conf/local.conf\n```\n\n###\
+  \ 注意\n\n注意：本示例使用 raspberrypi2 镜像；如果您使用不同型号，请记住将其更改为正确的机器名称。\n\n使用以下命令构建镜像，启动它，然后访问\
+  \ http://my_rpi_ipaddress:3344：\n\n```\n$ bitbake core-image-sato\n```\n\n## 总结\n\
+  \n在这本书的最后一章中，我们重复了贯穿全书学到的技术。这是通过创建一个家居自动化项目来完成的，该项目可以借助树莓派和 Web 浏览器无线打开和关闭家中的台灯，例如，使用智能手机作为遥控器。\n\
+  \n对于我们的家居自动化项目，我们改进了本书前面使用的一些示例，例如 GPIO 控制二进制文件和 Node.js 示例。通过对它们进行演进，我们复习了如何通过追加新文件或修补旧文件来修改现有配方。该项目还要求您复习如何创建和集成外部层。此外，本章更深入地探讨了一些技术，并向您介绍了如何在项目中使用特定软件包列表，以及如何使用串行连接和\
+  \ SSH 轻松访问和调试树莓派。为了完成该项目，您需要更深入地了解树莓派型号的 GPIO 标头和引脚是如何设置的。\n\n希望本章学到的技能能激励您为树莓派平台开发新的、酷炫而疯狂的家居自动化项目。\n\
+  \n"
