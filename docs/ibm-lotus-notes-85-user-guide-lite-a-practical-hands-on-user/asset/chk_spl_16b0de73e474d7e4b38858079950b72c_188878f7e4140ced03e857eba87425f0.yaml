@@ -1,0 +1,153 @@
+reviews:
+- 'no': 2
+  overturn_probability: 0.98
+  alternative: 正文前材料，致谢页
+  counter_evidence:
+  - 规则明确要求前言、致谢、关于作者等正文前材料统一划分为一章，不应单独分章；
+  - 该行位于书开头元数据区，前后为空行，内容为致谢词，不具备统领正文的章节语义；
+  - 后续紧接着“关于作者”“关于审稿人”等同类前言条目，说明其属于前言块而非独立章节。
+  keep_split: false
+- 'no': 35
+  overturn_probability: 0.98
+  alternative: 正文前材料，作者简介
+  counter_evidence:
+  - “关于作者”属于正文前材料，应并入统一前言章节；
+  - 内容为作者个人经历与联系方式，缺乏章标题的统领性和概括性；
+  - 前后均为空行，格式与其他前言条目一致，非正文章节。
+  keep_split: false
+- 'no': 45
+  overturn_probability: 0.99
+  alternative: 重复出现的致谢/前言材料
+  counter_evidence:
+  - 与第2行致谢重复，显然是前言部分的重复条目，不应重复分章；
+  - 前言材料应统一为一章，多个致谢不应各自成章；
+  - 无章号且长度短，更像元数据标签而非章标题。
+  keep_split: false
+- 'no': 49
+  overturn_probability: 0.98
+  alternative: 正文前材料，审稿人介绍
+  counter_evidence:
+  - 属于前言材料，应归入统一前言章节；
+  - 内容为人员名单和简短介绍，不具备章标题的统领语义；
+  - 前后均为空行，位于书籍开头元数据区。
+  keep_split: false
+- 'no': 59
+  overturn_probability: 0.97
+  alternative: 正文前材料，前言
+  counter_evidence:
+  - 规则要求前言等正文前材料统一划分为一章，不应单独分章；
+  - 前言位于正文第一章之前，是导读性质而非正式章节；
+  - 后文为本书内容概要等前言性内容，属于同一前言块。
+  keep_split: false
+- 'no': 69
+  overturn_probability: 0.97
+  alternative: 正文前材料，内容提要
+  counter_evidence:
+  - 内容概要属于前言部分，应并入前言章；
+  - 无章号，且后续列出的“第1章”“第2章”只是对后续章节的罗列，而非本身构成新章；
+  - 位于书前，非正文章节。
+  keep_split: false
+- 'no': 77
+  overturn_probability: 0.96
+  alternative: 正文前材料，前言条目
+  counter_evidence:
+  - 属于书前说明，应并入前言章；
+  - 无章号且内容为软件需求说明，缺乏章节统领语义；
+  - 前后均为空行，与其他书前条目格式一致。
+  keep_split: false
+- 'no': 81
+  overturn_probability: 0.96
+  alternative: 正文前材料，读者对象说明
+  counter_evidence:
+  - 书前材料，不应单独成章；
+  - 内容为读者定位说明，属于前言性质；
+  - 无章号，不满足章标题序号或语义统领特征。
+  keep_split: false
+- 'no': 85
+  overturn_probability: 0.96
+  alternative: 正文前材料，约定说明
+  counter_evidence:
+  - 约定说明属于前言或附录性质，不应作为正文章节；
+  - 无章号，且内容为书籍排版约定，非章节标题；
+  - 位于书前，与其他前言条目相邻。
+  keep_split: false
+- 'no': 95
+  overturn_probability: 0.95
+  alternative: 正文前材料，读者反馈说明
+  counter_evidence:
+  - 读者反馈信息属于书末或书前元数据，非正文章节；
+  - 无章号，且内容为出版社联系方式，不具备章节语义；
+  - 与客户支持、勘误等并列，均属非正文材料。
+  keep_split: false
+- 'no': 105
+  overturn_probability: 0.95
+  alternative: 正文前材料，客户支持信息
+  counter_evidence:
+  - 客户支持属于出版社服务信息，不应独立成章；
+  - 无章号，且位于书前/书末材料区；
+  - 内容为联系邮箱等，非章节标题。
+  keep_split: false
+- 'no': 109
+  overturn_probability: 0.95
+  alternative: 正文前材料，勘误表
+  counter_evidence:
+  - 勘误表属于书末或辅助材料，不应作为正文章节；
+  - 无章号，且内容为错误更正列表；
+  - 与盗版、Questions等并列，均属非正文。
+  keep_split: false
+- 'no': 113
+  overturn_probability: 0.95
+  alternative: 正文前材料，版权声明
+  counter_evidence:
+  - 盗版声明属于版权/法律声明，非正文章节；
+  - 无章号，且内容为出版社版权保护声明；
+  - 位于书前材料区，与勘误、Questions相邻。
+  keep_split: false
+- 'no': 123
+  overturn_probability: 0.95
+  alternative: 正文前材料，问题联系说明
+  counter_evidence:
+  - Questions属于读者服务信息，非正文章节；
+  - 无章号，且内容为联系邮箱说明；
+  - 与读者反馈、客户支持等并列，均属非正文材料。
+  keep_split: false
+- 'no': 127
+  overturn_probability: 0.15
+  alternative: 正文第一章标题（若不分章则可能为章内大标题）
+  counter_evidence:
+  - 后面紧跟“## (The Client Interface)”作为二级标题，可能暗示“First Impressions”只是大标题下的副标题；
+  - 标题为英文且带括号副标题，可能属于排版中的章内小节引导；
+  - 前一行是空行，前文为“# Questions”等前言材料，缺少明显的“第1章”编号。
+  keep_split: true
+- 'no': 438
+  overturn_probability: 0.1
+  alternative: 正文章节标题（若不分章则可能为章内大标题）
+  counter_evidence:
+  - 标题无章号，仅凭语义难以确定是否为最高层级章；
+  - 前文“# First Impressions”结尾有“摘要”并说“在接下来的章节中...”，可能暗示当前只是章内小节；
+  - 后文大量以“##”开头的子标题，可能表明此标题本身也只是某一部分的大标题而非独立章。
+  keep_split: true
+- 'no': 1152
+  overturn_probability: 0.1
+  alternative: 正文章节标题（若不分章则可能为章内大标题）
+  counter_evidence:
+  - 标题无数字章号，可能是章内大标题；
+  - 前文第二章结尾有“摘要”和“在下一章中...”，可能暗示该行只是下一章的引导而非独立章节；
+  - 后文子标题密集，可能属于章内结构。
+  keep_split: true
+- 'no': 1967
+  overturn_probability: 0.05
+  alternative: 文末索引章节（若不分章则可能为附录或书末材料）
+  counter_evidence:
+  - 索引内容为字母索引列表，缺乏正文叙述，可能被视为附录而非章；
+  - 索引前后均为空行且格式与前言条目相似，可能被误判为普通列表；
+  - 但规则明确规定文末索引划分为一章。
+  keep_split: true
+- 'no': 2281
+  overturn_probability: 0.85
+  alternative: 文末版权页/出版商致谢页
+  counter_evidence:
+  - “感谢购买”属于图书末尾的出版商致谢/版权页材料，非正文章节；
+  - 后文紧跟“关于 Packt Publishing”等出版社介绍，明显是书末广告/元数据；
+  - 无章号且内容为商务致辞，不具备章节统领正文的语义。
+  keep_split: false

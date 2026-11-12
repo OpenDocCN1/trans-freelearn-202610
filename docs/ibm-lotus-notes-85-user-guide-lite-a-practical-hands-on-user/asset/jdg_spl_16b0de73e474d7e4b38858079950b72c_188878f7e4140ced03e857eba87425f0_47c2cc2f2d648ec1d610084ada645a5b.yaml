@@ -1,0 +1,92 @@
+chapter_starts:
+- 'no': 2
+  confidence: 0.8
+  final_reason: 前言、致谢等正文前材料应统一划分为一章，选取首个前言标题行作为本章起始，其余前言行合并入此章
+  accepted_evidence:
+  - 规则明确要求前言、致谢、关于作者等正文前材料统一划分为一章
+  - 行2单独成行，末尾无标点，为正文前首个前言标题
+  rejected_evidence:
+  - 复核方指出不应将各前言小标题独立成章，应合并为一章
+  need_human_review: false
+- 'no': 127
+  confidence: 0.95
+  final_reason: 正文第一章标题，单独成行，无结束标点，后跟概述段落及##子节，语义统领后续内容
+  accepted_evidence:
+  - 判断方与复核方均倾向保留分章
+  - 标题格式符合章标题特征（单独成行、无标点、长度<30）
+  - 后文有概述段落和多个##二级标题
+  rejected_evidence:
+  - 复核方指出缺少数字章号可能为章内副标题，但上下文显示前言结束、正文开始，证据不足
+  need_human_review: false
+- 'no': 438
+  confidence: 0.95
+  final_reason: 正文第二章标题，前文有第一章结束语并指向下一章，后跟子节，单独成行
+  accepted_evidence:
+  - 行424-436为第一章摘要并提及下一章
+  - 标题单独成行，无结束标点
+  - 后文出现多个##子节
+  rejected_evidence:
+  - 复核方质疑无章号可能为章内小节，但章前摘要明确标志章界
+  need_human_review: false
+- 'no': 1152
+  confidence: 0.95
+  final_reason: 正文第三章标题，前文第二章结束并指向下一章，后跟概述和子节
+  accepted_evidence:
+  - 行1150明确提及下一章内容为邮件工具
+  - 标题单独成行，无结束标点
+  - 后文密集出现##子节
+  rejected_evidence:
+  - 复核方质疑无章号，但上下文明确为新章开始
+  need_human_review: false
+- 'no': 1967
+  confidence: 0.95
+  final_reason: 规则明确规定文末索引划分为一章，单独成行，无结束标点
+  accepted_evidence:
+  - 规则：文末索引也划分为一章
+  - 标题单独成行，末尾无标点
+  rejected_evidence:
+  - 复核方称可能为附录而非章，但规则优先于该反证
+  need_human_review: false
+rejected_lines:
+- 'no': 35
+  reason: 前言材料，关于作者，已合并入行2前言章，不应重复分章
+  need_human_review: false
+- 'no': 45
+  reason: 前言材料，重复致谢条目，已合并入行2前言章，不应重复分章
+  need_human_review: false
+- 'no': 49
+  reason: 前言材料，关于审稿人，已合并入行2前言章，不应重复分章
+  need_human_review: false
+- 'no': 59
+  reason: 前言材料，前言标题，已合并入行2前言章，不应重复分章
+  need_human_review: false
+- 'no': 69
+  reason: 前言材料，本书内容概要，已合并入行2前言章，不应重复分章
+  need_human_review: false
+- 'no': 77
+  reason: 前言材料，本书所需内容，已合并入行2前言章，不应重复分章
+  need_human_review: false
+- 'no': 81
+  reason: 前言材料，本书适用人群，已合并入行2前言章，不应重复分章
+  need_human_review: false
+- 'no': 85
+  reason: 前言材料，约定说明，已合并入行2前言章，不应重复分章
+  need_human_review: false
+- 'no': 95
+  reason: 前言材料，读者反馈，已合并入行2前言章，不应重复分章
+  need_human_review: false
+- 'no': 105
+  reason: 前言材料，客户支持，已合并入行2前言章，不应重复分章
+  need_human_review: false
+- 'no': 109
+  reason: 前言材料，勘误，已合并入行2前言章，不应重复分章
+  need_human_review: false
+- 'no': 113
+  reason: 前言材料，盗版声明，已合并入行2前言章，不应重复分章
+  need_human_review: false
+- 'no': 123
+  reason: 前言材料，Questions，已合并入行2前言章，不应重复分章
+  need_human_review: false
+- 'no': 2281
+  reason: 复核方反证成立，属于书末出版社致谢/推广材料，无章节语义，且后文为出版社介绍
+  need_human_review: false
