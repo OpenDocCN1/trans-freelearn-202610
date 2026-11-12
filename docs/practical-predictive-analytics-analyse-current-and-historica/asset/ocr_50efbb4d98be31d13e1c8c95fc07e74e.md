@@ -1,0 +1,5 @@
+# # Summary
+
+In this chapter, we added three more algorithms to our arsenal, and these 3, along with regression form the core basic algorithms that can cover a lot of ground in terms of the typical problems a predictive analyst will face. We saw that a good knowledge of decision tree methodologies allows you to start developing models quickly, they are easily interpretable, and are the basis for more advanced techniques such as random forests. We then went on to clustering. Clustering allows you to begin to grasp the concepts of similarity and dissimilarity, and we introduced distance measures. We then ended with a basic introduction to support vector machines, which were demonstrated in the context of text mining.
+
+In the next chapter, we will begin to look at some examples of creating models that predict how long a customer will stay with a company, or for predicting how long it will be until a patient develops a certain medical condition.

@@ -1,0 +1,9 @@
++   numerical or shorter character strings. This will save valuable memory.
++   
++   * Use parameters on input to control how much data you want to read. You may want to process your input file by starting to read your input at row 1,000,000. You don't always have to read a file from the beginning.
++   * Do not feel obliged to always read all of the columns. Once you have determined which columns are truly needed, read only those columns; this will speed up the processing. For example, if you are using read.table, you can specify NULL in the colClasses option to indicate that a column is to be skipped.
++   * Use the scan, fread, and readlines functions. They will give you a greater degree of control over the input, and can make input faster.
+
+# Data munging and wrangling
+
+A large part of preparing the data for analysis utilizes bringing disparate information together in order to produce the final analytics dataset, which will be passed directly to the algorithm. This process is known by many different names, such as data munging, data wrangling, ETL, or simply data prep. We have already discussed some ways in which we can read data from a single source. You will be very fortunate if you are able to work with a single data file that has all of the information that you need. In fact, if you are able to utilize data that is already consolidated, go for it, since someone else has already done the work and there is no need to try to figure out how to relate them yourself. However, most of the time you will need to relate at least two different sources, and somehow relate them based upon some common data elements.

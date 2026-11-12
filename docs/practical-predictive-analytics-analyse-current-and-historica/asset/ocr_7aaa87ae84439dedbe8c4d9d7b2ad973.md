@@ -1,0 +1,2 @@
+tolerance that any model has for assumptions, and there are statistical tests that can be used to measure that degree for some of the assumptions.
+However, if your data meets the assumptions of linear regression, the predictions can be quite powerful.

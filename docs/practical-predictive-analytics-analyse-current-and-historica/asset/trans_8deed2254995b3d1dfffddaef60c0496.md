@@ -1,0 +1,185 @@
+
+
+```
+alternative hypothesis: true difference in means is not equal to
+95 percent confidence interval:
+-1.3303374 -0.7762632
+sample estimates:
+mean of x mean of y
+999999.9 1000001.0
+```
+
+现在让我们重复这个模拟，但这次使用一个更小的 n 值来运行相同的代码，比如 n=100000：
+
+```
+set.seed(1020)
+lottery <- data.frame(
+cbind(x=rnorm(n=100000,1000000,100), y=rnorm(n=100000,1000001,100))
+)
+summary(lottery)
+```
+
+这是写入控制台的输出：
+
+```
+x                 y
+Min.   : 999545   Min.   : 999590
+1st Qu.: 999933   1st Qu.: 999934
+Median :1000000   Median :1000000
+Mean   :1000000   Mean   :1000001
+3rd Qu.:1000068   3rd Qu.:1000068
+Max.   :1000446   Max.   :1000450
+```
+
+现在重新运行 t 检验，注意我们得到一个更大的 p 值 0.2492：
+
+```
+t.test(lottery$x,lottery$y)
+```
+
+这是写入控制台的输出：
+
+```
+Welch Two Sample t-test
+
+data:  lottery$x and lottery$y
+t = -1.1522, df = 200000, p-value = 0.2492
+alternative hypothesis: true difference in means is not equal to
+95 percent confidence interval:
+-1.3899758  0.3607735
+sample estimates:
+mean of x mean of y
+1000000   1000001
+```
+
+这里是这个练习的要点。
+
+如果这些是彩票中奖金额，大多数人不会在乎自己中了 $1,000,000 还是 $1,000,001（无论样本量大小），因此起作用的是效应大小，在此例中就是两个均值的差值（$1）。显然，对于大笔金额来说，$1 并无区别，但重要的是，你需要知道在分析工作中，大约多大的变化对你来说是有意义的。
+
+## Variable selection
+
+Stepwise regression can be used as a variable selection method in cases in which you have a large number of variables, and you need to define a starting point in which you can start looking at a limited set of variables. However, all of the caveats regarding p-values come into play here as well. Use this method only to look at a candidate list of variables for model testing. It is not a good idea to use stepwise regression to determine a final model, since there are several methods use to determine the best variables, the final model can yield artificially high and biased results.
+
+However, let's just start with identifying a list of potential variables for our `PainGLM` model, which is small, but will be good to illustrate the process. In the following example, the `stepwise()` function is used to determine a maximum `AIC` using the stepwise regression `forward/backward` options.
+
+The variable selection process starts by adding variables one at a time, and then implementing a form of variable swapping, that is, taking into account whether or not `AIC` would be improved by removing any variable which was already in the model. Once `AIC` cannot be improved, the selection process stops.
+
+- In the `PainGLM` example, the algorithm is illustrated, listing all the steps it goes through to determine the final variables selected. It begins with an initial `AIC` statistic of 83.5 (intercept-only model). Adding all of the variables into the model produces an `AIC` of 73.48. However, the `AIC` can then be improved by removing Duration. Therefore, it ends with a `Treatment, Age, and Gender` model with an `AIC` of 58.77, since it can no longer improve the AIC:
+
+```
+install.packages("RcmdrMisc")
+library(RcmdrMisc)
+stepwise(PainGLM,
+         direction='forward/backward',
+         criterion='AIC')
+```
+
+The output of the stepwise function is written to the console:
+
+```
+Direction:  forward/backward-
+Criterion:  AIC
+
+Start:  AIC=83.5
+Pain ~ 1
+
+   Df Deviance    AIC
++ Treatment   2   67.480  73.480
++ Age         1   73.056  77.056
++ Gender      1   75.849  79.849
+<none>            81.503  83.503
++ Duration    1   79.886  83.886
+
+Step:  AIC=73.48
+Pain ~ Treatment
+
+   Df Deviance    AIC
++ Age         1   55.044  63.044
++ Gender      1   59.886  67.886
+<none>            67.480  73.480
++ Duration    1   66.688  74.688
+- Treatment   2   81.503  83.503
+
+Step:  AIC=63.04
+Pain ~ Treatment + Age
+
+   Df Deviance    AIC
++ Gender      1   48.767  58.767
+<none>            55.044  63.044
++ Duration    1   55.036  65.036
+- Age         1   67.480  73.480
+- Treatment   2   73.056  77.056
+
+Step:  AIC=58.77
+Pain ~ Treatment + Age + Gender
+
+   Df Deviance    AIC
+<none>            48.767  58.767
++ Duration    1   48.736  60.736
+- Gender      1   55.044  63.044
+- Age         1   59.886  67.886
+- Treatment   2   68.900  74.900
+```
+
+```
+Call: glm(formula = Pain ~ Treatment + Age + Gender, family = data = df)
+
+Coefficients:
+(Intercept) Treatment[T.B] Treatment[T.P] Age
+-20.8694 -0.5474 3.1790 0.2650
+
+Degrees of Freedom: 59 Total (i.e. Null); 55 Residual
+Null Deviance: 81.5
+Residual Deviance: 48.77 AIC: 58.77
+```
+
+### Interactions
+
+We have seen that regression is additive, that is, the prediction is mostly calculated via adding crossproducts of the coefficients and independent single variables together. However, often single variables by themselves are not enough to adequately predict an outcome in a simple regression model. Often considering how say, predictor variable A affects predictor variable B can improve the outcome. This also goes a long way in terms of explaining the rationale behind using certain variables. The way two or more variables influence each other is referred to as *interaction*, and using an interaction in a model can produce an effect which is greater than the sum of their individual effects. Usually, two or more interaction variables are involved, and the way that one variable effects the dependent variable is conditional upon the different levels or ranges of the other variables.
+
+In this example, we will take our original `Pain` model and determine if there is a separate effect for the different treatments by age. Interaction effects can be specified in the model by using the : separator (the colon). If we also want to include the individual variable effects as well as the interaction we would use the * separator.
+
+First we will set up the model as we did before, but specify an `Age:Treatment` effect in the model. We will do this because we already know that Age and the Type of treatment independently can predict the Pain outcome to some degree, but we are interested to see if knowing the Age of the participant together with the type of treatment they received will improve the model. If so, we could research administrating different treatments to the various age groups, and as a result, affect the output variable (Pain):
+
+```
+install.packages("effects")
+library(effects)
+output <- glm(Pain ~ Treatment + Gender + Age + Duration + Age:Treatment, data=df, family="binomial")
+summary(output)
+```
+
+The output of the summary function is written to the console:
+
+```
+glm(formula = Pain ~ Treatment + Gender + Age + Duration + Age:Treatment, family = "binomial", data = df)
+
+Deviance Residuals:
+    Min       1Q   Median       3Q      Max  
+-2.21745  -0.38598  -0.05829   0.44605   2.53761  
+
+Coefficients:
+                Estimate Std. Error z value Pr(>|z|)    
+(Intercept)   -39.420723  20.276062  -1.944  0.0519 .  
+TreatmentB     -9.012876  31.965793  -0.282  0.7780    
+TreatmentP     38.338070  21.827078   1.756  0.0790 .  
+GenderM        1.957605   0.872107   2.245  0.0248 *  
+Age            0.524314   0.283665   1.848  0.0646 .  
+Duration       0.003562   0.036643   0.097  0.9226    
+TreatmentB:Age  0.100597   0.433846   0.232  0.8166    
+TreatmentP:Age -0.504315   0.307248  -1.641  0.1007    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 81.503  on 59  degrees of freedom
+Residual deviance: 41.928  on 52  degrees of freedom
+AIC: 57.928
+
+Number of Fisher Scoring iterations: 7
+```
+
+In the output that appears preceding, note that instead of having one coefficient for Treatment, we have two separate coefficients for TreatmentB and TreatmentP, as well as the interaction of these levels versus Age. Note that none of the new interaction terms have significance codes in the last column.
+
+### Interaction effects plot:
+

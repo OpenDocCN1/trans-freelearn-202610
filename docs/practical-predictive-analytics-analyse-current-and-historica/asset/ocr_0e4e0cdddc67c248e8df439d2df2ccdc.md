@@ -1,0 +1,1 @@
+month but is offset with positive results from another model. Ensemble modeling, which is similar, can also incorporate several diverse models at the same time, but usually there is a single outcome and may be subject to overfitting.

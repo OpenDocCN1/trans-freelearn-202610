@@ -1,0 +1,3 @@
+# Summary
+
+In this chapter we went beyond SQL, and started to explore the machine learning capabilities of Spark. We covered both regression and kmeans clustering using our diabetes dataset. Â We constructed our Â training and testing data sets, and learned how to introduce some variation into our data via simulation. Â A lot of Databricks visualization was covered, as well as some visualizations using the collect() function to export the data to base R so that we could use ggplot. Â We also learned how to perform some regression diagnostics manually using code. Â We then learned how to standardize a data set via code, and used the results to illustrate a kmeans example using Spark. Â Finally we looked at the resulting clusters and examined some simple interpretations.

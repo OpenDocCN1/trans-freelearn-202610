@@ -1,0 +1,10 @@
+# # Generating the data using probability functions
+
+Rather than use a pre-existing dataset, we will generate our own data by using some built-in sampling and probability functions. This will be a valuable way to learn how to perform analysis, since it will enable you to alter the makeup of your own data and observe how it changes the models produced. Some of the code that you will see also incorporate some of the concepts of reproducible research that we discussed in Chapter 1, Getting Started with Predictive Analytics.
+
+To ensure that these examples run correctly, make sure that `setwd()` is set to the correct folder on your computer. This function is illustrated in the first few lines of the following code. In addition to `setwd()`, you will also see a few other functions within the code examples given that will help promote reproducibility:
+
++   - `Set.seed()`: this is always supplied with a constant. This guarantees that any sampled data can be reproduced exactly on different computers that use the same seed. In this example I will use the number 1 as a seed.
++   - `Dev.copy()`: This copies the plot that is displayed on the screen to the filename specified within the directory set by `setwd()`. That way, you can keep all of your images in the appropriate directory applicable to the project or sub-project you are working on. When you are done with your `dev.copy()`, use `dev.off()` to reset the plots. Note: you may need to specify `dev.off()` twice for it to complete.
++   - `Clearhistory()`, `Savehistory()`: All code contained between these two functions are copied to the filename specified in `Savehistory()`.This will allow you to keep a permanent record of the code, separate from the code editor. This is important if you are manually keeping track of versions, or are using it to include in other word processing programs.
++   - Code labels: You will see some code labels that start with `#` and end with `====` (four equals signs). While they are technically comments,
