@@ -1,0 +1,55 @@
+reviews:
+- 'no': 2
+  overturn_probability: 0.1
+  alternative: 前置内容小节标题
+  counter_evidence:
+  - 该行仅为前置内容中的'献词'小节，根据规则'前言、序言、致谢、关于作者等正文之前的内容，统一划分为一章'，整个前置内容应作为一个整章处理，分章点应设在前置内容起始处（如书名页
+    line 0 或前言 line 38），而非某个具体小节标题处
+  - line 0 为书名，line 2 为献词，line 12 为贡献者，line 14 为关于作者，line 38 才是前言，缺乏统领全书前置内容的章级语义
+  keep_split: true
+- 'no': 168
+  overturn_probability: 0.05
+  alternative: 正文小标题
+  counter_evidence:
+  - 虽然格式为'第 1 章'，但需警惕是否为'部分-章节'模式下的部分标题，不过上下文无'第 X 部分'出现，且后续紧跟'在本章中'、'技术要求'、'## 什么是
+    MuleSoft 和 iPaaS？'等典型章内结构，证据链完整
+  keep_split: true
+- 'no': 702
+  overturn_probability: 0.05
+  alternative: 正文小标题
+  counter_evidence:
+  - 明确的'第 2 章'编号，序号连贯（承接第 1 章），后跟章内概述、技术要求、'## MuleSoft Anypoint Platform 架构'等二级标题，符合最高层级章标题特征，无反例
+  keep_split: true
+- 'no': 1140
+  overturn_probability: 0.05
+  alternative: 正文小标题
+  counter_evidence:
+  - 采用阿拉伯数字加点号'3. '格式，符合规则中'Y. '的最高层级编号特征，序号连贯（1, 2, 3），后跟本章主题列表、'## 探索 Catalyst'等二级标题，语义统领性强
+  keep_split: true
+- 'no': 1507
+  overturn_probability: 0.05
+  alternative: 正文小标题
+  counter_evidence:
+  - 明确的'第 4 章'编号，序号连贯，后跟章内引言、'## MuleSoft 应用网络简介'等结构，无任何误判特征
+  keep_split: true
+- 'no': 1770
+  overturn_probability: 0.25
+  alternative: 正文小标题/专题节标题
+  counter_evidence:
+  - 该行缺少显式章节编号（无'第 5 章'或'5. '），仅为'# 借助加速器加速'，虽后跟'在本章中'及主题列表，但可能属于第 4 章的延伸专题、附录或同一大部分下的专题节，而非独立大章
+  - 前一章（第 4 章）在 line 1769 刚结束习题答案，此处无编号突现，需结合全书目录确认是否为隐性第 5 章
+  keep_split: true
+- 'no': 2081
+  overturn_probability: 0.25
+  alternative: 正文小标题/专题节标题
+  counter_evidence:
+  - 同 line 1770，缺少显式章节编号（无'第 6 章'或'6. '），标题为'# 将期望的业务成果与功能需求相匹配'，虽有'在本章中'及主题列表，但可能为第
+    5 章（加速器）的后续专题或同一模块下的节，而非独立大章
+  - 上一章（加速器章）在 line 2080 结束，此处无编号衔接，序号连贯性存疑（若 line 1770 为第 5 章，此处应为第 6 章，但均无编号）
+  keep_split: true
+- 'no': 2489
+  overturn_probability: 0.05
+  alternative: 正文小标题
+  counter_evidence:
+  - 明确的'第 7 章'编号，序号连贯（隐性第 5、6 章后），后跟章内主题列表、'## 单体架构'等二级标题，完全符合最高层级章标题判断规则
+  keep_split: true

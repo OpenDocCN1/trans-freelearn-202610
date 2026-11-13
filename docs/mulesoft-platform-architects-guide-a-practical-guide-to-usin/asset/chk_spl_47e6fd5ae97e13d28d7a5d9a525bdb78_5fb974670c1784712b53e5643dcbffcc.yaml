@@ -1,0 +1,41 @@
+reviews:
+- 'no': 2957
+  overturn_probability: 0.85
+  alternative: 正文大标题（H1），但属于章节内部的主要分节，而非全书最高层级的章分界
+  counter_evidence:
+  - 该行上方仅 6 行即存在 `## 系统 API`（行 2951），二级标题出现在一级标题之前，违反正常章节起始的层级顺序，说明文本起始于章节中部
+  - 后续内容引用 `Figure 7.14`、`Figure 7.15`，图表编号已达 14、15，极不可能是第 7 章的开头，更像是章节中后段的内容
+  - 同层级的 `# 应用网络与可组合性`（行 2989）紧随其后，若行 2957 为章分界，行 2989 理应也是，但原判断漏判了行 2989，说明层级认定不一致
+  keep_split: false
+- 'no': 3014
+  overturn_probability: 0.2
+  alternative: 章节起始标题（H1），语义明确含“本章将讨论”，后接 Figure 8.x 编号
+  counter_evidence:
+  - 前一个一级标题 `# 应用网络与可组合性`（行 2989）与该行同级，且无明确章序号，若该行为章分界，行 2989 应同级分章，原判断仅选取该行显得随意
+  - 文本开头（行 2950）即为非章首内容，上下文不完整，难以确证此处为全书第 8 章而非某部分下的第 8 章
+  keep_split: true
+- 'no': 3298
+  overturn_probability: 0.05
+  alternative: 带显式编号的章标题（第 9 章）
+  counter_evidence:
+  - 标题含 `9.` 编号，符合“第 X 章”特征，极难推翻，仅能指出前文无 `第 8 章` 明确标记，但 Figure 8.x 已佐证上一章存在
+  keep_split: true
+- 'no': 4128
+  overturn_probability: 0.75
+  alternative: 章标题的第二行（标题正文），真正的章分界在上方行 4122 的 `# 10`
+  counter_evidence:
+  - 行 4122 单独一行 `# 10`（H1），行 4128 为 `# 使用 Anypoint iPaaS (CloudHub 2.0) 实现无忧部署`（H1），两者连续，典型的“编号+标题”分行排版，章分界应在编号行（4122）而非标题行
+  - 原判断忽略行 4122 而选行 4128，会导致章号与标题分离，且行 4122 无内容被遗漏
+  keep_split: false
+- 'no': 4824
+  overturn_probability: 0.05
+  alternative: 带显式编号的章标题（第 11 章）
+  counter_evidence:
+  - 标题含 `11.` 编号，格式规范，后续内容为本章主题列表，证据充分，仅能以“前文无第 10 章标题行”作弱反驳，但行 4122/4128 已补足
+  keep_split: true
+- 'no': 5615
+  overturn_probability: 0.0
+  alternative: 带中文显式编号的章标题（第 12 章）
+  counter_evidence:
+  - 标题含 `第 12 章`，最符合规则的最高层级章标题特征，无可推翻之处
+  keep_split: true

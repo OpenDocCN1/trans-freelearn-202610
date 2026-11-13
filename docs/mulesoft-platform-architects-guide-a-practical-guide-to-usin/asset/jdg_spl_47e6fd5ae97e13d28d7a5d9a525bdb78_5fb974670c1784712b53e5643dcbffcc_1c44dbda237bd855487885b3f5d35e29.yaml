@@ -1,0 +1,64 @@
+chapter_starts:
+- 'no': 3014
+  confidence: 0.95
+  final_reason: 一级标题（H1），明确含有“本章将讨论”语义，后续列出本章主题列表，且图表编号由 Figure 7.x 切换为 Figure 8.x，符合全书最高层级章分界特征。
+  accepted_evidence:
+  - 语义特征：含“本章将讨论”及主题列表
+  - 上下文特征：后续跟随 Figure 8.1 等图表，编号重置
+  - 格式特征：单独成行，无末尾标点
+  rejected_evidence:
+  - 复核方指出前文存在同级 H1（行 2989），但该行无章级语义标记，属章内大节
+  need_human_review: false
+- 'no': 3298
+  confidence: 1.0
+  final_reason: 一级标题（H1），显式包含章节编号“9.”，标题为“使用 Anypoint iPaaS (CloudHub 1.0) 实现无忧部署”，完全符合“第
+    X 章”编号特征。
+  accepted_evidence:
+  - 编号特征：显式“9.”编号
+  - 语义特征：章标题明确，后续含技术要求、主题列表
+  - 格式特征：单独成行
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 4122
+  confidence: 0.95
+  final_reason: 一级标题（H1），单独一行“# 10”，为章节编号行，紧随其后为标题正文行（行 4128），符合“编号+标题”分行排版的章分界惯例，优于仅标题行。
+  accepted_evidence:
+  - 编号特征：显式“10”编号
+  - 排版特征：与下一行标题正文构成完整章首块
+  - 复核方强证据：指出原判断行 4128 为标题正文行，章分界应在编号行
+  rejected_evidence:
+  - 判断方原选行 4128，但该行仅为标题正文，编号行在前
+  need_human_review: false
+- 'no': 4824
+  confidence: 1.0
+  final_reason: 一级标题（H1），显式包含章节编号“11.”，标题为“使用 Runtime Fabric 容器化运行时平面”，后续含本章主题列表，符合“第
+    X 章”编号特征。
+  accepted_evidence:
+  - 编号特征：显式“11.”编号
+  - 语义特征：含“在本章中，我们将涵盖以下主题”
+  - 格式特征：单独成行
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 5615
+  confidence: 1.0
+  final_reason: 一级标题（H1），显式包含中文章节编号“第 12 章”，标题为“部署到您自己的数据中心”，最符合规则的最高层级章标题特征。
+  accepted_evidence:
+  - 编号特征：显式“第 12 章”
+  - 语义特征：含“在本章中，我们将涵盖以下主题列表”
+  - 格式特征：单独成行
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 2951
+  reason: 二级标题（H2）“系统 API”，出现在行 2957 一级标题之前，属于上一章（第 7 章）内部的节标题，非全书最高层级章分界。
+  need_human_review: false
+- 'no': 2957
+  reason: 一级标题（H1）“API 主导的连接性与应用网络”，但上方仅 6 行即有 H2 标题（行 2951），层级顺序异常；后续引用 Figure 7.14、7.15，图表编号已达
+    14、15，极不可能是第 7 章开头，实为第 7 章中后段的大节标题。
+  need_human_review: false
+- 'no': 2989
+  reason: 一级标题（H1）“应用网络与可组合性”，与行 2957 同级，同属第 7 章内部大节，无章级编号或“本章”语义，非全书章分界。
+  need_human_review: false
+- 'no': 4128
+  reason: 一级标题（H1）“使用 Anypoint iPaaS (CloudHub 2.0) 实现无忧部署”，为行 4122 编号行“# 10”对应的标题正文行，章分界已在编号行（4122），此行不再单独分章。
+  need_human_review: false

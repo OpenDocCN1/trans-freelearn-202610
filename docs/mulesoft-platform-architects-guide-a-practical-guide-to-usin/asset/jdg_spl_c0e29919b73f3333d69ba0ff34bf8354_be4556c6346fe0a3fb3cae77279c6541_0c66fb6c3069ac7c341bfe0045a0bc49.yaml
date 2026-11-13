@@ -1,0 +1,70 @@
+chapter_starts:
+- 'no': 168
+  confidence: 0.99
+  final_reason: 双方一致：显式编号'1. '符合最高层级章标题格式(Y. )，序号连贯，后跟章内概述、技术要求及二级标题。
+  accepted_evidence:
+  - 编号特征：'1. '符合 Y. 格式
+  - 上下文特征：前言结束后紧跟，后含'在本章中'、'## 技术要求'、'## 什么是 MuleSoft 和 iPaaS？'等章内结构
+  rejected_evidence:
+  - 复核方担心的'部分-章节'模式风险极低，全书未出现'第 X 部分'
+  need_human_review: false
+- 'no': 702
+  confidence: 1.0
+  final_reason: 双方一致：显式编号'第 2 章'，序号连贯，后跟章内概述、技术要求及二级标题。
+  accepted_evidence:
+  - 编号特征：'第 2 章'明确最高层级
+  - 上下文特征：承接第 1 章习题后，含'## MuleSoft Anypoint Platform 架构'等二级标题
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 1140
+  confidence: 1.0
+  final_reason: 双方一致：编号'3. '符合 Y. 格式，序号连贯(1,2,3)，后跟本章主题列表及二级标题。
+  accepted_evidence:
+  - 编号特征：'3. '符合最高层级编号
+  - 语义特征：含'在本章中，我们将涵盖以下主题'及'## 探索 Catalyst'等结构
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 1507
+  confidence: 1.0
+  final_reason: 双方一致：显式编号'第 4 章'，序号连贯，后跟章内引言及二级标题。
+  accepted_evidence:
+  - 编号特征：'第 4 章'明确
+  - 上下文特征：承接第 3 章习题后，含'## MuleSoft 应用网络简介'等结构
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 1770
+  confidence: 0.85
+  final_reason: 语义证据强：上一章(第 4 章)已有习题答案结尾，本行后跟'在本章中'、主题列表、多个二级标题、并以摘要/习题/答案结尾(见 line
+    2070-2080)，具备完整章级结构；虽缺显式编号，但结合第 7 章出现推断为隐性第 5 章。复核方保留分章意见。
+  accepted_evidence:
+  - 上下文特征：紧接第 4 章习题答案后
+  - 语义特征：含'在本章中，我们将涵盖以下主题'、'## 涵盖主题'、'## 核心构建模块'等章内结构
+  - 结构完整性：后续出现'### 摘要'、'### 问题'、'### 答案'等章末标志
+  - 序号推断：第 4 章后、第 7 章前，推断为第 5 章
+  rejected_evidence:
+  - 复核方指出缺显式编号，可能为专题节而非大章
+  need_human_review: true
+- 'no': 2081
+  confidence: 0.85
+  final_reason: 语义证据强：上一章(加速器章)已有习题答案结尾，本行后跟'在本章中'、主题列表、多个二级标题、并以摘要/延伸阅读/答案结尾(见 line
+    2483-2488)，具备完整章级结构；推断为隐性第 6 章。复核方保留分章意见。
+  accepted_evidence:
+  - 上下文特征：紧接加速器章习题答案后
+  - 语义特征：含'在本章中，我们将涵盖以下主题'、'## 制定业务成果和功能需求'等章内结构
+  - 结构完整性：后续出现'## 摘要'、'## 延伸阅读'、'## 答案'等章末标志
+  - 序号推断：第 5 章后、第 7 章前，推断为第 6 章
+  rejected_evidence:
+  - 复核方指出缺显式编号，序号连贯性存疑
+  need_human_review: true
+- 'no': 2489
+  confidence: 1.0
+  final_reason: 双方一致：显式编号'第 7 章'，序号连贯(隐性 5,6 后)，后跟章内主题列表及二级标题。
+  accepted_evidence:
+  - 编号特征：'第 7 章'明确最高层级
+  - 上下文特征：承接第 6 章习题后，含'## 单体架构'等二级标题
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 2
+  reason: 复核方指出其为前置内容小节标题，前置内容应统一划分为一章且起始于书名页(line 0)，该行缺乏统领全前置内容的章级语义。
+  need_human_review: false
