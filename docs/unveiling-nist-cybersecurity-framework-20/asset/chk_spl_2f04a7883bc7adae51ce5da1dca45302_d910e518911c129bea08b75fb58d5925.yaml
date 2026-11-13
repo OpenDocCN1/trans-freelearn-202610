@@ -1,0 +1,100 @@
+reviews:
+- 'no': 0
+  overturn_probability: 0.85
+  alternative: 书名页/标题页
+  counter_evidence:
+  - 该行是全书标题《NIST 网络安全框架 2.0 深度解析》，属于书名页元数据，非章节标题
+  - 前言、致谢等正文前内容应合并为一章，章起始应从献词（第3行）或贡献者名单（第7行）开始，而非书名行
+  keep_split: false
+- 'no': 116
+  overturn_probability: 0.2
+  alternative: 部分标题
+  counter_evidence:
+  - 符合‘第 X 部分’格式，根据规则部分-章节模式下部分标题也应分章
+  - 但部分标题层级高于章，若严格定义‘章’为基本阅读单位，部分可不单独分章
+  keep_split: true
+- 'no': 125
+  overturn_probability: 0.05
+  alternative: 第1章标题
+  counter_evidence:
+  - 明确编号‘第 1 章’，符合最高层级章标题特征
+  - 后续紧跟章内概述段落及子节列表，上下文特征典型
+  keep_split: true
+- 'no': 349
+  overturn_probability: 0.15
+  alternative: 第2章标题（无编号形式）
+  counter_evidence:
+  - 目录（第123行）明确标注‘第 2 章，NIST 网络安全框架基础’
+  - 虽无‘第 2 章’前缀，但作为一级标题且语义统领后续内容，符合无编号章标题判断规则
+  keep_split: true
+- 'no': 678
+  overturn_probability: 0.2
+  alternative: 部分标题
+  counter_evidence:
+  - 同第116行，属‘第 2 部分’标题，部分-章节模式下应分章
+  - 若认为部分不构成独立阅读单元，可合并至后续首章
+  keep_split: true
+- 'no': 691
+  overturn_probability: 0.9
+  alternative: 排版残留的章节编号/子标题
+  counter_evidence:
+  - 仅为‘## 3’的二级标题，无标题文本，疑为排版时遗留的章号标记
+  - 真正的章标题‘治理’出现在第693行（### 治理），且目录对应‘第 3 章，治理’
+  - 章标题通常为一级标题（#），此处为二级标题且仅含数字，不符合格式特征
+  keep_split: false
+- 'no': 1192
+  overturn_probability: 0.1
+  alternative: 第4章标题
+  counter_evidence:
+  - 格式‘# 4. Identify（识别）’符合‘Y. ’编号特征
+  - 目录（第684行）对应‘第 4 章，识别’，语义统领后续资产管理、风险评估等子节
+  keep_split: true
+- 'no': 1523
+  overturn_probability: 0.1
+  alternative: 第5章标题
+  counter_evidence:
+  - 格式‘# 5. 保护’符合编号特征
+  - 目录（第686行）对应‘第 5 章，防护’，后续覆盖身份管理、数据安全等多个控制族
+  keep_split: true
+- 'no': 1882
+  overturn_probability: 0.05
+  alternative: 第6章标题
+  counter_evidence:
+  - 明确‘第 6 章：检测’编号，一级标题，后续含持续监控、不利事件分析等子节
+  - 上下文衔接自然，第5章结束有总结，此处为新章起始
+  keep_split: true
+- 'no': 2014
+  overturn_probability: 0.05
+  alternative: 第7章标题
+  counter_evidence:
+  - 明确‘第 7 章：响应’编号，一级标题
+  - 第6章总结（第2016-2018行）后紧跟此行，符合章节切分上下文特征
+  keep_split: true
+- 'no': 2260
+  overturn_probability: 0.05
+  alternative: 第8章标题
+  counter_evidence:
+  - 明确‘第 8 章：恢复’编号，一级标题
+  - 第7章总结（第2238-2252行）后紧跟此行，结构清晰
+  keep_split: true
+- 'no': 2441
+  overturn_probability: 0.2
+  alternative: 部分标题
+  counter_evidence:
+  - ‘第 3 部分：应用框架’为部分标题，部分-章节模式下应分章
+  - 但若将部分视为逻辑分组而非阅读单元，可不单独分章
+  keep_split: true
+- 'no': 2451
+  overturn_probability: 0.15
+  alternative: 第9章标题（二级标题形式）
+  counter_evidence:
+  - 虽为二级标题‘## 第 9 章’，但处于‘第 3 部分’（一级标题）之下，符合部分下章节降级为二级标题的排版惯例
+  - 目录（第2447行）明确‘第 9 章’，内容统领风险管理框架等主题
+  keep_split: true
+- 'no': 2727
+  overturn_probability: 0.05
+  alternative: 第10章标题
+  counter_evidence:
+  - 明确‘第 10 章：政策、标准和程序’编号，一级标题
+  - 第9章总结（第2715-2726行）后紧跟，结构完整
+  keep_split: true

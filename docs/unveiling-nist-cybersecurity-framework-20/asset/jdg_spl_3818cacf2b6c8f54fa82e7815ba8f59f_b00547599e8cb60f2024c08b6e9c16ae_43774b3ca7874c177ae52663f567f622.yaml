@@ -1,0 +1,44 @@
+chapter_starts:
+- 'no': 2999
+  confidence: 0.9
+  final_reason: 显式编号「# 第 10 章：策略框架」符合最高层级章标题特征（编号规则「第 X 章」优先级最高）。虽前文（2955-2991）出现多个「###」级控制族标题，疑为排版层级错位或上一章尾声内容，但本行是全段唯一的第
+    10 章标记，后续紧跟「## 应用安全」「## NIST SP 800-53 控制族」「## 总结」「## 参考资料」等标准章节结构，确认为第 10 章分章点。
+  accepted_evidence:
+  - 判断方：编号特征「第 10 章」、单独成行、无末尾标点、后续章节结构完整
+  rejected_evidence:
+  - 复核方：前文子节倒置、缺乏过渡上下文
+  need_human_review: false
+- 'no': 3043
+  confidence: 0.95
+  final_reason: 显式编号「# 第 11 章：评估」符合最高层级章标题特征。复核方指出后文复用「#」作为章内大节（如 3132、3205、3221、3290
+    行），但这些行均无「第 X 章」编号，属 Markdown 层级滥用（H1 当 H2 用），不影响带编号的真章标题判定。本行后内容完整覆盖第 11 章所有主题（执行评估、当前状态、未来路线图、总结），结构清晰。
+  accepted_evidence:
+  - 判断方：编号特征「第 11 章」、单独成行、后续含完整章节体系
+  rejected_evidence:
+  - 复核方：书内「#」复用、章节过长、层级不一致
+  need_human_review: false
+- 'no': 3312
+  confidence: 0.9
+  final_reason: 规则明确「文末索引划分为一章」。本行「# 索引」位于正文结束（致谢、作者信息）之后，后续为完整索引条目（## A、## B…），内容实质为索引正文。4168
+    行再现「# 索引」为电子书分页运行标题残留，非新章起点。
+  accepted_evidence:
+  - 判断方：索引章规则、单独成行、后续为索引条目
+  rejected_evidence:
+  - 复核方：重复出现疑为页眉、无概述段落、电子书页码失效
+  need_human_review: false
+rejected_lines:
+- 'no': 3132
+  reason: 复核方引证：章内大节标题「# 自我评估指南」，无章编号，属 Markdown H1 滥用为 H2，隶属第 11 章「执行自我评估」节。
+  need_human_review: false
+- 'no': 3205
+  reason: 复核方引证：章内大节标题「# 捕获当前状态」，无章编号，隶属第 11 章「获取当前状态」节。
+  need_human_review: false
+- 'no': 3221
+  reason: 复核方引证：章内大节标题「# 创建您的未来路线图」，无章编号，隶属第 11 章「制定未来路线图」节。
+  need_human_review: false
+- 'no': 3290
+  reason: 复核方引证：章内结语标题「# 总结」，无章编号，隶属第 11 章末尾。
+  need_human_review: false
+- 'no': 4168
+  reason: 复核方引证：索引区分页运行标题「# 索引」重复出现，非实质分章标记。
+  need_human_review: false
