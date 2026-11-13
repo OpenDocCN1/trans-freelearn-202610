@@ -1,0 +1,40 @@
+chapter_starts:
+- 'no': 6037
+  confidence: 0.98
+  final_reason: 显式编号标题 '## 第 16 章：使用 Studio One 的附加功能'，虽为二级标题格式，但明确标识全书最高层级章序号 '第
+    16 章'，符合编号特征规则，且语义上统领后续 Show 页面、乐谱编辑器、SampleOne XT 等整章内容。
+  accepted_evidence:
+  - 双方一致认定为章标题
+  - 包含明确章序号 '第 16 章'
+  - 后续内容覆盖三大功能模块并以 '# 总结' 收尾
+  rejected_evidence:
+  - 标题层级为二级标题 (##)，与前文一级标题 (#) 存在不一致，但判断为源文件 Markdown 层级扁平化导致，不影响章节语义
+  need_human_review: false
+- 'no': 6511
+  confidence: 0.95
+  final_reason: 一级标题 '# 附录'，属于正文后的主要分部（Back Matter），规则规定前言、序言、致谢、关于作者等正文之前的内容统一划分为一章，附录作为正文之后的主要参考性分部，同理应划分为一章。
+  accepted_evidence:
+  - 双方均倾向保留分章
+  - 规则隐含正文后主要分部（附录、索引）均应分章
+  - 内容独立，涵盖自定义、文件系统、文件共享等系统性最佳实践
+  rejected_evidence:
+  - 复核方指出附录主题与第 16 章相关，可能属延伸阅读，但结构上属于独立附录分部
+  need_human_review: false
+- 'no': 6842
+  confidence: 1.0
+  final_reason: 一级标题 '# 索引'，规则明确要求 '文末索引也划分为一章'。
+  accepted_evidence:
+  - 双方一致
+  - 规则硬性规定
+  - 内容为纯索引列表，无叙事正文
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 5965
+  reason: 复核方证据成立：第 6031 行 '# 总结' 明确指出 '在本章中，我们探索了 Project 页面'，证明第 5965 行 '渲染用于发布和交付的最终母带'
+    仅为第 15 章（Project 页面）内的一个大节标题，而非全书最高层级大章。该行缺少章序号，语义上从属于 Project 页面工作流。
+  need_human_review: false
+- 'no': 8350
+  reason: 复核方证据充分：该目录出现在文件末尾（第 8350 行），位于索引（第 6842 行）之后，且内容与文首目录重复，属于电子书常见的重复导航目录（HTML
+    TOC/NCX 回填），非正文内容章节。分割于此会产生无实质阅读内容的空章节。
+  need_human_review: false

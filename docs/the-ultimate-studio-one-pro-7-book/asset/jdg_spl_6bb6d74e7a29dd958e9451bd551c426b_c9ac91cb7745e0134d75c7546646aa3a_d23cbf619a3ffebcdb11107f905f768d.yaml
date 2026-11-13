@@ -1,0 +1,108 @@
+chapter_starts:
+- 'no': 0
+  confidence: 0.95
+  final_reason: 书名及前置内容（致谢、贡献者、前言等），符合规则归为前置章节
+  accepted_evidence:
+  - 判断方一致
+  - 规则：前言序言致谢统一划分
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 119
+  confidence: 1.0
+  final_reason: 一级标题 '# 第 1 部分'，部分-章节模式下的部分起始
+  accepted_evidence:
+  - 判断方一致
+  - 编号特征、层级特征
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 129
+  confidence: 1.0
+  final_reason: 二级标题 '## 第 1 章'，正文第一章起始
+  accepted_evidence:
+  - 判断方一致
+  - 编号连贯、层级正确
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 336
+  confidence: 1.0
+  final_reason: 二级标题 '## 第 2 章'，编号连贯
+  accepted_evidence:
+  - 判断方一致
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 735
+  confidence: 1.0
+  final_reason: 二级标题 '## 第 3 章'，编号连贯
+  accepted_evidence:
+  - 判断方一致
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 1066
+  confidence: 1.0
+  final_reason: 一级标题 '# 第 2 部分'，部分起始
+  accepted_evidence:
+  - 判断方一致
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 1076
+  confidence: 0.9
+  final_reason: 二级标题 '## 创建新 Song'，目录对应第 4 章，语义明确为章节起始
+  accepted_evidence:
+  - 判断方采纳
+  - 目录佐证、层级正确(##)
+  rejected_evidence:
+  - 缺显式'第 4 章'编号
+  need_human_review: false
+- 'no': 1325
+  confidence: 0.9
+  final_reason: 二级标题 '## 5 录制你的第一条音频轨道'，编号连贯对应第 5 章
+  accepted_evidence:
+  - 判断方采纳
+  - 编号特征、层级正确
+  rejected_evidence:
+  - 格式非标准'第 X 章'
+  need_human_review: false
+- 'no': 1700
+  confidence: 0.95
+  final_reason: 二级标题 '## 添加虚拟乐器与录制 MIDI'，目录对应第 6 章，上下文衔接
+  accepted_evidence:
+  - 判断方采纳
+  - 目录佐证、层级正确
+  rejected_evidence:
+  - 缺显式编号
+  need_human_review: false
+- 'no': 2148
+  confidence: 1.0
+  final_reason: 一级标题 '# 第 3 部分'，部分起始
+  accepted_evidence:
+  - 判断方一致
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 2163
+  confidence: 1.0
+  final_reason: 二级标题 '## 第 7 章'，编号连贯、层级正确
+  accepted_evidence:
+  - 判断方一致
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 2579
+  confidence: 0.98
+  final_reason: 二级标题 '## 编辑音频'，复核方证实为第 8 章真实起始（原候选 2577 为页眉残留），层级符合部分-章节模式
+  accepted_evidence:
+  - 复核方反证
+  - 层级一致性(##)
+  - 内容完整性(含标题)
+  rejected_evidence:
+  - 判断方误判 2577
+  need_human_review: false
+- 'no': 2972
+  confidence: 1.0
+  final_reason: 二级标题 '## 第 9 章'，编号连贯、层级正确
+  accepted_evidence:
+  - 判断方一致
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 2577
+  reason: '复核方指出其为页眉/页码残留：层级异常(# vs ##)、内容残缺(仅''第 8 章''无标题)、符合PDF转换噪声特征，判断方无有力反驳'
+  need_human_review: false

@@ -1,0 +1,50 @@
+reviews:
+- 'no': 2972
+  overturn_probability: 0.05
+  alternative: 正文小标题
+  counter_evidence:
+  - 上一行 2966 为 '## 总结'（第 8 章结尾），若本书习惯以 '## 总结' 标记章节结束，则 2972 行 '## 第 9 章' 可能仅为下一章引言段落的加粗标题，而非结构性章标题。
+  keep_split: true
+- 'no': 3544
+  overturn_probability: 0.05
+  alternative: 正文小标题
+  counter_evidence:
+  - 上一行 3536 为 '## 总结'（第 9 章结尾），紧跟 '## 第 10 章'，两者间无空白页或分隔符，疑为正文连续排版中的人为加粗分隔，非自动分章依据。
+  keep_split: true
+- 'no': 4027
+  overturn_probability: 0.3
+  alternative: 排版噪声
+  counter_evidence:
+  - 当前文本片段起始于第 8 章，前文未出现 '第 1/2/3 部分'，'第 4 部分' 突然出现可能为排版软件自动插入的分隔符或页眉残留，而非作者原意的结构性部分标题。
+  keep_split: true
+- 'no': 4041
+  overturn_probability: 0.05
+  alternative: 正文小标题
+  counter_evidence:
+  - 紧随 '第 4 部分' 标题之后，若 '第 4 部分' 为排版噪声（见 4027 行分析），则此行 '## 第 11 章' 可能仅为部分内部的大节标题，层级低于部分，不应触发顶层分章。
+  keep_split: true
+- 'no': 4392
+  overturn_probability: 0.45
+  alternative: 正文小标题
+  counter_evidence:
+  - 该行标题为 '## 使用效果插件打造混音'，缺失统一编号 '第 12 章'（前章为 '第 11 章'，后章为 '第 13 章'），且格式为二级标题（##），与全书
+    '第 X 章' 编号规范不符；内容 '在本章中' 可能为作者口语化表达，实为第 11 章下的大节（如 '使用效果插件' 专题）。
+  keep_split: false
+- 'no': 4833
+  overturn_probability: 0.05
+  alternative: 正文小标题
+  counter_evidence:
+  - 上一行 4827 为 '## 摘要'（第 12 章结尾），紧跟 '## 第 13 章'，两者间无明显分隔，疑为正文连续排版中的人为加粗分隔。
+  keep_split: true
+- 'no': 5325
+  overturn_probability: 0.05
+  alternative: 正文小标题
+  counter_evidence:
+  - 上一行 5587 为 '在下一章中...'（第 13 章结尾），紧跟 '## 第 14 章'，符合连续排版特征，非独立章节分隔。
+  keep_split: true
+- 'no': 5589
+  overturn_probability: 0.6
+  alternative: 页码/排版断行
+  counter_evidence:
+  - 该行仅包含 '## 15'，无标题文本，长度极短（2字符），疑为页码残留或排版断行产生的伪标题；真实章标题疑为下一行 '### 导航 Project Page...'（三级标题），或该章标题缺失。
+  keep_split: false
