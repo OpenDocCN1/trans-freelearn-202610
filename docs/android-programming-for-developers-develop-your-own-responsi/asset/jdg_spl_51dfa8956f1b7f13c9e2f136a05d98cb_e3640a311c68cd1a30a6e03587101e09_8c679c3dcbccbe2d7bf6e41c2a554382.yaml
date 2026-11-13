@@ -1,0 +1,45 @@
+chapter_starts:
+- 'no': 24156
+  confidence: 0.92
+  final_reason: 语义明确为“第 6 章”，属全书最高层级章编号；前文为前一章“## 摘要”收尾，后文接章概述与本章主题列表，符合章开始上下文。虽标题含句号，但不在末尾，且语义与编号证据优于单一格式瑕疵。
+  accepted_evidence:
+  - 标题包含“第 6 章”最高层级章编号
+  - 单独成行，后接章引言及“在本章中，我们将涵盖以下主题”列表
+  - 前文为第 5 章（或前一章）的“## 摘要”章末总结
+  rejected_evidence:
+  - 标题“第 6 章。”含中文句号，与无终止标点格式规范轻微冲突
+  - 与行 25073 的“## 第 7 章”标记层级不一致
+  need_human_review: false
+- 'no': 25073
+  confidence: 0.9
+  final_reason: 虽使用 Markdown 二级标记“##”，但标题语义明确为“第 7 章”，且前文为第 6 章章末总结，后文接章引言与子节“## RxJava
+    简介”，符合新章开始特征。
+  accepted_evidence:
+  - 标题包含“第 7 章”章编号
+  - 前文为第 6 章“## 摘要”章末内容，后文为章概述与主题列表
+  - 后续出现“## RxJava 简介”等二级子节，说明此行承担章层级职责
+  rejected_evidence:
+  - 使用“##”而非“#”，可能被误读为子层级标题
+  - 标题“第 7 章.”中含点号
+  need_human_review: false
+- 'no': 26002
+  confidence: 0.95
+  final_reason: 明确为“第 3 部分”，触发部分-章节模式规则，部分标题应独立划分为新章。
+  accepted_evidence:
+  - 标题包含“第 3 部分”部分编号
+  - 前文为第 7 章章末总结，后文为部分主题描述“掌握 Android 游戏开发”
+  rejected_evidence:
+  - 使用“##”而非“#”
+  - “模块 3”语义类似课程模块
+  need_human_review: false
+- 'no': 26008
+  confidence: 0.95
+  final_reason: 在部分-章节模式下，“第 1 章”为最高层级章标题，应独立划分为新章。
+  accepted_evidence:
+  - 标题包含“第 1 章”章编号
+  - 紧跟部分标题（行 26002）之后，后接章引言与本章主题列表
+  rejected_evidence:
+  - 与部分标题同用“##”
+  - “设置项目”语义偏过程性
+  need_human_review: false
+rejected_lines: []

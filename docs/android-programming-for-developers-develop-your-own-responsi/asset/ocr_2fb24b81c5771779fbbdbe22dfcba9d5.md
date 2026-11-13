@@ -1,0 +1,34 @@
+# # Lock the screen orientation and make it full-screen
+
+We can achieve this by adding the highlighted line to the AndroidManifest.xml file:
+
+```
+<?xml version="1.0" encoding="utf-8"?>
+<manifest
+xmlns:android="http://schemas.android.com/apk/res/android"
+package="com.gamecodeschool.pong" >
+
+<application
+android:allowBackup="true"
+android:icon="@mipmap/ic_launcher"
+android:label="@string/app_name"
+android:theme="@style/AppTheme" >
+<activity
+android:name=".MainActivity"
+**android:theme="@android:style/Theme.NoTitleBar.Fullscreen"**
+**android:screenOrientation="landscape"**
+
+android:label="@string/app_name" >
+<intent-filter>
+<action android:name="android.intent.action.MAIN" >
+
+<category android:name="android.intent.category.LAUNCHER"
+>
+</intent-filter>
+</activity>
+</application>
+
+</manifest>
+```
+
+And we're ready to play!

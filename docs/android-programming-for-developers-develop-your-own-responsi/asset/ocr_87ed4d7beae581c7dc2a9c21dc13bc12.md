@@ -1,0 +1,3 @@
+The JobScheduler's schedule method will return RESULT_FAILURE in the case of failure and in the case of success will return the job identifier that we defined in the JobInfo.Builder constructor.
+
+Now, since we have just scheduled our job, it's time to write the backup behavior in the JobService subclass. In the next section, we will detail how to implement a JobService that plays well with the JobScheduler framework.

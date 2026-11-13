@@ -1,0 +1,5 @@
+# # The permission solution used in this book
+
+It was considered very carefully before starting this book that the amount of coverage that would be necessary to use Marshmallow runtime permissions in the projects of this book would cloud the other learning objectives and provide little immediate benefit to readers who are developers or to our future users. This is especially true as it is unlikely that Marshmallow ownership will reach even 10 percent market share before a new edition of this book is required. In addition to this, there is a very simple workaround to make all our apps compatible with Marshmallow and pre-Marshmallow permissions, and we will see this when we build our first app with a dangerous permission in Chapter 21, Navigation Drawer and Where It's Snap.
+
+Now that we have considered permissions, let's build our widget demo app that requires the android.permission.INTERNET permission. This is considered a normal permission, so it doesn't require any special handling for Marshmallow devices.

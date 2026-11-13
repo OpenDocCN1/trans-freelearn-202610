@@ -1,0 +1,1 @@
+don't have access to an Activity instance; therefore, in the following chapters, we are going to discuss simpler and cleaner techniques to update the UI from a background computing task.

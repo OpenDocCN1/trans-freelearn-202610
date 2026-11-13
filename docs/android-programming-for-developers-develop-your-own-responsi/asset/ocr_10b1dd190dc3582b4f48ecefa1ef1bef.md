@@ -1,0 +1,6 @@
+![](bbox=[0.117, 0.094, 0.882, 0.535])
+
++   * The Customize the Activity window gives us four things that we can play with. It is perfectly possible to leave them all at their default settings, but let’s change them to make them more meaningful and discuss what each one is. Activity Name is the name of the class that will contain our code. If this sounds odd, to be more specific, we will have a class that is an activity called whatever we name it here. Name the activity MyActivity.
++   * The next field is Layout Name. We discussed earlier in this chapter that Android UI layouts are usually defined in a separate XML text file, not with our Java code. The layout name is what this file will be called. Name the layout my_layout.
++   * The next field is Title. This is different than the Activity Name field and will be used by Android on the device’s screen as the name of the app. Name the title My App.
++   * Finally for this screen, we have Menu Resource Name. Menus are the pop-up options that you get on Android when (perhaps unsurprisingly) you click on the

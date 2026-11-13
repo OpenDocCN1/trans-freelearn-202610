@@ -1,0 +1,3 @@
+It is probably obvious, but well worth pointing out as well, that designing a detailed and nuanced layout in Java only is significantly more awkward, harder to visualize, and not the way it is most commonly done. There are times, however, when we will find it useful to do things in this way.
+
+We are getting quite advanced now with layouts and widgets. It is plain to see, however, that there is a whole bunch of other widgets (and UI elements) from the palette that we have not explored yet. So, let's do that.

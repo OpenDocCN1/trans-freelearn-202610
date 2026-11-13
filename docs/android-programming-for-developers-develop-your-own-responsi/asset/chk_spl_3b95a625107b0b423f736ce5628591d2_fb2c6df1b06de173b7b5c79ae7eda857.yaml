@@ -1,0 +1,23 @@
+reviews:
+- 'no': 29939
+  overturn_probability: 0.1
+  alternative: 正文中的二级小标题或章节内的部分标题
+  counter_evidence:
+  - 标题采用 Markdown 二级标题（##）而非一级标题（#），未达到全书最高层级大章的视觉层级标准
+  - 紧邻上一章总结段落，前后缺乏页眉页脚或分页符等物理分章标记，可能属于连续正文中的章节内小标题
+  keep_split: true
+- 'no': 30637
+  overturn_probability: 0.1
+  alternative: 正文中的二级小标题或章节内的部分标题
+  counter_evidence:
+  - '同样使用 ## 二级标题而非 # 一级标题，在严格文档层级下更像子章节标题'
+  - 前文为上一章总结，新章标题紧随其后，可能被视为同一章节收尾与下一段开头的过渡而非独立章节起始
+  keep_split: true
+- 'no': 31415
+  overturn_probability: 0.2
+  alternative: 正文小标题或带编号的段落首句
+  counter_evidence:
+  - 标题中'第 6 章。'包含句号，违反了章标题末尾无标点的格式规范，疑似排版噪声
+  - 标题前后出现多个连续空行，可能为页码残留或排版空白，该行可能是被误捕获的普通文本块
+  - '使用 ## 二级标题而非 # 一级标题，层级不足以支撑最高层级章节划分'
+  keep_split: true

@@ -1,0 +1,16 @@
+## 19. 使用多个片段
+- 为模型层使用单例
+- 片段间通信 – 再次回顾接口
+- 双片段通讯录小应用
+- 入门
+- 别名资源
+- NameAndAddress 类
+- 创建通信接口
+- 解释 onListItemSelected 方法的结构
+- 解释启动新 Activity 的代码
+- 解释详情片段已存在时的代码
+- 我们需要做什么？
+- 创建 AddressDetailFragment 类和布局
+- 编写 PortraitDetailActivity 和布局
+- 常见问题解答
+- 总结

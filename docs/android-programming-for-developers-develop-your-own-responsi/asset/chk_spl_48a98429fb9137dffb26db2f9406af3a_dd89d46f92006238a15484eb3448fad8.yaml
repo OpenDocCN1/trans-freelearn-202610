@@ -1,0 +1,38 @@
+reviews:
+- 'no': 9229
+  overturn_probability: 0.4
+  alternative: 带副标题的章标题（格式不规范，疑似正文小节标题）
+  counter_evidence:
+  - 标题内部包含全角句号“。”（“第 14 章。”），违反章标题通常简洁、无标点的排版习惯
+  - 全行长度远超30字限制，后半段“在 Note To Self 中处理和显示笔记”明显为详细副标题，更像正文中带编号的小节标题而非纯净章名
+  - 采用Markdown二级标题“##”而非独立页或一级标题，存在作为章内小节标题的可能
+  keep_split: true
+- 'no': 9532
+  overturn_probability: 0.05
+  alternative: 正文小标题（缺少上下文连续性佐证）
+  counter_evidence:
+  - 虽有“第15章”字样，但未出现配套的“第 X 部分”或页眉页码等上下文标记，单凭一行Markdown标记无法完全排除其为上一章内的小节标题
+  - 标题未使用与前后章节一致的“第 X 章。...”标点风格，存在编号不连贯或段落内编号的嫌疑
+  keep_split: true
+- 'no': 10315
+  overturn_probability: 0.35
+  alternative: 带标点的章标题/小节标题
+  counter_evidence:
+  - 标题包含全角句号“。”（“第 16 章。”），违反章标题末尾及内部宜无句号的格式特征
+  - 后半段“UI 动画”作为副标题使整行具有小节标题的混合结构，而非纯净章名
+  - 虽为“第 16 章”，但与前后章标题风格不统一（部分含标点、部分不含），提示可能为正文中插入的小节编号
+  keep_split: true
+- 'no': 11168
+  overturn_probability: 0.25
+  alternative: 过长描述性小标题
+  counter_evidence:
+  - 全行长度超过30字（“音效及支持不同版本的 Android”属详细描述性副标题），不符合章标题通常简短的格式特征
+  - 长标题更容易出现在正文中作为小节引言而非独立章页，语义上更偏向“本节内容概述”而非统领全章
+  keep_split: true
+- 'no': 11730
+  overturn_probability: 0.2
+  alternative: 带顿号并列的小标题
+  counter_evidence:
+  - 标题中包含顿号“、”（“设计模式、Fragment以及实际应用”），属正文小标题常见的并列结构
+  - 长度接近或超过30字，且由多个主题并列，更像章内小节汇总标题而非独立最高层级章名
+  keep_split: true

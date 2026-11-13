@@ -1,0 +1,16 @@
+## 17. 音效与支持不同版本的 Android
+- 支持多个 Android 版本
+- 检测当前 Android 版本
+- SoundPool 类
+- 新旧两种构建 SoundPool 的方式
+- 将声音文件加载到内存中
+- 播放声音
+- 停止声音
+- 介绍 Spinner 小部件
+- 制作音效
+- 布局声音演示界面
+- 编写声音演示应用
+- 向 Note To Self 添加音效
+- 删除笔记 – 介绍 OnLongClick
+- 常见问题解答
+- 总结

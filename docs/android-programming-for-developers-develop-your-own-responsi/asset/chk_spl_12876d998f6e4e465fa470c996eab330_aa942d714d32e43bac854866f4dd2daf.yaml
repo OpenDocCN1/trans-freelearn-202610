@@ -1,0 +1,36 @@
+reviews:
+- 'no': 14924
+  overturn_probability: 0.08
+  alternative: 正文小标题
+  counter_evidence:
+  - 该行使用 Markdown '##' 前缀，与第 14918 行的 '## 摘要' 同级，而 '摘要' 明显是章末小节而非独立章节，说明 '##' 在本文中可能表示章内小标题而非全书最高层级章标题。
+  - 虽然出现 '第 23 章' 字样，但缺乏 '第 X 部分' 上下文佐证，编号本身可能是章内大节编号被误读为章号。
+  keep_split: true
+- 'no': 15659
+  overturn_probability: 0.1
+  alternative: 正文小标题
+  counter_evidence:
+  - 标题中 '第24章。' 紧跟全角句号，违反 '标题末尾绝无句号（。.？！）' 的格式约束，更像是节内小标题的书写习惯。
+  - 该行紧接第 23 章摘要段落之后，中间未出现 '部分' 或其他章边界标记，可能只是同一章内的下一节。
+  keep_split: true
+- 'no': 16651
+  overturn_probability: 0.07
+  alternative: 正文小标题
+  counter_evidence:
+  - 使用 '第 25 章.' 的半角句号风格与中文图书章节规范不符，疑似 Markdown 转换时的节标题残留。
+  - 前文第 16643 行为 '## 总结'，与本行同级 '##'，若 '总结' 不分章则本行也不应单独分章。
+  keep_split: true
+- 'no': 17083
+  overturn_probability: 0.09
+  alternative: 正文小标题
+  counter_evidence:
+  - 标题包含破折号且较长（'升级 SQLite – 添加位置和地图'），语义上更像章内功能性小节而非统领全章的概括性标题。
+  - 同前两例，含全角句号 '第 26 章。'，且紧承第 25 章摘要，缺乏章与章之间的空白页或部分标记。
+  keep_split: true
+- 'no': 17555
+  overturn_probability: 0.15
+  alternative: 正文小标题/强调性小标题
+  counter_evidence:
+  - 标题末尾为感叹号 'Hola!'，明确违反 '标题末尾绝无句号（。.？！）' 规则，感叹号赋予其强调口语化色彩，不符合正式章标题风格。
+  - 同样存在 '第 27 章。' 的全角句号，且与前一章摘要相邻，未见跨章节的内容切换证据。
+  keep_split: true

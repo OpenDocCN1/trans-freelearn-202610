@@ -1,0 +1,233 @@
+## 第 27 章。本地化 – Hola!
+
+本章简短而简单，但在这里你将学习如何使你的应用可供数百万潜在用户使用。在本章中，我们将看到如何添加其他语言。之所以非常容易，是因为我们一直在使用应用中的字符串资源来处理文本。
+
+在本章中，我们将：
+
+- 通过构建一个使用英语、西班牙语和法语的非常简单的应用来学习基础知识
+- 通过添加一个单一文本文件，将西班牙语添加到 Where it's Snap 应用中
+
+
+
+
+
+## 本地化小应用
+
+创建一个新项目并将其命名为 Localization。保持所有项目设置为默认值。本项目无需进行任何 Java 编码。
+
+## 准备布局
+
+通过复制并粘贴以下代码来替换自动生成的代码，以编辑 activity_main 布局文件：
+
+```
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/movie_title"
+        android:id="@+id/textView"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/line_one"
+        android:id="@+id/textView2"
+        android:layout_below="@+id/textView"
+        android:layout_marginTop="35dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/line_two"
+        android:id="@+id/textView3"
+        android:layout_below="@+id/textView2"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_alignStart="@+id/textView2"
+        android:layout_marginTop="52dp" >
+</RelativeLayout>
+```
+
+## 准备第一个 strings.xml 文件
+
+要准备该文件，请将以下代码复制并粘贴到 strings.xml 文件中。这些字符串资源是刚才在布局中引用的：
+
+```
+<resources>
+    <string name="app_name">Localization</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="movie_title">Gone with the wind</string>
+    <string name="line_one">...Rhett, if you go, where shall I go? What shall I do?</string>
+    <string name="line_two">Frankly, my dear. I don't give a damn.</string>
+</resources>
+```
+
+现在布局中所有引用都有匹配的资源了，切换到 **设计** 选项卡，查看包含电影中几句名言的几个 **TextView** 小部件：
+
+![](img/35d01831c19688a44e50bce7c489007a_853_0.png)
+
+现在，我们可以添加另一种语言。
+
+## 使用第二个 strings.xml 文件使应用支持多语言
+
+为此，我们只需将另一个 `strings.xml` 文件添加到命名合适的文件夹中，每个资源使用相同的名称，但包含适当的翻译。随后，应用将根据运行应用的设备设置检测用户的首选语言。
+
+确保项目资源管理器处于 **项目** 视图，方法是点击左上角的下拉列表，如下图所示：
+
+![](img/35d01831c19688a44e50bce7c489007a_854_0.png)
+
+随后，点击 **项目**。现在我们可以为任意多个国家添加资源文件夹。
+
+右键点击 `res` 文件夹，导航至 **新建 | Android 资源目录**。将新文件夹命名为 `values-es`。ES 是西班牙的国家代码。因此，设置为西班牙语言环境的 Android 设备将在此处查找 `strings.xml` 文件。
+
+右键点击 values-es 文件夹，导航至 **新建 | Android 资源文件**。将文件命名为 strings.xml。现在，复制并粘贴以下代码：
+
+```
+<resources>
+<string name="app_name">Localización</string>
+<string name="movie_title">Lo que el viento se llevó</string>
+<string name="line_one">... Rhett, si te vas, dónde iré? ¿Qué debo hacer?</string>
+<string name="line_two">Francamente, querida. Me importa un bledo.</string>
+</resources>
+```
+
+### 提示
+
+如果在第二个 strings.xml 文件中未提供所有字符串资源，则将使用默认资源。
+
+## 添加第三种语言
+
+要添加另一种语言，右键点击 res 文件夹并导航至 New | Android 资源目录。将新文件夹命名为 values-fr。FR 是法国的国家代码。因此，设置为法语语言环境的 Android 设备将在此处查找 strings.xml 文件。
+
+右键点击 values-fr 文件夹并导航至 New | Android 资源文件。将文件命名为 strings.xml。现在，复制并粘贴以下代码：
+
+```
+<resources>
+<string name="app_name">Localisation</string>
+<string name="movie_title">Emporté par le vent</string>
+<string name="line_one">... Rhett, si vous allez, où irai-je? Que dois-je faire?</string>
+<string name="line_two">Franchement, ma chère. Je ne donne pas une putain.</string>
+</resources>
+```
+
+如果查看项目资源管理器窗口，如下图所示，你会发现 Android Studio 为每个翻译文件提供了一个漂亮的小旗帜图形：
+
+![](img/35d01831c19688a44e50bce7c489007a_856_0.png)
+
+### 提示
+
+你甚至可以本地化语言的不同版本。例如，美国英语或英国英语。完整的代码列表可在 http://stackoverflow.com/questions/7973023/what-is-the-list-of-supported-languages-locales-on-android 找到。你甚至可以本地化图片和声音等资源。要了解更多信息，请访问 http://developer.android.com/guide/topics/resources/localization.html。
+
+这些翻译是从 Google 翻译复制粘贴的，因此其中一些翻译很可能远远不准确。像这样廉价地翻译，可以是将应用及其基本字符串资源集投入不同语言用户设备的好方法。此外，如果你需要深度翻译（例如电影台词），让专业人工进行翻译无疑会带来好处。
+
+本练习的目的是向你展示 Android 的工作原理，而不是如何翻译。
+
+### 注意
+
+向任何可能看出此处提供的翻译存在局限性的西班牙语或法语使用者表示诚挚的歉意。
+
+## 运行应用
+
+运行应用以查看其正常工作。现在，我们可以更改本地化设置以查看西班牙语版本的应用。不同设备的操作略有不同，但 Nexus 5 模拟器可以通过点击 **Custom Locale** 应用、选择 es - ES，然后点击屏幕左下角的 **SELECT 'ES'** 按钮来更改，如下图所示：
+
+### Custom Locale
+
+en_US - English (United States)
+
+- en-SG - en-sg
+- en-US - en-us
+- en-ZA - en-za
+- es - Spanish
+- es-ES - es-es
+- es-US - es-us
+- fi - Finnish
+- fi_FI - fi_fi
+
+SELECT 'ES' ADD NEW... REMOVE...
+
+现在，再次运行应用，你将看到翻译后的字符串资源生效：
+
+Localización
+
+Lo que el viento se llevó
+
+... Rhett, si te vas, dónde iré? ¿Qué debo hacer?
+
+Francamente, querida. Me importa un bledo.
+
+要切换回英语，请执行以下步骤。运行 **Custom Locale** 应用并选择 en-US - en-us。然后，点击屏幕左下角的 SELECT 'EN-US' 按钮。
+
+## 本地化 Where it's snap 应用
+
+Where it's snap 应用的最终完整代码可在 chapter 27/Where Its Snap 文件夹中找到。
+
+只需为要添加到应用的任何语言添加一个文件夹。要添加西班牙语，右键点击 res 文件夹并导航至 New | Android 资源目录。将其命名为 values-es。现在，右键点击刚才创建的文件夹并导航至 New | Android 资源文件。将其命名为 strings.xml，并将以下代码复制并粘贴到其中：
+
+```
+<resources>
+    <string name="app_name">Donde Es Snap!</string>
+
+    <string name="action_settings">Ajustes</string>
+    <string name="drawer_open">Abra</string>
+    <string name="drawer_close">Cerca</string>
+
+    <string name="enter_photo_title">Ingrese título de la foto</string>
+    <string name="tag1">Tag 1</string>
+    <string name="tag2">Tag 2</string>
+    <string name="tag3">Tag 3</string>
+    <string name="capture">Tomar foto</string>
+    <string name="save">Guardar</string>
+
+    <string name="tags">Tags</string>
+    <string name="titles">Títulos</string>
+    <string name="show_map">Ver mapa</string>
+
+    <!-- These are the items in our list -->
+    <string-array name="nav_drawer_items">
+        <item >Títulos</item>
+        <item >Tags</item>
+        <item >Tomar foto</item>
+    </string-array>
+</resources>
+```
+
+现在，你可以像之前为最后一个小应用所做的那样，将设备切换到西班牙语，并运行 Where it's snap，查看如果有人从应用商店下载它，在西班牙会是什么样子。下一个截图向你展示了 CaptureFragment 的运行情况：
+
+
+输入照片标题
+
+![](img/35d01831c19688a44e50bce7c489007a_862_0.png)
+
+- 标签 1
+- 标签 2
+- 标签 3
+
+拍照
+
+保存
+
+## 摘要
+
+关于 Where it's snap 就介绍到这里；我们不会再对其做其他处理了。当然，如果你愿意，可以进行很多改进。
+
+你可以提供从数据库删除照片的功能。也许，可以通过在 TitlesFragment 类中长按标题来实现。编辑标签和标题的功能可能很有用。你可以在 ViewFragment 中添加一个编辑按钮，打开新的 EditFragment 类。
+
+在下一章中，我们将探索 Android 中的线程、触摸和绘图概念，并做一些全新的事情。

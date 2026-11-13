@@ -1,0 +1,11 @@
+# # Changing values in variables with operators
+
+Of course, in almost any program, we are going to need to do things with these values. We manipulate (change) variables with **operators**. Here is a list of perhaps the most common Java operators that allow us to manipulate variables. You do not need to memorize them as we will look at every line of code as and when we use them for the first time. We have already seen the first operator when we initialized our variables but we will see it again being a bit more adventurous:
+
++   • The **assignment** operator (=): This makes the variable to the left of the operator the same as the value to the right. For example, unreadMessages = newMessages;.
++   • The **addition** operator (+): This adds together values on either side of the operator. It is usually used in conjunction with the assignment operator, or slightly differently; add together two variables that contain numeric values. Perhaps like this unreadMessages = newMessages + unreadMessages; or accountBalance = yesterdaysBalance + todaysDeposits;. Notice it is perfectly acceptable to use the same variable, simultaneously on both sides of an operator.
++   • The **subtraction** operator (-): This subtracts the value on the right side of the operator from the value on the left. Usually used in conjunction with the assignment operator. Perhaps, unreadMessages = unreadMessages - 1; or accountBalance = accountBalance - withdrawals;.
++   • The **division** operator (/): This divides the number on the left by the number on the rigt. Again, usually used in conjunction with the assignment operator. For example, fairShare = numSweets / numChildren;.
++   • The **multiplication** operator (*): This multiplies variables and numbers together. For example, answer = 10 * 10; or biggerAnswer = 10 * 10 * 10;.
++   • The **increment** operator (++): This is a really neat way to add 1 to something. myVariable = myVariable + 1; is the same as myVariable ++;.
++   • The **decrement** operator (--): You guessed it. This is a really neat way to subtract 1 from something. myVariable = myVariable -1; is the same as

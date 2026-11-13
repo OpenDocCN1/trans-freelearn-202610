@@ -1,0 +1,46 @@
+reviews:
+- 'no': 2986
+  overturn_probability: 0.05
+  alternative: 正文小标题或章节过渡句
+  counter_evidence:
+  - 行首使用“第 5 章”编号，符合全书最高层级章标题编号特征
+  - 标题单独成行，末尾无句号，长度小于30字
+  - 前一行（2984）明确提到“在下一章中...”，表明当前行为新章节起点
+  - 后接章节概述段落（2988起：“目前为止，我们只使用了一个手机模拟器...”），符合章标题上下文特征
+  keep_split: true
+- 'no': 3166
+  overturn_probability: 0.05
+  alternative: 正文小标题或章节过渡句
+  counter_evidence:
+  - 行首使用“第 6 章”编号，符合全书最高层级章标题编号特征
+  - 标题单独成行，末尾无句号，长度小于30字
+  - 前一行（3164）明确提到“我们将从下一章开始做这件事”，为分章提供强上下文证据
+  - 后接“在本章中，我们将探讨 Android 应用的生命周期...”等章节概述
+  keep_split: true
+- 'no': 3544
+  overturn_probability: 0.08
+  alternative: 正文小标题（误用章编号格式）
+  counter_evidence:
+  - 行首使用“第 7 章”编号，符合全书最高层级章标题编号特征
+  - 标题单独成行，末尾无句号，长度在30字以内
+  - 后接“在本章中，我们将学习并实践 Java 的核心基础知识...”等章节概述
+  - 前文（3542）为“我们现在需要做的是学习如何编写更多 Java 代码”，构成章节间过渡
+  keep_split: true
+- 'no': 4554
+  overturn_probability: 0.05
+  alternative: 正文小标题或章节过渡句
+  counter_evidence:
+  - 行首使用“第 8 章”编号，符合全书最高层级章标题编号特征
+  - 标题单独成行，末尾无句号，长度小于30字
+  - 前文（4552）为英文过渡句“Next, we will take a much closer look at Java meth...”，后接章节概述
+  - 与前后章节编号连贯（第 7 章、第 9 章），序号无明显跳跃
+  keep_split: true
+- 'no': 5112
+  overturn_probability: 0.1
+  alternative: 英文章节标题或附录标题
+  counter_evidence:
+  - 行首使用“Chapter 9”编号，符合全书最高层级章标题编号特征
+  - 标题单独成行，末尾无句号，长度小于30字
+  - 后接“In this chapter we will discover that in Java, cla...”等英文章节概述
+  - 前文（5110）为章节结尾过渡，构成新章节起点
+  keep_split: true

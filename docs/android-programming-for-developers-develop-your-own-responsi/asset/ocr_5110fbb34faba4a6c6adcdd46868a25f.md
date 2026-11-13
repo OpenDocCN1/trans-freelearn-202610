@@ -1,0 +1,3 @@
+# Getting started
+
+Create a new blank project called Dual Fragment. This mini app has us jumping between files and directories. I have made every effort to ensure that the exact location in which the action is taking place is made clear. If there is any doubt about exactly what goes where, be sure to refer to the code in the download bundle in the Chapter 19/Dual Fragments folder. Every file or folder that we either need to create or amend is in there.

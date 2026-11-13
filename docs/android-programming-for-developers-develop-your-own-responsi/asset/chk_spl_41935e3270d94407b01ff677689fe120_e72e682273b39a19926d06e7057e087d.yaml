@@ -1,0 +1,29 @@
+reviews:
+- 'no': 6494
+  overturn_probability: 0.08
+  alternative: 正文小标题（带章号的章节标题）
+  counter_evidence:
+  - 标题“第 10 章。”中章号后紧跟中文句号，破坏了章标题通常“第 X 章”无标点的简洁写法，符合误报中排版噪声或段落内编号的特征；
+  - 前文仅隔一行空行即衔接自上一章“## 总结”，章节边界不够整洁，缺乏典型章节前的习题或长篇总结分隔
+  keep_split: true
+- 'no': 6862
+  overturn_probability: 0.05
+  alternative: 正文小标题（带章号的章节标题）
+  counter_evidence:
+  - “第 11 章”后直接跟空格而非标准标点，格式松散，可能被误判为正文中的粗体小标题或强调段落；
+  - 后文紧跟回顾性叙述“我们已经了解到...”，而非全新章节典型的开篇概述，上下文连贯性略弱
+  keep_split: true
+- 'no': 7641
+  overturn_probability: 0.06
+  alternative: 正文小标题（带章号的章节标题）
+  counter_evidence:
+  - “第 12 章。”中章号后带句号，虽非末尾标点但同样违反章标题简洁原则，易被误认为段落内编号小标题；
+  - 前文为对话框演示小节结尾，后文直接进入功能描述，缺乏章节前典型的总结/习题等分隔信号
+  keep_split: true
+- 'no': 8447
+  overturn_probability: 0.1
+  alternative: 正文小标题（带章号的章节标题）
+  counter_evidence:
+  - 章号后使用英文点“.”（第 13 章.）而非中文习惯，形式接近列表项或二级标题编号，具备误报特征；
+  - 标题后紧跟“本章的主题如下：”并列出条目，呈现列表式开篇，不完全符合“标题后1~3行为概述段落”的规则
+  keep_split: true
