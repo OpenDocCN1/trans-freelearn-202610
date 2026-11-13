@@ -1,0 +1,47 @@
+reviews:
+- 'no': 6215
+  overturn_probability: 0.85
+  alternative: 附录/资源章节标题或正文大节标题
+  counter_evidence:
+  - 编号格式为 '10.' 而非全书统一的 '第 X 章' 格式，后续紧跟 '第 11 章'、'第 1 章' 等重新编号，强烈暗示该行属于不同文档拼接边界或附录部分，而非单一全书的连贯章节
+  - 后续内容为 '解锁免费练习资源的说明'、'简介'、'模拟考试题'，性质偏向附录、前言或资源指引，非核心正文章节，符合 '前言、序言、致谢、关于作者等正文之前的内容，统一划分为一章'
+    但此处位于中部
+  - 同级标题还包括 '# 简介' (6302)、'# 模拟考试题' (6324)，结构扁平，更像是一个部分的几个大节而非单一章节起始
+  keep_split: false
+- 'no': 6975
+  overturn_probability: 0.15
+  alternative: 模拟考试附录章节
+  counter_evidence:
+  - 虽标题为 '第 11 章'，但内容为 '模拟考试'，通常位于正文末尾作为附录或练习部分，而非核心知识章节
+  - 前一章节编号为 '10.' (第6215行)，此处跳跃为 '第 11 章'，且后续紧接 '第 1 章' (第8099行) 重新编号，说明文档拼接导致编号不连贯，不应视为同一全书的连续章节
+  keep_split: true
+- 'no': 8099
+  overturn_probability: 0.1
+  alternative: 新文档/新书的第一章标题
+  counter_evidence:
+  - 前文刚结束 '解答' 部分 (第7914行)，此处编号重置为 '第 1 章'，极大概率是另一本书籍或独立文档的开始，若将整个文件视为单一本书，此处不应分章，而应识别为文档边界
+  keep_split: true
+- 'no': 8125
+  overturn_probability: 0.05
+  alternative: 正文第二章标题
+  counter_evidence:
+  - 严格符合 '第 X 章' 格式，但若上一行 (8099) 被判定为文档边界而非章节，则此行也不应在当前全书语境下分章；不过单看局部上下文，它是标准章节起始
+  keep_split: true
+- 'no': 8373
+  overturn_probability: 0.05
+  alternative: 正文第三章标题
+  counter_evidence:
+  - 编号连贯 (第3章)，格式标准，无明显反常特征。仅理论上若整个文件为多书合集，则不应在合集层面分章，但此规则通常不适用于单书内部
+  keep_split: true
+- 'no': 8703
+  overturn_probability: 0.05
+  alternative: 正文第四章标题
+  counter_evidence:
+  - 编号连贯 (第4章)，格式标准。同上，仅在多书合集视角下可能不分章，但单书视角下无理由推翻
+  keep_split: true
+- 'no': 8845
+  overturn_probability: 0.05
+  alternative: 正文第五章标题
+  counter_evidence:
+  - 编号连贯 (第5章)，格式标准。同上。
+  keep_split: true

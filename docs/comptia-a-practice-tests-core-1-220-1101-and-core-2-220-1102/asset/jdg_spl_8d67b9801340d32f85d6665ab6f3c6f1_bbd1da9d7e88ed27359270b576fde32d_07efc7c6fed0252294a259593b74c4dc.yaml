@@ -1,0 +1,59 @@
+chapter_starts:
+- 'no': 3472
+  confidence: 0.9
+  final_reason: 一级标题（#），标识模拟考试 Core 1 的开始，属于全书最高层级的大章/部分分隔，语义统领后续完整模拟题内容。复核方虽指出非标准章编号，但认可其为部分级分隔且保留分章。
+  accepted_evidence:
+  - 一级标题（#）单独成行
+  - 内容为『模拟考试：Core 1』标识考试部分起始
+  - 后续统领 300+ 行完整模拟考题
+  - 复核方 keep_split=true
+  rejected_evidence:
+  - 复核方指出缺乏『第 X 章』编号，更像部分/考试模式标识
+  need_human_review: false
+- 'no': 3773
+  confidence: 0.95
+  final_reason: 一级标题（#），标识 Core 2 部分/练习题的开始，属于全书最高层级的部分分隔（Part 2），后续包含第 7-9 章内容。复核方确认为部分标题，符合部分-章节模式分章规则。
+  accepted_evidence:
+  - 一级标题（#）单独成行
+  - 内容为『CompTIA A+ Core 2 练习题』标识第二大部分起始
+  - 后续紧跟网络基础练习题及第 7、8、9 章
+  - 复核方 keep_split=true 并认可为部分标题
+  rejected_evidence:
+  - 复核方指出非『第 X 章』编号，建议识别为部分层级
+  need_human_review: false
+- 'no': 3840
+  confidence: 1.0
+  final_reason: 一级标题（#），明确标注『第 7 章：操作系统』，符合『第 X 章』编号特征，为最高层级章节起始，双方一致。
+  accepted_evidence:
+  - 显性编号『第 7 章』
+  - 后续包含 7.1-7.11 考试目标及对应练习题
+  - 语义统领操作系统整章内容
+  - 双方一致认可
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 4895
+  confidence: 0.95
+  final_reason: 一级标题（#），标题为『安全』，虽缺显性章号，但上下文明确承接『第 7 章』且后续包含 8.1-8.10 考试目标，语义上为第 8
+    章起始，复核方认可语义证据。
+  accepted_evidence:
+  - 一级标题（#）单独成行
+  - 紧随第 7 章内容之后
+  - 后续列出 8.1-8.10 考试目标，语义统领安全章节
+  - 复核方 keep_split=true 且认可语义证据较强
+  rejected_evidence:
+  - 复核方指出缺乏『第 8 章』显性编号
+  need_human_review: false
+- 'no': 5609
+  confidence: 1.0
+  final_reason: 一级标题（#），明确标注『9 软件故障排除』，包含阿拉伯数字章号『9』，符合『第 X 章』编号特征，承接第 8 章开启新考试域，双方一致。
+  accepted_evidence:
+  - 显性编号『9』+ 标题
+  - 后续包含 9.1-9.5 考试目标及排查题
+  - 语义统领软件故障排除整章内容
+  - 双方一致认可
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 5210
+  reason: 复核方有力指出其为第 8 章『安全』章节内的子专题标题（安全场景题），后续内容仍为 8.5-8.10 配置场景题，属章内子层级，非最高层级章节。判断方仅凭一级标题排版误判，上下文语义证据不足。
+  need_human_review: false

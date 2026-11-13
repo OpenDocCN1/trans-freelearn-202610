@@ -1,0 +1,63 @@
+chapter_starts:
+- 'no': 9092
+  confidence: 0.98
+  final_reason: 双方一致：符合顶层章节标题特征（'# 第 6 章'），编号首次出现，单独成行，无末尾标点，统领后续模拟考题内容。
+  accepted_evidence:
+  - 判断方：编号特征、格式特征、语义特征均符合
+  - 复核方：无异议
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 9244
+  confidence: 0.98
+  final_reason: 双方一致：符合顶层章节标题特征（'# 第 7 章'），编号递增，单独成行，统领后续操作系统相关内容（7.1, 7.2 等子节）。
+  accepted_evidence:
+  - 判断方：编号连贯性、格式语义均符合
+  - 复核方：无异议
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 9607
+  confidence: 0.98
+  final_reason: 双方一致：符合顶层章节标题特征（'# 第 8 章'），编号递增，单独成行，统领后续安全相关内容（8.1, 8.2 等子节）。
+  accepted_evidence:
+  - 判断方：编号连贯性、格式语义均符合
+  - 复核方：无异议
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 9868
+  confidence: 0.98
+  final_reason: 双方一致：符合顶层章节标题特征（'# 第 9 章'），编号递增（忽略重复的第 8 章），单独成行，统领后续软件故障排除内容（9.1,
+    9.2 等子节）。
+  accepted_evidence:
+  - 判断方：编号连贯性、格式语义均符合
+  - 复核方：无异议
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 10115
+  confidence: 0.98
+  final_reason: 双方一致：符合顶层章节标题特征（'# 第 10 章'），编号递增，单独成行，统领后续操作程序相关内容（10.1, 10.2 等子节）。
+  accepted_evidence:
+  - 判断方：编号连贯性、格式语义均符合
+  - 复核方：无异议
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 10441
+  confidence: 0.98
+  final_reason: 双方一致：符合顶层章节标题特征（'# 第 11 章'），编号递增，单独成行，统领后续 Core 2 模拟考题内容。
+  accepted_evidence:
+  - 判断方：编号连贯性、格式语义均符合
+  - 复核方：无异议
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 9204
+  reason: 采纳复核方意见：章节编号重复（前文 9092 行已出现 '第 6 章'），且该标题下紧跟 '## 练习题 39-50' 二级标题，内容粒度与语义均属于子模块或排版错误，非顶层大章。
+  need_human_review: false
+- 'no': 9840
+  reason: 采纳复核方意见：章节编号重复（前文 9607 行已出现 '第 8 章'），且该标题下紧跟 '## 第 8 章复习题' 二级标题，实为第 8 章安全内容的延伸复习模块，非平级新章。
+  need_human_review: false
+- 'no': 10097
+  reason: 采纳复核方意见：章节编号重复（前文 9868 行已出现 '第 9 章'），内容仅包含 6 道复习题，粒度极小，不具备统领性，实为第 9 章软件故障排除下的移动安全子节。
+  need_human_review: false
+- 'no': 11018
+  reason: 采纳复核方意见：该行为二级标题 '## 练习题与解析'，规则明确禁止划分子层级为新章；且内容为第 11 章模拟考题的答案解析（第 85-93 题），属于正文附属部分，非文末索引。
+  need_human_review: false
