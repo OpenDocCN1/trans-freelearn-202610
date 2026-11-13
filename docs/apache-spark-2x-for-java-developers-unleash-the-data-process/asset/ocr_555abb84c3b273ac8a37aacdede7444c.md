@@ -1,0 +1,1 @@
++   5. It’s important to note that the data is never moved through the NameNode as it would caused a performance bottleneck.

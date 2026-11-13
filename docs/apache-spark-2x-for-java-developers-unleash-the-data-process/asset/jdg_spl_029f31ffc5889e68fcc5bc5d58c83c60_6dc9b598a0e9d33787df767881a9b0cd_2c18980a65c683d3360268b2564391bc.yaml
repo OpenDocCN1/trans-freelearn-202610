@@ -1,0 +1,45 @@
+chapter_starts:
+- 'no': 4088
+  confidence: 0.9
+  final_reason: 复核方同层级并列证据成立，但前文第4086行明确出现“下一章将重点介绍...”章过渡语句，且第4090行紧承“在上一章中...”，根据上下文优先原则，语义判定为新章节起始；文档标题层级（##）存在混乱，不应以此否定明确的章语义。
+  accepted_evidence:
+  - 第4086行“下一章将重点介绍 Apache Spark 在数据和存储层面的交互特性”
+  - 第4090行“在上一章中，我们讨论了可以在 Spark 上执行的各种转换和动作”
+  rejected_evidence:
+  - 复核方指出第4092行等同层级“## 与外部存储系统的交互”并列
+  need_human_review: false
+- 'no': 5064
+  confidence: 0.9
+  final_reason: 前文第5062行明确出现“在下一章中，我们将详细讨论 Spark 集群...”，后文第5068行出现“在本章中，我们将讨论分布式模式下的
+    Spark 应用程序架构”，章语义明确；复核方子标题及同层级并列证据不足以推翻明确的章过渡上下文。
+  accepted_evidence:
+  - 第5062行“在下一章中，我们将详细讨论 Spark 集群...”
+  - 第5068行“在本章中，我们将讨论分布式模式下的 Spark 应用程序架构”
+  rejected_evidence:
+  - 复核方指出下方存在“### Driver program”等三级子标题及同层级“## Spark 编程模型 - 高级”并列
+  need_human_review: false
+- 'no': 5424
+  confidence: 0.9
+  final_reason: 前文第5422行明确出现“在下一章中，我们将学习 Spark 编程模型的高级概念...”，后文第5426行出现“在上一章中...现在是时候学习...”，章语义明确；复核方同层级并列证据不足以否定明确的章过渡语句。
+  accepted_evidence:
+  - 第5422行“在下一章中，我们将学习 Spark 编程模型的高级概念...”
+  - 第5426行“在上一章中，我们讨论了 Spark 组件如何部署到集群上”
+  rejected_evidence:
+  - 复核方指出与后文“## RDD 分区”“## 重新分区”等同层级并列
+  need_human_review: false
+rejected_lines:
+- 'no': 3104
+  reason: 复核方证据成立：第3102行上下文明确为“下一节”，下方存在“### Map”等三级子标题，与3514等多个##标题同层级并列，缺乏最高层级章统领性，属章内小节。
+  need_human_review: false
+- 'no': 3514
+  reason: 复核方证据成立：第3512行上下文明确为“下一节”，下方有“### isEmpty”等三级子标题，且与前后##标题同层级并列，无章序号，不具备独立章特征。
+  need_human_review: false
+- 'no': 4023
+  reason: 复核方证据成立：第4021行上下文属同一节结尾，标题为##二级且无章序号，后文为该节具体内容，不具备独立章统领性。
+  need_human_review: false
+- 'no': 4544
+  reason: 复核方证据成立：第4541行上下文明确为“下一节”，下方有“### 纯文本和特殊格式文本”等三级子标题，且同层级存在“## Spark 代码：”等并列标题，属章内节。
+  need_human_review: false
+- 'no': 5050
+  reason: 复核方证据成立：该标题非文末，后文仍有“## Summary”、“## Spark on Cluster”等内容，与前文XML数据部分同层级，属章内参考文献小节而非独立章。
+  need_human_review: false

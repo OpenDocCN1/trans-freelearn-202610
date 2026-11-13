@@ -1,0 +1,49 @@
+reviews:
+- 'no': 359
+  overturn_probability: 0.9
+  alternative: 正文前的前言/引言标题（属前言章节一部分）
+  counter_evidence:
+  - 第6-63行已包含完整的前言、致谢、关于作者等正文前内容，根据规则应统一划分为一章，第359行不应单独分章
+  - 第359行后接第361-366行的全书概述段落，属前言/引言正文，而非独立章节的正文起始
+  - 第94行 '# 1. Spark简介' 才是真正的第一章起始，第359行属于其前的统一前言部分
+  keep_split: false
+- 'no': 452
+  overturn_probability: 0.95
+  alternative: 二级节标题（属于第1章下的子节）
+  counter_evidence:
+  - 实际行内容为 '## Spark 简介'，使用 '##' 为二级标题，非全书最高层级章标题
+  - 第94行 '# 1. Spark简介' 才是第一章的最高层级标题
+  - 该行后直接接引文 '> > "我们称之为大数据问题。"'，而非章节概述段落
+  keep_split: false
+- 'no': 868
+  overturn_probability: 0.85
+  alternative: 二级小标题（或第1章末尾的过渡性标题）
+  counter_evidence:
+  - 使用 '##' 而非 '#'，属于二级标题，不符合最高层级章标题的编号与格式特征
+  - 第113行存在 '# 2. 再探Java'，为标准最高层级章标题，与本行内容重复或冲突
+  - 第864-866行明显是第1章的总结段落，第868行更可能是第1章末尾的小标题而非第2章起始
+  keep_split: false
+- 'no': 1862
+  overturn_probability: 0.9
+  alternative: 二级小标题（第3章引导性过渡标题）
+  counter_evidence:
+  - 实际行内容为 '## Let Us Spark'，使用 '##' 为二级标题，而非原判断所述的 '# 摘要'
+  - '''# 摘要'' 实际出现在第2876行，与本行行号不符，原判断行号与内容错位'
+  - 该行位于第2章总结（第1856-1860行）之后，属于第3章'让我们开始使用Spark'的引导性小标题
+  keep_split: false
+- 'no': 1882
+  overturn_probability: 0.95
+  alternative: 重复提取的章标题副本（第4章重复出现）
+  counter_evidence:
+  - 第165行已有 '# 4. 理解Spark编程模型'，本行内容与之高度重复，属文本重复提取
+  - 本行缺少章序号（'4.'），不符合最高层级章标题的编号特征
+  - 若维持分章将导致同一章被错误拆分为两章，破坏章节连贯性与目录对应关系
+  keep_split: false
+- 'no': 2882
+  overturn_probability: 0.95
+  alternative: 重复提取的章标题副本（或第3章总结标题）
+  counter_evidence:
+  - 实际行内容为 '# 理解 Spark 编程模型'，而非原判断所述的 '# 摘要'
+  - '''# 摘要'' 实际出现在第2876行，是第3章的总结性标题，不应作为新章起始'
+  - 本行与第165行 '# 4. 理解Spark编程模型' 内容重复，属重复提取，不应重复分章
+  keep_split: false

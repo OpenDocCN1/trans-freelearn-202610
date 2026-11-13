@@ -1,0 +1,10 @@
+# # Concepts of machine learning
+
+A reductionist approach to defining machine learning in general would be, a programming paradigm where existing data helps in either generalizing the results as in classification algorithms or make some predictions. One of the pioneers of machine learning, Andrew Ng, defines machine learning as the Science of how computers learn without being explicitly programmed. Whichever assertion resonates with you, one thing which is clear that machine learning encompasses areas and solves problems from health diagnostics to space exploration and the way you connect with your friends online to the way your food is getting delivered to your doorstep.
+
+Every day, system intelligence is being added to the services that make machines more intelligent while showing us ways to optimize and improve. Machine learning very broadly can be categorized into four categories:
+
++   • **Supervised learning**: Algorithms that learn from existing datasets output (label) and then utilize them to predict output values or labels for unlabeled datasets constitute supervised learning. Some of the examples of supervised learning are regression and classification models. Regression models are used to predict values while classification models are used for categorizing things such as spam emails.
++   • **Unsupervised learning**: Unsupervised learning is exploratory in nature and machine learning is used to find patterns or correlations among the input dataset. Examples of unsupervised learning are K-means clustering and **Principal Component Analysis (PCA)**.
++   • **Semi-supervised learning**: It involves a hybrid approach of both supervised and unsupervised learning for solving a problem. The technique is to process a small set of labeled data along with a large set of unlabeled data to derive an output. Speech and image based processing utilizes this approach to solve their domain specific problems.
++   • **Reinforced learning**: Reinforced learning is used in artificial intelligence and its related fields. It allows machines and software agents

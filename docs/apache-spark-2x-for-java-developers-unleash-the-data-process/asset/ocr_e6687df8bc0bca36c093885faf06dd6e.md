@@ -1,0 +1,3 @@
+# SchemaRDD
+
+As its name suggests, it is an RDD with schema. As it contains schema, run relation queries can be run on the data along with basic RDD functions. The SchemaRDD can be registered as a table so that SQL queries can be executed on it using Spark SQL. It was available in earlier version of a Spark. However, with Spark Version 1.3, the SchemaRDD was deprecated and dataframe was introduced.

@@ -1,0 +1,60 @@
+reviews:
+- 'no': 3104
+  overturn_probability: 0.95
+  alternative: 正文小标题（章节内小节标题）
+  counter_evidence:
+  - 第3102行明确称“在本节中，我们讨论了经典的单词计数问题”，说明当前仍处于同一节内，第3104行仅是新开小节
+  - 第3104行是Markdown二级标题，下方存在“### Map”、“### Filter”等三级标题，表明其为章内子节而非最高层级章
+  - 同层级存在多个并列的##标题（如第3514行“## 常见 RDD 动作”），不具备章的统领性和独占性
+  keep_split: false
+- 'no': 3514
+  overturn_probability: 0.95
+  alternative: 正文小标题（章节内小节标题）
+  counter_evidence:
+  - 第3512行称“本节介绍了各种有用的转换...在下一节中...”，明确指出第3514行是下一节而非下一章
+  - 第3514行下方包含“### isEmpty”、“### collect”等三级子标题，属于章内节结构
+  - 缺少“第 X 章”等全书最高层级编号特征，与前后多个##标题同层级并列
+  keep_split: false
+- 'no': 4023
+  overturn_probability: 0.9
+  alternative: 正文小标题（章节内小节标题）
+  counter_evidence:
+  - 第4021行称“本节介绍了 RDD 操作 action...”，说明第4023行属于当前正在讨论的节，而非新章
+  - 标题为##二级标题，无章序号，且后文为该节具体内容说明，不具备独立章的统领性
+  keep_split: false
+- 'no': 4088
+  overturn_probability: 0.8
+  alternative: 正文小标题（章节内小节标题）
+  counter_evidence:
+  - 虽第4086行出现“下一章”字样，但第4092行出现同层级的“## 与外部存储系统的交互”，说明第4088行并非最高层级章，而是章内并列节
+  - 第4088行与第4092、4098行等多个##标题同层级，缺少章的独占性和全书最高层级特征
+  keep_split: false
+- 'no': 4544
+  overturn_probability: 0.95
+  alternative: 正文小标题（章节内小节标题）
+  counter_evidence:
+  - 第4541行称“在下一节中，我们将学习如何在 S...”，明确说明第4544行是下一节而非下一章
+  - 标题为##二级标题，下方有“### 纯文本和特殊格式文本”等三级标题，且同层级存在“## Spark 代码：”等并列标题
+  keep_split: false
+- 'no': 5050
+  overturn_probability: 0.9
+  alternative: 正文小标题（章内参考文献小节）
+  counter_evidence:
+  - 该标题出现在图书非末位，后文仍有“## Summary”、“## Spark on Cluster”等内容，不符合文末索引/参考文献独立成章的规则
+  - 第5050行与前文XML数据部分同层级，属于章内参考文献小节而非全书最高层级章
+  keep_split: false
+- 'no': 5064
+  overturn_probability: 0.9
+  alternative: 正文小标题（章节内小节标题）
+  counter_evidence:
+  - 第5064行下方存在“### Driver program”、“### Executor program”等三级子标题，表明其为章内节
+  - 同层级后文有“## Spark 编程模型 - 高级”等并列标题，说明第5064行不具备章的最高层级统领性
+  - 虽第5062行出现“下一章”表述，但结构上与其他##小节无本质区别
+  keep_split: false
+- 'no': 5424
+  overturn_probability: 0.9
+  alternative: 正文小标题（章节内小节标题）
+  counter_evidence:
+  - 第5424行与后文第5430行“## RDD 分区”、第5486行“## 重新分区”等同层级并列，说明其为同一章或部分下的小节
+  - 缺少“第 X 章”等全书最高层级编号，且前文“下一章”表述不足以推翻其##二级标题的客观层级
+  keep_split: false

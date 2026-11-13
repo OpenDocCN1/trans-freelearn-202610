@@ -1,0 +1,1 @@
+In this section, we learnt about connecting Spark to various data sources and reading the data. In the next section, we will learn how to handle different types of structured data in Spark.
