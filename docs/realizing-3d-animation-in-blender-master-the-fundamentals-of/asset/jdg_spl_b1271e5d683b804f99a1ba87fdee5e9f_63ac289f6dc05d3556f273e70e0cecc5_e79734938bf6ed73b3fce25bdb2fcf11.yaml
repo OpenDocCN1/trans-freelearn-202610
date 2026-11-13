@@ -1,0 +1,49 @@
+chapter_starts:
+- 'no': 3187
+  confidence: 0.98
+  final_reason: 一级标题“# 第二部分：角色动画”，符合部分-章节模式下的部分标题分章规则，双方一致认可。
+  accepted_evidence:
+  - 一级标题格式 (#)
+  - 内容为 '第二部分'，与目录结构吻合
+  - 复核方 keep_split=true
+  rejected_evidence:
+  - 复核方提及若全书未严格采用该模式可能误判，但上下文明确存在部分结构
+  need_human_review: false
+- 'no': 3207
+  confidence: 0.95
+  final_reason: 二级标题“## 链接与摆姿势角色”，对应目录第 6 章，为正文章节起始标题，双方一致认可。
+  accepted_evidence:
+  - 二级标题格式 (##)
+  - 与目录第 6 章标题语义一致
+  - 位于部分标题之后，符合章节起始位置
+  - 复核方 keep_split=true
+  rejected_evidence:
+  - 复核方担心缺乏显式章序号，但结合目录及上下文证据充分
+  need_human_review: false
+- 'no': 4073
+  confidence: 0.99
+  final_reason: 二级标题“## 第 7 章：基础角色动画”，显式包含章序号“第 7 章”，为明确的章节起始，双方一致认可。
+  accepted_evidence:
+  - 显式包含 '第 7 章' 编号
+  - 与目录第 7 章标题完全对应
+  - 复核方 keep_split=true，反方证据极弱
+  rejected_evidence:
+  - 复核方极低概率担心是跨章引用，但上下文衔接自然
+  need_human_review: false
+- 'no': 5868
+  confidence: 0.97
+  final_reason: 二级标题“## 声音与对口型”，对应目录第 9 章，紧随第 8 章结束（总结、思考题），为正文最后一章起始，双方一致认可。
+  accepted_evidence:
+  - 二级标题格式 (##)
+  - 与目录第 9 章标题语义一致
+  - 前文第 8 章已有完整结尾（总结、思考题）
+  - 复核方 keep_split=true
+  rejected_evidence:
+  - 复核方提及需结合第 10 章验证，但不影响本行作为第 9 章起始的判断
+  need_human_review: false
+rejected_lines:
+- 'no': 4961
+  reason: 该行 '## 走路循环' 出现在第 7 章 '## Summary' 之后、'## 思考题' 之前，且其后文本 '下一个练习才是有硬性规则的正式流程'
+    明确指代未来内容，性质属于第 7 章末尾的预习/过渡小节，而非第 8 章真实起始。第 8 章实际起始疑为第 4987 行 '## 技术要求' 或第 4991
+    行 '## 准备走路循环场景'，但未在候选列表中。
+  need_human_review: false

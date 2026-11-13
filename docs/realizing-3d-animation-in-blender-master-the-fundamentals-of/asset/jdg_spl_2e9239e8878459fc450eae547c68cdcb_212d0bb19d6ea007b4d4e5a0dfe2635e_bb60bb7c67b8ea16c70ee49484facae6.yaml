@@ -1,0 +1,60 @@
+chapter_starts:
+- 'no': 159
+  confidence: 1.0
+  final_reason: 双方一致：检测到 '# 第 1 部分：Blender 简介与动画基础'，书籍采用部分-章节结构，部分标题为顶层分章点，后续紧跟章节列表与正文。
+  accepted_evidence:
+  - 符合‘第 X 部分’编号特征
+  - 部分-章节模式下部分标题须分章
+  - 上下文后续为章节列表及第 1 章正文
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 175
+  confidence: 1.0
+  final_reason: 双方一致：检测到 '# 第 1 章：时间轴中的基础关键帧'，全书最高层级章标题，编号连贯，单独成行，无末尾标点，后跟章内概述与子节。
+  accepted_evidence:
+  - 符合‘第 X 章’编号特征
+  - 格式规范（单独成行、无末尾标点）
+  - 语义统领后续内容（技术要求、导航时间轴等子节）
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 599
+  confidence: 1.0
+  final_reason: 双方一致：检测到 '# 第 2 章：图表编辑器'，章序号连贯，格式语义均符合章标题判断规则，后跟章内简介、技术要求及子节。
+  accepted_evidence:
+  - 编号连贯（第 2 章）
+  - 单独成行、无末尾标点
+  - 后跟‘## 简介’、‘## 技术要求’等章内结构
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 1210
+  confidence: 1.0
+  final_reason: 双方一致：检测到 '# 第 3 章：贝塞尔关键帧'，编号连续，格式规范，后跟章内简介、技术要求及子节，统领后续内容。
+  accepted_evidence:
+  - 编号连贯（第 3 章）
+  - 格式符合章标题特征
+  - 上下文为章内正文起始
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 1867
+  confidence: 1.0
+  final_reason: 双方一致：检测到 '# 第 4 章：探究对象关系'，序号连续，单独成行，后跟学习目标列表、技术要求及子节，语义统领性强。
+  accepted_evidence:
+  - 编号连续（第 4 章）
+  - 格式规范
+  - 后跟章内结构（理解对象原点、父子关系物体等）
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 2565
+  confidence: 1.0
+  final_reason: 双方一致：检测到 '# 第 5 章：渲染动画'，为最后一章正文起始，序号连贯，格式语义均符合，后跟章内主题列表、技术要求及子节。
+  accepted_evidence:
+  - 编号连贯（第 5 章）
+  - 单独成行、无末尾标点
+  - 后跟‘## 设置相机’、‘## 渲染基础’等子节
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 0
+  reason: 复核方证据成立：该行为全书完整标题（书名页），包含主副标题、长度超 30 字、无章序号，属于书名元数据而非章节标题。规则规定前置内容统一划分为一章，但书名页不应触发分章；前置内容章应从献词（第
+    2 行）或前言（第 22 行）开始。判断方将其作为前置内容章起始属于误分。
+  need_human_review: false

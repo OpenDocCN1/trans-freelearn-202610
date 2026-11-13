@@ -1,0 +1,46 @@
+reviews:
+- 'no': 6262
+  overturn_probability: 0.05
+  alternative: 正文大标题（但完全符合章标题标准）
+  counter_evidence:
+  - 格式为 `# 第 10 章：...`，符合最高层级章节编号特征，单独成行，无句号，语义统领后续内容。
+  keep_split: true
+- 'no': 6863
+  overturn_probability: 0.05
+  alternative: 部分标题（但规则要求部分标题亦须分章）
+  counter_evidence:
+  - 规则明确规定：'如果存在标题为“第 X 部分”，那么该书为部分-章节模式，遇到部分和章标题时，都要划分新章'。
+  keep_split: true
+- 'no': 6879
+  overturn_probability: 0.05
+  alternative: 正文大标题（但完全符合章标题标准）
+  counter_evidence:
+  - 格式为 `# 第 11 章：...`，符合最高层级章节编号特征，与前后章节编号连贯。
+  keep_split: true
+- 'no': 7223
+  overturn_probability: 0.05
+  alternative: 正文大标题（但完全符合章标题标准）
+  counter_evidence:
+  - 格式为 `# 第 12 章：...`，符合最高层级章节编号特征，编号连贯。
+  keep_split: true
+- 'no': 7713
+  overturn_probability: 0.85
+  alternative: 正文二级标题/节标题（属于第 3 部分下的一个大节）
+  counter_evidence:
+  - 1. 标题格式为 `## 使用多摄像机制作动画`（二级标题），而全书其他章标题（第 10、11、12、14 章）均为 `# 第 X 章`（一级标题），层级不一致。
+  - 2. 缺少章序号“第 13 章”，与前后章节编号（12、14）不连贯，违反序号连贯性规则。
+  - 3. 虽文中出现‘在本章中’，但‘章’在中文技术书籍中常被宽泛用于‘节/单元’，不能作为唯一依据覆盖格式特征。
+  - 4. 位于‘第 3 部分’之下，更可能是该部分下的一个顶层节而非独立章节。
+  keep_split: false
+- 'no': 7957
+  overturn_probability: 0.05
+  alternative: 正文大标题（但完全符合章标题标准）
+  counter_evidence:
+  - 格式为 `# 第 14 章：...`，符合最高层级章节编号特征，编号连贯。
+  keep_split: true
+- 'no': 8342
+  overturn_probability: 0.05
+  alternative: 文末附录标题（但规则要求索引分章）
+  counter_evidence:
+  - 规则明确规定：'文末索引也划分为一章'。
+  keep_split: true

@@ -1,0 +1,60 @@
+chapter_starts:
+- 'no': 6262
+  confidence: 1.0
+  final_reason: 双方一致，格式为 `# 第 10 章：...`，符合最高层级章节编号特征，单独成行，语义统领后续内容。
+  accepted_evidence:
+  - 格式为 `# 第 10 章：使用动态约束进行道具交互`
+  - 符合编号特征：最高层级大章
+  - 单独成行，无句号，长度适中
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 6863
+  confidence: 1.0
+  final_reason: 双方一致，格式为 `# 第 3 部分：...`，规则明确规定部分-章节模式下部分标题需划分新章。
+  accepted_evidence:
+  - 格式为 `# 第 3 部分：高级工具与技术`
+  - 规则：存在‘第 X 部分’标题时，遇到部分标题要划分新章
+  - 单独成行，语义统领后续多章内容
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 6879
+  confidence: 1.0
+  final_reason: 双方一致，格式为 `# 第 11 章：...`，符合最高层级章节编号特征，与前后章节编号连贯（10, 11, 12, 14）。
+  accepted_evidence:
+  - 格式为 `# 第 11 章：F 曲线修改器`
+  - 符合编号特征：最高层级大章
+  - 编号连贯性：承接第10章，引领第12章
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 7223
+  confidence: 1.0
+  final_reason: 双方一致，格式为 `# 第 12 章：...`，符合最高层级章节编号特征，编号连贯。
+  accepted_evidence:
+  - 格式为 `# 第 12 章：刚体物理`
+  - 符合编号特征：最高层级大章
+  - 编号连贯性：承接第11章
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 7957
+  confidence: 1.0
+  final_reason: 双方一致，格式为 `# 第 14 章：...`，符合最高层级章节编号特征，编号连贯（跳过13见下文裁决）。
+  accepted_evidence:
+  - 格式为 `# 第 14 章：非线性动画`
+  - 符合编号特征：最高层级大章
+  - 编号连贯性：书籍章节序列为10,11,12,14
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 8342
+  confidence: 1.0
+  final_reason: 双方一致，格式为 `# 索引`，规则明确规定文末索引划分为一章。
+  accepted_evidence:
+  - 格式为 `# 索引`
+  - 规则：文末索引划分为一章
+  - 位于全书末尾，后无正文内容
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 7713
+  reason: 复核方反方证据成立：该行格式为 `## 使用多摄像机制作动画`（二级标题），而全书其余章标题（第10、11、12、14章）均为 `# 第 X 章`（一级标题），层级不一致；且缺少章序号‘第
+    13 章’，与前后章节编号不连贯；虽文中出现‘在本章中’，但结合‘第 3 部分’上下文，该行更可能是部分内的顶层节标题而非独立章节。判断方依据的语义及位置证据不足以覆盖格式特征差异。
+  need_human_review: false
