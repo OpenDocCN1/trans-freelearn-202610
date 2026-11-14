@@ -1,0 +1,30 @@
+reviews:
+- 'no': 8919
+  overturn_probability: 0.2
+  alternative: 部分标题
+  counter_evidence:
+  - '上一章节内部主标题（如 line 8857 ''## 命名约定''、line 8865 ''## 常用设计工具''、line 8909 ''## 本章小结''）均使用
+    ## 作为最高层级，暗示本书以 ## 为章级标题、# 为部级标题；此行虽为最高层级但属部标题性质，原判断理由‘符合最高层级章节特征’忽略了层级体系不一致'
+  keep_split: true
+- 'no': 9607
+  overturn_probability: 0.85
+  alternative: 正文小标题（误用一级标题）
+  counter_evidence:
+  - '前文‘部署到 Apple App Store’（line 9486）使用 ## 作为章节标题，本书章节层级惯例为 ##；此处突变为 # 且紧跟另一 # 标题（line
+    9657 ''# 发布到 Google Play 商店''），极大概率为排版层级错误，实为同一大章下的两个大节，不应各自分章'
+  - line 9607 后无章末总结、分割线等章边界特征，直接进入步骤列表，更符合节内开头而非章开头特征
+  keep_split: false
+- 'no': 9657
+  overturn_probability: 0.9
+  alternative: 正文小标题（误用一级标题）
+  counter_evidence:
+  - '与上一行 # 标题（line 9607）仅间隔 50 行，中间无章末总结、分割线等章边界特征，后续即跟 ## 子节（line 9659 ''## 隐私政策与价格分发''），两个一级标题连续出现违反文档层级规范，应为同一章内的节标题误标为
+    #'
+  - 语义上‘部署到 Google Play Store’与‘发布到 Google Play 商店’属于同一主题的前后步骤，非独立章节
+  keep_split: false
+- 'no': 9758
+  overturn_probability: 0.1
+  alternative: 附录/索引节标题
+  counter_evidence:
+  - '规则虽建议索引分章，但该行标记为 ## 二级标题，若全书章节均为 # 一级标题（如 line 8919、9607、9657），则索引层级降级暗示其非正文章节；且索引内容通常不参与章节编号，强行分章可能导致目录结构冗余'
+  keep_split: true

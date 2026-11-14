@@ -1,0 +1,239 @@
+
+
+# 插值
+
+前面的插值（用 `#{$variable-name}` 标识）有助于避免解析问题。在前面的示例中，正斜杠可能会被以多种不同方式解释（包括除法）。为避免歧义（以及可能的错误结果），我们可以使用插值。
+
+我们也可以在其他地方使用插值。请看下面的示例：
+
+```
+$button-class: button;
+a.#{$button-class} {
+  ...
+}
+```
+
+这将编译为以下 CSS：
+
+```
+a.button {
+  ...
+}
+```
+
+在前面的示例中，我们必须使用插值；使用 `a.$button-class` 会导致错误。
+
+# 嵌套
+
+阅读 HTML 时，很明显存在层级和嵌套结构。但在大多数 CSS 代码中，这种结构很快就会丢失。这会导致难以理解 CSS 是如何实现最终外观的。我们可以使用 Sass 的嵌套功能，让代码更易编写和理解。
+
+## 注意
+
+本节的代码片段位于代码包的 `snippets/03/ex3-nesting/` 目录下。使用交互式片段演练场时，选择 **3: Sassy CSS** 和示例 **3**。
+
+让我们继续使用上一节讨论的布局。工具栏中有两个锚点。虽然锚点明显嵌套在 `div` 工具栏内，但阅读 CSS 时并不那么明显。不过，我们可以这样编写 Sass：
+
+```
+.ui-tool-bar {
+    border-top: $separation-border;
+    bottom: 0;
+    a {
+      color: $tint-color;
+      display: inline-block;
+      text-decoration: none;
+    }
+}
+```
+
+现在，很明显我们在为工具栏内的锚点定义样式。生成的 CSS 会从这种嵌套中创建两条规则：`.ui-tool-bar` 和 `.ui-tool-bar a`。
+
+嵌套时，有一个特殊的占位符可用：`&`（ampersand）。当我们需要使用伪元素（如 `:hover` 等）时，这很有用。这让我们可以编写如下规则：
+
+```
+.ui-tool-bar {
+    ...
+    a {
+        ...
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+```
+
+Sass 还提供另一种形式的嵌套。CSS 经常将属性分组。例如，`font-family`、`font-size` 和 `font-weight` 都与元素的字体相关。在 CSS 中，我们必须单独指定每个属性（或使用 CSS 简写）。但在 Sass 中，我们可以这样做：
+
+```
+.some-element {
+    font: {
+        family: sans-serif;
+        size: 16px;
+        weight: bold;
+    }
+}
+```
+
+# Mixin 和函数
+
+如前所述，Sass 旨在减少重复并增加抽象。Sass 提供了 `@mixin` 和 `@function` 指令，让我们创建可复用的组件，稍后可插入样式中。
+
+## 注意
+
+本节的代码片段位于代码包的 `snippets/03/ex4-mixins/a…d` 目录下。使用交互式片段演练场时，选择 **3: Sassy CSS** 和示例 **4a** 到 **4d**。
+
+支持供应商前缀是个很好的例子。在许多样式表中，常见如下代码：
+
+```
+.some-element {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+}
+```
+
+这不仅难看，而且极其重复。使用 Sass，我们可以编写一个 mixin 来完成这项工作。首先，定义 mixin：
+
+```
+// Snippet Example 4a
+@mixin box-sizing($value) {
+  -webkit-box-sizing: $value;
+  -moz-box-sizing: $value;
+  -ms-box-sizing: $value;
+  -o-box-sizing: $value;
+  box-sizing: $value;
+}
+```
+
+这看起来很像前面的片段。记住，mixin 本质上是一个宏或模板，可在别处引入。使用时，可以创建如下规则：
+
+```
+.some-element {
+  @include box-sizing(border-box);
+}
+```
+
+当然，结合变量插值，我们可以更进一步，使其更抽象，如下片段所示：
+
+```
+// Snippet Example 4b
+@mixin prefix($property, $value...) {
+  -webkit-#{$property}: $value;
+  -moz-#{$property}: $value;
+  -ms-#{$property}: $value;
+  -o-#{$property}: $value;
+  #{$property}: $value;
+}
+
+@mixin box-sizing($value) {
+  @include prefix(box-sizing, $value);
+}
+```
+
+### 注意
+
+前面示例中的 `…` 标记表示该参数可接受多个参数。这类似于 ES6 中的 `…` 运算符。
+
+最后，我们可以再进一步抽象：
+
+```
+// Snippet Example 4c
+$prefixes: "-webkit-","-moz-","-ms-","-o-","";
+@mixin prefix($property, $value...) {
+  @each $prefix in $prefixes {
+    #{$prefix}#{$property}: $value;
+  }
+}
+```
+
+这是 Sass 提供的控制流和循环示例。但请记住，没有运行时性能影响——Sass 在转换为 CSS 时会展开循环。
+
+### 注意
+
+此 `prefix` mixin 无法处理所有使用供应商前缀的情况；但对于我们的示例已足够。我们的 mixin 未处理的一种情况是属性值中的供应商前缀。
+
+如果你发现自己反复重用同一计算，`@function` 指令会很有用。例如，假设我们要使用 `960px` 网格，但不想在代码中散布大量计算。我们可以编写如下函数：
+
+```
+// Snippet Example 4d
+$grid-width: 960px;
+$grid-columns: 12;
+@function grid-size($columns) {
+  @return ($grid-width / $grid-columns) * $columns;
+}
+```
+
+使用方式如下：
+
+```
+.some-element {
+  width: grid-size(5);
+}
+```
+
+### 注意
+
+你也可以按名称向 mixin 和函数传递参数。例如，`grid-size($columns: 5)`。
+
+# 面向对象 CSS
+
+虽然 mixin 提供了很好的代码复用方式，但还有另一种方式可减少重复并鼓励抽象。Sass 提供了 `@extend` 指令机制。
+
+让我们看一个简单的 CSS 示例：
+
+```
+.button {
+  ...
+}
+.shiny-button {
+  ...
+}
+```
+
+如果要创建一个闪亮按钮，元素需要附加两个类（`button shiny-button`）。这容易出错，因为我们必须记住包含两个类；也会导致冗长的类列表。Sass 的 `@extend` 关键字可简化此问题。请看下面的版本：
+
+```
+.button {
+  ...
+}
+.shiny-button {
+  @extend .button
+  ...
+}
+```
+
+当我们创建一个类为 `shiny-button` 的 HTML 元素时，它将自动获得赋予 `button` 的所有规则，而无需在类列表中显式列出它。
+
+但有时，我们可能想复用样式而不弄乱 CSS。如果基类永远不会单独使用，则没有理由为它生成类名。在这种情况下，Sass 有占位符的概念。请看下面的示例：
+
+```
+%button {
+  ...
+}
+.shiny-button {
+  @extend %button
+  ...
+}
+```
+
+现在，我们可以像前面那样创建一个类为 `shiny-button` 的 HTML 元素，但无法创建仅类为 `button` 的元素，因为该类不存在。
+
+## 注意
+
+有一种称为 OOCSS 的面向对象 CSS 形式。想了解更多，请参阅 [http://appendto.com/2014/04/oocss/](http://appendto.com/2014/04/oocss/)。本节标题使用“面向对象”仅因为它是描述 Sass 使用 `@extend` 时行为的最佳方式。
+
+# 模块和分部
+
+CSS 允许从其他样式表导入样式，Sass 进一步扩展了这一点，允许 Sass 文件导入其他 Sass 文件。语法与 CSS 基本相同，只是省略了文件扩展名。请看下面的示例：
+
+```
+@import "utils", "grid";
+```
+
+上述命令会在同一目录下查找 `util.scss` 和 `grid.scss` 文件并导入其规则。如果需要导入 CSS 文件，可以：
+
+```
+@import "vanilla.css";
+```
+

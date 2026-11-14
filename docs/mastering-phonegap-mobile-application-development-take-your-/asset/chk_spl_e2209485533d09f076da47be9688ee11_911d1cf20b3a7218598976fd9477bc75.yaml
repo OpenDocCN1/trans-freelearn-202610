@@ -1,0 +1,30 @@
+reviews:
+- 'no': 5
+  overturn_probability: 0.9
+  alternative: 前言章内的子标题（作者简介）
+  counter_evidence:
+  - 根据规则“前言、序言、致谢、关于作者等正文之前的内容，统一划分为一章”，全书前言部分（含书名、作者简介、PacktPub资源、简介、前言）应合并为单一章节，章节起始行应为第0行书名或第45行“简介”，而非第5行“作者简介”。
+  - 第5行“# 作者简介”为一级标题，但紧随书名（第0行）之后，且后续仍有“PacktPub资源”“简介”“前言”等前言内容，语义上属于前言章的内部小节，不具备统领全章的概括性。
+  keep_split: false
+- 'no': 240
+  overturn_probability: 0.15
+  alternative: 正文章节标题（第1章 任务自动化）
+  counter_evidence:
+  - 该行标题“# 任务自动化”未显式包含章序号（如“第1章”），仅凭前言“章节概览”中的列表推断为第1章，存在依赖上下文推断而非标题自证的风险。
+  - 前文存在两个“# 前言”（第55行和第136行），结构疑似重复或排版噪声，导致正文起始边界模糊，需警惕第240行是否为重复前言后的误判。
+  keep_split: true
+- 'no': 1591
+  overturn_probability: 0.1
+  alternative: 正文章节标题（第2章 ES2015 和 Browserify）
+  counter_evidence:
+  - 标题“# ES2015 和 Browserify”未带章序号，前言列表为“第2章，ECMAScript 2015 和 Browserify”，标题与列表措辞不一致（ECMAScript
+    2015 vs ES2015），可能为节级标题而非章级。
+  - 上一章以“## 总结”结束（第1589行），随后多个空行后出现该标题，格式上与章节分隔一致，但缺乏“第X章”编号特征，若全书采用“部分-章”模式则可能为部分标题。
+  keep_split: true
+- 'no': 2627
+  overturn_probability: 0.1
+  alternative: 正文章节标题（第3章 Sassy CSS）
+  counter_evidence:
+  - 标题“# Sassy CSS”无显式章序号，前言列表为“第3章，Sassy CSS”，标题与列表一致但缺乏编号自证。
+  - 前一章结束于“## 总结”（第2609行），中间夹杂多个空行及代码片段说明，该标题虽独占一行但未见“第3章”字样，若后续出现“3.1”子节则更可能为章标题，但当前证据不足以完全排除其为部分标题或特殊节标题。
+  keep_split: true

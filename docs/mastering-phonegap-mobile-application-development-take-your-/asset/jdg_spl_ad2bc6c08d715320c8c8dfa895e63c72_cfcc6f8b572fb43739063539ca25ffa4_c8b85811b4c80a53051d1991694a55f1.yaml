@@ -1,0 +1,31 @@
+chapter_starts:
+- 'no': 8919
+  confidence: 0.95
+  final_reason: '该行 ''# 部署与发布'' 为一级标题，单独成行，无末尾标点。上下文特征明显：前有分割线(8917)及上一章小结/预告(8909-8916)，后跟本章主题列表(8923-8931)。虽复核方指出前章使用
+    ## 作为最高层级，但本书存在部分-章节模式，此处为最高层级分部/章标题，符合规则‘遇到部分和章标题时，都要划分新章’。'
+  accepted_evidence:
+  - 判断方：一级标题格式符合，上下文有明确章边界特征(分割线、小结、预告)
+  - 复核方：keep_split=true，认可分章必要性
+  rejected_evidence:
+  - '复核方：前章内部主标题使用 ##，暗示层级体系不一致'
+  need_human_review: false
+- 'no': 9758
+  confidence: 0.95
+  final_reason: 该行 '## 索引' 位于文末，内容为索引。规则明确规定‘文末索引也划分为一章’，该规则优先于标题层级判断。复核方虽指出层级降级但
+    keep_split=true。
+  accepted_evidence:
+  - 判断方：文末索引，规则强制分章
+  - 复核方：keep_split=true
+  rejected_evidence:
+  - '复核方：标记为 ## 二级标题，若全书章节为 # 则层级降级暗示非正文章节'
+  need_human_review: false
+rejected_lines:
+- 'no': 9607
+  reason: '该行 ''# 部署到 Google Play Store'' 虽为一级标题格式，但前文同语义层级的 ''部署到 Apple App Store''(9486)
+    使用 ##，且紧随其后 50 行处出现另一 # 标题(9657)，中间无章末总结、分割线等边界特征，后跟 ## 子节(9659)。综合判断为排版层级错误(应为
+    ##)，属于第 8919 章 ''部署与发布'' 下的同级大节，不应分章。'
+  need_human_review: false
+- 'no': 9657
+  reason: '该行 ''# 发布到 Google Play 商店'' 与上一行 # 标题(9607) 仅间隔 50 行，无章边界标志，语义上属于同一主题(Google
+    Play 部署)的后续步骤，且后跟 ## 子节(9659)。同 9607 行，为误用一级标题的节标题，不分章。'
+  need_human_review: false
