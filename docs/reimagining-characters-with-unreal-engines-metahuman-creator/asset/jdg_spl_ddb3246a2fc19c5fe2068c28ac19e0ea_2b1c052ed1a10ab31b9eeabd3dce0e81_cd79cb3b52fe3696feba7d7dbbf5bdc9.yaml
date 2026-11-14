@@ -1,0 +1,125 @@
+chapter_starts:
+- 'no': 0
+  confidence: 0.99
+  final_reason: 书名行，位于文件最开头，作为前言部分（含献词、前言、序言等）统一章节的起始行，符合‘前言、序言、致谢等正文之前的内容统一划分为一章’规则
+  accepted_evidence:
+  - 首行书名，单独成行，无句号
+  - 后续内容为献词、前言、序言等前言性质内容
+  - 规则明确要求前言部分统一为一章
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 166
+  confidence: 0.98
+  final_reason: 第 1 部分标题，书籍采用部分-章节模式（存在‘第 X 部分’），规则要求部分标题必须分章
+  accepted_evidence:
+  - 行首为‘# 第 1 部分’，一级标题
+  - 内容为‘创建角色’，具有统领性
+  - 后续包含第 1 章、第 2 章列表
+  - 规则明确：部分-章节模式下部分标题需分章
+  rejected_evidence:
+  - 复核方质疑部分标题可能仅为逻辑分组
+  need_human_review: false
+- 'no': 178
+  confidence: 0.97
+  final_reason: 第 1 章正文起始标题，二级标题‘开始使用 Unreal’，目录对应‘第 1 章 Unreal 入门’，后跟概述段落与技术要求，符合章节起始特征
+  accepted_evidence:
+  - 行首为‘## 开始使用 Unreal’，二级标题
+  - 目录（line 70-72）明确标注‘第 1 章’
+  - 后文紧跟‘在本书的第一章中…’概述及‘### 技术要求’
+  - 编号连贯：第 1 部分下的第 1 章
+  rejected_evidence:
+  - 复核方质疑可能为引言小节，但目录与上下文均支持为章标题
+  need_human_review: false
+- 'no': 499
+  confidence: 0.97
+  final_reason: 第 2 章正文起始标题，二级标题‘在 MetaHuman 界面中创建角色’，与目录‘第 2 章’完全一致，后跟章节概述与技术要求
+  accepted_evidence:
+  - 行首为‘## 在 MetaHuman 界面中创建角色’
+  - 目录（line 72-73）对应‘第 2 章’
+  - 后文含‘本章将涵盖…’及‘### 技术要求’
+  - 编号连贯：第 1 章之后
+  rejected_evidence:
+  - 复核方质疑可能为目录映射残留，但正文结构明确
+  need_human_review: false
+- 'no': 1336
+  confidence: 0.98
+  final_reason: 第 2 部分标题，部分-章节模式下部分标题必须分章
+  accepted_evidence:
+  - 行首为‘# 第 2 部分’，一级标题
+  - 内容为‘探索蓝图、身体动作捕捉与重定向’
+  - 后续列出第 3-6 章
+  - 规则要求部分标题分章
+  rejected_evidence:
+  - 复核方质疑部分标题可能不单独成章
+  need_human_review: false
+- 'no': 1347
+  confidence: 0.98
+  final_reason: 第 3 章正文起始标题，显式编号‘## 第 3 章：深入 MetaHuman 蓝图’，二级标题，后跟技术要求与章节内容
+  accepted_evidence:
+  - 显式包含‘第 3 章’编号
+  - 二级标题格式
+  - 后跟‘### 技术要求’及‘### 什么是蓝图？’等子节
+  - 编号连贯
+  rejected_evidence:
+  - 复核方质疑二级标题可能属部分下子章节，但规则要求章标题分章
+  need_human_review: false
+- 'no': 1601
+  confidence: 0.95
+  final_reason: 第 4 章正文起始标题，虽标题行仅‘## 重定向动画’未显式编号，但目录（line 76）明确‘第 4 章 《重定向动画》’，且紧接第
+    3 章总结之后，后跟‘### 技术要求’等章节结构
+  accepted_evidence:
+  - 目录明确第 4 章标题一致
+  - 上一章（line 1597-1600）已有‘### 总结’结尾
+  - 本行后跟‘### 技术要求’、‘## 什么是 IK Rig？’等章节内部结构
+  - 语义上承接第 3 章蓝图内容，开启重定向新主题
+  rejected_evidence:
+  - 复核方质疑可能为第 3 章最后一节，但章节总结已出现，且目录编号明确
+  need_human_review: false
+- 'no': 1924
+  confidence: 0.98
+  final_reason: 第 5 章正文起始标题，显式编号‘## 第 5 章：使用 Mixamo 重定向动画’，二级标题，结构完整
+  accepted_evidence:
+  - 显式‘第 5 章’编号
+  - 二级标题
+  - 后跟技术要求、介绍 Mixamo 等章节内容
+  - 编号连贯
+  rejected_evidence:
+  - 复核方质疑可能为第 4 章子节，但编号明确为第 5 章
+  need_human_review: false
+- 'no': 2290
+  confidence: 0.98
+  final_reason: 第 6 章正文起始标题，显式编号‘## 第 6 章：使用 DeepMotion 添加动作捕捉’，二级标题，结构完整
+  accepted_evidence:
+  - 显式‘第 6 章’编号
+  - 二级标题
+  - 后跟技术要求、认识 DeepMotion 等章节内容
+  - 编号连贯
+  rejected_evidence:
+  - 复核方质疑可能为第 5 章子节，但编号明确为第 6 章
+  need_human_review: false
+- 'no': 2725
+  confidence: 0.98
+  final_reason: 第 3 部分标题，部分-章节模式下部分标题必须分章
+  accepted_evidence:
+  - 行首为‘# 第 3 部分’，一级标题
+  - 内容为‘探索序列器、面部动作捕捉与渲染’
+  - 后续列出第 7-11 章
+  - 规则要求部分标题分章
+  rejected_evidence:
+  - 复核方质疑部分标题可能仅为逻辑分组
+  need_human_review: false
+- 'no': 2737
+  confidence: 0.98
+  final_reason: 第 7 章正文起始标题，显式编号‘## 第 7 章：使用序列器’，二级标题，后跟技术要求与章节内容
+  accepted_evidence:
+  - 显式‘第 7 章’编号
+  - 二级标题
+  - 后跟‘### 技术要求’、‘### 介绍 Level Sequencer’等
+  - 编号连贯
+  rejected_evidence:
+  - 复核方质疑二级标题可能属部分下子章节，但规则要求章标题分章
+  need_human_review: false
+rejected_lines:
+- 'no': 2
+  reason: 复核方指出其为前言组成部分（献词），判断方将其单独分章违反‘前言、序言、致谢等正文之前的内容统一划分为一章’规则，应并入从第 0 行开始的前言章节
+  need_human_review: false

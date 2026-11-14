@@ -1,0 +1,36 @@
+reviews:
+- 'no': 3045
+  overturn_probability: 0.1
+  alternative: 正文小标题
+  counter_evidence:
+  - 该行使用 '##' 二级标题，若全书顶层为一级标题 '#'，则此处可能属于部分下的子章而非顶层大章
+  - 前一行 '在下一章中，我们将使用 iPhone...' 疑似为本章末尾的前瞻性引导，而非上一章的结束标志，可能属于同一章内的过渡段落
+  keep_split: true
+- 'no': 3362
+  overturn_probability: 0.1
+  alternative: 正文小标题
+  counter_evidence:
+  - 编号 '第 9 章' 与前文 '第 8 章' 连贯，但若存在 '第 8 部分' 等部分标记，此处应为部分内子章，不应单独分章
+  - 标题后紧跟 '在上一章中...' 回顾段，该段落可能属于第 8 章的延伸总结，而非第 9 章的独立开篇
+  keep_split: true
+- 'no': 3802
+  overturn_probability: 0.1
+  alternative: 正文小标题
+  counter_evidence:
+  - 标题格式 '## 第 10 章' 与前两章一致，但若书籍采用 '部分-章节' 双层结构且未显式标出部分，该行可能仅为部分内的节点
+  - 前文 '在下一章中，我们将在此知识基础上...' 疑为第 9 章末尾的预告，可能导致该行被误判为新章起始
+  keep_split: true
+- 'no': 4213
+  overturn_probability: 0.15
+  alternative: 正文小标题
+  counter_evidence:
+  - 标题 '## 第 11 章' 后跟多个空行及 '在上一章中...' 回顾，但该章标题后未立即出现子节（如 '###'），结构上疑似附录或补充章节，非核心大章
+  - 前文明确提示 '下一章也是最后一章'，暗示本书章节即将结束，此行可能为尾声性质的附录标题，不应按常规大章分章
+  keep_split: true
+- 'no': 4533
+  overturn_probability: 0.3
+  alternative: 其他
+  counter_evidence:
+  - 该行使用一级标题 '# 索引'，而全书所有章节均使用二级标题 '## 第 X 章'，层级不一致，可能属于书籍级别的后置元素（如附录、后记）而非正文章节
+  - 规则虽规定 '文末索引也划分为一章'，但若索引前已有 '### 总结' 等结束标记，索引可能仅为附属于最后一章的附录节，无需独立分章
+  keep_split: true

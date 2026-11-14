@@ -1,0 +1,113 @@
+
+在 `Figure 6.9` 中，你可以看到 `Rerun Animation` 对话框：
+
+![图 6.9：重新运行动画对话框](`image/B17878_06.09.jpg`)
+
+图 6.9：重新运行动画对话框
+
+此 `Rerun Animation` 框与 `Figure 6.6` 中的 `Confirm New Animation` 框的唯一区别在于，它会显示产生上一次结果的 `Current` 设置，以及你即将投入下一项作业的 `New` 设置。这使你能进行对比研究，从而为重新运行做出更明智的决定。
+
+现在，当你浏览完所有设置并重新运行作业直到最终对结果满意时，就该下载动画了。
+
+## 下载 DeepMotion 动作捕捉文件
+
+要下载 DeepMotion 动作捕捉文件，请不要点击 `Rerun` 选项，只需点击 `Download` 按钮。这将弹出 `Download Animations` 对话框，如 `Figure 6.10` 所示：
+
+![图 6.10：下载动画](`image/B17878_06.10.jpg`)
+
+图 6.10：下载动画
+
+在下载动画前，对话框提供了切换或确认所需体型的选项：两个成年女性、两个成年男性和一个通用儿童供选择。当你对预览网格体满意后，请确保从下拉菜单中选择了正确的下载文件类型 `FBX`（`BVH` 和 `DMPE` 方案不适用于我们在 Unreal 中的操作）。然后，点击黄色的 `Download` 按钮，将文件保存到项目文件夹中的某个位置。
+
+下载动画后，你将看到两个 FBX 文件和一个文件夹，如 `Figure 6.11` 所示：
+
+![图 6.11：DeepMotion 保存的文件和命名约定](`image/B17878_06.11.jpg`)
+
+图 6.11：DeepMotion 保存的文件和命名约定
+
+文件名以 `TPose` 结尾的 FBX 文件（`Adult_Male_Alt(includeTPose)`）是指在动画开始处使用实际 T-pose 的文件。另一个文件 `Adult_Male_Alt` 在开头没有此类 T-pose，因此从第一帧直接开始动画。选择哪一个并不关键，因为你随时可以从动画中移除 T-pose 片段，但在需要为重定向目的对齐时，T-pose 可能会变得有用。我们将在本章末尾探讨这一点。
+
+现在我们已下载相关文件，在下一节中，我们将把 DeepMotion 动作捕捉文件导入 Unreal，以便将其重定向到 MetaHuman IK Rig。
+
+## 将 DeepMotion 动画导入 Unreal
+
+正如本章开头所述，我们是在前几章所学基础上构建，但别担心，我们将把本节作为导入角色到 Unreal 过程的简要回顾。
+
+首先，你需要在 Unreal 项目中创建一个名为 `Deepmotion` 的文件夹。确保你在上一章使用的项目中工作，该项目同时拥有 Mixamo 角色和 MetaHuman 角色的源 IK Rig 和目标 IK Rig。
+
+创建 `Deepmotion` 文件夹后，在 `Deepmotion` 文件夹的 `Content` 浏览器中任意位置右键单击，查找你的新 DeepMotion FBX 文件。选择文件名包含 `TPose` 的那个。选中后，你将看到 `FBX Import Options` 对话框，如 `Figure 6.12` 所示：
+
+![图 6.12：FBX 导入选项](`image/B17878_06.12.jpg`)
+
+图 6.12：FBX 导入选项
+
+这里有两点需要注意：
+
+*   首先，我们不想为此导入分配骨架；我们想使用即将导入的文件中嵌入的骨架。因此，在 `Mesh` 下，将 `Skeleton` 保留在默认位置 `None`，并确保选中 `Skeletal Mesh` 选项，以便它知道从文件中选择骨架网格体。
+*   其次，虽然这听起来显而易见，但请确保在 `Animations` 下勾选 `Import Animations` 选项。
+
+考虑完这些后，点击蓝色的 `Import All` 按钮。不要被提到平滑处理的错误弹窗吓到；你可以关闭它。
+
+现在，当你查看 `Content` 浏览器中的 `Deepmotion` 文件夹时，应该会看到类似 `Figure 6.13` 的内容：
+
+![图 6.13：Deepmotion 内容文件夹](`image/B17878_06.13.jpg`)
+
+图 6.13：Deepmotion 内容文件夹
+
+你在这里看到的大部分内容应该都很熟悉；从左到右，你将看到以下内容：
+
+*   身体的材质着色器
+*   无动画的 T-pose 骨架
+*   带动画的 DeepMotion 骨架
+*   DeepMotion 骨架物理资产
+*   用于编辑的无动画 T-pose 骨架
+*   上述用于身体的材质着色器所用的纹理文件
+
+在本节中，我们已成功将 `Deepmotion` 文件导入 Unreal Engine。在下一节中，我们将结合角色使用 DeepMotion 动画。
+
+## 重定向 DeepMotion 动作捕捉
+
+与前几章一样，你需要创建一个 IK Rig 作为源。因此，在 `Deepmotion` 文件夹中，任意位置右键单击，选择 `Animation`，然后选择 `IK Rig`，如 `Figure 6.14` 所示：
+
+![图 6.14：创建 IK Rig](`image/B17878_06.14.jpg`)
+
+图 6.14：创建 IK Rig
+
+为避免混淆，将此 IK Rig 命名为 `Source_DM_Happy`（这将帮助我们稍后查找它）。
+
+然后，像以前一样，遵循相同流程创建 IK 链。同样，我们需要创建六个独立的 IK 链，分别对应：
+
+*   根骨骼到髋部
+*   脊柱和头部
+*   左臂
+*   右臂
+*   左腿
+*   右腿
+
+唯一不同的是命名约定，这在从不同来源导入动作捕捉时是意料之中的。DeepMotion 的命名约定可见于 `Figure 6.15`，它们对关节使用 `JNS` 缩写，并以前缀 `l_` 或 `r_` 开头表示左或右：
+
+![图 6.15：IK 链](`image/B17878_06.15.jpg`)
+
+图 6.15：IK 链
+
+请注意，这些链的顺序（从 `Root` 到 `hips_JNT`，以 `r_upleg_JNT` 到 `r_foot_JNT` 结束）与我的 IK 链列表一致；在 IK 源和 IK 目标中保持相同顺序可减少错误。
+
+现在该创建一个新的 IK Retargeter，使用我们的新 IK Rig 作为源。仍在 `Deepmotion` 文件夹中，在 `Content` 浏览器任意位置右键单击，转到 `Animation`，然后选择 `IK Retargeter`，如 `Figure 6.16` 所示：
+
+![图 6.16：创建新的 IK 重定向器](`image/B17878_06.16..jpg`)
+
+图 6.16：创建新的 IK 重定向器
+
+创建新 IK Retargeter 后，双击打开它，你将看到一个潜在源列表供选择。在 `Figure 6.17` 中，你可以看到我项目文件夹中保存的所有 IK Rig 列表：
+
+![图 6.17：选择要复制动画的 IK Rig](`image/B17878_06.17.jpg`)
+
+图 6.17：选择要复制动画的 IK Rig
+
+你会看到我有一个名为 `SourceRigMixamo` 的源 IK Rig。随着你在 Unreal 中的练习，你很快会拥有多个源 IK Rig。你应该仍保留上一章使用的源 IK Rig。这就是为什么适当标记这些 IK Rig 很重要，以免无意中选择错误的一个。
+
+你**不**想使用上一章的 Mixamo rig，所以请选择 `Source_DM_Happy`，因为那是我们要复制动画的 rig。然后点击 `OK`。
+
+> **注意**
+>
+> 如果你选择了错误的 IK Rig，你将需要删除此 Retargeter 并创建一个新的，这就是为什么标记 IK 源 rig 很重要的原因。
