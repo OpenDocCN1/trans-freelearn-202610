@@ -1,0 +1,1472 @@
+- '# Python 现代时间序列预测 第2版（抢先版）
+
+
+
+  # 欢迎来到 Packt 早期访问计划
+
+
+  ![](img/file0.png)
+
+
+  [`https://packt.link/EarlyAccess/`](https://packt.link/EarlyAccess/)
+
+
+  欢迎来到 *使用 Python 进行现代时间序列预测*！本书面向希望通过学习机器学习领域的新技术和高级技术来提升时间序列分析技能的数据科学家或 `machine
+  learning` (`ML`) 工程师。`Time series analysis` 是常规机器学习书籍、课程等中常被忽视的内容。它们通常从分类开始，涉及回归，然后继续深入。但这也是在商业中极其宝贵且无处不在的东西。我们用三维视角看世界。但时间是我们很少思考却无处不在的隐藏维度。只要时间是我们所处世界的四个维度之一，时间序列数据就无处不在。
+
+
+  分析时间序列数据为企业解锁了巨大价值。时间序列分析并非新事物——它自 1920 年代以来就已存在。但在当今数据时代，企业收集的时间序列正以每分钟的速度变得更大、更宽。结合收集数据量的爆炸式增长和对
+  ML 的重新关注，时间序列分析的格局也发生了显著变化。本书旨在带您超越 `AutoRegressive Integrated Moving Average` (`ARIMA`)
+  等经典统计方法，向您介绍机器学习领域在时间序列分析中的最新技术。
+
+
+  我们将从一些基本概念开始，并迅速深入到更复杂的主题。在本章中，我们将涵盖以下主要主题：
+
+
+  *   什么是时间序列？
+
+  *   数据生成过程 (DGP)
+
+  *   我们可以预测什么？
+
+  *   预测术语和符号
+
+  '
+- '# 前言
+
+
+  1.  封面
+
+  2.  (空白)
+
+  '
+- "# 第 1 章：时间序列简介\n\n## 加入我们的图书 Discord 社区\n\n![](img/file0.png)\n\n[`https://packt.link/EarlyAccess/`](https://packt.link/EarlyAccess/)\n\
+  \n欢迎来到 *使用 Python 进行现代时间序列预测*！本书面向希望通过学习机器学习领域的新技术和高级技术来提升时间序列分析技能的数据科学家或 `machine\
+  \ learning` (`ML`) 工程师。`Time series analysis` 是常规机器学习书籍、课程等中常被忽视的内容。它们通常从分类开始，涉及回归，然后继续深入。但这也是在商业中极其宝贵且无处不在的东西。我们用三维视角看世界。但时间是我们很少思考却无处不在的隐藏维度。只要时间是我们所处世界的四个维度之一，时间序列数据就无处不在。\n\
+  \n分析时间序列数据为企业解锁了巨大价值。时间序列分析并非新事物——它自 1920 年代以来就已存在。但在当今数据时代，企业收集的时间序列正以每分钟的速度变得更大、更宽。结合收集数据量的爆炸式增长和对\
+  \ ML 的重新关注，时间序列分析的格局也发生了显著变化。本书旨在带您超越 `AutoRegressive Integrated Moving Average`\
+  \ (`ARIMA`) 等经典统计方法，向您介绍机器学习领域在时间序列分析中的最新技术。\n\n我们将从一些基本概念开始，并迅速深入到更复杂的主题。在本章中，我们将涵盖以下主要主题：\n\
+  \n*   什么是时间序列？\n*   数据生成过程 (DGP)\n*   我们可以预测什么？\n*   预测术语和符号\n\n## 技术要求\n\n您需要按照本书*前言*中的说明设置\
+  \ `Anaconda` 环境，以获得包含本书代码所需的所有库和数据集的工作环境。运行笔记本时将安装任何其他库。\n\n本章相关代码可在 `https://github.com/PacktPublishing/Modern-Time-Series-Forecasting-with-Python-/tree/main/notebooks/Chapter01`\
+  \ 找到。\n\n## 什么是时间序列？\n\n简单来说，`time series` 是按时间顺序获取的一组观测值。重点在于 *time* 这个词。如果我们在不同时间点持续进行相同的观测，就会得到一个时间序列。例如，如果您记录一个月内您拥有的巧克力条数，最终将得到您巧克力消费量的时间序列。假设您在每月初记录体重。您将得到另一个体重时间序列。这两个时间序列之间有关系吗？很有可能。但到本书结束时，我们可以科学地分析这一点。\n\
+  \n时间序列的其他一些例子包括您关注的股票的每周收盘价、您所在城市的每日降雨量或降雪量，或来自智能手表的每小时心率读数。\n\n### 时间序列的类型\n\n\
+  基于时间间隔，时间序列数据分为两类，如下所述：\n\n\n\n\n#### 规则时间序列\n\n这是最常见的时间序列类型，我们在固定的时间间隔（例如每小时或每月）获得观测值。例如，如果我们采集某城市的温度时间序列，我们将按固定间隔获得时间序列（取决于我们选择的观测频率）。\n\
+  \n#### 不规则时间序列\n\n有些时间序列的观测值并不在固定的时间间隔出现。例如，假设我们有一系列患者实验室检测的读数序列。只有当患者前往诊所并进行实验室检测时，我们才能在时间序列中看到观测值，而这可能不会在固定的时间间隔发生。\n\
+  \n> **NOTE**\n>\n> > 本书仅关注规则时间序列，即时间间隔均匀的序列。不规则时间序列稍微高级一些，需要专门的技术来处理。关于该主题的几篇综述论文是入门不规则时间序列的好方法，您可以在本章的*延伸阅读*部分找到它们。\n\
+  \n## 时间序列分析的主要应用领域\n\n时间序列分析大体上有三个重要的应用领域，概述如下：\n\n### 时间序列预测\n\n给定过去的值，预测时间序列的未来值——例如，利用过去\
+  \ 5 年的温度数据预测明天的温度。此用例是最流行和最重要的用例之一，因为我们需要进行的任何规划都需要对未来有一定的可见性。例如，规划下个月生产多少巧克力需要对预期需求进行预测。\n\
+  \n### 时间序列分类\n\n有时，我们可能不想预测时间序列的未来值，而是想根据过去的值预测一个动作。例如，给定 `EEG`（追踪大脑电活动）或 `EKG`（追踪心脏电活动）的历史记录，我们需要预测\
+  \ `EEG` 或 `EKG` 的结果是正常还是异常。\n\n### 异常值检测\n\n在某些情况下，我们只想检测是否有事情出错，或者是否有异常情况发生。在这种情况下，我们不需要使用分类或预测，而是可以进行异常值检测。例如，您身上的可穿戴设备记录随时间变化的加速度计读数，并可利用异常值检测来识别跌倒或意外事故。\n\
+  \n### 解释与因果关系\n\n基于过去的值理解时间序列的内容和原因，理解多个相关时间序列之间的相互关系，或基于时间序列数据推导因果推断。例如，我们拥有某品牌的市场份额时间序列，以及另一个广告支出时间序列。利用解释和因果关系技术，我们可以开始了解广告支出在多大程度上影响市场份额，并可能采取相应的行动。\n\
+  \n> **NOTE**\n>\n> > 本书的重点主要在于*时间序列预测*，但您学到的技术也将帮助您解决*时间序列分类*问题，只需极少地改变方法。*解释*也有涉及，尽管简略，但*因果关系*是本书不涉足的领域，因为它需要完全不同的方法。\n\
+  \n现在我们已经对时间序列全貌有了概览，让我们建立一个关于时间序列数据如何生成的心智模型。\n\n## 数据生成过程（DGP）\n\n我们看到，时间序列数据是沿时间维度按顺序收集的观测值集合。反过来，任何时间序列都是由某种*机制*生成的。例如，工厂每天发货的您最爱吃的巧克力的时间序列数据受许多因素影响，如一年中的时间、假期、可可的供应情况、工厂机器的正常运行时间等。在统计学中，生成时间序列的这一潜在过程被称为\
+  \ `DGP`。时间序列数据由随机过程和确定性过程产生。确定性过程涉及随时间以可预测方式演变的量。一个例子是元素的放射性衰变，其剩余量根据精确的数学公式减少，从而导致随时间持续减少。但大多数有趣的时间序列（从预测角度来看）是由随机过程生成的。随机过程是一种描述事物如何以随机但某种可预测的方式随时间变化的方法，就像天气每天都在变化，其中包含一些模式和概率。所以，让我们更多地讨论由随机过程生成的时间序列。\n\
+  \n如果我们拥有完整且完美的现实知识，我们所要做的就是将这个 `DGP` 用数学形式表达出来，就能得到最准确的预测。但遗憾的是，没有人拥有完整且完美的现实知识。因此，我们试图在数学上尽可能地逼近\
+  \ `DGP`，以便我们对 `DGP` 的模仿能给我们带来最佳的预测（或我们想要的任何其他分析输出）。这种模仿被称为**模型**，它为 `DGP` 提供了有用的近似。\n\
+  \n但我们必须记住，模型不是 `DGP`，而是现实某些本质方面的表征。例如，让我们考虑这里展示的班加罗尔的航拍图和班加罗尔的地图：\n\n![Figure 1.1\
+  \ – An aerial view of Bengaluru (left) and a map of Bengaluru (right) (Color)](img/file1.jpg)\n\
+  \n图 1.1 – 班加罗尔航拍图（左）和班加罗尔地图（右）（彩色）\n\n班加罗尔的地图当然很有用——我们可以用它从 A 点导航到 B 点。但班加罗尔的地图不等同于班加罗尔的照片。它无法展示繁华的夜生活或令人窒息的交通拥堵。地图只是一个模型，它代表了地点的一些有用特征，如道路和地点。下图可能有助于我们内化这一概念并记住它：\n\
+  \n![Figure 1.2 – DGP, model, and time series (Color)](img/file2.jpg)\n\n图 1.2 –\
+  \ DGP、模型和时间序列（彩色）\n\n自然而然，下一个问题是：*我们有一个有用的模型吗？* 每个模型都有其自身的局限性和挑战。正如我们所见，班加罗尔的地图不能完美地代表班加罗尔。但如果我们的目的是在班加罗尔导航，那么地图就是一个非常有用的模型。如果我们想了解文化呢？地图无法给你那种风味。所以，现在，原本有用的同一个模型在新语境下变得完全无用。不同的情况和不同的目标需要不同种类的模型。例如，最适合预测的模型可能不适合做因果推断。\n\
+  \n我们可以利用 DGP 的概念生成多个复杂程度各异的合成时间序列。\n\n### 生成合成时间序列\n\n合成时间序列，或人工时间序列，是极好的工具，您可以借此理解时间序列空间，尝试不同的方法，甚至将其作为测试新模型或建模设置的方式。这些时间序列被设计为可预测的，尽管有一定挑战性。让我们看几个实际例子，在这些例子中我们可以使用一组基本构建块来生成一些时间序列。您可以发挥创意，混合搭配这些组件中的任意一个，甚至将它们相加，以生成任意复杂度的时间序列。\n\
+  \n#### 白噪声与红噪声\n\n生成时间序列的随机过程的一个极端情况是 `white noise`（白噪声）过程。它具有一个均值为零、方差恒定的随机数序列。这也是时间序列中关于噪声最流行的假设之一。\n\
+  \n\n\n\n让我们看看如何生成这样一个时间序列并将其绘制出来，如下所示：\n\n```\n##### Generate the time axis with\
+  \ sequential numbers upto 200\ntime = np.arange(200)\n##### Sample 200 hundred random\
+  \ values\nvalues = np.random.randn(200)*100\nplot_time_series(time, values, \"White\
+  \ Noise\")\n```\n\n这是输出结果：\n\n![图 1.3 – 白噪声过程](img/file3.jpg)\n\n图 1.3 – 白噪声过程\n\
+  \n另一方面，`Red noise`（红噪声）具有零均值和恒定方差，但在时间上呈序列相关。这种序列相关性或红度由相关系数 `r` 参数化，如下所示：\n\n![](img/file4.png)\n\
+  \n其中 `w` 是从白噪声分布中抽取的随机样本。\n\n让我们看看如何生成它，如下所示：\n\n```\n##### Setting the correlation\
+  \ coefficient\nr = 0.4\n##### Generate the time axis\ntime = np.arange(200)\n#####\
+  \ Generate white noise\nwhite_noise = np.random.randn(200)*100\n##### Create Red\
+  \ Noise by introducing correlation between subsequent values in the white noise\n\
+  values = np.zeros(200)\nfor i, v in enumerate(white_noise):\n    if i==0:\n    \
+  \    values[i] = v\n    else:\n        values[i] = r*values[i-1]+ np.sqrt((1-np.power(r,2)))\
+  \ *v\nplot_time_series(time, values, \"Red Noise Process\")\n```\n\n这是输出结果：\n\n\
+  ![图 1.4 – 红噪声过程](img/file5.jpg)\n\n图 1.4 – 红噪声过程\n\n#### 周期性或季节性信号\n\n在时间序列中最常见的信号中，包括季节性或周期性信号。因此，你可以通过几种方式将季节性引入生成的序列中。\n\
+  \n让我们借助一个非常有用的库来生成其余的时间序列——`TimeSynth`。更多信息请参考 https://github.com/TimeSynth/TimeSynth。\n\
+  \n这是一个用于生成时间序列的有用库。它拥有各种数据生成过程（DGP），你可以混合搭配它们来创建逼真的合成时间序列。\n\n> **注意**\n>\n> 关于确切的代码和用法，请参考相关的\
+  \ Jupyter 笔记本。\n\n让我们看看如何使用正弦函数来创建周期性。`TimeSynth` 中有一个名为 `generate_timeseries` 的有用函数，可帮助我们组合信号并生成时间序列。请看下面的代码片段：\n\
+  \n```\n#Sinusoidal Signal with Amplitude=1.5 & Frequency=0.25\nsignal_1 = ts.signals.Sinusoidal(amplitude=1.5,\
+  \ frequency=0.25)\n#Sinusoidal Signal with Amplitude=1 & Frequency=0.5\nsignal_2\
+  \ = ts.signals.Sinusoidal(amplitude=1, frequency=0.5)\n#Generating the time series\n\
+  samples_1, regular_time_samples, signals_1, errors_1 = generate_timeseries(signal=signal_1)\n\
+  samples_2, regular_time_samples, signals_2, errors_2 = generate_timeseries(signal=signal_2)\n\
+  plot_time_series(regular_time_samples,\n                 [samples_1, samples_2],\n\
+  \                 \"Sinusoidal Waves\",\n                 legends=[\"Amplitude =\
+  \ 1.5 | Frequency = 0.25\", \"Amplitude = 1 | Frequency = 0.5\"])\n```\n\n这是输出结果：\n\
+  \n![图 1.5 – 正弦波](img/file6.jpg)\n\n图 1.5 – 正弦波\n\n注意这两个正弦波在频率（时间序列穿过零点的速度）和振幅（时间序列偏离零点的距离）方面是不同的。\n\
+  \n`TimeSynth` 还有一种称为 `PseudoPeriodic`（伪周期）的信号。这类似于 `Sinusoidal` 类，但频率和振幅本身具有一定的随机性。我们可以在下面的代码片段中看到，这比\
+  \ `Sinusoidal` 类中的标准正弦和余弦波更真实：\n\n```\n##### PseudoPeriodic signal with Amplitude=1\
+  \ & Frequency=0.25\nsignal = ts.signals.PseudoPeriodic(amplitude=1, frequency=0.25)\n\
+  #Generating Timeseries\nsamples, regular_time_samples, signals, errors = generate_timeseries(signal=signal)\n\
+  plot_time_series(regular_time_samples,\n                 samples,\n            \
+  \     \"Pseudo Periodic\")\n```\n\n这是输出结果：\n\n![图 1.6 – 伪周期信号](img/file7.jpg)\n\n\
+  图 1.6 – 伪周期信号\n\n#### 自回归信号\n\n现实世界中另一种非常流行的信号是 `autoregressive (AR) signal`（自回归信号）。我们将在第\
+  \ 4 章 *Setting a Strong Baseline Forecast*（建立强基线预测）中更详细地讨论这一点，但目前，AR 信号是指时间序列在当前时间步的值依赖于前几个时间步的值。这种序列相关性是\
+  \ AR 信号的一个关键属性，它由以下几个参数参数化：\n\n*   序列相关的阶数——换句话说，信号依赖的前几个时间步的数量\n*   组合前几个时间步的系数\n\
+  \n让我们看看如何生成 AR 信号并查看它的样子，如下所示：\n\n```\n##### We have re-implemented the class in\
+  \ src because of a bug in TimeSynth\nfrom src.synthetic_ts.autoregressive import\
+  \ AutoRegressive\n##### Autoregressive signal with parameters 1.5 and -0.75\n#####\
+  \ y(t) = 1.5*y(t-1) - 0.75*y(t-2)\nsignal = AutoRegressive(ar_param=[1.5, -0.75])\n\
+  #Generate Timeseries\nsamples, regular_time_samples, signals, errors = generate_timeseries(signal=signal)\n\
+  plot_time_series(regular_time_samples,\n                 samples,\n            \
+  \     \"Auto Regressive\")\n```\n\n这是输出结果：\n\n![图 1.7 – AR 信号](img/file8.jpg)\n\n\
+  图 1.7 – AR 信号\n\n#### 混合搭配\n\n还有许多组件可用于创建你的 DGP 从而生成时间序列，但让我们快速看看如何组合我们已经见过的组件来生成一个逼真的时间序列。\n\
+  \n让我们使用带有白噪声的伪周期信号并将其与 AR 信号结合，如下所示：\n\n```\n#Generating Pseudo Periodic Signal\n\
+  pseudo_samples, regular_time_samples, _, _ = generate_timeseries(signal=ts.signals.PseudoPeriodic(amplitude=1,\
+  \ frequency=0.25), noise=ts.noise.GaussianNoise(std=0.3))\n##### Generating an Autoregressive\
+  \ Signal\nar_samples, regular_time_samples, _, _ = generate_timeseries(signal=AutoRegressive(ar_param=[1.5,\
+  \ -0.75]))\n##### Combining the two signals using a mathematical equation\nts =\
+  \ pseudo_samples*2+ar_samples\nplot_time_series(regular_time_samples,\n        \
+  \         ts,\n                 \"Pseudo Periodic with AutoRegression and White\
+  \ Noise\")\n```\n\n这是输出结果：\n\n![图 1.8 – 带有 AR 和白噪声的伪周期信号](img/file9.jpg)\n\n图 1.8\
+  \ – 带有 AR 和白噪声的伪周期信号\n\n## 平稳与非平稳时间序列\n\n在时间序列中，`stationarity`（平稳性）具有重要意义，是许多建模方法的关键假设。具有讽刺意味的是，许多（如果不是大多数）现实世界的时间序列都是非平稳的。那么，让我们从外行的角度来理解什么是平稳时间序列。\n\
+  \n审视平稳性有多种方式，但最清晰直观的方式之一是考虑时间序列的概率分布或数据分布。当概率分布在每个时间点保持不变时，我们称该时间序列为平稳的。换句话说，如果你选择不同的时间窗口，所有这些窗口中的数据分布应该是相同的。\n\
+  \n标准高斯分布由两个参数定义——均值和方差。因此，平稳性假设可能以此处概述的两种方式被打破：\n\n*   随时间变化的均值\n*   随时间变化的方差\n\n\
+  让我们详细看看这些假设并更好地理解它们。\n\n### 随时间变化的均值\n\n这是非平稳时间序列最常见的表现方式。如果时间序列中存在上升/下降趋势，则两个时间窗口的均值将不相同。\n\
+  \n非平稳性表现自身的另一种方式是季节性。假设我们正在查看过去 5 年每月平均温度测量值的时间序列。根据经验，我们知道温度在夏季达到峰值，在冬季下降。因此，当我们计算冬季平均温度和夏季平均温度时，它们将会不同。\n\
+  \n\n\n\n### 生成具有趋势和季节性的时间序列\n\n让我们生成一个具有趋势和季节性的时间序列，并观察其表现，步骤如下：\n\n```\n#### 幅度=1\
+  \ 且 频率=0.25 的正弦信号\nsignal=ts.signals.Sinusoidal(amplitude=1, frequency=0.25)\n####\
+  \ 标准差 = 0.3 的白噪声\nnoise=ts.noise.GaussianNoise(std=0.3)\n#### 生成时间序列\nsinusoidal_samples,\
+  \ regular_time_samples, _, _ = generate_timeseries(signal=signal, noise=noise)\n\
+  #### Regular_time_samples 是一个线性递增的时间轴，可用作趋势\ntrend = regular_time_samples*0.4\n\
+  #### 组合信号和趋势\nts = sinusoidal_samples+trend\nplot_time_series(regular_time_samples,\n\
+  \                 ts,\n                 \"Sinusoidal with Trend and White Noise\"\
+  )\n```\n\n输出结果如下：\n\n![图 1.9 – 带有趋势和白噪声的正弦信号](img/file10.jpg)\n\n图 1.9 – 带有趋势和白噪声的正弦信号\n\
+  \n如果你观察图 1.9 中的时间序列，你将能够看到明确的趋势和季节性，它们共同导致数据分布的均值在不同的时间窗口中剧烈变化。\n\n### 随时间变化的方差\n\
+  \n非平稳性也可能表现为时间序列方差的波动。如果时间序列开始时方差很小，随着时间推移，方差不断变大，那么我们就得到了一个非平稳时间序列。在统计学中，这种现象有一个吓人的名字——**异方差性**。航空乘客数据集，作为时间序列领域的“鸢尾花数据集”（最流行、被过度使用、且毫无用处），是异方差时间序列的一个经典例子。让我们看看这张图。\n\
+  \n![图 1.10 – 航空乘客数据集 – 异方差时间序列示例](img/file11.png)\n\n图 1.10 – 航空乘客数据集 – 异方差时间序列示例\n\
+  \n在图中，你可以看到随着时间推移，季节性峰值变得越来越宽，这是时间序列具有异方差性的典型迹象。但并非所有异方差时间序列都容易识别。我们有统计检验方法来检查各种平稳性情况，我们将在第\
+  \ 7 章“时间序列预测的目标变换”中介绍。\n\n本书旨在让你建立关于平稳与非平稳时间序列的直观理解。这方面有大量的统计理论和深度，我们将略过这些内容，以便专注于时间序列的实用方面。\n\
+  \n有了数据生成过程（DGP）的心智模型，我们就处于思考另一个重要问题的正确位置：我们能预测什么？\n\n## 我们能预测什么？\n\n在继续之前，我们必须了解时间序列预测的另一个方面——时间序列的可预测性。预测时间序列时最基本的假设是未来取决于过去。但并非所有时间序列都具有同等的可预测性。\n\
+  \n让我们看几个例子，并尝试按可预测性对它们进行排序（从最容易到最难），如下所示：\n\n*   下周一的高潮\n*   下周日的彩票号码\n*   下周五特斯拉的股价\n\
+  \n凭直觉，我们很容易对它们进行排序。下周一的高潮最容易预测，因为它非常有规律；彩票号码非常难以预测，因为它们几乎是随机的；下周五特斯拉的股价预测起来很难，但并非不可能。\n\
+  \n> **注意**\n>\n> 然而，对于那些认为可以利用本书涵盖的高级技术预测股价并致富的人来说，这不会发生（极大概率）。虽然这值得长篇大论，但我们可以用一小段话总结关键点。\n\
+  \n股价不是其过去值的函数，而是对其未来值的预期，这从而违反了我们预测时的第一个假设。如果这还不够糟糕，金融股价通常具有极低的信噪比。过程中最后的一个绊脚石是**有效市场假说**（**EMH**）。这个看似无害的假说宣称：关于股价的所有已知信息都已经反映在股价中。该假说的含义是，如果你能准确预测，许多其他人也能做到，因此股票的市场价格已经反映了该预测带来的价格变化。\n\
+  \nM6 竞赛直面这一问题，通过为期一年的预测和投资策略竞赛来评估 EMH 是否成立。虽然结论不具决定性，但结果显示，对于绝大多数参赛者而言，EMH 成立，仅有少数顶尖团队例外。即使在这些顶尖团队中，他们也发现预测准确性与股票纳入投资组合的选择之间没有显著相关性，即这些团队并没有选择他们能更好预测的股票（完整报告链接见“延伸阅读”）。\n\
+  \n回到主题——可预测性——有三个主要因素构成了对此的心智模型，如下所示：\n\n*   **理解 DGP**：你对 DGP 理解得越透彻，时间序列的可预测性就越高。\n\
+  *   **数据量**：你拥有的数据越多，可预测性就越好。\n*   **充分重复的模式**：为了让任何数学模型良好运行，你的时间序列中应该存在充分重复的模式。模式越可重复，可预测性就越好。\n\
+  \n即使你有了思考可预测性的心智模型，我们将在第 3 章“分析和可视化时间序列数据”中探讨评估时间序列可预测性的更具体方法，但核心要点是：并非所有时间序列都具有同等的可预测性。\n\
+  \n为了充分理解后续章节的讨论，我们需要建立标准符号，并了解时间序列分析特有的术语。\n\n## 预测术语\n\n有几个术语将帮助你理解本书以及其他时间序列文献。这些术语在此进行更详细的描述：\n\
+  \n*   **预测**\n\n    预测是利用时间序列已知的过去值和/或其他一些相关变量，对时间序列未来值进行预测。这与机器学习中的预测非常相似，即我们使用模型来预测未见数据。\n\
+  \n*   **多元预测**\n\n    多元时间序列由不止一个时间序列变量组成，这些变量不仅依赖于其过去的值，还相互之间存在某种依赖关系。例如，某个国家的一组宏观经济指标，如**国内生产总值**（**GDP**）、通货膨胀率等，可以被视为多元时间序列。多元预测的目标是建立一个模型，捕捉不同变量之间的相互关系及其与自身过去的关系，并共同预测所有时间序列的未来值。\n\
+  \n*   **解释性预测**\n\n    除了时间序列自身的过去值，我们可能会利用其他信息来预测时间序列的未来值。例如，在预测零售店销量时，关于促销活动（包括历史和未来的）的信息通常很有帮助。这种利用除自身历史以外的信息进行的预测，称为解释性预测。\n\
+  \n*   **回测**\n\n    从训练数据中划分验证集以评估模型，是机器学习领域的常见做法。回测是时间序列领域的验证等价物，即利用历史数据来评估训练好的模型。我们稍后将介绍针对时间序列数据进行验证和交叉验证的不同方法。\n\
+  \n*   **样本内和样本外**\n\n\n\n\n再次，借用机器学习（ML）的类比，样本内指训练数据，样本外指未见或测试数据。当你听到样本内指标时，这是指在训练数据上计算的指标，而样本外指标是指在测试数据上计算的指标。\n\
+  \n### 外生变量和内生变量\n\n外生变量是不直接为输出建模的平行时间序列变量，而是用来帮助我们建模我们感兴趣的时间序列。通常，外生变量不受系统中其他变量的影响。内生变量是受系统中其他变量影响的变量。纯内生变量是完全取决于系统中其他变量的变量。稍微放宽严格假设，我们可以将目标变量视为内生变量，将模型中包含的解释回归变量视为外生变量。\n\
+  \n### 预测组合\n\n在时间序列领域，预测组合类似于机器学习领域中的集成。这是一个通过使用某些函数（无论是学习得出的还是基于启发式的）来组合多个预测的过程，例如三个预测模型的简单平均。\n\
+  \n还有许多特定于时间序列的术语，其中一些我们将在全书中介绍。但要建立该领域的基本熟悉度，这些术语应该是一个很好的起点。\n\n## 总结\n\n我们初步涉足了时间序列，了解了时间序列的不同类型，探讨了数据生成过程（DGP）如何生成时间序列，并看到了我们如何思考这个重要问题：*我们能多好地预测时间序列？*\
+  \ 我们还快速回顾了理解本书其余部分所需的术语和符号。在下一章中，我们将动手实践，学习如何处理时间序列数据、如何预处理时间序列、如何处理缺失数据和异常值等。如果你还没有设置环境，请休息一下并花时间完成设置。\n\
+  \n## 延伸阅读\n\n*   *从离散化到注意力和不变性：从不规则采样时间序列学习的原理、模型和方法综述* 由 S.N. Shukla 和 B.M. Marlin\
+  \ 撰写 (2020)：https://arxiv.org/abs/2012.00168\n\n*   *从不规则采样时间序列学习：缺失数据视角* 由 S.C.\
+  \ Li 和 B.M. Marlin 撰写 (2020)，ICML：https://arxiv.org/abs/2008.07599\n\n*   *M6 预测竞赛：弥合预测与投资决策之间的差距*\
+  \ 由 Spyros Makridakis 等人撰写 (2023) https://arxiv.org/abs/2310.13357\n"
+- "# 2 获取和处理时间序列数据\n\n## 加入我们的图书社区\n\n![](img/file0.png)\n\n[`packt.link/EarlyAccess/`](https://packt.link/EarlyAccess/)\n\
+  \n在上一章中，我们了解了什么是时间序列，并建立了一些标准符号和术语。现在，让我们从理论转向实践。在本章中，我们将动手实践，开始处理数据。虽然我们说过时间序列数据无处不在，但我们还没有真正动手处理一些时间序列数据集。我们将开始处理贯穿全书选定的数据集，以正确的方式处理它，并学习一些处理缺失值的技术。\n\
+  \n在本章中，我们将涵盖以下主题：\n\n*   理解时间序列数据集\n*   `pandas` 日期时间操作、索引和切片——复习\n*   处理缺失数据\n\
+  *   映射附加信息\n*   保存和加载文件到磁盘\n*   处理较长时期的缺失数据\n\n## 技术要求\n\n你需要按照本书*前言*中的说明设置 `Anaconda`\
+  \ 环境，以获得一个包含本书代码所需的所有库和数据集的工作环境。任何额外的库将在运行笔记本时安装。\n\n本章的代码可在 [`github.com/PacktPublishing/Modern-Time-Series-Forecasting-with-Python-/tree/main/notebooks/Chapter02`](https://github.com/PacktPublishing/Modern-Time-Series-Forecasting-with-Python-/tree/main/notebooks/Chapter02)\
+  \ 找到。\n\n处理时间序列数据类似于处理其他表格数据集，但侧重于时间维度。与任何表格数据集一样，`pandas` 也完全有能力处理时间序列数据。\n\n让我们从头开始动手处理一个数据集。我们将在全书中使用\
+  \ *London Smart Meters*（伦敦智能电表）数据集。如果你在环境设置过程中还没有下载数据，请前往*前言*立即下载。\n\n## 理解时间序列数据集\n\
+  \n这是你遇到任何新数据集时的关键第一步，甚至在 `Exploratory Data Analysis`（`EDA`，探索性数据分析）之前，我们将在第 3 章\
+  \ *Analyzing and Visualizing Time Series Data*（分析和可视化时间序列数据）中介绍。了解数据的来源、背后的数据生成过程以及源领域，对于深入理解数据集至关重要。\n\
+  \nLondon Data Store（伦敦数据存储），一个免费开放的数据共享门户，提供了该数据集，该数据集由 Jean-Michel D 收集和丰富，并上传至\
+  \ Kaggle。\n\n该数据集包含 5,567 个伦敦家庭的能源消耗读数，这些家庭参与了 UK Power Networks（英国电力网络）主导的 Low\
+  \ Carbon London（低碳伦敦）项目，时间跨度为 2011 年 11 月至 2014 年 2 月。读数以半小时为间隔采集。数据集中还包含一些关于家庭的元数据。让我们看看数据集中有哪些元数据可用：\n\
+  \n*   CACI UK 将英国人口按人口统计类型细分，称为 Acorn。数据中的每个家庭都有相应的 Acorn 分类。Acorn 类别（奢华生活方式、城市精英、学生生活等）被归类为父类别（富裕成就者、崛起的繁荣者、经济拮据者等）。Acorn\
+  \ 类别的完整列表见 *表 2.1*。详细描述每个类别的完整文档可在 [`acorn.caci.co.uk/downloads/Acorn-User-guide.pdf`](https://acorn.caci.co.uk/downloads/Acorn-User-guide.pdf)\
+  \ 获取。\n\n*   数据集包含两组客户——一组在 2013 年全年接受 `dynamic time-of-use`（`dToU`，动态分时）能源价格，另一组则采用固定费率。`dToU`\
+  \ 的电价提前一天通过智能电表 IHD 或短信发布。\n\n*   Jean-Michel D 还用天气和英国银行假日数据丰富了该数据集。\n\n下表显示了 Acorn\
+  \ 类别：\n\n![Table 2.1 – ACORN classification](img/file13.jpg)\n\n表 2.1 – ACORN 分类\n\
+  \n> **注意**\n>\n> Kaggle 数据集还每天预处理时间序列数据并合并所有单独的文件。在这里，我们将忽略那些文件，从原始文件开始，这些文件可以在\
+  \ `hhblock_dataset` 文件夹中找到。学习处理原始文件是工业界处理真实世界数据集不可或缺的一部分。\n\n### 准备数据模型\n\n\n\n\
+  一旦我们了解数据的来源，就可以查看数据，理解不同文件中包含的信息，并弄清关联不同文件的思维模型。你可能会称其为老派做法，但 Microsoft Excel 是获得这种初步理解的绝佳工具。如果文件太大无法在\
+  \ Excel 中打开，我们也可以用 Python 读取它，并将数据样本保存到 Excel 文件中打开。但请记住，Excel 有时会破坏数据格式，尤其是日期，因此我们需要小心，不要保存文件并将\
+  \ Excel 所做的格式更改写回。如果你对 Excel 过敏，也可以在 Python 中完成，只不过需要敲更多的代码。此练习的目的是*查看*不同数据文件包含的内容，探索不同文件之间的关系等。我们可以通过绘制数据模型使这一过程更加正式和明确，类似于下图所示：\n\
+  \n![Figure 2.1 – Data model of the London Smart Meters dataset](img/file14.jpg)\n\
+  \nFigure 2.1 – 伦敦智能电表数据集的数据模型\n\n数据模型主要是为了让我们理解数据，而非用于数据工程目的。因此，它仅包含最基本的信息，例如左侧的关键列和右侧的样本数据。我们还用箭头连接不同的文件，并标注用于链接文件的键。\n\
+  \n让我们看看几个关键列名及其含义：\n\n*   `LCLid`：家庭的唯一消费者 ID\n*   `stdorTou`：家庭是否采用 dToU（分时电价）或标准电价\n\
+  *   `Acorn`：ACORN 阶层\n*   `Acorn_grouped`：ACORN 分组\n*   `file`：块编号\n\n每个 `LCLid`\
+  \ 都关联一个唯一的时间序列。时间序列文件采用一种略显棘手的格式——每天在文件的列中会有 48 个半小时频率的观测值。\n\n> **NOTEBOOK ALERT**\n\
+  >\n> > 要跟随完整代码，请使用 `chapter01` 文件夹中的 `01 - Pandas Refresher & Missing Values Treatment.ipynb`\
+  \ 笔记本。\n\n在开始处理数据集之前，我们需要建立一些概念。其中之一是 `pandas` `DataFrame` 中的一个概念，它至关重要——`pandas`\
+  \ 日期时间属性和索引。让我们快速了解几个将会有用的 `pandas` 概念。\n\n> **NOTE**\n>\n> > 如果你熟悉 `pandas` 中的日期时间操作，请随意跳到下一节。\n\
+  \n## pandas 日期时间操作、索引与切片——复习\n\n我们不使用自己的数据集（因为它稍微复杂一些），而是从 UCI 机器学习存储库中选取一个简单、格式良好的股票交易价格数据集，来看看\
+  \ `pandas` 的功能：\n\n```\ndf = pd.read_excel(\"https://archive.ics.uci.edu/ml/machine-learning-databases/00247/data_akbilgic.xlsx\"\
+  , skiprows=1)\n```\n\n我们读取的 `DataFrame` 如下所示：\n\n![Figure 2.2 – The DataFrame with\
+  \ stock exchange prices](img/filefile15.jpg)\n\nFigure 2.2 – 包含股票交易价格的 DataFrame\n\
+  \n现在我们已经读取了 `DataFrame`，开始对其进行操作。\n\n### 将日期列转换为 pd.Timestamp/DatetimeIndex\n\n\
+  首先，我们必须将日期列（`pandas` 可能不会自动将其解析为日期）转换为 `pandas` 日期时间。为此，`pandas` 有一个方便的函数叫 `pd.to_datetime`。它会自动推断日期时间格式，如果输入是\
+  \ `string` 则将其转换为 `pd.Timestamp`，如果输入是字符串 `list` 则转换为 `DatetimeIndex`。因此，如果我们传入单个日期字符串，`pd.to_datetime`\
+  \ 会将其转换为 `pd.Timestamp`；而如果我们传入一个日期列表，它会将其转换为 `DatetimeIndex`：\n\n```\n>>> pd.to_datetime(\"\
+  13-4-1987\").strftime(\"%d, %B %Y\")\n'13, April 1987'\n```\n\n现在，让我们看看自动解析失败的情况。日期是\
+  \ 1987 年 1 月 4 日。让我们看看传入字符串时会发生什么：\n\n```\n>>> pd.to_datetime(\"4-1-1987\").strftime(\"\
+  %d, %B %Y\")\n'01, April 1987'\n```\n\n好吧，这不是预期的结果，对吧？但如果你仔细想想，任何人都可能犯这个错，因为我们没有告诉计算机月份在前还是日期在前，而\
+  \ `pandas` 默认假设月份在前。让我们纠正一下：\n\n```\n>>> pd.to_datetime(\"4-1-1987\", dayfirst=True).strftime(\"\
+  %d, %B %Y\")\n'04, January 1987'\n```\n\n自动日期解析失败的另一种情况是日期字符串采用非标准形式。在这种情况下，我们可以提供一个\
+  \ `strftime` 格式化字符串来帮助 `pandas` 正确解析日期：\n\n```\n>>> pd.to_datetime(\"4|1|1987\"\
+  , format=\"%d|%m|%Y\").strftime(\"%d, %B %Y\")\n'04, January 1987'\n```\n\n完整的 `strftime`\
+  \ 约定列表可以在 [`strftime.org/`](https://strftime.org/) 找到。\n\n> **PRACTITIONER'S TIP**\n\
+  >\n> > 由于数据格式多种多样，`pandas` 可能会错误推断时间。在读取文件时，`pandas` 会尝试自动解析日期并可能产生错误。我们有很多方法可以控制这种行为：可以使用\
+  \ `parse_dates` 标志关闭日期解析，使用 `date_parser` 参数传入自定义日期解析器，以及使用 `year_first` 和 `day_first`\
+  \ 轻松表示两种流行的日期格式。从 2.0 版本开始，`pandas` 支持 `date_format`，可用于将确切的日期格式作为 Python 字典传入，键为列名。\n\
+  > >\n> > 在所有这些选项中，如果使用 `pandas` >=2.0，我倾向于使用 `date_format`。我们可以保持 `parse_dates=True`，然后使用\
+  \ `strftime` 约定传入确切的日期格式。这能确保日期按我们想要的方式解析。\n> >\n> > 如果使用 `pandas` <2.0，我倾向于在 `pd.read_csv`\
+  \ 和 `pd.read_excel` 中都保持 `parse_dates=False`，以确保 `pandas` 不会自动解析数据。之后，你可以使用 `format`\
+  \ 参数转换日期，它允许你使用 `strftime` 约定显式设置列的日期格式。`pd.to_datetime` 中还有两个其他参数也能使日期推断不那么容易出错——`yearfirst`\
+  \ 和 `dayfirst`。如果你不提供显式的日期格式，至少提供其中一个。\n\n现在，让我们将股票价格数据集中的日期列转换为日期时间：\n\n```\ndf['date']\
+  \ = pd.to_datetime(df['date'], yearfirst=True)\n```\n\n现在，`'date'` 列的 `dtype` 应该是\
+  \ `datetime64[ns]` 或 `<M8[ns]`，它们都是 `pandas`/NumPy 原生的日期时间格式。但我们为什么要这样做？\n\n这是因为这解锁了广泛的额外功能。传统的\
+  \ `min()` 和 `max()` 函数将开始生效，因为 `pandas` 知道这是一个日期时间列：\n\n```\n>>> df.date.min(),df.date.max()\n\
+  (Timestamp('2009-01-05 00:00:00'), Timestamp('2011-02-22 00:00:00'))\n```\n\n让我们看看日期时间格式给我们带来的一些很酷的功能。\n\
+  \n### 使用 .dt 访问器和日期时间属性\n\n既然该列现在是日期格式，编码在日期中的所有语义信息都可以通过 `pandas` 日期时间属性来使用。我们可以使用\
+  \ `.dt` 访问器访问许多日期时间属性，例如 `month`、`day_of_week`、`day_of_year` 等：\n\n```\n>>> print(f\"\
+  \"\"\n     Date: {df.date.iloc[0]}\n     Day of year: {df.date.dt.day_of_year.iloc[0]}\n\
+  \     Day of week: {df.date.dt.dayofweek.iloc[0]}\n     Month: {df.date.dt.month.iloc[0]}\n\
+  \     Month Name: {df.date.dt.month_name().iloc[0]}\n     Quarter: {df.date.dt.quarter.iloc[0]}\n\
+  \     Year: {df.date.dt.year.iloc[0]}\n     ISO Week: {df.date.dt.isocalendar().week.iloc[0]}\n\
+  \     \"\"\")\nDate: 2009-01-05 00:00:00\nDay of year: 5\nDay of week: 0\nMonth:\
+  \ 1\nMonth Name: January\nQuarter: 1\nYear: 2009\nISO Week: 2\n```\n\n\n\n截至 pandas\
+  \ 1.1.0 版本，`week_of_year` 已被弃用，因为它在年底/年初会产生不一致的结果。取而代之的是，采用了 ISO 日历标准（常用于政府和商业领域），我们可以访问\
+  \ ISO 日历来获取 ISO 周数。\n\n### 切片与索引\n\n当我们将日期列设为 DataFrame 的索引时，真正的乐趣才开始。这样做后，你可以使用\
+  \ `pandas` 支持的所有花哨的切片操作，但作用于 datetime 轴上。让我们看看其中的几个：\n\n```\n#### Setting the index\
+  \ as the datetime column\ndf.set_index(\"date\", inplace=True)\n#### Select all\
+  \ data after 2010-01-04(including)\ndf[\"2010-01-04\":]\n#### Select all data between\
+  \ 2010-01-04 and 2010-02-06(not including)\ndf[\"2010-01-04\": \"2010-02-06\"]\n\
+  #### Select data 2010 and before\ndf[: \"2010\"]\n#### Select data between 2010-01\
+  \ and 2010-06(both including)\ndf[\"2010-01\": \"2010-06\"]\n```\n\n除了语义信息以及智能索引和切片外，`pandas`\
+  \ 还提供了用于创建和操作日期序列的工具。\n\n### 创建日期序列与管理日期偏移量\n\n如果你熟悉 Python 中的 `range` 和 NumPy 中的\
+  \ `np.arange`，那么你就会知道它们通过提供起点和终点来帮助我们创建 `integer`/`float` 序列。`pandas` 为 datetime\
+  \ 提供了类似的功能 —— `pd.date_range`。该函数接受开始和结束日期，以及频率（每日、每月等），并创建中间的日期序列。让我们看看创建日期序列的几种方法：\n\
+  \n```\n#### Specifying start and end dates with frequency\npd.date_range(start=\"\
+  2018-01-20\", end=\"2018-01-23\", freq=\"D\").astype(str).tolist()\n#### Output:\
+  \ ['2018-01-20', '2018-01-21', '2018-01-22', '2018-01-23']\n#### Specifying start\
+  \ and number of periods to generate in the given frequency\npd.date_range(start=\"\
+  2018-01-20\", periods=4, freq=\"D\").astype(str).tolist()\n#### Output: ['2018-01-20',\
+  \ '2018-01-21', '2018-01-22', '2018-01-23']\n#### Generating a date sequence with\
+  \ every 2 days\npd.date_range(start=\"2018-01-20\", periods=4, freq=\"2D\").astype(str).tolist()\n\
+  #### Output: ['2018-01-20', '2018-01-22', '2018-01-24', '2018-01-26']\n#### Generating\
+  \ a date sequence every month. By default it starts with Month end\npd.date_range(start=\"\
+  2018-01-20\", periods=4, freq=\"M\").astype(str).tolist()\n#### Output: ['2018-01-31',\
+  \ '2018-02-28', '2018-03-31', '2018-04-30']\n#### Generating a date sequence every\
+  \ month, but month start\npd.date_range(start=\"2018-01-20\", periods=4, freq=\"\
+  MS\").astype(str).tolist()\n#### Output: ['2018-02-01', '2018-03-01', '2018-04-01',\
+  \ '2018-05-01']\n```\n\n我们还可以使用 `pd.TimeDelta` 向日期添加或减去天数、月数和其他值：\n\n```\n#### Add\
+  \ four days to the date range\n(pd.date_range(start=\"2018-01-20\", end=\"2018-01-23\"\
+  , freq=\"D\") + pd.Timedelta(4, unit=\"D\")).astype(str).tolist()\n#### Output:\
+  \ ['2018-01-24', '2018-01-25', '2018-01-26', '2018-01-27']\n#### Add four weeks\
+  \ to the date range\n(pd.date_range(start=\"2018-01-20\", end=\"2018-01-23\", freq=\"\
+  D\") + pd.Timedelta(4, unit=\"W\")).astype(str).tolist()\n#### Output: ['2018-02-17',\
+  \ '2018-02-18', '2018-02-19', '2018-02-20']\n```\n\n`pandas` 中有许多此类别名，包括 `W`、`W-MON`、`MS`\
+  \ 等。完整列表可参见 [`pandas.pydata.org/docs/user_guide/timeseries.html#timeseries-offset-aliases`](https://pandas.pydata.org/docs/user_guide/timeseries.html#timeseries-offset-aliases)。\n\
+  \n在本节中，我们了解了一些可以在 datetime 索引上执行的有用功能和操作，并知道了如何操作包含 datetime 列的 DataFrame。现在，让我们回顾一些处理缺失数据的技术。\n\
+  \n## 处理缺失数据\n\n在处理实际的大型数据集时，你必然会遇到缺失数据。如果它不是时间序列的一部分，它可能是你收集和映射的附加信息的一部分。在我们急于求成、用平均值填充或删除这些行之前，让我们先考虑几个方面：\n\
+  \n*   首要考虑因素应该是我们担心的缺失数据究竟是不是真的缺失。为此，我们需要考虑 `Data Generating Process` (`DGP`)（生成时间序列的过程）。例如，让我们看看当地超市的销售情况。你获得了过去\
+  \ 2 年的 `point-of-sale` (`POS`) 交易数据，并将其处理为时间序列。在分析数据时，你发现有几种产品在几天内没有任何交易。现在，你需要考虑的是这些缺失数据是真的缺失，还是这种缺失本身在传递某种信息。如果某天某个产品没有交易，在处理数据时它会显示为缺失数据，尽管它并非真正缺失。这告诉我们该商品当天没有销售，你应该用零来填充此类缺失数据。\n\
+  \n*   现在，如果你发现每周日的数据都缺失 —— 即缺失具有模式性。这变得棘手，因为如何填补此类空缺取决于你打算使用的模型。如果你用零填补这些空缺，一个依赖近期过去预测未来的模型可能会被误导，尤其是对周一的预测。然而，如果你告知模型前一天是周日，模型仍然可以学会区分这种差异。\n\
+  \n*   最后，如果你发现畅销产品某天销量为零，会怎样？这可能是由于 POS 机故障、数据录入错误或缺货等原因造成的。这类缺失值可以用一些技术进行插补。\n\n\
+  让我们看看由澳大利亚堪培拉 ACT 政府发布、遵循 CC BY 4.0 国际许可的空气质量数据集（[`www.data.act.gov.au/Environment/Air-Quality-Monitoring-Data/94a5-zqnn`](https://www.data.act.gov.au/Environment/Air-Quality-Monitoring-Data/94a5-zqnn)），并了解如何使用\
+  \ `pandas` 插补此类值（还有更复杂的技术可用，本章后面将全部介绍）。\n\n> 从业者提示\n>\n> > 当使用 `read_csv` 等方法读取数据时，`pandas`\
+  \ 提供了一些处理缺失值的便捷方式。`pandas` 默认将许多值（如 `#N/A`、`null` 等）视为 `NaN`。我们可以使用 `na_values`\
+  \ 和 `keep_default_na` 参数来控制此允许的 `NaN` 值列表。\n\n我们选择了 `Monash` 地区和 `PM2.5` 读数，并人为引入了一些缺失值，如下图所示：\n\
+  \n![图 2.3 – 空气质量数据集中的缺失值](img/file16.jpg)\n\n图 2.3 – 空气质量数据集中的缺失值\n\n现在，让我们看看几种可用于填充缺失值的简单技术：\n\
+  \n*   `Last Observation Carried Forward or Forward Fill`（最近观测值前延或前向填充）：这种插补技术采用最后一个观测值，并用它来填充所有缺失值，直到找到下一个观测值。这也称为前向填充。我们可以这样做：\n\
+  \n```\ndf['pm2_5_1_hr'].ffill()\n```\n\n*   `Next Observation Carried Backward of\
+  \ Backward Fill`（下一个观测值后延或后向填充）：这种插补技术采用下一个观测值，并回溯用该值填充所有缺失值。这也称为后向填充。让我们看看如何在 `pandas`\
+  \ 中实现：\n\n```\ndf['pm2_5_1_hr'].bfill()\n```\n\n*   `Mean Value Fill`（均值填充）：这种插补技术也非常简单。我们计算整个序列的平均值，发现在哪里有缺失值，就用平均值填充：\n\
+  \n```\ndf['pm2_5_1_hr'].fillna(df['pm2_5_1_hr'].mean())\n```\n\n让我们绘制使用这三种技术得到的插补曲线：\n\
+  \n![图 2.4 – 使用前向、后向和均值填充插补缺失值](img/file17.jpg)\n\n图 2.4 – 使用前向、后向和均值填充插补缺失值\n\n\n\
+  \n\n### 插值技术\n\n另一类填补技术涵盖了插值：\n\n*   **`Linear Interpolation`（线性插值）**：线性插值就像在两个观测点之间画一条线，并填补缺失值，使它们落在这条线上。具体操作如下：\n\
+  \n```\ndf['pm2_5_1_hr'].interpolate(method=\"linear\")\n```\n\n*   **`Nearest Interpolation`（最近邻插值）**：这直观上类似于前向填充和后向填充的结合。对于每个缺失值，找到最近的观测值并用它来填补缺失值：\n\
+  \n```\ndf['pm2_5_1_hr'].interpolate(method=\"nearest\")\n```\n\n让我们绘制这两条插值线：\n\n\
+  ![Figure 2.5 – Imputed missing values using linear and nearest interpolation](img/file18.jpg)\n\
+  \n图 2.5 – 使用线性插值和最近邻插值填补缺失值\n\n还有一些非线性插值技术：\n\n*   **`Spline, Polynomial, and Other\
+  \ Interpolations`（样条、多项式及其他插值）**：除了线性插值，`pandas` 还支持在后端调用 `SciPy` 例程的非线性插值技术。样条插值和多项式插值类似。它们将给定阶数的样条/多项式拟合到数据上，并用它来填补缺失值。在\
+  \ `interpolate` 中使用 `spline` 或 `polynomial` 作为方法时，我们应始终提供 `order`（阶数）。阶数越高，用于拟合观测点的函数就越灵活。让我们看看如何使用样条和多项式插值：\n\
+  \n```\ndf['pm2_5_1_hr'].interpolate(method=\"spline\", order=2)\ndf['pm2_5_1_hr'].interpolate(method=\"\
+  polynomial\", order=5)\n```\n\n让我们绘制这两种非线性插值技术：\n\n![Figure 2.6 – Imputed missing\
+  \ values using spline and polynomial interpolation](img/file19.jpg)\n\n图 2.6 – 使用样条插值和多项式插值填补缺失值\n\
+  \n有关 `interpolate` 支持的插值技术的完整列表，请访问 [`pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.interpolate.html`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.interpolate.html)\
+  \ 和 [`docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.interp1d.html#scipy.interpolate.interp1d`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.interp1d.html#scipy.interpolate.interp1d)。\n\
+  \n现在我们对 `pandas` 管理 datetime 的方式更加熟悉了，让我们回到数据集，将数据转换为更易于管理的形式。\n\n> **NOTEBOOK ALERT（笔记本提示）**\n\
+  >\n> 要跟随完整的预处理代码，请使用 `chapter01` 文件夹中的 `02 - Preprocessing London Smart Meter Dataset.ipynb`\
+  \ 笔记本。\n\n## 将半小时块级数据 (hhblock) 转换为时间序列数据\n\n在开始处理之前，让我们了解一下在时间序列数据集中会发现的几类通用信息：\n\
+  \n*   **Time Series Identifiers（时间序列标识符）**：这些是特定时间序列的标识符。它可以是名称、ID 或任何其他唯一特征——例如，零售销售数据集中的\
+  \ SKU 名称或 ID，又或我们正在处理的能源数据集中的消费者 ID，这些都是时间序列标识符。\n*   **Metadata or Static Features（元数据或静态特征）**：此信息不随时间变化。我们数据集中家庭的\
+  \ ACORN 分类就是一个例子。\n*   **Time-Varying Features（时变特征）**：此信息随时间变化——例如，天气信息。对于每个时间点，我们都有不同的天气值，这与\
+  \ ACORN 分类不同。\n\n接下来，让我们讨论数据集的格式化。\n\n### 数据的紧凑形式、展开形式和宽形式\n\n格式化时间序列数据集有很多种方式，尤其是像我们现在这样拥有许多相关时间序列的数据集。除了标准术语\
+  \ `wide`（宽）数据外，我们还可以从两种非标准的方式来看待时间序列数据的格式化。虽然这些方式没有标准命名法，但我们在本书中将它们称为 `compact`（紧凑）和\
+  \ `expanded`（展开）。\n\n紧凑形式数据是指任何特定时间序列在 `pandas` DataFrame 中仅占用单行——即，时间维度作为数组在 DataFrame\
+  \ 行内进行管理。时间序列标识符和元数据占据具有标量值的列，然后是时间序列值；其他时变特征占据具有数组的列。包含两列额外列以推断时间——`start_datetime`\
+  \ 和 `frequency`。如果我们知道时间序列的开始日期时间和频率，就可以轻松构建时间并从 DataFrame 中恢复时间序列。这仅适用于规则采样的时间序列。优势在于\
+  \ DataFrame 占用的内存少得多，且易于且更快地处理：\n\n![Figure 2.7 – Compact form data](img/file20.jpg)\n\
+  \n图 2.7 – 紧凑形式数据\n\n展开形式是指时间序列沿 DataFrame 的行展开。如果时间序列中有 *n* 个步骤，它将占据 DataFrame 中的\
+  \ *n* 行。时间序列标识符和元数据沿所有行重复。时变特征也沿行展开。并且我们不再有开始日期和频率，而是有 `datetime` 作为一列：\n\n![Figure\
+  \ 2.8 – Expanded form data](img/file21.jpg)\n\n图 2.8 – 展开形式数据\n\n如果紧凑形式以时间序列标识符为键，则时间序列标识符和\
+  \ `datetime` 列将组合并成为键。\n\n宽格式数据在传统时间序列文献中更为常见。它可以被视为一种遗留格式，在许多方面具有局限性。你还记得我们之前看到的股票数据吗（图\
+  \ 2.2）？我们将日期作为索引或作为其中一列，将不同的时间序列作为 DataFrame 的不同列。随着时间序列数量的增加，它们变得越来越宽，因此得名。这种数据格式不允许我们包含关于时间序列的任何元数据。例如，在我们的数据中，我们有关于特定家庭是处于标准定价还是动态定价下的信息。我们无法在宽格式中包含此类元数据。从操作角度来看，宽格式也不适合关系型数据库，因为当我们获得新的时间序列时，必须不断向表中添加列。我们在本书中不会使用这种格式。\n\
+  \n### 在时间序列中强制执行规则间隔\n\n你应该检查并纠正的第一件事之一，是你拥有的规则采样时间序列数据是否具有相等的时间间隔。在实践中，即使是规则采样的时间序列，由于某些数据收集错误或其他特殊的数据收集方式，中间也会缺失一些样本。因此，在处理数据时，我们将确保在时间序列中强制执行规则间隔。\n\
+  \n> **BEST PRACTICE（最佳实践）**\n>\n> 在处理包含多个时间序列的数据集时，最佳实践是检查所有时间序列的结束日期。如果它们不一致，我们可以将它们与数据集中所有时间序列中的最新日期对齐。\n\
+  \n在我们的智能电表数据集中，某些 `LCLid` 列比其他列早得多地结束。也许该家庭退出了该计划，或者他们搬出去留下了空房子；原因可能是任何东西。然而，我们在强制执行规则间隔时需要处理这个问题。\n\
+  \n我们将在下一节学习如何将数据集转换为时间序列格式。此过程的代码可以在 `02 - Preprocessing London Smart Meter Dataset.ipynb`\
+  \ 笔记本中找到。\n\n### 将伦敦智能电表数据集转换为时间序列格式\n\n对于你遇到的每个数据集，将其转换为紧凑形式或展开形式所需的步骤都会有所不同。这取决于原始数据的结构。在这里，我们将研究如何转换伦敦智能电表数据集，以便我们能将这些经验迁移到其他数据集。\n\
+  \n\n\n\n\n## 数据处理与存储\n\n### 预处理步骤\n\n在我们开始将数据处理为紧凑形式或展开形式之前，需要完成两个步骤：\n\n1.  `Find\
+  \ the Global End Date`（查找全局结束日期）：我们必须找到所有块文件中的最大日期，以便了解时间序列的全局结束日期。\n\n2.  `Basic\
+  \ Preprocessing`（基础预处理）：如果你还记得 `hhblock_dataset` 的结构，你会记得每一行都有一个日期，而在列方向上，我们有半小时块。我们需要将其重塑为长格式，即每一行包含一个日期和一个半小时块。这样更容易处理。\n\
+  \n现在，让我们分别定义将数据转换为紧凑形式和展开形式的函数，并将该函数 `apply()` 到每个 `LCLid` 列上。我们将分别对每个 `LCLid` 执行此操作，因为每个\
+  \ `LCLid` 的开始日期不同。\n\n### 展开形式\n\n转换为展开形式的函数执行以下操作：\n\n1.  查找开始日期。\n2.  使用开始日期和全局结束日期创建一个标准\
+  \ `DataFrame`。\n3.  将 `LCLid` 的 `DataFrame` 左连接到标准 `DataFrame` 上，缺失数据保留为 `np.nan`。\n\
+  4.  返回合并后的 `DataFrame`。\n\n一旦我们拥有了所有 `LCLid` 的 `DataFrame`，必须执行几个额外步骤来完成展开形式的处理：\n\
+  \n1.  将所有 `DataFrame` 连接成一个单一的 `DataFrame`。\n2.  创建一个名为 `offset` 的列，它是半小时块的数值表示；例如，`hh_3`\
+  \ → `3`。\n3.  通过向日期添加 30 分钟的偏移量来创建时间戳，并删除不必要的列。\n\n对于一个块，这种表示大约占用 47 MB 内存。\n\n\
+  ### 紧凑形式\n\n转换为紧凑形式的函数执行以下操作：\n\n1.  查找开始日期和时间序列标识符。\n2.  使用开始日期和全局结束日期创建一个标准 `DataFrame`。\n\
+  3.  将 `LCLid` 的 `DataFrame` 左连接到标准 `DataFrame` 上，缺失数据保留为 `np.nan`。\n4.  按日期对值进行排序。\n\
+  5.  返回时间序列数组，以及时间序列标识符、开始日期和时间序列长度。\n\n一旦我们拥有了每个 `LCLid` 的这些信息，就可以将其汇编成一个 `DataFrame`\
+  \ 并添加 `30min` 作为频率。\n\n对于一个块，这种表示仅占用约 0.002 MB 内存。\n\n我们将使用紧凑形式，因为它易于处理且消耗资源少得多。\n\
+  \n### 映射附加信息\n\n从我们之前准备的数据模型中，我们知道有三个关键文件需要映射：*Household Information*（住户信息）、*Weather*（天气）和\
+  \ *Bank Holidays*（银行假日）。\n\n#### 住户信息\n\n`informations_households.csv` 文件包含关于住户的元数据。这些是不随时间变化的静态特征。为此，我们只需根据\
+  \ `LCLid`（即时间序列标识符）将 `informations_households.csv` 左连接到紧凑形式上。\n\n> **最佳实践**\n>\n\
+  > 在进行 pandas 合并时，最常见且意想不到的结果之一是操作前后的行数不相同（即使你执行的是左连接）。这通常是因为你正在合并的键中存在重复项。作为最佳实践，你可以使用\
+  \ pandas merge 中的 `validate` 参数，它接受诸如 `one_to_one` 和 `many_to_one` 之类的输入，以便在合并时进行此检查，如果假设不成立则会抛出错误。更多信息请访问\
+  \ [`pandas.pydata.org/docs/reference/api/pandas.merge.html`](https://pandas.pydata.org/docs/reference/api/pandas.merge.html)\n\
+  \n#### 银行假日\n\n另一方面，银行假日和天气是随时间变化的特征，应相应处理。需要牢记的最重要方面是，在映射此信息时，它应与我们已作为数组存储的时间序列完美对齐。\n\
+  \n`uk_bank_holidays.csv` 是一个包含假期日期和假期类型的文件。假期信息在此非常重要，因为在家庭成员待在家里共度时光或看电视等的假期，能源消费模式会有所不同。请遵循以下步骤处理此文件：\n\
+  \n1.  将日期列转换为 datetime 格式并将其设置为 `DataFrame` 的索引。\n2.  使用我们之前看到的 `resample()` 函数，我们必须确保索引每\
+  \ 30 分钟重采样一次，这是时间序列的频率。\n3.  在一天内向前填充假期，并用 `NO_HOLIDAY` 填充其余的 `NaN` 值。\n\n现在，我们已将假期文件转换为一个在每\
+  \ 30 分钟间隔都有一行的 `DataFrame`。在每一行中，我们都有一列指示那天是否为假期。\n\n#### 天气\n\n`weather_hourly_darksky.csv`\
+  \ 文件同样是按日频率的。我们需要将其降采样到 30 分钟频率，因为我们需要映射的数据是半小时频率的。如果不这样做，天气将只映射到小时时间戳，导致半小时时间戳为空。\n\
+  \n处理此文件必须遵循的步骤与处理假期的方式也类似：\n\n1.  将日期列转换为 datetime 格式并将其设置为 `DataFrame` 的索引。\n2.\
+  \  使用 `resample()` 函数，我们必须确保索引每 30 分钟重采样一次，这是时间序列的频率。\n3.  向前填充天气特征，以填充重采样时产生的缺失值。\n\
+  \n现在你已确保时间序列与随时间变化的特征之间的对齐，你可以遍历每个时间序列，提取天气和银行假日数组，然后将其存储在 `DataFrame` 的对应行中。\n\n\
+  ### 将文件保存到磁盘并加载\n\n紧凑形式的完全合并 `DataFrame` 仅占用约 10 MB。但保存此文件需要一些工程技巧。如果我们尝试以 CSV 格式保存文件，将无法工作，因为我们将数组存储在\
+  \ pandas 列中的方式（因为数据处于紧凑形式）。我们可以将其保存为 `pickle` 或 `parquet` 格式，或任何二进制文件存储形式。这取决于我们机器上可用的\
+  \ RAM 大小。虽然完全合并的 `DataFrame` 只有约 10 MB，但以 `pickle` 格式保存会使大小激增至约 15 GB。\n\n我们可以将其保存为文本文件，同时进行一些调整以适应列名、列类型和读取文件回内存所需的其他元数据。生成的磁盘文件大小仍约为\
+  \ 15 GB，但因为我们将其作为 I/O 操作进行，所以不会将所有数据保留在内存中。我们称之为时间序列（`.ts`）格式。以紧凑形式保存为 `.ts` 格式、读取\
+  \ `.ts` 格式以及将紧凑形式转换为展开形式的函数可在本书的 GitHub 存储库中的 `src/data_utils.py` 下找到。\n\n如果你不需要将所有\
+  \ `DataFrame` 存储在单个文件中，可以将其拆分为多个块并单独以二进制格式（如 `parquet`）保存。对于我们的数据集，让我们遵循这条路线，将整个\
+  \ `DataFrame` 拆分为块并将它们保存为 `parquet` 文件。这是最适合我们的路线，原因有几点：\n\n*   它利用了该格式自带的压缩。\n\
+  *   它读取整个数据的部分内容以进行快速迭代和实验。\n*   数据类型在读写操作之间得以保留，减少了歧义。\n\n> **注意**\n>\n> 对于超大数据集，我们可以使用一些\
+  \ pandas 替代库，它们使处理超出内存的数据集变得更容易。`Polars` 是一个很棒的库，具有惰性加载且速度非常快。而对于真正海量的数据集，带有分布式集群的\
+  \ `pyspark` 可能是正确的选择。\n\n\n\n\n现在我们已经处理了数据集并将其存储在磁盘上，让我们将其读回内存，并再看几种处理缺失数据的技术。\n\
+  \n### 处理较长时段的缺失数据\n\n我们之前见过一些处理缺失数据的技术——前向填充和后向填充、插值等。如果只有一两个缺失数据点，这些技术通常有效。但如果大段数据缺失，这些简单技术就力不从心了。\n\
+  \n> **笔记本提示**\n>\n> 要跟随完整的缺失数据插补代码，请使用 `chapter02` 文件夹中的 `03 - Handling Missing\
+  \ Data (Long Gaps).ipynb` 笔记本。\n\n让我们从内存中读取块 0-7 的 `parquet` 文件：\n\n```\nblock_df\
+  \ = pd.read_parquet(\"data/london_smart_meters/preprocessed/london_smart_meters_merged_block_0-7.parquet\"\
+  )\n```\n\n我们保存的数据是紧凑形式。我们需要将其转换为展开形式，因为在这种形式下处理时间序列数据更容易。由于我们只需要时间序列的一个子集（为了更快地演示），我们只是从这七个块中提取一个块。要将紧凑形式转换为展开形式，我们可以使用\
+  \ `src/utils/data_utils.py` 中一个名为 `compact_to_expanded` 的有用函数：\n\n```\n#### Converting\
+  \ to expanded form\nexp_block_df = compact_to_expanded(block_df[block_df.file==\"\
+  block_7\"], timeseries_col = 'energy_consumption',\nstatic_cols = [\"frequency\"\
+  , \"series_length\", \"stdorToU\", \"Acorn\", \"Acorn_grouped\", \"file\"],\ntime_varying_cols\
+  \ = ['holidays', 'visibility', 'windBearing', 'temperature', 'dewPoint',\n     \
+  \  'pressure', 'apparentTemperature', 'windSpeed', 'precipType', 'icon',\n     \
+  \  'humidity', 'summary'],\nts_identifier = \"LCLid\")\n```\n\n可视化一组相关时间序列中的缺失数据的最佳方法之一是使用一个名为\
+  \ `missingno` 的非常有用的包：\n\n```\n#### Pivot the data to set the index as the datetime\
+  \ and the different time series along the columns\nplot_df = pd.pivot_table(exp_block_df,\
+  \ index=\"timestamp\", columns=\"LCLid\", values=\"energy_consumption\")\n#### Generate\
+  \ Plot. Since we have a datetime index, we can mention the frequency to decide what\
+  \ do we want on the X axis\nmsno.matrix(plot_df, freq=\"M\")\n```\n\n前面的代码生成以下输出：\n\
+  \n![图 2.9 - 第 7 块中缺失数据的可视化](img/file22.jpg)\n\n图 2.9 – 第 7 块中缺失数据的可视化\n\n> **重要提示**\n\
+  >\n> 仅在少于 25 个时间序列的相关时间序列上尝试 `missingno` 可视化。如果你的数据集包含数千个时间序列（如我们的完整数据集），应用此可视化将产生不可读的图表并导致计算机死机。\n\
+  \n此可视化一眼就能告诉我们很多信息。`Y` 轴包含我们绘制可视化的日期，而 `X` 轴包含列，在本例中列是不同的住户。我们知道所有时间序列并未完美对齐——即并非所有序列都在同一时间开始和结束。许多时间序列开头处的大片空白间隙表明，这些消费者的数据收集比其他人开始得晚。我们也可以看到少数时间序列比其他序列早结束，这意味着它们要么不再是消费者，要么测量阶段已停止。许多时间序列中还有一些较小的白线，这些是真正的缺失值。我们还可以注意到右侧有一个迷你图，它是每行缺失列数的紧凑表示。如果没有缺失值（所有时间序列都有值），迷你图将位于最右侧。最后，如果有大量缺失值，线条将向左偏移。\n\
+  \n仅仅因为存在缺失值，我们并不打算填充/插补它们，因为是否插补缺失数据的决定在工作流的后期才做。对于某些模型，我们不需要插补，而对于其他模型则需要。有多种插补缺失数据的方法，选择哪一种是另一个我们无法预先决定的问题。\n\
+  \n因此，目前让我们选择一个 `LCLid` 并深入挖掘。我们已经知道在 2012-09-30 和 2012-10-31 之间存在一些缺失值。让我们可视化该时期：\n\
+  \n```\n#### Taking a single time series from the block\nts_df = exp_block_df[exp_block_df.LCLid==\"\
+  MAC000193\"].set_index(\"timestamp\")\nmsno.matrix(ts_df[\"2012-09-30\": \"2012-10-31\"\
+  ], freq=\"D\")\n```\n\n前面的代码生成以下输出：\n\n![图 2.10 - MAC000193 在 2012-09-30 至 2012-10-31\
+  \ 之间缺失数据的可视化](img/file23.jpg)\n\n图 2.10 – MAC000193 在 2012-09-30 至 2012-10-31 之间缺失数据的可视化\n\
+  \n在这里，我们可以看到缺失数据实际上在 2012-10-18 和 2012-10-19 之间。通常，我们会继续插补这一时期的缺失数据，但既然我们是以学术角度来审视，我们将采取略微不同的路线。让我们引入一个人工缺失数据段，看看我们将要研究的不同技术如何插补缺失数据：\n\
+  \n```\n#### The dates between which we are nulling out the time series\nwindow =\
+  \ slice(\"2012-10-07\", \"2012-10-08\")\n#### Creating a new column and artificially\
+  \ creating missing values\nts_df['energy_consumption_missing'] = ts_df.energy_consumption\n\
+  ts_df.loc[window, \"energy_consumption_missing\"] = np.nan\n```\n\n现在，让我们绘制时间序列中的缺失区域：\n\
+  \n![图 2.11 - MAC000193 在 2012-10-05 至 2012-10-10 之间的能耗](img/file24.jpg)\n\n图 2.11\
+  \ – MAC000193 在 2012-10-05 至 2012-10-10 之间的能耗\n\n我们缺失了整整 2 天的能耗读数，这意味着有 96 个缺失数据点（半小时粒度）。如果我们使用之前见过的技术之一（如插值），我们会发现它大多是一条直线，因为没有一种方法足够复杂，能捕捉长时间跨度的模式。\n\
+  \n有几种技术可用于填补此类大的数据缺口。我们现在将介绍这些技术。\n\n#### 使用前一天的数据进行插补\n\n由于这是半小时粒度的能耗时间序列，合理推测可能存在日复一日的重复模式。上午\
+  \ 9:00 到 10:00 之间的能耗可能较高，因为每个人都在准备去上班；白天大多数房子可能空无一人，能耗会下降。因此，填补缺失数据最简单的方法是使用前一天的能耗读数，这样\
+  \ 2012-10-18 上午 10:00 的读数就可以用 2012-10-17 上午 10:00 的读数来填补：\n\n```\n##### Shifting\
+  \ 48 steps to get previous day\nts_df[\"prev_day\"] = ts_df['energy_consumption'].shift(48)\n\
+  ##### Using the shifted column to fill missing\nts_df['prev_day_imputed'] =  ts_df['energy_consumption_missing']\n\
+  ts_df.loc[null_mask,\"prev_day_imputed\"] = ts_df.loc[null_mask,\"prev_day\"]\n\
+  mae = mean_absolute_error(ts_df.loc[window, \"prev_day_imputed\"], ts_df.loc[window,\
+  \ \"energy_consumption\"])\n```\n\n让我们看看插补效果如何：\n\n![图 2.12 - 使用前一天数据进行插补](img/file25.jpg)\n\
+  \n图 2.12 – 使用前一天数据进行插补\n\n虽然这看起来好多了，但也非常脆弱。当我们复制前一天的数据时，也假设了任何变化或异常行为也会重复。我们已经可以看到，前一天和后一天的模式并不相同。\n\
+  \n#### 小时平均剖面\n\n更好的方法是从数据中计算小时剖面——即每小时的平均消耗量——并用平均值填补缺失数据：\n\n\n\n```\n#Create\
+  \ a column with the Hour from timestamp\nts_df[\"hour\"] = ts_df.index.hour\n#Calculate\
+  \ hourly average consumption\nhourly_profile = ts_df.groupby(['hour'])['energy_consumption'].mean().reset_index()\n\
+  hourly_profile.rename(columns={\"energy_consumption\": \"hourly_profile\"}, inplace=True)\n\
+  #Saving the index because it gets lost in merge\nidx = ts_df.index\n#Merge the hourly\
+  \ profile dataframe to ts dataframe\nts_df = ts_df.merge(hourly_profile, on=['hour'],\
+  \ how='left', validate=\"many_to_one\")\nts_df.index = idx\n#Using the hourly profile\
+  \ to fill missing\nts_df['hourly_profile_imputed'] = ts_df['energy_consumption_missing']\n\
+  ts_df.loc[null_mask,\"hourly_profile_imputed\"] = ts_df.loc[null_mask,\"hourly_profile\"\
+  ]\nmae = mean_absolute_error(ts_df.loc[window, \"hourly_profile_imputed\"], ts_df.loc[window,\
+  \ \"energy_consumption\"])\n```\n\n让我们看看这是否更好：\n\n![图 2.13 – 使用每小时概况进行插补](img/file26.jpg)\n\
+  \n图 2.13 – 使用每小时概况进行插补\n\n这给了我们一条更加泛化的曲线，没有我们在单独日期中看到的那些尖峰。每小时的起伏也符合我们的预期被捕捉到了。`mean\
+  \ absolute error` (`MAE`) 也比之前低了。\n\n#### 每个工作日的每小时平均值\n\n我们可以通过为每个工作日引入特定的概况来进一步细化此规则。合理推测，工作日的使用模式不会与周末相同。因此，我们可以分别计算每个工作日的平均每小时消耗量，以便为周一、周二等分别建立一个概况：\n\
+  \n```\n#Create a column with the weekday from timestamp\nts_df[\"weekday\"] = ts_df.index.weekday\n\
+  #Calculate weekday-hourly average consumption\nday_hourly_profile = ts_df.groupby(['weekday','hour'])['energy_consumption'].mean().reset_index()\n\
+  day_hourly_profile.rename(columns={\"energy_consumption\": \"day_hourly_profile\"\
+  }, inplace=True)\n#Saving the index because it gets lost in merge\nidx = ts_df.index\n\
+  #Merge the day-hourly profile dataframe to ts dataframe\nts_df = ts_df.merge(day_hourly_profile,\
+  \ on=['weekday', 'hour'], how='left', validate=\"many_to_one\")\nts_df.index = idx\n\
+  #Using the day-hourly profile to fill missing\nts_df['day_hourly_profile_imputed']\
+  \ = ts_df['energy_consumption_missing']\nts_df.loc[null_mask,\"day_hourly_profile_imputed\"\
+  ] = ts_df.loc[null_mask,\"day_hourly_profile\"]\nmae = mean_absolute_error(ts_df.loc[window,\
+  \ \"day_hourly_profile_imputed\"], ts_df.loc[window, \"energy_consumption\"])\n\
+  ```\n\n让我们看看这看起来如何：\n\n![图 2.14 – 每个工作日每小时平均值的插补](img/file27.jpg)\n\n图 2.14 – 每个工作日每小时平均值的插补\n\
+  \n这看起来与另一个非常相似，但这是因为我们要插补的那一天是工作日，而工作日的概况是相似的。`MAE` 也比日概况低。周末的概况略有不同，您可以在相关的 Jupyter\
+  \ Notebook 中看到。\n\n#### 季节性插值\n\n虽然计算季节性概况并用它们进行插补效果很好，但在某些情况下，特别是当时间序列中存在趋势时，这种简单的技术就会力不从心。简单的季节性概况完全无法捕捉趋势，而是完全忽略它。对于这种情况，我们可以执行以下操作：\n\
+  \n1.  计算季节性概况，类似于我们之前计算平均值的方式。\n2.  减去季节性概况，并应用我们之前看到的任何插值技术。\n3.  将季节性概况加回到插值后的序列中。\n\
+  \n此过程已在本书的 GitHub 存储库的 `src/imputation/interpolation.py` 文件中实现。我们可以按如下方式使用它：\n\n\
+  ```\nfrom src.imputation.interpolation import SeasonalInterpolation\n##### Seasonal\
+  \ interpolation using 48*7 as the seasonal period.\nrecovered_matrix_seas_interp_weekday_half_hour\
+  \ = SeasonalInterpolation(seasonal_period=48*7,decomposition_strategy=\"additive\"\
+  , interpolation_strategy=\"spline\", interpolation_args={\"order\":3}, min_value=0).fit_transform(ts_df.energy_consumption_missing.values.reshape(-1,1))\n\
+  ts_df['seas_interp_weekday_half_hour_imputed'] = recovered_matrix_seas_interp_weekday_half_hour\n\
+  ```\n\n这里的关键参数是 `seasonal_period`，它告诉算法寻找每 `seasonal_period` 重复一次的模式。如果我们指定 `seasonal_period=48`，它将寻找每\
+  \ 48 个数据点重复一次的模式。在我们的例子中，它们在每一天之后重复（因为我们一天有 48 个半小时时间步）。除此之外，我们还需要指定需要执行哪种插值。\n\n\
+  > 附加信息\n> \n> > 在内部，我们使用了一种称为季节性分解 (`statsmodels.tsa.seasonal.seasonal_decompose`)\
+  \ 的方法，这将在第 3 章 *分析和可视化时间序列数据* 中介绍，以分离季节性成分。\n\n在这里，我们使用 48（半小时）和 48\\*7（工作日到半小时）进行了季节性插值，并绘制了生成的插补结果：\n\
+  \n![图 2.15 – 使用季节性插值进行插补](img/file28.jpg)\n\n图 2.15 – 使用季节性插值进行插补\n\n在这里，我们可以看到两者都捕捉到了季节性模式，但每个工作日的半小时概况更好地捕捉了第一天的峰值，因此它们的\
+  \ `MAE` 更低。在每小时平均值方面没有改进，主要是因为时间序列中没有强烈的上升或下降模式。\n\n至此，我们已经完成了本章的内容。我们现在正式进入了处理时间序列数据、清洗和加工它的核心细节。恭喜您完成了本章！\n\
+  \n## 概要\n\n在简要回顾了 `pandas` `DataFrames`，特别是日期时间操作和处理缺失数据的简单技术之后，我们了解了存储和处理时间序列数据的两种形式——紧凑型和展开型。利用所有这些知识，我们获取原始数据集并构建了一个管道将其转换为紧凑形式。如果您运行了随附的笔记本，您应该已经将预处理后的数据集保存到磁盘上。我们还深入研究了一些处理长缺失数据间隔的技术。\n\
+  \n现在我们有了处理后的数据集，在下一章中，我们将学习如何可视化和分析时间序列数据集。\n"
+- "# 3 分析和可视化时间序列数据\n\n## 加入我们的图书社区 Discord\n\n![](img/file0.png)\n\n[`packt.link/EarlyAccess/`](https://packt.link/EarlyAccess/)\n\
+  \n在上一章中，我们学习了在哪里获取时间序列数据集，以及如何使用 `pandas` 操作时间序列数据、处理缺失值等。现在我们有了处理后的时间序列数据，是时候了解数据集了，数据科学家称之为**探索性数据分析**（**EDA**）。这是一个数据科学家通过查看汇总统计、特征分布、可视化等来分析数据，以尝试发现数据中可用于建模的模式的过程。在本章中，我们将介绍几种分析时间序列数据集的方法、一些专门为时间序列量身定制的特定技术，并回顾一些时间序列数据的可视化技术。\n\
+  \n在本章中，我们将涵盖以下主题：\n\n*   时间序列的组成部分\n*   可视化时间序列数据\n*   分解时间序列\n*   检测和处理异常值\n\n\
+  ## 技术要求\n\n您需要按照书籍*前言*中的说明设置 `Anaconda` 环境，以获得一个包含本书代码所需的所有库和数据集的工作环境。任何额外的库将在运行笔记本时安装。\n\
+  \n您需要从 `Chapter02` 文件夹运行 `02 - Preprocessing London Smart Meter Dataset.ipynb` 笔记本。\n\
+  \n\n\n本章的代码可在 `https://github.com/PacktPublishing/Modern-Time-Series-Forecasting-with-Python-/tree/main/notebooks/Chapter03`\
+  \ 找到。\n\n## 时间序列的组成部分\n\n在开始分析和可视化时间序列之前，我们需要了解时间序列的结构。任何时间序列都可能包含以下部分或全部组成部分：\n\
+  \n1.  **趋势**\n2.  **季节性**\n3.  **周期性**\n4.  **非规则性**\n\n这些组成部分可以以不同方式混合，但两种非常常见的假设方式是*加法模式*（`Y\
+  \ = Trend + Seasonal + Cyclical + Irregular`）和*乘法模式*（`Y = Trend * Seasonal * Cyclical\
+  \ * Irregular`）。\n\n### 趋势分量\n\n**趋势**是时间序列均值的长期变化。它是时间序列沿特定方向平滑且稳定的移动。当时间序列向上移动时，我们称存在*上升趋势*或*增加趋势*，而当它向下移动时，我们称存在*下降趋势*或*减少趋势*。在撰写本文时，如果我们考虑特斯拉多年来的收入，如下图所示，我们可以看到它在过去几年里持续增长：\n\
+  \n![图 3.1 – 特斯拉收入（百万美元）](img/file30.jpg)\n\n图 3.1 – 特斯拉收入（百万美元）\n\n观察上图，我们可以得出特斯拉收入呈上升趋势的结论。趋势不一定是线性的；它也可以是非线性的。\n\
+  \n### 季节性分量\n\n当时间序列表现出规律的、重复的、上下波动时，我们称之为**季节性**。例如，零售销售通常在假日期间激增，西方国家尤以圣诞节为甚。同样，热带地区的用电量在夏季达到高峰，而寒冷国家则在冬季达到高峰。在所有这些例子中，你都可以看到一种特定的上下波动模式每年重复一次。另一个例子是太阳黑子，如下图所示：\n\
+  \n![图 3.2 – 1749 年至 2017 年的太阳黑子数量](img/file31.jpg)\n\n图 3.2 – 1749 年至 2017 年的太阳黑子数量\n\
+  \n正如你所见，太阳黑子每 11 年达到一个峰值。\n\n### 周期性分量\n\n**周期性**分量常与季节性混淆，但两者因一个微妙的差异而有所区别。与季节性一样，周期性分量也在趋势线周围表现出类似的上下波动模式，但周期性分量不是每个周期都重复该模式，而是不规则的。一个很好的例子是经济衰退，它大约以\
+  \ 10 年为一个周期发生。然而，这并非像钟表那样准时；有时可能少于 10 年，有时可能多于 10 年。\n\n### 非规则性分量\n\n该分量是在从时间序列中移除趋势、季节性和周期性后剩下的部分。传统上，该分量被认为是*不可预测*的，也称为*残差*或*误差项*。在常见的基于经典统计的模型中，任何“模型”的目的都是捕捉所有其他分量，以至于唯一未被捕捉的部分就是非规则性分量。在现代机器学习中，我们并不认为该分量完全不可预测。我们尝试通过使用外生变量来捕捉该分量或其部分。例如，零售销售的非规则性分量可能由其开展的不同促销活动来解释。当我们拥有这些额外信息时，“不可预测”的分量开始再次变得可预测。但无论向模型添加多少额外变量，总会有一些分量，即真正的非规则性分量（或真实误差），被留在后面。\n\
+  \n现在我们了解了时间序列的不同组成部分，让我们看看如何将它们可视化。\n\n## 可视化时间序列数据\n\n在第 2 章 *获取和处理时间序列数据* 中，我们学习了如何准备数据模型作为分析新数据集的第一步。如果准备数据模型就像接近你喜欢的人并建立第一次联系，那么\
+  \ EDA（探索性数据分析）就像与那个人约会。此时，你拥有了数据集，正试图了解它，弄清楚是什么让它运转，它喜欢什么、不喜欢什么，等等。\n\nEDA 通常采用可视化技术来发现模式、识别异常、形成并检验假设等。花些时间了解你的数据集，将在你试图从模型中榨取每一分性能时大有裨益。你可能会明白必须创建什么样的特征，或应用什么样的建模技术，等等。\n\
+  \n在本章中，我们将介绍几种非常适合时间序列数据集的可视化技术。\n\n> **笔记本提示**\n>\n> 要跟随完整的时间序列可视化代码，请使用 `chapter03`\
+  \ 文件夹中的 `01-Visualizing Time Series.ipynb` 笔记本。\n\n### 折线图\n\n这是用于理解时间序列最基础、最常见的可视化方式。我们只需将时间绘制在\
+  \ `X-axis` 上，将时间序列值绘制在 `Y-axis` 上。让我们看看如果绘制数据集中的一个家庭会是什么样子：\n\n![图 3.3 – 家庭 MAC000193\
+  \ 的折线图](img/file32.jpg)\n\n图 3.3 – 家庭 `MAC000193` 的折线图\n\n当你拥有一个长且变化大的时间序列时，就像我们现在这样，折线图可能会变得有点混乱。为了从趋势和移动的角度获得时间序列的宏观视图，其中一个选择是绘制时间序列的平滑版本。让我们看看时间序列的滚动月度平均值是什么样子的：\n\
+  \n![图 3.4 – 家庭 MAC000193 的滚动月度平均能耗](img/file33.jpg)\n\n图 3.4 – 家庭 `MAC000193` 的滚动月度平均能耗\n\
+  \n现在我们可以更清晰地看到宏观模式。季节性很明显——序列在冬季达到峰值，在夏季达到谷值。如果你仔细想想，这是合情合理的。我们讨论的是伦敦，由于气温较低且随后使用供暖系统，冬季的能耗会更高。例如，对于热带地区的家庭，模式可能会反转，峰值出现在夏季空调开始运行的时候。\n\
+  \n折线图的另一个用途是将两个或多个时间序列一起可视化，并研究它们之间的相关性。在我们的例子中，让我们尝试将温度与能耗一起绘制，看看我们关于温度影响能耗的假设是否成立：\n\
+  \n![图 3.5 – 温度与能耗（底部为放大图）（彩图）](img/file34.jpg)\n\n图 3.5 – 温度与能耗（底部为放大图）（彩图）\n\n\
+  在这里，我们可以看到在年度分辨率下，能耗与温度之间存在明显的负相关。从宏观尺度来看，冬季显示出更高的能耗。我们还可以看到与温度松散相关的日常模式，但这可能是由于其他因素，例如人们下班回家等。\n\
+  \n还有其他一些可视化方法更适合展现时间序列中的季节性。让我们来看看。\n\n### 季节性图\n\n**季节性图**与折线图非常相似，但关键区别在于 `X-axis`\
+  \ 表示“季节”，`Y-axis` 表示时间序列值，不同的季节周期用不同的颜色或线型表示。例如，月度分辨率下的年度季节性可以用 `X-axis` 上的月份和不同颜色的不同年份来描绘。\n\
+  \n让我们看看我们关注的家庭的季节性图是什么样子的。这里，我们绘制了跨多年的平均月度能耗：\n\n![图 3.6 – 月度分辨率下的季节性图（彩图）](img/file35.jpg)\n\
+  \n\n\n图 3.6 – 月度分辨率的季节图（彩图）\n\n我们可以立刻看出这种可视化的优势，因为它让我们能够轻松地直观呈现季节性模式。我们可以看到，夏季月份的消费量会下降，并且可以看到这种情况在多年间持续发生。在我们拥有数据的这\
+  \ 2 年中，我们可以看到 10 月份 2013 年的行为略微偏离了 2012 年。也许还有其他因素可以帮助我们解释这种差异——比如温度？我们还可以绘制包含另一感兴趣变量（如温度）的季节图：\n\
+  \n![图 3.7 – 月度分辨率的季节图（能耗与温度对比）（彩图）](img/file36.jpg)\n\n图 3.7 – 月度分辨率的季节图（能耗与温度对比）（彩图）\n\
+  \n注意 10 月？2013 年 10 月气温维持在较高水平的时间多持续了 1 个月，因此能耗模式与去年略有不同。\n\n我们也可以在其他分辨率下绘制这类图表，例如小时级季节性。但当需要绘制的季节周期过多时，会增加视觉混乱度。季节图的一种替代方案是季节箱线图。\n\
+  \n### 季节箱线图\n\n我们不再用不同颜色或线型绘制不同的季节周期，而是用箱线图来表示它们。这能瞬间消除图表中的混乱。这种表示法的额外好处是，它让我们能够了解季节周期之间的变异性：\n\
+  \n![图 3.8 – 小时分辨率下的季节图（上）和季节箱线图（下）（彩图）](img/file37.jpg)\n\n图 3.8 – 小时分辨率下的季节图（上）和季节箱线图（下）（彩图）\n\
+  \n在这里，我们可以看到，在这个分辨率下，季节图过于杂乱，无法辨别模式和季节周期间的变化。然而，季节箱线图提供的信息要丰富得多。箱体中的水平线代表中位数，箱体代表`四分位距`（`IQR`），标记的点则是异常值。通过观察中位数，我们可以看到峰值消费发生在上午\
+  \ 9 点之后。但从上午 9 点开始，变异性也更高。例如，如果你为每周绘制单独的箱线图，你会发现周日的模式略有不同（相关笔记本中有额外的可视化内容）。\n\n\
+  不过，还有另一种可视化方法，能让你在两个维度上检查这些模式。\n\n### 日历热力图\n\n我们不必为每周的每一天单独绘制箱线图或折线图，如果能将这些信息浓缩到一张图中，那将非常有用。这就是`日历热力图`发挥作用的地方。日历热力图使用矩形块中的彩色单元格来表示信息。在矩形的两边，我们可以找到两个独立的时间粒度，例如月份和年份。在每个交叉点处，单元格的颜色根据该交叉点处时间序列的值进行着色。\n\
+  \n让我们在日历热力图中查看不同工作日的小时平均能耗：\n\n![图 3.9 – 能耗日历热力图（彩图）](img/file38.jpg)\n\n图 3.9 –\
+  \ 能耗日历热力图（彩图）\n\n从右侧的颜色刻度可知，颜色越浅代表数值越高。我们可以看到周一至周六有相似的峰值——即上午一次，晚上一次。然而，周日的模式略有不同，全天消费量较高。\n\
+  \n到目前为止，我们已经回顾了许多能够揭示季节性的可视化方法。现在，让我们看一种用于检查自相关的可视化方法。\n\n### 自相关图\n\n如果相关性表示两个变量之间线性关系的强度和方向，那么自相关就是时间序列在连续时期数值之间的相关性。大多数时间序列都严重依赖前一期的值，这也是我们将要看到的许多预测模型中的关键组成部分。诸如`ARIMA`之类的模型（我们将在第\
+  \ 4 章 *建立强基准预测* 中简要介绍）就是建立在自相关基础上的。因此，可视化并了解对先前时间步的依赖程度总是很有帮助的。\n\n这就是`自相关图`派上用场的地方。在这类图表中，`X\
+  \ 轴` 上是不同的滞后阶数（`t-1`、`t-2`、`t-3` 等），`Y 轴` 上是 `t` 与不同滞后阶数之间的相关性。除了自相关，我们还可以查看`偏自相关`，它与自相关非常相似，但有一个关键区别：偏自相关在呈现相关性之前会移除任何可能存在的间接相关性。让我们通过一个例子来理解这一点。如果\
+  \ `t` 是当前时间步，假设 `t-1` 与 `t` 高度相关。因此，推而广之，`t-2` 将与 `t-1` 高度相关，并由于这种相关性，`t` 和 `t-2`\
+  \ 之间的自相关性会很高。然而，偏自相关会修正这一点，并提取纯粹归因于 `t-2` 和 `t` 的相关性。\n\n我们需要记住一点：如果时间序列是平稳的，自相关和偏自相关分析效果最好（我们将在第\
+  \ 6 章 *时间序列预测特征工程* 中详细讨论平稳性）。\n\n> **最佳实践**\n>\n> 使序列平稳的方法有很多，但一种快速粗略的方法是使用季节性分解，仅保留残差。残差应不包含趋势和季节性，因为它们是导致时间序列非平稳的主要驱动因素。但正如我们稍后在本书中将看到的，这并不是使序列在真正意义上平稳的万无一失的方法。\n\
+  \n现在，让我们看看经过平稳化处理后，数据集中我们这户家庭的这些图表是什么样子的：\n\n![图 3.10 – 自相关图和偏自相关图](img/file39.jpg)\n\
+  \n图 3.10 – 自相关图和偏自相关图\n\n在这里，我们可以看到，第一个滞后阶数（`t-1`）影响最大，且其影响在偏自相关图中迅速下降至接近零。这意味着某天的能耗与前一天的能耗高度相关。\n\
+  \n如果你以前见过这种图表，你会看到其上方有一个包络线，显示置信区间，作为选择显著自相关的指南。虽然这是一个不错的经验法则，但这里没有包含它，因为我不想让你把它当作一条规则来用。置信区间的相关性取决于一些假设（正态性等），这些假设并不总是能得到满足，尤其是在实际应用场景中。\n\
+  \n至此，我们已经了解了时间序列的不同组成部分，并学习了如何可视化其中的一些部分。现在，让我们看看如何将时间序列分解为其组成部分。\n\n## 分解时间序列\n\
+  \n季节性分解是将时间序列分解为其组成部分的过程——通常包括趋势、季节性和残差。分解时间序列的一般方法如下：\n\n1.  **去趋势**：这里我们估计`趋势分量`（即时间序列中的平滑变化），并将其从时间序列中移除，得到`去趋势时间序列`。\n\
+  \n2.  **去季节性**：这里我们从去趋势时间序列中估计季节性分量。移除季节性分量后，剩下的就是残差。\n\n让我们详细讨论一下它们。\n\n### 去趋势\n\
+  \n\n\n#### 去趋势\n\n去趋势可以通过几种不同的方式完成。两种常用的方法是使用移动平均和局部估计散点图平滑（LOESS）回归。\n\n### 移动平均\n\
+  \n估计趋势最简单的方法之一是在时间序列上使用移动平均。它可以被视为一个沿着时间序列分步移动的窗口，在每一步，窗口内所有值的平均值都会被记录下来。这个移动平均是一个平滑后的时间序列，帮助我们估计时间序列中的缓慢变化，即趋势。缺点是该技术相当嘈杂。即使使用该技术平滑了时间序列，提取出的趋势也不会平滑；它仍会有噪声。理想情况下，噪声应存在于残差中，而不应在趋势中（参见图\
+  \ 3.11 所示的趋势线）。\n\n### LOESS\n\nLOESS 算法，也称为局部加权多项式回归，由 Bill Cleveland 在 70 年代至\
+  \ 90 年代开发。它是一种非参数方法，用于将平滑曲线拟合到含噪信号上。我们使用一个在时间序列中移动的有序变量作为自变量，时间序列信号作为因变量。对于有序变量中的每个值，算法使用一小部分最近的点，并仅使用这些点在加权回归中估计平滑趋势。加权回归中的权重是距离相关点最近的点。该点被赋予最高权重，随着远离该点，权重逐渐衰减。这为我们提供了一个非常有效的工具，用于建模时间序列中的平滑变化（趋势）。\n\
+  \n### 去季节化\n\n季节性成分也可以通过几种不同的方式来估计。两种最常用的方法是使用周期调整平均值或傅里叶级数。\n\n#### 周期调整平均值\n\n\
+  这是一种相当简单的技术，我们通过计算所有周期中所有此类周期的平均值，来计算预期周期中每个周期的季节性指数。为了讲清楚，让我们看一个月度时间序列，我们预期该序列中存在年度季节性。因此，上下波动模式将在\
+  \ 12 个月内完成一个完整周期，即季节性周期为 12。换句话说，时间序列中每 12 个点具有相似的季节性成分。所以，我们取所有 1 月数值的平均值作为 1 月的周期调整平均值。同样地，我们计算所有\
+  \ 12 个月的周期平均值。最后，我们得到 12 个周期平均值，也可以计算一个平均周期平均值。现在，我们可以将这些周期平均值转化为指数，方法是用每个周期平均值减去所有周期平均值的平均值（加法模型），或用每个周期平均值除以所有周期平均值的平均值（乘法模型）。\n\
+  \n#### 傅里叶级数\n\n在 18 世纪晚期，数学家兼物理学家约瑟夫·傅里叶在研究热流时，有了一个深刻的认识——任何周期函数都可以分解为一系列简单的正弦和余弦波。让我们稍作停留思考一下。任何周期函数，无论其形状、曲线、是否存在，还是如何剧烈地围绕轴线振荡，都可以分解为一系列正弦和余弦波。\n\
+  \n> 附加信息\n>\n> > 对于数学基础较好的人，原理论提议将任何周期函数分解为指数函数的积分。利用欧拉公式，\n> >\n> > ![](img/file40.png)\n\
+  > >\n> > 我们可以将它们视为正弦和余弦波的求和。*延伸阅读* 部分包含一些资源，如果你想深入探究并探索相关概念，例如傅里叶变换。\n\n我们利用这一特性从时间序列中提取季节性，因为季节性是周期函数，而任何周期函数都可以用正弦和余弦波的组合来近似。傅里叶级数的正弦-余弦形式如下：\n\
+  \n![](img/file41.jpg)这里，![](img/file42.png) 是信号 `S` 的 `N` 项近似。理论上，当 `N` 为无穷大时，得到的近似等于原始信号。`P`\
+  \ 是周期的最大长度。我们可以使用这个傅里叶级数，或其中的几项，来建模我们的季节性。在我们的应用中，`P` 是我们试图建模的周期的最大长度。例如，对于月度数据的年度季节性，周期的最大长度（`P`）为\
+  \ 12。`x` 将是一个从 `1` 增加到 `P` 的有序变量。在此例中，`x` 将为 `1`、`2`、`3`，…… `12`。现在，有了这些项，剩下的就是找到\
+  \ ![](img/file43.png) 和 ![](img/file44.png)，我们可以通过对信号进行回归来实现。\n\n我们已经看到，通过合适的傅里叶项组合，我们可以复制任何信号。但问题是，我们应该这样做吗？我们希望从数据中学到一个泛化的季节性概况，使其在未见数据上也表现良好。因此，我们使用\
+  \ `N` 作为超参数，从数据中提取我们想要的任意复杂度的信号。\n\n现在是复习三角函数、回顾正弦和余弦波长什么样的好时机。第一项傅里叶项（`n=1`）是古老的正弦和余弦波，它们在最大周期长度（`P`）内完成一个完整周期。随着\
+  \ `n` 增加，我们得到的正弦和余弦波在最大周期长度（`P`）内包含多个周期。这可以在下图中看到：\n\n![图 3.11 – 余弦傅里叶项 (n=1, 2,\
+  \ 3)](img/file45.jpg)\n\n图 3.11 – 余弦傅里叶项 (n=1, 2, 3)\n\n正弦波和余弦波互补，如下图所示：\n\n![图\
+  \ 3.12 – 正弦和余弦傅里叶项 (n=1)](img/file46.jpg)\n\n图 3.12 – 正弦和余弦傅里叶项 (n=1)\n\n现在，让我们看看如何在实践中使用它。\n\
+  \n### 实现\n\n> 笔记本提示\n>\n> > 要跟随完整的时间序列分解代码，请使用 `chapter03` 文件夹中的 `02-Decomposing\
+  \ Time Series.ipynb` 笔记本。\n\n接下来的小节中，我们将介绍四种实现。\n\n### statsmodel 中的 seasonal_decompose\n\
+  \n`statsmodels.tsa.seasonal` 有一个名为 `seasonal_decompose()` 的函数。这是一种实现，它对趋势成分使用移动平均，对季节成分使用周期调整平均值。它支持加法和乘法两种分解模式。但是，它不容忍缺失值。让我们看看如何使用它：\n\
+  \n```\n#### Does not support missing values, so using imputed ts instead\nres =\
+  \ seasonal_decompose(ts, period=7*48, model=\"additive\", extrapolate_trend=\"freq\"\
+  )\n```\n\n有几个关键参数需要注意，如下所示：\n\n1. `period` 是你预期模式重复的季节性周期。\n2. `model` 接受 `additive`\
+  \ 或 `multiplicative` 作为参数以确定分解类型。\n3. `filt` 接受一个数组，用作移动平均中的权重（具体来说是卷积）。它也可用于定义我们需要移动平均的窗口。我们可以增加它来在一定程度上平滑趋势成分。\n\
+  4. `extrapolate_trend` 是一个参数，我们可以用它将趋势成分向两侧延伸，以避免应用移动平均滤波器时产生的缺失值。\n5. `two_sided`\
+  \ 是一个参数，让我们定义如何计算移动平均。如果为 `True`（默认值），则移动平均使用过去和未来的值计算，因为移动平均的窗口是居中的。如果为 `False`，则仅使用过去的值来计算移动平均。\n\
+  \n\n\n让我们看看我们对数据集中的一条时间序列进行分解的效果如何。我们使用了`period=7*48`来捕获工作日-小时级的概况，并使用`filt=np.repeat(1/(30*48),\
+  \ 30*48)`以均匀权重制作 30 天的移动平均：\n\n![Figure 3.13 – Seasonal decomposition using statsmodels](img/file47.jpg)\n\
+  \nFigure 3.13 – Seasonal decomposition using statsmodels\n\n由于季节性模式在整体绘图尺度下太小，我们无法看到它。配套的笔记本提供了放大后的图表，帮助你理解季节性模式。即使使用较大的窗口（例如\
+  \ 20 天）进行平滑，趋势仍然包含一些噪声。我们或许可以通过增加窗口来进一步减少噪声，但有一种更好的替代方案，我们马上就会看到。\n\n## 使用 LOESS\
+  \ 进行季节性与趋势分解 (STL)\n\n正如我们之前所见，LOESS 更适合趋势估计。**Seasonality and trend decomposition\
+  \ using LOESS** (**STL**) 是一种利用 LOESS 进行趋势估计、利用周期平均进行季节性估计的实现。虽然 `statsmodels` 有相关实现，但我们为了更好的性能和灵活性重新实现了它。该实现位于本书的\
+  \ GitHub 仓库中的 `src.decomposition.seasonal.py`。它期望输入为带有 datetime 索引的 pandas DataFrame\
+  \ 或 Series。让我们看看如何使用它：\n\n```\nstl = STL(seasonality_period=7*48, model = \"additive\"\
+  )\nres_new = stl.fit(ts_df.energy_consumption)\n```\n\n此处的关键参数如下：\n\n1. `seasonality_period`\
+  \ 是你预期模式重复的季节周期。\n2. `model` 接受 `additive` 或 `multiplicative` 参数，以确定分解类型。\n3. `lo_frac`\
+  \ 是用于拟合 LOESS 回归的数据比例。\n4. `lo_delta` 是我们在其中使用线性插值而非加权回归的分数距离。使用非零的 `lo_delta` 可显著减少计算时间。\n\
+  \n让我们看看这种分解的效果。这里我们使用了 `seasonality_period=7*48` 来捕获工作日-小时级的概况：\n\n![Figure 3.14\
+  \ – STL decomposition](img/file48.jpg)\n\nFigure 3.14 – STL decomposition\n\n让我们也看看仅一个月的分解，以更清晰地看到提取的季节性模式：\n\
+  \n![Figure 3.15 – STL decomposition (zoomed-in for a month)](img/file49.jpg)\n\n\
+  Figure 3.15 – STL decomposition (zoomed-in for a month)\n\n现在趋势足够平滑，季节性也被捕获了。这里我们可以清晰地看到每小时的峰值和谷值，以及周末更高的峰值。但由于我们依赖平均值来推导季节性，它也极易受异常值影响。时间序列中极少数极高或极低的值都会扭曲从周期平均得出的季节性概况。该技术的另一个缺点是：当数据分辨率与预期季节性周期之间的差异较大时，提取出的季节性的“优度”会下降。例如，在日度或亚日度数据上提取年度季节性，会使提取的季节性非常嘈杂。如果你拥有的数据少于预期季节性的两个周期，该技术也将失效——例如，我们想提取年度季节性，但数据不足两年。\n\
+  \n## 傅里叶分解\n\n我们可以在 `src.decomposition.seasonal.py` 中找到使用傅里叶项分解时间序列的 Python 实现。它使用\
+  \ LOESS 进行趋势检测，使用傅里叶项进行季节性提取。有两种使用方式。首先，我们可以将 `seasonality_period` 指定为 `pandas`\
+  \ datetime 属性之一（如 `hour`、`week_of_day` 等）：\n\n```\nstl = FourierDecomposition(seasonality_period=\"\
+  hour\", model = \"additive\", n_fourier_terms=5)\nres_new = stl.fit(pd.Series(ts.squeeze(),\
+  \ index=ts_df.index))\n```\n\n或者，我们可以创建一个与时间序列长度相同、具有季节性序数表示的自定义季节性数组。如果是日度数据的年度季节性，该数组的最小值为\
+  \ `1`，最大值为 `365`，因为它每天增加 1：\n\n**# 制作自定义季节性项**\n\n```\nts_df[\"dayofweek\"] = ts_df.index.dayofweek\n\
+  ts_df[\"hour\"] = ts_df.index.hour\n```\n\n**# 创建排序后的唯一组合 DataFrame**\n\n```\nmap_df\
+  \ = ts_df[[\"dayofweek\",\"hour\"]].drop_duplicates().sort_values([\"dayofweek\"\
+  , \"hour\"])\n```\n\n**# 分配序数变量以捕获顺序**\n\n```\nmap_df[\"map\"] = np.arange(1, len(map_df)+1)\n\
+  ```\n\n**# 将序数映射映射回原始 DataFrame 并获取季节性数组**\n\n```\nseasonality = ts_df.merge(map_df,\
+  \ on=[\"dayofweek\",\"hour\"], how='left', validate=\"many_to_one\")['map']\nstl\
+  \ = FourierDecomposition(model = \"additive\", n_fourier_terms=50)\nres_new = stl.fit(pd.Series(ts,\
+  \ index=ts_df.index), seasonality=seasonality)\n```\n\n该过程中涉及的关键参数如下：\n\n1. `seasonality_period`\
+  \ 是从 `datetime index` 中提取的季节性。可以使用 `pandas` datetime 属性（如 `week_of_day`、`month`\
+  \ 等）来指定最显著的季节性。如果设为 `None`，则在调用 `fit` 时需要提供季节性数组。\n2. `model` 接受 `additive` 或 `multiplicative`\
+  \ 参数，以确定分解类型。\n3. `n_fourier_terms` 决定用于提取季节性的傅里叶项数量。增加该参数可从数据中提取更复杂的季节性。\n4. `lo_frac`\
+  \ 是用于拟合 LOESS 回归的数据比例。\n5. `lo_delta` 是我们在其中使用线性插值而非加权回归的分数距离。使用非零的 `lo_delta` 可显著减少计算时间。\n\
+  \n让我们看看使用 `FourierDecomposition` 进行分解的放大图：\n\n![Figure 3.16 – Decomposition using\
+  \ Fourier terms (zoomed-in for a month)](img/file50.jpg)\n\nFigure 3.16 – Decomposition\
+  \ using Fourier terms (zoomed-in for a month)\n\n趋势将与 STL 相同，因为我们这里也使用了 LOESS。季节性概况可能略有不同，且对异常值更稳健，因为我们在信号上使用傅里叶项进行正则化回归。另一个优势是我们将数据分辨率与预期季节性解耦了。现在，在亚日度数据上提取年度季节性不再像使用周期平均那样具有挑战性。\n\
+  \n到目前为止，我们只看到了每个序列提取一种季节性的技术；大多提取主要季节性。那么，当我们有多个季节性模式时该怎么办？\n\n## 使用 LOESS 进行多重季节性分解\
+  \ (MSTL)\n\n高频数据（如日度、小时度或分钟度数据）的时间序列容易表现出多重季节性模式。例如，可能存在小时级季节性模式、周级季节性模式和年度季节性模式。但如果我们只提取主导模式而将其余留给残差，就没有做到充分的分解。Kasun\
+  \ Bandara 等人提出了 STL 分解的多重季节性扩展，称为 **multiple seasonal-trend decomposition using\
+  \ LOESS** (**MSTL**)，并在 R 生态系统中有相应实现。一个非常相似的 Python 实现可以在 `src.decomposition.seasonal.py`\
+  \ 中找到。除了 MSTL，该实现还使用傅里叶项提取多重季节性。\n\n> REFERENCE CHECK\n> \n> > Kasun Bandara 等人的研究论文在\
+  \ `References` 部分被引用为参考文献 *1*。\n\n让我们看一个如何使用它的示例：\n\n\n\n\n```python\nstl = MultiSeasonalDecomposition(seasonal_model=\"\
+  fourier\", seasonality_periods=[\"day_of_year\", \"day_of_week\", \"hour\"], model=\"\
+  additive\", n_fourier_terms=10)\nres_new = stl.fit(pd.Series(ts, index=ts_df.index))\n\
+  ```\n\n此处的关键参数如下：\n\n1.  `seasonality_periods` 是预期季节性的列表。对于 `STL`，它是季节周期的列表，而对于\
+  \ `FourierDecomposition`，它是表示 `pandas` 日期时间属性的字符串列表。\n\n2.  `seasonality_model`\
+  \ 接受 `fourier` 或 `averages` 作为参数，以确定季节性分解的类型。\n\n3.  `model` 接受 `additive` 或 `multiplicative`\
+  \ 作为参数，以确定分解的类型。\n\n4.  `n_fourier_terms` 决定用于提取季节性的傅里叶项数。随着该参数的增加，从数据中提取的季节性会变得更复杂。\n\
+  \n5.  `lo_frac` 是用于拟合 LOESS 回归的数据比例。\n\n6.  `lo_delta` 是在该范围内使用线性插值代替加权回归的分数距离。使用非零\
+  \ `lo_delta` 可显著减少计算时间。\n\n让我们看看使用傅里叶分解时的分解效果：\n\n![图 3.17 – 使用傅里叶项进行多重季节性分解](img/file51.jpg)\n\
+  \n图 3.17 – 使用傅里叶项进行多重季节性分解\n\n在这里，我们可以看到 `day_of_week` 季节性已被提取。要查看 `day_of_week`\
+  \ 和 `hour` 季节分量，我们需要稍微放大一下：\n\n![图 3.18 – 使用傅里叶项进行多重季节性分解（放大至一个月）](img/file52.jpg)\n\
+  \n图 3.18 – 使用傅里叶项进行多重季节性分解（放大至一个月）\n\n在这里，我们可以观察到 `hour` 季节性已被很好地提取，并且它还分离出了 `day_of_week`\
+  \ 季节分量，该分量在周末达到峰值。`day_of_week` 季节分量的 `离散阶跃` 特性是因为数据频率是半小时级的，对于 48 个数据点，`day_of_week`\
+  \ 将保持相同。\n\n> **注意**\n>\n> `MSTL` 也已在 `statsmodels` 中实现，随附的笔记本中包含使用它的代码。`statsmodels`\
+  \ 与本书代码中捆绑的实现之间的关键区别在于，书中的实现还提供了基于傅里叶级数分解的选项。\n\n我们在下表中总结了所涵盖的四种技术：\n\n![表 3.1 –\
+  \ 不同的季节性分解技术](img/file53.jpg)\n\n表 3.1 – 不同的季节性分解技术\n\n## 检测和处理异常值\n\n`异常值`（`outlier`），顾名思义，是指与其余观测值距离异常远的观测值。如果我们将\
+  \ `数据生成过程`（`DGP`）视为生成时间序列的随机过程，则异常值是那些由 `DGP` 生成概率最低的点。这可能有多种原因，包括测量设备故障、数据录入错误和黑天鹅事件等。能够检测并*处理*此类异常值可能有助于您的预测模型更好地理解数据。\n\
+  \n异常值/异常检测本身就是时间序列中的一个专门领域，但在这本书中，我们将局限于更简单的识别和处理异常值的技术。这是因为我们的主要目的不是检测异常值，而是清洗数据，以便我们的预测模型表现得更好。如果您想了解更多关于异常检测的信息，请前往*延伸阅读*部分获取一些入门资源。\n\
+  \n现在，让我们看看几种识别异常值的技术。\n\n> **笔记本提示**\n>\n> 要跟随完整的异常值检测代码，请使用 `chapter03` 文件夹中的 `03-Outlier\
+  \ Detection.ipynb` 笔记本。\n\n### 标准差\n\n这是一个几乎所有处理数据一段时间的人都听说过的经验法则——如果 ![](img/file54.png)\
+  \ 是时间序列的均值，![](img/file55.png) 是标准差，则落在 ![](img/file56.png) 之外的任何值都是 `异常值`。其背后的理论深植于统计学。如果我们假设时间序列的值遵循正态分布（这是一种具有非常理想性质的对称分布），利用概率论，我们可以推导出正态分布曲线下\
+  \ 68% 的面积位于均值两侧的一个标准差内，约 95% 的面积位于两个标准差内，约 99% 的面积位于三个标准差内。因此，当我们将边界设为三个标准差（通过使用经验法则）时，我们的意思是：如果任何观测值属于该概率分布的概率小于\
+  \ 1%，则它们是异常值。转到稍微实际一点的问题上，这个三个标准差的截断点绝非不可更改。我们需要尝试该倍数的不同值，并通过主观评估结果来确定合适的倍数。倍数越高，异常值就越少。\n\
+  \n对于高度季节性的数据，将规则直接应用于原始时间序列的朴素方法效果不佳。在这种情况下，我们必须使用前面讨论的任何技术对数据进行去季节化，然后将异常值检测应用于残差。如果不这样做，我们可能会将季节性峰值标记为异常值，这不是我们想要的。\n\
+  \n这里的另一个关键假设是正态分布。然而，在现实中，我们遇到的许多时间序列可能不符合正态分布，因此该规则将很快失去其理论保证。\n\n### 四分位距（IQR）\n\
+  \n另一种非常相似的技术是使用 `IQR` 代替标准差来定义边界，超出该边界的观测值将被标记为异常值。`IQR` 是第 3 四分位数（或第 75 百分位数或 0.75\
+  \ 分位数）与第 1 四分位数（或第 25 百分位数或 0.25 分位数）之间的差值。上下界定义如下：\n\n*   上界 = Q3 + n x IQR\n*\
+  \   下界 = Q1 - n x IQR\n\n这里，`IQR = Q3 - Q1`，`n` 是 IQR 的倍数，决定了可接受区域的宽度。\n\n对于我们观察到高频异常值和剧烈变化的数据集，这比标准差稍微更稳健。这是因为标准差和均值高度受数据集中个别点的影响。如果\
+  \ `2σ` 是早期方法的经验法则，那么这里是 1.5 倍 `IQR`。这也回溯到相同的正态分布假设，1.5 倍 `IQR` 约等于 ~3σ（确切地说是 2.7σ）。关于在应用规则前进行去季节化的观点在此也适用。它适用于我们这里将看到的所有技术。\n\
+  \n### 孤立森林\n\n\n\n\n#### 孤立森林\n\n**孤立森林**是一种基于决策树的无监督异常检测算法。典型的异常检测算法对*正常*点建模，并将不符合*正常*模式的点标记为异常值。但**孤立森林**走了一条不同的路径，直接对异常值建模。它通过随机分割特征空间来创建一片决策树森林。该技术基于这样一个假设：异常点位于外围，更容易落入树的叶子节点。因此，你可以在短分支中找到异常值，而正常点彼此更接近，需要更长的分支。任意点的“异常分数”由到达该特定点前需要遍历的树深度决定。**scikit-learn**在`sklearn.ensemble.IsolationForest`下提供了该算法的实现。除了决策树的标准参数外，这里的关键参数是`contamination`。它默认设置为`auto`，但可以设置为\
+  \ 0 到 0.5 之间的任何值。该参数指定了你预期数据集中异常数据的百分比。但我们必须牢记一点：`IsolationForest`完全不考虑时间因素，只是突出显示落在*正常范围之外*的值。\n\
+  \n### 极端学生化偏差 (ESD) 和季节性 ESD (S-ESD)\n\n这种基于统计的技术比基本的![](img/file60.png)技术更复杂，但仍使用相同的正态性假设。它基于另一种称为**Grubbs\
+  \ 检验**的统计检验，用于在正态分布数据集中寻找*单个异常值*。**ESD**通过在每一步识别并移除一个异常值，迭代地使用**Grubbs 检验**。它还会根据剩余点的数量调整临界值。要更详细地了解该检验，请前往*延伸阅读*部分，我们在那里提供了关于**ESD**和**S-ESD**的几个资源。2017\
+  \ 年，**Hochenbaum 等人**来自**Twitter 研究院**，提出使用带有去季节化的广义**ESD**作为检测时间序列异常值的方法。\n\n我们改编了现有的算法实现以适应我们的用例，并将其放在本书的\
+  \ GitHub 仓库中。虽然其他所有方法都将确定合适的异常值水平留给用户，通过调整一些参数来完成，但**S-ESD**只需输入预期异常值数量的上限，然后独立识别异常值。例如，我们将上限设为\
+  \ 800，算法在我们处理的数据中识别出了约 400 个异常值。\n\n> 参考文献核查\n>\n> > **Hochenbaum 等人**的研究论文在*参考文献*部分被引用为参考文献\
+  \ *2*。\n\n让我们看看使用我们回顾的所有技术检测异常值的结果：\n\n![图 3.19 – 使用不同技术检测到的异常值](img/file61.jpg)\n\
+  \n**图 3.19 – 使用不同技术检测到的异常值**\n\n现在我们已经学会了如何检测异常值，接下来讨论如何处理它们并清洗数据集。\n\n### 处理异常值\n\
+  \n我们必须回答的第一个问题是：是否应该修正我们识别出的异常值。自动识别异常值的统计检验应该经过另一层人工验证。如果我们盲目地“处理”异常值，可能会切除有助于我们预测时间序列的宝贵模式。如果你只预测少量时间序列，那么查看异常值并通过寻找其成因将其与现实挂钩仍然是有意义的。\n\
+  \n但当你有数千个时间序列时，人工无法检查所有异常值，因此我们必须求助于自动化技术。一种常见做法是用启发式值（如最大值、最小值、第 75 百分位数等）替换异常值。更好的方法是将异常值视为缺失数据，并使用我们之前讨论的任何技术来填补异常值。\n\
+  \n我们必须记住一点：异常值修正并非预测的必要步骤，尤其是在使用机器学习或深度学习等现代方法时。是否进行异常值修正是我们需要通过实验来确定的。\n\n干得好！这一章内容很充实，包含大量概念和代码，恭喜你完成了它。如有需要，随时可以返回复习一些主题。\n\
+  \n## 总结\n\n在本章中，我们了解了时间序列的关键组成部分，并熟悉了趋势、季节性等术语。我们还回顾了一些时间序列专用的可视化技术，这些技术在**探索性数据分析\
+  \ (EDA)**中将派上用场。然后，我们学习了将时间序列分解为其组成部分的技术，并看到了检测数据中异常值的技术。最后，我们学习了如何处理识别出的异常值。现在，你已经准备好开始预测时间序列了，我们将在下一章开始。\n\
+  \n## 参考文献\n\n以下是本章的参考文献：\n\n1.  **Kasun Bandara**、**Rob J Hyndman** 和 **Christoph\
+  \ Bergmeir**。(2021)。*MSTL: A Seasonal-Trend Decomposition Algorithm for Time Series\
+  \ with Multiple Seasonal Patterns*。arXiv:2107.13462 \\[stat.AP\\]. https://arxiv.org/abs/2107.13462.\n\
+  \n2.  **Hochenbaum, J.**、**Vallis, O.** 和 **Kejariwal, A.** (2017)。*Automatic Anomaly\
+  \ Detection in the Cloud Via Statistical Learning*。ArXiv, abs/1704.07706. https://arxiv.org/abs/1704.07706.\n\
+  \n## 延伸阅读\n\n要了解本章涵盖主题的更多信息，请查看以下资源：\n\n*   **傅里叶级数**: https://www.setzeus.com/public-blog-post/the-fourier-series.\n\
+  *   **可汗学院的傅里叶级数**: https://www.youtube.com/watch?v=UKHBWzoOKsY.\n*   **傅里叶变换**:\
+  \ https://betterexplained.com/articles/an-interactive-guide-to-the-fourier-transform/.\n\
+  *   **Ane Blázquez-García**、**Angel Conde**、**Usue Mori** 和 **Jose A. Lozano**。(2021)。*A\
+  \ Review on Outlier/Anomaly Detection in Time Series Data.* arXiv:2002.04236. https://arxiv.org/abs/2002.04236.\n\
+  *   **Braei, M.** 和 **Wagner, S.** (2020)。*Anomaly Detection in Univariate Time-series:\
+  \ A Survey on the State-of-the-Art*。ArXiv, abs/2004.00433. https://arxiv.org/abs/2004.00433.\n\
+  *   **广义 ESD 异常值检验**: https://www.itl.nist.gov/div898/handbook/eda/section3/eda35h3.htm.\n"
+- "# 4 建立强基线预测\n\n## 加入我们的 Discord 图书社区\n\n![](img/file0.png)\n\n[`packt.link/EarlyAccess/`](https://packt.link/EarlyAccess/)\n\
+  \n在上一章中，我们看到了一些可用于理解**时间序列数据**、进行**探索性数据分析 (EDA)** 等的技术。但现在，让我们直奔主题——**时间序列预测**。理解数据集并观察模式、季节性等的目的，是为了让预测该序列的工作变得更容易。而在任何机器学习练习中，在进一步深入之前我们需要建立的第一件事之一就是**基线**。\n\
+  \n基线是一种简单的模型，它能在不需要花费大量时间开发的情况下提供合理的结果。许多人认为基线源于常识，例如平均值或一些经验法则。但作为最佳实践，基线可以像我们想要的那样复杂，只要它能快速且轻松地实现。我们想要取得的任何进步都将体现在相对于该基线的性能上。\n\
+  \n\n\n\n## 在本章中，我们将介绍一些可作为基线的经典技术，这些技术构成了强有力的基线。有人可能会觉得本章讨论的预测技术不应作为基线，但我们将它们保留在此，因为这些技术经受住了时间的考验——且有充分理由。得益于实现这些技术的优秀开源库，它们也非常成熟，且只需极少的精力即可应用。在许多类型的问题/数据集中，很难超越本章将讨论的基线技术，在这种情况下，坚持使用其中一种基线技术并不丢人。\n\
+  \n本章将涵盖以下主题：\n\n1.  搭建测试工具\n2.  生成强基线预测\n3.  评估时间序列的可预测性\n\n## 技术要求\n\n您需要按照本书前言中的说明设置\
+  \ Anaconda 环境，以获得一个包含本书代码所需的所有库和数据集的工作环境。任何额外的库将在运行笔记本时安装。\n\n在使用本章代码之前，您需要运行以下笔记本：\n\
+  \n*   `Chapter02` 文件夹中的 `02-Preprocessing London Smart Meter Dataset.ipynb` 预处理笔记本。\n\
+  \n本章的代码可在 `https://github.com/PacktPublishing/Modern-Time-Series-Forecasting-with-Python-2E/tree/main/notebooks/Chapter04`\
+  \ 找到。\n\n## 搭建测试工具\n\n在开始预测和设置基线之前，我们需要搭建一个 `test harness`（测试工具/测试平台）。在软件测试中，`test\
+  \ harness` 是经过配置的一组代码和输入，用于在各种情况下测试程序。就机器学习而言，`test harness` 是一组可用于评估算法的代码和数据。搭建\
+  \ `test harness` 非常重要，以便我们能以标准且快速的方式评估所有未来的算法。\n\n首先我们需要 `holdout`（`test`，保留/测试）数据集和\
+  \ `validation`（验证）数据集。\n\n### 创建保留（测试）数据集和验证数据集\n\n作为标准做法，在机器学习中，我们会划分出数据集的两部分，将它们命名为\
+  \ `validation data`（验证数据）和 `test data`（测试数据），并且完全不使用它们来训练模型。`validation data` 用于建模过程中评估模型质量。为了在不同模型类别中选择、调整超参数、执行特征选择等，我们需要一个数据集。`Test\
+  \ data` 就像是对您所选模型的最终测试。它告诉您模型在未见数据上的表现如何。如果 `validation data` 就像期中考试，那么 `test data`\
+  \ 就是您的期末考试。\n\n在常规回归或分类中，我们通常随机抽取几条记录并将其放在一边。但在处理时间序列时，我们需要尊重数据集的时间属性。因此，最佳实践是将数据集的最新部分作为\
+  \ `test data`。另一个经验法则是设置等大小的 `validation` 和 `test` 数据集，以便基于 `validation data` 做出的关键建模决策尽可能接近\
+  \ `test data`。我们在第 2 章 *获取和处理时间序列数据* 中介绍的数据集（伦敦智慧能源数据集）包含 2011 年 11 月至 2014 年 2\
+  \ 月伦敦家庭的能源消耗读数。因此，我们将把 2014 年 1 月作为 `validation data`，2014 年 2 月作为 `test data`。\n\
+  \n让我们打开 `chapter04` 文件夹中的 `01-Setting up Experiment Harness.ipynb` 并运行它。在笔记本中，我们必须在使用\
+  \ `SeasonalInterpolation`（季节性插值）填补缺失值之前和之后都创建训练-测试集划分，并相应地保存它们。笔记本运行完成后，您将在预处理文件夹中创建以下文件，其中\
+  \ 2014 年的数据单独保存：\n\n*   `selected_blocks_train.parquet`\n*   `selected_blocks_val.parquet`\n\
+  *   `selected_blocks_test.parquet`\n*   `selected_blocks_train_missing_imputed.parquet`\n\
+  *   `selected_blocks_val_missing_imputed.parquet`\n*   `selected_blocks_test_missing_imputed.parquet`\n\
+  \n现在我们有了一个固定的数据集，可用于公平地评估多种算法，我们还需要一种方法来评估不同的预测。\n\n### 选择评估指标\n\n在机器学习中，我们有一小把指标可用于衡量连续输出，主要是\
+  \ `Mean Absolute Error`（`MAE`，平均绝对误差）和 `Mean Squared Error`（`MSE`，均方误差）。但在时间序列预测领域，有大量的指标，且对于使用哪些指标没有真正的共识。造成这种指标数量压倒性优势的原因之一是，没有任何单一指标能衡量预测的每一个特征。因此，我们专门用一整章来讨论这个主题（第\
+  \ 18 章，*评估预测——预测指标*）。目前，我们将仅回顾几个指标，所有这些指标我们都将用来衡量预测。我们只是按其表面含义来考虑它们：\n\n*   `Mean\
+  \ Absolute Error`（`MAE`）：MAE 是一个非常简单的指标。它是时间步 ![](img/file63.png) 处的预测值与时间 ![](img/file64.png)\
+  \ 处的观测值之间无符号误差的平均值。公式如下：\n\n![](img/file65.jpg)\n\n此处，`N` 是时间序列的数量，`L` 是时间序列的长度（在本例中为测试期的长度），`f`\
+  \ 和 `y` 分别是预测值和观测值。\n\n*   `Mean Squared Error`（`MSE`）：MSE 是预测值 ![](img/file66.png)\
+  \ 和观测值 ![](img/file67.png) 之间平方误差的平均值：\n\n![](img/file68.jpg)\n\n*   `Mean Absolute\
+  \ Scaled Error`（`MASE`）：MASE 比 MSE 或 MAE 稍微复杂一些，但给了我们一个稍好的度量来克服前两个度量的尺度依赖性。如果我们有多个具有不同平均值的时间序列，与低值时间序列相比，MAE\
+  \ 和 MSE 会显示高值时间序列的较高误差。MASE 通过基于 `naïve forecasting method`（朴素预测法，这是最基本的预测之一；我们稍后将在本章中回顾）的样本内\
+  \ MAE 来缩放误差，从而克服了这一问题。直观上，MASE 给出了我们的预测比朴素预测好多少的度量：\n\n![](img/file69.jpg)\n\n*\
+  \   `Forecast Bias`（`FB`，预测偏差）：这是一个与我们见过的其他指标略有不同侧面的指标。虽然其他指标有助于评估预测的*正确性*，而不考虑误差的方向，但预测偏差让我们了解模型的整体*偏差*。预测偏差是一个指标，帮助我们理解预测是持续高估还是低估。我们将预测偏差计算为预测值之和与观测值之和的差，以所有实际值之和的百分比表示：\n\
+  \n![](img/file70.jpg)\n\n现在，我们的测试工具已准备就绪。我们也知道如何在一个固定的保留数据集上，使用一组预定的指标，评估和比较来自不同模型的预测。现在，是时候开始预测了。\n\
+  \n## 生成强基线预测\n\n`Time series forecasting`（时间序列预测）自 20 世纪 20 年代初就已存在，多年来，许多杰出人士提出了不同的模型，有些基于统计，有些基于启发式。我统称它们为\
+  \ `classical statistical models`（经典统计模型）或 `econometrics models`（计量经济学模型），尽管它们并不严格属于统计/计量经济学范畴。\n\
+  \n\n\n\n\n### 使用 NIXTLA 进行基线预测\n\n在本节中，我们将回顾一些模型，当我们想要尝试现代预测技术时，这些模型可以形成非常强的基线。作为练习，我们将使用一个优秀的时间序列预测开源库\
+  \ – `NIXTLA` (https://github.com/Nixtla)。笔记本 `02-Baseline Forecasts using NIXTLA.ipynb`\
+  \ 包含本节的代码，以便您跟随操作。\n\n在开始研究预测技术之前，让我们快速了解如何使用 `NIXTLA` 库生成预测。我们将从数据集中挑选一个消费者，并逐一在验证数据集上尝试所有基线技术。\n\
+  \n首先我们需要做的是使用每个客户的唯一 ID，即 `LCLid` 列（来自展开形式的数据），选择我们想要的消费者，并将时间戳设置为 DataFrame 的索引：\n\
+  \n```python\nts_train = train_df.loc[train_df.LCLid==\"MAC000193\",['LCLid',\"timestamp\"\
+  ,\"energy_consumption\"]]\nts_val = val_df.loc[val_df.LCLid==\"MAC000193\", ['LCLid',\"\
+  timestamp\",\"energy_consumption\"]]\nts_test = test_df.loc[test_df.LCLid==\"MAC000193\"\
+  , ['LCLid',\"timestamp\",\"energy_consumption\"]]\n```\n\n`NIXTLA` 具有灵活性，可以直接处理\
+  \ `pandas` 或 `Polars` DataFrame。默认情况下，`NIXTLA` 寻找 3 列：\n\n- `id_col`：默认情况下，它期望一列\
+  \ 'unique_id'。此列唯一标识时间序列。如果您只有 1 个时间序列，请添加一个具有相同唯一标识符的虚拟列。\n- `time_col`：默认情况下，它期望一列\
+  \ 'ds'。这是您的时间戳列。\n- `target_col`：默认情况下，它期望一列 'y'。此列是您希望 `NIXTLA` 预测的内容。\n\n这非常方便，因为从数据到建模不需要进一步的操作。`NIXTLA`\
+  \ 遵循 `scikit-learn` 风格，具有 `.fit()` 和 `.predict()` 方法，还采用了 `.forecast()` 方法。Forecast\
+  \ 是一种内存高效的方法，避免存储部分模型输出，而 Scikit-learn 接口存储拟合后的模型。\n\n```python\nsf = StatsForecast(\n\
+  \    models=[model],\n    freq=freq,\n    n_jobs=-1,\n    fallback_model=Naive()\n\
+  )\nsf.fit( df = _ts_train,   \n     id_col = 'LCLid',\n     time_col = 'timestamp',\n\
+  \     target_col = 'energy_consumption',\n)\nbaseline_test_pred_df = sf.predict(len(ts_test)\
+  \ )\n#### Or\n#### 高效地拟合和预测，无需存储内存\ny_pred = sf.forecast(\n    h=len(ts_test),\n\
+  \    df=ts_train,\n    id_col = 'LCLid',\n    time_col = 'timestamp',\n    target_col\
+  \ = 'energy_consumption',\n)\n```\n\n当我们调用 `.predict` 或 `.forecast` 时，必须告诉模型我们需要预测多远的未来。这称为预测的**预测期（horizon）**。在我们的例子中，我们需要预测测试期，这可以通过获取\
+  \ `ts_test` 数组的长度轻松完成。\n\n我们也可以使用 `NIXTLA` 的类轻松计算我们之前在测试工具中讨论的指标。为了增加灵活性，我们可以遍历指标列表，以获取每个预测的多个测量值。\n\
+  \n```python\n### 计算指标\nmetrics = [mase, mae, mse, rmse, smape, forecast_bias]\n\
+  for metric in metrics:\n    metric_name = metric.__name__\n    if metric_name ==\
+  \ 'mase':\n        evaluation[metric_name] =   \nmetric(results[target_col].values,\
+  \            results[model_name].values,\nts_train[target_col].values, seasonality=48)\n\
+  \    else:\n        evaluation[metric_name] =\nmetric(results[target_col].values,\n\
+  results[model_name].values)\n```\n\n请注意，对于 MASE，训练集也被包含在内。\n\n为了方便实验，我们已将所有这些封装到笔记本中的一个便捷函数\
+  \ `evaluate_performance` 中。这将返回预测结果和计算出的指标 DataFrame。\n\n现在，让我们开始看看一些非常简单的预测方法。\n\
+  \n## 朴素预测\n\n朴素预测简单得不能再简单了。预测只是时间序列中的最后一个/最近的观测值。如果时间序列中的最新观测值是 10，那么所有未来时间步的预测都是\
+  \ 10。这可以使用 `NIXTLA` 中的 `Naive` 类实现，如下所示：\n\n```python\nfrom statsforecast.models\
+  \ import Naive\nmodels = Naive()\n```\n\n一旦我们初始化了模型，就可以调用笔记本中我们有用的 `evaluate_performance`\
+  \ 函数来运行并记录预测和指标。\n\n让我们可视化一下刚才生成的预测：\n\n![图 4.1 – 朴素预测](img/file71.png)\n\n图 4.1\
+  \ – 朴素预测\n\n在这里，我们可以看到预测是一条直线，完全忽略了序列中的任何模式。这是迄今为止最简单的预测方法，因此被称为朴素。现在，让我们看看另一种简单的方法。\n\
+  \n## 移动平均预测\n\n虽然朴素预测记住了最近的过去，但它也记住了任何时间步的噪声。**移动平均预测**是另一种简单的方法，试图克服朴素方法的纯记忆。它不是取最新的观测值，而是取最近\
+  \ *n* 步的平均值作为预测。移动平均不是 `NIXTLA` 中现有的模型之一，但我们在本书的 GitHub 存储库的 `chapter04` 文件夹中实现了一个兼容\
+  \ `NIXTLA` 的模型：\n\n```python\nfrom src.forecasting.baselines import NaiveMovingAverage\n\
+  ### 在 48 个时间步上取移动平均，即一天\nnaive_model = NaiveMovingAverage(window=48)\n```\n\n让我们看看生成的预测：\n\
+  \n![图 4.2 – 移动平均预测](img/file72.jpg)\n\n图 4.2 – 移动平均预测\n\n这个预测也几乎是一条直线。现在，让我们看看另一种简单的方法，但这种方法也考虑了季节性。\n\
+  \n## 季节性朴素预测\n\n**季节性朴素预测**是对简单朴素方法的一种变体。而在朴素方法中，我们取最后一个观测值 (![](img/file73.png))，在季节性朴素中，我们取\
+  \ ![](img/file74.png) 观测值。因此，我们为每个预测向后看 *k* 步。这使算法能够模仿最后一个季节性周期。例如，如果我们设置 **k=48*7**，我们将能够模仿最近的季节性周周期。此方法在\
+  \ `NIXTLA` 中实现，我们可以这样使用：\n\n```python\nfrom statsforecast.models import SeasonalNaive\n\
+  seasonal_naive = SeasonalNaive(season_length=48*7)\n```\n\n让我们看看这个预测是什么样子的：\n\n\
+  ![图 4.3 – 季节性朴素预测](img/file75.png)\n\n图 4.3 – 季节性朴素预测\n\n在这里，我们可以看到预测试图模仿季节性模式。然而，它不是很准确，因为它盲目地遵循最后一个季节性周期。\n\
+  \n既然我们已经看了几种简单的方法，现在让我们看看一些统计模型。\n\n## 指数平滑 (ETS)\n\n**指数平滑** (**ETS**) 是生成预测最流行的方法之一。它自\
+  \ 1950 年代末以来就已存在，并证明了自己的价值，经受住了时间的考验。ETS 有几种不同的变体 – 单指数平滑、双指数平滑、Holt-Winters 季节性平滑等。但它们都有一个关键思想，以不同的方式被使用。在朴素方法中，我们只是使用最新的观测值，这就像说历史中只有最近的数据点重要，之前的数据点都不重要。另一方面，移动平均方法认为最后\
+  \ *n* 个观测值同等重要，并取它们的平均值。\n\nETS 结合了这两种直觉，认为所有历史都很重要，但最近的历史**更重要**。因此，预测是使用加权平均生成的，随着我们深入历史，权重呈指数级衰减：\n\
+  \n![](img/file76.jpg)这里，![](img/file77.png) 是平滑参数，让我们决定权重衰减的快慢，![](img/file78.png)\
+  \ 是时间步 *t* 的实际值，![](img/file79.png) 是时间步 *t* 的预测值。\n\n\n\n\n\n### 简单指数平滑 (SES)\n\
+  \n**简单指数平滑** (**SES**) 是指你直接将这种平滑过程应用于历史数据。这更适用于没有趋势或季节性的时间序列，且预测结果将是一条平线。预测是通过以下公式生成的：\n\
+  \n![](img/file80.jpg)\n\n### 双指数平滑 (DES)\n\n**双指数平滑** (**DES**) 将平滑思路扩展到了趋势建模。它有两个平滑方程——一个用于水平，另一个用于趋势。一旦你得到了水平和趋势的估计值，就可以将它们结合起来。由于使用估计趋势将其外推到未来，因此该预测不一定是平的。预测是根据以下公式生成的：\n\
+  \n![](img/file81.jpg)\n\n首先，我们使用可用观测值通过*水平方程*估计水平 (`l_t`)。然后，我们使用*趋势方程*估计趋势。最后，为了得到预测，我们使用*预测方程*将\
+  \ `l_t` 和 `b_t` 结合起来。研究人员发现了实证证据表明，这种恒定外推可能导致长期预测中的过度预测。这是因为在现实世界中，时间序列数据不会永远以恒定速率增长。受此启发，人们引入了一种改进，通过因子\
+  \ `φ` 来抑制趋势，使得当 `φ = 1` 时不存在抑制，且与双指数平滑完全相同。\n\n### 三指数平滑 (Holt-Winters / HW)\n\n\
+  **三指数平滑** 或 **Holt-Winters** (**HW**) 通过引入另一个平滑项来建模季节性，向前迈进了一步。它有三个参数 (`α`, `β`,\
+  \ `γ`) 用于平滑，并使用季节性周期 (`m`) 作为输入参数。你也可以选择加法或乘法季节性。加法模型的预测方程如下：\n\n![](img/file88.jpg)\n\
+  \n这些公式的使用方式与双指数平滑情况类似。我们不再仅估计水平和趋势，而是分别估计水平、趋势和季节性。\n\n### 指数平滑家族\n\n指数平滑方法家族不仅限于我们刚才讨论的三种。理解不同模型的一种方式是从这些模型的趋势和季节性分量来考虑。趋势可以是无趋势、加法或加法阻尼。季节性可以是无季节性、加法或乘法。这些参数的每一种组合都是该家族中的一种不同技术，如下表所示：\n\
+  \n![表 4.1 – 指数平滑家族](img/file89.jpg)\n\n表 4.1 – 指数平滑家族\n\n`NIXTLA` 拥有完整的指数平滑方法家族。\n\
+  \n### NIXTLA 实现\n\n让我们看看如何在 **NIXTLA** 中初始化 `ETS` 模型：\n\n```\nfrom statsforecast.models\
+  \ import (SimpleExponentialSmoothing, Holt, HoltWinters, AutoETS)\nexp_smooth =\
+  \ HoltWinters(error_type = 'A', season_length = 48)\n```\n\n这里的 `error_type = 'A'`\
+  \ 指的是加法误差。用户可以选择加法误差或乘法误差，后者可通过 `error_type = 'M'` 调用。`NIXTLA` 模型提供了使用 `AutoETS()`\
+  \ 的选项。该模型将自动选择哪种指数平滑模型是最佳选项：`SimpleExponentialSmoothing`、`Holt`（双指数平滑 / Holt 方法）或\
+  \ `HoltWinters`（三指数平滑 / Holt-Winters 方法）。它还将为每个单独的时间序列选择最佳参数和误差类型。请参阅 GitHub 笔记本以获取如何使用\
+  \ `AutoETS()` 的示例。\n\n让我们看看 Figure 4.4 中使用 `ETS` 进行预测的效果：\n\n![Figure 4.4 – 指数平滑预测](img/file90.png)\n\
+  \nFigure 4.4 – 指数平滑预测\n\n预测捕捉到了季节性，但未能捕捉到峰值。但我们已经可以看到 `MAE` 的改进。\n\n现在，让我们看看最流行的预测方法之一。\n\
+  \n## ARIMA\n\n**自回归积分滑动平均** (**ARIMA**) 模型是另一类方法，与 `ETS` 一样，经受住了时间的考验，是最流行的经典预测方法之一。`ETS`\
+  \ 方法家族围绕趋势和季节性建模，而 `ARIMA` 依赖于**自相关**（`y_t` 与 `y_{t-1}`、`y_{t-2}` 等的相关性）。\n\n###\
+  \ AR(p) 模型\n\n家族中最简单的是 `AR(p)` 模型，它使用带有 `p` 个先前时间步（换句话说，`p` 个滞后项）的**线性回归**。数学上可以写成如下形式：\n\
+  \n![](img/file94.jpg)\n\n这里，`c` 是截距，`ε_t` 是时间步 `t` 处的噪声或误差。\n\n### MA(q) 模型\n\n\
+  家族中的下一个是 `MA(q)` 模型，我们不使用过去的观测值，而是使用预测中过去的 `q` 个误差（假设为纯白噪声）来进行预测：\n\n![](img/file96.jpg)\n\
+  \n这里，`ε_t` 是白噪声，`c` 是截距。这通常不单独使用，而是与 `AR(p)` 模型结合使用，这就构成了我们列表中的下一个 `ARMA(p,q)` 模型。`ARMA`\
+  \ 模型定义为 `ARMA(p,q)`。\n\n### ARIMA(p,d,q) 模型\n\n在所有 `ARIMA` 模型中，有一个基本假设——*时间序列是平稳的*（我们在第\
+  \ 1 章 *时间序列简介* 中讨论过平稳性，并将在第 6 章 *时间序列预测特征工程* 中详细阐述）。有许多方法可以使序列平稳，但对连续值取差分是其中一种技术。这被称为**差分**。有时我们只需要差分一次，而有时我们必须进行连续差分，直到时间序列变得平稳。我们进行差分操作的次数称为*差分阶数*`ARIMA`\
+  \ 中的 `I`，也是拼图的最后一块，代表*积分*。它定义了序列变得平稳前所需的差分阶数，用 `d` 表示。\n\n因此，完整的 `ARIMA(p,d,q)`\
+  \ 模型表示：我们进行 `d` 阶差分，然后以自回归方式考虑最后 `p` 项，再包含最后 `q` 个移动平均项以得出预测。\n\n### 季节性 ARIMA\n\
+  \n我们目前讨论的 `ARIMA` 模型仅处理非季节性时间序列。但利用我们讨论的相同概念，作用于季节性周期，我们得到**季节性 ARIMA**。`p`、`d`\
+  \ 和 `q` 稍作调整以适应季节性周期 `m`。为了将它们与普通的 `p`、`d` 和 `q` 区分开来，我们称季节性值为 `P`、`D` 和 `Q`。例如，如果\
+  \ `p` 意味着取最后 `p` 个滞后项，`P` 则意味着取最后 `P` 个季节性滞后项。如果 `y_t` 是 `y_{t-1}`，`y_{t-P}` 将是\
+  \ `y_{t-m}`。同样，`D` 表示季节性差分阶数。\n\n### 自动 ARIMA\n\n选择正确的 `p`、`d`、`q` 和 `P`、`D`、`Q`\
+  \ 值并不直观，我们必须求助于统计检验来找到它们。然而，当你预测许多时间序列时，这变得不太现实。一种自动遍历不同参数并为数据找到最佳 `p`、`d`、`q` 和\
+  \ `P`、`D`、`Q` 值的方法称为**自动 ARIMA**。在 Python 中，`NIXTLA` 实现了此方法 `AutoARIMA()`。**NIXTLA**\
+  \ 也有普通的 `ARIMA` 实现，速度快得多，但需要手动输入 `p,d,q`。\n\n### 实际考量\n\n\n\n\n### 使用 NIXTLA 进行\
+  \ ARIMA 和 AutoARIMA 建模\n\n> 尽管 `ARIMA` 和 `Auto ARIMA` 在许多情况下都能提供表现良好的模型，但当存在长季节周期和长时间序列时，它们可能会变得相当缓慢。在我们的案例中，历史数据有近\
+  \ 27k 个观测值，`ARIMA` 变得非常缓慢且占用大量内存。即使对数据进行子集划分，单次 `AutoARIMA` 拟合也需要约 60 分钟。放弃季节参数能大幅缩短运行时间，但对于能源消耗这类季节性时间序列来说，这说不通。`AutoARIMA`\
+  \ 包含许多此类拟合以识别最佳参数，因此对于长时间序列数据集变得不切实际。Python 生态系统中几乎所有的实现都存在这个缺点。`NIXTLA` 声称拥有最快、最准确的\
+  \ `AutoARIMA` 版本，甚至比原始的 `R` 方法还要快。\n\n### 使用 `NIXTLA` 应用 `ARIMA` 和 `AutoARIMA`\n\
+  \n```python\nfrom statsforecast.models import (ARIMA, AutoARIMA)\n#### ARIMA model\
+  \ by specifying parameters\narima_model = ARIMA(order = (2,1,1), seasonal_order\
+  \ = (1,1,1), season_length = 48)\n#### AutoARIMA model by specifying max limits\
+  \ for parameters and letting the algorithm find the best ones\nauto_arima_model\
+  \ = AutoARIMA(max_p = 2, max_d=1, max_q = 2, max_P=2, max_D = 1, max_Q = 2, stepwise\
+  \ = True, season_length=48)\n```\n\n有关 `AutoARIMA` 的完整参数列表，请访问 `NIXTLA` 文档：https://nixtlaverse.nixtla.io/statsforecast/docs/models/autoarima.html。\n\
+  \n## ETS 和 ARIMA 预测\n\n让我们看看我们正在试验的那些家庭的 `ETS` 和 `ARIMA` 预测结果如何：\n\n![图 4.5 – ETS\
+  \ 和 ARIMA 预测（彩图）](img/file103.png)\n\n图 4.5 – ETS 和 ARIMA 预测（彩图）\n\n借助 `NIXTLA`，`ETS`\
+  \ 和 `ARIMA` 都很好地捕捉了季节性和峰值。生成的 MAE 分数也非常相似，分别为 0.191 和 0.203。现在，让我们看看另一种方法——Theta\
+  \ 预测法。\n\n### Theta 预测法\n\n`Theta 预测法` 是 2002 年 M3 预测竞赛中表现最佳的提交方法。该方法依赖于一个参数 ![](img/file104.png)，根据所选值的不同，该参数会放大或平滑时间序列的局部曲率。使用\
+  \ ![](img/file105.png)，我们对原始时间序列进行平滑或放大。这些平滑后的线被称为 **theta lines**（Theta 线）。V. Assimakopoulos\
+  \ 和 K. Nikolopoulos 提出了这种作为预测分解方法的方法。虽然理论上可以使用任意数量的 Theta 线，但最初提出的方法使用了两条 Theta\
+  \ 线，即 ![](img/file106.png) 和 ![](img/file107.png)，并取两条 Theta 线预测值的平均值作为最终预测。\n\n\
+  > **旁注**\n>\n> > M 竞赛是由领先的预测研究者 Spyros Makridakis 组织的预测竞赛。它们通常会策划一组时间序列数据集，规定评估预测的指标，并向全球研究人员开放竞赛以获得最佳预测。这些竞赛被认为是世界上最大、最受欢迎的时间序列预测竞赛之一。截至撰写时，已完成六届此类竞赛。要了解最新竞赛的更多信息，请访问此网站：*https://mofc.unic.ac.cy/the-m6-competition/*。\n\
+  \n2002 年，Rob Hyndman 等人简化了 Theta 方法，并证明我们可以使用带有漂移项的 `ETS` 来获得与原始 Theta 方法相当的结果，这也是当今大多数该方法实现所采用的方式。Theta\
+  \ 预测法（在 `NIXTLA` 中实现）涉及的主要步骤如下：\n\n1.  **去季节化**：应用经典的乘法分解以移除时间序列中的季节性成分（如果存在）。这使分析聚焦于潜在的趋势和周期成分。去季节化使用\
+  \ `statsmodels.tsa.seasonal.seasonal_decompose` 完成。此步骤创建一个新的去季节化时间序列。\n2.  **应用\
+  \ Theta 系数**：使用系数 和 将去季节化序列分解为 2 条 \"Theta\" 线。这些系数修改时间序列的二阶差分，以抑制局部波动。\n3.  **Theta\
+  \ 线外推**：将每条 Theta 线视为单独的序列并向未来进行预测。这通过线性回归对 Theta 线 进行（产生一条直线），并通过简单指数平滑对 Theta\
+  \ 线 进行。\n4.  **重组**：结合两条 Theta 线的预测。原始方法对两条线使用等权重，从而有效地整合了长期趋势和短期变动。\n5.  **重新季节化**：如果数据在开始时已去季节化。\n\
+  \n`NIXTLA` 拥有 `THETA` 方法的多种不同变体。关于 `NIXTLA` 实现的具体细节，请见此处：\n\nhttps://nixtlaverse.nixtla.io/statsforecast/docs/models/autotheta.html\n\
+  \n让我们看看如何实际使用它：\n\n```python\ntheta_model = Theta(season_length =48, decomposition_type\
+  \ = 'additive' )\n```\n\n此处的关键参数如下：\n\n*   **`season_length` 与 `decomposition_type`：**\
+  \ 这些参数用于初始季节分解。如果留空，实现会自动检测季节性并使用乘法分解自动对时间序列进行去季节化。如果我们知道这些领域知识，建议设置这些参数。分解类型可以是\
+  \ 'multiplicative'（默认）或 'additive'。\n\n让我们可视化一下刚才使用 Theta 预测法生成的预测结果：\n\n![图 4.6\
+  \ – Theta 预测](img/file108.png)\n\n图 4.6 – Theta 预测\n\n> **参考文献核对**\n>\n> > V. Assimakopoulos\
+  \ 和 K. Nikolopoulos 提出 Theta 方法的研究论文在*参考文献*部分被引用为参考文献 *1*，而 Rob Hyndman 后来的简化工作被引用为参考文献\
+  \ *2*。\n\n### TBATS\n\n有时时间序列具有多个季节性模式或非整数季节周期，通常称为复杂季节性。例如，小时预测可能具有日季节性（一天中的时间）、周季节性（一周中的日子）和年季节性（一年中的日子）。此外，大多数时间序列模型是为较小的整数季节周期设计的，例如月度\
+  \ (12) 或季度 (4) 数据，但年季节性可能构成问题，因为一年是 364.25 天。`TBATS` 旨在解决这些给许多预测模型带来麻烦的挑战。然而，像任何自动化方法一样，它有时容易产生糟糕的预测。\n\
+  \n*   **`TBATS`** 代表\n    *   **T** 三角函数季节性\n    *   **B** Box-Cox 变换\n    *   **A**\
+  \ ARMA 误差\n    *   **T** 趋势\n    *   **S** 季节性成分\n\n该模型由 Rob J Hyndman、Alysha M\
+  \ De Livera 和 Ralph D Snyder 于 2011 年首次提出。还有一种 `TBATS` 的变体，称为 `BATS`，它不包含三角函数季节性成分。`TBATS`\
+  \ 属于状态空间模型家族。在状态空间预测模型中，观测到的时间序列被假设为潜在状态变量和将状态变量与观测数据相关联的测量方程的组合。状态变量捕捉数据中的潜在模式、趋势和关系。\n\
+  \n`BATS` 具有指示 Box-Cox 参数、阻尼参数、ARMA 参数和季节周期的参数。由于其灵活性，`BATS` 模型可被视为一个模型家族，涵盖了我们之前见过的许多其他模型。例如：\n\
+  \n*   `Holt Winters 加法季节性`\n*   `Holt Winters 加法双重季节性`\n\n\n\n## TBATS 和 MSTL 预测方法\n\
+  \n### TBATS 概述\n\nBATS 具有处理多重季节性的灵活性；然而，它仅限于整数季节周期，并且在多重季节性情况下可能会产生大量状态，导致模型复杂性增加。`TBATS`\
+  \ 旨在解决这一问题。\n\n参考一下，`TBATS` 参数空间为\n\n#### TBATS 的优势\n\n`TBATS` 的主要优势如下：\n\n1.  适用于单一、复杂和非整数季节性（三角函数季节性）\n\
+  2.  处理现实世界时间序列中常见的非线性模式（Box-Cox 变换）\n3.  处理残差中的自相关（ARMA 误差）\n\n#### TBATS 处理顺序\n\
+  \n为了更好地理解 `TBATS` 的内部工作原理，让我们分解每个步骤。\n\n使用 `TBATS` 进行操作的顺序是：\n\n1.  `Box-Cox 变换`\n\
+  2.  `指数平滑趋势`\n3.  `使用傅里叶级数进行季节性分解`\n4.  `自回归移动平均 (ARMA)`\n5.  `基于似然的参数估计方法`\n\n\
+  ### TBATS 组件\n\n#### Box-Cox 变换\n\n`Box-Cox` 是幂变换族中的一种变换。\n\n在时间序列中，使数据平稳是预测前的重要步骤（如第\
+  \ 1 章所述）。平稳性确保我们的数据在统计上不随时间变化，从而更准确地类似于概率分布。可以应用多种可能的变换。有关各种目标变换（包括 `Box-Cox`）的更多详细信息，请参阅第\
+  \ 7 章。\n\n作为预览，这里展示了一个 `Box-Cox` 变换的示例输出。变换后，我们的数据更接近正态分布。`Box-Cox` 变换只能用于正数据，但在实践中这通常是成立的。图\
+  \ 4.7 展示了时间序列在 `Box-Cox` 变换前后的样子示例。\n\n![Figure 4.7 – Box-Cox Transformation](img/file109.png)\n\
+  \n图 4.7 – Box-Cox 变换\n\n#### 指数平滑趋势\n\n使用 `局部估计散点图平滑 (LOESS)`，从时间序列中提取平滑趋势。\n\n\
+  `LOESS` 通过在数据点上应用局部加权的低次多项式回归来创建一条平滑流畅的曲线。这种技术在捕捉局部趋势变化方面非常有效，且不假设数据的整体形式，这使其特别适用于具有变化趋势或季节性变化的数据。\n\
+  \n#### 三角函数季节性\n\n然后使用傅里叶项（第 3 章讨论）对剩余残差建模，以分解季节性成分。\n\n使用傅里叶建模季节性的主要优势在于其能够建模多重季节性，以及非整数季节性，例如每日数据的年度季节性，因为一年有\
+  \ 364.25 天。大多数其他分解方法无法处理非整数周期，只能四舍五入为 365 天，这可能无法识别真实的季节性。下面是一个使用傅里叶分解时间序列的示例。本例中的观测时间序列是小时数据。因此，我们的季节周期为：\n\
+  \n*   日 = 24\n*   周 = 24 \\* 7 = 168\n\n这里可以清晰地看到定义的季节模式、趋势和剩余残差。图 4.8 展示了趋势和季节性的分解，随后残差使用\
+  \ `ARMA` 过程建模。\n\n![Figure 4.8 – Decomposed Time Series](img/file110.png)\n\n图 4.8\
+  \ – 分解后的时间序列\n\n#### 自回归移动平均 (ARMA)\n\n`ARMA` 之前作为 `ARIMA` 系列的一个子集进行过讨论。\n\n`TBATS`\
+  \ 中的 `ARMA` 模型用于建模剩余残差，以捕捉滞后变量的任何自相关。`自回归 (AR)` 成分捕捉一个观测值与多个滞后观测值之间的相关性。这处理了序列的动量或延续性。`移动平均\
+  \ (MA)` 成分将误差项建模为前几个时间周期误差的线性组合，捕捉 `AR` 部分单独无法解释的信息。\n\n#### 参数优化\n\n为了选择最优参数空间，`TBATS`\
+  \ 将拟合多个模型并自动选择最佳参数。`TBATS` 内部拟合的一些模型包括：\n\n*   带和不带 `Box-Cox 变换`\n*   带和不带趋势\n*\
+  \   带和不带趋势阻尼\n*   季节性和非季节性模型\n*   `ARMA(p,q)` 参数\n\n最终模型通过参数组合最小化 `赤池信息准则 (AIC)`\
+  \ 来选择，并使用 `auto-ARIMA` 来确定 `ARMA` 参数。\n\n与所有预测方法一样，不同模型都有利弊。虽然 `TBATS` 在许多其他模型的缺点上提供了一些增强，但代价是需要构建许多模型，导致计算时间更长。如果必须对多个时间序列建模，这可能会成为一个问题。此外，`TBATS`\
+  \ 不允许包含外生变量。\n\n### 从业者注\n\n> **从业者注：**\n>\n> > `TBATS` 无法处理外生回归，因为根据 Hyndman 本人的说法，它与\
+  \ `ETS` 模型相关，不太可能包含协变量 (Hyndman, 2014)。如果要使用外部回归变量，应使用其他方法，如 `ARIMAX` 或 `SARIMAX`。如果时间序列具有复杂的季节性，可以将傅里叶特征作为协变量添加到\
+  \ `ARIMAX` 或 `SARIMAX` 模型中，以帮助捕捉季节性模式。\n\n### NIXTLA 实现\n\n这在 `NIXTLA` 中已实现，我们可以使用如下所示的实现：\n\
+  \n```\nTBATS_model = TBATS(seasonal_periods = 48, use_trend=True, use_damped_trend=True)\n\
+  ```\n\n在 `NIXTLA` 中，你也可以使用 `AutoTBATS` 让系统优化如何处理各种参数。\n\n让我们看看 `TBATS` 预测的样子：\n\n\
+  ![Figure 4.9 – TBATS forecast](img/file111.png)\n\n图 4.9 – TBATS 预测\n\n同样，季节性模式已被复制，并捕捉了预测中的大多数峰值。\n\
+  \n## MSTL 方法\n\n`NIXTLA` 中的 `MSTL` 方法应用 `LOESS` 技术将时间序列分解为其各个季节性成分。分解后，它使用专门的非季节性模型预测趋势，并使用\
+  \ `SeasonalNaive` 模型预测每个季节性成分。这种方法允许对具有复杂季节性模式的时间序列进行详细分析和预测。\n\n```\nMSTL_model\
+  \ = MSTL(season_length = 48)\n```\n\n`MSTL` 内部工作原理的更多信息在第 3 章中讨论过。\n\n让我们看看 `MSTL`\
+  \ 预测的样子：\n\n![Figure 4.10 – MSTL forecast](img/file112.png)\n\n图 4.10 – MSTL 预测\n\
+  \n让我们也看看我们选择的不同指标在我们实验的家庭（来自笔记本）的每个预测中的表现：\n\n![Figure 4.11 – Summary of all the\
+  \ baseline algorithms](img/file113.png)\n\n图 4.11 – 所有基线算法的汇总\n\n在我们尝试的所有基线算法中，`AutoETS`\
+  \ 在 `MAE` 和 `MSE` 上表现最好。`ARIMA` 是第二好的模型，其次是 `TBATS`。然而，如果你看 `Time Elapsed`（耗时）列，`TBATS`\
+  \ 仅用 7.4 秒，而 `ARIMA` 用 19 秒，`TBATS` 突出。由于它们性能相似，我们将选择 `TBATS` 而不是 `ARIMA`，连同 `AutoETS`\
+  \ 作为我们的基线，并在我们选择的数据集中的所有 399 个家庭（包括验证集和测试集）上运行它们（相关代码可在 `02-Baseline Forecasts using\
+  \ NIXTLA.ipynb` 笔记本中找到）。\n\n## 预测评估\n\n### 评估基线预测\n\n既然我们有了来自 `ETS` 和 `TBATS` 生成的基线预测，我们也应该评估这些预测。这两种方法对于所有选定家庭的汇总指标如下：\n\
+  \n| 验证集 | | ![](img/file114.png) |\n| --- | | --- |\n|  | | ![](img/file115.png)\
+  \ |\n|  | |  |\n\n图 4.12 – 所有选定家庭的汇总指标（验证集和测试集）\n\n\n\n看起来 `AutoETS` 在所有三个指标上的表现都好得多。我们也有在家庭层面计算的这些指标。让我们看看验证数据集中所有选定家庭这些指标的分布情况：\n\
+  \n![图 4.13 – 验证数据集中基准预测的 MASE 和预测偏差分布](img/file116.png)\n\n`ETS` 的 `MASE` 直方图似乎比\
+  \ `TBATS` 的分布范围更小。`ETS` 的中位数 `MASE` 也低于 `TBATS`。我们在预测偏差上也能看到类似的模式，`ETS` 的预测偏差以零为中心，且分布范围小得多。\n\
+  \n回到第 1 章 *时间序列简介*，我们了解了为什么并非每个时间序列都具有同等的可预测性，并看到了三个有助于我们思考该问题的因素——理解数据生成过程（`DGP`）、数据量以及模式的充分重复。在大多数情况下，前两个因素很容易评估，但第三个因素需要一些分析。虽然基准方法的性能给了我们一些关于时间序列可预测性的概念，但它们仍然依赖于模型。因此，与其衡量时间序列有多大程度可预测，我们不如衡量所选模型能多好地逼近时间序列。这就是一些更基础的技术（依赖于时间序列的统计特性）派上用场的地方。\n\
+  \n### 评估时间序列的可预测性\n\n虽然我们可以使用许多统计指标来评估时间序列的可预测性，但我们只关注几个在处理大规模时间序列数据集时更容易理解且实用的指标。相关的笔记本（`02-Forecastability.ipynb`）包含了可供跟随操作的代码。\n\
+  \n#### 变异系数（`CoV`）\n\n`变异系数`（`CoV`）基于这样一个直觉：时间序列中的变异性越大，预测起来就越难。我们如何衡量随机变量的变异性？`标准差`。\n\
+  \n在许多现实世界的时间序列中，我们在时间序列中看到的变异取决于时间序列的尺度。让我们想象一下有两个零售产品，*A* 和 *B*。*A* 的平均月销量为 15，而\
+  \ *B* 为 50。如果我们看几个这样的现实例子，会发现如果 *A* 和 *B* 具有相同的标准差，*B* 由于均值较高，比 *A* 更容易预测。为了适应这种现象，并确保将数据集中的所有时间序列带到一个通用的尺度上，我们可以使用\
+  \ `CoV`：\n\n![](img/file117.jpg)此处，![](img/file118.png)是标准差，![](img/file119.png)是时间序列\
+  \ *n* 的均值。\n\n`CoV` 是数据点围绕均值的相对离散程度，这比单纯看标准差要好得多。\n\n`CoV` 的值越大，时间序列的可预测性越差。没有硬性截止值，但\
+  \ 0.49 被视为一个经验法则，用于区分相对容易预测的时间序列和难以预测的时间序列。但根据数据集的整体*难度*，我们可以调整这个截止值。我发现绘制数据集中 `CoV`\
+  \ 值的直方图并以此为基础得出截止值很有用。\n\n尽管 `CoV` 在工业界被广泛使用，但它有几个关键缺陷：\n\n1.  它不考虑季节性。正弦波或余弦波的\
+  \ `CoV` 会比水平线高，但我们知道两者同样可预测。\n\n2.  它不考虑趋势。线性趋势会使序列具有更高的 `CoV`，但我们知道它像水平线一样同样可预测。\n\
+  \n3.  它无法处理时间序列中的负值。如果有负值，会使均值变小，从而虚增 `CoV`。\n\n为了克服这些缺陷，我们提出另一个衍生指标。\n\n#### 残差变异性（`RV`）\n\
+  \n残差变异性（`RV`）背后的思路是尝试衡量与 `CoV` 试图捕捉的同类变异性，但避免其缺陷。我曾针对如何避免使用 `CoV` 的问题（通常是季节性问题）进行头脑风暴，并将\
+  \ `CoV` 应用于季节性分解后的残差。那时我意识到残差会有几个负值，`CoV` 效果不好。Stefan de Kok 是需求预测和概率预测领域的思想领袖，他建议使用原始实际值的均值，这行得通。\n\
+  \n要计算 `RV`，必须执行以下步骤：\n\n1.  执行季节性分解。\n\n2.  计算残差或非规则分量的标准差。\n\n3.  用原始观测值的均值（分解前）除以该标准差。\n\
+  \n这里的关键假设是季节性和趋势是可预测的分量。因此，我们对时间序列可预测性的评估应仅关注残差的变异性。但我们不能在残差上使用 `CoV`，因为残差可能包含正负值，所以残差的均值失去了序列水平的解释，且趋向于零。当残差趋向于零时，`CoV`\
+  \ 指标因除以均值而趋向于无穷大。因此，我们使用原始序列的均值作为缩放因子。\n\n让我们看看如何计算数据集中所有时间序列的 `RV`（这些数据采用紧凑形式存储）：\n\
+  \n```\nblock_df[\"rv\"] = block_df.progress_apply(lambda x: calc_norm_sd(x['residuals'],x['energy_consumption']),\
+  \ axis=1)\n```\n\n在本节中，我们介绍了两个基于时间序列标准差的指标。现在，让我们看看评估时间序列可预测性的其他方法。\n\n#### 基于熵的指标\n\
+  \n`熵` 是科学界一个无处不在的术语。我们在物理学、量子力学、社会科学和信息论中都能看到它的身影。在所有领域，它都用于描述系统中混乱程度或缺乏可预测性的度量。我们现在最感兴趣的熵来自信息论。信息论涉及量化、存储和通信数字信息。\n\
+  \nClaude E. Shannon 在其开创性论文 *A Mathematical Theory of Communication* 中，将通信的定性和定量模型作为一个统计过程呈现出来。虽然该论文引入了许多思想，但与我们相关的一些概念是信息熵和\
+  \ `比特`（`bit`）的概念——信息的基本度量单位。\n\n> 参考文献检查\n>\n> > Claude E. Shannon 的 *A Mathematical\
+  \ Theory of Communication* 在*参考文献*部分被引用为参考文献 *3*。\n\n该理论本身内容庞大，但为了总结关键信息点，请参阅以下简短词汇表：\n\
+  \n*   信息无非是一系列*符号*，可通过一种称为*信道*的媒介从*接收者*传输到*发送者*。例如，当我们发短信时，符号序列是我们用于发短信的语言的字母/单词；信道是电子媒介。\n\
+  \n*   `熵` 可以被认为是给定符号分布下，一系列符号中*不确定性*或*惊讶度*的数量。\n\n*   `比特`，如前所述，是信息的单位，即二进制数字。它可以是\
+  \ 0 或 1。\n\n\n\n### 熵与信息论\n\n### 理解熵\n\n现在，如果我们传输 1 比特的信息，接收者的不确定性将减少一半。为了更好地理解这一点，让我们考虑一次抛硬币。我们将硬币抛向空中，当它在空中旋转时，我们不知道它会是正面还是反面。但我们知道它将是这两者之一。当硬币落地并最终静止时，我们发现它是正面。我们可以用\
+  \ 1 比特的信息来表示硬币是正面还是反面（0 代表正面，1 代表反面）。因此，硬币落地时传递给我们的信息将可能的结果从两个减少到了一个（正面）。这种传输只需\
+  \ 1 比特的信息即可实现。\n\n在信息论中，离散随机变量的熵是该变量可能结果中固有的*信息*、*惊讶度*或*不确定性*的平均水平。用更专业的术语来说，它是对随机变量中所含信息进行最佳可能编码方案所需的比特数的期望值。\n\
+  \n> **补充阅读**\n>\n> > 如果你想直观地理解熵、交叉熵、Kullback-Leibler 散度等，请前往*延伸阅读*部分。\n>\n> > 那里有几个博客链接（其中一个是我自己的），我们在其中尝试阐述这些指标背后的直觉。\n\
+  \n### 熵的正式定义\n\n熵的正式定义如下：\n\n![](img/file120.jpg)\n\n这里，`X` 是具有可能结果的离散随机变量，且 ![](img/file121.png)。这些结果中的每一个都有其发生的概率，分别用\
+  \ 和 ![](img/file122.png) 表示。\n\n为了建立对此的直觉，我们可以认为：概率分布越分散，分布中的混乱度越高，因此熵也越大。让我们在代码中快速验证一下：\n\
+  \n```\n#### Creating an array with a well balanced probability distribution\nflat\
+  \ = np.array([0.1,0.2, 0.3,0.2, 0.2])\n#### Calculating Entropy\nprint((-np.log2(flat)*\
+  \ flat).sum())\n>> 2.2464393446710154\n#### Creating an array with a peak in probability\n\
+  sharp = np.array([0.1,0.6, 0.1,0.1, 0.1])\n#### Calculating Entropy\nprint((-np.log2(sharp)*\
+  \ sharp).sum())\n>> 1.7709505944546688\n```\n\n在这里，我们可以看到，分散其质量的概率分布具有更高的熵。\n\n\
+  ### 时间序列中的熵\n\n在时间序列的背景下，`n` 是时间序列观测值的总数，且 ![](img/file123.png) 是时间序列字母表中每个符号的概率。尖峰分布意味着时间序列值集中在一个小区域内，因此应该更容易预测。另一方面，宽分布或平坦分布意味着时间序列值在更宽的范围内具有同等可能性，因此难以预测。\n\
+  \n如果我们有两个时间序列——一个包含抛硬币的结果，另一个包含掷骰子的结果——掷骰子的输出将在一到六之间，而抛硬币的结果将是零或一。抛硬币时间序列的熵较低，比掷骰子时间序列更容易预测。\n\
+  \n但由于时间序列通常是连续的，而熵需要离散随机变量，我们可以采用一些策略将连续时间序列转换为离散时间序列。可以应用许多策略，如量化或分箱，这会导致出现无数种复杂度度量。让我们回顾一种既有用又实用的度量。\n\
+  \n### 谱熵\n\n要计算时间序列的熵，我们需要对时间序列进行离散化。一种方法是使用 `FFT` 和**功率谱密度 (PSD)**。这种对连续时间序列的离散化用于计算谱熵。\n\
+  \n我们在本章前面学习了什么是傅里叶变换，并用它来生成基线预测。但使用 `FFT`，我们还可以估计一个称为功率谱密度的量。这回答了*信号在特定频率上有多少*的问题。从时间序列估计功率谱密度有很多方法，但最简单的方法之一是使用**韦尔奇法**，这是一种基于离散傅里叶变换的非参数方法。这在\
+  \ `scipy` 中也作为一个签名为 `periodogram(x)` 的便捷函数实现。\n\n返回的 `PSD` 长度将等于估计的频率数量，但这些是密度，而不是明确定义的概率。因此，我们需要将\
+  \ `PSD` 归一化到零到一之间：\n\n![](img/file124.jpg)\n\n这里，`F` 是返回的功率谱密度中包含的频率数量。\n\n现在我们有了概率，只需将其代入熵公式即可得到谱熵：\n\
+  \n![](img/file125.jpg)\n\n当我们介绍**基于熵的度量**时，我们看到分布的概率质量越分散，熵就越高。在此背景下，谱密度分布的频率越多，谱熵就越高。因此，较高的谱熵意味着时间序列更复杂，因此更难预测。\n\
+  \n由于 `FFT` 假设平稳性，建议在使用谱熵作为指标之前使序列平稳。我们甚至可以将此指标应用于去趋势和去季节化的时间序列，我们可以称之为**残差谱熵**。本书的\
+  \ GitHub 仓库在 `src.forecastability.entropy.spectral_entropy` 下包含谱熵的实现。该实现还有一个参数 `transform_stationary`，如果设置为\
+  \ `True`，将在应用谱熵之前对序列进行去趋势处理。让我们看看如何计算我们数据集的谱熵：\n\n```\nfrom src.forecastability.entropy\
+  \ import spectral_entropy\nblock_df[\"spectral_entropy\"] = block_df.energy_consumption.progress_apply(lambda\
+  \ x: spectral_entropy(x, transform_stationary=True))\nblock_df[\"residual_spectral_entropy\"\
+  ] = block_df.residuals.progress_apply(spectral_entropy)\n```\n\n还有其他基于熵的度量，如 `approximate\
+  \ entropy`（近似熵）和 `sample entropy`（样本熵），但我们将不在本书中涵盖它们。它们计算量更大，且不太适用于包含少于 200 个值的时间序列。如果你有兴趣了解更多关于这些度量的信息，请前往*延伸阅读*部分。\n\
+  \n另一种采取略微不同路径的指标是 Kaboudan 指标。\n\n#### Kaboudan 指标\n\n\n\n### 预测性指标：Kaboudan 指标与修正\
+  \ Kaboudan 指标\n\n### 原始 Kaboudan 指标\n\n1999 年，Kaboudan 定义了一个时间序列可预测性指标，称之为 ![](img/file126.png)\\\
+  -指标。其背后的思想非常简单。如果我们对时间序列进行**分块打乱**，本质上就是在破坏时间序列中的信息。**分块打乱**是将时间序列分成块，然后打乱这些块的过程。因此，如果我们计算在时间序列上训练的预测的**平方误差和**（**SSE**），然后将其与在打乱后的时间序列上训练的预测的\
+  \ SSE 进行对比，就可以推断该时间序列的可预测性。计算公式如下：![](img/file127.jpg)\n其中，![](img/file128.png)\
+  \ 是基于原始时间序列生成的预测的 SSE，而 ![](img/file129.png) 是基于分块打乱序列生成的预测的 SSE。如果时间序列包含一些可预测的信号，![](img/file130.png)\
+  \ 会低于 ![](img/file131.png)，且 ![](img/file132.png) 会接近 1。这是因为分块打乱破坏了一些信息或模式。另一方面，如果序列只是白噪声（根据定义不可预测），![](img/file133.png)\
+  \ 和 ![](img/file134.png) 之间几乎不会有差异，且 ![](img/file135.png) 会接近零。\n\n> **参考文献检查**\n\
+  >\n> 提出 Kaboudan 指标的研究论文在*参考文献*部分被引用为参考文献 *4*。Duan 提出的后续修正被引用为参考文献 *5*。\n\n### 修正\
+  \ Kaboudan 指标\n\n2002 年，Duan 在其论文中研究了该指标并提出了一些修正。他发现的问题之一，特别是在长时间序列中，是 ![](img/file136.png)\
+  \ 值分布在 1 附近的一个窄带内，因此建议对公式进行轻微修改。我们称之为**修正 Kaboudan 指标**。下限也被截断为零。有时指标可能低于零，因为 ![](img/file137.png)\
+  \ 低于 ![](img/file138.png)，这是由于序列不可预测，且纯粹由于偶然，分块打乱导致 SSE 降低：![](img/file139.jpg)\n\
+  \n该修正版本以及原始版本均已在本书的 GitHub 仓库中实现。\n\n对用于生成预测的预测模型没有限制，这使其更加灵活。理想情况下，我们可以选择一种足够快、可应用于整个数据集的经典统计方法。但这也使得\
+  \ Kaboudan 指标依赖于模型，模型的局限性内在于该指标中。该指标衡量的是序列预测难度与模型预测该序列难度的组合。\n\n同样，这两个指标都已在本书的 GitHub\
+  \ 仓库中实现。让我们看看如何使用它们：\n\n### Python 实现\n\n```\nfrom src.forecastability.kaboudan\
+  \ import kaboudan_metric, modified_kaboudan_metric\nmodel = Theta(theta=3, seasonality_period=48*7,\
+  \ season_mode=SeasonalityMode.ADDITIVE)\nblock_df[\"kaboudan_metric\"] = [kaboudan_metric(r[0],\
+  \ model=model, block_size=5, backtesting_start=0.5, n_folds=1) for r in tqdm(zip(*block_df[[\"\
+  energy_consumption\"]].to_dict(\"list\").values()), total=len(block_df))]\nblock_df[\"\
+  modified_kaboudan_metric\"] = [modified_kaboudan_metric(r[0], model=model, block_size=5,\
+  \ backtesting_start=0.5, n_folds=1) for r in tqdm(zip(*block_df[[\"energy_consumption\"\
+  ]].to_dict(\"list\").values()), total=len(block_df))]\n```\n\n虽然还有更多指标可用于此目的，但我们刚才回顾的用于评估预测性的指标涵盖了许多常见用例，足以衡量任何时间序列数据集的预测难度。我们可以使用这些指标来比较一个时间序列与另一个时间序列，或者对数据集中的一整组相关时间序列进行画像，并与另一个数据集进行基准测试。\n\
+  \n> **延伸阅读**\n>\n> 如果您想深入分析这些指标的行为、它们之间的相似性以及它们在衡量预测性方面的有效性，请前往 `03-Forecastability.ipynb`\
+  \ 笔记本的末尾。我们计算这些指标之间的秩相关性，以了解它们的相似程度。我们还可以计算这些指标与表现最好的基线方法计算出的指标之间的秩相关性，以了解这些指标在估计时间序列预测性方面的表现如何。我强烈建议您动手操作该笔记本，理解不同指标之间的差异。挑选几个时间序列，检查不同指标如何给出略微不同的解读。\n\
+  \n恭喜您生成了基线预测——这是我们使用本书生成的第一组预测！请随意前往笔记本，调整方法的参数，观察预测如何变化。这将帮助您建立对基线方法工作原理的直觉。如果您有兴趣了解如何改进这些基线方法，请前往*延伸阅读*部分，我们在那里提供了\
+  \ F. Petropoulos 和 E. Spiliotis 的论文《The Wisdom of the Data: Getting the Most Out\
+  \ of Univariate Time Series Forecasting》的链接。\n\n## 总结\n\n至此，我们已完成*第 1 部分* *熟悉时间序列*的学习。我们从仅仅理解什么是时间序列，一路走到了生成具有竞争力的基线预测。在此过程中，我们学习了如何处理缺失值和异常值，以及如何使用\
+  \ `pandas` 操作时间序列数据。我们将所有这些技能应用于一个真实的能源消耗数据集。我们还探讨了可视化和分解时间序列的方法。在本章中，我们搭建了测试框架，学习了如何使用\
+  \ `NIXTLA` 库生成基线预测，并介绍了几个可用于理解时间序列预测性的指标。对某些读者而言，这可能是复习，我们希望本章在细节和实践考量方面能带来一些价值。对其他读者而言，我们希望你们在基础上已有良好掌握，准备好在本书的下一部分探索使用机器学习的现代技术。\n\
+  \n在下一章中，我们将讨论机器学习的基础知识，并深入探讨时间序列预测。\n\n## 参考文献\n\n本章提供了以下参考文献：\n\n*   Assimakopoulos,\
+  \ Vassilis and Nikolopoulos, K.. (2000). *Theta 模型：一种用于预测的分解方法*. International Journal\
+  \ of Forecasting. 16. 521-530. https://www.researchgate.net/publication/223049702_The_theta_model_A_decomposition_approach_to_forecasting.\n\
+  \n*   Rob J. Hyndman, Baki Billah. (2003). *揭开 Theta 方法的面纱*. International Journal\
+  \ of Forecasting. 19. 287-290. https://robjhyndman.com/papers/Theta.pdf.\n\n*  \
+  \ Shannon, C.E. (1948), *通信的数学理论*. Bell System Technical Journal, 27: 379-423. https://people.math.harvard.edu/~ctm/home/text/others/shannon/entropy/entropy.pdf.\n\
+  \n*   Kaboudan, M. (1999). *一种利用遗传编程应用于股票收益的时间序列可预测性度量*. Journal of Forecasting,\
+  \ 18, 345-357: http://www.aiecon.org/conference/efmaci2004/pdf/GP_Basics_paper.pdf.\n\
+  \n*   Duan, M. (2002). *时间序列可预测性*: https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.68.1898&rep=rep1&type=pdf.\n\
+  \n*   De Livera, A. M., & Hyndman, R. J. (2009). *使用指数平滑法预测具有复杂季节模式的时间序列* (计量经济学与商业统计系工作论文系列\
+  \ 15/09)\n\n*   Hyndman, Rob. \"Rob J Hyndman - 带回归变量的 TBATS.\" Rob J Hyndman, 2014\
+  \ 年 10 月 6 日, http://robjhyndman.com/hyndsight/tbats-with-regressors\n\n## 延伸阅读\n\
+  \n\n"
+- '# 5 时间序列预测作为回归
+
+
+  ## 学习资源
+
+
+  要了解本章涵盖主题的更多信息，请参阅以下资源：
+
+
+  *   *信息论与熵*，作者 Manu Joseph：https://deep-and-shallow.com/2020/01/09/deep-learning-and-information-theory/
+
+  *   *可视化信息*，作者 Chris Olah：https://colah.github.io/posts/2015-09-Visual-Information
+
+  *   傅里叶变换：https://betterexplained.com/articles/an-interactive-guide-to-the-fourier-transform/
+
+  *   *傅里叶变换*，作者 3blue1brown – 可视化入门：https://www.youtube.com/watch?v=spUNpyF58BY&vl=en
+
+  *   *通过示例理解傅里叶变换*，作者 Richie Vink：https://www.ritchievink.com/blog/2017/04/23/understanding-the-fourier-transform-by-example/
+
+  *   Delgado-Bonal A, Marshak A. *近似熵与样本熵：综合教程*. Entropy. 2019; 21(6):541: https://www.mdpi.com/1099-4300/21/6/541
+
+  *   Yentes, J.M., Hunt, N., Schmid, K.K. 等. *短数据集中近似熵与样本熵的适当使用*. Ann Biomed Eng
+  41, 349–365 (2013): https://doi.org/10.1007/s10439-012-0668-3
+
+  *   Ponce-Flores M, Frausto-Solís J, Santamaría-Bonfil G, Pérez-Ortega J, González-Barbosa
+  JJ. *时间序列复杂性及其与预测性能的关系*. Entropy. 2020; 22(1):89. https://www.mdpi.com/1099-4300/22/1/89
+
+  *   Petropoulos F, Spiliotis E. *数据的智慧：充分利用单变量时间序列预测*. Forecasting. 2021; 3(3):478-497.
+  https://doi.org/10.3390/forecast3030029
+
+
+  ## 加入我们的图书社区
+
+
+  ![](img/file0.png)
+
+
+  [`packt.link/EarlyAccess/`](https://packt.link/EarlyAccess/)
+
+
+  在本书的前几部分中，我们已经建立了对时间序列的基本理解，并掌握了分析和可视化时间序列以及生成第一个基线预测的工具和技术。到目前为止，我们主要介绍了经典和统计技术。现在让我们涉足现代**机器学习**领域，学习如何利用这一相对较新的领域进行**时间序列预测**。机器学习是一个近年来飞速发展的领域，能够利用这些新技术进行时间序列预测，将成为当今世界一项不可估量的技能。
+
+
+  本章将涵盖以下主要主题：
+
+
+  *   理解机器学习基础
+
+  *   时间序列预测作为回归
+
+  *   局部模型与全局模型
+
+
+  ## 理解机器学习基础
+
+
+  在开始将机器学习用于时间序列之前，让我们花些时间确立什么是机器学习，并建立一个框架来演示它的作用（如果你已经非常熟悉机器学习，可以跳过这部分，或者继续跟随我们复习概念）。1959
+  年，Arthur Samuel 将机器学习定义为“一个无需显式编程就能让计算机获得学习能力的研究领域”。传统上，编程是一种范式，我们在其中知道一组执行动作的规则/逻辑，该动作作用于给定数据以获得我们想要的输出。但是，机器学习颠覆了这一点。在机器学习中，我们从数据和输出开始，让计算机告诉我们实现从数据获得期望输出的规则：
+
+
+  ![图 5.1 – 传统编程与机器学习](img/file141.jpg)
+
+
+  **图 5.1 – 传统编程与机器学习**
+
+
+  机器学习中有许多种问题设置，如监督学习、无监督学习、自监督学习等，但我们将坚持使用监督学习，因为它是最流行且最适用于本书内容的一种。
+
+
+  让我们从小处着手，逐步构建完整的示意图，它封装了监督机器学习问题的大多数关键组件：
+
+
+  ![图 5.2 – 监督机器学习示意图，第 1 部分 – 理想函数](img/file142.jpg)
+
+
+  **图 5.2 – 监督机器学习示意图，第 1 部分 – 理想函数**
+
+
+  正如我们已经讨论的，我们希望从机器学习中获得的是从数据中*学习*并得出一组规则/逻辑。数学中对逻辑/规则最接近的类比是函数，它接受输入（此处为数据）并提供输出。数学上可以写为：
+
+
+  ```
+
+  y = g(X)
+
+  ```
+
+
+  其中 `X` 是特征集合，`g` 是**理想目标函数**（*图 5.2* 中标记为 **1**），它将 `X` 输入（示意图中标记为 **2**）映射到目标（理想）输出
+  `y`（示意图中标记为 **3**）。理想目标函数在很大程度上是一个未知函数，类似于我们在第 1 章 *Introducing Time Series* 中看到的**数据生成过程**（**DGP**），它不在我们的控制范围内。
+
+
+  ![图 5.3 – 监督机器学习示意图，第 2 部分 – 学习到的近似](img/file144.jpg)
+
+
+  **图 5.3 – 监督机器学习示意图，第 2 部分 – 学习到的近似**
+
+
+  但我们希望计算机*学习*这个理想目标函数。这个理想目标函数的近似用另一个函数 `h` 表示（**4** 在示意图中），它接受相同的特征集合 `X`，并输出预测目标（**5**
+  在示意图中）。`θ` 是 `h` 函数的参数（或模型参数）：
+
+
+  ![图 5.4 – 监督机器学习示意图，第 3 部分 – 综合整合](img/file147.jpg)
+
+
+  **图 5.4 – 监督机器学习示意图，第 3 部分 – 综合整合**
+
+
+  现在，我们如何找到这个近似函数 `h` 及其参数 `θ`？通过示例数据集（**6** 在示意图中）。监督机器学习问题的前提是我们能够收集一组示例，展示特征 `X`
+  和相应的目标 `y`，这在文献中也称为*标签*。正是从这组示例（数据集）中，计算机*学习*近似函数 `h` 和最优模型参数 `θ`。在前面的图表中，唯一真正的未知实体是理想目标函数
+  `g`。因此，我们可以使用训练数据集 `D` 来获得数据集中每个样本的预测目标。我们已经知道所有示例的理想目标。我们需要一种方法来比较理想目标和预测目标，这就是**损失函数**（**7**
+  在示意图中）的作用。损失函数告诉我们用近似函数 `h` 偏离真实情况有多远。虽然 `h` 可以是任何函数，但通常从一组已知的函数类中选择，`H` 是可以拟合数据的有限函数集合。这类函数就是我们通俗所说的**模型**。例如，`h`
+  可以从所有线性函数或所有基于树的函数中选择，等等。从 `H` 中选择 `h` 是通过超参数（由建模者指定）和模型参数 `θ`（从数据中学习）的组合完成的。
+
+
+  剩下的就是遍历不同的函数，找到使损失最小的最佳近似函数 `h`。这个优化过程我们称之为**训练**。
+
+
+  让我们也看看几个关键概念，它们将在我们后续的所有讨论中都很重要。
+
+
+  ### 监督机器学习任务
+
+
+  机器学习可用于解决各种任务，如**回归**、**分类**和**推荐**。但由于分类和回归是最流行的问题类别，我们将花一点时间回顾它们是什么。
+
+
+
+
+
+  ### 分类与回归
+
+
+  分类任务和回归任务的区别非常简单。在机器学习示意图（图 5.2）中，我们讨论了 `y`，即目标值。这个目标可以是一个实数，也可以是一类项目。例如，我们可能预测下周的股价，也可能仅仅预测股价是涨还是跌。在第一种情况下，我们预测的是一个实数，这被称为**回归**。在另一种情况下，我们预测的是两个类别中的一个（涨或跌），这被称为**分类**。
+
+
+  ### 过拟合与欠拟合
+
+
+  机器学习系统面临的最大挑战是，我们训练的模型必须在新的、未见过的数据集上表现良好。机器学习模型具备这种能力称为模型的**泛化能力**。机器学习设置中的训练过程类似于数学优化，但有一个微妙的区别。数学优化的目标是在提供的数据集中找到全局最优解。但在机器学习中，目标是通过以训练误差为代理，来实现较低的测试误差。机器学习模型在训练误差和测试误差上的表现如何，与过拟合和欠拟合的概念密切相关。让我们通过一个例子来理解这些术语。
+
+
+  机器学习模型的学习过程与人类学习有许多相似之处。假设三个学生 A、B 和 C 正在为考试复习。A 是个懒汉，前一晚去蹦迪了。B 决定死记硬背，把课本从头背到尾。而
+  C 上课认真听讲，理解了考试涉及的主题。
+
+
+  正如预期的那样，A 考试不及格，C 得分最高，B 表现尚可。
+
+
+  A 考试不及格是因为他们学得不够。当机器学习模式没有学到足够的模式时，也会发生这种情况，这被称为**欠拟合**。其特征是训练误差高、测试误差高。
+
+
+  B 的分数不如预期高；毕竟他们逐字逐句地背下了全书。但考试中的许多题目并非直接来自课本，B 无法正确回答。换句话说，考题是新的、未见过的。因为 B 死记硬背却未努力理解底层概念，无法将所学知识泛化到新题目中。这种情况在机器学习中称为**过拟合**。其典型特征是训练误差和测试误差之间存在巨大差距。通常我们会看到非常低的训练误差和很高的测试误差。
+
+
+  第三个学生 C 用正确的方式学习，理解了底层概念，因此能够泛化到新的、未见过的问题中。这也是机器学习模型的理想状态。其特征是测试误差合理地低，且训练误差与测试误差之间的差距很小。
+
+
+  我们刚看到了机器学习中最大的两个挑战。现在，让我们也看看有哪些方法可以用来应对这些挑战。
+
+
+  模型的**容量**与欠拟合或过拟合有着密切关系。模型的容量是指其足够灵活以拟合各种函数的能力。容量低的模型可能难以拟合训练数据，导致欠拟合。容量高的模型可能会通过过度记忆训练数据而过拟合。为了建立关于容量概念的直观理解，让我们看一个例子。当我们从线性回归转向多项式回归时，我们增加了模型的容量。我们不再仅拟合直线，而是让模型也能拟合曲线。当模型的容量适合手头的学习问题时，机器学习模型通常表现良好。
+
+
+  ![图 5.5 – 欠拟合与过拟合](img/file152.jpg)
+
+
+  图 5.5 – 欠拟合与过拟合
+
+
+  图 5.5 展示了一个非常经典的案例来说明过拟合和欠拟合。我们使用一个已知函数创建了一些随机点，并尝试利用这些数据样本来学习该函数。我们可以看到，线性回归作为最简单的模型之一，通过这些点画一条直线，出现了欠拟合。多项式回归本质上是线性回归，但增加了一些高阶特征。目前，你可以将从线性回归到高阶多项式回归的转变视为增加模型容量。因此，当我们使用
+  4 次多项式时，可以看到学到的函数很好地拟合了数据，并与我们的理想函数相符。但如果我们继续增加模型容量，达到 `degree = 15` 时，会发现学到的函数虽然仍穿过训练样本，却学到了一个截然不同的函数，对训练数据产生了过拟合。找到学习泛化函数的最优容量是机器学习的核心挑战之一。
+
+
+  容量是模型的一个方面，另一个方面是**正则化**。即使容量相同，模型也可以从所有函数的假设空间中选择多种函数。通过正则化，我们试图在假设空间中对一组函数给予比其他函数更高的偏好。虽然所有这些函数都是可选的有效函数，但我们以这样一种方式引导优化过程，使我们最终得到一种我们偏好的函数类型。虽然正则化是一个通用术语，指我们施加在学习过程上的任何约束以减少学习到的函数的复杂度，但更常见的是以权重衰减的形式使用。让我们以线性回归为例，即通过学习与每个特征相关的权重，将一条直线拟合到输入特征上。
+
+
+  线性回归模型在数学上可以写成如下形式：
+
+
+  此处，`N` 是特征数量，`c` 是截距，是第 `i` 个特征，是与第 `i` 个特征相关的权重。我们通过将其视为一个最小化 ![](img/file155.png)
+  和 `y`（真实输出）之间误差的优化问题，来估计正确的权重（`L`）。
+
+
+  现在，通过正则化，我们在 `L` 中添加一个额外项，迫使权重变小。通常使用 `l1` 或 `l2` 正则化项来实现。`l1` 正则化项是将平方权重之和加到 `L`
+  中：
+
+
+  其中 ![](img/file157.png) 是正则化系数，决定了我们惩罚权重的力度。`l2` 正则化项是将绝对权重之和加到 `L` 中：
+
+
+  在这两种情况下，我们都在强制偏好较小的权重而非较大的权重，因为这能防止函数过度依赖机器学习模型中使用的任何单一特征。正则化本身就是一个完整的主题，如果你想了解更多，请前往“延伸阅读”部分查看一些关于正则化的资源。
+
+
+  减少过拟合另一个非常有效的方法就是简单地用更多数据训练模型。有了更大的数据集，模型过拟合的可能性就会降低，因为大数据集能捕捉到巨大的多样性。
+
+
+  现在，我们如何调整旋钮，在欠拟合和过拟合之间取得平衡？让我们在下一节中探讨。
+
+
+  ### 超参数与验证集
+
+
+
+
+
+  ## 机器学习在时间序列中的基础
+
+
+  ### 超参数
+
+
+  几乎所有机器学习模型都有几个与之相关的超参数。`Hyperparameters`（超参数）是模型的参数，它们不是从数据中学习得来的，而是在训练开始前设定的。例如，正则化的权重就是一个超参数。大多数超参数要么帮助我们控制模型的容量，要么对模型施加正则化。通过控制容量、正则化或两者兼施，我们可以在欠拟合和过拟合模型之间的边界上游走，从而得到一个`just
+  right`（恰到好处）的模型。
+
+
+  ### 验证集与交叉验证
+
+
+  但既然这些超参数必须在算法之外设定，我们该如何估计最佳超参数呢？虽然这不是核心`learning process`（学习过程）的一部分，但我们也是从数据中学习超参数的。但如果我们仅使用训练数据来学习超参数，它只会选择最大可能的模型容量，导致过拟合。这时我们就需要一个`validation
+  set`（验证集），即训练过程无法访问的那部分数据。但当数据集较小（不是成百上千个样本）时，单一验证集上的表现无法保证公平的评估。在这种情况下，我们依赖`cross-validation`（交叉验证）。通用的技巧是在原始数据集的不同子集上重复训练和评估过程。一种常见的方法称为`k-fold
+  cross validation`（k 折交叉验证），即将原始数据集划分为`k`个大小相等、不重叠且随机的子集，然后在所有其他子集上训练后对每个子集进行评估。如果您想了解交叉验证技术，我们在`Further
+  reading`（延伸阅读）部分提供了一个链接。本书后面也会涉及这个话题，但会从时间序列的角度出发，这与标准的交叉验证方式有几处不同。
+
+
+  > **建议阅读**
+
+  >
+
+  > 虽然我们在书中涉及了机器学习的皮毛，但还有更多内容，为了更好地领会本书其余部分，我们建议加深对机器学习的理解。我们建议从[*Machine Learning*
+  by *Stanford (Andrew Ng)*](https://www.coursera.org/learn/machine-learning)入手。如果您赶时间，[*Machine
+  Learning Crash Course* by *Google*](https://developers.google.com/machine-learning/crash-course/ml-intro)也是一个很好的起点。
+
+
+  既然我们已对机器学习有了基本了解，让我们开始看看如何利用它进行时间序列预测。
+
+
+  ## 时间序列预测作为回归
+
+
+  ## 时间序列预测作为回归
+
+
+  时间序列，正如我们在第 1 章*Introducing Time Series*（时间序列简介）中所见，是按时间顺序获取的一组观测值。通常，时间序列预测旨在尝试预测这些观测值在未来会是什么。给定任意长度历史的观测序列，我们预测任意长度的未来。
+
+
+  我们看到回归，即预测连续变量的机器学习，作用于一个示例数据集上，每个示例都是一组输入特征和目标。我们可以看到，回归的任务是根据一组输入预测单个输出，这从根本上与预测不兼容，后者给定一组历史值，要求预测未来值。时间序列与机器学习回归范式之间的这种根本不兼容性，就是我们无法直接将回归用于时间序列预测的原因。
+
+
+  此外，根据定义，时间序列预测是一个外推问题，而回归大多时候是一个内插问题。外推通常更难用数据驱动方法求解。回归问题中的另一个关键假设是用于训练的样本是`independent
+  and identically distributed`（独立同分布，`IID`）。但时间序列也打破了这一假设，因为时间序列中后续的观测值表现出相当大的依赖性。
+
+
+  然而，为了使用机器学习中的各种技术，我们需要将时间序列预测转化为回归问题。幸运的是，有方法可以将时间序列转化为回归，并通过特征向机器学习模型引入一些记忆来克服`IID`假设。让我们看看如何做到这一点。
+
+
+  ### 时间延迟嵌入
+
+
+  我们在第 4 章*Setting a Strong Baseline Forecast*（建立强基线预测）中讨论了`ARIMA`模型，并看到了它是如何作为一个自回归模型工作的。我们可以利用相同的概念将时间序列问题转化为回归问题。让我们使用下图使概念更清晰：
+
+
+  ![Figure 5.6 – Time series to regression conversion using a sliding window](img/5.6.jpg)
+
+
+  **图 5.6 – 使用滑动窗口将时间序列转换为回归**
+
+
+  假设我们有一个带有时间步的时间序列。假设我们在时间`t`，拥有一个历史长度为`L`的时间序列。因此，我们的时间序列看起来会像图中那样，`media/file159.png`是时间序列中最新的观测值，`media/file161.png`等是随着我们向后推移时间的观测值。在理想情况下，当我们预测时，`media/file161.png`中的每个观测值都应以所有先前的观测值为条件。但这不切实际，因为`L`可以任意长。我们通常限制预测函数仅使用序列中最近的`M`个观测值，其中`M
+  < L`。这些被称为有限记忆模型或`Markov models`（马尔可夫模型），`M`称为自回归阶数、记忆大小或感受野。
+
+
+  因此，在时间延迟嵌入中，我们假设一个任意长度`M < L`的窗口，并通过在时间序列长度上滑动窗口来提取固定长度的子序列。
+
+
+  在图中，我们采用了一个记忆大小为 3 的滑动窗口。因此，我们可以提取的第一个子序列（如果我们从最近的开始向后推）是`media/file163.png`。而`media/file164.png`是紧随该子序列之后的观测值。这成为我们数据集中的第一个示例（图中表格的第
+  1 行)。现在，我们将窗口向左滑动一个时间步（向后推移时间）并提取新的子序列`media/file164.png`。相应的目标将变为`media/file163.png`。当我们移回时间序列的开头时，我们重复这个过程，在滑动窗口的每一步，我们向数据集添加一个示例。
+
+
+  最终，我们得到了一个对齐的数据集，具有固定向量大小的特征（将等于窗口大小）和单个目标，这正是典型机器学习数据集的样子。
+
+
+  现在我们有了一个包含三个特征的表，让我们也给这三个特征赋予语义含义。如果我们看图中表格最右边的列，可以看到该列中的时间步总是落后于目标一个时间步。我们称之为`Lag
+  1`（滞后 1）。从右数第二列总是落后于目标两个时间步，这称为`Lag 2`。推广开来，包含落后于目标`n`个时间步的观测值的特征，我们称为`Lag n`。
+
+
+  这种利用`time-delay embedding`（时间延迟嵌入）从时间序列到回归的转换，以一种标准回归框架可利用的方式编码了时间序列的自回归结构。我们考虑将回归用于时间序列预测的另一种方法是执行`regression
+  on time`（时间回归）。
+
+
+  ### 时间嵌入
+
+
+
+
+  如果我们在自回归模型中依赖先前的观测值，那么在时间嵌入模型中我们则依赖时间的概念。核心思想是，我们忽略时间序列的自回归特性，假设时间序列中的任何值仅依赖于时间。我们从与时间序列相关的时间戳中衍生出能够捕捉时间、时间流逝、时间周期性等特征，然后利用这些特征通过回归模型来预测目标。实现这一点的方法有很多，从简单地对齐一个单调且均匀递增的数值列来捕捉时间流逝，到复杂的
+  `Fourier` 项来捕捉时间中的周期性成分。我们将在第 6 章 *时间序列预测的特征工程* 中详细讨论这些技术。
+
+
+  在本章结束前，让我们也来谈谈一个在时间序列预测领域稳步获得认可的关键概念。本书的很大一部分内容都拥抱这一新的预测范式。
+
+
+  ## 全局预测模型——范式转变
+
+
+  传统上，每条时间序列都被孤立处理。因此，传统预测在拟合预测函数时，一直只关注单条时间序列的历史。但最近，由于当今数字化优先的世界中数据收集变得容易，许多公司开始从相似来源收集大量时间序列，或收集相关时间序列。
+
+
+  例如，沃尔玛等零售商收集数千家门店中数百万产品的销售数据。Uber 或 Lyft 等公司收集城市中所有区域的网约车需求数据。在能源领域，会收集所有消费者的能源消耗数据。所有这些时间序列集合都具有共同的行为模式，因此被称为
+  `related time series`。
+
+
+  我们可以认为，`related time series` 中的所有时间序列都来自独立的 `data generating processes` (`DGPs`，数据生成过程)，因此对它们分别建模。我们称这些为预测中的
+  `local`（局部）模型。另一种方法是假设所有时间序列都来自单一的 `DGP`。我们不再为每个时间序列单独拟合预测函数，而是为所有 `related time
+  series` 拟合单一预测函数。在文献中，这种方法被称为 `global`（全局）或 `cross-learning`（交叉学习）。
+
+
+  > 参考文献核查
+
+  >
+
+  > > 术语 `global` 由 *David Salinas 等人* 在 *DeepAR* 论文中引入（参考文献 1），`Cross-learning` 由
+  *Slawek Smyl* 提出（参考文献 2）。
+
+
+  我们之前看到，拥有更多数据会降低过拟合的几率，从而降低泛化误差（训练误差与测试误差之差）。这正是 `local` 方法的缺陷之一。传统上，时间序列通常不算很长，而且在许多情况下，收集更多数据也既困难又耗时。在小数据上拟合机器学习模型（尽管其表达能力强）容易导致过拟合。这就是为什么传统上使用强先验的时间序列模型来预测此类时间序列。但这些限制传统时间序列模型拟合的强先验，也可能导致一种欠拟合的形式，从而限制准确性。
+
+
+  像机器学习那样强且富有表现力的数据驱动模型，需要更大量的数据才能得到一个能泛化到新数据和未见数据的模型。根据定义，时间序列与时间绑定，有时收集更多数据意味着等待数月或数年，这是不可取的。因此，如果我们无法增加时间序列数据集的*长度*，我们可以增加时间序列数据集的*宽度*。如果我们向数据集中添加多条时间序列，就增加了数据集的宽度，从而增加了模型训练所用的数据量。*Figure
+  5.7* 直观地展示了增加时间序列数据集宽度的概念：
+
+
+  ![图 5.7 – 时间序列数据集的长度与宽度](img/5.7.jpg)
+
+
+  图 5.7 – 时间序列数据集的长度与宽度
+
+
+  这对机器学习模型有利，因为随着拟合预测函数的灵活性提高和可用数据的增加，机器学习模型能以完全数据驱动的方式学习到比传统时间序列模型更复杂的预测函数，而传统模型通常是在
+  `related time series` 之间共享的。
+
+
+  `local` 方法的另一个缺陷在于可扩展性。以我们前面提到的沃尔玛为例，有数百万条时间序列需要预测，不可能对所有这些模型进行人工监督。如果从工程角度考虑，在生产系统中训练和维护数百万个模型会让任何工程师感到噩梦般困扰。但在
+  `global` 方法下，我们只需为所有这些时间序列训练一个模型，这大幅减少了我们需要维护的模型数量，却能生成所有必需的预测。
+
+
+  这种新的预测范式已获得关注，并在多项时间序列竞赛中持续被证明优于 `local` 方法，主要是在 `related time series` 数据集上。在 Kaggle
+  竞赛中，如 *Rossman Store Sales*（2015）、*Wikipedia WebTraffic Time Series Forecasting*（2017）、*Corporación
+  Favorita Grocery Sales Forecasting*（2018）和 *M5 Competition*（2020），获胜方案均为 `global`
+  模型——无论是机器学习、深度学习还是两者的结合。*Intermarché Forecasting Competition*（2021）的获胜提交方案也是 `global`
+  模型。这些竞赛的链接在 *延伸阅读* 部分提供。
+
+
+  尽管我们有许多实证发现表明 `global` 模型在 `related time series` 上优于 `local` 模型，但 `global` 模型仍是一个相对较新的研究领域。*Montero-Manson
+  and Hyndman*（2020）展示了一些非常有趣的结果，表明任何 `local` 方法都可以用具有所需复杂度的 `global` 模型来近似，他们提出的最有趣的发现是，`global`
+  模型甚至在不相关的时间序列上也会表现得更好。我们将在第 10 章 *全局预测模型* 中更多地讨论 `global` 模型及其策略。
+
+
+  > 参考文献核查
+
+  >
+
+  > > *Montero-Manson and Hyndman*（2020）的研究论文在 *参考文献* 中作为参考文献 3 被引用。
+
+
+  ## 概要
+
+
+  我们已经开始了超越基线预测方法的旅程，并初涉机器学习领域。在简要回顾机器学习时，我们了解了过拟合、欠拟合、正则化等关键概念，随后我们看到了如何将时间序列预测问题转化为机器学习领域的回归问题。我们还建立了对不同嵌入方式的概念性理解，如时间延迟嵌入和时间嵌入，它们可用于将时间序列问题转化为回归问题。最后，我们还了解了时间序列预测中的新范式——`global`
+  模型，并在概念层面将其与 `local` 模型进行了对比。在接下来的几章中，我们将开始将这些概念付诸实践，探讨特征工程技术和 `global` 模型策略。
+
+
+  ## 参考文献
+
+
+  以下是本章使用的参考文献：
+
+
+  1.  David Salinas, Valentin Flunkert, Jan Gasthaus, Tim Januschowski (2020). *DeepAR:
+  Probabilistic forecasting with autoregressive recurrent networks*. 国际预测期刊. 36-3.
+  1181-1191: https://doi.org/10.1016/j.ijforecast.2019.07.001
+
+
+
+
+  2. Slawek Smyl (2020). *指数平滑与循环神经网络的混合方法用于时间序列预测*。International Journal of Forecasting.
+  36-1: 75-85 https://doi.org/10.1016/j.ijforecast.2019.03.017
+
+
+  3. Montero-Manso, P., Hyndman, R.J.. (2020), *时间序列组预测的原则与算法：局部性与全局性*。arXiv:2008.00444
+  [cs.LG]: https://arxiv.org/abs/2008.00444
+
+
+  ## 延伸阅读
+
+
+  您可以查看以下资源以进行延伸阅读：
+
+
+  * *来自 Google 机器学习速成课程的稀疏性正则化*：https://developers.google.com/machine-learning/crash-course/regularization-for-sparsity/l1-regularization
+
+
+  * *来自机器学习基础，Bloomberg ML EDU 的 L1 和 L2 正则化*：https://www.youtube.com/watch?v=d6XDOS4btck
+
+
+  * *来自 scikit-learn 的交叉验证：评估估计器性能*：https://scikit-learn.org/stable/modules/cross_validation.html
+
+
+  * *Rossmann 商店销售额*：https://www.kaggle.com/c/rossmann-store-sales
+
+
+  * *网络流量时间序列预测* – https://www.kaggle.com/c/web-traffic-time-series-forecasting
+
+
+  * *Corporación Favorita 食品杂货销售预测* – https://www.kaggle.com/c/favorita-grocery-sales-forecasting
+
+
+  * *M5 预测 – 准确性* – https://www.kaggle.com/c/m5-forecasting-accuracy
+
+  '
+- "# 6 时间序列预测的特征工程\n\n## 加入我们的 Discord 图书社区\n\n![](img/file0.png)\n\n[`packt.link/EarlyAccess/`](https://packt.link/EarlyAccess/)\n\
+  \n在上一章中，我们开始探讨将机器学习（ML）作为解决时间序列预测问题的工具。我们还讨论了一些技术，如时间延迟嵌入和时间嵌入，这些技术从机器学习范式将时间序列预测问题转化为经典回归问题。在本章中，我们将详细研究这些技术，并使用贯穿全书的数据集进行实践演示。\n\
+  \n在本章中，我们将涵盖以下主题：\n\n* 特征工程\n* 避免数据泄露\n* 设定预测范围\n* 时间延迟嵌入\n* 时间嵌入\n\n## 技术要求\n\n\
+  * 您需要按照本书*前言*中的说明设置 `Anaconda` 环境，以获得一个包含本书代码所需的所有库和数据集的工作环境。任何额外的库将在运行笔记本时安装\n\n\
+  在使用本章代码之前，您需要运行以下笔记本：\n\n* `Chapter02` 中的 `02-Preprocessing London Smart Meter Dataset.ipynb`\n\
+  * `Chapter04` 中的 `01-Setting up Experiment Harness.ipynb`\n\n本章代码可在 https://github.com/PacktPublishing/Modern-Time-Series-Forecasting-with-Python-/tree/main/notebooks/Chapter06\
+  \ 找到。\n\n## 特征工程\n\n顾名思义，特征工程是从数据中构建特征的过程，主要利用领域知识，使学习过程更顺畅、更高效。在典型的机器学习设置中，构建良好的特征对于从任何机器学习模型获得良好性能至关重要。特征工程是机器学习中高度主观的部分，每个手头的问题都有不同的路径——一条专门为该问题手工打造的路径。\n\
+  \n当我们将时间序列问题转化为回归问题时，可以应用一些标准技术。这是该过程中的关键步骤，因为机器学习模型对时间的理解程度取决于我们设计捕捉时间特征的效果。我们在第\
+  \ 4 章 *建立强基线预测* 中介绍的基线方法，是专门为时间序列预测用例创建的，因此问题的时间层面内嵌在这些模型中。例如，`ARIMA` 不需要任何特征工程来理解时间，因为这已内嵌在模型中。但标准回归模型对时间没有显式理解，因此我们需要创建良好的特征来嵌入问题的时间层面。\n\
+  \n在上一章（第 5 章，*时间序列预测作为回归*）中，我们讨论了将时间编码到回归框架中的两个主要思想：时间延迟嵌入和时间嵌入。虽然我们在高层面上涉及了这些概念，但现在是时候深入挖掘并看到它们的实际应用了。\n\
+  \n> 笔记本提示\n>\n> 要跟随完整代码，请使用 `chapter06` 文件夹中的 `01-Feature Engineering.ipynb` 笔记本。\n\
+  \n我们已经将正在处理的数据集拆分为训练、验证和测试数据集。但由于我们生成的特征基于先前的观测值，从操作角度来看，拥有合并后的训练、验证和测试数据集会更好。稍后会清楚为什么，但现在请先相信这一点并继续前进。现在，让我们继续合并这些数据集：\n\
+  \n```python\n### 读取缺失值插补和训练测试拆分的数据\ntrain_df = pd.read_parquet(preprocessed / \"\
+  selected_blocks_train_missing_imputed.parquet\")\nval_df = pd.read_parquet(preprocessed\
+  \ / \"selected_blocks_val_missing_imputed.parquet\")\ntest_df = pd.read_parquet(preprocessed\
+  \ / \"selected_blocks_test_missing_imputed.parquet\")\n### 在合并前添加训练、验证和测试标签以区分它们\n\
+  train_df['type'] = \"train\"\nval_df['type'] = \"val\"\ntest_df['type'] = \"test\"\
+  \nfull_df = pd.concat([train_df, val_df, test_df]).sort_values([\"LCLid\", \"timestamp\"\
+  ])\ndel train_df, test_df, val_df\n```\n\n现在，我们有了一个合并了训练、验证和测试数据集的 `full_df`。你们中的一些人可能已经对合并训练集和测试集感到警觉。那数据泄露怎么办？让我们来看看。\n\
+  \n## 避免数据泄露\n\n当模型使用在预测时不可用的信息进行训练时，就会发生数据泄露。通常，这会导致训练集上性能很高，但在未见数据上性能很差。数据泄露有两种类型：\n\
+  \n* **目标泄露** 是指我们试图预测的目标信息泄露到了模型的某些特征中，导致模型过度依赖这些特征，最终导致泛化能力差。这包括以任何方式使用目标的特征。\n\
+  \n* **训练-测试污染** 是指训练集和测试集之间存在信息泄露。这可能是由于粗心的数据处理和拆分造成的。但也可能以更微妙的方式发生，例如在拆分训练集和测试集之前对数据集进行缩放。\n\
+  \n当我们处理时间序列预测问题时，我们能犯的最大且最常见的错误就是目标泄露。我们必须仔细思考每个特征，确保我们没有使用任何在预测期间不可用的数据。下图将帮助我们记住并内化这一概念：\n\
+  \n![Figure 6.1 – Usable and not-usable information to avoid data leakage](img/file166.jpg)\n\
+  \n图 6.1 – 避免数据泄露的可用与不可用信息\n\n\n\n\n为了让这个概念更清晰，并更贴合时间序列预测的场景，我们来看一个例子。假设我们正在预测洗发水的销量，并将护发素的销量作为一个特征。我们开发了模型，在训练数据上进行了训练，并在验证数据上进行了测试。模型表现非常好。问题出现在我们开始对未来进行预测的那一刻。我们同样不知道未来护发素的销量是多少。虽然这个例子相当直观，但有时这个问题并不那么显而易见。这就是为什么我们在创建特征时必须格外谨慎，并始终通过*“该特征在预测时刻是否可用？”*这一视角来评估特征。\n\
+  \n> **最佳实践**\n>\n> 除了深思熟虑特征之外，还有许多识别目标泄露的方法：\n>\n> - 如果你构建的模型好得令人难以置信，那极有可能存在泄露问题\n\
+  > - 如果在模型的特征重要性中，任何单一特征的权重过高，该特征可能存在泄露问题\n> - 仔细复查那些与目标高度相关的特征\n\n## 设定预测范围\n\n\
+  虽然我们在本书前面已经生成过预测，但从未明确讨论过**预测范围**。预测范围是指我们在任意时间点想要预测的未来时间步数。例如，如果我们想预测一直在使用的电力消费数据集未来\
+  \ 24 小时的情况，由于数据是半小时粒度的，预测范围就变成了 48。在第 5 章 *时间序列预测作为回归* 中生成基线时，我们只是一次性预测了整个测试数据。在这种情况下，预测范围等于测试数据的长度。\n\
+  \n直到现在我们都不必担心这个问题，因为在经典的统计预测方法中，这个决策是与建模解耦的。如果我们训练了一个模型，就可以用它来预测任意未来的时间点，而无需重新训练。但对于*时间序列预测作为回归*，我们对预测范围有约束，其根源在于数据泄露。目前，我们只关注单步向前预测。就我们正在使用的数据集而言，这意味着我们将回答的问题是：*下半小时的能源消耗是多少？*\
+  \ 我们将在*第 4 节 – 预测的机制* 中讨论多步预测和其他预测机制。\n\n现在我们已经设定了一些基本规则，让我们开始看看不同的特征工程技术。要跟随 Jupyter\
+  \ Notebook 进行操作，请前往 `chapter06` 文件夹并使用 `01-Feature Engineering.ipynb` 文件。\n\n##\
+  \ 时间延迟嵌入\n\n时间延迟嵌入的基本思想是用最近的观测值来表示时间。如果你想回到第 5 章 *时间序列预测作为回归* 复习这个概念（*图 5.1*），请现在就去做。\n\
+  \n在*图 5.1* 中，我们讨论了将时间序列的先前观测值作为**滞后项**纳入。然而，利用这个概念还有更多方法来捕捉最近的和季节性的信息。让我们来看看。\n\n\
+  ### 滞后项或后移\n\n假设我们有一个带有时间步的时间序列。考虑我们位于时间 `t`，并且有一个历史长度为 `L` 的时间序列。因此，我们的时间序列将以 `y_t`\
+  \ 作为最新观测值，然后是 ![](img/file169.png) 等，随着时间回溯。正如第 5 章 *时间序列预测作为回归* 所解释的，滞后项是包含时间序列中先前观测值的特征，如下图所示：![Figure\
+  \ 6.2 – Lag features (Color figure)](img/file170.jpg)\n\nFigure 6.2 – Lag features\
+  \ (Color figure)\n\n我们可以通过包含 `a` 个时间步之前的观测值（`y_{t-a}`）来创建多个滞后项；我们将其称为*滞后 a*。在前面的图中，我们展示了**滞后\
+  \ 1**、**滞后 2** 和**滞后 3**。不过，我们可以添加任意数量的滞后项。现在，让我们学习如何在代码中实现：\n\n```\ndf[\"lag_1\"\
+  ] = df[\"column\"].shift(1)\n```\n\n还记得我们合并训练集和测试集时，我请你姑且相信一下吗？现在是时候给这个信任一个理由了。如果我们考虑滞后操作（或任何自回归特征），它依赖于时间轴上的连续表示。如果考虑测试数据集，对于前几行（或最早的日期），滞后项会缺失，因为它们属于训练数据集。因此，通过合并两者，我们在时间轴上创建了一个连续的表示，从而可以轻松高效地利用\
+  \ pandas 中的标准函数（如 `shift`）来创建这些特征。\n\n就是这么简单，但我们需要对每个 `LCLid` 单独执行滞后操作。我们在 `src.feature_engineering.autoregressive_features`\
+  \ 中包含了一个名为 `add_lags` 的实用方法，它可以快速高效地为每个 `LCLid` 添加你想要的所有滞后项。让我们看看如何使用它。\n\n我们将导入该方法，并使用其几个参数来按我们想要的方式配置滞后操作：\n\
+  \n```\nfrom src.feature_engineering.autoregressive_features import add_lags\n####\
+  \ 创建前 5 个滞后项，然后创建前一天和前一周相同的 5 个滞后项以捕捉季节性\nlags = (\n    (np.arange(5) + 1).tolist()\n\
+  \    + (np.arange(5) + 46).tolist()\n    + (np.arange(5) + (48 * 7) - 2).tolist()\n\
+  )\nfull_df, added_features = add_lags(\n    full_df, lags=lags, column=\"energy_consumption\"\
+  , ts_id=\"LCLid\", use_32_bit=True\n)\n```\n\n现在，让我们看看前面代码片段中使用的参数：\n\n- `lags`:\
+  \ 该参数接受一个整数列表，表示我们需要创建为特征的所有滞后项。\n- `column`: 要滞后的列的名称。在我们的例子中，是 `energy_consumption`。\n\
+  - `ts_id`: 包含时间序列唯一 ID 的列的名称。如果为 `None`，则假设 DataFrame 仅包含单个时间序列。在我们的例子中，`LCLid`\
+  \ 是该列的名称。\n- `use_32_bit`: 该参数在功能上不做任何事情，但牺牲浮点数精度换取 DataFrames 在内存中占用更小的空间。\n\n\
+  该方法返回添加了滞后项的 DataFrame 和一个包含新增特征列名的列表。\n\n### 滚动窗口聚合\n\n使用滞后项时，我们将当前点与过去的单个点相连接；而使用滚动窗口特征时，我们将当前点与过去一个窗口的聚合统计量相连接。我们不再查看前几个时间步的观测值，而是查看过去三个时间步观测值的平均值。请看下图以更好地理解：\n\
+  \n![Figure 6.3 – Rolling window aggregation features(Color figure)](img/file172.jpg)\n\
+  \nFigure 6.3 – Rolling window aggregation features(Color figure)\n\n我们可以用不同的窗口计算滚动统计量，每个窗口会捕捉历史略微不同的方面。在前面的图中，我们可以看到窗口为三和窗口为四的例子。当我们位于时间步\
+  \ `t` 时，窗口为三的滚动窗口将包含 ![](img/file173.png) 作为过去观测值的向量。一旦我们有了这些，就可以应用任何聚合函数，如平均值、标准差、最小值、最大值等。一旦聚合函数得到一个标量值，我们就可以将其作为时间步\
+  \ `t` 的特征纳入。\n\n> **注意**\n>\n> 我们*不包含* 在过去观测值的向量中，因为这会导致数据泄露。\n\n让我们看看如何用 pandas\
+  \ 来实现这一点：\n\n\n\n\n#### 我们向后移动一步，以确保不发生数据泄露\n\n```python\ndf[\"rolling_3_mean\"\
+  ] = df[\"column\"].shift(1).rolling(3).mean()\n```\n\n类似于滞后特征，我们需要对每个 `LCLid` 列分别执行此操作。我们在\
+  \ `src.feature_engineering.autoregressive_features` 中提供了一个名为 `add_rolling_features`\
+  \ 的实用方法，它能以快速高效的方式为每个 `LCLid` 添加所有你想要的滚动特征。让我们看看如何使用它。\n\n我们将导入此方法并使用其几个参数来按我们想要的方式配置滚动操作：\n\
+  \n```python\nfrom src.feature_engineering.autoregressive_features import add_rolling_features\n\
+  full_df, added_features = add_rolling_features(\n    full_df,\n    rolls=[3, 6,\
+  \ 12, 48],\n    column=\"energy_consumption\",\n    agg_funcs=[\"mean\", \"std\"\
+  ],\n    ts_id=\"LCLid\",\n    use_32_bit=True,\n)\n```\n\n现在，让我们看看在前面的代码片段中使用的参数：\n\
+  \n*   **`rolls`**：该参数接受一个整数列表，表示我们需要计算聚合统计量的所有窗口。\n*   **`column`**：要滞后的列的名称。在我们的例子中，是\
+  \ `energy_consumption`。\n*   **`agg_funcs`**：这是我们想要对 `rolls` 中声明的每个窗口执行的聚合操作列表。允许的聚合函数包括\
+  \ `{mean, std, max, min}`。\n*   **`n_shift`**：这是在进行滚动操作之前需要移动的时间步数。此参数可避免数据泄露。虽然我们现在只移动一步，但也存在需要移动多步的情况。这通常用于多步预测，我们将在*第\
+  \ 3 部分 - 预测机制*中介绍。\n*   **`ts_id`**：包含时间序列唯一 ID 的列的名称。如果为 `None`，则假设 DataFrame 只包含单个时间序列。在我们的例子中，`LCLid`\
+  \ 是该列的名称。\n*   **`use_32_bit`**：此参数在功能上不做任何操作，但能使 DataFrame 在内存中小得多，代价是牺牲浮点数的精度。\n\
+  \n此方法返回添加了滚动特征的 DataFrame 以及一个包含新增特征列名的列表。\n\n## 季节性滚动窗口聚合\n\n季节性滚动窗口聚合与滚动窗口聚合非常相似，但它不是在窗口中取过去\
+  \ *n* 个连续的观测值，而是取一个季节性窗口，在窗口中的每个项目之间跳过固定数量的时间步。下图将使这一点更清晰：\n\n![图 6.4 - 季节性滚动窗口聚合（彩图）](img/6.4.jpg)\n\
+  \n**图 6.4 - 季节性滚动窗口聚合（彩图）**\n\n这里的关键参数是季节周期，通常称为 *m*。这是我们预期季节性模式重复所需的时间步数。当我们位于时间步\
+  \ *t* 时，大小为 3 的滚动窗口将包含 ![](img/file174.png) 作为过去观测值的向量。但季节性滚动窗口会在窗口中的每个项目之间跳过 *m*\
+  \ 个时间步。这意味着季节性滚动窗口中的观测值将是 。和往常一样，一旦我们有了窗口向量，只需应用聚合函数即可得到一个标量值，并将其作为特征加入。\n\n> **重要提示**\n\
+  >\n> 我们*不将* ![](img/file174.png) 作为季节性滚动窗口向量中的元素，以避免数据泄露。\n\n这不是一个可以用 pandas 轻松高效完成的操作。一些花哨的\
+  \ NumPy 索引和 Python 循环应该能搞定。我们使用来自 `github.com/jmoralez/window_ops/` 的实现，它利用 NumPy\
+  \ 和 Numba 使操作快速高效。\n\n就像我们之前看到的特征一样，我们需要对每个 `LCLid` 分别执行此操作。我们在 `src.feature_engineering.autoregressive_features`\
+  \ 中提供了一个名为 `add_seasonal_rolling_features` 的实用方法，它能以快速高效的方式为每个 `LCLid` 添加所有你想要的季节性滚动特征。让我们看看如何使用它。\n\
+  \n我们将导入该方法并使用其几个参数来按我们想要的方式配置季节性滚动操作：\n\n```python\nfrom src.feature_engineering.autoregressive_features\
+  \ import add_seasonal_rolling_features\nfull_df, added_features = add_seasonal_rolling_features(\n\
+  \    full_df,\n    rolls=[3],\n    seasonal_periods=[48, 48 * 7],\n    column=\"\
+  energy_consumption\",\n    agg_funcs=[\"mean\", \"std\"],\n    ts_id=\"LCLid\",\n\
+  \    use_32_bit=True,\n)\n```\n\n现在，让我们看看在前面的代码片段中使用的参数：\n\n*   **`seasonal_periods`**：这是一个应在季节性滚动窗口中使用的季节周期列表。在存在多重季节性的情况下，我们可以包含所有季节性的季节性滚动特征。\n\
+  *   **`rolls`**：该参数接受一个整数列表，表示我们需要计算聚合统计量的所有窗口。\n*   **`column`**：要滞后的列的名称。在我们的例子中，是\
+  \ `energy_consumption`。\n*   **`agg_funcs`**：这是我们想要对 `rolls` 中声明的每个窗口执行的聚合操作列表。允许的聚合函数为\
+  \ `{mean, std, max, min}`。\n*   **`n_shift`**：这是在进行滚动操作之前需要移动的季节性时间步数。此参数可避免数据泄露。\n\
+  *   **`ts_id`**：包含时间序列唯一 ID 的列的名称。如果为 `None`，则假设 DataFrame 仅包含单个时间序列。在我们的例子中，`LCLid`\
+  \ 是该列的名称。\n*   **`use_32_bit`**：此参数在功能上不做任何操作，但能使 DataFrame 在内存中小得多，代价是牺牲浮点数的精度。\n\
+  \n和往常一样，该方法返回包含季节性滚动特征的 DataFrame 以及一个包含新增特征列名的列表。\n\n## 指数加权移动平均 (EWMA)\n\n使用滚动窗口均值操作时，我们计算的是窗口的平均值，这与**移动平均**同义。EWMA\
+  \ 是移动平均稍微聪明一点的“表亲”。移动平均考虑一个滚动窗口，并在计算平均值时同等对待窗口中的每个项目，而 EWMA 试图对窗口进行加权平均，且权重以指数速率衰减。有一个参数\
+  \ ![](img/file177.png)，决定了权重衰减的速度。因此，我们可以将所有可用历史视为一个窗口，让该参数决定 EWMA 中包含多少近期信息。这可以简单地用递归形式写出，如下所示：\n\
+  \n![](img/file179.png)\n\n在这里，我们可以看到，![](img/file177.png) 的值越大，平均值越偏向近期值（请参阅*图 6.6*\
+  \ 以直观了解权重的分布）。如果我们展开递归，每一项的权重计算结果为：其中 *k* 是落后于 *t* 的时间步数。如果我们绘制权重图，可以看到它们呈指数衰减；![](img/file177.png)\
+  \ 决定了衰减的速度。理解 ![](img/file177.png) 的另一种方式是从**跨度** 的角度。跨度是衰减权重趋近于零所需的周期数（不是严格的数学意义上，而是直观上）。![](img/file177.png)\
+  \ 和跨度通过以下公式相关联：\n\n下图将使这一点更清晰，我们在其中绘制了不同 ![](img/file177.png) 值下的权重衰减情况：\n\n![图\
+  \ 6.5 - 不同值下的指数权重衰减](img/6.5.jpg)\n\n**图 6.5 - 不同值下的指数权重衰减**\n\n在这里，我们可以看到，当达到跨度时，权重变得很小。\n\
+  \n\n\n\n## EWMA 特征\n\n直观上，我们可以将 EWMA 视为时间序列整个历史的平均值，但通过 `span` 等参数，我们可以让不同历史时期在平均值中具有不同的代表性。如果我们定义一个\
+  \ 60 周期的 span，我们可以认为最近 60 个时间周期主要驱动了该平均值。因此，使用不同 spans 或 s 创建 EWMA 会给我们提供具有代表性的特征，这些特征捕捉了不同历史时期的信息。\n\
+  \n整体过程如下图所示：\n\n![Figure 6.6 – EWMA features(Color figure)](img/6.6.jpg)\n\nFigure\
+  \ 6.6 – EWMA features(Color figure)\n\n现在，让我们看看如何在 pandas 中实现这一点：\n\n```\ndf[\"\
+  ewma\"]=df['column'].shift(1).ewm(alpha=0.5).mean()\n```\n\n就像我们之前讨论的其他特征一样，EWMA\
+  \ 也需要为每个 `LCLid` 单独计算。我们在 `src.feature_engineering.autoregressive_features` 中包含了一个名为\
+  \ `add_ewma` 的实用方法，它能以快速高效的方式为每个 `LCLid` 添加你想要的所有 EWMA 特征。让我们看看如何使用它。\n\n我们将导入该方法，并使用该方法的几个参数来按我们想要的方式配置\
+  \ EWMA：\n\n```\nfrom src.feature_engineering.autoregressive_features import add_ewma\n\
+  full_df, added_features = add_ewma(\n    full_df,\n    spans=[48 * 60, 48 * 7, 48],\n\
+  \    column=\"energy_consumption\",\n    ts_id=\"LCLid\",\n    use_32_bit=True,\n\
+  )\n```\n\n现在，让我们看看之前代码片段中使用的参数：\n\n*   `alphas`: 这是一个包含我们需要计算 EWMA 特征的所有 s 的列表。\n\
+  *   `spans`: 或者，我们可以使用它来列出我们需要计算 EWMA 特征的所有 spans。如果你使用此功能，`alphas` 将被忽略。\n*   `column`:\
+  \ 要滞后的列的名称。在我们的例子中，是 `energy_consumption`。\n*   `n_shift`: 这是在进行滚动操作之前需要移动的季节性时间步数。此参数可避免数据泄露。\n\
+  *   `ts_id`: 包含时间序列唯一 ID 的列名。如果为 `None`，则假设 DataFrame 仅包含单个时间序列。在我们的例子中，`LCLid`\
+  \ 是该列的名称。\n*   `use_32_bit`: 此参数在功能上不做任何事情，但能使 DataFrames 在内存中小得多，代价是牺牲浮点数的精度。\n\
+  \n和往常一样，该方法返回包含 EWMA 特征的 DataFrame 以及一个包含新增特征列名的列表。\n\n这些是在 ML 模型中包含时间延迟嵌入的几种标准方法，但你并不局限于这些。一如既往，特征工程是一个不受规则约束的领域，我们可以尽可能发挥创造力，将领域知识注入模型。除了我们看到的特征外，我们还可以将滞后差分作为自定义滞后特征纳入其中，以注入领域知识，等等。\n\
+  \n现在，让我们看看另一类可以通过 `temporal embedding`（时间嵌入）添加的特征。\n\n## 时间嵌入\n\n在第 5 章 *Time Series\
+  \ Forecasting as Regression*（时间序列预测作为回归）中，我们简要讨论了时间嵌入，这是一个将*时间*嵌入到 ML 模型可利用的特征中的过程。如果我们思考一下*时间*，我们会意识到在时间序列预测的背景下，有两个重要的时间方面——*时间的流逝*\
+  \ 和 *时间的周期性*。\n\n让我们看看一些可以帮助我们在 ML 模型中捕捉这些方面的特征。\n\n### 日历特征\n\n我们可以提取的第一组特征是基于日历的特征。虽然时间序列的严格定义是按时间顺序获取的一组观测值，但通常我们会拥有这些观测值的时间戳以及时间序列本身。我们可以利用这些时间戳提取日历特征，如月份、季度、一年中的第几天、小时、分钟等。这些特征捕捉了时间的周期性，有助于\
+  \ ML 模型很好地捕捉季节性。只有时间粒度高于时间序列频率的日历特征才有意义。例如，在周频率的时间序列中，小时特征没有意义，但月份特征和周特征是有意义的。我们可以利用\
+  \ pandas 内置的 datetime 功能来创建这些特征，并在模型中将它们视为分类特征。\n\n### 时间流逝\n\n这是另一个在 ML 模型中捕捉时间流逝的特征。随着时间增加，该特征单调递增，给\
+  \ ML 模型一种时间流逝的感觉。创建此特征的方法有很多，但最简单高效的方法之一是使用 NumPy 中日期的整数表示：\n\n```\ndf['time_elapsed']\
+  \ = df['timestamp'].values.astype(np.int64)/(10**9)\n```\n\n我们在 `src.feature_engineering.temporal_features`\
+  \ 中包含了一个名为 `add_temporal_features` 的实用方法，它可以自动添加所有相关的时间特征。让我们看看如何使用它。\n\n我们将导入该方法，并使用该方法的几个参数来配置和创建时间特征：\n\
+  \n```\nfull_df, added_features = add_temporal_features(\n    full_df,\n    field_name=\"\
+  timestamp\",\n    frequency=\"30min\",\n    add_elapsed=True,\n    drop=False,\n\
+  \    use_32_bit=True,\n)\n```\n\n现在，让我们看看之前代码片段中使用的参数：\n\n*   `field_name`: 这是包含用于创建特征的\
+  \ datetime 的列名。\n*   `frequency`: 我们应该提供时间序列的频率作为输入，以便该方法自动提取相关特征。这些是标准的 pandas\
+  \ 频率字符串。\n*   `add_elapsed`: 此标志用于开启或关闭时间流逝特征的创建。\n*   `use_32_bit`: 此参数在功能上不做任何事情，但能使\
+  \ DataFrames 在内存中小得多，代价是牺牲浮点数的精度。\n\n就像我们讨论的之前的方法一样，这也会返回添加了时间特征的新 DataFrame 以及一个包含新增特征列名的列表。\n\
+  \n### 傅里叶项\n\n之前，我们提取了一些日历特征，如月份、年份等，并讨论了在 ML 模型中将它们作为分类变量使用。另一种表示相同信息但处于连续尺度上的方法是使用\
+  \ `Fourier terms`（傅里叶项）。我们在第 3 章 *Analyzing and Visualizing Time Series Data*（分析和可视化时间序列数据）中讨论了傅里叶级数。回顾一下，傅里叶级数的正弦-余弦形式如下：\n\
+  \n此处，`N` 项近似信号 `S`。理论上，当 `N` 为无穷大时，生成的近似等于原始信号。`P` 是周期的最大长度。我们可以创建这些余弦和正弦函数作为特征来表示季节周期。如果我们要编码月份，我们知道月份从\
+  \ 1 到 12 然后重复。因此，在这种情况下 `P` 将是 12，而 `x` 将是 1, 2, …12。因此，对于每个 `x`，我们可以计算余弦和正弦项并将它们作为特征添加到\
+  \ ML 模型中。下图显示了月份在有序尺度上与作为傅里叶级数表示的区别：\n![Figure 6.7 – Month as an ordinal step function\
+  \ (top) versus Fourier terms (bottom)](img/6.7.jpg)\n\nFigure 6.7 – Month as an\
+  \ ordinal step function (top) versus Fourier terms (bottom)\n\n上图仅展示了单个傅里叶项；我们可以添加多个傅里叶项来帮助捕捉复杂的季节性。\n\
+  \n我们不能说季节性的连续表示优于分类表示，因为这取决于你使用的模型类型和数据集。这是我们必须通过实证来发现的。\n\n\n\n\n## 添加傅里叶特征\n\n\
+  为了让添加傅里叶特征的过程变得简单，我们在 `src.feature_engineering.temporal_features` 中提供了一些易于使用的方法，这些方法位于一个名为\
+  \ `bulk_add_fourier_features` 的文件中，它能以自动化的方式为我们想要的所有日历特征添加傅里叶特征。让我们看看如何使用它。\n\n\
+  我们将导入该方法，并使用该方法的几个参数来配置和创建基于傅里叶级数的特征：\n\n```\nfull_df, added_features = bulk_add_fourier_features(\n\
+  \    full_df,\n    [\"timestamp_Month\", \"timestamp_Hour\", \"timestamp_Minute\"\
+  ],\n    max_values=[12, 24, 60],\n    n_fourier_terms=5,\n    use_32_bit=True,\n\
+  )\n```\n\n现在，让我们看看在前面的代码片段中使用的参数：\n\n### 参数\n\n*   `columns_to_encode`：这是我们需要使用傅里叶项进行编码的日历特征列表。\n\
+  \n*   `max_values`：这是日历特征季节周期的最大值列表，顺序与 `columns_to_encode` 中给出的顺序相同。例如，对于作为编码列的\
+  \ `month`，我们将 `12` 作为相应的 `max_value`。如果未给出，将推断 `max_value`。仅当您拥有的数据至少包含一个完整的季节周期时，才建议这样做。\n\
+  \n*   `n_fourier_terms`：要添加的傅里叶项数。这等同于前面提到的傅里叶级数方程中的 `n`。\n\n*   `use_32_bit`：此参数在功能上不执行任何操作，但能使\
+  \ DataFrame 在内存中占用空间小得多，代价是牺牲浮点数的精度。\n\n就像我们讨论的之前的方法一样，这也会返回一个添加了傅里叶特征的新 DataFrame\
+  \ 以及一个包含新增特征列名的列表。\n\n执行 `chapter06` 中的 `01-Feature Engineering.ipynb` 笔记本后，我们将获得写入磁盘的以下特征工程文件：\n\
+  \n### 输出文件\n\n*   `selected_blocks_train_missing_imputed_feature_engg.parquet`\n\
+  *   `selected_blocks_val_missing_imputed_feature_engg.parquet`\n*   `selected_blocks_test_missing_imputed_feature_engg.parquet`\n\
+  \n在本节中，我们介绍了几种生成时间序列特征的常用且有效的方法。但还有更多方法，根据您的问题和领域，其中许多都将是相关的。\n\n### 补充信息\n\n> 特征工程的世界很广阔，有一些开源库让探索这个领域变得更容易。其中包括\
+  \ `https://github.com/Nixtla/tsfeatures`、`https://tsfresh.readthedocs.io/en/latest/`\
+  \ 和 `https://github.com/DynamicsAndNeuralSystems/catch22`。Ben D. Fulcher 的预印本 *基于特征的时间序列分析*（Feature-based\
+  \ time-series analysis），地址为 `https://arxiv.org/abs/1709.08055`，也对该领域进行了很好的总结。\n\
+  >\n> 一个名为 `functime` 的较新库（`https://github.com/functime-org/functime`）也提供了用 `Polars`\
+  \ 编写的快速特征工程例程，值得一试。本书中讨论的许多特征工程都可以通过使用 `functime` 和 `Polars` 变得更快。\n\n## 总结\n\n\
+  在上一章简要概述了用于时间序列预测的机器学习范式后，在本章中，我们从实践角度审视了这一点，并了解了如何准备包含所需特征的数据集以开始使用这些模型。我们回顾了一些针对时间序列的特征工程技术，如滞后、滚动和季节性特征。本章学到的所有技术都是工具，我们可以利用它们快速迭代实验，找出适合我们数据集的方法。然而，我们只讨论了特征工程，它影响标准回归方程（\
+  \ ）的一边。另一边，即我们要预测的目标（ ），同样重要。在下一章中，我们将介绍平稳性等概念以及一些影响目标的变换。\n"
