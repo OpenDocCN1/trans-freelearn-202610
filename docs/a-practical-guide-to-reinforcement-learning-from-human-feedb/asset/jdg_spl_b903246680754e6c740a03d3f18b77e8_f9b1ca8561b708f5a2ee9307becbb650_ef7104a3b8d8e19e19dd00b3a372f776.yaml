@@ -1,0 +1,53 @@
+chapter_starts:
+- 'no': 7
+  confidence: 1.0
+  final_reason: 双方一致：明确的章标题标记 '## 第 1 章：强化学习简介'，符合最高层级大章编号特征、格式特征及语义特征，后续紧跟子节结构。
+  accepted_evidence:
+  - 编号特征：'第 1 章'，序号连贯
+  - 格式特征：单独成行，无句号，长度<30字
+  - 上下文特征：前言结束，后跟 '### 加入我们的 Discord 图书社区' 等子节
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 867
+  confidence: 1.0
+  final_reason: 双方一致：明确的章标题标记 '## 第 2 章：人类反馈在强化学习中的作用'，编号连贯，格式规范，上下文衔接自然（上章以参考文献结束），语义统领后续多个子节。
+  accepted_evidence:
+  - 编号特征：'第 2 章'，序号连贯
+  - 格式特征：单独成行，无句号
+  - 上下文特征：前章参考文献结束，此处开启新主题
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 1204
+  confidence: 1.0
+  final_reason: 双方一致：明确的章标题标记 '## 第 3 章：奖励建模'，符合最高层级大章编号特征，前章以参考文献结束，此处开启新主题，章内包含技术要求、代码实现等典型结构。
+  accepted_evidence:
+  - 编号特征：'第 3 章'，序号连贯
+  - 格式特征：单独成行，无句号
+  - 语义特征：统领奖励建模相关内容
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 1597
+  confidence: 1.0
+  final_reason: 双方一致：明确的章标题标记 '## 第 4 章：基于奖励模型的策略训练'，编号连贯，格式符合规范，前章总结后自然过渡，后续包含策略训练、DQN、PPO
+    等核心内容，语义统领性强。
+  accepted_evidence:
+  - 编号特征：'第 4 章'，序号连贯
+  - 格式特征：单独成行，无句号
+  - 语义特征：覆盖策略训练、DQN、PPO 等核心内容
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 2975
+  confidence: 1.0
+  final_reason: 双方一致：明确的章标题标记 '## 第 5 章：语言模型与微调简介'，为最后一章，编号连贯至 5，前章参考文献结束，此处开启语言模型新主题，结构完整。
+  accepted_evidence:
+  - 编号特征：'第 5 章'，序号连贯
+  - 格式特征：单独成行，无句号
+  - 上下文特征：前章结束，开启新主题
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 0
+  reason: 复核方证据成立：该行为一级标题（H1）书名《基于人类反馈的强化学习 实用指南》，属于版权页/标题页信息，非章节标题。全书章节标题统一为二级标题（H2）且带编号‘第
+    X 章’，此行无编号，不符合最高层级大章特征。前言内容从第 2 行（H2‘欢迎来到 Packt 抢先体验’）开始，若前言归为一章，分章点不应在书名行。规则明确只划分‘第
+    X 章’等最高层级大章，书名不在划分范围内。
+  need_human_review: false
