@@ -1,0 +1,1813 @@
+- '# Azure Cosmos DB 入门指南
+
+
+  ![](img/99c429e5-da59-4ca4-8c96-48c4d192cc1f.jpg)[mapt.io](https://mapt.io/)
+
+
+  Mapt 是一个在线数字图书馆，让您完全访问超过 5,000 本书籍和视频，以及行业领先的工具，帮助您规划个人发展并提升职业生涯。欲了解更多信息，请访问我们的网站。
+
+
+  ## 为什么要订阅？
+
+
+  *   花更少时间学习，更多时间编码，通过来自 4,000 多位行业专业人士的实用电子书和视频
+
+  *   通过专为您打造的技能计划改善学习
+
+  *   每月免费获取一本电子书或视频
+
+  *   Mapt 支持全文搜索
+
+  *   复制粘贴、打印和书签内容
+
+
+  ## PacktPub.com
+
+
+  您知道 Packt 为每本出版的书籍提供电子书版本吗？提供 PDF 和 ePub 文件。您可以在 [www.PacktPub.com](http://www.PacktPub.com)
+  升级到电子书版本，作为纸质书客户，您有权享受电子书副本的折扣。如需更多详情，请通过 `service@packtpub.com` 联系我们。
+
+
+  在 [www.PacktPub.com](http://www.PacktPub.com)，您还可以阅读免费技术文章合集，注册各类免费通讯，并获得 Packt
+  书籍和电子书的独家折扣和优惠。
+
+
+  ## 贡献者
+
+
+  ## 作者简介
+
+
+  **Shahid Shaikh** 是一名工程师、出版作家和博主。他在自己的博客上撰写了大量关于 Node.js 和各种数据库的教程。他信奉开源，几乎所有源代码都在
+  GitHub 上。他还开发并推出了一款名为 Spark 的 SaaS 产品，用于处理内容分享自动化。目前，他正在构建一款名为 Hashmailer 的下一代电子邮件营销工具。
+
+
+  > *我要感谢我的父母在写书阶段一直支持我。我不得不利用周末工作，取消许多计划以按时交付章节，我的家人和朋友因我取消了各种安排，并在写书期间支持我，对此我深表感激。*
+
+
+  ## 审阅者简介
+
+
+  **Kasam Ahmed Shaikh** 是一位资深专业人士，拥有“could be”态度，在印度孟买一家领先的 IT 公司拥有 10 年坚定的行业经验。他是一名认证
+  Azure 架构师，被认可为 C# Corner MVP。他也是一位演讲者，并撰写过一本关于 Azure 认知服务的书。他还是 DearAzure.net 和
+  Shaikh Academy 的创始人。
+
+
+  > *首先，我要感谢真主安拉、我的家人，特别是我的另一半，在整个过程中激励我。我非常感谢 Packt Publishing 相信并考虑我获得这个机会。*
+
+
+  ## Packt 正在寻找像您这样的作者
+
+
+  如果您有兴趣成为 Packt 的作者，请访问 [authors.packtpub.com](http://authors.packtpub.com) 并立即申请。我们已与数千名开发人员和技术专业人士合作，就像您一样，帮助他们与全球技术社区分享见解。您可以提交一般申请，申请我们正在招募作者的特定热门主题，或提交您自己的想法。
+
+
+  '
+- "# 前言\n\nAzure Cosmos DB 是微软面向个人和企业的托管数据库解决方案，提供行业标准的服务级别协议。Azure Cosmos DB 提供多模型数据库支持，可跨全球\
+  \ 30 多个区域进行扩展。Azure Cosmos DB 提供一站式分发，使数据库管理员能够通过几次点击即可扩展和复制其数据库。\n\n本书涵盖了 Azure\
+  \ Cosmos DB 的主要概念和功能。本书还涵盖了使用 Cosmos DB 开发 Web 应用程序，以及使用 Azure Cosmos DB 提供的软件开发工具包进行集成。\n\
+  \n## 适读人群\n\n本书适合任何想要精通微软新型 NoSQL 数据库 Azure Cosmos DB 的人阅读。您应具备处理任何 SQL 或 NoSQL\
+  \ 数据库的经验。\n\n## 本书内容\n\n**第 1 章**，*Microsoft Azure 云与 Cosmos DB 简介*，旨在介绍 Microsoft\
+  \ Azure 平台。读者将了解 Microsoft Azure 云提供的各种界面和模块。本章的另一部分介绍了 Cosmos DB，这是本书的主题。\n\n\n\
+  \n### 章节\n\n- 第 2 章，《*Cosmos DB 全球交钥匙分布*》—— 涵盖 Cosmos DB 的关键功能之一，即其全球交钥匙分布系统。您可以使用非常简单的界面，将数据库复制到遍布全球的\
+  \ 30 多个区域。\n- 第 3 章，《*Cosmos DB 多模型数据库*》—— 提供了四种（本书出版时为五种）可供选择的数据库模型。本章详细介绍这些数据库模型。\n\
+  - 第 4 章，《*查询 Cosmos DB*》—— 涵盖多模型数据库所需的不同查询类型。本章按 CRUD（创建、读取、更新和删除）方式对这些查询进行分类，以便更好地解释。\n\
+  - 第 5 章，《*将 Cosmos DB 与 Node.js 集成*》—— 涵盖与流行的后端运行时引擎 `Node.js` 的所有集成。我们介绍了如何使用 `Node.js`\
+  \ 连接到 Cosmos DB 的数据库模型。\n- 第 6 章，《*使用 Cosmos DB 构建高性能链接缩短与追踪系统*》—— 涵盖使用 Cosmos DB\
+  \ 和 `Node.js` 开发一个简单且高性能的链接缩短与追踪系统，该系统非常类似于 `bit.ly`。读者将学习并了解如何使用 Cosmos DB 托管数据库解决方案构建此类复杂系统。\n\
+  - 第 7 章，《*使用 Cosmos DB 构建高可用实时邮件追踪系统*》—— 涵盖开发一个处理数百万用户邮件打开率追踪并将其存储在数据库中以供进一步分析的系统。\n\
+  - 第 8 章，《*Cosmos DB 部署与管理*》—— 涵盖将您的自定义应用程序和 Cosmos DB 数据库部署到生产环境的所有内容。\n\n## 如何充分利用本书\n\
+  \n安装最新版本的 `Node.js` 并学习 `MongoDB` 查询基础知识，以充分利用本书。\n\n## 下载示例代码文件\n\n您可以从 `www.packtpub.com`\
+  \ 的帐户中下载本书的示例代码文件。如果您在其他地方购买了本书，可以访问 `www.packtpub.com/support` 并注册，以便将文件直接发送到您的邮箱。\n\
+  \n您可以按照以下步骤下载代码文件：\n\n1. 在 `www.packtpub.com` 登录或注册。\n2. 选择 **支持** 选项卡。\n3. 点击 **代码下载与勘误**。\n\
+  4. 在搜索框中输入书名，然后按照屏幕上的说明操作。\n\n文件下载完成后，请务必使用最新版本的以下工具解压或提取文件夹：\n\n- `WinRAR/7-Zip`\
+  \ (Windows)\n- `Zipeg/iZip/UnRarX` (Mac)\n- `7-Zip/PeaZip` (Linux)\n\n本书的代码包也托管在\
+  \ GitHub 上：`https://github.com/PacktPublishing/Learning-Azure-Cosmos-DB`。我们还在 `https://github.com/PacktPublishing/`\
+  \ 上提供了来自我们丰富图书和视频目录的其他代码包。快去看看吧！\n\n## 下载彩色图片\n\n我们还提供了一个 PDF 文件，其中包含本书中使用的屏幕截图/图表的彩色图片。您可以在此处下载：`http://www.packtpub.com/sites/default/files/downloads/LearningAzureCosmosDB_ColorImages.pdf`。\n\
+  \n## 约定用法\n\n全书使用了许多文本约定。\n\n`CodeInText`：表示文本中的代码词、数据库表名、文件夹名、文件名、文件扩展名、路径名、虚拟\
+  \ URL、用户输入和 Twitter 句柄。例如：\"Let's perform an `UPDATE` and `DELETE` operation.\"\
+  （让我们执行 `UPDATE` 和 `DELETE` 操作。）\n\n代码块设置如下：\n\n```\n{ \n    \"id\": \"10\", \n \
+  \   \"name\": \"Shahid\", \n    \"location\": \"Mumbai\", \n    \"job\": \"Engineer\"\
+  \ \n} \n```\n\n任何命令行输入或输出均按如下方式编写：\n\n```\nSELECT *  \nFROM Families f  \nWHERE\
+  \ f.id = \"100\" \n```\n\n**粗体**：表示新术语、重要单词或您在屏幕上看到的单词。例如，菜单或对话框中的单词会在文本中这样显示。例如：\"\
+  Click on **New Database** and choose the **Gremlin** as API.\"（点击 **新建数据库** 并选择\
+  \ **Gremlin** 作为 API。）\n\n警告或重要提示显示如下。提示和技巧显示如下。\n\n## 联系我们\n\n我们始终欢迎读者的反馈。\n\n\
+  **一般反馈**：发送邮件至 `feedback@packtpub.com`，并在邮件主题中注明书名。如果您对本书的任何方面有疑问，请发送邮件至 `questions@packtpub.com`。\n\
+  \n**勘误**：虽然我们已尽一切努力确保内容的准确性，但错误难免发生。如果您在本书中发现错误，我们将不胜感激您能向我们报告。请访问 `www.packtpub.com/submit-errata`，选择您的书籍，点击勘误提交表单链接，并填写详细信息。\n\
+  \n**盗版**：如果您在互联网上以任何形式发现我们作品的非法副本，我们将不胜感激您能向我们提供该位置地址或网站名称。请通过 `copyright@packtpub.com`\
+  \ 联系我们，并附上相关材料的链接。\n\n**如果您有兴趣成为作者**：如果您在某个主题上有专长，并有兴趣撰写或为书籍做贡献，请访问 `authors.packtpub.com`。\n\
+  \n## 评论\n\n请留下评论。读完并使用本书后，为什么不在购买网站上留下评论呢？潜在读者可以看到并利用您的公正观点做出购买决定，我们 Packt 可以了解您对我们产品的看法，我们的作者也能看到您对他们书籍的反馈。谢谢！\n\
+  \n有关 Packt 的更多信息，请访问 `packtpub.com`。\n"
+- '# Microsoft Azure 云与 Cosmos DB 简介
+
+
+  公有云以订阅制向公众提供虚拟专用服务器和托管数据库等服务。一些平台（如 Amazon）按小时收费或提供按需付费（`Lambda`）服务，而其他平台（如 `DigitalOcean`）则按月收取固定费用，等等。`Windows
+  Azure` 公有云平台是 **Microsoft 的云操作系统愿景** 的重要支柱之一，该愿景正在改变传统数据中心环境，帮助企业释放存储在任何位置的数据中的洞察力，支持开发各种现代业务应用程序，并赋能
+  IT 部门支持在任何设备上随处工作的用户，同时能够以安全一致的方式管理这些设备。
+
+
+  在本章中，我们将介绍与 Microsoft Azure 云和 Cosmos DB 相关的以下要点：
+
+
+  - Azure 特性
+
+  - Azure 作为 **服务、平台和基础设施** (**SPI**)
+
+  - Azure 组件
+
+  - Azure 入门
+
+  - Azure Cosmos DB
+
+  - Azure Cosmos DB 特性
+
+  - Azure Cosmos DB 用例
+
+
+  让我们逐一解释这些主题，开始吧。
+
+
+  ## Microsoft Azure 云特性
+
+
+  关于 Azure 最著名也最简单的一句名言如下：
+
+
+  > Windows Azure 可以成为你想要的任何东西
+
+
+  Microsoft Azure 云提供广泛的不同服务。Windows Azure 让您能够构建、部署和管理解决方案，几乎适用于您能想象的任何目的。
+
+
+
+
+
+
+  Windows Azure 是一个充满无限可能的世界。无论您是跨越多个大洲、需要运行服务器工作负载的大型企业，还是需要具有全球影响力的网站的小型企业，Windows
+  Azure 都提供了一个平台，用于构建可以利用云来满足您业务需求的应用程序。
+
+
+  Microsoft Azure 提供以下关键功能：
+
+
+  * **开放**：Azure 为各种语言提供了大量的**软件开发工具包**（**SDK**）和工具，以构建可扩展的基于云的应用程序。
+
+  * **灵活**：无论您是经营小型企业还是大型高端处理系统，Windows Azure 都提供各种服务和可扩展性，帮助您完成业务的所有阶段。
+
+  * **Microsoft 托管**：Microsoft 在三大洲——美国、欧洲和亚洲——拥有数据中心。Microsoft 自身管理这些数据中心，而不是像大多数其他提供商那样雇佣第三方人员来运营。
+
+  * **兼容**：您可以轻松地将现有的云前提与 Azure 集成，无论是使用支持团队还是工具。
+
+  * **CDN**：Azure 提供**内容分发网络**（**CDN**），它由地理位置分布的服务器系统组成，通过缓存来自 Windows Azure 计算实例的数据、图像、图片和视频，使
+  Windows Azure 能够为性能敏感型客户交付高带宽内容。
+
+  * **分布式数据库**：Azure 云提供易于管理的分布式数据库，如 SQL Server 和 Cosmos DB，帮助开发人员扩展并构建全球范围的应用程序。
+
+
+  您可以参考此图了解 Azure Cloud 提供的所有组件：
+
+
+  ![](img/7103ab2a-3634-4473-b4d8-258975cef0d9.png)
+
+
+  让我们深入了解 Azure 作为**串行外设接口**（**SPI**）能做什么。
+
+
+  ## Microsoft Azure 作为 SaaS
+
+
+  不同组织提供了许多云计算平台，例如 Google Cloud、Amazon Web Services 等。Windows Azure 就是其中之一，由 Microsoft
+  Azure 提供。
+
+
+  Azure 被描述为托管数据中心，用于构建、部署和管理应用程序，并通过全球网络提供服务。**平台即服务**（**PaaS**）和**基础设施即服务**（**IaaS**）是
+  Microsoft Azure 提供的服务。它支持大多数编程语言。
+
+
+  ## Azure 作为 PaaS
+
+
+  Azure 为客户提供平台以开发和部署软件，而无需担心服务器基础设施和配置。您可以专注于应用程序的开发，将基础设施的烦恼留给 Azure。
+
+
+  使用 Azure 的主要优势之一是总体成本低，因为资源是按需分配的，且服务器会自动更新。Azure 提供自动更新以避免安全问题，并且这一切都在后台进行，不影响应用程序。
+
+
+  ## Azure 作为 IaaS
+
+
+  Azure 提供托管计算服务，使应用程序开发人员能够完全控制操作系统和应用程序平台堆栈。它赋予开发人员对数据中心的控制权，并允许他们对其进行管理。
+
+
+  这是需要完全控制的项目的理想选择。虚拟机可以完全根据项目或业务的要求进行更改。然而，如果管理不善，可能会变得麻烦；所有安全更新随后都成为管理基础设施的开发人员的工作。
+
+
+  由于操作系统和应用程序堆栈的更新，遗留应用程序的维护有时也会变得困难。
+
+
+  ## Azure 组件
+
+
+  请参阅以下由 Azure 组件组成的图表：
+
+
+  ![](img/8fad0dbb-ad43-4762-83cc-fd95c10c1637.png)
+
+
+  正如您在前面的图表中所见，有不同的执行模型，特别是可用于执行在 Windows Azure 云中运行的应用程序的独特进步。执行模型主要由四个 Windows Azure
+  计算服务、网站、云服务和移动服务组成。
+
+
+  在底部是不同语言的 SDK，您可以使用它们来构建、发送和监督可在 Windows Azure 上运行的应用程序。
+
+
+  目前支持的 SDK 包括 .NET、Java、PHP、Node.js、Ruby、Swift 和 Python。还有一个通用的 Windows Azure SDK，为任何编程语言（例如
+  C++）提供基本支持。
+
+
+  理论知识就到这里；让我们开始使用 Azure。
+
+
+  ## Azure 入门
+
+
+  要开始使用 Azure，首先您需要访问 Microsoft Azure 并创建一个新的免费帐户，或使用您现有的 Hotmail 帐户。免费帐户附带额度，您可以使用该额度
+  12 个月。您需要添加信用卡信息并进行验证。如果没有用户侧的必要操作，Microsoft Azure 不会向您收费：
+
+
+  ![](img/5d776aaa-3eb6-45d9-80bf-60942ae2b58c.png)
+
+
+  创建帐户后，登录 Azure 门户。登录成功后，您应该会看到类似于以下的屏幕：
+
+
+  ![](img/7e53220f-841e-40d4-a76d-f353814e511a.png)
+
+
+  让我们简要了解每个模块的组件和功能。
+
+
+  Azure 组件分为以下主要组件：
+
+
+  * 计算模块
+
+  * 数据管理模块
+
+  * 网络模块
+
+  * 大数据模块
+
+  * 缓存和消息传递模块
+
+  * 标识模块
+
+  * 移动服务模块
+
+  * 物联网
+
+
+  让我们逐一了解。
+
+
+  ### 计算模块
+
+
+  顾名思义，该模块的工作是提供一组工具和服务来进行计算。以下是在计算模块下提供的服务列表：
+
+
+  ![](img/92016aa3-1e04-47b3-aa27-334a5fd388ec.png)
+
+
+  如前面的屏幕截图所示，这些组件主要由虚拟机和容器组成，但根据要求您也可以将它们结合在一起。
+
+
+  例如，带有更多磁盘和快照的虚拟机以及容器用于持续交付。
+
+
+  让我们看看下一个组件，数据管理模块。
+
+
+  ### 数据管理模块
+
+
+  数据管理模块包含 SQL Server、Azure Cosmos DB、Redis、PostgreSQL 和数据仓库。您可以部署这些数据管理模块并在您的应用中使用它们。
+
+
+  以下是数据管理模块的完整列表：
+
+
+  ![](img/80c5f631-c550-4d07-9626-beb379ea0b48.png)
+
+
+  我们将在即将到来的章节中介绍 Azure Cosmos DB。Microsoft Azure 在当前版本中开始支持 MySQL 和 PostgreSQL（仅在撰写本书时）。
+
+
+  让我们看看网络模块。
+
+
+  ### 网络模块
+
+
+  Azure 流量管理器负责将用户的请求智能地导向可访问的数据中心。该过程包括找到向 Web 应用程序提出请求的用户最近的数据中心，如果最近的数据中心因各种原因不可访问，流量管理器会将请求转移到另一个数据中心。
+
+
+  但是，应用程序管理员会设置规则，规定流量管理器在这种情况下应如何操作。虚拟网络允许在您本地的机器和 Azure 数据中心的虚拟机之间建立网络。IP 可以分配给虚拟机，用于标识和访问目的。虚拟网络设置需要虚拟专用网络设备。
+
+
+  Azure 还提供应用程序网关，这在微服务应用程序开发中非常有用。
+
+
+  以下是撰写本书时 Azure 支持的网络模块列表：
+
+
+  ![](img/eba3eff8-7438-45d1-a1b1-160b7b91aea9.png)
+
+
+  让我们看看大数据和商业智能模块。
+
+
+  ### 大数据模块
+
+
+
+
+
+  可以使用 Windows Azure 存储和检索大量数据。Azure 提供 HDInsight，这是一种基于 Hadoop 的服务，用于确定和分析作为大数据存储的海量信息。公司通常需要管理大量信息，这些信息在本质上不一定是关系型的。如今许多组织都在使用
+  Hadoop，Azure 中也在使用。
+
+
+  因此，Azure 为其客户在其平台上提供 Hadoop 服务。术语 `big compute`（大计算）指的是高性能计算。这是通过同时在许多机器上并行执行代码来实现的。
+
+
+  大数据模块提供的组件如下截图所示：
+
+
+  ![](img/9e815bdd-caa1-4533-b85e-38700a7ebaa1.png)
+
+
+  正如您所见，Azure 提供的大数据服务范围很广，从使用 Hadoop 群集进行存储，到对大数据执行分析、执行日志分析以确定错误，以及根据您的数据生成报表。
+
+
+  Azure 还提供机器学习 Web 服务，可用作智能算法来训练数据并从中获取洞察。
+
+
+  让我们看看缓存和消息传递模块。
+
+
+  ### 缓存模块
+
+
+  Windows Azure 缓存服务可帮助您为网站构建高端、可扩展且专用的缓存。
+
+
+  Azure 缓存提供三种不同类型：
+
+
+  1. `Basic`：此类型附带小于 1 GB 的缓存大小。
+
+  2. `Standard`：此类型附带 1 GB 到 10 GB 范围内的缓存大小。
+
+  3. `Premium`：此类型附带大于 5 GB 且小于 150 GB 的缓存大小。
+
+
+  让我们看看消息传递模块。
+
+
+  ### 消息传递模块
+
+
+  Windows Azure 为处理两个应用程序之间的交互提供两种选项：
+
+
+  * 消息队列
+
+  * 服务总线
+
+
+  通常，面向服务的架构（SOA）应用程序使用服务总线来执行各种服务之间的通信。
+
+
+  分布式且独立的服务（如微服务）使用消息队列来执行它们之间的通信。开发人员可以根据其需求和要求选择其中一种。
+
+
+  让我们看看标识模块。
+
+
+  ### 标识模块
+
+
+  该组件主要涉及用户管理、验证以及身份验证/授权。活动目录存储访问应用程序的客户端数据，此外还存储组织内部的关联数据。它可以与驻留在本地的近端机器上的相关数据同步，以实现高效的会话。
+
+
+  以下是 Azure 提供的安全和标识模块：
+
+
+  ![](img/fbe03a7a-013b-44fd-88ba-73670b42756c.png)
+
+
+  Microsoft Active Directory 是市场上最成熟、最流行的身份验证和授权模块之一。
+
+
+  让我们看看移动服务模块。
+
+
+  ### 移动服务模块
+
+
+  Windows Azure 提供一个简单的平台来创建便携式移动应用程序。您可以使用 Azure 移动 SDK 开始开发移动应用。Azure SDK 中已经提供了许多库，例如通知、身份验证等。您可以专注于业务逻辑，Azure
+  SDK 将帮助您处理常规任务，从而更快地发布应用。
+
+
+  Windows Azure 提供了一个非常简单的平台来开发移动应用程序。登录您的帐户后，您可以直接开始使用移动开发工具。如果您使用这项服务，就不必为移动应用程序编写大量自定义代码。推送通知可以发送、数据可以存储、用户可以在更短的时间内完成身份验证。
+
+
+  请参阅以下屏幕截图以获取移动服务模块的完整列表：
+
+
+  ![](img/47b38414-6aaf-48b1-b002-70c16221ed2d.png)
+
+
+  正如您所见，模块列表足以让移动应用开发人员快速、轻松地引导其应用程序。
+
+
+  让我们看看最后一个、也是我最喜欢的模块之一：`internet of things`（`IoT`，物联网）！
+
+
+  ### IoT 模块
+
+
+  IoT 目前是一个热门话题，Azure 是云市场中最早提供此类服务的提供商之一。IoT 模块允许开发人员部署诸如 IoT 设备通信、网络和设备分配到中心等服务。
+
+
+  请参阅 Azure 为 IoT 目的提供的以下模块列表：
+
+
+  ![](img/69690f62-c5eb-45f3-bc27-d5e67c165ed9.png)
+
+
+  除了开发人员工具、监视工具、Bing Maps `application programming interfaces`（`APIs`，应用程序编程接口）等插件外，还有其他模块。
+
+
+  希望这能为您提供关于 Azure 简短但有用的见解。现在让我们深入了解 Azure Cosmos DB。
+
+
+  ## Azure Cosmos DB
+
+
+  Azure Cosmos DB 是 Microsoft 的全球分布式、多模型数据库，可通过单击按钮进行缩放。您可以跨全球分布的 30 多个 Azure 区域缩放
+  Azure Cosmos DB。
+
+
+  它是多模型的，因此在单个数据库中同时支持文档存储、表存储和图值。Azure 提供卓越的吞吐量、延迟、可用性和一致性保证，并提供全面的 `service level
+  agreements`（`SLAs`，服务级别协议），这是目前其他数据库提供商无法提供的。
+
+
+  `SLAs` 代表书面承诺。这意味着 Microsoft Azure 为您提供延迟、故障转移等各种功能的时间上限。有关更多信息，请访问 `https://azure.microsoft.com/en-us/support/legal/sla/cosmos-db/v1_0/`。
+
+
+  这是 Azure Cosmos DB 的特色和介绍性展示：
+
+
+  ![](img/f67a46e8-c26c-484a-82b9-18df307d2510.png)
+
+
+  以下是 Microsoft Azure Cosmos DB 提供的关键功能和能力：
+
+
+  * 一站式全球分发
+
+  * 多层级数据模型
+
+  * 按需缩放
+
+  * 低延迟的高响应能力
+
+  * 高可用性
+
+  * 一致性模型
+
+  * SLA 退款保证
+
+
+  让我们简要了解一下其中的每一项。
+
+
+  ### 一站式全球分发
+
+
+  Azure Cosmos DB 内置了缩放和分发功能。移动性和云是当前计算使用的两大主要来源，这带来了低延迟高可用性的挑战。
+
+
+  Azure Cosmos DB 提供了一种简便的方法，无需手动工作和配置，即可跨 Azure 数据中心构建和分发您的应用程序。Azure 会自动将您的数据复制到
+  Azure 网络中可用的多个数据中心。
+
+
+  我们将在下一章详细介绍一站式分发。
+
+
+  让我们看看多层级数据模型。
+
+
+  ### 多层级数据模型
+
+
+  Azure Cosmos DB 支持多种数据模型，包括文档存储、键值、图和表。无论数据模型的性质如何，Azure 都能跨所有数据模型提供一致性和高可用性来存储数据。
+
+
+  在撰写本书时，Azure 支持以下模型的 API：
+
+
+  * `Document DB API`
+
+  * `MongoDB API`
+
+  * `Table API`
+
+  * `Graph API`
+
+
+  Microsoft 团队正在努力支持其他数据模型（如果需要）并增强现有模型。
+
+
+  我们将在第 3 章 *Cosmos DB Multi-model Databases* 中详细研究数据模型。
+
+
+  让我们看看 Cosmos DB 的缩放功能。
+
+
+  ### 按需缩放
+
+
+  Azure Cosmos DB 引入了全球一站式功能；使用此功能，您可以真正通过单击按钮来部署和缩放您的应用程序。Azure 处理每一个关键技术细节，如基础设施管理、复制、流量转移等。
+
+
+  几乎每个数据库即服务都提供这种缩放，那么有什么新意呢？Azure 为延迟和部署时间提供软件级别协议，如果耗时超过承诺，您将获得退款！
+
+
+  让我们看看 Cosmos DB 的延迟响应能力。
+
+
+  ### 低延迟的高响应能力
+
+
+  根据 Azure 文档：
+
+
+  > "Azure Cosmos DB guarantees end-to-end low latency at the 99th percentile to its
+  customers."
+
+
+
+
+
+
+  ### 一致性模型
+
+
+  大多数分布式数据库提供一致性模型，主要是**强一致性**和**最终一致性**。Azure 还提供了三个额外的一致性级别。它们是：
+
+
+  *   **限定过期一致性：** 这保证读取操作可能滞后于写入操作。此一致性模型会增加读取选项的成本，且高于会话一致性和最终一致性。
+
+  *   **会话一致性：** 这非常适合所有涉及用户的场景，因为它需要实时读写。
+
+  *   **一致性前缀：** 这保证按顺序写入的数据将按执行顺序被看到和读取。
+
+
+  ### 退款保证和 SLA
+
+
+  Azure Cosmos DB 承诺您的数据传输迅速，否则退还您的费用。Azure Cosmos DB 为可用性、延迟、吞吐量和一致性提供服务级别协议。
+
+
+  目前，SLA 仅由微软提供。您可以在此处参考完整文档：[`https://azure.microsoft.com/en-us/support/legal/sla/cosmos-db/v1_0/`](https://azure.microsoft.com/en-us/support/legal/sla/cosmos-db/v1_0/)。
+
+
+  ### Cosmos DB 用例
+
+
+  您可以在高度分布式、任务关键型、高可用且易于部署的场景中使用 Cosmos DB。以下是微软团队提供的用例：
+
+
+  *   IoT
+
+  *   零售与营销
+
+  *   游戏
+
+  *   Web 和移动应用
+
+
+  #### IoT
+
+
+  IoT 由各种设备组成，这些设备每隔几分之一秒就发出数据。这对来自多个源的高速数据引入提出了需求。可使用 Azure IoT 中心接收来自各种 IoT 设备的数据。
+
+
+  数据引入后，您可以使用 Azure HDInsight 进行处理并获取实时洞察。然后，您可以将这些数据存储在多个源中，例如用于在基于 SaaS 的应用程序中查看的表、用于处理图形和数据处理的
+  DocumentDB 等。
+
+
+  #### 零售与营销
+
+
+  微软在 Microsoft 电商平台 Windows Store 和 Xbox Live 中使用 Azure Cosmos DB。Azure Cosmos DB
+  可用于存储产品数据、搜索产品和执行会话，这对电商应用程序非常重要。
+
+
+  Azure Cosmos DB 还可以利用其自身的变更源功能用于事件溯源。变更源提供了惊人的事件生成机制，用于处理微服务通信。
+
+
+  您可以参考以下关于微服务通信的图表：
+
+
+  ![](img/bc6a7eb3-526e-4032-adfe-bb6b5b6d306f.png)
+
+
+  变更源是由 RethinkDB 引入的概念；Packt 出版了一本关于此的书，名为 *Mastering RethinkDB*。
+
+
+  #### 游戏
+
+
+  游戏具有高度的任务关键性，且必须始终保持高可用。这需要快速且高可用的数据库。Azure 已在 *Halo 5*、*The Walking Dead* 等游戏中证明了其价值。Azure
+  Cosmos DB 的性能可用于处理数百万个请求，并展示实时数据源和社交互动。
+
+
+  Azure Cosmos DB 提供的 API 可直接在游戏中使用，借助 Hadoop 等数据库功能，可用于实时分析和数据源。
+
+
+  #### Web 和移动应用程序
+
+
+  Azure 提供各种工具集，如键值存储、流量管理器、网关，当然还有 Cosmos DB。这些可用于使用各种框架构建社交媒体应用程序、新闻源和移动应用程序。
+
+
+  Azure 机器学习和 Hadoop 也可用于生成个性化报告、数据源和推荐，这是任何现代应用程序惊人的组成部分。由于大多数数据以 JSON 格式存储，因此可以跨前端、移动端、后端和数据库等各种场景进行通信和解析。
+
+
+  ## 总结
+
+
+  在本章中，我们了解了 Azure 平台及其功能。我们查看了 Azure 云提供的用于开发任务关键型应用程序的服务和基础设施。我们还概览了 Azure Cosmos
+  DB 及其功能和用例。
+
+
+  在下一章中，我们将详细了解 Azure 交钥匙分发功能，这是 Azure Cosmos DB 的关键卖点之一。
+
+  '
+- "# Cosmos DB 全球交钥匙分发\n\nCosmos DB 提供多模型数据库、各种一致性级别、安全性和基础设施，但 Cosmos DB 的关键卖点之一是其交钥匙全球分发系统。\n\
+  \nCosmos DB 交钥匙分发系统提供了一项功能，用户只需点击一下按钮，即可将其数据库复制到任何 Azure 数据中心。\n\n在本章中，我们将学习交钥匙分发以及以下主题：\n\
+  \n*   设置 Azure 订阅\n*   创建 Azure 数据库\n*   在 MongoDB 中添加数据\n*   使用全球交钥匙分发分发数据\n* \
+  \  故障转移处理\n\n让我们开始吧。\n\n## 设置 Azure 订阅\n\n我相信您已经在 Azure 上创建了帐户。您需要升级帐户才能使用资源，例如\
+  \ Cosmos DB、虚拟机等。\n\n在撰写本书时，Azure 在首次升级时为我们提供了约 13,000 印度卢比（约合 200 美元）的免费额度，为期一个月，以便试用其服务！\n\
+  \n打开 Azure 门户 [`https://portal.azure.com`](https://portal.azure.com/) 并使用您的 Microsoft\
+  \ 帐户登录。登录后，单击任意服务，例如，从左侧菜单单击 Cosmos DB 的图标。\n\n您应该会看到订阅弹出窗口；单击它并填写您的信用卡信息。微软将收取约\
+  \ 2 印度卢比以验证您的身份。他们不会再向您收费。\n\n帐户验证通过后，您可以在帐户部分看到您的订阅。请参考以下屏幕截图：\n\n![](img/3e792ee6-27c4-410b-833d-44610975c18a.png)\n\
+  \n让我们继续创建 Azure Cosmos DB。\n\n## 创建 Azure Cosmos DB 数据库\n\n让我们创建第一个 Cosmos DB：\n\
+  \n1.  打开 Azure 门户 [`https://portal.azure.com`](https://portal.azure.com/) 并单击左侧导航栏中放置的\
+  \ Azure Cosmos DB 链接：\n\n    ![](img/f136f680-d7af-44d6-ad86-3f9dddeabc8d.png)\n\
+  \n2.  单击 **Create Azure Cosmos DB** 按钮。填写详细信息。给它一个合适的名称；在 API 下拉菜单中选择 MongoDB。\n\
+  \n3.  通过提供合适的名称创建新的资源组，以便轻松识别数据和服务，这也有助于备份和恢复。资源组是一个容器，用于保存特定 Azure 解决方案的相关资源。资源组可以包含解决方案的所有资源，或者仅包含您想要作为一组进行管理的那些资源。您可以在该组中部署、删除和管理应用所需的所有资源。\n\
+  \n    选择任意位置；完全由您决定。通常，选择位置的决定是基于来自特定区域的请求数量，我们应将服务器的位置设在靠近需求用户的地方，以实现快速处理和低延迟。\n\
+  \n4.  如果您想要在不同地理位置自动复制数据库以获得更高的可用性，请勾选 **Enable geo-redundancy** 按钮。\n\n    这是我选择的内容：\n\
+  \n    ![](img/2d8669cf-133f-4ab0-b119-118cb08ac200.png)\n\n5.  单击 **Create** 按钮以创建数据库。设置和创建数据库将需要几秒钟。\n\
+  \n\n\n\n\n6. 现在，点击 `Refresh button`（是的，它不是 Ajax）以查看数据库，就像下面截图中显示的那样：\n\n![](img/fd074afc-ecdb-4652-a739-5cd9d72da261.png)\n\
+  \n7. 点击该数据库；它将带你进入数据库管理页面。现在，首先我们需要在数据库中存储一些数据，以便查看全球一键分发的方法。\n\n正如你所知，MongoDB 将数据存储在集合中。从大数据术语来看，集合是存放所有对象的地方。\n\
+  \n8. 首先我们将创建一个集合。在顶部的导航栏中，找到并点击 `Add Collection button`。\n\n9. 填写那些值，例如名称和数据库名称。请参考下面的截图：\n\
+  \n![](img/ff7910ce-db04-4c84-969c-b9b6c5c98655.png)\n\n如果你对为什么这里也要创建一个新数据库感到困惑，让我来解释一下。\n\
+  \nCosmos DB 是一个多模型数据库；这意味着其他数据库（例如 MongoDB）运行在 Cosmos DB 之下。MongoDB 确实拥有数据库、集合等，它们保持原样。在\
+  \ MongoDB 功能之上，Cosmos DB 将为你提供 REST API 来管理这些数据库并高效地扩展它们。\n\n暂时将吞吐量容量保持为 `1000`；这意味着每秒可对\
+  \ Cosmos DB 发出 1,000 次针对 1 KB 文档的请求，这对于测试目的来说已经足够。\n\n10. 点击 `OK button`，这应该会创建一个新集合。\n\
+  \n集合创建完成后，我们可以向其中导入一些数据。\n\n## 在 MongoDB 中添加数据\n\n让我们在 MongoDB 中添加一些数据：\n\n1. 集合创建完成后，你可以向其中添加新文档。从左侧菜单点击\
+  \ `Data Explorer` 并选择数据库。\n\n2. 如果你难以找到数据库，请参考下面的截图：\n\n![](img/70bf32b7-820c-4f4c-85b6-71bea8011f6e.png)\n\
+  \n3. 点击 `New Document`，它将打开查询编辑器。复制以下文档并粘贴到编辑器中，或者你可以创建自己的文档：\n\n```\n{ \n    \"\
+  id\": \"10\", \n    \"name\": \"Shahid\", \n    \"location\": \"India\" \n} \n```\n\
+  \n4. 你可以添加任意选择的更多字段。点击 `Save button` 将记录添加到 MongoDB 集合中。重复这些步骤以添加多个文档。\n\n5. 你也可以从\
+  \ `Data Explorer` 界面查询已添加到集合中的数据。点击顶部菜单上的 `New Mongo Query` 按钮，它将打开一个编辑器。添加任何你喜欢的\
+  \ Mongo 查询，或者只需添加 `{}` 以从 MongoDB 集合中获取所有文档。\n\n6. 参考下面的截图了解其工作原理：\n\n![](img/fe5aab4f-8b70-4f5f-8f03-eb6500eb6731.png)\n\
+  \n结果可能因你的账户而异。\n\n到目前为止，我们已经创建了 Cosmos DB 实例，创建了一个新的 MongoDB 数据库和集合，并向其中添加了一些虚拟数据。我认为是时候看看一键分发是如何工作的了；它真的是微软承诺的那样吗？感觉充满干劲？我也是；让我们深入了解吧。\n\
+  \n## 使用全球一键分发分发数据\n\n让我们开始吧。我们在创建 Cosmos DB 实例时选择了一个数据中心位置。让我们使用微软承诺的 `click of\
+  \ a button` 来复制它：\n\n1. 在 Cosmos DB 管理屏幕的左侧菜单中，转到 `Settings | Replicate Data Globally`\
+  \ 并点击它。\n\n2. 它应该会打开一个类似于下面截图的界面：\n\n![](img/3ea8e6c6-98b2-41aa-9d8f-9ee5fc45fcc3.png)\n\
+  \n看看这张漂亮的星球地图？所有的五边形图标都是 Azure 数据中心的位置，而被勾选的那个是我们的。\n\n目前，我们的数据存储在一个位置；让我们将其分发到\
+  \ `West India` 位置。你可以选择你喜欢的位置。\n\n3. 那么，如何操作呢？好吧，只需点击五边形图标，然后点击 `Save button`；一切就搞定了！这难道不神奇吗？只需点击一下按钮即可分发数据！\n\
+  \n4. 这将需要几秒钟或几分钟，具体取决于数据量。完成后，你将在地图上看到两个勾号，以及一个额外的读取区域，如下面的截图所示：\n\n![](img/c7f84ddf-1ec1-43dc-830b-944890a4aa86.png)\n\
+  \n现在，来自东南亚的流量可以从其最近的数据中心读取数据。你可以根据你的流量在各个位置复制此操作。\n\n每个数据中心位置都有自己的价格范围，你的账户将据此收费。\n\
+  \n每个复制节点将只有只读能力。当写入区域发生任何更改时，Cosmos DB 会将其复制到分布在全球的每个节点。\n\n这结束了使用 Cosmos DB 全球一键功能的数据分发。\n\
+  \n让我们简要了解一下故障转移处理。\n\n## 故障转移处理\n\n在发生 Azure 数据中心中断的情况下，Cosmos DB 会自动触发受影响区域中所有\
+  \ Cosmos DB 数据库的故障转移。\n\n支持两种类型的故障转移处理：\n\n1. 自动故障转移处理\n2. 手动故障转移处理\n\n让我们简要了解一下它们各自的情况。\n\
+  \n### 自动故障转移\n\n如果任何读取区域发生故障，Cosmos DB 会自动将该读取区域与写入区域断开连接，并将其所有流量转移到用户提供的首选区域列表。\n\
+  \n如果用户未提供任何区域列表，则流量将被转移到主写入区域以进行进一步处理。\n\n一旦读取区域恢复在线，流量将自动转移回该区域。所有这些都无需更改应用程序中的一行代码。\n\
+  \n如果写入区域发生故障，则使用共识协议，另一个读取区域将被提升为写入区域。你也可以指定在发生故障时哪个读取区域应成为写入区域。\n\n### 手动故障转移\n\
+  \n如果你想将当前的写入区域更改为另一个读取区域，则可以使用手动故障转移功能来实现。你可以将任意选择的读取区域升级为写入区域并转移写入流量。这也确保了绝无数据丢失。\n\
+  \n## 总结\n\n在本章中，我们了解了 Cosmos DB 的核心功能，并使用 MongoDB 作为数据模型创建了一个数据库。我们使用全球一键功能在全球范围内复制了这些数据源。\n\
+  \n在下一章中，我们将详细了解更多关于 Cosmos DB 多模型数据库的内容。我们将介绍每种数据库，以及如何创建、查询它们并将其与你的应用程序连接。\n"
+- "# Cosmos DB 多模型数据库\n\nCosmos DB 是微软的全球分布式（使用一键分发）、水平分区、多模型数据库即服务。Cosmos DB 允许其用户跨遍布全球的\
+  \ 30 多个区域扩展其数据库吞吐量和存储。\n\nCosmos DB 是首个为大多数吞吐量和低延迟提供服务级别协议的数据库即服务。Cosmos DB 旨在支持多租户和扩展。\n\
+  \n在本章中，我们将涵盖以下主题：\n\n* Cosmos DB 数据模型\n* Atom 记录序列数据模型\n* DocumentDB API\n* MongoDB\
+  \ API\n* 表 API\n* 图 API\n* 一致性模型\n\n让我们开始吧！\n\n## Cosmos DB 数据模型\n\nCosmos DB 数据模型基于\
+  \ `Atom record sequence` (`ARS`) 数据模型。`ARS` 旨在支持多种数据模型，例如基于列的、键值的、基于图的和基于文档的。你将在下一节详细了解\
+  \ `ARS`。\n\n在撰写本书时，Cosmos DB 支持以下数据模型：\n\n* DocumentDB\n* MongoDB\n* Tables\n* Graph\n\
+  * Cassandra\n\nMicrosoft Azure 团队也在致力于其他数据模型，例如基于列的模型；它们很快就会发布！\n\nDocumentDB 是微软自有的基于文档的数据库，也称为\
+  \ NoSQL 数据库。DocumentDB 为无模式的基于文档的记录提供 SQL 查询功能。Cosmos DB 提供多种语言的 API 和 SDK，以将 DocumentDB\
+  \ 与你的应用集成！你将在后续章节了解相关内容。\n\n\n\n\nMongoDB 是一款非常流行的文档存储，拥有开源版和企业版。`MongoDB` 提供了文档存储数据之上的所有复杂操作，如聚合、过滤和\
+  \ Map-Reduce。这是我最喜欢的数据库之一，能让我更快地启动并交付任何产品。您将在后续章节中了解更多关于 `MongoDB` 的内容。\n\n`Tables`\
+  \ 或表存储是微软版的 `Redis`，一种基于 `NoSQL` 的键值存储，作为服务部署，可容纳 PB 级数据并即时扩展！您将在后续章节中了解更多相关内容。\n\
+  \n`graph`（图）数据库由顶点和边组成，而非键值或列行。图数据库主要用作推荐或建议功能。我相信您一定用过 Facebook 的“你可能认识的人”功能，那就是图数据库！您将在后续章节中了解更多相关内容。\n\
+  \n`Cassandra` 是一款开源、Apache 许可的分布式 `NoSQL` 数据库，用于处理任务关键型数据，具有惊人的持久性和可用性。`Cassandra`\
+  \ 经过了验证，并被互联网上一些热门网站使用，如 GitHub、Instagram、Reddit、eBay 和 CERN（虽然 CERN 不是互联网网站）。我们将在后续章节中了解更多相关内容。\n\
+  \n我们将深入探讨每种数据模型，但首先让我们看看 `ARS` 到底是什么！\n\n## ARS\n\n为了实现多模型数据库功能，`Cosmos DB` 支持 `ARS`\
+  \ 模型。`ARS` 模型提供了一种非常低级的数据格式，可被任何其他数据库或编程语言使用。\n\n`Atoms`（原子）由一组基本数据类型组成，如数字、字符串和布尔值。`Records`（记录）由结构（一组基本数据类型）和序列组成，序列是包含原子和记录的数组。\n\
+  \n以这种方式存储的数据随后会被您的顶层数据库（如 `Document DB`、`MongoDB` 和表）使用。通俗地说，无论您使用任何 `Cosmos DB`\
+  \ API 创建什么数据，都会首先转换为 `ARS` 模型，然后存储在各个区域中。\n\n这种标准的数据存储方式开启了许多机遇。首先，您可以即时迁移或更改数据模型。其次，您可以将其缩放并分发到支持的任何区域，因为从技术上讲，每个数据库的数据模型都是相同的。\n\
+  \n如果您想了解更多关于 `ARS` 的深度信息，请参阅此官方技术文档页面 [`azure.microsoft.com/en-in/blog/a-technical-overview-of-azure-cosmos-db/`](https://azure.microsoft.com/en-in/blog/a-technical-overview-of-azure-cosmos-db/)。\n\
+  \n让我们继续深入探讨每种数据库模型。首先，您将学习 `DocumentDB API`。\n\n## DocumentDB API\n\n正如我们之前提到的，`DocumentDB`\
+  \ 是微软自家基于文档的 `NoSQL` 数据库。`DocumentDB` 为无模式的基于文档的记录提供 `SQL` 查询功能。\n\n`Cosmos DB`\
+  \ 提供多种语言的 API 和 `SDK`，以将 `DocumentDB` 与您的应用程序集成。让我们看看 `DocumentDB API` 结合 `Cosmos\
+  \ DB` 提供的一些优势和功能：\n\n*   `Elastic scale`（弹性缩放）：有效地扩大或缩小数据库规模以满足应用程序需求。您的信息存储在 `solid\
+  \ state drives`（`SSD`，固态硬盘）上，以实现低延迟。`Cosmos DB` 将数据存储在各个集合中，这些集合可以缩放并用于大量记录。\n\n\
+  *   `Replication`（复制）：正如您在上一章所学，`Cosmos DB` 数据库（如 `DocumentDB`）可以跨 Azure 数据中心支持的任意数量的区域进行复制。这使我们能够开发全球可用的应用程序，并将延迟降至最低。`Cosmos\
+  \ DB` 还提供故障转移处理，无论是自动还是手动，正如 第 2 章 `Cosmos DB Global Turnkey Distribution`（Cosmos\
+  \ DB 全球即时分发）中所讨论的。\n\n*   `SQL-like query`（类 SQL 查询）：`DocumentDB` 是 `NoSQL` 数据库，但借助\
+  \ `Cosmos DB`，您可以使用类 `SQL` 查询来查询那些 `JSON` 文档。您无需像在 `SQL` 数据库中那样指定索引、视图等，即可以极高的速度查询数据。\n\
+  \n*   `Multiple consistency levels`（多种一致性级别）：您可以在五个定义明确的一致性级别中进行选择。一致性级别包括：强一致性、有限过期一致性、会话一致性、一致前缀和最终一致性。这使您能灵活地选择并在性能和数据一致性之间进行权衡。在某些应用中，不需要严格的写入，但数据需要实时显示；在其他应用中，数据库需要严格的写入。您可以权衡并选择一致性级别。我们将在后续章节更多地讨论一致性级别。\n\
+  \n*   `Complete document indexing`（完整文档索引）：`Cosmos DB` 默认为了性能考虑，会为数据库中的所有文档建立索引。不过，如果您愿意，可以指定为特定文档或键提供索引，但这是默认行为。\n\
+  \n*   `Real-time change feed`（实时更改源）：您可以监听数据库中的每一次更改并获取通知。您可以利用此更改源发起 API 调用、进行复制或构建审核日志。\n\
+  \n让我们继续创建一个 `DocumentDB` 数据库：\n\n1.  登录 Azure 门户，点击选项栏左侧的 `Azure Cosmos DB` 选项。\n\
+  \n2.  点击 `+` 按钮，为您的新数据库指定一个合适的 ID，并从 API 下拉菜单中选择 `SQL` 选项。\n\n您可以创建新资源或使用现有资源。选择写入操作最频繁的位置，然后点击\
+  \ `Create`（创建）按钮。您可以参考以下屏幕截图获取更多信息：\n\n![](img/a882fdeb-99ca-437c-acf9-7e835e18ef2f.png)\n\
+  \nAzure 将创建带有 `DocumentDB API` 的新数据库并通知您。您将收到类似如下的通知：\n\n![](img/21691fbd-b3a2-49f4-ba32-4a3aa08afcc3.png)\n\
+  \n让我们创建一个新集合并在其中存储一些数据：\n\n1.  转到左侧菜单的 `Data Explorer`（数据资源管理器），然后点击 `New Collection`（新建集合）按钮。\n\
+  \n2.  为您的数据库和集合指定名称，然后点击 `OK` 按钮。请参考以下屏幕截图获取更多信息：\n\n![](img/fd583861-5d18-43c7-8179-a1312f43a501.png)\n\
+  \n3.  集合创建完成后，我们可以在其中创建新文档。点击 `New document`（新建文档）按钮并添加以下 `JSON` 对象：\n\n```\n{ \n\
+  \    \"id\": \"10\", \n    \"name\": \"Shahid\", \n    \"location\": \"Mumbai\"\
+  , \n    \"job\": \"Engineer\" \n} \n```\n\n4.  点击 `Save`（保存）按钮，新文档将被创建。\n\n5.  文档创建完成后，我们可以使用标准的类\
+  \ `SQL` 查询对其进行查询。点击 `New SQL Query`（新建 SQL 查询）按钮并粘贴此查询：\n\n```\nSELECT * FROM users\
+  \ \n```\n\n6.  您可以将 `users` 替换为您提供的集合名称。请勿添加分号，否则会报错。\n\n7.  点击 `Execute Query`（执行查询）按钮运行此查询，您将看到如下屏幕截图所示的记录。结果可能与您的不同：\n\
+  \n![](img/cf0a1458-658c-4e4a-a49e-3cb5c19e4587.png)\n\n8.  您可以从 `Data Explorer`\
+  \ 创建新触发器和存储过程。为了演示，让我们创建一个名为 `helloworld` 的简单存储过程，执行时返回消息 `Hello, World`。\n\n9.\
+  \  在 `Data Explorer` 中，点击存储过程并创建一个新的存储过程。将其命名为 `helloworld`，粘贴以下代码并保存：\n\n```\n\
+  function storedProcedure(){ \n    var context = getContext(); \n    var response\
+  \ = context.getResponse(); \n    response.setBody(\"Hello, World\"); \n} \n```\n\
+  \n10. 在左侧菜单中，点击 `Script Explorer`（脚本资源管理器），它将列出我们创建的脚本以及存储过程。\n\n11. 点击 `helloworld`\
+  \ 过程并点击 `Execute`（执行）按钮。这将运行存储过程并显示如下输出：\n\n![](img/35afc3fb-baec-4ce0-a9a4-1c682c9f761d.png)\n\
+  \n同样，您也可以创建触发器并从 `Script Explorer` 进行测试。\n\n\n\n\n12. 您可以从默认的一致性设置中更改一致性级别。从以下屏幕截图所示的五个一致性级别中任选其一：\n\
+  \n![](img/a054129a-18af-48eb-b4ba-35922dd645f9.png)\n\n当我们在第 5 章 *Integrating Cosmos\
+  \ with Node.js* 中尝试编程 Cosmos DB 的 SDK 时，您将了解更改源功能。\n\n让我们继续了解下一种数据库模型，即 MongoDB。\n\
+  \n## MongoDB 数据模型\n\nMongoDB 是世界上最流行的开源 NoSQL 数据库之一。MongoDB 是微软 DocumentDB 的主要竞争对手之一。MongoDB\
+  \ 为组织提供社区许可证和企业版。\n\n您可以在 Cosmos DB 中将 MongoDB 用作数据模型。如果您现有的应用程序已经在使用 MongoDB，那么您只需更改连接参数，应用程序即可正常工作！就是这么顺畅。\n\
+  \nCosmos DB 提供多种语言的 API 和 SDK，用于将 MongoDB 与您的应用程序集成。让我们看看 MongoDB API 结合 Cosmos\
+  \ DB 提供的几个优势和功能：\n\n*   **弹性伸缩**：高效地纵向扩展或缩减数据库，以满足应用程序需求。您的信息存储在 SSD 上，以实现低延迟。Cosmos\
+  \ DB 支持 MongoDB 格式，即可扩展且可用于大量记录的集合。\n*   **复制**：正如您在上一章所学，Cosmos DB 数据模型（如 MongoDB）可以跨\
+  \ Azure 数据中心支持的任意数量的区域进行复制。这使我们能够开发延迟尽可能低的全球可用应用程序。Cosmos DB 还提供故障转移处理，无论是自动还是手动，正如第\
+  \ 2 章 *Cosmos DB Global Turnkey Distribution* 中所讨论的。\n*   **兼容性**：Cosmos DB 尽可能保持\
+  \ MongoDB API 和 SDK 的独立性。您可以使用现有的 MongoDB 专业知识、代码和 API 来使用 MongoDB 并对其进行扩展。Cosmos\
+  \ DB 提供完全托管的 MongoDB 以及其他功能，帮助您妥善扩展和管理它。\n*   **完全托管**：您无需再安装或运行 MongoDB 守护进程或服务器。它由微软完全托管。不再担心重启、崩溃和内存溢出！\n\
+  *   **自动索引**：Cosmos DB 为 MongoDB 的所有文档建立索引，以实现更快的响应时间和低延迟。\n\n让我们继续在 Cosmos DB 中创建\
+  \ MongoDB 数据模型：\n\n1. 登录 Azure 门户，单击选项栏左侧的 Azure Cosmos DB 选项。\n2. 单击 **+** 按钮，为新数据库指定一个合适的\
+  \ ID；从 API 下拉菜单中选择 MongoDB 选项。\n3. 您可以创建新资源或使用现有资源。选择写入操作最多的位置，然后单击“创建”按钮。您可以参考以下屏幕截图以获取更多信息：\n\
+  \n![](img/e051258b-4a79-46f6-afe1-55b4c547c694.png)\n\nAzure 将创建带有 MongoDB API 的新数据库并通知您。\n\
+  \n4. MongoDB 数据模型创建完成后，我们可以在其中创建新集合并存储数据。\n5. 转到左侧菜单上的“数据资源管理器”，单击“新建集合”按钮。为您的数据库和集合指定名称，然后单击“确定”按钮。请参考以下屏幕截图以获取更多信息：\n\
+  \n![](img/fccdf267-5b5e-49d8-9425-de3ed6d8e951.png)\n\n6. 集合创建完成后，我们可以在其中创建新文档。单击“新建文档”按钮并添加以下\
+  \ JSON 对象：\n\n```json\n{ \n    \"id\": \"10\", \n    \"name\": \"Shahid\", \n  \
+  \  \"location\": \"Mumbai\", \n    \"job\": \"Engineer\" \n}\n```\n\n7. 单击“保存”按钮，新文档将被创建。\n\
+  \n文档创建完成后，我们可以使用标准 MongoDB 查询对其进行查询。\n\n8. 单击“新建 Mongo 查询”按钮并粘贴上述提到的查询。\n9. 单击“执行查询”按钮运行此查询，您将看到如下一屏幕截图所示的记录。结果可能与您的不同：\n\
+  \n![](img/9794d330-f8af-4f69-8ea3-298b17fb96e8.png)\n\n同样，我们也可以使用数据资源管理器删除或更新这些文档。您也可以像在前一节\
+  \ *DocumentDB API* 中讨论的那样创建存储过程和触发器。\n\nMongoDB 是 Cosmos DB 中关键的数据库模型之一。核心原因之一是其普及度。大多数开发人员和企业已经在使用它，如果它们迁移到\
+  \ Cosmos，将构成一个巨大的客户群。这就是为什么他们将其描述为易于迁移的模型的关键原因；否则，微软为什么要提供竞争对手作为选项！\n\n您将在第 6 章\
+  \ *Building High-Performance Link Shortening and Tracking System using Cosmos DB*\
+  \ 中了解 SDK 以及如何将它们与我们的自定义应用程序集成。\n\n至于一致性和复制，您可以在 MongoDB 中使用 Cosmos DB 提供的五个一致性级别中的任意一个。\n\
+  \n您还可以将其分布在 Azure 提供的任意数量的区域中，正如第 2 章 *Cosmos DB Global Turnkey Distribution* 中所讨论的。\n\
+  \n让我们继续看看第三种数据模型，即表！\n\n## 表数据模型\n\nCosmos DB 提供表数据模型作为 API，您可以使用标准表查询模型来构建分布式键值存储。\n\
+  \n表 API 是市场上首批提供托管分布式键值存储的产品之一。让我们看看表 API 提供的功能：\n\n*   **低延迟**：Cosmos DB 的表 API\
+  \ 为读取和写入提供个位数延迟，并有 SLA 保障\n*   **可变吞吐量**：表 API 具有可变吞吐量模型。您可以随着业务增长更改可伸缩性限制\n*  \
+  \ **弹性伸缩**：您可以跨 Azure 支持的任意数量的区域扩展数据库\n*   **自动索引**：Cosmos DB 结合表 API 为所有属性创建索引，以实现更快的读写操作\n\
+  *   **高级查询支持**：Cosmos DB 在表 API 之上提供高级查询，如聚合、地理空间查询和排序\n*   **多重一致性**：您可以根据需要从 Cosmos\
+  \ DB 提供的五个一致性级别中选择一致性级别\n\n让我们继续在 Cosmos DB 中创建表数据模型：\n\n1. 登录 Azure 门户，单击选项栏左侧的\
+  \ Azure Cosmos DB 选项。\n2. 单击 **+** 按钮，为新数据库指定一个合适的 ID，从 API 下拉菜单中选择表（键值）选项。\n3.\
+  \ 您可以创建新资源或使用现有资源。选择写入操作最多的位置，然后单击“创建”按钮。您可以参考以下屏幕截图以获取更多信息：\n\n![](img/15bd363f-cff0-4eb7-a121-9b2e78ff9f1f.png)\n\
+  \n4. Azure 将创建带有表 API 的新数据库并通知您。表数据模型创建完成后，我们可以在其中创建新集合并存储数据。转到左侧菜单上的“数据资源管理器”，单击“新建表”按钮。为您的表指定名称，然后单击“确定”按钮。请参考以下屏幕截图以获取更多信息：\n\
+  \n![](img/69874c78-4d55-4b8b-8736-163949e03497.png)\n\n5. 表创建完成后，我们可以在其中创建键值对。单击“新建实体”按钮并添加以下值：\n\
+  \n![](img/514c51db-04f6-4929-b0b3-4362b64441cb.png)\n\n您可以根据需要使用查询资源管理器创建任意数量的实体。如果需要，您始终可以为应用程序创建存储过程和触发器。\n\
+  \n让我们继续了解 Cosmos DB 中最后但同样重要的数据模型，即图数据模型。\n\n## 图数据模型\n\n在 SQL 数据库中，我们有行和列；在 NoSQL\
+  \ 中，我们有基于键和值的文档；在大数据中，我们有列和数据。\n\n\n\n\n\n## Cosmos DB 数据模型：图和 Cassandra\n\n然而，这些模型都没有直接映射到现实世界的对象。图数据库的构建正是为了弥合这一差距。\n\
+  \n图数据模型是一种由顶点和边组成的结构。顶点和边都可以拥有一组属性。顶点代表离散的对象，例如一个人、一个地点或一个事件。边代表顶点之间的关系。例如，一个人可能认识另一个人、参与某个事件，并且最近可能曾到访过某个地点。属性表示关于顶点和边的详细信息。Azure\
+  \ Cosmos DB 支持属性图模型。\n\n![](img/ffd1bad6-6350-456b-b572-61f61ec3ce74.png)\n\n图的一个重要用例是查找实体之间的关系。例如，如果我和某人是朋友，那么利用顶点，我们可以向彼此推荐对方的朋友，这类似于\
+  \ Facebook 的 `People You May Know`（你可能认识的人）功能。\n\n图在主要的数据科学探索中也非常有用。复杂的算法构建在图数据库之上，以从海量数据中获取洞察。\n\
+  \n### 图数据库功能\n\n让我们看看 Cosmos DB 中图数据库提供的一些功能：\n\n*   `Elastic scale`（弹性缩放）：有效地扩大或缩小图数据库以满足应用程序需求。您的信息存储在\
+  \ `SSD` 上，以实现低延迟。Cosmos DB 支持 `Gremlin` API 格式。\n\n*   `Replication`（复制）：正如您在上一章所学，Cosmos\
+  \ DB 数据模型（如图）可以跨 Azure 数据中心支持的任意数量的区域进行复制。这使我们能够开发具有尽可能低延迟的全球可用应用程序。Cosmos DB 还提供故障转移处理，无论是自动还是手动，正如\
+  \ `Chapter 2`（第 2 章）`Cosmos DB Global Turnkey Distribution`（Cosmos DB 全球即时分发）中所讨论的。\n\
+  \n*   `Fast query traversal`（快速查询遍历）：您可以使用 `Gremlin` 语法来创建和存储图，并使用 Cosmos DB 以个位数毫秒延迟对其进行查询。\n\
+  \n*   `Fully managed`（完全托管）：您无需再安装或运行图守护进程或服务器。它由 Microsoft 完全托管。无需再担心重启、崩溃和内存溢出！\n\
+  \n*   `Automatic indexing`（自动索引）：Cosmos DB 为图中节点和边内的所有属性建立索引，以获得更快的响应时间和低延迟。\n\n\
+  ### 在 Cosmos DB 中创建图数据库\n\n让我们继续在 Cosmos DB 中创建一个新的图数据库：\n\n1.  登录到 Azure 门户，点击左侧选项栏上的\
+  \ `Azure Cosmos DB` 选项。\n\n2.  点击 `+ button`（+ 按钮），为您的新数据库提供一个合适的 ID，从 `API` 下拉菜单中选择\
+  \ `Gremlin (graph)` 选项。\n\n3.  您可以创建一个新资源或使用现有资源。选择写入操作最频繁的位置，然后点击 `Create button`（创建按钮）。\n\
+  \n4.  一旦创建了图数据模型，我们就可以在其中创建新的数据库和图并存储数据。\n\n5.  转到左侧菜单上的 `Data Explorer`（数据资源管理器），点击\
+  \ `New Graph button`（新建图按钮）。\n\n6.  为您的数据库和图 ID 命名，然后点击 `OK button`（确定按钮）。\n\n7.\
+  \  数据库创建完成后，您可以创建一个新顶点。点击 `New Vertex button`（新建顶点按钮）并给它一个标签，例如 `laptop`（笔记本电脑）。\n\
+  \n8.  再次点击 `New Vertex` 创建一个新顶点，例如 `John`。在关系中，我们将设定 John uses `Laptop`（John 使用笔记本电脑）。您可以通过点击图中的第二个顶点来打开属性。\n\
+  \n9.  转到 `Targets`（目标），选择 `laptop` 顶点作为目标。\n\n![](img/e8c917c4-4e59-4d84-b69f-413d6d8f4eb7.png)\n\
+  ![](img/2e37f583-8da7-4405-aca4-c42435dd554f.png)\n![](img/38ec9c15-a0a2-4e69-9298-16915567cbee.png)\n\
+  \n创建完成后，您将看到如下图所示的连接图：\n\n![](img/f6522893-5a54-40b1-8c2b-625e6d01cc72.png)\n\n\
+  太棒了！我们确实可以创建更多顶点并将它们连接起来，然后查询以获取一些有用的信息。\n\n我们将在接下来的章节中进行更多图查询，即 `Chapter 4`（第 4\
+  \ 章）`Querying Cosmos DB`（查询 Cosmos DB）。\n\n### Cassandra API\n\nCassandra 是一个开源的高度分布式\
+  \ `NoSQL` 数据库，拥有经过行业验证的性能和持久性。以下是 Cassandra 的一些功能。\n\n*   `Highly scalable:`（高度可扩展）Cassandra\
+  \ 允许弹性缩放，它允许即时管理系统的硬件需求。您可以根据流量和需求添加/移除硬件。\n\n*   `No single point of failure:`（无单点故障）Cassandra\
+  \ 被证明是一个高可用性数据库，其架构核心内置了无单点故障特性。\n\n*   `Linear scalability:`（线性可扩展性）随着新 Cassandra\
+  \ 节点的添加，Cassandra 会提高系统的吞吐量，因此它始终能提升系统性能，并快速在硬件层面复制这种效果。\n\n*   `Data variety support:`（数据多样性支持）Cassandra\
+  \ 支持各种数据格式，如 `SQL`、`NoSQL`、非结构化数据，并根据系统需求动态适应数据结构的变化。\n\n*   `Transaction support:`（事务支持）Cassandra\
+  \ 支持原子操作的事务。\n\n通过在 `Cosmos DB` 中使用 `Cassandra API`，您可以获得上述所有功能，以及 Cosmos DB 提供的以下优势。\n\
+  \n*   `No management:`（无需管理）Cosmos DB 为您提供管理数据的 API，其余基础设施由 Cosmos DB 管理。\n\n* \
+  \  `Automatic Indexing:`（自动索引）Cosmos DB 默认为数据库中的所有列创建索引，从而大幅提高读取速度。\n\n*   `Global\
+  \ Distribution:`（全球分发）Cosmos DB 允许您通过单击按钮将数据库分发到全球 30 多个区域。\n\n*   `Multiple consistency:`（多种一致性）您可以从\
+  \ `strong`（强一致性）、`bounded-staleness`（有界过期一致性）、`session`（会话一致性）、`consistent prefix`（一致前缀一致性）和\
+  \ `eventual`（最终一致性）中选择一致性级别。\n\n这涵盖了 Cosmos DB 支持的所有五种数据模型。让我们继续简要了解 Cosmos DB 的一致性级别。\n\
+  \n### Cosmos DB 一致性级别\n\n在分布式数据库中，一致性是一个非常重要的因素。您需要根据应用程序中数据的紧急程度和重要性来决定一致性级别。\n\
+  \nCosmos DB 提供五种一致性级别：\n\n1.  `Strong`（强一致性）：此一致性级别保证写入操作仅在大多数副本提交后，才对数据的应用程序或使用者可见。这会增加读取操作的成本。\n\
+  \n2.  `Bounded staleness`（有界过期一致性）：在此一致性级别下，读取操作可能滞后于写入操作。简单来说，由于低成本的读取操作和低延迟，这是最适合分布式数据库的一致性级别。\n\
+  \n3.  `Session`（会话一致性）：顾名思义，会话一致性绑定到客户端会话。每个会话，具体来说是每个用户会话，都保证单调的读取和写入。\n\n4.  `Consistent\
+  \ prefix`（一致前缀一致性）：在此级别，读取操作将按写入顺序返回数据。如果写入顺序为 A、B、C，则读取将返回 A、AB 或 ABC，但不会返回 BA\
+  \ 或 BC。\n\n5.  `Eventual`（最终一致性）：这是最弱的一致性级别。在此级别，客户端可能会看到无序的旧版本数据。这非常具有成本效益，但不适用于任务关键型应用程序。\n\
+  \n您始终可以从 `Data Explorer`（数据资源管理器）菜单为每个 Cosmos DB 选择一致性级别。\n\n#### 总结\n\n在本章中，您学习了\
+  \ Cosmos DB 支持的所有四种数据模型。您还学习了如何使用每种模型创建数据库并向其中放入一些数据。您也了解了一致性级别。\n\n在下一章中，我们将深入探讨，在每种数据模型中执行一些优秀的查询，并尝试了解更多关于\
+  \ Cosmos DB 数据模型的信息。\n\n\n\n\n"
+- "# 查询 Cosmos DB\n\n在上一章中，我们了解了各种数据模型，并在这些数据模型中创建了数据库和表或集合。现在是时候在这些数据模型中引入一些数据并进行查询，以查看其效果如何。\n\
+  \n在本章中，我们将涵盖以下主题：\n\n*   在 DocumentDB 中执行 CRUD 操作。\n*   在 MongoDB 中执行 CRUD 操作。\n\
+  *   在图数据库中执行 CRUD 操作。\n*   在表（键值存储）中执行 CRUD 操作。\n*   在 Cassandra 中执行 CRUD 操作。\n\n\
+  让我们从 Document DB 查询开始。\n\n## 在 DocumentDB 中执行 CRUD 操作\n\nDocumentDB 是微软自家的 NoSQL\
+  \ 数据库，具有类 SQL 查询功能。当我说“类 SQL”时，意思是它允许我们使用我们最喜爱的 SQL 查询来查询 JSON 文档。\n\n在开始查询之前，让我们先了解\
+  \ DocumentDB 查询的基础知识。\n\n### DocumentDB 查询基础\n\n根据 ANSI-SQL 标准，每个 DocumentDB 查询都包含一条\
+  \ `SELECT` 语句，以及可选的 `FROM` 和 `WHERE` 子句。\n\n对于每个查询，`FROM` 子句中的源会被搜索和遍历。然后将 `WHERE`\
+  \ 子句中的筛选部分应用于源，以检索 JSON 文档的子集。\n\n最后，使用 `SELECT` 子句来填充选择列表中请求的 JSON 值。\n\n语句的顺序可以如下所示：\n\
+  \n```\nSELECT <select_list> \n[FROM <from_specification>] \n[WHERE <filter_condition>]\n\
+  [ORDER BY <sort_specification]  \n```\n\n让我们开始查询吧。\n\n### 在 Cosmos DB 中创建数据\n\n\
+  要执行查询操作，我们需要添加一些数据。你可以添加任意数量的文档，但为了示例方便，我将添加两个嵌套的 JSON 文档。\n\n第一个文档如下所示：\n\n```\n\
+  { \n  \"id\": \"100\", \n  \"lastName\": \"Doe\", \n  \"parents\": [ \n     { \"\
+  firstName\": \"John\" }, \n     { \"firstName\": \"Mary\"} \n  ], \n  \"children\"\
+  : [ \n     { \n         \"firstName\": \"Emily\",  \n         \"gender\": \"female\"\
+  ,  \n         \"grade\": 5, \n         \"pets\": [{ \"givenName\": \"Fluffy\" }]\
+  \ \n     } \n  ], \n  \"address\": { \"state\": \"WA\", \"county\": \"King\", \"\
+  city\": \"seattle\" }, \n  \"creationDate\": 1431620472, \n  \"isRegistered\": true\
+  \ \n} \n```\n\n这是第二个文档，有一些细微差别：\n\n```\n{\n   \"id\": \"200\",\n   \"parents\":\
+  \ [\n       { \"familyName\": \"Wakefield\", \"givenName\": \"Robin\" },\n     \
+  \  { \"familyName\": \"Miller\", \"givenName\": \"Ben\" }\n   ],\n   \"children\"\
+  : [\n       {\n         \"familyName\": \"Merriam\", \n         \"givenName\": \"\
+  Jesse\", \n         \"gender\": \"female\", \"grade\": 1,\n         \"pets\": [\n\
+  \             { \"givenName\": \"Goofy\" },\n             { \"givenName\": \"Shadow\"\
+  \ }\n         ]\n       },\n       { \n         \"familyName\": \"Miller\", \n \
+  \         \"givenName\": \"Lisa\", \n          \"gender\": \"female\", \n      \
+  \    \"grade\": 8 }\n   ],\n   \"address\": { \"state\": \"NY\", \"county\": \"\
+  Manhattan\", \"city\": \"NY\" },\n   \"creationDate\": 1431620462,\n   \"isRegistered\"\
+  : false\n }\n```\n\n要使用 Azure 门户创建这些文档，请执行以下步骤。\n\n1.  登录到 Azure 门户，单击选项栏左侧的 **Azure\
+  \ Cosmos DB** 选项。\n2.  从左侧菜单转到 **Data Explorer**（数据资源管理器），并选择我们在上一章中创建的集合。\n3. \
+  \ 单击 **New Document**（新建文档）按钮，并添加上述 JSON。\n\n文档创建完成后，我们就可以对它们进行查询了。\n\n### 从 DocumentDB\
+  \ 读取数据\n\n让我们使用 SQL 查询结构来查询数据：\n\n1.  单击 **New SQL Query**（新建 SQL 查询）按钮，并粘贴此查询：\n\
+  \n```\nSELECT *  \nFROM Families f  \nWHERE f.id = \"100\" \n```\n\n2.  这将产生以下结果：\n\
+  \n```\n[{ \n  \"id\": \"100\", \n  \"lastName\": \"Doe\", \n  \"parents\": [ \n\
+  \     { \"firstName\": \"John\" }, \n     { \"firstName\": \"Mary\"} \n  ], \n \
+  \ \"children\": [ \n     { \n         \"firstName\": \"Emily\",  \n         \"gender\"\
+  : \"female\",  \n         \"grade\": 5, \n         \"pets\": [{ \"givenName\": \"\
+  Fluffy\" }] \n     } \n  ], \n  \"address\": { \"state\": \"WA\", \"county\": \"\
+  King\", \"city\": \"seattle\" }, \n  \"creationDate\": 1431620472, \n  \"isRegistered\"\
+  : true \n}] \n```\n\n3.  你也可以执行传统的 `ORDER BY` 查询，类似于以下查询：\n\n```\nSELECT c.givenName\
+  \  \nFROM Families f  \nJOIN c IN f.children  \nWHERE f.id = '200' \nORDER BY f.address.city\
+  \ ASC\n```\n\n4.  这将产生以下结果：\n\n```\n[ \n  { \"givenName\": \"Jesse\" },  \n  { \"\
+  givenName\": \"Lisa\"} \n]\n```\n\n5.  你还可以运行子查询，即从主文档中获取子文档。你可以参考以下查询：\n\n```\n\
+  SELECT *  \nFROM Families.children \n```\n\n6.  这将产生以下结果：\n\n```\n[ \n  [ \n   \
+  \ { \n        \"firstName\": \"Emily\", \n        \"gender\": \"female\", \n   \
+  \     \"grade\": 5, \n        \"pets\": [ \n          { \n              \"givenName\"\
+  : \"Fluffy\" \n          } \n        ] \n    } \n  ], \n  [ \n    { \n        \"\
+  familyName\": \"Merriam\", \n        \"givenName\": \"Jesse\", \n        \"gender\"\
+  : \"female\", \n        \"grade\": 1 \n    }, \n    { \n        \"familyName\":\
+  \ \"Miller\", \n        \"givenName\": \"Lisa\", \n        \"gender\": \"female\"\
+  , \n        \"grade\": 8 \n    } \n  ] \n] \n```\n\n因此，我们现在知道了如何创建和查询文档。让我们执行 `UPDATE`（更新）和\
+  \ `DELETE`（删除）操作。\n\n### 更新和删除文档\n\nAzure 门户不允许运行这些查询，即使用查询来更新和删除文档，但你可以使用你选择的 SDK\
+  \ 或通过 Azure 门户 UI 来执行。\n\n要编辑文档，你可以直接运行 `SELECT` 查询，实时编辑文档，然后单击 **Save**（保存）按钮使更改生效，或者单击\
+  \ **DELETE**（删除）按钮来移除文档。\n\n我们将在 第 5 章 *将 Node.js 与 Cosmos DB 集成* 中介绍如何使用 Azure\
+  \ SDK 进行更新和删除。\n\n让我们看看 MongoDB 查询操作。\n\n## 在 MongoDB 中执行 CRUD 操作\n\nMongoDB 是流行的\
+  \ NoSQL 数据库之一。你需要创建一个 MongoDB 数据库和集合，并且可以在浏览器中的 Azure 终端中执行基本的 CRUD 操作，或者获取连接字符串并将其连接到你的\
+  \ Node 应用。\n\n1.  打开 Azure 门户并创建一个新的 MongoDB 实例；请参考以下屏幕截图：\n\n![](img/ce361e5c-2669-4dd5-94dd-a34b4e79d0fd.png)\n\
+  \n2.  创建完成后，你可以向其中添加一个新集合。请参考以下屏幕截图：\n\n![](img/db5a72b5-aa15-48eb-b86b-75e9a7332d6a.png)\n\
+  \n3.  现在你需要检索连接字符串。转到 **Settings | Connection String**（设置 | 连接字符串）选项并复制连接字符串。\n\n\
+  请将其妥善保管，切勿共享。\n\n现在你可以使用连接字符串将 Node.js 应用程序连接到这个 MongoDB 实例。\n\n我们将在 第 5 章 *将 Node.js\
+  \ 与 Cosmos DB 集成* 中介绍 Node.js。\n\n不过，你可以直接在 Azure 浏览器终端中执行 CRUD 操作。\n\n4.  单击顶部栏上的\
+  \ **New document**（新建文档）按钮，并添加以下 JSON 以创建文档：\n\n```\n{ \n    \"id\": \"10\", \n\
+  \    \"name\": \"Shahid\", \n    \"location\": \"Mumbai\", \n    \"job\": \"Engineer\"\
+  \ \n} \n```\n\n5.  文档创建后，你可以使用查询查看它，或通过单击包含文档列表的左侧栏来查看。你可以通过单击那个小叉号按钮来删除它。\n\n我们将在下一章介绍如何使用代码进行\
+  \ CRUD 操作。\n\n让我们看看如何在图数据库中执行 CRUD 操作。\n\n## 在图数据库中执行 CRUD 操作\n\n正如 第 3 章 *Cosmos\
+  \ DB 多模型数据库* 中所讨论的，图数据模型是一种由顶点和边组成的结构。顶点和边都可以有一组属性：\n\n*   **顶点** 代表离散对象，例如人、地点或事件。\n\
+  *   **边** 代表顶点之间的关系。例如，一个人可能认识另一个人、参与一个事件，并且最近曾到访过某个地点。\n\n\n\n\n### 图数据库 (Gremlin\
+  \ API) CRUD 操作\n\n属性表示关于顶点和边的详细信息。Azure Cosmos DB 支持属性图模型。\n\n#### 创建图数据库\n\n让我们首先创建一个新数据库：\n\
+  \n1. 单击 **新建数据库** 并选择 **Gremlin** 作为 API。请参考以下屏幕截图：\n\n   ![](img/d4cb2664-8860-437c-a05c-30ef985abfe5.png)\n\
+  \n2. 现在，创建一个新的图数据库和 **图 ID**。请参考以下屏幕截图：\n\n   ![](img/1eb0b04b-e298-405c-81c2-b11c4fcd4960.png)\n\
+  \n3. 现在，你需要生成密钥以通过任何编程接口进行连接。转到 **设置 | 密钥**，然后单击主密钥和辅助密钥以生成它们。请参考以下屏幕截图：\n\n   ![](img/e6a19f2b-3885-4bea-b185-abe9c7ac11a5.png)\n\
+  \n我们可以使用这些密钥通过代码连接到你的图数据库。\n\n现在，进入 CRUD 部分，我们可以使用 Azure 门户以及代码创建新的顶点和边。我们在 第 3\
+  \ 章 *Cosmos DB 多模型数据库* 中也介绍了 Azure 门户。\n\n一旦你创建了一些顶点和边并为它们添加了一些属性，就可以对图执行查询。\n\n\
+  最简单的方法之一是通过 Azure 终端。\n\n4. 运行此查询以返回图的顶点：\n\n```\ng.V().count()\n```\n\n实际上，你可以使用门户\
+  \ UI 从图中删除顶点并动态编辑它们。\n\n图是一个非常广泛的主题，你可以在其中做更多事情。\n\n以下是参考链接，你可以在其中阅读关于图的更多详细信息：\n\
+  \n[Gremlin 支持文档](https://docs.microsoft.com/en-us/azure/cosmos-db/gremlin-support)\n\
+  \n## 在表 (键值存储) 中执行 CRUD 操作\n\n表存储 API 为我们提供了高效且轻松地存储键值对数据的能力。你需要在 Cosmos DB 内创建一个新的表数据库来执行\
+  \ CRUD 操作。\n\n### 创建表数据库\n\n1. 登录到你的 Azure 门户，然后单击选项栏左侧的 **Azure Cosmos DB** 选项。\n\
+  \n2. 单击 **+** 按钮，为你的新数据库指定一个合适的 ID，然后从 API 下拉菜单中选择 **表 (键值)** 选项。\n\n3. 你可以创建一个新资源或使用现有资源。选择大多数写入操作将发生的位置，然后单击\
+  \ **创建** 按钮。你可以参考屏幕截图：\n\n   ![](img/8bbe31dc-7d64-4f27-80fc-dee0d715466d.png)\n\
+  \n4. 现在你可以在其中创建一个表来存储你的数据。请参考以下屏幕截图：\n\n   ![](img/66edfaa7-7a9c-4f22-8426-045f0ab96230.png)\n\
+  \n### 使用实体\n\n我们可以对同一数据执行 CRUD 操作。我们需要创建表实体以该格式存储数据。单击 **添加新实体** 并添加行键和分区键。有关详细信息，请参阅\
+  \ 第 3 章 *Cosmos DB 多模型数据库*。\n\n创建实体后，我们可以在其中添加数据。此外，你可以从 Azure 门户复制连接字符串并粘贴以在自定义应用程序中进一步使用。\n\
+  \n你可以添加任意数量的实体，完成后，可以从数据资源管理器中删除、编辑或查询它们。\n\n## 在 Cassandra 中执行 CRUD 操作\n\nCassandra\
+  \ API 为我们提供了在 Cassandra 中高效且轻松地存储 NoSQL 数据的能力。你需要在 Cosmos DB 内创建一个新的 Cassandra 数据库来执行\
+  \ CRUD 操作。\n\n### 创建 Cassandra 数据库\n\n1. 登录到你的 Azure 门户，然后单击选项栏左侧的 **Azure Cosmos\
+  \ DB** 选项。\n\n2. 单击 **+** 按钮，为你的新数据库指定一个合适的 ID，然后从 API 下拉菜单中选择 **Cassandra** 选项。\n\
+  \n3. 你可以创建一个新资源或使用现有资源。选择大多数写入操作将发生的 **位置**，然后单击 **创建** 按钮。你可以参考屏幕截图：\n\n   ![](img/fc900918-0e66-49a0-9a7e-3b65e8e095d0.png)\n\
+  \n4. 现在，单击 **数据资源管理器 | 新建表** 按钮并创建一个新表来存储数据。请参考下面的屏幕截图：\n\n   ![](img/32d22c55-5bd3-4176-ac67-36e721b63842.png)\n\
+  \n### 使用表和数据\n\n5. 现在，我们可以使用标准 SQL 命令插入数据，如下所示。\n\n```\nINSERT INTO uprofile.user\n\
+  (first_name, last_name)\nVALUES ('Shahid', 'Shaikh');\n```\n\n6. 你可以使用 `SELECT`\
+  \ 查询从 `Cassandra` 表中读取数据。\n\n```\nSELECT * from uprofile.user;\n```\n\n同样，可以分别使用\
+  \ `UPDATE` 和 `DELETE` 命令来更新和删除 Cassandra 表中的记录。\n\n这涵盖了使用各种数据模型执行 CRUD 操作的内容。\n\n\
+  ## 总结\n\n在本章中，我们学习了如何对 Cosmos DB 支持的每个数据库 API 执行 CRUD 操作。我们还学习了如何使用连接字符串和密钥从代码连接到数据库。\n\
+  \n在下一章中，我们将学习 Node.js 与各种 Cosmos DB 数据库的集成。\n"
+- "# 将 Cosmos DB 与 Node.js 集成\n\nCosmos DB 支持多种编程语言，如 Java、.NET、Python 和 Node.js。Node.js\
+  \ 实际上不是一种编程语言，而是 JavaScript 的运行时框架。\n\n我是一名 Node.js 爱好者，更习惯使用 Node.js 开发后端系统，因此我们将在本章以及后续章节中进行\
+  \ Cosmos DB 与 Node.js 的集成。\n\n以下是我们将在本章中介绍的主题：\n\n- Node.js 设置\n- Cosmos DB MongoDB\
+  \ 设置\n- 将 Cosmos DB 与 Node.js 应用连接\n- 在 Cosmos DB 中探索应用数据\n- 将 DocumentDB API 与\
+  \ Node.js 集成\n- 将表 API 与 Node.js 集成\n- 将图 API 与 Node.js 集成\n\n那么，让我们开始吧。\n\n## Node.js\
+  \ 设置\n\n你需要在你的机器上安装并设置 Node.js。访问 Node.js 官方网站 ([`nodejs.org/en/download/`](https://nodejs.org/en/download/))\
+  \ 并根据你的操作系统下载最新版本。\n\n我在这里介绍 Ubuntu 的安装。让我们逐步进行：\n\n1. 打开终端并运行此命令：\n\n```\ncurl\
+  \ -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -\n```\n\n这将为 Node.js\
+  \ 8+ 版本添加 Ubuntu 存储库条目。\n\n2. 现在，运行此命令安装 Node.js：\n\n```\nsudo apt-get install -y\
+  \ nodejs\n```\n\n片刻后，Node.js 连同 `npm` 将设置完成。\n\n3. 要检查 Node.js 和 `npm` 的版本，请运行以下命令：\n\
+  \n```\nnode -v\nnpm -v\n```\n\n输出如下：\n\n![](img/7f49cf95-4cf2-4cd3-8338-ddd47a48ae03.png)\n\
+  \n你也可以在 macOS 以及 Windows（使用 PowerShell 或 Windows 命令提示符）中运行类似的命令。\n\n这应该能确保 Node.js\
+  \ 正确设置，我们可以继续进行 Cosmos DB MongoDB 的创建。\n\n## Cosmos DB MongoDB 设置\n\nMongoDB 是最流行的\
+  \ NoSQL 数据库之一。你需要创建一个 MongoDB 数据库和集合，并生成访问密钥。\n\n打开你的 Azure 门户并创建一个新的 MongoDB 实例。请参考以下屏幕截图：\n\
+  \n![](img/f18ae269-218e-46ab-869d-d1bd238324d8.png)\n\n单击 **创建** 按钮，将创建一个新的 MongoDB\
+  \ API。接下来，我们需要将 Node.js 应用与 Cosmos DB 的 MongoDB API 连接。\n\n## 将 Cosmos DB 与 Node.js\
+  \ 应用连接\n\nCosmos DB 的设计使你能够轻松地将其与应用集成，而无需做太多额外工作。也就是说，你不需要处理配置和管理部分，这在 NoSQL 数据库中通常是一大痛点；你可以使用现有的\
+  \ Node.js 模块轻松连接到 Cosmos DB MongoDB。\n\n我们将使用与正常 MongoDB 开发相同的 Node.js 模块集，无需额外的东西！\n\
+  \n让我们通过配置用 Node.js 和 MongoDB 编写的现有项目来使用我们的 Cosmos DB Mongo API，以证明这一点。\n\n\n\n##\
+  \ 示例应用部署与 Cosmos DB 集成指南\n\n### 示例代码获取\n\n演示使用的开源示例代码托管于：[`github.com/prashanthmadi/mean`](https://github.com/prashanthmadi/mean)\n\
+  \n#### 步骤\n\n1.  **下载代码**  \n    可使用 `git` 或直接访问 GitHub 仓库下载 ZIP。此处使用 `git`。\n\n\
+  2.  **克隆项目**  \n    在终端运行：\n    ```\n    git clone https://github.com/prashanthmadi/mean\n\
+  \    ```\n\n3.  **安装依赖**  \n    ```\n    cd mean && npm install\n    ```\n    此命令会安装项目运行所需的依赖。参考截图：\n\
+  \    ![](img/6f3ad7f1-f55f-42ce-b43f-ad29fd87ec87.png)\n\n4.  **配置 MongoDB 连接**\
+  \  \n    复制 MongoDB URI。进入连接字符串界面复制连接字符串。参考截图：\n    ![](img/a1f962d3-c995-41d1-b616-9913b8e59fc1.png)\n\
+  \n5.  **修改配置文件**  \n    进入项目文件夹，编辑 `config/env/local-development.js`，修改连接 URI：\n\
+  \    ```\n    module.exports = { \n      db: { \n        uri: '===== paste your\
+  \ URL here =====' \n      }, \n      sessionSecret: process.env.SESSION_SECRET ||\
+  \ 'youshouldchangethistosomethingsecret', \n      facebook: { \n        clientID:\
+  \ process.env.FACEBOOK_ID || 'APP_ID', \n        clientSecret: process.env.FACEBOOK_SECRET\
+  \ || 'APP_SECRET', \n        callbackURL: '/api/auth/facebook/callback' \n     \
+  \ } \n    };\n    ```\n\n6.  **启动应用**  \n    保存配置后运行：\n    ```\n    npm start\n\
+  \    ```\n\n7.  **访问应用**  \n    构建完成后，可在 `localhost:3000` 查看项目。参考截图：\n    ![](img/30ba27fe-3566-46fb-9f90-0669d1a7327c.png)\n\
+  \n8.  **浏览器效果**  \n    ![](img/b7108fe6-cc7f-454a-8d68-5b0533b9caf5.png)\n\n应用已启动。需执行操作以生成\
+  \ MongoDB 数据。创建新账号测试功能！\n\n9.  **注册账号**  \n    点击**注册**填写详情。账号创建后可登录、查看/编辑个人资料。预期效果：\n\
+  \    ![](img/f18cad84-2c92-4e39-b97b-1835205bfed3.png)\n\nNode 应用已连接 MongoDB，接下来在\
+  \ Cosmos DB 数据资源管理器中查看数据。\n\n## Cosmos DB 中的应用数据\n\n应用已连接 Cosmos DB 并创建用户。查看 Cosmos\
+  \ DB MongoDB 集合中的数据：\n\n1.  登录 Azure 门户，进入数据库概览界面，可见集合列表。参考截图：\n    ![](img/a824ea22-0006-437a-8c62-4ec20059bce4.png)\n\
+  \n2.  点击 `users` 集合查看其中数据。\n\n3.  双击任意集合数据的 **ID** 查看完整数据。参考截图：\n    ![](img/79a3a906-9c00-467b-a3be-fbddd5896218.png)\n\
+  \n确认了使用 Node.js 的应用与数据库连接。接下来介绍如何将 Node.js 与 DocumentDB 及 Azure Cosmos DB 支持的其他数据库\
+  \ API 配合使用。\n\n## 将 DocumentDB API 与 Node.js 集成\n\nDocumentDB 是 Azure Cosmos DB\
+  \ 支持的另一个重要数据库 API。若要将其与 Node.js 集成，需安装 `documentdb` Node 模块。步骤如下：\n\n1.  **安装模块**\
+  \  \n    ```\n    npm install documentdb@latest\n    ```\n\n2.  模块安装后，可使用其函数连接 DocumentDB\
+  \ 并执行 CRUD 操作与查询。\n\n3.  首先创建 DocumentDB API 并复制连接 URL。\n\n4.  **创建配置文件**  \n  \
+  \  新建 `config.js` 并添加代码：\n    ```\n    var config = {}\n        \n    config.endpoint\
+  \ = \"paste the document db URI\";\n\n    config.primaryKey = \"paste the primary\
+  \ key\";\n       \n    config.database = {\n    \"id\": \"packt-users-2\"\n    };\n\
+  \        \n    config.collection = {\n    \"id\": \"users\"\n    };\n        \n\
+  \    module.exports = config;  \n    ```\n\n5.  **编写连接代码**  \n    将示例代码存为 `app.js`：\n\
+  \    ```\n    var documentClient = require(\"documentdb\").DocumentClient;\n   \
+  \ var config = require(\"./config\");\n    var url = require('url');\n        \n\
+  \    var client = new documentClient(config.endpoint, { \"masterKey\":     \n  \
+  \  config.primaryKey });\n        \n    var HttpStatusCodes = { NOTFOUND: 404 };\n\
+  \    var databaseUrl = `dbs/${config.database.id}`;\n    var collectionUrl = `${databaseUrl}/colls/${config.collection.id}`;\n\
+  \        \n    /**\n     * Get the database by ID, or create if it doesn't exist.\n\
+  \     * @param {string} database - The database to get or create\n     */\n    function\
+  \ getDatabase() {\n        console.log(`Getting database:\\n${config.database.id}\\\
+  n`);\n        \n        return new Promise((resolve, reject) => {\n            client.readDatabase(databaseUrl,\
+  \ (err, result) => {\n                if (err) {\n                    if (err.code\
+  \ == HttpStatusCodes.NOTFOUND) {\n                        client.createDatabase(config.database,\
+  \ (err, created) => {\n                            if (err) reject(err)\n      \
+  \                      else resolve(created);\n                        });\n   \
+  \                 } else {\n                        reject(err);\n             \
+  \       }\n                } else {\n                    resolve(result);\n    \
+  \            }\n            });\n        });\n    }\n        \n    /**\n     * Get\
+  \ the collection by ID, or create if it doesn't exist.\n     */\n    function getCollection()\
+  \ {\n        console.log(`Getting collection:\\n${config.collection.id}\\n`);\n\n\
+  \        return new Promise((resolve, reject) => {\n            client.readCollection(collectionUrl,\
+  \ (err, result) => {\n                if (err) {\n                    if (err.code\
+  \ == HttpStatusCodes.NOTFOUND) {\n                        client.createCollection(databaseUrl,\
+  \ config.collection, {    \n    offerThroughput: 400 }, (err, created) => {\n  \
+  \                              if (err) reject(err)\n                          \
+  \      else resolve(created);\n                            });\n               \
+  \     } else {\n                        reject(err);\n                    }\n  \
+  \              } else {\n                    resolve(result);\n                }\n\
+  \            });\n        });\n    }\n        \n        \n    /**\n     * Cleanup\
+  \ the database and collection on completion\n     */\n    function cleanup() {\n\
+  \        console.log(`Cleaning up by deleting database ${config.database.id}`);\n\
+  \        \n        return new Promise((resolve, reject) => {\n            client.deleteDatabase(databaseUrl,\
+  \ (err) => {\n                if (err) reject(err)\n                else resolve(null);\n\
+  \            });\n        });\n    }\n        \n    /**\n     * Exit the app with\
+  \ a prompt\n     * @param {message} message - The message to display\n     */\n\
+  \    function exit(message) {\n        console.log(message);\n        console.log('Press\
+  \ any key to exit');\n        process.stdin.setRawMode(true);\n        process.stdin.resume();\n\
+  \        process.stdin.on('data', process.exit.bind(process, 0));\n    }\n     \
+  \   \n    getDatabase()\n        .then(() => getCollection())\n        .then(()\
+  \ => cleanup())\n        .then(() => { exit(`Completed successfully`); })\n    \
+  \    .catch((error) => { exit(`Completed with error ${JSON.stringify(error)}`) });\
+  \  \n    ```\n\n6.  **运行代码**  \n    ```\n    node app.js\n    ```\n    此代码将连接数据库、获取集合详情，若有错误则退出并报错。\n\
+  \n涵盖了使用 Node.js 模块集成 DocumentDB 的内容。接下来看如何将 Node.js 与 Table API 集成。\n\n## 将表 API\
+  \ 与 Node.js 集成\n\nAzure 表存储是基于键值的高性能 NoSQL 数据库。要将其与 Node.js 集成，需安装所需模块。Microsoft\
+  \ 提供了官方 Node 模块用于 Table API：[Azure Storage Node.js 官方模块](https://www.npmjs.com/package/azure-storage)\n\
+  \n\n\n\n\n### Azure 表 API 集成\n\n1. 首先，在 Azure 门户中创建表 API 并复制连接字符串。将其导出为环境变量。在基于\
+  \ Linux 的系统中，可以运行此命令将连接字符串导出为环境变量：\n\n```\nexport.AZURE_STORAGE_CONNECTION_STRING\
+  \ = <Your connection string>\n```\n\n2. 接下来，安装所需的依赖项。命令如下：\n\n```\nnpm install azure-storage\n\
+  ```\n\n3. 安装完成后，您可以在代码库中引入该模块并开始使用 `Table storage`，例如：\n\n```\nvar azure = require('azure-storage');\n\
+  var tableObject = azure.createTableService();\ntableObject.createTableIfNotExists('demoTable',\
+  \ function(error, result, response) {\n  if (!error) {\n    // 表已存在或已创建\n  }\n \
+  \ console.log(result);\n});\n```\n\n这将使用连接字符串连接到您的 Azure 表存储。接下来，让我们继续将 Graph API\
+  \ 与 Node.js 集成。\n\n## 将 Graph API 与 Node.js 集成\n\nCosmos DB 通过 `gremlin` 支持图数据库，而\
+  \ `gremlin` 在 Node.js 中已支持很长时间。\n\n我们可以使用以下命令安装 `gremlin` Node 模块：\n\n```\nnpm install\
+  \ gremlin@latest\n```\n\n在生产环境中始终锁定依赖版本。\n\n您可以在 Azure 门户中创建一个新的 Graph API 并复制连接详细信息。我将展示连接到该图数据库的示例代码。\n\
+  \n我们已经安装了 Node 模块。让我们将配置详细信息放在一个文件中：\n\n```\nvar config = {};\n\nconfig.endpoint\
+  \ = \"graph api end point\";\nconfig.primaryKey = \"primary key\";\nconfig.database\
+  \ = \"database name\";\nconfig.collection = \"collection name\";\n\nmodule.exports\
+  \ = config;\n```\n\n现在，我们可以使用以下代码连接到 `Graph DB`：\n\n```\nvar Gremlin = require('gremlin');\n\
+  var config = require(\"./config\");\n\nvar client = Gremlin.createClient(\n    443,\n\
+  \    config.endpoint,\n    {\n        \"session\": false,\n        \"ssl\": true,\n\
+  \        \"user\": `/dbs/${config.database}/colls/${config.collection}`,\n     \
+  \   \"password\": config.primaryKey\n    }\n);\n```\n\n您可以使用 `node <filename.js>`\
+  \ 运行代码，如果连接字符串错误，它将抛出错误并退出。\n\n您可以使用 `execute(query)` 函数在图数据库中执行查询，例如：\n\n这段代码将返回图中顶点的数量：\n\
+  \n```\nclient.execute(\"g.V().count()\", {}, (err, results) => {\n  if (err) return\
+  \ console.error(err);\n  console.log(\"Result: %sn\", JSON.stringify(results));\n\
+  });\n```\n\n同样，您也可以执行其他查询。\n\n这也涵盖了 Node.js 与 Graph DB 的集成。\n\n## 总结\n\n在本章中，我们涵盖了大量内容。我们使用现有代码库与著名的\
+  \ MongoDB 进行了集成，以证明关于迁移或从传统 MongoDB 迁移到托管 MongoDB 的观点，且无需更改任何代码（当然，除了配置 URI）。\n\n\
+  我们还学习了将 Node.js 与 `DocumentDB`、`Table` 和 `Graph DB` 集成。\n\n在下一章中，我们将使用 Node.js 和\
+  \ Cosmos DB 构建一个高性能链接编码和重定向服务。这类似于 `bit.ly` 服务。\n"
+- "# 使用 Cosmos DB 构建高性能链接缩短与追踪系统\n\nCosmos DB 是为其服务提供 SLA 的独特数据库之一。这种高性能系统对于实时运行的应用程序至关重要，例如群聊、实时视频通话或链接缩短服务。\n\
+  \n在本章中，我们将使用 Cosmos DB 构建一个链接缩短服务。我们将在后续章节讨论选择哪种 API。我们将使用 Node.js 进行应用程序开发。\n\n\
+  在本章中，我们将学习以下内容：\n\n- 为什么需要 URL 缩短？\n- 系统需求\n- 容量估算\n- 数据库设计\n- URL 编码算法\n- Node\
+  \ 应用开发\n- 安全性与权限\n\n## 为什么需要 URL 缩短？\n\nURL 缩短用于为长 URL 创建较短的别名。当用户访问这些短 URL 时，会被重定向到原始\
+  \ URL。无论何时使用，任何 URL 的较短版本都能节省大量空间，例如在打印或发推文时，因为推文有字符限制。\n\n例如，如果我们通过 TinyURL 缩短此页面：\n\
+  \n[`packtpub.com`](https://packtpub.com)\n\n在这种情况下，我们将得到 [`tinyurl.com/jlg8zpc`](http://tinyurl.com/jlg8zpc)。\n\
+  \n缩短后的 URL 尺寸几乎是实际 URL 的 1/3。\n\nURL 缩短用于跨设备优化链接、追踪单个链接以分析受众和广告系列效果、隐藏联属原始 URL 等。\n\
+  \n如果您以前没有使用过 [tinyurl.com](http://tinyurl.com/)，请尝试创建一个新的缩短 URL，并花些时间浏览其服务提供的不同选项。这将极大地帮助您更好地理解本章。\n\
+  \n您也可以使用 [bit.ly](https://bitly.com/) 来更好地理解该概念。\n\n让我们看看系统施加的需求。\n\n## 系统需求\n\n\
+  我们的 URL 缩短系统应满足特定需求。\n\n以下是功能性需求：\n\n- 给定一个 URL，我们的服务应生成其较短且唯一的别名\n- 当用户访问较短的 URL\
+  \ 时，我们的服务应将他们重定向到原始链接\n\n以下是非功能性需求：\n\n- 系统应具有高可用性。这是必需的，因为如果我们的服务宕机，所有 URL 重定向都将开始失败。\n\
+  - URL 重定向应实时发生，且延迟最小。\n- 缩短的链接不应可被猜测（或预测）。\n\n以下是扩展需求：\n\n- 分析，例如，重定向发生了多少次？\n-\
+  \ 我们的服务还应可通过 REST API 供其他服务访问\n\n让我们计算系统上线所需的数据库大小和带宽。\n\n## 容量估算\n\n我们的系统将以读为主；与新的\
+  \ URL 缩短相比，会有大量的重定向请求。假设读写比率为 100:1。\n\n**流量估算**：如果我们假设每月会有 *5 亿* 个新的 URL 缩短，则在同一时期内预计会有\
+  \ (*100 \\* 5 亿 => 500 亿*) 次重定向。我们系统的**每秒查询率**（**QPS**）会是多少？\n\n每秒新 URL 缩短数：\n\n\
+  *5 亿 / (30 天 \\* 24 小时 \\* 3600 秒) ~= 200 URLs/s*\n\n每秒 URL 重定向数：\n\n*500 亿 / (30\
+  \ 天 \\* 24 小时 \\* 3600 秒) ~= 19K/s*\n\n**存储估算**：既然我们预计每月有 5 亿个新 URL，如果我们保留这些对象五年，我们将存储的对象总数将达到\
+  \ 300 亿：\n\n*5 亿 \\* 5 年 \\* 12 个月 = 300 亿*\n\n假设我们存储的每个对象为 500 字节（仅为大概数字，稍后我们会深入探讨）；我们将需要\
+  \ 15 TB 的总存储空间：\n\n*300 亿 \\* 500 字节 = 15 TB*\n\n**带宽估算**：对于写请求，因为我们每秒预计有 200 个新\
+  \ URL，我们服务的总传入数据将为 100 KB/秒：\n\n*200 \\* 500 字节 = 100 KB/s*\n\n对于读请求，因为我们每秒预计约有\
+  \ 19K 次 URL 重定向，我们服务的总传出数据将为 9 MB/秒：\n\n*19K \\* 500 字节 ~= 9 MB/s*\n\n**内存估算**：如果我们想缓存一些频繁访问的热门\
+  \ URL，需要多少内存来存储它们？如果我们遵循二八定律，即 20% 的 URL 产生 80% 的流量，我们希望缓存这 20% 的热门 URL。\n\n因为我们每秒有\
+  \ 19K 个请求，每天将获得 17 亿个请求：\n\n*19K \\* 3600 秒 \\* 24 小时 ~= 17 亿*\n\n要缓存这些请求的 20%，我们需要\
+  \ 170 GB 内存：\n\n*0.2 \\* 17 亿 \\* 500 字节 ~= 170 GB*\n\n## 数据库设计\n\n关于我们将要存储的数据性质，有几点观察：\n\
+  \n\n\n\n\n*   我们需要存储数十亿条记录\n*   我们要存储的每个对象都很小（小于 1K）\n*   记录之间没有关系，除非我们想存储哪个用户创建了哪个\
+  \ URL\n*   我们的服务是读多写少的\n\n我们需要两张表，一张用于存储 URL，另一张用于存储链接的计数。\n\n以下代表 `URL` 表：\n\n\
+  | `_id` |\n| --- |\n| `long_url` |\n| `clicked` |\n| `created_date` |\n\n以下代表 `Counter`\
+  \ 表：\n\n| `_id` |\n| --- |\n| `Seq` |\n\n## URL 编码算法\n\n这是有趣的部分，实际的 URL 编码和解码就发生在这里。\n\
+  \n在我们跳入代码开发之前，让我们探讨一下 URL 缩短背后的基本理论。我们的需求如下：\n\n给定一个长 URL，例如 `http://stackoverflow.com/questions/tagged/node.js`，生成一个唯一的、较短的\
+  \ URL，例如 `localhost:3000/3Ys`。\n\n首先，让我们看看如何从原始 URL 实际生成一个唯一键，在本例中是 3 年，它位于我们 localhost\
+  \ URL 的末尾。\n\n为了满足唯一性要求，我们可以使用一类特殊的函数，称为双射函数（[`en.wikipedia.org/wiki/Bijection`](https://en.wikipedia.org/wiki/Bijection)），它们保证一对一映射。为了解释方便，双射函数基本上意味着：\n\
+  \n“一个解码后的 URL 映射到唯一的一个键，而一个键映射到唯一的一个解码后的 URL”\n\n我们将使用 base58 算法来完成我们的 URL 缩短和解码任务。\n\
+  \n我们将把一个唯一的整数 ID（它是 base10）转换为其在 base58 中的等价形式。我们将使用的 base58 字母表如下：\n\n```\n123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ\n\
+  ```\n\n它只是数字 1-9、a-z 和 A-Z，总共给我们 58 个字符，因此称为 base58。我们不包含 0、l 或 O，以避免在通过电话分享 URL\
+  \ 或手动复制时产生混淆。\n\n现在，将所有这些结合起来以生成较短的 URL，我们的解决方案如下：\n\n1.  创建一个全局自增整数\n2.  每当一个新的\
+  \ URL 被缩短并添加到我们的数据库时，我们将增加该全局数字（base 10）并将其用作数据库中该条目的唯一 ID\n3.  然后，我们将对该唯一 ID 进行\
+  \ base58 编码以生成一个唯一的、较短的 URL\n\n例如，唯一 ID 为 100022（base 10）的条目将生成 base58 编码 3Ys。因此，如果你存储大量\
+  \ URL，比如 100,000,000 个，它们将生成一个缩短的哈希值：\n\n```\n9QwvW\n```\n\n让我们开发代码吧！\n\n## Node\
+  \ 应用开发\n\n所以，我们已经准备好了一切；让我们构建应用。\n\n让我们创建 `package.json` 文件。\n\n始终使用 `npm init --y`\
+  \ 命令生成样板 `package.json` 文件。\n\n以下是我们需要的包：\n\n*   `body-parser`\n*   `express`\n\
+  *   `mongoose`\n\n让我们安装它们。在你的项目目录下运行此命令以安装依赖项：\n\n```\nnpm install --save body-parser\
+  \ express mongoose\n```\n\n这是我的 `package.json` 的样子：\n\n```\n{\n  \"name\": \"url-shortener\"\
+  ,\n  \"version\": \"1.0.0\",\n  \"description\": \"A NodeJS + Express + MongoDB\
+  \ based URL shortener\",\n  \"main\": \"app.js\",\n  \"scripts\": {\n    \"test\"\
+  : \"echo \\\"Error: no test specified\\\" && exit 1\"\n  },\n  \"author\": \"shahid\"\
+  ,\n  \"license\": \"MIT\",\n  \"dependencies\": {\n    \"body-parser\": \"¹.14.1\"\
+  ,\n    \"express\": \"⁴.13.3\",\n    \"mongoose\": \"4.2.9\"\n  }\n}\n```\n\n让我们创建配置文件。将其命名为\
+  \ `config.js` 并放入以下代码：\n\n```\nvar config = {};\nconfig.db = {};\nconfig.webhost\
+  \ = 'http://localhost:3000/';\nconfig.db.uri = 'copy the uri from Azure portal';\n\
+  config.db.host = 'packt-mongodb-2.documents.azure.com';\nconfig.db.name = 'url_shortener';\n\
+  module.exports = config;\n```\n\n从 Azure 门户屏幕复制 URI。请参考以下屏幕截图作为参考：\n\n![](img/93a8f365-1b81-4999-ab51-4c3d35829793.png)\n\
+  \n我们已经完成了配置。让我们编写代码以连接到我们的 MongoDB 数据库 Cosmos。\n\n创建一个名为 `connection.js` 的文件并将以下代码放入其中：\n\
+  \n```\nconst mongoose = require('mongoose');\nconst config = require('../config.js');\n\
+  mongoose.connect(config.db.uri);\n\nmodule.exports = mongoose.connection;\n```\n\
+  \n这段代码将连接对象返回给调用者。\n\n接下来，我们将创建数据库模式代码库，以确保 MongoDB 模式和数据索引。\n\n以下是相应的代码库。将其放在名为\
+  \ `url.js` 的文件中：\n\n```\nvar mongoose = require('mongoose');\nvar connection = require('./connection');\n\
+  var Schema = mongoose.Schema;\n\nconnection.once('open', function() {\n  console.log(\"\
+  Connected....\");\n});\n\nvar CounterSchema = Schema({\n    _id: {type: String,\
+  \ required: true},\n    seq: { type: Number, default: 0 }\n});\n\nvar counter =\
+  \ mongoose.model('counter', CounterSchema);\n\n// create a schema for our links\n\
+  var urlSchema = new Schema({\n  _id: {type: Number, index: true},\n  long_url: String,\n\
+  \  clicked: {type: Number, default:0 ,index: true},\n  created_at: Date\n});\n\n\
+  urlSchema.pre('save', function(next){\n  var doc = this;\n  counter.findByIdAndUpdate({_id:\
+  \ 'url_count'}, {$inc: {seq: 1}}, function(error, counter) {\n      if (error)\n\
+  \          return next(error);\n          console.log(counter);\n      doc.created_at\
+  \ = new Date();\n      doc._id = counter.seq;\n      next();\n  });\n});\n\nvar\
+  \ Url = mongoose.model('Url', urlSchema);\n\nmodule.exports = Url;\n```\n\n正如你在前面的代码中所见，我们正在使用我们的连接对象并在控制台上打印连接状态。\n\
+  \n正如我们在数据库部分讨论的，我们创建了两个模式。一个用于维护全局计数器，另一个用于维护实际链接。\n\n我们正在使用 Mongoose 的 pre 函数事件，基本上是从\
+  \ counter 集合中获取最新的 URL 计数值。这是为了确保我们永远不会生成重复的短 URL。\n\n最后，我们导出数据库对象。\n\n接下来，我们将开发我们的应用程序逻辑，即服务器代码，以处理来自用户的请求和响应，并调用我们开发的函数。\n\
+  \n以下是服务器的代码库。我们使用 express node 模块来创建服务器路由：\n\n\n\n\n## 使用 Node.js 和 MongoDB 的 URL\
+  \ 缩短应用程序\n\n### 应用程序设置\n\n```javascript\nvar express = require('express');\nvar\
+  \ app = express();\nvar path = require('path');\nvar bodyParser = require('body-parser');\n\
+  var mongoose = require('mongoose');\nvar config = require('./config');\nvar base58\
+  \ = require('./base58.js');\n\n// grab the url model\nvar Url = require('./models/url');\n\
+  \napp.use(bodyParser.json());\napp.use(bodyParser.urlencoded({ extended: true }));\n\
+  \napp.use(express.static(path.join(__dirname, 'public')));\n\napp.get('/', function(req,\
+  \ res) {\n  res.sendFile(path.join(__dirname, 'views/index.html'));\n});\n\napp.post('/api/shorten',\
+  \ function(req, res) {\n  var longUrl = req.body.url;\n  var shortUrl = '';\n\n\
+  \  // check if url already exists in database\n  Url.findOne({ long_url: longUrl\
+  \ }, function(err, doc) {\n    if (doc) {\n      shortUrl = config.webhost + base58.encode(doc._id);\n\
+  \n      // the document exists, so we return it without creating a new entry\n \
+  \     res.send({ 'shortUrl': shortUrl });\n    } else {\n      // since it doesn't\
+  \ exist, let's go ahead and create it:\n      var newUrl = Url({\n        long_url:\
+  \ longUrl\n      });\n\n      // save the new link\n      newUrl.save(function(err)\
+  \ {\n        if (err) {\n          console.log(err);\n        }\n\n        shortUrl\
+  \ = config.webhost + base58.encode(newUrl._id);\n\n        res.send({ 'shortUrl':\
+  \ shortUrl });\n      });\n    }\n  });\n});\n\napp.get('/:encoded_id', function(req,\
+  \ res) {\n  var base58Id = req.params.encoded_id;\n  var id = base58.decode(base58Id);\n\
+  \n  // check if url already exists in database\n  Url.findOne({ _id: id }, function(err,\
+  \ doc) {\n    if (doc) {\n      res.redirect(doc.long_url);\n    } else {\n    \
+  \  res.redirect(config.webhost);\n    }\n  });\n});\n\nvar server = app.listen(3000,\
+  \ function() {\n  console.log('Server listening on port 3000');\n});\n```\n\n首先，我们需要所需的模块，例如用于\
+  \ Web 服务器的 `express` 或用于解析 HTTP 参数值的 `body-parser`。\n\n接下来，我们需要三个模块。请参考以下代码：\n\n\
+  ```javascript\n// our sweet config file.\nvar config = require('./config');\n//\
+  \ Base 58 decoding, will discuss it in next section\nvar base58 = require('./base58.js');\n\
+  // grab the url model\nvar Url = require('./models/url');\n```\n\n`Url` 模块实际上存储\
+  \ URL 及其计数，正如我们在前一节中讨论的那样。\n\n接下来，我们定义了路由并在这些路由上执行特定操作。例如，在根页面请求时，我们将 HTML 内容发送回服务器。\n\
+  \n然后，我们定义了两个 API：一个用于缩短 URL (`/api/shorten`)，另一个用于解码 (`/:encoded_id`)。这两个路由都调用 `Url`\
+  \ 模块中存在的模型函数。\n\n无论是编码还是解码，我们都使用 `base58` 模块的函数。让我们看看该模块的作用。\n\n### Base58 编码模块\n\
+  \n以下是 `base58.js` 模块的代码：\n\n```javascript\nvar alphabet = \"123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ\"\
+  ;\nvar base = alphabet.length;\n\nfunction encode(num) {\n  var encoded = '';\n\
+  \  while (num) {\n    var remainder = num % base;\n    num = Math.floor(num / base);\n\
+  \    encoded = alphabet[remainder].toString() + encoded;\n  }\n  return encoded;\n\
+  }\n\nfunction decode(str) {\n  var decoded = 0;\n  while (str) {\n    var index\
+  \ = alphabet.indexOf(str[0]);\n    var power = str.length - 1;\n    decoded += index\
+  \ * (Math.pow(base, power));\n    str = str.substring(1);\n  }\n  return decoded;\n\
+  }\n\nmodule.exports.encode = encode;\nmodule.exports.decode = decode;\n```\n\n在这里，我们对\
+  \ URL 进行实际的编码和解码。`encode()` 函数将数字编码为指定的代码，一旦我们访问该代码，`decode()` 函数就会返回完全相同的 URL。该模块是我们代码库的核心。\n\
+  \n### 前端应用程序代码\n\n让我们看看面向用户的应用程序代码，即我们的 HTML 代码。以下是 `index.html` 文件及其代码：\n\n```html\n\
+  <!DOCTYPE html>\n<html>\n<head>\n  <meta charset=\"utf-8\">\n  <meta http-equiv=\"\
+  X-UA-Compatible\" content=\"IE=edge\">\n  <meta name=\"viewport\" content=\"width=device-width,\
+  \ initial-scale=1\">\n\n  <title>URL Shortener - coligo.io</title>\n  <link href='https://fonts.googleapis.com/css?family=Raleway'\
+  \ rel='stylesheet' type='text/css'>\n  <link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css\"\
+  >\n  <link href=\"css/styles.css\" rel=\"stylesheet\">\n</head>\n<body>\n\n  <div\
+  \ class=\"site-wrapper\">\n\n    <div class=\"site-wrapper-inner\">\n\n      <div\
+  \ class=\"main-container\">\n\n        <div class=\"inner cover\">\n          <span\
+  \ class=\"glyphicon glyphicon-link\"></span>\n          <h1>URL Shortener</h1>\n\
+  \           \n          <div class=\"row\">\n\n            <div class=\"col-lg-12\"\
+  >\n              <div class=\"input-group input-group-lg\">\n                <input\
+  \ id=\"url-field\" type=\"text\" class=\"form-control\" placeholder=\"Paste a link...\"\
+  >\n                <span class=\"input-group-btn\">\n                  <button class=\"\
+  btn btn-shorten\" type=\"button\">SHORTEN</button>\n                </span>\n  \
+  \            </div>\n            </div>\n\n            <div class=\"col-lg-12\"\
+  >\n              <div id=\"link\"></div>\n            </div>\n\n          </div>\n\
+  \n        </div>\n\n      </div>\n\n    </div>\n\n  </div>\n\n  <script src=\"https://code.jquery.com/jquery-2.2.0.min.js\"\
+  ></script>\n  <script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js\"\
+  ></script>\n  <script src=\"javascripts/shorten.js\"></script>\n</body>\n</html>\n\
+  ```\n\n### 测试应用程序\n\n我们已经完成了代码；让我们测试运行它。\n\n在终端中运行以下命令以启动应用程序：\n\n```bash\nnode\
+  \ app.js\n```\n\n它应该在控制台中打印以下内容：\n\n![控制台输出显示服务器正在监听 3000 端口](img/bb3a0c9c-d2b4-4553-a5c7-59b664c7aa2e.png)\n\
+  \n现在，打开浏览器并访问 `localhost:3000`（如果部署在服务器上，请将 `localhost` 替换为 URL）。你应该会看到类似于下面屏幕截图所示的界面：\n\
+  \n![URL 缩短器主页](img/4ae6daa1-a2ad-482a-9bcf-e219b9888c6c.png)\n\n现在，添加一个 URL 并点击\
+  \ **SHORTEN** 按钮。你应该会收到编码后的链接。请参考以下屏幕截图：\n\n![显示缩短后的 URL](img/c59f4e86-c333-4bfe-93f8-547815afdeec.png)\n\
+  \n点击该 URL，它将带你到目标 URL。\n\n让我们检查一下数据库条目。打开 Azure 门户并转到 Cosmos DB MongoDB 集合。你应该会看到类似于下面屏幕截图所示的条目：\n\
+  \n![Cosmos DB 中的数据库条目](img/dbcd0367-36e7-40ff-96b9-2a3061747456.png)\n\n添加更多 URL\
+  \ 以查看更多条目和 ID 中的多样化编码。\n\n### 安全与权限\n\n我们可以在数据库中为每个 URL 存储权限级别（公开/私有）。我们还可以创建一个单独的表来存储有权查看特定\
+  \ URL 的 `UserIDs`。\n\n如果用户没有权限却尝试访问 URL，我们可以返回一个错误（HTTP 401）。\n\n鉴于我们将数据存储在类似 Cassandra\
+  \ 的 NoSQL 宽列数据库中，存储权限的表的键将是哈希值（或 KGS 生成的键），而列将存储有权查看该 URL 的用户的 `UserIDs`。\n\n###\
+  \ 总结\n\n我们学习了如何使用 Node.js 和 Cosmos DB 的 MongoDB API 开发高效的实时 Web 应用程序。我们了解了需求收集、功能设计以及系统的各种输入。\n\
+  \n我们使用 Node.js 开发了完整的应用程序，并逐步学习了它。最后，我们进行了测试运行以查看它是否工作，它确实工作了 :)\n\n在下一章中，我们将深入探讨技术复杂性，并使用\
+  \ Cosmos DB 构建一个实时电子邮件跟踪系统。\n"
+- "# 使用 Cosmos DB 构建高可用、实时的电子邮件跟踪系统\n\n你是否曾使用过 Mailchimp 或 Mailerlite 等电子邮件营销软件？如果你用过，那么你应该已经熟悉它们的电子邮件跟踪功能。此功能允许你跟踪电子邮件的打开次数，并检查特定用户是否点击了电子邮件，这对任何业务都非常有用。\n\
+  \n\n\n\n如果您不习惯使用此类营销软件，请允许我为您介绍一下。电子邮件营销软件允许您发送大量邮件——比如一次发送数百万封——并追踪有多少人打开了邮件，以及有多少人点击了通往购买您产品的按钮。有些软件甚至能追踪您的销售数据，这简直令人难以置信。\n\
+  \n让我通过一个场景向您解释这一点，这将演示它有多么重要；想象一下这本书发布了，出版商 Packt 向其数百万读者发送了一封邮件，内容如下：\n\n> \"我们推出了一本新书！立即抢购，享\
+  \ 30% 折扣\"\n\n现在，有一个系统会告诉您：您发送了 100 万封邮件，约有 10 万人打开了它，其中 2 万人点击了按钮；Packt 随后可以轻松得知，结果他们因此售出了约\
+  \ 2000 本书。\n\n所以，您可以做一些数学计算来算出转化率！非常神奇，对吧？\n\n好吧，那让我们来构建一个，看看它是如何工作的。\n\n欢迎来到本书倒数第二章。我非常兴奋能带您完成这一章，因为（依我之见）这是本书中最有趣的章节之一。\n\
+  \n在本章中，我们将涵盖以下主题：\n\n*   邮件追踪合法吗？\n*   系统设计与假设\n*   在 Cosmos DB 中选择数据库 API\n*  \
+  \ 编写我们的邮件发送器\n*   追踪邮件并存储追踪数据\n*   接下来是什么？也许是机器学习\n\n好的，希望您对目前的主题感兴趣。让我们开始吧。\n\n\
+  ## 邮件追踪合法吗？\n\n邮件追踪合法吗？用一个词回答：`不合法`。\n\n但是，您可以合法地追踪已授权您这样做的用户。您听说过网站上的 `隐私政策` 和\
+  \ `服务条款` 页面吗？这些页面通常会声明他们将使用您的数据为您提供邮件追踪、销售分析等功能。\n\n所以，是的，如果用户已授权，或者平台所有者已公开声明，邮件追踪就是合法的。使用风险自负。\n\
+  \n好吧，玩笑归玩笑，其实没有风险。\n\n首先，让我详细向您解释一下。\n\n一般来说，互联网上有两类邮件：\n\n*   事务性邮件\n*   群发邮件\n\
+  \n事务性邮件包括密码、信用卡收据和确认邮件（如希拉里·克林顿的邮件），这些非常机密，绝不能被追踪。来自 `SMTP` 服务器的、表明邮件已送达的投递报告才是这里唯一重要的。\n\
+  \n第二类是群发邮件，如营销邮件、新产品发布公告、新功能发布公告等。这类邮件面向广泛受众，发送者投入了大量资金。作为此类邮件的发送者，我必须知道它们的表现如何。这就是邮件追踪登场的地方。\n\
+  \n好的，让我们看看这东西将如何工作。设计时间到！\n\n## 系统设计与假设\n\n邮件系统基本上分为两部分：\n\n*   邮件发送器\n*   邮件追踪器\n\
+  \n我将通过一小段代码向您展示如何使用 `Node.js` 发送带有追踪代码的邮件。不过，它不会是生产级的（这是我们的假设）。\n\n然而，邮件追踪器将采用生产级设计；该追踪器将接收来自邮件的事件并相应地更新数据库。我们将在后续章节讨论使用哪种数据库\
+  \ API 以及其他所有内容。\n\n现在，为了设计方便，这里有一张图表：\n\n![](img/2b17a425-f0ca-43f6-9f69-e32d0af43b49.png)\n\
+  \n正如您在前图所见，邮件发送器将从某个包含邮件列表的来源获取记录，并向大量人群发送邮件。\n\n当人们打开、点击并阅读这些邮件时，邮件追踪器将追踪这些事件并将其记录在数据库中。\n\
+  \n系统设计不仅仅是图表设计；它包含许多内容，如容量估算、数据库图表等。\n\n我们不会像上一章那样估算邮件容量，因为我想保持本章简短精炼。\n\n那么，让我们看看这些假设：\n\
+  \n*   邮件发送器代码将包含静态邮件地址\n*   邮件发送器代码将没有数据源连接\n*   邮件发送器将发送一封包含追踪代码的简单邮件\n*   邮件追踪器将接收事件\n\
+  *   邮件追踪器将尝试从该事件中获取尽可能多的信息\n*   邮件追踪器将把这些事件添加到数据库中\n\n好的，希望这些假设很清楚。让我们继续选择数据库 API。\n\
+  \n## 在 Cosmos DB 中选择数据库 API\n\n正如您所知，在撰写本书时，`Cosmos DB` 提供了四种数据库 API，我们可以根据需要选择或组合使用它们。目前，我们需要一种能高效写入数据的数据库，因为在邮件追踪中，我们将频繁更新记录。\n\
+  \n我们对读操作的要求不高：追踪数据可以轻松提供给用户，或传输给数据分析引擎。\n\n情况是这样的：如果我们必须手动安装或选择数据库，这些指标就会发挥作用。`Cosmos\
+  \ DB` 是一种托管数据库服务，提供一致性和延迟的 `SLA`，因此，任何您的应用程序能轻松集成的数据库 API 在这里也应该适用。\n\n我倾向于选择 `MongoDB\
+  \ API` 支持，主要有以下两个原因：\n\n*   它基于 `JSON`，可轻松与分析引擎同步\n*   它在 `Node.js` 中提供原生支持，易于编程和集成\n\
+  \n所以是的，我们将在 `Cosmos DB` 中使用 `MongoDB API` 来追踪和记录我们的邮件。\n\n让我们深入代码，编写我们简单的邮件发送器。\n\
+  \n## 编写我们的邮件发送器\n\n在实践中，邮件发送器是我们系统中最复杂的组件之一。我实际上曾使用队列系统设计过一个邮件发送器，用于发送海量邮件（每月超过十亿封），这也是我不完全涵盖它的原因之一：因为它真的非常复杂。\n\
+  \n不过，为了解释和简化起见，我设计了一个邮件发送器的简单流程图。请看：\n\n![](img/4887d324-a8d1-4a07-b011-113cfc67cd5b.png)\n\
+  \n允许我解释一下这是如何工作的。队列是可扩展分布式系统的核心设计之一。队列为您的系统提供进程间的分发和通信。\n\n在我们的设计中，我使用了队列（消息排序可由您选择，我用了\
+  \ `先进先出` (`FIFO`)）来处理海量的邮件消息；想象一下数十亿的量级，您根本无法在每次想发送邮件时都去查询一次数据库。\n\n因此，这里的生产者从数据库、通过\
+  \ `API` 调用或任何 `远程过程调用` (`RPC`) 调用获取邮件记录。\n\n生产者获取这些邮件，为每位用户生成一封邮件，并将追踪代码添加到每封邮件中。\n\
+  \n现在，稍等一下，让我解释一下什么是追踪代码。\n\n我们需要一段代码，在用户打开邮件时执行。现在，我们不能在邮件中放入任何 JavaScript 代码（即使是低价的邮件服务器也会把您扔进软退信区），那么我们如何确保接收到事件数据？\n\
+  \n这里就是神奇的部分。\n\n您听说过 HTML 中的图片标签吗？\n\n就是这个：\n\n```\n<img src='your photo url.jpeg'\
+  \ height='1200' width='800'>\n```\n\n它可以为您提供追踪信息。现在别急，别疯狂。让我再解释一遍……再解释一次！\n\n当浏览器或邮件客户端加载您的邮件时，它会从服务器下载图片。\n\
+  \n它会向图片源路径发起一个 `HTTP GET` 调用。\n\n\n\n\n\n## 使用 Node.js 构建邮件发送器\n\n现在，如果我们将实际图片的路径替换为我们自定义\
+  \ API 的路径会怎样？当 API 被请求时，我们就知道有人打开了邮件。我们可以在 URL 中包含额外信息，例如订阅者 ID、邮件 ID 等，从而收集更多信息。\n\
+  \n非常神奇，对吧？\n\n现在，我们已经知道如何创建链接了。我们在上一章刚刚制作了一个 URL 短链接生成器。每当短链接解码任何邮件时，你就知道该链接已被点击。\n\
+  \n好了，关于生产者就聊这么多。一旦生产者生成邮件，它将这些消息推入队列，它的工作就完成了。\n\n现在，队列存储这些消息并将它们分发给消费者。精彩的部分来了。\n\
+  \n在图中，我展示了一个消费者从队列接收消息。实际上，你可以同时向多个消费者发送邮件。\n\n*我知道你在想什么；没有任何消费者会收到相同的消息。*\n\n所以假设，你在队列端有\
+  \ 10 个消费者，你可以配置它们一次能接收的消息数量。你可以一次性发送，比如说，100 条消息。\n\n因此，如果我们一次性向 10 个消费者各发送 100\
+  \ 条消息，那就是一次性 1,000 条消息。消费者随后将这 1,000 条消息推送到 SMTP 服务器，以将它们投递到你的收件箱。此过程持续进行，直到队列为空，而在生产级系统中，队列永远不会为空。\n\
+  \n我无法断言，但这正是（或类似于）每一款主流邮件营销软件所使用的架构。\n\n### 项目设置\n\n好了，代码时间。让我们使用 Node.js 构建一个简单而高效的邮件发送器。\n\
+  \n首先，创建一个新目录，并在该目录内运行此命令以创建全新的 Node.js 项目：\n\n```\nmkdir dirname && npm init --y\n\
+  ```\n\n将 `dirname` 替换为你的文件夹名称。\n\n### 安装依赖\n\n项目创建完成后，你需要安装该项目的依赖。我们要发送邮件，所以当然需要一个能处理此事的模块。我们还需要处理\
+  \ Node 的异步流程，所以也要安装一个用于此目的的模块。\n\n运行此命令以安装这两个依赖：\n\n```\nnpm install --save nodemailer\
+  \ async\n```\n\n顾名思义，`nodemailer` 用于发送邮件，而 `async` 将用于处理流程控制。\n\n### 邮件发送器实现\n\n\
+  让我们直接进入并编写我们的服务器代码。\n\n这是邮件发送器的代码。我将逐个函数进行解释：\n\n```\nconst async = require(\"async\"\
+  );\nconst nodemailer = require(\"nodemailer\");\n// 可以是来自数据库的邮件列表\nconst listofemails\
+  \ = [\"rwtc66@gmail.com\",\"shahid@codeforgeek.com\"];\nconst emailContent = \"\
+  Hello World, this is Shahid Shaikh! <br>\";\n\nvar success_email = [];\nvar failure_email\
+  \ = [];\n\nclass Mailer {\n    constructor() {\n      this.transporter = nodemailer.createTransport(\"\
+  SMTP\",{\n            host: 'smtp.gmail.com',\n            port: 587,\n        \
+  \    auth: {\n              user: '',\n              pass: ''\n           },\n \
+  \           tls: {rejectUnauthorized: false},\n            debug:true\n        \
+  \  });\n      this.invokeOperation();\n    }\n\n    /* 一次性调用邮件发送操作 */\n\n    invokeOperation()\
+  \ {\n        var self = this;\n        async.each(listofemails,self.sendEmail,function(){\n\
+  \            console.log(success_email);\n            console.log(failure_email);\n\
+  \        });\n    }\n\n    sendEmail(Email,callback) {\n        console.log(\"Sending\
+  \ email to \" + Email);\n        var self = this;\n        self.status = false;\n\
+  \        async.waterfall([\n            function(callback) {\n                var\
+  \ mailOptions = {\n                    from: 'shahid@codeforgeek.com',\n       \
+  \             to: Email,\n                    subject: 'Hi ! This is from Async\
+  \ Script',\n                    text: emailContent + \"<img src='http://domain.com/api/track/?email='+to>\"\
+  \n                };\n                transporter.sendMail(mailOptions, function(error,\
+  \ info) {\n                    if(error) {\n                        console.log(error)\n\
+  \                        failure_email.push(Email);\n                    } else\
+  \ {\n                        self.status = true;\n                        success_email.push(Email);\n\
+  \                    }\n                    callback(null,self.status,Email);\n\
+  \                });\n            },\n            function(statusCode,Email,callback)\
+  \ {\n                    console.log(\"Will update DB here for \" + Email + \"With\
+  \ \" + statusCode);\n                    callback();\n            }\n          \
+  \  ],function(){\n                // 当一切完成时返回给调用者。\n                callback();\n\
+  \        });\n    }\n}\n\nnew Mailer(); // 开始吧\n```\n\n### 代码解释\n\n首先，我们声明了依赖项，还声明了一些变量。我们将邮件列表存储在一个数组中，该数组可以替换为来自数据库的邮件或\
+  \ API 调用获取的邮件。\n\n我们还声明了两个单独的数组，分别用于存放成功发送的邮件和被拒绝的邮件。\n\n接下来，我们在构造函数中创建了一个类，创建我们的\
+  \ SMTP 传输，用于发送大量邮件。\n\n我们创建了一个 Gmail SMTP，并使用 Google 邮件凭据来发送邮件。\n\nGoogle SMTP 仅用于演示目的；在生产环境中，你必须使用功能完备的\
+  \ SMTP 服务器。\n\n创建 SMTP 传输后，我们调用操作，并使用它对邮件执行并行迭代。`async.each` 函数会根据邮件数量多次调用该函数。\n\
+  \n且慢：如果邮件数量达到百万级怎么办？它会创建一百万个并行进程吗？\n\n是的，但它不应该这样做。\n\n所以，我们可以在 `async.each` 函数中添加限制——比如说，1,000\
+  \ 个并行进程；迭代就会被限制。\n\n最后，在 `sendEmail` 函数中，我们将邮件发送给来自列表的目标地址，并根据条件将该操作的结果存储在相应的数组中。\n\
+  \n这迄今为止是你见过的最简单的邮件发送器。相信我！\n\n我们使用传统的 `new` 操作符调用该程序。你可以通过这里和那里的少量更改来扩展此程序，以满足你的生产系统需求，但它是可以工作的。\n\
+  \n现在，关于追踪，你会在发送邮件部分看到我们追加了一张图片。这是供参考的代码：\n\n```\nemailContent + \"<img src='http://domain.com/api/track/?email='+to>\"\
+  \n```\n\n这里，图片的 `src` 属性是我们的 API URL。你可以将域名替换为你的应用。我们将邮件 ID 添加到 URL 中，以识别是哪个用户执行了该操作。\n\
+  \n让我们继续看看如何追踪这些邮件。\n\n## 追踪邮件并存储追踪数据\n\n到目前为止，我们讨论了邮件发送器的架构，以及如何构建一个可发送大量邮件的可扩展系统。\n\
+  \n现在，是时候追踪这些邮件了。让我们构建并编写一个程序，该程序可以追踪邮件打开率、位置、IP、设备（即电脑、笔记本或手机）和代理（即浏览器）。\n\n我们还将把这些数据插入\
+  \ MongoDB 数据库或 Cosmos DB。\n\n在上一节中，我们添加了追踪代码，这是一个使用我们的 API 调用作为源的图片标签，并将其放入邮件中。我们的\
+  \ API 调用将返回图片。\n\n让我们开发一段示例代码来实现相同的功能。\n\n初始化一个新的 Node.js 项目并安装以下依赖：\n\n```\nnpm\
+  \ i --S express\n```\n\n这是 API 的示例代码：\n\n\n\n\n## 使用 Node.js 和 Express 进行邮件追踪\n\n\
+  ### 初始设置\n\n```javascript\nconst express = require('express'); \nconst app = express();\
+  \ \n \napp.get('/api/track', function(req, res) { \n   console.log('tracking code'\
+  \ + JSON.stringify(req.query)); \n   // sending the image back. \n   var buf = new\
+  \ Buffer([ \n      0x47, 0x49, 0x46, 0x38, 0x39, 0x61, 0x01, 0x00, 0x01, 0x00, \n\
+  \      0x80, 0x00, 0x00, 0xff, 0xff, 0xff, 0x00, 0x00, 0x00, 0x2c, \n      0x00,\
+  \ 0x00, 0x00, 0x00, 0x01, 0x00, 0x01, 0x00, 0x00, 0x02, \n      0x02, 0x44, 0x01,\
+  \ 0x00, 0x3b \n  ]); \n  res.set('Content-Type', 'image/png'); \n  res.end(buf,\
+  \ 'binary'); \n}); \n \napp.listen(3000); \nconsole.log(\"Started at 3000\"); \n\
+  ```\n\n正如您在前面的代码中所见，我们在同一路径上暴露了 `GET` API，即 `/api/track`，并返回了图片。\n\n不要害怕这个缓冲区：它只是一个\
+  \ 1 x 1 的图片二进制代码。从本质上讲，我们需要将图片发送回浏览器，这样浏览器就不会对图片报 404 错误。这张图片应该是透明的，且尽可能小，以免与实际邮件内容冲突。\n\
+  \n### 提取追踪信息\n\n现在，让我们尝试从 IP 和 HTTP 请求中提取追踪信息。\n\n#### 获取 IP 地址\n\n首先，我们需要 IP。\n\
+  \n您可以从请求头中获取 IP。根据网络环境的不同，它可能位于以下键中，因此我们将所有这些键都作为备选项。请参阅以下代码：\n\n```javascript\n\
+  let ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.socket.remoteAddress\
+  \ || req.connection.socket.remoteAddress; \n```\n\n#### 获取设备类型、位置和 User Agent\n\n\
+  接下来，我们需要设备类型、位置和 User Agent。为此我们需要安装额外的依赖包。运行以下命令安装这些依赖包：\n\n```\nnpm i --S geoip-lite\
+  \ express-device useragent \n```\n\n让我们在代码中声明它们：\n\n```javascript\nconst geoip =\
+  \ require('geoip-lite'); \nconst device = require('express-device'); \nconst useragent\
+  \ = require('useragent')(true); \n```\n\n在 Express 中添加 user agent 中间件，以便它捕获每一个请求：\n\
+  \n```javascript\napp.use(device.capture({parseUserAgent: true})); \n```\n\n我们可以使用以下代码从请求头中提取信息：\n\
+  \n```javascript\nvar agent = useragent.parse(req.headers['user-agent']); \nvar ua\
+  \ = useragent.is(req.headers['user-agent']) \nvar geoLocation = geoip.lookup(ip);\
+  \ \n```\n\n我们可以使用 `req.device` 键从请求对象中提取设备信息。请参阅完整代码，如下所示：\n\n```javascript\nconst\
+  \ express = require('express'); \nconst geoip = require('geoip-lite'); \nconst device\
+  \ = require('express-device'); \nvar useragent = require('useragent')(true); \n\
+  const app = express(); \n \napp.use(device.capture({parseUserAgent: true})); \n\
+  app.enable('trust proxy'); \n \napp.get('/api/track', function(req, res) { \n  \
+  \ console.log('tracking code' + JSON.stringify(req.query)); \n   let ip = req.headers['x-forwarded-for']\
+  \ || req.connection.remoteAddress || req.socket.remoteAddress || req.connection.socket.remoteAddress;\
+  \ \n   var agent = useragent.parse(req.headers['user-agent']); \n   var ua = useragent.is(req.headers['user-agent'])\
+  \ \n   let geoLocation = geoip.lookup(ip); \n   var buf = new Buffer([ \n      0x47,\
+  \ 0x49, 0x46, 0x38, 0x39, 0x61, 0x01, 0x00, 0x01, 0x00, \n      0x80, 0x00, 0x00,\
+  \ 0xff, 0xff, 0xff, 0x00, 0x00, 0x00, 0x2c, \n      0x00, 0x00, 0x00, 0x00, 0x01,\
+  \ 0x00, 0x01, 0x00, 0x00, 0x02, \n      0x02, 0x44, 0x01, 0x00, 0x3b \n  ]); \n\
+  \  res.set('Content-Type', 'image/png'); \n  res.end(buf, 'binary'); \n  let trackData\
+  \ = { \n      'trackingCode': JSON.stringify(req.query), \n      'ip': ip, \n  \
+  \    'deviceType': req.device.type, \n      'deviceName': req.device.name, \n  \
+  \    'device': req.device, \n      'agent': agent, \n      'location': geoLocation\
+  \ \n  }; \n  console.log(trackData); \n}); \n \napp.listen(3000); \nconsole.log(\"\
+  Started at 3000\"); \n```\n\n现在，每当有人打开邮件时，该 API 就会被触发，您将接收到追踪所需的所有信息。\n\n### 测试追踪代码\n\
+  \n让我们看看它是否真的有效。运行代码，并尝试从浏览器访问此 API。如果您在本地机器上运行，它将返回 `localhost:3000/api/track?code=1234456`，终端中将打印类似如下内容：\n\
+  \n![](img/8feff6da-e151-4001-a90b-ba1e857a2e82.png)\n\n如您所见，我们接收到了关于设备类型、浏览器和 IP\
+  \ 的信息。由于我在本地机器上运行，位置获取功能被禁用了。在服务器上运行良好。\n\n在浏览器中，您应该会看到类似如下内容：\n\n![](img/e7be8cff-5247-4f86-8263-3529a3fcfbfb.png)\n\
+  \n这就是我们从代码中返回的 1 x 1 图片。\n\n### 在 MongoDB (Cosmos DB) 中存储数据\n\n追踪代码已生效；现在我们需要做的是将其添加到数据库中。正如之前讨论的，我们将使用\
+  \ Cosmos DB 的 MongoDB API。\n\n因此，为了使用它，我们首先需要创建数据库。前往 Azure 门户，从左侧选择 Cosmos DB，并创建一个新的\
+  \ MongoDB API 数据库和一个新的集合。\n\n创建完成后，从该屏幕复制访问密钥：\n\n![](img/69b98c74-4ff9-4f1e-9a7f-4578c338c402.png)\n\
+  \n#### 安装依赖包\n\n是时候添加代码了！首先，安装依赖包。在项目目录中运行以下命令：\n\n```\nnpm i --S mongoose \n```\n\
+  \n#### 配置\n\n创建配置文件并添加以下代码：\n\n```javascript\nvar config = {}; \nconfig.db = {};\
+  \ \nconfig.db.uri = 'mongodb://packt-mongodb-2:lTsYGMpczByW0VB7kxCoAPZdSAKdDsJ4GVqWlvLWuVBDlX9XrPAXBwaHOLQWk9HWM5VtRDKOubqE6WN2U3b2ww==@packt-mongodb-2.documents.azure.com:10255/?ssl=true&replicaSet=globaldb';\
+  \ \nconfig.db.host = 'packt-mongodb-2.documents.azure.com'; \nconfig.db.name = tracking;\
+  \ \nmodule.exports = config; \n```\n\n请确保修改这些值以匹配您的访问密钥。\n\n#### 数据库连接\n\n让我们建立连接。创建一个文件，命名为\
+  \ `connection.js`，并添加以下代码：\n\n```javascript\nconst mongoose = require('mongoose');\
+  \ \nconst config = require('./config.js'); \nmongoose.connect(config.db.uri); \n\
+  module.exports = mongoose.connection; \n```\n\n#### 数据模型\n\n现在，让我们创建模型代码。为此，创建一个新文件，命名为\
+  \ `trackmodel.js`，并将以下代码放入其中：\n\n```javascript\nvar mongoose = require('mongoose');\
+  \ \nvar connection = require('./connection'); \nvar Schema = mongoose.Schema; \n\
+  \ \nconnection.once('open', function() { \n  console.log(\"Connected....\"); \n\
+  }); \n \n// create a schema for our links \nvar trackSchema = new Schema({ \n  data:\
+  \ Array, \n  created_at: Date \n}); \n \nmodule.exports = mongoose.model('track',\
+  \ trackSchema); \n```\n\n#### 保存追踪数据\n\n让我们将模型代码添加到应用程序代码中，并开始将信息保存到我们的集合中。将集合名称替换为您创建的名称。\n\
+  \n在依赖声明中添加以下代码：\n\n```javascript\nvar model = require('./trackModel'); \n```\n\n\
+  现在，在路由中，在现有文件末尾添加此代码：\n\n```javascript\nvar trackInfo = model({data: trackData})\
+  \ \ntrackInfo.save(function(err) { \n      if (err) { \n          console.log(err);\
+  \ \n      } \n}) \n```\n\n这是完整代码，供您参考：\n\n\n\n\n```javascript\nconst express = require('express');\n\
+  const geoip = require('geoip-lite');\nconst device = require('express-device');\n\
+  var useragent = require('useragent');\nuseragent(true);\nvar model = require('./trackModel');\n\
+  const app = express();\n\napp.use(device.capture({parseUserAgent: true}));\napp.enable('trust\
+  \ proxy');\n\napp.get('/api/track', function(req, res) {\n   console.log('tracking\
+  \ code' + JSON.stringify(req.query));\n   let ip = req.headers['x-forwarded-for']\
+  \ || req.connection.remoteAddress || req.socket.remoteAddress || req.connection.socket.remoteAddress;\n\
+  \   var agent = useragent.parse(req.headers['user-agent']);\n   var ua = useragent.is(req.headers['user-agent']);\n\
+  \   let geoLocation = geoip.lookup(ip);\n   var buf = new Buffer([\n      0x47,\
+  \ 0x49, 0x46, 0x38, 0x39, 0x61, 0x01, 0x00, 0x01, 0x00,\n      0x80, 0x00, 0x00,\
+  \ 0xff, 0xff, 0xff, 0x00, 0x00, 0x00, 0x2c,\n      0x00, 0x00, 0x00, 0x00, 0x01,\
+  \ 0x00, 0x01, 0x00, 0x00, 0x02,\n      0x02, 0x44, 0x01, 0x00, 0x3b\n  ]);\n  res.set('Content-Type',\
+  \ 'image/png');\n  res.end(buf, 'binary');\n  let trackData = {\n    'trackingCode':\
+  \ JSON.stringify(req.query),\n    'ip': ip,\n    'deviceType': req.device.type,\n\
+  \    'deviceName': req.device.name,\n    'device': req.device,\n    'agent': agent,\n\
+  \    'location': geoLocation\n  };\n  var trackInfo = model({data: trackData});\n\
+  \  trackInfo.save(function(err) {\n      if (err) {\n        console.log(err);\n\
+  \      }\n  });\n  console.log(trackData);\n});\n\napp.listen(3000);\nconsole.log(\"\
+  Started at 3000\");\n```\n\n现在，运行代码并访问同一个 API，即 `http://localhost:3000/api/track?code=1234456`。你现在应该能在\
+  \ Azure 集合中看到数据。\n\n恭喜！现在你可以发送任意数量的邮件，将追踪代码添加到其中，追踪数据，并使用我们开发的代码存储数据。\n\n希望你在本章中对邮件追踪用例有了一些很好的见解。\n"
+- '# Cosmos DB 部署与管理
+
+
+  ## 摘要
+
+
+  在本章中，我们当然学习了与电子邮件营销相关的知识！我们学习了如何设计一个可扩展的邮件发送器，它可以发送大量邮件。
+
+
+  我们还研究了邮件追踪，并找到了一种追踪我们发送邮件的方法。我们编写了代码来提取追踪信息，例如设备、位置、打开率等。然后我们集成了 Cosmos DB MongoDB
+  API 来存储这些追踪信息。
+
+
+  在下一章中，我们将了解更多关于 Cosmos DB 部署的内容以及开发 Cosmos DB 应用程序的最佳实践。
+
+
+  ## 交钥匙分发
+
+
+  到目前为止，我们已经在 Cosmos DB 和 Azure 基础设施之上设计、开发并测试了一个应用程序。现在是时候部署它，让全世界都知道你的新应用了！
+
+
+  在本章中，我们将学习 Cosmos DB 的一些部署概念。
+
+
+  我们还将涵盖以下主题：
+
+
+  - 交钥匙分发
+
+  - 故障转移处理
+
+  - 数据库部署
+
+  - 备份与恢复
+
+  - 在 Azure 网络上部署自定义应用
+
+  - 监控流量和使用情况
+
+
+  你可以通过 `shahid@codeforgeek.com` 给我发邮件，或在 `@codeforgeek` 上给我发推文。
+
+
+  在你说“Shahid，我们在前几章已经学过这个了，为什么现在又要做一遍？”之前，我想先打住。我知道我们在前面的章节中已经涵盖了这个主题，但我想重新探讨一下，因为它对你的应用程序部署计划非常重要。
+
+
+  如果你是 DevOps，稍后可以感谢我（他们知道我的意思）。
+
+
+  Cosmos DB 提供了一项竞争性功能，其他托管数据库提供商（如 Amazon、Rackspace 等）至少在撰写本文时都不提供。因此，这成为了 Cosmos
+  DB 的一个非常重要的卖点。
+
+
+  让我们再次回顾它，看看它如何帮助你的部署计划。因此，你只需点击几下按钮（并非真正的一键，但非常简单），就可以在全球 30 多个区域中复制你的数据。这就是交钥匙全球分发的含义。
+
+
+  因此，部署计划中可能的用例如下。假设你有一个基于 SaaS 的应用程序，在德国拥有庞大的客户群，但你的应用程序部署在纽约数据中心。现在，基于数据传输速率，你可以在德国（如果那里有提供）或德国附近启动一个读取区域，以更好地服务这些客户。
+
+
+  主要来说，复制是为了故障转移条件；如果某个区域中的某个节点发生故障，则拥有相同数据的另一个节点将接管，客户永远不会知道发生了任何变化。
+
+
+  例如，请参阅来自第 2 章的以下屏幕截图，*Cosmos DB 全球交钥匙分发系统：*
+
+
+  ![](img/b09775c4-f8db-4fa4-a1f5-b255c775f374.png)
+
+
+  在这里，我的写入区域位于东南亚，我可以从全球范围内挑选任意读取区域。美国有大量数据中心，俄罗斯很少，非洲则没有（这不公平；非洲的 IT 正在蓬勃发展）。
+
+
+  你只需选择一个区域，见证奇迹发生；你的复制就完成了。
+
+
+  提到复制，让我们深入了解部署的下一个重要主题，即故障转移处理。
+
+
+  ## 故障转移处理
+
+
+  当出现故障时，会发生什么？
+
+
+  这是任何部署的关键问题，因为它很重要。考虑像 WhatsApp 这样的应用程序；如果它们宕机，哪怕一分钟，用户群都会疯狂。对于你的应用程序也是如此，如果系统故障，你将失去用户，但更重要的是，你也将失去声誉。
+
+
+  Cosmos DB 是一个托管数据库提供商，我相信他们非常重视故障转移。通常有两种处理故障转移的方法：
+
+
+  - 自动故障转移
+
+  - 手动故障转移
+
+
+  让我们讨论一下每一种。
+
+
+  ### 自动故障转移
+
+
+  在系统中断的罕见情况下，自动故障转移会尝试恢复并将流量重新分配到现有区域。通常有两种适用情况：
+
+
+  - 读取区域故障转移
+
+  - 写入区域故障转移
+
+
+  如果任何读取区域发生故障，Cosmos DB 会自动将其标记为离线，以避免现有流量尝试路由到该区域（以避免 `404` 和 `502` 错误），并利用内部共识确定下一个读取区域，将流量引导至该区域。
+
+
+  这几乎就是 Cosmos DB 提供的功能，我相信这也是其他每个数据库提供商提供的功能。关键特性是在受影响区域重新上线时重新同步数据。Cosmos DB 会用受影响期间错过的数据更新该区域，一切恢复正常。
+
+
+  如果任何写入区域发生故障，Cosmos DB 会寻找另一个写入区域。如果你的应用程序只有一个写入区域且该区域故障，Cosmos DB 将根据相对优先级将任何读取区域转换为写入区域，使应用程序平稳运行。
+
+
+  当原始写入区域重新上线时，它将重新同步数据，原始写入区域将再次成为写入区域，正如预期的那样。
+
+
+  我们已经了解了自动故障转移；现在让我们看看手动故障转移。
+
+
+  ### 手动故障转移
+
+
+  你可以根据需要手动更改写入区域。
+
+
+  例如，如果你知道很多人在白天从印度执行写入操作，而你的写入区域在美国，你可以在 IST 时间手动将写入区域更改为印度，并在白天将其改回美国。
+
+
+  虽然不建议这样做，但你也可以参考故障转移处理的几个概念，比如我前面提到的，或基于持续流量。这完全取决于你。
+
+
+
+
+
+  这里的关键点是，这些手动故障转移任务都不会导致数据丢失或应用程序停机。请随意尝试它们，系统将保持在线（99% 的时间，1% 用于灾难情况）。
+
+
+  好的，让我们来讨论数据库部署！
+
+
+  ## 数据库部署
+
+
+  Cosmos DB 是一种托管数据库，我们可以在其之上运行多种数据库 API，并将数据分布到全球各地。
+
+
+  与传统数据库部署不同，传统方式需要在 SQL 或 NoSQL 数据中进行更改并将其部署在服务器上，而在这里，你基本上只需使用数据库 ID 将应用程序接入，即可开始使用。
+
+
+  无需更多的服务器管理或运维处理；就是这么简单。
+
+
+  然后，一个问题出现了：
+
+
+  *我们能信任他们保管我们的数据吗？*
+
+
+  这是在涉及托管数据库解决方案时最常被问到的问题之一。是的，你可以信任他们保管你的数据。事实上，他们的存在就是为了给你提供最佳解决方案，如果你的数据出现问题，恢复数据是他们的责任（当然，前提是数据未损坏）。
+
+
+  关于信任他人保管数据的主题，让我们快速了解一下如何使用 Cosmos DB 备份和恢复数据。
+
+
+  ## 备份与恢复
+
+
+  Cosmos DB 会自动备份你的所有数据，并按固定时间间隔保持其更新。自动备份操作在不影响数据库操作性能或可用性的情况下完成。
+
+
+  Cosmos DB 备份单独存储在另一个存储服务中，并且这些备份会在全球范围内复制，以实现高时间可用性并避免区域性灾难。
+
+
+  自动备份是为了应对你意外删除 Cosmos DB 容器并随后需要数据恢复的场景。
+
+
+  自动备份每四小时进行一次，并且至少存储最新备份的两个副本。如果你删除了数据库和信息，可以在四到八小时内联系 Azure 团队找回数据！
+
+
+  自动备份存储在 Blob 存储中，并保存在与主数据相同的区域，以便在发生故障时提供高可用性。自动备份还会跨区域复制，以保留备份副本。
+
+
+  有一个关键点你需要注意，如前所述：Azure 每四小时自动备份一次你的数据，如果数据库中发生数据损坏，你需要立即删除或丢弃数据库，以防止备份被损坏。
+
+
+  让我们继续看看如何在 Azure 网络上部署自定义应用。
+
+
+  ## 在 Azure 网络上部署自定义应用
+
+
+  Azure 提供了多种在其网络上部署应用程序的方式。根据项目类型——即是 Web 应用程序、批处理应用程序还是其他类型的应用——你需要选择与之匹配的服务。
+
+
+  例如，假设我们要在 Azure 网络上部署 Node.js 应用程序；我们需要选择想要用来托管应用程序的服务器类型。
+
+
+  Azure 提供基于 Windows 和 Linux 的虚拟机，你可以在其中部署应用程序。
+
+
+  假设我们要在 Linux 环境中创建一个。
+
+
+  打开 Azure 门户，从左侧菜单点击“虚拟机”。点击“创建虚拟机”按钮。
+
+
+  请参考以下截图以获取帮助：
+
+
+  ![](img/c0d77cca-91cd-457a-a770-5e697069f51a.png)
+
+
+  现在，Azure 将打开计算屏幕；你将看到关于操作系统和虚拟机映像的许多选项。请参考以下截图作为参考：
+
+
+  ![](img/4e164a03-54b0-4161-a90d-3d89241d8f6a.png)
+
+
+  我将选择 Ubuntu Server。
+
+
+  点击 Ubuntu Server 并选择合适的 Ubuntu 操作系统版本。使用 Resource Manager 部署选项并点击“创建”按钮。请参考以下截图作为参考：
+
+
+  ![](img/7f5ea776-0f77-4271-a715-dd0d0ed9613d.png)
+
+
+  现在，给你的虚拟机命名并选择一个合适的密码。你可以选择创建新资源或使用现有资源。将磁盘类型设置为 SSD 以获得良好性能。请参考以下截图作为参考：
+
+
+  ![](img/7dab8fd9-55de-4c8e-90cb-4dcf5a7ef1f6.png)
+
+
+  在下一个屏幕上，选择大小或使用默认大小。跳过选项 3，然后创建虚拟机。
+
+
+  虚拟机创建完成后，你可以通过终端使用以下命令登录：
+
+
+  ```
+
+  ssh username@ip
+
+  ```
+
+
+  提供密码，你应该能够登录到服务器。
+
+
+  每当你进行全新 Ubuntu 安装时，请运行此命令：
+
+
+  ```
+
+  sudo apt-get update
+
+  sudo apt-get upgrade
+
+  ```
+
+
+  你可以使用此命令安装 Node.js，或从官方网站下载：
+
+
+  ```
+
+  sudo apt-get install nodejs
+
+  ```
+
+
+  现在，如果你的代码库托管在 GitHub 上，可以使用 `git` 命令下载源代码：
+
+
+  ```
+
+  git clone <<github url>>
+
+  ```
+
+
+  使用 `npm install` 命令安装所需依赖并运行项目。
+
+
+  通过这种方式，你可以在 Azure 网络上部署任何自定义应用程序。
+
+
+  现在，让我们进入本章的最后一个主题：监控网络和流量。
+
+
+  ## 监控流量与使用情况
+
+
+  Azure 提供对数据库及其使用情况的深度监控。你可以添加监控警报，并直接从控制面板检查网络日志。信息以整洁恰当的方式呈现，以便在屏幕上提供尽可能多的细节。
+
+
+  要查看监控，请登录 Azure 门户，点击左侧菜单中的“监视器”。你应该会看到类似于以下截图的屏幕：
+
+
+  ![](img/9a7ab8b2-1a94-435b-b673-46191fd8b0f6.png)
+
+
+  现在，点击左侧菜单中的“指标”。它应该会打开一个类似于以下截图所示的屏幕：
+
+
+  ![](img/9ebad9a6-1171-4d15-971f-7c8536316a76.png)
+
+
+  你可以更改筛选器和数据库，以查看这些数据库的指标。
+
+
+  你还可以检查帐户和资源组的活动日志。从左侧菜单点击“活动日志”，然后选择你的资源组和日期范围以查看活动。请参考以下截图作为参考：
+
+
+  ![](img/acbc2746-361b-4de4-a279-876b2f2bc00b.png)
+
+
+  这是检查可疑活动的好方法。
+
+
+  现在，关于使用情况部分，你可以前往“成本管理 + 计费”屏幕查看帐户的当前使用情况。我有一个免费帐户用于本月，需要升级计划以进行进一步操作。
+
+
+  在“监视器”屏幕中探索更多选项，看看什么适合你。
+
+
+  在结束之前，让我们快速看看 Azure 为 Cosmos DB 提供的安全性。
+
+
+  ## 数据库安全
+
+
+  未在网络中移动的 Cosmos DB 数据是加密且安全的。你可以放心，即使攻击者以某种方式获取了你的存储数据，对他们来说解密也将极其困难。
+
+
+  让我们看看 Azure 提供的关键安全功能：
+
+
+  *   `安全网络`：Cosmos DB 提供基于 IP 的规则筛选防火墙，用于高级网络保护
+
+  *   `授权`：Cosmos DB 使用基于哈希的身份验证代码授权用户
+
+  *   `用户管理`：Cosmos DB 使用资源概念提供安全的用户管理
+
+  *   `Active Directory 支持`：Cosmos DB 与广为人知且安全的 Active Directory 身份验证系统集成
+
+  *   `交钥匙分发和复制`：使用交钥匙分发，数据被复制并受到保护
+
+  *   `故障转移处理`：你可以使用自动或手动故障转移
+
+  *   `自动备份`：Cosmos DB 数据定期备份
+
+  *   `数据库恢复`：你可以从备份中恢复数据库
+
+  *   `攻击监控`：通过使用监控，你可以监控是否有攻击发生在你的服务器上
+
+  *   `HTTPS/SSL/TLS 加密`：通过 Azure 网络传输的所有数据均已加密
+
+
+
+
+  *   **静态加密**：存储在 Azure 计算机中的所有数据均已加密。
+
+
+  与整个行业相比，Azure 提供了一些非常先进的功能。
+
+
+  ## 总结
+
+
+  我们已经学习了如何在 Cosmos DB 中执行数据的全球分发，以及为什么这很重要。我们还了解了故障转移以及处理它们的方法。
+
+
+  我们概览了 Cosmos DB 如何执行备份，以及在紧急情况下如何进行恢复。然后我们继续讨论了如何在 Azure 网络中部署自定义应用程序。
+
+
+  部署之后就是监控。得益于 Azure 管理门户，我们可以直接从浏览器监控应用程序的使用情况和活动。
+
+
+  这是本书的最后一章。在结束之前，我想说声谢谢，并祝愿你即将使用 Cosmos DB 基础设施构建的应用程序好运。如果本书在你构建应用的过程中提供了一点帮助，请务必让我们知道；你的反馈是我们的氧气。
+
+
+  我希望并祈愿本书对你有所裨益；如果有，请发邮件至 `shahid@codeforgeek.com` 或在推特上联系我 `@codeforgeek`。期待尽快收到你的消息！
+
+
+  # 你可能喜欢的其他书籍
+
+
+  如果你喜欢这本书，你可能会对 Packt 的这些其他书籍感兴趣：
+
+
+  ![](https://www.packtpub.com/big-data-and-business-intelligence/stream-analytics-microsoft-azure)
+
+
+  **Microsoft Azure 流分析**
+
+
+  Anindita Basak, Krishna Venkataraman, Ryan Murphy, Manpreet Singh
+
+
+  ISBN: 978-1-78839-590-8
+
+
+  *   使用 Azure 流分析执行实时事件处理
+
+  *   在实时数据处理中融入大数据 Lambda 架构模式的特性
+
+  *   为存储和批量分析设计流式管道
+
+  *   在事件流上实现数据转换和计算活动
+
+  *   使用 PowerShell 和 .NET SDK 自动化你的流式管道
+
+  *   将你的流式管道与流行的机器学习和预测分析建模算法集成
+
+  *   有效地监控和排查 Azure 流作业
+
+
+  ![](https://www.packtpub.com/big-data-and-business-intelligence/learning-microsoft-azure-storage)
+
+
+  **学习 Microsoft Azure 存储**
+
+
+  Mohamed Waly
+
+
+  ISBN: 978-1-78588-491-7
+
+
+  *   了解 Azure 存储类型并确定适合你需求的类型
+
+  *   根据最佳实践为 Azure VM 设计 Azure 存储
+
+  *   根据最佳实践在 Azure 上设计和实现你的 SQL 数据库
+
+  *   学习如何使用 Azure 备份
+
+  *   学习如何使用 Azure 站点恢复
+
+  *   将 Azure 存储扩展到 StorSimple
+
+  *   监控存储指标和日志并自定义 Azure 监控仪表板
+
+  *   监控和排查 Azure 存储
+
+
+  # 留下评论 - 让其他读者知道你的想法
+
+
+  请通过在购买网站上留下评论，与其他人分享你对这本书的看法。如果你在亚马逊购买了这本书，请在本书的亚马逊页面给我们留下真实的评论。这至关重要，这样其他潜在读者可以看到并利用你的公正意见做出购买决定，我们可以了解客户对我们产品的看法，作者也能看到你对他们与
+  Packt 合作创作的这本书的反馈。这只会花费你几分钟时间，但对其他潜在客户、我们的作者和 Packt 来说却很有价值。谢谢！
+
+  '
