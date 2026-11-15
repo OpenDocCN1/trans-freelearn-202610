@@ -1,0 +1,29 @@
+reviews:
+- 'no': 3139
+  overturn_probability: 0.3
+  alternative: 正文小标题
+  counter_evidence:
+  - 该行缺乏显式章节编号（如'第 5 章'），全书前序章节（第 4、6 章）均采用'第 X 章'或明确编号格式，此处仅为'表计算简介'，可能是章内引言节标题
+  - 前一章节以'# 总结'、Discord推广、二维码结尾，但该书可能将'表计算'作为第 5 章的引言节，而非独立章节
+  keep_split: true
+- 'no': 4052
+  overturn_probability: 0.05
+  alternative: 其他
+  counter_evidence:
+  - 该行明确包含'第 6 章'编号，符合最高层级章节标题所有特征（单独成行、无句号、语义统领、上下文衔接），几乎无推翻可能
+  keep_split: true
+- 'no': 4509
+  overturn_probability: 0.85
+  alternative: 正文小标题
+  counter_evidence:
+  - 该行使用二级标题（##），而全书前序章节（第 4、5、6 章）均使用一级标题（#），按格式特征应属子层级，不应分章
+  - 标题包含'7.'编号但层级为##，疑为第 6 章内的大节或附录编号，非最高层级章节
+  - 上下文显示前一章已以'# 总结'、Discord、二维码完整结束，但该书可能采用部分-章节模式，此处##为部分下的章节？但无部分标题，故更可能是节标题
+  keep_split: false
+- 'no': 5124
+  overturn_probability: 0.2
+  alternative: 正文小标题
+  counter_evidence:
+  - 该行虽为一级标题（#），但'超越基础'语义较宽泛，可能是第 7 章的进阶节标题，而非独立章节
+  - 前一章（第 7 章）结束于二维码后，但本书可能将'超越基础'作为第 7 章的最后一节，因第 7 章标题为'## 7. 练习详细级别计算'（若成立），则此处为同级节点
+  keep_split: true

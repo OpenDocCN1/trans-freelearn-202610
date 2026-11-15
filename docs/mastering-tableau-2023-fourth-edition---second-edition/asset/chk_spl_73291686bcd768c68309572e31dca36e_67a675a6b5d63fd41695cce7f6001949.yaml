@@ -1,0 +1,78 @@
+reviews:
+- 'no': 4
+  overturn_probability: 0.15
+  alternative: 前置内容标题（属于前言/序言等前置材料，应与后续贡献者、关于作者等合并为一章，但该行作为合并章起始仍合理）
+  counter_evidence:
+  - 规则规定前言、序言、致谢、关于作者等正文之前的内容统一划分为一章，该行是首个前置内容标题，作为合并章起始符合规则
+  - 后续第33行再次出现'# 序言'、第49行'# 贡献者'、第51行'# 关于作者'等均为同级前置标题，若各自分章会违反统一划分原则
+  keep_split: true
+- 'no': 87
+  overturn_probability: 0.95
+  alternative: 目录条目（详细目录中的章节条目，非正文章节起始）
+  counter_evidence:
+  - 该行出现在'# 在 Discord 上了解更多'等前置内容之后，且后续紧跟'## 3. 帕累托图'等带有锚点链接（如[#Chapter_8.xhtml#_idParaDest-142]）的子节条目，特征为详细目录而非正文
+  - 子节编号从'3.'开始而非'1.'，且包含多级标题（##、###、####）且均带跨文件引用链接，明显是目录摘录
+  - 正文章节第1章实际从第735行'# 回顾基础知识'开始，第8章正文应在更后位置
+  keep_split: false
+- 'no': 129
+  overturn_probability: 0.95
+  alternative: 目录条目（详细目录中的章节条目）
+  counter_evidence:
+  - 紧接在第8章目录条目之后，格式相同：一级标题后跟带锚点链接的二级、三级条目（如[#Chapter_9.xhtml#_idParaDest-162]）
+  - 属于同一目录块（第87-186行），而非正文章节起始
+  keep_split: false
+- 'no': 157
+  overturn_probability: 0.95
+  alternative: 目录条目（详细目录中的章节条目）
+  counter_evidence:
+  - 同上，属于连续目录块的一部分，含锚点链接（[#Chapter_10.xhtml#_idParaDest-...]）
+  - 正文第10章应在后续实际内容中出现
+  keep_split: false
+- 'no': 187
+  overturn_probability: 0.95
+  alternative: 目录条目（详细目录中的章节条目）
+  counter_evidence:
+  - 目录块的最后一章条目，后续第279行仍为目录条目（第12章），随后第301行出现'# 目录'主目录，确认前文为详细目录
+  keep_split: false
+- 'no': 279
+  overturn_probability: 0.95
+  alternative: 目录条目（详细目录中的章节条目）
+  counter_evidence:
+  - 位于第11章目录条目之后，格式一致，含锚点链接（[#Chapter_12.xhtml#_idParaDest-23...]）
+  - 紧接着第301行出现'# 目录'，标志着详细目录结束，主目录开始
+  keep_split: false
+- 'no': 301
+  overturn_probability: 0.7
+  alternative: 主目录标题（属于前置内容，应与第4行前言合并为同一前置章节，不应单独分章）
+  counter_evidence:
+  - 规则规定前言、序言、致谢、关于作者等正文之前的内容统一划分为一章，目录属于前置内容，第4行已作为前置章起始，此处不应再次分章
+  - 第301行与第4行同属前置材料，中间无正文内容，分割会导致前置内容被拆分为多章
+  keep_split: false
+- 'no': 735
+  overturn_probability: 0.05
+  alternative: 正文章节标题（第1章正文起始，符合语义统领性、后跟二级节等特征）
+  counter_evidence:
+  - 与目录中'第1章：回顾基础知识'对应，后续包含'## 创建工作表和仪表板'等二级节，内容为实质性正文
+  - 前序第301行目录结束后，经过空行及书籍元数据页（第615-734行），此处为正文真正开始
+  keep_split: true
+- 'no': 1426
+  overturn_probability: 0.05
+  alternative: 正文章节标题（第2章正文起始）
+  counter_evidence:
+  - 目录对应'第2章：准备您的数据'，后跟'## 了解 Hyper'等二级节，内容连贯
+  - 第1章末尾有'## 在 Discord 上了解更多'及二维码，典型章节结束标志
+  keep_split: true
+- 'no': 1793
+  overturn_probability: 0.05
+  alternative: 正文章节标题（第3章正文起始）
+  counter_evidence:
+  - 目录对应'第3章：使用 Tableau Prep Builder'，结构完整，含概述段落及多二级节
+  - 第2章末尾有总结及Discord链接，章节边界清晰
+  keep_split: true
+- 'no': 2442
+  overturn_probability: 0.02
+  alternative: 正文章节标题（第4章正文起始，显式编号'第4章'）
+  counter_evidence:
+  - 标题含明确章序号'第4章'，符合最高层级编号特征
+  - 后续包含'## 简介'、'## 关系'等二级节，内容为正文核心部分
+  keep_split: true

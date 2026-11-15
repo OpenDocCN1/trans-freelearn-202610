@@ -1,0 +1,44 @@
+chapter_starts:
+- 'no': 3139
+  confidence: 0.95
+  final_reason: 上下文边界明确：前序有#总结、Discord推广、二维码（第4章结束标志）；语义统领后续表计算全章内容；虽无显式章号，但第4章(2997行)亦无章号，格式一致，符合'无章号依靠语义'规则。复核方'缺章号'异议不成立。
+  accepted_evidence:
+  - 前序包含完整章末结构(总结/Discord/二维码)
+  - 标题为一级标题(#)且单独成行
+  - 语义覆盖后续数百行表计算内容
+  - 第4章标题(2997行)同样无显式章号，风格一致
+  rejected_evidence:
+  - 复核方指出'缺乏显式章号如第5章'，但第4章亦无章号，故该特征非判断必要条件
+  need_human_review: false
+- 'no': 4052
+  confidence: 1.0
+  final_reason: 双方一致。显式编号'第 6 章'，符合最高层级章节标题所有特征（编号、格式、语义、上下文）。
+  accepted_evidence:
+  - 包含明确最高层级编号'第 6 章'
+  - 单独成行，无末尾标点
+  - 前序为第5章结束结构(总结/Discord/二维码)
+  - 统领后续OData、大数据、BigQuery内容
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 4509
+  confidence: 0.9
+  final_reason: 虽为二级标题(##)，但标题含显式章号'7.'，且前序有第6章完整结束结构(总结/Discord/二维码)，语义明确开启LOD新主题。全书第5章(3139)亦含多个一级标题作为大节，故标题层级不一致疑为源文件格式异常，编号与上下文优先级更高。
+  accepted_evidence:
+  - 标题含显式章号'7.'
+  - 前序为第6章完整结束结构
+  - 语义统领后续LOD计算全章内容(含FIXED/INCLUDE/EXCLUDE等)
+  rejected_evidence:
+  - 复核方指出'二级标题格式疑为子层级'，但结合显式编号及章边界上下文，判定为格式异常而非层级从属
+  need_human_review: false
+- 'no': 5124
+  confidence: 0.95
+  final_reason: 上下文边界明确：前序有#总结、Discord推广、二维码（第7章结束标志）；一级标题(#)单独成行；语义统领后续可视化进阶内容(子弹图、帕累托、背景图像等)。复核方'可能属第7章'异议因忽略章末结构证据而不成立。
+  accepted_evidence:
+  - 前序包含完整章末结构(总结/Discord/二维码)
+  - 一级标题(#)符合章标题格式
+  - 语义覆盖后续可视化进阶主题
+  - 与第4、5、6章起始格式一致
+  rejected_evidence:
+  - 复核方推测'若4509非第7章则此处为同级节点'，但4509已确认为第7章，故该推测前提不成立
+  need_human_review: false
+rejected_lines: []

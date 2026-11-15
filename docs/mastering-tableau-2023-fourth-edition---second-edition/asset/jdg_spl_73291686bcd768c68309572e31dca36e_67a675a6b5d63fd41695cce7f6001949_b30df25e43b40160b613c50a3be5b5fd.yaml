@@ -1,0 +1,72 @@
+chapter_starts:
+- 'no': 4
+  confidence: 0.95
+  final_reason: 书籍前置内容起始（序言），规则规定前言、序言、致谢、关于作者等正文前内容统一划分为一章，该行为首个前置内容标题。
+  accepted_evidence:
+  - 双方一致认定为前置内容起始
+  - 符合'前言、序言等统一划分为一章'规则
+  - 后续第33、49、51行等同级前置标题应归入本章
+  rejected_evidence:
+  - 复核方指出后续有多个前置标题，但此不影响本行作为合并章起始的合理性
+  need_human_review: false
+- 'no': 735
+  confidence: 0.98
+  final_reason: 正文第1章起始，语义统领性强，对应目录‘第1章：回顾基础知识’，后跟多个二级节（## 创建工作表和仪表板等），内容为实质性正文。
+  accepted_evidence:
+  - 复核方确认为正文章节标题
+  - 与目录第1章对应
+  - 前序有典型章节结束标志（Discord链接、二维码）
+  - 后续包含完整章节结构（概述、二级节、练习、总结）
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 1426
+  confidence: 0.98
+  final_reason: 正文第2章起始，标题‘# 准备您的数据’对应目录第2章，后跟‘## 了解 Hyper’等二级节，结构完整，上一章有明确结束标志。
+  accepted_evidence:
+  - 复核方确认为正文章节标题
+  - 目录对应‘第2章：准备您的数据’
+  - 第1章末尾有总结及Discord链接，章节边界清晰
+  - 后续内容连贯，含理论与练习
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 1793
+  confidence: 0.98
+  final_reason: 正文第3章起始，标题‘# 使用 Tableau Prep Builder’对应目录第3章，含概述段落及多个二级节（## 连接数据、##
+    Prep GUI等），结构特征明显。
+  accepted_evidence:
+  - 复核方确认为正文章节标题
+  - 目录对应‘第3章：使用 Tableau Prep Builder’
+  - 第2章末尾有总结及Discord链接
+  - 后续包含完整章节内容（GUI介绍、数据质量、联合连接、聚合、透视、脚本、导出等）
+  rejected_evidence: []
+  need_human_review: false
+- 'no': 2442
+  confidence: 0.99
+  final_reason: 正文第4章起始，显式编号‘第 4 章’，符合最高层级章节编号特征，后跟‘## 简介’、‘## 关系’等二级节，为核心正文内容。
+  accepted_evidence:
+  - 双方一致认定
+  - 标题含明确章序号‘第 4 章’
+  - 符合编号连贯性（前三章虽无编号但语义对应），此处显式编号
+  - 后续内容为正文核心部分（关系、连接、联合、混合、数据结构）
+  rejected_evidence: []
+  need_human_review: false
+rejected_lines:
+- 'no': 87
+  reason: 详细目录中的章节条目（第8章），非正文章节起始。特征：紧跟锚点链接（[#Chapter_8.xhtml#_idParaDest-142]），子节编号从‘3.’开始，包含多级标题（##、###、####）且均带跨文件引用链接，属于目录摘录块（第87-279行）。正文第8章应在更后位置。
+  need_human_review: false
+- 'no': 129
+  reason: 详细目录中的章节条目（第9章），格式同第87行，属于连续目录块一部分，含锚点链接（[#Chapter_9.xhtml#_idParaDest-162]），非正文起始。
+  need_human_review: false
+- 'no': 157
+  reason: 详细目录中的章节条目（第10章），格式同前，含锚点链接（[#Chapter_10.xhtml#_idParaDest-...]），属于目录块，非正文起始。
+  need_human_review: false
+- 'no': 187
+  reason: 详细目录中的章节条目（第11章），目录块的最后一章条目，后续第279行仍为目录条目（第12章），随后第301行出现‘# 目录’主目录，确认前文为详细目录。
+  need_human_review: false
+- 'no': 279
+  reason: 详细目录中的章节条目（第12章），位于第11章目录条目之后，格式一致，含锚点链接（[#Chapter_12.xhtml#_idParaDest-23...]），紧接着第301行‘#
+    目录’标志详细目录结束。
+  need_human_review: false
+- 'no': 301
+  reason: 主目录标题（‘# 目录’），属于前置内容。规则规定前言、序言、目录等正文前内容统一划分为一章，第4行已作为前置章起始，此处不应再次分章，否则会将前置内容拆分为多章。
+  need_human_review: false
