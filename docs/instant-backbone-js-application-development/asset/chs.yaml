@@ -1,0 +1,536 @@
+- '# Backbone.js 应用开发快速指南
+
+
+  ---
+
+  ## 关于作者
+
+
+  **Thomas Hunter II** 是一位全能型人才，拥有超过八年的开源 Web 开发经验。这包括后端 PHP / Node.js 编程、MySQL /
+  MongoDB 数据库工程，以及使用 JavaScript 进行前端编程。他甚至还做过大量平面设计、游戏开发和音乐创作工作。
+
+
+  ## 关于审阅者
+
+
+  **Kelly King** 是一位居住在密歇根州安娜堡的前端开发人员。除了在 Systems in Motion 担任 JavaScript 程序员外，Kelly
+  还共同组织了一个 PHP 用户组，在空闲时间构建游戏和移动应用，并正在攻读东密歇根大学的计算机科学硕士学位。
+
+
+  **Jonathan Kuperman** 是一位目前居住在密歇根州安娜堡的 Web 开发人员。他在 Barracuda Networks 担任软件工程师，并在
+  [www.insitedesignlab.com](http://www.insitedesignlab.com) 撰写博客。他在当地组织并教授商务和技术聚会，空闲时间为开源项目做贡献。
+
+
+  ## 支持文件和资源
+
+
+  您可能想要访问 [www.PacktPub.com](http://www.PacktPub.com) 以获取与本书相关的支持文件和下载。
+
+
+  您知道吗？Packt 为每本出版的书籍提供电子书版本，包含 PDF 和 ePub 文件。您可以在 [www.PacktPub.com](http://www.PacktPub.com)
+  升级到电子书版本，作为纸质书客户，您有权享受电子书副本的折扣。请通过 `service@packtpub.com` 联系我们以获取更多详情。
+
+
+  在 [www.PacktPub.com](http://www.PacktPub.com)，您还可以阅读免费技术文章合集，订阅各种免费通讯，并获得 Packt
+  图书和电子书的独家折扣和优惠。
+
+
+  ### PacktLib
+
+
+  您需要即时解决 IT 问题的方案吗？PacktLib 是 Packt 的在线数字图书库。在这里，您可以访问、阅读和搜索 Packt 的全部图书库。
+
+
+  - 可在 Packt 出版的每本书中全文搜索
+
+  - 复制粘贴、打印和书签内容
+
+  - 按需访问，可通过 Web 浏览器访问
+
+
+  如果您在 [www.packtpub.com](http://www.packtpub.com) 拥有 Packt 账户，您可以使用它立即访问 PacktLib
+  并查看九本完全免费的书籍。只需使用您的登录凭据即可立即访问。
+
+
+  ![Packt 账户持有者免费访问](img/PacktLibLogo.jpg)
+
+
+  ## 简介
+
+
+  欢迎阅读 *Instant Backbone.js Application Development*。本书将指导您完成下载和安装 Backbone.js 及其依赖库的步骤，运行一个简单的
+  Hello World 应用以确认安装，最后介绍各类代码分类，以便您构建一个简单的联系人管理器。您甚至还将构建一个快速服务器应用来持久化数据。
+
+
+
+  '
+- "# Backbone.js 简介\n\n## 什么是 Backbone.js\n**什么是 Backbone.js** 将详细解释 Backbone.js 的用途、适用场景、用户群体及环境要求。\n\
+  \n## 安装\n**安装** 将指导您获取 Backbone.js 的依赖项，这些依赖项必须在您的项目中使用 Backbone.js 之前安装。本节将让您下载并安装它们，并建立一个简单的目录结构。\n\
+  \n## 快速入门 – 构建一个 Hello World 应用\n**快速入门 – 构建一个 Hello World 应用** 提供一个简单的 Hello World\
+  \ 消息，以验证安装是否正常工作以及库是否已正确加载。\n\n## 您需要了解的 5 大核心特性\n**您需要了解的 5 大核心特性** 涵盖了 Backbone\
+  \ 提供的不同代码分类，包括模型和集合、视图及其对应的模板、事件、URL 路由，以及将数据持久化到服务器。\n\n## 您应该了解的社区资源\n**您应该了解的社区资源**\
+  \ 涵盖了优秀的免费社区资源，您应了解这些资源以将您的 Backbone 开发技能提升到新的高度。\n\n## 概述\n`Backbone.js`（或简称为 `Backbone`）是一个用于构建数据密集型\
+  \ **单页应用** (**SPA**) 的前端 JavaScript 框架。您可能听说过不同的框架模式，例如 **模型-视图-控制器** (**MVC**)、**模型-视图-展示器**\
+  \ (**MVP**)，甚至 **模型-视图-视图模型** (**MVVM**)，但 Backbone 遵循其自身独特的范式。Backbone 不要求以任何特定方式在文件系统中构建文件结构，但它确实对项目如何组织代码结构有建议。\n\
+  \n当您的应用程序使用后端数据库来持久化用户数据，且前端应用程序需要镜像大量此类数据时，Backbone 最为有用。假设您的数据可通过标准化格式（基于 HTTP\
+  \ GET 的 RESTful JSON API）被前端应用访问，且数据可使用适当的 HTTP 动词（PUT、POST 和 DELETE）进行持久化，那么使用\
+  \ Backbone 读写数据将轻而易举。\n\n在运行基于 Backbone 的 SPA 时，用户将在浏览器中与来自后端的数据进行交互。当他们与应用程序交互时，是通过视图进行的。视图代表\
+  \ **文档对象模型** (**DOM**) 的一部分，并与模型关联。当这些交互发生时，它们会触发事件，从而更新模型中的数据。Backbone 会跟踪这些模型，当数据发生变化时，它会将数据发送到您的\
+  \ Web 服务器以进行持久化。它还会跟踪模型数据的变化，并相应地更新您的视图。这使得更新 DOM 和向服务器发送数据的过程看起来是自动的。您无需编写多个一次性的\
+  \ jQuery `$.ajax` 调用，而是将使用一种统一的方法。\n\n## 为什么要使用 Backbone？\n首先，让我们看看 Web 开发者想要在其应用程序中使用\
+  \ Backbone 的原因。许多 Web 开发者开始构建网站时，会将大量 jQuery 调用塞进一个单一的、整体的 JavaScript 文件中。这些调用处理从查询\
+  \ DOM 到执行 AJAX 请求的所有事情。当这种情况发生时，项目通常会失控，您的应用程序将严重依赖 DOM，这意味着当设计师提出新的时髦布局时，您将面临诸多烦恼。依我之见，使用\
+  \ Backbone 最好的理由之一是它能保持您的代码井然有序。许多大型 Web 应用程序都因面条代码和维护困难而陷入瘫痪。一个组织得当的 Backbone 应用程序不会陷入这一陷阱。\n\
+  \n如果您确实发现需要在布局变更时更改 DOM 查询，它们会被保存在同一个文件中。如果您的数据库列名发生变化导致前端应用程序停止工作，只需在单个文件中进行更改即可使前端应用程序再次与后端兼容。\n\
+  \n## 谁在使用 Backbone？\n许多网站都使用 Backbone 来管理其前端应用程序！以下是一小部分您可能听说过的流行 Web 应用程序列表，供您参考：\n\
+  \n*   Foursquare ([`www.foursquare.com`](http://www.foursquare.com))\n*   Basecamp\
+  \ 日历 ([`basecamp.com/calendar`](http://basecamp.com/calendar))\n*   Airbnb ([`airbnb.com`](http://airbnb.com))\n\
+  *   Stripe ([`stripe.com`](https://stripe.com))\n*   可汗学院 ([`www.khanacademy.org`](http://www.khanacademy.org))\n\
+  *   Pandora ([`www.pandora.com/newpandora`](http://www.pandora.com/newpandora))\n\
+  *   Copy ([`www.copy.com`](http://www.copy.com))\n*   以及更多 ([`backbonejs.org/#examples`](http://backbonejs.org/#examples))\n\
+  \n## 依赖项\n要使用 Backbone.js，您至少需要 `Backbone` 本身、一个绑定到全局变量 `_`（下划线字符）的实用工具库，以及一个绑定到全局变量\
+  \ `$` 的选择器引擎。事实上的标准实用工具库是 `Underscore.js`，事实上的标准选择器引擎是 `jQuery`。\n\n实用工具库的目的是弥补\
+  \ JavaScript 的一些不足。这些库提供了多种函数以加快编程速度。一个例子是 `foreach` 函数，如果您从 PHP 开发转行过来，可能会怀念这个函数。选择器引擎的目的是提供一种通用的方法来查询\
+  \ DOM 元素。不同的浏览器使用不同的函数以不同的方式实现这些功能，且查询结果并不总是相同。一个好的选择器引擎会为您隐藏这些复杂性，并提供一个接受基于 CSS\
+  \ 选择器的单一函数来执行查询。\n\n既然我喜欢提供选择，我将提及一些可用于此项目的替代库。`LoDash` 是 `Underscore.js` 的直接替代品且速度更快，而\
+  \ `Zepto` 是 `jQuery` 的直接替代品且体积更小，但不支持 Internet Explorer 或旧版浏览器。\n\n### 步骤 1 – 我需要什么？\n\
+  在学习本书示例时，您需要使用现代 Web 浏览器。我推荐安装 Google Chrome。它是我示例中使用的浏览器，免费且拥有强大的 Web 检查器（在 Apple\
+  \ OS 中：`Cmd` + `Option` + `I`，在 Windows/Linux 中：`Ctrl` + `Shift` + `I`）。以下屏幕截图显示了打开的控制台：\n\
+  \n![步骤 1 – 我需要什么？](img/5668OS_01_01.jpg)\n\n您还需要以下第三方脚本：\n\n*   `Backbone`\n*  \
+  \ `Underscore` 或 `LoDash`\n*   `jQuery` 或 `Zepto`\n\n### 步骤 2 – 创建文件夹\n在您的计算机上创建一个文件夹，用于存放我们将通过本书构建的项目。\n\
+  \n### 步骤 3 – 下载必要文件\n下一步是下载以下文件：\n\n*   Backbone 框架 `Backbone.js` 1.0.0 版或更高版本\n\
+  \    *   从 [`backbonejs.org/backbone-min.js`](http://backbonejs.org/backbone-min.js)\
+  \ 下载文件\n    *   将文件保存为 `scripts/backbone-1.0.0.js`\n*   实用工具库 `Underscore.js` 1.4.4\
+  \ 版或更高版本，或 `LoDash` 1.3.1 版或更高版本\n    *   从 [`underscorejs.org/underscore-min.js`](http://underscorejs.org/underscore-min.js)\
+  \ 下载文件\n    *   将文件保存为 `scripts/underscore-1.4.4.js`\n    *   或从 [`raw.github.com/bestiejs/lodash/master/dist/lodash.min.js`](https://raw.github.com/bestiejs/lodash/master/dist/lodash.min.js)\
+  \ 下载文件\n    *   将文件保存为 `scripts/lodash-1.3.1.js`\n*   选择器引擎 `jQuery` 1.9.1 版或更高版本，或\
+  \ `Zepto` 1.0 版或更高版本\n    *   从 [`code.jquery.com/jquery-1.9.1.min.js`](http://code.jquery.com/jquery-1.9.1.min.js)\
+  \ 下载文件\n    *   将文件保存为 `scripts/jquery-1.9.1.js`\n    *   或从 [`zeptojs.com/zepto.min.js`](http://zeptojs.com/zepto.min.js)\
+  \ 下载文件\n    *   将文件保存为 `scripts/zepto-1.0.js`\n\n### 步骤 4 – 创建新文件\n将这些文件下载到 `project`\
+  \ 文件夹内的 `scripts` 文件夹后，您需要在该目录下创建另一个名为 `main.js` 的文件，我们将把特定于应用程序的脚本放在那里。\n\n\n\n\
+  顺便在你的 `project` 目录根目录下创建一个名为 `index.html` 的文件；我们将在其中添加一些 HTML。\n\n如果一切按计划进行，你应该会看到一个类似于下面截图所示的文件夹布局：\n\
+  \n![Step 4 – creating new files](img/5668OS_02_01.jpg)\n\n### 就这些了！\n\n恭喜，你现在已经为基于\
+  \ Backbone 的项目准备好了必要的文件。\n\n既然你已经有了必要的脚本文件和项目目录布局，让我们开始编写一些代码来确认应用程序能正常工作。这段代码需要我们保存的所有脚本都可访问；否则我们会看到一些错误消息。\n\
+  \n我们还将介绍 Web Inspector（Web 检查器）并使用它与我们的应用程序进行交互。学习这个工具对于任何 Web 应用程序开发者来说都是必不可少的，以便熟练地调试（甚至为其编写新代码）他们的应用程序。\n\
+  \n### 步骤 1 – 向文档添加代码\n\n将以下代码添加到你的 `index.html` 文件中。注意我假设使用 LoDash 和 Zepto，所以你需要相应地更新代码：\n\
+  \n```html\n<!DOCTYPE HTML>\n<html>\n  <head>\n    <title>Backbone Application Development\
+  \ Starter</title>\n    <!-- Your Utility Library -->\n    <script src=\"scripts/lodash-1.3.1.js\"\
+  ></script>\n    <!-- Your Selector Engine -->\n    <script src=\"scripts/zepto-1.0.js\"\
+  ></script>\n    <script src=\"scripts/backbone-1.0.0.js\"></script>\n  </head>\n\
+  \  <body>\n    <div id=\"display\">\n      <div class=\"listing\">Houston, we have\
+  \ a problem.</div>\n    </div>\n  </body>\n  <script src=\"scripts/main.js\"></script>\n\
+  </html>\n```\n\n### 提示\n\n**下载示例代码**\n\n你可以从 [`www.packtpub.com`](http://www.packtpub.com)\
+  \ 的账户中下载你购买的所有 Packt 书籍的示例代码文件。如果你是在别处购买的这本书，可以访问 [`www.packtpub.com/support`](http://www.packtpub.com/support)\
+  \ 并注册，以便将文件直接通过电子邮件发送给你。\n\n该文件将加载我们所有的脚本，并包含一个简单的 `` `<div>` ``，用于显示一些内容。\n\n注意，我将\
+  \ `main.js` 文件的加载放在了结束标签 `` `</body>` `` 之后。这只是我的个人偏好；它能确保脚本在 DOM 元素填充完毕后执行。如果你将其放在其他脚本旁边，你需要用一个函数调用来封装脚本的内容，以便在\
+  \ DOM 加载完成后运行；否则，当脚本运行并尝试查找 `div#display` 元素时，将会失败。\n\n### 步骤 2 – 向主脚本添加代码\n\n现在，将以下代码添加到你的\
+  \ `scripts/main.js` 文件中：\n\n```javascript\nvar object = {};\n\n_.extend(object,\
+  \ Backbone.Events);\n\nobject.on(\"show-message\", function(msg) {\n  $('#display\
+  \ .listing').text(msg);\n});\n\nobject.trigger(\"show-message\", \"Hello World\"\
+  );\n```\n\n允许我分解 `main.js` 的内容，以便你知道每一行的作用。\n\n```\nvar object = {};\n```\n\n前面这行应该非常明显。我们只是创建了一个名为\
+  \ `object` 的新对象，它不包含任何属性。\n\n```\n_.extend(object, Backbone.Events);\n```\n\n前面这行是奇迹开始发生的地方。实用工具库为我们提供了许多函数，其中之一是\
+  \ `extend`。该函数接受两个或更多对象作为参数，复制它们的属性，并将它们追加到第一个对象上。你可以把这看作是在经典语言（如 PHP）中扩展类的一种方式。\n\
+  \n使用 `extend` 实用工具函数是向你的类添加 Backbone 功能的首选方式。在这种情况下，我们的 `object` 对象现在是一个 Backbone\
+  \ `Event` 对象，这意味着它可用于触发事件，并在事件触发时运行回调函数。通过这种方式扩展你的对象，你可以用一种通用的方法在代码中执行基于事件的操作，而无需编写一次性实现。\n\
+  \n```\nobject.on(\"show-message\", function(msg) {\n  $('#display .listing').text(msg);\n\
+  });\n```\n\n前面的代码向我们的对象添加了一个事件监听器。`on` 函数的第一个参数是事件的名称，在本例中为 `show-message`。这是一个描述你正在监听的事件的简单字符串，稍后将用于触发事件。对于命名约定没有硬性要求，但请尽量做到描述性强且一致。\n\
+  \n第二个参数是一个回调函数，它接受一个参数，该参数可以在事件触发时设置。这里的回调函数非常简单；它只是使用我们的选择器引擎查询 DOM，并将元素的文本更新为传入事件的文本。\n\
+  \n```\nobject.trigger(\"show-message\", \"Hello World\");\n```\n\n最后，我们触发我们的事件。只需在对象上使用\
+  \ `trigger` 函数，告诉它我们要触发 `show-message` 事件，并将触发回调的参数作为第二个参数传入。\n\n### 步骤 3 – 在浏览器中打开项目\n\
+  \n当我们在浏览器中打开 `index.html` 文件时，这将向我们显示文本 \"`Hello World`\"。不信？现在双击该文件，你应该会看到以下屏幕：\n\
+  \n![Step 3 – opening the project in your browser](img/5668OS_03_01.jpg)\n\n如果 Chrome\
+  \ 不是你的默认浏览器，你应该能在文件浏览器中右键点击该文件，并选择用哪个应用程序打开该文件。如果安装正确，Chrome 应该在列表中。\n\n### 步骤 4\
+  \ – 遇到问题\n\n你看到的不是我们愉快的 \"`Hello World`\" 消息吗？代码的设置方式是，如果出现问题，它应该显示 \"`Houston`\"\
+  、\"`we have a problem`\" 消息（这是在 JavaScript 运行并替换它之前，默认在 DOM 中显示的文本）。\n\n### 缺失的脚本文件\n\
+  \n首先要查看的地方是 Web Inspector 的 **Network**（网络）选项卡。该选项卡向我们显示浏览器为满足页面渲染而下载的每个文件。有时，**Console**（控制台）选项卡也会告诉我们文件何时未正确下载，但并不总是如此。下面的截图解释了这一点：\n\
+  \n![The missing script file](img/5668OS_03_02.jpg)\n\n如果你看 **Network** 选项卡，可以看到一个明显标记为红色的项目（`backbone-1.0.0.js`）。在我的项目文件夹中，我忘记下载\
+  \ Backbone 库文件了，因此浏览器无法加载该文件。请注意，我们是从本地文件系统加载文件，所以状态栏显示 `Success`（成功）或 `Failure`（失败）。如果这些文件是从真实的\
+  \ Web 服务器加载的，你将看到实际的 HTTP 状态码，例如成功下载文件的 `200 OK` 或文件缺失的 `404 Not Found`。\n\n###\
+  \ 脚本拼写错误\n\n也许你在从书中复制脚本时出现了拼写错误。如果你因不正确的 JavaScript 而遇到任何问题，它们将显示在 **Console** 选项卡中，如下面的截图所示：\n\
+  \n![The script typo](img/5668OS_03_03.jpg)\n\n在我的例子中，我忘记了用 Backbone 事件类扩展我的对象的那行代码。遗漏\
+  \ `extend` 那行代码导致对象缺少一些功能，具体来说是 `on()` 方法。请注意控制台如何显示错误所在的文件名和行号。\n\n请随意删除和添加文件中的代码并刷新页面，以感受控制台中错误的样子。这是熟悉调试基于\
+  \ Backbone（实际上是任何 JavaScript）应用程序的好方法。\n\n以下部分将指导你构建一个简单的联系人管理器应用。你将编写不同类型的代码，根据代码的用途将代码组织到不同的文件和目录中。\n\
+  \n## Models and Collections\n\n\n\n\n集合代表数据库表，而模型代表该表中的单个行。在我们的应用程序中，我们将把一堆人的联系信息存储在通讯录中。我们将拥有一个用于所有联系人的\
+  \ `contacts` 集合，以及集合中每个人对应的不同 `contact` 模型。\n\n### 步骤 1 – 创建一些文件和文件夹\n\n在我们的 `scripts`\
+  \ 目录中创建两个新目录，一个名为 `models`，另一个名为 `collections`。\n\n创建一个名为 `scripts/models/contact.js`\
+  \ 的新文件。\n\n创建一个 `scripts/collections/contact.js` 文件。\n\n### 步骤 2 – 更新主脚本\n\n用以下代码替换\
+  \ `scripts/main.js` 中的所有代码：\n\n```\nvar App = {\n  Models: {},\n  Collections: {},\n\
+  \  Contacts: null\n};\n\n$(function() { // 当 DOM 准备就绪时运行此代码\n  window.tom = new\
+  \ App.Models.Contact({\n    firstName: 'Thomas',\n    lastName: 'Hunter',\n    phoneNumber:\
+  \ '9895135499',\n    email: 'me@thomashunter.name'\n  });\n\n  App.Contacts = new\
+  \ App.Collections.Contact();\n\n  App.Contacts.add(window.tom);\n\n  App.Contacts.add({\n\
+  \    firstName: 'Rupert',\n    lastName: 'Styx',\n    phoneNumber: '9895551212',\n\
+  \    email: 'rupertstyx@example.com'\n  });\n\n  App.Contacts.add({});\n\n  var\
+  \ contactListing = '';\n  App.Contacts.each(function(contact) {\n    contactListing\
+  \ += \"<div>\" +\n    contact.get('firstName') + \" \" +\n    contact.get('lastName')\
+  \ + \" \";\n\n    if (contact.isValid()) {\n      contactListing += \"(valid)\"\
+  ;\n    } else {\n      contactListing += \"(invalid)\";\n    }\n    \n    contactListing\
+  \ += \"</div>\";\n  });\n  $('#display').html(contactListing);\n\n});\n```\n\n###\
+  \ 步骤 3 – 更新文档\n\n在 `index.html` 文档中，靠近结束标签 `</body>` 处现有的 `<script>` 标签之后，添加以下两个\
+  \ script 标签：\n\n```\n<script src=\"scripts/models/contact.js\"></script>\n<script\
+  \ src=\"scripts/collections/contact.js\"></script>\n```\n\n### 步骤 4 – 更新 Contact\
+  \ 模型\n\n将以下代码添加到 `scripts/models/contact.js` 文件中：\n\n```\nApp.Models.Contact = Backbone.Model.extend({\n\
+  \  defaults: {\n    firstName: '',\n    lastName: '',\n    phoneNumber: '<UNLISTED>',\n\
+  \    email: '<UNLISTED>'\n  },\n\n  validate: function(attrs, options) {\n    if\
+  \ (!attrs.firstName) {\n      return \"A valid contact must have a first name\"\
+  ;\n    }\n  },\n\n  initialize: function(attributes) {\n    var firstName = attributes.firstName\
+  \ || '<EMPTY>';\n    var lastName = attributes.lastName || '<EMPTY>';\n    console.log(\"\
+  Initializing a new contact model for '\" +\n      firstName + \" \" + lastName +\
+  \ \"'.\"\n    );\n  }\n});\n```\n\n### 步骤 5 – 更新 Contact 集合\n\n将以下代码添加到 `scripts/collections/contact.js`：\n\
+  \n```\nApp.Collections.Contact = Backbone.Collection.extend({\n  model: App.Models.Contact\n\
+  });\n```\n\n### 步骤 6 – 刷新浏览器\n\n完成前面代码的添加后，刷新浏览器窗口。你应该会在浏览器中看到以下屏幕：\n\n![步骤 6 –\
+  \ 刷新浏览器](img/5668OS_04_01.jpg)\n\n运行此代码后，我们成功创建了集合和模型对象，然后实例化了一个集合并用三个不同的模型填充它。我们还遍历了集合中的每一项，就像处理数据库结果一样，并将它们逐个显示在屏幕上。\n\
+  \n### 检查 `scripts/main.js`\n\n让我们看看 `scripts/main.js`。该文件包含我们的应用程序引导代码：\n\n```\n\
+  var App = {\n  Models: {},\n  Collections: {},\n  Contacts: null\n};\n```\n\n这段代码创建了一个名为\
+  \ `App` 的全局对象，包含三个属性。前两个 `Models` 和 `Collections` 是空对象，将包含我们分别扩展了 Backbone Model\
+  \ 和 Collection 对象的 `Model` 和 `Collection` 对象。可以将它们视为稍后创建可供我们使用的实例的模板。在 JavaScript\
+  \ 中没有类，只有对象，但这些对象将包含我们将假装为类的对象。\n\n第三个属性 `Contacts` 是我们实际存储主 Contact 集合实例的地方。因为我们永远只需要一个，且全局访问很方便，所以我们将其赋值于此。注意，我们不以这种方式跟踪单个\
+  \ Contact 模型实例。\n\n创建一个名为 `App` 的全局对象实际上并不是 Backbone 所要求的。这是我使用的一种约定，以便稍后可以从不同的脚本与该全局对象交互。如果你在单个文件中创建整个应用程序，只需创建临时局部变量来指向这些对象即可。\n\
+  \n```\n$(function() { // 当 DOM 准备就绪时运行此代码\n```\n\n`main.js` 中的下一段代码在 DOM 加载后执行。原因是一种两难境地（catch\
+  \ 22）。我们在调用 `main.js` 后实例化的不同 `Model` 和 `Collection` 文件需要访问全局 `App` 变量。我们 `main.js`\
+  \ 中的大部分需要 `Collections` 和 `Models` 对象已附加到全局 `App` 对象上。在 DOM 加载后运行代码可确保 `Model` 和\
+  \ `Collection` 脚本先加载，我们永远不会遇到未初始化变量的问题。\n\n```\n  window.tom = new App.Models.Contact({\n\
+  \    firstName: 'Thomas',\n    lastName: 'Hunter',\n    phoneNumber: '9895135499',\n\
+  \    email: 'me@thomashunter.name'\n  });\n```\n\n这里我们创建了一个 Contact Model 代码的实例。实例化对象时，我们传入一个简单对象，它将被转换为更复杂的\
+  \ Backbone 模型。注意我是如何创建一个名为 `tom` 的全局变量的。这样做的原因是我们可以在 Web Inspector 中轻松检查它。\n\n要查看对象的样子，打开你的\
+  \ `Console`，只需输入 `tom`，然后按 `Enter`。你可以展开一些属性来查看对象的样子，如下截图所示：\n\n![步骤 6 – 刷新浏览器](img/5668OS_04_02.jpg)\n\
+  \n正如你所见，Backbone 为我们添加了大量数据。Backbone 使用这些数据来帮助跟踪我们更改的内容、事件绑定、当我们准备持久化时发送到服务器的数据等。\n\
+  \n这里最有趣的部分是 `attributes` 属性，它包含我们之前添加的所有简单数据。你可以通过运行 `tom.attributes.firstName`\
+  \ 来访问此信息，但按照惯例，你应该通过运行 `tom.get('firstName')` 来访问它。\n\n```\nApp.Contacts = new App.Collections.Contact();\n\
+  ```\n\n前面这行代码创建了一个全局可访问的 Contact Collection 实例，并赋值给 `App.Contacts`。稍后在我们的应用程序中，当我们想要处理不同的联系人时，只需输入\
+  \ `App.Contacts` 即可。\n\n```\n  App.Contacts.add(window.tom);\n\n  App.Contacts.add({\n\
+  \    firstName: 'Rupert',\n    lastName: 'Styx',\n    phoneNumber: '9895551212',\n\
+  \    email: 'rupertstyx@example.com'\n  });\n\n  App.Contacts.add({});\n```\n\n\
+  前面的代码行向我们的 Contact Collection 添加了三个不同的联系人。第一个获取我们预先创建的 Model 实例并将其添加到集合中。\n\n第二个从我们提供的简单对象中为我们隐式创建了一个新模型。显然，这样做可以节省几行代码。然而，有时你希望在将数据插入\
+  \ Collection 之前对其执行一些特定于模型的操作。也许你想先执行一些验证。在这些情况下，提前创建模型；否则，就用这种方式。\n\n第三个也隐式创建了一个新模型，但请注意，没有设置任何属性。我们添加这个空\
+  \ Model 是为了稍后查看验证和默认值是如何工作的。\n\n\n\n\n"
+- "# 视图与模板\n\n视图代表一个 DOM 元素，以及该元素内的子元素。模板是一堆嵌入了特殊语法的 HTML，它允许你轻松创建视图。\n\n模板需要以某种形式供你的脚本访问。从技术上讲，它们只是一串文本。向脚本提供模板的最常用方法是通过\
+  \ `<script>` 标签将它们嵌入主 SPA 的 DOM 中。这可能会让你感到惊讶，因为 `<script>` 标签通常用于加载 JavaScript。然而，那个\
+  \ `type` 属性是有原因的。几年前，为 Internet Explorer 执行而嵌入 Visual Basic 脚本并不罕见，也许有一天我们会看到浏览器直接执行\
+  \ Dart。\n\n只需指定一个浏览器未曾听闻的类型，浏览器就不会尝试执行 `<script>` 标签内的代码。通过在 `<script>` 标签上提供 `id`\
+  \ 属性，我们可以使用代码访问其内容。我们不将模板代码存储在隐藏的 `textarea` 中，是因为模板中的双引号需要转义，这有点麻烦。我们也不将模板作为隐藏元素存储在\
+  \ DOM 中，因为用未使用的模板元素使 DOM 变得复杂是没有必要的。\n\n在使用视图时，我们将利用 Underscore.js 内置的模板渲染功能。此模板渲染器受\
+  \ Ruby ERB 语法启发。如果你的 HTML 包含 `<%= variable %>`，它将打印出变量的值。如果你想转义该代码以防止 HTML 注入，请使用\
+  \ `<%- variable %>`。你甚至可以通过使用 `<% expression() %>` 来运行任意 JavaScript 代码。\n\n## 步骤\
+  \ 1 – 创建一些文件和文件夹\n\n在 `scripts` 中创建一个名为 `views` 的新目录，以及两个新文件 `scripts/views/contact.js`\
+  \ 和 `scripts/views/directory.js`。\n\n## 步骤 2 – 更新联系人视图\n\n将以下代码添加到 `scripts/views/contact.js`：\n\
+  \n```javascript\nApp.Views.Contact = Backbone.View.extend({\n  template: _.template($('#template-contact').html()),\n\
+  \  $container: null,\n\n  initialize: function(options) {\n    _.bindAll(this, 'render',\
+  \ 'insert');\n\n    this.$container = options.$container;\n\n    this.listenTo(this.model,\
+  \ 'change', this.render);\n    this.insert();\n  },\n\n  render: function() {\n\
+  \    this.$el.html(this.template(this.model.attributes));\n\n    return this;\n\
+  \  },\n\n  insert: function() {\n    this.$container.append(this.$el);\n  }\n});\n\
+  ```\n\n## 步骤 3 – 更新目录视图\n\n将以下代码添加到 `scripts/views/directory.js`：\n\n\n\n\n\n##\
+  \ 步骤 4 – 更新文档\n\n将以下代码添加到 `index.html` 中，位于现有的 `<div>` 标签之后：\n\n```\n<script id=\"\
+  template-contact\" type=\"template\">\n  <div class=\"contact\">\n    <h2><%-firstName%><%\
+  \ if (lastName) { %> <%-lastName%><% } %></h2>\n    <a href=\"mailto:<%-email%>\"\
+  ><%-email%></a><br />\n    <a href=\"tel:<%-phoneNumber%>\"><%-phoneNumber%></a><br\
+  \ />\n    <button class=\"delete\">Delete</button>\n  </div>\n</script>\n```\n\n\
+  此外，将以下代码添加到 `index.html` 中，位于结束标签 `</body>` 之后现有的 `<script>` 标签之后：\n\n```\n<script\
+  \ src=\"scripts/views/contact.js\"></script>\n<script src=\"scripts/views/directory.js\"\
+  ></script>\n```\n\n## 步骤 5 – 更新主脚本\n\n更新 `main.js` 中的 `App` 对象，使其如下所示：\n\n```\n\
+  var App = {\n  Models: {},\n  Collections: {},\n  Views: {},\n  Contacts: null,\n\
+  \  Directory: null\n};\n```\n\n另外，在 `main.js` 中，移除添加空联系人的代码，以及遍历联系人并将它们显示在 DOM 中的代码。\n\
+  \n用以下新代码替换这些代码：\n\n```\n  App.Directory = new App.Views.Directory({\n    el: $('#display')\n\
+  \  });\n\n  App.Directory.render();\n\n  App.Contacts.on('add remove', function()\
+  \ {\n    App.Directory.render();\n  });\n```\n\n## 步骤 6 – 刷新浏览器\n\n添加完所有新代码后，回到浏览器并刷新页面。你应该会看到类似下面截图的内容：\n\
+  \n![步骤 6 – 刷新浏览器](img/5668OS_04_03.jpg)\n\n正如你所见，尽管我们只有一个 Collection 和一个 Model，但现在这个应用程序中已经使用了两个\
+  \ View。在你的 Backbone 应用程序中，这种情况会经常发生；不同类型的类之间不一定存在一对一的映射关系。在我们的代码中，Directory View\
+  \ 代表我们的主应用程序视图。它将始终代表单个元素，该元素将始终存在于页面中。然而，Contact View 可能根本不存在，也可能存在多个。\n\n我们再次详细查看代码。首先让我们看看\
+  \ `scripts/views/contact.js`。这段代码与我们单个的 Contact View 相关。\n\n```\nApp.Views.Contact\
+  \ = Backbone.View.extend({\n```\n\n同样，我们首先扩展相应的内置 Backbone 对象。\n\n```\n  template:\
+  \ _.template($('#template-contact').html()),\n  $container: null,\n```\n\n`template`\
+  \ 属性是用于存储模板对象的 Backbone 惯例。在这种情况下，你可以看到我们正在 DOM 中搜索一个标识为 `#template-contact` 的元素（即我们之前添加的\
+  \ `<script>` 标签），然后获取其中包含的 HTML。接着我们将此 HTML 传递给 `_.template` 方法，该方法会解析字符串并对其进行一些处理，有点像编译模板。这样，消耗\
+  \ CPU 的计算只需执行一次，我们稍后就可以重复使用它。\n\n`$container` 属性将指向我们的 Contact View 所在的容器元素。这不是\
+  \ Backbone 惯例，只是一个方便的方法。\n\n```\n  initialize: function(options) {\n    _.bindAll(this,\
+  \ 'render', 'insert');\n\n    this.$container = options.$container;\n\n    this.listenTo(this.model,\
+  \ 'change', this.render);\n    this.insert();\n  },\n```\n\n每次实例化此视图时都会运行 `initialize()`\
+  \ 方法，因此它类似于许多基于类的语言中的构造函数。实例化类时可以传入额外参数。正如你在前面的代码中所见，我们将此参数称为 `options`，尽管这不一定是\
+  \ Backbone 惯例。\n\n`_.bindAll()` 方法是一个便捷函数，用于快速指定我们希望重新绑定的该对象的其他方法。前面的代码将 `this`\
+  \ 重新绑定为指向整个 View 对象，而不是仅指向正在使用它的局部方法（`render()` 或 `insert()`）。\n\n我们传入 View 对象的选项之一是它们应被添加到的容器元素，因此我们获取此元素并将其作为\
+  \ `$container` 分配给我们的类，以便稍后引用。\n\n调用 `listenTo()` 的那一行是真正神奇之处的开始。实例化 View 时，我们可以传入一个\
+  \ `model` 属性，该属性随后会被分配为该视图的模型（Backbone 会自动处理此分配；我们不必在 `initialize` 方法中手动执行）。然后，View\
+  \ 会向模型添加一个事件处理程序，以便每当该模型的数据更新时，View 都会收到通知并执行 `render()` 方法。这非常有用，避免了我们在每个可能更新数据的地方都编写临时的\
+  \ DOM 更新代码。\n\n之后，我们运行 `insert()` 方法，它会将我们的元素插入到容器中。我们不在 `render()` 方法中执行此操作，因为我们不想不必要地反复将元素插入容器中！\n\
+  \n```\n  render: function() {\n    this.$el.html(this.template(this.model.attributes));\n\
+  \n    return this;\n  },\n```\n\n这是 `render()` 方法，是 Backbone 的一项惯例。每当我们希望 View 更新其\
+  \ DOM 元素时，就会执行此方法。在我们的示例中，我们只需获取模型的属性（还记得之前检查过它吗？那是存储模型数据的地方），将其传递给本地缓存的模板，获取生成的\
+  \ HTML，并将其赋值给 View 对象上的 `$el` 属性。`$el` 是用于存储当前 View 的 DOM 元素引用的 Backbone 惯例。最后我们返回对象引用以便于链式调用。\n\
+  \n```\n  insert: function() {\n    this.$container.append(this.$el);\n  }\n```\n\
+  \n这段代码只是将我们的元素追加到容器元素中。如果我们每次运行 `render()` 都运行这段代码，我们的元素会不断地乱序跳动。\n\n接下来我们将注意力转移到\
+  \ `scripts/views/directory.js`。这段代码与我们的主应用程序视图相关。\n\n```\nApp.Views.Directory =\
+  \ Backbone.View.extend({\n  initialize: function() {\n    _.bindAll(this, 'render');\n\
+  \  },\n```\n\n这些都应该是不言自明的。我们扩展 Backbone View 对象，并有一个仅处理绑定 `this` 变量的 `initialize`\
+  \ 函数。\n\n```\n  render: function() {\n    var $container = this.$('.listing').empty();\n\
+  ```\n\n此视图中的 `render()` 方法做的第一件事是清空现有元素。第一次运行此函数时，它将移除我们的 `Houston, we have a problem`\
+  \ 文本。后续调用将移除各个联系人视图的标记。\n\n```\n    App.Contacts.each(function(contact) {\n    \
+  \  new App.Views.Contact({\n        model: contact,\n        $container: $container\n\
+  \      }).render();\n    });\n```\n\n这段代码获取我们的 Contact Collection 并遍历每个单独的联系人。在此过程中，我们为该联系人实例化一个新的\
+  \ View。我们传入的 `model` 属性是我们从 Collection 中遍历出的模型。我们还传入了对该视图主元素的引用，它将作为我们子视图的 `$container`。\n\
+  \n一旦我们的 View 被实例化，我们立即运行它们的 `render()` 方法，它们就会在 DOM 中变得可见。\n\n接下来我们将查看 `scripts/main.js`。这些更改为我们提供了一种更好的方式来遍历联系人并将它们显示在\
+  \ DOM 中。\n\n```\nvar App = {\n  Models: {},\n  Collections: {},\n  Views: {},\n\
+  \  Contacts: null,\n  Directory: null\n};\n```\n\n\n\n"
+- "# Backbone.js 应用程序教程\n\n## 全局 App 对象与 Directory 视图\n\n我们的全局 `App` 对象获得一个 `Views`\
+  \ 属性，用于存储对视图的引用。`Directory` 属性是对主应用程序视图实例的引用。由于只有一个实例且它相当重要，拥有全局引用使其更易于操作（并在控制台中调试）。\n\
+  \n```\nApp.Directory = new App.Views.Directory({\n  el: $('#display')\n});\n```\n\
+  \n此代码执行 `Directory` 视图实例化，传入对现有 DOM 元素的引用，我们希望视图附加到该元素。\n\n```\nApp.Directory.render();\n\
+  ```\n\n实例化 `Directory` 视图后，我们继续执行 `render()` 函数，这最终会运行 Contacts 集合中每个 Contact 的\
+  \ `render()` 函数。\n\n```\nApp.Contacts.on('add remove', function() {\n  App.Directory.render();\n\
+  });\n```\n\n此代码向 Contacts 集合添加两个事件监听器，当 Contact 被添加或移除时触发。使用此语法，我们可以指定任意数量的事件，用空格分隔。事件触发时，Directory\
+  \ 重新渲染，显示更新后的内容。\n\n这意味着，每当我们添加或移除项目时，DOM 会自动为我们更新！这在很大程度上减少了临时的 jQuery 调用和混乱的代码。\n\
+  \n最后我们来看 `index.html`。这些更改反映了新的模板 `<script>` 标签，以及一些用于加载新文件的 `<script>` 标签。\n\n\
+  ```\n<script id=\"template-contact\" type=\"template\">\n```\n\n在 `<script>` 标签中存储\
+  \ HTML 使得访问内容更加容易，无需处理转义问题。`id` 属性给我们提供了一个引用代码的句柄。最好用通用的命名空间为模板元素添加前缀，在本例中我们将它们全部称为\
+  \ `#template-`。否则，我们稍后可能会添加一个名为 `#contact` 的元素并导致混淆。`type` 属性设置为 `template`，这是浏览器无法识别的语言，因此会忽略它。\n\
+  \n```\n<div class=\"contact\">\n  <h2><%-firstName%><% if (lastName) { %> <%-lastName%><%\
+  \ } %></h2>\n```\n\n### 注意\n\n最好始终用单个元素包裹模板，而不是让多个顶级元素相邻。这样，当我们稍后从 DOM 中删除视图时，只需移除一个元素，因为子元素会自动被移除。\n\
+  \n这里我们打印联系人的名字变量，然后检查是否有姓氏。如果有，我们也打印姓氏；否则不做任何操作。\n\n如果您以前使用过其他模板语言，您可能已经知道这一点：请务必不要在\
+  \ View 文件中放入大量逻辑，否则它们可能会变得难以控制。将应用程序分解为模型和视图等不同部分的最大好处是，我们保持了代码类型归属的明显区分，而视图中的大量逻辑会破坏这一点。可以运行的类型包括简单的循环和条件语句，也许还有一些减少重复编写标记的辅助风格函数等。\n\
+  \n```\n<a href=\"mailto:<%-email%>\"><%-email%></a><br />\n<a href=\"tel:<%-phoneNumber%>\"\
+  ><%-phoneNumber%></a><br />\n```\n\n这两行将电子邮件地址和电话号码显示为可点击的链接，分别告诉设备发送电子邮件或拨打电话。这里没有什么特别的，我们只是利用了传统的浏览器锚标签前缀。\n\
+  \n```\n<button class=\"delete\">Delete</button>\n</div>\n</script>\n```\n\n这里有一个用于联系人的\
+  \ **删除** 按钮；不过，它目前是无功能的。然后我们关闭 `View` 元素和包含它的 `<script>` 标签。\n\n## 事件监听器示例\n\n既然您已经看到了基于我们最初输入的数据渲染的页面文档，看到\
+  \ Backbone 的动态特性以及我们如何稍后更新数据并查看生成的 DOM 变化将会非常不错。\n\n在联系人 View 的 `initialize()` 函数中，我们运行了\
+  \ `this.listenTo()` 方法，它会在重新执行 `render()` 方法之前查找模型的变化。要查看此操作，请打开控制台，然后输入并执行以下命令：\n\
+  \n```\nApp.Contacts.get('c1').set('lastName', 'Wiggum');\n```\n\n您应该立即看到文档发生变化。第一个联系人的姓氏已更改为\
+  \ **Wiggum**！此变化同时反映在 Model 和 DOM 本身中。您不必运行任何临时的 jQuery 命令！\n\n### 注意\n\n`c1` 是\
+  \ Backbone 的约定，用于引用集合的第一项。有更好的方法引用这些对象，例如真实的 ID 值或在创建时保持对 Model 的引用。\n\n在我们的主 JavaScript\
+  \ 文件中，我们向 Contacts 集合添加了事件监听器，以便每当添加新联系人时，运行 Directory View 的 `render()` 方法。要证明这有效，请在\
+  \ JavaScript 控制台中输入并执行以下命令：\n\n```\nApp.Contacts.add({\n  firstName: 'Wednesday',\n\
+  \  lastName: 'Addams',\n  phoneNumber: '9895551313',\n  email: 'wednesday@example.com'\n\
+  });\n```\n\n### 提示\n\n如果您想在控制台中输入命令的多行，请在每个命令后按 *Shift* + *Enter*，因为按 *Enter* 将执行未完成的命令。\n\
+  \n您应该会看到文档立即更新并显示新联系人！\n\n最后，如果您想查看移除联系人时会发生什么，可以在控制台中运行以下命令：\n\n```\nApp.Contacts.pop();\n\
+  ```\n\n随 Underscore.js 提供的模板渲染引擎相当不错。如果您喜欢大于号、小于号和百分号，您会喜欢它。但是，如果您喜欢不同的语法，我建议研究一个名为\
+  \ Mustache 的替代模板引擎。\n\nMustache 引擎使用大括号定义变量，并且方便地在几种流行的编程语言中拥有实现库，例如 PHP 和 Ruby。这很方便，因为作为开发人员，您可以学习单一模板引擎并在任何地方使用。\n\
+  \n许多其他替代引擎也存在，例如 Handlebars（与 Mustache 非常相似）和 HAML（具有非常简洁的语法，可轻松创建复杂的 HTML 文档）。\n\
+  \n## View 事件\n\n事件是一种在视图中获取用户交互并在发生时运行代码的方法。事件使用类似 `click .controls .add` 的语法指定。字符串的第一部分（直到第一个空白字符）是我们要查找的事件类型，在本例中是\
+  \ `click` 事件。其后的所有内容都是选择器。\n\n以我们前面的示例为例，如果我们使用传统的 jQuery 调用，我们可能会搜索位于具有 `controls`\
+  \ 类的元素内的每个具有 `add` 类的元素，并添加 `click` 事件处理程序。这有两个问题。首先，随着 DOM 的变化，我们需要再次运行此代码；否则，与选择器匹配的新元素将被遗漏。其次，我们可能会在页面上同时拥有数百个事件监听器，导致页面变慢。\n\
+  \n请记住，视图指向 DOM 中的单个元素，即使该元素可能包含更多元素。事件绑定应用于主元素，并使用称为事件委托的机制来检查何时调用了适当的事件。因此，对于前面的示例事件，整个视图监听其任何子元素上的\
+  \ `click` 事件。发生该事件时，触发事件的元素将与选择器进行匹配。如果通过，则执行我们的代码；否则，将其忽略。\n\n### 步骤 1 – 准备工作\n\
+  \n\n\n在正式开始编码前，我们先讨论应用程序应具备的功能，并梳理代码的职责划分。我们需要实现向目录添加新联系人的功能。添加条目这一操作不属于某个特定联系人，而是针对整个目录的。因此，我们将“Add\
+  \ New Contact”按钮放置在 `Directory` 视图中。同时，我们也需要支持删除现有联系人。删除操作显然是针对单个联系人的，因为每个联系人都需要专属的删除按钮。因此，我们将在\
+  \ `Contact` 视图中添加删除按钮。\n\n### 步骤 2：更新文档\n\n使用以下代码更新 `index.html` 文件。将其置于 `div#display`\
+  \ 内部，`div.listing` 之前：\n\n```\n<div class=\"controls\">\n  <button class=\"add\"\
+  >Add New Contact</button>\n  <form method=\"\" action=\"\" style=\"display: none;\"\
+  >\n    <input type=\"text\" placeholder=\"First Name\" class=\"firstName\" /><br\
+  \ />\n    <input type=\"text\" placeholder=\"Last Name\" class=\"lastName\" /><br\
+  \ />\n    <input type=\"text\" placeholder=\"Email\" class=\"email\" /><br />\n\
+  \    <input type=\"text\" placeholder=\"Phone\" class=\"phoneNumber\" /><br />\n\
+  \    <input type=\"submit\" value=\"Save Contact\" />\n  </form>\n</div>\n```\n\n\
+  ### 步骤 3：更新 Contact 视图\n\n在 `initialize` 方法之前，按如下方式更新 `scripts/views/contact.js`\
+  \ 文件：\n\n```\nevents: {\n  'click .delete': 'remove'\n},\n```\n\n此外，在主 View 对象末尾新增一个方法（需在前面的\
+  \ `insert()` 方法后添加一个尾随逗号）：\n\n```\nremove: function() {\n  this.model.destroy();\n\
+  }\n```\n\n确保更新 `initialize` 中的 `_.bindAll()` 调用，使其包含 `remove` 方法：\n\n```\n_.bindAll(this,\
+  \ 'render', 'insert', 'remove');\n```\n\n### 步骤 4：更新 Directory 视图\n\n通过在主 View 对象顶部附近添加以下代码（在\
+  \ `initialize` 方法之前）来更新 `scripts/views/directory.js` 文件：\n\n```\nevents: {\n  'click\
+  \ .controls .add': 'addForm',\n  'submit .controls form': 'addSubmit'\n},\n```\n\
+  \n同样在该文件中，在现有的 `render()` 方法之后、主 View 对象末尾添加以下方法（别忘了在 `render` 闭合大括号后添加尾随逗号）：\n\n\
+  ```\naddForm: function() {\n  this.$('.controls form').show()\n    .find('input.firstName').focus();\n\
+  },\n\naddSubmit: function(event) {\n  event.preventDefault();\n  var $form = this.$('.controls\
+  \ form');\n\n  var newContact = new App.Models.Contact({\n    firstName: $('input.firstName',\
+  \ $form).val(),\n    lastName: $('input.lastName', $form).val(),\n    phoneNumber:\
+  \ $('input.phoneNumber', $form).val(),\n    email: $('input.email', $form).val()\n\
+  \  });\n\n  if (newContact.isValid()) {\n    App.Contacts.add(newContact);\n   \
+  \ $form.hide();\n    $('input[type=text]', $form).val('').blur();\n  } else {\n\
+  \    alert(newContact.validationError);\n  }\n}\n```\n\n确保也将 `addSubmit` 和 `addForm`\
+  \ 添加到 `initialize` 中的 `_.bindAll()` 调用中：\n\n```\n_.bindAll(this, 'render', 'addForm',\
+  \ 'addSubmit');\n```\n\n我们所做的更改使我们能够使用标准表单控件与联系人 Collection 进行交互。\n\n让我们看看 `index.html`：\n\
+  \n```\n<div class=\"controls\">\n  <button class=\"add\">Add New Contact</button>\n\
+  ```\n\n新的 `div.controls` 元素将包含应用程序中创建新联系人的所有控件和输入框。该按钮用于切换添加联系人表单的可见性。\n\n```\n\
+  <form method=\"\" action=\"\" style=\"display: none;\">\n```\n\n这里的 `<form>` 标签实际上不会向服务器提交任何内容，因此我们可以将\
+  \ `method` 和 `action` 属性留空。我们只是想利用它来捕获用户尝试提交新数据的时机。记住，用户通常有两种提交表单的方式：一种是按 *Enter*\
+  \ 键，另一种是点击 **Submit** 按钮。\n\n### 提示\n\n作为一个通用的 JavaScript 和 HTML 专业建议，不要添加监听按钮点击或按键的事件，并尝试检测\
+  \ *Enter* 键是否被按下。\n\n首先，你是在处理两种不同的用户操作。其次，用户可能通过其他方式提交表单，例如屏幕阅读软件或移动设备，这些设备的键盘上附有特殊的提交表单按钮。\n\
+  \n我们希望表单默认隐藏，所以我添加了一些内联 CSS 来实现隐藏（如果这是一个真实的应用程序，你会使用外部 CSS 文件来处理这个问题，但我为了简洁起见将其保留为内联）。\n\
+  \n```\n<input type=\"text\" placeholder=\"First Name\" class=\"firstName\" /><br\
+  \ />\n<input type=\"text\" placeholder=\"Last Name\" class=\"lastName\" /><br />\n\
+  <input type=\"text\" placeholder=\"Email\" class=\"email\" /><br />\n<input type=\"\
+  text\" placeholder=\"Phone\" class=\"phoneNumber\" /><br />\n```\n\n这些是用户输入信息的输入框。注意我添加了\
+  \ `type` 属性并将其设置为 `text`。通常这是自动完成的，但如果省略，代码中其他地方用于清除元素的选择器将无法正确定位这些元素。\n\n```\n\
+  <input type=\"submit\" value=\"Save Contact\" />\n</form>\n</div>\n```\n\n当然，我们需要一个提交按钮，以便在表单提交时运行我们的代码。没有这个按钮，按\
+  \ *Enter* 键将不会提交表单。当然，我们也需要结束表单和 View 元素标签。\n\n接下来我们看 `scripts/views/contact.js`：\n\
+  \n```\nevents: {\n  'click .delete': 'remove'\n},\n```\n\nView 对象上的 `events` 属性是\
+  \ Backbone 的一种约定，用于指定监听哪些事件以及触发时执行哪些方法。该属性是一个对象，包含每个被监听事件的不同键值对。键代表特殊的事件委托语法，值是一个字符串，包含要执行的方法名称。\n\
+  \n在这种情况下，当具有 `delete` 类的元素被点击时，将执行 `remove` 方法。确保使用字符串来表示方法名称，而不是对方法的实际引用，如 `this.remove`。\n\
+  \n当事件触发且代码执行时，传递给方法的第一个参数将是事件对象，你可以对其进行进一步检查（例如，如果你想确切知道 View 中哪个元素触发了该事件）。\n\n\
+  ```\nremove: function() {\n  this.model.destroy();\n}\n```\n\n这段代码将在 Model 上执行 `destroy()`\
+  \ 方法。此方法由 Backbone 提供，用于对数据执行删除操作。它不仅会删除模型，还会将其从 collection 中移除。\n\nBackbone 实际上足够智能，能更进一步。当这段代码执行时，它甚至会为我们从\
+  \ DOM 中移除相关的联系人元素。打开 Chrome 的 Element Inspector，导航到 `.listing` 元素，在删除（和添加）元素时留意\
+  \ DOM 变化，亲眼见证这一过程。\n\n然后我们看 `scripts/views/directory.js`：\n\n```\nevents: {\n  'click\
+  \ .controls .add': 'addForm',\n  'submit .controls form': 'addSubmit'\n},\n```\n\
+  \n这段代码为我们的 Directory View 添加了两个不同的事件监听器。由于 **Add New Contact** 按钮只是切换联系人表单的可见性，而提交联系人表单才是真正的工作，因此我们需要两个单独的事件。\n\
+  \n```\naddForm: function() {\n  this.$('.controls form').show()\n    .find('input.firstName').focus();\n\
+  },\n```\n\n\n\n\n`addForm()` 方法使输入表单可见。我们使用了一点 jQuery 函数链式调用来实现这一切。首先，我们选择当前 View\
+  \ 中 `.controls` 元素内的表单元素。然后运行 jQuery `show()` 方法，使该元素可见（换句话说，它禁用了 `<form>` 标签上的内联\
+  \ CSS）。接下来我们查找 `firstName` 输入框（这是表单中的第一个输入框，很可能是用户想要输入的那个），并让 jQuery 将焦点放在该元素上。这让用户在点击按钮后可以立即开始输入。\n\
+  \n```\naddSubmit: function(event) {\n  event.preventDefault();\n  var $form = this.$('.controls\
+  \ form');\n}\n```\n\n我们通过获取事件（表单提交事件）并立即通过 `preventDefault()` 方法告诉浏览器停止其原本计划执行的操作来开始此方法。如果不这样做，表单仍会提交，我们的单页应用程序将被销毁。\n\
+  \n接下来，我们获取表单元素并将其缓存到局部变量中。该变量名为 `$form`，并不一定是 Backbone 的约定。通过用 `$` 符号作为前缀来标识那些使用\
+  \ jQuery 捕获的 DOM 元素引用变量，可以更容易地查看它们并知道它们包含什么类型的数据。Backbone 在某些地方也遵循此约定，例如 View 上的\
+  \ `$el` 属性。\n\n```\nvar newContact = new App.Models.Contact({\n  firstName: $('input.firstName',\
+  \ $form).val(),\n  lastName: $('input.lastName', $form).val(),\n  phoneNumber: $('input.phoneNumber',\
+  \ $form).val(),\n  email: $('input.email', $form).val()\n});\n```\n\n这里我们获取表单中的所有数据并将其传递给新实例化的\
+  \ `Contact` 模型。注意，当我们创建此模型时，尚未将其放入 Collection 中。它目前只是一个孤立的模型。\n\n```\nif (newContact.isValid())\
+  \ {\n  App.Contacts.add(newContact);\n  $form.hide();\n  $('input[type=text]', $form).val('').blur();\n\
+  } else {\n  alert(newContact.validationError);\n}\n```\n\n这就是我们获取用户的原始数据并将其添加到模型中，然后再检查错误的原因。我们将使用提供给模型的\
+  \ `isValid()` 方法来检查数据是否有效。\n\n如果发现模型有效，我们将其插入 `Contacts` 集合，隐藏表单，然后使用 jQuery 提供的\
+  \ `blur` 方法移除所有输入字段的焦点。如果不这样做，由于焦点仍在其中可能会发生奇怪的事情。\n\n如果发现模型无效，我们向用户显示错误消息。此消息是先前执行的\
+  \ `isValid()` 函数的结果。当然，如果这是真实的应用程序，您会希望以一种不那么侵入性的方式显示消息，例如在表单旁切换显示红色文本消息。\n\n###\
+  \ Note\n\n我遗漏了此应用程序功能中非常重要的一点。我们可以添加和删除联系人，但无法编辑它们！利用您迄今为止获得的关于 Backbone 的知识，尝试向此应用添加编辑功能。\n"
+- "# 基于 URL 的路由\n\n当用户在传统的请求/响应网站中导航时，他们完全期望后退和前进历史记录导航能够工作。由于传统网站的无状态特性，这很容易实现。浏览器只需跟踪之前请求的\
+  \ URL，并在用户请求时再次请求它们。\n\n使用 JavaScript 构建的单页应用程序是有状态的，将需要程序员干预以允许这种历史记录功能的表象。幸运的是，Backbone\
+  \ 提供了机制使此过程更容易。\n\n用户确实期望应用程序的 URL 在屏幕内容改变时发生变化。用户也希望与他人共享 URL，以及将这些 URL 加入书签以供稍后浏览。通常，传统\
+  \ Web 应用程序具有指向服务器上资源的 URL，以正斜杠开头。每次请求新页面时，服务器都会根据该 URL 响应一个全新的页面。\n\n长期以来，JavaScript\
+  \ 无法在不重定向用户到另一页面的情况下更改 URL，除非更改 `#` 符号后的 URL（通常称为锚点）。然而，有一个相对较新的 JavaScript API，允许在不需要锚点的情况下更改\
+  \ URL，只要用户保持在当前域内即可。这称为 `pushState`，与许多令人兴奋的 Web 技术一样，它仅在现代浏览器中可用，因此可能不符合您项目的标准。幸运的是，Backbone\
+  \ 可以使用任一方法，并为两者提供通用接口。\n\n当使用 `pushState` 时，当用户首次请求应用程序深处的页面时，浏览器将向服务器发出完整请求，因为它无法知道\
+  \ URL 是正常的服务器请求 URL，还是部分 URL 是使用 `pushState` 构建的。为了使这些请求正常工作，服务器端应用程序需要以考虑到这一点的方式构建。由于我们仍在使用本地文件系统在浏览器中构建此应用程序，我们将放弃使用\
+  \ `pushState`，改用传统的基于锚点的 URL（Backbone 的默认方式）。\n\n## Step 1 – 创建路由器脚本\n\n创建 `scripts/router.js`\
+  \ 文件并添加以下代码：\n\n```\nApp.Routers.Contact = Backbone.Router.extend({\n  routes: {\n\
+  \    'contacts': 'contacts',\n    'contacts/add': 'contactsAdd',\n    'contacts/remove/:id':\
+  \ 'contactsRemove'\n  },\n\n  contacts: function() {\n    App.Directory.render();\n\
+  \    App.Directory.addFormHide();\n  },\n\n  contactsAdd: function() {\n    App.Directory.addForm();\n\
+  \  },\n\n  contactsRemove: function(id) {\n    App.Contacts.remove(id);\n    App.Directory.addFormHide();\n\
+  \  }\n});\n```\n\n## Step 2 – 更新文档\n\n更新 `index.html`，在加载 `scripts/main.js` 之后添加以下行，以便我们可以访问这个新脚本文件：\n\
+  \n```\n<script src=\"scripts/router.js\"></script>\n```\n\n## Step 3 – 更新主脚本\n\n\
+  更新 `scripts/main.js`，使主 `App` 对象拥有两个更多的键，如下所示（不要忘记尾随逗号）：\n\n```\nvar App = {\n \
+  \ …,\n  Routers: {},\n  Browser: null\n};\n```\n\n同样在 `scripts/main.js` 中，在我们的 document-ready\
+  \ 函数末尾添加以下两行：\n\n```\nApp.Browser = new App.Routers.Contact;\nBackbone.history.start();\n\
+  ```\n\n## Step 4 – 更新 Contacts 视图\n\n更新 `scripts/views/contact.js`，在 `remove()`\
+  \ 方法开头添加以下代码行：\n\n```\nApp.Browser.navigate('contacts/remove/' + this.model.cid);\n\
+  ```\n\n## Step 5 – 更新 Directory 视图\n\n更新 `scripts/views/directory.js`，在 `addForm()`\
+  \ 方法开头添加以下代码行：\n\n```\nApp.Browser.navigate('contacts/add');\n```\n\n此外，在现有 `addForm()`\
+  \ 方法之后向目录视图文件添加此新方法：\n\n```\naddFormHide: function() {\n  App.Browser.navigate('contacts');\n\
+  \  this.$('.controls form').hide();\n},\n```\n\n请务必将 `addFormHide` 添加到此对象 `initialize()`\
+  \ 方法中的 `bindAll()` 调用中：\n\n```\n_.bindAll(this, 'render', 'addForm', 'addSubmit',\
+  \ 'addFormHide');\n```\n\n让我们也快速重构一下 `addSubmit()` 方法。将包含 `$form.hide()` 的代码行替换为以下代码行：\n\
+  \n```\nthis.addFormHide();\n```\n\n执行这些步骤后，重新加载网页。在应用程序上执行一些不同的操作，例如添加新联系人、删除联系人等。注意\
+  \ URL 在您执行不同操作时如何变化。\n\n\n\n\n现在，点击按钮添加新联系人，在表单显示时，完全刷新页面。或者更好的是，复制 URL，关闭浏览器窗口，然后在另一个新的浏览器窗口中打开该\
+  \ URL。注意当页面加载时添加联系人表单是如何显示的！虽然我们的应用程序相当简单，但这将允许共享我们的 URL 以及将 URL 加入书签。\n\n### `scripts/router.js`\n\
+  \n让我们首先看看 `scripts/router.js`：\n\n```\nApp.Routers.Contact = Backbone.Router.extend({\n\
+  ```\n\n我们首先扩展内置的 `Backbone.Router` 对象。\n\n```\n  routes: {\n    'contacts': 'contacts',\n\
+  \    'contacts/add': 'contactsAdd',\n    'contacts/remove/:id': 'contactsRemove'\n\
+  \  },\n```\n\n这里我们定义了三个不同的路由。当 URL 仅为 `contacts` 时，将执行第一个路由。由于我们使用基于锚点的 URL，URL\
+  \ 将显示为 `index.html#contacts`。如果使用 Web 服务器，URL 将是 `example.com/#contacts`。如果我们同时使用\
+  \ Web 服务器和 `pushState` URL，URL 将是 `example.com/contacts`，并类似于传统的网页请求。\n\n路由的值是我们对象上要执行的方法的名称（这与\
+  \ View 对象中的 events 对象非常相似）。\n\n这里有趣的是第三个路由。注意第三个 URL 参数 `id`。这告诉 Backbone 我们期望 URL\
+  \ 的这部分包含某种字符串（基本上是除正斜杠以外的任何字符）。如果你确实想包含斜杠，可以在标识符前加上星号，例如 `*id`。你为这些动态路由中的标识符选择的名称并不重要，因为它们会按照出现的顺序作为参数传递给路由方法。不过，请给它们起一个你容易记住的名字。\n\
+  \n```\n  contacts: function() {\n    App.Directory.render();\n    App.Directory.addFormHide();\n\
+  \  },\n```\n\n`contacts()` 路由方法（当 URL 匹配 `contacts` 时执行）用于显示联系人列表。它将再次渲染我们的 `Directory`，并为我们执行一种页面刷新。如果添加表单是打开的，它也会将其隐藏。将其视为应用程序的默认状态。如果应用程序执行其他多个功能，我们将使用它将用户带回联系人列表。\n\
+  \n```\n  contactsAdd: function() {\n    App.Directory.addForm();\n  },\n```\n\n\
+  `contactsAdd()` 路由方法（当 URL 匹配 `contacts/add` 时执行）用于显示**添加新联系人**表单。\n\n```\n  contactsRemove:\
+  \ function(id) {\n    App.Contacts.remove(id);\n    App.Directory.addFormHide();\n\
+  \  }\n```\n\n`contactsRemove()` 路由方法（当 URL 匹配 `contacts/remove/:id` 时执行）用于对指定联系人执行删除操作。我们第一个参数的名称是\
+  \ `id`，巧合的是这与动态路由中使用的标识符相同。这两者中的任何一个本可以命名为其他名称，代码仍将按预期执行。此代码按预期执行 `Contact` 模型的\
+  \ `remove()` 方法，并在添加联系人表单打开时将其隐藏。\n\n### `scripts/main.js`\n\n```\nscripts/main.js:\n\
+  var App = {\n  …,\n  Routers: {},\n  Browser: null\n};\n```\n\n我们添加到主 `App` 对象中的\
+  \ `Routers` 对象将包含我们在应用程序中使用的不同路由器的列表。如果你的应用程序变得更加复杂，以这种方式保持不同组件的分离并不是坏主意。\n\n`Browser`\
+  \ 对象将包含我们实例化的 `Contact` 路由器。目前应用程序相当简单，拥有一个全局指针使其使用方便。\n\n### `scripts/views/contact.js`\n\
+  \n我们现在来看看 `scripts/views/contact.js`：\n\n```\n    App.Browser.navigate('contacts/remove/'\
+  \ + this.model.cid);\n```\n\n这行代码在点击删除按钮时执行。它更新 URL 以显示正在删除哪个项目。然而，仅运行此代码不会导致相应的路由更新。如果我们想那样做，我们需要向\
+  \ `navigate()` 传递第二个参数，如下所示：\n\n```\n{trigger: true}\n```\n\n我们不需要传递第二个参数的原因是因为我们在下一行已经要运行\
+  \ Model `destroy` 代码了。然而，如果文档包含如下链接，它将触发路由器删除：\n\n```\n<a href=\"#contacts/remove/c1\"\
+  >Delete First Contact</a>\n```\n\n### `scripts/views/directory.js`\n\n我们还将看看 `scripts/views/directory.js`：\n\
+  \n```\n    App.Browser.navigate('contacts/add');\n```\n\n这当然会更改我们添加联系人表单的 URL。如果有人访问我们的应用程序只是为了快速添加新联系人，这个\
+  \ URL 对他们来说变得非常方便。\n\n```\n  addFormHide: function() {\n    App.Browser.navigate('contacts');\n\
+  \    this.$('.controls form').hide();\n  },\n```\n\n这里我们稍微重构了一下代码。现在我们添加了路由器的概念，从其他地方切换添加联系人表单的可见性变得很重要。我们稍后更新\
+  \ `addSubmit()` 中的调用以使用这个新函数来完成重构。\n\n动态更改 URL 锚点足以允许用户将页面加入书签、与朋友分享页面，并使用浏览器的前进和后退按钮浏览历史记录。然而，如果你想摆脱锚点符号\
+  \ `#`（这只是看起来更美观），你将需要寻找服务端解决方案来实现这一点。\n\n### Note\n\n实现此功能的方法将因你为项目选择的后端服务器软件而异。但作为一般规则，你将需要执行相同的页面生成脚本，并使用正则表达式跟踪动态\
+  \ URL 规则。Apache 有 `mod_rewrite`。Nginx 有 HTTP location 指令。\n"
+- "## 将数据持久化到服务器\n\nBackbone 最大的特性之一是它能很好地保持后端服务器/数据库与用户交互的前端界面之间的数据同步。Collection\
+  \ 和 Model 是 Backbone 的核心部分，如果我们没有后端来持久化数据，那将是一种遗憾！\n\n本节将指导你创建一个简单的基于 **Node.js**\
+  \ 的服务器，我们可以在其中保存联系人。我们在这个项目中使用 Node 有两个主要原因。第一是因为编程是用 JavaScript 完成的，而你已经懂 JavaScript\
+  \ 了！第二是因为在 Node 中为开发启动服务器非常简单。无需花费数小时调整配置文件和安装包依赖。\n\n### 步骤 1 - 准备工作\n\n下载并安装适用于你操作系统的\
+  \ Node。你可以从以下 URL 下载 Node 包：\n\n[`nodejs.org/download/`](http://nodejs.org/download/)\n\
+  \n接下来，创建一个 `server.js` 文件。该文件应位于项目目录的根目录下。由于浏览器永远不会执行此代码，它不需要遵循我们放在 `scripts` 目录内的约定。事实上，它根本不应该遵循该约定，否则可能会让人对脚本的用途感到困惑。你也不需要在\
+  \ HTML 文件中使用 `<script>` 标签加载它。\n\n### 步骤 2 - 创建服务器脚本\n\n将以下代码添加到 `server.js`。我不会像解释我们编写的其他代码那样逐行解释代码，因为这超出了本书的范围：\n\
+  \n\n\n# 服务器实现\n\n```javascript\nvar http = require('http');\nvar filesystem = require('fs');\n\
+  \n// Our Contacts \"Database\"\nvar contacts = [{\n  id: '1',\n  firstName: 'Thomas',\n\
+  \  lastName: 'Hunter',\n  phoneNumber: '9895135499',\n  email: 'me@thomashunter.name'\n\
+  },\n{\n  id: '2',\n  firstName: 'Rupert',\n  lastName: 'Styx',\n  phoneNumber: '9895551212',\n\
+  \  email: 'rupertstyx@example.com'\n}];\n\nhttp.createServer(function (req, res)\
+  \ {\n  console.log(req.method + ' ' + req.url);\n\n  if (req.url === '/' && req.method\
+  \ === 'GET') {\n    // Requesting HTML Document\n    filesystem.readFile(__dirname\
+  \ + '/index.html',\n      function(err, data) {\n      if (err) throw err;\n   \
+  \   res.end(data);\n    });\n\n    return;\n  } else if (req.url.indexOf('/contacts')\
+  \ === 0) {\n    // Backbone requesting some data\n    res.writeHead(200, {\n   \
+  \   'Content-Type': 'application/json'\n    });\n\n    if (req.method == 'GET')\
+  \ {\n      // Backbone wants a list of all Contacts\n      res.end(JSON.stringify(contacts));\n\
+  \    } else if (req.method == 'POST') {\n      // Backbone is creating a new Contact\n\
+  \      var body = '';\n      req.on('data', function(data) {\n        body += data;\n\
+  \      });\n      req.on('end', function() {\n        var contact = JSON.parse(body);\n\
+  \        // Here we make up a unique ID\n        contact.id = Math.random()\n  \
+  \        .toString(36).substr(2);\n        // The contact is stored in the DB\n\
+  \        contacts.push(contact);\n        // Now we send the updated contact\n \
+  \       // (which has an ID) back to the\n        // Backbone application\n    \
+  \    res.end(JSON.stringify(contact));\n        console.log(\"CONTACT ADD: \", contact);\n\
+  \      });\n    } else if (req.method == 'DELETE') {\n      // Backbone is deleting\
+  \ a Contact\n      var id = req.url.split('/')[2];\n      console.log(\"DELETE CONTACT:\
+  \ \", id);\n      for (var index in contacts) {\n        if (contacts[index].id\
+  \ === id) {\n          // Delete Contact from DB\n          contacts.splice(index,\
+  \ 1);\n          break;\n        }\n      }\n      res.end();\n    }\n\n    return;\n\
+  \  } else {\n    // Browser probably requesting JavaScript\n    var filename = __dirname\
+  \ + req.url;\n\n    filesystem.lstat(filename,\n        function(err, stats) {\n\
+  \      if (err || !stats.isFile()) {\n        if (req.url != '/favicon.ico') {\n\
+  \          console.log(\"404: \" + filename);\n        }\n        res.writeHead(404,\
+  \ {\n          'Content-Type': 'text/plain'\n        });\n        res.write('404\
+  \ Not Found\\n');\n        res.end();\n        return;\n      }\n\n      filesystem.readFile(filename,\n\
+  \        function(err, data) {\n        res.writeHead(200, {\n          'Content-Type':\
+  \ 'text/javascript'\n        });\n        res.end(data);\n      });\n    });\n \
+  \   return;\n  }\n\n}).listen(1337);\n\nconsole.log('http://localhost:1337/');\n\
+  ```\n\n## 步骤 3 – 更新联系人集合\n\n更新 `scripts/collections/contact.js`，在现有的 `model` 属性后添加以下属性：\n\
+  \n```javascript\nurl: '/contacts'\n```\n\n## 步骤 4 – 更新主脚本\n\n更新 `scripts/main.js`，删除添加那两个联系人的所有代码行。\n\
+  \n同样在 `scripts/main.js` 中，在 DOM 就绪代码的末尾添加以下代码行：\n\n```javascript\nApp.Contacts.fetch();\n\
+  ```\n\n## 步骤 5 – 更新路由器\n\n修改 `scripts/router.js` 中的 `contactsRemove()` 方法，使其类似于以下内容：\n\
+  \n```javascript\ncontactsRemove: function(id) {\n  var contact = App.Contacts.get(id);\n\
+  \  if (contact) {\n    contact.destroy();\n  }\n  App.Directory.addFormHide();\n\
+  }\n```\n\n## 步骤 6 – 更新联系人视图\n\n修改 `scripts/views/contact.js` 中的 `remove()` 方法，使其类似于以下内容：\n\
+  \n```javascript\nremove: function() {\n  App.Browser.navigate('contacts/remove/'\
+  \ + this.model.get('id'));\n  this.model.destroy();\n}\n```\n\n## 步骤 7 – 更新目录视图\n\
+  \n在 `scripts/views/directory.js` 中，更新 `addSubmit()` 方法，在将联系人添加到集合的那行代码后添加以下代码行：\n\
+  \n```javascript\nnewContact.save();\n```\n\n## 步骤 8 – 运行服务器\n\n运行这个 Node 应用程序应该很简单，如下面的屏幕截图所示，打开一个终端窗口，输入\
+  \ `node `（注意空格），将 `server.js` 文件拖放到终端窗口上，然后按回车键。\n\n在 OS X 和大多数 Linux 发行版中，你可以启动终端应用程序。在\
+  \ Windows 中，你可以运行命令提示符应用程序。\n\n![步骤 8 – 运行服务器](img/5668OS_04_04.jpg)\n\n一旦你执行了 Node\
+  \ 服务器，你应该会在终端中看到消息 `http://localhost:1337/`。这是服务器监听传入 HTTP 请求的 URL。在浏览器中打开该 URL，你应该又能看到你的应用程序了！从现在起，你将想要使用该\
+  \ URL 来导航到你的应用程序，而不是直接双击 `index.html` 文件。\n\n你应该会看到之前那两个联系人的列表，即 **Thomas Hunter**\
+  \ 和 **Rupert Styx**。尝试添加更多联系人，并删除联系人。但这一次，在操作之间刷新页面。这一次它们保存在服务器端，而不是每次刷新都被删除！\n\n\
+  我们在 Backbone 应用程序中做出的最值得注意的更改之一，是在 Contact 模型上添加了 `id` 属性。一旦 Backbone 看到该 `id` 属性，它就知道如何引用服务器上的对象。我们还添加了一些功能，用于告知\
+  \ Backbone 在何时与服务器通信以持久化和检索数据。\n\n### 检查集合\n\n让我们首先看看 `scripts/collections/contact.js`：\n\
+  \n```javascript\nurl: '/contacts'\n```\n\nCollection 对象上的 `url` 属性是 Backbone 的一个约定，用于指定代表该特定数据类型的根\
+  \ URL 端点。\n\n当 Backbone 想要创建一个新联系人时，它将对该位置执行 `POST` 操作。当 Backbone 想要获取集合中所有项目的列表时，它将对该位置执行\
+  \ `GET` 操作。当 Backbone 想要移除特定项目时，它将对该位置执行 `DELETE` 操作，后跟斜杠和唯一标识符。当 Backbone 想要从服务器检索特定项目时，它将对该位置执行\
+  \ `GET` 操作，并附带唯一标识符。最后，当 Backbone 想要更改现有项目时，它将对该位置执行 `PUT` 操作，并附带唯一标识符。\n\n这是一种使用\
+  \ URL 来表示服务器上数据的非常常见的方式。这种与资源交互的常见方式通常被称为 **REST**。因此，你可以说这个服务器脚本为前端 Backbone 应用程序提供了一个\
+  \ **RESTful API** 来进行交互。\n\n### 检查 main.js\n\n现在我们将查看 `scripts/main.js`：\n\n此文件中的大多数更改都是删除代码，这些代码添加了两个默认联系人，因为我们希望后端服务器来处理这些联系人。\n\
+  \n```javascript\nApp.Contacts.fetch();\n```\n\n这行代码告诉 Backbone 执行数据获取。还记得之前的内容吗，既然\
+  \ Backbone 想要集合中的所有数据，它就会对 URL `/contacts` 执行 `GET` 操作。\n\n打开 Chrome 的网络控制台，选择最后一个网络请求“contacts”（应该是最后一个）。这将向你展示从\
+  \ Node 发送到 Backbone 的数据到底长什么样。你应该会看到如下截图所示的对象数组：\n\n![步骤 8 – 运行服务器](img/5668OS_04_05.jpg)\n\
+  \n如果这是一个完全使用 jQuery 从头构建的应用程序，你可能需要编写一个 `$.ajax()` 调用来执行这项工作，并手动遍历每个项目。Backbone\
+  \ 实际上使用的是 jQuery 提供的相同 `$.ajax()` 调用，但它会在后台自动为我们完成所有这些工作！\n\n### 检查路由器\n\n现在让我们看看\
+  \ `scripts/router.js`：\n\n```javascript\ncontactsRemove: function(id) {\n  var contact\
+  \ = App.Contacts.get(id);\n  if (contact) {\n    contact.destroy();\n  }\n  App.Directory.addFormHide();\n\
+  }\n```\n\n\n\n之前，我们的代码运行的是 `App.Contacts.remove(id)`，其中 `id` 是集合 ID。这是 `Backbone`\
+  \ 自动添加到 `collection` 中每个 `model` 上的，用于在内部进行跟踪。但现在我们已更新应用程序以使用真实的 ID 值，情况变得稍微复杂一些。\n\
+  \n因为我们希望 `Contact` 的删除操作能持久化到服务器，所以我们需要使用 `model.destroy()`，而不是 `collection.remove()`。首先，我们尝试从\
+  \ `collection` 中获取 `contact` 并将其赋值给变量 `contact`。用户可能会尝试删除一个不存在的 `contact`，这会导致错误。然后我们检查\
+  \ `model` 是否返回，如果返回了，我们就运行 `destroy()`。这会向服务器发送 `DELETE` 命令。\n\n现在让我们看看 `scripts/views/contact.js`：\n\
+  \n```\n  remove: function() {\n    App.Browser.navigate('contacts/remove/' + this.model.get('id'));\n\
+  \    this.model.destroy();\n  }\n```\n\n正如上一节所述，我们现在想要使用 `models` 的真实 ID，而不是 `Collection`\
+  \ ID。我们不再获取 `model.cid`，而是使用 `model.get('id')` 并将其传递给 URL 供 `router` 处理。\n\n最后让我们看看\
+  \ `scripts/views/directory.js`\n\n```\n      newContact.save();\n```\n\n这行代码明确告诉\
+  \ `Backbone` 获取这个新创建的 `contact` 并将其保存到服务器。遗憾的是，仅将一个 `model` 添加到 `Collection` 中并不足以让\
+  \ `Backbone` 将该 `collection` 持久化到服务器。不过，这确实给了我们对应用程序更多的控制权。\n\n如果你检查此请求的网络流量，你会看到它在服务器上执行\
+  \ `POST` 操作。然而，它也会响应一个完整的文档。`Backbone` 随后解析此文档，查找 `id` 属性，然后更新本地 `model`。通常，我们希望数据库为我们生成\
+  \ `id` 值，而 `Backbone` 正好满足了这一需求。\n\n### 注意\n\n如果你终止 `Node` 应用程序（无论是按 `Ctrl` + `C`\
+  \ 还是关闭窗口），联系人数据库将永远被删除。之所以会这样，是因为 `Node` 只是将数据存储在内存中的一个变量里，程序退出时该变量会被清除。\n\n如果你想永久保存数据，请考虑使用数据库系统，例如\
+  \ `MySQL`、`MongoDB` 或 `Redis`。数据存储有很多可选方案。例如，`MongoDB` 与 `Node` 配合得很好，幸运的是，对于我们\
+  \ `JavaScript` 开发者来说，它使用 `JSON` 来表示对象。\n\n更多供你学习 `Backbone` 的链接。\n\n## 官方网站\n\n\
+  *   Backbone 文档：[`backbonejs.org/`](http://backbonejs.org/)\n*   Backbone GitHub：[`github.com/documentcloud/backbone/`](http://github.com/documentcloud/backbone/)\n\
+  *   Underscore 文档：[`underscorejs.org/`](http://underscorejs.org/)\n*   jQuery 文档：[`api.jquery.com/`](http://api.jquery.com/)\n\
+  *   Node.js 文档：[`nodejs.org/api/`](http://nodejs.org/api/)\n*   本书示例的代码可从 [`github.com/tlhunter/backbone-book`](https://github.com/tlhunter/backbone-book)\
+  \ 获取\n\n## 社区\n\n*   Freenode IRC：`#documentcloud`\n*   Backbone 问题：[`github.com/documentcloud/backbone/issues`](http://github.com/documentcloud/backbone/issues)\n\
+  *   邮件列表：[`groups.google.com/forum/#!forum/backbonejs`](https://groups.google.com/forum/#!forum/backbonejs)\n\
+  \n## Twitter\n\n*   关注 Backbone.js 创建者 `@documentcloud`\n*   关注本书作者 `@tlhunter`\n\
+  *   如需更多开源信息，请关注 Packt `@packtopensource`\n"

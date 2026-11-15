@@ -1,0 +1,67 @@
+chapter_starts:
+- 'no': 39
+  confidence: 0.95
+  final_reason: '一级标题（#），全书最高层级结构标志，单独成行、无末尾标点、语义统领后续 9 个二级标题（## 什么是 Backbone.js 至
+    ## 依赖项），符合章标题所有判断规则。复核方‘部分标题’假设缺乏显式‘Part’标记支撑，Markdown 结构中 # 即为章级单位。'
+  accepted_evidence:
+  - '格式特征：以 # 开头，单独成行，长度 < 30 字，无句号'
+  - 语义特征：概括性强，覆盖 Backbone 简介、安装、快速入门、核心特性、社区资源、概述、理由、用户、依赖等核心入门内容
+  - '上下文特征：后紧跟概述段落，再接 9 个 ## 子节，结构完整'
+  rejected_evidence:
+  - 复核方指出全书仅 5 个一级标题，疑为部分标题，但无‘Part’编号或显式声明，且每‘部分’内含完整教程步骤，符合‘快速指南’薄册章节粒度
+  need_human_review: false
+- 'no': 445
+  confidence: 0.95
+  final_reason: 一级标题（#），最高层级结构标志，单独成行、无末尾标点，语义统领后续视图与模板完整教程（步骤 1-6、事件绑定、模板语法详解），符合章标题判断规则。
+  accepted_evidence:
+  - 格式特征：# 视图与模板，单独成行，无标点
+  - 语义特征：统领视图创建、模板渲染、Underscore 模板引擎、事件监听器、View 事件等系统性内容
+  - '上下文特征：后跟步骤式 ## 子节（步骤 1-6），再接代码详解，结构完整'
+  rejected_evidence:
+  - 复核方疑为部分标题，但结构与前章一致，均为实操教程章，粒度适配全书 5 章体量
+  need_human_review: false
+- 'no': 659
+  confidence: 0.9
+  final_reason: 一级标题（#），最高层级结构标志，标志进入完整应用教程阶段，统领全局 App 对象、Directory 视图、事件监听器示例、View
+    事件、表单交互等核心实战内容。
+  accepted_evidence:
+  - 格式特征：# Backbone.js 应用程序教程，单独成行，无标点
+  - 语义特征：覆盖从全局对象到事件监听、View 事件、增删联系人表单的完整应用构建流程
+  - '上下文特征：后接 ## 全局 App 对象与 Directory 视图、## 事件监听器示例、## View 事件等二级标题'
+  rejected_evidence:
+  - 复核方以‘教程’二字暗示部分标题，但该标题下直接包含具体功能实现步骤，非纯容器性部分
+  need_human_review: false
+- 'no': 1002
+  confidence: 0.9
+  final_reason: 一级标题（#），最高层级结构标志，专章讲解基于 URL 的路由机制，涵盖 Router 定义、History API、pushState、服务端配合、路由器实例化等完整路由体系。
+  accepted_evidence:
+  - 格式特征：# 基于 URL 的路由，单独成行，无标点
+  - 语义特征：聚焦路由单一核心功能，含原理、代码实现、服务端配合、浏览器历史记录管理
+  - '上下文特征：后接 ## Step 1-5 步骤式实现，再接代码详解，结构自成体系'
+  rejected_evidence:
+  - 复核方指出篇幅较短，但路由作为 SPA 核心模块独立成章符合技术书惯例
+  need_human_review: false
+- 'no': 1223
+  confidence: 0.9
+  final_reason: 一级标题（#），最高层级结构标志，引入 Node.js 后端实现数据持久化，涵盖 REST 同步、服务器代码、Collection
+    url、fetch/save/destroy 等前后端联调全流程，为全书收官核心章。
+  accepted_evidence:
+  - 格式特征：# 将数据持久化到服务器，单独成行，无标点
+  - 语义特征：统领服务端实现、REST 接口、Backbone 同步机制、生产环境部署建议
+  - '上下文特征：后接 ### 步骤 1-8 完整工程化实践，再接代码逐文件详解，结构完整'
+  rejected_evidence:
+  - 复核方以‘第 5 个一级标题’推测为部分，但内容引入新技术栈且含完整工程步骤，章级语义明确
+  need_human_review: false
+rejected_lines:
+- 'no': 0
+  reason: 书名/封面行 '# Backbone.js 应用开发快速指南'，非章节标题；后紧跟分隔线 '---' 及 '## 关于作者' 等前言要素，属排版噪声/元数据残留，不具备统领性语义。复核方反证成立。
+  need_human_review: false
+- 'no': 251
+  reason: '明确为二级标题 ''## Models and Collections''，属子层级（Markdown ##），规则明确：遇到‘X.Y’、‘第
+    X 节’等子层级不划分新章。上一级一级标题 ''# Backbone.js 简介'' 仅在 200 行前，中间连续分布 8 个同级二级标题，语义上属于同一章节内的不同小节，前文过渡句
+    ''以下部分将指导你构建...'' 亦暗示本节隶属于前一章。复核方反证成立。'
+  need_human_review: false
+- 'no': 1498
+  reason: '该行 ''更多供你学习 Backbone 的链接。'' 为普通段落文本，非标题格式（无 #、无编号、末尾有句号），不符合章标题格式特征。后续附录内容以二级标题
+    ''## 官方网站''、''## 社区''、''## Twitter'' 开始，若需分章应在首个附录标题行，而非引导语行。复核方反证成立。'
+  need_human_review: false

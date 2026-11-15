@@ -1,0 +1,60 @@
+reviews:
+- 'no': 0
+  overturn_probability: 0.95
+  alternative: 书名/封面行
+  counter_evidence:
+  - 该行是书籍完整标题 '# Backbone.js 应用开发快速指南'，非章节标题；根据规则前言类内容统一划分为一章，但分章点应落在前言实质内容开始处（如'关于作者'），而非书名行。
+  - 后续紧跟分隔线 '---' 及 '## 关于作者' 等前言要素，书名行属于排版噪声/封面残留，不具备统领性语义。
+  keep_split: false
+- 'no': 39
+  overturn_probability: 0.4
+  alternative: 部分标题
+  counter_evidence:
+  - 全书共出现 5 个一级标题（#），疑为‘部分-章节’模式中的部分标题，而非最细粒度的章；若每个一级标题均分章，全书仅 5 章，与内容体量不符。
+  - 该标题下包含 9 个二级标题（## 什么是 Backbone.js、## 安装等），结构更像一个部分下的多章节。
+  keep_split: true
+- 'no': 251
+  overturn_probability: 0.95
+  alternative: 正文二级标题/节标题
+  counter_evidence:
+  - 明确为二级标题 '## Models and Collections'，属于子层级，规则明确：遇到‘X.Y’、‘第 X 节’等子层级不划分新章。
+  - 上一级一级标题 '# Backbone.js 简介' 仅在 200 行前，中间连续分布 8 个同级二级标题，语义上属于同一章节内的不同小节，前文过渡句 '以下部分将指导你构建...'
+    亦暗示本节隶属于前一章。
+  keep_split: false
+- 'no': 445
+  overturn_probability: 0.45
+  alternative: 部分标题
+  counter_evidence:
+  - 作为一级标题 '# 视图与模板'，但全书一级标题共 5 个，疑为部分划分；后续内容为步骤式教程（## 步骤 1、## 步骤 2...），结构与前一 '# Backbone.js
+    简介' 高度相似，可能同属一个大部分。
+  - 若按章分割，前后两‘章’均包含大量步骤级二级标题，粒度过粗。
+  keep_split: true
+- 'no': 659
+  overturn_probability: 0.45
+  alternative: 部分标题
+  counter_evidence:
+  - 一级标题 '# Backbone.js 应用程序教程' 出现在 '# 视图与模板' 之后，若每个一级标题均为章则全书仅 5 章，但每‘章’内含 10+ 个步骤级二级标题，更符合部分下的多章结构。
+  - 标题含‘教程’二字，暗示这是一个包含多个具体功能章节的教程部分。
+  keep_split: true
+- 'no': 1002
+  overturn_probability: 0.45
+  alternative: 部分标题
+  counter_evidence:
+  - 一级标题 '# 基于 URL 的路由' 与前两个一级标题并列，全书一级标题总数固定为 5，强烈暗示部分级划分；章节粒度应细化到其下的二级标题（如 '## Step
+    1'）。
+  - 内容聚焦路由器单一功能，篇幅较短，若作为独立章节则与前后‘部分’篇幅失衡。
+  keep_split: true
+- 'no': 1223
+  overturn_probability: 0.45
+  alternative: 部分标题
+  counter_evidence:
+  - 一级标题 '# 将数据持久化到服务器' 为第 5 个一级标题，完成 5 部分结构；引入 Node.js 服务端实现属于新技术栈，但内部仍以步骤式二级标题组织，特征与前四个一级标题一致。
+  - 若为章，则全书仅 5 章，无法覆盖 Models、Views、Routing、Persistence 等核心模块的细分主题。
+  keep_split: true
+- 'no': 1498
+  overturn_probability: 0.9
+  alternative: 正文段落/引导语
+  counter_evidence:
+  - '该行 ''更多供你学习 Backbone 的链接。'' 为普通段落文本，非标题格式（无 #、无编号、末尾有句号），不符合章标题格式特征。'
+  - 后续附录内容以二级标题 '## 官方网站'、'## 社区'、'## Twitter' 开始，若需分章应在首个附录标题行，而非引导语行。
+  keep_split: false
