@@ -1,0 +1,185 @@
+
+# 创建关于我网页
+
+## 步骤
+
+1. 打开 VS Code。
+
+2. 选择 **File** | **Open Folder...**
+
+3. 选择 `about-me-webpage` 文件夹。
+
+    > 打开文件夹（而非单个文件）很重要，因为当 VS Code 知道项目根目录时，实时预览工具的表现会更好。
+
+4. 如果看到关于信任此文件夹中文件作者的警告，请勾选复选框并点击 **Yes, I trust the authors** 按钮，如图 2.4 所示：
+
+    ![](Images/B34553_02_04.png)
+
+    **图 2.4：** 在 VS Code 中信任此文件夹中的文件作者
+
+5. 在 VS Code 资源管理器（左侧）中，点击 **New File**，并将其命名为 `index.html`，如图 2.5 所示：
+
+    ![](Images/B34553_02_05.png)
+
+    **图 2.5：** VS Code 资源管理器及其 New File 按钮
+
+6. 将以下 HTML 添加到空文件中（此示例包含您所学的所有内容，重要元素已高亮显示）。粘贴到 `index.html` 中：
+
+    此 HTML 文件可从以下链接获取：[https://github.com/markjprice/web-dev-ai/blob/main/Code/Chapter02/about-me-webpage/index.html](https://github.com/markjprice/web-dev-ai/blob/main/Code/Chapter02/about-me-webpage/index.html)
+
+    ```html
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="utf-8">
+        <meta name="viewport" 
+              content="width=device-width, initial-scale=1.0">
+        <title>Mark's First Web Page</title>
+      </head>
+      <body>
+        <h1>Mark's First Web Page</h1>
+        <p>
+          Welcome! This page is a simple example of HTML structure: headings, paragraphs, links, images, lists, and a table.
+        </p>
+        <h2>About this page</h2>
+        <p>
+          HTML tells the browser what each piece of content <em>is</em>.
+          Styling comes later (that's CSS), and interactivity comes later (that's JavaScript).
+        </p>
+        <h2>Useful link</h2>
+        <p>
+          Here's a link to learn more about HTML:
+          <a href="https://developer.mozilla.org/en-US/docs/Web/HTML">MDN Web Docs: HTML</a>.
+        </p>
+        <h2>Image</h2>
+        <p>
+          Below is an image. You can use a web image URL, or a local image file.
+          The <strong>alt</strong> text describes the image for screen readers and when the image can't load.
+        </p>
+        <!-- Option A: Use a local image -->
+        <!-- Save an image as images/profile.jpg and use this: -->
+        <!-- <img src="images/profile.jpg" alt="A friendly profile photo"> -->
+        <!-- Option B: Use a placeholder image from the web -->
+        <img
+          src="https://via.placeholder.com/640x240.png?text=My+First+Image"
+          alt="A placeholder banner that says My First Image"
+        >
+        <h2>Lists</h2>
+        <p>Unordered list (a list where the order doesn't matter):</p>
+        <ul>
+          <li>Headings organize the page</li>
+          <li>Paragraphs hold normal text</li>
+          <li>Links connect pages together</li>
+        </ul>
+        <p>Ordered list (a list of steps):</p>
+        <ol>
+          <li>Create a folder for your project</li>
+          <li>Add an <code>index.html</code> file</li>
+          <li>Open it with Live Preview</li>
+        </ol>
+        <h2>Table</h2>
+        <p>
+          Tables are for data. Here's a tiny "learning plan" table:
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th>Topic</th>
+              <th>What you'll practice</th>
+              <th>Time (minutes)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Headings</td>
+              <td>Page outline and sections</td>
+              <td>10</td>
+            </tr>
+            <tr>
+              <td>Links</td>
+              <td>Link to another page</td>
+              <td>10</td>
+            </tr>
+            <tr>
+              <td>Images</td>
+              <td>Add alt text</td>
+              <td>10</td>
+            </tr>
+          </tbody>
+        </table>
+        <h2>Next idea</h2>
+        <p>
+          Try editing the text above and watch the preview update instantly.
+          When you're ready, you can add CSS to make it look nicer.
+        </p>
+      </body>
+    </html>
+    ```
+
+## 代码说明
+
+请注意前面代码中的以下内容：
+
+- 文档结构：`<!DOCTYPE html>`、`<html>`、`<head>`、`<title>`、`<body>`
+- 标题：`<h1>`、`<h2>`
+- 段落：`<p>`
+- 链接：`<a href="...">`
+- 图片：`<img src="..." alt="...">`
+
+如果看到损坏的图片图标而不是图片，可能是因为外部图片服务暂时不可用。您的 HTML 仍然是正确的。尝试切换到选项 A，通过将任意图片保存到正确的路径和文件名 `images/profile.jpg` 并取消注释本地 `<img>` 元素来使用本地图片文件。
+
+- 列表：`<ul>` + `<li>`，以及 `<ol>` + `<li>`
+- 表格：`<table>`、`<thead>`、`<tbody>`、`<tr>`、`<th>`、`<td>`
+
+**最佳实践**：视口 `meta` 标签被视为任何 HTML 文档的标准组成部分，对于页面在移动设备上正确渲染至关重要。没有它，移动浏览器将按桌面宽度视口渲染页面然后缩小，导致文本难以阅读。表格应分为标题行（一个带有 `<tr>` 元素和嵌套 `<th>` 表头单元格元素的 `<thead>`）和数据行（一个带有一个或多个 `<tr>` 元素和嵌套 `<td>` 数据单元格元素的 `<tbody>`）。
+
+# 为网页生成位图图像
+
+到目前为止，您一直在使用已存在的图片文件。在实际项目中，您通常需要在拥有设计师、照片库或最终素材之前就需要图片。
+
+图像生成工具为此目的非常有用，特别是作为占位符。诸如 Google 的 Nano Banana 和 ChatGPT Images 等工具可以从文本描述生成位图图像。您可以使用它们来创建：
+
+- 构建布局时的占位图片
+- 登录页面的 Hero 图片
+- 博客文章或产品页面的插图
+- 简单的图标或视觉点缀
+
+这使您在最终美术素材存在之前就有东西可以围绕其进行设计。
+
+2026 年 4 月 21 日，OpenAI 宣布了 ChatGPT Images 2.0，带来了许多改进：[https://openai.com/index/introducing-chatgpt-images-2-0/](https://openai.com/index/introducing-chatgpt-images-2-0/)
+
+这些工具生成的图像通常是位图图像，意味着它们由像素组成。
+
+常见的位图格式包括：
+
+- JPEG 适合照片
+- PNG 适合透明度和锐利边缘
+- WebP 是一种压缩效果好的格式
+
+构建页面布局时，您通常只需要一些看起来合理的东西。
+
+例如，您可能会用以下提示词提示图像生成器：
+
+```
+Please create a simple hero image with a soft blue gradient background, abstract shapes, clean and minimal, suitable for a tech website.
+```
+
+结果不需要完美。它只需要填充空间，给页面视觉结构，并帮助您思考布局和间距。这比留下空白空间或使用损坏的图片链接要好得多。
+
+Hero 图片是页面顶部的大型视觉元素。它为后面的所有内容设定基调。
+
+例如，对于一个调查应用登录页面，您可能会生成类似这样的内容：
+
+```
+Please create a web app hero image showing a dashboard with charts and polls, clean UI, light background, friendly colors, no text.
+```
+
+Hero 图片的一些实用技巧：
+
+- 避免在图片本身中放置重要文本；改用真正的 HTML 文本
+- 保持构图简单，以便在不同屏幕尺寸下工作
+- Hero 部分首选宽幅、横向图片
+
+生成的图片很有用，但请记住，生成的图片有时可能包含视觉伪影或奇怪的细节。使用前请仔细检查。
+
+位图图片并不总是最佳选择。对于图表、图标以及任何需要干净缩放或动画的内容，矢量图形通常更好。

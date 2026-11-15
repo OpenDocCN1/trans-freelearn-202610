@@ -1,0 +1,107 @@
+## 附录 A：问题
+
+## 问题
+
+5. 为什么数据库必须与应用程序代码分开存储？
+
+6. 为什么在生产环境中 `DEBUG` 应设置为 `False`？
+
+7. `HTTPS` 解决了什么问题，以及它在 `Django` 中是如何强制执行的？
+
+8. 为什么对登录端点进行速率限制很重要？
+
+9. 反向代理的目的是什么？
+
+10. `Cloudflare` 如何提高小型 Web 应用的弹性？
+
+## 答案
+
+答案可在本书的 GitHub 仓库中找到，链接如下：
+
+[`github.com/markjprice/web-dev-ai/blob/main/docs/Appendix-A.pdf`](https://github.com/markjprice/web-dev-ai/blob/main/docs/Appendix-A.pdf)
+
+## 链接
+
+- `Django` 中的安全性：[`docs.djangoproject.com/en/stable/topics/security/`](https://docs.djangoproject.com/en/stable/topics/security/)
+- 如何部署 `Django`：[`docs.djangoproject.com/en/stable/howto/deployment/`](https://docs.djangoproject.com/en/stable/howto/deployment/)
+- `Gunicorn` 文档：[`docs.gunicorn.org/en/stable/`](https://docs.gunicorn.org/en/stable/)
+- `Nginx` 文档：[`nginx.org/en/docs/`](https://nginx.org/en/docs/)
+- Web 安全指南：[`infosec.mozilla.org/guidelines/web_security`](https://infosec.mozilla.org/guidelines/web_security)
+- Let’s Encrypt `Certbot` 文档：[`certbot.eff.org/docs/`](https://certbot.eff.org/docs/)
+- DigitalOcean，如何使用 `Gunicorn` 和 `Nginx` 部署 `Django`：[`www.digitalocean.com/community/tutorials/how-to-set-up-django-with-postgres-nginx-and-gunicorn-on-ubuntu`](https://www.digitalocean.com/community/tutorials/how-to-set-up-django-with-postgres-nginx-and-gunicorn-on-ubuntu)
+- `Cloudflare` 学习中心：[`www.cloudflare.com/learning/`](https://www.cloudflare.com/learning/)
+- Martin Fowler 的持续集成：[`martinfowler.com/articles/continuousIntegration.html`](https://martinfowler.com/articles/continuousIntegration.html)
+
+## 概要
+
+在本章中，你将 TallyApp 部署为公共 Web 应用程序，而不是本地开发项目。你了解了生产环境 `Django` 技术栈如何分离职责：`Nginx` 接收公共流量并提供静态文件服务，`Gunicorn` 运行 `Django`，`Django` 处理应用程序行为，数据库存储用户数据。
+
+你还了解到部署不仅仅是将代码复制到服务器。真正的部署需要安全设置、环境变量、`HTTPS`、防火墙规则、进程管理、迁移、静态文件收集、日志记录和备份。即使是小型演示站点也需要这些习惯，因为公共服务器会吸引机器人、错误和意外流量。
+
+本章中的设置故意保持简朴。单个 `VPS` 配合 `Django`、`Gunicorn`、`Nginx` 和 `SQLite` 足以支持公共学习项目。随着项目增长，你可以迁移到 `PostgreSQL`、添加 `Cloudflare`、改进监控，并使用 `CI/CD` 自动化部署。
+
+具体来说，你学习了以下内容：
+
+- 部署将本地 `Django` 应用转变为持续运行的公共服务
+- 生产技术栈分离关注点：`Nginx` (Web)、`Gunicorn` (应用)、`Django` (逻辑)、数据库 (数据)
+- `WSGI` 允许 `Django` 在不同的 Web 服务器后端运行而无需修改
+- 小型 `VPS` 为初学者提供了控制、成本和学习价值的最佳平衡
+- `SQLite` 适用于低流量应用，但在并发写入方面有限制
+- 数据必须独立于应用程序代码持久化，并通过定期备份进行保护
+- 安全部署遵循可重复的过程：更新代码、应用迁移、收集静态文件、重启服务
+- `Django` 包含强大的内置保护，但仅在正确配置时生效，最常见的风险源于配置错误，而非复杂攻击
+- 简单的安全基线加上像 `Cloudflare` 这样的边缘服务足以应对大多数小型应用
+- 像 DigitalOcean 这样的主机提供基础设施，但应用级保护是开发者的责任
+- 扩展 `Django` 应用通常意味着替换组件，而不是重写应用程序
+
+在尾声中，你将了解 Web 开发学习旅程的下一步。
+
+## 获取本书的 PDF 版本及更多内容
+
+扫描二维码（或访问 packtpub.com/unlock）。按名称搜索本书，确认版本，然后按照页面上的步骤操作。
+
+![](img/B34553_11_11.png)![](img/B34553_11_12.png)
+
+注意：请保留发票。直接从 Packt 购买的不需要发票。
+
+## 解锁您的专属权益
+
+您的本书副本包含以下专属权益：
+
+![](img/Normal_LatestBook%2B_03_Cards1.png)
+
+按照下面的指南解锁它们。该过程仅需几分钟，且只需完成一次。
+
+# 通过 3 个简单步骤解锁本书的免费权益
+
+## 步骤 1
+
+准备好购买发票以备步骤 3 使用。如果您有实体书，请使用手机扫描并将其保存为 `PDF`、`JPG` 或 `PNG` 格式。
+
+有关查找发票的更多帮助，请访问 [`www.packtpub.com/en-us/unlock?step=1`](https://www.packtpub.com/en-us/unlock?step=1)。
+
+注意：如果您直接从 Packt 购买本书，则不需要发票。完成步骤 2 后，您可以立即访问专属内容。
+
+## 步骤 2
+
+扫描二维码或访问 [packtpub.com/unlock](https://www.packtpub.com/en-lt/help/contact)。
+
+![白色背景上的二维码，AI 生成的内容可能不正确。](img/Unlock1.png)
+
+在打开的页面上（类似于桌面端的图 16.1），按名称搜索本书并选择正确的版本。
+
+![](img/Screenshot.png)
+
+图 16.1：桌面端 Packt 解锁登录页面
+
+## 步骤 3
+
+选择您的书籍后，登录您的 Packt 账户或免费创建一个。然后上传您的发票（`PDF`、`PNG` 或 `JPG`，最大 10 `MB`）。按照屏幕上的说明完成流程。
+
+## 需要帮助
+
+如果您遇到困难需要帮助，请访问 [`www.packtpub.com/unlock-benefits/help`](https://www.packtpub.com/unlock-benefits/help) 查看详细的 `FAQ`，了解如何查找发票等更多信息。此二维码将带您前往帮助页面。
+
+![img](img/Need_help.png)
+
+注意：如果您仍然面临问题，请联系 [customercare@packt.com](https://www.packtpub.com/en-lt/help/contact)。

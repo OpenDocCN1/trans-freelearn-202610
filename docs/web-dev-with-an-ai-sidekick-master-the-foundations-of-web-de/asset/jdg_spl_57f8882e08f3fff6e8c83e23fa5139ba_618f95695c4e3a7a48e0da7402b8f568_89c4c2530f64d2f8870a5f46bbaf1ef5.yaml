@@ -1,0 +1,35 @@
+chapter_starts:
+- 'no': 6560
+  confidence: 0.9
+  final_reason: 虽标题级别为 H2 (##) 与前方推广节相同，但全书结构显示 Part 为 H1 (#)，Chapter 为 H2 (##) (见第
+    7 章 line 7889 及 Part 2 line 7876)。该行后跟随 1300+ 行内容，包含章级特征：学习目标列表、多个 H2/H3 节、实操练习、章末总结与资源链接，确认为第
+    6 章 TypeScript 起始。
+  accepted_evidence:
+  - 判断方：前文有 '# 总结' 与 PDF 推广链接等章末特征
+  - 判断方：后续内容量大、结构完整，含学习目标、分节、练习、总结
+  - 复核方间接佐证：全书 Chapter 统一使用 H2 (##)，Part 使用 H1 (#)，该行级别符合 Chapter 规范
+  rejected_evidence:
+  - 复核方：标题级别与推广节相同、缺 '第 6 章' 编号 —— 经全书结构对比，Chapter 标题常省略编号或仅用描述性标题，且级别符合 Chapter 层级
+  need_human_review: false
+- 'no': 7876
+  confidence: 0.98
+  final_reason: 明确的 Part 标题 '# 第 2 部分：后端 Web 开发' (H1)，紧随第 6 章末尾资源页，后跟 Part 级目录列出第
+    7-10 章，符合部分-章节模式分章规则。复核方 '页眉残留' 说法与后续大量结构化目录内容矛盾。
+  accepted_evidence:
+  - 判断方：检测到部分标题，书籍采用部分-章节模式
+  - 判断方：后续紧跟 '本书的这一部分包含以下章节' 及第 7-10 章列表
+  - 上下文：前文为第 6 章末尾资源与总结，结构边界清晰
+  rejected_evidence:
+  - 复核方：前有大量空行、疑似页眉、章节编号跳跃 —— 空行非 200 行且为正常章末间隔；编号未跳跃(第 6 章 TypeScript 在 line 6560)
+  need_human_review: false
+- 'no': 7889
+  confidence: 0.98
+  final_reason: 标准章标题 '## 第 7 章：SQL – 管理数据' (H2)，编号连贯(承接第 6 章)，后含章级导语、学习目标、主题列表、建议提示词，完全符合最高层级章节起始特征。
+  accepted_evidence:
+  - 判断方：明确章标题编号、编号连贯、最高层级
+  - 判断方：后跟 '在本章中，我们将涵盖以下主题' 等章级概览
+  - 上下文：Part 2 目录中明确列出第 7 章，结构自洽
+  rejected_evidence:
+  - 复核方：若 Part 2 为噪声则无部分层级、缺第 6 章上下文、导语风格似节 —— Part 2 已确认为真实结构，第 6 章存在于 line 6560，导语含学习目标列表属章级特征
+  need_human_review: false
+rejected_lines: []
