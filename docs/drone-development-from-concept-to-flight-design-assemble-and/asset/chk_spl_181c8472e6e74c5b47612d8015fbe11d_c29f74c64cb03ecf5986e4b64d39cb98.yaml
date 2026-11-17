@@ -1,0 +1,71 @@
+reviews:
+- 'no': 0
+  overturn_probability: 0.1
+  alternative: 书名页/前置内容封面
+  counter_evidence:
+  - 书名页通常不作为章节起始，前置内容实质始于献词或前言
+  - 该行仅为书名，无章节语义统领性，属于排版噪声或封面残留
+  keep_split: true
+- 'no': 188
+  overturn_probability: 0.3
+  alternative: 部分标题/正文小标题
+  counter_evidence:
+  - 部分标题后无实质内容，仅列举章节列表，可能不应单独分章
+  - 部分-章节模式下部分标题有时不计入章节计数，仅作为逻辑分组标签
+  keep_split: true
+- 'no': 199
+  overturn_probability: 0.05
+  alternative: 第 1 章标题
+  counter_evidence:
+  - 章标题编号为‘第 1 章’，但前文已有‘第 1 部分’，可能存在层级混淆
+  - 章标题后虽跟概述段落，但前文紧邻部分目录，疑似目录残留而非正文章始
+  keep_split: true
+- 'no': 650
+  overturn_probability: 0.4
+  alternative: 第 1 章的子节/正文小标题
+  counter_evidence:
+  - 缺乏明确‘第 2 章’编号，仅为二级标题，可能属于第 1 章的延续或子节
+  - 目录虽列为第 2 章，但正文未体现编号，易误判为章节起始
+  keep_split: true
+- 'no': 916
+  overturn_probability: 0.1
+  alternative: 第 3 章标题
+  counter_evidence:
+  - 章标题前存在多个空行，疑似排版断行导致的假分章
+  - 章标题格式与前两章一致，但前文总结后空行过多，可能是排版噪声
+  keep_split: true
+- 'no': 1201
+  overturn_probability: 0.1
+  alternative: 第 4 章标题
+  counter_evidence:
+  - 同上，空行较多可能干扰判断，疑似排版断行
+  - 章标题前有多个空行，且前一章总结后无明显过渡段落
+  keep_split: true
+- 'no': 1698
+  overturn_probability: 0.3
+  alternative: 部分标题/正文小标题
+  counter_evidence:
+  - 第 2 部分标题后无实质内容，直接列举章节，可能不应单独分章
+  - 部分标题与第 1 部分相同模式，若第 1 部分不分章则此处也不应分章
+  keep_split: true
+- 'no': 1709
+  overturn_probability: 0.05
+  alternative: 第 5 章标题
+  counter_evidence:
+  - 章标题格式规范，但前文部分标题若不分章，则章编号连续性存疑
+  - 章标题前有多个空行，疑似排版噪声
+  keep_split: true
+- 'no': 1918
+  overturn_probability: 0.05
+  alternative: 第 6 章标题
+  counter_evidence:
+  - 章标题格式规范，无明显反证，但前文有大量空行可能干扰
+  - 章标题后紧跟技术要求，而非概述段落，略微偏离章始特征
+  keep_split: true
+- 'no': 2631
+  overturn_probability: 0.05
+  alternative: 第 7 章标题
+  counter_evidence:
+  - 章标题格式规范，但前文有多个空行，疑似排版断行
+  - 章标题后即为空行再接正文，缺乏典型概述段落
+  keep_split: true
